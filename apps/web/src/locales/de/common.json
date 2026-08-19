@@ -1,0 +1,50 @@
+{
+  "brand": {
+    "tagline": "Hangeul lernen, Strich für Strich.",
+    "description": "Lerne Hangeul vom allerersten Buchstaben an lesen und schreiben: Konsonanten und Vokale, Silbenblöcke, Handschrift und deine ersten koreanischen Wörter."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Schließen",
+    "back": "Zurück",
+    "goHome": "Zur Startseite"
+  },
+  "a11y": {
+    "skipToContent": "Zum Hauptinhalt springen",
+    "currentPage": "(aktuelle Seite)",
+    "confirmationRequired": "Diese Aktion muss bestätigt werden."
+  },
+  "progress": {
+    "lesson": "Fortschritt in {{name}}",
+    "review": "Fortschritt der Wiederholung"
+  },
+  "units": {
+    "day_one": "{{count, number}} Tag",
+    "day_other": "{{count, number}} Tage"
+  },
+  "audio": {
+    "play": "Aussprache von {{text}} abspielen",
+    "retry": "{{text}} erneut abspielen",
+    "unavailable": "Keine Aussprache für {{text}} vorhanden"
+  },
+  "report": {
+    "action": "Ein Problem melden",
+    "title": "Was stimmt nicht?",
+    "blurb": "Wähle aus, was falsch aussieht, und wir öffnen eine E-Mail, die du ergänzen kannst. Nichts aus deinem Lernverlauf wird angehängt.",
+    "field": {
+      "item": "Eintrag",
+      "category": "Problem",
+      "version": "App-Version",
+      "language": "Sprache"
+    },
+    "writeHere": "Schreib hier, was dir aufgefallen ist:",
+    "category": {
+      "meaning": "Die Bedeutung",
+      "example": "Der Beispielsatz",
+      "translation": "Die Übersetzung",
+      "audio": "Die Tonaufnahme",
+      "writing": "Die Schreib-Rückmeldung",
+      "other": "Etwas anderes"
+    }
+  }
+}

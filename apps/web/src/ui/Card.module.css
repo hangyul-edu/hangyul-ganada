@@ -1,0 +1,42 @@
+.card {
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  box-shadow: var(--hg-shadow-card);
+}
+
+.flat {
+  box-shadow: none;
+  border: 1px solid var(--hg-border);
+}
+
+.plain {
+  background: var(--hg-surface);
+}
+
+.warm {
+  background: var(--hg-surface-warm);
+  box-shadow: none;
+}
+
+.featured {
+  /* Sampled off the home screen: #FFFFFF at the top, #FFF2E0 at the foot. */
+  background: var(--hg-gradient-card);
+  border-radius: var(--hg-radius-xl);
+  box-shadow: var(--hg-shadow-raised);
+}
+
+.pad-none {
+  padding: 0;
+}
+
+.pad-sm {
+  padding: var(--hg-space-3);
+}
+
+.pad-md {
+  padding: var(--hg-space-4);
+}
+
+.pad-lg {
+  padding: var(--hg-space-5);
+}

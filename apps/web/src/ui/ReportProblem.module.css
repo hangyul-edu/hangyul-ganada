@@ -1,0 +1,50 @@
+/*
+ * The quietest control in the app, and deliberately so.
+ *
+ * A learner who has spotted a mistake will look for this; nobody else should
+ * have to read past it. Caption size, tertiary ink, no border — and still a
+ * 44px target, because "small" is a visual decision and not an excuse for a
+ * tap area a thumb misses.
+ */
+.trigger {
+  align-self: center;
+  min-height: 44px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 0;
+  background: none;
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-caption);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.blurb {
+  margin-bottom: var(--hg-space-3);
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-normal);
+  color: var(--hg-text-secondary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+}
+
+.row {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  text-align: start;
+  cursor: pointer;
+}
+
+.row:hover {
+  border-color: var(--hg-border-strong);
+}

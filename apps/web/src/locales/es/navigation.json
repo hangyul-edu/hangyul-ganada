@@ -1,0 +1,10 @@
+{
+  "primary": "Menú principal",
+  "tabs": {
+    "home": "Inicio",
+    "letters": "Letras",
+    "words": "Palabras",
+    "review": "Repaso",
+    "profile": "Mi aprendizaje"
+  }
+}

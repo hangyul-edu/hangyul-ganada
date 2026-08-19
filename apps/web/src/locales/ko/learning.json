@@ -1,0 +1,179 @@
+{
+  "letters": {
+    "title": "글자 배우기",
+    "complete": "학습 완료",
+    "alphabetTitle": "한글 낱자",
+    "alphabetCaption": "낱자를 익혔어요"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "이 글자 건너뛰기",
+    "next": "다음 글자",
+    "finish": "마치기",
+    "startTrace": "따라 써 보기",
+    "prompt": {
+      "trace": "회색 글자를 손가락으로 따라가 보세요.",
+      "practise": "안내선이 옅어졌어요. 이제 직접 써 보세요 — 안내선은 그대로 있으니 필요하면 보고 써도 괜찮아요."
+    },
+    "nowPractise": "다음: 옅은 안내선으로",
+    "nowRead": "이제 읽어 보기"
+  },
+  "complete": {
+    "title": "잘했어요!",
+    "letters_other": "{{lesson}}에서 글자 {{count, number}}개를 끝냈어요.",
+    "letters_one": "{{lesson}}에서 글자 {{count, number}}개를 끝냈어요."
+  },
+  "review": {
+    "title": "복습",
+    "empty": {
+      "title": "복습할 게 아직 없어요",
+      "body": "틀린 건 여기에 모여요. 지금은 새 글자를 하나 배워 볼까요?",
+      "cta": "글자 배우기"
+    },
+    "startCta": "복습 시작",
+    "sessionTitle": "복습",
+    "completeTitle": "복습 끝",
+    "forYou": "나를 위한 복습",
+    "sessionLength_one": "짧은 문제 하나",
+    "sessionLength_other": "짧은 문제 {{count, number}}개",
+    "needsPractice": "더 연습할 것",
+    "dueToday": "오늘 볼 것",
+    "savedWords": "저장한 낱말",
+    "chooseMode": "원하는 연습 고르기",
+    "comingUp": "다음에 나올 것",
+    "outcome": "{{practised, number}}개 연습 · {{firstTry, number}}개는 바로 떠올랐어요 · {{comingBack, number}}개는 곧 다시 나와요",
+    "blank": "빈칸",
+    "optionsLabel": "보기",
+    "showHint": "힌트 보기",
+    "right": "맞았어요.",
+    "notQuite": "아쉬워요. 정답은 이거예요.",
+    "mode": {
+      "read": "읽기",
+      "listen": "듣기",
+      "write": "쓰기"
+    },
+    "prompt": {
+      "read": "이 낱말은 무슨 뜻일까요?",
+      "readLetter": "어떤 소리가 날까요?",
+      "listen": "어떤 낱말이 들렸나요?",
+      "listenLetter": "어떤 글자일까요?",
+      "context": "빈칸에 어울리는 낱말은?",
+      "write": "이 낱말을 써 보세요",
+      "writeLetter": "들은 대로 써 보세요",
+      "distinguish": "이 소리는 어느 쪽일까요?"
+    }
+  },
+  "units": {
+    "badge": "{{index, number}}단원",
+    "continue": "알겠어요, 시작할게요",
+    "unit-1": {
+      "title": "첫 모음 여섯 개",
+      "goal": "한국어의 모든 글자에는 모음이 필요해요. 이 여섯 개가 가장 쉬워요.",
+      "body": "한글은 그림이 아니라 낱자로 된 글자예요. 낱자는 모두 40개이고, 빨리 배울 수 있게 만들어졌어요. 이제 그중 여섯 개를 배워요.",
+      "points": [
+        "낱자는 네모난 블록으로 묶이고, 블록 하나가 한 글자예요.",
+        "모음은 세로선이거나 가로선이고, 그에 따라 블록 안의 자리가 정해져요.",
+        "따라 쓰면서 소리 내어 읽어 보세요. 소리가 절반이에요."
+      ]
+    },
+    "unit-2": {
+      "title": "첫 자음",
+      "goal": "자음 다섯 개. 아는 모음과 합치면 벌써 서른 글자예요."
+    },
+    "unit-3": {
+      "title": "합쳐 보기",
+      "goal": "자음에 모음을 더하면 읽을 수 있는 한 글자가 돼요.",
+      "body": "한국어 글자는 네모 하나에 써요. 자음이 먼저예요 — 세로 모음이면 왼쪽에, 가로 모음이면 위에 와요.",
+      "points": [
+        "세로 모음(ㅏ ㅓ ㅣ)은 자음 오른쪽에 서요.",
+        "가로 모음(ㅗ ㅜ ㅡ)은 자음 아래에 누워요.",
+        "글을 읽듯이 왼쪽에서 오른쪽으로, 그다음 아래로 읽으세요."
+      ]
+    },
+    "unit-4": {
+      "title": "자음 다섯 개 더",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — 예사소리의 나머지예요."
+    },
+    "unit-5": {
+      "title": "글자 더 읽기",
+      "goal": "소리가 전혀 나지 않는 낱자 하나도 함께 배웁니다."
+    },
+    "unit-6": {
+      "title": "\"이\" 소리 더하기",
+      "goal": "획 하나만 더하면 ㅏ가 ㅑ가 돼요. 네 글자 모두 같은 규칙이에요."
+    },
+    "unit-7": {
+      "title": "거센 바람",
+      "goal": "ㅊ ㅋ ㅌ ㅍ은 이미 아는 낱자에 획을 하나 더한 거예요."
+    },
+    "unit-8": {
+      "title": "\"에\" 계열 모음",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — ㅣ를 더해 만든 모음이에요."
+    },
+    "unit-9": {
+      "title": "겹쳐서 세게",
+      "goal": "낱자 다섯 개를 두 번 써서, 더 세게 냅니다."
+    },
+    "unit-10": {
+      "title": "\"오/우\" 모음",
+      "goal": "모음 두 개를 하나로 씁니다. 40개 낱자 중 마지막이에요."
+    },
+    "unit-11": {
+      "title": "발밑의 낱자",
+      "goal": "받침 — 글자를 닫아 주는 자음이에요.",
+      "body": "한 글자는 세 번째 낱자를 아래에 더 담을 수 있어요. 이것을 받침이라 하고, 글자를 닫아 줘요.",
+      "points": [
+        "세 번째 낱자는 언제나 네모의 맨 아래에 와요.",
+        "받침은 어떤 낱자를 쓰든 일곱 가지 소리로만 나요.",
+        "여기서 초보자의 읽기가 가장 많이 막혀요. 천천히 하세요."
+      ]
+    },
+    "unit-12": {
+      "title": "한글 읽기",
+      "goal": "이제 낱자를 모두 알아요. 이 글자 체계의 이름부터 읽어 볼까요."
+    }
+  },
+  "intro": {
+    "letterName": "이름",
+    "letterSound": "소리",
+    "soundIn": "{{character}} 소리 예시",
+    "reads": "이렇게 읽어요"
+  },
+  "steps": {
+    "label": "이 글자를 배우는 순서",
+    "trace": "따라 쓰기",
+    "practise": "연습",
+    "read": "읽기"
+  },
+  "recognition": {
+    "question": "이 소리를 내는 글자는?",
+    "optionsAria": "들은 글자 고르기",
+    "optionAria": "{{character}} 고르기",
+    "correctDetail": "맞아요, {{character, ieyo}}.",
+    "wrongHeadline": "그건 아니에요.",
+    "wrongDetail": "{{sound}} 소리가 나는 글자는 {{character, ieyo}}.",
+    "hearAgain": "다시 듣기"
+  },
+  "reading": {
+    "question": "이 단어는 무슨 뜻일까요?",
+    "optionsAria": "네 가지 뜻 중에서 고르기",
+    "wrongHeadline": "다시 한번 볼까요",
+    "answer": "{{word, eunneun}} “{{meaning}}” 이라는 뜻이에요."
+  },
+  "sounds": {
+    "title": "소리가 만날 때",
+    "blurb": "학교가 왜 쓰인 대로 소리 나지 않을까요.",
+    "intro": "이제 모든 글자를 읽을 수 있어요. 한국어는 낱말을 이루는 조각을 그대로 적고, 그 조각이 만나면 소리가 바뀌기도 해요. 그래서 몇몇 낱말은 보이는 것과 다르게 들려요. 먼저 만나게 될 것들이에요.",
+    "written": "쓰기",
+    "said": "소리",
+    "note": "외우지 않아도 괜찮아요. 귀로 익히다 보면 자연스럽게 들려요.",
+    "name": {
+      "tensing": "된소리로 바뀌어요",
+      "aspiration": "거센소리가 돼요",
+      "nasal": "콧소리로 바뀌어요",
+      "lateral": "ㄴ과 ㄹ이 만나면",
+      "palatal": "ㄷ, ㅌ이 '이'를 만나면",
+      "liaison": "받침이 넘어가요"
+    }
+  }
+}

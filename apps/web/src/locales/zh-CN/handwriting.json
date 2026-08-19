@@ -1,0 +1,127 @@
+{
+  "actions": {
+    "undo": "撤销",
+    "clear": "清空",
+    "check": "检查"
+  },
+  "canvas": {
+    "label": "{{character}} 的书写区域",
+    "empty": "还没有写。",
+    "strokes_other": "已写 {{count, number}} 笔。"
+  },
+  "feedback": {
+    "correct": {
+      "headline": "就是这样！",
+      "perfect": "{{character}} —— 写得非常漂亮。",
+      "scored": "形状不错 —— 已经到 {{score, number(style: percent)}} 了。"
+    },
+    "empty": {
+      "headline": "还什么都没有",
+      "detail": "在方框里写这个字。"
+    },
+    "incomplete": {
+      "headline": "快了",
+      "tooSmall": "有点小，试着写满方框。",
+      "missingStroke": "少了一笔。顺着辅助线一路写到底。"
+    },
+    "outside": {
+      "headline": "差一点",
+      "tooLarge": "写到框外去了，下次小一点。",
+      "strayStroke": "有一笔跑偏了，慢慢顺着线走。"
+    },
+    "mixed": {
+      "headline": "差一点",
+      "detail": "对准辅助线，再写一次。"
+    },
+    "retry": "再写一次",
+    "showDetails": "查看详情",
+    "hideDetails": "收起详情",
+    "breakdown": "差异 {{mismatch, number(style: percent)}} · 越界 {{outside, number(style: percent)}} · 缺失 {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_other": "{{character}} 的写法，共 {{count, number}} 笔",
+    "pause": "暂停",
+    "count_other": "{{count, number}}笔",
+    "heading": "看它怎么写",
+    "notesHeading": "关于你的笔画",
+    "notesFooter": "笔顺不计入评分，它让你的字看起来更自然。",
+    "notes": {
+      "fewer": "你写了{{theirs, number}}笔，这个字通常是{{expected, number}}笔。",
+      "more": "你写了{{theirs, number}}笔，这个字通常是{{expected, number}}笔。",
+      "startElsewhere": "通常从格子的{{corner}}开始。",
+      "direction_other": "有{{count, number}}笔方向相反。韩文从上到下、从左到右书写。"
+    },
+    "corners": {
+      "topLeft": "左上",
+      "topCentre": "上方",
+      "topRight": "右上",
+      "middleLeft": "左侧",
+      "middleCentre": "中间",
+      "middleRight": "右侧",
+      "bottomLeft": "左下",
+      "bottomCentre": "下方",
+      "bottomRight": "右下"
+    },
+    "watchAgain": "再看一遍",
+    "back": "上一笔",
+    "next": "下一笔",
+    "position": "第 {{current, number}} 笔，共 {{count, number}} 笔"
+  },
+  "word": {
+    "previous": "上一个字",
+    "next": "下一个字",
+    "syllablePosition": "{{syllable}}，第 {{position, number}} 个，共 {{count, number}} 个",
+    "canvasLabel": "{{syllable}} 的书写区，第 {{position, number}} 个，共 {{count, number}} 个",
+    "undoSyllable": "撤销 {{syllable}} 的笔画",
+    "clearSyllable": "清除 {{syllable}} 的笔画",
+    "checkWord": "写好了",
+    "checkAgain": "再检查一次",
+    "fix": "重写",
+    "fixSyllable": "重写 {{syllable}}",
+    "result": {
+      "passed": "写得不错",
+      "almost": "就差一点",
+      "allAgain": "照着范字再写一遍吧",
+      "needsWork_other": "还有 {{count, number}} 个字要再写一次。"
+    },
+    "advice": {
+      "passed": "写得挺好。",
+      "empty": "请先写这个字。",
+      "outside": "再靠近范字一点。",
+      "incomplete": "还有笔画没写完。",
+      "mixed": "就差一点。照着范字再写一遍。"
+    }
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "长竖",
+      "downLongTwice": "两条长竖，先左后右",
+      "downShort": "短竖",
+      "downShortTwice": "两条短竖，先左后右",
+      "acrossLong": "长横",
+      "acrossLongTwice": "两条长横，先上后下",
+      "acrossShort": "短横",
+      "acrossShortTwice": "两条短横，先上后下",
+      "cornerAcrossDown": "先向右横，再转下来",
+      "cornerDownAcross": "先沿左边向下，再转向右",
+      "slantLeft": "向左下的撇",
+      "slantRight": "向右下的捺",
+      "circle": "从顶上起笔，绕一圈"
+    },
+    "s1": "只有一笔：{{a}}。",
+    "s2": "先{{a}}，再{{b}}。",
+    "s3": "先{{a}}，再{{b}}，然后{{c}}。",
+    "s4": "先{{a}}，再{{b}}，然后{{c}}，最后{{d}}。",
+    "parts2": {
+      "plain": "先写 {{a}}，再写 {{b}}。",
+      "right": "先写 {{a}}，再在右边写 {{b}}。",
+      "below": "先写 {{a}}，再在下面写 {{b}}。"
+    },
+    "parts3": {
+      "right": "先写 {{a}}，右边写 {{b}}，最后在下面写 {{c}}。",
+      "below": "先写 {{a}}，下面写 {{b}}，最后在最下面写 {{c}}。"
+    },
+    "partsDouble": "把 {{a}} 并排写两个，先写左边的。",
+    "fallback": "共 {{strokes}} 笔，按编号顺序写。"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "title": "Wörter lernen",
+  "empty": {
+    "title": "Hier gibt es noch keine Wörter",
+    "body": "Probier eine andere Kategorie."
+  },
+  "partOfSpeech": {
+    "noun": "Substantiv",
+    "verb": "Verb",
+    "adjective": "Adjektiv",
+    "adverb": "Adverb",
+    "pronoun": "Pronomen",
+    "numeral": "Numerale",
+    "particle": "Partikel",
+    "interjection": "Interjektion",
+    "determiner": "Determinativ"
+  },
+  "lesson": {
+    "title": "Gruppe {{index, number}}",
+    "newLetters": "Neue Buchstaben",
+    "done": "Fertig"
+  },
+  "session": {
+    "hintSingle": "Schreibe es in das Kästchen",
+    "syllableGroup": "Die Silben von {{word}} schreiben",
+    "next": "Nächstes Wort",
+    "finish": "Fertig",
+    "complete_one": "Du hast in {{lesson}} {{count, number}} Wort gelernt.",
+    "complete_other": "Du hast in {{lesson}} {{count, number}} Wörter gelernt.",
+    "toReading": "Jetzt lesen",
+    "writeEachPart": "Schreibe jeden Teil von {{word}} der Reihe nach.",
+    "writeEveryPartFirst": "Schreibe alle Teile, dann prüfen wir das ganze Wort zusammen."
+  },
+  "intro": {
+    "write": "Schreiben üben",
+    "example": "Beispiel",
+    "howItSounds": "So klingt es",
+    "surfaceNote": "In diesem Satz erscheint {{headword}} als {{form}}."
+  },
+  "blurb": "Alle Wörter sind offen. Wähl eine Kategorie und fang an, wo du magst.",
+  "ahead": {
+    "title_one": "1 neuer Buchstabe in dieser Kategorie",
+    "title_other": "{{count, number}} neue Buchstaben in dieser Kategorie",
+    "body": "Du kannst diese Wörter sofort lernen. Mit den Buchstaben zuerst fällt es meist leichter.",
+    "more_one": "+1 weiterer",
+    "more_other": "+{{count, number}} weitere",
+    "cta": "Buchstaben lernen"
+  },
+  "categories": {
+    "essentials": "Das Wichtigste",
+    "people": "Menschen und Familie",
+    "food": "Essen und Trinken",
+    "animals-nature": "Tiere und Natur",
+    "home": "Zuhause und Dinge",
+    "body-health": "Körper und Gesundheit",
+    "places-travel": "Orte und Reisen",
+    "time-numbers": "Zeit und Zahlen",
+    "school-work": "Schule und Arbeit",
+    "money-shopping": "Geld und Einkaufen",
+    "communication": "Sprechen und Medien",
+    "feelings": "Gefühle und Charakter",
+    "thinking": "Denken und Lernen",
+    "movement": "Kommen und Gehen",
+    "actions": "Alltägliche Handlungen",
+    "describing": "Dinge beschreiben",
+    "society": "Leben und Kultur",
+    "how-when": "Wie & wann"
+  },
+  "category": {
+    "label": "Kategorie",
+    "all": "Alle Kategorien",
+    "pick": "Kategorie wählen",
+    "count_one": "{{count, number}} Wort",
+    "count_other": "{{count, number}} Wörter",
+    "progressAria": "Fortschritt in {{category}}"
+  },
+  "search": {
+    "placeholder": "Wörter suchen",
+    "label": "Wortschatz durchsuchen",
+    "count_one": "{{count, number}} Treffer",
+    "count_other": "{{count, number}} Treffer",
+    "none": "Nichts passt zu „{{query}}“. Versuch es auf Koreanisch oder mit der Bedeutung."
+  },
+  "sound": {
+    "tensing": "Nach einem Endkonsonanten wird der nächste Laut gespannt.",
+    "aspiration": "ㅎ verschmilzt mit dem nächsten Konsonanten und behaucht ihn.",
+    "nasal": "Vor ㄴ oder ㅁ wird der Konsonant davor nasal.",
+    "lateral": "ㄴ und ㄹ nebeneinander klingen beide wie ㄹ.",
+    "palatal": "Ein ㄷ oder ㅌ am Silbenende klingt vor 이 wie ㅈ oder ㅊ.",
+    "liaison": "Der Endkonsonant rutscht auf den nächsten Block."
+  },
+  "save": {
+    "action": "Merken",
+    "saved": "Gemerkt",
+    "add": "{{word}} merken",
+    "remove": "{{word}} aus den gemerkten entfernen"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "letters": {
+    "title": "学字母",
+    "complete": "已学会",
+    "alphabetTitle": "韩文字母表",
+    "alphabetCaption": "个字母已掌握"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "跳过这个字",
+    "next": "下一个字",
+    "finish": "完成",
+    "startTrace": "描一遍",
+    "prompt": {
+      "trace": "用手指顺着灰色的字描一遍。",
+      "practise": "辅助线变淡了。自己写写看 —— 需要的话它还在。"
+    },
+    "nowPractise": "下一步：淡一点的辅助线",
+    "nowRead": "现在来认一认"
+  },
+  "complete": {
+    "title": "写得好！",
+    "letters_other": "你在{{lesson}}学完了 {{count, number}} 个字。",
+    "letters_one": "你在{{lesson}}学完了 {{count, number}} 个字。"
+  },
+  "review": {
+    "title": "复习",
+    "empty": {
+      "title": "还没有要复习的",
+      "body": "写错的都会收到这里。现在先学个新字怎么样？",
+      "cta": "去学字母"
+    },
+    "startCta": "开始复习",
+    "sessionTitle": "复习",
+    "completeTitle": "复习完成",
+    "forYou": "为你安排的复习",
+    "sessionLength_one": "一道小题",
+    "sessionLength_other": "{{count, number}} 道小题",
+    "needsPractice": "需要多练",
+    "dueToday": "今天要看",
+    "savedWords": "收藏的词",
+    "chooseMode": "或者自己选练什么",
+    "comingUp": "接下来",
+    "outcome": "练了 {{practised, number}} 题 · {{firstTry, number}} 题立刻想起来了 · {{comingBack, number}} 题会再出现",
+    "blank": "空格",
+    "optionsLabel": "选项",
+    "showHint": "看提示",
+    "right": "答对了。",
+    "notQuite": "差一点，正确答案是这个。",
+    "mode": {
+      "read": "读",
+      "listen": "听",
+      "write": "写"
+    },
+    "prompt": {
+      "read": "这个词是什么意思？",
+      "readLetter": "它发什么音？",
+      "listen": "你听到的是哪个词？",
+      "listenLetter": "这是哪个字母？",
+      "context": "哪个词填在这里？",
+      "write": "写出这个词",
+      "writeLetter": "按听到的写下来",
+      "distinguish": "这个音是哪一个？"
+    }
+  },
+  "units": {
+    "badge": "第 {{index, number}} 单元",
+    "continue": "明白了，开始吧",
+    "unit-1": {
+      "title": "先学六个元音",
+      "goal": "每个韩语音节都需要元音。这六个最简单。",
+      "body": "韩文是字母文字，不是图形。共有 40 个字母，设计之初就是为了让人快速学会。你即将学会其中六个。",
+      "points": [
+        "字母组成方块，一个方块就是一个音节。",
+        "元音分竖式和横式，这决定它在方块中的位置。",
+        "边写边念出声，读音是学习的一半。"
+      ]
+    },
+    "unit-2": {
+      "title": "你的第一批辅音",
+      "goal": "五个辅音。配上已学的元音，已经是三十个音节了。"
+    },
+    "unit-3": {
+      "title": "把它们拼起来",
+      "goal": "辅音加元音，就成了能读的一个方块。",
+      "body": "一个韩语音节写成一个方块。辅音在前——竖元音时在左，横元音时在上。",
+      "points": [
+        "竖元音（ㅏ ㅓ ㅣ）立在辅音右边。",
+        "横元音（ㅗ ㅜ ㅡ）躺在辅音下面。",
+        "像读书一样：先左到右，再往下。"
+      ]
+    },
+    "unit-4": {
+      "title": "再来五个辅音",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ——平音系列的其余部分。"
+    },
+    "unit-5": {
+      "title": "读更多方块",
+      "goal": "包括那个完全不发音的字母。"
+    },
+    "unit-6": {
+      "title": "加上 y 音",
+      "goal": "多加一笔，ㅏ 就变成 ㅑ。四个都是同样的规律。"
+    },
+    "unit-7": {
+      "title": "送一口气",
+      "goal": "ㅊ ㅋ ㅌ ㅍ 就是你已学过的字母加一笔。"
+    },
+    "unit-8": {
+      "title": "e 系元音",
+      "goal": "ㅐ ㅔ ㅒ ㅖ——由加上 ㅣ 构成的元音。"
+    },
+    "unit-9": {
+      "title": "双写与收紧",
+      "goal": "五个字母写两遍，发音更紧。"
+    },
+    "unit-10": {
+      "title": "w 系元音",
+      "goal": "两个元音写成一个。这是 40 个字母中的最后一批。"
+    },
+    "unit-11": {
+      "title": "脚下的字母",
+      "goal": "받침——收尾的辅音。",
+      "body": "一个方块可以在下面再放第三个字母，叫作 받침，用来收住这个音节。",
+      "points": [
+        "第三个字母永远写在方块最下面。",
+        "无论写的是哪个字母，받침 只发七种音之一。",
+        "初学者的阅读多半卡在这里。慢慢来。"
+      ]
+    },
+    "unit-12": {
+      "title": "读「한글」",
+      "goal": "你已经认识全部字母了。来读一读这套文字自己的名字。"
+    }
+  },
+  "intro": {
+    "letterName": "名称",
+    "letterSound": "读音",
+    "soundIn": "{{character}} 的读音示例",
+    "reads": "读作"
+  },
+  "steps": {
+    "label": "这个字的步骤",
+    "trace": "描红",
+    "practise": "练习",
+    "read": "认读"
+  },
+  "recognition": {
+    "question": "哪个字发这个音？",
+    "optionsAria": "选出你听到的字",
+    "optionAria": "选择 {{character}}",
+    "correctDetail": "对，是 {{character}}。",
+    "wrongHeadline": "不是这个。",
+    "wrongDetail": "读作 {{sound}} 的是 {{character}}。",
+    "hearAgain": "再听一次"
+  },
+  "reading": {
+    "question": "这个词是什么意思？",
+    "optionsAria": "从四个意思中选",
+    "wrongHeadline": "再看看",
+    "answer": "{{word}} 的意思是“{{meaning}}”。"
+  },
+  "sounds": {
+    "title": "当声音相遇",
+    "blurb": "为什么 학교 不按写法读。",
+    "intro": "现在你能读出每个字母了。韩语把词的组成部分原样写下来，这些部分挨在一起时读音会变，所以有些词听起来和看起来不一样。这里是你最先会碰到的几种。",
+    "written": "写法",
+    "said": "读法",
+    "note": "不用背。多听几次，自然就顺耳了。",
+    "name": {
+      "tensing": "后面的音变紧",
+      "aspiration": "带上送气",
+      "nasal": "变成鼻音",
+      "lateral": "ㄴ 和 ㄹ 相遇",
+      "palatal": "ㄷ、ㅌ 在 이 前",
+      "liaison": "收音滑过去"
+    }
+  }
+}

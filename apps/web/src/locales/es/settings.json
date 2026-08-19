@@ -1,0 +1,151 @@
+{
+  "title": "Mi aprendizaje",
+  "stats": {
+    "wordsLearned": "Palabras aprendidas",
+    "lettersLearned": "Letras aprendidas",
+    "alphabetProgress": "Progreso en el alfabeto hangul",
+    "studyDays": "Días de estudio"
+  },
+  "language": {
+    "title": "Idioma",
+    "description": "El idioma de la interfaz. El contenido coreano que aprendes siempre se queda en coreano.",
+    "openPicker": "Cambiar de idioma",
+    "pickerTitle": "Elige un idioma",
+    "pickerIntro": "Idioma de la interfaz. Lo que estás aprendiendo —letras, palabras y frases de ejemplo en hangul— se mantiene en coreano.",
+    "listAria": "Idiomas disponibles",
+    "searchLabel": "Buscar idiomas",
+    "searchPlaceholder": "Buscar por nombre o código",
+    "noResults": "Ningún idioma coincide con «{{query}}».",
+    "selected": "Seleccionado",
+    "suggestion": "Tu navegador está en {{language}}. ¿Cambiamos la interfaz a ese idioma?",
+    "suggestionAccept": "Usar {{language}}",
+    "suggestionDismiss": "Seguir en inglés",
+    "coverageNote": "Algunos textos explicativos pueden seguir en inglés mientras se completa la traducción."
+  },
+  "font": {
+    "title": "Tipografía de práctica",
+    "description": "La letra que calcas se dibuja con la tipografía que elijas."
+  },
+  "dailyTarget": {
+    "title": "Objetivo diario",
+    "description": "Cuántas letras o palabras terminar cada día.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} carácter al día",
+    "optionAria_other": "{{count, number}} caracteres al día",
+    "option_many": "{{count, number}}",
+    "optionAria_many": "{{count, number}} de caracteres al día"
+  },
+  "guides": {
+    "title": "Guías de escritura",
+    "description": "Las líneas de ayuda dentro del recuadro.",
+    "grid": "Líneas horizontal y vertical",
+    "crosshair": "Marca central"
+  },
+  "about": {
+    "body": "Leer y escribir hangul: las letras, los sonidos, los bloques silábicos y tus primeras palabras en coreano.",
+    "reset": "Restablecer el progreso",
+    "offline": "Todas las lecciones, frases y grabaciones funcionan sin conexión.",
+    "version": "Versión {{version}}"
+  },
+  "reset": {
+    "title": "¿Restablecer todo tu progreso?",
+    "description": "Se borrarán las lecciones completadas, tu historial de repaso y tu actividad. No se puede deshacer.",
+    "confirm": "Restablecer",
+    "cancel": "Cancelar",
+    "body": "Volver a empezar desde la primera letra."
+  },
+  "voice": {
+    "title": "Voz de pronunciación",
+    "description": "Quién lee en voz alta las letras, sílabas y palabras.",
+    "female": "Voz femenina",
+    "male": "Voz masculina",
+    "preview": "Escuchar la voz elegida",
+    "provider": "Dos voces coreanas claras, un poco más lentas que el ritmo nativo para que se oiga cada sonido."
+  },
+  "groups": {
+    "practice": "Práctica",
+    "learning": "Aprendizaje",
+    "appearance": "Apariencia",
+    "app": "Aplicación",
+    "reset": "Restablecer"
+  },
+  "activity": {
+    "title": "Actividad de estudio",
+    "body": "Tu racha, tu calendario y lo que has aprendido"
+  },
+  "style": {
+    "title": "Estilo de práctica",
+    "description": "Cuánta letra dejar en la hoja mientras escribes. En ambos casos, siempre está ahí.",
+    "guided": {
+      "title": "Guiado",
+      "detail": "Primero calcas la letra, luego la escribes sobre una guía más suave."
+    },
+    "focused": {
+      "title": "Directo",
+      "detail": "Sáltate el calcado y empieza con la guía más suave."
+    }
+  },
+  "appearance": {
+    "title": "Apariencia",
+    "description": "Claro, oscuro o lo que haga tu teléfono.",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "legal": {
+    "title": "Aviso legal y licencias",
+    "body": "Licencias del contenido y las tipografías de la app",
+    "intro": "Parte de lo que hay en la app se usa bajo licencias que piden atribución. Esos créditos están aquí.",
+    "contentHeading": "Contenido",
+    "fontsHeading": "Tipografías"
+  },
+  "reminder": {
+    "title": "Recordatorio diario",
+    "description": "Un aviso discreto al día, a la hora que elijas. Apagado salvo que lo enciendas, y nunca sale de tu teléfono.",
+    "toggle": "Recordarme practicar",
+    "at": "A las",
+    "notificationTitle": "Hora de practicar",
+    "notificationBody": "Te esperan unos minutos de coreano.",
+    "refused": "Tu teléfono no permite notificaciones para esta app. Puedes activarlas en sus ajustes."
+  },
+  "privacy": {
+    "title": "Privacidad",
+    "body": "Qué pasa con lo que aprendes",
+    "lede": "Nada de lo que haces aquí sale de este dispositivo.",
+    "device": {
+      "title": "Tu aprendizaje se queda aquí",
+      "points": [
+        "Lo que has aprendido, y cuánto lo recuerdas, se guarda en este dispositivo. Nunca se sube a ningún sitio.",
+        "No hay cuenta: nada que registrar y ningún perfil tuyo en ninguna parte."
+      ]
+    },
+    "tracking": {
+      "title": "Sin anuncios ni rastreo",
+      "points": [
+        "La app no observa cómo la usas ni informa de nada.",
+        "Tu escritura se corrige en pantalla mientras la trazas y luego se descarta."
+      ]
+    },
+    "permissions": {
+      "title": "Permisos",
+      "points": [
+        "Notificaciones, y solo si activas el recordatorio diario.",
+        "Nunca la cámara, el micrófono, las fotos, los contactos ni la ubicación."
+      ]
+    },
+    "erase": {
+      "title": "Si quieres borrarlo",
+      "points": [
+        "Puedes borrar todo tu progreso al final de {{screen}}.",
+        "Al desinstalar la app se borra todo."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Este navegador no va a recordar lo que aprendas, así que se perderá al cerrar la pestaña. Abrir la app en una ventana normal, y no en una privada, lo soluciona.",
+    "recovered_many": "Se han omitido {{count, number}} de registros dañados al cargar. El resto de tu progreso está intacto.",
+    "recovered_one": "Se ha omitido {{count, number}} registro dañado al cargar. El resto de tu progreso está intacto.",
+    "recovered_other": "Se han omitido {{count, number}} registros dañados al cargar. El resto de tu progreso está intacto."
+  }
+}

@@ -1,0 +1,112 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+}
+
+.prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+.question {
+  margin: 0;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-medium);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * A white pill, not a peach one. The speaker inside it is already peach, and on
+ * a peach ground it stopped reading as a button — which is fatal here, because
+ * pressing it is the only way to hear the question.
+ */
+.promptSound {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-2) var(--hg-space-4) var(--hg-space-2) var(--hg-space-2);
+  border: 1px solid var(--hg-border-selected);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+}
+
+/*
+ * The romanisation, not the Korean. It tells the learner what they are looking
+ * for without showing them the shape they are being asked to recognise.
+ */
+.promptRoman {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  letter-spacing: 0.04em;
+  color: var(--hg-primary-text);
+  direction: ltr;
+}
+
+/*
+ * Two columns. Four large squares read as a set of choices; a row of four
+ * narrow ones reads as a toolbar, and a beginner taps the wrong thing.
+ */
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--hg-space-3);
+}
+
+.option {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-height: 88px;
+  border: 2px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  font-size: clamp(44px, 14vw, 64px);
+  line-height: 1;
+  color: var(--hg-text);
+  cursor: pointer;
+  direction: ltr;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 120ms ease;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--hg-border-strong);
+}
+
+.option:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/*
+ * The correct answer is always revealed, whichever one was tapped. A learner
+ * who picked wrong needs to see which one was right far more than they need to
+ * be told they were wrong.
+ */
+.optionCorrect {
+  border-color: var(--hg-positive);
+  background: color-mix(in srgb, var(--hg-positive) 8%, white);
+  color: var(--hg-positive);
+}
+
+.optionWrong {
+  border-color: var(--hg-negative);
+  background: color-mix(in srgb, var(--hg-negative) 8%, white);
+  color: var(--hg-negative);
+}
+
+.optionDimmed {
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option,
+  .option:active:not(:disabled) {
+    transition: none;
+    transform: none;
+  }
+}

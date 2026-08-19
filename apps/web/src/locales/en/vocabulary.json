@@ -1,0 +1,98 @@
+{
+  "title": "Learn words",
+  "intro": {
+    "write": "Practise writing",
+    "example": "Example",
+    "howItSounds": "How it sounds",
+    "surfaceNote": "In this sentence, {{headword}} appears as {{form}}."
+  },
+  "empty": {
+    "title": "No words here yet",
+    "body": "Try another category."
+  },
+  "partOfSpeech": {
+    "noun": "noun",
+    "verb": "verb",
+    "adjective": "adjective",
+    "adverb": "adverb",
+    "pronoun": "pronoun",
+    "numeral": "numeral",
+    "particle": "particle",
+    "interjection": "interjection",
+    "determiner": "determiner"
+  },
+  "lesson": {
+    "title": "Set {{index, number}}",
+    "newLetters": "New letters",
+    "done": "Done"
+  },
+  "session": {
+    "hintSingle": "Write it inside the box",
+    "syllableGroup": "Writing the syllables of {{word}}",
+    "next": "Next word",
+    "finish": "Finish",
+    "complete_one": "You learned {{count, number}} word in {{lesson}}.",
+    "complete_other": "You learned {{count, number}} words in {{lesson}}.",
+    "toReading": "Now read it",
+    "writeEachPart": "Write each part of {{word}} in turn.",
+    "writeEveryPartFirst": "Write every part, then we'll check the whole word together."
+  },
+  "blurb": "Every word is open. Pick a category and start wherever you like.",
+  "ahead": {
+    "title_one": "1 new letter in this category",
+    "title_other": "{{count, number}} new letters in this category",
+    "body": "You can study these words now. Learning the letters first usually makes them easier.",
+    "more_one": "+1 more",
+    "more_other": "+{{count, number}} more",
+    "cta": "Learn the letters"
+  },
+  "categories": {
+    "essentials": "Everyday Essentials",
+    "people": "People & Family",
+    "food": "Food & Drink",
+    "animals-nature": "Animals & Nature",
+    "home": "Home & Everyday Things",
+    "body-health": "Body & Health",
+    "places-travel": "Places & Travel",
+    "time-numbers": "Time & Numbers",
+    "school-work": "School & Work",
+    "money-shopping": "Money & Shopping",
+    "communication": "Talking & Media",
+    "feelings": "Feelings & Character",
+    "thinking": "Thinking & Learning",
+    "movement": "Coming & Going",
+    "actions": "Everyday Actions",
+    "describing": "Describing Things",
+    "society": "Life & Culture",
+    "how-when": "How & When"
+  },
+  "category": {
+    "label": "Category",
+    "all": "All categories",
+    "pick": "Choose a category",
+    "count_one": "{{count, number}} word",
+    "count_other": "{{count, number}} words",
+    "progressAria": "Progress through {{category}}"
+  },
+  "search": {
+    "placeholder": "Search words",
+    "label": "Search the vocabulary",
+    "count_one": "{{count, number}} match",
+    "count_other": "{{count, number}} matches",
+    "none": "Nothing matches “{{query}}”. Try the Korean, or the meaning in your own language."
+  },
+  "sound": {
+    "tensing": "After a final consonant, the next sound tightens.",
+    "aspiration": "ㅎ merges with the next consonant and adds a puff of air.",
+    "nasal": "Before ㄴ or ㅁ, the consonant in front turns nasal.",
+    "lateral": "ㄴ and ㄹ side by side both become ㄹ.",
+    "palatal": "A final ㄷ or ㅌ before 이 is said like ㅈ or ㅊ.",
+    "liaison": "The final consonant slides onto the next block."
+  },
+  "save": {
+    "action": "Save",
+    "saved": "Saved",
+    "add": "Save {{word}}",
+    "remove": "Remove {{word}} from saved"
+  }
+}

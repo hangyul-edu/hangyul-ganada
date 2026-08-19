@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The handful of colours Android itself draws, taken from the design tokens.
+
+  These are not the app's palette — the app is drawn by the web layer from
+  `tokens.css`. These are the four surfaces the *system* paints and the WebView
+  never sees: the window behind the WebView during a configuration change, the
+  system splash, and the ripple colour AppCompat uses on any native dialog.
+
+  They are duplicated from `packages/design-tokens/src/index.ts` because Gradle
+  cannot read TypeScript, and the duplication is checked by eye rather than by a
+  script — an earlier version of this comment named `scripts/audit-native-config.mjs`,
+  which does not exist. Three colours that change once a brand refresh do not
+  justify a build step; a comment claiming a build step that is not there does
+  justify deleting the claim.
+-->
+<resources>
+    <!-- orange.900 — the brand's single accent. -->
+    <color name="colorPrimary">#FF6700</color>
+    <!-- A darker orange for the status bar on the API levels that still tint it. -->
+    <color name="colorPrimaryDark">#E35A00</color>
+    <color name="colorAccent">#FF6700</color>
+
+    <!--
+      warm.50. The ground the app icon is composed on, so the system splash and
+      the launcher tile are the same colour, and so the moment before React
+      paints is a warm surface rather than a white flash.
+    -->
+    <color name="splashBackground">#FFF8F1</color>
+    <color name="ic_launcher_background">#FFF8F1</color>
+</resources>

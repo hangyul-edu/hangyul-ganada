@@ -1,0 +1,36 @@
+{
+  "streak": {
+    "aria": "학습 기록 보기"
+  },
+  "celebrate": "오늘 목표를 다 했어요. 훌륭해요.",
+  "dailyGoal": "하루 목표",
+  "dailyGoalAria": "하루 목표 {{total, number}}개 중 {{done, number}}개",
+  "cta": {
+    "start": "바로 시작하기",
+    "continue": "이어서 학습하기"
+  },
+  "quick": {
+    "letters": "낱자",
+    "words": "낱말",
+    "lettersCaption": "한글 40자 중",
+    "wordsCaption": "배운 단어"
+  },
+  "review": {
+    "title": "복습하기",
+    "count_other": "{{count, number}}개 다시 보기",
+    "empty": "아직 다시 볼 게 없어요"
+  },
+  "upNext": {
+    "title": "추천 단어"
+  },
+  "practice": {
+    "title": "오늘의 연습",
+    "reviews_one": "복습 {{count, number}}개 준비됨",
+    "reviews_other": "복습 {{count, number}}개 준비됨",
+    "letters_one": "마무리할 글자 {{count, number}}개",
+    "letters_other": "마무리할 글자 {{count, number}}개",
+    "words_one": "쓸모 있는 낱말 {{count, number}}개",
+    "words_other": "쓸모 있는 낱말 {{count, number}}개",
+    "cta": "연습 시작"
+  }
+}

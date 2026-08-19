@@ -1,0 +1,66 @@
+.nav {
+  flex: none;
+  background: var(--hg-surface);
+  box-shadow: var(--hg-shadow-nav);
+  /* Clears the iOS home indicator without adding space on other devices. */
+  padding-bottom: var(--hg-safe-bottom);
+  z-index: var(--hg-z-bottom-nav);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: stretch;
+}
+
+.item {
+  display: flex;
+}
+
+.link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  /* Top-aligned so a two-line label in one cell does not shove its icon out of
+     line with the other four. */
+  justify-content: flex-start;
+  gap: 3px;
+  min-height: var(--hg-size-bottom-nav);
+  padding: var(--hg-space-2) 2px;
+  /*
+   * Tertiary, not disabled.
+   *
+   * These labels used the disabled grey, which reads as "not available" and
+   * measures 2.09:1 — the four other sections of the app, permanently below the
+   * contrast floor. An unselected tab is not a disabled control; it is a place
+   * the learner can go, and it has to be legible enough to be read as one.
+   */
+  color: var(--hg-text-tertiary);
+  transition: color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.link:hover {
+  color: var(--hg-text-secondary);
+}
+
+.active,
+.active:hover {
+  color: var(--hg-primary-text);
+}
+
+.label {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  line-height: 1.2;
+  /* Five equal columns, and the longest label decides the bar's height. Text
+     centres and wraps rather than clipping or widening the cell, so a language
+     with a long word for "Review" costs a second line, not a broken bar. */
+  text-align: center;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.active .label {
+  font-weight: var(--hg-weight-bold);
+}

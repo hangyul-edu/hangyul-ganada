@@ -1,0 +1,137 @@
+{
+  "actions": {
+    "undo": "Annuler",
+    "clear": "Effacer",
+    "check": "Vérifier"
+  },
+  "canvas": {
+    "label": "Zone d’écriture pour {{character}}",
+    "empty": "Rien d’écrit pour l’instant.",
+    "strokes_one": "{{count, number}} trait écrit.",
+    "strokes_other": "{{count, number}} traits écrits.",
+    "strokes_many": "{{count, number}} de traits écrits."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "C'est ça !",
+      "perfect": "{{character}} — très joliment écrit.",
+      "scored": "Belle forme — {{score, number(style: percent)}} du chemin."
+    },
+    "empty": {
+      "headline": "Rien pour l’instant",
+      "detail": "Écrivez la lettre dans le cadre."
+    },
+    "incomplete": {
+      "headline": "Presque",
+      "tooSmall": "Un peu petite. Essayez de remplir le cadre.",
+      "missingStroke": "Il manque un trait. Suivez le guide jusqu’au bout."
+    },
+    "outside": {
+      "headline": "Pas tout à fait",
+      "tooLarge": "Ça dépasse du cadre. Un peu plus petit.",
+      "strayStroke": "Un trait s’est écarté. Suivez la ligne doucement."
+    },
+    "mixed": {
+      "headline": "Pas tout à fait",
+      "detail": "Aligne-la sur le guide et réessaie."
+    },
+    "retry": "Réécrire",
+    "showDetails": "Voir le détail",
+    "hideDetails": "Masquer le détail",
+    "breakdown": "Écart {{mismatch, number(style: percent)}} · hors cadre {{outside, number(style: percent)}} · manquant {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Comment écrire {{character}}, en {{count, number}} trait",
+    "diagramLabel_many": "Comment écrire {{character}}, en {{count, number}} traits",
+    "diagramLabel_other": "Comment écrire {{character}}, en {{count, number}} traits",
+    "pause": "Pause",
+    "count_one": "{{count, number}} trait",
+    "count_many": "{{count, number}} traits",
+    "count_other": "{{count, number}} traits",
+    "heading": "Regardez-la s’écrire",
+    "notesHeading": "À propos de vos traits",
+    "notesFooter": "L’ordre des traits ne compte pas dans la note. C’est lui qui rend votre écriture juste.",
+    "notes": {
+      "fewer": "Vous avez fait {{theirs, number}} traits ; cette lettre s'écrit habituellement en {{expected, number}}.",
+      "more": "Vous avez fait {{theirs, number}} traits ; cette lettre s'écrit habituellement en {{expected, number}}.",
+      "startElsewhere": "On commence habituellement en {{corner}} de la case.",
+      "direction_one": "Un trait est allé dans l'autre sens. En coréen, on écrit de haut en bas et de gauche à droite.",
+      "direction_many": "{{count, number}} traits sont allés dans l'autre sens. En coréen, on écrit de haut en bas et de gauche à droite.",
+      "direction_other": "{{count, number}} traits sont allés dans l'autre sens. En coréen, on écrit de haut en bas et de gauche à droite."
+    },
+    "corners": {
+      "topLeft": "haut à gauche",
+      "topCentre": "haut",
+      "topRight": "haut à droite",
+      "middleLeft": "à gauche",
+      "middleCentre": "au centre",
+      "middleRight": "à droite",
+      "bottomLeft": "bas à gauche",
+      "bottomCentre": "bas",
+      "bottomRight": "bas à droite"
+    },
+    "watchAgain": "Revoir",
+    "back": "Précédent",
+    "next": "Suivant",
+    "position": "Trait {{current, number}} sur {{count, number}}"
+  },
+  "word": {
+    "previous": "Partie précédente",
+    "next": "Partie suivante",
+    "syllablePosition": "{{syllable}}, partie {{position, number}} sur {{count, number}}",
+    "canvasLabel": "Zone d’écriture de {{syllable}}, partie {{position, number}} sur {{count, number}}",
+    "undoSyllable": "Annuler ce qui est écrit pour {{syllable}}",
+    "clearSyllable": "Effacer ce qui est écrit pour {{syllable}}",
+    "checkWord": "Vérifier mon écriture",
+    "checkAgain": "Vérifier à nouveau",
+    "fix": "Corriger",
+    "fixSyllable": "Réécrire {{syllable}}",
+    "result": {
+      "passed": "Joli travail",
+      "almost": "Presque",
+      "allAgain": "Suivons le modèle encore une fois",
+      "needsWork_one": "Une partie est à refaire.",
+      "needsWork_many": "{{count, number}} parties sont à refaire.",
+      "needsWork_other": "{{count, number}} parties sont à refaire."
+    },
+    "advice": {
+      "passed": "La forme est bonne.",
+      "empty": "Écrivez d’abord cette partie.",
+      "outside": "Reste un peu plus près du modèle.",
+      "incomplete": "Il manque encore une partie de cette lettre.",
+      "mixed": "Presque. Suivez le modèle encore une fois."
+    }
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "le grand trait vers le bas",
+      "downLongTwice": "les deux grands traits vers le bas, celui de gauche d’abord",
+      "downShort": "le petit trait vers le bas",
+      "downShortTwice": "les deux petits traits vers le bas, celui de gauche d’abord",
+      "acrossLong": "le grand trait horizontal",
+      "acrossLongTwice": "les deux grands traits horizontaux, celui du haut d’abord",
+      "acrossShort": "le petit trait horizontal",
+      "acrossShortTwice": "les deux petits traits horizontaux, celui du haut d’abord",
+      "cornerAcrossDown": "en haut vers la droite, puis vers le bas",
+      "cornerDownAcross": "à gauche vers le bas, puis vers la droite",
+      "slantLeft": "le trait qui descend vers la gauche",
+      "slantRight": "le trait qui descend vers la droite",
+      "circle": "le cercle, en partant du haut"
+    },
+    "s1": "Un seul trait : {{a}}.",
+    "s2": "D’abord {{a}}. Ensuite {{b}}.",
+    "s3": "D’abord {{a}}. Ensuite {{b}}. Ensuite {{c}}.",
+    "s4": "D’abord {{a}}. Ensuite {{b}}. Ensuite {{c}}. Et enfin {{d}}.",
+    "parts2": {
+      "plain": "Écrivez d’abord {{a}}, puis {{b}}.",
+      "right": "Écrivez d’abord {{a}}, puis {{b}} à sa droite.",
+      "below": "Écrivez d’abord {{a}}, puis {{b}} en dessous."
+    },
+    "parts3": {
+      "right": "Écrivez {{a}}, puis {{b}} à sa droite, et {{c}} tout en bas.",
+      "below": "Écrivez {{a}}, puis {{b}} en dessous, et {{c}} tout en bas."
+    },
+    "partsDouble": "Écrivez {{a}} deux fois, côte à côte — celui de gauche d’abord.",
+    "fallback": "{{strokes}} traits, dans l’ordre des numéros."
+  }
+}

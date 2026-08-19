@@ -1,0 +1,10 @@
+{
+  "primary": "主菜单",
+  "tabs": {
+    "home": "首页",
+    "letters": "字母",
+    "words": "单词",
+    "review": "复习",
+    "profile": "我的学习"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "brand": {
+    "tagline": "一画ずつ、はじめてのハングル。",
+    "description": "ハングルの子音・母音から文字の組み立て、手書き、はじめての韓国語の単語まで。最初の一文字から読み書きを学べます。"
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "閉じる",
+    "back": "戻る",
+    "goHome": "ホームへ"
+  },
+  "a11y": {
+    "skipToContent": "本文へスキップ",
+    "currentPage": "（現在のページ）",
+    "confirmationRequired": "この操作には確認が必要です。"
+  },
+  "progress": {
+    "lesson": "{{name}} の進み具合",
+    "review": "復習の進み具合"
+  },
+  "units": {
+    "day_other": "{{count, number}}日"
+  },
+  "audio": {
+    "play": "{{text}} の発音を再生",
+    "retry": "{{text}} をもう一度再生",
+    "unavailable": "{{text}} の音声はありません"
+  },
+  "report": {
+    "action": "問題を知らせる",
+    "title": "どこがおかしいですか？",
+    "blurb": "気になった箇所を選ぶと、書き足せるメールが開きます。学習記録は添付されません。",
+    "field": {
+      "item": "項目",
+      "category": "問題",
+      "version": "アプリのバージョン",
+      "language": "言語"
+    },
+    "writeHere": "気づいたことをここに書いてください：",
+    "category": {
+      "meaning": "意味",
+      "example": "例文",
+      "translation": "翻訳",
+      "audio": "音声",
+      "writing": "書きかたのフィードバック",
+      "other": "その他"
+    }
+  }
+}

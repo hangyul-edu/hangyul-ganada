@@ -1,0 +1,151 @@
+{
+  "title": "Mon apprentissage",
+  "stats": {
+    "wordsLearned": "Mots appris",
+    "lettersLearned": "Lettres apprises",
+    "alphabetProgress": "Progression dans l’alphabet hangeul",
+    "studyDays": "Jours d’étude"
+  },
+  "language": {
+    "title": "Langue",
+    "description": "La langue de l’interface. Le contenu coréen que vous apprenez reste toujours en coréen.",
+    "openPicker": "Changer de langue",
+    "pickerTitle": "Choisissez une langue",
+    "pickerIntro": "Langue de l’interface. Ce que vous apprenez — lettres, mots et phrases d’exemple en hangeul — reste en coréen.",
+    "listAria": "Langues disponibles",
+    "searchLabel": "Rechercher une langue",
+    "searchPlaceholder": "Rechercher par nom ou par code",
+    "noResults": "Aucune langue ne correspond à « {{query}} ».",
+    "selected": "Sélectionnée",
+    "suggestion": "Votre navigateur est en {{language}}. Basculer l’interface dans cette langue ?",
+    "suggestionAccept": "Utiliser {{language}}",
+    "suggestionDismiss": "Rester en anglais",
+    "coverageNote": "Certains textes explicatifs peuvent rester en anglais le temps que la traduction soit complétée."
+  },
+  "font": {
+    "title": "Police d’entraînement",
+    "description": "La lettre que vous repassez est dessinée dans la police choisie."
+  },
+  "dailyTarget": {
+    "title": "Objectif du jour",
+    "description": "Combien de lettres ou de mots terminer chaque jour.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} caractère par jour",
+    "optionAria_other": "{{count, number}} caractères par jour",
+    "option_many": "{{count, number}}",
+    "optionAria_many": "{{count, number}} de caractères par jour"
+  },
+  "guides": {
+    "title": "Repères d’écriture",
+    "description": "Les lignes d’aide dans le cadre.",
+    "grid": "Lignes horizontale et verticale",
+    "crosshair": "Repère central"
+  },
+  "about": {
+    "body": "Lire et écrire le hangul : les lettres, les sons, les blocs syllabiques et vos premiers mots coréens.",
+    "reset": "Réinitialiser la progression",
+    "offline": "Toutes les leçons, phrases et voix fonctionnent hors connexion.",
+    "version": "Version {{version}}"
+  },
+  "reset": {
+    "title": "Réinitialiser toute votre progression ?",
+    "description": "Vos leçons terminées, votre historique de révision et votre activité seront effacés. C’est définitif.",
+    "confirm": "Réinitialiser",
+    "cancel": "Annuler",
+    "body": "Tout reprendre depuis la toute première lettre."
+  },
+  "voice": {
+    "title": "Voix de prononciation",
+    "description": "Qui lit les lettres, les syllabes et les mots à voix haute.",
+    "female": "Voix féminine",
+    "male": "Voix masculine",
+    "preview": "Écouter la voix choisie",
+    "provider": "Deux voix coréennes claires, un peu plus lentes que le débit natif pour que chaque son porte."
+  },
+  "groups": {
+    "practice": "Pratique",
+    "learning": "Apprentissage",
+    "appearance": "Apparence",
+    "app": "Application",
+    "reset": "Réinitialiser"
+  },
+  "activity": {
+    "title": "Activité",
+    "body": "Votre série, votre calendrier et ce que vous avez appris"
+  },
+  "style": {
+    "title": "Façon de pratiquer",
+    "description": "Ce qui reste de la lettre pendant que vous écrivez. Dans les deux cas, elle est toujours là.",
+    "guided": {
+      "title": "Guidé",
+      "detail": "Repassez la lettre, puis écrivez-la sur un guide plus léger."
+    },
+    "focused": {
+      "title": "Direct",
+      "detail": "Saute l’étape de repassage et commence avec le guide plus léger."
+    }
+  },
+  "appearance": {
+    "title": "Apparence",
+    "description": "Clair, sombre, ou comme votre téléphone.",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "legal": {
+    "title": "Mentions légales et licences",
+    "body": "Licences du contenu et des polices de l’application",
+    "intro": "Une partie du contenu est utilisée sous des licences qui demandent une attribution. Ces mentions sont ici.",
+    "contentHeading": "Contenu",
+    "fontsHeading": "Polices"
+  },
+  "reminder": {
+    "title": "Rappel quotidien",
+    "description": "Un rappel discret par jour, à l'heure de votre choix. Désactivé tant que vous ne l'activez pas, et il ne quitte jamais votre téléphone.",
+    "toggle": "Me rappeler de pratiquer",
+    "at": "À",
+    "notificationTitle": "C'est l'heure de pratiquer",
+    "notificationBody": "Quelques minutes de coréen vous attendent.",
+    "refused": "Votre téléphone n'autorise pas les notifications pour cette app. Vous pouvez les activer dans ses réglages."
+  },
+  "privacy": {
+    "title": "Confidentialité",
+    "body": "Ce que deviennent vos données d’apprentissage",
+    "lede": "Rien de ce que vous faites ici ne quitte cet appareil.",
+    "device": {
+      "title": "Votre apprentissage reste ici",
+      "points": [
+        "Ce que vous avez appris, et ce dont vous vous souvenez, est enregistré sur cet appareil. Rien n’est envoyé ailleurs.",
+        "Il n’y a pas de compte : rien à créer, et aucun profil de vous nulle part."
+      ]
+    },
+    "tracking": {
+      "title": "Ni publicité, ni pistage",
+      "points": [
+        "L’application n’observe pas votre façon de l’utiliser et ne transmet rien.",
+        "Votre écriture est évaluée à l’écran pendant que vous tracez, puis effacée."
+      ]
+    },
+    "permissions": {
+      "title": "Autorisations",
+      "points": [
+        "Les notifications, et seulement si vous activez le rappel quotidien.",
+        "Jamais l’appareil photo, le micro, les photos, les contacts ou la position."
+      ]
+    },
+    "erase": {
+      "title": "Pour tout effacer",
+      "points": [
+        "Vous pouvez effacer toute votre progression tout en bas de {{screen}}.",
+        "Désinstaller l’application efface tout avec elle."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Ce navigateur ne retiendra pas ce que vous apprenez : tout disparaîtra à la fermeture de l’onglet. Ouvrir l’application dans une fenêtre normale, et non privée, règle le problème.",
+    "recovered_many": "{{count, number}} d’enregistrements endommagés ont été ignorés au chargement. Le reste de votre progression est intact.",
+    "recovered_one": "{{count, number}} enregistrement endommagé a été ignoré au chargement. Le reste de votre progression est intact.",
+    "recovered_other": "{{count, number}} enregistrements endommagés ont été ignorés au chargement. Le reste de votre progression est intact."
+  }
+}

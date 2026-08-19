@@ -1,0 +1,148 @@
+{
+  "title": "My Learning",
+  "stats": {
+    "lettersLearned": "Letters learned",
+    "wordsLearned": "Words learned",
+    "alphabetProgress": "Progress through the Hangul alphabet",
+    "studyDays": "Study days"
+  },
+  "language": {
+    "title": "Language",
+    "description": "The language of the interface. Korean learning content always stays in Korean.",
+    "openPicker": "Change language",
+    "pickerTitle": "Choose a language",
+    "pickerIntro": "Interface language. What you are learning — Hangul letters, words and example sentences — stays in Korean.",
+    "listAria": "Available languages",
+    "searchLabel": "Search languages",
+    "searchPlaceholder": "Search by name or code",
+    "noResults": "No language matches \"{{query}}\".",
+    "selected": "Selected",
+    "suggestion": "Your browser is set to {{language}}. Switch the interface to it?",
+    "suggestionAccept": "Use {{language}}",
+    "suggestionDismiss": "Stay in English",
+    "coverageNote": "Some explanatory text may still appear in English while a translation is being completed."
+  },
+  "font": {
+    "title": "Practice typeface",
+    "description": "The letter you trace is drawn in the typeface you pick."
+  },
+  "dailyTarget": {
+    "title": "Daily goal",
+    "description": "How many letters or words to finish each day.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} a day",
+    "optionAria_other": "{{count, number}} a day"
+  },
+  "guides": {
+    "title": "Writing guides",
+    "description": "The helper lines inside the box.",
+    "grid": "Horizontal and vertical lines",
+    "crosshair": "Centre mark"
+  },
+  "about": {
+    "body": "Read and write Hangul: the letters, the sounds, the syllable blocks, and your first Korean words.",
+    "offline": "Every lesson, sentence and recording works offline.",
+    "version": "Version {{version}}",
+    "reset": "Reset learning progress"
+  },
+  "reset": {
+    "title": "Reset all learning progress?",
+    "description": "Your completed lessons, review history and learning activity will be cleared. This cannot be undone.",
+    "confirm": "Reset",
+    "cancel": "Cancel",
+    "body": "Start again from the very first letter."
+  },
+  "voice": {
+    "title": "Pronunciation voice",
+    "description": "Who reads the letters, syllables and words aloud.",
+    "female": "Female voice",
+    "male": "Male voice",
+    "preview": "Hear the selected voice",
+    "provider": "Two clear Korean voices, spoken a little slower than native pace so every sound lands."
+  },
+  "groups": {
+    "learning": "Learning",
+    "practice": "Practice",
+    "appearance": "Appearance",
+    "app": "App",
+    "reset": "Reset"
+  },
+  "activity": {
+    "title": "Learning activity",
+    "body": "Your streak, your calendar and what you have learned"
+  },
+  "style": {
+    "title": "Practice style",
+    "description": "How much of the letter to keep on the page while you write. Either way, it is always there.",
+    "guided": {
+      "title": "Guided",
+      "detail": "Trace the letter first, then write it over a lighter guide."
+    },
+    "focused": {
+      "title": "Focused",
+      "detail": "Skip the tracing step and start on the lighter guide."
+    }
+  },
+  "appearance": {
+    "title": "Appearance",
+    "description": "Light, dark, or whatever your phone is doing.",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "legal": {
+    "title": "Legal & Licences",
+    "body": "Licences for the content and typefaces in the app",
+    "intro": "Some of what is in the app is used under licences that ask to be credited. Those credits are here.",
+    "contentHeading": "Content",
+    "fontsHeading": "Typefaces"
+  },
+  "reminder": {
+    "title": "Daily reminder",
+    "description": "One quiet nudge a day, at a time you choose. Off unless you turn it on, and it never leaves your phone.",
+    "toggle": "Remind me to practise",
+    "at": "At",
+    "notificationTitle": "Time to practise",
+    "notificationBody": "A few minutes of Korean is waiting.",
+    "refused": "Your phone is not allowing notifications for this app. You can turn them on in its settings."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "body": "What happens to your learning",
+    "lede": "Nothing you do here leaves this device.",
+    "device": {
+      "title": "Your learning stays here",
+      "points": [
+        "What you have learned, and how well you remember it, is saved on this device. It is never uploaded.",
+        "There is no account — nothing to sign up for, and no profile of you anywhere."
+      ]
+    },
+    "tracking": {
+      "title": "No ads, no tracking",
+      "points": [
+        "The app does not watch how you use it and does not report anything back.",
+        "Handwriting is graded on screen as you draw it, then discarded."
+      ]
+    },
+    "permissions": {
+      "title": "Permissions",
+      "points": [
+        "Notifications, and only if you turn the daily reminder on.",
+        "Never the camera, microphone, photos, contacts or location."
+      ]
+    },
+    "erase": {
+      "title": "Erasing it",
+      "points": [
+        "You can clear everything you have learned at the bottom of {{screen}}.",
+        "Deleting the app deletes it with it."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "This browser will not remember what you learn, so it will be gone when you close the tab. Opening the app in a normal window rather than a private one fixes it.",
+    "recovered_one": "{{count, number}} damaged record was skipped when loading. The rest of your progress is intact.",
+    "recovered_other": "{{count, number}} damaged records were skipped when loading. The rest of your progress is intact."
+  }
+}

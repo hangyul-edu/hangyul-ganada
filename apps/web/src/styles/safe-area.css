@@ -1,0 +1,73 @@
+/**
+ * The edges of the screen the app may not put a control on.
+ *
+ * ## One place, four names
+ *
+ * Every layout in the app that touches the edge of the screen reads
+ * `--hg-safe-top/right/bottom/left` and nothing else. No component calls
+ * `env(safe-area-inset-*)`, no component knows which platform it is on, and no
+ * component carries a fallback of its own — a `padding-bottom: 30px` put in to
+ * fix one phone is a bug on every other phone, and thirty of them scattered
+ * across the app is a bug nobody can find.
+ *
+ * ## Why the value is a `max()` of two sources
+ *
+ * Three platforms answer this question, and none of them answers it the same
+ * way:
+ *
+ * * **iOS**, and any browser with a notch or a home indicator, populates
+ *   `env(safe-area-inset-*)`. It works because `index.html` asks for
+ *   `viewport-fit=cover`.
+ * * **Android** populates `--hg-native-safe-*`, written onto the document
+ *   element by `HangyulInsetsPlugin`, which measures how much of the system's
+ *   status bar, navigation bar and cutout the WebView is actually drawn
+ *   underneath. Chromium's own `env()` reports the same thing from WebView 140,
+ *   and reports zero on everything older — which is precisely the gap that put
+ *   the Trace it button under a Samsung's navigation bar while the emulator,
+ *   on WebView 133, showed nothing wrong.
+ * * **A desktop browser** has neither, and every one of these is `0px`.
+ *
+ * `max()` and not `+`. On a current Android both sources are populated and both
+ * describe the same navigation bar; adding them would reserve it twice and
+ * leave a band of empty ground under every button. Taking the larger means
+ * whichever source a device populates, the app reserves that bar exactly once —
+ * and if a future platform populates neither, the app is no worse off than the
+ * `0px` it starts from.
+ *
+ * ## The keyboard is not a safe area
+ *
+ * `--hg-keyboard-height` is deliberately a separate variable and is deliberately
+ * not part of the four above. A keyboard is a transient overlay belonging to one
+ * focused text field; folding its height into the permanent bottom inset would
+ * put 300 px of empty space under the alphabet on a screen that has no text
+ * input at all. Android shortens the WebView while the IME is up, so the number
+ * is usually 0 there and the layout needs nothing; it is published for the
+ * platforms that overlay instead of resizing.
+ */
+:root {
+  --hg-safe-top: max(var(--hg-native-safe-top, 0px), env(safe-area-inset-top, 0px));
+  --hg-safe-right: max(var(--hg-native-safe-right, 0px), env(safe-area-inset-right, 0px));
+  --hg-safe-bottom: max(var(--hg-native-safe-bottom, 0px), env(safe-area-inset-bottom, 0px));
+  --hg-safe-left: max(var(--hg-native-safe-left, 0px), env(safe-area-inset-left, 0px));
+  --hg-keyboard-height: max(var(--hg-native-keyboard, 0px), var(--keyboard-height, 0px));
+
+  /*
+   * The gap a bottom control keeps from the edge when there is no system
+   * furniture to clear — a phone with a gesture handle already has 27 px of its
+   * own and does not need another 24 on top. Named rather than repeated so the
+   * footer, the bottom sheets and the navigation bar cannot drift apart.
+   */
+  --hg-footer-gap: var(--hg-space-4);
+}
+
+/**
+ * The bottom padding of anything that ends the screen.
+ *
+ * Normal visual padding *plus* the system inset, never one standing in for the
+ * other: a learner needs a full-height button and breathing room underneath it,
+ * and counting the navigation bar as part of the button's own padding gives
+ * them a button whose bottom third is a strip of Android.
+ */
+.hg-safe-bottom {
+  padding-bottom: calc(var(--hg-footer-gap) + var(--hg-safe-bottom));
+}

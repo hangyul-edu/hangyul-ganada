@@ -1,0 +1,104 @@
+.viewport {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  /* Fills the visual viewport on mobile browsers whose toolbars come and go. */
+  height: 100dvh;
+  background: var(--hg-warm-50);
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--hg-size-app-max-width);
+  height: 100%;
+  overflow: hidden;
+  background: var(--hg-bg);
+  /*
+   * Keeps the app's own chrome clear of the system's.
+   *
+   * Android 15 and newer draw the app behind the status bar and the gesture
+   * bar and give it no way to opt out, and every notched iPhone does the same.
+   * Padding the shell rather than the individual screens means a header added
+   * later cannot end up underneath the clock.
+   *
+   * The **bottom** is deliberately not padded here, and that is not an
+   * oversight — it is what lets a footer's background continue behind a
+   * transparent navigation bar while the control inside it stays above the
+   * inset. Whatever ends the screen reserves it instead: `BottomNavigation` on
+   * a tabbed screen, `FocusScreen`'s footer or scroll region on a learning one.
+   * Padding it here as well would reserve the bar twice and leave a band of
+   * dead ground under every screen in the app.
+   */
+  padding-top: var(--hg-safe-top);
+  padding-right: var(--hg-safe-right);
+  padding-left: var(--hg-safe-left);
+}
+
+/*
+ * On a desktop the shell is a card floating on the page, and the insets are
+ * zero anyway — but the rule above would still apply if a browser reported one,
+ * pushing the card's content away from its own rounded corner.
+ */
+@media (min-width: 600px) {
+  .shell {
+    padding: 0;
+  }
+}
+
+/* Desktop: the shell reads as a device against the warm page. */
+@media (min-width: 600px) {
+  .viewport {
+    padding: var(--hg-space-6) var(--hg-space-4);
+  }
+
+  .shell {
+    height: 100%;
+    max-height: 900px;
+    border-radius: var(--hg-radius-2xl);
+    box-shadow: var(--hg-shadow-raised);
+  }
+}
+
+.plain {
+  background: var(--hg-bg);
+}
+
+.warm {
+  background: var(--hg-warm-50);
+}
+
+.session {
+  background: var(--hg-gradient-session);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+}
+
+/* A tabbed screen: one column of cards, scrolled by the shell. */
+.scrolls {
+  overflow-y: auto;
+  /* Keeps a drag inside the canvas from scrolling the page behind it. */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * A learning screen: the page owns its own scrolling, because it also owns a
+ * footer that has to stay pinned to the bottom of the viewport rather than to
+ * the bottom of the content. `overflow: hidden` is what makes the inner grid's
+ * `minmax(0, 1fr)` row resolve against the screen instead of against the
+ * lesson's length.
+ */
+.fills {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content:focus {
+  outline: none;
+}

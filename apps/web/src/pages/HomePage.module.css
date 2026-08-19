@@ -1,0 +1,410 @@
+/*
+ * Where the bottom of the home screen went wrong, and how it is fixed.
+ *
+ * The old layout stretched the page to `min-height: 100%` and then added
+ * `padding-bottom: 32px` on top of the body's own — space reserved twice for a
+ * navigation bar that never needed it, because the bar is a *sibling* of the
+ * scroll area rather than an overlay on it. That was the small half of the
+ * problem. The large half was simply that on a tall phone a brand-new learner's
+ * home screen does not reach the fold, and 180 px of bare background sat under
+ * the last card with nothing to end the page.
+ *
+ * Neither is solved by a negative margin. The structure is:
+ *
+ *     .page   min-height: 100%, column flex
+ *       .body content, its own bottom padding, no reserved nav space
+ *       .foot margin-top: auto — takes up whatever is left over
+ *
+ * `margin-top: auto` is the whole trick. On a short page the foot is pushed
+ * down and the slack becomes a designed band instead of a void; on a long page
+ * it has nothing to claim and simply follows the content, which is where a page
+ * foot belongs anyway. The safe-area inset stays where it belongs, on the
+ * navigation bar.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  /* Bottom padding is breathing room under the last card and nothing else —
+     enough that it does not sit flush against what follows, no more. */
+  padding: var(--hg-space-1) var(--hg-space-5) var(--hg-space-5);
+}
+
+/*
+ * The mascot ground from the design language (p229): a peach band at the foot
+ * of the screen with the mascot standing on it.
+ *
+ * It ends the page, and on a screen the content does not fill it is what the
+ * leftover height becomes. One line of copy rather than none — a mascot alone
+ * would be decoration taking up the space, and the thing worth saying at the
+ * bottom of this screen is the promise the vocabulary section now keeps.
+ */
+.foot {
+  display: flex;
+  /* The mascot stands on the bottom edge; the band above it is the ground. */
+  align-items: flex-end;
+  gap: var(--hg-space-3);
+  /*
+   * Grows into the leftover height rather than being pushed down by it.
+   *
+   * `margin-top: auto` would move the band to the bottom and leave the slack
+   * above it as bare background — the same void, further down the page. Letting
+   * the band itself take the space means the gradient covers it, fading out of
+   * the page and into the ground, which is what the space is *for*. `0 auto`
+   * keeps it at its content height when the page is long enough to fill.
+   */
+  flex: 1 0 auto;
+  /* Extra room below, so the card sits *on* the band rather than on its edge. */
+  padding: var(--hg-space-5) var(--hg-space-4) var(--hg-space-6);
+  background: var(--hg-gradient-ground);
+}
+
+.foot p {
+  text-wrap: pretty;
+}
+
+/*
+ * The streak, on the brand row.
+ *
+ * Deliberately quieter than the logo: a subtle tint rather than a filled
+ * primary pill, and 32px tall against the logo's 26. It is a fact about the
+ * learner, not the second half of the brand, and a saturated badge beside a
+ * wordmark reads as a notification rather than a record.
+ */
+.streak {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding-inline: var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  white-space: nowrap;
+}
+
+.streak:hover {
+  background: var(--hg-orange-200);
+}
+
+.celebrate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-1) var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+}
+
+/*
+ * Which unit this lesson belongs to. Small, above the title: a learner who
+ * comes back after a week needs to know where they are before they are told
+ * what is next.
+ */
+.featuredUnit {
+  margin-bottom: 2px;
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hg-primary-text);
+}
+
+.upNextBlurb {
+  margin: calc(var(--hg-space-2) * -1) 0 var(--hg-space-3);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- featured learning card --- */
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-5);
+}
+
+.featuredTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-4);
+  /* Gives the title a container to size itself against, so the same rule works
+     at 375, 430 and on the desktop shell. */
+  container-type: inline-size;
+}
+
+.featuredText {
+  min-width: 0;
+}
+
+/**
+ * The featured lesson's name.
+ *
+ * Sized in `clamp()` rather than at a fixed 28px: "Basic vowels ①" and
+ * "Grundvokale ①" are half again as long as 기본 모음 ①, and a fixed size either
+ * orphans the numeral onto its own line or forces a smaller face on every
+ * language to suit the longest one. `text-wrap: balance` splits what still has
+ * to wrap into even lines instead of leaving one word stranded.
+ */
+.featuredTitle {
+  font-size: clamp(var(--hg-text-heading-lg), 6.4cqw, var(--hg-text-display));
+  font-weight: var(--hg-weight-bold);
+  line-height: var(--hg-leading-tight);
+  color: var(--hg-text);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.featuredSubtitle {
+  margin-top: var(--hg-space-1);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  letter-spacing: 0.06em;
+  color: var(--hg-text-secondary);
+}
+
+.featuredGoal {
+  margin-top: var(--hg-space-3);
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+}
+
+.featuredGoal strong {
+  color: var(--hg-text);
+  font-weight: var(--hg-weight-bold);
+}
+
+/* --- quick entries --- */
+
+.quickRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--hg-space-3);
+}
+
+.quickLink {
+  display: block;
+}
+
+.quickCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  height: 100%;
+}
+
+.quickIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--hg-space-2);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-orange-200);
+  color: var(--hg-gray-900);
+}
+
+.quickLabel {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+}
+
+/*
+ * The number is the point of the card, so it is set at reading size and the
+ * caption under it says what it counts. A bare "7 / 40" is not a measurement.
+ */
+.quickMeta {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  line-height: 1.2;
+}
+
+/*
+ * Pushed down so the two cards' progress bars line up whatever length their
+ * captions are. Two bars at different heights in a two-column row is the kind
+ * of half-millimetre that makes a paid app look assembled rather than designed.
+ */
+.quickCaption {
+  margin-bottom: var(--hg-space-2);
+  flex: 1;
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+  line-height: 1.4;
+}
+
+/* --- review row --- */
+
+.reviewRow {
+  display: block;
+}
+
+.reviewCard {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  color: var(--hg-text-tertiary);
+}
+
+.reviewIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: var(--hg-radius-sm);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.reviewText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.reviewTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.reviewMeta {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- up next --- */
+
+.upNext {
+  margin-top: var(--hg-space-1);
+}
+
+.sectionTitle {
+  margin-bottom: var(--hg-space-3);
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+}
+
+.lessonRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+  color: var(--hg-text-tertiary);
+}
+
+.lessonRow:hover {
+  background: var(--hg-surface-selected);
+}
+
+.lessonInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.lessonTitle {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.lessonSubtitle {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+ * This week, in one line.
+ *
+ * A row rather than a card. Home's cards are all things to *do*; this is the
+ * only thing on the screen that is purely a report, and giving it a card would
+ * make it look like a fifth action.
+ */
+.weekRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  min-height: 44px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-bg-warm);
+  color: var(--hg-text-secondary);
+  font: var(--hg-text-body-sm);
+  text-decoration: none;
+}
+
+.weekRow:hover {
+  background: var(--hg-primary-subtle);
+}
+
+.weekLabel {
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-body);
+}
+
+.weekValue {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  margin-inline-start: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.weekDot {
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * Today's practice.
+ *
+ * Above the lesson card, because it is the *plan* and the lesson card is one
+ * step of it. Deliberately plain — no gradient, no ring, no count-up — so the
+ * featured card below it stays the brightest thing on the screen and the plan
+ * reads as a note rather than as a second call to action competing with it.
+ */
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.planTitle {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.planList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  margin: 0;
+  padding-inline-start: var(--hg-space-5);
+  list-style: disc;
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+}

@@ -1,0 +1,89 @@
+{
+  "title": "Lernaktivität",
+  "streak": {
+    "caption": "Üben allein hält sie am Leben — du musst keinen Buchstaben abschließen.",
+    "longest": "Längste Serie",
+    "totalDays": "Übungstage",
+    "totalTime": "Gesamtzeit",
+    "unit_one": "Tag in Folge",
+    "unit_other": "Tage in Folge"
+  },
+  "chart": {
+    "title": "Aktivität",
+    "rangeAria": "Zeitraum wählen",
+    "aria": "Übung pro Tag",
+    "noneYet": "In diesem Zeitraum noch keine Übung.",
+    "range": {
+      "7": "7 Tage",
+      "30": "30 Tage",
+      "90": "3 Monate",
+      "0": "Alles"
+    }
+  },
+  "calendar": {
+    "previous": "Vorheriger Monat",
+    "next": "Nächster Monat",
+    "less": "Weniger",
+    "more": "Mehr",
+    "dayAria_one": "{{date}}: {{count, number}} Versuch",
+    "dayAria_other": "{{date}}: {{count, number}} Versuche"
+  },
+  "day": {
+    "time": "Lernzeit",
+    "attempts": "Schreibversuche",
+    "correct": "Richtig",
+    "charactersLearned": "Fertige Buchstaben",
+    "wordsLearned": "Fertige Wörter",
+    "reviews": "Wiederholungsversuche",
+    "nothing": "An diesem Tag keine Übung."
+  },
+  "insights": {
+    "title": "Was auffällt",
+    "mostPractisedCharacter": "Meistgeübter Buchstabe",
+    "mostPractisedWord": "Meistgeübtes Wort",
+    "accuracy": "Schreibgenauigkeit",
+    "thisWeek": "Diese Woche",
+    "learnedCount_one": "{{count, number}} fertig",
+    "learnedCount_other": "{{count, number}} fertig"
+  },
+  "units": {
+    "minute_one": "{{count, number}} Min.",
+    "minute_other": "{{count, number}} Min.",
+    "hour_one": "{{count, number}} Std.",
+    "hour_other": "{{count, number}} Std."
+  },
+  "empty": {
+    "title": "Deine Lerngeschichte beginnt heute",
+    "body": "Übe ein paar Buchstaben, dann füllt sich diese Seite: die Tage, an denen du gelernt hast, wie lange und woran."
+  },
+  "week": {
+    "title": "Diese Woche",
+    "range": "Seit dem {{from}}",
+    "days": "Tage gelernt",
+    "daysValue_one": "{{count, number}} von 7",
+    "daysValue_other": "{{count, number}} von 7",
+    "time": "Zeit",
+    "learned": "Gelernt",
+    "accuracy": "Trefferquote",
+    "same": "Genauso viel Zeit wie letzte Woche.",
+    "moreThanLast": "{{minutes, number}} Minuten mehr als letzte Woche.",
+    "lessThanLast": "{{minutes, number}} Minuten weniger als letzte Woche.",
+    "quiet": "Diese Woche noch nichts — es ist noch Zeit."
+  },
+  "memory": {
+    "title": "Wie gut du dich erinnerst",
+    "firstTry": "Diese Woche sind dir {{count, number}} Dinge sofort wieder eingefallen.",
+    "strongestSkill": "Diese Woche klappt {{skill}} bei dir am besten.",
+    "confusionImproving": "{{a}} und {{b}} kannst du immer besser auseinanderhalten.",
+    "skill": {
+      "reading_recognition": "Lesen",
+      "listening_recognition": "Hören",
+      "guided_writing": "Schreiben",
+      "meaning_recognition": "Bedeutung",
+      "sentence_comprehension": "Sätze",
+      "sound_recognition": "Laute",
+      "visual_recognition": "Buchstaben",
+      "lookalike_discrimination": "Ähnliche unterscheiden"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "title": "Apprendre des mots",
+  "empty": {
+    "title": "Pas encore de mots ici",
+    "body": "Essayez une autre catégorie."
+  },
+  "partOfSpeech": {
+    "noun": "nom",
+    "verb": "verbe",
+    "adjective": "adjectif",
+    "adverb": "adverbe",
+    "pronoun": "pronom",
+    "numeral": "numéral",
+    "particle": "particule",
+    "interjection": "interjection",
+    "determiner": "déterminant"
+  },
+  "lesson": {
+    "title": "Série {{index, number}}",
+    "newLetters": "Nouvelles lettres",
+    "done": "Terminé"
+  },
+  "session": {
+    "hintSingle": "Écrivez-le dans le cadre",
+    "syllableGroup": "Écriture des syllabes de {{word}}",
+    "next": "Mot suivant",
+    "finish": "Terminer",
+    "complete_one": "Vous avez appris {{count, number}} mot dans {{lesson}}.",
+    "complete_other": "Vous avez appris {{count, number}} mots dans {{lesson}}.",
+    "complete_many": "Vous avez appris {{count, number}} de mots dans {{lesson}}.",
+    "toReading": "Maintenant, lisez-le",
+    "writeEachPart": "Écrivez chaque partie de {{word}} dans l’ordre.",
+    "writeEveryPartFirst": "Écrivez toutes les parties, puis on vérifie le mot en entier."
+  },
+  "intro": {
+    "write": "S'entraîner à écrire",
+    "example": "Exemple",
+    "howItSounds": "Comment ça se prononce",
+    "surfaceNote": "Dans cette phrase, {{headword}} apparaît sous la forme {{form}}."
+  },
+  "blurb": "Tous les mots sont ouverts. Choisissez une catégorie et commencez où vous voulez.",
+  "ahead": {
+    "title_one": "1 nouvelle lettre dans cette catégorie",
+    "title_many": "{{count, number}} de nouvelles lettres dans cette catégorie",
+    "title_other": "{{count, number}} nouvelles lettres dans cette catégorie",
+    "body": "Vous pouvez étudier ces mots dès maintenant. Apprendre d’abord les lettres les rend souvent plus faciles.",
+    "more_one": "+1 autre",
+    "more_many": "+{{count, number}} autres",
+    "more_other": "+{{count, number}} autres",
+    "cta": "Apprendre les lettres"
+  },
+  "categories": {
+    "essentials": "L'essentiel",
+    "people": "Personnes et famille",
+    "food": "Nourriture et boissons",
+    "animals-nature": "Animaux et nature",
+    "home": "Maison et objets",
+    "body-health": "Corps et santé",
+    "places-travel": "Lieux et voyages",
+    "time-numbers": "Temps et nombres",
+    "school-work": "École et travail",
+    "money-shopping": "Argent et achats",
+    "communication": "Parler et médias",
+    "feelings": "Sentiments et caractère",
+    "thinking": "Penser et apprendre",
+    "movement": "Aller et venir",
+    "actions": "Actions du quotidien",
+    "describing": "Décrire les choses",
+    "society": "Vie et culture",
+    "how-when": "Comment et quand"
+  },
+  "category": {
+    "label": "Catégorie",
+    "all": "Toutes les catégories",
+    "pick": "Choisissez une catégorie",
+    "count_one": "{{count, number}} mot",
+    "count_many": "{{count, number}} mots",
+    "count_other": "{{count, number}} mots",
+    "progressAria": "Progression dans {{category}}"
+  },
+  "search": {
+    "placeholder": "Rechercher un mot",
+    "label": "Rechercher dans le vocabulaire",
+    "count_one": "{{count, number}} résultat",
+    "count_many": "{{count, number}} résultats",
+    "count_other": "{{count, number}} résultats",
+    "none": "Rien ne correspond à « {{query}} ». Essayez en coréen, ou avec le sens."
+  },
+  "sound": {
+    "tensing": "Après une consonne finale, le son suivant se tend.",
+    "aspiration": "Le ㅎ fusionne avec la consonne suivante et l’aspire.",
+    "nasal": "Devant ㄴ ou ㅁ, la consonne précédente devient nasale.",
+    "lateral": "ㄴ et ㄹ côte à côte se disent toutes deux ㄹ.",
+    "palatal": "Un ㄷ ou ㅌ final devant 이 se dit comme ㅈ ou ㅊ.",
+    "liaison": "La consonne finale passe sur le bloc suivant."
+  },
+  "save": {
+    "action": "Enregistrer",
+    "saved": "Enregistré",
+    "add": "Enregistrer {{word}}",
+    "remove": "Retirer {{word}} des enregistrés"
+  }
+}

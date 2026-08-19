@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      `favicon.ico`, not a PNG of the mark.
+
+      A tab draws the icon at 16 px. Handing the browser an 800 px symbol and
+      letting it downscale gives a smudge; the `.ico` carries 16, 32 and 48 px
+      renders resampled separately, so each size is drawn rather than squeezed.
+      It is also the file browsers, feed readers and link previewers request
+      from the site root whether or not this tag exists, which is why it lives
+      at `/favicon.ico` and not under `/brand/`.
+
+      All three sizes come from the brand mark rather than from the app icon.
+      The app icon is the orange held in a hand, and at 16 px the hand is a
+      smudge under the fruit; the tab gets the mark on its own, which is the
+      same drawing legible at a sixteenth the size. The *installed application*
+      icon is `brand/app-icon-*.png` — see the manifest — and
+      `scripts/content/build_app_icons.py` renders both from the same command,
+      so neither can drift without the other being rebuilt.
+    -->
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <!--
+      No `maximum-scale` and no `user-scalable=no`.
+
+      Both were here, and both disable pinch zoom — which is a WCAG 2.1 AA
+      failure (1.4.4 Resize Text) and, more to the point, takes away the one
+      thing a learner with low vision does when the Korean is too small to make
+      out. That is a strange thing for a handwriting app to prevent. They were
+      there to stop iOS zooming when a text field is focused; the app has two
+      text inputs, both at 16px, which is the size at which iOS does not zoom.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#FF6700" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <!--
+      A square, opaque render. iOS ignores the aspect ratio of whatever it is
+      given and squashes it into a rounded square, so handing it the source
+      artwork — which is taller than it is wide, with transparency around it —
+      put a stretched orange on a black tile.
+    -->
+    <link rel="apple-touch-icon" sizes="192x192" href="/brand/app-icon-192.png" />
+    <!--
+      English, because English is the default locale. `LocaleProvider` rewrites
+      `lang`, `dir`, the title and this description as soon as the app resolves
+      the learner's language, so what ships in the file is only what a crawler
+      or a pre-hydration reader sees.
+    -->
+    <meta
+      name="description"
+      content="Hangyul ganada — learn to read and write Hangul from the very first letter: consonants and vowels, syllable blocks, handwriting and your first Korean words."
+    />
+    <meta property="og:site_name" content="Hangyul ganada" />
+    <meta property="og:title" content="Hangyul ganada" />
+    <meta
+      property="og:description"
+      content="Learn Hangul, one stroke at a time. A Hangul letter-learning and handwriting practice app for Korean learners worldwide."
+    />
+    <title>Hangyul ganada</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

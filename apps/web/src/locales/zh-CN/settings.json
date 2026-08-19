@@ -1,0 +1,145 @@
+{
+  "title": "我的学习",
+  "stats": {
+    "wordsLearned": "学会的单词",
+    "lettersLearned": "学会的字母",
+    "alphabetProgress": "韩文字母学习进度",
+    "studyDays": "学习天数"
+  },
+  "language": {
+    "title": "语言",
+    "description": "界面显示的语言。要学的韩语内容始终保持韩语。",
+    "openPicker": "更改语言",
+    "pickerTitle": "选择语言",
+    "pickerIntro": "选择界面语言。学习对象——韩文字母、单词和例句——始终以韩语显示。",
+    "listAria": "可用的语言",
+    "searchLabel": "搜索语言",
+    "searchPlaceholder": "按名称或代码搜索",
+    "noResults": "没有与“{{query}}”匹配的语言。",
+    "selected": "已选择",
+    "suggestion": "你的浏览器语言是{{language}}。要把界面也切换过去吗？",
+    "suggestionAccept": "使用{{language}}",
+    "suggestionDismiss": "保持英语",
+    "coverageNote": "尚未完成翻译的说明文字可能仍显示为英语。"
+  },
+  "font": {
+    "title": "练习字体",
+    "description": "你描的字会用所选字体来画。"
+  },
+  "dailyTarget": {
+    "title": "每日目标",
+    "description": "每天要完成的字或词的数量。",
+    "option_other": "{{count, number}}",
+    "optionAria_other": "每天 {{count, number}} 个字"
+  },
+  "guides": {
+    "title": "书写辅助线",
+    "description": "方框里的辅助线。",
+    "grid": "横竖辅助线",
+    "crosshair": "中心标记"
+  },
+  "about": {
+    "body": "读写韩文：字母、发音、音节方块，还有你的第一批韩语词。",
+    "reset": "重置学习进度",
+    "offline": "所有课程、例句和录音都能离线使用。",
+    "version": "版本 {{version}}"
+  },
+  "reset": {
+    "title": "要重置全部学习进度吗？",
+    "description": "已完成的课程、复习记录和学习活动都会被清除，无法撤销。",
+    "confirm": "重置",
+    "cancel": "取消",
+    "body": "从第一个字母重新开始。"
+  },
+  "voice": {
+    "title": "发音语音",
+    "description": "由谁来读字母、音节和单词。",
+    "female": "女声",
+    "male": "男声",
+    "preview": "试听所选语音",
+    "provider": "两把清晰的韩语嗓音，比母语者稍慢一点，每个音都听得清。"
+  },
+  "groups": {
+    "practice": "练习",
+    "learning": "学习",
+    "appearance": "外观",
+    "app": "应用",
+    "reset": "重置"
+  },
+  "activity": {
+    "title": "学习记录",
+    "body": "连续天数、日历，以及学过的内容"
+  },
+  "style": {
+    "title": "练习方式",
+    "description": "写的时候在纸上留多少字形。两种方式都一直看得见字。",
+    "guided": {
+      "title": "循序",
+      "detail": "先描一遍，再在淡一点的辅助线上写。"
+    },
+    "focused": {
+      "title": "专注",
+      "detail": "跳过描红，直接从淡辅助线开始。"
+    }
+  },
+  "appearance": {
+    "title": "外观",
+    "description": "浅色、深色，或跟随手机设置。",
+    "system": "跟随系统",
+    "light": "浅色",
+    "dark": "深色"
+  },
+  "legal": {
+    "title": "法律声明与许可",
+    "body": "应用中内容与字体的许可",
+    "intro": "应用中部分素材依据要求署名的许可使用，这些署名都在这里。",
+    "contentHeading": "内容",
+    "fontsHeading": "字体"
+  },
+  "reminder": {
+    "title": "每日提醒",
+    "description": "每天一次，在你选择的时间轻轻提醒。不开就不会响，提醒不会离开这台设备。",
+    "toggle": "提醒我练习",
+    "at": "时间",
+    "notificationTitle": "该练习了",
+    "notificationBody": "几分钟的韩语在等你。",
+    "refused": "系统没有允许本应用发送通知。你可以在设置里打开。"
+  },
+  "privacy": {
+    "title": "隐私",
+    "body": "学习记录如何处理",
+    "lede": "你在这里学的一切都留在这台设备上。",
+    "device": {
+      "title": "学习记录只存在本机",
+      "points": [
+        "你学过什么、记得多牢，都只保存在这台设备上，不会上传。",
+        "没有账号，不用注册，也不用登录。"
+      ]
+    },
+    "tracking": {
+      "title": "没有广告，也没有追踪",
+      "points": [
+        "应用不会记录你怎么使用，也不会把任何信息发出去。",
+        "你写的字在屏幕上当场判定，随后就丢弃。"
+      ]
+    },
+    "permissions": {
+      "title": "权限",
+      "points": [
+        "只有你打开每日提醒时，才会用到通知权限。",
+        "不使用相机、麦克风、照片、通讯录和位置。"
+      ]
+    },
+    "erase": {
+      "title": "想删除的话",
+      "points": [
+        "在{{screen}}页面底部可以清除全部学习记录。",
+        "卸载应用，保存的内容也一起消失。"
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "这个浏览器不会记住你学过的内容，关掉标签页就没了。用普通窗口而不是无痕窗口打开就好。",
+    "recovered_other": "加载时跳过了 {{count, number}} 条损坏记录，其余进度完好。"
+  }
+}

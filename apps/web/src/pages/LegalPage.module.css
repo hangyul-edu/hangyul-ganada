@@ -1,0 +1,81 @@
+/*
+ * Legal & Licences.
+ *
+ * Deliberately plain. This is a page people arrive at on purpose, read once,
+ * and leave; styling it like a feature would be dishonest about what it is.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-6);
+  padding: var(--hg-space-4) var(--hg-space-4) var(--hg-space-10);
+}
+
+.intro {
+  margin: 0;
+  font: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-relaxed);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.heading {
+  margin: 0 0 var(--hg-space-3);
+  font: var(--hg-text-title);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+}
+
+.noticeName {
+  margin: 0;
+  font: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+}
+
+.noticeBody {
+  margin: 0;
+  font: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-relaxed);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.noticeLink {
+  align-self: flex-start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-primary-text);
+}
+
+.version {
+  margin: 0;
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+}

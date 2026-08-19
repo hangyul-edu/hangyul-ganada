@@ -1,0 +1,95 @@
+{
+  "title": "Activité",
+  "streak": {
+    "caption": "S’entraîner suffit à la maintenir — pas besoin de terminer une lettre.",
+    "longest": "Plus longue série",
+    "totalDays": "Jours pratiqués",
+    "totalTime": "Temps total",
+    "unit_one": "jour d’affilée",
+    "unit_many": "jours d’affilée",
+    "unit_other": "jours d’affilée"
+  },
+  "chart": {
+    "title": "Activité",
+    "rangeAria": "Choisir une période",
+    "aria": "Pratique par jour",
+    "noneYet": "Aucune pratique sur cette période.",
+    "range": {
+      "7": "7 jours",
+      "30": "30 jours",
+      "90": "3 mois",
+      "0": "Tout"
+    }
+  },
+  "calendar": {
+    "previous": "Mois précédent",
+    "next": "Mois suivant",
+    "less": "Moins",
+    "more": "Plus",
+    "dayAria_one": "{{date}} : {{count, number}} essai",
+    "dayAria_many": "{{date}} : {{count, number}} essais",
+    "dayAria_other": "{{date}} : {{count, number}} essais"
+  },
+  "day": {
+    "time": "Temps d’étude",
+    "attempts": "Essais d’écriture",
+    "correct": "Réussis",
+    "charactersLearned": "Lettres terminées",
+    "wordsLearned": "Mots terminés",
+    "reviews": "Essais de révision",
+    "nothing": "Aucune pratique ce jour-là."
+  },
+  "insights": {
+    "title": "Ce qui ressort",
+    "mostPractisedCharacter": "Lettre la plus travaillée",
+    "mostPractisedWord": "Mot le plus travaillé",
+    "accuracy": "Précision d’écriture",
+    "thisWeek": "Cette semaine",
+    "learnedCount_one": "{{count, number}} terminé",
+    "learnedCount_many": "{{count, number}} terminés",
+    "learnedCount_other": "{{count, number}} terminés"
+  },
+  "units": {
+    "minute_one": "{{count, number}} min",
+    "minute_many": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_one": "{{count, number}} h",
+    "hour_many": "{{count, number}} h",
+    "hour_other": "{{count, number}} h"
+  },
+  "empty": {
+    "title": "Votre parcours commence aujourd’hui",
+    "body": "Pratiquez quelques lettres et cette page se remplit : les jours travaillés, le temps passé et ce que vous avez fait."
+  },
+  "week": {
+    "title": "Cette semaine",
+    "range": "Depuis le {{from}}",
+    "days": "Jours étudiés",
+    "daysValue_one": "{{count, number}} sur 7",
+    "daysValue_many": "{{count, number}} sur 7",
+    "daysValue_other": "{{count, number}} sur 7",
+    "time": "Temps",
+    "learned": "Appris",
+    "accuracy": "Précision",
+    "same": "Autant de temps que la semaine dernière.",
+    "moreThanLast": "{{minutes, number}} minutes de plus que la semaine dernière.",
+    "lessThanLast": "{{minutes, number}} minutes de moins que la semaine dernière.",
+    "quiet": "Rien encore cette semaine — il reste du temps."
+  },
+  "memory": {
+    "title": "Où en est votre mémoire",
+    "firstTry": "Cette semaine, vous avez retrouvé {{count, number}} choses du premier coup.",
+    "strongestSkill": "Cette semaine, c'est {{skill}} qui vous réussit le mieux.",
+    "confusionImproving": "Vous distinguez de mieux en mieux {{a}} et {{b}}.",
+    "skill": {
+      "reading_recognition": "la lecture",
+      "listening_recognition": "l'écoute",
+      "guided_writing": "l'écriture",
+      "meaning_recognition": "le sens",
+      "sentence_comprehension": "les phrases",
+      "sound_recognition": "les sons",
+      "visual_recognition": "les lettres",
+      "lookalike_discrimination": "distinguer les ressemblantes"
+    }
+  }
+}

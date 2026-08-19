@@ -1,0 +1,233 @@
+/**
+ * GENERATED FILE — do not edit.
+ * Source: packages/design-tokens/src/index.ts
+ * Regenerate: npm run tokens:build
+ */
+:root {
+  /* orange */
+  --hg-orange-50: #FFF7E0;
+  --hg-orange-100: #FFEAB1;
+  --hg-orange-200: #FFDC7E;
+  --hg-orange-300: #FFD04A;
+  --hg-orange-400: #FFC41F;
+  --hg-orange-500: #FFBA00;
+  --hg-orange-600: #FFAC00;
+  --hg-orange-700: #FF9900;
+  --hg-orange-800: #FF8700;
+  --hg-orange-900: #FF6700;
+  /* gray */
+  --hg-gray-0: #FFFFFF;
+  --hg-gray-100: #F2F4F5;
+  --hg-gray-200: #E6E8EB;
+  --hg-gray-400: #ADB4BA;
+  --hg-gray-600: #626B72;
+  --hg-gray-700: #5A636A;
+  --hg-gray-900: #262C31;
+  --hg-gray-1000: #000000;
+  /* warm */
+  --hg-warm-50: #FFF8F1;
+  --hg-warm-100: #FFEFE5;
+  --hg-warm-200: #FFDCC2;
+  /* accent */
+  --hg-mint: #66CCCC;
+  --hg-positive: #547CF1;
+  --hg-negative: #F24147;
+  /* semantic */
+  --hg-primary: #FF6700;
+  --hg-primary-hover: #F05F00;
+  --hg-primary-pressed: #DB5600;
+  --hg-primary-subtle: #FFEFE5;
+  --hg-primary-disabled: #E6E8EB;
+  --hg-primary-text: #B84F07;
+  --hg-primary-strong: #E6650E;
+  --hg-secondary: #66CCCC;
+  --hg-positive: #547CF1;
+  --hg-negative: #F24147;
+  --hg-bg: #FFFFFF;
+  --hg-bg-warm: #FFF8F1;
+  --hg-bg-muted: #F2F4F5;
+  --hg-surface: #FFFFFF;
+  --hg-surface-warm: #FFF8F1;
+  --hg-surface-selected: #FFEFE5;
+  --hg-overlay: rgba(38, 44, 49, 0.45);
+  --hg-border: #E6E8EB;
+  --hg-border-strong: #ADB4BA;
+  --hg-border-selected: #E6650E;
+  --hg-text: #262C31;
+  --hg-text-secondary: #5A636A;
+  --hg-text-tertiary: #626B72;
+  --hg-text-disabled: #ADB4BA;
+  --hg-text-on-primary: #FFFFFF;
+  --hg-text-on-dark: #FFFFFF;
+  --hg-canvas-paper: #FFFDF8;
+  --hg-canvas-ink: #262C31;
+  --hg-canvas-guide: #E6E8EB;
+  --hg-canvas-guide-warm: #FFDCC2;
+  --hg-canvas-trace-glyph: #ADB4BA;
+  /* gradient */
+  --hg-gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FFF2E0 100%);
+  --hg-gradient-session: linear-gradient(180deg, #FFFEFC 0%, #FFEAD1 100%);
+  --hg-gradient-ground: linear-gradient(180deg, rgba(255,236,220,0) 0%, #FFDCC2 100%);
+  /* fontFamily */
+  --hg-font-ui: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --hg-font-practice: 'Pretendard Variable', Pretendard, sans-serif;
+  /* fontSize */
+  --hg-text-micro: 11px;
+  --hg-text-caption: 13px;
+  --hg-text-body-sm: 14px;
+  --hg-text-body: 15px;
+  --hg-text-body-lg: 16px;
+  --hg-text-title: 17px;
+  --hg-text-heading: 20px;
+  --hg-text-heading-lg: 24px;
+  --hg-text-display: 28px;
+  --hg-text-display-lg: 34px;
+  /* fontWeight */
+  --hg-weight-regular: 400;
+  --hg-weight-medium: 500;
+  --hg-weight-semibold: 600;
+  --hg-weight-bold: 700;
+  --hg-weight-extrabold: 800;
+  /* lineHeight */
+  --hg-leading-tight: 1.25;
+  --hg-leading-snug: 1.4;
+  --hg-leading-normal: 1.5;
+  --hg-leading-relaxed: 1.65;
+  /* space */
+  --hg-space-0: 0px;
+  --hg-space-1: 4px;
+  --hg-space-2: 8px;
+  --hg-space-3: 12px;
+  --hg-space-4: 16px;
+  --hg-space-5: 20px;
+  --hg-space-6: 24px;
+  --hg-space-7: 28px;
+  --hg-space-8: 32px;
+  --hg-space-10: 40px;
+  --hg-space-12: 48px;
+  --hg-space-16: 64px;
+  /* radius */
+  --hg-radius-xs: 6px;
+  --hg-radius-sm: 8px;
+  --hg-radius-md: 12px;
+  --hg-radius-lg: 16px;
+  --hg-radius-xl: 20px;
+  --hg-radius-2xl: 24px;
+  --hg-radius-pill: 999px;
+  /* shadow */
+  --hg-shadow-card: 0 1px 2px rgba(120, 82, 40, 0.06), 0 6px 16px rgba(120, 82, 40, 0.10);
+  --hg-shadow-raised: 0 2px 4px rgba(120, 82, 40, 0.08), 0 12px 28px rgba(120, 82, 40, 0.14);
+  --hg-shadow-button: 0 2px 8px rgba(255, 103, 0, 0.28);
+  --hg-shadow-nav: 0 -1px 0 rgba(38, 44, 49, 0.06);
+  --hg-shadow-modal: 0 12px 40px rgba(120, 82, 40, 0.22);
+  /* size */
+  --hg-size-hit-target: 44px;
+  --hg-size-control-sm: 36px;
+  --hg-size-control-md: 48px;
+  --hg-size-control-lg: 56px;
+  --hg-size-app-header: 56px;
+  --hg-size-bottom-nav: 64px;
+  --hg-size-app-max-width: 430px;
+  /* zIndex */
+  --hg-z-base: 0;
+  --hg-z-sticky: 10;
+  --hg-z-header: 20;
+  --hg-z-bottom-nav: 30;
+  --hg-z-overlay: 40;
+  --hg-z-modal: 50;
+  --hg-z-toast: 60;
+  /* duration */
+  --hg-duration-instant: 80ms;
+  --hg-duration-fast: 150ms;
+  --hg-duration-normal: 220ms;
+  --hg-duration-slow: 360ms;
+  --hg-duration-celebrate: 600ms;
+  /* easing */
+  --hg-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --hg-ease-decelerate: cubic-bezier(0, 0, 0, 1);
+  --hg-ease-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --hg-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- dark appearance ------------------------------------------------ */
+:root[data-theme="dark"] {
+  --hg-primary: #FF6700;
+  --hg-primary-hover: #FF7A1F;
+  --hg-primary-pressed: #E65C00;
+  --hg-primary-subtle: #3A2415;
+  --hg-primary-disabled: #3A322C;
+  --hg-primary-text: #FF8A3D;
+  --hg-primary-strong: #FF6700;
+  --hg-secondary: #7FD6D6;
+  --hg-positive: #8AA6F7;
+  --hg-negative: #FF7A80;
+  --hg-bg: #15110E;
+  --hg-bg-warm: #1B1613;
+  --hg-bg-muted: #211B17;
+  --hg-surface: #1E1815;
+  --hg-surface-warm: #25201B;
+  --hg-surface-selected: #37281D;
+  --hg-overlay: rgba(8, 6, 5, 0.62);
+  --hg-border: #332B25;
+  --hg-border-strong: #4C423A;
+  --hg-border-selected: #FF8A3D;
+  --hg-text: #F6F0EA;
+  --hg-text-secondary: #CFC5BC;
+  --hg-text-tertiary: #ADA298;
+  --hg-text-disabled: #6E645C;
+  --hg-text-on-primary: #FFFFFF;
+  --hg-text-on-dark: #FFFFFF;
+  --hg-canvas-paper: #FFFDF8;
+  --hg-canvas-ink: #262C31;
+  --hg-canvas-guide: #E6E8EB;
+  --hg-canvas-guide-warm: #FFDCC2;
+  --hg-canvas-trace-glyph: #ADB4BA;
+  --hg-gradient-card: linear-gradient(180deg, #241D18 0%, #2E2318 100%);
+  --hg-gradient-session: linear-gradient(180deg, #1A1512 0%, #2A2018 100%);
+  --hg-gradient-ground: linear-gradient(180deg, rgba(58,36,21,0) 0%, #3A2415 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --hg-primary: #FF6700;
+    --hg-primary-hover: #FF7A1F;
+    --hg-primary-pressed: #E65C00;
+    --hg-primary-subtle: #3A2415;
+    --hg-primary-disabled: #3A322C;
+    --hg-primary-text: #FF8A3D;
+    --hg-primary-strong: #FF6700;
+    --hg-secondary: #7FD6D6;
+    --hg-positive: #8AA6F7;
+    --hg-negative: #FF7A80;
+    --hg-bg: #15110E;
+    --hg-bg-warm: #1B1613;
+    --hg-bg-muted: #211B17;
+    --hg-surface: #1E1815;
+    --hg-surface-warm: #25201B;
+    --hg-surface-selected: #37281D;
+    --hg-overlay: rgba(8, 6, 5, 0.62);
+    --hg-border: #332B25;
+    --hg-border-strong: #4C423A;
+    --hg-border-selected: #FF8A3D;
+    --hg-text: #F6F0EA;
+    --hg-text-secondary: #CFC5BC;
+    --hg-text-tertiary: #ADA298;
+    --hg-text-disabled: #6E645C;
+    --hg-text-on-primary: #FFFFFF;
+    --hg-text-on-dark: #FFFFFF;
+    --hg-canvas-paper: #FFFDF8;
+    --hg-canvas-ink: #262C31;
+    --hg-canvas-guide: #E6E8EB;
+    --hg-canvas-guide-warm: #FFDCC2;
+    --hg-canvas-trace-glyph: #ADB4BA;
+    --hg-gradient-card: linear-gradient(180deg, #241D18 0%, #2E2318 100%);
+    --hg-gradient-session: linear-gradient(180deg, #1A1512 0%, #2A2018 100%);
+    --hg-gradient-ground: linear-gradient(180deg, rgba(58,36,21,0) 0%, #3A2415 100%);
+  }
+}
+
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+}

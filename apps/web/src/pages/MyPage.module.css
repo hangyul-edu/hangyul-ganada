@@ -1,0 +1,723 @@
+/*
+ * The page fills the scroll area; the navigation bar is a sibling of it, not an
+ * overlay on it, so no room is reserved for the bar here. Bottom spacing is the
+ * body's own padding and nothing else — reserving it twice is what put a band
+ * of dead background under the last card on every tab.
+ */
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-6);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+/* --- stats --- */
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--hg-space-3);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statLabel {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+}
+
+.statValue {
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.statProgress {
+  padding-top: var(--hg-space-3);
+  border-top: 1px solid var(--hg-orange-100);
+}
+
+/* --- sections --- */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+/*
+ * A setting's own title, now one level down from the group heading above it.
+ * Smaller than it was: with a group heading present, two bold lines of the same
+ * weight made every setting look like the start of a new section.
+ */
+.sectionTitle {
+  margin: 0;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+}
+
+
+.sectionDesc {
+  margin-top: calc(var(--hg-space-2) * -1);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- font picker --- */
+
+.fontList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.fontOption {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-4);
+  width: 100%;
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+  text-align: start;
+  transition:
+    background-color var(--hg-duration-fast) var(--hg-ease-standard),
+    box-shadow var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.fontOption:hover {
+  background: var(--hg-warm-50);
+}
+
+.fontSelected,
+.fontSelected:hover {
+  background: var(--hg-surface-selected);
+  box-shadow: inset 0 0 0 1.5px var(--hg-border-selected);
+}
+
+/*
+ * The sample, sized to be read rather than glanced at.
+ *
+ * Korean pins its own direction: the preview is the thing being taught, so it
+ * reads left-to-right even inside a right-to-left interface.
+ */
+.fontPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex: none;
+  /* Wide enough for three Hangul blocks at the size below in the widest of the
+     six faces. The sample wrapping to two lines made every card a different
+     height and read as a layout bug rather than as a preview. */
+  width: 98px;
+  padding: var(--hg-space-2) var(--hg-space-1);
+  border-radius: var(--hg-radius-sm);
+  /*
+    Ink on paper, in both appearances — the same rule the writing box follows.
+    A typeface specimen is a picture of what the learner will trace, and in dark
+    mode the theme colours made it pale grey type on a pale tile: the one thing
+    on the row that has to be looked at was the one thing that could not be.
+  */
+  background: var(--hg-canvas-paper);
+  color: var(--hg-canvas-ink);
+  direction: ltr;
+  /* The sample must not be squeezed by a long description beside it. */
+  overflow: hidden;
+}
+
+.fontPreviewLg {
+  font-size: 28px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.fontPreviewSm {
+  font-size: 16px;
+  line-height: 1.2;
+  white-space: nowrap;
+  /* Still ink, just lighter — the tile does not follow the theme. */
+  opacity: 0.62;
+}
+
+.fontMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fontNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  /* Three chips of very different lengths across eight languages: wrapping is
+     the only behaviour that does not either clip a badge or widen the row. */
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+
+.fontName {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+}
+
+/* The Korean name of the style. Set in the UI face, not the practice face —
+   the sample beside it is what shows the practice face. */
+.fontNameKo {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+}
+
+.fontDesc {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+  line-height: var(--hg-leading-snug);
+}
+
+.fontLicense {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+}
+
+.fontCheck {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+/* --- practice mode --- */
+
+.modeRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--hg-space-3);
+}
+
+.modeOption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+  text-align: start;
+}
+
+.modeSelected {
+  background: var(--hg-surface-selected);
+  box-shadow: inset 0 0 0 1.5px var(--hg-border-selected);
+}
+
+.modeTitle {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+}
+
+.modeSelected .modeTitle {
+  color: var(--hg-primary-text);
+}
+
+.modeDetail {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+  line-height: var(--hg-leading-snug);
+}
+
+/* --- daily target --- */
+
+.targetRow {
+  display: flex;
+  gap: var(--hg-space-2);
+  flex-wrap: wrap;
+}
+
+.targetOption {
+  min-width: 56px;
+  min-height: var(--hg-size-control-sm);
+  padding-inline: var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+}
+
+.targetSelected {
+  background: var(--hg-surface-selected);
+  box-shadow: inset 0 0 0 1.5px var(--hg-border-selected);
+  color: var(--hg-primary-text);
+  font-weight: var(--hg-weight-bold);
+}
+
+/* --- toggles --- */
+
+.toggleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.toggleRow {
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+  min-height: var(--hg-size-hit-target);
+  padding: 0 var(--hg-space-4);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  cursor: pointer;
+}
+
+/* Kept in the a11y tree and focusable; the track below is the visible control. */
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.toggleTrack {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-border);
+  transition: background-color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 3px;
+  /* Logical inset so the thumb starts on the leading edge in RTL too. */
+  inset-inline-start: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-gray-0);
+  box-shadow: var(--hg-shadow-card);
+  transition: translate var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.toggleInput:checked + .toggleTrack {
+  background: var(--hg-primary);
+}
+
+.toggleInput:checked + .toggleTrack .toggleThumb {
+  /* Travels toward the trailing edge, whichever side that is. */
+  translate: 18px 0;
+}
+
+.toggleInput:focus-visible + .toggleTrack {
+  outline: 2px solid var(--hg-primary);
+  outline-offset: 2px;
+}
+
+/* --- about --- */
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--hg-space-2);
+}
+
+.aboutTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+}
+
+.aboutBody {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.aboutNote {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+  line-height: var(--hg-leading-snug);
+}
+
+[dir='rtl'] .toggleInput:checked + .toggleTrack .toggleThumb {
+  translate: -18px 0;
+}
+
+/* --- language row --------------------------------------------------------- */
+
+.languageRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--hg-space-2) var(--hg-space-4);
+  width: 100%;
+  /* No fixed height: "Bahasa Indonesia" and 한국어 both have to fit. */
+  min-height: var(--hg-size-hit-target);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.languageRow:hover {
+  background: var(--hg-warm-50);
+}
+
+.languageNames {
+  display: flex;
+  flex: 1 1 8rem;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.languageNative {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  overflow-wrap: anywhere;
+}
+
+.languageEnglish {
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  overflow-wrap: anywhere;
+}
+
+.languageAction {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--hg-space-1);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+}
+
+/* --- pronunciation voice --- */
+
+/*
+ * Two tiles, not a dropdown. The choice is between two things and a learner
+ * should be able to see both, hear both, and switch in one tap — a select
+ * element hides one option behind an interaction and gives no way to preview.
+ */
+.voiceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--hg-space-3);
+}
+
+.voiceOption {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-height: 72px;
+  padding: var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  text-align: start;
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.voiceSelected {
+  border-color: var(--hg-border-selected);
+  background: var(--hg-surface-selected);
+}
+
+.voiceName {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.voiceSelected .voiceName {
+  color: var(--hg-primary-text);
+}
+
+.voiceSample {
+  direction: ltr;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.voiceCheck {
+  position: absolute;
+  inset-block-start: var(--hg-space-2);
+  inset-inline-end: var(--hg-space-2);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+.voicePreview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+  margin-top: var(--hg-space-3);
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-bg-muted);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.sourceNote {
+  margin-top: var(--hg-space-2);
+  font-size: var(--hg-text-micro);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The two things that can go wrong with a learner's record.
+ *
+ * A notice on the page rather than a footnote inside a section, because it is
+ * no longer attached to one: both are conditions of the whole screen, and both
+ * are things the learner has to see before they spend another hour practising
+ * into a tab that will forget it.
+ */
+.storageWarning {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: var(--hg-space-3);
+  border: 1px solid var(--hg-negative);
+  border-radius: var(--hg-radius-md);
+  /* Tinted from the token rather than a second red picked by hand, so light and
+     dark stay in step with whatever `--hg-negative` becomes. */
+  background: color-mix(in srgb, var(--hg-negative) 8%, var(--hg-surface));
+  font: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-relaxed);
+  color: var(--hg-negative);
+  text-wrap: pretty;
+}
+
+.storageWarning svg {
+  flex: none;
+}
+
+/* --- a row that opens another screen --- */
+
+.linkRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-tertiary);
+}
+
+.linkIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: var(--hg-radius-sm);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+}
+
+.linkText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.linkTitle {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.linkBody {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+}
+
+.aboutVersion {
+  margin-top: var(--hg-space-1);
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-disabled);
+}
+
+.toggleText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toggleHint {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-regular);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voiceOption {
+    transition: none;
+  }
+}
+
+/*
+ * Setting groups.
+ *
+ * The heading is small and quiet, and the settings inside it sit on a card:
+ * the visual weight belongs to the controls, not to the labels above them. A
+ * heavier heading would make the screen look like five screens.
+ */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.groupTitle {
+  margin: 0;
+  padding-inline-start: var(--hg-space-1);
+  font: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hg-text-tertiary);
+}
+
+/* Destructive, so it is separated from the two buttons above it rather than
+   sitting in the same row where a mis-tap costs a learner their progress. */
+.dataReset {
+  align-self: flex-start;
+  color: var(--hg-negative);
+}
+
+/* --- appearance --- */
+
+/*
+ * Three options, each showing what it looks like rather than describing it.
+ * A learner choosing between System, Light and Dark is choosing a look, and a
+ * word for a look is a worse control than the look itself.
+ */
+.appearanceRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--hg-space-2);
+}
+
+.appearanceOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  min-height: 44px;
+  padding: var(--hg-space-3) var(--hg-space-2);
+  border: 1.5px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  font: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  cursor: pointer;
+}
+
+.appearanceSelected {
+  border-color: var(--hg-border-selected);
+  background: var(--hg-surface-selected);
+  color: var(--hg-text);
+}
+
+/*
+ * The swatch. Painted from literal colours rather than tokens on purpose: the
+ * Light chip has to look light while the app is dark, and a token would follow
+ * the theme and show the learner the same square three times.
+ */
+.appearanceSwatch {
+  width: 100%;
+  max-width: 56px;
+  height: 34px;
+  border-radius: var(--hg-radius-sm);
+  border: 1px solid var(--hg-border);
+}
+
+.appearanceSwatch[data-appearance='light'] {
+  background: linear-gradient(135deg, #fff8f1 0% 60%, #ff6700 60% 100%);
+}
+
+.appearanceSwatch[data-appearance='dark'] {
+  background: linear-gradient(135deg, #1b1613 0% 60%, #ff6700 60% 100%);
+}
+
+/* Half of each, because that is what "follow the device" means. */
+.appearanceSwatch[data-appearance='system'] {
+  background: linear-gradient(135deg, #fff8f1 0% 50%, #1b1613 50% 100%);
+}
+
+.appearanceName {
+  text-align: center;
+}
+
+/*
+ * The reminder time.
+ *
+ * A native `<input type="time">` rather than a custom picker: it is the control
+ * the learner's own platform already gave them, it is localised and accessible
+ * for free, and on a phone it opens the system wheel. A hand-built one would be
+ * three hundred lines to be worse in nine languages.
+ */
+.timeInput {
+  min-height: var(--hg-size-hit-target);
+  padding: 0 var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-sm);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  font-family: inherit;
+}
+

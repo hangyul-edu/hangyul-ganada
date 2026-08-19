@@ -1,0 +1,476 @@
+/*
+ * The learner's own record.
+ *
+ * Charts and calendars are where a learning app most easily stops looking like
+ * itself, so everything here is built from the same tokens as the lesson
+ * screens: the peach card, the orange primary, the app's radii. No grid lines,
+ * no axis labels, no dashboard grey.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-6);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+/* --- empty state --- */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  margin-top: var(--hg-space-6);
+  text-align: center;
+}
+
+.emptyTitle {
+  margin-top: var(--hg-space-1);
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  text-wrap: balance;
+}
+
+.emptyBody {
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+/* --- streak overview --- */
+
+.streakCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.streakLead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-2);
+}
+
+.streakFlame {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.streakValue {
+  font-size: var(--hg-text-display-lg);
+  font-weight: var(--hg-weight-extrabold);
+  line-height: 1;
+  color: var(--hg-primary-text);
+}
+
+.streakUnit {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-secondary);
+}
+
+.streakCaption {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.streakStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--hg-space-2);
+  margin-top: var(--hg-space-2);
+  padding-top: var(--hg-space-3);
+  border-top: 1px solid var(--hg-orange-100);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.statValue {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.statLabel {
+  font-size: var(--hg-text-micro);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- sections --- */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+}
+
+.sectionTitle {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.ranges {
+  padding-bottom: 2px;
+}
+
+/* --- chart --- */
+
+/*
+ * One bar per day, on a baseline.
+ *
+ * `align-items: flex-end` is the axis: bars grow up from a shared floor, so
+ * height reads as quantity without a single grid line being drawn.
+ */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 108px;
+  padding: var(--hg-space-3) var(--hg-space-2);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+}
+
+.bar {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  min-width: 3px;
+  height: 100%;
+  border-radius: var(--hg-radius-xs);
+}
+
+.barFill {
+  width: 100%;
+  border-radius: var(--hg-radius-xs);
+  background: var(--hg-orange-700);
+  transition: background-color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.bar:hover .barFill {
+  background: var(--hg-orange-800);
+}
+
+.barSelected .barFill {
+  background: var(--hg-primary);
+}
+
+.chartEmpty {
+  padding: var(--hg-space-6) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+}
+
+/* --- calendar --- */
+
+.monthNav {
+  display: flex;
+  gap: var(--hg-space-1);
+}
+
+.monthButton {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-text-secondary);
+}
+
+.monthButton:hover:not(:disabled) {
+  background: var(--hg-bg-muted);
+}
+
+.monthButton:disabled {
+  color: var(--hg-text-disabled);
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.weekdays,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--hg-space-1);
+}
+
+.weekday {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+  text-decoration: none;
+}
+
+.day,
+.pad {
+  aspect-ratio: 1;
+  border-radius: var(--hg-radius-sm);
+}
+
+.day {
+  display: grid;
+  place-items: center;
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+  transition:
+    background-color var(--hg-duration-fast) var(--hg-ease-standard),
+    color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+/*
+ * Four steps up the product's own ramp, not green.
+ *
+ * The obvious reference for a calendar of this shape is a certain code-hosting
+ * contribution graph, and copying its palette would make a Korean learning app
+ * look like a developer tool. This climbs Hangyul's orange scale instead —
+ * pale amber to the full primary — so a busy month reads as the brand colour
+ * getting stronger. The steps skip rungs of the ramp deliberately: adjacent
+ * ones are indistinguishable at 40 px, which would make the whole scale
+ * decorative.
+ */
+.level0 {
+  background: var(--hg-bg-muted);
+}
+
+.level1 {
+  background: var(--hg-orange-200);
+  color: var(--hg-gray-900);
+}
+
+.level2 {
+  background: var(--hg-orange-500);
+  color: var(--hg-gray-900);
+}
+
+.level3 {
+  background: var(--hg-orange-700);
+  color: var(--hg-text-on-primary);
+}
+
+.level4 {
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+/* A day that has not happened is blank, never a missed day. */
+.future {
+  background: transparent;
+  color: var(--hg-text-disabled);
+}
+
+.daySelected {
+  box-shadow: 0 0 0 2px var(--hg-primary);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--hg-space-1);
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* --- day detail --- */
+
+.dayCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.dayStats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--hg-space-3);
+  margin: 0;
+}
+
+.dayStat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dayStatLabel {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+}
+
+.dayStatValue {
+  margin: 0;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/* The Korean practised that day. Target content: never mirrored. */
+.dayItems {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-1);
+  padding-top: var(--hg-space-3);
+  border-top: 1px solid var(--hg-border);
+}
+
+.dayItems span {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding-inline: 4px;
+  border-radius: var(--hg-radius-xs);
+  background: var(--hg-surface-warm);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.dayEmpty {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- insights --- */
+
+.insights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.insight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+}
+
+.insightLabel {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.insightValue {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/* --- footer --- */
+
+/*
+ * Said once, plainly. A screen of personal statistics is exactly where a
+ * learner wonders who else can see them, and the answer here is nobody.
+ */
+.privacy {
+  font-size: var(--hg-text-micro);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+  text-wrap: pretty;
+}
+
+/*
+ * The week summary.
+ *
+ * Two columns on a phone rather than four across: four numbers in a row on a
+ * 360px screen are four numbers nobody reads, and the pairs (days/time,
+ * learned/accuracy) are the ones a learner compares with each other anyway.
+ */
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--hg-space-4);
+}
+
+@media (min-width: 480px) {
+  .weekGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.weekChange {
+  margin: var(--hg-space-4) 0 0;
+  padding-top: var(--hg-space-3);
+  border-top: 1px solid var(--hg-border);
+  font: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+}
+
+/* The date range under a section title. */
+.sectionNote {
+  margin: 0;
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The scheduler's observations.
+ *
+ * Sentences, not a stat grid — each one is a claim about the learner rather
+ * than a number, and a number in a tile invites comparison with last week's
+ * number, which is not what these are for.
+ */
+.memoryNotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.memoryNote {
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-normal);
+  color: var(--hg-text-secondary);
+}

@@ -1,0 +1,41 @@
+.trail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 6px;
+  border-radius: var(--hg-radius-pill);
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-medium);
+  color: var(--hg-text-disabled);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--hg-radius-pill);
+  background: currentColor;
+}
+
+.done {
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * Only the current step is filled. Highlighting all of them would make the
+ * trail read as a set of tabs the learner can jump between, which it is not.
+ */
+.active {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-weight: var(--hg-weight-bold);
+}

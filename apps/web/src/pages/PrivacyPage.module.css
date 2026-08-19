@@ -1,0 +1,71 @@
+/*
+ * Privacy.
+ *
+ * Plain, like Legal & Licences next door. A page someone arrives at on purpose,
+ * reads once and leaves — styling it like a feature would be dishonest about
+ * what it is.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-4) var(--hg-space-4) var(--hg-space-10);
+}
+
+/* The one sentence most readers came for, set large enough to be the answer. */
+.lede {
+  margin: 0;
+  font: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  line-height: var(--hg-leading-relaxed);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.heading {
+  margin: 0;
+  font: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+  /* Restated because the app's reset clears list markers globally, and here the
+     bullets are doing work: they are what says these are separate promises
+     rather than one paragraph that happens to wrap. */
+  list-style: disc;
+  padding-inline-start: var(--hg-space-5);
+  font: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-relaxed);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.points::marker,
+.points > li::marker {
+  color: var(--hg-primary);
+}
+
+.version {
+  margin: 0;
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+}

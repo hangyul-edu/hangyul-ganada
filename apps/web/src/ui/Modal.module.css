@@ -1,0 +1,115 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--hg-z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--hg-space-5);
+  background: var(--hg-overlay);
+  animation: fade var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.overlaySheet {
+  align-items: end;
+  padding: 0;
+}
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  padding: var(--hg-space-6) var(--hg-space-5) var(--hg-space-5);
+  /* Cream, not white — matching the celebration dialog in the reference. */
+  background: var(--hg-orange-50);
+  border-radius: var(--hg-radius-2xl);
+  box-shadow: var(--hg-shadow-modal);
+  text-align: center;
+}
+
+.dialog:focus {
+  outline: none;
+}
+
+.center {
+  animation: pop var(--hg-duration-normal) var(--hg-ease-spring);
+}
+
+.sheet {
+  max-width: var(--hg-size-app-max-width);
+  padding-top: var(--hg-space-3);
+  padding-bottom: calc(var(--hg-space-5) + var(--hg-safe-bottom));
+  border-radius: var(--hg-radius-2xl) var(--hg-radius-2xl) 0 0;
+  text-align: start;
+  animation: slide-up var(--hg-duration-normal) var(--hg-ease-decelerate);
+}
+
+.grabber {
+  width: 40px;
+  height: 4px;
+  margin: 0 auto var(--hg-space-4);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-border);
+}
+
+.close {
+  position: absolute;
+  top: var(--hg-space-3);
+  inset-inline-end: var(--hg-space-3);
+  display: grid;
+  place-items: center;
+  width: var(--hg-size-hit-target);
+  height: var(--hg-size-hit-target);
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-primary-text);
+}
+
+.close:hover {
+  background: var(--hg-orange-100);
+}
+
+.title {
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+  line-height: var(--hg-leading-tight);
+}
+
+.sheet .title {
+  color: var(--hg-text);
+}
+
+.description {
+  margin-top: var(--hg-space-2);
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}
+
+.body {
+  margin-top: var(--hg-space-4);
+}
+
+.footer {
+  margin-top: var(--hg-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+}

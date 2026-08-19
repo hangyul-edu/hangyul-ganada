@@ -1,0 +1,98 @@
+.header {
+  display: grid;
+  grid-template-columns: var(--hg-size-hit-target) 1fr var(--hg-size-hit-target);
+  align-items: center;
+  gap: var(--hg-space-2);
+  min-height: var(--hg-size-app-header);
+  padding-inline: var(--hg-space-2);
+  background: var(--hg-surface);
+  flex: none;
+}
+
+.transparent {
+  background: transparent;
+}
+
+.side {
+  display: flex;
+  align-items: center;
+}
+
+.sideEnd {
+  justify-content: flex-end;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: var(--hg-size-hit-target);
+  height: var(--hg-size-hit-target);
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-text);
+  transition: background-color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.iconButton:hover {
+  background: var(--hg-bg-muted);
+}
+
+.title {
+  text-align: center;
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+  /* Long titles truncate rather than pushing the side slots out of alignment. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- brand variant (home) --- */
+
+/*
+ * Logo left, streak right, on one row.
+ *
+ * `min-height` rather than `height`, at the same 56 px as every other app bar
+ * in the product, so the home screen's top edge lines up with the screens a
+ * learner navigates to from it. The horizontal padding matches the body's
+ * (space-5), so the logo's left edge sits on the same rule as the cards below
+ * it — the alignment that makes a header look drawn rather than dropped in.
+ */
+.brand {
+  grid-template-columns: auto 1fr;
+  justify-content: space-between;
+  padding: var(--hg-space-3) var(--hg-space-5) var(--hg-space-2);
+  background: transparent;
+}
+
+.brandTitle {
+  display: flex;
+  align-items: center;
+  /* The heading's size comes from the image; it must not inherit an h1's. */
+  font-size: 0;
+  line-height: 0;
+}
+
+/*
+ * 26 px tall.
+ *
+ * Small enough that the streak beside it reads as its equal rather than being
+ * shouted down, and small enough that the first learning card is above the
+ * fold at 375 × 667. Width follows from the asset's own aspect ratio, so the
+ * mark is never distorted.
+ */
+.brandLogo {
+  height: 26px;
+  width: auto;
+}
+
+/* The action sits at the end of the row whatever the reading direction. */
+.brand .action {
+  justify-self: end;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}

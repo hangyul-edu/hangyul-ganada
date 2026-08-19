@@ -1,0 +1,122 @@
+/**
+ * The persistence seam.
+ *
+ * Everything the learner produces goes through this interface, and nothing
+ * above it knows whether the bytes end up in IndexedDB, in SQLite on a phone,
+ * or in a Map during a test. That is the whole point: Hangyul ganada has no
+ * account and no server, so the storage engine is the only thing standing
+ * between a learner and losing three weeks of practice, and it has to be
+ * swappable per platform without the learning flow noticing.
+ *
+ * Stores are keyed collections, not tables — the smallest surface that
+ * IndexedDB, SQLite and a plain object can all implement honestly.
+ */
+
+/** Every collection the app persists. Adding one is a structure change. */
+export const STORE_NAMES = [
+  'meta',
+  'settings',
+  'progress',
+  'sessions',
+  /**
+   * One row per review exercise, bounded and pruned.
+   *
+   * Separate from `progress` because it answers a different question and has a
+   * different lifetime: progress is *where is this learner with ㄱ*, an attempt
+   * is *what happened at 14:03 on Tuesday*. The adaptive scheduler needs the
+   * second to produce weekly insights and confusion pairs; nothing else does,
+   * and it is the one store that is allowed to forget its oldest rows.
+   */
+  'attempts',
+  /** Daily learning roll-ups. See `DailyActivity` in shared-types. */
+  'activity',
+  /** Per-item, per-skill memory state. See `domain/memory.ts`. */
+  'memory',
+] as const;
+
+export type StoreName = (typeof STORE_NAMES)[number];
+
+export interface PersistenceDriver {
+  /** Identifies the engine in diagnostics, e.g. "indexeddb" or "memory". */
+  readonly name: string;
+  /**
+   * False when writes are not actually durable — private-mode browsers that
+   * throw on IndexedDB fall back to memory, and Settings says so rather than
+   * letting a learner believe their progress is safe.
+   */
+  readonly durable: boolean;
+  get<T>(store: StoreName, key: string): Promise<T | undefined>;
+  getAll<T>(store: StoreName): Promise<T[]>;
+  put<T>(store: StoreName, key: string, value: T): Promise<void>;
+  putMany<T>(store: StoreName, entries: Array<readonly [string, T]>): Promise<void>;
+  remove(store: StoreName, key: string): Promise<void>;
+  clearStore(store: StoreName): Promise<void>;
+  clearAll(): Promise<void>;
+  /** Releases handles. Only meaningful for engines that hold a connection. */
+  close(): void;
+}
+
+/**
+ * In-memory fallback.
+ *
+ * Used by unit tests, by server-side rendering, and — importantly — by a real
+ * learner in a browser that refuses IndexedDB. In that last case the session
+ * still works end to end; it simply will not survive a reload, which the
+ * Settings screen states plainly instead of pretending otherwise.
+ */
+export class MemoryDriver implements PersistenceDriver {
+  readonly name = 'memory';
+  readonly durable = false;
+  private readonly stores = new Map<StoreName, Map<string, unknown>>();
+
+  private bucket(store: StoreName): Map<string, unknown> {
+    let bucket = this.stores.get(store);
+    if (!bucket) {
+      bucket = new Map();
+      this.stores.set(store, bucket);
+    }
+    return bucket;
+  }
+
+  async get<T>(store: StoreName, key: string): Promise<T | undefined> {
+    return structuredCopy(this.bucket(store).get(key)) as T | undefined;
+  }
+
+  async getAll<T>(store: StoreName): Promise<T[]> {
+    return [...this.bucket(store).values()].map((v) => structuredCopy(v) as T);
+  }
+
+  async put<T>(store: StoreName, key: string, value: T): Promise<void> {
+    this.bucket(store).set(key, structuredCopy(value));
+  }
+
+  async putMany<T>(store: StoreName, entries: Array<readonly [string, T]>): Promise<void> {
+    for (const [key, value] of entries) this.bucket(store).set(key, structuredCopy(value));
+  }
+
+  async remove(store: StoreName, key: string): Promise<void> {
+    this.bucket(store).delete(key);
+  }
+
+  async clearStore(store: StoreName): Promise<void> {
+    this.bucket(store).clear();
+  }
+
+  async clearAll(): Promise<void> {
+    this.stores.clear();
+  }
+
+  close(): void {
+    /* nothing held */
+  }
+}
+
+/**
+ * Values are copied in and out so a caller mutating an object it read cannot
+ * silently corrupt the store — which is exactly what IndexedDB does, and a
+ * fallback that behaved differently would hide bugs until production.
+ */
+function structuredCopy<T>(value: T): T {
+  if (value === undefined || value === null) return value;
+  return JSON.parse(JSON.stringify(value)) as T;
+}

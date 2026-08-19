@@ -1,0 +1,94 @@
+{
+  "title": "단어 배우기",
+  "empty": {
+    "title": "여기엔 아직 단어가 없어요",
+    "body": "다른 분류를 골라 보세요."
+  },
+  "partOfSpeech": {
+    "noun": "명사",
+    "verb": "동사",
+    "adjective": "형용사",
+    "adverb": "부사",
+    "pronoun": "대명사",
+    "numeral": "수사",
+    "particle": "조사",
+    "interjection": "감탄사",
+    "determiner": "관형사"
+  },
+  "lesson": {
+    "title": "{{index, number}}번째 묶음",
+    "newLetters": "새 글자",
+    "done": "완료"
+  },
+  "session": {
+    "hintSingle": "칸 안에 써 보세요",
+    "syllableGroup": "{{word}}의 음절 쓰기",
+    "next": "다음 단어",
+    "finish": "마치기",
+    "complete_other": "{{lesson}}에서 단어 {{count, number}}개를 익혔어요.",
+    "toReading": "이제 읽어 볼까요",
+    "writeEachPart": "{{word, eulreul}} 한 글자씩 차례로 써 볼까요?",
+    "writeEveryPartFirst": "모든 글자를 쓰고 나면 단어를 한 번에 확인해요."
+  },
+  "intro": {
+    "write": "써 보기",
+    "example": "예문",
+    "howItSounds": "이렇게 소리 나요",
+    "surfaceNote": "이 문장에서는 {{headword, iga}} {{form, euro}} 나와요."
+  },
+  "blurb": "모든 단어가 열려 있어요. 분류를 골라 원하는 곳부터 시작하세요.",
+  "ahead": {
+    "title_one": "이 분류에 새 글자 1개",
+    "title_other": "이 분류에 새 글자 {{count, number}}개",
+    "body": "지금 바로 공부할 수 있어요. 글자를 먼저 배우면 더 쉬워요.",
+    "more_other": "외 {{count, number}}개",
+    "cta": "글자 배우기"
+  },
+  "categories": {
+    "essentials": "기본 표현",
+    "people": "사람과 가족",
+    "food": "음식과 음료",
+    "animals-nature": "동물과 자연",
+    "home": "집과 물건",
+    "body-health": "몸과 건강",
+    "places-travel": "장소와 이동",
+    "time-numbers": "시간과 숫자",
+    "school-work": "학교와 일",
+    "money-shopping": "돈과 쇼핑",
+    "communication": "말과 미디어",
+    "feelings": "감정과 성격",
+    "thinking": "생각과 배움",
+    "movement": "오가는 말",
+    "actions": "일상 동작",
+    "describing": "모양과 상태",
+    "society": "생활과 문화",
+    "how-when": "어떻게 · 언제"
+  },
+  "category": {
+    "label": "분류",
+    "all": "전체",
+    "pick": "분류 선택",
+    "count_other": "단어 {{count, number}}개",
+    "progressAria": "{{category}} 진행 상황"
+  },
+  "search": {
+    "placeholder": "단어 검색",
+    "label": "단어 검색",
+    "count_other": "{{count, number}}개 찾음",
+    "none": "“{{query}}”에 맞는 단어가 없어요. 한국어나 뜻으로 찾아보세요."
+  },
+  "sound": {
+    "tensing": "받침 뒤에서 다음 자음이 된소리로 바뀌어요.",
+    "aspiration": "ㅎ이 자음과 만나 거센소리가 돼요.",
+    "nasal": "ㄴ, ㅁ 앞에서 앞 받침이 콧소리로 바뀌어요.",
+    "lateral": "ㄴ과 ㄹ이 만나면 둘 다 ㄹ로 소리 나요.",
+    "palatal": "받침 ㄷ, ㅌ이 “이”를 만나면 ㅈ, ㅊ 소리가 돼요.",
+    "liaison": "받침이 뒤 글자의 첫소리로 넘어가요."
+  },
+  "save": {
+    "action": "저장",
+    "saved": "저장됨",
+    "add": "{{word}} 저장하기",
+    "remove": "저장 목록에서 {{word}} 빼기"
+  }
+}

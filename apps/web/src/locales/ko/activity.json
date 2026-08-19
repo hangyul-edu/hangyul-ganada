@@ -1,0 +1,83 @@
+{
+  "title": "학습 기록",
+  "streak": {
+    "caption": "연습만 해도 이어져요. 글자를 꼭 완성하지 않아도 괜찮아요.",
+    "longest": "최장 연속",
+    "totalDays": "학습한 날",
+    "totalTime": "총 학습 시간",
+    "unit_other": "일 연속"
+  },
+  "chart": {
+    "title": "학습 활동",
+    "rangeAria": "기간 선택",
+    "aria": "날짜별 연습량",
+    "noneYet": "이 기간에는 아직 기록이 없어요.",
+    "range": {
+      "7": "7일",
+      "30": "30일",
+      "90": "3개월",
+      "0": "전체"
+    }
+  },
+  "calendar": {
+    "previous": "이전 달",
+    "next": "다음 달",
+    "less": "적음",
+    "more": "많음",
+    "dayAria_other": "{{date}}: 시도 {{count, number}}회"
+  },
+  "day": {
+    "time": "학습 시간",
+    "attempts": "쓰기 시도",
+    "correct": "정답",
+    "charactersLearned": "완료한 글자",
+    "wordsLearned": "완료한 단어",
+    "reviews": "복습 시도",
+    "nothing": "이 날은 학습 기록이 없어요."
+  },
+  "insights": {
+    "title": "눈에 띄는 점",
+    "mostPractisedCharacter": "가장 많이 연습한 글자",
+    "mostPractisedWord": "가장 많이 연습한 단어",
+    "accuracy": "쓰기 정확도",
+    "thisWeek": "이번 주",
+    "learnedCount_other": "{{count, number}}개 완료"
+  },
+  "units": {
+    "minute_other": "{{count, number}}분",
+    "hour_other": "{{count, number}}시간"
+  },
+  "empty": {
+    "title": "학습 기록은 오늘부터 시작돼요",
+    "body": "글자를 몇 개 연습하면 이 페이지가 채워져요. 공부한 날, 걸린 시간, 무엇을 했는지까지요."
+  },
+  "week": {
+    "title": "이번 주",
+    "range": "{{from}}부터",
+    "days": "공부한 날",
+    "daysValue_other": "7일 중 {{count, number}}일",
+    "time": "시간",
+    "learned": "익힌 개수",
+    "accuracy": "정확도",
+    "same": "지난주와 같은 시간이에요.",
+    "moreThanLast": "지난주보다 {{minutes, number}}분 더 했어요.",
+    "lessThanLast": "지난주보다 {{minutes, number}}분 적어요.",
+    "quiet": "이번 주는 아직이네요. 시간은 남았어요."
+  },
+  "memory": {
+    "title": "얼마나 잘 떠오르는지",
+    "firstTry": "이번 주에 {{count, number}}개를 첫 번에 떠올렸어요.",
+    "strongestSkill": "이번 주에는 {{skill, iga}} 가장 잘 되고 있어요.",
+    "confusionImproving": "{{a, gwawa}} {{b, eulreul}} 점점 잘 구별하고 있어요.",
+    "skill": {
+      "reading_recognition": "읽기",
+      "listening_recognition": "듣기",
+      "guided_writing": "쓰기",
+      "meaning_recognition": "뜻 알기",
+      "sentence_comprehension": "문장 이해",
+      "sound_recognition": "소리 듣기",
+      "visual_recognition": "글자 보기",
+      "lookalike_discrimination": "비슷한 글자 구별"
+    }
+  }
+}

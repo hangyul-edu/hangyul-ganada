@@ -1,0 +1,41 @@
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Local databases. There is no longer one in this product; the pattern stays so
+# a stray scratch database from tooling never lands in a commit.
+*.db
+*.db-journal
+
+# Python
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Design source material (large binaries, not distributed)
+*.pdf
+.design-audit/
+.visual-qa/
+
+# The content pipeline's download cache. Disposable — the built dataset, the
+# illustrations and the audio are committed; what they were built from is not.
+content-cache/
+.tts-venv/

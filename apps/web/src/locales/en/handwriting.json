@@ -1,0 +1,132 @@
+{
+  "actions": {
+    "undo": "Undo",
+    "clear": "Clear",
+    "check": "Check"
+  },
+  "canvas": {
+    "label": "Writing area for {{character}}",
+    "empty": "Nothing written yet.",
+    "strokes_one": "{{count, number}} stroke written.",
+    "strokes_other": "{{count, number}} strokes written."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "That's it!",
+      "perfect": "{{character}} — beautifully written.",
+      "scored": "Good shape — {{score, number(style: percent)}} of the way there."
+    },
+    "empty": {
+      "headline": "Nothing there yet",
+      "detail": "Write the letter inside the box."
+    },
+    "incomplete": {
+      "headline": "Almost",
+      "tooSmall": "A little small. Try filling the box.",
+      "missingStroke": "A stroke is missing. Follow the guide all the way through."
+    },
+    "outside": {
+      "headline": "Not quite",
+      "tooLarge": "That went outside the box. A bit smaller next time.",
+      "strayStroke": "One stroke wandered off. Follow the line slowly."
+    },
+    "mixed": {
+      "headline": "Not quite",
+      "detail": "Line it up with the guide and give it another go."
+    },
+    "retry": "Try again",
+    "showDetails": "Show details",
+    "hideDetails": "Hide details",
+    "breakdown": "Difference {{mismatch, number(style: percent)}} · outside {{outside, number(style: percent)}} · missing {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "How {{character}} is written, in {{count, number}} stroke",
+    "diagramLabel_other": "How {{character}} is written, in {{count, number}} strokes",
+    "pause": "Pause",
+    "count_one": "{{count, number}} stroke",
+    "count_other": "{{count, number}} strokes",
+    "heading": "Watch it written",
+    "notesHeading": "About your strokes",
+    "notesFooter": "Stroke order isn't part of the mark. It's what makes your writing look right.",
+    "notes": {
+      "fewer": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",
+      "more": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",
+      "startElsewhere": "It usually starts at the {{corner}} of the box.",
+      "direction_one": "One stroke ran the other way. Korean strokes go top to bottom and left to right.",
+      "direction_other": "{{count, number}} strokes ran the other way. Korean strokes go top to bottom and left to right."
+    },
+    "corners": {
+      "topLeft": "top left",
+      "topCentre": "top",
+      "topRight": "top right",
+      "middleLeft": "left",
+      "middleCentre": "centre",
+      "middleRight": "right",
+      "bottomLeft": "bottom left",
+      "bottomCentre": "bottom",
+      "bottomRight": "bottom right"
+    },
+    "watchAgain": "Watch again",
+    "back": "Back",
+    "next": "Next",
+    "position": "Stroke {{current, number}} of {{count, number}}"
+  },
+  "word": {
+    "previous": "Previous part",
+    "next": "Next part",
+    "syllablePosition": "{{syllable}}, part {{position, number}} of {{count, number}}",
+    "canvasLabel": "Writing area for {{syllable}}, part {{position, number}} of {{count, number}}",
+    "undoSyllable": "Undo your writing for {{syllable}}",
+    "clearSyllable": "Clear your writing for {{syllable}}",
+    "checkWord": "Check my writing",
+    "checkAgain": "Check again",
+    "fix": "Fix",
+    "fixSyllable": "Write {{syllable}} again",
+    "result": {
+      "passed": "Nice work",
+      "almost": "Almost there",
+      "allAgain": "Let's follow the guide once more",
+      "needsWork_one": "One part needs another try.",
+      "needsWork_other": "{{count, number}} parts need another try."
+    },
+    "advice": {
+      "passed": "Looks good.",
+      "empty": "Write this part first.",
+      "outside": "Keep your writing a little closer to the guide.",
+      "incomplete": "A part of this letter is still missing.",
+      "mixed": "You're close. Follow the guide once more."
+    }
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "the long line down",
+      "downLongTwice": "the two long lines down, left one first",
+      "downShort": "the short line down",
+      "downShortTwice": "the two short lines down, left one first",
+      "acrossLong": "the long line across",
+      "acrossLongTwice": "the two long lines across, top one first",
+      "acrossShort": "the short line across",
+      "acrossShortTwice": "the two short lines across, top one first",
+      "cornerAcrossDown": "across the top and down the right side",
+      "cornerDownAcross": "down the left side and round to the right",
+      "slantLeft": "the stroke slanting down to the left",
+      "slantRight": "the stroke slanting down to the right",
+      "circle": "the circle, round from the top"
+    },
+    "s1": "Just one stroke: {{a}}.",
+    "s2": "First {{a}}. Then {{b}}.",
+    "s3": "First {{a}}. Then {{b}}. Then {{c}}.",
+    "s4": "First {{a}}. Then {{b}}. Then {{c}}. Last {{d}}.",
+    "parts2": {
+      "plain": "Write {{a}} first, then {{b}}.",
+      "right": "Write {{a}} first, then {{b}} to its right.",
+      "below": "Write {{a}} first, then {{b}} underneath."
+    },
+    "parts3": {
+      "right": "Write {{a}}, then {{b}} to its right, then {{c}} along the bottom.",
+      "below": "Write {{a}}, then {{b}} underneath, then {{c}} along the bottom."
+    },
+    "partsDouble": "Write {{a}} twice, side by side — the left one first.",
+    "fallback": "{{strokes}} strokes, in the order the numbers show."
+  }
+}

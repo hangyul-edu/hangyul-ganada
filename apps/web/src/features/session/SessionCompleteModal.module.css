@@ -1,0 +1,35 @@
+.art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+  margin: 0 auto;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--hg-radius-pill);
+  border: 2px dashed var(--hg-orange-300);
+  animation: spin 22s linear infinite;
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  inset-inline-end: -6px;
+  padding: 4px var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  box-shadow: var(--hg-shadow-button);
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}

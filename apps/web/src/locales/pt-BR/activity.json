@@ -1,0 +1,95 @@
+{
+  "title": "Atividade de estudo",
+  "streak": {
+    "caption": "Basta praticar para manter — você não precisa concluir uma letra.",
+    "longest": "Maior sequência",
+    "totalDays": "Dias praticados",
+    "totalTime": "Tempo total",
+    "unit_one": "dia seguido",
+    "unit_many": "dias seguidos",
+    "unit_other": "dias seguidos"
+  },
+  "chart": {
+    "title": "Atividade",
+    "rangeAria": "Escolher um período",
+    "aria": "Prática por dia",
+    "noneYet": "Ainda não há prática neste período.",
+    "range": {
+      "7": "7 dias",
+      "30": "30 dias",
+      "90": "3 meses",
+      "0": "Tudo"
+    }
+  },
+  "calendar": {
+    "previous": "Mês anterior",
+    "next": "Próximo mês",
+    "less": "Menos",
+    "more": "Mais",
+    "dayAria_one": "{{date}}: {{count, number}} tentativa",
+    "dayAria_many": "{{date}}: {{count, number}} tentativas",
+    "dayAria_other": "{{date}}: {{count, number}} tentativas"
+  },
+  "day": {
+    "time": "Tempo de estudo",
+    "attempts": "Tentativas de escrita",
+    "correct": "Corretas",
+    "charactersLearned": "Letras concluídas",
+    "wordsLearned": "Palavras concluídas",
+    "reviews": "Tentativas de revisão",
+    "nothing": "Sem prática neste dia."
+  },
+  "insights": {
+    "title": "O que se destaca",
+    "mostPractisedCharacter": "Letra mais praticada",
+    "mostPractisedWord": "Palavra mais praticada",
+    "accuracy": "Precisão na escrita",
+    "thisWeek": "Esta semana",
+    "learnedCount_one": "{{count, number}} concluída",
+    "learnedCount_many": "{{count, number}} concluídas",
+    "learnedCount_other": "{{count, number}} concluídas"
+  },
+  "units": {
+    "minute_one": "{{count, number}} min",
+    "minute_many": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_one": "{{count, number}} h",
+    "hour_many": "{{count, number}} h",
+    "hour_other": "{{count, number}} h"
+  },
+  "empty": {
+    "title": "Sua história de aprendizado começa hoje",
+    "body": "Pratique algumas letras e esta página se enche: os dias em que estudou, por quanto tempo e no que trabalhou."
+  },
+  "week": {
+    "title": "Esta semana",
+    "range": "Desde {{from}}",
+    "days": "Dias estudados",
+    "daysValue_one": "{{count, number}} de 7",
+    "daysValue_many": "{{count, number}} de 7",
+    "daysValue_other": "{{count, number}} de 7",
+    "time": "Tempo",
+    "learned": "Aprendido",
+    "accuracy": "Precisão",
+    "same": "O mesmo tempo da semana passada.",
+    "moreThanLast": "{{minutes, number}} minutos a mais que na semana passada.",
+    "lessThanLast": "{{minutes, number}} minutos a menos que na semana passada.",
+    "quiet": "Ainda nada esta semana — dá tempo."
+  },
+  "memory": {
+    "title": "Como está a sua memória",
+    "firstTry": "Esta semana você lembrou {{count, number}} coisas de primeira.",
+    "strongestSkill": "Esta semana {{skill}} é o que está indo melhor.",
+    "confusionImproving": "Você está distinguindo {{a}} e {{b}} cada vez melhor.",
+    "skill": {
+      "reading_recognition": "leitura",
+      "listening_recognition": "escuta",
+      "guided_writing": "escrita",
+      "meaning_recognition": "significado",
+      "sentence_comprehension": "frases",
+      "sound_recognition": "sons",
+      "visual_recognition": "letras",
+      "lookalike_discrimination": "distinguir parecidas"
+    }
+  }
+}

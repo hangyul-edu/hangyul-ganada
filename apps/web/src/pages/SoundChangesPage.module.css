@@ -1,0 +1,116 @@
+/* The page wrapper is `ui/FocusScreen` — header, scroll, safe footer. */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+.intro,
+.note {
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-normal);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.lesson {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.lessonTitle {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/*
+ * Written on the left, said on the right, an arrow between.
+ *
+ * The arrow is the whole lesson, so it gets the space it needs. Two columns
+ * rather than a stacked before/after, because the comparison is the point and a
+ * learner should not have to scroll to make it.
+ */
+.pair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  /*
+   * Top-aligned, not centre-aligned.
+   *
+   * Only the right-hand side carries a speaker — there is one recording of the
+   * word and it is a recording of how the word is *said* — so the two columns
+   * are different heights. Centring them made the spelling sit half a line
+   * below the sound it turns into, which reads as a mistake in a row whose
+   * whole job is to line the two up.
+   */
+  align-items: start;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-3);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-bg-muted);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-1);
+  min-width: 0;
+}
+
+.sideLabel {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hg-text-tertiary);
+}
+
+.block {
+  font-size: clamp(26px, 8vw, 36px);
+  line-height: 1.2;
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+/* The half that changed. */
+.spoken {
+  color: var(--hg-primary-text);
+}
+
+.pair > .arrow {
+  /* The arrow belongs beside the two words, not at the top of the column. */
+  align-self: center;
+}
+
+.arrow {
+  font-size: 22px;
+  color: var(--hg-text-tertiary);
+}
+
+.why {
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  padding-top: var(--hg-space-2);
+  border-top: 1px solid var(--hg-border);
+}
+
+.moreRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-2);
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}

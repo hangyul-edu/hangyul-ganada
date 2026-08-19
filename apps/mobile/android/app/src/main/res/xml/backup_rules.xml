@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  What Android's automatic backup carries to a new device.
+
+  All of it: the learner's history is theirs, there is no account to restore it
+  from, and someone who replaces a broken phone should not lose three weeks of
+  practice. There is nothing sensitive here — no credentials, no personal
+  details, no identifiers beyond a random install id.
+-->
+<full-backup-content>
+    <include domain="database" path="." />
+    <include domain="sharedpref" path="." />
+    <include domain="file" path="." />
+</full-backup-content>

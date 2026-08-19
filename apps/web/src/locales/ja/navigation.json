@@ -1,0 +1,10 @@
+{
+  "primary": "メインメニュー",
+  "tabs": {
+    "home": "ホーム",
+    "letters": "文字",
+    "words": "単語",
+    "review": "復習",
+    "profile": "わたしの学習"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "brand": {
+    "tagline": "Aprenda hangul, um traço por vez.",
+    "description": "Aprenda a ler e escrever hangul desde a primeira letra: consoantes e vogais, blocos silábicos, escrita à mão e suas primeiras palavras em coreano."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Fechar",
+    "back": "Voltar",
+    "goHome": "Ir para o início"
+  },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo principal",
+    "currentPage": "(página atual)",
+    "confirmationRequired": "Esta ação precisa de confirmação."
+  },
+  "progress": {
+    "lesson": "Progresso em {{name}}",
+    "review": "Progresso desta revisão"
+  },
+  "units": {
+    "day_one": "{{count, number}} dia",
+    "day_other": "{{count, number}} dias",
+    "day_many": "{{count, number}} de dias"
+  },
+  "audio": {
+    "play": "Ouvir a pronúncia de {{text}}",
+    "retry": "Ouvir {{text}} de novo",
+    "unavailable": "Não há pronúncia para {{text}}"
+  },
+  "report": {
+    "action": "Relatar um problema",
+    "title": "O que está errado?",
+    "blurb": "Escolha o que parece errado e abriremos um e-mail que você pode complementar. Nada do seu aprendizado é anexado.",
+    "field": {
+      "item": "Item",
+      "category": "Problema",
+      "version": "Versão do app",
+      "language": "Idioma"
+    },
+    "writeHere": "Escreva aqui o que você notou:",
+    "category": {
+      "meaning": "O significado",
+      "example": "A frase de exemplo",
+      "translation": "A tradução",
+      "audio": "O áudio",
+      "writing": "O retorno de escrita",
+      "other": "Outra coisa"
+    }
+  }
+}

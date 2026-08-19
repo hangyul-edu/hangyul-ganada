@@ -1,0 +1,103 @@
+{
+  "title": "Aprender palavras",
+  "empty": {
+    "title": "Ainda não há palavras aqui",
+    "body": "Tente outra categoria."
+  },
+  "partOfSpeech": {
+    "noun": "substantivo",
+    "verb": "verbo",
+    "adjective": "adjetivo",
+    "adverb": "advérbio",
+    "pronoun": "pronome",
+    "numeral": "numeral",
+    "particle": "partícula",
+    "interjection": "interjeição",
+    "determiner": "determinante"
+  },
+  "lesson": {
+    "title": "Grupo {{index, number}}",
+    "newLetters": "Letras novas",
+    "done": "Concluído"
+  },
+  "session": {
+    "hintSingle": "Escreva dentro do quadrado",
+    "syllableGroup": "Escrevendo as sílabas de {{word}}",
+    "next": "Próxima palavra",
+    "finish": "Concluir",
+    "complete_one": "Você aprendeu {{count, number}} palavra em {{lesson}}.",
+    "complete_other": "Você aprendeu {{count, number}} palavras em {{lesson}}.",
+    "complete_many": "Você aprendeu {{count, number}} de palavras em {{lesson}}.",
+    "toReading": "Agora, leia",
+    "writeEachPart": "Escreva cada parte de {{word}} na ordem.",
+    "writeEveryPartFirst": "Escreva todas as partes e depois conferimos a palavra inteira."
+  },
+  "intro": {
+    "write": "Praticar a escrita",
+    "example": "Exemplo",
+    "howItSounds": "Como soa",
+    "surfaceNote": "Nesta frase, {{headword}} aparece como {{form}}."
+  },
+  "blurb": "Todas as palavras estão abertas. Escolha uma categoria e comece por onde quiser.",
+  "ahead": {
+    "title_one": "1 letra nova nesta categoria",
+    "title_many": "{{count, number}} de letras novas nesta categoria",
+    "title_other": "{{count, number}} letras novas nesta categoria",
+    "body": "Você já pode estudar estas palavras. Aprender as letras antes costuma facilitar.",
+    "more_one": "+1 outra",
+    "more_many": "+{{count, number}} outras",
+    "more_other": "+{{count, number}} outras",
+    "cta": "Aprender as letras"
+  },
+  "categories": {
+    "essentials": "O essencial",
+    "people": "Pessoas e família",
+    "food": "Comida e bebida",
+    "animals-nature": "Animais e natureza",
+    "home": "Casa e objetos",
+    "body-health": "Corpo e saúde",
+    "places-travel": "Lugares e viagens",
+    "time-numbers": "Tempo e números",
+    "school-work": "Escola e trabalho",
+    "money-shopping": "Dinheiro e compras",
+    "communication": "Falar e mídia",
+    "feelings": "Sentimentos e caráter",
+    "thinking": "Pensar e aprender",
+    "movement": "Ir e vir",
+    "actions": "Ações do dia a dia",
+    "describing": "Descrever coisas",
+    "society": "Vida e cultura",
+    "how-when": "Como e quando"
+  },
+  "category": {
+    "label": "Categoria",
+    "all": "Todas as categorias",
+    "pick": "Escolha uma categoria",
+    "count_one": "{{count, number}} palavra",
+    "count_other": "{{count, number}} palavras",
+    "progressAria": "Progresso em {{category}}",
+    "count_many": "{{count, number}} de palavras"
+  },
+  "search": {
+    "placeholder": "Buscar palavras",
+    "label": "Buscar no vocabulário",
+    "count_one": "{{count, number}} resultado",
+    "count_other": "{{count, number}} resultados",
+    "none": "Nada corresponde a “{{query}}”. Tente em coreano, ou pelo significado.",
+    "count_many": "{{count, number}} de resultados"
+  },
+  "sound": {
+    "tensing": "Depois de uma consoante final, o som seguinte fica tenso.",
+    "aspiration": "O ㅎ se funde com a consoante seguinte e a aspira.",
+    "nasal": "Antes de ㄴ ou ㅁ, a consoante anterior fica nasal.",
+    "lateral": "ㄴ e ㄹ lado a lado soam as duas como ㄹ.",
+    "palatal": "Um ㄷ ou ㅌ final antes de 이 soa como ㅈ ou ㅊ.",
+    "liaison": "A consoante final passa para o bloco seguinte."
+  },
+  "save": {
+    "action": "Salvar",
+    "saved": "Salva",
+    "add": "Salvar {{word}}",
+    "remove": "Remover {{word}} das salvas"
+  }
+}

@@ -1,0 +1,182 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+}
+
+/*
+ * The word gets a card for the same reason the letter does: it is the subject
+ * of the screen, and everything else on it is annotation. Matching the two
+ * intros also means a learner moving between the curricula meets one layout
+ * rather than two.
+ */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-5) var(--hg-space-4);
+  border-radius: var(--hg-radius-xl);
+  background: var(--hg-gradient-card);
+  box-shadow: var(--hg-shadow-card);
+  text-align: center;
+}
+
+.wordRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+/*
+ * The word is the subject. Sized against the viewport so a four-syllable word
+ * still fits on a 375pt screen without the layout deciding to scroll.
+ */
+.word {
+  font-size: clamp(40px, 13vw, 56px);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1.2;
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+
+
+.meaning {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+  text-wrap: balance;
+}
+
+.partOfSpeech {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The sentence. The second most important thing on the screen and, on a word
+ * whose meaning the learner already half-knows, the most.
+ */
+.example {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  border: 1px solid var(--hg-border);
+}
+
+.exampleLabel,
+.soundLabel {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hg-text-tertiary);
+}
+
+.exampleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--hg-space-3);
+}
+
+.exampleKo {
+  flex: 1;
+  font-size: clamp(20px, 6vw, 26px);
+  line-height: 1.6;
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+/*
+ * The target word inside the sentence.
+ *
+ * Weight and a soft underline, not colour. Colouring it orange makes the
+ * sentence about the colour, and on a three-word sentence that is a third of
+ * the line — the brief's "do not colour half the sentence orange". The
+ * underline is the brand orange at a weight that reads as emphasis rather than
+ * as a link.
+ */
+.target {
+  font-weight: var(--hg-weight-bold);
+  /*
+   * A background gradient rather than `box-shadow: inset`.
+   *
+   * An inset shadow on an inline box is painted against the *box*, which for
+   * text on a 1.6 line-height is taller than the glyphs and starts wherever
+   * the line-box happens to start — so the band landed under part of the word
+   * and stopped. A gradient with an explicit size and position is measured
+   * from the text's own bottom edge and stays put across line breaks.
+   */
+  background-image: linear-gradient(var(--hg-primary-subtle), var(--hg-primary-subtle));
+  background-repeat: no-repeat;
+  background-size: 100% 0.3em;
+  background-position: 0 88%;
+  padding-inline: 0.05em;
+}
+
+.exampleGloss {
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+/*
+ * "In this sentence, 먹다 appears as 먹어요."
+ *
+ * One line, at caption size, under the translation. It answers a question the
+ * learner is already asking and then stops — turning it into a conjugation
+ * table would turn a vocabulary app into a grammar course, which this product
+ * deliberately is not.
+ */
+.surface {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  margin-top: var(--hg-space-1);
+  padding-top: var(--hg-space-3);
+  border-top: 1px solid var(--hg-border);
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+.surfaceForms {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+  direction: ltr;
+}
+
+/*
+ * How it sounds.
+ *
+ * Present on about one word in five and absent on the rest, which is what makes
+ * it worth reading: a panel on every card is a panel nobody looks at.
+ */
+.sound {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-bg-muted);
+}
+
+.spoken {
+  font-size: clamp(24px, 7vw, 32px);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+.soundWhy {
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}

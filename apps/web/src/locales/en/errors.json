@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "page": "We couldn't find that page.",
+    "lesson": "We couldn't find that lesson.",
+    "wordLesson": "We couldn't find that word set."
+  },
+  "generic": "Something went wrong. Have another go."
+}

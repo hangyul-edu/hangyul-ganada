@@ -1,0 +1,127 @@
+{
+  "actions": {
+    "undo": "もどす",
+    "clear": "消す",
+    "check": "たしかめる"
+  },
+  "canvas": {
+    "label": "{{character}}を書く欄",
+    "empty": "まだ書かれていません。",
+    "strokes_other": "{{count, number}}画書きました。"
+  },
+  "feedback": {
+    "correct": {
+      "headline": "そのとおり！",
+      "perfect": "{{character}} — とてもきれいに書けました。",
+      "scored": "いい形です — {{score, number(style: percent)}} まで来ました。"
+    },
+    "empty": {
+      "headline": "まだ何もありません",
+      "detail": "枠の中に文字を書いてみましょう。"
+    },
+    "incomplete": {
+      "headline": "もう少し",
+      "tooSmall": "少し小さいです。枠いっぱいに書いてみましょう。",
+      "missingStroke": "画が一つ足りません。ガイドを最後までなぞってみましょう。"
+    },
+    "outside": {
+      "headline": "おしい",
+      "tooLarge": "枠からはみ出しました。少し小さめに書いてみましょう。",
+      "strayStroke": "画が一つそれました。ゆっくり線をたどってみましょう。"
+    },
+    "mixed": {
+      "headline": "おしい",
+      "detail": "ガイドに合わせて、もう一度書いてみましょう。"
+    },
+    "retry": "もう一度書く",
+    "showDetails": "詳しく見る",
+    "hideDetails": "詳細を閉じる",
+    "breakdown": "差 {{mismatch, number(style: percent)}} · はみ出し {{outside, number(style: percent)}} · 不足 {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_other": "{{character}} の書き方、全 {{count, number}} 画",
+    "pause": "一時停止",
+    "count_other": "{{count, number}}画",
+    "heading": "書くところを見る",
+    "notesHeading": "書いた画について",
+    "notesFooter": "書き順は採点に入りません。字を自然に見せてくれるものです。",
+    "notes": {
+      "fewer": "{{theirs, number}}画で書きました。この字はふつう{{expected, number}}画です。",
+      "more": "{{theirs, number}}画で書きました。この字はふつう{{expected, number}}画です。",
+      "startElsewhere": "ふつうはマスの{{corner}}から始めます。",
+      "direction_other": "{{count, number}}画が逆方向でした。ハングルは上から下、左から右に書きます。"
+    },
+    "corners": {
+      "topLeft": "左上",
+      "topCentre": "上",
+      "topRight": "右上",
+      "middleLeft": "左",
+      "middleCentre": "中央",
+      "middleRight": "右",
+      "bottomLeft": "左下",
+      "bottomCentre": "下",
+      "bottomRight": "右下"
+    },
+    "watchAgain": "もう一度見る",
+    "back": "まえ",
+    "next": "つぎ",
+    "position": "{{count, number}} 画のうち {{current, number}} 画目"
+  },
+  "word": {
+    "previous": "前の文字",
+    "next": "次の文字",
+    "syllablePosition": "{{syllable}}、{{count, number}}文字中 {{position, number}}文字目",
+    "canvasLabel": "{{syllable}} を書く場所、{{count, number}}文字中 {{position, number}}文字目",
+    "undoSyllable": "{{syllable}} の書き直し",
+    "clearSyllable": "{{syllable}} を消す",
+    "checkWord": "書けました",
+    "checkAgain": "もう一度確認",
+    "fix": "書き直す",
+    "fixSyllable": "{{syllable}} をもう一度書く",
+    "result": {
+      "passed": "よく書けました",
+      "almost": "あと少しです",
+      "allAgain": "ガイドをなぞって、もう一度書いてみましょう",
+      "needsWork_other": "あと {{count, number}}文字、書き直してみましょう。"
+    },
+    "advice": {
+      "passed": "いい形です。",
+      "empty": "この文字をまず書いてください。",
+      "outside": "ガイドにもう少し近づけて書いてみましょう。",
+      "incomplete": "まだ足りない部分があります。",
+      "mixed": "あと少しです。ガイドをもう一度なぞってみましょう。"
+    }
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "長い縦の線",
+      "downLongTwice": "長い縦の線を二本、左から",
+      "downShort": "短い縦の線",
+      "downShortTwice": "短い縦の線を二本、左から",
+      "acrossLong": "長い横の線",
+      "acrossLongTwice": "長い横の線を二本、上から",
+      "acrossShort": "短い横の線",
+      "acrossShortTwice": "短い横の線を二本、上から",
+      "cornerAcrossDown": "上を右へ、そのまま下へ",
+      "cornerDownAcross": "左を下へ、そのまま右へ",
+      "slantLeft": "左下へはらう線",
+      "slantRight": "右下へのばす線",
+      "circle": "上から始めて一周する丸"
+    },
+    "s1": "一画だけ。{{a}}。",
+    "s2": "まず{{a}}。次に{{b}}。",
+    "s3": "まず{{a}}。次に{{b}}。次に{{c}}。",
+    "s4": "まず{{a}}。次に{{b}}。次に{{c}}。最後に{{d}}。",
+    "parts2": {
+      "plain": "まず {{a}}、続けて {{b}} を書きます。",
+      "right": "まず {{a}} を書いて、その右に {{b}} を書きます。",
+      "below": "まず {{a}} を書いて、その下に {{b}} を書きます。"
+    },
+    "parts3": {
+      "right": "{{a}} を書いて、右に {{b}}、最後にいちばん下へ {{c}} を書きます。",
+      "below": "{{a}} を書いて、下に {{b}}、最後にいちばん下へ {{c}} を書きます。"
+    },
+    "partsDouble": "{{a}} を二つ並べて、左から。",
+    "fallback": "全{{strokes}}画。番号の順に書きます。"
+  }
+}

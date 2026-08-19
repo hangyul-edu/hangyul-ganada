@@ -1,0 +1,219 @@
+/*
+ * The page fills the scroll area; the navigation bar is a sibling of it, not an
+ * overlay on it, so no room is reserved for the bar here. Bottom spacing is the
+ * body's own padding and nothing else — reserving it twice is what put a band
+ * of dead background under the last card on every tab.
+ */
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-6);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+/*
+ * The alphabet card. One figure, stated once, at the top: how much of Hangul
+ * the learner can now write. Every other bar on the screen is a fraction of
+ * this one.
+ */
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.summaryText {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+  flex-wrap: wrap;
+}
+
+.summaryTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.summaryMeta {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.summaryMeta strong {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+/*
+ * Numbered section header, as the design's level-select screen sets it: a small
+ * filled circle carrying the numeral, then the label.
+ */
+.unitHead {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--hg-space-3);
+}
+
+.unitIndex {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  margin-top: 2px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-bold);
+}
+
+.unitText {
+  flex: 1;
+  min-width: 0;
+}
+
+.unitTitle {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  text-wrap: balance;
+}
+
+.unitGoal {
+  margin-top: 2px;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  line-height: var(--hg-leading-snug);
+}
+
+.unitCount {
+  flex: none;
+  margin-top: 4px;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-tertiary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.rowLink {
+  display: block;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+  color: var(--hg-text-disabled);
+}
+
+.rowHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+}
+
+.rowText {
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/* The letters this lesson teaches, in curriculum order — target content, so it
+   reads left to right whatever the interface direction is. */
+.rowChars {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-1);
+  margin-top: var(--hg-space-2);
+}
+
+.char,
+.charSeen,
+.charDone {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding-inline: 4px;
+  border-radius: var(--hg-radius-xs);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.char {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * Three states, because "met it" and "learned it" are different things and the
+ * learner can see both at a glance: untouched, introduced, mastered.
+ */
+.charSeen {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.charDone {
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+.rowFoot {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.rowCount {
+  flex: none;
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The sound-change lesson at the foot of the list.
+ *
+ * Deliberately not styled as a unit: no index badge, no progress bar, no
+ * fraction. It is a thing to read once rather than a thing to complete, and
+ * dressing it as a lesson would put a bar on the screen that never fills.
+ */
+.sounds {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.soundsBlurb {
+  margin-top: var(--hg-space-1);
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+}

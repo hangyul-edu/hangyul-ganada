@@ -1,0 +1,96 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px var(--hg-space-2);
+  border-radius: var(--hg-radius-pill);
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.neutral {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-tertiary);
+}
+
+.primary {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.mint {
+  background: color-mix(in srgb, var(--hg-secondary) 18%, white);
+  color: color-mix(in srgb, var(--hg-secondary) 78%, black);
+}
+
+.positive {
+  background: color-mix(in srgb, var(--hg-positive) 12%, white);
+  color: var(--hg-positive);
+}
+
+.negative {
+  background: color-mix(in srgb, var(--hg-negative) 12%, white);
+  color: var(--hg-negative);
+}
+
+.filled.neutral {
+  background: var(--hg-border-strong);
+  color: var(--hg-gray-0);
+}
+
+.filled.primary {
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+.filled.mint {
+  background: var(--hg-secondary);
+  color: var(--hg-gray-0);
+}
+
+.filled.positive {
+  background: var(--hg-positive);
+  color: var(--hg-gray-0);
+}
+
+.filled.negative {
+  background: var(--hg-negative);
+  color: var(--hg-gray-0);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hg-size-control-sm);
+  padding: 0 var(--hg-space-4);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  transition:
+    background-color var(--hg-duration-fast) var(--hg-ease-standard),
+    color var(--hg-duration-fast) var(--hg-ease-standard),
+    box-shadow var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.chip:hover:not(:disabled) {
+  background: var(--hg-warm-50);
+}
+
+.chipSelected,
+.chipSelected:hover:not(:disabled) {
+  background: var(--hg-surface-selected);
+  box-shadow: inset 0 0 0 1.5px var(--hg-border-selected);
+  color: var(--hg-primary-text);
+  font-weight: var(--hg-weight-bold);
+}

@@ -1,0 +1,50 @@
+{
+  "brand": {
+    "tagline": "Learn Hangul, one stroke at a time.",
+    "description": "Learn to read and write Hangul from the very first letter — consonants and vowels, syllable blocks, handwriting and your first Korean words."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Close",
+    "back": "Back",
+    "goHome": "Go to home"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "currentPage": "(current page)",
+    "confirmationRequired": "This action needs confirmation."
+  },
+  "audio": {
+    "play": "Play the pronunciation of {{text}}",
+    "retry": "Play {{text}} again",
+    "unavailable": "No pronunciation available for {{text}}"
+  },
+  "progress": {
+    "lesson": "Progress through {{name}}",
+    "review": "Progress through this review"
+  },
+  "units": {
+    "day_one": "{{count, number}} day",
+    "day_other": "{{count, number}} days"
+  },
+  "report": {
+    "action": "Report a problem",
+    "title": "What is wrong?",
+    "blurb": "Pick what looks wrong and we will open an email you can add to. Nothing about your learning is attached.",
+    "field": {
+      "item": "Item",
+      "category": "Problem",
+      "version": "App version",
+      "language": "Language"
+    },
+    "writeHere": "Write what you noticed here:",
+    "category": {
+      "meaning": "The meaning",
+      "example": "The example sentence",
+      "translation": "The translation",
+      "audio": "The audio",
+      "writing": "The writing feedback",
+      "other": "Something else"
+    }
+  }
+}

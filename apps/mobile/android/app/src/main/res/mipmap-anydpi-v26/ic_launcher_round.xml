@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The launcher icon, in the three layers Android can ask for.
+
+    `background` is a flat colour rather than a bitmap: the artwork is composed
+    on the app's own warm surface, and a colour cannot be resampled badly at a
+    density nobody tested.
+
+    `monochrome` is what Android 13 and newer draw when the learner turns on
+    themed icons. It is not optional in practice — without it the launcher
+    leaves this app in full colour on a home screen where every other icon has
+    gone monochrome, which reads as the icon that did not get updated.
+
+    All three drawables come from `scripts/content/build_app_icons.py`.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_monochrome"/>
+</adaptive-icon>

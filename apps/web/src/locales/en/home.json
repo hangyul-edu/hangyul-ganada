@@ -1,0 +1,37 @@
+{
+  "streak": {
+    "aria": "View your learning record"
+  },
+  "celebrate": "That's today's goal done. Lovely work.",
+  "dailyGoal": "Daily goal",
+  "dailyGoalAria": "Daily goal: {{done, number}} of {{total, number}}",
+  "cta": {
+    "start": "Start now",
+    "continue": "Keep learning"
+  },
+  "quick": {
+    "letters": "Letters",
+    "lettersCaption": "of the 40 Hangul letters",
+    "words": "Words",
+    "wordsCaption": "words learned"
+  },
+  "review": {
+    "title": "Review",
+    "count_one": "{{count, number}} to go over",
+    "count_other": "{{count, number}} to go over",
+    "empty": "Nothing to go over yet"
+  },
+  "upNext": {
+    "title": "Words for you"
+  },
+  "practice": {
+    "title": "Today's practice",
+    "reviews_one": "{{count, number}} review ready",
+    "reviews_other": "{{count, number}} reviews ready",
+    "letters_one": "{{count, number}} letter to finish",
+    "letters_other": "{{count, number}} letters to finish",
+    "words_one": "{{count, number}} useful word",
+    "words_other": "{{count, number}} useful words",
+    "cta": "Start practice"
+  }
+}

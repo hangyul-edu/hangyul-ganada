@@ -1,0 +1,338 @@
+/*
+ * One word, one active syllable.
+ *
+ * Everything here is sized so that a five-syllable word occupies exactly the
+ * same screen as a two-syllable one. Nothing scrolls sideways, nothing is
+ * shrunk to make room for a neighbour, and no control can leave the viewport.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-4);
+  width: 100%;
+  /* Fills the body, so the ground band below the button can take the leftover
+     height rather than leaving it as bare page. */
+  flex: 1;
+  /* The column never exceeds the width it was given, which is what keeps every
+     child inside the viewport regardless of syllable count. */
+  min-width: 0;
+}
+
+/* --- the syllable navigator ------------------------------------------------ */
+
+/*
+ * `direction: ltr` is load-bearing. 기도하다 must read 기 도 하 다 in that order
+ * — in an RTL interface an inherited direction would reverse the row and teach
+ * the word backwards.
+ *
+ * It wraps rather than scrolls: a long word gets a second line of chips, which
+ * is always fully visible, where a scroll row would hide syllables off-screen.
+ * That was the original bug, and a navigator that could hide a syllable would
+ * reintroduce it.
+ */
+.navigator {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  width: 100%;
+}
+
+.chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--hg-size-hit-target);
+  min-height: var(--hg-size-hit-target);
+  padding: 0 var(--hg-space-3);
+  border: 2px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  transition:
+    border-color var(--hg-duration-fast) var(--hg-ease-standard),
+    background-color var(--hg-duration-fast) var(--hg-ease-standard),
+    color var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.chipText {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-semibold);
+  line-height: 1;
+}
+
+/*
+ * The state marker, deliberately small.
+ *
+ * A dot for written-but-unjudged, a tick for passed, a ring for needs-work. It
+ * sits in the corner rather than replacing the syllable, because the syllable
+ * is the thing the learner is navigating by.
+ */
+.chipMark {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--hg-radius-pill);
+  background: transparent;
+}
+
+.empty .chipMark {
+  background: transparent;
+}
+
+.drafted .chipMark {
+  background: var(--hg-text-tertiary);
+}
+
+.passed {
+  border-color: var(--hg-positive);
+  color: var(--hg-text);
+}
+
+.passed .chipMark {
+  background: var(--hg-positive);
+}
+
+.needsWork {
+  border-color: var(--hg-negative);
+  color: var(--hg-text);
+}
+
+.needsWork .chipMark {
+  background: var(--hg-negative);
+}
+
+.chipActive {
+  border-color: var(--hg-primary);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.chipActive.passed {
+  border-color: var(--hg-positive);
+}
+
+.chipActive.needsWork {
+  border-color: var(--hg-negative);
+}
+
+/* --- instruction ----------------------------------------------------------- */
+
+.instruction {
+  margin: 0;
+  text-align: center;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-wrap: balance;
+}
+
+/* --- the stage: arrows either side of the paper ---------------------------- */
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  width: 100%;
+  min-width: 0;
+  /* The frame listens for swipes. It must not also pan the page, or a swipe
+     would scroll instead of turning the page. */
+  touch-action: pan-y;
+}
+
+/*
+ * Full-size touch targets, not desktop chevrons.
+ *
+ * `flex: 0 0 auto` keeps them at their intrinsic size while the paper takes the
+ * remaining width, so the arrows are never squeezed below 44 px by a wide
+ * canvas — which is how controls end up unreachable.
+ */
+.arrow {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--hg-size-hit-target);
+  height: var(--hg-size-hit-target);
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-text-secondary);
+  background: transparent;
+  transition:
+    background-color var(--hg-duration-fast) var(--hg-ease-standard),
+    color var(--hg-duration-fast) var(--hg-ease-standard),
+    opacity var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.arrow:disabled {
+  opacity: 0.28;
+}
+
+.arrow:not(:disabled):hover {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text);
+}
+
+/* Ink is on the paper, so going on is now a reasonable thing to do. This says
+   "you may continue" — it does not say the syllable was right. */
+.arrowReady:not(:disabled) {
+  color: var(--hg-primary-text);
+  background: var(--hg-primary-subtle);
+}
+
+.paper {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+/*
+ * The active syllable, named once above its box.
+ *
+ * This replaces "2번째 · 도" — the position half was already in the navigator,
+ * and only the character was carrying information.
+ */
+.activeLabel {
+  margin: 0;
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1;
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * One large square writing surface.
+ *
+ * Capped at 320 px so it does not become absurd on a tablet, and otherwise
+ * simply as wide as the space between the arrows. It is never shrunk to fit a
+ * second canvas beside it, because there is never a second canvas — which is
+ * the difference between this and the row it replaced.
+ */
+.canvasFrame {
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+}
+
+/*
+ * A restrained change between syllables.
+ *
+ * A fade and a few pixels of travel, not a slide: the box is remounted with
+ * different ink rather than scrolled to, and animating it as though it moved
+ * would suggest a filmstrip the learner can be part-way along. There is only
+ * ever one box.
+ */
+.paper {
+  animation: syllable-in var(--hg-duration-normal, 200ms) var(--hg-ease-decelerate) both;
+}
+
+@keyframes syllable-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- undo / clear, for the active syllable only ---------------------------- */
+
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+}
+
+/* --- the one whole-word action --------------------------------------------- */
+
+/*
+ * Sticky, and inside the safe area.
+ *
+ * The old per-syllable check buttons sat at the bottom of a row that overflowed
+ * the screen, so some of them were unreachable. This one is pinned to the
+ * bottom of the scroll container with the safe-area inset added, which keeps it
+ * clear of an Android navigation bar and an iOS home indicator in both the
+ * browser and the PWA.
+ */
+.cta {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--hg-z-sticky);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  /*
+   * Full-bleed, and all the way down to the bottom of the page.
+   *
+   * `--hg-gradient-ground` is the product's existing bottom fade — transparent
+   * at the top, warm at the bottom — and it is used here for the reason Home
+   * uses it: so the button sits *on* the ground rather than on the edge of a
+   * panel. Inset on either side, or stopping above the page's own bottom
+   * padding, it reads as a card laid over the session gradient instead.
+   *
+   * The negative margins let it bleed past the body's horizontal padding and
+   * down into the page's; the matching padding puts the content back where it
+   * belongs inside it.
+   */
+  width: calc(100% + 2 * var(--hg-space-5));
+  margin-inline: calc(-1 * var(--hg-space-5));
+  padding-inline: var(--hg-space-5);
+  padding-top: var(--hg-space-4);
+  margin-bottom: calc(-1 * var(--hg-space-8));
+  padding-bottom: calc(var(--hg-space-4) + var(--hg-space-8) + var(--hg-safe-bottom));
+  background: var(--hg-gradient-ground);
+  /*
+   * Grows into the leftover height instead of being pushed down by it — the
+   * same reasoning as the Home screen's foot band. `margin-top: auto` would
+   * move the button to the bottom and leave the slack above it as bare page:
+   * the same void, further down. Letting the band take the space means the
+   * gradient covers it, and the button stays where the writing leaves off.
+   */
+  flex: 1 0 auto;
+  justify-content: flex-start;
+}
+
+.ctaHint {
+  margin: 0;
+  text-align: center;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-wrap: balance;
+}
+
+/*
+ * Hidden, not removed — the space stays reserved.
+ *
+ * This turns over exactly when the last syllable receives its first stroke, so
+ * collapsing the element would resize the writing box with the pen still down
+ * on it. `visibility` keeps the box where it is.
+ */
+.ctaHint[data-hidden] {
+  visibility: hidden;
+}
+
+/* --- motion ---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .arrow {
+    transition: none;
+  }
+
+  /* The syllable still changes; it just changes instantly. */
+  .paper {
+    animation: none;
+  }
+}

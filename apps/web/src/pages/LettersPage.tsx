@@ -1,0 +1,171 @@
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
+import { CURRICULUM_UNITS, LETTER_LESSONS, getLessonCharacters } from '../data/characters';
+import { alphabetProgress, isIntroduced, lessonProgress, unitProgress } from '../domain/progress';
+import { resolveContent, useFormatters, useLocale } from '../i18n';
+import { useLearner } from '../store/LearnerContext';
+import { AppHeader } from '../ui/AppHeader';
+import { Badge } from '../ui/Chip';
+import { Card } from '../ui/Card';
+import { LocalizedText } from '../ui/LocalizedText';
+import { ProgressBar } from '../ui/Progress';
+import { CheckIcon, ChevronRightIcon } from '../ui/icons';
+import styles from './LettersPage.module.css';
+
+/**
+ * The Hangul curriculum, as the twelve units it is taught in.
+ *
+ * Units rather than a flat list of lessons, because "lesson 11 of 15" tells a
+ * learner nothing while "Unit 3 — your first syllables" tells them what they
+ * are about to be able to do. The unit headline is also where the payoff sits:
+ * by the end of unit 3 they can read 가 나 다, and the screen should say so.
+ *
+ * Nothing here is locked. A learner who wants to look ahead at 받침 on their
+ * first evening should be able to; the curriculum is an order, not a gate, and
+ * the one thing that *is* gated — which words are offered — is gated on the
+ * letters they have actually met rather than on a lesson counter.
+ */
+export function LettersPage() {
+  const { state } = useLearner();
+  const { t } = useTranslation(['learning', 'common']);
+  const { locale } = useLocale();
+  const format = useFormatters();
+
+  const alphabet = alphabetProgress(state.progress);
+
+  return (
+    <div className={styles.page}>
+      <AppHeader title={t('learning:letters.title')} />
+
+      <div className={styles.body}>
+        <Card tone="warm" padding="md" className={styles.summary}>
+          <div className={styles.summaryText}>
+            <p className={styles.summaryTitle}>{t('learning:letters.alphabetTitle')}</p>
+            <p className={styles.summaryMeta}>
+              <strong className="hg-numeric">{format.fraction(alphabet.done, alphabet.total)}</strong>{' '}
+              {t('learning:letters.alphabetCaption')}
+            </p>
+          </div>
+          <ProgressBar
+            value={alphabet.ratio}
+            label={t('learning:letters.alphabetCaption')}
+            size="sm"
+          />
+        </Card>
+
+        {CURRICULUM_UNITS.map((unit) => {
+          const lessons = LETTER_LESSONS.filter((lesson) => unit.lesson_ids.includes(lesson.id));
+          const progress = unitProgress(state.progress, unit.id);
+          const complete = progress.total > 0 && progress.done === progress.total;
+
+          return (
+            <section key={unit.id} className={styles.unit} aria-labelledby={`unit-${unit.index}`}>
+              <header className={styles.unitHead}>
+                <span className={styles.unitIndex} aria-hidden="true">
+                  {complete ? <CheckIcon size={14} /> : unit.index}
+                </span>
+                <div className={styles.unitText}>
+                  <h2 id={`unit-${unit.index}`} className={styles.unitTitle}>
+                    {t(`learning:units.unit-${unit.index}.title`)}
+                  </h2>
+                  <p className={styles.unitGoal}>{t(`learning:units.unit-${unit.index}.goal`)}</p>
+                </div>
+                <span className={`${styles.unitCount} hg-numeric`}>
+                  {format.fraction(progress.done, progress.total)}
+                </span>
+              </header>
+
+              <ul className={styles.list}>
+                {lessons.map((lesson) => {
+                  const characters = getLessonCharacters(lesson);
+                  const done = lessonProgress(state.progress, lesson);
+                  const title = resolveContent(lesson.translations, locale);
+
+                  return (
+                    <li key={lesson.id}>
+                      <Link to={`/letters/${lesson.id}`} className={styles.rowLink}>
+                        <Card padding="md" className={styles.row}>
+                          <div className={styles.rowHead}>
+                            <div className={styles.rowText}>
+                              {/* A unit with one lesson has already said this
+                                  in its header; repeating it on the card is
+                                  the same words twice in 40 vertical pixels. */}
+                              {lessons.length > 1 && (
+                                <LocalizedText
+                                  as="h3"
+                                  locale={title.locale}
+                                  className={styles.rowTitle}
+                                >
+                                  {title.value.title}
+                                </LocalizedText>
+                              )}
+                              <p className={styles.rowChars} lang="ko" dir="ltr">
+                                {characters.map((character) => {
+                                  const row = state.progress[`character:${character.character}`];
+                                  const className =
+                                    row?.stage === 'learned'
+                                      ? styles.charDone
+                                      : isIntroduced(state.progress, character.character)
+                                        ? styles.charSeen
+                                        : styles.char;
+                                  return (
+                                    <span key={character.id} className={className}>
+                                      {character.character}
+                                    </span>
+                                  );
+                                })}
+                              </p>
+                            </div>
+                            {done.ratio === 1 ? (
+                              <Badge tone="mint" filled>
+                                {t('learning:letters.complete')}
+                              </Badge>
+                            ) : (
+                              <ChevronRightIcon size={20} />
+                            )}
+                          </div>
+
+                          <div className={styles.rowFoot}>
+                            <ProgressBar
+                              value={done.ratio}
+                              label={t('common:progress.lesson', { name: title.value.title })}
+                              size="sm"
+                            />
+                            <span className={`${styles.rowCount} hg-numeric`}>
+                              {format.fraction(done.done, done.total)}
+                            </span>
+                          </div>
+                        </Card>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          );
+        })}
+
+        {/*
+          The sound-change lesson, at the foot of the alphabet rather than
+          inside it.
+
+          It is not a unit — there are no letters to learn in it and nothing to
+          write — but it is the thing that stands between reading Hangul and
+          reading Korean, and a learner who has met 받침 will otherwise say
+          학교 as *hak-gyo* forever. So it sits where they arrive after the last
+          unit, and it is offered rather than required.
+        */}
+        <Link to="/letters/sounds" className={styles.rowLink}>
+          <Card padding="md" className={styles.sounds}>
+            <div className={styles.rowText}>
+              <h2 className={styles.rowTitle}>{t('learning:sounds.title')}</h2>
+              <p className={styles.soundsBlurb}>{t('learning:sounds.blurb')}</p>
+            </div>
+            <ChevronRightIcon size={20} />
+          </Card>
+        </Link>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,49 @@
+{
+  "brand": {
+    "tagline": "一笔一画，学会韩文字母。",
+    "description": "从韩文的辅音与元音开始，学习拼字、手写与最初的韩语单词——从第一个字母开始读与写。"
+  },
+  "actions": {
+    "confirm": "确定",
+    "close": "关闭",
+    "back": "返回",
+    "goHome": "回到首页"
+  },
+  "a11y": {
+    "skipToContent": "跳到主要内容",
+    "currentPage": "（当前页面）",
+    "confirmationRequired": "此操作需要确认。"
+  },
+  "progress": {
+    "lesson": "{{name}} 的学习进度",
+    "review": "复习进度"
+  },
+  "units": {
+    "day_other": "{{count, number}} 天"
+  },
+  "audio": {
+    "play": "播放 {{text}} 的发音",
+    "retry": "再播放一次 {{text}}",
+    "unavailable": "{{text}} 暂无发音"
+  },
+  "report": {
+    "action": "反馈问题",
+    "title": "哪里有问题？",
+    "blurb": "选择你觉得有问题的地方，我们会打开一封你可以补充内容的邮件。不会附带任何学习记录。",
+    "field": {
+      "item": "条目",
+      "category": "问题",
+      "version": "应用版本",
+      "language": "语言"
+    },
+    "writeHere": "请在这里写下你注意到的问题：",
+    "category": {
+      "meaning": "词义",
+      "example": "例句",
+      "translation": "翻译",
+      "audio": "语音",
+      "writing": "书写反馈",
+      "other": "其他"
+    }
+  }
+}

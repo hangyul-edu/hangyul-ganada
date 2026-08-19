@@ -1,0 +1,148 @@
+{
+  "title": "Mein Lernen",
+  "stats": {
+    "wordsLearned": "Gelernte Wörter",
+    "lettersLearned": "Gelernte Buchstaben",
+    "alphabetProgress": "Fortschritt im Hangeul-Alphabet",
+    "studyDays": "Lerntage"
+  },
+  "language": {
+    "title": "Sprache",
+    "description": "Die Sprache der Oberfläche. Die koreanischen Lerninhalte bleiben immer auf Koreanisch.",
+    "openPicker": "Sprache ändern",
+    "pickerTitle": "Sprache wählen",
+    "pickerIntro": "Sprache der Oberfläche. Was du lernst – Hangeul-Zeichen, Wörter und Beispielsätze – bleibt Koreanisch.",
+    "listAria": "Verfügbare Sprachen",
+    "searchLabel": "Sprachen durchsuchen",
+    "searchPlaceholder": "Nach Name oder Code suchen",
+    "noResults": "Keine Sprache passt zu „{{query}}“.",
+    "selected": "Ausgewählt",
+    "suggestion": "Dein Browser ist auf {{language}} eingestellt. Oberfläche umstellen?",
+    "suggestionAccept": "{{language}} verwenden",
+    "suggestionDismiss": "Bei Englisch bleiben",
+    "coverageNote": "Einzelne Erklärtexte können noch auf Englisch erscheinen, solange die Übersetzung läuft."
+  },
+  "font": {
+    "title": "Übungsschrift",
+    "description": "Der Buchstabe, den du nachfährst, wird in der gewählten Schrift gezeichnet."
+  },
+  "dailyTarget": {
+    "title": "Tagesziel",
+    "description": "Wie viele Buchstaben oder Wörter du täglich schaffen willst.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} Zeichen pro Tag",
+    "optionAria_other": "{{count, number}} Zeichen pro Tag"
+  },
+  "guides": {
+    "title": "Schreibhilfen",
+    "description": "Die Hilfslinien im Kästchen.",
+    "grid": "Waagerechte und senkrechte Linie",
+    "crosshair": "Mittelmarke"
+  },
+  "about": {
+    "body": "Hangul lesen und schreiben: die Buchstaben, die Laute, die Silbenblöcke und deine ersten koreanischen Wörter.",
+    "reset": "Lernfortschritt zurücksetzen",
+    "offline": "Alle Lektionen, Sätze und Aufnahmen funktionieren offline.",
+    "version": "Version {{version}}"
+  },
+  "reset": {
+    "title": "Den gesamten Lernfortschritt zurücksetzen?",
+    "description": "Abgeschlossene Lektionen, dein Wiederholungsverlauf und deine Lernaktivität werden gelöscht. Das lässt sich nicht rückgängig machen.",
+    "confirm": "Zurücksetzen",
+    "cancel": "Abbrechen",
+    "body": "Noch einmal von vorn, beim allerersten Buchstaben."
+  },
+  "voice": {
+    "title": "Aussprache-Stimme",
+    "description": "Wer Buchstaben, Silben und Wörter vorliest.",
+    "female": "Weibliche Stimme",
+    "male": "Männliche Stimme",
+    "preview": "Gewählte Stimme anhören",
+    "provider": "Zwei klare koreanische Stimmen, etwas langsamer als im Alltagstempo, damit jeder Laut ankommt."
+  },
+  "groups": {
+    "practice": "Üben",
+    "learning": "Lernen",
+    "appearance": "Darstellung",
+    "app": "App",
+    "reset": "Zurücksetzen"
+  },
+  "activity": {
+    "title": "Lernaktivität",
+    "body": "Deine Serie, dein Kalender und was du gelernt hast"
+  },
+  "style": {
+    "title": "Übungsart",
+    "description": "Wie viel vom Buchstaben beim Schreiben stehen bleibt. In beiden Fällen ist er immer da.",
+    "guided": {
+      "title": "Geführt",
+      "detail": "Erst nachfahren, dann über einer blasseren Hilfe schreiben."
+    },
+    "focused": {
+      "title": "Direkt",
+      "detail": "Das Nachfahren überspringen und gleich mit der blasseren Hilfe anfangen."
+    }
+  },
+  "appearance": {
+    "title": "Darstellung",
+    "description": "Hell, dunkel oder so wie dein Telefon.",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "legal": {
+    "title": "Rechtliches & Lizenzen",
+    "body": "Lizenzen für Inhalte und Schriften in der App",
+    "intro": "Ein Teil der Inhalte wird unter Lizenzen genutzt, die eine Namensnennung verlangen. Diese Nennungen stehen hier.",
+    "contentHeading": "Inhalte",
+    "fontsHeading": "Schriften"
+  },
+  "reminder": {
+    "title": "Tägliche Erinnerung",
+    "description": "Ein leiser Hinweis am Tag, zu einer Zeit, die du wählst. Aus, bis du sie einschaltest, und sie verlässt dein Telefon nie.",
+    "toggle": "An das Üben erinnern",
+    "at": "Um",
+    "notificationTitle": "Zeit zum Üben",
+    "notificationBody": "Ein paar Minuten Koreanisch warten auf dich.",
+    "refused": "Dein Telefon lässt für diese App keine Mitteilungen zu. In den Einstellungen kannst du sie erlauben."
+  },
+  "privacy": {
+    "title": "Datenschutz",
+    "body": "Was mit deinem Lernfortschritt passiert",
+    "lede": "Nichts, was du hier tust, verlässt dieses Gerät.",
+    "device": {
+      "title": "Dein Lernfortschritt bleibt hier",
+      "points": [
+        "Was du gelernt hast und wie gut du es erinnerst, wird auf diesem Gerät gespeichert. Hochgeladen wird nichts.",
+        "Es gibt kein Konto: nichts zum Anmelden und nirgends ein Profil von dir."
+      ]
+    },
+    "tracking": {
+      "title": "Keine Werbung, kein Tracking",
+      "points": [
+        "Die App beobachtet nicht, wie du sie benutzt, und meldet nichts zurück.",
+        "Deine Handschrift wird beim Schreiben auf dem Bildschirm bewertet und danach verworfen."
+      ]
+    },
+    "permissions": {
+      "title": "Berechtigungen",
+      "points": [
+        "Mitteilungen, und nur wenn du die tägliche Erinnerung einschaltest.",
+        "Nie Kamera, Mikrofon, Fotos, Kontakte oder Standort."
+      ]
+    },
+    "erase": {
+      "title": "Wenn du alles löschen willst",
+      "points": [
+        "Ganz unten in {{screen}} kannst du deinen gesamten Lernfortschritt löschen.",
+        "Wenn du die App löschst, ist auch alles andere weg."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Dieser Browser merkt sich nicht, was du lernst — beim Schließen des Tabs ist es weg. In einem normalen statt einem privaten Fenster funktioniert es.",
+    "recovered_one": "Beim Laden wurde {{count, number}} beschädigter Eintrag übersprungen. Der Rest deines Fortschritts ist unversehrt.",
+    "recovered_other": "Beim Laden wurden {{count, number}} beschädigte Einträge übersprungen. Der Rest deines Fortschritts ist unversehrt."
+  }
+}

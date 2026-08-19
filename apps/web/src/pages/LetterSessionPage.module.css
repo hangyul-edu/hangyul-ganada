@@ -1,0 +1,39 @@
+
+/*
+ * Stroke-order notes, under the verdict.
+ *
+ * Visually quieter than the verdict above them on purpose: they are never the
+ * reason an attempt passed or failed, and styling them like a second verdict
+ * would make a learner read them as one.
+ */
+.orderNotes {
+  margin-top: var(--hg-space-3);
+  padding: var(--hg-space-3);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-bg-muted);
+  text-align: start;
+}
+
+.orderNotesHeading {
+  margin: 0 0 var(--hg-space-1);
+  font: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+}
+
+.orderNotes ul {
+  margin: 0;
+  padding-inline-start: 1.2em;
+  font: var(--hg-text-body-sm);
+  color: var(--hg-text-body);
+}
+
+.orderNotes li + li {
+  margin-top: var(--hg-space-1);
+}
+
+.orderNotesFooter {
+  margin: var(--hg-space-2) 0 0;
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}

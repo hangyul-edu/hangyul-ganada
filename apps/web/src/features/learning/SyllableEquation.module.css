@@ -1,0 +1,54 @@
+.equations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  align-items: center;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  /* Two-line equations at 375 pt are wider than the card. Wrapping keeps the
+     pieces legible instead of shrinking the Korean to fit. */
+  flex-wrap: wrap;
+}
+
+/*
+ * One letter, in its own square.
+ *
+ * The square is the message: a Hangul letter is a piece that goes into a box,
+ * and a learner who has only ever seen alphabets written in a row needs to be
+ * shown that before they meet 가 rather than after.
+ */
+.tile {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--hg-radius-sm);
+  background: var(--hg-surface);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--hg-text);
+}
+
+/* The finished block: bigger and in the product's colour, because it is the
+   answer rather than another ingredient. */
+.result {
+  width: 58px;
+  height: 58px;
+  background: var(--hg-primary-subtle);
+  box-shadow: inset 0 0 0 1.5px var(--hg-primary);
+  font-size: 32px;
+  color: var(--hg-primary-text);
+}
+
+.operator {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-tertiary);
+}

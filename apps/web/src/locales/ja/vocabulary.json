@@ -1,0 +1,94 @@
+{
+  "title": "単語を学ぶ",
+  "empty": {
+    "title": "ここにはまだ単語がありません",
+    "body": "ほかの分類を見てみましょう。"
+  },
+  "partOfSpeech": {
+    "noun": "名詞",
+    "verb": "動詞",
+    "adjective": "形容詞",
+    "adverb": "副詞",
+    "pronoun": "代名詞",
+    "numeral": "数詞",
+    "particle": "助詞",
+    "interjection": "感動詞",
+    "determiner": "連体詞"
+  },
+  "lesson": {
+    "title": "第{{index, number}}セット",
+    "newLetters": "新しい文字",
+    "done": "完了"
+  },
+  "session": {
+    "hintSingle": "枠の中に書きましょう",
+    "syllableGroup": "{{word}}の音節を書く",
+    "next": "つぎの単語",
+    "finish": "おわり",
+    "complete_other": "{{lesson}}で単語{{count, number}}個を覚えました。",
+    "toReading": "では読んでみましょう",
+    "writeEachPart": "{{word}} を一文字ずつ順に書いてみましょう。",
+    "writeEveryPartFirst": "すべて書いたら、単語をまとめて確認します。"
+  },
+  "intro": {
+    "write": "書いてみる",
+    "example": "例文",
+    "howItSounds": "こう聞こえます",
+    "surfaceNote": "この文では {{headword}} が {{form}} の形で出てきます。"
+  },
+  "blurb": "単語はすべて開いています。分類を選んで、好きなところから。",
+  "ahead": {
+    "title_one": "この分類に新しい字が 1 字",
+    "title_other": "この分類に新しい字が {{count, number}} 字",
+    "body": "今すぐ学習できます。先に文字を覚えておくと楽になります。",
+    "more_other": "ほか{{count, number}}字",
+    "cta": "文字を学ぶ"
+  },
+  "categories": {
+    "essentials": "基本のことば",
+    "people": "人と家族",
+    "food": "食べ物と飲み物",
+    "animals-nature": "動物と自然",
+    "home": "家と持ち物",
+    "body-health": "からだと健康",
+    "places-travel": "場所と移動",
+    "time-numbers": "時間と数",
+    "school-work": "学校と仕事",
+    "money-shopping": "お金と買い物",
+    "communication": "話すこと・メディア",
+    "feelings": "気持ちと性格",
+    "thinking": "考えることと学び",
+    "movement": "行き来のことば",
+    "actions": "毎日の動作",
+    "describing": "ようすを表す",
+    "society": "暮らしと文化",
+    "how-when": "どのように・いつ"
+  },
+  "category": {
+    "label": "分類",
+    "all": "すべて",
+    "pick": "分類を選ぶ",
+    "count_other": "{{count, number}} 語",
+    "progressAria": "{{category}} の進み具合"
+  },
+  "search": {
+    "placeholder": "単語をさがす",
+    "label": "単語を検索",
+    "count_other": "{{count, number}} 件",
+    "none": "「{{query}}」に合う単語はありません。韓国語か、意味でさがしてみてください。"
+  },
+  "sound": {
+    "tensing": "パッチムの後では次の子音が濃音になります。",
+    "aspiration": "ㅎ が子音と出会って激音になります。",
+    "nasal": "ㄴ・ㅁ の前では前のパッチムが鼻音になります。",
+    "lateral": "ㄴ と ㄹ が並ぶと、どちらも ㄹ の音になります。",
+    "palatal": "パッチムの ㄷ・ㅌ は 이 の前で ㅈ・ㅊ の音になります。",
+    "liaison": "パッチムが次の文字の頭の音に移ります。"
+  },
+  "save": {
+    "action": "保存",
+    "saved": "保存済み",
+    "add": "{{word}} を保存",
+    "remove": "保存から {{word}} を外す"
+  }
+}

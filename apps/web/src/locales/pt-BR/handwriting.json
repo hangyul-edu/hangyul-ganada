@@ -1,0 +1,137 @@
+{
+  "actions": {
+    "undo": "Desfazer",
+    "clear": "Limpar",
+    "check": "Conferir"
+  },
+  "canvas": {
+    "label": "Área de escrita de {{character}}",
+    "empty": "Nada escrito ainda.",
+    "strokes_one": "{{count, number}} traço escrito.",
+    "strokes_other": "{{count, number}} traços escritos.",
+    "strokes_many": "{{count, number}} de traços escritos."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "É isso!",
+      "perfect": "{{character}} — escrita lindamente.",
+      "scored": "Boa forma — {{score, number(style: percent)}} do caminho."
+    },
+    "empty": {
+      "headline": "Ainda não há nada",
+      "detail": "Escreva a letra dentro do quadro."
+    },
+    "incomplete": {
+      "headline": "Quase",
+      "tooSmall": "Um pouco pequena. Tente preencher o quadro.",
+      "missingStroke": "Falta um traço. Siga a guia até o fim."
+    },
+    "outside": {
+      "headline": "Quase lá",
+      "tooLarge": "Saiu do quadro. Um pouco menor.",
+      "strayStroke": "Um traço se desviou. Siga a linha com calma."
+    },
+    "mixed": {
+      "headline": "Quase lá",
+      "detail": "Alinhe com a guia e tente de novo."
+    },
+    "retry": "Escrever de novo",
+    "showDetails": "Ver detalhes",
+    "hideDetails": "Ocultar detalhes",
+    "breakdown": "Diferença {{mismatch, number(style: percent)}} · fora {{outside, number(style: percent)}} · faltando {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Como se escreve {{character}}, em {{count, number}} traço",
+    "diagramLabel_many": "Como se escreve {{character}}, em {{count, number}} traços",
+    "diagramLabel_other": "Como se escreve {{character}}, em {{count, number}} traços",
+    "pause": "Pausar",
+    "count_one": "{{count, number}} traço",
+    "count_many": "{{count, number}} traços",
+    "count_other": "{{count, number}} traços",
+    "heading": "Veja sendo escrita",
+    "notesHeading": "Sobre seus traços",
+    "notesFooter": "A ordem dos traços não entra na nota. É o que faz sua letra ficar certa.",
+    "notes": {
+      "fewer": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",
+      "more": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",
+      "startElsewhere": "Normalmente começa no {{corner}} do quadro.",
+      "direction_one": "Um traço foi no sentido contrário. Em coreano escreve-se de cima para baixo e da esquerda para a direita.",
+      "direction_many": "{{count, number}} traços foram no sentido contrário. Em coreano escreve-se de cima para baixo e da esquerda para a direita.",
+      "direction_other": "{{count, number}} traços foram no sentido contrário. Em coreano escreve-se de cima para baixo e da esquerda para a direita."
+    },
+    "corners": {
+      "topLeft": "canto superior esquerdo",
+      "topCentre": "topo",
+      "topRight": "canto superior direito",
+      "middleLeft": "lado esquerdo",
+      "middleCentre": "centro",
+      "middleRight": "lado direito",
+      "bottomLeft": "canto inferior esquerdo",
+      "bottomCentre": "rodapé",
+      "bottomRight": "canto inferior direito"
+    },
+    "watchAgain": "Ver de novo",
+    "back": "Anterior",
+    "next": "Próximo",
+    "position": "Traço {{current, number}} de {{count, number}}"
+  },
+  "word": {
+    "previous": "Parte anterior",
+    "next": "Próxima parte",
+    "syllablePosition": "{{syllable}}, parte {{position, number}} de {{count, number}}",
+    "canvasLabel": "Área de escrita de {{syllable}}, parte {{position, number}} de {{count, number}}",
+    "undoSyllable": "Desfazer o que foi escrito em {{syllable}}",
+    "clearSyllable": "Apagar o que foi escrito em {{syllable}}",
+    "checkWord": "Conferir o que escrevi",
+    "checkAgain": "Conferir de novo",
+    "fix": "Corrigir",
+    "fixSyllable": "Escrever {{syllable}} de novo",
+    "result": {
+      "passed": "Muito bem",
+      "almost": "Quase lá",
+      "allAgain": "Vamos seguir o guia mais uma vez",
+      "needsWork_one": "Uma parte precisa de outra tentativa.",
+      "needsWork_many": "{{count, number}} partes precisam de outra tentativa.",
+      "needsWork_other": "{{count, number}} partes precisam de outra tentativa."
+    },
+    "advice": {
+      "passed": "Está com boa forma.",
+      "empty": "Escreva esta parte primeiro.",
+      "outside": "Fique um pouco mais perto do guia.",
+      "incomplete": "Ainda falta uma parte desta letra.",
+      "mixed": "Quase. Siga o guia mais uma vez."
+    }
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "a linha longa para baixo",
+      "downLongTwice": "as duas linhas longas para baixo, a da esquerda primeiro",
+      "downShort": "a linha curta para baixo",
+      "downShortTwice": "as duas linhas curtas para baixo, a da esquerda primeiro",
+      "acrossLong": "a linha longa na horizontal",
+      "acrossLongTwice": "as duas linhas longas na horizontal, a de cima primeiro",
+      "acrossShort": "a linha curta na horizontal",
+      "acrossShortTwice": "as duas linhas curtas na horizontal, a de cima primeiro",
+      "cornerAcrossDown": "por cima para a direita e depois para baixo",
+      "cornerDownAcross": "pela esquerda para baixo e depois para a direita",
+      "slantLeft": "o traço inclinado para baixo à esquerda",
+      "slantRight": "o traço inclinado para baixo à direita",
+      "circle": "o círculo, começando por cima"
+    },
+    "s1": "Só um traço: {{a}}.",
+    "s2": "Primeiro {{a}}. Depois {{b}}.",
+    "s3": "Primeiro {{a}}. Depois {{b}}. Depois {{c}}.",
+    "s4": "Primeiro {{a}}. Depois {{b}}. Depois {{c}}. Por último {{d}}.",
+    "parts2": {
+      "plain": "Escreva {{a}} primeiro e depois {{b}}.",
+      "right": "Escreva {{a}} primeiro e depois {{b}} à direita.",
+      "below": "Escreva {{a}} primeiro e depois {{b}} embaixo."
+    },
+    "parts3": {
+      "right": "Escreva {{a}}, depois {{b}} à direita e {{c}} embaixo de tudo.",
+      "below": "Escreva {{a}}, depois {{b}} embaixo e {{c}} na parte de baixo."
+    },
+    "partsDouble": "Escreva {{a}} duas vezes, lado a lado — a da esquerda primeiro.",
+    "fallback": "{{strokes}} traços, na ordem dos números."
+  }
+}

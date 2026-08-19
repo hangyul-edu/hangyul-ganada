@@ -1,0 +1,153 @@
+/*
+ * The stroke-order demonstration.
+ *
+ * Ink on paper: the surface is the same warm white the practice box uses and
+ * stays warm white in dark mode, and the ink is black. A learner watching a
+ * Korean character be written should be watching the thing they are about to
+ * copy, not a themed diagram of it.
+ */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  margin: 0;
+  /* The figure is a block inside whatever column it is dropped into, and its
+     parents do not all centre their children. Saying so here means the diagram
+     is centred on the intro screen and on the practice screen alike. */
+  align-self: center;
+}
+
+.paper {
+  display: block;
+  border-radius: var(--hg-radius-xl);
+  background: var(--hg-canvas-paper);
+  border: 1px solid var(--hg-border);
+}
+
+.box {
+  fill: none;
+  stroke: transparent;
+}
+
+.guide {
+  stroke: var(--hg-canvas-guide-warm);
+  stroke-width: 0.7;
+  stroke-dasharray: 3 4;
+  fill: none;
+}
+
+/* Where the finished character will be. Faint enough that it cannot be mistaken
+   for ink, present so a half-drawn letter never reads as a different letter. */
+.ghost {
+  fill: none;
+  stroke: var(--hg-canvas-guide);
+  stroke-width: var(--hg-pen, 9);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/*
+ * The ink.
+ *
+ * Slightly heavier than the ghost and rounded at both ends, which is what a
+ * pen leaves. `stroke-dasharray` and `stroke-dashoffset` are set per frame from
+ * the component; nothing is animated in CSS, because the timing has to be
+ * derived from each stroke's own length.
+ */
+.ink {
+  fill: none;
+  stroke: var(--hg-canvas-ink);
+  stroke-width: var(--hg-pen, 9);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The pen itself, at the point the ink has reached. */
+.nib {
+  fill: var(--hg-canvas-ink);
+}
+
+/*
+ * The numbers sit on each stroke's starting point, which is the one place a
+ * number is unambiguous — a label beside the letter would have to be joined to
+ * its stroke by eye. Small enough not to bury the ink they sit on.
+ */
+.marker circle,
+.markerDone circle {
+  stroke-width: 0.9;
+}
+
+.marker circle {
+  fill: var(--hg-canvas-paper);
+  /* A ramp value, not a themed one: the paper does not follow the theme, so
+     nothing drawn on it may either. */
+  stroke: var(--hg-gray-400);
+}
+
+/* A filled brand dot with a white number on it — the same pairing as a primary
+   button, and the same rule: solid orange takes white. */
+.markerDone circle {
+  fill: var(--hg-primary);
+  stroke: var(--hg-primary);
+}
+
+/* Size comes from the component, which knows whether it is drawing a letter or
+   a whole block — see the pen note in `StrokeOrder.tsx`. */
+.marker text,
+.markerDone text {
+  font-family: var(--hg-font-ui);
+  font-weight: var(--hg-weight-bold);
+  text-anchor: middle;
+}
+
+.marker text {
+  fill: var(--hg-gray-700);
+}
+
+.markerDone text {
+  fill: var(--hg-text-on-primary);
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  font: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.replay,
+.stepButton {
+  min-height: 44px;
+  white-space: nowrap;
+  padding: 0 var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-primary-text);
+  font: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  cursor: pointer;
+}
+
+.replay:hover,
+.stepButton:hover:not(:disabled) {
+  background: var(--hg-primary-subtle);
+}
+
+.stepButton:disabled {
+  color: var(--hg-text-disabled);
+  cursor: default;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+.count {
+  white-space: nowrap;
+}

@@ -1,0 +1,94 @@
+{
+  "title": "学单词",
+  "empty": {
+    "title": "这里还没有词",
+    "body": "换个分类看看。"
+  },
+  "partOfSpeech": {
+    "noun": "名词",
+    "verb": "动词",
+    "adjective": "形容词",
+    "adverb": "副词",
+    "pronoun": "代词",
+    "numeral": "数词",
+    "particle": "助词",
+    "interjection": "感叹词",
+    "determiner": "冠形词"
+  },
+  "lesson": {
+    "title": "第 {{index, number}} 组",
+    "newLetters": "新字母",
+    "done": "已完成"
+  },
+  "session": {
+    "hintSingle": "在方框中书写",
+    "syllableGroup": "书写 {{word}} 的音节",
+    "next": "下一个单词",
+    "finish": "完成",
+    "complete_other": "你在{{lesson}}中学会了 {{count, number}} 个单词。",
+    "toReading": "现在来读一读",
+    "writeEachPart": "按顺序把 {{word}} 一个字一个字写下来。",
+    "writeEveryPartFirst": "全部写完后，我们一起检查整个词。"
+  },
+  "intro": {
+    "write": "练习书写",
+    "example": "例句",
+    "howItSounds": "实际读音",
+    "surfaceNote": "在这个句子里，{{headword}} 写成 {{form}}。"
+  },
+  "blurb": "所有词都开放。选个分类，从哪儿开始都行。",
+  "ahead": {
+    "title_other": "这个分类里有 {{count, number}} 个新字母",
+    "body": "现在就可以学。先学会这些字母通常会更轻松。",
+    "more_other": "另有 {{count, number}} 个",
+    "cta": "去学字母",
+    "title_one": "这个分类里有 1 个新字母"
+  },
+  "categories": {
+    "essentials": "日常必备",
+    "people": "人物与家庭",
+    "food": "饮食",
+    "animals-nature": "动物与自然",
+    "home": "家与用品",
+    "body-health": "身体与健康",
+    "places-travel": "地点与出行",
+    "time-numbers": "时间与数字",
+    "school-work": "学习与工作",
+    "money-shopping": "金钱与购物",
+    "communication": "表达与媒体",
+    "feelings": "情感与性格",
+    "thinking": "思考与学习",
+    "movement": "来往移动",
+    "actions": "日常动作",
+    "describing": "描述事物",
+    "society": "生活与文化",
+    "how-when": "怎样 & 何时"
+  },
+  "category": {
+    "label": "分类",
+    "all": "全部分类",
+    "pick": "选择分类",
+    "count_other": "{{count, number}} 个词",
+    "progressAria": "{{category}} 的进度"
+  },
+  "search": {
+    "placeholder": "搜索单词",
+    "label": "搜索词汇",
+    "count_other": "{{count, number}} 个结果",
+    "none": "没有匹配“{{query}}”的词。试试用韩语或中文的意思来找。"
+  },
+  "sound": {
+    "tensing": "收音后面的辅音会变成紧音。",
+    "aspiration": "ㅎ 与辅音相遇，合成送气音。",
+    "nasal": "在 ㄴ、ㅁ 前面，前面的收音变成鼻音。",
+    "lateral": "ㄴ 和 ㄹ 相邻时，两个都读成 ㄹ。",
+    "palatal": "收音 ㄷ、ㅌ 遇到 이 时读成 ㅈ、ㅊ。",
+    "liaison": "收音移到下一个字的头一个音。"
+  },
+  "save": {
+    "action": "收藏",
+    "saved": "已收藏",
+    "add": "收藏 {{word}}",
+    "remove": "从收藏中移除 {{word}}"
+  }
+}

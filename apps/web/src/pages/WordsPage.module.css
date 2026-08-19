@@ -1,0 +1,483 @@
+/*
+ * The page fills the scroll area; the navigation bar is a sibling of it, not an
+ * overlay on it, so no room is reserved for the bar here. Bottom spacing is the
+ * body's own padding and nothing else — reserving it twice is what put a band
+ * of dead background under the last card on every tab.
+ */
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+/* Layout only: the scrolling, the drag and the edge fade are `ScrollRow`'s. */
+.categoryNote {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.rowLink {
+  display: block;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+  color: var(--hg-text-disabled);
+}
+
+.rowHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+}
+
+.rowText {
+  min-width: 0;
+}
+
+.rowTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+.rowTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/* The Korean words in this set. Target content: never mirrored. */
+.rowWords {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-2);
+  margin-top: var(--hg-space-2);
+}
+
+.word,
+.wordDone {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px var(--hg-space-2);
+  border-radius: var(--hg-radius-xs);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.word {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-secondary);
+}
+
+.wordDone {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.wordPos {
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-medium);
+  opacity: 0.7;
+}
+
+.rowFoot {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.rowCount {
+  flex: none;
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-tertiary);
+}
+
+.empty {
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+}
+
+.emptyBody {
+  margin-top: var(--hg-space-1);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * Where the words come from. A link rather than a paragraph of small print:
+ * the licences oblige us to credit the sources, and a page that credits them
+ * properly is better than a footnote that credits them illegibly.
+ */
+.intro {
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+.categorySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.categoryHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+  /* Without this the level title pushes the count off the right edge of the
+     screen at 375pt, because a flex item's default min-width is its content. */
+  min-width: 0;
+}
+
+.categoryText {
+  flex: 1;
+  min-width: 0;
+}
+
+.categoryTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  flex-wrap: wrap;
+}
+
+.categoryTitle {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  text-wrap: balance;
+}
+
+.categoryBlurb {
+  margin-top: 2px;
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+.categoryCount {
+  flex: none;
+  margin-top: 4px;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-tertiary);
+  white-space: nowrap;
+}
+
+/*
+ * A level that introduces letters the learner has not met.
+ *
+ * Phrased and styled as a signpost, not a barrier: warm surface rather than a
+ * grey padlock plate, the letters themselves shown in Korean, and a link
+ * straight to the lesson that teaches them. The word sets below it are open
+ * either way, so nothing here may look like a door.
+ */
+.ahead {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--hg-space-3);
+  flex-wrap: wrap;
+  background: var(--hg-surface-warm);
+}
+
+/* Full width, so the call to action drops to its own line rather than
+   squeezing the heading into two at 375 pt. */
+.aheadText {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.aheadTitle {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.aheadBody {
+  margin-top: 2px;
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+}
+
+.aheadLetters {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-1);
+  margin-top: var(--hg-space-2);
+}
+
+.aheadLetters span {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding-inline: 4px;
+  border-radius: var(--hg-radius-xs);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.aheadMore {
+  align-self: center;
+  padding-inline: var(--hg-space-1);
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+}
+
+.aheadCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding-inline: var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+}
+
+
+/* --- search and the category selector --- */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  padding: 0 var(--hg-space-3);
+  min-height: var(--hg-size-control-md);
+  border: 1.5px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text-tertiary);
+}
+
+.searchRow:focus-within {
+  border-color: var(--hg-border-selected);
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  font: var(--hg-text-body);
+  color: var(--hg-text);
+}
+
+.search:focus {
+  outline: none;
+}
+
+/*
+ * The category control. A button rather than a <select>: the list carries a
+ * count and a progress figure per row, which no platform dropdown can show,
+ * and a native select inside a WebView looks like it belongs to another app.
+ */
+.categoryButton {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  width: 100%;
+  min-height: var(--hg-size-control-md);
+  padding: 0 var(--hg-space-3) 0 var(--hg-space-4);
+  border: 1.5px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font: var(--hg-text-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.categoryButtonLabel {
+  color: var(--hg-text-tertiary);
+  white-space: nowrap;
+}
+
+.categoryButtonValue {
+  flex: 1;
+  min-width: 0;
+  font-weight: var(--hg-weight-semibold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- all categories --- */
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--hg-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.categoryCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  padding: var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  box-shadow: var(--hg-shadow-card);
+  text-align: left;
+  cursor: pointer;
+}
+
+.categoryCardTitle {
+  font: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  text-wrap: balance;
+}
+
+.categoryCardSample {
+  font: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.categoryCardCount {
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  margin-top: auto;
+}
+
+/* --- the picker sheet --- */
+
+.pickerList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.pickerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--hg-space-3);
+  border: 0;
+  border-radius: var(--hg-radius-md);
+  background: none;
+  color: var(--hg-text);
+  font: var(--hg-text-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.pickerRow:hover {
+  background: var(--hg-bg-muted);
+}
+
+.pickerSelected {
+  background: var(--hg-surface-selected);
+  color: var(--hg-primary-text);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.pickerLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.pickerDetail {
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- search results --- */
+
+.resultCount {
+  margin: 0;
+  font: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resultLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.resultWord {
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  white-space: nowrap;
+}
+
+.resultMeaning {
+  flex: 1;
+  min-width: 0;
+  font: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,186 @@
+.exercise {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+}
+
+.prompt {
+  margin: 0;
+  text-align: center;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-medium);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * The thing being asked about, on its own card.
+ *
+ * Generous vertical space around it on purpose: this is the one element the
+ * learner has to actually look at, and putting it in a box the same size as an
+ * answer makes the screen read as five equal things.
+ */
+.stimulus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-5) var(--hg-space-4);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  border: 1px solid var(--hg-border);
+}
+
+.korean {
+  margin: 0;
+  font-size: clamp(40px, 12vw, 60px);
+  line-height: 1.1;
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+.sentence {
+  margin: 0;
+  font-size: clamp(20px, 6vw, 26px);
+  line-height: 1.6;
+  text-align: center;
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+/*
+ * The gap where the word was.
+ *
+ * An underline rather than a row of underscores: underscores are read out one
+ * by one by a screen reader, and at small sizes they merge into a line anyway.
+ * The accessible name says "blank" once.
+ */
+.blank {
+  display: inline-block;
+  min-width: 3ch;
+  border-bottom: 3px solid var(--hg-primary);
+  margin: 0 0.15em;
+  vertical-align: baseline;
+  white-space: pre;
+}
+
+/* Stands in for the Korean on a listening question, where showing it would
+   give the answer away. */
+.listenMark {
+  font-size: 44px;
+  line-height: 1;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--hg-space-3);
+}
+
+/* Two options — the discrimination drill — sit side by side, because the whole
+   point is that they are compared. */
+.optionsPair {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-1);
+  min-height: 56px;
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border: 2px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 120ms ease;
+}
+
+.optionsPair .option {
+  aspect-ratio: 1;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--hg-border-strong);
+}
+
+.option:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.optionKorean {
+  font-size: clamp(28px, 9vw, 44px);
+  line-height: 1.1;
+  direction: ltr;
+}
+
+.optionsPair .optionKorean {
+  font-size: clamp(44px, 14vw, 64px);
+}
+
+.optionLabel {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}
+
+.optionsPair .optionLabel {
+  font-size: var(--hg-text-caption);
+}
+
+/* The right answer is always revealed, whichever was tapped. Someone who chose
+   wrong needs to see which one was right far more than they need telling. */
+.right {
+  border-color: var(--hg-positive);
+  background: color-mix(in srgb, var(--hg-positive) 8%, white);
+}
+
+.wrong {
+  border-color: var(--hg-negative);
+  background: color-mix(in srgb, var(--hg-negative) 8%, white);
+}
+
+.dimmed {
+  opacity: 0.45;
+}
+
+/*
+ * Help, offered quietly.
+ *
+ * A text button rather than a filled one: it should be findable by anyone who
+ * wants it and should not compete with the answers for attention. Tapping it
+ * replaces the label with the meaning, so the same control both offers and
+ * delivers the help.
+ */
+.hint {
+  align-self: center;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 0;
+  background: none;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.answerKorean {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  margin-inline-end: var(--hg-space-2);
+  direction: ltr;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option,
+  .option:active:not(:disabled) {
+    transition: none;
+    transform: none;
+  }
+}

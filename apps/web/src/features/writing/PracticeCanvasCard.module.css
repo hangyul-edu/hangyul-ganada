@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.caption {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.toolRow {
+  display: flex;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  flex-wrap: wrap;
+}
+
+.compact .toolRow {
+  gap: var(--hg-space-1);
+}
+
+/*
+ * What the hint means, said while it is on screen.
+ *
+ * A learner who reveals the character and then passes needs to know *before*
+ * they press Check that this one counts as practice — being told afterwards
+ * would read as the app moving the goalposts. One quiet line, in the same
+ * place the feedback will appear.
+ */
+.hintNote {
+  margin-top: calc(var(--hg-space-1) * -1);
+  padding: 0 var(--hg-space-2);
+  font-size: var(--hg-text-micro);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+  text-wrap: pretty;
+}

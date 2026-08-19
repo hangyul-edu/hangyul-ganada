@@ -1,0 +1,181 @@
+{
+  "letters": {
+    "title": "Aprender letras",
+    "complete": "Aprendida",
+    "alphabetTitle": "El alfabeto hangul",
+    "alphabetCaption": "letras aprendidas"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Saltar esta",
+    "next": "Siguiente letra",
+    "finish": "Terminar",
+    "startTrace": "Cálcala",
+    "prompt": {
+      "trace": "Sigue la forma gris con el dedo.",
+      "practise": "La guía es más suave. Escríbela tú — sigue ahí por si la necesitas."
+    },
+    "nowPractise": "Ahora: con la guía más suave",
+    "nowRead": "Ahora léela"
+  },
+  "complete": {
+    "title": "¡Muy bien!",
+    "letters_one": "Has terminado {{count, number}} letra en {{lesson}}.",
+    "letters_other": "Has terminado {{count, number}} letras en {{lesson}}.",
+    "letters_many": "Has terminado {{count, number}} de letras en {{lesson}}."
+  },
+  "review": {
+    "title": "Repaso",
+    "empty": {
+      "title": "Nada que repasar todavía",
+      "body": "Lo que falles aparece aquí. Por ahora, ¿qué tal una letra nueva?",
+      "cta": "Aprender una letra"
+    },
+    "startCta": "Empezar el repaso",
+    "sessionTitle": "Repaso",
+    "completeTitle": "Repaso hecho",
+    "forYou": "Repaso para ti",
+    "sessionLength_one": "Un ejercicio corto",
+    "sessionLength_other": "{{count, number}} ejercicios cortos",
+    "needsPractice": "Necesita práctica",
+    "dueToday": "Toca hoy",
+    "savedWords": "Palabras guardadas",
+    "chooseMode": "O elige qué practicar",
+    "comingUp": "A continuación",
+    "outcome": "{{practised, number}} practicadas · {{firstTry, number}} te vinieron enseguida · {{comingBack, number}} volverán pronto",
+    "blank": "hueco",
+    "optionsLabel": "Respuestas",
+    "showHint": "Ver una pista",
+    "right": "Eso es.",
+    "notQuite": "Casi — aquí está.",
+    "mode": {
+      "read": "Leer",
+      "listen": "Escuchar",
+      "write": "Escribir"
+    },
+    "prompt": {
+      "read": "¿Qué significa esta palabra?",
+      "readLetter": "¿Qué sonido tiene?",
+      "listen": "¿Qué palabra has oído?",
+      "listenLetter": "¿Qué letra es?",
+      "context": "¿Qué palabra encaja aquí?",
+      "write": "Escribe esta palabra",
+      "writeLetter": "Escribe lo que oyes",
+      "distinguish": "¿Cuál hace este sonido?"
+    },
+    "sessionLength_many": "{{count, number}} ejercicios cortos"
+  },
+  "units": {
+    "badge": "Unidad {{index, number}}",
+    "continue": "Entendido: empecemos",
+    "unit-1": {
+      "title": "Seis vocales para empezar",
+      "goal": "Toda sílaba coreana necesita una vocal. Estas seis son las más simples.",
+      "body": "El hangul es un alfabeto, no un conjunto de dibujos. Tiene 40 letras, se diseñó para aprenderse rápido, y estás a punto de aprender seis.",
+      "points": [
+        "Las letras se agrupan en bloques cuadrados, y cada bloque es una sílaba.",
+        "Una vocal es o bien una línea alta o bien una línea plana: eso decide dónde va en el bloque.",
+        "Di cada una en voz alta mientras la calcas. El sonido es la mitad de la lección."
+      ]
+    },
+    "unit-2": {
+      "title": "Tus primeras consonantes",
+      "goal": "Cinco consonantes. Con las vocales que ya sabes, son 30 sílabas."
+    },
+    "unit-3": {
+      "title": "Juntarlas",
+      "goal": "Consonante más vocal forma un bloque que ya puedes leer.",
+      "body": "Una sílaba coreana se escribe como un cuadrado. La consonante va primero: a la izquierda si la vocal es alta, arriba si es plana.",
+      "points": [
+        "Una vocal alta (ㅏ ㅓ ㅣ) se pone a la derecha de la consonante.",
+        "Una vocal plana (ㅗ ㅜ ㅡ) se tumba debajo de ella.",
+        "Lee el bloque como leerías una página: de izquierda a derecha y luego hacia abajo."
+      ]
+    },
+    "unit-4": {
+      "title": "Cinco consonantes más",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ: el resto de la serie simple."
+    },
+    "unit-5": {
+      "title": "Leer más bloques",
+      "goal": "Incluida la única letra que no suena en absoluto."
+    },
+    "unit-6": {
+      "title": "Añadir un sonido y",
+      "goal": "Un trazo más convierte ㅏ en ㅑ. El patrón vale para las cuatro."
+    },
+    "unit-7": {
+      "title": "Un soplo de aire",
+      "goal": "ㅊ ㅋ ㅌ ㅍ son letras que ya conoces con un trazo añadido."
+    },
+    "unit-8": {
+      "title": "Las vocales e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ: vocales formadas añadiendo ㅣ."
+    },
+    "unit-9": {
+      "title": "Dobladas y tensas",
+      "goal": "Cinco letras escritas dos veces y pronunciadas con más tensión."
+    },
+    "unit-10": {
+      "title": "Las vocales w",
+      "goal": "Dos vocales escritas como una. Las últimas de las 40 letras."
+    },
+    "unit-11": {
+      "title": "Una letra al pie",
+      "goal": "받침: la consonante que cierra una sílaba.",
+      "body": "Un bloque puede llevar una tercera letra debajo de las otras dos. Se llama 받침 y cierra la sílaba.",
+      "points": [
+        "La tercera letra va siempre en la parte baja del cuadrado.",
+        "Un 받침 solo se pronuncia como uno de siete sonidos, sea cual sea la letra escrita.",
+        "Aquí es donde se atasca la lectura de la mayoría de principiantes. Tómatelo con calma."
+      ]
+    },
+    "unit-12": {
+      "title": "Leer 한글",
+      "goal": "Ya conoces todas las letras. Lee el nombre del propio sistema de escritura."
+    }
+  },
+  "intro": {
+    "letterName": "Nombre",
+    "letterSound": "Sonido",
+    "soundIn": "Escucha {{character}} en",
+    "reads": "Se lee"
+  },
+  "steps": {
+    "label": "Pasos de esta letra",
+    "trace": "Calcar",
+    "practise": "Practicar",
+    "read": "Leer"
+  },
+  "recognition": {
+    "question": "¿Cuál hace este sonido?",
+    "optionsAria": "Elige la letra que oíste",
+    "optionAria": "Elegir {{character}}",
+    "correctDetail": "Eso es: {{character}}.",
+    "wrongHeadline": "Esa no.",
+    "wrongDetail": "{{character}} es el que suena como {{sound}}.",
+    "hearAgain": "Escuchar otra vez"
+  },
+  "reading": {
+    "question": "¿Qué significa esta palabra?",
+    "optionsAria": "Cuatro significados para elegir",
+    "wrongHeadline": "Míralo otra vez",
+    "answer": "{{word}} significa «{{meaning}}»."
+  },
+  "sounds": {
+    "title": "Cuando los sonidos se encuentran",
+    "blurb": "Por qué 학교 no se dice como se escribe.",
+    "intro": "Ya puedes leer todas las letras. El coreano escribe las piezas que forman una palabra y cambia algunas cuando se tocan, así que unas cuantas palabras suenan distinto de como se ven. Estas son las primeras que encontrarás.",
+    "written": "Se escribe",
+    "said": "Se dice",
+    "note": "No hace falta memorizarlas. Escúchalas y pronto sonarán normales.",
+    "name": {
+      "tensing": "Un segundo sonido tenso",
+      "aspiration": "Un golpe de aire",
+      "nasal": "Un sonido nasal suave",
+      "lateral": "ㄴ y ㄹ juntas",
+      "palatal": "ㄷ y ㅌ ante 이",
+      "liaison": "El sonido se desliza"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+/*
+ * Quiet by design. See `SaveButton.tsx` — saving is a thing some learners do on
+ * every card and most never do at all, so the control is findable rather than
+ * insistent, and it never competes with the primary button below it.
+ */
+.save {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  align-self: center;
+  /* 44px of touch target on a 20px-tall label. */
+  min-height: 44px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 0;
+  border-radius: var(--hg-radius-pill);
+  background: none;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-medium);
+  cursor: pointer;
+}
+
+.save:hover {
+  background: var(--hg-surface-subtle);
+}
+
+.on {
+  color: var(--hg-primary-text);
+}

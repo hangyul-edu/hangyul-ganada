@@ -1,0 +1,107 @@
+/**
+ * The writing surface.
+ *
+ * `direction: ltr` is pinned here on purpose and must not be replaced with a
+ * logical property. Everything inside this box is Korean: the reference glyph,
+ * the learner's strokes, the guides they are aligned against. Hangul is written
+ * left-to-right regardless of the interface language, and mirroring the box for
+ * an Arabic or Hebrew UI would teach the learner to write the character
+ * backwards. The physical `left`/`right` guide offsets below are correct for the
+ * same reason — this is the one region of the app that never flips.
+ */
+.box {
+  direction: ltr;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  /* Lets the glyph size itself in cqmin, so it tracks the box on every screen. */
+  container-type: size;
+  border-radius: var(--hg-radius-xl);
+  /*
+    Paper, not the theme surface. The writing box keeps a warm white ground in
+    dark mode too — see `canvasPaper` in the design tokens for why the one
+    place a learner copies a black glyph does not follow the lights.
+  */
+  background: var(--hg-canvas-paper);
+  border: 1.5px solid var(--hg-border);
+  overflow: hidden;
+  transition:
+    border-color var(--hg-duration-normal) var(--hg-ease-standard),
+    box-shadow var(--hg-duration-normal) var(--hg-ease-standard);
+}
+
+.correct {
+  border-color: var(--hg-positive);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--hg-positive) 14%, transparent);
+}
+
+.incorrect {
+  border-color: var(--hg-negative);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--hg-negative) 12%, transparent);
+}
+
+.disabled {
+  opacity: 0.75;
+}
+
+/**
+ * Writing guides. Deliberately not the red 田 grid of a calligraphy workbook —
+ * a hairline cross in the Hangyul border grey, warm at the centre.
+ *
+ * Physical `left`/`right` throughout: these are anchored to the glyph, not to
+ * the reading direction of the interface.
+ */
+.guides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.guideH,
+.guideV {
+  position: absolute;
+  background: var(--hg-canvas-guide);
+}
+
+.guideH {
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 1px;
+}
+
+.guideV {
+  top: 6%;
+  bottom: 6%;
+  left: 50%;
+  width: 1px;
+}
+
+.crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  translate: -50% -50%;
+  border-radius: var(--hg-radius-pill);
+  border: 1.5px solid var(--hg-canvas-guide-warm);
+}
+
+.glyph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--hg-canvas-trace-glyph);
+  pointer-events: none;
+  transition: opacity var(--hg-duration-normal) var(--hg-ease-standard);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}

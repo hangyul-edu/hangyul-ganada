@@ -1,0 +1,83 @@
+{
+  "title": "学习记录",
+  "streak": {
+    "caption": "只要练习就会延续，不必非要写完一个字母。",
+    "longest": "最长连续",
+    "totalDays": "学习天数",
+    "totalTime": "总时长",
+    "unit_other": "天连续"
+  },
+  "chart": {
+    "title": "学习活动",
+    "rangeAria": "选择时间范围",
+    "aria": "每天的练习量",
+    "noneYet": "这段时间还没有记录。",
+    "range": {
+      "7": "7 天",
+      "30": "30 天",
+      "90": "3 个月",
+      "0": "全部"
+    }
+  },
+  "calendar": {
+    "previous": "上个月",
+    "next": "下个月",
+    "less": "少",
+    "more": "多",
+    "dayAria_other": "{{date}}：{{count, number}} 次"
+  },
+  "day": {
+    "time": "学习时长",
+    "attempts": "书写次数",
+    "correct": "正确",
+    "charactersLearned": "完成的字母",
+    "wordsLearned": "完成的单词",
+    "reviews": "复习次数",
+    "nothing": "这一天没有学习记录。"
+  },
+  "insights": {
+    "title": "值得一提",
+    "mostPractisedCharacter": "练习最多的字母",
+    "mostPractisedWord": "练习最多的单词",
+    "accuracy": "书写准确率",
+    "thisWeek": "本周",
+    "learnedCount_other": "完成 {{count, number}} 个"
+  },
+  "units": {
+    "minute_other": "{{count, number}} 分钟",
+    "hour_other": "{{count, number}} 小时"
+  },
+  "empty": {
+    "title": "你的学习记录从今天开始",
+    "body": "练几个字，这一页就会有内容：学习的日子、用了多久、做了什么。"
+  },
+  "week": {
+    "title": "本周",
+    "range": "自 {{from}} 起",
+    "days": "学习天数",
+    "daysValue_other": "7 天中的 {{count, number}} 天",
+    "time": "时长",
+    "learned": "学会",
+    "accuracy": "正确率",
+    "same": "和上周时间相同。",
+    "moreThanLast": "比上周多 {{minutes, number}} 分钟。",
+    "lessThanLast": "比上周少 {{minutes, number}} 分钟。",
+    "quiet": "这周还没开始，时间还够。"
+  },
+  "memory": {
+    "title": "记得怎么样",
+    "firstTry": "这周你有 {{count, number}} 个是一次就想起来的。",
+    "strongestSkill": "这周你最拿手的是{{skill}}。",
+    "confusionImproving": "{{a}} 和 {{b}} 越来越分得清了。",
+    "skill": {
+      "reading_recognition": "阅读",
+      "listening_recognition": "听力",
+      "guided_writing": "书写",
+      "meaning_recognition": "词义",
+      "sentence_comprehension": "句子理解",
+      "sound_recognition": "辨音",
+      "visual_recognition": "辨字",
+      "lookalike_discrimination": "区分相似字"
+    }
+  }
+}

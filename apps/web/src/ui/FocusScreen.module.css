@@ -1,0 +1,96 @@
+/*
+ * Three rows: header, scroll, footer. See `FocusScreen.tsx` for why.
+ *
+ * `minmax(0, 1fr)` and not `1fr`: a grid track's automatic minimum is the size
+ * of its content, so a plain `1fr` row containing a long lesson refuses to
+ * shrink, the grid grows past the viewport, and the footer is pushed off the
+ * bottom of the screen — exactly the failure this layout exists to prevent,
+ * arrived at from the other direction.
+ */
+.screen {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+  /* No background: the shell's `tone` owns the ground, and this owns the
+     structure. Two files painting the same pixels is how a gradient ends up
+     banded across a screen. */
+}
+
+.header {
+  /* Above the scroll region, so content passing under it is covered rather
+     than showing through the header's own transparent background. */
+  position: relative;
+  z-index: var(--hg-z-sticky);
+}
+
+.scroll {
+  min-height: 0;
+  overflow-y: auto;
+  /* Keeps a drag inside the writing canvas from scrolling the page behind it. */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * The reservation, on the region that ends the screen when nothing else does.
+ *
+ * Enough that the last card is clear of the system furniture *and* has ordinary
+ * breathing room under it — a learner who has scrolled to the end of a long
+ * lesson should not be reading the final sentence off the top of the gesture
+ * bar.
+ */
+.scroll {
+  padding-bottom: calc(var(--hg-space-8) + var(--hg-safe-bottom));
+}
+
+/*
+ * With a footer, the inset belongs to the footer and this only needs the gap
+ * that keeps content from touching it as it scrolls past.
+ *
+ * Written as `:has()` rather than as a class the page passes down, because
+ * whether there is a footer is not always something the page knows — a writing
+ * card places its own Check button in the row through `FocusFooter`. Where
+ * `:has()` is unsupported the rule simply does not apply and the scroll keeps
+ * the larger reservation, which is a little extra space and never a covered
+ * control.
+ */
+.screen:has(> .footer:not(:empty)) .scroll {
+  padding-bottom: var(--hg-space-4);
+}
+
+/* Nothing claimed the row: it costs nothing. */
+.footer:empty {
+  display: none;
+}
+
+/*
+ * The action, and the ground it sits on.
+ *
+ * `--hg-gradient-ground` is transparent at the top and warm at the foot, which
+ * is what makes the button read as standing *on* the page rather than on a
+ * panel laid over it — the same treatment Home's foot band and the word
+ * carousel's check use, so the three do not each look like a different app.
+ *
+ * The bottom padding is the whole point of this file: normal padding, plus the
+ * system inset, added rather than substituted. The inset is not part of the
+ * button's own height — a button that "includes" the navigation bar in its
+ * 56 px is a 30 px button with a strip of Android under the text.
+ */
+.footer {
+  padding: var(--hg-space-4) var(--hg-space-5)
+    calc(var(--hg-footer-gap) + var(--hg-safe-bottom));
+  background: var(--hg-gradient-ground);
+}
+
+/*
+ * On a desktop the shell is a rounded card floating on the page, and a footer
+ * painting into its bottom corners would square them off. The inset is zero
+ * there anyway.
+ */
+@media (min-width: 600px) {
+  .footer {
+    border-end-start-radius: var(--hg-radius-2xl);
+    border-end-end-radius: var(--hg-radius-2xl);
+  }
+}

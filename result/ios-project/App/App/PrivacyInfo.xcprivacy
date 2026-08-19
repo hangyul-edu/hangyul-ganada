@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  The privacy manifest.
+
+  Apple has required one since spring 2024 for any app that uses a
+  "required reason" API, and rejects at upload without it. Three declarations
+  are asked for and all three are made here.
+
+  ## Tracking: false, and nothing to qualify it
+
+  The app has no advertising identifier, no attribution SDK, no analytics, and
+  makes no network request at runtime. `NSPrivacyTrackingDomains` is empty
+  because there are no domains at all — not because the ones there are happen
+  not to track.
+
+  ## Collected data: none
+
+  Apple's definition of *collection* is transmission off the device. The
+  learner's practice history is written to a SQLite file in this app's own
+  container by the plugin in `HangyulStorePlugin.swift` and never leaves it, so
+  it is not collected under that definition. There is no account for it to
+  belong to.
+
+  ## Required-reason APIs: none
+
+  This array was not always empty. It carried
+  `NSPrivacyAccessedAPICategoryFileTimestamp` with reason `C617.1`, because
+  `@capacitor/filesystem` calls `stat` and reads `modificationTime` — and the
+  app reached that code on exactly one path, writing an exported backup into its
+  own cache directory before handing it to the share sheet.
+
+  The backup feature was removed, and `@capacitor/filesystem` and
+  `@capacitor/share` went with it. `store/app-store/privacy-manifest-audit.md`
+  is the per-component audit, and with those two gone it finds no required-reason
+  API anywhere in the binary. So the declaration went too: declaring a category
+  the app does not use would be as wrong as omitting one it does, and a manifest
+  that over-declares is a manifest nobody can check.
+
+  `UserDefaults` is worth naming for the same reason: `@capacitor/preferences`
+  was removed from this project precisely so that this file would not have to
+  declare `CA92.1`, because the learner's data belongs in the SQLite store and
+  a second storage mechanism would have been a second thing to keep in sync.
+-->
+<plist version="1.0">
+<dict>
+	<key>NSPrivacyTracking</key>
+	<false/>
+	<key>NSPrivacyTrackingDomains</key>
+	<array/>
+	<key>NSPrivacyCollectedDataTypes</key>
+	<array/>
+	<key>NSPrivacyAccessedAPITypes</key>
+	<array/>
+</dict>
+</plist>

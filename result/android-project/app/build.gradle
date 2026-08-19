@@ -1,0 +1,162 @@
+import groovy.json.JsonSlurper
+
+apply plugin: 'com.android.application'
+
+/**
+ * Identity comes from one file, shared with iOS.
+ *
+ * `app.identity.json` is the only place the application id, the version and the
+ * SDK levels are written down. Reading it here rather than duplicating the
+ * values means the Android and iOS builds cannot disagree about what version
+ * they are, which is the kind of mistake that is only discovered in a store
+ * console.
+ */
+def identity = new JsonSlurper().parse(file('../../app.identity.json'))
+
+/**
+ * Release signing, from the environment only.
+ *
+ * No keystore, password or alias is ever committed. If the four variables are
+ * absent the release build is still produced and simply left unsigned by this
+ * config — Gradle then applies the debug key so the artifact is installable for
+ * QA, and `store-readiness-report.md` says plainly that it is not the upload
+ * key. Failing the build instead would mean nobody could produce a testable
+ * release build without the production secret, which is worse.
+ */
+def keystorePath = System.getenv('ANDROID_KEYSTORE_PATH')
+def hasReleaseKeystore = keystorePath != null && !keystorePath.isEmpty() && file(keystorePath).exists()
+
+android {
+    namespace = "com.talkhangyul.ganada"
+    compileSdk = rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId identity.appId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode identity.buildNumber
+        versionName identity.version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Only the languages the app actually ships. Without this the APK
+        // carries every AndroidX translation for locales we do not support.
+        resourceConfigurations += ["en", "ko", "ja", "zh", "es", "fr", "de", "pt"]
+
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+
+    signingConfigs {
+        if (hasReleaseKeystore) {
+            release {
+                storeFile file(keystorePath)
+                storePassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('ANDROID_KEY_ALIAS')
+                keyPassword System.getenv('ANDROID_KEY_PASSWORD')
+                /*
+                 * v2 and v3, not v1.
+                 *
+                 * v1 is JAR signing, and it is only needed for Android 6 and
+                 * below; `minSdk` is 24, so every device that can install this
+                 * app verifies v2 or better. Including it would add a signature
+                 * nothing checks and a per-entry digest to every one of the
+                 * 7,000 files in the package.
+                 *
+                 * v3 matters and is easy to lose: naming any of these flags
+                 * explicitly turns the unnamed ones off, so setting only v1 and
+                 * v2 silently drops the scheme that supports key rotation.
+                 */
+                enableV1Signing false
+                enableV2Signing true
+                enableV3Signing true
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // R8 on. The app's own logic is JavaScript inside the bundle, so
+            // what this shrinks is the Java/Kotlin shell and AndroidX — worth
+            // several megabytes on a package this small.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (hasReleaseKeystore) {
+                signingConfig signingConfigs.release
+            }
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+    }
+
+    /**
+     * 16 KB page alignment.
+     *
+     * Google Play requires it for apps targeting API 35+ from 1 February 2027.
+     * This app ships no NDK code of its own, and Capacitor's Android runtime is
+     * pure Java/Kotlin — so there is nothing to re-link. `useLegacyPackaging
+     * false` keeps native libraries (if a dependency ever adds one) stored
+     * uncompressed and page-aligned, which is what the requirement asks for.
+     * `scripts/audit-native-libs.mjs` checks the built artifact rather than
+     * trusting this comment.
+     */
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    lint {
+        // A lint error should stop a release, not be discovered in review.
+        abortOnError true
+        // Reported, not fatal: these fire on Capacitor's own generated sources.
+        disable 'UnusedResources', 'GradleDependency', 'OldTargetApi'
+        warningsAsErrors false
+    }
+
+    bundle {
+        // One download per device rather than every language and density.
+        language { enableSplit = true }
+        density { enableSplit = true }
+        abi { enableSplit = true }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

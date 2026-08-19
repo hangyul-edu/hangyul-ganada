@@ -1,0 +1,73 @@
+/*
+ * A horizontally scrolling row.
+ *
+ * The scrollbar is hidden by the app-wide rule in `global.css`; what replaces
+ * it as the "there is more this way" signal is the edge fade below, plus the
+ * padding that lets the next chip peek in rather than being cut flush.
+ */
+.row {
+  display: flex;
+  gap: var(--hg-space-2);
+  overflow-x: auto;
+  /* Sideways only. A filter row that also scrolls vertically by a pixel is a
+     row that fights the page for every wheel event. */
+  overflow-y: hidden;
+  /* The page never moves sideways because a row inside it reached its end. */
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.row > * {
+  /* Chips size to their content and never squash to fit the viewport — the
+     squashing is what made the row look like it fitted when it did not. */
+  flex: none;
+}
+
+/*
+ * Mid-drag.
+ *
+ * The grab cursor is the only affordance a mouse user gets that the row is
+ * draggable, and text selection has to stop or the drag paints a blue streak
+ * across every label it passes.
+ */
+.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/*
+ * The edge fade.
+ *
+ * A mask rather than a gradient overlay, so it works on any background the row
+ * is placed on — the vocabulary filters sit on the page, the syllable row sits
+ * on the session gradient, and an overlay tuned for one would be a grey smear
+ * on the other. The masked width is a little under a chip, so the next item is
+ * visibly *there* and visibly cut off.
+ */
+.fadeEnd {
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+}
+
+.fadeStart {
+  mask-image: linear-gradient(to left, #000 calc(100% - 28px), transparent 100%);
+}
+
+.fadeStart.fadeEnd {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 28px,
+    #000 calc(100% - 28px),
+    transparent 100%
+  );
+}
+
+/*
+ * A focused chip must never be the one hidden under the fade, so the mask is
+ * dropped whenever anything inside has keyboard focus. Losing the affordance
+ * for a moment is a fair price for not hiding the thing the keyboard user is
+ * looking at.
+ */
+.row:focus-within {
+  mask-image: none;
+}

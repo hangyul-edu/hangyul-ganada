@@ -1,0 +1,85 @@
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+}
+
+.barLabel {
+  flex: none;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+}
+
+.track {
+  flex: 1;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-border);
+  overflow: hidden;
+}
+
+.sm {
+  height: 6px;
+}
+
+.md {
+  height: 8px;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  transition: width var(--hg-duration-normal) var(--hg-ease-decelerate);
+}
+
+.gauge {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+
+.gauge > svg {
+  position: absolute;
+  inset: 0;
+}
+
+.gaugeFill {
+  transition: stroke-dasharray var(--hg-duration-slow) var(--hg-ease-decelerate);
+}
+
+.gaugeCenter {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  color: var(--hg-primary-text);
+  /*
+   * The numeral and its percent sign are separate elements so the design can
+   * size them differently, and `formatToParts` hands them over in the locale's
+   * own order. Numbers run left-to-right in every locale, so the pair is
+   * isolated at LTR — without this an RTL page reverses them and renders "%94".
+   */
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* The numeral is set noticeably larger than its unit — as in the reference. */
+.gaugeValue {
+  font-size: var(--hg-text-heading-lg);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1;
+}
+
+.gaugeUnit {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+}
+
+.gaugeCaption {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1;
+}

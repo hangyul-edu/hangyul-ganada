@@ -1,0 +1,25 @@
+{
+  "before": {
+    "vocabulary_image_files": 2504,
+    "vocabulary_image_bytes": 1724119,
+    "images_manifest_bytes": 115768,
+    "web_dist_bytes": 66444812,
+    "android_app-release.aab": 64038040,
+    "vocabulary_image_on_disk_bytes": 1724119,
+    "android_apks": {
+      "apps/mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk": 65709108
+    }
+  },
+  "after": {
+    "vocabulary_image_files": 0,
+    "vocabulary_image_bytes": 0,
+    "images_manifest_bytes": 0,
+    "audio_bytes": 53026418,
+    "audio_clips": 10454,
+    "generated_data_bytes": 1818189,
+    "web_dist_bytes": 66189598,
+    "apk_bytes": 65886985,
+    "aab_bytes": 64731210
+  },
+  "_comment": "Written by hand at the two points measured. The image removal and a 77-word corpus addition happened in the same cycle, so the totals move in opposite directions and are reported separately rather than netted off."
+}

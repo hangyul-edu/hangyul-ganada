@@ -1,0 +1,231 @@
+/*
+ * A column that fills the scroll area, so the empty state can sit in the middle
+ * of it rather than at the top of half a screen of nothing.
+ *
+ * The bottom navigation is a sibling of the scroll area, not an overlay, so no
+ * space is reserved for it here — the body's own bottom padding is the whole of
+ * the spacing under the last card.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--hg-space-5);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+/*
+ * Nothing to review is the *good* state — it means the learner has not got
+ * anything wrong — so it is centred and calm rather than stranded at the top
+ * with the rest of the screen left blank.
+ */
+.bodyEmpty {
+  justify-content: center;
+}
+
+.intro {
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-tertiary);
+}
+
+.sectionTitle {
+  margin-bottom: var(--hg-space-3);
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+}
+
+/*
+ * The call to action. Review's whole problem was that it had none — a list of
+ * past mistakes with nothing to do about them. The card comes first and the
+ * preview below it is secondary.
+ */
+.start {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.startTitle {
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  text-wrap: balance;
+}
+
+.startBody {
+  margin-bottom: var(--hg-space-2);
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  min-height: 56px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+}
+
+/* Target content: fixed reading order whatever the interface direction is. */
+.rowGlyph,
+.rowWord {
+  direction: ltr;
+  display: grid;
+  place-items: center;
+  flex: none;
+  min-width: 40px;
+  height: 40px;
+  padding-inline: var(--hg-space-2);
+  border-radius: var(--hg-radius-sm);
+  background: var(--hg-surface-warm);
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.rowWord {
+  font-size: var(--hg-text-body-lg);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.rowPrimary {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+}
+
+.rowMeta {
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+}
+
+.more {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  text-align: center;
+}
+
+.emptyTitle {
+  margin-top: var(--hg-space-2);
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+}
+
+.emptyBody {
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-tertiary);
+  line-height: var(--hg-leading-snug);
+}
+
+.emptyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: var(--hg-space-3);
+  min-height: var(--hg-size-hit-target);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+}
+
+/* The note about a capped sitting. Quieter than the intro above it: it is a
+   reassurance, not an instruction. */
+.startNote {
+  margin: 0;
+  font: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * The three counts.
+ *
+ * Rows rather than tiles, because two of them are just numbers and one of them
+ * is a link, and a grid of three tiles where one is tappable and two are not is
+ * a screen that teaches the learner to tap things that do nothing.
+ */
+.counts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.count {
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  border: 1px solid var(--hg-border);
+}
+
+.countLink {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  color: inherit;
+  text-decoration: none;
+}
+
+.countLabel {
+  flex: 1;
+  font-size: var(--hg-text-body);
+}
+
+.countValue {
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+}
+
+/*
+ * The manual modes.
+ *
+ * A scrolling row would hide the third one on a narrow phone; three equal
+ * columns fit at 320px and say plainly that there are exactly three.
+ */
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--hg-space-2);
+}
+
+.mode {
+  padding: var(--hg-space-3) var(--hg-space-2);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-medium);
+  text-align: center;
+  text-decoration: none;
+}

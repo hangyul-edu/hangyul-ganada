@@ -1,0 +1,230 @@
+/**
+ * Global styles. Everything visual resolves to a token from
+ * @hangyul-ganada/design-tokens — no literal colours, radii or shadows below.
+ */
+@import '@hangyul-ganada/design-tokens/tokens.css';
+/*
+ * The safe area is one file, and it is the only file in the app that knows
+ * what a system bar is. After the tokens, because it is written in them.
+ */
+@import './safe-area.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+ * No visible scrollbars, anywhere.
+ *
+ * This is an app, not a web page. A desktop scrollbar track down the side of a
+ * 375 pt phone shell — or a grey bar under the level filter chips — is the
+ * single loudest tell that what you are looking at is a browser, and it changes
+ * nothing about how the content is used on the devices this ships to.
+ *
+ * **Scrolling itself is untouched.** Only the widget is hidden: touch drag,
+ * wheel, trackpad, keyboard (arrows, Page Up/Down, Home/End, and the browser's
+ * own scroll-into-view on focus) all behave exactly as before. The one thing
+ * genuinely lost is *dragging the thumb* with a mouse, on a layout whose scroll
+ * regions are at most a few screens tall.
+ *
+ * Three declarations because three engines disagree, and all three are needed:
+ * `scrollbar-width` is the standard property and is what Firefox reads,
+ * `::-webkit-scrollbar` is what Chrome, Edge and Safari read, and
+ * `-ms-overflow-style` covers legacy Edge and any WebView still built on it.
+ * Applied universally rather than to a list of scroll containers, so a region
+ * added later cannot quietly bring its scrollbar back.
+ */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+html {
+  /* The app is a fixed-height shell with its own scroll regions. */
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--hg-font-ui);
+  font-size: var(--hg-text-body);
+  line-height: var(--hg-leading-normal);
+  color: var(--hg-text);
+  /* The shell paints the app surface; this is what shows either side of it. */
+  background: var(--hg-warm-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Stops iOS rubber-banding the page while a learner drags on the canvas. */
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  /* Removes the 300ms tap delay and the grey flash on iOS. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+ * One focus treatment for the whole app, on keyboard focus only, so pointer
+ * users never see a ring but keyboard users always do.
+ */
+:focus-visible {
+  outline: 2px solid var(--hg-primary);
+  outline-offset: 2px;
+  border-radius: var(--hg-radius-xs);
+}
+
+/** Visible only to screen readers. */
+.hg-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/** Skip link — the first tab stop, visible once focused. Centred, so it needs
+    no direction-aware handling. */
+.hg-skip-link {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  translate: -50% -200%;
+  z-index: var(--hg-z-toast);
+  padding: var(--hg-space-2) var(--hg-space-4);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+  font-weight: var(--hg-weight-bold);
+  transition: translate var(--hg-duration-fast) var(--hg-ease-standard);
+}
+
+.hg-skip-link:focus-visible {
+  translate: -50% 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Right-to-left interfaces.
+ *
+ * `dir` is set on <html> by LocaleProvider; almost nothing needs to react to it
+ * because the layout is built from logical properties. The exceptions are here.
+ */
+
+/* Latin and Hangul strings embedded in an RTL sentence — romanisations, BCP-47
+   tags, licence names — need isolating so the bidi algorithm does not drag
+   neighbouring punctuation across them. */
+[dir='rtl'] :is([lang='ko'], [lang='en']) {
+  unicode-bidi: isolate;
+}
+
+/**
+ * A run of digits and separators — "1 / 5", "12/48", "94%".
+ *
+ * Numbers read left-to-right in every language, but a bidi paragraph will
+ * happily reorder "1 / 5" into "5 / 1" when the spaces around the slash break
+ * it into separate runs. Isolating the whole run at LTR is the fix, and it is
+ * needed wherever a counter sits inside translated prose.
+ */
+.hg-numeric {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/**
+ * Chevrons follow the reading direction.
+ *
+ * A "next" chevron points the way the reader is going, so in Arabic or Hebrew
+ * it points left. Only icons that carry a direction are flipped — mirroring the
+ * whole icon set would give an RTL learner a backwards magnifying glass and a
+ * mirrored house for no reason.
+ */
+[dir='rtl'] .hg-icon-directional {
+  scale: -1 1;
+}
+
+/**
+ * Korean target content never mirrors.
+ *
+ * Apply to any element whose content is the thing being taught rather than
+ * text about it. The writing canvas, the syllable row and the prompt glyph pin
+ * their own direction in their modules; this is the escape hatch for anywhere
+ * else Korean appears inline.
+ */
+.hg-target-content {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+}

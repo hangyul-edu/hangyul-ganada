@@ -1,0 +1,179 @@
+{
+  "letters": {
+    "title": "Learn letters",
+    "alphabetTitle": "The Hangul alphabet",
+    "alphabetCaption": "letters learned",
+    "complete": "Learned"
+  },
+  "units": {
+    "badge": "Unit {{index, number}}",
+    "continue": "Got it — let's start",
+    "unit-1": {
+      "title": "Six vowels to start",
+      "goal": "Every Korean syllable needs a vowel. These six are the simplest.",
+      "body": "Hangul is an alphabet, not a set of pictures. There are 40 letters, they were designed to be learned quickly, and you are about to learn six of them.",
+      "points": [
+        "Letters are grouped into square blocks, and each block is one syllable.",
+        "A vowel is either a tall line or a flat line — that decides where it sits in the block.",
+        "Say each one out loud as you trace it. The sound is half the lesson."
+      ]
+    },
+    "unit-2": {
+      "title": "Your first consonants",
+      "goal": "Five consonants. With the vowels you know, that is already 30 syllables."
+    },
+    "unit-3": {
+      "title": "Putting them together",
+      "goal": "Consonant plus vowel makes a block you can read.",
+      "body": "A Korean syllable is written as one square. The consonant goes first — on the left for a tall vowel, on top for a flat one.",
+      "points": [
+        "A tall vowel (ㅏ ㅓ ㅣ) stands to the right of the consonant.",
+        "A flat vowel (ㅗ ㅜ ㅡ) lies underneath it.",
+        "Read the block the way you would read a page: left to right, then down."
+      ]
+    },
+    "unit-4": {
+      "title": "Five more consonants",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — the rest of the plain series."
+    },
+    "unit-5": {
+      "title": "Reading more blocks",
+      "goal": "Including the one letter that makes no sound at all."
+    },
+    "unit-6": {
+      "title": "Adding a y sound",
+      "goal": "One extra stroke turns ㅏ into ㅑ. The pattern holds for all four."
+    },
+    "unit-7": {
+      "title": "A puff of air",
+      "goal": "ㅊ ㅋ ㅌ ㅍ are letters you know, with one stroke added."
+    },
+    "unit-8": {
+      "title": "The e vowels",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — vowels made by adding ㅣ."
+    },
+    "unit-9": {
+      "title": "Doubled and tightened",
+      "goal": "Five letters written twice, said tighter."
+    },
+    "unit-10": {
+      "title": "The w vowels",
+      "goal": "Two vowels written as one. The last of the 40 letters."
+    },
+    "unit-11": {
+      "title": "A letter at the foot",
+      "goal": "받침 — the consonant that closes a syllable.",
+      "body": "A block can hold a third letter, underneath the other two. It is called a 받침, and it closes the syllable.",
+      "points": [
+        "The third letter always goes at the bottom of the square.",
+        "A 받침 is only ever released as one of seven sounds, whichever letter is written.",
+        "This is where most beginners' reading breaks. Take it slowly."
+      ]
+    },
+    "unit-12": {
+      "title": "Reading 한글",
+      "goal": "You now know every letter. Read the name of the writing system itself."
+    }
+  },
+  "intro": {
+    "letterName": "Name",
+    "letterSound": "Sound",
+    "soundIn": "Hear {{character}} in",
+    "reads": "Reads as"
+  },
+  "steps": {
+    "label": "Steps in this letter",
+    "trace": "Trace",
+    "practise": "Practise",
+    "read": "Read"
+  },
+  "recognition": {
+    "question": "Which one makes this sound?",
+    "optionsAria": "Choose the letter you heard",
+    "optionAria": "Choose {{character}}",
+    "correctDetail": "That is {{character}}.",
+    "wrongHeadline": "Not that one.",
+    "wrongDetail": "{{character}} is the one that sounds like {{sound}}.",
+    "hearAgain": "Hear it again"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Skip this one",
+    "startTrace": "Trace it",
+    "nowPractise": "Next: with a lighter guide",
+    "nowRead": "Now read it",
+    "next": "Next letter",
+    "finish": "Finish",
+    "prompt": {
+      "trace": "Follow the grey shape with your finger.",
+      "practise": "The guide is lighter now. Write it yourself — it is still there if you need it."
+    }
+  },
+  "complete": {
+    "title": "Nice work!",
+    "letters_one": "You finished {{count, number}} letter in {{lesson}}.",
+    "letters_other": "You finished {{count, number}} letters in {{lesson}}."
+  },
+  "review": {
+    "title": "Review",
+    "startCta": "Start review",
+    "sessionTitle": "Review",
+    "completeTitle": "Review done",
+    "empty": {
+      "title": "Nothing to review yet",
+      "body": "Anything you get wrong turns up here. For now, how about a new letter?",
+      "cta": "Learn a letter"
+    },
+    "forYou": "Review for you",
+    "sessionLength_one": "One short exercise",
+    "sessionLength_other": "{{count, number}} short exercises",
+    "needsPractice": "Needs practice",
+    "dueToday": "Due today",
+    "savedWords": "Saved words",
+    "chooseMode": "Or pick what to practise",
+    "comingUp": "Coming up",
+    "outcome": "{{practised, number}} practised · {{firstTry, number}} came straight back to you · {{comingBack, number}} will return soon",
+    "blank": "blank",
+    "optionsLabel": "Answers",
+    "showHint": "Show a hint",
+    "right": "That's it.",
+    "notQuite": "Not quite. Here it is.",
+    "mode": {
+      "read": "Read",
+      "listen": "Listen",
+      "write": "Write"
+    },
+    "prompt": {
+      "read": "What does this word mean?",
+      "readLetter": "What sound does this make?",
+      "listen": "Which word did you hear?",
+      "listenLetter": "Which letter is this?",
+      "context": "Which word fits here?",
+      "write": "Write this word",
+      "writeLetter": "Write what you hear",
+      "distinguish": "Which one makes this sound?"
+    }
+  },
+  "reading": {
+    "question": "What does this word mean?",
+    "optionsAria": "Four meanings to choose from",
+    "wrongHeadline": "Have another look",
+    "answer": "{{word}} means “{{meaning}}”."
+  },
+  "sounds": {
+    "title": "When sounds meet",
+    "blurb": "Why 학교 is not said the way it is written.",
+    "intro": "You can now read every letter. Korean writes the pieces a word is made of, and changes some of them when they touch — so a few words sound different from how they look. Here are the ones you will meet first.",
+    "written": "Written",
+    "said": "Said",
+    "note": "You do not have to memorise these. Listen for them, and they will start to sound normal.",
+    "name": {
+      "tensing": "A tight second sound",
+      "aspiration": "A puff of air",
+      "nasal": "A soft, nasal sound",
+      "lateral": "ㄴ and ㄹ together",
+      "palatal": "ㄷ and ㅌ before 이",
+      "liaison": "The sound slides over"
+    }
+  }
+}

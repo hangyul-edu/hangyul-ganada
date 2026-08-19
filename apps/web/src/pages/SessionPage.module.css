@@ -1,0 +1,226 @@
+/* Shared by the letter, word and review session screens. */
+
+/*
+ * The `.page` wrapper that used to be here is gone.
+ *
+ * It was a flex column with `min-height: 100%` and 32 px of padding under it,
+ * and the primary action was simply the last thing inside it. On a phone with a
+ * three-button navigation bar those 32 px are smaller than the bar, so the foot
+ * of the orange Trace it button was drawn inside Android's own furniture —
+ * which is what a physical Samsung photographed and what no amount of adding
+ * pixels here would have fixed for the next device.
+ *
+ * The three session screens are now `ui/FocusScreen`: a header row, a scrolling
+ * row and a footer row that reserves the system inset it measures at runtime.
+ */
+
+.progressRow {
+  padding: 0 var(--hg-space-5) var(--hg-space-3);
+}
+
+/* The lesson content, vertically centred when there is room. */
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*
+   * `min-height: 100%` of the scroll region rather than `flex: 1` of the page.
+   *
+   * The centring is the same trick and it is still worth having: a character's
+   * introduction is short, and against the top of a tall phone it left half a
+   * screen of gradient under it. What changed is what "the screen" means — the
+   * scroll region between the header and the safe footer, not the whole
+   * viewport — so a short step centres inside the space it actually has and a
+   * long one overflows into a scroll, exactly as before.
+   */
+  min-height: 100%;
+  gap: var(--hg-space-4);
+  padding: 0 var(--hg-space-5);
+}
+
+/* --- the prompt above the box --- */
+
+.prompt {
+  text-align: center;
+}
+
+.promptLabel {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The character and its romanisation, pinned to LTR.
+ *
+ * The glyph is Korean and the romanisation is Latin; both read left to right,
+ * and their order carries meaning. In an RTL interface a flex row would swap
+ * them, so the direction is fixed here rather than inherited.
+ *
+ * This is the one screen that still spells the romanisation out, and the one
+ * where it earns its place: the learner is writing, the prompt is a glyph they
+ * met a minute ago, and three Latin letters are what lets them check they are
+ * writing the letter they think they are.
+ */
+.promptChar {
+  direction: ltr;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--hg-space-3);
+  margin-top: var(--hg-space-1);
+}
+
+.promptGlyph {
+  font-size: var(--hg-text-display-lg);
+  font-weight: var(--hg-weight-bold);
+  line-height: var(--hg-leading-tight);
+  color: var(--hg-text);
+}
+
+/*
+ * Scaffolding, and sized like it.
+ *
+ * It was body-large, bold and brand-coloured beside a display-sized ㄱ, which
+ * put "g / k" at a weight a beginner reads as part of the lesson rather than as
+ * a note about it. The goal is to learn Hangul; the Latin is a handrail, and a
+ * handrail should not be the same size as the stairs.
+ */
+.promptRoman {
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+}
+
+.promptHint {
+  margin-top: 2px;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/* --- mnemonic --- */
+
+.mnemonic {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+}
+
+.breakdown {
+  margin-top: var(--hg-space-2);
+  font-size: var(--hg-text-micro);
+  color: var(--hg-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  text-align: center;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.skip {
+  align-self: center;
+  padding: var(--hg-space-2) var(--hg-space-4);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.skip:hover {
+  color: var(--hg-text-secondary);
+}
+
+/* --- word session --- */
+
+.wordHeader {
+  text-align: center;
+  min-width: 0;
+}
+
+/*
+ * The word and its speaker on one line.
+ *
+ * The class was referenced by the page and never defined, so the two sat as
+ * blocks and the speaker landed under the word. `min-width: 0` on the row is
+ * what lets the heading's clamp() actually shrink — without it the flex item
+ * refuses to go below its content width and a long word pushes the speaker off
+ * the edge instead.
+ */
+.wordHeaderTop {
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-3);
+  min-width: 0;
+}
+
+/*
+ * The word itself, sized so that it fits.
+ *
+ * A fixed display size fits 물 and clips 기도하다 — and a 5-syllable entry from
+ * the corpus is wider still. `clamp()` lets the type come down as the word gets
+ * longer without ever going below something a beginner can read the strokes of.
+ *
+ * `word-break: keep-all` is the important half: without it a Korean string
+ * breaks between any two syllables, and 기도하다 wrapping as 기도하 / 다 teaches
+ * the word wrong. With it the word stays whole and the size does the adapting.
+ */
+.wordWord {
+  /* Korean target content. */
+  direction: ltr;
+  font-size: clamp(var(--hg-text-heading), 9vw, var(--hg-text-display));
+  font-weight: var(--hg-weight-bold);
+  line-height: var(--hg-leading-tight);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.wordMeaning {
+  margin-top: var(--hg-space-1);
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}
+
+.wordMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  margin-top: var(--hg-space-3);
+}
+
+/*
+ * The syllable row that used to be here is gone.
+ *
+ * It laid one canvas per syllable side by side and scrolled horizontally past
+ * three, which is what put controls off the edge of a phone. Its replacement is
+ * `features/writing/WordWritingCarousel` — one canvas, one toolbar, one check.
+ */
+
+.example {
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+}
+
+.exampleKo {
+  /* The Korean sentence, in Korean reading order. */
+  direction: ltr;
+  text-align: start;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.exampleEn {
+  margin-top: 2px;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}

@@ -1,0 +1,83 @@
+{
+  "title": "学習の記録",
+  "streak": {
+    "caption": "練習すれば続きます。文字を完成させなくても大丈夫です。",
+    "longest": "最長連続",
+    "totalDays": "学習した日",
+    "totalTime": "合計時間",
+    "unit_other": "日連続"
+  },
+  "chart": {
+    "title": "学習アクティビティ",
+    "rangeAria": "期間を選ぶ",
+    "aria": "日ごとの練習量",
+    "noneYet": "この期間の記録はまだありません。",
+    "range": {
+      "7": "7日",
+      "30": "30日",
+      "90": "3か月",
+      "0": "すべて"
+    }
+  },
+  "calendar": {
+    "previous": "前の月",
+    "next": "次の月",
+    "less": "少ない",
+    "more": "多い",
+    "dayAria_other": "{{date}}：{{count, number}}回"
+  },
+  "day": {
+    "time": "学習時間",
+    "attempts": "書いた回数",
+    "correct": "正解",
+    "charactersLearned": "覚えた文字",
+    "wordsLearned": "覚えた単語",
+    "reviews": "復習の回数",
+    "nothing": "この日の記録はありません。"
+  },
+  "insights": {
+    "title": "目立つところ",
+    "mostPractisedCharacter": "一番練習した文字",
+    "mostPractisedWord": "一番練習した単語",
+    "accuracy": "書きの正確さ",
+    "thisWeek": "今週",
+    "learnedCount_other": "{{count, number}}個"
+  },
+  "units": {
+    "minute_other": "{{count, number}}分",
+    "hour_other": "{{count, number}}時間"
+  },
+  "empty": {
+    "title": "学習の記録は今日から",
+    "body": "文字をいくつか練習すると、このページが埋まります。学んだ日、かかった時間、何をしたかまで。"
+  },
+  "week": {
+    "title": "今週",
+    "range": "{{from}}から",
+    "days": "学習した日",
+    "daysValue_other": "7日中{{count, number}}日",
+    "time": "時間",
+    "learned": "覚えた数",
+    "accuracy": "正確さ",
+    "same": "先週と同じ時間です。",
+    "moreThanLast": "先週より{{minutes, number}}分多いです。",
+    "lessThanLast": "先週より{{minutes, number}}分少ないです。",
+    "quiet": "今週はまだこれからですね。"
+  },
+  "memory": {
+    "title": "覚え具合",
+    "firstTry": "今週は {{count, number}} 個を一度で思い出せました。",
+    "strongestSkill": "今週いちばん調子がいいのは{{skill}}です。",
+    "confusionImproving": "{{a}} と {{b}} の見分けがついてきました。",
+    "skill": {
+      "reading_recognition": "読み",
+      "listening_recognition": "聞き取り",
+      "guided_writing": "書き",
+      "meaning_recognition": "意味",
+      "sentence_comprehension": "文の理解",
+      "sound_recognition": "音の聞き分け",
+      "visual_recognition": "字の見分け",
+      "lookalike_discrimination": "似た字の区別"
+    }
+  }
+}

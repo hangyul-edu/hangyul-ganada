@@ -1,0 +1,91 @@
+/*
+ * A quotation, on its own card.
+ *
+ * ## What was wrong before
+ *
+ * The lines used to sit as grey type directly on the peach ground gradient at
+ * the foot of Home. Two problems, and the second is the one that mattered:
+ * grey on orange measured 2.4:1 — under any contrast rule there is — and even
+ * where it could be read it looked like a caption someone had forgotten to
+ * finish rather than the deliberate last note of the screen.
+ *
+ * So the quotation gets a surface of its own to sit on: a warm card, a hairline
+ * border, one orange mark, and quote text in the same ink as everything else a
+ * learner is expected to read. The band underneath it stays exactly as it was —
+ * the card floats on the ground rather than replacing it.
+ */
+
+.card {
+  display: flex;
+  gap: var(--hg-space-3);
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: var(--hg-space-4) var(--hg-space-5);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-xl);
+  background: var(--hg-surface);
+  box-shadow: var(--hg-shadow-card);
+}
+
+/*
+ * The orange accent: one quotation mark, set large and low in weight.
+ *
+ * Decorative and marked as such — the blockquote below already tells assistive
+ * technology what this is, and a screen reader announcing a stray double-quote
+ * before every epigraph would be noise.
+ */
+.mark {
+  flex: none;
+  font-size: 34px;
+  line-height: 0.9;
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary);
+  user-select: none;
+}
+
+.text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+}
+
+/*
+ * The quotation itself: body size, body ink.
+ *
+ * Not a caption. It is the one piece of prose on this screen written for its
+ * own sake, and a learner should be able to read it at a glance in either
+ * appearance without leaning in.
+ */
+.body {
+  margin: 0;
+  font-size: var(--hg-text-body);
+  line-height: var(--hg-leading-normal);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+.author {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The original, under its translation.
+ *
+ * Quieter than the line above it, and under rather than over: the learner's own
+ * language is the quotation now, and the original is where it came from. When
+ * that original is Korean it is also a sentence they will one day read
+ * unaided — which is worth putting on the screen at a size they can see, but
+ * not at the cost of making the line they can actually read look like a
+ * footnote to it.
+ */
+.original {
+  margin: 0;
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-snug);
+  color: var(--hg-text-secondary);
+  direction: ltr;
+}

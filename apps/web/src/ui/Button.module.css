@@ -1,0 +1,130 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  border-radius: var(--hg-radius-md);
+  font-weight: var(--hg-weight-bold);
+  white-space: nowrap;
+  transition:
+    background-color var(--hg-duration-fast) var(--hg-ease-standard),
+    color var(--hg-duration-fast) var(--hg-ease-standard),
+    border-color var(--hg-duration-fast) var(--hg-ease-standard),
+    transform var(--hg-duration-instant) var(--hg-ease-standard);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.pill {
+  border-radius: var(--hg-radius-pill);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  display: inline-block;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+
+/* --- sizes: min-height keeps every button at or above the 44px hit target --- */
+
+.sm {
+  min-height: var(--hg-size-control-sm);
+  padding-inline: var(--hg-space-3);
+  font-size: var(--hg-text-caption);
+}
+
+.md {
+  min-height: var(--hg-size-control-md);
+  padding-inline: var(--hg-space-5);
+  font-size: var(--hg-text-body);
+}
+
+.lg {
+  min-height: var(--hg-size-control-lg);
+  padding-inline: var(--hg-space-6);
+  font-size: var(--hg-text-body-lg);
+}
+
+/* --- variants --- */
+
+.primary {
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--hg-primary-hover);
+}
+
+.primary:active:not(:disabled) {
+  background: var(--hg-primary-pressed);
+}
+
+.primary:disabled {
+  background: var(--hg-primary-disabled);
+  color: var(--hg-text-disabled);
+}
+
+.secondary {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--hg-orange-100);
+}
+
+.secondary:disabled {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-disabled);
+}
+
+.outline {
+  background: var(--hg-surface);
+  color: var(--hg-primary-text);
+  box-shadow: inset 0 0 0 1px var(--hg-primary);
+}
+
+.outline:hover:not(:disabled) {
+  background: var(--hg-primary-subtle);
+}
+
+.outline:disabled {
+  color: var(--hg-text-disabled);
+  box-shadow: inset 0 0 0 1px var(--hg-border);
+}
+
+/* Neutral secondary action — the paired buttons under an incorrect answer. */
+.ghost {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-secondary);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--hg-border);
+}
+
+.ghost:disabled {
+  color: var(--hg-text-disabled);
+}
+
+.dark {
+  background: var(--hg-gray-900);
+  color: var(--hg-text-on-dark);
+}
+
+.dark:disabled {
+  background: var(--hg-border);
+  color: var(--hg-text-disabled);
+}

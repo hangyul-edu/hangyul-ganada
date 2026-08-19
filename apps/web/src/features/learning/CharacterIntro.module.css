@@ -1,0 +1,164 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+  /*
+   * Tighter than it was.
+   *
+   * The screen is long by nature — a glyph, two sound rows, a hint, a
+   * demonstration and a tip — and every gap between them was the same 16 px, so
+   * the parts that belong together (the demonstration and the instruction under
+   * it) sat as far apart as the parts that do not. 12 px between blocks, with
+   * the groups that read as one thing setting their own smaller gaps. The
+   * demonstration itself is not shrunk to buy the space: seeing the letter
+   * written is what this product is for.
+   */
+  gap: var(--hg-space-3);
+}
+
+/*
+ * The glyph is the subject of the screen, so it gets the card and the space.
+ * Everything else is annotation around it.
+ */
+.glyphCard {
+  display: grid;
+  place-items: center;
+  padding: var(--hg-space-5) var(--hg-space-4);
+  border-radius: var(--hg-radius-xl);
+  background: var(--hg-gradient-card);
+  box-shadow: var(--hg-shadow-card);
+}
+
+.glyph {
+  font-size: clamp(96px, 32vw, 148px);
+  line-height: 1;
+  color: var(--hg-text);
+  /* Korean is written left to right in every interface language. */
+  direction: ltr;
+}
+
+/*
+ * There is no `.roman` here any more, deliberately.
+ *
+ * A bare `g / k` under a 148 px ㄱ, with the hint below it also saying "between
+ * g and k", was the same idea printed twice — and the top one was printed at a
+ * size that invited a beginner to learn the Latin letters instead of the
+ * Hangul. The hint is the one that survived, because a sentence can say the
+ * thing a slash cannot: that the sound moves depending on where it sits.
+ *
+ * Romanisation is not banished from the app. It is scaffolding, and it stays
+ * where scaffolding belongs — small, beside the prompt, on the screens where
+ * the learner is writing rather than meeting the letter.
+ */
+
+.sounds {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.soundRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  min-height: 56px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+}
+
+/*
+ * The sound row is the one a learner needs, so it is the one that is filled.
+ * The letter's *name* is useful context and sits quieter — getting that
+ * hierarchy backwards is how learners end up saying "giyeok-a" for 가.
+ */
+.soundRowEmphasis {
+  border-color: var(--hg-primary);
+  background: var(--hg-primary-subtle);
+}
+
+.soundLabel {
+  flex: 1;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-medium);
+  color: var(--hg-text-secondary);
+}
+
+.soundValue {
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/*
+ * The one pronunciation hint, and the only place a romanisation is spelled out
+ * on this screen. Body size rather than the glyph's, so the Hangul above it is
+ * never in competition with the Latin inside it.
+ */
+.hint {
+  margin: 0;
+  text-align: center;
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  text-wrap: balance;
+}
+
+/*
+ * The pronunciation tip, in the mascot's voice.
+ *
+ * Quiet on purpose. It is the ninth thing on a screen whose first eight are the
+ * letter, its sound, its name, the demonstration and what to do next, and a
+ * learner who never reads it has still had the whole lesson. Caption size, warm
+ * ground, no border — near enough to a margin note that it cannot be mistaken
+ * for an instruction.
+ */
+.mnemonic {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * The stroke-order block.
+ *
+ * Between the sound and the mnemonic, because that is the order a learner meets
+ * the letter in: what it is called, what it sounds like, how it is made, and
+ * then a hook to remember its shape by.
+ */
+.strokes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+  width: 100%;
+}
+
+.strokesHeading {
+  margin: 0;
+  font: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+  text-transform: none;
+}
+
+/*
+ * What to do with this character, under the demonstration of it.
+ *
+ * It replaced a general note about Korean stroke order that was identical on
+ * all seventy-three screens. Sits directly under the diagram and reads as its
+ * caption, because that is what it is: the movement the learner has just
+ * watched, in words, for the moment after the animation stops.
+ */
+.instruction {
+  margin: 0;
+  max-width: 34ch;
+  font: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  text-align: center;
+  text-wrap: pretty;
+}

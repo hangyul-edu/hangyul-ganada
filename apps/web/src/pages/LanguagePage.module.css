@@ -1,0 +1,208 @@
+/**
+ * Language picker.
+ *
+ * Every box that holds text here is sized by its content, never by a width
+ * measured against English. "Bahasa Indonesia" is 18 characters and "한국어" is
+ * three; both have to sit in the same row without either clipping or leaving a
+ * hole. Logical properties throughout, so the whole screen mirrors correctly
+ * when the interface language is right-to-left.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: 0 var(--hg-space-4) var(--hg-space-8);
+}
+
+.intro {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-relaxed);
+}
+
+.suggestion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--hg-space-2) var(--hg-space-3);
+}
+
+.suggestionText {
+  flex: 1 1 12rem;
+  margin: 0;
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-relaxed);
+}
+
+.suggestionAction {
+  flex: 0 0 auto;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-caption);
+  font-weight: 600;
+}
+
+.suggestionAction:hover {
+  background: var(--hg-warm-200);
+}
+
+.suggestionDismiss {
+  flex: 0 0 auto;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+}
+
+.suggestionDismiss:hover {
+  color: var(--hg-text);
+}
+
+/* --- search --------------------------------------------------------------- */
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  /* Logical inset: sits on the left in LTR and on the right in RTL. */
+  inset-inline-start: var(--hg-space-3);
+  display: flex;
+  color: var(--hg-text-secondary);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  /* Room for the icon on the leading side only. */
+  padding: var(--hg-space-3) var(--hg-space-3);
+  padding-inline-start: calc(var(--hg-space-3) * 2 + 18px);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font: inherit;
+  /*
+   * 16px exactly, not the 15px body size.
+   *
+   * iOS zooms the page when a text field smaller than 16px takes focus. That
+   * used to be answered by disabling zoom in the shell, which is a WCAG 1.4.4
+   * failure and takes pinch-to-zoom away from everyone to fix a wobble in one
+   * field. Zoom is enabled now, and this field simply does not trigger it.
+   */
+  font-size: 16px;
+  min-height: 44px;
+}
+
+.searchInput:focus-visible {
+  border-color: var(--hg-primary);
+  outline: 2px solid var(--hg-primary);
+  outline-offset: 1px;
+}
+
+.searchInput::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.noResults {
+  margin: 0;
+  padding: var(--hg-space-6) var(--hg-space-3);
+  color: var(--hg-text-secondary);
+  text-align: center;
+  font-size: var(--hg-text-caption);
+}
+
+/* --- the list ------------------------------------------------------------- */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+  /* No fixed height: a long endonym is allowed to wrap onto a second line
+     rather than being clipped. */
+  min-height: 56px;
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  text-align: start;
+}
+
+.option:hover {
+  border-color: var(--hg-border-selected);
+  background: var(--hg-warm-50);
+}
+
+.optionSelected {
+  border-color: var(--hg-primary);
+  background: var(--hg-primary-subtle);
+}
+
+.names {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  /* Lets a long name shrink and wrap instead of pushing the code out of view. */
+  min-width: 0;
+}
+
+.native {
+  font-size: var(--hg-text-body);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.english {
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  overflow-wrap: anywhere;
+}
+
+.code {
+  flex: 0 0 auto;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+}
+
+.check {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+.coverage {
+  margin: 0;
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-micro);
+  line-height: var(--hg-leading-relaxed);
+}

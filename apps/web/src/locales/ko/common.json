@@ -1,0 +1,49 @@
+{
+  "brand": {
+    "tagline": "한 획씩 시작하는 한글 공부",
+    "description": "한글 자음·모음부터 글자 조합, 손글씨, 기초 단어까지 — 첫 글자부터 읽고 쓰는 법을 배워요."
+  },
+  "actions": {
+    "confirm": "확인",
+    "close": "닫기",
+    "back": "뒤로",
+    "goHome": "홈으로 가기"
+  },
+  "a11y": {
+    "skipToContent": "본문으로 건너뛰기",
+    "currentPage": "(현재 페이지)",
+    "confirmationRequired": "확인이 필요한 작업이에요."
+  },
+  "progress": {
+    "lesson": "{{name}} 진행률",
+    "review": "복습 진행률"
+  },
+  "units": {
+    "day_other": "{{count, number}}일"
+  },
+  "audio": {
+    "play": "{{text}} 발음 듣기",
+    "retry": "{{text}} 다시 듣기",
+    "unavailable": "{{text}} 발음이 아직 없어요"
+  },
+  "report": {
+    "action": "문제 알리기",
+    "title": "무엇이 잘못됐나요?",
+    "blurb": "이상한 부분을 고르면 내용을 덧붙일 수 있는 메일이 열려요. 학습 기록은 담기지 않아요.",
+    "field": {
+      "item": "항목",
+      "category": "문제",
+      "version": "앱 버전",
+      "language": "언어"
+    },
+    "writeHere": "여기에 무엇이 이상한지 적어 주세요:",
+    "category": {
+      "meaning": "뜻",
+      "example": "예문",
+      "translation": "번역",
+      "audio": "소리",
+      "writing": "쓰기 피드백",
+      "other": "그 밖의 것"
+    }
+  }
+}

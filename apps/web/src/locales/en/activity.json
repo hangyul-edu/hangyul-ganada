@@ -1,0 +1,89 @@
+{
+  "title": "Learning activity",
+  "streak": {
+    "caption": "Any practice keeps it going — you do not have to finish a letter.",
+    "longest": "Longest streak",
+    "totalDays": "Days practised",
+    "totalTime": "Total time",
+    "unit_one": "day in a row",
+    "unit_other": "days in a row"
+  },
+  "chart": {
+    "title": "Activity",
+    "rangeAria": "Choose a time range",
+    "aria": "Practice per day",
+    "noneYet": "No practice in this period yet.",
+    "range": {
+      "7": "7 days",
+      "30": "30 days",
+      "90": "3 months",
+      "0": "All"
+    }
+  },
+  "calendar": {
+    "previous": "Previous month",
+    "next": "Next month",
+    "less": "Less",
+    "more": "More",
+    "dayAria_one": "{{date}}: {{count, number}} attempt",
+    "dayAria_other": "{{date}}: {{count, number}} attempts"
+  },
+  "day": {
+    "time": "Study time",
+    "attempts": "Writing attempts",
+    "correct": "Correct",
+    "charactersLearned": "Letters finished",
+    "wordsLearned": "Words finished",
+    "reviews": "Review attempts",
+    "nothing": "No practice on this day."
+  },
+  "insights": {
+    "title": "What stands out",
+    "mostPractisedCharacter": "Most practised letter",
+    "mostPractisedWord": "Most practised word",
+    "accuracy": "Writing accuracy",
+    "thisWeek": "This week",
+    "learnedCount_one": "{{count, number}} finished",
+    "learnedCount_other": "{{count, number}} finished"
+  },
+  "units": {
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_one": "{{count, number}} h",
+    "hour_other": "{{count, number}} h"
+  },
+  "empty": {
+    "title": "Your learning story starts today",
+    "body": "Practise a few letters and this page fills up: the days you studied, how long for, and what you worked on."
+  },
+  "week": {
+    "title": "This week",
+    "range": "From {{from}}",
+    "days": "Days studied",
+    "daysValue_one": "{{count, number}} of 7",
+    "daysValue_other": "{{count, number}} of 7",
+    "time": "Time",
+    "learned": "Learned",
+    "accuracy": "Accuracy",
+    "same": "The same amount of time as last week.",
+    "moreThanLast": "{{minutes, number}} minutes more than last week.",
+    "lessThanLast": "{{minutes, number}} minutes less than last week.",
+    "quiet": "Nothing yet this week — there is still time."
+  },
+  "memory": {
+    "title": "How your recall is going",
+    "firstTry": "You remembered {{count, number}} things on the first try this week.",
+    "strongestSkill": "{{skill}} is your strongest practice this week.",
+    "confusionImproving": "{{a}} and {{b}} are getting easier to tell apart.",
+    "skill": {
+      "reading_recognition": "reading",
+      "listening_recognition": "listening",
+      "guided_writing": "writing",
+      "meaning_recognition": "meaning",
+      "sentence_comprehension": "sentences",
+      "sound_recognition": "sounds",
+      "visual_recognition": "letters",
+      "lookalike_discrimination": "telling look-alikes apart"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+#!/usr/bin/env python3
+"""Checks the generated pronunciation audio before it ships.
+
+    python3 scripts/content/qa_audio.py
+    python3 scripts/content/qa_audio.py --json report.json
+
+Synthesis fails quietly. A provider under load returns a valid MP3 containing
+silence; a retry loop writes the same clip twice under two voice names; a
+truncated download still has an ID3 header. None of that is visible by looking
+at a directory listing, and all of it reaches a paying customer as "the speaker
+button does nothing".
+
+So every clip is checked against the thing it claims to be:
+
+* it exists, is not empty, and actually decodes
+* its duration is plausible for the number of syllables it should contain
+* it is not silent, and its loudness landed near the normalisation target
+* the female and male clips of the same text are genuinely different audio
+* the manifest says the same text the speech plan asked for
+* every planned clip has both voices
+
+Failures are errors; the oddities that are usually fine are warnings.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+import subprocess
+import sys
+from dataclasses import dataclass, field
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+from hangul import is_syllable, romanize  # noqa: E402
+from tts import LOUDNESS_TARGET_LUFS, SPEECH_RATE  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[2]
+PUBLIC = ROOT / "apps" / "web" / "public"
+MANIFEST = PUBLIC / "audio" / "manifest.json"
+PLAN = ROOT / "content-cache" / "speech-plan.json"
+
+#: A Korean syllable takes roughly a fifth of a second to say. The bounds are
+#: wide because a lone vowel is fast and a sentence has pauses — this catches
+#: "returned 60 ms of nothing" and "returned the wrong, much longer text",
+#: not natural variation.
+#:
+#: Every bound is stated at conversational pace and then divided by the rate the
+#: clips were actually spoken at, so slowing the voices down does not quietly
+#: widen the "too short" test into uselessness. See ``SPEECH_RATE`` in tts.py.
+_TEMPO = max(0.1, SPEECH_RATE)
+MS_PER_SYLLABLE_MIN = round(90 / _TEMPO)
+MS_PER_SYLLABLE_MAX = round(900 / _TEMPO)
+#: A single short vowel really is about a sixth of a second. Below this it is
+#: clipped rather than brief — measured against the male 이 and 으 clips, which
+#: land at 144 ms at full speed and are perfectly audible.
+ABSOLUTE_MIN_MS = round(120 / _TEMPO)
+ABSOLUTE_MAX_MS = round(12_000 / _TEMPO)
+
+#: Below this a clip is silence with a bitrate.
+SILENCE_FLOOR_DB = -50.0
+#: How far from the −16 LUFS target a clip may land before it is worth saying so.
+LOUDNESS_TOLERANCE_DB = 6.0
+
+
+@dataclass
+class Report:
+    checked: int = 0
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
+    total_bytes: int = 0
+    durations: list[int] = field(default_factory=list)
+
+    def error(self, message: str) -> None:
+        self.errors.append(message)
+
+    def warn(self, message: str) -> None:
+        self.warnings.append(message)
+
+
+_VOLUME = re.compile(r"(mean_volume|max_volume):\s*(-?\d+(?:\.\d+)?) dB")
+
+
+def measure(path: Path) -> tuple[float, float, float]:
+    """(duration_ms, mean_dB, max_dB). Raises if the file does not decode."""
+    result = subprocess.run(
+        ["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-af", "volumedetect",
+         "-f", "null", "-"],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.strip().splitlines()[-1] if result.stderr else "decode failed")
+    levels = {m.group(1): float(m.group(2)) for m in _VOLUME.finditer(result.stderr)}
+
+    probe = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    duration_ms = float(probe.stdout.strip()) * 1000
+    return duration_ms, levels.get("mean_volume", -99.0), levels.get("max_volume", -99.0)
+
+
+def syllable_count(text: str) -> int:
+    return max(1, sum(1 for ch in text if is_syllable(ch)))
+
+
+def check_clip(entry: dict, voice: str, report: Report, digests: dict[str, str]) -> None:
+    asset = entry.get(voice)
+    label = f"{entry['id']} [{voice}] {entry['text']!r}"
+    if asset is None:
+        report.error(f"{label}: no asset in the manifest")
+        return
+
+    path = PUBLIC / asset["src"]
+    if not path.exists():
+        report.error(f"{label}: {asset['src']} does not exist")
+        return
+    size = path.stat().st_size
+    if size == 0:
+        report.error(f"{label}: zero-byte file")
+        return
+
+    report.checked += 1
+    report.total_bytes += size
+
+    try:
+        duration_ms, mean_db, max_db = measure(path)
+    except RuntimeError as error:
+        report.error(f"{label}: does not decode ({error})")
+        return
+
+    report.durations.append(int(duration_ms))
+
+    if abs(duration_ms - asset["duration_ms"]) > 120:
+        report.warn(
+            f"{label}: manifest says {asset['duration_ms']} ms, file is {duration_ms:.0f} ms"
+        )
+
+    syllables = syllable_count(entry["text"])
+    low = max(ABSOLUTE_MIN_MS, syllables * MS_PER_SYLLABLE_MIN)
+    high = min(ABSOLUTE_MAX_MS, max(round(1200 / _TEMPO), syllables * MS_PER_SYLLABLE_MAX))
+    if duration_ms < low:
+        report.error(
+            f"{label}: {duration_ms:.0f} ms is too short for {syllables} syllable(s) — "
+            f"expected at least {low} ms"
+        )
+    elif duration_ms > high:
+        report.warn(
+            f"{label}: {duration_ms:.0f} ms is long for {syllables} syllable(s) "
+            f"(over {high} ms) — check the text that was spoken"
+        )
+
+    if max_db <= SILENCE_FLOOR_DB:
+        report.error(f"{label}: silent (peak {max_db:.1f} dB)")
+    elif abs(mean_db - LOUDNESS_TARGET_LUFS) > LOUDNESS_TOLERANCE_DB:
+        report.warn(
+            f"{label}: mean {mean_db:.1f} dB is far from the {LOUDNESS_TARGET_LUFS:.0f} dB target"
+        )
+
+    digests[f"{entry['id']}:{voice}"] = hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", type=Path, default=None, help="Write the report as JSON")
+    args = parser.parse_args()
+
+    if not MANIFEST.exists():
+        raise SystemExit(f"{MANIFEST} is missing — run generate_audio.py first")
+
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    report = Report()
+    digests: dict[str, str] = {}
+
+    for entry in manifest["entries"]:
+        for voice in ("female", "male"):
+            check_clip(entry, voice, report, digests)
+
+    # The two voices must be two recordings. A retry that silently reused one
+    # provider response for both would otherwise ship a "male voice" setting
+    # that changes nothing, which is worse than not offering the setting.
+    identical = [
+        entry["id"]
+        for entry in manifest["entries"]
+        if digests.get(f"{entry['id']}:female")
+        and digests.get(f"{entry['id']}:female") == digests.get(f"{entry['id']}:male")
+    ]
+    for clip_id in identical:
+        report.error(f"{clip_id}: female and male clips are byte-identical")
+
+    # Two ids with the same audio are only a bug when they say different things.
+    #
+    # Two reasons a shared recording is correct. Some ids are the same utterance
+    # under two names: a vowel's *name* and its *sound* are both the same
+    # syllable, and the block a letter lesson teaches is the same one a word
+    # lesson asks for. And some different spellings are the same word out loud
+    # -- 있다, 잇다 and 잊다 are all said [itda], so a speech engine given all
+    # three rightly returns one recording three times.
+    #
+    # The comparison is therefore on the pronunciation, not the spelling. What
+    # is left is the case worth catching: two genuinely different-sounding texts
+    # landing on one file, which means an id collided upstream.
+    text_by_id = {entry["id"]: entry["text"] for entry in manifest["entries"]}
+    seen: dict[str, str] = {}
+    for key, digest in digests.items():
+        previous = seen.get(digest)
+        if previous is not None:
+            this_id, other_id = key.split(":")[0], previous.split(":")[0]
+            said = romanize(text_by_id.get(this_id, ""))
+            other_said = romanize(text_by_id.get(other_id, ""))
+            if said != other_said:
+                report.error(
+                    f"{key} ({text_by_id.get(this_id)!r}) has the same audio as "
+                    f"{previous} ({text_by_id.get(other_id)!r}), and they are not homophones"
+                )
+        seen.setdefault(digest, key)
+
+    if PLAN.exists():
+        planned = {e["id"]: e for e in json.loads(PLAN.read_text(encoding="utf-8"))["entries"]}
+        manifest_ids = {e["id"] for e in manifest["entries"]}
+        for clip_id, planned_entry in planned.items():
+            if clip_id not in manifest_ids:
+                report.error(f"{clip_id} ({planned_entry['text']!r}) was planned but never generated")
+        for entry in manifest["entries"]:
+            expected = planned.get(entry["id"])
+            if expected and expected["text"] != entry["text"]:
+                report.error(
+                    f"{entry['id']}: plan says {expected['text']!r}, manifest says {entry['text']!r}"
+                )
+    else:
+        report.warn("no speech plan cached; skipped the plan-to-manifest comparison")
+
+    print(f"provider: {manifest['provider']['id']}")
+    print(f"  female: {manifest['provider']['female_voice']}")
+    print(f"  male:   {manifest['provider']['male_voice']}")
+
+    # A manifest generated before the current rate would pass every duration
+    # check here while sounding wrong in the app, because the bounds moved with
+    # the constant and the audio did not.
+    spoken_rate = manifest["provider"].get("speech_rate")
+    if spoken_rate is None:
+        report.warn(
+            "the manifest records no speech_rate — it predates the rate setting; "
+            "regenerate with --force so the clips and the checks agree"
+        )
+    elif abs(float(spoken_rate) - SPEECH_RATE) > 1e-6:
+        report.error(
+            f"manifest was generated at {float(spoken_rate):g}× but SPEECH_RATE is now "
+            f"{SPEECH_RATE:g}× — regenerate with --force"
+        )
+    else:
+        print(f"  rate:   {SPEECH_RATE:g}×")
+    print(f"checked {report.checked:,} clips, {report.total_bytes / 1_048_576:.1f} MB")
+    if report.durations:
+        ordered = sorted(report.durations)
+        print(
+            f"  duration: min {ordered[0]} ms, median {ordered[len(ordered) // 2]} ms, "
+            f"max {ordered[-1]} ms"
+        )
+    print(f"  {len(report.errors)} error(s), {len(report.warnings)} warning(s)")
+
+    for message in report.warnings[:40]:
+        print(f"  warn  {message}")
+    if len(report.warnings) > 40:
+        print(f"  … and {len(report.warnings) - 40} more warnings")
+    for message in report.errors[:60]:
+        print(f"  ERROR {message}")
+    if len(report.errors) > 60:
+        print(f"  … and {len(report.errors) - 60} more errors")
+
+    if args.json:
+        args.json.write_text(
+            json.dumps(
+                {
+                    "checked": report.checked,
+                    "total_bytes": report.total_bytes,
+                    "errors": report.errors,
+                    "warnings": report.warnings,
+                },
+                ensure_ascii=False,
+                indent=1,
+            ),
+            encoding="utf-8",
+        )
+
+    return 1 if report.errors else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

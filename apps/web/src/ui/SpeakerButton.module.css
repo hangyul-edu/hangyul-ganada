@@ -1,0 +1,124 @@
+/*
+ * The speaker button.
+ *
+ * A filled peach circle with an orange glyph: audio is a primary action in a
+ * pronunciation app, not an afterthought hidden in grey. It sits at the same
+ * visual weight as a chip, which is where it belongs — beside the word, never
+ * competing with the writing canvas.
+ */
+
+.button {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid transparent;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+/*
+ * 44px minimum, always. The visual circle can be smaller than the tap target,
+ * and at `sm` it is — a 32px dot with 44px of reach, so a learner tapping with
+ * a thumb on a phone hits it every time.
+ */
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  position: relative;
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+}
+
+.lg {
+  width: 52px;
+  height: 52px;
+}
+
+.button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--hg-primary) 18%, white);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.plain {
+  background: transparent;
+  color: var(--hg-text-tertiary);
+}
+
+.plain:hover:not(:disabled) {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-secondary);
+}
+
+.button:disabled {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-disabled);
+  cursor: not-allowed;
+}
+
+/*
+ * Playing state: a soft pulse behind the icon rather than a spinner. A clip
+ * lasts under a second — a spinner would appear and vanish before it read as
+ * anything, while a pulse reads as sound.
+ */
+.playing {
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+.playing::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--hg-radius-pill);
+  border: 2px solid var(--hg-primary);
+  opacity: 0.5;
+  animation: speaker-pulse 900ms ease-out infinite;
+}
+
+@keyframes speaker-pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button:active:not(:disabled) {
+    transition: none;
+    transform: none;
+  }
+
+  .playing::before {
+    animation: none;
+    opacity: 0.4;
+  }
+}

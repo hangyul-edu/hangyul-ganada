@@ -1,0 +1,10 @@
+{
+  "primary": "Hauptmenü",
+  "tabs": {
+    "home": "Start",
+    "letters": "Buchstaben",
+    "words": "Wörter",
+    "review": "Wiederholen",
+    "profile": "Mein Lernen"
+  }
+}
