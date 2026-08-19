@@ -144,7 +144,7 @@
     }
   },
   "storage": {
-    "notSaving": "Este navegador no va a recordar lo que aprendas, así que se perderá al cerrar la pestaña. Abrir la app en una ventana normal, y no en una privada, lo soluciona.",
+    "notSaving": "Tu progreso no se está guardando en este dispositivo, así que lo que aprendas ahora puede desaparecer la próxima vez que abras la app. Permitir que este sitio guarde datos en los ajustes del navegador suele solucionarlo.",
     "recovered_many": "Se han omitido {{count, number}} de registros dañados al cargar. El resto de tu progreso está intacto.",
     "recovered_one": "Se ha omitido {{count, number}} registro dañado al cargar. El resto de tu progreso está intacto.",
     "recovered_other": "Se han omitido {{count, number}} registros dañados al cargar. El resto de tu progreso está intacto."

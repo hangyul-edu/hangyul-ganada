@@ -125,12 +125,18 @@ export function MyPage() {
           The two things that can go wrong with a learner's record, and nothing
           else about where it is kept.
 
-          Both are silent failures otherwise: a browser in private mode throws
-          away everything on close, and a damaged row is skipped so the rest can
-          load. Neither happens on a healthy install, so neither is shown then —
-          this is a warning, not a status readout.
+          Both are silent failures otherwise: some browsers throw everything
+          away on close, and a damaged row is skipped so the rest can load.
+          Neither happens on a healthy install, so neither is shown then — this
+          is a warning, not a status readout.
+
+          `state.storage.checked` is the guard that keeps it that way. The
+          warning is only ever shown once a real write/read/erase round trip has
+          come back negative — never because the app has guessed at a private
+          window, and never in the moment before the check has run, which is
+          when this screen used to alarm a learner whose storage was fine.
         */}
-        {!state.storage.durable && (
+        {state.storage.checked && !state.storage.durable && (
           <p className={styles.storageWarning} role="status">
             <AlertIcon size={16} />
             {t('settings:storage.notSaving')}

@@ -1,0 +1,15 @@
+# SPA fallback, for hosts that read Netlify-style redirect rules
+# (Netlify, Cloudflare Pages, and others that adopted the format).
+#
+# One rule, because one rule is what this needs: anything that is not a real
+# file is the app, and React Router resolves the path from there. Static files
+# are matched by the host's own filesystem check before any rule here is read,
+# so the bundle, the fonts, the audio and the service worker are untouched.
+#
+# This file ships *inside* the build output, so the fallback travels with the
+# app whichever directory is published. The Vercel configuration is the primary
+# one and is more precise — it also holds /api/* and /assets/* out of the
+# fallback, which this format cannot express without a proxy rule. See
+# vercel.json and docs/DEPLOYMENT.md; a backend deployed behind a host that
+# reads *this* file would need its own rule added above the catch-all.
+/*  /index.html  200

@@ -267,12 +267,15 @@ function SearchResults({
           return (
             <li key={word.id}>
               <Card padding="md" className={styles.result}>
-                <span className={styles.resultWord} lang="ko" dir="ltr">
-                  {word.word}
-                </span>
-                <LocalizedText as="span" locale={copy.locale} className={styles.resultMeaning}>
-                  {copy.value.meaning}
-                </LocalizedText>
+                <Link to={`/words/word/${word.id}`} className={styles.resultMain}>
+                  <span className={styles.resultWord} lang="ko" dir="ltr">
+                    {word.word}
+                  </span>
+                  <LocalizedText as="span" locale={copy.locale} className={styles.resultMeaning}>
+                    {copy.value.meaning}
+                  </LocalizedText>
+                  <ChevronRightIcon size={18} />
+                </Link>
               </Card>
             </li>
           );
@@ -318,12 +321,26 @@ export function WordCategoryPage({ category }: { category: string }) {
             return (
               <li key={word.id}>
                 <Card padding="md" className={styles.result}>
-                  <span className={styles.resultWord} lang="ko" dir="ltr">
-                    {word.word}
-                  </span>
-                  <LocalizedText as="span" locale={copy.locale} className={styles.resultMeaning}>
-                    {copy.value.meaning}
-                  </LocalizedText>
+                  {/*
+                    The card body is the link, and Save is its sibling.
+
+                    Not a click handler on the card with `stopPropagation` on
+                    the button: that shape puts a control inside a control, and
+                    it is the arrangement where a mis-tap on the edge of Save
+                    navigates away from the list a learner was working down.
+                    Two siblings cannot do that to each other — there is nothing
+                    to propagate to — and the link is a real anchor, so it can
+                    be tabbed to, opened in a new tab, and read by a screen
+                    reader as the destination it is.
+                  */}
+                  <Link to={`/words/word/${word.id}`} className={styles.resultMain}>
+                    <span className={styles.resultWord} lang="ko" dir="ltr">
+                      {word.word}
+                    </span>
+                    <LocalizedText as="span" locale={copy.locale} className={styles.resultMeaning}>
+                      {copy.value.meaning}
+                    </LocalizedText>
+                  </Link>
                   <button
                     type="button"
                     className={styles.saveToggle}

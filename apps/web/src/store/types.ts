@@ -22,8 +22,17 @@ export interface LearnerState {
   /** Daily learning roll-ups, keyed by `YYYY-MM-DD`. Feeds the Activity screen. */
   activity: Record<string, DailyActivity>;
   schema_version: number;
-  /** Which engine the data is in, and whether it survives a reload. */
-  storage: { engine: string; durable: boolean };
+  /**
+   * Which engine the data is in, and whether it is actually keeping anything.
+   *
+   * `durable` is not the driver's own claim — it is the result of a real
+   * write/read/erase round trip made against that driver on launch. See
+   * `storage/capability.ts`. `checked` is false until that round trip has
+   * finished, and nothing may warn the learner about their progress before it
+   * has: the pre-hydration placeholder is an in-memory store, so a screen that
+   * reads `durable` too early sees `false` on a perfectly healthy install.
+   */
+  storage: { engine: string; durable: boolean; checked: boolean };
   /** Rows dropped on load because they were unreadable. Surfaced in Settings. */
   recovered: number;
   /** Per-item, per-skill memory. Keyed by `${kind}:${item_key}`. */

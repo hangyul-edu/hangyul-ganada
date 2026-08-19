@@ -453,16 +453,39 @@
   list-style: none;
 }
 
-.resultLink {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
 .result {
   display: flex;
   align-items: center;
   gap: var(--hg-space-3);
+}
+
+/*
+ * The tappable body of a word card.
+ *
+ * Everything except Save. It is an anchor rather than a click handler on the
+ * card, so it keeps a link's semantics — focusable, activated by Enter,
+ * openable in a new tab, announced as a destination — and so that Save can sit
+ * beside it as a sibling rather than nested inside a second control.
+ *
+ * `min-height` rather than padding: the card already has its own, and the row
+ * has to stay at least a finger tall for a one-syllable word with a short gloss,
+ * which is most of this corpus.
+ */
+.resultMain {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  align-items: center;
+  gap: var(--hg-space-3);
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--hg-radius-sm);
+}
+
+.resultMain > svg {
+  flex: none;
+  color: var(--hg-text-tertiary);
 }
 
 .resultWord {

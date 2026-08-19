@@ -144,7 +144,7 @@
     }
   },
   "storage": {
-    "notSaving": "Ce navigateur ne retiendra pas ce que vous apprenez : tout disparaîtra à la fermeture de l’onglet. Ouvrir l’application dans une fenêtre normale, et non privée, règle le problème.",
+    "notSaving": "Votre progression n’est pas enregistrée sur cet appareil : ce que vous apprenez maintenant risque d’avoir disparu à la prochaine ouverture. Autoriser ce site à conserver des données dans les réglages du navigateur règle généralement le problème.",
     "recovered_many": "{{count, number}} d’enregistrements endommagés ont été ignorés au chargement. Le reste de votre progression est intact.",
     "recovered_one": "{{count, number}} enregistrement endommagé a été ignoré au chargement. Le reste de votre progression est intact.",
     "recovered_other": "{{count, number}} enregistrements endommagés ont été ignorés au chargement. Le reste de votre progression est intact."

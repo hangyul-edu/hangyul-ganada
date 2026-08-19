@@ -144,7 +144,7 @@
     }
   },
   "storage": {
-    "notSaving": "Este navegador não vai guardar o que você aprender, então tudo se perde ao fechar a aba. Abrir o app numa janela normal, e não anônima, resolve.",
+    "notSaving": "Seu progresso não está sendo salvo neste aparelho, então o que você aprender agora pode sumir na próxima vez que abrir o app. Permitir que este site guarde dados nas configurações do navegador costuma resolver.",
     "recovered_many": "{{count, number}} de registros danificados foram ignorados ao carregar. O resto do seu progresso está intacto.",
     "recovered_one": "{{count, number}} registro danificado foi ignorado ao carregar. O resto do seu progresso está intacto.",
     "recovered_other": "{{count, number}} registros danificados foram ignorados ao carregar. O resto do seu progresso está intacto."

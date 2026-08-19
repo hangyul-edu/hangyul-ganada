@@ -142,7 +142,7 @@
     }
   },
   "storage": {
-    "notSaving": "Dieser Browser merkt sich nicht, was du lernst — beim Schließen des Tabs ist es weg. In einem normalen statt einem privaten Fenster funktioniert es.",
+    "notSaving": "Dein Fortschritt wird auf diesem Gerät nicht gespeichert — was du jetzt lernst, ist beim nächsten Öffnen vielleicht weg. Wenn du dieser Seite in den Browsereinstellungen erlaubst, Daten zu speichern, ist das Problem meist behoben.",
     "recovered_one": "Beim Laden wurde {{count, number}} beschädigter Eintrag übersprungen. Der Rest deines Fortschritts ist unversehrt.",
     "recovered_other": "Beim Laden wurden {{count, number}} beschädigte Einträge übersprungen. Der Rest deines Fortschritts ist unversehrt."
   }

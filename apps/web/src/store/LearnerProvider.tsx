@@ -60,6 +60,7 @@ import {
   readLegacyBlobFromLocalStorage,
   runMigrations,
 } from '../storage/schema';
+import { checkPersistence } from '../storage/capability';
 import { LearnerContext, type LearnerContextValue } from './LearnerContext';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
@@ -136,8 +137,17 @@ export function LearnerProvider({
         now: () => new Date(),
       });
 
-      const [settings, progress, sessions, activity, memory, attempts, mistakes] =
+      /*
+       * Does this browser actually keep what is written to it?
+       *
+       * Asked here, once, with a real write/read/erase round trip rather than
+       * inferred from which driver was opened — see `storage/capability.ts`.
+       * It runs alongside the loads because it is a fourth trip to the same
+       * store and there is no reason for the learner to wait for it in series.
+       */
+      const [durable, settings, progress, sessions, activity, memory, attempts, mistakes] =
         await Promise.all([
+          checkPersistence(driver),
           settingsRepo.current.load(),
           progressRepo.current.loadAll(),
           sessionRepo.current.loadAll(),
@@ -157,7 +167,7 @@ export function LearnerProvider({
         attempts,
         mistakes,
         schema_version: SCHEMA_VERSION,
-        storage: { engine: driver.name, durable: driver.durable },
+        storage: { engine: driver.name, durable, checked: true },
         recovered: progress.dropped,
       });
       setReady(true);
@@ -170,7 +180,18 @@ export function LearnerProvider({
     void hydrate().catch(() => {
       // Nothing above may leave the learner staring at a spinner. A failed
       // hydration means a fresh in-memory profile and a working lesson.
-      if (!cancelled) setReady(true);
+      //
+      // It also means the storage question has been answered, and answered
+      // badly: the profile in memory is the only copy there is. Marked
+      // `checked` so Settings says so, rather than staying silent because the
+      // check never got as far as running.
+      if (!cancelled) {
+        setState((current) => ({
+          ...current,
+          storage: { ...current.storage, durable: false, checked: true },
+        }));
+        setReady(true);
+      }
     });
 
     return () => {
@@ -795,7 +816,13 @@ function initialState(driver?: PersistenceDriver): LearnerState {
     attempts: [],
     mistakes: {},
     schema_version: SCHEMA_VERSION,
-    storage: { engine: engine.name, durable: engine.durable },
+    /*
+     * `checked: false` — nothing is known yet, and in particular the `false`
+     * beside it is not evidence. Before `hydrate` runs, `engine` here is the
+     * in-memory placeholder even on an install whose IndexedDB is perfectly
+     * healthy; a screen that warned on this would warn on every launch.
+     */
+    storage: { engine: engine.name, durable: engine.durable, checked: false },
     recovered: 0,
   };
 }
