@@ -1,0 +1,19 @@
+/*
+ * The two answers to "leave the app?", side by side.
+ *
+ * Stay first and leave second, reading order: the destructive one is not the
+ * one a thumb lands on by reflex, and the question was asked because leaving is
+ * worth a moment's thought.
+ */
+.actions {
+  display: flex;
+  gap: var(--hg-space-3);
+  width: 100%;
+}
+
+.body {
+  margin: 0;
+  text-align: center;
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}

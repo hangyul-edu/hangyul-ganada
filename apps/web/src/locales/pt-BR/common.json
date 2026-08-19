@@ -47,5 +47,11 @@
       "writing": "O retorno de escrita",
       "other": "Outra coisa"
     }
+  },
+  "exit": {
+    "title": "Sair do Hangyul ganada?",
+    "body": "Seu progresso está salvo. Você continua de onde parou.",
+    "stay": "Ficar",
+    "leave": "Sair"
   }
 }

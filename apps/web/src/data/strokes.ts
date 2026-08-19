@@ -57,17 +57,27 @@ function stroke(points: Points): StrokeStep {
 /**
  * A ㄱ, drawn as one stroke that turns the corner, inside `[left, right]`.
  *
- * The leg leans in slightly, as a written ㄱ does — but only slightly. It used
- * to come back 18% of the letter's width, which reads as a lean on its own and
- * as a diagonal once a syllable block narrows the letter: the ㄱ of 가 looked
- * like it was falling over. Korean faces bring it in nearer a tenth.
+ * The leg sweeps down and *left*, and a long way left — a ㄱ is shaped like a
+ * 7, not like a ⌐. This had drifted badly: the leg used to come back a tenth of
+ * the letter's width, which is very nearly straight down, on the theory that a
+ * more upright ㄱ would look less distorted. Rendering the real face beside it
+ * settled the question — Pretendard finishes the leg below where the top bar
+ * *started*, and so does every other face here.
+ *
+ * The middle point is the curve. The leg is an arc in every face that has one,
+ * and two segments follow an arc close enough for what this data is now for:
+ * the demonstration uncovers the real glyph along these points, so a polyline
+ * that cuts the corner off an arc leaves part of the letter uncovered while it
+ * is being written.
  */
 function giyeok(left: number, right: number, top = 20, bottom = 80): StrokeStep {
-  const drop = left + (right - left) * 0.9;
+  const width = right - left;
+  const height = bottom - top;
   return stroke([
     [left, top],
     [right, top],
-    [drop, bottom],
+    [right - width * 0.3, top + height * 0.55],
+    [left + width * 0.06, bottom],
   ]);
 }
 

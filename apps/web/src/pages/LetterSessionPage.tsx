@@ -348,34 +348,6 @@ export function LetterSessionPage() {
                   onPlayed={() => recordHeard('character', current.character, recognitionRequired)}
                 />
               </div>
-              {stepState.status === 'idle' && (
-                <p className={styles.promptHint}>{copy.value.pronunciation_hint}</p>
-              )}
-              {/*
-                The demonstration stays available while writing. A learner who
-                loses their place mid-stroke should be able to watch it again
-                without leaving the lesson — that is the whole reason it is on
-                this screen and not only on the introduction card.
-              */}
-              {stepState.status === 'idle' && (
-                <StrokeOrder
-                  character={current.character}
-                  strokes={current.strokes}
-                  size={152}
-                  /*
-                    Plays by itself for a learner who has not watched it yet.
-                    The introduction card autoplays it too, but someone who
-                    taps straight through to the pen would otherwise never see
-                    it — and watching it is one of the things a finished letter
-                    is made of. Once it has been watched, it sits quietly with
-                    its Watch again button.
-                  */
-                  autoPlay={!demoSeen}
-                  onWatched={() =>
-                    recordDemoSeen('character', current.character, recognitionRequired)
-                  }
-                />
-              )}
             </header>
 
             <PracticeCanvasCard
@@ -392,6 +364,46 @@ export function LetterSessionPage() {
               resultShown={stepState.status !== 'idle'}
               onEvaluated={handleEvaluated}
             />
+
+            {/*
+              Under the pen, not over it.
+
+              This screen has one job — write the character — and the
+              demonstration used to sit between the learner and the place they
+              could do it. On a 667pt phone that put the canvas below the fold:
+              the step opened on an animation, and writing began with a scroll.
+
+              It is still here, because a learner who loses their place
+              mid-stroke needs it without leaving the lesson. It is just no
+              longer in the way of the thing it is teaching. The pronunciation
+              note came down with it for the same reason: it is worth reading
+              and it is not worth a scroll.
+            */}
+            {stepState.status === 'idle' && (
+              <section className={styles.help} aria-labelledby="stroke-help-heading">
+                <h2 id="stroke-help-heading" className={styles.helpHeading}>
+                  {t('handwriting:strokeOrder.heading')}
+                </h2>
+                <StrokeOrder
+                  character={current.character}
+                  strokes={current.strokes}
+                  fontFamily={font.font_family}
+                  size={152}
+                  /*
+                    Plays by itself for a learner who has not watched it yet.
+                    The introduction card autoplays it too, but someone who
+                    taps straight through to the pen would otherwise never see
+                    it. Once it has been watched, it sits quietly with its
+                    Watch again button.
+                  */
+                  autoPlay={!demoSeen}
+                  onWatched={() =>
+                    recordDemoSeen('character', current.character, recognitionRequired)
+                  }
+                />
+                <p className={styles.promptHint}>{copy.value.pronunciation_hint}</p>
+              </section>
+            )}
 
             {feedback && stepState.result && stepState.status !== 'idle' && (
               <FeedbackState

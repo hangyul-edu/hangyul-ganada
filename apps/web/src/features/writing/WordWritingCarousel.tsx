@@ -379,23 +379,6 @@ export function WordWritingCarousel({
           </Button>
         ) : (
           <>
-            {/*
-              Always rendered, hidden once the word is ready, so the block keeps
-              its height either way.
-
-              Removing it outright shifted the layout at the exact moment the
-              last syllable got its first stroke — which is to say, while the
-              learner's pen was down on that box. Reserving the space costs two
-              lines that are useful anyway while the word is unfinished; taking
-              it away moved the paper mid-stroke.
-            */}
-            <p
-              className={styles.ctaHint}
-              aria-hidden={ready || undefined}
-              data-hidden={ready || undefined}
-            >
-              {t('vocabulary:session.writeEveryPartFirst')}
-            </p>
             <Button
               size="lg"
               fullWidth
@@ -408,6 +391,28 @@ export function WordWritingCarousel({
                 ? t('handwriting:word.checkAgain')
                 : t('handwriting:word.checkWord')}
             </Button>
+            {/*
+              Under the button, not over it.
+              
+              It is a footnote about when the button becomes useful, and above
+              the button it read as a third control in a stack of three —
+              sitting between the Undo/Clear row and the action, at the one
+              place on the screen where the eye is looking for what to press.
+              Below it, the order matches what it is: do the thing, and here is
+              the small print about it.
+
+              Always rendered, hidden once the word is ready, so the block keeps
+              its height either way. Removing it outright shifted the layout at
+              the exact moment the last syllable got its first stroke — which is
+              to say, while the learner's pen was down on that box.
+            */}
+            <p
+              className={styles.ctaHint}
+              aria-hidden={ready || undefined}
+              data-hidden={ready || undefined}
+            >
+              {t('vocabulary:session.writeEveryPartFirst')}
+            </p>
           </>
         )}
       </div>

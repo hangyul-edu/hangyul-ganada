@@ -19,16 +19,34 @@
   align-self: center;
 }
 
-.paper {
-  display: block;
+/*
+ * The paper, and the three things stacked on it.
+ *
+ * The glyph is a canvas rather than SVG because what uncovers it is a per-pixel
+ * partition of the character — see `strokeReveal.ts`. Guides go under it and
+ * the numbers over it, each in its own layer, so neither can be caught by the
+ * compositing that reveals the ink.
+ */
+.stage {
+  position: relative;
   border-radius: var(--hg-radius-xl);
   background: var(--hg-canvas-paper);
   border: 1px solid var(--hg-border);
+  overflow: hidden;
 }
 
-.box {
-  fill: none;
-  stroke: transparent;
+.guides,
+.marks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glyph {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 
 .guide {
@@ -36,37 +54,6 @@
   stroke-width: 0.7;
   stroke-dasharray: 3 4;
   fill: none;
-}
-
-/* Where the finished character will be. Faint enough that it cannot be mistaken
-   for ink, present so a half-drawn letter never reads as a different letter. */
-.ghost {
-  fill: none;
-  stroke: var(--hg-canvas-guide);
-  stroke-width: var(--hg-pen, 9);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-/*
- * The ink.
- *
- * Slightly heavier than the ghost and rounded at both ends, which is what a
- * pen leaves. `stroke-dasharray` and `stroke-dashoffset` are set per frame from
- * the component; nothing is animated in CSS, because the timing has to be
- * derived from each stroke's own length.
- */
-.ink {
-  fill: none;
-  stroke: var(--hg-canvas-ink);
-  stroke-width: var(--hg-pen, 9);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-/* The pen itself, at the point the ink has reached. */
-.nib {
-  fill: var(--hg-canvas-ink);
 }
 
 /*

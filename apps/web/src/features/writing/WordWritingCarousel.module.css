@@ -304,10 +304,21 @@
   justify-content: flex-start;
 }
 
+/*
+ * The small print under the button.
+ *
+ * Secondary by every means available — smaller, quieter, and last — so it
+ * cannot be mistaken for a second thing to press. Held to a readable measure
+ * and balanced, because it is two lines in Korean and can be three in German,
+ * and a ragged three-line footnote under a full-width button looks like a
+ * mistake.
+ */
 .ctaHint {
-  margin: 0;
+  margin: var(--hg-space-1) 0 0;
+  max-width: 34ch;
   text-align: center;
   font-size: var(--hg-text-caption);
+  line-height: 1.45;
   color: var(--hg-text-tertiary);
   text-wrap: balance;
 }

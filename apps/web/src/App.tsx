@@ -55,6 +55,7 @@ const NotFoundPage = lazy(() =>
 import { useLearner } from './store/LearnerContext';
 import { LearnerProvider } from './store/LearnerProvider';
 import { AppShell } from './ui/AppShell';
+import { SystemBack } from './ui/SystemBack';
 import { BottomNavigation } from './ui/BottomNavigation';
 import { DocumentMetadata } from './ui/DocumentMetadata';
 import { useAppearance, useSystemBarStyle } from './ui/appearance';
@@ -145,6 +146,10 @@ export function App() {
         <DocumentMetadata />
         <BrowserRouter>
           <SkipLink />
+          {/* The phone's Back button, which means something different from the
+              header's back arrow — see `ui/SystemBack.tsx`. Inside the router
+              because the rule is about where the learner is. */}
+          <SystemBack />
           <Routes>
             <Route element={<TabLayout />}>
               <Route path="/" element={<HomePage />} />

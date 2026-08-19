@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useSystemBack } from '../native/useSystemBack';
 import { CloseIcon } from './icons';
 import styles from './Modal.module.css';
 
@@ -43,6 +44,22 @@ export function Modal({
   const dialogRef = useRef<HTMLDivElement>(null);
   const returnFocusTo = useRef<HTMLElement | null>(null);
   const { t } = useTranslation('common');
+
+  /*
+   * The phone's Back button closes this before it means anything else.
+   *
+   * Every modal and sheet in the app comes through here, so registering once
+   * covers all of them — and covers them in the right order, because the
+   * handler stack is asked newest-first and a sheet opened over a dialog is
+   * mounted after it. A modal that refuses to be dismissed declines the press
+   * rather than consuming it: it is asking a question that has to be answered,
+   * and swallowing Back would leave the learner with no way out at all.
+   */
+  useSystemBack(() => {
+    if (!dismissible) return false;
+    onClose();
+    return true;
+  }, open);
 
   useEffect(() => {
     if (!open) return undefined;

@@ -2,6 +2,7 @@ import { App } from '@capacitor/app';
 import { Keyboard } from '@capacitor/keyboard';
 import { SplashScreen } from '@capacitor/splash-screen';
 
+import { offerBackIntent } from './backIntent';
 import { bindSafeAreaInsets } from './insets';
 import { isAndroid, isNative } from './platform';
 
@@ -55,7 +56,7 @@ async function dismissSplash(): Promise<void> {
 }
 
 /**
- * Wires Android's hardware and gesture back to the app's own navigation.
+ * The phone's Back button.
  *
  * ## Why this does not use `canGoBack`
  *
@@ -64,38 +65,24 @@ async function dismissSplash(): Promise<void> {
  * Android 16 that list stays empty for the same-document `pushState`
  * navigations a single-page router makes. Emulator QA caught the result: from
  * the Letters screen, with two entries in `window.history`, the hardware back
- * button closed the app. It had been doing that on every device running
- * Android 13 or newer, because the same reading also decides what the *native*
- * default does.
+ * button closed the app.
  *
- * The web layer knows the answer without asking the WebView anything: how many
- * entries `window.history` has gained since launch is the honest measure of
- * whether this app has anywhere to go back *to*.
+ * ## And why it no longer walks the history either
  *
- * ## The rule
+ * Retracing the app's own steps was the fix for that, and it was still a
+ * browser's idea of Back: five presses to get out of a lesson, replaying
+ * screens the learner had already finished with. What the button means on
+ * Android is "out of here" — see `backIntent.ts`, which owns the rule. This
+ * only delivers the press to it.
  *
- * Back retraces the app's own steps, and leaves the app at the screen it opened
- * on. That is what back means on Android in a single-activity app, and it is
- * the behaviour a bottom bar needs: someone who went Home → Letters → a lesson
- * gets the lesson list, then Home, then out.
- *
- * `exitApp` rather than `minimizeApp`: a learner who backs out of a lesson app
- * expects it gone from the foreground, and Android restores the state on
- * relaunch anyway.
+ * Nothing registered means the press arrived before React mounted, and leaving
+ * is the honest answer: `exitApp` rather than `minimizeApp`, because a learner
+ * backing out of a lesson app expects it gone from the foreground, and Android
+ * restores the state on relaunch anyway.
  */
 function bindAndroidBack(): Teardown {
-  // Where the app started, so "has this app navigated anywhere" can be asked
-  // later. `history.length` alone cannot answer it: the number never decreases,
-  // so after going back it still reports the depth it reached.
-  const startedAt = window.history.length;
-
   const handle = App.addListener('backButton', () => {
-    if (window.history.length > startedAt) {
-      // React Router listens for `popstate`, so this is a real navigation and
-      // not a URL change the app has to be told about separately.
-      window.history.back();
-      return;
-    }
+    if (offerBackIntent()) return;
     void App.exitApp();
   });
   return () => void handle.then((listener) => listener.remove());

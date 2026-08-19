@@ -46,5 +46,11 @@
       "writing": "The writing feedback",
       "other": "Something else"
     }
+  },
+  "exit": {
+    "title": "Leave Hangyul ganada?",
+    "body": "Your progress is saved. You can pick up where you left off.",
+    "stay": "Stay",
+    "leave": "Leave"
   }
 }

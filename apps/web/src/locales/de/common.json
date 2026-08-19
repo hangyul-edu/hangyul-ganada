@@ -46,5 +46,11 @@
       "writing": "Die Schreib-Rückmeldung",
       "other": "Etwas anderes"
     }
+  },
+  "exit": {
+    "title": "Hangyul ganada schließen?",
+    "body": "Dein Fortschritt ist gespeichert. Du machst einfach da weiter, wo du aufgehört hast.",
+    "stay": "Hierbleiben",
+    "leave": "Schließen"
   }
 }

@@ -58,9 +58,21 @@ import { STROKE_ORDER } from './strokes';
  * ## One table, and everything else derived from it
  *
  * `LAYOUTS` is the only place in the app that says where a component of a block
- * goes. The animation reads it, the writing instruction under the animation
- * reads it — so the sentence says "and ㅏ on the right" only when the ㅏ really
- * is drawn on the right — and the regression tests read it.
+ * goes. The writing instruction under the animation reads it — so the sentence
+ * says "and ㅏ on the right" only when the ㅏ really is drawn on the right — and
+ * the regression tests read it.
+ *
+ * ## What this is *not* any more
+ *
+ * It is not the picture. The demonstration draws the character in the learner's
+ * practice face and uncovers it along these polylines; see `ui/StrokeOrder.tsx`.
+ * So what a block laid out here has to get right is *which part of the glyph
+ * each stroke is*, and roughly where — near enough that the mask lands on the
+ * ink it is uncovering. It no longer decides how the character looks, because
+ * nothing built out of straight segments and measured slots was ever going to
+ * match a typeface, and the lesson had the typeface on screen two inches above
+ * for comparison. Tuning the numbers below will not make the demonstration
+ * prettier; it will only move the mask.
  */
 
 /** A region of the block, in the same 0–1 coordinates the stroke data uses. */

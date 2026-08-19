@@ -8,7 +8,7 @@ import { markerAt } from './strokeMarker';
  * make the character harder to read rather than easier.
  */
 
-const RADIUS = 4.3;
+const RADIUS = 4;
 
 /** Distance from a point to the nearest ink of a stroke, in viewBox units. */
 function distanceToStroke(

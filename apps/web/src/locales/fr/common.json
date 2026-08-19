@@ -47,5 +47,11 @@
       "writing": "Le retour sur l'écriture",
       "other": "Autre chose"
     }
+  },
+  "exit": {
+    "title": "Quitter Hangyul ganada ?",
+    "body": "Votre progression est enregistrée. Vous reprendrez où vous en étiez.",
+    "stay": "Rester",
+    "leave": "Quitter"
   }
 }

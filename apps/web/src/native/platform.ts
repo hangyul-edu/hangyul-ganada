@@ -36,3 +36,20 @@ export const isIOS = platform === 'ios';
 export function hasPlugin(name: string): boolean {
   return Capacitor.isPluginAvailable(name);
 }
+
+/**
+ * Leaves the app, as the exit confirmation on Home does.
+ *
+ * `App.exitApp` and not a route change or `window.close`: the learner said they
+ * wanted out of the *app*, and the only layer that can do that is the native
+ * one. Android restores the state on relaunch, so nothing is lost by going.
+ *
+ * Imported lazily so the `@capacitor/app` bundle is not pulled into the web
+ * build's first load for a button that only exists on a phone. Off the phone it
+ * does nothing at all, which is the honest answer in a browser tab.
+ */
+export async function exitApp(): Promise<void> {
+  if (!isNative) return;
+  const { App } = await import('@capacitor/app');
+  await App.exitApp();
+}
