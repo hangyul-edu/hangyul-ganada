@@ -2637,12 +2637,29 @@ not targets.
 
 | Suite | Count | Result | Covers |
 | --- | --- | --- | --- |
-| Web unit (`vitest`) | 363 | pass | Domain logic, mastery, memory model, review scheduler, learner simulations, storage, migrations, i18n, data, categories, search, feedback, whole-word evaluation, quotes, activity, per-character stroke guidance, native inset conversion, **entry audio, scroll reset, Korean particle agreement, generated-question answer keys** |
-| Handwriting core (`vitest`) | 69 | pass | Evaluator algorithm, real-glyph calibration, six-typeface tolerance, adversarial robustness |
-| End-to-end (`playwright`) | 238 (119 × 2 projects) | pass, with the browser crash below | Full journeys at a phone viewport and at desktop, both appearances, the word-writing screen at four phone widths, system-bar bounds for every bottom control, **and the audio and scroll behaviour on arrival at a screen** |
+| Web unit (`vitest`) | 500 | pass | Domain logic, mastery, memory model, review scheduler, learner simulations, storage, migrations, i18n, data, categories, search, feedback, quotes, activity, per-character stroke guidance, native inset conversion, entry audio, scroll reset, Korean particle agreement, generated-question answer keys, **the resolved practice plan, the daily vocabulary goal, the absence of vocabulary handwriting, the wrong-answer notebook, memory-need review selection, and IPA pronunciation** |
+| Handwriting core (`vitest`) | 95 | pass | Evaluator algorithm, real-glyph calibration, six-typeface tolerance, adversarial robustness, **path quality: beginner-writing fixtures accepted and scrawl fixtures rejected** |
+| End-to-end (`playwright`) | 200 (100 × 2 projects) | pass, with the browser crash below | Full journeys at a phone viewport and at desktop, both appearances, system-bar bounds for every bottom control, the audio and scroll behaviour on arrival at a screen, **and a full daily vocabulary sitting asserting no canvas appears in it** |
 
-The web unit count rose by thirty-four this cycle, and every one of them is about
-something a learner hears, reads or presses:
+The web unit count rose by ninety-two this cycle and the handwriting count by
+twenty-six. The end-to-end count *fell* by forty-two, which is the honest shape
+of this cycle: the word-writing screen and its four-phone-width layout suite
+were deleted along with the feature, and what replaced them is one spec that
+walks a whole daily sitting asserting the canvas never appears.
+
+Of the new unit tests:
+
+* **26** on path quality in `handwriting-core` — the named beginner-writing
+  cases that must be accepted and the named scrawl cases that must be rejected.
+  A zigzag traced along ㅏ scored a *perfect* 0.000 mismatch before this cycle,
+  because its amplitude and an unsteady hand's are the same number and an ink
+  comparison cannot tell them apart.
+* **12** on the resolved practice plan, including the two ways the count on the
+  Review screen and the session behind it used to disagree.
+* **20** on the daily vocabulary goal: that ten means ten *words* and not ten
+  taps, and that leaving at four of ten returns to four of ten.
+
+The older additions, each about something a learner hears, reads or presses:
 
 * **14** on the audio a screen plays when the learner arrives at it, asserting
   *which utterance* was requested and how many times — the check that would have

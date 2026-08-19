@@ -9,8 +9,14 @@ they were asked to write. It is deterministic, local, and needs no inference.
 mismatchRatio = outsideStrokeRatio + missingCoverageRatio    (clamped to 0..1)
 
 PASS when mismatchRatio <= MAX_MISMATCH_RATIO   (0.10)
-FAIL when mismatchRatio >  MAX_MISMATCH_RATIO
+           and the pen path is not a scrawl     (see The path gate)
+FAIL otherwise
 ```
+
+Two gates, and the second is not a refinement of the first. The ink comparison
+is the primary measure; the path gate closes the one thing it structurally
+cannot see. Both have to be satisfied, and only the ink comparison can produce a
+score.
 
 ## How the two terms are measured
 
@@ -132,41 +138,132 @@ The pass window — roughly ±5 px of placement and 0.88–1.15 of size — is w
 enough for a beginner tracing a visible guide and narrow enough that the wrong
 character never passes.
 
-## Whole words
+## Note on the demonstration
 
-The evaluator grades one character against one reference glyph, and that is the
-right size for it — 기도하다 is four glyphs and there is no four-glyph mask.
+The stroke *animation* is a separate subject from grading, and it is documented
+where it lives: `data/strokeAssets.ts` for the reveal geometry and
+`scripts/strokes-qa.mjs` for what is checked. In short, a stroke is uncovered by
+a ribbon of its own varying width cut square across at the pen, and `strokes:qa`
+holds the property that a stroke may only be as black as the pen has travelled.
 
-`apps/web/src/features/writing/evaluateWord.ts` is the aggregation over it, not
-a second evaluator. It calls the grader once per syllable, against that
-syllable's own glyph, with the same per-typeface slack, and folds the answers
-into one verdict. Four calls inside, one grading event outside.
+## The path gate
 
-```ts
-evaluateWord(evaluator, [
-  { character: '기', strokes },
-  { character: '도', strokes },
-  { character: '하', strokes },
-  { character: '다', strokes },
-], { glyph: { fontFamily, fontWeight }, config })
-```
+The rule above compares **ink to ink**, and that comparison has one blind spot
+which is total: *a pixel does not record how many times the pen crossed it.*
 
-Two rules it enforces:
+Traced along ㅏ, a sine wave of amplitude 0.04 and period 0.04 — a violent
+scribble, four times the pen travel of an honest attempt — scored a
+**mismatch of exactly 0.000** and was marked correct. It is not a threshold
+problem. Every pixel of that scribble lands inside the tolerance band, and the
+band cannot be narrowed to exclude it, because the amplitude of the scribble and
+the amplitude of honest hand jitter are the same number.
 
-- **Every syllable must pass.** `passed` is a conjunction, never an average.
-  95 / 95 / 0 / 0 is not a word the learner wrote, and averaging it to 48% — or
-  to a pass — would say otherwise. A word with no syllables does not pass
-  either; `every` on an empty list is true, so that is guarded explicitly.
-- **An empty syllable short-circuits.** The evaluator is never called, and the
-  syllable is reported with a `null` result meaning *not written yet*. Asking it
-  to grade nothing would still rasterise a reference glyph, and a font that
-  fails to render throws — turning an unwritten box into an exception. The
-  interface normally prevents this state; the domain survives it regardless.
+So the path is measured separately, from the strokes rather than the mask
+(`src/path.ts`):
 
-Feedback maps the four failure reasons the evaluator can actually produce onto
-four sentences and stops there. It never claims an angle, an offset or a stroke
-length, because nothing in this method measures those — see **Known limitation**
-directly below.
+| Metric | Question | What it catches |
+| --- | --- | --- |
+| `lengthRatio` | how much further did the pen travel than the letter is long? | zigzags, repeated S-curves, over-tracing, wandering detours |
+| `reversalDensity` | how often did the pen turn back on itself? | scrubbing back and forth, loops, shading |
+
+Both are ratios against the **reference glyph's own skeleton length**, estimated
+from its ink area and its stroke thickness, so they mean the same thing for ㅣ
+and for 뷁 without a per-character table. The yardstick comes from the reference
+and never from the learner: one derived from the thing being measured would
+stretch to fit whatever it was handed, which is exactly how a scribble comes to
+look normal.
+
+Length alone passes a slow, tight back-and-forth. Reversals alone pass one
+enormous looping detour. Between them there is no way to lay down the right ink
+while moving like a scribble.
+
+### It is a veto, and only a veto
+
+The gate can turn a pass into a failure. It can never turn a failure into a
+pass, and it never changes the score of an honest attempt. A rejection reports
+`reason: 'scribble'`, and the score is pulled down to the pass mark rather than
+to zero — the ink really was close to the glyph, and reporting 0 would tell the
+scheduler the learner cannot form the letter at all, which the measurement does
+not support.
+
+### Forgiveness is designed in
+
+Everything measured is deliberately blind to what a beginner actually does
+wrong, because none of it changes how far the pen travelled: curved "straight"
+strokes, imperfect proportions, small positional error, slight overshoot,
+strokes drawn short or long. Hand tremor is filtered before measurement — the
+path is resampled to an even 0.006 of the box and smoothed over 0.016, a window
+sized so that a box filter annihilates tremor (gain 0.00 at its wavelength) and
+barely touches a deliberate scribble (gain 0.76 at the tightest one measured).
+Stroke *count* and stroke *order* are not looked at here at all.
+
+### The numbers, and where they came from
+
+Measured over the whole adversarial corpus — six typefaces, forty-five
+characters, twelve perturbations, 3,240 honest attempts:
+
+| | `lengthRatio` | `reversalDensity` |
+| --- | --- | --- |
+| worst honest attempt that the ink comparison accepts | 1.67 | 1.5 |
+| cheapest scribble the ink comparison lets through | 1.79 | 0 |
+| threshold | **2.5** | **6** |
+
+Both thresholds sit well above the honest maximum rather than halfway between
+the populations, and the asymmetry is the point: failing a learner who is
+writing correctly is the expensive mistake, and the band just above the honest
+maximum is where a genuinely shaky hand lives. What is given up is the mildest
+scribble — a wave of half the tolerance band's amplitude, which is a wobbly line
+by any fair reading.
+
+### What it now rejects that it used to accept
+
+Besides scribbles, one honest-looking behaviour: **colouring the glyph in**.
+Filling the shape by laying a stroke down every row and every column of it —
+about sixty-five strokes for a syllable — travels several times the length of
+the letter and is failed as excessive path length.
+
+That is the intended answer. Filling a shape is not among the beginner
+behaviours §12 asks the product to accept (jitter, curved straight strokes,
+imperfect proportions, small positional error, slight overshoot, strokes drawn
+short or long), and "excessive path length" is explicitly one §13 asks it to
+reject. It is worth naming because the end-to-end suite's own tracing fixture
+did exactly this, and the fixture was removed rather than the gate loosened: a
+test that needs the gate widened to pass is a test arguing for the scribble hole
+to be reopened.
+
+A learner who writes a letter in *more, shorter* strokes than usual is not
+affected — four strokes or one, ㅁ is the same distance round.
+
+### One fixture had to be fixed first
+
+The corpus's *very unsteady hand* was independent random displacement per
+sample: on a skeleton path sampled one point per pixel, an amplitude of 0.035
+meant the pen jumping sideways 2.2× its own forward step, in a new random
+direction, every sample. Nothing produces that — a finger has mass, a
+touchscreen reports a filtered centroid, and physiological tremor is a wave, not
+a fuzz.
+
+It mattered because, measured as a path, that fuzz *is* a scribble: it triples
+pen travel and reverses fifty times per letter. The fixture was asserting that
+the grader must accept something indistinguishable from the thing it must
+reject. It now draws a smooth wander of the same peak displacement, so the ink
+comparison is tested exactly as hard as before. Making it physical dropped false
+rejection from **1.42% to 0.21%**.
+
+Adding the gate and three new scrawl populations to the corpus moved false
+acceptance from **1.17% to 0.78%**, with all three scrawl populations rejected
+100% on all six faces.
+
+## Words are not graded at all
+
+There is no whole-word evaluation, and there is no `evaluateWord`. Vocabulary in
+this product is never handwritten: a word is met, heard, chosen and recognised.
+The module that aggregated per-syllable verdicts into a word verdict was deleted
+with the screen that used it — see `docs/ARCHITECTURE.md`, *Vocabulary is never
+handwritten*, for the three places that rule is now enforced.
+
+The evaluator therefore grades exactly one character against one reference
+glyph, which is the size it was always right for.
 
 ## Known limitation
 
@@ -194,6 +291,8 @@ Every constant is in `src/config.ts` and overridable per call:
 | `TOLERANCE_FALLOFF_MULTIPLIER` | `1.5` | how fast error ramps past the slack |
 | `STRUCTURAL_GAP_WEIGHT` | `2.5` | how much a contiguous omission counts |
 | `MIN_INK_RATIO` | `0.08` | below this, the attempt reads as `empty` |
+| `MAX_PATH_LENGTH_RATIO` | `2.5` | pen travel, as a multiple of the letter's own length |
+| `MAX_REVERSAL_DENSITY` | `6` | pen reversals per unit of letter length |
 | `COMPARISON_RESOLUTION` | `128` | mask edge length |
 
 The tolerance band and the pass bar are deliberately separate knobs: widening

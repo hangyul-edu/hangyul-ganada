@@ -272,41 +272,140 @@ Two of them deserve their reasoning stated, because the obvious choice is wrong:
 
 * The **alphabet** bar counts letters only. Including the practice syllables
   would make it read 40% when the learner knows every letter in Korean.
-* The **vocabulary** bar's denominator is the whole dataset, all 2,581 words,
-  because all 2,581 are open. A bar measured against "what you may access" would
-  read 100% for a learner who has studied nothing. It also counts *learned*
-  only: opened is not studied, and seen is not learned.
+* The **vocabulary** figure is *today*, not the catalogue. It reads `3 / 10` —
+  words finished against the learner's daily goal — because a bar measured
+  against a corpus heading for ten thousand entries is a line that never moves
+  and a number that only ever says how much is left.
 
-## Recommendations, never permissions
+## The corpus is depth, and it is never the interface
 
-Vocabulary has no locks. Every word is reachable from the first launch, in any
-order, and the levels are advice: a level whose letters the learner has not met
-says so — listing them, with a link to the lesson that teaches them — above a
-list of word sets that opens either way. `usesKnownLetters()` in
-`data/vocabulary.ts` answers "is this comfortable for you right now", which is
-what the Words screen labels and the home screen's suggestion is chosen with,
-and it is never consulted for access.
+Vocabulary has no locks and no browsing-as-curriculum. What a learner is offered
+is **today's plan**: a small number they chose, built from words they are
+losing, words that are fading, and the next few they have not met.
+`domain/vocabularyDay.ts` decides which; `features/vocabulary/dailyQuestions.ts`
+decides what each looks like. Categories and search still exist, one tap below
+the day's card, for somebody who came to look a word up.
 
-This is a paid, standalone app. Making a customer finish word 39 to look at word
-40 is a retention mechanic borrowed from products that still had something to
-sell them.
+The screen this replaced was a browser: seventeen categories, each a stack of
+numbered sets, each set six words to be written syllable by syllable. Two
+decisions before any Korean, between things nobody has a basis to choose
+between — "Set 13" is not something a person can want — and at ten thousand
+words it would have been a dictionary with a progress bar on it.
+
+The plan is persisted, so leaving at four of ten and coming back gives four of
+ten and the same six words.
+
+## Vocabulary is never handwritten
+
+Not in a lesson, not in review, not in saved words, not in the daily session.
+The rule is enforced in three independent places, because a single one would
+leave a route open:
+
+| Where | What it does |
+| --- | --- |
+| `WORD_SKILLS` in `domain/memory.ts` | has no `guided_writing`, so the scheduler cannot select it |
+| `wordExercise` in `features/review/exercises.ts` | returns `null` for `write`, so a hand-built candidate produces no question |
+| `writingRequired` in `domain/mastery.ts` | is false for words, so nothing waits on ink to be finished |
+
+`npm run vocabulary:qa` asserts the first two from outside the type system.
+
+## Deep where you are asking, shallow where you are working
+
+A quiz screen carries a word, a sound and four options. Everything a dictionary
+entry should have — IPA, part of speech, a fuller definition, the example with
+its translation, how it is said when that differs from how it is written,
+related words — lives on `/words/word/:id` and only there. The split is the
+design: a question screen has two seconds of a learner's attention and
+everything on it competes for them, and looking a word up is a different
+activity that deserves the whole screen.
+
+The pronunciation is derived rather than stored — see `data/pronunciation.ts`.
+It transcribes the content pipeline's reviewed *spoken* form where one exists
+(학교 → 학꾜 → [hak̚.k͈jo]) and applies the deterministic sound changes on top:
+resyllabification, nasalisation, lateralisation, intervocalic voicing.
+Transcribing the spelling would show the learner the letters they can already
+see.
 
 ## Mastery is a ladder that only goes up
 
 ```
-unseen → introduced → traced → written → learned
+unseen → introduced → written → learned
 ```
 
-Each rung is earned by a different act, and each proves something the previous
-one did not: tracing proves you can follow a line, writing proves you can
+Each rung is earned by a different act: writing it over a guide proves you can
 produce the shape, recognising it among its look-alikes proves you can *read*
-it. A word's ladder is shorter — viewed, heard, every syllable written — because
-a word is not a shape to pick out of near-identical shapes.
+it. There is **one** writing rung, not two. There were two — the same movement
+with a fainter model the second time — and the second could only measure whether
+the learner was willing to do it twice, which for someone facing forty letters
+is a lesson twice as long for the same learning. `traced` survives as a stage
+name because old profiles are written in it; nothing produces one any more.
 
-The ladder never goes backwards. A letter you once wrote from memory is a letter
-you once wrote from memory, including on a day you get it wrong; that day sets
-`needs_review`, which is a statement about now rather than a demotion. Demoting
-progress for a bad attempt teaches learners to stop attempting.
+A word's ladder has no writing rung at all: met, heard, understood.
+
+The ladder never goes backwards. A letter you once wrote is a letter you once
+wrote, including on a day you get it wrong; that day sets `needs_review`, which
+is a statement about now rather than a demotion. Demoting progress for a bad
+attempt teaches learners to stop attempting.
+
+## Review asks about what is slipping, not about what was learned
+
+`candidates()` will not offer a skill whose memory is holding. That one rule is
+what stopped the Review screen reading "500 to review" for a learner who had
+learned five hundred words — a to-do list that lengthens every time you do
+something. `reviewNeed()` in `domain/review.ts` classifies every item-and-skill
+as one of five things:
+
+| Need | Meaning | Counted? | Offered? |
+| --- | --- | --- | --- |
+| `wrong` | missed, and not yet answered right twice since | yes | yes, first |
+| `weak` | keeps being lost | yes | yes |
+| `due` | past its schedule | yes | yes |
+| `consolidate` | this way of asking has never been tried | **no** | yes, capped |
+| `settled` | answered right, recently, holding | no | **never** |
+
+`consolidate` is the subtle one, and it is deliberately in the session and out
+of the counts. It is worth *asking* — it is how "I can read it" becomes "I know
+it" — and it is not a memory need, so putting a number on it would be the
+catalogue-shaped figure all over again. The session builder already caps how
+much new ground one sitting breaks.
+
+Example sentences are never scheduled. A sentence is context for the word it
+demonstrates: `sentence_comprehension` is a *skill of the word*, so 엄마 has one
+memory row whatever its sentence is, and learning two hundred words does not
+create two hundred sentences to review.
+
+## Three lists that look alike and are not
+
+| | Whose decision | What it means | Where |
+| --- | --- | --- | --- |
+| **Saved word** | the learner's | *I want to keep this* | `/words/saved` |
+| **Review** | the system's | *this is fading* | `/review` |
+| **Mistake** | neither; it is a fact | *this went wrong* | `/review/mistakes` |
+
+Saving a word does not enrol it in every future review — that is how a save
+button becomes a punishment. It puts the word somewhere the learner can find it
+and gives them a button that reviews *those words* when they ask. A mistake
+raises an item's priority and stops doing so once it has been answered right
+twice; the row survives, because "this learner finds this one hard" is worth
+knowing, and the notebook screen is for things still going wrong.
+
+Mistakes are collected in `recordReview`, which every exercise in the app
+reports through — not by the screens. A screen-by-screen implementation
+collects mistakes from whichever screens remembered to.
+
+## One resolved plan, and both screens read it
+
+Review used to say *8 questions* and open a page reading "not found". Both
+numbers were honest computations of different things: the screen counted what
+the scheduler thought was worth asking, and the session counted what survived
+the interleaving rules and the option generators.
+
+`domain/plan.ts` resolves a `PracticePlan` in which every item has already been
+proved to produce a question. The Review screen prints `plan.count` and hands
+*that plan* to the session through the router's state; the session runs it. The
+count and the questions are the same object, so they cannot drift — and each
+manual mode gets its own resolved plan before its button is drawn, so an empty
+mode is shown as empty rather than offered and then apologised for.
 
 ## A new screen starts at the top, and nothing else moves it
 
@@ -323,7 +422,7 @@ each keyed on what "new" means there:
 | Owner | Key | What that means |
 | --- | --- | --- |
 | `AppShell` | `pathname + search` | a different route, including `?mode=` |
-| `FocusScreen` | the screen's `resetKey` | a different letter, word, step or review question |
+| `FocusScreen` | the screen's `resetKey` | a different letter, word, step or question |
 
 Deliberately simple, and deliberately not browser-style restoration: a lesson is
 a sequence of single screens, and arriving mid-screen costs more than not being
@@ -336,8 +435,8 @@ A question whose prompt is a sound is not a question until the sound has been
 heard. `useEntryAudio` plays an item's clip once when the learner arrives at it,
 on every screen where hearing the Korean is how you answer: the letter
 introduction, the word introduction, the "which letter makes this sound"
-recognition step, the listening and sound-discrimination review questions, and
-the write-what-you-hear dictation. The unit of arrival is a key that changes
+recognition step, the listening and sound-discrimination questions in review and
+in the daily vocabulary session, and the write-what-you-hear dictation. The unit of arrival is a key that changes
 when the item changes and for nothing else, so a re-render, an answer, a sheet,
 a theme change or a return from the background cannot make the app speak.
 

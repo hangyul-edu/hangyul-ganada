@@ -5,6 +5,31 @@
 **2,581 words**, every one of them reviewed by hand, with per-field provenance
 on every row.
 
+### …and where it is going
+
+The product target is **10,000+ useful headwords**, and the gap is content
+production rather than engineering. What is built and enforced now is everything
+around that number:
+
+* `npm run vocabulary:qa` states the target, checks every invariant the learning
+  system needs — unique canonical headwords, a priority score, a category, a
+  part of speech, an example, a gloss and an example translation in all eight
+  languages — and reports the shortfall. `npm run vocabulary:qa -- --target`
+  makes the count binding, and is what a release runs.
+* The corpus is its own bundle chunk, and `check-bundle-budget.mjs` projects its
+  gzipped cost forward to 10,000 headwords. At today's 72 bytes a word that
+  forecast is **700 kB, or 318% of its budget**, printed on every build.
+* That forecast becomes a *failing* build the moment the corpus passes 4,000
+  headwords while still being loaded before the home screen paints — which is
+  the commit where the current architecture becomes the wrong one, and the
+  commit where somebody can still do something about it. The remedies are named
+  in `CORPUS_TARGET_BUDGET`; none of them is a bigger number.
+
+The learner-facing side is already built for the target size: the vocabulary
+screen shows a daily goal rather than a catalogue (§22), a session reads a
+prefix of the priority order rather than scanning the corpus, and no screen
+renders more than 120 entries.
+
 | Field | Where it comes from | Licence |
 | --- | --- | --- |
 | part of speech, topic categories | English Wiktionary | CC BY-SA 4.0 |
@@ -178,6 +203,15 @@ before 이/야/여/요/유: 나뭇잎 is [나문닙], 큰일 is [큰닐], 별일
 those needs a morpheme dictionary for a five-word problem, so the five are named
 in `_IRREGULAR` and `npm run audio:pronunciation` walks every word that could
 possibly need to join them.
+
+## No handwriting, either
+
+Vocabulary is never handwritten anywhere in this product — see
+`docs/ARCHITECTURE.md`. It is worth stating in the *data* document as well
+because the rule has a data consequence: nothing in the pack, and nothing in the
+built dataset, exists to support a writing exercise. A word's syllables are still
+derived, because the search and the option generators use them; nothing grades
+them.
 
 ## No illustrations
 
