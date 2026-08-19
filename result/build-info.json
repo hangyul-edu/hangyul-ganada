@@ -1,70 +1,51 @@
 {
+  "_comment": "Written by the release refresh. Non-secret facts about the artefacts in this directory, all read back from the built files rather than from the build script's intentions.",
   "product": "Hangyul ganada",
   "version": "1.0.0",
-  "commit": null,
-  "built_at": "2026-08-18T23:34:42.464Z",
-  "builder": "node v24.19.0",
+  "gitCommit": "a7cc604bb6376176951e637e12a0e4d1cdfda746",
+  "gitCommitShort": "a7cc604",
+  "builtAt": "2026-08-19T07:24:10Z",
+  "builtOn": "Linux (WSL2) · JDK 21.0.11 · Android SDK build-tools 36.0.0 · bundletool 1.18.1",
   "android": {
-    "application_id": "com.talkhangyul.ganada",
-    "version_code": 1,
-    "version_name": "1.0.0",
-    "target_sdk": 36,
-    "min_sdk": 24,
-    "apk_bytes": 65963282,
-    "apk_sha256": "0d55a50b100d6682558f324566fd3110862492d0bca42795c7d6df1dc6851d89",
-    "apk_signature_schemes": [
-      "v2",
-      "v3"
-    ],
-    "apk_certificate_sha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
-    "apk_certificate_subject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
-    "aab_bytes": 64676283,
-    "aab_sha256": "10a4dd3c1189b2deefabfa7b34c5e56bfccdc05ef657160793a0e96387018aa2",
-    "aab_signed": true,
-    "permissions": [
-      "android.permission.INTERNET",
-      "android.permission.POST_NOTIFICATIONS",
-      "android.permission.RECEIVE_BOOT_COMPLETED",
-      "android.permission.WAKE_LOCK",
-      "android.permission.VIBRATE",
-      "com.talkhangyul.ganada.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-    ],
-    "native_libraries": 0,
-    "registered_with_play": false
+    "applicationId": "com.talkhangyul.ganada",
+    "versionCode": 1,
+    "versionName": "1.0.0",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "compileSdk": 36,
+    "apk": {
+      "file": "HangyulGaNaDa-release.apk",
+      "bytes": 65966741,
+      "size": "62.9 MB",
+      "signed": true,
+      "signatureSchemes": [
+        "v2",
+        "v3"
+      ],
+      "certificateSubject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
+      "certificateSha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
+      "keyAlgorithm": "RSA 4096",
+      "verifiedWith": "apksigner verify --print-certs (build-tools 36.0.0)"
+    },
+    "aab": {
+      "file": "HangyulGaNaDa-release.aab",
+      "bytes": 64681565,
+      "size": "61.7 MB",
+      "signed": true,
+      "certificateSubject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
+      "certificateSha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
+      "validatedWith": "bundletool validate + build-apks --connected-device + install-apks",
+      "playUploadKey": false,
+      "playUploadKeyNote": "Signed with the project's established release key. That key is self-signed and has not been registered as a Play upload key: app.identity.json still records registered.googlePlay = false. See BUILD_OR_SIGNING_BLOCKERS.md."
+    }
   },
   "ios": {
-    "bundle_id": "com.talkhangyul.ganada",
-    "version": "1.0.0",
-    "build": 1,
-    "deployment_target": "15.0",
-    "sdk": null,
-    "ipa_bytes": null,
-    "status": "not built — macOS and Xcode are unavailable in this environment",
-    "registered_with_app_store_connect": false
-  },
-  "product_content": {
-    "locales": [
-      "en",
-      "ko",
-      "ja",
-      "zh-CN",
-      "es",
-      "fr",
-      "de",
-      "pt-BR"
-    ],
-    "vocabulary_words": 2581,
-    "vocabulary_categories": 18,
-    "example_qa_version": "examples-qa-1",
-    "example_qa_pass": 2581,
-    "example_qa_total": 2581,
-    "review_algorithm_version": 1,
-    "schema_version": 6
-  },
-  "toolchain": {
-    "workspace_version": "0.1.0",
-    "gradle": "8.14.3",
-    "build_tools": "36.0.0",
-    "bundletool": "1.18.1"
+    "bundleId": "com.talkhangyul.ganada",
+    "marketingVersion": "1.0.0",
+    "currentProjectVersion": 1,
+    "deploymentTarget": "15.0",
+    "projectSynced": true,
+    "ipa": null,
+    "ipaNote": "No IPA. Building one needs macOS, Xcode and an Apple signing identity; none exist on this machine. The synchronised Xcode project is in ios-project/. See BUILD_OR_SIGNING_BLOCKERS.md."
   }
 }

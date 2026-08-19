@@ -26,6 +26,7 @@
  * | first load | everything the browser needs before the home screen paints |
  * | one locale | the word copy for the learner's own language, fetched right after |
  * | any route | the largest single lazily-loaded screen |
+ * | stroke assets | the stroke geometry, fetched when a lesson opens |
  * | everything | every chunk the service worker precaches for offline use |
  *
  * The numbers below are the measured sizes plus a deliberate margin — roughly
@@ -62,10 +63,23 @@ const FIRST_LOAD = [
 /** One language's word meanings and example translations. */
 const LOCALE_PACK = /^vocabulary\.[\w-]+-.*\.js$/;
 
+/**
+ * The stroke geometry for every character the curriculum teaches.
+ *
+ * Budgeted apart from the route chunks rather than counted among them. It is
+ * data, not a screen: it loads once when the first lesson opens and is reused by
+ * every lesson after. Left in the route bucket it was the largest "route" by a
+ * factor of three, which hid what that budget is for — a *page's code* quietly
+ * growing — behind a number that only ever moves when a character is added to
+ * the curriculum. Two lines say two different things; one line said neither.
+ */
+const STROKE_ASSETS = /^stroke-assets-.*\.js$/;
+
 const BUDGETS = {
   firstLoad: 460 * 1024,
   localePack: 44 * 1024,
   route: 24 * 1024,
+  strokeAssets: 32 * 1024,
   total: 800 * 1024,
 };
 
@@ -83,7 +97,10 @@ const files = readdirSync(ASSETS)
 
 const firstLoad = files.filter((f) => FIRST_LOAD.some((pattern) => pattern.test(f.name)));
 const localePacks = files.filter((f) => LOCALE_PACK.test(f.name));
-const routes = files.filter((f) => !firstLoad.includes(f) && !localePacks.includes(f));
+const strokeAssets = files.filter((f) => STROKE_ASSETS.test(f.name));
+const routes = files.filter(
+  (f) => !firstLoad.includes(f) && !localePacks.includes(f) && !strokeAssets.includes(f),
+);
 
 const sum = (list) => list.reduce((n, f) => n + f.gzip, 0);
 const kb = (bytes) => `${(bytes / 1024).toFixed(1)} kB`;
@@ -106,6 +123,12 @@ const results = [
     detail: routes.length ? (routes[0]?.name ?? '') : 'none found',
     actual: Math.max(0, ...routes.map((f) => f.gzip)),
     budget: BUDGETS.route,
+  },
+  {
+    label: 'stroke assets',
+    detail: strokeAssets.length ? `${strokeAssets.length} chunk(s), loaded with the first lesson` : 'none found',
+    actual: sum(strokeAssets),
+    budget: BUDGETS.strokeAssets,
   },
   {
     label: 'everything precached',

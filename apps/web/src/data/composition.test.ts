@@ -12,13 +12,21 @@ import { STROKE_ORDER } from './strokes';
  * right, 받침 underneath. This checks the *spacing*, which is a different
  * failure and the one that survived every structural fix: letters correctly
  * arranged and still not composed, standing apart with a gap the typeface does
- * not have. A learner reads that as ㅇ ㅓ rather than 어.
+ * not have.
  *
- * The spacing now comes from measuring the reference glyph per syllable — see
- * `scripts/measure-composition.mjs`. So what is defended here is that the
- * measurement is actually being used: that syllables the face draws touching
- * come out touching, that syllables it draws apart keep their gap, and that no
- * syllable has fallen back to a uniform slot spacing for all of them.
+ * ## What these assertions are worth now
+ *
+ * They no longer defend anything a learner sees. The demonstration is drawn
+ * from `data/strokeAssets`, where the letters sit exactly where the font puts
+ * them because the shapes were cut out of it — so "does 어's ㅇ touch its ㅓ" is
+ * settled by the glyph and not by this arithmetic.
+ *
+ * They are kept because this layout still feeds stroke-order grading, and a
+ * grader needs to know roughly where in the block each letter is: it is what
+ * decides whether a learner's first stroke started in the right corner. A block
+ * whose letters had drifted apart or piled up would grade real handwriting
+ * wrongly and tell a beginner they had made a mistake they had not. That is the
+ * failure these still catch, and it is worth catching.
  */
 
 /** The strokes belonging to each letter, split out by stroke count. */

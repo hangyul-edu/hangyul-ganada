@@ -311,7 +311,6 @@ export function LetterSessionPage() {
         ) : phase === 'intro' ? (
           <CharacterIntro
             character={current}
-            fontFamily={font.font_family}
             onHeard={() => recordHeard('character', current.character, recognitionRequired)}
             onDemoWatched={() => recordDemoSeen('character', current.character, recognitionRequired)}
           />
@@ -386,7 +385,6 @@ export function LetterSessionPage() {
                 </h2>
                 <StrokeOrder
                   character={current.character}
-                  strokes={current.strokes}
                   size={152}
                   /*
                     Plays by itself for a learner who has not watched it yet.

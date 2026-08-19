@@ -5,7 +5,35 @@ import { MEDIAL_PARTS, branchesLeft, medialForm, toJamo, type MedialForm } from 
 import { STROKE_ORDER } from './strokes';
 
 /**
- * Putting letters into a syllable block.
+ * Putting letters into a syllable block — for counting and grading, not drawing.
+ *
+ * ## This no longer decides what anything looks like
+ *
+ * It used to. Every demonstration in the app was drawn from what this file
+ * produced, and that is where six rounds of "the stroke demo still looks wrong"
+ * came from: composing a block at runtime means *inventing* the finished shape,
+ * so it can always invent a wrong one — a chamfered ㅂ, a ㄱ leaning the wrong
+ * way, a 글 whose ㄹ collapsed into three overlapping lines — and the only way
+ * to find out is for a person to look at it.
+ *
+ * The pictures now come from `data/strokeAssets`, where each stroke is an
+ * outline cut from the real reference glyph at build time. Nothing in `ui/`
+ * imports this file any more, and nothing should: if a demonstration ever looks
+ * wrong again, the asset is wrong, and this is not where to fix it.
+ *
+ * What is left here is the part that was always sound and is still needed —
+ * *stroke-order semantics*. How many strokes a block has, in what order, from
+ * which end, travelling which way. That is what the curriculum counts
+ * (`stroke_count`), what `features/writing/feedback.ts` grades a learner's
+ * handwriting against, and what `data/strokeGuide.ts` turns into "start at the
+ * top left". None of those needs the shape to be beautiful; they need the
+ * movement to be right, which polylines are good at.
+ *
+ * The layout below therefore still runs, and the diagrams in the rest of this
+ * comment still describe what it does. Read them as a description of where the
+ * letters of a block *are*, which is what a grader needs to know — not as a
+ * claim about what the block looks like on screen. That question has one answer
+ * now, and it is the reference glyph.
  *
  * ## The bug this exists to make impossible
  *

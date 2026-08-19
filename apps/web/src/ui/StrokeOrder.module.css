@@ -29,37 +29,50 @@
 /*
  * The guide and the ink.
  *
- * Deliberately identical but for colour: same path, same width, same caps and
- * joins. The guide shows where the writing is going and the ink covers it as it
- * arrives, so the moment a stroke turns from grey to black nothing moves,
- * thickens or shifts — there is one geometry on the screen and both rules are
- * drawing it.
+ * Deliberately identical but for colour: the same filled outlines, cut from the
+ * same glyph at build time. The guide shows where the writing is going and the
+ * ink covers it as it arrives, so the moment a stroke turns from grey to black
+ * nothing moves, thickens or shifts — there is one geometry on the screen and
+ * both rules are painting it.
  *
- * Round caps and joins because this is a pen. A flat cap ends a half-written
- * stroke in a rectangular block, which is what a learner reads as the letter
- * having broken in half.
+ * Filled rather than stroked. The shapes are the glyph's own outlines, so the
+ * ends and joins are whatever the typeface draws — a real pen's, not a round
+ * cap approximating one. `evenodd` because a stroke can enclose a counter: the
+ * ㅇ of 어 is a ring, and a nonzero rule would fill its middle in.
  */
 .ghost,
 .ink {
-  fill: none;
-  stroke-width: var(--hg-pen, 9);
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  fill-rule: evenodd;
+  stroke: none;
 }
 
 .ghost {
-  stroke: var(--hg-canvas-guide);
+  fill: var(--hg-canvas-guide);
 }
 
 .ink {
-  stroke: var(--hg-canvas-ink);
+  fill: var(--hg-canvas-ink);
 }
 
 /*
- * The numbers sit on each stroke's starting point, which is the one place a
- * number is unambiguous — a label beside the letter would have to be joined to
+ * The numbers sit at each stroke's starting point, which is the one place a
+ * number is unambiguous — a label beside the letter would have to be matched to
  * its stroke by eye. Small enough not to bury the ink they sit on.
+ *
+ * Where several strokes start close together, as the ㅡ and all three bars of
+ * the ㄹ do in 글, the disc is displaced far enough to be read and a hairline
+ * keeps it attached to the point it belongs to. See `strokeMarkers.ts`; the
+ * anchor itself never moves.
  */
+.tether {
+  stroke: var(--hg-gray-400);
+  stroke-width: 0.6;
+}
+
+.markerDone .tether {
+  stroke: var(--hg-primary);
+}
+
 .marker circle,
 .markerDone circle {
   stroke-width: 0.9;

@@ -49,6 +49,17 @@ const LegalPage = lazy(() => import('./pages/LegalPage').then((m) => ({ default:
 const PrivacyPage = lazy(() =>
   import('./pages/PrivacyPage').then((m) => ({ default: m.PrivacyPage })),
 );
+/*
+ * Development only, and not in the production bundle.
+ *
+ * `import.meta.env.DEV` is a compile-time constant, so the route below is
+ * removed entirely from a release build and this chunk is never emitted. It is
+ * reachable only by typing the path — nothing links to it. See the note in
+ * `pages/StrokeGalleryPage.tsx`.
+ */
+const StrokeGalleryPage = lazy(() =>
+  import('./pages/StrokeGalleryPage').then((m) => ({ default: m.StrokeGalleryPage })),
+);
 const NotFoundPage = lazy(() =>
   import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
 );
@@ -172,6 +183,10 @@ export function App() {
               <Route path="/words/:lessonId" element={<WordSessionPage />} />
               <Route path="/review/session" element={<ReviewSessionPage />} />
             </Route>
+
+            {import.meta.env.DEV && (
+              <Route path="/dev/stroke-gallery" element={<StrokeGalleryPage />} />
+            )}
 
             <Route
               path="*"

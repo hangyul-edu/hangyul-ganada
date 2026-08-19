@@ -108,6 +108,17 @@ export default defineConfig({
           if (/src[\\/]data[\\/]generated[\\/]vocabulary\.(?!en\.)[\w-]+\.json/.test(id)) {
             return undefined;
           }
+          /*
+           * The stroke assets are lesson geometry, not curriculum data.
+           *
+           * They are ~190 kB of path outlines and only the demonstration
+           * components import them, which means they are only ever needed once
+           * a learner opens a lesson. Left in `curriculum-data` — which is
+           * loaded before the home screen paints — they pushed the first load
+           * straight through its budget for a screen that never draws a single
+           * stroke. Their own chunk is fetched with the lesson route instead.
+           */
+          if (id.includes('src/data/generated/strokeAssets')) return 'stroke-assets';
           if (id.includes('src/data/generated')) return 'curriculum-data';
           if (id.includes('node_modules/react') || id.includes('node_modules/scheduler')) {
             return 'react';

@@ -6,6 +6,11 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
+Re-checked against the release refresh of 2026-08-19 (commit `a7cc604`). All
+four blockers below still stand, unchanged: none of them is a build problem and
+none can be cleared from this machine. The Android artefacts were rebuilt,
+signed, installed and tested this cycle — see `RELEASE_VALIDATION.md`.
+
 ---
 
 ## 1. iOS — no IPA · **EXTERNAL BLOCKER**
@@ -58,7 +63,7 @@ Certificate SHA-256:
 
 ```
 157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc
-CN=Hangyul ganada, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR
+CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR
 ```
 
 **What is missing:** that keystore was generated in this environment. It is

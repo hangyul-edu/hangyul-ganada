@@ -28,9 +28,15 @@
   box-shadow: var(--hg-shadow-card);
 }
 
+/*
+ * Sized rather than type-set: the glyph is drawn from the stroke asset now, not
+ * set in a font, so it scales by width and takes its colour from `currentColor`.
+ * The range is the one the type used to occupy, so the card is unchanged.
+ */
 .glyph {
-  font-size: clamp(96px, 32vw, 148px);
-  line-height: 1;
+  display: block;
+  width: clamp(96px, 32vw, 148px);
+  height: auto;
   color: var(--hg-text);
   /* Korean is written left to right in every interface language. */
   direction: ltr;

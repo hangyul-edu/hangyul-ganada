@@ -1,0 +1,97 @@
+/*
+ * Development only — see the note in `StrokeGalleryPage.tsx`. Plain values
+ * rather than design tokens on purpose: this page is a measuring instrument, and
+ * it should not change appearance when the product's theme does.
+ */
+.page {
+  padding: 24px;
+  background: #f6f6f6;
+  color: #111;
+  font: 14px/1.5 system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.head h1 {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 12px 0 20px;
+}
+
+.absent {
+  color: #b42318;
+  font-weight: 600;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 26px;
+}
+
+.card h2 small {
+  font-size: 13px;
+  font-weight: 400;
+  color: #777;
+}
+
+.pair {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.pair figure {
+  margin: 0;
+}
+
+.pair figcaption {
+  font-size: 11px;
+  color: #777;
+  text-align: center;
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+.ref {
+  background: #fcfcfc;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  display: block;
+  color: #111;
+}
+
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.frame {
+  text-align: center;
+}
+
+.frame span {
+  font-size: 10px;
+  color: #888;
+}
+
+/* Reading the reference *through* the frames: a stroke that has landed off its
+   own glyph shows up at once as a doubled edge. */
+.overlay .ref {
+  opacity: 0.5;
+}

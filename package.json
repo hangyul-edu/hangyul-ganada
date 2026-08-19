@@ -28,6 +28,8 @@
     "curriculum:check": "tsx scripts/export-curriculum.mjs --check",
     "strokes:qa": "tsx scripts/strokes-qa.mjs",
     "strokes:qa:check": "tsx scripts/strokes-qa.mjs --check",
+    "strokes:build": "tsx scripts/build-stroke-assets.mjs",
+    "strokes:build:check": "tsx scripts/build-stroke-assets.mjs --check",
     "strokes:measure": "tsx scripts/measure-composition.mjs",
     "fonts:audit": "python3 scripts/content/audit_fonts.py",
     "i18n:report": "node scripts/i18n-report.mjs",

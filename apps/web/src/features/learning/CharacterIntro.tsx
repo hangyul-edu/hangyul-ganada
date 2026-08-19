@@ -9,6 +9,7 @@ import { resolveContent, useLocale } from '../../i18n';
 import { HangyulMascot } from '../../ui/HangyulMascot';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
+import { ReferenceGlyph } from '../../ui/ReferenceGlyph';
 import { StrokeOrder } from '../../ui/StrokeOrder';
 import styles from './CharacterIntro.module.css';
 
@@ -64,12 +65,10 @@ import styles from './CharacterIntro.module.css';
  */
 export function CharacterIntro({
   character,
-  fontFamily,
   onHeard,
   onDemoWatched,
 }: {
   character: HangulCharacter;
-  fontFamily: string;
   onHeard: () => void;
   /** The demonstration ran all the way through. */
   onDemoWatched: () => void;
@@ -113,9 +112,11 @@ export function CharacterIntro({
   return (
     <div className={styles.intro}>
       <div className={styles.glyphCard}>
-        <span className={styles.glyph} style={{ fontFamily }} lang="ko">
-          {character.character}
-        </span>
+        {/* The same paths the demonstration below is built from — see
+            `ui/ReferenceGlyph`. On a screen whose subject is how the character
+            is written, the reference and the demonstration have to be one
+            shape, not two that resemble each other. */}
+        <ReferenceGlyph character={character.character} size={148} className={styles.glyph} />
       </div>
 
       <div className={styles.sounds}>
@@ -158,12 +159,7 @@ export function CharacterIntro({
         <h2 id="stroke-order-heading" className={styles.strokesHeading}>
           {tw('strokeOrder.heading')}
         </h2>
-        <StrokeOrder
-          character={character.character}
-          strokes={character.strokes}
-          size={208}
-          onWatched={onDemoWatched}
-        />
+        <StrokeOrder character={character.character} size={208} onWatched={onDemoWatched} />
         {/* What to do with *this* character, derived from its own stroke data.
             See `data/strokeGuide.ts`. */}
         <p className={styles.instruction}>{instruction}</p>
