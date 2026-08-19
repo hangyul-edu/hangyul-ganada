@@ -3,20 +3,20 @@
     "title": "Apprendre les lettres",
     "complete": "Acquise",
     "alphabetTitle": "L’alphabet hangeul",
-    "alphabetCaption": "lettres apprises"
+    "alphabetCaption": "lettres apprises",
+    "resume": "Reprendre"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Passer celle-ci",
     "next": "Lettre suivante",
     "finish": "Terminer",
-    "startTrace": "Repassez-la",
+    "startWriting": "Écrivez-la",
     "prompt": {
-      "trace": "Suivez la forme grise avec le doigt.",
-      "practise": "Le guide est plus léger. Écrivez-la vous-même — il reste là si vous en avez besoin."
+      "write": "Écrivez-la au doigt en suivant le guide."
     },
-    "nowPractise": "Ensuite : avec un guide plus léger",
-    "nowRead": "À vous de la lire"
+    "nowRead": "À vous de la lire",
+    "continue": "Suivant"
   },
   "complete": {
     "title": "Bravo !",
@@ -61,9 +61,14 @@
       "context": "Quel mot va ici ?",
       "write": "Écrivez ce mot",
       "writeLetter": "Écrivez ce que vous entendez",
-      "distinguish": "Laquelle fait ce son ?"
+      "distinguish": "Laquelle fait ce son ?",
+      "produce": "Lequel est-ce ?",
+      "listenMeaning": "Qu’est-ce que cela veut dire ?"
     },
-    "sessionLength_many": "{{count, number}} courts exercices"
+    "sessionLength_many": "{{count, number}} courts exercices",
+    "nothingDue": "Rien à réviser pour le moment.",
+    "modesEmpty": "Rien dans ces modes aujourd'hui.",
+    "answerIs": "{{word}} signifie « {{meaning}} »."
   },
   "units": {
     "badge": "Unité {{index, number}}",
@@ -143,8 +148,7 @@
   },
   "steps": {
     "label": "Étapes de cette lettre",
-    "trace": "Repasser",
-    "practise": "Écrire",
+    "write": "Écrire",
     "read": "Lire"
   },
   "recognition": {
@@ -154,13 +158,8 @@
     "correctDetail": "C'est bien {{character}}.",
     "wrongHeadline": "Pas celle-là.",
     "wrongDetail": "C’est {{character}} qui se prononce {{sound}}.",
-    "hearAgain": "Réécouter"
-  },
-  "reading": {
-    "question": "Que veut dire ce mot ?",
-    "optionsAria": "Quatre sens au choix",
-    "wrongHeadline": "Regardez encore",
-    "answer": "{{word}} veut dire « {{meaning}} »."
+    "hearAgain": "Réécouter",
+    "tryAgain": "Réessayer"
   },
   "sounds": {
     "title": "Quand les sons se rencontrent",
@@ -177,5 +176,27 @@
       "palatal": "ㄷ et ㅌ devant 이",
       "liaison": "Le son glisse"
     }
+  },
+  "mistakes": {
+    "title": "Réponses fausses",
+    "review_one": "Réviser · 1 question",
+    "review_many": "Réviser · {{count}} questions",
+    "review_other": "Réviser · {{count}} questions",
+    "filterLabel": "Afficher",
+    "filter": {
+      "all": "Tout",
+      "character": "Lettres",
+      "word": "Mots"
+    },
+    "youPut": "Votre réponse",
+    "answer": "Réponse",
+    "times_one": "Ratée une fois",
+    "times_many": "Ratée {{count}} fois",
+    "times_other": "Ratée {{count}} fois",
+    "clear": "C’est acquis",
+    "noneOfKind": "Rien ici pour le moment.",
+    "emptyTitle": "Aucune erreur pour l’instant",
+    "emptyBody": "Quand vous vous tromperez, cela apparaîtra ici pour que vous puissiez corriger.",
+    "emptyCta": "Aller aux révisions"
   }
 }

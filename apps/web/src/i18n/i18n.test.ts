@@ -125,14 +125,42 @@ describe('default locale and precedence', () => {
     window.localStorage.clear();
   });
 
-  it('gives a fresh learner English', () => {
-    expect(resolveLocale({})).toEqual({ locale: 'en', source: 'default' });
+  it('gives a fresh learner their device language when we ship it', () => {
+    // The rule that matters most for a beginner: somebody who has just
+    // installed a Korean app and reads Japanese should not have to find their
+    // way out of an English settings screen. See §55.
+    expect(resolveLocale({ deviceLanguages: ['ja-JP', 'en'] })).toEqual({
+      locale: 'ja',
+      source: 'device',
+    });
+    expect(resolveLocale({ deviceLanguages: ['pt-BR'] }).locale).toBe('pt-BR');
+    expect(resolveLocale({ deviceLanguages: ['zh-CN'] }).locale).toBe('zh-CN');
   });
 
-  it('does not adopt Korean just because the browser is Korean', () => {
-    // The product's audience is people learning Korean, not people who read it.
-    const resolved = resolveLocale({ profileLocale: null, storedLocale: null });
-    expect(resolved.locale).toBe('en');
+  it('falls back to English when the device language is one we do not ship', () => {
+    const resolved = resolveLocale({ deviceLanguages: ['is-IS', 'fo-FO'] });
+    expect(resolved).toEqual({ locale: 'en', source: 'default' });
+  });
+
+  it('gives a fresh learner English when the device says nothing', () => {
+    expect(resolveLocale({ deviceLanguages: [] })).toEqual({ locale: 'en', source: 'default' });
+  });
+
+  it('does adopt Korean when the device is Korean', () => {
+    // This used to be forbidden, on the argument that the audience is people
+    // learning Korean rather than people who read it. Korean speakers are
+    // exactly who uses this app to learn the writing system, and the learning
+    // content stays Korean either way — what changes is only whether the
+    // buttons are readable.
+    expect(resolveLocale({ deviceLanguages: ['ko-KR'] }).locale).toBe('ko');
+  });
+
+  it('never lets the device override a choice the learner made', () => {
+    expect(resolveLocale({ storedLocale: 'en', deviceLanguages: ['ko-KR'] })).toEqual({
+      locale: 'en',
+      source: 'stored',
+    });
+    expect(resolveLocale({ profileLocale: 'de', deviceLanguages: ['ko-KR'] }).locale).toBe('de');
   });
 
   it('prefers an account preference over a device one', () => {
@@ -142,7 +170,7 @@ describe('default locale and precedence', () => {
     });
   });
 
-  it('uses the device preference when there is no account one', () => {
+  it('uses the stored preference when there is no account one', () => {
     expect(resolveLocale({ profileLocale: null, storedLocale: 'ko' })).toEqual({
       locale: 'ko',
       source: 'stored',
@@ -150,10 +178,13 @@ describe('default locale and precedence', () => {
   });
 
   it('ignores a corrupt stored value rather than crashing', () => {
-    expect(resolveLocale({ storedLocale: 'not a locale' })).toEqual({
+    expect(resolveLocale({ storedLocale: 'not a locale', deviceLanguages: [] })).toEqual({
       locale: 'en',
       source: 'default',
     });
+    // …and still lets the device have its say, since the corrupt value was
+    // never a choice.
+    expect(resolveLocale({ storedLocale: '\u0000', deviceLanguages: ['fr-CA'] }).locale).toBe('fr');
   });
 
   it('persists a choice and reads it back', () => {

@@ -1,0 +1,254 @@
+/*
+ * The two list screens: saved words, and the wrong-answer notebook.
+ *
+ * One stylesheet, because they are the same screen with different rows — a
+ * header, an optional action, some filter chips, and a list of cards. Giving
+ * each its own would be two files drifting apart over a layout nobody intended
+ * to be different.
+ */
+
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+/* An empty screen centres its one card rather than pinning it to the top. */
+.bodyEmpty {
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-3);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.emptyBody {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.emptyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hg-space-1);
+  min-height: 44px;
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-primary);
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  padding: 0 var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text-tertiary);
+}
+
+.search {
+  flex: 1;
+  border: 0;
+  background: none;
+  min-height: 48px;
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+}
+
+.search::placeholder {
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * Filter and sort chips.
+ *
+ * A row of chips rather than a dropdown: there are three of each, they fit, and
+ * a chip shows its state without being opened. A native select over a WebView
+ * is a grey system list belonging to a different app.
+ */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-2);
+}
+
+.chip {
+  padding: var(--hg-space-2) var(--hg-space-4);
+  min-height: 40px;
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-medium);
+}
+
+.chipOn {
+  border-color: var(--hg-primary);
+  background: var(--hg-surface-warm);
+  color: var(--hg-primary);
+  font-weight: var(--hg-weight-bold);
+}
+
+.count,
+.none {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+/* The tappable body of a row: everything except the speaker and the action. */
+.rowMain {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  text-align: start;
+  color: var(--hg-text);
+}
+
+/* Korean is target content and never mirrors, whatever the interface does. */
+.rowWord {
+  direction: ltr;
+  flex: none;
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.rowMeaning {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+}
+
+.rowSub {
+  direction: ltr;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  font-variant-ligatures: none;
+}
+
+.rowAction {
+  flex: none;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  min-height: 44px;
+  border-radius: var(--hg-radius-sm);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-primary);
+}
+
+/* --- A notebook row ---------------------------------------------------------- */
+
+.mistake {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.mistakeHead {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+/*
+ * What was put, and what was right.
+ *
+ * A description list, because that is what it is — two labelled facts — and
+ * because a screen reader then announces the label with the value instead of
+ * reading four disconnected fragments.
+ */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  padding-top: var(--hg-space-3);
+  border-top: 1px solid var(--hg-border);
+}
+
+.answerRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-2);
+  font-size: var(--hg-text-caption);
+}
+
+.answerRow dt {
+  color: var(--hg-text-tertiary);
+  min-width: 5.5em;
+}
+
+.answerRow dd {
+  direction: ltr;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+}
+
+/*
+ * The wrong answer is struck through rather than coloured red alone.
+ *
+ * Colour is not available to everyone, and "your answer / the answer" in two
+ * shades of the same hue is exactly the pair that colour blindness collapses.
+ * The strike-through says which is which without it.
+ */
+.wrongAnswer {
+  color: var(--hg-text-tertiary);
+  text-decoration: line-through;
+}
+
+.rightAnswer {
+  color: var(--hg-text);
+}
+
+.mistakeFoot {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.times {
+  flex: 1;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}

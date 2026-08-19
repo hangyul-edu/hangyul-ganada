@@ -8,8 +8,6 @@
   },
   "language": {
     "title": "语言",
-    "description": "界面显示的语言。要学的韩语内容始终保持韩语。",
-    "openPicker": "更改语言",
     "pickerTitle": "选择语言",
     "pickerIntro": "选择界面语言。学习对象——韩文字母、单词和例句——始终以韩语显示。",
     "listAria": "可用的语言",
@@ -17,9 +15,6 @@
     "searchPlaceholder": "按名称或代码搜索",
     "noResults": "没有与“{{query}}”匹配的语言。",
     "selected": "已选择",
-    "suggestion": "你的浏览器语言是{{language}}。要把界面也切换过去吗？",
-    "suggestionAccept": "使用{{language}}",
-    "suggestionDismiss": "保持英语",
     "coverageNote": "尚未完成翻译的说明文字可能仍显示为英语。"
   },
   "font": {
@@ -27,10 +22,16 @@
     "description": "你描的字会用所选字体来画。"
   },
   "dailyTarget": {
-    "title": "每日目标",
-    "description": "每天要完成的字或词的数量。",
+    "title": "每天几个字母",
+    "description": "决定每天学完多少个字母。",
     "option_other": "{{count, number}}",
     "optionAria_other": "每天 {{count, number}} 个字"
+  },
+  "wordGoal": {
+    "title": "每天几个词",
+    "description": "决定每天完成多少个词。随时可以改。",
+    "option": "{{count}}个",
+    "optionAria": "每天 {{count}} 个词"
   },
   "guides": {
     "title": "书写辅助线",

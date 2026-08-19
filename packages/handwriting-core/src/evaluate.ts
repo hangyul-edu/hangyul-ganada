@@ -6,6 +6,7 @@ import {
   largestThickComponentSize,
   squaredDistanceTransform,
 } from './mask.js';
+import { pathMetrics, skeletonLengthOf } from './path.js';
 import { rasterizeStrokes } from './raster.js';
 import type {
   EvaluationConfig,
@@ -214,9 +215,28 @@ function unwrittenMask(referenceMask: Mask, userMask: Mask, reachPx: number): Ma
 }
 
 /**
- * Convenience wrapper: rasterises normalised strokes, then evaluates. The
- * reference mask still has to come from the platform's glyph rasteriser,
+ * Rasterises normalised strokes, evaluates the ink, and then checks the path.
+ *
+ * The reference mask still has to come from the platform's glyph rasteriser,
  * because only it knows the learner's selected typeface.
+ *
+ * ## Two gates, not one, and why the second exists
+ *
+ * `evaluateMasks` compares ink to ink and is the primary measure. It has one
+ * structural blind spot: a pixel does not record how many times the pen crossed
+ * it, so an attempt can lay down exactly the right ink by exactly the wrong
+ * movement. A sine wave traced along ㅏ at the amplitude of the tolerance band
+ * scores a **mismatch of 0.000** — a perfect result for a violent scribble.
+ *
+ * That cannot be fixed by tightening the ink comparison, because the band has
+ * to stay wide enough for a beginner's hand and the scribble hides inside it.
+ * So the path is measured separately, and only ever as a *veto*: it can turn a
+ * pass into a failure, and it can never turn a failure into a pass or change
+ * the score of an honest attempt. The thresholds are set well clear of every
+ * genuine attempt in the corpus — see `MAX_PATH_LENGTH_RATIO`.
+ *
+ * `evaluateMasks` deliberately keeps no path check of its own: it is handed two
+ * bitmaps and there is no path in a bitmap to check.
  */
 export function evaluateStrokes(
   strokes: readonly Stroke[],
@@ -225,7 +245,34 @@ export function evaluateStrokes(
 ): EvaluationResult {
   const cfg = { ...DEFAULT_EVALUATION_CONFIG, ...config };
   const userMask = rasterizeStrokes(strokes, referenceMask.width || cfg.resolution);
-  return evaluateMasks(userMask, referenceMask, cfg);
+  const ink = evaluateMasks(userMask, referenceMask, cfg);
+
+  const path = pathMetrics(strokes, skeletonLengthOf(referenceMask));
+  const result: EvaluationResult = {
+    ...ink,
+    diagnostics: { ...ink.diagnostics, path },
+  };
+  if (!ink.passed) return result;
+
+  const scribbled =
+    path.lengthRatio > cfg.maxPathLengthRatio || path.reversalDensity > cfg.maxReversalDensity;
+  if (!scribbled) return result;
+
+  return {
+    ...result,
+    passed: false,
+    reason: 'scribble',
+    /*
+     * The score is pulled down to the pass mark rather than to zero.
+     *
+     * It is the same number the progress ladder and the review scheduler read,
+     * and this attempt's *ink* really was close to the glyph — reporting 0
+     * would tell the scheduler the learner cannot form the letter at all, which
+     * is a claim about them that the measurement does not support. What is
+     * known is only that this attempt does not count.
+     */
+    score: Math.min(result.score, cfg.maxMismatchRatio),
+  };
 }
 
 /** Picks the dominant error so the UI can say something specific. */

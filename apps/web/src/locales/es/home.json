@@ -3,8 +3,8 @@
     "aria": "Ver tu registro de aprendizaje"
   },
   "celebrate": "Objetivo de hoy cumplido. Precioso trabajo.",
-  "dailyGoal": "Objetivo diario",
-  "dailyGoalAria": "Objetivo diario: {{done, number}} de {{total, number}}",
+  "dailyGoal": "Letras de hoy",
+  "dailyGoalAria": "Letras de hoy: {{done, number}} de {{total, number}}",
   "cta": {
     "start": "Empezar ahora",
     "continue": "Seguir aprendiendo"
@@ -13,7 +13,7 @@
     "letters": "Letras",
     "words": "Palabras",
     "lettersCaption": "de las 40 letras del hangul",
-    "wordsCaption": "palabras aprendidas"
+    "wordsCaption": "palabras de hoy"
   },
   "review": {
     "title": "Repaso",
@@ -22,20 +22,11 @@
     "empty": "Nada que repasar aún",
     "count_many": "{{count, number}} de elementos por repasar"
   },
-  "upNext": {
-    "title": "Palabras para ti"
-  },
   "practice": {
     "title": "La práctica de hoy",
     "reviews_one": "{{count, number}} repaso listo",
     "reviews_other": "{{count, number}} repasos listos",
-    "letters_one": "{{count, number}} letra por terminar",
-    "letters_other": "{{count, number}} letras por terminar",
-    "words_one": "{{count, number}} palabra útil",
-    "words_other": "{{count, number}} palabras útiles",
     "cta": "Empezar la práctica",
-    "reviews_many": "{{count, number}} repasos listos",
-    "letters_many": "{{count, number}} letras por terminar",
-    "words_many": "{{count, number}} palabras útiles"
+    "reviews_many": "{{count, number}} repasos listos"
   }
 }

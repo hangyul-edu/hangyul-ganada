@@ -104,7 +104,7 @@ test('a word screen scrolled to the bottom opens the next step at the top', asyn
   // how the mechanism is exercised without depending on which word the lesson
   // happens to open on.
   await page.setViewportSize({ width: 390, height: 420 });
-  await page.goto('/words/vocab-essentials-1');
+  await page.goto('/words/today');
 
   const region = page.locator('[data-scroll-region="focus"]');
   await expect(region).toBeVisible();
@@ -118,8 +118,18 @@ test('a word screen scrolled to the bottom opens the next step at the top', asyn
     0,
   );
 
-  await page.getByRole('button', { name: /Practise writing/ }).first().click();
-  await expect(page.getByTestId('word-headword')).toHaveCount(0);
+  /*
+   * On to the next screen, which starts at the top of its scroll region rather
+   * than wherever the last one was left.
+   *
+   * Asserted by *which word* rather than by the meeting card disappearing: the
+   * sitting interleaves, so the screen after meeting 하다 is often meeting a
+   * different word, and the card is legitimately still there. What must not
+   * persist is the scroll position.
+   */
+  const first = await page.getByTestId('word-headword').textContent();
+  await page.getByRole('button', { name: 'Got it' }).first().click();
+  await expect(page.getByTestId('word-headword')).not.toHaveText(first!);
   expect(await region.evaluate((element) => element.scrollTop)).toBe(0);
 });
 

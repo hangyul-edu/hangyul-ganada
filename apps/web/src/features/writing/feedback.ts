@@ -54,6 +54,15 @@ export function feedbackFor(result: EvaluationResult, character: string): Feedba
           ? 'feedback.outside.tooLarge'
           : 'feedback.outside.strayStroke',
       };
+    case 'scribble':
+      /*
+       * The right ink, laid down the wrong way — see `path.ts` in
+       * handwriting-core. The copy says *what to do*, not what was detected:
+       * a learner who was genuinely scrubbing knows what they did, and one who
+       * was not is better served by "one clean stroke at a time" than by being
+       * accused of scribbling.
+       */
+      return { headlineKey: 'feedback.scribble.headline', detailKey: 'feedback.scribble.detail' };
     case 'mixed':
     default:
       return { headlineKey: 'feedback.mixed.headline', detailKey: 'feedback.mixed.detail' };

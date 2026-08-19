@@ -29,6 +29,10 @@
       "tooLarge": "写到框外去了，下次小一点。",
       "strayStroke": "有一笔跑偏了，慢慢顺着线走。"
     },
+    "scribble": {
+      "headline": "我们慢一点再试一次",
+      "detail": "一笔一画，一次写完就好，不用来回描。"
+    },
     "mixed": {
       "headline": "差一点",
       "detail": "对准辅助线，再写一次。"
@@ -66,31 +70,6 @@
     "back": "上一笔",
     "next": "下一笔",
     "position": "第 {{current, number}} 笔，共 {{count, number}} 笔"
-  },
-  "word": {
-    "previous": "上一个字",
-    "next": "下一个字",
-    "syllablePosition": "{{syllable}}，第 {{position, number}} 个，共 {{count, number}} 个",
-    "canvasLabel": "{{syllable}} 的书写区，第 {{position, number}} 个，共 {{count, number}} 个",
-    "undoSyllable": "撤销 {{syllable}} 的笔画",
-    "clearSyllable": "清除 {{syllable}} 的笔画",
-    "checkWord": "写好了",
-    "checkAgain": "再检查一次",
-    "fix": "重写",
-    "fixSyllable": "重写 {{syllable}}",
-    "result": {
-      "passed": "写得不错",
-      "almost": "就差一点",
-      "allAgain": "照着范字再写一遍吧",
-      "needsWork_other": "还有 {{count, number}} 个字要再写一次。"
-    },
-    "advice": {
-      "passed": "写得挺好。",
-      "empty": "请先写这个字。",
-      "outside": "再靠近范字一点。",
-      "incomplete": "还有笔画没写完。",
-      "mixed": "就差一点。照着范字再写一遍。"
-    }
   },
   "strokeGuide": {
     "shape": {

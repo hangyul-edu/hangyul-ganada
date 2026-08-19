@@ -238,6 +238,49 @@ export function getWord(id: string): VocabularyWord | undefined {
   return BY_ID.get(id);
 }
 
+// --- Priority ------------------------------------------------------------------
+
+/**
+ * The corpus in the order a beginner should meet it.
+ *
+ * ## Why this exists and the categories do not answer it
+ *
+ * Browsing is organised by *meaning* — where are the food words — because that
+ * is the question a person browsing has. Learning is organised by *usefulness*,
+ * because the question the daily session has is "what are the next ten words
+ * this learner most needs", and the answer does not care which category they
+ * are in.
+ *
+ * The ordering is the blend the content pipeline already computed: corpus
+ * frequency, editorial learner-usefulness, concreteness, and how early the
+ * spelling is reachable. Ties break on the headword so the order is total and
+ * a session built twice is the same session.
+ *
+ * ## What the learner is told about it
+ *
+ * Nothing. There is no level, no band, no difficulty number anywhere in the
+ * interface. A learner cannot act on "this is a tier-2 word" and showing it
+ * invites the one question the product cannot answer — tier 2 by whose measure?
+ * The ordering decides what they are offered; it is never a label on it.
+ *
+ * ## Scale
+ *
+ * Sorted once, at module load, and handed out as a frozen array. The daily
+ * session takes a prefix of it — `buildDailyPlan` stops as soon as it has
+ * enough — so the cost of a session does not grow with the corpus. At ten
+ * thousand words this is one sort of ten thousand short records at startup and
+ * nothing per session.
+ */
+const BY_PRIORITY: readonly VocabularyWord[] = Object.freeze(
+  [...VOCABULARY].sort(
+    (a, b) => a.difficulty_score - b.difficulty_score || a.word.localeCompare(b.word),
+  ),
+);
+
+export function vocabularyByPriority(): readonly VocabularyWord[] {
+  return BY_PRIORITY;
+}
+
 // --- Categories ---------------------------------------------------------------
 
 /**
@@ -387,9 +430,20 @@ export function lessonForWord(wordId: string): string | undefined {
  * would be a search only for people who did not need it.
  *
  * Ranking is by where the match falls and then by the same score that orders a
- * category, so searching "eat" puts 먹다 above 잡아먹다. Deliberately a linear
- * scan rather than an index: 2,504 short strings is a fraction of a frame on a
- * phone, and an index would be a second copy of the corpus in the bundle.
+ * category, so searching "eat" puts 먹다 above 잡아먹다.
+ *
+ * ## Why it is still a linear scan at ten thousand words
+ *
+ * Because the measurement says so. A scan is one pass over the corpus doing two
+ * `String.includes` per row; at ten thousand rows that is well inside a frame
+ * on a mid-range phone, and it is run against a *deferred* query so it never
+ * blocks typing (see `WordsPage`). An inverted index would cost a second copy
+ * of every headword and gloss in the bundle — hundreds of kilobytes a learner
+ * downloads to speed up a screen that is already fast, and that most of them
+ * will never open, because search is a secondary tool here and not the way in.
+ *
+ * The two things that *do* scale are already done: results are capped before
+ * they reach the DOM, and nothing renders the corpus as a list.
  *
  * `meaningOf` is passed in rather than read here. The per-locale copy packs are
  * loaded through `import.meta.glob`, which exists only under Vite — and this

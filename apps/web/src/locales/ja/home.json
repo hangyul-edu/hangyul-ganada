@@ -3,8 +3,8 @@
     "aria": "学習の記録を見る"
   },
   "celebrate": "今日の目標はここまで。おみごと。",
-  "dailyGoal": "今日の目標",
-  "dailyGoalAria": "今日の目標：{{total, number}}件中{{done, number}}件",
+  "dailyGoal": "今日の文字",
+  "dailyGoalAria": "今日の文字: {{total, number}}個中 {{done, number}}個",
   "cta": {
     "start": "はじめる",
     "continue": "学習をつづける"
@@ -13,24 +13,17 @@
     "letters": "文字",
     "words": "単語",
     "lettersCaption": "ハングル40字のうち",
-    "wordsCaption": "おぼえた単語"
+    "wordsCaption": "今日の単語"
   },
   "review": {
     "title": "復習",
     "count_other": "{{count, number}} 件を見なおす",
     "empty": "まだ見なおすものはありません"
   },
-  "upNext": {
-    "title": "あなたへの単語"
-  },
   "practice": {
     "title": "今日の練習",
     "reviews_one": "復習 {{count, number}}件",
     "reviews_other": "復習 {{count, number}}件",
-    "letters_one": "仕上げる文字 {{count, number}}字",
-    "letters_other": "仕上げる文字 {{count, number}}字",
-    "words_one": "役に立つ単語 {{count, number}}語",
-    "words_other": "役に立つ単語 {{count, number}}語",
     "cta": "練習を始める"
   }
 }

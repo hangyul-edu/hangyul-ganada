@@ -29,6 +29,10 @@
       "tooLarge": "네모 밖으로 나갔어요. 조금 작게 써 볼까요.",
       "strayStroke": "획 하나가 벗어났어요. 천천히 선을 따라가 보세요."
     },
+    "scribble": {
+      "headline": "조금 더 천천히 해 볼까요",
+      "detail": "획을 하나씩, 한 번에 그어 보세요. 덧그리지 않아도 괜찮아요."
+    },
     "mixed": {
       "headline": "조금 아쉬워요",
       "detail": "안내선에 맞춰서 한 번 더 써 보세요."
@@ -66,31 +70,6 @@
     "back": "이전",
     "next": "다음",
     "position": "{{count, number}}획 중 {{current, number}}획"
-  },
-  "word": {
-    "previous": "이전 글자",
-    "next": "다음 글자",
-    "syllablePosition": "{{syllable}}, {{count, number}}개 중 {{position, number}}번째",
-    "canvasLabel": "{{syllable}} 쓰는 곳, {{count, number}}개 중 {{position, number}}번째",
-    "undoSyllable": "{{syllable}} 되돌리기",
-    "clearSyllable": "{{syllable}} 지우기",
-    "checkWord": "다 썼어요",
-    "checkAgain": "다시 확인하기",
-    "fix": "고치기",
-    "fixSyllable": "{{syllable}} 다시 쓰기",
-    "result": {
-      "passed": "잘 썼어요",
-      "almost": "거의 다 왔어요",
-      "allAgain": "안내선을 따라 한 번 더 써 볼까요",
-      "needsWork_other": "{{count, number}}글자만 다시 써 볼까요."
-    },
-    "advice": {
-      "passed": "좋아요.",
-      "empty": "이 글자를 먼저 써 주세요.",
-      "outside": "안내선에 조금 더 가깝게 써 보세요.",
-      "incomplete": "아직 빠진 부분이 있어요.",
-      "mixed": "거의 다 왔어요. 안내선을 한 번 더 따라가 보세요."
-    }
   },
   "strokeGuide": {
     "shape": {

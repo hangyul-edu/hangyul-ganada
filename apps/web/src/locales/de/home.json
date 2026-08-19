@@ -3,8 +3,8 @@
     "aria": "Lernverlauf ansehen"
   },
   "celebrate": "Tagesziel geschafft. Schön gemacht.",
-  "dailyGoal": "Tagesziel",
-  "dailyGoalAria": "Tagesziel: {{done, number}} von {{total, number}}",
+  "dailyGoal": "Buchstaben heute",
+  "dailyGoalAria": "Buchstaben heute: {{done, number}} von {{total, number}}",
   "cta": {
     "start": "Jetzt starten",
     "continue": "Weiterlernen"
@@ -13,7 +13,7 @@
     "letters": "Buchstaben",
     "words": "Wörter",
     "lettersCaption": "der 40 Hangul-Buchstaben",
-    "wordsCaption": "gelernte Wörter"
+    "wordsCaption": "Wörter für heute"
   },
   "review": {
     "title": "Wiederholen",
@@ -21,17 +21,10 @@
     "count_other": "{{count, number}} zum Wiederholen",
     "empty": "Noch nichts zu wiederholen"
   },
-  "upNext": {
-    "title": "Wörter für dich"
-  },
   "practice": {
     "title": "Heutige Übung",
     "reviews_one": "{{count, number}} Wiederholung bereit",
     "reviews_other": "{{count, number}} Wiederholungen bereit",
-    "letters_one": "{{count, number}} Buchstabe fehlt noch",
-    "letters_other": "{{count, number}} Buchstaben fehlen noch",
-    "words_one": "{{count, number}} nützliches Wort",
-    "words_other": "{{count, number}} nützliche Wörter",
     "cta": "Übung starten"
   }
 }

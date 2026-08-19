@@ -3,20 +3,20 @@
     "title": "글자 배우기",
     "complete": "학습 완료",
     "alphabetTitle": "한글 낱자",
-    "alphabetCaption": "낱자를 익혔어요"
+    "alphabetCaption": "낱자를 익혔어요",
+    "resume": "이어 하기"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "이 글자 건너뛰기",
     "next": "다음 글자",
     "finish": "마치기",
-    "startTrace": "따라 써 보기",
+    "startWriting": "써 보기",
     "prompt": {
-      "trace": "회색 글자를 손가락으로 따라가 보세요.",
-      "practise": "안내선이 옅어졌어요. 이제 직접 써 보세요 — 안내선은 그대로 있으니 필요하면 보고 써도 괜찮아요."
+      "write": "안내선을 따라 손가락으로 써 보세요."
     },
-    "nowPractise": "다음: 옅은 안내선으로",
-    "nowRead": "이제 읽어 보기"
+    "nowRead": "이제 읽어 보기",
+    "continue": "다음"
   },
   "complete": {
     "title": "잘했어요!",
@@ -60,8 +60,13 @@
       "context": "빈칸에 어울리는 낱말은?",
       "write": "이 낱말을 써 보세요",
       "writeLetter": "들은 대로 써 보세요",
-      "distinguish": "이 소리는 어느 쪽일까요?"
-    }
+      "distinguish": "이 소리는 어느 쪽일까요?",
+      "produce": "어느 낱말일까요?",
+      "listenMeaning": "무슨 뜻일까요?"
+    },
+    "nothingDue": "지금은 복습할 것이 없어요.",
+    "modesEmpty": "오늘은 이 방식으로 볼 것이 없어요.",
+    "answerIs": "{{word, eunneun}} “{{meaning}}”이에요."
   },
   "units": {
     "badge": "{{index, number}}단원",
@@ -141,8 +146,7 @@
   },
   "steps": {
     "label": "이 글자를 배우는 순서",
-    "trace": "따라 쓰기",
-    "practise": "연습",
+    "write": "쓰기",
     "read": "읽기"
   },
   "recognition": {
@@ -152,13 +156,8 @@
     "correctDetail": "맞아요, {{character, ieyo}}.",
     "wrongHeadline": "그건 아니에요.",
     "wrongDetail": "{{sound}} 소리가 나는 글자는 {{character, ieyo}}.",
-    "hearAgain": "다시 듣기"
-  },
-  "reading": {
-    "question": "이 단어는 무슨 뜻일까요?",
-    "optionsAria": "네 가지 뜻 중에서 고르기",
-    "wrongHeadline": "다시 한번 볼까요",
-    "answer": "{{word, eunneun}} “{{meaning}}” 이라는 뜻이에요."
+    "hearAgain": "다시 듣기",
+    "tryAgain": "다시 풀기"
   },
   "sounds": {
     "title": "소리가 만날 때",
@@ -175,5 +174,23 @@
       "palatal": "ㄷ, ㅌ이 '이'를 만나면",
       "liaison": "받침이 넘어가요"
     }
+  },
+  "mistakes": {
+    "title": "오답노트",
+    "review_other": "복습 · {{count}}문제",
+    "filterLabel": "보기",
+    "filter": {
+      "all": "전체",
+      "character": "글자",
+      "word": "낱말"
+    },
+    "youPut": "내 답",
+    "answer": "정답",
+    "times_other": "{{count}}번 틀림",
+    "clear": "익혔어요",
+    "noneOfKind": "지금은 없어요.",
+    "emptyTitle": "아직 틀린 게 없어요",
+    "emptyBody": "틀린 것이 있으면 여기에 모여서 다시 볼 수 있어요.",
+    "emptyCta": "복습하러 가기"
   }
 }

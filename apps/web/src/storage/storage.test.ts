@@ -13,6 +13,7 @@ import { MemoryDriver } from './driver';
 import {
   ActivityRepository,
   LearningRepository,
+  MistakeRepository,
   ProgressRepository,
   SettingsRepository,
   clearEverything,
@@ -52,11 +53,169 @@ describe('migrations', () => {
     driver = new MemoryDriver();
   });
 
+  /**
+   * Writes a progress row as version 6 would have left it, then runs v7 over it.
+   *
+   * The interesting cases are all *strandings*: a learner sitting on a rung
+   * that version 7 deleted, who would otherwise open the app to an item marked
+   * unfinished with no remaining way to finish it.
+   */
+  async function migrateRow(row: Partial<ItemProgress> & { item_key: string }) {
+    const kind = row.kind ?? 'character';
+    const base = blankProgress(kind, row.item_key, NOW.toISOString());
+    await driver.put('progress', progressKey(kind, row.item_key), { ...base, ...row });
+    await driver.put<SchemaMeta>('meta', META_KEY, {
+      schema_version: 6,
+      installed_at: NOW.toISOString(),
+      last_opened_at: NOW.toISOString(),
+      install_id: 'test',
+    });
+    await runMigrations(makeContext(driver, null));
+    return driver.get<ItemProgress>('progress', progressKey(kind, row.item_key));
+  }
+
+  it('finishes a letter left waiting on the writing step that was deleted', async () => {
+    // Traced, heard, watched and read back — everything version 7 asks for —
+    // and stuck at `traced` because version 6 wanted a second, fainter pass.
+    // Without this migration the letter stays unfinished forever: the step it
+    // is waiting for no longer exists in the app.
+    const row = await migrateRow({
+      item_key: 'ㄹ',
+      kind: 'character',
+      stage: 'traced',
+      heard: true,
+      demo_seen: true,
+      trace_passes: 1,
+      practice_passes: 0,
+      recognition_passes: 1,
+    });
+    expect(row?.stage).toBe('learned');
+    expect(row?.learned).toBe(true);
+    expect(row?.learned_at).toBe(NOW.toISOString());
+  });
+
+  it('finishes a word left waiting on handwriting that no longer exists', async () => {
+    // Every word in an unfinished vocabulary lesson was waiting on syllable
+    // handwriting. There is none any more, anywhere.
+    const row = await migrateRow({
+      item_key: 'word_eomma',
+      kind: 'word',
+      stage: 'introduced',
+      heard: true,
+      trace_passes: 0,
+      practice_passes: 0,
+      recognition_passes: 1,
+    });
+    expect(row?.stage).toBe('learned');
+  });
+
+  it('does not finish a letter that has genuinely not been written', async () => {
+    // The migration lowers what is asked; it does not hand out credit. A letter
+    // nobody has drawn is not a letter they can form.
+    const row = await migrateRow({
+      item_key: 'ㅁ',
+      kind: 'character',
+      stage: 'introduced',
+      heard: true,
+      demo_seen: true,
+      trace_passes: 0,
+      practice_passes: 0,
+      recognition_passes: 1,
+    });
+    expect(row?.stage).toBe('introduced');
+    expect(row?.learned).toBe(false);
+  });
+
+  it('never moves a stage backwards, and leaves an untouched item untouched', async () => {
+    const unseen = await migrateRow({ item_key: 'ㅋ', kind: 'character', stage: 'unseen' });
+    expect(unseen?.stage).toBe('unseen');
+
+    driver = new MemoryDriver();
+    const learned = await migrateRow({
+      item_key: 'ㄱ',
+      kind: 'character',
+      stage: 'learned',
+      learned: true,
+      heard: true,
+      demo_seen: true,
+      trace_passes: 3,
+      practice_passes: 2,
+      recognition_passes: 1,
+      learned_at: '2026-01-01T00:00:00.000Z',
+    });
+    expect(learned?.stage).toBe('learned');
+    // The original date survives: it is when they actually finished.
+    expect(learned?.learned_at).toBe('2026-01-01T00:00:00.000Z');
+    expect(learned?.trace_passes).toBe(3);
+  });
+
+  it('keeps the wrong-answer notebook across a restart', async () => {
+    /*
+     * §58. The notebook is the one new store this cycle, and the thing it must
+     * do is survive being closed — a record of what you got wrong that resets
+     * every launch is not a record.
+     */
+    const repo = new MistakeRepository(driver);
+    await repo.put({
+      id: 'word:word_eomma',
+      kind: 'word',
+      itemKey: 'word_eomma',
+      mode: 'read',
+      skill: 'meaning_recognition',
+      chose: 'word_appa',
+      answer: 'word_eomma',
+      firstAt: NOW.toISOString(),
+      lastAt: NOW.toISOString(),
+      wrongCount: 2,
+      correctSince: 0,
+    });
+
+    // A fresh repository over the same driver: what a relaunch actually does.
+    const reopened = await new MistakeRepository(driver).loadAll();
+    expect(reopened['word:word_eomma']).toMatchObject({
+      itemKey: 'word_eomma',
+      chose: 'word_appa',
+      wrongCount: 2,
+    });
+
+    await repo.remove('word:word_eomma');
+    expect(await new MistakeRepository(driver).loadAll()).toEqual({});
+  });
+
+  it('repairs a damaged notebook row rather than dropping the whole notebook', async () => {
+    // The same rule every other store here follows: one unreadable row must not
+    // take a learner's history with it.
+    await driver.put('mistakes', 'good', {
+      id: 'word:a', kind: 'word', itemKey: 'a', answer: 'a', lastAt: NOW.toISOString(),
+    });
+    await driver.put('mistakes', 'junk', { kind: 'word' });
+    await driver.put('mistakes', 'alsoJunk', 'not an object');
+
+    const rows = await new MistakeRepository(driver).loadAll();
+    expect(Object.keys(rows)).toEqual(['word:a']);
+    // Defaults filled in rather than left undefined for the screen to trip on.
+    expect(rows['word:a']).toMatchObject({ wrongCount: 1, correctSince: 0, mode: 'read' });
+  });
+
+  it('gives an existing learner a daily word goal rather than an undefined one', async () => {
+    await driver.put('settings', SETTINGS_KEY, { ...defaultSettings(), daily_word_goal: undefined });
+    await driver.put<SchemaMeta>('meta', META_KEY, {
+      schema_version: 6,
+      installed_at: NOW.toISOString(),
+      last_opened_at: NOW.toISOString(),
+      install_id: 'test',
+    });
+    await runMigrations(makeContext(driver, null));
+    const settings = await driver.get<StoredSettings>('settings', SETTINGS_KEY);
+    expect(typeof settings?.daily_word_goal).toBe('number');
+    expect(settings?.daily_word_goal).toBeGreaterThan(0);
+  });
+
   it('records the schema version on a fresh install', async () => {
     const applied = await runMigrations(makeContext(driver, null));
     // Every migration runs on an empty install, in order, and each is a no-op
     // with nothing to convert.
-    expect(applied).toEqual([3, 4, 5, 6]);
+    expect(applied).toEqual([3, 4, 5, 6, 7, 8]);
     const meta = await driver.get<SchemaMeta>('meta', META_KEY);
     expect(meta?.schema_version).toBe(SCHEMA_VERSION);
     expect(meta?.install_id).toBeTruthy();

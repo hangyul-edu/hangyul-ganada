@@ -30,6 +30,10 @@
       "tooLarge": "Das ging über den Rand. Etwas kleiner.",
       "strayStroke": "Ein Strich ist abgerutscht. Folge der Linie langsam."
     },
+    "scribble": {
+      "headline": "Versuchen wir es langsamer",
+      "detail": "Zieh jeden Strich einmal, in einer flüssigen Bewegung — du musst nicht nachfahren."
+    },
     "mixed": {
       "headline": "Nicht ganz",
       "detail": "Richte ihn an der Hilfslinie aus und versuch es noch mal."
@@ -70,32 +74,6 @@
     "back": "Zurück",
     "next": "Weiter",
     "position": "Strich {{current, number}} von {{count, number}}"
-  },
-  "word": {
-    "previous": "Vorheriger Teil",
-    "next": "Nächster Teil",
-    "syllablePosition": "{{syllable}}, Teil {{position, number}} von {{count, number}}",
-    "canvasLabel": "Schreibfläche für {{syllable}}, Teil {{position, number}} von {{count, number}}",
-    "undoSyllable": "Geschriebenes für {{syllable}} rückgängig machen",
-    "clearSyllable": "Geschriebenes für {{syllable}} löschen",
-    "checkWord": "Meine Schrift prüfen",
-    "checkAgain": "Noch einmal prüfen",
-    "fix": "Korrigieren",
-    "fixSyllable": "{{syllable}} noch einmal schreiben",
-    "result": {
-      "passed": "Gut gemacht",
-      "almost": "Fast geschafft",
-      "allAgain": "Folgen wir der Vorlage noch einmal",
-      "needsWork_one": "Ein Teil braucht noch einen Versuch.",
-      "needsWork_other": "{{count, number}} Teile brauchen noch einen Versuch."
-    },
-    "advice": {
-      "passed": "Sieht gut aus.",
-      "empty": "Schreibe diesen Teil zuerst.",
-      "outside": "Bleib etwas näher an der Vorlage.",
-      "incomplete": "Ein Teil dieses Zeichens fehlt noch.",
-      "mixed": "Fast. Folge der Vorlage noch einmal."
-    }
   },
   "strokeGuide": {
     "shape": {

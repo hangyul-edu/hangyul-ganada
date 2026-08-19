@@ -1,5 +1,29 @@
 {
   "title": "Apprendre des mots",
+  "today": {
+    "title": "Mots du jour",
+    "start": "Commencer",
+    "resume": "Reprendre",
+    "startBlurb_one": "Un mot aujourd’hui.",
+    "startBlurb_many": "Une courte série de {{count}} mots.",
+    "startBlurb_other": "Une courte série de {{count}} mots.",
+    "resumeBlurb": "Reprenez où vous en étiez.",
+    "doneBlurb": "Terminé pour aujourd'hui. Bravo.",
+    "completeTitle": "Les mots du jour sont terminés.",
+    "completeDetail_one": "Un mot appris.",
+    "completeDetail_many": "{{count}} mots appris.",
+    "completeDetail_other": "{{count}} mots appris.",
+    "more": "Encore un peu",
+    "allDone": "Plus rien pour aujourd'hui.",
+    "remaining_one": "Encore un aujourd’hui",
+    "remaining_many": "Encore {{count}} aujourd’hui",
+    "remaining_other": "Encore {{count}} aujourd’hui",
+    "progressAria": "Progression des mots du jour"
+  },
+  "browse": {
+    "title": "Parcourir par thème",
+    "showing": "{{shown}} sur {{total}} affichés"
+  },
   "empty": {
     "title": "Pas encore de mots ici",
     "body": "Essayez une autre catégorie."
@@ -15,40 +39,17 @@
     "interjection": "interjection",
     "determiner": "déterminant"
   },
-  "lesson": {
-    "title": "Série {{index, number}}",
-    "newLetters": "Nouvelles lettres",
-    "done": "Terminé"
-  },
   "session": {
-    "hintSingle": "Écrivez-le dans le cadre",
-    "syllableGroup": "Écriture des syllabes de {{word}}",
     "next": "Mot suivant",
-    "finish": "Terminer",
-    "complete_one": "Vous avez appris {{count, number}} mot dans {{lesson}}.",
-    "complete_other": "Vous avez appris {{count, number}} mots dans {{lesson}}.",
-    "complete_many": "Vous avez appris {{count, number}} de mots dans {{lesson}}.",
-    "toReading": "Maintenant, lisez-le",
-    "writeEachPart": "Écrivez chaque partie de {{word}} dans l’ordre.",
-    "writeEveryPartFirst": "Écrivez toutes les parties, puis on vérifie le mot en entier."
+    "finish": "Terminer"
   },
   "intro": {
-    "write": "S'entraîner à écrire",
     "example": "Exemple",
     "howItSounds": "Comment ça se prononce",
-    "surfaceNote": "Dans cette phrase, {{headword}} apparaît sous la forme {{form}}."
+    "surfaceNote": "Dans cette phrase, {{headword}} apparaît sous la forme {{form}}.",
+    "next": "Compris"
   },
   "blurb": "Tous les mots sont ouverts. Choisissez une catégorie et commencez où vous voulez.",
-  "ahead": {
-    "title_one": "1 nouvelle lettre dans cette catégorie",
-    "title_many": "{{count, number}} de nouvelles lettres dans cette catégorie",
-    "title_other": "{{count, number}} nouvelles lettres dans cette catégorie",
-    "body": "Vous pouvez étudier ces mots dès maintenant. Apprendre d’abord les lettres les rend souvent plus faciles.",
-    "more_one": "+1 autre",
-    "more_many": "+{{count, number}} autres",
-    "more_other": "+{{count, number}} autres",
-    "cta": "Apprendre les lettres"
-  },
   "categories": {
     "essentials": "L'essentiel",
     "people": "Personnes et famille",
@@ -99,5 +100,34 @@
     "saved": "Enregistré",
     "add": "Enregistrer {{word}}",
     "remove": "Retirer {{word}} des enregistrés"
+  },
+  "detail": {
+    "title": "Mot",
+    "pronunciation": "Prononciation",
+    "definition": "En savoir plus",
+    "usage": "Comment on l’emploie",
+    "nearby": "Mots proches"
+  },
+  "saved": {
+    "title": "Mots enregistrés",
+    "review_one": "Réviser · 1 question",
+    "review_many": "Réviser · {{count}} questions",
+    "review_other": "Réviser · {{count}} questions",
+    "searchPlaceholder": "Rechercher un mot enregistré",
+    "searchLabel": "Rechercher dans vos mots enregistrés",
+    "orderLabel": "Tri",
+    "order": {
+      "recent": "Récents",
+      "alphabetical": "A–Z",
+      "needed": "À travailler"
+    },
+    "count_one": "Un mot",
+    "count_many": "{{count}} mots",
+    "count_other": "{{count}} mots",
+    "remove": "Retirer",
+    "noMatch": "Aucun mot enregistré ne correspond à « {{query}} ».",
+    "emptyTitle": "Aucun mot enregistré",
+    "emptyBody": "Touchez le signet sur un mot pendant que vous étudiez, et vous le retrouverez ici.",
+    "emptyCta": "Voir les mots"
   }
 }

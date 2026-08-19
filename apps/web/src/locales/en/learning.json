@@ -3,7 +3,8 @@
     "title": "Learn letters",
     "alphabetTitle": "The Hangul alphabet",
     "alphabetCaption": "letters learned",
-    "complete": "Learned"
+    "complete": "Learned",
+    "resume": "Continue"
   },
   "units": {
     "badge": "Unit {{index, number}}",
@@ -83,8 +84,7 @@
   },
   "steps": {
     "label": "Steps in this letter",
-    "trace": "Trace",
-    "practise": "Practise",
+    "write": "Write",
     "read": "Read"
   },
   "recognition": {
@@ -94,20 +94,20 @@
     "correctDetail": "That is {{character}}.",
     "wrongHeadline": "Not that one.",
     "wrongDetail": "{{character}} is the one that sounds like {{sound}}.",
-    "hearAgain": "Hear it again"
+    "hearAgain": "Hear it again",
+    "tryAgain": "Try again"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Skip this one",
-    "startTrace": "Trace it",
-    "nowPractise": "Next: with a lighter guide",
+    "startWriting": "Write it",
     "nowRead": "Now read it",
     "next": "Next letter",
     "finish": "Finish",
     "prompt": {
-      "trace": "Follow the grey shape with your finger.",
-      "practise": "The guide is lighter now. Write it yourself — it is still there if you need it."
-    }
+      "write": "Write it over the guide with your finger."
+    },
+    "continue": "Next"
   },
   "complete": {
     "title": "Nice work!",
@@ -151,14 +151,13 @@
       "context": "Which word fits here?",
       "write": "Write this word",
       "writeLetter": "Write what you hear",
-      "distinguish": "Which one makes this sound?"
-    }
-  },
-  "reading": {
-    "question": "What does this word mean?",
-    "optionsAria": "Four meanings to choose from",
-    "wrongHeadline": "Have another look",
-    "answer": "{{word}} means “{{meaning}}”."
+      "distinguish": "Which one makes this sound?",
+      "produce": "Which one is it?",
+      "listenMeaning": "What does this mean?"
+    },
+    "nothingDue": "Nothing to review right now.",
+    "modesEmpty": "Nothing in these modes today.",
+    "answerIs": "{{word}} means “{{meaning}}”."
   },
   "sounds": {
     "title": "When sounds meet",
@@ -175,5 +174,25 @@
       "palatal": "ㄷ and ㅌ before 이",
       "liaison": "The sound slides over"
     }
+  },
+  "mistakes": {
+    "title": "Missed answers",
+    "review_one": "Review · 1 question",
+    "review_other": "Review · {{count}} questions",
+    "filterLabel": "Show",
+    "filter": {
+      "all": "All",
+      "character": "Letters",
+      "word": "Words"
+    },
+    "youPut": "You put",
+    "answer": "Answer",
+    "times_one": "Missed once",
+    "times_other": "Missed {{count}} times",
+    "clear": "Done with this",
+    "noneOfKind": "Nothing here right now.",
+    "emptyTitle": "Nothing missed yet",
+    "emptyBody": "When something slips, it turns up here so you can put it right.",
+    "emptyCta": "Go to review"
   }
 }

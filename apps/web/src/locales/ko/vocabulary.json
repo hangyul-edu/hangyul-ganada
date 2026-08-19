@@ -1,5 +1,23 @@
 {
   "title": "단어 배우기",
+  "today": {
+    "title": "오늘의 어휘",
+    "start": "학습 시작",
+    "resume": "이어 학습하기",
+    "startBlurb_other": "{{count}}개만 짧게 해 볼까요?",
+    "resumeBlurb": "하던 곳부터 이어서 해요.",
+    "doneBlurb": "오늘 몫은 끝났어요. 잘하셨어요.",
+    "completeTitle": "오늘 어휘 목표를 완료했어요.",
+    "completeDetail_other": "{{count}}개 학습 완료",
+    "more": "조금 더 하기",
+    "allDone": "오늘 할 것은 다 끝났어요.",
+    "remaining_other": "오늘 {{count}}개 남음",
+    "progressAria": "오늘의 어휘 진행도"
+  },
+  "browse": {
+    "title": "주제별로 보기",
+    "showing": "{{total}}개 중 {{shown}}개 표시"
+  },
   "empty": {
     "title": "여기엔 아직 단어가 없어요",
     "body": "다른 분류를 골라 보세요."
@@ -15,35 +33,17 @@
     "interjection": "감탄사",
     "determiner": "관형사"
   },
-  "lesson": {
-    "title": "{{index, number}}번째 묶음",
-    "newLetters": "새 글자",
-    "done": "완료"
-  },
   "session": {
-    "hintSingle": "칸 안에 써 보세요",
-    "syllableGroup": "{{word}}의 음절 쓰기",
     "next": "다음 단어",
-    "finish": "마치기",
-    "complete_other": "{{lesson}}에서 단어 {{count, number}}개를 익혔어요.",
-    "toReading": "이제 읽어 볼까요",
-    "writeEachPart": "{{word, eulreul}} 한 글자씩 차례로 써 볼까요?",
-    "writeEveryPartFirst": "모든 글자를 쓰고 나면 단어를 한 번에 확인해요."
+    "finish": "마치기"
   },
   "intro": {
-    "write": "써 보기",
     "example": "예문",
     "howItSounds": "이렇게 소리 나요",
-    "surfaceNote": "이 문장에서는 {{headword, iga}} {{form, euro}} 나와요."
+    "surfaceNote": "이 문장에서는 {{headword, iga}} {{form, euro}} 나와요.",
+    "next": "알겠어요"
   },
   "blurb": "모든 단어가 열려 있어요. 분류를 골라 원하는 곳부터 시작하세요.",
-  "ahead": {
-    "title_one": "이 분류에 새 글자 1개",
-    "title_other": "이 분류에 새 글자 {{count, number}}개",
-    "body": "지금 바로 공부할 수 있어요. 글자를 먼저 배우면 더 쉬워요.",
-    "more_other": "외 {{count, number}}개",
-    "cta": "글자 배우기"
-  },
   "categories": {
     "essentials": "기본 표현",
     "people": "사람과 가족",
@@ -90,5 +90,30 @@
     "saved": "저장됨",
     "add": "{{word}} 저장하기",
     "remove": "저장 목록에서 {{word}} 빼기"
+  },
+  "detail": {
+    "title": "낱말",
+    "pronunciation": "발음",
+    "definition": "더 알아보기",
+    "usage": "이렇게 써요",
+    "nearby": "비슷한 낱말"
+  },
+  "saved": {
+    "title": "저장한 낱말",
+    "review_other": "복습 · {{count}}문제",
+    "searchPlaceholder": "저장한 낱말 검색",
+    "searchLabel": "저장한 낱말 검색",
+    "orderLabel": "정렬",
+    "order": {
+      "recent": "최근순",
+      "alphabetical": "가나다순",
+      "needed": "약한 것부터"
+    },
+    "count_other": "{{count}}개",
+    "remove": "빼기",
+    "noMatch": "“{{query}}”과 맞는 저장 낱말이 없어요.",
+    "emptyTitle": "아직 저장한 낱말이 없어요",
+    "emptyBody": "공부하다가 낱말의 북마크를 누르면 여기에 모여요.",
+    "emptyCta": "낱말 보러 가기"
   }
 }

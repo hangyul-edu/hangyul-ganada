@@ -7,7 +7,10 @@
     "confirm": "OK",
     "close": "Fechar",
     "back": "Voltar",
-    "goHome": "Ir para o início"
+    "goHome": "Ir para o início",
+    "done": "Pronto",
+    "save": "Salvar",
+    "saved": "Salvo"
   },
   "a11y": {
     "skipToContent": "Pular para o conteúdo principal",

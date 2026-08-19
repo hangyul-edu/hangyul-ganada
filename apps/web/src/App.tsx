@@ -34,6 +34,18 @@ const LetterSessionPage = lazy(() =>
   import('./pages/LetterSessionPage').then((m) => ({ default: m.LetterSessionPage })),
 );
 const WordsPage = lazy(() => import('./pages/WordsPage').then((m) => ({ default: m.WordsPage })));
+const WordCategoryPage = lazy(() =>
+  import('./pages/WordsPage').then((m) => ({ default: m.WordCategoryRoute })),
+);
+const WordDetailPage = lazy(() =>
+  import('./pages/WordDetailPage').then((m) => ({ default: m.WordDetailPage })),
+);
+const SavedWordsPage = lazy(() =>
+  import('./pages/SavedWordsPage').then((m) => ({ default: m.SavedWordsPage })),
+);
+const MistakesPage = lazy(() =>
+  import('./pages/MistakesPage').then((m) => ({ default: m.MistakesPage })),
+);
 const WordSessionPage = lazy(() =>
   import('./pages/WordSessionPage').then((m) => ({ default: m.WordSessionPage })),
 );
@@ -166,6 +178,15 @@ export function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/letters" element={<LettersPage />} />
               <Route path="/words" element={<WordsPage />} />
+              {/* Browsing one category. A tab-layout screen rather than a focus
+                  one: it is a reference view the learner can wander in and out
+                  of, not a sitting they are part-way through. */}
+              <Route path="/words/category/:category" element={<WordCategoryPage />} />
+              {/* One word, in depth. A tab-layout screen: the learner is
+                  looking something up, not part-way through a sitting. */}
+              <Route path="/words/word/:wordId" element={<WordDetailPage />} />
+              <Route path="/words/saved" element={<SavedWordsPage />} />
+              <Route path="/review/mistakes" element={<MistakesPage />} />
               <Route path="/review" element={<ReviewPage />} />
               <Route path="/me" element={<MyPage />} />
               {/* Reached from the streak on Home. Its own screen rather than a
@@ -180,7 +201,12 @@ export function App() {
             <Route element={<FocusLayout />}>
               <Route path="/letters/sounds" element={<SoundChangesPage />} />
               <Route path="/letters/:lessonId" element={<LetterSessionPage />} />
-              <Route path="/words/:lessonId" element={<WordSessionPage />} />
+              {/*
+                One route, no lesson id. Vocabulary is no longer browsed as
+                numbered sets and then written syllable by syllable; there is a
+                plan for today and this runs it. See `WordSessionPage`.
+              */}
+              <Route path="/words/today" element={<WordSessionPage />} />
               <Route path="/review/session" element={<ReviewSessionPage />} />
             </Route>
 

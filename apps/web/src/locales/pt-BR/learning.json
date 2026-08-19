@@ -3,20 +3,20 @@
     "title": "Aprender letras",
     "complete": "Aprendida",
     "alphabetTitle": "O alfabeto hangul",
-    "alphabetCaption": "letras aprendidas"
+    "alphabetCaption": "letras aprendidas",
+    "resume": "Continuar"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Pular esta",
     "next": "Próxima letra",
     "finish": "Concluir",
-    "startTrace": "Cubra a letra",
+    "startWriting": "Escreva",
     "prompt": {
-      "trace": "Siga a forma cinza com o dedo.",
-      "practise": "A guia está mais leve. Escreva você — ela continua aí, se precisar."
+      "write": "Escreva com o dedo por cima da guia."
     },
-    "nowPractise": "Agora: com a guia mais leve",
-    "nowRead": "Agora leia"
+    "nowRead": "Agora leia",
+    "continue": "Próximo"
   },
   "complete": {
     "title": "Muito bem!",
@@ -61,9 +61,14 @@
       "context": "Qual palavra cabe aqui?",
       "write": "Escreva esta palavra",
       "writeLetter": "Escreva o que você ouve",
-      "distinguish": "Qual delas faz este som?"
+      "distinguish": "Qual delas faz este som?",
+      "produce": "Qual é?",
+      "listenMeaning": "O que isso significa?"
     },
-    "sessionLength_many": "{{count, number}} exercícios curtos"
+    "sessionLength_many": "{{count, number}} exercícios curtos",
+    "nothingDue": "Nada para revisar agora.",
+    "modesEmpty": "Hoje não há nada nestes modos.",
+    "answerIs": "{{word}} significa “{{meaning}}”."
   },
   "units": {
     "badge": "Unidade {{index, number}}",
@@ -143,8 +148,7 @@
   },
   "steps": {
     "label": "Etapas desta letra",
-    "trace": "Cobrir",
-    "practise": "Praticar",
+    "write": "Escrever",
     "read": "Ler"
   },
   "recognition": {
@@ -154,13 +158,8 @@
     "correctDetail": "Isso: {{character}}.",
     "wrongHeadline": "Essa não.",
     "wrongDetail": "{{character}} é o que soa como {{sound}}.",
-    "hearAgain": "Ouvir de novo"
-  },
-  "reading": {
-    "question": "O que esta palavra quer dizer?",
-    "optionsAria": "Quatro significados para escolher",
-    "wrongHeadline": "Olhe de novo",
-    "answer": "{{word}} quer dizer “{{meaning}}”."
+    "hearAgain": "Ouvir de novo",
+    "tryAgain": "Tentar de novo"
   },
   "sounds": {
     "title": "Quando os sons se encontram",
@@ -177,5 +176,27 @@
       "palatal": "ㄷ e ㅌ antes de 이",
       "liaison": "O som escorrega"
     }
+  },
+  "mistakes": {
+    "title": "Respostas erradas",
+    "review_one": "Revisar · 1 pergunta",
+    "review_many": "Revisar · {{count}} perguntas",
+    "review_other": "Revisar · {{count}} perguntas",
+    "filterLabel": "Mostrar",
+    "filter": {
+      "all": "Tudo",
+      "character": "Letras",
+      "word": "Palavras"
+    },
+    "youPut": "Sua resposta",
+    "answer": "Resposta",
+    "times_one": "Errada uma vez",
+    "times_many": "Errada {{count}} vezes",
+    "times_other": "Errada {{count}} vezes",
+    "clear": "Já aprendi",
+    "noneOfKind": "Nada aqui por enquanto.",
+    "emptyTitle": "Nada errado ainda",
+    "emptyBody": "Quando você errar algo, ele aparece aqui para você acertar depois.",
+    "emptyCta": "Ir para a revisão"
   }
 }

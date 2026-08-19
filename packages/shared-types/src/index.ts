@@ -580,7 +580,7 @@ export interface AttemptScore {
   mismatch_ratio: number;
   outside_stroke_ratio: number;
   missing_coverage_ratio: number;
-  reason: 'empty' | 'outside' | 'incomplete' | 'mixed' | null;
+  reason: 'empty' | 'outside' | 'incomplete' | 'mixed' | 'scribble' | null;
 }
 
 export interface CharacterAttempt extends AttemptScore {
@@ -764,6 +764,15 @@ export interface LearnerPreferences {
   /** Light, dark, or whatever the device is doing. */
   appearance: Appearance;
   daily_target: number;
+  /**
+   * How many vocabulary items to finish today. The one number the learner sets
+   * that decides the length of a session.
+   *
+   * Counted in *words meaningfully completed*, never in questions answered or
+   * buttons pressed — one word may be met, then heard, then recalled, and that
+   * is one. See `domain/vocabularyDay.ts`.
+   */
+  daily_word_goal: number;
   /** Guides drawn inside the writing box. */
   show_grid: boolean;
   show_center_crosshair: boolean;

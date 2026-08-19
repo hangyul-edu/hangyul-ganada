@@ -13,10 +13,19 @@ import styles from './ChoiceExercise.module.css';
 /**
  * One multiple-choice review question.
  *
- * Four modes share this component — read, listen, distinguish and context —
- * because they are the same interaction with a different prompt, and giving
- * each its own screen would give each its own subtly different answer
+ * Five modes share this component — read, produce, listen, distinguish and
+ * context — because they are the same interaction with a different prompt, and
+ * giving each its own screen would give each its own subtly different answer
  * behaviour. What differs is only what sits above the options.
+ *
+ * ## There is no retry button here, and that is the point
+ *
+ * A selection question is answered once: the choice is made, the right answer
+ * is shown, and the only action is to continue. The writing screens have a
+ * *try again* button because there is ink on a canvas that can be redrawn;
+ * offering the same words after a multiple-choice question — "다시 써 보기",
+ * write it again — described an action the learner had not taken and could not
+ * take. See §41. The single action below is Continue in every mode.
  *
  * ## What the learner is not told
  *
@@ -75,7 +84,19 @@ export function ChoiceExercise({
    * screen and the sound would hand over the answer — which is also why the
    * speaker button on those two only appears once an answer has been given.
    */
-  const audioIsTheQuestion = exercise.mode === 'listen' || exercise.mode === 'distinguish';
+  /*
+   * Which questions the clip *is* the question for. §6: the learner must never
+   * have to press a speaker before they can answer.
+   *
+   * `listenMeaning` belongs here for the same reason `listen` does — nothing on
+   * screen says which word is being asked about, so without the clip there is
+   * no question. Adding a listening type and forgetting this line would produce
+   * a screen with four meanings on it and no way to tell what for.
+   */
+  const audioIsTheQuestion =
+    exercise.mode === 'listen' ||
+    exercise.mode === 'listenMeaning' ||
+    exercise.mode === 'distinguish';
   useEntryAudio(key, exercise.audioId, { enabled: audioIsTheQuestion });
 
   const correct = picked !== null && picked === exercise.answerId;
@@ -101,7 +122,21 @@ export function ChoiceExercise({
       <p className={styles.prompt}>{t(`learning:${exercise.promptKey}`)}</p>
 
       <div className={styles.stimulus}>
-        {exercise.sentence ? (
+        {exercise.meaning ? (
+          /*
+           * The prompt is a meaning, and the answers are Korean — the harder
+           * direction. Rendered in the learner's own language and marked as
+           * such, so a right-to-left interface lays it out correctly while the
+           * Korean options below stay left-to-right.
+           */
+          <LocalizedText
+            as="p"
+            locale={exercise.meaningLocale ?? 'en'}
+            className={styles.meaningPrompt}
+          >
+            {exercise.meaning}
+          </LocalizedText>
+        ) : exercise.sentence ? (
           <p className={styles.sentence} lang="ko" dir="ltr" style={{ fontFamily }}>
             {exercise.sentence.before}
             <span className={styles.blank} aria-label={t('learning:review.blank')}>
@@ -124,6 +159,12 @@ export function ChoiceExercise({
           afterwards for the ones it would have given away. Playing the example
           sentence before the blank is filled reads the missing word aloud; so
           does playing a letter's sound when the options *are* its sound.
+        */}
+        {/*
+          The sound, once the answer is out.
+
+          Never before it on `produce`: the learner is being asked to find the
+          Korean from its meaning, and playing the word first says it aloud.
         */}
         {exercise.audioId && (audioIsTheQuestion || picked !== null) && (
           <SpeakerButton
@@ -182,15 +223,28 @@ export function ChoiceExercise({
       </div>
 
       {picked === null ? (
-        <button type="button" className={styles.hint} onClick={() => setHintShown(true)}>
-          {hintShown ? (
-            <LocalizedText as="span" locale={exercise.hintLocale ?? 'en'}>
-              {exercise.hint ?? ''}
-            </LocalizedText>
-          ) : (
-            t('learning:review.showHint')
-          )}
-        </button>
+        /*
+         * Only where there is a hint to show.
+         *
+         * Some questions have none by design: on "hear it and say what it
+         * means", the meaning *is* the answer, so the usual hint would hand it
+         * over. The button used to render regardless, so those screens offered
+         * "Show a hint" and revealed an empty line — a control that does
+         * nothing, on the screen where the learner is least sure of themselves.
+         * Replay is the help this question can honestly give, and it already
+         * has a speaker.
+         */
+        exercise.hint ? (
+          <button type="button" className={styles.hint} onClick={() => setHintShown(true)}>
+            {hintShown ? (
+              <LocalizedText as="span" locale={exercise.hintLocale ?? 'en'}>
+                {exercise.hint}
+              </LocalizedText>
+            ) : (
+              t('learning:review.showHint')
+            )}
+          </button>
+        ) : null
       ) : (
         <FeedbackState
           status={correct ? 'correct' : 'incorrect'}
@@ -201,21 +255,52 @@ export function ChoiceExercise({
           }
           actions={
             <Button size="md" onClick={onContinue}>
-              {isLast ? t('learning:session.finish') : t('learning:session.next')}
+              {/*
+                "Next", not "Next letter".
+
+                This component asks about letters *and* words — in review, and
+                in the daily vocabulary session — and it borrowed the letter
+                lesson's label, so answering a question about 학교 offered a
+                button that said "Next letter". The letter lesson keeps its
+                specific wording, because there the next thing genuinely is a
+                letter and naming it is better than "Next".
+              */}
+              {isLast ? t('learning:session.finish') : t('learning:session.continue')}
             </Button>
           }
         >
+          {/*
+            The answer, in one line, and no more than that.
+
+            §42: a simple mistake gets the correct answer and stops. It used to
+            render the Korean and the meaning as two bare fragments side by
+            side, which reads as a label with no sentence around it; where both
+            exist they are now one sentence, and in Korean that sentence takes
+            the right particle — 엄마는, 사람은 — because 엄마은 is the kind of
+            error a learner will notice in a language-learning app.
+          */}
           {!correct && answer && (
             <p>
-              {answer.korean ? (
-                <span lang="ko" dir="ltr" className={styles.answerKorean}>
-                  {answer.korean}
-                </span>
-              ) : null}
-              {answer.label && (
+              {answer.korean && answer.label ? (
                 <LocalizedText as="span" locale={answer.labelLocale ?? 'en'}>
-                  {answer.label}
+                  {t('learning:review.answerIs', {
+                    word: answer.korean,
+                    meaning: answer.label,
+                  })}
                 </LocalizedText>
+              ) : (
+                <>
+                  {answer.korean && (
+                    <span lang="ko" dir="ltr" className={styles.answerKorean}>
+                      {answer.korean}
+                    </span>
+                  )}
+                  {answer.label && (
+                    <LocalizedText as="span" locale={answer.labelLocale ?? 'en'}>
+                      {answer.label}
+                    </LocalizedText>
+                  )}
+                </>
               )}
             </p>
           )}

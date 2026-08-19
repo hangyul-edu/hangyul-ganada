@@ -3,8 +3,8 @@
     "aria": "查看学习记录"
   },
   "celebrate": "今天的目标完成了，很棒。",
-  "dailyGoal": "每日目标",
-  "dailyGoalAria": "每日目标：{{total, number}} 项中的 {{done, number}} 项",
+  "dailyGoal": "今天的字母",
+  "dailyGoalAria": "今天的字母：{{total, number}} 个中的 {{done, number}} 个",
   "cta": {
     "start": "立即开始",
     "continue": "继续学习"
@@ -13,24 +13,17 @@
     "letters": "字母",
     "words": "单词",
     "lettersCaption": "共 40 个韩文字母",
-    "wordsCaption": "学过的词"
+    "wordsCaption": "今天的词"
   },
   "review": {
     "title": "复习",
     "count_other": "{{count, number}} 个要复习",
     "empty": "还没有要复习的"
   },
-  "upNext": {
-    "title": "给你的词"
-  },
   "practice": {
     "title": "今天的练习",
     "reviews_one": "{{count, number}} 项复习",
     "reviews_other": "{{count, number}} 项复习",
-    "letters_one": "还差 {{count, number}} 个字母",
-    "letters_other": "还差 {{count, number}} 个字母",
-    "words_one": "{{count, number}} 个常用词",
-    "words_other": "{{count, number}} 个常用词",
     "cta": "开始练习"
   }
 }

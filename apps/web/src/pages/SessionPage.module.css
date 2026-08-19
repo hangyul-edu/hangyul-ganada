@@ -224,11 +224,14 @@
 }
 
 /*
- * The syllable row that used to be here is gone.
+ * The word-writing layout that used to be here is gone, and nothing replaced it.
  *
- * It laid one canvas per syllable side by side and scrolled horizontally past
- * three, which is what put controls off the edge of a phone. Its replacement is
- * `features/writing/WordWritingCarousel` — one canvas, one toolbar, one check.
+ * First it was a row of one canvas per syllable, scrolling sideways past three
+ * — which put the controls off the edge of a phone. Then it was a carousel of
+ * one canvas at a time, which fixed the layout and left the real problem: a
+ * learner meeting 학교 was asked to draw 학 and then 교, and drawing is not how
+ * anybody finds out what a word means. Vocabulary is no longer handwritten
+ * anywhere in the product. See `pages/WordSessionPage.tsx`.
  */
 
 .example {

@@ -31,6 +31,10 @@
       "tooLarge": "Se salió del recuadro. Un poco más pequeña.",
       "strayStroke": "Un trazo se desvió. Sigue la línea con calma."
     },
+    "scribble": {
+      "headline": "Probemos más despacio",
+      "detail": "Traza cada línea una sola vez, con un movimiento continuo. No hace falta repasarla."
+    },
     "mixed": {
       "headline": "No del todo",
       "detail": "Alinéala con la guía y prueba otra vez."
@@ -74,33 +78,6 @@
     "back": "Atrás",
     "next": "Siguiente",
     "position": "Trazo {{current, number}} de {{count, number}}"
-  },
-  "word": {
-    "previous": "Parte anterior",
-    "next": "Parte siguiente",
-    "syllablePosition": "{{syllable}}, parte {{position, number}} de {{count, number}}",
-    "canvasLabel": "Zona de escritura de {{syllable}}, parte {{position, number}} de {{count, number}}",
-    "undoSyllable": "Deshacer lo escrito en {{syllable}}",
-    "clearSyllable": "Borrar lo escrito en {{syllable}}",
-    "checkWord": "Comprobar lo que he escrito",
-    "checkAgain": "Comprobar otra vez",
-    "fix": "Corregir",
-    "fixSyllable": "Volver a escribir {{syllable}}",
-    "result": {
-      "passed": "Bien hecho",
-      "almost": "Casi lo tienes",
-      "allAgain": "Vamos a seguir la guía una vez más",
-      "needsWork_one": "Una parte necesita otro intento.",
-      "needsWork_many": "{{count, number}} partes necesitan otro intento.",
-      "needsWork_other": "{{count, number}} partes necesitan otro intento."
-    },
-    "advice": {
-      "passed": "Tiene buena forma.",
-      "empty": "Escribe esta parte primero.",
-      "outside": "Acércate un poco más a la guía.",
-      "incomplete": "Todavía falta una parte de esta letra.",
-      "mixed": "Casi. Sigue la guía una vez más."
-    }
   },
   "strokeGuide": {
     "shape": {

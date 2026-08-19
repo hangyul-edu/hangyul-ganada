@@ -136,28 +136,29 @@ async function openWritingBox(page: Page) {
   // `click()` auto-waits; `isVisible()` does not, and asking it before React
   // has rendered returns false and silently skips the step.
   await page.getByRole('button', { name: "Got it — let's start" }).click();
-  await page.getByRole('button', { name: /Trace it/ }).click();
+  await page.getByRole('button', { name: /Trace it|Write it/ }).click();
   await expect(page.getByTestId('writing-canvas').first()).toBeVisible();
 }
 
 /**
- * The word-writing screen, in both appearances.
+ * The daily vocabulary session, which is where words are now learned.
  *
- * Two taps in, like the letter canvas — and, unlike it, not covered by the
- * screen list above at all until this cycle. It is the screen with the most
- * controls on it: a navigator, two arrows, two tools and a check, over a
- * canvas, on the smallest viewport the product supports.
+ * This used to scan the word-*writing* screen — a navigator, two arrows, two
+ * tools and a check, over a canvas. That screen is gone: vocabulary is never
+ * handwritten. What replaced it is a question with four options, and it has its
+ * own accessibility problem to guard against, which is that the options are the
+ * only thing on screen and a screen reader has to be able to tell them apart.
  */
 for (const scheme of ['light', 'dark'] as const) {
-  test(`writing a word has no WCAG A or AA violations (${scheme})`, async ({ page }) => {
+  test(`the daily word session has no WCAG A or AA violations (${scheme})`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: scheme });
-    await page.goto('/words/vocab-society-13');
-    await page.getByRole('button', { name: 'Practise writing' }).click();
-    await expect(page.getByTestId('word-writing')).toBeVisible();
+    await page.goto('/words/today');
+    await expect(page.getByTestId('word-headword')).toBeVisible();
     const results = await scan(page);
     expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
   });
 }
+
 
 /**
  * What a screen reader is handed on the first screen of the first lesson.
@@ -173,7 +174,7 @@ test('the character introduction reads correctly to a screen reader', async ({ p
   // Unit 2 has no explainer — only units 1, 3 and 11 do — so this lesson opens
   // straight on the letter.
   await page.goto('/letters/lesson-consonants-first');
-  await expect(page.getByRole('button', { name: /Trace it/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Trace it|Write it/ })).toBeVisible();
 
   await expect(page.getByRole('img', { name: 'How ㄱ is written, in 1 stroke' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Play the pronunciation of 기역' })).toBeVisible();
@@ -184,7 +185,7 @@ test('the character introduction reads correctly to a screen reader', async ({ p
 test('the character introduction has no WCAG A or AA violations', async ({ page }) => {
   await page.goto('/letters/lesson-vowels-core');
   await page.getByRole('button', { name: "Got it — let's start" }).click();
-  await expect(page.getByRole('button', { name: /Trace it/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Trace it|Write it/ })).toBeVisible();
   const results = await scan(page);
   expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
 });

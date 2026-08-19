@@ -29,6 +29,10 @@
       "tooLarge": "枠からはみ出しました。少し小さめに書いてみましょう。",
       "strayStroke": "画が一つそれました。ゆっくり線をたどってみましょう。"
     },
+    "scribble": {
+      "headline": "もう少しゆっくりやってみましょう",
+      "detail": "一画ずつ、一度でスッと書いてみましょう。なぞり直さなくて大丈夫です。"
+    },
     "mixed": {
       "headline": "おしい",
       "detail": "ガイドに合わせて、もう一度書いてみましょう。"
@@ -66,31 +70,6 @@
     "back": "まえ",
     "next": "つぎ",
     "position": "{{count, number}} 画のうち {{current, number}} 画目"
-  },
-  "word": {
-    "previous": "前の文字",
-    "next": "次の文字",
-    "syllablePosition": "{{syllable}}、{{count, number}}文字中 {{position, number}}文字目",
-    "canvasLabel": "{{syllable}} を書く場所、{{count, number}}文字中 {{position, number}}文字目",
-    "undoSyllable": "{{syllable}} の書き直し",
-    "clearSyllable": "{{syllable}} を消す",
-    "checkWord": "書けました",
-    "checkAgain": "もう一度確認",
-    "fix": "書き直す",
-    "fixSyllable": "{{syllable}} をもう一度書く",
-    "result": {
-      "passed": "よく書けました",
-      "almost": "あと少しです",
-      "allAgain": "ガイドをなぞって、もう一度書いてみましょう",
-      "needsWork_other": "あと {{count, number}}文字、書き直してみましょう。"
-    },
-    "advice": {
-      "passed": "いい形です。",
-      "empty": "この文字をまず書いてください。",
-      "outside": "ガイドにもう少し近づけて書いてみましょう。",
-      "incomplete": "まだ足りない部分があります。",
-      "mixed": "あと少しです。ガイドをもう一度なぞってみましょう。"
-    }
   },
   "strokeGuide": {
     "shape": {

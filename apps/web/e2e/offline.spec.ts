@@ -47,7 +47,7 @@ test('every core screen still opens with the network cut', async ({ page, contex
     await expect(page.getByRole('heading', { level: 2, name: 'Six vowels to start' })).toBeVisible();
 
     await page.goto('/words');
-    await expect(page.getByRole('button', { name: /Food & Drink/ })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Food & Drink/ })).toBeVisible();
   } finally {
     await context.setOffline(false);
   }

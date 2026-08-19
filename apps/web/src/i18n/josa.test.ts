@@ -47,10 +47,14 @@ describe('particles', () => {
 
   it('is wired into the Korean bundle', () => {
     const i18n = createI18n('ko');
-    expect(i18n.t('learning:reading.answer', { word: '마디', meaning: 'joint' })).toContain(
+    // A key that actually ships. This used to point at the word-reading step's
+    // copy, which went with the step: vocabulary is no longer read back in a
+    // lesson of its own. The particle is still live — it is what the Review
+    // screen writes under a wrong answer — and that is the key to hold.
+    expect(i18n.t('learning:review.answerIs', { word: '마디', meaning: 'joint' })).toContain(
       '마디는',
     );
-    expect(i18n.t('learning:reading.answer', { word: '사람', meaning: 'person' })).toContain(
+    expect(i18n.t('learning:review.answerIs', { word: '사람', meaning: 'person' })).toContain(
       '사람은',
     );
     expect(i18n.t('learning:recognition.correctDetail', { character: 'ㄱ' })).toBe('맞아요, ㄱ이에요.');
@@ -59,7 +63,7 @@ describe('particles', () => {
 
   it('leaves every other language alone', () => {
     const i18n = createI18n('en');
-    expect(i18n.t('learning:reading.answer', { word: '마디', meaning: 'joint' })).toBe(
+    expect(i18n.t('learning:review.answerIs', { word: '마디', meaning: 'joint' })).toBe(
       '마디 means “joint”.',
     );
   });

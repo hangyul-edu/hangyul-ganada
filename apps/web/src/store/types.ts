@@ -8,6 +8,7 @@ import type {
 } from '@hangyul-ganada/shared-types';
 
 import type { MemoryMap, Skill } from '../domain/memory';
+import type { MistakeMap } from '../domain/mistakes';
 import type { ExerciseMode } from '../domain/review';
 import type { AttemptRecord } from '../storage/repositories';
 import type { StoredSettings } from '../storage/schema';
@@ -29,6 +30,14 @@ export interface LearnerState {
   memory: MemoryMap;
   /** Recent review exercises, oldest first. Bounded; see `AttemptRepository`. */
   attempts: AttemptRecord[];
+  /**
+   * The wrong-answer notebook, keyed by `${kind}:${item_key}`.
+   *
+   * One row per item ever missed, recovered rows included — the notebook screen
+   * filters them out, and the scheduler needs the history to know which items
+   * this learner finds genuinely hard. See `domain/mistakes.ts`.
+   */
+  mistakes: MistakeMap;
 }
 
 export interface RecordAttemptInput {

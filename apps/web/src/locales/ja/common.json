@@ -7,7 +7,10 @@
     "confirm": "OK",
     "close": "閉じる",
     "back": "戻る",
-    "goHome": "ホームへ"
+    "goHome": "ホームへ",
+    "done": "完了",
+    "save": "保存",
+    "saved": "保存済み"
   },
   "a11y": {
     "skipToContent": "本文へスキップ",

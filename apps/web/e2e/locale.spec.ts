@@ -17,16 +17,37 @@ import { expect, test, type Page } from '@playwright/test';
 
 const openLanguagePicker = async (page: Page) => {
   await page.goto('/me');
-  await page.getByRole('link', { name: /Change language/ }).click();
+  await page.getByTestId('settings-language').click();
   await expect(page.getByRole('heading', { name: 'Choose a language' })).toBeVisible();
 };
 
-test('a fresh learner gets English, whatever the browser asks for', async ({ browser }) => {
-  // A context that says it is Korean, from Korea.
-  const context = await browser.newContext({
-    locale: 'ko-KR',
-    timezoneId: 'Asia/Seoul',
-  });
+test('a fresh learner gets the language their device is in', async ({ browser }) => {
+  /*
+   * §55, and the exact reversal of what this test used to assert.
+   *
+   * It used to require English *whatever the browser asked for*, on the argument
+   * that a default which changes with where you are standing is one nobody can
+   * reason about. That was answering the wrong question. The person this rule
+   * decides for has just installed a Korean *beginner's* app and may read
+   * neither Korean nor English; under the old rule their first screen was in
+   * English and the way out was a settings screen labelled, in English,
+   * "Language".
+   */
+  const korean = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul' });
+  const koreanPage = await korean.newPage();
+  await koreanPage.goto('/');
+  await expect(koreanPage.locator('html')).toHaveAttribute('lang', 'ko');
+  await korean.close();
+
+  const japanese = await browser.newContext({ locale: 'ja-JP', timezoneId: 'Asia/Tokyo' });
+  const japanesePage = await japanese.newPage();
+  await japanesePage.goto('/');
+  await expect(japanesePage.locator('html')).toHaveAttribute('lang', 'ja');
+  await japanese.close();
+});
+
+test('a device language we do not ship falls back to English', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'is-IS', timezoneId: 'Atlantic/Reykjavik' });
   const page = await context.newPage();
   await page.goto('/');
 
@@ -106,7 +127,9 @@ test('Korean learning content is never translated', async ({ page }) => {
   // off the page rather than naming it. What is being asserted is a property,
   // not a word: the Korean stays Korean when the interface language changes,
   // and the meaning beside it does not.
-  await page.goto('/words/vocab-essentials-1');
+  // Today's sitting, which is where a word is met now. There is no lesson id:
+  // vocabulary is not browsed as numbered sets any more.
+  await page.goto('/words/today');
   await page.evaluate(() => document.fonts.ready);
   const koreanWord = page.getByTestId('word-headword');
   await expect(koreanWord).toBeVisible();
@@ -118,7 +141,7 @@ test('Korean learning content is never translated', async ({ page }) => {
   // Switch to Korean: the meaning changes, the word does not.
   await openLanguagePicker(page);
   await page.getByRole('button', { name: /한국어/ }).click();
-  await page.goto('/words/vocab-essentials-1');
+  await page.goto('/words/today');
   await page.evaluate(() => document.fonts.ready);
 
   await expect(page.getByTestId('word-headword')).toHaveText(korean);
@@ -152,7 +175,8 @@ for (const locale of ['ko', 'de', 'ja', 'zh-CN', 'es', 'fr', 'pt-BR']) {
       '/me',
       '/me/language',
       '/letters/lesson-vowels-1',
-      '/words/vocab-essentials-1',
+      '/words/today',
+      '/words/category/food',
     ]) {
       await page.goto(path);
       await expect(page.locator('#main')).toBeVisible();

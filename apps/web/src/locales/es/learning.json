@@ -3,20 +3,20 @@
     "title": "Aprender letras",
     "complete": "Aprendida",
     "alphabetTitle": "El alfabeto hangul",
-    "alphabetCaption": "letras aprendidas"
+    "alphabetCaption": "letras aprendidas",
+    "resume": "Continuar"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Saltar esta",
     "next": "Siguiente letra",
     "finish": "Terminar",
-    "startTrace": "Cálcala",
+    "startWriting": "Escríbela",
     "prompt": {
-      "trace": "Sigue la forma gris con el dedo.",
-      "practise": "La guía es más suave. Escríbela tú — sigue ahí por si la necesitas."
+      "write": "Escríbela con el dedo sobre la guía."
     },
-    "nowPractise": "Ahora: con la guía más suave",
-    "nowRead": "Ahora léela"
+    "nowRead": "Ahora léela",
+    "continue": "Siguiente"
   },
   "complete": {
     "title": "¡Muy bien!",
@@ -61,9 +61,14 @@
       "context": "¿Qué palabra encaja aquí?",
       "write": "Escribe esta palabra",
       "writeLetter": "Escribe lo que oyes",
-      "distinguish": "¿Cuál hace este sonido?"
+      "distinguish": "¿Cuál hace este sonido?",
+      "produce": "¿Cuál es?",
+      "listenMeaning": "¿Qué significa?"
     },
-    "sessionLength_many": "{{count, number}} ejercicios cortos"
+    "sessionLength_many": "{{count, number}} ejercicios cortos",
+    "nothingDue": "Ahora mismo no hay nada que repasar.",
+    "modesEmpty": "Hoy no hay nada en estos modos.",
+    "answerIs": "{{word}} significa «{{meaning}}»."
   },
   "units": {
     "badge": "Unidad {{index, number}}",
@@ -143,8 +148,7 @@
   },
   "steps": {
     "label": "Pasos de esta letra",
-    "trace": "Calcar",
-    "practise": "Practicar",
+    "write": "Escribir",
     "read": "Leer"
   },
   "recognition": {
@@ -154,13 +158,8 @@
     "correctDetail": "Eso es: {{character}}.",
     "wrongHeadline": "Esa no.",
     "wrongDetail": "{{character}} es el que suena como {{sound}}.",
-    "hearAgain": "Escuchar otra vez"
-  },
-  "reading": {
-    "question": "¿Qué significa esta palabra?",
-    "optionsAria": "Cuatro significados para elegir",
-    "wrongHeadline": "Míralo otra vez",
-    "answer": "{{word}} significa «{{meaning}}»."
+    "hearAgain": "Escuchar otra vez",
+    "tryAgain": "Intentar de nuevo"
   },
   "sounds": {
     "title": "Cuando los sonidos se encuentran",
@@ -177,5 +176,27 @@
       "palatal": "ㄷ y ㅌ ante 이",
       "liaison": "El sonido se desliza"
     }
+  },
+  "mistakes": {
+    "title": "Respuestas falladas",
+    "review_one": "Repasar · 1 pregunta",
+    "review_many": "Repasar · {{count}} preguntas",
+    "review_other": "Repasar · {{count}} preguntas",
+    "filterLabel": "Mostrar",
+    "filter": {
+      "all": "Todo",
+      "character": "Letras",
+      "word": "Palabras"
+    },
+    "youPut": "Tu respuesta",
+    "answer": "Respuesta",
+    "times_one": "Fallada una vez",
+    "times_many": "Fallada {{count}} veces",
+    "times_other": "Fallada {{count}} veces",
+    "clear": "Ya la sé",
+    "noneOfKind": "Aquí no hay nada ahora mismo.",
+    "emptyTitle": "Nada fallado todavía",
+    "emptyBody": "Cuando falles algo, aparecerá aquí para que puedas corregirlo.",
+    "emptyCta": "Ir a repasar"
   }
 }

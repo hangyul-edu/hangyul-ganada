@@ -7,6 +7,7 @@ import { usePronunciation } from '../audio/PronunciationContext';
 import { PRODUCT, productName } from '../config/product';
 import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS } from '../data/fonts';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
+import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
 import { invalidateGlyphCache } from '../features/writing/useEvaluator';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
 import {
@@ -23,7 +24,7 @@ import { LocalizedText } from '../ui/LocalizedText';
 import { Modal } from '../ui/Modal';
 import { ProgressBar } from '../ui/Progress';
 import { SpeakerButton } from '../ui/SpeakerButton';
-import { AlertIcon, CheckIcon, ChevronRightIcon, InfoIcon, LockIcon } from '../ui/icons';
+import { AlertIcon, CheckIcon, ChevronRightIcon, GlobeIcon, InfoIcon, LockIcon } from '../ui/icons';
 import styles from './MyPage.module.css';
 
 /**
@@ -156,6 +157,35 @@ export function MyPage() {
           it looks, then the app's own settings, and the one irreversible action
           is on its own at the bottom where nothing is next to it to mis-tap.
         */}
+        {/*
+          Language, before anything else on the screen.
+
+          Not "first in its group" — first, above the group headings, above the
+          learner's own activity, above everything. It is the only setting whose
+          reader may not be able to read the screen it is on, and every other
+          row here is a row they cannot use until this one is right.
+
+          It is also why the globe is here. A learner whose phone opened in a
+          language they do not read cannot find "Language" by reading the word
+          Language; they can find it by looking for the globe, which is why the
+          icon is large, leading, and not decorative. The value beside it is
+          always in its own language — 한국어, never "Korean" — so it is
+          recognisable to the one person who most needs to recognise it. See
+          §53 and §54.
+        */}
+        <Link to="/me/language" className={styles.languageRow} data-testid="settings-language">
+          <span className={styles.languageGlobe} aria-hidden="true">
+            <GlobeIcon size={26} />
+          </span>
+          <span className={styles.languageNames}>
+            <span className={styles.languageLabel}>{t('settings:language.title')}</span>
+            <span className={styles.languageNative} lang={descriptor.code}>
+              <bdi>{descriptor.nativeName}</bdi>
+            </span>
+          </span>
+          <ChevronRightIcon size={20} />
+        </Link>
+
         <Group id="settings-learning" title={t('settings:groups.learning')}>
           <Link to="/me/activity" className={styles.linkRow}>
             <span className={styles.linkText}>
@@ -186,6 +216,41 @@ export function MyPage() {
             </div>
           </Section>
 
+          {/*
+            How many words a day.
+
+            Immediately after the language row and beside the letter target,
+            because the two are the same kind of promise — how much the learner
+            means to do — and a learner comparing them should not have to
+            scroll between them. Four options and no custom field: a goal-setting
+            screen with a number stepper on it is a productivity app, and the
+            point of this number is only to make starting easy.
+
+            A change takes effect tomorrow if today's plan is already running.
+            See `planIsCurrent` — a session that changes length underneath
+            somebody mid-way is worse than one that starts fresh in the morning.
+          */}
+          <Section
+            title={t('settings:wordGoal.title')}
+            description={t('settings:wordGoal.description')}
+          >
+            <div className={styles.targetRow}>
+              {DAILY_WORD_GOALS.map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  className={`${styles.targetOption} ${
+                    state.settings.daily_word_goal === n ? styles.targetSelected : ''
+                  }`}
+                  onClick={() => setPreferences({ daily_word_goal: n })}
+                  aria-pressed={state.settings.daily_word_goal === n}
+                  aria-label={t('settings:wordGoal.optionAria', { count: n })}
+                >
+                  {t('settings:wordGoal.option', { count: n })}
+                </button>
+              ))}
+            </div>
+          </Section>
         </Group>
 
         <Group id="settings-practice" title={t('settings:groups.practice')}>
@@ -395,31 +460,6 @@ export function MyPage() {
         </Group>
 
         <Group id="settings-app" title={t('settings:groups.app')}>
-          {/* Language comes first: it is the setting that changes every other
-              word on the screen, so burying it under the font picker would be
-              perverse for someone who cannot read the current language. */}
-          <Section
-            title={t('settings:language.title')}
-            description={t('settings:language.description')}
-          >
-            <Link to="/me/language" className={styles.languageRow}>
-              <span className={styles.languageNames}>
-                <span className={styles.languageNative} lang={descriptor.code}>
-                  <bdi>{descriptor.nativeName}</bdi>
-                </span>
-                {descriptor.englishName !== descriptor.nativeName && (
-                  <span className={styles.languageEnglish}>
-                    <bdi>{descriptor.englishName}</bdi>
-                  </span>
-                )}
-              </span>
-              <span className={styles.languageAction}>
-                {t('settings:language.openPicker')}
-                <ChevronRightIcon size={18} />
-              </span>
-            </Link>
-          </Section>
-
           {/*
             The daily reminder.
 

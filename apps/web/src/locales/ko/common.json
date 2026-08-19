@@ -7,7 +7,10 @@
     "confirm": "확인",
     "close": "닫기",
     "back": "뒤로",
-    "goHome": "홈으로 가기"
+    "goHome": "홈으로 가기",
+    "done": "완료",
+    "save": "저장",
+    "saved": "저장됨"
   },
   "a11y": {
     "skipToContent": "본문으로 건너뛰기",

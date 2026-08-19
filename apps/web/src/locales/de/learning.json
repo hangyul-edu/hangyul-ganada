@@ -3,20 +3,20 @@
     "title": "Buchstaben lernen",
     "complete": "Gelernt",
     "alphabetTitle": "Das Hangeul-Alphabet",
-    "alphabetCaption": "Buchstaben gelernt"
+    "alphabetCaption": "Buchstaben gelernt",
+    "resume": "Weiter"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Diesen überspringen",
     "next": "Nächster Buchstabe",
     "finish": "Fertig",
-    "startTrace": "Fahr ihn nach",
+    "startWriting": "Schreib ihn",
     "prompt": {
-      "trace": "Fahr die graue Form mit dem Finger nach.",
-      "practise": "Die Hilfe ist jetzt blasser. Schreib ihn selbst — sie ist noch da, falls du sie brauchst."
+      "write": "Schreib ihn mit dem Finger über der Hilfslinie."
     },
-    "nowPractise": "Weiter: mit leichterer Hilfe",
-    "nowRead": "Jetzt lies ihn"
+    "nowRead": "Jetzt lies ihn",
+    "continue": "Weiter"
   },
   "complete": {
     "title": "Gut gemacht!",
@@ -60,8 +60,13 @@
       "context": "Welches Wort passt hier?",
       "write": "Schreibe dieses Wort",
       "writeLetter": "Schreibe, was du hörst",
-      "distinguish": "Welcher macht diesen Laut?"
-    }
+      "distinguish": "Welcher macht diesen Laut?",
+      "produce": "Welches ist es?",
+      "listenMeaning": "Was bedeutet das?"
+    },
+    "nothingDue": "Gerade gibt es nichts zu wiederholen.",
+    "modesEmpty": "Heute gibt es in diesen Modi nichts.",
+    "answerIs": "{{word}} bedeutet „{{meaning}}“."
   },
   "units": {
     "badge": "Einheit {{index, number}}",
@@ -141,8 +146,7 @@
   },
   "steps": {
     "label": "Schritte für diesen Buchstaben",
-    "trace": "Nachfahren",
-    "practise": "Üben",
+    "write": "Schreiben",
     "read": "Lesen"
   },
   "recognition": {
@@ -152,13 +156,8 @@
     "correctDetail": "Genau, das ist {{character}}.",
     "wrongHeadline": "Der war es nicht.",
     "wrongDetail": "{{character}} ist der, der wie {{sound}} klingt.",
-    "hearAgain": "Noch einmal hören"
-  },
-  "reading": {
-    "question": "Was bedeutet dieses Wort?",
-    "optionsAria": "Vier Bedeutungen zur Auswahl",
-    "wrongHeadline": "Schau noch mal",
-    "answer": "{{word}} bedeutet „{{meaning}}“."
+    "hearAgain": "Noch einmal hören",
+    "tryAgain": "Nochmal versuchen"
   },
   "sounds": {
     "title": "Wenn Laute aufeinandertreffen",
@@ -175,5 +174,25 @@
       "palatal": "ㄷ und ㅌ vor 이",
       "liaison": "Der Laut rutscht hinüber"
     }
+  },
+  "mistakes": {
+    "title": "Falsche Antworten",
+    "review_one": "Wiederholen · 1 Frage",
+    "review_other": "Wiederholen · {{count}} Fragen",
+    "filterLabel": "Anzeigen",
+    "filter": {
+      "all": "Alle",
+      "character": "Buchstaben",
+      "word": "Wörter"
+    },
+    "youPut": "Deine Antwort",
+    "answer": "Richtig",
+    "times_one": "Einmal falsch",
+    "times_other": "{{count}}-mal falsch",
+    "clear": "Sitzt jetzt",
+    "noneOfKind": "Hier ist gerade nichts.",
+    "emptyTitle": "Noch nichts falsch",
+    "emptyBody": "Wenn du etwas falsch hast, landet es hier — und du kannst es in Ruhe richtigstellen.",
+    "emptyCta": "Zur Wiederholung"
   }
 }

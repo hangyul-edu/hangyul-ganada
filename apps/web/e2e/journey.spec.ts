@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-import { drawScribble, traceGlyphThoroughly, traceReferenceGlyph } from './helpers/trace';
+import { drawScribble, traceReferenceGlyph } from './helpers/trace';
 
 /**
  * The journey a paying customer takes.
@@ -21,7 +21,16 @@ import { drawScribble, traceGlyphThoroughly, traceReferenceGlyph } from './helpe
 // localStorage already start empty. An addInitScript that cleared them would
 // re-run on every navigation and wipe the progress these tests assert on.
 
-const FIRST_LESSON = '/letters/lesson-vowels-core';
+/**
+ * The first lesson, always from its first letter.
+ *
+ * `?from=start` is load-bearing here, not decoration. A lesson now *resumes* at
+ * the first letter the learner has not finished — §48 — and these specs share
+ * one profile across a run, so without it a test asserting on ㅏ would pass
+ * alone and fail after any earlier test had finished ㅏ. The resume behaviour
+ * itself is asserted separately.
+ */
+const FIRST_LESSON = '/letters/lesson-vowels-core?from=start';
 
 const firstBox = (page: Page) => page.getByTestId('writing-canvas').first();
 
@@ -133,7 +142,11 @@ test('the first lesson explains what Hangul is before asking for a stroke', asyn
   // Then the letter itself. A vowel's name is its sound, so it gets one row,
   // labelled plainly; a consonant gets two, because 기역 and 가 are different
   // things to say and the label has to keep them apart.
-  await expect(page.getByText('ㅏ', { exact: true }).first()).toBeVisible();
+  // As an image, not as text: the glyph is drawn by `ReferenceGlyph` at a size
+  // and weight the body font cannot give it, and it carries the letter as its
+  // accessible name. Asserting on text passed for as long as it did because
+  // nothing else on the screen was checked.
+  await expect(page.getByRole('img', { name: 'ㅏ', exact: true }).first()).toBeVisible();
   await expect(page.getByRole('button', { name: /Play the pronunciation of/ })).toHaveCount(1);
   await expect(page.getByText('Sound', { exact: true })).toBeVisible();
   await expect(page.getByText('Name', { exact: true })).toHaveCount(0);
@@ -183,11 +196,21 @@ test('a faithful trace passes and an obvious scribble fails', async ({ page }) =
   await expect(firstBox(page)).toHaveClass(/correct/);
 });
 
-test('the guide gets lighter across the steps and never disappears', async ({ page }) => {
-  // The property the whole learning model now rests on. A beginner cannot
-  // reproduce a shape from an empty box, so there is no step that asks them to:
-  // the second writing step is the same box with the model much fainter, and
-  // "much fainter" and "gone" are the two things this test tells apart.
+test('a letter is written once, over a guide, and then read back', async ({ page }) => {
+  /*
+   * The whole lesson, and the step that is no longer in it.
+   *
+   * There used to be two writing steps — trace the model, then write it again
+   * over a fainter copy of the same model — and this test used to assert that
+   * the second was lighter than the first. §9 deleted that step, and it was not
+   * replaced: the second attempt asked for the identical movement with less ink
+   * on the paper, so the only thing it could measure was whether the learner
+   * would do it twice.
+   *
+   * What survives is the property the learning model actually rests on: the
+   * model is on the paper for the one attempt there is, and it is never taken
+   * away.
+   */
   const guideOpacity = () =>
     firstBox(page)
       .locator('canvas')
@@ -197,20 +220,13 @@ test('the guide gets lighter across the steps and never disappears', async ({ pa
   await page.goto(FIRST_LESSON);
   await startWriting(page);
 
-  const full = await guideOpacity();
-  expect(full, 'tracing shows the character plainly').toBeGreaterThan(0.2);
+  expect(await guideOpacity(), 'the writing step shows the character').toBeGreaterThan(0.2);
 
   await traceReferenceGlyph(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();
-  await page.getByRole('button', { name: /lighter guide/ }).click();
-  await waitForFonts(page);
 
-  const light = await guideOpacity();
-  expect(light, 'practice still shows the character').toBeGreaterThan(0);
-  expect(light, 'practice is lighter than tracing').toBeLessThan(full);
-
-  await traceReferenceGlyph(page, firstBox(page));
-  await page.getByRole('button', { name: 'Check' }).click();
+  // Straight to reading. Nothing offers a second, fainter go.
+  await expect(page.getByRole('button', { name: /lighter guide/ })).toHaveCount(0);
   await page.getByRole('button', { name: 'Now read it' }).click();
 
   // Reading: the same letter among its look-alikes.
@@ -241,12 +257,11 @@ test('no step, and no setting, ever presents an empty writing box', async ({ pag
 
     await traceReferenceGlyph(page, firstBox(page));
     await page.getByRole('button', { name: 'Check' }).click();
-    const next = page.getByRole('button', { name: /lighter guide/ });
-    if (await next.isVisible()) {
-      await next.click();
-      await waitForFonts(page);
-      expect(await guideOpacity(), `${style}: second writing step`).toBeGreaterThan(0);
-    }
+
+    // And there is no second writing step to check, in either style. What the
+    // setting now decides is how much guide the *one* attempt gets — never how
+    // many attempts there are, and never whether the guide is there at all.
+    await expect(page.getByRole('button', { name: /lighter guide/ })).toHaveCount(0);
   }
 
   // And nothing anywhere offers to take it away.
@@ -281,7 +296,6 @@ test('progress survives closing and reopening the app', async ({ page, context }
   // has to arrange.
   await expect(page.getByRole('button', { name: 'Watch again' }).first()).toBeVisible();
   await page.waitForTimeout(2500);
-  await passStep(page, /lighter guide/);
   await passStep(page, 'Now read it', false);
   await page.getByRole('button', { name: 'Choose ㅏ' }).click();
   await expect(page.getByRole('status')).toContainText('That is ㅏ');
@@ -295,6 +309,47 @@ test('progress survives closing and reopening the app', async ({ page, context }
   const meter = reopened.getByRole('progressbar', { name: /letters learned/ });
   await expect(meter).toHaveAttribute('aria-valuenow', /[1-9]\d*/);
   await reopened.close();
+});
+
+test('an interrupted lesson resumes at the letter that is unfinished', async ({ page }) => {
+  /*
+   * §48. Leaving at 5 / 6 and coming back to letter 1 throws away four minutes
+   * of work and then asks for them again.
+   *
+   * Asserted by *identity* rather than by an index: the lesson is opened from
+   * the start, its first letter is finished, and re-opening it without
+   * `?from=start` must not show that letter again. Which letter comes second is
+   * a curriculum decision and not this test's business.
+   */
+  await page.goto(FIRST_LESSON);
+  await startWriting(page);
+  const first = (await page.getByTestId('prompt-glyph').textContent())!.trim();
+  expect(first).toBeTruthy();
+
+  /*
+   * The letter has to be *finished*, not merely written.
+   *
+   * Resume goes to the first letter that is not `learned`, and writing is one
+   * rung of four — a letter that has been written and not read back is still
+   * unfinished, and coming back to it is the correct behaviour rather than a
+   * bug. So this walks the whole loop: the demonstration plays itself on the
+   * way in, then write, then read it back.
+   */
+  await traceReferenceGlyph(page, firstBox(page));
+  await page.getByRole('button', { name: 'Check' }).click();
+  await page.getByRole('button', { name: 'Now read it' }).click();
+  await page.getByRole('button', { name: `Choose ${first}` }).click();
+  await expect(page.getByRole('status')).toContainText(first);
+
+  // Away, and back — without the restart parameter.
+  await page.goto('/letters/lesson-vowels-core');
+  await startWriting(page);
+  await expect(page.getByTestId('prompt-glyph')).not.toHaveText(first);
+
+  // …and starting over is still offered, as the secondary route it is.
+  await page.goto(FIRST_LESSON);
+  await startWriting(page);
+  await expect(page.getByTestId('prompt-glyph')).toHaveText(first);
 });
 
 test('every practice typeface renders its own glyph, and grades against it', async ({ page }) => {
@@ -353,116 +408,129 @@ test('the chosen typeface survives a restart', async ({ page, context }) => {
   await reopened.close();
 });
 
-test('a word is met in context before it is written: word, sound, meaning, sentence, pen', async ({
-  page,
-}) => {
-  await page.goto('/words/vocab-essentials-1');
+test('a word is met, then asked about — and never written', async ({ page }) => {
+  /*
+   * The vocabulary flow, end to end, and the thing it must not contain.
+   *
+   * This test used to walk a learner from the meeting card to a canvas and
+   * grade their handwriting of every syllable. That whole path is gone: a
+   * learner who draws 사과 has practised calligraphy, not Korean, and the letters
+   * in it were already taught with their stroke order. What is asserted now is
+   * the opposite of what was asserted then — that the pen never appears.
+   */
+  await page.goto('/words/today');
 
-  // The meeting card comes first: the word, its sound, its meaning, and the
-  // sentence it lives in.
-  //
-  // Asserted by shape rather than by the word itself. Which word opens a lesson
-  // is a curation decision — the first word has changed twice as the corpus was
-  // reviewed — and a test that pins it fails on content edits that are working
-  // as intended, which teaches everyone to ignore it.
-  await expect(page.getByRole('button', { name: /Play the pronunciation of/ }).first()).toBeVisible();
+  // The meeting card: the word, its sound, its meaning, and the sentence it
+  // lives in. Asserted by shape rather than by which word it is — which word
+  // opens the day is a scheduling decision, and a test that pins it fails on
+  // content edits that are working as intended.
   await expect(page.getByTestId('word-headword')).not.toBeEmpty();
   await expect(page.getByTestId('word-meaning')).not.toBeEmpty();
+  await expect(page.getByRole('button', { name: /Play the pronunciation of/ }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Example' })).toBeVisible();
 
-  // Real Korean context, before the pen. This is the ordering the whole word
-  // screen was rebuilt around: a learner who writes 사과 without having seen it
-  // used has practised calligraphy, not Korean.
-  const example = page.getByRole('heading', { name: 'Example' });
-  await expect(example).toBeVisible();
-
-  // And no picture, anywhere. Vocabulary imagery was removed from the product:
-  // it gave the meaning away before any Korean had been read. The assertion is
-  // on the *rendered page* rather than on the data, because an <img> that a
-  // future component reintroduces is exactly what this is guarding against.
+  // No picture, anywhere. Vocabulary imagery was removed from the product: it
+  // gave the meaning away before any Korean had been read. Asserted on the
+  // *rendered page* rather than on the data, because an <img> a future
+  // component reintroduces is exactly what this guards against.
   await expect(page.getByRole('img')).toHaveCount(0);
 
-  await page.getByRole('button', { name: 'Practise writing' }).click();
-  await waitForFonts(page);
+  // No pen, either — not on this screen and not on any screen after it.
+  await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
 
-  // One box on screen, whatever the word's length — and one check for the word
-  // rather than one per syllable. The detail of that lives in
-  // `word-writing.spec.ts`; here it only has to be the screen the pen step
-  // actually leads to.
-  await expect(page.getByTestId('writing-canvas')).toHaveCount(1);
-
-  const parts = page.getByTestId('syllable-chip');
-  const count = await parts.count();
-  expect(count).toBeGreaterThan(0);
-
-  for (let i = 0; i < count; i += 1) {
-    await parts.nth(i).click();
-    await traceGlyphThoroughly(page, page.getByTestId('writing-canvas'));
+  /*
+   * Walk on until a question arrives.
+   *
+   * Not "the next screen": the sitting *interleaves*, so a learner meets two or
+   * three words before being asked about the first one. That gap is the whole
+   * point — three questions about 엄마 in a row measure whether they can
+   * remember the previous screen — so this steps past the meeting cards rather
+   * than assuming a question follows the first of them.
+   */
+  for (let step = 0; step < 6; step += 1) {
+    const meet = page.getByRole('button', { name: 'Got it' });
+    if (!(await meet.count())) break;
+    await meet.first().click();
+    await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
   }
 
-  await expect(page.getByTestId('check-word')).toHaveCount(1);
-  await page.getByTestId('check-word').click();
-  await expect(page.getByTestId('word-feedback-headline')).toHaveText('Nice work');
+  // What arrives is a question with options, answered by tapping.
+  await expect(page.getByRole('group')).toBeVisible();
+  await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
 });
 
-test('the vocabulary is browsed by what words are about, not by a level', async ({ page }) => {
+test('a word session with no canvas anywhere in it', async ({ page }) => {
+  // §35 asks for the whole application to be searched for vocabulary
+  // handwriting. This walks a full sitting and asserts the canvas never
+  // appears — the routes that used to reach it are gone, and this is what
+  // notices if one comes back.
+  await page.goto('/words/today');
+
+  for (let step = 0; step < 12; step += 1) {
+    await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
+    const meet = page.getByRole('button', { name: 'Got it' });
+    if (await meet.count()) {
+      await meet.first().click();
+      continue;
+    }
+    const options = page.getByRole('group').locator('button:not([disabled])');
+    if (!(await options.count())) break;
+    await options.first().click();
+    const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+    if (await next.count()) await next.first().click();
+  }
+});
+
+test('the vocabulary opens on today, not on a catalogue', async ({ page }) => {
+  /*
+   * §22, which is the rule the whole screen was rebuilt around: the corpus is
+   * behind the learning system and is never the interface. A learner arrives at
+   * one number and one button.
+   */
   await page.goto('/words');
 
-  // No numbered grading anywhere on the screen a learner browses.
+  // The day's card, whichever state it is in. Earlier specs in the run may have
+  // finished today's words, and a finished day offers "A little more" instead
+  // of Start — asserting only on Start made this test depend on how much
+  // studying the specs before it happened to do.
+  const today = page.getByTestId('today-card');
+  await expect(today).toBeVisible();
+  await expect(today.getByRole('heading')).toBeVisible();
+  await expect(
+    today.getByRole('button', { name: /^(Start|Keep going|A little more)$/ }),
+  ).toBeVisible();
+
+  // No numbered grading, and no numbered sets, anywhere a learner browses.
   await expect(page.getByText(/^Level \d/)).toHaveCount(0);
-  await expect(page.getByText(/study them in any order/)).toHaveCount(0);
-
-  // Categories a learner can want, with how far through each one they are.
-  await expect(page.getByRole('button', { name: /Animals & Nature/ })).toBeVisible();
-  await expect(page.getByRole('button', { name: /Food & Drink/ })).toBeVisible();
-  await expect(page.getByRole('button', { name: /People & Family/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /^Set \d/ })).toHaveCount(0);
 });
 
-test('every word is open on a brand-new profile', async ({ page }) => {
-  // The behaviour this replaces: level 1 open, everything else a padlock.
+test('categories are a way to look something up, not the way in', async ({ page }) => {
   await page.goto('/words');
-  await page.getByRole('button', { name: /Animals & Nature/ }).click();
 
-  // Nothing anywhere says the learner may not have this yet.
+  // Below the day's card, and reachable.
+  await expect(page.getByRole('heading', { name: /Browse by topic/ })).toBeVisible();
+  const category = page.getByRole('link', { name: /Animals & Nature/ });
+  await expect(category).toBeVisible();
+  await category.click();
+
+  // A reference view of the words themselves — no sets, no per-chunk progress,
+  // and nothing that says the learner may not have these yet.
+  await expect(page).toHaveURL(/\/words\/category\//);
   await expect(page.getByText(/^Not yet$/)).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'Learn them' })).toHaveCount(0);
-
-  // The sets are links, not dead cards.
-  const sets = page.getByRole('link', { name: /^Set \d/ });
-  expect(await sets.count()).toBeGreaterThan(5);
-
-  // A category needing letters the learner has not met says so — as a
-  // heads-up, above a list that is open anyway.
-  await expect(page.getByText(/new letters in this category/).first()).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Learn the letters' }).first()).toBeVisible();
-});
-
-test('a word set far past the learner opens and can be studied', async ({ page }) => {
-  // Requires no prior lesson, no prior word, and no prior category.
-  await page.goto('/words');
-  await page.getByRole('button', { name: /Describing Things/ }).click();
-  const late = page.getByRole('link', { name: /^Set/ }).nth(20);
-  await expect(late).toBeVisible();
-  await late.click();
-
-  await expect(page).toHaveURL(/\/words\/vocab-/);
-  // The word itself, not a "finish the previous lesson first" interstitial.
-  await expect(page.getByRole('button', { name: /Practise writing/ })).toBeVisible();
-
-  // And it is genuinely studiable from here: the pen, with no prerequisite met.
-  await page.getByRole('button', { name: /Practise writing/ }).click();
-  await waitForFonts(page);
-  await expect(firstBox(page)).toBeVisible();
+  await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
 });
 
 test('a word can be found by typing what it means', async ({ page }) => {
   // The half of "find a word" that matters for a beginner: they know the
   // English long before they can type the Korean.
   await page.goto('/words');
-  await page.getByRole('searchbox', { name: /Search the vocabulary/ }).fill('apple');
-  await expect(page.getByRole('link', { name: /사과/ }).first()).toBeVisible();
+  const search = page.getByRole('searchbox', { name: /Search the vocabulary/ });
+  await search.fill('apple');
+  await expect(page.getByText('사과').first()).toBeVisible();
 
-  await page.getByRole('searchbox', { name: /Search the vocabulary/ }).fill('고양이');
-  await expect(page.getByRole('link', { name: /고양이/ }).first()).toBeVisible();
+  await search.fill('고양이');
+  await expect(page.getByText('고양이').first()).toBeVisible();
 });
 
 test('a failed letter lands in review, and review is something you can do', async ({ page }) => {
@@ -475,7 +543,7 @@ test('a failed letter lands in review, and review is something you can do', asyn
 
   await page.goto('/review');
 
-  // The dashboard, not a list of past mistakes. One button, and three counts a
+  // The dashboard, not a list of past mistakes. One button, and two counts a
   // learner can act on.
   await expect(page.getByText('Review for you')).toBeVisible();
   await expect(page.getByText('Needs practice')).toBeVisible();
@@ -490,12 +558,68 @@ test('a failed letter lands in review, and review is something you can do', asyn
 });
 
 test('review never reports a number the session cannot deliver', async ({ page }) => {
-  // The screen and the session read the same function, so "12 items" on the
-  // dashboard and an empty sitting cannot disagree. A brand-new profile is the
-  // case that used to get this wrong: a dashboard of zeroes.
+  /*
+   * §43 and §44, from the outside.
+   *
+   * The screen and the session are now handed the *same resolved plan*, so the
+   * number on the button and the number of questions behind it cannot disagree.
+   * Two cases, and both used to be wrong:
+   *
+   *   nothing due  →  the screen used to offer Start and then render "not found"
+   *   n due        →  the count was a guess at what the session would contain
+   */
   await page.goto('/review');
   await expect(page.getByText(/Nothing to review yet/)).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start review' })).toHaveCount(0);
+});
+
+test('the number on the review button is the number of questions behind it', async ({ page }) => {
+  // Give the profile something to review, the quickest honest way.
+  await page.goto(FIRST_LESSON);
+  await startWriting(page);
+  await drawScribble(page, firstBox(page));
+  await page.getByRole('button', { name: 'Check' }).click();
+  await expect(page.getByRole('status')).toBeVisible();
+
+  await page.goto('/review');
+  /*
+   * Read the count from the card's own accessible text, not by parsing digits
+   * out of it: at one exercise the copy is "One short exercise", because that
+   * is what a plural form is for. A test that scraped `\d+` found nothing and
+   * failed on the most ordinary case there is.
+   */
+  const promised = (await page.getByTestId('review-length').textContent()) ?? '';
+  expect(promised).toMatch(/exercise/i);
+  const count = /^one\b/i.test(promised.trim())
+    ? 1
+    : Number(promised.match(/\d+/)?.[0]);
+  expect(count, `the review card reads "${promised}"`).toBeGreaterThan(0);
+
+  await page.getByRole('button', { name: 'Start review' }).click();
+  // The session counter names the same total — the plan's, not a second guess.
+  await expect(page.getByText(`1 / ${count}`)).toBeVisible();
+});
+
+test('a review mode with nothing behind it cannot be pressed', async ({ page }) => {
+  // §46. A brand-new profile has no letters, so Hangul writing review is empty
+  // — and an empty mode is shown as empty rather than offered and apologised
+  // for. This is the button that used to navigate into a dead end.
+  await page.goto(FIRST_LESSON);
+  await startWriting(page);
+  await drawScribble(page, firstBox(page));
+  await page.getByRole('button', { name: 'Check' }).click();
+  await expect(page.getByRole('status')).toBeVisible();
+
+  await page.goto('/review');
+  for (const mode of ['Reading', 'Listening', 'Writing']) {
+    const button = page.getByRole('button', { name: new RegExp(mode) });
+    if (!(await button.count())) continue;
+    const disabled = await button.first().isDisabled();
+    const label = (await button.first().textContent()) ?? '';
+    const zero = /\b0\b/.test(label);
+    // Disabled exactly when it has nothing.
+    expect(disabled, `${mode} reads "${label}"`).toBe(zero);
+  }
 });
 
 test('settings offers two voices, and switching one persists', async ({ page }) => {
@@ -647,4 +771,115 @@ test('the settings screen leads with what the learner has done, not with what is
   // The catalogue size was the largest number a beginner saw on this screen.
   await expect(page.getByText(/2,581|2581/)).toHaveCount(0);
   await expect(page.getByText('Sessions', { exact: true })).toHaveCount(0);
+});
+
+/**
+ * The three lists a learner owns, and the one thing none of them may contain.
+ *
+ * Saved words, the wrong-answer notebook and review are deliberately separate
+ * concepts (§41), and the way they go wrong is by quietly becoming each other —
+ * so each is walked to its own screen and its own session here.
+ */
+test('a word can be saved, found again, and reviewed from its own list', async ({ page }) => {
+  await page.goto('/words/today');
+  const headword = await page.getByTestId('word-headword').textContent();
+  expect(headword?.trim()).toBeTruthy();
+
+  // Saving is on the meeting card, where a learner meets the word.
+  await page.getByRole('button', { name: /Save|Saved/ }).first().click();
+
+  await page.goto('/words/saved');
+  await expect(page.getByRole('heading', { name: 'Saved words' })).toBeVisible();
+  await expect(page.getByText(headword!.trim()).first()).toBeVisible();
+
+  // Search finds it, by the Korean.
+  await page.getByRole('searchbox', { name: /saved words/i }).fill(headword!.trim());
+  await expect(page.getByText(headword!.trim()).first()).toBeVisible();
+  await page.getByRole('searchbox', { name: /saved words/i }).fill('');
+
+  // …and its detail opens, with everything the quiz screens leave out.
+  await page.getByText(headword!.trim()).first().click();
+  await expect(page).toHaveURL(/\/words\/word\//);
+  await expect(page.getByTestId('detail-headword')).toHaveText(headword!.trim());
+  await expect(page.getByText('Pronunciation')).toBeVisible();
+  // No pen here either, and no picture.
+  await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
+  await expect(page.getByRole('img')).toHaveCount(0);
+});
+
+test('the saved list survives a restart, and a word can be taken off it', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/words/today');
+  const headword = (await page.getByTestId('word-headword').textContent())!.trim();
+  await page.getByRole('button', { name: /Save|Saved/ }).first().click();
+
+  // A fresh page over the same profile: what relaunching actually does.
+  const reopened = await context.newPage();
+  await page.close();
+  await reopened.goto('/words/saved');
+  await expect(reopened.getByText(headword).first()).toBeVisible();
+
+  await reopened.getByRole('button', { name: 'Remove' }).first().click();
+  await expect(reopened.getByText(headword)).toHaveCount(0);
+  await reopened.close();
+});
+
+test('a wrong answer writes itself into the notebook', async ({ page }) => {
+  /*
+   * §35: the learner never saves a mistake. This answers questions wrongly on
+   * purpose and then goes and looks, which is the only way to test a thing that
+   * is supposed to happen without being asked for.
+   */
+  await page.goto('/words/today');
+
+  let missed = 0;
+  for (let step = 0; step < 24 && missed < 2; step += 1) {
+    // Wait for the next screen to be one of the two things it can be, rather
+    // than asking a freshly-navigated DOM what is on it — `count()` does not
+    // auto-wait, and a React render lands after the click resolves.
+    const meet = page.getByRole('button', { name: 'Got it' });
+    const options = page.getByRole('group').locator('button:not([disabled])');
+    await expect(meet.or(options).first()).toBeVisible();
+
+    if (await meet.count()) {
+      await meet.first().click();
+      continue;
+    }
+
+    /*
+     * Pick something, then ask the *option* whether it was wrong.
+     *
+     * By the class the component puts on a picked-and-incorrect choice, not by
+     * the feedback text: the text is a translation and this walk should not
+     * depend on which language the run happens to be in.
+     */
+    await options.first().click();
+    const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+    await expect(next.first()).toBeVisible();
+    if (await page.locator('button[class*="wrong"]').count()) missed += 1;
+    await next.first().click();
+  }
+  expect(missed, 'the walk has to get something wrong for this to mean anything').toBeGreaterThan(0);
+
+  await page.goto('/review/mistakes');
+  await expect(page.getByRole('heading', { name: 'Missed answers' })).toBeVisible();
+  await expect(page.getByText('Answer').first()).toBeVisible();
+
+  // Filters, and a session built from the notebook.
+  await page.getByRole('button', { name: 'Words' }).click();
+  await expect(page.getByText('Answer').first()).toBeVisible();
+
+  await page.getByRole('button', { name: /Review ·/ }).click();
+  await expect(page).toHaveURL(/set=mistakes/);
+  await expect(page.getByRole('group')).toBeVisible();
+  // And it is a quiz, not a canvas.
+  await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
+});
+
+test('the notebook is empty, and says so, on a clean record', async ({ page }) => {
+  await page.goto('/review/mistakes');
+  await expect(page.getByText(/Nothing missed yet/)).toBeVisible();
+  await expect(page.getByRole('button', { name: /Review ·/ })).toHaveCount(0);
 });

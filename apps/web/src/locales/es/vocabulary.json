@@ -1,5 +1,29 @@
 {
   "title": "Aprender palabras",
+  "today": {
+    "title": "Palabras de hoy",
+    "start": "Empezar",
+    "resume": "Continuar",
+    "startBlurb_one": "Una palabra hoy.",
+    "startBlurb_many": "Un bloque corto de {{count}} palabras.",
+    "startBlurb_other": "Un bloque corto de {{count}} palabras.",
+    "resumeBlurb": "Sigue donde lo dejaste.",
+    "doneBlurb": "Hecho por hoy. Buen trabajo.",
+    "completeTitle": "Terminaste las palabras de hoy.",
+    "completeDetail_one": "Una palabra aprendida.",
+    "completeDetail_many": "{{count}} palabras aprendidas.",
+    "completeDetail_other": "{{count}} palabras aprendidas.",
+    "more": "Un poco más",
+    "allDone": "No queda nada por hoy.",
+    "remaining_one": "Queda una hoy",
+    "remaining_many": "Quedan {{count}} hoy",
+    "remaining_other": "Quedan {{count}} hoy",
+    "progressAria": "Progreso de las palabras de hoy"
+  },
+  "browse": {
+    "title": "Explorar por tema",
+    "showing": "Mostrando {{shown}} de {{total}}"
+  },
   "empty": {
     "title": "Aquí todavía no hay palabras",
     "body": "Prueba otra categoría."
@@ -15,40 +39,17 @@
     "interjection": "interjección",
     "determiner": "determinante"
   },
-  "lesson": {
-    "title": "Grupo {{index, number}}",
-    "newLetters": "Letras nuevas",
-    "done": "Hecho"
-  },
   "session": {
-    "hintSingle": "Escríbela dentro del recuadro",
-    "syllableGroup": "Escribiendo las sílabas de {{word}}",
     "next": "Siguiente palabra",
-    "finish": "Terminar",
-    "complete_one": "Has aprendido {{count, number}} palabra en {{lesson}}.",
-    "complete_other": "Has aprendido {{count, number}} palabras en {{lesson}}.",
-    "complete_many": "Has aprendido {{count, number}} de palabras en {{lesson}}.",
-    "toReading": "Ahora, a leerla",
-    "writeEachPart": "Escribe cada parte de {{word}} por orden.",
-    "writeEveryPartFirst": "Escribe todas las partes y luego comprobamos la palabra entera."
+    "finish": "Terminar"
   },
   "intro": {
-    "write": "Practicar la escritura",
     "example": "Ejemplo",
     "howItSounds": "Cómo suena",
-    "surfaceNote": "En esta frase, {{headword}} aparece como {{form}}."
+    "surfaceNote": "En esta frase, {{headword}} aparece como {{form}}.",
+    "next": "Entendido"
   },
   "blurb": "Todas las palabras están abiertas. Elige una categoría y empieza donde quieras.",
-  "ahead": {
-    "title_one": "1 letra nueva en esta categoría",
-    "title_many": "{{count, number}} de letras nuevas en esta categoría",
-    "title_other": "{{count, number}} letras nuevas en esta categoría",
-    "body": "Puedes estudiar estas palabras ya. Aprender antes las letras suele facilitarlas.",
-    "more_one": "+1 más",
-    "more_many": "+{{count, number}} más",
-    "more_other": "+{{count, number}} más",
-    "cta": "Aprender las letras"
-  },
   "categories": {
     "essentials": "Lo esencial",
     "people": "Personas y familia",
@@ -99,5 +100,34 @@
     "saved": "Guardada",
     "add": "Guardar {{word}}",
     "remove": "Quitar {{word}} de guardadas"
+  },
+  "detail": {
+    "title": "Palabra",
+    "pronunciation": "Pronunciación",
+    "definition": "Más detalles",
+    "usage": "Cómo se usa",
+    "nearby": "Palabras parecidas"
+  },
+  "saved": {
+    "title": "Palabras guardadas",
+    "review_one": "Repasar · 1 pregunta",
+    "review_many": "Repasar · {{count}} preguntas",
+    "review_other": "Repasar · {{count}} preguntas",
+    "searchPlaceholder": "Buscar palabras guardadas",
+    "searchLabel": "Busca en tus palabras guardadas",
+    "orderLabel": "Orden",
+    "order": {
+      "recent": "Recientes",
+      "alphabetical": "A–Z",
+      "needed": "Más flojas"
+    },
+    "count_one": "Una palabra",
+    "count_many": "{{count}} palabras",
+    "count_other": "{{count}} palabras",
+    "remove": "Quitar",
+    "noMatch": "Nada guardado coincide con «{{query}}».",
+    "emptyTitle": "Aún no has guardado palabras",
+    "emptyBody": "Toca el marcador en cualquier palabra mientras estudias y la encontrarás aquí.",
+    "emptyCta": "Ir a las palabras"
   }
 }

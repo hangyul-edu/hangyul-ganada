@@ -1,82 +1,69 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 import { usePronunciation } from '../audio/PronunciationContext';
-import { getFont } from '../data/fonts';
-import { getLessonWords, getVocabularyLesson } from '../data/vocabulary';
-import { WordIntro } from '../features/learning/WordIntro';
-import { WordReadingStep } from '../features/learning/WordReadingStep';
-import { useStudyClock } from '../features/session/useStudyClock';
-import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
-import { WordWritingCarousel } from '../features/writing/WordWritingCarousel';
-import type { SyllableEvaluation } from '../features/writing/evaluateWord';
-import { gradingFor } from '../features/writing/useEvaluator';
-import { useLocale } from '../i18n';
 import { wordCopy } from '../data/wordCopy';
+import { getFont } from '../data/fonts';
+import { scheduleSteps } from '../domain/vocabularyDay';
+import { ChoiceExercise } from '../features/review/ChoiceExercise';
+import { WordIntro } from '../features/learning/WordIntro';
+import { buildDailyQuestions } from '../features/vocabulary/dailyQuestions';
+import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
+import { useStudyClock } from '../features/session/useStudyClock';
+import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Badge } from '../ui/Chip';
-import { LocalizedText } from '../ui/LocalizedText';
 import { ProgressBar } from '../ui/Progress';
-import { SpeakerButton } from '../ui/SpeakerButton';
-import { NotFoundBody } from './NotFoundPage';
 import styles from './SessionPage.module.css';
 
 /**
- * Word practice keeps the light guide, always.
- *
- * A learner reaching vocabulary has already traced these letters and produced
- * them over the light guide in the letter curriculum, so the full tracing guide
- * would be a step backwards — and an empty box was never an option here either.
- * The light guide is the level that matches what they can already do, and it is
- * the same at every setting: no practice style in the product removes the model
- * from a word.
- */
-const WORD_GUIDE = 'light' as const;
-const WORD_PRACTICE_MODE = 'practice' as const;
-
-/**
- * Learning a word.
+ * Today's vocabulary, as a short set of questions.
  *
  * ```
- * see the picture ─▶ see the word ─▶ hear it ─▶ understand it
- *                                                     │
- *                     write each syllable ◀───────────┘
- *                              │
- *                     the sentence it lives in
- *                              │
- *                     read it ◀─┘   ← the word alone, no picture, no sound
+ * 엄마  meet it ─┐
+ *               ├─▶ a different word ─▶ 엄마 again, from memory ─▶ …
+ * 학교  meet it ─┘
  * ```
  *
- * The picture and the sound come *before* the pen, because the point of the
- * word is its meaning and a learner who writes 사과 without knowing it is an
- * apple has practised calligraphy, not Korean.
+ * ## What this replaced
  *
- * Then one writing box per syllable, each graded on its own. 사과 means writing
- * 사 *and* 과 — which is the point, and the per-syllable state is what lets the
- * feedback name exactly which box needs another go instead of failing the whole
- * word.
+ * A lesson that showed a word and then handed the learner a canvas, once per
+ * syllable. Learning 학교 meant drawing 학, then drawing 교, and being graded on
+ * both. That is a *letter* exercise wearing a word's name: the shapes had
+ * already been taught, and the thing the learner came for — what 학교 means, how
+ * it sounds, when it is used — was the part they got least of.
  *
- * The last step is the one that makes the rest mean something. Everything
- * before it happens with the answer on screen — the picture, the meaning, the
- * sound, the syllable in the tracing guide — so none of it can distinguish a
- * learner who has read the word from one who has looked at it. The reading step
- * shows the Korean alone and asks what it says.
+ * It is gone, along with the canvas, the per-syllable grader and the
+ * carousel that held them. Vocabulary is seen, heard, chosen and recognised.
+ * Nowhere in this file, and nowhere reachable from it, is there a pen.
  *
- * A word therefore counts as learned once it has been seen, heard, written, and
- * *read*. That is the rule in `domain/mastery.ts`, reached here by passing
- * `recognition_required` for words the same way the letter curriculum does.
+ * ## One session, and the learner did not have to choose it
+ *
+ * There is no lesson id in the route. The old screen was reached by picking a
+ * category and then a numbered set out of five hundred, which is two decisions
+ * before any Korean. This screen runs *today's plan* — see
+ * `domain/vocabularyDay.ts` — and the only decision the learner made was how
+ * many words a day they wanted.
+ *
+ * ## Leaving is safe
+ *
+ * The plan is persisted and the questions are rebuilt from it, so closing the
+ * app at four of ten and coming back gives four of ten and the six words that
+ * were left. The queue is rebuilt from the *stored* plan on every mount rather
+ * than held in a ref, which is what makes that true without a save-on-exit.
  */
 export function WordSessionPage() {
-  const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
   const {
     state,
-    recordAttempt,
+    vocabularyDay,
+    vocabularyProgressToday,
+    completeDailyWord,
+    recordReview,
     recordHeard,
     recordIntroduced,
     recordRecognition,
@@ -85,178 +72,181 @@ export function WordSessionPage() {
     isSaved,
     toggleSaved,
   } = useLearner();
-  const { t } = useTranslation(['vocabulary', 'learning', 'handwriting', 'common']);
+  const { t } = useTranslation(['vocabulary', 'learning', 'common']);
   const { locale } = useLocale();
   const { preload } = usePronunciation();
-  const lesson = lessonId ? getVocabularyLesson(lessonId) : undefined;
-  const words = useMemo(() => (lesson ? getLessonWords(lesson) : []), [lesson]);
-
-  const [wordIndex, setWordIndex] = useState(0);
-  const [phase, setPhase] = useState<'meet' | 'write' | 'read'>('meet');
-  const [wordWritten, setWordWritten] = useState(false);
-  const [learnedCount, setLearnedCount] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const sessionId = useRef<string | null>(null);
 
   const font = getFont(state.settings.selected_font_id);
-  const current = words[wordIndex];
-
-  // Every phase of a word lesson is study — meeting it, writing it, reading it.
-  useStudyClock(!finished);
-
-  useEffect(() => {
-    if (!lesson || sessionId.current) return;
-    sessionId.current = startSession('vocabulary', lesson.id, words.length);
-  }, [lesson, words.length, startSession]);
-
-  useEffect(() => {
-    preload(words.slice(wordIndex, wordIndex + 3).flatMap((w) => [w.audio.word, w.audio.example]));
-  }, [preload, words, wordIndex]);
-
-  useEffect(() => {
-    setWordWritten(false);
-    setPhase('meet');
-    if (current) recordIntroduced('word', current.id);
-  }, [current, recordIntroduced]);
-
-  /**
-   * One syllable's share of a whole-word check.
-   *
-   * The learner performs one action; the grader is still called once per
-   * syllable, and each of those is a character attempt in its own right. So the
-   * character ladder is told about all of them — a syllable inside a word is a
-   * character the learner is practising.
-   */
-  const handleSyllableEvaluated = useCallback(
-    (syllableIndex: number, verdict: SyllableEvaluation) => {
-      if (!current) return;
-      const syllable = current.syllables[syllableIndex];
-      // No result means the box was empty and the evaluator was never called.
-      // Not writing something is not an attempt at it.
-      if (!syllable || !verdict.result) return;
-
-      const evaluation = verdict.result;
-      recordAttempt({
-        kind: 'character',
-        item_key: syllable,
-        session_id: sessionId.current,
-        mode: WORD_PRACTICE_MODE,
-        font_id: font.id,
-        evaluator_id: 'geometry-v1',
-        // The recognition step for a letter lives in the letter curriculum, so
-        // it is not asked for here.
-        recognition_required: false,
-        result: {
-          passed: evaluation.passed,
-          score: evaluation.score,
-          mismatch_ratio: evaluation.mismatchRatio,
-          outside_stroke_ratio: evaluation.outsideStrokeRatio,
-          missing_coverage_ratio: evaluation.missingCoverageRatio,
-          reason: evaluation.reason,
-        },
-      });
+  const meaningOf = useCallback(
+    (word: Parameters<typeof wordCopy>[0]) => {
+      const copy = wordCopy(word, locale);
+      return { value: copy.value.meaning, locale: copy.locale };
     },
-    [current, recordAttempt, font.id],
+    [locale],
   );
 
   /**
-   * The word is written — every syllable of it passed.
+   * The sitting's shape, frozen on mount; its wording, live.
    *
-   * Guarded on `wordWritten` rather than on the verdict alone, because the
-   * learner can check again after passing and this must not record twice.
-   * Opening the screen, moving between syllables, or writing one part well are
-   * none of them this event.
+   * Two different lifetimes, and separating them is what makes both correct:
+   *
+   * * **The steps are frozen.** The stored plan changes as words are completed,
+   *   and a queue recomputed from it would shorten under the learner — the
+   *   progress bar would run backwards every time they got something right.
+   *   Frozen on mount and rebuilt from the *stored* plan, so leaving and coming
+   *   back resumes exactly where this stopped.
+   * * **The questions are not.** They are rebuilt whenever the interface
+   *   language changes, so switching to 日本語 mid-session re-renders the
+   *   meanings, the options and the prompts instead of leaving a half-Japanese
+   *   question on screen. The queue's *length* and order cannot change, because
+   *   answerability does not depend on language — see `canAsk`.
    */
-  const handleWordWritten = useCallback(() => {
-    if (!current || wordWritten) return;
-    setWordWritten(true);
-    recordAttempt({
-      kind: 'word',
-      item_key: current.id,
-      session_id: sessionId.current,
-      mode: WORD_PRACTICE_MODE,
-      font_id: font.id,
-      evaluator_id: 'geometry-v1',
-      // Writing every syllable is not the whole word yet: the reading step
-      // still has to be passed, so the ladder is told to expect it.
-      recognition_required: true,
-      result: {
-        passed: true,
-        score: 1,
-        mismatch_ratio: 0,
-        outside_stroke_ratio: 0,
-        missing_coverage_ratio: 0,
-        reason: null,
-      },
-    });
-  }, [current, wordWritten, recordAttempt, font.id]);
+  const steps = useRef<ReturnType<typeof scheduleSteps> | null>(null);
+  steps.current ??= scheduleSteps(vocabularyDay);
+  const queue = useMemo(
+    () => buildDailyQuestions(steps.current!, meaningOf),
+    [meaningOf],
+  );
 
-  const next = () => {
-    if (wordIndex + 1 >= words.length) {
+  const [index, setIndex] = useState(0);
+  const [finished, setFinished] = useState(false);
+  /** Words finished *in this sitting*, for the closing card. Not the day's total. */
+  const [wordsDone, setWordsDone] = useState(0);
+  const sessionId = useRef<string | null>(null);
+
+  useStudyClock(!finished);
+
+  if (sessionId.current === null && queue.length > 0) {
+    sessionId.current = startSession('vocabulary', null, queue.length);
+  }
+
+  const current = queue[index];
+
+  // The next two words' clips, while the learner is still on this one.
+  useEffect(() => {
+    preload(
+      queue
+        .slice(index, index + 3)
+        .flatMap((question) => [question.word.audio.word, question.word.audio.example]),
+    );
+  }, [preload, queue, index]);
+
+  useEffect(() => {
+    if (current) recordIntroduced('word', current.word.id);
+  }, [current, recordIntroduced]);
+
+  const advance = useCallback(() => {
+    // Counting the word happens here rather than on the answer, so a word is
+    // credited once the learner has *seen the result* — and exactly once,
+    // because `completeWord` ignores a repeat.
+    if (current?.completesWord) {
+      completeDailyWord(current.word.id);
+      setWordsDone((n) => n + 1);
+      /*
+       * …and it moves the mastery ladder, not only the day's counter.
+       *
+       * Two different facts about a word live in two different places: the
+       * day's plan records that it was *done today*, and the progress row
+       * records that it has been *learned* — see `domain/mastery.ts`. Without
+       * this, a learner could finish the day's ten words and have the Letters
+       * and Activity screens report that they had learned none, because the
+       * only thing that used to advance a word was writing it, and words are
+       * not written any more.
+       *
+       * `recordRecognition` is the right rung: understanding a word is what
+       * these questions test, and with `WORD_RULES` a word that has been heard
+       * and understood is finished.
+       */
+      recordRecognition('word', current.word.id, true);
+    }
+    if (index + 1 >= queue.length) {
       if (sessionId.current) completeSession(sessionId.current);
       setFinished(true);
       return;
     }
-    setWordIndex((i) => i + 1);
-  };
+    setIndex((n) => n + 1);
+  }, [current, index, queue.length, completeDailyWord, completeSession, recordRecognition]);
 
-  if (!lesson || !current) {
-    return <NotFoundBody messageKey="notFound.wordLesson" />;
+  const leave = () => navigate('/words');
+
+  if (!current) {
+    /*
+     * Nothing to do, and it is said here rather than by navigating somewhere.
+     *
+     * Reachable only by opening the session route directly on a finished day —
+     * the Words screen does not offer a button that leads here when the plan is
+     * empty, which is the whole point of resolving the plan before drawing the
+     * button. This is the backstop, not the design.
+     */
+    return (
+      <FocusScreen
+        resetKey="words-empty"
+        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+        footer={
+          <Button size="lg" fullWidth onClick={leave}>
+            {t('common:actions.done')}
+          </Button>
+        }
+      >
+        <div className={styles.body}>
+          <p className={styles.promptLabel}>{t('vocabulary:today.allDone')}</p>
+        </div>
+      </FocusScreen>
+    );
   }
 
-  /**
-   * The set's name, which is what the header used to get wrong.
-   *
-   * `set_index` is a position inside a category — "the 13th set of Food &
-   * Drink" — and the Korean bundle rendered it as `13단계`, a word that means
-   * *stage* or *level*. Every other language already said "Set 13". A learner
-   * reading 단계 is being told they are at Korean proficiency level 13, which
-   * is not a thing this product measures and not a claim the data supports.
-   *
-   * The category is the useful half, so the header leads with it and the set
-   * number rides along as a subtitle.
-   */
-  const lessonTitle = t(`vocabulary:categories.${lesson.category}`, {
-    defaultValue: t('vocabulary:lesson.title', { index: lesson.set_index }),
-  });
-  const copy = wordCopy(current, locale);
-
-  const wordShare = phase === 'meet' ? 0 : phase === 'read' ? 0.8 : wordWritten ? 0.6 : 0.4;
-  const progress = (wordIndex + wordShare) / words.length;
+  const isLast = index + 1 >= queue.length;
 
   /*
-   * Meeting a word has one action and it belongs in the safe footer. The
-   * writing carousel keeps its own check beside the canvas it is checking, and
-   * the reading question keeps its answers with the question — see
-   * `ui/FocusScreen.tsx` for why those two are not pinned to the foot.
+   * Meeting a word has one action and it belongs in the safe footer. A question
+   * keeps its own Continue inside the feedback card, beside the answer it is
+   * about — see `ui/FocusScreen.tsx` for why those two are not pinned together.
    */
-  const footer =
-    phase === 'meet' ? (
-      <Button size="lg" fullWidth onClick={() => setPhase('write')}>
-        {t('vocabulary:intro.write')}
-      </Button>
-    ) : null;
+  const footer = current.step === 'intro' ? (
+    <Button size="lg" fullWidth onClick={advance}>
+      {isLast ? t('learning:session.finish') : t('vocabulary:intro.next')}
+    </Button>
+  ) : null;
 
   return (
     <FocusScreen
-      // A word, and which part of learning it: three screens on one route.
-      resetKey={`${lesson?.id ?? ''}:${wordIndex}:${phase}`}
+      resetKey={`${index}:${current.word.id}:${current.step}`}
       header={
         <>
           <AppHeader
-            title={lessonTitle}
-            onBack={() => navigate('/words')}
+            title={t('vocabulary:today.title')}
+            onBack={leave}
             action={
+              /*
+               * Words finished, not questions asked, and not "the word you are
+               * on".
+               *
+               * It reads the store rather than a local tally. Both used to be
+               * added together — `done + wordsDone` — which double-counted
+               * every word, because `completeDailyWord` writes to the store and
+               * the store is where `done` comes from. Finishing three words
+               * showed six of ten.
+               *
+               * It is also deliberately *completed* rather than in-progress.
+               * The session interleaves, so by the fourth question a learner
+               * has met three words and finished none; a counter that guessed
+               * at "the current word" would disagree with the Words screen the
+               * learner just came from. This is the same number, on both
+               * screens, meaning the same thing. See §25.
+               */
               <Badge tone="primary" filled numeric>
-                {t('learning:session.counter', { current: wordIndex + 1, total: words.length })}
+                {t('learning:session.counter', {
+                  current: vocabularyProgressToday.done,
+                  total: vocabularyProgressToday.total,
+                })}
               </Badge>
             }
             transparent
           />
           <div className={styles.progressRow}>
             <ProgressBar
-              value={progress}
-              label={t('common:progress.lesson', { name: lessonTitle })}
+              value={queue.length === 0 ? 1 : index / queue.length}
+              label={t('vocabulary:today.progressAria')}
             />
           </div>
         </>
@@ -264,91 +254,61 @@ export function WordSessionPage() {
       footer={footer}
     >
       <div className={styles.body}>
-        {phase === 'read' ? (
-          <WordReadingStep
-            word={current}
-            fontFamily={font.font_family}
-            // The word's own index, so a retry re-asks the same question and a
-            // second visit to the lesson does not shuffle the answers about.
-            seed={wordIndex + 1}
-            onAnswered={(right) => {
-              recordRecognition('word', current.id, right);
-              if (right) setLearnedCount((n) => n + 1);
-            }}
-            onContinue={next}
-          />
-        ) : phase === 'meet' ? (
+        {current.step === 'intro' ? (
           <WordIntro
-            word={current}
+            word={current.word}
             fontFamily={font.font_family}
-            onHeard={() => recordHeard('word', current.id, true)}
-            saved={isSaved('word', current.id)}
-            onToggleSaved={() => toggleSaved('word', current.id)}
+            onHeard={() => recordHeard('word', current.word.id, true)}
+            saved={isSaved('word', current.word.id)}
+            onToggleSaved={() => toggleSaved('word', current.word.id)}
           />
-        ) : (
-          <>
-            {/*
-              What the learner is learning, then what to do about it. The set
-              position lives in the header and the syllable position lives in
-              the navigator, so neither is repeated here.
-            */}
-            <header className={styles.wordHeader}>
-              <div className={styles.wordHeaderTop}>
-                <p
-                  className={styles.wordWord}
-                  style={{ fontFamily: font.font_family }}
-                  lang="ko"
-                  dir="ltr"
-                  data-testid="word-title"
-                >
-                  {current.word}
-                </p>
-                <SpeakerButton
-                  audioId={current.audio.word}
-                  label={current.word}
-                  size="md"
-                  onPlayed={() => recordHeard('word', current.id, true)}
-                />
-              </div>
-              <LocalizedText locale={copy.locale} className={styles.wordMeaning}>
-                {copy.value.meaning}
-              </LocalizedText>
-            </header>
-
-            <WordWritingCarousel
-              // The word is the identity of the writing state, so moving to the
-              // next word starts it cleanly at its first syllable.
-              key={current.id}
-              word={current.word}
-              syllables={current.syllables}
-              fontFamily={font.font_family}
-              fontWeight={font.weight}
-              grading={gradingFor(font)}
-              guide={WORD_GUIDE}
-              showGrid={state.settings.show_grid}
-              showCenterCrosshair={state.settings.show_center_crosshair}
-              onSyllableEvaluated={handleSyllableEvaluated}
-              // Recorded when the word is written correctly...
-              onChecked={(evaluation) => {
-                if (evaluation.passed) handleWordWritten();
-              }}
-              // ...and left when the learner says so, which is not the same
-              // moment. The success state is worth seeing.
-              onComplete={() => setPhase('read')}
-              continueLabel={t('vocabulary:session.toReading')}
-            />
-          </>
-        )}
+        ) : current.exercise ? (
+          <ChoiceExercise
+            key={`${current.word.id}-${current.step}-${index}`}
+            exercise={current.exercise}
+            fontFamily={font.font_family}
+            isLast={isLast}
+            onAnswered={(result) => {
+              recordReview({
+                kind: 'word',
+                item_key: current.word.id,
+                skill: current.exercise!.candidate.skill,
+                mode: current.exercise!.mode,
+                passed: result.correct,
+                score: result.correct ? 1 : 0,
+                hint_used: result.hintUsed,
+                response_ms: result.responseMs,
+                ...(!result.correct ? { confused_with: result.chosen } : {}),
+                session_id: sessionId.current,
+              });
+            }}
+            onContinue={advance}
+          />
+        ) : null}
       </div>
 
       <SessionCompleteModal
         open={finished}
-        onClose={() => navigate('/words')}
-        onContinue={() => navigate('/words')}
-        title={t('learning:complete.title')}
-        detail={t('vocabulary:session.complete', { count: learnedCount, lesson: lessonTitle })}
-        passed={learnedCount}
-        total={words.length}
+        onClose={leave}
+        onContinue={leave}
+        title={
+          vocabularyProgressToday.complete || wordsDone > 0
+            ? t('vocabulary:today.completeTitle')
+            : t('learning:complete.title')
+        }
+        detail={t('vocabulary:today.completeDetail', { count: wordsDone })}
+        /*
+         * Words, and the day's goal — the same fraction as the badge above and
+         * the card on the Words screen.
+         *
+         * This was `firstTry / queue.length`, which put "6 / 20" next to "10
+         * words learned" and left the learner with two numbers about one
+         * session and no way to reconcile them. The twenty was questions asked
+         * and the six was answers got right first time — scheduler detail,
+         * accurate, and not a thing anybody can act on at the end of a session.
+         */
+        passed={vocabularyProgressToday.done}
+        total={vocabularyProgressToday.total}
       />
     </FocusScreen>
   );

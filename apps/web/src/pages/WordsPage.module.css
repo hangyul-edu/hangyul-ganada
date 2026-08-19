@@ -481,3 +481,133 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* --- Today ------------------------------------------------------------------
+ *
+ * The one card on this screen that matters, and the only one above the fold.
+ * Everything else here is a way of looking something up.
+ */
+
+.today {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+}
+
+/*
+ * The count on the left, the ring on the right.
+ *
+ * Side by side rather than stacked, because stacked puts the button below the
+ * fold on a small phone — and the button is the whole point of the card.
+ */
+.todayTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-4);
+}
+
+.todayText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+  min-width: 0;
+}
+
+.todayTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+/*
+ * The fraction, at headline size.
+ *
+ * This is the number the learner came for — three of ten — so it is the largest
+ * thing on the card and the ring beside it is the picture of the same fact.
+ */
+.todayCount {
+  font-size: clamp(28px, 9vw, 38px);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1.1;
+  color: var(--hg-text);
+}
+
+.todayBlurb {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.todayDone {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  flex-wrap: wrap;
+}
+
+/*
+ * "A little more", after the goal is met.
+ *
+ * A quiet text button, not a second primary. §61: the goal exists to make
+ * starting easy, and a completion screen that immediately offers another full
+ * session is a treadmill wearing a finish line.
+ */
+.todayMore {
+  margin-inline-start: auto;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-sm);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-primary);
+  min-height: 44px;
+}
+
+.sectionTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  margin-bottom: var(--hg-space-3);
+}
+
+/* The save toggle on a browsed word. A row action, not a primary. */
+.saveToggle {
+  margin-inline-start: auto;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-sm);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-primary);
+  min-height: 44px;
+  flex: none;
+}
+
+/*
+ * Saved words, reachable from the vocabulary screen.
+ *
+ * A row rather than a card: it is a door to a list, not a thing to study, and
+ * giving it a card would put it in competition with the day's goal above it.
+ */
+.savedLink {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  min-height: 52px;
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-weight: var(--hg-weight-medium);
+}
+
+.savedLink > span:first-child {
+  flex: 1;
+}
+
+.savedLinkCount {
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary);
+}

@@ -3,20 +3,20 @@
     "title": "学字母",
     "complete": "已学会",
     "alphabetTitle": "韩文字母表",
-    "alphabetCaption": "个字母已掌握"
+    "alphabetCaption": "个字母已掌握",
+    "resume": "继续"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "跳过这个字",
     "next": "下一个字",
     "finish": "完成",
-    "startTrace": "描一遍",
+    "startWriting": "写一遍",
     "prompt": {
-      "trace": "用手指顺着灰色的字描一遍。",
-      "practise": "辅助线变淡了。自己写写看 —— 需要的话它还在。"
+      "write": "顺着辅助线用手指写一遍。"
     },
-    "nowPractise": "下一步：淡一点的辅助线",
-    "nowRead": "现在来认一认"
+    "nowRead": "现在来认一认",
+    "continue": "下一个"
   },
   "complete": {
     "title": "写得好！",
@@ -60,8 +60,13 @@
       "context": "哪个词填在这里？",
       "write": "写出这个词",
       "writeLetter": "按听到的写下来",
-      "distinguish": "这个音是哪一个？"
-    }
+      "distinguish": "这个音是哪一个？",
+      "produce": "是哪一个？",
+      "listenMeaning": "这是什么意思？"
+    },
+    "nothingDue": "现在没有要复习的内容。",
+    "modesEmpty": "今天这些方式暂时没有内容。",
+    "answerIs": "{{word}} 的意思是“{{meaning}}”。"
   },
   "units": {
     "badge": "第 {{index, number}} 单元",
@@ -141,8 +146,7 @@
   },
   "steps": {
     "label": "这个字的步骤",
-    "trace": "描红",
-    "practise": "练习",
+    "write": "书写",
     "read": "认读"
   },
   "recognition": {
@@ -152,13 +156,8 @@
     "correctDetail": "对，是 {{character}}。",
     "wrongHeadline": "不是这个。",
     "wrongDetail": "读作 {{sound}} 的是 {{character}}。",
-    "hearAgain": "再听一次"
-  },
-  "reading": {
-    "question": "这个词是什么意思？",
-    "optionsAria": "从四个意思中选",
-    "wrongHeadline": "再看看",
-    "answer": "{{word}} 的意思是“{{meaning}}”。"
+    "hearAgain": "再听一次",
+    "tryAgain": "再做一次"
   },
   "sounds": {
     "title": "当声音相遇",
@@ -175,5 +174,23 @@
       "palatal": "ㄷ、ㅌ 在 이 前",
       "liaison": "收音滑过去"
     }
+  },
+  "mistakes": {
+    "title": "错题本",
+    "review_other": "复习 · {{count}} 题",
+    "filterLabel": "显示",
+    "filter": {
+      "all": "全部",
+      "character": "字母",
+      "word": "单词"
+    },
+    "youPut": "你的答案",
+    "answer": "正确答案",
+    "times_other": "错了 {{count}} 次",
+    "clear": "已经会了",
+    "noneOfKind": "现在这里没有内容。",
+    "emptyTitle": "还没有错题",
+    "emptyBody": "答错的内容会收在这里，方便你回来改正。",
+    "emptyCta": "去复习"
   }
 }

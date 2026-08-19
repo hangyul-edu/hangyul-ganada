@@ -721,3 +721,61 @@
   font-family: inherit;
 }
 
+
+/*
+ * The language row, promoted out of the App group and to the top of the screen.
+ *
+ * A row rather than a `Section`, because it has no heading above it: it *is*
+ * the first thing, and a heading would put a word above the one control that
+ * exists for people who cannot read the words. The globe leads, at a size that
+ * survives being glanced at rather than read.
+ */
+.languageRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  border: 1px solid var(--hg-border);
+  color: var(--hg-text);
+  min-height: 64px;
+}
+
+.languageGlobe {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface-warm);
+  color: var(--hg-primary);
+}
+
+.languageNames {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.languageLabel {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * The current language, in its own language, at reading size.
+ *
+ * Never translated into the interface language — a learner stuck in a script
+ * they cannot read finds 한국어 by its shape, and "Korean" tells them nothing.
+ * See §54.
+ */
+.languageNative {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}

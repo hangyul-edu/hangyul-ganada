@@ -3,7 +3,8 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
 /**
  * The regression fixture for a bug a physical phone found and this suite did not.
  *
- * A Samsung running the ㄱ lesson photographed the orange **Trace it** button
+ * A Samsung running the ㄱ lesson photographed the orange **Write it** button
+ * (labelled *Trace it* at the time)
  * with its bottom third underneath Android's three-button navigation bar. Every
  * automated check passed: the browser has no navigation bar to be underneath,
  * `document.scrollHeight` was fine, and the emulator's WebView happened to be
@@ -136,7 +137,7 @@ test.describe('system-bar bounds', () => {
     expect(await resolveInset(page, '--hg-safe-top')).toBe(24);
   });
 
-  test('the ㄱ lesson’s Trace it button clears a three-button navigation bar', async ({
+  test('the ㄱ lesson’s Write it button clears a three-button navigation bar', async ({
     page,
   }) => {
     await withSystemInset(page, THREE_BUTTON);
@@ -149,7 +150,7 @@ test.describe('system-bar bounds', () => {
     await expectClearOfSystemBars(
       page,
       page.getByRole('button', { name: /Trace it|Write it/ }),
-      'Trace it',
+      'Write it',
     );
   });
 
@@ -165,7 +166,7 @@ test.describe('system-bar bounds', () => {
       await expectClearOfSystemBars(
         fresh,
         fresh.getByRole('button', { name: /Trace it|Write it/ }),
-        `Trace it at ${inset}px`,
+        `Write it at ${inset}px`,
       );
       await context.close();
     }
@@ -223,19 +224,32 @@ test.describe('system-bar bounds', () => {
     await expectClearOfSystemBars(page, page.getByRole('link', { name: /Home/ }), 'Home tab');
   });
 
-  test('a bottom sheet’s last action stays above the bar', async ({ page }) => {
+  test('a modal’s last action stays above the bar', async ({ page }) => {
+    /*
+     * Opened from Settings rather than from the vocabulary screen.
+     *
+     * This used to open the Words screen's category picker, a sheet of eighteen
+     * rows. That picker is gone — vocabulary is no longer browsed by choosing a
+     * category before studying — and what is being tested was never the picker
+     * anyway: it is `ui/Modal`, which every sheet and dialog in the app shares,
+     * and specifically whether its last tappable row clears the system
+     * navigation bar. The reset confirmation is the same component with its
+     * action row at the bottom, and it is reachable in two taps.
+     */
     await withSystemInset(page, THREE_BUTTON);
-    await page.goto('/words');
-    const picker = page.locator('[aria-haspopup="dialog"]').first();
-    await expect(picker).toBeVisible();
-    await picker.click();
+    await page.goto('/me');
+    const opener = page.getByRole('button', { name: /Reset|Clear/ }).last();
+    await expect(opener).toBeVisible();
+    await opener.scrollIntoViewIfNeeded();
+    await opener.click();
+
     const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
-    // The sheet's ground reaches the bottom edge of the screen, as an
-    // edge-to-edge sheet should. The last row a thumb can hit does not.
+    // The modal's ground reaches the bottom edge of the screen, as an
+    // edge-to-edge surface should. The last row a thumb can hit does not.
     const rows = dialog.getByRole('button');
     await rows.last().scrollIntoViewIfNeeded();
-    await expectClearOfSystemBars(page, rows.last(), 'last row of the sheet');
+    await expectClearOfSystemBars(page, rows.last(), 'last row of the modal');
   });
 
   test('the footer action is the last tab stop, and focusing it does not move it', async ({
@@ -281,7 +295,7 @@ test.describe('system-bar bounds', () => {
     await cta.focus();
     const after = (await cta.boundingBox())!;
     expect(after.y).toBe(before.y);
-    await expectClearOfSystemBars(page, cta, 'Trace it while focused');
+    await expectClearOfSystemBars(page, cta, 'Write it while focused');
   });
 
   test('enlarged system text does not push the action into the bar', async ({ page }) => {
@@ -297,7 +311,7 @@ test.describe('system-bar bounds', () => {
     await expectClearOfSystemBars(
       page,
       page.getByRole('button', { name: /Trace it|Write it/ }),
-      'Trace it at 125% text',
+      'Write it at 125% text',
     );
   });
 });

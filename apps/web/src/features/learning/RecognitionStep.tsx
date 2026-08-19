@@ -141,7 +141,17 @@ export function RecognitionStep({
                   {t('learning:recognition.hearAgain')}
                 </Button>
                 <Button size="md" onClick={retry}>
-                  {t('handwriting:feedback.retry')}
+                  {/*
+                    "Try again", not "Write it again".
+
+                    This read `handwriting:feedback.retry`, which in Korean is
+                    다시 쓰기 — *write* it again — under a question whose only
+                    action is picking one of four letters. The learner is being
+                    told to do something they were never asked to do and cannot
+                    do here. The retry verb has to match the question type; see
+                    §41.
+                  */}
+                  {t('learning:recognition.tryAgain')}
                 </Button>
               </>
             )

@@ -141,6 +141,51 @@ export const MISSING_WEIGHT = 1;
  */
 export const MIN_INK_RATIO = 0.08;
 
+/**
+ * How far the pen may travel, as a multiple of the letter's own length.
+ *
+ * The second gate, and the one the mask comparison cannot be: ink is a set of
+ * pixels and a pixel does not record how many times the pen crossed it. Traced
+ * along ㅏ, a sine wave of amplitude 0.04 and period 0.04 scores a mismatch of
+ * **exactly 0.000** — every pixel of it lands inside the tolerance band a
+ * wobbly beginner hand needs. Narrowing the band cannot fix that, because the
+ * amplitude of the scribble and the amplitude of honest jitter are the same
+ * number. See `path.ts`.
+ *
+ * ## Why 2.5
+ *
+ * Measured over the whole adversarial corpus — six faces, forty-five
+ * characters, twelve perturbations, 3,240 honest attempts. Every genuine
+ * attempt that the mask comparison accepts lands at or below **1.67**, and the
+ * worst of those is simply a letter written 10% large, which lengthens the pen
+ * path in exact proportion. The cheapest deliberate scribble that the mask
+ * comparison lets through starts at **1.79**.
+ *
+ * 2.5 sits 50% above the honest maximum rather than halfway between the two
+ * populations, and that asymmetry is the point: failing a learner who is
+ * writing correctly is the expensive mistake, and the band immediately above
+ * 1.67 is where a genuinely shaky hand lives. What is given up is the mildest
+ * scribble — a wave of half the tolerance band's amplitude, which is a wobbly
+ * line by any fair reading and which §12 of the product rules says to accept.
+ */
+export const MAX_PATH_LENGTH_RATIO = 2.5;
+
+/**
+ * How often the pen may turn back on itself, per unit of letter length.
+ *
+ * The companion gate. Length alone passes a slow, tight back-and-forth that
+ * never gets long; reversals alone pass one enormous looping detour that never
+ * turns back. Between them there is no way to lay down the right ink while
+ * moving like a scribble.
+ *
+ * Over the same corpus, the most an honest attempt reverses is **1.5** per
+ * letter length — a single hairpin, and it comes from ㅉ in Gaegu, a
+ * handwriting face whose strokes genuinely double back. Scribbles that clear
+ * the length gate run from 3.8 to 55. Set at 6, four times the honest
+ * maximum, for the same reason the length gate is set high.
+ */
+export const MAX_REVERSAL_DENSITY = 6;
+
 export const DEFAULT_EVALUATION_CONFIG: EvaluationConfig = {
   maxMismatchRatio: MAX_MISMATCH_RATIO,
   glyphToleranceRatio: GLYPH_TOLERANCE_RATIO,
@@ -153,6 +198,8 @@ export const DEFAULT_EVALUATION_CONFIG: EvaluationConfig = {
   outsideWeight: OUTSIDE_WEIGHT,
   missingWeight: MISSING_WEIGHT,
   minInkRatio: MIN_INK_RATIO,
+  maxPathLengthRatio: MAX_PATH_LENGTH_RATIO,
+  maxReversalDensity: MAX_REVERSAL_DENSITY,
   resolution: COMPARISON_RESOLUTION,
 };
 

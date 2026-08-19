@@ -31,6 +31,10 @@
       "tooLarge": "Saiu do quadro. Um pouco menor.",
       "strayStroke": "Um traço se desviou. Siga a linha com calma."
     },
+    "scribble": {
+      "headline": "Vamos com mais calma",
+      "detail": "Faça cada traço uma vez só, em um movimento contínuo. Não precisa passar por cima."
+    },
     "mixed": {
       "headline": "Quase lá",
       "detail": "Alinhe com a guia e tente de novo."
@@ -74,33 +78,6 @@
     "back": "Anterior",
     "next": "Próximo",
     "position": "Traço {{current, number}} de {{count, number}}"
-  },
-  "word": {
-    "previous": "Parte anterior",
-    "next": "Próxima parte",
-    "syllablePosition": "{{syllable}}, parte {{position, number}} de {{count, number}}",
-    "canvasLabel": "Área de escrita de {{syllable}}, parte {{position, number}} de {{count, number}}",
-    "undoSyllable": "Desfazer o que foi escrito em {{syllable}}",
-    "clearSyllable": "Apagar o que foi escrito em {{syllable}}",
-    "checkWord": "Conferir o que escrevi",
-    "checkAgain": "Conferir de novo",
-    "fix": "Corrigir",
-    "fixSyllable": "Escrever {{syllable}} de novo",
-    "result": {
-      "passed": "Muito bem",
-      "almost": "Quase lá",
-      "allAgain": "Vamos seguir o guia mais uma vez",
-      "needsWork_one": "Uma parte precisa de outra tentativa.",
-      "needsWork_many": "{{count, number}} partes precisam de outra tentativa.",
-      "needsWork_other": "{{count, number}} partes precisam de outra tentativa."
-    },
-    "advice": {
-      "passed": "Está com boa forma.",
-      "empty": "Escreva esta parte primeiro.",
-      "outside": "Fique um pouco mais perto do guia.",
-      "incomplete": "Ainda falta uma parte desta letra.",
-      "mixed": "Quase. Siga o guia mais uma vez."
-    }
   },
   "strokeGuide": {
     "shape": {

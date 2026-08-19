@@ -8,8 +8,6 @@
   },
   "language": {
     "title": "Langue",
-    "description": "La langue de l’interface. Le contenu coréen que vous apprenez reste toujours en coréen.",
-    "openPicker": "Changer de langue",
     "pickerTitle": "Choisissez une langue",
     "pickerIntro": "Langue de l’interface. Ce que vous apprenez — lettres, mots et phrases d’exemple en hangeul — reste en coréen.",
     "listAria": "Langues disponibles",
@@ -17,9 +15,6 @@
     "searchPlaceholder": "Rechercher par nom ou par code",
     "noResults": "Aucune langue ne correspond à « {{query}} ».",
     "selected": "Sélectionnée",
-    "suggestion": "Votre navigateur est en {{language}}. Basculer l’interface dans cette langue ?",
-    "suggestionAccept": "Utiliser {{language}}",
-    "suggestionDismiss": "Rester en anglais",
     "coverageNote": "Certains textes explicatifs peuvent rester en anglais le temps que la traduction soit complétée."
   },
   "font": {
@@ -27,14 +22,20 @@
     "description": "La lettre que vous repassez est dessinée dans la police choisie."
   },
   "dailyTarget": {
-    "title": "Objectif du jour",
-    "description": "Combien de lettres ou de mots terminer chaque jour.",
+    "title": "Lettres par jour",
+    "description": "Combien de lettres du hangeul terminer chaque jour.",
     "option_one": "{{count, number}}",
     "option_other": "{{count, number}}",
     "optionAria_one": "{{count, number}} caractère par jour",
     "optionAria_other": "{{count, number}} caractères par jour",
     "option_many": "{{count, number}}",
     "optionAria_many": "{{count, number}} de caractères par jour"
+  },
+  "wordGoal": {
+    "title": "Mots par jour",
+    "description": "Combien de mots terminer chaque jour. Modifiable à tout moment.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} mots par jour"
   },
   "guides": {
     "title": "Repères d’écriture",

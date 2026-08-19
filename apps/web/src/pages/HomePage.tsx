@@ -5,13 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { productName } from '../config/product';
 import { CURRICULUM_UNITS } from '../data/characters';
 import { weeklyReport } from '../domain/activity';
-import { VOCABULARY_LESSONS, getLessonWords, usesKnownLetters } from '../data/vocabulary';
 import {
   alphabetProgress,
   dailyProgress,
-  levelProgress,
   nextLesson,
-  vocabularyProgress,
 } from '../domain/progress';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
 import { formatDuration } from '../i18n/duration';
@@ -48,7 +45,7 @@ import styles from './HomePage.module.css';
  */
 export function HomePage() {
   const navigate = useNavigate();
-  const { summary, state, reviewSummary, practice, knownLetters } = useLearner();
+  const { summary, state, practicePlan, vocabularyProgressToday } = useLearner();
   const { t } = useTranslation(['home', 'common', 'vocabulary', 'learning', 'activity']);
   const { locale } = useLocale();
   const format = useFormatters();
@@ -56,8 +53,21 @@ export function HomePage() {
   const now = new Date();
   const daily = dailyProgress(state.progress, summary.daily_target, now);
   const alphabet = alphabetProgress(state.progress);
-  const vocabulary = vocabularyProgress(state.progress);
   const dayComplete = daily.done >= daily.total;
+
+  /**
+   * The review plan, resolved before the card that describes it is drawn.
+   *
+   * Home used to print three lines — "8 to review, 6 letters to finish, 3
+   * useful words" — assembled from three different estimates, none of which was
+   * the thing its button opened. The middle line counted characters left in a
+   * lesson and the button went to review; the last line counted a suggestion
+   * the button could not reach at all.
+   *
+   * There is now one plan and the card says what is in it. See `domain/plan.ts`
+   * and §47.
+   */
+  const review = useMemo(() => practicePlan(), [practicePlan]);
 
   /**
    * This week, in one line.
@@ -74,22 +84,6 @@ export function HomePage() {
   const unit = CURRICULUM_UNITS.find((u) => u.lesson_ids.includes(lesson.id));
   const lessonTitle = resolveContent(lesson.translations, locale);
   const started = summary.total_attempts > 0;
-
-  /**
-   * The word set to suggest.
-   *
-   * A recommendation, and only that. The first unfinished set whose letters the
-   * learner has already met — or, if they are ahead of their letters
-   * everywhere, simply the first unfinished set, because every set is open and
-   * suggesting nothing would be worse than suggesting something ambitious.
-   */
-  const unfinished = VOCABULARY_LESSONS.filter(
-    (candidate) => levelProgress(state.progress, getLessonWords(candidate)).ratio < 1,
-  );
-  const suggestedWordLesson =
-    unfinished.find((candidate) =>
-      getLessonWords(candidate).every((word) => usesKnownLetters(word, knownLetters)),
-    ) ?? unfinished[0];
 
   return (
     <div className={styles.page}>
@@ -128,24 +122,24 @@ export function HomePage() {
           no practice to have — the featured card below is the whole answer, and
           a plan reading "0 reviews, 0 letters" would be a worse first screen.
         */}
-        {!practice.empty && (
+        {/*
+          Today's practice: one thing, its size, and the button that starts it.
+
+          Shown only when there is a resolved review plan to start, and it says
+          that plan's own count. The plan itself travels with the navigation, so
+          the number on this card and the questions the learner gets are the
+          same object — the Review screen does exactly the same thing.
+        */}
+        {review.count > 0 && (
           <Card padding="md" className={styles.plan}>
             <h2 className={styles.planTitle}>{t('home:practice.title')}</h2>
-            <ul className={styles.planList}>
-              {practice.reviews > 0 && (
-                <li>{t('home:practice.reviews', { count: practice.reviews })}</li>
-              )}
-              {practice.lettersLeft > 0 && (
-                <li>{t('home:practice.letters', { count: practice.lettersLeft })}</li>
-              )}
-              <li>{t('home:practice.words', { count: practice.words })}</li>
-            </ul>
+            <p className={styles.planBody}>
+              {t('home:practice.reviews', { count: review.count })}
+            </p>
             <Button
               size="md"
               fullWidth
-              onClick={() =>
-                navigate(practice.reviews > 0 ? '/review/session' : `/letters/${lesson.id}`)
-              }
+              onClick={() => navigate('/review/session', { state: { plan: review } })}
             >
               {t('home:practice.cta')}
             </Button>
@@ -214,18 +208,19 @@ export function HomePage() {
             icon={<WordIcon size={26} />}
             label={t('home:quick.words')}
             /*
-              The count, not the fraction.
+              Today, not the catalogue.
 
-              This read `0 / 2,581`, and the bar underneath it still measures
-              against the whole curriculum because that is what the bar is for.
-              But the *number* is the one a learner reads first, and on day
-              three `12 / 2,581` says "2,569 to go" far louder than it says
-              "twelve learned". The letters card keeps its fraction: 40 is a
-              number a beginner can picture finishing, and 2,581 is not.
+              This read `12` against a bar measuring progress through the whole
+              corpus. With ten thousand words behind the app that bar is a line
+              that never moves and the number is a reminder of how much is left
+              — the precise thing §22 says never to put in front of a beginner.
+              What a learner can act on is the day: three of ten, and a bar that
+              fills before they go to bed. The letters card keeps its own
+              fraction, because 40 is a number somebody can picture finishing.
             */
-            meta={format.number(vocabulary.done)}
+            meta={format.fraction(vocabularyProgressToday.done, vocabularyProgressToday.total)}
             caption={t('home:quick.wordsCaption')}
-            progress={vocabulary.ratio}
+            progress={vocabularyProgressToday.ratio}
           />
         </div>
 
@@ -236,48 +231,46 @@ export function HomePage() {
             </span>
             <span className={styles.reviewText}>
               <span className={styles.reviewTitle}>{t('home:review.title')}</span>
+              {/* The resolved plan's count, the same one the Review screen
+                  shows and the same one its Start button runs. */}
               <span className={styles.reviewMeta}>
-                {reviewSummary.total > 0
-                  ? t('home:review.count', { count: reviewSummary.total })
+                {review.count > 0
+                  ? t('home:review.count', { count: review.count })
                   : t('home:review.empty')}
               </span>
             </span>
-            {reviewSummary.total > 0 && (
+            {review.count > 0 && (
               <Badge tone="primary" filled numeric>
-                {format.number(reviewSummary.total)}
+                {format.number(review.count)}
               </Badge>
             )}
             <ChevronRightIcon size={20} />
           </Card>
         </Link>
 
-        {suggestedWordLesson && (
-          <section className={styles.upNext} aria-labelledby="up-next-heading">
-            {/*
-              "214 words use only letters you have met" was a true sentence and
-              it was the ranking engine talking about itself. A learner cannot
-              act on it, and it invites the question it cannot answer — which
-              214? So the words themselves are the answer, and the heading is
-              what they are for.
-            */}
-            <h2 id="up-next-heading" className={styles.sectionTitle}>
-              {t('home:upNext.title')}
-            </h2>
-            <Link to={`/words/${suggestedWordLesson.id}`} className={styles.lessonRow}>
-              <span className={styles.lessonInfo}>
-                {/* Named by what it is about. "Set 3" told the learner where
-                    it sat in a list they had never seen; "Animals" tells them
-                    what they are about to spend five minutes on. */}
-                <span className={styles.lessonTitle}>
-                  {t(`vocabulary:categories.${suggestedWordLesson.category}`)}
-                </span>
-                <span className={styles.lessonSubtitle} lang="ko" dir="ltr">
-                  {suggestedWordLesson.subtitle}
-                </span>
+        {/*
+          Vocabulary, as today rather than as a catalogue.
+
+          What used to sit here was a suggested *set*: "Animals · 개 · 새 · 고양이",
+          which the learner tapped to open six words and start drawing
+          syllables. Choosing a set was never a decision anybody could make well,
+          and it is not a decision they have to make any more.
+        */}
+        {!vocabularyProgressToday.complete && (
+          <Link to="/words" className={styles.lessonRow}>
+            <span className={styles.lessonInfo}>
+              <span className={styles.lessonTitle}>{t('vocabulary:today.title')}</span>
+              <span className={styles.lessonSubtitle}>
+                {t('vocabulary:today.remaining', {
+                  count: Math.max(
+                    0,
+                    vocabularyProgressToday.total - vocabularyProgressToday.done,
+                  ),
+                })}
               </span>
-              <ChevronRightIcon size={18} />
-            </Link>
-          </section>
+            </span>
+            <ChevronRightIcon size={18} />
+          </Link>
         )}
       </div>
 

@@ -45,6 +45,14 @@
  * does: a scribble, a single dot, a box drawn round the guide, a straight line
  * through the middle. None of them is any letter, and all of them must fail.
  *
+ * **Scrawls** are the subtle half of that, and the reason `path.ts` exists.
+ * Every degenerate shape above is somewhere the letter is not, so the ink
+ * comparison rejects it on placement and it proves nothing about scribbling. A
+ * scrawl *follows the letter* — zigzagging along its strokes, or drawing it
+ * three times over — and lands all of its ink inside the tolerance band that a
+ * wobbly hand needs. Graded on ink alone these score a mismatch of exactly
+ * zero. See `scrawlAttempts`.
+ *
  * ## What is *not* claimed
  *
  * These are not human samples. A synthetic corpus can prove a grader is
@@ -53,7 +61,7 @@
  * and is named as an external blocker rather than approximated here.
  */
 import { rasterizeStrokes } from '../raster.js';
-import { evaluateMasks } from '../evaluate.js';
+import { evaluateStrokes } from '../evaluate.js';
 import type { EvaluationConfig, Mask, Point, Stroke } from '../types.js';
 import { glyphMask } from './fixtures.js';
 import { skeletonPaths } from './skeleton.js';
@@ -202,13 +210,84 @@ const shifted = (by: number) => (strokes: Stroke[]) =>
 const scaled = (by: number) => (strokes: Stroke[]) =>
   transform(strokes, (p) => ({ x: 0.5 + (p.x - 0.5) * by, y: 0.5 + (p.y - 0.5) * by }));
 
+/**
+ * An unsteady hand: the line wanders by up to `amount`, smoothly.
+ *
+ * The displacement is **correlated along the stroke** rather than independent
+ * per sample, and that is not a detail — it is the difference between a model
+ * of a hand and a model of a broken sensor.
+ *
+ * This used to draw each point's offset independently. On a skeleton path
+ * sampled one point per pixel, an amplitude of 0.035 then meant the pen
+ * displacing sideways by up to 2.2× its own forward step, in a new random
+ * direction, every single sample. Nothing produces that: a finger has mass, a
+ * touchscreen reports a filtered centroid, and physiological tremor is a
+ * 8–12 Hz oscillation, which over a stroke drawn in about a second is a
+ * wavelength of a tenth of the box — a wave, not a fuzz.
+ *
+ * It mattered because that fuzz is, measured as a path, *exactly* a scribble:
+ * it triples the distance the pen travels and reverses direction fifty times
+ * per letter, which is what scribbling is. No measure of pen travel can
+ * separate the two, because there is nothing to separate — so the fixture was
+ * asserting that the grader must accept something indistinguishable from the
+ * thing it must reject.
+ *
+ * The *displacement* — what the mask comparison is being tested on here — is
+ * unchanged: the line still strays up to `amount` from where it should be, and
+ * the tolerance band still has to absorb it. Only the shape of the straying is
+ * now something a hand could do. See `path.ts`.
+ */
 const wobbled = (amount: number, seed: number) => (strokes: Stroke[]) => {
   const random = makeRandom(seed);
-  return transform(strokes, (p) => ({
-    x: p.x + (random() - 0.5) * amount,
-    y: p.y + (random() - 0.5) * amount,
-  }));
+  return strokes.map((stroke) => {
+    // One smooth wander per stroke, at roughly a tenth of the box per cycle.
+    const noise = smoothNoise(stroke.points.length, 0.1, random);
+    return {
+      width: stroke.width,
+      points: stroke.points.map((p, i) => ({
+        x: p.x + noise[i]!.x * amount,
+        y: p.y + noise[i]!.y * amount,
+      })),
+    };
+  });
 };
+
+/**
+ * `count` correlated 2-D offsets in −0.5..0.5, varying over `wavelength`.
+ *
+ * Value noise: a handful of random control points, read back with cosine
+ * interpolation. Deterministic given `random`, and normalised so the peak
+ * excursion is the same as the white noise this replaced — an unsteady hand
+ * that strays just as far, in a shape a hand could make.
+ */
+function smoothNoise(count: number, wavelength: number, random: () => number): Point[] {
+  // The skeleton paths are sampled about one point per mask pixel, so the
+  // sample count is a fair proxy for arc length in box units.
+  const controls = Math.max(2, Math.round(count / 128 / wavelength) + 2);
+  const knots: Point[] = [];
+  for (let i = 0; i < controls; i += 1) {
+    knots.push({ x: random() - 0.5, y: random() - 0.5 });
+  }
+  const out: Point[] = [];
+  let peak = 0;
+  for (let i = 0; i < count; i += 1) {
+    const t = (i / Math.max(1, count - 1)) * (controls - 1);
+    const k = Math.min(controls - 2, Math.floor(t));
+    // Cosine ease between knots: continuous in value and in slope, so the
+    // wander has no corners of its own to be counted as direction changes.
+    const f = (1 - Math.cos((t - k) * Math.PI)) / 2;
+    const a = knots[k]!;
+    const b = knots[k + 1]!;
+    const point = { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f };
+    peak = Math.max(peak, Math.abs(point.x), Math.abs(point.y));
+    out.push(point);
+  }
+  // Rescale so the worst excursion is the full requested amplitude, whatever
+  // the knots happened to draw — the perturbation's severity is the fixture's
+  // parameter, not the random seed's business.
+  const gain = peak > 0 ? 0.5 / peak : 0;
+  return out.map((p) => ({ x: p.x * gain, y: p.y * gain }));
+}
 
 const penned = (width: number) => (strokes: Stroke[]) =>
   strokes.map((stroke) => ({ ...stroke, width }));
@@ -325,6 +404,72 @@ export function degenerateAttempts(seed = 999): Array<[string, Stroke[]]> {
 }
 
 /**
+ * The right ink, laid down the wrong way.
+ *
+ * A third negative population, and the one the degenerate shapes above cannot
+ * stand in for. Those are all *somewhere else* — a box round the guide, a line
+ * across the middle — so the ink comparison rejects them on placement alone and
+ * they prove nothing about scribbling. These are scribbles that follow the
+ * letter, and every one of them lands its ink inside the tolerance band the
+ * grader needs for a wobbly hand. Before `path.ts` they scored a **mismatch of
+ * 0.000** and were marked correct.
+ *
+ * Each is a thing a bored, confused or dishonest person actually does with a
+ * finger on a guide they can see:
+ *
+ * | Attempt | What it is |
+ * | --- | --- |
+ * | `scrubbed` | zigzagging along the stroke — colouring it in |
+ * | `scrawled` | the same, tighter and wilder |
+ * | `over-traced` | drawing the letter, then back over it, then again |
+ *
+ * They are permanent fixtures rather than a one-off check because this is a
+ * class of defect that a change to the tolerance band can silently reopen.
+ */
+function scrawlAttempts(pen: readonly Stroke[]): Array<[string, Stroke[]]> {
+  return [
+    ['scrubbed', zigzagAlong(pen, 0.03, 0.05)],
+    ['scrawled', zigzagAlong(pen, 0.04, 0.04)],
+    ['over-traced', overTraced(pen, 3)],
+  ];
+}
+
+/** A sine wave laid along each stroke, perpendicular to its direction. */
+function zigzagAlong(strokes: readonly Stroke[], amplitude: number, period: number): Stroke[] {
+  return strokes.map((stroke) => {
+    const dense = densify(stroke.points, 4);
+    const points: Point[] = [];
+    let travelled = 0;
+    for (let i = 0; i < dense.length; i += 1) {
+      const previous = dense[Math.max(0, i - 1)]!;
+      const point = dense[i]!;
+      const next = dense[Math.min(dense.length - 1, i + 1)]!;
+      travelled += Math.hypot(point.x - previous.x, point.y - previous.y);
+      let tx = next.x - previous.x;
+      let ty = next.y - previous.y;
+      const length = Math.hypot(tx, ty) || 1;
+      tx /= length;
+      ty /= length;
+      const offset = Math.sin((travelled / period) * Math.PI * 2) * amplitude;
+      points.push({ x: point.x - ty * offset, y: point.y + tx * offset });
+    }
+    return { width: stroke.width, points };
+  });
+}
+
+/** Each stroke drawn `times` times, alternating direction. */
+function overTraced(strokes: readonly Stroke[], times: number): Stroke[] {
+  return strokes.map((stroke) => {
+    const points: Point[] = [];
+    for (let pass = 0; pass < times; pass += 1) {
+      const run = pass % 2 === 0 ? stroke.points : [...stroke.points].reverse();
+      points.push(...run.map((p) => ({ x: p.x, y: p.y })));
+    }
+    return { width: stroke.width, points };
+  });
+}
+
+/**
  * Every attempt in the corpus, for one target letter as one face draws it.
  *
  * `maskFor` supplies the reference glyph for a character in the face under
@@ -353,6 +498,9 @@ export function attemptsFor(
       strokes: penPath(other, maskFor(other), fontKey),
       shouldPass: false,
     });
+  }
+  for (const [kind, strokes] of scrawlAttempts(base)) {
+    out.push({ target, drew: '', kind, strokes, shouldPass: false });
   }
   for (const [kind, strokes] of degenerateAttempts()) {
     // A bare vertical line *is* ㅣ and a bare horizontal one *is* ㅡ. Counting
@@ -402,8 +550,16 @@ export function measure(
   for (const character of characters) {
     const reference: Mask = maskFor(character);
     for (const attempt of attemptsFor(character, maskFor, fontId)) {
-      const mask = rasterizeStrokes(attempt.strokes, resolution);
-      const evaluation = evaluateMasks(mask, reference, config);
+      /*
+       * `evaluateStrokes`, not `evaluateMasks`.
+       *
+       * The corpus measures the grader the product actually runs, and the
+       * product hands it a *path*. Grading the rasterised ink alone would skip
+       * the path gate entirely — which is the half that decides three of the
+       * negative populations below, and the half that a tolerance change can
+       * silently reopen.
+       */
+      const evaluation = evaluateStrokes(attempt.strokes, reference, config);
       const degenerate = attempt.drew === '';
       if (attempt.shouldPass) {
         result.genuine += 1;

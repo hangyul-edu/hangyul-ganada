@@ -26,6 +26,26 @@ import { VOCABULARY } from '../../data/vocabulary';
  *    and a learner who is pattern-matching on shape rather than reading is
  *    caught here or nowhere.
  *
+ * ## Two questions, two opposite rules
+ *
+ * The above is right for *meaning* questions and precisely wrong for *context*
+ * ones, which is how this shipped:
+ *
+ * ```
+ * 저 ___ 는 의사예요.        [ 남자 ]  [ 여자 ]  [ 사람 ]  [ 학생 ]
+ * ```
+ *
+ * Every option is a noun of similar difficulty, which is exactly what the rules
+ * above ask for — and every option is *correct*. That man is a doctor, that
+ * woman is a doctor, that person is a doctor. The learner is marked wrong for
+ * an answer the sentence supports, and no hint can repair it, because the
+ * question does not have one answer to hint at.
+ *
+ * A gap-fill is a comprehension question, so its wrong answers have to be words
+ * the sentence *cannot* take. `contextOptions` therefore inverts the rule:
+ * same part of speech, so the grammar gives nothing away, and a **different
+ * semantic category**, so only one option can be meant. See below.
+ *
  * ## Deterministic
  *
  * `seed` fixes the order, so a retry asks the same question with the options in
@@ -81,35 +101,124 @@ function shuffle<T>(items: T[], seed: number): T[] {
 }
 
 /**
+ * Reads a word's meaning in whatever language the question is being asked in.
+ *
+ * Optional throughout this module, and that is a deliberate compromise. Two
+ * words with the same gloss offered together — 크다 and 커다랗게 both showing
+ * "big" — is one question with two right answers, and only the caller knows
+ * which language is on screen. Where it is supplied, such a pair is excluded;
+ * where it is not, the structural rules still apply and `answerable.test.ts`
+ * holds the gloss property separately.
+ */
+export type MeaningLookup = (word: VocabularyWord) => string;
+
+/** Two glosses that a learner would read as the same answer. */
+function sameMeaning(a: string, b: string): boolean {
+  const normalise = (text: string) =>
+    text
+      .toLowerCase()
+      .replace(/^(to |a |an |the )/, '')
+      .replace(/[^\p{L}\p{N}]+/gu, ' ')
+      .trim();
+  return normalise(a) === normalise(b);
+}
+
+/**
+ * Fills a question up to `OPTION_COUNT`, in pool order, refusing duplicates.
+ *
+ * Shared by both question types so that "never offer the same answer twice"
+ * cannot be true of one of them and false of the other.
+ */
+function take(
+  word: VocabularyWord,
+  pools: ReadonlyArray<readonly VocabularyWord[]>,
+  meaningOf?: MeaningLookup,
+): VocabularyWord[] {
+  const chosen: VocabularyWord[] = [];
+  const taken = new Set([word.id]);
+  const target = meaningOf?.(word);
+
+  for (const pool of pools) {
+    for (const candidate of pool) {
+      if (chosen.length >= OPTION_COUNT - 1) return chosen;
+      if (taken.has(candidate.id)) continue;
+      if (target !== undefined && sameMeaning(target, meaningOf!(candidate))) continue;
+      if (
+        meaningOf &&
+        chosen.some((already) => sameMeaning(meaningOf(already), meaningOf(candidate)))
+      ) {
+        continue;
+      }
+      taken.add(candidate.id);
+      chosen.push(candidate);
+    }
+  }
+  return chosen;
+}
+
+/**
  * The options for one reading question: the word plus three alternatives.
  *
  * Returns words rather than strings, because the caller needs each one's
  * meaning in the learner's own language and that is loaded per locale.
  */
-export function readingOptions(word: VocabularyWord, seed: number): VocabularyWord[] {
-  const pool = candidates(word);
-  const chosen: VocabularyWord[] = [];
-  const takenMeanings = new Set([word.id]);
-
-  for (const candidate of pool) {
-    if (chosen.length >= OPTION_COUNT - 1) break;
-    if (takenMeanings.has(candidate.id)) continue;
-    takenMeanings.add(candidate.id);
-    chosen.push(candidate);
-  }
-
+export function readingOptions(
+  word: VocabularyWord,
+  seed: number,
+  meaningOf?: MeaningLookup,
+): VocabularyWord[] {
   // A part of speech with almost no members — there are ten numerals — can run
   // out of same-kind candidates. Falling back to any other word is better than
   // asking a two-option question, and it is rare enough not to shape the
   // exercise.
-  if (chosen.length < OPTION_COUNT - 1) {
-    for (const other of VOCABULARY) {
-      if (chosen.length >= OPTION_COUNT - 1) break;
-      if (takenMeanings.has(other.id)) continue;
-      takenMeanings.add(other.id);
-      chosen.push(other);
-    }
-  }
-
+  const chosen = take(word, [candidates(word), VOCABULARY], meaningOf);
   return shuffle([word, ...chosen], seed);
 }
+
+/**
+ * The options for one gap-fill: the word plus three the sentence cannot take.
+ *
+ * The inverse of `readingOptions`, for the reason set out at the top of this
+ * file. Three rules, and each one removes a way for a second answer to be
+ * defensible:
+ *
+ * 1. **Same part of speech.** Otherwise the sentence's grammar answers it — a
+ *    slot that needs a verb offered one verb and three nouns is not a question.
+ * 2. **A different semantic category, sharing no tags.** This is the one that
+ *    fixes 남자 / 여자: both are People & Family, so neither can be the other's
+ *    distractor. A sentence about a person now offers a place, a food and a
+ *    feeling, exactly one of which it can mean.
+ * 3. **Not present in the sentence already.** A word the sentence contains
+ *    elsewhere reads as a second gap.
+ *
+ * Where the corpus cannot satisfy this — a category with few members, an
+ * unusual part of speech — it returns fewer than four options, and the caller
+ * drops the question rather than padding it. A question with three options is
+ * still answerable; a question with two right answers is not, and the whole
+ * point of this function is that the second one never ships.
+ */
+export function contextOptions(
+  word: VocabularyWord,
+  sentence: string,
+  seed: number,
+  meaningOf?: MeaningLookup,
+): VocabularyWord[] {
+  const tags = new Set([word.category, ...word.category_tags]);
+  const pool = VOCABULARY.filter((other) => {
+    if (other.id === word.id) return false;
+    if (other.part_of_speech !== word.part_of_speech) return false;
+    // Rule 2, both directions: neither may be filed or tagged where the other
+    // is. Checking one direction lets a broadly-tagged word slip through.
+    if (tags.has(other.category)) return false;
+    if (other.category_tags.some((tag) => tags.has(tag))) return false;
+    // Rule 3.
+    if (sentence.includes(other.word)) return false;
+    return true;
+  }).sort((a, b) => a.difficulty_score - b.difficulty_score);
+
+  const chosen = take(word, [pool], meaningOf);
+  return shuffle([word, ...chosen], seed);
+}
+
+/** How many options a question must have before it is worth asking. */
+export const MIN_OPTIONS = OPTION_COUNT;

@@ -7,7 +7,10 @@
     "confirm": "OK",
     "close": "Schließen",
     "back": "Zurück",
-    "goHome": "Zur Startseite"
+    "goHome": "Zur Startseite",
+    "done": "Fertig",
+    "save": "Speichern",
+    "saved": "Gespeichert"
   },
   "a11y": {
     "skipToContent": "Zum Hauptinhalt springen",

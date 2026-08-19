@@ -169,16 +169,44 @@ describe('the micro-rescue', () => {
 describe('what the Review screen says', () => {
   it('shows nothing on a first launch rather than a dashboard of zeroes', () => {
     const summary = summarise({}, {}, new Set(), T0);
-    expect(summary).toMatchObject({ needsPractice: 0, dueToday: 0, total: 0, sessionSize: 0 });
+    expect(summary).toMatchObject({ needsPractice: 0, dueToday: 0, total: 0 });
   });
 
-  it('counts items, not exercises', () => {
+  it('counts items that need attention, not items that exist', () => {
+    /*
+     * §21 and §32, and the reason this test changed.
+     *
+     * It used to assert that two learned characters produce a review count of
+     * two — one per item, rather than one per skill — and the *shape* of that
+     * was right while the premise was wrong. Having learned something is not a
+     * reason to review it. At five hundred words the old rule produced a screen
+     * reading "500 to review", which is a catalogue with a badge on it.
+     *
+     * Two characters just met, with no memory of them yet, need nothing: they
+     * were learned a moment ago and are not fading. What they have is skills
+     * never asked about, which the scheduler will broaden into and which are
+     * deliberately not a number on a screen.
+     */
     const items = profile(['character', 'ㄱ'], ['character', 'ㄴ']);
-    const summary = summarise(items, {}, new Set(), T0);
-    // Two items, four skills each — the learner is told two, because that is
-    // what they can count.
-    expect(summary.total).toBe(2);
-    expect(summary.sessionSize).toBeGreaterThan(2);
+    expect(summarise(items, {}, new Set(), T0).total).toBe(0);
+
+    // Once one of them has been asked and is fading, it is counted — once,
+    // however many ways it could be asked.
+    const fading = applyReview(
+      undefined,
+      'character',
+      'ㄱ',
+      { skill: 'visual_recognition', passed: true, score: 1 },
+      new Date(T0.getTime() - 20 * 86_400_000),
+    );
+    const summary = summarise(items, { 'character:ㄱ': fading }, new Set(), T0);
+    expect(summary.total).toBe(1);
+    // `sessionSize` used to be here, as `min(SESSION_SIZE, pool.length)`. It
+    // was the number the Review screen printed and it was a *guess* at what the
+    // session would contain — which is how "8 questions" came to open an empty
+    // page. The count now comes from a resolved plan, and is asserted against
+    // the session it names in `plan.test.ts`.
+    expect(summary.needsPractice + summary.dueToday).toBeGreaterThan(0);
   });
 
   it('reports saved words from the learner’s own list', () => {

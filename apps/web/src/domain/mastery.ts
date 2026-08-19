@@ -10,11 +10,10 @@ import { blankProgress } from '../storage/schema';
  * walks a ladder, and each rung is earned by doing something different:
  *
  * ```
- * unseen → introduced → traced → practised → learned
- *            ↑ met it    ↑ wrote   ↑ wrote     ↑ heard it, watched it
- *              and heard   it over   it over     written, wrote it twice,
- *              it read     the       the light   and picked it out of
- *                          guide     guide       its look-alikes
+ * unseen → introduced → written → learned
+ *            ↑ met it    ↑ wrote   ↑ heard it, watched it written,
+ *              and heard   it over   wrote it, and picked it out
+ *              it read     a guide   of its look-alikes
  * ```
  *
  * ## Why there is no rung for writing from memory
@@ -24,12 +23,21 @@ import { blankProgress } from '../storage/schema';
  * Korean letter ninety seconds earlier cannot recall a shape they have never
  * once recalled, and being unable to was not evidence of anything except that
  * the step came too early. Hangul handwriting is learned by writing the letter
- * correctly, with a model in front of you, many times — which is exactly what
- * the two guided rungs ask for.
+ * correctly, with a model in front of you — not by being examined on it.
  *
- * So the second rung is the *lighter* guide rather than no guide. It is harder
- * than the first — the shape is a ghost, and the learner is mostly producing it
- * themselves — without ever being an examination.
+ * ## Why there is no *second* writing rung either
+ *
+ * There was one of those too: write it over the guide, then write it again over
+ * a fainter copy of the same guide. It is gone, and it was not replaced by
+ * anything.
+ *
+ * The second attempt was never a different skill. It asked for the identical
+ * movement with less ink on the paper, so the only thing it could measure was
+ * whether the learner was willing to do it twice — and the answer, for someone
+ * meeting forty letters, is a lesson that takes twice as long for the same
+ * learning. One guided attempt is the rung. `traced` and `practised` survive as
+ * *stage names* only because old profiles are written in them; nothing produces
+ * a profile that stops at `traced` any more.
  *
  * ## The ladder only ever goes up
  *
@@ -38,9 +46,13 @@ import { blankProgress } from '../storage/schema';
  * statement about now rather than a demotion. Demoting progress for a bad
  * attempt teaches learners to stop attempting.
  *
- * Words use the same rungs, minus the demonstration: a word is written syllable
- * by syllable out of letters whose stroke order the learner has already been
- * shown.
+ * ## Words do not have a writing rung at all
+ *
+ * They used to: a word was learned by writing each of its syllables. That is
+ * gone from the product — vocabulary is met, heard, understood and recognised,
+ * and never handwritten. See `domain/vocabularyDay.ts` for the rungs a word walks
+ * instead, and `WORD_RULES` below for why a word's completion no longer asks
+ * this function about ink.
  */
 
 export const STAGE_RANK: Record<MasteryStage, number> = MASTERY_ORDER.reduce(
@@ -147,20 +159,20 @@ export interface CharacterMasteryRules {
    */
   demoRequired: boolean;
   /**
-   * Whether both writing rungs are needed, or one guided pass is enough.
+   * Whether finishing this item requires having written it.
    *
-   * A letter asks for both: trace it, then produce it over the light guide.
-   * A word asks for one pass of every syllable, because the letters in it have
-   * already been through both rungs in the letter curriculum and a word lesson
-   * that made a learner write 사과 twice would be a chore rather than a lesson.
+   * True for letters and syllables, whose whole point is forming the shape.
+   * **False for words**, and that is a product decision rather than a tuning
+   * one: vocabulary is never handwritten anywhere in this app. A word is
+   * finished by being met, heard and understood — see `domain/vocabulary.ts`.
    */
-  bothWritingRungs: boolean;
+  writingRequired: boolean;
 }
 
 const DEFAULT_RULES: CharacterMasteryRules = {
   recognitionRequired: false,
   demoRequired: false,
-  bothWritingRungs: true,
+  writingRequired: true,
 };
 
 /**
@@ -173,12 +185,9 @@ const DEFAULT_RULES: CharacterMasteryRules = {
 function isComplete(row: ItemProgress, rules: CharacterMasteryRules): boolean {
   if (!row.heard) return false;
   if (rules.demoRequired && !row.demo_seen) return false;
-  if (rules.bothWritingRungs) {
-    if (row.trace_passes === 0) return false;
-    if (row.practice_passes === 0) return false;
-  } else if (row.trace_passes + row.practice_passes === 0) {
-    return false;
-  }
+  // One guided pass, whichever guide it was written over. Which one is a
+  // presentation choice the learner makes in Settings, not a second rung.
+  if (rules.writingRequired && row.trace_passes + row.practice_passes === 0) return false;
   if (rules.recognitionRequired && row.recognition_passes === 0) return false;
   return true;
 }
@@ -208,11 +217,10 @@ export function applyAttempt(
   const practice_passes = row.practice_passes + (passed && mode === 'practice' ? 1 : 0);
 
   let stage = advance(row.stage, 'introduced');
-  if (passed) {
-    // A pass over the lighter guide proves more than a pass over the full one,
-    // so it credits both rungs. The reverse is not true.
-    stage = advance(stage, mode === 'practice' ? 'practised' : 'traced');
-  }
+  // One writing pass is the writing rung, whichever guide was on the paper, so
+  // both modes land on the same stage. `traced` is now only ever reached by a
+  // profile written before the second rung was removed.
+  if (passed) stage = advance(stage, 'practised');
 
   const next: ItemProgress = {
     ...row,
@@ -327,7 +335,7 @@ export function applyRecognition(
  * Drives both the lesson flow and the "what's left?" line under a character, so
  * the two can never tell different stories.
  */
-export type MasteryRequirement = 'hear' | 'watch' | 'trace' | 'practise' | 'recognise';
+export type MasteryRequirement = 'hear' | 'watch' | 'write' | 'recognise';
 
 export function remainingRequirements(
   row: ItemProgress | undefined,
@@ -336,11 +344,8 @@ export function remainingRequirements(
   const missing: MasteryRequirement[] = [];
   if (!row?.heard) missing.push('hear');
   if (rules.demoRequired && !row?.demo_seen) missing.push('watch');
-  if (rules.bothWritingRungs) {
-    if (!row || row.trace_passes === 0) missing.push('trace');
-    if (!row || row.practice_passes === 0) missing.push('practise');
-  } else if (!row || row.trace_passes + row.practice_passes === 0) {
-    missing.push('practise');
+  if (rules.writingRequired && (!row || row.trace_passes + row.practice_passes === 0)) {
+    missing.push('write');
   }
   if (rules.recognitionRequired && (!row || row.recognition_passes === 0)) {
     missing.push('recognise');

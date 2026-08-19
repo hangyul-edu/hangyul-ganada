@@ -8,8 +8,6 @@
   },
   "language": {
     "title": "Idioma",
-    "description": "O idioma da interface. O conteúdo coreano que você aprende continua em coreano.",
-    "openPicker": "Mudar de idioma",
     "pickerTitle": "Escolha um idioma",
     "pickerIntro": "Idioma da interface. O que você está aprendendo — letras, palavras e frases de exemplo em hangul — continua em coreano.",
     "listAria": "Idiomas disponíveis",
@@ -17,9 +15,6 @@
     "searchPlaceholder": "Buscar por nome ou código",
     "noResults": "Nenhum idioma corresponde a “{{query}}”.",
     "selected": "Selecionado",
-    "suggestion": "Seu navegador está em {{language}}. Trocar a interface para esse idioma?",
-    "suggestionAccept": "Usar {{language}}",
-    "suggestionDismiss": "Continuar em inglês",
     "coverageNote": "Alguns textos explicativos podem continuar em inglês enquanto a tradução é concluída."
   },
   "font": {
@@ -27,14 +22,20 @@
     "description": "A letra que você cobre é desenhada na fonte escolhida."
   },
   "dailyTarget": {
-    "title": "Meta diária",
-    "description": "Quantas letras ou palavras terminar por dia.",
+    "title": "Letras por dia",
+    "description": "Quantas letras do hangul concluir por dia.",
     "option_one": "{{count, number}}",
     "option_other": "{{count, number}}",
     "optionAria_one": "{{count, number}} caractere por dia",
     "optionAria_other": "{{count, number}} caracteres por dia",
     "option_many": "{{count, number}}",
     "optionAria_many": "{{count, number}} de caracteres por dia"
+  },
+  "wordGoal": {
+    "title": "Palavras por dia",
+    "description": "Quantas palavras concluir por dia. Dá para mudar quando quiser.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} palavras por dia"
   },
   "guides": {
     "title": "Guias de escrita",

@@ -8,8 +8,6 @@
   },
   "language": {
     "title": "Sprache",
-    "description": "Die Sprache der Oberfläche. Die koreanischen Lerninhalte bleiben immer auf Koreanisch.",
-    "openPicker": "Sprache ändern",
     "pickerTitle": "Sprache wählen",
     "pickerIntro": "Sprache der Oberfläche. Was du lernst – Hangeul-Zeichen, Wörter und Beispielsätze – bleibt Koreanisch.",
     "listAria": "Verfügbare Sprachen",
@@ -17,9 +15,6 @@
     "searchPlaceholder": "Nach Name oder Code suchen",
     "noResults": "Keine Sprache passt zu „{{query}}“.",
     "selected": "Ausgewählt",
-    "suggestion": "Dein Browser ist auf {{language}} eingestellt. Oberfläche umstellen?",
-    "suggestionAccept": "{{language}} verwenden",
-    "suggestionDismiss": "Bei Englisch bleiben",
     "coverageNote": "Einzelne Erklärtexte können noch auf Englisch erscheinen, solange die Übersetzung läuft."
   },
   "font": {
@@ -27,12 +22,18 @@
     "description": "Der Buchstabe, den du nachfährst, wird in der gewählten Schrift gezeichnet."
   },
   "dailyTarget": {
-    "title": "Tagesziel",
-    "description": "Wie viele Buchstaben oder Wörter du täglich schaffen willst.",
+    "title": "Buchstaben pro Tag",
+    "description": "Wie viele Hangul-Buchstaben du täglich schaffen willst.",
     "option_one": "{{count, number}}",
     "option_other": "{{count, number}}",
     "optionAria_one": "{{count, number}} Zeichen pro Tag",
     "optionAria_other": "{{count, number}} Zeichen pro Tag"
+  },
+  "wordGoal": {
+    "title": "Wörter pro Tag",
+    "description": "Wie viele Wörter du täglich schaffen willst. Jederzeit änderbar.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} Wörter pro Tag"
   },
   "guides": {
     "title": "Schreibhilfen",

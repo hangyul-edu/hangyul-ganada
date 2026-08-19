@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import type { EvaluationResult, Stroke } from '@hangyul-ganada/handwriting-core';
 import type { HangulCharacter } from '@hangyul-ganada/shared-types';
 
@@ -40,27 +40,37 @@ import styles from './SessionPage.module.css';
  * One letter lesson, as a loop rather than a screen.
  *
  * ```
- * meet it ─▶ hear it ─▶ watch it written ─▶ trace ─▶ practise ─▶ read it ─▶ next
- *                                            full     lighter      ▲
- *                                            guide     guide       │
- *                                              ▲         │         │
- *                                              └─ retry ─┴─────────┘
+ * meet it ─▶ hear it ─▶ watch it written ─▶ write it ─▶ read it ─▶ next
+ *                                             over a       ▲
+ *                                             guide        │
+ *                                               │          │
+ *                                               └─ retry ──┘
  * ```
  *
  * Every letter walks the same path, and the path is the lesson. Each step
  * proves something the one before it did not: watching shows where the pen
- * starts and which way it moves, tracing turns that into a movement of the
- * learner's own hand, practising takes most of the model away, and reading it
- * back among its look-alikes is the thing they actually came for.
+ * starts and which way it moves, writing turns that into a movement of the
+ * learner's own hand, and reading it back among its look-alikes is the thing
+ * they actually came for.
  *
- * ## Both writing steps show the character
+ * ## One writing step, and it shows the character
  *
- * There used to be a third, with an empty box: write it from memory. It is
- * gone. Someone who met their first Korean letter ninety seconds earlier cannot
- * recall a shape they have never once recalled, and asking them to was not a
- * test of learning — it was a wall placed where the lesson should have been.
- * The second step is now the same box with the model much lighter: still enough
- * to write by, light enough that the learner is doing the work.
+ * There used to be three. The last was an empty box — write it from memory —
+ * and it went first: someone who met their first Korean letter ninety seconds
+ * earlier cannot recall a shape they have never once recalled, and asking them
+ * to was not a test of learning but a wall placed where the lesson should have
+ * been.
+ *
+ * Then there were two, the same box twice with a fainter model the second time,
+ * and that has gone too. It was never a second skill. It asked for the
+ * identical movement with less ink on the paper, so the only thing it could
+ * measure was whether the learner would do it twice — and for someone facing
+ * forty letters the answer is a lesson twice as long for the same learning. It
+ * is not replaced by anything: one guided attempt is the step.
+ *
+ * How much guide that one attempt gets is now the whole of what `practice_style`
+ * decides. Guided keeps the full tracing model; focused shows the lighter one,
+ * for a learner who finds tracing slow. Neither ever removes it.
  *
  * ## What each step is worth
  *
@@ -68,25 +78,17 @@ import styles from './SessionPage.module.css';
  * meet             nothing — seeing a letter is not learning it
  * hear             the listening rung
  * watch            the demonstration rung (the animation has to finish)
- * trace            a pass over the full guide
- * practise         a pass over the light guide
+ * write            the writing rung
  * read             the reading pass
  * ```
  *
  * A letter is `learned` when it has all of them. See `domain/mastery.ts`.
  *
- * Focused practice skips the tracing step and starts on the light guide, for a
- * learner who finds tracing slow. It never removes the guide. Reading is
- * skipped for the handful of characters with no plausible look-alikes, because
- * a multiple-choice question with three obviously-wrong answers teaches nothing.
+ * Reading is skipped for the handful of characters with no plausible
+ * look-alikes, because a multiple-choice question with three obviously-wrong
+ * answers teaches nothing.
  */
-type Step = 'trace' | 'practise' | 'read';
-
-/** How much of the reference glyph each writing step leaves on screen. */
-const STEP_GUIDE: Record<Exclude<Step, 'read'>, GuideLevel> = {
-  trace: 'full',
-  practise: 'light',
-};
+type Step = 'write' | 'read';
 
 interface StepState {
   step: Step;
@@ -112,17 +114,47 @@ export function LetterSessionPage() {
   const { locale } = useLocale();
   const { preload } = usePronunciation();
 
+  const [params] = useSearchParams();
+  const restart = params.get('from') === 'start';
+
   const lesson = lessonId ? getLesson(lessonId) : undefined;
   const characters = useMemo(() => (lesson ? getLessonCharacters(lesson) : []), [lesson]);
   const unit = lesson ? CURRICULUM_UNITS.find((u) => u.id === `unit-${lesson.unit}`) : undefined;
 
-  const startsWithTrace = state.settings.practice_style === 'guided';
-  const [index, setIndex] = useState(0);
+  /**
+   * How much of the model stays on the paper for the one writing attempt.
+   *
+   * The entirety of what this setting now controls. It used to decide whether
+   * the learner did the writing step *once or twice*; there is only ever once.
+   */
+  const guide: GuideLevel = state.settings.practice_style === 'guided' ? 'full' : 'light';
+
+  /**
+   * Where a returning learner picks up: the first letter they have not finished.
+   *
+   * Leaving at 5 / 6 and coming back to letter 1 is the app throwing away four
+   * minutes of work and then asking for them again. What is *not* done here is
+   * skipping anything: the resume point is the first unfinished item, so a
+   * learner who left in the middle of letter three restarts letter three rather
+   * than landing on four.
+   *
+   * `?from=start` overrides it, which is the secondary "start from the
+   * beginning" route — see the Letters screen. Read once, as the initial state,
+   * because after the first render the learner's position is theirs and not
+   * the store's: finishing a letter must not move the cursor twice.
+   */
+  const [index, setIndex] = useState(() => {
+    if (restart) return 0;
+    const at = characters.findIndex(
+      (character) => progressFor('character', character.character)?.stage !== 'learned',
+    );
+    return at < 0 ? 0 : at;
+  });
   const [phase, setPhase] = useState<'unit' | 'intro' | 'practice'>(() =>
     unit?.has_intro && unit.lesson_ids[0] === lessonId ? 'unit' : 'intro',
   );
   const [stepState, setStepState] = useState<StepState>({
-    step: startsWithTrace ? 'trace' : 'practise',
+    step: 'write',
     status: 'idle',
     result: null,
   });
@@ -164,10 +196,10 @@ export function LetterSessionPage() {
   }, [current, recordIntroduced]);
 
   const steps = useMemo<Step[]>(() => {
-    const list: Step[] = startsWithTrace ? ['trace', 'practise'] : ['practise'];
+    const list: Step[] = ['write'];
     if (recognitionRequired) list.push('read');
     return list;
-  }, [startsWithTrace, recognitionRequired]);
+  }, [recognitionRequired]);
 
   const advanceCharacter = useCallback(() => {
     setShowDetail(false);
@@ -209,7 +241,10 @@ export function LetterSessionPage() {
         kind: 'character',
         item_key: current.character,
         session_id: sessionId.current,
-        mode: stepState.step === 'practise' ? ('practice' as const) : ('trace' as const),
+        // Which guide was on the paper, recorded honestly. It no longer
+        // decides anything about completion — see `domain/mastery.ts` — but it
+        // is a true fact about the attempt and the Activity screen reads it.
+        mode: guide === 'light' ? ('practice' as const) : ('trace' as const),
         font_id: font.id,
         evaluator_id: 'geometry-v1',
         recognition_required: recognitionRequired,
@@ -222,13 +257,11 @@ export function LetterSessionPage() {
           reason: evaluation.reason,
         },
       });
-      // The lesson's own counter: how many letters this sitting carried all
-      // the way to the light-guide pass, which is the last writing rung.
-      if (evaluation.passed && stepState.step === 'practise') {
-        setCompleted((prev) => new Set(prev).add(current.character));
-      }
+      // The lesson's own counter: how many of this sitting's letters were
+      // written correctly.
+      if (evaluation.passed) setCompleted((prev) => new Set(prev).add(current.character));
     },
-    [current, recordAttempt, font.id, stepState.step, recognitionRequired],
+    [current, recordAttempt, font.id, guide, recognitionRequired],
   );
 
   /** Fix the attempt that is already on the canvas. */
@@ -274,7 +307,7 @@ export function LetterSessionPage() {
           setStepState({ step: steps[0]!, status: 'idle', result: null });
         }}
       >
-        {t('learning:session.startTrace')}
+        {t('learning:session.startWriting')}
       </Button>
     ) : null;
 
@@ -336,7 +369,12 @@ export function LetterSessionPage() {
                 {t(`learning:session.prompt.${stepState.step}`)}
               </p>
               <div className={styles.promptChar}>
-                <span className={styles.promptGlyph} style={{ fontFamily: font.font_family }} lang="ko">
+                <span
+                  className={styles.promptGlyph}
+                  style={{ fontFamily: font.font_family }}
+                  lang="ko"
+                  data-testid="prompt-glyph"
+                >
                   {current.character}
                 </span>
                 <span className={styles.promptRoman}>{current.romanization}</span>
@@ -355,7 +393,7 @@ export function LetterSessionPage() {
               fontFamily={font.font_family}
               fontWeight={font.weight}
               grading={gradingFor(font)}
-              guide={STEP_GUIDE[stepState.step as Exclude<Step, 'read'>]}
+              guide={guide}
               showGrid={state.settings.show_grid}
               showCenterCrosshair={state.settings.show_center_crosshair}
               status={stepState.status}
@@ -495,7 +533,6 @@ function nextLabel(
   lastCharacter: boolean,
 ): string {
   const next = steps[steps.indexOf(current) + 1];
-  if (next === 'practise') return t('learning:session.nowPractise');
   if (next === 'read') return t('learning:session.nowRead');
   return lastCharacter ? t('learning:session.finish') : t('learning:session.next');
 }

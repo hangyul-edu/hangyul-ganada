@@ -41,8 +41,11 @@ import { isSyllable } from '../apps/web/src/data/jamo.ts';
 import {
   STROKE_ASSETS,
   STROKE_ASSET_FACE,
+  drawLength,
   drawPoints,
   hasStrokeAsset,
+  outlinePoints,
+  strokeReveal,
 } from '../apps/web/src/data/strokeAssets.ts';
 import { layoutMarkers } from '../apps/web/src/ui/strokeMarkers.ts';
 
@@ -52,6 +55,18 @@ const CHECK = process.argv.includes('--check');
 
 /** Frames rendered per stroke. The middle three are what nobody was looking at. */
 const STEPS = [0, 0.25, 0.5, 0.75, 1];
+
+/**
+ * Shorter than this many pen-widths and a stroke is one mark, not a movement.
+ *
+ * ㅎ's dot is half a pen long and ㅊ's tick is two; neither is something a hand
+ * paces out, and asking "is a quarter of it black a quarter of the way along"
+ * of a single dab is asking a question it has no way to answer. Everything
+ * longer is a stroke a learner watches being drawn, and is held to the pacing
+ * bound below.
+ */
+const PACEABLE_PENS = 2.5;
+
 
 const failures = [];
 const fail = (character, what) => failures.push(`${character}: ${what}`);
@@ -156,6 +171,52 @@ for (const character of shipping) {
       }
     }
 
+    /*
+     * …and no frame before the last may show ink the pen has not reached yet.
+     *
+     * This is the check the wedge got past. The reveal brush has to be wide —
+     * on ㅂ it is 25 units against a pen of 9, because it must cover the bumps
+     * where one stroke meets another — and with a **round** cap that width
+     * became a semicircle twelve units *ahead* of the pen. Every junction bump
+     * inside that radius turned black early: the triangle at the corner of ㄱ,
+     * the nub on the stem of ㅂ, the spike off the top bar of ㄹ.
+     *
+     * Nothing in this file objected, because every check here was about the
+     * finished stroke. So this one is about the unfinished ones: at each frame,
+     * how far along the stroke is the furthest black pixel, compared with how
+     * far the pen has actually travelled?
+     */
+    /*
+     * A stroke may only be as black as the pen has travelled.
+     *
+     * The bound is 0.2, and it is set where it is because of what it has to
+     * catch. The round-capped brush this replaced blacked 49% of ㅂ's stem with
+     * the pen a quarter of the way down it — a deviation of 0.24 — and the
+     * brush that reached across ㅎ's ring managed the same. The ribbon that
+     * ships stays within 0.16 on every stroke long enough to have a pace, so
+     * the bound sits between the two with room on both sides.
+     *
+     * Strokes shorter than `PACEABLE_PENS` are exempt — the dot on ㅎ, the tick
+     * on ㅊ, the short branch of ㅐ. Each is a couple of pen-widths long, which
+     * is one mark of the pen, and "a quarter of it black a quarter of the way
+     * along" is not a thing a dab can do.
+     */
+    if (points.length >= 2 && drawLength(stroke.draw) >= asset.pen * PACEABLE_PENS) {
+      for (const fraction of STEPS) {
+        if (fraction <= 0) continue;
+        const share = revealedShare(stroke, fraction);
+        if (Math.abs(share - fraction) > 0.2) {
+          fail(
+            character,
+            `${where} is ${(share * 100).toFixed(0)}% black when the pen is ` +
+              `${(fraction * 100).toFixed(0)}% along — ink is arriving ` +
+              `${share > fraction ? 'ahead of' : 'behind'} the pen`,
+          );
+          break;
+        }
+      }
+    }
+
     // The marker's anchor is the pen landing. If it is not on the stroke's own
     // first point, the demonstration is telling the learner to start elsewhere.
     const [sx, sy] = stroke.start;
@@ -194,6 +255,68 @@ for (const character of shipping) {
       }
     }
   }
+}
+
+/**
+ * How much of a stroke is uncovered at a given progress, as a share of it.
+ *
+ * ## Why this rather than "how far ahead of the pen is the furthest ink"
+ *
+ * That was the first version, and on a closed stroke it cannot be made to mean
+ * anything. ㅇ's centreline returns to where it began, so ink beside the start
+ * of the ring is equally well described as being at the very beginning or the
+ * very end of the stroke, and no tie-break makes that ambiguity go away — it is
+ * a property of the shape, not of the measurement. Every ㅇ in the curriculum
+ * reported half a lap of overshoot while rendering perfectly.
+ *
+ * This asks a question that has one answer: **is more of the stroke black than
+ * the pen has travelled over?** Sampled on the outline, which is dense, cheap
+ * and where the artefacts live.
+ *
+ * It catches every artefact this pass was opened for. A round cap that put a
+ * sixth of the glyph ahead of the pen turned junction bumps black early, so the
+ * share ran ahead. A brush wide enough to reach across ㅎ's ring blacked the far
+ * side at once, so the share ran far ahead. A ribbon that collapsed to a
+ * hairline uncovered a thread instead of the stroke, so the share fell behind.
+ */
+function revealedShare(stroke, fraction) {
+  const outline = outlinePoints(stroke.shape, 2);
+  if (outline.length === 0) return fraction;
+  const revealed = polygonOf(strokeReveal(stroke, fraction).path);
+  if (revealed.length === 0) return 0;
+
+  let inked = 0;
+  for (const point of outline) if (inside(point, revealed)) inked += 1;
+  return inked / outline.length;
+}
+
+/** The quads of a reveal path, each a closed `M …L…Z` subpath. */
+function polygonOf(path) {
+  return path
+    .split('M')
+    .filter(Boolean)
+    .map((piece) => {
+      const values = numbersIn(piece);
+      const points = [];
+      for (let i = 0; i + 1 < values.length; i += 2) points.push({ x: values[i], y: values[i + 1] });
+      return points;
+    })
+    .filter((points) => points.length >= 3);
+}
+
+/** Inside any of the quads. Ray casting; they are convex and closed. */
+function inside(point, quads) {
+  return quads.some((polygon) => {
+    let within = false;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i, i += 1) {
+      const a = polygon[i];
+      const b = polygon[j];
+      if (a.y > point.y === b.y > point.y) continue;
+      const x = ((b.x - a.x) * (point.y - a.y)) / (b.y - a.y) + a.x;
+      if (point.x < x) within = !within;
+    }
+    return within;
+  });
 }
 
 /** The furthest any point of a filled outline lies from a centreline. */
@@ -242,7 +365,13 @@ function frame(asset, upTo, fraction, size) {
     ${shown.map((s) => `<path d="${s.shape}" fill="#111" fill-rule="evenodd"/>`).join('')}
     ${
       active
-        ? `<mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><path d="M${active.draw}" fill="none" stroke="#fff" stroke-width="${active.reveal}" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${1 - fraction}"/></mask><path d="${active.shape}" fill="#111" fill-rule="evenodd" mask="url(#${id})"/>`
+        ? (() => {
+            // The same brush the app draws, from the same function. A gallery
+            // rendered with its own copy of this markup is a gallery that can
+            // pass while the product is broken, which is what happened.
+            const brush = strokeReveal(active, fraction);
+            return `<mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><path d="${brush.path}" fill="#fff"/></mask><path d="${active.shape}" fill="#111" fill-rule="evenodd" mask="url(#${id})"/>`;
+          })()
         : ''
     }
   </svg>`;

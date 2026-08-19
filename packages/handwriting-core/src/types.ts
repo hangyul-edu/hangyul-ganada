@@ -55,7 +55,13 @@ export type FailureReason =
   /** Parts of the glyph were never written. */
   | 'incomplete'
   /** Both error terms contributed roughly equally. */
-  | 'mixed';
+  | 'mixed'
+  /**
+   * The right ink, laid down the wrong way: a zigzag, a scrubbed-over shape, a
+   * looping detour. Only reachable when the ink comparison was satisfied — see
+   * `path.ts` for why that is possible and why it needs its own verdict.
+   */
+  | 'scribble';
 
 export interface EvaluationDiagnostics {
   /** Ink pixel count in the learner's mask. */
@@ -80,6 +86,11 @@ export interface EvaluationDiagnostics {
   largestBlotRatio: number;
   /** The ungated mean coverage penalty, before any structural floor. */
   meanMissingRatio: number;
+  /**
+   * How the pen moved. Absent when the caller evaluated masks directly, which
+   * has no path to measure.
+   */
+  path?: PathMetrics;
 }
 
 /** Tunable evaluation parameters. See `config.ts` for the defaults and rationale. */
@@ -122,6 +133,33 @@ export interface EvaluationConfig {
   missingWeight: number;
   /** Below this fraction of the reference ink, the attempt counts as empty. */
   minInkRatio: number;
+  /**
+   * Fail above this much pen travel, as a multiple of the reference glyph's own
+   * skeleton length. Catches what an ink comparison structurally cannot.
+   */
+  maxPathLengthRatio: number;
+  /** Fail above this many pen reversals per unit of reference skeleton length. */
+  maxReversalDensity: number;
   /** Mask edge length used for the comparison. */
   resolution: number;
+}
+
+/**
+ * How the pen moved, measured against how long the letter is.
+ *
+ * The mask comparison sees ink and cannot see the path that laid it down; these
+ * are the numbers that can. See `path.ts` for what each one catches and why one
+ * of them would not be enough.
+ */
+export interface PathMetrics {
+  /** Total pen travel, in box units, after noise resampling. */
+  pathLength: number;
+  /** The reference glyph's own skeleton length, in box units. The yardstick. */
+  referenceSkeletonLength: number;
+  /** `pathLength / referenceSkeletonLength`. ~1 is an honest single pass. */
+  lengthRatio: number;
+  /** How many times the pen turned back on itself by more than 120°. */
+  reversals: number;
+  /** `reversals / referenceSkeletonLength`. Reversals per letter-length. */
+  reversalDensity: number;
 }

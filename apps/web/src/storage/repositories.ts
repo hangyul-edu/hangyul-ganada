@@ -12,6 +12,7 @@ import {
   type Skill,
   memoryKey,
 } from '../domain/memory';
+import { isRecovered, type Mistake, type MistakeMap } from '../domain/mistakes';
 import type { PersistenceDriver, StoreName } from './driver';
 import {
   META_KEY,
@@ -47,6 +48,24 @@ import {
  * a synchronous read of a tiny scalar. IndexedDB remains the source of truth;
  * the mirror is a cache that is rewritten on every save.
  */
+/** Whether a stored vocabulary plan is one this build knows how to run. */
+function isReadablePlan(plan: unknown): plan is StoredSettings['daily_plan'] {
+  if (plan === null || plan === undefined) return false;
+  const row = plan as Partial<NonNullable<StoredSettings['daily_plan']>>;
+  return (
+    typeof row.date === 'string' &&
+    typeof row.goal === 'number' &&
+    Array.isArray(row.words) &&
+    Array.isArray(row.completed) &&
+    row.words.every(
+      (word) =>
+        typeof word?.wordId === 'string' &&
+        Array.isArray(word.steps) &&
+        word.steps.every((step) => typeof step === 'string'),
+    )
+  );
+}
+
 export class SettingsRepository {
   static readonly MIRROR_KEY = 'hangyul_ganada:prefs';
 
@@ -62,6 +81,11 @@ export class SettingsRepository {
       // Merge rather than replace, so a preference added in a later release
       // gets its default instead of becoming undefined for existing learners.
       active_days: Array.isArray(stored.active_days) ? stored.active_days : [],
+      // A plan written by a build with different steps is not readable by this
+      // one, and a half-understood plan would produce a session that skips
+      // questions. `planIsCurrent` throws it away tomorrow anyway; this throws
+      // away anything that is not the shape we expect, today.
+      daily_plan: isReadablePlan(stored.daily_plan) ? stored.daily_plan : null,
     };
   }
 
@@ -371,6 +395,88 @@ export function normaliseMemory(candidate: unknown): ItemMemory | null {
           )
         : {},
     rescued_at: typeof row.rescued_at === 'string' ? row.rescued_at : null,
+  };
+}
+
+// --- Mistakes ---------------------------------------------------------------
+
+export class MistakeRepository {
+  /**
+   * How many mistakes are kept.
+   *
+   * One row per *item*, not per wrong answer, so this is a bound on how many
+   * distinct things a learner has ever got wrong — which for a curriculum of
+   * seventy characters and ten thousand words is generously above anything real.
+   * It exists so a corrupted or hostile import cannot grow the store without
+   * limit, not because a learner will reach it.
+   *
+   * When it is reached, the *recovered* rows go first: a mistake that has been
+   * answered right twice has done its job, and the ones still going wrong are
+   * the ones worth keeping.
+   */
+  static readonly MAX_MISTAKES = 5_000;
+
+  constructor(private readonly driver: PersistenceDriver) {}
+
+  async loadAll(): Promise<MistakeMap> {
+    const rows = await this.driver.getAll<unknown>('mistakes');
+    const out: MistakeMap = {};
+    for (const candidate of rows) {
+      const row = normaliseMistake(candidate);
+      if (row) out[row.id] = row;
+    }
+    return out;
+  }
+
+  async put(row: Mistake): Promise<void> {
+    await this.driver.put('mistakes', row.id, row);
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.driver.remove('mistakes', id);
+  }
+
+  async prune(): Promise<void> {
+    const all = (await this.driver.getAll<unknown>('mistakes'))
+      .map(normaliseMistake)
+      .filter((row): row is Mistake => row !== null);
+    const excess = all.length - MistakeRepository.MAX_MISTAKES;
+    if (excess <= 0) return;
+
+    // Recovered first, oldest first within that — see `MAX_MISTAKES`.
+    const ordered = [...all].sort((a, b) => {
+      const recovered = Number(isRecovered(a)) - Number(isRecovered(b));
+      if (recovered !== 0) return -recovered;
+      return a.lastAt.localeCompare(b.lastAt);
+    });
+    for (const row of ordered.slice(0, excess)) await this.driver.remove('mistakes', row.id);
+  }
+
+  async clear(): Promise<void> {
+    await this.driver.clearStore('mistakes');
+  }
+}
+
+/** Repairs what can be repaired, rejects what cannot. */
+export function normaliseMistake(candidate: unknown): Mistake | null {
+  if (!candidate || typeof candidate !== 'object') return null;
+  const row = candidate as Partial<Mistake>;
+  if (typeof row.itemKey !== 'string' || !row.itemKey) return null;
+  if (typeof row.answer !== 'string' || !row.answer) return null;
+  const kind: Mistake['kind'] = row.kind === 'word' ? 'word' : 'character';
+  const at = typeof row.lastAt === 'string' ? row.lastAt : new Date(0).toISOString();
+  return {
+    id: typeof row.id === 'string' && row.id ? row.id : `${kind}:${row.itemKey}`,
+    kind,
+    itemKey: row.itemKey,
+    mode: (row.mode ?? 'read') as Mistake['mode'],
+    skill: (row.skill ?? 'meaning_recognition') as Mistake['skill'],
+    chose: typeof row.chose === 'string' ? row.chose : null,
+    answer: row.answer,
+    firstAt: typeof row.firstAt === 'string' ? row.firstAt : at,
+    lastAt: at,
+    wrongCount: Math.max(1, finite(row.wrongCount, 1)),
+    correctSince: Math.max(0, finite(row.correctSince, 0)),
   };
 }
 

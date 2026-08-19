@@ -3,8 +3,8 @@
     "aria": "Voir votre historique d’apprentissage"
   },
   "celebrate": "Objectif du jour atteint. Joli travail.",
-  "dailyGoal": "Objectif du jour",
-  "dailyGoalAria": "Objectif du jour : {{done, number}} sur {{total, number}}",
+  "dailyGoal": "Lettres du jour",
+  "dailyGoalAria": "Lettres du jour : {{done, number}} sur {{total, number}}",
   "cta": {
     "start": "Commencer",
     "continue": "Continuer l’apprentissage"
@@ -13,7 +13,7 @@
     "letters": "Lettres",
     "words": "Mots",
     "lettersCaption": "sur les 40 lettres du hangul",
-    "wordsCaption": "mots appris"
+    "wordsCaption": "mots du jour"
   },
   "review": {
     "title": "Révision",
@@ -22,20 +22,11 @@
     "empty": "Rien à revoir pour l’instant",
     "count_many": "{{count, number}} à revoir"
   },
-  "upNext": {
-    "title": "Des mots pour vous"
-  },
   "practice": {
     "title": "La séance du jour",
     "reviews_one": "{{count, number}} révision prête",
     "reviews_other": "{{count, number}} révisions prêtes",
-    "letters_one": "{{count, number}} lettre à finir",
-    "letters_other": "{{count, number}} lettres à finir",
-    "words_one": "{{count, number}} mot utile",
-    "words_other": "{{count, number}} mots utiles",
     "cta": "Commencer la séance",
-    "reviews_many": "{{count, number}} révisions prêtes",
-    "letters_many": "{{count, number}} lettres à finir",
-    "words_many": "{{count, number}} mots utiles"
+    "reviews_many": "{{count, number}} révisions prêtes"
   }
 }

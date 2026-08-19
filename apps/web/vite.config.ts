@@ -119,6 +119,23 @@ export default defineConfig({
            * stroke. Their own chunk is fetched with the lesson route instead.
            */
           if (id.includes('src/data/generated/strokeAssets')) return 'stroke-assets';
+          /*
+           * The word corpus gets a chunk of its own, apart from the alphabet.
+           *
+           * They were one `curriculum-data` chunk, and that made the single
+           * largest thing in the build unmeasurable: forty letters' worth of
+           * curriculum and two and a half thousand words' worth of vocabulary
+           * summed into one number that nobody could attribute. The corpus is
+           * the half that grows — it is heading for ten thousand entries — and
+           * `check-bundle-budget.mjs` projects it forward to that target and
+           * fails the build if the projection does not fit. It can only do that
+           * if it can see the corpus by itself.
+           *
+           * Splitting it is also the seam the eventual lazy load needs: the
+           * alphabet is genuinely required before the home screen paints, and
+           * the corpus is not.
+           */
+          if (id.includes('src/data/generated/vocabulary')) return 'word-corpus';
           if (id.includes('src/data/generated')) return 'curriculum-data';
           if (id.includes('node_modules/react') || id.includes('node_modules/scheduler')) {
             return 'react';

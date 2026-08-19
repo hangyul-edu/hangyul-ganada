@@ -3,20 +3,20 @@
     "title": "文字を学ぶ",
     "complete": "学習ずみ",
     "alphabetTitle": "ハングルの文字",
-    "alphabetCaption": "文字を覚えました"
+    "alphabetCaption": "文字を覚えました",
+    "resume": "続きから"
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "この文字をとばす",
     "next": "つぎの文字",
     "finish": "おわり",
-    "startTrace": "なぞってみる",
+    "startWriting": "書いてみる",
     "prompt": {
-      "trace": "グレーの文字を指でなぞってみましょう。",
-      "practise": "ガイドがうすくなりました。自分で書いてみましょう。困ったときはそのまま見てくださいね。"
+      "write": "ガイドをなぞって指で書いてみましょう。"
     },
-    "nowPractise": "つぎ：うすいガイドで",
-    "nowRead": "読んでみよう"
+    "nowRead": "読んでみよう",
+    "continue": "次へ"
   },
   "complete": {
     "title": "よくできました！",
@@ -60,8 +60,13 @@
       "context": "ここに入る単語は？",
       "write": "この単語を書きましょう",
       "writeLetter": "聞こえたとおりに書きましょう",
-      "distinguish": "この音はどちらですか？"
-    }
+      "distinguish": "この音はどちらですか？",
+      "produce": "どれでしょう？",
+      "listenMeaning": "どんな意味でしょう？"
+    },
+    "nothingDue": "いまは復習するものがありません。",
+    "modesEmpty": "今日はこの方法で見るものがありません。",
+    "answerIs": "{{word}} は「{{meaning}}」です。"
   },
   "units": {
     "badge": "ユニット {{index, number}}",
@@ -141,8 +146,7 @@
   },
   "steps": {
     "label": "この文字の進み方",
-    "trace": "なぞる",
-    "practise": "練習",
+    "write": "書く",
     "read": "読む"
   },
   "recognition": {
@@ -152,13 +156,8 @@
     "correctDetail": "そう、{{character}} です。",
     "wrongHeadline": "それではありません。",
     "wrongDetail": "{{sound}} と読むのは {{character}} です。",
-    "hearAgain": "もう一度聞く"
-  },
-  "reading": {
-    "question": "この単語の意味は？",
-    "optionsAria": "四つの意味から選ぶ",
-    "wrongHeadline": "もう一度みてみよう",
-    "answer": "{{word}} は「{{meaning}}」という意味です。"
+    "hearAgain": "もう一度聞く",
+    "tryAgain": "もう一度"
   },
   "sounds": {
     "title": "音がぶつかるとき",
@@ -175,5 +174,23 @@
       "palatal": "ㄷ・ㅌ が 이 の前で",
       "liaison": "パッチムが移る"
     }
+  },
+  "mistakes": {
+    "title": "まちがえた問題",
+    "review_other": "復習 · {{count}}問",
+    "filterLabel": "表示",
+    "filter": {
+      "all": "すべて",
+      "character": "文字",
+      "word": "単語"
+    },
+    "youPut": "あなたの答え",
+    "answer": "正解",
+    "times_other": "{{count}}回まちがえました",
+    "clear": "できるようになった",
+    "noneOfKind": "いまはありません。",
+    "emptyTitle": "まだまちがいはありません",
+    "emptyBody": "まちがえるとここに集まって、あとで直せます。",
+    "emptyCta": "復習へ"
   }
 }

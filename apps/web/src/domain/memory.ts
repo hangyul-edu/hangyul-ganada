@@ -43,6 +43,22 @@ import type { ItemProgress } from '@hangyul-ganada/shared-types';
  * *test*. A skill with no exercise behind it would be a field that only ever
  * held its initial value while looking like evidence.
  */
+/**
+ * What can be remembered about a word.
+ *
+ * **`guided_writing` is deliberately not here**, and its absence is a product
+ * rule rather than an oversight. Vocabulary in this app is never handwritten:
+ * not in a lesson, not in review, not in saved words, not in the daily session.
+ * A learner meets a word, hears it, chooses its meaning, and later recognises
+ * it — and every one of those is a thing the app can test in a couple of taps
+ * while they are lying down.
+ *
+ * Writing 엄 and then 마 is not how anybody learns what 엄마 means. It is the
+ * letter curriculum's exercise, applied to a word, and it cost the learner
+ * thirty seconds of finger-drawing per word to measure something the letter
+ * lessons had already measured. Removing the skill here removes it everywhere,
+ * because the scheduler can only ask about skills that exist.
+ */
 export const WORD_SKILLS = [
   /** Korean shown, meaning chosen. */
   'meaning_recognition',
@@ -50,8 +66,6 @@ export const WORD_SKILLS = [
   'reading_recognition',
   /** Audio played, word chosen. */
   'listening_recognition',
-  /** Written over the light guide, graded by the evaluator. */
-  'guided_writing',
   /** The word met inside its example sentence. */
   'sentence_comprehension',
 ] as const;
@@ -514,6 +528,13 @@ export function needsIntervention(memory: ItemMemory | undefined): Skill | null 
  *   were never tested; they are simply absent, which is exactly what "we have
  *   never seen you do this" should look like, and the scheduler will offer them
  *   first.
+ *
+ *   For a **word** that means inheriting nothing at all. Words have no writing
+ *   skill any more — see `WORD_SKILLS` — so the one thing this migration could
+ *   have carried across is the one thing that is no longer asked. Writing the
+ *   row anyway would leave a schedule nothing reads, and moving it onto
+ *   `meaning_recognition` instead would be claiming the learner had
+ *   demonstrated a meaning when what they actually did was draw a syllable.
  * * **Stability is derived from the due date the learner already had**, not
  *   from a fresh start. Someone three weeks into a twenty-one-day interval
  *   keeps their twenty-one days. Resetting everyone to one day on update would
@@ -539,20 +560,25 @@ export function migrateMemory(row: ItemProgress, now: Date): ItemMemory | null {
     MAX_STABILITY_DAYS,
   );
 
-  memory.skills.guided_writing = {
-    skill: 'guided_writing',
-    stability_days: stability,
-    // From the failure history that was actually recorded. A learner who never
-    // missed this starts easy; one who missed it four times does not.
-    difficulty: clamp(0.2 + row.fails * 0.12, 0.05, 0.95),
-    last_reviewed_at: last,
-    next_review_at: row.review_due_at ?? addDays(new Date(last), stability),
-    streak: row.needs_review ? 0 : Math.min(passes, 5),
-    lapses: row.fails,
-    recent_score: row.last_score,
-    last_response_ms: null,
-    hints: 0,
-  };
+  // Characters only. See the note above on what a word inherits from a writing
+  // history, and why the answer is nothing — the recognition history below is a
+  // different fact and is carried for both kinds.
+  if (row.kind === 'character') {
+    memory.skills.guided_writing = {
+      skill: 'guided_writing',
+      stability_days: stability,
+      // From the failure history that was actually recorded. A learner who never
+      // missed this starts easy; one who missed it four times does not.
+      difficulty: clamp(0.2 + row.fails * 0.12, 0.05, 0.95),
+      last_reviewed_at: last,
+      next_review_at: row.review_due_at ?? addDays(new Date(last), stability),
+      streak: row.needs_review ? 0 : Math.min(passes, 5),
+      lapses: row.fails,
+      recent_score: row.last_score,
+      last_response_ms: null,
+      hints: 0,
+    };
+  }
 
   // A word that was read correctly in a lesson demonstrated exactly one thing,
   // and the old model did record it: `recognition_passes`.

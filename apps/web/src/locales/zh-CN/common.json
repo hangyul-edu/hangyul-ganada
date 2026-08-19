@@ -7,7 +7,10 @@
     "confirm": "确定",
     "close": "关闭",
     "back": "返回",
-    "goHome": "回到首页"
+    "goHome": "回到首页",
+    "done": "完成",
+    "save": "保存",
+    "saved": "已保存"
   },
   "a11y": {
     "skipToContent": "跳到主要内容",

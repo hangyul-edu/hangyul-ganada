@@ -83,7 +83,17 @@ describe('handwriting robustness', () => {
     expect(attempts).toBeGreaterThan(2500);
   });
 
-  it('never accepts a scribble, a dot, a box or a bare line', () => {
+  it('never accepts a scribble, a dot, a box, a bare line or a scrawl', () => {
+    /*
+     * The scrawls are the load-bearing half of this assertion.
+     *
+     * A dot and a box are rejected on placement — they are not where the letter
+     * is, and an ink comparison sees that. A scrawl follows the letter exactly
+     * and puts every pixel inside the tolerance band a wobbly hand needs, so
+     * graded on ink alone all three score a mismatch of **0.000** and pass. Only
+     * the path gate can fail them, which means this test is also the regression
+     * test for anyone tempted to widen the tolerance band and see what happens.
+     */
     for (const result of RESULTS) {
       expect(
         result.degenerateAccepted,
@@ -104,15 +114,20 @@ describe('handwriting robustness', () => {
   });
 
   it('keeps false acceptance under 2% on every face', () => {
-    // Measured at 1.17% overall as this ships, worst face 2.07%. The bound is
-    // above the worst face rather than at it, so an unrelated change that moves
-    // a single attempt does not fail the build — but a doubling does.
+    // Measured at 0.78% overall as this ships, worst face 1.38% — down from
+    // 1.17% / 2.07% when the corpus contained no scrawls and the grader had no
+    // path gate to fail them with. The bound is above the worst face rather
+    // than at it, so an unrelated change that moves a single attempt does not
+    // fail the build — but a doubling does.
     for (const result of RESULTS) {
       expect(result.far, `${result.font} false acceptance`).toBeLessThan(0.025);
     }
   });
 
   it('keeps false rejection near zero', () => {
+    // 0.21% overall as this ships, worst face 1.04%. It was 1.42% before the
+    // unsteady-hand fixture was given a physically-shaped tremor instead of
+    // white noise at the sample rate — see `wobbled` in `robustness.ts`.
     const genuine = RESULTS.reduce((n, r) => n + r.genuine, 0);
     const rejected = RESULTS.reduce((n, r) => n + r.genuineRejected.length, 0);
     expect(rejected / genuine).toBeLessThanOrEqual(0.02);

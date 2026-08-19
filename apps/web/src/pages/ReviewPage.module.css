@@ -219,7 +219,13 @@
 }
 
 .mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   padding: var(--hg-space-3) var(--hg-space-2);
+  min-height: 64px;
   border: 1px solid var(--hg-border);
   border-radius: var(--hg-radius-md);
   background: var(--hg-surface);
@@ -228,4 +234,80 @@
   font-weight: var(--hg-weight-medium);
   text-align: center;
   text-decoration: none;
+}
+
+/*
+ * How many exercises are behind this button.
+ *
+ * On its own line, because the two ran together as "Read2" when the button was
+ * a single flex row — and a count that reads as part of the word is worse than
+ * no count. It is the resolved plan's size, so pressing the button opens
+ * exactly this many questions.
+ */
+.modeCount {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary);
+}
+
+/*
+ * A mode with nothing behind it today.
+ *
+ * Visible and visibly unavailable, rather than hidden. A button that vanishes
+ * on the days it is empty is a button whose absence the learner has to
+ * interpret; one that is plainly greyed says "not today" and is still where it
+ * was yesterday. What it must never be is *pressable into an empty session*,
+ * which is what it was when availability was decided after Start.
+ */
+.mode:disabled {
+  opacity: 0.45;
+  background: var(--hg-surface-warm);
+  cursor: default;
+}
+
+.mode:disabled .modeCount {
+  color: var(--hg-text-tertiary);
+}
+
+.modeNote {
+  margin-top: var(--hg-space-3);
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+/* Saved words, as a row of its own rather than a third scheduler count. */
+/*
+ * The learner's own two lists, side by side.
+ *
+ * Two, so they read as a pair of things that belong to the learner rather than
+ * as two more scheduler figures. On a narrow phone they stack.
+ */
+.owned {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--hg-space-2);
+}
+
+.savedRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+  padding: var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  min-height: 56px;
+}
+
+.savedLabel {
+  flex: 1;
+  text-align: start;
+  font-weight: var(--hg-weight-medium);
+}
+
+.savedCount {
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary);
 }

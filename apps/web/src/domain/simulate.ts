@@ -342,9 +342,27 @@ function run(options: SimulationOptions, scheduler: string): SimulationResult {
       const id = memoryKey(item.kind, item.key);
       if (!progress[id] && (introducedOn.get(id) ?? 0) <= day) {
         addItem(item);
-        // Learning it in a lesson *is* an exposure: the learner heard it, wrote
-        // it and read it. Both schedulers inherit the same starting memory.
-        for (const skill of item.kind === 'word' ? WORD_SKILLS : CHARACTER_SKILLS) {
+        /*
+         * Learning it in a lesson *is* an exposure: the learner heard it, wrote
+         * it and read it. Each arm inherits the starting memory that its own
+         * world would have produced.
+         *
+         * The fixed arm gets `guided_writing` for words as well, and that is
+         * not a thumb on the scale — it is the opposite. It models the *old*
+         * product, in which a word was learned by writing its syllables, and it
+         * is the only skill that arm ever exercises. Without it the baseline
+         * would be asked, every day, to review a skill its simulated learner
+         * had never been taught, fail, and accumulate lapses that no real
+         * learner of that product would have had. The comparison is between two
+         * schedulers, so each is measured on a learner it could have produced.
+         */
+        const taught: Skill[] =
+          item.kind === 'word'
+            ? scheduler === 'adaptive'
+              ? [...WORD_SKILLS]
+              : [...WORD_SKILLS, 'guided_writing']
+            : [...CHARACTER_SKILLS];
+        for (const skill of taught) {
           learner.study(item.key, skill, day, true);
         }
       }

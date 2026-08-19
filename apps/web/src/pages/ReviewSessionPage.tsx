@@ -1,12 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { EvaluationResult } from '@hangyul-ganada/handwriting-core';
 
 import { getFont } from '../data/fonts';
 import { wordCopy } from '../data/wordCopy';
 import { getWord } from '../data/vocabulary';
-import { buildSession, insertRescue, sessionOutcome, type ExerciseMode } from '../domain/review';
+import type { PracticePlan } from '../domain/plan';
+import { insertRescue, sessionOutcome, type ExerciseMode } from '../domain/review';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { buildExercise } from '../features/review/exercises';
 import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
@@ -32,6 +33,18 @@ import styles from './SessionPage.module.css';
 /**
  * A review sitting.
  *
+ * ## The queue is *received*, not built
+ *
+ * The Review screen resolves a plan and hands it over through the router's
+ * state. This screen runs it. That is the whole of the fix for a screen that
+ * promised eight questions and opened on "not found": there is no second
+ * computation to disagree with the first.
+ *
+ * A plan is resolved here only when one did not arrive — a deep link, a
+ * refresh, a shared URL. Every item in a plan has already been proved to
+ * produce a question, so the render below has no "and if this one cannot be
+ * asked" branch to fall down.
+ *
  * ## The queue is built once and then edited
  *
  * Built once, because recomputing it as the learner works means passing an item
@@ -56,12 +69,16 @@ import styles from './SessionPage.module.css';
 export function ReviewSessionPage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  const { state, recordReview, recordHeard, startSession, completeSession } = useLearner();
+  const { state, practicePlan, recordReview, recordHeard, startSession, completeSession } =
+    useLearner();
+  const location = useLocation();
   const { t } = useTranslation(['learning', 'handwriting', 'common', 'vocabulary']);
   const { locale } = useLocale();
 
   const mode = params.get('mode') as ExerciseMode | null;
-  const savedOnly = params.get('set') === 'saved';
+  const set = params.get('set');
+  const savedOnly = set === 'saved';
+  const mistakesOnly = set === 'mistakes';
 
   const font = getFont(state.settings.selected_font_id);
   const meaningOf = useCallback(
@@ -72,16 +89,29 @@ export function ReviewSessionPage() {
     [locale],
   );
 
-  // Frozen on mount. See the note above.
-  const initial = useRef<ReturnType<typeof buildSession> | null>(null);
+  /**
+   * The plan, taken from the navigation that opened this screen.
+   *
+   * Frozen on mount, for the reason in the note above, and *received* rather
+   * than rebuilt: the count on the Review screen and the questions here are the
+   * same object. Falling back to a fresh resolution covers the routes that
+   * arrive without one, which is the only case where two computations exist at
+   * all — and there is only ever one of them per visit.
+   */
+  const initial = useRef<PracticePlan | null>(null);
   if (initial.current === null) {
-    initial.current = buildSession(state.progress, state.memory, new Date(), {
-      ...(mode ? { mode } : {}),
-      ...(savedOnly ? { only: new Set(state.settings.saved_items) } : {}),
-    });
+    const handed = (location.state as { plan?: PracticePlan } | null)?.plan;
+    initial.current =
+      handed && Array.isArray(handed.items)
+        ? handed
+        : practicePlan({
+            ...(mode ? { mode } : {}),
+            ...(savedOnly ? { savedOnly } : {}),
+            ...(mistakesOnly ? { mistakesOnly } : {}),
+          });
   }
 
-  const [queue, setQueue] = useState(initial.current);
+  const [queue, setQueue] = useState(initial.current.items);
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<
     Array<{ candidate: (typeof queue)[number]; passed: boolean; hintUsed: boolean; recovery: boolean }>
@@ -172,7 +202,49 @@ export function ReviewSessionPage() {
     [record],
   );
 
-  if (queue.length === 0 || !candidate || !exercise) {
+  /*
+   * Nothing to do — said here, rather than as "not found".
+   *
+   * Reachable now only by opening this route directly on a day with nothing
+   * due: the Review screen does not draw a button that leads here when the plan
+   * it resolved is empty. It used to be reachable on *every* path, because
+   * availability was recomputed after Start and could disagree with the number
+   * that had just been shown.
+   */
+  if (queue.length === 0) {
+    return (
+      <FocusScreen
+        resetKey="review-empty"
+        header={
+          <AppHeader
+            title={t('learning:review.sessionTitle')}
+            onBack={() => navigate('/review')}
+            transparent
+          />
+        }
+        footer={
+          <Button size="lg" fullWidth onClick={() => navigate('/review')}>
+            {t('common:actions.done')}
+          </Button>
+        }
+      >
+        <div className={styles.body}>
+          <p className={styles.promptLabel}>{t('learning:review.nothingDue')}</p>
+        </div>
+      </FocusScreen>
+    );
+  }
+
+  /*
+   * A question that cannot be built is skipped, not fatal.
+   *
+   * Every item in a resolved plan has already been proved answerable, so this
+   * is unreachable by construction. It is here because the failure it replaces
+   * — one unbuildable question turning the whole session into a 404 — is the
+   * exact bug this page was rewritten for, and a backstop that advances is
+   * strictly better than one that gives up.
+   */
+  if (!candidate || !exercise) {
     return <NotFoundBody messageKey="notFound.review" />;
   }
 

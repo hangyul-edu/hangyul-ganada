@@ -1,10 +1,31 @@
 {
   "title": "Learn words",
+  "today": {
+    "title": "Today's words",
+    "start": "Start",
+    "resume": "Keep going",
+    "startBlurb_one": "One word today.",
+    "startBlurb_other": "A short set of {{count}} words.",
+    "resumeBlurb": "Pick up where you left off.",
+    "doneBlurb": "Done for today. Nice work.",
+    "completeTitle": "Today's words are done.",
+    "completeDetail_one": "One word learned.",
+    "completeDetail_other": "{{count}} words learned.",
+    "more": "A little more",
+    "allDone": "Nothing left for today.",
+    "remaining_one": "One left today",
+    "remaining_other": "{{count}} left today",
+    "progressAria": "Progress through today's words"
+  },
+  "browse": {
+    "title": "Browse by topic",
+    "showing": "Showing {{shown}} of {{total}}"
+  },
   "intro": {
-    "write": "Practise writing",
     "example": "Example",
     "howItSounds": "How it sounds",
-    "surfaceNote": "In this sentence, {{headword}} appears as {{form}}."
+    "surfaceNote": "In this sentence, {{headword}} appears as {{form}}.",
+    "next": "Got it"
   },
   "empty": {
     "title": "No words here yet",
@@ -21,31 +42,11 @@
     "interjection": "interjection",
     "determiner": "determiner"
   },
-  "lesson": {
-    "title": "Set {{index, number}}",
-    "newLetters": "New letters",
-    "done": "Done"
-  },
   "session": {
-    "hintSingle": "Write it inside the box",
-    "syllableGroup": "Writing the syllables of {{word}}",
     "next": "Next word",
-    "finish": "Finish",
-    "complete_one": "You learned {{count, number}} word in {{lesson}}.",
-    "complete_other": "You learned {{count, number}} words in {{lesson}}.",
-    "toReading": "Now read it",
-    "writeEachPart": "Write each part of {{word}} in turn.",
-    "writeEveryPartFirst": "Write every part, then we'll check the whole word together."
+    "finish": "Finish"
   },
   "blurb": "Every word is open. Pick a category and start wherever you like.",
-  "ahead": {
-    "title_one": "1 new letter in this category",
-    "title_other": "{{count, number}} new letters in this category",
-    "body": "You can study these words now. Learning the letters first usually makes them easier.",
-    "more_one": "+1 more",
-    "more_other": "+{{count, number}} more",
-    "cta": "Learn the letters"
-  },
   "categories": {
     "essentials": "Everyday Essentials",
     "people": "People & Family",
@@ -94,5 +95,32 @@
     "saved": "Saved",
     "add": "Save {{word}}",
     "remove": "Remove {{word}} from saved"
+  },
+  "detail": {
+    "title": "Word",
+    "pronunciation": "Pronunciation",
+    "definition": "More about it",
+    "usage": "How it is used",
+    "nearby": "Words like this"
+  },
+  "saved": {
+    "title": "Saved words",
+    "review_one": "Review · 1 question",
+    "review_other": "Review · {{count}} questions",
+    "searchPlaceholder": "Search saved words",
+    "searchLabel": "Search your saved words",
+    "orderLabel": "Order",
+    "order": {
+      "recent": "Recent",
+      "alphabetical": "A–Z",
+      "needed": "Needs work"
+    },
+    "count_one": "One word",
+    "count_other": "{{count}} words",
+    "remove": "Remove",
+    "noMatch": "Nothing saved matches “{{query}}”.",
+    "emptyTitle": "No saved words yet",
+    "emptyBody": "Tap the bookmark on any word while you study, and it will be here to come back to.",
+    "emptyCta": "Go to words"
   }
 }

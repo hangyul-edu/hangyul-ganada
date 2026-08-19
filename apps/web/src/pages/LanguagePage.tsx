@@ -2,9 +2,8 @@ import { useDeferredValue, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { describeLocale, localeMatches, useLocale } from '../i18n';
+import { localeMatches, useLocale } from '../i18n';
 import { AppHeader } from '../ui/AppHeader';
-import { Card } from '../ui/Card';
 import { CheckIcon, SearchIcon } from '../ui/icons';
 import styles from './LanguagePage.module.css';
 
@@ -24,14 +23,10 @@ import styles from './LanguagePage.module.css';
  */
 export function LanguagePage() {
   const navigate = useNavigate();
-  const { locale, available, setLocale, suggestion } = useLocale();
+  const { locale, available, setLocale } = useLocale();
   const { t } = useTranslation(['settings', 'common']);
 
   const [query, setQuery] = useState('');
-  // Dismissing the nudge is per-visit state, not a preference: the learner has
-  // said "not now", which is a different thing from "never", and storing it
-  // would be recording a decision they did not make.
-  const [nudgeDismissed, setNudgeDismissed] = useState(false);
   // Filtering a few dozen rows is cheap, but the list grows with every language
   // added and typing must never feel like it lags.
   const deferredQuery = useDeferredValue(query);
@@ -40,9 +35,6 @@ export function LanguagePage() {
     () => available.filter((entry) => localeMatches(entry, deferredQuery)),
     [available, deferredQuery],
   );
-
-  const suggested =
-    suggestion && suggestion !== locale && !nudgeDismissed ? describeLocale(suggestion) : null;
 
   const choose = async (code: string) => {
     await setLocale(code);
@@ -55,28 +47,17 @@ export function LanguagePage() {
       <div className={styles.body}>
         <p className={styles.intro}>{t('settings:language.pickerIntro')}</p>
 
-        {suggested && (
-          <Card padding="md" className={styles.suggestion}>
-            <p className={styles.suggestionText}>
-              {t('settings:language.suggestion', { language: suggested.nativeName })}
-            </p>
-            <button
-              type="button"
-              className={styles.suggestionAction}
-              onClick={() => void choose(suggested.code)}
-            >
-              {t('settings:language.suggestionAccept', { language: suggested.nativeName })}
-            </button>
-            <button
-              type="button"
-              className={styles.suggestionDismiss}
-              onClick={() => setNudgeDismissed(true)}
-            >
-              {t('settings:language.suggestionDismiss')}
-            </button>
-          </Card>
-        )}
-
+        {/*
+          The "your browser is set to X, switch?" card that was here is gone.
+          
+          It existed because the device's language was deliberately *not* used
+          to pick the interface — so the app knew what the learner probably read
+          and asked them about it instead of acting on it. The device language
+          is now applied on first launch (see `resolveLocale`), which means by
+          the time anybody reaches this screen the suggestion has either already
+          happened or names a language we do not ship. A card that can only ever
+          offer what you are already using is not a nudge, it is furniture.
+        */}
         <div className={styles.search}>
           <span className={styles.searchIcon} aria-hidden="true">
             <SearchIcon size={18} />

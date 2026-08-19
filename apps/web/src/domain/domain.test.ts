@@ -38,10 +38,16 @@ import {
 } from './progress';
 
 const T0 = new Date('2026-04-10T08:00:00.000Z');
-/** A letter: both writing rungs, a demonstration to watch, and a reading check. */
-const RULES = { recognitionRequired: true, demoRequired: true, bothWritingRungs: true };
-/** A word: one guided pass of each syllable, and a reading check. */
-const WORD_RULES = { recognitionRequired: true, demoRequired: false, bothWritingRungs: false };
+/** A letter: heard, watched, written once over a guide, and read back. */
+const RULES = { recognitionRequired: true, demoRequired: true, writingRequired: true };
+/**
+ * A word: heard and understood, and **never written**.
+ *
+ * `writingRequired: false` is the product rule, not a relaxation of one. There
+ * is no vocabulary handwriting anywhere in this app; a word that waited on ink
+ * would be a word that could never finish.
+ */
+const WORD_RULES = { recognitionRequired: true, demoRequired: false, writingRequired: false };
 
 function attempt(
   previous: ItemProgress | undefined,
@@ -70,11 +76,9 @@ describe('mastery ladder', () => {
     expect(row.stage).toBe('introduced');
 
     row = attempt(row, true, 'trace');
-    expect(row.stage).toBe('traced');
-    expect(row.trace_passes).toBe(1);
-
-    row = attempt(row, true, 'practice');
+    // One writing pass is the writing rung, whichever guide was on the paper.
     expect(row.stage).toBe('practised');
+    expect(row.trace_passes).toBe(1);
     // Not yet learned: the reading check has not been answered.
     expect(row.learned).toBe(false);
 
@@ -84,27 +88,30 @@ describe('mastery ladder', () => {
     expect(row.learned_at).toBe(T0.toISOString());
   });
 
-  it('does not let tracing alone stand in for the light-guide rung', () => {
+  it('asks for one writing pass, not two', () => {
+    // The second guided attempt — the same movement with a fainter model — is
+    // gone from the product, and it is not replaced by anything. A learner who
+    // has heard a letter, watched it, written it and read it back is finished.
     let row = applyHeard(undefined, { kind: 'character', itemKey: 'ㄱ', rules: RULES }, T0);
     row = applyDemoSeen(row, { kind: 'character', itemKey: 'ㄱ', rules: RULES }, T0);
     row = attempt(row, true, 'trace');
+    expect(remainingRequirements(row, RULES)).toEqual(['recognise']);
     row = applyRecognition(row, { kind: 'character', itemKey: 'ㄱ', correct: true, rules: RULES }, T0);
-    expect(row.stage).toBe('traced');
-    expect(remainingRequirements(row, RULES)).toEqual(['practise']);
+    expect(row.stage).toBe('learned');
   });
 
-  it('credits a light-guide pass with both rungs at once', () => {
-    const row = attempt(undefined, true, 'practice');
-    expect(atLeast(row.stage, 'traced')).toBe(true);
-    expect(row.stage).toBe('practised');
+  it('reaches the writing rung from either guide', () => {
+    // Which guide was on the paper is a preference, not a rung.
+    expect(attempt(undefined, true, 'practice').stage).toBe('practised');
+    expect(attempt(undefined, true, 'trace').stage).toBe('practised');
+    expect(atLeast(attempt(undefined, true, 'trace').stage, 'traced')).toBe(true);
   });
 
   it('will not finish a letter the learner never watched being written', () => {
     // Watching is a rung, and it is the one that teaches stroke order. A letter
-    // that has been heard, traced, practised and read is still not finished if
-    // the demonstration was skipped.
+    // that has been heard, written and read is still not finished if the
+    // demonstration was skipped.
     let row = applyHeard(undefined, { kind: 'character', itemKey: 'ㄱ', rules: RULES }, T0);
-    row = attempt(row, true, 'trace');
     row = attempt(row, true, 'practice');
     row = applyRecognition(row, { kind: 'character', itemKey: 'ㄱ', correct: true, rules: RULES }, T0);
     expect(row.learned).toBe(false);
@@ -117,7 +124,6 @@ describe('mastery ladder', () => {
   it('never demotes a letter for a bad attempt', () => {
     let row = applyHeard(undefined, { kind: 'character', itemKey: 'ㄱ', rules: RULES }, T0);
     row = applyDemoSeen(row, { kind: 'character', itemKey: 'ㄱ', rules: RULES }, T0);
-    row = attempt(row, true, 'trace');
     row = attempt(row, true, 'practice');
     row = applyRecognition(row, { kind: 'character', itemKey: 'ㄱ', correct: true, rules: RULES }, T0);
     expect(row.stage).toBe('learned');
@@ -138,21 +144,8 @@ describe('mastery ladder', () => {
     expect(fixed.needs_review).toBe(false);
   });
 
-  it('completes a word on heard + written + read, with no second writing rung', () => {
-    // A word asks for one guided pass of every syllable, not two. The letters
-    // in it went through both rungs in the letter curriculum.
+  it('completes a word on heard + understood, with no writing at all', () => {
     let row = applyIntroduced(undefined, { kind: 'word', itemKey: 'word_mul' }, T0);
-    row = applyAttempt(
-      row,
-      {
-        kind: 'word',
-        itemKey: 'word_mul',
-        outcome: { passed: true, score: 1, mode: 'practice' },
-        rules: WORD_RULES,
-      },
-      T0,
-    );
-    expect(row.stage).toBe('practised');
     row = applyHeard(row, { kind: 'word', itemKey: 'word_mul', rules: WORD_RULES }, T0);
     expect(row.learned).toBe(false);
 
@@ -161,11 +154,17 @@ describe('mastery ladder', () => {
       { kind: 'word', itemKey: 'word_mul', correct: true, rules: WORD_RULES },
       T0,
     );
+    // No pen was ever involved, and the word is finished.
+    expect(row.trace_passes + row.practice_passes).toBe(0);
     expect(row.stage).toBe('learned');
   });
 
-  it('never asks a word for a stroke-order demonstration', () => {
+  it('never asks a word to be written or watched', () => {
+    // §35, as an assertion. If either of these ever comes back, some route in
+    // the app is about to hand a learner a canvas and ask them to draw 엄.
     expect(remainingRequirements(undefined, WORD_RULES)).not.toContain('watch');
+    expect(remainingRequirements(undefined, WORD_RULES)).not.toContain('write');
+    expect(remainingRequirements(undefined, WORD_RULES)).toEqual(['hear', 'recognise']);
   });
 
   it('pushes a failed item back to the front of the review queue', () => {

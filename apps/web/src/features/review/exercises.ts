@@ -5,7 +5,7 @@ import { VOCABULARY, getWord } from '../../data/vocabulary';
 import type { ExerciseMode } from '../../domain/review';
 import type { ReviewCandidate } from '../../domain/review';
 import { recognitionOptions, soundsTheSame } from '../learning/lookAlikes';
-import { readingOptions } from '../learning/wordOptions';
+import { MIN_OPTIONS, contextOptions, readingOptions } from '../learning/wordOptions';
 
 /**
  * Turning a scheduler decision into a question on a screen.
@@ -51,6 +51,9 @@ export interface Exercise {
   /** Shown when the learner asks for help, instead of failing them. */
   hint?: string;
   hintLocale?: string;
+  /** The prompt itself, where the prompt is a meaning rather than Korean. */
+  meaning?: string;
+  meaningLocale?: string;
 }
 
 /** Resolves the copy for one word in the learner's language. */
@@ -91,11 +94,13 @@ function wordExercise(
       // Korean on the card, meanings in the options. The other way round —
       // meaning shown, Korean chosen — is a different skill and is what
       // `listen` and `write` already cover between them.
-      const options = readingOptions(word, seed).map((option) => ({
-        id: option.id,
-        label: meaningOf(option).value,
-        labelLocale: meaningOf(option).locale,
-      }));
+      const options = readingOptions(word, seed, (other) => meaningOf(other).value).map(
+        (option) => ({
+          id: option.id,
+          label: meaningOf(option).value,
+          labelLocale: meaningOf(option).locale,
+        }),
+      );
       return {
         candidate,
         mode: 'read',
@@ -109,15 +114,74 @@ function wordExercise(
       };
     }
 
+    case 'produce': {
+      /*
+       * The other direction: the meaning is the prompt, the Korean is chosen.
+       *
+       * Harder than `read`, and it comes later for that reason — recognising
+       * 엄마 as "mother" is a smaller step than being given "mother" and
+       * finding 엄마 among four words that all look like Korean. The daily
+       * session schedules it only for words already met; see `stepsFor`.
+       */
+      const options = readingOptions(word, seed + 21, (other) => meaningOf(other).value).map(
+        (option) => ({ id: option.id, korean: option.word }),
+      );
+      return {
+        candidate,
+        mode: 'produce',
+        promptKey: 'review.prompt.produce',
+        // The prompt is the meaning, so it is not also a hint. The word's own
+        // sound is, which is why the hint here is the sound rather than the
+        // meaning the learner is already looking at.
+        options,
+        answerId: word.id,
+        meaning: copy.value,
+        meaningLocale: copy.locale,
+        audioId: word.audio.word,
+      };
+    }
+
+    case 'listenMeaning': {
+      /*
+       * Hear it, and say what it means.
+       *
+       * A different skill from `listen`, which asks the learner to match a
+       * sound to a spelling — something that can be done by ear without any
+       * comprehension at all. This is the question that matters when a person
+       * says the word to them.
+       */
+      if (!word.audio.word) return null;
+      const options = readingOptions(word, seed + 29, (other) => meaningOf(other).value).map(
+        (option) => ({
+          id: option.id,
+          label: meaningOf(option).value,
+          labelLocale: meaningOf(option).locale,
+        }),
+      );
+      return {
+        candidate,
+        mode: 'listenMeaning',
+        promptKey: 'review.prompt.listenMeaning',
+        audioId: word.audio.word,
+        options,
+        answerId: word.id,
+        // No hint: the meaning *is* the answer here, so the usual hint would
+        // hand it over. The clip can be replayed instead, which is the help
+        // this question can honestly give.
+      };
+    }
+
     case 'listen': {
       if (!word.audio.word) return null;
       // The Korean is *not* shown: that is the whole exercise. A learner who
       // can see 사과 while it is spoken is matching a shape to a sound they
       // have already been told the answer to.
-      const options = readingOptions(word, seed + 7).map((option) => ({
-        id: option.id,
-        korean: option.word,
-      }));
+      const options = readingOptions(word, seed + 7, (other) => meaningOf(other).value).map(
+        (option) => ({
+          id: option.id,
+          korean: option.word,
+        }),
+      );
       return {
         candidate,
         mode: 'listen',
@@ -134,7 +198,18 @@ function wordExercise(
       if (!word.example) return null;
       const split = splitSentence(word.example, word.word);
       if (!split) return null;
-      const options = readingOptions(word, seed + 13).map((option) => ({
+      /*
+       * `contextOptions`, not `readingOptions` — see `wordOptions.ts`.
+       *
+       * A gap-fill offered look-alike distractors of the same category is the
+       * `저 ___ 는 의사예요 / 남자 / 여자` bug: every option fits, and the
+       * learner is marked wrong for a defensible answer. The pool here is
+       * deliberately drawn from elsewhere in the corpus, and when it cannot
+       * produce a full set the question is dropped rather than padded.
+       */
+      const chosen = contextOptions(word, word.example, seed + 13, (other) => meaningOf(other).value);
+      if (chosen.length < MIN_OPTIONS) return null;
+      const options = chosen.map((option) => ({
         id: option.id,
         korean: option.word,
       }));
@@ -151,19 +226,19 @@ function wordExercise(
     }
 
     case 'write':
-      return {
-        candidate,
-        mode: 'write',
-        promptKey: 'review.prompt.write',
-        korean: word.word,
-        audioId: word.audio.word,
-        // The first syllable, not the whole word. A word in one box is a
-        // different task from the one it was learned with, where each block
-        // got its own square and its own grade.
-        writeTarget: word.syllables[0] ?? word.word,
-        hint: copy.value,
-        hintLocale: copy.locale,
-      };
+      /*
+       * Never. Vocabulary is not handwritten anywhere in this product.
+       *
+       * This used to hand the learner a canvas and the word's first syllable —
+       * so reviewing 학교 meant drawing 학, which is a letter exercise wearing a
+       * word's name, and which the letter curriculum had already asked for
+       * twice. The scheduler cannot reach here any more either, because
+       * `guided_writing` is no longer one of a word's skills (`domain/memory.ts`).
+       * The arm stays as the belt to that braces: if some future caller
+       * hand-builds a write candidate for a word, it produces no question
+       * rather than a canvas.
+       */
+      return null;
 
     case 'distinguish':
       return null; // Words are told apart by meaning, which `read` already does.
@@ -303,6 +378,15 @@ function characterExercise(candidate: ReviewCandidate, seed: number): Exercise |
         hint: meta.romanization,
       };
 
+    case 'produce':
+      // A letter's "meaning" is its sound, and choosing a letter from its sound
+      // is exactly the `listen` question. There is no second direction here.
+      return null;
+
+    case 'listenMeaning':
+      // Same reason: a letter's meaning is its sound.
+      return null;
+
     case 'context':
       return null; // A letter has no sentence of its own; its words do.
   }
@@ -324,6 +408,31 @@ function hash(text: string): number {
   }
   return value >>> 0;
 }
+
+/**
+ * Whether this candidate can actually become a question.
+ *
+ * The predicate the plan is resolved with, and the reason `Review` can promise
+ * a number. It is `buildExercise` itself rather than a second copy of its rules,
+ * because a second copy would drift — and the day it drifted, the screen would
+ * again say "8 questions" and open a session with six.
+ *
+ * ## Why a stub meaning is sound here
+ *
+ * Every `null` return in this module is about *structure*: a word with no
+ * example cannot be asked in context, a letter with fewer than three plausible
+ * wrong answers cannot be a multiple-choice question, a word is never written.
+ * None of them consults what the meaning says, only the item. So answerability
+ * does not depend on the interface language — which matters, because otherwise
+ * switching language mid-session could empty a plan that had already been
+ * promised. `answerable.test.ts` holds that property.
+ */
+export function canAsk(candidate: ReviewCandidate): boolean {
+  return buildExercise(candidate, STRUCTURAL_MEANING, 1) !== null;
+}
+
+/** A meaning resolver that returns the word itself. See `canAsk`. */
+const STRUCTURAL_MEANING: MeaningOf = (word) => ({ value: word.word, locale: 'ko' });
 
 /** Every word, for the saved-words screen. Re-exported so pages import one module. */
 export { VOCABULARY };

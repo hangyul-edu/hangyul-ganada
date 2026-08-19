@@ -5,7 +5,7 @@ import { expect, test, type Page } from '@playwright/test';
  *
  * ## The bug this defends against
  *
- * The Trace step opened on an animation. Header, step trail, instruction,
+ * The writing step opened on an animation. Header, step trail, instruction,
  * glyph, romanisation, pronunciation note, stroke-order demonstration, replay
  * button, stroke count — and only then the box the learner was supposed to
  * write in. On a 667pt phone that put the canvas below the fold: the screen
@@ -22,9 +22,11 @@ import { expect, test, type Page } from '@playwright/test';
 
 const SHORT_PHONE = { width: 390, height: 667 };
 
-/** Opens a letter lesson and steps through to the Trace canvas. */
+/** Opens a letter lesson and steps through to the writing canvas. */
 async function openTrace(page: Page) {
-  await page.goto('/letters/lesson-vowels-core');
+  // From the start, so the lesson is the same screen every run: a part-finished
+  // profile would otherwise resume at a different letter. See §48.
+  await page.goto('/letters/lesson-vowels-core?from=start');
 
   /*
    * Every step waits for its control to be *visible* before clicking it.
@@ -40,7 +42,7 @@ async function openTrace(page: Page) {
   await expect(unitContinue).toBeVisible();
   await unitContinue.click();
 
-  const trace = page.getByRole('button', { name: /Trace it/ });
+  const trace = page.getByRole('button', { name: /Trace it|Write it/ });
   await expect(trace).toBeVisible();
   await trace.click();
 

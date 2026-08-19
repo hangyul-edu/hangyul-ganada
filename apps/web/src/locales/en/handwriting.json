@@ -30,6 +30,10 @@
       "tooLarge": "That went outside the box. A bit smaller next time.",
       "strayStroke": "One stroke wandered off. Follow the line slowly."
     },
+    "scribble": {
+      "headline": "Let's try that more slowly",
+      "detail": "Draw each stroke once, in one smooth movement — no need to go over it again."
+    },
     "mixed": {
       "headline": "Not quite",
       "detail": "Line it up with the guide and give it another go."
@@ -70,32 +74,6 @@
     "back": "Back",
     "next": "Next",
     "position": "Stroke {{current, number}} of {{count, number}}"
-  },
-  "word": {
-    "previous": "Previous part",
-    "next": "Next part",
-    "syllablePosition": "{{syllable}}, part {{position, number}} of {{count, number}}",
-    "canvasLabel": "Writing area for {{syllable}}, part {{position, number}} of {{count, number}}",
-    "undoSyllable": "Undo your writing for {{syllable}}",
-    "clearSyllable": "Clear your writing for {{syllable}}",
-    "checkWord": "Check my writing",
-    "checkAgain": "Check again",
-    "fix": "Fix",
-    "fixSyllable": "Write {{syllable}} again",
-    "result": {
-      "passed": "Nice work",
-      "almost": "Almost there",
-      "allAgain": "Let's follow the guide once more",
-      "needsWork_one": "One part needs another try.",
-      "needsWork_other": "{{count, number}} parts need another try."
-    },
-    "advice": {
-      "passed": "Looks good.",
-      "empty": "Write this part first.",
-      "outside": "Keep your writing a little closer to the guide.",
-      "incomplete": "A part of this letter is still missing.",
-      "mixed": "You're close. Follow the guide once more."
-    }
   },
   "strokeGuide": {
     "shape": {

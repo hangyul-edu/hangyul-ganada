@@ -121,6 +121,19 @@ export function LettersPage() {
                               <Badge tone="mint" filled>
                                 {t('learning:letters.complete')}
                               </Badge>
+                            ) : done.done > 0 ? (
+                              /*
+                                Part-way through, and the card says so.
+
+                                The lesson resumes at the first unfinished
+                                letter rather than restarting — see
+                                `LetterSessionPage` — so the label has to match
+                                what tapping it does. "Continue" over a 5 / 6
+                                bar is a promise the screen now keeps.
+                              */
+                              <Badge tone="primary">
+                                {t('learning:letters.resume')}
+                              </Badge>
                             ) : (
                               <ChevronRightIcon size={20} />
                             )}

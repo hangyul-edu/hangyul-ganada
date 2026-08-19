@@ -32,6 +32,15 @@ export const STORE_NAMES = [
   'activity',
   /** Per-item, per-skill memory state. See `domain/memory.ts`. */
   'memory',
+  /**
+   * The wrong-answer notebook. One row per item ever missed.
+   *
+   * A store of its own rather than a field on the memory row, because the two
+   * answer different questions and have different lifetimes: memory is *how
+   * well is this held right now*, a mistake is *this went wrong, and here is
+   * what was picked instead*. See `domain/mistakes.ts`.
+   */
+  'mistakes',
 ] as const;
 
 export type StoreName = (typeof STORE_NAMES)[number];

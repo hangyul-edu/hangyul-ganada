@@ -44,16 +44,64 @@ import {
 export type ExerciseMode =
   /** Korean shown, meaning or sound chosen. */
   | 'read'
+  /** A meaning shown, the Korean chosen. The harder direction of `read`. */
+  | 'produce'
   /** Audio played, item chosen. */
   | 'listen'
-  /** Written over the light guide and graded. */
+  /**
+   * Audio played, *meaning* chosen.
+   *
+   * A different skill from `listen`, not a variation on it. `listen` asks
+   * whether the learner can match a sound to a spelling, which can be done by
+   * ear alone; this asks whether the sound means anything to them yet, which is
+   * the thing that matters when somebody speaks to them.
+   */
+  | 'listenMeaning'
+  /**
+   * Written over a guide and graded.
+   *
+   * **Letters and syllables only.** No word has a writing skill — see
+   * `WORD_SKILLS` in `domain/memory.ts` — so the scheduler cannot produce a
+   * word in this mode, and the question generator refuses to build one if
+   * something ever hands it a hand-made candidate.
+   */
   | 'write'
   /** Shown beside the thing this learner actually confuses it with. */
   | 'distinguish'
   /** Met inside its example sentence. */
   | 'context';
 
-/** Which exercise tests which skill. One direction, so the mapping cannot drift. */
+/*
+ * There is no `usage` mode, and there was nearly one.
+ *
+ * "Which of these four sentences uses the word naturally" is a good question
+ * and this corpus cannot generate it. The only material available for wrong
+ * answers is other words' sentences with the target substituted in, and that
+ * produces two failures, both found by walking a real session:
+ *
+ * * **Accidentally correct answers.** 차 substituted into a donor frame gave
+ *   "차 이야기를 들었어요" — ordinary Korean, offered as a wrong answer beside
+ *   the intended one. §45: exactly one defensible answer, and no hint may
+ *   rescue a question that has two.
+ * * **A giveaway.** Substituting 여자 into frames built for other nouns left
+ *   "여자이 바빠요" — the wrong subject particle, three times over. The question
+ *   stops being about usage and becomes about spotting 이 versus 가, which the
+ *   learner can do without knowing the word at all.
+ *
+ * Neither is fixable by filtering: telling a natural sentence from an unnatural
+ * one is the thing being tested, so a generator that could do it reliably would
+ * not need the question. Usage returns when the content pack carries
+ * hand-written usage sets, not before.
+ */
+
+/**
+ * Which exercise the *scheduler* reaches for to test each skill.
+ *
+ * One direction, so the mapping cannot drift. It is a default rather than an
+ * exclusive claim: `produce` also tests `meaning_recognition`, from the other
+ * side, and the daily vocabulary session uses it — but the scheduler picking a
+ * skill needs exactly one answer to "and how would I ask that", which is this.
+ */
 export const SKILL_EXERCISE: Record<Skill, ExerciseMode> = {
   meaning_recognition: 'read',
   reading_recognition: 'read',
@@ -77,6 +125,8 @@ export interface ReviewCandidate {
   partner: string | null;
   /** True when repetition has stopped working and the approach should change. */
   intervene: boolean;
+  /** Why this is being offered. See `ReviewNeed`. */
+  need: ReviewNeed;
 }
 
 // --- Priority -----------------------------------------------------------------
@@ -198,12 +248,143 @@ const MAX_NEW_PER_SESSION = 2;
 /** Nor may the same kind of exercise run more than this many times in a row. */
 const MAX_RUN = 2;
 
+/**
+ * Why an item is in a review plan — or why it is not.
+ *
+ * Review used to offer every skill of every item the learner had ever met, and
+ * at five hundred words that is a screen saying "500 to review". §21: *do not
+ * review everything simply because it was previously learned*. What the learner
+ * is owed is the subset that repays asking about today.
+ *
+ * | Need | What it means | In the count? |
+ * | --- | --- | --- |
+ * | `wrong` | missed, and not yet answered right twice since | yes |
+ * | `weak` | keeps being lost — lapses, and recall already sliding | yes |
+ * | `due` | past its schedule; the memory is fading | yes |
+ * | `consolidate` | this way of asking has never been tried | no |
+ * | `settled` | answered right, recently, and holding | never offered |
+ *
+ * `consolidate` is the interesting one. It is worth *asking* — it broadens what
+ * the learner can do with a word they have only read — but it is not a memory
+ * need, so it does not appear in "8 to review". Counting it would put a number
+ * on the screen that grows every time they learn something, which is the exact
+ * shape of the problem this replaces.
+ */
+export type ReviewNeed = 'wrong' | 'weak' | 'due' | 'consolidate' | 'settled';
+
+/** Recall below which a memory is fading rather than held. */
+const DUE_RECALL = 0.9;
+
+/** Recall below which it is going badly rather than merely fading. */
+const WEAK_RECALL = 0.6;
+
+/** Lapses at which an item counts as one the learner keeps losing. */
+const WEAK_LAPSES = 2;
+
+/**
+ * What this item-and-skill currently needs, if anything.
+ *
+ * Pure, and the single definition — the Review screen's counts, the session
+ * builder and Today's Practice all read it, so what the screen promises and
+ * what the session delivers cannot disagree about which items are even
+ * eligible.
+ */
+export function reviewNeed(
+  memory: ItemMemory | undefined,
+  skill: Skill,
+  now: Date,
+  context: { mistake?: boolean } = {},
+): ReviewNeed {
+  if (context.mistake) return 'wrong';
+
+  const state = memory?.skills[skill];
+  if (!state) {
+    /*
+     * Never asked this way.
+     *
+     * Always `consolidate`, never `settled`, and never expiring. An earlier
+     * version let it expire a fortnight after the item was met, on the argument
+     * that consolidation has a moment and the moment passes. That is true of
+     * teaching and false of *coverage*: a skill that has never been tested and
+     * can no longer be offered is one the app has quietly decided never to find
+     * out about. Over sixty simulated days it cut the skills the scheduler ever
+     * exercised from five to three.
+     *
+     * It stays out of the counts, which is what §21 actually asks for, and the
+     * session builder already caps how much new ground one sitting breaks.
+     */
+    return 'consolidate';
+  }
+
+  const recall = skillRecall(state, now);
+  // Last answer was wrong. The streak is the only thing that says so directly.
+  if (state.streak === 0 && state.lapses > 0) return 'wrong';
+  if (state.lapses >= WEAK_LAPSES && recall < 1) return 'weak';
+  if (recall < WEAK_RECALL) return 'weak';
+  if (recall < DUE_RECALL) return 'due';
+  return 'settled';
+}
+
+/** Needs that are a genuine memory need, and so are worth counting. */
+export function isMemoryNeed(need: ReviewNeed): boolean {
+  return need === 'wrong' || need === 'weak' || need === 'due';
+}
+
 export interface SessionOptions {
   /** Restrict to one exercise type. The manual modes on the Review screen. */
   mode?: ExerciseMode;
   /** Only these items. Used by "Saved words". */
   only?: ReadonlySet<string>;
   size?: number;
+  /**
+   * Whether a candidate can be turned into a question at all.
+   *
+   * Injected rather than imported, because *what the scheduler should ask* and
+   * *what the question generator can render* are two different concerns and
+   * this module is the one that must not know about option lists and example
+   * sentences. `domain/plan.ts` passes `canAsk`; the tests pass nothing.
+   *
+   * It belongs here — inside the pool, before the interleaving rules run —
+   * rather than as a filter over the finished session. Applied afterwards it
+   * would leave the "no item twice within three" and "no more than two of a
+   * kind in a row" constraints having spent slots on candidates that were then
+   * discarded, and hand back five exercises where eight were available.
+   */
+  askable?: (candidate: ReviewCandidate) => boolean;
+  /**
+   * Items the learner has an unresolved mistake against.
+   *
+   * Passed in rather than read, because the notebook is a store this module
+   * must not depend on — the scheduler's job is to weigh signals, not to know
+   * where they are kept. See `domain/mistakes.ts`.
+   */
+  mistakes?: ReadonlySet<string>;
+  /** Drop anything that is only worth broadening into. See `ReviewNeed`. */
+  needsOnly?: boolean;
+}
+
+/**
+ * How much each kind of need moves an item up the queue.
+ *
+ * Added to the priority score rather than replacing it: the score already knows
+ * about forgetting curves and lapses, and this says which *kind* of attention
+ * the item is owed. A recent mistake outranks a fading memory, which outranks
+ * broadening into a skill never tried — which is the order a learner would put
+ * them in if asked.
+ */
+function urgency(need: ReviewNeed): number {
+  switch (need) {
+    case 'wrong':
+      return 1.5;
+    case 'weak':
+      return 0.8;
+    case 'due':
+      return 0.3;
+    case 'consolidate':
+      return 0;
+    case 'settled':
+      return 0;
+  }
 }
 
 /**
@@ -230,11 +411,27 @@ export function candidates(
     // learner most wants to come back to is the one thing review will not
     // offer them.
     if (row.stage === 'unseen') continue;
-    if (row.stage === 'introduced' && row.attempts === 0) continue;
     const key = memoryKey(row.kind, row.item_key);
     if (options.only && !options.only.has(key)) continue;
 
     const item = memory[key];
+    /*
+     * …and "met" also includes *answered a question about it*.
+     *
+     * This used to be `stage === 'introduced' && attempts === 0` — skip it —
+     * where `attempts` counts *writing* attempts on the progress row. Words are
+     * never written any more, so every word the daily vocabulary session taught
+     * had zero attempts, sat at `introduced`, and was invisible to review. A
+     * learner could answer twenty questions about ten words and open Review to
+     * "nothing to review yet".
+     *
+     * A memory row is the evidence, and it is better evidence than an attempt
+     * counter: it exists exactly when some skill of this item has been
+     * exercised, by whatever means. An item with neither an attempt nor a
+     * memory has genuinely only been displayed.
+     */
+    const exercised = item !== undefined && Object.keys(item.skills).length > 0;
+    if (row.stage === 'introduced' && row.attempts === 0 && !exercised) continue;
     const intervene = needsIntervention(item) !== null;
     for (const skill of skillsFor(row.kind)) {
       const mode = SKILL_EXERCISE[skill];
@@ -244,16 +441,37 @@ export function candidates(
       const partner = skill === 'lookalike_discrimination' ? confusionPartner(item) : null;
       if (skill === 'lookalike_discrimination' && !partner) continue;
 
-      out.push({
+      /*
+       * Nothing settled is offered at all.
+       *
+       * This is the whole of §21 in one line: an item answered correctly and
+       * recently, still holding, is not a review — it is the app filling time
+       * with something the learner already knows. Five hundred learned words
+       * used to produce five hundred candidates; now they produce however many
+       * are actually slipping.
+       */
+      const need = reviewNeed(item, skill, now, {
+        mistake: options.mistakes?.has(memoryKey(row.kind, row.item_key)) ?? false,
+      });
+      if (need === 'settled') continue;
+      if (options.needsOnly && !isMemoryNeed(need)) continue;
+
+      const candidate: ReviewCandidate = {
         kind: row.kind,
         itemKey: row.item_key,
         skill,
         mode,
-        priority: priority(item, skill, now),
+        priority: priority(item, skill, now) + urgency(need),
         recall: skillRecall(item?.skills[skill], now),
         partner,
         intervene,
-      });
+        need,
+      };
+      // A candidate that cannot become a question is not a candidate. Dropping
+      // it here rather than when the session is rendered is what lets the
+      // Review screen promise a number it can keep — see `domain/plan.ts`.
+      if (options.askable && !options.askable(candidate)) continue;
+      out.push(candidate);
     }
   }
   return out.sort((a, b) => b.priority - a.priority);
@@ -382,9 +600,29 @@ export interface ReviewSummary {
   saved: number;
   /** Total distinct items with anything worth doing. */
   total: number;
-  /** How many exercises the next sitting will actually contain. */
-  sessionSize: number;
 }
+
+/**
+ * Two counts, and both are about memory rather than about the catalogue.
+ *
+ * `total` used to be "every item you have ever met that has any skill we could
+ * ask about", which after five hundred words is five hundred. §21 and §32: the
+ * learner is owed the number of things that currently need attention, and a
+ * number that only ever grows is not that. Items whose memory is holding are
+ * not counted, and items whose *unasked* skills could be broadened into are not
+ * counted either — see `ReviewNeed`.
+ */
+
+/*
+ * `sessionSize` used to live here, as `min(SESSION_SIZE, pool.length)`.
+ *
+ * It was the number the Review screen printed — "8 questions" — and it was a
+ * guess: the pool is candidates, and a session is what survives the
+ * interleaving rules and the question generator. Guessing eight and delivering
+ * six is the smaller version of the bug; guessing eight and delivering nothing
+ * was the shipped one. The count now comes from a resolved plan, which is the
+ * same object the session runs. See `domain/plan.ts`.
+ */
 
 /** Recall below which an item is presented as needing practice rather than due. */
 const AT_RISK_RECALL = 0.6;
@@ -394,8 +632,20 @@ export function summarise(
   memory: MemoryMap,
   saved: ReadonlySet<string>,
   now: Date,
+  /**
+   * The answerability filter. Optional so the domain tests can summarise
+   * without a question generator, and passed by the app so that every figure
+   * on the Review screen counts only work the learner can actually be given.
+   */
+  askable?: (candidate: ReviewCandidate) => boolean,
 ): ReviewSummary {
-  const pool = candidates(progress, memory, now);
+  const pool = candidates(progress, memory, now, {
+    ...(askable ? { askable } : {}),
+    // Only genuine memory need reaches these figures. Broadening into a skill
+    // that has never been tested is worth doing and is not something to put a
+    // number on: see `ReviewNeed`.
+    needsOnly: true,
+  });
   const worst = new Map<string, number>();
   for (const candidate of pool) {
     const key = memoryKey(candidate.kind, candidate.itemKey);
@@ -414,7 +664,6 @@ export function summarise(
     dueToday,
     saved: saved.size,
     total: worst.size,
-    sessionSize: Math.min(SESSION_SIZE, pool.length),
   };
 }
 
@@ -452,10 +701,12 @@ export function todaysPractice(
   memory: MemoryMap,
   lettersLeft: number,
   now: Date,
+  askable?: (candidate: ReviewCandidate) => boolean,
 ): TodaysPractice {
-  const urgent = candidates(progress, memory, now).filter(
-    (candidate) => candidate.recall < AT_RISK_RECALL,
-  );
+  const urgent = candidates(progress, memory, now, {
+    ...(askable ? { askable } : {}),
+    needsOnly: true,
+  }).filter((candidate) => candidate.recall < AT_RISK_RECALL);
   const reviews = Math.min(MAX_DAILY_REVIEWS, urgent.length);
   const words = reviews + lettersLeft > 0 ? 3 : 5;
   return {

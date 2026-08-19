@@ -166,10 +166,27 @@ export function dateKey(date: Date): string {
   return `${year}-${month}-${day}`;
 }
 
+/**
+ * Characters finished today.
+ *
+ * **Characters**, not items. Words have their own daily goal now — see
+ * `domain/vocabularyDay.ts` — and counting them here as well meant two goals
+ * measuring overlapping things: a learner who did ten words would watch the
+ * letter goal fill up without having touched a letter, and the two numbers on
+ * Home would be describing the same afternoon twice.
+ *
+ * The two are deliberately different in kind. This one counts *mastery* — a
+ * character that has walked its whole ladder — because that is what a letter
+ * lesson produces. The word goal counts *a day's work*, because vocabulary is
+ * met, practised and revisited rather than finished once.
+ */
 export function learnedToday(progress: ProgressMap, now: Date): number {
   const today = dateKey(now);
   return Object.values(progress).filter(
-    (row) => row.learned_at !== null && dateKey(new Date(row.learned_at)) === today,
+    (row) =>
+      row.kind === 'character' &&
+      row.learned_at !== null &&
+      dateKey(new Date(row.learned_at)) === today,
   ).length;
 }
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { drawLength, strokeAsset } from '../data/strokeAssets';
+import { drawLength, strokeAsset, strokeReveal } from '../data/strokeAssets';
 import { isSyllable } from '../data/jamo';
 import { layoutMarkers } from './strokeMarkers';
 import styles from './StrokeOrder.module.css';
@@ -189,6 +189,7 @@ export function StrokeOrder({
   const complete = Math.floor(drawn);
   const partial = drawn - complete;
   const active = partial > 0 ? strokes[complete] : undefined;
+  const reveal = active ? strokeReveal(active, partial) : null;
 
   return (
     <figure className={styles.wrap}>
@@ -226,10 +227,15 @@ export function StrokeOrder({
           A mask rather than a clip, because a clip path is filled and this has
           to be *stroked*: the reveal is a fat line swept along the stroke's own
           centreline, so the ink appears in the order a pen would lay it down
-          rather than wiping in from one side. `pathLength` rescales that
-          centreline to 1 so the dash is exact whatever the path measures, and
-          the width is the stroke's own measured `reveal` — wide enough that
-          nothing is left hidden at the moment the stroke finishes.
+          rather than wiping in from one side.
+
+          The region comes from `strokeReveal` rather than being written out
+          here, because `scripts/strokes-qa.mjs` renders the same frames for a
+          person to look at and the two must not be able to differ — the wedge
+          that used to appear at the corner of ㄱ was in both, identically, and
+          passing QA. It is a filled ribbon of the stroke's own varying width,
+          cut square across at the pen; see `strokeReveal` for why a stroked
+          line of one width cannot do this job.
         */}
         {active && (
           <>
@@ -241,17 +247,7 @@ export function StrokeOrder({
               width="100"
               height="100"
             >
-              <path
-                d={`M${active.draw}`}
-                fill="none"
-                stroke="#fff"
-                strokeWidth={active.reveal}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                pathLength={1}
-                strokeDasharray={1}
-                strokeDashoffset={1 - partial}
-              />
+              <path d={reveal!.path} fill="#fff" fillRule="nonzero" />
             </mask>
             <path d={active.shape} className={styles.ink} mask={`url(#${maskId})`} />
           </>

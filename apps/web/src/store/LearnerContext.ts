@@ -6,7 +6,11 @@ import type {
   SessionKind,
 } from '@hangyul-ganada/shared-types';
 
+import type { PracticePlan } from '../domain/plan';
+import type { Mistake } from '../domain/mistakes';
+import type { ExerciseMode } from '../domain/review';
 import type { ReviewSummary, TodaysPractice } from '../domain/review';
+import type { DailyPlan, DayProgress } from '../domain/vocabularyDay';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
 export interface LearnerContextValue {
@@ -50,6 +54,41 @@ export interface LearnerContextValue {
   reviewSummary: ReviewSummary;
   /** The plan the home screen offers for today. */
   practice: TodaysPractice;
+  /**
+   * The one resolved review plan a screen may show and a session may run.
+   *
+   * Resolving, rather than counting. Every item in the returned plan has
+   * already been proved to produce a question, so a screen that prints
+   * `plan.count` and a session that runs `plan.items` cannot disagree — which
+   * is the bug this replaced. See `domain/plan.ts`.
+   */
+  practicePlan: (options?: {
+    mode?: ExerciseMode;
+    savedOnly?: boolean;
+    mistakesOnly?: boolean;
+  }) => PracticePlan;
+  /**
+   * The wrong-answer notebook: unresolved mistakes, most recent first.
+   *
+   * Collected automatically from every answer — §35, the learner never saves
+   * one — and filtered to the ones still going wrong. See `domain/mistakes.ts`
+   * for why a fixed mistake stops appearing here without being forgotten.
+   */
+  mistakes: Mistake[];
+  /** Removes one notebook entry. The learner saying "I am done with this". */
+  clearMistake: (id: string) => void;
+  /**
+   * Today's vocabulary plan, created on first read and then persisted.
+   *
+   * Idempotent within a day: reading it twice returns the same plan, and a
+   * learner who left at 4 / 10 finds 4 / 10 and the same remaining words.
+   */
+  vocabularyDay: DailyPlan;
+  vocabularyProgressToday: DayProgress;
+  /** Records that a word finished every step today's plan scheduled for it. */
+  completeDailyWord: (wordId: string) => void;
+  /** Throws today's plan away and builds the next one. The optional top-up. */
+  extendVocabularyDay: () => void;
   reset: () => Promise<void>;
 }
 

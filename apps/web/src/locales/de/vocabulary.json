@@ -1,5 +1,26 @@
 {
   "title": "Wörter lernen",
+  "today": {
+    "title": "Wörter für heute",
+    "start": "Starten",
+    "resume": "Weitermachen",
+    "startBlurb_one": "Heute ein Wort.",
+    "startBlurb_other": "Eine kurze Runde mit {{count}} Wörtern.",
+    "resumeBlurb": "Mach da weiter, wo du aufgehört hast.",
+    "doneBlurb": "Für heute geschafft. Gut gemacht.",
+    "completeTitle": "Die Wörter für heute sind geschafft.",
+    "completeDetail_one": "Ein Wort gelernt.",
+    "completeDetail_other": "{{count}} Wörter gelernt.",
+    "more": "Noch ein bisschen",
+    "allDone": "Für heute ist nichts mehr da.",
+    "remaining_one": "Heute noch eins",
+    "remaining_other": "Heute noch {{count}}",
+    "progressAria": "Fortschritt bei den Wörtern für heute"
+  },
+  "browse": {
+    "title": "Nach Thema stöbern",
+    "showing": "{{shown}} von {{total}} werden gezeigt"
+  },
   "empty": {
     "title": "Hier gibt es noch keine Wörter",
     "body": "Probier eine andere Kategorie."
@@ -15,37 +36,17 @@
     "interjection": "Interjektion",
     "determiner": "Determinativ"
   },
-  "lesson": {
-    "title": "Gruppe {{index, number}}",
-    "newLetters": "Neue Buchstaben",
-    "done": "Fertig"
-  },
   "session": {
-    "hintSingle": "Schreibe es in das Kästchen",
-    "syllableGroup": "Die Silben von {{word}} schreiben",
     "next": "Nächstes Wort",
-    "finish": "Fertig",
-    "complete_one": "Du hast in {{lesson}} {{count, number}} Wort gelernt.",
-    "complete_other": "Du hast in {{lesson}} {{count, number}} Wörter gelernt.",
-    "toReading": "Jetzt lesen",
-    "writeEachPart": "Schreibe jeden Teil von {{word}} der Reihe nach.",
-    "writeEveryPartFirst": "Schreibe alle Teile, dann prüfen wir das ganze Wort zusammen."
+    "finish": "Fertig"
   },
   "intro": {
-    "write": "Schreiben üben",
     "example": "Beispiel",
     "howItSounds": "So klingt es",
-    "surfaceNote": "In diesem Satz erscheint {{headword}} als {{form}}."
+    "surfaceNote": "In diesem Satz erscheint {{headword}} als {{form}}.",
+    "next": "Verstanden"
   },
   "blurb": "Alle Wörter sind offen. Wähl eine Kategorie und fang an, wo du magst.",
-  "ahead": {
-    "title_one": "1 neuer Buchstabe in dieser Kategorie",
-    "title_other": "{{count, number}} neue Buchstaben in dieser Kategorie",
-    "body": "Du kannst diese Wörter sofort lernen. Mit den Buchstaben zuerst fällt es meist leichter.",
-    "more_one": "+1 weiterer",
-    "more_other": "+{{count, number}} weitere",
-    "cta": "Buchstaben lernen"
-  },
   "categories": {
     "essentials": "Das Wichtigste",
     "people": "Menschen und Familie",
@@ -94,5 +95,32 @@
     "saved": "Gemerkt",
     "add": "{{word}} merken",
     "remove": "{{word}} aus den gemerkten entfernen"
+  },
+  "detail": {
+    "title": "Wort",
+    "pronunciation": "Aussprache",
+    "definition": "Mehr dazu",
+    "usage": "So wird es benutzt",
+    "nearby": "Ähnliche Wörter"
+  },
+  "saved": {
+    "title": "Gemerkte Wörter",
+    "review_one": "Wiederholen · 1 Frage",
+    "review_other": "Wiederholen · {{count}} Fragen",
+    "searchPlaceholder": "Gemerkte Wörter durchsuchen",
+    "searchLabel": "Deine gemerkten Wörter durchsuchen",
+    "orderLabel": "Reihenfolge",
+    "order": {
+      "recent": "Zuletzt",
+      "alphabetical": "A–Z",
+      "needed": "Schwächste zuerst"
+    },
+    "count_one": "Ein Wort",
+    "count_other": "{{count}} Wörter",
+    "remove": "Entfernen",
+    "noMatch": "Nichts Gemerktes passt zu „{{query}}“.",
+    "emptyTitle": "Noch nichts gemerkt",
+    "emptyBody": "Tipp beim Lernen auf das Lesezeichen an einem Wort — dann findest du es hier wieder.",
+    "emptyCta": "Zu den Wörtern"
   }
 }

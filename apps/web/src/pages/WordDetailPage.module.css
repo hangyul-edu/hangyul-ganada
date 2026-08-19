@@ -1,0 +1,175 @@
+/*
+ * One word, in depth.
+ *
+ * The quiz screens are deliberately sparse; this is the screen where a learner
+ * has asked for more, so it may be dense — but it is still a phone, so every
+ * block is optional and absent blocks leave no gap.
+ */
+
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  align-items: flex-start;
+}
+
+.headRow {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+}
+
+/* Target content: never mirrored, whatever the interface direction. */
+.word {
+  direction: ltr;
+  flex: 1;
+  font-size: clamp(36px, 11vw, 52px);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1.15;
+  color: var(--hg-text);
+}
+
+.pronunciation {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-2);
+  flex-wrap: wrap;
+}
+
+.pronunciationLabel {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+/*
+ * IPA.
+ *
+ * `direction: ltr` and no ligatures: the transcription is Latin-script phonetic
+ * notation, so it reads left to right even in a right-to-left interface, and a
+ * font that ligates `t` + `ɕ` would silently change the symbol.
+ */
+.ipa {
+  direction: ltr;
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+  font-variant-ligatures: none;
+}
+
+.meaning {
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+.partOfSpeech {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  border: 1px solid var(--hg-border);
+}
+
+.blockTitle {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hg-text-tertiary);
+}
+
+.blockBody {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+.exampleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--hg-space-3);
+}
+
+.exampleKo {
+  direction: ltr;
+  text-align: start;
+  flex: 1;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  line-height: 1.7;
+  color: var(--hg-text);
+}
+
+/*
+ * The word inside its sentence.
+ *
+ * A weight change and a soft tint, not a colour: colouring a third of the
+ * sentence orange makes the sentence about the colour.
+ */
+.target {
+  background: var(--hg-surface-warm);
+  border-radius: var(--hg-radius-xs);
+  padding: 0 2px;
+}
+
+.spoken {
+  direction: ltr;
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.note {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.nearby {
+  display: flex;
+  flex-direction: column;
+}
+
+.nearbyRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-3);
+  width: 100%;
+  min-height: 48px;
+  text-align: start;
+  color: var(--hg-text);
+}
+
+.nearbyWord {
+  direction: ltr;
+  flex: none;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+}
+
+.nearbyMeaning {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}

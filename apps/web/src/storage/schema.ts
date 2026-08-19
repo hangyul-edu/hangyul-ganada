@@ -6,6 +6,7 @@ import type {
 
 import { DEFAULT_FONT_ID } from '../data/fonts';
 import { type ItemMemory, memoryKey, migrateMemory } from '../domain/memory';
+import type { DailyPlan } from '../domain/vocabularyDay';
 import type { PersistenceDriver } from './driver';
 
 /**
@@ -27,6 +28,8 @@ import type { PersistenceDriver } from './driver';
  * | 4 | `activity` store — one roll-up row per day the app was used |
  * | 5 | guided-only practice: `practised` stage, `practice_passes`, `demo_seen`, appearance |
  * | 6 | `memory` store — per-item, per-skill adaptive review state; saved words |
+ * | 7 | one writing rung, not two; no vocabulary handwriting; daily word goal |
+ * | 8 | `mistakes` store — the wrong-answer notebook |
  *
  * Versions 1 and 2 are read from `localStorage` and imported once. Nothing is
  * deleted from `localStorage` until the imported copy has been written and read
@@ -38,7 +41,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 6;
+export const SCHEMA_VERSION = 8;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -73,11 +76,36 @@ export interface StoredSettings extends LearnerPreferences {
    * would be a table with one column.
    */
   saved_items: string[];
+  /**
+   * Today's vocabulary plan, so leaving mid-session is safe.
+   *
+   * On the settings row for the same reason `saved_items` is: it is one small
+   * object that the whole app reads and one screen writes, and giving a single
+   * row its own object store would be a table with one column. It is *not* a
+   * preference — it is state — but it shares the preference row's lifetime
+   * exactly, including surviving an export and an import.
+   *
+   * `null` before the first vocabulary session, and stale from yesterday until
+   * the first read today. `planIsCurrent` in `domain/vocabularyDay.ts` is the
+   * only thing allowed to decide which.
+   */
+  daily_plan: DailyPlan | null;
 }
 
 export const SETTINGS_KEY = 'preferences';
 
 export const DEFAULT_DAILY_TARGET = 5;
+
+/**
+ * How many vocabulary items a day the learner aims to finish.
+ *
+ * Ten, and the number matters less than the fact that it is small enough to
+ * agree to. The offered set is 5 / 10 / 15 / 20; ten is two or three minutes,
+ * which is the length a person will start without deciding to. See
+ * `domain/vocabularyDay.ts` for what "one item" means, which is the part that
+ * has to be honest.
+ */
+export const DEFAULT_DAILY_WORD_GOAL = 10;
 
 export function defaultSettings(): StoredSettings {
   return {
@@ -88,6 +116,7 @@ export function defaultSettings(): StoredSettings {
     show_grid: true,
     show_center_crosshair: true,
     voice: 'female',
+    daily_word_goal: DEFAULT_DAILY_WORD_GOAL,
     // Legacy, unread: see `StoredSettings` in @hangyul-ganada/shared-types.
     autoplay_audio: true,
     // Not 'en': null means "never chose", which is what lets the precedence
@@ -95,6 +124,7 @@ export function defaultSettings(): StoredSettings {
     locale: null,
     active_days: [],
     saved_items: [],
+    daily_plan: null,
   };
 }
 
@@ -190,6 +220,7 @@ const migrateLegacyBlobToStores: Migration = {
     }
     settings.active_days = Array.isArray(parsed.active_days) ? parsed.active_days : [];
     settings.saved_items = [];
+    settings.daily_plan = null;
     await driver.put('settings', SETTINGS_KEY, settings);
 
     const progressEntries: Array<readonly [string, ItemProgress]> = [];
@@ -496,11 +527,132 @@ interface LegacyProgressRow {
   demo_seen?: boolean;
 }
 
+/**
+ * v6 → v7. One writing rung, and no writing at all for words.
+ *
+ * Two rules changed under existing learners at the same time, and both of them
+ * *lower* what is asked. Nobody may be worse off, and — the part that is easy
+ * to get wrong — nobody may be left stranded on a rung that no longer exists.
+ *
+ * ```
+ * a letter at `traced`, heard, watched, recognised   →  learned
+ * a word at `traced` or `practised`, heard, read     →  learned
+ * everything else                                    →  untouched
+ * ```
+ *
+ * ## Why this has to re-run completion rather than just rename a stage
+ *
+ * A learner who traced ㄹ, heard it, watched it and read it back, and then put
+ * the phone down before the light-guide step, sat at `traced` under v6 —
+ * correctly, because v6 wanted two writing passes. Under v7 they have done
+ * everything the product asks. If this migration only renamed stages they would
+ * open the app to a letter still marked unfinished, and the only way to finish
+ * it would be a step that has been deleted. That is the "stranded" case, and it
+ * is the whole reason this migration exists.
+ *
+ * Words are the larger group. Every word in an unfinished vocabulary lesson was
+ * waiting on syllable handwriting that the app will now never ask for again.
+ *
+ * ## What is not touched
+ *
+ * Counters, dates, memory rows, scores, `first_seen_at`. Nothing is deleted and
+ * nothing moves down: `advance` is the only thing that writes a stage here, and
+ * it cannot go backwards. A learner who was `learned` stays `learned`; a
+ * learner who had never met an item still has not met it.
+ */
+const singleWritingRung: Migration = {
+  to: 7,
+  describe: 'Collapse the two writing rungs into one and finish anything now complete',
+  async run({ driver, now }) {
+    const at = now();
+    const stamp = at.toISOString();
+    const rows = await driver.getAll<ItemProgress>('progress');
+    const updated: Array<readonly [string, ItemProgress]> = [];
+
+    for (const candidate of rows) {
+      const row = normaliseForMigration(candidate);
+      if (!row) continue;
+      if (row.stage === 'unseen' || row.stage === 'learned') continue;
+
+      const isCharacter = row.kind === 'character';
+      const written = row.trace_passes + row.practice_passes > 0;
+
+      // Exactly the v7 rules, spelled out rather than imported, because a
+      // migration has to keep working when the rules change again. A migration
+      // that calls today's `isComplete` silently rewrites itself every release
+      // and stops being a record of what version 7 did.
+      const complete =
+        row.heard &&
+        (!isCharacter || row.demo_seen) &&
+        (!isCharacter || written) &&
+        row.recognition_passes > 0;
+
+      // The writing rung is now reached by one pass, so a row that has written
+      // once is at `practised` whichever guide it used.
+      const stage = complete ? 'learned' : written ? 'practised' : row.stage;
+      if (stage === row.stage) continue;
+
+      const next: ItemProgress = {
+        ...row,
+        stage,
+        learned: stage === 'learned',
+        // Dated to the migration rather than back-dated: the app cannot know
+        // when they *would* have finished, and inventing a date would show up
+        // as a study day on the Activity chart that never happened.
+        learned_at: stage === 'learned' ? (row.learned_at ?? stamp) : row.learned_at,
+      };
+      updated.push([progressKey(row.kind, row.item_key), next] as const);
+    }
+
+    if (updated.length) await driver.putMany('progress', updated);
+
+    // The daily vocabulary goal is new; give existing learners the default
+    // rather than leaving it undefined for the goal screen to trip over.
+    const settings = await driver.get<Partial<StoredSettings>>('settings', SETTINGS_KEY);
+    if (settings && typeof settings.daily_word_goal !== 'number') {
+      await driver.put('settings', SETTINGS_KEY, {
+        ...defaultSettings(),
+        ...settings,
+        daily_word_goal: DEFAULT_DAILY_WORD_GOAL,
+      });
+    }
+  },
+};
+
+/**
+ * v7 → v8. The wrong-answer notebook.
+ *
+ * A new, empty store, and deliberately **not** back-filled.
+ *
+ * The material to back-fill from exists: `attempts` keeps the last two thousand
+ * review answers, failures included, so a notebook could be reconstructed from
+ * it. It is not, for two reasons. The attempt log is bounded and rolls, so what
+ * came out would be "your mistakes since some date we cannot tell you"; and a
+ * mistake that has since been answered right twice is recovered and should not
+ * be in the notebook at all, which the log cannot establish for anything older
+ * than its own window.
+ *
+ * A notebook that opens empty and fills up from the next session is honest. One
+ * that opens with a partial, undated reconstruction is not, and the learner has
+ * no way to tell which they are looking at.
+ */
+const wrongAnswerNotebook: Migration = {
+  to: 8,
+  describe: 'Add the wrong-answer notebook store',
+  async run() {
+    // The store is created by the driver from `STORE_NAMES`; there is nothing
+    // to convert. It is a numbered migration rather than nothing at all so that
+    // the version a learner's data claims to be matches the shape it is in.
+  },
+};
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
   guidedOnlyPractice,
   adaptiveReviewMemory,
+  singleWritingRung,
+  wrongAnswerNotebook,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

@@ -8,8 +8,6 @@
   },
   "language": {
     "title": "言語",
-    "description": "画面に表示される言語です。学ぶ韓国語の内容は常に韓国語のままです。",
-    "openPicker": "言語を変える",
     "pickerTitle": "言語を選ぶ",
     "pickerIntro": "画面の言語を選んでください。学習の対象であるハングルの文字・単語・例文は、いつも韓国語で表示されます。",
     "listAria": "利用できる言語",
@@ -17,9 +15,6 @@
     "searchPlaceholder": "名前またはコードで検索",
     "noResults": "「{{query}}」に一致する言語はありません。",
     "selected": "選択中",
-    "suggestion": "ブラウザの言語は{{language}}です。画面もこの言語にしますか？",
-    "suggestionAccept": "{{language}}にする",
-    "suggestionDismiss": "英語のままにする",
     "coverageNote": "翻訳が未完了の説明文は英語で表示されることがあります。"
   },
   "font": {
@@ -27,10 +22,16 @@
     "description": "なぞる文字は選んだ書体で描かれます。"
   },
   "dailyTarget": {
-    "title": "今日の目標",
-    "description": "一日に終わらせる文字や単語の数です。",
+    "title": "1日の文字数",
+    "description": "1日に文字を何個やるか決めましょう。",
     "option_other": "{{count, number}}",
     "optionAria_other": "1日{{count, number}}文字"
+  },
+  "wordGoal": {
+    "title": "1日の単語数",
+    "description": "1日に何語やるか決めましょう。いつでも変えられます。",
+    "option": "{{count}}語",
+    "optionAria": "1日{{count}}語"
   },
   "guides": {
     "title": "書くときの補助線",

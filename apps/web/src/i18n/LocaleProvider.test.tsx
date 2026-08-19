@@ -20,7 +20,7 @@ function Probe() {
   return (
     <div>
       <p data-testid="letters">{t('navigation:tabs.letters')}</p>
-      <p data-testid="prompt">{t('learning:session.prompt.trace')}</p>
+      <p data-testid="prompt">{t('learning:session.prompt.write')}</p>
       <p data-testid="locale">{locale}</p>
       <p data-testid="direction">{direction}</p>
       <p data-testid="source">{source}</p>
@@ -63,7 +63,11 @@ describe('LocaleProvider', () => {
   it('starts a fresh learner in English', () => {
     renderApp();
     expect(screen.getByTestId('locale')).toHaveTextContent('en');
-    expect(screen.getByTestId('source')).toHaveTextContent('default');
+    // `device`, not `default`: jsdom reports an English navigator and English
+    // is a language we ship, so the device rule matches rather than falling
+    // through. The *locale* is the point of this test; the source records
+    // honestly which rule produced it. See `resolveLocale`.
+    expect(screen.getByTestId('source')).toHaveTextContent('device');
     expect(screen.getByTestId('letters')).toHaveTextContent('Letters');
   });
 
@@ -81,7 +85,7 @@ describe('LocaleProvider', () => {
     await user.click(screen.getByRole('button', { name: 'korean' }));
 
     await waitFor(() => expect(screen.getByTestId('letters')).toHaveTextContent('글자'));
-    expect(screen.getByTestId('prompt')).toHaveTextContent('회색 글자를 손가락으로 따라가 보세요');
+    expect(screen.getByTestId('prompt')).toHaveTextContent('안내선을 따라 손가락으로 써 보세요');
     expect(document.documentElement.getAttribute('lang')).toBe('ko');
     // The same DOM node: nothing was torn down, so a half-drawn character
     // would have survived the switch.

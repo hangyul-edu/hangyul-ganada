@@ -1,5 +1,23 @@
 {
   "title": "単語を学ぶ",
+  "today": {
+    "title": "今日の単語",
+    "start": "始める",
+    "resume": "続きから",
+    "startBlurb_other": "今日は{{count}}語だけ。",
+    "resumeBlurb": "続きからどうぞ。",
+    "doneBlurb": "今日の分は終わりです。おつかれさま。",
+    "completeTitle": "今日の単語が終わりました。",
+    "completeDetail_other": "{{count}}語 学習しました",
+    "more": "もう少しやる",
+    "allDone": "今日の分はもうありません。",
+    "remaining_other": "今日はあと{{count}}語",
+    "progressAria": "今日の単語の進み具合"
+  },
+  "browse": {
+    "title": "テーマから探す",
+    "showing": "{{total}}語中 {{shown}}語を表示"
+  },
   "empty": {
     "title": "ここにはまだ単語がありません",
     "body": "ほかの分類を見てみましょう。"
@@ -15,35 +33,17 @@
     "interjection": "感動詞",
     "determiner": "連体詞"
   },
-  "lesson": {
-    "title": "第{{index, number}}セット",
-    "newLetters": "新しい文字",
-    "done": "完了"
-  },
   "session": {
-    "hintSingle": "枠の中に書きましょう",
-    "syllableGroup": "{{word}}の音節を書く",
     "next": "つぎの単語",
-    "finish": "おわり",
-    "complete_other": "{{lesson}}で単語{{count, number}}個を覚えました。",
-    "toReading": "では読んでみましょう",
-    "writeEachPart": "{{word}} を一文字ずつ順に書いてみましょう。",
-    "writeEveryPartFirst": "すべて書いたら、単語をまとめて確認します。"
+    "finish": "おわり"
   },
   "intro": {
-    "write": "書いてみる",
     "example": "例文",
     "howItSounds": "こう聞こえます",
-    "surfaceNote": "この文では {{headword}} が {{form}} の形で出てきます。"
+    "surfaceNote": "この文では {{headword}} が {{form}} の形で出てきます。",
+    "next": "わかった"
   },
   "blurb": "単語はすべて開いています。分類を選んで、好きなところから。",
-  "ahead": {
-    "title_one": "この分類に新しい字が 1 字",
-    "title_other": "この分類に新しい字が {{count, number}} 字",
-    "body": "今すぐ学習できます。先に文字を覚えておくと楽になります。",
-    "more_other": "ほか{{count, number}}字",
-    "cta": "文字を学ぶ"
-  },
   "categories": {
     "essentials": "基本のことば",
     "people": "人と家族",
@@ -90,5 +90,30 @@
     "saved": "保存済み",
     "add": "{{word}} を保存",
     "remove": "保存から {{word}} を外す"
+  },
+  "detail": {
+    "title": "単語",
+    "pronunciation": "発音",
+    "definition": "くわしく",
+    "usage": "使い方",
+    "nearby": "にた単語"
+  },
+  "saved": {
+    "title": "保存した単語",
+    "review_other": "復習 · {{count}}問",
+    "searchPlaceholder": "保存した単語を検索",
+    "searchLabel": "保存した単語を検索",
+    "orderLabel": "並べ替え",
+    "order": {
+      "recent": "新しい順",
+      "alphabetical": "あいうえお順",
+      "needed": "苦手な順"
+    },
+    "count_other": "{{count}}語",
+    "remove": "はずす",
+    "noMatch": "「{{query}}」に合う保存単語はありません。",
+    "emptyTitle": "まだ保存した単語はありません",
+    "emptyBody": "学習中に単語のブックマークを押すと、ここに集まります。",
+    "emptyCta": "単語を見る"
   }
 }

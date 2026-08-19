@@ -24,7 +24,18 @@ import {
   streakDays,
 } from '../domain/progress';
 import { applyReview, memoryKey, type ItemMemory } from '../domain/memory';
-import { summarise, todaysPractice } from '../domain/review';
+import { applyAnswer, listMistakes } from '../domain/mistakes';
+import { resolvePlan, type PracticePlan } from '../domain/plan';
+import { summarise, todaysPractice, type ExerciseMode } from '../domain/review';
+import { canAsk } from '../features/review/exercises';
+import {
+  buildDailyPlan,
+  completeWord,
+  dayProgress,
+  planIsCurrent,
+  type DailyPlan,
+} from '../domain/vocabularyDay';
+import { vocabularyByPriority } from '../data/vocabulary';
 import { nextLesson, lessonProgress } from '../domain/progress';
 import { recordActivity, recordStudyTime as recordStudyTime_ } from '../domain/activity';
 import { MemoryDriver, type PersistenceDriver } from '../storage/driver';
@@ -34,6 +45,7 @@ import {
   AttemptRepository,
   LearningRepository,
   MemoryRepository,
+  MistakeRepository,
   ProgressRepository,
   SettingsRepository,
   clearEverything,
@@ -65,18 +77,21 @@ import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './type
 /**
  * The mastery rules for one kind of item.
  *
- * Letters and syllables have a stroke-order demonstration to watch; words do
- * not, because a word is written out of letters whose stroke order was
- * demonstrated when those letters were taught. Keeping the decision here means
- * every event that can complete an item asks the same question and gets the
- * same answer.
+ * The two kinds are learned by different means and so they finish by different
+ * means. A letter is a shape to form: it has a stroke-order demonstration to
+ * watch and it is not finished until it has been written. A word is a meaning
+ * to acquire: there is no demonstration of it, and **it is never written at
+ * all** — vocabulary in this product is seen, heard, chosen and recognised.
+ *
+ * Keeping the decision here means every event that can complete an item asks
+ * the same question and gets the same answer.
  */
 function rulesFor(kind: ItemProgress['kind'], recognitionRequired: boolean) {
   const isCharacter = kind === 'character';
   return {
     recognitionRequired,
     demoRequired: isCharacter,
-    bothWritingRungs: isCharacter,
+    writingRequired: isCharacter,
   };
 }
 
@@ -97,6 +112,7 @@ export function LearnerProvider({
   const activityRepo = useRef<ActivityRepository | null>(null);
   const memoryRepo = useRef<MemoryRepository | null>(null);
   const attemptRepo = useRef<AttemptRepository | null>(null);
+  const mistakeRepo = useRef<MistakeRepository | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -111,6 +127,7 @@ export function LearnerProvider({
       activityRepo.current = new ActivityRepository(driver);
       memoryRepo.current = new MemoryRepository(driver);
       attemptRepo.current = new AttemptRepository(driver);
+      mistakeRepo.current = new MistakeRepository(driver);
 
       await runMigrations({
         driver,
@@ -119,14 +136,16 @@ export function LearnerProvider({
         now: () => new Date(),
       });
 
-      const [settings, progress, sessions, activity, memory, attempts] = await Promise.all([
-        settingsRepo.current.load(),
-        progressRepo.current.loadAll(),
-        sessionRepo.current.loadAll(),
-        activityRepo.current.loadAll(),
-        memoryRepo.current.loadAll(),
-        attemptRepo.current.loadAll(),
-      ]);
+      const [settings, progress, sessions, activity, memory, attempts, mistakes] =
+        await Promise.all([
+          settingsRepo.current.load(),
+          progressRepo.current.loadAll(),
+          sessionRepo.current.loadAll(),
+          activityRepo.current.loadAll(),
+          memoryRepo.current.loadAll(),
+          attemptRepo.current.loadAll(),
+          mistakeRepo.current.loadAll(),
+        ]);
       if (cancelled) return;
 
       setState({
@@ -136,6 +155,7 @@ export function LearnerProvider({
         activity,
         memory,
         attempts,
+        mistakes,
         schema_version: SCHEMA_VERSION,
         storage: { engine: driver.name, durable: driver.durable },
         recovered: progress.dropped,
@@ -144,6 +164,7 @@ export function LearnerProvider({
       void sessionRepo.current.prune();
       void activityRepo.current.prune();
       void attemptRepo.current.prune();
+      void mistakeRepo.current.prune();
     }
 
     void hydrate().catch(() => {
@@ -418,6 +439,17 @@ export function LearnerProvider({
         review: true,
       });
 
+      /*
+       * The notebook is written here, beside the memory row, and not by the
+       * screens.
+       *
+       * §35: the learner should not have to save a mistake for it to be
+       * recorded. Every exercise in the app reports through `recordReview`, so
+       * this is the one place that sees every answer — a screen-by-screen
+       * implementation would collect mistakes from whichever screens
+       * remembered to, which is how a notebook ends up quietly missing the
+       * listening questions.
+       */
       setState((prev) => {
         const next: ItemMemory = applyReview(
           prev.memory[key],
@@ -435,9 +467,27 @@ export function LearnerProvider({
           now,
         );
         void memoryRepo.current?.put(next);
+
+        const mistake = applyAnswer(
+          prev.mistakes[key],
+          {
+            kind: input.kind,
+            itemKey: input.item_key,
+            skill: input.skill,
+            mode: input.mode,
+            passed: input.passed,
+            ...(input.confused_with ? { chose: input.confused_with } : {}),
+            answer: input.item_key,
+          },
+          now,
+        );
+        const mistakes = mistake ? { ...prev.mistakes, [key]: mistake } : prev.mistakes;
+        if (mistake) void mistakeRepo.current?.put(mistake);
+
         return {
           ...prev,
           memory: { ...prev.memory, [key]: next },
+          mistakes,
           attempts: [...prev.attempts, record].slice(-AttemptRepository.MAX_ATTEMPTS),
         };
       });
@@ -472,6 +522,7 @@ export function LearnerProvider({
       activity: {},
       memory: {},
       attempts: [],
+      mistakes: {},
       schema_version: SCHEMA_VERSION,
       storage: prev.storage,
       recovered: 0,
@@ -497,16 +548,147 @@ export function LearnerProvider({
    * pass over the whole profile sixty times a minute for nothing anyone could
    * see.
    */
+  /*
+   * Every count on Review and Home is filtered through `canAsk`.
+   *
+   * Without it these numbers describe the scheduler's opinion, and the session
+   * describes what can actually be rendered. Those were two different numbers,
+   * and the gap between them is how "8 questions" opened an empty screen.
+   */
   const reviewSummary = useMemo(
-    () => summarise(state.progress, state.memory, savedSet, new Date()),
+    () => summarise(state.progress, state.memory, savedSet, new Date(), canAsk),
     [state.progress, state.memory, savedSet],
   );
 
   const practice = useMemo(() => {
     const lesson = nextLesson(state.progress);
     const done = lessonProgress(state.progress, lesson);
-    return todaysPractice(state.progress, state.memory, done.total - done.done, new Date());
+    return todaysPractice(state.progress, state.memory, done.total - done.done, new Date(), canAsk);
   }, [state.progress, state.memory]);
+
+  /**
+   * Resolves a review plan.
+   *
+   * Not memoised on the options, because the options are supplied per call and
+   * a screen asks for at most a handful. What *is* stable is the result: the
+   * same profile and the same request produce the same plan, which is what lets
+   * the Review screen show one and the session run it.
+   */
+  /**
+   * Items with an unresolved mistake against them.
+   *
+   * Handed to the scheduler as a *signal*, not as a session: §42's rule for
+   * saved words applies here too, and more strongly. A mistake raises an item's
+   * priority; it does not entitle it to be asked every time until the learner
+   * gets bored of seeing it.
+   */
+  const unresolved = useMemo(
+    () => new Set(listMistakes(state.mistakes).map((mistake) => mistake.id)),
+    [state.mistakes],
+  );
+
+  const practicePlan = useCallback(
+    (options: { mode?: ExerciseMode; savedOnly?: boolean; mistakesOnly?: boolean } = {}): PracticePlan =>
+      resolvePlan({
+        progress: state.progress,
+        memory: state.memory,
+        saved: savedSet,
+        mistakes: unresolved,
+        now: new Date(),
+        ...options,
+      }),
+    [state.progress, state.memory, savedSet, unresolved],
+  );
+
+  const mistakes = useMemo(() => listMistakes(state.mistakes), [state.mistakes]);
+
+  const clearMistake = useCallback((id: string) => {
+    setState((prev) => {
+      if (!prev.mistakes[id]) return prev;
+      const next = { ...prev.mistakes };
+      delete next[id];
+      void mistakeRepo.current?.remove(id);
+      return { ...prev, mistakes: next };
+    });
+  }, []);
+
+  /**
+   * Today's vocabulary plan.
+   *
+   * Built on the first read of a new day and then left alone. The build is
+   * inside a `useMemo` and the *persistence* is in an effect below, because
+   * writing to storage during a render is how a plan ends up saved twice under
+   * React's strict mode — and a plan saved twice is a plan whose completed list
+   * can be clobbered.
+   */
+  const vocabularyDay = useMemo<DailyPlan>(() => {
+    const now = new Date();
+    const stored = state.settings.daily_plan;
+    if (planIsCurrent(stored, now) && stored.goal === state.settings.daily_word_goal) return stored;
+    // A stored plan from an earlier day, or from before the goal changed, is
+    // replaced rather than resized: see `planIsCurrent`.
+    return buildDailyPlan({
+      progress: state.progress,
+      memory: state.memory,
+      corpus: vocabularyByPriority(),
+      goal: state.settings.daily_word_goal,
+      now,
+    });
+  }, [
+    state.settings.daily_plan,
+    state.settings.daily_word_goal,
+    state.progress,
+    state.memory,
+  ]);
+
+  useEffect(() => {
+    if (state.settings.daily_plan === vocabularyDay) return;
+    setState((prev) => {
+      if (prev.settings.daily_plan === vocabularyDay) return prev;
+      const settings = { ...prev.settings, daily_plan: vocabularyDay };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, [vocabularyDay, state.settings.daily_plan]);
+
+  const vocabularyProgressToday = useMemo(() => dayProgress(vocabularyDay), [vocabularyDay]);
+
+  const completeDailyWord = useCallback((wordId: string) => {
+    setState((prev) => {
+      const plan = prev.settings.daily_plan;
+      if (!plan) return prev;
+      const next = completeWord(plan, wordId);
+      if (next === plan) return prev;
+      const settings = { ...prev.settings, daily_plan: next };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, []);
+
+  /**
+   * A second helping, for a learner who finished and wants more.
+   *
+   * Deliberately the *only* way to get past the day's goal, and deliberately
+   * something they have to ask for. The completion screen offers it once and
+   * does not push: a goal that is immediately replaced by another goal is not a
+   * goal, and the point of this number is to make starting easy rather than to
+   * keep somebody going until they stop.
+   */
+  const extendVocabularyDay = useCallback(() => {
+    setState((prev) => {
+      const now = new Date();
+      const plan = buildDailyPlan({
+        progress: prev.progress,
+        memory: prev.memory,
+        corpus: vocabularyByPriority(),
+        goal: prev.settings.daily_word_goal,
+        now,
+      });
+      const settings = { ...prev.settings, daily_plan: plan };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, []);
 
   const summary = useMemo<ProgressSummary>(() => {
     const rows = Object.values(state.progress);
@@ -558,6 +740,13 @@ export function LearnerProvider({
       isSaved,
       reviewSummary,
       practice,
+      practicePlan,
+      mistakes,
+      clearMistake,
+      vocabularyDay,
+      vocabularyProgressToday,
+      completeDailyWord,
+      extendVocabularyDay,
       progressFor,
       reset,
     }),
@@ -580,6 +769,13 @@ export function LearnerProvider({
       isSaved,
       reviewSummary,
       practice,
+      practicePlan,
+      mistakes,
+      clearMistake,
+      vocabularyDay,
+      vocabularyProgressToday,
+      completeDailyWord,
+      extendVocabularyDay,
       progressFor,
       reset,
     ],
@@ -597,6 +793,7 @@ function initialState(driver?: PersistenceDriver): LearnerState {
     activity: {},
     memory: {},
     attempts: [],
+    mistakes: {},
     schema_version: SCHEMA_VERSION,
     storage: { engine: engine.name, durable: engine.durable },
     recovered: 0,

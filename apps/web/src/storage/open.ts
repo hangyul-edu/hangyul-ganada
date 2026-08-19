@@ -122,6 +122,8 @@ function keyOf(store: StoreName, row: Record<string, unknown>): string {
       return progressKey(row.kind as ItemProgress['kind'], String(row.item_key));
     case 'memory':
       return memoryKey(row.kind as ItemProgress['kind'], String(row.item_key));
+    case 'mistakes':
+      return String(row.id);
     case 'sessions':
     case 'attempts':
       return String(row.id);
