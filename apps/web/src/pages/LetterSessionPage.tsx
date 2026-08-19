@@ -387,7 +387,6 @@ export function LetterSessionPage() {
                 <StrokeOrder
                   character={current.character}
                   strokes={current.strokes}
-                  fontFamily={font.font_family}
                   size={152}
                   /*
                     Plays by itself for a learner who has not watched it yet.

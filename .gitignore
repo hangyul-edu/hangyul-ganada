@@ -39,3 +39,4 @@ blob-report/
 # illustrations and the audio are committed; what they were built from is not.
 content-cache/
 .tts-venv/
+.stroke-qa/

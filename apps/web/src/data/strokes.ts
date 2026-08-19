@@ -57,18 +57,20 @@ function stroke(points: Points): StrokeStep {
 /**
  * A ㄱ, drawn as one stroke that turns the corner, inside `[left, right]`.
  *
- * The leg sweeps down and *left*, and a long way left — a ㄱ is shaped like a
- * 7, not like a ⌐. This had drifted badly: the leg used to come back a tenth of
- * the letter's width, which is very nearly straight down, on the theory that a
- * more upright ㄱ would look less distorted. Rendering the real face beside it
- * settled the question — Pretendard finishes the leg below where the top bar
- * *started*, and so does every other face here.
+ * The leg comes back about a quarter of the letter's width as it descends, on a
+ * gentle curve. That number is measured, not guessed — twice now, because the
+ * first guess was wrong in both directions.
  *
- * The middle point is the curve. The leg is an arc in every face that has one,
- * and two segments follow an arc close enough for what this data is now for:
- * the demonstration uncovers the real glyph along these points, so a polyline
- * that cuts the corner off an arc leaves part of the letter uncovered while it
- * is being written.
+ * Rendering the practice face and reading the ink off it row by row: in 가 and
+ * 거, where the ㄱ is tall, the leg's centre travels from 0.49 of the block to
+ * 0.34 as it falls, a shift of a bit over a quarter of the letter. In 고 and
+ * 국, where the ㄱ is squat, the leg comes straight down. One polyline cannot
+ * be both — but it does not have to be, because the block that wants the
+ * upright version is also the block that squashes the letter horizontally, and
+ * squashing a leaning leg is what makes it upright.
+ *
+ * The middle point is the curve. The leg is an arc, and two segments follow an
+ * arc closely enough for a demonstration that reveals the same path it draws.
  */
 function giyeok(left: number, right: number, top = 20, bottom = 80): StrokeStep {
   const width = right - left;
@@ -76,8 +78,8 @@ function giyeok(left: number, right: number, top = 20, bottom = 80): StrokeStep 
   return stroke([
     [left, top],
     [right, top],
-    [right - width * 0.3, top + height * 0.55],
-    [left + width * 0.06, bottom],
+    [right - width * 0.08, top + height * 0.55],
+    [right - width * 0.28, bottom],
   ]);
 }
 

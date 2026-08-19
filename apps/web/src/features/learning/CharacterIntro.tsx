@@ -161,7 +161,6 @@ export function CharacterIntro({
         <StrokeOrder
           character={character.character}
           strokes={character.strokes}
-          fontFamily={fontFamily}
           size={208}
           onWatched={onDemoWatched}
         />

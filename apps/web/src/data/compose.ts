@@ -1,5 +1,6 @@
 import type { StrokeStep } from '@hangyul-ganada/shared-types';
 
+import COMPOSITION from './generated/composition.json';
 import { MEDIAL_PARTS, branchesLeft, medialForm, toJamo, type MedialForm } from './jamo';
 import { STROKE_ORDER } from './strokes';
 
@@ -106,10 +107,20 @@ const INK_SPAN = 0.72;
 const PAPER_MARGIN = (1 - INK_SPAN) / 2;
 
 /**
- * The pen, as a fraction of the block — see `ui/StrokeOrder.tsx`, which draws
- * these strokes 5 units wide in a 100-unit box.
+ * The pen this layout is drawn with, in the coordinates `composeSyllableStrokes`
+ * returns — the paper, not the block.
+ *
+ * Exported because the renderer has to use the same number, and stated in the
+ * output's units because that is the only place the two modules meet. Reading
+ * it as block units instead makes the pen a third too thick, and a third too
+ * thick is enough to close the gaps this layout is built on: 국 arrives with
+ * its three bands touching, which is exactly what it did.
+ *
+ * The gaps below are only as wide as they are *after* the ink is on them, so
+ * this constant is not a detail of the renderer. It is part of the layout.
  */
-const PEN = 0.05 / INK_SPAN;
+export const COMPOSED_PEN = 0.05;
+const PEN = COMPOSED_PEN / INK_SPAN;
 
 /**
  * An ink box, as measured off the reference face, turned into the region the
@@ -182,8 +193,13 @@ const LAYOUTS: Record<`${MedialForm}-${'open' | 'closed'}`, SyllableLayout> = {
   'horizontal-closed': {
     form: 'horizontal',
     initial: ink(0.112, 0, 0.912, 0.36),
-    medial: ink(0, 0.42, 1, 0.568),
-    final: ink(0.112, 0.669, 0.888, 1),
+    // Taller than the measurement said, on purpose. That number was a median
+    // across the class, and the class contains 글 — whose vowel is ㅡ, a bar
+    // with no stem at all — which pulled it down far enough to leave 국 and 공
+    // with a ㅜ barely deeper than its own bar. A band sized for the vowels
+    // that have a stem costs 글 nothing, because a bar sits anywhere in it.
+    medial: ink(0, 0.38, 1, 0.60),
+    final: ink(0.112, 0.68, 0.888, 1),
   },
   // 과 — no face was measured for this one, because the curriculum teaches no
   // wrapped block yet. The consonant and the vowel's horizontal arm stack on
@@ -204,6 +220,60 @@ const LAYOUTS: Record<`${MedialForm}-${'open' | 'closed'}`, SyllableLayout> = {
     final: ink(0.152, 0.669, 0.874, 1),
   },
 };
+
+/**
+ * Where the reference face puts each letter of each taught syllable.
+ *
+ * Measured, per syllable, by `scripts/measure-composition.mjs` — see its note
+ * for how. This is what `LAYOUTS` above could not be: the table below is a
+ * median over a class of syllables, and a median is nobody. It put the ㅇ and
+ * the ㅓ of 어 a tenth of the block apart because that is the average gap across
+ * ten syllables whose consonants are different widths; the face puts them
+ * *touching*. Same for 오, 구, 국, 글, 옷 — every syllable whose letters run
+ * into each other came out with a gap between them, and read as two letters
+ * standing next to each other rather than one character.
+ *
+ * `LAYOUTS` is still the fallback, for a syllable added to the curriculum
+ * before the table is re-measured. It composes; it just composes from the
+ * average until someone runs the script.
+ */
+interface Measured {
+  /** Width over height of the reference glyph's ink. */
+  aspect: number;
+  /** One box per letter, in fractions of that glyph's ink. */
+  parts: number[][];
+}
+
+const MEASURED = COMPOSITION.syllables as unknown as Record<string, Measured>;
+
+/**
+ * The measured boxes for a syllable, as regions of the block.
+ *
+ * Two conversions. The glyph's ink is not square, so its coordinates are mapped
+ * into a block that has the same proportions rather than stretched to fill one.
+ * And a measured box is an *outline* while a region bounds *centrelines*, so it
+ * is inset by half the pen — which is what makes two boxes that share an edge
+ * come out as two strokes that touch.
+ */
+function measuredRegions(syllable: string): Region[] | null {
+  const found = MEASURED[syllable];
+  if (!found) return null;
+  const width = Math.min(1, found.aspect);
+  const height = Math.min(1, 1 / found.aspect);
+  const half = PEN / 2;
+  return found.parts.map(([x0, y0, x1, y1]) => {
+    const left = 0.5 + (x0! - 0.5) * width;
+    const right = 0.5 + (x1! - 0.5) * width;
+    const top = 0.5 + (y0! - 0.5) * height;
+    const bottom = 0.5 + (y1! - 0.5) * height;
+    return {
+      x0: Math.min(left + half, (left + right) / 2),
+      x1: Math.max(right - half, (left + right) / 2),
+      y0: Math.min(top + half, (top + bottom) / 2),
+      y1: Math.max(bottom - half, (top + bottom) / 2),
+    };
+  });
+}
 
 /** The layout a syllable uses, or null if it is not a composed syllable. */
 export function syllableLayout(syllable: string): SyllableLayout | null {
@@ -237,6 +307,16 @@ const FLAT = 1e-6;
  */
 const MAX_SQUEEZE_ANGULAR = 2.9;
 const MAX_SQUEEZE_ROUND = 1.8;
+
+/**
+ * And the bound for a consonant sitting above a horizontal vowel.
+ *
+ * Tighter than the general one because that slot is the widest and shallowest
+ * in the alphabet: left to fill it, a near-square ㄱ flattens to nearly three
+ * times out of shape, which is not what a face does to it and not what 국 looks
+ * like.
+ */
+const MAX_SQUEEZE_WIDE_SLOT = 2.2;
 
 /**
  * Where a letter with no extent along an axis sits within its region.
@@ -306,7 +386,11 @@ function place(anchor: Anchor, region: Region, axis: 'x' | 'y'): number {
 function fit(
   strokes: StrokeStep[],
   region: Region,
-  { keepShape, anchorX = 'centre' }: { keepShape: boolean; anchorX?: Anchor },
+  {
+    keepShape,
+    anchorX = 'centre',
+    squeeze,
+  }: { keepShape: boolean; anchorX?: Anchor; squeeze?: number },
 ): StrokeStep[] {
   const ink = inkBounds(strokes);
   const inkWidth = ink.x1 - ink.x0;
@@ -315,7 +399,10 @@ function fit(
   let scaleY = inkHeight < FLAT ? 0 : (region.y1 - region.y0) / inkHeight;
 
   if (keepShape && scaleX > 0 && scaleY > 0) {
-    const limit = isRound(strokes) ? MAX_SQUEEZE_ROUND : MAX_SQUEEZE_ANGULAR;
+    // A slot bound tightens the letter's own; it never loosens it. ㅇ stays as
+    // round in a wide slot as it is anywhere else.
+    const own = isRound(strokes) ? MAX_SQUEEZE_ROUND : MAX_SQUEEZE_ANGULAR;
+    const limit = squeeze === undefined ? own : Math.min(squeeze, own);
     // Whichever direction has room to spare gives it up, so the letter keeps as
     // much of its own proportions as the region allows and is centred in what
     // it does not use.
@@ -384,9 +471,39 @@ export function composeSyllableStrokes(syllable: string): StrokeStep[] {
   const layout = syllableLayout(syllable);
   if (!layout) return [];
   const [initial, medial, final] = toJamo(syllable);
+  const measured = measuredRegions(syllable);
+
+  if (measured && measured.length === toJamo(syllable).length) {
+    // Measured off the reference glyph: one box per letter, in the face's own
+    // spacing. Consonants keep their shape inside their box; vowels fill theirs,
+    // because a vowel is straight lines and stretching a line does not distort
+    // it.
+    const out: StrokeStep[] = [
+      ...fit(strokesOf(initial!), measured[0]!, {
+        keepShape: true,
+        squeeze: layout.form === 'horizontal' ? MAX_SQUEEZE_WIDE_SLOT : undefined,
+      }),
+      ...fit(strokesOf(medial!), measured[1]!, {
+        keepShape: false,
+        anchorX: branchesLeft(medial!) ? 'end' : 'start',
+      }),
+    ];
+    if (final && measured[2]) {
+      out.push(...fit(strokesOf(final), measured[2], { keepShape: true }));
+    }
+    return setOnPaper(out);
+  }
 
   const out: StrokeStep[] = [
-    ...fit(strokesOf(initial!), layout.initial, { keepShape: true }),
+    ...fit(strokesOf(initial!), layout.initial, {
+      keepShape: true,
+      // A consonant over a horizontal vowel gets a wide, shallow band, and
+      // filling it makes every letter as wide as the widest one that has to fit
+      // — ㄱ stretched to ㄲ's width, which is how 국 ended up looking like a
+      // pile of bars. Holding the squeeze near what a face uses lets each
+      // letter be as wide as its own shape wants and no wider.
+      squeeze: layout.form === 'horizontal' ? MAX_SQUEEZE_WIDE_SLOT : undefined,
+    }),
   ];
 
   if (layout.form === 'wrapped' && layout.medialWide) {
@@ -399,8 +516,6 @@ export function composeSyllableStrokes(syllable: string): StrokeStep[] {
       out.push(
         ...fit(strokesOf(tall), layout.medialWide, {
           keepShape: false,
-          // ㅣ has no width of its own, so it becomes the stem it stands for and
-          // sits at the near edge of its slot rather than floating mid-region.
           anchorX: branchesLeft(tall) ? 'end' : 'start',
         }),
       );

@@ -75,12 +75,15 @@ describe('syllable composition', () => {
   });
 
   it('puts the consonant above and the vowel below in 고 and 구', () => {
+    // Stacking, not spacing. How much air is between them is the reference
+    // face's business — in 구 the two touch — so what is asserted is the order,
+    // which is what makes it a horizontal-vowel block at all.
     for (const syllable of ['고', '구']) {
       const [initial, medial] = componentStrokes(syllable);
       const consonant = bounds(initial!.strokes);
       const vowel = bounds(medial!.strokes);
-      expect(consonant.bottom, syllable).toBeLessThan(vowel.top);
-      expect(vowel.top - consonant.bottom, syllable).toBeGreaterThan(0.05);
+      expect(consonant.top, syllable).toBeLessThan(vowel.top);
+      expect(consonant.bottom, syllable).toBeLessThan(vowel.bottom);
       // The vowel spans the block rather than hiding in one corner of it.
       expect(vowel.right - vowel.left, syllable).toBeGreaterThan(0.6);
     }
@@ -93,8 +96,14 @@ describe('syllable composition', () => {
     const batchim = bounds(final!.strokes);
 
     expect(consonant.right).toBeLessThan(vowel.left);
-    expect(vowel.bottom).toBeLessThan(batchim.top);
-    expect(consonant.bottom).toBeLessThan(batchim.top);
+    // The 받침 is below both, by their centres. Edges can cross by a hair —
+    // the stem of ㅏ reaches a little past where ㄴ begins, as it does in the
+    // reference face — and demanding otherwise would be demanding a gap the
+    // face does not have.
+    const middle = (b: { top: number; bottom: number }) => (b.top + b.bottom) / 2;
+    expect(middle(vowel)).toBeLessThan(middle(batchim));
+    expect(middle(consonant)).toBeLessThan(middle(batchim));
+    expect(consonant.bottom).toBeLessThan(batchim.bottom);
     // The 받침 sits under the middle of the block, not off to one side.
     expect((batchim.left + batchim.right) / 2).toBeGreaterThan(0.4);
     expect((batchim.left + batchim.right) / 2).toBeLessThan(0.6);
@@ -193,16 +202,27 @@ describe('syllable composition', () => {
     }
   });
 
-  it('never lets two components of a block share space', () => {
+  it('never draws one letter of a block on top of another', () => {
+    /*
+     * Boxes may touch and may even overlap a little — a ㄱ's leg comes down
+     * beside a ㅗ's stem and the two bounding rectangles clip corners, which is
+     * what the reference face does and what makes the block read as one
+     * character. What must not happen is a letter sitting *on* another: the
+     * test is whether a component's centre falls inside a different
+     * component's box.
+     */
     for (const character of SYLLABLES) {
       const parts = componentStrokes(character.character).filter((p) => p.strokes.length > 0);
-      for (let i = 0; i < parts.length; i += 1) {
-        for (let j = i + 1; j < parts.length; j += 1) {
-          const a = bounds(parts[i]!.strokes);
-          const b = bounds(parts[j]!.strokes);
-          const overlaps =
-            a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
-          expect(overlaps, `${character.character}: ${parts[i]!.jamo} overlaps ${parts[j]!.jamo}`)
+      const boxes = parts.map((p) => bounds(p.strokes));
+      for (let i = 0; i < boxes.length; i += 1) {
+        for (let j = 0; j < boxes.length; j += 1) {
+          if (i === j) continue;
+          const a = boxes[i]!;
+          const b = boxes[j]!;
+          const cx = (a.left + a.right) / 2;
+          const cy = (a.top + a.bottom) / 2;
+          const inside = cx > b.left && cx < b.right && cy > b.top && cy < b.bottom;
+          expect(inside, `${character.character}: ${parts[i]!.jamo} sits inside ${parts[j]!.jamo}`)
             .toBe(false);
         }
       }
@@ -230,22 +250,32 @@ describe('syllable composition', () => {
     // on the centrelines, so it reads a little under the ink's true span.
     for (const character of SYLLABLES) {
       const box = bounds(character.strokes);
-      // ㅣ is a line with no width and ㅡ a line with no height, so the ink of
-      // 기 stops at its stem and the ink of 그 stops at its bar — which is what
-      // those characters look like, sidebearing and all. Every other block
-      // fills the square.
+      /*
+       * Loose, and deliberately so. A block now carries the *reference glyph's*
+       * proportions rather than being fitted to a square: 거 is genuinely
+       * narrower than it is tall in this face, 고 wider. On top of that ㅣ is a
+       * line with no width and ㅡ a line with no height, so the ink of 기 stops
+       * at its stem and 그 at its bar. What is being caught here is a block that
+       * has collapsed, not one that is not square.
+       */
       const jamo = toJamo(character.character);
       expect(box.right - box.left, character.character).toBeGreaterThan(
-        jamo.includes('ㅣ') ? 0.5 : 0.64,
+        jamo.includes('ㅣ') ? 0.45 : 0.5,
       );
       expect(box.bottom - box.top, character.character).toBeGreaterThan(
-        jamo.includes('ㅡ') ? 0.48 : 0.64,
+        jamo.includes('ㅡ') ? 0.45 : 0.5,
       );
     }
   });
 
   it('keeps every letter in the slot its layout gives it', () => {
-    for (const character of SYLLABLES) {
+    /*
+     * The general layout, which is now the fallback: a taught syllable is
+     * placed from a measurement of the reference glyph instead (see
+     * `composition.test.ts`), so this exercises the path a syllable takes
+     * before anyone has measured it — 과, which the curriculum does not teach.
+     */
+    for (const character of [{ character: '과', strokes: composeSyllableStrokes('과') }]) {
       const layout = syllableLayout(character.character)!;
       // The slot as it lands on the paper — the layout describes the block, and
       // the block is set on the paper smaller than the paper. Same transform the

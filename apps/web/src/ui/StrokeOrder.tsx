@@ -2,10 +2,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { StrokeStep } from '@hangyul-ganada/shared-types';
 
+import { COMPOSED_PEN } from '../data/compose';
 import { isSyllable } from '../data/jamo';
-import { glyphInk, whenFaceReady } from './glyphInk';
 import { markerAt } from './strokeMarker';
-import { buildRevealMap, paintRevealMask } from './strokeReveal';
+import { strokeLength, strokePath } from './strokePath';
 import styles from './StrokeOrder.module.css';
 
 /**
@@ -94,7 +94,6 @@ import styles from './StrokeOrder.module.css';
 export function StrokeOrder({
   character,
   strokes,
-  fontFamily,
   size = 160,
   autoPlay = true,
   onWatched,
@@ -102,8 +101,6 @@ export function StrokeOrder({
   /** The character itself: the accessible name, and the thing being drawn. */
   character: string;
   strokes: StrokeStep[];
-  /** The learner's practice face, so this and the reference glyph agree. */
-  fontFamily: string;
   size?: number;
   autoPlay?: boolean;
   /**
@@ -117,7 +114,6 @@ export function StrokeOrder({
 }) {
   const { t } = useTranslation('handwriting');
   const reduceMotion = usePrefersReducedMotion();
-  const faceVersion = useFaceReady(character, fontFamily);
 
   /*
    * Where the glyph's ink sits, and the polylines moved onto it.
@@ -128,20 +124,26 @@ export function StrokeOrder({
    * browser has not got yet returns the metrics of whatever it substituted.
    */
   const layout = useMemo(
-    () => glyphLayout(character, fontFamily, strokes),
-    // `faceVersion` is not read here; it is what makes this run again once the
-    // real face has arrived and the fallback's metrics have been thrown away.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [character, fontFamily, strokes, faceVersion],
+    () => placeStrokes(character, strokes),
+    [character, strokes],
   );
   const placed = layout.strokes;
 
+  /*
+   * One path per stroke, built once.
+   *
+   * Every state of every stroke is drawn from these strings: the guide before
+   * it is written, the ink as it grows, the finished stroke afterwards. Same
+   * geometry three times over, so there is nothing for a seam to appear
+   * between.
+   */
+  const paths = useMemo(() => placed.map(strokePath), [placed]);
+
   // A composed block is several letters sharing one box, and it needs smaller
   // numbers than a single letter filling it.
-  const dense = layout.dense;
-  const markerRadius = dense ? 4 : 5.6;
+  const markerRadius = isSyllable(character) ? 4 : 5.6;
 
-  const lengths = useMemo(() => placed.map(polylineLength), [placed]);
+  const lengths = useMemo(() => placed.map(strokeLength), [placed]);
   const schedule = useMemo(() => buildSchedule(lengths), [lengths]);
 
   /**
@@ -232,138 +234,70 @@ export function StrokeOrder({
   };
 
   const complete = Math.floor(drawn);
-
-  /*
-   * The glyph, cut into strokes, so the animation can uncover it exactly.
-   *
-   * Rebuilt when the character, the face or the size changes — a rasterisation
-   * and a few hundred thousand distance comparisons, which is nothing once and
-   * far too much per frame, hence the memo.
-   */
-  const reveal = useMemo(
-    () => buildRevealMap(placed, (context, res) => layout.paint(context, res), layout.weight),
-    [placed, layout],
-  );
-
-  const canvas = useRef<HTMLCanvasElement | null>(null);
-  /*
-   * Ink and paper, from the design tokens.
-   *
-   * Read once: `canvasInk` and `canvasGuide` are deliberately the same in light
-   * and dark — a Korean glyph is black on paper, and teaching the shape against
-   * an inverted background would teach it against a background it never has.
-   */
-  const ink = useRef({ ink: '#16130f', ghost: '#e6e1d6' });
-  useEffect(() => {
-    const element = canvas.current;
-    if (!element || typeof getComputedStyle !== 'function') return;
-    const style = getComputedStyle(element);
-    const read = (name: string, fallback: string) =>
-      style.getPropertyValue(name).trim() || fallback;
-    ink.current = {
-      ink: read('--hg-canvas-ink', ink.current.ink),
-      ghost: read('--hg-canvas-guide', ink.current.ghost),
-    };
-  }, []);
-
-  const maskCanvas = useRef<HTMLCanvasElement | null>(null);
-  const maskImage = useRef<ImageData | null>(null);
-
-  /*
-   * One frame of the demonstration.
-   *
-   * The glyph is drawn whole, in ink, then everything the pen has not reached
-   * is taken back out of it, then the same glyph goes in behind at a fraction
-   * of the weight so the learner can see where the writing is going. Nothing is
-   * ever painted that is not the character: the glyph's outline is the
-   * typeface's, and the only edge this code draws is the one at the pen.
-   */
-  useEffect(() => {
-    const display = canvas.current;
-    if (!display) return;
-    const context = display.getContext('2d');
-    if (!context) return;
-
-    const ratio = typeof window === 'undefined' ? 1 : Math.min(3, window.devicePixelRatio || 1);
-    const pixels = Math.round(size * ratio);
-    if (display.width !== pixels) {
-      display.width = pixels;
-      display.height = pixels;
-    }
-
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    context.clearRect(0, 0, pixels, pixels);
-
-    const drawGlyph = (fill: string) => {
-      context.save();
-      context.scale(pixels / 100, pixels / 100);
-      context.fillStyle = fill;
-      layout.paint(context, 100);
-      context.restore();
-    };
-
-    if (reveal && drawn < strokes.length) {
-      let mask = maskCanvas.current;
-      if (!mask) {
-        mask = document.createElement('canvas');
-        mask.width = reveal.size;
-        mask.height = reveal.size;
-        maskCanvas.current = mask;
-        maskImage.current = null;
-      }
-      const maskContext = mask.getContext('2d');
-      if (maskContext) {
-        if (!maskImage.current || maskImage.current.width !== reveal.size) {
-          maskImage.current = maskContext.createImageData(reveal.size, reveal.size);
-        }
-        drawGlyph(ink.current.ink);
-        paintRevealMask(maskContext, maskImage.current, reveal, drawn);
-        context.globalCompositeOperation = 'destination-in';
-        context.drawImage(mask, 0, 0, pixels, pixels);
-        context.globalCompositeOperation = 'destination-over';
-        drawGlyph(ink.current.ghost);
-        context.globalCompositeOperation = 'source-over';
-      }
-    } else {
-      // Finished, or nothing to animate with: the character, plainly.
-      drawGlyph(ink.current.ink);
-    }
-  }, [drawn, reveal, layout, size, strokes.length]);
+  const partial = drawn - complete;
 
   return (
     <figure className={styles.wrap}>
-      <div
-        className={styles.stage}
-        style={{ width: size, height: size }}
+      <svg
+        className={styles.paper}
+        viewBox="0 0 100 100"
+        width={size}
+        height={size}
         role="img"
         aria-label={t('strokeOrder.diagramLabel', { character, count: strokes.length })}
+        style={{ ['--hg-pen' as string]: layout.pen }}
       >
         {/* The same guides the practice canvas draws, so the demonstration and
             the box underneath it agree about where the middle is. */}
-        <svg className={styles.guides} viewBox="0 0 100 100" aria-hidden="true">
-          <path d="M50 4 V96 M4 50 H96" className={styles.guide} />
-        </svg>
+        <path d="M50 4 V96 M4 50 H96" className={styles.guide} />
 
-        <canvas ref={canvas} className={styles.glyph} style={{ width: size, height: size }} />
+        {/*
+          Where the whole character is going.
 
-        <svg className={styles.marks} viewBox="0 0 100 100" aria-hidden="true">
-          {placed.map((stroke, index) => {
-            const at = markerAt(stroke, markerRadius);
-            return (
-              <g
-                key={`n-${index}`}
-                className={index < complete ? styles.markerDone : styles.marker}
-                transform={`translate(${at.x} ${at.y})`}
-              >
-                <circle r={markerRadius} />
-                <text dy={markerRadius * 0.36} fontSize={markerRadius * 1.05}>
-                  {index + 1}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-      </div>
+          Under the ink, and every stroke of it, so a stroke still to come can
+          never appear to cut across one already written — whatever order they
+          overlap in, black is painted after grey.
+        */}
+        {paths.map((d, index) => (
+          <path key={`guide-${index}`} d={d} className={styles.ghost} />
+        ))}
+
+        {paths.map((d, index) => {
+          if (index > complete) return null;
+          const shown = index < complete ? 1 : partial;
+          return (
+            <path
+              key={`ink-${index}`}
+              d={d}
+              className={styles.ink}
+              /*
+                `pathLength` re-scales the path's own length to 1, so the dash
+                that reveals it is exact whatever the curve actually measures —
+                no length has to be computed, and none can be slightly wrong.
+              */
+              pathLength={1}
+              strokeDasharray={1}
+              strokeDashoffset={1 - shown}
+            />
+          );
+        })}
+
+        {placed.map((stroke, index) => {
+          const at = markerAt(stroke, markerRadius);
+          return (
+            <g
+              key={`n-${index}`}
+              className={index < complete ? styles.markerDone : styles.marker}
+              transform={`translate(${at.x} ${at.y})`}
+            >
+              <circle r={markerRadius} />
+              <text dy={markerRadius * 0.36} fontSize={markerRadius * 1.05}>
+                {index + 1}
+              </text>
+            </g>
+          );
+        })}
+      </svg>
 
       <figcaption className={styles.caption}>
         {reduceMotion ? (
@@ -451,30 +385,46 @@ function drawnAt(schedule: Segment[], elapsed: number): number {
   return schedule.length;
 }
 
-// --- Putting the polylines onto the glyph ------------------------------------
+// --- Putting the strokes in the box ------------------------------------------
 
 /**
- * How much of the box the glyph's ink covers, edge to edge.
+ * How much of the box the finished character covers, ink included.
  *
- * Uniform: whichever of the glyph's two dimensions is larger gets this, and the
- * other keeps its own proportion. A character is never stretched to fill the
- * square — a stretched Korean glyph is precisely the thing this screen is meant
- * to stop a learner copying.
+ * The rest is margin. `INK_SPAN` counts the outside of the ink rather than the
+ * centrelines, so the pen's own width is inside the number and a stroke running
+ * along the edge of the character still has air beyond it.
  */
 const INK_SPAN = 74;
 
+/**
+ * The pen, as a fraction of the coordinate space the strokes are drawn in.
+ *
+ * Not measured off the practice typeface, which is what it used to be. The
+ * spacing inside a composed block is designed against a particular pen — see
+ * `BLOCK_PEN` — so a pen decided somewhere else can quietly close the gaps that
+ * layout depends on, and a face with hairline strokes would produce a
+ * demonstration nobody could see. A single letter fills its own box and carries
+ * more weight than a letter inside a block, which is what a Hangul face does
+ * too.
+ *
+ * Both are scaled by the same factor as the character itself, so ink weight
+ * stays proportional at any size, and applied *after* the coordinates are
+ * placed, so it is identical horizontally and vertically.
+ */
+const LETTER_PEN = 0.086;
+
+/** Never a hairline, never a marker pen, whatever the arithmetic says. */
+const PEN_MIN = 4;
+const PEN_MAX = 10;
+
 interface Placed {
-  /** Draws the glyph into a square canvas of `box` units on a side. */
-  paint: (context: CanvasRenderingContext2D, box: number) => void;
-  /** The face's stroke weight, as a fraction of the box. */
-  weight: number;
-  /** The stroke polylines, moved onto the glyph's ink. */
+  /** Stroke width, in the 0–100 box. */
+  pen: number;
+  /** The stroke polylines, scaled and centred in the box. */
   strokes: StrokeStep[];
-  /** Whether this is a composed block rather than a single letter. */
-  dense: boolean;
 }
 
-/** The ink bounding box of a run of polylines, in their own coordinates. */
+/** The bounding box of a run of polylines, in their own coordinates. */
 function polylineBounds(strokes: StrokeStep[]) {
   const xs = strokes.flatMap((s) => s.points.map((p) => p.x));
   const ys = strokes.flatMap((s) => s.points.map((p) => p.y));
@@ -487,124 +437,52 @@ function polylineBounds(strokes: StrokeStep[]) {
 }
 
 /**
- * Places the glyph, then lays the polylines over it.
+ * Scales the strokes into the box and picks the pen to draw them with.
  *
- * The polylines and the glyph describe the same character but neither knows the
- * other's coordinates, so the two ink boxes are matched up: whatever square the
- * glyph's ink occupies in the box, the polylines' own extent is mapped onto it.
- * A polyline run with no extent along one axis — ㅡ is a single horizontal line
- * — is centred on that axis instead of being scaled by zero.
+ * Uniformly, on purpose: one factor for both axes, so the character keeps its
+ * proportions and — because the pen is applied after the coordinates are
+ * placed, not scaled along with them — its ink is the same weight horizontally
+ * and vertically. A non-uniform fit would give a character thicker one way than
+ * the other, which is the sort of thing that looks subtly wrong without ever
+ * looking obviously wrong.
+ *
+ * An axis with no extent — ㅡ is one horizontal line, ㅣ one vertical — is
+ * centred rather than scaled by zero, and takes its scale from the axis that
+ * has one.
  */
-function glyphLayout(character: string, fontFamily: string, strokes: StrokeStep[]): Placed {
-  const measured = glyphInk(character, fontFamily);
-  const emWidth = measured.right - measured.left;
-  const emHeight = measured.bottom - measured.top;
-
-  const fontSize = INK_SPAN / Math.max(emWidth, emHeight);
-  const inkWidth = emWidth * fontSize;
-  const inkHeight = emHeight * fontSize;
-  const ink = {
-    x0: 50 - inkWidth / 2,
-    x1: 50 + inkWidth / 2,
-    y0: 50 - inkHeight / 2,
-    y1: 50 + inkHeight / 2,
-  };
-
-  /*
-   * The polylines land on the glyph's *centrelines*, not on its ink box.
-   *
-   * They describe where a pen travels; the ink box is where the ink ends up,
-   * which is half a stroke weight further out on every side. Matching the two
-   * boxes directly — which is what this did — pushes every stroke that touches
-   * the edge of the character half a weight off its own middle: the uprights of
-   * ㅂ end up on the outer edges of the uprights they are meant to run down.
-   * Nothing downstream can recover from that. It is why the mask had to be so
-   * wide, and why the junctions came out chamfered once it was not.
-   */
-  const weight = measured.weight * fontSize;
-  const inset = weight / 2;
-  const target = {
-    x0: ink.x0 + inset,
-    x1: ink.x1 - inset,
-    y0: ink.y0 + inset,
-    y1: ink.y1 - inset,
-  };
-
+function placeStrokes(character: string, strokes: StrokeStep[]): Placed {
   const bounds = polylineBounds(strokes);
   const spanX = bounds.x1 - bounds.x0;
   const spanY = bounds.y1 - bounds.y0;
-  const FLAT = 1e-6;
-  const scaleX = spanX < FLAT ? 0 : (target.x1 - target.x0) / spanX;
-  const scaleY = spanY < FLAT ? 0 : (target.y1 - target.y0) / spanY;
+  const designed = isSyllable(character) ? COMPOSED_PEN : LETTER_PEN;
 
-  // Back to 0–1, the unit every other helper here works in: `toPath`,
-  // `polylineLength`, `pointAt` and `markerAt` all multiply up to the viewBox
-  // themselves.
+  /*
+   * The pen is part of the character's size, so it has to be solved with it.
+   *
+   * `INK_SPAN` is the outside of the ink, and the ink is the centrelines plus
+   * half a pen either side — but the pen is itself the scale times a constant.
+   * Rearranging: the span is (extent + designed) × scale, which gives the scale
+   * directly instead of iterating towards it.
+   */
+  const FLAT = 1e-6;
+  const scales: number[] = [];
+  if (spanX > FLAT) scales.push(INK_SPAN / 100 / (spanX + designed));
+  if (spanY > FLAT) scales.push(INK_SPAN / 100 / (spanY + designed));
+  const scale = scales.length ? Math.min(...scales) : 1;
+  const pen = Math.min(PEN_MAX, Math.max(PEN_MIN, designed * scale * 100));
+
+  const midX = (bounds.x0 + bounds.x1) / 2;
+  const midY = (bounds.y0 + bounds.y1) / 2;
   const placed = strokes.map((stroke) => ({
     points: stroke.points.map((point) => ({
-      x: (scaleX === 0 ? 50 : target.x0 + (point.x - bounds.x0) * scaleX) / 100,
-      y: (scaleY === 0 ? 50 : target.y0 + (point.y - bounds.y0) * scaleY) / 100,
+      x: 0.5 + (point.x - midX) * scale,
+      y: 0.5 + (point.y - midY) * scale,
     })),
   }));
 
-  // Drawn from the origin and moved so the measured ink box lands centred,
-  // which is exact where a text baseline is a browser's opinion.
-  const originX = ink.x0 - measured.left * fontSize;
-  const originY = ink.y0 - measured.top * fontSize;
-
-  return {
-    paint: (context, box) => {
-      const unit = box / 100;
-      context.font = `400 ${fontSize * unit}px ${fontFamily}`;
-      context.textAlign = 'left';
-      context.textBaseline = 'alphabetic';
-      context.fillText(character, originX * unit, originY * unit);
-    },
-    strokes: placed,
-    weight: weight / 100,
-    dense: isSyllable(character),
-  };
+  return { pen, strokes: placed };
 }
 
-/**
- * Bumps once the practice face is really available, so the glyph gets measured
- * again rather than staying placed by the fallback's metrics. See
- * `whenFaceReady`.
- */
-function useFaceReady(character: string, fontFamily: string): number {
-  const [version, setVersion] = useState(0);
-  useEffect(() => {
-    let live = true;
-    whenFaceReady(character, fontFamily).then((changed) => {
-      if (live && changed) setVersion((v) => v + 1);
-    });
-    return () => {
-      live = false;
-    };
-  }, [character, fontFamily]);
-  return version;
-}
-
-// --- Geometry ----------------------------------------------------------------
-
-
-/**
- * Length of a stroke in viewBox units.
- *
- * Computed from the points rather than read back with `getTotalLength()`,
- * because the paths are polylines and the two agree exactly — and this way the
- * schedule exists before anything is in the DOM, so the first frame is already
- * correct instead of being a layout-dependent guess.
- */
-function polylineLength(step: StrokeStep): number {
-  let total = 0;
-  for (let i = 1; i < step.points.length; i += 1) {
-    const a = step.points[i - 1]!;
-    const b = step.points[i]!;
-    total += Math.hypot((b.x - a.x) * 100, (b.y - a.y) * 100);
-  }
-  return total || 1;
-}
 
 /**
  * Whether the learner has asked for less movement.
