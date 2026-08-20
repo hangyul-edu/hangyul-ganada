@@ -268,6 +268,9 @@ def main() -> int:
         if faults:
             unusable_english.append((word, meaning, faults))
 
+        # The dictionary's *other* senses, kept as a polysemy signal for
+        # difficulty and deliberately not shown to a learner — see where the
+        # copy rows are written, below.
         extra = [g for g in glosses[1:3] if g != meaning]
         english[word] = (meaning, "; ".join(extra) if extra else None)
 
@@ -333,7 +336,27 @@ def main() -> int:
                 [
                     meaning if loc == "en" else entry.meanings[loc],
                     None if loc == "ko" else entry.translations[loc],
-                    definition if loc == "en" else None,
+                    # The third slot is the long definition, and it is empty
+                    # in every language on purpose.
+                    #
+                    # It used to carry `definition` — the dictionary's second
+                    # and third senses, joined with a semicolon — under a
+                    # heading that reads "More about it". Reading the 784 words
+                    # that had one is what settled it: 개 "someone who does the
+                    # bidding of another", 문 "phylum", 산 "graveyard", 전기
+                    # "prophase", 얼굴 "visage". Two filters were written and
+                    # both were abandoned; the strict one still leaves 새 as
+                    # "straw thatch used for roofing" and 좋다 as its own
+                    # meaning repeated. The text is a dictionary talking about
+                    # a word, which is the exact thing `gloss.py` exists to keep
+                    # away from a beginner, and no rule turns it into writing.
+                    #
+                    # The section stays in `WordDetailPage`; it renders when
+                    # there is something authored to put in it. §20 of the brief
+                    # asks for exactly that, per locale, and it is not written
+                    # yet — so today the answer to "more about it" is nothing
+                    # rather than trivia.
+                    None,
                 ]
             )
 

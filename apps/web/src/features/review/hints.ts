@@ -132,6 +132,51 @@ export function revealsAnswer(text: string, answer: string): boolean {
   return needle.length > 1 && tokens.includes(needle);
 }
 
+/**
+ * The ladder with any rung that gives the answer away taken out of it.
+ *
+ * ## Why this is not `wordHints`' job
+ *
+ * `wordHints` chooses *what to say* and never sees the sentence a learner
+ * reads: the rungs are i18n keys, and the words around the interpolated value
+ * belong to the translation. That is where the last two reveals were hiding,
+ * and neither is a mistake in any translation:
+ *
+ * ```
+ *   이렇게, meaning in de   →  "so"
+ *   review.hint.inSentence  →  "So wird es benutzt: 이렇게 써 보세요."
+ *                               ▲▲
+ * ```
+ *
+ * The German is a correct rendering of "Here's how it's used", the Korean
+ * sentence is safe, the answer is a real gloss, and the collision exists only
+ * once the three are put together — in Spanish and Portuguese too, because
+ * *así* and *assim* open the same sentence. There is nothing to fix upstream
+ * except by picking lead-ins that avoid every gloss in ten languages, which is
+ * not a rule anybody could keep.
+ *
+ * So the check moves to where the text finally exists. `render` is the
+ * component's own `t` applied to a step, so what is audited is the exact string
+ * the learner would have seen.
+ *
+ * ## What it does when it drops one
+ *
+ * Nothing. The rung is gone and the ladder is shorter, which is the right
+ * trade: a hint that hands over the answer is worse than a missing hint, and
+ * the reveal rung is never dropped, so the learner can always get out. The
+ * ladder is renumbered by position, so pressing *hint* still walks it in order.
+ */
+export function usableHints(
+  steps: HintStep[],
+  render: (step: HintStep) => string,
+  answer?: string,
+): HintStep[] {
+  if (!answer) return steps;
+  return steps.filter(
+    (step) => step.strength === 'answer' || !revealsAnswer(render(step), answer),
+  );
+}
+
 /** Localises an i18n key. The component's `t`, passed in. */
 export type Label = (key: string) => string;
 

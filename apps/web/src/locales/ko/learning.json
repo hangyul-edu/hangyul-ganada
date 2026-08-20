@@ -73,7 +73,7 @@
     "hint": {
       "kind": "{{category}}에 나오는 {{pos}}예요.",
       "kindOnly": "빈칸에 들어갈 말은 {{pos}}예요.",
-      "startsWith": "첫 글자는 ‘{{start}}’예요.",
+      "startsWith": "첫 글자는 ‘{{start}}’…",
       "startsWithSound": "첫소리는 ‘{{sound}}’예요.",
       "replay": "다시 들어 보세요. 몇 번이든 괜찮아요.",
       "letterFamily": "{{family}}이에요.",

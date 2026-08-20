@@ -7,6 +7,7 @@ import { FeedbackState } from '../../ui/FeedbackState';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
 import { hapticPass, hapticRetry, hapticSelection } from '../../native/haptics';
+import { usableHints } from './hints';
 import type { Exercise } from './exercises';
 import styles from './ChoiceExercise.module.css';
 
@@ -118,7 +119,6 @@ export function ChoiceExercise({
   };
 
   const answer = exercise.options?.find((option) => option.id === exercise.answerId);
-  const shown = exercise.hints.slice(0, level);
   /*
    * What the reveal rung actually reveals.
    *
@@ -129,6 +129,22 @@ export function ChoiceExercise({
   const answerValues = {
     answer: answer?.korean ?? answer?.label ?? exercise.korean ?? '',
   };
+
+  /*
+   * The ladder, audited against this question's own answer as it will read.
+   *
+   * A rung is a translation key and the words around the interpolated value
+   * belong to the translation, so whether it gives the answer away is a
+   * property of the rendered string and of nothing the exercise builder can
+   * see. `usableHints` renders each one with this component's `t` and drops any
+   * that hands the answer over. See the note on that function.
+   */
+  const hints = usableHints(
+    exercise.hints,
+    (step) => t(`learning:${step.key}`, { ...step.values, ...answerValues }),
+    answerValues.answer,
+  );
+  const shown = hints.slice(0, level);
 
   return (
     <div className={styles.exercise}>
@@ -255,7 +271,7 @@ export function ChoiceExercise({
          * these two letters made this sound" that is not the answer — renders
          * no button at all, rather than a button that reveals an empty line.
          */
-        exercise.hints.length > 0 ? (
+        hints.length > 0 ? (
           <div className={styles.hintBlock}>
             {shown.map((step) => (
               <p
@@ -267,14 +283,14 @@ export function ChoiceExercise({
                   : t(`learning:${step.key}`, step.values)}
               </p>
             ))}
-            {level < exercise.hints.length && (
+            {level < hints.length && (
               <button
                 type="button"
                 className={styles.hint}
                 onClick={() => setLevel((current) => current + 1)}
               >
                 {t(
-                  exercise.hints[level]!.strength === 'answer'
+                  hints[level]!.strength === 'answer'
                     ? 'learning:review.showAnswer'
                     : level === 0
                       ? 'learning:review.showHint'

@@ -133,8 +133,14 @@ function WordDetail({ word }: { word: VocabularyWord }) {
         {/*
           The fuller explanation, where the gloss alone would mislead.
 
-          Conditional, and absent on most words — which is what makes it worth
-          reading when it appears. A definition under every word would be a
+          Conditional, and today absent on every word: the build used to fill it
+          with the dictionary's other senses, which put "phylum" under 문 and
+          "graveyard" under 산, so it now emits nothing and the section waits for
+          copy somebody wrote. See §7 of docs/LOCALIZATION_NATIVE_REVIEW.md.
+
+          Kept rather than deleted because the slot is the right shape — a
+          fuller explanation belongs under a word whose gloss alone would
+          mislead, and it has to be absent from the rest or it becomes a
           paragraph a learner scrolls past.
         */}
         {copy.value.definition && (

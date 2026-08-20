@@ -74,23 +74,46 @@ equivalent". Thai has the same advantage with อือ.
 | Locale | Words covered | Of | Source |
 | --- | --- | --- | --- |
 | `en` `ko` `ja` `zh-CN` `es` `fr` `de` `pt-BR` | 2,581 | 2,581 | the corpus entries; `pack.py` refuses an entry missing any of them |
-| `vi` | 500 | 2,581 | `content/vocabulary/copy/vi.json`, written by hand |
-| `th` | 500 | 2,581 | `content/vocabulary/copy/th.json`, written by hand |
+| `vi` | 2,581 | 2,581 | `content/vocabulary/copy/vi.json`, written by hand |
+| `th` | 2,581 | 2,581 | `content/vocabulary/copy/th.json`, written by hand |
 
-**Vietnamese and Thai vocabulary is deliberately partial, and this is the honest
-number.** The 500 are the first 500 words of the corpus, which is not an
-arbitrary slice: the corpus is ordered by priority and the daily planner takes
-new words from the front of it, so those 500 are exactly the words a learner
-meets in their first fifty days at the default goal of ten a day.
+All ten languages now carry a meaning and an example translation for every word
+that ships. Vietnamese and Thai got there last, and by a different route: the
+other seven are a property of every corpus entry and `pack.py` refuses an entry
+that is missing one, whereas these two are separate files keyed by word id, so
+a word with no line in them still builds and gets a `null` row.
 
-Beyond word 500, `wordCopy` resolves down the fallback chain to English and
-reports `isFallback`, which the interface renders marked with its source
-language. That behaviour is not a workaround added for this — it is what that
-module was written for, and until now no shipping locale had exercised it.
+That fallback is still live and still correct — `wordCopy` resolves a null row
+down the chain to English and reports `isFallback`, which the interface renders
+marked with its source language. Nothing about finishing the coverage removed
+the machinery; a word added to the corpus tomorrow ships in eight languages and
+falls back in two until somebody writes those two lines. `npm run
+vocabulary:sense:qa` prints the count each run, so the number in this table is
+checkable rather than remembered.
 
-Filling the remaining 2,081 words × 2 languages is content work, not
-engineering: drop the entries into the two files keyed by word id and re-run
-`npm run content:vocabulary`. Nothing in the app or the build needs to change.
+**Covered is not reviewed.** These 5,162 lines were written for this release and
+not read by a native speaker of either language, which is the whole subject of
+this document and is not changed by the coverage being complete. The specific
+risks, in order:
+
+- **Register.** Korean example sentences are in 해요체 and the translations are
+  written as ordinary polite speech, but Vietnamese and Thai both encode social
+  distance in ways that a sentence-by-sentence translation does not force you to
+  decide. A native reader would notice a card that addresses the learner more
+  familiarly than the rest of the app.
+- **Thai spacing and word choice.** Thai is written without spaces between
+  words, and the copy follows that. Where a Thai reading needs a space for
+  clarity the choice was made by ear and is exactly the kind of thing a native
+  speaker corrects at a glance.
+- **Classifiers and counters.** 마디, 개, 명, 번 and the rest are counted words,
+  and both languages have rich classifier systems whose correct choice depends
+  on the noun. These were written case by case and not checked against a
+  classifier table.
+- **Verb glosses.** The Korean headword is an infinitive and English marks it
+  with "to"; neither Vietnamese nor Thai has that marker, so a verb and its
+  related noun can be glossed with the same word. Where the distinction
+  mattered the gloss says so, and there will be entries where it should and
+  does not.
 
 ## 4. Language-specific rendering
 
@@ -131,29 +154,61 @@ Per locale, in order of how much it would change:
 5. **Polysemous entries.** See §6 below — several are wrong in English before
    they are translated at all.
 
-## 6. Known content defects found while translating
+## 6. Content defects found while translating, and what happened to them
 
 Translating forces a reading of every gloss against its own example sentence,
-and several disagree. These are English-side defects, and they propagate into
-every language:
+and eleven disagreed. All eleven were English-side defects: the other seven
+languages are written per entry and were right, and the English fell through to
+a derived dictionary sense, which on a polysemous headword is a coin toss
+against the example.
 
-| Word | Gloss says | Example says |
-| --- | --- | --- |
-| 네 | "who, whom" | "Yes, that's right." |
-| 열 | "fever" | "Please count to ten." |
-| 찍다 | "to take a photo" | "I stamped it with a seal." |
-| 쓰다 | "to wear, to put on" | "I write my name." |
-| 타다 | "to burn" | "I take the bus." |
-| 정말 | "that which is true or genuine" | "Thank you very much." |
-| 수도 | "waterworks" | "The capital of Korea is Seoul." |
-| 파리 | "a fly" | (also the city; the example is the insect) |
+| Word | Gloss said | Example says | Gloss now |
+| --- | --- | --- | --- |
+| 네 | "who, whom" | "Yes, that's right." | "yes" |
+| 열 | "fever" | "Please count to ten." | "ten" |
+| 찍다 | "to take a photo" | "I stamped it with a seal." | "to stamp" |
+| 쓰다 | "to wear, to put on" | "I write my name." | "to write" |
+| 타다 | "to burn" | "I take the bus." | "to ride, to get on" |
+| 정말 | "that which is true or genuine" | "Thank you very much." | "really, truly" |
+| 수도 | "waterworks" | "The capital of Korea is Seoul." | "the capital city" |
+| 있다 | "to exist" | "The book is on the desk." | "to be in a place" |
+| 적다 | "to write, to write down" | "There is little money." | "to be few, to be little" |
+| 전기 | "first period, early period" | "The power went out." | "electricity" |
+| 마디 | "a joint" | "Let me say just one word." | "a word, a remark" |
 
-The Vietnamese and Thai copy for these follows the **example sentence**, because
-the example is what the learner reads on the card and it is the sense the
-question is built around. That makes those eight entries deliberately
-inconsistent with their own English gloss, which is the lesser of the two
-wrongs and is recorded here rather than hidden.
+Each now carries an authored `en` in the editorial pack, which the build prefers
+over anything derived, and each is pinned by exact string in
+`scripts/vocabulary-sense-qa.mjs` so a regeneration cannot quietly move the
+sense back. 적다 needed its part of speech corrected too — the derivation had
+taken the verb "to write down" for a headword whose example is the adjective.
 
-The underlying fix is §18 of the brief — a stable taught sense per entry, with
-the gloss, the example, the audio and the distractors all pinned to it. It is
-not done.
+The last three were found by finishing this translation, which is the argument
+for doing it: a translator working from the example sentence writes
+"electricity" beside a gloss that says "first period", and the disagreement has
+to be resolved before the line can be written. No automated check found any of
+the eleven, and none of the ones described in §1 could have.
+
+파리 is not in the table and is not a defect of this kind: the gloss is "a fly"
+and the example is about the insect, so they agree. The city is a second sense
+the entry does not teach.
+
+## 7. The "More about it" section
+
+`WordDetailPage` has a section headed *More about it*, and until this release it
+was filled by the build with the dictionary's second and third senses for the
+word. It appeared on 784 of the 2,581 words and it said things like 개 "someone
+who does the bidding of another", 문 "phylum", 산 "graveyard", 얼굴 "visage",
+새 "straw thatch used for roofing", 전기 "prophase".
+
+Two filters were written to salvage it. The looser one leaves 좋다 reading "to
+be good; to be good" and 알다 repeating its own meaning; the stricter one still
+keeps the thatch and the graveyard. That text is a dictionary talking *about* a
+word, which is the precise thing `scripts/content/gloss.py` exists to keep away
+from a beginner, and no shape rule turns it into writing.
+
+So the section now renders only when there is authored copy for it, and there is
+none yet in any language — the third slot of every copy row is `null`. §20 of
+the brief asks for written multilingual depth on the top 500 words, which is
+what belongs there. Until it is written, the answer to "more about it" is
+nothing rather than trivia.
+

@@ -59,11 +59,18 @@ const read = (name) => JSON.parse(readFileSync(join(GENERATED, name), 'utf8'));
 const corpus = read('vocabulary.json');
 
 /**
- * The eight glosses that contradicted their own example, and what they say now.
+ * The eleven glosses that contradicted their own example, and what they say now.
  *
  * Matched exactly. A near-match would let a regeneration replace "ten" with
  * "the number ten, a count" and call it unchanged, and the point of pinning is
  * that the sense stops moving.
+ *
+ * The last three were found by translating: Vietnamese and Thai are written
+ * from the example sentence rather than from the English gloss, so a
+ * translator reading 전기 "first period, early period" beside 전기가 나갔어요
+ * writes "electricity" and the disagreement surfaces. 적다 needed its part of
+ * speech corrected as well — the derivation had taken the verb "to write down"
+ * on a headword whose example is the adjective "to be few".
  */
 const PINNED = {
   네: 'yes',
@@ -74,6 +81,9 @@ const PINNED = {
   정말: 'really, truly',
   찍다: 'to stamp',
   있다: 'to be in a place',
+  적다: 'to be few, to be little',
+  전기: 'electricity',
+  마디: 'a word, a remark',
 };
 
 /**
@@ -108,10 +118,13 @@ const notes = [];
  * Languages whose meanings are carried on every corpus entry.
  *
  * Read from the corpus rather than listed, so a locale added to the pack is
- * checked without touching this file. Vietnamese and Thai are deliberately
- * absent: they are hand-written and partial by design — see
- * `docs/LOCALIZATION_NATIVE_REVIEW.md` — and holding them to completeness here
- * would be asserting something the project has decided not to claim.
+ * checked without touching this file. Vietnamese and Thai are absent because
+ * they are not carried on the entries — they are hand-written files keyed by
+ * word id, and a word with no line there gets a `null` row that `wordCopy`
+ * resolves down the fallback chain. They are complete today and are counted
+ * below as a *report*: a word added to the corpus tomorrow ships with English
+ * in those two languages rather than failing a build nobody can unblock
+ * without writing Vietnamese.
  */
 const complete = corpus.locales;
 const packs = new Map();
@@ -131,6 +144,23 @@ for (const [locale, rows] of packs) {
   }
   const empty = rows.reduce((n, row) => n + (row && row[0] ? 0 : 1), 0);
   if (empty > 0) hard.push(`${locale} is missing ${empty} meaning(s)`);
+}
+
+/**
+ * The hand-written languages, counted rather than gated.
+ *
+ * `existsSync` and not a hard failure: these packs are allowed to be partial,
+ * and the number is the honest claim `docs/LOCALIZATION_NATIVE_REVIEW.md`
+ * makes. Coverage is not review — neither of these has been read by a native
+ * speaker, and no check here can change that.
+ */
+const HAND_WRITTEN = ['vi', 'th'];
+const handWritten = new Map();
+for (const locale of HAND_WRITTEN) {
+  const name = `vocabulary.${locale}.json`;
+  if (!existsSync(join(GENERATED, name))) continue;
+  const rows = read(name).words;
+  handWritten.set(locale, rows.reduce((n, row) => n + (row && row[0] ? 1 : 0), 0));
 }
 
 // --- Part of speech against the gloss -----------------------------------------
@@ -183,6 +213,14 @@ console.log(
   `Sense QA — ${corpus.words.length.toLocaleString('en')} words, ` +
     `${packs.size} language(s) claiming complete copy`,
 );
+
+for (const [locale, covered] of handWritten) {
+  const total = corpus.words.length;
+  console.log(
+    `  ${locale}  ${covered.toLocaleString('en')} of ${total.toLocaleString('en')} ` +
+      `written by hand${covered < total ? ' — the rest fall back to English, marked' : ''}`,
+  );
+}
 
 if (multi.size > 0) {
   const total = [...multi.values()].reduce((n, list) => n + list.length, 0);

@@ -4,7 +4,7 @@ import { ALL_CHARACTERS } from '../../data/characters';
 import { VOCABULARY } from '../../data/vocabulary';
 import { AVAILABLE_LOCALES, RESOURCES } from '../../i18n/resources';
 import type { ExerciseMode } from '../../domain/review';
-import { characterHints, revealsAnswer, wordHints, type HintStep } from './hints';
+import { characterHints, revealsAnswer, usableHints, wordHints, type HintStep } from './hints';
 
 /**
  * The hint must not be the answer.
@@ -31,7 +31,18 @@ import { characterHints, revealsAnswer, wordHints, type HintStep } from './hints
  */
 
 /** The corpus is thousands of words; this is a spread across all of it. */
-const SAMPLE = VOCABULARY.filter((_, index) => index % 37 === 0);
+/*
+ * Every seventh word, not every thirty-seventh.
+ *
+ * The looser sample let a real reveal sit unnoticed until the corpus was
+ * re-ordered for an unrelated reason and 아예 happened to land on a sampled
+ * index: the Korean template read 첫 글자는 ‘아’예요, and with punctuation
+ * stripped that spells the answer. The template was the defect, but a sample
+ * that only finds a template defect when a particular word falls into it is a
+ * sample that reports luck. Every seventh word runs the whole file in about
+ * four seconds, which is the budget this check is worth.
+ */
+const SAMPLE = VOCABULARY.filter((_, index) => index % 7 === 0);
 
 const WORD_MODES: ExerciseMode[] = ['read', 'produce', 'listen', 'listenMeaning', 'context'];
 const CHARACTER_MODES: ExerciseMode[] = ['read', 'listen', 'distinguish', 'write'];
@@ -125,27 +136,58 @@ describe('a hint is not the answer', () => {
 
     it(`never hands over a word's meaning in ${locale}`, () => {
       const offenders: string[] = [];
+      let dropped = 0;
+      let stranded = 0;
       for (const word of SAMPLE) {
         const meaning = meaningIn(locale, word.id);
         if (!meaning) continue;
         for (const mode of WORD_MODES) {
+          // The answer, whichever direction the question runs.
+          const answer = mode === 'read' || mode === 'listenMeaning' ? meaning : word.word;
           // The meaning is passed exactly as `wordExercise` passes it, so the
           // hint's own guard against a category that collides with the answer
           // is under test rather than bypassed.
-          for (const step of wordHints(word, mode, label, meaning)) {
+          const authored = wordHints(word, mode, label, meaning);
+          /*
+           * Filtered with the component's own renderer, because that is what
+           * the learner gets.
+           *
+           * `ChoiceExercise` and `BuildExercise` both put the ladder through
+           * `usableHints` before showing a rung, so auditing the unfiltered
+           * list would be auditing a string nothing displays — and auditing
+           * only the filtered one would prove the filter runs rather than that
+           * the ladder is safe. Both numbers are therefore kept: `offenders`
+           * has to be empty, and `stranded` counts the questions the filter
+           * emptied down to the bare reveal, which is a hint ladder in name
+           * only.
+           */
+          const shown = usableHints(authored, (step) => render(locale, step), answer);
+          dropped += authored.length - shown.length;
+          if (authored.length > 1 && shown.every((step) => step.strength === 'answer')) {
+            stranded += 1;
+          }
+          for (const step of shown) {
             if (step.strength === 'answer') continue;
             const text = render(locale, step);
-            // The answer, whichever direction the question runs.
-            const answers = mode === 'read' || mode === 'listenMeaning' ? [meaning] : [word.word];
-            for (const answer of answers) {
-              if (reveals(text, answer) || normalise(text) === normalise(answer)) {
-                offenders.push(`${locale} ${word.word} ${mode} ${step.strength}: “${text}”`);
-              }
+            if (reveals(text, answer) || normalise(text) === normalise(answer)) {
+              offenders.push(`${locale} ${word.word} ${mode} ${step.strength}: “${text}”`);
             }
           }
         }
       }
       expect(offenders).toEqual([]);
+      /*
+       * The filter is a safety net, not the design.
+       *
+       * If it were doing heavy lifting, the hints would be badly written and
+       * this test would be certifying the net instead. Today it removes two
+       * rungs in de, es and pt-BR and none anywhere else, out of 1,845
+       * questions per language, and strands nothing. The bounds are loose
+       * enough that a new gloss colliding with a lead-in is not a failure and
+       * tight enough that a template colliding across the corpus is.
+       */
+      expect(dropped, `${locale} rungs dropped`).toBeLessThan(20);
+      expect(stranded, `${locale} questions left with only a reveal`).toBeLessThan(5);
     });
 
     it(`never hands over a letter's sound in ${locale}`, () => {

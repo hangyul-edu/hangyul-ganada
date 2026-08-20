@@ -6,6 +6,7 @@ import { FeedbackState } from '../../ui/FeedbackState';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
 import { hapticPass, hapticRetry, hapticSelection } from '../../native/haptics';
+import { usableHints } from './hints';
 import type { Exercise } from './exercises';
 import styles from './BuildExercise.module.css';
 
@@ -120,7 +121,21 @@ export function BuildExercise({
     setPicked((current) => current.filter((other) => other !== id));
   };
 
-  const shown = exercise.hints.slice(0, level);
+  /*
+   * The ladder, audited as it will read — see `usableHints`.
+   *
+   * The answer here is the Korean word the tiles spell, and the tiles are on
+   * screen, so most rungs are safe by construction. It runs anyway: the
+   * question is whether a *rendered* rung gives the answer away, and this
+   * component has no more insight into a translation's own wording than the
+   * choice one does.
+   */
+  const hints = usableHints(
+    exercise.hints,
+    (step) => t(`learning:${step.key}`, { ...step.values, answer: target }),
+    target,
+  );
+  const shown = hints.slice(0, level);
 
   return (
     <div className={styles.exercise}>
@@ -199,7 +214,7 @@ export function BuildExercise({
       </div>
 
       {settled === null ? (
-        exercise.hints.length > 0 ? (
+        hints.length > 0 ? (
           <div className={styles.hintBlock}>
             {shown.map((step) => (
               <p
@@ -209,14 +224,14 @@ export function BuildExercise({
                 {t(`learning:${step.key}`, { ...step.values, answer: target })}
               </p>
             ))}
-            {level < exercise.hints.length && (
+            {level < hints.length && (
               <button
                 type="button"
                 className={styles.hint}
                 onClick={() => setLevel((current) => current + 1)}
               >
                 {t(
-                  exercise.hints[level]!.strength === 'answer'
+                  hints[level]!.strength === 'answer'
                     ? 'learning:review.showAnswer'
                     : level === 0
                       ? 'learning:review.showHint'

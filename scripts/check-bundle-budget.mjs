@@ -170,10 +170,13 @@ const BUDGETS = {
   /**
    * Everything the service worker holds for offline use.
    *
-   * Raised from 800 kB when Vietnamese and Thai were added. That is what those
-   * two languages cost and the number should say so rather than the languages
-   * being trimmed to fit a round figure — but the *reason* it had to be raised
-   * is the finding, not the ten kilobytes.
+   * Raised twice for the same two languages: 800 → 840 kB when Vietnamese and
+   * Thai were added at 500 words each, and 840 → 900 kB when their copy was
+   * finished to all 2,581. That is what those two languages cost and the number
+   * should say so rather than the languages being trimmed to fit a round
+   * figure — but the *reason* it keeps having to be raised is the finding, not
+   * the kilobytes. Two raises in one release is the point being made, not a
+   * process being followed.
    *
    * The worker precaches every locale's word copy so that a learner who
    * installs the app and goes offline before opening a word screen still has
@@ -186,7 +189,7 @@ const BUDGETS = {
    * locale, and cache the rest on first use. Until that exists this number will
    * keep being raised, and each time is a reminder that it should not be.
    */
-  total: 840 * 1024,
+  total: 900 * 1024,
 };
 
 function gzipSize(path) {

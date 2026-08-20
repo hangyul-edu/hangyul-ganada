@@ -1,5 +1,5 @@
 {
- "_comment": "Vocabulary copy for Vietnamese. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Partial by design — see docs/LOCALIZATION_NATIVE_REVIEW.md for what is covered and what falls back.",
+ "_comment": "Vocabulary copy for Vietnamese. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. All 2,581 corpus words are covered; a word with no line here still builds, with a null row that wordCopy resolves down the fallback chain. Covered is not reviewed — see docs/LOCALIZATION_NATIVE_REVIEW.md.",
  "locale": "vi",
  "words": {
   "word_hada": [
@@ -34,6 +34,14 @@
    "nhà",
    "Tôi đang về nhà."
   ],
+  "word_itda": [
+   "ở, có mặt",
+   "Tôi đang ở nhà."
+  ],
+  "word_ne": [
+   "vâng, đúng rồi",
+   "Vâng, đúng rồi."
+  ],
   "word_son": [
    "bàn tay",
    "Tôi viết bằng tay."
@@ -61,14 +69,6 @@
   "word_sae": [
    "con chim",
    "Một con chim đang bay."
-  ],
-  "word_itda": [
-   "ở, có mặt",
-   "Tôi đang ở nhà."
-  ],
-  "word_ne": [
-   "vâng, đúng rồi",
-   "Vâng, đúng rồi."
   ],
   "word_mom": [
    "cơ thể",
@@ -150,10 +150,6 @@
    "mặt trăng",
    "Mặt trăng sáng."
   ],
-  "word_jeongmal": [
-   "thật, thật sự",
-   "Cảm ơn bạn rất nhiều."
-  ],
   "word_jeonhwa": [
    "điện thoại",
    "Tôi nghe điện thoại."
@@ -221,6 +217,10 @@
   "word_byeongwon": [
    "bệnh viện",
    "Tôi đi bệnh viện."
+  ],
+  "word_jeongmal": [
+   "thật, thật sự",
+   "Cảm ơn bạn rất nhiều."
   ],
   "word_seonmul": [
    "món quà",
@@ -398,10 +398,6 @@
    "chuyến đi",
    "Tôi muốn đi du lịch."
   ],
-  "word_tada": [
-   "đi (xe), lên (xe)",
-   "Tôi đi xe buýt."
-  ],
   "word_bam": [
    "đêm",
    "Ban đêm có nhiều sao."
@@ -553,6 +549,10 @@
   "word_uija": [
    "cái ghế",
    "Tôi ngồi trên ghế."
+  ],
+  "word_tada": [
+   "đi (xe), lên (xe)",
+   "Tôi đi xe buýt."
   ],
   "word_manta": [
    "nhiều",
@@ -926,6 +926,10 @@
    "bạn (lịch sự)",
    "Tôi đã đợi bạn."
   ],
+  "word_sseuda": [
+   "viết",
+   "Tôi viết tên mình."
+  ],
   "word_geoul": [
    "cái gương",
    "Tôi soi gương."
@@ -1181,10 +1185,6 @@
   "word_halmeoni": [
    "bà",
    "Bà đang mỉm cười."
-  ],
-  "word_sseuda": [
-   "viết",
-   "Tôi viết tên mình."
   ],
   "word_suyeong": [
    "bơi lội",
@@ -2001,6 +2001,8330 @@
   "word_jeotgarak": [
    "đôi đũa",
    "Tôi gắp món ăn kèm bằng đũa."
+  ],
+  "word_dopda": [
+   "giúp đỡ",
+   "Tôi giúp bạn mình."
+  ],
+  "word_jeil": [
+   "nhất",
+   "Cái này là số một."
+  ],
+  "word_muryo": [
+   "miễn phí",
+   "Vào cửa miễn phí."
+  ],
+  "word_pulda": [
+   "gỡ, giải",
+   "Tôi đã giải được bài toán."
+  ],
+  "word_hangsang": [
+   "luôn luôn",
+   "Bạn lúc nào cũng đến muộn."
+  ],
+  "word_geojinmal": [
+   "lời nói dối",
+   "Bạn đừng nói dối nhé."
+  ],
+  "word_yeoreobun": [
+   "mọi người",
+   "Xin chào mọi người."
+  ],
+  "word_mureoboda": [
+   "hỏi",
+   "Tôi đã hỏi thầy giáo."
+  ],
+  "word_gongjang": [
+   "nhà máy",
+   "Tôi làm việc ở nhà máy."
+  ],
+  "word_igot": [
+   "nơi này",
+   "Tôi thích nơi này."
+  ],
+  "word_yeongi": [
+   "khói",
+   "Khói đang bốc lên."
+  ],
+  "word_sonnim": [
+   "khách",
+   "Khách đã đến rồi."
+  ],
+  "word_chodae": [
+   "lời mời",
+   "Tôi đã nhận được lời mời."
+  ],
+  "word_jeonhyeo": [
+   "hoàn toàn không",
+   "Tôi hoàn toàn không biết."
+  ],
+  "word_gongbuhada": [
+   "học bài",
+   "Ngày nào tôi cũng học tiếng Hàn."
+  ],
+  "word_ulda": [
+   "khóc",
+   "Em bé đang khóc."
+  ],
+  "word_geubun": [
+   "vị đó",
+   "Vị đó là thầy giáo."
+  ],
+  "word_meolda": [
+   "xa",
+   "Trường học ở xa."
+  ],
+  "word_ori": [
+   "con vịt",
+   "Con vịt bơi dưới nước."
+  ],
+  "word_gamyeon": [
+   "mặt nạ",
+   "Tôi đeo mặt nạ."
+  ],
+  "word_jasin": [
+   "bản thân",
+   "Hãy tin vào bản thân mình."
+  ],
+  "word_gyeoljeong": [
+   "quyết định",
+   "Tôi đã đưa ra quyết định."
+  ],
+  "word_tim": [
+   "đội, nhóm",
+   "Chúng tôi làm việc cùng nhau trong một đội."
+  ],
+  "word_bakwi": [
+   "bánh xe",
+   "Bánh xe lăn."
+  ],
+  "word_sageon": [
+   "vụ việc",
+   "Đã xảy ra một vụ lớn."
+  ],
+  "word_baro": [
+   "ngay",
+   "Tôi đi ngay đây."
+  ],
+  "word_hancham": [
+   "một lúc lâu",
+   "Tôi đã đợi một lúc lâu."
+  ],
+  "word_neota": [
+   "bỏ vào",
+   "Tôi bỏ quyển sách vào túi."
+  ],
+  "word_dowajuda": [
+   "giúp một tay",
+   "Bạn giúp mình một tay nhé."
+  ],
+  "word_morae": [
+   "cát",
+   "Ngoài biển có rất nhiều cát."
+  ],
+  "word_ippal": [
+   "răng",
+   "Tôi bị đau răng."
+  ],
+  "word_tonghwa": [
+   "cuộc gọi",
+   "Máy đang bận."
+  ],
+  "word_bappeuda": [
+   "bận",
+   "Hôm nay tôi bận."
+  ],
+  "word_yagu": [
+   "bóng chày",
+   "Tôi xem bóng chày."
+  ],
+  "word_geunde": [
+   "nhân tiện",
+   "Nhân tiện, bây giờ là mấy giờ rồi?"
+  ],
+  "word_ajeossi": [
+   "chú, bác (đàn ông trung niên)",
+   "Chú ơi!"
+  ],
+  "word_gorae": [
+   "cá voi",
+   "Cá voi rất to."
+  ],
+  "word_neomda": [
+   "vượt qua",
+   "Tôi vượt qua ngọn núi."
+  ],
+  "word_ingi": [
+   "sự nổi tiếng",
+   "Bài hát này rất nổi tiếng."
+  ],
+  "word_bureuda": [
+   "gọi",
+   "Tôi gọi taxi."
+  ],
+  "word_samchon": [
+   "chú, cậu",
+   "Chú tôi đã đến."
+  ],
+  "word_utda": [
+   "cười",
+   "Bạn tôi cười to."
+  ],
+  "word_jaju": [
+   "thường xuyên",
+   "Chúng tôi thường xuyên liên lạc."
+  ],
+  "word_juin": [
+   "chủ",
+   "Chủ cửa hàng rất tốt bụng."
+  ],
+  "word_bogi": [
+   "ví dụ",
+   "Bạn cho một ví dụ đi."
+  ],
+  "word_gwanggo": [
+   "quảng cáo",
+   "Tôi đã xem quảng cáo đó."
+  ],
+  "word_gamda": [
+   "nhắm (mắt)",
+   "Bạn nhắm mắt lại nhé."
+  ],
+  "word_gippeuda": [
+   "vui",
+   "Nghe tin đó tôi rất vui."
+  ],
+  "word_geumyoil": [
+   "thứ Sáu",
+   "Thứ Sáu có bài kiểm tra."
+  ],
+  "word_gajida": [
+   "có",
+   "Tôi có một cây bút chì."
+  ],
+  "word_chakada": [
+   "hiền lành",
+   "Em tôi rất hiền."
+  ],
+  "word_gilda": [
+   "dài",
+   "Tóc bạn dài."
+  ],
+  "word_beolle": [
+   "con sâu bọ",
+   "Có một con bọ đang bò qua."
+  ],
+  "word_mianhada": [
+   "xin lỗi",
+   "Xin lỗi vì tôi đến muộn."
+  ],
+  "word_silsu": [
+   "sai sót",
+   "Tôi đã mắc một lỗi."
+  ],
+  "word_jeomda": [
+   "trẻ",
+   "Bạn vẫn còn trẻ mà."
+  ],
+  "word_bubun": [
+   "phần",
+   "Phần này khó."
+  ],
+  "word_baksu": [
+   "tràng pháo tay",
+   "Xin một tràng pháo tay."
+  ],
+  "word_tteonada": [
+   "rời đi",
+   "Ngày mai tôi rời Seoul."
+  ],
+  "word_chodaehada": [
+   "mời",
+   "Tôi đã mời bạn đến nhà."
+  ],
+  "word_hullyunghada": [
+   "xuất sắc",
+   "Đó là một ý tưởng xuất sắc."
+  ],
+  "word_noraehada": [
+   "hát",
+   "Mình cùng hát nhé."
+  ],
+  "word_byeollo": [
+   "không mấy",
+   "Tôi không thích lắm."
+  ],
+  "word_beonho": [
+   "số",
+   "Bạn cho mình xin số."
+  ],
+  "word_daehwa": [
+   "cuộc trò chuyện",
+   "Cuộc trò chuyện rất vui."
+  ],
+  "word_sajeon": [
+   "từ điển",
+   "Tôi tra từ trong từ điển."
+  ],
+  "word_jagi": [
+   "bản thân",
+   "Ai cũng làm việc của mình."
+  ],
+  "word_hwamyeon": [
+   "màn hình",
+   "Màn hình sáng."
+  ],
+  "word_gongjja": [
+   "đồ miễn phí",
+   "Cái này miễn phí."
+  ],
+  "word_geukjang": [
+   "rạp chiếu phim",
+   "Tôi xem phim ở rạp."
+  ],
+  "word_madang": [
+   "cái sân",
+   "Tôi chơi ngoài sân."
+  ],
+  "word_jangso": [
+   "địa điểm",
+   "Chúng tôi đã chọn địa điểm."
+  ],
+  "word_jeokda": [
+   "ít",
+   "Tiền còn ít quá."
+  ],
+  "word_chida": [
+   "đánh",
+   "Tôi đánh quả bóng."
+  ],
+  "word_sida": [
+   "chua",
+   "Quả này chua."
+  ],
+  "word_malda": [
+   "đừng",
+   "Bạn đừng lo nhé."
+  ],
+  "word_eoreun": [
+   "người lớn",
+   "Tôi muốn thành người lớn."
+  ],
+  "word_sanghwang": [
+   "tình hình",
+   "Tình hình không tốt."
+  ],
+  "word_geolda": [
+   "treo",
+   "Tôi treo quần áo lên."
+  ],
+  "word_cheoncheonhi": [
+   "chậm rãi",
+   "Tôi đi bộ chậm rãi."
+  ],
+  "word_junbihada": [
+   "chuẩn bị",
+   "Tôi đang chuẩn bị thi."
+  ],
+  "word_taeyang": [
+   "mặt trời",
+   "Mặt trời nóng."
+  ],
+  "word_mitda": [
+   "tin tưởng",
+   "Tôi tin bạn mình."
+  ],
+  "word_damda": [
+   "đựng vào",
+   "Tôi xới cơm vào bát."
+  ],
+  "word_masitda": [
+   "ngon",
+   "Kim chi ngon lắm."
+  ],
+  "word_iryoil": [
+   "Chủ nhật",
+   "Chủ nhật tôi nghỉ ngơi."
+  ],
+  "word_unjeonhada": [
+   "lái xe",
+   "Bạn lái xe cẩn thận nhé."
+  ],
+  "word_gogae": [
+   "cái đầu",
+   "Tôi gật đầu."
+  ],
+  "word_noryeok": [
+   "sự cố gắng",
+   "Cần phải cố gắng."
+  ],
+  "word_bangsong": [
+   "chương trình phát sóng",
+   "Chương trình sắp bắt đầu."
+  ],
+  "word_gisa": [
+   "bài báo",
+   "Tôi đã đọc bài báo đó."
+  ],
+  "word_himdeulda": [
+   "vất vả",
+   "Hôm nay công việc vất vả."
+  ],
+  "word_ppareuda": [
+   "nhanh",
+   "Tàu chạy nhanh."
+  ],
+  "word_hoksi": [
+   "không biết chừng",
+   "Bạn có rảnh không?"
+  ],
+  "word_uju": [
+   "vũ trụ",
+   "Vũ trụ rất rộng lớn."
+  ],
+  "word_teukbyeol": [
+   "đặc biệt",
+   "Hôm nay là một ngày đặc biệt."
+  ],
+  "word_botong": [
+   "thường",
+   "Tôi thường dậy lúc bảy giờ."
+  ],
+  "word_moksori": [
+   "giọng nói",
+   "Bạn có giọng hay."
+  ],
+  "word_eobsi": [
+   "không có",
+   "Tôi đến mà không có tiền."
+  ],
+  "word_mullon": [
+   "tất nhiên",
+   "Tất nhiên là được rồi."
+  ],
+  "word_kkeuda": [
+   "tắt",
+   "Bạn tắt đèn giúp mình nhé."
+  ],
+  "word_gonggi": [
+   "không khí",
+   "Không khí trong lành."
+  ],
+  "word_ajumma": [
+   "cô, dì (phụ nữ trung niên)",
+   "Cô ấy cho tôi bát canh."
+  ],
+  "word_woryoil": [
+   "thứ Hai",
+   "Thứ Hai tôi bắt đầu đi làm."
+  ],
+  "word_seonsaeng": [
+   "thầy cô",
+   "Tôi đã nói chuyện với thầy."
+  ],
+  "word_animyeon": [
+   "hoặc",
+   "Bạn uống cà phê, hay là trà?"
+  ],
+  "word_teibeul": [
+   "cái bàn",
+   "Cái bàn rộng."
+  ],
+  "word_nada": [
+   "phát ra",
+   "Có tiếng động phát ra."
+  ],
+  "word_makda": [
+   "trong xanh",
+   "Bầu trời trong xanh."
+  ],
+  "word_jiyeok": [
+   "khu vực",
+   "Khu vực này yên tĩnh."
+  ],
+  "word_geureoda": [
+   "làm như vậy",
+   "Làm như vậy là bị đau đấy."
+  ],
+  "word_neohui": [
+   "các bạn",
+   "Các bạn đi đâu đấy?"
+  ],
+  "word_bissada": [
+   "đắt",
+   "Bộ đồ này đắt."
+  ],
+  "word_gyohoe": [
+   "nhà thờ",
+   "Chủ nhật tôi đi nhà thờ."
+  ],
+  "word_imeil": [
+   "email",
+   "Tôi đã gửi email."
+  ],
+  "word_jeongbu": [
+   "chính phủ",
+   "Chính phủ đã ra thông báo."
+  ],
+  "word_maeu": [
+   "rất",
+   "Đây là việc rất quan trọng."
+  ],
+  "word_eolmana": [
+   "bao lâu, bao nhiêu",
+   "Mất bao lâu vậy?"
+  ],
+  "word_seda": [
+   "đếm",
+   "Tôi đếm tiền."
+  ],
+  "word_seulpeuda": [
+   "buồn",
+   "Câu chuyện thật buồn."
+  ],
+  "word_gajyeogada": [
+   "mang theo",
+   "Bạn mang theo ô nhé."
+  ],
+  "word_keikeu": [
+   "bánh kem",
+   "Tôi cắt bánh."
+  ],
+  "word_teukbyeolhada": [
+   "đặc biệt",
+   "Với tôi đó là món quà đặc biệt."
+  ],
+  "word_mandu": [
+   "bánh bao, sủi cảo",
+   "Món này ngon lắm."
+  ],
+  "word_ittaga": [
+   "lát nữa",
+   "Lát nữa gặp lại nhé."
+  ],
+  "word_jamkkanman": [
+   "đợi một chút",
+   "Bạn đợi một chút nhé."
+  ],
+  "word_haengbokada": [
+   "hạnh phúc",
+   "Bây giờ tôi thấy hạnh phúc."
+  ],
+  "word_saenggida": [
+   "xuất hiện",
+   "Có một cửa hàng mới mở."
+  ],
+  "word_kkida": [
+   "đeo (nhẫn)",
+   "Tôi đeo nhẫn."
+  ],
+  "word_noksaek": [
+   "màu xanh lá",
+   "Tôi mặc đồ màu xanh lá."
+  ],
+  "word_gipda": [
+   "sâu",
+   "Con sông sâu."
+  ],
+  "word_piano": [
+   "đàn piano",
+   "Tôi học piano."
+  ],
+  "word_amudo": [
+   "không ai",
+   "Ở đây không có ai cả."
+  ],
+  "word_pati": [
+   "bữa tiệc",
+   "Hôm nay có tiệc."
+  ],
+  "word_deurama": [
+   "phim truyền hình",
+   "Tôi xem phim Hàn."
+  ],
+  "word_yaegihada": [
+   "nói chuyện",
+   "Bạn nói chậm lại nhé."
+  ],
+  "word_yumyeonghada": [
+   "nổi tiếng",
+   "Tiệm này nổi tiếng vì bánh mì."
+  ],
+  "word_horangi": [
+   "con hổ",
+   "Con hổ đáng sợ lắm."
+  ],
+  "word_bukda": [
+   "đỏ",
+   "Bầu trời đỏ rực."
+  ],
+  "word_anjeon": [
+   "sự an toàn",
+   "An toàn là quan trọng nhất."
+  ],
+  "word_cheonjang": [
+   "trần nhà",
+   "Trần nhà cao."
+  ],
+  "word_mulda": [
+   "cắn",
+   "Con chó không cắn đâu."
+  ],
+  "word_naksi": [
+   "câu cá",
+   "Tôi thích câu cá."
+  ],
+  "word_gongju": [
+   "công chúa",
+   "Công chúa trong truyện mỉm cười."
+  ],
+  "word_chikin": [
+   "gà rán",
+   "Tôi đã gọi gà rán."
+  ],
+  "word_seolmyeong": [
+   "lời giải thích",
+   "Lời giải thích dễ hiểu."
+  ],
+  "word_jaemi": [
+   "sự thú vị",
+   "Không thú vị lắm."
+  ],
+  "word_sinbu": [
+   "cô dâu",
+   "Cô dâu thật đẹp."
+  ],
+  "word_suyeonghada": [
+   "bơi",
+   "Tôi bơi ở biển."
+  ],
+  "word_peiji": [
+   "trang",
+   "Bạn xem trang tiếp theo nhé."
+  ],
+  "word_yeongeo": [
+   "tiếng Anh",
+   "Tôi học tiếng Anh."
+  ],
+  "word_taeuda": [
+   "đốt",
+   "Chúng tôi đốt lá rụng."
+  ],
+  "word_galsaek": [
+   "màu nâu",
+   "Tôi đã mua cái túi màu nâu."
+  ],
+  "word_geomda": [
+   "đen",
+   "Con mèo màu đen."
+  ],
+  "word_neukkida": [
+   "cảm thấy",
+   "Tôi cảm thấy hạnh phúc."
+  ],
+  "word_datda": [
+   "đóng",
+   "Tôi đóng cửa."
+  ],
+  "word_hangeul": [
+   "Hangul",
+   "Tôi đang học Hangul."
+  ],
+  "word_babo": [
+   "kẻ ngốc",
+   "Nói vậy thì ngốc quá."
+  ],
+  "word_jamak": [
+   "phụ đề",
+   "Bạn bật phụ đề giúp mình nhé."
+  ],
+  "word_jarada": [
+   "lớn lên",
+   "Đứa trẻ đang lớn lên khỏe mạnh."
+  ],
+  "word_gido": [
+   "lời cầu nguyện",
+   "Tôi cầu nguyện."
+  ],
+  "word_gajyeooda": [
+   "mang đến",
+   "Tôi đã mang bài tập đến."
+  ],
+  "word_geoui": [
+   "gần như",
+   "Sắp đến nơi rồi."
+  ],
+  "word_daedap": [
+   "câu trả lời",
+   "Không có câu trả lời."
+  ],
+  "word_deurida": [
+   "biếu, tặng (kính ngữ)",
+   "Tôi tặng quà cho thầy."
+  ],
+  "word_eokkae": [
+   "vai",
+   "Tôi bị đau vai."
+  ],
+  "word_tteuda": [
+   "nổi",
+   "Chiếc thuyền nổi trên mặt nước."
+  ],
+  "word_jaemiitda": [
+   "thú vị",
+   "Quyển sách này thú vị."
+  ],
+  "word_baeu": [
+   "diễn viên",
+   "Tôi thích diễn viên đó."
+  ],
+  "word_dangjang": [
+   "ngay lập tức",
+   "Mình bắt đầu ngay nhé."
+  ],
+  "word_sago": [
+   "tai nạn",
+   "Trên đường đã xảy ra tai nạn."
+  ],
+  "word_otjang": [
+   "tủ quần áo",
+   "Tôi cất quần áo vào tủ."
+  ],
+  "word_kkada": [
+   "bóc, lột",
+   "Tôi bóc vỏ quả trứng."
+  ],
+  "word_simjang": [
+   "trái tim",
+   "Tim tôi đập nhanh."
+  ],
+  "word_daesin": [
+   "thay vì",
+   "Tôi uống trà thay vì cà phê."
+  ],
+  "word_yennal": [
+   "ngày xưa",
+   "Ngày xưa có một vị vua."
+  ],
+  "word_iyong": [
+   "việc sử dụng",
+   "Đi xe buýt rất tiện."
+  ],
+  "word_saero": [
+   "mới lại",
+   "Mình bắt đầu lại từ đầu nhé."
+  ],
+  "word_yeowang": [
+   "nữ hoàng",
+   "Nữ hoàng cai trị đất nước."
+  ],
+  "word_kuki": [
+   "bánh quy",
+   "Tôi đã làm bánh quy."
+  ],
+  "word_hwaga": [
+   "họa sĩ",
+   "Họa sĩ đang vẽ tranh."
+  ],
+  "word_igida": [
+   "thắng",
+   "Đội chúng tôi đã thắng."
+  ],
+  "word_meomchuda": [
+   "dừng lại",
+   "Chiếc xe đã dừng lại."
+  ],
+  "word_mabeop": [
+   "phép thuật",
+   "Đã xảy ra chuyện như phép màu."
+  ],
+  "word_insaeng": [
+   "cuộc đời",
+   "Cuộc đời còn dài."
+  ],
+  "word_chilpan": [
+   "bảng đen",
+   "Tôi viết lên bảng."
+  ],
+  "word_boteu": [
+   "thuyền",
+   "Tôi đã đi thuyền."
+  ],
+  "word_jitda": [
+   "xây, làm",
+   "Người ta xây nhà."
+  ],
+  "word_gyotong": [
+   "giao thông",
+   "Giao thông đông đúc."
+  ],
+  "word_jumusida": [
+   "ngủ (kính ngữ)",
+   "Bà đang ngủ."
+  ],
+  "word_jangnyeon": [
+   "năm ngoái",
+   "Năm ngoái tôi đã đi Hàn Quốc."
+  ],
+  "word_jeongdo": [
+   "khoảng",
+   "Mất khoảng một tiếng."
+  ],
+  "word_chagapda": [
+   "lạnh (khi chạm)",
+   "Nước lạnh."
+  ],
+  "word_yeolcha": [
+   "tàu hỏa",
+   "Tàu đã đến."
+  ],
+  "word_bangapda": [
+   "vui khi gặp",
+   "Rất vui được gặp bạn."
+  ],
+  "word_seoryu": [
+   "giấy tờ",
+   "Tôi đã chuẩn bị giấy tờ."
+  ],
+  "word_chokollit": [
+   "sô cô la",
+   "Sô cô la ngọt."
+  ],
+  "word_wol": [
+   "tháng",
+   "Tôi đi học vào tháng Ba."
+  ],
+  "word_saeropda": [
+   "mới mẻ",
+   "Cảm giác thật mới mẻ."
+  ],
+  "word_nunmul": [
+   "nước mắt",
+   "Nước mắt cứ trào ra."
+  ],
+  "word_eumnyosu": [
+   "nước uống",
+   "Cho một ly nước."
+  ],
+  "word_geoji": [
+   "người ăn xin",
+   "Trên đường có một người ăn xin."
+  ],
+  "word_jinada": [
+   "trôi qua",
+   "Thời gian trôi qua nhanh."
+  ],
+  "word_amu": [
+   "bất kỳ",
+   "Lúc nào đến cũng được."
+  ],
+  "word_geuraedo": [
+   "dù vậy",
+   "Trời mưa. Dù vậy tôi vẫn đi."
+  ],
+  "word_dachida": [
+   "bị thương",
+   "Tôi ngã và bị thương."
+  ],
+  "word_mirae": [
+   "tương lai",
+   "Tôi nghĩ về tương lai."
+  ],
+  "word_barada": [
+   "mong",
+   "Tôi mong bạn luôn khỏe."
+  ],
+  "word_yeongung": [
+   "anh hùng",
+   "Anh ấy là một anh hùng."
+  ],
+  "word_godeunghakgyo": [
+   "trường cấp ba",
+   "Em tôi học cấp ba."
+  ],
+  "word_daebubun": [
+   "phần lớn",
+   "Phần lớn họ là học sinh."
+  ],
+  "word_useum": [
+   "tiếng cười",
+   "Tôi không nhịn được cười."
+  ],
+  "word_ojeon": [
+   "buổi sáng",
+   "Buổi sáng tôi có tiết học."
+  ],
+  "word_ihu": [
+   "sau đó",
+   "Từ đó tôi chưa gặp lại."
+  ],
+  "word_huida": [
+   "trắng",
+   "Tóc ông đã bạc trắng."
+  ],
+  "word_maseukeu": [
+   "khẩu trang",
+   "Tôi đeo khẩu trang."
+  ],
+  "word_sangcheo": [
+   "vết thương",
+   "Vết thương đau."
+  ],
+  "word_meorikarak": [
+   "sợi tóc",
+   "Sợi tóc dài."
+  ],
+  "word_ssitda": [
+   "rửa",
+   "Tôi rửa tay."
+  ],
+  "word_bakkat": [
+   "bên ngoài",
+   "Bên ngoài lạnh."
+  ],
+  "word_kkaekkeuthada": [
+   "sạch sẽ",
+   "Quần áo rất sạch."
+  ],
+  "word_bakda": [
+   "sáng",
+   "Căn phòng sáng."
+  ],
+  "word_wain": [
+   "rượu vang",
+   "Tôi uống một ly vang."
+  ],
+  "word_orenji": [
+   "quả cam",
+   "Quả cam ngọt."
+  ],
+  "word_bakkwida": [
+   "thay đổi",
+   "Giờ đã thay đổi rồi."
+  ],
+  "word_akka": [
+   "lúc nãy",
+   "Lúc nãy tôi đã gọi điện."
+  ],
+  "word_mudae": [
+   "sân khấu",
+   "Tôi đã lên sân khấu."
+  ],
+  "word_iljuil": [
+   "một tuần",
+   "Tôi đi hai lần một tuần."
+  ],
+  "word_gamsahada": [
+   "biết ơn",
+   "Cảm ơn bạn đã giúp tôi."
+  ],
+  "word_gyeolgwa": [
+   "kết quả",
+   "Kết quả tốt."
+  ],
+  "word_sillye": [
+   "xin lỗi (khi làm phiền)",
+   "Xin lỗi cho hỏi."
+  ],
+  "word_jeonhwabeonho": [
+   "số điện thoại",
+   "Số điện thoại của bạn là gì?"
+  ],
+  "word_chupda": [
+   "lạnh",
+   "Hôm nay trời lạnh."
+  ],
+  "word_seojjok": [
+   "phía tây",
+   "Mặt trời lặn ở phía tây."
+  ],
+  "word_jumeoni": [
+   "cái túi (áo, quần)",
+   "Tôi cho vào túi."
+  ],
+  "word_gamgi": [
+   "cảm lạnh",
+   "Tôi bị cảm."
+  ],
+  "word_deureooda": [
+   "đi vào",
+   "Mời bạn vào trong."
+  ],
+  "word_yeolsimhi": [
+   "chăm chỉ",
+   "Tôi học hành chăm chỉ."
+  ],
+  "word_seonggong": [
+   "thành công",
+   "Chúc bạn thành công."
+  ],
+  "word_pullida": [
+   "bị tuột",
+   "Dây giày tôi bị tuột."
+  ],
+  "word_gareuchida": [
+   "dạy",
+   "Tôi dạy tiếng Hàn."
+  ],
+  "word_cheongso": [
+   "việc dọn dẹp",
+   "Tôi dọn phòng."
+  ],
+  "word_chuda": [
+   "nhảy múa",
+   "Tôi nhảy."
+  ],
+  "word_gunin": [
+   "quân nhân",
+   "Có một người lính đang đứng đó."
+  ],
+  "word_seuta": [
+   "ngôi sao (người nổi tiếng)",
+   "Diễn viên đó là một ngôi sao."
+  ],
+  "word_iyonghada": [
+   "sử dụng",
+   "Tôi đi tàu điện ngầm."
+  ],
+  "word_data": [
+   "chạm tới",
+   "Tay tôi chạm tới trần nhà."
+  ],
+  "word_dochak": [
+   "sự đến nơi",
+   "Đến nơi muộn mất rồi."
+  ],
+  "word_geumbang": [
+   "ngay bây giờ",
+   "Tôi quay lại ngay."
+  ],
+  "word_hwagin": [
+   "sự xác nhận",
+   "Bạn kiểm tra giúp mình nhé."
+  ],
+  "word_eonjenga": [
+   "một ngày nào đó",
+   "Một ngày nào đó tôi sẽ đi Hàn Quốc."
+  ],
+  "word_ttatteuthada": [
+   "ấm áp",
+   "Hôm nay trời ấm."
+  ],
+  "word_deulda": [
+   "nhấc lên",
+   "Tôi nhấc cái túi lên."
+  ],
+  "word_pigonhada": [
+   "mệt",
+   "Hôm nay tôi rất mệt."
+  ],
+  "word_wonsungi": [
+   "con khỉ",
+   "Con khỉ trèo lên cây."
+  ],
+  "word_otobai": [
+   "xe máy",
+   "Chiếc xe máy ồn ào."
+  ],
+  "word_maeda": [
+   "buộc",
+   "Tôi buộc dây giày."
+  ],
+  "word_meolli": [
+   "xa xa",
+   "Tôi nhìn thấy ngọn núi ở xa."
+  ],
+  "word_ttokgatda": [
+   "giống hệt nhau",
+   "Hai bức tranh giống hệt nhau."
+  ],
+  "word_jongil": [
+   "cả ngày",
+   "Trời mưa cả ngày."
+  ],
+  "word_ajumeoni": [
+   "cô, bác gái",
+   "Tôi hỏi đường một cô."
+  ],
+  "word_ttada": [
+   "hái",
+   "Tôi hái một quả táo."
+  ],
+  "word_baek": [
+   "một trăm",
+   "Có một trăm người đã đến."
+  ],
+  "word_pallida": [
+   "được bán",
+   "Vé đã bán hết."
+  ],
+  "word_chajaoda": [
+   "đến thăm",
+   "Một người bạn đã đến thăm."
+  ],
+  "word_jeulgeopda": [
+   "vui vẻ",
+   "Hôm nay là một ngày vui."
+  ],
+  "word_julda": [
+   "giảm đi",
+   "Số người đã giảm."
+  ],
+  "word_natda": [
+   "thấp",
+   "Cái ghế thấp."
+  ],
+  "word_chukahada": [
+   "chúc mừng",
+   "Chúc mừng sinh nhật bạn."
+  ],
+  "word_apeuro": [
+   "từ nay",
+   "Mong được hợp tác với bạn."
+  ],
+  "word_bokdo": [
+   "hành lang",
+   "Hành lang yên tĩnh."
+  ],
+  "word_jakpum": [
+   "tác phẩm",
+   "Tôi thích tác phẩm này."
+  ],
+  "word_joyonghada": [
+   "yên tĩnh",
+   "Thư viện yên tĩnh."
+  ],
+  "word_cheonsa": [
+   "thiên thần",
+   "Trong bức tranh có một thiên thần."
+  ],
+  "word_chinjeolhada": [
+   "tử tế",
+   "Hàng xóm của tôi rất tử tế."
+  ],
+  "word_gakkapda": [
+   "gần",
+   "Trường học ở gần."
+  ],
+  "word_sseolda": [
+   "thái",
+   "Tôi thái rau."
+  ],
+  "word_bangmulgwan": [
+   "bảo tàng",
+   "Bảo tàng rất lớn."
+  ],
+  "word_jasik": [
+   "con cái",
+   "Tôi có hai người con."
+  ],
+  "word_simda": [
+   "trồng",
+   "Tôi trồng một cái cây."
+  ],
+  "word_meositda": [
+   "bảnh bao",
+   "Hôm nay bạn trông bảnh thật."
+  ],
+  "word_nollada": [
+   "ngạc nhiên",
+   "Tôi giật mình vì tiếng động."
+  ],
+  "word_gyeyak": [
+   "hợp đồng",
+   "Chúng tôi đã ký hợp đồng."
+  ],
+  "word_robot": [
+   "người máy",
+   "Con rô bốt cử động."
+  ],
+  "word_singo": [
+   "việc trình báo",
+   "Tôi đã trình báo với cảnh sát."
+  ],
+  "word_yejeon": [
+   "hồi trước",
+   "Trước đây tôi từng sống ở đây."
+  ],
+  "word_baegopeuda": [
+   "đói",
+   "Bây giờ tôi rất đói."
+  ],
+  "word_gwageo": [
+   "quá khứ",
+   "Hãy quên quá khứ đi."
+  ],
+  "word_dongjjok": [
+   "phía đông",
+   "Mặt trời mọc ở phía đông."
+  ],
+  "word_ingan": [
+   "con người",
+   "Con người biết nói."
+  ],
+  "word_hanjan": [
+   "một ly",
+   "Làm một ly nhé?"
+  ],
+  "word_jwida": [
+   "nắm chặt",
+   "Tôi nắm chặt tay."
+  ],
+  "word_bareuda": [
+   "phết, bôi",
+   "Tôi phết mứt lên bánh mì."
+  ],
+  "word_sinsa": [
+   "quý ông",
+   "Một quý ông đã giữ cửa."
+  ],
+  "word_umjigida": [
+   "cử động",
+   "Bạn đừng cử động nhé."
+  ],
+  "word_wollae": [
+   "vốn dĩ",
+   "Người đó vốn ít nói."
+  ],
+  "word_insahada": [
+   "chào hỏi",
+   "Tôi đã chào thầy giáo."
+  ],
+  "word_jikida": [
+   "bảo vệ",
+   "Họ bảo vệ đất nước."
+  ],
+  "word_anda_2": [
+   "ôm",
+   "Tôi bế em bé."
+  ],
+  "word_gyesida": [
+   "ở (kính ngữ)",
+   "Bà đang ở trong phòng."
+  ],
+  "word_geureonikka": [
+   "vì vậy",
+   "Trời mưa, vậy nên mang ô đi nhé."
+  ],
+  "word_yeollakada": [
+   "liên lạc",
+   "Đến nơi tôi sẽ liên lạc."
+  ],
+  "word_jipda": [
+   "gắp, nhặt",
+   "Tôi gắp bằng đũa."
+  ],
+  "word_sonyeo": [
+   "cô bé",
+   "Cô bé đọc sách."
+  ],
+  "word_geureomyeon": [
+   "vậy thì",
+   "Vậy thì mai gặp nhau nhé."
+  ],
+  "word_deopda": [
+   "nóng",
+   "Mùa hè nóng."
+  ],
+  "word_olhae": [
+   "năm nay",
+   "Năm nay tôi sẽ đi Hàn Quốc."
+  ],
+  "word_josim": [
+   "sự cẩn thận",
+   "Đi đường cẩn thận nhé."
+  ],
+  "word_yeodongsaeng": [
+   "em gái",
+   "Em gái tôi hát hay."
+  ],
+  "word_jeojjok": [
+   "phía kia",
+   "Nhà vệ sinh ở phía kia."
+  ],
+  "word_gwansim": [
+   "sự quan tâm",
+   "Tôi rất quan tâm đến âm nhạc."
+  ],
+  "word_ppalgata": [
+   "đỏ",
+   "Quả táo màu đỏ."
+  ],
+  "word_geonganghada": [
+   "khỏe mạnh",
+   "Bà tôi khỏe mạnh."
+  ],
+  "word_gapjagi": [
+   "đột nhiên",
+   "Trời đột nhiên đổ mưa."
+  ],
+  "word_geonneoda": [
+   "băng qua",
+   "Tôi băng qua đường."
+  ],
+  "word_deureseu": [
+   "váy đầm",
+   "Chiếc váy đẹp."
+  ],
+  "word_jeongsin": [
+   "tinh thần",
+   "Bạn tỉnh táo lại đi."
+  ],
+  "word_hwajae": [
+   "hỏa hoạn",
+   "Đã xảy ra hỏa hoạn."
+  ],
+  "word_doraoda": [
+   "quay về",
+   "Tôi đã về đến nhà."
+  ],
+  "word_sangtae": [
+   "trạng thái",
+   "Tình trạng tốt."
+  ],
+  "word_yorihada": [
+   "nấu ăn",
+   "Bố tôi đang nấu ăn."
+  ],
+  "word_sikida": [
+   "sai, gọi (món)",
+   "Tôi đã gọi pizza."
+  ],
+  "word_sseuregi": [
+   "rác",
+   "Tôi vứt rác."
+  ],
+  "word_jeonche": [
+   "toàn bộ",
+   "Phải nhìn vào toàn bộ."
+  ],
+  "word_beotda": [
+   "cởi",
+   "Bạn cởi giày ra nhé."
+  ],
+  "word_geutda": [
+   "kẻ (đường)",
+   "Tôi đã kẻ một đường."
+  ],
+  "word_jikyeoboda": [
+   "trông chừng",
+   "Tôi trông chừng đứa trẻ."
+  ],
+  "word_doragada": [
+   "trở về",
+   "Tôi trở về nhà."
+  ],
+  "word_yeomso": [
+   "con dê",
+   "Con dê ăn cỏ."
+  ],
+  "word_andoeda": [
+   "không ổn",
+   "Việc học của tôi không ổn."
+  ],
+  "word_pyeoda": [
+   "mở ra",
+   "Bạn mở sách ra nhé."
+  ],
+  "word_hwanada": [
+   "nổi giận",
+   "Bạn đừng giận nhé."
+  ],
+  "word_syupeo": [
+   "siêu thị",
+   "Tôi mua sữa ở siêu thị."
+  ],
+  "word_yeonseupada": [
+   "luyện tập",
+   "Ngày nào tôi cũng luyện viết."
+  ],
+  "word_geudaero": [
+   "y nguyên",
+   "Bạn cứ để y nguyên nhé."
+  ],
+  "word_joyonghi": [
+   "lặng lẽ",
+   "Bạn giữ yên lặng nhé."
+  ],
+  "word_dallida": [
+   "chạy",
+   "Tôi chạy trong công viên."
+  ],
+  "word_jubyeon": [
+   "xung quanh",
+   "Xung quanh yên tĩnh."
+  ],
+  "word_kkeunnaeda": [
+   "kết thúc",
+   "Tôi đã làm xong bài tập."
+  ],
+  "word_nolda": [
+   "chơi",
+   "Bọn trẻ đang chơi."
+  ],
+  "word_yeodeol": [
+   "tám",
+   "Tám giờ gặp nhau nhé."
+  ],
+  "word_ijjok": [
+   "phía này",
+   "Bạn đi lối này nhé."
+  ],
+  "word_hyeonjae": [
+   "hiện tại",
+   "Hiện tại họ không có ở đây."
+  ],
+  "word_namusip": [
+   "lá cây",
+   "Lá cây rất to."
+  ],
+  "word_hayata": [
+   "trắng",
+   "Tuyết trắng."
+  ],
+  "word_girok": [
+   "ghi chép",
+   "Tôi đã để lại ghi chép."
+  ],
+  "word_mukda": [
+   "buộc lại",
+   "Tôi buộc tóc lại."
+  ],
+  "word_ganghada": [
+   "mạnh",
+   "Gió mạnh."
+  ],
+  "word_mutda": [
+   "hỏi",
+   "Tôi hỏi thầy giáo."
+  ],
+  "word_jaesu": [
+   "vận may",
+   "Hôm nay tôi may mắn."
+  ],
+  "word_geomsa": [
+   "việc kiểm tra",
+   "Tôi đã đi khám."
+  ],
+  "word_gieokada": [
+   "nhớ",
+   "Bạn có nhớ tên mình không?"
+  ],
+  "word_mugeopda": [
+   "nặng",
+   "Cái hộp này nặng."
+  ],
+  "word_binnada": [
+   "tỏa sáng",
+   "Đôi mắt bạn sáng long lanh."
+  ],
+  "word_yeoksi": [
+   "quả nhiên",
+   "Quả nhiên là ngon."
+  ],
+  "word_nori": [
+   "trò chơi",
+   "Bọn trẻ đang chơi trò chơi."
+  ],
+  "word_chulbal": [
+   "sự khởi hành",
+   "Khởi hành muộn mất rồi."
+  ],
+  "word_cheongsohada": [
+   "dọn dẹp",
+   "Tôi đã dọn phòng."
+  ],
+  "word_kkakda": [
+   "gọt",
+   "Tôi gọt quả táo."
+  ],
+  "word_dadeul": [
+   "mọi người",
+   "Mọi người vẫn khỏe chứ?"
+  ],
+  "word_sseuregitong": [
+   "thùng rác",
+   "Thùng rác đầy rồi."
+  ],
+  "word_neungnyeok": [
+   "năng lực",
+   "Năng lực của người đó rất giỏi."
+  ],
+  "word_yalda": [
+   "mỏng",
+   "Quyển sách mỏng."
+  ],
+  "word_geokjeonghada": [
+   "lo lắng",
+   "Bạn đừng lo quá nhé."
+  ],
+  "word_ihaehada": [
+   "hiểu",
+   "Tôi đã hiểu lời giải thích."
+  ],
+  "word_gajuk": [
+   "da (thuộc)",
+   "Cái túi da đắt."
+  ],
+  "word_kkumida": [
+   "trang trí",
+   "Tôi trang trí phòng thật đẹp."
+  ],
+  "word_wichi": [
+   "vị trí",
+   "Bạn cho mình biết vị trí nhé."
+  ],
+  "word_oraetdongan": [
+   "trong thời gian dài",
+   "Tôi đã đợi rất lâu."
+  ],
+  "word_pibu": [
+   "làn da",
+   "Làn da mềm mại."
+  ],
+  "word_natda_2": [
+   "khỏi bệnh",
+   "Tôi đã khỏi cảm rồi."
+  ],
+  "word_giri": [
+   "chiều dài",
+   "Tôi đo chiều dài."
+  ],
+  "word_balda": [
+   "giẫm lên",
+   "Tôi giẫm phải chân người ta."
+  ],
+  "word_annyeonghada": [
+   "bình an",
+   "Chào bạn, bạn có khỏe không?"
+  ],
+  "word_gyosu": [
+   "giáo sư",
+   "Giáo sư đang giảng bài."
+  ],
+  "word_moida": [
+   "tụ họp",
+   "Bạn bè tôi đã tụ họp."
+  ],
+  "word_ojum": [
+   "nước tiểu",
+   "Con chó con đã tè."
+  ],
+  "word_buin": [
+   "phu nhân",
+   "Phu nhân của anh có khỏe không?"
+  ],
+  "word_gundae": [
+   "quân đội",
+   "Anh tôi đã đi bộ đội."
+  ],
+  "word_neolda": [
+   "rộng",
+   "Căn phòng rộng."
+  ],
+  "word_segeum": [
+   "thuế",
+   "Tôi đã đóng thuế."
+  ],
+  "word_kiuda": [
+   "nuôi",
+   "Tôi nuôi một con chó ở nhà."
+  ],
+  "word_jakku": [
+   "cứ, mãi",
+   "Tôi cứ quên hoài."
+  ],
+  "word_sumda": [
+   "trốn",
+   "Đứa trẻ trốn sau gốc cây."
+  ],
+  "word_jareuda": [
+   "cắt",
+   "Tôi cắt tóc."
+  ],
+  "word_jeongsang": [
+   "đỉnh núi",
+   "Tôi đã lên tới đỉnh núi."
+  ],
+  "word_pyeonhada": [
+   "thoải mái",
+   "Cái ghế này ngồi thoải mái."
+  ],
+  "word_gyeolhonhada": [
+   "kết hôn",
+   "Sang năm chúng tôi cưới."
+  ],
+  "word_useon": [
+   "trước hết",
+   "Trước hết hãy rửa tay."
+  ],
+  "word_deureogada": [
+   "đi vào",
+   "Tôi đi vào phòng."
+  ],
+  "word_silheohada": [
+   "ghét",
+   "Tôi không thích đồ cay."
+  ],
+  "word_yakada": [
+   "yếu",
+   "Ngọn lửa yếu."
+  ],
+  "word_neurida": [
+   "chậm",
+   "Xe buýt chạy chậm."
+  ],
+  "word_yeongsang": [
+   "video",
+   "Tôi đã xem video."
+  ],
+  "word_cheon": [
+   "một nghìn",
+   "Cho tôi một nghìn won."
+  ],
+  "word_seonsu": [
+   "vận động viên",
+   "Vận động viên chạy nhanh."
+  ],
+  "word_bubu": [
+   "vợ chồng",
+   "Cặp vợ chồng đó tốt bụng."
+  ],
+  "word_seuseuro": [
+   "tự mình",
+   "Bạn thử tự làm xem."
+  ],
+  "word_olta": [
+   "đúng",
+   "Điều bạn nói là đúng."
+  ],
+  "word_yeollida": [
+   "mở ra",
+   "Cánh cửa đã mở."
+  ],
+  "word_hyeongje": [
+   "anh em",
+   "Có ba anh em."
+  ],
+  "word_gyeongu": [
+   "trường hợp",
+   "Cũng có trường hợp như vậy."
+  ],
+  "word_belteu": [
+   "dây an toàn",
+   "Bạn thắt dây an toàn nhé."
+  ],
+  "word_naerida": [
+   "xuống (xe)",
+   "Tôi xuống ở ga sau."
+  ],
+  "word_deiteo": [
+   "dữ liệu",
+   "Tôi đã lưu dữ liệu."
+  ],
+  "word_ttareuda": [
+   "đi theo",
+   "Bạn đi theo tôi nhé."
+  ],
+  "word_indo": [
+   "vỉa hè",
+   "Bạn đi trên vỉa hè nhé."
+  ],
+  "word_machida": [
+   "hoàn thành",
+   "Tôi đã làm xong việc."
+  ],
+  "word_siksahada": [
+   "dùng bữa",
+   "Bạn ăn cơm chưa?"
+  ],
+  "word_chumchuda": [
+   "nhảy múa",
+   "Mọi người đang nhảy."
+  ],
+  "word_kkeulta": [
+   "sôi",
+   "Nước đang sôi."
+  ],
+  "word_tiket": [
+   "vé",
+   "Tôi đã đặt vé."
+  ],
+  "word_jinaeda": [
+   "sống, sinh hoạt",
+   "Dạo này bạn sống thế nào?"
+  ],
+  "word_sonyeon": [
+   "cậu bé",
+   "Cậu bé đá bóng."
+  ],
+  "word_yaksokada": [
+   "hứa",
+   "Chúng tôi đã hẹn gặp ngày mai."
+  ],
+  "word_chwihada": [
+   "say",
+   "Tôi bị say rồi."
+  ],
+  "word_dochakada": [
+   "đến nơi",
+   "Tàu đã đến."
+  ],
+  "word_aelbeom": [
+   "cuốn an bum",
+   "Tôi đã xem an bum ảnh."
+  ],
+  "word_imo": [
+   "dì",
+   "Dì tôi đã đến chơi."
+  ],
+  "word_banji": [
+   "chiếc nhẫn",
+   "Chiếc nhẫn đẹp."
+  ],
+  "word_jeonhwagi": [
+   "máy điện thoại",
+   "Cái điện thoại hỏng rồi."
+  ],
+  "word_neukdae": [
+   "chó sói",
+   "Sói sống ở trên núi."
+  ],
+  "word_somun": [
+   "tin đồn",
+   "Tôi đã nghe một tin đồn."
+  ],
+  "word_jeopda": [
+   "gấp",
+   "Tôi gấp tờ giấy."
+  ],
+  "word_noryeokada": [
+   "nỗ lực",
+   "Ngày nào tôi cũng cố gắng."
+  ],
+  "word_golpeu": [
+   "gôn",
+   "Cuối tuần tôi chơi gôn."
+  ],
+  "word_anjeonhada": [
+   "an toàn",
+   "Ở đây an toàn."
+  ],
+  "word_saeop": [
+   "việc kinh doanh",
+   "Tôi đã bắt đầu kinh doanh."
+  ],
+  "word_neukda": [
+   "già đi",
+   "Ai rồi cũng già."
+  ],
+  "word_hwahak": [
+   "hóa học",
+   "Tôi học hóa học."
+  ],
+  "word_dongnyo": [
+   "đồng nghiệp",
+   "Tôi ăn trưa với đồng nghiệp."
+  ],
+  "word_sangsang": [
+   "sự tưởng tượng",
+   "Bạn thử tưởng tượng xem."
+  ],
+  "word_eoryeopda": [
+   "khó",
+   "Câu hỏi này khó."
+  ],
+  "word_samusil": [
+   "văn phòng",
+   "Văn phòng yên tĩnh."
+  ],
+  "word_ollagada": [
+   "đi lên",
+   "Tôi đi lên cầu thang."
+  ],
+  "word_naragada": [
+   "bay đi",
+   "Con chim đã bay đi."
+  ],
+  "word_matboda": [
+   "nếm thử",
+   "Tôi nếm thử canh."
+  ],
+  "word_suyeongjang": [
+   "hồ bơi",
+   "Tôi đi hồ bơi."
+  ],
+  "word_jupda": [
+   "nhặt",
+   "Tôi nhặt được cái ví trên đường."
+  ],
+  "word_gamjeong": [
+   "cảm xúc",
+   "Tôi giấu cảm xúc của mình."
+  ],
+  "word_josimhada": [
+   "cẩn thận",
+   "Bạn cẩn thận cầu thang nhé."
+  ],
+  "word_teukbyeolhi": [
+   "đặc biệt",
+   "Tôi đã chuẩn bị đặc biệt."
+  ],
+  "word_beolda": [
+   "kiếm (tiền)",
+   "Tôi kiếm tiền."
+  ],
+  "word_sinnada": [
+   "phấn khích",
+   "Chuyến đi thật thú vị."
+  ],
+  "word_tonghwahada": [
+   "nói chuyện điện thoại",
+   "Tôi đã nói chuyện điện thoại với mẹ."
+  ],
+  "word_gukje": [
+   "quốc tế",
+   "Tôi đã đi sân bay quốc tế."
+  ],
+  "word_gyuchik": [
+   "quy tắc",
+   "Tôi tuân thủ quy tắc."
+  ],
+  "word_chaenggida": [
+   "chuẩn bị mang theo",
+   "Bạn nhớ mang ô nhé."
+  ],
+  "word_deullida": [
+   "nghe thấy",
+   "Tôi nghe rất rõ."
+  ],
+  "word_eonjena": [
+   "luôn luôn",
+   "Hãy luôn mỉm cười."
+  ],
+  "word_gwangye": [
+   "mối quan hệ",
+   "Hai người họ thân nhau."
+  ],
+  "word_joesonghada": [
+   "xin lỗi (lịch sự)",
+   "Xin lỗi vì tôi đến muộn."
+  ],
+  "word_butakada": [
+   "nhờ vả",
+   "Tôi có một việc muốn nhờ."
+  ],
+  "word_sinho": [
+   "tín hiệu",
+   "Tôi đợi tín hiệu."
+  ],
+  "word_gochida": [
+   "sửa",
+   "Tôi đã sửa cái đồng hồ."
+  ],
+  "word_bandae": [
+   "sự phản đối",
+   "Tôi phản đối."
+  ],
+  "word_allida": [
+   "thông báo",
+   "Bạn báo cho mình kết quả nhé."
+  ],
+  "word_bihaeng": [
+   "chuyến bay",
+   "Thời gian bay dài."
+  ],
+  "word_jiok": [
+   "địa ngục",
+   "Trong truyện có nhắc tới địa ngục."
+  ],
+  "word_galda": [
+   "mài",
+   "Tôi mài con dao."
+  ],
+  "word_bakkuda": [
+   "đổi",
+   "Mình đổi chỗ nhé."
+  ],
+  "word_chamgo": [
+   "sự tham khảo",
+   "Tôi nói để bạn tham khảo."
+  ],
+  "word_gajja": [
+   "đồ giả",
+   "Cái này là hàng giả."
+  ],
+  "word_deullyeojuda": [
+   "kể cho nghe",
+   "Tôi đã kể một câu chuyện xưa."
+  ],
+  "word_geonbae": [
+   "cụng ly",
+   "Nào, cạn ly!"
+  ],
+  "word_saljjak": [
+   "khẽ, nhẹ",
+   "Tôi hé cửa ra một chút."
+  ],
+  "word_jinagada": [
+   "đi ngang qua",
+   "Xe buýt đã đi qua rồi."
+  ],
+  "word_daedanhada": [
+   "đáng nể",
+   "Năng lực của bạn thật đáng nể."
+  ],
+  "word_gaseum": [
+   "ngực",
+   "Ngực tôi thấy tức."
+  ],
+  "word_seuki": [
+   "trượt tuyết",
+   "Mùa đông tôi đi trượt tuyết."
+  ],
+  "word_hoeui": [
+   "cuộc họp",
+   "Cuộc họp kéo dài."
+  ],
+  "word_naeryeogada": [
+   "đi xuống",
+   "Tôi đi xuống cầu thang."
+  ],
+  "word_gaunde": [
+   "ở giữa",
+   "Bạn ngồi ở giữa nhé."
+  ],
+  "word_hwanaeda": [
+   "nổi giận với",
+   "Tôi đã giận em mình."
+  ],
+  "word_dojeonhada": [
+   "thử thách",
+   "Tôi thử thách điều mới mẻ."
+  ],
+  "word_peurogeuraem": [
+   "chương trình",
+   "Chương trình này thú vị."
+  ],
+  "word_suyeom": [
+   "râu",
+   "Râu của ông dài."
+  ],
+  "word_taeeonada": [
+   "sinh ra",
+   "Tôi sinh ra ở Seoul."
+  ],
+  "word_sachon": [
+   "anh chị em họ",
+   "Anh họ tôi đã đến chơi."
+  ],
+  "word_jibeoneota": [
+   "nhét vào",
+   "Tôi nhét quyển sách vào túi."
+  ],
+  "word_milda": [
+   "đẩy",
+   "Tôi đẩy cửa."
+  ],
+  "word_siwonhada": [
+   "mát",
+   "Đồ uống mát lạnh."
+  ],
+  "word_iteul": [
+   "hai ngày",
+   "Tôi đã nghỉ hai ngày."
+  ],
+  "word_piuda": [
+   "hút (thuốc)",
+   "Bạn đừng hút thuốc ở đây nhé."
+  ],
+  "word_yeogida": [
+   "coi là",
+   "Họ coi tôi là bạn."
+  ],
+  "word_danida": [
+   "đi lại thường xuyên",
+   "Tôi đi học."
+  ],
+  "word_jeobeon": [
+   "lần trước",
+   "Lần trước chúng ta đã gặp nhau."
+  ],
+  "word_gugeupcha": [
+   "xe cứu thương",
+   "Bạn gọi xe cứu thương đi."
+  ],
+  "word_pija": [
+   "pizza",
+   "Tôi gọi pizza."
+  ],
+  "word_silpae": [
+   "thất bại",
+   "Thất bại cũng không sao."
+  ],
+  "word_bangmunhada": [
+   "thăm",
+   "Tôi đã đi thăm bảo tàng."
+  ],
+  "word_choegeun": [
+   "gần đây",
+   "Gần đây tôi mới chuyển nhà."
+  ],
+  "word_boho": [
+   "sự bảo vệ",
+   "Bảo vệ động vật là việc quan trọng."
+  ],
+  "word_syopinghada": [
+   "mua sắm",
+   "Tôi đi mua sắm với bạn."
+  ],
+  "word_nopi": [
+   "chiều cao",
+   "Bạn có biết ngọn núi cao bao nhiêu không?"
+  ],
+  "word_haengdong": [
+   "hành động",
+   "Anh ấy hành động nhanh nhẹn."
+  ],
+  "word_gumeong": [
+   "cái lỗ",
+   "Tất của tôi bị thủng một lỗ."
+  ],
+  "word_jalsaenggida": [
+   "đẹp trai",
+   "Anh ấy đẹp trai thật."
+  ],
+  "word_isanghada": [
+   "kỳ lạ",
+   "Tiếng động nghe kỳ lạ."
+  ],
+  "word_eojetbam": [
+   "đêm qua",
+   "Đêm qua tôi ngủ ngon."
+  ],
+  "word_yongseo": [
+   "sự tha thứ",
+   "Tôi đã xin được tha thứ."
+  ],
+  "word_yosae": [
+   "dạo này",
+   "Dạo này tôi bận."
+  ],
+  "word_deusida": [
+   "dùng (kính ngữ)",
+   "Bố tôi đang dùng bữa tối."
+  ],
+  "word_ssodajida": [
+   "đổ xuống",
+   "Mưa đổ xuống ào ào."
+  ],
+  "word_geonneogada": [
+   "đi qua",
+   "Tôi đã đi qua cây cầu."
+  ],
+  "word_chinhada": [
+   "thân thiết",
+   "Chúng tôi rất thân nhau."
+  ],
+  "word_teullida": [
+   "sai",
+   "Câu trả lời sai rồi."
+  ],
+  "word_ssaum": [
+   "cuộc cãi nhau",
+   "Đừng cãi nhau nữa nhé."
+  ],
+  "word_jjida": [
+   "hấp",
+   "Tôi hấp bánh bao."
+  ],
+  "word_ganhosa": [
+   "y tá",
+   "Y tá giúp tôi."
+  ],
+  "word_nongdam": [
+   "lời nói đùa",
+   "Đùa thôi mà."
+  ],
+  "word_doduk": [
+   "kẻ trộm",
+   "Người ta đã bắt được kẻ trộm."
+  ],
+  "word_soseol": [
+   "tiểu thuyết",
+   "Tôi đọc tiểu thuyết."
+  ],
+  "word_pogi": [
+   "sự từ bỏ",
+   "Bạn đừng bỏ cuộc nhé."
+  ],
+  "word_gakkai": [
+   "gần",
+   "Bạn lại gần đây nhé."
+  ],
+  "word_annyeonghi": [
+   "bình an",
+   "Tạm biệt, bạn đi bình an nhé."
+  ],
+  "word_gunggeumhada": [
+   "tò mò",
+   "Tôi tò mò về kết quả."
+  ],
+  "word_gogeup": [
+   "cao cấp",
+   "Tôi đã đến một nhà hàng cao cấp."
+  ],
+  "word_saenghwal": [
+   "cuộc sống",
+   "Cuộc sống đã dễ chịu hơn."
+  ],
+  "word_mueonga": [
+   "điều gì đó",
+   "Có gì đó là lạ."
+  ],
+  "word_beoteun": [
+   "cái nút",
+   "Bạn bấm nút nhé."
+  ],
+  "word_seonbae": [
+   "tiền bối",
+   "Tiền bối đã giúp tôi."
+  ],
+  "word_ollyeonota": [
+   "đặt lên trên",
+   "Tôi đặt cái đĩa lên bàn."
+  ],
+  "word_gyoyuk": [
+   "giáo dục",
+   "Giáo dục rất quan trọng."
+  ],
+  "word_ttaeda": [
+   "nhóm lửa",
+   "Chúng tôi đốt củi."
+  ],
+  "word_jopda": [
+   "hẹp",
+   "Con đường hẹp."
+  ],
+  "word_gipi": [
+   "độ sâu",
+   "Tôi đo độ sâu của nước."
+  ],
+  "word_ttaraoda": [
+   "đi theo sau",
+   "Con chó con đang đi theo."
+  ],
+  "word_nata": [
+   "đẻ",
+   "Con mèo đã đẻ ra mèo con."
+  ],
+  "word_jeongi": [
+   "điện",
+   "Mất điện rồi."
+  ],
+  "word_yeoksa": [
+   "lịch sử",
+   "Tôi học lịch sử Hàn Quốc."
+  ],
+  "word_moeuda": [
+   "gom góp",
+   "Tôi để dành tiền."
+  ],
+  "word_gwahak": [
+   "khoa học",
+   "Khoa học thú vị."
+  ],
+  "word_doksuri": [
+   "đại bàng",
+   "Đại bàng bay cao."
+  ],
+  "word_ppaeda": [
+   "trừ ra",
+   "Ba trừ một."
+  ],
+  "word_nameoji": [
+   "phần còn lại",
+   "Phần còn lại mai tôi làm."
+  ],
+  "word_sinseonhada": [
+   "tươi",
+   "Rau rất tươi."
+  ],
+  "word_ollida": [
+   "giơ lên",
+   "Bạn giơ tay lên nhé."
+  ],
+  "word_kyeoda": [
+   "bật",
+   "Bạn bật đèn lên nhé."
+  ],
+  "word_guhada": [
+   "tìm kiếm",
+   "Tôi đang tìm việc."
+  ],
+  "word_gieongnada": [
+   "nhớ ra",
+   "Tôi nhớ ra cái tên rồi."
+  ],
+  "word_ollain": [
+   "trực tuyến",
+   "Tôi học trực tuyến."
+  ],
+  "word_gyeoljeonghada": [
+   "quyết định",
+   "Chúng tôi đã chọn ngày."
+  ],
+  "word_jamjada": [
+   "ngủ",
+   "Em bé đang ngủ."
+  ],
+  "word_deudieo": [
+   "cuối cùng thì",
+   "Cuối cùng cũng xong."
+  ],
+  "word_wiheomhada": [
+   "nguy hiểm",
+   "Ban đêm đi một mình thì nguy hiểm."
+  ],
+  "word_beda": [
+   "cắt đứt",
+   "Tôi bị dao cắt vào tay."
+  ],
+  "word_samkida": [
+   "nuốt",
+   "Tôi đã nuốt thuốc."
+  ],
+  "word_byeonhada": [
+   "thay đổi",
+   "Thời tiết đã thay đổi."
+  ],
+  "word_baneul": [
+   "cây kim",
+   "Tôi xỏ chỉ vào kim."
+  ],
+  "word_jangnan": [
+   "trò nghịch",
+   "Bạn đừng nghịch nhé."
+  ],
+  "word_pail": [
+   "tệp tin",
+   "Tôi đã gửi tệp."
+  ],
+  "word_gogaek": [
+   "khách hàng",
+   "Có một khách hàng đang đợi."
+  ],
+  "word_sagwahada": [
+   "xin lỗi",
+   "Tôi đã xin lỗi trước."
+  ],
+  "word_heureuda": [
+   "chảy",
+   "Dòng sông chảy."
+  ],
+  "word_danyeooda": [
+   "đi rồi về",
+   "Tôi vừa đi học về."
+  ],
+  "word_dudeurida": [
+   "gõ",
+   "Tôi gõ cửa."
+  ],
+  "word_bida": [
+   "trống",
+   "Căn phòng trống."
+  ],
+  "word_jeokdo": [
+   "xích đạo",
+   "Xích đạo rất nóng."
+  ],
+  "word_gyeolhonsik": [
+   "lễ cưới",
+   "Tôi đã đi dự đám cưới."
+  ],
+  "word_heurida": [
+   "u ám",
+   "Hôm nay trời u ám."
+  ],
+  "word_chada": [
+   "đầy",
+   "Căn phòng đầy người."
+  ],
+  "word_hwaginhada": [
+   "kiểm tra",
+   "Tôi đã kiểm tra giờ."
+  ],
+  "word_nanuda": [
+   "chia",
+   "Chúng tôi chia nhau bánh mì."
+  ],
+  "word_yeoreo": [
+   "nhiều, vài",
+   "Tôi đã đi vài nước."
+  ],
+  "word_ttaragada": [
+   "đi theo",
+   "Tôi đi theo anh trai."
+  ],
+  "word_jangchi": [
+   "thiết bị",
+   "Có thiết bị an toàn."
+  ],
+  "word_daetongnyeong": [
+   "tổng thống",
+   "Tổng thống đã phát biểu."
+  ],
+  "word_chago": [
+   "nhà để xe",
+   "Tôi để xe vào ga ra."
+  ],
+  "word_sinbunjeung": [
+   "giấy tờ tùy thân",
+   "Bạn cho xem giấy tờ nhé."
+  ],
+  "word_jida": [
+   "thua",
+   "Chúng tôi đã thua trận đấu."
+  ],
+  "word_ppida": [
+   "trẹo, bong gân",
+   "Tôi bị trẹo cổ chân."
+  ],
+  "word_dalda": [
+   "ngọt",
+   "Quả táo này ngọt."
+  ],
+  "word_jiha": [
+   "tầng hầm",
+   "Dưới hầm có một cửa hàng."
+  ],
+  "word_kkuda": [
+   "nằm mơ",
+   "Tôi đã mơ một giấc mơ đẹp."
+  ],
+  "word_gija": [
+   "phóng viên",
+   "Phóng viên đặt câu hỏi."
+  ],
+  "word_chiryo": [
+   "việc điều trị",
+   "Tôi đang được điều trị."
+  ],
+  "word_anbu": [
+   "lời hỏi thăm",
+   "Bạn cho tôi gửi lời hỏi thăm bố mẹ nhé."
+  ],
+  "word_jeonghada": [
+   "định, chốt",
+   "Chúng tôi đã chốt ngày."
+  ],
+  "word_heeojida": [
+   "chia tay",
+   "Chúng tôi chia tay ở nhà ga."
+  ],
+  "word_seutyu": [
+   "món hầm",
+   "Món hầm còn ấm."
+  ],
+  "word_syawo": [
+   "tắm vòi sen",
+   "Tôi đã đi tắm."
+  ],
+  "word_neomgida": [
+   "lật (trang)",
+   "Tôi lật trang sách."
+  ],
+  "word_suhak": [
+   "toán học",
+   "Toán khó."
+  ],
+  "word_sarajida": [
+   "biến mất",
+   "Sương mù đã tan hết."
+  ],
+  "word_bureopda": [
+   "ghen tị",
+   "Tôi ghen tị với bạn thật đấy."
+  ],
+  "word_juui": [
+   "sự chú ý",
+   "Bạn nghe cho kỹ nhé."
+  ],
+  "word_jigwon": [
+   "nhân viên",
+   "Nhân viên rất tử tế."
+  ],
+  "word_nupda": [
+   "nằm",
+   "Tôi nằm xuống giường."
+  ],
+  "word_giji": [
+   "căn cứ",
+   "Chúng tôi đã đến căn cứ."
+  ],
+  "word_joka": [
+   "cháu (ruột)",
+   "Cháu tôi năm tuổi."
+  ],
+  "word_gyeolguk": [
+   "cuối cùng",
+   "Cuối cùng thì cũng ổn thỏa."
+  ],
+  "word_munja": [
+   "tin nhắn",
+   "Tôi đã gửi tin nhắn."
+  ],
+  "word_gisul": [
+   "kỹ thuật",
+   "Kỹ thuật rất tốt."
+  ],
+  "word_balgyeon": [
+   "phát hiện",
+   "Đó là một phát hiện lớn."
+  ],
+  "word_naeryeooda": [
+   "đi xuống",
+   "Tôi từ tầng một đi xuống."
+  ],
+  "word_jitda_2": [
+   "sủa",
+   "Con chó sủa to."
+  ],
+  "word_kkalda": [
+   "trải ra",
+   "Tôi trải chăn nệm xuống sàn."
+  ],
+  "word_jikjang": [
+   "nơi làm việc",
+   "Chỗ làm của tôi ở xa."
+  ],
+  "word_robi": [
+   "sảnh",
+   "Tôi sẽ đợi ở sảnh."
+  ],
+  "word_seonggonghada": [
+   "thành công",
+   "Tôi đã thi đỗ."
+  ],
+  "word_isang": [
+   "trở lên",
+   "Có từ mười người trở lên đã đến."
+  ],
+  "word_ssipda": [
+   "nhai",
+   "Bạn nhai chậm thôi."
+  ],
+  "word_maeju": [
+   "mỗi tuần",
+   "Tuần nào tôi cũng tập thể dục."
+  ],
+  "word_baetda": [
+   "nhổ ra",
+   "Tôi nhổ cái hạt ra."
+  ],
+  "word_chungbunhada": [
+   "đủ",
+   "Thời gian còn đủ."
+  ],
+  "word_damda_2": [
+   "giống",
+   "Anh ấy giống bố."
+  ],
+  "word_ijeon": [
+   "trước đây",
+   "Chúng ta đã gặp nhau trước đây."
+  ],
+  "word_oreuda": [
+   "tăng lên",
+   "Giá đã tăng."
+  ],
+  "word_molda": [
+   "lái",
+   "Bố tôi lái xe."
+  ],
+  "word_jalmothada": [
+   "làm sai",
+   "Tôi đã làm sai."
+  ],
+  "word_jogak": [
+   "miếng",
+   "Cho tôi một miếng bánh."
+  ],
+  "word_banghyang": [
+   "phương hướng",
+   "Hướng ngược lại rồi."
+  ],
+  "word_ttokttokada": [
+   "thông minh",
+   "Đứa trẻ thông minh thật."
+  ],
+  "word_natanada": [
+   "xuất hiện",
+   "Anh ấy đột nhiên xuất hiện."
+  ],
+  "word_jeori": [
+   "đằng kia",
+   "Bạn đi đằng kia nhé."
+  ],
+  "word_jaemieopda": [
+   "chán",
+   "Trò chơi này chán."
+  ],
+  "word_deulkida": [
+   "bị lộ",
+   "Lời nói dối đã bị lộ."
+  ],
+  "word_makda_2": [
+   "chặn",
+   "Người ta đã chặn đường."
+  ],
+  "word_gandanhada": [
+   "đơn giản",
+   "Cách làm rất đơn giản."
+  ],
+  "word_bultada": [
+   "cháy",
+   "Ngọn núi đang cháy."
+  ],
+  "word_baendeu": [
+   "ban nhạc",
+   "Ban nhạc đang chơi một bài."
+  ],
+  "word_amado": [
+   "có lẽ",
+   "Có lẽ mai anh ấy sẽ đến."
+  ],
+  "word_yangban": [
+   "quý tộc yangban",
+   "Ngày xưa các quý tộc sống ở đây."
+  ],
+  "word_jedaero": [
+   "cho đàng hoàng",
+   "Tôi muốn học cho đàng hoàng."
+  ],
+  "word_billida": [
+   "mượn",
+   "Tôi đã mượn một quyển sách."
+  ],
+  "word_radio": [
+   "đài phát thanh",
+   "Tôi nghe đài."
+  ],
+  "word_charida": [
+   "dọn (mâm cơm)",
+   "Tôi dọn mâm cơm."
+  ],
+  "word_charyang": [
+   "xe cộ",
+   "Xe cộ rất nhiều."
+  ],
+  "word_chajaboda": [
+   "tra cứu",
+   "Tôi đã tra trong từ điển."
+  ],
+  "word_pihada": [
+   "tránh",
+   "Tôi trú mưa."
+  ],
+  "word_gidae": [
+   "sự mong đợi",
+   "Tôi rất mong đợi."
+  ],
+  "word_baksa": [
+   "tiến sĩ",
+   "Anh ấy có bằng tiến sĩ."
+  ],
+  "word_haengseong": [
+   "hành tinh",
+   "Có tám hành tinh."
+  ],
+  "word_butda": [
+   "rót",
+   "Tôi rót nước vào cốc."
+  ],
+  "word_geujjok": [
+   "bên đó",
+   "Bên đó thì thế nào?"
+  ],
+  "word_jipjung": [
+   "sự tập trung",
+   "Tôi không tập trung được."
+  ],
+  "word_kkaeda": [
+   "tỉnh dậy",
+   "Sáng sớm tôi đã tỉnh dậy."
+  ],
+  "word_gyeongbi": [
+   "chi phí",
+   "Chi phí cao."
+  ],
+  "word_eonjedeunji": [
+   "bất cứ lúc nào",
+   "Bạn đến lúc nào cũng được."
+  ],
+  "word_neomeojida": [
+   "ngã",
+   "Tôi bị ngã trên đường."
+  ],
+  "word_museopda": [
+   "đáng sợ",
+   "Ban đêm ở một mình tôi thấy sợ."
+  ],
+  "word_silsuhada": [
+   "mắc lỗi",
+   "Tôi lại mắc lỗi rồi."
+  ],
+  "word_moksum": [
+   "mạng sống",
+   "Họ đã cứu một mạng người."
+  ],
+  "word_butda_2": [
+   "dính",
+   "Tờ giấy dính vào tường."
+  ],
+  "word_simhada": [
+   "nặng, dữ dội",
+   "Cơn ho nặng lắm."
+  ],
+  "word_sugo": [
+   "sự vất vả",
+   "Bạn đã vất vả nhiều rồi."
+  ],
+  "word_geureona": [
+   "tuy nhiên",
+   "Nó đắt. Tuy nhiên lại tốt."
+  ],
+  "word_biseuthada": [
+   "giống nhau",
+   "Hai bức tranh giống nhau."
+  ],
+  "word_sillyeok": [
+   "thực lực",
+   "Trình độ của tôi đã khá lên."
+  ],
+  "word_daruda": [
+   "xử lý, điều khiển",
+   "Anh ấy sử dụng máy móc rất giỏi."
+  ],
+  "word_sikda": [
+   "nguội",
+   "Canh nguội mất rồi."
+  ],
+  "word_bichuda": [
+   "chiếu sáng",
+   "Tôi soi đèn pin vào."
+  ],
+  "word_bulda": [
+   "thổi",
+   "Gió đang thổi."
+  ],
+  "word_wanjeon": [
+   "hoàn toàn",
+   "Cái này hoàn toàn mới."
+  ],
+  "word_gabyeopda": [
+   "nhẹ",
+   "Cái túi nhẹ."
+  ],
+  "word_saendeuwichi": [
+   "bánh sandwich",
+   "Tôi làm bánh sandwich."
+  ],
+  "word_jinsil": [
+   "sự thật",
+   "Bạn nói thật cho tôi biết đi."
+  ],
+  "word_maetda": [
+   "kết (duyên)",
+   "Chúng tôi đã kết một mối duyên đẹp."
+  ],
+  "word_chulbalhada": [
+   "khởi hành",
+   "Chúng tôi khởi hành từ sáng sớm."
+  ],
+  "word_helgi": [
+   "trực thăng",
+   "Một chiếc trực thăng bay qua."
+  ],
+  "word_yeojachingu": [
+   "bạn gái",
+   "Tôi đi gặp bạn gái."
+  ],
+  "word_seolmyeonghada": [
+   "giải thích",
+   "Bạn giải thích lại giúp mình nhé."
+  ],
+  "word_bonbu": [
+   "tổng bộ",
+   "Tôi đã liên lạc với tổng bộ."
+  ],
+  "word_beotgida": [
+   "cởi ra cho",
+   "Tôi cởi quần áo cho đứa trẻ."
+  ],
+  "word_daedapada": [
+   "trả lời",
+   "Tôi trả lời bằng giọng to."
+  ],
+  "word_eodupda": [
+   "tối",
+   "Căn phòng tối."
+  ],
+  "word_geureochiman": [
+   "nhưng mà",
+   "Vất vả đấy, nhưng mà vui."
+  ],
+  "word_bujokada": [
+   "thiếu",
+   "Không đủ thời gian."
+  ],
+  "word_enjin": [
+   "động cơ",
+   "Động cơ kêu to."
+  ],
+  "word_kaempeu": [
+   "trại",
+   "Tôi đã đi trại hè."
+  ],
+  "word_tteoreojida": [
+   "rơi",
+   "Lá cây đang rơi."
+  ],
+  "word_chamda": [
+   "chịu đựng",
+   "Bạn cố chịu thêm chút nữa nhé."
+  ],
+  "word_derida": [
+   "dẫn theo",
+   "Tôi dẫn đứa trẻ đi cùng."
+  ],
+  "word_wanjeonhi": [
+   "hoàn toàn",
+   "Tôi đã khỏi hẳn."
+  ],
+  "word_chwaryeong": [
+   "việc quay phim",
+   "Người ta đang quay phim ở đây."
+  ],
+  "word_bokjapada": [
+   "phức tạp, đông đúc",
+   "Đường đông quá."
+  ],
+  "word_jakga": [
+   "nhà văn",
+   "Nhà văn đã viết một quyển sách."
+  ],
+  "word_eomcheong": [
+   "cực kỳ",
+   "Ngon cực kỳ."
+  ],
+  "word_mullida": [
+   "bị cắn",
+   "Tôi bị muỗi đốt."
+  ],
+  "word_gidaeda": [
+   "tựa vào",
+   "Tôi tựa vào tường."
+  ],
+  "word_dangyeonhada": [
+   "đương nhiên",
+   "Đó là kết quả đương nhiên."
+  ],
+  "word_aya": [
+   "ối",
+   "Ối, đau quá!"
+  ],
+  "word_kkoma": [
+   "nhóc con",
+   "Nhóc con chào chúng tôi."
+  ],
+  "word_yeollyo": [
+   "nhiên liệu",
+   "Không đủ nhiên liệu."
+  ],
+  "word_oraedoeda": [
+   "cũ, lâu năm",
+   "Đó là một tấm ảnh cũ."
+  ],
+  "word_eorida": [
+   "nhỏ tuổi",
+   "Em tôi vẫn còn nhỏ."
+  ],
+  "word_kiseu": [
+   "nụ hôn",
+   "Trong phim có cảnh hôn."
+  ],
+  "word_geonneo": [
+   "phía đối diện",
+   "Bên kia đường có một cửa hàng."
+  ],
+  "word_sogaehada": [
+   "giới thiệu",
+   "Để tôi giới thiệu bạn tôi."
+  ],
+  "word_geunal": [
+   "hôm đó",
+   "Hôm đó trời mưa."
+  ],
+  "word_yangjjok": [
+   "cả hai bên",
+   "Bạn nhìn cả hai bên nhé."
+  ],
+  "word_chado": [
+   "lòng đường",
+   "Bạn đừng đi dưới lòng đường."
+  ],
+  "word_jeulgida": [
+   "tận hưởng",
+   "Tôi thưởng thức âm nhạc."
+  ],
+  "word_bidio": [
+   "video",
+   "Tôi đã xem video."
+  ],
+  "word_geolchida": [
+   "khoác lên",
+   "Tôi khoác áo choàng."
+  ],
+  "word_pokbal": [
+   "vụ nổ",
+   "Có tiếng nổ."
+  ],
+  "word_georeogada": [
+   "đi bộ đến",
+   "Tôi đi bộ đến trường."
+  ],
+  "word_sutja": [
+   "con số",
+   "Bạn đếm các con số nhé."
+  ],
+  "word_bogoseo": [
+   "bản báo cáo",
+   "Tôi đã nộp báo cáo."
+  ],
+  "word_namgida": [
+   "để thừa lại",
+   "Bạn đừng để thừa đồ ăn nhé."
+  ],
+  "word_dakda": [
+   "lau, chải",
+   "Tôi đánh răng."
+  ],
+  "word_cheotjjae": [
+   "thứ nhất",
+   "Bạn ngồi hàng đầu nhé."
+  ],
+  "word_salpida": [
+   "quan sát kỹ",
+   "Nhìn quanh rồi hãy sang đường."
+  ],
+  "word_jjajeung": [
+   "sự bực bội",
+   "Tôi thấy bực mình."
+  ],
+  "word_gapda": [
+   "trả lại",
+   "Tôi đã trả lại tiền."
+  ],
+  "word_gwihada": [
+   "quý báu",
+   "Có một vị khách quý đã đến."
+  ],
+  "word_pyeongsaeng": [
+   "cả đời",
+   "Cả đời tôi sẽ không quên."
+  ],
+  "word_gullida": [
+   "lăn",
+   "Tôi lăn quả bóng."
+  ],
+  "word_ttulta": [
+   "đục thủng",
+   "Tôi đục một lỗ trên tờ giấy."
+  ],
+  "word_jumunhada": [
+   "gọi món",
+   "Tôi đã gọi một ly cà phê."
+  ],
+  "word_eodinga": [
+   "đâu đó",
+   "Chắc chắn ở đâu đó thôi."
+  ],
+  "word_pingkeu": [
+   "màu hồng",
+   "Màu hồng đẹp."
+  ],
+  "word_kkotda": [
+   "cắm",
+   "Tôi cắm hoa vào bình."
+  ],
+  "word_sumgida": [
+   "giấu",
+   "Tôi đã giấu món quà."
+  ],
+  "word_syawohada": [
+   "tắm",
+   "Buổi sáng tôi tắm."
+  ],
+  "word_jeongni": [
+   "sự sắp xếp",
+   "Tôi đã dọn phòng."
+  ],
+  "word_namjachingu": [
+   "bạn trai",
+   "Bạn trai tôi nấu ăn."
+  ],
+  "word_joreopada": [
+   "tốt nghiệp",
+   "Sang năm tôi tốt nghiệp."
+  ],
+  "word_gyesanhada": [
+   "thanh toán",
+   "Để tôi trả tiền."
+  ],
+  "word_beomjoe": [
+   "tội phạm",
+   "Chúng ta phòng chống tội phạm."
+  ],
+  "word_ireoda": [
+   "làm thế này",
+   "Cứ thế này thì muộn mất."
+  ],
+  "word_suljip": [
+   "quán nhậu",
+   "Quán nhậu ồn ào."
+  ],
+  "word_goemul": [
+   "quái vật",
+   "Trong phim có một con quái vật."
+  ],
+  "word_jangbi": [
+   "trang thiết bị",
+   "Tôi đã xếp đồ nghề."
+  ],
+  "word_jinanbeon": [
+   "lần trước",
+   "Tốt hơn lần trước."
+  ],
+  "word_yeohaenghada": [
+   "đi du lịch",
+   "Mùa hè tôi đi du lịch đảo Jeju."
+  ],
+  "word_dollida": [
+   "xoay",
+   "Tôi xoay tay nắm."
+  ],
+  "word_yeotae": [
+   "đến giờ",
+   "Đến giờ bạn làm gì vậy?"
+  ],
+  "word_jangbyeok": [
+   "rào cản",
+   "Rào cản ngôn ngữ rất lớn."
+  ],
+  "word_gotong": [
+   "nỗi đau",
+   "Cơn đau dữ dội."
+  ],
+  "word_yojeong": [
+   "nàng tiên",
+   "Trong truyện có một nàng tiên."
+  ],
+  "word_hanjjok": [
+   "một bên",
+   "Bạn dịch sang một bên nhé."
+  ],
+  "word_deryeogada": [
+   "dẫn đi",
+   "Tôi dẫn em đến trường."
+  ],
+  "word_wiseong": [
+   "vệ tinh",
+   "Vệ tinh quay quanh Trái Đất."
+  ],
+  "word_keunil": [
+   "chuyện lớn",
+   "Rắc rối to rồi."
+  ],
+  "word_haegun": [
+   "hải quân",
+   "Anh tôi ở hải quân."
+  ],
+  "word_gojang": [
+   "sự hỏng hóc",
+   "Cái đồng hồ bị hỏng."
+  ],
+  "word_deoreopda": [
+   "bẩn",
+   "Tay tôi bẩn."
+  ],
+  "word_wihada": [
+   "vì, cho",
+   "Tôi làm việc vì gia đình."
+  ],
+  "word_pyeonanhada": [
+   "thoải mái",
+   "Ở nhà là thoải mái nhất."
+  ],
+  "word_geukda": [
+   "gãi",
+   "Tôi gãi lưng."
+  ],
+  "word_sondaeda": [
+   "động vào",
+   "Bạn đừng động vào đồ ăn nhé."
+  ],
+  "word_junggan": [
+   "ở giữa chừng",
+   "Chúng tôi nghỉ giữa chừng."
+  ],
+  "word_jeogeodo": [
+   "ít nhất",
+   "Mất ít nhất một tiếng."
+  ],
+  "word_yatda": [
+   "nông",
+   "Nước nông."
+  ],
+  "word_hyogwa": [
+   "hiệu quả",
+   "Thuốc rất hiệu quả."
+  ],
+  "word_puda": [
+   "múc",
+   "Tôi múc canh ra."
+  ],
+  "word_jomyeong": [
+   "ánh sáng, đèn",
+   "Ánh đèn sáng."
+  ],
+  "word_haegyeol": [
+   "sự giải quyết",
+   "Vấn đề đã được giải quyết nhanh."
+  ],
+  "word_kkeonaeda": [
+   "lấy ra",
+   "Tôi lấy quyển sách ra khỏi túi."
+  ],
+  "word_bulpyeonhada": [
+   "bất tiện",
+   "Cái ghế ngồi không thoải mái."
+  ],
+  "word_matgida": [
+   "gửi nhờ",
+   "Tôi gửi cái túi cho họ."
+  ],
+  "word_saenggangnada": [
+   "nhớ ra",
+   "Tôi không nhớ ra cái tên."
+  ],
+  "word_sokdo": [
+   "tốc độ",
+   "Tốc độ nhanh quá."
+  ],
+  "word_duljjae": [
+   "thứ hai",
+   "Đứa con thứ hai đã ra đời."
+  ],
+  "word_seupocheu": [
+   "thể thao",
+   "Tôi thích thể thao."
+  ],
+  "word_seuteureseu": [
+   "căng thẳng",
+   "Tôi bị căng thẳng nhiều."
+  ],
+  "word_goreuda": [
+   "chọn",
+   "Bạn chọn cái mình thích nhé."
+  ],
+  "word_gaman": [
+   "yên",
+   "Bạn ngồi yên nhé."
+  ],
+  "word_geujeo": [
+   "chỉ đơn giản",
+   "Tôi chỉ muốn nghỉ ngơi thôi."
+  ],
+  "word_gibon": [
+   "cơ bản",
+   "Cái cơ bản là quan trọng."
+  ],
+  "word_sojunghada": [
+   "quý giá",
+   "Đó là một kỷ niệm quý giá."
+  ],
+  "word_eunggeup": [
+   "cấp cứu",
+   "Tôi đã vào phòng cấp cứu."
+  ],
+  "word_geumji": [
+   "sự cấm",
+   "Cấm đỗ xe."
+  ],
+  "word_namseong": [
+   "nam giới",
+   "Rất nhiều nam giới đã đến."
+  ],
+  "word_butjapda": [
+   "nắm chặt lấy",
+   "Bạn nắm chặt tay vịn nhé."
+  ],
+  "word_gyeou": [
+   "vừa vặn, suýt nữa",
+   "Tôi vừa kịp giờ."
+  ],
+  "word_yeongyeol": [
+   "sự kết nối",
+   "Kết nối đã bị ngắt."
+  ],
+  "word_bunmyeonghi": [
+   "rõ ràng",
+   "Tôi nghe rất rõ."
+  ],
+  "word_ireoseoda": [
+   "đứng dậy",
+   "Tôi đứng dậy khỏi chỗ ngồi."
+  ],
+  "word_himnaeda": [
+   "cố lên",
+   "Cố lên nhé!"
+  ],
+  "word_bitda": [
+   "chải",
+   "Tôi chải tóc."
+  ],
+  "word_nallida": [
+   "thả bay",
+   "Tôi thả diều."
+  ],
+  "word_keojida": [
+   "to lên",
+   "Tiếng động to lên."
+  ],
+  "word_matda_2": [
+   "ngửi",
+   "Bạn ngửi thử xem."
+  ],
+  "word_eunggeupsil": [
+   "phòng cấp cứu",
+   "Phòng cấp cứu bận rộn."
+  ],
+  "word_ttaro": [
+   "riêng",
+   "Chúng tôi trả riêng."
+  ],
+  "word_gahada": [
+   "tác động lên",
+   "Tôi dùng sức tác động vào."
+  ],
+  "word_mukda_2": [
+   "ở trọ",
+   "Tôi đã ở khách sạn."
+  ],
+  "word_gidohada": [
+   "cầu nguyện",
+   "Tôi lặng lẽ cầu nguyện."
+  ],
+  "word_maikeu": [
+   "micro",
+   "Bạn bật micro lên nhé."
+  ],
+  "word_eodum": [
+   "bóng tối",
+   "Bóng tối đã buông xuống."
+  ],
+  "word_gachi_2": [
+   "giá trị",
+   "Giá trị của nó rất cao."
+  ],
+  "word_sungnyeo": [
+   "quý cô",
+   "Thưa quý ông quý bà, xin chào."
+  ],
+  "word_nuda": [
+   "đi vệ sinh",
+   "Con chó con đã đi vệ sinh ngoài sân."
+  ],
+  "word_jeongnihada": [
+   "dọn dẹp",
+   "Tôi đã dọn bàn."
+  ],
+  "word_yakgan": [
+   "hơi",
+   "Hơi cay một chút."
+  ],
+  "word_keurim": [
+   "kem",
+   "Tôi cho thêm kem."
+  ],
+  "word_imsi": [
+   "tạm thời",
+   "Đó là một căn phòng tạm."
+  ],
+  "word_geurimja": [
+   "cái bóng",
+   "Cái bóng dài."
+  ],
+  "word_balgyeonhada": [
+   "phát hiện ra",
+   "Người ta đã phát hiện một ngôi sao mới."
+  ],
+  "word_notchida": [
+   "lỡ mất",
+   "Tôi lỡ chuyến xe buýt."
+  ],
+  "word_kkaeuda": [
+   "đánh thức",
+   "Sáng bạn gọi tôi dậy nhé."
+  ],
+  "word_deiteu": [
+   "buổi hẹn hò",
+   "Cuối tuần chúng tôi đi hẹn hò."
+  ],
+  "word_jilmunhada": [
+   "đặt câu hỏi",
+   "Tôi đã hỏi thầy một câu."
+  ],
+  "word_gyeonggwan": [
+   "cảnh quan",
+   "Cảnh đẹp."
+  ],
+  "word_gadong": [
+   "sự vận hành",
+   "Chúng tôi đã dừng máy."
+  ],
+  "word_deopda_2": [
+   "đậy, gấp lại",
+   "Bạn gấp sách lại nhé."
+  ],
+  "word_banjjagida": [
+   "lấp lánh",
+   "Viên ngọc lấp lánh."
+  ],
+  "word_deuron": [
+   "máy bay không người lái",
+   "Chiếc drone bay trên trời."
+  ],
+  "word_jeunggeo": [
+   "bằng chứng",
+   "Không có bằng chứng."
+  ],
+  "word_pogihada": [
+   "từ bỏ",
+   "Đừng bao giờ bỏ cuộc."
+  ],
+  "word_gipseu": [
+   "bó bột",
+   "Chân tôi đang bó bột."
+  ],
+  "word_sanchaekada": [
+   "đi dạo",
+   "Tôi đi dạo trong công viên."
+  ],
+  "word_utgida": [
+   "gây cười",
+   "Bạn tôi làm tôi buồn cười."
+  ],
+  "word_chiuda": [
+   "dọn đi",
+   "Tôi đã dọn bàn."
+  ],
+  "word_yeongu": [
+   "nghiên cứu",
+   "Tôi nghiên cứu chữ Hangul."
+  ],
+  "word_jaldoeda": [
+   "suôn sẻ",
+   "Mọi việc đã suôn sẻ."
+  ],
+  "word_gamsi": [
+   "sự giám sát",
+   "Có camera giám sát."
+  ],
+  "word_soljiki": [
+   "thành thật mà nói",
+   "Thành thật thì tôi không rõ lắm."
+  ],
+  "word_yeojeonhi": [
+   "vẫn như cũ",
+   "Tôi vẫn bận như cũ."
+  ],
+  "word_geumbal": [
+   "tóc vàng",
+   "Mái tóc vàng nổi bật."
+  ],
+  "word_chungbunhi": [
+   "đầy đủ",
+   "Tôi đã nghỉ ngơi đầy đủ."
+  ],
+  "word_ttodasi": [
+   "lại nữa",
+   "Trời lại mưa nữa rồi."
+  ],
+  "word_eotda": [
+   "đạt được",
+   "Tôi đã đạt kết quả tốt."
+  ],
+  "word_roket": [
+   "tên lửa",
+   "Tên lửa đã bay lên."
+  ],
+  "word_jichida": [
+   "kiệt sức",
+   "Hôm nay tôi rất mệt."
+  ],
+  "word_amuri": [
+   "dù có",
+   "Nhìn thế nào tôi cũng không hiểu."
+  ],
+  "word_damulda": [
+   "ngậm miệng",
+   "Tôi đã ngậm miệng lại."
+  ],
+  "word_mollae": [
+   "lén lút",
+   "Tôi lén ra ngoài."
+  ],
+  "word_eolleun": [
+   "nhanh lên",
+   "Bạn đến nhanh nhé."
+  ],
+  "word_gupda": [
+   "nướng",
+   "Tôi nướng cá."
+  ],
+  "word_musihada": [
+   "phớt lờ",
+   "Họ đã phớt lờ lời tôi nói."
+  ],
+  "word_seokda": [
+   "trộn",
+   "Tôi trộn cơm với rau."
+  ],
+  "word_bichida": [
+   "soi bóng",
+   "Mặt trăng soi bóng xuống nước."
+  ],
+  "word_sanggwaneopda": [
+   "không sao",
+   "Với tôi thì sao cũng được."
+  ],
+  "word_sido": [
+   "sự thử sức",
+   "Đó là một nỗ lực tốt."
+  ],
+  "word_hwolssin": [
+   "hơn hẳn",
+   "Cái này tốt hơn hẳn."
+  ],
+  "word_bunwigi": [
+   "bầu không khí",
+   "Không khí ở đây dễ chịu."
+  ],
+  "word_akkida": [
+   "trân trọng",
+   "Tôi tiết kiệm nước."
+  ],
+  "word_teuksu": [
+   "đặc thù",
+   "Đó là trường hợp đặc biệt."
+  ],
+  "word_deonjida": [
+   "ném",
+   "Tôi ném quả bóng."
+  ],
+  "word_jeotda": [
+   "ướt",
+   "Quần áo tôi bị ướt mưa."
+  ],
+  "word_singohada": [
+   "trình báo",
+   "Tôi đã trình báo vụ tai nạn."
+  ],
+  "word_gwichanta": [
+   "phiền phức",
+   "Dọn dẹp thật phiền."
+  ],
+  "word_yeonjuhada": [
+   "chơi (nhạc cụ)",
+   "Cô ấy chơi piano."
+  ],
+  "word_bunmyeong": [
+   "chắc chắn",
+   "Tôi chắc chắn đã để ở đây."
+  ],
+  "word_gedaga": [
+   "hơn nữa",
+   "Trời lạnh, hơn nữa lại mưa."
+  ],
+  "word_dangyeonhi": [
+   "đương nhiên",
+   "Đương nhiên là tôi sẽ giúp bạn."
+  ],
+  "word_migugin": [
+   "người Mỹ",
+   "Người đó là người Mỹ."
+  ],
+  "word_bibida": [
+   "trộn, xoa",
+   "Tôi trộn cơm rồi ăn."
+  ],
+  "word_tteugeopda": [
+   "nóng",
+   "Canh nóng."
+  ],
+  "word_machim": [
+   "vừa hay",
+   "Bạn đến vừa đúng lúc."
+  ],
+  "word_ihon": [
+   "ly hôn",
+   "Tôi đã nghe chuyện ly hôn."
+  ],
+  "word_jeorida": [
+   "tê",
+   "Chân tôi bị tê."
+  ],
+  "word_malsseumhada": [
+   "nói (kính ngữ)",
+   "Xin thầy nói chậm ạ."
+  ],
+  "word_millida": [
+   "bị ùn tắc",
+   "Đường đang ùn tắc."
+  ],
+  "word_daehada": [
+   "đối xử",
+   "Tôi đối xử tử tế với khách."
+  ],
+  "word_myeongnyeong": [
+   "mệnh lệnh",
+   "Tôi đã làm theo mệnh lệnh."
+  ],
+  "word_geumanhada": [
+   "dừng lại",
+   "Bây giờ bạn dừng lại đi."
+  ],
+  "word_bakda_2": [
+   "đóng (đinh)",
+   "Tôi đóng một cái đinh."
+  ],
+  "word_chireuda": [
+   "trả (giá)",
+   "Tôi đã trả cái giá đó."
+  ],
+  "word_nokda": [
+   "tan chảy",
+   "Đá đang tan."
+  ],
+  "word_daeumnal": [
+   "hôm sau",
+   "Hôm sau tôi lại đến."
+  ],
+  "word_changnyuk": [
+   "sự hạ cánh",
+   "Máy bay hạ cánh êm."
+  ],
+  "word_kkurida": [
+   "sắp xếp hành lý",
+   "Tôi đã xếp đồ."
+  ],
+  "word_jaeuda": [
+   "cho ngủ",
+   "Tôi ru em bé ngủ."
+  ],
+  "word_talchulhada": [
+   "thoát ra",
+   "Họ đã thoát khỏi đám cháy."
+  ],
+  "word_jomangan": [
+   "sớm muộn gì",
+   "Sớm muộn gì mình cũng gặp lại nhé."
+  ],
+  "word_seungni": [
+   "chiến thắng",
+   "Chúc mừng chiến thắng."
+  ],
+  "word_deouk": [
+   "càng thêm",
+   "Tôi sẽ cố gắng hơn nữa."
+  ],
+  "word_jiltuhada": [
+   "ghen tị",
+   "Tôi đã ghen tị với em mình."
+  ],
+  "word_gangcheol": [
+   "thép",
+   "Thép rất cứng."
+  ],
+  "word_georae": [
+   "giao dịch",
+   "Giao dịch đã xong."
+  ],
+  "word_mapsosa": [
+   "trời ơi",
+   "Trời ơi, muộn mất rồi."
+  ],
+  "word_mareuda": [
+   "khô, khát",
+   "Tôi khát nước."
+  ],
+  "word_ppajida": [
+   "rơi vào",
+   "Tôi bị rơi xuống nước."
+  ],
+  "word_ikda_2": [
+   "chín",
+   "Táo đã chín đều."
+  ],
+  "word_heulleogada": [
+   "trôi đi",
+   "Năm tháng trôi qua thật nhanh."
+  ],
+  "word_dolboda": [
+   "chăm sóc",
+   "Tôi chăm sóc đứa trẻ."
+  ],
+  "word_gyesokada": [
+   "tiếp tục",
+   "Tôi tiếp tục luyện tập."
+  ],
+  "word_heungbunhada": [
+   "kích động",
+   "Bạn đừng kích động quá nhé."
+  ],
+  "word_deryeooda": [
+   "dẫn đến",
+   "Tôi đã dẫn một người bạn đến."
+  ],
+  "word_byeonhosa": [
+   "luật sư",
+   "Tôi đã gặp luật sư."
+  ],
+  "word_sangsa": [
+   "cấp trên",
+   "Tôi đã nói chuyện với cấp trên."
+  ],
+  "word_ganeungseong": [
+   "khả năng",
+   "Khả năng rất cao."
+  ],
+  "word_gakja": [
+   "mỗi người",
+   "Mỗi người tự chuẩn bị nhé."
+  ],
+  "word_tupyohada": [
+   "bỏ phiếu",
+   "Hôm nay tôi đã đi bầu."
+  ],
+  "word_eobseojida": [
+   "biến mất",
+   "Cái chìa khóa đã biến mất."
+  ],
+  "word_gugyeonghada": [
+   "đi xem, tham quan",
+   "Tôi đã đi dạo chợ."
+  ],
+  "word_silheom": [
+   "thí nghiệm",
+   "Thí nghiệm đã thành công."
+  ],
+  "word_ttohan": [
+   "hơn nữa",
+   "Tôi cũng nghĩ như vậy."
+  ],
+  "word_gwaenhi": [
+   "vô cớ",
+   "Tôi lo lắng một cách vô cớ."
+  ],
+  "word_ttoneun": [
+   "hoặc là",
+   "Bạn dùng trà hoặc cà phê nhé."
+  ],
+  "word_ildan": [
+   "trước hết",
+   "Bạn ngồi xuống trước đã."
+  ],
+  "word_sanggwan": [
+   "sự liên quan",
+   "Việc đó không liên quan đến tôi."
+  ],
+  "word_makida": [
+   "bị tắc",
+   "Đường bị tắc."
+  ],
+  "word_josa": [
+   "cuộc điều tra",
+   "Cuộc điều tra đã bắt đầu."
+  ],
+  "word_hwaksilhi": [
+   "chắc chắn",
+   "Tôi nhớ rất rõ."
+  ],
+  "word_geunsahada": [
+   "tuyệt vời",
+   "Đó là một nhà hàng tuyệt vời."
+  ],
+  "word_twida": [
+   "nảy lên",
+   "Quả bóng nảy cao."
+  ],
+  "word_waenyahamyeon": [
+   "bởi vì",
+   "Tôi không đi, vì tôi bị ốm."
+  ],
+  "word_tongsin": [
+   "viễn thông",
+   "Đường truyền đã bị ngắt."
+  ],
+  "word_aranaeda": [
+   "tìm ra",
+   "Tôi đã tìm ra nguyên nhân."
+  ],
+  "word_tteodanida": [
+   "trôi lềnh bềnh",
+   "Lá cây trôi trên mặt nước."
+  ],
+  "word_bamsae": [
+   "suốt đêm",
+   "Tôi học suốt đêm."
+  ],
+  "word_oegwa": [
+   "khoa ngoại",
+   "Tôi đã khám ở khoa ngoại."
+  ],
+  "word_iksukada": [
+   "quen thuộc",
+   "Tôi đã quen việc này."
+  ],
+  "word_meda": [
+   "đeo lên vai",
+   "Tôi đeo túi lên vai."
+  ],
+  "word_kkeunta": [
+   "cắt, cúp máy",
+   "Tôi đã cúp máy."
+  ],
+  "word_jjochanaeda": [
+   "đuổi ra",
+   "Tôi đuổi con chuột ra."
+  ],
+  "word_aein": [
+   "người yêu",
+   "Bạn có người yêu chưa?"
+  ],
+  "word_jonjae": [
+   "sự tồn tại",
+   "Tôi đã không biết là có tồn tại."
+  ],
+  "word_geondeurida": [
+   "đụng vào",
+   "Bạn đừng đụng vào con mèo nhé."
+  ],
+  "word_goengjanghi": [
+   "cực kỳ",
+   "Rộng rãi cực kỳ."
+  ],
+  "word_wiseuki": [
+   "rượu whisky",
+   "Rượu whisky rất nặng."
+  ],
+  "word_gaein": [
+   "cá nhân",
+   "Chúng tôi bảo vệ thông tin cá nhân."
+  ],
+  "word_jusa": [
+   "mũi tiêm",
+   "Tôi đã tiêm."
+  ],
+  "word_geurup": [
+   "nhóm",
+   "Mình chia nhóm nhé."
+  ],
+  "word_ttuida": [
+   "đập vào mắt",
+   "Bộ đồ đỏ rất bắt mắt."
+  ],
+  "word_wiro": [
+   "sự an ủi",
+   "Bạn tôi đã an ủi tôi."
+  ],
+  "word_jurida": [
+   "giảm",
+   "Bạn vặn nhỏ tiếng lại nhé."
+  ],
+  "word_deohada": [
+   "cộng thêm",
+   "Tôi cộng ba với hai."
+  ],
+  "word_sujeong": [
+   "sự sửa đổi",
+   "Cần phải sửa lại."
+  ],
+  "word_jakdong": [
+   "sự hoạt động",
+   "Nó không hoạt động."
+  ],
+  "word_pihae": [
+   "thiệt hại",
+   "Thiệt hại rất lớn."
+  ],
+  "word_gamdok": [
+   "đạo diễn",
+   "Đạo diễn đã làm một bộ phim."
+  ],
+  "word_jeolda": [
+   "muối chua",
+   "Cải thảo đã muối vừa."
+  ],
+  "word_poseuteo": [
+   "áp phích",
+   "Tôi dán áp phích lên tường."
+  ],
+  "word_bandeusi": [
+   "nhất định",
+   "Tôi nhất định sẽ giữ lời."
+  ],
+  "word_aesseuda": [
+   "dốc sức",
+   "Cảm ơn bạn đã vất vả."
+  ],
+  "word_gyeonggo": [
+   "lời cảnh báo",
+   "Bạn đừng bỏ qua cảnh báo nhé."
+  ],
+  "word_jumokada": [
+   "chú ý",
+   "Mọi người chú ý vào đây nhé."
+  ],
+  "word_gidaehada": [
+   "mong đợi",
+   "Tôi rất mong chuyến đi."
+  ],
+  "word_paeda": [
+   "bổ (củi)",
+   "Tôi bổ củi."
+  ],
+  "word_deullyeooda": [
+   "vọng đến",
+   "Tiếng nhạc vọng đến từ xa."
+  ],
+  "word_eobsaeda": [
+   "làm mất đi",
+   "Tôi đã tẩy vết bẩn."
+  ],
+  "word_maebeon": [
+   "mỗi lần",
+   "Xin lỗi vì lần nào cũng đến muộn."
+  ],
+  "word_geunmu": [
+   "việc trực",
+   "Giờ làm việc dài."
+  ],
+  "word_uisang": [
+   "trang phục",
+   "Bộ trang phục thật lộng lẫy."
+  ],
+  "word_haenaeda": [
+   "làm được",
+   "Cuối cùng tôi đã làm được."
+  ],
+  "word_geukbokada": [
+   "vượt qua",
+   "Tôi đã vượt qua nỗi sợ."
+  ],
+  "word_ginyeomhada": [
+   "kỷ niệm",
+   "Chúng tôi kỷ niệm Ngày Hangul."
+  ],
+  "word_bohohada": [
+   "bảo vệ",
+   "Chúng ta bảo vệ thiên nhiên."
+  ],
+  "word_imsin": [
+   "việc mang thai",
+   "Chị tôi đang mang thai."
+  ],
+  "word_siseutem": [
+   "hệ thống",
+   "Hệ thống phức tạp."
+  ],
+  "word_mallida": [
+   "phơi khô",
+   "Tôi phơi quần áo."
+  ],
+  "word_aradeutda": [
+   "nghe hiểu",
+   "Tôi nghe không kịp."
+  ],
+  "word_widaehada": [
+   "vĩ đại",
+   "Đó là một tác phẩm vĩ đại."
+  ],
+  "word_jinjeonghada": [
+   "bình tĩnh",
+   "Bạn bình tĩnh lại đã."
+  ],
+  "word_ppurida": [
+   "rắc, gieo",
+   "Tôi gieo hạt xuống ruộng."
+  ],
+  "word_yeyakada": [
+   "đặt trước",
+   "Tôi đã đặt bàn ở nhà hàng."
+  ],
+  "word_gulleogada": [
+   "lăn đi",
+   "Quả bóng đã lăn ra kia."
+  ],
+  "word_jeonhada": [
+   "chuyển lời",
+   "Bạn chuyển lời hỏi thăm giúp mình nhé."
+  ],
+  "word_jeojeollo": [
+   "tự nhiên",
+   "Cánh cửa tự đóng lại."
+  ],
+  "word_matchuda": [
+   "chỉnh cho khớp",
+   "Tôi chỉnh lại giờ."
+  ],
+  "word_jaeda": [
+   "đo",
+   "Tôi đo chiều cao."
+  ],
+  "word_eojjaetdeun": [
+   "dù sao thì",
+   "Dù sao thì cũng xong rồi."
+  ],
+  "word_geumanduda": [
+   "nghỉ việc",
+   "Tôi đã nghỉ việc."
+  ],
+  "word_hwaksilhada": [
+   "chắc chắn",
+   "Đó là thông tin chắc chắn."
+  ],
+  "word_ganeunghada": [
+   "có thể",
+   "Hôm nay cũng được chứ?"
+  ],
+  "word_ttaettaero": [
+   "thỉnh thoảng",
+   "Thỉnh thoảng tôi nhớ về ngày xưa."
+  ],
+  "word_hoebok": [
+   "sự hồi phục",
+   "Hồi phục nhanh."
+  ],
+  "word_bitda_2": [
+   "nặn",
+   "Tôi nặn bánh bao."
+  ],
+  "word_mugi": [
+   "vũ khí",
+   "Bạn hạ vũ khí xuống."
+  ],
+  "word_jolda": [
+   "ngủ gật",
+   "Tôi ngủ gật trong giờ học."
+  ],
+  "word_oechida": [
+   "hét lên",
+   "Tôi hét thật to."
+  ],
+  "word_omgida": [
+   "dời, chuyển",
+   "Tôi chuyển cái ghế."
+  ],
+  "word_hanjanhada": [
+   "làm một ly",
+   "Mình làm một ly nhé?"
+  ],
+  "word_haegyeolhada": [
+   "giải quyết",
+   "Tôi đã giải quyết vấn đề."
+  ],
+  "word_chuga": [
+   "sự thêm vào",
+   "Cho thêm cơm nữa ạ."
+  ],
+  "word_hyeongnim": [
+   "anh (kính ngữ)",
+   "Anh đến chơi ạ."
+  ],
+  "word_rideo": [
+   "thủ lĩnh",
+   "Anh ấy là trưởng nhóm."
+  ],
+  "word_geulsseyo": [
+   "ừm, để xem",
+   "Ừm, tôi cũng không rõ lắm."
+  ],
+  "word_meogida": [
+   "cho ăn",
+   "Tôi cho em bé bú sữa."
+  ],
+  "word_heullida": [
+   "làm đổ",
+   "Tôi làm đổ sữa."
+  ],
+  "word_gwanchalhada": [
+   "quan sát",
+   "Tôi quan sát các vì sao."
+  ],
+  "word_amuteun": [
+   "dù sao",
+   "Dù sao cũng cảm ơn bạn."
+  ],
+  "word_eojjeoda": [
+   "tình cờ xảy ra",
+   "Sao lại thành ra thế này?"
+  ],
+  "word_jeoreoke": [
+   "như thế kia",
+   "Bạn làm như thế kia cũng được."
+  ],
+  "word_pokpung": [
+   "cơn bão",
+   "Cơn bão đã đi qua."
+  ],
+  "word_peuro": [
+   "phần trăm",
+   "Chỉ còn lại mười phần trăm."
+  ],
+  "word_kkameokda": [
+   "quên mất",
+   "Tôi quên mất cuộc hẹn."
+  ],
+  "word_dapada": [
+   "trả lời",
+   "Tôi đã trả lời câu hỏi."
+  ],
+  "word_budae": [
+   "đơn vị quân đội",
+   "Anh ấy đã về đơn vị."
+  ],
+  "word_gwisin": [
+   "con ma",
+   "Chuyện ma đáng sợ."
+  ],
+  "word_mucheok": [
+   "vô cùng",
+   "Tôi vô cùng vui khi gặp bạn."
+  ],
+  "word_beonyeok": [
+   "việc phiên dịch",
+   "Dịch thuật khó."
+  ],
+  "word_oegye": [
+   "ngoài Trái Đất",
+   "Người ta tìm sự sống ngoài Trái Đất."
+  ],
+  "word_doege": [
+   "cực",
+   "Vui cực."
+  ],
+  "word_ilbu": [
+   "một phần",
+   "Tôi chỉ đọc một phần thôi."
+  ],
+  "word_budeureopda": [
+   "mềm mại",
+   "Cái chăn mềm."
+  ],
+  "word_gaseu": [
+   "ga",
+   "Tôi đã tắt ga."
+  ],
+  "word_gonggyeok": [
+   "cuộc tấn công",
+   "Chúng tôi đã chặn được đợt tấn công."
+  ],
+  "word_domanggada": [
+   "bỏ chạy",
+   "Con mèo đã bỏ chạy."
+  ],
+  "word_sanyang": [
+   "việc săn bắn",
+   "Ngày xưa người ta đi săn."
+  ],
+  "word_yongseohada": [
+   "tha thứ",
+   "Xin hãy tha thứ cho tôi."
+  ],
+  "word_jeonghwaki": [
+   "chính xác",
+   "Ba giờ đúng mình gặp nhau nhé."
+  ],
+  "word_teseuteu": [
+   "bài kiểm tra",
+   "Tôi đã làm bài kiểm tra."
+  ],
+  "word_godae": [
+   "thời cổ đại",
+   "Những bức tranh cổ vẫn còn."
+  ],
+  "word_silje": [
+   "thực tế",
+   "Thực tế tôi đã đến đó."
+  ],
+  "word_kkeojida": [
+   "tắt ngấm",
+   "Đèn đã tắt."
+  ],
+  "word_sumswida": [
+   "thở",
+   "Bạn thở chậm thôi."
+  ],
+  "word_guyeok": [
+   "khu vực",
+   "Khu vực này yên tĩnh."
+  ],
+  "word_hyeonjang": [
+   "hiện trường",
+   "Tôi đã đến hiện trường."
+  ],
+  "word_sikkeureopda": [
+   "ồn ào",
+   "Bên ngoài ồn ào."
+  ],
+  "word_buchida": [
+   "gửi đi",
+   "Tôi đã gửi lá thư."
+  ],
+  "word_jiuda": [
+   "xóa",
+   "Tôi đã xóa chữ."
+  ],
+  "word_geojeolhada": [
+   "từ chối",
+   "Tôi đã từ chối lời đề nghị."
+  ],
+  "word_kkumkkuda": [
+   "mơ ước",
+   "Tôi mơ trở thành ca sĩ."
+  ],
+  "word_eneoji": [
+   "năng lượng",
+   "Chúng ta tiết kiệm năng lượng."
+  ],
+  "word_jjoda": [
+   "mổ, mổ thóc",
+   "Con gà mổ xuống đất."
+  ],
+  "word_chwisohada": [
+   "hủy",
+   "Tôi đã hủy đặt chỗ."
+  ],
+  "word_maenyeon": [
+   "hằng năm",
+   "Năm nào tôi cũng đi du lịch."
+  ],
+  "word_dallajida": [
+   "trở nên khác",
+   "Bầu không khí đã khác đi."
+  ],
+  "word_geuchida": [
+   "ngớt, tạnh",
+   "Mưa đã tạnh."
+  ],
+  "word_sireun": [
+   "thật ra",
+   "Thật ra tôi cũng không biết."
+  ],
+  "word_silpaehada": [
+   "thất bại",
+   "Tôi đã trượt kỳ thi đầu tiên."
+  ],
+  "word_jageop": [
+   "công việc",
+   "Công việc đã xong."
+  ],
+  "word_seolma": [
+   "chẳng lẽ",
+   "Chẳng lẽ họ đi rồi sao?"
+  ],
+  "word_chulsin": [
+   "xuất thân",
+   "Tôi là người Busan."
+  ],
+  "word_boheom": [
+   "bảo hiểm",
+   "Tôi đã mua bảo hiểm."
+  ],
+  "word_ssuda": [
+   "nấu cháo",
+   "Tôi nấu cháo."
+  ],
+  "word_daesa": [
+   "đại sứ",
+   "Ngài đại sứ đã đến Hàn Quốc."
+  ],
+  "word_maseopda": [
+   "dở",
+   "Món canh này dở."
+  ],
+  "word_chyeodaboda": [
+   "ngước nhìn",
+   "Tôi ngước nhìn bầu trời."
+  ],
+  "word_nakda": [
+   "câu (cá)",
+   "Tôi đã câu được một con cá."
+  ],
+  "word_machimnae": [
+   "cuối cùng",
+   "Cuối cùng chúng tôi đã đến nơi."
+  ],
+  "word_ilbureo": [
+   "cố ý",
+   "Tôi không cố ý làm vậy."
+  ],
+  "word_jusihada": [
+   "theo dõi sát",
+   "Chúng tôi đang theo dõi sát tình hình."
+  ],
+  "word_choedaehan": [
+   "tối đa",
+   "Tôi sẽ đến nhanh nhất có thể."
+  ],
+  "word_dagaoda": [
+   "đến gần",
+   "Mùa đông đang đến gần."
+  ],
+  "word_dolda": [
+   "quay",
+   "Bánh xe quay."
+  ],
+  "word_naajida": [
+   "khá lên",
+   "Tôi thấy đỡ hơn rồi."
+  ],
+  "word_eojjaeseo": [
+   "tại sao",
+   "Sao bạn không đến?"
+  ],
+  "word_bureo": [
+   "tiếng Pháp",
+   "Tôi muốn học tiếng Pháp."
+  ],
+  "word_huhoehada": [
+   "hối hận",
+   "Sau này bạn sẽ hối hận đấy."
+  ],
+  "word_bandaehada": [
+   "phản đối",
+   "Tôi phản đối kế hoạch đó."
+  ],
+  "word_bogwanhada": [
+   "bảo quản",
+   "Bạn giữ hành lý giúp mình nhé."
+  ],
+  "word_sagwida": [
+   "kết bạn, hẹn hò",
+   "Tôi đã kết bạn mới."
+  ],
+  "word_sillyehada": [
+   "xin phép",
+   "Xin lỗi, cho tôi hỏi đường."
+  ],
+  "word_baraboda": [
+   "ngắm nhìn",
+   "Tôi ngắm nhìn biển."
+  ],
+  "word_ppopda": [
+   "nhổ ra",
+   "Tôi đã nhổ một cái răng."
+  ],
+  "word_syampein": [
+   "sâm banh",
+   "Chúng tôi đã khui sâm banh."
+  ],
+  "word_ginjang": [
+   "sự căng thẳng",
+   "Trước kỳ thi tôi rất hồi hộp."
+  ],
+  "word_domang": [
+   "sự bỏ trốn",
+   "Họ đã bỏ trốn."
+  ],
+  "word_byeoril": [
+   "chuyện lạ",
+   "Bạn vẫn ổn cả chứ?"
+  ],
+  "word_susulhada": [
+   "phẫu thuật",
+   "Ngày mai họ sẽ phẫu thuật."
+  ],
+  "word_chaeuda": [
+   "đổ đầy",
+   "Tôi rót đầy nước vào cốc."
+  ],
+  "word_juro": [
+   "chủ yếu",
+   "Tôi chủ yếu học ở nhà."
+  ],
+  "word_kkyeoanda": [
+   "ôm chặt",
+   "Tôi ôm chặt lấy mẹ."
+  ],
+  "word_ssahida": [
+   "chất đống",
+   "Tuyết đã chất thành đống."
+  ],
+  "word_tteda": [
+   "gỡ ra",
+   "Tôi gỡ bảng tên ra."
+  ],
+  "word_nappajida": [
+   "tệ đi",
+   "Mắt tôi kém đi rồi."
+  ],
+  "word_natanaeda": [
+   "biểu thị",
+   "Mũi tên chỉ hướng."
+  ],
+  "word_jongjong": [
+   "thỉnh thoảng",
+   "Thỉnh thoảng tôi viết thư."
+  ],
+  "word_danji": [
+   "chỉ",
+   "Cho tôi nước thôi ạ."
+  ],
+  "word_gadeuk": [
+   "đầy ắp",
+   "Cái giỏ đầy ắp táo."
+  ],
+  "word_johajida": [
+   "tốt lên",
+   "Thời tiết đã đẹp lên."
+  ],
+  "word_uulhada": [
+   "u sầu",
+   "Trời mưa làm tôi thấy buồn."
+  ],
+  "word_sijeol": [
+   "thời, thuở",
+   "Tôi nhớ thời còn đi học."
+  ],
+  "word_eoullida": [
+   "hợp",
+   "Bộ đồ đó rất hợp với bạn."
+  ],
+  "word_seolda": [
+   "sống, chưa chín",
+   "Cơm còn sống."
+  ],
+  "word_jayuropda": [
+   "tự do",
+   "Lòng tôi thấy tự do."
+  ],
+  "word_kkaeeonada": [
+   "tỉnh lại",
+   "Bệnh nhân đã tỉnh lại."
+  ],
+  "word_bigyohada": [
+   "so sánh",
+   "Tôi đã so sánh giá."
+  ],
+  "word_gukga": [
+   "quốc gia",
+   "Nhà nước hỗ trợ."
+  ],
+  "word_duryeoum": [
+   "nỗi sợ",
+   "Tôi đã vượt qua nỗi sợ."
+  ],
+  "word_jipjunghada": [
+   "tập trung",
+   "Tôi tập trung học."
+  ],
+  "word_keulleop": [
+   "câu lạc bộ",
+   "Tôi đã tham gia câu lạc bộ sách."
+  ],
+  "word_banbokada": [
+   "lặp lại",
+   "Tôi đã lặp lại câu nói đó."
+  ],
+  "word_cheonjae": [
+   "thiên tài",
+   "Đứa trẻ đó là thiên tài."
+  ],
+  "word_dahaenghi": [
+   "may mà",
+   "May mà tôi không bị thương."
+  ],
+  "word_ohaehada": [
+   "hiểu lầm",
+   "Bạn đừng hiểu lầm nhé."
+  ],
+  "word_danggida": [
+   "kéo",
+   "Bạn kéo cửa nhé."
+  ],
+  "word_sahoe": [
+   "xã hội",
+   "Xã hội thay đổi nhanh."
+  ],
+  "word_neomeoseoda": [
+   "vượt qua",
+   "Tôi đã vượt qua khó khăn."
+  ],
+  "word_donguihada": [
+   "đồng ý",
+   "Tôi cũng đồng ý."
+  ],
+  "word_deureojuda": [
+   "chấp thuận",
+   "Họ đã chấp thuận yêu cầu của tôi."
+  ],
+  "word_sangdam": [
+   "buổi tư vấn",
+   "Tôi đã đi tư vấn."
+  ],
+  "word_jasehi": [
+   "chi tiết",
+   "Bạn giải thích chi tiết giúp mình nhé."
+  ],
+  "word_salpyeoboda": [
+   "xem xét kỹ",
+   "Tôi đã xem xét xung quanh kỹ lưỡng."
+  ],
+  "word_dahada": [
+   "cạn kiệt",
+   "Tôi hết sức rồi."
+  ],
+  "word_geujung": [
+   "trong số đó",
+   "Tôi đã chọn một cái trong số đó."
+  ],
+  "word_bisang": [
+   "khẩn cấp",
+   "Lối thoát hiểm ở đằng kia."
+  ],
+  "word_yangmul": [
+   "thuốc",
+   "Tôi đang điều trị bằng thuốc."
+  ],
+  "word_ireota": [
+   "thế này",
+   "Tình hình là thế này."
+  ],
+  "word_nunchichaeda": [
+   "nhận ra",
+   "Không ai nhận ra cả."
+  ],
+  "word_orida": [
+   "cắt ra",
+   "Tôi cắt tờ giấy."
+  ],
+  "word_gyeondida": [
+   "chịu đựng",
+   "Tôi đã chịu được cái nóng."
+  ],
+  "word_sseokda": [
+   "thối",
+   "Trái cây đã bị thối."
+  ],
+  "word_kkeulda": [
+   "kéo lê",
+   "Tôi kéo cái ghế."
+  ],
+  "word_ssoda": [
+   "bắn",
+   "Tôi bắn một mũi tên."
+  ],
+  "word_jeojanghada": [
+   "lưu",
+   "Tôi đã lưu tệp."
+  ],
+  "word_duryeopda": [
+   "sợ hãi",
+   "Tôi sợ bóng tối."
+  ],
+  "word_seontaekada": [
+   "lựa chọn",
+   "Bạn chỉ chọn một cái thôi nhé."
+  ],
+  "word_jiban": [
+   "gia đình, dòng họ",
+   "Gia đình hòa thuận."
+  ],
+  "word_sagi": [
+   "sự lừa đảo",
+   "Tôi đã bị lừa."
+  ],
+  "word_almatda": [
+   "vừa vặn",
+   "Kích cỡ vừa vặn."
+  ],
+  "word_eongdeongi": [
+   "mông",
+   "Mông tôi đau."
+  ],
+  "word_seobiseu": [
+   "dịch vụ",
+   "Dịch vụ tốt."
+  ],
+  "word_hullyeon": [
+   "huấn luyện",
+   "Việc huấn luyện vất vả."
+  ],
+  "word_daehwahada": [
+   "trò chuyện",
+   "Tôi đã trò chuyện với bạn."
+  ],
+  "word_hwanhada": [
+   "sáng bừng",
+   "Căn phòng sáng bừng."
+  ],
+  "word_gongpo": [
+   "nỗi kinh hoàng",
+   "Tôi đã xem phim kinh dị."
+  ],
+  "word_jeonghwakada": [
+   "chính xác",
+   "Cái đồng hồ chạy chính xác."
+  ],
+  "word_dollyeojuda": [
+   "trả lại",
+   "Tôi đã trả lại quyển sách."
+  ],
+  "word_soljikada": [
+   "thẳng thắn",
+   "Bạn cứ nói thẳng đi."
+  ],
+  "word_jeoreon": [
+   "ôi chao",
+   "Ôi, chắc đau lắm."
+  ],
+  "word_janggun": [
+   "vị tướng",
+   "Vị tướng đã ra lệnh."
+  ],
+  "word_jungang": [
+   "trung tâm",
+   "Ở giữa có một cái cây."
+  ],
+  "word_heorak": [
+   "sự cho phép",
+   "Tôi đã được bố mẹ cho phép."
+  ],
+  "word_sseureojida": [
+   "đổ, ngã quỵ",
+   "Cái cây đã đổ."
+  ],
+  "word_kkaemulda": [
+   "cắn",
+   "Tôi cắn vào môi."
+  ],
+  "word_sseulda": [
+   "quét",
+   "Tôi quét phòng."
+  ],
+  "word_jadong": [
+   "tự động",
+   "Cửa mở tự động."
+  ],
+  "word_ttokgachi": [
+   "y như nhau",
+   "Bạn chia đều ra nhé."
+  ],
+  "word_gyeokda": [
+   "trải qua",
+   "Tôi đã trải qua thời gian khó khăn."
+  ],
+  "word_gwallyeon": [
+   "sự liên quan",
+   "Nó có liên quan đến việc này."
+  ],
+  "word_saragada": [
+   "sống tiếp",
+   "Tôi sống thật chăm chỉ."
+  ],
+  "word_dodaeche": [
+   "rốt cuộc",
+   "Rốt cuộc chuyện gì đang xảy ra?"
+  ],
+  "word_sinche": [
+   "cơ thể",
+   "Cơ thể khỏe mạnh."
+  ],
+  "word_chwaryeonghada": [
+   "quay phim",
+   "Người ta đang quay phim."
+  ],
+  "word_geupada": [
+   "gấp",
+   "Công việc gấp lắm."
+  ],
+  "word_hansum": [
+   "tiếng thở dài",
+   "Tôi thở dài một hơi."
+  ],
+  "word_nopajida": [
+   "cao lên",
+   "Âm thanh cao lên."
+  ],
+  "word_jiruhada": [
+   "nhàm chán",
+   "Bộ phim nhàm chán."
+  ],
+  "word_jiwon": [
+   "sự hỗ trợ",
+   "Tôi đã nhận được hỗ trợ."
+  ],
+  "word_tteolda": [
+   "run",
+   "Tôi run vì lạnh."
+  ],
+  "word_oraen": [
+   "lâu năm",
+   "Tôi đã gặp một người bạn lâu năm."
+  ],
+  "word_cheori": [
+   "việc xử lý",
+   "Việc xử lý rất nhanh."
+  ],
+  "word_humchida": [
+   "ăn trộm",
+   "Bạn không được lấy trộm đồ."
+  ],
+  "word_geochilda": [
+   "thô ráp",
+   "Tay tôi thô ráp."
+  ],
+  "word_inteobyu": [
+   "cuộc phỏng vấn",
+   "Tôi có một buổi phỏng vấn."
+  ],
+  "word_pyeonhi": [
+   "thoải mái",
+   "Bạn cứ nghỉ ngơi thoải mái nhé."
+  ],
+  "word_neulda": [
+   "tăng lên",
+   "Tiếng Hàn của tôi đã khá lên."
+  ],
+  "word_heorakada": [
+   "cho phép",
+   "Bố mẹ tôi đã cho phép."
+  ],
+  "word_jantteuk": [
+   "thật nhiều",
+   "Tôi đã ăn thật nhiều."
+  ],
+  "word_geudongan": [
+   "thời gian qua",
+   "Thời gian qua bạn vẫn khỏe chứ?"
+  ],
+  "word_chajagada": [
+   "đến tìm",
+   "Tôi đã đến thăm thầy giáo."
+  ],
+  "word_geoduda": [
+   "thu hoạch",
+   "Chúng tôi đã thu hoạch lúa."
+  ],
+  "word_kaeda": [
+   "đào lên",
+   "Tôi đào khoai tây."
+  ],
+  "word_deda": [
+   "bị bỏng",
+   "Tôi bị nước nóng làm bỏng tay."
+  ],
+  "word_jamgeuda": [
+   "khóa",
+   "Tôi đã khóa cửa."
+  ],
+  "word_majuchida": [
+   "chạm mặt",
+   "Tôi tình cờ gặp bạn trên đường."
+  ],
+  "word_chunggyeok": [
+   "cú sốc",
+   "Tin đó là một cú sốc."
+  ],
+  "word_sucheon": [
+   "hàng nghìn",
+   "Hàng nghìn người đã tụ tập."
+  ],
+  "word_waenji": [
+   "chẳng hiểu sao",
+   "Chẳng hiểu sao tôi thấy vui."
+  ],
+  "word_miruda": [
+   "trì hoãn",
+   "Tôi đã hoãn cuộc hẹn."
+  ],
+  "word_subaek": [
+   "hàng trăm",
+   "Có hàng trăm quyển sách."
+  ],
+  "word_dureuda": [
+   "quấn",
+   "Tôi quấn khăn quanh cổ."
+  ],
+  "word_gotjang": [
+   "thẳng",
+   "Rẽ phải rồi đi thẳng."
+  ],
+  "word_sorichida": [
+   "hét",
+   "Tôi hét lên vì giật mình."
+  ],
+  "word_baeteori": [
+   "pin",
+   "Hết pin rồi."
+  ],
+  "word_pyeonchanta": [
+   "không khỏe",
+   "Bạn thấy đau ở đâu?"
+  ],
+  "word_piro": [
+   "sự mệt mỏi",
+   "Mệt mỏi đã tích tụ lại."
+  ],
+  "word_naeryeonota": [
+   "đặt xuống",
+   "Bạn đặt túi xuống nhé."
+  ],
+  "word_gopda": [
+   "dịu dàng, đẹp",
+   "Giọng bạn thật dễ nghe."
+  ],
+  "word_gamanhi": [
+   "yên lặng",
+   "Bạn ngồi yên nhé."
+  ],
+  "word_sitda": [
+   "chất lên",
+   "Tôi chất hành lý lên xe."
+  ],
+  "word_gaeda": [
+   "hửng nắng",
+   "Trời đã hửng nắng."
+  ],
+  "word_chajanaeda": [
+   "tìm ra",
+   "Tôi đã tìm được cái ví bị mất."
+  ],
+  "word_tonghada": [
+   "thông",
+   "Chúng tôi hiểu nhau."
+  ],
+  "word_busida": [
+   "chói",
+   "Ánh nắng chói quá."
+  ],
+  "word_jalmotdoeda": [
+   "hỏng việc",
+   "Kế hoạch đã hỏng."
+  ],
+  "word_nogeum": [
+   "bản ghi âm",
+   "Bạn nghe bản ghi âm nhé."
+  ],
+  "word_manggajida": [
+   "hỏng",
+   "Máy giặt bị hỏng."
+  ],
+  "word_eolda": [
+   "đóng băng",
+   "Nước đã đóng băng."
+  ],
+  "word_dulleoboda": [
+   "nhìn quanh",
+   "Tôi đã đi xem quanh cửa hàng."
+  ],
+  "word_hanttae": [
+   "một dạo",
+   "Có một dạo tôi sống ở Busan."
+  ],
+  "word_kkaedatda": [
+   "nhận ra",
+   "Tôi đã nhận ra sai lầm của mình."
+  ],
+  "word_hyeongsa": [
+   "thanh tra",
+   "Thanh tra đang điều tra."
+  ],
+  "word_idaero": [
+   "cứ thế này",
+   "Cứ thế này cũng được."
+  ],
+  "word_nongdamhada": [
+   "nói đùa",
+   "Bạn đừng đùa nhé."
+  ],
+  "word_jakbyeol": [
+   "lời từ biệt",
+   "Chúng tôi đã nói lời từ biệt."
+  ],
+  "word_tteollida": [
+   "run",
+   "Tay tôi run vì hồi hộp."
+  ],
+  "word_araboda": [
+   "nhận ra",
+   "Tôi nhận ra bạn mình ngay."
+  ],
+  "word_darida": [
+   "là (ủi)",
+   "Tôi ủi áo sơ mi."
+  ],
+  "word_boeda": [
+   "gặp (kính ngữ)",
+   "Tôi đã đến gặp thầy giáo."
+  ],
+  "word_garikida": [
+   "chỉ",
+   "Tôi chỉ tay về phía bắc."
+  ],
+  "word_jongyeonghada": [
+   "kính trọng",
+   "Tôi kính trọng thầy giáo."
+  ],
+  "word_idong": [
+   "sự di chuyển",
+   "Tôi đang trên đường di chuyển."
+  ],
+  "word_changpihada": [
+   "xấu hổ",
+   "Tôi ngã nên thấy xấu hổ."
+  ],
+  "word_singyeongsseuda": [
+   "bận tâm",
+   "Bạn đừng bận tâm quá nhé."
+  ],
+  "word_sugohada": [
+   "vất vả",
+   "Cảm ơn bạn đã vất vả."
+  ],
+  "word_ginjanghada": [
+   "hồi hộp",
+   "Trước buổi thuyết trình tôi hồi hộp."
+  ],
+  "word_mosida": [
+   "phụng dưỡng",
+   "Tôi sống phụng dưỡng bố mẹ."
+  ],
+  "word_budongsan": [
+   "bất động sản",
+   "Giá nhà đất đã tăng."
+  ],
+  "word_ppalda": [
+   "giặt",
+   "Tôi giặt quần áo."
+  ],
+  "word_ohiryeo": [
+   "ngược lại",
+   "Ngược lại, tôi mới là người phải cảm ơn."
+  ],
+  "word_isahada": [
+   "chuyển nhà",
+   "Tháng sau tôi chuyển nhà."
+  ],
+  "word_eotteota": [
+   "thế nào",
+   "Thời tiết thế nào?"
+  ],
+  "word_teuda": [
+   "nảy mầm",
+   "Mùa xuân chồi non nảy lên."
+  ],
+  "word_daechung": [
+   "qua loa",
+   "Tôi dọn qua loa thôi."
+  ],
+  "word_sangsanghada": [
+   "tưởng tượng",
+   "Bạn thử tưởng tượng biển xem."
+  ],
+  "word_tonggwa": [
+   "sự vượt qua",
+   "Chúc mừng bạn đã đỗ kỳ thi."
+  ],
+  "word_banghae": [
+   "sự cản trở",
+   "Bạn đừng làm phiền tôi nhé."
+  ],
+  "word_eojji": [
+   "làm sao",
+   "Sao lại có thể như vậy được?"
+  ],
+  "word_yeotboda": [
+   "nhìn trộm",
+   "Tôi nhìn trộm qua khe cửa."
+  ],
+  "word_chamgahada": [
+   "tham gia",
+   "Tôi đã tham gia cuộc thi."
+  ],
+  "word_gongsik": [
+   "công thức",
+   "Đã có thông báo chính thức."
+  ],
+  "word_jjotda": [
+   "đuổi theo",
+   "Con mèo đuổi theo con chuột."
+  ],
+  "word_angma": [
+   "ác quỷ",
+   "Trong truyện có một con ác quỷ."
+  ],
+  "word_gippeohada": [
+   "vui mừng",
+   "Họ vui mừng khi nghe tin."
+  ],
+  "word_dallyeogada": [
+   "chạy đến",
+   "Tôi chạy đến bệnh viện."
+  ],
+  "word_gwalli": [
+   "việc quản lý",
+   "Chăm sóc sức khỏe rất quan trọng."
+  ],
+  "word_ssata": [
+   "xếp chồng",
+   "Tôi xếp chồng sách lên."
+  ],
+  "word_ahyu": [
+   "ôi chao",
+   "Ôi, hôm nay vất vả quá."
+  ],
+  "word_eojjeomyeon": [
+   "biết đâu",
+   "Biết đâu trời sẽ mưa."
+  ],
+  "word_japida": [
+   "bị bắt",
+   "Kẻ trộm đã bị bắt."
+  ],
+  "word_pyohyeonhada": [
+   "biểu đạt",
+   "Tôi đã diễn tả cảm xúc bằng lời."
+  ],
+  "word_gojangnada": [
+   "bị hỏng",
+   "Cái đồng hồ bị hỏng."
+  ],
+  "word_gosaenghada": [
+   "vất vả",
+   "Hôm nay bạn đã vất vả rồi."
+  ],
+  "word_boseu": [
+   "sếp",
+   "Sếp đã đến."
+  ],
+  "word_eommu": [
+   "công việc",
+   "Công việc rất nhiều."
+  ],
+  "word_gominhada": [
+   "trăn trở",
+   "Tôi đang trăn trở về con đường phía trước."
+  ],
+  "word_ullida": [
+   "vang lên",
+   "Chuông đang reo."
+  ],
+  "word_jaranghada": [
+   "khoe",
+   "Anh ấy khoe điểm số."
+  ],
+  "word_jeopgeun": [
+   "sự tiếp cận",
+   "Cấm lại gần."
+  ],
+  "word_beomin": [
+   "thủ phạm",
+   "Người ta đã tìm ra thủ phạm."
+  ],
+  "word_handu": [
+   "một hai",
+   "Tôi đã đi một hai lần."
+  ],
+  "word_yonggamhada": [
+   "dũng cảm",
+   "Anh ấy là lính cứu hỏa dũng cảm."
+  ],
+  "word_bulssanghada": [
+   "đáng thương",
+   "Con chim đó thật đáng thương."
+  ],
+  "word_muji": [
+   "sự thiếu hiểu biết",
+   "Chúng ta thoát khỏi sự thiếu hiểu biết."
+  ],
+  "word_harutbam": [
+   "một đêm",
+   "Tôi đã ở lại một đêm."
+  ],
+  "word_hamkkehada": [
+   "cùng nhau",
+   "Chúng tôi đã cùng chia sẻ niềm vui."
+  ],
+  "word_jumok": [
+   "sự chú ý",
+   "Xin mọi người chú ý."
+  ],
+  "word_ttungttunghada": [
+   "mập",
+   "Con mèo mập."
+  ],
+  "word_gyehoekada": [
+   "lên kế hoạch",
+   "Tôi đang lên kế hoạch cho chuyến đi."
+  ],
+  "word_silmanghada": [
+   "thất vọng",
+   "Tôi thất vọng với kết quả."
+  ],
+  "word_chungjeon": [
+   "việc sạc",
+   "Sạc xong rồi."
+  ],
+  "word_neomeogada": [
+   "chuyển sang",
+   "Mình sang câu tiếp theo nhé."
+  ],
+  "word_dajeonghada": [
+   "dịu dàng",
+   "Giọng cô ấy dịu dàng."
+  ],
+  "word_bosalpida": [
+   "chăm sóc",
+   "Tôi chăm sóc bệnh nhân."
+  ],
+  "word_tteoollida": [
+   "gợi nhớ",
+   "Tôi nhớ lại chuyện ngày xưa."
+  ],
+  "word_charyeoipda": [
+   "ăn diện",
+   "Cô ấy ăn mặc thật đẹp."
+  ],
+  "word_naejjotda": [
+   "đuổi đi",
+   "Bạn đừng đuổi con mèo đi nhé."
+  ],
+  "word_garida": [
+   "che",
+   "Tôi lấy tay che mắt."
+  ],
+  "word_hwanyeonghada": [
+   "chào đón",
+   "Chúng tôi chào đón khách."
+  ],
+  "word_jeongjikada": [
+   "trung thực",
+   "Anh ấy là người trung thực."
+  ],
+  "word_gananhada": [
+   "nghèo",
+   "Hồi nhỏ nhà tôi nghèo."
+  ],
+  "word_inteon": [
+   "thực tập sinh",
+   "Tôi làm thực tập sinh."
+  ],
+  "word_manjokada": [
+   "hài lòng",
+   "Tôi hài lòng với kết quả."
+  ],
+  "word_maedalda": [
+   "treo lên",
+   "Tôi treo đèn lên trần nhà."
+  ],
+  "word_seongjeok": [
+   "thành tích",
+   "Điểm của tôi đã tăng."
+  ],
+  "word_eogida": [
+   "thất hứa",
+   "Tôi đã thất hứa."
+  ],
+  "word_naenae": [
+   "suốt",
+   "Trời mưa suốt cả ngày."
+  ],
+  "word_jamdeulda": [
+   "chìm vào giấc ngủ",
+   "Em bé đã ngủ say."
+  ],
+  "word_ttwieonada": [
+   "xuất chúng",
+   "Năng lực của anh ấy xuất chúng."
+  ],
+  "word_sokda": [
+   "bị lừa",
+   "Tôi đã bị lời nói dối lừa."
+  ],
+  "word_manse": [
+   "muôn năm",
+   "Mọi người đều hò reo."
+  ],
+  "word_neolda_2": [
+   "phơi",
+   "Tôi phơi quần áo."
+  ],
+  "word_buranhada": [
+   "bất an",
+   "Tôi thấy bất an cho tới khi có kết quả."
+  ],
+  "word_jagyeok": [
+   "tư cách",
+   "Tôi có đủ tư cách."
+  ],
+  "word_peojida": [
+   "lan ra",
+   "Tin đồn đã lan ra."
+  ],
+  "word_mangseorida": [
+   "do dự",
+   "Tôi đã do dự rất lâu."
+  ],
+  "word_eolkida": [
+   "rối vào nhau",
+   "Sợi dây bị rối."
+  ],
+  "word_danghada": [
+   "gặp phải",
+   "Tôi đã gặp tai nạn."
+  ],
+  "word_ansimhada": [
+   "yên tâm",
+   "Nghe tin xong tôi thấy yên tâm."
+  ],
+  "word_yesang": [
+   "sự dự đoán",
+   "Nó khác với dự đoán của tôi."
+  ],
+  "word_ttwieogada": [
+   "chạy đến",
+   "Tôi chạy đến nhà ga."
+  ],
+  "word_dwineutda": [
+   "muộn màng",
+   "Tôi hối hận muộn màng."
+  ],
+  "word_gotbaro": [
+   "ngay lập tức",
+   "Chúng tôi khởi hành ngay."
+  ],
+  "word_gyeongheomhada": [
+   "trải nghiệm",
+   "Tôi đã trải nghiệm một nền văn hóa mới."
+  ],
+  "word_naemsaenada": [
+   "bốc mùi",
+   "Từ bếp có mùi bay ra."
+  ],
+  "word_aigu": [
+   "ối giời",
+   "Ối, vất vả quá."
+  ],
+  "word_jojik": [
+   "tổ chức",
+   "Tổ chức không lớn lắm."
+  ],
+  "word_jogeumssik": [
+   "từng chút một",
+   "Mọi thứ đang tốt lên từng chút."
+  ],
+  "word_eosaekada": [
+   "ngượng ngùng",
+   "Lần gặp đầu thật ngượng ngùng."
+  ],
+  "word_hanmadi": [
+   "một lời",
+   "Cho tôi nói một lời thôi."
+  ],
+  "word_ppumda": [
+   "phun ra",
+   "Con cá voi phun nước."
+  ],
+  "word_koneo": [
+   "góc",
+   "Ngay ở góc kia thôi."
+  ],
+  "word_handongan": [
+   "một dạo",
+   "Đã lâu rồi chúng ta không gặp."
+  ],
+  "word_sain": [
+   "chữ ký",
+   "Bạn ký vào đây nhé."
+  ],
+  "word_bogohada": [
+   "báo cáo",
+   "Tôi đã báo cáo kết quả."
+  ],
+  "word_kkalkkeumhada": [
+   "gọn gàng",
+   "Cái bàn gọn gàng."
+  ],
+  "word_dongui": [
+   "sự đồng ý",
+   "Tôi đã xin sự đồng ý."
+  ],
+  "word_ssangdungi": [
+   "sinh đôi",
+   "Cặp song sinh đã chào đời."
+  ],
+  "word_geimhada": [
+   "chơi game",
+   "Tôi chơi game với em."
+  ],
+  "word_biuda": [
+   "làm rỗng",
+   "Tôi đã uống cạn cốc."
+  ],
+  "word_gyohwanhada": [
+   "đổi",
+   "Tôi đã đổi bộ quần áo."
+  ],
+  "word_buchida_2": [
+   "dán",
+   "Tôi dán con tem."
+  ],
+  "word_bureojida": [
+   "gãy",
+   "Cây bút chì bị gãy."
+  ],
+  "word_kkaejida": [
+   "vỡ",
+   "Cái cốc bị vỡ."
+  ],
+  "word_hetgallida": [
+   "lẫn lộn",
+   "Tôi hay lẫn lộn hai chữ này."
+  ],
+  "word_oegyein": [
+   "người ngoài hành tinh",
+   "Trong phim có người ngoài hành tinh."
+  ],
+  "word_gamsihada": [
+   "giám sát",
+   "Họ đã canh gác suốt đêm."
+  ],
+  "word_sumanta": [
+   "vô số",
+   "Vô số người đã tụ tập."
+  ],
+  "word_haengdonghada": [
+   "hành động",
+   "Tôi đã hành động cẩn thận."
+  ],
+  "word_immu": [
+   "nhiệm vụ",
+   "Tôi đã hoàn thành nhiệm vụ."
+  ],
+  "word_jeontu": [
+   "trận chiến",
+   "Trận chiến đã kết thúc."
+  ],
+  "word_jansori": [
+   "lời cằn nhằn",
+   "Tôi đã bị cằn nhằn."
+  ],
+  "word_jeuksi": [
+   "ngay lập tức",
+   "Bạn trả lời ngay giúp mình nhé."
+  ],
+  "word_ollaoda": [
+   "đi lên",
+   "Bạn lên tầng một nhé."
+  ],
+  "word_oeropda": [
+   "cô đơn",
+   "Ở một mình tôi thấy cô đơn."
+  ],
+  "word_gireuda": [
+   "nuôi, để dài",
+   "Tôi để tóc dài."
+  ],
+  "word_susip": [
+   "hàng chục",
+   "Hàng chục người đã đến."
+  ],
+  "word_kodeu": [
+   "mã",
+   "Bạn nhập mã nhé."
+  ],
+  "word_gyeolko": [
+   "quyết không",
+   "Tôi sẽ không bao giờ quên."
+  ],
+  "word_gutda": [
+   "cứng lại",
+   "Bánh tteok đã cứng lại."
+  ],
+  "word_illyu": [
+   "nhân loại",
+   "Chúng ta học lịch sử nhân loại."
+  ],
+  "word_mamuri": [
+   "sự hoàn thiện",
+   "Phần kết thúc rất tốt."
+  ],
+  "word_seodureuda": [
+   "vội vàng",
+   "Bạn đừng vội nhé."
+  ],
+  "word_useupda": [
+   "buồn cười",
+   "Câu chuyện buồn cười."
+  ],
+  "word_buseojida": [
+   "vỡ tan",
+   "Cái đĩa đã vỡ tan."
+  ],
+  "word_aha": [
+   "à ha",
+   "À ha, giờ thì tôi hiểu rồi."
+  ],
+  "word_maeumdaero": [
+   "tùy ý",
+   "Bạn chọn tùy ý nhé."
+  ],
+  "word_geumankeum": [
+   "đến mức đó",
+   "Nó khó đến mức đó."
+  ],
+  "word_eungwonhada": [
+   "cổ vũ",
+   "Tôi cổ vũ cho đội mình."
+  ],
+  "word_myeonmyeot": [
+   "một vài",
+   "Chỉ có vài người đến."
+  ],
+  "word_meomureuda": [
+   "lưu lại",
+   "Tôi đã ở lại hai ngày."
+  ],
+  "word_nunchi": [
+   "sự tinh ý",
+   "Người đó rất tinh ý."
+  ],
+  "word_eomcheongnada": [
+   "cực kỳ lớn",
+   "Nó nổi tiếng cực kỳ."
+  ],
+  "word_ontong": [
+   "toàn bộ",
+   "Tuyết phủ trắng khắp nơi."
+  ],
+  "word_sillang": [
+   "chú rể",
+   "Chú rể đang mỉm cười."
+  ],
+  "word_daebak": [
+   "cú hit lớn",
+   "Bộ phim này là một cú hit."
+  ],
+  "word_chongal": [
+   "viên đạn",
+   "Viên đạn bay nhanh."
+  ],
+  "word_chateu": [
+   "bảng biểu",
+   "Tôi đã xem bảng biểu."
+  ],
+  "word_dandanhada": [
+   "cứng",
+   "Băng cứng."
+  ],
+  "word_jibulhada": [
+   "thanh toán",
+   "Tôi đã trả bằng thẻ."
+  ],
+  "word_ppeonhada": [
+   "rõ mười mươi",
+   "Kết quả thì rõ rồi."
+  ],
+  "word_geommeokda": [
+   "hoảng sợ",
+   "Tôi hoảng vì tiếng động."
+  ],
+  "word_jeolmeuni": [
+   "người trẻ",
+   "Có rất nhiều người trẻ."
+  ],
+  "word_yowon": [
+   "nhân viên tác chiến",
+   "Nhân viên đã đến."
+  ],
+  "word_sogida": [
+   "lừa dối",
+   "Bạn đừng lừa người khác nhé."
+  ],
+  "word_boksu": [
+   "sự trả thù",
+   "Trả thù thì không tốt."
+  ],
+  "word_girida": [
+   "tưởng nhớ",
+   "Chúng tôi tôn vinh thành tựu đó."
+  ],
+  "word_kkoda": [
+   "xoắn",
+   "Tôi xoắn sợi chỉ."
+  ],
+  "word_unyeonghada": [
+   "điều hành",
+   "Tôi điều hành một cửa hàng nhỏ."
+  ],
+  "word_seulpeohada": [
+   "đau buồn",
+   "Bạn đừng buồn quá nhé."
+  ],
+  "word_doraboda": [
+   "nhìn lại",
+   "Tôi nhìn lại quá khứ."
+  ],
+  "word_dagagada": [
+   "tiến lại gần",
+   "Tôi lặng lẽ tiến lại gần."
+  ],
+  "word_tteodeulda": [
+   "làm ồn",
+   "Bạn đừng làm ồn trong lớp nhé."
+  ],
+  "word_goida": [
+   "đọng lại",
+   "Nước mắt đọng trong mắt tôi."
+  ],
+  "word_ttokbaro": [
+   "thẳng",
+   "Bạn đứng thẳng lên nhé."
+  ],
+  "word_mangchida": [
+   "làm hỏng",
+   "Tôi đã làm hỏng bài thi."
+  ],
+  "word_mojarada": [
+   "thiếu",
+   "Tôi thiếu tiền."
+  ],
+  "word_alta": [
+   "ốm",
+   "Tôi đã bị cảm."
+  ],
+  "word_sanghada": [
+   "hỏng, ôi",
+   "Sữa đã bị hỏng."
+  ],
+  "word_injeong": [
+   "sự công nhận",
+   "Năng lực của tôi đã được công nhận."
+  ],
+  "word_jinhaeng": [
+   "sự tiến hành",
+   "Công việc đang được tiến hành."
+  ],
+  "word_deureonaeda": [
+   "bộc lộ",
+   "Tôi đã bộc lộ cảm xúc thật."
+  ],
+  "word_sarin": [
+   "vụ giết người",
+   "Đã xảy ra một vụ giết người."
+  ],
+  "word_yeokda": [
+   "kết lại",
+   "Người ta đã tập hợp các câu chuyện thành sách."
+  ],
+  "word_yeongwonhi": [
+   "mãi mãi",
+   "Tôi sẽ nhớ mãi."
+  ],
+  "word_ilban": [
+   "thông thường",
+   "Khách thường đi lối này."
+  ],
+  "word_tohada": [
+   "nôn",
+   "Đứa trẻ đã bị nôn."
+  ],
+  "word_boan": [
+   "an ninh",
+   "An ninh rất chặt chẽ."
+  ],
+  "word_daepyohada": [
+   "đại diện",
+   "Anh ấy đại diện cho trường."
+  ],
+  "word_ssotda": [
+   "làm đổ",
+   "Tôi làm đổ nước."
+  ],
+  "word_hechida": [
+   "rẽ lối",
+   "Tôi đã băng qua con đường đầy tuyết để đến."
+  ],
+  "word_kkaekkeusi": [
+   "sạch sẽ",
+   "Bạn rửa tay cho sạch nhé."
+  ],
+  "word_madi": [
+   "lời (đơn vị lời nói)",
+   "Cho tôi nói một lời thôi."
+  ],
+  "word_cheokada": [
+   "giả vờ",
+   "Tôi giả vờ không biết."
+  ],
+  "word_balpyohada": [
+   "công bố",
+   "Người ta đã công bố kết quả."
+  ],
+  "word_kkomkkomhada": [
+   "tỉ mỉ",
+   "Anh ấy vốn là người tỉ mỉ."
+  ],
+  "word_nureuda": [
+   "nhấn",
+   "Tôi nhấn nút."
+  ],
+  "word_tteooreuda": [
+   "chợt nghĩ ra",
+   "Tôi chợt nghĩ ra một ý hay."
+  ],
+  "word_yeogijeogi": [
+   "chỗ này chỗ kia",
+   "Tôi đã tìm khắp nơi."
+  ],
+  "word_birok": [
+   "mặc dù",
+   "Mặc dù đến muộn nhưng tôi vẫn đến."
+  ],
+  "word_aye": [
+   "hoàn toàn không",
+   "Tôi hoàn toàn không đi."
+  ],
+  "word_domangchida": [
+   "bỏ chạy",
+   "Tên trộm đã bỏ chạy."
+  ],
+  "word_juuihada": [
+   "chú ý",
+   "Bạn chú ý cầu thang nhé."
+  ],
+  "word_chamjohada": [
+   "tham khảo",
+   "Bạn tham khảo hướng dẫn nhé."
+  ],
+  "word_neureonada": [
+   "tăng lên",
+   "Số khách đã tăng lên."
+  ],
+  "word_bunmyeonghada": [
+   "rõ ràng",
+   "Ý nghĩa rất rõ ràng."
+  ],
+  "word_gujo": [
+   "kết cấu",
+   "Kết cấu tòa nhà đơn giản."
+  ],
+  "word_tteonagada": [
+   "rời đi",
+   "Chiếc thuyền đã rời đi."
+  ],
+  "word_heundeullida": [
+   "rung lắc",
+   "Xe buýt lắc dữ lắm."
+  ],
+  "word_maeumkkeot": [
+   "thỏa thích",
+   "Bạn ăn thỏa thích nhé."
+  ],
+  "word_darida_2": [
+   "sắc (thuốc)",
+   "Tôi sắc thuốc bắc."
+  ],
+  "word_buditchida": [
+   "va vào",
+   "Vai chúng tôi va vào nhau."
+  ],
+  "word_gulda": [
+   "cư xử",
+   "Em tôi cư xử ngoan."
+  ],
+  "word_sanso": [
+   "ô xy",
+   "Không đủ ô xy."
+  ],
+  "word_jjoeda": [
+   "phơi, sưởi",
+   "Tôi phơi nắng."
+  ],
+  "word_eomeona": [
+   "ôi trời",
+   "Ôi trời, thật thế à?"
+  ],
+  "word_ojik": [
+   "duy nhất",
+   "Chỉ có một cái duy nhất."
+  ],
+  "word_mueosideun": [
+   "bất cứ gì",
+   "Bạn hỏi tôi gì cũng được."
+  ],
+  "word_jitda_3": [
+   "đậm",
+   "Màu đậm."
+  ],
+  "word_gijeogwi": [
+   "tã",
+   "Tôi thay tã."
+  ],
+  "word_nollapda": [
+   "đáng ngạc nhiên",
+   "Kết quả thật đáng ngạc nhiên."
+  ],
+  "word_ttakttakada": [
+   "cứng",
+   "Bánh mì cứng."
+  ],
+  "word_singihada": [
+   "kỳ diệu",
+   "Thật là kỳ diệu."
+  ],
+  "word_geokkuro": [
+   "ngược",
+   "Tôi viết chữ ngược."
+  ],
+  "word_dansunhada": [
+   "đơn giản",
+   "Hình dáng đơn giản."
+  ],
+  "word_jaepan": [
+   "phiên tòa",
+   "Phiên tòa đã diễn ra."
+  ],
+  "word_ipida": [
+   "mặc cho",
+   "Tôi mặc quần áo cho đứa trẻ."
+  ],
+  "word_garaipda": [
+   "thay đồ",
+   "Tôi đã thay quần áo."
+  ],
+  "word_saeda": [
+   "rò rỉ",
+   "Nước đang dột từ mái nhà."
+  ],
+  "word_kkamata": [
+   "đen kịt",
+   "Bầu trời đen kịt."
+  ],
+  "word_hangbokada": [
+   "đầu hàng",
+   "Cuối cùng họ đã đầu hàng."
+  ],
+  "word_gida": [
+   "bò",
+   "Em bé bò trong phòng."
+  ],
+  "word_naseoda": [
+   "bước ra",
+   "Có người bước ra trước."
+  ],
+  "word_geomnada": [
+   "thấy sợ",
+   "Con chó sủa làm tôi sợ."
+  ],
+  "word_hyeoraek": [
+   "máu",
+   "Tôi đã xét nghiệm máu."
+  ],
+  "word_eoriseokda": [
+   "ngu ngốc",
+   "Đó là một quyết định ngu ngốc."
+  ],
+  "word_mujogeon": [
+   "vô điều kiện",
+   "Tôi nhất định phải đi."
+  ],
+  "word_jonjaehada": [
+   "tồn tại",
+   "Nơi như vậy có tồn tại không?"
+  ],
+  "word_subaengman": [
+   "hàng triệu",
+   "Hàng triệu người xem nó."
+  ],
+  "word_saranamda": [
+   "sống sót",
+   "Tôi đã sống sót đến cuối cùng."
+  ],
+  "word_jalda": [
+   "mịn, nhỏ",
+   "Cát rất mịn."
+  ],
+  "word_ttaki": [
+   "không có gì đặc biệt",
+   "Tôi không có gì đặc biệt để nói."
+  ],
+  "word_samang": [
+   "cái chết",
+   "Người ta điều tra nguyên nhân cái chết."
+  ],
+  "word_gachida": [
+   "bị nhốt",
+   "Tôi bị kẹt trong thang máy."
+  ],
+  "word_dalkomhada": [
+   "ngọt ngào",
+   "Mùi hương ngọt ngào."
+  ],
+  "word_bultaeuda": [
+   "đốt cháy",
+   "Tôi đã đốt lá thư."
+  ],
+  "word_au": [
+   "em trai",
+   "Người em đi theo anh mình."
+  ],
+  "word_wanbyeokada": [
+   "hoàn hảo",
+   "Khâu chuẩn bị hoàn hảo."
+  ],
+  "word_hyanghada": [
+   "hướng về",
+   "Tôi đi về nhà."
+  ],
+  "word_gamchuda": [
+   "giấu kín",
+   "Tôi giấu kín cảm xúc."
+  ],
+  "word_nakda_2": [
+   "cũ nát",
+   "Tôi đã vứt bộ quần áo cũ."
+  ],
+  "word_datuda": [
+   "cãi nhau",
+   "Tôi đã cãi nhau với bạn."
+  ],
+  "word_sokada": [
+   "thuộc về",
+   "Tôi thuộc đội này."
+  ],
+  "word_beotida": [
+   "cầm cự",
+   "Tôi đã cầm cự đến cuối."
+  ],
+  "word_motdoeda": [
+   "xấu tính",
+   "Bạn đừng nói lời khó nghe nhé."
+  ],
+  "word_pateuneo": [
+   "đối tác",
+   "Tôi làm việc cùng đối tác."
+  ],
+  "word_gwanduda": [
+   "thôi, bỏ",
+   "Thôi tôi bỏ vậy."
+  ],
+  "word_gandanhi": [
+   "đơn giản",
+   "Tôi sẽ giải thích ngắn gọn."
+  ],
+  "word_bilda": [
+   "cầu chúc",
+   "Tôi chúc bạn mạnh khỏe."
+  ],
+  "word_sangjinghada": [
+   "tượng trưng",
+   "Chim bồ câu tượng trưng cho hòa bình."
+  ],
+  "word_pihaeja": [
+   "nạn nhân",
+   "Chúng tôi giúp đỡ nạn nhân."
+  ],
+  "word_dojeohi": [
+   "không tài nào",
+   "Tôi không tài nào làm được."
+  ],
+  "word_janggi": [
+   "cờ tướng Hàn",
+   "Ông tôi chơi cờ janggi."
+  ],
+  "word_jakjeon": [
+   "chiến thuật",
+   "Chúng tôi đã lập chiến thuật."
+  ],
+  "word_keodarata": [
+   "to đùng",
+   "Có một cái cây to đùng."
+  ],
+  "word_gangdo": [
+   "kẻ cướp",
+   "Tôi đã trình báo về tên cướp."
+  ],
+  "word_jakdonghada": [
+   "vận hành",
+   "Cái máy chạy tốt."
+  ],
+  "word_okei": [
+   "được rồi",
+   "Được rồi, mình làm vậy nhé."
+  ],
+  "word_josahada": [
+   "điều tra",
+   "Người ta điều tra vụ án."
+  ],
+  "word_oesang": [
+   "vết thương ngoài",
+   "Không có vết thương bên ngoài."
+  ],
+  "word_eochapi": [
+   "dù sao",
+   "Dù sao chúng ta cũng muộn rồi."
+  ],
+  "word_geuripda": [
+   "nhớ nhung",
+   "Tôi nhớ quê hương."
+  ],
+  "word_natchuda": [
+   "hạ thấp",
+   "Bạn vặn nhỏ âm lượng nhé."
+  ],
+  "word_bimyeong": [
+   "tiếng thét",
+   "Đã có tiếng thét vang lên."
+  ],
+  "word_sugida": [
+   "cúi đầu",
+   "Tôi cúi đầu chào."
+  ],
+  "word_jinjeong": [
+   "sự bình tĩnh",
+   "Bạn bình tĩnh lại nhé."
+  ],
+  "word_dalli": [
+   "cách khác",
+   "Không còn cách nào khác."
+  ],
+  "word_sinjang": [
+   "chiều cao",
+   "Tôi đo chiều cao."
+  ],
+  "word_eojjae": [
+   "sao thế",
+   "Sao hôm nay yên tĩnh thế nhỉ?"
+  ],
+  "word_uiryo": [
+   "y tế",
+   "Cơ sở y tế tốt."
+  ],
+  "word_seupeineo": [
+   "tiếng Tây Ban Nha",
+   "Tôi học tiếng Tây Ban Nha."
+  ],
+  "word_amuraedo": [
+   "dù thế nào",
+   "Xem ra hôm nay không được rồi."
+  ],
+  "word_ogada": [
+   "đi qua đi lại",
+   "Người ta đi qua đi lại."
+  ],
+  "word_geoin": [
+   "người khổng lồ",
+   "Trong truyện có một người khổng lồ."
+  ],
+  "word_mudan": [
+   "không phép",
+   "Xin đừng vào khi chưa được phép."
+  ],
+  "word_wallyo": [
+   "sự hoàn tất",
+   "Công việc đã hoàn tất."
+  ],
+  "word_ihonhada": [
+   "ly hôn",
+   "Hai người đã ly hôn."
+  ],
+  "word_choedae": [
+   "tối đa",
+   "Tối đa mười người thôi."
+  ],
+  "word_mia": [
+   "đứa trẻ lạc",
+   "Người ta đang tìm một đứa trẻ lạc."
+  ],
+  "word_choesohan": [
+   "ít nhất",
+   "Mất ít nhất hai ngày."
+  ],
+  "word_gallae": [
+   "nhánh",
+   "Con đường chia làm hai nhánh."
+  ],
+  "word_didida": [
+   "đặt chân",
+   "Bạn bước cẩn thận trên cầu thang nhé."
+  ],
+  "word_kiseuhada": [
+   "hôn",
+   "Tôi hôn lên trán họ."
+  ],
+  "word_busuda": [
+   "đập vỡ",
+   "Người ta đã đập vỡ cửa sổ."
+  ],
+  "word_chogi": [
+   "giai đoạn đầu",
+   "Lúc đầu thì vất vả."
+  ],
+  "word_gamyeom": [
+   "sự nhiễm bệnh",
+   "Chúng ta phòng lây nhiễm."
+  ],
+  "word_geomnaeda": [
+   "sợ hãi",
+   "Bạn đừng sợ nhé."
+  ],
+  "word_balsa": [
+   "sự phóng",
+   "Tôi đã xem vụ phóng tên lửa."
+  ],
+  "word_akchakgatda": [
+   "kiên trì cật lực",
+   "Tôi đã dành dụm cật lực."
+  ],
+  "word_jojonghada": [
+   "điều khiển",
+   "Anh ấy lái máy bay."
+  ],
+  "word_yakda": [
+   "khôn lỏi",
+   "Đứa trẻ đó khôn lắm."
+  ],
+  "word_yuryeong": [
+   "hồn ma",
+   "Tôi đã nghe chuyện ma."
+  ],
+  "word_uihak": [
+   "y học",
+   "Tôi học y."
+  ],
+  "word_kkeunjilgida": [
+   "dai dẳng",
+   "Tôi đã kiên trì làm việc đó."
+  ],
+  "word_heundeulda": [
+   "vẫy, lắc",
+   "Tôi vẫy tay."
+  ],
+  "word_sagyeok": [
+   "việc bắn súng",
+   "Họ luyện tập bắn súng."
+  ],
+  "word_nollida": [
+   "trêu",
+   "Bạn đừng trêu bạn mình nhé."
+  ],
+  "word_neullida": [
+   "tăng thêm",
+   "Tôi đã tăng thời gian luyện tập."
+  ],
+  "word_chiryohada": [
+   "chữa trị",
+   "Người ta đã chữa vết thương."
+  ],
+  "word_sinse": [
+   "chịu ơn",
+   "Tôi chịu ơn bạn nhiều."
+  ],
+  "word_geudaji": [
+   "không lắm",
+   "Phòng không ấm lắm."
+  ],
+  "word_jegeo": [
+   "sự loại bỏ",
+   "Tẩy vết bẩn thì khó."
+  ],
+  "word_hemaeda": [
+   "lạc đường",
+   "Tôi đã lạc đường một lúc."
+  ],
+  "word_uimihada": [
+   "có nghĩa là",
+   "Điều đó có nghĩa là gì?"
+  ],
+  "word_damdang": [
+   "phụ trách",
+   "Tôi là người phụ trách."
+  ],
+  "word_gonggyeokada": [
+   "tấn công",
+   "Họ đã tấn công kẻ địch."
+  ],
+  "word_jinachida": [
+   "đi ngang qua",
+   "Tôi đi thẳng qua cửa hàng."
+  ],
+  "word_daejang": [
+   "thủ lĩnh",
+   "Anh ấy là thủ lĩnh của chúng tôi."
+  ],
+  "word_muneojida": [
+   "sụp đổ",
+   "Bức tường đã sụp đổ."
+  ],
+  "word_allyeojida": [
+   "được biết đến",
+   "Tin đó đã được nhiều người biết."
+  ],
+  "word_naemyeon": [
+   "nội tâm",
+   "Nội tâm của họ thật đẹp."
+  ],
+  "word_charari": [
+   "thà rằng",
+   "Tôi thà đi bộ còn hơn."
+  ],
+  "word_saeuda": [
+   "thức trắng đêm",
+   "Tôi đã thức trắng đêm."
+  ],
+  "word_gipda_2": [
+   "vá",
+   "Tôi đã vá quần áo."
+  ],
+  "word_heunhada": [
+   "phổ biến",
+   "Chuyện như thế rất phổ biến."
+  ],
+  "word_ttuiuda": [
+   "thả nổi",
+   "Tôi thả thuyền trên sông."
+  ],
+  "word_boahani": [
+   "xem chừng",
+   "Xem chừng bạn bận lắm."
+  ],
+  "word_eomhada": [
+   "nghiêm khắc",
+   "Bố tôi nghiêm khắc."
+  ],
+  "word_jjotgida": [
+   "bị rượt, bị hối",
+   "Tôi đang gấp về thời gian."
+  ],
+  "word_neomchida": [
+   "tràn ra",
+   "Cốc tràn đầy nước."
+  ],
+  "word_mopsi": [
+   "cực kỳ",
+   "Trời lạnh cực kỳ."
+  ],
+  "word_bangida": [
+   "mừng rỡ đón",
+   "Chú chó mừng tôi."
+  ],
+  "word_simjieo": [
+   "thậm chí",
+   "Anh ấy thậm chí còn làm đêm."
+  ],
+  "word_kkeokda": [
+   "bẻ, hái",
+   "Bạn đừng hái hoa nhé."
+  ],
+  "word_bunno": [
+   "cơn giận",
+   "Tôi đã kìm cơn giận."
+  ],
+  "word_yocheonghada": [
+   "yêu cầu",
+   "Tôi đã yêu cầu giúp đỡ."
+  ],
+  "word_jinjihada": [
+   "nghiêm túc",
+   "Nét mặt anh ấy nghiêm túc."
+  ],
+  "word_sseulmo": [
+   "sự hữu dụng",
+   "Cái này cũng có ích."
+  ],
+  "word_naebu": [
+   "bên trong",
+   "Bên trong tòa nhà rất rộng."
+  ],
+  "word_cheorihada": [
+   "xử lý",
+   "Tôi đã xử lý công việc nhanh."
+  ],
+  "word_chwigeupada": [
+   "đối xử, xử lý",
+   "Bạn hãy nhẹ tay nhé."
+  ],
+  "word_dori": [
+   "đạo lý",
+   "Đó là điều con người nên làm."
+  ],
+  "word_akkapda": [
+   "tiếc",
+   "Vứt đi thì tiếc lắm."
+  ],
+  "word_ttaraseo": [
+   "do đó",
+   "Trời có tuyết. Do đó đường trơn."
+  ],
+  "word_yujihada": [
+   "duy trì",
+   "Tôi duy trì sức khỏe."
+  ],
+  "word_himchada": [
+   "mạnh mẽ",
+   "Anh ấy nói bằng giọng mạnh mẽ."
+  ],
+  "word_yoga": [
+   "yoga",
+   "Buổi sáng tôi tập yoga."
+  ],
+  "word_chepo": [
+   "sự bắt giữ",
+   "Cảnh sát đã bắt giữ."
+  ],
+  "word_buditda": [
+   "va phải",
+   "Tôi va đầu vào tường."
+  ],
+  "word_jombi": [
+   "thây ma",
+   "Trong phim có thây ma."
+  ],
+  "word_choeso": [
+   "tối thiểu",
+   "Ít nhất mất một tiếng."
+  ],
+  "word_paiting": [
+   "cố lên",
+   "Chúc bạn thi tốt ngày mai!"
+  ],
+  "word_doechatda": [
+   "lấy lại",
+   "Tôi đã lấy lại sức khỏe."
+  ],
+  "word_nangbihada": [
+   "lãng phí",
+   "Bạn đừng lãng phí thời gian."
+  ],
+  "word_idonghada": [
+   "di chuyển",
+   "Chúng ta chuyển sang phòng khác nhé."
+  ],
+  "word_heoga": [
+   "giấy phép",
+   "Tôi đã xin được giấy phép."
+  ],
+  "word_yeonseol": [
+   "bài diễn thuyết",
+   "Bài diễn thuyết rất dài."
+  ],
+  "word_meoreojida": [
+   "xa dần",
+   "Âm thanh xa dần."
+  ],
+  "word_injeonghada": [
+   "thừa nhận",
+   "Tôi đã thừa nhận lỗi của mình."
+  ],
+  "word_balkida": [
+   "làm sáng tỏ",
+   "Họ đã làm sáng tỏ sự thật."
+  ],
+  "word_butdeulda": [
+   "nắm giữ",
+   "Tôi nắm lấy cánh tay anh ấy."
+  ],
+  "word_soyongeopda": [
+   "vô ích",
+   "Giờ hối tiếc cũng vô ích."
+  ],
+  "word_sidohada": [
+   "thử",
+   "Tôi đã thử thêm một lần."
+  ],
+  "word_jugi": [
+   "chu kỳ",
+   "Chu kỳ ngắn."
+  ],
+  "word_ppaenota": [
+   "bỏ sót",
+   "Tôi đã bỏ sót một người."
+  ],
+  "word_gumda": [
+   "nhịn đói",
+   "Tôi đã nhịn bữa sáng."
+  ],
+  "word_jinida": [
+   "mang theo",
+   "Tôi mang theo vật quý."
+  ],
+  "word_hogeun": [
+   "hoặc là",
+   "Bạn đi xe buýt hoặc tàu điện ngầm."
+  ],
+  "word_gyodoso": [
+   "nhà tù",
+   "Nhà tù có tường cao."
+  ],
+  "word_gimil": [
+   "chuyện mật",
+   "Chúng ta phải giữ bí mật."
+  ],
+  "word_kkwemaeda": [
+   "khâu lại",
+   "Tôi khâu lại chỗ có cúc áo."
+  ],
+  "word_daebihada": [
+   "chuẩn bị đối phó",
+   "Chúng tôi chuẩn bị đối phó bão."
+  ],
+  "word_naejuda": [
+   "nhường ra",
+   "Tôi đã nhường chỗ ngồi."
+  ],
+  "word_jeonwon": [
+   "nguồn điện",
+   "Bạn bật nguồn điện nhé."
+  ],
+  "word_pohamhada": [
+   "bao gồm",
+   "Giá đã bao gồm thuế."
+  ],
+  "word_geonneda": [
+   "đưa cho",
+   "Tôi đã đưa quyển sách."
+  ],
+  "word_sidong": [
+   "sự khởi động",
+   "Tôi khởi động xe."
+  ],
+  "word_banghaehada": [
+   "làm phiền",
+   "Bạn đừng làm phiền tôi học nhé."
+  ],
+  "word_amnyeok": [
+   "áp suất",
+   "Áp suất cao."
+  ],
+  "word_banhada": [
+   "phải lòng",
+   "Tôi phải lòng ngay từ cái nhìn đầu."
+  ],
+  "word_bamsaeda": [
+   "thức thâu đêm",
+   "Tôi đã học thâu đêm."
+  ],
+  "word_daman": [
+   "chỉ có điều",
+   "Tốt đấy. Chỉ có điều tôi không có thời gian."
+  ],
+  "word_deongchi": [
+   "vóc dáng",
+   "Anh ấy có vóc dáng to lớn."
+  ],
+  "word_ilgwa": [
+   "việc thường ngày",
+   "Việc thường ngày của tôi rất đơn giản."
+  ],
+  "word_chamyeohada": [
+   "tham gia",
+   "Tôi đã tham gia sự kiện."
+  ],
+  "word_sseulmoeopda": [
+   "vô dụng",
+   "Nó không phải là đồ vô dụng."
+  ],
+  "word_geodaehada": [
+   "khổng lồ",
+   "Có một con tàu khổng lồ."
+  ],
+  "word_kkeuteopda": [
+   "vô tận",
+   "Tôi đã thấy biển vô tận."
+  ],
+  "word_siljero": [
+   "thực tế là",
+   "Thực tế tôi đã nhìn thấy nó."
+  ],
+  "word_yonguija": [
+   "nghi phạm",
+   "Họ thẩm vấn nghi phạm."
+  ],
+  "word_hollo": [
+   "một mình",
+   "Tôi đã đi du lịch một mình."
+  ],
+  "word_hoebokada": [
+   "hồi phục",
+   "Tôi đã hồi phục sức khỏe."
+  ],
+  "word_hochul": [
+   "cuộc gọi",
+   "Tôi đã nhận được cuộc gọi."
+  ],
+  "word_silkeot": [
+   "thỏa thích",
+   "Tôi đã chơi thỏa thích."
+  ],
+  "word_meongcheonghada": [
+   "ngớ ngẩn",
+   "Đó là một sai lầm ngớ ngẩn."
+  ],
+  "word_bamneutda": [
+   "khuya",
+   "Tôi về nhà lúc khuya."
+  ],
+  "word_geumjihada": [
+   "cấm",
+   "Ở đây cấm đỗ xe."
+  ],
+  "word_bulbeop": [
+   "bất hợp pháp",
+   "Bạn đừng đỗ xe trái phép nhé."
+  ],
+  "word_jesi": [
+   "sự đưa ra",
+   "Bạn đưa tài liệu ra nhé."
+  ],
+  "word_yeotdeutda": [
+   "nghe lén",
+   "Tôi đã nghe lén cuộc trò chuyện."
+  ],
+  "word_balsaenghada": [
+   "xảy ra",
+   "Đã xảy ra một vấn đề."
+  ],
+  "word_golchi": [
+   "nỗi phiền toái",
+   "Thật là đau đầu."
+  ],
+  "word_eumseong": [
+   "giọng nói",
+   "Giọng nói nghe rõ."
+  ],
+  "word_amureon": [
+   "bất cứ ... nào",
+   "Chẳng có vấn đề gì cả."
+  ],
+  "word_juyo": [
+   "chủ yếu",
+   "Tôi đã tóm tắt các điểm chính."
+  ],
+  "word_dwijjotda": [
+   "đuổi theo",
+   "Họ đuổi theo tên trộm."
+  ],
+  "word_neomuna": [
+   "quá đỗi",
+   "Tôi đã vui quá đỗi."
+  ],
+  "word_wonhan": [
+   "mối hận",
+   "Bạn đừng ôm hận nhé."
+  ],
+  "word_gyeongnyeolhada": [
+   "dữ dội",
+   "Đó là một trận đấu dữ dội."
+  ],
+  "word_naseon": [
+   "hình xoắn ốc",
+   "Cầu thang có hình xoắn ốc."
+  ],
+  "word_susaek": [
+   "cuộc lục soát",
+   "Cuộc lục soát đã bắt đầu."
+  ],
+  "word_jeonja": [
+   "điện tử",
+   "Tôi đã mua một thiết bị điện tử."
+  ],
+  "word_soyong": [
+   "sự hữu dụng",
+   "Bây giờ thì vô ích rồi."
+  ],
+  "word_amho": [
+   "mật khẩu",
+   "Tôi đã quên mật khẩu."
+  ],
+  "word_hapchida": [
+   "gộp lại",
+   "Họ đã gộp hai lớp lại."
+  ],
+  "word_manil": [
+   "nếu như",
+   "Nếu trời mưa thì tôi không đi."
+  ],
+  "word_ppaenaeda": [
+   "rút ra",
+   "Tôi đã rút cái gai ra."
+  ],
+  "word_ssaguryeo": [
+   "đồ rẻ tiền",
+   "Đồ rẻ tiền thì mau hỏng."
+  ],
+  "word_talchul": [
+   "cuộc đào thoát",
+   "Cuộc đào thoát đã thành công."
+  ],
+  "word_gatchuda": [
+   "chuẩn bị đủ",
+   "Tôi đã chuẩn bị đủ những thứ cần."
+  ],
+  "word_aedo": [
+   "lời chia buồn",
+   "Tôi xin chia buồn."
+  ],
+  "word_bonin": [
+   "chính chủ",
+   "Bạn hãy đến trực tiếp nhé."
+  ],
+  "word_choejong": [
+   "cuối cùng",
+   "Quyết định cuối cùng đã có."
+  ],
+  "word_tamjeong": [
+   "thám tử",
+   "Thám tử đã phá được vụ án."
+  ],
+  "word_jegonghada": [
+   "cung cấp",
+   "Công ty cung cấp bữa ăn."
+  ],
+  "word_murihada": [
+   "làm quá sức",
+   "Bạn đừng làm quá sức nhé."
+  ],
+  "word_jillida": [
+   "ngán",
+   "Tôi ngán món ăn giống nhau rồi."
+  ],
+  "word_byeonhwahada": [
+   "biến đổi",
+   "Thế giới thay đổi nhanh."
+  ],
+  "word_teipeu": [
+   "băng dính",
+   "Tôi đã dán bằng băng dính."
+  ],
+  "word_teullimeobsi": [
+   "chắc chắn",
+   "Anh ấy chắc chắn sẽ đến."
+  ],
+  "word_musahada": [
+   "bình an vô sự",
+   "Mọi người đều bình an."
+  ],
+  "word_miwohada": [
+   "ghét bỏ",
+   "Bạn đừng ghét bỏ người khác."
+  ],
+  "word_yuji": [
+   "sự duy trì",
+   "Giữ gìn sức khỏe rất quan trọng."
+  ],
+  "word_ireukida": [
+   "đỡ dậy",
+   "Tôi đỡ đứa trẻ bị ngã dậy."
+  ],
+  "word_tonggwahada": [
+   "vượt qua",
+   "Tôi đã vượt qua kỳ thi."
+  ],
+  "word_oebu": [
+   "bên ngoài",
+   "Có tiếng ồn từ bên ngoài."
+  ],
+  "word_muchida": [
+   "bị dính",
+   "Tôi bị dính sơn lên áo."
+  ],
+  "word_yujeonja": [
+   "gen",
+   "Người ta nghiên cứu gen."
+  ],
+  "word_nareuda": [
+   "vận chuyển",
+   "Tôi đã khiêng hành lý."
+  ],
+  "word_naenota": [
+   "đem ra",
+   "Tôi đã đem rác ra ngoài."
+  ],
+  "word_gwayeon": [
+   "quả nhiên",
+   "Quả nhiên đúng như tin đồn."
+  ],
+  "word_beollida": [
+   "mở rộng ra",
+   "Bạn hãy há to miệng ra."
+  ],
+  "word_daranada": [
+   "chạy trốn",
+   "Con chuột đã chạy mất."
+  ],
+  "word_seupai": [
+   "gián điệp",
+   "Gián điệp trong phim rất ngầu."
+  ],
+  "word_bunseok": [
+   "sự phân tích",
+   "Việc phân tích đã xong."
+  ],
+  "word_geunmuhada": [
+   "làm việc",
+   "Tôi làm việc ở ngân hàng."
+  ],
+  "word_yokada": [
+   "chửi",
+   "Bạn đừng nói xấu người khác."
+  ],
+  "word_chujeok": [
+   "sự truy đuổi",
+   "Cuộc truy đuổi đã bắt đầu."
+  ],
+  "word_gotda": [
+   "thẳng",
+   "Con đường thẳng tắp."
+  ],
+  "word_jiji": [
+   "sự ủng hộ",
+   "Tôi đã nhận được sự ủng hộ."
+  ],
+  "word_yeonguhada": [
+   "nghiên cứu",
+   "Tôi nghiên cứu phương pháp mới."
+  ],
+  "word_jeanhada": [
+   "đề xuất",
+   "Tôi đã đề xuất phương pháp mới."
+  ],
+  "word_seungin": [
+   "sự chấp thuận",
+   "Tôi đã được chấp thuận."
+  ],
+  "word_uyeonhi": [
+   "tình cờ",
+   "Chúng tôi gặp nhau tình cờ."
+  ],
+  "word_chimchakada": [
+   "điềm tĩnh",
+   "Anh ấy nói một cách điềm tĩnh."
+  ],
+  "word_yeongyeolhada": [
+   "kết nối",
+   "Tôi đã nối dây cáp."
+  ],
+  "word_nopida": [
+   "nâng lên",
+   "Tôi đã vặn to âm lượng."
+  ],
+  "word_gakgak": [
+   "mỗi người",
+   "Mỗi người lấy một cái nhé."
+  ],
+  "word_pyeongbeomhada": [
+   "bình thường",
+   "Đó là một ngày bình thường."
+  ],
+  "word_girokada": [
+   "ghi chép",
+   "Tôi ghi lại thời tiết mỗi ngày."
+  ],
+  "word_seoldeukada": [
+   "thuyết phục",
+   "Tôi đã thuyết phục bố mẹ."
+  ],
+  "word_jjitda": [
+   "xé",
+   "Tôi đã xé tờ giấy."
+  ],
+  "word_ppeotda": [
+   "duỗi ra",
+   "Bạn duỗi hai tay ra."
+  ],
+  "word_soagwa": [
+   "khoa nhi",
+   "Tôi đã đi khoa nhi."
+  ],
+  "word_tteuthada": [
+   "có nghĩa",
+   "Từ này có nghĩa là gì?"
+  ],
+  "word_bukkeureopda": [
+   "xấu hổ",
+   "Tôi xấu hổ vì lỗi của mình."
+  ],
+  "word_apseoda": [
+   "dẫn trước",
+   "Đội chúng tôi đang dẫn trước."
+  ],
+  "word_mongttang": [
+   "toàn bộ",
+   "Tôi đã tiêu hết sạch tiền."
+  ],
+  "word_sseuldeeopda": [
+   "vô ích",
+   "Đó là nỗi lo vô ích."
+  ],
+  "word_taoreuda": [
+   "bùng cháy",
+   "Củi bùng cháy."
+  ],
+  "word_jiwonhada": [
+   "ứng tuyển, hỗ trợ",
+   "Tôi đã ứng tuyển vào công ty."
+  ],
+  "word_hamburo": [
+   "tùy tiện",
+   "Bạn đừng nói năng tùy tiện."
+  ],
+  "word_imsinhada": [
+   "mang thai",
+   "Cô ấy có thai sau khi cưới."
+  ],
+  "word_yeongihada": [
+   "hoãn lại",
+   "Chúng tôi đã hoãn cuộc họp."
+  ],
+  "word_doraseoda": [
+   "quay lưng lại",
+   "Tôi đã quay người lại."
+  ],
+  "word_uijihada": [
+   "dựa vào",
+   "Tôi dựa vào gia đình."
+  ],
+  "word_apseo": [
+   "trước đó",
+   "Đúng như tôi đã nói trước đó."
+  ],
+  "word_goeropida": [
+   "bắt nạt",
+   "Bạn đừng bắt nạt bạn mình."
+  ],
+  "word_jasehada": [
+   "chi tiết",
+   "Phần giải thích rất chi tiết."
+  ],
+  "word_heuteojida": [
+   "tản ra",
+   "Mọi người đã tản đi."
+  ],
+  "word_sanyanghada": [
+   "đi săn",
+   "Sư tử đi săn."
+  ],
+  "word_daesinhada": [
+   "thay thế",
+   "Tôi sẽ làm thay anh ấy."
+  ],
+  "word_balkyeojida": [
+   "được làm sáng tỏ",
+   "Sự thật đã sáng tỏ."
+  ],
+  "word_sidallida": [
+   "bị hành hạ",
+   "Tôi bị tiếng ồn hành hạ."
+  ],
+  "word_jejak": [
+   "sự sản xuất",
+   "Việc sản xuất phim đã xong."
+  ],
+  "word_tongje": [
+   "sự kiểm soát",
+   "Cần phải có sự kiểm soát."
+  ],
+  "word_saengjon": [
+   "sự sinh tồn",
+   "Sinh tồn là quan trọng nhất."
+  ],
+  "word_misail": [
+   "tên lửa",
+   "Bản tin có nhắc đến tên lửa."
+  ],
+  "word_jonjunghada": [
+   "tôn trọng",
+   "Tôi tôn trọng ý muốn của người khác."
+  ],
+  "word_bupulda": [
+   "nở phồng",
+   "Bánh mì đã nở."
+  ],
+  "word_yeongnihada": [
+   "thông minh",
+   "Chú chó rất thông minh."
+  ],
+  "word_jinhaenghada": [
+   "tiến hành",
+   "Họ đã tiến hành cuộc họp."
+  ],
+  "word_hapil": [
+   "lại đúng lúc",
+   "Sao lại đúng hôm nay chứ?"
+  ],
+  "word_saengae": [
+   "cả đời",
+   "Đây là lần đầu trong đời tôi."
+  ],
+  "word_seonggasida": [
+   "phiền toái",
+   "Muỗi thật phiền."
+  ],
+  "word_yeomnyeo": [
+   "nỗi lo",
+   "Bạn đừng lo lắng nhé."
+  ],
+  "word_gikkeoi": [
+   "sẵn lòng",
+   "Tôi sẵn lòng giúp bạn."
+  ],
+  "word_teotteurida": [
+   "làm nổ",
+   "Tôi đã làm nổ quả bóng bay."
+  ],
+  "word_giurida": [
+   "nghiêng",
+   "Tôi nghiêng cốc một chút."
+  ],
+  "word_yoguhada": [
+   "yêu cầu",
+   "Tôi đã yêu cầu một lời giải thích."
+  ],
+  "word_gamssada": [
+   "quấn quanh",
+   "Tôi quấn chăn quanh em bé."
+  ],
+  "word_teukjeong": [
+   "nhất định",
+   "Nó chỉ mở vào giờ nhất định."
+  ],
+  "word_urida": [
+   "hãm, pha",
+   "Tôi hãm trà."
+  ],
+  "word_haechida": [
+   "làm hại",
+   "Nó có hại cho sức khỏe."
+  ],
+  "word_beolgeobeotda": [
+   "cởi trần truồng",
+   "Đứa trẻ chạy nhông cởi truồng."
+  ],
+  "word_iruda": [
+   "đạt được",
+   "Tôi đã đạt được ước mơ."
+  ],
+  "word_gyeongbo": [
+   "cảnh báo",
+   "Chuông cảnh báo đã reo."
+  ],
+  "word_hanpan": [
+   "một ván",
+   "Chúng ta chơi thêm một ván nhé."
+  ],
+  "word_jallanaeda": [
+   "cắt bỏ",
+   "Tôi đã cắt bỏ phần cuối."
+  ],
+  "word_oraegada": [
+   "bền lâu",
+   "Đôi giày này rất bền."
+  ],
+  "word_gongpyeonghada": [
+   "công bằng",
+   "Chúng ta chia đều nhé."
+  ],
+  "word_balsaeng": [
+   "sự phát sinh",
+   "Họ đã báo cáo vụ tai nạn."
+  ],
+  "word_sinjunghada": [
+   "thận trọng",
+   "Tôi đã quyết định thận trọng."
+  ],
+  "word_eopdeurida": [
+   "nằm sấp",
+   "Tôi nằm sấp trên sàn."
+  ],
+  "word_bullihada": [
+   "tách riêng",
+   "Chúng tôi phân loại rác."
+  ],
+  "word_seongjanghada": [
+   "trưởng thành",
+   "Đứa trẻ lớn lên khỏe mạnh."
+  ],
+  "word_danghwanghada": [
+   "luống cuống",
+   "Tôi luống cuống vì câu hỏi bất ngờ."
+  ],
+  "word_damdanghada": [
+   "phụ trách",
+   "Tôi phụ trách công việc này."
+  ],
+  "word_simhae": [
+   "biển sâu",
+   "Dưới biển sâu không có ánh sáng."
+  ],
+  "word_guji": [
+   "cố tình, không cần",
+   "Bạn không cần phải đến đâu."
+  ],
+  "word_chameuro": [
+   "thật sự",
+   "Đó thật sự là điều đáng biết ơn."
+  ],
+  "word_eoreobutda": [
+   "đóng băng",
+   "Dòng sông đã đóng băng."
+  ],
+  "word_euntoehada": [
+   "nghỉ hưu",
+   "Bố tôi đã nghỉ hưu năm ngoái."
+  ],
+  "word_jeongsingwa": [
+   "khoa tâm thần",
+   "Tôi đã tư vấn ở khoa tâm thần."
+  ],
+  "word_nunbusida": [
+   "chói lóa",
+   "Ngọn núi tuyết phủ thật chói lóa."
+  ],
+  "word_hyeonmyeonghada": [
+   "sáng suốt",
+   "Đó là một lựa chọn sáng suốt."
+  ],
+  "word_siheomhada": [
+   "thử nghiệm",
+   "Chúng tôi thử nghiệm hiệu năng."
+  ],
+  "word_wonak": [
+   "vốn dĩ",
+   "Giọng anh ấy vốn dĩ đã to."
+  ],
+  "word_jjochagada": [
+   "đuổi theo",
+   "Tôi đuổi theo chú chó con."
+  ],
+  "word_yuyonghada": [
+   "hữu ích",
+   "Ứng dụng này rất hữu ích."
+  ],
+  "word_jeonmun": [
+   "chuyên môn",
+   "Cái này không phải chuyên môn của tôi."
+  ],
+  "word_gangnyeokada": [
+   "mạnh mẽ",
+   "Gió đang thổi rất mạnh."
+  ],
+  "word_beomjoeja": [
+   "tội phạm",
+   "Họ đã bắt được tội phạm."
+  ],
+  "word_ireuda": [
+   "sớm",
+   "Vẫn còn sớm mà."
+  ],
+  "word_chaegimjida": [
+   "chịu trách nhiệm",
+   "Tôi sẽ chịu trách nhiệm."
+  ],
+  "word_gamanitda": [
+   "ngồi yên",
+   "Bạn ngồi yên một chút nhé."
+  ],
+  "word_dakchida": [
+   "cận kề",
+   "Kỳ thi đã cận kề."
+  ],
+  "word_daegi": [
+   "sự chờ sẵn",
+   "Tôi đang chờ sẵn."
+  ],
+  "word_yogoe": [
+   "yêu quái",
+   "Trong truyện cổ có yêu quái."
+  ],
+  "word_kkeumjjikada": [
+   "khủng khiếp",
+   "Đó là một tai nạn khủng khiếp."
+  ],
+  "word_chajihada": [
+   "chiếm chỗ",
+   "Cái bàn chiếm nhiều chỗ."
+  ],
+  "word_gaebalhada": [
+   "phát triển",
+   "Họ đã phát triển một loại thuốc mới."
+  ],
+  "word_beotgyeojida": [
+   "bong ra",
+   "Lớp sơn đã bong ra."
+  ],
+  "word_jeogeunghada": [
+   "thích nghi",
+   "Tôi đã thích nghi với trường mới."
+  ],
+  "word_naksihada": [
+   "câu cá",
+   "Tôi câu cá ở sông."
+  ],
+  "word_manghada": [
+   "phá sản",
+   "Cửa hàng đã phá sản."
+  ],
+  "word_goengjanghada": [
+   "tuyệt vời, ghê gớm",
+   "Đó là một tin tuyệt vời."
+  ],
+  "word_deungjanghada": [
+   "xuất hiện",
+   "Nhân vật chính đã xuất hiện."
+  ],
+  "word_yeminhada": [
+   "nhạy cảm",
+   "Da tôi nhạy cảm."
+  ],
+  "word_teulda": [
+   "bật lên",
+   "Tôi bật đài lên."
+  ],
+  "word_soksagida": [
+   "thì thầm",
+   "Tôi thì thầm vào tai họ."
+  ],
+  "word_baraeda": [
+   "phai màu",
+   "Màu quần áo đã phai."
+  ],
+  "word_yebi": [
+   "dự phòng",
+   "Có một chiếc chìa khóa dự phòng."
+  ],
+  "word_jireuda": [
+   "hét lên",
+   "Tôi đã hét lên."
+  ],
+  "word_chamseokada": [
+   "tham dự",
+   "Tôi đã dự đám cưới."
+  ],
+  "word_myeonghwakada": [
+   "rõ ràng",
+   "Tiêu chuẩn rất rõ ràng."
+  ],
+  "word_sangnyanghada": [
+   "dịu dàng",
+   "Cách nói của cô ấy dịu dàng."
+  ],
+  "word_dalhada": [
+   "đạt tới",
+   "Nó đã lên tới một trăm người."
+  ],
+  "word_jureodeulda": [
+   "giảm bớt",
+   "Số khách đã giảm."
+  ],
+  "word_bikida": [
+   "tránh ra",
+   "Bạn tránh ra một chút nhé."
+  ],
+  "word_dulleossada": [
+   "bao quanh",
+   "Núi bao quanh ngôi làng."
+  ],
+  "word_joechaekgam": [
+   "cảm giác tội lỗi",
+   "Tôi thấy có lỗi."
+  ],
+  "word_daeryak": [
+   "khoảng chừng",
+   "Khoảng mười người sẽ đến."
+  ],
+  "word_simgakada": [
+   "nghiêm trọng",
+   "Vấn đề rất nghiêm trọng."
+  ],
+  "word_silheomhada": [
+   "làm thí nghiệm",
+   "Chúng tôi làm thí nghiệm trong lớp."
+  ],
+  "word_meotdaero": [
+   "tùy tiện",
+   "Bạn đừng làm theo ý mình nhé."
+  ],
+  "word_bulkwaehada": [
+   "khó chịu",
+   "Mùi này khó chịu."
+  ],
+  "word_uisimhada": [
+   "nghi ngờ",
+   "Bạn đừng nghi ngờ bạn mình."
+  ],
+  "word_ttabunhada": [
+   "buồn tẻ",
+   "Buổi chiều thật buồn tẻ."
+  ],
+  "word_jeongjunghada": [
+   "lịch thiệp",
+   "Anh ấy chào rất lịch thiệp."
+  ],
+  "word_aa": [
+   "ôi chao",
+   "Ôi chao, đẹp thật."
+  ],
+  "word_eoieopda": [
+   "ngớ ngẩn khó tin",
+   "Đó là một sai lầm khó tin."
+  ],
+  "word_jeokjeolhada": [
+   "thích hợp",
+   "Đó là một câu trả lời thích hợp."
+  ],
+  "word_napjakada": [
+   "dẹt",
+   "Cái hộp dẹt."
+  ],
+  "word_seonggeupada": [
+   "vội vàng",
+   "Đó là một phán đoán vội vàng."
+  ],
+  "word_hansimhada": [
+   "thảm hại",
+   "Tôi thấy mình thật thảm hại."
+  ],
+  "word_gaesi": [
+   "sự khai trương",
+   "Ngày mai bắt đầu bán."
+  ],
+  "word_chanseonghada": [
+   "tán thành",
+   "Tôi tán thành ý kiến đó."
+  ],
+  "word_ttwieoneomda": [
+   "nhảy vượt qua",
+   "Tôi đã nhảy qua bức tường."
+  ],
+  "word_ganseopada": [
+   "can thiệp",
+   "Bạn đừng can thiệp việc của tôi."
+  ],
+  "word_bihada": [
+   "so với",
+   "So với năm ngoái thì đã tốt hơn."
+  ],
+  "word_eojjeonji": [
+   "thảo nào",
+   "Thảo nào mà yên tĩnh thế."
+  ],
+  "word_beopdo": [
+   "phép tắc",
+   "Chúng tôi giữ gia phong."
+  ],
+  "word_bangsaseon": [
+   "phóng xạ",
+   "Phóng xạ rất nguy hiểm."
+  ],
+  "word_yamjeonhada": [
+   "ngoan ngoãn",
+   "Đứa trẻ rất ngoan."
+  ],
+  "word_seonmyeonghada": [
+   "rõ nét",
+   "Màu sắc rất rõ nét."
+  ],
+  "word_ieojida": [
+   "nối tiếp",
+   "Câu chuyện cứ kéo dài mãi."
+  ],
+  "word_gamhi": [
+   "dám",
+   "Xin mạn phép nói một lời."
+  ],
+  "word_gongsonhada": [
+   "lễ phép",
+   "Tôi đã chào một cách lễ phép."
+  ],
+  "word_geureoja": [
+   "thế là",
+   "Tôi mở cửa. Thế là gió lùa vào."
+  ],
+  "word_beoreojida": [
+   "xảy ra",
+   "Đã có chuyện lớn xảy ra."
+  ],
+  "word_gingeup": [
+   "sự khẩn cấp",
+   "Đây là tình huống khẩn cấp."
+  ],
+  "word_musahi": [
+   "an toàn",
+   "Tôi đã đến nơi an toàn."
+  ],
+  "word_hwaldonghada": [
+   "hoạt động",
+   "Tôi hoạt động trong câu lạc bộ."
+  ],
+  "word_gansinhi": [
+   "vừa kịp",
+   "Tôi vừa kịp lên xe buýt."
+  ],
+  "word_naagada": [
+   "tiến lên",
+   "Bạn tiến lên một bước."
+  ],
+  "word_deotbuchida": [
+   "nói thêm",
+   "Tôi xin nói thêm một lời."
+  ],
+  "word_chingeunhada": [
+   "thân thuộc",
+   "Giọng anh ấy nghe thân thuộc."
+  ],
+  "word_apjangseoda": [
+   "dẫn đầu",
+   "Thầy giáo đã đi đầu."
+  ],
+  "word_hyungnaenaeda": [
+   "bắt chước",
+   "Tôi bắt chước tiếng chim hót."
+  ],
+  "word_deumulda": [
+   "hiếm",
+   "Loài chim này rất hiếm."
+  ],
+  "word_gyeongjaenghada": [
+   "cạnh tranh",
+   "Hai đội cạnh tranh nhau."
+  ],
+  "word_deurida_2": [
+   "bỏ vào, dành",
+   "Tôi đã dành rất nhiều thời gian."
+  ],
+  "word_ongat": [
+   "đủ mọi loại",
+   "Đủ loại hoa đã nở."
+  ],
+  "word_yeongwonhada": [
+   "vĩnh cửu",
+   "Tôi mong một tình bạn vĩnh cửu."
+  ],
+  "word_wanjeonhada": [
+   "hoàn chỉnh",
+   "Bạn hãy viết một câu hoàn chỉnh."
+  ],
+  "word_wenmanhada": [
+   "tàm tạm được",
+   "Nếu vậy thì tôi đi vậy."
+  ],
+  "word_tteutdaero": [
+   "theo ý muốn",
+   "Bạn cứ làm theo ý mình."
+  ],
+  "word_budichida": [
+   "bị va vào",
+   "Tôi va vào cửa."
+  ],
+  "word_neutchuda": [
+   "dời lại",
+   "Chúng tôi đã dời giờ lại."
+  ],
+  "word_ssoeda": [
+   "hóng gió",
+   "Tôi ra ngoài hóng gió."
+  ],
+  "word_geomsahada": [
+   "kiểm tra",
+   "Tôi đã kiểm tra mắt."
+  ],
+  "word_bulhaenghada": [
+   "bất hạnh",
+   "Đã có chuyện không may xảy ra."
+  ],
+  "word_seolchihada": [
+   "lắp đặt",
+   "Họ đã lắp máy điều hòa."
+  ],
+  "word_jigyeopda": [
+   "chán ngấy",
+   "Tôi chán bữa ăn giống nhau rồi."
+  ],
+  "word_gasida": [
+   "dịu đi",
+   "Cơn đau đầu của tôi đã hết."
+  ],
+  "word_kkeureoanda": [
+   "ôm chặt",
+   "Tôi ôm em bé vào lòng."
+  ],
+  "word_daehyeong": [
+   "cỡ lớn",
+   "Một chiếc xe buýt lớn đã đến."
+  ],
+  "word_galsurok": [
+   "càng ngày càng",
+   "Trời càng ngày càng lạnh."
+  ],
+  "word_eopda_2": [
+   "cõng",
+   "Tôi cõng em bé."
+  ],
+  "word_gwallihada": [
+   "quản lý",
+   "Tôi quản lý sức khỏe tốt."
+  ],
+  "word_beopjeok": [
+   "mang tính pháp lý",
+   "Có vấn đề về pháp lý."
+  ],
+  "word_naebonaeda": [
+   "cho ra ngoài",
+   "Tôi thả con mèo ra ngoài."
+  ],
+  "word_julgot": [
+   "suốt",
+   "Tôi ở đây suốt."
+  ],
+  "word_yeonswae": [
+   "chuỗi liên hoàn",
+   "Đã có một chuỗi tai nạn."
+  ],
+  "word_byeonhameopda": [
+   "không đổi",
+   "Họ đã trao tình yêu không đổi."
+  ],
+  "word_pyosihada": [
+   "đánh dấu",
+   "Tôi đã đánh dấu trên bản đồ."
+  ],
+  "word_hagin": [
+   "nghĩ lại thì",
+   "Nghĩ lại thì điều đó cũng đúng."
+  ],
+  "word_kkulta": [
+   "quỳ",
+   "Tôi đã quỳ xuống."
+  ],
+  "word_yesanghada": [
+   "dự đoán",
+   "Tôi đã dự đoán kết quả."
+  ],
+  "word_jidohada": [
+   "hướng dẫn",
+   "Tôi hướng dẫn học sinh."
+  ],
+  "word_ingong": [
+   "nhân tạo",
+   "Có một hồ nhân tạo."
+  ],
+  "word_baengman": [
+   "một triệu",
+   "Nó tốn một triệu won."
+  ],
+  "word_ikida": [
+   "thành thạo",
+   "Tôi đã thành thạo Hangeul."
+  ],
+  "word_aswipda": [
+   "tiếc nuối",
+   "Tiếc là đã kết thúc rồi."
+  ],
+  "word_majuhada": [
+   "đối diện",
+   "Chúng tôi ngồi đối diện nhau."
+  ],
+  "word_dansunhi": [
+   "đơn thuần",
+   "Đó chỉ đơn thuần là một sai sót."
+  ],
+  "word_eonda": [
+   "đặt lên trên",
+   "Tôi đặt rong biển lên cơm."
+  ],
+  "word_jeoreota": [
+   "như thế kia",
+   "Trông thế thôi chứ anh ấy tốt bụng."
+  ],
+  "word_oroji": [
+   "chỉ duy nhất",
+   "Tôi chỉ luyện tập mà thôi."
+  ],
+  "word_hyeongpyeoneopda": [
+   "tệ hại",
+   "Đồ ăn tệ lắm."
+  ],
+  "word_goeropda": [
+   "khổ tâm",
+   "Lòng tôi nặng trĩu."
+  ],
+  "word_jjireuda": [
+   "đâm, xiên",
+   "Tôi xiên thịt bằng nĩa."
+  ],
+  "word_jeopsok": [
+   "sự kết nối",
+   "Kết nối Internet không được."
+  ],
+  "word_dwijida": [
+   "lục lọi",
+   "Tôi đã lục túi xách."
+  ],
+  "word_teolda": [
+   "giũ",
+   "Tôi giũ bụi trên áo."
+  ],
+  "word_jeongji": [
+   "sự dừng lại",
+   "Chiếc xe đã dừng lại."
+  ],
+  "word_hwaryeohada": [
+   "lộng lẫy",
+   "Bộ quần áo rất lộng lẫy."
+  ],
+  "word_daedanhi": [
+   "vô cùng",
+   "Tôi vô cùng cảm ơn bạn."
+  ],
+  "word_sujupda": [
+   "nhút nhát",
+   "Đứa trẻ rất nhút nhát."
+  ],
+  "word_bongsahada": [
+   "làm tình nguyện",
+   "Cuối tuần tôi đi tình nguyện."
+  ],
+  "word_pumda": [
+   "ấp, ôm ấp",
+   "Con chim ấp trứng."
+  ],
+  "word_gongdong": [
+   "chung",
+   "Chúng tôi làm việc chung."
+  ],
+  "word_gollanhada": [
+   "khó xử",
+   "Điều đó hơi khó xử."
+  ],
+  "word_jungji": [
+   "sự đình chỉ",
+   "Trận đấu đã bị đình chỉ."
+  ],
+  "word_ppaeatda": [
+   "cướp lấy",
+   "Bạn đừng giật đồ chơi nhé."
+  ],
+  "word_sunsuhada": [
+   "thuần khiết",
+   "Đó là một tấm lòng thuần khiết."
+  ],
+  "word_hwahaehada": [
+   "làm hòa",
+   "Tôi đã làm hòa với bạn."
+  ],
+  "word_bepulda": [
+   "ban tặng",
+   "Tôi đối tốt với hàng xóm."
+  ],
+  "word_pandanhada": [
+   "phán đoán",
+   "Bạn hãy tự phán đoán nhé."
+  ],
+  "word_meoljjeonghada": [
+   "nguyên vẹn",
+   "Rơi rồi mà vẫn nguyên vẹn."
+  ],
+  "word_teullimeopda": [
+   "chắc chắn",
+   "Đó là một sự thật chắc chắn."
+  ],
+  "word_garaanda": [
+   "chìm xuống",
+   "Con thuyền đã chìm."
+  ],
+  "word_geobuhada": [
+   "từ chối",
+   "Tôi đã từ chối lời đề nghị."
+  ],
+  "word_kkichida": [
+   "gây ra",
+   "Xin lỗi vì đã làm phiền bạn."
+  ],
+  "word_jakseonghada": [
+   "soạn, điền",
+   "Tôi đã điền vào tờ khai."
+  ],
+  "word_samda_2": [
+   "coi là",
+   "Tôi coi họ là bạn."
+  ],
+  "word_silhaeng": [
+   "sự thực hiện",
+   "Chúng tôi đã thực hiện kế hoạch."
+  ],
+  "word_ttajida": [
+   "truy xét",
+   "Tôi đã truy hỏi lý do."
+  ],
+  "word_tteodolda": [
+   "trôi nổi",
+   "Những đám mây trôi."
+  ],
+  "word_peurojekteu": [
+   "dự án",
+   "Dự án đã hoàn thành."
+  ],
+  "word_dangdanghada": [
+   "đường hoàng",
+   "Cô ấy bước đi đường hoàng."
+  ],
+  "word_haeropda": [
+   "có hại",
+   "Thuốc lá có hại cho cơ thể."
+  ],
+  "word_gyeonuda": [
+   "nhắm vào",
+   "Tôi nhắm vào mục tiêu."
+  ],
+  "word_ganjikada": [
+   "giữ gìn",
+   "Tôi đã giữ gìn lá thư."
+  ],
+  "word_sanggwanhada": [
+   "bận tâm",
+   "Bạn đừng bận tâm việc người khác."
+  ],
+  "word_jechulhada": [
+   "nộp",
+   "Tôi đã nộp bài tập."
+  ],
+  "word_chungdol": [
+   "sự va chạm",
+   "Đã có một vụ va chạm xe."
+  ],
+  "word_omda": [
+   "lây",
+   "Tôi đã bị lây cảm."
+  ],
+  "word_nurida": [
+   "tận hưởng",
+   "Chúng ta tận hưởng tự do."
+  ],
+  "word_jeokdanghi": [
+   "vừa phải",
+   "Bạn hãy ăn vừa phải nhé."
+  ],
+  "word_baljeonhada": [
+   "phát triển",
+   "Thành phố đã phát triển nhiều."
+  ],
+  "word_norida": [
+   "rình, nhắm",
+   "Tôi đang rình một cơ hội."
+  ],
+  "word_eomgyeokada": [
+   "nghiêm ngặt",
+   "Quy định rất nghiêm ngặt."
+  ],
+  "word_geunajeona": [
+   "dù sao thì",
+   "Dù sao thì bạn ăn chưa?"
+  ],
+  "word_sangdanghi": [
+   "khá là",
+   "Nó khá là khó."
+  ],
+  "word_seomgida": [
+   "phụng dưỡng",
+   "Tôi phụng dưỡng cha mẹ."
+  ],
+  "word_hachanta": [
+   "tầm thường",
+   "Đó không phải chuyện nhỏ."
+  ],
+  "word_kkamppakada": [
+   "lỡ quên",
+   "Tôi lỡ quên cuộc hẹn."
+  ],
+  "word_chaeda": [
+   "giật lấy",
+   "Có người giật túi xách."
+  ],
+  "word_hwida": [
+   "cong",
+   "Cành cây đã cong."
+  ],
+  "word_jjakjitda": [
+   "ghép đôi",
+   "Các bạn ghép đôi rồi ngồi nhé."
+  ],
+  "word_naekida": [
+   "có hứng",
+   "Hôm nay tôi không có hứng."
+  ],
+  "word_gopada": [
+   "nhân",
+   "Lấy hai nhân ba."
+  ],
+  "word_sirida": [
+   "buốt",
+   "Tay tôi buốt lạnh."
+  ],
+  "word_saengsaenghada": [
+   "sống động",
+   "Ký ức vẫn sống động."
+  ],
+  "word_maegida": [
+   "định giá",
+   "Người ta đã định giá."
+  ],
+  "word_gojak": [
+   "chỉ vỏn vẹn",
+   "Chỉ có hai người đến."
+  ],
+  "word_mollida": [
+   "dồn về",
+   "Mọi người dồn về một chỗ."
+  ],
+  "word_dotda": [
+   "nhú lên",
+   "Những mầm mới đã nhú lên."
+  ],
+  "word_muryehada": [
+   "vô lễ",
+   "Đó là một lời nói vô lễ."
+  ],
+  "word_heungmiropda": [
+   "thú vị",
+   "Đó là một câu chuyện thú vị."
+  ],
+  "word_ssuiuda": [
+   "đội, trùm lên",
+   "Tôi đội mũ cho họ."
+  ],
+  "word_punggida": [
+   "tỏa ra",
+   "Hoa tỏa hương."
+  ],
+  "word_geoseda": [
+   "dữ dội",
+   "Gió rất dữ."
+  ],
+  "word_tteutda": [
+   "xé mở",
+   "Tôi đã xé phong bì."
+  ],
+  "word_eopda_3": [
+   "làm đổ úp",
+   "Tôi làm đổ chiếc cốc."
+  ],
+  "word_bachida": [
+   "hiến dâng",
+   "Anh ấy đã dâng hiến cả đời."
+  ],
+  "word_sejida": [
+   "mạnh lên",
+   "Gió đã mạnh lên."
+  ],
+  "word_naeswida": [
+   "thở ra",
+   "Bạn hãy thở ra từ từ."
+  ],
+  "word_apduda": [
+   "sắp tới",
+   "Tôi sắp có kỳ thi."
+  ],
+  "word_gupida": [
+   "cúi, gập",
+   "Tôi gập người ở eo."
+  ],
+  "word_dallaeda": [
+   "dỗ dành",
+   "Tôi dỗ đứa trẻ đang khóc."
+  ],
+  "word_majeo": [
+   "đến cả",
+   "Đến cả em tôi cũng muộn."
+  ],
+  "word_beoljuda": [
+   "phạt",
+   "Bạn đừng phạt đứa trẻ."
+  ],
+  "word_yuilhada": [
+   "duy nhất",
+   "Đó là cách duy nhất."
+  ],
+  "word_jeongsinjeok": [
+   "thuộc về tinh thần",
+   "Về mặt tinh thần thì vất vả."
+  ],
+  "word_hollida": [
+   "mê mẩn",
+   "Tôi mê mẩn cảnh đẹp."
+  ],
+  "word_haenghada": [
+   "thực hiện",
+   "Tôi đã thực hiện lời hứa."
+  ],
+  "word_hwidureuda": [
+   "vung",
+   "Anh ấy đã vung cây gậy."
+  ],
+  "word_bakchada": [
+   "đạp tung",
+   "Anh ấy đạp cửa rồi bỏ đi."
+  ],
+  "word_samgada": [
+   "kiêng, hạn chế",
+   "Xin hạn chế gọi điện thoại."
+  ],
+  "word_sasilsang": [
+   "trên thực tế",
+   "Trên thực tế là đã kết thúc."
+  ],
+  "word_sumjida": [
+   "tắt thở",
+   "Ông tôi đã qua đời."
+  ],
+  "word_baesinhada": [
+   "phản bội",
+   "Bạn đừng phản bội bạn mình."
+  ],
+  "word_gaduda": [
+   "nhốt",
+   "Bạn đừng nhốt chim vào lồng."
+  ],
+  "word_heotdoeda": [
+   "uổng công",
+   "Nỗ lực đã không uổng công."
+  ],
+  "word_samanghada": [
+   "tử vong",
+   "Anh ấy đã chết vì tai nạn."
+  ],
+  "word_sakda": [
+   "mục, lên men",
+   "Gỗ đã mục."
+  ],
+  "word_ikkeulda": [
+   "dẫn dắt",
+   "Tôi dẫn dắt đội."
+  ],
+  "word_sonjapda": [
+   "nắm tay",
+   "Tôi nắm tay đứa trẻ đi bộ."
+  ],
+  "word_pagoehada": [
+   "phá hoại",
+   "Bạn đừng phá hoại thiên nhiên."
+  ],
+  "word_chepohada": [
+   "bắt giữ",
+   "Cảnh sát đã bắt tên trộm."
+  ],
+  "word_jaepssada": [
+   "nhanh nhẹn",
+   "Động tác của anh ấy nhanh nhẹn."
+  ],
+  "word_teoreonota": [
+   "thổ lộ",
+   "Tôi đã thổ lộ nỗi lo."
+  ],
+  "word_pyeonghwaropda": [
+   "yên bình",
+   "Ngôi làng thật yên bình."
+  ],
+  "word_gayeopda": [
+   "đáng thương",
+   "Chú chó lạc thật đáng thương."
+  ],
+  "word_naegeolda": [
+   "treo lên",
+   "Họ đã treo biển hiệu."
+  ],
+  "word_buinhada": [
+   "phủ nhận",
+   "Anh ấy đã phủ nhận cáo buộc."
+  ],
+  "word_mullyeobatda": [
+   "thừa kế",
+   "Tôi thừa kế chiếc nhẫn của bà."
+  ],
+  "word_bujeonghada": [
+   "phủ nhận",
+   "Anh ấy đã phủ nhận sự thật."
+  ],
+  "word_gyeonggohada": [
+   "cảnh báo",
+   "Họ đã cảnh báo về nguy hiểm."
+  ],
+  "word_jegeohada": [
+   "loại bỏ",
+   "Tôi đã tẩy vết bẩn."
+  ],
+  "word_jeomjanta": [
+   "đứng đắn",
+   "Cách nói của anh ấy đứng đắn."
+  ],
+  "word_kkeunhimeobsi": [
+   "không ngừng",
+   "Tôi đã luyện tập không ngừng."
+  ],
+  "word_hwaksinhada": [
+   "tin chắc",
+   "Tôi tin chắc sẽ thành công."
+  ],
+  "word_jeongsineopda": [
+   "rối tung",
+   "Hôm nay bận rối tung."
+  ],
+  "word_sseurida": [
+   "rát, xót",
+   "Dạ dày tôi rát."
+  ],
+  "word_nayakada": [
+   "yếu đuối",
+   "Tôi đã bỏ đi tâm hồn yếu đuối."
+  ],
+  "word_jipda_2": [
+   "chống, tựa",
+   "Anh ấy chống gậy đi."
+  ],
+  "word_jibaehada": [
+   "thống trị",
+   "Họ đã thống trị vùng đất rộng."
+  ],
+  "word_golda": [
+   "ngáy",
+   "Anh ấy ngáy."
+  ],
+  "word_jeopgeunhada": [
+   "tiếp cận",
+   "Tôi đã tiếp cận cẩn thận."
+  ],
+  "word_matseoda": [
+   "đương đầu",
+   "Tôi đã đương đầu với khó khăn."
+  ],
+  "word_daegihada": [
+   "chờ sẵn",
+   "Tôi chờ sẵn ở bên ngoài."
+  ],
+  "word_soyuhada": [
+   "sở hữu",
+   "Tôi sở hữu một căn nhà."
+  ],
+  "word_haneopda": [
+   "vô hạn",
+   "Tôi đã nhận tình yêu vô hạn."
+  ],
+  "word_mojori": [
+   "sạch sành sanh",
+   "Đã bán hết sạch."
+  ],
+  "word_goryeohada": [
+   "cân nhắc",
+   "Tôi đã cân nhắc thời tiết."
+  ],
+  "word_janghada": [
+   "đáng khen",
+   "Điều đó thật đáng khen."
+  ],
+  "word_seomyeonghada": [
+   "ký tên",
+   "Bạn ký tên ở đây nhé."
+  ],
+  "word_goyonghada": [
+   "thuê, tuyển",
+   "Họ đã tuyển một nhân viên."
+  ],
+  "word_gurida": [
+   "hôi",
+   "Có mùi hôi."
+  ],
+  "word_geonjida": [
+   "vớt lên",
+   "Tôi đã vớt quả bóng lên khỏi nước."
+  ],
+  "word_gongyuhada": [
+   "chia sẻ",
+   "Chúng tôi đã chia sẻ tài liệu."
+  ],
+  "word_cheojida": [
+   "xệ xuống",
+   "Vai anh ấy xệ xuống."
+  ],
+  "word_jijihada": [
+   "ủng hộ",
+   "Tôi ủng hộ ý kiến đó."
+  ],
+  "word_binanhada": [
+   "chỉ trích",
+   "Bạn đừng chỉ trích tùy tiện."
+  ],
+  "word_cheonghada": [
+   "thỉnh cầu",
+   "Tôi đã nhờ giúp đỡ."
+  ],
+  "word_mulleonada": [
+   "lùi lại",
+   "Tôi lùi lại một bước."
+  ],
+  "word_saegida": [
+   "khắc",
+   "Tôi khắc một cái tên lên gỗ."
+  ],
+  "word_dodalhada": [
+   "đạt đến",
+   "Chúng tôi đã lên tới đỉnh."
+  ],
+  "word_uahada": [
+   "thanh lịch",
+   "Động tác của cô ấy thanh lịch."
+  ],
+  "word_jeungmyeonghada": [
+   "chứng minh",
+   "Tôi đã chứng minh sự thật."
+  ],
+  "word_chuguhada": [
+   "theo đuổi",
+   "Tôi theo đuổi hạnh phúc."
+  ],
+  "word_nadaeda": [
+   "làm quá, khoe mẽ",
+   "Đừng làm quá trước người lớn."
+  ],
+  "word_boksuhada": [
+   "trả thù",
+   "Tôi đã quyết định không trả thù."
+  ],
+  "word_jallagada": [
+   "làm ăn phát đạt",
+   "Dạo này cửa hàng làm ăn tốt."
+  ],
+  "word_gamsuhada": [
+   "chấp nhận",
+   "Tôi đã chấp nhận thua thiệt."
+  ],
+  "word_jueojida": [
+   "được trao cho",
+   "Một cơ hội đã được trao."
+  ],
+  "word_myeongnyeonghada": [
+   "ra lệnh",
+   "Đội trưởng đã ra lệnh."
+  ],
+  "word_susahada": [
+   "điều tra",
+   "Cảnh sát đang điều tra vụ án."
+  ],
+  "word_suhaenghada": [
+   "thi hành",
+   "Họ đã thi hành nhiệm vụ."
+  ],
+  "word_deureoseoda": [
+   "bước vào",
+   "Tôi bước vào phòng."
+  ],
+  "word_biutda": [
+   "cười nhạo",
+   "Bạn đừng cười nhạo người khác."
+  ],
+  "word_dwijipda": [
+   "lật",
+   "Tôi lật cái bánh."
+  ],
+  "word_kkweda": [
+   "xâu, xỏ",
+   "Tôi đã xỏ chỉ vào kim."
+  ],
+  "word_mumohada": [
+   "liều lĩnh",
+   "Đó là hành động liều lĩnh."
+  ],
+  "word_bichamhada": [
+   "thê thảm",
+   "Tôi thấy thật thê thảm."
+  ],
+  "word_yurihada": [
+   "có lợi",
+   "Điều đó có lợi cho chúng ta."
+  ],
+  "word_moyokada": [
+   "sỉ nhục",
+   "Bạn đừng sỉ nhục người khác."
+  ],
+  "word_hyeopbakada": [
+   "đe dọa tống tiền",
+   "Bạn không được đe dọa người khác."
+  ],
+  "word_wihyeopada": [
+   "uy hiếp",
+   "Bạn đừng uy hiếp người khác."
+  ],
+  "word_janinhada": [
+   "tàn nhẫn",
+   "Bạn đừng nói lời tàn nhẫn."
+  ],
+  "word_jeunggahada": [
+   "gia tăng",
+   "Dân số đã tăng lên."
+  ],
+  "word_naemilda": [
+   "chìa ra",
+   "Tôi chìa tay ra."
+  ],
+  "word_jieonaeda": [
+   "bịa ra",
+   "Anh ấy đã bịa ra một câu chuyện."
+  ],
+  "word_heolda": [
+   "phá dỡ",
+   "Họ đã phá ngôi nhà cũ."
+  ],
+  "word_gamanduda": [
+   "để yên",
+   "Bạn cứ để yên như thế nhé."
+  ],
+  "word_hutoehada": [
+   "rút lui",
+   "Quân đội đã rút lui."
+  ],
+  "word_chadanhada": [
+   "chặn lại",
+   "Họ đã chặn con đường."
+  ],
+  "word_meonghada": [
+   "ngẩn ngơ",
+   "Tôi ngồi ngẩn ngơ."
+  ],
+  "word_amureota": [
+   "thế nào cũng được",
+   "Bạn đừng để bừa bãi thế."
+  ],
+  "word_pokbalhada": [
+   "nổ",
+   "Quả bóng bay đã nổ."
+  ],
+  "word_wichihada": [
+   "tọa lạc",
+   "Trường học nằm trên đồi."
+  ],
+  "word_jageukada": [
+   "kích thích",
+   "Đồ cay kích thích dạ dày."
+  ],
+  "word_godaehada": [
+   "mong ngóng",
+   "Tôi mong ngóng tin tức."
+  ],
+  "word_baneunghada": [
+   "phản ứng",
+   "Em bé phản ứng với âm thanh."
+  ],
+  "word_dareumeopda": [
+   "không khác gì",
+   "Nó không khác gì hôm qua."
+  ],
+  "word_yeomnyeohada": [
+   "lo lắng",
+   "Tôi lo cho sức khỏe của con trai."
+  ],
+  "word_cheoljeohada": [
+   "kỹ lưỡng",
+   "Khâu chuẩn bị rất kỹ lưỡng."
+  ],
+  "word_geomanhada": [
+   "kiêu ngạo",
+   "Thái độ của anh ấy kiêu ngạo."
+  ],
+  "word_jabameokda": [
+   "ăn thịt",
+   "Con cáo đã ăn thịt con gà."
+  ],
+  "word_maedallida": [
+   "đu, bám",
+   "Đứa trẻ đu trên xà."
+  ],
+  "word_sujipada": [
+   "sưu tầm",
+   "Tôi sưu tầm tem."
+  ],
+  "word_eokjiro": [
+   "gượng ép",
+   "Bạn đừng cố ăn gượng nhé."
+  ],
+  "word_bigeopada": [
+   "hèn nhát",
+   "Đó là một hành động hèn nhát."
+  ],
+  "word_seonhohada": [
+   "ưa thích hơn",
+   "Tôi thích màu sáng hơn."
+  ],
+  "word_doedollida": [
+   "khôi phục lại",
+   "Tôi đã đưa màn hình về như cũ."
+  ],
+  "word_bulgwahada": [
+   "chỉ vỏn vẹn",
+   "Chỉ có vỏn vẹn mười người."
+  ],
+  "word_changjohada": [
+   "sáng tạo",
+   "Họ sáng tạo cái mới."
+  ],
+  "word_olbareuda": [
+   "đúng đắn",
+   "Bạn hãy ngồi đúng tư thế."
+  ],
+  "word_silloehada": [
+   "tin tưởng",
+   "Tôi tin tưởng đồng nghiệp."
+  ],
+  "word_bangeohada": [
+   "phòng thủ",
+   "Anh ấy đã bảo vệ khung thành."
+  ],
+  "word_tongchihada": [
+   "cai trị",
+   "Nhà vua đã cai trị đất nước."
+  ],
+  "word_madahada": [
+   "chối từ",
+   "Anh ấy đã từ chối sự giúp đỡ."
+  ],
+  "word_antakkapda": [
+   "đáng tiếc",
+   "Kết quả thật đáng tiếc."
+  ],
+  "word_nancheohada": [
+   "khó xử",
+   "Tôi đang ở thế khó xử."
+  ],
+  "word_ttwieodeulda": [
+   "lao vào",
+   "Tôi đã lao xuống nước."
+  ],
+  "word_moranaeda": [
+   "xua đuổi",
+   "Tôi đã đuổi lũ muỗi đi."
+  ],
+  "word_eungdapada": [
+   "hồi đáp",
+   "Không ai hồi đáp cả."
+  ],
+  "word_gumjurida": [
+   "chịu đói",
+   "Họ đã chịu đói suốt thời gian dài."
+  ],
+  "word_heoyonghada": [
+   "cho phép",
+   "Việc chụp ảnh được cho phép."
+  ],
+  "word_bunseokada": [
+   "phân tích",
+   "Tôi đã phân tích dữ liệu."
+  ],
+  "word_mihaenghada": [
+   "bám đuôi",
+   "Cảnh sát đã bám theo anh ta."
+  ],
+  "word_yeoyuropda": [
+   "thong thả",
+   "Cuối tuần rất thong thả."
+  ],
+  "word_uijonhada": [
+   "phụ thuộc",
+   "Bạn đừng phụ thuộc vào thuốc."
+  ],
+  "word_gonggeupada": [
+   "cung cấp",
+   "Họ cung cấp nước."
+  ],
+  "word_geolmatda": [
+   "phù hợp",
+   "Đó là trang phục phù hợp với dịp này."
+  ],
+  "word_jeokapada": [
+   "thích hợp",
+   "Anh ấy là người thích hợp cho vị trí này."
+  ],
+  "word_bokjonghada": [
+   "tuân theo",
+   "Chúng tôi tuân theo quy định."
+  ],
+  "word_hyeomnyeokada": [
+   "hợp tác",
+   "Hai nước hợp tác với nhau."
+  ],
+  "word_joeda": [
+   "siết chặt",
+   "Tôi siết con ốc."
+  ],
+  "word_cheoljeohi": [
+   "một cách kỹ lưỡng",
+   "Tôi đã chuẩn bị kỹ lưỡng."
+  ],
+  "word_bogyonghada": [
+   "uống thuốc",
+   "Bạn uống hai lần một ngày nhé."
+  ],
+  "word_kkadaropda": [
+   "khó tính",
+   "Anh ấy kén ăn lắm."
+  ],
+  "word_jilmeojida": [
+   "gánh vác",
+   "Tôi đã gánh hành lý lên vai."
+  ],
+  "word_eongeupada": [
+   "đề cập",
+   "Tôi đã không đề cập chuyện đó."
+  ],
+  "word_ganghwahada": [
+   "tăng cường",
+   "Họ đã tăng cường biện pháp an toàn."
+  ],
+  "word_maengsehada": [
+   "thề",
+   "Tôi đã thề sẽ không làm lại nữa."
+  ],
+  "word_banhanghada": [
+   "chống đối",
+   "Anh ấy đã chống lại quy định."
+  ],
+  "word_galmanghada": [
+   "khao khát",
+   "Họ khao khát tự do."
+  ],
+  "word_moraneota": [
+   "lùa vào",
+   "Họ lùa đàn cừu vào chuồng."
+  ],
+  "word_hwalgichada": [
+   "tràn đầy sức sống",
+   "Khu chợ tràn đầy sức sống."
+  ],
+  "word_beorida_2": [
+   "bày ra, mở",
+   "Họ đã mở một bữa tiệc."
+  ],
+  "word_summakida": [
+   "nghẹt thở",
+   "Cảnh đẹp đến nghẹt thở."
+  ],
+  "word_chimmukada": [
+   "im lặng",
+   "Anh ấy đã im lặng hồi lâu."
+  ],
+  "word_gojeongdoeda": [
+   "được cố định",
+   "Chiếc ghế được cố định vào sàn."
+  ],
+  "word_saengjonhada": [
+   "sống sót",
+   "Mọi người đều sống sót."
+  ],
+  "word_gongjeonghada": [
+   "công minh",
+   "Trọng tài rất công minh."
+  ],
+  "word_eunmilhada": [
+   "bí mật",
+   "Đó là một cuộc gặp bí mật."
+  ],
+  "word_gamdanghada": [
+   "kham nổi",
+   "Một mình thì khó kham nổi."
+  ],
+  "word_jeonjinhada": [
+   "tiến lên",
+   "Chúng tôi tiến lên từ từ."
+  ],
+  "word_uisimdoeda": [
+   "bị nghi ngờ",
+   "Sự thật đó bị nghi ngờ."
+  ],
+  "word_jeongdanghada": [
+   "chính đáng",
+   "Đó là một yêu cầu chính đáng."
+  ],
+  "word_gwallyeonhada": [
+   "liên quan",
+   "Tôi sẽ nói liên quan đến vấn đề này."
+  ],
+  "word_dongdeunghada": [
+   "ngang bằng",
+   "Mọi người đều có cơ hội ngang nhau."
+  ],
+  "word_gamanhada": [
+   "xét đến",
+   "Chúng tôi đã xét đến tuổi của anh ấy."
+  ],
+  "word_mulleoseoda": [
+   "lùi ra",
+   "Bạn lùi ra một chút nhé."
+  ],
+  "word_seokbanghada": [
+   "phóng thích",
+   "Họ đã thả người tù."
+  ],
+  "word_burida": [
+   "sai khiến",
+   "Bạn đừng sai khiến người khác."
+  ],
+  "word_mungchida": [
+   "đoàn kết",
+   "Chúng ta hãy đoàn kết lại."
+  ],
+  "word_jeoehada": [
+   "loại trừ",
+   "Tôi đã loại trừ cuối tuần."
+  ],
+  "word_ilchihada": [
+   "trùng khớp",
+   "Hai ý kiến đã trùng khớp."
+  ],
+  "word_changbaekada": [
+   "nhợt nhạt",
+   "Mặt anh ấy nhợt nhạt."
+  ],
+  "word_galgameokda": [
+   "gặm nhấm",
+   "Con chuột đã gặm cái hộp."
+  ],
+  "word_jangdamhada": [
+   "cam đoan",
+   "Tôi cam đoan điều đó."
+  ],
+  "word_seumida": [
+   "thấm vào",
+   "Nước mưa đã thấm vào tường."
+  ],
+  "word_jujanghada": [
+   "chủ trương",
+   "Anh ấy khẳng định quan điểm của mình."
+  ],
+  "word_satsachi": [
+   "từng ngóc ngách",
+   "Tôi đã lục soát khắp nhà."
+  ],
+  "word_sonkkopida": [
+   "được xếp hàng đầu",
+   "Làng này được xếp hàng đầu về cảnh đẹp."
+  ],
+  "word_georaehada": [
+   "giao dịch",
+   "Đó là cửa hàng chúng tôi giao dịch đã lâu."
+  ],
+  "word_jallada": [
+   "giỏi giang, tự phụ",
+   "Anh ấy làm như chỉ mình giỏi."
+  ],
+  "word_maengseko": [
+   "thề có trời",
+   "Tôi thề đó là sự thật."
+  ],
+  "word_deolda": [
+   "bớt ra",
+   "Tôi đã bớt một ít cơm."
+  ],
+  "word_ppeonppeonhada": [
+   "trơ trẽn",
+   "Đó là một thái độ trơ trẽn."
+  ],
+  "word_kkieodeulda": [
+   "chen ngang",
+   "Bạn đừng chen hàng nhé."
+  ],
+  "word_jechida": [
+   "vượt qua",
+   "Tôi đã vượt qua chiếc xe phía trước."
+  ],
+  "word_tteottteothada": [
+   "đường hoàng, thanh thản",
+   "Lòng tôi thanh thản."
+  ],
+  "word_paakada": [
+   "nắm bắt",
+   "Tôi đã nắm được tình hình."
+  ],
+  "word_seolchida": [
+   "chập chờn",
+   "Đêm qua tôi ngủ chập chờn."
+  ],
+  "word_sukda": [
+   "cúi gục",
+   "Đầu anh ấy cúi gục xuống."
+  ],
+  "word_jeojireuda": [
+   "gây ra (lỗi)",
+   "Tôi đã gây ra một sai lầm lớn."
+  ],
+  "word_kkankkanhada": [
+   "khắt khe",
+   "Cuộc kiểm tra rất khắt khe."
+  ],
+  "word_gangyohada": [
+   "ép buộc",
+   "Bạn đừng áp đặt ý kiến."
+  ],
+  "word_tteungeumeopda": [
+   "bất chợt, chẳng đâu vào đâu",
+   "Đó là một câu hỏi bất chợt."
+  ],
+  "word_byeongdeulda": [
+   "mắc bệnh",
+   "Cái cây đã bị bệnh."
+  ],
+  "word_jungjihada": [
+   "đình chỉ",
+   "Họ đã dừng trận đấu."
+  ],
+  "word_yeokgyeopda": [
+   "ghê tởm",
+   "Mùi này thật ghê tởm."
+  ],
+  "word_motsalda": [
+   "sống nghèo khổ",
+   "Ngày xưa chúng tôi sống nghèo."
+  ],
+  "word_jeongdapda": [
+   "đằm thắm",
+   "Hai người rất đằm thắm với nhau."
+  ],
+  "word_jungdanhada": [
+   "gián đoạn",
+   "Họ đã ngừng việc thi công."
+  ],
+  "word_tteeonaeda": [
+   "gỡ ra",
+   "Tôi đã gỡ tờ giấy khỏi tường."
+  ],
+  "word_ungkeurida": [
+   "co ro",
+   "Tôi co ro vì lạnh."
+  ],
+  "word_hejipda": [
+   "lục tung",
+   "Tôi đã lục tung ngăn kéo."
+  ],
+  "word_dwiteulda": [
+   "vặn xoắn",
+   "Tôi đã vặn sợi dây thép."
+  ],
+  "word_kkeunhimeopda": [
+   "không ngừng",
+   "Cần có nỗ lực không ngừng."
+  ],
+  "word_chujeokada": [
+   "truy vết",
+   "Họ đã lần theo dấu chân."
+  ],
+  "word_myeongbaekada": [
+   "rõ ràng",
+   "Đó là một sự thật rõ ràng."
+  ],
+  "word_joreuda": [
+   "nằng nặc đòi",
+   "Đứa trẻ nằng nặc đòi đồ chơi."
+  ],
+  "word_heumjapda": [
+   "bới lỗi",
+   "Bạn đừng bới lỗi nữa."
+  ],
+  "word_haedanghada": [
+   "thuộc diện",
+   "Quy định này áp dụng cho tôi."
+  ],
+  "word_ipjeunghada": [
+   "chứng minh",
+   "Họ đã chứng minh hiệu quả."
+  ],
+  "word_geupgyeokada": [
+   "đột ngột",
+   "Nhiệt độ đã giảm đột ngột."
+  ],
+  "word_dwinggulda": [
+   "lăn lộn",
+   "Chú chó con lăn lộn trên cỏ."
+  ],
+  "word_gareuda": [
+   "bổ, chia",
+   "Tôi bổ quả dưa hấu làm đôi."
+  ],
+  "word_daseurida": [
+   "trị vì",
+   "Nhà vua trị vì đất nước."
+  ],
+  "word_hwipsseulda": [
+   "càn quét",
+   "Cơn bão đã càn quét ngôi làng."
+  ],
+  "word_geunama": [
+   "dù sao thì cũng",
+   "Dù sao thì cũng may."
+  ],
+  "word_namjadapda": [
+   "ra dáng đàn ông",
+   "Đó là một giọng nói nam tính."
+  ],
+  "word_eogeunnada": [
+   "trật, lệch",
+   "Kế hoạch của chúng tôi đã trật."
+  ],
+  "word_kkabulda": [
+   "nghịch ngợm",
+   "Bạn đừng nghịch trong lớp nhé."
+  ],
+  "word_sarojapda": [
+   "thu hút, mê hoặc",
+   "Bài hát đã mê hoặc tôi."
+  ],
+  "word_gonggyoropda": [
+   "thật trùng hợp",
+   "Thật trùng hợp là cùng một ngày."
+  ],
+  "word_giulda": [
+   "nghiêng",
+   "Khung ảnh bị nghiêng."
+  ],
+  "word_barojapda": [
+   "sửa cho đúng",
+   "Tôi đã sửa lại chỗ sai."
+  ],
+  "word_mullichida": [
+   "đẩy lùi",
+   "Họ đã đẩy lùi kẻ địch."
+  ],
+  "word_pahechida": [
+   "đào bới",
+   "Họ đã đào bới mặt đất."
+  ],
+  "word_apbakada": [
+   "ép, đè",
+   "Tôi đã ép vào vết thương."
+  ],
+  "word_batdeulda": [
+   "phụng sự, kính trọng",
+   "Tôi kính phụng cha mẹ."
   ]
  }
 }
