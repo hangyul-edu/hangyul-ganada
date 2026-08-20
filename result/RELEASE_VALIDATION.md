@@ -14,6 +14,11 @@ for it. Then `22ba72a` re-generated `relations.json`, which ships inside the
 app, so that artefact was one commit stale the moment the commit landed. It was
 rebuilt rather than explained away — that is the failure this document exists
 for, at a smaller scale than the one it was written about.
+
+Commits after `22ba72a` touch only this file, `docs/report.md` and the digests
+below. None of them is inside `assets/public`, so the delivered package is
+byte-correct for the shipping source; a commit that records a build cannot be in
+the build it records, and that is the only gap.
 **Built:** 2026-08-20, Linux (WSL2), JDK 21.0.11, Android SDK build-tools 36.0.0.
 **Device:** `hangyul-pixel7` AVD, Android 16 (API 36), x86_64, 1080×2400,
 software GPU, wiped before install.
@@ -208,7 +213,7 @@ directory it was looking in. It now matches by extension and reports both.
 adb3598e98100f16bf2241ffa7d0d6fb4eaa361283fa0540d0f8d7b993163156  hangyul-ganada-release.apk
 90f41dfea87961f0a9d6c0fee04c4a6a0e611beb2ad4c30acb4af08b6025b6d7  hangyul-ganada-release.aab
 f00d56e719f5de573af037a49ca564bce7428d841a2d9d8f4c2ae611f569487e  docs/report.pdf
-860f844680ffea1619101236885429d91d7b199b389db6ab20a61c90f6541982  build-info.json
+04fc2c0d2eec2c61c3d7855d219539eec5b68526c24f4510ab3c797c3afe4099  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has
