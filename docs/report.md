@@ -567,6 +567,46 @@ with **no console or page errors**.
 *Figure 1 — Home. One unit, one button, two counters, and a review row that
 disappears when there is nothing to review.*
 
+### Two screens said the same thing twice, and now do not
+
+**Home offered the day's words twice and Review twice.** The Words card said
+*Words 0/10 · today's words*; four rows below it, a *Today's words · 10 left
+today* row said the same fraction in different words and linked to the same
+screen. Above the fold, a practice card said *8 reviews ready* with a Start
+button; below it, a review row said *8 to go over* and linked to the screen whose
+job is to offer that session. Two entry points to one action is not two chances
+to take it — it is a screen that cannot decide what it is asking for.
+
+Each now appears once. The review row survives only for the empty state, where it
+is not a duplicate but the one place that says Review exists and has nothing in
+it yet.
+
+**The finished-alphabet card no longer prints a percentage.** It headlined *You
+can read Hangul* with a ring beside it reading **0 %** — the day's *words*
+progress, correctly labelled and impossible to read as anything other than a
+contradiction of the sentence next to it. The fraction below says the same thing
+without arguing with the headline.
+
+### My Learning, re-audited — **kept as it is, deliberately**
+
+Every row was checked against the question "would a beginner act on this": the
+learner's own record and the language at the top; the two daily goals; the
+reading voice, the practice typeface and the two writing guides, all of which
+change the core exercise; the sound-free switch, which is an accommodation;
+appearance; the required notices; and the reset. Nothing on it is decoration and
+nothing was removed.
+
+**Saved Words and the Wrong Answer Notebook are not on it, and that is the
+finding rather than an omission.** Both are the learner's own lists and both
+belong to them, so the obvious move is to put them on the screen called My
+Learning. They are already on Review — in *both* of its states, with their
+counts, deliberately, because a quiet day is exactly when somebody wants to look
+back at what they got wrong — and saved words are also on Words. Adding a third
+and fourth entry point is the same defect that was just removed from Home. They
+are kept, they are distinct from each other and from Review, and they are one tap
+away; they are not duplicated onto a fourth screen to satisfy the shape of a
+list.
+
 ---
 
 # 9. User flows
@@ -578,16 +618,18 @@ Each flow was walked this cycle unless marked otherwise.
 Open → Home renders immediately with Unit 1 ("Six vowels to start"), `0 days`
 streak, `Letters 0/40`, `Words 0/10` and **Start now**. No account wall, no
 onboarding carousel, no permission prompts. The interface is already in the
-device's language if it is one of the eight.
+device's language if it is one of the thirty-two.
 
 **Friction: LOW.** The one thing missing is any statement of what the product is
 *for* — a first-time visitor sees a lesson, not a proposition.
 
 ## 9.2 Change language — **VERIFIED**
 
-`/me` → **Language** is the first row after the stats → `/me/language` → eight
-languages in their own names with a search box → tap → the interface changes
-immediately and the choice is written to `localStorage`.
+`/me` → **Language** is the first row after the stats → `/me/language` →
+thirty-two languages in their own names, each with a flag, the English name
+beneath, and — where its word meanings are still English — a line saying so →
+a search box that matches endonym, English name and alias → tap → the interface
+changes immediately and the choice is written to `localStorage`.
 
 **Friction: LOW.** This is the flow a non-English reader needs most, and it is
 placed correctly.
