@@ -59,14 +59,14 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `8a06c110c12fd928156fa79ec3dee5d22f57c407` |
-| Working tree | Clean at `deda959`; artefacts rebuilt from it — see §2.2 |
+| Git commit | `192bbcea763a46fa7ec6163b488124ac12a31f3c` |
+| Working tree | Clean at `192bbce`; artefacts rebuilt — see §2.2 |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
 | Interface languages | 10 |
 | Words shipping | 2,581 |
 | Categories | 18 |
-| Study sets | 523 (five words each) |
+| Study sets | 524 (five words each) |
 | Characters taught | 73 |
 | Pronunciation notes | 503 |
 | Audio clips | 10,454 |
@@ -94,10 +94,14 @@ they were closed in is the part worth recording.
 ```
 aaf06bb  premium quality pass — hints, strokes, ten languages
 deda959  wrong-answer notebook — show what the learner confused it with
+1d6831a  rebuild the release from the committed tree, and verify the bytes
+528d201  sound-free practice, one taught sense per word, a question that is not four boxes
+2e879c5  finish Vietnamese and Thai, and fix what translating found
+192bbce  write the "More about it" section instead of deriving it
          ↓  commit first
          ↓  then mobile:sync + gradlew assembleRelease bundleRelease
          ↓  then unpack the delivered APK and grep it
-result/hangyul-ganada-release.apk   built from deda959, verified to contain it
+result/hangyul-ganada-release.apk   built from the tip, verified to contain it
 ```
 
 Building before committing produces a signed artefact that looks current and is
@@ -117,20 +121,21 @@ predates this task.
 | --- | --- | --- |
 | Interface languages | 10 | 8 |
 | Vocabulary headwords | 2,581 (target 10,000 — **7,419 short**) | 2,581 |
-| Vocabulary meanings in every shipping language | 8 of 10 locales at 2,581; `vi` and `th` at 500 | 8 of 8 |
+| Vocabulary meanings in every shipping language | **10 of 10 locales at 2,581** | 8 of 8 |
 | Lesson titles translated | 10 of 10 locales | **2 of 8** — undetected |
 | Letter copy translated | 10 of 10 locales | 8 of 8 |
 | Verified synonym pairs | 72 | 72 |
 | Verified antonym pairs | 64 | 64 |
 | Words with any verified relation | 242 of 2,581 (9.4%) | 242 |
-| Longer explanations (`definition`) | 784, English only | 784 |
-| Web unit (`vitest`) | 573 | 550 |
+| Longer explanations (`definition`) | **25, written, in all 10 languages** | 784, derived, English only |
+| Words whose taught sense is pinned by exact string | 11 | 0 |
+| Web unit (`vitest`) | 589 | 550 |
 | Handwriting core (`vitest`) | 95 | 95 |
 | End-to-end (`playwright`) | 228 (114 × 2 projects) | 220 |
 | Rendered stroke frames measured in pixels | 1,345 | **0** |
 | Handwriting false-accept / false-reject | 0.21% / 0.78% | 0.21% / 0.78% |
-| Word-corpus bundle | 180.8 kB gz of a 220 kB budget | 180.8 kB |
-| Everything precached | 812 kB gz of an 840 kB budget | 802 kB of 800 kB |
+| Word-corpus bundle | 169.1 kB gz of a 220 kB budget | 180.8 kB |
+| Everything precached | 854 kB gz of a 900 kB budget | 802 kB of 800 kB |
 
 ---
 
@@ -172,29 +177,44 @@ the frames and measures them, and it found and drove out a twelve-unit intrusion
 in ㅎ, a detached chip beside ㅊ's bar, a route drawn through blank paper in ㅞ,
 and a ㅊ authored as a vertical tick against a face that draws it horizontal.
 
-**Ten interface languages, and a gap that had been invisible for two cycles.**
-Vietnamese and Thai are complete for interface copy, the whole letter
-curriculum, and the words a learner meets in their first fifty days. Adding them
-surfaced the more serious finding: **lesson titles existed only in English and
-Korean**, so Japanese, Chinese, Spanish, French, German and Portuguese learners
-have been reading English headings in the largest type on the home screen since
-the curriculum shipped — while `i18n:check` reported 100% coverage, correctly,
-about the files it looks at. Lesson titles are not in those files.
+**Ten interface languages, complete, and a gap that had been invisible for two
+cycles.** Vietnamese and Thai now carry interface copy, the whole letter
+curriculum, and a meaning and example translation for every one of the 2,581
+words — no locale is partial any more. Adding them surfaced the more serious
+finding: **lesson titles existed only in English and Korean**, so Japanese,
+Chinese, Spanish, French, German and Portuguese learners have been reading
+English headings in the largest type on the home screen since the curriculum
+shipped — while `i18n:check` reported 100% coverage, correctly, about the files
+it looks at. Lesson titles are not in those files.
+
+**Translating is also the check nothing else was running.** Writing a meaning
+from the example sentence forces a reading of the gloss against that sentence,
+and eleven disagreed: 열 glossed "fever" above 열까지 세어 보세요, 전기 glossed
+"first period" above 전기가 나갔어요, 마디 glossed "a joint" above 한 마디만
+할게요. All eleven are now authored and pinned by exact string. No automated
+check found any of them and none could have — what a machine can decide here is
+narrow, two heuristics were built and both discarded, and §14.2 says exactly
+where the line is.
 
 Three things still stand between this and a paid release.
 
 **1 · The corpus is a quarter of its stated size, and its delivery does not
 scale.** 2,581 words against a 10,000 target, and the bundle forecast says the
-current mechanism could not carry 10,000 anyway — 700.6 kB gz against a 220 kB
-budget, **318%**. The precache budget had to be raised this cycle purely to fit
-two more languages, which is the same architecture saying the same thing from a
-second direction.
+current mechanism could not carry 10,000 anyway — 655.3 kB gz against a 220 kB
+budget, **298%**. The precache budget was raised *twice this release* purely to
+fit two more languages, which is the same architecture saying the same thing
+from a second direction. The three possible remedies were costed against the
+code this cycle and none was implemented; §13.4 says what each would cost and
+why the gate at 4,000 headwords is the honest answer for now.
 
-**2 · The dictionary is thinner than the screen implies, and now unevenly so.**
-784 words carry a longer explanation, English only. 242 of 2,581 have any
-verified synonym or antonym. Vietnamese and Thai have meanings for 500 words and
-marked English beyond that. The credibility fix from last cycle holds — no
-category neighbour is presented as a synonym — but it was a fix by subtraction.
+**2 · The dictionary is thinner than the screen implies — but no longer
+unevenly.** 242 of 2,581 words have a verified synonym or antonym, which is a
+source-coverage limit and not a defect. The *More about it* block went the other
+way and is worth reading twice: it used to appear on 784 words in English only,
+filled by the build with the dictionary's second and third senses — "phylum"
+under 문, "graveyard" under 산, "prophase" under 전기. It now appears on 25 words
+in all ten languages, and every word of it was written. **That row got smaller
+and the product got better**, which is the shape of most of this cycle.
 
 **3 · The shipped artefacts are no longer stale, for the first time in three
 reports.** The cycle was committed and the Android artefacts rebuilt from that
@@ -203,8 +223,9 @@ APK was then unpacked and grepped for seven markers of this cycle's work, all
 seven present, and installed and launched on an emulator. That closes the P0
 that opened the last two reports.
 
-Against that: nothing that was reported broken is still broken. Learning data
-survives refresh and reopen. The storage warning cannot appear without a real
+Against that: nothing that was reported broken is still broken. The 마디
+recording, open as a P3 for two cycles, is regenerated and checked on the device
+by byte length. Learning data survives refresh and reopen. The storage warning cannot appear without a real
 write/read failure. Dark-mode hover no longer paints white on white. A first
 vocabulary session now asks three shapes of question in three layouts instead of
 the same one ten times. A learner who finishes the alphabet is told where to go
@@ -457,7 +478,7 @@ with **no console or page errors**.
 | `/words` | The day + discovery | **Start / Keep going** | settings (goal, plan) | **VERIFIED WORKING** |
 | `/words/today` | Run the day's plan | answer | plan, progress, memory, mistakes | **VERIFIED WORKING** |
 | `/words/category/:id` | Browse one shelf | tap a word | saved | **VERIFIED WORKING** |
-| `/words/word/:wordId` | The dictionary entry | listen / Save | saved | **PARTIALLY WORKING** (§15) |
+| `/words/word/:wordId` | The dictionary entry | listen / Save | saved | **VERIFIED WORKING** (§15) |
 | `/words/saved` | The learner's own list | search, open, review | saved | **VERIFIED WORKING** |
 | `/review` | What needs practice | Start, or pick a mode | reads a resolved plan | **VERIFIED WORKING** |
 | `/review/session` | Run the plan | answer | memory, mistakes, attempts | **VERIFIED WORKING** |
@@ -925,7 +946,7 @@ demonstration has only just shown them.
 | Target | 10,000 |
 | Gap | **7,419** |
 | Categories | 18 |
-| Study sets | 523 |
+| Study sets | 524 |
 | Removed during curation | 328, each with a recorded reason |
 
 Part of speech: 1,023 verbs, 996 nouns, 283 adjectives, 208 adverbs, 27
@@ -954,12 +975,23 @@ Licences requiring attribution are shown in-app under **Legal & Licences**.
 | Word audio, example audio | 2,581 / 2,581 |
 | Pronunciation note (spoken ≠ written) | 503 |
 | Meaning, each of 8 original languages | 2,581 |
-| Meaning, Vietnamese and Thai | 500 each — see §23.4 |
-| Example translation | 2,581 in 7 languages (Korean has none — the example *is* Korean) |
-| **Longer explanation (`definition`)** | **784, English only** |
+| Meaning, Vietnamese and Thai | **2,581 each** — see §23.4 |
+| Example translation | 2,581 in 9 languages (Korean has none — the example *is* Korean) |
+| **Longer explanation (`definition`)** | **25, in all 10 languages** — see §15 |
 | Verified synonym or antonym | **242** |
 
-The last two rows are the product's content gap. It is not a schema gap.
+Two of these rows moved this cycle and they moved in opposite directions, which
+is the point.
+
+Vietnamese and Thai went from 500 words to all 2,581, so no locale is partial
+any more. The longer explanation went from 784 to 25 — *down* — because the 784
+were derived from a dictionary and were not worth reading. §15 has what they
+said. What replaced them is written, and written only where a one-line gloss
+genuinely misleads.
+
+The relations row is the remaining content gap and it is not a schema gap: the
+field exists, the sources are conservative, and 242 of 2,581 is what two
+licensed sources actually state.
 
 ## 13.4 The 10,000-word strategy — **PARTIALLY WORKING**
 
@@ -968,14 +1000,45 @@ handful of words a day rather than as a list. **The surfacing is built and
 works. The corpus is at 26% of target.**
 
 **And the delivery path for the rest is unsolved.** `npm run bundle:budget`
-forecasts the corpus at 10,000 headwords as **700.6 kB gzipped against a 220 kB
-budget — 318%**. The forecast is printed but *not enforced*. Today's corpus is
-180.8 kB gz and still ships in the **first load**. Growing it without splitting
+forecasts the corpus at 10,000 headwords as **655.3 kB gzipped against a 220 kB
+budget — 298%**. The forecast is printed but *not enforced*. Today's corpus is
+169.1 kB gz and still ships in the **first load**. Growing it without splitting
 would roughly quadruple the initial download.
 
 **RECOMMENDED:** decide the delivery mechanism — per-category chunks, or an
 on-demand fetch with an offline-first cache — *before* authoring more words,
 because the choice changes the data shape.
+
+### Why it was not done this cycle, stated rather than implied
+
+It was looked at properly and left alone, and the reasoning belongs in the
+report rather than in a commit nobody reads.
+
+The three remedies the budget script names were each costed against the code:
+
+* **Drop the corpus out of the eager module graph.** `LearnerProvider` builds
+  today's plan from `vocabularyByPriority()` and the home screen renders that
+  plan, so the corpus is needed *before the first screen paints*. Making it
+  lazy is not a bundler setting; it is a loading state on the home screen and a
+  change to what the app promises on a cold start. That is a product decision,
+  and §62 of the brief lists the home screen's behaviour among the things not
+  to reverse.
+* **Ship only the fields the learning path reads.** Measured field by field:
+  dropping provenance saves 2.1 kB gzipped, difficulty 8.4 kB, the frequency
+  triple 22 kB. All of them are consumed inside `data/vocabulary.ts` into one
+  normalised `VocabularyWord`, so splitting them makes that shape partial and
+  asynchronous across fifteen call sites, for ~30 kB.
+* **Shard by the session's plan.** The largest change of the three, and the
+  only one that actually scales to 10,000.
+
+At 2,581 words the first load is at 95% of its budget with every budget green,
+and the corpus is 77% of its own. The gate that forces the work exists and is
+enforced: `LAZY_REQUIRED_HEADWORDS = 4_000` in `check-bundle-budget.mjs` fails
+the build at the commit where the current architecture becomes the wrong one.
+Doing the refactor now would be a large, risky change to the whole data layer
+for a benefit the product does not yet need; doing it at 4,000 is the same work
+with a reason. **What would be wrong is authoring 7,419 more words first**, and
+that is exactly what the gate prevents.
 
 ---
 
@@ -989,7 +1052,9 @@ because the choice changes the data shape.
 | `examples:qa:check` | 2,581 PASS, 0 REVIEW, 0 REWRITE; 2,173 distinct sentence shapes; largest shared template used 8 times; 1,303 inflected target forms |
 | `audio:pronunciation:check` | 2,612 items, 0 errors, 0 warnings |
 | `content:coverage:check` | every applicable row at 100% |
-| `copy:audit:check` | 5,439 strings across 10 languages, 0 errors |
+| `vocabulary:sense:qa:check` | 2,581 words, 8 complete languages, 11 pinned senses held; `vi`/`th` at 2,581 each; 25 long definitions present in all 10 |
+| `audio:qa` | 10,550 clip slots, 48.9 MB, 0 errors, 0 warnings |
+| `copy:audit:check` | 5,499 strings across 10 languages, 0 errors |
 
 The four content warnings are loanwords whose translations are the same word in
 Latin script — 호텔 → *hotel*, 골프 → *golf*, 위스키 → *whisky*, 요가 → *yoga*.
@@ -1005,51 +1070,69 @@ Sampling by hand (엄마, 고기, 하다, 밝다, 남자, 좋다):
 * **Examples are short and natural.** 엄마가 요리해요 / 방이 밝아요 / 고기를 구워요.
 * **Inflection is handled.** 먹다's sentence says 먹어요, and the card says so.
 
-**One real content inconsistency found — NOT PREVIOUSLY DOCUMENTED.** For a few
-polysemous headwords, the Korean gloss and the English gloss describe *different
-senses*:
+**Eleven glosses contradicted their own example, and all eleven are fixed.**
 
-| Word | Korean gloss | English gloss |
-| --- | --- | --- |
-| 쓰다 | 글씨를 적다, 또는 무엇을 이용하다 (write / use) | "to wear" |
-| 적다 | 수나 양이 많지 않다 (few) | "to write" |
-| 밝다 | 빛이 많아 환하다 (bright — an adjective) | part of speech recorded as `verb` |
+This is the defect §18 of the brief names, and it had a single cause. The seven
+non-English meanings are written per entry in the editorial pack, and `pack.py`
+refuses an entry that is missing one. English was not: it fell through to the
+first usable dictionary sense, and a derivation has to *pick* a sense, so on a
+polysemous headword it picks one and the example demonstrates the other.
 
-**Customer impact:** switching interface language changes the meaning of the same
-word. **Severity: P2** — rare, but it is a credibility defect exactly where the
-product claims authority.
+| Word | Gloss said | Its own example says | Gloss now |
+| --- | --- | --- | --- |
+| 네 | "who, whom" | "Yes, that's right." | "yes" |
+| 열 | "fever" | "Please count to ten." | "ten" |
+| 찍다 | "to take a photo" | "I stamped it with a seal." | "to stamp" |
+| 쓰다 | "to wear, to put on" | "I write my name." | "to write" |
+| 타다 | "to burn" | "I take the bus." | "to ride, to get on" |
+| 정말 | "that which is true or genuine" | "Thank you very much." | "really, truly" |
+| 수도 | "waterworks" | "The capital of Korea is Seoul." | "the capital city" |
+| 있다 | "to exist" | "The book is on the desk." | "to be in a place" |
+| 적다 | "to write, to write down" | "There is little money." | "to be few, to be little" |
+| 전기 | "first period, early period" | "The power went out." | "electricity" |
+| 마디 | "a joint" | "Let me say just one word." | "a word, a remark" |
 
-### A second class of the same defect, found this cycle
+Each now carries an authored `en` in the pack, which the build prefers over
+anything derived. 적다 needed its part of speech corrected as well: the
+derivation had taken the verb "to write down" for a headword whose example is
+the adjective. That changed its difficulty score, which re-ordered the corpus
+slightly — harmless, because every id is stable and all copy is keyed by id, and
+worth noting because it is why some figures in this report moved by one.
 
-Translating the corpus into Vietnamese and Thai forces a reading of every gloss
-**against its own example sentence**, which is a check nothing had run. Eight
-entries disagree with themselves in English, before any translation:
+### How they are held
 
-| Word | Gloss says | Its own example says |
-| --- | --- | --- |
-| 네 | "who, whom" | "Yes, that's right." |
-| 열 | "fever" | "Please count to ten." |
-| 찍다 | "to take a photo" | "I stamped it with a seal." |
-| 쓰다 | "to wear, to put on" | "I write my name." |
-| 타다 | "to burn" | "I take the bus." |
-| 정말 | "that which is true or genuine" | "Thank you very much." |
-| 수도 | "waterworks" | "The capital of Korea is Seoul." |
-| 파리 | "a fly" | (also a city; the example is the insect) |
+`npm run vocabulary:sense:qa` is new and does three things a machine can
+actually decide:
 
-These are worse than the §14.2 cases, because the two halves of the *same
-card* contradict each other in the *same* language. A learner reading 열 sees
-"fever" above a sentence about counting to ten.
+* **Coverage** — every shipping word has a meaning in every language that
+  claims to be complete. Hard failure.
+* **Part of speech against the shape of the gloss** — an infinitive gloss on a
+  noun, or a verb glossed as a bare noun. Hard failure, with one documented
+  exception (실컷, an adverbial phrase that begins with the word "to").
+* **The eleven pinned senses, matched by exact string.** Hard failure. A
+  near-match would let a regeneration replace "ten" with "the number ten, a
+  count" and call it unchanged, and the point of pinning is that the sense stops
+  moving.
 
-The Vietnamese and Thai copy for these follows the **example**, because the
-example is what the learner reads and it is the sense the question is built
-around — which makes those eight deliberately inconsistent with their own
-English gloss. That is the lesser of two wrongs and it is recorded in
-`docs/LOCALIZATION_NATIVE_REVIEW.md` rather than hidden.
+It also *reports*, without gating, the 103 glosses that carry more than one
+sense in some language — 차 is "a car, or the tea you drink" in Korean and
+車、お茶 in Japanese. Those are real and they are content work, so they are
+listed rather than made to block a build nobody can unblock.
 
-**No sense-identity system was built this cycle.** A stable taught sense per
-entry — with the gloss, example, audio, relations and distractors all pinned to
-it — is the actual fix, and it remains unbuilt. What exists now is a list of
-eight known-bad entries and a method for finding more.
+### What it deliberately does not claim
+
+**It cannot decide that two glosses in two languages mean the same thing.** That
+was attempted twice. Comparing the English gloss against the example translation
+by word overlap flags 11% of the corpus and is mostly noise. Comparing the
+English and Korean glosses by grammatical *shape* flags 21 entries of which most
+are correct. Neither is a check; both are a way of generating work, and both
+were discarded rather than shipped as a number that looks like rigour.
+
+So the honest state of §14.2's older finding — Korean and English describing
+different senses of a polysemous word — is that the three named cases (쓰다, 적다,
+밝다) are fixed, eight more were found and fixed, and **there is no automated
+guarantee that a twelfth does not exist**. Finding one still takes a person
+reading a card. What changed is that finding one now has somewhere to put it.
 
 ## 14.3 Lexical relations — the fix from last cycle, audited
 
@@ -1105,18 +1188,73 @@ example with its own audio, and a verified synonym.*
 | Save | 2,581 | **VERIFIED WORKING** |
 | Example + translation + example audio | 2,581 | **VERIFIED WORKING** |
 | Sound-change note | 503 | **VERIFIED WORKING** |
-| **Longer explanation** | **784, English only** | **PARTIALLY WORKING** |
+| **Longer explanation** | **25, all 10 languages** | **VERIFIED WORKING** |
 | Synonyms / Opposites | 242 | **PARTIALLY WORKING** — correct when present |
 
-## 15.2 Assessment
+## 15.2 The *More about it* block, rewritten from the ground up
 
-**For a common word in English this is a credible dictionary entry.** For the
-same word in Japanese or Spanish it is a headword, a gloss, a sentence and a
-sound — respectable, but thinner than the layout implies, because the *More
-about it* block simply never appears.
+The row above went from 784 words to 25 and that is an improvement, which needs
+explaining.
 
-**Customer impact:** the product's claim to be a mini-dictionary is English-first
-in a way the language picker does not advertise. **Severity: P2.**
+**What it used to be.** The build filled the block with the dictionary's second
+and third senses for the headword, joined with a semicolon. Nobody wrote a word
+of it. Reading the 784 words that had one is what settled its fate:
+
+```
+  개    "someone who does the bidding of another"
+  문    "phylum"
+  산    "graveyard"
+  얼굴  "visage"
+  새    "straw thatch used for roofing"
+  전기  "prophase"
+```
+
+Under a heading that reads *More about it*, in English only, on a screen whose
+whole purpose is to be trustworthy about a word. And English only meant a
+Japanese or Spanish learner never saw the heading at all — the previous report
+called that the defect, and it had the diagnosis backwards. The absence was not
+the problem. The presence was.
+
+**Two filters were written and both were abandoned.** Putting each clause
+through the same `gloss.py` bar the primary meaning has to clear leaves 좋다
+reading "to be good; to be good" and 알다 repeating its own meaning. A stricter
+pass that also drops anything duplicating the gloss still keeps the thatch and
+the graveyard. The text is a dictionary talking *about* a word, which is the
+precise thing `gloss.py` exists to keep away from a beginner, and no shape rule
+turns it into writing.
+
+**What it is now.** Nothing is derived. 25 words carry a written explanation in
+all ten languages, and they are the words where one line genuinely misleads:
+
+* **The sibling terms** — 오빠, 형, 언니, 누나, 동생. Korean picks the word by the
+  *speaker's* gender, so 오빠 and 형 are the same brother seen from two sides.
+  No gloss carries that; the block says it in a sentence.
+* **The eleven pinned polysemous entries** from §14.2, each naming the sense it
+  is *not* teaching: 차 is a car and also tea, 열 is ten and also a fever, 파리
+  is a fly and also Paris.
+* **The words whose grammar is the point** — 하다 is how most Korean verbs are
+  built, 있다 is one word where English needs both "be" and "have", 되다 is heard
+  far more often as 안 돼요 than as "become".
+
+The other 2,556 words have no block, deliberately. A paragraph under every word
+is a paragraph a learner scrolls past, and this one is worth reading precisely
+because it does not always appear.
+
+**How it is held.** `pack.py` refuses an entry whose long definition is written
+in some of the eight entry-carried languages and not the rest. `vocabulary:sense:qa`
+compares all ten packs index by index, so the block cannot appear in Vietnamese
+and vanish in Thai — verified by deleting one row and watching the check fail.
+`wordDefinition.test.tsx` holds the two properties a screen can check: the block
+appears on 차 and mentions tea, and it is absent from 사과, which is an apple and
+nothing else.
+
+## 15.3 Assessment
+
+**A credible dictionary entry, now in ten languages rather than one.** The
+remaining thinness is relations: 242 of 2,581 words show a synonym or an
+opposite, and that is a source-coverage limit rather than a defect — see §14.3.
+
+**Customer impact:** none outstanding for the meanings. **Severity: closed.**
 
 ---
 
@@ -1332,6 +1470,48 @@ which matters more than it sounds: a second copy would be a second opinion about
 what counts as giving the answer away, and the day they disagreed the test would
 be certifying a rule the product does not follow. That is precisely the failure
 mode that let the original defect ship with a green suite.
+
+### Two more found this cycle, and why the second one moved the check
+
+**The Korean template, again, on a different word.** `첫 글자는 ‘{{start}}’예요`
+appends 예요 after the interpolated syllable, so for 아예 the rendered line is
+첫 글자는 ‘아’예요 — and with punctuation stripped, that spells the answer. The
+template now ends in an ellipsis like the other nine languages do.
+
+It surfaced only because 적다's part-of-speech correction re-ordered the corpus
+and dropped 아예 onto a sampled index. The sample was every thirty-seventh word;
+a sample that finds a *template* defect only when a particular word falls into
+it is a sample that reports luck, so it is now every seventh — the whole file
+runs in about four seconds.
+
+**The one a template fix cannot reach.** Tightening the sample found:
+
+```
+  이렇게, meaning in de   →  "so"
+  review.hint.inSentence  →  "So wird es benutzt: 이렇게 써 보세요."
+                              ▲▲
+```
+
+The German is a correct rendering of "Here's how it's used". The Korean sentence
+is safe. The answer is a real gloss. The collision exists only once the three
+are put together — and in Spanish and Portuguese too, because *así* and *assim*
+open the same sentence. There is nothing to fix upstream short of picking
+lead-ins that avoid every gloss in ten languages, which is not a rule anybody
+could keep.
+
+So the check moved to where the string finally exists. `usableHints` renders
+each rung with the component's own `t` and drops any that hands the answer over;
+`ChoiceExercise` and `BuildExercise` both run it, so this is a runtime
+guarantee and not only a test. The rung is simply gone and the ladder is
+shorter, which is the right trade — a hint that gives the answer away is worse
+than a missing hint, and the reveal rung is never dropped, so a learner can
+always get out.
+
+The test now audits the *filtered* ladder, and bounds how much the filter has to
+remove: today it drops two rungs each in German, Spanish and Portuguese out of
+1,845 questions per language, and strands nothing. A safety net doing heavy
+lifting would mean the hints are badly written, and the bound is what would say
+so.
 
 ## 17.6 What the unit test could not catch
 
@@ -1551,10 +1731,41 @@ notes 52 compounds where §30 of the standard would insert an ㄴ if the second
 half were a word on its own; they are read as ordinary liaison, correct for the
 Sino-Korean ones.
 
-## 22.4 Known audio defect — **VERIFIED, unfixed**
+## 22.4 The 마디 defect — **VERIFIED FIXED**, and what its screen says now
 
-One recording is wrong: **마디 in one of the two voices**. The cache versioning
-exists so that regenerating it will actually reach learners. **Severity: P3.**
+The male voice read **마디** as [마지], and this report carried it as an open P3
+for two cycles. It is fixed: the clip was regenerated, the manifest agrees with
+the file on disk, 마디 is a permanent entry in the pronunciation fixture set, and
+`scripts/qa-native-android.mjs` checks on-device that the byte length served
+matches the manifest — so a cached older recording cannot quietly survive an
+update.
+
+Three layers ran this cycle, and they answer different questions:
+
+| Layer | Question | Result |
+| --- | --- | --- |
+| A. Asset integrity | Is this a real, well-formed recording? | 10,550 slots, 48.9 MB, **0 errors, 0 warnings** |
+| B. Utterance mapping | Right item, right text, matching note? | 2,612 items, **0 errors, 0 warnings** |
+| C. Linguistic pronunciation | Does it sound like correct Korean? | screen only — see below |
+
+**Layer C reported one disagreement and it is not being called a defect.** The
+recogniser transcribes both 낳다 clips as 낫다. The fixture comment used to claim
+both voices had been confirmed correct; neither claim survives contact with the
+same clips at a different decoder setting:
+
+```
+  낳다 [male]    → '낫타'      ← aspirated, so the ㅌ *is* in the recording
+  낳다 [female]  → '락타'      ← not a Korean word
+  마디 [female]  → '바티'      ← a clip nobody has ever disputed
+```
+
+An engine that writes 바티 for the female 마디 is not in a position to convict
+the female 낳다. So the fixture stays — it is the right thing to keep watching —
+and the comment now records the instability instead of a confidence nothing
+supports. **What would settle it is a person listening, which is exactly what
+layer C is documented as not being.** No claim is made here in either direction.
+
+**Severity: 마디 closed. 낳다 unknown, and stated as unknown.**
 
 ---
 
@@ -1583,8 +1794,8 @@ picks up `vi-*` and `th-*` through the same negotiation as every other locale.
 | Français | 100% | 15 | 73 | 2,581 | 2,581 |
 | Deutsch | 100% | 15 | 73 | 2,581 | 2,581 |
 | Português (BR) | 100% | 15 | 73 | 2,581 | 2,581 |
-| **Tiếng Việt** | 100% | 15 | 73 | **500** | **500** |
-| **ไทย** | 100% | 15 | 73 | **500** | **500** |
+| **Tiếng Việt** | 100% | 15 | 73 | **2,581** | **2,581** |
+| **ไทย** | 100% | 15 | 73 | **2,581** | **2,581** |
 
 ## 23.3 The gap that a 100% coverage report could not see
 
@@ -1604,26 +1815,35 @@ than on a file, because a check on the files is what missed it.
 Two years of green localisation reports did not contain this fact. That is worth
 more attention than the fix.
 
-## 23.4 The Vietnamese and Thai vocabulary gap — stated plainly
+## 23.4 The Vietnamese and Thai vocabulary gap — **CLOSED**
 
-500 of 2,581 words, in both. Not a rounding of "nearly done".
+It was 500 of 2,581 in both, and the last report said so rather than rounding it
+to "nearly done". It is now 2,581 of 2,581 in both. **All ten languages carry a
+meaning and an example translation for every word that ships.**
 
-The 500 are the **first 500 words of the corpus**, which is not arbitrary: the
-corpus is ordered by priority and the daily planner takes new words from the
-front of it, so those are exactly the words a learner meets in their first fifty
-days at the default goal of ten a day. Beyond that, `wordCopy` resolves down the
-fallback chain and the interface renders the English **marked with its source
-language** — behaviour that module was written for and that, until now, no
-shipping locale had exercised.
+The architecture did not change to make that true, and that is worth stating
+because a closed gap is often a removed seam. Vietnamese and Thai are still
+hand-written files keyed by word id in `content/vocabulary/copy/`; a word with
+no line there still builds and still gets a `null` row; `wordCopy` still
+resolves that down the fallback chain and reports `isFallback`, which the
+interface still renders **marked with its source language**. A word added to the
+corpus tomorrow ships in eight languages and falls back in two until somebody
+writes those two lines. What changed is that today there are no such words.
 
-Finishing it is content work, not engineering: `content/vocabulary/copy/vi.json`
-and `th.json` are keyed by word id, `build_vocabulary.py` merges whatever is
-there, and a missing word becomes a `null` row. Nothing in the app changes.
+**Coverage is not review.** These 5,162 rows were written for this release and
+have not been read by a native speaker of either language. That is the subject
+of `docs/LOCALIZATION_NATIVE_REVIEW.md` and is not altered by the coverage being
+complete — §29 of the brief is explicit that a locale is not to be marked
+native-reviewed unless a human native speaker actually reviewed it, and none
+has. The specific risks are enumerated there: register, Thai spacing,
+classifier choice, and verb glosses in two languages that have no infinitive
+marker.
 
-The eight original locales cannot be partial in the same way — `pack.py` refuses
-an entry missing any of them — which is why they are all at 2,581 and why adding
-a ninth to that list would have meant either shipping nothing or filling 2,081
-rows with something nobody wrote.
+**Finishing it is also what found three more content defects.** A translator
+working from the example sentence writes "electricity" beside a gloss that says
+"first period", and the disagreement has to be resolved before the line can be
+written. 적다, 전기 and 마디 came out of that; see §14.2. No automated check found
+any of the eleven, and none of the checks in §23.2 could have.
 
 ## 23.5 Language UX — **VERIFIED WORKING**
 
@@ -1658,7 +1878,7 @@ has the same advantage with อือ.
 ## 23.7 Naturalness, as distinct from coverage
 
 **PARTIALLY VERIFIED, and the honest answer is in a file of its own.**
-`copy:audit:check` passes over 5,439 strings in ten languages with 0 errors, and
+`copy:audit:check` passes over 5,499 strings in ten languages with 0 errors, and
 `i18n:check` reports 100% for all ten — but both check structure. Neither can
 tell whether a sentence reads well to someone who grew up speaking the language.
 
@@ -1941,12 +2161,22 @@ card previews 가나다 / 한글 in its own face.
 
 | | Now | Budget |
 | --- | --- | --- |
-| Largest locale pack | 37.9 kB gz | 44 kB |
+| First load | 439.2 kB gz, 6 chunks | 460 kB |
+| Largest locale pack | 38.2 kB gz | 44 kB |
 | Largest route chunk | 4.7 kB gz | 24 kB |
-| Stroke assets | 22.6 kB gz | 32 kB |
-| **Word corpus** | **180.8 kB gz** | 220 kB |
-| Everything precached | 757.2 kB gz, 69 files | 800 kB |
-| *Forecast at 10,000 words* | *700.6 kB gz* | *220 kB — **318%*** |
+| Stroke assets | 22.1 kB gz | 32 kB |
+| **Word corpus** | **169.1 kB gz** | 220 kB |
+| Everything precached | 854.0 kB gz, 73 files | 900 kB |
+| *Forecast at 10,000 words* | *655.3 kB gz* | *220 kB — **298%*** |
+
+The precache budget was raised twice this release for the same two languages —
+800 → 840 kB when Vietnamese and Thai arrived at 500 words each, and 840 → 900 kB
+when their copy was finished to all 2,581. **Two raises in one release is the
+finding, not the kilobytes.** The service worker precaches every locale's word
+copy so that a learner who installs and goes offline before opening a word
+screen still has their own language; that is right, and it does not scale — the
+total grows by a locale pack per language and by the whole corpus per word. The
+architecture that fixes it is the same one §13.4 is about.
 
 The word corpus is in the **first load**, not a lazy chunk. At today's size that
 is affordable; at the target size it is not (§13.4).
@@ -2145,55 +2375,66 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
-| **I-01** | Release | **P0** | Shipped Android AAB/APK predate every fix in this report and the last one | Anyone installing today gets a product two cycles old | **RESOLVED** — rebuilt from `deda959`, contents verified, installed and launched |
-| **I-02** | Repo | **P0** | This whole cycle is uncommitted | A fresh checkout has hints that print the answer and strokes that bleed | **RESOLVED** — committed as `aaf06bb` and `deda959` on `premium-quality-pass` |
+| **I-01** | Release | **P0** | Shipped Android AAB/APK predate every fix in this report and the last one | Anyone installing today gets a product two cycles old | **RESOLVED** — rebuilt from the committed tree, contents verified, installed and launched |
+| **I-02** | Repo | **P0** | This whole cycle is uncommitted | A fresh checkout has hints that print the answer and strokes that bleed | **RESOLVED** — six commits on `premium-quality-pass` |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | The card renders nothing; the funnel still does not exist | **OPEN** |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
-| **I-05** | Performance | **P1** | Corpus at 10,000 words is 318% of the bundle budget, and the precache budget had to be raised for two languages | The delivery architecture cannot carry the plan | **OPEN** |
-| **I-06** | Word Detail | **P1** | Longer explanations exist for 784 words, English only | Non-English learners never see the *More about it* block | **OPEN** |
-| **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covers 500 of 2,581 words | Past word 500 a vi/th learner reads marked English | **OPEN** |
-| **I-08** | Content | **P1** | Eight entries whose gloss contradicts their own example | 열 reads "fever" above a sentence about counting to ten | **OPEN** |
-| **I-09** | Vocabulary UX | **P2** | Still four options on a card; no matching, no keyboard recall | Three layouts is variety of presentation, not of interaction | **OPEN** |
-| **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | Meaning changes when the interface language changes | **OPEN** |
-| **I-11** | Accessibility | **P2** | Listening questions rely on the hint ladder's reveal for a text alternative | Usable, but it is scored as a reveal rather than as an accommodation | **PARTIAL** |
-| **I-12** | Persistence | **P2** | No export | Clearing site data still destroys the history irrecoverably | **OPEN** |
+| **I-05** | Performance | **P1** | Corpus at 10,000 words is 298% of the bundle budget, and the precache budget was raised twice this release | The delivery architecture cannot carry the plan | **OPEN — costed, deliberately deferred, gated at 4,000 headwords** |
+| **I-06** | Word Detail | **P1** | Longer explanations existed for 784 words, English only, and were dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** — 25 written words in ten languages; §15.2 |
+| **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covers 500 of 2,581 words | Past word 500 a vi/th learner reads marked English | **RESOLVED** — 2,581 in both |
+| **I-08** | Content | **P1** | Entries whose gloss contradicts their own example | 열 reads "fever" above a sentence about counting to ten | **RESOLVED** — eleven found, all authored and pinned |
+| **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Matching spans four words and the plan is per-word | **PARTIAL** — `build` added, matching still absent |
+| **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | Meaning changes when the interface language changes | **PARTIAL** — the eleven known cases are pinned; no automated guarantee a twelfth does not exist |
+| **I-11** | Accessibility | **P2** | Listening questions rely on the hint ladder's reveal for a text alternative | Usable, but it is scored as a reveal rather than as an accommodation | **PARTIAL** — sound-free practice added; the reveal is still the per-question fallback |
+| **I-12** | Persistence | **P2** | No export | Clearing site data still destroys the history irrecoverably | **OPEN — by decision**, see §50 of the brief |
 | **I-13** | Relations | **P2** | 242 of 2,581 words carry any relation | Synonym/antonym sections rarely appear | **OPEN** |
 | **I-14** | Strokes | **P2** | Eighteen sub-visible intrusions remain, largest ㅈ at 68 px | Visible if you look for it; not what was complained about | **OPEN** |
-| **I-15** | Audio | **P3** | 마디 is mispronounced in one voice | One word sounds wrong | **OPEN** |
-| **I-16** | i18n copy | **P3** | No locale has been reviewed by a native speaker | Unknown awkwardness in nine languages | **OPEN** |
+| **I-15** | Audio | **P3** | 마디 is mispronounced in one voice | One word sounds wrong | **RESOLVED** — regenerated, fixtured, checked on-device |
+| **I-16** | Audio | **P3** | The recogniser screen reports 낳다 as 낫다 in both voices | Unknown — it may be the decoder | **OPEN, and stated as unknown**; §22.4 |
+| **I-17** | i18n copy | **P3** | No locale has been reviewed by a native speaker, now across 5,162 more rows | Unknown awkwardness in nine languages | **OPEN** |
+| **I-18** | Content | **P3** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" in Korean | **OPEN** — reported by `vocabulary:sense:qa`, not gated |
 
-**P0: 0 open · P1: 6 · P2: 6 · P3: 2**
+**P0: 0 open · P1: 3 · P2: 6 (4 partial) · P3: 3**
 
-The two P0s were resolved *after* this section was first drafted, in the same
-session, and are left in the table with their resolution rather than deleted —
-they were the two most repeated findings in this product's history and the
-record of how they were closed is worth more than a shorter table.
+The two P0s were resolved in an earlier session of this cycle and are left in
+the table with their resolution rather than deleted — they were the two most
+repeated findings in this product's history.
 
-Two P1s are new because the work that created them is new (I-07, I-08); one P2
-is new because a check that did not exist last cycle can now see it (I-14). The
-list is longer than last cycle's and the product is better, which is what
-happens when the instruments improve.
+Five rows closed this cycle (I-06, I-07, I-08, I-15, and the second P0). Three
+are new (I-16, I-17 restated, I-18), and every one of them is new because a
+check that did not exist last cycle can now see it. **The list stays about the
+same length and the product is better, which is what happens when the instruments
+improve faster than the defects.**
+
+One row deserves its own sentence. **I-06 closed in the opposite direction to
+the one the last report recommended.** That report said to author the missing
+784 explanations in the other nine languages. Reading the 784 is what changed
+the answer: they were not worth translating, and the fix was to delete them and
+write 25. A recommendation followed without reading its subject would have
+produced 7,056 translated dictionary fragments.
 
 ## 33.2 How to confirm it, and what to do
 
 | ID | Reproduction | Evidence | Likely cause | Recommended fix |
 | --- | --- | --- | --- | --- |
-| **I-01** | was: `ls -la result/*.apk` → 19 Aug, `a7cc604` | now: the delivered APK contains `capability-probe`, `surface-hover`, `showMoreHint`, `hintLevel`, `nextStep`, `Tiếng Việt`, `ไทย` | artefacts had not been rebuilt since | **done** — see `result/RELEASE_VALIDATION.md` |
-| **I-02** | `git log --oneline -2` | `aaf06bb`, `deda959` | not committed | **done** — committed before the artefacts were built, in that order |
+| **I-01** | was: `ls -la result/*.apk` → 19 Aug, `a7cc604` | the delivered APK contains `capability-probe`, `surface-hover`, `showMoreHint`, `hintLevel`, `nextStep`, `Tiếng Việt`, `ไทย` | artefacts had not been rebuilt since | **done** — see `result/RELEASE_VALIDATION.md` |
+| **I-02** | `git log --oneline -6` | `aaf06bb` … `192bbce` | not committed | **done** — committed before the artefacts were built, in that order |
 | **I-03** | finish the alphabet, look at `/letters` | `HANGYUL_URL` is null in a plain checkout | the URL is not in this repository | set `VITE_HANGYUL_URL` at build time |
 | **I-04** | `vocabulary:qa:check` | "7,419 short of the 10,000 target" | content work unfinished | decide I-05 first, then author |
-| **I-05** | `bundle:budget` | 700.6 kB gz forecast vs 220 kB; precache 812 kB of 840 kB | corpus and every locale pack ship eagerly | chunk the corpus; precache the shell and one locale, cache the rest on use |
-| **I-06** | open any word with the interface in Japanese | 0 non-English `definition` values | content not authored | author for the top 500 words in all ten languages |
-| **I-07** | set the interface to Vietnamese, open word 600 | `vocabulary.vi.json` has 500 non-null rows of 2,581 | written by hand this cycle, deliberately partial | extend `content/vocabulary/copy/*.json`; no code change needed |
-| **I-08** | open 열, 찍다, 쓰다, 타다 | §14.2 | gloss and example authored independently | pin one taught sense per entry, then re-derive both |
+| **I-05** | `bundle:budget` | 655.3 kB gz forecast vs 220 kB; precache 854 kB of 900 kB | corpus and every locale pack ship eagerly | chunk the corpus; precache the shell and one locale, cache the rest on use — §13.4 has the costing |
+| **I-06** | open 차 with the interface in Thai | the block renders Thai; `vocabulary:sense:qa` reports 25 in all 10 | — | **done** |
+| **I-07** | set the interface to Vietnamese, open word 600 | `vocabulary.vi.json` has 2,581 non-null rows | — | **done** |
+| **I-08** | open 열, 찍다, 쓰다, 타다, 적다, 전기, 마디 | `vocabulary:sense:qa:check` passes with 11 pins | gloss derived, example authored | **done** — pinned by exact string |
 | **I-09** | run a 10-word sitting | §16.5 | matching spans four words; the plan is per-word | scheduling change, not a screen |
-| **I-10** | 쓰다, 적다, 밝다 | §14.2 | glosses authored per language independently | same sense-identity fix as I-08 |
-| **I-11** | any `listen` step | §17.3 | the reveal rung doubles as the fallback | give it its own control and score it as aided, not revealed |
-| **I-12** | clear site data | §24.6 | consequence of having no account | design a real backup, or accept |
+| **I-10** | 차, 아니면, 이상 in `vocabulary:sense:qa` output | 103 multi-sense glosses listed | glosses authored per language independently | read them; there is no mechanical test — §14.2 |
+| **I-11** | Settings → sound-free practice, then any session | `soundFree.test.ts` | the reveal rung doubles as the per-question fallback | give listening its own text alternative, scored as aided |
+| **I-12** | clear site data | §24.6 | consequence of having no account | none — §50 of the brief forbids a customer-facing export |
 | **I-13** | open ten words at random | §14.3 | source coverage, deliberately conservative | accept, or add a second licensed source |
 | **I-14** | `npm run strokes:visual` | 18 findings listed in §11.6 | Y-junctions where two strokes share a start point | improve the claim at shared origins, or accept and keep measuring |
-| **I-15** | play 마디 in that voice | long-standing note | TTS artefact | regenerate; cache versioning will deliver it |
-| **I-16** | — | `docs/LOCALIZATION_NATIVE_REVIEW.md` | not done | native review before a paid launch |
+| **I-15** | play 마디 in the male voice | manifest bytes match the file; on-device check in `qa-native-android.mjs` | TTS artefact | **done** |
+| **I-16** | `npm run audio:listen:fixtures` | 낳다 → 낫다 both voices; at beam 5, 낫타 and 락타, and 마디 → 바티 | probably the decoder, possibly the clip | a person listens; §22.4 says why nothing else settles it |
+| **I-17** | — | `docs/LOCALIZATION_NATIVE_REVIEW.md` | not done | native review before a paid launch |
+| **I-18** | `npm run vocabulary:sense:qa` | 103 listed, per locale | one gloss carrying two senses | split or choose, per entry; it is content work |
 
 ---
 
@@ -2224,6 +2465,15 @@ re-reported as open.**
 | Progress could not exceed 100% | `percent` uncapped; `ratio` capped for the bar | store tests |
 | Dark-mode hover painting white on white | Semantic `surfaceHover` / `primarySubtleHover` tokens | token build |
 | Refresh 404 on internal routes | SPA fallback, and the worker no longer caches a 404 as the shell | `routing:check` |
+| **Vietnamese and Thai vocabulary at 500 of 2,581** | All 2,581 in both; ten locales complete | `vocabulary:sense:qa:check` |
+| **Eleven glosses contradicting their own example** | Authored `en`, pinned by exact string | `vocabulary:sense:qa:check` |
+| 적다 filed as a verb because the derivation took the wrong sense | An adjective, in the pack | the same check's POS rule |
+| ***More about it* filled with "phylum", "graveyard", "prophase"** on 784 words | 25 words, written, in all ten languages | `wordDefinition.test.tsx` + pack-level parity |
+| The same block appearing in English and nowhere else | Refused by `pack.py`; ten packs compared index by index | `vocabulary:sense:qa:check` |
+| 첫 글자는 ‘아’예요 spelling 아예 once punctuation is stripped | Template ends in an ellipsis, like the other nine | `hints.test.ts`, now every 7th word |
+| "So wird es benutzt" handing over 이렇게 in de, es, pt-BR | `usableHints` drops a rung that reveals, at render time | the same suite, bounded |
+| **마디 read as [마지] by the male voice**, open for two cycles | Regenerated; permanent fixture; checked on-device by byte length | `audio:qa`, `audio:pronunciation:check`, `qa-native-android` |
+| The 낳다 fixture claiming both voices confirmed correct | The comment records the recogniser's instability instead | — it is now stated as unknown |
 
 ---
 
@@ -2260,6 +2510,14 @@ Behaviours that must stay tested. Each maps to a real past failure.
 | 25 | A pen travelling where its stroke's ink is not | same |
 | 26 | Curriculum content untranslated in a shipping locale | `e2e/hints.spec.ts` for th and vi; `data.test.ts` for the maps |
 | 27 | A first session asking one question shape ten times | `vocabularyDay.test.ts` on the new-word rotation |
+| 28 | A learner who cannot hear being left with no session | `soundFree.test.ts` — heard-only steps gone, session still varied |
+| 29 | **A rendered hint containing the answer** even when the rung is safe | `usableHints` at render time; `hints.test.ts` audits the filtered ladder |
+| 30 | A hint filter quietly removing so much that the ladder is a reveal | the same test bounds drops and strandings per locale |
+| 31 | **A gloss drifting back to a sense its own example contradicts** | `vocabulary:sense:qa:check` — eleven pins, exact string |
+| 32 | A locale's word copy silently going partial | the same check, coverage rule |
+| 33 | **A *More about it* block in one language and not another** | `pack.py` refuses a partial `d`; the same check compares ten packs |
+| 34 | A derived dictionary fragment returning to that block | `wordDefinition.test.tsx` — it must not restate the meaning, and must stay rare |
+| 35 | A corrected recording being replaced by a cached older one | `qa-native-android.mjs` compares served bytes to the manifest |
 
 Rows 20–25 are the ones worth noting. Every one of them guards a defect that
 **shipped past a full green suite**, because the suite was testing the artefact
@@ -2275,7 +2533,7 @@ objects instead of rendered sentences, translation files instead of screens.
 | Command | Purpose | Result |
 | --- | --- | --- |
 | `verify:quick` | The gate: name, i18n, copy, strokes, **stroke pixels**, vocabulary, relations, tokens, lint, typecheck, unit tests, build, bundle budget, routing | **PASS** |
-| `test` | 573 web unit + 95 handwriting-core | **PASS** |
+| `test` | 589 web unit + 95 handwriting-core | **PASS** |
 | `test:e2e` | 228 Playwright cases (114 × 2 projects) | **PASS**, both projects run in full this cycle |
 | `strokes:qa:check` | 73 items, 269 strokes, 1,345 frames — path validity | **PASS** |
 | **`strokes:visual:check`** | the same 1,345 frames **rasterised and measured** | **PASS**, 18 sub-threshold findings reported |
@@ -2284,8 +2542,10 @@ objects instead of rendered sentences, translation files instead of screens.
 | `content:qa:check` | editorial pack quality | **PASS**, 4 benign warnings |
 | `examples:qa:check` | 2,581 sentences | **PASS**, 0 review, 0 rewrite |
 | `audio:pronunciation:check` | 2,612 items | **PASS**, 0 errors |
+| `audio:qa` | 10,550 clip slots, 48.9 MB | **PASS**, 0 errors, 0 warnings |
+| `vocabulary:sense:qa:check` | one taught sense per word, 11 pins, definition parity across 10 packs | **PASS** |
 | `content:coverage:check` | field completeness matrix | **PASS**, every row 100% |
-| `copy:audit:check` | 5,439 strings, **10 languages** | **PASS** |
+| `copy:audit:check` | 5,499 strings, **10 languages** | **PASS** |
 | `handwriting:robustness` | false accept / reject by typeface | **0.21% / 0.78%** |
 | `review:benchmark` | adaptive vs fixed scheduler | adaptive wins **7 of 7** |
 | `bundle:budget:check` | size budgets | **PASS**, forecast flagged, precache budget raised |
@@ -2342,15 +2602,15 @@ since the last report.
 | Hangul learning | **9/10** = | 73 items, 12 lessons, correct order, syllables taught as their own thing |
 | Handwriting UX | **8/10** = | One guided write, undo/clear, helper below the canvas; inherently tiring on glass |
 | Stroke animation quality | **8/10** = | Now measured in pixels rather than asserted: zero visible intrusions, 18 sub-visible ones listed (§11.6), and committed |
-| Vocabulary depth | **4/10** = | 2,581 of 10,000; delivery unsolved at target (I-04, I-05) |
+| Vocabulary depth | **5/10** ▲ | 2,581 of 10,000 and delivery unsolved at target (I-04, I-05) — but every word now carries a meaning and an example in all ten languages, which is depth of a different axis |
 | Vocabulary learning | **7/10** ▲ | Four skills in three layouts on a first session, where there was one. Still four options on a card (I-09) |
 | **Hints and help** | **8/10** ▲▲ | Was 2/10 and unscored: the button printed the answer. Now a graded ladder, audited in ten languages |
-| Dictionary quality | **5/10** = | Trustworthy and sparse: 242 relation entries, 784 English-only explanations |
+| Dictionary quality | **6/10** ▲ | Trustworthy and sparse: 242 relation entries, and a *More about it* block that is now written rather than scraped — 25 words, ten languages (§15.2) |
 | Review | **9/10** = | Per-skill memory, interleaving, measured against a baseline, counts that cannot lie |
 | Saved Words | **8/10** = | Search, three orderings, its own review plan |
 | Wrong Answer Notebook | **7/10** = | One row per item, recovery rule, retry. Does not explain *why* |
-| Audio / pronunciation | **8/10** = | 10,454 clips, two voices, IPA everywhere, 503 sound-change notes. One bad clip (I-15) |
-| Localization | **7/10** = | Ten languages at 100% UI and full curriculum — but the score does not rise, because the same cycle found six locales had been showing English lesson titles all along, and vi/th vocabulary is 500 of 2,581 (I-07) |
+| Audio / pronunciation | **9/10** ▲ | 10,454 clips, two voices, IPA everywhere, 503 sound-change notes. 마디 is fixed; one recogniser disagreement stands unresolved and is stated as unknown (I-16) |
+| Localization | **8/10** ▲ | Ten languages at 100% UI, full curriculum, and now every one of the 2,581 words. It does not reach 9 because none of it has been read by a native speaker (I-17), and because the lesson-title gap shows what a coverage report can miss |
 | Progress / persistence | **9/10** = | Eight stores, migrations, corrupt-row recovery, six e2e cases, persistence now requested. No export (I-12) |
 | Web reliability | **9/10** = | Every route survives refresh, fresh tab and offline |
 | Mobile UX | **8/10** = | Safe-area suite, pinned actions, 44 px targets, one-screen lesson |
@@ -2572,39 +2832,50 @@ restraint in the interface.
 
 ## Biggest weaknesses
 
-Corpus size and its delivery path; English-first dictionary depth; vocabulary
-interaction still being four options on a card; a funnel exit that is built and
-switched off; release artefacts two cycles stale.
+Corpus size and its delivery path; sparse lexical relations; vocabulary
+interaction still mostly four options on a card; a funnel exit that is built and
+switched off; ten languages of copy that no native speaker has read.
 
 ## The pattern worth carrying forward
 
-Three defects shipped this cycle past a full green suite, and they are the same
-mistake three times: **the check measured the artefact one level away from the
-thing that could be wrong.** Path data instead of rendered pixels. Hint objects
-instead of rendered sentences. Translation files instead of screens. When
-something is reported broken and the tests are green, suspect the level the test
-is looking at before suspecting the report.
+Defects shipped past a full green suite all cycle, and they are the same mistake
+repeated: **the check measured the artefact one level away from the thing that
+could be wrong.** Path data instead of rendered pixels. Hint objects instead of
+rendered sentences. Translation files instead of screens. A hint audited before
+translation instead of after it. When something is reported broken and the tests
+are green, suspect the level the test is looking at before suspecting the report.
+
+The second pattern is quieter and appears three times in this report. **Doing
+the content work is what found the content bugs.** Translating 2,081 words into
+two languages surfaced three glosses that contradicted their own examples;
+reading the 784 derived explanations is what established they should be deleted
+rather than translated; listening-layer QA only became meaningful once somebody
+checked what the recogniser said about a clip nobody disputed. None of the three
+was reachable by a check written in advance.
 
 ## P0 bugs
 
-* **I-01** Shipped AAB/APK predate every fix in this report *and the last one*.
-* **I-02** This entire cycle — 60 files — is uncommitted.
+None open. **I-01** (stale artefacts) and **I-02** (uncommitted cycle) were both
+closed, in that order — commit, then build, then unpack the delivered APK and
+check the bytes.
 
 ## P1 bugs
 
 **I-03** hand-off built but unconfigured · **I-04** corpus at 26% of target ·
-**I-05** corpus delivery breaks the bundle budget at target · **I-06**
-explanations are English-only · **I-07** vi/th vocabulary is 500 of 2,581 ·
-**I-08** eight entries contradict their own example sentence.
+**I-05** corpus delivery breaks the bundle budget at target, costed and gated at
+4,000 headwords.
+
+Three P1s closed this cycle: **I-06** (the *More about it* block), **I-07**
+(Vietnamese and Thai vocabulary) and **I-08** (glosses contradicting their own
+example).
 
 ## Current UX inconsistencies
 
-* Word Detail's *More about it* block appears for some English words and never in
-  other languages, with no explanation to the learner.
-* Vietnamese and Thai word meanings stop at word 500 and become marked English,
-  with no explanation to the learner either.
 * Nothing indicates when a learner should move from letters to words.
-* Eight cards show a gloss that contradicts the example sentence beneath it.
+* Synonyms and opposites appear on 242 words of 2,581, and the absence is silent
+  — correct, and it makes the section feel arbitrary when it does appear.
+* Sound-free practice removes the audio-only questions but the per-question
+  fallback for a listening step is still the reveal rung, scored as a reveal.
 
 ## Product decisions that must NOT be reversed accidentally
 
@@ -2626,6 +2897,13 @@ explanations are English-only · **I-07** vi/th vocabulary is 500 of 2,581 ·
     `strokes:visual` enforces it on rasterised frames, not on path data.
 13. **The hand-off renders nothing when no destination is configured** — a card
     that leads nowhere is worse than the dead end it replaces.
+14. **The *More about it* block is written, never derived** — and appears in all
+    ten languages or in none. `pack.py` refuses a partial one;
+    `vocabulary:sense:qa` compares the ten packs index by index. Reinstating a
+    generated block would undo §15.2.
+15. **A taught sense, once pinned, does not move** — eleven entries are matched
+    by exact string, so a regeneration cannot quietly restore a gloss that
+    contradicts its own example.
 
 ## Technical areas that are fragile
 
@@ -2706,7 +2984,7 @@ nothing today for exactly that reason.
 
 **3 · Decide corpus delivery — a written decision, not code.** Deferred by the
 last report and deferred again by this one. It is now being reported by two
-independent budgets: the 318%-of-budget forecast at 10,000 words, and the
+independent budgets: the 298%-of-budget forecast at 10,000 words, and the
 precache total that had to be raised from 800 kB to 840 kB purely to fit two
 more languages. Per-category chunks, or on-demand fetch with an offline-first
 cache. Record it in `docs/VOCABULARY_DATA.md`. **Do not author the remaining
