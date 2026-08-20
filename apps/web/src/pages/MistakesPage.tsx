@@ -195,18 +195,48 @@ function MistakeRow({
         </div>
 
         <dl className={styles.answers}>
+          {/*
+            Both answers, each with what it means.
+            
+            The meanings are the teaching, and they were the part missing. A row
+            reading "you put 우유 · answer 물" tells a learner they were wrong,
+            which they knew. "you put 우유 — milk · answer 물 — water" tells them
+            *what they confused it with*, which is the only thing on this screen
+            that could stop it happening again.
+            
+            Nothing is generated to say it. Both meanings are already in the
+            corpus and were already being looked up for the row above; they were
+            simply not rendered. §35 asks the notebook to teach rather than log,
+            and a short factual gloss is the version of that which cannot be
+            wrong — unlike a sentence about *why* the two are confusable, which
+            nothing here knows.
+          */}
           {chosen && (
             <div className={styles.answerRow}>
               <dt>{t('learning:mistakes.youPut')}</dt>
-              <dd className={styles.wrongAnswer} lang="ko" dir="ltr">
-                {chosen.korean}
+              <dd className={styles.wrongAnswer}>
+                <span lang="ko" dir="ltr">
+                  {chosen.korean}
+                </span>
+                {chosen.meaning && (
+                  <LocalizedText as="span" locale={chosen.locale} className={styles.gloss}>
+                    {chosen.meaning}
+                  </LocalizedText>
+                )}
               </dd>
             </div>
           )}
           <div className={styles.answerRow}>
             <dt>{t('learning:mistakes.answer')}</dt>
-            <dd className={styles.rightAnswer} lang="ko" dir="ltr">
-              {label.korean}
+            <dd className={styles.rightAnswer}>
+              <span lang="ko" dir="ltr">
+                {label.korean}
+              </span>
+              {label.meaning && (
+                <LocalizedText as="span" locale={label.locale} className={styles.gloss}>
+                  {label.meaning}
+                </LocalizedText>
+              )}
             </dd>
           </div>
         </dl>

@@ -232,13 +232,46 @@
  * shades of the same hue is exactly the pair that colour blindness collapses.
  * The strike-through says which is which without it.
  */
+/*
+ * The strike-through goes on the Korean, not on the row.
+ *
+ * `text-decoration` propagates to descendants and **cannot be cancelled by
+ * them** — `text-decoration: none` on a child does nothing, because the line is
+ * drawn by the ancestor across everything inside it. Putting it on the row
+ * therefore struck out the gloss as well, so the notebook read "you put 시장
+ * ~~market~~", which says that market is not a meaning rather than that this
+ * answer was wrong.
+ *
+ * Learned by looking at the screen. The rule was written the other way round
+ * first, with a comment confidently explaining why the gloss was not struck
+ * through.
+ */
 .wrongAnswer {
   color: var(--hg-text-tertiary);
+}
+
+.wrongAnswer > [lang='ko'] {
   text-decoration: line-through;
 }
 
 .rightAnswer {
   color: var(--hg-text);
+}
+
+/*
+ * What the answer means, beside the answer itself.
+ *
+ * Smaller and quieter than the Korean it explains, because the Korean is the
+ * thing being remembered and the gloss is the reminder. Its own `direction` so
+ * that a meaning in a right-to-left language lays out correctly next to Korean
+ * that never does — the row is `dir="ltr"` for the Korean's sake.
+ */
+.gloss {
+  margin-inline-start: var(--hg-space-2);
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-regular);
+  direction: initial;
 }
 
 .mistakeFoot {

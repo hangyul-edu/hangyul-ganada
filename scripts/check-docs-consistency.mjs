@@ -108,16 +108,18 @@ function countPlaywright() {
 /**
  * The size of a built artefact, in MB, found by extension rather than by name.
  *
- * It used to take a literal path, `result/hangyul-ganada-release.apk`, and the
- * release build has never written that name — the artefacts are
- * `HangyulGaNaDa-release.*`. So the two figures this checker exists to keep
- * honest were reported as "not built yet, skipped" on every run for two
- * release cycles, with a 63 MB APK sitting in the directory it was looking in.
+ * It used to take a literal path. That path was right — `build-result.mjs`
+ * writes `hangyul-ganada-release.apk` — and the two figures this checker exists
+ * to keep honest were still reported as "not built yet, skipped" on every run
+ * for two release cycles, with a 63 MB APK sitting in the directory it was
+ * looking in. The artefacts on disk had been produced by an older release
+ * process under an older spelling of the product name and never repackaged, so
+ * the checker and the directory were each correct about a different release.
  *
  * A checker that silently skips is worse than one that fails: it reads as a
- * pass. Matching on the extension means the name can change again without
- * quietly turning the check off, and finding two of the same kind is an error
- * rather than a coin toss.
+ * pass. Matching on the extension means a name that drifts again cannot quietly
+ * turn the check off, and finding two of the same kind is an error rather than
+ * a coin toss.
  */
 const megabytes = (extension) => {
   const dir = join(ROOT, 'result');
