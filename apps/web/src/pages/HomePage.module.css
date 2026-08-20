@@ -92,8 +92,10 @@
   white-space: nowrap;
 }
 
-.streak:hover {
-  background: var(--hg-orange-200);
+@media (hover: hover) {
+  .streak:hover {
+    background: var(--hg-primary-subtle-hover);
+  }
 }
 
 .celebrate {

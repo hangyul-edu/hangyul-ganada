@@ -80,6 +80,15 @@ async function open(driver: MemoryDriver) {
   };
 }
 
+/*
+ * Read through `waitFor` at the call sites rather than sampled directly.
+ *
+ * Every action here goes through `act`, which flushes the update it wraps — but
+ * the provider persists in the background and re-renders when that lands, so an
+ * assertion made on the very next line can be one render behind. It passed
+ * consistently on an idle machine and failed about one run in twenty under a
+ * loaded one, which is the worst kind of test to leave in a suite.
+ */
 const today = () => screen.getByTestId('today').textContent;
 const percent = () => Number(screen.getByTestId('percent').textContent);
 const learned = () => Number(screen.getByTestId('learned').textContent);
@@ -110,8 +119,8 @@ describe("today's vocabulary", () => {
       app.context.recordRecognition('word', first!.wordId, true);
     });
 
-    expect(today()).toBe(`1/${app.context.state.settings.daily_word_goal}`);
-    expect(learned()).toBe(1);
+    await waitFor(() => expect(today()).toBe(`1/${app.context.state.settings.daily_word_goal}`));
+    await waitFor(() => expect(learned()).toBe(1));
   });
 
   it('reaches the goal and stays there', async () => {
@@ -119,9 +128,9 @@ describe("today's vocabulary", () => {
     const goal = app.context.state.settings.daily_word_goal;
     await study(app, goal);
 
-    expect(today()).toBe(`${goal}/${goal}`);
-    expect(percent()).toBe(100);
-    expect(learned()).toBe(goal);
+    await waitFor(() => expect(today()).toBe(`${goal}/${goal}`));
+    await waitFor(() => expect(percent()).toBe(100));
+    await waitFor(() => expect(learned()).toBe(goal));
   });
 });
 
@@ -132,13 +141,13 @@ describe('coming back', () => {
     const first = await open(driver);
     const goal = first.context.state.settings.daily_word_goal;
     const studied = await study(first, goal);
-    expect(today()).toBe(`${goal}/${goal}`);
+    await waitFor(() => expect(today()).toBe(`${goal}/${goal}`));
     first.view.unmount();
 
     const second = await open(driver);
-    expect(today()).toBe(`${goal}/${goal}`);
-    expect(percent()).toBe(100);
-    expect(learned()).toBe(goal);
+    await waitFor(() => expect(today()).toBe(`${goal}/${goal}`));
+    await waitFor(() => expect(percent()).toBe(100));
+    await waitFor(() => expect(learned()).toBe(goal));
     // And the same words, not a fresh ten.
     expect(second.context.vocabularyDay.completed).toEqual(studied);
   });
@@ -151,7 +160,7 @@ describe('coming back', () => {
     first.view.unmount();
 
     const second = await open(driver);
-    expect(today()).toBe(`4/${goal}`);
+    await waitFor(() => expect(today()).toBe(`4/${goal}`));
     expect(second.context.vocabularyDay.completed).toHaveLength(4);
   });
 });
@@ -170,13 +179,13 @@ describe('studying past the goal', () => {
     await study(app, goal);
 
     await act(async () => app.context.extendVocabularyDay(5));
-    expect(today()).toBe(`${goal}/${goal}`);
+    await waitFor(() => expect(today()).toBe(`${goal}/${goal}`));
     expect(app.context.vocabularyDay.words.length).toBe(goal + 5);
     expect(app.context.vocabularyDay.goal).toBe(goal);
 
     await study(app, goal + 2);
-    expect(today()).toBe(`${goal + 2}/${goal}`);
-    expect(learned()).toBe(goal + 2);
+    await waitFor(() => expect(today()).toBe(`${goal + 2}/${goal}`));
+    await waitFor(() => expect(learned()).toBe(goal + 2));
   });
 
   it('reads past 100% in the number and not in the bar', async () => {
@@ -187,10 +196,10 @@ describe('studying past the goal', () => {
     await study(app, goal + goal);
 
     // The denominator stays the promise the learner made. §D.
-    expect(today()).toBe(`${goal * 2}/${goal}`);
+    await waitFor(() => expect(today()).toBe(`${goal * 2}/${goal}`));
     expect(app.context.vocabularyProgressToday.percent).toBe(200);
     // The bar is a bar. It cannot be more than full.
-    expect(percent()).toBe(100);
+    await waitFor(() => expect(percent()).toBe(100));
   });
 
   it('survives a reload with the extra words on it', async () => {
@@ -203,7 +212,7 @@ describe('studying past the goal', () => {
     first.view.unmount();
 
     const second = await open(driver);
-    expect(today()).toBe(`${goal + 2}/${goal}`);
+    await waitFor(() => expect(today()).toBe(`${goal + 2}/${goal}`));
     expect(second.context.vocabularyDay.words.length).toBe(goal + 5);
   });
 });

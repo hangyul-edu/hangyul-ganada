@@ -83,8 +83,10 @@
     box-shadow var(--hg-duration-fast) var(--hg-ease-standard);
 }
 
-.chip:hover:not(:disabled) {
-  background: var(--hg-warm-50);
+@media (hover: hover) {
+  .chip:hover:not(:disabled) {
+    background: var(--hg-surface-hover);
+  }
 }
 
 .chipSelected,

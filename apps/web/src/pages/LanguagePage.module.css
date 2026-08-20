@@ -53,8 +53,10 @@
   font-weight: 600;
 }
 
-.suggestionAction:hover {
-  background: var(--hg-warm-200);
+@media (hover: hover) {
+  .suggestionAction:hover {
+    background: var(--hg-primary-subtle-hover);
+  }
 }
 
 .suggestionDismiss {
@@ -149,9 +151,11 @@
   text-align: start;
 }
 
-.option:hover {
-  border-color: var(--hg-border-selected);
-  background: var(--hg-warm-50);
+@media (hover: hover) {
+  .option:hover {
+    border-color: var(--hg-border-selected);
+    background: var(--hg-surface-hover);
+  }
 }
 
 .optionSelected {

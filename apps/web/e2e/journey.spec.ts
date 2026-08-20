@@ -139,22 +139,33 @@ test('the first lesson explains what Hangul is before asking for a stroke', asyn
   await expect(page.getByRole('heading', { level: 2, name: 'Six vowels to start' })).toBeVisible();
   await page.getByRole('button', { name: "Got it — let's start" }).click();
 
-  // Then the letter itself. A vowel's name is its sound, so it gets one row,
-  // labelled plainly; a consonant gets two, because 기역 and 가 are different
-  // things to say and the label has to keep them apart.
-  // As an image, not as text: the glyph is drawn by `ReferenceGlyph` at a size
-  // and weight the body font cannot give it, and it carries the letter as its
-  // accessible name. Asserting on text passed for as long as it did because
-  // nothing else on the screen was checked.
-  await expect(page.getByRole('img', { name: 'ㅏ', exact: true }).first()).toBeVisible();
+  // Then the letter itself — as the demonstration, which is the only glyph on
+  // the screen now. There used to be a still one above it as well, so the same
+  // ㅏ appeared twice and the animated one sat below the fold; the still is
+  // gone and this is what took its place. It is an image with the letter in its
+  // accessible name, because the shape is the content and text cannot carry it.
+  await expect(
+    page.getByRole('img', { name: /How ㅏ is written, in \d+ strokes?/ }).first(),
+  ).toBeVisible();
+  // It plays by itself on arrival, so the replay control is here for a second
+  // look rather than being the way to get a first one.
+  await expect(page.getByRole('button', { name: /Watch again|Pause/ })).toBeVisible();
+
+  // A vowel's name is its sound, so it gets one row, labelled plainly; a
+  // consonant gets two, because 기역 and 가 are different things to say and the
+  // label has to keep them apart.
   await expect(page.getByRole('button', { name: /Play the pronunciation of/ })).toHaveCount(1);
   await expect(page.getByText('Sound', { exact: true })).toBeVisible();
   await expect(page.getByText('Name', { exact: true })).toHaveCount(0);
 
-  // And a writing instruction about *this* letter rather than about Korean
-  // stroke order in general — the same sentence on every screen was the thing
-  // a beginner learned to skip.
-  await expect(page.getByText('First the long line down. Then the short line across.')).toBeVisible();
+  // One line under it, and it is about the sound. The written-out description
+  // of the stroke movement went with the still glyph: it narrated something the
+  // learner had just watched happen, and a screen that answers "what does this
+  // look like" three times over is what this lesson was reported for.
+  await expect(page.getByText('like the a in "father"')).toBeVisible();
+  await expect(
+    page.getByText('First the long line down. Then the short line across.'),
+  ).toHaveCount(0);
 });
 
 test('a consonant is introduced with its name and its sound, separately', async ({ page }) => {

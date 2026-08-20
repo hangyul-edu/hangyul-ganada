@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { ALL_CHARACTERS } from '../data/characters';
 import { isSyllable } from '../data/jamo';
 import { drawPoints, strokeAsset } from '../data/strokeAssets';
-import { layoutMarkers } from './strokeMarkers';
+import { insideStroke, layoutMarkers } from './strokeMarkers';
 
 /**
  * The numbered markers, on every character the curriculum teaches.
@@ -18,20 +18,77 @@ import { layoutMarkers } from './strokeMarkers';
 const radiusFor = (character: string) => (isSyllable(character) ? 4 : 5.6);
 
 describe('stroke markers', () => {
-  it('anchors every number to its own stroke’s starting point', () => {
-    // The bubble may move to stay readable; the anchor is the instruction and
-    // never moves. If these drift apart the diagram is pointing at nothing.
+  it('anchors every number to the tip of its own stroke', () => {
+    /*
+     * The anchor is the instruction — *the pen lands here* — so it has to be on
+     * the ink, and on the *end* of it.
+     *
+     * It used to be asserted as `draw[0]`, the first point of the drawn route,
+     * and that is what let the reported defect through: the route is a run of
+     * band centres re-read from the ink, so it starts about half a band *inside*
+     * the stroke. On ㄴ that is eleven units — a fifth of the way down the
+     * vertical — and the disc placed behind it floated clear of the letter with
+     * nothing underneath it. So the property checked is the one that matters:
+     * the anchor is on the ink, and half a unit further back along the stroke's
+     * own opening direction is off it.
+     */
     for (const character of ALL_CHARACTERS) {
       const asset = strokeAsset(character.character);
       const markers = layoutMarkers(asset.strokes, radiusFor(character.character));
       expect(markers.length, character.character).toBe(asset.strokes.length);
       markers.forEach((marker, index) => {
         const stroke = asset.strokes[index]!;
-        const start = drawPoints(stroke.draw)[0]!;
+        const where = `${character.character} ${marker.order}`;
         expect(marker.order).toBe(stroke.order);
-        expect(marker.anchor.x, `${character.character} ${marker.order}`).toBeCloseTo(start.x, 5);
-        expect(marker.anchor.y, `${character.character} ${marker.order}`).toBeCloseTo(start.y, 5);
+
+        const points = drawPoints(stroke.draw);
+        const from = points[0]!;
+        expect(insideStroke(stroke, marker.anchor), `${where} is on its own ink`).toBe(true);
+
+        // Backwards along the stroke, which is the direction the walk took.
+        const next = points.find((p) => Math.hypot(p.x - from.x, p.y - from.y) > 0.5) ?? from;
+        const away = Math.atan2(from.y - next.y, from.x - next.x);
+        const beyond = {
+          x: marker.anchor.x + Math.cos(away) * 0.75,
+          y: marker.anchor.y + Math.sin(away) * 0.75,
+        };
+        const moved = Math.hypot(marker.anchor.x - from.x, marker.anchor.y - from.y);
+        if (moved > 0) {
+          // It walked, so it stopped at an edge.
+          expect(insideStroke(stroke, beyond), `${where} sits at the end of its ink`).toBe(false);
+        } else {
+          /*
+           * It did not walk, which is allowed for exactly one reason: a stroke
+           * with no free end that way. ㅇ is a ring, and "backwards" runs round
+           * it rather than off it, so the recorded start is kept and marching on
+           * would carry the number a quarter of the way round the letter.
+           */
+          expect(insideStroke(stroke, beyond), `${where} has no free end`).toBe(true);
+        }
       });
+    }
+  });
+
+  it('puts the disc against the tip rather than near it', () => {
+    /*
+     * The complaint was that the badge floated. A disc whose centre is one
+     * radius from the anchor has its near edge *on* the anchor; anything much
+     * further and it reads as a label placed beside the letter. The allowance is
+     * generous because a crowded block legitimately pushes a disc outward — but
+     * then the hairline is there to say which stroke it belongs to.
+     */
+    for (const character of ALL_CHARACTERS) {
+      const radius = radiusFor(character.character);
+      for (const marker of layoutMarkers(strokeAsset(character.character).strokes, radius)) {
+        const gap =
+          Math.hypot(marker.label.x - marker.anchor.x, marker.label.y - marker.anchor.y) - radius;
+        expect(gap, `${character.character} ${marker.order}`).toBeLessThanOrEqual(radius * 2.8);
+        // Clear of the boundary the code itself uses, so this is not a
+        // test of floating-point equality.
+        if (gap > radius * 0.75) {
+          expect(marker.tethered, `${character.character} ${marker.order} is tethered`).toBe(true);
+        }
+      }
     }
   });
 

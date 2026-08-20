@@ -2,48 +2,34 @@
   display: flex;
   flex-direction: column;
   /*
-   * Tighter than it was.
+   * Four blocks now, where there were seven, so they can breathe again.
    *
-   * The screen is long by nature — a glyph, two sound rows, a hint, a
-   * demonstration and a tip — and every gap between them was the same 16 px, so
-   * the parts that belong together (the demonstration and the instruction under
-   * it) sat as far apart as the parts that do not. 12 px between blocks, with
-   * the groups that read as one thing setting their own smaller gaps. The
-   * demonstration itself is not shrunk to buy the space: seeing the letter
-   * written is what this product is for.
+   * The screen used to be a glyph, two sound rows, a hint, a heading, a
+   * demonstration, a caption and a mascot tip, packed at 12 px to fit. What is
+   * left is the demonstration, the sound rows and one line, and none of it is
+   * shrunk to buy space: seeing the letter written is what this product is for.
    */
   gap: var(--hg-space-3);
 }
 
 /*
- * The glyph is the subject of the screen, so it gets the card and the space.
- * Everything else is annotation around it.
+ * The demonstration, in the card the still glyph used to have.
+ *
+ * Same position, same weight, same warmth — a learner who used the old screen
+ * finds the letter exactly where it was. What is different is that it is being
+ * written rather than sitting there, which is what the card was always for.
  */
-.glyphCard {
+.demoCard {
   display: grid;
   place-items: center;
-  padding: var(--hg-space-5) var(--hg-space-4);
+  padding: var(--hg-space-4);
   border-radius: var(--hg-radius-xl);
   background: var(--hg-gradient-card);
   box-shadow: var(--hg-shadow-card);
 }
 
 /*
- * Sized rather than type-set: the glyph is drawn from the stroke asset now, not
- * set in a font, so it scales by width and takes its colour from `currentColor`.
- * The range is the one the type used to occupy, so the card is unchanged.
- */
-.glyph {
-  display: block;
-  width: clamp(96px, 32vw, 148px);
-  height: auto;
-  color: var(--hg-text);
-  /* Korean is written left to right in every interface language. */
-  direction: ltr;
-}
-
-/*
- * There is no `.roman` here any more, deliberately.
+ * There is no `.roman` here, deliberately.
  *
  * A bare `g / k` under a 148 px ㄱ, with the hint below it also saying "between
  * g and k", was the same idea printed twice — and the top one was printed at a
@@ -107,64 +93,4 @@
   font-size: var(--hg-text-body-sm);
   color: var(--hg-text-secondary);
   text-wrap: balance;
-}
-
-/*
- * The pronunciation tip, in the mascot's voice.
- *
- * Quiet on purpose. It is the ninth thing on a screen whose first eight are the
- * letter, its sound, its name, the demonstration and what to do next, and a
- * learner who never reads it has still had the whole lesson. Caption size, warm
- * ground, no border — near enough to a margin note that it cannot be mistaken
- * for an instruction.
- */
-.mnemonic {
-  display: flex;
-  align-items: center;
-  gap: var(--hg-space-2);
-  padding: var(--hg-space-2) var(--hg-space-3);
-  border-radius: var(--hg-radius-md);
-  background: var(--hg-surface-warm);
-  font-size: var(--hg-text-caption);
-  color: var(--hg-text-secondary);
-}
-
-/*
- * The stroke-order block.
- *
- * Between the sound and the mnemonic, because that is the order a learner meets
- * the letter in: what it is called, what it sounds like, how it is made, and
- * then a hook to remember its shape by.
- */
-.strokes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--hg-space-2);
-  width: 100%;
-}
-
-.strokesHeading {
-  margin: 0;
-  font: var(--hg-text-caption);
-  font-weight: var(--hg-weight-semibold);
-  color: var(--hg-text-secondary);
-  text-transform: none;
-}
-
-/*
- * What to do with this character, under the demonstration of it.
- *
- * It replaced a general note about Korean stroke order that was identical on
- * all seventy-three screens. Sits directly under the diagram and reads as its
- * caption, because that is what it is: the movement the learner has just
- * watched, in words, for the moment after the animation stops.
- */
-.instruction {
-  margin: 0;
-  max-width: 34ch;
-  font: var(--hg-text-body-sm);
-  color: var(--hg-text-secondary);
-  text-align: center;
-  text-wrap: pretty;
 }

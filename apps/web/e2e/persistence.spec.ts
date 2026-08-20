@@ -237,3 +237,187 @@ test.describe('what the learner did', () => {
     await reopened.close();
   });
 });
+
+test.describe('the reported regression, end to end', () => {
+  test('a whole profile survives refresh, a fresh tab, and a nested route', async ({
+    page,
+    context,
+  }) => {
+    /*
+     * The report was "press reload and some of it is gone". So this builds a
+     * profile that touches every store the app has — settings, progress, the
+     * day's plan, the saved list, the notebook, the memory model, and the two
+     * preferences that live outside IndexedDB — and then reloads three ways.
+     *
+     * Goals, the saved word and the appearance go in through the interface,
+     * because those paths are quick and the interface is what a learner uses.
+     * The learned letters, the finished words and the notebook entry are
+     * written into the stores directly: a real sitting is a hundred taps, the
+     * *writing* half of it is covered deterministically in
+     * `store/vocabularyProgress.test.tsx`, and what is under test here is the
+     * half only a browser can answer — whether a genuine IndexedDB profile is
+     * read back after a genuine reload.
+     */
+    await openMyLearning(page);
+
+    // Both daily goals, away from their defaults.
+    await page.getByRole('button', { name: '15 a day' }).click();
+    await page.getByRole('button', { name: '10 words a day' }).click();
+    await expect(page.getByRole('button', { name: '10 words a day' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+
+    // The appearance, which lives in the same settings row as the goals.
+    await page.getByRole('radio', { name: 'Dark' }).click();
+    await expect(page.getByRole('radio', { name: 'Dark' })).toHaveAttribute('aria-checked', 'true');
+
+    // The interface language, chosen rather than merely defaulted — the key is
+    // only written once a learner picks one. English, so the rest of this test
+    // can go on reading the interface.
+    await page.goto('/me/language');
+    await page.getByRole('button', { name: /English/ }).first().click();
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem('hangyul_ganada:locale')))
+      .toBe('en');
+
+    // A saved word, from its own page.
+    await page.goto('/words/word/word_hada');
+    const save = page.getByRole('button', { name: /^(Save 하다|Remove 하다 from saved)$/ });
+    if ((await save.getAttribute('aria-pressed')) !== 'true') await save.click();
+    await expect(save).toHaveAttribute('aria-pressed', 'true');
+
+    // Three letters learned, three words finished today, one word in the
+    // notebook. Partial rows on purpose — `normaliseProgress` fills the rest
+    // in, which is the path a row written by an older release takes.
+    const seeded = await page.evaluate(async () => {
+      const db: IDBDatabase = await new Promise((resolve, reject) => {
+        const request = indexedDB.open('hangyul-ganada', 2);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+      const read = <T,>(store: string, key: string) =>
+        new Promise<T>((resolve) => {
+          const request = db.transaction(store, 'readonly').objectStore(store).get(key);
+          request.onsuccess = () => resolve(request.result as T);
+        });
+      const write = (entries: Array<[string, string, unknown]>) =>
+        new Promise<void>((resolve, reject) => {
+          const stores = [...new Set(entries.map(([store]) => store))];
+          const tx = db.transaction(stores, 'readwrite');
+          for (const [store, key, value] of entries) tx.objectStore(store).put(value, key);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+
+      const now = new Date().toISOString();
+      const letters = ['ㄱ', 'ㄴ', 'ㄷ'];
+      const settings = await read<{ daily_plan: { words: Array<{ wordId: string }>; completed: string[] } }>(
+        'settings',
+        'preferences',
+      );
+      const words = settings.daily_plan.words.slice(0, 3).map((word) => word.wordId);
+      settings.daily_plan.completed = words;
+
+      await write([
+        ['settings', 'preferences', settings],
+        ...letters.map(
+          (letter) =>
+            [
+              'progress',
+              `character:${letter}`,
+              { kind: 'character', item_key: letter, stage: 'learned', learned: true, passes: 1 },
+            ] as [string, string, unknown],
+        ),
+        ...words.map(
+          (id) =>
+            [
+              'progress',
+              `word:${id}`,
+              { kind: 'word', item_key: id, stage: 'learned', learned: true, passes: 1 },
+            ] as [string, string, unknown],
+        ),
+        [
+          'mistakes',
+          `word:${words[0]}`,
+          {
+            id: `word:${words[0]}`,
+            kind: 'word',
+            itemKey: words[0],
+            mode: 'meaning',
+            skill: 'meaning',
+            chose: 'wrong-option',
+            answer: 'right-option',
+            firstAt: now,
+            lastAt: now,
+            wrongCount: 1,
+            recoveryStreak: 0,
+          },
+        ],
+      ]);
+      db.close();
+      return { words };
+    });
+
+    /** Everything the profile is supposed to be, checked wherever it shows. */
+    const assertIntact = async (view: Page) => {
+      await view.goto('/me');
+      await expect(view.getByRole('button', { name: '15 a day' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
+      await expect(view.getByRole('button', { name: '10 words a day' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
+      await expect(view.getByRole('radio', { name: 'Dark' })).toHaveAttribute(
+        'aria-checked',
+        'true',
+      );
+      await expect(
+        view.locator('div').filter({ hasText: /^Letters learned3$/ }).first(),
+      ).toBeVisible();
+      await expect(
+        view.locator('div').filter({ hasText: /^Words learned3$/ }).first(),
+      ).toBeVisible();
+      await expect(view.getByText(WARNING)).toHaveCount(0);
+
+      // Today's vocabulary, on the screen that owns it.
+      await view.goto('/words');
+      await expect(view.locator('[data-testid="today-card"]')).toContainText('3/10');
+
+      // The saved list and the notebook.
+      await view.goto('/words/saved');
+      await expect(view.getByText('하다').first()).toBeVisible();
+      await view.goto('/review/mistakes');
+      await expect(view.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(view.locator('body')).not.toContainText('Nothing here yet');
+
+      // The interface language, which lives in localStorage rather than in the
+      // database — a different mechanism, and it has to survive too.
+      expect(await view.evaluate(() => localStorage.getItem('hangyul_ganada:locale'))).toBe('en');
+    };
+
+    expect(seeded.words).toHaveLength(3);
+
+    // 1 — a plain reload.
+    await page.reload();
+    await assertIntact(page);
+
+    // 2 — a reload from a *nested* route, which is where the 404 used to be and
+    // where a fresh boot has the most to go wrong.
+    for (const route of ['/words/word/word_hada', '/review', '/me/activity', '/letters']) {
+      await page.goto(route);
+      await page.reload();
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.getByText(/We couldn't find/)).toHaveCount(0);
+    }
+    await assertIntact(page);
+
+    // 3 — a tab opened fresh over the same profile: closing and coming back.
+    const reopened = await context.newPage();
+    await page.close();
+    await assertIntact(reopened);
+    await reopened.close();
+  });
+});

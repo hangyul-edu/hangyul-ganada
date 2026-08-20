@@ -263,8 +263,8 @@ test.describe('system-bar bounds', () => {
 
     // Tab order follows the DOM, and the footer is the last row of the grid, so
     // the one action that leaves this screen is the last thing a keyboard or a
-    // switch reaches — after the two speaker buttons and Watch again, not
-    // before them.
+    // switch reaches — after the replay control and the two speaker buttons,
+    // not before them.
     const stops: string[] = [];
     for (let i = 0; i < 12; i += 1) {
       await page.keyboard.press('Tab');
@@ -282,11 +282,13 @@ test.describe('system-bar bounds', () => {
     expect(stops).toEqual([
       'Skip to main content',
       'Back',
+      // The demonstration is the first thing on the screen now — the still
+      // glyph that used to sit above it is gone — so it is the first thing
+      // reached, which is the order a sighted learner sees it in. It autoplays,
+      // so the replay control reads Pause at this moment; it is the same button.
+      expect.stringMatching(/Watch again|Pause/),
       'Play the pronunciation of 기역',
       'Play the pronunciation of 가',
-      // The demonstration autoplays, so the replay control is showing Pause at
-      // this moment. It is the same button.
-      expect.stringMatching(/Watch again|Pause/),
       expect.stringMatching(/Trace it|Write it/),
     ]);
 

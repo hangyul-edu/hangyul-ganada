@@ -815,29 +815,34 @@ had the whole lesson**. No screen in the app uses *velar*, *alveolar* or
 ### What the screen is now
 
 ```
-ㄱ
+[the demonstration, playing by itself on arrival]
+Watch again · 1 stroke
 
 Name          기역  🔊
 Hear ㄱ in    가    🔊
 
 Between g and k — closer to g between two vowels.
 
-Watch it written
-[the demonstration, unchanged size]
-Watch again · 1 stroke
-Just one stroke: across the top and down the right side.
-
-🍊 Touch the back of your tongue to the roof of your mouth, then let go.
-
 ──────────────────────────────
 [ Trace it ]        ← the safe footer, pinned, never in the navigation bar
 ```
 
-Five questions, answered once each: what is this, what is it called, what does
-it sound like, how do I write it, what do I do now. The demonstration was **not**
-shrunk to buy the space — seeing the letter written is what this product is for.
-The space came from the duplicated romanisation, the general stroke-order note,
-and 4 px off every gap between blocks.
+Four things: how it is written, what it is called, what it sounds like, and what
+to do now.
+
+The intermediate version of this screen kept a **still** ㄱ at the top and put
+the demonstration underneath the sound rows, a hint and a *Watch it written*
+heading. That is two pictures of the same letter, and on a 390 × 844 phone the
+second one began around y = 450 — so the one thing a learner opens a letter
+lesson to find out was the one thing below the fold. The still is gone and the
+demonstration took its place at the top of the card, where it starts the moment
+the screen opens and settles on the finished character.
+
+Two lines came off with it: the sentence describing, in words, the stroke
+movement the animation had just performed, and the mascot's mnemonic. What is
+left is the one line neither the picture nor the sound can say — how the letter
+behaves inside a word. The demonstration was **not** shrunk to buy any of this
+space; seeing the letter written is what this product is for.
 
 ## 6.6 When progress is recorded
 
@@ -2637,12 +2642,12 @@ not targets.
 
 | Suite | Count | Result | Covers |
 | --- | --- | --- | --- |
-| Web unit (`vitest`) | 547 | pass | Domain logic, mastery, memory model, review scheduler, learner simulations, storage, migrations, i18n, data, categories, search, feedback, quotes, activity, per-character stroke guidance, native inset conversion, entry audio, scroll reset, Korean particle agreement, generated-question answer keys, the resolved practice plan, the daily vocabulary goal, the absence of vocabulary handwriting, the wrong-answer notebook, memory-need review selection, IPA pronunciation, word-card navigation into the canonical Word Detail page, **the storage verdict surviving a failed hydration, the synonym/antonym relation set, and today's vocabulary count across a reload** |
+| Web unit (`vitest`) | 550 | pass | Domain logic, mastery, memory model, review scheduler, learner simulations, storage, migrations, i18n, data, categories, search, feedback, quotes, activity, per-character stroke guidance, native inset conversion, entry audio, scroll reset, Korean particle agreement, generated-question answer keys, the resolved practice plan, the daily vocabulary goal, the absence of vocabulary handwriting, the wrong-answer notebook, memory-need review selection, IPA pronunciation, word-card navigation into the canonical Word Detail page, **the storage verdict surviving a failed hydration, the synonym/antonym relation set, and today's vocabulary count across a reload** |
 | Handwriting core (`vitest`) | 95 | pass | Evaluator algorithm, real-glyph calibration, six-typeface tolerance, adversarial robustness, **path quality: beginner-writing fixtures accepted and scrawl fixtures rejected** |
-| End-to-end (`playwright`) | 218 (109 × 2 projects) | pass, with the browser crash below | Full journeys at a phone viewport and at desktop, both appearances, system-bar bounds for every bottom control, the audio and scroll behaviour on arrival at a screen, a full daily vocabulary sitting asserting no canvas appears in it, **and real-browser persistence: the storage warning's absence on a healthy browser and the survival of goals, saved words and progress across a reload** |
+| End-to-end (`playwright`) | 220 (110 × 2 projects) | pass, with the browser crash below | Full journeys at a phone viewport and at desktop, both appearances, system-bar bounds for every bottom control, the audio and scroll behaviour on arrival at a screen, a full daily vocabulary sitting asserting no canvas appears in it, **and real-browser persistence: the storage warning's absence on a healthy browser, and a whole profile — goals, progress, the day's plan, saved words, the notebook and the two preferences kept outside IndexedDB — surviving a reload, a fresh tab and a nested-route refresh** |
 
-The web unit count rose by a hundred and sixteen this cycle and the handwriting
-count by twenty-six. The end-to-end count *fell* by thirty-two, which is the
+The web unit count rose by a hundred and nineteen this cycle and the handwriting
+count by twenty-six. The end-to-end count *fell* by thirty, which is the
 honest shape of this cycle: the word-writing screen and its four-phone-width
 layout suite were deleted along with the feature, and what replaced them is one
 spec that walks a whole daily sitting asserting the canvas never appears, plus

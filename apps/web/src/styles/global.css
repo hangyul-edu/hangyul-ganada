@@ -61,7 +61,7 @@ body {
   line-height: var(--hg-leading-normal);
   color: var(--hg-text);
   /* The shell paints the app surface; this is what shows either side of it. */
-  background: var(--hg-warm-50);
+  background: var(--hg-bg-warm);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Stops iOS rubber-banding the page while a learner drags on the canvas. */

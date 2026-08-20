@@ -37,6 +37,7 @@
   --hg-primary-hover: #F05F00;
   --hg-primary-pressed: #DB5600;
   --hg-primary-subtle: #FFEFE5;
+  --hg-primary-subtle-hover: #FFEAB1;
   --hg-primary-disabled: #E6E8EB;
   --hg-primary-text: #B84F07;
   --hg-primary-strong: #E6650E;
@@ -48,6 +49,7 @@
   --hg-bg-muted: #F2F4F5;
   --hg-surface: #FFFFFF;
   --hg-surface-warm: #FFF8F1;
+  --hg-surface-hover: #FFF8F1;
   --hg-surface-selected: #FFEFE5;
   --hg-overlay: rgba(38, 44, 49, 0.45);
   --hg-border: #E6E8EB;
@@ -155,6 +157,7 @@
   --hg-primary-hover: #FF7A1F;
   --hg-primary-pressed: #E65C00;
   --hg-primary-subtle: #3A2415;
+  --hg-primary-subtle-hover: #4A2E19;
   --hg-primary-disabled: #3A322C;
   --hg-primary-text: #FF8A3D;
   --hg-primary-strong: #FF6700;
@@ -166,6 +169,7 @@
   --hg-bg-muted: #211B17;
   --hg-surface: #1E1815;
   --hg-surface-warm: #25201B;
+  --hg-surface-hover: #2C241E;
   --hg-surface-selected: #37281D;
   --hg-overlay: rgba(8, 6, 5, 0.62);
   --hg-border: #332B25;
@@ -193,6 +197,7 @@
     --hg-primary-hover: #FF7A1F;
     --hg-primary-pressed: #E65C00;
     --hg-primary-subtle: #3A2415;
+    --hg-primary-subtle-hover: #4A2E19;
     --hg-primary-disabled: #3A322C;
     --hg-primary-text: #FF8A3D;
     --hg-primary-strong: #FF6700;
@@ -204,6 +209,7 @@
     --hg-bg-muted: #211B17;
     --hg-surface: #1E1815;
     --hg-surface-warm: #25201B;
+    --hg-surface-hover: #2C241E;
     --hg-surface-selected: #37281D;
     --hg-overlay: rgba(8, 6, 5, 0.62);
     --hg-border: #332B25;

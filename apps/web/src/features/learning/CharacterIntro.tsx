@@ -4,41 +4,48 @@ import type { HangulCharacter } from '@hangyul-ganada/shared-types';
 
 import { usePronunciation } from '../../audio/PronunciationContext';
 import { useEntryAudio } from '../../audio/useEntryAudio';
-import { strokeGuideFor, strokeGuideText } from '../../data/strokeGuide';
 import { resolveContent, useLocale } from '../../i18n';
-import { HangyulMascot } from '../../ui/HangyulMascot';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
-import { ReferenceGlyph } from '../../ui/ReferenceGlyph';
 import { StrokeOrder } from '../../ui/StrokeOrder';
 import styles from './CharacterIntro.module.css';
 
 /**
  * Meeting a letter, before writing it.
  *
- * The screen answers five questions and stops:
+ * Four things, in the order a beginner needs them:
  *
  * ```
- * 1  what is this?          the glyph, as large as the card allows
- * 2  what is it called?     Name        기역  🔊
+ * 1  how is it written?     the demonstration, playing by itself on arrival
+ * 2  what is it called?     Name         기역  🔊
  * 3  what does it sound like?
- *                           Hear ㄱ in   가   🔊   + one short hint
- * 4  how do I write it?     the demonstration, Watch again · 1 stroke,
- *                           and one instruction about *this* character
- * 5  what do I do now?      Trace it — in the session's safe footer
+ *                           Hear ㄱ in    가   🔊
+ * 4  …and one line about that sound
+ *                           the CTA lives in the session's safe footer
  * ```
  *
- * Anything that does not answer one of those is either secondary (the mascot's
- * pronunciation tip, which the lesson still makes complete sense without) or
- * gone.
+ * ## Why the demonstration is the first thing and the only glyph
  *
- * ## Name and sound are different things, and the labels now say so
+ * There used to be two ㄱ on this screen: a still one at 148 px in a card at the
+ * top, and the animated one at 208 px under two sound rows, a hint and a
+ * heading. On a 390 × 844 phone the second began around y = 450, so the single
+ * thing a learner opens a letter lesson to find out — *how do I write this* —
+ * was the one thing below the fold, behind a **Watch it written** heading and a
+ * still picture answering a question the animation answers better.
+ *
+ * So the still is gone and the demonstration took its place. It is the same
+ * geometry either way: `ReferenceGlyph` and `StrokeOrder` are both built from
+ * the stroke asset, so nothing about the shape changed by dropping one of them.
+ * What changed is that the letter is now *being written* the moment the screen
+ * opens.
+ *
+ * ## Name and sound are different things, and the labels say so
  *
  * ㄱ is *named* 기역 and *sounds like* the g in 가, and a learner who never
  * hears the second one sounds out 가 as "giyeok-a". The two rows have always
  * been here; what was wrong was the label. "Its sound — 가" invites exactly one
- * reading from a complete beginner: that ㄱ *is* 가. So a consonant's row now
- * says **Hear ㄱ in**, which is what the syllable is for, and the row is a
+ * reading from a complete beginner: that ㄱ *is* 가. So a consonant's row says
+ * **Hear ㄱ in**, which is what the syllable is for, and the row is a
  * demonstration rather than a definition.
  *
  * A vowel keeps the plain "Sound", because for a vowel it is the truth: ㅏ is
@@ -46,20 +53,12 @@ import styles from './CharacterIntro.module.css';
  * one sentence onto both would make one of them wrong, and it is the harder one
  * that would break.
  *
- * ## One romanisation, in a sentence
- *
- * The glyph card used to carry a bare `g / k` under the ㄱ, and the hint under
- * it said "between g and k" — the same idea twice, one of them at a visual
- * weight that invited a beginner to learn the Latin instead of the Hangul. The
- * bare label is gone. What remains is one short human sentence, and the
- * romanisation still appears where it is genuinely scaffolding: quietly, beside
- * the prompt on the writing steps.
- *
  * ## The demonstration plays; the sound plays once
  *
- * Hearing the letter is part of meeting it and a learner who has to press a
- * button to find that out often never does. See `audio/useEntryAudio.ts`: it
- * plays once per *arrival at this letter*, so a re-render — a locale change, a
+ * Both are automatic and both are once. `StrokeOrder` starts on mount and rests
+ * on the finished character, with a quiet **Watch again** under it for anyone
+ * who wants it a second time. The clip is `audio/useEntryAudio.ts`, which plays
+ * once per *arrival at this letter*, so a re-render — a locale change, a
  * screen-reader focus move, coming back from the background — cannot make it
  * speak twice, and leaving stops it rather than letting it follow the learner.
  */
@@ -74,7 +73,6 @@ export function CharacterIntro({
   onDemoWatched: () => void;
 }) {
   const { t } = useTranslation(['learning', 'common']);
-  const { t: tw } = useTranslation('handwriting');
   const { locale } = useLocale();
   const { preload, has } = usePronunciation();
   const copy = resolveContent(character.translations, locale);
@@ -87,13 +85,6 @@ export function CharacterIntro({
   // case that needs both, and they are the case where a learner goes wrong.
   const nameDiffersFromSound = character.letter_name !== character.sound_example;
   const showsName = !isSyllable && nameDiffersFromSound && has(nameId);
-
-  const guide = strokeGuideFor(character);
-  const instruction = strokeGuideText(
-    guide,
-    (key, params) => tw(key, params ?? {}) as string,
-    character.stroke_count,
-  );
 
   useEffect(() => {
     preload([soundId, nameId]);
@@ -111,12 +102,23 @@ export function CharacterIntro({
 
   return (
     <div className={styles.intro}>
-      <div className={styles.glyphCard}>
-        {/* The same paths the demonstration below is built from — see
-            `ui/ReferenceGlyph`. On a screen whose subject is how the character
-            is written, the reference and the demonstration have to be one
-            shape, not two that resemble each other. */}
-        <ReferenceGlyph character={character.character} size={148} className={styles.glyph} />
+      {/*
+        The letter, being written, and nothing above it.
+
+        This card used to be two: a static glyph at 148 px, and — after the two
+        sound rows, the hint and a heading — the demonstration at 208 px. The
+        same ㄱ twice, the second one four hundred pixels down a phone screen,
+        so the one thing a learner opened the lesson to see was the one thing
+        they had to scroll to find. Watching it written answers *what does this
+        look like* better than a still of it does, so the still is gone and the
+        demonstration moved up into its place.
+
+        It plays by itself, once, on arrival — `StrokeOrder` owns that — and
+        settles on the finished character, which is the frame the learner copies
+        from. Replaying is a small button under it, not the way in.
+      */}
+      <div className={styles.demoCard}>
+        <StrokeOrder character={character.character} size={200} onWatched={onDemoWatched} />
       </div>
 
       <div className={styles.sounds}>
@@ -145,32 +147,21 @@ export function CharacterIntro({
         />
       </div>
 
+      {/*
+        One line, and it is about the sound.
+
+        Two others used to sit under here: a caption spelling out, in words, the
+        stroke movement the animation had just performed, and the mascot's
+        mnemonic. Each was defensible on its own, and together they turned
+        meeting a letter into a page of reading — for a beginner whose whole
+        problem is that Hangul looks like nothing they have seen, and who needs
+        to watch it move, hear it, and then write it. What is left is the one
+        thing the picture and the sound cannot say: how the letter behaves inside
+        a word.
+      */}
       <LocalizedText as="p" locale={copy.locale} className={styles.hint}>
         {copy.value.pronunciation_hint}
       </LocalizedText>
-
-      {/*
-        Watching it written, before being asked to write it. A beginner shown
-        only the finished shape invents their own stroke order, and an invented
-        one is hard to unlearn — so this plays once, by itself, and stays
-        replayable for as long as they want it.
-      */}
-      <section className={styles.strokes} aria-labelledby="stroke-order-heading">
-        <h2 id="stroke-order-heading" className={styles.strokesHeading}>
-          {tw('strokeOrder.heading')}
-        </h2>
-        <StrokeOrder character={character.character} size={208} onWatched={onDemoWatched} />
-        {/* What to do with *this* character, derived from its own stroke data.
-            See `data/strokeGuide.ts`. */}
-        <p className={styles.instruction}>{instruction}</p>
-      </section>
-
-      {copy.value.mnemonic && (
-        <div className={styles.mnemonic}>
-          <HangyulMascot mood="thinking" size={28} />
-          <LocalizedText locale={copy.locale}>{copy.value.mnemonic}</LocalizedText>
-        </div>
-      )}
     </div>
   );
 }

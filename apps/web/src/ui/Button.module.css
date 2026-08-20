@@ -80,8 +80,10 @@
   color: var(--hg-primary-text);
 }
 
-.secondary:hover:not(:disabled) {
-  background: var(--hg-orange-100);
+@media (hover: hover) {
+  .secondary:hover:not(:disabled) {
+    background: var(--hg-primary-subtle-hover);
+  }
 }
 
 .secondary:disabled {

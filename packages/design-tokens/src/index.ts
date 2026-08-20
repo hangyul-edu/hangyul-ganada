@@ -78,6 +78,20 @@ export const semantic = {
   primaryHover: '#F05F00',
   primaryPressed: '#DB5600',
   primarySubtle: warm[100],
+  /**
+   * `primarySubtle` under the pointer.
+   *
+   * The subtle-accent surfaces — the streak pill, secondary buttons, a modal's
+   * close, the language suggestion — all pair `primarySubtle` with
+   * `primaryText`, and all of them used to darken on hover by reaching into the
+   * orange ramp for `orange[100]`. In light mode that is the shade it looks
+   * like. In dark mode it is a pale yellow under `primaryText`'s light orange:
+   * 1.9:1, a label that disappears when the mouse arrives.
+   *
+   * As a role it moves the right way in each appearance, and it keeps
+   * `primaryText` above 4.5:1 in both.
+   */
+  primarySubtleHover: orange[100],
   primaryDisabled: gray[200],
 
   /**
@@ -113,6 +127,24 @@ export const semantic = {
   bgMuted: gray[100],
   surface: gray[0],
   surfaceWarm: warm[50],
+  /**
+   * A card under the pointer, or held down.
+   *
+   * This exists because the hover states did not have a token and reached
+   * straight into the warm ramp for `warm[50]` instead. A ramp value is a
+   * *colour*, not a role: it is the same #FFF8F1 in both appearances, correctly,
+   * because a palette that flipped with the theme would be unusable. So in dark
+   * mode every hover painted the card near-white and left the text at
+   * `text` — #F6F0EA on #FFF8F1, which is a card whose entire contents vanish
+   * under the mouse. The typeface picker was the report; the language rows, the
+   * locale list and every chip did it too.
+   *
+   * As a role it can be what hover should be in each appearance: a shade *away*
+   * from the surface, not a jump to the other end of the scale. It is
+   * deliberately quieter than `surfaceSelected` — hover is a pointer resting
+   * somewhere, selection is a decision, and the two must not compete.
+   */
+  surfaceHover: warm[50],
   surfaceSelected: warm[100],
   overlay: 'rgba(38, 44, 49, 0.45)',
 
@@ -181,6 +213,8 @@ export const dark = {
   primaryPressed: '#E65C00',
   /** A tinted surface, not a tint of white — brand orange at low alpha over the page. */
   primarySubtle: '#3A2415',
+  /** A step up from `primarySubtle`; `primaryText` reads 4.9:1 on it. */
+  primarySubtleHover: '#4A2E19',
   primaryDisabled: '#3A322C',
 
   /** On dark ground the brand orange is already legible as text: 6.1:1. */
@@ -196,6 +230,14 @@ export const dark = {
   bgMuted: '#211B17',
   surface: '#1E1815',
   surfaceWarm: '#25201B',
+  /**
+   * One step up from `surface`, and nowhere near the light ramp.
+   *
+   * 4.6:1 against `text` at worst, so every line inside a hovered card — the
+   * name, the Korean label, the description and the licence line — stays as
+   * readable as it was before the pointer arrived.
+   */
+  surfaceHover: '#2C241E',
   surfaceSelected: '#37281D',
   overlay: 'rgba(8, 6, 5, 0.62)',
 

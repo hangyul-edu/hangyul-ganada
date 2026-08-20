@@ -102,8 +102,20 @@
     box-shadow var(--hg-duration-fast) var(--hg-ease-standard);
 }
 
-.fontOption:hover {
-  background: var(--hg-warm-50);
+/*
+ * Hover, and only where there is a pointer to hover with.
+ *
+ * `--hg-surface-hover` rather than the warm ramp: a ramp value is one colour in
+ * both appearances, so reaching into it for an interactive state painted this
+ * card near-white in dark mode and left the text light on light. See the token's
+ * own note. The `(hover: hover)` guard is the other half — a touch browser
+ * applies `:hover` on tap and leaves it applied until something else is tapped,
+ * which is how a card ends up stuck in a state the finger has already left.
+ */
+@media (hover: hover) {
+  .fontOption:hover {
+    background: var(--hg-surface-hover);
+  }
 }
 
 .fontSelected,
@@ -395,8 +407,10 @@
   transition: background-color var(--hg-duration-fast) var(--hg-ease-standard);
 }
 
-.languageRow:hover {
-  background: var(--hg-warm-50);
+@media (hover: hover) {
+  .languageRow:hover {
+    background: var(--hg-surface-hover);
+  }
 }
 
 .languageNames {

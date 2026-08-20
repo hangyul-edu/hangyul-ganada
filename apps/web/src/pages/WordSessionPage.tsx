@@ -71,6 +71,7 @@ export function WordSessionPage() {
     completeSession,
     isSaved,
     toggleSaved,
+    ready,
   } = useLearner();
   const { t } = useTranslation(['vocabulary', 'learning', 'common']);
   const { locale } = useLocale();
@@ -86,26 +87,45 @@ export function WordSessionPage() {
   );
 
   /**
-   * The sitting's shape, frozen on mount; its wording, live.
+   * The sitting's shape, frozen once; its wording, live.
    *
    * Two different lifetimes, and separating them is what makes both correct:
    *
    * * **The steps are frozen.** The stored plan changes as words are completed,
    *   and a queue recomputed from it would shorten under the learner — the
    *   progress bar would run backwards every time they got something right.
-   *   Frozen on mount and rebuilt from the *stored* plan, so leaving and coming
-   *   back resumes exactly where this stopped.
+   *   Frozen once and rebuilt from the *stored* plan on the next visit, so
+   *   leaving and coming back resumes exactly where this stopped.
    * * **The questions are not.** They are rebuilt whenever the interface
    *   language changes, so switching to 日本語 mid-session re-renders the
    *   meanings, the options and the prompts instead of leaving a half-Japanese
    *   question on screen. The queue's *length* and order cannot change, because
    *   answerability does not depend on language — see `canAsk`.
+   *
+   * ## "Frozen once" means once there is something to freeze
+   *
+   * It used to mean *on the first render*, and the difference is not academic.
+   *
+   * The plan comes from the store, and the store is read asynchronously. Until
+   * that read lands, `vocabularyDay` is an empty placeholder — deliberately, so
+   * that nothing can persist an empty plan over a real one. Freezing the queue
+   * from the first render therefore froze *zero questions*, and the session
+   * opened on its own "nothing to do today" backstop with a full day of words
+   * sitting in the database behind it.
+   *
+   * It was intermittent in the worst way: on a small profile the read lands
+   * before the first paint and the session is fine, and it only fails once the
+   * profile is big enough for hydration to lose the race. So the freeze waits
+   * for `ready`, and the queue is state rather than a ref because the component
+   * has to re-render when it finally arrives.
    */
-  const steps = useRef<ReturnType<typeof scheduleSteps> | null>(null);
-  steps.current ??= scheduleSteps(vocabularyDay);
+  const [steps, setSteps] = useState<ReturnType<typeof scheduleSteps> | null>(null);
+  useEffect(() => {
+    if (steps === null && ready) setSteps(scheduleSteps(vocabularyDay));
+  }, [ready, steps, vocabularyDay]);
   const queue = useMemo(
-    () => buildDailyQuestions(steps.current!, meaningOf),
-    [meaningOf],
+    () => (steps === null ? [] : buildDailyQuestions(steps, meaningOf)),
+    [steps, meaningOf],
   );
 
   const [index, setIndex] = useState(0);
@@ -116,9 +136,21 @@ export function WordSessionPage() {
 
   useStudyClock(!finished);
 
-  if (sessionId.current === null && queue.length > 0) {
-    sessionId.current = startSession('vocabulary', null, queue.length);
-  }
+  /*
+   * The session row is opened once, in an effect rather than during the render.
+   *
+   * It used to sit in the render body, which worked only because the queue was
+   * non-empty on the first render — so the write happened during React's very
+   * first pass and nothing complained. Now that the queue arrives with the
+   * store, the same line would be calling into the learner store *while*
+   * rendering this component, which React warns about and is entitled to
+   * misbehave over.
+   */
+  useEffect(() => {
+    if (sessionId.current === null && queue.length > 0) {
+      sessionId.current = startSession('vocabulary', null, queue.length);
+    }
+  }, [queue.length, startSession]);
 
   const current = queue[index];
 
@@ -168,6 +200,26 @@ export function WordSessionPage() {
   }, [current, index, queue.length, completeDailyWord, completeSession, recordRecognition]);
 
   const leave = () => navigate('/words');
+
+  /*
+   * The store has not answered yet, so there is nothing to say about the day.
+   *
+   * Not the "nothing to do" card below: that is a statement, and stating it
+   * before the plan has been read is how a learner with ten words waiting was
+   * told they had none. The header and the footer are the session's own
+   * furniture and are drawn anyway, so this is a blank body for a fraction of a
+   * second rather than a loading screen.
+   */
+  if (steps === null) {
+    return (
+      <FocusScreen
+        resetKey="words-loading"
+        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+      >
+        <div />
+      </FocusScreen>
+    );
+  }
 
   if (!current) {
     /*

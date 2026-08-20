@@ -63,8 +63,10 @@
   color: var(--hg-primary-text);
 }
 
-.close:hover {
-  background: var(--hg-orange-100);
+@media (hover: hover) {
+  .close:hover {
+    background: var(--hg-primary-subtle-hover);
+  }
 }
 
 .title {

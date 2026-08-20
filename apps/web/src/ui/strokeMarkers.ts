@@ -11,6 +11,32 @@ import { drawPoints } from '../data/strokeAssets';
  * floated beside the character would have to be matched to its stroke by eye,
  * which is the thing the number exists to save the learner from doing.
  *
+ * ## The starting point is the tip, not the first point of the route
+ *
+ * These are two different places, and taking the second for the first is what
+ * made the badges look detached. `stroke.start` is where the *drawn route*
+ * begins, and the route is a run of band centres re-read from the ink — so it
+ * begins about half a band inside the stroke rather than at the end of it. On a
+ * thin letter that is a pixel or two and nobody notices. On ㄴ, whose pen is
+ * nine units across, it is eleven units: the recorded start sits a fifth of the
+ * way down the vertical, and a disc placed behind it cleared the letter
+ * entirely and hung on blank paper.
+ *
+ * So the anchor walks back along the stroke's own opening direction until it
+ * leaves the outline, and stops on the last point still on the ink — see
+ * `strokeTip`. That is read from the same validated shape the ink is drawn
+ * from, at build-frozen coordinates, with no per-character constant anywhere:
+ * fix the shape and the numbers follow it.
+ *
+ * ## One coordinate system, shared with the ink
+ *
+ * Everything here is in the asset's own `0 0 100 100` viewBox, and every caller
+ * — the lesson demonstration, the writing screen's helper, the gallery, the QA
+ * sheet — draws the discs inside the same `<svg>` as the paths. There is no
+ * second transform that could drift, and a marker cannot come unstuck from its
+ * stroke at a different screen size because neither of them knows what size it
+ * is being drawn at.
+ *
  * ## Why the bubble is allowed to move and the anchor is not
  *
  * In a block like 글, four strokes begin within a few units of each other — the
@@ -50,11 +76,25 @@ const TURNS = [0, -30, 30, -60, 60, -90, 90, -120, 120, -150, 150, 180];
 /**
  * How far out to push, as multiples of the marker's radius.
  *
- * Five rungs rather than three. With three, 글's fourth and fifth strokes — which
- * begin a stroke's width apart — ran out of candidates and settled for
- * overlapping anyway, which is the defect this whole ladder exists to prevent.
+ * The first rung is one radius, so the disc's near edge lands exactly on the
+ * tip: touching the stroke rather than hovering near it. The rest are escape
+ * routes for a collision — five rather than three because 글's fourth and fifth
+ * strokes begin a stroke's width apart, and with three rungs they ran out of
+ * candidates and settled for overlapping anyway.
  */
-const REACHES = [1.15, 1.7, 2.3, 3.0, 3.8];
+const REACHES = [1.05, 1.6, 2.2, 2.9, 3.7];
+
+/**
+ * How far back a tip may be from the recorded start, in viewBox units.
+ *
+ * Generous — the inset is about half a sampling band, which on a thick letter
+ * like ㄴ is eleven units — and bounded, because a stroke with no free end in
+ * that direction must not be walked all the way round. See `strokeTip`.
+ */
+const TIP_REACH = 16;
+
+/** How finely the walk steps. Half a unit is a twentieth of a pen width. */
+const TIP_STEP = 0.5;
 
 export function layoutMarkers(strokes: StrokeShape[], radius: number): StrokeMarker[] {
   const edge = radius + 1.5;
@@ -63,7 +103,6 @@ export function layoutMarkers(strokes: StrokeShape[], radius: number): StrokeMar
   for (const stroke of strokes) {
     const points = drawPoints(stroke.draw);
     const from = points[0] ?? { x: 50, y: 50 };
-    const anchor = { x: stroke.start[0], y: stroke.start[1] };
 
     /*
      * The bubble sits back along the stroke rather than on top of it, so the
@@ -76,6 +115,27 @@ export function layoutMarkers(strokes: StrokeShape[], radius: number): StrokeMar
       y: from.y + 1,
     };
     const away = Math.atan2(from.y - next.y, from.x - next.x);
+
+    /*
+     * The number points at the tip of the stroke, not at the first point of its
+     * route.
+     *
+     * `stroke.start` is where the *drawn path* begins, and the drawn path is a
+     * run of band centres re-read from the ink — so it starts about half a band
+     * inside the stroke rather than at its end. On a thin letter that is a
+     * pixel or two. On ㄴ, whose pen is nine units wide, it is eleven: the
+     * recorded start sits a fifth of the way down the vertical, and the marker
+     * placed behind it floated clear of the ink with nothing under it. The
+     * badge looked like a label near the letter instead of a mark on the place
+     * the pen lands.
+     *
+     * So the anchor walks back along the stroke's own opening direction until it
+     * leaves the stroke's outline, and stops on the last point still inside.
+     * That is geometry, from the same validated shape the ink is drawn from —
+     * no per-character constant, and nothing that can drift from what is on
+     * screen.
+     */
+    const anchor = strokeTip(stroke, from, away);
 
     let best: { x: number; y: number } | null = null;
     let bestClearance = -Infinity;
@@ -122,4 +182,126 @@ export function layoutMarkers(strokes: StrokeShape[], radius: number): StrokeMar
 
 function clamp(value: number, low: number, high: number): number {
   return Math.min(high, Math.max(low, value));
+}
+
+/**
+ * The point where the stroke actually begins, walking back from its route.
+ *
+ * Steps backwards along the stroke's opening direction and returns the last
+ * point still inside its outline. If the walk never leaves — a closed ring like
+ * ㅇ, where "backwards" runs round the circle rather than off the end — the
+ * recorded start is returned unchanged, because a stroke with no free end in
+ * that direction has no tip to find and marching on would carry the number a
+ * quarter of the way round the letter.
+ */
+function strokeTip(
+  stroke: StrokeShape,
+  from: { x: number; y: number },
+  away: number,
+): { x: number; y: number } {
+  const outline = rings(stroke.shape);
+  if (outline.length === 0) return { x: from.x, y: from.y };
+
+  /*
+   * Start the walk from ink, which is not always where the route starts.
+   *
+   * ㅍ's second stroke is cut into two islands with a five-unit gap between
+   * them, and its route begins in that gap — on no ink at all. Walking back
+   * from there would step further into nothing and the number would be pinned
+   * to empty paper. So the walk begins at the first point of the route that is
+   * actually on the stroke, and only then looks for the end.
+   */
+  const origin = inside(outline, from) ? from : firstOnInk(stroke, outline) ?? from;
+  if (!inside(outline, origin)) return { x: origin.x, y: origin.y };
+
+  const dx = Math.cos(away) * TIP_STEP;
+  const dy = Math.sin(away) * TIP_STEP;
+  let last = { x: origin.x, y: origin.y };
+  for (let step = 1; step * TIP_STEP <= TIP_REACH; step += 1) {
+    const point = { x: origin.x + dx * step, y: origin.y + dy * step };
+    if (!inside(outline, point)) return last;
+    last = point;
+  }
+  // Never came out: no free end this way.
+  return { x: origin.x, y: origin.y };
+}
+
+/**
+ * The first point of the drawn route that is actually on the stroke.
+ *
+ * Sampled along the route at the same step as the walk, so a gap between two
+ * islands is crossed rather than fallen into.
+ */
+function firstOnInk(
+  stroke: StrokeShape,
+  outline: Array<Array<{ x: number; y: number }>>,
+): { x: number; y: number } | null {
+  const route = drawPoints(stroke.draw);
+  for (let i = 1; i < route.length; i += 1) {
+    const a = route[i - 1]!;
+    const b = route[i]!;
+    const span = Math.hypot(b.x - a.x, b.y - a.y);
+    const steps = Math.max(1, Math.ceil(span / TIP_STEP));
+    for (let step = 0; step <= steps; step += 1) {
+      const point = { x: a.x + ((b.x - a.x) * step) / steps, y: a.y + ((b.y - a.y) * step) / steps };
+      if (inside(outline, point)) return point;
+    }
+  }
+  return null;
+}
+
+/**
+ * Whether a point lies on a stroke's own ink.
+ *
+ * Exported because it is what makes the marker rule testable: "the number is on
+ * the tip" is only checkable against the same outline the tip was found from,
+ * and a second copy of this in a test would be a second answer that could
+ * disagree with the first.
+ */
+export function insideStroke(stroke: StrokeShape, point: { x: number; y: number }): boolean {
+  return inside(rings(stroke.shape), point);
+}
+
+/**
+ * A stroke's filled outline, as closed rings of points.
+ *
+ * The shapes are polygons — the contour tracer in `build-stroke-assets.mjs`
+ * emits only `M`, `L` and `Z` — so this needs no curve handling, and a stroke
+ * with a hole in it (ㅇ) or two islands (ㅅ's foot) simply arrives as more than
+ * one ring.
+ */
+function rings(shape: string): Array<Array<{ x: number; y: number }>> {
+  const out: Array<Array<{ x: number; y: number }>> = [];
+  for (const part of shape.split('M').slice(1)) {
+    const numbers = part.match(/-?\d+(?:\.\d+)?/g);
+    if (!numbers || numbers.length < 6) continue;
+    const ring: Array<{ x: number; y: number }> = [];
+    for (let i = 0; i + 1 < numbers.length; i += 2) {
+      ring.push({ x: Number(numbers[i]), y: Number(numbers[i + 1]) });
+    }
+    out.push(ring);
+  }
+  return out;
+}
+
+/**
+ * Even-odd point-in-polygon, over every ring at once.
+ *
+ * Even-odd rather than nonzero so that a hole counts as outside without this
+ * having to know which ring is a hole and which is a wall — crossing the ring of
+ * ㅇ twice puts you back out, which is the answer wanted.
+ */
+function inside(outline: Array<Array<{ x: number; y: number }>>, point: { x: number; y: number }): boolean {
+  let within = false;
+  for (const ring of outline) {
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+      const a = ring[i]!;
+      const b = ring[j]!;
+      if (a.y > point.y !== b.y > point.y) {
+        const at = a.x + ((point.y - a.y) / (b.y - a.y)) * (b.x - a.x);
+        if (point.x < at) within = !within;
+      }
+    }
+  }
+  return within;
 }

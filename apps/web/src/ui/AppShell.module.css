@@ -4,7 +4,15 @@
   height: 100%;
   /* Fills the visual viewport on mobile browsers whose toolbars come and go. */
   height: 100dvh;
-  background: var(--hg-warm-50);
+  /*
+   * The warm ground, as a role rather than as a swatch.
+   *
+   * `--hg-warm-50` is one colour in both appearances — a palette ramp has to be
+   * — so this painted a near-white surround around a dark app, which is the
+   * same mistake the hover states were making one component down. `--hg-bg-warm`
+   * is the same #FFF8F1 in light and a warm near-black in dark.
+   */
+  background: var(--hg-bg-warm);
 }
 
 .shell {
@@ -66,7 +74,7 @@
 }
 
 .warm {
-  background: var(--hg-warm-50);
+  background: var(--hg-bg-warm);
 }
 
 .session {
