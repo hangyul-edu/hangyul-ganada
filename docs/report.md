@@ -138,8 +138,10 @@ the logcat. So the device evidence this cycle is thinner than last cycle's and
 says so; the new content is evidenced by the marker table (it is *in* the
 package) and by the browser and end-to-end suites (it *renders*).
 
-The only thing still uncommitted is a `gradlew.bat` line-ending difference that
-predates this task.
+Nothing is uncommitted. The `gradlew.bat` line-ending difference that the last
+two reports carried as the one remaining exception was swept into `40c5e6d`
+along with the Gradle change beside it, so the working tree is clean at
+`15ce55c`.
 
 ## 2.3 Figures for the next report to diff against
 

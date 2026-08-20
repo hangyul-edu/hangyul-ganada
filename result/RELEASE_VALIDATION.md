@@ -5,8 +5,10 @@ something that was run on this machine during this refresh; nothing is carried
 over from an earlier cycle. Where something could not be verified it says so
 rather than being left blank or implied.
 
-**Source:** commit `40c5e6d` on branch `premium-quality-pass`, working tree clean
-apart from a `gradlew.bat` line-ending difference that predates this task.
+**Source:** commit `40c5e6d` on branch `premium-quality-pass`, working tree
+clean — the `gradlew.bat` line-ending difference that earlier validations noted
+as the one exception was committed alongside the Gradle change in that same
+commit.
 **Built:** 2026-08-20, Linux (WSL2), JDK 21.0.11, Android SDK build-tools 36.0.0.
 **Device:** `hangyul-pixel7` AVD, Android 16 (API 36), x86_64, 1080×2400,
 software GPU, wiped before install.
@@ -200,8 +202,8 @@ directory it was looking in. It now matches by extension and reports both.
 ```
 a472d2e5875bdcbf321384bb19e60266cd59a488641a424702f7f3c0dc1d2188  hangyul-ganada-release.apk
 29c2b59888e707a47b7e8aee36ec7317e0e46bc25a165d3a8faeda5ca5d04959  hangyul-ganada-release.aab
-427103b8ff9fb2438f16211c91cc17bdf09aa442aada281dcac806e3ed9ebf1b  docs/report.pdf
-222e4c5c6d3e43cb738397ef94ffe5af27fcfc8ea95c2046e5b4e6221368c022  build-info.json
+83e98cbf01fef7cadd4a0fb9c8e5ec4b0f6d600431b8f5e77f83525acee9bfb5  docs/report.pdf
+b5875c3c87cf9ee36a93082e76c3118b094ea684facc3209a2265026f7903588  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has
