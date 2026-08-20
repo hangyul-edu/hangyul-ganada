@@ -98,19 +98,45 @@ deda959  wrong-answer notebook — show what the learner confused it with
 528d201  sound-free practice, one taught sense per word, a question that is not four boxes
 2e879c5  finish Vietnamese and Thai, and fix what translating found
 192bbce  write the "More about it" section instead of deriving it
+40c5e6d  ship AndroidX strings for Vietnamese and Thai too
          ↓  commit first
          ↓  then mobile:sync + gradlew assembleRelease bundleRelease
          ↓  then unpack the delivered APK and grep it
-result/hangyul-ganada-release.apk   built from the tip, verified to contain it
+result/hangyul-ganada-release.apk   built from 40c5e6d, verified to contain it
 ```
 
 Building before committing produces a signed artefact that looks current and is
-not, which is worse than a stale one because nothing about it says so. The
-delivered APK was unpacked and grepped for seven markers of this cycle's work —
-the storage probe, the dark-mode hover token, the hint ladder, graded hint
-scoring, the hand-off, and both new languages. All seven present. It installs,
-launches, and renders the first-run purpose line and a clean ㅏ demonstration on
-an Android 16 emulator.
+not, which is worse than a stale one because nothing about it says so.
+
+The delivered APK was unpacked and its markers checked in both directions —
+eight strings that must be in it, three that must not. The three that must not
+are the derived dictionary fragments the old *More about it* block carried
+("prophase", "phylum", "straw thatch"); all three are gone. Of the eight, three
+are the newly written explanations in English, Thai and Vietnamese, two are
+words past the old 500-word Vietnamese and Thai cut, two are pinned glosses, and
+one is the corrected Korean hint template. All eight present. `build-info.json`
+now also reports **ten** complete vocabulary locales, counted from the emitted
+packs rather than read off a corpus field that names only the eight carried on
+entries.
+
+**The signing key was recovered rather than regenerated.** The keystore is not
+in the repository and not in the environment; generating a new one would have
+changed the app's identity permanently. It was located on the build machine and
+its certificate compared against both the keystore *and* the superseded artefact
+before anything was built — `157a2bb1…3323debc` in all three. A second keystore
+on the same machine carries a different certificate and was not used. No key,
+password or path value appears in the repository, in `result/`, or in any log
+this build produced.
+
+It installs, launches, stays resumed and never crashes on a wiped Android 16
+emulator, and renders the home and Words screens correctly. It got no further:
+the emulator's own system processes wedged twice — *System UI isn't responding*,
+then *Process system isn't responding* — on a software renderer under load. Both
+dialogs name Android, not this app, and the app's activity was still
+`topResumedActivity` at the end of the session with zero `FATAL EXCEPTION` in
+the logcat. So the device evidence this cycle is thinner than last cycle's and
+says so; the new content is evidenced by the marker table (it is *in* the
+package) and by the browser and end-to-end suites (it *renders*).
 
 The only thing still uncommitted is a `gradlew.bat` line-ending difference that
 predates this task.

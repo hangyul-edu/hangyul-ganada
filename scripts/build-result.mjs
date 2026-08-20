@@ -216,7 +216,28 @@ const buildInfo = {
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
       .sort(),
-    vocabulary_locales_complete: vocabulary.locales,
+    /*
+     * Every locale with a meaning for every shipping word — counted, not read
+     * off `vocabulary.locales`.
+     *
+     * That field names the eight languages carried on the entries themselves,
+     * and it was the right answer while Vietnamese and Thai were partial. They
+     * are not any more: both are hand-written files keyed by word id and both
+     * now cover all 2,581, so the corpus field would under-report a delivered
+     * artefact by two languages. Counting the emitted packs is what the claim
+     * actually means, and it stays true in either direction — a locale that
+     * goes partial again drops out of this list without anybody editing it.
+     */
+    vocabulary_locales_complete: readdirSync(join(ROOT, 'apps/web/src/data/generated'))
+      .filter((name) => /^vocabulary\.[\w-]+\.json$/.test(name))
+      .map((name) => name.slice('vocabulary.'.length, -'.json'.length))
+      .filter((locale) => {
+        const rows = JSON.parse(
+          readFileSync(join(ROOT, 'apps/web/src/data/generated', `vocabulary.${locale}.json`), 'utf8'),
+        ).words;
+        return rows.length === vocabulary.words.length && rows.every((row) => row?.[0]);
+      })
+      .sort(),
     vocabulary_words: vocabulary.words.length,
     vocabulary_categories: vocabulary.categories.length,
     example_qa_version: examplesQa.version,
