@@ -153,7 +153,8 @@
       "writeLetter": "Write what you hear",
       "distinguish": "Which one makes this sound?",
       "produce": "Which one is it?",
-      "listenMeaning": "What does this mean?"
+      "listenMeaning": "What does this mean?",
+      "build": "Put the word together"
     },
     "nothingDue": "Nothing to review right now.",
     "modesEmpty": "Nothing in these modes today.",
@@ -174,7 +175,9 @@
       "revealLetter": "The letter is {{answer}}.",
       "revealStrokes": "Watch the strokes once more, then trace them.",
       "inSentence": "It’s used like this: {{sentence}}"
-    }
+    },
+    "buildTray": "Syllables",
+    "buildRemove": "Take {{syllable}} back"
   },
   "sounds": {
     "title": "When sounds meet",

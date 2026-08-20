@@ -212,10 +212,26 @@ describe('difficulty follows familiarity', () => {
     const familiar = day.words.filter((word) => word.source === 'familiar');
     expect(familiar.length).toBeGreaterThan(0);
     for (const word of familiar) {
-      expect(word.steps).toContain('produce');
+      /*
+       * One production question, and which one alternates.
+       *
+       * This used to require `produce` specifically, which was right when it
+       * was the only way to ask a word from its meaning. `build` — assemble it
+       * from its own syllables — is the same skill asked harder, and familiar
+       * words alternate between the two so that a learner three weeks in is not
+       * meeting the same production question every time. What the rule actually
+       * is, and so what this asserts, is that a familiar word is always asked to
+       * be *produced* in one form or the other.
+       */
+      expect(word.steps.some((step) => step === 'produce' || step === 'build')).toBe(true);
       expect(word.steps).toContain('listenMeaning');
       expect(word.steps).not.toContain('intro');
     }
+    // And both forms are in use across the day, not just the first one.
+    const production = new Set(
+      familiar.flatMap((word) => word.steps.filter((step) => step === 'produce' || step === 'build')),
+    );
+    expect(production.size).toBeGreaterThan(1);
   });
 
   it('does not call a half-known word familiar', () => {

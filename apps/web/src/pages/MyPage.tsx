@@ -443,6 +443,26 @@ export function MyPage() {
             </ul>
           </Section>
 
+          {/*
+            §36. Sits in Practice rather than in an accessibility section of its
+            own, because it is a way of practising and not a mode for a category
+            of person — a learner on a train with no headphones wants it for the
+            afternoon, and having to find it under a heading about disability
+            would be both wrong and a worse place to look.
+          */}
+          <Section
+            title={t('settings:soundFree.title')}
+            description={t('settings:soundFree.description')}
+          >
+            <ul className={styles.toggleList}>
+              <Toggle
+                label={t('settings:soundFree.toggle')}
+                checked={state.settings.sound_free}
+                onChange={(v) => setPreferences({ sound_free: v })}
+              />
+            </ul>
+          </Section>
+
         </Group>
 
         <Group id="settings-appearance" title={t('settings:groups.appearance')}>

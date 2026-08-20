@@ -63,7 +63,8 @@
       "writeLetter": "Écrivez ce que vous entendez",
       "distinguish": "Laquelle fait ce son ?",
       "produce": "Lequel est-ce ?",
-      "listenMeaning": "Qu’est-ce que cela veut dire ?"
+      "listenMeaning": "Qu’est-ce que cela veut dire ?",
+      "build": "Reconstituez le mot"
     },
     "sessionLength_many": "{{count, number}} courts exercices",
     "nothingDue": "Rien à réviser pour le moment.",
@@ -85,7 +86,9 @@
       "revealLetter": "La lettre est {{answer}}.",
       "revealStrokes": "Regardez encore les traits, puis retracez-les.",
       "inSentence": "On l’emploie comme ceci : {{sentence}}"
-    }
+    },
+    "buildTray": "Syllabes",
+    "buildRemove": "Retirer {{syllable}}"
   },
   "units": {
     "badge": "Unité {{index, number}}",

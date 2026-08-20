@@ -148,5 +148,10 @@
     "recovered_many": "Se han omitido {{count, number}} de registros dañados al cargar. El resto de tu progreso está intacto.",
     "recovered_one": "Se ha omitido {{count, number}} registro dañado al cargar. El resto de tu progreso está intacto.",
     "recovered_other": "Se han omitido {{count, number}} registros dañados al cargar. El resto de tu progreso está intacto."
+  },
+  "soundFree": {
+    "title": "Preguntas sin sonido",
+    "description": "Algunas preguntas son solo una grabación: «¿qué palabra has oído?». Actívalo y no aparecerán. Todo se sigue pudiendo escuchar cuando quieras.",
+    "toggle": "Omitir preguntas de escucha"
   }
 }

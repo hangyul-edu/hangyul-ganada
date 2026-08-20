@@ -1,6 +1,7 @@
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { ALL_CHARACTERS, getCharacterByGlyph } from '../../data/characters';
+import { toSyllables } from '../../data/jamo';
 import { VOCABULARY, getWord } from '../../data/vocabulary';
 import type { ExerciseMode } from '../../domain/review';
 import type { ReviewCandidate } from '../../domain/review';
@@ -49,6 +50,15 @@ export interface Exercise {
   answerId?: string;
   /** The syllable to draw. Only for `write`. */
   writeTarget?: string;
+  /**
+   * The syllables to assemble the word from, shuffled. Only for `build`.
+   *
+   * The word's own syllables plus a few that belong to other words, so the
+   * learner is choosing rather than reading the answer off the tray. Every tile
+   * carries an id because a word can repeat a syllable — 사사 would otherwise
+   * be two tiles the interface could not tell apart.
+   */
+  tiles?: Array<{ id: string; syllable: string }>;
   /**
    * The letter's sound, shown beside the prompt on `write`.
    *
@@ -240,6 +250,52 @@ function wordExercise(
       };
     }
 
+    case 'build': {
+      /*
+       * Put the word together from its own syllables.
+       *
+       * Two syllables minimum: a one-syllable word is a single tile beside
+       * three decoys, which is `produce` with a worse interface. Four maximum,
+       * because assembling 어린이집 out of eight tiles is a puzzle about
+       * patience rather than a question about Korean.
+       */
+      const syllables = toSyllables(word.word);
+      if (syllables.length < 2 || syllables.length > 4) return null;
+
+      /*
+       * Decoys from other words' syllables, never invented.
+       *
+       * A made-up syllable is one a learner can eliminate without knowing the
+       * word — it looks wrong, so the question becomes "which of these is real
+       * Korean". Taken from the corpus, every tile is a syllable that genuinely
+       * occurs, and the only way through is to know how this word is spelled.
+       */
+      const decoys = decoySyllables(word, syllables, seed + 41);
+      if (decoys.length < 2) return null;
+
+      const tiles = stableOrder(
+        [...syllables, ...decoys].map((syllable, index) => ({
+          id: `${index}:${syllable}`,
+          syllable,
+        })),
+        seed + 5,
+      );
+
+      return {
+        candidate,
+        mode: 'build',
+        promptKey: 'review.prompt.build',
+        options: undefined,
+        answerId: word.id,
+        meaning: copy.value,
+        meaningLocale: copy.locale,
+        audioId: word.audio.word,
+        tiles,
+        korean: word.word,
+        hints,
+      };
+    }
+
     case 'write':
       /*
        * Never. Vocabulary is not handwritten anywhere in this product.
@@ -404,6 +460,10 @@ function characterExercise(
       // is exactly the `listen` question. There is no second direction here.
       return null;
 
+    case 'build':
+      // A letter has no syllables to assemble; it *is* one.
+      return null;
+
     case 'listenMeaning':
       // Same reason: a letter's meaning is its sound.
       return null;
@@ -411,6 +471,34 @@ function characterExercise(
     case 'context':
       return null; // A letter has no sentence of its own; its words do.
   }
+}
+
+/**
+ * Syllables from other words, to sit beside this word's own.
+ *
+ * Drawn from a deterministic slice of the corpus rather than at random, and
+ * filtered so a decoy is never a syllable the answer already contains — a tray
+ * with two 사 tiles where the word needs one is a question about counting.
+ */
+function decoySyllables(
+  word: VocabularyWord,
+  own: readonly string[],
+  seed: number,
+): string[] {
+  const taken = new Set(own);
+  const out: string[] = [];
+  const start = hash(`${word.id}:${seed}`) % VOCABULARY.length;
+  for (let step = 0; step < VOCABULARY.length && out.length < 3; step += 1) {
+    const other = VOCABULARY[(start + step * 7) % VOCABULARY.length]!;
+    if (other.id === word.id) continue;
+    for (const syllable of toSyllables(other.word)) {
+      if (taken.has(syllable)) continue;
+      taken.add(syllable);
+      out.push(syllable);
+      break;
+    }
+  }
+  return out;
 }
 
 /** A deterministic order. Same seed, same positions, every render. */

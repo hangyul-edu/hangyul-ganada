@@ -69,7 +69,26 @@ export type ExerciseMode =
   /** Shown beside the thing this learner actually confuses it with. */
   | 'distinguish'
   /** Met inside its example sentence. */
-  | 'context';
+  | 'context'
+  /**
+   * Assembled from its own syllables, in order, from a meaning.
+   *
+   * The one mode that is not a choice between four finished answers, and the
+   * only one that asks the learner to *put the word together* rather than
+   * recognise it whole. 사과 is not "the second of these four"; it is 사 and
+   * then 과, which is a different thing to know and the thing a person needs
+   * before they can write or type the word.
+   *
+   * Still taps, never a canvas — §63 keeps vocabulary out of handwriting, and
+   * this does not go near it. It is the gentlest form of the "limited keyboard
+   * recall" §15 asks for: the syllables are on screen, so it is recall with the
+   * alphabet already provided rather than production from nothing.
+   *
+   * Daily sessions only, and only for words already familiar. It is not in
+   * `SKILL_EXERCISE`, so the review scheduler cannot reach it — the same
+   * arrangement `produce` and `listenMeaning` already have.
+   */
+  | 'build';
 
 /*
  * There is no `usage` mode, and there was nearly one.
@@ -112,6 +131,27 @@ export const SKILL_EXERCISE: Record<Skill, ExerciseMode> = {
   visual_recognition: 'read',
   lookalike_discrimination: 'distinguish',
 };
+
+/**
+ * The questions whose prompt is a sound and cannot be answered without it.
+ *
+ * `listen` is a clip and four spellings; `distinguish` is a clip and two
+ * letters. Neither has a visual form — the sound *is* the question, which is
+ * exactly why they are good exercises and exactly why they are a wall for a
+ * learner who cannot hear.
+ *
+ * `read`, `produce`, `context` and `write` are not here even though some of
+ * them play a clip: on those the Korean, the meaning or the sentence is on
+ * screen and the audio is support. `listenMeaning` *is* here — it plays a clip
+ * and shows four meanings, so with the sound gone there is nothing on screen
+ * saying what the question is about.
+ */
+const HEARD_ONLY: ReadonlySet<ExerciseMode> = new Set(['listen', 'listenMeaning', 'distinguish']);
+
+/** Whether this question can be answered by a learner who cannot hear it. */
+export function needsHearing(mode: ExerciseMode): boolean {
+  return HEARD_ONLY.has(mode);
+}
 
 export interface ReviewCandidate {
   kind: ItemProgress['kind'];
@@ -333,6 +373,13 @@ export function isMemoryNeed(need: ReviewNeed): boolean {
 export interface SessionOptions {
   /** Restrict to one exercise type. The manual modes on the Review screen. */
   mode?: ExerciseMode;
+  /**
+   * Leave out the questions that can only be answered by hearing them.
+   *
+   * The learner's `sound_free` preference, threaded in rather than read here,
+   * because this module knows about memory and not about settings.
+   */
+  soundFree?: boolean;
   /** Only these items. Used by "Saved words". */
   only?: ReadonlySet<string>;
   size?: number;
@@ -436,6 +483,11 @@ export function candidates(
     for (const skill of skillsFor(row.kind)) {
       const mode = SKILL_EXERCISE[skill];
       if (options.mode && mode !== options.mode) continue;
+      // §36. Not "answer it some other way" — not offered at all, because the
+      // alternative is a question the learner finishes by pressing hint until
+      // it gives up, which is a way of getting past a screen and not of
+      // remembering anything.
+      if (options.soundFree && needsHearing(mode)) continue;
       // Discrimination needs something to discriminate *against*. Offering it
       // for an item with no confusion history would be inventing a difficulty.
       const partner = skill === 'lookalike_discrimination' ? confusionPartner(item) : null;

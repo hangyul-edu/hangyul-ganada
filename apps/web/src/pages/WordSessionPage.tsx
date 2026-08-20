@@ -6,6 +6,7 @@ import { usePronunciation } from '../audio/PronunciationContext';
 import { wordCopy } from '../data/wordCopy';
 import { getFont } from '../data/fonts';
 import { scheduleSteps } from '../domain/vocabularyDay';
+import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { WordIntro } from '../features/learning/WordIntro';
 import { buildDailyQuestions } from '../features/vocabulary/dailyQuestions';
@@ -327,12 +328,22 @@ export function WordSessionPage() {
             onToggleSaved={() => toggleSaved('word', current.word.id)}
           />
         ) : current.exercise ? (
-          <ChoiceExercise
-            key={`${current.word.id}-${current.step}-${index}`}
-            exercise={current.exercise}
-            fontFamily={font.font_family}
-            isLast={isLast}
-            onAnswered={(result) => {
+          (() => {
+            /*
+             * Two components, one recording path.
+             *
+             * `build` is a different screen — a tray of syllables rather than
+             * four options — and it reports the same result object, so what is
+             * written to the learner's memory does not depend on which
+             * component asked. Splitting the recording as well as the rendering
+             * is how one of them ends up quietly not counting.
+             */
+            const record = (result: {
+              correct: boolean;
+              chosen: string;
+              hintLevel: number;
+              responseMs: number;
+            }) =>
               recordReview({
                 kind: 'word',
                 item_key: current.word.id,
@@ -346,9 +357,22 @@ export function WordSessionPage() {
                 ...(!result.correct ? { confused_with: result.chosen } : {}),
                 session_id: sessionId.current,
               });
-            }}
-            onContinue={advance}
-          />
+
+            const shared = {
+              key: `${current.word.id}-${current.step}-${index}`,
+              exercise: current.exercise!,
+              fontFamily: font.font_family,
+              isLast,
+              onAnswered: record,
+              onContinue: advance,
+            };
+
+            return current.exercise!.mode === 'build' ? (
+              <BuildExercise {...shared} />
+            ) : (
+              <ChoiceExercise {...shared} />
+            );
+          })()
         ) : null}
       </div>
 

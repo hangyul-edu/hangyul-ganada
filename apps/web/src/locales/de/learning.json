@@ -62,7 +62,8 @@
       "writeLetter": "Schreibe, was du hörst",
       "distinguish": "Welcher macht diesen Laut?",
       "produce": "Welches ist es?",
-      "listenMeaning": "Was bedeutet das?"
+      "listenMeaning": "Was bedeutet das?",
+      "build": "Setzen Sie das Wort zusammen"
     },
     "nothingDue": "Gerade gibt es nichts zu wiederholen.",
     "modesEmpty": "Heute gibt es in diesen Modi nichts.",
@@ -83,7 +84,9 @@
       "revealLetter": "Der Buchstabe ist {{answer}}.",
       "revealStrokes": "Sehen Sie sich die Striche noch einmal an und schreiben Sie dann nach.",
       "inSentence": "So wird es benutzt: {{sentence}}"
-    }
+    },
+    "buildTray": "Silben",
+    "buildRemove": "{{syllable}} zurücknehmen"
   },
   "units": {
     "badge": "Einheit {{index, number}}",

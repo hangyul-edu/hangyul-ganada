@@ -148,5 +148,10 @@
     "recovered_many": "{{count, number}} de registros danificados foram ignorados ao carregar. O resto do seu progresso está intacto.",
     "recovered_one": "{{count, number}} registro danificado foi ignorado ao carregar. O resto do seu progresso está intacto.",
     "recovered_other": "{{count, number}} registros danificados foram ignorados ao carregar. O resto do seu progresso está intacto."
+  },
+  "soundFree": {
+    "title": "Perguntas sem som",
+    "description": "Algumas perguntas são só uma gravação: “que palavra você ouviu?”. Ative isto e elas não aparecem. Tudo continua podendo ser ouvido quando você quiser.",
+    "toggle": "Pular perguntas de escuta"
   }
 }

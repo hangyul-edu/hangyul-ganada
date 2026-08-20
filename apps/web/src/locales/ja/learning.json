@@ -62,7 +62,8 @@
       "writeLetter": "聞こえたとおりに書きましょう",
       "distinguish": "この音はどちらですか？",
       "produce": "どれでしょう？",
-      "listenMeaning": "どんな意味でしょう？"
+      "listenMeaning": "どんな意味でしょう？",
+      "build": "文字を並べて単語を作りましょう"
     },
     "nothingDue": "いまは復習するものがありません。",
     "modesEmpty": "今日はこの方法で見るものがありません。",
@@ -83,7 +84,9 @@
       "revealLetter": "この文字は{{answer}}です。",
       "revealStrokes": "書き順をもう一度見てから、なぞってみましょう。",
       "inSentence": "こんなふうに使います: {{sentence}}"
-    }
+    },
+    "buildTray": "文字",
+    "buildRemove": "{{syllable}} を戻す"
   },
   "units": {
     "badge": "ユニット {{index, number}}",

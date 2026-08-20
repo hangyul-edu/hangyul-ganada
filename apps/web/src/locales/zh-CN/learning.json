@@ -62,7 +62,8 @@
       "writeLetter": "按听到的写下来",
       "distinguish": "这个音是哪一个？",
       "produce": "是哪一个？",
-      "listenMeaning": "这是什么意思？"
+      "listenMeaning": "这是什么意思？",
+      "build": "把这个词拼出来"
     },
     "nothingDue": "现在没有要复习的内容。",
     "modesEmpty": "今天这些方式暂时没有内容。",
@@ -83,7 +84,9 @@
       "revealLetter": "这个字母是 {{answer}}。",
       "revealStrokes": "再看一遍笔顺，然后跟着写。",
       "inSentence": "可以这样用：{{sentence}}"
-    }
+    },
+    "buildTray": "字",
+    "buildRemove": "把 {{syllable}} 拿回来"
   },
   "units": {
     "badge": "第 {{index, number}} 单元",

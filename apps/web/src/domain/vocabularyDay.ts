@@ -90,7 +90,15 @@ export interface PlannedWord {
  * built and then removed: see the note in `domain/review.ts` for the two ways
  * a generated one turns out to have either two right answers or a giveaway.
  */
-export type WordStep = 'intro' | 'meaning' | 'listen' | 'listenMeaning' | 'produce' | 'context';
+export type WordStep =
+  | 'intro'
+  | 'meaning'
+  | 'listen'
+  | 'listenMeaning'
+  | 'produce'
+  | 'context'
+  /** Assembled from its own syllables. Familiar words only — see `stepsFor`. */
+  | 'build';
 
 export interface DailyPlan {
   /** The local calendar day this plan is for. */
@@ -146,6 +154,8 @@ const DUE_RECALL = 0.9;
 // --- Choosing the words -------------------------------------------------------
 
 export interface DayRequest {
+  /** The learner practises without questions that must be heard. §36. */
+  soundFree?: boolean;
   progress: Record<string, ItemProgress>;
   memory: MemoryMap;
   /** The corpus, already ordered by usefulness. See `pickWords`. */
@@ -169,7 +179,7 @@ export interface DayRequest {
  * that ordering is exposed to them as a level or a difficulty number.
  */
 export function buildDailyPlan(request: DayRequest): DailyPlan {
-  const { progress, memory, corpus, goal, now } = request;
+  const { progress, memory, corpus, goal, now, soundFree = false } = request;
 
   const weak: PlannedWord[] = [];
   const due: PlannedWord[] = [];
@@ -191,7 +201,11 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
 
     if (!met) {
       if (fresh.length < goal) {
-        fresh.push({ wordId: word.id, source: 'new', steps: stepsFor('new', fresh.length) });
+        fresh.push({
+          wordId: word.id,
+          source: 'new',
+          steps: stepsFor('new', fresh.length, soundFree),
+        });
       }
       // Keep scanning: a later word may be a review, and reviews outrank new.
       continue;
@@ -200,7 +214,7 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
     const recall = weakestRecall(memory, word.id, now);
     if (recall < WEAK_RECALL) {
       if (weak.length < goal) {
-        weak.push({ wordId: word.id, source: 'weak', steps: stepsFor('weak') });
+        weak.push({ wordId: word.id, source: 'weak', steps: stepsFor('weak', 0, soundFree) });
       }
     } else if (recall < DUE_RECALL) {
       /*
@@ -214,7 +228,7 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
        */
       if (due.length < goal) {
         const source: WordSource = isFamiliar(memory, word.id) ? 'familiar' : 'review';
-        due.push({ wordId: word.id, source, steps: stepsFor(source) });
+        due.push({ wordId: word.id, source, steps: stepsFor(source, due.length, soundFree) });
       }
     }
   }
@@ -310,18 +324,63 @@ function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number {
  */
 const NEW_WORD_CHECKS: WordStep[] = ['meaning', 'listen', 'listenMeaning', 'context'];
 
-export function stepsFor(source: WordSource, index = 0): WordStep[] {
-  switch (source) {
-    case 'new':
-      return ['intro', NEW_WORD_CHECKS[index % NEW_WORD_CHECKS.length]!];
-    case 'review':
-      return ['meaning', 'listen'];
-    case 'familiar':
-      return ['produce', 'listenMeaning', 'context'];
-    case 'weak':
-      return ['listen', 'meaning', 'context'];
-  }
+/**
+ * Steps a learner who cannot hear the clip has no way of answering. §36.
+ *
+ * Dropped rather than substituted. A learner who cannot hear "which word did
+ * you hear?" does not want a different version of it; they want the session to
+ * be made of questions they can actually answer, and a session two steps
+ * shorter is a better answer than two steps they finish by pressing *hint*
+ * until it gives the word up.
+ *
+ * Never empty as a result: every source keeps at least one step, because every
+ * source's list contains at least one that is read rather than heard.
+ */
+const HEARD_ONLY_STEPS: ReadonlySet<WordStep> = new Set(['listen', 'listenMeaning']);
+
+export function stepsFor(source: WordSource, index = 0, soundFree = false): WordStep[] {
+  const steps = ((): WordStep[] => {
+    switch (source) {
+      case 'new':
+        return soundFree
+          ? ['intro', READABLE_NEW_CHECKS[index % READABLE_NEW_CHECKS.length]!]
+          : ['intro', NEW_WORD_CHECKS[index % NEW_WORD_CHECKS.length]!];
+      case 'review':
+        return ['meaning', 'listen'];
+      case 'familiar':
+        /*
+         * The one place a word is assembled rather than chosen.
+         *
+         * `build` is production and belongs where `produce` already is — after
+         * the word is known — but it is harder than `produce`, so it replaces
+         * it rather than joining it: a familiar word gets one production
+         * question, and which one it gets alternates. That keeps a session the
+         * same length while making every other familiar word feel different,
+         * and it keeps the harder question from being the *only* production a
+         * learner ever meets.
+         *
+         * A word that cannot be built — one syllable, or five — falls back to
+         * `produce` in `buildDailyQuestions`, which drops any step it cannot
+         * turn into a question and recounts what completes the word.
+         */
+        return [index % 2 === 0 ? 'produce' : 'build', 'listenMeaning', 'context'];
+      case 'weak':
+        return ['listen', 'meaning', 'context'];
+    }
+  })();
+  return soundFree ? steps.filter((step) => !HEARD_ONLY_STEPS.has(step)) : steps;
 }
+
+/**
+ * The new-word rotation with the heard-only checks taken out.
+ *
+ * Filtered from `NEW_WORD_CHECKS` rather than written out again, so the two
+ * cannot drift and adding a fifth check to the rotation cannot silently leave
+ * this one behind.
+ */
+const READABLE_NEW_CHECKS: WordStep[] = NEW_WORD_CHECKS.filter(
+  (step) => !HEARD_ONLY_STEPS.has(step),
+);
 
 // --- Turning the plan into a sitting ------------------------------------------
 

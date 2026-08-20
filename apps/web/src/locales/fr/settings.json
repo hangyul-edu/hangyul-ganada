@@ -148,5 +148,10 @@
     "recovered_many": "{{count, number}} d’enregistrements endommagés ont été ignorés au chargement. Le reste de votre progression est intact.",
     "recovered_one": "{{count, number}} enregistrement endommagé a été ignoré au chargement. Le reste de votre progression est intact.",
     "recovered_other": "{{count, number}} enregistrements endommagés ont été ignorés au chargement. Le reste de votre progression est intact."
+  },
+  "soundFree": {
+    "title": "Questions sans son",
+    "description": "Certaines questions ne sont qu’un enregistrement : « quel mot avez-vous entendu ? ». Activez ceci et elles disparaissent. Tout reste écoutable si vous le souhaitez.",
+    "toggle": "Ignorer les questions d’écoute"
   }
 }

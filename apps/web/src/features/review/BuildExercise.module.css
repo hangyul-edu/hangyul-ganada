@@ -1,0 +1,176 @@
+/*
+ * The one vocabulary screen that is not four rectangles.
+ *
+ * It shares the page rhythm — prompt, stimulus, answer area, one action — and
+ * deliberately nothing else, because the point of it is that a learner half way
+ * through a session notices that this question is a different kind of thing.
+ */
+.exercise {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-5);
+}
+
+.prompt {
+  margin: 0;
+  text-align: center;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+}
+
+.stimulus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+.meaning {
+  margin: 0;
+  text-align: center;
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+/*
+ * The slots, sized to the word.
+ *
+ * An empty slot is a dashed outline rather than a blank: it says how many
+ * syllables are wanted, which the word would tell the learner if it were
+ * written down, and which stops the question being "how long is this word".
+ */
+.slots {
+  display: flex;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  min-height: 72px;
+  direction: ltr;
+}
+
+.slotEmpty,
+.slotFilled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: var(--hg-radius-lg);
+  font-size: clamp(28px, 8vw, 36px);
+  line-height: 1;
+}
+
+.slotEmpty {
+  border: 2px dashed var(--hg-border);
+  background: transparent;
+}
+
+.slotFilled {
+  border: 2px solid var(--hg-border-strong);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  cursor: pointer;
+}
+
+.slotFilled:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.slots.right .slotFilled {
+  border-color: var(--hg-positive);
+  background: color-mix(in srgb, var(--hg-positive) 8%, transparent);
+}
+
+.slots.wrong .slotFilled {
+  border-color: var(--hg-negative);
+  background: color-mix(in srgb, var(--hg-negative) 8%, transparent);
+}
+
+/* The tray the syllables come from. Wraps; never scrolls. */
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--hg-space-3);
+}
+
+.tile {
+  min-width: 62px;
+  min-height: 62px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 2px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: clamp(24px, 7vw, 32px);
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .tile:hover:not(:disabled) {
+    border-color: var(--hg-border-strong);
+  }
+}
+
+.tile:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/*
+ * A tile already in a slot stays in place, faded.
+ *
+ * Removing it would reflow the tray under the learner's finger mid-answer, and
+ * a tray that rearranges itself is one where the next tap lands on the wrong
+ * syllable.
+ */
+.tile:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.answer {
+  margin: var(--hg-space-2) 0 0;
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  direction: ltr;
+}
+
+/* The hint ladder, matching `ChoiceExercise` exactly — same control, same feel. */
+.hintBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-1);
+}
+
+.hintLine,
+.hintAnswer {
+  margin: 0;
+  padding: 0 var(--hg-space-3);
+  font-size: var(--hg-text-caption);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.hintLine {
+  color: var(--hg-text-secondary);
+}
+
+.hintAnswer {
+  color: var(--hg-text);
+  font-weight: var(--hg-weight-bold);
+}
+
+.hint {
+  align-self: center;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 0;
+  background: none;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}

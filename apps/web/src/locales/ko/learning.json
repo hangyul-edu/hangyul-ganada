@@ -62,7 +62,8 @@
       "writeLetter": "들은 대로 써 보세요",
       "distinguish": "이 소리는 어느 쪽일까요?",
       "produce": "어느 낱말일까요?",
-      "listenMeaning": "무슨 뜻일까요?"
+      "listenMeaning": "무슨 뜻일까요?",
+      "build": "글자를 순서대로 놓아 보세요"
     },
     "nothingDue": "지금은 복습할 것이 없어요.",
     "modesEmpty": "오늘은 이 방식으로 볼 것이 없어요.",
@@ -83,7 +84,9 @@
       "revealLetter": "이 글자는 {{answer}}예요.",
       "revealStrokes": "획순을 한 번 더 보고 따라 써 보세요.",
       "inSentence": "이렇게 써요: {{sentence}}"
-    }
+    },
+    "buildTray": "글자",
+    "buildRemove": "{{syllable}} 빼기"
   },
   "units": {
     "badge": "{{index, number}}단원",

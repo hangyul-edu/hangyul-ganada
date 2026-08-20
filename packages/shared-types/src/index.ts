@@ -779,6 +779,28 @@ export interface LearnerPreferences {
   /** Which bundled Korean voice pronounces letters, syllables and words. */
   voice: VoiceGender;
   /**
+   * Practise without questions that can only be answered by hearing.
+   *
+   * Off by default, because listening is half of learning a language and a
+   * product that quietly drops it would be teaching less while looking the
+   * same.
+   *
+   * On, it stops the scheduler offering the four questions whose *prompt* is a
+   * sound and whose answer cannot be reached any other way — "which word did
+   * you hear", "what does this mean" over a clip, "which letter is this", and
+   * the two-letter discrimination drill. Those are not hard for a deaf or
+   * hard-of-hearing learner, they are impossible, and a hint that eventually
+   * shows the answer is a way of finishing the question rather than of
+   * answering it.
+   *
+   * Everything else stays: reading, meaning, production, gap-fill, handwriting.
+   * Audio itself is *not* switched off — the speaker is still on every card for
+   * anyone who wants it, and a learner with partial hearing loses nothing by
+   * turning this on. What changes is only what the learner is *required* to do
+   * to make progress.
+   */
+  sound_free: boolean;
+  /**
    * Legacy. Retained so no stored profile has to be migrated; read by nothing.
    *
    * It used to switch off the clip that plays when a new item appears. The

@@ -632,9 +632,10 @@ export function LearnerProvider({
         saved: savedSet,
         mistakes: unresolved,
         now: new Date(),
+        soundFree: state.settings.sound_free,
         ...options,
       }),
-    [state.progress, state.memory, savedSet, unresolved],
+    [state.progress, state.memory, savedSet, unresolved, state.settings.sound_free],
   );
 
   const mistakes = useMemo(() => listMistakes(state.mistakes), [state.mistakes]);
@@ -691,9 +692,17 @@ export function LearnerProvider({
       memory: state.memory,
       corpus: vocabularyByPriority(),
       goal: state.settings.daily_word_goal,
+      soundFree: state.settings.sound_free,
       now,
     });
-  }, [ready, state.settings.daily_plan, state.settings.daily_word_goal, state.progress, state.memory]);
+  }, [
+    ready,
+    state.settings.daily_plan,
+    state.settings.daily_word_goal,
+    state.settings.sound_free,
+    state.progress,
+    state.memory,
+  ]);
 
   useEffect(() => {
     if (!ready) return;
@@ -744,6 +753,7 @@ export function LearnerProvider({
         memory: prev.memory,
         corpus: vocabularyByPriority(),
         goal: prev.settings.daily_word_goal,
+        soundFree: prev.settings.sound_free,
         now: new Date(),
       });
       if (next === plan) return prev;

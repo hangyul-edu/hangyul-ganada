@@ -256,6 +256,17 @@ export function wordHints(
         reveal,
       ];
 
+    case 'build':
+      /*
+       * The tiles are already on screen, so there is nothing to narrow.
+       *
+       * A hint here can only be about *order* — and the only order hint that is
+       * not the answer is which syllable comes first, which for a two-syllable
+       * word is half the answer and for a three-syllable word is most of it. So
+       * the ladder is the kind of word, and then the reveal.
+       */
+      return [kind, reveal];
+
     case 'write':
     case 'distinguish':
       return [];
@@ -330,6 +341,7 @@ export function characterHints(
     case 'produce':
     case 'listenMeaning':
     case 'context':
+    case 'build':
       return [];
   }
 }

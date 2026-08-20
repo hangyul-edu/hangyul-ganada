@@ -45,6 +45,15 @@ const STEP_EXERCISE: Record<Exclude<WordStep, 'intro'>, { mode: ExerciseMode; sk
   produce: { mode: 'produce', skill: 'meaning_recognition' },
   /** The word's own sentence with a gap in it. */
   context: { mode: 'context', skill: 'sentence_comprehension' },
+  /**
+   * Assembled from its own syllables.
+   *
+   * Recorded against `meaning_recognition`, the same skill as `produce`, and
+   * for the same reason: it is that skill asked from the hardest side. Giving
+   * it a skill of its own would split one memory in two and make a word look
+   * weaker than it is because the learner has met it in only one of them.
+   */
+  build: { mode: 'build', skill: 'meaning_recognition' },
 };
 
 export interface DailyQuestion {

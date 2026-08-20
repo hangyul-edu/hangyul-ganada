@@ -117,6 +117,8 @@ export interface PlanRequest {
   mistakes?: ReadonlySet<string>;
   /** Restrict to items with an unresolved mistake. The notebook's own session. */
   mistakesOnly?: boolean;
+  /** The learner practises without questions that must be heard. §36. */
+  soundFree?: boolean;
   size?: number;
 }
 
@@ -172,6 +174,7 @@ export function resolvePlan(request: PlanRequest): PracticePlan {
     ...(mode ? { mode } : {}),
     ...(only ? { only } : {}),
     ...(mistakes ? { mistakes } : {}),
+    ...(request.soundFree ? { soundFree: true } : {}),
     /*
      * Consolidation is allowed *into a session* and never *into a count*.
      *

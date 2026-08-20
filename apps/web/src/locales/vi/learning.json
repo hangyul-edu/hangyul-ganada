@@ -153,7 +153,8 @@
       "writeLetter": "Viết chữ bạn vừa nghe",
       "distinguish": "Chữ nào phát ra âm này?",
       "produce": "Là từ nào?",
-      "listenMeaning": "Từ này nghĩa là gì?"
+      "listenMeaning": "Từ này nghĩa là gì?",
+      "build": "Ghép thành từ"
     },
     "nothingDue": "Bây giờ chưa có gì để ôn.",
     "modesEmpty": "Hôm nay không có gì trong các phần này.",
@@ -174,7 +175,9 @@
       "revealLetter": "Chữ đó là {{answer}}.",
       "revealStrokes": "Xem lại các nét một lần nữa rồi tô theo nhé.",
       "inSentence": "Người ta dùng thế này: {{sentence}}"
-    }
+    },
+    "buildTray": "Các chữ",
+    "buildRemove": "Lấy lại {{syllable}}"
   },
   "sounds": {
     "title": "Khi các âm gặp nhau",

@@ -116,6 +116,7 @@ export function defaultSettings(): StoredSettings {
     show_grid: true,
     show_center_crosshair: true,
     voice: 'female',
+    sound_free: false,
     daily_word_goal: DEFAULT_DAILY_WORD_GOAL,
     // Legacy, unread: see `StoredSettings` in @hangyul-ganada/shared-types.
     autoplay_audio: true,

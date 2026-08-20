@@ -153,7 +153,8 @@
       "writeLetter": "เขียนตัวที่คุณได้ยิน",
       "distinguish": "ตัวไหนออกเสียงนี้",
       "produce": "คือคำไหน",
-      "listenMeaning": "คำนี้แปลว่าอะไร"
+      "listenMeaning": "คำนี้แปลว่าอะไร",
+      "build": "ประกอบคำนี้ขึ้นมา"
     },
     "nothingDue": "ตอนนี้ยังไม่มีอะไรให้ทบทวน",
     "modesEmpty": "วันนี้ไม่มีอะไรในหมวดเหล่านี้",
@@ -174,7 +175,9 @@
       "revealLetter": "ตัวอักษรนั้นคือ {{answer}}",
       "revealStrokes": "ดูลำดับเส้นอีกครั้งแล้วลากตามนะ",
       "inSentence": "ใช้แบบนี้: {{sentence}}"
-    }
+    },
+    "buildTray": "พยางค์",
+    "buildRemove": "เอา {{syllable}} ออก"
   },
   "sounds": {
     "title": "เมื่อเสียงมาเจอกัน",

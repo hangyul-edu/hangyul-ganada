@@ -63,7 +63,8 @@
       "writeLetter": "Escreva o que você ouve",
       "distinguish": "Qual delas faz este som?",
       "produce": "Qual é?",
-      "listenMeaning": "O que isso significa?"
+      "listenMeaning": "O que isso significa?",
+      "build": "Monte a palavra"
     },
     "sessionLength_many": "{{count, number}} exercícios curtos",
     "nothingDue": "Nada para revisar agora.",
@@ -85,7 +86,9 @@
       "revealLetter": "A letra é {{answer}}.",
       "revealStrokes": "Veja os traços mais uma vez e depois copie.",
       "inSentence": "Usa-se assim: {{sentence}}"
-    }
+    },
+    "buildTray": "Sílabas",
+    "buildRemove": "Tirar {{syllable}}"
   },
   "units": {
     "badge": "Unidade {{index, number}}",
