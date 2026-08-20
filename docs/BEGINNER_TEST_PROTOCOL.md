@@ -25,7 +25,7 @@ Each participant must:
 - have used a smartphone daily for years, so nothing being learned is the phone;
 - read one of the eight shipping interface languages fluently.
 
-Recruit across at least three of the eight languages if you can. The copy was
+Recruit across at least three of the ten languages if you can. The copy was
 written in English and translated; the translations have never been read aloud
 by someone relying on them.
 

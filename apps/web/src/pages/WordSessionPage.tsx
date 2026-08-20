@@ -87,6 +87,18 @@ export function WordSessionPage() {
   );
 
   /**
+   * A hint's localised fragments — a part of speech, a category, a letter family.
+   *
+   * Threaded in rather than resolved inside `buildExercise`, because that module
+   * is pure and testable and importing `t` into it would make it neither. The
+   * default in `buildExercise` is the identity function, which is fine for the
+   * structural checks that use it and is *not* fine here: without this, the hint
+   * on screen read "It's a vocabulary:partOfSpeech.verb", which is what it read
+   * the first time this was opened in a browser.
+   */
+  const label = useCallback((key: string) => t(key), [t]);
+
+  /**
    * The sitting's shape, frozen once; its wording, live.
    *
    * Two different lifetimes, and separating them is what makes both correct:
@@ -124,8 +136,8 @@ export function WordSessionPage() {
     if (steps === null && ready) setSteps(scheduleSteps(vocabularyDay));
   }, [ready, steps, vocabularyDay]);
   const queue = useMemo(
-    () => (steps === null ? [] : buildDailyQuestions(steps, meaningOf)),
-    [steps, meaningOf],
+    () => (steps === null ? [] : buildDailyQuestions(steps, meaningOf, label)),
+    [steps, meaningOf, label],
   );
 
   const [index, setIndex] = useState(0);
@@ -328,7 +340,8 @@ export function WordSessionPage() {
                 mode: current.exercise!.mode,
                 passed: result.correct,
                 score: result.correct ? 1 : 0,
-                hint_used: result.hintUsed,
+                hint_used: result.hintLevel > 0,
+                hint_level: result.hintLevel,
                 response_ms: result.responseMs,
                 ...(!result.correct ? { confused_with: result.chosen } : {}),
                 session_id: sessionId.current,

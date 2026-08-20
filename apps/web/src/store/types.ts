@@ -73,6 +73,15 @@ export interface RecordReviewInput {
   /** 0..1. The evaluator score for writing; 1 or 0 for a choice. */
   score: number;
   hint_used?: boolean;
+  /**
+   * How far up the hint ladder the learner went. 0 is unaided.
+   *
+   * Alongside `hint_used` rather than replacing it: every attempt written
+   * before the ladder existed has the boolean and no level, and treating a
+   * missing level as 0 would quietly re-score all of that history as unaided
+   * recall. See `applyReview`, which prefers the level and falls back.
+   */
+  hint_level?: number;
   response_ms?: number;
   /** What was chosen instead, for a wrong multiple-choice answer. */
   confused_with?: string;

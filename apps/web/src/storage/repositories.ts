@@ -550,6 +550,13 @@ export interface AttemptRecord {
   passed: boolean;
   score: number;
   hint_used: boolean;
+  /**
+   * Rungs of the hint ladder taken. 0 is unaided.
+   *
+   * Optional because rows written before the ladder existed do not have it.
+   * Readers must not treat a missing value as 0 — see `RecordReviewInput`.
+   */
+  hint_level?: number;
   response_ms: number | null;
   /** What was chosen instead, for a wrong multiple-choice answer. */
   confused_with?: string;

@@ -1,0 +1,110 @@
+{
+  "actions": {
+    "undo": "Hoàn tác",
+    "clear": "Xóa hết",
+    "check": "Kiểm tra"
+  },
+  "canvas": {
+    "label": "Ô viết chữ {{character}}",
+    "empty": "Chưa viết gì cả.",
+    "strokes_one": "Đã viết {{count, number}} nét.",
+    "strokes_other": "Đã viết {{count, number}} nét."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Chuẩn rồi!",
+      "perfect": "{{character}} — viết đẹp lắm.",
+      "scored": "Dáng chữ ổn — được {{score, number(style: percent)}} rồi."
+    },
+    "empty": {
+      "headline": "Chưa có gì cả",
+      "detail": "Bạn viết chữ vào trong ô nhé."
+    },
+    "incomplete": {
+      "headline": "Sắp được rồi",
+      "tooSmall": "Hơi nhỏ. Thử viết đầy ô xem.",
+      "missingStroke": "Thiếu một nét. Đi theo đường dẫn cho hết nhé."
+    },
+    "outside": {
+      "headline": "Chưa đúng lắm",
+      "tooLarge": "Chữ bị tràn ra ngoài ô. Lần sau nhỏ lại một chút.",
+      "strayStroke": "Có một nét đi lạc. Bạn đi theo đường dẫn từ từ thôi."
+    },
+    "scribble": {
+      "headline": "Mình viết chậm lại nhé",
+      "detail": "Mỗi nét vẽ một lần thôi, trong một chuyển động liền mạch — không cần tô lại."
+    },
+    "mixed": {
+      "headline": "Chưa đúng lắm",
+      "detail": "Canh cho khớp với đường dẫn rồi thử lại nhé."
+    },
+    "retry": "Viết lại",
+    "showDetails": "Xem chi tiết",
+    "hideDetails": "Ẩn chi tiết",
+    "breakdown": "Lệch {{mismatch, number(style: percent)}} · ra ngoài {{outside, number(style: percent)}} · thiếu {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Cách viết {{character}}, gồm {{count, number}} nét",
+    "diagramLabel_other": "Cách viết {{character}}, gồm {{count, number}} nét",
+    "pause": "Tạm dừng",
+    "count_one": "{{count, number}} nét",
+    "count_other": "{{count, number}} nét",
+    "heading": "Xem cách viết",
+    "notesHeading": "Về các nét của bạn",
+    "notesFooter": "Thứ tự nét không tính điểm. Nhưng nó là thứ làm chữ bạn trông đúng.",
+    "notes": {
+      "fewer": "Bạn viết {{theirs, number}} nét; chữ này thường được viết bằng {{expected, number}} nét.",
+      "more": "Bạn viết {{theirs, number}} nét; chữ này thường được viết bằng {{expected, number}} nét.",
+      "startElsewhere": "Chữ này thường bắt đầu ở {{corner}} của ô.",
+      "direction_one": "Có một nét đi ngược chiều. Nét tiếng Hàn đi từ trên xuống dưới và từ trái sang phải.",
+      "direction_other": "Có {{count, number}} nét đi ngược chiều. Nét tiếng Hàn đi từ trên xuống dưới và từ trái sang phải."
+    },
+    "corners": {
+      "topLeft": "góc trên bên trái",
+      "topCentre": "phía trên",
+      "topRight": "góc trên bên phải",
+      "middleLeft": "bên trái",
+      "middleCentre": "chính giữa",
+      "middleRight": "bên phải",
+      "bottomLeft": "góc dưới bên trái",
+      "bottomCentre": "phía dưới",
+      "bottomRight": "góc dưới bên phải"
+    },
+    "watchAgain": "Xem lại",
+    "back": "Trước",
+    "next": "Tiếp",
+    "position": "Nét {{current, number}} trên {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "nét sổ dài",
+      "downLongTwice": "hai nét sổ dài, bên trái trước",
+      "downShort": "nét sổ ngắn",
+      "downShortTwice": "hai nét sổ ngắn, bên trái trước",
+      "acrossLong": "nét ngang dài",
+      "acrossLongTwice": "hai nét ngang dài, nét trên trước",
+      "acrossShort": "nét ngang ngắn",
+      "acrossShortTwice": "hai nét ngang ngắn, nét trên trước",
+      "cornerAcrossDown": "ngang phía trên rồi sổ xuống bên phải",
+      "cornerDownAcross": "sổ xuống bên trái rồi vòng sang phải",
+      "slantLeft": "nét xiên xuống bên trái",
+      "slantRight": "nét xiên xuống bên phải",
+      "circle": "vòng tròn, bắt đầu từ đỉnh"
+    },
+    "s1": "Chỉ một nét thôi: {{a}}.",
+    "s2": "Đầu tiên {{a}}. Rồi {{b}}.",
+    "s3": "Đầu tiên {{a}}. Rồi {{b}}. Rồi {{c}}.",
+    "s4": "Đầu tiên {{a}}. Rồi {{b}}. Rồi {{c}}. Cuối cùng {{d}}.",
+    "parts2": {
+      "plain": "Viết {{a}} trước, rồi đến {{b}}.",
+      "right": "Viết {{a}} trước, rồi {{b}} bên phải nó.",
+      "below": "Viết {{a}} trước, rồi {{b}} bên dưới."
+    },
+    "parts3": {
+      "right": "Viết {{a}}, rồi {{b}} bên phải nó, rồi {{c}} ở phía dưới.",
+      "below": "Viết {{a}}, rồi {{b}} bên dưới, rồi {{c}} ở phía dưới cùng."
+    },
+    "partsDouble": "Viết {{a}} hai lần, cạnh nhau — bên trái trước.",
+    "fallback": "{{strokes}} nét, theo thứ tự các con số chỉ."
+  }
+}

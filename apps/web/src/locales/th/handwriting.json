@@ -1,0 +1,110 @@
+{
+  "actions": {
+    "undo": "ย้อนกลับ",
+    "clear": "ล้าง",
+    "check": "ตรวจ"
+  },
+  "canvas": {
+    "label": "ช่องเขียนตัวอักษร {{character}}",
+    "empty": "ยังไม่ได้เขียนอะไร",
+    "strokes_one": "เขียนไปแล้ว {{count, number}} เส้น",
+    "strokes_other": "เขียนไปแล้ว {{count, number}} เส้น"
+  },
+  "feedback": {
+    "correct": {
+      "headline": "ถูกต้อง",
+      "perfect": "{{character}} — เขียนสวยมาก",
+      "scored": "รูปทรงใช้ได้ — ได้ {{score, number(style: percent)}} แล้ว"
+    },
+    "empty": {
+      "headline": "ยังไม่มีอะไรเลย",
+      "detail": "เขียนตัวอักษรลงในกรอบนะ"
+    },
+    "incomplete": {
+      "headline": "เกือบแล้ว",
+      "tooSmall": "เล็กไปหน่อย ลองเขียนให้เต็มกรอบดู",
+      "missingStroke": "ยังขาดไปหนึ่งเส้น ลากตามเส้นนำให้ครบนะ"
+    },
+    "outside": {
+      "headline": "ยังไม่ค่อยตรง",
+      "tooLarge": "เขียนล้นออกนอกกรอบ คราวหน้าเล็กลงอีกนิด",
+      "strayStroke": "มีเส้นหนึ่งหลุดออกไป ค่อย ๆ ลากตามเส้นนะ"
+    },
+    "scribble": {
+      "headline": "ลองช้าลงอีกนิด",
+      "detail": "ลากแต่ละเส้นครั้งเดียวให้จบในจังหวะเดียว ไม่ต้องลากทับซ้ำ"
+    },
+    "mixed": {
+      "headline": "ยังไม่ค่อยตรง",
+      "detail": "จัดให้ตรงกับเส้นนำแล้วลองอีกครั้ง"
+    },
+    "retry": "ลองใหม่",
+    "showDetails": "ดูรายละเอียด",
+    "hideDetails": "ซ่อนรายละเอียด",
+    "breakdown": "คลาดเคลื่อน {{mismatch, number(style: percent)}} · ออกนอกกรอบ {{outside, number(style: percent)}} · ขาดหาย {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
+    "diagramLabel_other": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
+    "pause": "หยุดชั่วคราว",
+    "count_one": "{{count, number}} เส้น",
+    "count_other": "{{count, number}} เส้น",
+    "heading": "ดูวิธีเขียน",
+    "notesHeading": "เกี่ยวกับเส้นที่คุณเขียน",
+    "notesFooter": "ลำดับเส้นไม่ถูกนำมาคิดคะแนน แต่เป็นสิ่งที่ทำให้ลายมือดูถูกต้อง",
+    "notes": {
+      "fewer": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",
+      "more": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",
+      "startElsewhere": "ปกติจะเริ่มที่{{corner}}ของกรอบ",
+      "direction_one": "มีเส้นหนึ่งลากสวนทาง เส้นภาษาเกาหลีลากจากบนลงล่างและจากซ้ายไปขวา",
+      "direction_other": "มี {{count, number}} เส้นลากสวนทาง เส้นภาษาเกาหลีลากจากบนลงล่างและจากซ้ายไปขวา"
+    },
+    "corners": {
+      "topLeft": "มุมบนซ้าย",
+      "topCentre": "ด้านบน",
+      "topRight": "มุมบนขวา",
+      "middleLeft": "ด้านซ้าย",
+      "middleCentre": "ตรงกลาง",
+      "middleRight": "ด้านขวา",
+      "bottomLeft": "มุมล่างซ้าย",
+      "bottomCentre": "ด้านล่าง",
+      "bottomRight": "มุมล่างขวา"
+    },
+    "watchAgain": "ดูอีกครั้ง",
+    "back": "ก่อนหน้า",
+    "next": "ถัดไป",
+    "position": "เส้นที่ {{current, number}} จาก {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "เส้นตั้งยาว",
+      "downLongTwice": "เส้นตั้งยาวสองเส้น เริ่มจากเส้นซ้าย",
+      "downShort": "เส้นตั้งสั้น",
+      "downShortTwice": "เส้นตั้งสั้นสองเส้น เริ่มจากเส้นซ้าย",
+      "acrossLong": "เส้นนอนยาว",
+      "acrossLongTwice": "เส้นนอนยาวสองเส้น เริ่มจากเส้นบน",
+      "acrossShort": "เส้นนอนสั้น",
+      "acrossShortTwice": "เส้นนอนสั้นสองเส้น เริ่มจากเส้นบน",
+      "cornerAcrossDown": "ลากขวางด้านบนแล้วหักลงทางขวา",
+      "cornerDownAcross": "ลากลงด้านซ้ายแล้ววกไปทางขวา",
+      "slantLeft": "เส้นเฉียงลงทางซ้าย",
+      "slantRight": "เส้นเฉียงลงทางขวา",
+      "circle": "วงกลม เริ่มวนจากด้านบน"
+    },
+    "s1": "มีเส้นเดียวเท่านั้น: {{a}}",
+    "s2": "เริ่มที่{{a}} แล้ว{{b}}",
+    "s3": "เริ่มที่{{a}} แล้ว{{b}} แล้ว{{c}}",
+    "s4": "เริ่มที่{{a}} แล้ว{{b}} แล้ว{{c}} สุดท้าย{{d}}",
+    "parts2": {
+      "plain": "เขียน {{a}} ก่อน แล้วค่อย {{b}}",
+      "right": "เขียน {{a}} ก่อน แล้ว {{b}} ทางขวาของมัน",
+      "below": "เขียน {{a}} ก่อน แล้ว {{b}} ข้างล่าง"
+    },
+    "parts3": {
+      "right": "เขียน {{a}} แล้ว {{b}} ทางขวาของมัน แล้ว {{c}} ที่ด้านล่าง",
+      "below": "เขียน {{a}} แล้ว {{b}} ข้างล่าง แล้ว {{c}} ที่ด้านล่างสุด"
+    },
+    "partsDouble": "เขียน {{a}} สองครั้งเรียงกัน โดยเริ่มจากตัวซ้าย",
+    "fallback": "{{strokes}} เส้น ตามลำดับที่ตัวเลขบอกไว้"
+  }
+}

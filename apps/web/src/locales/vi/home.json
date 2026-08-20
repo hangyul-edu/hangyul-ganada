@@ -1,0 +1,31 @@
+{
+  "streak": {
+    "aria": "Xem quá trình học của bạn"
+  },
+  "celebrate": "Xong mục tiêu hôm nay rồi. Giỏi lắm!",
+  "dailyGoal": "Chữ cái hôm nay",
+  "dailyGoalAria": "Chữ cái hôm nay: {{done, number}} trên {{total, number}}",
+  "cta": {
+    "start": "Bắt đầu ngay",
+    "continue": "Học tiếp"
+  },
+  "quick": {
+    "letters": "Chữ cái",
+    "lettersCaption": "trong 40 chữ Hangul",
+    "words": "Từ vựng",
+    "wordsCaption": "từ của hôm nay"
+  },
+  "review": {
+    "title": "Ôn tập",
+    "count_one": "{{count, number}} mục cần xem lại",
+    "count_other": "{{count, number}} mục cần xem lại",
+    "empty": "Chưa có gì để xem lại"
+  },
+  "practice": {
+    "title": "Luyện tập hôm nay",
+    "reviews_one": "{{count, number}} bài ôn đã sẵn sàng",
+    "reviews_other": "{{count, number}} bài ôn đã sẵn sàng",
+    "cta": "Bắt đầu luyện tập"
+  },
+  "purpose": "Học tiếng Hàn từ chữ cái đầu tiên — Hangul trước, rồi đến những từ bạn thật sự dùng đến."
+}

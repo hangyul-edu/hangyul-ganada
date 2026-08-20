@@ -746,7 +746,7 @@ export interface SessionOutcome {
 }
 
 export function sessionOutcome(
-  results: Array<{ candidate: ReviewCandidate; passed: boolean; hintUsed: boolean; recovery: boolean }>,
+  results: Array<{ candidate: ReviewCandidate; passed: boolean; hintLevel: number; recovery: boolean }>,
   memory: MemoryMap,
   now: Date,
 ): SessionOutcome {
@@ -773,7 +773,7 @@ export function sessionOutcome(
 
   return {
     practised: results.length,
-    firstTry: results.filter((r) => r.passed && !r.hintUsed && !r.recovery).length,
+    firstTry: results.filter((r) => r.passed && r.hintLevel === 0 && !r.recovery).length,
     comingBack,
     confusion,
   };

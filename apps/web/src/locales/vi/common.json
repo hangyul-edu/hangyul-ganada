@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Học Hangul, từng nét một.",
+    "description": "Học đọc và viết Hangul ngay từ chữ cái đầu tiên — phụ âm và nguyên âm, cách ghép chữ, tập viết tay và những từ tiếng Hàn đầu tiên của bạn."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "goHome": "Về trang chính",
+    "done": "Xong",
+    "save": "Lưu",
+    "saved": "Đã lưu"
+  },
+  "a11y": {
+    "skipToContent": "Bỏ qua, đến nội dung chính",
+    "currentPage": "(trang hiện tại)",
+    "confirmationRequired": "Thao tác này cần được xác nhận."
+  },
+  "audio": {
+    "play": "Nghe cách đọc của {{text}}",
+    "retry": "Nghe lại {{text}}",
+    "unavailable": "Chưa có cách đọc cho {{text}}"
+  },
+  "progress": {
+    "lesson": "Tiến độ bài {{name}}",
+    "review": "Tiến độ bài ôn này"
+  },
+  "units": {
+    "day_one": "{{count, number}} ngày",
+    "day_other": "{{count, number}} ngày"
+  },
+  "report": {
+    "action": "Báo lỗi",
+    "title": "Chỗ nào chưa đúng?",
+    "blurb": "Chọn chỗ có vẻ sai, chúng tôi sẽ mở sẵn một email để bạn viết thêm. Không có thông tin học tập nào được đính kèm.",
+    "field": {
+      "item": "Mục",
+      "category": "Vấn đề",
+      "version": "Phiên bản ứng dụng",
+      "language": "Ngôn ngữ"
+    },
+    "writeHere": "Viết điều bạn thấy vào đây:",
+    "category": {
+      "meaning": "Nghĩa của từ",
+      "example": "Câu ví dụ",
+      "translation": "Bản dịch",
+      "audio": "Phần âm thanh",
+      "writing": "Nhận xét chữ viết",
+      "other": "Chuyện khác"
+    }
+  },
+  "exit": {
+    "title": "Thoát Hangyul ganada?",
+    "body": "Tiến độ của bạn đã được lưu. Lần sau mở lại là học tiếp được ngay.",
+    "stay": "Ở lại",
+    "leave": "Thoát"
+  }
+}

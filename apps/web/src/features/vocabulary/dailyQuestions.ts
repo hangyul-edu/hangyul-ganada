@@ -5,6 +5,7 @@ import type { Skill } from '../../domain/memory';
 import type { ExerciseMode } from '../../domain/review';
 import type { ScheduledStep, WordStep } from '../../domain/vocabularyDay';
 import { buildExercise, type Exercise, type MeaningOf } from '../review/exercises';
+import type { Label } from '../review/hints';
 
 /**
  * Turning today's plan into the questions on the screen.
@@ -73,6 +74,7 @@ export interface DailyQuestion {
 export function buildDailyQuestions(
   steps: readonly ScheduledStep[],
   meaningOf: MeaningOf,
+  label: Label = (key) => key,
 ): DailyQuestion[] {
   const out: DailyQuestion[] = [];
 
@@ -107,6 +109,7 @@ export function buildDailyQuestions(
       // The position, so a learner who leaves and returns gets the options in
       // the same places. A reshuffle on resume makes progress unreadable.
       index + 1,
+      label,
     );
     if (!exercise) continue;
 

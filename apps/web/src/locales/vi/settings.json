@@ -1,0 +1,149 @@
+{
+  "title": "Học tập của tôi",
+  "stats": {
+    "lettersLearned": "Chữ cái đã học",
+    "wordsLearned": "Từ đã học",
+    "alphabetProgress": "Tiến độ bảng chữ Hangul",
+    "studyDays": "Số ngày học"
+  },
+  "language": {
+    "title": "Ngôn ngữ",
+    "pickerTitle": "Chọn ngôn ngữ",
+    "pickerIntro": "Ngôn ngữ của giao diện. Phần bạn đang học — chữ Hangul, từ vựng và câu ví dụ — vẫn giữ nguyên tiếng Hàn.",
+    "listAria": "Các ngôn ngữ có sẵn",
+    "searchLabel": "Tìm ngôn ngữ",
+    "searchPlaceholder": "Tìm theo tên hoặc mã",
+    "noResults": "Không có ngôn ngữ nào khớp với \"{{query}}\".",
+    "selected": "Đang chọn",
+    "coverageNote": "Một vài đoạn giải thích có thể vẫn hiện bằng tiếng Anh trong lúc bản dịch đang được hoàn thiện."
+  },
+  "font": {
+    "title": "Kiểu chữ để tập viết",
+    "description": "Chữ bạn tô sẽ được vẽ theo kiểu chữ bạn chọn."
+  },
+  "dailyTarget": {
+    "title": "Số chữ mỗi ngày",
+    "description": "Mỗi ngày học xong bao nhiêu chữ Hangul.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} chữ mỗi ngày",
+    "optionAria_other": "{{count, number}} chữ mỗi ngày"
+  },
+  "wordGoal": {
+    "title": "Số từ mỗi ngày",
+    "description": "Mỗi ngày học xong bao nhiêu từ. Bạn đổi lúc nào cũng được.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} từ mỗi ngày"
+  },
+  "guides": {
+    "title": "Đường kẻ hướng dẫn",
+    "description": "Các đường trợ giúp bên trong ô viết.",
+    "grid": "Đường ngang và đường dọc",
+    "crosshair": "Dấu tâm ô"
+  },
+  "about": {
+    "body": "Đọc và viết Hangul: chữ cái, âm thanh, cách ghép chữ, và những từ tiếng Hàn đầu tiên của bạn.",
+    "offline": "Mọi bài học, câu ví dụ và bản ghi âm đều dùng được khi không có mạng.",
+    "version": "Phiên bản {{version}}",
+    "reset": "Xóa toàn bộ tiến độ học"
+  },
+  "reset": {
+    "title": "Xóa toàn bộ tiến độ học?",
+    "description": "Các bài đã hoàn thành, lịch sử ôn tập và nhật ký học tập sẽ bị xóa. Việc này không thể hoàn tác.",
+    "confirm": "Xóa",
+    "cancel": "Hủy",
+    "body": "Bắt đầu lại từ chữ cái đầu tiên."
+  },
+  "voice": {
+    "title": "Giọng đọc",
+    "description": "Ai sẽ đọc to các chữ cái, âm tiết và từ.",
+    "female": "Giọng nữ",
+    "male": "Giọng nam",
+    "preview": "Nghe thử giọng đang chọn",
+    "provider": "Hai giọng tiếng Hàn rõ ràng, đọc chậm hơn người bản xứ một chút để bạn nghe rõ từng âm."
+  },
+  "groups": {
+    "learning": "Việc học",
+    "practice": "Luyện tập",
+    "appearance": "Giao diện",
+    "app": "Ứng dụng",
+    "reset": "Xóa dữ liệu"
+  },
+  "activity": {
+    "title": "Nhật ký học tập",
+    "body": "Chuỗi ngày học, lịch học và những gì bạn đã học được"
+  },
+  "style": {
+    "title": "Cách luyện viết",
+    "description": "Giữ lại bao nhiêu phần của chữ trên trang khi bạn viết. Kiểu nào thì chữ mẫu cũng luôn có.",
+    "guided": {
+      "title": "Có hướng dẫn",
+      "detail": "Tô theo chữ mẫu trước, rồi viết đè lên nét mờ hơn."
+    },
+    "focused": {
+      "title": "Tập trung",
+      "detail": "Bỏ qua bước tô và viết luôn trên nét mờ."
+    }
+  },
+  "appearance": {
+    "title": "Giao diện",
+    "description": "Sáng, tối, hoặc theo cài đặt của máy bạn.",
+    "system": "Theo máy",
+    "light": "Sáng",
+    "dark": "Tối"
+  },
+  "legal": {
+    "title": "Pháp lý & Giấy phép",
+    "body": "Giấy phép cho nội dung và kiểu chữ trong ứng dụng",
+    "intro": "Một phần nội dung trong ứng dụng được dùng theo giấy phép có yêu cầu ghi công. Phần ghi công nằm ở đây.",
+    "contentHeading": "Nội dung",
+    "fontsHeading": "Kiểu chữ"
+  },
+  "reminder": {
+    "title": "Nhắc học mỗi ngày",
+    "description": "Một lời nhắc nhẹ nhàng mỗi ngày, vào giờ bạn chọn. Mặc định là tắt, và lời nhắc không bao giờ rời khỏi máy bạn.",
+    "toggle": "Nhắc tôi luyện tập",
+    "at": "Lúc",
+    "notificationTitle": "Đến giờ luyện tập rồi",
+    "notificationBody": "Vài phút tiếng Hàn đang đợi bạn.",
+    "refused": "Máy của bạn đang không cho ứng dụng này gửi thông báo. Bạn có thể bật lại trong phần cài đặt của máy."
+  },
+  "privacy": {
+    "title": "Quyền riêng tư",
+    "body": "Chuyện gì xảy ra với dữ liệu học của bạn",
+    "lede": "Không có gì bạn làm ở đây rời khỏi máy này.",
+    "device": {
+      "title": "Dữ liệu học nằm lại ở đây",
+      "points": [
+        "Những gì bạn đã học và mức độ bạn nhớ được lưu trên máy này. Nó không bao giờ được tải lên đâu cả.",
+        "Không có tài khoản — không phải đăng ký, và không có hồ sơ nào về bạn ở bất kỳ đâu."
+      ]
+    },
+    "tracking": {
+      "title": "Không quảng cáo, không theo dõi",
+      "points": [
+        "Ứng dụng không theo dõi cách bạn dùng và không gửi báo cáo về đâu cả.",
+        "Chữ viết tay được chấm ngay trên màn hình khi bạn vẽ, rồi bỏ đi."
+      ]
+    },
+    "permissions": {
+      "title": "Quyền truy cập",
+      "points": [
+        "Chỉ thông báo, và chỉ khi bạn bật lời nhắc hằng ngày.",
+        "Không bao giờ dùng máy ảnh, micro, ảnh, danh bạ hay vị trí."
+      ]
+    },
+    "erase": {
+      "title": "Cách xóa đi",
+      "points": [
+        "Bạn có thể xóa mọi thứ đã học ở cuối phần {{screen}}.",
+        "Gỡ ứng dụng là dữ liệu cũng đi theo."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Tiến độ của bạn đang không được lưu trên máy này, nên những gì bạn học có thể mất khi mở lại ứng dụng. Thường thì chỉ cần cho phép trang này lưu dữ liệu trong cài đặt trình duyệt là xong.",
+    "recovered_one": "Đã bỏ qua {{count, number}} bản ghi bị hỏng khi tải. Phần tiến độ còn lại vẫn nguyên vẹn.",
+    "recovered_other": "Đã bỏ qua {{count, number}} bản ghi bị hỏng khi tải. Phần tiến độ còn lại vẫn nguyên vẹn."
+  }
+}

@@ -167,7 +167,26 @@ const BUDGETS = {
   localePack: 44 * 1024,
   route: 24 * 1024,
   strokeAssets: 32 * 1024,
-  total: 800 * 1024,
+  /**
+   * Everything the service worker holds for offline use.
+   *
+   * Raised from 800 kB when Vietnamese and Thai were added. That is what those
+   * two languages cost and the number should say so rather than the languages
+   * being trimmed to fit a round figure — but the *reason* it had to be raised
+   * is the finding, not the ten kilobytes.
+   *
+   * The worker precaches every locale's word copy so that a learner who
+   * installs the app and goes offline before opening a word screen still has
+   * their own language. That is the right behaviour and it does not scale: the
+   * total grows by roughly a locale pack per language and by the whole corpus
+   * per word added, and ten languages of a ten-thousand-word corpus is several
+   * megabytes precached to serve one language and a few hundred words. The
+   * architecture that fixes it is the same one `LAZY_REQUIRED_HEADWORDS` above
+   * is waiting for: chunk the corpus, precache the shell and the learner's own
+   * locale, and cache the rest on first use. Until that exists this number will
+   * keep being raised, and each time is a reminder that it should not be.
+   */
+  total: 840 * 1024,
 };
 
 function gzipSize(path) {

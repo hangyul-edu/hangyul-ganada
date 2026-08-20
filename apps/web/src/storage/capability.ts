@@ -84,3 +84,41 @@ export async function checkPersistence(driver: PersistenceDriver): Promise<boole
   if (!driver.durable) return false;
   return probePersistence(driver);
 }
+
+/**
+ * Asks the browser to keep this site's data, once the learner has something to lose.
+ *
+ * ## Why not at startup
+ *
+ * `navigator.storage.persist()` is a permission request. On Firefox it puts a
+ * prompt in front of the learner; on Chromium it is granted or refused silently
+ * on the strength of how engaged the site looks. Both go badly on a first
+ * paint: a prompt before anyone has learned anything is a prompt about nothing,
+ * and Chromium's heuristics have the least to go on at exactly that moment.
+ *
+ * Asked instead after a first finished lesson, which is the first time there is
+ * an answer to "why does this site want that" — and the moment a person is most
+ * likely to say yes, because they have just invested in the thing being kept.
+ *
+ * ## Failure is not a state the learner hears about
+ *
+ * A refusal changes nothing. Storage without the persistent flag is still
+ * storage; it is merely evictable under disk pressure, which for a few hundred
+ * kilobytes on a device the learner uses daily is close to theoretical. So this
+ * returns a boolean for the record and never surfaces anything. The only
+ * warning this app shows about storage is the one that follows a real, measured
+ * write-then-read failure — see `probePersistence` above, and §49.
+ *
+ * Asked once. `persisted()` is checked first so a returning learner who already
+ * granted it is not asked again, and the caller remembers that it tried.
+ */
+export async function requestPersistence(): Promise<boolean> {
+  if (typeof navigator === 'undefined' || !navigator.storage?.persist) return false;
+  try {
+    if (await navigator.storage.persisted?.()) return true;
+    return await navigator.storage.persist();
+  } catch {
+    // A browser that throws here is a browser that was never going to grant it.
+    return false;
+  }
+}

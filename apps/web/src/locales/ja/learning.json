@@ -66,7 +66,24 @@
     },
     "nothingDue": "いまは復習するものがありません。",
     "modesEmpty": "今日はこの方法で見るものがありません。",
-    "answerIs": "{{word}} は「{{meaning}}」です。"
+    "answerIs": "{{word}} は「{{meaning}}」です。",
+    "showMoreHint": "もう少しヒント",
+    "showAnswer": "答えを見る",
+    "hint": {
+      "kind": "{{category}}に出てくる{{pos}}です。",
+      "kindOnly": "入るのは{{pos}}です。",
+      "startsWith": "{{start}}…で始まります。",
+      "startsWithSound": "「{{sound}}」の音で始まります。",
+      "replay": "もう一度聞いてみましょう。何度でもどうぞ。",
+      "letterFamily": "これは{{family}}です。",
+      "letterExample": "{{word}}の最初の文字です。",
+      "letterSound": "「{{sound}}」のような音です。",
+      "reveal": "答えは{{answer}}です。",
+      "revealWord": "この単語は{{answer}}です。",
+      "revealLetter": "この文字は{{answer}}です。",
+      "revealStrokes": "書き順をもう一度見てから、なぞってみましょう。",
+      "inSentence": "こんなふうに使います: {{sentence}}"
+    }
   },
   "units": {
     "badge": "ユニット {{index, number}}",
@@ -192,5 +209,20 @@
     "emptyTitle": "まだまちがいはありません",
     "emptyBody": "まちがえるとここに集まって、あとで直せます。",
     "emptyCta": "復習へ"
+  },
+  "letterGroup": {
+    "basic_vowel": "基本の母音",
+    "basic_consonant": "基本の子音",
+    "compound_vowel": "合成母音",
+    "double_consonant": "濃音（同じ子音を重ねた字）",
+    "final_consonant": "パッチム",
+    "syllable": "一文字"
+  },
+  "nextStep": {
+    "title": "次のステップへ",
+    "body": "ハングルが読めるようになりました。会話とTOPIK対策はHangyulで続けられます。",
+    "cta": "Hangyulで続ける",
+    "rowTitle": "Hangyulで続ける",
+    "rowBody": "準備ができたら会話とTOPIKへ"
   }
 }

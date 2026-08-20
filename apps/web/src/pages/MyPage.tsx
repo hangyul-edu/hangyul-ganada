@@ -7,6 +7,7 @@ import { usePronunciation } from '../audio/PronunciationContext';
 import { PRODUCT, productName } from '../config/product';
 import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS } from '../data/fonts';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
+import { NextStepCard } from '../features/learning/NextStepCard';
 import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
 import { invalidateGlyphCache } from '../features/writing/useEvaluator';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
@@ -200,6 +201,16 @@ export function MyPage() {
             </span>
             <ChevronRightIcon size={18} />
           </Link>
+          {/*
+            Where the learner goes after this product, permanently.
+            
+            §32 asks for one unobtrusive row that is always there, as distinct
+            from the card at the end of the alphabet which is earned. This is
+            it: inside Learning, under the learner's own activity, with the
+            same shape as the row above it and none of the emphasis. Renders
+            nothing at all when there is no destination configured.
+          */}
+          <NextStepCard variant="row" />
           <Section
             title={t('settings:dailyTarget.title')}
             description={t('settings:dailyTarget.description')}

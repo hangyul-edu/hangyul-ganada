@@ -59,6 +59,10 @@ ROOT = Path(__file__).resolve().parents[2]
 CACHE = ROOT / "content-cache"
 OUT = ROOT / "apps" / "web" / "src" / "data" / "generated" / "vocabulary.json"
 
+#: Hand-written copy for locales that arrived after the corpus. See the note
+#: where these are emitted, below.
+SUPPLEMENTARY = ROOT / "content" / "vocabulary" / "copy"
+
 #: How many difficulty levels the product has.
 #:
 #: Eight, not the ten the first implementation happened to pick. Ten was never
@@ -442,6 +446,40 @@ def main() -> int:
     #: `[meaning, example translation | null, long definition | null]`.
     outputs = {OUT: dump(payload)}
     for locale, rows in copy_by_locale.items():
+        outputs[OUT.with_name(f"vocabulary.{locale}.json")] = dump(
+            {"locale": locale, "words": rows}
+        )
+
+    # Languages whose copy is written by hand rather than carried on the
+    # entries, and which are allowed to be incomplete.
+    #
+    # The eight locales above are a property of every entry: `pack.py` refuses
+    # an entry that is missing any of them, so their packs are always full and
+    # always the same length. Vietnamese and Thai arrived after the corpus did,
+    # and holding the whole corpus hostage to them would mean either shipping
+    # nothing in those languages or filling two and a half thousand rows with
+    # something nobody wrote.
+    #
+    # So they are keyed by word id in `content/vocabulary/copy/`, and a word
+    # with no entry there gets a `null` row. `wordCopy` in the app already
+    # resolves a null row down the fallback chain and reports the language it
+    # actually used, so the learner sees their own language where it exists and
+    # marked English where it does not — the behaviour that module was written
+    # for and, until now, the only locale that needed it was none of them.
+    #
+    # Keyed by id and not by position, deliberately: this file is re-ordered
+    # every time difficulty is re-scored, and an index would attach every
+    # meaning to the wrong word without changing a single line of code.
+    for path in sorted(SUPPLEMENTARY.glob("*.json")):
+        source = json.loads(path.read_text(encoding="utf-8"))
+        locale = source["locale"]
+        by_id = source["words"]
+        rows = [
+            ([*by_id[record["id"]], None] if record["id"] in by_id else None)
+            for record in records
+        ]
+        covered = sum(1 for row in rows if row is not None)
+        print(f"  {locale}: {covered:,} of {len(rows):,} words written by hand")
         outputs[OUT.with_name(f"vocabulary.{locale}.json")] = dump(
             {"locale": locale, "words": rows}
         )

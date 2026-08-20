@@ -66,7 +66,24 @@
     },
     "nothingDue": "Gerade gibt es nichts zu wiederholen.",
     "modesEmpty": "Heute gibt es in diesen Modi nichts.",
-    "answerIs": "{{word}} bedeutet „{{meaning}}“."
+    "answerIs": "{{word}} bedeutet „{{meaning}}“.",
+    "showMoreHint": "Noch ein Hinweis",
+    "showAnswer": "Lösung zeigen",
+    "hint": {
+      "kind": "Ein {{pos}} aus dem Bereich {{category}}.",
+      "kindOnly": "Gesucht ist ein {{pos}}.",
+      "startsWith": "Es fängt mit {{start}}… an.",
+      "startsWithSound": "Es fängt mit dem Laut „{{sound}}“ an.",
+      "replay": "Hören Sie es noch einmal — so oft Sie mögen.",
+      "letterFamily": "Das hier ist {{family}}.",
+      "letterExample": "Es ist der erste Buchstabe von {{word}}.",
+      "letterSound": "Klingt wie „{{sound}}“.",
+      "reveal": "Die Lösung ist {{answer}}.",
+      "revealWord": "Das Wort ist {{answer}}.",
+      "revealLetter": "Der Buchstabe ist {{answer}}.",
+      "revealStrokes": "Sehen Sie sich die Striche noch einmal an und schreiben Sie dann nach.",
+      "inSentence": "So wird es benutzt: {{sentence}}"
+    }
   },
   "units": {
     "badge": "Einheit {{index, number}}",
@@ -194,5 +211,20 @@
     "emptyTitle": "Noch nichts falsch",
     "emptyBody": "Wenn du etwas falsch hast, landet es hier — und du kannst es in Ruhe richtigstellen.",
     "emptyCta": "Zur Wiederholung"
+  },
+  "letterGroup": {
+    "basic_vowel": "ein einfacher Vokal",
+    "basic_consonant": "ein einfacher Konsonant",
+    "compound_vowel": "ein zusammengesetzter Vokal",
+    "double_consonant": "ein doppelter Konsonant",
+    "final_consonant": "ein Schlusskonsonant",
+    "syllable": "eine ganze Silbe"
+  },
+  "nextStep": {
+    "title": "Bereit für den nächsten Schritt",
+    "body": "Sie können Hangul jetzt lesen. Sprechen und TOPIK-Vorbereitung gehen in Hangyul weiter.",
+    "cta": "In Hangyul weitermachen",
+    "rowTitle": "In Hangyul weitermachen",
+    "rowBody": "Sprechen und TOPIK, wenn Sie so weit sind"
   }
 }

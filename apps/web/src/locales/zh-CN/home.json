@@ -25,5 +25,6 @@
     "reviews_one": "{{count, number}} 项复习",
     "reviews_other": "{{count, number}} 项复习",
     "cta": "开始练习"
-  }
+  },
+  "purpose": "从第一个字母开始学韩语 —— 先认识韩文，再学最常用的词。"
 }

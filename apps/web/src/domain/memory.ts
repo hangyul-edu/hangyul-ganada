@@ -192,9 +192,34 @@ export const INITIAL_STABILITY = {
   clean: 1.5,
   /** First try. */
   normal: 1.0,
-  /** After a retry, or with a hint. */
+  /** After a retry, or with a hint that narrowed it. */
   assisted: 0.5,
+  /**
+   * The answer was shown.
+   *
+   * Barely above nothing, and deliberately: the learner has met the item and
+   * that is worth something, but they have not recalled it and the schedule
+   * must not pretend they did. Without this rung a learner who pressed through
+   * to the reveal on every question would be told they had learned the day's
+   * words.
+   */
+  shown: 0.25,
 } as const;
+
+/**
+ * How much a success is worth after each rung of the hint ladder.
+ *
+ * Indexed by level: 0 unaided, 1 light, 2 narrowing, 3 the answer. Read by
+ * `successMultiplier`; the ladder that produces the levels is in
+ * `features/review/hints.ts`, which does not own these numbers because what a
+ * piece of evidence is worth is a property of the memory model.
+ */
+const HINT_BASE = [2.2, 1.7, 1.35, 1.0] as const;
+
+/** The base growth for a success at `level` rungs of help. */
+function hintBase(level: number): number {
+  return HINT_BASE[Math.min(level, HINT_BASE.length - 1)]!;
+}
 
 /** Nothing is ever scheduled closer than this. A review inside the hour is a re-ask. */
 const MIN_STABILITY_DAYS = 0.5;
@@ -226,8 +251,17 @@ export interface ReviewOutcome {
    * the only thing that separates "keep asking this" from "leave them alone".
    */
   score: number;
-  /** True when the learner asked for the answer to be shown or replayed. */
-  hintUsed?: boolean;
+  /**
+   * How far up the hint ladder the learner went before answering. 0 is unaided.
+   *
+   * A number rather than the boolean it replaced, because the three rungs are
+   * three different pieces of evidence. Being told a word is a noun and then
+   * remembering it is still remembering it; being shown the answer and then
+   * clicking it is not evidence of recall at all, and recording the two as the
+   * same "helped" flag meant the second one grew the interval. See
+   * `HINT_EVIDENCE` and `features/review/hints.ts`.
+   */
+  hintLevel?: number;
   /** Milliseconds from the exercise appearing to the answer. */
   responseMs?: number;
   /** For a wrong multiple-choice answer, what they picked instead. */
@@ -265,11 +299,13 @@ function successMultiplier(
   // bottom of this range and a perfect trace at the top.
   const confidence = clamp(0.55 + outcome.score * 0.5, 0.55, 1.05);
 
-  const base = outcome.hintUsed
-    ? 1.25 // helped: 1.15–1.35 across the score range
-    : outcome.recovery
-      ? 1.45 // got there after failing it earlier this sitting
-      : 2.2; // clean
+  const level = outcome.hintLevel ?? 0;
+  const base =
+    level > 0
+      ? hintBase(level)
+      : outcome.recovery
+        ? 1.45 // got there after failing it earlier this sitting
+        : 2.2; // clean
 
   const timing = timingFactor(outcome, memory);
   const resistance = 1 - memory.difficulty * 0.35;
@@ -378,13 +414,16 @@ export function applyReview(
   let next: SkillMemory;
   if (!existing) {
     // First time this skill has been demonstrated.
+    const level = outcome.hintLevel ?? 0;
     const start = !outcome.passed
       ? INITIAL_STABILITY.assisted
-      : outcome.hintUsed || outcome.recovery
-        ? INITIAL_STABILITY.assisted
-        : outcome.score >= 0.95
-          ? INITIAL_STABILITY.clean
-          : INITIAL_STABILITY.normal;
+      : level >= 3
+        ? INITIAL_STABILITY.shown
+        : level > 0 || outcome.recovery
+          ? INITIAL_STABILITY.assisted
+          : outcome.score >= 0.95
+            ? INITIAL_STABILITY.clean
+            : INITIAL_STABILITY.normal;
     next = {
       skill: outcome.skill,
       stability_days: start,
@@ -395,7 +434,7 @@ export function applyReview(
       lapses: outcome.passed ? 0 : 1,
       recent_score: outcome.score,
       last_response_ms: outcome.responseMs ?? null,
-      hints: outcome.hintUsed ? 1 : 0,
+      hints: (outcome.hintLevel ?? 0) > 0 ? 1 : 0,
     };
   } else {
     const elapsedDays = daysBetween(existing.last_reviewed_at, now);
@@ -424,7 +463,7 @@ export function applyReview(
       lapses: existing.lapses + (outcome.passed ? 0 : 1),
       recent_score: outcome.score,
       last_response_ms: outcome.responseMs ?? existing.last_response_ms,
-      hints: existing.hints + (outcome.hintUsed ? 1 : 0),
+      hints: existing.hints + ((outcome.hintLevel ?? 0) > 0 ? 1 : 0),
     };
   }
 

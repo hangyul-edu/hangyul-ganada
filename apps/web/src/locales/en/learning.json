@@ -157,7 +157,24 @@
     },
     "nothingDue": "Nothing to review right now.",
     "modesEmpty": "Nothing in these modes today.",
-    "answerIs": "{{word}} means “{{meaning}}”."
+    "answerIs": "{{word}} means “{{meaning}}”.",
+    "showMoreHint": "Another hint",
+    "showAnswer": "Show the answer",
+    "hint": {
+      "kind": "It’s a {{pos}} — something in {{category}}.",
+      "kindOnly": "The missing word is a {{pos}}.",
+      "startsWith": "It starts with {{start}}…",
+      "startsWithSound": "It starts with the sound “{{sound}}”.",
+      "replay": "Play it again — as many times as you like.",
+      "letterFamily": "This one is {{family}}.",
+      "letterExample": "It’s the first letter of {{word}}.",
+      "letterSound": "It sounds like “{{sound}}”.",
+      "reveal": "The answer is {{answer}}.",
+      "revealWord": "The word is {{answer}}.",
+      "revealLetter": "The letter is {{answer}}.",
+      "revealStrokes": "Watch the strokes once more, then trace them.",
+      "inSentence": "It’s used like this: {{sentence}}"
+    }
   },
   "sounds": {
     "title": "When sounds meet",
@@ -194,5 +211,20 @@
     "emptyTitle": "Nothing missed yet",
     "emptyBody": "When something slips, it turns up here so you can put it right.",
     "emptyCta": "Go to review"
+  },
+  "letterGroup": {
+    "basic_vowel": "a basic vowel",
+    "basic_consonant": "a basic consonant",
+    "compound_vowel": "a combined vowel",
+    "double_consonant": "a doubled consonant",
+    "final_consonant": "a final consonant",
+    "syllable": "a whole syllable"
+  },
+  "nextStep": {
+    "title": "Ready for the next step",
+    "body": "You can read Hangul now. Speaking and TOPIK practice continue in Hangyul.",
+    "cta": "Continue in Hangyul",
+    "rowTitle": "Continue in Hangyul",
+    "rowBody": "Speaking and TOPIK, when you are ready"
   }
 }

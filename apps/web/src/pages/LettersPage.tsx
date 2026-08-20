@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CURRICULUM_UNITS, LETTER_LESSONS, getLessonCharacters } from '../data/characters';
 import { alphabetProgress, isIntroduced, lessonProgress, unitProgress } from '../domain/progress';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
+import { NextStepCard } from '../features/learning/NextStepCard';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Badge } from '../ui/Chip';
@@ -33,6 +34,17 @@ export function LettersPage() {
   const format = useFormatters();
 
   const alphabet = alphabetProgress(state.progress);
+
+  /*
+   * The alphabet is finished, so there is somewhere else to go now.
+   *
+   * §32. Placed on the letters screen and nowhere in the lesson flow: a learner
+   * who has just come back to see their progress is the person who is deciding
+   * what to do next, and a learner in the middle of a session is not. It sits
+   * *below* the alphabet grid, so the achievement is the thing on screen and
+   * this is what follows it.
+   */
+  const alphabetDone = alphabet.done >= alphabet.total;
 
   return (
     <div className={styles.page}>
@@ -178,6 +190,8 @@ export function LettersPage() {
             <ChevronRightIcon size={20} />
           </Card>
         </Link>
+
+        {alphabetDone && <NextStepCard variant="earned" />}
       </div>
     </div>
   );

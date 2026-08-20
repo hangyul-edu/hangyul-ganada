@@ -24,6 +24,7 @@ import {
 import { StrokeOrder } from '../ui/StrokeOrder';
 import { useStudyClock } from '../features/session/useStudyClock';
 import { resolveContent, useLocale } from '../i18n';
+import { requestPersistence } from '../storage/capability';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
@@ -271,6 +272,26 @@ export function LetterSessionPage() {
     setOrderNotes([]);
   };
 
+  /*
+   * The first finished lesson is when we ask the browser to keep the data.
+   *
+   * §49. Not at startup: `persist()` is a permission request, and a request
+   * made before the learner has anything stored is one Chromium's engagement
+   * heuristics have no reason to grant and Firefox puts a prompt in front of.
+   * Here they have just finished something, which is both the first moment the
+   * request has a reason and the moment they are most likely to agree to it.
+   *
+   * Nothing is shown either way. A refusal leaves ordinary storage in place,
+   * which is what the app has always used; the only storage message a learner
+   * ever sees is the one after a real write-then-read failure.
+   */
+  const asked = useRef(false);
+  useEffect(() => {
+    if (!finished || asked.current) return;
+    asked.current = true;
+    void requestPersistence();
+  }, [finished]);
+
   if (!lesson || !current) {
     return <NotFoundBody messageKey="notFound.lesson" />;
   }
@@ -310,6 +331,7 @@ export function LetterSessionPage() {
         {t('learning:session.startWriting')}
       </Button>
     ) : null;
+
 
   return (
     <FocusScreen

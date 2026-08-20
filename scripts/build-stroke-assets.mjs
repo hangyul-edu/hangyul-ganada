@@ -72,6 +72,39 @@
  * problem from the other end, so the growth is directional: a stroke may bleed
  * into ink an **earlier** stroke owns, where it is hidden under ink already on
  * the paper, and never into a later one's.
+ *
+ * ## The caps, and the stroke that drew too much
+ *
+ * "Within reach of the centreline" is a distance to a *polyline*, which puts a
+ * disc of that radius on each end of it like a cap. The cap is not part of the
+ * stroke — it is a bubble of whatever lies beyond where the pen stopped — and
+ * because the route is a run of band centres it stops a little short of the ink
+ * at both ends, so the bubble always has somewhere to spread into.
+ *
+ * 어 is what that looked like on screen. Its second stroke is the short
+ * connector of the ㅓ, and the connector's route *ends inside the vertical that
+ * follows it*, so the cap claimed a disc of the vertical's ink six units wide
+ * and nineteen tall. The demonstration then painted a block of stroke three
+ * while drawing stroke two: a dark wedge growing out of a short bar, on every
+ * syllable whose vowel bar meets its stem.
+ *
+ * Three things fix it, and all three are needed because each one alone feeds
+ * the next:
+ *
+ * 1. **`widthOf` ignores the caps.** Measuring a pixel beyond the end of the
+ *    route measures how far the stroke *reached*, not how wide it is, and on a
+ *    short stroke the caps are most of the claim — ㅓ's connector reported a
+ *    half-width of 26 px for a bar 10 px thick.
+ * 2. **The reach is capped at the pen.** A stroke cannot be wider than the face
+ *    is drawn with, so the adaptive measurement may only ever make a stroke
+ *    *narrower* than the old global band, which is the job it was added for.
+ * 3. **Cap ink a later stroke runs through goes to that stroke** — see
+ *    `dropForeignCaps`, which runs on every pass so an intrusion cannot get
+ *    written into the next pass's centreline and legitimise itself.
+ *
+ * A genuine crossing is untouched by all three: its shared ink lies *beside*
+ * both routes rather than beyond either, so no hole is ever punched in an
+ * earlier stroke while its crossing partner waits to be drawn.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -820,6 +853,162 @@ const cut = async ({ face, item, inkSpan }) => {
     };
 
     /**
+     * Pixels a stroke can only reach by rounding past one of its own ends.
+     *
+     * The claim is a distance to the *polyline*, which means a disc of radius
+     * `reach` sits on each end of it like a cap. That cap is not part of the
+     * stroke: it is a bubble of whatever happens to lie beyond where the pen
+     * stopped, and because the route is a run of band centres it stops a little
+     * short of the ink at both ends, so the bubble always has somewhere to
+     * spread into.
+     *
+     * Marked here by asking the only question that separates the two: does this
+     * pixel project onto any *segment* of the route? Beside the stroke, yes —
+     * that is its body. Beyond the end of it, no — the nearest point on the
+     * route is a vertex, and the pixel is in the cap.
+     */
+    const pastTheEnds = (line) => {
+      const flag = new Uint8Array(N);
+      for (let y = 0; y < H; y += 1) {
+        for (let x = 0; x < W; x += 1) {
+          let alongside = false;
+          for (let i = 1; i < line.length && !alongside; i += 1) {
+            const [ax, ay] = line[i - 1];
+            const [bx, by] = line[i];
+            const dx = bx - ax;
+            const dy = by - ay;
+            const span = dx * dx + dy * dy;
+            if (span < 1e-9) continue;
+            const t = ((x - ax) * dx + (y - ay) * dy) / span;
+            if (t >= 0 && t <= 1) alongside = true;
+          }
+          if (!alongside) flag[y * W + x] = 1;
+        }
+      }
+      return flag;
+    };
+
+    /**
+     * Whether a point lies *beside* a route, within `reach` of its body.
+     *
+     * Beside, not near: a point off the end of a route is skipped even when it
+     * is close to the last vertex, because the ink there belongs to whatever
+     * the pen ran into rather than to the pen. That is the same distinction
+     * `pastTheEnds` draws, and the two must agree — a point in stroke g's cap
+     * is not in stroke g's body, so nothing is trimmed against it.
+     */
+    const besideRoute = (point, line, reach) => {
+      for (let i = 1; i < line.length; i += 1) {
+        const [ax, ay] = line[i - 1];
+        const [bx, by] = line[i];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const span = dx * dx + dy * dy;
+        if (span < 1e-9) continue;
+        const t = ((point[0] - ax) * dx + (point[1] - ay) * dy) / span;
+        if (t < 0 || t > 1) continue;
+        const qx = ax + dx * t;
+        const qy = ay + dy * t;
+        if (Math.hypot(point[0] - qx, point[1] - qy) <= reach) return true;
+      }
+      return false;
+    };
+
+    /** Walks the last point of a route back until it is clear of `later`. */
+    const pullBack = (points, later) => {
+      const out = points.map((p) => [p[0], p[1]]);
+      const inside = (p) => later.some((other) => besideRoute(p, other.line, other.reach));
+      const STEP = 0.4;
+      while (out.length >= 2) {
+        const tip = out[out.length - 1];
+        if (!inside(tip)) break;
+        const prev = out[out.length - 2];
+        const dx = prev[0] - tip[0];
+        const dy = prev[1] - tip[1];
+        const span = Math.hypot(dx, dy);
+        if (span < 1e-6) {
+          out.pop();
+          continue;
+        }
+        let landed = false;
+        for (let d = STEP; d <= span; d += STEP) {
+          const step = [tip[0] + (dx / span) * d, tip[1] + (dy / span) * d];
+          if (!inside(step)) {
+            out[out.length - 1] = step;
+            landed = true;
+            break;
+          }
+        }
+        if (landed) break;
+        out.pop();
+      }
+      return out;
+    };
+
+    /**
+     * Pulls every route out of the strokes that have not been written yet.
+     *
+     * ## The overrun this removes, and where it comes from
+     *
+     * The authored skeletons in `data/strokes.ts` describe a letter's shape,
+     * and they describe it the way a diagram does — a branch runs *to* the
+     * upright it meets:
+     *
+     * ```
+     * ㅓ: [stroke([[20, 50], [55, 50]]), vertical(55)]
+     *                          ▲                  ▲
+     *                          └── the connector ends exactly on ──┘
+     *                              the stem's own centreline
+     * ```
+     *
+     * For ㅏ that is harmless: the upright is written first, so by the time the
+     * branch is drawn the ink it runs into is already black. For ㅓ the order is
+     * reversed, and the same authored line says the connector should be drawn
+     * half a stem *into* a stem that does not exist yet. Everything downstream
+     * inherits it — the claim follows the route, the re-read centreline follows
+     * the claim, and by the second pass the intrusion is no longer past the end
+     * of the route, so `dropForeignCaps` can no longer see it. That is why
+     * stroke 2 of 어 painted a black bar reaching into a grey stroke 3, and it
+     * is the same authored pattern in ㅗ, ㅕ, ㅔ, ㅖ and every syllable built
+     * from them.
+     *
+     * ## The rule
+     *
+     * A route may end *at* a stroke that comes later, never inside one. Each
+     * end is walked inward until it is clear of every later stroke's body, so
+     * the pen stops on the near edge of what it is about to meet — which is
+     * also where a hand stops, because the rest of that ink is about to be laid
+     * down by the next stroke.
+     *
+     * ## Why only the ends
+     *
+     * A route is trimmed from its two tips inward and nowhere else. That is the
+     * whole safety property. Where a *later* stroke lands in the middle of an
+     * earlier one — ㅏ's crossbar against its upright, ㅜ's stem against its bar
+     * — the earlier route's tips are far away, nothing is trimmed, and the
+     * upright keeps its ink. Subtracting a later stroke's body from an earlier
+     * stroke wherever the two met would punch a hole through the upright at the
+     * junction and leave it there until the crossbar arrived. Trimming from the
+     * ends cannot do that: a stroke only ever gives up ink it was reaching
+     * *past its own end* to hold.
+     */
+    const trimAtLater = (routes, reaches) =>
+      routes.map((route, f) => {
+        if (route.length < 2) return route;
+        const later = [];
+        for (let g = f + 1; g < routes.length; g += 1) {
+          later.push({ line: routes[g], reach: reaches[g] });
+        }
+        if (later.length === 0) return route;
+        const forward = pullBack(route, later);
+        const both = pullBack(forward.slice().reverse(), later).reverse();
+        // A stroke whose whole route lies inside a later one has nothing left
+        // to draw. Keep the original rather than emit a degenerate route: the
+        // union still has to be the glyph, and `strokes:qa` reports the case.
+        return both.length >= 2 ? both : route;
+      });
+
+    /**
      * How wide a stroke's own ink is, measured across the part of it nothing
      * else wants.
      *
@@ -830,10 +1019,18 @@ const cut = async ({ face, item, inkSpan }) => {
      * route rather than across it. Junction ink is left out for the same
      * reason — measuring across a junction reports the junction's width.
      */
-    const widthOf = (fields, core, f) => {
+    const widthOf = (fields, core, f, caps) => {
       const distances = [];
       for (let i = 0; i < N; i += 1) {
         if (!core[f][i]) continue;
+        // Not the caps. A pixel beyond the end of the route is measured to the
+        // end of it, not across it, so counting those reports how far the
+        // stroke *reached* rather than how wide it is — and on a short stroke
+        // like ㅓ's connector the caps are most of the claim, so the number ran
+        // away: 31.7 px for a bar 21 px thick, next to a stem measured at 12.
+        // That inflated width became the next pass's reach, which grabbed a
+        // bigger cap, which inflated it again. See `pastTheEnds`.
+        if (caps[i]) continue;
         if (core.some((other, g) => g !== f && other[i])) continue;
         distances.push(fields[f][i]);
       }
@@ -866,6 +1063,181 @@ const cut = async ({ face, item, inkSpan }) => {
      * curriculum rather than for the one in the screenshot.
      */
     /*
+     * A stroke may not keep ink that a later stroke runs through.
+     *
+     * This is the fix for the demonstration drawing too much. 어's second
+     * stroke is the short connector of its ㅓ, and its route ends *inside* the
+     * vertical that follows it — so the cap on that end claimed a disc of the
+     * vertical's ink and the animation painted a block of stroke three while
+     * drawing stroke two. ㅓ, ㅏ, 아, 어 and every syllable whose vowel bar
+     * meets its stem had a version of the same wedge.
+     *
+     * The rule has to tell that apart from a genuine crossing, where two
+     * strokes legitimately share ink and taking it away would punch a hole
+     * through the earlier one until the later arrives. Two conditions do it:
+     *
+     * ```
+     * past my own ends             → this is cap, not body
+     * AND alongside a later stroke → and that stroke's body is what is there
+     *                                  ⇒ the ink is theirs, not mine
+     * ```
+     *
+     * A crossing fails the first test — the shared ink lies beside my route,
+     * not beyond it — so nothing is removed and no hole appears. A stroke that
+     * merely ends near an *earlier* one fails the second, so it keeps its ink
+     * and stays hidden under what is already on the paper. The union is
+     * untouched either way: every pixel given up is one the later stroke had
+     * already claimed.
+     *
+     * Run on **every** pass, not only at the end, and that matters. The route
+     * for the next pass is re-read from these regions, so a region left holding
+     * its neighbour's ink grows a centreline that reaches into the neighbour —
+     * and on the pass after, that ink is no longer past the end of the route
+     * and the rule can no longer see it. Cleaning up before re-reading is what
+     * stops the intrusion legitimising itself.
+     */
+    /**
+     * The ink beside a route, never past its ends. A stroke's body.
+     *
+     * The same region `stroke-linecap: butt` would paint, and the same one
+     * `scripts/stroke-visual-qa.mjs` measures against — the two have to agree
+     * about what a body is, or the build would satisfy an invariant the QA does
+     * not check and the QA would fail one the build never enforced.
+     */
+    const bodyOf = (line, radius) => {
+      const flag = new Uint8Array(N);
+      for (let y = 0; y < H; y += 1) {
+        for (let x = 0; x < W; x += 1) {
+          let near = Infinity;
+          for (let i = 1; i < line.length; i += 1) {
+            const [ax, ay] = line[i - 1];
+            const [bx, by] = line[i];
+            const dx = bx - ax;
+            const dy = by - ay;
+            const span = dx * dx + dy * dy;
+            if (span < 1e-9) continue;
+            const t = ((x - ax) * dx + (y - ay) * dy) / span;
+            if (t < 0 || t > 1) continue;
+            const d = Math.hypot(x - (ax + dx * t), y - (ay + dy * t));
+            if (d < near) near = d;
+          }
+          if (near <= radius) flag[y * W + x] = 1;
+        }
+      }
+      return flag;
+    };
+
+    /**
+     * Hands back every scrap of ink an earlier stroke is holding inside a later
+     * one, to the stroke it belongs to.
+     *
+     * `dropForeignCaps` above is the same idea and does not go far enough: it
+     * only lets go of a pixel the later stroke has *already claimed*, and a
+     * claim is a distance to a route, so the ink directly under the bar of ㅎ —
+     * the top of the ring, twelve units of it — was inside the bar's reach and
+     * outside the ring's, and neither pass had a reason to move it. What showed
+     * on screen was a blob hanging off the middle of stroke 2 into a stroke 3
+     * that was still grey.
+     *
+     * The test here does not ask who claimed the pixel. It asks the two
+     * questions that decide the picture:
+     *
+     * ```
+     * past my own ends?          → I am not drawing here, I stopped
+     * inside a later stroke's    → and this is where that stroke will be
+     *   body?                       ⇒ it is theirs
+     * ```
+     *
+     * and moves the pixel rather than deleting it, so the union is still
+     * exactly the glyph. Run last, on the settled regions, so nothing
+     * downstream can put it back.
+     *
+     * Being past one's own ends is what keeps a crossing safe: ㅏ's upright is
+     * *beside* its own route where the crossbar meets it, so nothing moves and
+     * no hole opens in the upright. Only a stroke reaching past where its pen
+     * stopped gives anything up. See `trimAtLater`, which is the same rule
+     * applied to the route instead of the ink.
+     */
+    /**
+     * A stroke's own half-width, from the ink it holds.
+     *
+     * The 85th percentile of how far its ink lies from its route, ends of the
+     * route included. Not the maximum, which is whatever junction the stroke
+     * runs into; not the interior-only distance, which scores the gap at the
+     * top of ㅇ's arc at ten units and would report a ring as being as wide as
+     * the letter. `scripts/stroke-visual-qa.mjs` measures it exactly this way,
+     * and that is the point — the number that decides the cut and the number
+     * that audits it have to be the same number, or the build satisfies an
+     * invariant the audit does not check.
+     */
+    const halfWidth = (region, line) => {
+      const distances = [];
+      for (let y = 0; y < H; y += 1) {
+        for (let x = 0; x < W; x += 1) {
+          if (!region[y * W + x]) continue;
+          let best = Infinity;
+          for (let i = 1; i < line.length; i += 1) {
+            const [ax, ay] = line[i - 1];
+            const [bx, by] = line[i];
+            const dx = bx - ax;
+            const dy = by - ay;
+            const span = dx * dx + dy * dy;
+            const t =
+              span < 1e-9 ? 0 : Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / span));
+            const d = Math.hypot(x - (ax + dx * t), y - (ay + dy * t));
+            if (d < best) best = d;
+          }
+          if (Number.isFinite(best)) distances.push(best);
+        }
+      }
+      if (distances.length === 0) return band;
+      distances.sort((a, b) => a - b);
+      return Math.max(1, distances[Math.floor(distances.length * 0.85)]);
+    };
+
+    const reassignForeignCaps = (regions, routes) => {
+      const caps = routes.map(pastTheEnds);
+      /*
+       * Twice, because moving ink changes the widths it was measured from.
+       *
+       * The first sweep takes the blob off the top of ㅈ's left leg and gives it
+       * to the right leg. That makes the left leg narrower, which lowers its
+       * half-width, which is what the *next* stroke's body is compared against.
+       * A single sweep leaves a rim of the blob behind; a second takes it. A
+       * third changes nothing on any letter in the curriculum, so two it is.
+       */
+      for (let round = 0; round < 2; round += 1) {
+        const radii = regions.map((region, i) => halfWidth(region, routes[i]));
+        const bodies = routes.map((line, i) => bodyOf(line, radii[i]));
+        for (let f = 0; f < regions.length; f += 1) {
+          for (let i = 0; i < N; i += 1) {
+            if (!regions[f][i] || !caps[f][i]) continue;
+            for (let g = f + 1; g < regions.length; g += 1) {
+              if (!bodies[g][i]) continue;
+              regions[f][i] = 0;
+              regions[g][i] = 1;
+              break;
+            }
+          }
+        }
+      }
+    };
+
+    const dropForeignCaps = (regions, caps) => {
+      for (let f = 0; f < regions.length; f += 1) {
+        for (let i = 0; i < N; i += 1) {
+          if (!regions[f][i] || !caps[f][i]) continue;
+          for (let g = f + 1; g < regions.length; g += 1) {
+            if (regions[g][i] && !caps[g][i]) {
+              regions[f][i] = 0;
+              break;
+            }
+          }
+        }
+      }
+    };
+
+    /*
      * Settle the centrelines and the widths together, then cut.
      *
      * The single pass this replaced had two faults that fed each other, and
@@ -892,23 +1264,43 @@ const cut = async ({ face, item, inkSpan }) => {
      * inflate it, and it becomes the next pass's reach. Three passes is where
      * ㅏ, ㅂ, ㅁ, ㄹ and 가 all stop changing.
      */
-    let lines = here;
     let reach = here.map(() => band);
+    let lines = trimAtLater(here, reach);
     let fields;
     let mine;
     for (let pass = 0; pass < 3; pass += 1) {
       const claimed = claim(lines, reach);
+      const passCaps = lines.map(pastTheEnds);
+      dropForeignCaps(claimed.full, passCaps);
+      dropForeignCaps(claimed.core, passCaps);
       fields = claimed.fields;
       mine = claimed.full;
       if (pass === 2) break;
-      reach = lines.map((_, index) => widthOf(claimed.fields, claimed.core, index));
-      lines = lines.map((stroke, index) =>
-        // The core where there is one — see `claim`. A stroke narrower than its
-        // reach has no exclusive core, and then the full region is all there is.
-        centreline(
-          claimed.core[index].some((v) => v) ? claimed.core[index] : claimed.full[index],
-          stroke,
+      /*
+       * Never wider than the pen, whatever the measurement says.
+       *
+       * `widthOf` takes a median over the ink no other stroke wants, and on a
+       * short stroke there is barely any of that: ㅓ's connector had seventy-
+       * eight pixels to go on and reported a half-width of twenty-six against a
+       * stem measured at twelve. A stroke cannot be wider than the face's own
+       * pen — that is what a pen is — so the adaptive number is only ever
+       * allowed to make a stroke *narrower* than the old global band, which is
+       * the job it was added to do.
+       */
+      reach = lines.map((_, index) =>
+        Math.min(band, widthOf(claimed.fields, claimed.core, index, passCaps[index])),
+      );
+      lines = trimAtLater(
+        lines.map((stroke, index) =>
+          // The core where there is one — see `claim`. A stroke narrower than
+          // its reach has no exclusive core, and then the full region is all
+          // there is.
+          centreline(
+            claimed.core[index].some((v) => v) ? claimed.core[index] : claimed.full[index],
+            stroke,
+          ),
         ),
+        reach,
       );
     }
     /*
@@ -946,6 +1338,35 @@ const cut = async ({ face, item, inkSpan }) => {
      * no pixel outside the reference glyph survives the intersection, so the
      * union is still exactly that glyph.
      */
+    /*
+     * The route and the ink it may hold, settled against each other.
+     *
+     * These two depend on each other and were previously computed in one
+     * direction only, which is why the first version of `reassignForeignCaps`
+     * changed almost nothing. The route the *asset ships* is re-read from the
+     * regions and then trimmed, so it is shorter than the working route the
+     * claim used — and "past the end of my own route" is measured against the
+     * end of a route. Ink that was alongside the working route is past the end
+     * of the shipped one, so the check that was supposed to hand it back was
+     * asking about a route the learner never sees. ㅈ's left leg kept the lump
+     * it takes out of its right leg through every round of this.
+     *
+     * So they are alternated: re-read the route from the ink, hand back the ink
+     * that route has no business holding, re-read again. Twice is where the
+     * curriculum stops changing.
+     */
+    let settled = trimAtLater(
+      lines.map((stroke, index) => centreline(mine[index], stroke)),
+      reach,
+    );
+    for (let round = 0; round < 2; round += 1) {
+      reassignForeignCaps(mine, settled);
+      settled = trimAtLater(
+        lines.map((stroke, index) => centreline(mine[index], stroke)),
+        reach,
+      );
+    }
+
     const owned = mine.map((mask) => mask);
     for (let f = 0; f < mine.length; f += 1) {
       // Ink that a *later* stroke of this letter owns and this one does not.
@@ -964,10 +1385,211 @@ const cut = async ({ face, item, inkSpan }) => {
       }
       owners.push(clipToInk(region));
     }
-    // The route comes from the ink the *second* pass settled on, so the drawn
-    // path and the cut agree about where the stroke is.
-    lines.forEach((stroke, index) => placed.push(centreline(mine[index], stroke)));
+    /**
+     * Keeps the pen on the stroke's own ink.
+     *
+     * The last guard, and a blunt one: any route point that has ended up
+     * outside the region it draws is moved to the nearest pixel that is inside
+     * it. Everything above tries to make this unnecessary and mostly succeeds;
+     * this is here because when it does not succeed the result is the worst
+     * thing the demonstration can do — a pen travelling through blank paper
+     * while ink appears somewhere else — and that should degrade into a clumsy
+     * stroke rather than an incomprehensible one.
+     *
+     * It cannot repair a badly divided letter, and it is not meant to.
+     * `strokes:visual` reports the underlying fault either way.
+     */
+    const onOwnInk = (route, region) => {
+      const inside = ([x, y]) => {
+        const px = Math.round(x);
+        const py = Math.round(y);
+        return px >= 0 && py >= 0 && px < W && py < H && region[py * W + px] === 1;
+      };
+      const pullIn = (point) => {
+        if (inside(point)) return point;
+        let best = point;
+        let nearest = Infinity;
+        for (let y = 0; y < H; y += 1) {
+          for (let x = 0; x < W; x += 1) {
+            if (!region[y * W + x]) continue;
+            const d = (x - point[0]) ** 2 + (y - point[1]) ** 2;
+            if (d < nearest) {
+              nearest = d;
+              best = [x, y];
+            }
+          }
+        }
+        return best;
+      };
+
+      let out = route.map(pullIn);
+
+      /*
+       * Corners, which are between the vertices rather than at them.
+       *
+       * Both ends of ㄱ's turn sit on ink and the straight line between them
+       * does not: it cuts the inside of the corner and the pen crosses a unit
+       * of blank paper on its way round. `centreline` reads band centres and
+       * the band at a corner is the corner, so the vertex there is the first
+       * thing coarse sampling loses.
+       *
+       * Fixed by walking each segment and, where it leaves the region, planting
+       * a vertex at the worst point pulled back onto the ink. Twice per segment
+       * is enough for a right angle and stops a curve from growing a vertex per
+       * pixel.
+       */
+      for (let pass = 0; pass < 2; pass += 1) {
+        const next = [out[0]];
+        for (let i = 1; i < out.length; i += 1) {
+          const a = out[i - 1];
+          const b = out[i];
+          const span = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          const steps = Math.max(1, Math.ceil(span));
+          let worst = null;
+          let worstAt = 0;
+          for (let k = 1; k < steps; k += 1) {
+            const t = k / steps;
+            const point = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+            if (inside(point)) continue;
+            const pulled = pullIn(point);
+            const away = Math.hypot(pulled[0] - point[0], pulled[1] - point[1]);
+            if (away > worstAt) {
+              worstAt = away;
+              worst = pulled;
+            }
+          }
+          if (worst) next.push(worst);
+          next.push(b);
+        }
+        if (next.length === out.length) break;
+        out = next;
+      }
+
+      return out;
+    };
+
+    // The route the animation draws along: the one the ink above was settled
+    // against, so the pen and the cut cannot disagree about where a stroke
+    // stops.
+    settled.forEach((stroke, index) => placed.push(onOwnInk(stroke, mine[index])));
   }
+
+  // --- crumbs ---------------------------------------------------------------
+  /**
+   * Fragments that broke away from their stroke, handed to the ink they touch.
+   *
+   * Every rule above decides who owns a *pixel*, and none of them has any
+   * opinion about whether the pixels one stroke ends up with are joined
+   * together. Usually they are. Where two strokes meet at a shallow angle they
+   * are not: a sliver of one gets cut off behind the other and is left floating
+   * a pixel away from the region it came from — ㅎ's ring kept a 171-pixel chip
+   * above it, ㅊ's bar two horns at its ends, ㅍ's upright a nub at the top.
+   *
+   * On screen a chip is worse than it sounds. It is not attached to anything,
+   * so it appears out of nowhere the instant its stroke starts and sits on
+   * blank paper next to a letter that has not been drawn yet — the "isolated
+   * spike" and "unexpected connected component" of the brief, and the thing
+   * that makes a demonstration look broken even when every stroke is otherwise
+   * correct.
+   *
+   * A chip always touches something, because it was cut from a glyph that is
+   * one connected mark. So it is given to whichever neighbouring stroke it
+   * shares the most edge with, and it stops being a chip: it becomes part of a
+   * region that surrounds it, and appears when that region does.
+   *
+   * ## What counts as a chip
+   *
+   * A quarter of the region's largest piece. Above that it is not a chip, it is
+   * a stroke the font genuinely drew in two parts, and moving it would be
+   * silently redrawing the letter. Nothing in the curriculum is currently in
+   * that position, and if something ever is, `strokes:visual` says so rather
+   * than this quietly deciding.
+   */
+  const mergeCrumbs = (regions) => {
+    const moved = [];
+    for (let r = 0; r < regions.length; r += 1) {
+      const region = regions[r];
+      const label = new Int32Array(N).fill(-1);
+      const parts = [];
+      for (let start = 0; start < N; start += 1) {
+        if (!region[start] || label[start] >= 0) continue;
+        const cells = [start];
+        label[start] = parts.length;
+        for (let head = 0; head < cells.length; head += 1) {
+          const at = cells[head];
+          const x = at % W;
+          const y = (at - x) / W;
+          const step = (nx, ny) => {
+            if (nx < 0 || ny < 0 || nx >= W || ny >= H) return;
+            const to = ny * W + nx;
+            if (!region[to] || label[to] >= 0) return;
+            label[to] = parts.length;
+            cells.push(to);
+          };
+          step(x - 1, y);
+          step(x + 1, y);
+          step(x, y - 1);
+          step(x, y + 1);
+        }
+        parts.push(cells);
+      }
+      if (parts.length < 2) continue;
+      const biggest = parts.reduce((a, b) => (b.length > a.length ? b : a)).length;
+      for (const part of parts) {
+        if (part.length >= biggest * 0.25) continue;
+        // Who does this chip touch, and how much of it?
+        const contact = new Map();
+        for (const at of part) {
+          const x = at % W;
+          const y = (at - x) / W;
+          for (const [dx, dy] of [
+            [-1, 0],
+            [1, 0],
+            [0, -1],
+            [0, 1],
+            [-1, -1],
+            [1, -1],
+            [-1, 1],
+            [1, 1],
+          ]) {
+            const nx = x + dx;
+            const ny = y + dy;
+            if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+            const to = ny * W + nx;
+            for (let o = 0; o < regions.length; o += 1) {
+              if (o === r || !regions[o][to]) continue;
+              contact.set(o, (contact.get(o) ?? 0) + 1);
+            }
+          }
+        }
+        if (contact.size === 0) continue;
+        /*
+         * Most edge shared wins — but a near-tie goes to the *later* stroke.
+         *
+         * A chip has to be given to somebody, and the two candidates at a
+         * Y-junction like ㅈ's are the two legs, which share almost exactly as
+         * much edge with it as each other. Handing it to the earlier leg puts a
+         * nub on screen while the other leg is still grey; handing it to the
+         * later one puts it under ink that is about to arrive. The second is
+         * invisible and the first is the artefact this whole file is about, so
+         * a tie is not a coin toss.
+         */
+        const ranked = [...contact.entries()].sort((a, b) => b[1] - a[1]);
+        const most = ranked[0][1];
+        const owner = ranked
+          .filter(([, n]) => n >= most * 0.6)
+          .sort((a, b) => b[0] - a[0])[0][0];
+        for (const at of part) {
+          region[at] = 0;
+          regions[owner][at] = 1;
+        }
+        moved.push(`${part.length}px from stroke ${r + 1} to ${owner + 1}`);
+      }
+    }
+    return moved;
+  };
+
+  for (const note of mergeCrumbs(owners)) notes.push(`crumb: ${note}`);
 
   // --- contours -------------------------------------------------------------
   /**

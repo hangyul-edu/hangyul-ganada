@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "page": "Không tìm thấy trang này.",
+    "lesson": "Không tìm thấy bài học này.",
+    "wordLesson": "Không tìm thấy nhóm từ này."
+  },
+  "generic": "Có gì đó chưa ổn. Bạn thử lại nhé."
+}

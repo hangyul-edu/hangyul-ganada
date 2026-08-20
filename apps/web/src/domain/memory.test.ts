@@ -75,7 +75,7 @@ describe('the first demonstration of a skill', () => {
   it('starts conservatively, and grades how it went', () => {
     const clean = review(undefined, { score: 1 });
     const normal = review(undefined, { score: 0.91 });
-    const helped = review(undefined, { score: 1, hintUsed: true });
+    const helped = review(undefined, { score: 1, hintLevel: 1 });
 
     expect(clean.skills.guided_writing!.stability_days).toBe(INITIAL_STABILITY.clean);
     expect(normal.skills.guided_writing!.stability_days).toBe(INITIAL_STABILITY.normal);
@@ -116,7 +116,7 @@ describe('success', () => {
     const base = review(undefined, { score: 0.95 });
     const day = base.skills.guided_writing!.stability_days;
     const unaided = review(base, { day });
-    const helped = review(base, { day, hintUsed: true });
+    const helped = review(base, { day, hintLevel: 1 });
 
     expect(helped.skills.guided_writing!.stability_days).toBeGreaterThan(
       base.skills.guided_writing!.stability_days,

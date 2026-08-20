@@ -66,7 +66,24 @@
     },
     "nothingDue": "现在没有要复习的内容。",
     "modesEmpty": "今天这些方式暂时没有内容。",
-    "answerIs": "{{word}} 的意思是“{{meaning}}”。"
+    "answerIs": "{{word}} 的意思是“{{meaning}}”。",
+    "showMoreHint": "再给点提示",
+    "showAnswer": "看答案",
+    "hint": {
+      "kind": "这是{{category}}里的{{pos}}。",
+      "kindOnly": "空格里要填的是{{pos}}。",
+      "startsWith": "以 {{start}}… 开头。",
+      "startsWithSound": "以“{{sound}}”这个音开头。",
+      "replay": "再听一遍吧，听几次都行。",
+      "letterFamily": "这是{{family}}。",
+      "letterExample": "它是 {{word}} 的第一个字母。",
+      "letterSound": "发音像“{{sound}}”。",
+      "reveal": "答案是 {{answer}}。",
+      "revealWord": "这个词是 {{answer}}。",
+      "revealLetter": "这个字母是 {{answer}}。",
+      "revealStrokes": "再看一遍笔顺，然后跟着写。",
+      "inSentence": "可以这样用：{{sentence}}"
+    }
   },
   "units": {
     "badge": "第 {{index, number}} 单元",
@@ -192,5 +209,20 @@
     "emptyTitle": "还没有错题",
     "emptyBody": "答错的内容会收在这里，方便你回来改正。",
     "emptyCta": "去复习"
+  },
+  "letterGroup": {
+    "basic_vowel": "基本元音",
+    "basic_consonant": "基本辅音",
+    "compound_vowel": "复合元音",
+    "double_consonant": "双辅音",
+    "final_consonant": "收尾辅音",
+    "syllable": "一个音节"
+  },
+  "nextStep": {
+    "title": "可以进入下一步了",
+    "body": "你已经能读韩文了。口语和 TOPIK 备考可以在 Hangyul 继续。",
+    "cta": "去 Hangyul 继续",
+    "rowTitle": "去 Hangyul 继续",
+    "rowBody": "准备好了就练口语和 TOPIK"
   }
 }

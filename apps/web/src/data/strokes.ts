@@ -255,7 +255,12 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ㅞ: [
     stroke([[4, 38], [42, 38]]),
     stroke([[22, 38], [22, 78]]),
-    stroke([[50, 50], [70, 50]]),
+    // The ㅔ's connector sits low here, under the ㅜ's bar rather than level
+    // with the middle of the box. Authored at 50 it landed a stroke's width
+    // above the ink it was meant to claim, the claim went to the upright
+    // beside it, and the connector was left holding a scrap of somebody else's
+    // letter with its route drawn through empty paper.
+    stroke([[50, 62], [70, 62]]),
     vertical(70),
     vertical(88),
   ],
@@ -289,7 +294,13 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ],
 
   // --- Aspirates: the plain letter with a stroke added ----------------------
-  ㅊ: [stroke([[50, 6], [50, 20]]), ...jieut(18, 82, 30)],
+  // The mark on top is a short *horizontal* in this face, not the upright a
+  // diagram usually draws. Authored as one because these polylines are matched
+  // against the reference glyph, and an upright over a horizontal bar left the
+  // pen travelling twelve units down through blank paper while the bar it was
+  // supposed to be drawing sat above it. See `strokes:visual`, which measures
+  // exactly that.
+  ㅊ: [stroke([[36, 12], [64, 12]]), ...jieut(18, 82, 30)],
   ㅋ: [giyeok(20, 78, 18, 84), stroke([[26, 50], [74, 48]])],
   ㅌ: [
     stroke([[24, 18], [80, 18]]),

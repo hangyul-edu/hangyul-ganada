@@ -68,7 +68,24 @@
     "sessionLength_many": "{{count, number}} courts exercices",
     "nothingDue": "Rien à réviser pour le moment.",
     "modesEmpty": "Rien dans ces modes aujourd'hui.",
-    "answerIs": "{{word}} signifie « {{meaning}} »."
+    "answerIs": "{{word}} signifie « {{meaning}} ».",
+    "showMoreHint": "Encore un indice",
+    "showAnswer": "Voir la réponse",
+    "hint": {
+      "kind": "C’est un {{pos}} du thème {{category}}.",
+      "kindOnly": "Le mot manquant est un {{pos}}.",
+      "startsWith": "Ça commence par {{start}}…",
+      "startsWithSound": "Ça commence par le son « {{sound}} ».",
+      "replay": "Réécoutez-le, autant de fois que vous voulez.",
+      "letterFamily": "Celle-ci est {{family}}.",
+      "letterExample": "C’est la première lettre de {{word}}.",
+      "letterSound": "Ça se prononce comme « {{sound}} ».",
+      "reveal": "La réponse est {{answer}}.",
+      "revealWord": "Le mot est {{answer}}.",
+      "revealLetter": "La lettre est {{answer}}.",
+      "revealStrokes": "Regardez encore les traits, puis retracez-les.",
+      "inSentence": "On l’emploie comme ceci : {{sentence}}"
+    }
   },
   "units": {
     "badge": "Unité {{index, number}}",
@@ -198,5 +215,20 @@
     "emptyTitle": "Aucune erreur pour l’instant",
     "emptyBody": "Quand vous vous tromperez, cela apparaîtra ici pour que vous puissiez corriger.",
     "emptyCta": "Aller aux révisions"
+  },
+  "letterGroup": {
+    "basic_vowel": "une voyelle simple",
+    "basic_consonant": "une consonne simple",
+    "compound_vowel": "une voyelle composée",
+    "double_consonant": "une consonne double",
+    "final_consonant": "une consonne finale",
+    "syllable": "une syllabe entière"
+  },
+  "nextStep": {
+    "title": "Prêt pour la suite",
+    "body": "Vous savez lire le hangul. L’oral et la préparation au TOPIK continuent dans Hangyul.",
+    "cta": "Continuer dans Hangyul",
+    "rowTitle": "Continuer dans Hangyul",
+    "rowBody": "L’oral et le TOPIK, quand vous voulez"
   }
 }

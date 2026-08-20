@@ -48,12 +48,30 @@ const FORBIDDEN = [
   {
     id: 'topik',
     pattern: /\bTOPIK\b/i,
-    // There used to be one exception: a line on the Legal screen saying these
-    // levels are *not* TOPIK grades. The levels it disclaimed have not been
-    // shown to a learner for two cycles, so the disclaimer was raising TOPIK to
-    // people who had not thought about it. Both are gone, and the rule has no
-    // exceptions again.
     why: 'the app neither teaches to nor grades against TOPIK',
+    /*
+     * The hand-off, and only the hand-off.
+     *
+     * The rule exists so that *this* product never implies it prepares anyone
+     * for the exam, because it does not: there is no TOPIK vocabulary, no TOPIK
+     * grading and no TOPIK practice anywhere in it. A previous exception — a
+     * Legal-screen line saying the difficulty levels were *not* TOPIK grades —
+     * was removed because a disclaimer raises the subject to people who had not
+     * thought about it, and that reasoning still stands.
+     *
+     * These four keys are the opposite case. They are the card a learner sees
+     * after finishing the alphabet, and what they say is that speaking and
+     * TOPIK continue **in the main Hangyul product** — a true statement about a
+     * different product, and the only honest way to describe where the next
+     * step actually is. Naming it is the point: "further study" would be a
+     * vaguer sentence that tells the learner less. See §32 and `NextStepCard`.
+     */
+    except: [
+      'learning:nextStep.body',
+      'learning:nextStep.rowBody',
+      'learning:nextStep.title',
+      'learning:nextStep.cta',
+    ],
   },
   {
     id: 'stale-difficulty',

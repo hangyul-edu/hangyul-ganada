@@ -1,0 +1,31 @@
+{
+  "streak": {
+    "aria": "ดูบันทึกการเรียนของคุณ"
+  },
+  "celebrate": "ทำเป้าหมายวันนี้ครบแล้ว เก่งมาก",
+  "dailyGoal": "ตัวอักษรวันนี้",
+  "dailyGoalAria": "ตัวอักษรวันนี้: {{done, number}} จาก {{total, number}}",
+  "cta": {
+    "start": "เริ่มเลย",
+    "continue": "เรียนต่อ"
+  },
+  "quick": {
+    "letters": "ตัวอักษร",
+    "lettersCaption": "จากตัวอักษรฮันกึล 40 ตัว",
+    "words": "คำศัพท์",
+    "wordsCaption": "คำของวันนี้"
+  },
+  "review": {
+    "title": "ทบทวน",
+    "count_one": "{{count, number}} รายการรอทบทวน",
+    "count_other": "{{count, number}} รายการรอทบทวน",
+    "empty": "ยังไม่มีอะไรให้ทบทวน"
+  },
+  "practice": {
+    "title": "ฝึกวันนี้",
+    "reviews_one": "มีบททบทวน {{count, number}} รายการ",
+    "reviews_other": "มีบททบทวน {{count, number}} รายการ",
+    "cta": "เริ่มฝึก"
+  },
+  "purpose": "เรียนภาษาเกาหลีตั้งแต่ตัวอักษรแรก — เริ่มที่ฮันกึล แล้วต่อด้วยคำที่ได้ใช้จริง"
+}

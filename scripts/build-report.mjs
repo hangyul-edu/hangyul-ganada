@@ -97,7 +97,31 @@ async function inlineImages(html) {
   return out;
 }
 
-const rendered = await inlineImages(marked.parse(body, { renderer, gfm: true }));
+/**
+ * Marks tables too wide to lay out on their content.
+ *
+ * A table's minimum width is the sum of its columns' minimum widths, and a
+ * browser honours that over `width: 100%` — so past a certain column count a
+ * table silently grows off the right edge of the page and the last columns are
+ * cropped away in the PDF. That is worse than an ugly table: the reader has no
+ * way to tell that anything is missing. Above the threshold the table is
+ * switched to a fixed layout, which forces the columns to share the page width
+ * and wrap instead of overflow.
+ *
+ * The threshold is a backstop, not a licence — a nine-column table is hard to
+ * read whatever the layout, and the right answer is usually to split it. Section
+ * 32 is split for exactly this reason.
+ */
+function guardWideTables(html) {
+  return html.replace(/<table>[\s\S]*?<\/table>/g, (table) => {
+    const columns = (table.match(/<th[\s>]/g) ?? []).length;
+    return columns >= 7 ? table.replace('<table>', '<table class="wide">') : table;
+  });
+}
+
+const rendered = guardWideTables(
+  await inlineImages(marked.parse(body, { renderer, gfm: true })),
+);
 
 const contents = headings
   .map(
@@ -237,13 +261,27 @@ const html = `<!doctype html>
     word-break: break-word;
   }
 
+  /*
+   * Tables break across pages; their *rows* do not.
+   *
+   * page-break-inside: avoid on the table itself is the obvious rule and it
+   * produces blank pages. A table taller than a page cannot honour it, so the
+   * engine pushes the whole thing to the next page and leaves the remainder of
+   * this one empty — which is what page 58 of an earlier build was, with a
+   * twenty-row table stranded behind it.
+   *
+   * Keeping rows intact and repeating the header gets what the rule was
+   * actually for: no row split down the middle, and a continuation that still
+   * says what its columns mean.
+   */
   table {
     width: 100%;
     border-collapse: collapse;
     margin: 0 0 4mm;
     font-size: 8.7pt;
-    page-break-inside: avoid;
   }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
   th, td {
     border: 1px solid var(--rule);
     padding: 1.6mm 2mm;
@@ -259,6 +297,13 @@ const html = `<!doctype html>
   /* A first column of short labels should not be squeezed to nothing by a
      long one beside it. */
   td:first-child, th:first-child { min-width: 22mm; }
+  /* See guardWideTables: a table with too many columns to fit is laid out on
+     the page width rather than on its content, so it wraps instead of running
+     off the edge. The first-column floor goes with it — with fixed layout it
+     would just steal the space back from the columns beside it. */
+  table.wide { table-layout: fixed; font-size: 7.6pt; }
+  table.wide td:first-child, table.wide th:first-child { min-width: 0; }
+  table.wide th, table.wide td { padding: 1.2mm 1.4mm; }
   th { background: var(--surface); font-weight: 700; }
 
   blockquote {
@@ -273,7 +318,18 @@ const html = `<!doctype html>
   hr { border: 0; border-top: 1px solid var(--rule); margin: 6mm 0; }
 
   /* Screenshots: never wider than the text column, never split across pages. */
-  img { max-width: 100%; height: auto; display: block; margin: 0 auto 2mm; border-radius: 4px; }
+  /*
+   * Capped, not just fitted.
+   *
+   * A phone screenshot is roughly 1:2.2, so at full column width it is taller
+   * than the text block — and an unbreakable figure that cannot
+   * fit beside anything strands the rest of the page and, when the next block
+   * is also unbreakable, leaves a page with nothing on it at all. Page 24 of an
+   * earlier build was blank for exactly that reason. Capping the height lets a
+   * figure share a page with the prose it illustrates, which is also where a
+   * reader wants it.
+   */
+  img { max-width: 100%; max-height: 110mm; width: auto; height: auto; display: block; margin: 0 auto 2mm; border-radius: 4px; }
   figure { margin: 0 0 5mm; page-break-inside: avoid; text-align: center; }
   figcaption { font-size: 8pt; color: var(--faint); margin-top: 1mm; }
 

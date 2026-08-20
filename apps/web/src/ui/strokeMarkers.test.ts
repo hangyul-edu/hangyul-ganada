@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { ALL_CHARACTERS } from '../data/characters';
 import { isSyllable } from '../data/jamo';
-import { drawPoints, strokeAsset } from '../data/strokeAssets';
+import { drawLength, drawPoints, strokeAsset } from '../data/strokeAssets';
 import { insideStroke, layoutMarkers } from './strokeMarkers';
 
 /**
@@ -52,18 +52,28 @@ describe('stroke markers', () => {
           x: marker.anchor.x + Math.cos(away) * 0.75,
           y: marker.anchor.y + Math.sin(away) * 0.75,
         };
-        const moved = Math.hypot(marker.anchor.x - from.x, marker.anchor.y - from.y);
-        if (moved > 0) {
-          // It walked, so it stopped at an edge.
+        /*
+         * The anchor is at a free end of the stroke — unless the stroke has no
+         * free end.
+         *
+         * ㅇ is a ring: "backwards" from its start runs round the circle rather
+         * than off it, so there is no tip to find and marching on would carry
+         * the number a quarter of the way round the letter. Every other stroke
+         * has an end, and the anchor has to be on it.
+         *
+         * This used to be phrased as "if the anchor moved, it is at an edge;
+         * if it did not, there is no free end", which asserted *how the walk
+         * behaved* rather than where it ended up — and broke the day the
+         * generator started emitting routes that already begin at the tip,
+         * because then the anchor is correct and has not moved. A route
+         * starting on the tip is a better route, and a test that fails on an
+         * improvement is testing the wrong thing.
+         */
+        const last = points[points.length - 1]!;
+        const gap = Math.hypot(last.x - from.x, last.y - from.y);
+        const closed = gap < drawLength(stroke.draw) * 0.35;
+        if (!closed) {
           expect(insideStroke(stroke, beyond), `${where} sits at the end of its ink`).toBe(false);
-        } else {
-          /*
-           * It did not walk, which is allowed for exactly one reason: a stroke
-           * with no free end that way. ㅇ is a ring, and "backwards" runs round
-           * it rather than off it, so the recorded start is kept and marching on
-           * would carry the number a quarter of the way round the letter.
-           */
-          expect(insideStroke(stroke, beyond), `${where} has no free end`).toBe(true);
         }
       });
     }

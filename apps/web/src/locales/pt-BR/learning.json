@@ -68,7 +68,24 @@
     "sessionLength_many": "{{count, number}} exercícios curtos",
     "nothingDue": "Nada para revisar agora.",
     "modesEmpty": "Hoje não há nada nestes modos.",
-    "answerIs": "{{word}} significa “{{meaning}}”."
+    "answerIs": "{{word}} significa “{{meaning}}”.",
+    "showMoreHint": "Mais uma dica",
+    "showAnswer": "Ver a resposta",
+    "hint": {
+      "kind": "É um {{pos}} de {{category}}.",
+      "kindOnly": "A palavra que falta é um {{pos}}.",
+      "startsWith": "Começa com {{start}}…",
+      "startsWithSound": "Começa com o som “{{sound}}”.",
+      "replay": "Ouça de novo, quantas vezes quiser.",
+      "letterFamily": "Esta aqui é {{family}}.",
+      "letterExample": "É a primeira letra de {{word}}.",
+      "letterSound": "Soa como “{{sound}}”.",
+      "reveal": "A resposta é {{answer}}.",
+      "revealWord": "A palavra é {{answer}}.",
+      "revealLetter": "A letra é {{answer}}.",
+      "revealStrokes": "Veja os traços mais uma vez e depois copie.",
+      "inSentence": "Usa-se assim: {{sentence}}"
+    }
   },
   "units": {
     "badge": "Unidade {{index, number}}",
@@ -198,5 +215,20 @@
     "emptyTitle": "Nada errado ainda",
     "emptyBody": "Quando você errar algo, ele aparece aqui para você acertar depois.",
     "emptyCta": "Ir para a revisão"
+  },
+  "letterGroup": {
+    "basic_vowel": "uma vogal básica",
+    "basic_consonant": "uma consoante básica",
+    "compound_vowel": "uma vogal composta",
+    "double_consonant": "uma consoante dobrada",
+    "final_consonant": "uma consoante final",
+    "syllable": "uma sílaba inteira"
+  },
+  "nextStep": {
+    "title": "Pronto para o próximo passo",
+    "body": "Você já lê hangul. A prática de conversação e o TOPIK continuam no Hangyul.",
+    "cta": "Continuar no Hangyul",
+    "rowTitle": "Continuar no Hangyul",
+    "rowBody": "Conversação e TOPIK, quando quiser"
   }
 }

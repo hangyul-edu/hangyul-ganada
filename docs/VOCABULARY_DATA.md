@@ -36,6 +36,7 @@ renders more than 120 entries.
 | synonyms (유의어) and antonyms (반의어) | Korean Wiktionary | CC BY-SA 4.0 |
 | corpus frequency band, rank and rate | two OpenSubtitles Korean corpora (`hermitdave/FrequencyWords`) | MIT (list) / CC BY-SA (corpus) |
 | meanings in eight languages, example sentence, its seven translations | Hangyul ganada editorial pack | ours |
+| meanings and example translations for Vietnamese and Thai, 500 words each | written by hand, `content/vocabulary/copy/` | ours |
 | pronunciation, spoken form, sound-change pattern, surface form, syllables, required letters, difficulty, category, readiness | Hangyul ganada | ours |
 
 Every word carries a `sources` array naming which of those supplied which field,

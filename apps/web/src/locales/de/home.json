@@ -26,5 +26,6 @@
     "reviews_one": "{{count, number}} Wiederholung bereit",
     "reviews_other": "{{count, number}} Wiederholungen bereit",
     "cta": "Übung starten"
-  }
+  },
+  "purpose": "Koreanisch vom ersten Buchstaben an — erst Hangul, dann die Wörter, die Sie wirklich brauchen."
 }

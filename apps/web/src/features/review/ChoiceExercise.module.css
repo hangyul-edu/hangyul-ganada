@@ -100,6 +100,62 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/*
+ * Four Korean words, as a two-by-two grid of tiles.
+ *
+ * §16: different questions should *feel* different, and until now they did not.
+ * Every mode was a prompt above four full-width rectangles, so a session read
+ * as one screen asked ten times with the sentence at the top swapped out — the
+ * single largest reason a learner stops, according to the audit.
+ *
+ * A grid is the right shape for these specifically, and not merely a different
+ * one. A Korean word is two or three syllables: in a full-width row it is a
+ * short label adrift in a lot of empty space, and in a square tile it is the
+ * object being chosen. The meanings stay as rows, because a meaning is a phrase
+ * — "to stay, remain in a location" — and a phrase in a square is two awkward
+ * line breaks.
+ *
+ * So the layout follows what the options *are*, which means it changes exactly
+ * when the question changes and never merely for variety's sake.
+ */
+.optionsGrid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.optionsGrid .option {
+  min-height: 92px;
+}
+
+.optionsGrid .optionKorean {
+  font-size: clamp(24px, 7.5vw, 34px);
+}
+
+/*
+ * A gap-fill's options, as chips under the sentence.
+ *
+ * The learner is holding a sentence in their head with a hole in it, and four
+ * tall rectangles push the sentence off the top of a phone. Chips keep the
+ * sentence and its candidates on screen together, which is the only way to
+ * actually read one into the other.
+ */
+.optionsChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--hg-space-2);
+}
+
+.optionsChips .option {
+  min-height: 0;
+  flex: 0 1 auto;
+  padding: var(--hg-space-2) var(--hg-space-4);
+  border-radius: var(--hg-radius-pill);
+}
+
+.optionsChips .optionKorean {
+  font-size: clamp(19px, 5.5vw, 24px);
+}
+
 .option {
   display: flex;
   flex-direction: column;
@@ -172,10 +228,47 @@
  * Help, offered quietly.
  *
  * A text button rather than a filled one: it should be findable by anyone who
- * wants it and should not compete with the answers for attention. Tapping it
- * replaces the label with the meaning, so the same control both offers and
- * delivers the help.
+ * wants it and should not compete with the answers for attention.
+ *
+ * Pressing it does not replace the label any more: each press adds a line above
+ * the button and the button goes on offering the next rung. A learner who has
+ * taken one hint can still see it while they read the next one, which is the
+ * point of a ladder — the rungs are cumulative, and hiding the first to show
+ * the second would make the second harder to use than the first.
  */
+.hintBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-1);
+}
+
+.hintLine {
+  margin: 0;
+  padding: 0 var(--hg-space-3);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/*
+ * The rung that gives the answer up, marked as different.
+ *
+ * Not styled as a mistake and not styled as a success — it is neither. It is
+ * the same size as a hint and the weight of an answer, so a learner reading
+ * back over the lines can see which one stopped being help.
+ */
+.hintAnswer {
+  margin: 0;
+  padding: var(--hg-space-1) var(--hg-space-3);
+  color: var(--hg-text-primary);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  text-align: center;
+  text-wrap: pretty;
+}
+
 .hint {
   align-self: center;
   padding: var(--hg-space-2) var(--hg-space-3);

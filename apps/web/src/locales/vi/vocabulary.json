@@ -1,0 +1,130 @@
+{
+  "title": "Học từ vựng",
+  "today": {
+    "title": "Từ của hôm nay",
+    "start": "Bắt đầu",
+    "resume": "Học tiếp",
+    "startBlurb_one": "Hôm nay một từ.",
+    "startBlurb_other": "Một loạt ngắn gồm {{count}} từ.",
+    "resumeBlurb": "Học tiếp từ chỗ bạn dừng lại.",
+    "doneBlurb": "Hôm nay xong rồi. Tốt lắm!",
+    "completeTitle": "Đã học xong từ của hôm nay.",
+    "completeDetail_one": "Học được một từ.",
+    "completeDetail_other": "Học được {{count}} từ.",
+    "more": "Học thêm chút nữa",
+    "allDone": "Hôm nay không còn gì nữa.",
+    "remaining_one": "Còn một từ hôm nay",
+    "remaining_other": "Còn {{count}} từ hôm nay",
+    "progressAria": "Tiến độ từ vựng hôm nay",
+    "moreLabel": "Thêm bao nhiêu từ",
+    "moreCount_one": "Thêm 1 từ",
+    "moreCount_other": "Thêm {{count}} từ"
+  },
+  "browse": {
+    "title": "Xem theo chủ đề",
+    "showing": "Đang hiện {{shown}} trên {{total}}"
+  },
+  "intro": {
+    "example": "Ví dụ",
+    "howItSounds": "Cách đọc",
+    "surfaceNote": "Trong câu này, {{headword}} xuất hiện dưới dạng {{form}}.",
+    "next": "Hiểu rồi"
+  },
+  "empty": {
+    "title": "Chưa có từ nào ở đây",
+    "body": "Bạn thử chủ đề khác nhé."
+  },
+  "partOfSpeech": {
+    "noun": "danh từ",
+    "verb": "động từ",
+    "adjective": "tính từ",
+    "adverb": "trạng từ",
+    "pronoun": "đại từ",
+    "numeral": "số từ",
+    "particle": "trợ từ",
+    "interjection": "thán từ",
+    "determiner": "từ hạn định"
+  },
+  "session": {
+    "next": "Từ tiếp theo",
+    "finish": "Kết thúc"
+  },
+  "blurb": "Mọi từ đều mở sẵn. Chọn một chủ đề và bắt đầu từ đâu cũng được.",
+  "categories": {
+    "essentials": "Từ thiết yếu hằng ngày",
+    "people": "Con người & Gia đình",
+    "food": "Đồ ăn & Thức uống",
+    "animals-nature": "Động vật & Thiên nhiên",
+    "home": "Nhà cửa & Đồ dùng",
+    "body-health": "Cơ thể & Sức khỏe",
+    "places-travel": "Nơi chốn & Đi lại",
+    "time-numbers": "Thời gian & Số đếm",
+    "school-work": "Học tập & Công việc",
+    "money-shopping": "Tiền bạc & Mua sắm",
+    "communication": "Trò chuyện & Truyền thông",
+    "feelings": "Cảm xúc & Tính cách",
+    "thinking": "Suy nghĩ & Học hỏi",
+    "movement": "Đi & Đến",
+    "actions": "Hành động hằng ngày",
+    "describing": "Miêu tả sự vật",
+    "society": "Đời sống & Văn hóa",
+    "how-when": "Cách thức & Thời điểm"
+  },
+  "category": {
+    "label": "Chủ đề",
+    "all": "Tất cả chủ đề",
+    "pick": "Chọn một chủ đề",
+    "count_one": "{{count, number}} từ",
+    "count_other": "{{count, number}} từ",
+    "progressAria": "Tiến độ chủ đề {{category}}"
+  },
+  "search": {
+    "placeholder": "Tìm từ",
+    "label": "Tìm trong kho từ vựng",
+    "count_one": "{{count, number}} kết quả",
+    "count_other": "{{count, number}} kết quả",
+    "none": "Không có gì khớp với “{{query}}”. Thử gõ tiếng Hàn, hoặc nghĩa bằng tiếng của bạn."
+  },
+  "sound": {
+    "tensing": "Sau một phụ âm cuối, âm tiếp theo được đọc căng hơn.",
+    "aspiration": "ㅎ hòa vào phụ âm sau và thêm một hơi bật.",
+    "nasal": "Trước ㄴ hoặc ㅁ, phụ âm đứng trước chuyển thành âm mũi.",
+    "lateral": "ㄴ và ㄹ đứng cạnh nhau thì cả hai đều đọc thành ㄹ.",
+    "palatal": "ㄷ hoặc ㅌ cuối đứng trước 이 được đọc như ㅈ hoặc ㅊ.",
+    "liaison": "Phụ âm cuối trượt sang chữ tiếp theo."
+  },
+  "save": {
+    "action": "Lưu",
+    "saved": "Đã lưu",
+    "add": "Lưu từ {{word}}",
+    "remove": "Bỏ {{word}} khỏi mục đã lưu"
+  },
+  "detail": {
+    "title": "Từ",
+    "pronunciation": "Cách đọc",
+    "definition": "Tìm hiểu thêm",
+    "usage": "Cách dùng",
+    "synonyms": "Từ đồng nghĩa",
+    "antonyms": "Từ trái nghĩa"
+  },
+  "saved": {
+    "title": "Từ đã lưu",
+    "review_one": "Ôn tập · 1 câu hỏi",
+    "review_other": "Ôn tập · {{count}} câu hỏi",
+    "searchPlaceholder": "Tìm trong từ đã lưu",
+    "searchLabel": "Tìm trong những từ bạn đã lưu",
+    "orderLabel": "Sắp xếp",
+    "order": {
+      "recent": "Mới nhất",
+      "alphabetical": "A–Z",
+      "needed": "Cần luyện thêm"
+    },
+    "count_one": "Một từ",
+    "count_other": "{{count}} từ",
+    "remove": "Bỏ",
+    "noMatch": "Không có từ đã lưu nào khớp với “{{query}}”.",
+    "emptyTitle": "Chưa lưu từ nào",
+    "emptyBody": "Khi học, chạm vào dấu đánh dấu ở bất kỳ từ nào, từ đó sẽ nằm ở đây để bạn quay lại.",
+    "emptyCta": "Đến phần từ vựng"
+  }
+}

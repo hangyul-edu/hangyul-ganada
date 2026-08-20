@@ -25,5 +25,6 @@
     "reviews_one": "復習 {{count, number}}件",
     "reviews_other": "復習 {{count, number}}件",
     "cta": "練習を始める"
-  }
+  },
+  "purpose": "ハングルの一文字目から、よく使う単語まで。韓国語の第一歩をここから。"
 }

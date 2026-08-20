@@ -88,7 +88,18 @@ export interface LearningQuote {
 }
 
 /** The interface languages every quotation must carry. */
-export const QUOTE_LOCALES = ['en', 'ko', 'ja', 'zh-CN', 'es', 'fr', 'de', 'pt-BR'] as const;
+export const QUOTE_LOCALES = [
+  'en',
+  'ko',
+  'ja',
+  'zh-CN',
+  'es',
+  'fr',
+  'de',
+  'pt-BR',
+  'vi',
+  'th',
+] as const;
 
 /** Descriptors that are phrases rather than names, written out per language. */
 const PROVERB = {
@@ -101,6 +112,8 @@ const PROVERB = {
     fr: 'Proverbe coréen',
     de: 'Koreanisches Sprichwort',
     'pt-BR': 'Provérbio coreano',
+    vi: 'Tục ngữ Hàn Quốc',
+    th: 'สุภาษิตเกาหลี',
   },
   japanese: {
     en: 'Japanese proverb',
@@ -111,6 +124,8 @@ const PROVERB = {
     fr: 'Proverbe japonais',
     de: 'Japanisches Sprichwort',
     'pt-BR': 'Provérbio japonês',
+    vi: 'Tục ngữ Nhật Bản',
+    th: 'สุภาษิตญี่ปุ่น',
   },
   latin: {
     en: 'Latin proverb',
@@ -121,10 +136,23 @@ const PROVERB = {
     fr: 'Proverbe latin',
     de: 'Lateinisches Sprichwort',
     'pt-BR': 'Provérbio latino',
+    vi: 'Ngạn ngữ La-tinh',
+    th: 'สุภาษิตละติน',
   },
 } as const;
 
-/** A name with no conventional local form outside CJK and Korean. */
+/**
+ * A name with no conventional local form outside CJK and Korean.
+ *
+ * Vietnamese and Thai take the Latin form for the same reason the Romance
+ * languages do: this file's rule is that a name is written in the conventional
+ * local form *where the language has one*, and is otherwise left alone. Modern
+ * Vietnamese and Thai writing both print Western names in Latin script, and
+ * inventing a Thai spelling of "Publilius Syrus" here would be a
+ * machine-transliteration presented as an attribution — the exact thing this
+ * helper exists to avoid. Where a genuine local form does exist it is passed as
+ * an override, the same as `Lao-Tse` is for Spanish.
+ */
 function western(
   latin: string,
   ko: string,
@@ -138,6 +166,8 @@ function western(
     fr: latin,
     de: latin,
     'pt-BR': latin,
+    vi: latin,
+    th: latin,
     ko,
     ja,
     'zh-CN': zh,
@@ -161,6 +191,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Un voyage de mille lieues commence par un seul pas.',
       de: 'Eine Reise von tausend Meilen beginnt mit einem einzigen Schritt.',
       'pt-BR': 'Uma jornada de mil léguas começa com um único passo.',
+      vi: 'Hành trình ngàn dặm bắt đầu từ một bước chân.',
+      th: 'การเดินทางพันลี้เริ่มต้นที่ก้าวแรก',
     },
     author: western('Laozi', '노자', '老子', '老子', { es: 'Lao-Tse', 'pt-BR': 'Lao-Tsé' }),
   },
@@ -179,6 +211,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Le commencement est la partie la plus importante du travail.',
       de: 'Der Anfang ist der wichtigste Teil der Arbeit.',
       'pt-BR': 'O começo é a parte mais importante do trabalho.',
+      vi: 'Khởi đầu là phần quan trọng nhất của mọi việc.',
+      th: 'การเริ่มต้นคือส่วนที่สำคัญที่สุดของงาน',
     },
     author: western('Plato', '플라톤', 'プラトン', '柏拉图', {
       es: 'Platón',
@@ -202,6 +236,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'La pratique est le meilleur des maîtres.',
       de: 'Übung ist der beste Lehrmeister.',
       'pt-BR': 'A prática é o melhor dos mestres.',
+      vi: 'Luyện tập là người thầy giỏi nhất.',
+      th: 'การฝึกฝนคือครูที่ดีที่สุด',
     },
     author: western(
       'Publilius Syrus',
@@ -226,6 +262,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Tombe sept fois, relève-toi huit.',
       de: 'Siebenmal fallen, achtmal aufstehen.',
       'pt-BR': 'Caia sete vezes, levante-se oito.',
+      vi: 'Ngã bảy lần, đứng dậy tám lần.',
+      th: 'ล้มเจ็ดครั้ง ลุกขึ้นแปดครั้ง',
     },
     author: PROVERB.japanese,
   },
@@ -244,6 +282,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Des grains de poussière rassemblés font une montagne.',
       de: 'Staubkörner sammeln sich zu einem Berg.',
       'pt-BR': 'Grãos de poeira juntos formam uma montanha.',
+      vi: 'Từng hạt bụi góp lại cũng thành núi.',
+      th: 'ฝุ่นทีละเม็ดรวมกันเป็นภูเขาได้',
     },
     author: PROVERB.korean,
   },
@@ -262,6 +302,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'La répétition est la mère de l’apprentissage.',
       de: 'Wiederholung ist die Mutter des Lernens.',
       'pt-BR': 'A repetição é a mãe do aprendizado.',
+      vi: 'Lặp lại là mẹ của sự học.',
+      th: 'การทำซ้ำคือแม่ของการเรียนรู้',
     },
     author: PROVERB.latin,
   },
@@ -280,6 +322,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Les limites de mon langage signifient les limites de mon monde.',
       de: 'Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt.',
       'pt-BR': 'Os limites da minha linguagem são os limites do meu mundo.',
+      vi: 'Giới hạn của ngôn ngữ tôi là giới hạn của thế giới tôi.',
+      th: 'ขอบเขตของภาษาของฉันคือขอบเขตของโลกของฉัน',
     },
     author: western(
       'Ludwig Wittgenstein',
@@ -304,6 +348,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Le savoir ne s’obtient pas par hasard ; il faut le chercher avec ardeur et l’entretenir avec diligence.',
       de: 'Wissen erlangt man nicht durch Zufall; man muss es mit Eifer suchen und mit Fleiß pflegen.',
       'pt-BR': 'O saber não se alcança por acaso; é preciso buscá-lo com ardor e cuidá-lo com diligência.',
+      vi: 'Học vấn không đến một cách tình cờ; phải tìm nó bằng nhiệt huyết và giữ nó bằng sự chuyên cần.',
+      th: 'ความรู้ไม่ได้มาโดยบังเอิญ ต้องแสวงหาด้วยใจที่ร้อนแรงและดูแลด้วยความเพียร',
     },
     author: western('Abigail Adams', '애비게일 애덤스', 'アビゲイル・アダムズ', '阿比盖尔·亚当斯'),
   },
@@ -323,6 +369,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'L’étude sans désir gâte la mémoire et ne retient rien de ce qu’elle reçoit.',
       de: 'Lernen ohne Verlangen verdirbt das Gedächtnis und behält nichts von dem, was es aufnimmt.',
       'pt-BR': 'O estudo sem desejo estraga a memória e não retém nada do que recebe.',
+      vi: 'Học mà không ham thích thì làm hỏng trí nhớ, và chẳng giữ lại được gì.',
+      th: 'การเรียนโดยปราศจากความอยากรู้ทำลายความจำ และไม่เหลืออะไรไว้เลย',
     },
     author: western(
       'Leonardo da Vinci',
@@ -347,6 +395,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Commencer, c’est déjà la moitié.',
       de: 'Anfangen ist schon die Hälfte.',
       'pt-BR': 'Começar já é metade.',
+      vi: 'Bắt đầu được là đã xong một nửa.',
+      th: 'เริ่มได้ก็เท่ากับสำเร็จไปครึ่งหนึ่งแล้ว',
     },
     author: PROVERB.korean,
   },
@@ -365,6 +415,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Même une route de mille li commence par un pas.',
       de: 'Auch ein Weg von tausend Li beginnt mit einem Schritt.',
       'pt-BR': 'Até um caminho de mil li começa com um passo.',
+      vi: 'Con đường ngàn dặm cũng bắt đầu từ một bước chân.',
+      th: 'ถนนยาวพันลี้ก็เริ่มจากก้าวเดียว',
     },
     author: PROVERB.korean,
   },
@@ -383,6 +435,8 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       fr: 'Ses erreurs sont volontaires et sont les portes de la découverte.',
       de: 'Seine Fehler sind gewollt und sind die Tore der Entdeckung.',
       'pt-BR': 'Seus erros são voluntários e são os portais da descoberta.',
+      vi: 'Những sai lầm của ông là do ông chọn, và chúng là cánh cửa dẫn tới khám phá.',
+      th: 'ความผิดพลาดของเขาเกิดจากเจตนา และมันคือประตูสู่การค้นพบ',
     },
     author: western('James Joyce', '제임스 조이스', 'ジェイムズ・ジョイス', '詹姆斯·乔伊斯'),
   },

@@ -1,0 +1,89 @@
+{
+  "title": "บันทึกการเรียน",
+  "streak": {
+    "caption": "แค่ได้ฝึกก็นับต่อเนื่องแล้ว ไม่ต้องเรียนจบทั้งตัวอักษร",
+    "longest": "ต่อเนื่องนานที่สุด",
+    "totalDays": "จำนวนวันที่ฝึก",
+    "totalTime": "เวลารวม",
+    "unit_one": "วันติดต่อกัน",
+    "unit_other": "วันติดต่อกัน"
+  },
+  "chart": {
+    "title": "การฝึก",
+    "rangeAria": "เลือกช่วงเวลา",
+    "aria": "ปริมาณการฝึกต่อวัน",
+    "noneYet": "ยังไม่ได้ฝึกในช่วงนี้",
+    "range": {
+      "7": "7 วัน",
+      "30": "30 วัน",
+      "90": "3 เดือน",
+      "0": "ทั้งหมด"
+    }
+  },
+  "calendar": {
+    "previous": "เดือนก่อน",
+    "next": "เดือนถัดไป",
+    "less": "น้อย",
+    "more": "มาก",
+    "dayAria_one": "{{date}}: {{count, number}} ครั้ง",
+    "dayAria_other": "{{date}}: {{count, number}} ครั้ง"
+  },
+  "day": {
+    "time": "เวลาที่เรียน",
+    "attempts": "จำนวนครั้งที่ฝึกเขียน",
+    "correct": "ถูก",
+    "charactersLearned": "ตัวอักษรที่เรียนจบ",
+    "wordsLearned": "คำที่เรียนจบ",
+    "reviews": "ครั้งที่ทบทวน",
+    "nothing": "วันนี้ยังไม่ได้ฝึก"
+  },
+  "insights": {
+    "title": "สิ่งที่น่าสนใจ",
+    "mostPractisedCharacter": "ตัวอักษรที่ฝึกมากที่สุด",
+    "mostPractisedWord": "คำที่ฝึกมากที่สุด",
+    "accuracy": "ความแม่นยำในการเขียน",
+    "thisWeek": "สัปดาห์นี้",
+    "learnedCount_one": "จบแล้ว {{count, number}}",
+    "learnedCount_other": "จบแล้ว {{count, number}}"
+  },
+  "units": {
+    "minute_one": "{{count, number}} นาที",
+    "minute_other": "{{count, number}} นาที",
+    "hour_one": "{{count, number}} ชม.",
+    "hour_other": "{{count, number}} ชม."
+  },
+  "empty": {
+    "title": "เรื่องราวการเรียนของคุณเริ่มวันนี้",
+    "body": "ฝึกสักสองสามตัวอักษร แล้วหน้านี้จะค่อย ๆ เต็ม: วันที่คุณเรียน เรียนนานเท่าไร และเรียนอะไรบ้าง"
+  },
+  "week": {
+    "title": "สัปดาห์นี้",
+    "range": "ตั้งแต่ {{from}}",
+    "days": "จำนวนวันที่เรียน",
+    "daysValue_one": "{{count, number}} จาก 7",
+    "daysValue_other": "{{count, number}} จาก 7",
+    "time": "เวลา",
+    "learned": "เรียนไปแล้ว",
+    "accuracy": "ความแม่นยำ",
+    "same": "เท่ากับสัปดาห์ที่แล้วพอดี",
+    "moreThanLast": "มากกว่าสัปดาห์ที่แล้ว {{minutes, number}} นาที",
+    "lessThanLast": "น้อยกว่าสัปดาห์ที่แล้ว {{minutes, number}} นาที",
+    "quiet": "สัปดาห์นี้ยังไม่มีอะไร ยังพอมีเวลาอยู่"
+  },
+  "memory": {
+    "title": "ความจำของคุณเป็นอย่างไร",
+    "firstTry": "สัปดาห์นี้คุณตอบถูกตั้งแต่ครั้งแรก {{count, number}} รายการ",
+    "strongestSkill": "สัปดาห์นี้คุณทำ{{skill}}ได้ดีที่สุด",
+    "confusionImproving": "คุณแยก {{a}} กับ {{b}} ได้ง่ายขึ้นแล้ว",
+    "skill": {
+      "reading_recognition": "การอ่าน",
+      "listening_recognition": "การฟัง",
+      "guided_writing": "การเขียน",
+      "meaning_recognition": "ความหมายของคำ",
+      "sentence_comprehension": "ประโยค",
+      "sound_recognition": "เสียง",
+      "visual_recognition": "การจำรูปตัวอักษร",
+      "lookalike_discrimination": "การแยกตัวอักษรที่คล้ายกัน"
+    }
+  }
+}

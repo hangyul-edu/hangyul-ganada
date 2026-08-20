@@ -1,0 +1,89 @@
+{
+  "title": "Nhật ký học tập",
+  "streak": {
+    "caption": "Chỉ cần luyện tập là chuỗi vẫn tiếp tục — không nhất thiết phải học xong một chữ.",
+    "longest": "Chuỗi dài nhất",
+    "totalDays": "Số ngày đã học",
+    "totalTime": "Tổng thời gian",
+    "unit_one": "ngày liên tiếp",
+    "unit_other": "ngày liên tiếp"
+  },
+  "chart": {
+    "title": "Hoạt động",
+    "rangeAria": "Chọn khoảng thời gian",
+    "aria": "Lượng luyện tập mỗi ngày",
+    "noneYet": "Chưa luyện tập gì trong khoảng này.",
+    "range": {
+      "7": "7 ngày",
+      "30": "30 ngày",
+      "90": "3 tháng",
+      "0": "Tất cả"
+    }
+  },
+  "calendar": {
+    "previous": "Tháng trước",
+    "next": "Tháng sau",
+    "less": "Ít",
+    "more": "Nhiều",
+    "dayAria_one": "{{date}}: {{count, number}} lượt",
+    "dayAria_other": "{{date}}: {{count, number}} lượt"
+  },
+  "day": {
+    "time": "Thời gian học",
+    "attempts": "Lượt tập viết",
+    "correct": "Đúng",
+    "charactersLearned": "Chữ cái đã xong",
+    "wordsLearned": "Từ đã xong",
+    "reviews": "Lượt ôn tập",
+    "nothing": "Ngày này chưa luyện tập."
+  },
+  "insights": {
+    "title": "Điều đáng chú ý",
+    "mostPractisedCharacter": "Chữ luyện nhiều nhất",
+    "mostPractisedWord": "Từ luyện nhiều nhất",
+    "accuracy": "Độ chính xác khi viết",
+    "thisWeek": "Tuần này",
+    "learnedCount_one": "Xong {{count, number}}",
+    "learnedCount_other": "Xong {{count, number}}"
+  },
+  "units": {
+    "minute_one": "{{count, number}} phút",
+    "minute_other": "{{count, number}} phút",
+    "hour_one": "{{count, number}} giờ",
+    "hour_other": "{{count, number}} giờ"
+  },
+  "empty": {
+    "title": "Câu chuyện học tập của bạn bắt đầu từ hôm nay",
+    "body": "Luyện vài chữ cái là trang này sẽ đầy dần: những ngày bạn đã học, học bao lâu, và học những gì."
+  },
+  "week": {
+    "title": "Tuần này",
+    "range": "Từ {{from}}",
+    "days": "Số ngày đã học",
+    "daysValue_one": "{{count, number}} trên 7",
+    "daysValue_other": "{{count, number}} trên 7",
+    "time": "Thời gian",
+    "learned": "Đã học",
+    "accuracy": "Độ chính xác",
+    "same": "Bằng đúng thời gian tuần trước.",
+    "moreThanLast": "Nhiều hơn tuần trước {{minutes, number}} phút.",
+    "lessThanLast": "Ít hơn tuần trước {{minutes, number}} phút.",
+    "quiet": "Tuần này chưa có gì — vẫn còn thời gian mà."
+  },
+  "memory": {
+    "title": "Khả năng ghi nhớ của bạn",
+    "firstTry": "Tuần này bạn nhớ đúng ngay lần đầu {{count, number}} mục.",
+    "strongestSkill": "Tuần này bạn làm tốt nhất ở phần {{skill}}.",
+    "confusionImproving": "Bạn đang phân biệt {{a}} và {{b}} dễ hơn rồi.",
+    "skill": {
+      "reading_recognition": "đọc",
+      "listening_recognition": "nghe",
+      "guided_writing": "viết",
+      "meaning_recognition": "nghĩa của từ",
+      "sentence_comprehension": "câu",
+      "sound_recognition": "âm",
+      "visual_recognition": "nhận mặt chữ",
+      "lookalike_discrimination": "phân biệt chữ giống nhau"
+    }
+  }
+}

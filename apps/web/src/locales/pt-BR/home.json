@@ -28,5 +28,6 @@
     "reviews_other": "{{count, number}} revisões prontas",
     "cta": "Começar a prática",
     "reviews_many": "{{count, number}} revisões prontas"
-  }
+  },
+  "purpose": "Aprenda coreano desde a primeira letra: o hangul e depois as palavras que você vai mesmo usar."
 }

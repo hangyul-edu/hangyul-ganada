@@ -93,8 +93,22 @@ const today = () => screen.getByTestId('today').textContent;
 const percent = () => Number(screen.getByTestId('percent').textContent);
 const learned = () => Number(screen.getByTestId('learned').textContent);
 
-/** Finishes `count` words of today's plan the way a session finishes them. */
+/**
+ * Finishes `count` words of today's plan the way a session finishes them.
+ *
+ * Waits for the plan to actually hold that many first. `extendVocabularyDay`
+ * lands through the provider's state and its persist, so reading the plan on
+ * the next line can see the pre-extension one and quietly study ten words when
+ * the test asked for twenty — which passed on an idle machine and failed under
+ * a loaded one, reported as an assertion about a progress counter three lines
+ * further down. The race was in the helper, not in the thing being asserted.
+ */
 async function study(app: { context: LearnerContextValue }, count: number) {
+  await waitFor(() =>
+    expect(app.context.vocabularyDay.words.length).toBeGreaterThanOrEqual(
+      Math.min(count, app.context.vocabularyDay.goal),
+    ),
+  );
   const words = app.context.vocabularyDay.words.slice(0, count);
   for (const word of words) {
     await act(async () => {

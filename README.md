@@ -23,7 +23,7 @@ see a letter ─▶ hear it ─▶ understand it ─▶ trace it ─▶ write it
 | Vocabulary | 2,581 words across 18 semantic categories, all open from the start |
 | Pronunciation | 5,275 utterances × 2 voices at 0.82×, 48.7 MB, bundled |
 | Practice typefaces | 6, all SIL OFL 1.1 |
-| Interface languages | 8 |
+| Interface languages | 10 |
 
 The learner traces a character in the typeface of their choice, and the drawing
 is compared against the real glyph geometry. Writing something that is not the
@@ -483,7 +483,7 @@ does not reorder punctuation.
 | --- | --- |
 | `packages/handwriting-core` | 69 tests: mask geometry, the evaluator, real-glyph calibration, six-typeface tolerance |
 | `apps/web` unit | 363 tests: curriculum content, mastery ladder, every progress calculation, the daily activity roll-ups and streaks, storage migrations, the pronunciation player and its entry-audio rule, scroll reset, Korean particle agreement, generated-question answer keys, locale resolution, quote attribution |
-| `apps/web` e2e | the fresh-install journey, the four-step writing progression and the hint, word learning, review, the learning record, the simplified settings screen, horizontal scrolling by wheel and drag, persistence across a restart, offline, no-monetisation, 8 languages — each run at a phone and a desktop viewport |
+| `apps/web` e2e | the fresh-install journey, the four-step writing progression and the hint, word learning, review, the learning record, the simplified settings screen, horizontal scrolling by wheel and drag, persistence across a restart, offline, no-monetisation, 10 languages — each run at a phone and a desktop viewport |
 | `npm run audio:qa` | All 10,550 voice slots over 10,454 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
 | `npm run audio:pronunciation` | The chain from the word on screen to the file on disk: ids, plan, manifest, notes against the sound-change rules, example ownership, and the service worker's audio-cache stamp |
 | `npm run audio:listen` | A speech recogniser over the clips. A screen for a person to read, not a gate — see [`docs/AUDIO.md`](docs/AUDIO.md) |
@@ -525,7 +525,7 @@ their reasons, and any new reference to the old name fails the build.
 
 ## Status
 
-The web app is complete and shippable in eight languages: a full Hangul
+The web app is complete and shippable in ten languages: a full Hangul
 curriculum, 2,581 words, bundled pronunciation in two voices, offline support
 and local-first storage with migrations. The Android application is built,
 signed, installed and exercised on a device each cycle; the iOS project is

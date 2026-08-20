@@ -6,6 +6,7 @@ import type { ExerciseMode } from '../../domain/review';
 import type { ReviewCandidate } from '../../domain/review';
 import { recognitionOptions, soundsTheSame } from '../learning/lookAlikes';
 import { MIN_OPTIONS, contextOptions, readingOptions } from '../learning/wordOptions';
+import { type HintStep, type Label, characterHints, wordHints } from './hints';
 
 /**
  * Turning a scheduler decision into a question on a screen.
@@ -48,9 +49,23 @@ export interface Exercise {
   answerId?: string;
   /** The syllable to draw. Only for `write`. */
   writeTarget?: string;
-  /** Shown when the learner asks for help, instead of failing them. */
-  hint?: string;
-  hintLocale?: string;
+  /**
+   * The letter's sound, shown beside the prompt on `write`.
+   *
+   * A field of its own rather than something read back out of the hints. It is
+   * part of the question there — "write the letter that sounds like *g*" —
+   * and reaching into the hint ladder for it would mean the prompt silently
+   * changed whenever the ladder did.
+   */
+  romanization?: string;
+  /**
+   * The help ladder, weakest first. See `hints.ts`.
+   *
+   * Empty where a question has no honest help to give. It is never a single
+   * string any more: the field it replaced held the word's meaning on a
+   * question whose options *were* meanings.
+   */
+  hints: HintStep[];
   /** The prompt itself, where the prompt is a meaning rather than Korean. */
   meaning?: string;
   meaningLocale?: string;
@@ -72,10 +87,11 @@ export function buildExercise(
   candidate: ReviewCandidate,
   meaningOf: MeaningOf,
   seed: number,
+  label: Label = (key) => key,
 ): Exercise | null {
   return candidate.kind === 'word'
-    ? wordExercise(candidate, meaningOf, seed)
-    : characterExercise(candidate, seed);
+    ? wordExercise(candidate, meaningOf, seed, label)
+    : characterExercise(candidate, seed, label);
 }
 
 // --- Words --------------------------------------------------------------------
@@ -84,10 +100,12 @@ function wordExercise(
   candidate: ReviewCandidate,
   meaningOf: MeaningOf,
   seed: number,
+  label: Label,
 ): Exercise | null {
   const word = getWord(candidate.itemKey);
   if (!word) return null;
   const copy = meaningOf(word);
+  const hints = wordHints(word, candidate.mode, label, copy.value);
 
   switch (candidate.mode) {
     case 'read': {
@@ -109,8 +127,7 @@ function wordExercise(
         audioId: word.audio.word,
         options,
         answerId: word.id,
-        hint: copy.value,
-        hintLocale: copy.locale,
+        hints,
       };
     }
 
@@ -130,11 +147,11 @@ function wordExercise(
         candidate,
         mode: 'produce',
         promptKey: 'review.prompt.produce',
-        // The prompt is the meaning, so it is not also a hint. The word's own
-        // sound is, which is why the hint here is the sound rather than the
-        // meaning the learner is already looking at.
         options,
         answerId: word.id,
+        // The prompt is the meaning, so the meaning is not also help. What is:
+        // what kind of word it is, then how it starts. See `wordHints`.
+        hints,
         meaning: copy.value,
         meaningLocale: copy.locale,
         audioId: word.audio.word,
@@ -165,9 +182,9 @@ function wordExercise(
         audioId: word.audio.word,
         options,
         answerId: word.id,
-        // No hint: the meaning *is* the answer here, so the usual hint would
-        // hand it over. The clip can be replayed instead, which is the help
-        // this question can honestly give.
+        // Not the meaning: it is the answer here. The ladder offers the kind of
+        // word it is, and then the reveal.
+        hints,
       };
     }
 
@@ -189,8 +206,7 @@ function wordExercise(
         audioId: word.audio.word,
         options,
         answerId: word.id,
-        hint: copy.value,
-        hintLocale: copy.locale,
+        hints,
       };
     }
 
@@ -220,8 +236,7 @@ function wordExercise(
         sentence: { ...split, audioId: word.audio.example },
         options,
         answerId: word.id,
-        hint: copy.value,
-        hintLocale: copy.locale,
+        hints,
       };
     }
 
@@ -288,9 +303,14 @@ function surfaceCandidates(word: string): string[] {
 
 // --- Characters ---------------------------------------------------------------
 
-function characterExercise(candidate: ReviewCandidate, seed: number): Exercise | null {
+function characterExercise(
+  candidate: ReviewCandidate,
+  seed: number,
+  label: Label,
+): Exercise | null {
   const meta = getCharacterByGlyph(candidate.itemKey);
   if (!meta) return null;
+  const hints = characterHints(meta, candidate.mode, label);
 
   switch (candidate.mode) {
     case 'listen': {
@@ -308,7 +328,7 @@ function characterExercise(candidate: ReviewCandidate, seed: number): Exercise |
         audioId: meta.audio.sound,
         options: options.map((glyph) => ({ id: glyph, korean: glyph })),
         answerId: candidate.itemKey,
-        hint: meta.romanization,
+        hints,
       };
     }
 
@@ -332,7 +352,7 @@ function characterExercise(candidate: ReviewCandidate, seed: number): Exercise |
         audioId: meta.audio.sound,
         options: stableOrder(options, seed),
         answerId: candidate.itemKey,
-        hint: meta.romanization,
+        hints,
       };
     }
 
@@ -363,7 +383,7 @@ function characterExercise(candidate: ReviewCandidate, seed: number): Exercise |
           seed,
         ),
         answerId: candidate.itemKey,
-        hint: meta.romanization,
+        hints,
       };
     }
 
@@ -375,7 +395,8 @@ function characterExercise(candidate: ReviewCandidate, seed: number): Exercise |
         korean: candidate.itemKey,
         audioId: meta.audio.sound,
         writeTarget: candidate.itemKey,
-        hint: meta.romanization,
+        romanization: meta.romanization,
+        hints,
       };
 
     case 'produce':

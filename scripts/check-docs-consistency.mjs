@@ -105,8 +105,32 @@ function countPlaywright() {
   return { total, projects: projects.size, perProject: total / Math.max(1, projects.size) };
 }
 
-const megabytes = (path) =>
-  exists(path) ? (statSync(join(ROOT, path)).size / 1024 / 1024).toFixed(1) : null;
+/**
+ * The size of a built artefact, in MB, found by extension rather than by name.
+ *
+ * It used to take a literal path, `result/hangyul-ganada-release.apk`, and the
+ * release build has never written that name — the artefacts are
+ * `HangyulGaNaDa-release.*`. So the two figures this checker exists to keep
+ * honest were reported as "not built yet, skipped" on every run for two
+ * release cycles, with a 63 MB APK sitting in the directory it was looking in.
+ *
+ * A checker that silently skips is worse than one that fails: it reads as a
+ * pass. Matching on the extension means the name can change again without
+ * quietly turning the check off, and finding two of the same kind is an error
+ * rather than a coin toss.
+ */
+const megabytes = (extension) => {
+  const dir = join(ROOT, 'result');
+  if (!existsSync(dir)) return null;
+  const found = readdirSync(dir).filter((name) => name.endsWith(extension));
+  if (found.length === 0) return null;
+  if (found.length > 1) {
+    throw new Error(
+      `result/ holds ${found.length} ${extension} files (${found.join(', ')}) — which one ships?`,
+    );
+  }
+  return (statSync(join(dir, found[0])).size / 1024 / 1024).toFixed(1);
+};
 
 const curriculum = JSON.parse(read('content/curriculum.json'));
 const playwright = countPlaywright();
@@ -202,12 +226,12 @@ const METRICS = {
     ],
   },
   apkMegabytes: {
-    value: megabytes('result/hangyul-ganada-release.apk'),
+    value: megabytes('.apk'),
     what: 'signed release APK, MB',
     patterns: [/`app-release\.apk` \(([\d.]+) MB\)/g, /\|\s*Release APK\s*\|\s*([\d.]+) MB/g],
   },
   aabMegabytes: {
-    value: megabytes('result/hangyul-ganada-release.aab'),
+    value: megabytes('.aab'),
     what: 'release AAB, MB',
     patterns: [/`app-release\.aab` \(([\d.]+) MB\)/g, /\|\s*Release AAB\s*\|\s*([\d.]+) MB/g],
   },

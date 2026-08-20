@@ -26,5 +26,6 @@
     "reviews_one": "{{count, number}} review ready",
     "reviews_other": "{{count, number}} reviews ready",
     "cta": "Start practice"
-  }
+  },
+  "purpose": "Learn Korean from the very first letter — Hangul, then the words you will actually use."
 }

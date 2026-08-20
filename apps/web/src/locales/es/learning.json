@@ -68,7 +68,24 @@
     "sessionLength_many": "{{count, number}} ejercicios cortos",
     "nothingDue": "Ahora mismo no hay nada que repasar.",
     "modesEmpty": "Hoy no hay nada en estos modos.",
-    "answerIs": "{{word}} significa «{{meaning}}»."
+    "answerIs": "{{word}} significa «{{meaning}}».",
+    "showMoreHint": "Otra pista",
+    "showAnswer": "Ver la respuesta",
+    "hint": {
+      "kind": "Es un {{pos}} de {{category}}.",
+      "kindOnly": "La palabra que falta es un {{pos}}.",
+      "startsWith": "Empieza por {{start}}…",
+      "startsWithSound": "Empieza con el sonido «{{sound}}».",
+      "replay": "Escúchalo otra vez, las veces que quieras.",
+      "letterFamily": "Esta es {{family}}.",
+      "letterExample": "Es la primera letra de {{word}}.",
+      "letterSound": "Suena como «{{sound}}».",
+      "reveal": "La respuesta es {{answer}}.",
+      "revealWord": "La palabra es {{answer}}.",
+      "revealLetter": "La letra es {{answer}}.",
+      "revealStrokes": "Mira los trazos una vez más y luego cópialos.",
+      "inSentence": "Se usa así: {{sentence}}"
+    }
   },
   "units": {
     "badge": "Unidad {{index, number}}",
@@ -198,5 +215,20 @@
     "emptyTitle": "Nada fallado todavía",
     "emptyBody": "Cuando falles algo, aparecerá aquí para que puedas corregirlo.",
     "emptyCta": "Ir a repasar"
+  },
+  "letterGroup": {
+    "basic_vowel": "una vocal básica",
+    "basic_consonant": "una consonante básica",
+    "compound_vowel": "una vocal compuesta",
+    "double_consonant": "una consonante doble",
+    "final_consonant": "una consonante final",
+    "syllable": "una sílaba entera"
+  },
+  "nextStep": {
+    "title": "Listo para el siguiente paso",
+    "body": "Ya sabes leer hangul. La práctica de conversación y el TOPIK siguen en Hangyul.",
+    "cta": "Continuar en Hangyul",
+    "rowTitle": "Continuar en Hangyul",
+    "rowBody": "Conversación y TOPIK, cuando quieras"
   }
 }

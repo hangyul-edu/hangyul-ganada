@@ -146,6 +146,21 @@ export function HomePage() {
           </Card>
         )}
 
+        {/*
+          What this app is for, once, to a learner who has never used it.
+          
+          A first-time visitor used to arrive at a lesson card with no statement
+          of the proposition anywhere on the screen — Unit 1, a progress ring at
+          zero, and a button. That reads as the middle of something.
+          
+          One sentence, and it leaves the moment there is any progress at all.
+          Not a carousel, not three screens, not a dismissable banner with a
+          close button to think about: `started` is the same signal the rest of
+          this screen already uses, so nothing has to be remembered or stored,
+          and a learner who comes back tomorrow gets the space back.
+        */}
+        {!started && <p className={styles.purpose}>{t('home:purpose')}</p>}
+
         <Card tone="featured" padding="lg" className={styles.featured}>
           <div className={styles.featuredTop}>
             <div className={styles.featuredText}>

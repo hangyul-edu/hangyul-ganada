@@ -1,0 +1,90 @@
+/*
+ * Deliberately quieter than everything around it.
+ *
+ * No orange, no filled button, no badge. The orange call to action on every
+ * other screen means "do this now"; this one means "when you are ready", and
+ * giving it the same weight would make it compete with the lesson a learner is
+ * actually in the middle of.
+ */
+.card {
+  border: 1px solid var(--hg-border);
+  background: var(--hg-surface);
+}
+
+.title {
+  margin: 0 0 var(--hg-space-1);
+  font-size: var(--hg-text-title-sm);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-primary);
+}
+
+.body {
+  margin: 0 0 var(--hg-space-3);
+  font-size: var(--hg-text-body-sm);
+  line-height: 1.5;
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.cta {
+  display: inline-block;
+  padding: var(--hg-space-2) var(--hg-space-4);
+  border: 1px solid var(--hg-primary);
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-primary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-bold);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    background: var(--hg-primary-subtle-hover);
+  }
+}
+
+/* The permanent form: one row, shaped like every other row in My Learning. */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  width: 100%;
+  padding: var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface-raised);
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .row:hover {
+    background: var(--hg-surface-hover);
+  }
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-primary);
+}
+
+.rowBody {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.chevron {
+  color: var(--hg-text-faint);
+  font-size: var(--hg-text-title-sm);
+  line-height: 1;
+}

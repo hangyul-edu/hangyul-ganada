@@ -37,6 +37,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le a de « papa »', mnemonic: 'Un montant avec une courte branche à droite.' },
     'de': { pronunciation_hint: 'wie das a in „Vater“', mnemonic: 'Ein Pfosten mit einem kurzen Ast nach rechts.' },
     'pt-BR': { pronunciation_hint: 'como o a de «casa»', mnemonic: 'Um poste com um ramo curto à direita.' },
+    'vi': { pronunciation_hint: "âm \"a\" như trong \"ba\". Mở miệng rộng.", mnemonic: "Một cây cột với một nhánh ngắn bên phải." },
+    'th': { pronunciation_hint: "เสียง \"อา\" อ้าปากกว้าง", mnemonic: "เสาหนึ่งต้น มีกิ่งสั้นอยู่ทางขวา" },
   },
   'ㅓ': {
     'ja': { pronunciation_hint: '「オ」に近い音。口を少しだけ開けます。', mnemonic: '枝が左向きになります。' },
@@ -45,6 +47,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le o de « sort », bouche moins arrondie', mnemonic: 'La branche pointe à gauche.' },
     'de': { pronunciation_hint: 'wie das o in „offen“, mit flacheren Lippen', mnemonic: 'Der Ast zeigt nach links.' },
     'pt-BR': { pronunciation_hint: 'como o ó de «pó», com a boca menos redonda', mnemonic: 'O ramo aponta para a esquerda.' },
+    'vi': { pronunciation_hint: "âm \"ơ\" như trong \"bơ\". Mở miệng ít hơn.", mnemonic: "Nhánh chỉ sang trái." },
+    'th': { pronunciation_hint: "เสียง \"ออ\" อ้าปากน้อยกว่า", mnemonic: "กิ่งชี้ไปทางซ้ายแทน" },
   },
   'ㅗ': {
     'ja': { pronunciation_hint: '「オ」の音。唇を丸くします。', mnemonic: '枝が上を向きます。' },
@@ -53,6 +57,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le o de « mot »', mnemonic: 'La branche pointe vers le haut.' },
     'de': { pronunciation_hint: 'wie das o in „Sohn“', mnemonic: 'Der Ast zeigt nach oben.' },
     'pt-BR': { pronunciation_hint: 'como o ô de «avô»', mnemonic: 'O ramo aponta para cima.' },
+    'vi': { pronunciation_hint: "âm \"ô\" như trong \"cô\".", mnemonic: "Nhánh chỉ lên trên." },
+    'th': { pronunciation_hint: "เสียง \"โอ\"", mnemonic: "กิ่งชี้ขึ้นด้านบน" },
   },
   'ㅜ': {
     'ja': { pronunciation_hint: '「ウ」の音。唇を前に突き出します。', mnemonic: '枝が下を向きます。' },
@@ -61,6 +67,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le ou de « loup »', mnemonic: 'La branche pointe vers le bas.' },
     'de': { pronunciation_hint: 'wie das u in „Mut“', mnemonic: 'Der Ast zeigt nach unten.' },
     'pt-BR': { pronunciation_hint: 'como o u de «lua»', mnemonic: 'O ramo aponta para baixo.' },
+    'vi': { pronunciation_hint: "âm \"u\" như trong \"thu\".", mnemonic: "Nhánh chỉ xuống dưới." },
+    'th': { pronunciation_hint: "เสียง \"อู\"", mnemonic: "กิ่งชี้ลงด้านล่าง" },
   },
   'ㅡ': {
     'ja': { pronunciation_hint: '唇を横に平らに引いた「ウ」。日本語にはない音です。', mnemonic: '横線が一本。' },
@@ -69,6 +77,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'lèvres plates et étirées ; n\'existe pas en français', mnemonic: 'Une seule ligne horizontale.' },
     'de': { pronunciation_hint: 'flach gezogene Lippen; gibt es im Deutschen nicht', mnemonic: 'Eine einzige waagerechte Linie.' },
     'pt-BR': { pronunciation_hint: 'lábios esticados e planos; não existe em português', mnemonic: 'Uma única linha horizontal.' },
+    'vi': { pronunciation_hint: "âm \"ư\" như trong \"tư\". Môi dẹt sang hai bên.", mnemonic: "Một nét ngang." },
+    'th': { pronunciation_hint: "เสียง \"อือ\" ริมฝีปากแบนออกด้านข้าง", mnemonic: "เส้นนอนหนึ่งเส้น" },
   },
   'ㅣ': {
     'ja': { pronunciation_hint: '「イ」の音。口を横に開けます。', mnemonic: '縦線が一本。' },
@@ -77,6 +87,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le i de « lit »', mnemonic: 'Une seule ligne verticale.' },
     'de': { pronunciation_hint: 'wie das i in „Liebe“', mnemonic: 'Eine einzige senkrechte Linie.' },
     'pt-BR': { pronunciation_hint: 'como o i de «vida»', mnemonic: 'Uma única linha vertical.' },
+    'vi': { pronunciation_hint: "âm \"i\" như trong \"khi\".", mnemonic: "Một nét dọc." },
+    'th': { pronunciation_hint: "เสียง \"อี\"", mnemonic: "เส้นตั้งหนึ่งเส้น" },
   },
   'ㄱ': {
     'ja': { pronunciation_hint: 'gとkの中間の音。母音にはさまれるとgに近づきます。', mnemonic: '舌の奥を上あごにつけて、ぱっと離してみましょう。' },
@@ -85,6 +97,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'Entre g et k ; entre deux voyelles, plus proche du g.', mnemonic: 'Touchez le palais avec le dos de la langue, puis relâchez.' },
     'de': { pronunciation_hint: 'Zwischen g und k; zwischen zwei Vokalen klingt es eher wie g.', mnemonic: 'Den Zungenrücken an den Gaumen legen und wieder lösen.' },
     'pt-BR': { pronunciation_hint: 'Entre g e k; entre vogais soa mais como g.', mnemonic: 'Encoste o dorso da língua no céu da boca e solte.' },
+    'vi': { pronunciation_hint: "Giữa \"g\" và \"c\" — gần \"g\" hơn khi nằm giữa hai nguyên âm.", mnemonic: "Chạm cuống lưỡi vào vòm miệng rồi thả ra." },
+    'th': { pronunciation_hint: "อยู่ระหว่าง ก กับ ค — ใกล้ ก เมื่ออยู่ระหว่างสระสองตัว", mnemonic: "เอาโคนลิ้นแตะเพดานปากแล้วปล่อย" },
   },
   'ㄴ': {
     'ja': { pronunciation_hint: '「ナ行」のnの音。', mnemonic: '舌先を上の前歯のすぐ後ろに当ててみましょう。' },
@@ -93,6 +107,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'Comme le n de « non ».', mnemonic: 'Placez la pointe de la langue juste derrière les dents du haut.' },
     'de': { pronunciation_hint: 'Wie das n in „nein“.', mnemonic: 'Die Zungenspitze direkt hinter die oberen Zähne legen.' },
     'pt-BR': { pronunciation_hint: 'Como o n de «não».', mnemonic: 'Encoste a ponta da língua logo atrás dos dentes de cima.' },
+    'vi': { pronunciation_hint: "Như \"n\" trong \"no\".", mnemonic: "Đặt đầu lưỡi ngay sau răng cửa trên." },
+    'th': { pronunciation_hint: "เหมือน น", mnemonic: "เอาปลายลิ้นแตะหลังฟันบน" },
   },
   'ㄷ': {
     'ja': { pronunciation_hint: 'dとtの中間の音。母音にはさまれるとdに近づきます。', mnemonic: 'ㄴ の上に線を一本足して閉じた形。' },
@@ -101,6 +117,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'Entre d et t ; entre deux voyelles, plus proche du d.', mnemonic: 'ㄴ fermé en haut par un trait.' },
     'de': { pronunciation_hint: 'Zwischen d und t; zwischen zwei Vokalen klingt es eher wie d.', mnemonic: 'ㄴ mit einem Strich, der oben schließt.' },
     'pt-BR': { pronunciation_hint: 'Entre d e t; entre vogais soa mais como d.', mnemonic: 'ㄴ com uma linha fechando em cima.' },
+    'vi': { pronunciation_hint: "Giữa \"đ\" và \"t\" — gần \"đ\" hơn khi nằm giữa hai nguyên âm.", mnemonic: "ㄴ có thêm một nét đóng phía trên." },
+    'th': { pronunciation_hint: "อยู่ระหว่าง ด กับ ต — ใกล้ ด เมื่ออยู่ระหว่างสระสองตัว", mnemonic: "ㄴ ที่มีเส้นปิดด้านบน" },
   },
   'ㄹ': {
     'ja': { pronunciation_hint: 'rとlの中間の、軽くはじく音。パッチムではlに近づきます。', mnemonic: '舌を上あごから前へ、軽く一回はじいてみましょう。' },
@@ -109,6 +127,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'Un battement léger, entre r et l ; en fin de syllabe, plutôt un l.', mnemonic: 'Donnez un petit coup de langue vers l\'avant, une seule fois.' },
     'de': { pronunciation_hint: 'Ein leichtes Antippen zwischen r und l; am Silbenende eher ein l.', mnemonic: 'Die Zunge einmal leicht nach vorn schnellen lassen.' },
     'pt-BR': { pronunciation_hint: 'Um toque leve, entre r e l; no fim da sílaba soa como l.', mnemonic: 'Dê um toquinho para a frente com a língua, uma vez só.' },
+    'vi': { pronunciation_hint: "Một cái chạm nhẹ, giữa \"r\" và \"l\" — thành \"l\" khi đứng cuối âm tiết.", mnemonic: "Hất lưỡi khỏi vòm miệng một cái, thật nhẹ." },
+    'th': { pronunciation_hint: "เสียงแตะเบา ๆ ระหว่าง ร กับ ล — เป็น ล เมื่ออยู่ท้ายพยางค์", mnemonic: "สะบัดลิ้นออกจากเพดานปากเบา ๆ ครั้งเดียว" },
   },
   'ㅁ': {
     'ja': { pronunciation_hint: '「マ行」のmの音。', mnemonic: '四角 — 閉じた口の形。' },
@@ -117,6 +137,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le m de « mère »', mnemonic: 'Un carré : la forme d\'une bouche fermée.' },
     'de': { pronunciation_hint: 'wie das m in „Mutter“', mnemonic: 'Ein Quadrat — die Form eines geschlossenen Mundes.' },
     'pt-BR': { pronunciation_hint: 'como o m de «mãe»', mnemonic: 'Um quadrado: o formato de uma boca fechada.' },
+    'vi': { pronunciation_hint: "Như \"m\" trong \"mẹ\".", mnemonic: "Một hình vuông — hình cái miệng đang khép." },
+    'th': { pronunciation_hint: "เหมือน ม", mnemonic: "สี่เหลี่ยม — รูปปากที่ปิดอยู่" },
   },
   'ㅂ': {
     'ja': { pronunciation_hint: 'bとpの中間の音。母音にはさまれるとbに近づきます。', mnemonic: 'ㅁ の上を開いた形。' },
@@ -125,6 +147,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'Entre b et p ; entre deux voyelles, plus proche du b.', mnemonic: 'ㅁ ouvert par le haut.' },
     'de': { pronunciation_hint: 'Zwischen b und p; zwischen zwei Vokalen klingt es eher wie b.', mnemonic: 'ㅁ, oben geöffnet.' },
     'pt-BR': { pronunciation_hint: 'Entre b e p; entre vogais soa mais como b.', mnemonic: 'ㅁ aberto em cima.' },
+    'vi': { pronunciation_hint: "Giữa \"b\" và \"p\" — gần \"b\" hơn khi nằm giữa hai nguyên âm.", mnemonic: "ㅁ mở ra ở phía trên." },
+    'th': { pronunciation_hint: "อยู่ระหว่าง บ กับ ป — ใกล้ บ เมื่ออยู่ระหว่างสระสองตัว", mnemonic: "ㅁ ที่เปิดออกด้านบน" },
   },
   'ㅅ': {
     'ja': { pronunciation_hint: '「サ行」のsの音。', mnemonic: '歯のすきまから息をそっと出してみましょう。' },
@@ -133,6 +157,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'Comme le s de « sol ».', mnemonic: 'Laissez l\'air s\'échapper entre les dents.' },
     'de': { pronunciation_hint: 'Wie das stimmlose s in „Sonne“.', mnemonic: 'Die Luft zwischen den Zähnen entweichen lassen.' },
     'pt-BR': { pronunciation_hint: 'Como o s de «sol».', mnemonic: 'Deixe o ar escapar entre os dentes.' },
+    'vi': { pronunciation_hint: "Như \"x\" trong \"xa\".", mnemonic: "Để hơi xì ra giữa hai hàm răng." },
+    'th': { pronunciation_hint: "เหมือน ส", mnemonic: "ปล่อยลมเสียดออกมาระหว่างฟัน" },
   },
   'ㅇ': {
     'ja': { pronunciation_hint: '音節の頭では無音、末では「ング」。', mnemonic: '円 — 開いた喉の形。母音で始まる音節では席を空けておく役です。' },
@@ -141,6 +167,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'muette en début de syllabe, ng à la fin', mnemonic: 'Un cercle : la gorge ouverte. Elle garde la place quand la syllabe commence par une voyelle.' },
     'de': { pronunciation_hint: 'am Silbenanfang stumm, am Ende ng', mnemonic: 'Ein Kreis — der offene Rachen. Er hält den Platz frei, wenn eine Silbe mit einem Vokal beginnt.' },
     'pt-BR': { pronunciation_hint: 'muda no início da sílaba, ng no fim', mnemonic: 'Um círculo: a garganta aberta. Ele guarda o lugar quando a sílaba começa com vogal.' },
+    'vi': { pronunciation_hint: "Câm khi đứng đầu âm tiết, thành \"ng\" khi đứng cuối.", mnemonic: "Một vòng tròn — hình cổ họng đang mở. Nó giữ chỗ khi âm tiết bắt đầu bằng nguyên âm." },
+    'th': { pronunciation_hint: "ไม่มีเสียงเมื่ออยู่ต้นพยางค์ เป็นเสียง ง เมื่ออยู่ท้าย", mnemonic: "วงกลม — รูปลำคอที่เปิดอยู่ มันกันที่ไว้ตอนพยางค์ขึ้นต้นด้วยสระ" },
   },
   'ㅈ': {
     'ja': { pronunciation_hint: '「ジ」に近いjの音。', mnemonic: 'ㅅ の上に横線を一本。' },
@@ -149,6 +177,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le dj de « djinn »', mnemonic: 'ㅅ avec un trait au-dessus.' },
     'de': { pronunciation_hint: 'wie dsch in „Dschungel“', mnemonic: 'ㅅ mit einem Strich darüber.' },
     'pt-BR': { pronunciation_hint: 'como o j de «jipe»', mnemonic: 'ㅅ com uma linha em cima.' },
+    'vi': { pronunciation_hint: "Như \"ch\" trong \"cha\".", mnemonic: "ㅅ có thêm một nét ngang phía trên." },
+    'th': { pronunciation_hint: "เหมือน จ", mnemonic: "ㅅ ที่มีเส้นขวางอยู่ด้านบน" },
   },
   'ㅎ': {
     'ja': { pronunciation_hint: '「ハ行」のhの音。', mnemonic: 'ㅇ が二本の線の帽子をかぶった形。' },
@@ -157,6 +187,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le h aspiré de « hop »', mnemonic: 'ㅇ coiffé de deux traits.' },
     'de': { pronunciation_hint: 'wie das h in „Haus“', mnemonic: 'ㅇ mit einem Hut aus zwei Strichen.' },
     'pt-BR': { pronunciation_hint: 'como o h aspirado de «house» em inglês', mnemonic: 'ㅇ com um chapéu de dois traços.' },
+    'vi': { pronunciation_hint: "Như \"h\" trong \"hoa\".", mnemonic: "ㅇ đội một cái mũ hai nét." },
+    'th': { pronunciation_hint: "เหมือน ฮ", mnemonic: "ㅇ ที่สวมหมวกสองเส้น" },
   },
   'ㅑ': {
     'ja': { pronunciation_hint: '「ヤ」の音。', mnemonic: 'ㅏ に枝をもう一本。枝が増えると必ず y が付きます。' },
@@ -165,6 +197,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme ya dans « yack »', mnemonic: 'ㅏ avec une deuxième branche. Une branche de plus ajoute toujours un y.' },
     'de': { pronunciation_hint: 'wie ja in „Jahr“', mnemonic: 'ㅏ mit einem zweiten Ast. Ein Ast mehr fügt immer ein j hinzu.' },
     'pt-BR': { pronunciation_hint: 'como ia em «piada»', mnemonic: 'ㅏ com um segundo ramo. Um ramo a mais sempre acrescenta um i.' },
+    'vi': { pronunciation_hint: "Như \"gia\" — thêm âm \"i\" trước \"a\".", mnemonic: "ㅏ với nhánh thứ hai. Thêm một nhánh là thêm âm \"y\"." },
+    'th': { pronunciation_hint: "เหมือน \"ยา\"", mnemonic: "ㅏ ที่มีกิ่งที่สอง เพิ่มกิ่งหนึ่งคือเพิ่มเสียง y" },
   },
   'ㅕ': {
     'ja': { pronunciation_hint: '「ヨ」に近い音。', mnemonic: 'ㅓ に枝をもう一本。' },
@@ -173,6 +207,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme yo, bouche moins arrondie', mnemonic: 'ㅓ avec une deuxième branche.' },
     'de': { pronunciation_hint: 'wie jo, mit flacheren Lippen', mnemonic: 'ㅓ mit einem zweiten Ast.' },
     'pt-BR': { pronunciation_hint: 'como ió, com a boca menos redonda', mnemonic: 'ㅓ com um segundo ramo.' },
+    'vi': { pronunciation_hint: "Như \"iơ\" đọc liền — âm \"i\" trước \"ơ\".", mnemonic: "ㅓ với nhánh thứ hai." },
+    'th': { pronunciation_hint: "เหมือน \"ยอ\"", mnemonic: "ㅓ ที่มีกิ่งที่สอง" },
   },
   'ㅛ': {
     'ja': { pronunciation_hint: '「ヨ」の音。唇を丸くします。', mnemonic: 'ㅗ に枝をもう一本。' },
@@ -181,6 +217,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme yo dans « yoga »', mnemonic: 'ㅗ avec une deuxième branche.' },
     'de': { pronunciation_hint: 'wie jo in „Jod“', mnemonic: 'ㅗ mit einem zweiten Ast.' },
     'pt-BR': { pronunciation_hint: 'como io em «iodo»', mnemonic: 'ㅗ com um segundo ramo.' },
+    'vi': { pronunciation_hint: "Như \"iô\" đọc liền.", mnemonic: "ㅗ với nhánh thứ hai." },
+    'th': { pronunciation_hint: "เหมือน \"โย\"", mnemonic: "ㅗ ที่มีกิ่งที่สอง" },
   },
   'ㅠ': {
     'ja': { pronunciation_hint: '「ユ」の音。', mnemonic: 'ㅜ に枝をもう一本。' },
@@ -189,6 +227,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme you en anglais', mnemonic: 'ㅜ avec une deuxième branche.' },
     'de': { pronunciation_hint: 'wie ju in „Juli“', mnemonic: 'ㅜ mit einem zweiten Ast.' },
     'pt-BR': { pronunciation_hint: 'como iu em «viu»', mnemonic: 'ㅜ com um segundo ramo.' },
+    'vi': { pronunciation_hint: "Như \"iu\" đọc liền.", mnemonic: "ㅜ với nhánh thứ hai." },
+    'th': { pronunciation_hint: "เหมือน \"ยู\"", mnemonic: "ㅜ ที่มีกิ่งที่สอง" },
   },
   'ㅊ': {
     'ja': { pronunciation_hint: 'ㅈ に息を強く添えた音。', mnemonic: 'ㅈ に一画足します。画が増えると息も増えます。' },
@@ -197,6 +237,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅈ avec un souffle d\'air', mnemonic: 'ㅈ avec un trait de plus. Un trait ajouté, c\'est du souffle ajouté.' },
     'de': { pronunciation_hint: 'ㅈ mit einem Hauch Luft', mnemonic: 'ㅈ mit einem Strich mehr. Ein Strich mehr heißt mehr Atem.' },
     'pt-BR': { pronunciation_hint: 'ㅈ com um sopro de ar', mnemonic: 'ㅈ com um traço a mais. Um traço a mais significa ar a mais.' },
+    'vi': { pronunciation_hint: "ㅈ kèm một hơi bật.", mnemonic: "ㅈ thêm một nét. Thêm nét là thêm hơi." },
+    'th': { pronunciation_hint: "ㅈ ที่มีลมพ่นออกมา", mnemonic: "ㅈ ที่เพิ่มอีกหนึ่งเส้น เพิ่มเส้นคือเพิ่มลม" },
   },
   'ㅋ': {
     'ja': { pronunciation_hint: 'ㄱ に息を強く添えた音。', mnemonic: 'ㄱ に一画足します。' },
@@ -205,6 +247,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ avec un souffle d\'air', mnemonic: 'ㄱ avec un trait de plus.' },
     'de': { pronunciation_hint: 'ㄱ mit einem Hauch Luft', mnemonic: 'ㄱ mit einem Strich mehr.' },
     'pt-BR': { pronunciation_hint: 'ㄱ com um sopro de ar', mnemonic: 'ㄱ com um traço a mais.' },
+    'vi': { pronunciation_hint: "ㄱ kèm một hơi bật.", mnemonic: "ㄱ thêm một nét." },
+    'th': { pronunciation_hint: "ㄱ ที่มีลมพ่นออกมา", mnemonic: "ㄱ ที่เพิ่มอีกหนึ่งเส้น" },
   },
   'ㅌ': {
     'ja': { pronunciation_hint: 'ㄷ に息を強く添えた音。', mnemonic: 'ㄷ に一画足します。' },
@@ -213,6 +257,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄷ avec un souffle d\'air', mnemonic: 'ㄷ avec un trait de plus.' },
     'de': { pronunciation_hint: 'ㄷ mit einem Hauch Luft', mnemonic: 'ㄷ mit einem Strich mehr.' },
     'pt-BR': { pronunciation_hint: 'ㄷ com um sopro de ar', mnemonic: 'ㄷ com um traço a mais.' },
+    'vi': { pronunciation_hint: "ㄷ kèm một hơi bật.", mnemonic: "ㄷ thêm một nét." },
+    'th': { pronunciation_hint: "ㄷ ที่มีลมพ่นออกมา", mnemonic: "ㄷ ที่เพิ่มอีกหนึ่งเส้น" },
   },
   'ㅍ': {
     'ja': { pronunciation_hint: 'ㅂ に息を強く添えた音。', mnemonic: 'ㅂ を横に倒した形。' },
@@ -221,6 +267,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅂ avec un souffle d\'air', mnemonic: 'ㅂ couché sur le côté.' },
     'de': { pronunciation_hint: 'ㅂ mit einem Hauch Luft', mnemonic: 'ㅂ, auf die Seite gelegt.' },
     'pt-BR': { pronunciation_hint: 'ㅂ com um sopro de ar', mnemonic: 'ㅂ deitado de lado.' },
+    'vi': { pronunciation_hint: "ㅂ kèm một hơi bật.", mnemonic: "ㅂ nằm nghiêng sang một bên." },
+    'th': { pronunciation_hint: "ㅂ ที่มีลมพ่นออกมา", mnemonic: "ㅂ ที่ล้มตะแคงลง" },
   },
   'ㅐ': {
     'ja': { pronunciation_hint: '「エ」に近い音。', mnemonic: 'ㅏ と ㅣ を並べて書いたもの。' },
@@ -229,6 +277,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le è de « père »', mnemonic: 'ㅏ + ㅣ écrits ensemble.' },
     'de': { pronunciation_hint: 'wie das ä in „hätte“', mnemonic: 'ㅏ + ㅣ zusammengeschrieben.' },
     'pt-BR': { pronunciation_hint: 'como o é de «pé»', mnemonic: 'ㅏ + ㅣ escritos juntos.' },
+    'vi': { pronunciation_hint: "Như \"e\" trong \"em\".", mnemonic: "ㅏ + ㅣ viết liền nhau." },
+    'th': { pronunciation_hint: "เหมือนสระ แอ", mnemonic: "ㅏ + ㅣ เขียนติดกัน" },
   },
   'ㅔ': {
     'ja': { pronunciation_hint: '「エ」の音。', mnemonic: 'ㅓ + ㅣ。今の韓国語では ㅐ と ㅔ はほぼ同じ音です。' },
@@ -237,6 +287,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme le é de « été »', mnemonic: 'ㅓ + ㅣ. Aujourd\'hui, la plupart des Coréens prononcent ㅐ et ㅔ de la même façon.' },
     'de': { pronunciation_hint: 'wie das e in „Bett“', mnemonic: 'ㅓ + ㅣ. Heute sprechen die meisten Koreaner ㅐ und ㅔ gleich aus.' },
     'pt-BR': { pronunciation_hint: 'como o ê de «mesa»', mnemonic: 'ㅓ + ㅣ. Hoje quase todos os coreanos pronunciam ㅐ e ㅔ igual.' },
+    'vi': { pronunciation_hint: "Như \"ê\" trong \"đêm\".", mnemonic: "ㅓ + ㅣ. Ngày nay hầu hết người Hàn đọc ㅐ và ㅔ giống nhau." },
+    'th': { pronunciation_hint: "เหมือนสระ เอ", mnemonic: "ㅓ + ㅣ ทุกวันนี้คนเกาหลีส่วนใหญ่ออกเสียง ㅐ กับ ㅔ เหมือนกัน" },
   },
   'ㅒ': {
     'ja': { pronunciation_hint: '「イェ」に近く、短く切ります。', mnemonic: 'ㅑ + ㅣ。' },
@@ -245,6 +297,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme yè, bouche plus ouverte', mnemonic: 'ㅑ + ㅣ.' },
     'de': { pronunciation_hint: 'wie jä', mnemonic: 'ㅑ + ㅣ.' },
     'pt-BR': { pronunciation_hint: 'como ié', mnemonic: 'ㅑ + ㅣ.' },
+    'vi': { pronunciation_hint: "Như \"ye\" đọc ngắn.", mnemonic: "ㅑ + ㅣ." },
+    'th': { pronunciation_hint: "เหมือน \"แย\" ออกเสียงสั้น", mnemonic: "ㅑ + ㅣ" },
   },
   'ㅖ': {
     'ja': { pronunciation_hint: '「イェ」の音。', mnemonic: 'ㅕ + ㅣ。' },
@@ -253,6 +307,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme yé', mnemonic: 'ㅕ + ㅣ.' },
     'de': { pronunciation_hint: 'wie je in „jetzt“', mnemonic: 'ㅕ + ㅣ.' },
     'pt-BR': { pronunciation_hint: 'como iê', mnemonic: 'ㅕ + ㅣ.' },
+    'vi': { pronunciation_hint: "Như \"yê\" trong \"yêu\".", mnemonic: "ㅕ + ㅣ." },
+    'th': { pronunciation_hint: "เหมือน \"เย\"", mnemonic: "ㅕ + ㅣ" },
   },
   'ㄲ': {
     'ja': { pronunciation_hint: 'ㄱ を強く詰めた音。', mnemonic: 'ㄱ が二つ。喉を締めて一気に離します。' },
@@ -261,6 +317,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ, tendu et sec', mnemonic: 'Deux ㄱ. Serrez la gorge puis relâchez d\'un coup.' },
     'de': { pronunciation_hint: 'ㄱ, gepresst und scharf', mnemonic: 'Zwei ㄱ. Die Kehle anspannen und plötzlich lösen.' },
     'pt-BR': { pronunciation_hint: 'ㄱ, tenso e seco', mnemonic: 'Dois ㄱ. Aperte a garganta e solte de uma vez.' },
+    'vi': { pronunciation_hint: "ㄱ đọc căng và gọn.", mnemonic: "Hai chữ ㄱ. Siết cổ họng lại rồi bật ra thật nhanh." },
+    'th': { pronunciation_hint: "ㄱ ที่ออกเสียงหนักและกระชับ", mnemonic: "ㄱ สองตัว เกร็งคอแล้วปล่อยออกมาทันที" },
   },
   'ㄸ': {
     'ja': { pronunciation_hint: 'ㄷ を強く詰めた音。', mnemonic: 'ㄷ が二つ。' },
@@ -269,6 +327,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄷ, tendu et sec', mnemonic: 'Deux ㄷ.' },
     'de': { pronunciation_hint: 'ㄷ, gepresst und scharf', mnemonic: 'Zwei ㄷ.' },
     'pt-BR': { pronunciation_hint: 'ㄷ, tenso e seco', mnemonic: 'Dois ㄷ.' },
+    'vi': { pronunciation_hint: "ㄷ đọc căng và gọn.", mnemonic: "Hai chữ ㄷ." },
+    'th': { pronunciation_hint: "ㄷ ที่ออกเสียงหนักและกระชับ", mnemonic: "ㄷ สองตัว" },
   },
   'ㅃ': {
     'ja': { pronunciation_hint: 'ㅂ を強く詰めた音。', mnemonic: 'ㅂ が二つ。' },
@@ -277,6 +337,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅂ, tendu et sec', mnemonic: 'Deux ㅂ.' },
     'de': { pronunciation_hint: 'ㅂ, gepresst und scharf', mnemonic: 'Zwei ㅂ.' },
     'pt-BR': { pronunciation_hint: 'ㅂ, tenso e seco', mnemonic: 'Dois ㅂ.' },
+    'vi': { pronunciation_hint: "ㅂ đọc căng và gọn.", mnemonic: "Hai chữ ㅂ." },
+    'th': { pronunciation_hint: "ㅂ ที่ออกเสียงหนักและกระชับ", mnemonic: "ㅂ สองตัว" },
   },
   'ㅆ': {
     'ja': { pronunciation_hint: 'ㅅ を強く詰めた音。', mnemonic: 'ㅅ が二つ。' },
@@ -285,6 +347,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅅ, tendu et sec', mnemonic: 'Deux ㅅ.' },
     'de': { pronunciation_hint: 'ㅅ, gepresst und scharf', mnemonic: 'Zwei ㅅ.' },
     'pt-BR': { pronunciation_hint: 'ㅅ, tenso e seco', mnemonic: 'Dois ㅅ.' },
+    'vi': { pronunciation_hint: "ㅅ đọc căng và gọn.", mnemonic: "Hai chữ ㅅ." },
+    'th': { pronunciation_hint: "ㅅ ที่ออกเสียงหนักและกระชับ", mnemonic: "ㅅ สองตัว" },
   },
   'ㅉ': {
     'ja': { pronunciation_hint: 'ㅈ を強く詰めた音。', mnemonic: 'ㅈ が二つ。' },
@@ -293,6 +357,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅈ, tendu et sec', mnemonic: 'Deux ㅈ.' },
     'de': { pronunciation_hint: 'ㅈ, gepresst und scharf', mnemonic: 'Zwei ㅈ.' },
     'pt-BR': { pronunciation_hint: 'ㅈ, tenso e seco', mnemonic: 'Dois ㅈ.' },
+    'vi': { pronunciation_hint: "ㅈ đọc căng và gọn.", mnemonic: "Hai chữ ㅈ." },
+    'th': { pronunciation_hint: "ㅈ ที่ออกเสียงหนักและกระชับ", mnemonic: "ㅈ สองตัว" },
   },
   'ㅘ': {
     'ja': { pronunciation_hint: '「ワ」の音。', mnemonic: 'ㅗ + ㅏ。w を足すのは ㅗ と ㅜ です。' },
@@ -301,6 +367,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme oua dans « ouate »', mnemonic: 'ㅗ + ㅏ. Ce sont ㅗ et ㅜ qui ajoutent le w.' },
     'de': { pronunciation_hint: 'wie wa in „Wasser“ (mit u-Vorschlag)', mnemonic: 'ㅗ + ㅏ. ㅗ und ㅜ sind es, die das w hinzufügen.' },
     'pt-BR': { pronunciation_hint: 'como ua em «quando»', mnemonic: 'ㅗ + ㅏ. São ㅗ e ㅜ que acrescentam o w.' },
+    'vi': { pronunciation_hint: "Như \"oa\" trong \"hoa\".", mnemonic: "ㅗ + ㅏ. ㅗ và ㅜ là hai chữ thêm âm \"w\"." },
+    'th': { pronunciation_hint: "เหมือน \"วา\"", mnemonic: "ㅗ + ㅏ ㅗ กับ ㅜ คือตัวที่เติมเสียง w" },
   },
   'ㅝ': {
     'ja': { pronunciation_hint: '「ウォ」の音。', mnemonic: 'ㅜ + ㅓ。' },
@@ -309,6 +377,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme ouo', mnemonic: 'ㅜ + ㅓ.' },
     'de': { pronunciation_hint: 'wie wo, mit flacheren Lippen', mnemonic: 'ㅜ + ㅓ.' },
     'pt-BR': { pronunciation_hint: 'como uó', mnemonic: 'ㅜ + ㅓ.' },
+    'vi': { pronunciation_hint: "Như \"uơ\" đọc liền.", mnemonic: "ㅜ + ㅓ." },
+    'th': { pronunciation_hint: "เหมือน \"วอ\"", mnemonic: "ㅜ + ㅓ" },
   },
   'ㅚ': {
     'ja': { pronunciation_hint: '「ウェ」の音。', mnemonic: 'ㅗ + ㅣ。' },
@@ -317,6 +387,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme oué', mnemonic: 'ㅗ + ㅣ.' },
     'de': { pronunciation_hint: 'wie we in „Wetter“', mnemonic: 'ㅗ + ㅣ.' },
     'pt-BR': { pronunciation_hint: 'como ué', mnemonic: 'ㅗ + ㅣ.' },
+    'vi': { pronunciation_hint: "Như \"oe\" trong \"khoe\".", mnemonic: "ㅗ + ㅣ." },
+    'th': { pronunciation_hint: "เหมือน \"เว\"", mnemonic: "ㅗ + ㅣ" },
   },
   'ㅟ': {
     'ja': { pronunciation_hint: '「ウィ」の音。', mnemonic: 'ㅜ + ㅣ。' },
@@ -325,6 +397,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme oui', mnemonic: 'ㅜ + ㅣ.' },
     'de': { pronunciation_hint: 'wie wi in „wieder“', mnemonic: 'ㅜ + ㅣ.' },
     'pt-BR': { pronunciation_hint: 'como ui em «cuidar»', mnemonic: 'ㅜ + ㅣ.' },
+    'vi': { pronunciation_hint: "Như \"uy\" trong \"tuy\".", mnemonic: "ㅜ + ㅣ." },
+    'th': { pronunciation_hint: "เหมือน \"วี\"", mnemonic: "ㅜ + ㅣ" },
   },
   'ㅙ': {
     'ja': { pronunciation_hint: '「ウェ」の音。', mnemonic: 'ㅗ + ㅐ。今日では ㅙ・ㅞ・ㅚ はどれも同じに聞こえます。' },
@@ -333,6 +407,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme oué', mnemonic: 'ㅗ + ㅐ. Aujourd\'hui ㅙ, ㅞ et ㅚ se prononcent pareil.' },
     'de': { pronunciation_hint: 'wie we in „Wetter“', mnemonic: 'ㅗ + ㅐ. Heute klingen ㅙ, ㅞ und ㅚ gleich.' },
     'pt-BR': { pronunciation_hint: 'como ué', mnemonic: 'ㅗ + ㅐ. Hoje ㅙ, ㅞ e ㅚ soam igual.' },
+    'vi': { pronunciation_hint: "Như \"oe\" trong \"khoe\".", mnemonic: "ㅗ + ㅐ. Ngày nay ㅙ, ㅞ và ㅚ nghe giống hệt nhau." },
+    'th': { pronunciation_hint: "เหมือน \"เว\"", mnemonic: "ㅗ + ㅐ ทุกวันนี้ ㅙ ㅞ และ ㅚ ออกเสียงเหมือนกันหมด" },
   },
   'ㅞ': {
     'ja': { pronunciation_hint: '「ウェ」の音。', mnemonic: 'ㅜ + ㅔ。' },
@@ -341,6 +417,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'comme oué', mnemonic: 'ㅜ + ㅔ.' },
     'de': { pronunciation_hint: 'wie we in „Wetter“', mnemonic: 'ㅜ + ㅔ.' },
     'pt-BR': { pronunciation_hint: 'como ué', mnemonic: 'ㅜ + ㅔ.' },
+    'vi': { pronunciation_hint: "Như \"oe\" trong \"khoe\".", mnemonic: "ㅜ + ㅔ." },
+    'th': { pronunciation_hint: "เหมือน \"เว\"", mnemonic: "ㅜ + ㅔ" },
   },
   'ㅢ': {
     'ja': { pronunciation_hint: 'ㅡ から ㅣ へ続けて読みます。', mnemonic: 'ㅡ + ㅣ。' },
@@ -349,6 +427,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅡ puis ㅣ, enchaînés', mnemonic: 'ㅡ + ㅣ.' },
     'de': { pronunciation_hint: 'ㅡ und dann ㅣ, in einem Zug', mnemonic: 'ㅡ + ㅣ.' },
     'pt-BR': { pronunciation_hint: 'ㅡ e depois ㅣ, seguidos', mnemonic: 'ㅡ + ㅣ.' },
+    'vi': { pronunciation_hint: "ㅡ rồi ㅣ, đọc liền một hơi.", mnemonic: "ㅡ + ㅣ." },
+    'th': { pronunciation_hint: "ㅡ แล้วต่อด้วย ㅣ ออกเสียงรวดเดียว", mnemonic: "ㅡ + ㅣ" },
   },
   '가': {
     'ja': { pronunciation_hint: 'ㄱ + ㅏ', mnemonic: '子音は左、縦長の母音は右に置きます。' },
@@ -357,6 +437,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅏ', mnemonic: 'La consonne va à gauche, une voyelle haute à droite.' },
     'de': { pronunciation_hint: 'ㄱ + ㅏ', mnemonic: 'Der Konsonant steht links, ein hoher Vokal rechts.' },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅏ', mnemonic: 'A consoante fica à esquerda; uma vogal alta, à direita.' },
+    'vi': { pronunciation_hint: "ㄱ + ㅏ", mnemonic: "Phụ âm đứng bên trái, nguyên âm nét đứng bên phải." },
+    'th': { pronunciation_hint: "ㄱ + ㅏ", mnemonic: "พยัญชนะอยู่ทางซ้าย สระเส้นตั้งอยู่ทางขวา" },
   },
   '나': {
     'ja': { pronunciation_hint: 'ㄴ + ㅏ — 「私」を意味する語でもあります', mnemonic: null },
@@ -365,6 +447,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄴ + ㅏ — c\'est aussi le mot « je »', mnemonic: null },
     'de': { pronunciation_hint: 'ㄴ + ㅏ — zugleich das Wort für „ich“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄴ + ㅏ — também a palavra «eu»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄴ + ㅏ — cũng là từ chỉ \"tôi\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㄴ + ㅏ — และเป็นคำที่แปลว่า \"ฉัน\" ด้วย", mnemonic: null },
   },
   '다': {
     'ja': { pronunciation_hint: 'ㄷ + ㅏ', mnemonic: null },
@@ -373,6 +457,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄷ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㄷ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄷ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄷ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㄷ + ㅏ", mnemonic: null },
   },
   '라': {
     'ja': { pronunciation_hint: 'ㄹ + ㅏ', mnemonic: null },
@@ -381,6 +467,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄹ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㄹ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄹ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄹ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㄹ + ㅏ", mnemonic: null },
   },
   '마': {
     'ja': { pronunciation_hint: 'ㅁ + ㅏ', mnemonic: null },
@@ -389,6 +477,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅁ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㅁ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅁ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅁ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㅁ + ㅏ", mnemonic: null },
   },
   '거': {
     'ja': { pronunciation_hint: 'ㄱ + ㅓ', mnemonic: null },
@@ -397,6 +487,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅓ', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅓ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅓ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅓ", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅓ", mnemonic: null },
   },
   '고': {
     'ja': { pronunciation_hint: 'ㄱ + ㅗ — 母音は下に入ります', mnemonic: '平たい母音は子音の下に来て、横には並びません。' },
@@ -405,6 +497,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅗ — la voyelle passe en dessous', mnemonic: 'Une voyelle plate se place sous la consonne, jamais à côté.' },
     'de': { pronunciation_hint: 'ㄱ + ㅗ — der Vokal kommt darunter', mnemonic: 'Ein flacher Vokal steht unter dem Konsonanten, nie daneben.' },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅗ — a vogal vai embaixo', mnemonic: 'Uma vogal plana fica sob a consoante, nunca ao lado.' },
+    'vi': { pronunciation_hint: "ㄱ + ㅗ — nguyên âm nằm bên dưới", mnemonic: "Nguyên âm nét nằm luôn ở dưới phụ âm, không bao giờ ở bên cạnh." },
+    'th': { pronunciation_hint: "ㄱ + ㅗ — สระอยู่ข้างล่าง", mnemonic: "สระเส้นนอนอยู่ใต้พยัญชนะเสมอ ไม่เคยอยู่ข้าง ๆ" },
   },
   '구': {
     'ja': { pronunciation_hint: 'ㄱ + ㅜ', mnemonic: null },
@@ -413,6 +507,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅜ', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅜ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅜ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅜ", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅜ", mnemonic: null },
   },
   '그': {
     'ja': { pronunciation_hint: 'ㄱ + ㅡ', mnemonic: null },
@@ -421,6 +517,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅡ', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅡ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅡ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅡ", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅡ", mnemonic: null },
   },
   '기': {
     'ja': { pronunciation_hint: 'ㄱ + ㅣ', mnemonic: null },
@@ -429,6 +527,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅣ', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅣ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅣ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅣ", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅣ", mnemonic: null },
   },
   '바': {
     'ja': { pronunciation_hint: 'ㅂ + ㅏ', mnemonic: null },
@@ -437,6 +537,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅂ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㅂ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅂ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅂ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㅂ + ㅏ", mnemonic: null },
   },
   '사': {
     'ja': { pronunciation_hint: 'ㅅ + ㅏ', mnemonic: null },
@@ -445,6 +547,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅅ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㅅ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅅ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅅ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㅅ + ㅏ", mnemonic: null },
   },
   '아': {
     'ja': { pronunciation_hint: 'ㅇ + ㅏ — ただ「ア」と読みます', mnemonic: 'ここでは ㅇ は音を持ちません。子音の席を空けておく役です。' },
@@ -453,6 +557,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅏ — se lit simplement « a »', mnemonic: 'Ici, ㅇ ne fait aucun son. Il garde la place de la consonne.' },
     'de': { pronunciation_hint: 'ㅇ + ㅏ — einfach als „a“ gelesen', mnemonic: 'Hier ist ㅇ stumm. Es hält den Konsonantenplatz frei.' },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅏ — lê-se apenas «a»', mnemonic: 'Aqui o ㅇ não soa. Ele guarda o lugar da consoante.' },
+    'vi': { pronunciation_hint: "ㅇ + ㅏ — chỉ đọc là \"a\"", mnemonic: "ㅇ ở đây không phát ra âm nào. Nó chỉ giữ chỗ của phụ âm." },
+    'th': { pronunciation_hint: "ㅇ + ㅏ — อ่านว่า \"อา\" เฉย ๆ", mnemonic: "ㅇ ตรงนี้ไม่มีเสียง มันแค่กันที่ของพยัญชนะไว้" },
   },
   '자': {
     'ja': { pronunciation_hint: 'ㅈ + ㅏ', mnemonic: null },
@@ -461,6 +567,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅈ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㅈ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅈ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅈ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㅈ + ㅏ", mnemonic: null },
   },
   '하': {
     'ja': { pronunciation_hint: 'ㅎ + ㅏ', mnemonic: null },
@@ -469,6 +577,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅎ + ㅏ', mnemonic: null },
     'de': { pronunciation_hint: 'ㅎ + ㅏ', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅎ + ㅏ', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅎ + ㅏ", mnemonic: null },
+    'th': { pronunciation_hint: "ㅎ + ㅏ", mnemonic: null },
   },
   '어': {
     'ja': { pronunciation_hint: 'ㅇ + ㅓ — 「オ」に近く読みます', mnemonic: null },
@@ -477,6 +587,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅓ — se lit « eo »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅇ + ㅓ — gelesen als „eo“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅓ — lê-se «eo»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅇ + ㅓ — đọc là \"ơ\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅇ + ㅓ — อ่านว่า \"ออ\"", mnemonic: null },
   },
   '오': {
     'ja': { pronunciation_hint: 'ㅇ + ㅗ — 「オ」と読みます', mnemonic: null },
@@ -485,6 +597,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅗ — se lit « o »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅇ + ㅗ — gelesen als „o“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅗ — lê-se «o»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅇ + ㅗ — đọc là \"ô\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅇ + ㅗ — อ่านว่า \"โอ\"", mnemonic: null },
   },
   '우': {
     'ja': { pronunciation_hint: 'ㅇ + ㅜ — 「ウ」と読みます', mnemonic: null },
@@ -493,6 +607,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅜ — se lit « ou »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅇ + ㅜ — gelesen als „u“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅜ — lê-se «u»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅇ + ㅜ — đọc là \"u\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅇ + ㅜ — อ่านว่า \"อู\"", mnemonic: null },
   },
   '으': {
     'ja': { pronunciation_hint: 'ㅇ + ㅡ — 平たい「ウ」と読みます', mnemonic: null },
@@ -501,6 +617,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅡ — se lit « eu »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅇ + ㅡ — gelesen als „eu“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅡ — lê-se «eu»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅇ + ㅡ — đọc là \"ư\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅇ + ㅡ — อ่านว่า \"อือ\"", mnemonic: null },
   },
   '이': {
     'ja': { pronunciation_hint: 'ㅇ + ㅣ — 「イ」と読みます', mnemonic: null },
@@ -509,6 +627,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅣ — se lit « i »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅇ + ㅣ — gelesen als „i“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅣ — lê-se «i»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅇ + ㅣ — đọc là \"i\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅇ + ㅣ — อ่านว่า \"อี\"", mnemonic: null },
   },
   '안': {
     'ja': { pronunciation_hint: 'ㅇ + ㅏ + ㄴ', mnemonic: '三つ目の字は下に入ります。ブロックは上から下へ読みます。' },
@@ -517,6 +637,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅇ + ㅏ + ㄴ', mnemonic: 'La troisième lettre passe en dessous. Le bloc se lit de haut en bas.' },
     'de': { pronunciation_hint: 'ㅇ + ㅏ + ㄴ', mnemonic: 'Der dritte Buchstabe kommt darunter. Der Block wird von oben nach unten gelesen.' },
     'pt-BR': { pronunciation_hint: 'ㅇ + ㅏ + ㄴ', mnemonic: 'A terceira letra vai embaixo. O bloco se lê de cima para baixo.' },
+    'vi': { pronunciation_hint: "ㅇ + ㅏ + ㄴ", mnemonic: "Chữ thứ ba nằm bên dưới. Đọc khối chữ từ trên xuống." },
+    'th': { pronunciation_hint: "ㅇ + ㅏ + ㄴ", mnemonic: "ตัวที่สามอยู่ข้างล่าง อ่านบล็อกจากบนลงล่าง" },
   },
   '말': {
     'ja': { pronunciation_hint: 'ㅁ + ㅏ + ㄹ — 「ことば」という語', mnemonic: null },
@@ -525,6 +647,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅁ + ㅏ + ㄹ — le mot « paroles »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅁ + ㅏ + ㄹ — das Wort für „Worte“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅁ + ㅏ + ㄹ — a palavra «palavras»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅁ + ㅏ + ㄹ — từ chỉ \"lời nói\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅁ + ㅏ + ㄹ — คำที่แปลว่า \"คำพูด\"", mnemonic: null },
   },
   '밤': {
     'ja': { pronunciation_hint: 'ㅂ + ㅏ + ㅁ — 「夜」という語', mnemonic: null },
@@ -533,6 +657,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅂ + ㅏ + ㅁ — le mot « nuit »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅂ + ㅏ + ㅁ — das Wort für „Nacht“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅂ + ㅏ + ㅁ — a palavra «noite»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅂ + ㅏ + ㅁ — từ chỉ \"đêm\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅂ + ㅏ + ㅁ — คำที่แปลว่า \"กลางคืน\"", mnemonic: null },
   },
   '강': {
     'ja': { pronunciation_hint: 'ㄱ + ㅏ + ㅇ — ここでは ㅇ が音を持ちます。ng です', mnemonic: null },
@@ -541,6 +667,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅏ + ㅇ — ici, ㅇ *est* un son : ng', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅏ + ㅇ — hier *ist* ㅇ ein Laut: ng', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅏ + ㅇ — aqui o ㅇ *é* um som: ng', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅏ + ㅇ — ở đây ㅇ *có* âm: \"ng\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅏ + ㅇ — ตรงนี้ ㅇ *มี* เสียง คือ ง", mnemonic: null },
   },
   '산': {
     'ja': { pronunciation_hint: 'ㅅ + ㅏ + ㄴ — 「山」という語', mnemonic: null },
@@ -549,6 +677,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅅ + ㅏ + ㄴ — le mot « montagne »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅅ + ㅏ + ㄴ — das Wort für „Berg“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅅ + ㅏ + ㄴ — a palavra «montanha»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅅ + ㅏ + ㄴ — từ chỉ \"núi\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅅ + ㅏ + ㄴ — คำที่แปลว่า \"ภูเขา\"", mnemonic: null },
   },
   '밥': {
     'ja': { pronunciation_hint: 'p で止めて終わります', mnemonic: '最後の ㅂ は止めて、破裂させません。「パプ」の p を出しきらない感じです。' },
@@ -557,6 +687,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'se termine par un p retenu', mnemonic: 'Le ㅂ final est bloqué, jamais relâché. Dites « bap » sans finir le p.' },
     'de': { pronunciation_hint: 'endet auf einem angehaltenen p', mnemonic: 'Das End-ㅂ wird gestoppt, nicht gelöst. Sagen Sie „bap“, ohne das p zu vollenden.' },
     'pt-BR': { pronunciation_hint: 'termina num p retido', mnemonic: 'O ㅂ final é travado, não solto. Diga «bap» sem terminar o p.' },
+    'vi': { pronunciation_hint: "kết thúc bằng âm \"p\" ngậm lại", mnemonic: "ㅂ cuối bị chặn lại, không bật ra. Đọc \"bap\" mà không kết thúc âm \"p\"." },
+    'th': { pronunciation_hint: "ลงท้ายด้วยเสียง ป ที่กักไว้", mnemonic: "ㅂ ตัวสะกดถูกกักไว้ ไม่ปล่อยออกมา อ่านว่า \"พับ\" โดยไม่ปล่อยเสียงท้าย" },
   },
   '옷': {
     'ja': { pronunciation_hint: '末尾の ㅅ は t の音になります', mnemonic: '末尾で許される音は七つだけ。ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ はすべて t になります。' },
@@ -565,6 +697,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'le ㅅ au pied se prononce t', mnemonic: 'Sept sons seulement en bas de bloc : ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ deviennent tous t.' },
     'de': { pronunciation_hint: 'das ㅅ am Fuß wird als t gesprochen', mnemonic: 'Nur sieben Laute dort unten: ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ werden alle zu t.' },
     'pt-BR': { pronunciation_hint: 'o ㅅ no pé é dito como t', mnemonic: 'Só sete sons ali embaixo: ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ viram todos t.' },
+    'vi': { pronunciation_hint: "ㅅ ở chân khối đọc thành \"t\"", mnemonic: "Chỉ có bảy âm: ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ xuống dưới đó đều thành \"t\"." },
+    'th': { pronunciation_hint: "ㅅ ที่ฐานบล็อกออกเสียงเป็น ต", mnemonic: "มีแค่เจ็ดเสียง: ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ พอลงไปอยู่ข้างล่างก็กลายเป็น ต ทั้งหมด" },
   },
   '국': {
     'ja': { pronunciation_hint: '止めた k で終わります — 「スープ」という語', mnemonic: null },
@@ -573,6 +707,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'se termine par un k retenu — le mot « soupe »', mnemonic: null },
     'de': { pronunciation_hint: 'endet auf einem angehaltenen k — das Wort für „Suppe“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'termina num k retido — a palavra «sopa»', mnemonic: null },
+    'vi': { pronunciation_hint: "kết thúc bằng âm \"k\" ngậm lại — từ chỉ \"canh\"", mnemonic: null },
+    'th': { pronunciation_hint: "ลงท้ายด้วยเสียง ก ที่กักไว้ — คำที่แปลว่า \"ซุป\"", mnemonic: null },
   },
   '꽃': {
     'ja': { pronunciation_hint: '末尾の ㅊ は t になるので「コッ」と読みます', mnemonic: null },
@@ -581,6 +717,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'le ㅊ au pied se dit t, donc « kkot »', mnemonic: null },
     'de': { pronunciation_hint: 'das ㅊ am Fuß wird t, also „kkot“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'o ㅊ no pé é dito t, então é «kkot»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅊ ở chân khối đọc thành \"t\", nên từ này đọc là \"kkot\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅊ ที่ฐานบล็อกออกเสียงเป็น ต คำนี้จึงอ่านว่า \"โกด\"", mnemonic: null },
   },
   '한': {
     'ja': { pronunciation_hint: 'ㅎ + ㅏ + ㄴ — 한글 の最初の音節', mnemonic: null },
@@ -589,6 +727,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅎ + ㅏ + ㄴ — la première syllabe de 한글', mnemonic: null },
     'de': { pronunciation_hint: 'ㅎ + ㅏ + ㄴ — die erste Silbe von 한글', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅎ + ㅏ + ㄴ — a primeira sílaba de 한글', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅎ + ㅏ + ㄴ — âm tiết đầu của 한글", mnemonic: null },
+    'th': { pronunciation_hint: "ㅎ + ㅏ + ㄴ — พยางค์แรกของ 한글", mnemonic: null },
   },
   '글': {
     'ja': { pronunciation_hint: 'ㄱ + ㅡ + ㄹ — 한 + 글 = 한글、この文字体系の名前', mnemonic: null },
@@ -597,6 +737,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, le nom de cette écriture', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, der Name dieser Schrift', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, o nome desta escrita', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, tên của hệ chữ này", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글 ชื่อของระบบเขียนนี้", mnemonic: null },
   },
   '공': {
     'ja': { pronunciation_hint: 'ㄱ + ㅗ + ㅇ — 공부(勉強)の공', mnemonic: null },
@@ -605,6 +747,8 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㄱ + ㅗ + ㅇ — comme dans 공부, « étude »', mnemonic: null },
     'de': { pronunciation_hint: 'ㄱ + ㅗ + ㅇ — wie in 공부, „Lernen“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㄱ + ㅗ + ㅇ — como em 공부, «estudo»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㄱ + ㅗ + ㅇ — như trong 공부, \"học\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㄱ + ㅗ + ㅇ — อย่างในคำว่า 공부 ที่แปลว่า \"เรียน\"", mnemonic: null },
   },
   '부': {
     'ja': { pronunciation_hint: 'ㅂ + ㅜ — 공 + 부 = 공부(勉強)', mnemonic: null },
@@ -613,8 +757,19 @@ export const CHARACTER_COPY: Record<string, Partial<Record<LocaleCode, Character
     'fr': { pronunciation_hint: 'ㅂ + ㅜ — 공 + 부 = 공부, « étude »', mnemonic: null },
     'de': { pronunciation_hint: 'ㅂ + ㅜ — 공 + 부 = 공부, „Lernen“', mnemonic: null },
     'pt-BR': { pronunciation_hint: 'ㅂ + ㅜ — 공 + 부 = 공부, «estudo»', mnemonic: null },
+    'vi': { pronunciation_hint: "ㅂ + ㅜ — 공 + 부 = 공부, \"học\"", mnemonic: null },
+    'th': { pronunciation_hint: "ㅂ + ㅜ — 공 + 부 = 공부 แปลว่า \"เรียน\"", mnemonic: null },
   },
 };
 
-/** The locales this file supplies. English and Korean live in `characters.ts`. */
-export const CHARACTER_COPY_LOCALES: LocaleCode[] = ['ja', 'zh-CN', 'es', 'fr', 'de', 'pt-BR'];
+/**
+ * The locales this file supplies. English and Korean live in `characters.ts`.
+ *
+ * Derived rather than listed. It was a hand-written array and it went stale the
+ * moment Vietnamese and Thai were added — a list of what a file contains that
+ * is maintained separately from the file is a second source of truth for a fact
+ * the first source already knows.
+ */
+export const CHARACTER_COPY_LOCALES: LocaleCode[] = [
+  ...new Set(Object.values(CHARACTER_COPY).flatMap((byLocale) => Object.keys(byLocale))),
+].sort() as LocaleCode[];

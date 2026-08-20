@@ -410,3 +410,18 @@
   line-height: var(--hg-leading-snug);
   color: var(--hg-text-secondary);
 }
+
+/*
+ * The one-line statement of what this is, on a fresh profile.
+ *
+ * Sized and coloured as a lede, not a banner: no border, no background, no
+ * dismiss control. It is a sentence above the first card, and it disappears on
+ * its own the moment the learner has done anything at all.
+ */
+.purpose {
+  margin: 0 0 var(--hg-space-4);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body);
+  line-height: 1.5;
+  text-wrap: pretty;
+}

@@ -28,5 +28,6 @@
     "reviews_other": "{{count, number}} repasos listos",
     "cta": "Empezar la práctica",
     "reviews_many": "{{count, number}} repasos listos"
-  }
+  },
+  "purpose": "Aprende coreano desde la primera letra: el hangul y luego las palabras que de verdad vas a usar."
 }

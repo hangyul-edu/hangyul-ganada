@@ -82,6 +82,25 @@ const COGNATES = new Map([
     'common:report.field.item',
   ])],
 ]);
+
+/*
+ * "A–Z" is a sort order, not an English phrase.
+ *
+ * Every Latin-alphabet interface language labels alphabetical order with the
+ * first and last letters of that alphabet, and they are A and Z in German as in
+ * French as in Vietnamese. Translating it would mean inventing a label readers
+ * of those languages do not use. Thai writes its own alphabet and so has a real
+ * translation, ก–ฮ, and is deliberately absent from this list.
+ *
+ * Merged in rather than written into the literal above, because several of
+ * these locales already have an entry there and a duplicate key in a `Map`
+ * literal silently keeps only the last one.
+ */
+for (const code of ['de', 'es', 'fr', 'pt-BR', 'vi']) {
+  const set = COGNATES.get(code) ?? new Set();
+  set.add('vocabulary:saved.order.alphabetical');
+  COGNATES.set(code, set);
+}
 const PLURAL_SUFFIXES = ['zero', 'one', 'two', 'few', 'many', 'other'];
 
 function flatten(obj, prefix = '', out = {}) {

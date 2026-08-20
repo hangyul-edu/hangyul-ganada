@@ -191,7 +191,7 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
 
     if (!met) {
       if (fresh.length < goal) {
-        fresh.push({ wordId: word.id, source: 'new', steps: stepsFor('new') });
+        fresh.push({ wordId: word.id, source: 'new', steps: stepsFor('new', fresh.length) });
       }
       // Keep scanning: a later word may be a review, and reviews outrank new.
       continue;
@@ -290,11 +290,30 @@ function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number {
  * its own steps — so a sitting is varied because the words in it are at
  * different stages, which is a truer kind of variety than shuffling question
  * types over a uniform pile.
+ *
+ * ## Except on the first day, when every word is new
+ *
+ * That argument holds for a learner three weeks in and fails completely for one
+ * on day one, which is the session that decides whether there is a week two. A
+ * beginner's plan is ten new words, every word owed `intro → meaning`, so their
+ * entire first experience of the vocabulary half of the product is *meet a
+ * word, pick its meaning*, ten times, in one layout. Watching it back is
+ * unmistakable: it reads as one screen shown twenty times.
+ *
+ * So a new word's check rotates by its position in the plan. All four are
+ * recognition rather than production — a word met thirty seconds ago should not
+ * be asked to be produced, for the reason two paragraphs up — but they are four
+ * different skills asked in three different layouts, and the sitting stops
+ * being a single screen repeated. The rotation is by index and therefore
+ * deterministic: the same plan builds the same session every time it is
+ * scheduled, which is what lets a learner leave and come back to it.
  */
-export function stepsFor(source: WordSource): WordStep[] {
+const NEW_WORD_CHECKS: WordStep[] = ['meaning', 'listen', 'listenMeaning', 'context'];
+
+export function stepsFor(source: WordSource, index = 0): WordStep[] {
   switch (source) {
     case 'new':
-      return ['intro', 'meaning'];
+      return ['intro', NEW_WORD_CHECKS[index % NEW_WORD_CHECKS.length]!];
     case 'review':
       return ['meaning', 'listen'];
     case 'familiar':

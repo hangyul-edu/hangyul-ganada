@@ -54,7 +54,8 @@ export function ChoiceExercise({
   onAnswered: (result: {
     correct: boolean;
     chosen: string;
-    hintUsed: boolean;
+    /** Rungs of the hint ladder taken before answering. 0 is unaided. */
+    hintLevel: number;
     responseMs: number;
   }) => void;
   onContinue: () => void;
@@ -62,13 +63,14 @@ export function ChoiceExercise({
 }) {
   const { t } = useTranslation(['learning', 'common']);
   const [picked, setPicked] = useState<string | null>(null);
-  const [hintShown, setHintShown] = useState(false);
+  /** How many rungs of the ladder have been taken. 0 is unaided. */
+  const [level, setLevel] = useState(0);
   const startedAt = useRef(Date.now());
 
   const key = `${exercise.candidate.itemKey}:${exercise.mode}`;
   useEffect(() => {
     setPicked(null);
-    setHintShown(false);
+    setLevel(0);
     startedAt.current = Date.now();
   }, [key]);
 
@@ -110,12 +112,23 @@ export function ChoiceExercise({
     onAnswered({
       correct: right,
       chosen: id,
-      hintUsed: hintShown,
+      hintLevel: level,
       responseMs: Date.now() - startedAt.current,
     });
   };
 
   const answer = exercise.options?.find((option) => option.id === exercise.answerId);
+  const shown = exercise.hints.slice(0, level);
+  /*
+   * What the reveal rung actually reveals.
+   *
+   * Taken from the option marked correct rather than passed down separately, so
+   * the sentence that gives the answer away and the button that is about to be
+   * highlighted cannot disagree about what the answer is.
+   */
+  const answerValues = {
+    answer: answer?.korean ?? answer?.label ?? exercise.korean ?? '',
+  };
 
   return (
     <div className={styles.exercise}>
@@ -175,8 +188,15 @@ export function ChoiceExercise({
         )}
       </div>
 
+      {/*
+        The shape of the answers follows what the answers are. See the note on
+        `.optionsGrid`: a Korean word belongs in a tile, a meaning belongs in a
+        row, and a gap-fill's candidates belong on one line under the sentence
+        they have to be read into. Three layouts, decided by the question rather
+        than rotated for variety.
+      */}
       <div
-        className={`${styles.options} ${exercise.options && exercise.options.length <= 2 ? styles.optionsPair : ''}`}
+        className={`${styles.options} ${optionLayout(exercise)}`}
         role="group"
         aria-label={t('learning:review.optionsLabel')}
       >
@@ -224,26 +244,45 @@ export function ChoiceExercise({
 
       {picked === null ? (
         /*
-         * Only where there is a hint to show.
+         * One control that gets stronger, not a row of them.
          *
-         * Some questions have none by design: on "hear it and say what it
-         * means", the meaning *is* the answer, so the usual hint would hand it
-         * over. The button used to render regardless, so those screens offered
-         * "Show a hint" and revealed an empty line — a control that does
-         * nothing, on the screen where the learner is least sure of themselves.
-         * Replay is the help this question can honestly give, and it already
-         * has a speaker.
+         * The first press says what kind of thing the answer is; the second
+         * narrows it; the last gives it up and says so. A learner who is stuck
+         * presses again rather than choosing between four kinds of help, and
+         * the label changes so they know what the next press will cost.
+         *
+         * A question with no honest help — nothing can be said about "which of
+         * these two letters made this sound" that is not the answer — renders
+         * no button at all, rather than a button that reveals an empty line.
          */
-        exercise.hint ? (
-          <button type="button" className={styles.hint} onClick={() => setHintShown(true)}>
-            {hintShown ? (
-              <LocalizedText as="span" locale={exercise.hintLocale ?? 'en'}>
-                {exercise.hint}
-              </LocalizedText>
-            ) : (
-              t('learning:review.showHint')
+        exercise.hints.length > 0 ? (
+          <div className={styles.hintBlock}>
+            {shown.map((step) => (
+              <p
+                key={step.key}
+                className={step.strength === 'answer' ? styles.hintAnswer : styles.hintLine}
+              >
+                {step.strength === 'answer'
+                  ? t(`learning:${step.key}`, { ...step.values, ...answerValues })
+                  : t(`learning:${step.key}`, step.values)}
+              </p>
+            ))}
+            {level < exercise.hints.length && (
+              <button
+                type="button"
+                className={styles.hint}
+                onClick={() => setLevel((current) => current + 1)}
+              >
+                {t(
+                  exercise.hints[level]!.strength === 'answer'
+                    ? 'learning:review.showAnswer'
+                    : level === 0
+                      ? 'learning:review.showHint'
+                      : 'learning:review.showMoreHint',
+                )}
+              </button>
             )}
-          </button>
+          </div>
         ) : null
       ) : (
         <FeedbackState
@@ -308,4 +347,19 @@ export function ChoiceExercise({
       )}
     </div>
   );
+}
+
+/**
+ * Which of the three option layouts this question wants.
+ *
+ * Two options is always the pair — that mode exists to compare them. Otherwise
+ * it turns on whether the options are Korean: Korean words are short and go in
+ * tiles, meanings are phrases and go in rows, and a gap-fill puts its Korean on
+ * one line so the sentence stays visible above it.
+ */
+function optionLayout(exercise: Exercise): string {
+  const options = exercise.options ?? [];
+  if (options.length <= 2) return styles.optionsPair!;
+  if (exercise.mode === 'context') return styles.optionsChips!;
+  return options.every((option) => option.korean) ? styles.optionsGrid! : '';
 }

@@ -237,7 +237,7 @@ describe('the completion screen', () => {
     let memory: MemoryMap = {};
     const results = session.slice(0, 2).map((candidate) => {
       memory = practise(memory, candidate.kind, candidate.itemKey, candidate.skill, 0);
-      return { candidate, passed: true, hintUsed: false, recovery: false };
+      return { candidate, passed: true, hintLevel: 0, recovery: false };
     });
     const outcome = sessionOutcome(results, memory, T0);
     expect(outcome.practised).toBe(results.length);
@@ -249,7 +249,7 @@ describe('the completion screen', () => {
   it('does not count a recovered item as a first-try success', () => {
     const session = buildSession(profile(['character', 'ㄱ']), {}, T0);
     const outcome = sessionOutcome(
-      [{ candidate: session[0]!, passed: true, hintUsed: false, recovery: true }],
+      [{ candidate: session[0]!, passed: true, hintLevel: 0, recovery: true }],
       {},
       T0,
     );

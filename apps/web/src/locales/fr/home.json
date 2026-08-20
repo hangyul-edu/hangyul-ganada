@@ -28,5 +28,6 @@
     "reviews_other": "{{count, number}} révisions prêtes",
     "cta": "Commencer la séance",
     "reviews_many": "{{count, number}} révisions prêtes"
-  }
+  },
+  "purpose": "Apprenez le coréen dès la première lettre : le hangul, puis les mots que vous utiliserez vraiment."
 }

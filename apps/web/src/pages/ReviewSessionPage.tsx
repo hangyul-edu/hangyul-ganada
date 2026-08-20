@@ -90,6 +90,18 @@ export function ReviewSessionPage() {
   );
 
   /**
+   * A hint's localised fragments — a part of speech, a category, a letter family.
+   *
+   * Threaded in rather than resolved inside `buildExercise`, because that module
+   * is pure and testable and importing `t` into it would make it neither. The
+   * default in `buildExercise` is the identity function, which is fine for the
+   * structural checks that use it and is *not* fine here: without this, the hint
+   * on screen read "It's a vocabulary:partOfSpeech.verb", which is what it read
+   * the first time this was opened in a browser.
+   */
+  const label = useCallback((key: string) => t(key), [t]);
+
+  /**
    * The plan, taken from the navigation that opened this screen.
    *
    * Frozen on mount, for the reason in the note above, and *received* rather
@@ -114,7 +126,12 @@ export function ReviewSessionPage() {
   const [queue, setQueue] = useState(initial.current.items);
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<
-    Array<{ candidate: (typeof queue)[number]; passed: boolean; hintUsed: boolean; recovery: boolean }>
+    Array<{
+      candidate: (typeof queue)[number];
+      passed: boolean;
+      hintLevel: number;
+      recovery: boolean;
+    }>
   >([]);
   const [finished, setFinished] = useState(false);
   const failedOnce = useRef(new Set<string>());
@@ -130,8 +147,8 @@ export function ReviewSessionPage() {
 
   const candidate = queue[index];
   const exercise = useMemo(
-    () => (candidate ? buildExercise(candidate, meaningOf, index + 1) : null),
-    [candidate, meaningOf, index],
+    () => (candidate ? buildExercise(candidate, meaningOf, index + 1, label) : null),
+    [candidate, meaningOf, index, label],
   );
 
   const advance = useCallback(() => {
@@ -146,7 +163,11 @@ export function ReviewSessionPage() {
   }, [index, queue.length, completeSession]);
 
   const record = useCallback(
-    (passed: boolean, score: number, extra: { hintUsed?: boolean; responseMs?: number; chosen?: string }) => {
+    (
+      passed: boolean,
+      score: number,
+      extra: { hintLevel?: number; responseMs?: number; chosen?: string },
+    ) => {
       if (!candidate) return;
       const key = `${candidate.kind}:${candidate.itemKey}:${candidate.skill}`;
       const recovery = failedOnce.current.has(key);
@@ -157,7 +178,11 @@ export function ReviewSessionPage() {
         mode: candidate.mode,
         passed,
         score,
-        hint_used: extra.hintUsed ?? false,
+        // Both, deliberately. `hint_used` is what every row written before the
+        // ladder existed says, and dropping it would make the old rows read as
+        // unaided; `hint_level` is what the memory model actually weighs.
+        hint_used: (extra.hintLevel ?? 0) > 0,
+        hint_level: extra.hintLevel ?? 0,
         ...(extra.responseMs !== undefined ? { response_ms: extra.responseMs } : {}),
         // Which wrong answer was chosen, so the confusion matrix learns what
         // this learner actually mixes this up with rather than what the design
@@ -166,7 +191,10 @@ export function ReviewSessionPage() {
         recovery,
         session_id: sessionId.current,
       });
-      setResults((prev) => [...prev, { candidate, passed, hintUsed: extra.hintUsed ?? false, recovery }]);
+      setResults((prev) => [
+        ...prev,
+        { candidate, passed, hintLevel: extra.hintLevel ?? 0, recovery },
+      ]);
 
       if (!passed && !recovery) {
         failedOnce.current.add(key);
@@ -287,7 +315,7 @@ export function ReviewSessionPage() {
             <header className={styles.prompt}>
               <p className={styles.promptLabel}>{t(`learning:${exercise.promptKey}`)}</p>
               <div className={styles.promptChar}>
-                <span className={styles.promptRoman}>{exercise.hint}</span>
+                <span className={styles.promptRoman}>{exercise.romanization}</span>
                 <SpeakerButton
                   audioId={exercise.audioId}
                   label={exercise.korean ?? ''}
@@ -345,7 +373,7 @@ export function ReviewSessionPage() {
             isLast={isLast}
             onAnswered={(result) =>
               record(result.correct, result.correct ? 1 : 0, {
-                hintUsed: result.hintUsed,
+                hintLevel: result.hintLevel,
                 responseMs: result.responseMs,
                 chosen: result.chosen,
               })

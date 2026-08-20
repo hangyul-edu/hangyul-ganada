@@ -1,0 +1,10 @@
+{
+  "primary": "Menu chính",
+  "tabs": {
+    "home": "Trang chính",
+    "letters": "Chữ cái",
+    "words": "Từ vựng",
+    "review": "Ôn tập",
+    "profile": "Học tập"
+  }
+}

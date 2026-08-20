@@ -1,0 +1,230 @@
+{
+  "letters": {
+    "title": "Học chữ cái",
+    "alphabetTitle": "Bảng chữ Hangul",
+    "alphabetCaption": "chữ đã học",
+    "complete": "Đã học",
+    "resume": "Tiếp tục"
+  },
+  "units": {
+    "badge": "Phần {{index, number}}",
+    "continue": "Hiểu rồi — bắt đầu thôi",
+    "unit-1": {
+      "title": "Sáu nguyên âm đầu tiên",
+      "goal": "Mọi âm tiết tiếng Hàn đều cần một nguyên âm. Sáu chữ này là đơn giản nhất.",
+      "body": "Hangul là một bảng chữ cái, không phải một bộ hình vẽ. Có 40 chữ cái, được thiết kế để học nhanh, và bạn sắp học sáu chữ trong số đó.",
+      "points": [
+        "Các chữ cái được xếp thành từng khối vuông, mỗi khối là một âm tiết.",
+        "Nguyên âm thì hoặc là một nét đứng, hoặc là một nét nằm — điều đó quyết định nó nằm ở đâu trong khối.",
+        "Đọc to từng chữ khi bạn tô. Âm thanh là một nửa bài học."
+      ]
+    },
+    "unit-2": {
+      "title": "Những phụ âm đầu tiên",
+      "goal": "Năm phụ âm. Cùng với các nguyên âm bạn đã biết, vậy là đã có 30 âm tiết."
+    },
+    "unit-3": {
+      "title": "Ghép chúng lại",
+      "goal": "Phụ âm cộng nguyên âm tạo thành một khối bạn đọc được.",
+      "body": "Một âm tiết tiếng Hàn được viết thành một ô vuông. Phụ âm đứng trước — bên trái nếu nguyên âm là nét đứng, bên trên nếu là nét nằm.",
+      "points": [
+        "Nguyên âm nét đứng (ㅏ ㅓ ㅣ) đứng bên phải phụ âm.",
+        "Nguyên âm nét nằm (ㅗ ㅜ ㅡ) nằm bên dưới phụ âm.",
+        "Đọc khối chữ như đọc một trang giấy: trái sang phải, rồi xuống dưới."
+      ]
+    },
+    "unit-4": {
+      "title": "Thêm năm phụ âm",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — phần còn lại của nhóm phụ âm thường."
+    },
+    "unit-5": {
+      "title": "Đọc thêm nhiều khối chữ",
+      "goal": "Trong đó có chữ duy nhất hoàn toàn không phát ra âm nào."
+    },
+    "unit-6": {
+      "title": "Thêm âm y",
+      "goal": "Chỉ một nét nữa là ㅏ thành ㅑ. Quy luật này đúng cho cả bốn chữ."
+    },
+    "unit-7": {
+      "title": "Một hơi bật",
+      "goal": "ㅊ ㅋ ㅌ ㅍ là những chữ bạn đã biết, thêm một nét."
+    },
+    "unit-8": {
+      "title": "Nhóm nguyên âm e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — các nguyên âm tạo ra bằng cách thêm ㅣ."
+    },
+    "unit-9": {
+      "title": "Viết đôi, đọc căng",
+      "goal": "Năm chữ cái viết hai lần, đọc căng hơn."
+    },
+    "unit-10": {
+      "title": "Nhóm nguyên âm w",
+      "goal": "Hai nguyên âm viết thành một. Những chữ cuối cùng trong 40 chữ."
+    },
+    "unit-11": {
+      "title": "Một chữ ở chân khối",
+      "goal": "받침 — phụ âm đóng lại một âm tiết.",
+      "body": "Một khối chữ có thể chứa chữ thứ ba, nằm dưới hai chữ kia. Nó gọi là 받침, và nó đóng âm tiết lại.",
+      "points": [
+        "Chữ thứ ba luôn nằm ở đáy ô vuông.",
+        "Dù viết bằng chữ nào, một 받침 cũng chỉ được đọc thành một trong bảy âm.",
+        "Đây là chỗ hầu hết người mới học bị vấp khi đọc. Bạn cứ từ từ."
+      ]
+    },
+    "unit-12": {
+      "title": "Đọc chữ 한글",
+      "goal": "Giờ bạn đã biết mọi chữ cái. Hãy đọc chính cái tên của hệ chữ này."
+    }
+  },
+  "intro": {
+    "letterName": "Tên chữ",
+    "letterSound": "Âm",
+    "soundIn": "Nghe {{character}} trong",
+    "reads": "Đọc là"
+  },
+  "steps": {
+    "label": "Các bước của chữ này",
+    "write": "Viết",
+    "read": "Đọc"
+  },
+  "recognition": {
+    "question": "Chữ nào phát ra âm này?",
+    "optionsAria": "Chọn chữ bạn vừa nghe",
+    "optionAria": "Chọn {{character}}",
+    "correctDetail": "Đó là {{character}}.",
+    "wrongHeadline": "Không phải chữ đó.",
+    "wrongDetail": "{{character}} mới là chữ đọc nghe như {{sound}}.",
+    "hearAgain": "Nghe lại",
+    "tryAgain": "Thử lại"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Bỏ qua chữ này",
+    "startWriting": "Viết thử",
+    "nowRead": "Giờ đọc nào",
+    "next": "Chữ tiếp theo",
+    "finish": "Kết thúc",
+    "prompt": {
+      "write": "Dùng ngón tay viết đè lên nét mẫu."
+    },
+    "continue": "Tiếp"
+  },
+  "complete": {
+    "title": "Giỏi lắm!",
+    "letters_one": "Bạn đã học xong {{count, number}} chữ trong {{lesson}}.",
+    "letters_other": "Bạn đã học xong {{count, number}} chữ trong {{lesson}}."
+  },
+  "review": {
+    "title": "Ôn tập",
+    "startCta": "Bắt đầu ôn",
+    "sessionTitle": "Ôn tập",
+    "completeTitle": "Ôn xong rồi",
+    "empty": {
+      "title": "Chưa có gì để ôn",
+      "body": "Cái gì bạn làm sai sẽ hiện ở đây. Còn bây giờ, học một chữ mới nhé?",
+      "cta": "Học một chữ cái"
+    },
+    "forYou": "Bài ôn dành cho bạn",
+    "sessionLength_one": "Một bài tập ngắn",
+    "sessionLength_other": "{{count, number}} bài tập ngắn",
+    "needsPractice": "Cần luyện thêm",
+    "dueToday": "Đến hạn hôm nay",
+    "savedWords": "Từ đã lưu",
+    "chooseMode": "Hoặc chọn phần muốn luyện",
+    "comingUp": "Sắp tới",
+    "outcome": "Đã luyện {{practised, number}} · nhớ ngay {{firstTry, number}} · {{comingBack, number}} sẽ quay lại sớm",
+    "blank": "chỗ trống",
+    "optionsLabel": "Các đáp án",
+    "showHint": "Xem gợi ý",
+    "right": "Chuẩn rồi.",
+    "notQuite": "Chưa đúng. Đáp án là đây.",
+    "mode": {
+      "read": "Đọc",
+      "listen": "Nghe",
+      "write": "Viết"
+    },
+    "prompt": {
+      "read": "Từ này nghĩa là gì?",
+      "readLetter": "Chữ này đọc thành âm gì?",
+      "listen": "Bạn vừa nghe từ nào?",
+      "listenLetter": "Đây là chữ nào?",
+      "context": "Từ nào hợp vào chỗ này?",
+      "write": "Viết từ này",
+      "writeLetter": "Viết chữ bạn vừa nghe",
+      "distinguish": "Chữ nào phát ra âm này?",
+      "produce": "Là từ nào?",
+      "listenMeaning": "Từ này nghĩa là gì?"
+    },
+    "nothingDue": "Bây giờ chưa có gì để ôn.",
+    "modesEmpty": "Hôm nay không có gì trong các phần này.",
+    "answerIs": "{{word}} nghĩa là “{{meaning}}”.",
+    "showMoreHint": "Gợi ý nữa",
+    "showAnswer": "Xem đáp án",
+    "hint": {
+      "kind": "Đây là một {{pos}} thuộc chủ đề {{category}}.",
+      "kindOnly": "Từ còn thiếu là một {{pos}}.",
+      "startsWith": "Chữ đầu tiên là {{start}}…",
+      "startsWithSound": "Bắt đầu bằng âm “{{sound}}”.",
+      "replay": "Nghe lại đi — nghe bao nhiêu lần cũng được.",
+      "letterFamily": "Chữ này là {{family}}.",
+      "letterExample": "Đây là chữ đầu của {{word}}.",
+      "letterSound": "Nghe như âm “{{sound}}”.",
+      "reveal": "Đáp án là {{answer}}.",
+      "revealWord": "Từ đó là {{answer}}.",
+      "revealLetter": "Chữ đó là {{answer}}.",
+      "revealStrokes": "Xem lại các nét một lần nữa rồi tô theo nhé.",
+      "inSentence": "Người ta dùng thế này: {{sentence}}"
+    }
+  },
+  "sounds": {
+    "title": "Khi các âm gặp nhau",
+    "blurb": "Vì sao 학교 không đọc đúng như cách viết.",
+    "intro": "Giờ bạn đọc được mọi chữ cái rồi. Tiếng Hàn viết ra từng bộ phận tạo nên một từ, và thay đổi một số bộ phận khi chúng chạm nhau — nên vài từ nghe khác với hình dạng của chúng. Đây là những trường hợp bạn sẽ gặp đầu tiên.",
+    "written": "Viết là",
+    "said": "Đọc là",
+    "note": "Bạn không cần học thuộc mấy cái này. Cứ nghe nhiều, rồi chúng sẽ thành bình thường.",
+    "name": {
+      "tensing": "Âm sau đọc căng lại",
+      "aspiration": "Một hơi bật",
+      "nasal": "Một âm mũi nhẹ",
+      "lateral": "ㄴ và ㄹ đi cùng nhau",
+      "palatal": "ㄷ và ㅌ đứng trước 이",
+      "liaison": "Âm trượt sang chữ sau"
+    }
+  },
+  "mistakes": {
+    "title": "Câu đã trả lời sai",
+    "review_one": "Ôn tập · 1 câu hỏi",
+    "review_other": "Ôn tập · {{count}} câu hỏi",
+    "filterLabel": "Hiện",
+    "filter": {
+      "all": "Tất cả",
+      "character": "Chữ cái",
+      "word": "Từ vựng"
+    },
+    "youPut": "Bạn chọn",
+    "answer": "Đáp án",
+    "times_one": "Sai một lần",
+    "times_other": "Sai {{count}} lần",
+    "clear": "Xong phần này",
+    "noneOfKind": "Bây giờ ở đây chưa có gì.",
+    "emptyTitle": "Chưa sai câu nào",
+    "emptyBody": "Khi có gì đó trượt mất, nó sẽ hiện ở đây để bạn sửa lại.",
+    "emptyCta": "Đến phần ôn tập"
+  },
+  "letterGroup": {
+    "basic_vowel": "một nguyên âm cơ bản",
+    "basic_consonant": "một phụ âm cơ bản",
+    "compound_vowel": "một nguyên âm ghép",
+    "double_consonant": "một phụ âm đôi",
+    "final_consonant": "một phụ âm cuối",
+    "syllable": "một âm tiết trọn vẹn"
+  },
+  "nextStep": {
+    "title": "Sẵn sàng cho bước tiếp theo",
+    "body": "Bạn đọc được Hangul rồi. Phần luyện nói và ôn TOPIK tiếp tục ở Hangyul.",
+    "cta": "Học tiếp ở Hangyul",
+    "rowTitle": "Học tiếp ở Hangyul",
+    "rowBody": "Luyện nói và TOPIK, khi nào bạn sẵn sàng"
+  }
+}

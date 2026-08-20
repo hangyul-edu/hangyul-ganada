@@ -92,3 +92,29 @@ export const SUPPORT_EMAIL: string | null =
 export function appVersion(): string {
   return PRODUCT.version;
 }
+
+/**
+ * Where a learner goes when this product has finished teaching them.
+ *
+ * ## Why this is a variable and not a link in a component
+ *
+ * Hangyul ganada exists to hand a beginner to the main Hangyul product once
+ * they can read: it teaches the alphabet, the blocks and a first vocabulary,
+ * and speaking and TOPIK live somewhere else. That hand-off is the stated
+ * reason for the product to exist and it has never been built — there is no
+ * route, no link and no sentence about it anywhere in the app, so a learner who
+ * finishes the alphabet finishes the product and stops.
+ *
+ * The destination is not in this repository and cannot be guessed. Inventing a
+ * URL would ship a card that leads nowhere, which is worse than the dead end it
+ * was meant to fix, so the whole hand-off renders **only when this is set**:
+ *
+ *     VITE_HANGYUL_URL=https://…  npm run build
+ *
+ * Unset — which is the default, and what a checkout does today — every piece of
+ * it is absent from the interface rather than present and broken. Setting it is
+ * the last thing to do before a release, and `npm run routing:check` reports
+ * which way the build went.
+ */
+export const HANGYUL_URL: string | null =
+  (import.meta.env?.VITE_HANGYUL_URL as string | undefined)?.trim() || null;
