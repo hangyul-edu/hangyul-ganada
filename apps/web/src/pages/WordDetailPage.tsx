@@ -133,15 +133,18 @@ function WordDetail({ word }: { word: VocabularyWord }) {
         {/*
           The fuller explanation, where the gloss alone would mislead.
 
-          Conditional, and today absent on every word: the build used to fill it
-          with the dictionary's other senses, which put "phylum" under 문 and
-          "graveyard" under 산, so it now emits nothing and the section waits for
-          copy somebody wrote. See §7 of docs/LOCALIZATION_NATIVE_REVIEW.md.
+          On 25 words of 2,581, in all ten languages. It used to be on 784 and
+          in English only, filled by the build with the dictionary's second and
+          third senses — which is how "phylum" ended up under 문 and "graveyard"
+          under 산. That is gone; this is written, and written only for the
+          words where one line genuinely is not enough: 오빠 and 형 are the same
+          brother seen from different speakers, 차 is a car and also tea, 하다 is
+          how most Korean verbs are built.
 
-          Kept rather than deleted because the slot is the right shape — a
-          fuller explanation belongs under a word whose gloss alone would
-          mislead, and it has to be absent from the rest or it becomes a
-          paragraph a learner scrolls past.
+          Absent from the other 2,556 on purpose. A paragraph under every word
+          is a paragraph a learner scrolls past, and the section is worth
+          reading precisely because it does not always appear. See §7 of
+          docs/LOCALIZATION_NATIVE_REVIEW.md.
         */}
         {copy.value.definition && (
           <section className={styles.block} aria-labelledby="detail-definition">

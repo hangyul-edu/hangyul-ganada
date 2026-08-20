@@ -336,8 +336,8 @@ def main() -> int:
                 [
                     meaning if loc == "en" else entry.meanings[loc],
                     None if loc == "ko" else entry.translations[loc],
-                    # The third slot is the long definition, and it is empty
-                    # in every language on purpose.
+                    # The third slot is the long definition, and it carries
+                    # writing or it carries nothing.
                     #
                     # It used to carry `definition` — the dictionary's second
                     # and third senses, joined with a semicolon — under a
@@ -351,12 +351,12 @@ def main() -> int:
                     # a word, which is the exact thing `gloss.py` exists to keep
                     # away from a beginner, and no rule turns it into writing.
                     #
-                    # The section stays in `WordDetailPage`; it renders when
-                    # there is something authored to put in it. §20 of the brief
-                    # asks for exactly that, per locale, and it is not written
-                    # yet — so today the answer to "more about it" is nothing
-                    # rather than trivia.
-                    None,
+                    # `entry.definitions` is the replacement: authored per
+                    # locale in the pack, all eight languages or none, and
+                    # present only on the words where a one-line gloss actually
+                    # misleads. It is on 25 words today, not 784, which is the
+                    # section working rather than the section being everywhere.
+                    entry.definitions.get(loc) or None,
                 ]
             )
 
@@ -497,8 +497,11 @@ def main() -> int:
         source = json.loads(path.read_text(encoding="utf-8"))
         locale = source["locale"]
         by_id = source["words"]
+        # A hand-written row is [meaning, example] or [meaning, example,
+        # long definition]; padded to three so every pack has the same shape
+        # whatever a translator chose to write.
         rows = [
-            ([*by_id[record["id"]], None] if record["id"] in by_id else None)
+            ((by_id[record["id"]] + [None, None, None])[:3] if record["id"] in by_id else None)
             for record in records
         ]
         covered = sum(1 for row in rows if row is not None)

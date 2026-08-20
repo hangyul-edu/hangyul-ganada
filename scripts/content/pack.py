@@ -75,6 +75,18 @@ LOCALE_IDS = {
     "en": "en",
 }
 
+#: Locales a long definition is written in, when a word has one.
+#:
+#: All of them or none. A *More about it* section that appears in English and
+#: disappears in Portuguese is the defect this field was added to fix — the one
+#: the derived dictionary senses used to have — so a partial `d` is refused at
+#: the pack rather than shipped as a gap nobody sees. Vietnamese and Thai are
+#: not here because they are not carried on entries at all; they come from
+#: `content/vocabulary/copy/`, and a word may have a long definition in the
+#: eight and not in those two, which is the same fallback every other field in
+#: those two languages already has.
+DEFINITION_LOCALES = ("en", *MEANING_LOCALES)
+
 USEFULNESS_MAX = 5
 
 
@@ -93,6 +105,8 @@ class Entry:
     translations: dict[str, str]
     english: str | None
     part_of_speech: str | None
+    #: The fuller explanation, per locale, or empty. See `DEFINITION_LOCALES`.
+    definitions: dict[str, str]
     reason: str | None
 
     @property
@@ -113,7 +127,7 @@ def parse_row(row: dict, where: str) -> Entry:
     if not keep:
         if not reason:
             raise PackError(f"{where}: {word} is removed without a reason")
-        return Entry(word, False, 0, "", {}, "", {}, None, None, reason)
+        return Entry(word, False, 0, "", {}, "", {}, None, None, {}, reason)
 
     usefulness = int(_require(row, "u", where))
     if not 1 <= usefulness <= USEFULNESS_MAX:
@@ -133,6 +147,18 @@ def parse_row(row: dict, where: str) -> Entry:
     if missing:
         raise PackError(f"{where}: {word} example is not translated into {', '.join(missing)}")
 
+    definitions = row.get("d") or {}
+    if definitions:
+        missing = [loc for loc in DEFINITION_LOCALES if not (definitions.get(loc) or "").strip()]
+        if missing:
+            raise PackError(
+                f"{where}: {word} has a long definition in some languages and not "
+                f"in {', '.join(missing)} — write all of them or none"
+            )
+        extra = [loc for loc in definitions if loc not in DEFINITION_LOCALES]
+        if extra:
+            raise PackError(f"{where}: {word} long definition in unknown locale(s) {', '.join(extra)}")
+
     return Entry(
         word=word,
         keep=True,
@@ -143,6 +169,7 @@ def parse_row(row: dict, where: str) -> Entry:
         translations={loc: translations[loc].strip() for loc in SENTENCE_LOCALES},
         english=(row.get("en") or None),
         part_of_speech=(row.get("pos") or None),
+        definitions={loc: definitions[loc].strip() for loc in DEFINITION_LOCALES} if definitions else {},
         reason=None,
     )
 

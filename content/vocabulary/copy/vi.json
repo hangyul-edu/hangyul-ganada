@@ -4,11 +4,13 @@
  "words": {
   "word_hada": [
    "làm",
-   "Tôi học bài."
+   "Tôi học bài.",
+   "Làm — và là bộ máy tạo từ vựng của tiếng Hàn. Ghép vào một danh từ là thành động từ: 공부 học tập thành 공부하다 học, 사랑 tình yêu thành 사랑하다. Hàng trăm động từ được dựng như vậy."
   ],
   "word_cha": [
    "xe hơi",
-   "Tôi đi xe hơi."
+   "Tôi đi xe hơi.",
+   "Xe hơi. Cùng một chữ ấy cũng là từ chỉ trà, nên 차를 마셔요 là uống trà còn 차를 타요 là lên xe. Động từ đi sau sẽ cho biết là từ nào."
   ],
   "word_yeoja": [
    "phụ nữ",
@@ -36,11 +38,13 @@
   ],
   "word_itda": [
    "ở, có mặt",
-   "Tôi đang ở nhà."
+   "Tôi đang ở nhà.",
+   "Tiếng Hàn dùng một từ cho hai nghĩa: 있다 vừa là ở đâu đó, vừa là có. 책상에 책이 있어요 là quyển sách ở trên bàn; 시간이 있어요 là tôi có thời gian. Từ trái nghĩa là 없다."
   ],
   "word_ne": [
    "vâng, đúng rồi",
-   "Vâng, đúng rồi."
+   "Vâng, đúng rồi.",
+   "Có ba từ thường gặp cùng viết là 네. Ở đây là tiếng đáp \"vâng\". Hai từ kia là \"của bạn\" (네 책) và số bốn thuần Hàn đứng trước loại từ (네 개). Chỉ ngữ cảnh mới phân biệt được."
   ],
   "word_son": [
    "bàn tay",
@@ -48,7 +52,8 @@
   ],
   "word_sigan": [
    "thời gian",
-   "Tôi không có thời gian."
+   "Tôi không có thời gian.",
+   "Thời gian nói chung, và cũng là đơn vị đếm giờ: 두 시간 là hai tiếng. Đừng nhầm với 시, chỉ giờ trên đồng hồ — 두 시 là hai giờ, hoàn toàn khác."
   ],
   "word_jeo": [
    "tôi (lịch sự)",
@@ -80,7 +85,8 @@
   ],
   "word_nun": [
    "mắt",
-   "Mắt bạn đẹp."
+   "Mắt bạn đẹp.",
+   "Con mắt. Viết y hệt từ chỉ tuyết, và khi nói cẩn thận thì phân biệt bằng độ dài: 눈 tuyết kéo dài, 눈 mắt ngắn. Thường thì người ta dựa vào ngữ cảnh."
   ],
   "word_ot": [
    "quần áo",
@@ -108,7 +114,8 @@
   ],
   "word_dari": [
    "chân",
-   "Chân tôi bị đau."
+   "Chân tôi bị đau.",
+   "Cái chân — chân người, chân bàn, chân ghế. Cùng từ ấy còn nghĩa là cây cầu, nên 다리를 건너요 là qua cầu chứ không phải chuyện cơ thể."
   ],
   "word_bi": [
    "mưa",
@@ -220,7 +227,8 @@
   ],
   "word_jeongmal": [
    "thật, thật sự",
-   "Cảm ơn bạn rất nhiều."
+   "Cảm ơn bạn rất nhiều.",
+   "Thật, thật sự — dùng để nhấn mạnh từ đứng sau, như 정말 좋아요. Đứng một mình với ngữ điệu lên cao, 정말? là câu hỏi \"thật à?\", và đó là cách bạn nghe nhiều nhất."
   ],
   "word_seonmul": [
    "món quà",
@@ -400,7 +408,8 @@
   ],
   "word_bam": [
    "đêm",
-   "Ban đêm có nhiều sao."
+   "Ban đêm có nhiều sao.",
+   "Ban đêm. Viết giống hệt từ chỉ hạt dẻ, một món ăn vặt mùa thu quen thuộc ở Hàn Quốc, nên 밤을 먹어요 và 밤에 자요 nói về hai chuyện rất khác nhau."
   ],
   "word_meokda": [
    "ăn",
@@ -552,7 +561,8 @@
   ],
   "word_tada": [
    "đi (xe), lên (xe)",
-   "Tôi đi xe buýt."
+   "Tôi đi xe buýt.",
+   "Lên hoặc bước vào bất cứ thứ gì chở mình: xe buýt, xe đạp, thang máy. Hai động từ rất thường gặp khác cũng viết như vậy: 타다 còn là cháy, và pha một thứ gì đó vào đồ uống."
   ],
   "word_manta": [
    "nhiều",
@@ -908,7 +918,8 @@
   ],
   "word_doeda": [
    "trở thành",
-   "Tôi muốn trở thành bác sĩ."
+   "Tôi muốn trở thành bác sĩ.",
+   "Trở thành. Đây cũng là từ hằng ngày để nói một việc chạy được hay được phép: 안 돼요 nghĩa là không được, còn 다 됐어요 là xong rồi. Bạn sẽ nghe hai cách này nhiều hơn."
   ],
   "word_ajik": [
    "vẫn chưa",
@@ -928,7 +939,8 @@
   ],
   "word_sseuda": [
    "viết",
-   "Tôi viết tên mình."
+   "Tôi viết tên mình.",
+   "Viết. Cùng động từ ấy còn nghĩa là dùng một vật, đội mũ hay đeo kính lên đầu, và khi làm tính từ thì nghĩa là đắng. Bốn nghĩa thường ngày, một cách viết."
   ],
   "word_geoul": [
    "cái gương",
@@ -1068,7 +1080,8 @@
   ],
   "word_dongsaeng": [
    "em (ruột)",
-   "Em tôi dễ thương."
+   "Em tôi dễ thương.",
+   "Từ duy nhất chỉ anh chị em không đổi theo người nói: ai nhỏ tuổi hơn cũng là 동생. Cần nói rõ giới tính thì thêm một chữ: 남동생 là em trai, 여동생 là em gái."
   ],
   "word_iyu": [
    "lý do",
@@ -1080,7 +1093,8 @@
   ],
   "word_yeol": [
    "mười",
-   "Bạn đếm đến mười nhé."
+   "Bạn đếm đến mười nhé.",
+   "Ở đây 열 là số mười thuần Hàn, dùng khi đếm đồ vật: 열 개, mười cái. Một 열 khác nghĩa là cơn sốt, còn động từ 열다 là mở. Cùng cách viết, ba từ không liên quan."
   ],
   "word_jumun": [
    "đơn đặt hàng",
@@ -1176,7 +1190,8 @@
   ],
   "word_jjikda": [
    "đóng dấu",
-   "Tôi đã đóng dấu vào đó."
+   "Tôi đã đóng dấu vào đó.",
+   "Ấn một thứ gì đó xuống mặt phẳng: con dấu, dấu vân tay. Cùng động từ ấy dùng cho chụp ảnh — 사진을 찍다 — và chấm thức ăn vào nước sốt, cả ba đều từ ý ấn xuống."
   ],
   "word_moreuda": [
    "không biết",
@@ -1260,7 +1275,8 @@
   ],
   "word_sudo": [
    "thủ đô",
-   "Thủ đô của Hàn Quốc là Seoul."
+   "Thủ đô của Hàn Quốc là Seoul.",
+   "Thành phố thủ đô của một nước. Có một 수도 khác chỉ hệ thống nước máy: 수도꼭지 là vòi nước, 수도 요금 là tiền nước. Chỉ ngữ cảnh mới cho biết là từ nào."
   ],
   "word_eoseo": [
    "mời, xin mời",
@@ -1396,7 +1412,8 @@
   ],
   "word_pari": [
    "con ruồi",
-   "Một con ruồi đang bay vo ve."
+   "Một con ruồi đang bay vo ve.",
+   "Con ruồi. Tiếng Hàn viết tên thành phố Paris y hệt, nên 파리에 갔어요 là tôi đã đi Paris còn 파리가 있어요 là có con ruồi. Chỉ cả câu mới phân biệt được."
   ],
   "word_gyosil": [
    "lớp học",
@@ -1504,7 +1521,8 @@
   ],
   "word_oppa": [
    "anh trai (em gái gọi)",
-   "Anh tôi đang lái xe."
+   "Anh tôi đang lái xe.",
+   "Tiếng Hàn chọn từ gọi anh chị em theo giới tính của người nói: con gái gọi anh trai là 오빠, con trai gọi là 형. Từ này còn dùng cho một người đàn ông lớn tuổi thân thiết, nên bạn sẽ nghe cả ngoài gia đình."
   ],
   "word_gomawo": [
    "cảm ơn",
@@ -1520,7 +1538,8 @@
   ],
   "word_hyeong": [
    "anh trai (em trai gọi)",
-   "Anh tôi đã mời tôi ăn."
+   "Anh tôi đã mời tôi ăn.",
+   "Từ con trai dùng để gọi anh trai. Cùng một người đó, con gái sẽ gọi là 오빠. Giống 오빠, từ này cũng dùng cho một người đàn ông lớn tuổi thân thiết ngoài gia đình."
   ],
   "word_geulssi": [
    "chữ viết",
@@ -1848,7 +1867,8 @@
   ],
   "word_eonni": [
    "chị gái (em gái gọi)",
-   "Chị tôi là sinh viên."
+   "Chị tôi là sinh viên.",
+   "Từ con gái dùng để gọi chị gái; con trai gọi cùng người đó là 누나. Con gái cũng dùng từ này với một phụ nữ lớn hơn một chút mà mình thấy thân, kể cả trong cửa hàng."
   ],
   "word_namda": [
    "còn lại",
@@ -1936,7 +1956,8 @@
   ],
   "word_nuna": [
    "chị gái (em trai gọi)",
-   "Chị tôi đang hát."
+   "Chị tôi đang hát.",
+   "Từ con trai dùng để gọi chị gái. Cùng người đó, con gái sẽ gọi là 언니. Cặp 누나/언니 hoạt động y hệt cặp 형/오빠."
   ],
   "word_itda_3": [
    "quên",
@@ -2292,7 +2313,8 @@
   ],
   "word_jeokda": [
    "ít",
-   "Tiền còn ít quá."
+   "Tiền còn ít quá.",
+   "Ở đây 적다 là tính từ: có ít. Một động từ khác viết y hệt nghĩa là ghi chép lại, bạn sẽ gặp trong câu 적어 주세요, xin hãy ghi lại."
   ],
   "word_chida": [
    "đánh",
@@ -2888,7 +2910,8 @@
   ],
   "word_bakda": [
    "sáng",
-   "Căn phòng sáng."
+   "Căn phòng sáng.",
+   "Sáng, nói về căn phòng hay màu sắc. Tiếng Hàn dùng rộng hơn: một người có thể 밝다 theo nghĩa vui vẻ, hoặc 밝다 về một lĩnh vực, tức là am hiểu lĩnh vực đó."
   ],
   "word_wain": [
    "rượu vang",
@@ -4120,7 +4143,8 @@
   ],
   "word_jeongi": [
    "điện",
-   "Mất điện rồi."
+   "Mất điện rồi.",
+   "Điện — thứ làm đèn sáng. Còn hai từ khác cũng viết là 전기: một cuốn tiểu sử, và nửa đầu của một giai đoạn. Từ bạn sẽ dùng hằng ngày là từ này."
   ],
   "word_yeoksa": [
    "lịch sử",
@@ -7376,7 +7400,8 @@
   ],
   "word_madi": [
    "lời (đơn vị lời nói)",
-   "Cho tôi nói một lời thôi."
+   "Cho tôi nói một lời thôi.",
+   "Một lời ngắn nói ra: 한 마디만 할게요, cho tôi nói một lời thôi. Cùng danh từ ấy còn chỉ đốt hay mấu: đốt ngón tay, đốt tre, ô nhịp trong âm nhạc."
   ],
   "word_cheokada": [
    "giả vờ",

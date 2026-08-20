@@ -155,11 +155,14 @@ for (const [locale, rows] of packs) {
  * speaker, and no check here can change that.
  */
 const HAND_WRITTEN = ['vi', 'th'];
+const readPack = (locale) => {
+  const name = `vocabulary.${locale}.json`;
+  return existsSync(join(GENERATED, name)) ? read(name).words : null;
+};
 const handWritten = new Map();
 for (const locale of HAND_WRITTEN) {
-  const name = `vocabulary.${locale}.json`;
-  if (!existsSync(join(GENERATED, name))) continue;
-  const rows = read(name).words;
+  const rows = readPack(locale);
+  if (!rows) continue;
   handWritten.set(locale, rows.reduce((n, row) => n + (row && row[0] ? 1 : 0), 0));
 }
 
@@ -176,6 +179,40 @@ for (const [index, word] of corpus.words.entries()) {
   }
   if (!infinitive && pos === 'verb') {
     hard.push(`${word.word} is a verb glossed as "${gloss}", which is not an action`);
+  }
+}
+
+// --- The long definition, all languages or none --------------------------------
+
+/*
+ * A *More about it* section that appears in English and not in Portuguese is
+ * the defect this check exists for, and it is the one the old derived
+ * definitions had: 784 words carried one, all of them English.
+ *
+ * The eight entry-carried locales are already gated by `pack.py`, which refuses
+ * a partial `d`. Vietnamese and Thai are not — they are hand-written files, and
+ * nothing stops somebody adding a Vietnamese paragraph and forgetting Thai. So
+ * the count is compared across all ten, and a word that has the section in some
+ * languages and not in others is a hard failure rather than a difference a
+ * learner discovers by switching language.
+ */
+const withDefinition = new Map();
+for (const [locale, rows] of [...packs, ...HAND_WRITTEN.map((l) => [l, readPack(l)])]) {
+  if (!rows) continue;
+  withDefinition.set(locale, new Set(rows.flatMap((row, index) => (row?.[2] ? [index] : []))));
+}
+const [reference] = [...withDefinition.keys()];
+if (reference) {
+  const expected = withDefinition.get(reference);
+  for (const [locale, indices] of withDefinition) {
+    const missing = [...expected].filter((index) => !indices.has(index));
+    const extra = [...indices].filter((index) => !expected.has(index));
+    for (const index of missing) {
+      hard.push(`${corpus.words[index].word} has a long definition in ${reference} and not in ${locale}`);
+    }
+    for (const index of extra) {
+      hard.push(`${corpus.words[index].word} has a long definition in ${locale} and not in ${reference}`);
+    }
   }
 }
 
@@ -213,6 +250,13 @@ console.log(
   `Sense QA — ${corpus.words.length.toLocaleString('en')} words, ` +
     `${packs.size} language(s) claiming complete copy`,
 );
+
+if (reference) {
+  console.log(
+    `  ${withDefinition.get(reference).size} word(s) carry a long definition, ` +
+      `in all ${withDefinition.size} language(s)`,
+  );
+}
 
 for (const [locale, covered] of handWritten) {
   const total = corpus.words.length;

@@ -99,9 +99,31 @@ FIXTURES: tuple[tuple[str, str, str], ...] = (
     ("삶다", "삼따", "ㄻ done correctly by both voices, so the two repairs stay narrow"),
     ("맛있다", "마딛따", "two standard readings; the note follows the recording"),
     ("닿다", "다타", "ㅎ + ㄷ aspirates; both voices said [닫따], which is a different word"),
-    ("낳다", "나타", "the same boundary, correct from both voices — the repair stays narrow"),
+    ("낳다", "나타", "the same boundary — see the note on recogniser noise below"),
     ("옮기다", "옴기다", "no tensing before a causative -기-, which the rule used to add"),
 )
+
+#: 낳다, and why a recogniser disagreement is still not a verdict.
+#:
+#: The screen reports 낳다 as 낫다 from both voices. That reads like a finding
+#: and it is not one, because the same run's other answers show how much of it
+#: is the decoder rather than the clip. Transcribing the same three words again
+#: at ``beam_size=5`` gives:
+#:
+#: ::
+#:
+#:     낳다 [male]   → '낫타'      ← aspirated, so the ㅌ *is* in the recording
+#:     낳다 [female] → '락타'      ← not a Korean word
+#:     마디 [female] → '바티'      ← a clip nobody has ever disputed
+#:
+#: An engine that writes 바티 for the female 마디 is not in a position to
+#: convict the female 낳다, and a male reading that comes back 낫타 has the
+#: aspiration the word requires. So the entry stays in FIXTURES — it is the
+#: right thing to keep watching — and this note stands in for the claim that
+#: used to be here, which was that both voices had been confirmed correct.
+#:
+#: What would settle it is a person listening, which is exactly what layer C is
+#: documented as not being. See docs/AUDIO.md.
 
 
 @dataclass
