@@ -244,7 +244,18 @@ const buildInfo = {
     example_qa_pass: examplesQa.pass,
     example_qa_total: examplesQa.words,
     review_algorithm_version: 1,
-    schema_version: 6,
+    /*
+     * Read, not typed. It was a literal `6` while the app was on 9, because a
+     * hand-copied constant is a hand-copied constant that will eventually be
+     * wrong — and a delivery manifest that misreports the storage schema is a
+     * misleading answer to the one question anybody asks it after a migration
+     * goes wrong.
+     */
+    schema_version: Number(
+      /SCHEMA_VERSION\s*=\s*(\d+)/.exec(
+        readFileSync(join(ROOT, 'apps/web/src/storage/schema.ts'), 'utf8'),
+      )?.[1],
+    ),
   },
   toolchain: {
     workspace_version: pkg.version,

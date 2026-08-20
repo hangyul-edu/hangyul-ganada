@@ -1,8 +1,8 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.0",
-  "commit": "271c4159acb2dcfed5dc3d913908cc239f62eaa9",
-  "built_at": "2026-08-20T11:55:36.247Z",
+  "commit": "e49c28b8a0d9ebc6a02c57f5f21958c7bc51d8c0",
+  "built_at": "2026-08-20T18:49:59.559Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
@@ -10,16 +10,16 @@
     "version_name": "1.0.0",
     "target_sdk": 36,
     "min_sdk": 24,
-    "apk_bytes": 66137158,
-    "apk_sha256": "adb3598e98100f16bf2241ffa7d0d6fb4eaa361283fa0540d0f8d7b993163156",
+    "apk_bytes": 66494763,
+    "apk_sha256": "68470db083c30d2451a0a2b15768c62851d71d646e10d1e7b1a5a5ce368276f6",
     "apk_signature_schemes": [
       "v2",
       "v3"
     ],
     "apk_certificate_sha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
     "apk_certificate_subject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
-    "aab_bytes": 64852997,
-    "aab_sha256": "90f41dfea87961f0a9d6c0fee04c4a6a0e611beb2ad4c30acb4af08b6025b6d7",
+    "aab_bytes": 65217415,
+    "aab_sha256": "cdf926cf5a15106a00ea568b49c8d1ba6b3f4cbe3d17f6af8f0ef51fc02d764f",
     "aab_signed": true,
     "permissions": [
       "android.permission.INTERNET",
@@ -44,14 +44,36 @@
   },
   "product_content": {
     "locales": [
+      "ar",
+      "bn",
+      "cs",
       "de",
+      "el",
       "en",
       "es",
+      "fil",
       "fr",
+      "hi",
+      "hu",
+      "id",
+      "it",
       "ja",
+      "kk",
       "ko",
+      "ky",
+      "mn",
+      "nl",
+      "pl",
       "pt-BR",
+      "ro",
+      "ru",
+      "sv",
+      "ta",
+      "te",
       "th",
+      "tr",
+      "uk",
+      "uz",
       "vi",
       "zh-CN"
     ],
@@ -73,7 +95,7 @@
     "example_qa_pass": 2581,
     "example_qa_total": 2581,
     "review_algorithm_version": 1,
-    "schema_version": 6
+    "schema_version": 9
   },
   "toolchain": {
     "workspace_version": "0.1.0",

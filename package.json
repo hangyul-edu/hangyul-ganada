@@ -89,6 +89,7 @@
     "store:shots": "node scripts/capture-store-shots.mjs",
     "store:check": "node scripts/check-store-listing.mjs --check",
     "result:build": "node scripts/build-result.mjs",
+    "app-result:build": "node scripts/build-app-result.mjs",
     "security:audit": "node scripts/audit-release-security.mjs",
     "strokes:visual": "tsx scripts/stroke-visual-qa.mjs",
     "strokes:visual:check": "tsx scripts/stroke-visual-qa.mjs --check",

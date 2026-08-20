@@ -5,45 +5,35 @@ something that was run on this machine during this refresh; nothing is carried
 over from an earlier cycle. Where something could not be verified it says so
 rather than being left blank or implied.
 
-**Source:** commit `22ba72a` on branch `premium-quality-pass`, working tree
-clean — the `gradlew.bat` line-ending difference that earlier validations noted
-as the one exception was committed alongside the Gradle change in `40c5e6d`.
+**Source:** commit `e49c28b` on branch `premium-quality-pass`, working
+tree clean at the moment of the build.
 
-**Built twice this cycle.** The first build was from `40c5e6d` and was correct
-for it. Then `22ba72a` re-generated `relations.json`, which ships inside the
-app, so that artefact was one commit stale the moment the commit landed. It was
-rebuilt rather than explained away — that is the failure this document exists
-for, at a smaller scale than the one it was written about.
+Commits after `e49c28b` touch only this file, `docs/report.md`,
+`result/` and `app_result/`. None of them is inside `assets/public`, so the
+delivered package is byte-correct for the shipping source; a commit that records
+a build cannot be in the build it records, and that is the only gap.
 
-Commits after `22ba72a` touch only this file, `docs/report.md` and the digests
-below. None of them is inside `assets/public`, so the delivered package is
-byte-correct for the shipping source; a commit that records a build cannot be in
-the build it records, and that is the only gap.
-**Built:** 2026-08-20, Linux (WSL2), JDK 21.0.11, Android SDK build-tools 36.0.0.
-**Device:** `hangyul-pixel7` AVD, Android 16 (API 36), x86_64, 1080×2400,
-software GPU, wiped before install.
+**Built:** 2026-08-21, Linux (WSL2), JDK 21, Android SDK build-tools 36.0.0.
 
-**This supersedes the earlier validation of `deda959`.** Those artefacts were
-correct for their commit and are four commits behind this one; they have been
-replaced. The filename change recorded under "Filenames" below happened in that
-earlier rebuild and still stands.
+**This supersedes the earlier validation of `22ba72a`.** Those artefacts were
+correct for their commit and are one commit behind this one; they have been
+replaced.
 
 ---
 
 ## Why this rebuild happened
 
-Four commits of product work landed after the last artefacts were built:
-Vietnamese and Thai finished to all 2,581 words, eleven glosses pinned to the
-sense their own example demonstrates, the *More about it* block rewritten from
-derived dictionary fragments into 25 authored explanations in ten languages, a
-render-time hint filter, and `vi`/`th` added to the Android resource
-configuration. An artefact that predates any of that is the P0 this document
-exists to keep closed.
+One commit of product work landed after the last artefacts were built, and it is
+a large one: twenty-two interface languages, the whole alphabet course written in
+all thirty-two, the customer-facing notation replaced with Revised Romanization
+derived from the standard pronunciation, three screens simplified, and the letter
+explanations moved off the critical path. An artefact that predates any of that
+is the P0 this document exists to keep closed.
 
 The order matters and was followed again: **commit first, then build from the
 commit.** Building from a dirty working tree produces a signed artefact that
 looks current and is not, which is worse than a stale one because nothing about
-it says so. `build-info.json` records `40c5e6d`, which is the tip.
+it says so.
 
 ### The signing key was recovered, not regenerated
 
@@ -72,17 +62,17 @@ so the bytes tested and the bytes delivered are the same (`sha256` in
 
 | Check | Result |
 | --- | --- |
-| Built from the committed tree | `git rev-parse HEAD` = `22ba72a…`, recorded in `build-info.json` |
+| Built from the committed tree | `git rev-parse HEAD` = `e49c28b…`, recorded in `build-info.json` |
 | Signed | Yes — release keystore from `ANDROID_KEYSTORE_PATH`, not the debug key |
 | Signature schemes | v2 ✓, v3 ✓ (v1 deliberately off — `minSdk` 24) |
 | Certificate SHA-256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the project's established release key, compared against the keystore *and* the superseded artefact before rebuilding |
 | Package / version | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK levels | minSdk 24, targetSdk 36, compileSdk 36 |
-| Packaged locales | `de es fr ja ko pt th vi` — `th` and `vi` are new; the resource list had been left at eight while the app shipped ten |
-| Vocabulary locales complete | all 10, counted from the emitted packs rather than read off the corpus field |
-| Installed | `adb install -r` → Success |
-| Launched | `MainActivity` reached `topResumedActivity` |
-| Crashes | None. No `FATAL EXCEPTION` and no app entry in `AndroidRuntime` for the session |
+| APK / AAB | 63.4 MB / 62.2 MB, both signed |
+| Interface locales in the package | 32, as separate lazy chunks |
+| Vocabulary locales complete | 10 of 32, counted from the emitted packs — the rest fall back to English and the picker says so |
+| Storage schema | 9, read from `storage/schema.ts` |
+| Secret scan | `audit-release-security.mjs` over 11,124 APK entries and 11,133 AAB entries — **no findings** |
 
 ### The check that was missing last time
 
@@ -90,26 +80,34 @@ The failure this rebuild exists to fix was *not* that a build was broken — it
 was that nobody confirmed the packaged bundle contained the code. So it is now
 confirmed by unpacking the delivered APK and grepping `assets/public`:
 
-**This cycle's work:**
+**This cycle's work** — 111 emitted files searched:
 
 | Marker | What it proves is in the build | Found |
 | --- | --- | --- |
-| `the engine of Korean vocabulary` | the written *More about it* text for 하다, in English | ✓ |
-| `พยางค์เดียวกันนี้ยังเป็นคำว่าชา` | the same block for 차, in Thai — so it is not English-only | ✓ |
-| `theo giới tính của người nói` | the same block for 오빠, in Vietnamese | ✓ |
-| `thỏa thích` | 마음껏, corpus index 1,860 — Vietnamese past the old 500-word cut | ✓ |
-| `เทิดทูนรับใช้` | 받들다, the last word in the corpus, in Thai | ✓ |
-| `a word, a remark` · `to be few, to be little` | two of the eleven pinned glosses | ✓ |
-| `첫 글자는 ‘` | the corrected Korean first-letter hint | ✓ |
+| `jari` | 자리 romanised from its sound, not its spelling | ✓ |
+| `jangnyeon` | 작년 nasalised — the romanization comes from the standard pronunciation | ✓ |
+| `hakgyo` | 학교 tensed, the same way | ✓ |
+| `ستة صوائت للبداية` | a lesson title in Arabic | ✓ |
+| `தொடங்க ஆறு உயிரெழுத்துகள்` | the same lesson in Tamil | ✓ |
+| `как а в «мама»` | the Russian sound hint for ㅏ, from `letters.ru` | ✓ |
+| `మ్యాంగ్‌జో` | a practice typeface named in Telugu | ✓ |
+| `لاو تسي` | Laozi, attributed in Arabic — the quotations that used to blank the screen | ✓ |
+| `Word meanings in English` | the picker's caveat on the twenty-two | ✓ |
+| `Try a question` | the CTA that names the quiz it opens | ✓ |
+| `Негізгі` | the bottom navigation in Kazakh | ✓ |
 
-**And what should no longer be in it** — the derived dictionary fragments the
-*More about it* block used to carry:
+**And what should no longer be in it:**
 
-| Marker | Was under | Found |
+| Marker | Was | Found |
 | --- | --- | --- |
-| `prophase` | 전기 | gone |
-| `phylum` | 문 | gone |
-| `straw thatch` | 새 | gone |
+| `ɕ`, `ɾ` | IPA characters from the retired notation | gone |
+| `jaknyeon` | 작년 romanised from its spelling | gone |
+| `10 left today` | the duplicate home row | gone |
+| `About your strokes` | the feedback heading over a list of one | gone |
+
+The two directions matter equally. Present markers prove the cycle is *in* the
+package; absent ones prove what it replaced is *out* of it, which a table that
+only looks for additions cannot tell you.
 
 **Earlier cycles, confirmed still present:** `capability-probe` (the storage
 write/read probe), `showMoreHint` (the hint ladder), `Tiếng Việt`.
@@ -122,64 +120,63 @@ stated here rather than papered over with a marker that proves something else.
 This table is the point of the whole document. Any future release should
 reproduce it against whatever that cycle changed.
 
-### Smoke test, on the installed APK
+### Smoke test — **not run this cycle, and that is stated rather than implied**
 
-Emulator wiped before install; APK copied into `result/` before installation, so
-the bytes tested are the bytes delivered.
+The previous validation installed and launched the APK on a wiped Android 16
+emulator and recorded what it could reach before the emulator's own system
+processes wedged under a software renderer. That evidence belongs to the previous
+artefact and is not carried forward here: an emulator session that was not run
+cannot be reported as if it were.
 
-| What | Evidence |
+What this cycle has instead, and what each thing actually establishes:
+
+| Evidence | What it establishes |
 | --- | --- |
-| Installs | `adb install -r` → Success |
-| Launches and stays up | `MainActivity` reached `topResumedActivity` and was still `topResumedActivity` at the end of the session |
-| Crashes | **None** — zero `FATAL EXCEPTION` in the whole logcat |
-| Home renders | Brand, streak, purpose line, Unit 1 card with its six vowels and progress ring, Start now, Letters 0/40 and Words 0/10, review row, Today's words row, bottom bar with the active tab marked |
-| **First-run purpose line** | "Learn Korean from the very first letter — Hangul, then the words you will actually use." Present on a wiped install, which is the only place it should be |
-| Words tab | Opens: Today's words 0/10, Saved words, search, and the topic grid |
-| Search | Accepts input and reports "Nothing matches …" for a non-word |
+| The marker table above, in both directions | this cycle's content **is in** the delivered package, and what it replaced is not |
+| `apksigner verify --print-certs` on the delivered bytes | it is signed, by the identity every previous release carries |
+| 230 Playwright cases across two projects | the same web bundle **renders and behaves**, on a mobile and a desktop viewport |
+| 651 unit + 95 handwriting-core tests | the logic under it |
+| The screens in this cycle read by eye, in six languages including Arabic | it **looks right**, which no suite decides |
 
-**What was not reached, and why.** Navigation past the Words screen was
-abandoned: the emulator raised *System UI isn't responding* and then *Process
-system isn't responding*, both naming Android's own processes rather than this
-app, on a freshly wiped image running a software renderer on a loaded machine.
-The app's activity stayed resumed behind both dialogs and never crashed. So the
-device evidence stops at "installs, launches, renders its first two screens
-correctly, does not crash" — and the *More about it* block, the pinned glosses
-and the finished Vietnamese and Thai copy are evidenced by the marker table
-above (they are **in** the delivered package) and by the browser and end-to-end
-suites (they **render**), not by a screenshot from this device. That split is
-the same one the last cycle recorded and it is stated rather than glossed.
+The gap is device-specific behaviour: WebView quirks, real touch input, and the
+system bars. Those were checked on a device last cycle against a package built
+from the same Capacitor configuration, and nothing in this cycle changed the
+native shell — but that is an argument, not an observation, and it is written
+here as one.
 
 ## What this does not claim
 
-* **Not tested on physical hardware** — one x86_64 emulator with a software GPU,
-  which wedged twice during the session. See the note under the smoke test: both
-  dialogs name Android's own processes, the app stayed resumed behind them, and
-  the consequence is that on-device evidence is thinner this cycle than last,
-  not that something was found wrong.
+* **Nothing was run on a device or an emulator this cycle.** See the smoke-test
+  section above, which says what stands in for it and what that does and does not
+  establish.
 * **No audio was listened to.** Nobody heard a clip.
-* **No handwriting was drawn** on the device; the canvas was not exercised
-  through touch input here.
-* **No Vietnamese or Thai run-through on the device.** Both were verified in the
-  browser at a phone viewport and by the end-to-end suite; the packaged APK was
-  only confirmed to *contain* them — including, this cycle, words past the old
-  500-word cut and the newly written *More about it* text in both languages.
-* **No word screen was opened on the device**, so the *More about it* block was
-  not seen rendered on Android. It is in the package and it renders in the
-  browser and in `wordDefinition.test.tsx`.
+* **No handwriting was drawn** on a device; the canvas was exercised in a browser
+  and by the handwriting-core suite, not through real touch input.
+* **No native speaker read any of the thirty-two languages.** Not one, including
+  Korean. `docs/LOCALIZATION_NATIVE_REVIEW.md` is the whole subject.
+* **Word meanings ship in ten languages of thirty-two.** The other twenty-two
+  fall back to English on the word cards. That is marked in the interface and
+  said on the row in the language picker before the learner chooses; it is a
+  stated gap and not a defect, and it is not a claim of completeness.
 * **Nothing was validated for iOS.** See `BUILD_OR_SIGNING_BLOCKERS.md` — no
-  macOS, no Xcode, no signing identity, therefore no IPA. The Xcode project in
-  `ios-project/` is synced with this web build and is not a release artefact.
+  macOS, no Xcode, no signing identity, therefore no `.ipa`. The Xcode project in
+  `ios-project/` is synced with this web build and is not a release artefact. No
+  file in this delivery has been given that extension.
 
 ## Web suites, run on the same commit
 
 | Suite | Result |
 | --- | --- |
-| `verify:quick` | **PASS** — 15 checks including lint, typecheck, unit, build, bundle budget, routing, and the new sense QA |
-| Unit (`vitest`) | **589 passed**, including one that only failed under load and is now waiting on the right thing |
+| `verify:quick` | **PASS** — 16 checks including lint, typecheck, unit, build, bundle budget, routing, romanization QA and the letter-pack freshness check |
+| `verify:release` | every check passes except `vocabulary:qa:target`, which fails on "2,581 headwords — 7,419 short of the 10,000 target" by design; that is I-04 stated as a build failure |
+| Unit (`vitest`) | **651 passed** |
 | Handwriting core | **95 passed** |
-| End-to-end (`playwright`) | **228 passed** — 114 × mobile and desktop projects |
+| End-to-end (`playwright`) | **230 passed** — 115 × mobile and desktop projects |
 | `strokes:qa:check` | 73 items, 269 strokes, 1,345 frames — **PASS** |
-| `strokes:visual:check` | the same 1,345 frames rasterised — **PASS**, 18 sub-threshold findings reported |
+| `strokes:visual:check` | the same 1,345 frames rasterised — **PASS**, 1 sub-threshold finding reported |
+| `romanization:qa:check` | five layers, including all 2,581 words re-derived and compared — **PASS** |
+| `i18n:check` / `copy:audit:check` | 32 locales at 100%; 17,832 strings, 0 errors |
+| `audit-release-security.mjs` | APK and AAB scanned — **no findings** |
 
 ## Filenames
 
@@ -197,12 +194,16 @@ directory it was looking in. It now matches by extension and reports both.
 
 | Item | Size | Note |
 | --- | --- | --- |
-| `hangyul-ganada-release.apk` | 63.1 MB | rebuilt this cycle from `22ba72a` |
-| `hangyul-ganada-release.aab` | 61.8 MB | rebuilt this cycle from `22ba72a` |
+| `hangyul-ganada-release.apk` | 63.4 MB | rebuilt this cycle from `e49c28b` |
+| `hangyul-ganada-release.aab` | 62.2 MB | rebuilt this cycle from `e49c28b` |
 | `android-project/` | — | re-copied from `apps/mobile/android`, minus `build/`, `.gradle/`, `.kotlin/`, `local.properties`, keystores |
 | `ios-project/` | — | re-copied from `apps/mobile/ios`, minus `build/`, `Pods/`, `xcuserdata/`, `DerivedData/` |
-| `docs/report.pdf` | 1.3 MB | regenerated this cycle |
+| `docs/report.pdf` | 1.4 MB | regenerated this cycle |
 | `store/` | unchanged | listing material, not a build output |
+
+The same two binaries, on their own with their checksums and a README, are in
+`app_result/` — derived from this directory rather than built separately, so the
+two cannot disagree about which APK shipped.
 
 `checksums.sha256` covers the APK, the AAB, `docs/report.pdf` and
 `build-info.json`.
@@ -210,10 +211,10 @@ directory it was looking in. It now matches by extension and reports both.
 ## Checksums
 
 ```
-adb3598e98100f16bf2241ffa7d0d6fb4eaa361283fa0540d0f8d7b993163156  hangyul-ganada-release.apk
-90f41dfea87961f0a9d6c0fee04c4a6a0e611beb2ad4c30acb4af08b6025b6d7  hangyul-ganada-release.aab
-f00d56e719f5de573af037a49ca564bce7428d841a2d9d8f4c2ae611f569487e  docs/report.pdf
-04fc2c0d2eec2c61c3d7855d219539eec5b68526c24f4510ab3c797c3afe4099  build-info.json
+68470db083c30d2451a0a2b15768c62851d71d646e10d1e7b1a5a5ce368276f6  hangyul-ganada-release.apk
+cdf926cf5a15106a00ea568b49c8d1ba6b3f4cbe3d17f6af8f0ef51fc02d764f  hangyul-ganada-release.aab
+6575b5963df118da83cd8bb63cc1a106becc9498441604ba7e306d944c8ef543  docs/report.pdf
+99961a600f5b873d4c15ec4daccf43b930f7fc8528cded343b4e2dd3898f5557  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has
