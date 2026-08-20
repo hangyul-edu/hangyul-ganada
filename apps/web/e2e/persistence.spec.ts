@@ -276,7 +276,12 @@ test.describe('the reported regression, end to end', () => {
     // only written once a learner picks one. English, so the rest of this test
     // can go on reading the interface.
     await page.goto('/me/language');
-    await page.getByRole('button', { name: /English/ }).first().click();
+    // Anchored, not a substring. Twenty-two rows now carry the caption "Word
+    // meanings in English", so a loose /English/ matches the Arabic row — and
+    // `.first()` picked it, because the list is sorted by English name. Not
+    // `exact` either: the selected row's accessible name ends with the
+    // screen-reader word "Selected".
+    await page.getByRole('button', { name: /^English/ }).click();
     await expect
       .poll(() => page.evaluate(() => localStorage.getItem('hangyul_ganada:locale')))
       .toBe('en');

@@ -1,0 +1,233 @@
+{
+  "letters": {
+    "title": "Harfleri öğren",
+    "alphabetTitle": "Hangıl alfabesi",
+    "alphabetCaption": "harf öğrenildi",
+    "complete": "Öğrenildi",
+    "resume": "Devam et"
+  },
+  "units": {
+    "badge": "{{index, number}}. ünite",
+    "continue": "Anladım — başlayalım",
+    "unit-1": {
+      "title": "Başlangıç için altı ünlü",
+      "goal": "Her Korece hecede bir ünlü olmak zorunda. Bu altısı en basitleri.",
+      "body": "Hangıl bir alfabe, resim topluluğu değil. 40 harfi var, hızlı öğrenilsin diye tasarlandı ve şimdi altısını öğreneceksin.",
+      "points": [
+        "Harfler kare bloklar hâlinde toplanır ve her blok bir hecedir.",
+        "Ünlü ya dik bir çizgidir ya da yatık bir çizgi — blok içindeki yerini bu belirler.",
+        "Her birini çizerken yüksek sesle söyle. Ses, dersin yarısıdır."
+      ]
+    },
+    "unit-2": {
+      "title": "İlk ünsüzlerin",
+      "goal": "Beş ünsüz. Bildiğin ünlülerle birlikte bu şimdiden 30 hece eder."
+    },
+    "unit-3": {
+      "title": "Birleştirmek",
+      "goal": "Ünsüz artı ünlü, okuyabileceğin bir blok eder.",
+      "body": "Korece hece tek bir kare olarak yazılır. Önce ünsüz gelir — dik ünlüde solda, yatık ünlüde üstte.",
+      "points": [
+        "Dik ünlü (ㅏ ㅓ ㅣ) ünsüzün sağında durur.",
+        "Yatık ünlü (ㅗ ㅜ ㅡ) onun altına uzanır.",
+        "Bloğu bir sayfa okur gibi oku: soldan sağa, sonra aşağı."
+      ]
+    },
+    "unit-4": {
+      "title": "Beş ünsüz daha",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — yalın dizinin geri kalanı."
+    },
+    "unit-5": {
+      "title": "Daha çok blok okumak",
+      "goal": "Hiç ses vermeyen o tek harf de dâhil."
+    },
+    "unit-6": {
+      "title": "Bir y sesi eklemek",
+      "goal": "Tek bir çizgi ㅏ harfini ㅑ yapar. Aynı kural dördünde de geçerli."
+    },
+    "unit-7": {
+      "title": "Bir soluk hava",
+      "goal": "ㅊ ㅋ ㅌ ㅍ, bildiğin harflere bir çizgi eklenmiş hâlleri."
+    },
+    "unit-8": {
+      "title": "e ünlüleri",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — ㅣ eklenerek yapılan ünlüler."
+    },
+    "unit-9": {
+      "title": "İkilenmiş ve sıkılmış",
+      "goal": "İki kez yazılan, daha sıkı söylenen beş harf."
+    },
+    "unit-10": {
+      "title": "w ünlüleri",
+      "goal": "Tek harf gibi yazılan iki ünlü. 40 harfin sonuncuları."
+    },
+    "unit-11": {
+      "title": "Dipte bir harf",
+      "goal": "받침 — heceyi kapatan ünsüz.",
+      "body": "Bir blok, diğer ikisinin altında üçüncü bir harf taşıyabilir. Adı 받침 ve heceyi kapatır.",
+      "points": [
+        "Üçüncü harf her zaman karenin dibine gider.",
+        "받침, hangi harf yazılırsa yazılsın yalnızca yedi sesten biri olarak çıkar.",
+        "Yeni başlayanların okuması çoğunlukla burada takılır. Acele etme."
+      ]
+    },
+    "unit-12": {
+      "title": "한글 okumak",
+      "goal": "Artık bütün harfleri biliyorsun. Yazı sisteminin kendi adını oku."
+    }
+  },
+  "intro": {
+    "letterName": "Adı",
+    "letterSound": "Sesi",
+    "soundIn": "{{character}} harfini şurada duy:",
+    "reads": "Şöyle okunur"
+  },
+  "steps": {
+    "label": "Bu harfin adımları",
+    "write": "Yaz",
+    "read": "Oku"
+  },
+  "recognition": {
+    "question": "Bu sesi hangisi çıkarıyor?",
+    "optionsAria": "Duyduğun harfi seç",
+    "optionAria": "{{character}} harfini seç",
+    "correctDetail": "Evet, bu {{character}}.",
+    "wrongHeadline": "O değil.",
+    "wrongDetail": "{{sound}} gibi ses veren harf {{character}}.",
+    "hearAgain": "Yeniden dinle",
+    "tryAgain": "Tekrar dene"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Bunu atla",
+    "startWriting": "Yaz",
+    "nowRecognise": "Bir soru dene",
+    "next": "Sonraki harf",
+    "finish": "Bitir",
+    "prompt": {
+      "write": "Kılavuzun üzerinden parmağınla yaz."
+    },
+    "continue": "Sonraki"
+  },
+  "complete": {
+    "title": "Güzel iş!",
+    "letters_one": "{{lesson}} dersinde {{count, number}} harf bitirdin.",
+    "letters_other": "{{lesson}} dersinde {{count, number}} harf bitirdin."
+  },
+  "review": {
+    "title": "Tekrar",
+    "startCta": "Tekrara başla",
+    "sessionTitle": "Tekrar",
+    "completeTitle": "Tekrar bitti",
+    "empty": {
+      "title": "Henüz tekrar edilecek bir şey yok",
+      "body": "Yanlış yaptığın her şey burada belirir. Şimdilik yeni bir harfe ne dersin?",
+      "cta": "Bir harf öğren"
+    },
+    "forYou": "Sana özel tekrar",
+    "sessionLength_one": "{{count, number}} kısa alıştırma",
+    "sessionLength_other": "{{count, number}} kısa alıştırma",
+    "needsPractice": "Alıştırma gerek",
+    "dueToday": "Bugün sırada",
+    "savedWords": "Kaydedilen kelimeler",
+    "chooseMode": "Ya da neye çalışacağını seç",
+    "comingUp": "Sırada",
+    "outcome": "{{practised, number}} çalışıldı · {{firstTry, number}} ilk denemede geldi · {{comingBack, number}} yakında geri dönecek",
+    "blank": "boşluk",
+    "optionsLabel": "Cevaplar",
+    "showHint": "İpucu ver",
+    "right": "Bu kadar basit.",
+    "notQuite": "Tam değil. Doğrusu şu.",
+    "mode": {
+      "read": "Okuma",
+      "listen": "Dinleme",
+      "write": "Yazma"
+    },
+    "prompt": {
+      "read": "Bu kelime ne demek?",
+      "readLetter": "Bu harf hangi sesi verir?",
+      "listen": "Hangi kelimeyi duydun?",
+      "listenLetter": "Bu hangi harf?",
+      "context": "Buraya hangi kelime uyar?",
+      "write": "Bu kelimeyi yaz",
+      "writeLetter": "Duyduğunu yaz",
+      "distinguish": "Bu sesi hangisi çıkarıyor?",
+      "produce": "Hangisi?",
+      "listenMeaning": "Bu ne demek?",
+      "build": "Kelimeyi kur"
+    },
+    "nothingDue": "Şu an tekrar edilecek bir şey yok.",
+    "modesEmpty": "Bugün bu kiplerde bir şey yok.",
+    "answerIs": "{{word}} demek “{{meaning}}”.",
+    "showMoreHint": "Başka bir ipucu",
+    "showAnswer": "Cevabı göster",
+    "hint": {
+      "kind": "Bu bir {{pos}} — {{category}} ile ilgili bir şey.",
+      "kindOnly": "Eksik kelime bir {{pos}}.",
+      "startsWith": "{{start}} ile başlıyor…",
+      "startsWithSound": "“{{sound}}” sesiyle başlıyor.",
+      "replay": "Yeniden çal — istediğin kadar.",
+      "letterFamily": "Türü: {{family}}.",
+      "letterExample": "{{word}} kelimesinin ilk harfi.",
+      "letterSound": "Sesi “{{sound}}” gibi.",
+      "reveal": "Cevap {{answer}}.",
+      "revealWord": "Kelime {{answer}}.",
+      "revealLetter": "Harf {{answer}}.",
+      "revealStrokes": "Çizgileri bir kez daha izle, sonra üzerinden geç.",
+      "inSentence": "Şöyle kullanılıyor: {{sentence}}"
+    },
+    "buildTray": "Heceler",
+    "buildRemove": "{{syllable}} hecesini geri al"
+  },
+  "sounds": {
+    "title": "Sesler karşılaşınca",
+    "blurb": "학교 neden yazıldığı gibi okunmuyor.",
+    "intro": "Artık bütün harfleri okuyabiliyorsun. Korece bir kelimeyi oluşturan parçaları yazar ve bu parçalar birbirine değince bazılarını değiştirir — bu yüzden birkaç kelime göründüğünden farklı duyulur. İlk karşılaşacakların bunlar.",
+    "written": "Yazılışı",
+    "said": "Okunuşu",
+    "note": "Bunları ezberlemek zorunda değilsin. Kulak ver, zamanla olağan gelmeye başlar.",
+    "name": {
+      "tensing": "Sıkışan ikinci ses",
+      "aspiration": "Bir soluk hava",
+      "nasal": "Yumuşak, genizden bir ses",
+      "lateral": "ㄴ ile ㄹ yan yana",
+      "palatal": "이 önünde ㄷ ve ㅌ",
+      "liaison": "Ses öne kayar"
+    }
+  },
+  "mistakes": {
+    "title": "Kaçırdığın cevaplar",
+    "review_one": "Tekrar · {{count}} soru",
+    "review_other": "Tekrar · {{count}} soru",
+    "filterLabel": "Göster",
+    "filter": {
+      "all": "Hepsi",
+      "character": "Harfler",
+      "word": "Kelimeler"
+    },
+    "youPut": "Senin cevabın",
+    "answer": "Doğrusu",
+    "times_one": "{{count}} kez kaçırdın",
+    "times_other": "{{count}} kez kaçırdın",
+    "clear": "Bununla işim bitti",
+    "noneOfKind": "Şu an burada bir şey yok.",
+    "emptyTitle": "Henüz kaçırdığın bir şey yok",
+    "emptyBody": "Bir şey elinden kaçtığında burada belirir, düzeltebilesin diye.",
+    "emptyCta": "Tekrara git"
+  },
+  "letterGroup": {
+    "basic_vowel": "temel bir ünlü",
+    "basic_consonant": "temel bir ünsüz",
+    "compound_vowel": "birleşik bir ünlü",
+    "double_consonant": "ikilenmiş bir ünsüz",
+    "final_consonant": "kapatan bir ünsüz",
+    "syllable": "bütün bir hece"
+  },
+  "nextStep": {
+    "title": "Sonraki adıma hazırsın",
+    "body": "Artık Hangıl okuyabiliyorsun. Konuşma ve TOPIK çalışması Hangyul'da devam ediyor.",
+    "cta": "Hangyul'da devam et",
+    "rowTitle": "Hangyul'da devam et",
+    "rowBody": "Hazır olduğunda konuşma ve TOPIK"
+  }
+}

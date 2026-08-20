@@ -13,8 +13,6 @@
     "completeDetail_other": "{{count}} words learned.",
     "more": "A little more",
     "allDone": "Nothing left for today.",
-    "remaining_one": "One left today",
-    "remaining_other": "{{count}} left today",
     "progressAria": "Progress through today's words",
     "moreLabel": "How many more",
     "moreCount_one": "1 more",
@@ -101,7 +99,7 @@
   },
   "detail": {
     "title": "Word",
-    "pronunciation": "Pronunciation",
+    "romanization": "Romanisation",
     "definition": "More about it",
     "usage": "How it is used",
     "synonyms": "Synonyms",

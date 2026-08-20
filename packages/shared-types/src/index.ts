@@ -335,8 +335,25 @@ export interface VocabularyWord {
   id: string;
   /** The Korean word. Target content — never translated. */
   word: string;
-  /** Revised Romanisation of the spoken form. */
-  pronunciation: string;
+  /**
+   * Official Revised Romanisation — 국어의 로마자 표기법, the learner-facing
+   * reading aid.
+   *
+   * Derived from the word's **standard pronunciation** rather than from its
+   * letters, which is what the standard prescribes: 좋다 is *jota*, 국민 is
+   * *gungmin*, 나뭇잎 is *namunnip*. Sound-change tensing is deliberately not
+   * written — 학교 is *hakgyo* — because §3-1 of the standard says not to.
+   *
+   * This replaced an IPA transcription that the app derived at runtime and
+   * printed as `[tɕa.ɾi]` under every headword. IPA is a linguist's notation:
+   * it is precise, and a complete beginner cannot read it, so the one line on
+   * the card whose job was to help them say the word was helping nobody. The
+   * recording teaches the sound; this teaches the *reading*.
+   *
+   * Plain Roman letters, no brackets, no IPA symbols. `vocabulary:qa` fails the
+   * build on any of the three.
+   */
+  romanization: string;
   part_of_speech: PartOfSpeech;
   /** The Korean example sentence. Target content. */
   example: string | null;
@@ -535,8 +552,15 @@ export interface PracticeFont {
   bundled: boolean;
   /** Grading slack for this face. Absent means the evaluator's defaults. */
   evaluation?: TypefaceEvaluationProfile;
-  /** Short note on what practising in this face teaches, per locale. */
-  translations: LocalizedMap<{ description: string }>;
+  /**
+   * The style's name and what practising in it teaches, per locale.
+   *
+   * `name` is a translation of `name_en`, not of `name`: the Korean style
+   * name is a proper noun and stays as it is. What is translated is the
+   * plain-language label beside it — "Handwriting", "Rounded" — which was
+   * the last block of English left on a fully translated screen.
+   */
+  translations: LocalizedMap<{ name: string; description: string }>;
 }
 
 // --- Learning sessions and attempts -----------------------------------------
@@ -544,25 +568,15 @@ export interface PracticeFont {
 /**
  * Which guide was on the paper when an attempt was graded.
  *
- * Both values mean the character was visible — `practice` is the lighter guide,
- * not the absence of one. The distinction is still worth recording because
- * writing over a plain shape and writing over a faint one are different acts,
- * and mastery asks for one of each.
+ * **Historical.** The running app writes `trace` and nothing else: there is one
+ * guide now, one writing step, and no setting that changes either. `practice`
+ * is the fainter model that a second writing step, and later a preference,
+ * used to select; both are gone. See `features/writing/guide.ts`.
  *
- * The old third meaning of this field — an unguided attempt on a blank box —
- * has been removed from the product. Rows written by earlier builds are
- * migrated in `storage/schema.ts`; nothing in the running app can produce one.
+ * The value is kept on the type because rows written by earlier builds carry it
+ * and the Activity screen reads them. Nothing in the product branches on it.
  */
 export type PracticeMode = 'trace' | 'practice';
-
-/**
- * How much scaffolding a learner wants, as a setting.
- *
- * Never a difficulty switch. `focused` skips the full-guide tracing step for
- * someone who finds it slow and goes straight to the lighter guide — which is
- * still a guide. No setting in the product can produce an empty writing box.
- */
-export type PracticeStyle = 'guided' | 'focused';
 
 /**
  * Which appearance the learner asked for.
@@ -759,8 +773,6 @@ export interface ProgressSummary {
 
 export interface LearnerPreferences {
   selected_font_id: string;
-  /** How much scaffolding to offer. Never removes the guide entirely. */
-  practice_style: PracticeStyle;
   /** Light, dark, or whatever the device is doing. */
   appearance: Appearance;
   daily_target: number;

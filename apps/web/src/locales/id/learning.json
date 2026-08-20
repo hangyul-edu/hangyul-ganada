@@ -1,0 +1,229 @@
+{
+  "letters": {
+    "title": "Belajar huruf",
+    "alphabetTitle": "Abjad Hangul",
+    "alphabetCaption": "huruf dikuasai",
+    "complete": "Dikuasai",
+    "resume": "Lanjutkan"
+  },
+  "units": {
+    "badge": "Unit {{index, number}}",
+    "continue": "Paham — ayo mulai",
+    "unit-1": {
+      "title": "Enam vokal untuk memulai",
+      "goal": "Setiap suku kata Korea butuh vokal. Enam ini yang paling sederhana.",
+      "body": "Hangul itu abjad, bukan kumpulan gambar. Ada 40 huruf, dirancang supaya cepat dipelajari, dan enam di antaranya akan kamu pelajari sekarang.",
+      "points": [
+        "Huruf dikelompokkan dalam blok persegi, dan satu blok adalah satu suku kata.",
+        "Vokal itu garis tegak atau garis mendatar — itulah yang menentukan letaknya dalam blok.",
+        "Ucapkan tiap huruf keras-keras sambil menulisnya. Bunyinya separuh dari pelajaran."
+      ]
+    },
+    "unit-2": {
+      "title": "Konsonan pertamamu",
+      "goal": "Lima konsonan. Digabung dengan vokal yang sudah kamu tahu, itu sudah 30 suku kata."
+    },
+    "unit-3": {
+      "title": "Menyatukannya",
+      "goal": "Konsonan ditambah vokal menjadi blok yang bisa kamu baca.",
+      "body": "Satu suku kata Korea ditulis sebagai satu persegi. Konsonan lebih dulu — di kiri untuk vokal tegak, di atas untuk vokal mendatar.",
+      "points": [
+        "Vokal tegak (ㅏ ㅓ ㅣ) berdiri di kanan konsonan.",
+        "Vokal mendatar (ㅗ ㅜ ㅡ) berbaring di bawahnya.",
+        "Baca bloknya seperti membaca halaman: kiri ke kanan, lalu ke bawah."
+      ]
+    },
+    "unit-4": {
+      "title": "Lima konsonan lagi",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — sisa deret polos."
+    },
+    "unit-5": {
+      "title": "Membaca lebih banyak blok",
+      "goal": "Termasuk satu huruf yang sama sekali tidak berbunyi."
+    },
+    "unit-6": {
+      "title": "Menambahkan bunyi y",
+      "goal": "Satu goresan tambahan mengubah ㅏ menjadi ㅑ. Polanya sama untuk keempatnya."
+    },
+    "unit-7": {
+      "title": "Sedikit embusan napas",
+      "goal": "ㅊ ㅋ ㅌ ㅍ adalah huruf yang sudah kamu kenal, dengan satu goresan tambahan."
+    },
+    "unit-8": {
+      "title": "Vokal e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — vokal yang dibentuk dengan menambahkan ㅣ."
+    },
+    "unit-9": {
+      "title": "Digandakan dan dirapatkan",
+      "goal": "Lima huruf yang ditulis dua kali dan diucapkan lebih rapat."
+    },
+    "unit-10": {
+      "title": "Vokal w",
+      "goal": "Dua vokal ditulis sebagai satu. Yang terakhir dari 40 huruf."
+    },
+    "unit-11": {
+      "title": "Satu huruf di dasar",
+      "goal": "받침 — konsonan yang menutup suku kata.",
+      "body": "Satu blok bisa memuat huruf ketiga, di bawah dua huruf lainnya. Namanya 받침, dan ia menutup suku kata itu.",
+      "points": [
+        "Huruf ketiga selalu berada di dasar persegi.",
+        "받침 hanya pernah dilepaskan sebagai salah satu dari tujuh bunyi, huruf apa pun yang tertulis.",
+        "Di sinilah bacaan kebanyakan pemula tersendat. Pelan-pelan saja."
+      ]
+    },
+    "unit-12": {
+      "title": "Membaca 한글",
+      "goal": "Sekarang kamu tahu semua huruf. Bacalah nama sistem tulisannya sendiri."
+    }
+  },
+  "intro": {
+    "letterName": "Nama",
+    "letterSound": "Bunyi",
+    "soundIn": "Dengar {{character}} dalam",
+    "reads": "Dibaca"
+  },
+  "steps": {
+    "label": "Langkah untuk huruf ini",
+    "write": "Tulis",
+    "read": "Baca"
+  },
+  "recognition": {
+    "question": "Yang mana berbunyi seperti ini?",
+    "optionsAria": "Pilih huruf yang kamu dengar",
+    "optionAria": "Pilih {{character}}",
+    "correctDetail": "Betul, itu {{character}}.",
+    "wrongHeadline": "Bukan yang itu.",
+    "wrongDetail": "{{character}} yang berbunyi seperti {{sound}}.",
+    "hearAgain": "Dengar lagi",
+    "tryAgain": "Coba lagi"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Lewati yang ini",
+    "startWriting": "Tulis",
+    "nowRecognise": "Coba satu soal",
+    "next": "Huruf berikutnya",
+    "finish": "Selesai",
+    "prompt": {
+      "write": "Tulis di atas panduannya pakai jarimu."
+    },
+    "continue": "Lanjut"
+  },
+  "complete": {
+    "title": "Bagus sekali!",
+    "letters_other": "Kamu menyelesaikan {{count, number}} huruf di {{lesson}}."
+  },
+  "review": {
+    "title": "Ulasan",
+    "startCta": "Mulai ulasan",
+    "sessionTitle": "Ulasan",
+    "completeTitle": "Ulasan selesai",
+    "empty": {
+      "title": "Belum ada yang perlu diulang",
+      "body": "Apa pun yang kamu salah akan muncul di sini. Untuk sekarang, bagaimana kalau huruf baru?",
+      "cta": "Pelajari satu huruf"
+    },
+    "forYou": "Ulasan untukmu",
+    "sessionLength_other": "{{count, number}} latihan singkat",
+    "needsPractice": "Perlu latihan",
+    "dueToday": "Jatuh tempo hari ini",
+    "savedWords": "Kata tersimpan",
+    "chooseMode": "Atau pilih apa yang mau dilatih",
+    "comingUp": "Sebentar lagi",
+    "outcome": "{{practised, number}} dilatih · {{firstTry, number}} langsung teringat · {{comingBack, number}} akan kembali lagi",
+    "blank": "kosong",
+    "optionsLabel": "Jawaban",
+    "showHint": "Beri petunjuk",
+    "right": "Tepat.",
+    "notQuite": "Belum tepat. Ini jawabannya.",
+    "mode": {
+      "read": "Baca",
+      "listen": "Dengar",
+      "write": "Tulis"
+    },
+    "prompt": {
+      "read": "Apa arti kata ini?",
+      "readLetter": "Huruf ini berbunyi apa?",
+      "listen": "Kata mana yang kamu dengar?",
+      "listenLetter": "Huruf apa ini?",
+      "context": "Kata mana yang pas di sini?",
+      "write": "Tulis kata ini",
+      "writeLetter": "Tulis apa yang kamu dengar",
+      "distinguish": "Yang mana berbunyi seperti ini?",
+      "produce": "Yang mana?",
+      "listenMeaning": "Apa artinya ini?",
+      "build": "Susun katanya"
+    },
+    "nothingDue": "Tidak ada yang perlu diulang sekarang.",
+    "modesEmpty": "Tidak ada apa-apa di mode ini hari ini.",
+    "answerIs": "{{word}} artinya “{{meaning}}”.",
+    "showMoreHint": "Petunjuk lain",
+    "showAnswer": "Tampilkan jawaban",
+    "hint": {
+      "kind": "Ini {{pos}} — sesuatu dalam {{category}}.",
+      "kindOnly": "Kata yang hilang itu {{pos}}.",
+      "startsWith": "Diawali {{start}}…",
+      "startsWithSound": "Diawali bunyi “{{sound}}”.",
+      "replay": "Putar lagi — sesering yang kamu mau.",
+      "letterFamily": "Yang ini {{family}}.",
+      "letterExample": "Ini huruf pertama dari {{word}}.",
+      "letterSound": "Bunyinya seperti “{{sound}}”.",
+      "reveal": "Jawabannya {{answer}}.",
+      "revealWord": "Katanya {{answer}}.",
+      "revealLetter": "Hurufnya {{answer}}.",
+      "revealStrokes": "Lihat goresannya sekali lagi, lalu tirukan.",
+      "inSentence": "Dipakai begini: {{sentence}}"
+    },
+    "buildTray": "Suku kata",
+    "buildRemove": "Ambil kembali {{syllable}}"
+  },
+  "sounds": {
+    "title": "Ketika bunyi bertemu",
+    "blurb": "Kenapa 학교 tidak dibaca seperti tulisannya.",
+    "intro": "Sekarang kamu bisa membaca semua huruf. Bahasa Korea menulis bagian-bagian pembentuk kata, lalu mengubah sebagiannya ketika saling bersentuhan — jadi beberapa kata terdengar berbeda dari bentuknya. Ini yang akan kamu temui lebih dulu.",
+    "written": "Ditulis",
+    "said": "Diucapkan",
+    "note": "Tidak perlu dihafal. Dengarkan saja, lama-lama akan terdengar wajar.",
+    "name": {
+      "tensing": "Bunyi kedua yang merapat",
+      "aspiration": "Sedikit embusan napas",
+      "nasal": "Bunyi sengau yang lembut",
+      "lateral": "ㄴ dan ㄹ berdampingan",
+      "palatal": "ㄷ dan ㅌ sebelum 이",
+      "liaison": "Bunyinya bergeser"
+    }
+  },
+  "mistakes": {
+    "title": "Jawaban yang meleset",
+    "review_other": "Ulasan · {{count}} soal",
+    "filterLabel": "Tampilkan",
+    "filter": {
+      "all": "Semua",
+      "character": "Huruf",
+      "word": "Kata"
+    },
+    "youPut": "Kamu jawab",
+    "answer": "Jawaban",
+    "times_other": "Meleset {{count}} kali",
+    "clear": "Sudah beres",
+    "noneOfKind": "Tidak ada apa-apa di sini sekarang.",
+    "emptyTitle": "Belum ada yang meleset",
+    "emptyBody": "Kalau ada yang keliru, ia muncul di sini supaya bisa kamu betulkan.",
+    "emptyCta": "Ke ulasan"
+  },
+  "letterGroup": {
+    "basic_vowel": "vokal dasar",
+    "basic_consonant": "konsonan dasar",
+    "compound_vowel": "vokal gabungan",
+    "double_consonant": "konsonan ganda",
+    "final_consonant": "konsonan penutup",
+    "syllable": "satu suku kata utuh"
+  },
+  "nextStep": {
+    "title": "Siap untuk langkah berikutnya",
+    "body": "Kamu sudah bisa membaca Hangul. Latihan berbicara dan TOPIK berlanjut di Hangyul.",
+    "cta": "Lanjut di Hangyul",
+    "rowTitle": "Lanjut di Hangyul",
+    "rowBody": "Berbicara dan TOPIK, kalau kamu sudah siap"
+  }
+}

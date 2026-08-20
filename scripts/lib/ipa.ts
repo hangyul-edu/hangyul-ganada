@@ -1,8 +1,27 @@
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
-import { FINAL_JAMO, INITIAL_JAMO, MEDIAL_JAMO, isSyllable } from './jamo';
+import { FINAL_JAMO, INITIAL_JAMO, MEDIAL_JAMO, isSyllable } from '../../apps/web/src/data/jamo';
 
 /**
+ * IPA, for QA. **Not shipped to a learner, and not importable from the app.**
+ *
+ * This module used to live in `apps/web/src/data/` and its output was printed
+ * under every headword in Word Detail: `자리 [tɕa.ɾi]`. That was the wrong
+ * notation for this product. Hangyul ganada teaches somebody who met Hangul
+ * this week; IPA is a notation for people who have been taught it, and a
+ * beginner reading `[tɕa.ɾi]` gets less out of it than they would out of
+ * *jari*. The learner-facing reading aid is now official Revised Romanisation,
+ * built in `scripts/content/hangul.py` and stored on each word.
+ *
+ * It is kept, because it is still the most precise description of Korean
+ * phonetics in this repository and the pronunciation QA uses it to check that
+ * the recorded audio and the intended standard pronunciation agree. Moving it
+ * here rather than deleting it is the point: the tooling survives and the
+ * product cannot accidentally show it again, because nothing under `apps/web`
+ * can import out of `scripts/`.
+ *
+ * ---
+ *
  * How a Korean word is actually said, in IPA.
  *
  * ## Why not just transliterate the spelling

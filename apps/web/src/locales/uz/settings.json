@@ -1,0 +1,143 @@
+{
+  "title": "Mening o‘qishim",
+  "stats": {
+    "lettersLearned": "O‘rganilgan harflar",
+    "wordsLearned": "O‘rganilgan so‘zlar",
+    "alphabetProgress": "Hangul alifbosi bo‘yicha jarayon",
+    "studyDays": "O‘qilgan kunlar"
+  },
+  "language": {
+    "title": "Til",
+    "pickerTitle": "Til tanlang",
+    "pickerIntro": "Ilova tili. O‘rganayotganingiz — hangul harflari, so‘zlar va namuna gaplar — koreyschaligicha qoladi.",
+    "listAria": "Mavjud tillar",
+    "searchLabel": "Til qidirish",
+    "searchPlaceholder": "Nom yoki kod bo‘yicha qidiring",
+    "noResults": "“{{query}}” bo‘yicha til topilmadi.",
+    "selected": "Tanlangan",
+    "coverageNote": "Bu yerdagi har bir til butun ekranni va alifbo kursini tarjima qiladi. Qatorda shunday deyilgan joyda so‘z ma’nolari va misol gaplar hamon ingliz tilida ko‘rsatiladi.",
+    "wordsInEnglish": "So‘z ma’nolari ingliz tilida"
+  },
+  "font": {
+    "title": "Mashq shrifti",
+    "description": "Siz chizadigan harf o‘zingiz tanlagan shriftda chiziladi."
+  },
+  "dailyTarget": {
+    "title": "Kuniga harf",
+    "description": "Har kuni nechta hangul harfini tugatmoqchisiz.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "kuniga {{count, number}} ta",
+    "optionAria_other": "kuniga {{count, number}} ta"
+  },
+  "wordGoal": {
+    "title": "Kuniga so‘z",
+    "description": "Har kuni nechta so‘zni tugatmoqchisiz. Buni istalgan payt o‘zgartirishingiz mumkin.",
+    "option": "{{count}}",
+    "optionAria": "kuniga {{count}} ta so‘z"
+  },
+  "guides": {
+    "title": "Yordamchi chiziqlar",
+    "description": "Katak ichidagi yordamchi chiziqlar.",
+    "grid": "Ko‘ndalang va tik chiziq",
+    "crosshair": "O‘rta belgisi"
+  },
+  "about": {
+    "body": "Hangulni o‘qing va yozing: harflar, tovushlar, bo‘g‘in kataklari va ilk koreyscha so‘zlaringiz.",
+    "offline": "Har bir dars, gap va yozuv internetsiz ishlaydi.",
+    "version": "Versiya {{version}}",
+    "reset": "O‘qish jarayonini tozalash"
+  },
+  "reset": {
+    "title": "Butun o‘qish jarayoni tozalansinmi?",
+    "description": "Tugatgan darslaringiz, takrorlash tarixi va o‘qish faoliyatingiz o‘chiriladi. Buni ortga qaytarib bo‘lmaydi.",
+    "confirm": "Tozalash",
+    "cancel": "Bekor qilish",
+    "body": "Eng birinchi harfdan qaytadan boshlang."
+  },
+  "voice": {
+    "title": "Talaffuz ovozi",
+    "description": "Harflar, bo‘g‘inlar va so‘zlarni kim o‘qib beradi.",
+    "female": "Ayol ovozi",
+    "male": "Erkak ovozi",
+    "preview": "Tanlangan ovozni eshiting",
+    "provider": "Ikkita tiniq koreys ovozi, ona tilidagi sur’atdan bir oz sekinroq — har bir tovush yetib borishi uchun."
+  },
+  "groups": {
+    "learning": "O‘qish",
+    "practice": "Mashq",
+    "appearance": "Ko‘rinish",
+    "app": "Ilova",
+    "reset": "Tozalash"
+  },
+  "activity": {
+    "title": "O‘qish faoliyati",
+    "body": "Ketma-ketligingiz, taqvimingiz va o‘rganganlaringiz"
+  },
+  "appearance": {
+    "title": "Ko‘rinish",
+    "description": "Yorug‘, qorong‘i yoki telefoningiz qanday bo‘lsa shunday.",
+    "system": "Tizim",
+    "light": "Yorug‘",
+    "dark": "Qorong‘i"
+  },
+  "legal": {
+    "title": "Huquqiy ma’lumot va litsenziyalar",
+    "body": "Ilovadagi kontent va shriftlar uchun litsenziyalar",
+    "intro": "Ilovadagi ba’zi narsalar mualliflikni ko‘rsatishni talab qiladigan litsenziyalar asosida ishlatilgan. O‘sha ko‘rsatmalar shu yerda.",
+    "contentHeading": "Kontent",
+    "fontsHeading": "Shriftlar"
+  },
+  "reminder": {
+    "title": "Kunlik eslatma",
+    "description": "Kuniga bitta xotirjam turtki, o‘zingiz tanlagan vaqtda. Yoqmaguningizcha o‘chiq turadi va telefoningizdan hech qayerga chiqmaydi.",
+    "toggle": "Mashqni eslatib turing",
+    "at": "Soat",
+    "notificationTitle": "Mashq vaqti",
+    "notificationBody": "Bir necha daqiqalik koreyscha sizni kutyapti.",
+    "refused": "Telefoningiz bu ilovaga bildirishnomalarni ruxsat bermayapti. Uning sozlamalaridan yoqishingiz mumkin."
+  },
+  "privacy": {
+    "title": "Maxfiylik",
+    "body": "O‘qishingiz bilan nima bo‘ladi",
+    "lede": "Bu yerda qilgan ishingizning hech biri shu qurilmadan chiqmaydi.",
+    "device": {
+      "title": "O‘qishingiz shu yerda qoladi",
+      "points": [
+        "Nimani o‘rganganingiz va qanchalik eslab qolganingiz shu qurilmada saqlanadi. Hech qachon yuklanmaydi.",
+        "Hisob yo‘q — ro‘yxatdan o‘tadigan joy ham, siz haqingizdagi profil ham yo‘q."
+      ]
+    },
+    "tracking": {
+      "title": "Reklama yo‘q, kuzatuv yo‘q",
+      "points": [
+        "Ilova undan qanday foydalanishingizni kuzatmaydi va hech qayerga hech narsa yubormaydi.",
+        "Qo‘l yozuvingiz siz chizayotganda ekranning o‘zida baholanadi, so‘ng o‘chiriladi."
+      ]
+    },
+    "permissions": {
+      "title": "Ruxsatlar",
+      "points": [
+        "Bildirishnomalar — u ham kunlik eslatmani yoqsangizgina.",
+        "Kamera, mikrofon, suratlar, kontaktlar yoki joylashuv — hech qachon."
+      ]
+    },
+    "erase": {
+      "title": "Hammasini o‘chirish",
+      "points": [
+        "O‘rgangan hamma narsangizni {{screen}} ekranining pastidan o‘chirishingiz mumkin.",
+        "Ilovani o‘chirsangiz, u ham birga o‘chadi."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Jarayoningiz bu qurilmada saqlanmayapti, shu sababli o‘rganganlaringiz ilovani keyingi ochganingizda yo‘qolishi mumkin. Odatda brauzer sozlamalarida bu saytga ma’lumot saqlashga ruxsat berish yordam beradi.",
+    "recovered_one": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun.",
+    "recovered_other": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun."
+  },
+  "soundFree": {
+    "title": "Ovozsiz savollar",
+    "description": "Ba’zi savollar faqat yozuvdan iborat — “qaysi so‘zni eshitdingiz?”. Buni yoqsangiz, ular chiqmaydi. Xohlasangiz, hammasini baribir eshitish mumkin.",
+    "toggle": "Tinglash savollarini o‘tkazib yuborish"
+  }
+}

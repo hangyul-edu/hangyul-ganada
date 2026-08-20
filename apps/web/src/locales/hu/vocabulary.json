@@ -1,0 +1,128 @@
+{
+  "title": "Tanulj szavakat",
+  "today": {
+    "title": "A mai szavak",
+    "start": "Kezdés",
+    "resume": "Folytatás",
+    "startBlurb_one": "Ma egy szó.",
+    "startBlurb_other": "Egy rövid, {{count}} szavas adag.",
+    "resumeBlurb": "Vedd fel a fonalat ott, ahol abbahagytad.",
+    "doneBlurb": "Mára kész. Szép munka.",
+    "completeTitle": "A mai szavak megvannak.",
+    "completeDetail_one": "{{count}} szó megtanulva.",
+    "completeDetail_other": "{{count}} szó megtanulva.",
+    "more": "Még egy kicsit",
+    "allDone": "Mára nem maradt semmi.",
+    "progressAria": "Haladás a mai szavakban",
+    "moreLabel": "Mennyi legyen még",
+    "moreCount_one": "még {{count}}",
+    "moreCount_other": "még {{count}}"
+  },
+  "browse": {
+    "title": "Böngészés téma szerint",
+    "showing": "{{total}} közül {{shown}} látszik"
+  },
+  "intro": {
+    "example": "Példa",
+    "howItSounds": "Hogyan hangzik",
+    "surfaceNote": "Ebben a mondatban a(z) {{headword}} így jelenik meg: {{form}}.",
+    "next": "Értem"
+  },
+  "empty": {
+    "title": "Itt még nincsenek szavak",
+    "body": "Próbálj egy másik kategóriát."
+  },
+  "partOfSpeech": {
+    "noun": "főnév",
+    "verb": "ige",
+    "adjective": "melléknév",
+    "adverb": "határozószó",
+    "pronoun": "névmás",
+    "numeral": "számnév",
+    "particle": "partikula",
+    "interjection": "indulatszó",
+    "determiner": "determináns"
+  },
+  "session": {
+    "next": "Következő szó",
+    "finish": "Befejezés"
+  },
+  "blurb": "Minden szó nyitva áll. Válassz kategóriát, és kezdd, ahol akarod.",
+  "categories": {
+    "essentials": "Mindennapi alapok",
+    "people": "Emberek és család",
+    "food": "Étel és ital",
+    "animals-nature": "Állatok és természet",
+    "home": "Otthon és tárgyak",
+    "body-health": "Test és egészség",
+    "places-travel": "Helyek és utazás",
+    "time-numbers": "Idő és számok",
+    "school-work": "Iskola és munka",
+    "money-shopping": "Pénz és vásárlás",
+    "communication": "Beszéd és média",
+    "feelings": "Érzések és jellem",
+    "thinking": "Gondolkodás és tanulás",
+    "movement": "Jövés-menés",
+    "actions": "Mindennapi cselekvések",
+    "describing": "Dolgok leírása",
+    "society": "Élet és kultúra",
+    "how-when": "Hogyan és mikor"
+  },
+  "category": {
+    "label": "Kategória",
+    "all": "Minden kategória",
+    "pick": "Válassz kategóriát",
+    "count_one": "{{count, number}} szó",
+    "count_other": "{{count, number}} szó",
+    "progressAria": "Haladás ebben: {{category}}"
+  },
+  "search": {
+    "placeholder": "Szavak keresése",
+    "label": "Keresés a szókincsben",
+    "count_one": "{{count, number}} találat",
+    "count_other": "{{count, number}} találat",
+    "none": "Semmi nem illik erre: „{{query}}”. Próbáld koreaiul, vagy a jelentést a saját nyelveden."
+  },
+  "sound": {
+    "tensing": "Záró mássalhangzó után a következő hang megfeszül.",
+    "aspiration": "A ㅎ összeolvad a következő mássalhangzóval, és leheletnyi levegőt tesz hozzá.",
+    "nasal": "ㄴ vagy ㅁ előtt az előtte álló mássalhangzó orrhangúvá válik.",
+    "lateral": "Az egymás melletti ㄴ és ㄹ mindkettő ㄹ lesz.",
+    "palatal": "A záró ㄷ vagy ㅌ 이 előtt úgy szól, mint ㅈ vagy ㅊ.",
+    "liaison": "A záró mássalhangzó átcsúszik a következő blokkba."
+  },
+  "save": {
+    "action": "Mentés",
+    "saved": "Elmentve",
+    "add": "{{word}} mentése",
+    "remove": "{{word}} eltávolítása a mentettekből"
+  },
+  "detail": {
+    "title": "Szó",
+    "romanization": "Latin betűkkel",
+    "definition": "Még valami róla",
+    "usage": "Hogyan használják",
+    "synonyms": "Rokon értelmű szavak",
+    "antonyms": "Ellentétek"
+  },
+  "saved": {
+    "title": "Mentett szavak",
+    "review_one": "Ismétlés · {{count}} kérdés",
+    "review_other": "Ismétlés · {{count}} kérdés",
+    "searchPlaceholder": "Keresés a mentett szavak közt",
+    "searchLabel": "Keresés a mentett szavaid közt",
+    "orderLabel": "Sorrend",
+    "order": {
+      "recent": "Legutóbbiak",
+      "alphabetical": "A–Z",
+      "needed": "Munkát igényel"
+    },
+    "count_one": "{{count}} szó",
+    "count_other": "{{count}} szó",
+    "remove": "Eltávolítás",
+    "noMatch": "A mentettek közül semmi nem illik erre: „{{query}}”.",
+    "emptyTitle": "Még nincsenek mentett szavak",
+    "emptyBody": "Tanulás közben koppints bármelyik szónál a könyvjelzőre, és itt vár majd, ha vissza akarsz térni hozzá.",
+    "emptyCta": "Irány a szavak"
+  }
+}

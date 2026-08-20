@@ -1,0 +1,142 @@
+{
+  "title": "Učit se slova",
+  "today": {
+    "title": "Dnešní slova",
+    "start": "Začít",
+    "resume": "Pokračovat",
+    "startBlurb_few": "Krátká sada {{count}} slov.",
+    "startBlurb_many": "Krátká sada {{count}} slova.",
+    "startBlurb_one": "Dnes jedno slovo.",
+    "startBlurb_other": "Krátká sada {{count}} slov.",
+    "resumeBlurb": "Navažte tam, kde jste skončili.",
+    "doneBlurb": "Pro dnešek hotovo. Pěkná práce.",
+    "completeTitle": "Dnešní slova jsou hotová.",
+    "completeDetail_few": "{{count}} slova zvládnuta.",
+    "completeDetail_many": "{{count}} slova zvládnuto.",
+    "completeDetail_one": "{{count}} slovo zvládnuto.",
+    "completeDetail_other": "{{count}} slov zvládnuto.",
+    "more": "Ještě kousek",
+    "allDone": "Na dnešek nic nezbývá.",
+    "progressAria": "Postup v dnešních slovech",
+    "moreLabel": "Kolik ještě",
+    "moreCount_few": "ještě {{count}}",
+    "moreCount_many": "ještě {{count}}",
+    "moreCount_one": "ještě {{count}}",
+    "moreCount_other": "ještě {{count}}"
+  },
+  "browse": {
+    "title": "Procházet podle témat",
+    "showing": "Zobrazeno {{shown}} z {{total}}"
+  },
+  "intro": {
+    "example": "Příklad",
+    "howItSounds": "Jak to zní",
+    "surfaceNote": "V téhle větě má {{headword}} tvar {{form}}.",
+    "next": "Jasné"
+  },
+  "empty": {
+    "title": "Tady zatím žádná slova nejsou",
+    "body": "Zkuste jinou kategorii."
+  },
+  "partOfSpeech": {
+    "noun": "podstatné jméno",
+    "verb": "sloveso",
+    "adjective": "přídavné jméno",
+    "adverb": "příslovce",
+    "pronoun": "zájmeno",
+    "numeral": "číslovka",
+    "particle": "částice",
+    "interjection": "citoslovce",
+    "determiner": "determinátor"
+  },
+  "session": {
+    "next": "Další slovo",
+    "finish": "Dokončit"
+  },
+  "blurb": "Všechna slova jsou otevřená. Vyberte kategorii a začněte, kde chcete.",
+  "categories": {
+    "essentials": "Každodenní základ",
+    "people": "Lidé a rodina",
+    "food": "Jídlo a pití",
+    "animals-nature": "Zvířata a příroda",
+    "home": "Domov a věci",
+    "body-health": "Tělo a zdraví",
+    "places-travel": "Místa a cestování",
+    "time-numbers": "Čas a čísla",
+    "school-work": "Škola a práce",
+    "money-shopping": "Peníze a nákupy",
+    "communication": "Mluvení a média",
+    "feelings": "Pocity a povaha",
+    "thinking": "Myšlení a učení",
+    "movement": "Chození sem a tam",
+    "actions": "Každodenní činnosti",
+    "describing": "Popis věcí",
+    "society": "Život a kultura",
+    "how-when": "Jak a kdy"
+  },
+  "category": {
+    "label": "Kategorie",
+    "all": "Všechny kategorie",
+    "pick": "Vyberte kategorii",
+    "count_few": "{{count, number}} slova",
+    "count_many": "{{count, number}} slova",
+    "count_one": "{{count, number}} slovo",
+    "count_other": "{{count, number}} slov",
+    "progressAria": "Postup v kategorii {{category}}"
+  },
+  "search": {
+    "placeholder": "Hledat slova",
+    "label": "Hledat ve slovní zásobě",
+    "count_few": "{{count, number}} shody",
+    "count_many": "{{count, number}} shody",
+    "count_one": "{{count, number}} shoda",
+    "count_other": "{{count, number}} shod",
+    "none": "Nic neodpovídá „{{query}}“. Zkuste korejsky, nebo význam ve svém jazyce."
+  },
+  "sound": {
+    "tensing": "Po koncové souhlásce se další zvuk sevře.",
+    "aspiration": "ㅎ splyne s další souhláskou a přidá závan vzduchu.",
+    "nasal": "Před ㄴ nebo ㅁ se souhláska před nimi změní na nosovku.",
+    "lateral": "ㄴ a ㄹ vedle sebe se obě změní na ㄹ.",
+    "palatal": "Koncové ㄷ nebo ㅌ před 이 se vyslovuje jako ㅈ nebo ㅊ.",
+    "liaison": "Koncová souhláska se přesune do dalšího bloku."
+  },
+  "save": {
+    "action": "Uložit",
+    "saved": "Uloženo",
+    "add": "Uložit {{word}}",
+    "remove": "Odebrat {{word}} z uložených"
+  },
+  "detail": {
+    "title": "Slovo",
+    "romanization": "V latince",
+    "definition": "Něco navíc",
+    "usage": "Jak se používá",
+    "synonyms": "Synonyma",
+    "antonyms": "Opaky"
+  },
+  "saved": {
+    "title": "Uložená slova",
+    "review_few": "Opakování · {{count}} otázky",
+    "review_many": "Opakování · {{count}} otázky",
+    "review_one": "Opakování · {{count}} otázka",
+    "review_other": "Opakování · {{count}} otázek",
+    "searchPlaceholder": "Hledat v uložených slovech",
+    "searchLabel": "Hledat ve vašich uložených slovech",
+    "orderLabel": "Řazení",
+    "order": {
+      "recent": "Nejnovější",
+      "alphabetical": "A–Z",
+      "needed": "Chce zabrat"
+    },
+    "count_few": "{{count}} slova",
+    "count_many": "{{count}} slova",
+    "count_one": "{{count}} slovo",
+    "count_other": "{{count}} slov",
+    "remove": "Odebrat",
+    "noMatch": "Mezi uloženými nic neodpovídá „{{query}}“.",
+    "emptyTitle": "Zatím žádná uložená slova",
+    "emptyBody": "Při učení klepněte u kteréhokoli slova na záložku a bude tu čekat, až se k němu budete chtít vrátit.",
+    "emptyCta": "Na slova"
+  }
+}

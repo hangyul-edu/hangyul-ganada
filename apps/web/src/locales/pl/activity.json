@@ -1,0 +1,101 @@
+{
+  "title": "Aktywność w nauce",
+  "streak": {
+    "caption": "Każde ćwiczenie ją podtrzymuje — nie musisz kończyć litery.",
+    "longest": "Najdłuższa seria",
+    "totalDays": "Dni z ćwiczeniami",
+    "totalTime": "Łączny czas",
+    "unit_few": "dni z rzędu",
+    "unit_many": "dni z rzędu",
+    "unit_one": "dzień z rzędu",
+    "unit_other": "dnia z rzędu"
+  },
+  "chart": {
+    "title": "Aktywność",
+    "rangeAria": "Wybierz zakres czasu",
+    "aria": "Ćwiczenia dzień po dniu",
+    "noneYet": "W tym okresie jeszcze nie ćwiczyłeś.",
+    "range": {
+      "7": "7 dni",
+      "30": "30 dni",
+      "90": "3 miesiące",
+      "0": "Wszystko"
+    }
+  },
+  "calendar": {
+    "previous": "Poprzedni miesiąc",
+    "next": "Następny miesiąc",
+    "less": "Mniej",
+    "more": "Więcej",
+    "dayAria_few": "{{date}}: {{count, number}} próby",
+    "dayAria_many": "{{date}}: {{count, number}} prób",
+    "dayAria_one": "{{date}}: {{count, number}} próba",
+    "dayAria_other": "{{date}}: {{count, number}} próby"
+  },
+  "day": {
+    "time": "Czas nauki",
+    "attempts": "Próby pisania",
+    "correct": "Poprawne",
+    "charactersLearned": "Ukończone litery",
+    "wordsLearned": "Ukończone słowa",
+    "reviews": "Próby w powtórkach",
+    "nothing": "Tego dnia bez ćwiczeń."
+  },
+  "insights": {
+    "title": "Co się wyróżnia",
+    "mostPractisedCharacter": "Najczęściej ćwiczona litera",
+    "mostPractisedWord": "Najczęściej ćwiczone słowo",
+    "accuracy": "Celność pisma",
+    "thisWeek": "W tym tygodniu",
+    "learnedCount_few": "{{count, number}} ukończone",
+    "learnedCount_many": "{{count, number}} ukończonych",
+    "learnedCount_one": "{{count, number}} ukończona",
+    "learnedCount_other": "{{count, number}} ukończone"
+  },
+  "units": {
+    "minute_few": "{{count, number}} min",
+    "minute_many": "{{count, number}} min",
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_few": "{{count, number}} godz.",
+    "hour_many": "{{count, number}} godz.",
+    "hour_one": "{{count, number}} godz.",
+    "hour_other": "{{count, number}} godz."
+  },
+  "empty": {
+    "title": "Twoja historia nauki zaczyna się dziś",
+    "body": "Poćwicz kilka liter, a ta strona się zapełni: dni, w które się uczyłeś, jak długo i nad czym pracowałeś."
+  },
+  "week": {
+    "title": "W tym tygodniu",
+    "range": "Od {{from}}",
+    "days": "Dni nauki",
+    "daysValue_few": "{{count, number}} z 7",
+    "daysValue_many": "{{count, number}} z 7",
+    "daysValue_one": "{{count, number}} z 7",
+    "daysValue_other": "{{count, number}} z 7",
+    "time": "Czas",
+    "learned": "Opanowane",
+    "accuracy": "Celność",
+    "same": "Tyle samo czasu co w zeszłym tygodniu.",
+    "moreThanLast": "{{minutes, number}} minut więcej niż w zeszłym tygodniu.",
+    "lessThanLast": "{{minutes, number}} minut mniej niż w zeszłym tygodniu.",
+    "quiet": "W tym tygodniu jeszcze nic — czas jeszcze jest."
+  },
+  "memory": {
+    "title": "Jak idzie zapamiętywanie",
+    "firstTry": "W tym tygodniu {{count, number}} rzeczy przypomniałeś sobie za pierwszym razem.",
+    "strongestSkill": "W tym tygodniu najlepiej idzie ci {{skill}}.",
+    "confusionImproving": "{{a}} i {{b}} coraz łatwiej ci odróżnić.",
+    "skill": {
+      "reading_recognition": "czytanie",
+      "listening_recognition": "słuchanie",
+      "guided_writing": "pisanie",
+      "meaning_recognition": "znaczenie",
+      "sentence_comprehension": "zdania",
+      "sound_recognition": "dźwięki",
+      "visual_recognition": "litery",
+      "lookalike_discrimination": "odróżnianie podobnych"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+ "ㅏ": [
+  "como o a de «casa»",
+  "Um poste com um ramo curto à direita."
+ ],
+ "ㅓ": [
+  "como o ó de «pó», com a boca menos redonda",
+  "O ramo aponta para a esquerda."
+ ],
+ "ㅗ": [
+  "como o ô de «avô»",
+  "O ramo aponta para cima."
+ ],
+ "ㅜ": [
+  "como o u de «lua»",
+  "O ramo aponta para baixo."
+ ],
+ "ㅡ": [
+  "lábios esticados e planos; não existe em português",
+  "Uma única linha horizontal."
+ ],
+ "ㅣ": [
+  "como o i de «vida»",
+  "Uma única linha vertical."
+ ],
+ "ㄱ": [
+  "Entre g e k; entre vogais soa mais como g.",
+  "Encoste o dorso da língua no céu da boca e solte."
+ ],
+ "ㄴ": [
+  "Como o n de «não».",
+  "Encoste a ponta da língua logo atrás dos dentes de cima."
+ ],
+ "ㄷ": [
+  "Entre d e t; entre vogais soa mais como d.",
+  "ㄴ com uma linha fechando em cima."
+ ],
+ "ㄹ": [
+  "Um toque leve, entre r e l; no fim da sílaba soa como l.",
+  "Dê um toquinho para a frente com a língua, uma vez só."
+ ],
+ "ㅁ": [
+  "como o m de «mãe»",
+  "Um quadrado: o formato de uma boca fechada."
+ ],
+ "ㅂ": [
+  "Entre b e p; entre vogais soa mais como b.",
+  "ㅁ aberto em cima."
+ ],
+ "ㅅ": [
+  "Como o s de «sol».",
+  "Deixe o ar escapar entre os dentes."
+ ],
+ "ㅇ": [
+  "muda no início da sílaba, ng no fim",
+  "Um círculo: a garganta aberta. Ele guarda o lugar quando a sílaba começa com vogal."
+ ],
+ "ㅈ": [
+  "como o j de «jipe»",
+  "ㅅ com uma linha em cima."
+ ],
+ "ㅎ": [
+  "como o h aspirado de «house» em inglês",
+  "ㅇ com um chapéu de dois traços."
+ ],
+ "ㅑ": [
+  "como ia em «piada»",
+  "ㅏ com um segundo ramo. Um ramo a mais sempre acrescenta um i."
+ ],
+ "ㅕ": [
+  "como ió, com a boca menos redonda",
+  "ㅓ com um segundo ramo."
+ ],
+ "ㅛ": [
+  "como io em «iodo»",
+  "ㅗ com um segundo ramo."
+ ],
+ "ㅠ": [
+  "como iu em «viu»",
+  "ㅜ com um segundo ramo."
+ ],
+ "ㅊ": [
+  "ㅈ com um sopro de ar",
+  "ㅈ com um traço a mais. Um traço a mais significa ar a mais."
+ ],
+ "ㅋ": [
+  "ㄱ com um sopro de ar",
+  "ㄱ com um traço a mais."
+ ],
+ "ㅌ": [
+  "ㄷ com um sopro de ar",
+  "ㄷ com um traço a mais."
+ ],
+ "ㅍ": [
+  "ㅂ com um sopro de ar",
+  "ㅂ deitado de lado."
+ ],
+ "ㅐ": [
+  "como o é de «pé»",
+  "ㅏ + ㅣ escritos juntos."
+ ],
+ "ㅔ": [
+  "como o ê de «mesa»",
+  "ㅓ + ㅣ. Hoje quase todos os coreanos pronunciam ㅐ e ㅔ igual."
+ ],
+ "ㅒ": [
+  "como ié",
+  "ㅑ + ㅣ."
+ ],
+ "ㅖ": [
+  "como iê",
+  "ㅕ + ㅣ."
+ ],
+ "ㄲ": [
+  "ㄱ, tenso e seco",
+  "Dois ㄱ. Aperte a garganta e solte de uma vez."
+ ],
+ "ㄸ": [
+  "ㄷ, tenso e seco",
+  "Dois ㄷ."
+ ],
+ "ㅃ": [
+  "ㅂ, tenso e seco",
+  "Dois ㅂ."
+ ],
+ "ㅆ": [
+  "ㅅ, tenso e seco",
+  "Dois ㅅ."
+ ],
+ "ㅉ": [
+  "ㅈ, tenso e seco",
+  "Dois ㅈ."
+ ],
+ "ㅘ": [
+  "como ua em «quando»",
+  "ㅗ + ㅏ. São ㅗ e ㅜ que acrescentam o w."
+ ],
+ "ㅝ": [
+  "como uó",
+  "ㅜ + ㅓ."
+ ],
+ "ㅚ": [
+  "como ué",
+  "ㅗ + ㅣ."
+ ],
+ "ㅟ": [
+  "como ui em «cuidar»",
+  "ㅜ + ㅣ."
+ ],
+ "ㅙ": [
+  "como ué",
+  "ㅗ + ㅐ. Hoje ㅙ, ㅞ e ㅚ soam igual."
+ ],
+ "ㅞ": [
+  "como ué",
+  "ㅜ + ㅔ."
+ ],
+ "ㅢ": [
+  "ㅡ e depois ㅣ, seguidos",
+  "ㅡ + ㅣ."
+ ],
+ "가": [
+  "ㄱ + ㅏ",
+  "A consoante fica à esquerda; uma vogal alta, à direita."
+ ],
+ "나": [
+  "ㄴ + ㅏ — também a palavra «eu»",
+  null
+ ],
+ "다": [
+  "ㄷ + ㅏ",
+  null
+ ],
+ "라": [
+  "ㄹ + ㅏ",
+  null
+ ],
+ "마": [
+  "ㅁ + ㅏ",
+  null
+ ],
+ "거": [
+  "ㄱ + ㅓ",
+  null
+ ],
+ "고": [
+  "ㄱ + ㅗ — a vogal vai embaixo",
+  "Uma vogal plana fica sob a consoante, nunca ao lado."
+ ],
+ "구": [
+  "ㄱ + ㅜ",
+  null
+ ],
+ "그": [
+  "ㄱ + ㅡ",
+  null
+ ],
+ "기": [
+  "ㄱ + ㅣ",
+  null
+ ],
+ "바": [
+  "ㅂ + ㅏ",
+  null
+ ],
+ "사": [
+  "ㅅ + ㅏ",
+  null
+ ],
+ "아": [
+  "ㅇ + ㅏ — lê-se apenas «a»",
+  "Aqui o ㅇ não soa. Ele guarda o lugar da consoante."
+ ],
+ "자": [
+  "ㅈ + ㅏ",
+  null
+ ],
+ "하": [
+  "ㅎ + ㅏ",
+  null
+ ],
+ "어": [
+  "ㅇ + ㅓ — lê-se «eo»",
+  null
+ ],
+ "오": [
+  "ㅇ + ㅗ — lê-se «o»",
+  null
+ ],
+ "우": [
+  "ㅇ + ㅜ — lê-se «u»",
+  null
+ ],
+ "으": [
+  "ㅇ + ㅡ — lê-se «eu»",
+  null
+ ],
+ "이": [
+  "ㅇ + ㅣ — lê-se «i»",
+  null
+ ],
+ "안": [
+  "ㅇ + ㅏ + ㄴ",
+  "A terceira letra vai embaixo. O bloco se lê de cima para baixo."
+ ],
+ "말": [
+  "ㅁ + ㅏ + ㄹ — a palavra «palavras»",
+  null
+ ],
+ "밤": [
+  "ㅂ + ㅏ + ㅁ — a palavra «noite»",
+  null
+ ],
+ "강": [
+  "ㄱ + ㅏ + ㅇ — aqui o ㅇ *é* um som: ng",
+  null
+ ],
+ "산": [
+  "ㅅ + ㅏ + ㄴ — a palavra «montanha»",
+  null
+ ],
+ "밥": [
+  "termina num p retido",
+  "O ㅂ final é travado, não solto. Diga «bap» sem terminar o p."
+ ],
+ "옷": [
+  "o ㅅ no pé é dito como t",
+  "Só sete sons ali embaixo: ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ viram todos t."
+ ],
+ "국": [
+  "termina num k retido — a palavra «sopa»",
+  null
+ ],
+ "꽃": [
+  "o ㅊ no pé é dito t, então é «kkot»",
+  null
+ ],
+ "한": [
+  "ㅎ + ㅏ + ㄴ — a primeira sílaba de 한글",
+  null
+ ],
+ "글": [
+  "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, o nome desta escrita",
+  null
+ ],
+ "공": [
+  "ㄱ + ㅗ + ㅇ — como em 공부, «estudo»",
+  null
+ ],
+ "부": [
+  "ㅂ + ㅜ — 공 + 부 = 공부, «estudo»",
+  null
+ ]
+}

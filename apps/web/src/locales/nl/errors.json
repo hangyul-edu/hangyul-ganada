@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "page": "Die pagina konden we niet vinden.",
+    "lesson": "Die les konden we niet vinden.",
+    "wordLesson": "Die woordenreeks konden we niet vinden."
+  },
+  "generic": "Er ging iets mis. Probeer het nog eens."
+}

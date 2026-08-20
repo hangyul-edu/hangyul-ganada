@@ -43,7 +43,7 @@ import { toSyllables } from './jamo';
 interface GeneratedWord {
   id: string;
   word: string;
-  pronunciation: string;
+  romanization: string;
   part_of_speech: VocabularyWord['part_of_speech'];
   example: string;
   /** `[band index into file.frequency_bands, rank, rate]`. */
@@ -203,7 +203,7 @@ export const VOCABULARY: VocabularyWord[] = file.words.map((row) => {
   return {
     id: row.id,
     word: row.word,
-    pronunciation: row.pronunciation,
+    romanization: row.romanization,
     part_of_speech: row.part_of_speech,
     example: row.example,
     frequency: {
@@ -466,7 +466,7 @@ export function searchWords(
     if (word.word === needle || meaning === needle) rank = 0;
     else if (word.word.startsWith(needle) || meaning.startsWith(needle)) rank = 1;
     else if (word.word.includes(needle) || meaning.includes(needle)) rank = 2;
-    else if (word.pronunciation.toLowerCase().includes(needle)) rank = 3;
+    else if (word.romanization.toLowerCase().includes(needle)) rank = 3;
     else continue;
     scored.push({ word, rank });
   }

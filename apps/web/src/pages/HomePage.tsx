@@ -14,7 +14,6 @@ import { resolveContent, useFormatters, useLocale } from '../i18n';
 import { formatDuration } from '../i18n/duration';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
-import { Badge } from '../ui/Chip';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { CircularProgress, ProgressBar } from '../ui/Progress';
@@ -80,9 +79,22 @@ export function HomePage() {
    */
   const week = useMemo(() => weeklyReport(state.activity, new Date()), [state.activity]);
 
+  /**
+   * The lesson to continue, or `null` once the alphabet is finished.
+   *
+   * `null` is the case this screen used to have no answer for. `nextLesson`
+   * fell back to the last lesson, so a learner who had finished all forty
+   * letters was shown the chapter they had just completed under a button
+   * reading *Continue* — tap it, arrive at a lesson with every letter green,
+   * come back, be offered it again. The one moment in this product that is
+   * unambiguously an achievement, rendered as a dead end.
+   *
+   * Finishing now has its own card, and its button goes to the thing that
+   * genuinely comes next: today's words.
+   */
   const lesson = nextLesson(state.progress);
-  const unit = CURRICULUM_UNITS.find((u) => u.lesson_ids.includes(lesson.id));
-  const lessonTitle = resolveContent(lesson.translations, locale);
+  const unit = lesson ? CURRICULUM_UNITS.find((u) => u.lesson_ids.includes(lesson.id)) : undefined;
+  const lessonTitle = lesson ? resolveContent(lesson.translations, locale) : null;
   const started = summary.total_attempts > 0;
 
   return (
@@ -161,36 +173,84 @@ export function HomePage() {
         */}
         {!started && <p className={styles.purpose}>{t('home:purpose')}</p>}
 
-        <Card tone="featured" padding="lg" className={styles.featured}>
-          <div className={styles.featuredTop}>
-            <div className={styles.featuredText}>
-              {unit && (
-                <p className={styles.featuredUnit}>
-                  {t('learning:units.badge', { index: unit.index })}
+        {lesson && lessonTitle ? (
+          <Card tone="featured" padding="lg" className={styles.featured}>
+            <div className={styles.featuredTop}>
+              <div className={styles.featuredText}>
+                {unit && (
+                  <p className={styles.featuredUnit}>
+                    {t('learning:units.badge', { index: unit.index })}
+                  </p>
+                )}
+                <LocalizedText as="h2" locale={lessonTitle.locale} className={styles.featuredTitle}>
+                  {lessonTitle.value.title}
+                </LocalizedText>
+                <p className={styles.featuredSubtitle} lang="ko" dir="ltr">
+                  {lesson.subtitle}
                 </p>
-              )}
-              <LocalizedText as="h2" locale={lessonTitle.locale} className={styles.featuredTitle}>
-                {lessonTitle.value.title}
-              </LocalizedText>
-              <p className={styles.featuredSubtitle} lang="ko" dir="ltr">
-                {lesson.subtitle}
-              </p>
-              <p className={styles.featuredGoal}>
-                {t('home:dailyGoal')}{' '}
-                <strong className="hg-numeric">{format.fraction(daily.done, daily.total)}</strong>
-              </p>
+                <p className={styles.featuredGoal}>
+                  {t('home:dailyGoal')}{' '}
+                  <strong className="hg-numeric">{format.fraction(daily.done, daily.total)}</strong>
+                </p>
+              </div>
+              <CircularProgress
+                value={daily.ratio}
+                label={t('home:dailyGoalAria', { done: daily.done, total: daily.total })}
+                size={92}
+              />
             </div>
-            <CircularProgress
-              value={daily.ratio}
-              label={t('home:dailyGoalAria', { done: daily.done, total: daily.total })}
-              size={92}
-            />
-          </div>
 
-          <Button size="lg" fullWidth onClick={() => navigate(`/letters/${lesson.id}`)}>
-            {started ? t('home:cta.continue') : t('home:cta.start')}
-          </Button>
-        </Card>
+            <Button size="lg" fullWidth onClick={() => navigate(`/letters/${lesson.id}`)}>
+              {started ? t('home:cta.continue') : t('home:cta.start')}
+            </Button>
+          </Card>
+        ) : (
+          /*
+            The alphabet is finished.
+
+            A real end state, not a re-offer of the last chapter. It says the
+            thing that happened, and its button goes to what actually comes
+            next — the day's words — with the day's own count on it, because
+            the letters-a-day goal is a goal there is nothing left to spend on.
+
+            The letters are still one tap away in the row below and on the
+            Letters screen, so this closes nothing off; it stops the screen
+            pretending there is a chapter left to open.
+          */
+          <Card tone="featured" padding="lg" className={styles.featured} data-testid="alphabet-done">
+            <div className={styles.featuredTop}>
+              <div className={styles.featuredText}>
+                <p className={styles.featuredUnit}>{t('home:finished.badge')}</p>
+                <h2 className={styles.featuredTitle}>{t('home:finished.title')}</h2>
+                <p className={styles.featuredSubtitle}>
+                  {t('home:finished.body', { count: alphabet.total })}
+                </p>
+                <p className={styles.featuredGoal}>
+                  {t('home:finished.goal')}{' '}
+                  <strong className="hg-numeric">
+                    {format.fraction(
+                      vocabularyProgressToday.done,
+                      vocabularyProgressToday.total,
+                    )}
+                  </strong>
+                </p>
+              </div>
+              {/*
+                No ring on this card.
+
+                The lesson card's ring measures the day and belongs there. Here
+                it measured the day's *words* and printed "0 %" beside the words
+                "You can read Hangul" — a headline saying finished and a dial
+                saying nothing done, on the same line. The fraction above says
+                the same thing without contradicting the sentence next to it.
+              */}
+            </div>
+
+            <Button size="lg" fullWidth onClick={() => navigate('/words')}>
+              {t('home:finished.cta')}
+            </Button>
+          </Card>
+        )}
 
         {/* Only once there is a week to report. A learner on their first day is
             not shown "0 days, 0 minutes", which is true and discouraging and
@@ -239,54 +299,48 @@ export function HomePage() {
           />
         </div>
 
-        <Link to="/review" className={styles.reviewRow}>
-          <Card padding="md" className={styles.reviewCard}>
-            <span className={styles.reviewIcon}>
-              <ReviewIcon size={22} />
-            </span>
-            <span className={styles.reviewText}>
-              <span className={styles.reviewTitle}>{t('home:review.title')}</span>
-              {/* The resolved plan's count, the same one the Review screen
-                  shows and the same one its Start button runs. */}
-              <span className={styles.reviewMeta}>
-                {review.count > 0
-                  ? t('home:review.count', { count: review.count })
-                  : t('home:review.empty')}
-              </span>
-            </span>
-            {review.count > 0 && (
-              <Badge tone="primary" filled numeric>
-                {format.number(review.count)}
-              </Badge>
-            )}
-            <ChevronRightIcon size={20} />
-          </Card>
-        </Link>
-
         {/*
-          Vocabulary, as today rather than as a catalogue.
+          Review, once.
 
-          What used to sit here was a suggested *set*: "Animals · 개 · 새 · 고양이",
-          which the learner tapped to open six words and start drawing
-          syllables. Choosing a set was never a decision anybody could make well,
-          and it is not a decision they have to make any more.
+          When there is something to go over, the practice card at the top of
+          the screen already says how much and has the button that starts it;
+          this row said the same number again, four rows further down, linking
+          to a screen whose job is to offer the same session. Two entry points
+          to one action is not two chances to take it, it is a screen that
+          cannot decide what it is asking for.
+
+          So the row survives only for the empty state, where it is not a
+          duplicate but the one place that says Review exists and has nothing
+          in it yet.
         */}
-        {!vocabularyProgressToday.complete && (
-          <Link to="/words" className={styles.lessonRow}>
-            <span className={styles.lessonInfo}>
-              <span className={styles.lessonTitle}>{t('vocabulary:today.title')}</span>
-              <span className={styles.lessonSubtitle}>
-                {t('vocabulary:today.remaining', {
-                  count: Math.max(
-                    0,
-                    vocabularyProgressToday.total - vocabularyProgressToday.done,
-                  ),
-                })}
+        {review.count === 0 && (
+          <Link to="/review" className={styles.reviewRow}>
+            <Card padding="md" className={styles.reviewCard}>
+              <span className={styles.reviewIcon}>
+                <ReviewIcon size={22} />
               </span>
-            </span>
-            <ChevronRightIcon size={18} />
+              <span className={styles.reviewText}>
+                <span className={styles.reviewTitle}>{t('home:review.title')}</span>
+                <span className={styles.reviewMeta}>{t('home:review.empty')}</span>
+              </span>
+              <ChevronRightIcon size={20} />
+            </Card>
           </Link>
         )}
+
+        {/*
+          The day's words are the Words card above, and nothing else.
+
+          A second row sat here — "Today's words · 10 left today" — directly
+          under a card reading "Words 0/10 · today's words", pointing at the
+          same screen. Two ways of writing one fraction, one under the other,
+          on the first screen anybody sees.
+
+          What used to be here before either of them was a suggested *set*:
+          "Animals · 개 · 새 · 고양이". Choosing a set was never a decision
+          anybody could make well, and it is not a decision they have to make
+          any more.
+        */}
       </div>
 
       {/*

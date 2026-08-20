@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "page": "Vi hittade inte den sidan.",
+    "lesson": "Vi hittade inte den lektionen.",
+    "wordLesson": "Vi hittade inte den ordsamlingen."
+  },
+  "generic": "Något gick fel. Försök igen."
+}

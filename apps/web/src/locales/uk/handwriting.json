@@ -1,0 +1,117 @@
+{
+  "actions": {
+    "undo": "Скасувати",
+    "clear": "Очистити",
+    "check": "Перевірити"
+  },
+  "canvas": {
+    "label": "Поле для написання літери {{character}}",
+    "empty": "Поки нічого не написано.",
+    "strokes_few": "Написано {{count, number}} риски.",
+    "strokes_many": "Написано {{count, number}} рисок.",
+    "strokes_one": "Написано {{count, number}} риску.",
+    "strokes_other": "Написано {{count, number}} риски."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Ось так!",
+      "perfect": "{{character}} — написано чудово.",
+      "scored": "Форма гарна — пройдено {{score, number(style: percent)}} шляху."
+    },
+    "empty": {
+      "headline": "Поки порожньо",
+      "detail": "Напишіть літеру всередині рамки."
+    },
+    "incomplete": {
+      "headline": "Майже",
+      "tooSmall": "Трохи дрібно. Спробуйте заповнити рамку.",
+      "missingStroke": "Бракує риски. Ведіть по взірцю до самого кінця."
+    },
+    "outside": {
+      "headline": "Не зовсім",
+      "tooLarge": "Вийшло за рамку. Наступного разу трохи дрібніше.",
+      "strayStroke": "Одна риска пішла вбік. Ведіть по лінії неквапом."
+    },
+    "scribble": {
+      "headline": "Спробуймо повільніше",
+      "detail": "Ведіть кожну риску один раз, одним плавним рухом — повертатися по ній не треба."
+    },
+    "mixed": {
+      "headline": "Не зовсім",
+      "detail": "Сумістіть із взірцем і спробуйте ще раз."
+    },
+    "retry": "Спробувати ще",
+    "showDetails": "Показати подробиці",
+    "hideDetails": "Сховати подробиці",
+    "breakdown": "Розбіжність {{mismatch, number(style: percent)}} · поза рамкою {{outside, number(style: percent)}} · бракує {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Як пишеться {{character}} — у {{count, number}} риски",
+    "diagramLabel_many": "Як пишеться {{character}} — у {{count, number}} рисок",
+    "diagramLabel_one": "Як пишеться {{character}} — у {{count, number}} риску",
+    "diagramLabel_other": "Як пишеться {{character}} — у {{count, number}} риски",
+    "pause": "Пауза",
+    "count_few": "{{count, number}} риски",
+    "count_many": "{{count, number}} рисок",
+    "count_one": "{{count, number}} риска",
+    "count_other": "{{count, number}} риски",
+    "heading": "Подивіться, як її пишуть",
+    "notesFooter": "Порядок рисок в оцінку не входить. Саме він робить почерк правильним на вигляд.",
+    "notes": {
+      "fewer": "Ви використали {{theirs, number}} рисок; цю літеру зазвичай пишуть у {{expected, number}}.",
+      "more": "Ви використали {{theirs, number}} рисок; цю літеру зазвичай пишуть у {{expected, number}}.",
+      "startElsewhere": "Зазвичай вона починається {{corner}} рамки.",
+      "direction_few": "{{count, number}} риски пішли у зворотний бік. Корейські риски йдуть згори вниз і зліва направо.",
+      "direction_many": "{{count, number}} рисок пішли у зворотний бік. Корейські риски йдуть згори вниз і зліва направо.",
+      "direction_one": "{{count, number}} риска пішла у зворотний бік. Корейські риски йдуть згори вниз і зліва направо.",
+      "direction_other": "{{count, number}} риски пішли у зворотний бік. Корейські риски йдуть згори вниз і зліва направо."
+    },
+    "corners": {
+      "topLeft": "з лівого верхнього кута",
+      "topCentre": "згори",
+      "topRight": "з правого верхнього кута",
+      "middleLeft": "ліворуч",
+      "middleCentre": "з центру",
+      "middleRight": "праворуч",
+      "bottomLeft": "з лівого нижнього кута",
+      "bottomCentre": "знизу",
+      "bottomRight": "з правого нижнього кута"
+    },
+    "watchAgain": "Подивитися ще раз",
+    "back": "Назад",
+    "next": "Уперед",
+    "position": "Риска {{current, number}} з {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "довга риска вниз",
+      "downLongTwice": "дві довгі риски вниз, спершу ліва",
+      "downShort": "коротка риска вниз",
+      "downShortTwice": "дві короткі риски вниз, спершу ліва",
+      "acrossLong": "довга риска впоперек",
+      "acrossLongTwice": "дві довгі риски впоперек, спершу верхня",
+      "acrossShort": "коротка риска впоперек",
+      "acrossShortTwice": "дві короткі риски впоперек, спершу верхня",
+      "cornerAcrossDown": "упоперек по верху й униз правим боком",
+      "cornerDownAcross": "униз лівим боком і поворот праворуч",
+      "slantLeft": "риска навскіс униз ліворуч",
+      "slantRight": "риска навскіс униз праворуч",
+      "circle": "кружечок, по колу згори"
+    },
+    "s1": "Лише одна риска: {{a}}.",
+    "s2": "Спершу {{a}}. Тоді {{b}}.",
+    "s3": "Спершу {{a}}. Тоді {{b}}. Тоді {{c}}.",
+    "s4": "Спершу {{a}}. Тоді {{b}}. Тоді {{c}}. Наостанок {{d}}.",
+    "parts2": {
+      "plain": "Напишіть спершу {{a}}, тоді {{b}}.",
+      "right": "Напишіть спершу {{a}}, тоді {{b}} праворуч від нього.",
+      "below": "Напишіть спершу {{a}}, тоді {{b}} під ним."
+    },
+    "parts3": {
+      "right": "Напишіть {{a}}, тоді {{b}} праворуч від нього, тоді {{c}} уздовж низу.",
+      "below": "Напишіть {{a}}, тоді {{b}} під ним, тоді {{c}} уздовж низу."
+    },
+    "partsDouble": "Напишіть {{a}} двічі, поруч — спершу ліву.",
+    "fallback": "{{strokes}} рисок, у тому порядку, що показують цифри."
+  }
+}

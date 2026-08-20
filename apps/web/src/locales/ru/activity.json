@@ -1,0 +1,101 @@
+{
+  "title": "Учебная активность",
+  "streak": {
+    "caption": "Любая тренировка её продлевает — заканчивать букву не обязательно.",
+    "longest": "Самая длинная серия",
+    "totalDays": "Дней занятий",
+    "totalTime": "Всего времени",
+    "unit_few": "дня подряд",
+    "unit_many": "дней подряд",
+    "unit_one": "день подряд",
+    "unit_other": "дня подряд"
+  },
+  "chart": {
+    "title": "Активность",
+    "rangeAria": "Выберите период",
+    "aria": "Занятия по дням",
+    "noneYet": "За этот период занятий пока нет.",
+    "range": {
+      "7": "7 дней",
+      "30": "30 дней",
+      "90": "3 месяца",
+      "0": "Всё время"
+    }
+  },
+  "calendar": {
+    "previous": "Предыдущий месяц",
+    "next": "Следующий месяц",
+    "less": "Меньше",
+    "more": "Больше",
+    "dayAria_few": "{{date}}: {{count, number}} попытки",
+    "dayAria_many": "{{date}}: {{count, number}} попыток",
+    "dayAria_one": "{{date}}: {{count, number}} попытка",
+    "dayAria_other": "{{date}}: {{count, number}} попытки"
+  },
+  "day": {
+    "time": "Время занятий",
+    "attempts": "Попытки письма",
+    "correct": "Верно",
+    "charactersLearned": "Букв пройдено",
+    "wordsLearned": "Слов пройдено",
+    "reviews": "Попытки в повторении",
+    "nothing": "В этот день занятий не было."
+  },
+  "insights": {
+    "title": "Что бросается в глаза",
+    "mostPractisedCharacter": "Самая отработанная буква",
+    "mostPractisedWord": "Самое отработанное слово",
+    "accuracy": "Точность письма",
+    "thisWeek": "На этой неделе",
+    "learnedCount_few": "{{count, number}} пройдены",
+    "learnedCount_many": "{{count, number}} пройдено",
+    "learnedCount_one": "{{count, number}} пройдена",
+    "learnedCount_other": "{{count, number}} пройдено"
+  },
+  "units": {
+    "minute_few": "{{count, number}} мин",
+    "minute_many": "{{count, number}} мин",
+    "minute_one": "{{count, number}} мин",
+    "minute_other": "{{count, number}} мин",
+    "hour_few": "{{count, number}} ч",
+    "hour_many": "{{count, number}} ч",
+    "hour_one": "{{count, number}} ч",
+    "hour_other": "{{count, number}} ч"
+  },
+  "empty": {
+    "title": "Ваша история занятий начинается сегодня",
+    "body": "Потренируйте несколько букв — и эта страница наполнится: дни, когда вы занимались, сколько времени и над чем работали."
+  },
+  "week": {
+    "title": "На этой неделе",
+    "range": "С {{from}}",
+    "days": "Дней занятий",
+    "daysValue_few": "{{count, number}} из 7",
+    "daysValue_many": "{{count, number}} из 7",
+    "daysValue_one": "{{count, number}} из 7",
+    "daysValue_other": "{{count, number}} из 7",
+    "time": "Время",
+    "learned": "Выучено",
+    "accuracy": "Точность",
+    "same": "Столько же времени, сколько на прошлой неделе.",
+    "moreThanLast": "На {{minutes, number}} минут больше, чем на прошлой неделе.",
+    "lessThanLast": "На {{minutes, number}} минут меньше, чем на прошлой неделе.",
+    "quiet": "На этой неделе пока ничего — время ещё есть."
+  },
+  "memory": {
+    "title": "Как идёт запоминание",
+    "firstTry": "На этой неделе вы вспомнили {{count, number}} вещей с первой попытки.",
+    "strongestSkill": "На этой неделе лучше всего идёт {{skill}}.",
+    "confusionImproving": "{{a}} и {{b}} различать всё легче.",
+    "skill": {
+      "reading_recognition": "чтение",
+      "listening_recognition": "аудирование",
+      "guided_writing": "письмо",
+      "meaning_recognition": "значения",
+      "sentence_comprehension": "предложения",
+      "sound_recognition": "звуки",
+      "visual_recognition": "буквы",
+      "lookalike_discrimination": "различение похожих"
+    }
+  }
+}

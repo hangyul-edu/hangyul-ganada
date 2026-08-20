@@ -9,6 +9,13 @@
     "start": "바로 시작하기",
     "continue": "이어서 학습하기"
   },
+  "finished": {
+    "badge": "완료",
+    "title": "이제 한글을 읽을 수 있어요",
+    "body": "글자 {{count, number}}개를 모두 배우고 써 봤어요. 이제 단어 차례예요.",
+    "goal": "오늘의 단어",
+    "cta": "오늘의 단어"
+  },
   "quick": {
     "letters": "낱자",
     "words": "낱말",

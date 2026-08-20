@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "Ångra",
+    "clear": "Rensa",
+    "check": "Kontrollera"
+  },
+  "canvas": {
+    "label": "Skrivyta för {{character}}",
+    "empty": "Inget skrivet än.",
+    "strokes_one": "{{count, number}} streck skrivet.",
+    "strokes_other": "{{count, number}} streck skrivna."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Just så!",
+      "perfect": "{{character}} — vackert skrivet.",
+      "scored": "Bra form — {{score, number(style: percent)}} av vägen."
+    },
+    "empty": {
+      "headline": "Inget där än",
+      "detail": "Skriv bokstaven inuti rutan."
+    },
+    "incomplete": {
+      "headline": "Nästan",
+      "tooSmall": "Lite liten. Försök fylla rutan.",
+      "missingStroke": "Ett streck saknas. Följ mallen hela vägen."
+    },
+    "outside": {
+      "headline": "Inte riktigt",
+      "tooLarge": "Det gick utanför rutan. Lite mindre nästa gång.",
+      "strayStroke": "Ett streck kom på villovägar. Följ linjen långsamt."
+    },
+    "scribble": {
+      "headline": "Vi tar det lite lugnare",
+      "detail": "Dra varje streck en gång, i en mjuk rörelse — du behöver inte gå över det igen."
+    },
+    "mixed": {
+      "headline": "Inte riktigt",
+      "detail": "Lägg den mot mallen och gör ett försök till."
+    },
+    "retry": "Försök igen",
+    "showDetails": "Visa detaljer",
+    "hideDetails": "Dölj detaljer",
+    "breakdown": "Skillnad {{mismatch, number(style: percent)}} · utanför {{outside, number(style: percent)}} · saknat {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Hur {{character}} skrivs, med {{count, number}} streck",
+    "diagramLabel_other": "Hur {{character}} skrivs, med {{count, number}} streck",
+    "pause": "Pausa",
+    "count_one": "{{count, number}} streck",
+    "count_other": "{{count, number}} streck",
+    "heading": "Se hur den skrivs",
+    "notesFooter": "Streckordningen räknas inte in i bedömningen. Det är den som får din handstil att se rätt ut.",
+    "notes": {
+      "fewer": "Du använde {{theirs, number}} streck; den här bokstaven skrivs oftast med {{expected, number}}.",
+      "more": "Du använde {{theirs, number}} streck; den här bokstaven skrivs oftast med {{expected, number}}.",
+      "startElsewhere": "Den börjar oftast {{corner}} i rutan.",
+      "direction_one": "{{count, number}} streck gick åt andra hållet. Koreanska streck går uppifrån och ned och från vänster till höger.",
+      "direction_other": "{{count, number}} streck gick åt andra hållet. Koreanska streck går uppifrån och ned och från vänster till höger."
+    },
+    "corners": {
+      "topLeft": "uppe till vänster",
+      "topCentre": "upptill",
+      "topRight": "uppe till höger",
+      "middleLeft": "till vänster",
+      "middleCentre": "i mitten",
+      "middleRight": "till höger",
+      "bottomLeft": "nere till vänster",
+      "bottomCentre": "nedtill",
+      "bottomRight": "nere till höger"
+    },
+    "watchAgain": "Se igen",
+    "back": "Bakåt",
+    "next": "Framåt",
+    "position": "Streck {{current, number}} av {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "det långa strecket nedåt",
+      "downLongTwice": "de två långa strecken nedåt, det vänstra först",
+      "downShort": "det korta strecket nedåt",
+      "downShortTwice": "de två korta strecken nedåt, det vänstra först",
+      "acrossLong": "det långa strecket tvärsöver",
+      "acrossLongTwice": "de två långa strecken tvärsöver, det övre först",
+      "acrossShort": "det korta strecket tvärsöver",
+      "acrossShortTwice": "de två korta strecken tvärsöver, det övre först",
+      "cornerAcrossDown": "tvärsöver upptill och ned längs högersidan",
+      "cornerDownAcross": "ned längs vänstersidan och runt åt höger",
+      "slantLeft": "strecket snett ned åt vänster",
+      "slantRight": "strecket snett ned åt höger",
+      "circle": "cirkeln, runt uppifrån"
+    },
+    "s1": "Bara ett streck: {{a}}.",
+    "s2": "Först {{a}}. Sedan {{b}}.",
+    "s3": "Först {{a}}. Sedan {{b}}. Sedan {{c}}.",
+    "s4": "Först {{a}}. Sedan {{b}}. Sedan {{c}}. Sist {{d}}.",
+    "parts2": {
+      "plain": "Skriv {{a}} först, sedan {{b}}.",
+      "right": "Skriv {{a}} först, sedan {{b}} till höger om den.",
+      "below": "Skriv {{a}} först, sedan {{b}} under."
+    },
+    "parts3": {
+      "right": "Skriv {{a}}, sedan {{b}} till höger om den, sedan {{c}} längs botten.",
+      "below": "Skriv {{a}}, sedan {{b}} under, sedan {{c}} längs botten."
+    },
+    "partsDouble": "Skriv {{a}} två gånger, sida vid sida — den vänstra först.",
+    "fallback": "{{strokes}} streck, i den ordning siffrorna visar."
+  }
+}

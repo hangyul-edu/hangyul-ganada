@@ -4,10 +4,11 @@ import type { HangulCharacter } from '@hangyul-ganada/shared-types';
 
 import { usePronunciation } from '../../audio/PronunciationContext';
 import { useEntryAudio } from '../../audio/useEntryAudio';
-import { resolveContent, useLocale } from '../../i18n';
+import { useLocale } from '../../i18n';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
 import { StrokeOrder } from '../../ui/StrokeOrder';
+import { letterCopy } from '../../data/letterCopy';
 import styles from './CharacterIntro.module.css';
 
 /**
@@ -75,7 +76,7 @@ export function CharacterIntro({
   const { t } = useTranslation(['learning', 'common']);
   const { locale } = useLocale();
   const { preload, has } = usePronunciation();
-  const copy = resolveContent(character.translations, locale);
+  const copy = letterCopy(character, locale);
 
   const soundId = character.audio.sound;
   const nameId = character.audio.name;

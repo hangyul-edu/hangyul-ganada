@@ -15,7 +15,7 @@
     "prompt": {
       "write": "Schreib ihn mit dem Finger über der Hilfslinie."
     },
-    "nowRead": "Jetzt lies ihn",
+    "nowRecognise": "Eine Frage dazu",
     "continue": "Weiter"
   },
   "complete": {

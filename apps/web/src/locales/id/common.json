@@ -1,0 +1,58 @@
+{
+  "brand": {
+    "tagline": "Belajar Hangul, satu goresan demi satu goresan.",
+    "description": "Belajar membaca dan menulis Hangul dari huruf pertama — konsonan dan vokal, blok suku kata, tulisan tangan, dan kata-kata Korea pertamamu."
+  },
+  "actions": {
+    "confirm": "Oke",
+    "close": "Tutup",
+    "back": "Kembali",
+    "goHome": "Ke beranda",
+    "done": "Selesai",
+    "save": "Simpan",
+    "saved": "Tersimpan"
+  },
+  "a11y": {
+    "skipToContent": "Langsung ke konten utama",
+    "currentPage": "(halaman ini)",
+    "confirmationRequired": "Tindakan ini perlu dikonfirmasi."
+  },
+  "audio": {
+    "play": "Putar pelafalan {{text}}",
+    "retry": "Putar {{text}} lagi",
+    "unavailable": "Belum ada pelafalan untuk {{text}}"
+  },
+  "progress": {
+    "lesson": "Kemajuan di {{name}}",
+    "review": "Kemajuan di ulasan ini"
+  },
+  "units": {
+    "day_other": "{{count, number}} hari"
+  },
+  "report": {
+    "action": "Laporkan masalah",
+    "title": "Apa yang salah?",
+    "blurb": "Pilih bagian yang keliru, nanti kami bukakan email yang bisa kamu lengkapi. Tidak ada data belajarmu yang ikut terkirim.",
+    "field": {
+      "item": "Item",
+      "category": "Masalah",
+      "version": "Versi aplikasi",
+      "language": "Bahasa"
+    },
+    "writeHere": "Tulis di sini apa yang kamu lihat:",
+    "category": {
+      "meaning": "Artinya",
+      "example": "Kalimat contohnya",
+      "translation": "Terjemahannya",
+      "audio": "Audionya",
+      "writing": "Penilaian tulisannya",
+      "other": "Hal lain"
+    }
+  },
+  "exit": {
+    "title": "Keluar dari Hangyul ganada?",
+    "body": "Kemajuanmu tersimpan. Nanti bisa dilanjutkan dari tempat terakhir.",
+    "stay": "Tetap di sini",
+    "leave": "Keluar"
+  }
+}

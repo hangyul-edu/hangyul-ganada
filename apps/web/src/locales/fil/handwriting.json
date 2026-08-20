@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "Ibalik",
+    "clear": "Burahin",
+    "check": "Suriin"
+  },
+  "canvas": {
+    "label": "Lugar-sulatan para sa {{character}}",
+    "empty": "Wala pang naisusulat.",
+    "strokes_one": "{{count, number}} guhit ang naisulat.",
+    "strokes_other": "{{count, number}} na guhit ang naisulat."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Ayan!",
+      "perfect": "{{character}} — ang ganda ng pagkasulat.",
+      "scored": "Maganda ang hugis — {{score, number(style: percent)}} na ang nalakbay."
+    },
+    "empty": {
+      "headline": "Wala pa riyan",
+      "detail": "Isulat ang letra sa loob ng kahon."
+    },
+    "incomplete": {
+      "headline": "Muntik na",
+      "tooSmall": "Medyo maliit. Subukang punuin ang kahon.",
+      "missingStroke": "May kulang na guhit. Sundan ang gabay hanggang dulo."
+    },
+    "outside": {
+      "headline": "Hindi pa",
+      "tooLarge": "Lumabas ito sa kahon. Sa susunod, medyo maliit lang.",
+      "strayStroke": "May isang guhit na naligaw. Sundan ang linya nang dahan-dahan."
+    },
+    "scribble": {
+      "headline": "Subukan nating dahan-dahan",
+      "detail": "Guhitan ang bawat guhit nang isang beses, sa isang kilos — hindi na kailangang balikan."
+    },
+    "mixed": {
+      "headline": "Hindi pa",
+      "detail": "Ipantay sa gabay at subukan ulit."
+    },
+    "retry": "Subukan ulit",
+    "showDetails": "Ipakita ang detalye",
+    "hideDetails": "Itago ang detalye",
+    "breakdown": "Pagkakaiba {{mismatch, number(style: percent)}} · sa labas {{outside, number(style: percent)}} · kulang {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Paano isinusulat ang {{character}}, sa {{count, number}} guhit",
+    "diagramLabel_other": "Paano isinusulat ang {{character}}, sa {{count, number}} na guhit",
+    "pause": "I-pause",
+    "count_one": "{{count, number}} guhit",
+    "count_other": "{{count, number}} na guhit",
+    "heading": "Panoorin kung paano isinusulat",
+    "notesFooter": "Hindi kasama sa marka ang pagkakasunod-sunod ng guhit. Iyon ang nagpapaganda ng hitsura ng sulat mo.",
+    "notes": {
+      "fewer": "{{theirs, number}} guhit ang ginamit mo; karaniwang {{expected, number}} ang guhit ng letrang ito.",
+      "more": "{{theirs, number}} guhit ang ginamit mo; karaniwang {{expected, number}} ang guhit ng letrang ito.",
+      "startElsewhere": "Karaniwang nagsisimula ito sa {{corner}} ng kahon.",
+      "direction_one": "{{count, number}} guhit ang pabaliktad. Pababa at pakanan ang mga guhit sa Koreano.",
+      "direction_other": "{{count, number}} na guhit ang pabaliktad. Pababa at pakanan ang mga guhit sa Koreano."
+    },
+    "corners": {
+      "topLeft": "kaliwang itaas",
+      "topCentre": "itaas",
+      "topRight": "kanang itaas",
+      "middleLeft": "kaliwa",
+      "middleCentre": "gitna",
+      "middleRight": "kanan",
+      "bottomLeft": "kaliwang ibaba",
+      "bottomCentre": "ibaba",
+      "bottomRight": "kanang ibaba"
+    },
+    "watchAgain": "Panoorin ulit",
+    "back": "Balik",
+    "next": "Susunod",
+    "position": "Guhit {{current, number}} sa {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "ang mahabang guhit pababa",
+      "downLongTwice": "ang dalawang mahabang guhit pababa, kaliwa muna",
+      "downShort": "ang maikling guhit pababa",
+      "downShortTwice": "ang dalawang maikling guhit pababa, kaliwa muna",
+      "acrossLong": "ang mahabang guhit pahalang",
+      "acrossLongTwice": "ang dalawang mahabang guhit pahalang, itaas muna",
+      "acrossShort": "ang maikling guhit pahalang",
+      "acrossShortTwice": "ang dalawang maikling guhit pahalang, itaas muna",
+      "cornerAcrossDown": "pahalang sa itaas at pababa sa kanang gilid",
+      "cornerDownAcross": "pababa sa kaliwang gilid at paliko pakanan",
+      "slantLeft": "ang guhit na pahilis pababa sa kaliwa",
+      "slantRight": "ang guhit na pahilis pababa sa kanan",
+      "circle": "ang bilog, paikot mula sa itaas"
+    },
+    "s1": "Isang guhit lang: {{a}}.",
+    "s2": "Una {{a}}. Tapos {{b}}.",
+    "s3": "Una {{a}}. Tapos {{b}}. Tapos {{c}}.",
+    "s4": "Una {{a}}. Tapos {{b}}. Tapos {{c}}. Huli ang {{d}}.",
+    "parts2": {
+      "plain": "Isulat muna ang {{a}}, tapos ang {{b}}.",
+      "right": "Isulat muna ang {{a}}, tapos ang {{b}} sa kanan nito.",
+      "below": "Isulat muna ang {{a}}, tapos ang {{b}} sa ilalim."
+    },
+    "parts3": {
+      "right": "Isulat ang {{a}}, tapos ang {{b}} sa kanan nito, tapos ang {{c}} sa ibaba.",
+      "below": "Isulat ang {{a}}, tapos ang {{b}} sa ilalim, tapos ang {{c}} sa ibaba."
+    },
+    "partsDouble": "Isulat ang {{a}} nang dalawang beses, magkatabi — kaliwa muna.",
+    "fallback": "{{strokes}} na guhit, sa pagkakasunod na ipinapakita ng mga numero."
+  }
+}

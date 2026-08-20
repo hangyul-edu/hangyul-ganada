@@ -1,0 +1,233 @@
+{
+  "letters": {
+    "title": "Tanuld a betűket",
+    "alphabetTitle": "A hangul ábécé",
+    "alphabetCaption": "betű megtanulva",
+    "complete": "Megtanulva",
+    "resume": "Folytatás"
+  },
+  "units": {
+    "badge": "{{index, number}}. egység",
+    "continue": "Értem — kezdjük",
+    "unit-1": {
+      "title": "Hat magánhangzó kezdésnek",
+      "goal": "Minden koreai szótaghoz kell egy magánhangzó. Ez a hat a legegyszerűbb.",
+      "body": "A hangul ábécé, nem képek gyűjteménye. Negyven betűje van, úgy tervezték, hogy gyorsan meg lehessen tanulni, és most hatot fogsz elsajátítani belőle.",
+      "points": [
+        "A betűk négyzetes blokkokba rendeződnek, és minden blokk egy szótag.",
+        "A magánhangzó vagy álló, vagy fekvő vonal — ez dönti el, hova kerül a blokkban.",
+        "Mondd ki hangosan minden betűt, miközben húzod. A hang a lecke fele."
+      ]
+    },
+    "unit-2": {
+      "title": "Az első mássalhangzóid",
+      "goal": "Öt mássalhangzó. A már ismert magánhangzókkal ez már 30 szótag."
+    },
+    "unit-3": {
+      "title": "Összerakjuk őket",
+      "goal": "Mássalhangzó meg magánhangzó: kész a blokk, amit el tudsz olvasni.",
+      "body": "A koreai szótag egyetlen négyzetként íródik. A mássalhangzó megy előre — balra álló magánhangzónál, felülre fekvőnél.",
+      "points": [
+        "Az álló magánhangzó (ㅏ ㅓ ㅣ) a mássalhangzótól jobbra áll.",
+        "A fekvő magánhangzó (ㅗ ㅜ ㅡ) alatta fekszik.",
+        "Úgy olvasd a blokkot, ahogy egy oldalt: balról jobbra, aztán lefelé."
+      ]
+    },
+    "unit-4": {
+      "title": "Még öt mássalhangzó",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — az egyszerű sor maradéka."
+    },
+    "unit-5": {
+      "title": "Több blokk olvasása",
+      "goal": "Beleértve azt az egy betűt, aminek egyáltalán nincs hangja."
+    },
+    "unit-6": {
+      "title": "Egy j hang hozzáadása",
+      "goal": "Egy plusz vonás ㅏ-ból ㅑ-t csinál. Mind a négynél ugyanez a szabály."
+    },
+    "unit-7": {
+      "title": "Egy leheletnyi levegő",
+      "goal": "ㅊ ㅋ ㅌ ㅍ — ismerős betűk, egy vonással kiegészítve."
+    },
+    "unit-8": {
+      "title": "Az e-magánhangzók",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — magánhangzók, amiket ㅣ hozzáadásával kapunk."
+    },
+    "unit-9": {
+      "title": "Megkettőzve és feszesen",
+      "goal": "Öt betű, amit kétszer írunk le és feszesebben ejtünk."
+    },
+    "unit-10": {
+      "title": "A v-magánhangzók",
+      "goal": "Két magánhangzó egyként leírva. A 40 betű utolsói."
+    },
+    "unit-11": {
+      "title": "Egy betű a talpnál",
+      "goal": "받침 — a mássalhangzó, ami lezárja a szótagot.",
+      "body": "Egy blokkba elfér egy harmadik betű is, a másik kettő alatt. A neve 받침, és lezárja a szótagot.",
+      "points": [
+        "A harmadik betű mindig a négyzet aljára kerül.",
+        "A 받침 csak hétféle hang egyikeként szólal meg, bármelyik betű is áll ott.",
+        "Itt akad el a legtöbb kezdő olvasása. Ne siess."
+      ]
+    },
+    "unit-12": {
+      "title": "한글 olvasása",
+      "goal": "Most már minden betűt ismersz. Olvasd el magának az írásrendszernek a nevét."
+    }
+  },
+  "intro": {
+    "letterName": "Név",
+    "letterSound": "Hang",
+    "soundIn": "Hallgasd meg a(z) {{character}} hangot ebben:",
+    "reads": "Így olvasandó"
+  },
+  "steps": {
+    "label": "Ennek a betűnek a lépései",
+    "write": "Írás",
+    "read": "Olvasás"
+  },
+  "recognition": {
+    "question": "Melyik adja ezt a hangot?",
+    "optionsAria": "Válaszd ki a hallott betűt",
+    "optionAria": "Válaszd: {{character}}",
+    "correctDetail": "Igen, ez a(z) {{character}}.",
+    "wrongHeadline": "Nem az.",
+    "wrongDetail": "A(z) {{character}} az, ami úgy szól, mint {{sound}}.",
+    "hearAgain": "Hallgasd újra",
+    "tryAgain": "Próbáld újra"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Ezt kihagyom",
+    "startWriting": "Írd le",
+    "nowRecognise": "Próbálj egy kérdést",
+    "next": "Következő betű",
+    "finish": "Befejezés",
+    "prompt": {
+      "write": "Húzd át az ujjaddal a minta fölött."
+    },
+    "continue": "Tovább"
+  },
+  "complete": {
+    "title": "Szép munka!",
+    "letters_one": "Befejeztél {{count, number}} betűt itt: {{lesson}}.",
+    "letters_other": "Befejeztél {{count, number}} betűt itt: {{lesson}}."
+  },
+  "review": {
+    "title": "Ismétlés",
+    "startCta": "Ismétlés indítása",
+    "sessionTitle": "Ismétlés",
+    "completeTitle": "Ismétlés kész",
+    "empty": {
+      "title": "Még nincs mit ismételni",
+      "body": "Amit elrontasz, itt bukkan fel. Addig is: mit szólnál egy új betűhöz?",
+      "cta": "Tanulj egy betűt"
+    },
+    "forYou": "Ismétlés neked",
+    "sessionLength_one": "{{count, number}} rövid gyakorlat",
+    "sessionLength_other": "{{count, number}} rövid gyakorlat",
+    "needsPractice": "Gyakorlásra szorul",
+    "dueToday": "Mára esedékes",
+    "savedWords": "Mentett szavak",
+    "chooseMode": "Vagy válaszd ki, mit gyakorolsz",
+    "comingUp": "Következik",
+    "outcome": "{{practised, number}} gyakorolva · {{firstTry, number}} elsőre megvolt · {{comingBack, number}} hamarosan visszatér",
+    "blank": "üres hely",
+    "optionsLabel": "Válaszok",
+    "showHint": "Adj egy tippet",
+    "right": "Pontosan.",
+    "notQuite": "Nem egészen. Íme.",
+    "mode": {
+      "read": "Olvasás",
+      "listen": "Hallgatás",
+      "write": "Írás"
+    },
+    "prompt": {
+      "read": "Mit jelent ez a szó?",
+      "readLetter": "Milyen hangot ad ez a betű?",
+      "listen": "Melyik szót hallottad?",
+      "listenLetter": "Melyik betű ez?",
+      "context": "Melyik szó illik ide?",
+      "write": "Írd le ezt a szót",
+      "writeLetter": "Írd le, amit hallasz",
+      "distinguish": "Melyik adja ezt a hangot?",
+      "produce": "Melyik az?",
+      "listenMeaning": "Mit jelent ez?",
+      "build": "Rakd össze a szót"
+    },
+    "nothingDue": "Most nincs mit ismételni.",
+    "modesEmpty": "Ma nincs semmi ezekben a módokban.",
+    "answerIs": "{{word}} jelentése „{{meaning}}”.",
+    "showMoreHint": "Még egy tippet",
+    "showAnswer": "Mutasd a választ",
+    "hint": {
+      "kind": "Ez egy {{pos}} — valami ebből: {{category}}.",
+      "kindOnly": "A hiányzó szó egy {{pos}}.",
+      "startsWith": "Így kezdődik: {{start}}…",
+      "startsWithSound": "A(z) „{{sound}}” hanggal kezdődik.",
+      "replay": "Játszd le újra — ahányszor csak akarod.",
+      "letterFamily": "Ez itt {{family}}.",
+      "letterExample": "Ez a(z) {{word}} első betűje.",
+      "letterSound": "Úgy szól, mint „{{sound}}”.",
+      "reveal": "A válasz: {{answer}}.",
+      "revealWord": "A szó: {{answer}}.",
+      "revealLetter": "A betű: {{answer}}.",
+      "revealStrokes": "Nézd meg a vonásokat még egyszer, aztán húzd át őket.",
+      "inSentence": "Így használják: {{sentence}}"
+    },
+    "buildTray": "Szótagok",
+    "buildRemove": "Vedd vissza: {{syllable}}"
+  },
+  "sounds": {
+    "title": "Amikor a hangok találkoznak",
+    "blurb": "Miért nem úgy ejtik a 학교 szót, ahogy írják.",
+    "intro": "Most már minden betűt elolvasol. A koreai azokat a darabokat írja le, amikből a szó összeáll, és némelyiket megváltoztatja ott, ahol összeérnek — ezért hangzik néhány szó másképp, mint ahogy kinéz. Ezekkel találkozol először.",
+    "written": "Írva",
+    "said": "Ejtve",
+    "note": "Nem kell bemagolnod. Figyelj rájuk, és kezdenek természetesen hangzani.",
+    "name": {
+      "tensing": "Feszesebb második hang",
+      "aspiration": "Egy leheletnyi levegő",
+      "nasal": "Lágy, orrhangú hang",
+      "lateral": "ㄴ és ㄹ együtt",
+      "palatal": "ㄷ és ㅌ 이 előtt",
+      "liaison": "A hang átcsúszik"
+    }
+  },
+  "mistakes": {
+    "title": "Elrontott válaszok",
+    "review_one": "Ismétlés · {{count}} kérdés",
+    "review_other": "Ismétlés · {{count}} kérdés",
+    "filterLabel": "Mutasd",
+    "filter": {
+      "all": "Mind",
+      "character": "Betűk",
+      "word": "Szavak"
+    },
+    "youPut": "Te ezt írtad",
+    "answer": "Helyes",
+    "times_one": "{{count}} alkalommal elrontva",
+    "times_other": "{{count}} alkalommal elrontva",
+    "clear": "Ezzel megvagyok",
+    "noneOfKind": "Most nincs itt semmi.",
+    "emptyTitle": "Még semmi nem csúszott el",
+    "emptyBody": "Ha valami elcsúszik, itt bukkan fel, hogy helyre tudd tenni.",
+    "emptyCta": "Irány az ismétlés"
+  },
+  "letterGroup": {
+    "basic_vowel": "alap magánhangzó",
+    "basic_consonant": "alap mássalhangzó",
+    "compound_vowel": "összetett magánhangzó",
+    "double_consonant": "kettőzött mássalhangzó",
+    "final_consonant": "záró mássalhangzó",
+    "syllable": "egész szótag"
+  },
+  "nextStep": {
+    "title": "Készen állsz a következő lépésre",
+    "body": "A hangult már olvasod. A beszéd és a TOPIK-felkészülés a Hangyulban folytatódik.",
+    "cta": "Folytasd a Hangyulban",
+    "rowTitle": "Folytasd a Hangyulban",
+    "rowBody": "Beszéd és TOPIK, amikor készen állsz"
+  }
+}

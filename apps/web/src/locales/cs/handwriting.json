@@ -1,0 +1,117 @@
+{
+  "actions": {
+    "undo": "Zpět",
+    "clear": "Smazat",
+    "check": "Zkontrolovat"
+  },
+  "canvas": {
+    "label": "Plocha pro psaní litery {{character}}",
+    "empty": "Zatím nic napsaného.",
+    "strokes_few": "Napsány {{count, number}} tahy.",
+    "strokes_many": "Napsáno {{count, number}} tahu.",
+    "strokes_one": "Napsán {{count, number}} tah.",
+    "strokes_other": "Napsáno {{count, number}} tahů."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Přesně tak!",
+      "perfect": "{{character}} — krásně napsané.",
+      "scored": "Dobrý tvar — {{score, number(style: percent)}} cesty za vámi."
+    },
+    "empty": {
+      "headline": "Zatím tu nic není",
+      "detail": "Napište literu dovnitř rámečku."
+    },
+    "incomplete": {
+      "headline": "Skoro",
+      "tooSmall": "Trochu malé. Zkuste rámeček vyplnit.",
+      "missingStroke": "Chybí tah. Veďte po předloze až do konce."
+    },
+    "outside": {
+      "headline": "Ne tak úplně",
+      "tooLarge": "Vyšlo to mimo rámeček. Příště o kus menší.",
+      "strayStroke": "Jeden tah utekl stranou. Veďte po čáře pomalu."
+    },
+    "scribble": {
+      "headline": "Zkusme to pomaleji",
+      "detail": "Veďte každý tah jednou, jedním plynulým pohybem — vracet se po něm netřeba."
+    },
+    "mixed": {
+      "headline": "Ne tak úplně",
+      "detail": "Srovnejte to s předlohou a zkuste to znovu."
+    },
+    "retry": "Zkusit znovu",
+    "showDetails": "Zobrazit podrobnosti",
+    "hideDetails": "Skrýt podrobnosti",
+    "breakdown": "Rozdíl {{mismatch, number(style: percent)}} · mimo {{outside, number(style: percent)}} · chybí {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Jak se píše {{character}}, {{count, number}} tahy",
+    "diagramLabel_many": "Jak se píše {{character}}, {{count, number}} tahu",
+    "diagramLabel_one": "Jak se píše {{character}}, {{count, number}} tahem",
+    "diagramLabel_other": "Jak se píše {{character}}, {{count, number}} tahy",
+    "pause": "Pauza",
+    "count_few": "{{count, number}} tahy",
+    "count_many": "{{count, number}} tahu",
+    "count_one": "{{count, number}} tah",
+    "count_other": "{{count, number}} tahů",
+    "heading": "Podívejte se, jak se píše",
+    "notesFooter": "Pořadí tahů se do hodnocení nepočítá. Právě ono ale dělá písmo správně vypadající.",
+    "notes": {
+      "fewer": "Použili jste {{theirs, number}} tahů; tahle litera se obvykle píše {{expected, number}}.",
+      "more": "Použili jste {{theirs, number}} tahů; tahle litera se obvykle píše {{expected, number}}.",
+      "startElsewhere": "Obvykle začíná {{corner}} rámečku.",
+      "direction_few": "{{count, number}} tahy šly opačným směrem. Korejské tahy jdou shora dolů a zleva doprava.",
+      "direction_many": "{{count, number}} tahu šlo opačným směrem. Korejské tahy jdou shora dolů a zleva doprava.",
+      "direction_one": "{{count, number}} tah šel opačným směrem. Korejské tahy jdou shora dolů a zleva doprava.",
+      "direction_other": "{{count, number}} tahů šlo opačným směrem. Korejské tahy jdou shora dolů a zleva doprava."
+    },
+    "corners": {
+      "topLeft": "vlevo nahoře",
+      "topCentre": "nahoře",
+      "topRight": "vpravo nahoře",
+      "middleLeft": "vlevo",
+      "middleCentre": "uprostřed",
+      "middleRight": "vpravo",
+      "bottomLeft": "vlevo dole",
+      "bottomCentre": "dole",
+      "bottomRight": "vpravo dole"
+    },
+    "watchAgain": "Přehrát znovu",
+    "back": "Zpět",
+    "next": "Dál",
+    "position": "Tah {{current, number}} z {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "dlouhá čára dolů",
+      "downLongTwice": "dvě dlouhé čáry dolů, nejdřív levá",
+      "downShort": "krátká čára dolů",
+      "downShortTwice": "dvě krátké čáry dolů, nejdřív levá",
+      "acrossLong": "dlouhá čára napříč",
+      "acrossLongTwice": "dvě dlouhé čáry napříč, nejdřív horní",
+      "acrossShort": "krátká čára napříč",
+      "acrossShortTwice": "dvě krátké čáry napříč, nejdřív horní",
+      "cornerAcrossDown": "napříč nahoře a dolů po pravé straně",
+      "cornerDownAcross": "dolů po levé straně a obloukem doprava",
+      "slantLeft": "tah šikmo dolů doleva",
+      "slantRight": "tah šikmo dolů doprava",
+      "circle": "kolečko, dokola odshora"
+    },
+    "s1": "Jenom jeden tah: {{a}}.",
+    "s2": "Nejdřív {{a}}. Pak {{b}}.",
+    "s3": "Nejdřív {{a}}. Pak {{b}}. Pak {{c}}.",
+    "s4": "Nejdřív {{a}}. Pak {{b}}. Pak {{c}}. Nakonec {{d}}.",
+    "parts2": {
+      "plain": "Napište nejdřív {{a}}, pak {{b}}.",
+      "right": "Napište nejdřív {{a}}, pak {{b}} napravo od něj.",
+      "below": "Napište nejdřív {{a}}, pak {{b}} pod něj."
+    },
+    "parts3": {
+      "right": "Napište {{a}}, pak {{b}} napravo od něj, pak {{c}} podél spodku.",
+      "below": "Napište {{a}}, pak {{b}} pod něj, pak {{c}} podél spodku."
+    },
+    "partsDouble": "Napište {{a}} dvakrát, vedle sebe — nejdřív levou.",
+    "fallback": "{{strokes}} tahů, v pořadí, které ukazují čísla."
+  }
+}

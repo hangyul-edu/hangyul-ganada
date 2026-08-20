@@ -53,7 +53,6 @@
     "count_many": "{{count, number}} traços",
     "count_other": "{{count, number}} traços",
     "heading": "Veja sendo escrita",
-    "notesHeading": "Sobre seus traços",
     "notesFooter": "A ordem dos traços não entra na nota. É o que faz sua letra ficar certa.",
     "notes": {
       "fewer": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",

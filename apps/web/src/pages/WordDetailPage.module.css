@@ -55,17 +55,18 @@
 }
 
 /*
- * IPA.
+ * Revised Romanisation.
  *
- * `direction: ltr` and no ligatures: the transcription is Latin-script phonetic
- * notation, so it reads left to right even in a right-to-left interface, and a
- * font that ligates `t` + `ɕ` would silently change the symbol.
+ * `direction: ltr` because the romanisation is Latin script and belongs to the
+ * Korean word, so it reads left to right inside an Arabic or Hebrew interface
+ * as well. Body size and secondary colour: it sits under the headword as
+ * support, and a reading aid printed as loudly as the thing it supports stops
+ * being support.
  */
-.ipa {
+.romanization {
   direction: ltr;
   font-size: var(--hg-text-body);
   color: var(--hg-text-secondary);
-  font-variant-ligatures: none;
 }
 
 .meaning {

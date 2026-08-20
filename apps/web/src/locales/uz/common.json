@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Hangulni o‘rganing — chiziqma-chiziq.",
+    "description": "Hangulni eng birinchi harfidan boshlab o‘qish va yozishni o‘rganing — undoshlar va unlilar, bo‘g‘in kataklari, qo‘lda yozish va ilk koreyscha so‘zlaringiz."
+  },
+  "actions": {
+    "confirm": "Xo‘p",
+    "close": "Yopish",
+    "back": "Orqaga",
+    "goHome": "Bosh sahifaga",
+    "done": "Tayyor",
+    "save": "Saqlash",
+    "saved": "Saqlandi"
+  },
+  "a11y": {
+    "skipToContent": "Asosiy matnga o‘tish",
+    "currentPage": "(shu sahifa)",
+    "confirmationRequired": "Bu amal tasdiqlashni talab qiladi."
+  },
+  "audio": {
+    "play": "{{text}} talaffuzini tinglang",
+    "retry": "{{text}} so‘zini yana eshiting",
+    "unavailable": "{{text}} uchun yozuv yo‘q"
+  },
+  "progress": {
+    "lesson": "{{name}} bo‘yicha jarayon",
+    "review": "Shu takrorlashdagi jarayon"
+  },
+  "units": {
+    "day_one": "{{count, number}} kun",
+    "day_other": "{{count, number}} kun"
+  },
+  "report": {
+    "action": "Muammo haqida xabar berish",
+    "title": "Nima noto‘g‘ri?",
+    "blurb": "Noto‘g‘ri ko‘ringan narsani tanlang — siz to‘ldiradigan xat ochib beramiz. O‘qishingizga oid hech narsa ilova qilinmaydi.",
+    "field": {
+      "item": "Element",
+      "category": "Muammo",
+      "version": "Ilova versiyasi",
+      "language": "Til"
+    },
+    "writeHere": "Nimani sezganingizni shu yerga yozing:",
+    "category": {
+      "meaning": "Ma’nosi",
+      "example": "Namuna gap",
+      "translation": "Tarjimasi",
+      "audio": "Ovozi",
+      "writing": "Yozuv bahosi",
+      "other": "Boshqa narsa"
+    }
+  },
+  "exit": {
+    "title": "Hangyul ganada’dan chiqasizmi?",
+    "body": "Jarayoningiz saqlangan. To‘xtagan joyingizdan davom etasiz.",
+    "stay": "Qolaman",
+    "leave": "Chiqish"
+  }
+}

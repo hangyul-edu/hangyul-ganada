@@ -1,0 +1,117 @@
+{
+  "actions": {
+    "undo": "Cofnij",
+    "clear": "Wyczyść",
+    "check": "Sprawdź"
+  },
+  "canvas": {
+    "label": "Pole do pisania litery {{character}}",
+    "empty": "Jeszcze nic nie napisano.",
+    "strokes_few": "Napisane {{count, number}} kreski.",
+    "strokes_many": "Napisanych {{count, number}} kresek.",
+    "strokes_one": "Napisana {{count, number}} kreska.",
+    "strokes_other": "Napisane {{count, number}} kreski."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "O właśnie!",
+      "perfect": "{{character}} — pięknie napisana.",
+      "scored": "Dobry kształt — {{score, number(style: percent)}} drogi za tobą."
+    },
+    "empty": {
+      "headline": "Jeszcze nic tu nie ma",
+      "detail": "Napisz literę wewnątrz ramki."
+    },
+    "incomplete": {
+      "headline": "Prawie",
+      "tooSmall": "Odrobinę za mała. Spróbuj wypełnić ramkę.",
+      "missingStroke": "Brakuje kreski. Prowadź po wzorze do samego końca."
+    },
+    "outside": {
+      "headline": "Nie do końca",
+      "tooLarge": "Wyszło poza ramkę. Następnym razem trochę mniej.",
+      "strayStroke": "Jedna kreska uciekła w bok. Prowadź po linii spokojnie."
+    },
+    "scribble": {
+      "headline": "Spróbujmy wolniej",
+      "detail": "Prowadź każdą kreskę raz, jednym płynnym ruchem — nie trzeba po niej wracać."
+    },
+    "mixed": {
+      "headline": "Nie do końca",
+      "detail": "Nałóż ją na wzór i spróbuj jeszcze raz."
+    },
+    "retry": "Spróbuj ponownie",
+    "showDetails": "Pokaż szczegóły",
+    "hideDetails": "Ukryj szczegóły",
+    "breakdown": "Różnica {{mismatch, number(style: percent)}} · poza {{outside, number(style: percent)}} · brak {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Jak pisze się {{character}}, w {{count, number}} kreskach",
+    "diagramLabel_many": "Jak pisze się {{character}}, w {{count, number}} kreskach",
+    "diagramLabel_one": "Jak pisze się {{character}}, w {{count, number}} kresce",
+    "diagramLabel_other": "Jak pisze się {{character}}, w {{count, number}} kreskach",
+    "pause": "Pauza",
+    "count_few": "{{count, number}} kreski",
+    "count_many": "{{count, number}} kresek",
+    "count_one": "{{count, number}} kreska",
+    "count_other": "{{count, number}} kreski",
+    "heading": "Zobacz, jak się ją pisze",
+    "notesFooter": "Kolejność kresek nie wchodzi do oceny. To ona sprawia, że twoje pismo wygląda poprawnie.",
+    "notes": {
+      "fewer": "Użyłeś {{theirs, number}} kresek; tę literę pisze się zwykle w {{expected, number}}.",
+      "more": "Użyłeś {{theirs, number}} kresek; tę literę pisze się zwykle w {{expected, number}}.",
+      "startElsewhere": "Zwykle zaczyna się od {{corner}} ramki.",
+      "direction_few": "{{count, number}} kreski poszły w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej.",
+      "direction_many": "{{count, number}} kresek poszło w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej.",
+      "direction_one": "{{count, number}} kreska poszła w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej.",
+      "direction_other": "{{count, number}} kreski poszły w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej."
+    },
+    "corners": {
+      "topLeft": "lewego górnego rogu",
+      "topCentre": "góry",
+      "topRight": "prawego górnego rogu",
+      "middleLeft": "lewej strony",
+      "middleCentre": "środka",
+      "middleRight": "prawej strony",
+      "bottomLeft": "lewego dolnego rogu",
+      "bottomCentre": "dołu",
+      "bottomRight": "prawego dolnego rogu"
+    },
+    "watchAgain": "Obejrzyj jeszcze raz",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "position": "Kreska {{current, number}} z {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "długa kreska w dół",
+      "downLongTwice": "dwie długie kreski w dół, najpierw lewa",
+      "downShort": "krótka kreska w dół",
+      "downShortTwice": "dwie krótkie kreski w dół, najpierw lewa",
+      "acrossLong": "długa kreska w poprzek",
+      "acrossLongTwice": "dwie długie kreski w poprzek, najpierw górna",
+      "acrossShort": "krótka kreska w poprzek",
+      "acrossShortTwice": "dwie krótkie kreski w poprzek, najpierw górna",
+      "cornerAcrossDown": "w poprzek u góry i w dół prawą stroną",
+      "cornerDownAcross": "w dół lewą stroną i łukiem w prawo",
+      "slantLeft": "kreska ukośnie w dół w lewo",
+      "slantRight": "kreska ukośnie w dół w prawo",
+      "circle": "kółko, od góry dookoła"
+    },
+    "s1": "Tylko jedna kreska: {{a}}.",
+    "s2": "Najpierw {{a}}. Potem {{b}}.",
+    "s3": "Najpierw {{a}}. Potem {{b}}. Potem {{c}}.",
+    "s4": "Najpierw {{a}}. Potem {{b}}. Potem {{c}}. Na końcu {{d}}.",
+    "parts2": {
+      "plain": "Napisz najpierw {{a}}, potem {{b}}.",
+      "right": "Napisz najpierw {{a}}, potem {{b}} po jego prawej.",
+      "below": "Napisz najpierw {{a}}, potem {{b}} pod spodem."
+    },
+    "parts3": {
+      "right": "Napisz {{a}}, potem {{b}} po jego prawej, potem {{c}} wzdłuż dołu.",
+      "below": "Napisz {{a}}, potem {{b}} pod spodem, potem {{c}} wzdłuż dołu."
+    },
+    "partsDouble": "Napisz {{a}} dwa razy, obok siebie — najpierw lewą.",
+    "fallback": "{{strokes}} kresek, w kolejności, którą pokazują cyfry."
+  }
+}

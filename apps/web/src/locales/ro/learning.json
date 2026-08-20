@@ -1,0 +1,237 @@
+{
+  "letters": {
+    "title": "Învață literele",
+    "alphabetTitle": "Alfabetul hangul",
+    "alphabetCaption": "litere învățate",
+    "complete": "Învățată",
+    "resume": "Continuă"
+  },
+  "units": {
+    "badge": "Unitatea {{index, number}}",
+    "continue": "Am înțeles — începem",
+    "unit-1": {
+      "title": "Șase vocale pentru început",
+      "goal": "Orice silabă coreeană are nevoie de o vocală. Acestea șase sunt cele mai simple.",
+      "body": "Hangul e un alfabet, nu o colecție de desene. Are 40 de litere, a fost gândit ca să fie învățat repede, iar acum înveți șase dintre ele.",
+      "points": [
+        "Literele se adună în blocuri pătrate, iar fiecare bloc e o silabă.",
+        "O vocală e fie o linie verticală, fie una orizontală — asta hotărăște unde stă în bloc.",
+        "Rostește fiecare literă cu voce tare în timp ce o trasezi. Sunetul e jumătate din lecție."
+      ]
+    },
+    "unit-2": {
+      "title": "Primele tale consoane",
+      "goal": "Cinci consoane. Cu vocalele pe care le știi deja, ies 30 de silabe."
+    },
+    "unit-3": {
+      "title": "Le punem împreună",
+      "goal": "Consoană plus vocală înseamnă un bloc pe care îl poți citi.",
+      "body": "O silabă coreeană se scrie ca un singur pătrat. Consoana vine prima — la stânga cu o vocală verticală, sus cu una orizontală.",
+      "points": [
+        "O vocală verticală (ㅏ ㅓ ㅣ) stă la dreapta consoanei.",
+        "O vocală orizontală (ㅗ ㅜ ㅡ) se așază sub ea.",
+        "Citește blocul cum citești o pagină: de la stânga la dreapta, apoi în jos."
+      ]
+    },
+    "unit-4": {
+      "title": "Încă cinci consoane",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — restul seriei simple."
+    },
+    "unit-5": {
+      "title": "Citim mai multe blocuri",
+      "goal": "Inclusiv singura literă care nu sună deloc."
+    },
+    "unit-6": {
+      "title": "Adăugăm un sunet i",
+      "goal": "O linie în plus face din ㅏ litera ㅑ. Regula e aceeași la toate patru."
+    },
+    "unit-7": {
+      "title": "O suflare de aer",
+      "goal": "ㅊ ㅋ ㅌ ㅍ sunt litere pe care le știi, cu o linie în plus."
+    },
+    "unit-8": {
+      "title": "Vocalele cu e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — vocale făcute prin adăugarea lui ㅣ."
+    },
+    "unit-9": {
+      "title": "Dublate și încordate",
+      "goal": "Cinci litere scrise de două ori și rostite mai strâns."
+    },
+    "unit-10": {
+      "title": "Vocalele cu u",
+      "goal": "Două vocale scrise ca una singură. Ultimele din cele 40 de litere."
+    },
+    "unit-11": {
+      "title": "O literă la bază",
+      "goal": "받침 — consoana care închide silaba.",
+      "body": "Un bloc poate ține o a treia literă, sub celelalte două. Se cheamă 받침 și închide silaba.",
+      "points": [
+        "A treia literă stă mereu la baza pătratului.",
+        "Un 받침 se aude doar ca unul dintre șapte sunete, indiferent ce literă e scrisă.",
+        "Aici se împotmolește cititul aproape la toți începătorii. Ia-o încet."
+      ]
+    },
+    "unit-12": {
+      "title": "Citim 한글",
+      "goal": "Acum știi fiecare literă. Citește numele scrierii înseși."
+    }
+  },
+  "intro": {
+    "letterName": "Nume",
+    "letterSound": "Sunet",
+    "soundIn": "Ascultă {{character}} în",
+    "reads": "Se citește"
+  },
+  "steps": {
+    "label": "Pașii pentru această literă",
+    "write": "Scrie",
+    "read": "Citește"
+  },
+  "recognition": {
+    "question": "Care scoate sunetul acesta?",
+    "optionsAria": "Alege litera pe care ai auzit-o",
+    "optionAria": "Alege {{character}}",
+    "correctDetail": "Da, e {{character}}.",
+    "wrongHeadline": "Nu aceea.",
+    "wrongDetail": "{{character}} e cea care sună ca {{sound}}.",
+    "hearAgain": "Ascultă din nou",
+    "tryAgain": "Mai încearcă"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Sari peste asta",
+    "startWriting": "Scrie-o",
+    "nowRecognise": "Încearcă o întrebare",
+    "next": "Litera următoare",
+    "finish": "Termină",
+    "prompt": {
+      "write": "Trasează-o cu degetul peste model."
+    },
+    "continue": "Mai departe"
+  },
+  "complete": {
+    "title": "Frumoasă treabă!",
+    "letters_few": "Ai terminat {{count, number}} litere în {{lesson}}.",
+    "letters_one": "Ai terminat {{count, number}} literă în {{lesson}}.",
+    "letters_other": "Ai terminat {{count, number}} de litere în {{lesson}}."
+  },
+  "review": {
+    "title": "Recapitulare",
+    "startCta": "Începe recapitularea",
+    "sessionTitle": "Recapitulare",
+    "completeTitle": "Recapitulare terminată",
+    "empty": {
+      "title": "Încă nu e nimic de recapitulat",
+      "body": "Tot ce greșești ajunge aici. Deocamdată, ce zici de o literă nouă?",
+      "cta": "Învață o literă"
+    },
+    "forYou": "Recapitulare pentru tine",
+    "sessionLength_few": "{{count, number}} exerciții scurte",
+    "sessionLength_one": "{{count, number}} exercițiu scurt",
+    "sessionLength_other": "{{count, number}} de exerciții scurte",
+    "needsPractice": "Are nevoie de exercițiu",
+    "dueToday": "Pe azi",
+    "savedWords": "Cuvinte salvate",
+    "chooseMode": "Sau alege tu ce exersezi",
+    "comingUp": "Urmează",
+    "outcome": "{{practised, number}} exersate · {{firstTry, number}} ți-au venit din prima · {{comingBack, number}} se întorc în curând",
+    "blank": "spațiu",
+    "optionsLabel": "Răspunsuri",
+    "showHint": "Dă-mi un indiciu",
+    "right": "Exact.",
+    "notQuite": "Nu chiar. Uite-l.",
+    "mode": {
+      "read": "Citit",
+      "listen": "Ascultat",
+      "write": "Scris"
+    },
+    "prompt": {
+      "read": "Ce înseamnă cuvântul acesta?",
+      "readLetter": "Ce sunet scoate litera aceasta?",
+      "listen": "Ce cuvânt ai auzit?",
+      "listenLetter": "Ce literă e aceasta?",
+      "context": "Ce cuvânt se potrivește aici?",
+      "write": "Scrie cuvântul acesta",
+      "writeLetter": "Scrie ce auzi",
+      "distinguish": "Care scoate sunetul acesta?",
+      "produce": "Care e?",
+      "listenMeaning": "Ce înseamnă asta?",
+      "build": "Alcătuiește cuvântul"
+    },
+    "nothingDue": "Acum nu e nimic de recapitulat.",
+    "modesEmpty": "Azi nu e nimic în modurile acestea.",
+    "answerIs": "{{word}} înseamnă „{{meaning}}”.",
+    "showMoreHint": "Încă un indiciu",
+    "showAnswer": "Arată răspunsul",
+    "hint": {
+      "kind": "E un {{pos}} — ceva din {{category}}.",
+      "kindOnly": "Cuvântul care lipsește e un {{pos}}.",
+      "startsWith": "Începe cu {{start}}…",
+      "startsWithSound": "Începe cu sunetul „{{sound}}”.",
+      "replay": "Ascultă din nou — de câte ori vrei.",
+      "letterFamily": "Aceasta e {{family}}.",
+      "letterExample": "E prima literă din {{word}}.",
+      "letterSound": "Sună ca „{{sound}}”.",
+      "reveal": "Răspunsul e {{answer}}.",
+      "revealWord": "Cuvântul e {{answer}}.",
+      "revealLetter": "Litera e {{answer}}.",
+      "revealStrokes": "Mai uită-te o dată la linii, apoi trasează-le.",
+      "inSentence": "Se folosește așa: {{sentence}}"
+    },
+    "buildTray": "Silabe",
+    "buildRemove": "Ia înapoi {{syllable}}"
+  },
+  "sounds": {
+    "title": "Când sunetele se întâlnesc",
+    "blurb": "De ce 학교 nu se rostește cum se scrie.",
+    "intro": "Acum citești fiecare literă. Coreeana scrie părțile din care e alcătuit un cuvânt și le schimbă pe unele acolo unde se ating — de aceea câteva cuvinte sună altfel decât arată. Iată-le pe cele pe care le întâlnești primele.",
+    "written": "Se scrie",
+    "said": "Se rostește",
+    "note": "Nu trebuie să le memorezi. Ascultă-le și vor începe să sune firesc.",
+    "name": {
+      "tensing": "Un al doilea sunet mai strâns",
+      "aspiration": "O suflare de aer",
+      "nasal": "Un sunet nazal, moale",
+      "lateral": "ㄴ și ㄹ împreună",
+      "palatal": "ㄷ și ㅌ înainte de 이",
+      "liaison": "Sunetul alunecă mai departe"
+    }
+  },
+  "mistakes": {
+    "title": "Răspunsuri greșite",
+    "review_few": "Recapitulare · {{count}} întrebări",
+    "review_one": "Recapitulare · {{count}} întrebare",
+    "review_other": "Recapitulare · {{count}} de întrebări",
+    "filterLabel": "Arată",
+    "filter": {
+      "all": "Toate",
+      "character": "Litere",
+      "word": "Cuvinte"
+    },
+    "youPut": "Ai răspuns",
+    "answer": "Corect",
+    "times_few": "Greșit de {{count}} ori",
+    "times_one": "Greșit de {{count}} dată",
+    "times_other": "Greșit de {{count}} de ori",
+    "clear": "Gata cu asta",
+    "noneOfKind": "Deocamdată nu e nimic aici.",
+    "emptyTitle": "Încă n-ai greșit nimic",
+    "emptyBody": "Când îți scapă ceva, apare aici ca să poți îndrepta.",
+    "emptyCta": "Mergi la recapitulare"
+  },
+  "letterGroup": {
+    "basic_vowel": "o vocală de bază",
+    "basic_consonant": "o consoană de bază",
+    "compound_vowel": "o vocală compusă",
+    "double_consonant": "o consoană dublată",
+    "final_consonant": "o consoană finală",
+    "syllable": "o silabă întreagă"
+  },
+  "nextStep": {
+    "title": "Gata pentru pasul următor",
+    "body": "Acum poți citi hangul. Vorbitul și pregătirea pentru TOPIK continuă în Hangyul.",
+    "cta": "Continuă în Hangyul",
+    "rowTitle": "Continuă în Hangyul",
+    "rowBody": "Vorbit și TOPIK, când te simți pregătit"
+  }
+}

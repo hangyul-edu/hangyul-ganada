@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "Visszavonás",
+    "clear": "Törlés",
+    "check": "Ellenőrzés"
+  },
+  "canvas": {
+    "label": "Írófelület ehhez: {{character}}",
+    "empty": "Még nincs leírva semmi.",
+    "strokes_one": "{{count, number}} vonás leírva.",
+    "strokes_other": "{{count, number}} vonás leírva."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Ez az!",
+      "perfect": "{{character}} — gyönyörűen leírva.",
+      "scored": "Jó forma — az út {{score, number(style: percent)}}-a megvan."
+    },
+    "empty": {
+      "headline": "Még nincs ott semmi",
+      "detail": "Írd a betűt a keretbe."
+    },
+    "incomplete": {
+      "headline": "Majdnem",
+      "tooSmall": "Kicsit kicsi. Próbáld kitölteni a keretet.",
+      "missingStroke": "Hiányzik egy vonás. Kövesd a mintát végig."
+    },
+    "outside": {
+      "headline": "Nem egészen",
+      "tooLarge": "Kilógott a keretből. Legközelebb egy kicsit kisebbet.",
+      "strayStroke": "Az egyik vonás elkalandozott. Kövesd a vonalat lassan."
+    },
+    "scribble": {
+      "headline": "Próbáljuk lassabban",
+      "detail": "Húzd meg minden vonást egyszer, egy mozdulattal — nem kell újra végigmenni rajta."
+    },
+    "mixed": {
+      "headline": "Nem egészen",
+      "detail": "Igazítsd a mintához, és próbáld újra."
+    },
+    "retry": "Próbáld újra",
+    "showDetails": "Részletek mutatása",
+    "hideDetails": "Részletek elrejtése",
+    "breakdown": "Eltérés {{mismatch, number(style: percent)}} · kívül {{outside, number(style: percent)}} · hiányzik {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
+    "diagramLabel_other": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
+    "pause": "Szünet",
+    "count_one": "{{count, number}} vonás",
+    "count_other": "{{count, number}} vonás",
+    "heading": "Nézd meg, hogyan írjuk",
+    "notesFooter": "A vonássorrend nem számít bele az értékelésbe. De ettől néz ki helyesnek az írásod.",
+    "notes": {
+      "fewer": "{{theirs, number}} vonást használtál; ezt a betűt általában {{expected, number}} vonással írjuk.",
+      "more": "{{theirs, number}} vonást használtál; ezt a betűt általában {{expected, number}} vonással írjuk.",
+      "startElsewhere": "Általában a keret {{corner}} részéből indul.",
+      "direction_one": "{{count, number}} vonás fordítva ment. A koreai vonások fentről lefelé és balról jobbra haladnak.",
+      "direction_other": "{{count, number}} vonás fordítva ment. A koreai vonások fentről lefelé és balról jobbra haladnak."
+    },
+    "corners": {
+      "topLeft": "bal felső",
+      "topCentre": "felső",
+      "topRight": "jobb felső",
+      "middleLeft": "bal",
+      "middleCentre": "középső",
+      "middleRight": "jobb",
+      "bottomLeft": "bal alsó",
+      "bottomCentre": "alsó",
+      "bottomRight": "jobb alsó"
+    },
+    "watchAgain": "Nézd meg újra",
+    "back": "Vissza",
+    "next": "Előre",
+    "position": "{{count, number}} vonásból a(z) {{current, number}}."
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "a hosszú vonal lefelé",
+      "downLongTwice": "a két hosszú vonal lefelé, előbb a bal",
+      "downShort": "a rövid vonal lefelé",
+      "downShortTwice": "a két rövid vonal lefelé, előbb a bal",
+      "acrossLong": "a hosszú vonal keresztben",
+      "acrossLongTwice": "a két hosszú vonal keresztben, előbb a felső",
+      "acrossShort": "a rövid vonal keresztben",
+      "acrossShortTwice": "a két rövid vonal keresztben, előbb a felső",
+      "cornerAcrossDown": "keresztben felül, majd le a jobb oldalon",
+      "cornerDownAcross": "le a bal oldalon, majd fordulás jobbra",
+      "slantLeft": "a balra lefelé tartó ferde vonás",
+      "slantRight": "a jobbra lefelé tartó ferde vonás",
+      "circle": "a kör, felülről körbe"
+    },
+    "s1": "Csak egy vonás: {{a}}.",
+    "s2": "Először {{a}}. Aztán {{b}}.",
+    "s3": "Először {{a}}. Aztán {{b}}. Aztán {{c}}.",
+    "s4": "Először {{a}}. Aztán {{b}}. Aztán {{c}}. Végül {{d}}.",
+    "parts2": {
+      "plain": "Írd le előbb {{a}}, aztán {{b}}.",
+      "right": "Írd le előbb {{a}}, aztán {{b}} tőle jobbra.",
+      "below": "Írd le előbb {{a}}, aztán {{b}} alá."
+    },
+    "parts3": {
+      "right": "Írd le {{a}}, aztán {{b}} tőle jobbra, aztán {{c}} az alja mentén.",
+      "below": "Írd le {{a}}, aztán {{b}} alá, aztán {{c}} az alja mentén."
+    },
+    "partsDouble": "Írd le {{a}} kétszer, egymás mellé — előbb a balt.",
+    "fallback": "{{strokes}} vonás, a számok által mutatott sorrendben."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "title": "Aktivita v učení",
+  "streak": {
+    "caption": "Udržuje ji jakékoli cvičení — literu dokončit nemusíte.",
+    "longest": "Nejdelší série",
+    "totalDays": "Dnů cvičení",
+    "totalTime": "Celkový čas",
+    "unit_few": "dny v řadě",
+    "unit_many": "dne v řadě",
+    "unit_one": "den v řadě",
+    "unit_other": "dní v řadě"
+  },
+  "chart": {
+    "title": "Aktivita",
+    "rangeAria": "Vyberte časové rozmezí",
+    "aria": "Cvičení po dnech",
+    "noneYet": "V tomhle období zatím žádné cvičení.",
+    "range": {
+      "7": "7 dní",
+      "30": "30 dní",
+      "90": "3 měsíce",
+      "0": "Vše"
+    }
+  },
+  "calendar": {
+    "previous": "Předchozí měsíc",
+    "next": "Další měsíc",
+    "less": "Méně",
+    "more": "Více",
+    "dayAria_few": "{{date}}: {{count, number}} pokusy",
+    "dayAria_many": "{{date}}: {{count, number}} pokusu",
+    "dayAria_one": "{{date}}: {{count, number}} pokus",
+    "dayAria_other": "{{date}}: {{count, number}} pokusů"
+  },
+  "day": {
+    "time": "Čas učení",
+    "attempts": "Pokusy o psaní",
+    "correct": "Správně",
+    "charactersLearned": "Dokončené litery",
+    "wordsLearned": "Dokončená slova",
+    "reviews": "Pokusy v opakování",
+    "nothing": "Tenhle den bez cvičení."
+  },
+  "insights": {
+    "title": "Co vyčnívá",
+    "mostPractisedCharacter": "Nejvíc procvičená litera",
+    "mostPractisedWord": "Nejvíc procvičené slovo",
+    "accuracy": "Přesnost psaní",
+    "thisWeek": "Tento týden",
+    "learnedCount_few": "{{count, number}} dokončeny",
+    "learnedCount_many": "{{count, number}} dokončeno",
+    "learnedCount_one": "{{count, number}} dokončena",
+    "learnedCount_other": "{{count, number}} dokončeno"
+  },
+  "units": {
+    "minute_few": "{{count, number}} min",
+    "minute_many": "{{count, number}} min",
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_few": "{{count, number}} h",
+    "hour_many": "{{count, number}} h",
+    "hour_one": "{{count, number}} h",
+    "hour_other": "{{count, number}} h"
+  },
+  "empty": {
+    "title": "Váš příběh učení začíná dnes",
+    "body": "Procvičte pár liter a tahle stránka se zaplní: dny, kdy jste se učili, jak dlouho a na čem jste pracovali."
+  },
+  "week": {
+    "title": "Tento týden",
+    "range": "Od {{from}}",
+    "days": "Dnů učení",
+    "daysValue_few": "{{count, number}} ze 7",
+    "daysValue_many": "{{count, number}} ze 7",
+    "daysValue_one": "{{count, number}} ze 7",
+    "daysValue_other": "{{count, number}} ze 7",
+    "time": "Čas",
+    "learned": "Naučeno",
+    "accuracy": "Přesnost",
+    "same": "Stejně času jako minulý týden.",
+    "moreThanLast": "O {{minutes, number}} minut víc než minulý týden.",
+    "lessThanLast": "O {{minutes, number}} minut míň než minulý týden.",
+    "quiet": "Tenhle týden zatím nic — čas ještě je."
+  },
+  "memory": {
+    "title": "Jak jde zapamatování",
+    "firstTry": "Tenhle týden jste si {{count, number}} věcí vybavili napoprvé.",
+    "strongestSkill": "Tenhle týden vám nejvíc jde {{skill}}.",
+    "confusionImproving": "{{a}} a {{b}} se vám rozlišují čím dál líp.",
+    "skill": {
+      "reading_recognition": "čtení",
+      "listening_recognition": "poslech",
+      "guided_writing": "psaní",
+      "meaning_recognition": "významy",
+      "sentence_comprehension": "věty",
+      "sound_recognition": "zvuky",
+      "visual_recognition": "litery",
+      "lookalike_discrimination": "rozlišování podobných"
+    }
+  }
+}

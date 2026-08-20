@@ -1,0 +1,117 @@
+{
+  "actions": {
+    "undo": "Отменить",
+    "clear": "Очистить",
+    "check": "Проверить"
+  },
+  "canvas": {
+    "label": "Поле для написания буквы {{character}}",
+    "empty": "Пока ничего не написано.",
+    "strokes_few": "Написаны {{count, number}} черты.",
+    "strokes_many": "Написано {{count, number}} черт.",
+    "strokes_one": "Написана {{count, number}} черта.",
+    "strokes_other": "Написано {{count, number}} черты."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Вот так!",
+      "perfect": "{{character}} — написано прекрасно.",
+      "scored": "Форма хорошая — пройдено {{score, number(style: percent)}} пути."
+    },
+    "empty": {
+      "headline": "Пока пусто",
+      "detail": "Напишите букву внутри рамки."
+    },
+    "incomplete": {
+      "headline": "Почти",
+      "tooSmall": "Чуть мелковато. Попробуйте заполнить рамку.",
+      "missingStroke": "Не хватает черты. Ведите по образцу до самого конца."
+    },
+    "outside": {
+      "headline": "Не совсем",
+      "tooLarge": "Вышло за рамку. В следующий раз чуть мельче.",
+      "strayStroke": "Одна черта ушла в сторону. Ведите по линии не спеша."
+    },
+    "scribble": {
+      "headline": "Давайте помедленнее",
+      "detail": "Ведите каждую черту один раз, одним плавным движением — возвращаться по ней не нужно."
+    },
+    "mixed": {
+      "headline": "Не совсем",
+      "detail": "Совместите с образцом и попробуйте ещё раз."
+    },
+    "retry": "Попробовать снова",
+    "showDetails": "Показать подробности",
+    "hideDetails": "Скрыть подробности",
+    "breakdown": "Расхождение {{mismatch, number(style: percent)}} · за рамкой {{outside, number(style: percent)}} · не хватает {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Как пишется {{character}} — в {{count, number}} черты",
+    "diagramLabel_many": "Как пишется {{character}} — в {{count, number}} черт",
+    "diagramLabel_one": "Как пишется {{character}} — в {{count, number}} черту",
+    "diagramLabel_other": "Как пишется {{character}} — в {{count, number}} черты",
+    "pause": "Пауза",
+    "count_few": "{{count, number}} черты",
+    "count_many": "{{count, number}} черт",
+    "count_one": "{{count, number}} черта",
+    "count_other": "{{count, number}} черты",
+    "heading": "Посмотрите, как её пишут",
+    "notesFooter": "Порядок черт в оценку не входит. Именно он делает почерк правильным на вид.",
+    "notes": {
+      "fewer": "Вы использовали {{theirs, number}} черт; эту букву обычно пишут в {{expected, number}}.",
+      "more": "Вы использовали {{theirs, number}} черт; эту букву обычно пишут в {{expected, number}}.",
+      "startElsewhere": "Обычно она начинается {{corner}} рамки.",
+      "direction_few": "{{count, number}} черты пошли в обратную сторону. Корейские черты идут сверху вниз и слева направо.",
+      "direction_many": "{{count, number}} черт пошли в обратную сторону. Корейские черты идут сверху вниз и слева направо.",
+      "direction_one": "{{count, number}} черта пошла в обратную сторону. Корейские черты идут сверху вниз и слева направо.",
+      "direction_other": "{{count, number}} черты пошли в обратную сторону. Корейские черты идут сверху вниз и слева направо."
+    },
+    "corners": {
+      "topLeft": "с левого верхнего угла",
+      "topCentre": "сверху",
+      "topRight": "с правого верхнего угла",
+      "middleLeft": "слева",
+      "middleCentre": "с центра",
+      "middleRight": "справа",
+      "bottomLeft": "с левого нижнего угла",
+      "bottomCentre": "снизу",
+      "bottomRight": "с правого нижнего угла"
+    },
+    "watchAgain": "Посмотреть ещё раз",
+    "back": "Назад",
+    "next": "Вперёд",
+    "position": "Черта {{current, number}} из {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "длинная черта вниз",
+      "downLongTwice": "две длинные черты вниз, сначала левая",
+      "downShort": "короткая черта вниз",
+      "downShortTwice": "две короткие черты вниз, сначала левая",
+      "acrossLong": "длинная черта поперёк",
+      "acrossLongTwice": "две длинные черты поперёк, сначала верхняя",
+      "acrossShort": "короткая черта поперёк",
+      "acrossShortTwice": "две короткие черты поперёк, сначала верхняя",
+      "cornerAcrossDown": "поперёк по верху и вниз по правой стороне",
+      "cornerDownAcross": "вниз по левой стороне и поворот вправо",
+      "slantLeft": "черта наискось вниз влево",
+      "slantRight": "черта наискось вниз вправо",
+      "circle": "кружок, по кругу сверху"
+    },
+    "s1": "Всего одна черта: {{a}}.",
+    "s2": "Сначала {{a}}. Потом {{b}}.",
+    "s3": "Сначала {{a}}. Потом {{b}}. Потом {{c}}.",
+    "s4": "Сначала {{a}}. Потом {{b}}. Потом {{c}}. И напоследок {{d}}.",
+    "parts2": {
+      "plain": "Напишите сначала {{a}}, потом {{b}}.",
+      "right": "Напишите сначала {{a}}, потом {{b}} справа от него.",
+      "below": "Напишите сначала {{a}}, потом {{b}} под ним."
+    },
+    "parts3": {
+      "right": "Напишите {{a}}, потом {{b}} справа от него, потом {{c}} вдоль низа.",
+      "below": "Напишите {{a}}, потом {{b}} под ним, потом {{c}} вдоль низа."
+    },
+    "partsDouble": "Напишите {{a}} дважды, рядом — сначала левую.",
+    "fallback": "{{strokes}} черт, в том порядке, который показывают цифры."
+  }
+}

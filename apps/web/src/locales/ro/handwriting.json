@@ -1,0 +1,113 @@
+{
+  "actions": {
+    "undo": "Anulează",
+    "clear": "Șterge",
+    "check": "Verifică"
+  },
+  "canvas": {
+    "label": "Zonă de scris pentru {{character}}",
+    "empty": "Încă n-ai scris nimic.",
+    "strokes_few": "{{count, number}} linii scrise.",
+    "strokes_one": "{{count, number}} linie scrisă.",
+    "strokes_other": "{{count, number}} de linii scrise."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Exact așa!",
+      "perfect": "{{character}} — scrisă frumos.",
+      "scored": "Formă bună — {{score, number(style: percent)}} din drum."
+    },
+    "empty": {
+      "headline": "Încă nimic",
+      "detail": "Scrie litera înăuntrul casetei."
+    },
+    "incomplete": {
+      "headline": "Aproape",
+      "tooSmall": "Puțin cam mică. Încearcă să umpli caseta.",
+      "missingStroke": "Lipsește o linie. Urmează modelul până la capăt."
+    },
+    "outside": {
+      "headline": "Nu chiar",
+      "tooLarge": "A ieșit din casetă. Data viitoare puțin mai mică.",
+      "strayStroke": "O linie a luat-o razna. Urmează traseul încet."
+    },
+    "scribble": {
+      "headline": "Hai s-o luăm mai încet",
+      "detail": "Trage fiecare linie o singură dată, dintr-o mișcare — nu e nevoie să treci din nou peste ea."
+    },
+    "mixed": {
+      "headline": "Nu chiar",
+      "detail": "Aliniaz-o cu modelul și mai încearcă o dată."
+    },
+    "retry": "Mai încearcă",
+    "showDetails": "Arată detaliile",
+    "hideDetails": "Ascunde detaliile",
+    "breakdown": "Diferență {{mismatch, number(style: percent)}} · în afară {{outside, number(style: percent)}} · lipsă {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Cum se scrie {{character}}, din {{count, number}} linii",
+    "diagramLabel_one": "Cum se scrie {{character}}, din {{count, number}} linie",
+    "diagramLabel_other": "Cum se scrie {{character}}, din {{count, number}} de linii",
+    "pause": "Pauză",
+    "count_few": "{{count, number}} linii",
+    "count_one": "{{count, number}} linie",
+    "count_other": "{{count, number}} de linii",
+    "heading": "Vezi cum se scrie",
+    "notesFooter": "Ordinea liniilor nu intră la notă. Ea e cea care face scrisul să arate corect.",
+    "notes": {
+      "fewer": "Ai folosit {{theirs, number}} linii; litera aceasta se scrie de obicei din {{expected, number}}.",
+      "more": "Ai folosit {{theirs, number}} linii; litera aceasta se scrie de obicei din {{expected, number}}.",
+      "startElsewhere": "De obicei începe din {{corner}} casetei.",
+      "direction_few": "{{count, number}} linii au mers invers. Liniile coreene merg de sus în jos și de la stânga la dreapta.",
+      "direction_one": "{{count, number}} linie a mers invers. Liniile coreene merg de sus în jos și de la stânga la dreapta.",
+      "direction_other": "{{count, number}} de linii au mers invers. Liniile coreene merg de sus în jos și de la stânga la dreapta."
+    },
+    "corners": {
+      "topLeft": "colțul din stânga sus",
+      "topCentre": "partea de sus",
+      "topRight": "colțul din dreapta sus",
+      "middleLeft": "partea stângă",
+      "middleCentre": "mijloc",
+      "middleRight": "partea dreaptă",
+      "bottomLeft": "colțul din stânga jos",
+      "bottomCentre": "partea de jos",
+      "bottomRight": "colțul din dreapta jos"
+    },
+    "watchAgain": "Vezi din nou",
+    "back": "Înapoi",
+    "next": "Înainte",
+    "position": "Linia {{current, number}} din {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "linia lungă în jos",
+      "downLongTwice": "cele două linii lungi în jos, întâi cea din stânga",
+      "downShort": "linia scurtă în jos",
+      "downShortTwice": "cele două linii scurte în jos, întâi cea din stânga",
+      "acrossLong": "linia lungă de-a curmezișul",
+      "acrossLongTwice": "cele două linii lungi de-a curmezișul, întâi cea de sus",
+      "acrossShort": "linia scurtă de-a curmezișul",
+      "acrossShortTwice": "cele două linii scurte de-a curmezișul, întâi cea de sus",
+      "cornerAcrossDown": "de-a curmezișul pe sus și în jos pe latura dreaptă",
+      "cornerDownAcross": "în jos pe latura stângă și apoi spre dreapta",
+      "slantLeft": "linia oblică ce coboară spre stânga",
+      "slantRight": "linia oblică ce coboară spre dreapta",
+      "circle": "cercul, rotind de sus"
+    },
+    "s1": "O singură linie: {{a}}.",
+    "s2": "Întâi {{a}}. Apoi {{b}}.",
+    "s3": "Întâi {{a}}. Apoi {{b}}. Apoi {{c}}.",
+    "s4": "Întâi {{a}}. Apoi {{b}}. Apoi {{c}}. La final {{d}}.",
+    "parts2": {
+      "plain": "Scrie întâi {{a}}, apoi {{b}}.",
+      "right": "Scrie întâi {{a}}, apoi {{b}} la dreapta lui.",
+      "below": "Scrie întâi {{a}}, apoi {{b}} dedesubt."
+    },
+    "parts3": {
+      "right": "Scrie {{a}}, apoi {{b}} la dreapta lui, apoi {{c}} de-a lungul bazei.",
+      "below": "Scrie {{a}}, apoi {{b}} dedesubt, apoi {{c}} de-a lungul bazei."
+    },
+    "partsDouble": "Scrie {{a}} de două ori, una lângă alta — întâi cea din stânga.",
+    "fallback": "{{strokes}} linii, în ordinea arătată de cifre."
+  }
+}

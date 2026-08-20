@@ -1,0 +1,46 @@
+{
+  "streak": {
+    "aria": "اطّلع على سجل تعلّمك"
+  },
+  "celebrate": "أنجزت هدف اليوم. عمل جميل.",
+  "dailyGoal": "حروف اليوم",
+  "dailyGoalAria": "حروف اليوم: {{done, number}} من {{total, number}}",
+  "cta": {
+    "start": "لنبدأ",
+    "continue": "تابع التعلّم"
+  },
+  "finished": {
+    "badge": "اكتمل",
+    "title": "صرت تقرأ الهانغول",
+    "body": "الحروف الـ{{count, number}} كلها: رأيتها وكتبتها وقرأتها. من هنا تبدأ الكلمات.",
+    "goal": "كلمات اليوم",
+    "cta": "كلمات اليوم"
+  },
+  "quick": {
+    "letters": "الحروف",
+    "lettersCaption": "من حروف الهانغول الأربعين",
+    "words": "الكلمات",
+    "wordsCaption": "كلمات اليوم"
+  },
+  "review": {
+    "title": "المراجعة",
+    "count_few": "{{count, number}} عناصر للمراجعة",
+    "count_many": "{{count, number}} عنصرًا للمراجعة",
+    "count_one": "عنصر واحد للمراجعة",
+    "count_other": "{{count, number}} عنصر للمراجعة",
+    "count_two": "عنصران للمراجعة",
+    "count_zero": "لا شيء للمراجعة",
+    "empty": "لا شيء للمراجعة بعد"
+  },
+  "practice": {
+    "title": "تمرين اليوم",
+    "reviews_few": "{{count, number}} مراجعات جاهزة",
+    "reviews_many": "{{count, number}} مراجعة جاهزة",
+    "reviews_one": "مراجعة واحدة جاهزة",
+    "reviews_other": "{{count, number}} مراجعة جاهزة",
+    "reviews_two": "مراجعتان جاهزتان",
+    "reviews_zero": "لا مراجعات جاهزة",
+    "cta": "ابدأ التمرين"
+  },
+  "purpose": "تعلّم الكورية من أول حرف: الهانغول أولًا، ثم الكلمات التي ستستعملها فعلًا."
+}

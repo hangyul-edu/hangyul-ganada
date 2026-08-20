@@ -47,7 +47,18 @@ const FORBIDDEN = [
   },
   {
     id: 'topik',
-    pattern: /\bTOPIK\b/i,
+    /*
+     * Case-sensitive, and that is the rule rather than a loophole.
+     *
+     * TOPIK is an acronym and is written in capitals in every language that
+     * names it, including Korean copy that spells the rest of the sentence in
+     * Hangul. Matching case-insensitively also matched *topik*, which is the
+     * ordinary Indonesian and Malay word for "topic" — so "Telusuri per topik",
+     * the Indonesian for "Browse by topic", was reported as a claim about a
+     * Korean proficiency exam. A rule that cries wolf on a category heading is
+     * a rule somebody eventually switches off.
+     */
+    pattern: /\bTOPIK\b/,
     why: 'the app neither teaches to nor grades against TOPIK',
     /*
      * The hand-off, and only the hand-off.

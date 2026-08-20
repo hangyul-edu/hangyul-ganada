@@ -1,0 +1,60 @@
+{
+  "brand": {
+    "tagline": "Învață hangul, linie cu linie.",
+    "description": "Învață să citești și să scrii hangul de la prima literă — consoane și vocale, blocuri silabice, scris de mână și primele tale cuvinte coreene."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Închide",
+    "back": "Înapoi",
+    "goHome": "Mergi acasă",
+    "done": "Gata",
+    "save": "Salvează",
+    "saved": "Salvat"
+  },
+  "a11y": {
+    "skipToContent": "Sari la conținut",
+    "currentPage": "(pagina curentă)",
+    "confirmationRequired": "Această acțiune are nevoie de confirmare."
+  },
+  "audio": {
+    "play": "Ascultă pronunția pentru {{text}}",
+    "retry": "Redă {{text}} din nou",
+    "unavailable": "Nu există înregistrare pentru {{text}}"
+  },
+  "progress": {
+    "lesson": "Progresul în {{name}}",
+    "review": "Progresul în această recapitulare"
+  },
+  "units": {
+    "day_few": "{{count, number}} zile",
+    "day_one": "{{count, number}} zi",
+    "day_other": "{{count, number}} de zile"
+  },
+  "report": {
+    "action": "Raportează o problemă",
+    "title": "Ce nu e în regulă?",
+    "blurb": "Alege ce ți se pare greșit și îți deschidem un e-mail pe care îl completezi. Nimic despre învățarea ta nu e atașat.",
+    "field": {
+      "item": "Element",
+      "category": "Problemă",
+      "version": "Versiunea aplicației",
+      "language": "Limbă"
+    },
+    "writeHere": "Scrie aici ce ai observat:",
+    "category": {
+      "meaning": "Sensul",
+      "example": "Propoziția-exemplu",
+      "translation": "Traducerea",
+      "audio": "Sunetul",
+      "writing": "Evaluarea scrisului",
+      "other": "Altceva"
+    }
+  },
+  "exit": {
+    "title": "Ieși din Hangyul ganada?",
+    "body": "Progresul e salvat. Reiei de unde ai rămas.",
+    "stay": "Rămâi",
+    "leave": "Ieși"
+  }
+}

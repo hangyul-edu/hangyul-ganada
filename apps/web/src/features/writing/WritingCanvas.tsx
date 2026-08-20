@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Stroke } from '@hangyul-ganada/handwriting-core';
 
-import { GUIDE_OPACITY, type GuideLevel } from './guide';
+import { GUIDE_OPACITY } from './guide';
 import { useReferenceGlyph } from './useReferenceGlyph';
 import { useWritingCanvas } from './useWritingCanvas';
 import styles from './WritingCanvas.module.css';
@@ -18,7 +18,6 @@ export interface WritingCanvasProps {
   character: string;
   fontFamily: string;
   fontWeight?: number;
-  guide: GuideLevel;
   /** Pen width as a fraction of the box edge. */
   penWidth?: number;
   showGrid?: boolean;
@@ -48,7 +47,6 @@ export const WritingCanvas = forwardRef<WritingCanvasHandle, WritingCanvasProps>
       character,
       fontFamily,
       fontWeight = 400,
-      guide,
       penWidth = 0.062,
       showGrid = true,
       showCenterCrosshair = true,
@@ -66,8 +64,6 @@ export const WritingCanvas = forwardRef<WritingCanvasHandle, WritingCanvasProps>
       () => ({ character, fontFamily, fontWeight }),
       [character, fontFamily, fontWeight],
     );
-    const level: GuideLevel = guide;
-    const opacity = GUIDE_OPACITY[level];
     const glyphRef = useReferenceGlyph(glyphSpec, true);
 
     useImperativeHandle(
@@ -95,13 +91,13 @@ export const WritingCanvas = forwardRef<WritingCanvasHandle, WritingCanvasProps>
         )}
 
         {/* Painted by the evaluator's own drawGlyph(), so what is traced is
-            exactly what is graded. Fading rather than switching: the guide
-            getting quieter between steps is the progression made visible. */}
+            exactly what is graded. One opacity, always — see `guide.ts` for why
+            there is no longer a fainter second version of this. */}
         <canvas
           ref={glyphRef}
           className={styles.glyph}
           aria-hidden="true"
-          style={{ opacity }}
+          style={{ opacity: GUIDE_OPACITY }}
         />
 
         <canvas

@@ -47,7 +47,6 @@
     "pause": "一時停止",
     "count_other": "{{count, number}}画",
     "heading": "書くところを見る",
-    "notesHeading": "書いた画について",
     "notesFooter": "書き順は採点に入りません。字を自然に見せてくれるものです。",
     "notes": {
       "fewer": "{{theirs, number}}画で書きました。この字はふつう{{expected, number}}画です。",

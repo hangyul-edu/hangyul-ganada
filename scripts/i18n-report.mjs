@@ -74,6 +74,11 @@ const COGNATES = new Map([
     'handwriting:strokeOrder.pause',
     // "rare" is the French adjective, spelled the same and meaning the same.
     'vocabulary:frequency.rare',
+    // "Romanisation" is the French noun for writing a language in the Latin
+    // alphabet, spelled exactly as the British English one. The alternatives —
+    // "translittération", "transcription" — both name something else, and
+    // "transcription" is the word for the notation this label replaced.
+    'vocabulary:detail.romanization',
   ])],
   ['pt-BR', new Set([
     'vocabulary:partOfSpeech.numeral',
@@ -88,17 +93,61 @@ const COGNATES = new Map([
  *
  * Every Latin-alphabet interface language labels alphabetical order with the
  * first and last letters of that alphabet, and they are A and Z in German as in
- * French as in Vietnamese. Translating it would mean inventing a label readers
- * of those languages do not use. Thai writes its own alphabet and so has a real
- * translation, ก–ฮ, and is deliberately absent from this list.
+ * French as in Filipino. Translating it would mean inventing a label readers of
+ * those languages do not use. Languages that write their own alphabet have a
+ * real translation and are deliberately absent: Thai ก–ฮ, Greek Α–Ω, Russian
+ * and the Cyrillic languages А–Я, Hindi and Telugu अ–ह / అ–హ.
+ *
+ * Swedish is absent for a different reason: its alphabet ends at Ö, so its
+ * label is "A–Ö" and is a genuine translation.
  *
  * Merged in rather than written into the literal above, because several of
  * these locales already have an entry there and a duplicate key in a `Map`
  * literal silently keeps only the last one.
  */
-for (const code of ['de', 'es', 'fr', 'pt-BR', 'vi']) {
+for (const code of ['cs', 'de', 'es', 'fil', 'fr', 'hu', 'id', 'it', 'nl', 'pl', 'pt-BR', 'ro', 'tr', 'uz', 'vi']) {
   const set = COGNATES.get(code) ?? new Set();
   set.add('vocabulary:saved.order.alphabetical');
+  COGNATES.set(code, set);
+}
+
+/*
+ * Words several languages simply share with English.
+ *
+ * Each one was checked in the language rather than waved through. "Home",
+ * "App", "Privacy", "Item", "Unit" and "Recent" are the ordinary words in the
+ * languages listed; "verb", "adverb" and "numeral" are the Romanian and Swedish
+ * grammar terms; "Letters" is Dutch for letters; "System" and "Version" are
+ * Swedish nouns. Marking them as untranslated would leave the coverage report
+ * permanently red, and a report with permanent findings in it is one nobody
+ * reads.
+ */
+for (const [code, keys] of [
+  ['fil', ['navigation:tabs.home', 'settings:groups.app', 'settings:groups.reset', 'settings:privacy.title']],
+  ['id', ['common:report.field.item', 'learning:units.badge']],
+  ['it', ['navigation:tabs.home', 'settings:groups.app', 'settings:privacy.title']],
+  ['nl', [
+    'activity:memory.skill.visual_recognition',
+    'common:report.field.item',
+    'home:quick.letters',
+    'learning:mistakes.filter.character',
+    'navigation:tabs.letters',
+    'settings:groups.app',
+    'settings:privacy.title',
+    'vocabulary:saved.order.recent',
+  ]],
+  ['pl', ['common:report.field.category']],
+  ['ro', ['vocabulary:partOfSpeech.adverb', 'vocabulary:partOfSpeech.numeral', 'vocabulary:partOfSpeech.verb']],
+  ['sv', [
+    'common:report.field.category',
+    'settings:about.version',
+    'settings:appearance.system',
+    'vocabulary:partOfSpeech.adverb',
+    'vocabulary:partOfSpeech.verb',
+  ]],
+]) {
+  const set = COGNATES.get(code) ?? new Set();
+  for (const key of keys) set.add(key);
   COGNATES.set(code, set);
 }
 const PLURAL_SUFFIXES = ['zero', 'one', 'two', 'few', 'many', 'other'];

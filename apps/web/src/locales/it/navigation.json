@@ -1,0 +1,10 @@
+{
+  "primary": "Menu principale",
+  "tabs": {
+    "home": "Home",
+    "letters": "Lettere",
+    "words": "Parole",
+    "review": "Ripasso",
+    "profile": "Il mio percorso"
+  }
+}

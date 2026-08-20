@@ -52,10 +52,23 @@ EXAMPLES_QA = ROOT / "content" / "vocabulary" / "examples-qa.json"
 #: It is written by `npm run curriculum:build` from the app's own source, so
 #: this reads exactly what ships rather than a second copy of it.
 CHARACTERS = ROOT / "content" / "curriculum.json"
+LETTER_COPY = ROOT / "content" / "letters"
 AUDIO_MANIFEST = PUBLIC / "audio" / "manifest.json"
 
-#: Locale identifiers as the app knows them, in the order the report prints.
-LOCALES = ("en", "ko", "ja", "zh-CN", "es", "fr", "de", "pt-BR")
+#: Locales with a vocabulary pack, in the order the report prints. These are
+#: the languages whose *word* rows can be at 100%; the other twenty-two ship a
+#: translated interface and alphabet course and fall back to English on the
+#: word cards, which is stated in docs/LOCALIZATION_NATIVE_REVIEW.md and on the
+#: language picker rather than counted as a gap here.
+LOCALES = ("en", "ko", "ja", "zh-CN", "es", "fr", "de", "pt-BR", "vi", "th")
+
+#: Every language the alphabet course is written in — the letter rows below are
+#: measured against this, not against LOCALES, because the two claims are
+#: different sizes and reporting them as one number is how six locales once
+#: shipped English lesson copy under a 100% coverage report.
+LETTER_LOCALES = ("en", "ko") + tuple(
+    sorted(p.stem for p in LETTER_COPY.glob("*.json"))
+) if LETTER_COPY.exists() else ("en", "ko")
 
 LOCALE_NAMES = {
     "en": "English",
@@ -66,6 +79,30 @@ LOCALE_NAMES = {
     "fr": "Français",
     "de": "Deutsch",
     "pt-BR": "Português (BR)",
+    "vi": "Tiếng Việt",
+    "th": "ไทย",
+    "ar": "العربية",
+    "bn": "বাংলা",
+    "cs": "Čeština",
+    "el": "Ελληνικά",
+    "fil": "Filipino",
+    "hi": "हिन्दी",
+    "hu": "Magyar",
+    "id": "Bahasa Indonesia",
+    "it": "Italiano",
+    "kk": "Қазақ тілі",
+    "ky": "Кыргызча",
+    "mn": "Монгол хэл",
+    "nl": "Nederlands",
+    "pl": "Polski",
+    "ro": "Română",
+    "ru": "Русский",
+    "sv": "Svenska",
+    "ta": "தமிழ்",
+    "te": "తెలుగు",
+    "tr": "Türkçe",
+    "uk": "Українська",
+    "uz": "O‘zbekcha",
 }
 
 #: An audio file below this is silence or a truncated write, not a word.
@@ -124,7 +161,9 @@ def vocabulary_rows(words: list[dict]) -> list[Row]:
         rows.append(Row(label, sum(1 for w in words if predicate(w)), total))
 
     count("Part of speech", lambda w: bool(w.get("part_of_speech")))
-    count("Pronunciation metadata", lambda w: bool(w.get("pronunciation")))
+    # Revised Romanization, derived from the standard pronunciation. The field
+    # was called `pronunciation` and held IPA; the row is the same question.
+    count("Romanization", lambda w: bool(w.get("romanization")))
     # Syllables are not a stored field — they are `[...word]`, and the app
     # splits them. The row still counts, because "can this word be broken into
     # writable blocks" is a content question; it is answered from the word.
@@ -166,7 +205,9 @@ def meaning_rows(words: list[dict], order: list[str]) -> list[Row]:
             # A pack of the wrong length is not partial coverage, it is a stale
             # build — and reporting it as 40% complete would hide that.
             return 0
-        return sum(1 for row in rows_for_locale if (row[position] or "").strip())
+        # A `None` row is a word the hand-written packs have no line for — see
+        # the note in `build_vocabulary.py`. It is a gap, not a crash.
+        return sum(1 for row in rows_for_locale if row and (row[position] or "").strip())
 
     for locale in LOCALES:
         rows.append(Row(f"Meaning — {LOCALE_NAMES[locale]}", column(locale, 0), total))
@@ -261,6 +302,16 @@ def audio_rows(words: list[dict]) -> list[Row]:
     return rows
 
 
+def _letter_rows() -> dict[str, dict[str, list]]:
+    """Every language's letter copy, keyed by locale and then by the letter."""
+    if not LETTER_COPY.exists():
+        return {}
+    return {p.stem: _load(p) for p in sorted(LETTER_COPY.glob("*.json"))}
+
+
+LETTER_ROWS = _letter_rows()
+
+
 def character_rows() -> list[Row]:
     if not CHARACTERS.exists():
         return []
@@ -292,12 +343,27 @@ def character_rows() -> list[Row]:
         and all(len(s.get("points") or []) >= 2 for s in c["strokes"]),
     )
     count("Pronunciation audio", lambda c: bool((c.get("audio") or {}).get("sound")))
-    for locale in LOCALES:
+
+    # The letter explanations live in `content/letters/<locale>.json`, one file
+    # per language, and only English and Korean are written inline with the
+    # curriculum — see `apps/web/src/data/letterCopy.ts` for why. So the hint
+    # and mnemonic rows read both places.
+    def hint_of(character: dict, locale: str) -> str | None:
+        row = LETTER_ROWS.get(locale, {}).get(character.get("character"))
+        if row:
+            return row[0]
+        return ((character.get("translations") or {}).get(locale) or {}).get("pronunciation_hint")
+
+    def mnemonic_of(character: dict, locale: str) -> str | None:
+        row = LETTER_ROWS.get(locale, {}).get(character.get("character"))
+        if row:
+            return row[1]
+        return ((character.get("translations") or {}).get(locale) or {}).get("mnemonic")
+
+    for locale in LETTER_LOCALES:
         count(
-            f"Pronunciation hint — {LOCALE_NAMES[locale]}",
-            lambda c, loc=locale: bool(
-                ((c.get("translations") or {}).get(loc) or {}).get("pronunciation_hint")
-            ),
+            f"Pronunciation hint — {LOCALE_NAMES.get(locale, locale)}",
+            lambda c, loc=locale: bool(hint_of(c, loc)),
         )
     # Mnemonics are written where a shape needs remembering and left out where
     # it does not, so the row that matters is not "how many have one" but
@@ -306,15 +372,11 @@ def character_rows() -> list[Row]:
     with_mnemonic = [
         c for c in characters if ((c.get("translations") or {}).get("en") or {}).get("mnemonic")
     ]
-    for locale in LOCALES:
+    for locale in LETTER_LOCALES:
         rows.append(
             Row(
-                f"Mnemonic — {LOCALE_NAMES[locale]}",
-                sum(
-                    1
-                    for c in with_mnemonic
-                    if ((c.get("translations") or {}).get(locale) or {}).get("mnemonic")
-                ),
+                f"Mnemonic — {LOCALE_NAMES.get(locale, locale)}",
+                sum(1 for c in with_mnemonic if mnemonic_of(c, locale)),
                 len(with_mnemonic),
             )
         )

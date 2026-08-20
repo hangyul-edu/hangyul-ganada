@@ -5,7 +5,6 @@ import type { EvaluationConfig, EvaluationResult, Stroke } from '@hangyul-ganada
 import { Button } from '../../ui/Button';
 import { FocusFooter } from '../../ui/FocusScreen';
 import { EraserIcon, UndoIcon } from '../../ui/icons';
-import type { GuideLevel } from './guide';
 import { WritingCanvas, type WritingCanvasHandle } from './WritingCanvas';
 import { useEvaluator } from './useEvaluator';
 import styles from './PracticeCanvasCard.module.css';
@@ -20,7 +19,6 @@ export interface PracticeCanvasCardProps {
    */
   grading?: Partial<EvaluationConfig>;
   /** How much of the reference glyph this step shows. */
-  guide: GuideLevel;
   showGrid?: boolean;
   showCenterCrosshair?: boolean;
   status: 'idle' | 'correct' | 'incorrect';
@@ -60,7 +58,6 @@ export function PracticeCanvasCard({
   fontFamily,
   fontWeight,
   grading,
-  guide,
   showGrid = true,
   showCenterCrosshair = true,
   status,
@@ -121,12 +118,11 @@ export function PracticeCanvasCard({
       {caption && <p className={styles.caption}>{caption}</p>}
 
       <WritingCanvas
-        key={`${character}-${fontFamily}-${guide}`}
+        key={`${character}-${fontFamily}`}
         ref={canvasRef}
         character={character}
         fontFamily={fontFamily}
         fontWeight={fontWeight}
-        guide={guide}
         showGrid={showGrid}
         showCenterCrosshair={showCenterCrosshair}
         status={status}

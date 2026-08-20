@@ -1,0 +1,135 @@
+{
+  "title": "Învață cuvinte",
+  "today": {
+    "title": "Cuvintele de azi",
+    "start": "Începe",
+    "resume": "Continuă",
+    "startBlurb_few": "Un set scurt de {{count}} cuvinte.",
+    "startBlurb_one": "Un cuvânt azi.",
+    "startBlurb_other": "Un set scurt de {{count}} de cuvinte.",
+    "resumeBlurb": "Reia de unde ai rămas.",
+    "doneBlurb": "Gata pe ziua de azi. Frumoasă treabă.",
+    "completeTitle": "Cuvintele de azi sunt gata.",
+    "completeDetail_few": "{{count}} cuvinte învățate.",
+    "completeDetail_one": "{{count}} cuvânt învățat.",
+    "completeDetail_other": "{{count}} de cuvinte învățate.",
+    "more": "Încă puțin",
+    "allDone": "Pe azi nu mai e nimic.",
+    "progressAria": "Progresul în cuvintele de azi",
+    "moreLabel": "Câte încă",
+    "moreCount_few": "încă {{count}}",
+    "moreCount_one": "încă {{count}}",
+    "moreCount_other": "încă {{count}}"
+  },
+  "browse": {
+    "title": "Răsfoiește după temă",
+    "showing": "Se văd {{shown}} din {{total}}"
+  },
+  "intro": {
+    "example": "Exemplu",
+    "howItSounds": "Cum sună",
+    "surfaceNote": "În propoziția aceasta, {{headword}} apare ca {{form}}.",
+    "next": "Am înțeles"
+  },
+  "empty": {
+    "title": "Încă nu sunt cuvinte aici",
+    "body": "Încearcă altă categorie."
+  },
+  "partOfSpeech": {
+    "noun": "substantiv",
+    "verb": "verb",
+    "adjective": "adjectiv",
+    "adverb": "adverb",
+    "pronoun": "pronume",
+    "numeral": "numeral",
+    "particle": "particulă",
+    "interjection": "interjecție",
+    "determiner": "determinant"
+  },
+  "session": {
+    "next": "Cuvântul următor",
+    "finish": "Termină"
+  },
+  "blurb": "Toate cuvintele sunt deschise. Alege o categorie și începe de unde vrei.",
+  "categories": {
+    "essentials": "Esențiale zilnice",
+    "people": "Oameni și familie",
+    "food": "Mâncare și băutură",
+    "animals-nature": "Animale și natură",
+    "home": "Casă și lucruri",
+    "body-health": "Corp și sănătate",
+    "places-travel": "Locuri și călătorii",
+    "time-numbers": "Timp și numere",
+    "school-work": "Școală și muncă",
+    "money-shopping": "Bani și cumpărături",
+    "communication": "Vorbit și media",
+    "feelings": "Sentimente și fire",
+    "thinking": "Gândit și învățat",
+    "movement": "Dus și întors",
+    "actions": "Acțiuni de zi cu zi",
+    "describing": "Descrierea lucrurilor",
+    "society": "Viață și cultură",
+    "how-when": "Cum și când"
+  },
+  "category": {
+    "label": "Categorie",
+    "all": "Toate categoriile",
+    "pick": "Alege o categorie",
+    "count_few": "{{count, number}} cuvinte",
+    "count_one": "{{count, number}} cuvânt",
+    "count_other": "{{count, number}} de cuvinte",
+    "progressAria": "Progresul în {{category}}"
+  },
+  "search": {
+    "placeholder": "Caută cuvinte",
+    "label": "Caută în vocabular",
+    "count_few": "{{count, number}} potriviri",
+    "count_one": "{{count, number}} potrivire",
+    "count_other": "{{count, number}} de potriviri",
+    "none": "Nimic nu se potrivește cu „{{query}}”. Încearcă în coreeană sau sensul în limba ta."
+  },
+  "sound": {
+    "tensing": "După o consoană finală, sunetul următor se strânge.",
+    "aspiration": "ㅎ se contopește cu consoana următoare și adaugă o suflare de aer.",
+    "nasal": "Înainte de ㄴ sau ㅁ, consoana dinaintea lor devine nazală.",
+    "lateral": "ㄴ și ㄹ alăturate devin amândouă ㄹ.",
+    "palatal": "Un ㄷ sau ㅌ final înainte de 이 se rostește ca ㅈ sau ㅊ.",
+    "liaison": "Consoana finală alunecă în blocul următor."
+  },
+  "save": {
+    "action": "Salvează",
+    "saved": "Salvat",
+    "add": "Salvează {{word}}",
+    "remove": "Scoate {{word}} din cele salvate"
+  },
+  "detail": {
+    "title": "Cuvânt",
+    "romanization": "Cu litere latine",
+    "definition": "Mai multe despre el",
+    "usage": "Cum se folosește",
+    "synonyms": "Sinonime",
+    "antonyms": "Opuse"
+  },
+  "saved": {
+    "title": "Cuvinte salvate",
+    "review_few": "Recapitulare · {{count}} întrebări",
+    "review_one": "Recapitulare · {{count}} întrebare",
+    "review_other": "Recapitulare · {{count}} de întrebări",
+    "searchPlaceholder": "Caută în cuvintele salvate",
+    "searchLabel": "Caută printre cuvintele tale salvate",
+    "orderLabel": "Ordine",
+    "order": {
+      "recent": "Recente",
+      "alphabetical": "A–Z",
+      "needed": "Are nevoie de lucru"
+    },
+    "count_few": "{{count}} cuvinte",
+    "count_one": "{{count}} cuvânt",
+    "count_other": "{{count}} de cuvinte",
+    "remove": "Scoate",
+    "noMatch": "Nimic dintre cele salvate nu se potrivește cu „{{query}}”.",
+    "emptyTitle": "Încă niciun cuvânt salvat",
+    "emptyBody": "Atinge semnul de carte de la orice cuvânt în timp ce înveți și îl găsești aici când vrei să revii.",
+    "emptyCta": "Mergi la cuvinte"
+  }
+}

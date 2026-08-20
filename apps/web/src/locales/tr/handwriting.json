@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "Geri al",
+    "clear": "Temizle",
+    "check": "Kontrol et"
+  },
+  "canvas": {
+    "label": "{{character}} için yazı alanı",
+    "empty": "Henüz bir şey yazılmadı.",
+    "strokes_one": "{{count, number}} çizgi yazıldı.",
+    "strokes_other": "{{count, number}} çizgi yazıldı."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "İşte bu!",
+      "perfect": "{{character}} — çok güzel yazılmış.",
+      "scored": "Biçim iyi — yolun {{score, number(style: percent)}} kadarı tamam."
+    },
+    "empty": {
+      "headline": "Henüz bir şey yok",
+      "detail": "Harfi kutunun içine yaz."
+    },
+    "incomplete": {
+      "headline": "Az kaldı",
+      "tooSmall": "Biraz küçük. Kutuyu doldurmayı dene.",
+      "missingStroke": "Bir çizgi eksik. Kılavuzu sonuna kadar izle."
+    },
+    "outside": {
+      "headline": "Tam değil",
+      "tooLarge": "Kutunun dışına taştı. Bir dahakine biraz küçük.",
+      "strayStroke": "Bir çizgi yolundan çıktı. Çizgiyi yavaşça izle."
+    },
+    "scribble": {
+      "headline": "Biraz daha yavaş deneyelim",
+      "detail": "Her çizgiyi bir kez, tek bir akışta çiz — üzerinden tekrar geçmeye gerek yok."
+    },
+    "mixed": {
+      "headline": "Tam değil",
+      "detail": "Kılavuzla hizala ve bir daha dene."
+    },
+    "retry": "Tekrar dene",
+    "showDetails": "Ayrıntıları göster",
+    "hideDetails": "Ayrıntıları gizle",
+    "breakdown": "Fark {{mismatch, number(style: percent)}} · dışarıda {{outside, number(style: percent)}} · eksik {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} nasıl yazılır, {{count, number}} çizgide",
+    "diagramLabel_other": "{{character}} nasıl yazılır, {{count, number}} çizgide",
+    "pause": "Duraklat",
+    "count_one": "{{count, number}} çizgi",
+    "count_other": "{{count, number}} çizgi",
+    "heading": "Yazılışını izle",
+    "notesFooter": "Çizgi sırası puana girmiyor. Yazını doğru gösteren şey o.",
+    "notes": {
+      "fewer": "{{theirs, number}} çizgi kullandın; bu harf genelde {{expected, number}} çizgide yazılır.",
+      "more": "{{theirs, number}} çizgi kullandın; bu harf genelde {{expected, number}} çizgide yazılır.",
+      "startElsewhere": "Genelde kutunun {{corner}} tarafından başlar.",
+      "direction_one": "{{count, number}} çizgi ters yönde gitti. Korece çizgiler yukarıdan aşağıya ve soldan sağa gider.",
+      "direction_other": "{{count, number}} çizgi ters yönde gitti. Korece çizgiler yukarıdan aşağıya ve soldan sağa gider."
+    },
+    "corners": {
+      "topLeft": "sol üst",
+      "topCentre": "üst",
+      "topRight": "sağ üst",
+      "middleLeft": "sol",
+      "middleCentre": "orta",
+      "middleRight": "sağ",
+      "bottomLeft": "sol alt",
+      "bottomCentre": "alt",
+      "bottomRight": "sağ alt"
+    },
+    "watchAgain": "Yeniden izle",
+    "back": "Geri",
+    "next": "İleri",
+    "position": "{{count, number}} çizgiden {{current, number}}."
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "aşağı inen uzun çizgi",
+      "downLongTwice": "aşağı inen iki uzun çizgi, önce soldaki",
+      "downShort": "aşağı inen kısa çizgi",
+      "downShortTwice": "aşağı inen iki kısa çizgi, önce soldaki",
+      "acrossLong": "boydan boya uzun çizgi",
+      "acrossLongTwice": "boydan boya iki uzun çizgi, önce üstteki",
+      "acrossShort": "boydan boya kısa çizgi",
+      "acrossShortTwice": "boydan boya iki kısa çizgi, önce üstteki",
+      "cornerAcrossDown": "üstten yatay, sonra sağ kenardan aşağı",
+      "cornerDownAcross": "sol kenardan aşağı, sonra sağa dönerek",
+      "slantLeft": "sola doğru inen eğik çizgi",
+      "slantRight": "sağa doğru inen eğik çizgi",
+      "circle": "daire, tepeden dönerek"
+    },
+    "s1": "Tek bir çizgi: {{a}}.",
+    "s2": "Önce {{a}}. Sonra {{b}}.",
+    "s3": "Önce {{a}}. Sonra {{b}}. Sonra {{c}}.",
+    "s4": "Önce {{a}}. Sonra {{b}}. Sonra {{c}}. En son {{d}}.",
+    "parts2": {
+      "plain": "Önce {{a}}, sonra {{b}} yaz.",
+      "right": "Önce {{a}}, sonra sağına {{b}} yaz.",
+      "below": "Önce {{a}}, sonra altına {{b}} yaz."
+    },
+    "parts3": {
+      "right": "{{a}} yaz, sonra sağına {{b}}, sonra dibe {{c}}.",
+      "below": "{{a}} yaz, sonra altına {{b}}, sonra dibe {{c}}."
+    },
+    "partsDouble": "{{a}} harfini yan yana iki kez yaz — önce soldaki.",
+    "fallback": "{{strokes}} çizgi, rakamların gösterdiği sırada."
+  }
+}

@@ -15,7 +15,8 @@
     "searchPlaceholder": "Tìm theo tên hoặc mã",
     "noResults": "Không có ngôn ngữ nào khớp với \"{{query}}\".",
     "selected": "Đang chọn",
-    "coverageNote": "Một vài đoạn giải thích có thể vẫn hiện bằng tiếng Anh trong lúc bản dịch đang được hoàn thiện."
+    "coverageNote": "Mọi ngôn ngữ ở đây đều đã dịch toàn bộ giao diện và khoá học bảng chữ cái. Ở những dòng có ghi chú, nghĩa của từ và câu ví dụ vẫn hiển thị bằng tiếng Anh.",
+    "wordsInEnglish": "Nghĩa của từ bằng tiếng Anh"
   },
   "font": {
     "title": "Kiểu chữ để tập viết",
@@ -72,18 +73,6 @@
   "activity": {
     "title": "Nhật ký học tập",
     "body": "Chuỗi ngày học, lịch học và những gì bạn đã học được"
-  },
-  "style": {
-    "title": "Cách luyện viết",
-    "description": "Giữ lại bao nhiêu phần của chữ trên trang khi bạn viết. Kiểu nào thì chữ mẫu cũng luôn có.",
-    "guided": {
-      "title": "Có hướng dẫn",
-      "detail": "Tô theo chữ mẫu trước, rồi viết đè lên nét mờ hơn."
-    },
-    "focused": {
-      "title": "Tập trung",
-      "detail": "Bỏ qua bước tô và viết luôn trên nét mờ."
-    }
   },
   "appearance": {
     "title": "Giao diện",

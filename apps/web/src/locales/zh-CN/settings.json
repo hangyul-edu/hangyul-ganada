@@ -15,7 +15,8 @@
     "searchPlaceholder": "按名称或代码搜索",
     "noResults": "没有与“{{query}}”匹配的语言。",
     "selected": "已选择",
-    "coverageNote": "尚未完成翻译的说明文字可能仍显示为英语。"
+    "coverageNote": "这里的每种语言，界面和字母课程都已翻译。带标注的语言，词义和例句翻译目前仍是英文。",
+    "wordsInEnglish": "词义为英文"
   },
   "font": {
     "title": "练习字体",
@@ -70,18 +71,6 @@
   "activity": {
     "title": "学习记录",
     "body": "连续天数、日历，以及学过的内容"
-  },
-  "style": {
-    "title": "练习方式",
-    "description": "写的时候在纸上留多少字形。两种方式都一直看得见字。",
-    "guided": {
-      "title": "循序",
-      "detail": "先描一遍，再在淡一点的辅助线上写。"
-    },
-    "focused": {
-      "title": "专注",
-      "detail": "跳过描红，直接从淡辅助线开始。"
-    }
   },
   "appearance": {
     "title": "外观",

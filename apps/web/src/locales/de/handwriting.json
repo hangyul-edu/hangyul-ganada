@@ -50,7 +50,6 @@
     "count_one": "{{count, number}} Strich",
     "count_other": "{{count, number}} Striche",
     "heading": "Sieh zu, wie er entsteht",
-    "notesHeading": "Zu deinen Strichen",
     "notesFooter": "Die Strichfolge zählt nicht zur Bewertung. Sie ist es, die deine Schrift richtig aussehen lässt.",
     "notes": {
       "fewer": "Du hast {{theirs, number}} Striche gemacht; dieser Buchstabe wird üblicherweise in {{expected, number}} geschrieben.",

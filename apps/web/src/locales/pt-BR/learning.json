@@ -15,7 +15,7 @@
     "prompt": {
       "write": "Escreva com o dedo por cima da guia."
     },
-    "nowRead": "Agora leia",
+    "nowRecognise": "Uma pergunta",
     "continue": "Próximo"
   },
   "complete": {

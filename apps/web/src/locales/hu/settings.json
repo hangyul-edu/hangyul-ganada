@@ -1,0 +1,143 @@
+{
+  "title": "Tanulásom",
+  "stats": {
+    "lettersLearned": "Megtanult betűk",
+    "wordsLearned": "Megtanult szavak",
+    "alphabetProgress": "Haladás a hangul ábécében",
+    "studyDays": "Tanulási napok"
+  },
+  "language": {
+    "title": "Nyelv",
+    "pickerTitle": "Válassz nyelvet",
+    "pickerIntro": "A felület nyelve. Amit tanulsz — hangul betűk, szavak és példamondatok — koreaiul marad.",
+    "listAria": "Elérhető nyelvek",
+    "searchLabel": "Nyelv keresése",
+    "searchPlaceholder": "Keresés név vagy kód szerint",
+    "noResults": "Egy nyelv sem illik erre: „{{query}}”.",
+    "selected": "Kiválasztva",
+    "coverageNote": "Az itt szereplő nyelvek mindegyike lefordítja a teljes felületet és az ábécétanfolyamot. Ahol a sor jelzi, a szójelentések és a példamondatok még angolul jelennek meg.",
+    "wordsInEnglish": "A szójelentések angolul"
+  },
+  "font": {
+    "title": "Gyakorló betűtípus",
+    "description": "A betű, amit áthúzol, az általad választott betűtípussal rajzolódik."
+  },
+  "dailyTarget": {
+    "title": "Betű naponta",
+    "description": "Hány hangul betűt szeretnél naponta befejezni.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "napi {{count, number}}",
+    "optionAria_other": "napi {{count, number}}"
+  },
+  "wordGoal": {
+    "title": "Szó naponta",
+    "description": "Hány szót szeretnél naponta befejezni. Bármikor módosíthatod.",
+    "option": "{{count}}",
+    "optionAria": "napi {{count}} szó"
+  },
+  "guides": {
+    "title": "Segédvonalak",
+    "description": "A segédvonalak a kereten belül.",
+    "grid": "Vízszintes és függőleges vonal",
+    "crosshair": "Középjel"
+  },
+  "about": {
+    "body": "Olvass és írj hangult: a betűket, a hangokat, a szótagblokkokat és az első koreai szavaidat.",
+    "offline": "Minden lecke, mondat és felvétel működik net nélkül.",
+    "version": "{{version}} verzió",
+    "reset": "Haladás nullázása"
+  },
+  "reset": {
+    "title": "Nullázod az összes haladást?",
+    "description": "A befejezett leckék, az ismétlési előzmények és a tanulási tevékenységed törlődnek. Ezt nem lehet visszavonni.",
+    "confirm": "Nullázás",
+    "cancel": "Mégse",
+    "body": "Kezdd elölről, a legelső betűtől."
+  },
+  "voice": {
+    "title": "Kiejtési hang",
+    "description": "Ki olvassa fel a betűket, szótagokat és szavakat.",
+    "female": "Női hang",
+    "male": "Férfi hang",
+    "preview": "Hallgasd meg a választott hangot",
+    "provider": "Két tiszta koreai hang, az anyanyelvi tempónál kicsit lassabban, hogy minden hang leülepedjen."
+  },
+  "groups": {
+    "learning": "Tanulás",
+    "practice": "Gyakorlás",
+    "appearance": "Megjelenés",
+    "app": "Alkalmazás",
+    "reset": "Nullázás"
+  },
+  "activity": {
+    "title": "Tanulási tevékenység",
+    "body": "A sorozatod, a naptárad és amit megtanultál"
+  },
+  "appearance": {
+    "title": "Megjelenés",
+    "description": "Világos, sötét, vagy ahogy a telefonod áll.",
+    "system": "Rendszer",
+    "light": "Világos",
+    "dark": "Sötét"
+  },
+  "legal": {
+    "title": "Jogi tudnivalók és licencek",
+    "body": "Az alkalmazás tartalmának és betűtípusainak licencei",
+    "intro": "Az alkalmazásban lévők egy része olyan licenc alatt szerepel, amely kéri a forrás megjelölését. Ezek a megjelölések itt vannak.",
+    "contentHeading": "Tartalom",
+    "fontsHeading": "Betűtípusok"
+  },
+  "reminder": {
+    "title": "Napi emlékeztető",
+    "description": "Naponta egy csendes bökés, az általad választott időpontban. Alapból ki van kapcsolva, és soha nem hagyja el a telefonodat.",
+    "toggle": "Emlékeztess a gyakorlásra",
+    "at": "Ekkor:",
+    "notificationTitle": "Itt a gyakorlás ideje",
+    "notificationBody": "Néhány perc koreai vár rád.",
+    "refused": "A telefonod nem engedélyezi az értesítéseket ehhez az alkalmazáshoz. A beállításaiban bekapcsolhatod."
+  },
+  "privacy": {
+    "title": "Adatvédelem",
+    "body": "Mi történik a tanulásoddal",
+    "lede": "Semmi, amit itt csinálsz, nem hagyja el ezt a készüléket.",
+    "device": {
+      "title": "A tanulásod itt marad",
+      "points": [
+        "Amit megtanultál, és hogy mennyire emlékszel rá, ezen a készüléken tárolódik. Sehova nem töltődik fel.",
+        "Nincs fiók — nincs mire regisztrálni, és sehol nincs profil rólad."
+      ]
+    },
+    "tracking": {
+      "title": "Nincs hirdetés, nincs követés",
+      "points": [
+        "Az alkalmazás nem figyeli, hogyan használod, és nem jelent semmit senkinek.",
+        "A kézírásodat a képernyőn értékeli, miközben rajzolod, aztán eldobja."
+      ]
+    },
+    "permissions": {
+      "title": "Engedélyek",
+      "points": [
+        "Értesítések — és csak ha bekapcsolod a napi emlékeztetőt.",
+        "Soha nem a kamera, a mikrofon, a fényképek, a névjegyek vagy a helyzet."
+      ]
+    },
+    "erase": {
+      "title": "Hogyan törölheted",
+      "points": [
+        "Mindent, amit megtanultál, a(z) {{screen}} képernyő alján törölhetsz.",
+        "Az alkalmazás törlése ezt is törli."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "A haladásod nem mentődik ezen a készüléken, így amit tanulsz, eltűnhet, mire legközelebb megnyitod az alkalmazást. Általában segít, ha a böngésző beállításaiban engedélyezed ennek az oldalnak az adatok tárolását.",
+    "recovered_one": "Betöltéskor {{count, number}} sérült bejegyzés kimaradt. A haladásod többi része ép.",
+    "recovered_other": "Betöltéskor {{count, number}} sérült bejegyzés kimaradt. A haladásod többi része ép."
+  },
+  "soundFree": {
+    "title": "Kérdések hang nélkül",
+    "description": "Egyes kérdések csak egy felvételből állnak — „melyik szót hallottad?”. Kapcsold be, és ezek kimaradnak. Minden továbbra is felolvasható, ha szeretnéd.",
+    "toggle": "Hallgatós kérdések kihagyása"
+  }
+}

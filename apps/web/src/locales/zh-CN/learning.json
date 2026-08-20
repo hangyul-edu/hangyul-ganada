@@ -15,7 +15,7 @@
     "prompt": {
       "write": "顺着辅助线用手指写一遍。"
     },
-    "nowRead": "现在来认一认",
+    "nowRecognise": "来做道题",
     "continue": "下一个"
   },
   "complete": {

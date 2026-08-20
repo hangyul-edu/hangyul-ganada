@@ -1,0 +1,128 @@
+{
+  "title": "So‘zlarni o‘rganish",
+  "today": {
+    "title": "Bugungi so‘zlar",
+    "start": "Boshlash",
+    "resume": "Davom etish",
+    "startBlurb_one": "Bugun bitta so‘z.",
+    "startBlurb_other": "{{count}} ta so‘zdan iborat qisqa to‘plam.",
+    "resumeBlurb": "To‘xtagan joyingizdan davom eting.",
+    "doneBlurb": "Bugunga tamom. Barakalla.",
+    "completeTitle": "Bugungi so‘zlar tugadi.",
+    "completeDetail_one": "{{count}} ta so‘z o‘rganildi.",
+    "completeDetail_other": "{{count}} ta so‘z o‘rganildi.",
+    "more": "Yana ozgina",
+    "allDone": "Bugunga hech narsa qolmadi.",
+    "progressAria": "Bugungi so‘zlar bo‘yicha jarayon",
+    "moreLabel": "Yana nechta",
+    "moreCount_one": "yana {{count}} ta",
+    "moreCount_other": "yana {{count}} ta"
+  },
+  "browse": {
+    "title": "Mavzu bo‘yicha ko‘rish",
+    "showing": "{{total}} tadan {{shown}} tasi ko‘rinyapti"
+  },
+  "intro": {
+    "example": "Namuna",
+    "howItSounds": "Qanday jaranglaydi",
+    "surfaceNote": "Bu gapda {{headword}} {{form}} shaklida keladi.",
+    "next": "Tushunarli"
+  },
+  "empty": {
+    "title": "Bu yerda hali so‘z yo‘q",
+    "body": "Boshqa turkumni ko‘ring."
+  },
+  "partOfSpeech": {
+    "noun": "ot",
+    "verb": "fe’l",
+    "adjective": "sifat",
+    "adverb": "ravish",
+    "pronoun": "olmosh",
+    "numeral": "son",
+    "particle": "yuklama",
+    "interjection": "undov",
+    "determiner": "aniqlovchi"
+  },
+  "session": {
+    "next": "Keyingi so‘z",
+    "finish": "Tugatish"
+  },
+  "blurb": "Barcha so‘zlar ochiq. Turkum tanlang va xohlagan joyingizdan boshlang.",
+  "categories": {
+    "essentials": "Kundalik zaruriy so‘zlar",
+    "people": "Odamlar va oila",
+    "food": "Ovqat va ichimlik",
+    "animals-nature": "Hayvonlar va tabiat",
+    "home": "Uy va buyumlar",
+    "body-health": "Tana va salomatlik",
+    "places-travel": "Joylar va safar",
+    "time-numbers": "Vaqt va sonlar",
+    "school-work": "O‘qish va ish",
+    "money-shopping": "Pul va xarid",
+    "communication": "Suhbat va media",
+    "feelings": "His-tuyg‘u va fe’l-atvor",
+    "thinking": "Fikrlash va o‘rganish",
+    "movement": "Borish va kelish",
+    "actions": "Kundalik ishlar",
+    "describing": "Narsalarni ta’riflash",
+    "society": "Hayot va madaniyat",
+    "how-when": "Qanday va qachon"
+  },
+  "category": {
+    "label": "Turkum",
+    "all": "Barcha turkumlar",
+    "pick": "Turkum tanlang",
+    "count_one": "{{count, number}} so‘z",
+    "count_other": "{{count, number}} so‘z",
+    "progressAria": "{{category}} bo‘yicha jarayon"
+  },
+  "search": {
+    "placeholder": "So‘z qidirish",
+    "label": "Lug‘atdan qidirish",
+    "count_one": "{{count, number}} mos keldi",
+    "count_other": "{{count, number}} mos keldi",
+    "none": "“{{query}}” bo‘yicha hech narsa topilmadi. Koreyschada urinib ko‘ring yoki ma’nosini o‘z tilingizda yozing."
+  },
+  "sound": {
+    "tensing": "Yopuvchi undoshdan keyingi tovush taranglashadi.",
+    "aspiration": "ㅎ keyingi undosh bilan qo‘shilib, bir puf havo qo‘shadi.",
+    "nasal": "ㄴ yoki ㅁ dan oldin, undan oldingi undosh burun tovushiga aylanadi.",
+    "lateral": "Yonma-yon kelgan ㄴ va ㄹ ikkalasi ham ㄹ bo‘ladi.",
+    "palatal": "이 dan oldingi yopuvchi ㄷ yoki ㅌ, ㅈ yoki ㅊ kabi aytiladi.",
+    "liaison": "Yopuvchi undosh keyingi katakka siljiydi."
+  },
+  "save": {
+    "action": "Saqlash",
+    "saved": "Saqlandi",
+    "add": "{{word}} ni saqlash",
+    "remove": "{{word}} ni saqlanganlardan olib tashlash"
+  },
+  "detail": {
+    "title": "So‘z",
+    "romanization": "Lotin harflarida",
+    "definition": "Bu haqda batafsil",
+    "usage": "Qanday ishlatiladi",
+    "synonyms": "Sinonimlar",
+    "antonyms": "Antonimlar"
+  },
+  "saved": {
+    "title": "Saqlangan so‘zlar",
+    "review_one": "Takrorlash · {{count}} savol",
+    "review_other": "Takrorlash · {{count}} savol",
+    "searchPlaceholder": "Saqlangan so‘zlardan qidirish",
+    "searchLabel": "Saqlagan so‘zlaringizdan qidirish",
+    "orderLabel": "Tartib",
+    "order": {
+      "recent": "Eng yangi",
+      "alphabetical": "A–Z",
+      "needed": "Mashq kerak"
+    },
+    "count_one": "{{count}} so‘z",
+    "count_other": "{{count}} so‘z",
+    "remove": "Olib tashlash",
+    "noMatch": "Saqlanganlar orasida “{{query}}” bo‘yicha hech narsa topilmadi.",
+    "emptyTitle": "Hali saqlangan so‘z yo‘q",
+    "emptyBody": "O‘qib turib istalgan so‘zdagi xatcho‘pni bosing — qaytib kelmoqchi bo‘lganingizda shu yerda turadi.",
+    "emptyCta": "So‘zlarga o‘tish"
+  }
+}

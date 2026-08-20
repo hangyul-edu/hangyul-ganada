@@ -1,0 +1,95 @@
+{
+  "title": "Attività di studio",
+  "streak": {
+    "caption": "Basta esercitarsi per tenerla viva — non serve finire una lettera.",
+    "longest": "Serie più lunga",
+    "totalDays": "Giorni di esercizio",
+    "totalTime": "Tempo totale",
+    "unit_many": "giorni di fila",
+    "unit_one": "giorno di fila",
+    "unit_other": "giorni di fila"
+  },
+  "chart": {
+    "title": "Attività",
+    "rangeAria": "Scegli un intervallo di tempo",
+    "aria": "Esercizio per giorno",
+    "noneYet": "In questo periodo non c'è ancora esercizio.",
+    "range": {
+      "7": "7 giorni",
+      "30": "30 giorni",
+      "90": "3 mesi",
+      "0": "Tutto"
+    }
+  },
+  "calendar": {
+    "previous": "Mese precedente",
+    "next": "Mese successivo",
+    "less": "Meno",
+    "more": "Più",
+    "dayAria_many": "{{date}}: {{count, number}} tentativi",
+    "dayAria_one": "{{date}}: {{count, number}} tentativo",
+    "dayAria_other": "{{date}}: {{count, number}} tentativi"
+  },
+  "day": {
+    "time": "Tempo di studio",
+    "attempts": "Tentativi di scrittura",
+    "correct": "Corretti",
+    "charactersLearned": "Lettere completate",
+    "wordsLearned": "Parole completate",
+    "reviews": "Tentativi di ripasso",
+    "nothing": "Nessun esercizio in questo giorno."
+  },
+  "insights": {
+    "title": "Quello che spicca",
+    "mostPractisedCharacter": "Lettera più esercitata",
+    "mostPractisedWord": "Parola più esercitata",
+    "accuracy": "Precisione della scrittura",
+    "thisWeek": "Questa settimana",
+    "learnedCount_many": "{{count, number}} completate",
+    "learnedCount_one": "{{count, number}} completata",
+    "learnedCount_other": "{{count, number}} completate"
+  },
+  "units": {
+    "minute_many": "{{count, number}} min",
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_many": "{{count, number}} h",
+    "hour_one": "{{count, number}} h",
+    "hour_other": "{{count, number}} h"
+  },
+  "empty": {
+    "title": "La tua storia di studio comincia oggi",
+    "body": "Esercitati su qualche lettera e questa pagina si riempie: i giorni in cui hai studiato, per quanto, e su che cosa hai lavorato."
+  },
+  "week": {
+    "title": "Questa settimana",
+    "range": "Dal {{from}}",
+    "days": "Giorni di studio",
+    "daysValue_many": "{{count, number}} su 7",
+    "daysValue_one": "{{count, number}} su 7",
+    "daysValue_other": "{{count, number}} su 7",
+    "time": "Tempo",
+    "learned": "Imparato",
+    "accuracy": "Precisione",
+    "same": "Lo stesso tempo della settimana scorsa.",
+    "moreThanLast": "{{minutes, number}} minuti in più della settimana scorsa.",
+    "lessThanLast": "{{minutes, number}} minuti in meno della settimana scorsa.",
+    "quiet": "Questa settimana ancora niente — c'è tempo."
+  },
+  "memory": {
+    "title": "Come va la memoria",
+    "firstTry": "Questa settimana hai ricordato {{count, number}} cose al primo colpo.",
+    "strongestSkill": "Questa settimana {{skill}} è la tua parte più solida.",
+    "confusionImproving": "{{a}} e {{b}} si distinguono sempre meglio.",
+    "skill": {
+      "reading_recognition": "la lettura",
+      "listening_recognition": "l'ascolto",
+      "guided_writing": "la scrittura",
+      "meaning_recognition": "il significato",
+      "sentence_comprehension": "le frasi",
+      "sound_recognition": "i suoni",
+      "visual_recognition": "le lettere",
+      "lookalike_discrimination": "distinguere le lettere simili"
+    }
+  }
+}

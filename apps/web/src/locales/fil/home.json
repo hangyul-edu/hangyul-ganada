@@ -1,0 +1,38 @@
+{
+  "streak": {
+    "aria": "Tingnan ang tala ng pag-aaral mo"
+  },
+  "celebrate": "Tapos na ang target ngayong araw. Magaling.",
+  "dailyGoal": "Mga letra ngayon",
+  "dailyGoalAria": "Mga letra ngayon: {{done, number}} sa {{total, number}}",
+  "cta": {
+    "start": "Magsimula na",
+    "continue": "Ituloy ang pag-aaral"
+  },
+  "finished": {
+    "badge": "Tapos",
+    "title": "Nakakabasa ka na ng Hangul",
+    "body": "Lahat ng {{count, number}} letra — nakita, naisulat, at nabasa mo pabalik. Mula rito, mga salita na.",
+    "goal": "Mga salita ngayon",
+    "cta": "Mga salita ngayong araw"
+  },
+  "quick": {
+    "letters": "Mga letra",
+    "lettersCaption": "sa 40 letra ng Hangul",
+    "words": "Mga salita",
+    "wordsCaption": "mga salita ngayong araw"
+  },
+  "review": {
+    "title": "Balik-aral",
+    "count_one": "{{count, number}} ang babalikan",
+    "count_other": "{{count, number}} ang babalikan",
+    "empty": "Wala pang babalikan"
+  },
+  "practice": {
+    "title": "Ensayo ngayong araw",
+    "reviews_one": "{{count, number}} balik-aral ang handa",
+    "reviews_other": "{{count, number}} balik-aral ang handa",
+    "cta": "Simulan ang ensayo"
+  },
+  "purpose": "Matuto ng Koreano mula sa kauna-unahang letra — Hangul muna, tapos ang mga salitang talagang gagamitin mo."
+}

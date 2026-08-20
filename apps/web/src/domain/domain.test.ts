@@ -29,6 +29,7 @@ import {
   dateKey,
   knownLetters,
   lessonProgress,
+  alphabetComplete,
   nextLesson,
   REVIEW_SESSION_SIZE,
   reviewQueue,
@@ -246,8 +247,39 @@ describe('progress figures', () => {
     const allOfFirst = mapOf(
       ...first.character_ids.map((id) => learned(id.replace('char-', ''))),
     );
-    expect(nextLesson({}).id).toBe(first.id);
-    expect(nextLesson(allOfFirst).id).toBe(LETTER_LESSONS[1]!.id);
+    expect(nextLesson({})?.id).toBe(first.id);
+    expect(nextLesson(allOfFirst)?.id).toBe(LETTER_LESSONS[1]!.id);
+  });
+
+  it('has nothing to continue to once every lesson is finished', () => {
+    /*
+     * The loop this closes: `nextLesson` used to fall back to the *last*
+     * lesson, so a learner who finished the alphabet was offered the chapter
+     * they had just completed, under a button reading "Continue". Tapping it
+     * returned them to it. Every time.
+     *
+     * `null` is the whole fix — it forces Home to have an answer for "you have
+     * finished" instead of quietly re-offering finished work.
+     */
+    const everything = mapOf(
+      ...LETTER_LESSONS.flatMap((lesson) =>
+        lesson.character_ids.map((id) => learned(id.replace('char-', ''))),
+      ),
+    );
+    expect(nextLesson(everything)).toBeNull();
+    expect(alphabetComplete(everything)).toBe(true);
+    expect(alphabetComplete({})).toBe(false);
+
+    // And one letter short of the end is not the end.
+    const lastLesson = LETTER_LESSONS[LETTER_LESSONS.length - 1]!;
+    const allButOne = mapOf(
+      ...LETTER_LESSONS.flatMap((lesson) =>
+        lesson.character_ids
+          .filter((id) => id !== lastLesson.character_ids[lastLesson.character_ids.length - 1])
+          .map((id) => learned(id.replace('char-', ''))),
+      ),
+    );
+    expect(nextLesson(allButOne)?.id).toBe(lastLesson.id);
   });
 
   it('counts a letter as known once it has been met, not once it is mastered', () => {

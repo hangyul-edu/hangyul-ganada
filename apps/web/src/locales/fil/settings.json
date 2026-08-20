@@ -1,0 +1,143 @@
+{
+  "title": "Aking pag-aaral",
+  "stats": {
+    "lettersLearned": "Letrang natutuhan",
+    "wordsLearned": "Salitang natutuhan",
+    "alphabetProgress": "Pag-usad sa alpabetong Hangul",
+    "studyDays": "Araw ng pag-aaral"
+  },
+  "language": {
+    "title": "Wika",
+    "pickerTitle": "Pumili ng wika",
+    "pickerIntro": "Wika ng app. Ang pinag-aaralan mo — mga letrang Hangul, salita, at halimbawang pangungusap — ay nananatiling Koreano.",
+    "listAria": "Mga wikang mapagpipilian",
+    "searchLabel": "Maghanap ng wika",
+    "searchPlaceholder": "Hanapin ayon sa pangalan o code",
+    "noResults": "Walang wikang tumugma sa “{{query}}”.",
+    "selected": "Napili",
+    "coverageNote": "Bawat wika rito ay may isinaling buong interface at kurso sa alpabeto. Kung sinasabi ng hanay, nasa Ingles pa rin ang kahulugan ng salita at ang mga halimbawang pangungusap.",
+    "wordsInEnglish": "Kahulugan ng salita sa Ingles"
+  },
+  "font": {
+    "title": "Titik-pang-ensayo",
+    "description": "Iginuguhit sa titik na pipiliin mo ang letrang binabakat mo."
+  },
+  "dailyTarget": {
+    "title": "Letra kada araw",
+    "description": "Ilang letrang Hangul ang gusto mong tapusin bawat araw.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} kada araw",
+    "optionAria_other": "{{count, number}} kada araw"
+  },
+  "wordGoal": {
+    "title": "Salita kada araw",
+    "description": "Ilang salita ang gusto mong tapusin bawat araw. Puwede mong baguhin kahit kailan.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} salita kada araw"
+  },
+  "guides": {
+    "title": "Mga gabay na linya",
+    "description": "Ang mga linyang pantulong sa loob ng kahon.",
+    "grid": "Pahalang at patayong linya",
+    "crosshair": "Marka sa gitna"
+  },
+  "about": {
+    "body": "Magbasa at sumulat ng Hangul: ang mga letra, ang mga tunog, ang mga kahong pantig, at ang unang mga salitang Koreano mo.",
+    "offline": "Gumagana nang walang internet ang bawat aralin, pangungusap, at rekording.",
+    "version": "Bersyon {{version}}",
+    "reset": "I-reset ang pag-usad"
+  },
+  "reset": {
+    "title": "I-reset ang lahat ng pag-usad?",
+    "description": "Mabubura ang mga natapos mong aralin, kasaysayan ng balik-aral, at aktibidad sa pag-aaral. Hindi na ito maibabalik.",
+    "confirm": "I-reset",
+    "cancel": "Huwag na",
+    "body": "Magsimula ulit sa kauna-unahang letra."
+  },
+  "voice": {
+    "title": "Boses sa bigkas",
+    "description": "Kung sino ang nagbabasa nang malakas ng mga letra, pantig, at salita.",
+    "female": "Boses na babae",
+    "male": "Boses na lalaki",
+    "preview": "Pakinggan ang napiling boses",
+    "provider": "Dalawang malinaw na boses-Koreano, medyo mas mabagal kaysa sa katutubong bilis para dumapo ang bawat tunog."
+  },
+  "groups": {
+    "learning": "Pag-aaral",
+    "practice": "Ensayo",
+    "appearance": "Anyo",
+    "app": "App",
+    "reset": "Reset"
+  },
+  "activity": {
+    "title": "Aktibidad sa pag-aaral",
+    "body": "Ang sunod-sunod mo, ang kalendaryo mo, at ang natutuhan mo"
+  },
+  "appearance": {
+    "title": "Anyo",
+    "description": "Maliwanag, madilim, o kung ano man ang nasa telepono mo.",
+    "system": "Sistema",
+    "light": "Maliwanag",
+    "dark": "Madilim"
+  },
+  "legal": {
+    "title": "Legal at mga Lisensya",
+    "body": "Mga lisensya para sa nilalaman at titik sa app",
+    "intro": "May mga bahagi sa app na ginagamit sa ilalim ng lisensyang humihinging kilalanin ang pinagmulan. Naririto ang mga pagkilalang iyon.",
+    "contentHeading": "Nilalaman",
+    "fontsHeading": "Mga titik"
+  },
+  "reminder": {
+    "title": "Pang-araw-araw na paalala",
+    "description": "Isang tahimik na tapik kada araw, sa oras na pipiliin mo. Nakapatay hangga't hindi mo binubuksan, at hindi umaalis sa telepono mo.",
+    "toggle": "Paalalahanan akong mag-ensayo",
+    "at": "Sa ganap na",
+    "notificationTitle": "Oras na para mag-ensayo",
+    "notificationBody": "May ilang minutong Koreano na naghihintay.",
+    "refused": "Hindi pinapayagan ng telepono mo ang mga abiso para sa app na ito. Puwede mong buksan sa mga setting nito."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "body": "Ano ang nangyayari sa pag-aaral mo",
+    "lede": "Walang anuman sa ginagawa mo rito ang umaalis sa device na ito.",
+    "device": {
+      "title": "Dito lang nananatili ang pag-aaral mo",
+      "points": [
+        "Ang natutuhan mo, at kung gaano mo ito naaalala, ay nakatago sa device na ito. Hindi ito kailanman ina-upload.",
+        "Walang account — walang sasapian, at wala kang profile kahit saan."
+      ]
+    },
+    "tracking": {
+      "title": "Walang ad, walang pagsubaybay",
+      "points": [
+        "Hindi tinitingnan ng app kung paano mo ito ginagamit at wala itong ibinabalitang anuman.",
+        "Sinusuri ang sulat-kamay mo sa mismong screen habang gumuguhit ka, tapos itinatapon."
+      ]
+    },
+    "permissions": {
+      "title": "Mga pahintulot",
+      "points": [
+        "Mga abiso — at kapag lang binuksan mo ang pang-araw-araw na paalala.",
+        "Kailanman ay hindi ang kamera, mikropono, litrato, kontak, o lokasyon."
+      ]
+    },
+    "erase": {
+      "title": "Pagbura nito",
+      "points": [
+        "Puwede mong burahin ang lahat ng natutuhan mo sa ibaba ng {{screen}}.",
+        "Kasabay ng pagtanggal ng app, nabubura rin ito."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Hindi nase-save ang pag-usad mo sa device na ito, kaya baka mawala ang natutuhan mo sa susunod na pagbukas ng app. Kadalasang naaayos ito kapag pinayagan mo ang site na ito na mag-imbak ng data sa mga setting ng browser.",
+    "recovered_one": "May {{count, number}} sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad.",
+    "recovered_other": "May {{count, number}} na sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad."
+  },
+  "soundFree": {
+    "title": "Mga tanong na walang tunog",
+    "description": "May mga tanong na rekording lang — “aling salita ang narinig mo?”. Buksan ito at hindi na iyon lalabas. Mapapakinggan mo pa rin ang lahat kung gusto mo.",
+    "toggle": "Laktawan ang mga tanong sa pakikinig"
+  }
+}

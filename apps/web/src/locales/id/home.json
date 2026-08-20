@@ -1,0 +1,36 @@
+{
+  "streak": {
+    "aria": "Lihat catatan belajarmu"
+  },
+  "celebrate": "Target hari ini selesai. Kerja bagus.",
+  "dailyGoal": "Huruf hari ini",
+  "dailyGoalAria": "Huruf hari ini: {{done, number}} dari {{total, number}}",
+  "cta": {
+    "start": "Mulai sekarang",
+    "continue": "Lanjut belajar"
+  },
+  "finished": {
+    "badge": "Selesai",
+    "title": "Kamu bisa membaca Hangul",
+    "body": "Semua {{count, number}} huruf sudah dikenal, ditulis, dan dibaca ulang. Selanjutnya kata.",
+    "goal": "Kata hari ini",
+    "cta": "Kata hari ini"
+  },
+  "quick": {
+    "letters": "Huruf",
+    "lettersCaption": "dari 40 huruf Hangul",
+    "words": "Kata",
+    "wordsCaption": "kata hari ini"
+  },
+  "review": {
+    "title": "Ulasan",
+    "count_other": "{{count, number}} untuk diulang",
+    "empty": "Belum ada yang perlu diulang"
+  },
+  "practice": {
+    "title": "Latihan hari ini",
+    "reviews_other": "{{count, number}} ulasan siap",
+    "cta": "Mulai latihan"
+  },
+  "purpose": "Belajar bahasa Korea dari huruf pertama — Hangul dulu, lalu kata-kata yang benar-benar kamu pakai."
+}

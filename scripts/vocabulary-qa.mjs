@@ -40,7 +40,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { toIpa } from '../apps/web/src/data/pronunciation.ts';
+import { toIpa } from './lib/ipa.ts';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(here, '..');

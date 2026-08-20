@@ -1,0 +1,113 @@
+{
+  "title": "نشاط التعلّم",
+  "streak": {
+    "caption": "أي تمرين يبقيه مستمرًا — لا يلزم أن تُنهي حرفًا.",
+    "longest": "أطول تتابع",
+    "totalDays": "أيام تمرّنت فيها",
+    "totalTime": "الوقت الإجمالي",
+    "unit_few": "أيام متتالية",
+    "unit_many": "يومًا متتاليًا",
+    "unit_one": "يوم متتالٍ",
+    "unit_other": "يوم متتالٍ",
+    "unit_two": "يومان متتاليان",
+    "unit_zero": "بلا أيام متتالية"
+  },
+  "chart": {
+    "title": "النشاط",
+    "rangeAria": "اختر مدة زمنية",
+    "aria": "التمرين في كل يوم",
+    "noneYet": "لا تمرين في هذه المدة بعد.",
+    "range": {
+      "7": "٧ أيام",
+      "30": "٣٠ يومًا",
+      "90": "٣ أشهر",
+      "0": "الكل"
+    }
+  },
+  "calendar": {
+    "previous": "الشهر السابق",
+    "next": "الشهر التالي",
+    "less": "أقل",
+    "more": "أكثر",
+    "dayAria_few": "{{date}}: {{count, number}} محاولات",
+    "dayAria_many": "{{date}}: {{count, number}} محاولة",
+    "dayAria_one": "{{date}}: محاولة واحدة",
+    "dayAria_other": "{{date}}: {{count, number}} محاولة",
+    "dayAria_two": "{{date}}: محاولتان",
+    "dayAria_zero": "{{date}}: لا محاولات"
+  },
+  "day": {
+    "time": "وقت الدراسة",
+    "attempts": "محاولات الكتابة",
+    "correct": "صحيحة",
+    "charactersLearned": "حروف أنهيتها",
+    "wordsLearned": "كلمات أنهيتها",
+    "reviews": "محاولات المراجعة",
+    "nothing": "لا تمرين في هذا اليوم."
+  },
+  "insights": {
+    "title": "ما يلفت النظر",
+    "mostPractisedCharacter": "أكثر حرف تمرّنت عليه",
+    "mostPractisedWord": "أكثر كلمة تمرّنت عليها",
+    "accuracy": "دقة الكتابة",
+    "thisWeek": "هذا الأسبوع",
+    "learnedCount_few": "أنهيت {{count, number}}",
+    "learnedCount_many": "أنهيت {{count, number}}",
+    "learnedCount_one": "أنهيت واحدًا",
+    "learnedCount_other": "أنهيت {{count, number}}",
+    "learnedCount_two": "أنهيت اثنين",
+    "learnedCount_zero": "لم تُنهِ شيئًا"
+  },
+  "units": {
+    "minute_few": "{{count, number}} د",
+    "minute_many": "{{count, number}} د",
+    "minute_one": "دقيقة",
+    "minute_other": "{{count, number}} د",
+    "minute_two": "دقيقتان",
+    "minute_zero": "٠ د",
+    "hour_few": "{{count, number}} س",
+    "hour_many": "{{count, number}} س",
+    "hour_one": "ساعة",
+    "hour_other": "{{count, number}} س",
+    "hour_two": "ساعتان",
+    "hour_zero": "٠ س"
+  },
+  "empty": {
+    "title": "حكاية تعلّمك تبدأ اليوم",
+    "body": "تمرّن على بضعة حروف وستمتلئ هذه الصفحة: الأيام التي درست فيها، وكم استغرقت، وما اشتغلت عليه."
+  },
+  "week": {
+    "title": "هذا الأسبوع",
+    "range": "من {{from}}",
+    "days": "أيام الدراسة",
+    "daysValue_few": "{{count, number}} من ٧",
+    "daysValue_many": "{{count, number}} من ٧",
+    "daysValue_one": "١ من ٧",
+    "daysValue_other": "{{count, number}} من ٧",
+    "daysValue_two": "٢ من ٧",
+    "daysValue_zero": "٠ من ٧",
+    "time": "الوقت",
+    "learned": "ما تعلّمته",
+    "accuracy": "الدقة",
+    "same": "المدة نفسها التي درستها الأسبوع الماضي.",
+    "moreThanLast": "{{minutes, number}} دقيقة أكثر من الأسبوع الماضي.",
+    "lessThanLast": "{{minutes, number}} دقيقة أقل من الأسبوع الماضي.",
+    "quiet": "لا شيء هذا الأسبوع بعد — ما زال في الوقت متّسع."
+  },
+  "memory": {
+    "title": "كيف يسير تذكّرك",
+    "firstTry": "تذكّرت {{count, number}} من الأشياء من أول محاولة هذا الأسبوع.",
+    "strongestSkill": "{{skill}} أقوى ما تتمرّن عليه هذا الأسبوع.",
+    "confusionImproving": "{{a}} و{{b}} صارا أسهل في التمييز.",
+    "skill": {
+      "reading_recognition": "القراءة",
+      "listening_recognition": "الاستماع",
+      "guided_writing": "الكتابة",
+      "meaning_recognition": "المعنى",
+      "sentence_comprehension": "الجمل",
+      "sound_recognition": "الأصوات",
+      "visual_recognition": "الحروف",
+      "lookalike_discrimination": "التمييز بين المتشابهات"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "title": "Belajar kata",
+  "today": {
+    "title": "Kata hari ini",
+    "start": "Mulai",
+    "resume": "Lanjutkan",
+    "startBlurb_other": "Satu set singkat berisi {{count}} kata.",
+    "resumeBlurb": "Lanjut dari tempat terakhir.",
+    "doneBlurb": "Selesai untuk hari ini. Kerja bagus.",
+    "completeTitle": "Kata hari ini sudah selesai.",
+    "completeDetail_other": "{{count}} kata dikuasai.",
+    "more": "Sedikit lagi",
+    "allDone": "Tidak ada sisa untuk hari ini.",
+    "progressAria": "Kemajuan di kata hari ini",
+    "moreLabel": "Berapa lagi",
+    "moreCount_other": "{{count}} lagi"
+  },
+  "browse": {
+    "title": "Telusuri per topik",
+    "showing": "Menampilkan {{shown}} dari {{total}}"
+  },
+  "intro": {
+    "example": "Contoh",
+    "howItSounds": "Cara mengucapkannya",
+    "surfaceNote": "Dalam kalimat ini, {{headword}} muncul sebagai {{form}}.",
+    "next": "Paham"
+  },
+  "empty": {
+    "title": "Belum ada kata di sini",
+    "body": "Coba kategori lain."
+  },
+  "partOfSpeech": {
+    "noun": "kata benda",
+    "verb": "kata kerja",
+    "adjective": "kata sifat",
+    "adverb": "kata keterangan",
+    "pronoun": "kata ganti",
+    "numeral": "kata bilangan",
+    "particle": "partikel",
+    "interjection": "kata seru",
+    "determiner": "kata sandang"
+  },
+  "session": {
+    "next": "Kata berikutnya",
+    "finish": "Selesai"
+  },
+  "blurb": "Semua kata terbuka. Pilih satu kategori dan mulai dari mana saja.",
+  "categories": {
+    "essentials": "Sehari-hari",
+    "people": "Orang & Keluarga",
+    "food": "Makanan & Minuman",
+    "animals-nature": "Hewan & Alam",
+    "home": "Rumah & Barang",
+    "body-health": "Tubuh & Kesehatan",
+    "places-travel": "Tempat & Perjalanan",
+    "time-numbers": "Waktu & Angka",
+    "school-work": "Sekolah & Kerja",
+    "money-shopping": "Uang & Belanja",
+    "communication": "Bicara & Media",
+    "feelings": "Perasaan & Sifat",
+    "thinking": "Berpikir & Belajar",
+    "movement": "Pergi & Datang",
+    "actions": "Kegiatan Harian",
+    "describing": "Menggambarkan Sesuatu",
+    "society": "Kehidupan & Budaya",
+    "how-when": "Bagaimana & Kapan"
+  },
+  "category": {
+    "label": "Kategori",
+    "all": "Semua kategori",
+    "pick": "Pilih kategori",
+    "count_other": "{{count, number}} kata",
+    "progressAria": "Kemajuan di {{category}}"
+  },
+  "search": {
+    "placeholder": "Cari kata",
+    "label": "Cari di kosakata",
+    "count_other": "{{count, number}} hasil",
+    "none": "Tidak ada yang cocok dengan “{{query}}”. Coba tulis Koreanya, atau artinya dalam bahasamu."
+  },
+  "sound": {
+    "tensing": "Setelah konsonan penutup, bunyi berikutnya merapat.",
+    "aspiration": "ㅎ melebur dengan konsonan berikutnya dan menambah embusan napas.",
+    "nasal": "Sebelum ㄴ atau ㅁ, konsonan di depannya menjadi sengau.",
+    "lateral": "ㄴ dan ㄹ yang berdampingan sama-sama menjadi ㄹ.",
+    "palatal": "ㄷ atau ㅌ penutup sebelum 이 diucapkan seperti ㅈ atau ㅊ.",
+    "liaison": "Konsonan penutup bergeser ke blok berikutnya."
+  },
+  "save": {
+    "action": "Simpan",
+    "saved": "Tersimpan",
+    "add": "Simpan {{word}}",
+    "remove": "Hapus {{word}} dari simpanan"
+  },
+  "detail": {
+    "title": "Kata",
+    "romanization": "Alih aksara Latin",
+    "definition": "Lebih lanjut",
+    "usage": "Cara pakainya",
+    "synonyms": "Sinonim",
+    "antonyms": "Lawan kata"
+  },
+  "saved": {
+    "title": "Kata tersimpan",
+    "review_other": "Ulasan · {{count}} soal",
+    "searchPlaceholder": "Cari kata tersimpan",
+    "searchLabel": "Cari di kata tersimpanmu",
+    "orderLabel": "Urutan",
+    "order": {
+      "recent": "Terbaru",
+      "alphabetical": "A–Z",
+      "needed": "Perlu latihan"
+    },
+    "count_other": "{{count}} kata",
+    "remove": "Hapus",
+    "noMatch": "Tidak ada simpanan yang cocok dengan “{{query}}”.",
+    "emptyTitle": "Belum ada kata tersimpan",
+    "emptyBody": "Ketuk penanda di kata mana pun saat belajar, nanti ia ada di sini untuk kamu buka lagi.",
+    "emptyCta": "Ke daftar kata"
+  }
+}

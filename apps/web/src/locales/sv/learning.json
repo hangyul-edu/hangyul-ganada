@@ -1,0 +1,233 @@
+{
+  "letters": {
+    "title": "Lär dig bokstäverna",
+    "alphabetTitle": "Hangulalfabetet",
+    "alphabetCaption": "bokstäver inlärda",
+    "complete": "Inlärd",
+    "resume": "Fortsätt"
+  },
+  "units": {
+    "badge": "Del {{index, number}}",
+    "continue": "Uppfattat — nu kör vi",
+    "unit-1": {
+      "title": "Sex vokaler att börja med",
+      "goal": "Varje koreansk stavelse behöver en vokal. De här sex är de enklaste.",
+      "body": "Hangul är ett alfabet, inte en samling bilder. Det finns 40 bokstäver, de gjordes för att läras in snabbt, och nu ska du lära dig sex av dem.",
+      "points": [
+        "Bokstäverna samlas i fyrkantiga block, och varje block är en stavelse.",
+        "En vokal är antingen ett stående eller ett liggande streck — det avgör var den hamnar i blocket.",
+        "Säg varje bokstav högt medan du drar den. Ljudet är halva lektionen."
+      ]
+    },
+    "unit-2": {
+      "title": "Dina första konsonanter",
+      "goal": "Fem konsonanter. Med vokalerna du kan blir det redan 30 stavelser."
+    },
+    "unit-3": {
+      "title": "Sätta ihop dem",
+      "goal": "Konsonant plus vokal blir ett block du kan läsa.",
+      "body": "En koreansk stavelse skrivs som en enda fyrkant. Konsonanten kommer först — till vänster vid en stående vokal, överst vid en liggande.",
+      "points": [
+        "En stående vokal (ㅏ ㅓ ㅣ) står till höger om konsonanten.",
+        "En liggande vokal (ㅗ ㅜ ㅡ) ligger under den.",
+        "Läs blocket som du läser en sida: vänster till höger, sedan nedåt."
+      ]
+    },
+    "unit-4": {
+      "title": "Fem konsonanter till",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — resten av den enkla serien."
+    },
+    "unit-5": {
+      "title": "Läsa fler block",
+      "goal": "Inklusive den enda bokstaven som inte låter alls."
+    },
+    "unit-6": {
+      "title": "Lägga till ett j-ljud",
+      "goal": "Ett extra streck gör ㅏ till ㅑ. Samma mönster gäller alla fyra."
+    },
+    "unit-7": {
+      "title": "En pust luft",
+      "goal": "ㅊ ㅋ ㅌ ㅍ är bokstäver du känner igen, med ett streck till."
+    },
+    "unit-8": {
+      "title": "E-vokalerna",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — vokaler som byggs genom att lägga till ㅣ."
+    },
+    "unit-9": {
+      "title": "Fördubblade och spända",
+      "goal": "Fem bokstäver som skrivs dubbelt och sägs stramare."
+    },
+    "unit-10": {
+      "title": "W-vokalerna",
+      "goal": "Två vokaler skrivna som en. De sista av de 40 bokstäverna."
+    },
+    "unit-11": {
+      "title": "En bokstav längst ned",
+      "goal": "받침 — konsonanten som stänger stavelsen.",
+      "body": "Ett block kan bära en tredje bokstav, under de två andra. Den heter 받침 och stänger stavelsen.",
+      "points": [
+        "Den tredje bokstaven hamnar alltid längst ned i fyrkanten.",
+        "En 받침 släpps bara som ett av sju ljud, oavsett vilken bokstav som står där.",
+        "Det är här de flestas läsning brukar haka upp sig. Ta det lugnt."
+      ]
+    },
+    "unit-12": {
+      "title": "Läsa 한글",
+      "goal": "Nu kan du varje bokstav. Läs namnet på skriftsystemet självt."
+    }
+  },
+  "intro": {
+    "letterName": "Namn",
+    "letterSound": "Ljud",
+    "soundIn": "Hör {{character}} i",
+    "reads": "Läses som"
+  },
+  "steps": {
+    "label": "Steg för den här bokstaven",
+    "write": "Skriv",
+    "read": "Läs"
+  },
+  "recognition": {
+    "question": "Vilken låter så här?",
+    "optionsAria": "Välj bokstaven du hörde",
+    "optionAria": "Välj {{character}}",
+    "correctDetail": "Ja, det är {{character}}.",
+    "wrongHeadline": "Inte den.",
+    "wrongDetail": "{{character}} är den som låter som {{sound}}.",
+    "hearAgain": "Hör den igen",
+    "tryAgain": "Försök igen"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Hoppa över den här",
+    "startWriting": "Skriv den",
+    "nowRecognise": "Pröva en fråga",
+    "next": "Nästa bokstav",
+    "finish": "Avsluta",
+    "prompt": {
+      "write": "Dra den över mallen med fingret."
+    },
+    "continue": "Nästa"
+  },
+  "complete": {
+    "title": "Fint jobbat!",
+    "letters_one": "Du klarade {{count, number}} bokstav i {{lesson}}.",
+    "letters_other": "Du klarade {{count, number}} bokstäver i {{lesson}}."
+  },
+  "review": {
+    "title": "Repetera",
+    "startCta": "Börja repetera",
+    "sessionTitle": "Repetera",
+    "completeTitle": "Repetitionen klar",
+    "empty": {
+      "title": "Inget att repetera än",
+      "body": "Allt du svarar fel på dyker upp här. Så länge: vad sägs om en ny bokstav?",
+      "cta": "Lär dig en bokstav"
+    },
+    "forYou": "Repetition åt dig",
+    "sessionLength_one": "{{count, number}} kort övning",
+    "sessionLength_other": "{{count, number}} korta övningar",
+    "needsPractice": "Behöver övning",
+    "dueToday": "Dags i dag",
+    "savedWords": "Sparade ord",
+    "chooseMode": "Eller välj vad du vill öva på",
+    "comingUp": "På tur",
+    "outcome": "{{practised, number}} övade · {{firstTry, number}} kom direkt · {{comingBack, number}} kommer snart tillbaka",
+    "blank": "lucka",
+    "optionsLabel": "Svar",
+    "showHint": "Ge en ledtråd",
+    "right": "Precis så.",
+    "notQuite": "Inte riktigt. Så här är det.",
+    "mode": {
+      "read": "Läsa",
+      "listen": "Lyssna",
+      "write": "Skriva"
+    },
+    "prompt": {
+      "read": "Vad betyder det här ordet?",
+      "readLetter": "Vilket ljud gör den här bokstaven?",
+      "listen": "Vilket ord hörde du?",
+      "listenLetter": "Vilken bokstav är det här?",
+      "context": "Vilket ord passar här?",
+      "write": "Skriv det här ordet",
+      "writeLetter": "Skriv det du hör",
+      "distinguish": "Vilken låter så här?",
+      "produce": "Vilken är det?",
+      "listenMeaning": "Vad betyder det här?",
+      "build": "Bygg ihop ordet"
+    },
+    "nothingDue": "Inget att repetera just nu.",
+    "modesEmpty": "Inget i de här formerna i dag.",
+    "answerIs": "{{word}} betyder ”{{meaning}}”.",
+    "showMoreHint": "En ledtråd till",
+    "showAnswer": "Visa svaret",
+    "hint": {
+      "kind": "Det är ett {{pos}} — något inom {{category}}.",
+      "kindOnly": "Ordet som fattas är ett {{pos}}.",
+      "startsWith": "Det börjar med {{start}}…",
+      "startsWithSound": "Det börjar med ljudet ”{{sound}}”.",
+      "replay": "Spela igen — så många gånger du vill.",
+      "letterFamily": "Den här är {{family}}.",
+      "letterExample": "Det är första bokstaven i {{word}}.",
+      "letterSound": "Den låter som ”{{sound}}”.",
+      "reveal": "Svaret är {{answer}}.",
+      "revealWord": "Ordet är {{answer}}.",
+      "revealLetter": "Bokstaven är {{answer}}.",
+      "revealStrokes": "Se strecken en gång till och dra dem sedan.",
+      "inSentence": "Så här används det: {{sentence}}"
+    },
+    "buildTray": "Stavelser",
+    "buildRemove": "Ta tillbaka {{syllable}}"
+  },
+  "sounds": {
+    "title": "När ljud möts",
+    "blurb": "Varför 학교 inte sägs som det skrivs.",
+    "intro": "Nu kan du läsa varje bokstav. Koreanskan skriver de delar ett ord är byggt av och ändrar några av dem när de möts — så ett par ord låter annorlunda än de ser ut. Här är de du stöter på först.",
+    "written": "Skrivs",
+    "said": "Sägs",
+    "note": "Du behöver inte plugga in det här. Lyssna efter det, så börjar det låta självklart.",
+    "name": {
+      "tensing": "Ett stramare andraljud",
+      "aspiration": "En pust luft",
+      "nasal": "Ett mjukt nasalt ljud",
+      "lateral": "ㄴ och ㄹ ihop",
+      "palatal": "ㄷ och ㅌ före 이",
+      "liaison": "Ljudet glider över"
+    }
+  },
+  "mistakes": {
+    "title": "Missade svar",
+    "review_one": "Repetera · {{count}} fråga",
+    "review_other": "Repetera · {{count}} frågor",
+    "filterLabel": "Visa",
+    "filter": {
+      "all": "Alla",
+      "character": "Bokstäver",
+      "word": "Ord"
+    },
+    "youPut": "Du svarade",
+    "answer": "Rätt svar",
+    "times_one": "Missad {{count}} gång",
+    "times_other": "Missad {{count}} gånger",
+    "clear": "Klar med den här",
+    "noneOfKind": "Inget här just nu.",
+    "emptyTitle": "Inget missat än",
+    "emptyBody": "När något glider undan hamnar det här så att du kan rätta till det.",
+    "emptyCta": "Till repetitionen"
+  },
+  "letterGroup": {
+    "basic_vowel": "en grundvokal",
+    "basic_consonant": "en grundkonsonant",
+    "compound_vowel": "en sammansatt vokal",
+    "double_consonant": "en dubbelkonsonant",
+    "final_consonant": "en slutkonsonant",
+    "syllable": "en hel stavelse"
+  },
+  "nextStep": {
+    "title": "Redo för nästa steg",
+    "body": "Du kan läsa hangul nu. Tal och TOPIK-träning fortsätter i Hangyul.",
+    "cta": "Fortsätt i Hangyul",
+    "rowTitle": "Fortsätt i Hangyul",
+    "rowBody": "Tal och TOPIK, när du är redo"
+  }
+}

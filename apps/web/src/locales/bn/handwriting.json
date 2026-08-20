@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "ফিরিয়ে নিন",
+    "clear": "মুছুন",
+    "check": "যাচাই করুন"
+  },
+  "canvas": {
+    "label": "{{character}} লেখার জায়গা",
+    "empty": "এখনও কিছু লেখা হয়নি।",
+    "strokes_one": "{{count, number}}টি টান লেখা হয়েছে।",
+    "strokes_other": "{{count, number}}টি টান লেখা হয়েছে।"
+  },
+  "feedback": {
+    "correct": {
+      "headline": "এইতো!",
+      "perfect": "{{character}} — চমৎকার লেখা।",
+      "scored": "আকার ভালো — পথের {{score, number(style: percent)}} পেরিয়েছেন।"
+    },
+    "empty": {
+      "headline": "এখনও কিছু নেই",
+      "detail": "অক্ষরটি বাক্সের ভিতরে লিখুন।"
+    },
+    "incomplete": {
+      "headline": "প্রায়",
+      "tooSmall": "একটু ছোট হয়েছে। বাক্সটা ভরার চেষ্টা করুন।",
+      "missingStroke": "একটি টান বাদ পড়েছে। নমুনা ধরে শেষ পর্যন্ত যান।"
+    },
+    "outside": {
+      "headline": "পুরোপুরি নয়",
+      "tooLarge": "বাক্সের বাইরে চলে গেছে। পরের বার একটু ছোট করে।",
+      "strayStroke": "একটি টান বেপথে গেছে। রেখা ধরে ধীরে চলুন।"
+    },
+    "scribble": {
+      "headline": "একটু ধীরে চেষ্টা করা যাক",
+      "detail": "প্রতিটি টান একবারই, এক টানে দিন — উপর দিয়ে আবার যাওয়ার দরকার নেই।"
+    },
+    "mixed": {
+      "headline": "পুরোপুরি নয়",
+      "detail": "নমুনার সঙ্গে মিলিয়ে নিন, তারপর আরেকবার চেষ্টা করুন।"
+    },
+    "retry": "আবার চেষ্টা করুন",
+    "showDetails": "বিস্তারিত দেখান",
+    "hideDetails": "বিস্তারিত লুকান",
+    "breakdown": "পার্থক্য {{mismatch, number(style: percent)}} · বাইরে {{outside, number(style: percent)}} · বাদ {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
+    "diagramLabel_other": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
+    "pause": "থামান",
+    "count_one": "{{count, number}}টি টান",
+    "count_other": "{{count, number}}টি টান",
+    "heading": "লেখা হতে দেখুন",
+    "notesFooter": "টানের ক্রম নম্বরে ধরা হয় না। তবে ওটাই আপনার লেখাকে ঠিকঠাক দেখায়।",
+    "notes": {
+      "fewer": "আপনি {{theirs, number}}টি টান দিয়েছেন; এই অক্ষরটি সাধারণত {{expected, number}}টিতে লেখা হয়।",
+      "more": "আপনি {{theirs, number}}টি টান দিয়েছেন; এই অক্ষরটি সাধারণত {{expected, number}}টিতে লেখা হয়।",
+      "startElsewhere": "সাধারণত এটি বাক্সের {{corner}} থেকে শুরু হয়।",
+      "direction_one": "{{count, number}}টি টান উল্টো দিকে গেছে। কোরীয় টান উপর থেকে নিচে আর বাঁ থেকে ডানে চলে।",
+      "direction_other": "{{count, number}}টি টান উল্টো দিকে গেছে। কোরীয় টান উপর থেকে নিচে আর বাঁ থেকে ডানে চলে।"
+    },
+    "corners": {
+      "topLeft": "উপর বাঁ কোণ",
+      "topCentre": "উপর",
+      "topRight": "উপর ডান কোণ",
+      "middleLeft": "বাঁ দিক",
+      "middleCentre": "মাঝখান",
+      "middleRight": "ডান দিক",
+      "bottomLeft": "নিচ বাঁ কোণ",
+      "bottomCentre": "নিচ",
+      "bottomRight": "নিচ ডান কোণ"
+    },
+    "watchAgain": "আবার দেখুন",
+    "back": "পিছনে",
+    "next": "পরেরটা",
+    "position": "{{count, number}}টির মধ্যে টান {{current, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "নিচের দিকে লম্বা রেখা",
+      "downLongTwice": "নিচের দিকে দুটি লম্বা রেখা, আগে বাঁয়েরটা",
+      "downShort": "নিচের দিকে ছোট রেখা",
+      "downShortTwice": "নিচের দিকে দুটি ছোট রেখা, আগে বাঁয়েরটা",
+      "acrossLong": "আড়াআড়ি লম্বা রেখা",
+      "acrossLongTwice": "আড়াআড়ি দুটি লম্বা রেখা, আগে উপরেরটা",
+      "acrossShort": "আড়াআড়ি ছোট রেখা",
+      "acrossShortTwice": "আড়াআড়ি দুটি ছোট রেখা, আগে উপরেরটা",
+      "cornerAcrossDown": "উপরে আড়াআড়ি, তারপর ডান পাশ ধরে নিচে",
+      "cornerDownAcross": "বাঁ পাশ ধরে নিচে, তারপর ডানে ঘুরে",
+      "slantLeft": "বাঁ দিকে নেমে যাওয়া তির্যক টান",
+      "slantRight": "ডান দিকে নেমে যাওয়া তির্যক টান",
+      "circle": "গোলটি, উপর থেকে ঘুরিয়ে"
+    },
+    "s1": "মাত্র একটি টান: {{a}}।",
+    "s2": "প্রথমে {{a}}। তারপর {{b}}।",
+    "s3": "প্রথমে {{a}}। তারপর {{b}}। তারপর {{c}}।",
+    "s4": "প্রথমে {{a}}। তারপর {{b}}। তারপর {{c}}। শেষে {{d}}।",
+    "parts2": {
+      "plain": "আগে {{a}} লিখুন, তারপর {{b}}।",
+      "right": "আগে {{a}} লিখুন, তারপর তার ডানে {{b}}।",
+      "below": "আগে {{a}} লিখুন, তারপর তার নিচে {{b}}।"
+    },
+    "parts3": {
+      "right": "{{a}} লিখুন, তারপর তার ডানে {{b}}, তারপর নিচ বরাবর {{c}}।",
+      "below": "{{a}} লিখুন, তারপর তার নিচে {{b}}, তারপর নিচ বরাবর {{c}}।"
+    },
+    "partsDouble": "{{a}} দুবার লিখুন, পাশাপাশি — আগে বাঁয়েরটা।",
+    "fallback": "{{strokes}}টি টান, সংখ্যাগুলো যে ক্রম দেখাচ্ছে সেই ক্রমে।"
+  }
+}

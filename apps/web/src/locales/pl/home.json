@@ -1,0 +1,42 @@
+{
+  "streak": {
+    "aria": "Zobacz swoją historię nauki"
+  },
+  "celebrate": "Dzisiejszy cel osiągnięty. Ładna robota.",
+  "dailyGoal": "Litery na dziś",
+  "dailyGoalAria": "Litery na dziś: {{done, number}} z {{total, number}}",
+  "cta": {
+    "start": "Zaczynamy",
+    "continue": "Ucz się dalej"
+  },
+  "finished": {
+    "badge": "Ukończone",
+    "title": "Umiesz czytać hangeul",
+    "body": "Wszystkie {{count, number}} liter: poznane, napisane i odczytane. Od tego miejsca zaczynają się słowa.",
+    "goal": "Słowa na dziś",
+    "cta": "Dzisiejsze słowa"
+  },
+  "quick": {
+    "letters": "Litery",
+    "lettersCaption": "z 40 liter hangeulu",
+    "words": "Słowa",
+    "wordsCaption": "dzisiejsze słowa"
+  },
+  "review": {
+    "title": "Powtórka",
+    "count_few": "{{count, number}} do powtórzenia",
+    "count_many": "{{count, number}} do powtórzenia",
+    "count_one": "{{count, number}} do powtórzenia",
+    "count_other": "{{count, number}} do powtórzenia",
+    "empty": "Na razie nie ma czego powtarzać"
+  },
+  "practice": {
+    "title": "Dzisiejsze ćwiczenie",
+    "reviews_few": "{{count, number}} powtórki gotowe",
+    "reviews_many": "{{count, number}} powtórek gotowych",
+    "reviews_one": "{{count, number}} powtórka gotowa",
+    "reviews_other": "{{count, number}} powtórki gotowe",
+    "cta": "Zacznij ćwiczyć"
+  },
+  "purpose": "Ucz się koreańskiego od pierwszej litery — najpierw hangeul, potem słowa, których naprawdę użyjesz."
+}

@@ -1,0 +1,294 @@
+{
+ "ㅏ": [
+  "jako a v «malý»",
+  "Sloupek s jednou krátkou větví doprava."
+ ],
+ "ㅓ": [
+  "jako o v «pot», ale bez zaokrouhlení rtů",
+  "Větev míří doleva."
+ ],
+ "ㅗ": [
+  "jako o v «okno», rty zaokrouhlené",
+  "Větev míří nahoru."
+ ],
+ "ㅜ": [
+  "jako u v «ulice»",
+  "Větev míří dolů."
+ ],
+ "ㅡ": [
+  "blízko y: rty ploché a roztažené",
+  "Jedna vodorovná čára."
+ ],
+ "ㅣ": [
+  "jako i v «pivo»",
+  "Jedna svislá čára."
+ ],
+ "ㄱ": [
+  "mezi g a k — mezi dvěma samohláskami blíž g",
+  "Přitiskni zadní část jazyka na patro a pak povol."
+ ],
+ "ㄴ": [
+  "jako n v «noc»",
+  "Špička jazyka těsně za horními zuby."
+ ],
+ "ㄷ": [
+  "mezi d a t — mezi dvěma samohláskami blíž d",
+  "ㄴ s čárou, která uzavírá horní stranu."
+ ],
+ "ㄹ": [
+  "lehké ťuknutí, mezi r a l — na konci slabiky zní jako l",
+  "Mrskni jazykem dopředu od patra, jednou a lehce."
+ ],
+ "ㅁ": [
+  "jako m v «máma»",
+  "Čtverec — tvar zavřených úst."
+ ],
+ "ㅂ": [
+  "mezi b a p — mezi dvěma samohláskami blíž b",
+  "ㅁ rozevřené nahoře."
+ ],
+ "ㅅ": [
+  "jako s v «sova»",
+  "Nech vzduch zasyčet mezi zuby."
+ ],
+ "ㅇ": [
+  "na začátku slabiky němé, na konci ng",
+  "Kruh — tvar otevřeného hrdla. Drží místo, když slabika začíná samohláskou."
+ ],
+ "ㅈ": [
+  "jako dž v «džbán»",
+  "ㅅ s čárou přes vršek."
+ ],
+ "ㅎ": [
+  "jako h v «hora»",
+  "ㅇ v klobouku ze dvou tahů."
+ ],
+ "ㅑ": [
+  "jako ja v «jablko»",
+  "ㅏ s druhou větví. Větev navíc vždycky přidá j."
+ ],
+ "ㅕ": [
+  "jako jo, ale bez zaokrouhlení rtů",
+  "ㅓ s druhou větví."
+ ],
+ "ㅛ": [
+  "jako jo v «jojo»",
+  "ㅗ s druhou větví."
+ ],
+ "ㅠ": [
+  "jako ju v «juchat»",
+  "ㅜ s druhou větví."
+ ],
+ "ㅊ": [
+  "ㅈ s dechem navíc",
+  "ㅈ s jedním tahem navíc. Tah navíc znamená dech navíc."
+ ],
+ "ㅋ": [
+  "ㄱ s dechem navíc",
+  "ㄱ s jedním tahem navíc."
+ ],
+ "ㅌ": [
+  "ㄷ s dechem navíc",
+  "ㄷ s jedním tahem navíc."
+ ],
+ "ㅍ": [
+  "ㅂ s dechem navíc",
+  "ㅂ položené na bok."
+ ],
+ "ㅐ": [
+  "jako e v «pes», ale otevřenější",
+  "ㅏ a ㅣ napsané spolu."
+ ],
+ "ㅔ": [
+  "jako e v «led»",
+  "ㅓ + ㅣ. Většina Korejců dnes vyslovuje ㅐ a ㅔ stejně."
+ ],
+ "ㅒ": [
+  "jako je, krátce",
+  "ㅑ + ㅣ."
+ ],
+ "ㅖ": [
+  "jako je v «jeden»",
+  "ㅕ + ㅣ."
+ ],
+ "ㄲ": [
+  "ㄱ, napjaté a ostré",
+  "Dvě ㄱ. Stáhni hrdlo a naráz povol."
+ ],
+ "ㄸ": [
+  "ㄷ, napjaté a ostré",
+  "Dvě ㄷ."
+ ],
+ "ㅃ": [
+  "ㅂ, napjaté a ostré",
+  "Dvě ㅂ."
+ ],
+ "ㅆ": [
+  "ㅅ, napjaté a ostré",
+  "Dvě ㅅ."
+ ],
+ "ㅉ": [
+  "ㅈ, napjaté a ostré",
+  "Dvě ㅈ."
+ ],
+ "ㅘ": [
+  "jako va v «vata», ale s krátkým u",
+  "ㅗ + ㅏ. To ㅗ a ㅜ přidávají w."
+ ],
+ "ㅝ": [
+  "jako vo, s krátkým u",
+  "ㅜ + ㅓ."
+ ],
+ "ㅚ": [
+  "jako ve, s krátkým u",
+  "ㅗ + ㅣ."
+ ],
+ "ㅟ": [
+  "jako vi, s krátkým u",
+  "ㅜ + ㅣ."
+ ],
+ "ㅙ": [
+  "jako ve, s krátkým u",
+  "ㅗ + ㅐ. Dnes ㅙ, ㅞ i ㅚ znějí stejně."
+ ],
+ "ㅞ": [
+  "jako ve, s krátkým u",
+  "ㅜ + ㅔ."
+ ],
+ "ㅢ": [
+  "ㅡ a hned ㅣ, spojeně",
+  "ㅡ + ㅣ."
+ ],
+ "가": [
+  "ㄱ + ㅏ",
+  "Souhláska jde doleva, vysoká samohláska doprava."
+ ],
+ "나": [
+  "ㄴ + ㅏ — také slovo «já»",
+  null
+ ],
+ "다": [
+  "ㄷ + ㅏ",
+  null
+ ],
+ "라": [
+  "ㄹ + ㅏ",
+  null
+ ],
+ "마": [
+  "ㅁ + ㅏ",
+  null
+ ],
+ "거": [
+  "ㄱ + ㅓ",
+  null
+ ],
+ "고": [
+  "ㄱ + ㅗ — samohláska jde pod souhlásku",
+  "Plochá samohláska stojí pod souhláskou, nikdy vedle ní."
+ ],
+ "구": [
+  "ㄱ + ㅜ",
+  null
+ ],
+ "그": [
+  "ㄱ + ㅡ",
+  null
+ ],
+ "기": [
+  "ㄱ + ㅣ",
+  null
+ ],
+ "바": [
+  "ㅂ + ㅏ",
+  null
+ ],
+ "사": [
+  "ㅅ + ㅏ",
+  null
+ ],
+ "아": [
+  "ㅇ + ㅏ — čte se prostě «a»",
+  "ㅇ tady nezní. Drží prázdné místo souhlásky."
+ ],
+ "자": [
+  "ㅈ + ㅏ",
+  null
+ ],
+ "하": [
+  "ㅎ + ㅏ",
+  null
+ ],
+ "어": [
+  "ㅇ + ㅓ — čte se «eo»",
+  null
+ ],
+ "오": [
+  "ㅇ + ㅗ — čte se «o»",
+  null
+ ],
+ "우": [
+  "ㅇ + ㅜ — čte se «u»",
+  null
+ ],
+ "으": [
+  "ㅇ + ㅡ — čte se «eu»",
+  null
+ ],
+ "이": [
+  "ㅇ + ㅣ — čte se «i»",
+  null
+ ],
+ "안": [
+  "ㅇ + ㅏ + ㄴ",
+  "Třetí písmeno jde dolů. Čti čtverec shora dolů."
+ ],
+ "말": [
+  "ㅁ + ㅏ + ㄹ — slovo «slova, řeč»",
+  null
+ ],
+ "밤": [
+  "ㅂ + ㅏ + ㅁ — slovo «noc»",
+  null
+ ],
+ "강": [
+  "ㄱ + ㅏ + ㅇ — tady ㅇ *je* hláska: ng",
+  null
+ ],
+ "산": [
+  "ㅅ + ㅏ + ㄴ — slovo «hora»",
+  null
+ ],
+ "밥": [
+  "končí zadrženým p",
+  "Koncové ㅂ se uzavře a neuvolní. Řekni «bap», aniž bys p dokončil."
+ ],
+ "옷": [
+  "ㅅ dole se čte jako t",
+  "Jen sedm zvuků: dole se ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ všechny mění v t."
+ ],
+ "국": [
+  "končí zadrženým k — slovo «polévka»",
+  null
+ ],
+ "꽃": [
+  "ㅊ dole se čte jako t, takže tohle je «kkot»",
+  null
+ ],
+ "한": [
+  "ㅎ + ㅏ + ㄴ — první slabika slova 한글",
+  null
+ ],
+ "글": [
+  "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, jméno tohoto písma",
+  null
+ ],
+ "공": [
+  "ㄱ + ㅗ + ㅇ — jako v 공부, «studium»",
+  null
+ ],
+ "부": [
+  "ㅂ + ㅜ — 공 + 부 = 공부, «studium»",
+  null
+ ]
+}

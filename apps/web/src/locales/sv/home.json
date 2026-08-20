@@ -1,0 +1,38 @@
+{
+  "streak": {
+    "aria": "Se din lärlogg"
+  },
+  "celebrate": "Dagens mål är klart. Fint jobbat.",
+  "dailyGoal": "Bokstäver i dag",
+  "dailyGoalAria": "Bokstäver i dag: {{done, number}} av {{total, number}}",
+  "cta": {
+    "start": "Sätt i gång",
+    "continue": "Fortsätt lära"
+  },
+  "finished": {
+    "badge": "Klart",
+    "title": "Du kan läsa hangul",
+    "body": "Alla {{count, number}} bokstäver — mötta, skrivna och lästa tillbaka. Härifrån handlar det om ord.",
+    "goal": "Ord i dag",
+    "cta": "Dagens ord"
+  },
+  "quick": {
+    "letters": "Bokstäver",
+    "lettersCaption": "av hanguls 40 bokstäver",
+    "words": "Ord",
+    "wordsCaption": "dagens ord"
+  },
+  "review": {
+    "title": "Repetera",
+    "count_one": "{{count, number}} att gå igenom",
+    "count_other": "{{count, number}} att gå igenom",
+    "empty": "Inget att gå igenom än"
+  },
+  "practice": {
+    "title": "Dagens övning",
+    "reviews_one": "{{count, number}} repetition redo",
+    "reviews_other": "{{count, number}} repetitioner redo",
+    "cta": "Börja öva"
+  },
+  "purpose": "Lär dig koreanska från allra första bokstaven — hangul först, sedan orden du faktiskt kommer att använda."
+}

@@ -1,0 +1,89 @@
+{
+  "title": "Läraktivitet",
+  "streak": {
+    "caption": "All övning håller den vid liv — du behöver inte bli klar med en bokstav.",
+    "longest": "Längsta svit",
+    "totalDays": "Dagar övade",
+    "totalTime": "Total tid",
+    "unit_one": "dag i rad",
+    "unit_other": "dagar i rad"
+  },
+  "chart": {
+    "title": "Aktivitet",
+    "rangeAria": "Välj en tidsperiod",
+    "aria": "Övning per dag",
+    "noneYet": "Ingen övning i den här perioden än.",
+    "range": {
+      "7": "7 dagar",
+      "30": "30 dagar",
+      "90": "3 månader",
+      "0": "Allt"
+    }
+  },
+  "calendar": {
+    "previous": "Föregående månad",
+    "next": "Nästa månad",
+    "less": "Mindre",
+    "more": "Mer",
+    "dayAria_one": "{{date}}: {{count, number}} försök",
+    "dayAria_other": "{{date}}: {{count, number}} försök"
+  },
+  "day": {
+    "time": "Studietid",
+    "attempts": "Skrivförsök",
+    "correct": "Rätt",
+    "charactersLearned": "Bokstäver klara",
+    "wordsLearned": "Ord klara",
+    "reviews": "Repetitionsförsök",
+    "nothing": "Ingen övning den här dagen."
+  },
+  "insights": {
+    "title": "Det som sticker ut",
+    "mostPractisedCharacter": "Mest övade bokstav",
+    "mostPractisedWord": "Mest övade ord",
+    "accuracy": "Skrivträffsäkerhet",
+    "thisWeek": "Den här veckan",
+    "learnedCount_one": "{{count, number}} klar",
+    "learnedCount_other": "{{count, number}} klara"
+  },
+  "units": {
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_one": "{{count, number}} tim",
+    "hour_other": "{{count, number}} tim"
+  },
+  "empty": {
+    "title": "Din lärhistoria börjar i dag",
+    "body": "Öva några bokstäver så fylls den här sidan: dagarna du pluggade, hur länge, och vad du jobbade med."
+  },
+  "week": {
+    "title": "Den här veckan",
+    "range": "Från {{from}}",
+    "days": "Dagar pluggade",
+    "daysValue_one": "{{count, number}} av 7",
+    "daysValue_other": "{{count, number}} av 7",
+    "time": "Tid",
+    "learned": "Inlärt",
+    "accuracy": "Träffsäkerhet",
+    "same": "Lika lång tid som förra veckan.",
+    "moreThanLast": "{{minutes, number}} minuter mer än förra veckan.",
+    "lessThanLast": "{{minutes, number}} minuter mindre än förra veckan.",
+    "quiet": "Inget den här veckan än — det finns tid kvar."
+  },
+  "memory": {
+    "title": "Så går minnet",
+    "firstTry": "Du kom ihåg {{count, number}} saker på första försöket den här veckan.",
+    "strongestSkill": "{{skill}} är det du är starkast på den här veckan.",
+    "confusionImproving": "{{a}} och {{b}} blir lättare att skilja åt.",
+    "skill": {
+      "reading_recognition": "läsning",
+      "listening_recognition": "lyssning",
+      "guided_writing": "skrivning",
+      "meaning_recognition": "betydelse",
+      "sentence_comprehension": "meningar",
+      "sound_recognition": "ljud",
+      "visual_recognition": "bokstäver",
+      "lookalike_discrimination": "att skilja lika tecken åt"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "primary": "Menu utama",
+  "tabs": {
+    "home": "Beranda",
+    "letters": "Huruf",
+    "words": "Kata",
+    "review": "Ulasan",
+    "profile": "Belajarku"
+  }
+}

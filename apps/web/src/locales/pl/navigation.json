@@ -1,0 +1,10 @@
+{
+  "primary": "Menu główne",
+  "tabs": {
+    "home": "Start",
+    "letters": "Litery",
+    "words": "Słowa",
+    "review": "Powtórka",
+    "profile": "Moja nauka"
+  }
+}

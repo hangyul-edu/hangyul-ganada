@@ -1,0 +1,89 @@
+{
+  "title": "Сургалтын идэвх",
+  "streak": {
+    "caption": "Ямар ч дасгал үүнийг үргэлжлүүлнэ — үсэг дуусгах шаардлагагүй.",
+    "longest": "Хамгийн урт дараалал",
+    "totalDays": "Дасгал хийсэн өдрүүд",
+    "totalTime": "Нийт хугацаа",
+    "unit_one": "өдөр дараалан",
+    "unit_other": "өдөр дараалан"
+  },
+  "chart": {
+    "title": "Идэвх",
+    "rangeAria": "Хугацааны хязгаар сонго",
+    "aria": "Өдөр тутмын дасгал",
+    "noneYet": "Энэ хугацаанд одоохондоо дасгал алга.",
+    "range": {
+      "7": "7 хоног",
+      "30": "30 хоног",
+      "90": "3 сар",
+      "0": "Бүгд"
+    }
+  },
+  "calendar": {
+    "previous": "Өмнөх сар",
+    "next": "Дараагийн сар",
+    "less": "Бага",
+    "more": "Их",
+    "dayAria_one": "{{date}}: {{count, number}} оролдлого",
+    "dayAria_other": "{{date}}: {{count, number}} оролдлого"
+  },
+  "day": {
+    "time": "Суралцсан хугацаа",
+    "attempts": "Бичих оролдлого",
+    "correct": "Зөв",
+    "charactersLearned": "Дуусгасан үсгүүд",
+    "wordsLearned": "Дуусгасан үгс",
+    "reviews": "Давталтын оролдлого",
+    "nothing": "Энэ өдөр дасгал хийгээгүй."
+  },
+  "insights": {
+    "title": "Онцлон харагдах нь",
+    "mostPractisedCharacter": "Хамгийн их дасгалжуулсан үсэг",
+    "mostPractisedWord": "Хамгийн их дасгалжуулсан үг",
+    "accuracy": "Бичгийн нарийвчлал",
+    "thisWeek": "Энэ долоо хоногт",
+    "learnedCount_one": "{{count, number}} дууссан",
+    "learnedCount_other": "{{count, number}} дууссан"
+  },
+  "units": {
+    "minute_one": "{{count, number}} мин",
+    "minute_other": "{{count, number}} мин",
+    "hour_one": "{{count, number}} ц",
+    "hour_other": "{{count, number}} ц"
+  },
+  "empty": {
+    "title": "Чиний суралцах түүх өнөөдрөөс эхэлнэ",
+    "body": "Хэдэн үсэг дасгалжуулбал энэ хуудас дүүрнэ: аль өдрүүдэд сурсан, хэр удсан, юун дээр ажилласан."
+  },
+  "week": {
+    "title": "Энэ долоо хоногт",
+    "range": "{{from}}-аас",
+    "days": "Суралцсан өдрүүд",
+    "daysValue_one": "7-гийн {{count, number}}",
+    "daysValue_other": "7-гийн {{count, number}}",
+    "time": "Хугацаа",
+    "learned": "Сурсан",
+    "accuracy": "Нарийвчлал",
+    "same": "Өнгөрсөн долоо хоногтой ижил хугацаа.",
+    "moreThanLast": "Өнгөрсөн долоо хоногоос {{minutes, number}} минутаар илүү.",
+    "lessThanLast": "Өнгөрсөн долоо хоногоос {{minutes, number}} минутаар бага.",
+    "quiet": "Энэ долоо хоногт одоохондоо юу ч алга — цаг бий."
+  },
+  "memory": {
+    "title": "Тогтоолт хэр явж байна",
+    "firstTry": "Энэ долоо хоногт чи {{count, number}} зүйлийг эхний оролдлогоор санажээ.",
+    "strongestSkill": "Энэ долоо хоногт {{skill}} чинь хамгийн сайн байна.",
+    "confusionImproving": "{{a}} ба {{b}}-г ялгах нь хялбар болж байна.",
+    "skill": {
+      "reading_recognition": "унших",
+      "listening_recognition": "сонсох",
+      "guided_writing": "бичих",
+      "meaning_recognition": "утга",
+      "sentence_comprehension": "өгүүлбэр",
+      "sound_recognition": "дуу",
+      "visual_recognition": "үсэг",
+      "lookalike_discrimination": "төстэй үсгүүдийг ялгах"
+    }
+  }
+}

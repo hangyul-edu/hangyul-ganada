@@ -1,0 +1,89 @@
+{
+  "title": "Δραστηριότητα μάθησης",
+  "streak": {
+    "caption": "Οποιαδήποτε εξάσκηση το κρατάει ζωντανό — δεν χρειάζεται να τελειώσεις γράμμα.",
+    "longest": "Μεγαλύτερο σερί",
+    "totalDays": "Μέρες εξάσκησης",
+    "totalTime": "Συνολικός χρόνος",
+    "unit_one": "μέρα στη σειρά",
+    "unit_other": "μέρες στη σειρά"
+  },
+  "chart": {
+    "title": "Δραστηριότητα",
+    "rangeAria": "Διάλεξε χρονικό διάστημα",
+    "aria": "Εξάσκηση ανά ημέρα",
+    "noneYet": "Καμία εξάσκηση σε αυτό το διάστημα ακόμη.",
+    "range": {
+      "7": "7 μέρες",
+      "30": "30 μέρες",
+      "90": "3 μήνες",
+      "0": "Όλα"
+    }
+  },
+  "calendar": {
+    "previous": "Προηγούμενος μήνας",
+    "next": "Επόμενος μήνας",
+    "less": "Λιγότερα",
+    "more": "Περισσότερα",
+    "dayAria_one": "{{date}}: {{count, number}} προσπάθεια",
+    "dayAria_other": "{{date}}: {{count, number}} προσπάθειες"
+  },
+  "day": {
+    "time": "Χρόνος μελέτης",
+    "attempts": "Προσπάθειες γραφής",
+    "correct": "Σωστά",
+    "charactersLearned": "Γράμματα που τελείωσαν",
+    "wordsLearned": "Λέξεις που τελείωσαν",
+    "reviews": "Προσπάθειες στην επανάληψη",
+    "nothing": "Καμία εξάσκηση αυτή τη μέρα."
+  },
+  "insights": {
+    "title": "Τι ξεχωρίζει",
+    "mostPractisedCharacter": "Το πιο δουλεμένο γράμμα",
+    "mostPractisedWord": "Η πιο δουλεμένη λέξη",
+    "accuracy": "Ακρίβεια γραφής",
+    "thisWeek": "Αυτή την εβδομάδα",
+    "learnedCount_one": "{{count, number}} ολοκληρώθηκε",
+    "learnedCount_other": "{{count, number}} ολοκληρώθηκαν"
+  },
+  "units": {
+    "minute_one": "{{count, number}} λ",
+    "minute_other": "{{count, number}} λ",
+    "hour_one": "{{count, number}} ώ",
+    "hour_other": "{{count, number}} ώ"
+  },
+  "empty": {
+    "title": "Η ιστορία της μάθησής σου αρχίζει σήμερα",
+    "body": "Δούλεψε λίγα γράμματα και αυτή η σελίδα θα γεμίσει: οι μέρες που μελέτησες, πόση ώρα, και με τι ασχολήθηκες."
+  },
+  "week": {
+    "title": "Αυτή την εβδομάδα",
+    "range": "Από {{from}}",
+    "days": "Μέρες μελέτης",
+    "daysValue_one": "{{count, number}} από 7",
+    "daysValue_other": "{{count, number}} από 7",
+    "time": "Χρόνος",
+    "learned": "Μαθεύτηκαν",
+    "accuracy": "Ακρίβεια",
+    "same": "Ίδιος χρόνος με την περασμένη εβδομάδα.",
+    "moreThanLast": "{{minutes, number}} λεπτά περισσότερα από την περασμένη εβδομάδα.",
+    "lessThanLast": "{{minutes, number}} λεπτά λιγότερα από την περασμένη εβδομάδα.",
+    "quiet": "Αυτή την εβδομάδα τίποτα ακόμη — υπάρχει χρόνος."
+  },
+  "memory": {
+    "title": "Πώς πάει η μνήμη σου",
+    "firstTry": "Αυτή την εβδομάδα θυμήθηκες {{count, number}} πράγματα με την πρώτη.",
+    "strongestSkill": "Αυτή την εβδομάδα πας καλύτερα στην {{skill}}.",
+    "confusionImproving": "Το {{a}} και το {{b}} ξεχωρίζουν όλο και πιο εύκολα.",
+    "skill": {
+      "reading_recognition": "ανάγνωση",
+      "listening_recognition": "ακρόαση",
+      "guided_writing": "γραφή",
+      "meaning_recognition": "σημασία",
+      "sentence_comprehension": "προτάσεις",
+      "sound_recognition": "ήχους",
+      "visual_recognition": "γράμματα",
+      "lookalike_discrimination": "ξεχώρισμα των όμοιων"
+    }
+  }
+}

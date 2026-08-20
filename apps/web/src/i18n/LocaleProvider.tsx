@@ -17,7 +17,8 @@ import {
   writeStoredLocale,
   type LocaleSource,
 } from './preference';
-import { AVAILABLE_LOCALES } from './resources';
+import { AVAILABLE_LOCALES, hasLocaleResources, loadLocaleResources } from './resources';
+import { hasLetterCopy, loadLetterCopy } from '../data/letterCopy';
 import { hasWordCopy, loadWordCopy } from '../data/wordCopy';
 
 export interface LocaleProviderProps {
@@ -85,26 +86,88 @@ export function LocaleProvider({
    */
   const [, setCopyLoaded] = useState(0);
   const loadCopy = useCallback((next: string) => {
-    if (hasWordCopy(next)) return;
-    void loadWordCopy(next).then(() => setCopyLoaded((n) => n + 1));
+    // Two packs, one counter. The letters are small and the words are not, so
+    // they land at different moments; either one arriving is a reason to
+    // re-render, and neither is a reason to make the other wait.
+    if (!hasLetterCopy(next)) {
+      void loadLetterCopy(next).then(() => setCopyLoaded((n) => n + 1));
+    }
+    if (!hasWordCopy(next)) {
+      void loadWordCopy(next).then(() => setCopyLoaded((n) => n + 1));
+    }
   }, []);
+
+  /**
+   * Puts a language's interface strings in front of i18next before switching.
+   *
+   * Only English is bundled — see `resources.ts` for the 300 kB that bought —
+   * so every other language is a fetch, and the fetch has to finish *before*
+   * `changeLanguage`. Switching first would render one frame of `humanizeKey`
+   * output: `Continue`, `Skip This One`, a screen of title-cased key leaves.
+   *
+   * A language already in memory resolves in the same tick, so going back to a
+   * language is instant and re-rendering does no work.
+   */
+  const ensureStrings = useCallback(
+    async (next: string): Promise<boolean> => {
+      if (hasLocaleResources(next) && i18n.hasResourceBundle(next, 'common')) return false;
+      const bundles = await loadLocaleResources(next);
+      for (const [namespace, bundle] of Object.entries(bundles)) {
+        // `deep`/`overwrite` false: a bundle added twice must not merge into
+        // itself, and nothing may overwrite what is already there.
+        i18n.addResourceBundle(next, namespace, bundle, false, false);
+      }
+      return true;
+    },
+    [i18n],
+  );
 
   const apply = useCallback(
     async (next: string, nextSource: LocaleSource) => {
       loadCopy(next);
-      if (i18n.language !== next) await i18n.changeLanguage(next);
+      const arrived = await ensureStrings(next);
+      if (i18n.language !== next) {
+        await i18n.changeLanguage(next);
+      } else if (arrived) {
+        /*
+         * The instance was *created* in this language and its strings have only
+         * now landed. There is no language to change, so `changeLanguage` would
+         * do nothing — including firing the event `useTranslation` subscribes
+         * to. Every component that re-renders for some other reason picks up
+         * the new strings anyway, because `t` reads the store when it is
+         * called; every component that does not keeps the English it resolved
+         * on the first frame.
+         *
+         * That is not hypothetical. It is what left the bottom navigation
+         * reading Home / Letters / Words under a fully Arabic home screen: the
+         * tab bar is the one piece of chrome with no reason to re-render.
+         */
+        i18n.emit('languageChanged', next);
+      }
       setLocaleState(next);
       setSource(nextSource);
     },
-    [i18n, loadCopy],
+    [ensureStrings, i18n, loadCopy],
   );
 
-  // The initial locale is resolved synchronously so the first render is already
-  // in the right language; its word copy is fetched here, on the same path as
-  // every later change.
+  /*
+   * The first language, which is the one case that cannot wait for an effect.
+   *
+   * `resolveLocale` answers synchronously from `localStorage`, so by the first
+   * render we know a Thai learner wants Thai — but the strings are a fetch away
+   * and React has already painted English. Rather than gate the whole app on a
+   * network round trip, the fetch is started here and applied when it lands:
+   * the learner sees English for the length of one small file and then their
+   * own language, which is the same trade the word packs already make.
+   *
+   * English learners — the default — take neither the fetch nor the swap.
+   */
   useEffect(() => {
     loadCopy(initial.locale);
-  }, [initial.locale, loadCopy]);
+    if (initial.locale !== DEFAULT_LOCALE) void apply(initial.locale, initial.source);
+    // Once, for the locale the app started in.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * A profile preference arriving after hydration takes over — unless the

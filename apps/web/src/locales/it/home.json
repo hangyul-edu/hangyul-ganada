@@ -1,0 +1,40 @@
+{
+  "streak": {
+    "aria": "Vedi il tuo diario di studio"
+  },
+  "celebrate": "Obiettivo di oggi raggiunto. Bel lavoro.",
+  "dailyGoal": "Lettere di oggi",
+  "dailyGoalAria": "Lettere di oggi: {{done, number}} su {{total, number}}",
+  "cta": {
+    "start": "Comincia ora",
+    "continue": "Continua a imparare"
+  },
+  "finished": {
+    "badge": "Completato",
+    "title": "Sai leggere l'hangul",
+    "body": "Tutte e {{count, number}} le lettere: viste, scritte e rilette. Da qui in poi si va di parole.",
+    "goal": "Parole di oggi",
+    "cta": "Le parole di oggi"
+  },
+  "quick": {
+    "letters": "Lettere",
+    "lettersCaption": "delle 40 lettere hangul",
+    "words": "Parole",
+    "wordsCaption": "parole di oggi"
+  },
+  "review": {
+    "title": "Ripasso",
+    "count_many": "{{count, number}} da rivedere",
+    "count_one": "{{count, number}} da rivedere",
+    "count_other": "{{count, number}} da rivedere",
+    "empty": "Ancora niente da rivedere"
+  },
+  "practice": {
+    "title": "Esercizio di oggi",
+    "reviews_many": "{{count, number}} ripassi pronti",
+    "reviews_one": "{{count, number}} ripasso pronto",
+    "reviews_other": "{{count, number}} ripassi pronti",
+    "cta": "Inizia l'esercizio"
+  },
+  "purpose": "Impara il coreano dalla primissima lettera — prima l'hangul, poi le parole che userai davvero."
+}

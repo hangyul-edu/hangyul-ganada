@@ -1,0 +1,128 @@
+{
+  "title": "Kelime öğren",
+  "today": {
+    "title": "Bugünkü kelimeler",
+    "start": "Başla",
+    "resume": "Devam et",
+    "startBlurb_one": "Bugün tek kelime.",
+    "startBlurb_other": "{{count}} kelimelik kısa bir set.",
+    "resumeBlurb": "Kaldığın yerden devam et.",
+    "doneBlurb": "Bugünlük tamam. Güzel iş.",
+    "completeTitle": "Bugünkü kelimeler bitti.",
+    "completeDetail_one": "{{count}} kelime öğrenildi.",
+    "completeDetail_other": "{{count}} kelime öğrenildi.",
+    "more": "Biraz daha",
+    "allDone": "Bugünlük bir şey kalmadı.",
+    "progressAria": "Bugünkü kelimelerde ilerlemen",
+    "moreLabel": "Kaç tane daha",
+    "moreCount_one": "{{count}} tane daha",
+    "moreCount_other": "{{count}} tane daha"
+  },
+  "browse": {
+    "title": "Konuya göre gez",
+    "showing": "{{total}} kelimeden {{shown}} tanesi"
+  },
+  "intro": {
+    "example": "Örnek",
+    "howItSounds": "Nasıl okunuyor",
+    "surfaceNote": "Bu cümlede {{headword}} kelimesi {{form}} biçiminde geçiyor.",
+    "next": "Anladım"
+  },
+  "empty": {
+    "title": "Burada henüz kelime yok",
+    "body": "Başka bir kategori dene."
+  },
+  "partOfSpeech": {
+    "noun": "isim",
+    "verb": "fiil",
+    "adjective": "sıfat",
+    "adverb": "zarf",
+    "pronoun": "zamir",
+    "numeral": "sayı",
+    "particle": "ek",
+    "interjection": "ünlem",
+    "determiner": "belirteç"
+  },
+  "session": {
+    "next": "Sonraki kelime",
+    "finish": "Bitir"
+  },
+  "blurb": "Bütün kelimeler açık. Bir kategori seç ve istediğin yerden başla.",
+  "categories": {
+    "essentials": "Günlük Temel Sözler",
+    "people": "İnsanlar ve Aile",
+    "food": "Yiyecek ve İçecek",
+    "animals-nature": "Hayvanlar ve Doğa",
+    "home": "Ev ve Eşyalar",
+    "body-health": "Beden ve Sağlık",
+    "places-travel": "Yerler ve Yolculuk",
+    "time-numbers": "Zaman ve Sayılar",
+    "school-work": "Okul ve İş",
+    "money-shopping": "Para ve Alışveriş",
+    "communication": "Konuşma ve Medya",
+    "feelings": "Duygular ve Karakter",
+    "thinking": "Düşünme ve Öğrenme",
+    "movement": "Gitmek ve Gelmek",
+    "actions": "Günlük Eylemler",
+    "describing": "Şeyleri Anlatmak",
+    "society": "Hayat ve Kültür",
+    "how-when": "Nasıl ve Ne Zaman"
+  },
+  "category": {
+    "label": "Kategori",
+    "all": "Bütün kategoriler",
+    "pick": "Bir kategori seç",
+    "count_one": "{{count, number}} kelime",
+    "count_other": "{{count, number}} kelime",
+    "progressAria": "{{category}} içindeki ilerlemen"
+  },
+  "search": {
+    "placeholder": "Kelime ara",
+    "label": "Kelime dağarcığında ara",
+    "count_one": "{{count, number}} sonuç",
+    "count_other": "{{count, number}} sonuç",
+    "none": "“{{query}}” ile eşleşen bir şey yok. Korecesini ya da kendi dilindeki anlamını dene."
+  },
+  "sound": {
+    "tensing": "Kapatan bir ünsüzden sonra gelen ses sıkışır.",
+    "aspiration": "ㅎ sonraki ünsüzle kaynaşır ve bir soluk hava katar.",
+    "nasal": "ㄴ ya da ㅁ önünde, öndeki ünsüz genizden çıkar.",
+    "lateral": "Yan yana gelen ㄴ ile ㄹ ikisi de ㄹ olur.",
+    "palatal": "이 önünde kapatan ㄷ ya da ㅌ, ㅈ ya da ㅊ gibi okunur.",
+    "liaison": "Kapatan ünsüz sonraki bloğa kayar."
+  },
+  "save": {
+    "action": "Kaydet",
+    "saved": "Kaydedildi",
+    "add": "{{word}} kelimesini kaydet",
+    "remove": "{{word}} kelimesini kayıtlılardan çıkar"
+  },
+  "detail": {
+    "title": "Kelime",
+    "romanization": "Latin harfleriyle",
+    "definition": "Biraz daha",
+    "usage": "Nasıl kullanılır",
+    "synonyms": "Eş anlamlılar",
+    "antonyms": "Karşıtlar"
+  },
+  "saved": {
+    "title": "Kaydedilen kelimeler",
+    "review_one": "Tekrar · {{count}} soru",
+    "review_other": "Tekrar · {{count}} soru",
+    "searchPlaceholder": "Kayıtlı kelimelerde ara",
+    "searchLabel": "Kaydettiğin kelimelerde ara",
+    "orderLabel": "Sıralama",
+    "order": {
+      "recent": "En yeni",
+      "alphabetical": "A–Z",
+      "needed": "Çalışmak gerek"
+    },
+    "count_one": "{{count}} kelime",
+    "count_other": "{{count}} kelime",
+    "remove": "Çıkar",
+    "noMatch": "Kayıtlılarda “{{query}}” ile eşleşen yok.",
+    "emptyTitle": "Henüz kaydedilmiş kelime yok",
+    "emptyBody": "Çalışırken herhangi bir kelimedeki yer imine dokun, sonra dönmek için burada dursun.",
+    "emptyCta": "Kelimelere git"
+  }
+}

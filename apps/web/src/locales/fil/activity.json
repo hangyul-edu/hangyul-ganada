@@ -1,0 +1,89 @@
+{
+  "title": "Aktibidad sa pag-aaral",
+  "streak": {
+    "caption": "Anumang ensayo ay nagpapatuloy nito — hindi mo kailangang tapusin ang isang letra.",
+    "longest": "Pinakamahabang sunod-sunod",
+    "totalDays": "Araw na nag-ensayo",
+    "totalTime": "Kabuuang oras",
+    "unit_one": "araw nang sunod-sunod",
+    "unit_other": "araw nang sunod-sunod"
+  },
+  "chart": {
+    "title": "Aktibidad",
+    "rangeAria": "Pumili ng saklaw ng panahon",
+    "aria": "Ensayo bawat araw",
+    "noneYet": "Wala pang ensayo sa panahong ito.",
+    "range": {
+      "7": "7 araw",
+      "30": "30 araw",
+      "90": "3 buwan",
+      "0": "Lahat"
+    }
+  },
+  "calendar": {
+    "previous": "Nakaraang buwan",
+    "next": "Susunod na buwan",
+    "less": "Mas kaunti",
+    "more": "Mas marami",
+    "dayAria_one": "{{date}}: {{count, number}} pagsubok",
+    "dayAria_other": "{{date}}: {{count, number}} na pagsubok"
+  },
+  "day": {
+    "time": "Oras ng pag-aaral",
+    "attempts": "Mga pagsubok sa pagsulat",
+    "correct": "Tama",
+    "charactersLearned": "Natapos na letra",
+    "wordsLearned": "Natapos na salita",
+    "reviews": "Pagsubok sa balik-aral",
+    "nothing": "Walang ensayo sa araw na ito."
+  },
+  "insights": {
+    "title": "Ang tumatatak",
+    "mostPractisedCharacter": "Pinakamadalas ensayuhing letra",
+    "mostPractisedWord": "Pinakamadalas ensayuhing salita",
+    "accuracy": "Katumpakan ng sulat",
+    "thisWeek": "Ngayong linggo",
+    "learnedCount_one": "{{count, number}} natapos",
+    "learnedCount_other": "{{count, number}} ang natapos"
+  },
+  "units": {
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_one": "{{count, number}} oras",
+    "hour_other": "{{count, number}} oras"
+  },
+  "empty": {
+    "title": "Ngayon nagsisimula ang kuwento ng pag-aaral mo",
+    "body": "Mag-ensayo ng ilang letra at mapupuno ang pahinang ito: ang mga araw na nag-aral ka, gaano katagal, at ano ang pinagtrabahuhan mo."
+  },
+  "week": {
+    "title": "Ngayong linggo",
+    "range": "Mula {{from}}",
+    "days": "Araw na nag-aral",
+    "daysValue_one": "{{count, number}} sa 7",
+    "daysValue_other": "{{count, number}} sa 7",
+    "time": "Oras",
+    "learned": "Natutuhan",
+    "accuracy": "Katumpakan",
+    "same": "Kasindami ng oras noong nakaraang linggo.",
+    "moreThanLast": "{{minutes, number}} minutong mas marami kaysa noong nakaraang linggo.",
+    "lessThanLast": "{{minutes, number}} minutong mas kaunti kaysa noong nakaraang linggo.",
+    "quiet": "Wala pa ngayong linggo — may oras pa naman."
+  },
+  "memory": {
+    "title": "Kumusta ang pag-alala mo",
+    "firstTry": "Ngayong linggo, {{count, number}} bagay ang naalala mo sa unang subok.",
+    "strongestSkill": "Ang {{skill}} ang pinakamalakas mo ngayong linggo.",
+    "confusionImproving": "Mas madali nang pagkaibahin ang {{a}} at {{b}}.",
+    "skill": {
+      "reading_recognition": "pagbasa",
+      "listening_recognition": "pakikinig",
+      "guided_writing": "pagsulat",
+      "meaning_recognition": "kahulugan",
+      "sentence_comprehension": "mga pangungusap",
+      "sound_recognition": "mga tunog",
+      "visual_recognition": "mga letra",
+      "lookalike_discrimination": "pagkilatis sa magkamukha"
+    }
+  }
+}

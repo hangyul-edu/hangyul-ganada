@@ -1,0 +1,241 @@
+{
+  "letters": {
+    "title": "Ucz się liter",
+    "alphabetTitle": "Alfabet hangeul",
+    "alphabetCaption": "liter opanowanych",
+    "complete": "Opanowana",
+    "resume": "Kontynuuj"
+  },
+  "units": {
+    "badge": "Rozdział {{index, number}}",
+    "continue": "Jasne — zaczynamy",
+    "unit-1": {
+      "title": "Sześć samogłosek na początek",
+      "goal": "Każda koreańska sylaba potrzebuje samogłoski. Te sześć jest najprostszych.",
+      "body": "Hangeul to alfabet, a nie zbiór obrazków. Ma 40 liter, zaprojektowano go tak, żeby dało się go szybko opanować, a ty poznasz teraz sześć z nich.",
+      "points": [
+        "Litery zbiera się w kwadratowe bloki, a każdy blok to jedna sylaba.",
+        "Samogłoska to albo kreska pionowa, albo pozioma — to decyduje, gdzie stanie w bloku.",
+        "Wymawiaj każdą literę na głos, kiedy ją obrysowujesz. Dźwięk to połowa lekcji."
+      ]
+    },
+    "unit-2": {
+      "title": "Twoje pierwsze spółgłoski",
+      "goal": "Pięć spółgłosek. Ze znanymi ci samogłoskami daje to już 30 sylab."
+    },
+    "unit-3": {
+      "title": "Składamy je razem",
+      "goal": "Spółgłoska plus samogłoska daje blok, który umiesz przeczytać.",
+      "body": "Koreańska sylaba zapisywana jest jako jeden kwadrat. Spółgłoska idzie pierwsza — po lewej przy samogłosce pionowej, na górze przy poziomej.",
+      "points": [
+        "Samogłoska pionowa (ㅏ ㅓ ㅣ) stoi po prawej stronie spółgłoski.",
+        "Samogłoska pozioma (ㅗ ㅜ ㅡ) leży pod nią.",
+        "Czytaj blok tak, jak czytasz stronę: od lewej do prawej, potem w dół."
+      ]
+    },
+    "unit-4": {
+      "title": "Jeszcze pięć spółgłosek",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — reszta zwykłego szeregu."
+    },
+    "unit-5": {
+      "title": "Więcej bloków do czytania",
+      "goal": "Łącznie z tą jedną literą, która nie brzmi wcale."
+    },
+    "unit-6": {
+      "title": "Dokładamy dźwięk j",
+      "goal": "Jedna kreska więcej zamienia ㅏ w ㅑ. Ta sama zasada działa we wszystkich czterech."
+    },
+    "unit-7": {
+      "title": "Podmuch powietrza",
+      "goal": "ㅊ ㅋ ㅌ ㅍ to litery, które już znasz, z jedną kreską więcej."
+    },
+    "unit-8": {
+      "title": "Samogłoski e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — samogłoski powstałe przez dodanie ㅣ."
+    },
+    "unit-9": {
+      "title": "Podwojone i napięte",
+      "goal": "Pięć liter pisanych dwa razy i wymawianych ciaśniej."
+    },
+    "unit-10": {
+      "title": "Samogłoski w",
+      "goal": "Dwie samogłoski zapisane jako jedna. Ostatnie z 40 liter."
+    },
+    "unit-11": {
+      "title": "Litera u dołu",
+      "goal": "받침 — spółgłoska zamykająca sylabę.",
+      "body": "Blok może pomieścić trzecią literę, pod dwiema pozostałymi. Nazywa się 받침 i zamyka sylabę.",
+      "points": [
+        "Trzecia litera zawsze trafia na dół kwadratu.",
+        "받침 wybrzmiewa tylko jako jeden z siedmiu dźwięków, bez względu na to, jaka litera jest zapisana.",
+        "To tutaj czytanie większości początkujących się zacina. Nie spiesz się."
+      ]
+    },
+    "unit-12": {
+      "title": "Czytamy 한글",
+      "goal": "Znasz już każdą literę. Przeczytaj nazwę samego pisma."
+    }
+  },
+  "intro": {
+    "letterName": "Nazwa",
+    "letterSound": "Dźwięk",
+    "soundIn": "Posłuchaj {{character}} w",
+    "reads": "Czyta się"
+  },
+  "steps": {
+    "label": "Kroki przy tej literze",
+    "write": "Pisz",
+    "read": "Czytaj"
+  },
+  "recognition": {
+    "question": "Która daje ten dźwięk?",
+    "optionsAria": "Wybierz literę, którą usłyszałeś",
+    "optionAria": "Wybierz {{character}}",
+    "correctDetail": "Tak, to {{character}}.",
+    "wrongHeadline": "Nie ta.",
+    "wrongDetail": "{{character}} to ta, która brzmi jak {{sound}}.",
+    "hearAgain": "Posłuchaj jeszcze raz",
+    "tryAgain": "Spróbuj ponownie"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Pomiń tę",
+    "startWriting": "Napisz ją",
+    "nowRecognise": "Spróbuj pytania",
+    "next": "Następna litera",
+    "finish": "Zakończ",
+    "prompt": {
+      "write": "Obrysuj ją palcem po wzorze."
+    },
+    "continue": "Dalej"
+  },
+  "complete": {
+    "title": "Ładna robota!",
+    "letters_few": "Ukończyłeś {{count, number}} litery w {{lesson}}.",
+    "letters_many": "Ukończyłeś {{count, number}} liter w {{lesson}}.",
+    "letters_one": "Ukończyłeś {{count, number}} literę w {{lesson}}.",
+    "letters_other": "Ukończyłeś {{count, number}} litery w {{lesson}}."
+  },
+  "review": {
+    "title": "Powtórka",
+    "startCta": "Zacznij powtórkę",
+    "sessionTitle": "Powtórka",
+    "completeTitle": "Powtórka skończona",
+    "empty": {
+      "title": "Na razie nie ma czego powtarzać",
+      "body": "Wszystko, co pomylisz, trafi tutaj. Na razie może nowa litera?",
+      "cta": "Poznaj literę"
+    },
+    "forYou": "Powtórka dla ciebie",
+    "sessionLength_few": "{{count, number}} krótkie ćwiczenia",
+    "sessionLength_many": "{{count, number}} krótkich ćwiczeń",
+    "sessionLength_one": "{{count, number}} krótkie ćwiczenie",
+    "sessionLength_other": "{{count, number}} krótkiego ćwiczenia",
+    "needsPractice": "Wymaga ćwiczeń",
+    "dueToday": "Na dziś",
+    "savedWords": "Zapisane słowa",
+    "chooseMode": "Albo wybierz, co poćwiczyć",
+    "comingUp": "Wkrótce",
+    "outcome": "{{practised, number}} przećwiczone · {{firstTry, number}} od razu wróciło · {{comingBack, number}} wróci niedługo",
+    "blank": "luka",
+    "optionsLabel": "Odpowiedzi",
+    "showHint": "Daj podpowiedź",
+    "right": "Dokładnie tak.",
+    "notQuite": "Nie do końca. Oto ona.",
+    "mode": {
+      "read": "Czytanie",
+      "listen": "Słuchanie",
+      "write": "Pisanie"
+    },
+    "prompt": {
+      "read": "Co znaczy to słowo?",
+      "readLetter": "Jaki dźwięk daje ta litera?",
+      "listen": "Które słowo usłyszałeś?",
+      "listenLetter": "Co to za litera?",
+      "context": "Które słowo tu pasuje?",
+      "write": "Napisz to słowo",
+      "writeLetter": "Napisz to, co słyszysz",
+      "distinguish": "Która daje ten dźwięk?",
+      "produce": "Która to?",
+      "listenMeaning": "Co to znaczy?",
+      "build": "Ułóż słowo"
+    },
+    "nothingDue": "Teraz nie ma czego powtarzać.",
+    "modesEmpty": "Dziś nic w tych trybach.",
+    "answerIs": "{{word}} znaczy „{{meaning}}”.",
+    "showMoreHint": "Jeszcze jedna podpowiedź",
+    "showAnswer": "Pokaż odpowiedź",
+    "hint": {
+      "kind": "To {{pos}} — coś z kategorii {{category}}.",
+      "kindOnly": "Brakujące słowo to {{pos}}.",
+      "startsWith": "Zaczyna się od {{start}}…",
+      "startsWithSound": "Zaczyna się od dźwięku „{{sound}}”.",
+      "replay": "Odtwórz jeszcze raz — ile razy chcesz.",
+      "letterFamily": "Ta litera to {{family}}.",
+      "letterExample": "To pierwsza litera słowa {{word}}.",
+      "letterSound": "Brzmi jak „{{sound}}”.",
+      "reveal": "Odpowiedź to {{answer}}.",
+      "revealWord": "To słowo to {{answer}}.",
+      "revealLetter": "Ta litera to {{answer}}.",
+      "revealStrokes": "Obejrzyj kreski jeszcze raz, a potem je obrysuj.",
+      "inSentence": "Używa się tak: {{sentence}}"
+    },
+    "buildTray": "Sylaby",
+    "buildRemove": "Cofnij {{syllable}}"
+  },
+  "sounds": {
+    "title": "Kiedy dźwięki się spotykają",
+    "blurb": "Dlaczego 학교 nie brzmi tak, jak się je zapisuje.",
+    "intro": "Umiesz już przeczytać każdą literę. Koreański zapisuje części, z których zbudowane jest słowo, i zmienia niektóre z nich, kiedy się stykają — dlatego kilka słów brzmi inaczej, niż wygląda. Oto te, które spotkasz najpierw.",
+    "written": "Zapis",
+    "said": "Wymowa",
+    "note": "Nie musisz się tego uczyć na pamięć. Wsłuchuj się, a zacznie brzmieć naturalnie.",
+    "name": {
+      "tensing": "Ciaśniejszy drugi dźwięk",
+      "aspiration": "Podmuch powietrza",
+      "nasal": "Miękki, nosowy dźwięk",
+      "lateral": "ㄴ i ㄹ razem",
+      "palatal": "ㄷ i ㅌ przed 이",
+      "liaison": "Dźwięk przesuwa się dalej"
+    }
+  },
+  "mistakes": {
+    "title": "Pomylone odpowiedzi",
+    "review_few": "Powtórka · {{count}} pytania",
+    "review_many": "Powtórka · {{count}} pytań",
+    "review_one": "Powtórka · {{count}} pytanie",
+    "review_other": "Powtórka · {{count}} pytania",
+    "filterLabel": "Pokaż",
+    "filter": {
+      "all": "Wszystko",
+      "character": "Litery",
+      "word": "Słowa"
+    },
+    "youPut": "Twoja odpowiedź",
+    "answer": "Poprawnie",
+    "times_few": "Pomylone {{count}} razy",
+    "times_many": "Pomylone {{count}} razy",
+    "times_one": "Pomylone {{count}} raz",
+    "times_other": "Pomylone {{count}} razy",
+    "clear": "Mam to z głowy",
+    "noneOfKind": "Na razie nic tu nie ma.",
+    "emptyTitle": "Jeszcze nic nie umknęło",
+    "emptyBody": "Kiedy coś ci umknie, trafi tutaj, żebyś mógł to naprostować.",
+    "emptyCta": "Idź do powtórki"
+  },
+  "letterGroup": {
+    "basic_vowel": "samogłoska podstawowa",
+    "basic_consonant": "spółgłoska podstawowa",
+    "compound_vowel": "samogłoska złożona",
+    "double_consonant": "spółgłoska podwojona",
+    "final_consonant": "spółgłoska zamykająca",
+    "syllable": "cała sylaba"
+  },
+  "nextStep": {
+    "title": "Gotowy na następny krok",
+    "body": "Umiesz już czytać hangeul. Mówienie i przygotowanie do TOPIK-u toczą się dalej w Hangyul.",
+    "cta": "Kontynuuj w Hangyul",
+    "rowTitle": "Kontynuuj w Hangyul",
+    "rowBody": "Mówienie i TOPIK, kiedy poczujesz się gotów"
+  }
+}

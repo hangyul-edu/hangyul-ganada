@@ -15,7 +15,8 @@
     "searchPlaceholder": "이름이나 코드로 검색",
     "noResults": "\"{{query}}\"와 맞는 언어가 없어요.",
     "selected": "선택됨",
-    "coverageNote": "번역이 끝나지 않은 설명은 영어로 보일 수 있어요."
+    "coverageNote": "여기 있는 언어는 모두 화면과 낱자 수업이 번역되어 있어요. 표시가 있는 언어는 단어 뜻과 예문 번역이 아직 영어로 나와요.",
+    "wordsInEnglish": "단어 뜻은 영어"
   },
   "font": {
     "title": "연습 글꼴",
@@ -70,18 +71,6 @@
   "activity": {
     "title": "학습 기록",
     "body": "연속 학습, 달력, 그리고 배운 것들"
-  },
-  "style": {
-    "title": "연습 방식",
-    "description": "쓰는 동안 글자를 얼마나 남겨 둘지 정해요. 어느 쪽이든 글자는 늘 보여요.",
-    "guided": {
-      "title": "차근차근",
-      "detail": "먼저 따라 쓰고, 그다음 옅은 안내선 위에 써요."
-    },
-    "focused": {
-      "title": "집중",
-      "detail": "따라 쓰기를 건너뛰고 옅은 안내선부터 시작해요."
-    }
   },
   "appearance": {
     "title": "화면 모드",

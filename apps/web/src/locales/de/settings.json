@@ -15,7 +15,8 @@
     "searchPlaceholder": "Nach Name oder Code suchen",
     "noResults": "Keine Sprache passt zu „{{query}}“.",
     "selected": "Ausgewählt",
-    "coverageNote": "Einzelne Erklärtexte können noch auf Englisch erscheinen, solange die Übersetzung läuft."
+    "coverageNote": "Alle Sprachen hier übersetzen die gesamte Oberfläche und den Alphabetkurs. Wo eine Zeile es sagt, sind Wortbedeutungen und Beispielsätze noch auf Englisch.",
+    "wordsInEnglish": "Wortbedeutungen auf Englisch"
   },
   "font": {
     "title": "Übungsschrift",
@@ -72,18 +73,6 @@
   "activity": {
     "title": "Lernaktivität",
     "body": "Deine Serie, dein Kalender und was du gelernt hast"
-  },
-  "style": {
-    "title": "Übungsart",
-    "description": "Wie viel vom Buchstaben beim Schreiben stehen bleibt. In beiden Fällen ist er immer da.",
-    "guided": {
-      "title": "Geführt",
-      "detail": "Erst nachfahren, dann über einer blasseren Hilfe schreiben."
-    },
-    "focused": {
-      "title": "Direkt",
-      "detail": "Das Nachfahren überspringen und gleich mit der blasseren Hilfe anfangen."
-    }
   },
   "appearance": {
     "title": "Darstellung",

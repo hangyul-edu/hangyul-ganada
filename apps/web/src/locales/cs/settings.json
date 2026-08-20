@@ -1,0 +1,149 @@
+{
+  "title": "Moje učení",
+  "stats": {
+    "lettersLearned": "Zvládnuté litery",
+    "wordsLearned": "Zvládnutá slova",
+    "alphabetProgress": "Postup abecedou hangul",
+    "studyDays": "Dnů učení"
+  },
+  "language": {
+    "title": "Jazyk",
+    "pickerTitle": "Vyberte jazyk",
+    "pickerIntro": "Jazyk rozhraní. To, co se učíte — litery hangulu, slova a vzorové věty — zůstává v korejštině.",
+    "listAria": "Dostupné jazyky",
+    "searchLabel": "Hledat jazyk",
+    "searchPlaceholder": "Hledat podle názvu nebo kódu",
+    "noResults": "Žádný jazyk neodpovídá „{{query}}“.",
+    "selected": "Vybráno",
+    "coverageNote": "Každý jazyk v seznamu překládá celé rozhraní i kurz abecedy. Kde to řádek uvádí, jsou významy slov a vzorové věty stále v angličtině.",
+    "wordsInEnglish": "Významy slov anglicky"
+  },
+  "font": {
+    "title": "Písmo na cvičení",
+    "description": "Litera, kterou obtahujete, se kreslí písmem, které si vyberete."
+  },
+  "dailyTarget": {
+    "title": "Liter denně",
+    "description": "Kolik liter hangulu chcete každý den dokončit.",
+    "option_few": "{{count, number}}",
+    "option_many": "{{count, number}}",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_few": "{{count, number}} denně",
+    "optionAria_many": "{{count, number}} denně",
+    "optionAria_one": "{{count, number}} denně",
+    "optionAria_other": "{{count, number}} denně"
+  },
+  "wordGoal": {
+    "title": "Slov denně",
+    "description": "Kolik slov chcete každý den dokončit. Můžete to kdykoli změnit.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} slov denně"
+  },
+  "guides": {
+    "title": "Pomocné linky",
+    "description": "Pomocné linky uvnitř rámečku.",
+    "grid": "Vodorovná a svislá linka",
+    "crosshair": "Značka středu"
+  },
+  "about": {
+    "body": "Čtěte a pište hangul: litery, zvuky, slabičné bloky a první korejská slova.",
+    "offline": "Každá lekce, věta i nahrávka funguje bez internetu.",
+    "version": "Verze {{version}}",
+    "reset": "Vynulovat postup"
+  },
+  "reset": {
+    "title": "Vynulovat celý postup v učení?",
+    "description": "Dokončené lekce, historie opakování a aktivita v učení se smažou. Nejde to vzít zpět.",
+    "confirm": "Vynulovat",
+    "cancel": "Zrušit",
+    "body": "Začněte znovu, od úplně první litery."
+  },
+  "voice": {
+    "title": "Hlas výslovnosti",
+    "description": "Kdo předčítá litery, slabiky a slova.",
+    "female": "Ženský hlas",
+    "male": "Mužský hlas",
+    "preview": "Poslechnout vybraný hlas",
+    "provider": "Dva čisté korejské hlasy, o kousek pomalejší než rodilé tempo, aby každý zvuk stihl doznít."
+  },
+  "groups": {
+    "learning": "Učení",
+    "practice": "Cvičení",
+    "appearance": "Vzhled",
+    "app": "Aplikace",
+    "reset": "Vynulování"
+  },
+  "activity": {
+    "title": "Aktivita v učení",
+    "body": "Vaše série, kalendář a to, co jste se naučili"
+  },
+  "appearance": {
+    "title": "Vzhled",
+    "description": "Světlý, tmavý, nebo podle telefonu.",
+    "system": "Systém",
+    "light": "Světlý",
+    "dark": "Tmavý"
+  },
+  "legal": {
+    "title": "Právní informace a licence",
+    "body": "Licence obsahu a písem v aplikaci",
+    "intro": "Část toho, co v aplikaci je, se používá pod licencemi, které žádají uvedení autorů. Uvedení jsou tady.",
+    "contentHeading": "Obsah",
+    "fontsHeading": "Písma"
+  },
+  "reminder": {
+    "title": "Denní připomínka",
+    "description": "Jedno tiché pošťouchnutí za den, v čase, který si vyberete. Vypnuté, dokud ho nezapnete, a telefon nikdy neopustí.",
+    "toggle": "Připomínat mi cvičení",
+    "at": "V",
+    "notificationTitle": "Čas na cvičení",
+    "notificationBody": "Čeká na vás pár minut korejštiny.",
+    "refused": "Telefon téhle aplikaci nepovoluje oznámení. Zapnout je můžete v jeho nastavení."
+  },
+  "privacy": {
+    "title": "Soukromí",
+    "body": "Co se děje s vaším učením",
+    "lede": "Nic z toho, co tu děláte, neopouští tohle zařízení.",
+    "device": {
+      "title": "Vaše učení zůstává tady",
+      "points": [
+        "To, co jste se naučili, i to, jak dobře si to pamatujete, je uložené na tomhle zařízení. Nikam se nenahrává.",
+        "Žádný účet není — není se kam registrovat a nikde o vás není žádný profil."
+      ]
+    },
+    "tracking": {
+      "title": "Žádné reklamy, žádné sledování",
+      "points": [
+        "Aplikace se nedívá, jak ji používáte, a nic nikam nehlásí.",
+        "Vaše písmo se hodnotí přímo na obrazovce, jak ho kreslíte, a pak se zahodí."
+      ]
+    },
+    "permissions": {
+      "title": "Oprávnění",
+      "points": [
+        "Oznámení — a jen když si zapnete denní připomínku.",
+        "Nikdy fotoaparát, mikrofon, fotky, kontakty ani poloha."
+      ]
+    },
+    "erase": {
+      "title": "Jak to smazat",
+      "points": [
+        "Všechno naučené můžete smazat dole na obrazovce {{screen}}.",
+        "Smazání aplikace to smaže s ní."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Váš postup se na tomhle zařízení neukládá, takže naučené může být při dalším otevření aplikace pryč. Obvykle pomůže povolit téhle stránce ukládat data v nastavení prohlížeče.",
+    "recovered_few": "Při načítání byly přeskočeny {{count, number}} poškozené záznamy. Zbytek postupu je celý.",
+    "recovered_many": "Při načítání bylo přeskočeno {{count, number}} poškozeného záznamu. Zbytek postupu je celý.",
+    "recovered_one": "Při načítání byl přeskočen {{count, number}} poškozený záznam. Zbytek postupu je celý.",
+    "recovered_other": "Při načítání bylo přeskočeno {{count, number}} poškozených záznamů. Zbytek postupu je celý."
+  },
+  "soundFree": {
+    "title": "Otázky bez zvuku",
+    "description": "Některé otázky jsou jen nahrávka — „které slovo jste slyšeli?“. Zapněte tohle a nebudou se objevovat. Všechno se pořád dá přehrát, když budete chtít.",
+    "toggle": "Přeskakovat poslechové otázky"
+  }
+}

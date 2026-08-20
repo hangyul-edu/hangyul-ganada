@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "Bekor qilish",
+    "clear": "Tozalash",
+    "check": "Tekshirish"
+  },
+  "canvas": {
+    "label": "{{character}} uchun yozuv maydoni",
+    "empty": "Hali hech narsa yozilmagan.",
+    "strokes_one": "{{count, number}} chiziq yozildi.",
+    "strokes_other": "{{count, number}} chiziq yozildi."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Mana shu!",
+      "perfect": "{{character}} — juda chiroyli yozilibdi.",
+      "scored": "Shakli yaxshi — yo‘lning {{score, number(style: percent)}} qismi bosib o‘tildi."
+    },
+    "empty": {
+      "headline": "Hali hech narsa yo‘q",
+      "detail": "Harfni katak ichiga yozing."
+    },
+    "incomplete": {
+      "headline": "Sal qoldi",
+      "tooSmall": "Bir oz kichik. Katakni to‘ldirishga harakat qiling.",
+      "missingStroke": "Bir chiziq yetishmayapti. Namunani oxirigacha kuzating."
+    },
+    "outside": {
+      "headline": "Unchalik emas",
+      "tooLarge": "Katakdan chiqib ketdi. Keyingi safar birozgina kichikroq.",
+      "strayStroke": "Bir chiziq chetga ketdi. Chiziqni sekin kuzating."
+    },
+    "scribble": {
+      "headline": "Sekinroq urinib ko‘ramiz",
+      "detail": "Har bir chiziqni bir marta, bitta silliq harakatda torting — ustidan qaytib o‘tish shart emas."
+    },
+    "mixed": {
+      "headline": "Unchalik emas",
+      "detail": "Namuna bilan moslang va yana urinib ko‘ring."
+    },
+    "retry": "Yana urinib ko‘ring",
+    "showDetails": "Tafsilotlarni ko‘rsatish",
+    "hideDetails": "Tafsilotlarni yashirish",
+    "breakdown": "Farq {{mismatch, number(style: percent)}} · tashqarida {{outside, number(style: percent)}} · yetishmayapti {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
+    "diagramLabel_other": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
+    "pause": "To‘xtatish",
+    "count_one": "{{count, number}} chiziq",
+    "count_other": "{{count, number}} chiziq",
+    "heading": "Qanday yozilishini ko‘ring",
+    "notesFooter": "Chiziqlar tartibi bahoga kirmaydi. Ammo yozuvingiz to‘g‘ri ko‘rinishini aynan shu ta’minlaydi.",
+    "notes": {
+      "fewer": "Siz {{theirs, number}} chiziq ishlatdingiz; bu harf odatda {{expected, number}} chiziqda yoziladi.",
+      "more": "Siz {{theirs, number}} chiziq ishlatdingiz; bu harf odatda {{expected, number}} chiziqda yoziladi.",
+      "startElsewhere": "Odatda katakning {{corner}} qismidan boshlanadi.",
+      "direction_one": "{{count, number}} chiziq teskari yo‘nalishda ketdi. Koreys chiziqlari yuqoridan pastga, chapdan o‘ngga yuradi.",
+      "direction_other": "{{count, number}} chiziq teskari yo‘nalishda ketdi. Koreys chiziqlari yuqoridan pastga, chapdan o‘ngga yuradi."
+    },
+    "corners": {
+      "topLeft": "yuqori chap",
+      "topCentre": "yuqori",
+      "topRight": "yuqori o‘ng",
+      "middleLeft": "chap",
+      "middleCentre": "o‘rta",
+      "middleRight": "o‘ng",
+      "bottomLeft": "pastki chap",
+      "bottomCentre": "pastki",
+      "bottomRight": "pastki o‘ng"
+    },
+    "watchAgain": "Yana ko‘rish",
+    "back": "Orqaga",
+    "next": "Oldinga",
+    "position": "{{count, number}} tadan {{current, number}}-chiziq"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "pastga uzun chiziq",
+      "downLongTwice": "pastga ikkita uzun chiziq, avval chapdagisi",
+      "downShort": "pastga kalta chiziq",
+      "downShortTwice": "pastga ikkita kalta chiziq, avval chapdagisi",
+      "acrossLong": "ko‘ndalangiga uzun chiziq",
+      "acrossLongTwice": "ko‘ndalangiga ikkita uzun chiziq, avval yuqoridagisi",
+      "acrossShort": "ko‘ndalangiga kalta chiziq",
+      "acrossShortTwice": "ko‘ndalangiga ikkita kalta chiziq, avval yuqoridagisi",
+      "cornerAcrossDown": "tepadan ko‘ndalangiga, so‘ng o‘ng yon bo‘ylab pastga",
+      "cornerDownAcross": "chap yon bo‘ylab pastga, so‘ng o‘ngga burilib",
+      "slantLeft": "chapga qiyalab tushadigan chiziq",
+      "slantRight": "o‘ngga qiyalab tushadigan chiziq",
+      "circle": "doira, tepadan aylanib"
+    },
+    "s1": "Bittagina chiziq: {{a}}.",
+    "s2": "Avval {{a}}. Keyin {{b}}.",
+    "s3": "Avval {{a}}. Keyin {{b}}. Keyin {{c}}.",
+    "s4": "Avval {{a}}. Keyin {{b}}. Keyin {{c}}. Oxirida {{d}}.",
+    "parts2": {
+      "plain": "Avval {{a}} ni yozing, keyin {{b}}.",
+      "right": "Avval {{a}} ni yozing, keyin uning o‘ngiga {{b}}.",
+      "below": "Avval {{a}} ni yozing, keyin uning ostiga {{b}}."
+    },
+    "parts3": {
+      "right": "{{a}} ni yozing, keyin uning o‘ngiga {{b}}, so‘ng ost tomonda {{c}}.",
+      "below": "{{a}} ni yozing, keyin uning ostiga {{b}}, so‘ng ost tomonda {{c}}."
+    },
+    "partsDouble": "{{a}} ni ikki marta, yonma-yon yozing — avval chapdagisini.",
+    "fallback": "{{strokes}} chiziq, raqamlar ko‘rsatgan tartibda."
+  }
+}

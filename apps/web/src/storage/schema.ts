@@ -41,7 +41,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 8;
+export const SCHEMA_VERSION = 9;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -110,7 +110,6 @@ export const DEFAULT_DAILY_WORD_GOAL = 10;
 export function defaultSettings(): StoredSettings {
   return {
     selected_font_id: DEFAULT_FONT_ID,
-    practice_style: 'guided',
     appearance: 'system',
     daily_target: DEFAULT_DAILY_TARGET,
     show_grid: true,
@@ -211,14 +210,11 @@ const migrateLegacyBlobToStores: Migration = {
     const stamp = now().toISOString();
     const settings = defaultSettings();
     const legacyPreferences = parsed.preferences ?? {};
+    // `stripUnknown` is what retires a preference: a key the current defaults
+    // do not have is not carried across. `practice_mode`, and the
+    // `practice_style` it was once translated into, both leave here — the
+    // product no longer offers a choice about how much guide is on the paper.
     Object.assign(settings, stripUnknown(legacyPreferences, settings));
-    // `practice_mode` was renamed and its meaning narrowed in v5. It is
-    // translated here rather than left to that migration because this is the
-    // last moment the legacy blob exists: `stripUnknown` would drop a key the
-    // current defaults do not have, and the blob is cleared straight after.
-    if ((legacyPreferences as { practice_mode?: string }).practice_mode === 'write') {
-      settings.practice_style = 'focused';
-    }
     settings.active_days = Array.isArray(parsed.active_days) ? parsed.active_days : [];
     settings.saved_items = [];
     settings.daily_plan = null;
@@ -427,19 +423,16 @@ const guidedOnlyPractice: Migration = {
       SETTINGS_KEY,
     );
     if (settings) {
-      const { practice_mode, ...rest } = settings;
-      await driver.put('settings', SETTINGS_KEY, {
-        ...defaultSettings(),
-        ...rest,
-        // Only translated when the old key is actually present. A profile that
-        // came through the v3 import has already had this settled and must not
-        // be reset by a key that is simply absent.
-        practice_style: practice_mode
-          ? practice_mode === 'write'
-            ? 'focused'
-            : 'guided'
-          : (rest.practice_style ?? 'guided'),
-      });
+      // `practice_mode`, and the `practice_style` this migration used to
+      // translate it into, are both dropped rather than carried: v9 removed the
+      // preference from the product. Everything else on the row survives.
+      const { practice_mode, practice_style, ...rest } = settings as Partial<StoredSettings> & {
+        practice_mode?: string;
+        practice_style?: string;
+      };
+      void practice_mode;
+      void practice_style;
+      await driver.put('settings', SETTINGS_KEY, { ...defaultSettings(), ...rest });
     }
   },
 };
@@ -647,6 +640,36 @@ const wrongAnswerNotebook: Migration = {
   },
 };
 
+/**
+ * v8 → v9. One guide, and no setting for it.
+ *
+ * `practice_style` chose between the full tracing model and a fainter one. It
+ * has gone, along with the fainter model, because it was a configuration
+ * question standing where a lesson should be: it asked somebody four minutes
+ * into Hangul to decide how much help they needed before they had tried once.
+ *
+ * Dropping the key rather than leaving it is deliberate. A stored preference
+ * that nothing reads is a preference the next person to open this file has to
+ * work out the status of, and a learner who exports their data should not find
+ * a setting the product does not have. Nothing else on the row is touched, and
+ * no progress, memory or attempt row is read at all — this migration cannot
+ * lose anything a learner has done.
+ */
+const noPracticeStyleSetting: Migration = {
+  to: 9,
+  describe: 'Drop the practice-style preference; there is one guide now',
+  async run({ driver }) {
+    const settings = await driver.get<Partial<StoredSettings> & { practice_style?: string }>(
+      'settings',
+      SETTINGS_KEY,
+    );
+    if (!settings) return;
+    const { practice_style, ...rest } = settings;
+    if (practice_style === undefined) return;
+    await driver.put('settings', SETTINGS_KEY, { ...defaultSettings(), ...rest });
+  },
+};
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
@@ -654,6 +677,7 @@ export const MIGRATIONS: Migration[] = [
   adaptiveReviewMemory,
   singleWritingRung,
   wrongAnswerNotebook,
+  noPracticeStyleSetting,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

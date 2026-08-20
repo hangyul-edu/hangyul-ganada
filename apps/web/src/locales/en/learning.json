@@ -101,7 +101,7 @@
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Skip this one",
     "startWriting": "Write it",
-    "nowRead": "Now read it",
+    "nowRecognise": "Try a question",
     "next": "Next letter",
     "finish": "Finish",
     "prompt": {

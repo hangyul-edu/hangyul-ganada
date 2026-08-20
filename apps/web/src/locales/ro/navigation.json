@@ -1,0 +1,10 @@
+{
+  "primary": "Meniul principal",
+  "tabs": {
+    "home": "Acasă",
+    "letters": "Litere",
+    "words": "Cuvinte",
+    "review": "Recapitulare",
+    "profile": "Învățarea mea"
+  }
+}

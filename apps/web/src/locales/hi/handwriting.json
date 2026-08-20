@@ -1,0 +1,109 @@
+{
+  "actions": {
+    "undo": "पहले जैसा",
+    "clear": "मिटाइए",
+    "check": "जाँचिए"
+  },
+  "canvas": {
+    "label": "{{character}} लिखने की जगह",
+    "empty": "अभी कुछ नहीं लिखा।",
+    "strokes_one": "{{count, number}} स्ट्रोक लिखा।",
+    "strokes_other": "{{count, number}} स्ट्रोक लिखे।"
+  },
+  "feedback": {
+    "correct": {
+      "headline": "यही तो!",
+      "perfect": "{{character}} — बहुत सुंदर लिखा।",
+      "scored": "आकार अच्छा है — रास्ता {{score, number(style: percent)}} तय हुआ।"
+    },
+    "empty": {
+      "headline": "अभी कुछ नहीं है",
+      "detail": "अक्षर डिब्बे के अंदर लिखिए।"
+    },
+    "incomplete": {
+      "headline": "लगभग",
+      "tooSmall": "थोड़ा छोटा है। डिब्बा भरने की कोशिश कीजिए।",
+      "missingStroke": "एक स्ट्रोक छूट गया। नमूने पर पूरा चलिए।"
+    },
+    "outside": {
+      "headline": "पूरी तरह नहीं",
+      "tooLarge": "वह डिब्बे से बाहर चला गया। अगली बार थोड़ा छोटा।",
+      "strayStroke": "एक स्ट्रोक भटक गया। रेखा पर धीरे-धीरे चलिए।"
+    },
+    "scribble": {
+      "headline": "थोड़ा धीरे कोशिश करते हैं",
+      "detail": "हर स्ट्रोक एक ही बार, एक ही सधी हुई चाल में खींचिए — उस पर दोबारा जाने की ज़रूरत नहीं।"
+    },
+    "mixed": {
+      "headline": "पूरी तरह नहीं",
+      "detail": "इसे नमूने से मिलाइए और एक बार और कोशिश कीजिए।"
+    },
+    "retry": "फिर कोशिश कीजिए",
+    "showDetails": "ब्यौरा दिखाइए",
+    "hideDetails": "ब्यौरा छिपाइए",
+    "breakdown": "अंतर {{mismatch, number(style: percent)}} · बाहर {{outside, number(style: percent)}} · छूटा {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} कैसे लिखा जाता है, {{count, number}} स्ट्रोक में",
+    "diagramLabel_other": "{{character}} कैसे लिखा जाता है, {{count, number}} स्ट्रोक में",
+    "pause": "रोकिए",
+    "count_one": "{{count, number}} स्ट्रोक",
+    "count_other": "{{count, number}} स्ट्रोक",
+    "heading": "इसे लिखते हुए देखिए",
+    "notesFooter": "स्ट्रोक का क्रम अंक में नहीं गिना जाता। पर उसी से आपकी लिखाई सही दिखती है।",
+    "notes": {
+      "fewer": "आपने {{theirs, number}} स्ट्रोक लगाए; यह अक्षर आम तौर पर {{expected, number}} में लिखा जाता है।",
+      "more": "आपने {{theirs, number}} स्ट्रोक लगाए; यह अक्षर आम तौर पर {{expected, number}} में लिखा जाता है।",
+      "startElsewhere": "यह आम तौर पर डिब्बे के {{corner}} से शुरू होता है।",
+      "direction_one": "{{count, number}} स्ट्रोक उलटी दिशा में गया। कोरियाई स्ट्रोक ऊपर से नीचे और बाएँ से दाएँ चलते हैं।",
+      "direction_other": "{{count, number}} स्ट्रोक उलटी दिशा में गए। कोरियाई स्ट्रोक ऊपर से नीचे और बाएँ से दाएँ चलते हैं।"
+    },
+    "corners": {
+      "topLeft": "ऊपर बाएँ कोने",
+      "topCentre": "ऊपर",
+      "topRight": "ऊपर दाएँ कोने",
+      "middleLeft": "बाईं ओर",
+      "middleCentre": "बीच",
+      "middleRight": "दाईं ओर",
+      "bottomLeft": "नीचे बाएँ कोने",
+      "bottomCentre": "नीचे",
+      "bottomRight": "नीचे दाएँ कोने"
+    },
+    "watchAgain": "फिर देखिए",
+    "back": "पीछे",
+    "next": "आगे",
+    "position": "{{count, number}} में से स्ट्रोक {{current, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "नीचे की ओर लंबी रेखा",
+      "downLongTwice": "नीचे की ओर दो लंबी रेखाएँ, पहले बाईं",
+      "downShort": "नीचे की ओर छोटी रेखा",
+      "downShortTwice": "नीचे की ओर दो छोटी रेखाएँ, पहले बाईं",
+      "acrossLong": "आर-पार लंबी रेखा",
+      "acrossLongTwice": "आर-पार दो लंबी रेखाएँ, पहले ऊपर वाली",
+      "acrossShort": "आर-पार छोटी रेखा",
+      "acrossShortTwice": "आर-पार दो छोटी रेखाएँ, पहले ऊपर वाली",
+      "cornerAcrossDown": "ऊपर आर-पार और फिर दाईं ओर से नीचे",
+      "cornerDownAcross": "बाईं ओर से नीचे और फिर दाईं ओर मुड़कर",
+      "slantLeft": "बाईं ओर नीचे जाती तिरछी रेखा",
+      "slantRight": "दाईं ओर नीचे जाती तिरछी रेखा",
+      "circle": "गोला, ऊपर से घूमते हुए"
+    },
+    "s1": "बस एक स्ट्रोक: {{a}}।",
+    "s2": "पहले {{a}}। फिर {{b}}।",
+    "s3": "पहले {{a}}। फिर {{b}}। फिर {{c}}।",
+    "s4": "पहले {{a}}। फिर {{b}}। फिर {{c}}। आखिर में {{d}}।",
+    "parts2": {
+      "plain": "पहले {{a}} लिखिए, फिर {{b}}।",
+      "right": "पहले {{a}} लिखिए, फिर उसके दाईं ओर {{b}}।",
+      "below": "पहले {{a}} लिखिए, फिर उसके नीचे {{b}}।"
+    },
+    "parts3": {
+      "right": "{{a}} लिखिए, फिर उसके दाईं ओर {{b}}, फिर तल पर {{c}}।",
+      "below": "{{a}} लिखिए, फिर उसके नीचे {{b}}, फिर तल पर {{c}}।"
+    },
+    "partsDouble": "{{a}} को दो बार, अगल-बगल लिखिए — पहले बाईं वाला।",
+    "fallback": "{{strokes}} स्ट्रोक, उसी क्रम में जो अंक दिखाते हैं।"
+  }
+}

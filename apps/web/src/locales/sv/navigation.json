@@ -1,0 +1,10 @@
+{
+  "primary": "Huvudmeny",
+  "tabs": {
+    "home": "Start",
+    "letters": "Bokstäver",
+    "words": "Ord",
+    "review": "Repetera",
+    "profile": "Mitt lärande"
+  }
+}

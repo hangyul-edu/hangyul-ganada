@@ -66,6 +66,47 @@ function offlineAssetList(): Plugin {
     generateBundle(_options, bundle) {
       const files = Object.keys(bundle)
         .filter((name) => name.endsWith('.js') || name.endsWith('.css'))
+        /*
+         * Every language's interface strings, except the one being read.
+         *
+         * Thirty-one locale chunks is about 320 kB, and precaching them put a
+         * third of a megabyte of languages nobody in this install will ever see
+         * into the offline store — on the first launch, before the learner has
+         * finished a letter. A Thai learner needs Thai offline; they do not need
+         * Kazakh offline.
+         *
+         * They are left out of the *precache* only. The worker still caches a
+         * locale chunk the first time it is fetched, so the language a learner
+         * actually chose is on the device from the moment they choose it, and a
+         * cold start in aeroplane mode has it. English is not excluded — it is
+         * in the main bundle, and it is the fallback that must always be there.
+         */
+        .filter((name) => !/(^|\/)assets\/locale-[\w-]+-[\w-]+\.js$/.test(name))
+        /*
+         * And every language's *word meanings*, for the same reason.
+         *
+         * Nine packs, forty kilobytes each. `LocaleProvider` fetches the
+         * learner's own the moment the app resolves their language — on the
+         * first launch, before they reach a word screen — so it is in the cache
+         * from that point and a cold start offline has it. What precaching
+         * bought was the one case where somebody installs, never opens the app
+         * again while online, and later opens a word screen offline in a
+         * language they never selected. That is not a case worth 350 kB on
+         * every device.
+         */
+        .filter((name) => !/(^|\/)assets\/vocabulary\.[\w-]+-[\w-]+\.js$/.test(name))
+        /*
+         * And every language's *letter explanations*, on the same argument.
+         *
+         * Thirty packs, two kilobytes each, fetched beside the word pack by the
+         * same call in `LocaleProvider`. Sixty kilobytes is small enough that
+         * precaching them would not have shown up in the budget, which is
+         * exactly why the rule has to be the rule rather than a size judgement:
+         * the set grows with every language added, and the reason not to send a
+         * learner twenty-nine languages they cannot read does not depend on how
+         * much they weigh.
+         */
+        .filter((name) => !/(^|\/)assets\/letters\.[\w-]+-[\w-]+\.js$/.test(name))
         .map((name) => `/${name}`)
         .sort();
       this.emitFile({
@@ -108,6 +149,36 @@ export default defineConfig({
           if (/src[\\/]data[\\/]generated[\\/]vocabulary\.(?!en\.)[\w-]+\.json/.test(id)) {
             return undefined;
           }
+          /*
+           * The letter explanations, one lazy chunk per language.
+           *
+           * Same rule as the word packs above and for the same reason, and it
+           * has to be stated before the `src/data/generated` catch-all below or
+           * that line sweeps all thirty of them into `curriculum-data`, which
+           * is loaded before the home screen paints. It did, for one build:
+           * splitting the copy out of the module bought nothing at all until
+           * this line was added.
+           */
+          if (/src[\\/]data[\\/]generated[\\/]letters\.[\w-]+\.json/.test(id)) {
+            return undefined;
+          }
+          /*
+           * One chunk per interface language, named after it.
+           *
+           * The nine namespace files of a locale are always wanted together and
+           * never wanted apart, and left to itself Rollup emitted each of them
+           * as its own file: 279 chunks called `common-B1w1z7ui.js` and
+           * `settings-CfK2p9xr.js`, indistinguishable from each other and from
+           * app code in every listing, cache report and precache manifest.
+           *
+           * Grouping them by locale is the same nine requests turned into one,
+           * and gives the file a name — `locale-th` — that says what it is. The
+           * source locale is *not* grouped: English is statically imported by
+           * `i18n/resources.ts` and belongs in the main bundle, because it is
+           * the end of every fallback chain.
+           */
+          const locale = /src[\\/]locales[\\/]([\w-]+)[\\/]/.exec(id)?.[1];
+          if (locale && locale !== 'en') return `locale-${locale}`;
           /*
            * The stroke assets are lesson geometry, not curriculum data.
            *
@@ -163,6 +234,12 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     // Playwright specs live under e2e/ and must not be collected by Vitest.
-    include: ['src/**/*.test.{ts,tsx}'],
+    //
+    // `scripts/lib` is collected too, and only because of one file: the IPA
+    // transcriber moved out of the app when Revised Romanisation replaced it on
+    // the word card, and a suite that stopped running the moment its subject
+    // moved would have quietly deleted the tests rather than the code. It is
+    // QA tooling now; it is still tested here.
+    include: ['src/**/*.test.{ts,tsx}', '../../scripts/lib/**/*.test.ts'],
   },
 });

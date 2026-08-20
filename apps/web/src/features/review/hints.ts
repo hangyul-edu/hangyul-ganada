@@ -233,7 +233,7 @@ export function wordHints(
       : {
           strength: 'strong',
           key: 'review.hint.startsWithSound',
-          values: { sound: word.pronunciation.slice(0, 1) },
+          values: { sound: word.romanization.slice(0, 1) },
         };
 
   const reveal: HintStep = { strength: 'answer', key: 'review.hint.reveal' };

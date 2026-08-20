@@ -1,0 +1,60 @@
+{
+  "brand": {
+    "tagline": "Impara l'hangul, un tratto alla volta.",
+    "description": "Impara a leggere e scrivere l'hangul dalla primissima lettera — consonanti e vocali, blocchi sillabici, scrittura a mano e le tue prime parole coreane."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Chiudi",
+    "back": "Indietro",
+    "goHome": "Vai alla home",
+    "done": "Fatto",
+    "save": "Salva",
+    "saved": "Salvata"
+  },
+  "a11y": {
+    "skipToContent": "Vai al contenuto",
+    "currentPage": "(pagina corrente)",
+    "confirmationRequired": "Questa azione va confermata."
+  },
+  "audio": {
+    "play": "Ascolta la pronuncia di {{text}}",
+    "retry": "Riascolta {{text}}",
+    "unavailable": "Nessuna registrazione per {{text}}"
+  },
+  "progress": {
+    "lesson": "Avanzamento in {{name}}",
+    "review": "Avanzamento in questo ripasso"
+  },
+  "units": {
+    "day_many": "{{count, number}} giorni",
+    "day_one": "{{count, number}} giorno",
+    "day_other": "{{count, number}} giorni"
+  },
+  "report": {
+    "action": "Segnala un problema",
+    "title": "Che cosa non va?",
+    "blurb": "Scegli quello che ti sembra sbagliato e ti apriamo un'email da completare. Non alleghiamo nulla del tuo percorso.",
+    "field": {
+      "item": "Voce",
+      "category": "Problema",
+      "version": "Versione dell'app",
+      "language": "Lingua"
+    },
+    "writeHere": "Scrivi qui che cosa hai notato:",
+    "category": {
+      "meaning": "Il significato",
+      "example": "La frase d'esempio",
+      "translation": "La traduzione",
+      "audio": "L'audio",
+      "writing": "La correzione della scrittura",
+      "other": "Qualcos'altro"
+    }
+  },
+  "exit": {
+    "title": "Uscire da Hangyul ganada?",
+    "body": "I tuoi progressi sono salvati. Riprendi da dove hai lasciato.",
+    "stay": "Resta",
+    "leave": "Esci"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "title": "Lär dig ord",
+  "today": {
+    "title": "Dagens ord",
+    "start": "Börja",
+    "resume": "Fortsätt",
+    "startBlurb_one": "Ett ord i dag.",
+    "startBlurb_other": "En kort omgång på {{count}} ord.",
+    "resumeBlurb": "Ta vid där du slutade.",
+    "doneBlurb": "Klart för i dag. Fint jobbat.",
+    "completeTitle": "Dagens ord är klara.",
+    "completeDetail_one": "{{count}} ord inlärt.",
+    "completeDetail_other": "{{count}} ord inlärda.",
+    "more": "Lite till",
+    "allDone": "Inget kvar för i dag.",
+    "progressAria": "Framsteg i dagens ord",
+    "moreLabel": "Hur många till",
+    "moreCount_one": "{{count}} till",
+    "moreCount_other": "{{count}} till"
+  },
+  "browse": {
+    "title": "Bläddra efter ämne",
+    "showing": "Visar {{shown}} av {{total}}"
+  },
+  "intro": {
+    "example": "Exempel",
+    "howItSounds": "Så låter det",
+    "surfaceNote": "I den här meningen står {{headword}} som {{form}}.",
+    "next": "Uppfattat"
+  },
+  "empty": {
+    "title": "Inga ord här än",
+    "body": "Pröva en annan kategori."
+  },
+  "partOfSpeech": {
+    "noun": "substantiv",
+    "verb": "verb",
+    "adjective": "adjektiv",
+    "adverb": "adverb",
+    "pronoun": "pronomen",
+    "numeral": "räkneord",
+    "particle": "partikel",
+    "interjection": "interjektion",
+    "determiner": "bestämningsord"
+  },
+  "session": {
+    "next": "Nästa ord",
+    "finish": "Avsluta"
+  },
+  "blurb": "Alla ord är öppna. Välj en kategori och börja var du vill.",
+  "categories": {
+    "essentials": "Vardagens grunder",
+    "people": "Människor & familj",
+    "food": "Mat & dryck",
+    "animals-nature": "Djur & natur",
+    "home": "Hem & saker",
+    "body-health": "Kropp & hälsa",
+    "places-travel": "Platser & resor",
+    "time-numbers": "Tid & tal",
+    "school-work": "Skola & jobb",
+    "money-shopping": "Pengar & shopping",
+    "communication": "Prata & medier",
+    "feelings": "Känslor & personlighet",
+    "thinking": "Tänka & lära",
+    "movement": "Komma & gå",
+    "actions": "Vardagliga handlingar",
+    "describing": "Beskriva saker",
+    "society": "Liv & kultur",
+    "how-when": "Hur & när"
+  },
+  "category": {
+    "label": "Kategori",
+    "all": "Alla kategorier",
+    "pick": "Välj en kategori",
+    "count_one": "{{count, number}} ord",
+    "count_other": "{{count, number}} ord",
+    "progressAria": "Framsteg i {{category}}"
+  },
+  "search": {
+    "placeholder": "Sök ord",
+    "label": "Sök i ordlistan",
+    "count_one": "{{count, number}} träff",
+    "count_other": "{{count, number}} träffar",
+    "none": "Inget matchar ”{{query}}”. Pröva koreanskan, eller betydelsen på ditt eget språk."
+  },
+  "sound": {
+    "tensing": "Efter en slutkonsonant blir nästa ljud stramare.",
+    "aspiration": "ㅎ smälter ihop med nästa konsonant och lägger till en pust luft.",
+    "nasal": "Före ㄴ eller ㅁ blir konsonanten framför nasal.",
+    "lateral": "ㄴ och ㄹ bredvid varandra blir båda ㄹ.",
+    "palatal": "Ett slut-ㄷ eller -ㅌ före 이 sägs som ㅈ eller ㅊ.",
+    "liaison": "Slutkonsonanten glider över till nästa block."
+  },
+  "save": {
+    "action": "Spara",
+    "saved": "Sparat",
+    "add": "Spara {{word}}",
+    "remove": "Ta bort {{word}} från sparade"
+  },
+  "detail": {
+    "title": "Ord",
+    "romanization": "Med latinska bokstäver",
+    "definition": "Mer om ordet",
+    "usage": "Så används det",
+    "synonyms": "Synonymer",
+    "antonyms": "Motsatser"
+  },
+  "saved": {
+    "title": "Sparade ord",
+    "review_one": "Repetera · {{count}} fråga",
+    "review_other": "Repetera · {{count}} frågor",
+    "searchPlaceholder": "Sök bland sparade ord",
+    "searchLabel": "Sök bland dina sparade ord",
+    "orderLabel": "Ordning",
+    "order": {
+      "recent": "Senaste",
+      "alphabetical": "A–Ö",
+      "needed": "Behöver övas"
+    },
+    "count_one": "{{count}} ord",
+    "count_other": "{{count}} ord",
+    "remove": "Ta bort",
+    "noMatch": "Inget bland de sparade matchar ”{{query}}”.",
+    "emptyTitle": "Inga sparade ord än",
+    "emptyBody": "Tryck på bokmärket vid ett ord medan du pluggar, så ligger det här när du vill tillbaka.",
+    "emptyCta": "Till orden"
+  }
+}

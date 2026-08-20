@@ -15,7 +15,8 @@
     "searchPlaceholder": "Search by name or code",
     "noResults": "No language matches \"{{query}}\".",
     "selected": "Selected",
-    "coverageNote": "Some explanatory text may still appear in English while a translation is being completed."
+    "coverageNote": "Every language here translates the whole interface and the alphabet course. Where a row says so, word meanings and example sentences are still shown in English.",
+    "wordsInEnglish": "Word meanings in English"
   },
   "font": {
     "title": "Practice typeface",
@@ -72,18 +73,6 @@
   "activity": {
     "title": "Learning activity",
     "body": "Your streak, your calendar and what you have learned"
-  },
-  "style": {
-    "title": "Practice style",
-    "description": "How much of the letter to keep on the page while you write. Either way, it is always there.",
-    "guided": {
-      "title": "Guided",
-      "detail": "Trace the letter first, then write it over a lighter guide."
-    },
-    "focused": {
-      "title": "Focused",
-      "detail": "Skip the tracing step and start on the lighter guide."
-    }
   },
   "appearance": {
     "title": "Appearance",

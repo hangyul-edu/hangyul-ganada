@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Hangıl'ı çizgi çizgi öğren.",
+    "description": "Hangıl okumayı ve yazmayı ilk harften itibaren öğren — ünsüzler ve ünlüler, hece blokları, el yazısı ve ilk Korece kelimelerin."
+  },
+  "actions": {
+    "confirm": "Tamam",
+    "close": "Kapat",
+    "back": "Geri",
+    "goHome": "Ana sayfaya git",
+    "done": "Bitti",
+    "save": "Kaydet",
+    "saved": "Kaydedildi"
+  },
+  "a11y": {
+    "skipToContent": "İçeriğe geç",
+    "currentPage": "(bulunduğun sayfa)",
+    "confirmationRequired": "Bu işlem onay istiyor."
+  },
+  "audio": {
+    "play": "{{text}} sözcüğünün okunuşunu dinle",
+    "retry": "{{text}} sözcüğünü yeniden dinle",
+    "unavailable": "{{text}} için kayıt yok"
+  },
+  "progress": {
+    "lesson": "{{name}} içindeki ilerlemen",
+    "review": "Bu tekrardaki ilerlemen"
+  },
+  "units": {
+    "day_one": "{{count, number}} gün",
+    "day_other": "{{count, number}} gün"
+  },
+  "report": {
+    "action": "Sorun bildir",
+    "title": "Ne yanlış?",
+    "blurb": "Yanlış görünen şeyi seç, sana ekleyebileceğin bir e-posta açalım. Öğrenme verinden hiçbir şey eklenmez.",
+    "field": {
+      "item": "Öğe",
+      "category": "Sorun",
+      "version": "Uygulama sürümü",
+      "language": "Dil"
+    },
+    "writeHere": "Fark ettiğin şeyi buraya yaz:",
+    "category": {
+      "meaning": "Anlamı",
+      "example": "Örnek cümle",
+      "translation": "Çevirisi",
+      "audio": "Sesi",
+      "writing": "Yazı değerlendirmesi",
+      "other": "Başka bir şey"
+    }
+  },
+  "exit": {
+    "title": "Hangyul ganada'dan çıkılsın mı?",
+    "body": "İlerlemen kayıtlı. Kaldığın yerden devam edebilirsin.",
+    "stay": "Kal",
+    "leave": "Çık"
+  }
+}

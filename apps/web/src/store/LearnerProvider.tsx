@@ -280,9 +280,23 @@ export function LearnerProvider({
       itemKey: string,
       transform: (previous: ItemProgress | undefined) => ItemProgress,
     ) => {
-      // Collected inside the updater — which React may run more than once —
-      // and acted on after it, so a completion is never recorded twice.
-      const justCompleted: Array<ItemProgress['kind']> = [];
+      /*
+       * Noted inside the updater and acted on after it, by **assignment**.
+       *
+       * React may run an updater more than once for one call — StrictMode does
+       * it on every render in development, and the concurrent renderer is
+       * entitled to. Each run gets the same `prev`, so anything derived is the
+       * same; anything *accumulated* is not. This used to `push` onto an array
+       * declared out here, which meant one finished letter appended two
+       * completions and the day's tally on the Activity screen counted it
+       * twice, while `state.progress` — the same event, the canonical copy —
+       * counted it once. Two screens, one truth, two answers.
+       *
+       * A single assignment is idempotent under any number of runs, and one
+       * call to `updateProgress` concerns exactly one item, so one slot is all
+       * this ever needed.
+       */
+      let justCompleted: ItemProgress['kind'] | null = null;
       setState((prev) => {
         const key = progressKey(kind, itemKey);
         const next = transform(prev.progress[key]);
@@ -291,14 +305,11 @@ export function LearnerProvider({
 
         // Reaching `learned` is a day's *outcome* and is recorded as one; the
         // streak itself is kept by `trackActivity`, which counts showing up.
-        if (next.stage === 'learned' && prev.progress[key]?.stage !== 'learned') {
-          justCompleted.push(kind);
-        }
+        justCompleted =
+          next.stage === 'learned' && prev.progress[key]?.stage !== 'learned' ? kind : null;
         return { ...prev, progress: { ...prev.progress, [key]: next } };
       });
-      for (const completedKind of justCompleted) {
-        trackActivity({ type: 'completed', kind: completedKind });
-      }
+      if (justCompleted) trackActivity({ type: 'completed', kind: justCompleted });
     },
     [persistProgress, trackActivity],
   );
@@ -598,9 +609,19 @@ export function LearnerProvider({
   );
 
   const practice = useMemo(() => {
+    // No lesson left means the alphabet is finished, and the number of letters
+    // outstanding in it is zero rather than "all of the last chapter". Before
+    // `nextLesson` could say *finished* it returned the final lesson, which is
+    // complete, so this happened to come out right — by accident, and only
+    // because a completed lesson has nothing left in it.
     const lesson = nextLesson(state.progress);
-    const done = lessonProgress(state.progress, lesson);
-    return todaysPractice(state.progress, state.memory, done.total - done.done, new Date(), canAsk);
+    const remaining = lesson
+      ? (() => {
+          const done = lessonProgress(state.progress, lesson);
+          return done.total - done.done;
+        })()
+      : 0;
+    return todaysPractice(state.progress, state.memory, remaining, new Date(), canAsk);
   }, [state.progress, state.memory]);
 
   /**

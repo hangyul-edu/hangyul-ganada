@@ -1,0 +1,146 @@
+{
+  "title": "Il mio percorso",
+  "stats": {
+    "lettersLearned": "Lettere imparate",
+    "wordsLearned": "Parole imparate",
+    "alphabetProgress": "Avanzamento nell'alfabeto hangul",
+    "studyDays": "Giorni di studio"
+  },
+  "language": {
+    "title": "Lingua",
+    "pickerTitle": "Scegli una lingua",
+    "pickerIntro": "La lingua dell'app. Quello che impari — lettere hangul, parole e frasi d'esempio — resta in coreano.",
+    "listAria": "Lingue disponibili",
+    "searchLabel": "Cerca una lingua",
+    "searchPlaceholder": "Cerca per nome o codice",
+    "noResults": "Nessuna lingua corrisponde a «{{query}}».",
+    "selected": "Selezionata",
+    "coverageNote": "Ogni lingua qui traduce l'intera interfaccia e il corso dell'alfabeto. Dove la riga lo indica, i significati delle parole e le frasi d'esempio sono ancora in inglese.",
+    "wordsInEnglish": "Significati in inglese"
+  },
+  "font": {
+    "title": "Carattere per esercitarsi",
+    "description": "La lettera che ricalchi viene disegnata nel carattere che scegli."
+  },
+  "dailyTarget": {
+    "title": "Lettere al giorno",
+    "description": "Quante lettere hangul vuoi completare ogni giorno.",
+    "option_many": "{{count, number}}",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_many": "{{count, number}} al giorno",
+    "optionAria_one": "{{count, number}} al giorno",
+    "optionAria_other": "{{count, number}} al giorno"
+  },
+  "wordGoal": {
+    "title": "Parole al giorno",
+    "description": "Quante parole vuoi completare ogni giorno. Puoi cambiarlo quando vuoi.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} parole al giorno"
+  },
+  "guides": {
+    "title": "Linee guida",
+    "description": "Le linee d'aiuto dentro il riquadro.",
+    "grid": "Linea orizzontale e verticale",
+    "crosshair": "Segno al centro"
+  },
+  "about": {
+    "body": "Leggi e scrivi l'hangul: le lettere, i suoni, i blocchi sillabici e le tue prime parole coreane.",
+    "offline": "Ogni lezione, frase e registrazione funziona senza rete.",
+    "version": "Versione {{version}}",
+    "reset": "Azzera i progressi"
+  },
+  "reset": {
+    "title": "Azzerare tutti i progressi?",
+    "description": "Le lezioni completate, la cronologia dei ripassi e la tua attività di studio verranno cancellate. Non si può tornare indietro.",
+    "confirm": "Azzera",
+    "cancel": "Annulla",
+    "body": "Ricomincia dalla primissima lettera."
+  },
+  "voice": {
+    "title": "Voce della pronuncia",
+    "description": "Chi legge lettere, sillabe e parole ad alta voce.",
+    "female": "Voce femminile",
+    "male": "Voce maschile",
+    "preview": "Ascolta la voce scelta",
+    "provider": "Due voci coreane nitide, un po' più lente del ritmo di un madrelingua così che ogni suono arrivi."
+  },
+  "groups": {
+    "learning": "Studio",
+    "practice": "Esercizio",
+    "appearance": "Aspetto",
+    "app": "App",
+    "reset": "Azzeramento"
+  },
+  "activity": {
+    "title": "Attività di studio",
+    "body": "La tua serie, il tuo calendario e quello che hai imparato"
+  },
+  "appearance": {
+    "title": "Aspetto",
+    "description": "Chiaro, scuro, o quello che fa il telefono.",
+    "system": "Sistema",
+    "light": "Chiaro",
+    "dark": "Scuro"
+  },
+  "legal": {
+    "title": "Note legali e licenze",
+    "body": "Licenze dei contenuti e dei caratteri usati nell'app",
+    "intro": "Una parte di quello che c'è nell'app è usata con licenze che chiedono di essere citate. Le citazioni sono qui.",
+    "contentHeading": "Contenuti",
+    "fontsHeading": "Caratteri"
+  },
+  "reminder": {
+    "title": "Promemoria quotidiano",
+    "description": "Un richiamo discreto al giorno, all'ora che scegli. Spento finché non lo accendi, e non lascia mai il telefono.",
+    "toggle": "Ricordami di esercitarmi",
+    "at": "Alle",
+    "notificationTitle": "È ora di esercitarsi",
+    "notificationBody": "Ti aspettano pochi minuti di coreano.",
+    "refused": "Il telefono non permette notifiche per questa app. Puoi attivarle nelle sue impostazioni."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "body": "Che fine fa quello che impari",
+    "lede": "Niente di quello che fai qui esce da questo dispositivo.",
+    "device": {
+      "title": "Quello che impari resta qui",
+      "points": [
+        "Quello che hai imparato, e quanto bene lo ricordi, è salvato su questo dispositivo. Non viene mai caricato altrove.",
+        "Non c'è nessun account — niente a cui iscriversi, e nessun profilo su di te da nessuna parte."
+      ]
+    },
+    "tracking": {
+      "title": "Niente pubblicità, niente tracciamento",
+      "points": [
+        "L'app non guarda come la usi e non riferisce nulla a nessuno.",
+        "La tua scrittura viene valutata sullo schermo mentre la tracci, poi buttata."
+      ]
+    },
+    "permissions": {
+      "title": "Permessi",
+      "points": [
+        "Le notifiche, e solo se accendi il promemoria quotidiano.",
+        "Mai la fotocamera, il microfono, le foto, i contatti o la posizione."
+      ]
+    },
+    "erase": {
+      "title": "Cancellare tutto",
+      "points": [
+        "Puoi cancellare tutto quello che hai imparato in fondo a {{screen}}.",
+        "Disinstallare l'app lo cancella insieme a lei."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "I tuoi progressi non vengono salvati su questo dispositivo, quindi quello che impari potrebbe sparire alla prossima apertura. Di solito basta permettere a questo sito di conservare dati nelle impostazioni del browser.",
+    "recovered_many": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto.",
+    "recovered_one": "{{count, number}} record danneggiato è stato saltato al caricamento. Il resto dei tuoi progressi è intatto.",
+    "recovered_other": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto."
+  },
+  "soundFree": {
+    "title": "Domande senza audio",
+    "description": "Alcune domande sono solo una registrazione — «quale parola hai sentito?». Attiva questa opzione e restano fuori. Tutto si può comunque ascoltare quando vuoi.",
+    "toggle": "Salta le domande di ascolto"
+  }
+}

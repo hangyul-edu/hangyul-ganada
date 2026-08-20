@@ -1,0 +1,142 @@
+{
+  "title": "Вчити слова",
+  "today": {
+    "title": "Слова на сьогодні",
+    "start": "Почати",
+    "resume": "Продовжити",
+    "startBlurb_few": "Невеликий набір із {{count}} слів.",
+    "startBlurb_many": "Невеликий набір із {{count}} слів.",
+    "startBlurb_one": "Одне слово на сьогодні.",
+    "startBlurb_other": "Невеликий набір із {{count}} слова.",
+    "resumeBlurb": "Продовжте з того місця, де спинилися.",
+    "doneBlurb": "На сьогодні все. Гарна робота.",
+    "completeTitle": "Слова на сьогодні пройдено.",
+    "completeDetail_few": "Вивчено {{count}} слова.",
+    "completeDetail_many": "Вивчено {{count}} слів.",
+    "completeDetail_one": "Вивчено {{count}} слово.",
+    "completeDetail_other": "Вивчено {{count}} слова.",
+    "more": "Ще трохи",
+    "allDone": "На сьогодні нічого не лишилося.",
+    "progressAria": "Поступ у словах на сьогодні",
+    "moreLabel": "Скільки ще",
+    "moreCount_few": "ще {{count}}",
+    "moreCount_many": "ще {{count}}",
+    "moreCount_one": "ще {{count}}",
+    "moreCount_other": "ще {{count}}"
+  },
+  "browse": {
+    "title": "Переглядати за темами",
+    "showing": "Показано {{shown}} з {{total}}"
+  },
+  "intro": {
+    "example": "Приклад",
+    "howItSounds": "Як це звучить",
+    "surfaceNote": "У цьому реченні {{headword}} стоїть у формі {{form}}.",
+    "next": "Зрозуміло"
+  },
+  "empty": {
+    "title": "Тут поки немає слів",
+    "body": "Спробуйте іншу категорію."
+  },
+  "partOfSpeech": {
+    "noun": "іменник",
+    "verb": "дієслово",
+    "adjective": "прикметник",
+    "adverb": "прислівник",
+    "pronoun": "займенник",
+    "numeral": "числівник",
+    "particle": "частка",
+    "interjection": "вигук",
+    "determiner": "означник"
+  },
+  "session": {
+    "next": "Наступне слово",
+    "finish": "Завершити"
+  },
+  "blurb": "Усі слова відкриті. Виберіть категорію й починайте звідки хочете.",
+  "categories": {
+    "essentials": "Щодня",
+    "people": "Люди й родина",
+    "food": "Їжа й напої",
+    "animals-nature": "Тварини й природа",
+    "home": "Дім і речі",
+    "body-health": "Тіло і здоров'я",
+    "places-travel": "Місця й подорожі",
+    "time-numbers": "Час і числа",
+    "school-work": "Навчання й робота",
+    "money-shopping": "Гроші й покупки",
+    "communication": "Розмова й медіа",
+    "feelings": "Почуття й вдача",
+    "thinking": "Мислення й навчання",
+    "movement": "Приходити й іти",
+    "actions": "Щоденні дії",
+    "describing": "Опис речей",
+    "society": "Життя й культура",
+    "how-when": "Як і коли"
+  },
+  "category": {
+    "label": "Категорія",
+    "all": "Усі категорії",
+    "pick": "Виберіть категорію",
+    "count_few": "{{count, number}} слова",
+    "count_many": "{{count, number}} слів",
+    "count_one": "{{count, number}} слово",
+    "count_other": "{{count, number}} слова",
+    "progressAria": "Поступ у категорії «{{category}}»"
+  },
+  "search": {
+    "placeholder": "Шукати слова",
+    "label": "Пошук у словнику",
+    "count_few": "{{count, number}} збіги",
+    "count_many": "{{count, number}} збігів",
+    "count_one": "{{count, number}} збіг",
+    "count_other": "{{count, number}} збігу",
+    "none": "Нічого не збіглося з «{{query}}». Спробуйте корейською або значення своєю мовою."
+  },
+  "sound": {
+    "tensing": "Після кінцевої приголосної наступний звук стає тугішим.",
+    "aspiration": "ㅎ зливається з наступною приголосною й додає подих повітря.",
+    "nasal": "Перед ㄴ або ㅁ приголосна перед ними стає носовою.",
+    "lateral": "ㄴ і ㄹ поряд обидві стають ㄹ.",
+    "palatal": "Кінцева ㄷ або ㅌ перед 이 вимовляється як ㅈ чи ㅊ.",
+    "liaison": "Кінцева приголосна зісковзує в наступний блок."
+  },
+  "save": {
+    "action": "Зберегти",
+    "saved": "Збережено",
+    "add": "Зберегти {{word}}",
+    "remove": "Прибрати {{word}} зі збережених"
+  },
+  "detail": {
+    "title": "Слово",
+    "romanization": "Латинкою",
+    "definition": "Докладніше",
+    "usage": "Як це вживається",
+    "synonyms": "Синоніми",
+    "antonyms": "Протилежності"
+  },
+  "saved": {
+    "title": "Збережені слова",
+    "review_few": "Повторення · {{count}} запитання",
+    "review_many": "Повторення · {{count}} запитань",
+    "review_one": "Повторення · {{count}} запитання",
+    "review_other": "Повторення · {{count}} запитання",
+    "searchPlaceholder": "Шукати серед збережених",
+    "searchLabel": "Пошук у ваших збережених словах",
+    "orderLabel": "Порядок",
+    "order": {
+      "recent": "Найновіші",
+      "alphabetical": "А–Я",
+      "needed": "Треба попрацювати"
+    },
+    "count_few": "{{count}} слова",
+    "count_many": "{{count}} слів",
+    "count_one": "{{count}} слово",
+    "count_other": "{{count}} слова",
+    "remove": "Прибрати",
+    "noMatch": "Серед збережених нічого не збіглося з «{{query}}».",
+    "emptyTitle": "Збережених слів поки немає",
+    "emptyBody": "Натисніть закладку на будь-якому слові під час навчання — і воно чекатиме тут, коли захочете повернутися.",
+    "emptyCta": "До слів"
+  }
+}

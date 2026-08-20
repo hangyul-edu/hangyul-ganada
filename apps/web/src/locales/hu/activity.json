@@ -1,0 +1,89 @@
+{
+  "title": "Tanulási tevékenység",
+  "streak": {
+    "caption": "Bármilyen gyakorlás életben tartja — nem kell befejezned egy betűt.",
+    "longest": "Leghosszabb sorozat",
+    "totalDays": "Gyakorlással töltött napok",
+    "totalTime": "Összes idő",
+    "unit_one": "nap egymás után",
+    "unit_other": "nap egymás után"
+  },
+  "chart": {
+    "title": "Tevékenység",
+    "rangeAria": "Válassz időszakot",
+    "aria": "Napi gyakorlás",
+    "noneYet": "Ebben az időszakban még nincs gyakorlás.",
+    "range": {
+      "7": "7 nap",
+      "30": "30 nap",
+      "90": "3 hónap",
+      "0": "Mind"
+    }
+  },
+  "calendar": {
+    "previous": "Előző hónap",
+    "next": "Következő hónap",
+    "less": "Kevesebb",
+    "more": "Több",
+    "dayAria_one": "{{date}}: {{count, number}} próbálkozás",
+    "dayAria_other": "{{date}}: {{count, number}} próbálkozás"
+  },
+  "day": {
+    "time": "Tanulási idő",
+    "attempts": "Írási próbálkozások",
+    "correct": "Helyes",
+    "charactersLearned": "Befejezett betűk",
+    "wordsLearned": "Befejezett szavak",
+    "reviews": "Ismétlési próbálkozások",
+    "nothing": "Ezen a napon nem volt gyakorlás."
+  },
+  "insights": {
+    "title": "Ami kiugrik",
+    "mostPractisedCharacter": "Legtöbbet gyakorolt betű",
+    "mostPractisedWord": "Legtöbbet gyakorolt szó",
+    "accuracy": "Írás pontossága",
+    "thisWeek": "Ezen a héten",
+    "learnedCount_one": "{{count, number}} befejezve",
+    "learnedCount_other": "{{count, number}} befejezve"
+  },
+  "units": {
+    "minute_one": "{{count, number}} p",
+    "minute_other": "{{count, number}} p",
+    "hour_one": "{{count, number}} ó",
+    "hour_other": "{{count, number}} ó"
+  },
+  "empty": {
+    "title": "A tanulásod története ma kezdődik",
+    "body": "Gyakorolj néhány betűt, és ez az oldal megtelik: mely napokon tanultál, mennyi ideig, és min dolgoztál."
+  },
+  "week": {
+    "title": "Ezen a héten",
+    "range": "Ettől: {{from}}",
+    "days": "Tanulási napok",
+    "daysValue_one": "{{count, number}} / 7",
+    "daysValue_other": "{{count, number}} / 7",
+    "time": "Idő",
+    "learned": "Megtanulva",
+    "accuracy": "Pontosság",
+    "same": "Ugyanannyi idő, mint múlt héten.",
+    "moreThanLast": "{{minutes, number}} perccel több, mint múlt héten.",
+    "lessThanLast": "{{minutes, number}} perccel kevesebb, mint múlt héten.",
+    "quiet": "Ezen a héten még semmi — de van még idő."
+  },
+  "memory": {
+    "title": "Hogy megy a felidézés",
+    "firstTry": "Ezen a héten {{count, number}} dolgot idéztél fel elsőre.",
+    "strongestSkill": "Ezen a héten a(z) {{skill}} megy a legjobban.",
+    "confusionImproving": "{{a}} és {{b}} egyre könnyebben elkülöníthető.",
+    "skill": {
+      "reading_recognition": "olvasás",
+      "listening_recognition": "hallás utáni értés",
+      "guided_writing": "írás",
+      "meaning_recognition": "jelentés",
+      "sentence_comprehension": "mondatok",
+      "sound_recognition": "hangok",
+      "visual_recognition": "betűk",
+      "lookalike_discrimination": "a hasonlók megkülönböztetése"
+    }
+  }
+}

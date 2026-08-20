@@ -5,7 +5,6 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { getWord } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
-import { pronunciationOf } from '../data/pronunciation';
 import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
@@ -198,8 +197,10 @@ export function SavedWordsPage() {
                       <LocalizedText as="span" locale={copy.locale} className={styles.rowMeaning}>
                         {copy.value.meaning}
                       </LocalizedText>
-                      <span className={styles.rowSub} lang="ko-Latn-fonipa" dir="ltr">
-                        {pronunciationOf(word)}
+                      {/* Revised Romanisation, the same reading aid the word's
+                          own page shows. It used to be IPA here too. */}
+                      <span className={styles.rowSub} lang="ko-Latn" dir="ltr">
+                        {word.romanization}
                       </span>
                     </span>
                     <ChevronRightIcon size={18} />

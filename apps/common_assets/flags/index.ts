@@ -1,0 +1,32 @@
+export { default as KOFlag } from "./KO.svg";
+export { default as USFlag } from "./US.svg";
+export { default as SAFlag } from "./SA.svg";
+export { default as BDFlag } from "./BD.svg";
+export { default as CNFlag } from "./CN.svg";
+export { default as CZFlag } from "./CZ.svg";
+export { default as NLFlag } from "./NL.svg";
+// 프랑스 삼색기 에셋은 GP.svg 파일명으로 제공되어 있어 그대로 재사용합니다.
+export { default as FRFlag } from "./GP.svg";
+export { default as DEFlag } from "./DE.svg";
+export { default as GRFlag } from "./GR.svg";
+export { default as INFlag } from "./IN.svg";
+export { default as HUFlag } from "./HU.svg";
+export { default as IDFlag } from "./ID.svg";
+export { default as ITFlag } from "./IT.svg";
+export { default as JPFlag } from "./JP.svg";
+// 폴란드 국기 에셋은 ID2.svg 파일명으로 제공되어 있어 그대로 재사용합니다.
+export { default as PLFlag } from "./ID2.svg";
+export { default as PTFlag } from "./PT.svg";
+export { default as ROFlag } from "./RO.svg";
+export { default as RUFlag } from "./RU.svg";
+export { default as ESFlag } from "./ES.svg";
+export { default as SEFlag } from "./SE.svg";
+export { default as PHFlag } from "./PH.svg";
+export { default as THFlag } from "./TH.svg";
+export { default as TRFlag } from "./TR.svg";
+export { default as UAFlag } from "./UA.svg";
+export { default as VNFlag } from "./VN.svg";
+export { default as UZFlag } from "./UZ.svg";
+export { default as KZFlag } from "./KZ.svg";
+export { default as KGFlag } from "./KG.svg";
+export { default as MNFlag } from "./MN.svg";

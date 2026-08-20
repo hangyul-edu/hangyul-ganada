@@ -1,0 +1,89 @@
+{
+  "title": "అభ్యాస కార్యకలాపం",
+  "streak": {
+    "caption": "ఏ సాధనైనా దీన్ని కొనసాగిస్తుంది — అక్షరం పూర్తి చేయాల్సిన అవసరం లేదు.",
+    "longest": "అత్యంత పొడవైన వరుస",
+    "totalDays": "సాధన చేసిన రోజులు",
+    "totalTime": "మొత్తం సమయం",
+    "unit_one": "రోజు వరుసగా",
+    "unit_other": "రోజులు వరుసగా"
+  },
+  "chart": {
+    "title": "కార్యకలాపం",
+    "rangeAria": "కాలవ్యవధి ఎంచుకోండి",
+    "aria": "రోజువారీ సాధన",
+    "noneYet": "ఈ కాలంలో ఇంకా సాధన లేదు.",
+    "range": {
+      "7": "7 రోజులు",
+      "30": "30 రోజులు",
+      "90": "3 నెలలు",
+      "0": "అన్నీ"
+    }
+  },
+  "calendar": {
+    "previous": "గత నెల",
+    "next": "వచ్చే నెల",
+    "less": "తక్కువ",
+    "more": "ఎక్కువ",
+    "dayAria_one": "{{date}}: {{count, number}} ప్రయత్నం",
+    "dayAria_other": "{{date}}: {{count, number}} ప్రయత్నాలు"
+  },
+  "day": {
+    "time": "చదివిన సమయం",
+    "attempts": "రాత ప్రయత్నాలు",
+    "correct": "సరైనవి",
+    "charactersLearned": "పూర్తయిన అక్షరాలు",
+    "wordsLearned": "పూర్తయిన పదాలు",
+    "reviews": "పునశ్చరణ ప్రయత్నాలు",
+    "nothing": "ఈ రోజు సాధన లేదు."
+  },
+  "insights": {
+    "title": "కొట్టొచ్చినట్టు కనిపించేది",
+    "mostPractisedCharacter": "ఎక్కువగా సాధన చేసిన అక్షరం",
+    "mostPractisedWord": "ఎక్కువగా సాధన చేసిన పదం",
+    "accuracy": "రాత కచ్చితత్వం",
+    "thisWeek": "ఈ వారం",
+    "learnedCount_one": "{{count, number}} పూర్తయింది",
+    "learnedCount_other": "{{count, number}} పూర్తయ్యాయి"
+  },
+  "units": {
+    "minute_one": "{{count, number}} ని",
+    "minute_other": "{{count, number}} ని",
+    "hour_one": "{{count, number}} గం",
+    "hour_other": "{{count, number}} గం"
+  },
+  "empty": {
+    "title": "మీ అభ్యాస కథ ఈ రోజే మొదలు",
+    "body": "కొన్ని అక్షరాలు సాధన చేయండి; ఈ పేజీ నిండిపోతుంది: ఏ రోజుల్లో చదివారు, ఎంతసేపు, దేని మీద పనిచేశారు."
+  },
+  "week": {
+    "title": "ఈ వారం",
+    "range": "{{from}} నుంచి",
+    "days": "చదివిన రోజులు",
+    "daysValue_one": "7లో {{count, number}}",
+    "daysValue_other": "7లో {{count, number}}",
+    "time": "సమయం",
+    "learned": "నేర్చుకున్నది",
+    "accuracy": "కచ్చితత్వం",
+    "same": "గత వారంతో సమానమైన సమయం.",
+    "moreThanLast": "గత వారం కన్నా {{minutes, number}} నిమిషాలు ఎక్కువ.",
+    "lessThanLast": "గత వారం కన్నా {{minutes, number}} నిమిషాలు తక్కువ.",
+    "quiet": "ఈ వారం ఇంకా ఏమీ లేదు — సమయం ఉంది."
+  },
+  "memory": {
+    "title": "గుర్తుంచుకోవడం ఎలా సాగుతోంది",
+    "firstTry": "ఈ వారం మీరు {{count, number}} విషయాలను మొదటి ప్రయత్నంలోనే గుర్తుపెట్టుకున్నారు.",
+    "strongestSkill": "ఈ వారం {{skill}}లో మీరు అత్యంత బలంగా ఉన్నారు.",
+    "confusionImproving": "{{a}}, {{b}} మధ్య తేడా గుర్తించడం సులభమవుతోంది.",
+    "skill": {
+      "reading_recognition": "చదవడం",
+      "listening_recognition": "వినడం",
+      "guided_writing": "రాయడం",
+      "meaning_recognition": "అర్థం",
+      "sentence_comprehension": "వాక్యాలు",
+      "sound_recognition": "శబ్దాలు",
+      "visual_recognition": "అక్షరాలు",
+      "lookalike_discrimination": "పోలిన అక్షరాలను వేరుచేయడం"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "brand": {
+    "tagline": "Ucz się hangeulu, kreska po kresce.",
+    "description": "Naucz się czytać i pisać hangeul od pierwszej litery — spółgłoski i samogłoski, bloki sylabowe, pismo odręczne i pierwsze koreańskie słowa."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Zamknij",
+    "back": "Wstecz",
+    "goHome": "Na stronę główną",
+    "done": "Gotowe",
+    "save": "Zapisz",
+    "saved": "Zapisane"
+  },
+  "a11y": {
+    "skipToContent": "Przejdź do treści",
+    "currentPage": "(bieżąca strona)",
+    "confirmationRequired": "To działanie wymaga potwierdzenia."
+  },
+  "audio": {
+    "play": "Posłuchaj wymowy {{text}}",
+    "retry": "Odtwórz {{text}} jeszcze raz",
+    "unavailable": "Brak nagrania dla {{text}}"
+  },
+  "progress": {
+    "lesson": "Postęp w {{name}}",
+    "review": "Postęp w tej powtórce"
+  },
+  "units": {
+    "day_few": "{{count, number}} dni",
+    "day_many": "{{count, number}} dni",
+    "day_one": "{{count, number}} dzień",
+    "day_other": "{{count, number}} dnia"
+  },
+  "report": {
+    "action": "Zgłoś problem",
+    "title": "Co jest nie tak?",
+    "blurb": "Wybierz, co wygląda źle, a otworzymy e-mail, który możesz uzupełnić. Nic o twojej nauce nie zostanie dołączone.",
+    "field": {
+      "item": "Pozycja",
+      "category": "Problem",
+      "version": "Wersja aplikacji",
+      "language": "Język"
+    },
+    "writeHere": "Napisz tutaj, co zauważyłeś:",
+    "category": {
+      "meaning": "Znaczenie",
+      "example": "Zdanie przykładowe",
+      "translation": "Tłumaczenie",
+      "audio": "Nagranie",
+      "writing": "Ocena pisma",
+      "other": "Coś innego"
+    }
+  },
+  "exit": {
+    "title": "Wyjść z Hangyul ganada?",
+    "body": "Twój postęp jest zapisany. Wrócisz w to samo miejsce.",
+    "stay": "Zostań",
+    "leave": "Wyjdź"
+  }
+}

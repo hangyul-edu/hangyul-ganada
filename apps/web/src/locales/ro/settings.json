@@ -1,0 +1,146 @@
+{
+  "title": "Învățarea mea",
+  "stats": {
+    "lettersLearned": "Litere învățate",
+    "wordsLearned": "Cuvinte învățate",
+    "alphabetProgress": "Progresul prin alfabetul hangul",
+    "studyDays": "Zile de studiu"
+  },
+  "language": {
+    "title": "Limbă",
+    "pickerTitle": "Alege o limbă",
+    "pickerIntro": "Limba interfeței. Ce înveți — literele hangul, cuvintele și propozițiile-exemplu — rămâne în coreeană.",
+    "listAria": "Limbi disponibile",
+    "searchLabel": "Caută o limbă",
+    "searchPlaceholder": "Caută după nume sau cod",
+    "noResults": "Nicio limbă nu se potrivește cu „{{query}}”.",
+    "selected": "Selectată",
+    "coverageNote": "Fiecare limbă de aici traduce întreaga interfață și cursul de alfabet. Acolo unde rândul o spune, sensurile cuvintelor și propozițiile-exemplu sunt încă în engleză.",
+    "wordsInEnglish": "Sensurile cuvintelor în engleză"
+  },
+  "font": {
+    "title": "Fontul de exercițiu",
+    "description": "Litera pe care o trasezi e desenată cu fontul pe care îl alegi."
+  },
+  "dailyTarget": {
+    "title": "Litere pe zi",
+    "description": "Câte litere hangul vrei să termini în fiecare zi.",
+    "option_few": "{{count, number}}",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_few": "{{count, number}} pe zi",
+    "optionAria_one": "{{count, number}} pe zi",
+    "optionAria_other": "{{count, number}} pe zi"
+  },
+  "wordGoal": {
+    "title": "Cuvinte pe zi",
+    "description": "Câte cuvinte vrei să termini în fiecare zi. Poți schimba oricând.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} cuvinte pe zi"
+  },
+  "guides": {
+    "title": "Linii ajutătoare",
+    "description": "Liniile ajutătoare din casetă.",
+    "grid": "Linie orizontală și verticală",
+    "crosshair": "Semnul din centru"
+  },
+  "about": {
+    "body": "Citește și scrie hangul: literele, sunetele, blocurile silabice și primele tale cuvinte coreene.",
+    "offline": "Fiecare lecție, propoziție și înregistrare merge fără internet.",
+    "version": "Versiunea {{version}}",
+    "reset": "Resetează progresul"
+  },
+  "reset": {
+    "title": "Resetezi tot progresul de învățare?",
+    "description": "Lecțiile terminate, istoricul recapitulărilor și activitatea ta de învățare vor fi șterse. Nu se poate da înapoi.",
+    "confirm": "Resetează",
+    "cancel": "Renunță",
+    "body": "Ia-o de la capăt, de la prima literă."
+  },
+  "voice": {
+    "title": "Vocea pronunției",
+    "description": "Cine citește cu voce tare literele, silabele și cuvintele.",
+    "female": "Voce feminină",
+    "male": "Voce masculină",
+    "preview": "Ascultă vocea aleasă",
+    "provider": "Două voci coreene limpezi, puțin mai lente decât ritmul nativ, ca fiecare sunet să se audă bine."
+  },
+  "groups": {
+    "learning": "Învățare",
+    "practice": "Exercițiu",
+    "appearance": "Aspect",
+    "app": "Aplicație",
+    "reset": "Resetare"
+  },
+  "activity": {
+    "title": "Activitatea de învățare",
+    "body": "Seria ta, calendarul și ce ai învățat"
+  },
+  "appearance": {
+    "title": "Aspect",
+    "description": "Deschis, închis, sau cum e telefonul.",
+    "system": "Ca sistemul",
+    "light": "Deschis",
+    "dark": "Închis"
+  },
+  "legal": {
+    "title": "Legal și licențe",
+    "body": "Licențe pentru conținutul și fonturile din aplicație",
+    "intro": "O parte din ce e în aplicație e folosit sub licențe care cer menționarea autorilor. Mențiunile sunt aici.",
+    "contentHeading": "Conținut",
+    "fontsHeading": "Fonturi"
+  },
+  "reminder": {
+    "title": "Memento zilnic",
+    "description": "Un singur ghiont liniștit pe zi, la ora pe care o alegi. Oprit dacă nu îl pornești, și nu părăsește niciodată telefonul.",
+    "toggle": "Amintește-mi să exersez",
+    "at": "La ora",
+    "notificationTitle": "E vremea de exercițiu",
+    "notificationBody": "Te așteaptă câteva minute de coreeană.",
+    "refused": "Telefonul nu permite notificări pentru aplicația aceasta. Le poți porni din setările lui."
+  },
+  "privacy": {
+    "title": "Confidențialitate",
+    "body": "Ce se întâmplă cu ce înveți",
+    "lede": "Nimic din ce faci aici nu părăsește dispozitivul acesta.",
+    "device": {
+      "title": "Ce înveți rămâne aici",
+      "points": [
+        "Ce ai învățat și cât de bine îți amintești sunt salvate pe dispozitivul acesta. Nu se încarcă nicăieri.",
+        "Nu există cont — nu ai la ce să te înscrii și nu există un profil despre tine nicăieri."
+      ]
+    },
+    "tracking": {
+      "title": "Fără reclame, fără urmărire",
+      "points": [
+        "Aplicația nu se uită cum o folosești și nu raportează nimic nimănui.",
+        "Scrisul tău e evaluat pe ecran în timp ce îl trasezi, apoi e aruncat."
+      ]
+    },
+    "permissions": {
+      "title": "Permisiuni",
+      "points": [
+        "Notificări — și doar dacă pornești mementoul zilnic.",
+        "Niciodată camera, microfonul, pozele, contactele sau locația."
+      ]
+    },
+    "erase": {
+      "title": "Cum ștergi tot",
+      "points": [
+        "Poți șterge tot ce ai învățat în josul ecranului {{screen}}.",
+        "Dezinstalarea aplicației le șterge odată cu ea."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Progresul nu se salvează pe dispozitivul acesta, așa că ce înveți poate dispărea data viitoare când deschizi aplicația. De obicei se rezolvă permițând acestui site să păstreze date din setările browserului.",
+    "recovered_few": "La încărcare au fost sărite {{count, number}} înregistrări deteriorate. Restul progresului e intact.",
+    "recovered_one": "La încărcare a fost sărită {{count, number}} înregistrare deteriorată. Restul progresului e intact.",
+    "recovered_other": "La încărcare au fost sărite {{count, number}} de înregistrări deteriorate. Restul progresului e intact."
+  },
+  "soundFree": {
+    "title": "Întrebări fără sunet",
+    "description": "Unele întrebări sunt doar o înregistrare — „ce cuvânt ai auzit?”. Pornește asta și rămân pe dinafară. Totul se poate asculta în continuare, dacă vrei.",
+    "toggle": "Sari peste întrebările de ascultare"
+  }
+}

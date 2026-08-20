@@ -13,8 +13,6 @@
     "completeDetail_other": "จำได้ {{count}} คำ",
     "more": "เรียนเพิ่มอีกนิด",
     "allDone": "วันนี้ไม่เหลืออะไรแล้ว",
-    "remaining_one": "วันนี้เหลืออีกหนึ่งคำ",
-    "remaining_other": "วันนี้เหลืออีก {{count}} คำ",
     "progressAria": "ความคืบหน้าของคำศัพท์วันนี้",
     "moreLabel": "จะเรียนเพิ่มกี่คำ",
     "moreCount_one": "อีก 1 คำ",
@@ -101,7 +99,7 @@
   },
   "detail": {
     "title": "คำศัพท์",
-    "pronunciation": "คำอ่าน",
+    "romanization": "อักษรโรมัน",
     "definition": "รู้จักให้ลึกขึ้น",
     "usage": "วิธีใช้",
     "synonyms": "คำที่ความหมายใกล้กัน",

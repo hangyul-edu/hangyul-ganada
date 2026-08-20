@@ -1,0 +1,10 @@
+{
+  "primary": "Hoofdmenu",
+  "tabs": {
+    "home": "Start",
+    "letters": "Letters",
+    "words": "Woorden",
+    "review": "Herhalen",
+    "profile": "Mijn leren"
+  }
+}

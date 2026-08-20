@@ -13,7 +13,6 @@ import { UnitIntro } from '../features/learning/UnitIntro';
 import { canRecognise } from '../features/learning/lookAlikes';
 import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
 import { PracticeCanvasCard } from '../features/writing/PracticeCanvasCard';
-import type { GuideLevel } from '../features/writing/guide';
 import { gradingFor } from '../features/writing/useEvaluator';
 import {
   feedbackFor,
@@ -35,6 +34,7 @@ import { ProgressBar } from '../ui/Progress';
 import { SpeakerButton } from '../ui/SpeakerButton';
 import { StepTrail } from '../ui/StepTrail';
 import { NotFoundBody } from './NotFoundPage';
+import { letterCopy } from '../data/letterCopy';
 import styles from './SessionPage.module.css';
 
 /**
@@ -69,9 +69,10 @@ import styles from './SessionPage.module.css';
  * forty letters the answer is a lesson twice as long for the same learning. It
  * is not replaced by anything: one guided attempt is the step.
  *
- * How much guide that one attempt gets is now the whole of what `practice_style`
- * decides. Guided keeps the full tracing model; focused shows the lighter one,
- * for a learner who finds tracing slow. Neither ever removes it.
+ * There is no setting attached to what is left. There used to be one — *Guided*
+ * or *Focused*, full model or fainter model — and it asked a learner four
+ * minutes into Hangul to decide how much help they needed before they had tried
+ * once. The model is always there and always the same. See `writing/guide.ts`.
  *
  * ## What each step is worth
  *
@@ -121,14 +122,6 @@ export function LetterSessionPage() {
   const lesson = lessonId ? getLesson(lessonId) : undefined;
   const characters = useMemo(() => (lesson ? getLessonCharacters(lesson) : []), [lesson]);
   const unit = lesson ? CURRICULUM_UNITS.find((u) => u.id === `unit-${lesson.unit}`) : undefined;
-
-  /**
-   * How much of the model stays on the paper for the one writing attempt.
-   *
-   * The entirety of what this setting now controls. It used to decide whether
-   * the learner did the writing step *once or twice*; there is only ever once.
-   */
-  const guide: GuideLevel = state.settings.practice_style === 'guided' ? 'full' : 'light';
 
   /**
    * Where a returning learner picks up: the first letter they have not finished.
@@ -242,10 +235,10 @@ export function LetterSessionPage() {
         kind: 'character',
         item_key: current.character,
         session_id: sessionId.current,
-        // Which guide was on the paper, recorded honestly. It no longer
-        // decides anything about completion — see `domain/mastery.ts` — but it
-        // is a true fact about the attempt and the Activity screen reads it.
-        mode: guide === 'light' ? ('practice' as const) : ('trace' as const),
+        // Which guide was on the paper. There is only one now, so this is
+        // always `trace`; the field stays because rows written by earlier
+        // builds carry the other value and the Activity screen reads them.
+        mode: 'trace' as const,
         font_id: font.id,
         evaluator_id: 'geometry-v1',
         recognition_required: recognitionRequired,
@@ -262,7 +255,7 @@ export function LetterSessionPage() {
       // written correctly.
       if (evaluation.passed) setCompleted((prev) => new Set(prev).add(current.character));
     },
-    [current, recordAttempt, font.id, guide, recognitionRequired],
+    [current, recordAttempt, font.id, recognitionRequired],
   );
 
   /** Fix the attempt that is already on the canvas. */
@@ -297,7 +290,7 @@ export function LetterSessionPage() {
   }
 
   const lessonTitle = resolveContent(lesson.translations, locale).value.title;
-  const copy = resolveContent(current.translations, locale);
+  const copy = letterCopy(current, locale);
   const feedback = stepState.result ? feedbackFor(stepState.result, current.character) : null;
   // The bar measures this session: how many of the lesson's letters have been
   // finished, plus how far through the current letter's steps the learner is.
@@ -415,7 +408,6 @@ export function LetterSessionPage() {
               fontFamily={font.font_family}
               fontWeight={font.weight}
               grading={gradingFor(font)}
-              guide={guide}
               showGrid={state.settings.show_grid}
               showCenterCrosshair={state.settings.show_center_crosshair}
               status={stepState.status}
@@ -486,36 +478,46 @@ export function LetterSessionPage() {
                 }
               >
                 <p>{t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}</p>
-                {orderNotes.length > 0 && (
-                  <div className={styles.orderNotes}>
-                    <p className={styles.orderNotesHeading}>
-                      {t('handwriting:strokeOrder.notesHeading')}
-                    </p>
-                    <ul>
-                      {orderNotes.map((note) => (
-                        <li key={note.key}>
-                          {t(`handwriting:${note.key}`, {
-                            ...note.params,
-                            ...(note.params?.corner
-                              ? {
-                                  corner: t(
-                                    `handwriting:strokeOrder.corners.${String(note.params.corner)}`,
-                                  ),
-                                }
-                              : {}),
-                          })}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className={styles.orderNotesFooter}>
-                      {t('handwriting:strokeOrder.notesFooter')}
-                    </p>
-                  </div>
+                {/*
+                  One note, not a list of them.
+
+                  This block used to be a heading, up to three bullets and a
+                  closing sentence about what stroke order is for — five
+                  paragraphs of feedback under a two-stroke letter, every time.
+                  `strokeOrderNotes` already returns them in the order they
+                  matter (count, then where you started, then direction), so
+                  the first one is the one worth saying and the rest are things
+                  the learner will notice on the next attempt anyway.
+
+                  The heading is gone because it labelled a list of one, and
+                  the closing sentence has moved into Show details, where
+                  somebody who wants the reasoning can find it.
+                */}
+                {orderNotes[0] && (
+                  <p className={styles.orderNote}>
+                    {t(`handwriting:${orderNotes[0].key}`, {
+                      ...orderNotes[0].params,
+                      ...(orderNotes[0].params?.corner
+                        ? {
+                            corner: t(
+                              `handwriting:strokeOrder.corners.${String(orderNotes[0].params.corner)}`,
+                            ),
+                          }
+                        : {}),
+                    })}
+                  </p>
                 )}
                 {showDetail && (
-                  <p className={styles.breakdown}>
-                    {t('handwriting:feedback.breakdown', scoreBreakdownParams(stepState.result))}
-                  </p>
+                  <>
+                    <p className={styles.breakdown}>
+                      {t('handwriting:feedback.breakdown', scoreBreakdownParams(stepState.result))}
+                    </p>
+                    {orderNotes.length > 0 && (
+                      <p className={styles.breakdown}>
+                        {t('handwriting:strokeOrder.notesFooter')}
+                      </p>
+                    )}
+                  </>
                 )}
               </FeedbackState>
             )}
@@ -546,7 +548,13 @@ export function LetterSessionPage() {
  * The label on the button that leaves a finished step.
  *
  * Names the next thing rather than saying "Next": a learner should know what
- * they are agreeing to before they press it.
+ * they are agreeing to before they press it — which is exactly why this button
+ * used to be wrong. The step after writing is called `read` in the code, so the
+ * button said *Now read it* (이제 읽어 보기, Giờ đọc nào, in all ten languages),
+ * and what it opened was a multiple-choice question: hear a sound, pick the
+ * letter that makes it. Nobody reads anything. A learner who pressed it
+ * expecting to read had been told the wrong thing about their own lesson by the
+ * one control on the screen whose whole job is to say what happens next.
  */
 function nextLabel(
   t: (key: string) => string,
@@ -555,6 +563,6 @@ function nextLabel(
   lastCharacter: boolean,
 ): string {
   const next = steps[steps.indexOf(current) + 1];
-  if (next === 'read') return t('learning:session.nowRead');
+  if (next === 'read') return t('learning:session.nowRecognise');
   return lastCharacter ? t('learning:session.finish') : t('learning:session.next');
 }

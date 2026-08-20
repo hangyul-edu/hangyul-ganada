@@ -223,45 +223,6 @@
   color: var(--hg-text-on-primary);
 }
 
-/* --- practice mode --- */
-
-.modeRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--hg-space-3);
-}
-
-.modeOption {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: var(--hg-space-4);
-  border-radius: var(--hg-radius-md);
-  background: var(--hg-surface);
-  box-shadow: inset 0 0 0 1px var(--hg-border);
-  text-align: start;
-}
-
-.modeSelected {
-  background: var(--hg-surface-selected);
-  box-shadow: inset 0 0 0 1.5px var(--hg-border-selected);
-}
-
-.modeTitle {
-  font-size: var(--hg-text-body-sm);
-  font-weight: var(--hg-weight-bold);
-}
-
-.modeSelected .modeTitle {
-  color: var(--hg-primary-text);
-}
-
-.modeDetail {
-  font-size: var(--hg-text-micro);
-  color: var(--hg-text-tertiary);
-  line-height: var(--hg-leading-snug);
-}
-
 /* --- daily target --- */
 
 .targetRow {

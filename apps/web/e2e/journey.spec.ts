@@ -238,7 +238,7 @@ test('a letter is written once, over a guide, and then read back', async ({ page
 
   // Straight to reading. Nothing offers a second, fainter go.
   await expect(page.getByRole('button', { name: /lighter guide/ })).toHaveCount(0);
-  await page.getByRole('button', { name: 'Now read it' }).click();
+  await page.getByRole('button', { name: 'Try a question' }).click();
 
   // Reading: the same letter among its look-alikes.
   await expect(page.getByText('Which one makes this sound?')).toBeVisible();
@@ -246,37 +246,50 @@ test('a letter is written once, over a guide, and then read back', async ({ page
   await expect(page.getByRole('status')).toContainText('That is ㅏ');
 });
 
-test('no step, and no setting, ever presents an empty writing box', async ({ page }) => {
-  // The rule stated as a rule. Walked in both practice styles, because a
-  // setting that quietly reintroduced the blank box would be the same defect
-  // wearing a different name.
+test('no step ever presents an empty writing box, and nothing offers a fainter one', async ({
+  page,
+}) => {
   const guideOpacity = () =>
     firstBox(page)
       .locator('canvas')
       .first()
       .evaluate((el) => Number(getComputedStyle(el).opacity));
 
-  for (const style of ['guided', 'focused'] as const) {
-    await page.goto('/me');
-    await page
-      .getByRole('button', { name: style === 'guided' ? /^Guided/ : /^Focused/ })
-      .click();
+  await page.goto(FIRST_LESSON);
+  await startWriting(page);
+  expect(await guideOpacity(), 'the writing step shows the character').toBeGreaterThan(0);
 
-    await page.goto(FIRST_LESSON);
-    await startWriting(page);
-    expect(await guideOpacity(), `${style}: first writing step`).toBeGreaterThan(0);
+  await traceReferenceGlyph(page, firstBox(page));
+  await page.getByRole('button', { name: 'Check' }).click();
 
-    await traceReferenceGlyph(page, firstBox(page));
-    await page.getByRole('button', { name: 'Check' }).click();
-
-    // And there is no second writing step to check, in either style. What the
-    // setting now decides is how much guide the *one* attempt gets — never how
-    // many attempts there are, and never whether the guide is there at all.
-    await expect(page.getByRole('button', { name: /lighter guide/ })).toHaveCount(0);
-  }
-
-  // And nothing anywhere offers to take it away.
+  // No second writing step, and nothing offering a lighter guide to write over.
+  await expect(page.getByRole('button', { name: /lighter guide/ })).toHaveCount(0);
+  // And nothing anywhere offers to take the model away.
   await expect(page.getByRole('button', { name: /Show the character|hint/i })).toHaveCount(0);
+});
+
+test('My Learning has no practice-style choice to make', async ({ page }) => {
+  /*
+   * The regression guard for a setting that was deleted rather than defaulted.
+   *
+   * *Guided* and *Focused* chose between the full tracing model and a fainter
+   * one. Both are gone: there is one guide, it is always on the paper, and a
+   * learner four minutes into Hangul is not asked to decide how much help they
+   * need before they have tried once.
+   *
+   * Asserted on the screen rather than on the settings object, because the
+   * failure this catches is a card coming back — a preference that still exists
+   * in a store and renders nowhere is a different, smaller problem.
+   */
+  await page.goto('/me');
+  await expect(page.getByRole('button', { name: /^Guided/ })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^Focused/ })).toHaveCount(0);
+  await expect(page.getByText(/Practice style/i)).toHaveCount(0);
+  await expect(page.getByText(/lighter guide/i)).toHaveCount(0);
+
+  // The group itself stays — it is where the voice lives — and the voice is
+  // what should lead it.
+  await expect(page.getByRole('button', { name: /Female voice/i })).toBeVisible();
 });
 
 
@@ -307,7 +320,7 @@ test('progress survives closing and reopening the app', async ({ page, context }
   // has to arrange.
   await expect(page.getByRole('button', { name: 'Watch again' }).first()).toBeVisible();
   await page.waitForTimeout(2500);
-  await passStep(page, 'Now read it', false);
+  await passStep(page, 'Try a question', false);
   await page.getByRole('button', { name: 'Choose ㅏ' }).click();
   await expect(page.getByRole('status')).toContainText('That is ㅏ');
 
@@ -348,7 +361,7 @@ test('an interrupted lesson resumes at the letter that is unfinished', async ({ 
    */
   await traceReferenceGlyph(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();
-  await page.getByRole('button', { name: 'Now read it' }).click();
+  await page.getByRole('button', { name: 'Try a question' }).click();
   await page.getByRole('button', { name: `Choose ${first}` }).click();
   await expect(page.getByRole('status')).toContainText(first);
 
@@ -812,7 +825,12 @@ test('a word can be saved, found again, and reviewed from its own list', async (
   await page.getByText(headword!.trim()).first().click();
   await expect(page).toHaveURL(/\/words\/word\//);
   await expect(page.getByTestId('detail-headword')).toHaveText(headword!.trim());
-  await expect(page.getByText('Pronunciation')).toBeVisible();
+  // Romanisation, not "Pronunciation": the label changed with the notation
+  // under it, from IPA to Revised Romanization. Asserted through its test id as
+  // well as its label, so a rename of the heading cannot quietly take the
+  // romanisation off the card with it.
+  await expect(page.getByText('Romanisation')).toBeVisible();
+  await expect(page.getByTestId('detail-romanization')).toBeVisible();
   // No pen here either, and no picture.
   await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
   await expect(page.getByRole('img')).toHaveCount(0);

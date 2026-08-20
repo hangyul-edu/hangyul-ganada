@@ -215,7 +215,7 @@ describe('migrations', () => {
     const applied = await runMigrations(makeContext(driver, null));
     // Every migration runs on an empty install, in order, and each is a no-op
     // with nothing to convert.
-    expect(applied).toEqual([3, 4, 5, 6, 7, 8]);
+    expect(applied).toEqual([3, 4, 5, 6, 7, 8, 9]);
     const meta = await driver.get<SchemaMeta>('meta', META_KEY);
     expect(meta?.schema_version).toBe(SCHEMA_VERSION);
     expect(meta?.install_id).toBeTruthy();
@@ -268,10 +268,12 @@ describe('migrations', () => {
 
     const settings = await new SettingsRepository(driver).load();
     expect(settings.selected_font_id).toBe('nanum-myeongjo');
-    // v2's "write" mode meant a blank writing box, which the product no longer
-    // has. The v5 migration lands that learner on the focused style — a lighter
-    // guide, not no guide — rather than on a setting that cannot be honoured.
-    expect(settings.practice_style).toBe('focused');
+    // v2's "write" mode meant a blank writing box, and v5 translated it into a
+    // practice-style preference. v9 removed the preference — one guide, no
+    // choice — so the key must arrive *absent* rather than as a value nothing
+    // reads. A settings row carrying a setting the product does not have is how
+    // a dead option comes back.
+    expect(settings).not.toHaveProperty('practice_style');
     expect(settings.daily_target).toBe(10);
     expect(settings.show_grid).toBe(false);
     expect(settings.locale).toBe('ja');

@@ -1,0 +1,142 @@
+{
+  "title": "Ucz się słów",
+  "today": {
+    "title": "Dzisiejsze słowa",
+    "start": "Zacznij",
+    "resume": "Kontynuuj",
+    "startBlurb_few": "Krótki zestaw {{count}} słów.",
+    "startBlurb_many": "Krótki zestaw {{count}} słów.",
+    "startBlurb_one": "Jedno słowo na dziś.",
+    "startBlurb_other": "Krótki zestaw {{count}} słowa.",
+    "resumeBlurb": "Zacznij tam, gdzie skończyłeś.",
+    "doneBlurb": "Na dziś gotowe. Ładna robota.",
+    "completeTitle": "Dzisiejsze słowa są zrobione.",
+    "completeDetail_few": "{{count}} słowa opanowane.",
+    "completeDetail_many": "{{count}} słów opanowanych.",
+    "completeDetail_one": "{{count}} słowo opanowane.",
+    "completeDetail_other": "{{count}} słowa opanowane.",
+    "more": "Jeszcze trochę",
+    "allDone": "Na dziś nic nie zostało.",
+    "progressAria": "Postęp w dzisiejszych słowach",
+    "moreLabel": "Ile jeszcze",
+    "moreCount_few": "jeszcze {{count}}",
+    "moreCount_many": "jeszcze {{count}}",
+    "moreCount_one": "jeszcze {{count}}",
+    "moreCount_other": "jeszcze {{count}}"
+  },
+  "browse": {
+    "title": "Przeglądaj według tematu",
+    "showing": "Widać {{shown}} z {{total}}"
+  },
+  "intro": {
+    "example": "Przykład",
+    "howItSounds": "Jak to brzmi",
+    "surfaceNote": "W tym zdaniu {{headword}} występuje jako {{form}}.",
+    "next": "Jasne"
+  },
+  "empty": {
+    "title": "Na razie nie ma tu słów",
+    "body": "Spróbuj innej kategorii."
+  },
+  "partOfSpeech": {
+    "noun": "rzeczownik",
+    "verb": "czasownik",
+    "adjective": "przymiotnik",
+    "adverb": "przysłówek",
+    "pronoun": "zaimek",
+    "numeral": "liczebnik",
+    "particle": "partykuła",
+    "interjection": "wykrzyknik",
+    "determiner": "określnik"
+  },
+  "session": {
+    "next": "Następne słowo",
+    "finish": "Zakończ"
+  },
+  "blurb": "Wszystkie słowa są otwarte. Wybierz kategorię i zacznij, gdzie chcesz.",
+  "categories": {
+    "essentials": "Codzienne podstawy",
+    "people": "Ludzie i rodzina",
+    "food": "Jedzenie i picie",
+    "animals-nature": "Zwierzęta i przyroda",
+    "home": "Dom i przedmioty",
+    "body-health": "Ciało i zdrowie",
+    "places-travel": "Miejsca i podróże",
+    "time-numbers": "Czas i liczby",
+    "school-work": "Szkoła i praca",
+    "money-shopping": "Pieniądze i zakupy",
+    "communication": "Rozmowa i media",
+    "feelings": "Uczucia i charakter",
+    "thinking": "Myślenie i nauka",
+    "movement": "Przychodzić i odchodzić",
+    "actions": "Codzienne czynności",
+    "describing": "Opisywanie rzeczy",
+    "society": "Życie i kultura",
+    "how-when": "Jak i kiedy"
+  },
+  "category": {
+    "label": "Kategoria",
+    "all": "Wszystkie kategorie",
+    "pick": "Wybierz kategorię",
+    "count_few": "{{count, number}} słowa",
+    "count_many": "{{count, number}} słów",
+    "count_one": "{{count, number}} słowo",
+    "count_other": "{{count, number}} słowa",
+    "progressAria": "Postęp w kategorii {{category}}"
+  },
+  "search": {
+    "placeholder": "Szukaj słów",
+    "label": "Szukaj w słownictwie",
+    "count_few": "{{count, number}} wyniki",
+    "count_many": "{{count, number}} wyników",
+    "count_one": "{{count, number}} wynik",
+    "count_other": "{{count, number}} wyniku",
+    "none": "Nic nie pasuje do „{{query}}”. Spróbuj po koreańsku albo znaczeniem w swoim języku."
+  },
+  "sound": {
+    "tensing": "Po spółgłosce zamykającej następny dźwięk się zacieśnia.",
+    "aspiration": "ㅎ zlewa się z następną spółgłoską i dodaje podmuch powietrza.",
+    "nasal": "Przed ㄴ albo ㅁ poprzedzająca spółgłoska staje się nosowa.",
+    "lateral": "ㄴ i ㄹ obok siebie obie stają się ㄹ.",
+    "palatal": "Zamykające ㄷ albo ㅌ przed 이 wymawia się jak ㅈ albo ㅊ.",
+    "liaison": "Spółgłoska zamykająca przesuwa się na następny blok."
+  },
+  "save": {
+    "action": "Zapisz",
+    "saved": "Zapisane",
+    "add": "Zapisz {{word}}",
+    "remove": "Usuń {{word}} z zapisanych"
+  },
+  "detail": {
+    "title": "Słowo",
+    "romanization": "Zapis łaciński",
+    "definition": "Więcej o tym",
+    "usage": "Jak się tego używa",
+    "synonyms": "Synonimy",
+    "antonyms": "Przeciwieństwa"
+  },
+  "saved": {
+    "title": "Zapisane słowa",
+    "review_few": "Powtórka · {{count}} pytania",
+    "review_many": "Powtórka · {{count}} pytań",
+    "review_one": "Powtórka · {{count}} pytanie",
+    "review_other": "Powtórka · {{count}} pytania",
+    "searchPlaceholder": "Szukaj w zapisanych słowach",
+    "searchLabel": "Szukaj wśród zapisanych słów",
+    "orderLabel": "Kolejność",
+    "order": {
+      "recent": "Najnowsze",
+      "alphabetical": "A–Z",
+      "needed": "Do przećwiczenia"
+    },
+    "count_few": "{{count}} słowa",
+    "count_many": "{{count}} słów",
+    "count_one": "{{count}} słowo",
+    "count_other": "{{count}} słowa",
+    "remove": "Usuń",
+    "noMatch": "Nic z zapisanych nie pasuje do „{{query}}”.",
+    "emptyTitle": "Nie masz jeszcze zapisanych słów",
+    "emptyBody": "Dotknij zakładki przy dowolnym słowie podczas nauki, a znajdziesz je tutaj, kiedy zechcesz do niego wrócić.",
+    "emptyCta": "Przejdź do słów"
+  }
+}

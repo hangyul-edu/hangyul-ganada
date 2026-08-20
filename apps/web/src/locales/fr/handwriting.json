@@ -53,7 +53,6 @@
     "count_many": "{{count, number}} traits",
     "count_other": "{{count, number}} traits",
     "heading": "Regardez-la s’écrire",
-    "notesHeading": "À propos de vos traits",
     "notesFooter": "L’ordre des traits ne compte pas dans la note. C’est lui qui rend votre écriture juste.",
     "notes": {
       "fewer": "Vous avez fait {{theirs, number}} traits ; cette lettre s'écrit habituellement en {{expected, number}}.",

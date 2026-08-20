@@ -7,7 +7,6 @@ import { getFont } from '../data/fonts';
 import { relationsOf } from '../data/relations';
 import { getWord } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
-import { pronunciationOf } from '../data/pronunciation';
 import { splitSentence } from '../features/review/exercises';
 import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
@@ -98,18 +97,30 @@ function WordDetail({ word }: { word: VocabularyWord }) {
           </div>
 
           {/*
-            The pronunciation, in IPA.
+            The word in Roman letters — 국어의 로마자 표기법, the official system.
 
-            Under the word rather than beside it, because it is reference and
-            the word is the subject. Marked `lang` so a screen reader does not
-            try to read the symbols as the interface language, and given its own
-            label because a row of unfamiliar symbols with nothing to say what
-            they are is worse than no row at all.
+            This line used to be IPA: `자리 [tɕa.ɾi]`. It was correct, it was
+            precise, and it was aimed at somebody who is not the customer. A
+            beginner three days into Hangul cannot read ɕ or ɾ, so the one row
+            on the card whose job is *help me say this* was a row of symbols
+            they had to skip — and worse, the two learners who tried to sound it
+            out got a worse answer than *jari* would have given them.
+
+            Roman letters, no brackets. The brackets belonged to the notation
+            that has gone: they say "this is a transcription, not a spelling",
+            which matters for IPA and reads as clutter around *jari*. The
+            recording, one tap up and to the right, is still what teaches the
+            sound; this is what lets them read it back.
+
+            `lang="ko-Latn"` — Korean in Latin script — so a screen reader reads
+            it as a romanisation rather than as a word in the interface
+            language, and `dir="ltr"` so it stays left-to-right inside an Arabic
+            or Hebrew page.
           */}
           <p className={styles.pronunciation}>
-            <span className={styles.pronunciationLabel}>{t('vocabulary:detail.pronunciation')}</span>
-            <span className={styles.ipa} lang="ko-Latn-fonipa" dir="ltr">
-              {pronunciationOf(word)}
+            <span className={styles.pronunciationLabel}>{t('vocabulary:detail.romanization')}</span>
+            <span className={styles.romanization} lang="ko-Latn" dir="ltr" data-testid="detail-romanization">
+              {word.romanization}
             </span>
           </p>
 

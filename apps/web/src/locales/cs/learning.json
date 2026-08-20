@@ -1,0 +1,241 @@
+{
+  "letters": {
+    "title": "Učit se litery",
+    "alphabetTitle": "Abeceda hangul",
+    "alphabetCaption": "liter zvládnuto",
+    "complete": "Zvládnuto",
+    "resume": "Pokračovat"
+  },
+  "units": {
+    "badge": "Oddíl {{index, number}}",
+    "continue": "Jasně — jdeme na to",
+    "unit-1": {
+      "title": "Šest samohlásek na začátek",
+      "goal": "Každá korejská slabika potřebuje samohlásku. Těchhle šest je nejjednodušších.",
+      "body": "Hangul je abeceda, ne sada obrázků. Má 40 liter, byl navržený tak, aby se dal zvládnout rychle, a šest z nich se teď naučíte.",
+      "points": [
+        "Litery se skládají do čtvercových bloků a každý blok je jedna slabika.",
+        "Samohláska je buď stojatá čára, nebo ležatá — podle toho se pozná, kam v bloku patří.",
+        "Vyslovujte každou literu nahlas, když ji obtahujete. Zvuk je půlka lekce."
+      ]
+    },
+    "unit-2": {
+      "title": "První souhlásky",
+      "goal": "Pět souhlásek. Se samohláskami, které už znáte, je to rovnou 30 slabik."
+    },
+    "unit-3": {
+      "title": "Skládáme dohromady",
+      "goal": "Souhláska plus samohláska dá blok, který přečtete.",
+      "body": "Korejská slabika se píše jako jeden čtverec. Souhláska jde první — vlevo u stojaté samohlásky, nahoře u ležaté.",
+      "points": [
+        "Stojatá samohláska (ㅏ ㅓ ㅣ) stojí napravo od souhlásky.",
+        "Ležatá samohláska (ㅗ ㅜ ㅡ) leží pod ní.",
+        "Čtěte blok jako stránku: zleva doprava, pak dolů."
+      ]
+    },
+    "unit-4": {
+      "title": "Dalších pět souhlásek",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — zbytek prosté řady."
+    },
+    "unit-5": {
+      "title": "Čteme víc bloků",
+      "goal": "Včetně té jediné litery, která nezní vůbec."
+    },
+    "unit-6": {
+      "title": "Přidáváme zvuk j",
+      "goal": "Jedna čárka navíc udělá z ㅏ literu ㅑ. U všech čtyř to platí stejně."
+    },
+    "unit-7": {
+      "title": "Závan vzduchu",
+      "goal": "ㅊ ㅋ ㅌ ㅍ jsou litery, které znáte, s jednou čárkou navíc."
+    },
+    "unit-8": {
+      "title": "Samohlásky s e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — samohlásky, které vzniknou přidáním ㅣ."
+    },
+    "unit-9": {
+      "title": "Zdvojené a napjaté",
+      "goal": "Pět liter, které se píšou dvakrát a vyslovují se sevřeněji."
+    },
+    "unit-10": {
+      "title": "Samohlásky s v",
+      "goal": "Dvě samohlásky zapsané jako jedna. Poslední ze 40 liter."
+    },
+    "unit-11": {
+      "title": "Litera dole",
+      "goal": "받침 — souhláska, která uzavírá slabiku.",
+      "body": "Do bloku se vejde třetí litera, pod ty dvě ostatní. Jmenuje se 받침 a slabiku uzavírá.",
+      "points": [
+        "Třetí litera stojí vždycky úplně dole ve čtverci.",
+        "받침 zazní jen jako jeden ze sedmi zvuků, ať je tam napsaná kterákoli litera.",
+        "Právě tady se čtení skoro každému začátečníkovi zadrhne. Nespěchejte."
+      ]
+    },
+    "unit-12": {
+      "title": "Čteme 한글",
+      "goal": "Teď znáte všechny litery. Přečtěte si název samotného písma."
+    }
+  },
+  "intro": {
+    "letterName": "Název",
+    "letterSound": "Zvuk",
+    "soundIn": "Poslechněte si {{character}} ve slově",
+    "reads": "Čte se"
+  },
+  "steps": {
+    "label": "Kroky u této litery",
+    "write": "Psát",
+    "read": "Číst"
+  },
+  "recognition": {
+    "question": "Která dělá tenhle zvuk?",
+    "optionsAria": "Vyberte literu, kterou jste slyšeli",
+    "optionAria": "Vybrat {{character}}",
+    "correctDetail": "Ano, to je {{character}}.",
+    "wrongHeadline": "Tahle ne.",
+    "wrongDetail": "{{character}} je ta, co zní jako {{sound}}.",
+    "hearAgain": "Poslechnout znovu",
+    "tryAgain": "Zkusit znovu"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Přeskočit tuhle",
+    "startWriting": "Napsat ji",
+    "nowRecognise": "Zkusit otázku",
+    "next": "Další litera",
+    "finish": "Dokončit",
+    "prompt": {
+      "write": "Obtáhněte ji prstem po předloze."
+    },
+    "continue": "Dál"
+  },
+  "complete": {
+    "title": "Pěkná práce!",
+    "letters_few": "Dokončili jste {{count, number}} litery v části {{lesson}}.",
+    "letters_many": "Dokončili jste {{count, number}} litery v části {{lesson}}.",
+    "letters_one": "Dokončili jste {{count, number}} literu v části {{lesson}}.",
+    "letters_other": "Dokončili jste {{count, number}} liter v části {{lesson}}."
+  },
+  "review": {
+    "title": "Opakování",
+    "startCta": "Začít opakování",
+    "sessionTitle": "Opakování",
+    "completeTitle": "Opakování hotové",
+    "empty": {
+      "title": "Zatím není co opakovat",
+      "body": "Všechno, co spletete, se objeví tady. Zatím — co takhle nová litera?",
+      "cta": "Naučit se literu"
+    },
+    "forYou": "Opakování pro vás",
+    "sessionLength_few": "{{count, number}} krátká cvičení",
+    "sessionLength_many": "{{count, number}} krátkého cvičení",
+    "sessionLength_one": "{{count, number}} krátké cvičení",
+    "sessionLength_other": "{{count, number}} krátkých cvičení",
+    "needsPractice": "Chce procvičit",
+    "dueToday": "Na dnešek",
+    "savedWords": "Uložená slova",
+    "chooseMode": "Nebo si vyberte, co procvičit",
+    "comingUp": "Na řadě",
+    "outcome": "{{practised, number}} procvičeno · {{firstTry, number}} se vybavilo hned · {{comingBack, number}} se brzy vrátí",
+    "blank": "mezera",
+    "optionsLabel": "Odpovědi",
+    "showHint": "Dát nápovědu",
+    "right": "Přesně tak.",
+    "notQuite": "Ne tak úplně. Správně je to takhle.",
+    "mode": {
+      "read": "Čtení",
+      "listen": "Poslech",
+      "write": "Psaní"
+    },
+    "prompt": {
+      "read": "Co znamená tohle slovo?",
+      "readLetter": "Jaký zvuk dělá tahle litera?",
+      "listen": "Které slovo jste slyšeli?",
+      "listenLetter": "Co je to za literu?",
+      "context": "Které slovo sem patří?",
+      "write": "Napište tohle slovo",
+      "writeLetter": "Napište, co slyšíte",
+      "distinguish": "Která dělá tenhle zvuk?",
+      "produce": "Která to je?",
+      "listenMeaning": "Co to znamená?",
+      "build": "Složte slovo"
+    },
+    "nothingDue": "Teď není co opakovat.",
+    "modesEmpty": "Dnes v těchhle režimech nic není.",
+    "answerIs": "{{word}} znamená „{{meaning}}“.",
+    "showMoreHint": "Další nápovědu",
+    "showAnswer": "Ukázat odpověď",
+    "hint": {
+      "kind": "Je to {{pos}} — něco z kategorie {{category}}.",
+      "kindOnly": "Chybějící slovo je {{pos}}.",
+      "startsWith": "Začíná na {{start}}…",
+      "startsWithSound": "Začíná zvukem „{{sound}}“.",
+      "replay": "Přehrajte znovu — kolikrát chcete.",
+      "letterFamily": "Tahle litera je {{family}}.",
+      "letterExample": "Je to první litera slova {{word}}.",
+      "letterSound": "Zní jako „{{sound}}“.",
+      "reveal": "Odpověď je {{answer}}.",
+      "revealWord": "To slovo je {{answer}}.",
+      "revealLetter": "Ta litera je {{answer}}.",
+      "revealStrokes": "Podívejte se na tahy ještě jednou a pak je obtáhněte.",
+      "inSentence": "Používá se takhle: {{sentence}}"
+    },
+    "buildTray": "Slabiky",
+    "buildRemove": "Vrátit {{syllable}}"
+  },
+  "sounds": {
+    "title": "Když se zvuky potkají",
+    "blurb": "Proč se 학교 nevyslovuje tak, jak se píše.",
+    "intro": "Už přečtete každou literu. Korejština zapisuje díly, ze kterých je slovo složené, a některé z nich mění tam, kde se dotknou — pár slov proto zní jinak, než vypadá. Tady jsou ta, na která narazíte první.",
+    "written": "Píše se",
+    "said": "Vyslovuje se",
+    "note": "Nemusíte se to učit nazpaměť. Poslouchejte to a začne vám to znít samozřejmě.",
+    "name": {
+      "tensing": "Sevřenější druhý zvuk",
+      "aspiration": "Závan vzduchu",
+      "nasal": "Měkký nosový zvuk",
+      "lateral": "ㄴ a ㄹ vedle sebe",
+      "palatal": "ㄷ a ㅌ před 이",
+      "liaison": "Zvuk se přesune dál"
+    }
+  },
+  "mistakes": {
+    "title": "Chybné odpovědi",
+    "review_few": "Opakování · {{count}} otázky",
+    "review_many": "Opakování · {{count}} otázky",
+    "review_one": "Opakování · {{count}} otázka",
+    "review_other": "Opakování · {{count}} otázek",
+    "filterLabel": "Zobrazit",
+    "filter": {
+      "all": "Vše",
+      "character": "Litery",
+      "word": "Slova"
+    },
+    "youPut": "Vaše odpověď",
+    "answer": "Správně",
+    "times_few": "Spleteno {{count}}×",
+    "times_many": "Spleteno {{count}}×",
+    "times_one": "Spleteno {{count}}×",
+    "times_other": "Spleteno {{count}}×",
+    "clear": "S tímhle hotovo",
+    "noneOfKind": "Zrovna tu nic není.",
+    "emptyTitle": "Zatím nic neuteklo",
+    "emptyBody": "Když vám něco uteče, objeví se to tady, abyste to napravili.",
+    "emptyCta": "Na opakování"
+  },
+  "letterGroup": {
+    "basic_vowel": "základní samohláska",
+    "basic_consonant": "základní souhláska",
+    "compound_vowel": "složená samohláska",
+    "double_consonant": "zdvojená souhláska",
+    "final_consonant": "koncová souhláska",
+    "syllable": "celá slabika"
+  },
+  "nextStep": {
+    "title": "Připraveni na další krok",
+    "body": "Hangul už čtete. Mluvení a příprava na TOPIK pokračují v Hangyul.",
+    "cta": "Pokračovat v Hangyul",
+    "rowTitle": "Pokračovat v Hangyul",
+    "rowBody": "Mluvení a TOPIK, až budete chtít"
+  }
+}

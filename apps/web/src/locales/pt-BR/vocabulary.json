@@ -15,9 +15,6 @@
     "completeDetail_other": "{{count}} palavras aprendidas.",
     "more": "Um pouco mais",
     "allDone": "Nada mais por hoje.",
-    "remaining_one": "Falta uma hoje",
-    "remaining_many": "Faltam {{count}} hoje",
-    "remaining_other": "Faltam {{count}} hoje",
     "progressAria": "Progresso das palavras de hoje",
     "moreLabel": "Quantas a mais?",
     "moreCount_one": "mais 1",
@@ -107,7 +104,7 @@
   },
   "detail": {
     "title": "Palavra",
-    "pronunciation": "Pronúncia",
+    "romanization": "Romanização",
     "definition": "Mais sobre",
     "usage": "Como se usa",
     "synonyms": "Sinônimos",

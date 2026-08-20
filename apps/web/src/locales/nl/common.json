@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Leer Hangul, streep voor streep.",
+    "description": "Leer Hangul lezen en schrijven vanaf de allereerste letter — medeklinkers en klinkers, lettergreepblokken, handschrift en je eerste Koreaanse woorden."
+  },
+  "actions": {
+    "confirm": "Oké",
+    "close": "Sluiten",
+    "back": "Terug",
+    "goHome": "Naar het startscherm",
+    "done": "Klaar",
+    "save": "Bewaren",
+    "saved": "Bewaard"
+  },
+  "a11y": {
+    "skipToContent": "Ga naar de inhoud",
+    "currentPage": "(huidige pagina)",
+    "confirmationRequired": "Deze actie moet je bevestigen."
+  },
+  "audio": {
+    "play": "Beluister de uitspraak van {{text}}",
+    "retry": "Speel {{text}} nog eens af",
+    "unavailable": "Geen opname voor {{text}}"
+  },
+  "progress": {
+    "lesson": "Voortgang in {{name}}",
+    "review": "Voortgang in deze herhaling"
+  },
+  "units": {
+    "day_one": "{{count, number}} dag",
+    "day_other": "{{count, number}} dagen"
+  },
+  "report": {
+    "action": "Probleem melden",
+    "title": "Wat klopt er niet?",
+    "blurb": "Kies wat er misgaat, dan openen we een e-mail die je zelf kunt aanvullen. Er gaat niets over je voortgang mee.",
+    "field": {
+      "item": "Item",
+      "category": "Probleem",
+      "version": "Appversie",
+      "language": "Taal"
+    },
+    "writeHere": "Schrijf hier wat je opviel:",
+    "category": {
+      "meaning": "De betekenis",
+      "example": "De voorbeeldzin",
+      "translation": "De vertaling",
+      "audio": "De audio",
+      "writing": "De schrijfbeoordeling",
+      "other": "Iets anders"
+    }
+  },
+  "exit": {
+    "title": "Hangyul ganada verlaten?",
+    "body": "Je voortgang is bewaard. Je pakt de draad zo weer op.",
+    "stay": "Blijven",
+    "leave": "Verlaten"
+  }
+}

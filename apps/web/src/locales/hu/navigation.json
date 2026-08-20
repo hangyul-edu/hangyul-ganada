@@ -1,0 +1,10 @@
+{
+  "primary": "Főmenü",
+  "tabs": {
+    "home": "Kezdőlap",
+    "letters": "Betűk",
+    "words": "Szavak",
+    "review": "Ismétlés",
+    "profile": "Tanulásom"
+  }
+}

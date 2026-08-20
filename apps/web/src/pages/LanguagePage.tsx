@@ -2,6 +2,8 @@ import { useDeferredValue, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import { WORD_COPY_LOCALES } from '../data/wordCopy';
+import { flagFor } from '../i18n/flags';
 import { localeMatches, useLocale } from '../i18n';
 import { AppHeader } from '../ui/AppHeader';
 import { CheckIcon, SearchIcon } from '../ui/icons';
@@ -81,6 +83,7 @@ export function LanguagePage() {
           <ul className={styles.list} aria-label={t('settings:language.listAria')}>
             {results.map((entry) => {
               const selected = entry.code === locale;
+              const flag = flagFor(entry.code);
               return (
                 <li key={entry.code}>
                   <button
@@ -89,6 +92,26 @@ export function LanguagePage() {
                     onClick={() => void choose(entry.code)}
                     aria-pressed={selected}
                   >
+                    {/*
+                      The flag, decorative and nothing more.
+
+                      `alt=""` and `aria-hidden` because the row is already
+                      named by the language: a screen reader that read "flag of
+                      South Korea, 한국어, Korean" would be announcing the same
+                      row three times, and the flag is the one of the three that
+                      is not actually a fact about the language. Sighted readers
+                      get a mark that makes thirty-two rows scannable; everyone
+                      else loses nothing.
+
+                      Fixed box, `object-fit: contain`: the assets are all 20×13
+                      today and a refreshed pack with one 4:3 flag in it must not
+                      make one row taller than the rest.
+                    */}
+                    {flag ? (
+                      <img className={styles.flag} src={flag} alt="" aria-hidden="true" />
+                    ) : (
+                      <span className={styles.flagBlank} aria-hidden="true" />
+                    )}
                     <span className={styles.names}>
                       {/*
                        * <bdi> rather than dir= on the span: a right-to-left
@@ -107,8 +130,32 @@ export function LanguagePage() {
                           <bdi>{entry.englishName}</bdi>
                         </span>
                       )}
+                      {/*
+                        Said on the row, not only in the note at the foot.
+
+                        Every language here has a translated interface and a
+                        translated alphabet course; twenty-two of them do not
+                        yet have the 2,581 word meanings, and fall back to
+                        English on the word cards. A learner deserves to know
+                        that before they choose, and a blanket "some text may
+                        be in English" at the bottom of the list tells the ten
+                        complete languages the same thing as the twenty-two
+                        incomplete ones, which is a way of telling nobody.
+                      */}
+                      {!WORD_COPY_LOCALES.includes(entry.code) && (
+                        <span className={styles.partial}>
+                          {t('settings:language.wordsInEnglish')}
+                        </span>
+                      )}
                     </span>
-                    <span className={styles.code}>{entry.code}</span>
+                    {/*
+                      The BCP-47 tag used to sit here, in a column of its own:
+                      EN, PT-BR, ZH-CN. It is a developer's identifier printed
+                      on a customer's screen — it told a learner nothing they
+                      could act on, and at thirty-two rows it was a column of
+                      noise beside the only thing on the row they can read. It
+                      is still searchable; it is no longer displayed.
+                    */}
                     {selected && (
                       <span className={styles.check}>
                         <CheckIcon size={16} />

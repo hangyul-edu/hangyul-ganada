@@ -1,0 +1,38 @@
+{
+  "streak": {
+    "aria": "O‘qish yozuvingizni ko‘ring"
+  },
+  "celebrate": "Bugungi maqsad bajarildi. Barakalla.",
+  "dailyGoal": "Bugungi harflar",
+  "dailyGoalAria": "Bugungi harflar: {{total, number}} tadan {{done, number}} ta",
+  "cta": {
+    "start": "Hoziroq boshlang",
+    "continue": "O‘rganishda davom eting"
+  },
+  "finished": {
+    "badge": "Tugallandi",
+    "title": "Endi hangulni o‘qiy olasiz",
+    "body": "Barcha {{count, number}} harf — ko‘rildi, yozildi va o‘qib tanildi. Bundan keyin so‘zlar.",
+    "goal": "Bugungi so‘zlar",
+    "cta": "Bugungi so‘zlar"
+  },
+  "quick": {
+    "letters": "Harflar",
+    "lettersCaption": "hangulning 40 harfidan",
+    "words": "So‘zlar",
+    "wordsCaption": "bugungi so‘zlar"
+  },
+  "review": {
+    "title": "Takrorlash",
+    "count_one": "{{count, number}} ta takrorlanadi",
+    "count_other": "{{count, number}} ta takrorlanadi",
+    "empty": "Hozircha takrorlaydigan narsa yo‘q"
+  },
+  "practice": {
+    "title": "Bugungi mashq",
+    "reviews_one": "{{count, number}} ta takrorlash tayyor",
+    "reviews_other": "{{count, number}} ta takrorlash tayyor",
+    "cta": "Mashqni boshlash"
+  },
+  "purpose": "Koreys tilini eng birinchi harfdan o‘rganing — avval hangul, keyin haqiqatan ishlatadigan so‘zlaringiz."
+}

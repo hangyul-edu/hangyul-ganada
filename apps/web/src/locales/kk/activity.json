@@ -1,0 +1,89 @@
+{
+  "title": "Оқу белсенділігі",
+  "streak": {
+    "caption": "Кез келген жаттығу оны жалғастырады — әріпті аяқтаудың қажеті жоқ.",
+    "longest": "Ең ұзақ тізбек",
+    "totalDays": "Жаттыққан күндер",
+    "totalTime": "Жалпы уақыт",
+    "unit_one": "күн қатарынан",
+    "unit_other": "күн қатарынан"
+  },
+  "chart": {
+    "title": "Белсенділік",
+    "rangeAria": "Уақыт аралығын таңдаңыз",
+    "aria": "Күнделікті жаттығу",
+    "noneYet": "Бұл аралықта әзірге жаттығу жоқ.",
+    "range": {
+      "7": "7 күн",
+      "30": "30 күн",
+      "90": "3 ай",
+      "0": "Бәрі"
+    }
+  },
+  "calendar": {
+    "previous": "Өткен ай",
+    "next": "Келесі ай",
+    "less": "Азырақ",
+    "more": "Көбірек",
+    "dayAria_one": "{{date}}: {{count, number}} әрекет",
+    "dayAria_other": "{{date}}: {{count, number}} әрекет"
+  },
+  "day": {
+    "time": "Оқу уақыты",
+    "attempts": "Жазу әрекеттері",
+    "correct": "Дұрыс",
+    "charactersLearned": "Аяқталған әріптер",
+    "wordsLearned": "Аяқталған сөздер",
+    "reviews": "Қайталау әрекеттері",
+    "nothing": "Бұл күні жаттығу болмаған."
+  },
+  "insights": {
+    "title": "Көзге түсетіні",
+    "mostPractisedCharacter": "Ең көп жаттыққан әріп",
+    "mostPractisedWord": "Ең көп жаттыққан сөз",
+    "accuracy": "Жазу дәлдігі",
+    "thisWeek": "Осы аптада",
+    "learnedCount_one": "{{count, number}} аяқталды",
+    "learnedCount_other": "{{count, number}} аяқталды"
+  },
+  "units": {
+    "minute_one": "{{count, number}} мин",
+    "minute_other": "{{count, number}} мин",
+    "hour_one": "{{count, number}} сағ",
+    "hour_other": "{{count, number}} сағ"
+  },
+  "empty": {
+    "title": "Оқу тарихыңыз бүгіннен басталады",
+    "body": "Бірнеше әріпті жаттығыңыз — бұл бет толады: қай күндері оқығаныңыз, қанша уақыт және немен жұмыс істегеніңіз."
+  },
+  "week": {
+    "title": "Осы аптада",
+    "range": "{{from}} бастап",
+    "days": "Оқыған күндер",
+    "daysValue_one": "7 ішінен {{count, number}}",
+    "daysValue_other": "7 ішінен {{count, number}}",
+    "time": "Уақыт",
+    "learned": "Үйренілді",
+    "accuracy": "Дәлдік",
+    "same": "Өткен аптадағыдай уақыт.",
+    "moreThanLast": "Өткен аптадан {{minutes, number}} минут көп.",
+    "lessThanLast": "Өткен аптадан {{minutes, number}} минут аз.",
+    "quiet": "Осы аптада әзірге ештеңе жоқ — уақыт бар."
+  },
+  "memory": {
+    "title": "Есте сақтау қалай",
+    "firstTry": "Осы аптада {{count, number}} нәрсені бірінші әрекеттен есіңізге түсірдіңіз.",
+    "strongestSkill": "Осы аптада ең мықтысы — {{skill}}.",
+    "confusionImproving": "{{a}} мен {{b}} айыру жеңілдеп келеді.",
+    "skill": {
+      "reading_recognition": "оқу",
+      "listening_recognition": "тыңдау",
+      "guided_writing": "жазу",
+      "meaning_recognition": "мағына",
+      "sentence_comprehension": "сөйлемдер",
+      "sound_recognition": "дыбыстар",
+      "visual_recognition": "әріптер",
+      "lookalike_discrimination": "ұқсастарды ажырату"
+    }
+  }
+}

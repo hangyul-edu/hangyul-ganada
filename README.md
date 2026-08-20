@@ -23,7 +23,7 @@ see a letter ─▶ hear it ─▶ understand it ─▶ trace it ─▶ write it
 | Vocabulary | 2,581 words across 18 semantic categories, all open from the start |
 | Pronunciation | 5,275 utterances × 2 voices at 0.82×, 48.7 MB, bundled |
 | Practice typefaces | 6, all SIL OFL 1.1 |
-| Interface languages | 10 |
+| Interface languages | 32; word meanings in 10 of them, English elsewhere and said so |
 
 The learner traces a character in the typeface of their choice, and the drawing
 is compared against the real glyph geometry. Writing something that is not the

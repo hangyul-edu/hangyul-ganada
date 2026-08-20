@@ -125,21 +125,46 @@ function bieup(left: number, right: number): StrokeStep[] {
   ];
 }
 
-/** The two falling strokes of a ㅅ. The second starts on the first. */
+/**
+ * The two falling strokes of a ㅅ. The second starts **on** the first.
+ *
+ * Where it starts is a fraction of the fall rather than a fixed drop, because
+ * ㅈ borrows this pair under a lid and its legs are shorter: a drop measured in
+ * box units put the branch a third of the way down a ㅅ and nearly half of the
+ * way down a ㅈ. The x follows from the y — the branch point has to sit on the
+ * first stroke, and the first stroke is a straight line from the apex.
+ */
 function siot(apexX: number, left: number, right: number, top = 16): StrokeStep[] {
+  const bottom = 84;
+  const branch = 0.32;
   return [
     stroke([
       [apexX, top],
-      [left, 84],
+      [left, bottom],
     ]),
     stroke([
-      [apexX - (apexX - left) * 0.3, top + 22],
-      [right, 84],
+      [apexX - (apexX - left) * branch, top + (bottom - top) * branch],
+      [right, bottom],
     ]),
   ];
 }
 
-/** The three strokes of a ㅈ: the lid, then the two falling strokes under it. */
+/**
+ * The three strokes of a ㅈ: the lid, then the ㅅ under it.
+ *
+ * The two falling strokes are `siot`'s, not a second pair authored here, and
+ * that is the correction rather than a tidy-up. They used to be written as two
+ * lines leaving the *same* point under the lid, which is how the letter is
+ * drawn in a diagram and not how it is written: the right-falling stroke starts
+ * **on** the left-falling one, a little below the fork, exactly as it does in ㅅ.
+ *
+ * Authoring both from one point split the trunk above the fork down its middle
+ * — half a stroke's width to each leg — so the leg written first carried a
+ * hairline of the trunk up to the lid while the leg it belongs to was still
+ * grey. Every ㅈ, ㅊ, ㅉ and syllable built from them had it. Sharing `siot`
+ * makes the two letters agree about a shape they share, which is also why the
+ * defect could exist: ㅅ never had it.
+ */
 function jieut(left: number, right: number, lidY = 26): StrokeStep[] {
   const middle = (left + right) / 2;
   return [
@@ -147,14 +172,7 @@ function jieut(left: number, right: number, lidY = 26): StrokeStep[] {
       [left, lidY],
       [right, lidY],
     ]),
-    stroke([
-      [middle, lidY],
-      [left + 4, 84],
-    ]),
-    stroke([
-      [middle, lidY],
-      [right - 2, 84],
-    ]),
+    ...siot(middle, left + 4, right - 2, lidY),
   ];
 }
 

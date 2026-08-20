@@ -337,12 +337,12 @@ export function ReviewSessionPage() {
               fontWeight={font.weight}
               grading={gradingFor(font)}
               /*
-                The light guide, the same as ordinary practice. A review is a
-                reminder, not an exam: the learner is here because this has not
-                been written for a while, and taking the model away would turn
-                "let's keep this fresh" into "prove you still know it".
+                The model is on the paper here exactly as it is in a lesson. A
+                review is a reminder, not an exam: the learner is here because
+                this has not been written for a while, and taking the model away
+                would turn "let's keep this fresh" into "prove you still know
+                it".
               */
-              guide="light"
               showGrid={state.settings.show_grid}
               showCenterCrosshair={state.settings.show_center_crosshair}
               status={writeStatus}

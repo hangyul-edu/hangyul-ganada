@@ -1,0 +1,156 @@
+{
+  "title": "تعلّم الكلمات",
+  "today": {
+    "title": "كلمات اليوم",
+    "start": "ابدأ",
+    "resume": "واصِل",
+    "startBlurb_few": "مجموعة قصيرة من {{count}} كلمات.",
+    "startBlurb_many": "مجموعة قصيرة من {{count}} كلمة.",
+    "startBlurb_one": "كلمة واحدة اليوم.",
+    "startBlurb_other": "مجموعة قصيرة من {{count}} كلمة.",
+    "startBlurb_two": "كلمتان اليوم.",
+    "startBlurb_zero": "لا كلمات اليوم.",
+    "resumeBlurb": "أكمل من حيث توقفت.",
+    "doneBlurb": "انتهيت لليوم. عمل جميل.",
+    "completeTitle": "انتهت كلمات اليوم.",
+    "completeDetail_few": "تعلّمت {{count}} كلمات.",
+    "completeDetail_many": "تعلّمت {{count}} كلمة.",
+    "completeDetail_one": "تعلّمت كلمة واحدة.",
+    "completeDetail_other": "تعلّمت {{count}} كلمة.",
+    "completeDetail_two": "تعلّمت كلمتين.",
+    "completeDetail_zero": "لم تتعلّم أي كلمة.",
+    "more": "قليلًا بعد",
+    "allDone": "لم يبقَ شيء لليوم.",
+    "progressAria": "تقدّمك في كلمات اليوم",
+    "moreLabel": "كم كلمة إضافية",
+    "moreCount_few": "{{count}} كلمات إضافية",
+    "moreCount_many": "{{count}} كلمة إضافية",
+    "moreCount_one": "كلمة إضافية",
+    "moreCount_other": "{{count}} كلمة إضافية",
+    "moreCount_two": "كلمتان إضافيتان",
+    "moreCount_zero": "بلا إضافة"
+  },
+  "browse": {
+    "title": "تصفَّح حسب الموضوع",
+    "showing": "معروض {{shown}} من {{total}}"
+  },
+  "intro": {
+    "example": "مثال",
+    "howItSounds": "كيف تُنطق",
+    "surfaceNote": "في هذه الجملة تظهر {{headword}} بصيغة {{form}}.",
+    "next": "فهمت"
+  },
+  "empty": {
+    "title": "لا كلمات هنا بعد",
+    "body": "جرّب فئة أخرى."
+  },
+  "partOfSpeech": {
+    "noun": "اسم",
+    "verb": "فعل",
+    "adjective": "صفة",
+    "adverb": "ظرف",
+    "pronoun": "ضمير",
+    "numeral": "عدد",
+    "particle": "أداة",
+    "interjection": "أداة تعجّب",
+    "determiner": "أداة تعريف"
+  },
+  "session": {
+    "next": "الكلمة التالية",
+    "finish": "إنهاء"
+  },
+  "blurb": "كل الكلمات متاحة. اختر فئة وابدأ من حيث تشاء.",
+  "categories": {
+    "essentials": "أساسيات يومية",
+    "people": "الناس والعائلة",
+    "food": "الطعام والشراب",
+    "animals-nature": "الحيوان والطبيعة",
+    "home": "البيت وأشياؤه",
+    "body-health": "الجسم والصحة",
+    "places-travel": "الأماكن والسفر",
+    "time-numbers": "الوقت والأرقام",
+    "school-work": "الدراسة والعمل",
+    "money-shopping": "المال والتسوّق",
+    "communication": "الكلام والإعلام",
+    "feelings": "المشاعر والطباع",
+    "thinking": "التفكير والتعلّم",
+    "movement": "الذهاب والإياب",
+    "actions": "أفعال يومية",
+    "describing": "وصف الأشياء",
+    "society": "الحياة والثقافة",
+    "how-when": "الكيف والمتى"
+  },
+  "category": {
+    "label": "الفئة",
+    "all": "كل الفئات",
+    "pick": "اختر فئة",
+    "count_few": "{{count, number}} كلمات",
+    "count_many": "{{count, number}} كلمة",
+    "count_one": "كلمة واحدة",
+    "count_other": "{{count, number}} كلمة",
+    "count_two": "كلمتان",
+    "count_zero": "لا كلمات",
+    "progressAria": "تقدّمك في {{category}}"
+  },
+  "search": {
+    "placeholder": "ابحث في الكلمات",
+    "label": "ابحث في المفردات",
+    "count_few": "{{count, number}} نتائج",
+    "count_many": "{{count, number}} نتيجة",
+    "count_one": "نتيجة واحدة",
+    "count_other": "{{count, number}} نتيجة",
+    "count_two": "نتيجتان",
+    "count_zero": "لا نتائج",
+    "none": "لا شيء يطابق «{{query}}». جرّب الكورية، أو المعنى بلغتك."
+  },
+  "sound": {
+    "tensing": "بعد صامت ختامي، يشتدّ الصوت الذي يليه.",
+    "aspiration": "يندمج ㅎ مع الصامت التالي فيضيف نفخة هواء.",
+    "nasal": "قبل ㄴ أو ㅁ، يصير الصامت السابق أنفيًا.",
+    "lateral": "ㄴ و ㄹ متجاورين يصيران كلاهما ㄹ.",
+    "palatal": "ㄷ أو ㅌ ختاميًا قبل 이 يُنطق مثل ㅈ أو ㅊ.",
+    "liaison": "الصامت الختامي ينزلق إلى المربّع التالي."
+  },
+  "save": {
+    "action": "حفظ",
+    "saved": "محفوظة",
+    "add": "احفظ {{word}}",
+    "remove": "أزل {{word}} من المحفوظات"
+  },
+  "detail": {
+    "title": "كلمة",
+    "romanization": "بالحروف اللاتينية",
+    "definition": "المزيد عنها",
+    "usage": "كيف تُستعمل",
+    "synonyms": "مرادفات",
+    "antonyms": "أضداد"
+  },
+  "saved": {
+    "title": "الكلمات المحفوظة",
+    "review_few": "مراجعة · {{count}} أسئلة",
+    "review_many": "مراجعة · {{count}} سؤالًا",
+    "review_one": "مراجعة · سؤال واحد",
+    "review_other": "مراجعة · {{count}} سؤال",
+    "review_two": "مراجعة · سؤالان",
+    "review_zero": "مراجعة · لا أسئلة",
+    "searchPlaceholder": "ابحث في المحفوظات",
+    "searchLabel": "ابحث في كلماتك المحفوظة",
+    "orderLabel": "الترتيب",
+    "order": {
+      "recent": "الأحدث",
+      "alphabetical": "أ–ي",
+      "needed": "تحتاج تمرينًا"
+    },
+    "count_few": "{{count}} كلمات",
+    "count_many": "{{count}} كلمة",
+    "count_one": "كلمة واحدة",
+    "count_other": "{{count}} كلمة",
+    "count_two": "كلمتان",
+    "count_zero": "لا كلمات",
+    "remove": "إزالة",
+    "noMatch": "لا شيء في المحفوظات يطابق «{{query}}».",
+    "emptyTitle": "لا كلمات محفوظة بعد",
+    "emptyBody": "اضغط علامة الحفظ على أي كلمة أثناء الدراسة، وستجدها هنا حين تعود إليها.",
+    "emptyCta": "إلى الكلمات"
+  }
+}

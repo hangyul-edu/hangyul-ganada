@@ -15,7 +15,7 @@
     "prompt": {
       "write": "Écrivez-la au doigt en suivant le guide."
     },
-    "nowRead": "À vous de la lire",
+    "nowRecognise": "Une question",
     "continue": "Suivant"
   },
   "complete": {

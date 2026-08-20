@@ -1,0 +1,61 @@
+{
+  "brand": {
+    "tagline": "Učte se hangul, tah po tahu.",
+    "description": "Naučte se číst a psát hangul od úplně první litery — souhlásky a samohlásky, slabičné bloky, psaní rukou a první korejská slova."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Zavřít",
+    "back": "Zpět",
+    "goHome": "Na domovskou obrazovku",
+    "done": "Hotovo",
+    "save": "Uložit",
+    "saved": "Uloženo"
+  },
+  "a11y": {
+    "skipToContent": "Přejít na obsah",
+    "currentPage": "(aktuální stránka)",
+    "confirmationRequired": "Tuto akci je potřeba potvrdit."
+  },
+  "audio": {
+    "play": "Poslechnout si výslovnost slova {{text}}",
+    "retry": "Přehrát {{text}} znovu",
+    "unavailable": "Pro {{text}} není nahrávka"
+  },
+  "progress": {
+    "lesson": "Postup v části {{name}}",
+    "review": "Postup v tomto opakování"
+  },
+  "units": {
+    "day_few": "{{count, number}} dny",
+    "day_many": "{{count, number}} dne",
+    "day_one": "{{count, number}} den",
+    "day_other": "{{count, number}} dní"
+  },
+  "report": {
+    "action": "Nahlásit problém",
+    "title": "Co je špatně?",
+    "blurb": "Vyberte, co vypadá špatně, a otevřeme e-mail, který dopíšete. Nic o vašem učení se k němu nepřikládá.",
+    "field": {
+      "item": "Položka",
+      "category": "Problém",
+      "version": "Verze aplikace",
+      "language": "Jazyk"
+    },
+    "writeHere": "Napište sem, čeho jste si všimli:",
+    "category": {
+      "meaning": "Význam",
+      "example": "Vzorová věta",
+      "translation": "Překlad",
+      "audio": "Zvuk",
+      "writing": "Hodnocení psaní",
+      "other": "Něco jiného"
+    }
+  },
+  "exit": {
+    "title": "Opustit Hangyul ganada?",
+    "body": "Postup je uložený. Navážete tam, kde jste skončili.",
+    "stay": "Zůstat",
+    "leave": "Odejít"
+  }
+}

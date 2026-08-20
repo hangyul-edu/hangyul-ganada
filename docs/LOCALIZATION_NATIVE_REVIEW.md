@@ -4,40 +4,90 @@
 exists, that its placeholders survived, and that it is not a copy of the
 English. It cannot prove that a sentence reads naturally to somebody who grew up
 speaking the language. Those are different claims, and this file keeps them
-apart, because a product that says "10 languages" and means "10 languages that
+apart, because a product that says "32 languages" and means "32 languages that
 have been through a machine" is making the more impressive of the two claims and
 delivering the other one.
 
-Nothing here is marked native-reviewed. No locale has been read by a native
-speaker for this release.
+Nothing here is marked native-reviewed. **No locale has been read by a native
+speaker for this release** — not one of the thirty-two, including the two the
+product is about. That sentence is the point of the document and no table below
+softens it.
 
 ---
 
-## 1. Interface copy
+## 1. What "supported" means, exactly
 
-All 554 interface strings, in all ten languages.
+The app ships thirty-two interface languages. They are not all supported to the
+same depth, and the difference is visible to a learner, so it is stated here and
+on the language picker itself rather than only here.
 
-| Locale | Language | Keys | Automated QA | Native review |
-| --- | --- | --- | --- | --- |
-| `en` | English | 554 / 554 | pass — source language | source |
-| `ko` | 한국어 | 554 / 554 | pass | **not reviewed** |
-| `ja` | 日本語 | 554 / 554 | pass | **not reviewed** |
-| `zh-CN` | 简体中文 | 554 / 554 | pass | **not reviewed** |
-| `es` | Español | 554 / 554 | pass | **not reviewed** |
-| `fr` | Français | 554 / 554 | pass | **not reviewed** |
-| `de` | Deutsch | 554 / 554 | pass | **not reviewed** |
-| `pt-BR` | Português (Brasil) | 554 / 554 | pass | **not reviewed** |
-| `vi` | Tiếng Việt | 554 / 554 | pass | **not reviewed** |
-| `th` | ไทย | 554 / 554 | pass | **not reviewed** |
+Three layers, and each is a separate claim:
+
+| Layer | What it covers | Languages complete |
+| --- | --- | --- |
+| **Interface** | every screen, button, label, empty state, error and accessibility string | 32 / 32 |
+| **Alphabet course** | 15 lesson titles, 12 unit introductions, 73 letters' sound hints and mnemonics, 12 quotations, 6 typeface descriptions | 32 / 32 |
+| **Vocabulary** | 2,581 word meanings, parts of speech, example translations | 10 / 32 |
+
+A learner in one of the twenty-two languages without a vocabulary pack sees a
+completely translated app with English word meanings on the word cards. That is
+said on the row in the language picker before they choose it
+(`settings:language.wordsInEnglish`), said again at the foot of the picker, and
+marked in the markup itself: `LocalizedText` stamps the run with the `lang` and
+`dir` it is actually in, so the bidi algorithm and the screen reader both get
+the truth rather than a guess.
+
+## 2. Interface copy
+
+Every interface string, in every language. The key count differs by language
+because plural categories do: Arabic writes six forms of a counted noun, Russian
+and Polish four, Korean and Japanese one, and the bundle carries whichever the
+language actually uses rather than whichever English needs.
+
+| Locale | Language | Keys | Plural forms | Vocabulary pack | Native review |
+| --- | --- | --- | --- | --- | --- |
+| `ar` | العربية | 667 | 6 | **English** | **not reviewed** |
+| `bn` | বাংলা | 555 | 2 | **English** | **not reviewed** |
+| `cs` | Čeština | 611 | 4 | **English** | **not reviewed** |
+| `de` | Deutsch | 555 | 2 | yes | **not reviewed** |
+| `el` | Ελληνικά | 555 | 2 | **English** | **not reviewed** |
+| `en` | English | 555 | 2 | yes | source |
+| `es` | Español | 583 | 3 | yes | **not reviewed** |
+| `fil` | Filipino | 555 | 2 | **English** | **not reviewed** |
+| `fr` | Français | 583 | 3 | yes | **not reviewed** |
+| `hi` | हिन्दी | 555 | 2 | **English** | **not reviewed** |
+| `hu` | Magyar | 555 | 2 | **English** | **not reviewed** |
+| `id` | Bahasa Indonesia | 527 | 1 | **English** | **not reviewed** |
+| `it` | Italiano | 583 | 3 | **English** | **not reviewed** |
+| `ja` | 日本語 | 530 | 1 | yes | **not reviewed** |
+| `kk` | Қазақ тілі | 555 | 2 | **English** | **not reviewed** |
+| `ko` | 한국어 | 530 | 1 | yes | **not reviewed** |
+| `ky` | Кыргызча | 555 | 2 | **English** | **not reviewed** |
+| `mn` | Монгол хэл | 555 | 2 | **English** | **not reviewed** |
+| `nl` | Nederlands | 555 | 2 | **English** | **not reviewed** |
+| `pl` | Polski | 611 | 4 | **English** | **not reviewed** |
+| `pt-BR` | Português (Brasil) | 583 | 3 | yes | **not reviewed** |
+| `ro` | Română | 583 | 3 | **English** | **not reviewed** |
+| `ru` | Русский | 611 | 4 | **English** | **not reviewed** |
+| `sv` | Svenska | 555 | 2 | **English** | **not reviewed** |
+| `ta` | தமிழ் | 555 | 2 | **English** | **not reviewed** |
+| `te` | తెలుగు | 555 | 2 | **English** | **not reviewed** |
+| `th` | ไทย | 555 | 1 | yes | **not reviewed** |
+| `tr` | Türkçe | 555 | 2 | **English** | **not reviewed** |
+| `uk` | Українська | 611 | 4 | **English** | **not reviewed** |
+| `uz` | O‘zbekcha | 555 | 2 | **English** | **not reviewed** |
+| `vi` | Tiếng Việt | 555 | 1 | yes | **not reviewed** |
+| `zh-CN` | 简体中文 | 530 | 1 | yes | **not reviewed** |
 
 What "automated QA pass" covers, via `npm run i18n:check` and
-`npm run copy:audit:check`:
+`npm run copy:audit:check` — which run over all thirty-two:
 
 - no missing key, in any namespace
 - no value byte-identical to the English one, except where the identity is
   deliberate and recorded per locale (`COGNATES` in `scripts/i18n-report.mjs`)
-- every plural category the language actually has
+- every plural category the language actually has, from `Intl.PluralRules`
 - every interpolation placeholder in the source present in the translation
+- no hint that contains its own answer, in any language (`hints.test.ts`)
 - no forbidden claim in any language — nothing calls itself official, nothing
   cites a TOPIK grade outside the hand-off card, nothing names the storage
   engine at a learner
@@ -46,55 +96,62 @@ What it does not cover, and cannot: register, idiom, whether a button label is
 the verb a speaker of that language would actually use, whether an
 encouragement sounds encouraging or arch.
 
-## 2. Curriculum content
+## 3. Curriculum content
 
 Content is not in the translation bundles — it lives with the curriculum — so
-`i18n:check` never saw it. Two gaps were found by looking at the running app in
-Thai, not by any check:
+`i18n:check` never sees it, and a 100% key report says nothing about it. This
+is the surface that has twice shipped in English under a fully translated
+interface, so each piece now has a test that reads `AVAILABLE_LOCALES` rather
+than a hand-written list of languages:
 
-| Content | Coverage before | Coverage now |
+| Content | Where | Guarded by |
 | --- | --- | --- |
-| Lesson titles (15) | `en`, `ko` only | all 10 |
-| Letter copy — sound hint and mnemonic (73) | 8 locales | all 10 |
-| Learning quotations (12) and their attributions | 8 locales | all 10 |
+| Lesson titles (15) | `data/characters.ts` | "titles every lesson in every shipping locale, with no fallback" |
+| Letter sound hints and mnemonics (73) | `data/characterCopy.ts` | "explains every letter in every shipping locale, with no fallback" |
+| Mnemonic presence | both | "keeps a mnemonic present or absent in every language alike" |
+| Quotations and attributions (12) | `data/quotes.ts` | "carries a quotation in every language the product ships" |
+| Typeface names and descriptions (6) | `data/fonts.ts` | "names and describes every practice typeface in every shipping locale" |
+| Unit vs lesson heading agreement | both | "calls a unit the same thing in its heading and on its card" |
 
-The lesson-title gap means **`ja`, `zh-CN`, `es`, `fr`, `de` and `pt-BR` have
-been showing English lesson headings on the home screen since the curriculum
-shipped**, in an app that reported 100% translation coverage. The checker was
-right about what it measured and was measuring the wrong surface.
+That last one is worth naming. A unit heading and the lesson card under it use
+the same phrase in English — *The e vowels*, *A letter at the foot* — and in
+twenty-eight of the thirty-two languages they had drifted into two different
+phrasings, printed three centimetres apart on the Letters screen. English had
+none, so nobody reading the app in English could see it.
 
-Vietnamese and Thai letter copy is written from the reader's own sound system
-rather than translated from the English, which in these two languages is a real
-gain and not a formality: ㅓ is simply *ơ* in Vietnamese and ㅡ is *ư*, where the
-English has to reach for "the o in song" and "lips flat and wide, no English
-equivalent". Thai has the same advantage with อือ.
+The letter copy is written from each reader's own sound system rather than
+translated from the English, which for several languages is a real gain and not
+a formality: ㅓ is simply *ơ* in Vietnamese and ㅡ is *ư*; Russian and Kazakh have
+ы for ㅡ; Turkish has ı; Thai has อือ — where the English has to reach for "the o
+in song" and "lips flat and wide, no English equivalent".
 
-## 3. Vocabulary meanings and example translations
+## 4. Vocabulary meanings and example translations
 
 | Locale | Words covered | Of | Source |
 | --- | --- | --- | --- |
 | `en` `ko` `ja` `zh-CN` `es` `fr` `de` `pt-BR` | 2,581 | 2,581 | the corpus entries; `pack.py` refuses an entry missing any of them |
 | `vi` | 2,581 | 2,581 | `content/vocabulary/copy/vi.json`, written by hand |
 | `th` | 2,581 | 2,581 | `content/vocabulary/copy/th.json`, written by hand |
+| the other 22 | 0 | 2,581 | **not written** — falls back to English, marked |
 
-All ten languages now carry a meaning and an example translation for every word
-that ships. Vietnamese and Thai got there last, and by a different route: the
-other seven are a property of every corpus entry and `pack.py` refuses an entry
-that is missing one, whereas these two are separate files keyed by word id, so
-a word with no line in them still builds and gets a `null` row.
+**The twenty-two are a stated gap, not an oversight and not a claim.** 2,581
+words × 22 languages is roughly 57,000 lines of meaning, part of speech and
+example translation. Writing them without a speaker of each language would
+produce exactly the machine-translation tone this document exists to refuse, at
+a scale where nobody could check it afterwards; shipping them would convert an
+honest, visible English fallback into 57,000 sentences that look authored. The
+fallback machinery is the correct behaviour in the meantime and is already
+built: `wordCopy` resolves a missing pack down the chain to English and reports
+`isFallback`, the interface renders the run marked with its real language, and
+the language picker says so before the learner picks the language.
 
-That fallback is still live and still correct — `wordCopy` resolves a null row
-down the chain to English and reports `isFallback`, which the interface renders
-marked with its source language. Nothing about finishing the coverage removed
-the machinery; a word added to the corpus tomorrow ships in eight languages and
-falls back in two until somebody writes those two lines. `npm run
-vocabulary:sense:qa` prints the count each run, so the number in this table is
-checkable rather than remembered.
+`npm run vocabulary:sense:qa` prints the covered count each run, so the number
+in this table is checkable rather than remembered.
 
-**Covered is not reviewed.** These 5,162 lines were written for this release and
-not read by a native speaker of either language, which is the whole subject of
-this document and is not changed by the coverage being complete. The specific
-risks, in order:
+**Covered is not reviewed.** The ten complete languages were written for this
+release and not read by a native speaker of any of them, which is the whole
+subject of this document and is not changed by the coverage being complete. The
+specific risks, in order:
 
 - **Register.** Korean example sentences are in 해요체 and the translations are
   written as ordinary polite speech, but Vietnamese and Thai both encode social
@@ -115,33 +172,76 @@ risks, in order:
   mattered the gloss says so, and there will be entries where it should and
   does not.
 
-## 4. Language-specific rendering
+## 5. Script and direction, checked by looking
 
-Checked by rendering the running app at 390 × 844 and looking at it.
+Rendered at 390 × 844 in a real browser and read, screen by screen — home,
+letters, words, one word card, review, my learning — not asserted by a test.
+
+**Arabic, and right-to-left as behaviour.** `dir="rtl"` is set on the document
+element from the resolved locale, so the whole layout mirrors: the tab bar
+reverses, chevrons point the way forward for the reader, cards align to the
+right edge, and progress bars fill from the right. Numerals and the Korean being
+taught stay left-to-right inside it — `<bdi>` and an explicit `dir="ltr"` on
+those runs — because a syllable block read right-to-left is a different
+syllable. The one thing right-to-left is *not* is a set of translated strings,
+and that is why this was verified on rendered screens.
+
+Two bugs were found this way and only this way:
+
+1. **A blank Arabic home screen.** `renderQuote` throws rather than falling back
+   when a quotation has no translation for the active locale, and it is mounted
+   inside Home — so the twelve untranslated quotations took the entire React
+   tree down. White page, no message. Fixed by translating all twelve into all
+   thirty-two, and guarded by a test that ties `QUOTE_LOCALES` to
+   `AVAILABLE_LOCALES` so adding a language without its quotations fails the
+   build instead of the app.
+2. **A tab bar stuck in English.** The interface strings for a stored language
+   arrive after the first paint. Every component that re-renders for any other
+   reason picks them up, because `t` reads the store when it is called — and the
+   bottom navigation, which has no state, no context and no changing props,
+   never re-renders, so it kept the English it resolved on frame one. Under a
+   fully Arabic home screen it read *Home / Letters / Words*. Fixed in
+   `LocaleProvider` and guarded by a test that renders memoised chrome with the
+   bundle deliberately absent at construction.
+
+A note on faces before the scripts. The interface asks for Pretendard and then
+the platform's own stack, and which of the two ends up drawing a given script is
+the platform's decision, not the app's — a phone, a desktop browser and this
+container all answer differently. So nothing below claims a typeface. What was
+checked is what a learner can see: that every mark composes, that nothing renders
+as a box, and that no line clips or overflows.
 
 **Thai.** Diacritics stack correctly above and below the line with no clipping
 at any size used in the interface, including the tab bar. Thai is not written
 with spaces between words, and nothing in the layout assumes it is — the app
-uses `text-wrap: pretty` and normal flow, never a per-word break. Pretendard
-carries no Thai, so Thai falls through the stack to the platform face, which is
-the correct outcome and needs no font download.
+uses `text-wrap: pretty` and normal flow, never a per-word break.
 
-**Vietnamese.** Every tone mark and diacritic renders, including stacked ones
-(ế, ữ, ợ). Pretendard covers Vietnamese, so it is set in the same face as the
-rest of the interface rather than falling back mid-sentence. Line height is
-unchanged from the other Latin locales and clears the tone marks.
+**Vietnamese.** Every tone mark and diacritic renders, including the stacked
+ones (ế, ữ, ợ), with no clipping against the line above.
 
-Neither language overflows a button or a card at the sizes used, and neither
-truncates in the tab bar.
+**Devanagari, Bengali, Tamil, Telugu.** Conjuncts, vowel signs above and below
+the line, and the Tamil and Telugu multi-part vowels all compose correctly and
+clear the line box; nothing clips in a card, a badge or the tab bar. Telugu and
+Tamil are also the tallest lines in the product and the Letters screen was read
+end to end in both.
 
-## 5. What a native review would have to cover
+**Greek and the Cyrillic five** (Russian, Ukrainian, Kazakh, Kyrgyz, Mongolian).
+Every letter renders, including the Kazakh and Kyrgyz letters that are not in the
+Russian alphabet (ә, ғ, қ, ң, ө, ұ, ү, һ, і). Russian, Ukrainian, Polish and
+Czech are also the longest of the thirty-two — "Значения слов на английском" is
+nearly twice its English — and nothing in the interface truncates or overflows
+at 390 px.
 
+**Chinese and Japanese.** No vertical clipping, and no mid-sentence change of
+face inside a run.
+
+## 6. What a native review would have to cover
 Per locale, in order of how much it would change:
 
 1. **Encouragement and feedback.** "That's it.", "Not quite. Here it is.",
    "Nice work!" — the strings a learner sees most, and the ones where a literal
    translation reads as a machine most quickly.
-2. **The hint ladder.** Ten languages × twelve hint templates, each of which has
+2. **The hint ladder.** Thirty-two languages × twelve hint templates, each of which has
    to be helpful without giving the answer away *in that language*. The
    automated check in `hints.test.ts` catches the mechanical failure — the
    answer appearing verbatim — and cannot judge whether the hint helps.
@@ -151,10 +251,10 @@ Per locale, in order of how much it would change:
    equivalent in most of these languages and are currently glossed with a
    parenthetical. A native speaker would know whether the parenthetical is how a
    learner's own language would say it.
-5. **Polysemous entries.** See §6 below — several are wrong in English before
+5. **Polysemous entries.** See §7 below — several are wrong in English before
    they are translated at all.
 
-## 6. Content defects found while translating, and what happened to them
+## 7. Content defects found while translating, and what happened to them
 
 Translating forces a reading of every gloss against its own example sentence,
 and eleven disagreed. All eleven were English-side defects: the other seven
@@ -186,13 +286,13 @@ The last three were found by finishing this translation, which is the argument
 for doing it: a translator working from the example sentence writes
 "electricity" beside a gloss that says "first period", and the disagreement has
 to be resolved before the line can be written. No automated check found any of
-the eleven, and none of the ones described in §1 could have.
+the eleven, and none of the ones described in §2 could have.
 
 파리 is not in the table and is not a defect of this kind: the gloss is "a fly"
 and the example is about the insect, so they agree. The city is a second sense
 the entry does not teach.
 
-## 7. The "More about it" section
+## 8. The "More about it" section
 
 `WordDetailPage` has a section headed *More about it*, and until this release it
 was filled by the build with the dictionary's second and third senses for the

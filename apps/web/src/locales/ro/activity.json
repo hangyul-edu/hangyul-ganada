@@ -1,0 +1,95 @@
+{
+  "title": "Activitatea de învățare",
+  "streak": {
+    "caption": "Orice exercițiu o ține în viață — nu trebuie să termini o literă.",
+    "longest": "Cea mai lungă serie",
+    "totalDays": "Zile de exercițiu",
+    "totalTime": "Timp total",
+    "unit_few": "zile la rând",
+    "unit_one": "zi la rând",
+    "unit_other": "de zile la rând"
+  },
+  "chart": {
+    "title": "Activitate",
+    "rangeAria": "Alege un interval de timp",
+    "aria": "Exercițiu pe zi",
+    "noneYet": "Încă niciun exercițiu în intervalul acesta.",
+    "range": {
+      "7": "7 zile",
+      "30": "30 de zile",
+      "90": "3 luni",
+      "0": "Tot"
+    }
+  },
+  "calendar": {
+    "previous": "Luna anterioară",
+    "next": "Luna următoare",
+    "less": "Mai puțin",
+    "more": "Mai mult",
+    "dayAria_few": "{{date}}: {{count, number}} încercări",
+    "dayAria_one": "{{date}}: {{count, number}} încercare",
+    "dayAria_other": "{{date}}: {{count, number}} de încercări"
+  },
+  "day": {
+    "time": "Timp de studiu",
+    "attempts": "Încercări de scris",
+    "correct": "Corecte",
+    "charactersLearned": "Litere terminate",
+    "wordsLearned": "Cuvinte terminate",
+    "reviews": "Încercări la recapitulare",
+    "nothing": "Niciun exercițiu în ziua aceasta."
+  },
+  "insights": {
+    "title": "Ce iese în evidență",
+    "mostPractisedCharacter": "Cea mai exersată literă",
+    "mostPractisedWord": "Cel mai exersat cuvânt",
+    "accuracy": "Precizia scrisului",
+    "thisWeek": "Săptămâna aceasta",
+    "learnedCount_few": "{{count, number}} terminate",
+    "learnedCount_one": "{{count, number}} terminată",
+    "learnedCount_other": "{{count, number}} terminate"
+  },
+  "units": {
+    "minute_few": "{{count, number}} min",
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_few": "{{count, number}} h",
+    "hour_one": "{{count, number}} h",
+    "hour_other": "{{count, number}} h"
+  },
+  "empty": {
+    "title": "Povestea învățării tale începe azi",
+    "body": "Exersează câteva litere și pagina aceasta se umple: zilele în care ai învățat, cât timp și la ce ai lucrat."
+  },
+  "week": {
+    "title": "Săptămâna aceasta",
+    "range": "De pe {{from}}",
+    "days": "Zile de studiu",
+    "daysValue_few": "{{count, number}} din 7",
+    "daysValue_one": "{{count, number}} din 7",
+    "daysValue_other": "{{count, number}} din 7",
+    "time": "Timp",
+    "learned": "Învățate",
+    "accuracy": "Precizie",
+    "same": "Același timp ca săptămâna trecută.",
+    "moreThanLast": "Cu {{minutes, number}} minute mai mult decât săptămâna trecută.",
+    "lessThanLast": "Cu {{minutes, number}} minute mai puțin decât săptămâna trecută.",
+    "quiet": "Săptămâna aceasta încă nimic — mai e timp."
+  },
+  "memory": {
+    "title": "Cum merge memoria",
+    "firstTry": "Săptămâna aceasta ți-ai amintit {{count, number}} lucruri din prima.",
+    "strongestSkill": "Săptămâna aceasta te descurci cel mai bine la {{skill}}.",
+    "confusionImproving": "{{a}} și {{b}} se deosebesc tot mai ușor.",
+    "skill": {
+      "reading_recognition": "citit",
+      "listening_recognition": "ascultat",
+      "guided_writing": "scris",
+      "meaning_recognition": "sensuri",
+      "sentence_comprehension": "propoziții",
+      "sound_recognition": "sunete",
+      "visual_recognition": "litere",
+      "lookalike_discrimination": "deosebirea celor asemănătoare"
+    }
+  }
+}

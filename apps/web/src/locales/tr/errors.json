@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "page": "O sayfayı bulamadık.",
+    "lesson": "O dersi bulamadık.",
+    "wordLesson": "O kelime setini bulamadık."
+  },
+  "generic": "Bir şeyler ters gitti. Bir daha dene."
+}

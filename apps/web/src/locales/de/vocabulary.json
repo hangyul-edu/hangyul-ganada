@@ -13,8 +13,6 @@
     "completeDetail_other": "{{count}} Wörter gelernt.",
     "more": "Noch ein wenig",
     "allDone": "Für heute ist nichts mehr da.",
-    "remaining_one": "Heute noch eins",
-    "remaining_other": "Heute noch {{count}}",
     "progressAria": "Fortschritt bei den Wörtern für heute",
     "moreLabel": "Wie viele noch?",
     "moreCount_one": "1 weiteres",
@@ -101,7 +99,7 @@
   },
   "detail": {
     "title": "Wort",
-    "pronunciation": "Aussprache",
+    "romanization": "Umschrift",
     "definition": "Mehr dazu",
     "usage": "So wird es benutzt",
     "synonyms": "Synonyme",

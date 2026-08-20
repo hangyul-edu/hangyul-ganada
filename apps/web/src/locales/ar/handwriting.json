@@ -1,0 +1,125 @@
+{
+  "actions": {
+    "undo": "تراجع",
+    "clear": "مسح",
+    "check": "تحقّق"
+  },
+  "canvas": {
+    "label": "مساحة كتابة {{character}}",
+    "empty": "لم تكتب شيئًا بعد.",
+    "strokes_few": "كتبت {{count, number}} خطوط.",
+    "strokes_many": "كتبت {{count, number}} خطًا.",
+    "strokes_one": "كتبت خطًا واحدًا.",
+    "strokes_other": "كتبت {{count, number}} خط.",
+    "strokes_two": "كتبت خطين.",
+    "strokes_zero": "لم تكتب أي خط."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "أحسنت!",
+      "perfect": "{{character}} — خط جميل.",
+      "scored": "شكل جيد — {{score, number(style: percent)}} من الطريق."
+    },
+    "empty": {
+      "headline": "لا شيء بعد",
+      "detail": "اكتب الحرف داخل المربّع."
+    },
+    "incomplete": {
+      "headline": "اقتربت",
+      "tooSmall": "صغير قليلًا. حاول ملء المربّع.",
+      "missingStroke": "ينقصك خط. اتبع النموذج إلى آخره."
+    },
+    "outside": {
+      "headline": "ليس تمامًا",
+      "tooLarge": "خرج عن المربّع. أصغر قليلًا في المرة القادمة.",
+      "strayStroke": "خط واحد شرد. اتبع الخط ببطء."
+    },
+    "scribble": {
+      "headline": "لنجرّب بهدوء أكثر",
+      "detail": "ارسم كل خط مرة واحدة بحركة متصلة — لا داعي لإعادة المرور عليه."
+    },
+    "mixed": {
+      "headline": "ليس تمامًا",
+      "detail": "حاذِه مع النموذج وجرّب مرة أخرى."
+    },
+    "retry": "حاول مرة أخرى",
+    "showDetails": "التفاصيل",
+    "hideDetails": "إخفاء التفاصيل",
+    "breakdown": "الفرق {{mismatch, number(style: percent)}} · خارج {{outside, number(style: percent)}} · ناقص {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "كيف يُكتب {{character}}، بـ{{count, number}} خطوط",
+    "diagramLabel_many": "كيف يُكتب {{character}}، بـ{{count, number}} خطًا",
+    "diagramLabel_one": "كيف يُكتب {{character}}، بخط واحد",
+    "diagramLabel_other": "كيف يُكتب {{character}}، بـ{{count, number}} خط",
+    "diagramLabel_two": "كيف يُكتب {{character}}، بخطين",
+    "diagramLabel_zero": "كيف يُكتب {{character}}",
+    "pause": "إيقاف",
+    "count_few": "{{count, number}} خطوط",
+    "count_many": "{{count, number}} خطًا",
+    "count_one": "خط واحد",
+    "count_other": "{{count, number}} خط",
+    "count_two": "خطان",
+    "count_zero": "بلا خطوط",
+    "heading": "شاهده وهو يُكتب",
+    "notesFooter": "ترتيب الخطوط لا يدخل في الدرجة، لكنه ما يجعل خطك يبدو صحيحًا.",
+    "notes": {
+      "fewer": "استعملت {{theirs, number}} خطًا؛ هذا الحرف يُكتب عادةً بـ{{expected, number}}.",
+      "more": "استعملت {{theirs, number}} خطًا؛ هذا الحرف يُكتب عادةً بـ{{expected, number}}.",
+      "startElsewhere": "يبدأ عادةً من {{corner}} المربّع.",
+      "direction_few": "{{count, number}} خطوط سارت في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
+      "direction_many": "{{count, number}} خطًا سارت في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
+      "direction_one": "خط واحد سار في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
+      "direction_other": "{{count, number}} خط سار في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
+      "direction_two": "خطان ساروا في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
+      "direction_zero": "لم يسر أي خط في الاتجاه المعاكس."
+    },
+    "corners": {
+      "topLeft": "أعلى اليسار",
+      "topCentre": "الأعلى",
+      "topRight": "أعلى اليمين",
+      "middleLeft": "اليسار",
+      "middleCentre": "الوسط",
+      "middleRight": "اليمين",
+      "bottomLeft": "أسفل اليسار",
+      "bottomCentre": "الأسفل",
+      "bottomRight": "أسفل اليمين"
+    },
+    "watchAgain": "شاهد مرة أخرى",
+    "back": "السابق",
+    "next": "التالي",
+    "position": "الخط {{current, number}} من {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "الخط الطويل نازلًا",
+      "downLongTwice": "الخطان الطويلان نازلين، الأيسر أولًا",
+      "downShort": "الخط القصير نازلًا",
+      "downShortTwice": "الخطان القصيران نازلين، الأيسر أولًا",
+      "acrossLong": "الخط الطويل عرضًا",
+      "acrossLongTwice": "الخطان الطويلان عرضًا، الأعلى أولًا",
+      "acrossShort": "الخط القصير عرضًا",
+      "acrossShortTwice": "الخطان القصيران عرضًا، الأعلى أولًا",
+      "cornerAcrossDown": "عرضًا في الأعلى ثم نزولًا على الجانب الأيمن",
+      "cornerDownAcross": "نزولًا على الجانب الأيسر ثم دورانًا إلى اليمين",
+      "slantLeft": "الخط المائل نازلًا إلى اليسار",
+      "slantRight": "الخط المائل نازلًا إلى اليمين",
+      "circle": "الدائرة، دورانًا من الأعلى"
+    },
+    "s1": "خط واحد فقط: {{a}}.",
+    "s2": "أولًا {{a}}. ثم {{b}}.",
+    "s3": "أولًا {{a}}. ثم {{b}}. ثم {{c}}.",
+    "s4": "أولًا {{a}}. ثم {{b}}. ثم {{c}}. وأخيرًا {{d}}.",
+    "parts2": {
+      "plain": "اكتب {{a}} أولًا، ثم {{b}}.",
+      "right": "اكتب {{a}} أولًا، ثم {{b}} على يمينه.",
+      "below": "اكتب {{a}} أولًا، ثم {{b}} تحته."
+    },
+    "parts3": {
+      "right": "اكتب {{a}}، ثم {{b}} على يمينه، ثم {{c}} على طول القاع.",
+      "below": "اكتب {{a}}، ثم {{b}} تحته، ثم {{c}} على طول القاع."
+    },
+    "partsDouble": "اكتب {{a}} مرتين، جنبًا إلى جنب — الأيسر أولًا.",
+    "fallback": "{{strokes}} خطوط، بالترتيب الذي تشير إليه الأرقام."
+  }
+}

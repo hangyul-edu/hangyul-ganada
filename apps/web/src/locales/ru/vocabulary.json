@@ -1,0 +1,142 @@
+{
+  "title": "Учить слова",
+  "today": {
+    "title": "Слова на сегодня",
+    "start": "Начать",
+    "resume": "Продолжить",
+    "startBlurb_few": "Небольшой набор из {{count}} слов.",
+    "startBlurb_many": "Небольшой набор из {{count}} слов.",
+    "startBlurb_one": "Одно слово на сегодня.",
+    "startBlurb_other": "Небольшой набор из {{count}} слова.",
+    "resumeBlurb": "Продолжите с того места, где остановились.",
+    "doneBlurb": "На сегодня всё. Отличная работа.",
+    "completeTitle": "Слова на сегодня пройдены.",
+    "completeDetail_few": "Выучено {{count}} слова.",
+    "completeDetail_many": "Выучено {{count}} слов.",
+    "completeDetail_one": "Выучено {{count}} слово.",
+    "completeDetail_other": "Выучено {{count}} слова.",
+    "more": "Ещё немного",
+    "allDone": "На сегодня ничего не осталось.",
+    "progressAria": "Прогресс по словам на сегодня",
+    "moreLabel": "Сколько ещё",
+    "moreCount_few": "ещё {{count}}",
+    "moreCount_many": "ещё {{count}}",
+    "moreCount_one": "ещё {{count}}",
+    "moreCount_other": "ещё {{count}}"
+  },
+  "browse": {
+    "title": "Смотреть по темам",
+    "showing": "Показано {{shown}} из {{total}}"
+  },
+  "intro": {
+    "example": "Пример",
+    "howItSounds": "Как это звучит",
+    "surfaceNote": "В этом предложении {{headword}} стоит в форме {{form}}.",
+    "next": "Понятно"
+  },
+  "empty": {
+    "title": "Здесь пока нет слов",
+    "body": "Попробуйте другую категорию."
+  },
+  "partOfSpeech": {
+    "noun": "существительное",
+    "verb": "глагол",
+    "adjective": "прилагательное",
+    "adverb": "наречие",
+    "pronoun": "местоимение",
+    "numeral": "числительное",
+    "particle": "частица",
+    "interjection": "междометие",
+    "determiner": "определитель"
+  },
+  "session": {
+    "next": "Следующее слово",
+    "finish": "Завершить"
+  },
+  "blurb": "Все слова открыты. Выберите категорию и начните где хотите.",
+  "categories": {
+    "essentials": "Каждый день",
+    "people": "Люди и семья",
+    "food": "Еда и напитки",
+    "animals-nature": "Животные и природа",
+    "home": "Дом и вещи",
+    "body-health": "Тело и здоровье",
+    "places-travel": "Места и поездки",
+    "time-numbers": "Время и числа",
+    "school-work": "Учёба и работа",
+    "money-shopping": "Деньги и покупки",
+    "communication": "Разговор и медиа",
+    "feelings": "Чувства и характер",
+    "thinking": "Мышление и учёба",
+    "movement": "Приходить и уходить",
+    "actions": "Повседневные действия",
+    "describing": "Описание вещей",
+    "society": "Жизнь и культура",
+    "how-when": "Как и когда"
+  },
+  "category": {
+    "label": "Категория",
+    "all": "Все категории",
+    "pick": "Выберите категорию",
+    "count_few": "{{count, number}} слова",
+    "count_many": "{{count, number}} слов",
+    "count_one": "{{count, number}} слово",
+    "count_other": "{{count, number}} слова",
+    "progressAria": "Прогресс в категории «{{category}}»"
+  },
+  "search": {
+    "placeholder": "Искать слова",
+    "label": "Поиск по словарю",
+    "count_few": "{{count, number}} совпадения",
+    "count_many": "{{count, number}} совпадений",
+    "count_one": "{{count, number}} совпадение",
+    "count_other": "{{count, number}} совпадения",
+    "none": "Ничего не совпало с «{{query}}». Попробуйте по-корейски или значение на своём языке."
+  },
+  "sound": {
+    "tensing": "После конечной согласной следующий звук становится туже.",
+    "aspiration": "ㅎ сливается со следующей согласной и добавляет выдох.",
+    "nasal": "Перед ㄴ или ㅁ согласная перед ними становится носовой.",
+    "lateral": "ㄴ и ㄹ рядом обе превращаются в ㄹ.",
+    "palatal": "Конечная ㄷ или ㅌ перед 이 произносится как ㅈ или ㅊ.",
+    "liaison": "Конечная согласная соскальзывает в следующий блок."
+  },
+  "save": {
+    "action": "Сохранить",
+    "saved": "Сохранено",
+    "add": "Сохранить {{word}}",
+    "remove": "Убрать {{word}} из сохранённых"
+  },
+  "detail": {
+    "title": "Слово",
+    "romanization": "Латиницей",
+    "definition": "Подробнее",
+    "usage": "Как это используется",
+    "synonyms": "Синонимы",
+    "antonyms": "Противоположности"
+  },
+  "saved": {
+    "title": "Сохранённые слова",
+    "review_few": "Повторение · {{count}} вопроса",
+    "review_many": "Повторение · {{count}} вопросов",
+    "review_one": "Повторение · {{count}} вопрос",
+    "review_other": "Повторение · {{count}} вопроса",
+    "searchPlaceholder": "Искать в сохранённых",
+    "searchLabel": "Поиск по сохранённым словам",
+    "orderLabel": "Порядок",
+    "order": {
+      "recent": "Недавние",
+      "alphabetical": "А–Я",
+      "needed": "Нужна работа"
+    },
+    "count_few": "{{count}} слова",
+    "count_many": "{{count}} слов",
+    "count_one": "{{count}} слово",
+    "count_other": "{{count}} слова",
+    "remove": "Убрать",
+    "noMatch": "Среди сохранённых ничего не совпало с «{{query}}».",
+    "emptyTitle": "Сохранённых слов пока нет",
+    "emptyBody": "Нажмите на закладку у любого слова во время занятий — и оно будет ждать здесь, когда захотите вернуться.",
+    "emptyCta": "К словам"
+  }
+}

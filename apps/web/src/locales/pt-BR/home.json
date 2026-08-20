@@ -9,6 +9,13 @@
     "start": "Começar agora",
     "continue": "Continuar aprendendo"
   },
+  "finished": {
+    "badge": "Concluído",
+    "title": "Você já lê hangul",
+    "body": "As {{count, number}} letras: vistas, escritas e lidas. Daqui em diante, palavras.",
+    "goal": "Palavras de hoje",
+    "cta": "Palavras de hoje"
+  },
   "quick": {
     "letters": "Letras",
     "words": "Palavras",

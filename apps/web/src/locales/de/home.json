@@ -9,6 +9,13 @@
     "start": "Jetzt starten",
     "continue": "Weiterlernen"
   },
+  "finished": {
+    "badge": "Geschafft",
+    "title": "Du kannst Hangeul lesen",
+    "body": "Alle {{count, number}} Buchstaben – gesehen, geschrieben, wiedererkannt. Ab jetzt geht es um Wörter.",
+    "goal": "Wörter heute",
+    "cta": "Wörter für heute"
+  },
   "quick": {
     "letters": "Buchstaben",
     "words": "Wörter",

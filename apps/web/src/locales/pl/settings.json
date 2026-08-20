@@ -1,0 +1,149 @@
+{
+  "title": "Moja nauka",
+  "stats": {
+    "lettersLearned": "Opanowane litery",
+    "wordsLearned": "Opanowane słowa",
+    "alphabetProgress": "Postęp w alfabecie hangeul",
+    "studyDays": "Dni nauki"
+  },
+  "language": {
+    "title": "Język",
+    "pickerTitle": "Wybierz język",
+    "pickerIntro": "Język interfejsu. To, czego się uczysz — litery hangeulu, słowa i zdania przykładowe — pozostaje po koreańsku.",
+    "listAria": "Dostępne języki",
+    "searchLabel": "Szukaj języka",
+    "searchPlaceholder": "Szukaj po nazwie lub kodzie",
+    "noResults": "Żaden język nie pasuje do „{{query}}”.",
+    "selected": "Wybrany",
+    "coverageNote": "Każdy język na tej liście tłumaczy cały interfejs i kurs alfabetu. Tam, gdzie mówi o tym wiersz, znaczenia słów i zdania przykładowe są nadal po angielsku.",
+    "wordsInEnglish": "Znaczenia słów po angielsku"
+  },
+  "font": {
+    "title": "Krój do ćwiczeń",
+    "description": "Litera, którą obrysowujesz, jest rysowana krojem, który wybierzesz."
+  },
+  "dailyTarget": {
+    "title": "Liter dziennie",
+    "description": "Ile liter hangeulu chcesz kończyć każdego dnia.",
+    "option_few": "{{count, number}}",
+    "option_many": "{{count, number}}",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_few": "{{count, number}} dziennie",
+    "optionAria_many": "{{count, number}} dziennie",
+    "optionAria_one": "{{count, number}} dziennie",
+    "optionAria_other": "{{count, number}} dziennie"
+  },
+  "wordGoal": {
+    "title": "Słów dziennie",
+    "description": "Ile słów chcesz kończyć każdego dnia. Możesz to zmienić w każdej chwili.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} słów dziennie"
+  },
+  "guides": {
+    "title": "Linie pomocnicze",
+    "description": "Linie pomocnicze wewnątrz ramki.",
+    "grid": "Linia pozioma i pionowa",
+    "crosshair": "Znacznik środka"
+  },
+  "about": {
+    "body": "Czytaj i pisz hangeul: litery, dźwięki, bloki sylabowe i pierwsze koreańskie słowa.",
+    "offline": "Każda lekcja, zdanie i nagranie działa bez internetu.",
+    "version": "Wersja {{version}}",
+    "reset": "Wyzeruj postęp nauki"
+  },
+  "reset": {
+    "title": "Wyzerować cały postęp nauki?",
+    "description": "Ukończone lekcje, historia powtórek i aktywność w nauce zostaną skasowane. Tego nie da się cofnąć.",
+    "confirm": "Wyzeruj",
+    "cancel": "Anuluj",
+    "body": "Zacznij od nowa, od pierwszej litery."
+  },
+  "voice": {
+    "title": "Głos wymowy",
+    "description": "Kto czyta na głos litery, sylaby i słowa.",
+    "female": "Głos kobiecy",
+    "male": "Głos męski",
+    "preview": "Posłuchaj wybranego głosu",
+    "provider": "Dwa wyraźne koreańskie głosy, mówiące odrobinę wolniej niż rodzimi użytkownicy, żeby każdy dźwięk zdążył wybrzmieć."
+  },
+  "groups": {
+    "learning": "Nauka",
+    "practice": "Ćwiczenia",
+    "appearance": "Wygląd",
+    "app": "Aplikacja",
+    "reset": "Zerowanie"
+  },
+  "activity": {
+    "title": "Aktywność w nauce",
+    "body": "Twoja seria, kalendarz i to, czego się nauczyłeś"
+  },
+  "appearance": {
+    "title": "Wygląd",
+    "description": "Jasny, ciemny albo tak jak w telefonie.",
+    "system": "Systemowy",
+    "light": "Jasny",
+    "dark": "Ciemny"
+  },
+  "legal": {
+    "title": "Prawo i licencje",
+    "body": "Licencje treści i krojów pisma w aplikacji",
+    "intro": "Część tego, co jest w aplikacji, wykorzystano na licencjach wymagających wskazania autorów. Te wskazania są tutaj.",
+    "contentHeading": "Treści",
+    "fontsHeading": "Kroje pisma"
+  },
+  "reminder": {
+    "title": "Codzienne przypomnienie",
+    "description": "Jedno spokojne szturchnięcie dziennie, o godzinie, którą wybierzesz. Wyłączone, dopóki go nie włączysz, i nigdy nie opuszcza telefonu.",
+    "toggle": "Przypominaj mi o ćwiczeniu",
+    "at": "O godzinie",
+    "notificationTitle": "Czas poćwiczyć",
+    "notificationBody": "Czeka na ciebie kilka minut koreańskiego.",
+    "refused": "Twój telefon nie zezwala tej aplikacji na powiadomienia. Możesz je włączyć w jego ustawieniach."
+  },
+  "privacy": {
+    "title": "Prywatność",
+    "body": "Co dzieje się z twoją nauką",
+    "lede": "Nic z tego, co tu robisz, nie opuszcza tego urządzenia.",
+    "device": {
+      "title": "Twoja nauka zostaje tutaj",
+      "points": [
+        "To, czego się nauczyłeś, i to, jak dobrze to pamiętasz, jest zapisane na tym urządzeniu. Nigdy nie trafia nigdzie indziej.",
+        "Nie ma konta — nie ma się do czego zapisywać ani żadnego profilu o tobie."
+      ]
+    },
+    "tracking": {
+      "title": "Bez reklam, bez śledzenia",
+      "points": [
+        "Aplikacja nie patrzy, jak jej używasz, i niczego nie raportuje.",
+        "Twoje pismo jest oceniane na ekranie w trakcie rysowania, a potem odrzucane."
+      ]
+    },
+    "permissions": {
+      "title": "Uprawnienia",
+      "points": [
+        "Powiadomienia, i tylko jeśli włączysz codzienne przypomnienie.",
+        "Nigdy aparat, mikrofon, zdjęcia, kontakty ani lokalizacja."
+      ]
+    },
+    "erase": {
+      "title": "Kasowanie",
+      "points": [
+        "Wszystko, czego się nauczyłeś, możesz skasować na dole ekranu {{screen}}.",
+        "Usunięcie aplikacji kasuje to razem z nią."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Twój postęp nie jest zapisywany na tym urządzeniu, więc to, czego się uczysz, może zniknąć przy następnym otwarciu aplikacji. Zwykle wystarczy pozwolić tej stronie przechowywać dane w ustawieniach przeglądarki.",
+    "recovered_few": "Przy wczytywaniu pominięto {{count, number}} uszkodzone wpisy. Reszta twojego postępu jest cała.",
+    "recovered_many": "Przy wczytywaniu pominięto {{count, number}} uszkodzonych wpisów. Reszta twojego postępu jest cała.",
+    "recovered_one": "Przy wczytywaniu pominięto {{count, number}} uszkodzony wpis. Reszta twojego postępu jest cała.",
+    "recovered_other": "Przy wczytywaniu pominięto {{count, number}} uszkodzone wpisy. Reszta twojego postępu jest cała."
+  },
+  "soundFree": {
+    "title": "Pytania bez dźwięku",
+    "description": "Niektóre pytania to samo nagranie — „które słowo usłyszałeś?”. Włącz to, a zostaną pominięte. Wszystko nadal można odsłuchać, kiedy zechcesz.",
+    "toggle": "Pomijaj pytania na słuch"
+  }
+}

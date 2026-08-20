@@ -13,8 +13,6 @@
     "completeDetail_other": "Học được {{count}} từ.",
     "more": "Học thêm chút nữa",
     "allDone": "Hôm nay không còn gì nữa.",
-    "remaining_one": "Còn một từ hôm nay",
-    "remaining_other": "Còn {{count}} từ hôm nay",
     "progressAria": "Tiến độ từ vựng hôm nay",
     "moreLabel": "Thêm bao nhiêu từ",
     "moreCount_one": "Thêm 1 từ",
@@ -101,7 +99,7 @@
   },
   "detail": {
     "title": "Từ",
-    "pronunciation": "Cách đọc",
+    "romanization": "Phiên âm La-tinh",
     "definition": "Tìm hiểu thêm",
     "usage": "Cách dùng",
     "synonyms": "Từ đồng nghĩa",

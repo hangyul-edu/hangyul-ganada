@@ -9,6 +9,13 @@
     "start": "はじめる",
     "continue": "学習をつづける"
   },
+  "finished": {
+    "badge": "修了",
+    "title": "ハングルが読めるようになりました",
+    "body": "{{count, number}}文字すべてを覚えて、書いて、読みました。次は単語です。",
+    "goal": "今日の単語",
+    "cta": "今日の単語へ"
+  },
   "quick": {
     "letters": "文字",
     "words": "単語",

@@ -11,7 +11,6 @@
     "completeDetail_other": "学会了 {{count}} 个词",
     "more": "再学一点",
     "allDone": "今天没有更多了。",
-    "remaining_other": "今天还剩 {{count}} 个",
     "progressAria": "今天的词的进度",
     "moreLabel": "再学多少个",
     "moreCount_other": "再学 {{count}} 个"
@@ -95,7 +94,7 @@
   },
   "detail": {
     "title": "单词",
-    "pronunciation": "发音",
+    "romanization": "罗马字标注",
     "definition": "详细说明",
     "usage": "怎么用",
     "synonyms": "近义词",

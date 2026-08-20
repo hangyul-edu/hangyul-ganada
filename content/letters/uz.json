@@ -1,0 +1,294 @@
+{
+ "ㅏ": [
+  "«ona» so‘zidagi a kabi",
+  "O‘ng tomonida bitta qisqa shoxi bor ustun."
+ ],
+ "ㅓ": [
+  "lab dumaloqlanmaydi, a bilan o orasidagi tovush",
+  "Shox chapga qaraydi."
+ ],
+ "ㅗ": [
+  "«osmon» so‘zidagi o kabi, lab dumaloq",
+  "Shox yuqoriga qaraydi."
+ ],
+ "ㅜ": [
+  "«uy» so‘zidagi u kabi",
+  "Shox pastga qaraydi."
+ ],
+ "ㅡ": [
+  "i ga yaqin, lekin lab yassi va yoyilgan",
+  "Bitta gorizontal chiziq."
+ ],
+ "ㅣ": [
+  "«bir» so‘zidagi i kabi",
+  "Bitta vertikal chiziq."
+ ],
+ "ㄱ": [
+  "g bilan k orasida — ikki unli orasida g ga yaqinroq",
+  "Til orqasini tanglayga tekkizing, so‘ng qo‘yib yuboring."
+ ],
+ "ㄴ": [
+  "«non» so‘zidagi n kabi",
+  "Til uchini yuqori tishlaring ortiga qo‘y."
+ ],
+ "ㄷ": [
+  "d bilan t orasida — ikki unli orasida d ga yaqinroq",
+  "Ustini yopadigan chiziqli ㄴ."
+ ],
+ "ㄹ": [
+  "yengil urilish, r bilan l orasida — bo‘g‘in oxirida l bo‘lib eshitiladi",
+  "Tilingni tanglaydan oldinga bir marta yengil qoqing."
+ ],
+ "ㅁ": [
+  "«ona» so‘zidagi m kabi",
+  "Kvadrat — yopiq og‘izning shakli."
+ ],
+ "ㅂ": [
+  "b bilan p orasida — ikki unli orasida b ga yaqinroq",
+  "Usti ochilgan ㅁ."
+ ],
+ "ㅅ": [
+  "«soat» so‘zidagi s kabi",
+  "Havoni tishlar orasidan shivirlatib chiqar."
+ ],
+ "ㅇ": [
+  "bo‘g‘in boshida jim, oxirida ng",
+  "Doira — ochiq tomoqning shakli. Bo‘g‘in unli bilan boshlanganda joyni band qilib turadi."
+ ],
+ "ㅈ": [
+  "«jon» so‘zidagi j kabi",
+  "Ustidan chiziq tortilgan ㅅ."
+ ],
+ "ㅎ": [
+  "«havo» so‘zidagi h kabi",
+  "Ikki chiziqdan qalpoq kiygan ㅇ."
+ ],
+ "ㅑ": [
+  "«yaxshi» so‘zidagi ya kabi",
+  "Ikkinchi shoxli ㅏ. Ortiqcha shox har doim y qo‘shadi."
+ ],
+ "ㅕ": [
+  "lab dumaloqlanmasdan aytiladigan yo",
+  "Ikkinchi shoxli ㅓ."
+ ],
+ "ㅛ": [
+  "«yo‘l» so‘zidagi yo kabi",
+  "Ikkinchi shoxli ㅗ."
+ ],
+ "ㅠ": [
+  "«yulduz» so‘zidagi yu kabi",
+  "Ikkinchi shoxli ㅜ."
+ ],
+ "ㅊ": [
+  "ㅈ, bir puf havo bilan",
+  "Yana bitta chiziqli ㅈ. Qo‘shilgan chiziq — qo‘shilgan nafas."
+ ],
+ "ㅋ": [
+  "ㄱ, bir puf havo bilan",
+  "Yana bitta chiziqli ㄱ."
+ ],
+ "ㅌ": [
+  "ㄷ, bir puf havo bilan",
+  "Yana bitta chiziqli ㄷ."
+ ],
+ "ㅍ": [
+  "ㅂ, bir puf havo bilan",
+  "Yon tomoniga yotqizilgan ㅂ."
+ ],
+ "ㅐ": [
+  "«el» so‘zidagi e kabi, biroz kengroq",
+  "Birga yozilgan ㅏ va ㅣ."
+ ],
+ "ㅔ": [
+  "«esh» so‘zidagi e kabi",
+  "ㅓ + ㅣ. Bugun koreyslarning aksariyati ㅐ va ㅔ ni bir xil aytadi."
+ ],
+ "ㅒ": [
+  "qisqa aytiladigan ye",
+  "ㅑ + ㅣ."
+ ],
+ "ㅖ": [
+  "«yer» so‘zidagi ye kabi",
+  "ㅕ + ㅣ."
+ ],
+ "ㄲ": [
+  "ㄱ, tarang va keskin",
+  "Ikkita ㄱ. Tomog‘ingni siqib, birdan qo‘yib yubor."
+ ],
+ "ㄸ": [
+  "ㄷ, tarang va keskin",
+  "Ikkita ㄷ."
+ ],
+ "ㅃ": [
+  "ㅂ, tarang va keskin",
+  "Ikkita ㅂ."
+ ],
+ "ㅆ": [
+  "ㅅ, tarang va keskin",
+  "Ikkita ㅅ."
+ ],
+ "ㅉ": [
+  "ㅈ, tarang va keskin",
+  "Ikkita ㅈ."
+ ],
+ "ㅘ": [
+  "«vaqt» so‘zidagi va kabi, lekin qisqa u bilan",
+  "ㅗ + ㅏ. w tovushini qo‘shadigan — ㅗ va ㅜ."
+ ],
+ "ㅝ": [
+  "qo‘shilib «uo» bo‘lib eshitiladi",
+  "ㅜ + ㅓ."
+ ],
+ "ㅚ": [
+  "«ue» bo‘lib eshitiladi",
+  "ㅗ + ㅣ."
+ ],
+ "ㅟ": [
+  "«ui» bo‘lib eshitiladi",
+  "ㅜ + ㅣ."
+ ],
+ "ㅙ": [
+  "«ue» bo‘lib eshitiladi",
+  "ㅗ + ㅐ. Bugun ㅙ, ㅞ va ㅚ bir xil eshitiladi."
+ ],
+ "ㅞ": [
+  "«ue» bo‘lib eshitiladi",
+  "ㅜ + ㅔ."
+ ],
+ "ㅢ": [
+  "ㅡ, so‘ng darhol ㅣ — qo‘shib aytiladi",
+  "ㅡ + ㅣ."
+ ],
+ "가": [
+  "ㄱ + ㅏ",
+  "Undosh chapda, baland unli o‘ngda turadi."
+ ],
+ "나": [
+  "ㄴ + ㅏ — shuningdek «men» degan so‘z",
+  null
+ ],
+ "다": [
+  "ㄷ + ㅏ",
+  null
+ ],
+ "라": [
+  "ㄹ + ㅏ",
+  null
+ ],
+ "마": [
+  "ㅁ + ㅏ",
+  null
+ ],
+ "거": [
+  "ㄱ + ㅓ",
+  null
+ ],
+ "고": [
+  "ㄱ + ㅗ — unli pastga tushadi",
+  "Yassi unli undoshning yoniga emas, ostiga o‘tiradi."
+ ],
+ "구": [
+  "ㄱ + ㅜ",
+  null
+ ],
+ "그": [
+  "ㄱ + ㅡ",
+  null
+ ],
+ "기": [
+  "ㄱ + ㅣ",
+  null
+ ],
+ "바": [
+  "ㅂ + ㅏ",
+  null
+ ],
+ "사": [
+  "ㅅ + ㅏ",
+  null
+ ],
+ "아": [
+  "ㅇ + ㅏ — shunchaki «a» deb o‘qiladi",
+  "Bu yerda ㅇ jim. U undosh o‘rnini bo‘sh saqlab turibdi."
+ ],
+ "자": [
+  "ㅈ + ㅏ",
+  null
+ ],
+ "하": [
+  "ㅎ + ㅏ",
+  null
+ ],
+ "어": [
+  "ㅇ + ㅓ — «eo» deb o‘qiladi",
+  null
+ ],
+ "오": [
+  "ㅇ + ㅗ — «o» deb o‘qiladi",
+  null
+ ],
+ "우": [
+  "ㅇ + ㅜ — «u» deb o‘qiladi",
+  null
+ ],
+ "으": [
+  "ㅇ + ㅡ — «i» deb o‘qiladi",
+  null
+ ],
+ "이": [
+  "ㅇ + ㅣ — «i» deb o‘qiladi",
+  null
+ ],
+ "안": [
+  "ㅇ + ㅏ + ㄴ",
+  "Uchinchi harf pastga tushadi. Kvadratni yuqoridan pastga o‘qi."
+ ],
+ "말": [
+  "ㅁ + ㅏ + ㄹ — «so‘z» degan so‘z",
+  null
+ ],
+ "밤": [
+  "ㅂ + ㅏ + ㅁ — «tun» degan so‘z",
+  null
+ ],
+ "강": [
+  "ㄱ + ㅏ + ㅇ — bu yerda ㅇ *tovush*: ng",
+  null
+ ],
+ "산": [
+  "ㅅ + ㅏ + ㄴ — «tog‘» degan so‘z",
+  null
+ ],
+ "밥": [
+  "ushlab qolingan p bilan tugaydi",
+  "Oxirgi ㅂ yopiladi, ochilmaydi. Oxirgi p ni tugatmasdan «bap» deb ayt."
+ ],
+ "옷": [
+  "pastdagi ㅅ t deb o‘qiladi",
+  "Atigi yettita tovush: pastda ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ ning hammasi t bo‘ladi."
+ ],
+ "국": [
+  "ushlab qolingan k bilan tugaydi — «sho‘rva» degan so‘z",
+  null
+ ],
+ "꽃": [
+  "pastdagi ㅊ t deb o‘qiladi, shuning uchun bu «kkot»",
+  null
+ ],
+ "한": [
+  "ㅎ + ㅏ + ㄴ — 한글 so‘zining birinchi bo‘g‘ini",
+  null
+ ],
+ "글": [
+  "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, bu yozuvning nomi",
+  null
+ ],
+ "공": [
+  "ㄱ + ㅗ + ㅇ — 공부, «o‘qish» so‘zidagidek",
+  null
+ ],
+ "부": [
+  "ㅂ + ㅜ — 공 + 부 = 공부, «o‘qish»",
+  null
+ ]
+}

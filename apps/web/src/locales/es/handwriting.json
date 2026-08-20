@@ -53,7 +53,6 @@
     "count_many": "{{count, number}} trazos",
     "count_other": "{{count, number}} trazos",
     "heading": "Míralo escribirse",
-    "notesHeading": "Sobre tus trazos",
     "notesFooter": "El orden de los trazos no puntúa. Es lo que hace que tu letra se vea bien.",
     "notes": {
       "fewer": "Has usado {{theirs, number}} trazos; esta letra suele escribirse en {{expected, number}}.",

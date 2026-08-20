@@ -1352,20 +1352,42 @@ const cut = async ({ face, item, inkSpan }) => {
      * it takes out of its right leg through every round of this.
      *
      * So they are alternated: re-read the route from the ink, hand back the ink
-     * that route has no business holding, re-read again. Twice is where the
-     * curriculum stops changing.
+     * that route has no business holding, re-read again — and keep going until
+     * a round changes nothing.
+     *
+     * A fixed number of rounds was the last thing wrong here, and it was wrong
+     * in the way an off-by-one is wrong: the loop ended on a *re-read*, so the
+     * final shipped route had never been handed to `reassignForeignCaps`. Every
+     * trim shortens a route, and every shortening turns ink that was alongside
+     * it into cap — so the last trim of all created cap that nothing then
+     * looked at. That is the whole of what ㅈ's left leg was still holding: a
+     * hairline of the trunk, twelve units tall, past a route start the last
+     * trim had pulled down.
+     *
+     * Ending on a reassignment instead, and only when a round moves no ink,
+     * closes it for every letter rather than for ㅈ.
      */
-    let settled = trimAtLater(
-      lines.map((stroke, index) => centreline(mine[index], stroke)),
-      reach,
-    );
-    for (let round = 0; round < 2; round += 1) {
-      reassignForeignCaps(mine, settled);
-      settled = trimAtLater(
+    const reRead = () =>
+      trimAtLater(
         lines.map((stroke, index) => centreline(mine[index], stroke)),
         reach,
       );
+    let settled = reRead();
+    // Six is a ceiling, not a count: the curriculum settles in three or fewer
+    // and the bound is here so a pathological letter cannot spin.
+    for (let round = 0; round < 6; round += 1) {
+      const before = mine.map((mask) => mask.slice());
+      reassignForeignCaps(mine, settled);
+      const next = reRead();
+      const still =
+        before.every((mask, i) => mask.every((v, p) => v === mine[i][p])) &&
+        JSON.stringify(next) === JSON.stringify(settled);
+      settled = next;
+      if (still) break;
     }
+    // The route the ink is finally judged against is the one that ships, so the
+    // last word belongs to the reassignment and not to the trim that follows it.
+    reassignForeignCaps(mine, settled);
 
     const owned = mine.map((mask) => mask);
     for (let f = 0; f < mine.length; f += 1) {

@@ -184,12 +184,47 @@
   overflow-wrap: anywhere;
 }
 
-.code {
+/* The word-meaning caveat, quieter than the English name above it: it is a
+   qualification on the row, not a third name for the language. Micro rather
+   than caption for exactly that reason — at caption size it read as another
+   label and the row looked like it named the language three times. */
+.partial {
+  margin-top: 3px;
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-micro);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+
+/*
+ * The flag.
+ *
+ * A fixed box with `contain`, so a differently-proportioned asset in a future
+ * pack changes nothing about the row's height. The hairline is what stops a
+ * flag with a white field — Japan, Poland, Indonesia — dissolving into the card
+ * behind it; `color-mix` rather than a token so it stays a hairline against
+ * both the plain surface and the selected one.
+ *
+ * `direction: ltr` is deliberate on a mirrored screen: the *list* flips for
+ * Arabic and the flag stays the right way round, because a flag is an image of
+ * a real object and does not have a reading direction.
+ */
+.flag {
   flex: 0 0 auto;
-  color: var(--hg-text-secondary);
-  font-size: var(--hg-text-caption);
-  font-variant-numeric: tabular-nums;
-  text-transform: uppercase;
+  width: 26px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--hg-text) 12%, transparent);
+  direction: ltr;
+}
+
+/* Keeps the names column aligned when a language has no flag worth showing. */
+.flagBlank {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 18px;
 }
 
 .check {

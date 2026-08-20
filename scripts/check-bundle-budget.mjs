@@ -178,22 +178,57 @@ const BUDGETS = {
    * the kilobytes. Two raises in one release is the point being made, not a
    * process being followed.
    *
-   * The worker precaches every locale's word copy so that a learner who
+   * It was then **not** raised a third time, and that is the more useful half
+   * of this note.
+   *
+   * The worker used to precache every locale's word copy, so that a learner who
    * installs the app and goes offline before opening a word screen still has
-   * their own language. That is the right behaviour and it does not scale: the
-   * total grows by roughly a locale pack per language and by the whole corpus
-   * per word added, and ten languages of a ten-thousand-word corpus is several
-   * megabytes precached to serve one language and a few hundred words. The
-   * architecture that fixes it is the same one `LAZY_REQUIRED_HEADWORDS` above
-   * is waiting for: chunk the corpus, precache the shell and the learner's own
-   * locale, and cache the rest on first use. Until that exists this number will
-   * keep being raised, and each time is a reminder that it should not be.
+   * their own language. Right behaviour, and it did not scale: the total grew
+   * by a pack per language and by the whole corpus per word. Tripling the
+   * interface languages to thirty-two would have taken it from 854 kB to over
+   * 1.1 MB and this number would have been raised again.
+   *
+   * What happened instead is the architecture the previous note was waiting
+   * for, minus the corpus half: the shell is precached, and the thirty-one
+   * non-English interface bundles and the nine word packs are cached on first
+   * use — which for the learner's own language is during the first launch, so a
+   * cold start offline still has it. The precached total is now 473 kB, half
+   * the budget, with three times the languages.
+   *
+   * The corpus half is still outstanding; `LAZY_REQUIRED_HEADWORDS` above is
+   * what will force it.
    */
   total: 900 * 1024,
 };
 
 function gzipSize(path) {
   return gzipSync(readFileSync(path), { level: 9 }).length;
+}
+
+/**
+ * What the service worker actually precaches, from the list the build emits.
+ *
+ * This row used to sum *every* file in `assets/`, which is a different number
+ * and was not the one the label claimed. It mattered once the build started
+ * emitting things it deliberately does not precache — thirty-one interface
+ * languages and nine word packs, all fetched on use — because the row then
+ * reported 1.1 MB of "precached" for a worker that stores 600 kB of it. A
+ * budget measuring the wrong quantity is worse than no budget: it fails on
+ * work that made the product smaller.
+ *
+ * `offline-assets.json` is written by the build itself (see
+ * `offlineAssetList` in `apps/web/vite.config.ts`), so this cannot drift from
+ * what the worker is handed. If it is missing — an older build, a partial
+ * tree — the row falls back to every emitted file, which is the pessimistic
+ * answer rather than a silent pass.
+ */
+function precacheList() {
+  try {
+    const listed = JSON.parse(readFileSync(join(DIST, 'offline-assets.json'), 'utf8')).assets;
+    return new Set(listed.map((path) => path.replace(/^\/assets\//, '')));
+  } catch {
+    return null;
+  }
 }
 
 const files = readdirSync(ASSETS)
@@ -203,6 +238,9 @@ const files = readdirSync(ASSETS)
     return { name, raw: statSync(path).size, gzip: gzipSize(path) };
   })
   .sort((a, b) => b.gzip - a.gzip);
+
+const precacheNames = precacheList();
+const precached = precacheNames ? files.filter((file) => precacheNames.has(file.name)) : files;
 
 const eager = firstLoadNames();
 const firstLoad = files.filter((f) => eager.has(f.name));
@@ -294,8 +332,8 @@ const results = [
   },
   {
     label: 'everything precached',
-    detail: `${files.length} files`,
-    actual: sum(files),
+    detail: `${precached.length} of ${files.length} emitted files`,
+    actual: sum(precached),
     budget: BUDGETS.total,
   },
 ];

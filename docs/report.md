@@ -63,7 +63,7 @@ reported fixed and is only partly fixed.
 | Working tree | Clean at `192bbce`; artefacts rebuilt — see §2.2 |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
-| Interface languages | 10 |
+| Interface languages | 32 |
 | Words shipping | 2,581 |
 | Categories | 18 |
 | Study sets | 524 (five words each) |
@@ -156,124 +156,128 @@ along with the Gradle change beside it, so the working tree is clean at
 
 | Metric | Now | Last report |
 | --- | --- | --- |
-| Interface languages | 10 | 8 |
+| Interface languages | **32** | 10 |
 | Vocabulary headwords | 2,581 (target 10,000 — **7,419 short**) | 2,581 |
-| Vocabulary meanings in every shipping language | **10 of 10 locales at 2,581** | 8 of 8 |
-| Lesson titles translated | 10 of 10 locales | **2 of 8** — undetected |
-| Letter copy translated | 10 of 10 locales | 8 of 8 |
-| Verified synonym pairs | 71 | 72 |
-| Verified antonym pairs | 65 | 64 |
-| Words with any verified relation | 243 of 2,581 (9.4%) | 242 |
-
-The three relation rows moved by one without anybody touching a relation.
-Correcting 적다 from verb to adjective changed which sense `teaches_first_sense`
-believes the corpus teaches, and relation scoping reads that — so one pair moved
-from synonym to antonym and one more word gained a section. Recorded because a
-±1 drift with no relation work in the cycle looks like noise and is not: it is
-the sense fix propagating, which is the whole argument for pinning senses.
-| Longer explanations (`definition`) | **25, written, in all 10 languages** | 784, derived, English only |
-| Words whose taught sense is pinned by exact string | 11 | 0 |
-| Web unit (`vitest`) | 589 | 550 |
+| Vocabulary meanings in every shipping language | 10 of 32 locales at 2,581 — the other 22 fall back to English, and the picker says so | 10 of 10 |
+| Lesson titles translated | **32 of 32** | 10 of 10 |
+| Letter copy translated | **32 of 32** | 10 of 10 |
+| Learning quotations translated | **32 of 32** | 10 of 10 |
+| Practice typefaces named and described | **32 of 32** | 2 of 10 — undetected |
+| Customer-facing phonetic notation | **Revised Romanization, from the standard pronunciation** | IPA |
+| Verified synonym pairs | 71 | 71 |
+| Verified antonym pairs | 65 | 65 |
+| Words with any verified relation | 243 of 2,581 (9.4%) | 243 |
+| Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
+| Words whose taught sense is pinned by exact string | 11 | 11 |
+| Web unit (`vitest`) | 651 | 589 |
 | Handwriting core (`vitest`) | 95 | 95 |
-| End-to-end (`playwright`) | 228 (114 × 2 projects) | 220 |
-| Rendered stroke frames measured in pixels | 1,345 | **0** |
+| End-to-end (`playwright`) | 230 (115 × 2 projects) | 228 (114 × 2) |
+| Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting false-accept / false-reject | 0.21% / 0.78% | 0.21% / 0.78% |
-| Word-corpus bundle | 169.1 kB gz of a 220 kB budget | 180.8 kB |
-| Everything precached | 854 kB gz of a 900 kB budget | 802 kB of 800 kB |
+| First load | **384.3 kB gz of a 460 kB budget** | 460 kB budget, 96% used |
+| Word-corpus bundle | 171.3 kB gz of a 220 kB budget | 169.1 kB |
+| Everything precached | **491.3 kB gz of a 900 kB budget** | 854 kB |
+
+The three relation rows did not move this cycle, which is the expected reading:
+no relation work was done and none of the sense pins changed. They are kept in
+the table because last cycle they moved by one *without* a relation being
+touched — a corrected part of speech propagating through `teaches_first_sense` —
+and a row that can drift silently is worth watching even in the cycles it does
+not.
+
+The two bundle rows moved the *opposite* way to the language count, which is the
+finding worth carrying forward. Going from ten interface languages to
+thirty-two, and from ten to thirty-two languages of letter copy, made the first
+load **smaller** — because the same change forced all three bodies of
+per-language content off the critical path: the interface bundles, the word
+packs and now the letter explanations are fetched for the one language the
+learner reads. Precached bytes fell by 42%.
 
 ---
 
 # 3. Executive summary
 
-**The two defects a learner could see most clearly are fixed, the product speaks
-ten languages, and the release process is still a cycle behind the code.**
+**The product now speaks thirty-two languages, romanises Korean the way Korea
+does, and got smaller doing it.** The three defects a learner could see most
+clearly — a phonetic alphabet nobody outside linguistics reads, an alphabet
+course in English under a translated interface, and a home screen that said the
+same thing three times — are fixed at the level they were wrong at.
 
-This cycle's brief was not "add features". It was: the hints give the answer
-away, the strokes still look broken, and the vocabulary session feels like one
-screen shown ten times. All three were true. All three were fixed at the level
-they were actually wrong at, and all three now have a test that would have
-caught them.
+**The notation was replaced, not renamed.** Every word carried IPA, bracketed,
+including in front of beginners: [t͡ɕa̠ɾi] over 자리. It now carries **Revised
+Romanization derived from the standard pronunciation** — *jari*, and 국민 →
+*gungmin*, not *gukmin*. The distinction between deriving it from the spelling
+and deriving it from the sound is the whole of the work: the same sound-change
+machinery that produces the audio now produces the notation, so the two cannot
+disagree. Five QA layers check it, one of which re-derives all 2,581 through the
+Python and compares byte-for-byte with what ships, and a rendering test matches
+the *displayed* string against an IPA character class so the old values cannot
+return under a new label.
 
-**What was wrong with the hints was not a bug, it was a line.** `hint: copy.value`
-— the word's meaning — on six question types, including the one whose four
-options *are* meanings. Pressing *Hint* on "what does 사과 mean?" printed
-**apple**. The same line put the romanisation on the letter question whose
-options are romanisations. It is now a three-rung ladder that never opens with
-the answer, and `hints.test.ts` renders every rung of every question type in all
-ten languages and looks for the answer inside it. That test immediately found a
-second defect nobody had suspected: 배우다 is *học* in Vietnamese and its category
-is *Học tập & Công việc*, so the category hint handed a Vietnamese learner the
-answer while being perfectly safe in the other nine languages.
+**Twenty-two languages were added, and four separate bodies of content turned
+out to be English underneath a translated interface.** Not one of them was
+visible to `i18n:check`, which reports 100% and is right about the files it
+reads. Lesson titles were the finding last cycle; this cycle it was the six
+practice typefaces, the twelve quotations, the tab bar, and — in twenty-eight of
+the thirty-two languages — a unit heading and the lesson card beneath it using
+two different phrasings of the same English sentence, three centimetres apart.
 
-**What was wrong with the strokes was never the renderer.** `StrokeOrder`
-masks each stroke's own outline, so painted ink is already a subset of that
-stroke's geometry and no renderer change could have fixed anything. The defect
-was in the *cut*: the authored skeletons in `data/strokes.ts` run a branch **to
-the centreline** of the upright it meets — `ㅓ: [stroke([[20,50],[55,50]]),
-vertical(55)]` — which is harmless for ㅏ, where the upright is written first,
-and half a stem of overrun for ㅓ, where it is written second. Four previous
-attempts targeted the renderer. §11 has the whole trace.
+**Two of those were only findable by looking at a rendered screen.** The
+quotation renderer throws rather than falling back and is mounted inside Home, so
+a language with no quotations rendered **a white page**: that was the Arabic home
+screen. And the bottom navigation, which has no state, no context and no changing
+props, never re-renders — so when a stored language's strings arrived after the
+first paint it kept the English it resolved on frame one, reading *Home /
+Letters / Words* under a fully Arabic screen. Both now have tests; both were
+invisible to a green suite for as long as they existed.
 
-**What could not see any of it was the test suite**, which passed 73 items, 269
-strokes and 1,345 frames through every broken round, because it validated path
-data and never rasterised a pixel. There is now a second checker that renders
-the frames and measures them, and it found and drove out a twelve-unit intrusion
-in ㅎ, a detached chip beside ㅊ's bar, a route drawn through blank paper in ㅞ,
-and a ㅊ authored as a vertical tick against a face that draws it horizontal.
+**Thirty-two languages made the app faster, which is the architectural finding.**
+Going from ten to thirty-two took the first load from 460 kB of budget almost
+exhausted to **384.3 kB, 84% of it**, and precached bytes down 42% to 491.3 kB.
+The same change forced the third and last body of per-language content off the
+critical path: interface bundles, word packs and now letter explanations are all
+fetched for the one language the learner reads. Splitting the letter copy out of
+its module bought nothing at all until a `manualChunks` line stopped sweeping the
+thirty emitted files into the chunk that loads before the home screen paints —
+recorded because that is the failure mode of every lazy-loading change.
 
-**Ten interface languages, complete, and a gap that had been invisible for two
-cycles.** Vietnamese and Thai now carry interface copy, the whole letter
-curriculum, and a meaning and example translation for every one of the 2,581
-words — no locale is partial any more. Adding them surfaced the more serious
-finding: **lesson titles existed only in English and Korean**, so Japanese,
-Chinese, Spanish, French, German and Portuguese learners have been reading
-English headings in the largest type on the home screen since the curriculum
-shipped — while `i18n:check` reported 100% coverage, correctly, about the files
-it looks at. Lesson titles are not in those files.
+**Less on the screen, in three specific places.** The home screen offered the
+day's words twice and Review twice, on the first screen anybody sees; each now
+appears once. The writing feedback was a headline, a sentence, a heading, up to
+three bullets and a closing paragraph about what stroke order is for — six
+paragraphs under a two-stroke letter, every attempt — and is now a status, one
+sentence of advice, one note, and the next action. And the finished-alphabet card
+no longer prints "0 %" beside the words *You can read Hangul*.
 
-**Translating is also the check nothing else was running.** Writing a meaning
-from the example sentence forces a reading of the gloss against that sentence,
-and eleven disagreed: 열 glossed "fever" above 열까지 세어 보세요, 전기 glossed
-"first period" above 전기가 나갔어요, 마디 glossed "a joint" above 한 마디만
-할게요. All eleven are now authored and pinned by exact string. No automated
-check found any of them and none could have — what a machine can decide here is
-narrow, two heuristics were built and both discarded, and §14.2 says exactly
-where the line is.
+**The strokes hold.** All 73 items were re-rendered and read by eye this cycle,
+one gallery per eight: reference glyph, per-stroke colouring, numbered starts,
+each stroke isolated, and five moments of each stroke being drawn. 1,345
+rasterised frames pass, no stroke paints into a neighbour that has not been
+written yet, and the one sub-threshold overlap the checker reports — 국, stroke 3
+into stroke 4 — was looked at and is a join, not a protrusion. It is printed
+rather than hidden, which is the behaviour that matters.
 
 Three things still stand between this and a paid release.
 
 **1 · The corpus is a quarter of its stated size, and its delivery does not
 scale.** 2,581 words against a 10,000 target, and the bundle forecast says the
-current mechanism could not carry 10,000 anyway — 655.3 kB gz against a 220 kB
-budget, **298%**. The precache budget was raised *twice this release* purely to
-fit two more languages, which is the same architecture saying the same thing
-from a second direction. The three possible remedies were costed against the
-code this cycle and none was implemented; §13.4 says what each would cost and
-why the gate at 4,000 headwords is the honest answer for now.
+current mechanism could not carry 10,000 anyway — 663.7 kB gz against a 220 kB
+budget, **302%**. Unchanged this cycle; §13.4 costs the three remedies.
 
-**2 · The dictionary is thinner than the screen implies — but no longer
-unevenly.** 243 of 2,581 words have a verified synonym or antonym, which is a
-source-coverage limit and not a defect. The *More about it* block went the other
-way and is worth reading twice: it used to appear on 784 words in English only,
-filled by the build with the dictionary's second and third senses — "phylum"
-under 문, "graveyard" under 산, "prophase" under 전기. It now appears on 25 words
-in all ten languages, and every word of it was written. **That row got smaller
-and the product got better**, which is the shape of most of this cycle.
+**2 · Word meanings exist in ten of the thirty-two languages.** 2,581 × 22 is
+about 57,000 lines, and writing them without a speaker of each language would
+produce the machine-translation register `LOCALIZATION_NATIVE_REVIEW.md` exists
+to refuse, at a scale nobody could audit. So the English fallback stands and is
+**said out loud before the learner chooses the language**, on the row itself. The
+first version of that caption was wrong in the opposite direction — it told
+Vietnamese and Thai learners their meanings were English while shipping 2,581 of
+each — and is now tied to the emitted packs by a test.
 
-**3 · The shipped artefacts are no longer stale, for the first time in three
-reports.** The cycle was committed and the Android artefacts rebuilt from that
-commit — in that order, which is the part that kept going wrong. The delivered
-APK was then unpacked and grepped for seven markers of this cycle's work, all
-seven present, and installed and launched on an emulator. That closes the P0
-that opened the last two reports.
+**3 · No language has been read by a native speaker.** Not one of the thirty-two,
+including the two the product is about. That is stated in the first paragraph of
+`LOCALIZATION_NATIVE_REVIEW.md` and no table in it softens the claim.
 
-Against that: nothing that was reported broken is still broken. The 마디
-recording, open as a P3 for two cycles, is regenerated and checked on the device
-by byte length. Learning data survives refresh and reopen. The storage warning cannot appear without a real
-write/read failure. Dark-mode hover no longer paints white on white. A first
-vocabulary session now asks three shapes of question in three layouts instead of
-the same one ten times. A learner who finishes the alphabet is told where to go
-next — as soon as somebody supplies the URL.
+Against that: nothing that was reported broken is still broken.
 
 **Current sellability: *Barely ready* standalone; *Good* as a funnel product.**
 Reasoning in §32.
@@ -354,8 +358,8 @@ This is the fastest way to see what must not be accidentally reversed.
 | 9 | Never expose the corpus as one list | The day's plan is the entry point | **VERIFIED WORKING** |
 | 10 | Categories/search secondary | Both below the day card on `/words` | **VERIFIED WORKING** |
 | 11 | No vocabulary images | e2e asserts zero `<img>` on word screens | **VERIFIED WORKING** |
-| 12 | Rich Word Detail | Headword, IPA, audio, POS, gloss, example, Save, relations | **PARTIALLY WORKING** (§15) |
-| 13 | Pronunciation notation | IPA on every word | **VERIFIED WORKING** |
+| 12 | Rich Word Detail | Headword, romanization, audio, POS, gloss, example, Save, relations | **PARTIALLY WORKING** (§15) |
+| 13 | Pronunciation notation | Revised Romanization on every word, from the standard pronunciation | **VERIFIED WORKING** |
 | 14 | Pronunciation audio | 10,454 clips, two voices | **VERIFIED WORKING** |
 | 15 | Example sentences | 2,581 of 2,581 | **VERIFIED WORKING** |
 | 16 | Saved Words | Toggle on card and detail; own screen | **VERIFIED WORKING** |
@@ -1014,7 +1018,7 @@ Licences requiring attribution are shown in-app under **Legal & Licences**.
 
 | Field | Coverage |
 | --- | --- |
-| Headword, IPA, part of speech, category | 2,581 / 2,581 |
+| Headword, romanization, part of speech, category | 2,581 / 2,581 |
 | Example sentence | 2,581 / 2,581 |
 | Word audio, example audio | 2,581 / 2,581 |
 | Pronunciation note (spoken ≠ written) | 503 |
@@ -1219,13 +1223,13 @@ spot-check a sample of the 136 pairs.
 
 ![Word Detail for 엄마.](report-assets/audit-word-detail.png)
 
-*Figure 7 — Word Detail. Headword, IPA, meaning, part of speech, Save, the
+*Figure 7 — Word Detail. Headword, romanization, meaning, part of speech, Save, the
 example with its own audio, and a verified synonym.*
 
 | Element | Present for | Status |
 | --- | --- | --- |
 | Headword, large, in the chosen typeface | 2,581 | **VERIFIED WORKING** |
-| IPA pronunciation | 2,581 | **VERIFIED WORKING** |
+| Revised Romanization | 2,581 | **VERIFIED WORKING** |
 | Word audio | 2,581 | **VERIFIED WORKING** |
 | Part of speech | 2,581 | **VERIFIED WORKING** |
 | Meaning in the learner's language | 2,581 | **VERIFIED WORKING** |
@@ -1761,14 +1765,41 @@ dependency, so a re-render cannot make it speak twice; leaving stops it. This is
 also the mechanism that revealed the mastery bug in §10.2: on the web an
 autoplayed clip may simply never play, so nothing downstream may depend on it.
 
-## 22.3 Pronunciation notation — **VERIFIED**
+## 22.3 Pronunciation notation — **REPLACED this cycle, and it was a data migration**
 
-* **IPA for every word** — 2,581 of 2,581, derived from the spoken form where it
-  differs from the spelling.
+**The customer-facing notation is now Revised Romanization (국어의 로마자 표기법),
+not IPA.** Every word: 2,581 of 2,581.
+
+The distinction that matters is what it is derived *from*. A romanization taken
+off the spelling gives 국민 → *gukmin* and 자리 → *chari*, both wrong. These are
+taken off the **standard pronunciation** — 국민 → **gungmin**, 자리 → **jari** —
+which means the same sound-change machinery that drives the audio drives the
+notation, and the two can no longer disagree with each other.
+
+This is stated as a migration rather than a rename because the tempting version
+of this change is to rename the `ipa` field to `romanization` and leave IPA
+strings in it. The field was regenerated from `revised_romanization(word,
+spoken_form)` in `scripts/content/hangul.py`, and `wordRomanization.test.tsx`
+matches the *rendered* string against an IPA character class so that
+[t͡ɕa̠ɾi] cannot return under a Latin-sounding label.
+
+* No brackets. IPA is conventionally bracketed and a romanization is not; the
+  brackets were what made the old value read as a phonetic transcription.
+* `lang="ko-Latn"` on the run, so a screen reader does not read *jari* with
+  Korean phonology.
+* The label is localised in all thirty-two languages and in none of them says
+  "phonetic alphabet". Where a language has a settled word for romanised Korean
+  it uses it; where it does not, it says "in Latin letters".
 * **503 words carry a sound-change note** naming which of six patterns applies
   (tensing, aspiration, nasal, lateral, palatal, liaison), so the app explains
   the *pattern* rather than the instance.
 * `/letters/sounds` teaches those six patterns as a screen of its own.
+
+`romanization:qa:check` runs five layers, A–E: the source rules, 41 rule-family
+fixtures plus **all 2,581 words re-derived through the Python and compared
+byte-for-byte with what ships**, id and pack alignment, agreement with the audio,
+and a grep of the source for the retired label. 자리 → *jari* is a permanent
+fixture, and the 마디 recording fixture below is untouched by any of it.
 
 `audio:pronunciation:check` reports **0 errors, 0 warnings** over 2,612 items. It
 notes 52 compounds where §30 of the standard would insert an ㄴ if the second
@@ -1817,77 +1848,100 @@ layer C is documented as not being.** No claim is made here in either direction.
 
 ## 23.1 Languages — **VERIFIED**
 
-Ten: English, 한국어, 日本語, 简体中文, Español, Français, Deutsch,
-Português (BR), **Tiếng Việt**, **ไทย**.
+**Thirty-two.** English, 한국어, 日本語, 简体中文, Español, Français, Deutsch,
+Português (BR), Tiếng Việt, ไทย — and, added this cycle — **العربية, বাংলা,
+Čeština, Ελληνικά, Filipino, हिन्दी, Magyar, Bahasa Indonesia, Italiano,
+Қазақ тілі, Кыргызча, Монгол хэл, Nederlands, Polski, Română, Русский, Svenska,
+தமிழ், తెలుగు, Türkçe, Українська, O‘zbekcha**.
 
-Vietnamese and Thai were added this cycle. Neither needed a code change to
-appear: locales are discovered from the filesystem and both were already in the
-curated descriptor table with their native names, so dropping
-`src/locales/vi/*.json` into place is the whole registration. Device detection
-picks up `vi-*` and `th-*` through the same negotiation as every other locale.
+None of the twenty-two needed a code change to appear. Locales are discovered
+from the filesystem, the curated descriptor table already carried their endonyms
+and their direction, and dropping `src/locales/<code>/*.json` into place is the
+whole registration. Device detection picks each of them up through the same
+region → language → English negotiation as every other locale.
+
+Two things did change, and both were forced by the size of the set rather than
+by any one language:
+
+* **The picker got a search box**, at the top, matching endonym, English name
+  and common aliases with accents folded away — `mandarin` finds 简体中文,
+  `espanol` finds Español. Thirty-two rows is past the length anybody scans.
+* **SVG flags** from `apps/common_assets/flags` replaced emoji, which rendered
+  as country codes on most Android builds and not at all on some.
 
 ## 23.2 Coverage — **VERIFIED**
 
-| Language | UI (554 keys) | Lesson titles | Letter copy | Word meanings | Example translations |
-| --- | --- | --- | --- | --- | --- |
-| English | 100% | 15 | 73 | 2,581 | 2,581 |
-| 한국어 | 100% | 15 | 73 | 2,581 | n/a — the example *is* Korean |
-| 日本語 | 100% | 15 | 73 | 2,581 | 2,581 |
-| 简体中文 | 100% | 15 | 73 | 2,581 | 2,581 |
-| Español | 100% | 15 | 73 | 2,581 | 2,581 |
-| Français | 100% | 15 | 73 | 2,581 | 2,581 |
-| Deutsch | 100% | 15 | 73 | 2,581 | 2,581 |
-| Português (BR) | 100% | 15 | 73 | 2,581 | 2,581 |
-| **Tiếng Việt** | 100% | 15 | 73 | **2,581** | **2,581** |
-| **ไทย** | 100% | 15 | 73 | **2,581** | **2,581** |
+Three claims of different sizes, kept apart. The full per-language table is in
+`docs/LOCALIZATION_NATIVE_REVIEW.md`; this is the shape of it.
 
-## 23.3 The gap that a 100% coverage report could not see
+| Layer | Languages complete | What it covers |
+| --- | --- | --- |
+| Interface | **32 / 32** | every screen, button, label, empty state, error, accessibility string |
+| Alphabet course | **32 / 32** | 15 lesson titles, 12 unit introductions, 73 letters' hints and mnemonics, 12 quotations, 6 typeface descriptions |
+| Vocabulary | 10 / 32 | 2,581 meanings, parts of speech, example translations |
 
-**The lesson-title column is the finding in this section.** Before this cycle it
-read `en 15 · ko 15 · everything else 0`. Lesson titles live in
-`data/characters.ts` with the curriculum, not in the translation bundles, so
-`i18n:check` never looked at them — and reported 100% coverage, correctly, about
-the files it does look at.
+The key count per language is not the same number, and should not be: Arabic
+carries six plural forms of a counted noun, Russian and Polish four, Korean and
+Japanese one. The bundles hold whichever the language actually has, taken from
+`Intl.PluralRules`, and `i18n:check` fails a locale that is missing a category
+it needs — or that carries one it does not.
 
-The effect: **Japanese, Chinese, Spanish, French, German and Portuguese learners
-have been reading English lesson headings on the home screen since the
-curriculum shipped**, in the largest type on the screen, under a progress ring.
-It is now fixed for all ten, and `e2e/hints.spec.ts` asserts the Thai home
-heading actually contains Thai characters — a check on the rendered page rather
-than on a file, because a check on the files is what missed it.
+## 23.3 The twenty-two without word meanings — a stated gap, not a claim
 
-Two years of green localisation reports did not contain this fact. That is worth
-more attention than the fix.
+2,581 words × 22 languages is roughly **57,000 lines** of meaning, part of speech
+and example translation. They were not written, and this is the reasoning rather
+than an apology:
 
-## 23.4 The Vietnamese and Thai vocabulary gap — **CLOSED**
+* Writing them without a speaker of each language produces exactly the
+  machine-translation register that `LOCALIZATION_NATIVE_REVIEW.md` exists to
+  refuse, at a scale where nobody could audit it afterwards.
+* Shipping them would convert an honest, visible English fallback into 57,000
+  sentences that *look* authored. That is a worse product, not a bigger one.
 
-It was 500 of 2,581 in both, and the last report said so rather than rounding it
-to "nearly done". It is now 2,581 of 2,581 in both. **All ten languages carry a
-meaning and an example translation for every word that ships.**
+So the fallback stands, and it is said out loud in three places rather than
+discovered: **on the row in the language picker before the learner chooses it**
+("Word meanings in English"), at the foot of the picker, and in the markup —
+`LocalizedText` stamps every fallen-back run with the `lang` and `dir` it is
+actually in, so the bidi algorithm and the screen reader both get the truth.
 
-The architecture did not change to make that true, and that is worth stating
-because a closed gap is often a removed seam. Vietnamese and Thai are still
-hand-written files keyed by word id in `content/vocabulary/copy/`; a word with
-no line there still builds and still gets a `null` row; `wordCopy` still
-resolves that down the fallback chain and reports `isFallback`, which the
-interface still renders **marked with its source language**. A word added to the
-corpus tomorrow ships in eight languages and falls back in two until somebody
-writes those two lines. What changed is that today there are no such words.
+`WORD_COPY_LOCALES` is derived from the emitted packs and tied to them by a
+test, because the first version of that caption was **wrong in the other
+direction**: the generated `locales` list named only the eight languages the
+corpus entries carry, so the picker told Vietnamese and Thai learners their word
+meanings were in English while shipping 2,581 of each. A false warning is worse
+than no warning.
 
-**Coverage is not review.** These 5,162 rows were written for this release and
-have not been read by a native speaker of either language. That is the subject
-of `docs/LOCALIZATION_NATIVE_REVIEW.md` and is not altered by the coverage being
-complete — §29 of the brief is explicit that a locale is not to be marked
-native-reviewed unless a human native speaker actually reviewed it, and none
-has. The specific risks are enumerated there: register, Thai spacing,
-classifier choice, and verb glosses in two languages that have no infinitive
-marker.
+## 23.4 The gap a 100% coverage report could not see — again, and wider
 
-**Finishing it is also what found three more content defects.** A translator
-working from the example sentence writes "electricity" beside a gloss that says
-"first period", and the disagreement has to be resolved before the line can be
-written. 적다, 전기 and 마디 came out of that; see §14.2. No automated check found
-any of the eleven, and none of the checks in §23.2 could have.
+Last cycle this section reported that **lesson titles existed only in English and
+Korean** while `i18n:check` said 100%, because lesson titles live in
+`data/characters.ts` with the curriculum and not in the translation bundles.
+
+This cycle the same shape of defect turned up in four more places, and all four
+were found by *rendering screens*, not by any check:
+
+1. **Practice typeface names and descriptions** — six faces, English and Korean
+   only, sitting under a fully translated My Learning screen in the other
+   thirty.
+2. **Quotations** — twelve, in ten languages. `renderQuote` throws rather than
+   falling back, and it is mounted inside Home, so the twenty-two new languages
+   took **the entire React tree down**: the Arabic home screen was a white page
+   with no message.
+3. **The bottom navigation, stuck in English.** The strings for a stored
+   language arrive after the first paint. Everything that re-renders for any
+   other reason picks them up — `t` reads the store when it is called — and the
+   tab bar, which has no state, no context and no changing props, never
+   re-renders. It kept the English it resolved on frame one, under a fully
+   Arabic home screen.
+4. **Unit and lesson headings disagreeing.** A unit heading and the lesson card
+   beneath it use one phrase in English — *The e vowels*, *A letter at the foot*
+   — and in **twenty-eight of the thirty-two languages** they had drifted into
+   two different phrasings, three centimetres apart on the Letters screen.
+   English had none, so nobody reading the app in English could see it.
+
+Every one now has a test that reads `AVAILABLE_LOCALES` rather than a
+hand-written list of languages, which is the actual lesson: the list was the bug
+each time, not the translation.
 
 ## 23.5 Language UX — **VERIFIED WORKING**
 
@@ -1895,49 +1949,82 @@ any of the eleven, and none of the checks in §23.2 could have.
   English (pt-BR → pt → en; vi-VN → vi; th-TH → th).
 * **First row of settings**, above every other option, because a learner who
   cannot read the interface must be able to find the way out of it.
-* **Native names** — 日本語, Tiếng Việt, ไทย, not "Japanese" — with a search box.
-* **Switches immediately**, no reload.
+* **Native names first** — 日本語, தமிழ், Кыргызча — with the English name
+  beneath and a search box above.
+* **Search matches three ways**: endonym, English name, and alias. Diacritics
+  and apostrophes fold, so `espanol` and `o'zbekcha` both work.
+* **Switches immediately**, no reload, no Save button.
 * **Korean never mirrors** in RTL layouts; previews pin `dir="ltr"`.
+* **A learner is told what they are choosing**: rows without a vocabulary pack
+  say so before the tap, not after it.
 
-## 23.6 Thai and Vietnamese rendering — **VERIFIED by looking**
+## 23.6 Script and direction — **VERIFIED by looking**
 
-**Thai.** Diacritics stack correctly above and below the line at every size the
-interface uses, including the tab bar. Thai is written without spaces between
-words and nothing in the layout assumes otherwise — normal flow and
-`text-wrap: pretty`, never a per-word break. Pretendard carries no Thai, so it
-falls through to the platform face, which is correct and needs no download.
+Read screen by screen at 390 × 844 in a real browser — home, letters, words, a
+word card, review, my learning — not asserted by a test.
 
-**Vietnamese.** Every tone mark renders, including stacked ones (ế, ữ, ợ).
-Pretendard covers Vietnamese, so it sets in the same face as the rest of the
-interface rather than falling back mid-sentence.
+**Arabic, and right-to-left as behaviour rather than as strings.** `dir="rtl"`
+is set on the document element from the resolved locale, so the layout mirrors:
+the tab bar reverses, chevrons point the way forward *for the reader*, cards
+align right, progress fills from the right. Numerals and the Korean being taught
+stay left-to-right inside it, isolated with `<bdi>` and an explicit `dir="ltr"`,
+because a syllable block read right-to-left is a different syllable.
 
-Neither overflows a button or truncates in the tab bar.
+**Thai.** Diacritics stack above and below the line at every size the interface
+uses, including the tab bar. Thai is written without spaces between words and
+nothing in the layout assumes otherwise — normal flow and `text-wrap: pretty`,
+never a per-word break.
 
-The letter copy for both is written from the reader's own sound system rather
-than translated, and in these two languages that is a real gain rather than a
-formality: ㅓ is simply *ơ* in Vietnamese and ㅡ is *ư*, where the English has to
-reach for "the o in song" and "lips flat and wide, no English equivalent". Thai
-has the same advantage with อือ.
+**Devanagari, Bengali, Tamil, Telugu.** Conjuncts and the multi-part vowel signs
+compose correctly and clear the line box; nothing clips in a card, a badge or the
+tab bar.
+
+**Greek and the Cyrillic five.** Every letter renders, including the Kazakh and
+Kyrgyz letters outside the Russian alphabet (ә, ғ, қ, ң, ө, ұ, ү, һ, і). Russian,
+Ukrainian, Polish and Czech are also the longest of the thirty-two and nothing
+truncates at 390 px.
+
+This section deliberately claims no typeface. The interface asks for Pretendard
+and then the platform stack, and which of the two draws a given script is the
+platform's decision — a phone, a desktop browser and a CI container each answer
+differently. What was checked is what a learner can see: every mark composes,
+nothing renders as a box, nothing clips.
+
+The letter copy is written from each reader's own sound system rather than
+translated, which for several languages is a real gain and not a formality: ㅓ is
+simply *ơ* in Vietnamese and ㅡ is *ư*; Russian and Kazakh have ы for ㅡ; Turkish
+has ı; Thai has อือ — where the English has to reach for "the o in song" and
+"lips flat and wide, no English equivalent".
 
 ## 23.7 Naturalness, as distinct from coverage
 
 **PARTIALLY VERIFIED, and the honest answer is in a file of its own.**
-`copy:audit:check` passes over 5,499 strings in ten languages with 0 errors, and
-`i18n:check` reports 100% for all ten — but both check structure. Neither can
-tell whether a sentence reads well to someone who grew up speaking the language.
+`copy:audit:check` passes over **17,832 strings in thirty-two languages** with 0
+errors, and `i18n:check` reports 100% for all thirty-two — but both check
+structure. Neither can tell whether a sentence reads well to someone who grew up
+speaking the language.
 
-**No locale has been reviewed by a native speaker.** `docs/LOCALIZATION_NATIVE_REVIEW.md`
+**No locale has been reviewed by a native speaker.** Not one of the thirty-two,
+including the two the product is about. `docs/LOCALIZATION_NATIVE_REVIEW.md`
 records that per language, separates automated status from human status, and
 lists what a review would have to cover in priority order. Nothing in this
-product is marked native-reviewed, and nothing should be until somebody has
-read it.
+product is marked native-reviewed, and nothing should be until somebody has read
+it.
 
-That document also records eight vocabulary entries whose English gloss
-contradicts its own example sentence — 열 glossed "fever" beside "please count
-to ten", 찍다 glossed "to take a photo" beside "I stamped it with a seal" —
-found by translating them, which forces a reading of every gloss against its
-example. Those are English-side defects that propagate into all ten languages.
-See §14.
+That document also records eleven vocabulary entries whose English gloss
+contradicts its own example sentence — 열 glossed "fever" beside "please count to
+ten", 찍다 glossed "to take a photo" beside "I stamped it with a seal" — found by
+translating them, which forces a reading of every gloss against its example.
+Those are English-side defects that propagate into every language. See §14.
+
+One check was loosened this cycle and it is worth recording why. The copy audit
+forbids the string `TOPIK`, because this product does not teach to that exam. It
+matched case-insensitively, and *topik* is the ordinary Indonesian and Malay word
+for "topic" — so "Telusuri per topik", the Indonesian for "Browse by topic", was
+reported as a claim about a proficiency exam. The rule is now case-sensitive,
+which is correct rather than lenient: TOPIK is an acronym and is written in
+capitals in every language that names it. A rule that cries wolf on a category
+heading is a rule somebody eventually switches off.
 
 ---
 
@@ -2287,7 +2374,7 @@ the apps installed should re-verify before using this for positioning.
 | Spaced repetition | per-item **per-skill** memory model | proprietary¹ | yes¹ | yes¹ | yes¹ | basic | yes¹ |
 | Mistake notebook | **yes, with recovery** | limited¹ | no¹ | yes¹ | yes¹ | no | yes¹ |
 | Saved words | yes, with its own review | no¹ | no¹ | yes¹ | yes¹ | yes | yes¹ |
-| Dictionary depth per word | IPA, audio, example, relations | shallow¹ | shallow¹ | medium¹ | medium¹ | user-defined | deep¹ |
+| Dictionary depth per word | romanization, audio, example, relations | shallow¹ | shallow¹ | medium¹ | medium¹ | user-defined | deep¹ |
 | Audio | 10,454 pre-generated clips, 2 voices | yes¹ | yes¹ | native speakers¹ | yes¹ | TTS | yes¹ |
 | Offline | **UI + content fully; audio partial** | partial¹ | partial¹ | partial¹ | partial¹ | partial | partial¹ |
 | Gamification | streak + calendar only | heavy¹ | medium¹ | medium¹ | light¹ | light | heavy¹ |
@@ -2562,6 +2649,19 @@ Behaviours that must stay tested. Each maps to a real past failure.
 | 33 | **A *More about it* block in one language and not another** | `pack.py` refuses a partial `d`; the same check compares ten packs |
 | 34 | A derived dictionary fragment returning to that block | `wordDefinition.test.tsx` — it must not restate the meaning, and must stay rare |
 | 35 | A corrected recording being replaced by a cached older one | `qa-native-android.mjs` compares served bytes to the manifest |
+| 36 | **IPA returning to a customer-facing screen** under any label | `wordRomanization.test.tsx` — the rendered string is matched against an IPA character class; `romanization-qa` layer E greps the source |
+| 37 | A romanization drifting off the standard pronunciation | `romanization:qa:check` layer B — 41 rule fixtures, and all 2,581 words re-derived through the Python and compared |
+| 38 | 자리 romanised from its spelling rather than its sound | the same fixtures, pinned by exact string |
+| 39 | **A shipping language with no quotations**, which blanks the home screen | `data.test.ts` ties `QUOTE_LOCALES` to `AVAILABLE_LOCALES` |
+| 40 | A quotation author falling through to English | the same test asserts the entry exists, not merely that something renders |
+| 41 | **Chrome left in the previous language** when a stored locale's strings arrive after the first paint | `LocaleProvider.test.tsx` renders a memoised component with the bundle deliberately absent at construction |
+| 42 | A letter taught in English under a translated interface | `i18n.test.ts` walks `AVAILABLE_LOCALES`, not a hand-written list |
+| 43 | A mnemonic present in one language and missing in another | the same suite, parity against English |
+| 44 | A lesson titled in English on the home screen | the same suite, per lesson per locale |
+| 45 | **A unit named one thing in its heading and another on its card** | the same suite, for every lesson whose English title is also a unit title |
+| 46 | A practice typeface named or described only in English | the same suite, per face per locale |
+| 47 | **The language picker claiming a language has no word meanings when it ships 2,581** | `data.test.ts` ties `WORD_COPY_LOCALES` to the emitted packs |
+| 48 | Letter copy generated and the emitted packs left stale | `letters:copy:check`, in `verify:quick` |
 
 Rows 20–25 are the ones worth noting. Every one of them guards a defect that
 **shipped past a full green suite**, because the suite was testing the artefact
@@ -2676,7 +2776,7 @@ since the last report.
 | Review | **9/10** = | Per-skill memory, interleaving, measured against a baseline, counts that cannot lie |
 | Saved Words | **8/10** = | Search, three orderings, its own review plan |
 | Wrong Answer Notebook | **7/10** = | One row per item, recovery rule, retry. Does not explain *why* |
-| Audio / pronunciation | **9/10** ▲ | 10,454 clips, two voices, IPA everywhere, 503 sound-change notes. 마디 is fixed; one recogniser disagreement stands unresolved and is stated as unknown (I-16) |
+| Audio / pronunciation | **9/10** ▲ | 10,454 clips, two voices, Revised Romanization everywhere, 503 sound-change notes. 마디 is fixed; one recogniser disagreement stands unresolved and is stated as unknown (I-16) |
 | Localization | **8/10** ▲ | Ten languages at 100% UI, full curriculum, and now every one of the 2,581 words. It does not reach 9 because none of it has been read by a native speaker (I-17), and because the lesson-title gap shows what a coverage report can miss |
 | Progress / persistence | **9/10** = | Eight stores, migrations, corrupt-row recovery, six e2e cases, persistence now requested. No export (I-12) |
 | Web reliability | **9/10** = | Every route survives refresh, fresh tab and offline |
@@ -2837,7 +2937,7 @@ promise.
 5. Vocabulary is quiz-first and never handwritten: a daily goal of 5–20 words,
    six step types in three layouts, with optional extra study past the goal.
    Help is a three-rung ladder that never opens with the answer.
-6. The corpus is 2,581 words against a stated 10,000 target, with IPA, audio, an
+6. The corpus is 2,581 words against a stated 10,000 target, with romanization, audio, an
    example sentence and — for 243 words — verified synonyms or antonyms.
 7. Review is a per-item, per-skill memory model that surfaces only what is
    fading; its displayed count and its session are the same object.
@@ -3110,7 +3210,7 @@ hitting English at word 501. Eight cards stop contradicting themselves.
 
 | Type | Where | Key | Holds |
 | --- | --- | --- | --- |
-| `VocabularyWord` | `shared-types` | `id` | headword, IPA, POS, example, frequency, difficulty, category, syllables, required jamo, audio ids, sources |
+| `VocabularyWord` | `shared-types` | `id` | headword, romanization, POS, example, frequency, difficulty, category, syllables, required jamo, audio ids, sources |
 | `HangulCharacter` | `data/characters.ts` | `character` | letter name, sound example, stroke count, group, translations |
 | `StrokeAsset` | `data/generated/strokeAssets.json` | character | `viewBox`, `pen`, and per stroke `shape`, `draw`, `start`, `reveal` |
 | `ItemProgress` | `progress` store | `${kind}:${itemKey}` | stage, attempts, passes, fails, trace/practice passes, demo seen, recognition passes, heard, learned, review due |

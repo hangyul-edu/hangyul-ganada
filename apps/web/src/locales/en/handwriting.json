@@ -50,7 +50,6 @@
     "count_one": "{{count, number}} stroke",
     "count_other": "{{count, number}} strokes",
     "heading": "Watch it written",
-    "notesHeading": "About your strokes",
     "notesFooter": "Stroke order isn't part of the mark. It's what makes your writing look right.",
     "notes": {
       "fewer": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",

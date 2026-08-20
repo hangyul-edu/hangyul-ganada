@@ -1,0 +1,89 @@
+{
+  "title": "O‘qish faoliyati",
+  "streak": {
+    "caption": "Har qanday mashq uni davom ettiradi — harfni tugatish shart emas.",
+    "longest": "Eng uzun ketma-ketlik",
+    "totalDays": "Mashq qilingan kunlar",
+    "totalTime": "Umumiy vaqt",
+    "unit_one": "kun ketma-ket",
+    "unit_other": "kun ketma-ket"
+  },
+  "chart": {
+    "title": "Faoliyat",
+    "rangeAria": "Vaqt oralig‘ini tanlang",
+    "aria": "Kunlik mashq",
+    "noneYet": "Bu oraliqda hali mashq yo‘q.",
+    "range": {
+      "7": "7 kun",
+      "30": "30 kun",
+      "90": "3 oy",
+      "0": "Hammasi"
+    }
+  },
+  "calendar": {
+    "previous": "Oldingi oy",
+    "next": "Keyingi oy",
+    "less": "Kamroq",
+    "more": "Ko‘proq",
+    "dayAria_one": "{{date}}: {{count, number}} urinish",
+    "dayAria_other": "{{date}}: {{count, number}} urinish"
+  },
+  "day": {
+    "time": "O‘qish vaqti",
+    "attempts": "Yozuv urinishlari",
+    "correct": "To‘g‘ri",
+    "charactersLearned": "Tugatilgan harflar",
+    "wordsLearned": "Tugatilgan so‘zlar",
+    "reviews": "Takrorlash urinishlari",
+    "nothing": "Bu kuni mashq bo‘lmagan."
+  },
+  "insights": {
+    "title": "Ko‘zga tashlanadigani",
+    "mostPractisedCharacter": "Eng ko‘p mashq qilingan harf",
+    "mostPractisedWord": "Eng ko‘p mashq qilingan so‘z",
+    "accuracy": "Yozuv aniqligi",
+    "thisWeek": "Shu hafta",
+    "learnedCount_one": "{{count, number}} ta tugatildi",
+    "learnedCount_other": "{{count, number}} ta tugatildi"
+  },
+  "units": {
+    "minute_one": "{{count, number}} daq",
+    "minute_other": "{{count, number}} daq",
+    "hour_one": "{{count, number}} soat",
+    "hour_other": "{{count, number}} soat"
+  },
+  "empty": {
+    "title": "O‘qish tarixingiz bugundan boshlanadi",
+    "body": "Bir necha harfni mashq qiling — bu sahifa to‘ladi: qaysi kunlari o‘qiganingiz, qancha vaqt va nima ustida ishlaganingiz."
+  },
+  "week": {
+    "title": "Shu hafta",
+    "range": "{{from}} dan boshlab",
+    "days": "O‘qilgan kunlar",
+    "daysValue_one": "7 tadan {{count, number}} ta",
+    "daysValue_other": "7 tadan {{count, number}} ta",
+    "time": "Vaqt",
+    "learned": "O‘rganildi",
+    "accuracy": "Aniqlik",
+    "same": "O‘tgan haftadagidek vaqt.",
+    "moreThanLast": "O‘tgan haftadan {{minutes, number}} daqiqa ko‘p.",
+    "lessThanLast": "O‘tgan haftadan {{minutes, number}} daqiqa kam.",
+    "quiet": "Bu hafta hali hech narsa yo‘q — vaqt bor."
+  },
+  "memory": {
+    "title": "Eslab qolish qanday ketyapti",
+    "firstTry": "Bu hafta {{count, number}} narsani birinchi urinishdayoq esladingiz.",
+    "strongestSkill": "Bu hafta eng yaxshi ketayotgani — {{skill}}.",
+    "confusionImproving": "{{a}} va {{b}} ni ajratish osonlashib boryapti.",
+    "skill": {
+      "reading_recognition": "o‘qish",
+      "listening_recognition": "tinglash",
+      "guided_writing": "yozish",
+      "meaning_recognition": "ma’no",
+      "sentence_comprehension": "gaplar",
+      "sound_recognition": "tovushlar",
+      "visual_recognition": "harflar",
+      "lookalike_discrimination": "o‘xshashlarni ajratish"
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import { ALL_CHARACTERS, LETTER_LESSONS } from '../data/characters';
+import { PRACTICE_FONTS } from '../data/fonts';
+import { letterCopy } from '../data/letterCopy';
 import { VOCABULARY } from '../data/vocabulary';
 import { loadWordCopy, wordCopy } from '../data/wordCopy';
 import { PRODUCT, productName } from '../config/product';
@@ -74,16 +76,50 @@ describe('locale registry', () => {
     expect(describeLocale('he').nativeName).toBe('עברית');
   });
 
-  it('does not offer Arabic', () => {
-    // Withdrawn as a supported interface language. The registry must not list
-    // it and no bundle may ship for it — the two halves of "selectable".
-    expect(AVAILABLE_LOCALES).not.toContain('ar');
-    expect(sortLocales(AVAILABLE_LOCALES.map(describeLocale)).map((l) => l.code)).not.toContain(
-      'ar',
-    );
-    // Describing a tag is not the same as offering it: a stored preference
-    // naming Arabic must still render rather than crash the settings screen.
+  it('offers Arabic, and marks it right-to-left', () => {
+    /*
+     * Arabic was withdrawn once and this test asserted its absence. It ships
+     * now — with a full bundle — and the half that matters is the second line:
+     * a language whose direction is wrong is worse than a language that is
+     * missing, because it renders and it renders backwards.
+     */
+    expect(AVAILABLE_LOCALES).toContain('ar');
     expect(describeLocale('ar').direction).toBe('rtl');
+    expect(describeLocale('ar').nativeName).toBe('العربية');
+    // And it is the only right-to-left language that ships, so the rest of the
+    // picker must stay left-to-right.
+    const rtl = AVAILABLE_LOCALES.filter((code) => describeLocale(code).direction === 'rtl');
+    expect(rtl).toEqual(['ar']);
+  });
+
+  it('sorts the picker by English name, stably', () => {
+    const order = sortLocales(AVAILABLE_LOCALES.map(describeLocale)).map((l) => l.englishName);
+    expect(order).toEqual([...order].sort((a, b) => a.localeCompare(b, 'en')));
+    // Same input, same output: a picker that reshuffles between two renders of
+    // the same screen is one nobody can build a habit around.
+    expect(sortLocales(AVAILABLE_LOCALES.map(describeLocale)).map((l) => l.code)).toEqual(
+      sortLocales(AVAILABLE_LOCALES.map(describeLocale)).map((l) => l.code),
+    );
+  });
+
+  it('offers every language the product promises', () => {
+    /*
+     * The list, as a list. It is long and it is checked by name on purpose:
+     * "we support thirty-two languages" is a claim on the store page, and the
+     * only way it stops being true silently is a directory that quietly stops
+     * shipping.
+     */
+    const promised = [
+      'ar', 'bn', 'cs', 'de', 'el', 'en', 'es', 'fil', 'fr', 'hi', 'hu', 'id', 'it', 'ja',
+      'kk', 'ko', 'ky', 'mn', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sv', 'ta', 'te', 'th', 'tr',
+      'uk', 'uz', 'vi', 'zh-CN',
+    ];
+    expect([...AVAILABLE_LOCALES].sort()).toEqual([...promised].sort());
+    for (const code of promised) {
+      const entry = describeLocale(code);
+      expect(entry.nativeName, code).toBeTruthy();
+      expect(entry.nativeName, code).not.toBe(code);
+    }
   });
 
   it('searches by native name, English name and tag', () => {
@@ -291,7 +327,8 @@ describe('pluralisation', () => {
     const supported = i18n.options.supportedLngs as string[];
     for (const code of AVAILABLE_LOCALES) expect(supported, code).toContain(code);
     // And a language with no directory is not silently half-supported.
-    expect(supported).not.toContain('ru');
+    // Danish is described correctly by the registry and ships no bundle.
+    expect(supported).not.toContain('da');
   });
 });
 
@@ -389,14 +426,14 @@ describe('learning content is not translated', () => {
   });
 
   it('explains every letter in every shipping locale, with no fallback', () => {
-    // The counterpart to the vocabulary check above, and the gap this cycle
-    // closed: the letters had English and Korean only, so six of the eight
-    // languages taught the alphabet in English while claiming to be
-    // translated. A fallback here is a bug, not a planned state.
-    const locales = ['en', 'ko', 'ja', 'zh-CN', 'es', 'fr', 'de', 'pt-BR'] as const;
-    for (const locale of locales) {
+    // The counterpart to the vocabulary check above. A fallback here is a bug,
+    // not a planned state — and the list is `AVAILABLE_LOCALES` rather than a
+    // hand-written eight, because a hand-written eight is what let twenty-two
+    // languages ship a fully translated interface wrapped around an alphabet
+    // taught in English.
+    for (const locale of AVAILABLE_LOCALES) {
       for (const character of ALL_CHARACTERS) {
-        const resolved = resolveContent(character.translations, locale);
+        const resolved = letterCopy(character, locale);
         expect(
           resolved.isFallback,
           `${character.character} falls back to ${resolved.locale} for ${locale}`,
@@ -410,14 +447,68 @@ describe('learning content is not translated', () => {
     // A mnemonic is written where there is something to remember. Having one in
     // French and not in German would not be a translation gap — it would be a
     // different product in each language.
-    const locales = ['en', 'ko', 'ja', 'zh-CN', 'es', 'fr', 'de', 'pt-BR'] as const;
     for (const character of ALL_CHARACTERS) {
       const hasEnglish = Boolean(character.translations.en.mnemonic);
-      for (const locale of locales) {
-        const resolved = resolveContent(character.translations, locale);
+      for (const locale of AVAILABLE_LOCALES) {
+        const resolved = letterCopy(character, locale);
         expect(Boolean(resolved.value.mnemonic), `${character.character} in ${locale}`).toBe(
           hasEnglish,
         );
+      }
+    }
+  });
+
+  it('titles every lesson in every shipping locale, with no fallback', () => {
+    // The lesson title is the largest piece of type on the home screen. It sat
+    // in English on twenty-two interfaces while every other word around it was
+    // translated, which reads less like a gap than like a different app.
+    for (const lesson of LETTER_LESSONS) {
+      for (const locale of AVAILABLE_LOCALES) {
+        const resolved = resolveContent(lesson.translations, locale);
+        expect(resolved.isFallback, `${lesson.id} falls back for ${locale}`).toBe(false);
+        expect(resolved.value.title, `${lesson.id} in ${locale}`).toBeTruthy();
+      }
+    }
+  });
+
+  it('calls a unit the same thing in its heading and on its card', () => {
+    /*
+     * A lesson title and a unit title are two records of the same phrase — the
+     * heading on the Letters screen and the title on the card beneath it — and
+     * where English uses one phrase for both, every language must too.
+     *
+     * It did not. Arabic headed unit 11 «حرف في القاع» and titled the lesson
+     * inside it «حرف في الأسفل»: two names for one thing, three centimetres
+     * apart. Twenty-eight of the thirty-two languages had at least one, English
+     * had none, so nobody reading the app in English could see it.
+     */
+    const units = RESOURCES.en!.learning!.units as Record<string, { title?: string }>;
+    const paired = LETTER_LESSONS.map((lesson) => {
+      const english = pickContent(lesson.translations, 'en').title;
+      const key = Object.entries(units).find(([, v]) => v?.title === english)?.[0];
+      return key ? ([lesson, key] as const) : null;
+    }).filter((x) => x !== null);
+    expect(paired.length).toBeGreaterThan(5);
+
+    for (const [lesson, key] of paired) {
+      for (const locale of AVAILABLE_LOCALES) {
+        const unit = (RESOURCES[locale]!.learning!.units as Record<string, { title: string }>)[key]!;
+        expect(pickContent(lesson.translations, locale).title, `${lesson.id} in ${locale}`).toBe(
+          unit.title,
+        );
+      }
+    }
+  });
+
+  it('names and describes every practice typeface in every shipping locale', () => {
+    // The last block of English on My Learning: six faces, named "Standard",
+    // "Handwriting", "Rounded", under an otherwise fully translated screen.
+    for (const font of PRACTICE_FONTS) {
+      for (const locale of AVAILABLE_LOCALES) {
+        const resolved = resolveContent(font.translations, locale);
+        expect(resolved.isFallback, `${font.id} falls back for ${locale}`).toBe(false);
+        expect(resolved.value.name, `${font.id} in ${locale}`).toBeTruthy();
+        expect(resolved.value.description, `${font.id} in ${locale}`).toBeTruthy();
       }
     }
   });

@@ -304,6 +304,60 @@ def apply_sound_changes(text: str) -> list[list[str | None]]:
     return parts
 
 
+#: The tense consonants, and the plain ones Revised Romanisation writes them as.
+#:
+#: 국어의 로마자 표기법 §3 제1항 붙임: 된소리되기는 표기에 반영하지 않는다.
+#: 학교 is *hakgyo*, not *hakkkyo*; 먹다 is *meokda*, not *meoktta*. A tense
+#: consonant that is **written** — 꽃, 싸다 — is romanised as one; only the
+#: tensing a sound change introduced is left out, which is why this is decided
+#: by comparing the spoken form against the spelling rather than by a table.
+_DETENSE = {"ㄲ": "ㄱ", "ㄸ": "ㄷ", "ㅃ": "ㅂ", "ㅆ": "ㅅ", "ㅉ": "ㅈ"}
+
+
+def _untense_against(spoken: str, spelling: str) -> str:
+    """The spoken form with sound-change tensing undone, syllable by syllable.
+
+    Aligned by position, because a standard pronunciation has the same number of
+    syllable blocks as the word it belongs to — Korean sound changes rewrite
+    blocks, they do not add or remove them. Where the two disagree the spelling
+    is returned unchanged rather than guessed at.
+    """
+    if len(spoken) != len(spelling):
+        return spoken
+    out: list[str] = []
+    for said, written in zip(spoken, spelling):
+        if not is_syllable(said) or not is_syllable(written):
+            out.append(said)
+            continue
+        initial, medial, final = decompose(said)
+        if initial in _DETENSE and decompose(written)[0] != initial:
+            initial = _DETENSE[initial]
+        out.append(compose_syllable(initial, medial, final))
+    return "".join(out)
+
+
+def revised_romanization(word: str, spoken: str | None = None) -> str:
+    """The Revised Romanisation a learner reads, for one vocabulary headword.
+
+    Revised Romanisation transcribes **standard pronunciation**, not spelling,
+    so this takes the authoritative pronunciation where the content pipeline has
+    one and falls back to deriving it with `apply_sound_changes` where it does
+    not. That difference is not cosmetic: 나뭇잎 is said [나문닙] because a
+    compound inserts an ㄴ before 이, which is a fact about the word rather than
+    a rule the letters imply, and romanising the spelling gave *namusip* for a
+    word every Korean speaker says as *namunnip*. 밟다 is the same shape of
+    error in the other direction — the ㄼ exception in 표준발음법 §10 makes it
+    [밥따] and *bapda*, where the general cluster rule produces *balda*.
+
+    Tensing introduced by a sound change is then undone, because the standard
+    says not to write it. The two steps are in this order on purpose: the
+    authoritative form is the input to the romanisation, and the tensing rule is
+    a property of the *notation*, not of the pronunciation.
+    """
+    source = _untense_against(spoken, word) if spoken else word
+    return romanize(source)
+
+
 def romanize(text: str, *, transcribe: bool = True) -> str:
     """Revised Romanisation of a Korean word.
 

@@ -1,0 +1,42 @@
+{
+  "streak": {
+    "aria": "Zobrazit záznam o učení"
+  },
+  "celebrate": "Dnešní cíl je splněný. Pěkná práce.",
+  "dailyGoal": "Litery dnes",
+  "dailyGoalAria": "Litery dnes: {{done, number}} ze {{total, number}}",
+  "cta": {
+    "start": "Začít",
+    "continue": "Pokračovat v učení"
+  },
+  "finished": {
+    "badge": "Hotovo",
+    "title": "Umíte číst hangul",
+    "body": "Všech {{count, number}} liter: viděli jste je, napsali a přečetli zpátky. Odsud dál jdou slova.",
+    "goal": "Slova dnes",
+    "cta": "Dnešní slova"
+  },
+  "quick": {
+    "letters": "Litery",
+    "lettersCaption": "ze 40 liter hangulu",
+    "words": "Slova",
+    "wordsCaption": "dnešní slova"
+  },
+  "review": {
+    "title": "Opakování",
+    "count_few": "{{count, number}} k projití",
+    "count_many": "{{count, number}} k projití",
+    "count_one": "{{count, number}} k projití",
+    "count_other": "{{count, number}} k projití",
+    "empty": "Zatím není co opakovat"
+  },
+  "practice": {
+    "title": "Dnešní cvičení",
+    "reviews_few": "{{count, number}} opakování jsou připravená",
+    "reviews_many": "{{count, number}} opakování je připravených",
+    "reviews_one": "{{count, number}} opakování je připravené",
+    "reviews_other": "{{count, number}} opakování je připravených",
+    "cta": "Začít cvičit"
+  },
+  "purpose": "Učte se korejsky od úplně první litery — nejdřív hangul, potom slova, která opravdu použijete."
+}

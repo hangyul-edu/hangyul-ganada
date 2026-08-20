@@ -15,9 +15,6 @@
     "completeDetail_other": "{{count}} palabras aprendidas.",
     "more": "Un poco más",
     "allDone": "No queda nada por hoy.",
-    "remaining_one": "Queda una hoy",
-    "remaining_many": "Quedan {{count}} hoy",
-    "remaining_other": "Quedan {{count}} hoy",
     "progressAria": "Progreso de las palabras de hoy",
     "moreLabel": "¿Cuántas más?",
     "moreCount_one": "1 más",
@@ -107,7 +104,7 @@
   },
   "detail": {
     "title": "Palabra",
-    "pronunciation": "Pronunciación",
+    "romanization": "Romanización",
     "definition": "Más detalles",
     "usage": "Cómo se usa",
     "synonyms": "Sinónimos",

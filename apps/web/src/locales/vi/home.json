@@ -9,6 +9,13 @@
     "start": "Bắt đầu ngay",
     "continue": "Học tiếp"
   },
+  "finished": {
+    "badge": "Đã xong",
+    "title": "Bạn đọc được Hangul rồi",
+    "body": "Đủ {{count, number}} chữ cái, đã xem, đã viết và đã đọc lại. Từ đây là từ vựng.",
+    "goal": "Từ hôm nay",
+    "cta": "Từ vựng hôm nay"
+  },
   "quick": {
     "letters": "Chữ cái",
     "lettersCaption": "trong 40 chữ Hangul",

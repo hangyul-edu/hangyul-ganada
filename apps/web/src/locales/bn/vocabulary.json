@@ -1,0 +1,128 @@
+{
+  "title": "শব্দ শিখুন",
+  "today": {
+    "title": "আজকের শব্দ",
+    "start": "শুরু",
+    "resume": "চালিয়ে যান",
+    "startBlurb_one": "আজ একটি শব্দ।",
+    "startBlurb_other": "{{count}}টি শব্দের ছোট্ট একটা সেট।",
+    "resumeBlurb": "যেখানে ছেড়েছিলেন সেখান থেকে ধরুন।",
+    "doneBlurb": "আজকের মতো শেষ। চমৎকার।",
+    "completeTitle": "আজকের শব্দ শেষ।",
+    "completeDetail_one": "{{count}}টি শব্দ শেখা হয়েছে।",
+    "completeDetail_other": "{{count}}টি শব্দ শেখা হয়েছে।",
+    "more": "আর একটু",
+    "allDone": "আজকের জন্য আর কিছু নেই।",
+    "progressAria": "আজকের শব্দে অগ্রগতি",
+    "moreLabel": "আর কতগুলো",
+    "moreCount_one": "আর {{count}}টি",
+    "moreCount_other": "আর {{count}}টি"
+  },
+  "browse": {
+    "title": "বিষয় ধরে দেখুন",
+    "showing": "{{total}}-এর মধ্যে {{shown}}টি দেখা যাচ্ছে"
+  },
+  "intro": {
+    "example": "উদাহরণ",
+    "howItSounds": "কেমন শোনায়",
+    "surfaceNote": "এই বাক্যে {{headword}} এসেছে {{form}} রূপে।",
+    "next": "বুঝেছি"
+  },
+  "empty": {
+    "title": "এখানে এখনও কোনো শব্দ নেই",
+    "body": "অন্য একটা বিভাগ দেখুন।"
+  },
+  "partOfSpeech": {
+    "noun": "বিশেষ্য",
+    "verb": "ক্রিয়া",
+    "adjective": "বিশেষণ",
+    "adverb": "ক্রিয়াবিশেষণ",
+    "pronoun": "সর্বনাম",
+    "numeral": "সংখ্যাবাচক",
+    "particle": "অনুসর্গ",
+    "interjection": "অব্যয়",
+    "determiner": "নির্ধারক"
+  },
+  "session": {
+    "next": "পরের শব্দ",
+    "finish": "শেষ"
+  },
+  "blurb": "সব শব্দই খোলা। একটা বিভাগ বেছে নিয়ে যেখান থেকে খুশি শুরু করুন।",
+  "categories": {
+    "essentials": "রোজকার দরকারি",
+    "people": "মানুষ ও পরিবার",
+    "food": "খাওয়া ও পানীয়",
+    "animals-nature": "প্রাণী ও প্রকৃতি",
+    "home": "ঘর ও জিনিসপত্র",
+    "body-health": "শরীর ও স্বাস্থ্য",
+    "places-travel": "জায়গা ও ভ্রমণ",
+    "time-numbers": "সময় ও সংখ্যা",
+    "school-work": "পড়াশোনা ও কাজ",
+    "money-shopping": "টাকা ও কেনাকাটা",
+    "communication": "কথা ও মাধ্যম",
+    "feelings": "অনুভূতি ও স্বভাব",
+    "thinking": "ভাবনা ও শেখা",
+    "movement": "যাওয়া-আসা",
+    "actions": "রোজকার কাজ",
+    "describing": "জিনিস বর্ণনা",
+    "society": "জীবন ও সংস্কৃতি",
+    "how-when": "কীভাবে ও কখন"
+  },
+  "category": {
+    "label": "বিভাগ",
+    "all": "সব বিভাগ",
+    "pick": "একটি বিভাগ বেছে নিন",
+    "count_one": "{{count, number}}টি শব্দ",
+    "count_other": "{{count, number}}টি শব্দ",
+    "progressAria": "{{category}}-এ অগ্রগতি"
+  },
+  "search": {
+    "placeholder": "শব্দ খুঁজুন",
+    "label": "শব্দভাণ্ডারে খুঁজুন",
+    "count_one": "{{count, number}}টি মিল",
+    "count_other": "{{count, number}}টি মিল",
+    "none": "“{{query}}”-এর সঙ্গে কিছু মেলেনি। কোরীয়তে চেষ্টা করুন, কিংবা নিজের ভাষায় অর্থটা লিখুন।"
+  },
+  "sound": {
+    "tensing": "অন্ত্য ব্যঞ্জনের পরে পরের শব্দটি আঁটসাঁট হয়ে যায়।",
+    "aspiration": "ㅎ পরের ব্যঞ্জনের সঙ্গে মিশে গিয়ে এক ঝলক বাতাস যোগ করে।",
+    "nasal": "ㄴ বা ㅁ-এর আগে, তার আগের ব্যঞ্জনটি নাকি হয়ে যায়।",
+    "lateral": "পাশাপাশি ㄴ আর ㄹ দুটোই ㄹ হয়ে যায়।",
+    "palatal": "이-এর আগে অন্ত্য ㄷ বা ㅌ ㅈ বা ㅊ-এর মতো বলা হয়।",
+    "liaison": "অন্ত্য ব্যঞ্জনটি পরের ঘরে গড়িয়ে যায়।"
+  },
+  "save": {
+    "action": "সংরক্ষণ",
+    "saved": "সংরক্ষিত",
+    "add": "{{word}} সংরক্ষণ করুন",
+    "remove": "{{word}} সংরক্ষিত তালিকা থেকে সরান"
+  },
+  "detail": {
+    "title": "শব্দ",
+    "romanization": "রোমান হরফে",
+    "definition": "আরও কিছু",
+    "usage": "কীভাবে ব্যবহার হয়",
+    "synonyms": "সমার্থক",
+    "antonyms": "বিপরীত"
+  },
+  "saved": {
+    "title": "সংরক্ষিত শব্দ",
+    "review_one": "পুনরালোচনা · {{count}}টি প্রশ্ন",
+    "review_other": "পুনরালোচনা · {{count}}টি প্রশ্ন",
+    "searchPlaceholder": "সংরক্ষিত শব্দে খুঁজুন",
+    "searchLabel": "আপনার সংরক্ষিত শব্দে খুঁজুন",
+    "orderLabel": "ক্রম",
+    "order": {
+      "recent": "সাম্প্রতিক",
+      "alphabetical": "অ–হ",
+      "needed": "খাটুনি দরকার"
+    },
+    "count_one": "{{count}}টি শব্দ",
+    "count_other": "{{count}}টি শব্দ",
+    "remove": "সরান",
+    "noMatch": "সংরক্ষিত শব্দে “{{query}}”-এর সঙ্গে কিছু মেলেনি।",
+    "emptyTitle": "এখনও কোনো শব্দ সংরক্ষিত নেই",
+    "emptyBody": "পড়ার সময় যেকোনো শব্দের বুকমার্কে চাপ দিন, পরে ফিরে আসার জন্য সেটি এখানে থাকবে।",
+    "emptyCta": "শব্দে যান"
+  }
+}

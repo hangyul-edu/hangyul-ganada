@@ -63,10 +63,19 @@ test('the picker lists languages by their own names and is searchable', async ({
   await expect(page.getByRole('button', { name: /日本語/ })).toBeVisible();
   await expect(page.getByRole('button', { name: /Deutsch/ })).toBeVisible();
 
-  // Arabic is not a supported interface language, and must not be offered —
-  // by its own name or by a search for it.
-  await expect(page.getByRole('button', { name: /العربية/ })).toHaveCount(0);
+  // Arabic ships, and is offered by its own name and by an English search for
+  // it. It used to be the example of a language the picker must *not* list; it
+  // is now the example of the one whose row has to survive a right-to-left
+  // layout inside a left-to-right list.
+  await expect(page.getByRole('button', { name: /العربية/ })).toHaveCount(1);
   await page.getByRole('searchbox', { name: 'Search languages' }).fill('arabic');
+  await expect(page.getByRole('button', { name: /العربية/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /한국어/ })).toBeHidden();
+  await page.getByRole('searchbox', { name: 'Search languages' }).fill('');
+
+  // A language the product does not ship, by name and by code, is still absent.
+  await expect(page.getByRole('button', { name: /Dansk/ })).toHaveCount(0);
+  await page.getByRole('searchbox', { name: 'Search languages' }).fill('danish');
   await expect(page.getByText(/No language matches/)).toBeVisible();
   await page.getByRole('searchbox', { name: 'Search languages' }).fill('');
 

@@ -1,0 +1,128 @@
+{
+  "title": "शब्द सीखें",
+  "today": {
+    "title": "आज के शब्द",
+    "start": "शुरू करें",
+    "resume": "जारी रखें",
+    "startBlurb_one": "आज एक शब्द।",
+    "startBlurb_other": "{{count}} शब्दों का छोटा-सा सेट।",
+    "resumeBlurb": "जहाँ छोड़ा था वहीं से लीजिए।",
+    "doneBlurb": "आज के लिए हो गया। बढ़िया काम।",
+    "completeTitle": "आज के शब्द पूरे हो गए।",
+    "completeDetail_one": "{{count}} शब्द सीखा।",
+    "completeDetail_other": "{{count}} शब्द सीखे।",
+    "more": "थोड़ा और",
+    "allDone": "आज के लिए कुछ नहीं बचा।",
+    "progressAria": "आज के शब्दों में प्रगति",
+    "moreLabel": "और कितने",
+    "moreCount_one": "{{count}} और",
+    "moreCount_other": "{{count}} और"
+  },
+  "browse": {
+    "title": "विषय के हिसाब से देखिए",
+    "showing": "{{total}} में से {{shown}} दिख रहे हैं"
+  },
+  "intro": {
+    "example": "उदाहरण",
+    "howItSounds": "यह कैसे बोला जाता है",
+    "surfaceNote": "इस वाक्य में {{headword}} {{form}} रूप में आया है।",
+    "next": "समझ गए"
+  },
+  "empty": {
+    "title": "यहाँ अभी कोई शब्द नहीं",
+    "body": "कोई और श्रेणी आज़माइए।"
+  },
+  "partOfSpeech": {
+    "noun": "संज्ञा",
+    "verb": "क्रिया",
+    "adjective": "विशेषण",
+    "adverb": "क्रिया-विशेषण",
+    "pronoun": "सर्वनाम",
+    "numeral": "संख्यावाचक",
+    "particle": "परसर्ग",
+    "interjection": "विस्मयादिबोधक",
+    "determiner": "निर्धारक"
+  },
+  "session": {
+    "next": "अगला शब्द",
+    "finish": "समाप्त"
+  },
+  "blurb": "सभी शब्द खुले हैं। कोई श्रेणी चुनिए और जहाँ से चाहें शुरू कीजिए।",
+  "categories": {
+    "essentials": "रोज़मर्रा की ज़रूरी बातें",
+    "people": "लोग और परिवार",
+    "food": "खाना और पीना",
+    "animals-nature": "जानवर और प्रकृति",
+    "home": "घर और चीज़ें",
+    "body-health": "शरीर और सेहत",
+    "places-travel": "जगहें और सफ़र",
+    "time-numbers": "समय और संख्याएँ",
+    "school-work": "पढ़ाई और काम",
+    "money-shopping": "पैसा और खरीदारी",
+    "communication": "बातचीत और मीडिया",
+    "feelings": "भावनाएँ और स्वभाव",
+    "thinking": "सोचना और सीखना",
+    "movement": "आना-जाना",
+    "actions": "रोज़ के काम",
+    "describing": "चीज़ों का वर्णन",
+    "society": "जीवन और संस्कृति",
+    "how-when": "कैसे और कब"
+  },
+  "category": {
+    "label": "श्रेणी",
+    "all": "सभी श्रेणियाँ",
+    "pick": "कोई श्रेणी चुनिए",
+    "count_one": "{{count, number}} शब्द",
+    "count_other": "{{count, number}} शब्द",
+    "progressAria": "{{category}} में प्रगति"
+  },
+  "search": {
+    "placeholder": "शब्द खोजिए",
+    "label": "शब्दावली में खोजिए",
+    "count_one": "{{count, number}} मिलान",
+    "count_other": "{{count, number}} मिलान",
+    "none": "“{{query}}” से कुछ नहीं मिला। कोरियाई में आज़माइए, या अपनी भाषा में अर्थ लिखिए।"
+  },
+  "sound": {
+    "tensing": "अंतिम व्यंजन के बाद अगली ध्वनि कस जाती है।",
+    "aspiration": "ㅎ अगले व्यंजन में घुल जाता है और हवा का एक झोंका जोड़ देता है।",
+    "nasal": "ㄴ या ㅁ से पहले, उससे आगे का व्यंजन नासिक्य हो जाता है।",
+    "lateral": "ㄴ और ㄹ अगल-बगल हों तो दोनों ㄹ हो जाते हैं।",
+    "palatal": "이 से पहले अंतिम ㄷ या ㅌ ㅈ या ㅊ जैसा बोला जाता है।",
+    "liaison": "अंतिम व्यंजन अगले खंड पर खिसक जाता है।"
+  },
+  "save": {
+    "action": "सहेजें",
+    "saved": "सहेजा गया",
+    "add": "{{word}} सहेजिए",
+    "remove": "{{word}} को सहेजे शब्दों से हटाइए"
+  },
+  "detail": {
+    "title": "शब्द",
+    "romanization": "रोमन अक्षरों में",
+    "definition": "इसके बारे में और",
+    "usage": "इसका इस्तेमाल कैसे होता है",
+    "synonyms": "समानार्थी",
+    "antonyms": "विलोम"
+  },
+  "saved": {
+    "title": "सहेजे शब्द",
+    "review_one": "दोहराव · {{count}} सवाल",
+    "review_other": "दोहराव · {{count}} सवाल",
+    "searchPlaceholder": "सहेजे शब्दों में खोजिए",
+    "searchLabel": "अपने सहेजे शब्दों में खोजिए",
+    "orderLabel": "क्रम",
+    "order": {
+      "recent": "हाल के",
+      "alphabetical": "अ–ह",
+      "needed": "मेहनत चाहिए"
+    },
+    "count_one": "{{count}} शब्द",
+    "count_other": "{{count}} शब्द",
+    "remove": "हटाइए",
+    "noMatch": "सहेजे शब्दों में “{{query}}” से कुछ नहीं मिला।",
+    "emptyTitle": "अभी कोई शब्द सहेजा नहीं",
+    "emptyBody": "पढ़ते समय किसी भी शब्द पर बुकमार्क दबाइए, और वह यहाँ मिलेगा जब आप लौटना चाहें।",
+    "emptyCta": "शब्दों पर जाइए"
+  }
+}

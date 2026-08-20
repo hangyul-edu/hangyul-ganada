@@ -93,6 +93,7 @@ import { chromium } from 'playwright';
 
 import { ALL_CHARACTERS } from '../apps/web/src/data/characters.ts';
 import { STROKE_ASSETS, hasStrokeAsset, strokeReveal } from '../apps/web/src/data/strokeAssets.ts';
+import { layoutMarkers } from '../apps/web/src/ui/strokeMarkers.ts';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const OUT = join(here, '..', '.stroke-qa');
@@ -133,15 +134,39 @@ const RASTER = 256;
  *   for it and it is not worth a false sense of completion to pretend
  *   otherwise.
  *
- * The rim itself — under EDGE_NOISE pixels *and* under DEPTH_LIMIT deep — is
- * not reported at all.
+ * The rim itself — under EDGE_NOISE pixels *and* under RIM_THICKNESS across —
+ * is not reported at all.
  */
 const EDGE_NOISE = 12;
 const DEPTH_LIMIT = 0.6;
 
+/**
+ * How fat a mark has to be before anybody can see it, in viewBox units.
+ *
+ * The letter is drawn with a pen a little under six units wide, and the lesson
+ * renders the box at about 200 px, so one viewBox unit is two device pixels.
+ * A mark under a unit across is a rim on a boundary that two regions traced
+ * independently: real, and not a thing a person can point at. `thicknessOf`
+ * measures it by eroding the mark until it disappears, which is the same
+ * question the eye asks.
+ */
+const RIM_THICKNESS = 1;
+
 /** Above either of these, an intrusion is a build failure rather than a note. */
 const FAIL_PIXELS = 100;
-const FAIL_DEPTH = 4;
+
+/**
+ * A mark this thick is a block, and a block is the defect this file exists for.
+ *
+ * `depth` used to hold this line, and it was the wrong number: it measures how
+ * far into a *later stroke's ribbon* a pixel sits, so a one-pixel rim lying
+ * along that stroke's centreline scored the stroke's full half-width. 가's
+ * junction rim — seven pixels, one pixel tall, invisible at any size — was
+ * reported at 1.97 units through every round of this while ㅈ's genuine
+ * hairline scored 3.14. Two findings a viewer would rank the other way round.
+ * Thickness ranks them the way looking does.
+ */
+const FAIL_THICKNESS = 2.5;
 
 /**
  * Sampled route points allowed to fall off a stroke's own ink.
@@ -172,10 +197,16 @@ const items = wanted.map((character) => {
   return {
     character,
     viewBox: asset.viewBox,
+    pen: asset.pen,
+    // The same layout the lesson draws, from the same shapes, so a marker that
+    // has come unstuck from its stroke shows up on this page rather than on a
+    // learner's screen.
+    markers: layoutMarkers(asset.strokes, Math.max(3.4, asset.pen * 0.62)),
     strokes: asset.strokes.map((stroke) => ({
       order: stroke.order,
       shape: stroke.shape,
       draw: stroke.draw,
+      start: stroke.start,
       frames: STEPS.map((step) => strokeReveal(stroke, step).path),
     })),
   };
@@ -354,6 +385,56 @@ function measure({ items, RASTER, EDGE_NOISE, DEPTH_LIMIT, MULTI_PIECE }) {
     return Number((lost / area).toFixed(3));
   };
 
+  /**
+   * How thick the wrongly-held ink actually is, in viewBox units.
+   *
+   * `depth` above answers "how far into the later stroke's ribbon does this
+   * sit", which is the right question about a block and the wrong one about a
+   * hairline: a one-pixel rim lying along a later stroke's centreline scores
+   * that stroke's whole half-width, and 가's junction rim — seven pixels, one
+   * pixel tall — has been reported at "1.97 units deep" through every round of
+   * this. Two numbers that disagree that badly means one of them is not
+   * measuring what the eye does.
+   *
+   * The eye sees a shape, and what makes a shape visible is how *fat* it is.
+   * So: erode the intrusion until nothing is left and count the rounds. A rim
+   * two pixels across disappears in one and scores 0.8 units; the wedge that
+   * started all this was six units across and survived eight.
+   *
+   * Both numbers are kept and both are printed. The failure line moved onto
+   * this one because it is the one a person can check by looking.
+   */
+  const thicknessOf = (m) => {
+    let current = m;
+    let rounds = 0;
+    for (;;) {
+      const next = new Uint8Array(R * R);
+      let any = false;
+      for (let y = 1; y < R - 1; y += 1) {
+        for (let x = 1; x < R - 1; x += 1) {
+          const at = y * R + x;
+          if (
+            current[at] &&
+            current[at - 1] &&
+            current[at + 1] &&
+            current[at - R] &&
+            current[at + R]
+          ) {
+            next[at] = 1;
+            any = true;
+          }
+        }
+      }
+      if (!any) break;
+      current = next;
+      rounds += 1;
+      if (rounds > R) break;
+    }
+    // `rounds` erosions survived means an inscribed radius of rounds + 0.5
+    // pixels; twice that, in viewBox units, is the width of the mark.
+    return ((rounds + 0.5) * 2) / scale;
+  };
+
   const results = [];
 
   for (const item of items) {
@@ -374,6 +455,25 @@ function measure({ items, RASTER, EDGE_NOISE, DEPTH_LIMIT, MULTI_PIECE }) {
 
     const union = new Uint8Array(R * R);
     for (const m of shapes) for (let i = 0; i < R * R; i += 1) if (m[i]) union[i] = 1;
+
+    // Each stroke's ink grown by two pixels: "in contact with", allowing for
+    // the pixel of paper two independently traced outlines leave between them.
+    const touching = shapes.map((m) => {
+      let grown = m;
+      for (let round = 0; round < 2; round += 1) {
+        const out = new Uint8Array(R * R);
+        for (let y = 1; y < R - 1; y += 1) {
+          for (let x = 1; x < R - 1; x += 1) {
+            const at = y * R + x;
+            if (grown[at] || grown[at - 1] || grown[at + 1] || grown[at - R] || grown[at + R]) {
+              out[at] = 1;
+            }
+          }
+        }
+        grown = out;
+      }
+      return grown;
+    });
 
     const strokeReports = [];
 
@@ -400,9 +500,30 @@ function measure({ items, RASTER, EDGE_NOISE, DEPTH_LIMIT, MULTI_PIECE }) {
       for (let j = i + 1; j < item.strokes.length; j += 1) {
         let count = 0;
         let deepest = 0;
+        const blob = new Uint8Array(R * R);
         for (let p = 0; p < R * R; p += 1) {
           if (!cap[p] || !bodies[j][p]) continue;
+          /*
+           * And touching stroke j's own ink, not merely inside its ribbon.
+           *
+           * The ribbon is the route stroked at the stroke's half-width, and on
+           * a stroke that turns a corner that half-width is measured partly
+           * across the corner, so the ribbon stands a unit or two proud of the
+           * ink on the outside of every ㄱ and ㄴ. 국's ㅜ descender ends above
+           * its 받침 with clear paper between them, and was reported for 76 px
+           * of its own foot lying in that overhang — ink that is nowhere near
+           * the ㄱ and could not be mistaken for it.
+           *
+           * "Steals part of another stroke" means the two are in contact. A
+           * mark with blank paper between it and the stroke it is accused of
+           * taking from has taken nothing. Every defect this page was built for
+           * — 어's connector in the stem, ㅎ's blob in the ring, ㅈ's hairline
+           * up the trunk — is flush against the ink it intrudes on and is still
+           * caught.
+           */
+          if (!touching[j][p]) continue;
           count += 1;
+          blob[p] = 1;
           const x = p % R;
           const y = (p - x) / R;
           // How far inside stroke j's body this pixel sits: j's own half-width
@@ -411,7 +532,12 @@ function measure({ items, RASTER, EDGE_NOISE, DEPTH_LIMIT, MULTI_PIECE }) {
           if (depth > deepest) deepest = depth;
         }
         if (count > 0) {
-          bleeds.push({ into: j + 1, pixels: count, depth: Number(deepest.toFixed(2)) });
+          bleeds.push({
+            into: j + 1,
+            pixels: count,
+            depth: Number(deepest.toFixed(2)),
+            thickness: Number(thicknessOf(blob).toFixed(2)),
+          });
         }
       }
 
@@ -496,15 +622,16 @@ const warnings = [];
 for (const item of findings) {
   for (const stroke of item.strokes) {
     for (const bleed of stroke.bleeds) {
-      if (bleed.pixels <= EDGE_NOISE && bleed.depth <= DEPTH_LIMIT) continue;
+      if (bleed.pixels <= EDGE_NOISE && bleed.thickness <= RIM_THICKNESS) continue;
       const finding = {
         kind: 'bleed',
         character: item.character,
         text:
           `stroke ${stroke.order} paints ${bleed.pixels}px inside stroke ${bleed.into}, ` +
-          `${bleed.depth} units deep — stroke ${bleed.into} is still grey when it happens`,
+          `${bleed.thickness} units thick (${bleed.depth} into its ribbon) — ` +
+          `stroke ${bleed.into} is still grey when it happens`,
       };
-      if (bleed.pixels > FAIL_PIXELS || bleed.depth > FAIL_DEPTH) problems.push(finding);
+      if (bleed.pixels > FAIL_PIXELS || bleed.thickness > FAIL_THICKNESS) problems.push(finding);
       else warnings.push(finding);
     }
     const allowed = MULTI_PIECE[item.character]?.[stroke.order] ?? 1;
@@ -540,11 +667,25 @@ if (!CHECK) {
   const rows = items
     .map((item) => {
       const flagged = worst.has(item.character);
+      const radius = Math.max(3.4, item.pen * 0.62);
+      const numbered = item.markers
+        .map((m) => {
+          const tether = m.tethered
+            ? `<line x1="${m.anchor.x}" y1="${m.anchor.y}" x2="${m.label.x}" y2="${m.label.y}" stroke="#b91c1c" stroke-width=".7"/>`
+            : '';
+          return (
+            `${tether}<circle cx="${m.anchor.x}" cy="${m.anchor.y}" r="1" fill="#b91c1c"/>` +
+            `<circle cx="${m.label.x}" cy="${m.label.y}" r="${radius}" fill="#b91c1c"/>` +
+            `<text x="${m.label.x}" y="${m.label.y}" fill="#fff" font-size="${radius * 1.25}" ` +
+            `text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif">${m.order}</text>`
+          );
+        })
+        .join('');
       const cells = [
         cell(
           item.viewBox,
           item.strokes.map((s) => `<path d="${s.shape}" fill="#151210" fill-rule="evenodd"/>`).join(''),
-          'finished',
+          'reference glyph',
         ),
         cell(
           item.viewBox,
@@ -556,7 +697,23 @@ if (!CHECK) {
             .join(''),
           'each stroke',
         ),
+        cell(
+          item.viewBox,
+          item.strokes.map((s) => `<path d="${s.shape}" fill="#d9d3cb" fill-rule="evenodd"/>`).join('') +
+            numbered,
+          'numbers',
+        ),
       ];
+      // Every stroke alone, so a fragment or a chip has nothing to hide behind.
+      for (const [i, stroke] of item.strokes.entries()) {
+        cells.push(
+          cell(
+            item.viewBox,
+            `<path d="${stroke.shape}" fill="${HUES[i % HUES.length]}" fill-rule="evenodd"/>`,
+            `only ${stroke.order}`,
+          ),
+        );
+      }
       for (const [i, stroke] of item.strokes.entries()) {
         const ghost = item.strokes
           .map((o) => `<path d="${o.shape}" fill="#e3ded7" fill-rule="evenodd"/>`)
@@ -604,10 +761,11 @@ if (!CHECK) {
  figcaption{font-size:10px;color:#78716c;margin-top:1px}
 </style>
 <h1>Stroke visual QA — ${items.length} items, ${items.reduce((n, i) => n + i.strokes.length, 0)} strokes</h1>
-<p class="lede">Each row: the finished character, the same character with one colour per stroke, then every
-stroke through five moments of being drawn. Grey is not yet written, black is ink. A stroke that shows black
-inside a grey neighbour is the defect this page exists to catch — scan the colour column first, it makes an
-intrusion obvious at a glance.</p>
+<p class="lede">Each row: the reference glyph, the same character with one colour per stroke, the numbered
+start points, every stroke on its own, then every stroke through five moments of being drawn. Grey is not yet
+written, black is ink. A stroke that shows black inside a grey neighbour is the defect this page exists to
+catch — scan the colour column first, it makes an intrusion obvious at a glance; the <em>only&nbsp;n</em>
+cells show a chip or a broken-off fragment that the finished glyph hides.</p>
 ${rows}`,
   );
 

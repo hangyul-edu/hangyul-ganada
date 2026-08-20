@@ -1,0 +1,128 @@
+{
+  "title": "Matuto ng mga salita",
+  "today": {
+    "title": "Mga salita ngayong araw",
+    "start": "Simulan",
+    "resume": "Ituloy",
+    "startBlurb_one": "Isang salita ngayong araw.",
+    "startBlurb_other": "Maikling set ng {{count}} salita.",
+    "resumeBlurb": "Ituloy kung saan ka tumigil.",
+    "doneBlurb": "Tapos na ngayong araw. Magaling.",
+    "completeTitle": "Tapos na ang mga salita ngayong araw.",
+    "completeDetail_one": "{{count}} salita ang natutuhan.",
+    "completeDetail_other": "{{count}} na salita ang natutuhan.",
+    "more": "Kaunti pa",
+    "allDone": "Wala nang natitira ngayong araw.",
+    "progressAria": "Pag-usad sa mga salita ngayong araw",
+    "moreLabel": "Ilan pa",
+    "moreCount_one": "{{count}} pa",
+    "moreCount_other": "{{count}} pa"
+  },
+  "browse": {
+    "title": "Maghanap ayon sa paksa",
+    "showing": "Ipinapakita ang {{shown}} sa {{total}}"
+  },
+  "intro": {
+    "example": "Halimbawa",
+    "howItSounds": "Kung paano ito tumunog",
+    "surfaceNote": "Sa pangungusap na ito, lumalabas ang {{headword}} bilang {{form}}.",
+    "next": "Naintindihan"
+  },
+  "empty": {
+    "title": "Wala pang salita rito",
+    "body": "Subukan ang ibang kategorya."
+  },
+  "partOfSpeech": {
+    "noun": "pangngalan",
+    "verb": "pandiwa",
+    "adjective": "pang-uri",
+    "adverb": "pang-abay",
+    "pronoun": "panghalip",
+    "numeral": "pamilang",
+    "particle": "kataga",
+    "interjection": "pandamdam",
+    "determiner": "pantukoy"
+  },
+  "session": {
+    "next": "Susunod na salita",
+    "finish": "Tapusin"
+  },
+  "blurb": "Bukas ang lahat ng salita. Pumili ng kategorya at magsimula kung saan mo gusto.",
+  "categories": {
+    "essentials": "Pang-araw-araw na Kailangan",
+    "people": "Mga Tao at Pamilya",
+    "food": "Pagkain at Inumin",
+    "animals-nature": "Hayop at Kalikasan",
+    "home": "Bahay at Gamit",
+    "body-health": "Katawan at Kalusugan",
+    "places-travel": "Lugar at Paglalakbay",
+    "time-numbers": "Oras at Numero",
+    "school-work": "Paaralan at Trabaho",
+    "money-shopping": "Pera at Pamimili",
+    "communication": "Pakikipag-usap at Midya",
+    "feelings": "Damdamin at Ugali",
+    "thinking": "Pag-iisip at Pagkatuto",
+    "movement": "Paglabas-pasok",
+    "actions": "Pang-araw-araw na Gawain",
+    "describing": "Paglalarawan ng Bagay",
+    "society": "Buhay at Kultura",
+    "how-when": "Paano at Kailan"
+  },
+  "category": {
+    "label": "Kategorya",
+    "all": "Lahat ng kategorya",
+    "pick": "Pumili ng kategorya",
+    "count_one": "{{count, number}} salita",
+    "count_other": "{{count, number}} na salita",
+    "progressAria": "Pag-usad sa {{category}}"
+  },
+  "search": {
+    "placeholder": "Maghanap ng salita",
+    "label": "Maghanap sa talasalitaan",
+    "count_one": "{{count, number}} tugma",
+    "count_other": "{{count, number}} na tugma",
+    "none": "Walang tumugma sa “{{query}}”. Subukan sa Koreano, o ang kahulugan sa sarili mong wika."
+  },
+  "sound": {
+    "tensing": "Pagkatapos ng pangwakas na katinig, humihigpit ang susunod na tunog.",
+    "aspiration": "Nagsasanib ang ㅎ sa susunod na katinig at nagdaragdag ng buga ng hangin.",
+    "nasal": "Bago ang ㄴ o ㅁ, nagiging pang-ilong ang katinig sa unahan.",
+    "lateral": "Kapag magkatabi ang ㄴ at ㄹ, pareho silang nagiging ㄹ.",
+    "palatal": "Ang pangwakas na ㄷ o ㅌ bago ang 이 ay binibigkas na parang ㅈ o ㅊ.",
+    "liaison": "Dumudulas ang pangwakas na katinig papunta sa susunod na kahon."
+  },
+  "save": {
+    "action": "I-save",
+    "saved": "Naka-save",
+    "add": "I-save ang {{word}}",
+    "remove": "Alisin ang {{word}} sa mga naka-save"
+  },
+  "detail": {
+    "title": "Salita",
+    "romanization": "Sa letrang Latin",
+    "definition": "Higit pa tungkol dito",
+    "usage": "Paano ito ginagamit",
+    "synonyms": "Mga kasingkahulugan",
+    "antonyms": "Mga kasalungat"
+  },
+  "saved": {
+    "title": "Mga naka-save na salita",
+    "review_one": "Balik-aral · {{count}} tanong",
+    "review_other": "Balik-aral · {{count}} tanong",
+    "searchPlaceholder": "Maghanap sa mga naka-save",
+    "searchLabel": "Maghanap sa mga naka-save mong salita",
+    "orderLabel": "Pagkakasunod",
+    "order": {
+      "recent": "Pinakabago",
+      "alphabetical": "A–Z",
+      "needed": "Kailangan ng ensayo"
+    },
+    "count_one": "{{count}} salita",
+    "count_other": "{{count}} na salita",
+    "remove": "Alisin",
+    "noMatch": "Walang naka-save na tumugma sa “{{query}}”.",
+    "emptyTitle": "Wala pang naka-save na salita",
+    "emptyBody": "Pindutin ang bookmark sa kahit anong salita habang nag-aaral, at naririto ito kapag gusto mong balikan.",
+    "emptyCta": "Pumunta sa mga salita"
+  }
+}

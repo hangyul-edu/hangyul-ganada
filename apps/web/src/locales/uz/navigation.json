@@ -1,0 +1,10 @@
+{
+  "primary": "Asosiy menyu",
+  "tabs": {
+    "home": "Bosh sahifa",
+    "letters": "Harflar",
+    "words": "So‘zlar",
+    "review": "Takrorlash",
+    "profile": "Mening o‘qishim"
+  }
+}

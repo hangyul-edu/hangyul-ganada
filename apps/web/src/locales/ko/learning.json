@@ -15,7 +15,7 @@
     "prompt": {
       "write": "안내선을 따라 손가락으로 써 보세요."
     },
-    "nowRead": "이제 읽어 보기",
+    "nowRecognise": "문제 풀어 보기",
     "continue": "다음"
   },
   "complete": {

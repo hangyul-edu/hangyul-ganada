@@ -1,0 +1,143 @@
+{
+  "title": "Mijn leren",
+  "stats": {
+    "lettersLearned": "Letters geleerd",
+    "wordsLearned": "Woorden geleerd",
+    "alphabetProgress": "Voortgang door het Hangul-alfabet",
+    "studyDays": "Leerdagen"
+  },
+  "language": {
+    "title": "Taal",
+    "pickerTitle": "Kies een taal",
+    "pickerIntro": "De taal van de app. Wat je leert — Hangul-letters, woorden en voorbeeldzinnen — blijft Koreaans.",
+    "listAria": "Beschikbare talen",
+    "searchLabel": "Zoek een taal",
+    "searchPlaceholder": "Zoek op naam of code",
+    "noResults": "Geen taal komt overeen met “{{query}}”.",
+    "selected": "Gekozen",
+    "coverageNote": "Elke taal hier vertaalt de hele interface en de alfabetcursus. Waar de regel het zegt, staan woordbetekenissen en voorbeeldzinnen nog in het Engels.",
+    "wordsInEnglish": "Woordbetekenissen in het Engels"
+  },
+  "font": {
+    "title": "Oefenletter",
+    "description": "De letter die je natrekt wordt getekend in het lettertype dat je kiest."
+  },
+  "dailyTarget": {
+    "title": "Letters per dag",
+    "description": "Hoeveel Hangul-letters je elke dag wilt afronden.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} per dag",
+    "optionAria_other": "{{count, number}} per dag"
+  },
+  "wordGoal": {
+    "title": "Woorden per dag",
+    "description": "Hoeveel woorden je elke dag wilt afronden. Je kunt dit altijd aanpassen.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} woorden per dag"
+  },
+  "guides": {
+    "title": "Hulplijnen",
+    "description": "De hulplijnen in het vak.",
+    "grid": "Horizontale en verticale lijnen",
+    "crosshair": "Middelpunt"
+  },
+  "about": {
+    "body": "Lees en schrijf Hangul: de letters, de klanken, de lettergreepblokken en je eerste Koreaanse woorden.",
+    "offline": "Elke les, zin en opname werkt offline.",
+    "version": "Versie {{version}}",
+    "reset": "Leervoortgang wissen"
+  },
+  "reset": {
+    "title": "Alle leervoortgang wissen?",
+    "description": "Je afgeronde lessen, herhaalgeschiedenis en leeractiviteit worden gewist. Dit kan niet ongedaan worden gemaakt.",
+    "confirm": "Wissen",
+    "cancel": "Annuleren",
+    "body": "Begin opnieuw bij de allereerste letter."
+  },
+  "voice": {
+    "title": "Uitspraakstem",
+    "description": "Wie de letters, lettergrepen en woorden voorleest.",
+    "female": "Vrouwenstem",
+    "male": "Mannenstem",
+    "preview": "Beluister de gekozen stem",
+    "provider": "Twee heldere Koreaanse stemmen, iets langzamer dan moedertaaltempo zodat elke klank landt."
+  },
+  "groups": {
+    "learning": "Leren",
+    "practice": "Oefenen",
+    "appearance": "Weergave",
+    "app": "App",
+    "reset": "Wissen"
+  },
+  "activity": {
+    "title": "Leeractiviteit",
+    "body": "Je reeks, je kalender en wat je hebt geleerd"
+  },
+  "appearance": {
+    "title": "Weergave",
+    "description": "Licht, donker, of wat je telefoon doet.",
+    "system": "Systeem",
+    "light": "Licht",
+    "dark": "Donker"
+  },
+  "legal": {
+    "title": "Juridisch & licenties",
+    "body": "Licenties voor de inhoud en de lettertypen in de app",
+    "intro": "Een deel van wat in de app zit, wordt gebruikt onder licenties die om vermelding vragen. Die vermeldingen staan hier.",
+    "contentHeading": "Inhoud",
+    "fontsHeading": "Lettertypen"
+  },
+  "reminder": {
+    "title": "Dagelijkse herinnering",
+    "description": "Eén rustig duwtje per dag, op een tijd die jij kiest. Staat uit tenzij je hem aanzet, en hij verlaat je telefoon nooit.",
+    "toggle": "Herinner me aan oefenen",
+    "at": "Om",
+    "notificationTitle": "Tijd om te oefenen",
+    "notificationBody": "Er staan een paar minuten Koreaans klaar.",
+    "refused": "Je telefoon laat meldingen voor deze app niet toe. Je kunt ze aanzetten in de instellingen van je telefoon."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "body": "Wat er met je leerwerk gebeurt",
+    "lede": "Niets van wat je hier doet verlaat dit apparaat.",
+    "device": {
+      "title": "Je leerwerk blijft hier",
+      "points": [
+        "Wat je hebt geleerd, en hoe goed je het onthoudt, wordt op dit apparaat bewaard. Het wordt nooit geüpload.",
+        "Er is geen account — niets om je voor aan te melden, en nergens een profiel van jou."
+      ]
+    },
+    "tracking": {
+      "title": "Geen advertenties, geen tracking",
+      "points": [
+        "De app kijkt niet hoe je hem gebruikt en rapporteert niets terug.",
+        "Je handschrift wordt op het scherm beoordeeld terwijl je tekent, en daarna weggegooid."
+      ]
+    },
+    "permissions": {
+      "title": "Toestemmingen",
+      "points": [
+        "Meldingen, en alleen als je de dagelijkse herinnering aanzet.",
+        "Nooit de camera, microfoon, foto's, contacten of locatie."
+      ]
+    },
+    "erase": {
+      "title": "Alles wissen",
+      "points": [
+        "Onderaan {{screen}} kun je alles wat je hebt geleerd wissen.",
+        "De app verwijderen wist het mee."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Je voortgang wordt op dit apparaat niet bewaard, dus wat je leert kan weg zijn als je de app opnieuw opent. Deze site in je browserinstellingen toestaan gegevens te bewaren lost het meestal op.",
+    "recovered_one": "{{count, number}} beschadigd record is bij het laden overgeslagen. De rest van je voortgang is intact.",
+    "recovered_other": "{{count, number}} beschadigde records zijn bij het laden overgeslagen. De rest van je voortgang is intact."
+  },
+  "soundFree": {
+    "title": "Vragen zonder geluid",
+    "description": "Sommige vragen zijn alleen een opname — “welk woord hoorde je?”. Zet dit aan en die blijven weg. Alles wordt nog steeds voorgelezen als je dat wilt.",
+    "toggle": "Luistervragen overslaan"
+  }
+}

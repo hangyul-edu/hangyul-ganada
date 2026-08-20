@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useTranslation } from 'react-i18next';
@@ -6,6 +7,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { LocaleProvider } from './LocaleProvider';
 import { useLocale } from './LocaleContext';
 import { LOCALE_STORAGE_KEY } from './preference';
+import { RESOURCES } from './resources';
 
 /**
  * A probe standing in for any screen in the app.
@@ -34,8 +36,8 @@ function Probe() {
       </button>
       {/* Hebrew ships no bundle, and that is deliberate: right-to-left
           handling has to keep working for a language the app has not been
-          translated into yet, which is exactly the state every RTL language is
-          in now that Arabic has been withdrawn. */}
+          translated into yet. Arabic — which does ship — is covered separately;
+          this is the untranslated-RTL case. */}
       <button type="button" onClick={() => void setLocale('he')}>
         hebrew
       </button>
@@ -45,6 +47,21 @@ function Probe() {
     </div>
   );
 }
+
+/**
+ * Chrome: a component that re-renders for no reason of its own.
+ *
+ * `Probe` above reads `useLocale()`, so a language change re-renders it whether
+ * or not i18next says anything. The bottom navigation does not — it is memoised
+ * chrome whose props never change — and that is how it came to read
+ * "Home / Letters / Words" under a fully Arabic home screen: the strings for a
+ * stored language arrive *after* the first paint, and if nothing tells
+ * `useTranslation` about it, nothing that only listens to i18next updates.
+ */
+const Chrome = memo(function Chrome() {
+  const { t } = useTranslation(['navigation']);
+  return <p data-testid="chrome">{t('navigation:tabs.letters')}</p>;
+});
 
 const renderApp = (props: Parameters<typeof LocaleProvider>[0] extends never ? never : object = {}) =>
   render(
@@ -105,6 +122,34 @@ describe('LocaleProvider', () => {
     expect(screen.getByTestId('locale')).toHaveTextContent('ko');
     expect(screen.getByTestId('source')).toHaveTextContent('stored');
     expect(screen.getByTestId('letters')).toHaveTextContent('글자');
+  });
+
+  it('translates chrome that never re-renders on its own', async () => {
+    /*
+     * The regression, reproduced: a stored language whose strings are *not* in
+     * the instance when it is created and arrive a tick later, rendered by a
+     * component with no state, no context and no changing props.
+     *
+     * The suite preloads every bundle (see `test/setup.ts`), which is the one
+     * thing that hides this bug — i18next is handed Korean at construction and
+     * the first render is already right. So Korean is taken back out of
+     * `RESOURCES` for the length of this test, which is what a browser sees:
+     * English bundled, everything else fetched.
+     */
+    const korean = RESOURCES.ko!;
+    delete RESOURCES.ko;
+    try {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, 'ko');
+      render(
+        <LocaleProvider>
+          <Chrome />
+        </LocaleProvider>,
+      );
+      expect(screen.getByTestId('chrome')).toHaveTextContent('Letters');
+      await waitFor(() => expect(screen.getByTestId('chrome')).toHaveTextContent('글자'));
+    } finally {
+      RESOURCES.ko = korean;
+    }
   });
 
   it('lets an account preference win over the device one', () => {

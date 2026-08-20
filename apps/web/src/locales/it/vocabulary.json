@@ -1,0 +1,135 @@
+{
+  "title": "Impara le parole",
+  "today": {
+    "title": "Parole di oggi",
+    "start": "Comincia",
+    "resume": "Riprendi",
+    "startBlurb_many": "Un gruppetto di {{count}} parole.",
+    "startBlurb_one": "Una parola oggi.",
+    "startBlurb_other": "Un gruppetto di {{count}} parole.",
+    "resumeBlurb": "Riparti da dove eri.",
+    "doneBlurb": "Per oggi è fatta. Bel lavoro.",
+    "completeTitle": "Le parole di oggi sono finite.",
+    "completeDetail_many": "{{count}} parole imparate.",
+    "completeDetail_one": "{{count}} parola imparata.",
+    "completeDetail_other": "{{count}} parole imparate.",
+    "more": "Ancora un po'",
+    "allDone": "Per oggi non resta nulla.",
+    "progressAria": "Avanzamento nelle parole di oggi",
+    "moreLabel": "Quante ancora",
+    "moreCount_many": "{{count}} in più",
+    "moreCount_one": "{{count}} in più",
+    "moreCount_other": "{{count}} in più"
+  },
+  "browse": {
+    "title": "Sfoglia per argomento",
+    "showing": "Ne vedi {{shown}} su {{total}}"
+  },
+  "intro": {
+    "example": "Esempio",
+    "howItSounds": "Come suona",
+    "surfaceNote": "In questa frase {{headword}} compare come {{form}}.",
+    "next": "Chiaro"
+  },
+  "empty": {
+    "title": "Qui non ci sono ancora parole",
+    "body": "Prova un'altra categoria."
+  },
+  "partOfSpeech": {
+    "noun": "sostantivo",
+    "verb": "verbo",
+    "adjective": "aggettivo",
+    "adverb": "avverbio",
+    "pronoun": "pronome",
+    "numeral": "numerale",
+    "particle": "particella",
+    "interjection": "interiezione",
+    "determiner": "determinante"
+  },
+  "session": {
+    "next": "Parola successiva",
+    "finish": "Concludi"
+  },
+  "blurb": "Tutte le parole sono aperte. Scegli una categoria e comincia dove vuoi.",
+  "categories": {
+    "essentials": "L'indispensabile di ogni giorno",
+    "people": "Persone e famiglia",
+    "food": "Cibo e bevande",
+    "animals-nature": "Animali e natura",
+    "home": "Casa e oggetti",
+    "body-health": "Corpo e salute",
+    "places-travel": "Luoghi e viaggi",
+    "time-numbers": "Tempo e numeri",
+    "school-work": "Scuola e lavoro",
+    "money-shopping": "Soldi e acquisti",
+    "communication": "Parlare e media",
+    "feelings": "Sentimenti e carattere",
+    "thinking": "Pensare e imparare",
+    "movement": "Andare e venire",
+    "actions": "Azioni di ogni giorno",
+    "describing": "Descrivere le cose",
+    "society": "Vita e cultura",
+    "how-when": "Come e quando"
+  },
+  "category": {
+    "label": "Categoria",
+    "all": "Tutte le categorie",
+    "pick": "Scegli una categoria",
+    "count_many": "{{count, number}} parole",
+    "count_one": "{{count, number}} parola",
+    "count_other": "{{count, number}} parole",
+    "progressAria": "Avanzamento in {{category}}"
+  },
+  "search": {
+    "placeholder": "Cerca parole",
+    "label": "Cerca nel lessico",
+    "count_many": "{{count, number}} risultati",
+    "count_one": "{{count, number}} risultato",
+    "count_other": "{{count, number}} risultati",
+    "none": "Niente corrisponde a «{{query}}». Prova con il coreano, o con il significato nella tua lingua."
+  },
+  "sound": {
+    "tensing": "Dopo una consonante finale il suono successivo si stringe.",
+    "aspiration": "ㅎ si fonde con la consonante che segue e aggiunge un soffio d'aria.",
+    "nasal": "Prima di ㄴ o ㅁ la consonante che precede diventa nasale.",
+    "lateral": "ㄴ e ㄹ accostate diventano tutte e due ㄹ.",
+    "palatal": "Una ㄷ o ㅌ finale prima di 이 si dice come ㅈ o ㅊ.",
+    "liaison": "La consonante finale scivola sul blocco successivo."
+  },
+  "save": {
+    "action": "Salva",
+    "saved": "Salvata",
+    "add": "Salva {{word}}",
+    "remove": "Togli {{word}} dalle salvate"
+  },
+  "detail": {
+    "title": "Parola",
+    "romanization": "In caratteri latini",
+    "definition": "Qualcosa in più",
+    "usage": "Come si usa",
+    "synonyms": "Sinonimi",
+    "antonyms": "Contrari"
+  },
+  "saved": {
+    "title": "Parole salvate",
+    "review_many": "Ripasso · {{count}} domande",
+    "review_one": "Ripasso · {{count}} domanda",
+    "review_other": "Ripasso · {{count}} domande",
+    "searchPlaceholder": "Cerca tra le parole salvate",
+    "searchLabel": "Cerca tra le tue parole salvate",
+    "orderLabel": "Ordine",
+    "order": {
+      "recent": "Recenti",
+      "alphabetical": "A–Z",
+      "needed": "Da rivedere"
+    },
+    "count_many": "{{count}} parole",
+    "count_one": "{{count}} parola",
+    "count_other": "{{count}} parole",
+    "remove": "Togli",
+    "noMatch": "Tra le salvate niente corrisponde a «{{query}}».",
+    "emptyTitle": "Ancora nessuna parola salvata",
+    "emptyBody": "Tocca il segnalibro su una parola qualsiasi mentre studi, e la ritrovi qui quando vuoi tornarci.",
+    "emptyCta": "Vai alle parole"
+  }
+}

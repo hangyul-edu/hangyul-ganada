@@ -9,6 +9,13 @@
     "start": "立即开始",
     "continue": "继续学习"
   },
+  "finished": {
+    "badge": "已完成",
+    "title": "你已经能读韩文字母了",
+    "body": "{{count, number}} 个字母全都学过、写过、认过了。接下来是单词。",
+    "goal": "今天的单词",
+    "cta": "去学今天的单词"
+  },
   "quick": {
     "letters": "字母",
     "words": "单词",

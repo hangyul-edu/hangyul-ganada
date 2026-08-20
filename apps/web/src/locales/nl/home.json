@@ -1,0 +1,38 @@
+{
+  "streak": {
+    "aria": "Bekijk je leerverslag"
+  },
+  "celebrate": "Doel van vandaag gehaald. Mooi werk.",
+  "dailyGoal": "Letters vandaag",
+  "dailyGoalAria": "Letters vandaag: {{done, number}} van {{total, number}}",
+  "cta": {
+    "start": "Nu beginnen",
+    "continue": "Verder leren"
+  },
+  "finished": {
+    "badge": "Afgerond",
+    "title": "Je kunt Hangul lezen",
+    "body": "Alle {{count, number}} letters: gezien, geschreven en teruggelezen. Vanaf hier zijn het woorden.",
+    "goal": "Woorden vandaag",
+    "cta": "Woorden van vandaag"
+  },
+  "quick": {
+    "letters": "Letters",
+    "lettersCaption": "van de 40 Hangul-letters",
+    "words": "Woorden",
+    "wordsCaption": "woorden van vandaag"
+  },
+  "review": {
+    "title": "Herhalen",
+    "count_one": "{{count, number}} om door te nemen",
+    "count_other": "{{count, number}} om door te nemen",
+    "empty": "Nog niets om door te nemen"
+  },
+  "practice": {
+    "title": "Oefenen vandaag",
+    "reviews_one": "{{count, number}} herhaling klaar",
+    "reviews_other": "{{count, number}} herhalingen klaar",
+    "cta": "Beginnen met oefenen"
+  },
+  "purpose": "Leer Koreaans vanaf de allereerste letter — eerst Hangul, dan de woorden die je echt gaat gebruiken."
+}

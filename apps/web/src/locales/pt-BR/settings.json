@@ -15,7 +15,8 @@
     "searchPlaceholder": "Buscar por nome ou código",
     "noResults": "Nenhum idioma corresponde a “{{query}}”.",
     "selected": "Selecionado",
-    "coverageNote": "Alguns textos explicativos podem continuar em inglês enquanto a tradução é concluída."
+    "coverageNote": "Todos os idiomas desta lista traduzem toda a interface e o curso do alfabeto. Onde a linha indica, os significados e as frases de exemplo ainda aparecem em inglês.",
+    "wordsInEnglish": "Significados em inglês"
   },
   "font": {
     "title": "Tipografia de prática",
@@ -74,18 +75,6 @@
   "activity": {
     "title": "Atividade de estudo",
     "body": "Sua sequência, seu calendário e o que você aprendeu"
-  },
-  "style": {
-    "title": "Estilo de prática",
-    "description": "Quanto da letra fica na página enquanto você escreve. Nos dois casos, ela está sempre lá.",
-    "guided": {
-      "title": "Guiado",
-      "detail": "Primeiro cubra a letra, depois escreva sobre uma guia mais leve."
-    },
-    "focused": {
-      "title": "Direto",
-      "detail": "Pule a etapa de cobrir e comece pela guia mais leve."
-    }
   },
   "appearance": {
     "title": "Aparência",

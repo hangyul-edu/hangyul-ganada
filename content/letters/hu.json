@@ -1,0 +1,294 @@
+{
+ "ㅏ": [
+  "mint az a az «apa» szóban, de nyíltabban",
+  "Egy oszlop egy rövid ággal jobbra."
+ ],
+ "ㅓ": [
+  "mint az o a «bot» szóban, de kerekítés nélkül",
+  "Az ág balra mutat."
+ ],
+ "ㅗ": [
+  "mint az ó a «hó» szóban, kerekített ajakkal",
+  "Az ág felfelé mutat."
+ ],
+ "ㅜ": [
+  "mint az u az «ujj» szóban",
+  "Az ág lefelé mutat."
+ ],
+ "ㅡ": [
+  "ajak lapos és széthúzott, a magyarban nincs ilyen",
+  "Egy vízszintes vonal."
+ ],
+ "ㅣ": [
+  "mint az i a «mit» szóban",
+  "Egy függőleges vonal."
+ ],
+ "ㄱ": [
+  "a g és a k között — két magánhangzó között inkább g",
+  "Nyomd a nyelved hátulját a szájpadlásodhoz, aztán engedd el."
+ ],
+ "ㄴ": [
+  "mint az n a «nem» szóban",
+  "A nyelved hegye közvetlenül a felső fogaid mögött."
+ ],
+ "ㄷ": [
+  "a d és a t között — két magánhangzó között inkább d",
+  "ㄴ egy vonallal, amely felül lezárja."
+ ],
+ "ㄹ": [
+  "könnyű pöccintés, az r és az l között — szótag végén l",
+  "Pöccintsd a nyelved előre a szájpadlásodról, egyszer és könnyedén."
+ ],
+ "ㅁ": [
+  "mint az m az «anya» szóban",
+  "Egy négyzet — a csukott száj alakja."
+ ],
+ "ㅂ": [
+  "a b és a p között — két magánhangzó között inkább b",
+  "ㅁ, felül kinyitva."
+ ],
+ "ㅅ": [
+  "mint az sz a «szél» szóban",
+  "Engedd sziszegve a levegőt a fogaid között."
+ ],
+ "ㅇ": [
+  "szótag elején néma, a végén ng",
+  "Egy kör — a nyitott torok alakja. Helyet tart, ha a szótag magánhangzóval kezdődik."
+ ],
+ "ㅈ": [
+  "mint a dzs a «dzsem» szóban",
+  "ㅅ egy vonallal a tetején."
+ ],
+ "ㅎ": [
+  "mint a h a «ház» szóban",
+  "ㅇ két vonásból álló kalapban."
+ ],
+ "ㅑ": [
+  "mint a «ja» a «java» szóban",
+  "ㅏ egy második ággal. Egy plusz ág mindig j-t tesz hozzá."
+ ],
+ "ㅕ": [
+  "mint a «jo», kerekítés nélkül",
+  "ㅓ egy második ággal."
+ ],
+ "ㅛ": [
+  "mint a «jó» a «jó» szóban",
+  "ㅗ egy második ággal."
+ ],
+ "ㅠ": [
+  "mint a «ju» a «juhász» szóban",
+  "ㅜ egy második ággal."
+ ],
+ "ㅊ": [
+  "ㅈ egy leheletnyi levegővel",
+  "ㅈ eggyel több vonással. A plusz vonás plusz levegő."
+ ],
+ "ㅋ": [
+  "ㄱ egy leheletnyi levegővel",
+  "ㄱ eggyel több vonással."
+ ],
+ "ㅌ": [
+  "ㄷ egy leheletnyi levegővel",
+  "ㄷ eggyel több vonással."
+ ],
+ "ㅍ": [
+  "ㅂ egy leheletnyi levegővel",
+  "ㅂ az oldalára fektetve."
+ ],
+ "ㅐ": [
+  "mint az e a «kert» szóban, de nyíltabban",
+  "ㅏ és ㅣ egymás mellé írva."
+ ],
+ "ㅔ": [
+  "mint az e a «hét» szóban, röviden",
+  "ㅓ + ㅣ. A koreaiak többsége ma ugyanúgy ejti a ㅐ-t és a ㅔ-t."
+ ],
+ "ㅒ": [
+  "mint a «je», röviden",
+  "ㅑ + ㅣ."
+ ],
+ "ㅖ": [
+  "mint a «je» a «jelen» szóban",
+  "ㅕ + ㅣ."
+ ],
+ "ㄲ": [
+  "ㄱ, feszesen és élesen",
+  "Két ㄱ. Szorítsd össze a torkod, majd engedd el hirtelen."
+ ],
+ "ㄸ": [
+  "ㄷ, feszesen és élesen",
+  "Két ㄷ."
+ ],
+ "ㅃ": [
+  "ㅂ, feszesen és élesen",
+  "Két ㅂ."
+ ],
+ "ㅆ": [
+  "ㅅ, feszesen és élesen",
+  "Két ㅅ."
+ ],
+ "ㅉ": [
+  "ㅈ, feszesen és élesen",
+  "Két ㅈ."
+ ],
+ "ㅘ": [
+  "mint az angol «wa» a «water» szóban",
+  "ㅗ + ㅏ. A ㅗ és a ㅜ adja hozzá a w-t."
+ ],
+ "ㅝ": [
+  "mint a «wo» a «wonder» szóban",
+  "ㅜ + ㅓ."
+ ],
+ "ㅚ": [
+  "mint a «we» a «wet» szóban",
+  "ㅗ + ㅣ."
+ ],
+ "ㅟ": [
+  "mint a «wi» a «week» szóban",
+  "ㅜ + ㅣ."
+ ],
+ "ㅙ": [
+  "mint a «we» a «wet» szóban",
+  "ㅗ + ㅐ. Ma a ㅙ, a ㅞ és a ㅚ egyformán hangzik."
+ ],
+ "ㅞ": [
+  "mint a «we» a «wet» szóban",
+  "ㅜ + ㅔ."
+ ],
+ "ㅢ": [
+  "ㅡ, majd rögtön ㅣ, egybefűzve",
+  "ㅡ + ㅣ."
+ ],
+ "가": [
+  "ㄱ + ㅏ",
+  "A mássalhangzó balra kerül, a magas magánhangzó jobbra."
+ ],
+ "나": [
+  "ㄴ + ㅏ — egyben az «én» szó is",
+  null
+ ],
+ "다": [
+  "ㄷ + ㅏ",
+  null
+ ],
+ "라": [
+  "ㄹ + ㅏ",
+  null
+ ],
+ "마": [
+  "ㅁ + ㅏ",
+  null
+ ],
+ "거": [
+  "ㄱ + ㅓ",
+  null
+ ],
+ "고": [
+  "ㄱ + ㅗ — a magánhangzó alulra kerül",
+  "A lapos magánhangzó a mássalhangzó alá áll, soha nem mellé."
+ ],
+ "구": [
+  "ㄱ + ㅜ",
+  null
+ ],
+ "그": [
+  "ㄱ + ㅡ",
+  null
+ ],
+ "기": [
+  "ㄱ + ㅣ",
+  null
+ ],
+ "바": [
+  "ㅂ + ㅏ",
+  null
+ ],
+ "사": [
+  "ㅅ + ㅏ",
+  null
+ ],
+ "아": [
+  "ㅇ + ㅏ — egyszerűen «a»-nak olvasd",
+  "A ㅇ itt nem szól. A mássalhangzó helyét tartja üresen."
+ ],
+ "자": [
+  "ㅈ + ㅏ",
+  null
+ ],
+ "하": [
+  "ㅎ + ㅏ",
+  null
+ ],
+ "어": [
+  "ㅇ + ㅓ — «eo»-nak olvasd",
+  null
+ ],
+ "오": [
+  "ㅇ + ㅗ — «o»-nak olvasd",
+  null
+ ],
+ "우": [
+  "ㅇ + ㅜ — «u»-nak olvasd",
+  null
+ ],
+ "으": [
+  "ㅇ + ㅡ — «eu»-nak olvasd",
+  null
+ ],
+ "이": [
+  "ㅇ + ㅣ — «i»-nek olvasd",
+  null
+ ],
+ "안": [
+  "ㅇ + ㅏ + ㄴ",
+  "A harmadik betű alulra kerül. A négyzetet fentről lefelé olvasd."
+ ],
+ "말": [
+  "ㅁ + ㅏ + ㄹ — a «szó, beszéd» jelentésű szó",
+  null
+ ],
+ "밤": [
+  "ㅂ + ㅏ + ㅁ — az «éjszaka» jelentésű szó",
+  null
+ ],
+ "강": [
+  "ㄱ + ㅏ + ㅇ — itt a ㅇ *hang*: ng",
+  null
+ ],
+ "산": [
+  "ㅅ + ㅏ + ㄴ — a «hegy» jelentésű szó",
+  null
+ ],
+ "밥": [
+  "visszatartott p-vel végződik",
+  "A záró ㅂ lezárul, és nem oldódik fel. Mondd azt, hogy «bap», a p befejezése nélkül."
+ ],
+ "옷": [
+  "az alul álló ㅅ t-nek hangzik",
+  "Csak hét hang: odalent a ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ mind t lesz."
+ ],
+ "국": [
+  "visszatartott k-val végződik — a «leves» jelentésű szó",
+  null
+ ],
+ "꽃": [
+  "az alul álló ㅊ t-nek hangzik, tehát ez «kkot»",
+  null
+ ],
+ "한": [
+  "ㅎ + ㅏ + ㄴ — a 한글 első szótagja",
+  null
+ ],
+ "글": [
+  "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, ennek az írásnak a neve",
+  null
+ ],
+ "공": [
+  "ㄱ + ㅗ + ㅇ — mint a 공부, «tanulás» szóban",
+  null
+ ],
+ "부": [
+  "ㅂ + ㅜ — 공 + 부 = 공부, «tanulás»",
+  null
+ ]
+}

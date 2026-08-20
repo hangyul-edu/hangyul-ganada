@@ -1,0 +1,233 @@
+{
+  "letters": {
+    "title": "Letters leren",
+    "alphabetTitle": "Het Hangul-alfabet",
+    "alphabetCaption": "letters geleerd",
+    "complete": "Geleerd",
+    "resume": "Verder"
+  },
+  "units": {
+    "badge": "Deel {{index, number}}",
+    "continue": "Duidelijk — we gaan",
+    "unit-1": {
+      "title": "Zes klinkers om te beginnen",
+      "goal": "Elke Koreaanse lettergreep heeft een klinker nodig. Deze zes zijn de eenvoudigste.",
+      "body": "Hangul is een alfabet, geen verzameling plaatjes. Er zijn 40 letters, ze zijn ontworpen om snel te leren, en je gaat er nu zes leren.",
+      "points": [
+        "Letters staan gegroepeerd in vierkante blokken, en elk blok is één lettergreep.",
+        "Een klinker is een staande of een liggende streep — dat bepaalt waar hij in het blok komt.",
+        "Zeg elke letter hardop terwijl je hem natrekt. De klank is de helft van de les."
+      ]
+    },
+    "unit-2": {
+      "title": "Je eerste medeklinkers",
+      "goal": "Vijf medeklinkers. Met de klinkers die je kent zijn dat al 30 lettergrepen."
+    },
+    "unit-3": {
+      "title": "Alles bij elkaar",
+      "goal": "Medeklinker plus klinker maakt een blok dat je kunt lezen.",
+      "body": "Een Koreaanse lettergreep wordt als één vierkant geschreven. De medeklinker komt eerst — links bij een staande klinker, bovenaan bij een liggende.",
+      "points": [
+        "Een staande klinker (ㅏ ㅓ ㅣ) staat rechts van de medeklinker.",
+        "Een liggende klinker (ㅗ ㅜ ㅡ) ligt eronder.",
+        "Lees het blok zoals je een bladzijde leest: van links naar rechts, dan naar beneden."
+      ]
+    },
+    "unit-4": {
+      "title": "Nog vijf medeklinkers",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — de rest van de gewone reeks."
+    },
+    "unit-5": {
+      "title": "Meer blokken lezen",
+      "goal": "Inclusief die ene letter die helemaal geen klank heeft."
+    },
+    "unit-6": {
+      "title": "Een j-klank erbij",
+      "goal": "Eén extra streepje maakt van ㅏ een ㅑ. Dat patroon geldt voor alle vier."
+    },
+    "unit-7": {
+      "title": "Een pufje lucht",
+      "goal": "ㅊ ㅋ ㅌ ㅍ zijn letters die je kent, met één streepje erbij."
+    },
+    "unit-8": {
+      "title": "De e-klinkers",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — klinkers gemaakt door ㅣ toe te voegen."
+    },
+    "unit-9": {
+      "title": "Verdubbeld en aangespannen",
+      "goal": "Vijf letters die dubbel geschreven en strakker uitgesproken worden."
+    },
+    "unit-10": {
+      "title": "De w-klinkers",
+      "goal": "Twee klinkers als één geschreven. De laatste van de 40 letters."
+    },
+    "unit-11": {
+      "title": "Een letter onderaan",
+      "goal": "받침 — de medeklinker die een lettergreep afsluit.",
+      "body": "Een blok kan een derde letter dragen, onder de andere twee. Die heet 받침 en sluit de lettergreep af.",
+      "points": [
+        "De derde letter staat altijd onderaan het vierkant.",
+        "Een 받침 klinkt altijd als een van zeven klanken, welke letter er ook geschreven staat.",
+        "Hier loopt het lezen bij de meeste beginners vast. Neem er de tijd voor."
+      ]
+    },
+    "unit-12": {
+      "title": "한글 lezen",
+      "goal": "Je kent nu elke letter. Lees de naam van het schrift zelf."
+    }
+  },
+  "intro": {
+    "letterName": "Naam",
+    "letterSound": "Klank",
+    "soundIn": "Hoor {{character}} in",
+    "reads": "Klinkt als"
+  },
+  "steps": {
+    "label": "Stappen bij deze letter",
+    "write": "Schrijven",
+    "read": "Lezen"
+  },
+  "recognition": {
+    "question": "Welke maakt deze klank?",
+    "optionsAria": "Kies de letter die je hoorde",
+    "optionAria": "Kies {{character}}",
+    "correctDetail": "Ja, dat is {{character}}.",
+    "wrongHeadline": "Die niet.",
+    "wrongDetail": "{{character}} is degene die klinkt als {{sound}}.",
+    "hearAgain": "Nog eens horen",
+    "tryAgain": "Opnieuw"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Deze overslaan",
+    "startWriting": "Schrijf hem",
+    "nowRecognise": "Probeer een vraag",
+    "next": "Volgende letter",
+    "finish": "Afronden",
+    "prompt": {
+      "write": "Trek hem met je vinger over de hulplijn."
+    },
+    "continue": "Volgende"
+  },
+  "complete": {
+    "title": "Mooi werk!",
+    "letters_one": "Je hebt {{count, number}} letter afgerond in {{lesson}}.",
+    "letters_other": "Je hebt {{count, number}} letters afgerond in {{lesson}}."
+  },
+  "review": {
+    "title": "Herhalen",
+    "startCta": "Herhaling starten",
+    "sessionTitle": "Herhalen",
+    "completeTitle": "Herhaling klaar",
+    "empty": {
+      "title": "Nog niets te herhalen",
+      "body": "Alles wat je fout doet komt hier terecht. Voorlopig: zin in een nieuwe letter?",
+      "cta": "Leer een letter"
+    },
+    "forYou": "Herhaling voor jou",
+    "sessionLength_one": "{{count, number}} korte oefening",
+    "sessionLength_other": "{{count, number}} korte oefeningen",
+    "needsPractice": "Heeft oefening nodig",
+    "dueToday": "Vandaag aan de beurt",
+    "savedWords": "Bewaarde woorden",
+    "chooseMode": "Of kies zelf wat je oefent",
+    "comingUp": "Komt eraan",
+    "outcome": "{{practised, number}} geoefend · {{firstTry, number}} meteen goed · {{comingBack, number}} komen binnenkort terug",
+    "blank": "leeg",
+    "optionsLabel": "Antwoorden",
+    "showHint": "Geef een hint",
+    "right": "Precies.",
+    "notQuite": "Net niet. Dit is het.",
+    "mode": {
+      "read": "Lezen",
+      "listen": "Luisteren",
+      "write": "Schrijven"
+    },
+    "prompt": {
+      "read": "Wat betekent dit woord?",
+      "readLetter": "Welke klank maakt deze letter?",
+      "listen": "Welk woord hoorde je?",
+      "listenLetter": "Welke letter is dit?",
+      "context": "Welk woord past hier?",
+      "write": "Schrijf dit woord",
+      "writeLetter": "Schrijf wat je hoort",
+      "distinguish": "Welke maakt deze klank?",
+      "produce": "Welke is het?",
+      "listenMeaning": "Wat betekent dit?",
+      "build": "Zet het woord in elkaar"
+    },
+    "nothingDue": "Nu even niets te herhalen.",
+    "modesEmpty": "Vandaag niets in deze vormen.",
+    "answerIs": "{{word}} betekent “{{meaning}}”.",
+    "showMoreHint": "Nog een hint",
+    "showAnswer": "Toon het antwoord",
+    "hint": {
+      "kind": "Het is een {{pos}} — iets uit {{category}}.",
+      "kindOnly": "Het ontbrekende woord is een {{pos}}.",
+      "startsWith": "Het begint met {{start}}…",
+      "startsWithSound": "Het begint met de klank “{{sound}}”.",
+      "replay": "Speel het nog eens af — zo vaak je wilt.",
+      "letterFamily": "Dit is {{family}}.",
+      "letterExample": "Het is de eerste letter van {{word}}.",
+      "letterSound": "Het klinkt als “{{sound}}”.",
+      "reveal": "Het antwoord is {{answer}}.",
+      "revealWord": "Het woord is {{answer}}.",
+      "revealLetter": "De letter is {{answer}}.",
+      "revealStrokes": "Bekijk de streken nog eens en trek ze dan na.",
+      "inSentence": "Zo wordt het gebruikt: {{sentence}}"
+    },
+    "buildTray": "Lettergrepen",
+    "buildRemove": "Haal {{syllable}} terug"
+  },
+  "sounds": {
+    "title": "Als klanken elkaar raken",
+    "blurb": "Waarom 학교 niet klinkt zoals het geschreven staat.",
+    "intro": "Je kunt nu elke letter lezen. Koreaans schrijft de delen waar een woord uit bestaat, en verandert sommige daarvan zodra ze elkaar raken — daardoor klinken een paar woorden anders dan ze eruitzien. Dit zijn de eerste die je tegenkomt.",
+    "written": "Geschreven",
+    "said": "Gezegd",
+    "note": "Je hoeft dit niet uit je hoofd te leren. Luister ernaar, dan gaat het vanzelf normaal klinken.",
+    "name": {
+      "tensing": "Een strakke tweede klank",
+      "aspiration": "Een pufje lucht",
+      "nasal": "Een zachte, nasale klank",
+      "lateral": "ㄴ en ㄹ samen",
+      "palatal": "ㄷ en ㅌ vóór 이",
+      "liaison": "De klank schuift door"
+    }
+  },
+  "mistakes": {
+    "title": "Gemiste antwoorden",
+    "review_one": "Herhalen · {{count}} vraag",
+    "review_other": "Herhalen · {{count}} vragen",
+    "filterLabel": "Toon",
+    "filter": {
+      "all": "Alles",
+      "character": "Letters",
+      "word": "Woorden"
+    },
+    "youPut": "Jij zei",
+    "answer": "Antwoord",
+    "times_one": "{{count}} keer gemist",
+    "times_other": "{{count}} keer gemist",
+    "clear": "Hiermee klaar",
+    "noneOfKind": "Hier staat nu niets.",
+    "emptyTitle": "Nog niets gemist",
+    "emptyBody": "Als er iets misgaat, komt het hier te staan zodat je het recht kunt zetten.",
+    "emptyCta": "Naar herhalen"
+  },
+  "letterGroup": {
+    "basic_vowel": "een basisklinker",
+    "basic_consonant": "een basismedeklinker",
+    "compound_vowel": "een samengestelde klinker",
+    "double_consonant": "een dubbele medeklinker",
+    "final_consonant": "een slotmedeklinker",
+    "syllable": "een hele lettergreep"
+  },
+  "nextStep": {
+    "title": "Klaar voor de volgende stap",
+    "body": "Je kunt nu Hangul lezen. Spreken en TOPIK-oefening gaan verder in Hangyul.",
+    "cta": "Verder in Hangyul",
+    "rowTitle": "Verder in Hangyul",
+    "rowBody": "Spreken en TOPIK, wanneer je zover bent"
+  }
+}

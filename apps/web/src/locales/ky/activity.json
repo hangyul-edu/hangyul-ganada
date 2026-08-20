@@ -1,0 +1,89 @@
+{
+  "title": "Окуу активдүүлүгү",
+  "streak": {
+    "caption": "Ар кандай көнүгүү аны улантат — тамганы аяктоонун кереги жок.",
+    "longest": "Эң узун катар",
+    "totalDays": "Машыккан күндөр",
+    "totalTime": "Жалпы убакыт",
+    "unit_one": "күн катары менен",
+    "unit_other": "күн катары менен"
+  },
+  "chart": {
+    "title": "Активдүүлүк",
+    "rangeAria": "Убакыт аралыгын тандаңыз",
+    "aria": "Күнүмдүк көнүгүү",
+    "noneYet": "Бул аралыкта азырынча көнүгүү жок.",
+    "range": {
+      "7": "7 күн",
+      "30": "30 күн",
+      "90": "3 ай",
+      "0": "Баары"
+    }
+  },
+  "calendar": {
+    "previous": "Өткөн ай",
+    "next": "Кийинки ай",
+    "less": "Азыраак",
+    "more": "Көбүрөөк",
+    "dayAria_one": "{{date}}: {{count, number}} аракет",
+    "dayAria_other": "{{date}}: {{count, number}} аракет"
+  },
+  "day": {
+    "time": "Окуу убактысы",
+    "attempts": "Жазуу аракеттери",
+    "correct": "Туура",
+    "charactersLearned": "Аякталган тамгалар",
+    "wordsLearned": "Аякталган сөздөр",
+    "reviews": "Кайталоо аракеттери",
+    "nothing": "Бул күнү көнүгүү болгон эмес."
+  },
+  "insights": {
+    "title": "Көзгө урунганы",
+    "mostPractisedCharacter": "Эң көп машыккан тамга",
+    "mostPractisedWord": "Эң көп машыккан сөз",
+    "accuracy": "Жазуу тактыгы",
+    "thisWeek": "Ушул жумада",
+    "learnedCount_one": "{{count, number}} аякталды",
+    "learnedCount_other": "{{count, number}} аякталды"
+  },
+  "units": {
+    "minute_one": "{{count, number}} мүн",
+    "minute_other": "{{count, number}} мүн",
+    "hour_one": "{{count, number}} саат",
+    "hour_other": "{{count, number}} саат"
+  },
+  "empty": {
+    "title": "Окуу тарыхыңыз бүгүндөн башталат",
+    "body": "Бир нече тамганы машыктырыңыз — бул бет толот: кайсы күндөрү окуганыңыз, канча убакыт жана эмне менен алектенгениңиз."
+  },
+  "week": {
+    "title": "Ушул жумада",
+    "range": "{{from}} тартып",
+    "days": "Окуган күндөр",
+    "daysValue_one": "7дин {{count, number}}и",
+    "daysValue_other": "7дин {{count, number}}и",
+    "time": "Убакыт",
+    "learned": "Үйрөнүлдү",
+    "accuracy": "Тактык",
+    "same": "Өткөн жумадагыдай убакыт.",
+    "moreThanLast": "Өткөн жумадан {{minutes, number}} мүнөт көп.",
+    "lessThanLast": "Өткөн жумадан {{minutes, number}} мүнөт аз.",
+    "quiet": "Бул жумада азырынча эч нерсе жок — убакыт бар."
+  },
+  "memory": {
+    "title": "Эстеп калуу кандай баратат",
+    "firstTry": "Ушул жумада {{count, number}} нерсени биринчи аракетте эсиңизге түшүрдүңүз.",
+    "strongestSkill": "Ушул жумада эң мыктысы — {{skill}}.",
+    "confusionImproving": "{{a}} менен {{b}} айырмалоо жеңилдеп баратат.",
+    "skill": {
+      "reading_recognition": "окуу",
+      "listening_recognition": "угуу",
+      "guided_writing": "жазуу",
+      "meaning_recognition": "маани",
+      "sentence_comprehension": "сүйлөмдөр",
+      "sound_recognition": "үндөр",
+      "visual_recognition": "тамгалар",
+      "lookalike_discrimination": "окшоштурду ажыратуу"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Lär dig hangul, ett streck i taget.",
+    "description": "Lär dig läsa och skriva hangul från allra första bokstaven — konsonanter och vokaler, stavelseblock, handskrift och dina första koreanska ord."
+  },
+  "actions": {
+    "confirm": "OK",
+    "close": "Stäng",
+    "back": "Tillbaka",
+    "goHome": "Till startsidan",
+    "done": "Klart",
+    "save": "Spara",
+    "saved": "Sparat"
+  },
+  "a11y": {
+    "skipToContent": "Hoppa till innehållet",
+    "currentPage": "(den här sidan)",
+    "confirmationRequired": "Det här behöver bekräftas."
+  },
+  "audio": {
+    "play": "Lyssna på uttalet av {{text}}",
+    "retry": "Spela {{text}} igen",
+    "unavailable": "Ingen inspelning för {{text}}"
+  },
+  "progress": {
+    "lesson": "Framsteg i {{name}}",
+    "review": "Framsteg i den här repetitionen"
+  },
+  "units": {
+    "day_one": "{{count, number}} dag",
+    "day_other": "{{count, number}} dagar"
+  },
+  "report": {
+    "action": "Rapportera ett fel",
+    "title": "Vad är fel?",
+    "blurb": "Välj vad som ser fel ut, så öppnar vi ett mejl som du kan fylla på. Inget om ditt lärande följer med.",
+    "field": {
+      "item": "Post",
+      "category": "Problem",
+      "version": "Appversion",
+      "language": "Språk"
+    },
+    "writeHere": "Skriv här vad du lade märke till:",
+    "category": {
+      "meaning": "Betydelsen",
+      "example": "Exempelmeningen",
+      "translation": "Översättningen",
+      "audio": "Ljudet",
+      "writing": "Skrivbedömningen",
+      "other": "Något annat"
+    }
+  },
+  "exit": {
+    "title": "Lämna Hangyul ganada?",
+    "body": "Dina framsteg är sparade. Du kan fortsätta där du slutade.",
+    "stay": "Stanna",
+    "leave": "Lämna"
+  }
+}

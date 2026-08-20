@@ -1,0 +1,140 @@
+{
+  "title": "Belajarku",
+  "stats": {
+    "lettersLearned": "Huruf dikuasai",
+    "wordsLearned": "Kata dikuasai",
+    "alphabetProgress": "Kemajuan di abjad Hangul",
+    "studyDays": "Hari belajar"
+  },
+  "language": {
+    "title": "Bahasa",
+    "pickerTitle": "Pilih bahasa",
+    "pickerIntro": "Bahasa antarmuka. Yang kamu pelajari — huruf Hangul, kata, dan kalimat contoh — tetap dalam bahasa Korea.",
+    "listAria": "Bahasa yang tersedia",
+    "searchLabel": "Cari bahasa",
+    "searchPlaceholder": "Cari berdasarkan nama atau kode",
+    "noResults": "Tidak ada bahasa yang cocok dengan “{{query}}”.",
+    "selected": "Dipilih",
+    "coverageNote": "Setiap bahasa di sini menerjemahkan seluruh antarmuka dan kursus alfabetnya. Di baris yang menyebutkannya, arti kata dan kalimat contoh masih ditampilkan dalam bahasa Inggris.",
+    "wordsInEnglish": "Arti kata dalam bahasa Inggris"
+  },
+  "font": {
+    "title": "Huruf latihan",
+    "description": "Huruf yang kamu tirukan digambar dengan jenis huruf yang kamu pilih."
+  },
+  "dailyTarget": {
+    "title": "Huruf per hari",
+    "description": "Berapa huruf Hangul yang ingin kamu selesaikan tiap hari.",
+    "option_other": "{{count, number}}",
+    "optionAria_other": "{{count, number}} per hari"
+  },
+  "wordGoal": {
+    "title": "Kata per hari",
+    "description": "Berapa kata yang ingin kamu selesaikan tiap hari. Bisa diubah kapan saja.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} kata per hari"
+  },
+  "guides": {
+    "title": "Garis bantu",
+    "description": "Garis bantu di dalam kotak.",
+    "grid": "Garis mendatar dan tegak",
+    "crosshair": "Tanda tengah"
+  },
+  "about": {
+    "body": "Baca dan tulis Hangul: hurufnya, bunyinya, blok suku katanya, dan kata-kata Korea pertamamu.",
+    "offline": "Semua pelajaran, kalimat, dan rekaman bisa dipakai tanpa internet.",
+    "version": "Versi {{version}}",
+    "reset": "Hapus kemajuan belajar"
+  },
+  "reset": {
+    "title": "Hapus semua kemajuan belajar?",
+    "description": "Pelajaran yang selesai, riwayat ulasan, dan aktivitas belajarmu akan dihapus. Ini tidak bisa dibatalkan.",
+    "confirm": "Hapus",
+    "cancel": "Batal",
+    "body": "Mulai lagi dari huruf paling awal."
+  },
+  "voice": {
+    "title": "Suara pelafalan",
+    "description": "Siapa yang membacakan huruf, suku kata, dan kata.",
+    "female": "Suara perempuan",
+    "male": "Suara laki-laki",
+    "preview": "Dengar suara yang dipilih",
+    "provider": "Dua suara Korea yang jernih, sedikit lebih lambat dari tempo penutur asli supaya tiap bunyi terdengar jelas."
+  },
+  "groups": {
+    "learning": "Belajar",
+    "practice": "Latihan",
+    "appearance": "Tampilan",
+    "app": "Aplikasi",
+    "reset": "Hapus"
+  },
+  "activity": {
+    "title": "Aktivitas belajar",
+    "body": "Rentetanmu, kalendermu, dan apa yang sudah kamu pelajari"
+  },
+  "appearance": {
+    "title": "Tampilan",
+    "description": "Terang, gelap, atau ikut pengaturan ponselmu.",
+    "system": "Sistem",
+    "light": "Terang",
+    "dark": "Gelap"
+  },
+  "legal": {
+    "title": "Hukum & Lisensi",
+    "body": "Lisensi untuk konten dan jenis huruf di aplikasi",
+    "intro": "Sebagian isi aplikasi ini dipakai dengan lisensi yang meminta pencantuman kredit. Kreditnya ada di sini.",
+    "contentHeading": "Konten",
+    "fontsHeading": "Jenis huruf"
+  },
+  "reminder": {
+    "title": "Pengingat harian",
+    "description": "Satu dorongan tenang setiap hari, pada jam yang kamu pilih. Mati kecuali kamu nyalakan, dan tidak pernah keluar dari ponselmu.",
+    "toggle": "Ingatkan aku berlatih",
+    "at": "Pukul",
+    "notificationTitle": "Waktunya berlatih",
+    "notificationBody": "Beberapa menit bahasa Korea sudah menunggu.",
+    "refused": "Ponselmu tidak mengizinkan notifikasi untuk aplikasi ini. Kamu bisa menyalakannya di pengaturan ponsel."
+  },
+  "privacy": {
+    "title": "Privasi",
+    "body": "Apa yang terjadi pada data belajarmu",
+    "lede": "Tidak ada yang kamu lakukan di sini yang meninggalkan perangkat ini.",
+    "device": {
+      "title": "Data belajarmu tetap di sini",
+      "points": [
+        "Apa yang sudah kamu pelajari, dan seberapa baik kamu mengingatnya, disimpan di perangkat ini. Tidak pernah diunggah.",
+        "Tidak ada akun — tidak ada pendaftaran, dan tidak ada profil tentangmu di mana pun."
+      ]
+    },
+    "tracking": {
+      "title": "Tanpa iklan, tanpa pelacakan",
+      "points": [
+        "Aplikasi ini tidak mengamati cara kamu memakainya dan tidak melaporkan apa pun.",
+        "Tulisan tanganmu dinilai di layar saat kamu menggambar, lalu dibuang."
+      ]
+    },
+    "permissions": {
+      "title": "Izin",
+      "points": [
+        "Notifikasi, dan hanya kalau kamu menyalakan pengingat harian.",
+        "Tidak pernah kamera, mikrofon, foto, kontak, atau lokasi."
+      ]
+    },
+    "erase": {
+      "title": "Menghapusnya",
+      "points": [
+        "Kamu bisa menghapus semua yang sudah kamu pelajari di bagian bawah {{screen}}.",
+        "Menghapus aplikasinya menghapus datanya juga."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Kemajuanmu tidak sedang disimpan di perangkat ini, jadi yang kamu pelajari bisa hilang saat aplikasi dibuka lagi. Mengizinkan situs ini menyimpan data di pengaturan peramban biasanya membereskannya.",
+    "recovered_other": "{{count, number}} catatan rusak dilewati saat memuat. Sisa kemajuanmu utuh."
+  },
+  "soundFree": {
+    "title": "Soal tanpa suara",
+    "description": "Sebagian soal hanya berupa rekaman — “kata mana yang kamu dengar?”. Nyalakan ini dan soal seperti itu dilewati. Semuanya tetap bisa dibacakan kalau kamu mau.",
+    "toggle": "Lewati soal menyimak"
+  }
+}

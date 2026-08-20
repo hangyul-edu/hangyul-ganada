@@ -1,0 +1,294 @@
+{
+ "ㅏ": [
+  "«ana» sözcüğündeki a gibi",
+  "Sağa doğru tek kısa dalı olan bir direk."
+ ],
+ "ㅓ": [
+  "dudaklar yuvarlanmadan söylenen o, a ile o arası",
+  "Dal sola bakar."
+ ],
+ "ㅗ": [
+  "«okul» sözcüğündeki o gibi, dudaklar yuvarlak",
+  "Dal yukarı bakar."
+ ],
+ "ㅜ": [
+  "«un» sözcüğündeki u gibi",
+  "Dal aşağı bakar."
+ ],
+ "ㅡ": [
+  "ı sesine yakın: dudaklar düz ve yayvan",
+  "Tek yatay çizgi."
+ ],
+ "ㅣ": [
+  "«bir» sözcüğündeki i gibi",
+  "Tek dikey çizgi."
+ ],
+ "ㄱ": [
+  "g ile k arası — iki ünlü arasında g'ye daha yakın",
+  "Dilinin arkasını damağına değdir, sonra bırak."
+ ],
+ "ㄴ": [
+  "«ne» sözcüğündeki n gibi",
+  "Dilinin ucu üst dişlerinin hemen arkasında."
+ ],
+ "ㄷ": [
+  "d ile t arası — iki ünlü arasında d'ye daha yakın",
+  "Üstünü kapatan bir çizgiyle ㄴ."
+ ],
+ "ㄹ": [
+  "hafif bir vuruş, r ile l arası — hece sonunda l gibi",
+  "Dilini damağından öne doğru bir kez hafifçe fırlat."
+ ],
+ "ㅁ": [
+  "«anne» sözcüğündeki m gibi",
+  "Bir kare — kapalı ağzın biçimi."
+ ],
+ "ㅂ": [
+  "b ile p arası — iki ünlü arasında b'ye daha yakın",
+  "Üstü açılmış ㅁ."
+ ],
+ "ㅅ": [
+  "«su» sözcüğündeki s gibi",
+  "Havayı dişlerinin arasından tıslatarak çıkar."
+ ],
+ "ㅇ": [
+  "hece başında sessiz, hece sonunda n (ng)",
+  "Bir daire — açık boğazın biçimi. Hece ünlüyle başlayınca yeri tutar."
+ ],
+ "ㅈ": [
+  "«can» sözcüğündeki c gibi",
+  "Üstüne çizgi çekilmiş ㅅ."
+ ],
+ "ㅎ": [
+  "«hava» sözcüğündeki h gibi",
+  "İki çizgiden şapka takmış ㅇ."
+ ],
+ "ㅑ": [
+  "«yatak» sözcüğündeki ya gibi",
+  "İkinci dallı ㅏ. Fazladan dal her zaman bir y ekler."
+ ],
+ "ㅕ": [
+  "dudak yuvarlamadan söylenen yo",
+  "İkinci dallı ㅓ."
+ ],
+ "ㅛ": [
+  "«yol» sözcüğündeki yo gibi",
+  "İkinci dallı ㅗ."
+ ],
+ "ㅠ": [
+  "«yumurta» sözcüğündeki yu gibi",
+  "İkinci dallı ㅜ."
+ ],
+ "ㅊ": [
+  "ㅈ, bir soluk havayla",
+  "Bir çizgi fazlasıyla ㅈ. Eklenen çizgi, eklenen nefestir."
+ ],
+ "ㅋ": [
+  "ㄱ, bir soluk havayla",
+  "Bir çizgi fazlasıyla ㄱ."
+ ],
+ "ㅌ": [
+  "ㄷ, bir soluk havayla",
+  "Bir çizgi fazlasıyla ㄷ."
+ ],
+ "ㅍ": [
+  "ㅂ, bir soluk havayla",
+  "Yan yatırılmış ㅂ."
+ ],
+ "ㅐ": [
+  "«el» sözcüğündeki e gibi, biraz daha açık",
+  "Birlikte yazılmış ㅏ ve ㅣ."
+ ],
+ "ㅔ": [
+  "«ev» sözcüğündeki e gibi",
+  "ㅓ + ㅣ. Bugün Korelilerin çoğu ㅐ ile ㅔ'yi aynı söylüyor."
+ ],
+ "ㅒ": [
+  "kısa söylenen ye",
+  "ㅑ + ㅣ."
+ ],
+ "ㅖ": [
+  "«yer» sözcüğündeki ye gibi",
+  "ㅕ + ㅣ."
+ ],
+ "ㄲ": [
+  "ㄱ, gergin ve keskin",
+  "İki ㄱ. Boğazını sık ve birden bırak."
+ ],
+ "ㄸ": [
+  "ㄷ, gergin ve keskin",
+  "İki ㄷ."
+ ],
+ "ㅃ": [
+  "ㅂ, gergin ve keskin",
+  "İki ㅂ."
+ ],
+ "ㅆ": [
+  "ㅅ, gergin ve keskin",
+  "İki ㅅ."
+ ],
+ "ㅉ": [
+  "ㅈ, gergin ve keskin",
+  "İki ㅈ."
+ ],
+ "ㅘ": [
+  "İngilizce «water» sözcüğündeki wa gibi",
+  "ㅗ + ㅏ. w sesini ekleyen ㅗ ile ㅜ'dür."
+ ],
+ "ㅝ": [
+  "İngilizce «wonder» sözcüğündeki wo gibi",
+  "ㅜ + ㅓ."
+ ],
+ "ㅚ": [
+  "İngilizce «wet» sözcüğündeki we gibi",
+  "ㅗ + ㅣ."
+ ],
+ "ㅟ": [
+  "İngilizce «week» sözcüğündeki wi gibi",
+  "ㅜ + ㅣ."
+ ],
+ "ㅙ": [
+  "İngilizce «wet» sözcüğündeki we gibi",
+  "ㅗ + ㅐ. Bugün ㅙ, ㅞ ve ㅚ aynı duyulur."
+ ],
+ "ㅞ": [
+  "İngilizce «wet» sözcüğündeki we gibi",
+  "ㅜ + ㅔ."
+ ],
+ "ㅢ": [
+  "önce ㅡ, hemen ardından ㅣ — birleşik",
+  "ㅡ + ㅣ."
+ ],
+ "가": [
+  "ㄱ + ㅏ",
+  "Ünsüz sola, uzun ünlü sağa gider."
+ ],
+ "나": [
+  "ㄴ + ㅏ — aynı zamanda «ben» demek",
+  null
+ ],
+ "다": [
+  "ㄷ + ㅏ",
+  null
+ ],
+ "라": [
+  "ㄹ + ㅏ",
+  null
+ ],
+ "마": [
+  "ㅁ + ㅏ",
+  null
+ ],
+ "거": [
+  "ㄱ + ㅓ",
+  null
+ ],
+ "고": [
+  "ㄱ + ㅗ — ünlü alta iner",
+  "Yatık ünlü, ünsüzün yanına değil altına oturur."
+ ],
+ "구": [
+  "ㄱ + ㅜ",
+  null
+ ],
+ "그": [
+  "ㄱ + ㅡ",
+  null
+ ],
+ "기": [
+  "ㄱ + ㅣ",
+  null
+ ],
+ "바": [
+  "ㅂ + ㅏ",
+  null
+ ],
+ "사": [
+  "ㅅ + ㅏ",
+  null
+ ],
+ "아": [
+  "ㅇ + ㅏ — sadece «a» diye okunur",
+  "Burada ㅇ ses vermez. Ünsüzün yerini boş tutuyor."
+ ],
+ "자": [
+  "ㅈ + ㅏ",
+  null
+ ],
+ "하": [
+  "ㅎ + ㅏ",
+  null
+ ],
+ "어": [
+  "ㅇ + ㅓ — «eo» diye okunur",
+  null
+ ],
+ "오": [
+  "ㅇ + ㅗ — «o» diye okunur",
+  null
+ ],
+ "우": [
+  "ㅇ + ㅜ — «u» diye okunur",
+  null
+ ],
+ "으": [
+  "ㅇ + ㅡ — «ı» diye okunur",
+  null
+ ],
+ "이": [
+  "ㅇ + ㅣ — «i» diye okunur",
+  null
+ ],
+ "안": [
+  "ㅇ + ㅏ + ㄴ",
+  "Üçüncü harf alta iner. Kareyi yukarıdan aşağıya oku."
+ ],
+ "말": [
+  "ㅁ + ㅏ + ㄹ — «söz» demek",
+  null
+ ],
+ "밤": [
+  "ㅂ + ㅏ + ㅁ — «gece» demek",
+  null
+ ],
+ "강": [
+  "ㄱ + ㅏ + ㅇ — burada ㅇ *bir sestir*: ng",
+  null
+ ],
+ "산": [
+  "ㅅ + ㅏ + ㄴ — «dağ» demek",
+  null
+ ],
+ "밥": [
+  "tutulmuş bir p ile biter",
+  "Sondaki ㅂ kapanır, açılmaz. Son p'yi bitirmeden «bap» de."
+ ],
+ "옷": [
+  "altta duran ㅅ, t diye okunur",
+  "Yalnızca yedi ses: aşağıda ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ hepsi t olur."
+ ],
+ "국": [
+  "tutulmuş bir k ile biter — «çorba» demek",
+  null
+ ],
+ "꽃": [
+  "altta duran ㅊ, t diye okunur; bu yüzden burada «kkot»",
+  null
+ ],
+ "한": [
+  "ㅎ + ㅏ + ㄴ — 한글 sözcüğünün ilk hecesi",
+  null
+ ],
+ "글": [
+  "ㄱ + ㅡ + ㄹ — 한 + 글 = 한글, bu yazının adı",
+  null
+ ],
+ "공": [
+  "ㄱ + ㅗ + ㅇ — 공부, «çalışma» sözcüğündeki gibi",
+  null
+ ],
+ "부": [
+  "ㅂ + ㅜ — 공 + 부 = 공부, «çalışma»",
+  null
+ ]
+}

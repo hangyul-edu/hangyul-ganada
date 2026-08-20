@@ -1,0 +1,105 @@
+{
+  "actions": {
+    "undo": "Batal",
+    "clear": "Hapus",
+    "check": "Periksa"
+  },
+  "canvas": {
+    "label": "Area menulis untuk {{character}}",
+    "empty": "Belum ada yang ditulis.",
+    "strokes_other": "{{count, number}} goresan ditulis."
+  },
+  "feedback": {
+    "correct": {
+      "headline": "Nah, itu dia!",
+      "perfect": "{{character}} — tulisannya bagus sekali.",
+      "scored": "Bentuknya bagus — {{score, number(style: percent)}} menuju sempurna."
+    },
+    "empty": {
+      "headline": "Belum ada apa-apa",
+      "detail": "Tulis hurufnya di dalam kotak."
+    },
+    "incomplete": {
+      "headline": "Hampir",
+      "tooSmall": "Agak kecil. Coba penuhi kotaknya.",
+      "missingStroke": "Ada goresan yang kurang. Ikuti panduannya sampai habis."
+    },
+    "outside": {
+      "headline": "Belum tepat",
+      "tooLarge": "Itu keluar dari kotak. Sedikit lebih kecil lain kali.",
+      "strayStroke": "Satu goresan melenceng. Ikuti garisnya pelan-pelan."
+    },
+    "scribble": {
+      "headline": "Coba lebih pelan",
+      "detail": "Tarik tiap goresan sekali saja, dalam satu gerakan — tak perlu diulang-ulang."
+    },
+    "mixed": {
+      "headline": "Belum tepat",
+      "detail": "Sejajarkan dengan panduannya lalu coba lagi."
+    },
+    "retry": "Coba lagi",
+    "showDetails": "Lihat rincian",
+    "hideDetails": "Sembunyikan rincian",
+    "breakdown": "Selisih {{mismatch, number(style: percent)}} · di luar {{outside, number(style: percent)}} · kurang {{missing, number(style: percent)}}"
+  },
+  "strokeOrder": {
+    "diagramLabel_other": "Cara menulis {{character}}, dalam {{count, number}} goresan",
+    "pause": "Jeda",
+    "count_other": "{{count, number}} goresan",
+    "heading": "Lihat cara menulisnya",
+    "notesFooter": "Urutan goresan tidak masuk penilaian. Tapi itulah yang membuat tulisanmu terlihat benar.",
+    "notes": {
+      "fewer": "Kamu pakai {{theirs, number}} goresan; huruf ini biasanya ditulis dalam {{expected, number}}.",
+      "more": "Kamu pakai {{theirs, number}} goresan; huruf ini biasanya ditulis dalam {{expected, number}}.",
+      "startElsewhere": "Biasanya dimulai dari {{corner}} kotak.",
+      "direction_other": "{{count, number}} goresan berjalan terbalik. Goresan Korea bergerak dari atas ke bawah dan dari kiri ke kanan."
+    },
+    "corners": {
+      "topLeft": "kiri atas",
+      "topCentre": "atas",
+      "topRight": "kanan atas",
+      "middleLeft": "kiri",
+      "middleCentre": "tengah",
+      "middleRight": "kanan",
+      "bottomLeft": "kiri bawah",
+      "bottomCentre": "bawah",
+      "bottomRight": "kanan bawah"
+    },
+    "watchAgain": "Lihat lagi",
+    "back": "Sebelumnya",
+    "next": "Berikutnya",
+    "position": "Goresan {{current, number}} dari {{count, number}}"
+  },
+  "strokeGuide": {
+    "shape": {
+      "downLong": "garis panjang ke bawah",
+      "downLongTwice": "dua garis panjang ke bawah, yang kiri dulu",
+      "downShort": "garis pendek ke bawah",
+      "downShortTwice": "dua garis pendek ke bawah, yang kiri dulu",
+      "acrossLong": "garis panjang mendatar",
+      "acrossLongTwice": "dua garis panjang mendatar, yang atas dulu",
+      "acrossShort": "garis pendek mendatar",
+      "acrossShortTwice": "dua garis pendek mendatar, yang atas dulu",
+      "cornerAcrossDown": "mendatar di atas lalu turun di sisi kanan",
+      "cornerDownAcross": "turun di sisi kiri lalu membelok ke kanan",
+      "slantLeft": "goresan miring turun ke kiri",
+      "slantRight": "goresan miring turun ke kanan",
+      "circle": "lingkarannya, memutar dari atas"
+    },
+    "s1": "Cuma satu goresan: {{a}}.",
+    "s2": "Pertama {{a}}. Lalu {{b}}.",
+    "s3": "Pertama {{a}}. Lalu {{b}}. Lalu {{c}}.",
+    "s4": "Pertama {{a}}. Lalu {{b}}. Lalu {{c}}. Terakhir {{d}}.",
+    "parts2": {
+      "plain": "Tulis {{a}} dulu, lalu {{b}}.",
+      "right": "Tulis {{a}} dulu, lalu {{b}} di sebelah kanannya.",
+      "below": "Tulis {{a}} dulu, lalu {{b}} di bawahnya."
+    },
+    "parts3": {
+      "right": "Tulis {{a}}, lalu {{b}} di sebelah kanannya, lalu {{c}} di sepanjang dasar.",
+      "below": "Tulis {{a}}, lalu {{b}} di bawahnya, lalu {{c}} di sepanjang dasar."
+    },
+    "partsDouble": "Tulis {{a}} dua kali, berdampingan — yang kiri dulu.",
+    "fallback": "{{strokes}} goresan, dalam urutan yang ditunjukkan angkanya."
+  }
+}

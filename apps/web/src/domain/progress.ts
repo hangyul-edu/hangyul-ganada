@@ -103,18 +103,37 @@ export function unitProgress(progress: ProgressMap, unitId: string): Fraction {
 }
 
 /**
- * The lesson to open when the learner taps "continue".
+ * The lesson to open when the learner taps "continue", or `null` when there is
+ * no lesson left to open.
  *
  * The first lesson with anything left in it, in curriculum order — not the last
  * one they opened. Resuming where they *stopped* would strand a learner who
  * skipped ahead once, and this is the one button on the home screen that has to
  * be right every time.
+ *
+ * ## Why it returns null instead of the last lesson
+ *
+ * It used to end `?? LETTER_LESSONS.at(-1)`, and that fallback was a loop with
+ * a friendly name on it. A learner who finished the alphabet — the one moment
+ * in this product that is unambiguously an achievement — was shown the last
+ * chapter they had already completed, under a button reading *Continue*. They
+ * tapped it, arrived at a lesson with every letter green, came back, and were
+ * offered the same chapter again. Forever.
+ *
+ * The fallback existed because the return type had nowhere to put "finished".
+ * So the type says it now, and the caller has to decide what finishing looks
+ * like — which is the right place for that decision, and produced a completion
+ * card on Home rather than a silent re-offer. Every caller must handle `null`;
+ * `progress.test.ts` is the guard that one cannot quietly reintroduce the
+ * fallback.
  */
-export function nextLesson(progress: ProgressMap): LetterLesson {
-  return (
-    LETTER_LESSONS.find((lesson) => lessonProgress(progress, lesson).ratio < 1) ??
-    LETTER_LESSONS[LETTER_LESSONS.length - 1]!
-  );
+export function nextLesson(progress: ProgressMap): LetterLesson | null {
+  return LETTER_LESSONS.find((lesson) => lessonProgress(progress, lesson).ratio < 1) ?? null;
+}
+
+/** True once every letter lesson is finished. The alphabet is done. */
+export function alphabetComplete(progress: ProgressMap): boolean {
+  return nextLesson(progress) === null;
 }
 
 // --- Vocabulary --------------------------------------------------------------

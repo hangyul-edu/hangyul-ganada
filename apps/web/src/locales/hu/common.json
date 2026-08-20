@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Tanuld a hangult, vonásról vonásra.",
+    "description": "Tanulj meg hangult olvasni és írni a legelső betűtől — mássalhangzók és magánhangzók, szótagblokkok, kézírás és az első koreai szavaid."
+  },
+  "actions": {
+    "confirm": "Rendben",
+    "close": "Bezárás",
+    "back": "Vissza",
+    "goHome": "Ugrás a főoldalra",
+    "done": "Kész",
+    "save": "Mentés",
+    "saved": "Elmentve"
+  },
+  "a11y": {
+    "skipToContent": "Ugrás a tartalomhoz",
+    "currentPage": "(ez az oldal)",
+    "confirmationRequired": "Ehhez megerősítés kell."
+  },
+  "audio": {
+    "play": "Hallgasd meg a(z) {{text}} kiejtését",
+    "retry": "Játszd le újra: {{text}}",
+    "unavailable": "Nincs felvétel ehhez: {{text}}"
+  },
+  "progress": {
+    "lesson": "Haladás itt: {{name}}",
+    "review": "Haladás ebben az ismétlésben"
+  },
+  "units": {
+    "day_one": "{{count, number}} nap",
+    "day_other": "{{count, number}} nap"
+  },
+  "report": {
+    "action": "Hiba jelentése",
+    "title": "Mi a baj?",
+    "blurb": "Válaszd ki, mi tűnik rossznak, és megnyitunk egy e-mailt, amit kiegészíthetsz. A tanulásodból semmi nem kerül bele.",
+    "field": {
+      "item": "Tétel",
+      "category": "Probléma",
+      "version": "Alkalmazásverzió",
+      "language": "Nyelv"
+    },
+    "writeHere": "Írd ide, mit vettél észre:",
+    "category": {
+      "meaning": "A jelentés",
+      "example": "A példamondat",
+      "translation": "A fordítás",
+      "audio": "A hang",
+      "writing": "Az írás értékelése",
+      "other": "Valami más"
+    }
+  },
+  "exit": {
+    "title": "Kilépsz a Hangyul ganadából?",
+    "body": "A haladásod elmentve. Ott folytatod, ahol abbahagytad.",
+    "stay": "Maradok",
+    "leave": "Kilépés"
+  }
+}

@@ -8,8 +8,8 @@
  */
 import { describe, expect, it } from 'vitest';
 
-import { VOCABULARY } from './vocabulary';
-import { pronunciationOf, toIpa } from './pronunciation';
+import { VOCABULARY } from '../../apps/web/src/data/vocabulary';
+import { pronunciationOf, toIpa } from './ipa';
 
 describe('what the letters say on their own', () => {
   it('transcribes a plain word', () => {

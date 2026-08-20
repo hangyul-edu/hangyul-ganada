@@ -9,6 +9,13 @@
     "start": "Commencer",
     "continue": "Continuer l’apprentissage"
   },
+  "finished": {
+    "badge": "Terminé",
+    "title": "Vous savez lire le hangeul",
+    "body": "Les {{count, number}} lettres, vues, écrites et relues. La suite, ce sont les mots.",
+    "goal": "Mots du jour",
+    "cta": "Les mots du jour"
+  },
   "quick": {
     "letters": "Lettres",
     "words": "Mots",

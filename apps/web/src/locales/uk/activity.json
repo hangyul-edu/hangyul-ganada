@@ -1,0 +1,101 @@
+{
+  "title": "Навчальна активність",
+  "streak": {
+    "caption": "Будь-яка вправа її продовжує — завершувати літеру не обов'язково.",
+    "longest": "Найдовша серія",
+    "totalDays": "Днів занять",
+    "totalTime": "Загальний час",
+    "unit_few": "дні поспіль",
+    "unit_many": "днів поспіль",
+    "unit_one": "день поспіль",
+    "unit_other": "дня поспіль"
+  },
+  "chart": {
+    "title": "Активність",
+    "rangeAria": "Виберіть проміжок часу",
+    "aria": "Заняття за днями",
+    "noneYet": "За цей проміжок занять поки немає.",
+    "range": {
+      "7": "7 днів",
+      "30": "30 днів",
+      "90": "3 місяці",
+      "0": "Увесь час"
+    }
+  },
+  "calendar": {
+    "previous": "Попередній місяць",
+    "next": "Наступний місяць",
+    "less": "Менше",
+    "more": "Більше",
+    "dayAria_few": "{{date}}: {{count, number}} спроби",
+    "dayAria_many": "{{date}}: {{count, number}} спроб",
+    "dayAria_one": "{{date}}: {{count, number}} спроба",
+    "dayAria_other": "{{date}}: {{count, number}} спроби"
+  },
+  "day": {
+    "time": "Час занять",
+    "attempts": "Спроби письма",
+    "correct": "Правильно",
+    "charactersLearned": "Літер пройдено",
+    "wordsLearned": "Слів пройдено",
+    "reviews": "Спроби в повторенні",
+    "nothing": "Цього дня занять не було."
+  },
+  "insights": {
+    "title": "Що впадає в око",
+    "mostPractisedCharacter": "Найбільш опрацьована літера",
+    "mostPractisedWord": "Найбільш опрацьоване слово",
+    "accuracy": "Точність письма",
+    "thisWeek": "Цього тижня",
+    "learnedCount_few": "{{count, number}} пройдено",
+    "learnedCount_many": "{{count, number}} пройдено",
+    "learnedCount_one": "{{count, number}} пройдено",
+    "learnedCount_other": "{{count, number}} пройдено"
+  },
+  "units": {
+    "minute_few": "{{count, number}} хв",
+    "minute_many": "{{count, number}} хв",
+    "minute_one": "{{count, number}} хв",
+    "minute_other": "{{count, number}} хв",
+    "hour_few": "{{count, number}} год",
+    "hour_many": "{{count, number}} год",
+    "hour_one": "{{count, number}} год",
+    "hour_other": "{{count, number}} год"
+  },
+  "empty": {
+    "title": "Ваша історія навчання починається сьогодні",
+    "body": "Повправляйтеся з кількома літерами — і ця сторінка наповниться: дні, коли ви вчилися, скільки часу й над чим працювали."
+  },
+  "week": {
+    "title": "Цього тижня",
+    "range": "Від {{from}}",
+    "days": "Днів навчання",
+    "daysValue_few": "{{count, number}} із 7",
+    "daysValue_many": "{{count, number}} із 7",
+    "daysValue_one": "{{count, number}} із 7",
+    "daysValue_other": "{{count, number}} із 7",
+    "time": "Час",
+    "learned": "Вивчено",
+    "accuracy": "Точність",
+    "same": "Стільки ж часу, скільки минулого тижня.",
+    "moreThanLast": "На {{minutes, number}} хвилин більше, ніж минулого тижня.",
+    "lessThanLast": "На {{minutes, number}} хвилин менше, ніж минулого тижня.",
+    "quiet": "Цього тижня поки нічого — час іще є."
+  },
+  "memory": {
+    "title": "Як іде запам'ятовування",
+    "firstTry": "Цього тижня ви згадали {{count, number}} речей з першої спроби.",
+    "strongestSkill": "Цього тижня найкраще йде {{skill}}.",
+    "confusionImproving": "{{a}} і {{b}} розрізняти дедалі легше.",
+    "skill": {
+      "reading_recognition": "читання",
+      "listening_recognition": "слухання",
+      "guided_writing": "письмо",
+      "meaning_recognition": "значення",
+      "sentence_comprehension": "речення",
+      "sound_recognition": "звуки",
+      "visual_recognition": "літери",
+      "lookalike_discrimination": "розрізнення схожих"
+    }
+  }
+}

@@ -50,7 +50,6 @@
     "count_one": "{{count, number}} เส้น",
     "count_other": "{{count, number}} เส้น",
     "heading": "ดูวิธีเขียน",
-    "notesHeading": "เกี่ยวกับเส้นที่คุณเขียน",
     "notesFooter": "ลำดับเส้นไม่ถูกนำมาคิดคะแนน แต่เป็นสิ่งที่ทำให้ลายมือดูถูกต้อง",
     "notes": {
       "fewer": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",

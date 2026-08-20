@@ -1,0 +1,10 @@
+{
+  "primary": "Pangunahing menu",
+  "tabs": {
+    "home": "Home",
+    "letters": "Mga letra",
+    "words": "Mga salita",
+    "review": "Balik-aral",
+    "profile": "Aking pag-aaral"
+  }
+}

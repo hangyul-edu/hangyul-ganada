@@ -1,0 +1,89 @@
+{
+  "title": "Leeractiviteit",
+  "streak": {
+    "caption": "Elke oefening houdt hem gaande — je hoeft geen letter af te maken.",
+    "longest": "Langste reeks",
+    "totalDays": "Dagen geoefend",
+    "totalTime": "Totale tijd",
+    "unit_one": "dag op rij",
+    "unit_other": "dagen op rij"
+  },
+  "chart": {
+    "title": "Activiteit",
+    "rangeAria": "Kies een periode",
+    "aria": "Oefening per dag",
+    "noneYet": "Nog geen oefening in deze periode.",
+    "range": {
+      "7": "7 dagen",
+      "30": "30 dagen",
+      "90": "3 maanden",
+      "0": "Alles"
+    }
+  },
+  "calendar": {
+    "previous": "Vorige maand",
+    "next": "Volgende maand",
+    "less": "Minder",
+    "more": "Meer",
+    "dayAria_one": "{{date}}: {{count, number}} poging",
+    "dayAria_other": "{{date}}: {{count, number}} pogingen"
+  },
+  "day": {
+    "time": "Studietijd",
+    "attempts": "Schrijfpogingen",
+    "correct": "Goed",
+    "charactersLearned": "Letters afgerond",
+    "wordsLearned": "Woorden afgerond",
+    "reviews": "Herhaalpogingen",
+    "nothing": "Geen oefening op deze dag."
+  },
+  "insights": {
+    "title": "Wat opvalt",
+    "mostPractisedCharacter": "Meest geoefende letter",
+    "mostPractisedWord": "Meest geoefende woord",
+    "accuracy": "Schrijfnauwkeurigheid",
+    "thisWeek": "Deze week",
+    "learnedCount_one": "{{count, number}} afgerond",
+    "learnedCount_other": "{{count, number}} afgerond"
+  },
+  "units": {
+    "minute_one": "{{count, number}} min",
+    "minute_other": "{{count, number}} min",
+    "hour_one": "{{count, number}} u",
+    "hour_other": "{{count, number}} u"
+  },
+  "empty": {
+    "title": "Je leerverhaal begint vandaag",
+    "body": "Oefen een paar letters en deze pagina vult zich: de dagen dat je leerde, hoe lang, en waaraan je werkte."
+  },
+  "week": {
+    "title": "Deze week",
+    "range": "Vanaf {{from}}",
+    "days": "Dagen geleerd",
+    "daysValue_one": "{{count, number}} van 7",
+    "daysValue_other": "{{count, number}} van 7",
+    "time": "Tijd",
+    "learned": "Geleerd",
+    "accuracy": "Nauwkeurigheid",
+    "same": "Evenveel tijd als vorige week.",
+    "moreThanLast": "{{minutes, number}} minuten meer dan vorige week.",
+    "lessThanLast": "{{minutes, number}} minuten minder dan vorige week.",
+    "quiet": "Deze week nog niets — er is nog tijd."
+  },
+  "memory": {
+    "title": "Hoe je geheugen het doet",
+    "firstTry": "Je herinnerde je deze week {{count, number}} dingen meteen.",
+    "strongestSkill": "{{skill}} is deze week je sterkste kant.",
+    "confusionImproving": "{{a}} en {{b}} worden makkelijker uit elkaar te houden.",
+    "skill": {
+      "reading_recognition": "lezen",
+      "listening_recognition": "luisteren",
+      "guided_writing": "schrijven",
+      "meaning_recognition": "betekenis",
+      "sentence_comprehension": "zinnen",
+      "sound_recognition": "klanken",
+      "visual_recognition": "letters",
+      "lookalike_discrimination": "lijkende letters uit elkaar houden"
+    }
+  }
+}

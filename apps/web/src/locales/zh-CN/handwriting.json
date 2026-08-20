@@ -47,7 +47,6 @@
     "pause": "暂停",
     "count_other": "{{count, number}}笔",
     "heading": "看它怎么写",
-    "notesHeading": "关于你的笔画",
     "notesFooter": "笔顺不计入评分，它让你的字看起来更自然。",
     "notes": {
       "fewer": "你写了{{theirs, number}}笔，这个字通常是{{expected, number}}笔。",

@@ -23,10 +23,11 @@ import {
 } from './characters';
 import { DEFAULT_FONT_ID, PRACTICE_FONTS, getFont } from './fonts';
 import { LEARNING_QUOTES, QUOTE_LOCALES, nextQuote, renderQuote } from './quotes';
+import { AVAILABLE_LOCALES } from '../i18n/resources';
 import { hasFinalConsonant, toJamo, toSyllables } from './jamo';
 import { romanizeSyllable } from './romanize';
 import { STROKE_ORDER } from './strokes';
-import { loadWordCopy, wordCopy } from './wordCopy';
+import { WORD_COPY_LOCALES, loadWordCopy, wordCopy } from './wordCopy';
 import {
   CATEGORY_IDS,
   CONTENT_SOURCES,
@@ -443,8 +444,38 @@ describe('learning quotes', () => {
         const rendered = renderQuote(quote, locale);
         expect(rendered.text.trim(), `${quote.id} has no ${locale} text`).toBeTruthy();
         expect(rendered.author.trim(), `${quote.id} has no ${locale} author`).toBeTruthy();
+        // Not merely non-empty: actually present. `renderQuote` falls back to
+        // the English author so a missing name degrades rather than crashes,
+        // and this is the check that stops the fallback being load-bearing.
+        expect(quote.author[locale], `${quote.id} falls back to English for ${locale}`)
+          .toBeTruthy();
       }
     }
+  });
+
+  it('names every language whose word meanings actually ship', () => {
+    /*
+     * `WORD_COPY_LOCALES` is what the language picker uses to tell a learner,
+     * before they choose, whether word meanings will be in their language or in
+     * English. It comes from the `locales` field of the generated pack, which
+     * for two builds listed only the eight languages the corpus entries carry —
+     * so the picker said Vietnamese and Thai had no meanings while shipping
+     * 2,581 of each. A false warning is worse than no warning.
+     */
+    const shipped = Object.keys(
+      import.meta.glob('./generated/vocabulary.*.json', { eager: false }),
+    )
+      .map((path) => /vocabulary\.(.+)\.json$/.exec(path)?.[1])
+      .filter((code): code is string => Boolean(code));
+    expect(shipped.length).toBeGreaterThan(1);
+    expect([...WORD_COPY_LOCALES].sort()).toEqual(shipped.sort());
+  });
+
+  it('carries a quotation in every language the product ships', () => {
+    // Adding an interface language without adding its quotations is the exact
+    // shape of the bug that took the Arabic home screen to a blank page: the
+    // quote renderer throws, and it is mounted inside Home.
+    expect([...QUOTE_LOCALES].sort()).toEqual([...AVAILABLE_LOCALES].sort());
   });
 
   it('does not print the same sentence twice when the learner reads the original', () => {

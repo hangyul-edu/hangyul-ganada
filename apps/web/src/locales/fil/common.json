@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "tagline": "Matuto ng Hangul, isang guhit sa bawat pagkakataon.",
+    "description": "Matutong bumasa at sumulat ng Hangul mula sa kauna-unahang letra — mga katinig at patinig, mga kahong pantig, sulat-kamay, at ang unang mga salitang Koreano mo."
+  },
+  "actions": {
+    "confirm": "Sige",
+    "close": "Isara",
+    "back": "Balik",
+    "goHome": "Pumunta sa home",
+    "done": "Tapos na",
+    "save": "I-save",
+    "saved": "Naka-save"
+  },
+  "a11y": {
+    "skipToContent": "Dumiretso sa nilalaman",
+    "currentPage": "(kasalukuyang pahina)",
+    "confirmationRequired": "Kailangan ng kumpirmasyon ang gawaing ito."
+  },
+  "audio": {
+    "play": "Pakinggan ang bigkas ng {{text}}",
+    "retry": "Ipatugtog ulit ang {{text}}",
+    "unavailable": "Walang rekording para sa {{text}}"
+  },
+  "progress": {
+    "lesson": "Pag-usad sa {{name}}",
+    "review": "Pag-usad sa pagbabalik-aral na ito"
+  },
+  "units": {
+    "day_one": "{{count, number}} araw",
+    "day_other": "{{count, number}} na araw"
+  },
+  "report": {
+    "action": "Mag-ulat ng problema",
+    "title": "Ano ang mali?",
+    "blurb": "Piliin kung ano ang mukhang mali at magbubukas kami ng email na puwede mong dagdagan. Walang kahit anong tungkol sa pag-aaral mo ang isinasama.",
+    "field": {
+      "item": "Aytem",
+      "category": "Problema",
+      "version": "Bersyon ng app",
+      "language": "Wika"
+    },
+    "writeHere": "Isulat dito ang napansin mo:",
+    "category": {
+      "meaning": "Ang kahulugan",
+      "example": "Ang halimbawang pangungusap",
+      "translation": "Ang salin",
+      "audio": "Ang tunog",
+      "writing": "Ang puna sa sulat",
+      "other": "Iba pa"
+    }
+  },
+  "exit": {
+    "title": "Lalabas na sa Hangyul ganada?",
+    "body": "Naka-save ang pag-usad mo. Doon ka rin magsisimula kung saan ka tumigil.",
+    "stay": "Manatili",
+    "leave": "Lumabas"
+  }
+}

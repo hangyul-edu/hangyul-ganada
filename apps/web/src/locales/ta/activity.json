@@ -1,0 +1,89 @@
+{
+  "title": "கற்றல் நடவடிக்கை",
+  "streak": {
+    "caption": "எந்தப் பயிற்சியும் இதைத் தொடரவைக்கும் — ஓர் எழுத்தை முடிக்க வேண்டியதில்லை.",
+    "longest": "மிக நீண்ட தொடர்",
+    "totalDays": "பயிற்சி செய்த நாட்கள்",
+    "totalTime": "மொத்த நேரம்",
+    "unit_one": "நாள் தொடர்ச்சியாக",
+    "unit_other": "நாட்கள் தொடர்ச்சியாக"
+  },
+  "chart": {
+    "title": "நடவடிக்கை",
+    "rangeAria": "காலவரம்பைத் தேர்ந்தெடுங்கள்",
+    "aria": "நாள்தோறும் பயிற்சி",
+    "noneYet": "இந்தக் காலத்தில் இன்னும் பயிற்சி இல்லை.",
+    "range": {
+      "7": "7 நாட்கள்",
+      "30": "30 நாட்கள்",
+      "90": "3 மாதங்கள்",
+      "0": "எல்லாம்"
+    }
+  },
+  "calendar": {
+    "previous": "முந்தைய மாதம்",
+    "next": "அடுத்த மாதம்",
+    "less": "குறைவு",
+    "more": "அதிகம்",
+    "dayAria_one": "{{date}}: {{count, number}} முயற்சி",
+    "dayAria_other": "{{date}}: {{count, number}} முயற்சிகள்"
+  },
+  "day": {
+    "time": "படிப்பு நேரம்",
+    "attempts": "எழுதும் முயற்சிகள்",
+    "correct": "சரி",
+    "charactersLearned": "முடிந்த எழுத்துகள்",
+    "wordsLearned": "முடிந்த சொற்கள்",
+    "reviews": "மீள்பார்வை முயற்சிகள்",
+    "nothing": "இந்த நாளில் பயிற்சி இல்லை."
+  },
+  "insights": {
+    "title": "தனித்துத் தெரிவது",
+    "mostPractisedCharacter": "அதிகம் பயின்ற எழுத்து",
+    "mostPractisedWord": "அதிகம் பயின்ற சொல்",
+    "accuracy": "எழுத்தின் துல்லியம்",
+    "thisWeek": "இந்த வாரம்",
+    "learnedCount_one": "{{count, number}} முடிந்தது",
+    "learnedCount_other": "{{count, number}} முடிந்தன"
+  },
+  "units": {
+    "minute_one": "{{count, number}} நி",
+    "minute_other": "{{count, number}} நி",
+    "hour_one": "{{count, number}} ம",
+    "hour_other": "{{count, number}} ம"
+  },
+  "empty": {
+    "title": "உங்கள் கற்றல் கதை இன்று தொடங்குகிறது",
+    "body": "சில எழுத்துகளைப் பயிலுங்கள்; இந்தப் பக்கம் நிரம்பும்: எந்த நாட்களில் படித்தீர்கள், எவ்வளவு நேரம், எதில் உழைத்தீர்கள்."
+  },
+  "week": {
+    "title": "இந்த வாரம்",
+    "range": "{{from}} முதல்",
+    "days": "படித்த நாட்கள்",
+    "daysValue_one": "7 இல் {{count, number}}",
+    "daysValue_other": "7 இல் {{count, number}}",
+    "time": "நேரம்",
+    "learned": "கற்றது",
+    "accuracy": "துல்லியம்",
+    "same": "சென்ற வாரத்தைப் போலவே நேரம்.",
+    "moreThanLast": "சென்ற வாரத்தைவிட {{minutes, number}} நிமிடம் அதிகம்.",
+    "lessThanLast": "சென்ற வாரத்தைவிட {{minutes, number}} நிமிடம் குறைவு.",
+    "quiet": "இந்த வாரம் இன்னும் ஒன்றுமில்லை — நேரம் இருக்கிறது."
+  },
+  "memory": {
+    "title": "நினைவாற்றல் எப்படிப் போகிறது",
+    "firstTry": "இந்த வாரம் {{count, number}} விஷயங்களை முதல் முயற்சியிலேயே நினைவுகூர்ந்தீர்கள்.",
+    "strongestSkill": "இந்த வாரம் {{skill}} இல் நீங்கள் மிகவும் வலிமையாக இருக்கிறீர்கள்.",
+    "confusionImproving": "{{a}} உம் {{b}} உம் வேறுபடுத்துவது எளிதாகிக்கொண்டிருக்கிறது.",
+    "skill": {
+      "reading_recognition": "வாசிப்பு",
+      "listening_recognition": "கேட்டல்",
+      "guided_writing": "எழுதுதல்",
+      "meaning_recognition": "பொருள்",
+      "sentence_comprehension": "வாக்கியங்கள்",
+      "sound_recognition": "ஒலிகள்",
+      "visual_recognition": "எழுத்துகள்",
+      "lookalike_discrimination": "ஒத்த எழுத்துகளை வேறுபடுத்துதல்"
+    }
+  }
+}

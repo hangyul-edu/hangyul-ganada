@@ -1,0 +1,128 @@
+{
+  "title": "Woorden leren",
+  "today": {
+    "title": "Woorden van vandaag",
+    "start": "Beginnen",
+    "resume": "Doorgaan",
+    "startBlurb_one": "Eén woord vandaag.",
+    "startBlurb_other": "Een korte reeks van {{count}} woorden.",
+    "resumeBlurb": "Ga verder waar je gebleven was.",
+    "doneBlurb": "Klaar voor vandaag. Mooi werk.",
+    "completeTitle": "De woorden van vandaag zijn af.",
+    "completeDetail_one": "{{count}} woord geleerd.",
+    "completeDetail_other": "{{count}} woorden geleerd.",
+    "more": "Nog een beetje",
+    "allDone": "Niets meer voor vandaag.",
+    "progressAria": "Voortgang in de woorden van vandaag",
+    "moreLabel": "Hoeveel erbij",
+    "moreCount_one": "{{count}} erbij",
+    "moreCount_other": "{{count}} erbij"
+  },
+  "browse": {
+    "title": "Bladeren per onderwerp",
+    "showing": "{{shown}} van {{total}} te zien"
+  },
+  "intro": {
+    "example": "Voorbeeld",
+    "howItSounds": "Hoe het klinkt",
+    "surfaceNote": "In deze zin staat {{headword}} als {{form}}.",
+    "next": "Duidelijk"
+  },
+  "empty": {
+    "title": "Hier nog geen woorden",
+    "body": "Probeer een andere categorie."
+  },
+  "partOfSpeech": {
+    "noun": "zelfstandig naamwoord",
+    "verb": "werkwoord",
+    "adjective": "bijvoeglijk naamwoord",
+    "adverb": "bijwoord",
+    "pronoun": "voornaamwoord",
+    "numeral": "telwoord",
+    "particle": "partikel",
+    "interjection": "tussenwerpsel",
+    "determiner": "bepaler"
+  },
+  "session": {
+    "next": "Volgend woord",
+    "finish": "Afronden"
+  },
+  "blurb": "Alle woorden staan open. Kies een categorie en begin waar je wilt.",
+  "categories": {
+    "essentials": "Dagelijkse basis",
+    "people": "Mensen & Familie",
+    "food": "Eten & Drinken",
+    "animals-nature": "Dieren & Natuur",
+    "home": "Huis & Spullen",
+    "body-health": "Lichaam & Gezondheid",
+    "places-travel": "Plaatsen & Reizen",
+    "time-numbers": "Tijd & Getallen",
+    "school-work": "School & Werk",
+    "money-shopping": "Geld & Winkelen",
+    "communication": "Praten & Media",
+    "feelings": "Gevoel & Karakter",
+    "thinking": "Denken & Leren",
+    "movement": "Komen & Gaan",
+    "actions": "Dagelijkse handelingen",
+    "describing": "Dingen beschrijven",
+    "society": "Leven & Cultuur",
+    "how-when": "Hoe & Wanneer"
+  },
+  "category": {
+    "label": "Categorie",
+    "all": "Alle categorieën",
+    "pick": "Kies een categorie",
+    "count_one": "{{count, number}} woord",
+    "count_other": "{{count, number}} woorden",
+    "progressAria": "Voortgang in {{category}}"
+  },
+  "search": {
+    "placeholder": "Woorden zoeken",
+    "label": "Zoek in de woordenlijst",
+    "count_one": "{{count, number}} treffer",
+    "count_other": "{{count, number}} treffers",
+    "none": "Niets komt overeen met “{{query}}”. Probeer het Koreaans, of de betekenis in je eigen taal."
+  },
+  "sound": {
+    "tensing": "Na een slotmedeklinker wordt de volgende klank strakker.",
+    "aspiration": "ㅎ versmelt met de volgende medeklinker en voegt een pufje lucht toe.",
+    "nasal": "Vóór ㄴ of ㅁ wordt de medeklinker ervoor nasaal.",
+    "lateral": "ㄴ en ㄹ naast elkaar worden allebei ㄹ.",
+    "palatal": "Een slot-ㄷ of -ㅌ vóór 이 klinkt als ㅈ of ㅊ.",
+    "liaison": "De slotmedeklinker schuift door naar het volgende blok."
+  },
+  "save": {
+    "action": "Bewaren",
+    "saved": "Bewaard",
+    "add": "{{word}} bewaren",
+    "remove": "{{word}} uit bewaarde woorden halen"
+  },
+  "detail": {
+    "title": "Woord",
+    "romanization": "In Latijnse letters",
+    "definition": "Meer hierover",
+    "usage": "Hoe je het gebruikt",
+    "synonyms": "Synoniemen",
+    "antonyms": "Tegenstellingen"
+  },
+  "saved": {
+    "title": "Bewaarde woorden",
+    "review_one": "Herhalen · {{count}} vraag",
+    "review_other": "Herhalen · {{count}} vragen",
+    "searchPlaceholder": "Zoek in bewaarde woorden",
+    "searchLabel": "Zoek in je bewaarde woorden",
+    "orderLabel": "Volgorde",
+    "order": {
+      "recent": "Recent",
+      "alphabetical": "A–Z",
+      "needed": "Heeft werk nodig"
+    },
+    "count_one": "{{count}} woord",
+    "count_other": "{{count}} woorden",
+    "remove": "Verwijderen",
+    "noMatch": "Niets in je bewaarde woorden komt overeen met “{{query}}”.",
+    "emptyTitle": "Nog geen bewaarde woorden",
+    "emptyBody": "Tik tijdens het leren op de bladwijzer bij een woord, dan staat het hier om op terug te komen.",
+    "emptyCta": "Naar de woorden"
+  }
+}

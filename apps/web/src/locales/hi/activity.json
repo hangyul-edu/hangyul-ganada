@@ -1,0 +1,89 @@
+{
+  "title": "पढ़ाई की गतिविधि",
+  "streak": {
+    "caption": "कोई भी अभ्यास इसे चलाए रखता है — अक्षर पूरा करना ज़रूरी नहीं।",
+    "longest": "सबसे लंबी लगातार दौड़",
+    "totalDays": "अभ्यास के दिन",
+    "totalTime": "कुल समय",
+    "unit_one": "दिन लगातार",
+    "unit_other": "दिन लगातार"
+  },
+  "chart": {
+    "title": "गतिविधि",
+    "rangeAria": "समय की अवधि चुनिए",
+    "aria": "रोज़ का अभ्यास",
+    "noneYet": "इस अवधि में अभी कोई अभ्यास नहीं।",
+    "range": {
+      "7": "7 दिन",
+      "30": "30 दिन",
+      "90": "3 महीने",
+      "0": "सब"
+    }
+  },
+  "calendar": {
+    "previous": "पिछला महीना",
+    "next": "अगला महीना",
+    "less": "कम",
+    "more": "ज़्यादा",
+    "dayAria_one": "{{date}}: {{count, number}} कोशिश",
+    "dayAria_other": "{{date}}: {{count, number}} कोशिशें"
+  },
+  "day": {
+    "time": "पढ़ाई का समय",
+    "attempts": "लिखने की कोशिशें",
+    "correct": "सही",
+    "charactersLearned": "पूरे हुए अक्षर",
+    "wordsLearned": "पूरे हुए शब्द",
+    "reviews": "दोहराव की कोशिशें",
+    "nothing": "इस दिन कोई अभ्यास नहीं।"
+  },
+  "insights": {
+    "title": "जो उभरकर दिखता है",
+    "mostPractisedCharacter": "सबसे ज़्यादा अभ्यास वाला अक्षर",
+    "mostPractisedWord": "सबसे ज़्यादा अभ्यास वाला शब्द",
+    "accuracy": "लिखाई की सटीकता",
+    "thisWeek": "इस हफ़्ते",
+    "learnedCount_one": "{{count, number}} पूरा",
+    "learnedCount_other": "{{count, number}} पूरे"
+  },
+  "units": {
+    "minute_one": "{{count, number}} मि",
+    "minute_other": "{{count, number}} मि",
+    "hour_one": "{{count, number}} घं",
+    "hour_other": "{{count, number}} घं"
+  },
+  "empty": {
+    "title": "आपकी पढ़ाई की कहानी आज से शुरू",
+    "body": "कुछ अक्षरों का अभ्यास कीजिए और यह पन्ना भर जाएगा: किन दिनों पढ़ा, कितनी देर, और किस पर काम किया।"
+  },
+  "week": {
+    "title": "इस हफ़्ते",
+    "range": "{{from}} से",
+    "days": "पढ़ाई के दिन",
+    "daysValue_one": "7 में से {{count, number}}",
+    "daysValue_other": "7 में से {{count, number}}",
+    "time": "समय",
+    "learned": "सीखा",
+    "accuracy": "सटीकता",
+    "same": "पिछले हफ़्ते जितना ही समय।",
+    "moreThanLast": "पिछले हफ़्ते से {{minutes, number}} मिनट ज़्यादा।",
+    "lessThanLast": "पिछले हफ़्ते से {{minutes, number}} मिनट कम।",
+    "quiet": "इस हफ़्ते अभी कुछ नहीं — अभी समय है।"
+  },
+  "memory": {
+    "title": "याददाश्त कैसी चल रही है",
+    "firstTry": "इस हफ़्ते आपको {{count, number}} चीज़ें पहली ही बार में याद आईं।",
+    "strongestSkill": "इस हफ़्ते {{skill}} में आप सबसे मज़बूत हैं।",
+    "confusionImproving": "{{a}} और {{b}} में फ़र्क करना आसान होता जा रहा है।",
+    "skill": {
+      "reading_recognition": "पढ़ना",
+      "listening_recognition": "सुनना",
+      "guided_writing": "लिखना",
+      "meaning_recognition": "अर्थ",
+      "sentence_comprehension": "वाक्य",
+      "sound_recognition": "ध्वनियाँ",
+      "visual_recognition": "अक्षर",
+      "lookalike_discrimination": "मिलते-जुलते अक्षरों में फ़र्क करना"
+    }
+  }
+}

@@ -47,7 +47,6 @@
     "pause": "멈춤",
     "count_other": "{{count, number}}획",
     "heading": "쓰는 걸 보세요",
-    "notesHeading": "쓴 획에 대해",
     "notesFooter": "획순은 점수에 들어가지 않아요. 글씨를 자연스럽게 만들어 주는 거예요.",
     "notes": {
       "fewer": "{{theirs, number}}획으로 썼어요. 이 글자는 보통 {{expected, number}}획이에요.",

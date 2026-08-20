@@ -1,0 +1,89 @@
+{
+  "title": "Öğrenme etkinliği",
+  "streak": {
+    "caption": "Her alıştırma seriyi sürdürür — bir harfi bitirmen şart değil.",
+    "longest": "En uzun seri",
+    "totalDays": "Çalışılan gün",
+    "totalTime": "Toplam süre",
+    "unit_one": "gün üst üste",
+    "unit_other": "gün üst üste"
+  },
+  "chart": {
+    "title": "Etkinlik",
+    "rangeAria": "Bir zaman aralığı seç",
+    "aria": "Günlük alıştırma",
+    "noneYet": "Bu aralıkta henüz alıştırma yok.",
+    "range": {
+      "7": "7 gün",
+      "30": "30 gün",
+      "90": "3 ay",
+      "0": "Tümü"
+    }
+  },
+  "calendar": {
+    "previous": "Önceki ay",
+    "next": "Sonraki ay",
+    "less": "Az",
+    "more": "Çok",
+    "dayAria_one": "{{date}}: {{count, number}} deneme",
+    "dayAria_other": "{{date}}: {{count, number}} deneme"
+  },
+  "day": {
+    "time": "Çalışma süresi",
+    "attempts": "Yazma denemeleri",
+    "correct": "Doğru",
+    "charactersLearned": "Bitirilen harfler",
+    "wordsLearned": "Bitirilen kelimeler",
+    "reviews": "Tekrar denemeleri",
+    "nothing": "Bu gün alıştırma yok."
+  },
+  "insights": {
+    "title": "Göze çarpanlar",
+    "mostPractisedCharacter": "En çok çalışılan harf",
+    "mostPractisedWord": "En çok çalışılan kelime",
+    "accuracy": "Yazı isabeti",
+    "thisWeek": "Bu hafta",
+    "learnedCount_one": "{{count, number}} bitti",
+    "learnedCount_other": "{{count, number}} bitti"
+  },
+  "units": {
+    "minute_one": "{{count, number}} dk",
+    "minute_other": "{{count, number}} dk",
+    "hour_one": "{{count, number}} sa",
+    "hour_other": "{{count, number}} sa"
+  },
+  "empty": {
+    "title": "Öğrenme hikâyen bugün başlıyor",
+    "body": "Birkaç harf çalış, bu sayfa dolsun: çalıştığın günler, ne kadar süre, ve neyle uğraştığın."
+  },
+  "week": {
+    "title": "Bu hafta",
+    "range": "{{from}} tarihinden beri",
+    "days": "Çalışılan gün",
+    "daysValue_one": "7 günün {{count, number}} tanesi",
+    "daysValue_other": "7 günün {{count, number}} tanesi",
+    "time": "Süre",
+    "learned": "Öğrenilen",
+    "accuracy": "İsabet",
+    "same": "Geçen haftayla aynı süre.",
+    "moreThanLast": "Geçen haftadan {{minutes, number}} dakika fazla.",
+    "lessThanLast": "Geçen haftadan {{minutes, number}} dakika az.",
+    "quiet": "Bu hafta henüz bir şey yok — vakit var."
+  },
+  "memory": {
+    "title": "Hatırlaman nasıl gidiyor",
+    "firstTry": "Bu hafta {{count, number}} şeyi ilk denemede hatırladın.",
+    "strongestSkill": "Bu hafta en güçlü olduğun alan {{skill}}.",
+    "confusionImproving": "{{a}} ile {{b}} arasındaki farkı ayırmak kolaylaşıyor.",
+    "skill": {
+      "reading_recognition": "okuma",
+      "listening_recognition": "dinleme",
+      "guided_writing": "yazma",
+      "meaning_recognition": "anlam",
+      "sentence_comprehension": "cümleler",
+      "sound_recognition": "sesler",
+      "visual_recognition": "harfler",
+      "lookalike_discrimination": "benzeyenleri ayırmak"
+    }
+  }
+}

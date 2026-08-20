@@ -1,0 +1,89 @@
+{
+  "title": "শেখার কার্যক্রম",
+  "streak": {
+    "caption": "যেকোনো অনুশীলনই এটা চালু রাখে — অক্ষর শেষ করতেই হবে এমন নয়।",
+    "longest": "সবচেয়ে লম্বা ধারা",
+    "totalDays": "অনুশীলনের দিন",
+    "totalTime": "মোট সময়",
+    "unit_one": "দিন টানা",
+    "unit_other": "দিন টানা"
+  },
+  "chart": {
+    "title": "কার্যক্রম",
+    "rangeAria": "সময়সীমা বেছে নিন",
+    "aria": "দিনভিত্তিক অনুশীলন",
+    "noneYet": "এই সময়সীমায় এখনও কোনো অনুশীলন নেই।",
+    "range": {
+      "7": "৭ দিন",
+      "30": "৩০ দিন",
+      "90": "৩ মাস",
+      "0": "সব"
+    }
+  },
+  "calendar": {
+    "previous": "আগের মাস",
+    "next": "পরের মাস",
+    "less": "কম",
+    "more": "বেশি",
+    "dayAria_one": "{{date}}: {{count, number}}টি চেষ্টা",
+    "dayAria_other": "{{date}}: {{count, number}}টি চেষ্টা"
+  },
+  "day": {
+    "time": "পড়ার সময়",
+    "attempts": "লেখার চেষ্টা",
+    "correct": "সঠিক",
+    "charactersLearned": "শেষ হওয়া অক্ষর",
+    "wordsLearned": "শেষ হওয়া শব্দ",
+    "reviews": "পুনরালোচনার চেষ্টা",
+    "nothing": "এই দিনে কোনো অনুশীলন নেই।"
+  },
+  "insights": {
+    "title": "যা চোখে পড়ে",
+    "mostPractisedCharacter": "সবচেয়ে বেশি অনুশীলন করা অক্ষর",
+    "mostPractisedWord": "সবচেয়ে বেশি অনুশীলন করা শব্দ",
+    "accuracy": "লেখার নির্ভুলতা",
+    "thisWeek": "এই সপ্তাহে",
+    "learnedCount_one": "{{count, number}}টি শেষ",
+    "learnedCount_other": "{{count, number}}টি শেষ"
+  },
+  "units": {
+    "minute_one": "{{count, number}} মি",
+    "minute_other": "{{count, number}} মি",
+    "hour_one": "{{count, number}} ঘ",
+    "hour_other": "{{count, number}} ঘ"
+  },
+  "empty": {
+    "title": "আপনার শেখার গল্প আজ থেকে শুরু",
+    "body": "কয়েকটা অক্ষর অনুশীলন করুন, তাহলেই এই পাতা ভরে উঠবে: কোন দিনগুলো পড়েছেন, কতক্ষণ, আর কী নিয়ে কাজ করেছেন।"
+  },
+  "week": {
+    "title": "এই সপ্তাহে",
+    "range": "{{from}} থেকে",
+    "days": "পড়ার দিন",
+    "daysValue_one": "৭-এর মধ্যে {{count, number}}",
+    "daysValue_other": "৭-এর মধ্যে {{count, number}}",
+    "time": "সময়",
+    "learned": "শেখা হয়েছে",
+    "accuracy": "নির্ভুলতা",
+    "same": "গত সপ্তাহের সমান সময়।",
+    "moreThanLast": "গত সপ্তাহের চেয়ে {{minutes, number}} মিনিট বেশি।",
+    "lessThanLast": "গত সপ্তাহের চেয়ে {{minutes, number}} মিনিট কম।",
+    "quiet": "এই সপ্তাহে এখনও কিছু নয় — সময় আছে।"
+  },
+  "memory": {
+    "title": "মনে রাখা কেমন চলছে",
+    "firstTry": "এই সপ্তাহে আপনি {{count, number}}টি জিনিস প্রথম চেষ্টাতেই মনে করেছেন।",
+    "strongestSkill": "এই সপ্তাহে {{skill}}-এ আপনি সবচেয়ে শক্ত।",
+    "confusionImproving": "{{a}} আর {{b}} আলাদা করা সহজ হয়ে আসছে।",
+    "skill": {
+      "reading_recognition": "পড়া",
+      "listening_recognition": "শোনা",
+      "guided_writing": "লেখা",
+      "meaning_recognition": "অর্থ",
+      "sentence_comprehension": "বাক্য",
+      "sound_recognition": "শব্দ",
+      "visual_recognition": "অক্ষর",
+      "lookalike_discrimination": "একরকম দেখতে অক্ষর আলাদা করা"
+    }
+  }
+}

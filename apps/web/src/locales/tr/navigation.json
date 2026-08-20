@@ -1,0 +1,10 @@
+{
+  "primary": "Ana menü",
+  "tabs": {
+    "home": "Ana sayfa",
+    "letters": "Harfler",
+    "words": "Kelimeler",
+    "review": "Tekrar",
+    "profile": "Öğrenmem"
+  }
+}

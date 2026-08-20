@@ -1,0 +1,10 @@
+{
+  "primary": "Hlavní nabídka",
+  "tabs": {
+    "home": "Domů",
+    "letters": "Litery",
+    "words": "Slova",
+    "review": "Opakování",
+    "profile": "Moje učení"
+  }
+}

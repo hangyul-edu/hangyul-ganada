@@ -15,7 +15,7 @@
     "prompt": {
       "write": "ガイドをなぞって指で書いてみましょう。"
     },
-    "nowRead": "読んでみよう",
+    "nowRecognise": "問題に挑戦",
     "continue": "次へ"
   },
   "complete": {

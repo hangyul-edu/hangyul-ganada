@@ -15,9 +15,6 @@
     "completeDetail_other": "{{count}} mots appris.",
     "more": "Encore un peu",
     "allDone": "Plus rien pour aujourd'hui.",
-    "remaining_one": "Encore un aujourd’hui",
-    "remaining_many": "Encore {{count}} aujourd’hui",
-    "remaining_other": "Encore {{count}} aujourd’hui",
     "progressAria": "Progression des mots du jour",
     "moreLabel": "Combien de plus ?",
     "moreCount_one": "1 de plus",
@@ -107,7 +104,7 @@
   },
   "detail": {
     "title": "Mot",
-    "pronunciation": "Prononciation",
+    "romanization": "Romanisation",
     "definition": "En savoir plus",
     "usage": "Comment on l’emploie",
     "synonyms": "Synonymes",

@@ -101,7 +101,7 @@
     "counter": "{{current, number}} / {{total, number}}",
     "skip": "Bỏ qua chữ này",
     "startWriting": "Viết thử",
-    "nowRead": "Giờ đọc nào",
+    "nowRecognise": "Thử một câu hỏi",
     "next": "Chữ tiếp theo",
     "finish": "Kết thúc",
     "prompt": {

@@ -9,6 +9,13 @@
     "start": "Start now",
     "continue": "Keep learning"
   },
+  "finished": {
+    "badge": "Finished",
+    "title": "You can read Hangul",
+    "body": "All {{count, number}} letters, met, written and read back. From here it is words.",
+    "goal": "Words today",
+    "cta": "Today's words"
+  },
   "quick": {
     "letters": "Letters",
     "lettersCaption": "of the 40 Hangul letters",

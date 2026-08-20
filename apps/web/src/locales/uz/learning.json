@@ -1,0 +1,233 @@
+{
+  "letters": {
+    "title": "Harflarni o‘rganish",
+    "alphabetTitle": "Hangul alifbosi",
+    "alphabetCaption": "harf o‘rganildi",
+    "complete": "O‘rganildi",
+    "resume": "Davom etish"
+  },
+  "units": {
+    "badge": "{{index, number}}-bo‘lim",
+    "continue": "Tushunarli — boshladik",
+    "unit-1": {
+      "title": "Boshlash uchun oltita unli",
+      "goal": "Har bir koreys bo‘g‘iniga unli kerak. Shu oltitasi eng oddiysi.",
+      "body": "Hangul — alifbo, rasmlar to‘plami emas. Unda 40 harf bor, tez o‘rganilsin deb shunday tuzilgan, va hozir siz ulardan oltitasini o‘rganasiz.",
+      "points": [
+        "Harflar to‘rtburchak kataklarga yig‘iladi, har bir katak bitta bo‘g‘in.",
+        "Unli yo tik chiziq, yo yotiq chiziq bo‘ladi — katakdagi o‘rnini shu belgilaydi.",
+        "Chizib borar ekansiz, har bir harfni ovoz chiqarib ayting. Tovush — darsning yarmi."
+      ]
+    },
+    "unit-2": {
+      "title": "Birinchi undoshlaringiz",
+      "goal": "Beshta undosh. Bilgan unlilaringiz bilan qo‘shsak, allaqachon 30 bo‘g‘in."
+    },
+    "unit-3": {
+      "title": "Birlashtiramiz",
+      "goal": "Undosh va unli qo‘shilsa, o‘qiy oladigan katak chiqadi.",
+      "body": "Koreys bo‘g‘ini bitta to‘rtburchak sifatida yoziladi. Undosh oldin keladi — tik unli bilan chapda, yotiq unli bilan tepada.",
+      "points": [
+        "Tik unli (ㅏ ㅓ ㅣ) undoshning o‘ng tomonida turadi.",
+        "Yotiq unli (ㅗ ㅜ ㅡ) uning ostida yotadi.",
+        "Katakni sahifa o‘qigandek o‘qing: chapdan o‘ngga, keyin pastga."
+      ]
+    },
+    "unit-4": {
+      "title": "Yana beshta undosh",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — oddiy qatorning qolgani."
+    },
+    "unit-5": {
+      "title": "Yana kataklarni o‘qiymiz",
+      "goal": "Umuman tovush bermaydigan yagona harf ham shular qatorida."
+    },
+    "unit-6": {
+      "title": "Y tovushini qo‘shish",
+      "goal": "Bitta qo‘shimcha chiziq ㅏ ni ㅑ ga aylantiradi. To‘rtalasida ham shu qoida."
+    },
+    "unit-7": {
+      "title": "Bir puf havo",
+      "goal": "ㅊ ㅋ ㅌ ㅍ — siz biladigan harflar, bitta chiziq qo‘shilgani."
+    },
+    "unit-8": {
+      "title": "E-unlilar",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — ㅣ qo‘shish orqali hosil bo‘lgan unlilar."
+    },
+    "unit-9": {
+      "title": "Ikkilangan va tarang",
+      "goal": "Ikki marta yoziladigan va taranglashib aytiladigan beshta harf."
+    },
+    "unit-10": {
+      "title": "V-unlilar",
+      "goal": "Ikki unli bittadek yozilgan. 40 harfning oxirgilari."
+    },
+    "unit-11": {
+      "title": "Ostda bir harf",
+      "goal": "받침 — bo‘g‘inni yopadigan undosh.",
+      "body": "Katakka qolgan ikkitasining ostiga uchinchi harf ham sig‘adi. Uning nomi 받침, u bo‘g‘inni yopadi.",
+      "points": [
+        "Uchinchi harf har doim to‘rtburchakning eng ostiga tushadi.",
+        "Qanday harf yozilgan bo‘lmasin, 받침 faqat yettita tovushdan biri bo‘lib chiqadi.",
+        "Aksariyat boshlovchilarning o‘qishi shu yerda qoqiladi. Shoshilmang."
+      ]
+    },
+    "unit-12": {
+      "title": "한글 ni o‘qish",
+      "goal": "Endi har bir harfni bilasiz. Yozuv tizimining o‘z nomini o‘qing."
+    }
+  },
+  "intro": {
+    "letterName": "Nomi",
+    "letterSound": "Tovushi",
+    "soundIn": "{{character}} tovushini shu so‘zda eshiting",
+    "reads": "Shunday o‘qiladi"
+  },
+  "steps": {
+    "label": "Shu harf uchun bosqichlar",
+    "write": "Yozing",
+    "read": "O‘qing"
+  },
+  "recognition": {
+    "question": "Bu tovushni qaysi biri beradi?",
+    "optionsAria": "Eshitgan harfingizni tanlang",
+    "optionAria": "{{character}} ni tanlang",
+    "correctDetail": "Ha, bu {{character}}.",
+    "wrongHeadline": "U emas.",
+    "wrongDetail": "{{sound}} kabi jaranglaydigani {{character}}.",
+    "hearAgain": "Yana eshitish",
+    "tryAgain": "Yana urinib ko‘ring"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Buni o‘tkazib yuboring",
+    "startWriting": "Yozib ko‘ring",
+    "nowRecognise": "Bitta savol ko‘raylik",
+    "next": "Keyingi harf",
+    "finish": "Tugatish",
+    "prompt": {
+      "write": "Namuna ustidan barmog‘ingiz bilan yozing."
+    },
+    "continue": "Keyingisi"
+  },
+  "complete": {
+    "title": "Barakalla!",
+    "letters_one": "{{lesson}} bo‘limida {{count, number}} harfni tugatdingiz.",
+    "letters_other": "{{lesson}} bo‘limida {{count, number}} harfni tugatdingiz."
+  },
+  "review": {
+    "title": "Takrorlash",
+    "startCta": "Takrorlashni boshlash",
+    "sessionTitle": "Takrorlash",
+    "completeTitle": "Takrorlash tugadi",
+    "empty": {
+      "title": "Hozircha takrorlaydigan narsa yo‘q",
+      "body": "Xato qilganingizning hammasi shu yerga tushadi. Hozircha, yangi harfga nima deysiz?",
+      "cta": "Bitta harf o‘rganing"
+    },
+    "forYou": "Siz uchun takrorlash",
+    "sessionLength_one": "{{count, number}} ta qisqa mashq",
+    "sessionLength_other": "{{count, number}} ta qisqa mashq",
+    "needsPractice": "Mashq kerak",
+    "dueToday": "Bugunga",
+    "savedWords": "Saqlangan so‘zlar",
+    "chooseMode": "Yoki nimani mashq qilishni o‘zingiz tanlang",
+    "comingUp": "Navbatda",
+    "outcome": "{{practised, number}} ta mashq qilindi · {{firstTry, number}} tasi darrov esga tushdi · {{comingBack, number}} tasi yaqinda qaytadi",
+    "blank": "bo‘sh joy",
+    "optionsLabel": "Javoblar",
+    "showHint": "Bir ishora bering",
+    "right": "Xuddi shunday.",
+    "notQuite": "Unchalik emas. Mana to‘g‘risi.",
+    "mode": {
+      "read": "O‘qish",
+      "listen": "Tinglash",
+      "write": "Yozish"
+    },
+    "prompt": {
+      "read": "Bu so‘z nimani anglatadi?",
+      "readLetter": "Bu harf qanday tovush beradi?",
+      "listen": "Qaysi so‘zni eshitdingiz?",
+      "listenLetter": "Bu qaysi harf?",
+      "context": "Bu yerga qaysi so‘z to‘g‘ri keladi?",
+      "write": "Shu so‘zni yozing",
+      "writeLetter": "Eshitganingizni yozing",
+      "distinguish": "Bu tovushni qaysi biri beradi?",
+      "produce": "Qaysi biri?",
+      "listenMeaning": "Bu nimani anglatadi?",
+      "build": "So‘zni yig‘ing"
+    },
+    "nothingDue": "Hozir takrorlaydigan narsa yo‘q.",
+    "modesEmpty": "Bugun bu turlarda hech narsa yo‘q.",
+    "answerIs": "{{word}} — “{{meaning}}” degani.",
+    "showMoreHint": "Yana bir ishora",
+    "showAnswer": "Javobni ko‘rsatish",
+    "hint": {
+      "kind": "Bu {{pos}} — {{category}} bilan bog‘liq narsa.",
+      "kindOnly": "Yetishmayotgan so‘z — {{pos}}.",
+      "startsWith": "{{start}} bilan boshlanadi…",
+      "startsWithSound": "“{{sound}}” tovushi bilan boshlanadi.",
+      "replay": "Yana qo‘ying — xohlagancha.",
+      "letterFamily": "Turkumi — {{family}}.",
+      "letterExample": "Bu {{word}} so‘zining birinchi harfi.",
+      "letterSound": "“{{sound}}” kabi jaranglaydi.",
+      "reveal": "Javob — {{answer}}.",
+      "revealWord": "So‘z — {{answer}}.",
+      "revealLetter": "Harf — {{answer}}.",
+      "revealStrokes": "Chiziqlarni yana bir bor ko‘ring, keyin ustidan chizing.",
+      "inSentence": "Mana shunday ishlatiladi: {{sentence}}"
+    },
+    "buildTray": "Bo‘g‘inlar",
+    "buildRemove": "{{syllable}} ni qaytarib oling"
+  },
+  "sounds": {
+    "title": "Tovushlar uchrashganda",
+    "blurb": "학교 nega yozilganidek aytilmaydi.",
+    "intro": "Endi har bir harfni o‘qiysiz. Koreys tili so‘z tuzilgan bo‘laklarni yozadi va o‘sha bo‘laklar tutashgan joyda ba’zilarini o‘zgartiradi — shu sababli bir necha so‘z ko‘rinishidan boshqacha eshitiladi. Birinchi uchraydiganlari mana shular.",
+    "written": "Yoziladi",
+    "said": "Aytiladi",
+    "note": "Buni yodlash shart emas. Quloq soling — o‘z-o‘zidan odatiy bo‘lib qoladi.",
+    "name": {
+      "tensing": "Tarangroq ikkinchi tovush",
+      "aspiration": "Bir puf havo",
+      "nasal": "Yumshoq burun tovushi",
+      "lateral": "ㄴ va ㄹ yonma-yon",
+      "palatal": "이 dan oldin ㄷ va ㅌ",
+      "liaison": "Tovush oldinga siljiydi"
+    }
+  },
+  "mistakes": {
+    "title": "O‘tkazib yuborilgan javoblar",
+    "review_one": "Takrorlash · {{count}} savol",
+    "review_other": "Takrorlash · {{count}} savol",
+    "filterLabel": "Ko‘rsatish",
+    "filter": {
+      "all": "Hammasi",
+      "character": "Harflar",
+      "word": "So‘zlar"
+    },
+    "youPut": "Siz yozdingiz",
+    "answer": "To‘g‘ri javob",
+    "times_one": "{{count}} marta o‘tkazib yuborilgan",
+    "times_other": "{{count}} marta o‘tkazib yuborilgan",
+    "clear": "Bu bilan ish tamom",
+    "noneOfKind": "Hozir bu yerda hech narsa yo‘q.",
+    "emptyTitle": "Hali hech narsa o‘tkazib yuborilmagan",
+    "emptyBody": "Biror narsa qo‘ldan chiqsa, uni tuzatishingiz uchun shu yerda paydo bo‘ladi.",
+    "emptyCta": "Takrorlashga o‘tish"
+  },
+  "letterGroup": {
+    "basic_vowel": "oddiy unli",
+    "basic_consonant": "oddiy undosh",
+    "compound_vowel": "qo‘shma unli",
+    "double_consonant": "ikkilangan undosh",
+    "final_consonant": "yopuvchi undosh",
+    "syllable": "butun bo‘g‘in"
+  },
+  "nextStep": {
+    "title": "Keyingi qadamga tayyorsiz",
+    "body": "Endi hangulni o‘qiysiz. Gapirish va TOPIK mashqlari Hangyul’da davom etadi.",
+    "cta": "Hangyul’da davom eting",
+    "rowTitle": "Hangyul’da davom eting",
+    "rowBody": "Gapirish va TOPIK — tayyor bo‘lganingizda"
+  }
+}

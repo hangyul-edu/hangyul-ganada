@@ -1,0 +1,143 @@
+{
+  "title": "Mitt lärande",
+  "stats": {
+    "lettersLearned": "Bokstäver inlärda",
+    "wordsLearned": "Ord inlärda",
+    "alphabetProgress": "Framsteg genom hangulalfabetet",
+    "studyDays": "Studiedagar"
+  },
+  "language": {
+    "title": "Språk",
+    "pickerTitle": "Välj ett språk",
+    "pickerIntro": "Appens språk. Det du lär dig — hangulbokstäver, ord och exempelmeningar — är fortfarande koreanska.",
+    "listAria": "Tillgängliga språk",
+    "searchLabel": "Sök efter ett språk",
+    "searchPlaceholder": "Sök på namn eller kod",
+    "noResults": "Inget språk matchar ”{{query}}”.",
+    "selected": "Valt",
+    "coverageNote": "Alla språk här översätter hela gränssnittet och alfabetskursen. Där raden säger det visas ordbetydelser och exempelmeningar fortfarande på engelska.",
+    "wordsInEnglish": "Ordbetydelser på engelska"
+  },
+  "font": {
+    "title": "Övningstypsnitt",
+    "description": "Bokstaven du drar ritas i det typsnitt du väljer."
+  },
+  "dailyTarget": {
+    "title": "Bokstäver per dag",
+    "description": "Hur många hangulbokstäver du vill bli klar med varje dag.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "{{count, number}} per dag",
+    "optionAria_other": "{{count, number}} per dag"
+  },
+  "wordGoal": {
+    "title": "Ord per dag",
+    "description": "Hur många ord du vill bli klar med varje dag. Du kan ändra det när som helst.",
+    "option": "{{count}}",
+    "optionAria": "{{count}} ord per dag"
+  },
+  "guides": {
+    "title": "Hjälplinjer",
+    "description": "Hjälplinjerna inuti rutan.",
+    "grid": "Vågrät och lodrät linje",
+    "crosshair": "Mittmarkering"
+  },
+  "about": {
+    "body": "Läs och skriv hangul: bokstäverna, ljuden, stavelseblocken och dina första koreanska ord.",
+    "offline": "Varje lektion, mening och inspelning fungerar utan nät.",
+    "version": "Version {{version}}",
+    "reset": "Nollställ dina framsteg"
+  },
+  "reset": {
+    "title": "Nollställa alla framsteg?",
+    "description": "Dina avklarade lektioner, din repetitionshistorik och din läraktivitet raderas. Det går inte att ångra.",
+    "confirm": "Nollställ",
+    "cancel": "Avbryt",
+    "body": "Börja om från allra första bokstaven."
+  },
+  "voice": {
+    "title": "Uttalsröst",
+    "description": "Vem som läser upp bokstäver, stavelser och ord.",
+    "female": "Kvinnoröst",
+    "male": "Mansröst",
+    "preview": "Hör den valda rösten",
+    "provider": "Två tydliga koreanska röster, en aning långsammare än modersmålstakt så att varje ljud hinner landa."
+  },
+  "groups": {
+    "learning": "Lärande",
+    "practice": "Övning",
+    "appearance": "Utseende",
+    "app": "Appen",
+    "reset": "Nollställ"
+  },
+  "activity": {
+    "title": "Läraktivitet",
+    "body": "Din svit, din kalender och vad du har lärt dig"
+  },
+  "appearance": {
+    "title": "Utseende",
+    "description": "Ljust, mörkt, eller vad telefonen nu gör.",
+    "system": "System",
+    "light": "Ljust",
+    "dark": "Mörkt"
+  },
+  "legal": {
+    "title": "Juridik & licenser",
+    "body": "Licenser för innehållet och typsnitten i appen",
+    "intro": "En del av det som finns i appen används under licenser som vill bli omnämnda. De omnämnandena står här.",
+    "contentHeading": "Innehåll",
+    "fontsHeading": "Typsnitt"
+  },
+  "reminder": {
+    "title": "Daglig påminnelse",
+    "description": "En stillsam knuff om dagen, vid en tid du väljer. Avstängd om du inte slår på den, och den lämnar aldrig telefonen.",
+    "toggle": "Påminn mig att öva",
+    "at": "Klockan",
+    "notificationTitle": "Dags att öva",
+    "notificationBody": "Några minuter koreanska väntar.",
+    "refused": "Telefonen tillåter inte aviseringar för den här appen. Du kan slå på dem i telefonens inställningar."
+  },
+  "privacy": {
+    "title": "Integritet",
+    "body": "Vad som händer med ditt lärande",
+    "lede": "Inget av det du gör här lämnar den här enheten.",
+    "device": {
+      "title": "Ditt lärande stannar här",
+      "points": [
+        "Vad du har lärt dig, och hur väl du minns det, sparas på den här enheten. Det laddas aldrig upp.",
+        "Det finns inget konto — inget att registrera sig för, och ingen profil om dig någonstans."
+      ]
+    },
+    "tracking": {
+      "title": "Inga annonser, ingen spårning",
+      "points": [
+        "Appen tittar inte på hur du använder den och rapporterar inget tillbaka.",
+        "Din handstil bedöms på skärmen medan du ritar den och kastas sedan."
+      ]
+    },
+    "permissions": {
+      "title": "Behörigheter",
+      "points": [
+        "Aviseringar, och bara om du slår på den dagliga påminnelsen.",
+        "Aldrig kameran, mikrofonen, bilderna, kontakterna eller platsen."
+      ]
+    },
+    "erase": {
+      "title": "Radera allt",
+      "points": [
+        "Du kan radera allt du har lärt dig längst ned i {{screen}}.",
+        "Att ta bort appen tar bort det med."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "Dina framsteg sparas inte på den här enheten, så det du lär dig kan vara borta nästa gång du öppnar appen. Att låta den här sidan spara data i webbläsarens inställningar brukar lösa det.",
+    "recovered_one": "{{count, number}} skadad post hoppades över vid inläsningen. Resten av dina framsteg är hel.",
+    "recovered_other": "{{count, number}} skadade poster hoppades över vid inläsningen. Resten av dina framsteg är hel."
+  },
+  "soundFree": {
+    "title": "Frågor utan ljud",
+    "description": "Vissa frågor är bara en inspelning — ”vilket ord hörde du?”. Slå på det här så hoppas de över. Allt läses fortfarande upp om du vill.",
+    "toggle": "Hoppa över lyssningsfrågor"
+  }
+}

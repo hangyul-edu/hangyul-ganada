@@ -1,0 +1,143 @@
+{
+  "title": "Öğrenmem",
+  "stats": {
+    "lettersLearned": "Öğrenilen harf",
+    "wordsLearned": "Öğrenilen kelime",
+    "alphabetProgress": "Hangıl alfabesindeki ilerlemen",
+    "studyDays": "Çalışma günü"
+  },
+  "language": {
+    "title": "Dil",
+    "pickerTitle": "Bir dil seç",
+    "pickerIntro": "Arayüz dili. Öğrendiğin şey — Hangıl harfleri, kelimeler ve örnek cümleler — Korece kalır.",
+    "listAria": "Mevcut diller",
+    "searchLabel": "Dil ara",
+    "searchPlaceholder": "Ada ya da koda göre ara",
+    "noResults": "“{{query}}” ile eşleşen dil yok.",
+    "selected": "Seçili",
+    "coverageNote": "Buradaki her dil, arayüzün tamamını ve alfabe dersini çeviriyor. Satırda belirtildiği yerde sözcük anlamları ve örnek cümleler hâlâ İngilizce görünür.",
+    "wordsInEnglish": "Sözcük anlamları İngilizce"
+  },
+  "font": {
+    "title": "Alıştırma yazı tipi",
+    "description": "Üzerinden geçtiğin harf, seçtiğin yazı tipiyle çizilir."
+  },
+  "dailyTarget": {
+    "title": "Günde harf",
+    "description": "Her gün kaç Hangıl harfi bitirmek istiyorsun.",
+    "option_one": "{{count, number}}",
+    "option_other": "{{count, number}}",
+    "optionAria_one": "Günde {{count, number}} harf",
+    "optionAria_other": "Günde {{count, number}} harf"
+  },
+  "wordGoal": {
+    "title": "Günde kelime",
+    "description": "Her gün kaç kelime bitirmek istiyorsun. İstediğin zaman değiştirebilirsin.",
+    "option": "{{count}}",
+    "optionAria": "Günde {{count}} kelime"
+  },
+  "guides": {
+    "title": "Yazı kılavuzları",
+    "description": "Kutunun içindeki yardımcı çizgiler.",
+    "grid": "Yatay ve dikey çizgiler",
+    "crosshair": "Orta işareti"
+  },
+  "about": {
+    "body": "Hangıl oku ve yaz: harfler, sesler, hece blokları ve ilk Korece kelimelerin.",
+    "offline": "Her ders, cümle ve kayıt çevrimdışı çalışır.",
+    "version": "Sürüm {{version}}",
+    "reset": "Öğrenme ilerlemesini sıfırla"
+  },
+  "reset": {
+    "title": "Bütün öğrenme ilerlemesi sıfırlansın mı?",
+    "description": "Bitirdiğin dersler, tekrar geçmişin ve öğrenme etkinliğin silinecek. Bu geri alınamaz.",
+    "confirm": "Sıfırla",
+    "cancel": "Vazgeç",
+    "body": "En baştaki harften yeniden başla."
+  },
+  "voice": {
+    "title": "Telaffuz sesi",
+    "description": "Harfleri, heceleri ve kelimeleri kim seslendirsin.",
+    "female": "Kadın sesi",
+    "male": "Erkek sesi",
+    "preview": "Seçili sesi dinle",
+    "provider": "İki net Korece ses, her ses yerine otursun diye ana dildeki hızdan biraz daha yavaş konuşuyor."
+  },
+  "groups": {
+    "learning": "Öğrenme",
+    "practice": "Alıştırma",
+    "appearance": "Görünüm",
+    "app": "Uygulama",
+    "reset": "Sıfırlama"
+  },
+  "activity": {
+    "title": "Öğrenme etkinliği",
+    "body": "Serin, takvimin ve öğrendiklerin"
+  },
+  "appearance": {
+    "title": "Görünüm",
+    "description": "Açık, koyu ya da telefonun ne yapıyorsa o.",
+    "system": "Sistem",
+    "light": "Açık",
+    "dark": "Koyu"
+  },
+  "legal": {
+    "title": "Yasal ve Lisanslar",
+    "body": "Uygulamadaki içerik ve yazı tipleri için lisanslar",
+    "intro": "Uygulamadaki bazı şeyler, künye istenen lisanslarla kullanılıyor. Künyeler burada.",
+    "contentHeading": "İçerik",
+    "fontsHeading": "Yazı tipleri"
+  },
+  "reminder": {
+    "title": "Günlük hatırlatma",
+    "description": "Günde bir sessiz dürtme, senin seçtiğin saatte. Açmadıkça kapalı ve telefonundan hiç çıkmaz.",
+    "toggle": "Bana çalışmayı hatırlat",
+    "at": "Saat",
+    "notificationTitle": "Çalışma vakti",
+    "notificationBody": "Birkaç dakikalık Korece seni bekliyor.",
+    "refused": "Telefonun bu uygulamaya bildirim izni vermiyor. Telefon ayarlarından açabilirsin."
+  },
+  "privacy": {
+    "title": "Gizlilik",
+    "body": "Öğrendiklerine ne oluyor",
+    "lede": "Burada yaptığın hiçbir şey bu cihazdan çıkmıyor.",
+    "device": {
+      "title": "Öğrendiklerin burada kalır",
+      "points": [
+        "Ne öğrendiğin ve ne kadar iyi hatırladığın bu cihazda saklanır. Hiçbir zaman yüklenmez.",
+        "Hesap yok — kaydolacak bir şey yok, hiçbir yerde senin profilin yok."
+      ]
+    },
+    "tracking": {
+      "title": "Reklam yok, takip yok",
+      "points": [
+        "Uygulama onu nasıl kullandığını izlemez ve hiçbir şey bildirmez.",
+        "El yazın sen çizerken ekranda değerlendirilir, sonra atılır."
+      ]
+    },
+    "permissions": {
+      "title": "İzinler",
+      "points": [
+        "Yalnızca bildirimler, ve yalnızca günlük hatırlatmayı açarsan.",
+        "Kamera, mikrofon, fotoğraflar, kişiler ya da konum asla."
+      ]
+    },
+    "erase": {
+      "title": "Silmek",
+      "points": [
+        "Öğrendiğin her şeyi {{screen}} ekranının altından silebilirsin.",
+        "Uygulamayı silmek onu da siler."
+      ]
+    }
+  },
+  "storage": {
+    "notSaving": "İlerlemen bu cihaza kaydedilmiyor, bu yüzden öğrendiklerin uygulamayı bir dahaki açışında kaybolabilir. Tarayıcı ayarlarından bu siteye veri saklama izni vermek genelde çözüyor.",
+    "recovered_one": "Yüklenirken {{count, number}} bozuk kayıt atlandı. İlerlemenin geri kalanı yerinde.",
+    "recovered_other": "Yüklenirken {{count, number}} bozuk kayıt atlandı. İlerlemenin geri kalanı yerinde."
+  },
+  "soundFree": {
+    "title": "Sessiz sorular",
+    "description": "Bazı sorular yalnızca bir kayıttan ibaret — “hangi kelimeyi duydun?”. Bunu aç, o sorular sorulmasın. İstediğinde her şey yine sesli okunur.",
+    "toggle": "Dinleme sorularını atla"
+  }
+}

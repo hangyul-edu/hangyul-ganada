@@ -1,0 +1,83 @@
+{
+  "title": "Aktivitas belajar",
+  "streak": {
+    "caption": "Latihan apa pun membuatnya berlanjut — tidak harus menyelesaikan satu huruf.",
+    "longest": "Rentetan terpanjang",
+    "totalDays": "Hari berlatih",
+    "totalTime": "Total waktu",
+    "unit_other": "hari berturut-turut"
+  },
+  "chart": {
+    "title": "Aktivitas",
+    "rangeAria": "Pilih rentang waktu",
+    "aria": "Latihan per hari",
+    "noneYet": "Belum ada latihan di rentang ini.",
+    "range": {
+      "7": "7 hari",
+      "30": "30 hari",
+      "90": "3 bulan",
+      "0": "Semua"
+    }
+  },
+  "calendar": {
+    "previous": "Bulan sebelumnya",
+    "next": "Bulan berikutnya",
+    "less": "Sedikit",
+    "more": "Banyak",
+    "dayAria_other": "{{date}}: {{count, number}} percobaan"
+  },
+  "day": {
+    "time": "Waktu belajar",
+    "attempts": "Percobaan menulis",
+    "correct": "Benar",
+    "charactersLearned": "Huruf diselesaikan",
+    "wordsLearned": "Kata diselesaikan",
+    "reviews": "Percobaan ulasan",
+    "nothing": "Tidak ada latihan pada hari ini."
+  },
+  "insights": {
+    "title": "Yang menonjol",
+    "mostPractisedCharacter": "Huruf paling sering dilatih",
+    "mostPractisedWord": "Kata paling sering dilatih",
+    "accuracy": "Ketepatan tulisan",
+    "thisWeek": "Minggu ini",
+    "learnedCount_other": "{{count, number}} selesai"
+  },
+  "units": {
+    "minute_other": "{{count, number}} mnt",
+    "hour_other": "{{count, number}} j"
+  },
+  "empty": {
+    "title": "Kisah belajarmu mulai hari ini",
+    "body": "Latih beberapa huruf, halaman ini akan terisi: hari-hari kamu belajar, berapa lama, dan apa yang kamu kerjakan."
+  },
+  "week": {
+    "title": "Minggu ini",
+    "range": "Sejak {{from}}",
+    "days": "Hari belajar",
+    "daysValue_other": "{{count, number}} dari 7",
+    "time": "Waktu",
+    "learned": "Dikuasai",
+    "accuracy": "Ketepatan",
+    "same": "Sama lamanya dengan minggu lalu.",
+    "moreThanLast": "{{minutes, number}} menit lebih lama dari minggu lalu.",
+    "lessThanLast": "{{minutes, number}} menit lebih singkat dari minggu lalu.",
+    "quiet": "Belum ada apa-apa minggu ini — masih ada waktu."
+  },
+  "memory": {
+    "title": "Bagaimana ingatanmu",
+    "firstTry": "Minggu ini kamu mengingat {{count, number}} hal pada percobaan pertama.",
+    "strongestSkill": "{{skill}} jadi latihan terkuatmu minggu ini.",
+    "confusionImproving": "{{a}} dan {{b}} makin mudah kamu bedakan.",
+    "skill": {
+      "reading_recognition": "membaca",
+      "listening_recognition": "menyimak",
+      "guided_writing": "menulis",
+      "meaning_recognition": "arti",
+      "sentence_comprehension": "kalimat",
+      "sound_recognition": "bunyi",
+      "visual_recognition": "huruf",
+      "lookalike_discrimination": "membedakan yang mirip"
+    }
+  }
+}

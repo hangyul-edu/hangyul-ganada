@@ -1,0 +1,233 @@
+{
+  "letters": {
+    "title": "Matuto ng mga letra",
+    "alphabetTitle": "Ang alpabetong Hangul",
+    "alphabetCaption": "letrang natutuhan",
+    "complete": "Natutuhan",
+    "resume": "Ituloy"
+  },
+  "units": {
+    "badge": "Yunit {{index, number}}",
+    "continue": "Naintindihan — simulan na natin",
+    "unit-1": {
+      "title": "Anim na patinig na panimula",
+      "goal": "Kailangan ng patinig ang bawat pantig sa Koreano. Ang anim na ito ang pinakasimple.",
+      "body": "Alpabeto ang Hangul, hindi koleksyon ng larawan. May 40 letra ito, ginawa itong madaling matutuhan agad, at anim doon ang matututuhan mo ngayon.",
+      "points": [
+        "Nagkakabuklod ang mga letra sa parisukat na kahon, at isang pantig ang bawat kahon.",
+        "Patayong guhit o pahigang guhit ang patinig — iyan ang nagtatakda kung saan ito uupo sa kahon.",
+        "Bigkasin mo nang malakas ang bawat letra habang binabakat. Kalahati ng aralin ang tunog."
+      ]
+    },
+    "unit-2": {
+      "title": "Ang unang mga katinig mo",
+      "goal": "Limang katinig. Kasama ang mga patinig na alam mo, 30 pantig na agad iyan."
+    },
+    "unit-3": {
+      "title": "Pagsama-samahin",
+      "goal": "Katinig at patinig — kahon na mababasa mo ang labas.",
+      "body": "Isang parisukat ang isang pantig na Koreano. Nauuna ang katinig — sa kaliwa kapag patayong patinig, sa itaas kapag pahiga.",
+      "points": [
+        "Sa kanan ng katinig nakatayo ang patayong patinig (ㅏ ㅓ ㅣ).",
+        "Sa ilalim naman nakahiga ang pahigang patinig (ㅗ ㅜ ㅡ).",
+        "Basahin ang kahon gaya ng pagbasa ng pahina: kaliwa papuntang kanan, tapos pababa."
+      ]
+    },
+    "unit-4": {
+      "title": "Lima pang katinig",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — ang natitira sa payak na serye."
+    },
+    "unit-5": {
+      "title": "Mas maraming kahon ang babasahin",
+      "goal": "Kasama ang isang letrang wala talagang tunog."
+    },
+    "unit-6": {
+      "title": "Pagdaragdag ng tunog na y",
+      "goal": "Isang dagdag na guhit at ㅏ ay nagiging ㅑ. Ganoon din sa apat."
+    },
+    "unit-7": {
+      "title": "Isang buga ng hangin",
+      "goal": "Ang ㅊ ㅋ ㅌ ㅍ ay mga letrang kilala mo na, may dagdag na isang guhit."
+    },
+    "unit-8": {
+      "title": "Ang mga patinig na e",
+      "goal": "ㅐ ㅔ ㅒ ㅖ — mga patinig na nabubuo sa pagdagdag ng ㅣ."
+    },
+    "unit-9": {
+      "title": "Doble at mahigpit",
+      "goal": "Limang letrang isinusulat nang dalawang beses at binibigkas nang mas mahigpit."
+    },
+    "unit-10": {
+      "title": "Ang mga patinig na w",
+      "goal": "Dalawang patinig na isinusulat bilang isa. Ang huli sa 40 letra."
+    },
+    "unit-11": {
+      "title": "Isang letra sa ilalim",
+      "goal": "받침 — ang katinig na nagsasara ng pantig.",
+      "body": "Kasya ang pangatlong letra sa isang kahon, sa ilalim ng dalawa. 받침 ang tawag dito, at ito ang nagsasara ng pantig.",
+      "points": [
+        "Laging nasa pinakailalim ng parisukat ang pangatlong letra.",
+        "Anuman ang letrang nakasulat, isa lang sa pitong tunog ang lumalabas sa 받침.",
+        "Dito madalas maipit ang pagbasa ng karamihan sa nagsisimula. Dahan-dahan lang."
+      ]
+    },
+    "unit-12": {
+      "title": "Pagbasa ng 한글",
+      "goal": "Alam mo na ang bawat letra. Basahin ang pangalan mismo ng sistema ng pagsulat."
+    }
+  },
+  "intro": {
+    "letterName": "Pangalan",
+    "letterSound": "Tunog",
+    "soundIn": "Pakinggan ang {{character}} sa",
+    "reads": "Binabasa bilang"
+  },
+  "steps": {
+    "label": "Mga hakbang sa letrang ito",
+    "write": "Isulat",
+    "read": "Basahin"
+  },
+  "recognition": {
+    "question": "Alin ang gumagawa ng tunog na ito?",
+    "optionsAria": "Piliin ang letrang narinig mo",
+    "optionAria": "Piliin ang {{character}}",
+    "correctDetail": "Oo, {{character}} nga iyan.",
+    "wrongHeadline": "Hindi iyan.",
+    "wrongDetail": "Ang {{character}} ang tumutunog na parang {{sound}}.",
+    "hearAgain": "Pakinggan ulit",
+    "tryAgain": "Subukan ulit"
+  },
+  "session": {
+    "counter": "{{current, number}} / {{total, number}}",
+    "skip": "Laktawan ito",
+    "startWriting": "Isulat mo",
+    "nowRecognise": "Subukan ang isang tanong",
+    "next": "Susunod na letra",
+    "finish": "Tapusin",
+    "prompt": {
+      "write": "Bakatin ito ng daliri mo sa ibabaw ng gabay."
+    },
+    "continue": "Susunod"
+  },
+  "complete": {
+    "title": "Magaling!",
+    "letters_one": "Natapos mo ang {{count, number}} letra sa {{lesson}}.",
+    "letters_other": "Natapos mo ang {{count, number}} na letra sa {{lesson}}."
+  },
+  "review": {
+    "title": "Balik-aral",
+    "startCta": "Simulan ang balik-aral",
+    "sessionTitle": "Balik-aral",
+    "completeTitle": "Tapos na ang balik-aral",
+    "empty": {
+      "title": "Wala pang babalikan",
+      "body": "Lahat ng mamamali mo ay mapupunta rito. Sa ngayon, ano kayang bagong letra?",
+      "cta": "Matuto ng isang letra"
+    },
+    "forYou": "Balik-aral para sa iyo",
+    "sessionLength_one": "{{count, number}} maikling ensayo",
+    "sessionLength_other": "{{count, number}} maiikling ensayo",
+    "needsPractice": "Kailangan ng ensayo",
+    "dueToday": "Para ngayong araw",
+    "savedWords": "Mga naka-save na salita",
+    "chooseMode": "O pumili kung ano ang ieensayo",
+    "comingUp": "Susunod",
+    "outcome": "{{practised, number}} naensayo · {{firstTry, number}} agad naalala · {{comingBack, number}} babalik pa",
+    "blank": "puwang",
+    "optionsLabel": "Mga sagot",
+    "showHint": "Bigyan mo ako ng pahiwatig",
+    "right": "Tama nga.",
+    "notQuite": "Hindi pa. Ito ang tama.",
+    "mode": {
+      "read": "Pagbasa",
+      "listen": "Pakikinig",
+      "write": "Pagsulat"
+    },
+    "prompt": {
+      "read": "Ano ang ibig sabihin ng salitang ito?",
+      "readLetter": "Anong tunog ang ginagawa ng letrang ito?",
+      "listen": "Aling salita ang narinig mo?",
+      "listenLetter": "Anong letra ito?",
+      "context": "Aling salita ang bagay dito?",
+      "write": "Isulat ang salitang ito",
+      "writeLetter": "Isulat ang naririnig mo",
+      "distinguish": "Alin ang gumagawa ng tunog na ito?",
+      "produce": "Alin ba?",
+      "listenMeaning": "Ano ang ibig sabihin nito?",
+      "build": "Buuin ang salita"
+    },
+    "nothingDue": "Wala munang babalikan ngayon.",
+    "modesEmpty": "Wala munang laman ang mga moda na ito ngayon.",
+    "answerIs": "Ang ibig sabihin ng {{word}} ay “{{meaning}}”.",
+    "showMoreHint": "Isa pang pahiwatig",
+    "showAnswer": "Ipakita ang sagot",
+    "hint": {
+      "kind": "Isa itong {{pos}} — bagay na kabilang sa {{category}}.",
+      "kindOnly": "Ang nawawalang salita ay isang {{pos}}.",
+      "startsWith": "Nagsisimula ito sa {{start}}…",
+      "startsWithSound": "Nagsisimula ito sa tunog na “{{sound}}”.",
+      "replay": "Ipatugtog ulit — kahit ilang beses.",
+      "letterFamily": "{{family}} ito.",
+      "letterExample": "Ito ang unang letra ng {{word}}.",
+      "letterSound": "Parang “{{sound}}” ang tunog nito.",
+      "reveal": "Ang sagot ay {{answer}}.",
+      "revealWord": "Ang salita ay {{answer}}.",
+      "revealLetter": "Ang letra ay {{answer}}.",
+      "revealStrokes": "Panoorin ulit ang mga guhit, tapos bakatin.",
+      "inSentence": "Ganito ito ginagamit: {{sentence}}"
+    },
+    "buildTray": "Mga pantig",
+    "buildRemove": "Bawiin ang {{syllable}}"
+  },
+  "sounds": {
+    "title": "Kapag nagtagpo ang mga tunog",
+    "blurb": "Bakit hindi binibigkas ang 학교 gaya ng pagkasulat nito.",
+    "intro": "Nababasa mo na ang bawat letra. Isinusulat ng Koreano ang mga piraso ng isang salita, at binabago ang ilan sa mga iyon kapag nagdikit — kaya ilang salita ang iba ang tunog kaysa sa hitsura. Ito ang unang makakasalubong mo.",
+    "written": "Nakasulat",
+    "said": "Binibigkas",
+    "note": "Hindi mo kailangang isaulo ito. Pakinggan mo lang, at magiging pamilyar din.",
+    "name": {
+      "tensing": "Mas mahigpit na ikalawang tunog",
+      "aspiration": "Isang buga ng hangin",
+      "nasal": "Malambot na tunog sa ilong",
+      "lateral": "Magkasamang ㄴ at ㄹ",
+      "palatal": "ㄷ at ㅌ bago ang 이",
+      "liaison": "Dumudulas ang tunog"
+    }
+  },
+  "mistakes": {
+    "title": "Mga naling na sagot",
+    "review_one": "Balik-aral · {{count}} tanong",
+    "review_other": "Balik-aral · {{count}} tanong",
+    "filterLabel": "Ipakita",
+    "filter": {
+      "all": "Lahat",
+      "character": "Mga letra",
+      "word": "Mga salita"
+    },
+    "youPut": "Ang sagot mo",
+    "answer": "Tama",
+    "times_one": "Namali nang {{count}} beses",
+    "times_other": "Namali nang {{count}} beses",
+    "clear": "Tapos na ako dito",
+    "noneOfKind": "Wala munang laman dito.",
+    "emptyTitle": "Wala pang namamali",
+    "emptyBody": "Kapag may nakalusot, lilitaw ito rito para maitama mo.",
+    "emptyCta": "Pumunta sa balik-aral"
+  },
+  "letterGroup": {
+    "basic_vowel": "isang payak na patinig",
+    "basic_consonant": "isang payak na katinig",
+    "compound_vowel": "isang tambalang patinig",
+    "double_consonant": "isang dobleng katinig",
+    "final_consonant": "isang pangwakas na katinig",
+    "syllable": "isang buong pantig"
+  },
+  "nextStep": {
+    "title": "Handa na sa susunod na hakbang",
+    "body": "Nakakabasa ka na ng Hangul. Sa Hangyul nagpapatuloy ang pagsasalita at pag-eensayo para sa TOPIK.",
+    "cta": "Magpatuloy sa Hangyul",
+    "rowTitle": "Magpatuloy sa Hangyul",
+    "rowBody": "Pagsasalita at TOPIK, kapag handa ka na"
+  }
+}

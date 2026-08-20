@@ -272,29 +272,23 @@ export function MyPage() {
 
         <Group id="settings-practice" title={t('settings:groups.practice')}>
           {/*
-            How much of the model to keep on the paper. Both options show the
-            character — see `domain/mastery.ts` — so this changes the pace of a
-            lesson rather than whether it can be finished.
+            *Practice style* — Guided or Focused, the full tracing model or a
+            fainter one — used to be the first thing in this group, and it is
+            gone rather than moved.
+
+            It failed the only test a setting has to pass: it asked a question
+            the person could not answer. A learner four minutes into Hangul does
+            not know whether they want less of the model, and the two options
+            differed by an opacity. What it bought them was a decision; what it
+            cost them was the belief that the lesson had been designed. There is
+            one guide now, always on the paper, and nothing to choose. See
+            `features/writing/guide.ts`.
+
+            The voice is what leads this group instead, which is right: it is
+            the setting a learner actually wants, because hearing a voice you
+            find hard to follow, in an app whose whole subject is sound, is a
+            reason to stop using it.
           */}
-          <Section
-            title={t('settings:style.title')}
-            description={t('settings:style.description')}
-          >
-            <div className={styles.modeRow}>
-              <ModeOption
-                selected={state.settings.practice_style === 'guided'}
-                onClick={() => setPreferences({ practice_style: 'guided' })}
-                title={t('settings:style.guided.title')}
-                detail={t('settings:style.guided.detail')}
-              />
-              <ModeOption
-                selected={state.settings.practice_style === 'focused'}
-                onClick={() => setPreferences({ practice_style: 'focused' })}
-                title={t('settings:style.focused.title')}
-                detail={t('settings:style.focused.detail')}
-              />
-            </div>
-          </Section>
           {/*
             The pronunciation voice. Second, because it is the setting a learner
             most often wants to change and the one they will look for: hearing a
@@ -400,12 +394,22 @@ export function MyPage() {
                           "Rounded" row tagged "Rounded" was the same word twice.
                         */}
                         <span className={styles.fontNameRow}>
-                          <span className={styles.fontName}>{font.name_en}</span>
+                          <LocalizedText
+                            as="span"
+                            locale={description.locale}
+                            className={styles.fontName}
+                          >
+                            {description.value.name}
+                          </LocalizedText>
                           {/* The Korean name of the style, for a learner who will
-                              meet it named that way everywhere else. */}
-                          <span className={styles.fontNameKo} lang="ko" dir="ltr">
-                            {font.name}
-                          </span>
+                              meet it named that way everywhere else — unless the
+                              interface *is* Korean, where printing 기본체 twice
+                              on one row helps nobody. */}
+                          {description.value.name !== font.name && (
+                            <span className={styles.fontNameKo} lang="ko" dir="ltr">
+                              {font.name}
+                            </span>
+                          )}
                         </span>
                         <LocalizedText as="span" locale={description.locale} className={styles.fontDesc}>
                           {description.value.description}
@@ -758,30 +762,6 @@ function Group({
       </h2>
       {children}
     </div>
-  );
-}
-
-function ModeOption({
-  selected,
-  onClick,
-  title,
-  detail,
-}: {
-  selected: boolean;
-  onClick: () => void;
-  title: string;
-  detail: string;
-}) {
-  return (
-    <button
-      type="button"
-      className={`${styles.modeOption} ${selected ? styles.modeSelected : ''}`}
-      onClick={onClick}
-      aria-pressed={selected}
-    >
-      <span className={styles.modeTitle}>{title}</span>
-      <span className={styles.modeDetail}>{detail}</span>
-    </button>
   );
 }
 
