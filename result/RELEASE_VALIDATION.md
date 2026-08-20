@@ -5,10 +5,15 @@ something that was run on this machine during this refresh; nothing is carried
 over from an earlier cycle. Where something could not be verified it says so
 rather than being left blank or implied.
 
-**Source:** commit `40c5e6d` on branch `premium-quality-pass`, working tree
+**Source:** commit `22ba72a` on branch `premium-quality-pass`, working tree
 clean — the `gradlew.bat` line-ending difference that earlier validations noted
-as the one exception was committed alongside the Gradle change in that same
-commit.
+as the one exception was committed alongside the Gradle change in `40c5e6d`.
+
+**Built twice this cycle.** The first build was from `40c5e6d` and was correct
+for it. Then `22ba72a` re-generated `relations.json`, which ships inside the
+app, so that artefact was one commit stale the moment the commit landed. It was
+rebuilt rather than explained away — that is the failure this document exists
+for, at a smaller scale than the one it was written about.
 **Built:** 2026-08-20, Linux (WSL2), JDK 21.0.11, Android SDK build-tools 36.0.0.
 **Device:** `hangyul-pixel7` AVD, Android 16 (API 36), x86_64, 1080×2400,
 software GPU, wiped before install.
@@ -62,7 +67,7 @@ so the bytes tested and the bytes delivered are the same (`sha256` in
 
 | Check | Result |
 | --- | --- |
-| Built from the committed tree | `git rev-parse HEAD` = `40c5e6d…`, recorded in `build-info.json` |
+| Built from the committed tree | `git rev-parse HEAD` = `22ba72a…`, recorded in `build-info.json` |
 | Signed | Yes — release keystore from `ANDROID_KEYSTORE_PATH`, not the debug key |
 | Signature schemes | v2 ✓, v3 ✓ (v1 deliberately off — `minSdk` 24) |
 | Certificate SHA-256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the project's established release key, compared against the keystore *and* the superseded artefact before rebuilding |
@@ -165,7 +170,7 @@ the same one the last cycle recorded and it is stated rather than glossed.
 | Suite | Result |
 | --- | --- |
 | `verify:quick` | **PASS** — 15 checks including lint, typecheck, unit, build, bundle budget, routing, and the new sense QA |
-| Unit (`vitest`) | **589 passed** |
+| Unit (`vitest`) | **589 passed**, including one that only failed under load and is now waiting on the right thing |
 | Handwriting core | **95 passed** |
 | End-to-end (`playwright`) | **228 passed** — 114 × mobile and desktop projects |
 | `strokes:qa:check` | 73 items, 269 strokes, 1,345 frames — **PASS** |
@@ -187,8 +192,8 @@ directory it was looking in. It now matches by extension and reports both.
 
 | Item | Size | Note |
 | --- | --- | --- |
-| `hangyul-ganada-release.apk` | 63.1 MB | rebuilt this cycle from `40c5e6d` |
-| `hangyul-ganada-release.aab` | 61.8 MB | rebuilt this cycle from `40c5e6d` |
+| `hangyul-ganada-release.apk` | 63.1 MB | rebuilt this cycle from `22ba72a` |
+| `hangyul-ganada-release.aab` | 61.8 MB | rebuilt this cycle from `22ba72a` |
 | `android-project/` | — | re-copied from `apps/mobile/android`, minus `build/`, `.gradle/`, `.kotlin/`, `local.properties`, keystores |
 | `ios-project/` | — | re-copied from `apps/mobile/ios`, minus `build/`, `Pods/`, `xcuserdata/`, `DerivedData/` |
 | `docs/report.pdf` | 1.3 MB | regenerated this cycle |
@@ -200,10 +205,10 @@ directory it was looking in. It now matches by extension and reports both.
 ## Checksums
 
 ```
-a472d2e5875bdcbf321384bb19e60266cd59a488641a424702f7f3c0dc1d2188  hangyul-ganada-release.apk
-29c2b59888e707a47b7e8aee36ec7317e0e46bc25a165d3a8faeda5ca5d04959  hangyul-ganada-release.aab
-83e98cbf01fef7cadd4a0fb9c8e5ec4b0f6d600431b8f5e77f83525acee9bfb5  docs/report.pdf
-b5875c3c87cf9ee36a93082e76c3118b094ea684facc3209a2265026f7903588  build-info.json
+adb3598e98100f16bf2241ffa7d0d6fb4eaa361283fa0540d0f8d7b993163156  hangyul-ganada-release.apk
+90f41dfea87961f0a9d6c0fee04c4a6a0e611beb2ad4c30acb4af08b6025b6d7  hangyul-ganada-release.aab
+f00d56e719f5de573af037a49ca564bce7428d841a2d9d8f4c2ae611f569487e  docs/report.pdf
+860f844680ffea1619101236885429d91d7b199b389db6ab20a61c90f6541982  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has

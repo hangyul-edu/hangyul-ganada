@@ -99,11 +99,20 @@ deda959  wrong-answer notebook — show what the learner confused it with
 2e879c5  finish Vietnamese and Thai, and fix what translating found
 192bbce  write the "More about it" section instead of deriving it
 40c5e6d  ship AndroidX strings for Vietnamese and Thai too
+15ce55c  rebuild the release from 40c5e6d, with the key it was already signed by
+54ae472  the gradlew.bat exception is gone; say so
+22ba72a  three things verify:release found that verify:quick never looks at
          ↓  commit first
          ↓  then mobile:sync + gradlew assembleRelease bundleRelease
          ↓  then unpack the delivered APK and grep it
-result/hangyul-ganada-release.apk   built from 40c5e6d, verified to contain it
+result/hangyul-ganada-release.apk   built from 22ba72a, verified to contain it
 ```
+
+The artefact was built twice this cycle, and the second time is the point.
+`22ba72a` re-generated `relations.json`, which *ships*, so the APK built from
+`40c5e6d` was one commit stale the moment that landed — the exact failure this
+whole section exists for, at a much smaller scale. Rebuilt rather than
+explained away.
 
 Building before committing produces a signed artefact that looks current and is
 not, which is worse than a stale one because nothing about it says so.
@@ -141,7 +150,7 @@ package) and by the browser and end-to-end suites (it *renders*).
 Nothing is uncommitted. The `gradlew.bat` line-ending difference that the last
 two reports carried as the one remaining exception was swept into `40c5e6d`
 along with the Gradle change beside it, so the working tree is clean at
-`15ce55c`.
+`22ba72a`.
 
 ## 2.3 Figures for the next report to diff against
 
@@ -2411,7 +2420,7 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
 | **I-01** | Release | **P0** | Shipped Android AAB/APK predate every fix in this report and the last one | Anyone installing today gets a product two cycles old | **RESOLVED** — rebuilt from the committed tree, contents verified, installed and launched |
-| **I-02** | Repo | **P0** | This whole cycle is uncommitted | A fresh checkout has hints that print the answer and strokes that bleed | **RESOLVED** — six commits on `premium-quality-pass` |
+| **I-02** | Repo | **P0** | This whole cycle is uncommitted | A fresh checkout has hints that print the answer and strokes that bleed | **RESOLVED** — ten commits on `premium-quality-pass` |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | The card renders nothing; the funnel still does not exist | **OPEN** |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-05** | Performance | **P1** | Corpus at 10,000 words is 298% of the bundle budget, and the precache budget was raised twice this release | The delivery architecture cannot carry the plan | **OPEN — costed, deliberately deferred, gated at 4,000 headwords** |
