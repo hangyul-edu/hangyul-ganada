@@ -17,9 +17,9 @@
     "antonym"
   ],
   "counts": {
-    "words_with_relations": 242,
-    "synonym_pairs": 72,
-    "antonym_pairs": 64,
+    "words_with_relations": 243,
+    "synonym_pairs": 71,
+    "antonym_pairs": 65,
     "corpus_words": 2581
   },
   "pages": {
@@ -3022,10 +3022,10 @@
       ]
     },
     "word_jeokda": {
-      "synonyms": [
-        "word_sseuda"
-      ],
-      "antonyms": []
+      "synonyms": [],
+      "antonyms": [
+        "word_manta"
+      ]
     },
     "word_jeomda": {
       "synonyms": [],
@@ -3180,6 +3180,12 @@
         "word_silkeot"
       ],
       "antonyms": []
+    },
+    "word_manta": {
+      "synonyms": [],
+      "antonyms": [
+        "word_jeokda"
+      ]
     },
     "word_maseukeu": {
       "synonyms": [
@@ -3556,7 +3562,6 @@
     },
     "word_sseuda": {
       "synonyms": [
-        "word_jeokda",
         "word_sayonghada"
       ],
       "antonyms": []

@@ -71,7 +71,23 @@ async function open(driver: MemoryDriver) {
       <Probe onReady={(value) => (current = value)} />
     </LearnerProvider>,
   );
-  await waitFor(() => expect(Number(screen.getByTestId('plan').textContent)).toBeGreaterThan(0));
+  /*
+   * Wait on the captured context, not on the rendered number.
+   *
+   * They converge at different moments. React commits the DOM first and flushes
+   * passive effects afterwards, and `current` is written by an effect — so
+   * there is a window in which `plan` already reads 10 on screen and `current`
+   * is still the render before it, holding an empty plan. Waiting on the DOM
+   * returns inside that window; the next line then reads `words[0]` and gets
+   * `undefined`.
+   *
+   * It failed as "Cannot read properties of undefined (reading 'wordId')" under
+   * a loaded machine and passed every time on an idle one, which is the same
+   * race `study` below was already fixed for and the same reason: the helper
+   * waited for the wrong thing. Polling `current` converges strictly later, so
+   * this one cannot return early.
+   */
+  await waitFor(() => expect(current?.vocabularyDay.words.length ?? 0).toBeGreaterThan(0));
   return {
     view,
     get context() {

@@ -152,9 +152,16 @@ along with the Gradle change beside it, so the working tree is clean at
 | Vocabulary meanings in every shipping language | **10 of 10 locales at 2,581** | 8 of 8 |
 | Lesson titles translated | 10 of 10 locales | **2 of 8** — undetected |
 | Letter copy translated | 10 of 10 locales | 8 of 8 |
-| Verified synonym pairs | 72 | 72 |
-| Verified antonym pairs | 64 | 64 |
-| Words with any verified relation | 242 of 2,581 (9.4%) | 242 |
+| Verified synonym pairs | 71 | 72 |
+| Verified antonym pairs | 65 | 64 |
+| Words with any verified relation | 243 of 2,581 (9.4%) | 242 |
+
+The three relation rows moved by one without anybody touching a relation.
+Correcting 적다 from verb to adjective changed which sense `teaches_first_sense`
+believes the corpus teaches, and relation scoping reads that — so one pair moved
+from synonym to antonym and one more word gained a section. Recorded because a
+±1 drift with no relation work in the cycle looks like noise and is not: it is
+the sense fix propagating, which is the whole argument for pinning senses.
 | Longer explanations (`definition`) | **25, written, in all 10 languages** | 784, derived, English only |
 | Words whose taught sense is pinned by exact string | 11 | 0 |
 | Web unit (`vitest`) | 589 | 550 |
@@ -236,7 +243,7 @@ code this cycle and none was implemented; §13.4 says what each would cost and
 why the gate at 4,000 headwords is the honest answer for now.
 
 **2 · The dictionary is thinner than the screen implies — but no longer
-unevenly.** 242 of 2,581 words have a verified synonym or antonym, which is a
+unevenly.** 243 of 2,581 words have a verified synonym or antonym, which is a
 source-coverage limit and not a defect. The *More about it* block went the other
 way and is worth reading twice: it used to appear on 784 words in English only,
 filled by the build with the dictionary's second and third senses — "phylum"
@@ -1006,7 +1013,7 @@ Licences requiring attribution are shown in-app under **Legal & Licences**.
 | Meaning, Vietnamese and Thai | **2,581 each** — see §23.4 |
 | Example translation | 2,581 in 9 languages (Korean has none — the example *is* Korean) |
 | **Longer explanation (`definition`)** | **25, in all 10 languages** — see §15 |
-| Verified synonym or antonym | **242** |
+| Verified synonym or antonym | **243** |
 
 Two of these rows moved this cycle and they moved in opposite directions, which
 is the point.
@@ -1018,7 +1025,7 @@ said. What replaced them is written, and written only where a one-line gloss
 genuinely misleads.
 
 The relations row is the remaining content gap and it is not a schema gap: the
-field exists, the sources are conservative, and 242 of 2,581 is what two
+field exists, the sources are conservative, and 243 of 2,581 is what two
 licensed sources actually state.
 
 ## 13.4 The 10,000-word strategy — **PARTIALLY WORKING**
@@ -1184,7 +1191,7 @@ typed sections that appear only when there is something true to put in them:
 self-reference, no duplicates, no dangling target, both directions stated, and a
 guard that the old `nearby` key has not returned. It passes.
 
-**The honest trade:** 242 of 2,581 words have any relation. The dictionary is now
+**The honest trade:** 243 of 2,581 words have any relation. The dictionary is now
 trustworthy and sparse. That is the right order to fix it in, but the sparseness
 is visible.
 
@@ -1217,7 +1224,7 @@ example with its own audio, and a verified synonym.*
 | Example + translation + example audio | 2,581 | **VERIFIED WORKING** |
 | Sound-change note | 503 | **VERIFIED WORKING** |
 | **Longer explanation** | **25, all 10 languages** | **VERIFIED WORKING** |
-| Synonyms / Opposites | 242 | **PARTIALLY WORKING** — correct when present |
+| Synonyms / Opposites | 243 | **PARTIALLY WORKING** — correct when present |
 
 ## 15.2 The *More about it* block, rewritten from the ground up
 
@@ -1279,7 +1286,7 @@ nothing else.
 ## 15.3 Assessment
 
 **A credible dictionary entry, now in ten languages rather than one.** The
-remaining thinness is relations: 242 of 2,581 words show a synonym or an
+remaining thinness is relations: 243 of 2,581 words show a synonym or an
 opposite, and that is a source-coverage limit rather than a defect — see §14.3.
 
 **Customer impact:** none outstanding for the meanings. **Severity: closed.**
@@ -2316,7 +2323,7 @@ suggested it was.
 
 **What is *not* a defensible answer today:**
 
-* **Vocabulary depth.** 2,581 words with 242 relation entries does not beat a
+* **Vocabulary depth.** 2,581 words with 243 relation entries does not beat a
   dedicated vocabulary product.
 * **Motivation.** A streak and a calendar against Duolingo's entire machine.
 * **Content volume.** Free Hangul material is abundant and good.
@@ -2415,7 +2422,7 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | Meaning changes when the interface language changes | **PARTIAL** — the eleven known cases are pinned; no automated guarantee a twelfth does not exist |
 | **I-11** | Accessibility | **P2** | Listening questions rely on the hint ladder's reveal for a text alternative | Usable, but it is scored as a reveal rather than as an accommodation | **PARTIAL** — sound-free practice added; the reveal is still the per-question fallback |
 | **I-12** | Persistence | **P2** | No export | Clearing site data still destroys the history irrecoverably | **OPEN — by decision**, see §50 of the brief |
-| **I-13** | Relations | **P2** | 242 of 2,581 words carry any relation | Synonym/antonym sections rarely appear | **OPEN** |
+| **I-13** | Relations | **P2** | 243 of 2,581 words carry any relation | Synonym/antonym sections rarely appear | **OPEN** |
 | **I-14** | Strokes | **P2** | Eighteen sub-visible intrusions remain, largest ㅈ at 68 px | Visible if you look for it; not what was complained about | **OPEN** |
 | **I-15** | Audio | **P3** | 마디 is mispronounced in one voice | One word sounds wrong | **RESOLVED** — regenerated, fixtured, checked on-device |
 | **I-16** | Audio | **P3** | The recogniser screen reports 낳다 as 낫다 in both voices | Unknown — it may be the decoder | **OPEN, and stated as unknown**; §22.4 |
@@ -2560,7 +2567,8 @@ objects instead of rendered sentences, translation files instead of screens.
 
 | Command | Purpose | Result |
 | --- | --- | --- |
-| `verify:quick` | The gate: name, i18n, copy, strokes, **stroke pixels**, vocabulary, relations, tokens, lint, typecheck, unit tests, build, bundle budget, routing | **PASS** |
+| `verify:quick` | The gate: name, i18n, copy, strokes, **stroke pixels**, vocabulary, relations, sense, tokens, lint, typecheck, unit tests, build, bundle budget, routing | **PASS** |
+| `verify:release` | `verify:quick` plus store, curriculum, fonts, icons, content, examples, audio mapping, coverage, docs consistency | **PASS** |
 | `test` | 589 web unit + 95 handwriting-core | **PASS** |
 | `test:e2e` | 228 Playwright cases (114 × 2 projects) | **PASS**, both projects run in full this cycle |
 | `strokes:qa:check` | 73 items, 269 strokes, 1,345 frames — path validity | **PASS** |
@@ -2581,6 +2589,28 @@ objects instead of rendered sentences, translation files instead of screens.
 | `i18n:check` | translation completeness | **PASS**, 10 locales at 100% |
 | `docs:consistency:check` | one value per metric across docs | **PASS** |
 | `tokens:check` | tokens.css matches its source | **PASS** |
+
+`verify:quick` is not the whole gate, and this cycle proved it three times. Three
+things sat broken behind a green `verify:quick`, and all three are only checked
+by `verify:release`:
+
+* `content/curriculum.json`, a generated export, three commits stale;
+* `content/vocabulary/relations.json`, stale for the same reason — the corpus
+  had been re-ordered under it;
+* `examples_qa.py`'s own fixture, which constructs a `pack.Entry` positionally
+  and stopped constructing at all when that dataclass gained the long-definition
+  field. A `TypeError`, not a content finding, and the whole check was dead.
+
+That last one is the report's recurring pattern in miniature: the check existed,
+had been passing for cycles, and was not in the command anybody was running. All
+three are fixed. Worth noting because "quick" reads like "the fast version of the
+same thing" and it is not — `verify:release` runs eleven checks `verify:quick`
+never sees.
+
+**`verify:release` cannot exit zero today, by design.** `vocabulary:qa:target`
+fails on "2,581 headwords — 7,419 short of the 10,000 target", which is I-04
+stated as a build failure rather than as a note. Every other check in it passes.
+A future reader should not read that non-zero exit as a broken suite.
 
 ## 36.2 The check that was added, and why it matters more than its findings
 
@@ -2633,7 +2663,7 @@ since the last report.
 | Vocabulary depth | **5/10** ▲ | 2,581 of 10,000 and delivery unsolved at target (I-04, I-05) — but every word now carries a meaning and an example in all ten languages, which is depth of a different axis |
 | Vocabulary learning | **7/10** ▲ | Four skills in three layouts on a first session, where there was one. Still four options on a card (I-09) |
 | **Hints and help** | **8/10** ▲▲ | Was 2/10 and unscored: the button printed the answer. Now a graded ladder, audited in ten languages |
-| Dictionary quality | **6/10** ▲ | Trustworthy and sparse: 242 relation entries, and a *More about it* block that is now written rather than scraped — 25 words, ten languages (§15.2) |
+| Dictionary quality | **6/10** ▲ | Trustworthy and sparse: 243 relation entries, and a *More about it* block that is now written rather than scraped — 25 words, ten languages (§15.2) |
 | Review | **9/10** = | Per-skill memory, interleaving, measured against a baseline, counts that cannot lie |
 | Saved Words | **8/10** = | Search, three orderings, its own review plan |
 | Wrong Answer Notebook | **7/10** = | One row per item, recovery rule, retry. Does not explain *why* |
@@ -2755,7 +2785,7 @@ usable product, and shipping it while the corpus grows is reasonable —
 
 * Explaining *why* a notebook answer was wrong (§20.1).
 * Gamification beyond streak and calendar — but see the caution below.
-* A second relation source to lift the 242-word coverage.
+* A second relation source to lift the 243-word coverage.
 
 **A caution on gamification.** The product's restraint is currently a feature: no
 ads, no gems, no nagging. Adding Duolingo-style mechanics would compete on the
@@ -2799,7 +2829,7 @@ promise.
    six step types in three layouts, with optional extra study past the goal.
    Help is a three-rung ladder that never opens with the answer.
 6. The corpus is 2,581 words against a stated 10,000 target, with IPA, audio, an
-   example sentence and — for 242 words — verified synonyms or antonyms.
+   example sentence and — for 243 words — verified synonyms or antonyms.
 7. Review is a per-item, per-skill memory model that surfaces only what is
    fading; its displayed count and its session are the same object.
 8. There is a Saved Words list and a Wrong Answer Notebook, and they are
@@ -2900,7 +2930,7 @@ example).
 ## Current UX inconsistencies
 
 * Nothing indicates when a learner should move from letters to words.
-* Synonyms and opposites appear on 242 words of 2,581, and the absence is silent
+* Synonyms and opposites appear on 243 words of 2,581, and the absence is silent
   — correct, and it makes the section feel arbitrary when it does appear.
 * Sound-free practice removes the audio-only questions but the per-question
   fallback for a listening step is still the reveal rung, scored as a reveal.

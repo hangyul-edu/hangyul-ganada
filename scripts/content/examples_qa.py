@@ -852,7 +852,10 @@ def self_test(lexicon: kt.Lexicon, rows: dict[str, dict], glosses: dict[str, str
             meanings={loc: "…" for loc in pack.MEANING_LOCALES},
             example=sentence,
             translations={loc: "A sentence." for loc in pack.SENTENCE_LOCALES},
-            english=glosses.get(word), part_of_speech=None, reason=None,
+            english=glosses.get(word), part_of_speech=None,
+            # No long definition: the fixture is about the Korean sentence, and
+            # nothing in `check_entry` reads this field.
+            definitions={}, reason=None,
         )
         verdict = check_entry(entry, row, glosses.get(word, ""), lexicon)
         rules = {finding.rule for finding in verdict.findings}
