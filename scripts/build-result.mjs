@@ -20,6 +20,7 @@ import { execFileSync } from 'node:child_process';
 import {
   cpSync,
   existsSync,
+  readdirSync,
   mkdirSync,
   readFileSync,
   rmSync,
@@ -198,7 +199,24 @@ const buildInfo = {
     registered_with_app_store_connect: identity.registered.appStoreConnect,
   },
   product_content: {
-    locales: vocabulary.locales,
+    /*
+     * Every locale the app ships an interface in, not every locale the corpus
+     * has complete copy for.
+     *
+     * These used to be the same list and are not any more. `vocabulary.locales`
+     * names the eight languages whose meanings are carried on every entry;
+     * Vietnamese and Thai ship a full interface, a full letter curriculum, and
+     * hand-written copy for the first 500 words, so reading the corpus field
+     * alone reported a ten-language build as an eight-language one.
+     *
+     * Read from the translation bundles on disk, which is what "the app speaks
+     * this language" actually means.
+     */
+    locales: readdirSync(join(ROOT, 'apps/web/src/locales'), { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort(),
+    vocabulary_locales_complete: vocabulary.locales,
     vocabulary_words: vocabulary.words.length,
     vocabulary_categories: vocabulary.categories.length,
     example_qa_version: examplesQa.version,

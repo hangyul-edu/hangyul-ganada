@@ -60,7 +60,7 @@ reported fixed and is only partly fixed.
 | Application version | 0.1.0 |
 | Git branch | `main` |
 | Git commit | `8a06c110c12fd928156fa79ec3dee5d22f57c407` |
-| Working tree | **Not clean** — this cycle's work is uncommitted; see §2.2 |
+| Working tree | Clean at `deda959`; artefacts rebuilt from it — see §2.2 |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
 | Interface languages | 10 |
@@ -85,24 +85,31 @@ reported fixed and is only partly fixed.
 | @playwright/test | ^1.50.1 |
 | @capacitor/core | ^8.5.0 |
 
-## 2.2 Uncommitted work at audit time
+## 2.2 Commit and artefact state — **VERIFIED**
 
-**VERIFIED.** This cycle's work — every change described in this report — is in
-the working tree and not in a commit. Sixty files, including the two that were
-already outstanding at the last audit:
+This section carried a P0 in the last two reports: the work was in the working
+tree and the shipped artefacts predated it. Both are now closed, and the order
+they were closed in is the part worth recording.
 
 ```
-M apps/web/src/data/generated/strokeAssets.json   the re-cut stroke geometry
-M scripts/build-stroke-assets.mjs                 the generator behind it
-M apps/mobile/android/gradlew.bat                 line endings, pre-existing
-M result/android-project/gradlew.bat              line endings, pre-existing
-… and 56 more: the hint ladder, ten locales, the vocabulary session's shape
+aaf06bb  premium quality pass — hints, strokes, ten languages
+deda959  wrong-answer notebook — show what the learner confused it with
+         ↓  commit first
+         ↓  then mobile:sync + gradlew assembleRelease bundleRelease
+         ↓  then unpack the delivered APK and grep it
+result/hangyul-ganada-release.apk   built from deda959, verified to contain it
 ```
 
-Anyone checking out `8a06c11` clean gets the product as it was **before** this
-cycle: hints that print the answer, strokes that bleed, eight languages. This
-report describes the working tree, and the gap between the two is the reason
-§33 still carries a P0 about it.
+Building before committing produces a signed artefact that looks current and is
+not, which is worse than a stale one because nothing about it says so. The
+delivered APK was unpacked and grepped for seven markers of this cycle's work —
+the storage probe, the dark-mode hover token, the hint ladder, graded hint
+scoring, the hand-off, and both new languages. All seven present. It installs,
+launches, and renders the first-run purpose line and a clean ㅏ demonstration on
+an Android 16 emulator.
+
+The only thing still uncommitted is a `gradlew.bat` line-ending difference that
+predates this task.
 
 ## 2.3 Figures for the next report to diff against
 
@@ -189,10 +196,12 @@ verified synonym or antonym. Vietnamese and Thai have meanings for 500 words and
 marked English beyond that. The credibility fix from last cycle holds — no
 category neighbour is presented as a synonym — but it was a fix by subtraction.
 
-**3 · The shipped artefacts are still stale, and now more so.** The signed
-Android AAB and APK in `result/` were built on 19 August at `a7cc604`. Every
-fix in this report is missing from them, and so is every fix from the previous
-report. Anyone installing today gets a product two cycles old.
+**3 · The shipped artefacts are no longer stale, for the first time in three
+reports.** The cycle was committed and the Android artefacts rebuilt from that
+commit — in that order, which is the part that kept going wrong. The delivered
+APK was then unpacked and grepped for seven markers of this cycle's work, all
+seven present, and installed and launched on an emulator. That closes the P0
+that opened the last two reports.
 
 Against that: nothing that was reported broken is still broken. Learning data
 survives refresh and reopen. The storage warning cannot appear without a real
@@ -2136,8 +2145,8 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
-| **I-01** | Release | **P0** | Shipped Android AAB/APK predate every fix in this report and the last one | Anyone installing today gets a product two cycles old | **OPEN** |
-| **I-02** | Repo | **P0** | This whole cycle is uncommitted — 60 files | A fresh checkout has hints that print the answer and strokes that bleed | **OPEN** |
+| **I-01** | Release | **P0** | Shipped Android AAB/APK predate every fix in this report and the last one | Anyone installing today gets a product two cycles old | **RESOLVED** — rebuilt from `deda959`, contents verified, installed and launched |
+| **I-02** | Repo | **P0** | This whole cycle is uncommitted | A fresh checkout has hints that print the answer and strokes that bleed | **RESOLVED** — committed as `aaf06bb` and `deda959` on `premium-quality-pass` |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | The card renders nothing; the funnel still does not exist | **OPEN** |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-05** | Performance | **P1** | Corpus at 10,000 words is 318% of the bundle budget, and the precache budget had to be raised for two languages | The delivery architecture cannot carry the plan | **OPEN** |
@@ -2153,7 +2162,12 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-15** | Audio | **P3** | 마디 is mispronounced in one voice | One word sounds wrong | **OPEN** |
 | **I-16** | i18n copy | **P3** | No locale has been reviewed by a native speaker | Unknown awkwardness in nine languages | **OPEN** |
 
-**P0: 2 · P1: 6 · P2: 6 · P3: 2**
+**P0: 0 open · P1: 6 · P2: 6 · P3: 2**
+
+The two P0s were resolved *after* this section was first drafted, in the same
+session, and are left in the table with their resolution rather than deleted —
+they were the two most repeated findings in this product's history and the
+record of how they were closed is worth more than a shorter table.
 
 Two P1s are new because the work that created them is new (I-07, I-08); one P2
 is new because a check that did not exist last cycle can now see it (I-14). The
@@ -2164,8 +2178,8 @@ happens when the instruments improve.
 
 | ID | Reproduction | Evidence | Likely cause | Recommended fix |
 | --- | --- | --- | --- | --- |
-| **I-01** | `ls -la result/*.apk` → 19 Aug, `a7cc604` | packaged bundle has no `capability-probe`, no `surface-hover` | artefacts not rebuilt since | commit, then rebuild and re-sign from that tree |
-| **I-02** | `git status` | 60 modified files | not committed | commit |
+| **I-01** | was: `ls -la result/*.apk` → 19 Aug, `a7cc604` | now: the delivered APK contains `capability-probe`, `surface-hover`, `showMoreHint`, `hintLevel`, `nextStep`, `Tiếng Việt`, `ไทย` | artefacts had not been rebuilt since | **done** — see `result/RELEASE_VALIDATION.md` |
+| **I-02** | `git log --oneline -2` | `aaf06bb`, `deda959` | not committed | **done** — committed before the artefacts were built, in that order |
 | **I-03** | finish the alphabet, look at `/letters` | `HANGYUL_URL` is null in a plain checkout | the URL is not in this repository | set `VITE_HANGYUL_URL` at build time |
 | **I-04** | `vocabulary:qa:check` | "7,419 short of the 10,000 target" | content work unfinished | decide I-05 first, then author |
 | **I-05** | `bundle:budget` | 700.6 kB gz forecast vs 220 kB; precache 812 kB of 840 kB | corpus and every locale pack ship eagerly | chunk the corpus; precache the shell and one locale, cache the rest on use |
@@ -2327,7 +2341,7 @@ since the last report.
 | Onboarding | **8/10** ▲ | No account, device language detected, and now one line saying what the app is for on a fresh profile |
 | Hangul learning | **9/10** = | 73 items, 12 lessons, correct order, syllables taught as their own thing |
 | Handwriting UX | **8/10** = | One guided write, undo/clear, helper below the canvas; inherently tiring on glass |
-| Stroke animation quality | **8/10** = | Now measured in pixels rather than asserted: zero visible intrusions, 18 sub-visible ones listed (§11.6). Still uncommitted (I-02) |
+| Stroke animation quality | **8/10** = | Now measured in pixels rather than asserted: zero visible intrusions, 18 sub-visible ones listed (§11.6), and committed |
 | Vocabulary depth | **4/10** = | 2,581 of 10,000; delivery unsolved at target (I-04, I-05) |
 | Vocabulary learning | **7/10** ▲ | Four skills in three layouts on a first session, where there was one. Still four options on a card (I-09) |
 | **Hints and help** | **8/10** ▲▲ | Was 2/10 and unscored: the button printed the answer. Now a graded ladder, audited in ten languages |
@@ -2410,12 +2424,18 @@ frequency — not by ease of fixing.
 
 | Item | Why it blocks | Expected impact |
 | --- | --- | --- |
-| **I-02 · Commit this cycle** | 60 files, including every fix in this report | Makes I-01 possible; a checkout stops being a regression |
-| **I-01 · Rebuild and re-sign the release artefacts** | The artefact on disk contains bugs two reports say are fixed | Every fix below finally reaches customers |
+| ~~I-02 · Commit this cycle~~ | **Done** — `aaf06bb`, `deda959` | a checkout is no longer a regression |
+| ~~I-01 · Rebuild and re-sign the release artefacts~~ | **Done** — built from `deda959`, contents verified, installed and launched on an emulator | every fix in §34 now reaches a customer who installs |
 
-They are in that order for a reason: rebuilding first would package the old
-geometry and the old hints, and produce a signed artefact that looks current and
-is not. That is worse than the stale one, because nothing about it says so.
+They were done in that order for a reason, and it is the reason this P0 kept
+recurring: rebuilding from a dirty tree packages the old geometry and the old
+hints and produces a signed artefact that *looks* current. That is worse than a
+stale one, because nothing about it says so.
+
+**There are no open P0s.** The next release blocker will be whatever the next
+cycle leaves uncommitted, which is the same failure wearing a different date —
+so `build-info.json` now records the commit and `RELEASE_VALIDATION.md` carries
+a table of markers grepped out of the delivered bundle.
 
 ## P1 — release-quality, not release-blocking
 
