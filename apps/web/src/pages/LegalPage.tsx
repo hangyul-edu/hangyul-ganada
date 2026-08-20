@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { PRODUCT, productName } from '../config/product';
 import { PRACTICE_FONTS } from '../data/fonts';
+import { RELATION_SOURCE } from '../data/relations';
 import { CONTENT_SOURCES } from '../data/vocabulary';
 import { useLocale } from '../i18n';
 import { AppHeader } from '../ui/AppHeader';
@@ -62,7 +63,12 @@ export function LegalPage() {
   // Exactly the sources whose licence asks to be credited. `attribution` is set
   // by the content pipeline when it is required and left null when it is not,
   // so this list cannot drift from what the licences actually say.
-  const credited = CONTENT_SOURCES.filter((source) => source.attribution);
+  //
+  // The relation dictionary is listed alongside rather than inside the corpus's
+  // own source record, because it is a source for one file — the synonyms and
+  // antonyms on Word Detail — and for nothing else the app shows. Its licence is
+  // share-alike, so the credit is required rather than offered.
+  const credited = [...CONTENT_SOURCES, RELATION_SOURCE].filter((source) => source.attribution);
 
   // One row per licence rather than per face: six typefaces under OFL 1.1 is
   // one notice, and printing it six times would not make it more complied with.

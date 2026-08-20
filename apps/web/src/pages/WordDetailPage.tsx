@@ -4,7 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { getFont } from '../data/fonts';
-import { VOCABULARY, getWord } from '../data/vocabulary';
+import { relationsOf } from '../data/relations';
+import { getWord } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
 import { pronunciationOf } from '../data/pronunciation';
 import { splitSentence } from '../features/review/exercises';
@@ -61,27 +62,19 @@ function WordDetail({ word }: { word: VocabularyWord }) {
     : null;
 
   /**
-   * A few words from the same corner of the language.
+   * The dictionary's own synonyms and antonyms for this word — or nothing.
    *
-   * "Related" only in the sense the data can actually support — same category,
-   * near it in usefulness — and labelled as that rather than as synonyms. §4
-   * asks for synonyms and antonyms *only when accurate*, and this corpus does
-   * not record them; inventing them from a category would put a false claim
-   * under every word rather than admitting one absence.
+   * This is the whole of what the screen now says about other words. It used to
+   * carry a section headed *비슷한 낱말* built from the four nearest words in
+   * the same category, which under 고기 listed 사과, 음식, 먹다 and 우유: the
+   * food shelf, under a heading claiming a dictionary had found them alike. See
+   * `data/relations.ts` for why that is worse than an empty space.
+   *
+   * Most words have neither, and then neither heading appears. Nothing is
+   * substituted in — the page is simply shorter, which is the right shape for a
+   * page with nothing true to add.
    */
-  const nearby = useMemo(
-    () =>
-      VOCABULARY.filter(
-        (other) => other.id !== word.id && other.category === word.category,
-      )
-        .sort(
-          (a, b) =>
-            Math.abs(a.difficulty_score - word.difficulty_score) -
-            Math.abs(b.difficulty_score - word.difficulty_score),
-        )
-        .slice(0, 4),
-    [word],
-  );
+  const relations = useMemo(() => relationsOf(word.id), [word.id]);
 
   const saved = isSaved('word', word.id);
 
@@ -218,36 +211,80 @@ function WordDetail({ word }: { word: VocabularyWord }) {
           </section>
         )}
 
-        {nearby.length > 0 && (
-          <section className={styles.block} aria-labelledby="detail-nearby">
-            <h2 id="detail-nearby" className={styles.blockTitle}>
-              {t('vocabulary:detail.nearby')}
-            </h2>
-            <ul className={styles.nearby}>
-              {nearby.map((other) => (
-                <li key={other.id}>
-                  <button
-                    type="button"
-                    className={styles.nearbyRow}
-                    onClick={() => navigate(`/words/word/${other.id}`, { replace: true })}
-                  >
-                    <span className={styles.nearbyWord} lang="ko" dir="ltr">
-                      {other.word}
-                    </span>
-                    <LocalizedText
-                      as="span"
-                      locale={wordCopy(other, locale).locale}
-                      className={styles.nearbyMeaning}
-                    >
-                      {wordCopy(other, locale).value.meaning}
-                    </LocalizedText>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </section>
+        {/*
+          Two lists of words, each under the name of the relation it actually is.
+
+          Chips rather than the old two-column rows with a meaning beside every
+          entry. A synonym is read as *the other way to say this*, which the word
+          itself answers; a definition next to each one turned three related
+          words into three more things to read and pushed the example sentence
+          off the screen. The meaning is one tap away, where a learner who wants
+          it will look for it.
+        */}
+        {relations.synonyms.length > 0 && (
+          <RelationBlock
+            id="detail-synonyms"
+            title={t('vocabulary:detail.synonyms')}
+            words={relations.synonyms}
+            onOpen={(id) => navigate(`/words/word/${id}`, { replace: true })}
+          />
+        )}
+        {relations.antonyms.length > 0 && (
+          <RelationBlock
+            id="detail-antonyms"
+            title={t('vocabulary:detail.antonyms')}
+            words={relations.antonyms}
+            onOpen={(id) => navigate(`/words/word/${id}`, { replace: true })}
+          />
         )}
       </div>
     </div>
+  );
+}
+
+/**
+ * One typed relation, as a row of tappable words.
+ *
+ * Rendered only by a caller that has already found the list non-empty — an
+ * empty relation must produce no heading at all, not a heading over nothing.
+ */
+function RelationBlock({
+  id,
+  title,
+  words,
+  onOpen,
+}: {
+  id: string;
+  title: string;
+  words: VocabularyWord[];
+  onOpen: (wordId: string) => void;
+}) {
+  return (
+    <section className={styles.block} aria-labelledby={id}>
+      <h2 id={id} className={styles.blockTitle}>
+        {title}
+      </h2>
+      <ul className={styles.relations}>
+        {words.map((other) => (
+          <li key={other.id}>
+            {/*
+              Every word here ships — `relationsOf` drops the ones that do not —
+              so this always lands on a real entry. `replace` so that following
+              three synonyms in a row does not build a back stack the learner
+              has to unwind one page at a time.
+            */}
+            <button
+              type="button"
+              className={styles.relationChip}
+              onClick={() => onOpen(other.id)}
+              lang="ko"
+              dir="ltr"
+            >
+              {other.word}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

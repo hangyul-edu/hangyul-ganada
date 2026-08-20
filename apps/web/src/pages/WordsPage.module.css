@@ -588,6 +588,40 @@
   min-height: 44px;
 }
 
+/*
+ * The percentage, beside the fraction rather than under it.
+ *
+ * Secondary weight on purpose: the fraction is the fact and this is the gloss.
+ * It is also the only number on the screen that can exceed 100, so it is given
+ * room to be three digits without moving the ring.
+ */
+.todayPercent {
+  margin-inline-start: var(--hg-space-2);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-secondary);
+}
+
+/* Five, ten or twenty. One row, and it wraps rather than scrolls. */
+.todayMoreOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--hg-space-2);
+}
+
+.todayMoreOption {
+  min-height: 44px;
+  padding: var(--hg-space-2) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+}
+
+
 .sectionTitle {
   font-size: var(--hg-text-body);
   font-weight: var(--hg-weight-bold);

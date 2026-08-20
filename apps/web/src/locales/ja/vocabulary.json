@@ -9,10 +9,12 @@
     "doneBlurb": "今日の分は終わりです。おつかれさま。",
     "completeTitle": "今日の単語が終わりました。",
     "completeDetail_other": "{{count}}語 学習しました",
-    "more": "もう少しやる",
+    "more": "もう少し",
     "allDone": "今日の分はもうありません。",
     "remaining_other": "今日はあと{{count}}語",
-    "progressAria": "今日の単語の進み具合"
+    "progressAria": "今日の単語の進み具合",
+    "moreLabel": "あと何語にしますか",
+    "moreCount_other": "あと{{count}}語"
   },
   "browse": {
     "title": "テーマから探す",
@@ -96,7 +98,8 @@
     "pronunciation": "発音",
     "definition": "くわしく",
     "usage": "使い方",
-    "nearby": "にた単語"
+    "synonyms": "類義語",
+    "antonyms": "対義語"
   },
   "saved": {
     "title": "保存した単語",

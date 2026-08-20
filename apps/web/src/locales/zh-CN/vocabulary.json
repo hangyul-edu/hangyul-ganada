@@ -9,10 +9,12 @@
     "doneBlurb": "今天的部分完成了，做得好。",
     "completeTitle": "今天的词学完了。",
     "completeDetail_other": "学会了 {{count}} 个词",
-    "more": "再来一点",
+    "more": "再学一点",
     "allDone": "今天没有更多了。",
     "remaining_other": "今天还剩 {{count}} 个",
-    "progressAria": "今天的词的进度"
+    "progressAria": "今天的词的进度",
+    "moreLabel": "再学多少个",
+    "moreCount_other": "再学 {{count}} 个"
   },
   "browse": {
     "title": "按主题浏览",
@@ -96,7 +98,8 @@
     "pronunciation": "发音",
     "definition": "详细说明",
     "usage": "怎么用",
-    "nearby": "相似的词"
+    "synonyms": "近义词",
+    "antonyms": "反义词"
   },
   "saved": {
     "title": "收藏的词",

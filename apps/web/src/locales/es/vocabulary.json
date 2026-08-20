@@ -18,7 +18,11 @@
     "remaining_one": "Queda una hoy",
     "remaining_many": "Quedan {{count}} hoy",
     "remaining_other": "Quedan {{count}} hoy",
-    "progressAria": "Progreso de las palabras de hoy"
+    "progressAria": "Progreso de las palabras de hoy",
+    "moreLabel": "¿Cuántas más?",
+    "moreCount_one": "1 más",
+    "moreCount_other": "{{count}} más",
+    "moreCount_many": "{{count}} más"
   },
   "browse": {
     "title": "Explorar por tema",
@@ -106,7 +110,8 @@
     "pronunciation": "Pronunciación",
     "definition": "Más detalles",
     "usage": "Cómo se usa",
-    "nearby": "Palabras parecidas"
+    "synonyms": "Sinónimos",
+    "antonyms": "Antónimos"
   },
   "saved": {
     "title": "Palabras guardadas",

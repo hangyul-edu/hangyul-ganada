@@ -2637,15 +2637,17 @@ not targets.
 
 | Suite | Count | Result | Covers |
 | --- | --- | --- | --- |
-| Web unit (`vitest`) | 523 | pass | Domain logic, mastery, memory model, review scheduler, learner simulations, storage, migrations, i18n, data, categories, search, feedback, quotes, activity, per-character stroke guidance, native inset conversion, entry audio, scroll reset, Korean particle agreement, generated-question answer keys, **the resolved practice plan, the daily vocabulary goal, the absence of vocabulary handwriting, the wrong-answer notebook, memory-need review selection, IPA pronunciation, the storage-capability probe behind the Settings warning, and word-card navigation into the canonical Word Detail page** |
+| Web unit (`vitest`) | 547 | pass | Domain logic, mastery, memory model, review scheduler, learner simulations, storage, migrations, i18n, data, categories, search, feedback, quotes, activity, per-character stroke guidance, native inset conversion, entry audio, scroll reset, Korean particle agreement, generated-question answer keys, the resolved practice plan, the daily vocabulary goal, the absence of vocabulary handwriting, the wrong-answer notebook, memory-need review selection, IPA pronunciation, word-card navigation into the canonical Word Detail page, **the storage verdict surviving a failed hydration, the synonym/antonym relation set, and today's vocabulary count across a reload** |
 | Handwriting core (`vitest`) | 95 | pass | Evaluator algorithm, real-glyph calibration, six-typeface tolerance, adversarial robustness, **path quality: beginner-writing fixtures accepted and scrawl fixtures rejected** |
-| End-to-end (`playwright`) | 200 (100 × 2 projects) | pass, with the browser crash below | Full journeys at a phone viewport and at desktop, both appearances, system-bar bounds for every bottom control, the audio and scroll behaviour on arrival at a screen, **and a full daily vocabulary sitting asserting no canvas appears in it** |
+| End-to-end (`playwright`) | 218 (109 × 2 projects) | pass, with the browser crash below | Full journeys at a phone viewport and at desktop, both appearances, system-bar bounds for every bottom control, the audio and scroll behaviour on arrival at a screen, a full daily vocabulary sitting asserting no canvas appears in it, **and real-browser persistence: the storage warning's absence on a healthy browser and the survival of goals, saved words and progress across a reload** |
 
-The web unit count rose by ninety-two this cycle and the handwriting count by
-twenty-six. The end-to-end count *fell* by forty-two, which is the honest shape
-of this cycle: the word-writing screen and its four-phone-width layout suite
-were deleted along with the feature, and what replaced them is one spec that
-walks a whole daily sitting asserting the canvas never appears.
+The web unit count rose by a hundred and sixteen this cycle and the handwriting
+count by twenty-six. The end-to-end count *fell* by thirty-two, which is the
+honest shape of this cycle: the word-writing screen and its four-phone-width
+layout suite were deleted along with the feature, and what replaced them is one
+spec that walks a whole daily sitting asserting the canvas never appears, plus
+one that puts a real browser's storage under the two questions the Settings
+warning was getting wrong.
 
 Of the new unit tests:
 

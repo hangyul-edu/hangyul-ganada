@@ -15,7 +15,10 @@
     "allDone": "Nothing left for today.",
     "remaining_one": "One left today",
     "remaining_other": "{{count}} left today",
-    "progressAria": "Progress through today's words"
+    "progressAria": "Progress through today's words",
+    "moreLabel": "How many more",
+    "moreCount_one": "1 more",
+    "moreCount_other": "{{count}} more"
   },
   "browse": {
     "title": "Browse by topic",
@@ -101,7 +104,8 @@
     "pronunciation": "Pronunciation",
     "definition": "More about it",
     "usage": "How it is used",
-    "nearby": "Words like this"
+    "synonyms": "Synonyms",
+    "antonyms": "Opposites"
   },
   "saved": {
     "title": "Saved words",

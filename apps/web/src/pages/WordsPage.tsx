@@ -20,6 +20,14 @@ import styles from './WordsPage.module.css';
 /** Enough results to be useful; more than a phone screen can review at once. */
 const MAX_RESULTS = 40;
 
+/**
+ * The sizes of a second helping.
+ *
+ * Small, and all of them finishable in one more sitting. There is no "keep
+ * going until you stop" option, on purpose.
+ */
+const EXTRA_WORDS = [5, 10, 20] as const;
+
 /** How many words a category card previews. Three is a taste, not a table. */
 const SAMPLE = 3;
 
@@ -68,6 +76,8 @@ export function WordsPage() {
   const format = useFormatters();
 
   const [query, setQuery] = useState('');
+  /** Whether the finished card is showing its how-many-more choices. */
+  const [more, setMore] = useState(false);
   // Typing stays responsive while the corpus scan runs behind it. At ten
   // thousand rows the scan is still a fraction of a frame; deferring it means
   // that stays true on a slow phone without a worker or an index.
@@ -113,6 +123,18 @@ export function WordsPage() {
               <h2 className={styles.todayTitle}>{t('vocabulary:today.title')}</h2>
               <p className={styles.todayCount}>
                 <strong className="hg-numeric">{format.fraction(day.done, day.total)}</strong>
+                {/*
+                  The percentage, beside the fraction and only once there is one
+                  to read. It is the figure that carries the extra study: a
+                  learner who did twelve of a goal of ten sees 120%, where the
+                  fraction alone reads as an odd 12 / 10 and the ring is simply
+                  full.
+                */}
+                {day.done > 0 && (
+                  <span className={styles.todayPercent} data-testid="today-percent">
+                    {format.percentOver(day.percent / 100)}
+                  </span>
+                )}
               </p>
               {/*
                 One line, and only when it says something the fraction does not.
@@ -158,16 +180,37 @@ export function WordsPage() {
             <div className={styles.todayDone}>
               <HangyulMascot mood="cheer" size={28} />
               <span>{t('vocabulary:today.completeTitle')}</span>
-              <button
-                type="button"
-                className={styles.todayMore}
-                onClick={() => {
-                  extendVocabularyDay();
-                  navigate('/words/today');
-                }}
-              >
-                {t('vocabulary:today.more')}
-              </button>
+              {/*
+                The offer, and then how much.
+
+                Two taps rather than one, and the second is the point: "a little
+                more" used to mean whatever the scheduler felt like, which is the
+                app deciding how long the learner stays. Five, ten or twenty is
+                the learner deciding, and the size they pick is the size they
+                get. None of it moves the goal — see `extendDay`.
+              */}
+              {more ? (
+                <div className={styles.todayMoreOptions} role="group" aria-label={t('vocabulary:today.moreLabel')}>
+                  {EXTRA_WORDS.map((count) => (
+                    <button
+                      key={count}
+                      type="button"
+                      className={styles.todayMoreOption}
+                      onClick={() => {
+                        extendVocabularyDay(count);
+                        setMore(false);
+                        navigate('/words/today');
+                      }}
+                    >
+                      {t('vocabulary:today.moreCount', { count })}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <button type="button" className={styles.todayMore} onClick={() => setMore(true)}>
+                  {t('vocabulary:today.more')}
+                </button>
+              )}
             </div>
           ) : (
             <Button size="lg" fullWidth onClick={() => navigate('/words/today')}>

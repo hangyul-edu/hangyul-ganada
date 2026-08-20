@@ -18,7 +18,11 @@
     "remaining_one": "Encore un aujourd’hui",
     "remaining_many": "Encore {{count}} aujourd’hui",
     "remaining_other": "Encore {{count}} aujourd’hui",
-    "progressAria": "Progression des mots du jour"
+    "progressAria": "Progression des mots du jour",
+    "moreLabel": "Combien de plus ?",
+    "moreCount_one": "1 de plus",
+    "moreCount_other": "{{count}} de plus",
+    "moreCount_many": "{{count}} de plus"
   },
   "browse": {
     "title": "Parcourir par thème",
@@ -106,7 +110,8 @@
     "pronunciation": "Prononciation",
     "definition": "En savoir plus",
     "usage": "Comment on l’emploie",
-    "nearby": "Mots proches"
+    "synonyms": "Synonymes",
+    "antonyms": "Contraires"
   },
   "saved": {
     "title": "Mots enregistrés",

@@ -33,6 +33,7 @@ renders more than 120 entries.
 | Field | Where it comes from | Licence |
 | --- | --- | --- |
 | part of speech, topic categories | English Wiktionary | CC BY-SA 4.0 |
+| synonyms (유의어) and antonyms (반의어) | Korean Wiktionary | CC BY-SA 4.0 |
 | corpus frequency band, rank and rate | two OpenSubtitles Korean corpora (`hermitdave/FrequencyWords`) | MIT (list) / CC BY-SA (corpus) |
 | meanings in eight languages, example sentence, its seven translations | Hangyul ganada editorial pack | ours |
 | pronunciation, spoken form, sound-change pattern, surface form, syllables, required letters, difficulty, category, readiness | Hangyul ganada | ours |
@@ -53,7 +54,8 @@ Wiktionary is CC BY-SA 4.0. That licence permits commercial redistribution and
 requires attribution and the same licence on derived data. So:
 
 * the attribution string is rendered in the app, not buried in a README;
-* `apps/web/src/data/generated/vocabulary.json` — the derived dataset — is
+* `apps/web/src/data/generated/vocabulary.json` and
+  `apps/web/src/data/generated/relations.json` — the derived datasets — are
   offered under CC BY-SA 4.0;
 * the application code and the audio are not derived from it and are not covered
   by it.
@@ -234,12 +236,64 @@ npm run audio:plan           # lists everything that needs saying
 npm run audio:build          # generates it, both voices
 npm run audio:qa             # checks what came back
 npm run content:coverage     # the completeness matrix
+
+npm run vocabulary:relations:fetch   # dictionary pages for the relation set
+npm run vocabulary:relations         # builds the synonym/antonym set
+npm run vocabulary:relations:qa      # gates every relation the app can show
 ```
 
 The fetch is separate from the build on purpose: fetching hits somebody else's
 servers and takes minutes, while the build is a pure function over what was
 fetched. That split is what lets the curriculum be re-tuned twenty times without
 re-fetching anything.
+
+## Synonyms and antonyms
+
+Word Detail carries two relation sections, 유의어 and 반의어, and it carries them
+only where a dictionary states the relation for the sense this app teaches. 242
+of 2,581 words have one. The other 2,339 show no relation section at all.
+
+That is a replacement rather than a refinement. The screen used to end with a
+section headed *비슷한 낱말* — "words like this" — whose contents were computed:
+the four words nearest this one in the same category, ordered by difficulty. It
+was not a dictionary claim and it did not read as one. Under 고기 it printed
+사과, 음식, 먹다 and 우유 — four words off the food shelf, under a heading saying
+they were alike. Nothing in the build could fail on it, because there was
+nothing to fail: the data was internally consistent and untrue.
+
+The rules the replacement runs under, all enforced by
+`npm run vocabulary:relations:qa`:
+
+* the relation is **stated by the dictionary**, as that relation — never derived
+  from a category, a frequency band, an embedding, a shared example sentence, or
+  co-occurrence;
+* it is **typed** as a synonym or an antonym; there is no third, vaguer kind.
+  Compounds, derived forms, broader and narrower terms are all real lexical
+  relations and none of them is shown, because collapsing them into one list is
+  how the old section went wrong;
+* it is scoped to the **part of speech and the primary sense** this app teaches,
+  so a synonym of 밤-the-chestnut cannot appear under 밤-the-night;
+* it is **stated from both ends** — 남자 lists 여자 and 여자 lists 남자. A
+  one-sided entry usually means the relation belongs to a sense the target does
+  not share, and the target's own page is the cheapest way to find that out;
+* both words **ship in this corpus**, so every relation on the screen opens;
+* an empty relation set renders **no section**, never an empty one and never a
+  substitute list of neighbours.
+
+### Why not NAVER
+
+The product brief names the NAVER Korean dictionary, and on the merits it is the
+right reference — it is the dictionary a Korean learner is told to use. It is not
+one this pipeline can read. `ko.dict.naver.com` answers every request from the
+build environment with its own service-unavailable page, there is no published
+relation API, and its terms do not grant redistribution of extracted relation
+metadata. A source a build step cannot reach is not a source.
+
+The Korean Wiktionary publishes the same two relations as explicit typed
+metadata — `*유의어:` and `*반의어:` lines under the Korean section — under
+CC BY-SA 4.0, the licence this project already carries for part-of-speech data.
+Only the relation type and the target headword are taken. No definitions are
+copied.
 
 ## What is not here
 

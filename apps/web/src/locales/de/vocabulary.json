@@ -11,11 +11,14 @@
     "completeTitle": "Die Wörter für heute sind geschafft.",
     "completeDetail_one": "Ein Wort gelernt.",
     "completeDetail_other": "{{count}} Wörter gelernt.",
-    "more": "Noch ein bisschen",
+    "more": "Noch ein wenig",
     "allDone": "Für heute ist nichts mehr da.",
     "remaining_one": "Heute noch eins",
     "remaining_other": "Heute noch {{count}}",
-    "progressAria": "Fortschritt bei den Wörtern für heute"
+    "progressAria": "Fortschritt bei den Wörtern für heute",
+    "moreLabel": "Wie viele noch?",
+    "moreCount_one": "1 weiteres",
+    "moreCount_other": "{{count}} weitere"
   },
   "browse": {
     "title": "Nach Thema stöbern",
@@ -101,7 +104,8 @@
     "pronunciation": "Aussprache",
     "definition": "Mehr dazu",
     "usage": "So wird es benutzt",
-    "nearby": "Ähnliche Wörter"
+    "synonyms": "Synonyme",
+    "antonyms": "Gegenwörter"
   },
   "saved": {
     "title": "Gemerkte Wörter",

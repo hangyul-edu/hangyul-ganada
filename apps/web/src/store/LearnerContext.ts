@@ -88,7 +88,8 @@ export interface LearnerContextValue {
   /** Records that a word finished every step today's plan scheduled for it. */
   completeDailyWord: (wordId: string) => void;
   /** Throws today's plan away and builds the next one. The optional top-up. */
-  extendVocabularyDay: () => void;
+  /** Adds `extra` words to today without changing the goal or what is done. */
+  extendVocabularyDay: (extra: number) => void;
   reset: () => Promise<void>;
 }
 

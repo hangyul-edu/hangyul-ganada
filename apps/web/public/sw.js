@@ -178,19 +178,41 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // A navigation must always resolve to the app, whatever route the learner
-  // typed: this is a single-page app, and every path is index.html.
+  /*
+   * A navigation must always resolve to the app, whatever route the learner
+   * typed: this is a single-page app, and every path is index.html.
+   *
+   * ## Why a 404 is treated as a miss rather than as an answer
+   *
+   * The SPA fallback is a *hosting* rule — `vercel.json`, `_redirects`, a
+   * server config — and a host that has not got one answers `/words/word/x`
+   * with a 404 page. That is the reported bug: navigate anywhere inside the
+   * app, press reload, and get the host's not-found page instead of the screen
+   * that was on the display a second ago.
+   *
+   * This used to make it worse in two ways. `fetch` *succeeds* on a 404 — it
+   * only rejects when the request never completed — so the `catch` below never
+   * ran and the learner got the 404 straight through. And the response was then
+   * written into the cache as `/index.html`, so the app shell itself became the
+   * host's error page: from then on every navigation served it, offline
+   * included, and fixing the hosting rule would not have cleared it.
+   *
+   * So only a real response is kept, and anything else falls through to the
+   * shell. The worst case is now that a misconfigured host costs one round trip
+   * and the learner still lands on the screen they asked for.
+   */
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then((response) => {
+          if (!response.ok) throw new Error(`navigation returned ${response.status}`);
           void caches.open(APP_CACHE).then((cache) => cache.put('/index.html', response.clone()));
           return response;
         })
         .catch(() =>
           caches
             .match('/index.html', { ignoreVary: true })
-            .then((cached) => cached ?? offlineResponse()),
+            .then((cached) => cached ?? fetch('/index.html').catch(() => offlineResponse())),
         ),
     );
     return;

@@ -9,10 +9,12 @@
     "doneBlurb": "오늘 몫은 끝났어요. 잘하셨어요.",
     "completeTitle": "오늘 어휘 목표를 완료했어요.",
     "completeDetail_other": "{{count}}개 학습 완료",
-    "more": "조금 더 하기",
+    "more": "더 학습하기",
     "allDone": "오늘 할 것은 다 끝났어요.",
     "remaining_other": "오늘 {{count}}개 남음",
-    "progressAria": "오늘의 어휘 진행도"
+    "progressAria": "오늘의 어휘 진행도",
+    "moreLabel": "몇 개 더 할까요?",
+    "moreCount_other": "{{count}}개 더"
   },
   "browse": {
     "title": "주제별로 보기",
@@ -96,7 +98,8 @@
     "pronunciation": "발음",
     "definition": "더 알아보기",
     "usage": "이렇게 써요",
-    "nearby": "비슷한 낱말"
+    "synonyms": "유의어",
+    "antonyms": "반의어"
   },
   "saved": {
     "title": "저장한 낱말",

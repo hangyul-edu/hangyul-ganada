@@ -33,13 +33,45 @@
  * stroke and in what order — that is what they are good at, and it is a
  * different job from deciding what the letter looks like. Each is rasterised
  * onto the glyph and grown outwards by a distance transform; a stroke claims the
- * ink within a band a little wider than the face's own stroke weight. The bands
- * overlap exactly where two strokes genuinely meet, which is what stops a
- * junction showing a seam. Ink no band reached goes to whichever stroke is
- * nearest, so every pixel is claimed and the union is the whole glyph.
+ * ink within reach of its centreline. The reaches overlap exactly where two
+ * strokes genuinely meet, which is what stops a junction showing a seam. Ink no
+ * reach touched goes to whichever stroke is nearest, so every pixel is claimed
+ * and the union is the whole glyph.
  *
  * Each claimed region is then traced back to a contour and simplified, giving a
  * clean filled path per stroke.
+ *
+ * ## Why the cut is made three times
+ *
+ * Both halves of "within reach of its centreline" start out wrong, and they
+ * make each other worse. The centreline is *placed* by mapping a polyline onto
+ * the letter's ink box in proportion, which finds the right ink and does not
+ * divide it — Pretendard's ㅏ puts its crossbar at 46 and the proportional
+ * placement lands nearer 50. And the reach was one number for the whole letter,
+ * `weight * 0.62`, which is wider than some strokes: a stroke reached past its
+ * own edge, took ink from the block beside it, and the centreline re-read from
+ * that ink drifted towards it, letting the next pass reach further still.
+ *
+ * The visible result was a spike on every T-junction in the curriculum. ㅏ's
+ * stem grew a triangular wedge out of its right-hand side and wore it through
+ * the whole of stroke one — a piece of the crossbar, on the paper, before the
+ * crossbar had been written. ㅂ, ㅁ, ㄹ, ㅐ, ㅓ and every syllable containing
+ * them had the same thing at a different angle.
+ *
+ * So each pass re-reads both: where the stroke is, and how wide it is. The
+ * width is measured across the ink no other stroke wants, so a junction cannot
+ * inflate it, and it becomes the next pass's reach. Three passes is where every
+ * item in the set stops changing.
+ *
+ * ## And why a stroke may only bleed backwards
+ *
+ * Regions are traced and simplified independently, so two neighbours can each
+ * pull back from their shared boundary and leave a hairline of paper between
+ * them — a white slash across the corner of every ㅂ. Growing each region by a
+ * couple of pixels closes it. Growing it in *every* direction reopens the spike
+ * problem from the other end, so the growth is directional: a stroke may bleed
+ * into ink an **earlier** stroke owns, where it is hidden under ink already on
+ * the paper, and never into a later one's.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -746,45 +778,195 @@ const cut = async ({ face, item, inkSpan }) => {
     ];
     const here = strokes.map((stroke) => stroke.map(place));
 
-    const fields = here.map((stroke) => distanceField([stroke]));
-
-    const mine = fields.map(() => new Uint8Array(N));
-    for (let i = 0; i < N; i += 1) {
-      if (unitOf[i] !== u) continue;
-      let claimed = false;
-      let nearest = 0;
-      let best = Infinity;
-      for (let f = 0; f < fields.length; f += 1) {
-        const d = fields[f][i];
-        if (d <= band) {
-          mine[f][i] = 1;
-          claimed = true;
+    /**
+     * Hands every pixel of this letter's ink to one or more of `lines`.
+     *
+     * Two answers come back, and the difference between them matters:
+     *
+     * * `full` — every pixel, so the union is the whole letter. Pixels no band
+     *   reached are given to the nearest line, which is a Voronoi split and is
+     *   the right *last resort* and a bad way to decide anything else.
+     * * `core` — only the pixels a band actually reached. This is the ink that
+     *   is genuinely under the stroke rather than merely closest to it, and it
+     *   is what the centreline is re-read from below. Reading the centreline
+     *   from `full` feeds the Voronoi leftovers back into it: a wedge of a
+     *   neighbouring stroke drags the averaged centre sideways, the next pass
+     *   claims a little more of the neighbour, and the error sustains itself.
+     */
+    const claim = (lines, reach) => {
+      const fields = lines.map((stroke) => distanceField([stroke]));
+      const full = fields.map(() => new Uint8Array(N));
+      const core = fields.map(() => new Uint8Array(N));
+      for (let i = 0; i < N; i += 1) {
+        if (unitOf[i] !== u) continue;
+        let claimed = false;
+        let nearest = 0;
+        let best = Infinity;
+        for (let f = 0; f < fields.length; f += 1) {
+          const d = fields[f][i];
+          if (d <= reach[f]) {
+            full[f][i] = 1;
+            core[f][i] = 1;
+            claimed = true;
+          }
+          if (d < best) {
+            best = d;
+            nearest = f;
+          }
         }
-        if (d < best) {
-          best = d;
-          nearest = f;
-        }
+        if (!claimed) full[nearest][i] = 1;
       }
-      if (!claimed) mine[nearest][i] = 1;
+      return { full, core, fields };
+    };
+
+    /**
+     * How wide a stroke's own ink is, measured across the part of it nothing
+     * else wants.
+     *
+     * Across a bar of half-width h the distances to the centreline are spread
+     * evenly over 0…h, so twice the median is the width. The *maximum* is not:
+     * `centreline` returns band centres, so the route stops short of both tips
+     * and the pixels at the very end of a stroke are measured to the end of the
+     * route rather than across it. Junction ink is left out for the same
+     * reason — measuring across a junction reports the junction's width.
+     */
+    const widthOf = (fields, core, f) => {
+      const distances = [];
+      for (let i = 0; i < N; i += 1) {
+        if (!core[f][i]) continue;
+        if (core.some((other, g) => g !== f && other[i])) continue;
+        distances.push(fields[f][i]);
+      }
+      if (distances.length === 0) return band;
+      distances.sort((a, b) => a - b);
+      return Math.max(2 * distances[Math.floor(distances.length / 2)], 2);
+    };
+
+    /*
+     * Claim twice, with the centrelines re-read from the ink in between.
+     *
+     * This is what removes the spikes, and the reason they were there is worth
+     * writing down because it is not where anyone looked. `place` maps a
+     * polyline onto the *letter's* ink box by proportion. That is close enough
+     * to find the right ink and not close enough to divide it: ㅏ's crossbar
+     * sits at 46 in Pretendard and the proportionally-placed polyline for it
+     * lands nearer 50, four units low. Ink is then split by whichever centreline
+     * is nearest, so the top of the crossbar — genuinely closer to the vertical
+     * than to a crossbar centreline four units below it — was handed to the
+     * vertical. A Voronoi boundary between two lines is straight, the crossbar
+     * is not, and what fell out was a triangle: the wedge that has been sitting
+     * on the right-hand side of ㅏ's stem through the whole of stroke one.
+     *
+     * The first pass is only ever used to find each stroke's ink. `centreline`
+     * then re-reads the route from that ink — the same function that already
+     * produced the drawn route, which is why the *animation* always followed the
+     * font while the *cut* did not — and the second pass divides the ink with
+     * centrelines that lie along it. The boundary lands where the two strokes
+     * actually meet, and it lands there for every T, cross and corner in the
+     * curriculum rather than for the one in the screenshot.
+     */
+    /*
+     * Settle the centrelines and the widths together, then cut.
+     *
+     * The single pass this replaced had two faults that fed each other, and
+     * both are why every T-junction in the curriculum wore a spike.
+     *
+     * **The centreline was in the wrong place.** `place` maps a polyline onto
+     * the letter's ink box by proportion, which is close enough to find the
+     * right ink and not close enough to divide it: ㅏ's crossbar sits at 46 in
+     * Pretendard and the proportionally-placed polyline for it lands nearer 50.
+     * Ink then went to whichever centreline was nearest, so the top of the
+     * crossbar — genuinely nearer the stem than a crossbar centreline four
+     * units below it — was handed to the stem. A Voronoi boundary between two
+     * lines is straight and a crossbar is not, so what fell out was a triangle:
+     * the wedge that sat on the right of ㅏ's stem through the whole of stroke
+     * one, before the stroke that ink belongs to had been written.
+     *
+     * **The reach was one number for the whole letter.** `weight * 0.62` is
+     * wider than some strokes, so a stroke reached past its own edge into the
+     * block beside it, took the ink there, and the centreline re-read from that
+     * ink drifted towards it — which let the next pass reach further still.
+     *
+     * So each pass re-reads both: where the stroke is, and how wide it is. The
+     * width comes from the ink no other stroke wants, so a junction cannot
+     * inflate it, and it becomes the next pass's reach. Three passes is where
+     * ㅏ, ㅂ, ㅁ, ㄹ and 가 all stop changing.
+     */
+    let lines = here;
+    let reach = here.map(() => band);
+    let fields;
+    let mine;
+    for (let pass = 0; pass < 3; pass += 1) {
+      const claimed = claim(lines, reach);
+      fields = claimed.fields;
+      mine = claimed.full;
+      if (pass === 2) break;
+      reach = lines.map((_, index) => widthOf(claimed.fields, claimed.core, index));
+      lines = lines.map((stroke, index) =>
+        // The core where there is one — see `claim`. A stroke narrower than its
+        // reach has no exclusive core, and then the full region is all there is.
+        centreline(
+          claimed.core[index].some((v) => v) ? claimed.core[index] : claimed.full[index],
+          stroke,
+        ),
+      );
     }
     /*
-     * Grow each region a little, then clip it back to the glyph.
+     * Grow each region a little, then clip it back to the glyph — but only
+     * *backwards*, into ink an earlier stroke already owns.
      *
-     * Two neighbouring regions share a boundary, and each is traced and then
-     * simplified independently — so both can pull back from that boundary by up
-     * to the simplification tolerance, and what is left between them is a
-     * hairline of paper. On screen that is a white slash across the corner of
-     * every ㅂ, which is precisely the seam this whole approach was supposed to
-     * make impossible.
+     * The growth is there for a real reason. Two neighbouring regions share a
+     * boundary, and each is traced and then simplified independently, so both
+     * can pull back from it by up to the simplification tolerance and leave a
+     * hairline of paper between them. On screen that is a white slash across
+     * the corner of every ㅂ, which is precisely the seam this whole approach
+     * exists to make impossible.
      *
-     * Dilating fixes it by making neighbours overlap instead of abut. Clipping
-     * the result back to the glyph's own ink is what keeps that honest: the
-     * union still cannot exceed the reference glyph, because no pixel outside it
-     * survives the intersection.
+     * Growing in *every* direction is what put the spikes on the demonstration.
+     * At a T-junction the two regions meet inside a block of ink that belongs
+     * to the crossing stroke, and an undirected dilation pushes the earlier
+     * stroke two pixels into it. Trace that, simplify it, and ㅏ's vertical
+     * grows a triangular wedge out of its right-hand side — sitting there on
+     * screen through the whole of stroke one, before the stroke that ink
+     * actually belongs to has been written. Every T and every crossing in the
+     * curriculum had one: ㅂ's verticals, ㅁ's corners, 가's ㅏ, ㅓ, ㅐ, ㄹ.
+     *
+     * Direction fixes it and costs nothing, because a seam only needs *one*
+     * side to close it:
+     *
+     * ```
+     * stroke 2 may bleed into stroke 1's ink   →  the seam closes, and it is
+     *                                             hidden under ink already on
+     *                                             the paper
+     * stroke 1 may NOT bleed into stroke 2's   →  no ink appears before the
+     *                                             stroke that owns it
+     * ```
+     *
+     * Clipping to the glyph is what keeps the whole thing honest either way:
+     * no pixel outside the reference glyph survives the intersection, so the
+     * union is still exactly that glyph.
      */
-    for (const mask of mine) owners.push(clipToInk(dilate(mask, 2)));
-    // The route comes from the ink; the order and direction came from the ruler.
-    here.forEach((stroke, index) => placed.push(centreline(mine[index], stroke)));
+    const owned = mine.map((mask) => mask);
+    for (let f = 0; f < mine.length; f += 1) {
+      // Ink that a *later* stroke of this letter owns and this one does not.
+      const later = new Uint8Array(N);
+      for (let g = f + 1; g < owned.length; g += 1) {
+        for (let i = 0; i < N; i += 1) {
+          if (owned[g][i] && !owned[f][i]) later[i] = 1;
+        }
+      }
+      const grown = dilate(owned[f], 2);
+      const region = new Uint8Array(N);
+      for (let i = 0; i < N; i += 1) {
+        // Stay inside this letter, too: a stroke of ㄱ has no business growing
+        // into the ㅏ beside it just because the two are two pixels apart.
+        if (grown[i] && !later[i] && unitOf[i] === u) region[i] = 1;
+      }
+      owners.push(clipToInk(region));
+    }
+    // The route comes from the ink the *second* pass settled on, so the drawn
+    // path and the cut agree about where the stroke is.
+    lines.forEach((stroke, index) => placed.push(centreline(mine[index], stroke)));
   }
 
   // --- contours -------------------------------------------------------------

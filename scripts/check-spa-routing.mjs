@@ -216,6 +216,30 @@ notes.push('/api/* and missing bundles are left alone');
 
 server.close();
 
+// --- The one part of this the app itself owns --------------------------------
+
+/*
+ * The worker must survive a host that has *not* got the rules above.
+ *
+ * Everything checked so far is configuration, and configuration is the half of
+ * this that a repository cannot guarantee: the app can be published somewhere
+ * that reads neither `vercel.json` nor `_redirects`, and then a refresh on a
+ * nested route is answered with that host's 404 page.
+ *
+ * The worker used to make that permanent. `fetch` resolves for a 404 — it only
+ * rejects when the request never completed — so the navigation handler took the
+ * error page as a valid answer and wrote it into the cache *as the app shell*.
+ * From then on every navigation served the 404, offline included, and repairing
+ * the hosting rule would not have cleared it.
+ */
+const worker = readFileSync(join(DIST, 'sw.js'), 'utf8');
+const navigation = worker.slice(worker.indexOf("request.mode === 'navigate'"));
+if (!/if \(!response\.ok\) throw/.test(navigation)) {
+  fail('sw.js', 'a navigation response is cached as the app shell without checking it succeeded');
+} else {
+  notes.push('the worker treats a failed navigation as a miss, not as the shell');
+}
+
 // --- Report -------------------------------------------------------------------
 
 console.log('SPA routing — the built app, served the way a static host serves it\n');

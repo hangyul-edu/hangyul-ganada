@@ -69,6 +69,39 @@ describe('a normal browser window', () => {
   });
 });
 
+describe('a launch that went wrong for a reason other than storage', () => {
+  it('says nothing when hydration fails but the store still writes and reads', async () => {
+    /*
+     * Hydration reads eight collections, runs the schema migrations and parses
+     * every stored row. Any of that can throw — one unreadable record is
+     * enough — and the failure path used to answer it by declaring the
+     * learner's storage broken. That put the red warning under a browser whose
+     * IndexedDB was in perfect health, which is the exact false alarm this
+     * whole path exists to prevent.
+     */
+    const driver = durableDriver();
+    vi.spyOn(driver, 'getAll').mockRejectedValue(new Error('one bad row'));
+    mount(driver);
+
+    await waitFor(() => expect(screen.getByTestId('verdict')).not.toHaveTextContent('unknown'));
+    expect(screen.queryByTestId('warning')).not.toBeInTheDocument();
+    expect(screen.getByTestId('verdict')).toHaveTextContent('saving');
+  });
+
+  it('still warns when hydration fails *and* the store cannot write', async () => {
+    // The genuine failure keeps its warning: the probe is what decides, and it
+    // is asked either way.
+    const driver = durableDriver();
+    vi.spyOn(driver, 'getAll').mockRejectedValue(new Error('cannot read'));
+    // The quiet shape of a broken store — the write resolves and the row is
+    // simply not there afterwards. See `storage/capability.ts`.
+    vi.spyOn(driver, 'put').mockResolvedValue(undefined);
+    mount(driver);
+
+    await waitFor(() => expect(screen.getByTestId('warning')).toBeInTheDocument());
+  });
+});
+
 describe('a browser that genuinely cannot keep anything', () => {
   it('warns once the round trip has actually come back negative', async () => {
     // The memory fallback: what `openDriver` returns when IndexedDB refuses to

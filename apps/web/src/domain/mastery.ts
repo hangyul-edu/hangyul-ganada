@@ -183,7 +183,24 @@ const DEFAULT_RULES: CharacterMasteryRules = {
  * happened last.
  */
 function isComplete(row: ItemProgress, rules: CharacterMasteryRules): boolean {
-  if (!row.heard) return false;
+  /*
+   * Hearing is recorded, and it is not a gate.
+   *
+   * It used to be the first line of this function — `if (!row.heard) return
+   * false` — and it is the reason a learner could finish ten words and be told
+   * they had learned none. `heard` is set from `useEntryAudio`'s `onPlayed`,
+   * which fires only when a clip *actually played*, and on the web a clip
+   * played on arrival at a screen is an autoplay: every desktop browser blocks
+   * it until the page has been interacted with, and some block it for the whole
+   * session. So the rung was not "has the learner heard this" but "did this
+   * browser let the sound out", and a learner who was never allowed to hear
+   * anything could never complete anything. Nothing on any screen said so.
+   *
+   * What is left gates on things the learner actually did — watched the
+   * demonstration, wrote it, recognised it — none of which a browser policy can
+   * silently withhold. `heard` is still recorded and still feeds the review
+   * scheduler; it simply no longer decides whether the work counted.
+   */
   if (rules.demoRequired && !row.demo_seen) return false;
   // One guided pass, whichever guide it was written over. Which one is a
   // presentation choice the learner makes in Settings, not a second rung.

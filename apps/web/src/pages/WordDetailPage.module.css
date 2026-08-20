@@ -145,31 +145,28 @@
   text-wrap: pretty;
 }
 
-.nearby {
+/*
+ * A typed relation, as a row of words.
+ *
+ * Wrapping chips rather than the stacked rows the old "words like this" list
+ * used. Two or three synonyms are a short list of alternatives, not a table:
+ * along one line they read as *also: 밝다, 환하다*, where a full-width row each
+ * made three words look like the main content of the page.
+ */
+.relations {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: var(--hg-space-2);
 }
 
-.nearbyRow {
-  display: flex;
-  align-items: baseline;
-  gap: var(--hg-space-3);
-  width: 100%;
-  min-height: 48px;
-  text-align: start;
-  color: var(--hg-text);
-}
-
-.nearbyWord {
+.relationChip {
   direction: ltr;
-  flex: none;
+  min-height: 44px;
+  padding: var(--hg-space-2) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text);
   font-size: var(--hg-text-body);
   font-weight: var(--hg-weight-bold);
-}
-
-.nearbyMeaning {
-  flex: 1;
-  min-width: 0;
-  font-size: var(--hg-text-caption);
-  color: var(--hg-text-secondary);
 }

@@ -29,7 +29,9 @@ import { resolvePlan, type PracticePlan } from '../domain/plan';
 import { summarise, todaysPractice, type ExerciseMode } from '../domain/review';
 import { canAsk } from '../features/review/exercises';
 import {
+  emptyPlan,
   buildDailyPlan,
+  extendDay,
   completeWord,
   dayProgress,
   planIsCurrent,
@@ -181,17 +183,30 @@ export function LearnerProvider({
       // Nothing above may leave the learner staring at a spinner. A failed
       // hydration means a fresh in-memory profile and a working lesson.
       //
-      // It also means the storage question has been answered, and answered
-      // badly: the profile in memory is the only copy there is. Marked
-      // `checked` so Settings says so, rather than staying silent because the
-      // check never got as far as running.
-      if (!cancelled) {
+      // What it does *not* mean is that this browser cannot save anything.
+      // Hydration reads eight collections, runs the schema migrations and
+      // parses every stored row; one unreadable record, or a migration that
+      // throws, lands here — and this used to answer that by declaring the
+      // learner's storage broken, which put a red warning about losing their
+      // progress under a browser whose IndexedDB was in perfect health. That is
+      // precisely the guess the whole capability path exists to avoid.
+      //
+      // So the storage question goes to the only thing entitled to answer it:
+      // another write/read/erase round trip against the driver, if one was
+      // opened at all. If there is no driver, nothing is known and the screen
+      // stays silent — the warning is for a proven failure, never for an
+      // unanswered question.
+      if (cancelled) return;
+      setReady(true);
+      const driver = driverRef.current;
+      if (!driver) return;
+      void checkPersistence(driver).then((durable) => {
+        if (cancelled) return;
         setState((current) => ({
           ...current,
-          storage: { ...current.storage, durable: false, checked: true },
+          storage: { engine: driver.name, durable, checked: true },
         }));
-        setReady(true);
-      }
+      });
     });
 
     return () => {
@@ -641,11 +656,33 @@ export function LearnerProvider({
    * writing to storage during a render is how a plan ends up saved twice under
    * React's strict mode — and a plan saved twice is a plan whose completed list
    * can be clobbered.
+   *
+   * ## Nothing is built before the store has been read
+   *
+   * `ready` is the whole of the fix for the bug this screen was reported with:
+   * ten words studied, and the counter back at **0 / 10** the next time the app
+   * opened.
+   *
+   * The state this hook sees on the very first render is the *placeholder* —
+   * default settings, no plan, no progress — because hydration is asynchronous
+   * and has not finished. Without the guard, that placeholder produced a brand
+   * new empty plan, the effect below wrote it to storage, and the write raced
+   * the read that was still in flight. When it won, the plan the learner had
+   * spent ten minutes filling in was overwritten by an empty one before they
+   * had touched anything. It never reproduced in a quick click-through, because
+   * whether it happened at all depended on which of two promises settled first.
+   *
+   * So until the store has answered, this hook holds whatever it already has
+   * and writes nothing.
    */
   const vocabularyDay = useMemo<DailyPlan>(() => {
     const now = new Date();
     const stored = state.settings.daily_plan;
     if (planIsCurrent(stored, now) && stored.goal === state.settings.daily_word_goal) return stored;
+    // Before the store has answered, an empty plan for the goal the learner
+    // has — so the card reads `0 / 10` for the moment it takes rather than
+    // flashing `0 / 0` and then jumping.
+    if (!ready) return stored ?? emptyPlan(state.settings.daily_word_goal);
     // A stored plan from an earlier day, or from before the goal changed, is
     // replaced rather than resized: see `planIsCurrent`.
     return buildDailyPlan({
@@ -655,14 +692,10 @@ export function LearnerProvider({
       goal: state.settings.daily_word_goal,
       now,
     });
-  }, [
-    state.settings.daily_plan,
-    state.settings.daily_word_goal,
-    state.progress,
-    state.memory,
-  ]);
+  }, [ready, state.settings.daily_plan, state.settings.daily_word_goal, state.progress, state.memory]);
 
   useEffect(() => {
+    if (!ready) return;
     if (state.settings.daily_plan === vocabularyDay) return;
     setState((prev) => {
       if (prev.settings.daily_plan === vocabularyDay) return prev;
@@ -670,7 +703,7 @@ export function LearnerProvider({
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });
-  }, [vocabularyDay, state.settings.daily_plan]);
+  }, [ready, vocabularyDay, state.settings.daily_plan]);
 
   const vocabularyProgressToday = useMemo(() => dayProgress(vocabularyDay), [vocabularyDay]);
 
@@ -694,18 +727,26 @@ export function LearnerProvider({
    * does not push: a goal that is immediately replaced by another goal is not a
    * goal, and the point of this number is to make starting easy rather than to
    * keep somebody going until they stop.
+   *
+   * It *adds* to the day. It used to rebuild it, which meant tapping the offer
+   * emptied `completed` and answered "you have done ten of ten, would you like
+   * more?" with **0 / 10** — the ten words charged back to the learner for
+   * having asked. The goal does not move either: extra study is extra, so
+   * twelve of a goal of ten reads twelve of ten, not twelve of fifteen.
    */
-  const extendVocabularyDay = useCallback(() => {
+  const extendVocabularyDay = useCallback((extra: number) => {
     setState((prev) => {
-      const now = new Date();
-      const plan = buildDailyPlan({
+      const plan = prev.settings.daily_plan;
+      if (!plan) return prev;
+      const next = extendDay(plan, extra, {
         progress: prev.progress,
         memory: prev.memory,
         corpus: vocabularyByPriority(),
         goal: prev.settings.daily_word_goal,
-        now,
+        now: new Date(),
       });
-      const settings = { ...prev.settings, daily_plan: plan };
+      if (next === plan) return prev;
+      const settings = { ...prev.settings, daily_plan: next };
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });

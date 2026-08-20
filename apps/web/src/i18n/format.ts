@@ -29,6 +29,15 @@ export interface Formatters {
   number: (value: number, options?: Intl.NumberFormatOptions) => string;
   /** A ratio in 0..1 rendered as a percentage: 0.94 → "94%". */
   percent: (ratio: number, fractionDigits?: number) => string;
+  /**
+   * A ratio rendered as a percentage **without** the 0..1 clamp: 1.2 → "120%".
+   *
+   * Separate from `percent` rather than an option on it, because the clamp is
+   * right for everything `percent` is used for — a bar, a completion figure, a
+   * share of a whole — and this is the one place a learner can honestly be past
+   * the whole: extra vocabulary study, where twelve of a goal of ten is 120%.
+   */
+  percentOver: (ratio: number) => string;
   /** "3/5" as a locale-formatted fraction of a whole. */
   fraction: (value: number, total: number) => string;
   date: (value: Date | string, options?: Intl.DateTimeFormatOptions) => string;
@@ -48,6 +57,12 @@ export function useFormatters(): Formatters {
           minimumFractionDigits: fractionDigits,
           maximumFractionDigits: fractionDigits,
         }).format(clamp01(ratio)),
+      percentOver: (ratio) =>
+        formatter(locale, {
+          style: 'percent',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).format(Math.max(0, ratio)),
       fraction: (value, total) => {
         const fmt = formatter(locale, {});
         // A fraction slash rather than a solidus keeps the pair reading as one

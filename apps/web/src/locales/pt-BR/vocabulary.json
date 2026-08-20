@@ -13,12 +13,16 @@
     "completeDetail_one": "Uma palavra aprendida.",
     "completeDetail_many": "{{count}} palavras aprendidas.",
     "completeDetail_other": "{{count}} palavras aprendidas.",
-    "more": "Mais um pouco",
+    "more": "Um pouco mais",
     "allDone": "Nada mais por hoje.",
     "remaining_one": "Falta uma hoje",
     "remaining_many": "Faltam {{count}} hoje",
     "remaining_other": "Faltam {{count}} hoje",
-    "progressAria": "Progresso das palavras de hoje"
+    "progressAria": "Progresso das palavras de hoje",
+    "moreLabel": "Quantas a mais?",
+    "moreCount_one": "mais 1",
+    "moreCount_other": "mais {{count}}",
+    "moreCount_many": "mais {{count}}"
   },
   "browse": {
     "title": "Explorar por tema",
@@ -106,7 +110,8 @@
     "pronunciation": "Pronúncia",
     "definition": "Mais sobre",
     "usage": "Como se usa",
-    "nearby": "Palavras parecidas"
+    "synonyms": "Sinônimos",
+    "antonyms": "Antônimos"
   },
   "saved": {
     "title": "Palavras salvas",

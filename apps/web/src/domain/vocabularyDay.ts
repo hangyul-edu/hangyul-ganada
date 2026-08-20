@@ -102,6 +102,16 @@ export interface DailyPlan {
   completed: string[];
 }
 
+/**
+ * A plan with nothing in it, for the moment before the store has answered.
+ *
+ * `date: ''` matches no calendar day, so `planIsCurrent` rejects it and it can
+ * never be mistaken for today's real plan or written to storage as one.
+ */
+export function emptyPlan(goal: number): DailyPlan {
+  return { date: '', goal, words: [], completed: [] };
+}
+
 /** The daily goals the learner may choose between. Small, and all finishable. */
 export const DAILY_WORD_GOALS = [5, 10, 15, 20] as const;
 
@@ -363,9 +373,12 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
 export interface DayProgress {
   /** Words finished today. The numerator the learner reads. */
   done: number;
-  /** The goal. The denominator. */
+  /** The goal. The denominator, whatever the plan has grown to. */
   total: number;
+  /** `done / total`, capped at 1. What a progress bar is given. */
   ratio: number;
+  /** `done / total` as a whole percentage, **not** capped. 12 of 10 is 120. */
+  percent: number;
   complete: boolean;
   /** How many questions are left. Not shown as a goal; used for "about a minute". */
   stepsLeft: number;
@@ -373,11 +386,25 @@ export interface DayProgress {
 
 export function dayProgress(plan: DailyPlan): DayProgress {
   const done = plan.completed.length;
-  const total = Math.max(plan.goal, plan.words.length);
+  /*
+   * The denominator is the goal, and only the goal.
+   *
+   * It used to be `max(goal, words.length)`, which was right while a plan could
+   * only ever be the goal or shorter, and became wrong the moment a learner
+   * could ask for more words. Growing the denominator with the plan means
+   * finishing ten and adding five reads as *10 / 15* — the learner is further
+   * from their target for having done extra work, and the day they completed
+   * un-completes itself. The number the learner agreed to does not move.
+   */
+  const total = plan.goal;
   return {
     done,
     total,
     ratio: total === 0 ? 1 : Math.min(1, done / total),
+    // Uncapped, so twelve of ten reads 120%. The *bar* uses `ratio` and stops
+    // at full, because a bar that overflows its track is a rendering bug rather
+    // than an achievement.
+    percent: total === 0 ? 100 : Math.round((done / total) * 100),
     // A plan can be shorter than the goal — a learner three days in may not
     // have `goal` words' worth of anything yet. Finishing what there is
     // finishes the day; being told "4 / 10" forever because the corpus ran out
@@ -394,6 +421,35 @@ export function dayProgress(plan: DailyPlan): DayProgress {
  * word counts once towards today whatever happens to the component that
  * reported it.
  */
+/**
+ * Adds a few more words to today, without disturbing what is already on it.
+ *
+ * The second helping, for a learner who finished and wants more. It used to be
+ * done by calling `buildDailyPlan` again, which is how a learner who tapped
+ * *더 학습하기* after finishing ten words was shown **0 / 10**: a fresh plan has
+ * an empty `completed`, so the day they had just finished was thrown away and
+ * charged to them again.
+ *
+ * So this *extends*. `completed` is untouched, `goal` is untouched — the extra
+ * study is extra, not a new target, and the fraction goes on counting against
+ * the number the learner actually chose. Words already on the plan are skipped
+ * rather than duplicated, and the ones added are chosen the same way the day's
+ * own words were.
+ */
+export function extendDay(plan: DailyPlan, extra: number, request: DayRequest): DailyPlan {
+  if (extra <= 0) return plan;
+  const already = new Set(plan.words.map((word) => word.wordId));
+  // Ask for enough that the ones already on the plan can be skipped and there
+  // are still `extra` left. A plan is at most a few dozen words.
+  const candidates = buildDailyPlan({
+    ...request,
+    goal: plan.words.length + extra,
+  }).words.filter((word) => !already.has(word.wordId));
+  const added = candidates.slice(0, extra);
+  if (added.length === 0) return plan;
+  return { ...plan, words: [...plan.words, ...added] };
+}
+
 export function completeWord(plan: DailyPlan, wordId: string): DailyPlan {
   if (plan.completed.includes(wordId)) return plan;
   if (!plan.words.some((word) => word.wordId === wordId)) return plan;
