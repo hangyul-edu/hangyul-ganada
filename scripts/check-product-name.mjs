@@ -74,6 +74,16 @@ const SKIP_DIRS = new Set([
    * the release assembly yet.
    */
   'result',
+  /*
+   * The same argument, for the same reason, one directory along.
+   *
+   * `app_result/` is derived from `result/` by `build-app-result.mjs` and
+   * carries the signing certificate's subject — `CN=Hangyul GaNaDa` — which is
+   * a legal identity fixed at the moment the key was created and is not a name
+   * this project may rewrite. Renaming it would mean a new key, and a new key
+   * is a different app that cannot update the one already installed.
+   */
+  'app_result',
 ]);
 
 /**
