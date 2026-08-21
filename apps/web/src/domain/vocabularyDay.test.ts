@@ -27,6 +27,8 @@ import {
   scheduleSteps,
   stepsFor,
   MIN_WORD_GAP,
+  MATCH_SIZE,
+  MIN_MATCH_SIZE,
 } from './vocabularyDay';
 
 const NOW = new Date('2026-06-02T10:00:00.000Z');
@@ -319,18 +321,78 @@ describe('the sitting', () => {
     const day = plan({ goal: 6 });
     const steps = scheduleSteps(day);
     for (const word of day.words) {
-      const asked = steps.filter((s) => s.wordId === word.wordId).map((s) => s.step);
-      expect(asked).toEqual(word.steps);
+      /*
+       * A word appears in a step either as its owner or as a member of a
+       * matching grid, and a grid belongs to all four of its words equally —
+       * so "this word's steps" is the steps it is *in*, not the steps whose
+       * `wordId` happens to be it.
+       */
+      const asked = steps
+        .filter((s) => (s.group ?? [s.wordId]).includes(word.wordId))
+        .map((s) => s.step);
+      /*
+       * `match` is dropped when too few words reach it to make a grid, which
+       * is the expected outcome at small goals. What must hold is that the
+       * steps a word *did* get are its own, in its own order.
+       */
+      expect(asked).toEqual(word.steps.slice(0, asked.length));
+      expect(word.steps.slice(0, asked.length)).toEqual(asked);
     }
   });
 
-  it('marks exactly one step per word as the one that completes it', () => {
-    const steps = scheduleSteps(plan({ goal: 8 }));
-    const byWord = new Map<string, number>();
+  it('finishes every word exactly once, counting matching grids', () => {
+    const day = plan({ goal: 8 });
+    const steps = scheduleSteps(day);
+    const finished = new Map<string, number>();
     for (const step of steps) {
-      if (step.completesWord) byWord.set(step.wordId, (byWord.get(step.wordId) ?? 0) + 1);
+      for (const id of step.completes) finished.set(id, (finished.get(id) ?? 0) + 1);
     }
-    expect([...byWord.values()].every((n) => n === 1)).toBe(true);
+    // Every word in the plan is finished, and none of them twice — the
+    // invariant a group step is most likely to break in either direction.
+    expect([...finished.values()].every((n) => n === 1)).toBe(true);
+    expect(finished.size).toBe(day.words.length);
+  });
+
+  it('keeps completesWord consistent with completes', () => {
+    for (const goal of [5, 8, 10, 15, 20]) {
+      for (const step of scheduleSteps(plan({ goal }))) {
+        expect(step.completesWord, `goal ${goal} · ${step.wordId} · ${step.step}`).toBe(
+          step.completes.includes(step.wordId),
+        );
+      }
+    }
+  });
+
+  it('builds matching grids out of words the learner has already met', () => {
+    const steps = scheduleSteps(plan({ goal: 20 }));
+    const grids = steps.filter((s) => s.step === 'match');
+    expect(grids.length).toBeGreaterThan(0);
+    for (const [at, grid] of steps.entries()) {
+      if (grid.step !== 'match') continue;
+      expect(grid.group?.length).toBeGreaterThanOrEqual(MIN_MATCH_SIZE);
+      expect(grid.group?.length).toBeLessThanOrEqual(MATCH_SIZE);
+      // No word appears twice in one grid…
+      expect(new Set(grid.group).size).toBe(grid.group!.length);
+      // …and every word in it was introduced earlier in the sitting, so the
+      // grid is a recall exercise rather than four strangers and a guess.
+      for (const id of grid.group!) {
+        const introduced = steps
+          .slice(0, at)
+          .some((earlier) => earlier.wordId === id && earlier.step === 'intro');
+        expect(introduced, `${id} was in a grid before it was introduced`).toBe(true);
+      }
+    }
+  });
+
+  it('never puts the same word in two grids', () => {
+    const seen = new Set<string>();
+    for (const step of scheduleSteps(plan({ goal: 20 }))) {
+      if (step.step !== 'match') continue;
+      for (const id of step.group!) {
+        expect(seen.has(id), `${id} appeared in two grids`).toBe(false);
+        seen.add(id);
+      }
+    }
   });
 
   it('is deterministic, so leaving and returning is not a reshuffle', () => {

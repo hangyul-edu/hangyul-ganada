@@ -20,7 +20,8 @@
     "letters": "Letras",
     "words": "Palabras",
     "lettersCaption": "de las 40 letras del hangul",
-    "wordsCaption": "palabras de hoy"
+    "wordsCaption": "palabras de hoy",
+    "wordsReady": "listo para tus primeras palabras"
   },
   "review": {
     "title": "Repaso",

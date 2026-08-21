@@ -94,6 +94,79 @@ RewriteRule . /index.html [L]
 `/index.html` with a 200 status. Exclude `/assets/*` with a separate cache
 behaviour if you want missing bundles to stay missing.
 
+## Shared, and not indexed
+
+Two goals that pull in opposite directions, and both are configured here rather
+than in application code — a crawler never runs React, so anything set in a
+`useEffect` is invisible to it.
+
+**A shared link must render a card.** `apps/web/index.html` carries the complete
+Open Graph and Twitter set in the file: `og:type`, `og:site_name`, `og:url`,
+`og:title`, `og:description`, `og:image` with its type, width, height and alt
+text, and `twitter:card=summary_large_image` with its own title, description and
+image. Every URL is absolute — a crawler resolves nothing relative.
+
+The preview image is `/brand/og-hangyul-ganada.jpg`, **generated** by
+`scripts/content/build_app_icons.py` from `apps/common_assets/ob/ob image4.jpg`.
+The source is 3200 × 1600, exactly the 2:1 that `summary_large_image` specifies,
+so the build is a straight LANCZOS resample to 1200 × 600 at quality 88 — no
+crop, no letterbox, no stretch, nothing drawn over the artwork. It is
+regenerated rather than referenced in place for two reasons: the source filename
+contains a space, which survives a filesystem and does not reliably survive a
+crawler fetching an absolute URL, and 1.4 MB is a slow fetch for a card that
+renders at 600 px. The generated file is 56 kB. `npm run mobile:icons:check`
+keeps it in step with its source.
+
+**The same URL must not appear in a search result.** The product is a paid
+application, not a content site. The authoritative mechanism is `noindex`, in
+two places:
+
+* `<meta name="robots">` and `<meta name="googlebot">` in `index.html`, both
+  `noindex,nofollow,noarchive,nosnippet,noimageindex`.
+* `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex` as a
+  catch-all response header, in **both** `vercel.json` files. Two, because the
+  project's Root Directory setting decides which one Vercel reads and the other
+  is inert; a header in only the inert one is the same as no header. The
+  header is what covers fetches that never parse HTML.
+
+`robots.txt` **allows** crawling, and that is the part most often got backwards.
+A `Disallow: /` would mean Google never fetches the page, never finds the
+`noindex`, and can still list the bare URL on the strength of a link from
+somewhere else — blocking the crawler is how a URL stays in the index, not how
+it leaves. There is also **no sitemap**, deliberately: a sitemap is an invitation
+to index.
+
+None of the indexing directives affects the preview card. Slack, KakaoTalk,
+Discord, X and Facebook run preview crawlers, not search crawlers; they do not
+consult robots meta or `X-Robots-Tag`. The link is public and shareable and will
+not be found in a search, which is the intended combination.
+
+`npm run share:check` asserts all of it against the **built** `dist`: every tag
+present, the origin absolute, the image actually in the build and actually the
+declared 1200 × 600, both robots tags complete, both Vercel configs carrying the
+header, `robots.txt` free of any `Disallow`, and no `sitemap*.xml` emitted.
+
+### Other hosts
+
+The `X-Robots-Tag` needs its own expression per host. On **nginx**:
+
+```nginx
+add_header X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex" always;
+```
+
+On **Netlify / Cloudflare Pages**, a `_headers` file beside `_redirects`:
+
+```
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+```
+
+Neither is shipped, because Vercel is what `vercel.json` describes and inventing
+configuration for a host nobody has chosen is how a repository accumulates files
+that are never true. The `noindex` meta tags in `index.html` travel with the
+build regardless of host and are sufficient on their own for any crawler that
+parses the page.
+
 ## Caching
 
 One header matters: `sw.js` must not be cached for long, or a released fix is

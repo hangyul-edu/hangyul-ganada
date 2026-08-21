@@ -20,7 +20,8 @@
     "letters": "Mga letra",
     "lettersCaption": "sa 40 letra ng Hangul",
     "words": "Mga salita",
-    "wordsCaption": "mga salita ngayong araw"
+    "wordsCaption": "mga salita ngayong araw",
+    "wordsReady": "handa na sa unang mga salita"
   },
   "review": {
     "title": "Balik-aral",

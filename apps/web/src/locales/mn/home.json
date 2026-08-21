@@ -20,7 +20,8 @@
     "letters": "Үсэг",
     "lettersCaption": "хангылын 40 үсгээс",
     "words": "Үг",
-    "wordsCaption": "өнөөдрийн үгс"
+    "wordsCaption": "өнөөдрийн үгс",
+    "wordsReady": "эхний үгсээ эхлэх цаг"
   },
   "review": {
     "title": "Давталт",

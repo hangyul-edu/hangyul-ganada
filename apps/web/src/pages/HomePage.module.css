@@ -425,3 +425,16 @@
   line-height: 1.5;
   text-wrap: pretty;
 }
+
+/*
+ * The one-line suggestion to try some words, on the card that already exists.
+ *
+ * The accent colour and nothing else — same card, same size, same position, and
+ * the caption slot it was already using. A learner who has just learned enough
+ * letters to read a syllable should be told so once, where they are already
+ * looking, and not with a banner they have to dismiss. See `READY_FOR_WORDS`.
+ */
+.quickSuggest {
+  color: var(--hg-primary);
+  font-weight: var(--hg-weight-medium);
+}

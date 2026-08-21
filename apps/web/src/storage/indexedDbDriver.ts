@@ -194,23 +194,45 @@ function openConnection(dbName: string): Promise<IDBDatabase> {
  * storage, gets a working app backed by memory rather than a blank screen. The
  * caller can tell the difference from `driver.durable` and say so in Settings.
  *
- * ## Why it tries twice
+ * ## Why it keeps trying, and why the waits grow
  *
- * Landing on the memory fallback is not a neutral event: it is what makes
- * Settings tell a learner their practice is not being kept, and it lasts for
- * the rest of that page's life. A single rejected `open` is not enough evidence
+ * Landing on the memory fallback is not a neutral event: the learner's practice
+ * is not written to disk for the rest of that page's life, and — because the
+ * warning only fires on a *proven* write failure, which this is not — it
+ * happens silently. A single rejected `open` is nowhere near enough evidence
  * for that. Chrome rejects it transiently while a previous connection to the
- * same database is still closing — a reload, a back navigation, a second tab —
- * and the app would then warn about a browser that works perfectly and would
- * have worked on the very next attempt. Two attempts, and only then memory.
+ * same database is still closing: a reload, a back navigation, a second tab.
+ *
+ * It used to be two attempts 150 ms apart, and that was measured to be too
+ * few. Running this behaviour's own end-to-end case at six-way parallelism —
+ * six browsers each reloading three times and opening a second tab against the
+ * same database — reproduced the fallback about **once in twelve runs**: the
+ * app reporting `engine: memory` on an ordinary browser with a perfectly good
+ * IndexedDB, having given up 150 ms in. Nothing was shown to the learner, which
+ * is correct; the warning fires only on a proven write failure and this is not
+ * one. The cost is quieter than a warning and worse — that session's practice
+ * is never written to disk.
+ *
+ * Six attempts, waiting 100, 200, 400, 800 and 1,200 ms, was the first schedule
+ * that took the same stress run to 24 of 24. The worst case is 2.7 seconds, it
+ * is only reached when the alternative is losing the session, and it is spent
+ * behind the launch screen — whose own ceiling is four seconds — so the learner
+ * never waits for it.
+ *
+ * A loaded phone reopening the app is the same contention with a slower
+ * processor. That is the case this is really for; the parallel run is how it
+ * was made reproducible.
  */
+const OPEN_BACKOFF_MS = [100, 200, 400, 800, 1200];
+
 export async function openDriver(dbName = DB_NAME): Promise<PersistenceDriver> {
   if (!IndexedDbDriver.available()) return new MemoryDriver();
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+  for (let attempt = 0; attempt <= OPEN_BACKOFF_MS.length; attempt += 1) {
     try {
       return await IndexedDbDriver.open(dbName);
     } catch {
-      if (attempt === 0) await new Promise((resolve) => setTimeout(resolve, 150));
+      const wait = OPEN_BACKOFF_MS[attempt];
+      if (wait !== undefined) await new Promise((resolve) => setTimeout(resolve, wait));
     }
   }
   return new MemoryDriver();

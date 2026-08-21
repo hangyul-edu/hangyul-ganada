@@ -20,7 +20,8 @@
     "letters": "Letters",
     "lettersCaption": "of the 40 Hangul letters",
     "words": "Words",
-    "wordsCaption": "today's words"
+    "wordsCaption": "today's words",
+    "wordsReady": "ready for your first words"
   },
   "review": {
     "title": "Review",

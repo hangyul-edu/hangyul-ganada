@@ -161,6 +161,141 @@ for (const scheme of ['light', 'dark'] as const) {
 
 
 /**
+ * The matching grid, which is the one screen made of two lists that mean each
+ * other.
+ *
+ * It has an accessibility problem no other exercise has: the answer is a
+ * *relationship* between two controls rather than a property of one, and a
+ * screen reader user has to be able to tell which side they are on, which item
+ * is selected, and what has already been paired. Both columns are real buttons
+ * with `aria-pressed` on the selectable side and `disabled` on what is used up,
+ * and the running instruction is in an `aria-live` region — this is what checks
+ * that none of it regressed into a div with a click handler.
+ */
+for (const scheme of ['light', 'dark'] as const) {
+  test(`the matching grid has no WCAG A or AA violations (${scheme})`, async ({ page }) => {
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.goto('/words/today');
+    await expect(page.getByTestId('word-headword')).toBeVisible();
+
+    // Walk the session until the grid comes round. It is scheduled after four
+    // words have been introduced and questioned, so it is a few screens in.
+    for (let step = 0; step < 30; step += 1) {
+      const grid = page.getByRole('group', { name: /Match each word/i });
+      if (await grid.count()) break;
+      const forward = page
+        .locator('button:visible')
+        .filter({ hasText: /Got it|Next|Continue|Finish/i })
+        .first();
+      const options = page
+        .locator('button:visible')
+        .filter({ hasText: /^(?!Show a hint|Save|Skip|Can't use audio).+/ });
+      if (await forward.count()) await forward.click();
+      else if (await options.count()) await options.first().click();
+      else break;
+      await page.waitForTimeout(150);
+    }
+    await expect(page.getByRole('group', { name: /Match each word/i })).toBeVisible();
+
+    const results = await scan(page);
+    expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
+  });
+}
+
+/**
+ * The way past a question made of sound, which is the whole point of it.
+ *
+ * A control that a learner who cannot hear has to find, reach and operate — so
+ * it has to be a real button, reachable by keyboard, and named. A `<span>` with
+ * an `onClick` would look identical and be useless to exactly the person it was
+ * added for.
+ */
+test('the sound-free control on a letter question is a real, reachable button', async ({
+  page,
+}) => {
+  await seedLettersForReview(page);
+  await page.goto('/review');
+
+  /*
+   * The **Listen** practice entry, not a general review.
+   *
+   * Walking a mixed sitting until a heard-only question happens to come round
+   * is a test that depends on the scheduler's order, and it skipped itself for
+   * two runs because the order put `read` and `write` first. The Review screen
+   * offers each mode on its own precisely so a learner can practise one of
+   * them, and picking `Listen` means the very first question is the one under
+   * test. If that entry is not there, this profile has no heard-only question
+   * and the assertion below could not mean anything — which is worth failing
+   * on, not stepping over.
+   */
+  const listen = page.getByRole('button', { name: /^Listen/ });
+  await expect(listen).toBeVisible();
+  await listen.click();
+
+  const escape = page.getByRole('button', { name: /Can't use audio/i });
+  await expect(escape).toBeVisible();
+
+  // Reachable by keyboard, operable by keyboard, and it does what it says.
+  await escape.focus();
+  await expect(escape).toBeFocused();
+  await escape.press('Enter');
+  await expect(page.getByRole('button', { name: /Can't use audio/i })).toHaveCount(0);
+
+  // The clip is gone and a readable prompt has taken its place — the question
+  // is still there to answer rather than skipped.
+  await expect(page.getByRole('group', { name: /Answers/i })).toBeVisible();
+
+  const results = await scan(page);
+  expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
+});
+
+/** A profile with letters learned long enough ago to be due for review. */
+async function seedLettersForReview(page: Page) {
+  await page.goto('/');
+  /*
+   * Wait for the app's own store to be open before writing into it.
+   *
+   * `LearnerProvider` opens the database, reads the profile and then writes
+   * settings back. Seeding before that finishes has the app's own write land
+   * on top of the seed, and the test then runs against an empty profile and
+   * skips itself — which is what it did.
+   */
+  await expect(page.locator('[data-storage-engine]')).toBeVisible();
+  await page.waitForTimeout(500);
+  await page.evaluate(async (letters) => {
+    const db = await new Promise<IDBDatabase>((resolve) => {
+      const request = indexedDB.open('hangyul-ganada');
+      request.onsuccess = () => resolve(request.result);
+    });
+    const old = new Date(Date.now() - 30 * 864e5).toISOString();
+    const tx = db.transaction(['progress', 'memory'], 'readwrite');
+    for (const character of letters) {
+      tx.objectStore('progress').put(
+        {
+          item_key: character, kind: 'character', stage: 'learned', attempts: 6, passes: 5,
+          fails: 1, trace_passes: 2, write_passes: 2, recognition_passes: 2, heard: true,
+          learned: true, needs_review: false, last_score: 0.9, first_seen_at: old,
+          last_attempted_at: old, learned_at: old, review_due_at: null,
+        },
+        `character:${character}`,
+      );
+      for (const skill of ['sound_recognition', 'shape_recognition', 'handwriting']) {
+        tx.objectStore('memory').put(
+          {
+            item_key: `character:${character}`, skill, stability_days: 1.2, difficulty: 0.3,
+            reps: 2, lapses: 0, last_at: old, due_at: old, last_score: 0.85,
+          },
+          `character:${character}:${skill}`,
+        );
+      }
+    }
+    await new Promise<void>((resolve) => {
+      tx.oncomplete = () => resolve();
+    });
+  }, ['ㅏ', 'ㅓ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ']);
+}
+
+/**
  * What a screen reader is handed on the first screen of the first lesson.
  *
  * Written after an actual TalkBack session on the emulator, which is where the

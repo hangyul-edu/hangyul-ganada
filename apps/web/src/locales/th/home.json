@@ -20,7 +20,8 @@
     "letters": "ตัวอักษร",
     "lettersCaption": "จากตัวอักษรฮันกึล 40 ตัว",
     "words": "คำศัพท์",
-    "wordsCaption": "คำของวันนี้"
+    "wordsCaption": "คำของวันนี้",
+    "wordsReady": "พร้อมเรียนคำแรกแล้ว"
   },
   "review": {
     "title": "ทบทวน",

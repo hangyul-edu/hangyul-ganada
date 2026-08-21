@@ -20,7 +20,8 @@
     "letters": "অক্ষর",
     "lettersCaption": "হাঙ্গুলের ৪০টি অক্ষরের মধ্যে",
     "words": "শব্দ",
-    "wordsCaption": "আজকের শব্দ"
+    "wordsCaption": "আজকের শব্দ",
+    "wordsReady": "প্রথম শব্দ শেখার সময়"
   },
   "review": {
     "title": "পুনরালোচনা",

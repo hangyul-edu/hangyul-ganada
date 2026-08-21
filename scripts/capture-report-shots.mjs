@@ -229,13 +229,156 @@ const settle = async (page, ms = 450) => {
 };
 
 const shots = [];
+const skipped = [];
 const shoot = async (page, name) => {
   await page.screenshot({ path: join(OUT, `${name}.png`) });
   shots.push(name);
 };
 
-// --- Tab screens, on a populated profile -------------------------------------
+/**
+ * Runs a block of reference captures, and survives it failing.
+ *
+ * The blocks below are two different kinds of thing and used to be treated as
+ * one. The figures `docs/report.md` embeds are **required**: if one of them
+ * cannot be taken, this script has failed at its job and should say so. The
+ * rest are reference captures of screens nothing links to, kept because they
+ * are occasionally useful to look at.
+ *
+ * Treating the second kind as required is what broke the first kind. A selector
+ * for a screen that had been redesigned threw, the process exited, and every
+ * step after it — including all seven of the report's own figures — silently
+ * stopped being taken. They were two cycles stale before anybody noticed, and
+ * what they were stale *about* was a feature the report says was removed.
+ *
+ * So an optional block that throws is reported and stepped over. The exit code
+ * still reflects it, so it cannot rot unnoticed either — it simply cannot take
+ * the required figures down with it.
+ */
+async function optional(name, run) {
+  try {
+    await run();
+  } catch (error) {
+    skipped.push(`${name}: ${String(error).split('\n')[0]}`);
+  }
+}
+
+/*
+ * The figures `docs/report.md` actually embeds.
+ *
+ * First, and in their own block, for a reason worth stating: everything below
+ * this point is captured for reference and is referenced by nothing, and when
+ * one of *those* steps broke on a stale selector the script stopped before
+ * reaching the seven images the report is built from. They then went two cycles
+ * without being retaken, and Figure 6 spent that time showing two vocabulary
+ * listening questions a few hundred lines under the prose explaining that no
+ * such question can exist.
+ *
+ * A generated figure that nothing regenerates is a screenshot, and a screenshot
+ * in a document that claims to describe the current product is a liability.
+ */
 {
+  const { context, page } = await freshPage();
+
+  await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+  await settle(page, 2600);
+  await shoot(page, 'audit-home');
+
+  // The first lesson: meeting a letter, then writing it. The writing step is
+  // also where the trace guide and the demonstration are compared by eye.
+  await page.getByText('Start now').click();
+  await settle(page, 1400);
+  await page.getByRole('button', { name: /Got it/i }).click();
+  await settle(page, 1800);
+  await shoot(page, 'audit-letter-intro');
+  await page.getByRole('button', { name: /^Write it$/i }).click();
+  await settle(page, 1600);
+  await shoot(page, 'audit-letter-writing');
+
+  // Review on a clean record: an empty state that routes somewhere.
+  await page.goto(`${baseUrl}/review`, { waitUntil: 'networkidle' });
+  await settle(page, 900);
+  await shoot(page, 'audit-review');
+
+  // One word in depth.
+  await page.goto(`${baseUrl}/words/word/word_eomma`, { waitUntil: 'networkidle' });
+  await settle(page, 900);
+  await shoot(page, 'audit-word-detail');
+
+  await context.close();
+}
+
+/*
+ * Six consecutive screens of a first vocabulary sitting, as one figure.
+ *
+ * Composed here rather than assembled by hand afterwards, because the point of
+ * the figure is *what a first session actually contains* — and the version it
+ * replaces was assembled by hand, went stale, and ended up illustrating a
+ * question type the product had removed.
+ */
+{
+  const { context, page } = await freshPage();
+  await page.goto(`${baseUrl}/words/today`, { waitUntil: 'networkidle' });
+  await settle(page, 2600);
+
+  const panels = [];
+  for (let i = 0; i < 6; i += 1) {
+    panels.push((await page.screenshot()).toString('base64'));
+    const forward = page
+      .locator('button:visible')
+      .filter({ hasText: /Got it|Next|Continue|Finish/i })
+      .first();
+    const options = page
+      .locator('button:visible')
+      .filter({ hasText: /^(?!Show a hint|Save|Skip).+/ });
+    if (await forward.count()) await forward.click();
+    else if (await options.count()) await options.first().click();
+    else break;
+    await settle(page, 900);
+  }
+
+  const sheet = await context.newPage();
+  await sheet.setViewportSize({ width: PHONE.width * 3, height: PHONE.height * 2 });
+  await sheet.setContent(
+    `<html><body style="margin:0;background:#fff;display:grid;` +
+      `grid-template-columns:repeat(3,${PHONE.width}px);grid-auto-rows:${PHONE.height}px">` +
+      panels
+        .map(
+          (data) =>
+            `<img src="data:image/png;base64,${data}" ` +
+            `style="width:${PHONE.width}px;height:${PHONE.height}px;display:block">`,
+        )
+        .join('') +
+      '</body></html>',
+  );
+  await sheet.waitForTimeout(600);
+  await sheet.screenshot({ path: join(OUT, 'audit-session-variety.png'), fullPage: true });
+  shots.push('audit-session-variety');
+  await context.close();
+}
+
+/* Dark mode, on the screen with the most surfaces on it. */
+{
+  const context = await browser.newContext({
+    viewport: PHONE,
+    deviceScaleFactor: 2,
+    colorScheme: 'dark',
+  });
+  const page = await context.newPage();
+  await page.goto(`${baseUrl}/me`, { waitUntil: 'networkidle' });
+  await settle(page, 2400);
+  const card = page.locator('button').filter({ hasText: /Sans Serif/ }).first();
+  await card.scrollIntoViewIfNeeded();
+  await settle(page, 400);
+  const box = await card.boundingBox();
+  if (box) await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await settle(page, 500);
+  await shoot(page, 'audit-dark-hover');
+  await context.close();
+}
+
+// --- Tab screens, on a populated profile -------------------------------------
+// Reference captures. Nothing in the report embeds these; see `optional`.
+await optional('tab screens', async () => {
   const { context, page } = await freshPage();
   await seed(page);
   for (const [name, path] of [
@@ -255,16 +398,24 @@ const shoot = async (page, name) => {
   // list of study sets, which is the half of the change worth a picture.
   await page.goto(`${baseUrl}/words`, { waitUntil: 'networkidle' });
   await settle(page);
-  await page.getByRole('button', { name: /Animals & Nature/ }).first().click();
+  // A link, not a button. The category tiles became `<Link to="/words/category/…">`
+  // when categories got their own route, and this selector went on asking for a
+  // button — which is why the whole script stopped completing, and why the
+  // `audit-*` figures the report embeds went two cycles without being retaken.
+  await page.getByRole('link', { name: /Animals & Nature/ }).first().click();
   await settle(page, 500);
   await shoot(page, 'words-category');
 
-  // The picker sheet.
-  await page.goto(`${baseUrl}/words`, { waitUntil: 'networkidle' });
-  await settle(page);
-  await page.getByRole('button', { name: /^Category/ }).click();
-  await page.waitForTimeout(500);
-  await shoot(page, 'words-picker');
+  /*
+   * The category picker sheet used to be captured here and is not any more.
+   *
+   * There is no picker: `/words` lists the categories directly and each one is
+   * a link to its own route. The step sat here asking for a `Category` button
+   * long after the button was removed, and because it threw, everything below
+   * it — including, until this pass, the figures the report embeds — was never
+   * reached. A capture step for a screen that no longer exists is deleted, not
+   * left to fail.
+   */
 
   // The calendar and the insights, further down the activity page.
   await page.goto(`${baseUrl}/me/activity`, { waitUntil: 'networkidle' });
@@ -337,10 +488,10 @@ const shoot = async (page, name) => {
   shots.push('font-picker');
 
   await context.close();
-}
+});
 
 // --- The first-run screens, on an empty profile ------------------------------
-{
+await optional('first-run screens', async () => {
   const { context, page } = await freshPage();
   await page.goto(`${baseUrl}/me/activity`, { waitUntil: 'networkidle' });
   await settle(page);
@@ -409,10 +560,10 @@ const shoot = async (page, name) => {
   }
 
   await context.close();
-}
+});
 
 // --- Dark appearance, on the two screens it most has to be right on ----------
-{
+await optional('dark appearance', async () => {
   const context = await browser.newContext({
     viewport: PHONE,
     deviceScaleFactor: 2,
@@ -437,7 +588,18 @@ const shoot = async (page, name) => {
   await shoot(page, 'character-intro-dark');
 
   await context.close();
-}
+});
 
 await browser.close();
 console.log(`wrote ${shots.length} screenshots to docs/report-assets:\n  ${shots.join('\n  ')}`);
+
+if (skipped.length > 0) {
+  console.error(`\n${skipped.length} reference block(s) could not be captured:`);
+  for (const line of skipped) console.error(`  ${line}`);
+  console.error(
+    '\nThe figures the report embeds were taken. These are reference captures of\n' +
+      'screens nothing links to — fix the selector or delete the step, but do not\n' +
+      'leave it failing.',
+  );
+  process.exitCode = 1;
+}

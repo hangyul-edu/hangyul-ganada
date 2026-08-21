@@ -127,6 +127,13 @@ export interface EvaluationConfig {
    * before it can count as an added stroke at all.
    */
   blotReachMultiplier: number;
+  /**
+   * How far an *unwritten* piece is eroded, as a multiple of the tolerance
+   * radius, before the largest remaining piece counts as a missing stroke.
+   * The mirror of `blotErosionRatio`: erases the rim the pen cannot reach along
+   * the edge of a thick reference stroke, and keeps a whole absent stroke.
+   */
+  gapErosionRatio: number;
   /** Weight of the outside-stroke term. */
   outsideWeight: number;
   /** Weight of the missing-coverage term. */

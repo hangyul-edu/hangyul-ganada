@@ -1,0 +1,25 @@
+# Hangyul ganada — crawling is ALLOWED, indexing is NOT.
+#
+# That distinction is the whole point of this file, and getting it backwards is
+# the common mistake.
+#
+# The product should not appear in search results. The authoritative way to say
+# so is the `noindex` robots meta tag in `index.html` and the matching
+# `X-Robots-Tag` response header in `vercel.json`. Both live *in the response* —
+# which means a crawler has to be allowed to fetch the page before it can find
+# out that it must not index it.
+#
+# A `Disallow: /` here would do the opposite of what it looks like. Google would
+# never fetch the page, never see the `noindex`, and could still list the bare
+# URL on the strength of a link to it from somewhere else — the "no information
+# is available for this page" result. Blocking the crawler is how a URL stays in
+# the index, not how it leaves.
+#
+# So: everything is allowed, nothing is indexed, and there is no sitemap —
+# deliberately. A sitemap is an invitation to index, and this product is not
+# inviting one. The link is meant to be shared in a message, and the Open Graph
+# card that renders when it is has nothing to do with any of the above: preview
+# crawlers do not read robots directives.
+
+User-agent: *
+Allow: /

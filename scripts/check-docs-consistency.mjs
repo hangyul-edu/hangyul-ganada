@@ -184,12 +184,21 @@ const METRICS = {
   unitTests: {
     value: countVitest('apps/web'),
     what: 'web unit test cases',
-    patterns: [/\|\s*Web unit \(`vitest`\)\s*\|\s*([\d,]+)\s*\|/g],
+    /*
+     * `**671** (39 files)` as well as a bare `671`.
+     *
+     * The original pattern required the cell to contain the number and nothing
+     * else, and the report has emphasised its headline figures and annotated
+     * them with the file count since before this check existed. So it matched
+     * nothing, reported "not stated anywhere", and passed — while the cell it
+     * could not see said 664 against an actual 671, for two cycles.
+     */
+    patterns: [/\|\s*Web unit \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g],
   },
   handwritingTests: {
     value: countVitest('packages/handwriting-core'),
     what: 'handwriting-core test cases',
-    patterns: [/\|\s*Handwriting core \(`vitest`\)\s*\|\s*([\d,]+)\s*\|/g],
+    patterns: [/\|\s*Handwriting core \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g],
   },
   e2eTests: {
     value: playwright?.total ?? null,
@@ -230,12 +239,23 @@ const METRICS = {
   apkMegabytes: {
     value: megabytes('.apk'),
     what: 'signed release APK, MB',
-    patterns: [/`app-release\.apk` \(([\d.]+) MB\)/g, /\|\s*Release APK\s*\|\s*([\d.]+) MB/g],
+    /*
+     * Both the filename the artefact has had over time and both table labels
+     * the report has used for it. A figure that moves between two spellings of
+     * its own row heading is exactly what this check is for.
+     */
+    patterns: [
+      /`(?:app|hangyul-ganada)-release\.apk` \(([\d.]+) MB\)/g,
+      /\|\s*(?:Release|Signed) APK[^|]*\|\s*\*{0,2}([\d.]+)\*{0,2}\s*MB/g,
+    ],
   },
   aabMegabytes: {
     value: megabytes('.aab'),
     what: 'release AAB, MB',
-    patterns: [/`app-release\.aab` \(([\d.]+) MB\)/g, /\|\s*Release AAB\s*\|\s*([\d.]+) MB/g],
+    patterns: [
+      /`(?:app|hangyul-ganada)-release\.aab` \(([\d.]+) MB\)/g,
+      /\|\s*(?:Release|Signed) AAB[^|]*\|\s*\*{0,2}([\d.]+)\*{0,2}\s*MB/g,
+    ],
   },
 };
 
@@ -282,16 +302,40 @@ for (const [name, metric] of Object.entries(METRICS)) {
       }
     }
   }
-  const where = found.length === 0 ? 'not stated anywhere' : `${found.length} mention(s)`;
+  /*
+   * A metric nothing states is a metric nothing is guarding.
+   *
+   * This used to print `not stated anywhere` and pass, and it did so for four
+   * of the thirteen figures at once — the web and handwriting test counts and
+   * the APK and AAB sizes — every one of which *was* written in the report. The
+   * patterns simply did not match the cell they were in. So the check ended
+   * with "No document states two different current values", which was true and
+   * read as "every figure agrees", and meanwhile §2.3 said 664 unit tests
+   * against an actual 671 and nothing noticed for two cycles.
+   *
+   * A figure that has drifted and a figure the matcher cannot see are the same
+   * failure from the reader's point of view: the number in the document is
+   * unchecked. So an unmatched metric is now a problem, and the fix for it is
+   * either to state the figure in a shape the pattern recognises or to stop
+   * tracking it — both of which are decisions somebody should make on purpose.
+   */
+  if (found.length === 0) {
+    problems.push(
+      `${name} = ${canonical} (${metric.what}) is tracked but appears in no document.\n` +
+        '    Either state it where a pattern can find it, or remove it from METRICS.',
+    );
+  }
+  const where = found.length === 0 ? '**not stated anywhere**' : `${found.length} mention(s)`;
+  const ok = found.length > 0 && !found.some((f) => f.claimed !== canonical);
   console.log(
-    `${found.some((f) => f.claimed !== canonical) ? '✗' : '✓'} ${name.padEnd(14)} ${String(canonical).padStart(7)}  ${metric.what} — ${where}`,
+    `${ok ? '✓' : '✗'} ${name.padEnd(14)} ${String(canonical).padStart(7)}  ${metric.what} — ${where}`,
   );
 }
 
 console.log(`\n${checked} figure(s) checked across ${DOCUMENTS.filter(exists).length} document(s).`);
 
 if (problems.length > 0) {
-  console.error(`\n${problems.length} contradiction(s):\n`);
+  console.error(`\n${problems.length} problem(s):\n`);
   for (const problem of problems) console.error(`  ${problem}`);
   if (check) {
     console.error('\nDocumentation follows implementation. Update the document, not the corpus.');

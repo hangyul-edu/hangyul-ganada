@@ -20,7 +20,8 @@
     "letters": "Litere",
     "lettersCaption": "din cele 40 de litere hangul",
     "words": "Cuvinte",
-    "wordsCaption": "cuvintele de azi"
+    "wordsCaption": "cuvintele de azi",
+    "wordsReady": "gata pentru primele cuvinte"
   },
   "review": {
     "title": "Recapitulare",

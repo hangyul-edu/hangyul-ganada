@@ -118,10 +118,37 @@ describe('the wrong character fails', () => {
 });
 
 describe('placement and size fail outside the window', () => {
+  /*
+   * Ten pixels, not seven, and the change is deliberate.
+   *
+   * Seven pixels at this resolution is 5.5% of the writing box, against a free
+   * slack of 5.1px — a correctly written 가 nudged barely past the tolerance
+   * band. It used to fail, and it failed on the *structural* gap term rather
+   * than on the graded means: a displaced glyph leaves a thin rim of unwritten
+   * reference along one edge of every stroke, that rim is connected, and
+   * `largestComponentSize` counted the whole of it as one missing piece.
+   *
+   * `GAP_EROSION_RATIO` erases rims, because a rim the learner's pen cannot
+   * cover is not a stroke they failed to write — see the note on it. The
+   * side effect is that this shift is now carried by the means alone, which
+   * charge it gently, and it passes.
+   *
+   * That is the right answer for a beginner product. A learner who writes the
+   * character correctly and lands it 5% left of centre has written the
+   * character; telling them they have not is the false rejection this whole
+   * recalibration exists to remove. Ten and sixteen pixels still fail, and the
+   * corpus measures the trade at full scale: false rejection 0.28%, false
+   * acceptance 0.28%, against 0.21% and 0.78% before.
+   */
   it('rejects writing well off-centre', () => {
-    for (const d of [7, 10, 16]) {
+    for (const d of [10, 16]) {
       expect(evaluateMasks(shiftMask(ga, d, 0), ga).passed, `${d}px`).toBe(false);
     }
+  });
+
+  it('forgives a small displacement, which is a hand and not a mistake', () => {
+    expect(evaluateMasks(shiftMask(ga, 5, 0), ga).passed, '5px').toBe(true);
+    expect(evaluateMasks(shiftMask(ga, 7, 0), ga).passed, '7px').toBe(true);
   });
 
   it('rejects writing far too small or too large', () => {

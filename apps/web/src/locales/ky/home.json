@@ -20,7 +20,8 @@
     "letters": "Тамгалар",
     "lettersCaption": "хангылдын 40 тамгасынын ичинен",
     "words": "Сөздөр",
-    "wordsCaption": "бүгүнкү сөздөр"
+    "wordsCaption": "бүгүнкү сөздөр",
+    "wordsReady": "биринчи сөздөргө даярсыз"
   },
   "review": {
     "title": "Кайталоо",

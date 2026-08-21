@@ -20,7 +20,8 @@
     "letters": "文字",
     "words": "単語",
     "lettersCaption": "ハングル40字のうち",
-    "wordsCaption": "今日の単語"
+    "wordsCaption": "今日の単語",
+    "wordsReady": "はじめての単語へ"
   },
   "review": {
     "title": "復習",

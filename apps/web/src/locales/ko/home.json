@@ -20,7 +20,8 @@
     "letters": "낱자",
     "words": "낱말",
     "lettersCaption": "한글 40자 중",
-    "wordsCaption": "오늘의 어휘"
+    "wordsCaption": "오늘의 어휘",
+    "wordsReady": "이제 첫 낱말을 시작해 보세요"
   },
   "review": {
     "title": "복습하기",

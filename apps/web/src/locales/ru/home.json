@@ -20,7 +20,8 @@
     "letters": "Буквы",
     "lettersCaption": "из 40 букв хангыля",
     "words": "Слова",
-    "wordsCaption": "слова на сегодня"
+    "wordsCaption": "слова на сегодня",
+    "wordsReady": "пора для первых слов"
   },
   "review": {
     "title": "Повторение",

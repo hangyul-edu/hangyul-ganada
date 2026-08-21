@@ -18,26 +18,54 @@ import type { GlyphSpec } from '@hangyul-ganada/handwriting-core';
  * the guide filled the box while the mask stayed where it was. One function
  * now, and both call it.
  *
- * ## Why the glyph is not resized to match the demonstration
+ * ## The glyph is fitted, and the grader was recalibrated for it
  *
- * It is tempting, and it was tried. `data/strokeVectors` draws a single letter
- * filling 0.84 of its box; Pretendard sets an isolated ㄱ at about half its em
- * and sits it high, so the guide draws the same letter at roughly 0.53 × 0.42,
- * eight per cent above centre. Two sizes of one letter on one screen.
+ * It used to be drawn at a fixed **em** size, which is a typographic container
+ * and not the marks inside it. Pretendard sets an isolated ㄱ at about half its
+ * em and sits it high; ㅏ at a fifth of its em and slightly right of centre. So
+ * every letter landed at a different size in a different place inside the
+ * square, and differently again for each of the six practice faces. Measured on
+ * the running app, the ㅏ a learner traced filled 0.228 x 0.672 of the writing
+ * box and sat 5.6% right and 4% above the crosshair drawn through the middle of
+ * it, while the demonstration of the same letter two inches below filled 0.251
+ * x 0.840 and was dead centre.
  *
- * Scaling the glyph up to 0.84 fixes the look and breaks the grading, because
- * it scales the glyph's *stroke* too. The learner's pen is one fixed width —
- * 0.062 of the box, whatever face is selected — and at the face's own em size
- * the reference stroke lands near 0.057, which is why the coverage terms in
- * `config.ts` calibrate as well as they do. Enlarged, the reference stroke
- * becomes about 0.090: half again as wide as the pen, so an honest attempt no
- * longer covers its target. Measured on the robustness corpus, false rejections
- * went from 0.21% to 21% — one correct letter in five told it was wrong.
+ * `fitGlyph` now measures the drawn ink and solves for the size and origin that
+ * centre it and bring its long edge to `GLYPH_INK_EXTENT`, capped at
+ * `MAX_FIT_SCALE`. Both the visible guide and the invisible evaluation mask go
+ * through `drawGlyph`, so they move together and a learner is still graded
+ * against exactly the shape they traced.
  *
- * The two therefore still differ in size, and the fix is not a bigger glyph but
- * a grading model that does not measure coverage against a stroke the pen
- * cannot fill. That is its own piece of work with its own calibration, and it
- * is recorded as an open issue rather than half-done here.
+ * ## What made this hard, and what changed
+ *
+ * A font's stroke width is not independent of its size. Scaling a compact
+ * letter up thickens its strokes past the learner's fixed 0.062 pen, and the
+ * evaluator then reads a perfectly traced stroke as one with a hollow down the
+ * middle. The first attempt at this took false rejection from 0.21% to 21% and
+ * was reverted, and this file recorded that the real fix was "a grading model
+ * that does not measure coverage against a stroke the pen cannot fill".
+ *
+ * That is what `GAP_EROSION_RATIO` is. The uncovered rim along a too-wide
+ * stroke is connected and letter-long, so the structural gap term counted it as
+ * one enormous missing piece; eroding it away before that term runs is the same
+ * argument the *blot* term had already made in the other direction, and it was
+ * simply missing on this side. Measured across 2,880 genuine attempts and 2,172
+ * wrong ones on all six faces, the pair together move the product from
+ *
+ *     0.21% false reject / 0.78% false accept   (fixed em, no gap erosion)
+ *
+ * to
+ *
+ *     0.28% false reject / 0.28% false accept   (fitted glyph, 0.75 erosion)
+ *
+ * with Pretendard — the default face, and the one almost every learner writes
+ * against — improving on both: 1.04% / 0.55% to 0.42% / 0.00%. The full sweep
+ * is in the note on `GAP_EROSION_RATIO`.
+ *
+ * The guide and the demonstration are still not pixel-identical, and they
+ * should not be: one is a typeface and one is authored instructional geometry.
+ * They are now the same size and in the same place, which is the part a learner
+ * could see.
  */
 export function glyphSpecFor(
   character: string,

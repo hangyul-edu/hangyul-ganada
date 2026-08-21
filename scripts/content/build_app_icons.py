@@ -54,7 +54,8 @@ import io
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw
+import numpy
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[2]
 BRAND = ROOT / "apps" / "web" / "public" / "brand"
@@ -70,27 +71,52 @@ APP_ICON_SOURCE = BRAND / "app-icon.png"
 #: note above on why it is not the app icon.
 MARK_SOURCE = BRAND / "logo-symbol.png"
 
-#: The launch screen — the brand splash artwork itself.
+#: The launch screen — the brand artwork with the words taken out of it.
 #:
-#: The app shows the same picture in the WebView a moment later
-#: (`ui/LaunchSplash`), so the two have to be the same picture on the same
-#: ground or the handover is a cut from one brand screen to a different one.
+#: The OS draws this before any of the app's code runs, which means it runs
+#: before anything knows what language the learner reads. The app's own splash
+#: (`ui/LaunchSplash`) does know, and shows 한귤 to a Korean learner and
+#: *Han gyul* to everyone else a frame or two later.
 #:
-#: This used to be `handoff-frame.png`, a still lifted from the splash
-#: *animation* — the ground and one soft circle, no wordmark — chosen precisely
-#: because it said nothing that could be in the wrong language. There is no
-#: animation any more and no frame zero to hand over from, so the native screen
-#: shows the finished artwork like everything else does.
+#: So the native bitmap must not say anything. It carried the English artwork
+#: for one release and the cost was visible: a Korean learner opening the app
+#: saw *Han gyul — Like a slice of tangerine, one letter a day* in English, and
+#: then watched it be replaced by the Korean wordmark. Two languages, one
+#: launch. Guessing from the device locale would be wrong for anyone who has
+#: ever changed the setting, and there is nothing else to guess from.
 #:
-#: The English one, for every device. A native launch screen runs before any of
-#: the app's code, and the learner's chosen interface language lives in the
-#: app's own storage where only the WebView can read it — so nothing at this
-#: point knows whether to draw 한귤 or Han gyul. Device locale is a different
-#: question from interface language and guessing with it is wrong for anyone who
-#: has ever changed the setting. The in-app splash *does* know, and takes over
-#: within a frame or two on this same ground, so a Korean learner sees the
-#: Korean wordmark — just not from the very first millisecond.
+#: An earlier design handed over on `handoff-frame.png`, a still lifted from the
+#: splash *animation* — the ground and one soft circle, no wordmark — chosen for
+#: exactly this reason. There is no animation any more and so no frame to lift,
+#: which is how the English one got here. `_wordless` rebuilds the equivalent
+#: from the still instead. See its docstring.
 SPLASH_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "splash_eng.png"
+
+#: The social-sharing preview, and the one asset here that is not a mark.
+#:
+#: `apps/common_assets/ob/ob image4.jpg` is the brand's own key visual — the
+#: wordmark, the line, and a phone showing the actual product. It is 3200 x 1600,
+#: which is exactly the 2:1 that `twitter:card=summary_large_image` specifies and
+#: close enough to Open Graph's preferred 1.91:1 that no crop is needed. So this
+#: is a straight resample: no crop, no letterbox, no stretch, and nothing drawn
+#: over the artwork.
+#:
+#: It is regenerated rather than copied for two reasons. The source filename has
+#: a space in it, which survives a filesystem and does not reliably survive a
+#: crawler fetching an absolute URL; and a 1.4 MB JPEG is a slow first fetch for
+#: a preview card that renders at 600 px wide. The generated file is one
+#: deterministic, web-safe name at a sensible size.
+SHARE_SOURCE = ROOT / "apps" / "common_assets" / "ob" / "ob image4.jpg"
+
+#: The generated preview. Width and height are declared in the HTML as
+#: `og:image:width` / `og:image:height`, so these two numbers and those two tags
+#: have to agree; `--check` is what keeps them agreeing.
+SHARE_SIZE = (1200, 600)
+
+#: JPEG quality for the preview. 88 with 4:2:0 chroma keeps the wordmark and the
+#: phone's UI text crisp at the size a card actually renders, and lands well
+#: under the 1 MB that some crawlers stop reading at.
+SHARE_QUALITY = 88
 
 #: `warm.50` from the design tokens. Kept in sync by `--check` failing loudly if
 #: the tokens move: the icons are regenerated, not patched.
@@ -132,6 +158,19 @@ MONOCHROME_INK_MAX = 215
 #: It was #FFF6E9 while the source was frame zero of the animation. Same
 #: sampling, new picture.
 SPLASH_GROUND = (255, 241, 225, 255)
+
+#: The vertical slice of the artwork the copy occupies, as fractions of height.
+#: Wide enough to hold the wordmark and the line under it, narrow enough to
+#: exclude every decorative jamo. See `_wordless`.
+TEXT_BAND = (0.40, 0.66)
+
+#: Dilation, in px, applied to the text mask before repainting. Covers the
+#: antialiased edge of a glyph, which is neither ink nor ground.
+TEXT_DILATE = 21
+
+#: Blur radius applied inside the repainted area only, to take the ring
+#: quantisation out of the reconstructed gradient.
+TEXT_BLUR = 9
 
 #: Launcher icon sizes, in px, by Android density bucket.
 ANDROID_DENSITIES = {
@@ -224,6 +263,98 @@ def _cover(art: Image.Image, size: tuple[int, int],
     canvas = Image.new("RGBA", size, ground)
     canvas.alpha_composite(scaled.crop((left, top, left + width, top + height)))
     return canvas
+
+
+def _wordless(art: Image.Image) -> Image.Image:
+    """`art` with the wordmark and the tagline painted out.
+
+    The result is what the OS launch screen shows: the brand's ground, its
+    radial wash, its soft centre circle and its scattered jamo, and no type in
+    any language. See the note on `SPLASH_SOURCE` for why that matters.
+
+    ## How the type is found
+
+    By colour, inside the band it lives in. The wordmark is the brand's
+    saturated orange and the line under it is near-black, and nothing else in
+    the middle third of the artwork is either — the decorative jamo are muted
+    orange, brown, yellow and cream, and every one of them sits outside the
+    band. Restricting to `TEXT_BAND` is what keeps them: a colour test alone
+    would take the brown ㅜ at the bottom right with it.
+
+    The mask is then dilated, because a glyph's antialiased edge is neither the
+    ink colour nor the ground and would otherwise survive as a faint outline of
+    the word that was removed.
+
+    ## How the hole is filled
+
+    The artwork under the type is a radial gradient about the centre of the
+    canvas — warm in the middle, pale at the edges — so a pixel's colour is very
+    nearly a function of its distance from that centre alone. For each integer
+    radius this takes the **median** of every pixel at that distance that is not
+    masked, and paints the masked pixels with it.
+
+    Median rather than mean, because the jamo and the small white dots cross
+    most of the rings and would drag an average off the wash by several units —
+    visible, on a gradient this smooth, as a bruise where the word used to be.
+    A median ignores them as long as they are a minority of the ring, which they
+    are everywhere.
+
+    The repaired area is finally blurred *into itself* — composited through the
+    same mask, so nothing outside it moves. Rings are quantised to whole pixels
+    and a gradient reconstructed from them prints faint concentric banding; nine
+    pixels of blur is below the artwork's own gradient and above the banding.
+    """
+    pixels = numpy.asarray(art.convert("RGB"), dtype=numpy.float64)
+    height, width, _ = pixels.shape
+    red, green, blue = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
+
+    wordmark = (red > 200) & (green < 140) & (blue < 90)
+    tagline = (red < 120) & (green < 120) & (blue < 120)
+    text = wordmark | tagline
+    band = numpy.zeros_like(text)
+    band[int(TEXT_BAND[0] * height) : int(TEXT_BAND[1] * height), :] = True
+    text &= band
+
+    mask = numpy.asarray(
+        Image.fromarray((text * 255).astype(numpy.uint8)).filter(
+            ImageFilter.MaxFilter(TEXT_DILATE)
+        )
+    ) > 0
+    if not mask.any():
+        raise SystemExit(
+            f"{SPLASH_SOURCE.name}: found no wordmark to remove. The artwork changed; "
+            "re-check the colour tests in _wordless before trusting this output."
+        )
+
+    rows, columns = numpy.mgrid[0:height, 0:width]
+    radius = numpy.sqrt(
+        (rows - height / 2.0) ** 2 + (columns - width / 2.0) ** 2
+    ).astype(numpy.int32)
+    known = ~mask
+    repaired = pixels.copy()
+
+    for channel in range(3):
+        values = pixels[:, :, channel]
+        order = numpy.argsort(radius[known].ravel(), kind="stable")
+        by_radius = radius[known].ravel()[order]
+        sorted_values = values[known].ravel()[order]
+        edges = numpy.searchsorted(by_radius, numpy.arange(radius.max() + 2))
+        ring = numpy.full(radius.max() + 1, numpy.nan)
+        for step in range(ring.size):
+            low, high = edges[step], edges[step + 1]
+            if high > low:
+                ring[step] = numpy.median(sorted_values[low:high])
+        index = numpy.arange(ring.size)
+        present = ~numpy.isnan(ring)
+        ring = numpy.interp(index, index[present], ring[present])
+        repaired[:, :, channel][mask] = ring[radius[mask]]
+
+    flat = Image.fromarray(numpy.clip(repaired, 0, 255).astype(numpy.uint8))
+    return Image.composite(
+        flat.filter(ImageFilter.GaussianBlur(TEXT_BLUR)),
+        flat,
+        Image.fromarray((mask * 255).astype(numpy.uint8)),
+    ).convert("RGBA")
 
 
 def _extend(art: Image.Image, size: tuple[int, int]) -> Image.Image:
@@ -344,7 +475,7 @@ def build() -> dict[Path, bytes]:
         files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_monochrome.png"] = _png(themed)
 
     # --- Android legacy splash ----------------------------------------------
-    splash_art = Image.open(SPLASH_SOURCE).convert("RGBA")
+    splash_art = _wordless(Image.open(SPLASH_SOURCE))
     for directory, size in ANDROID_SPLASH.items():
         files[ANDROID_RES / directory / "splash.png"] = _png(
             _launch_bitmap(splash_art, size, SPLASH_GROUND)
@@ -394,6 +525,22 @@ def build() -> dict[Path, bytes]:
     largest = _centred(mark, (256, 256), 0.94, None)
     largest.save(buffer, "ICO", sizes=[(size, size) for size in FAVICON_SIZES])
     files[WEB_PUBLIC / "favicon.ico"] = buffer.getvalue()
+
+    # --- The social-sharing preview -------------------------------------------
+    # Straight resample of the brand key visual. See the note on `SHARE_SOURCE`
+    # for why it is regenerated rather than referenced where it lies.
+    share = Image.open(SHARE_SOURCE).convert("RGB")
+    if share.width / share.height != SHARE_SIZE[0] / SHARE_SIZE[1]:
+        raise SystemExit(
+            f"{SHARE_SOURCE.name} is {share.width}x{share.height}; the preview is "
+            f"{SHARE_SIZE[0]}x{SHARE_SIZE[1]} and this step does not crop. Re-export "
+            "the source at the same aspect ratio, or decide here what to lose."
+        )
+    buffer = io.BytesIO()
+    share.resize(SHARE_SIZE, Image.LANCZOS).save(
+        buffer, "JPEG", quality=SHARE_QUALITY, optimize=True, progressive=True
+    )
+    files[BRAND / "og-hangyul-ganada.jpg"] = buffer.getvalue()
 
     # --- Store artwork ---------------------------------------------------------
     # The same icon a phone shows, at the sizes the two consoles ask to upload,

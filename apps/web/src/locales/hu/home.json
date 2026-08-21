@@ -20,7 +20,8 @@
     "letters": "Betűk",
     "lettersCaption": "a 40 hangul betűből",
     "words": "Szavak",
-    "wordsCaption": "a mai szavak"
+    "wordsCaption": "a mai szavak",
+    "wordsReady": "jöhetnek az első szavak"
   },
   "review": {
     "title": "Ismétlés",

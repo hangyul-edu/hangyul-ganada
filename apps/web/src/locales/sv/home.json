@@ -20,7 +20,8 @@
     "letters": "Bokstäver",
     "lettersCaption": "av hanguls 40 bokstäver",
     "words": "Ord",
-    "wordsCaption": "dagens ord"
+    "wordsCaption": "dagens ord",
+    "wordsReady": "dags för dina första ord"
   },
   "review": {
     "title": "Repetera",

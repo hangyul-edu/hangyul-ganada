@@ -72,7 +72,8 @@
  * layout for anything not in the table — a syllable the curriculum adds later
  * still composes, it just composes from the average until this is re-run.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -112,6 +113,52 @@ const structures = Object.fromEntries(
     ];
   }),
 );
+
+/**
+ * A preview server, if nothing is already listening.
+ *
+ * This script measures the *shipped* face by rendering it in a browser, so it
+ * needs the built app served — and for two cycles that requirement is the only
+ * reason it was not on the release gate. Every other check runs from a bare
+ * checkout; this one printed a connection error unless somebody had remembered
+ * to start `vite preview` on this exact port first, so it was left out of
+ * `verify:release` and the composition table went unguarded.
+ *
+ * A check that cannot be run unattended is a check that does not run. It now
+ * starts its own server when the port is free, and reuses one when it is not,
+ * so an interactive run against an already-open preview costs nothing.
+ */
+async function listening() {
+  try {
+    const response = await fetch(`http://127.0.0.1:${PORT}/`, { method: 'HEAD' });
+    return response.ok || response.status === 404;
+  } catch {
+    return false;
+  }
+}
+
+let preview = null;
+if (!(await listening())) {
+  const dist = join(here, '..', 'apps', 'web', 'dist');
+  if (!existsSync(join(dist, 'index.html'))) {
+    throw new Error(
+      `nothing is serving :${PORT} and apps/web/dist is not built. Run \`npm run build\` first.`,
+    );
+  }
+  preview = spawn(
+    'npx',
+    ['vite', 'preview', '--port', String(PORT), '--strictPort'],
+    { cwd: join(here, '..', 'apps', 'web'), stdio: 'ignore', detached: false },
+  );
+  const deadline = Date.now() + 30_000;
+  while (!(await listening())) {
+    if (Date.now() > deadline) {
+      preview.kill();
+      throw new Error(`vite preview did not come up on :${PORT} within 30s`);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+}
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
@@ -559,6 +606,7 @@ const measured = await page.evaluate(
 );
 
 await browser.close();
+preview?.kill();
 
 const missing = syllables.filter((syllable) => !measured[syllable]);
 /**

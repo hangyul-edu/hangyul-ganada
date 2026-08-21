@@ -99,12 +99,17 @@ const config: CapacitorConfig = {
        * written out three times because neither Gradle nor a Capacitor config
        * can import from the web workspace.
        *
-       * The artwork is English on both platforms and that is not an oversight:
-       * the learner's interface language lives in the app's own storage, which
-       * only the WebView can read, so nothing running this early knows it. The
-       * in-app splash does know, and it takes over on the same ground within a
-       * frame or two — so a Korean learner sees the Korean wordmark, just not
-       * from the very first millisecond.
+       * The bitmap carries **no words in any language**, and that is the point.
+       * Nothing running this early can know the learner's interface language —
+       * it lives in the app's own storage and only the WebView can read it —
+       * and the device locale is a different question that would be wrong for
+       * anyone who has ever changed the setting. For one release this shipped
+       * the English artwork and the cost was a Korean learner reading *Han
+       * gyul* in English and then watching it be replaced. `_wordless` in
+       * `scripts/content/build_app_icons.py` now paints the type out of the
+       * artwork and leaves the ground, the wash and the jamo, so the native
+       * screen says nothing and `ui/LaunchSplash` says it in the right
+       * language a frame or two later, on the same colour.
        */
       backgroundColor: '#FFF1E1',
       androidScaleType: 'CENTER_CROP',

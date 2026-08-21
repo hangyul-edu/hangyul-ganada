@@ -28,7 +28,24 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: var(--hg-size-app-max-width);
+  /*
+   * The shell fills its frame. It does not draw a second, narrower one.
+   *
+   * This carried `max-width: var(--hg-size-app-max-width)` — 430px — at every
+   * width, and above 560 px that is exactly the width `#root` already is, so it
+   * did nothing. Between 430 and 560 it did something, and the something was
+   * wrong: `#root` is still full-bleed in that band, so the shell sat 430 px
+   * wide and centred on a wider warm page, and the bottom navigation — which is
+   * the shell's last child and fills it — stopped short of both bottom corners
+   * with a strip of ground either side. Measured at 500 px: root x=0 w=500, nav
+   * x=35 w=430. It read as a bar that had come loose from the app, which is the
+   * same symptom that was fixed above 560 px by drawing the device frame once.
+   *
+   * So there is one thing deciding the app's width at any given viewport, and
+   * it is `#root` in `styles/global.css`: full-bleed below 560 px, a 430 px
+   * device above it. The shell is 100% of whichever that is, and so is the
+   * navigation inside it, at every width.
+   */
   height: 100%;
   overflow: hidden;
   background: var(--hg-bg);
@@ -81,10 +98,12 @@
  * the app, which is exactly how it was reported.
  *
  * So the desktop frame is drawn once, by `#root`, and the shell fills it: no
- * padding on the viewport, and no second radius or shadow. `max-width` stays on
- * `.shell` for the 430–560 px window where `#root` is still full-bleed and the
- * app should not stretch; below 430 the two are the same width and nothing is
- * inset by anything.
+ * padding on the viewport, no second radius, no second shadow and no second
+ * `max-width`. That last one was kept at first "for the 430–560 px window where
+ * `#root` is still full-bleed and the app should not stretch", and it was the
+ * wrong call — it did not stop the app stretching, it stopped the *navigation*
+ * reaching the edges, which is a more visible defect than a layout 70 px wider
+ * than its design width. See the note on `.shell`.
  */
 
 .plain {

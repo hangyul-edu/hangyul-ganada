@@ -20,7 +20,8 @@
     "letters": "Әріптер",
     "lettersCaption": "хангылдың 40 әрпінің ішінен",
     "words": "Сөздер",
-    "wordsCaption": "бүгінгі сөздер"
+    "wordsCaption": "бүгінгі сөздер",
+    "wordsReady": "алғашқы сөздерге дайынсыз"
   },
   "review": {
     "title": "Қайталау",

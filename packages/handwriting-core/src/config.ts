@@ -122,6 +122,71 @@ export const BLOT_EROSION_RATIO = 0.5;
 
 export const BLOT_REACH_MULTIPLIER = 1;
 
+/**
+ * The same erosion, applied to the *unwritten* term. The mirror of
+ * `BLOT_EROSION_RATIO`, and the piece that was missing.
+ *
+ * ## What it fixes
+ *
+ * The learner's pen is one fixed width. The reference glyph's stroke is
+ * whatever the face draws at whatever size the glyph is fitted to, and once
+ * `fitGlyph` began sizing glyphs by their **ink** rather than by their em, the
+ * compact letters — ㄱ, ㅅ, ㅣ — grew enough that their strokes became wider
+ * than the pen. A learner who traces such a stroke perfectly still leaves a rim
+ * of reference ink uncovered along both of its edges, because there is no way
+ * to cover it: the pen is narrower than the target.
+ *
+ * That rim is thin, but it is *connected* — it runs the length of every stroke
+ * in the letter and joins up at the corners — so `largestComponentSize` saw one
+ * enormous unwritten piece and `structuralGapWeight` multiplied it by four.
+ * Measured: false rejection went from 0.21% to 3.26% overall and 10.42% on
+ * Pretendard, the default face, entirely from this.
+ *
+ * The blot term had already solved the identical problem pointed the other way
+ * — "a rim is displacement, a thick piece is a stroke" — and this is that
+ * argument mirrored. A missing *stroke* is as thick as a stroke. A rim along
+ * the edge of one is the pen being narrower than the paint, which is not a
+ * mistake the learner made and not one they can fix.
+ *
+ * ## How 0.75 was chosen
+ *
+ * By sweeping it against the whole corpus — 2,880 genuine attempts and 2,172
+ * wrong ones across six faces — jointly with `MAX_FIT_SCALE`, because the two
+ * are the same trade seen from opposite ends: a larger fit makes the reference
+ * stroke wider than the pen, and erosion is what forgives the rim that leaves.
+ *
+ * At the shipped fit of 1.3:
+ *
+ * ```
+ * gapErosion   FRR      FAR     worst-face FRR
+ * 0.00        3.26%    0.23%    10.42%
+ * 0.25        3.02%    0.23%    10.21%
+ * 0.50        1.01%    0.28%     3.54%
+ * 0.75        0.28%    0.28%     1.04%   <- chosen
+ * 1.00        0.00%    0.46%     0.00%
+ * 1.25        0.00%    0.46%     0.00%
+ * ```
+ *
+ * For reference, the product before the glyph was fitted at all measured 0.21%
+ * / 0.78%. So 0.75 holds false rejection where it was and **more than halves**
+ * false acceptance, with the glyph now correctly sized and centred.
+ *
+ * ## Why not 1.0, which reads better on both columns
+ *
+ * Because the corpus is not the only evidence and it does not measure this:
+ * erosion by 1.0 is about 5.1 px, and a stroke drawn with the 7.9 px pen has a
+ * radius of 3.9 px, so a *whole missing stroke* is eroded away to nothing and
+ * stops being seen as a structural gap at all. `real-glyphs.test.ts` — which
+ * holds the hand-built "가 written as ㄱㅣ" cases — fails four of its
+ * assertions at 1.0 and none at 0.75. A grader that cannot notice an absent
+ * stroke has a low false-acceptance rate on this corpus and is wrong about the
+ * thing the term exists for.
+ *
+ * 0.75 is about 3.8 px, which still leaves a core on a pen-width stroke. That
+ * is the constraint; the corpus picked the value inside it.
+ */
+export const GAP_EROSION_RATIO = 0.75;
+
 /** Edge length of the masks the comparison runs on. */
 export const COMPARISON_RESOLUTION = 128;
 
@@ -195,6 +260,7 @@ export const DEFAULT_EVALUATION_CONFIG: EvaluationConfig = {
   structuralBlotWeight: STRUCTURAL_BLOT_WEIGHT,
   blotErosionRatio: BLOT_EROSION_RATIO,
   blotReachMultiplier: BLOT_REACH_MULTIPLIER,
+  gapErosionRatio: GAP_EROSION_RATIO,
   outsideWeight: OUTSIDE_WEIGHT,
   missingWeight: MISSING_WEIGHT,
   minInkRatio: MIN_INK_RATIO,

@@ -96,18 +96,43 @@ export function ChoiceExercise({
    * no question. Adding a listening type and forgetting this line would produce
    * a screen with four meanings on it and no way to tell what for.
    */
-  const audioIsTheQuestion =
+  const heardOnly =
     exercise.mode === 'listen' ||
     exercise.mode === 'listenMeaning' ||
     exercise.mode === 'distinguish';
-  useEntryAudio(key, exercise.audioId, { enabled: audioIsTheQuestion });
 
-  const correct = picked !== null && picked === exercise.answerId;
+  /*
+   * The accommodation, per question and not per profile.
+   *
+   * A learner who cannot use the recording presses *Can't use audio?* and the
+   * clip is replaced by an equivalent visual prompt for this question only —
+   * see `SoundFreeVariant`. Reset on `key` with everything else, so it is a
+   * choice about the question in front of them rather than a mode they have to
+   * remember they are in and later find their way out of.
+   *
+   * It is deliberately not remembered. The setting it replaces was remembered,
+   * and the cost was that nobody who had not already found it could ever turn
+   * it on — which is the defect this fixes. A control that is present on every
+   * question that needs it does not need to be sticky to be findable.
+   */
+  const [soundFree, setSoundFree] = useState(false);
+  useEffect(() => setSoundFree(false), [key]);
+
+  const variant = soundFree ? exercise.soundFree : undefined;
+  /** The question as it is actually being asked. */
+  const asked: Exercise = variant
+    ? { ...exercise, ...variant, audioId: undefined, meaning: undefined, sentence: undefined }
+    : exercise;
+
+  const audioIsTheQuestion = heardOnly && !variant;
+  useEntryAudio(key, asked.audioId, { enabled: audioIsTheQuestion });
+
+  const correct = picked !== null && picked === asked.answerId;
 
   const choose = (id: string) => {
     if (picked !== null) return;
     setPicked(id);
-    const right = id === exercise.answerId;
+    const right = id === asked.answerId;
     if (right) hapticPass();
     else hapticRetry();
     onAnswered({
@@ -118,7 +143,7 @@ export function ChoiceExercise({
     });
   };
 
-  const answer = exercise.options?.find((option) => option.id === exercise.answerId);
+  const answer = asked.options?.find((option) => option.id === asked.answerId);
   /*
    * What the reveal rung actually reveals.
    *
@@ -127,7 +152,7 @@ export function ChoiceExercise({
    * highlighted cannot disagree about what the answer is.
    */
   const answerValues = {
-    answer: answer?.korean ?? answer?.label ?? exercise.korean ?? '',
+    answer: answer?.korean ?? answer?.label ?? asked.korean ?? '',
   };
 
   /*
@@ -148,10 +173,10 @@ export function ChoiceExercise({
 
   return (
     <div className={styles.exercise}>
-      <p className={styles.prompt}>{t(`learning:${exercise.promptKey}`)}</p>
+      <p className={styles.prompt}>{t(`learning:${asked.promptKey}`)}</p>
 
       <div className={styles.stimulus}>
-        {exercise.meaning ? (
+        {asked.meaning ? (
           /*
            * The prompt is a meaning, and the answers are Korean — the harder
            * direction. Rendered in the learner's own language and marked as
@@ -160,22 +185,33 @@ export function ChoiceExercise({
            */
           <LocalizedText
             as="p"
-            locale={exercise.meaningLocale ?? 'en'}
+            locale={asked.meaningLocale ?? 'en'}
             className={styles.meaningPrompt}
           >
-            {exercise.meaning}
+            {asked.meaning}
           </LocalizedText>
-        ) : exercise.sentence ? (
+        ) : asked.sentence ? (
           <p className={styles.sentence} lang="ko" dir="ltr" style={{ fontFamily }}>
-            {exercise.sentence.before}
+            {asked.sentence.before}
             <span className={styles.blank} aria-label={t('learning:review.blank')}>
-              {' '.repeat(Math.max(2, exercise.sentence.target.length * 2))}
+              {' '.repeat(Math.max(2, asked.sentence.target.length * 2))}
             </span>
-            {exercise.sentence.after}
+            {asked.sentence.after}
           </p>
-        ) : exercise.korean ? (
+        ) : asked.korean ? (
           <p className={styles.korean} lang="ko" dir="ltr" style={{ fontFamily }}>
-            {exercise.korean}
+            {asked.korean}
+          </p>
+        ) : variant?.romanization ? (
+          /*
+           * The clip, written down.
+           *
+           * `lang="en"` and left-to-right: a Revised Romanization is Latin text
+           * about Korean — not the learner's own language and not Korean — and
+           * it has to keep its direction inside a right-to-left interface.
+           */
+          <p className={styles.romanizationPrompt} lang="en" dir="ltr">
+            {variant.romanization}
           </p>
         ) : (
           <span className={styles.listenMark} aria-hidden="true">
@@ -195,14 +231,37 @@ export function ChoiceExercise({
           Never before it on `produce`: the learner is being asked to find the
           Korean from its meaning, and playing the word first says it aloud.
         */}
-        {exercise.audioId && (audioIsTheQuestion || picked !== null) && (
+        {asked.audioId && (audioIsTheQuestion || picked !== null) && (
           <SpeakerButton
-            audioId={exercise.sentence?.audioId ?? exercise.audioId}
-            label={exercise.korean ?? exercise.sentence?.target ?? ''}
-            size={exercise.mode === 'listen' ? 'lg' : 'md'}
+            audioId={asked.sentence?.audioId ?? asked.audioId}
+            label={asked.korean ?? asked.sentence?.target ?? ''}
+            size={asked.mode === 'listen' ? 'lg' : 'md'}
           />
         )}
       </div>
+
+      {/*
+        The way past a question made of sound, for somebody who cannot hear it.
+
+        Offered only while the question is still open, only on the two letter
+        exercises whose whole prompt is a clip, and only where the builder could
+        produce an honest substitute. A quiet text button rather than a
+        prominent one: most learners never need it, and it must not read as the
+        expected way to answer.
+
+        One way, deliberately. Once pressed the question stays visual for as long
+        as it is on screen; offering a way back would make it a toggle, and a
+        toggle on a question is one more thing to decide about before answering.
+      */}
+      {picked === null && !soundFree && exercise.soundFree && (
+        <button
+          type="button"
+          className={styles.soundFreeSwitch}
+          onClick={() => setSoundFree(true)}
+        >
+          {t('learning:review.cannotUseAudio')}
+        </button>
+      )}
 
       {/*
         The shape of the answers follows what the answers are. See the note on
@@ -212,12 +271,12 @@ export function ChoiceExercise({
         than rotated for variety.
       */}
       <div
-        className={`${styles.options} ${optionLayout(exercise)}`}
+        className={`${styles.options} ${optionLayout(asked)}`}
         role="group"
         aria-label={t('learning:review.optionsLabel')}
       >
-        {exercise.options?.map((option) => {
-          const isAnswer = option.id === exercise.answerId;
+        {asked.options?.map((option) => {
+          const isAnswer = option.id === asked.answerId;
           const isPicked = option.id === picked;
           const tone =
             picked === null

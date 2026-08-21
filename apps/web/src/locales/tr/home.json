@@ -20,7 +20,8 @@
     "letters": "Harfler",
     "lettersCaption": "40 Hangıl harfinden",
     "words": "Kelimeler",
-    "wordsCaption": "bugünkü kelimeler"
+    "wordsCaption": "bugünkü kelimeler",
+    "wordsReady": "ilk kelimelere hazırsın"
   },
   "review": {
     "title": "Tekrar",

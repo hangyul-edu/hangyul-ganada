@@ -42,22 +42,102 @@
     -->
     <link rel="apple-touch-icon" sizes="192x192" href="/brand/app-icon-192.png" />
     <!--
-      English, because English is the default locale. `LocaleProvider` rewrites
-      `lang`, `dir`, the title and this description as soon as the app resolves
-      the learner's language, so what ships in the file is only what a crawler
-      or a pre-hydration reader sees.
+      What a crawler and a link preview get, before any JavaScript runs
+
+      Everything between here and the end of the head is the *pre-hydration*
+      answer. A
+      social crawler — Slack, KakaoTalk, Discord, X, Facebook — fetches this
+      file, reads the tags, and leaves. It does not run React, so anything
+      `ui/DocumentMetadata` sets afterwards is for the person in the tab, not
+      for the card in the chat. Both have to be right, and they are set in two
+      different places for that reason.
+
+      English here, because English is the default locale and a crawler has no
+      learner to have a preference. `LocaleProvider` rewrites `lang`, `dir`,
+      the title and the description as soon as the app resolves the language.
+    -->
+
+    <!--
+      Not indexed, and that is deliberate
+
+      This product is a paid application, not a content site. The URL is meant
+      to be *shared* — a link in a message should open the app and should show
+      a preview card — and it is not meant to rank for "learn Korean". There
+      is nothing here for a search result to usefully point at, and a
+      half-indexed SPA competing with its own store listing is worse than
+      nothing.
+
+      `noindex` is the authoritative mechanism and it has to be *readable* to
+      be obeyed: a URL disallowed in robots.txt can still surface as a bare
+      link, precisely because the crawler was never allowed to fetch the page
+      and find this tag. So there is no robots.txt disallow and no sitemap;
+      there is this tag, and the matching `X-Robots-Tag` header in
+      `vercel.json` for the fetches that never parse HTML at all.
+
+      `nofollow` and friends are here for completeness. None of them affects
+      Open Graph: the crawlers that build preview cards are not search
+      crawlers, do not consult robots meta, and are unaffected by every
+      directive on these two lines.
+    -->
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex" />
+    <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex" />
+
+    <!--
+      The description, and why it is two sentences
+
+      It has to say what the product is to somebody who has never heard of it,
+      in the width a preview card gives before it truncates — about 160
+      characters on most surfaces. So: what you start from, what you get, and
+      the one mechanic worth naming. No architecture, no "no account, no
+      server", no adjectives about quality.
     -->
     <meta
       name="description"
-      content="Hangyul ganada — learn to read and write Hangul from the very first letter: consonants and vowels, syllable blocks, handwriting and your first Korean words."
+      content="Start Korean from zero. Learn Hangul step by step, build practical vocabulary, and review what you're likely to forget."
     />
+
+    <!-- Open Graph. Absolute URLs: a crawler resolves nothing relative. -->
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Hangyul ganada" />
-    <meta property="og:title" content="Hangyul ganada" />
+    <meta property="og:url" content="https://ganada.talkhangyul.com/" />
+    <meta property="og:title" content="Hangyul ganada — Learn Hangul &amp; Korean Vocabulary" />
     <meta
       property="og:description"
-      content="Learn Hangul, one stroke at a time. A Hangul letter-learning and handwriting practice app for Korean learners worldwide."
+      content="Start Korean from zero. Learn Hangul step by step, build practical vocabulary, and review what you're likely to forget."
     />
-    <title>Hangyul ganada</title>
+    <!--
+      The brand key visual, resampled to 1200x600 by
+      `scripts/content/build_app_icons.py` from `apps/common_assets/ob/`. The
+      source is 3200x1600 — exactly the 2:1 `summary_large_image` asks for — so
+      it is a straight resample with no crop and nothing drawn over it. The
+      width and height below are asserted against the generated file by
+      `npm run mobile:icons:check`.
+    -->
+    <meta property="og:image" content="https://ganada.talkhangyul.com/brand/og-hangyul-ganada.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
+    <meta
+      property="og:image:alt"
+      content="Hangyul ganada — the app's home screen on a phone, beside the words: When life gives you a tangerine, Talk Hangyul."
+    />
+    <meta property="og:locale" content="en" />
+
+    <!-- X / Twitter reads its own namespace and falls back to og: for the rest. -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hangyul ganada — Learn Hangul &amp; Korean Vocabulary" />
+    <meta
+      name="twitter:description"
+      content="Start Korean from zero. Learn Hangul step by step, build practical vocabulary, and review what you're likely to forget."
+    />
+    <meta name="twitter:image" content="https://ganada.talkhangyul.com/brand/og-hangyul-ganada.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Hangyul ganada — the app's home screen on a phone, beside the words: When life gives you a tangerine, Talk Hangyul."
+    />
+
+    <link rel="canonical" href="https://ganada.talkhangyul.com/" />
+    <title>Hangyul ganada — Learn Hangul &amp; Korean Vocabulary</title>
   </head>
   <body>
     <div id="root"></div>

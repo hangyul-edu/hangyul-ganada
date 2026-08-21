@@ -2,7 +2,6 @@ import { DEFAULT_EVALUATION_CONFIG } from './config.js';
 import {
   countInk,
   createMask,
-  largestComponentSize,
   largestThickComponentSize,
   squaredDistanceTransform,
 } from './mask.js';
@@ -149,8 +148,16 @@ export function evaluateMasks(
   // Measured at the free-slack reach, not out to the end of the falloff: ink in
   // the falloff zone was approached and got partial credit above, whereas ink
   // beyond the slack the learner never went near is simply not written.
+  // ...and, like the blot term above, only for a piece that is *thick* as well
+  // as unwritten. The pen has one width and a fitted reference stroke can be
+  // wider than it, which leaves an uncoverable rim down both edges of every
+  // stroke — connected, letter-long, and not a mistake anybody made. Eroding
+  // first erases the rim and keeps an absent stroke. See `GAP_EROSION_RATIO`.
   const largestGapRatio =
-    largestComponentSize(unwrittenMask(referenceMask, userMask, toleranceRadiusPx)) / referenceInk;
+    largestThickComponentSize(
+      unwrittenMask(referenceMask, userMask, toleranceRadiusPx),
+      toleranceRadiusPx * cfg.gapErosionRatio,
+    ) / referenceInk;
   const missingCoverageRatio = clamp01(
     cfg.useStructuralGap
       ? Math.max(meanMissing, largestGapRatio * cfg.structuralGapWeight)

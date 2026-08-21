@@ -1,5 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { waitForLaunch } from './helpers/launch';
+
 /**
  * The learner's record, the quotation, and the rows that scroll sideways.
  *
@@ -154,6 +156,10 @@ test('a horizontal filter row can be reached with a mouse', async ({ page }) => 
   await page.setViewportSize({ width: 320, height: 720 });
   await seedHistory(page, 200);
   await page.goto('/me/activity');
+  // Every assertion below dispatches through `page.mouse`, which has no
+  // actionability check — so the launch screen has to be gone first or the
+  // wheel lands on it. See `helpers/launch`.
+  await waitForLaunch(page);
   const row = page.getByRole('group', { name: /time range/i });
   await expect(row).toBeVisible();
 

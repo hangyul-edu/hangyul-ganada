@@ -8,6 +8,7 @@ import { weeklyReport } from '../domain/activity';
 import {
   alphabetProgress,
   dailyProgress,
+  knownLetters,
   nextLesson,
 } from '../domain/progress';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
@@ -22,6 +23,16 @@ import { LocalizedText } from '../ui/LocalizedText';
 import { QuoteOfTheSession } from '../ui/QuoteOfTheSession';
 import { ChevronRightIcon, FireIcon, LetterIcon, ReviewIcon, WordIcon } from '../ui/icons';
 import styles from './HomePage.module.css';
+
+/**
+ * Letters learned before the app suggests trying some words.
+ *
+ * Six vowels and five consonants — the end of unit 2. Unit 3 is *Putting them
+ * together*, and eleven letters is thirty readable syllables, which is the
+ * point at which a word on a card is something to read rather than a picture to
+ * memorise. See `readyForWords` in `HomePage`.
+ */
+const READY_FOR_WORDS = 11;
 
 /**
  * Home.
@@ -92,6 +103,38 @@ export function HomePage() {
    * Finishing now has its own card, and its button goes to the thing that
    * genuinely comes next: today's words.
    */
+  /**
+   * Whether to point the learner at the words, once, on the card they are
+   * already looking at.
+   *
+   * Nothing in this product ever said *when* to start vocabulary. Both tracks
+   * are permanently available from the tab bar, neither mentions the other, and
+   * a beginner reasonably assumes the alphabet has to be finished first — forty
+   * letters before a single useful word, which is not what the curriculum
+   * intends and not how anyone learns a language.
+   *
+   * `READY_FOR_WORDS` is the point at which reading a word stops being
+   * guesswork: six vowels and five consonants, which is the end of unit 2 and
+   * the thirty syllables unit 3 is about. It is a suggestion and not a gate —
+   * the Words tab has always been open and still is, and this changes one line
+   * of caption on a card that was already there rather than adding a banner,
+   * a modal or a section to dismiss.
+   *
+   * The count is `knownLetters` — letters *introduced* — and not the learned
+   * count the card above it shows. That is the same distinction
+   * `usesKnownLetters` already draws when it decides which words to offer, and
+   * for the same reason: a learner who has met ㅂ in a lesson can read 바다
+   * whether or not their handwriting has passed yet. Gating a suggestion on
+   * handwriting would hold back exactly the learner who is finding the writing
+   * hard and would most benefit from something else to do.
+   *
+   * It stops as soon as they take it up. `words_learned > 0` means they found
+   * the words on their own or followed this, and either way the card goes back
+   * to reporting the day.
+   */
+  const readyForWords =
+    knownLetters(state.progress).size >= READY_FOR_WORDS && summary.words_learned === 0;
+
   const lesson = nextLesson(state.progress);
   const unit = lesson ? CURRICULUM_UNITS.find((u) => u.lesson_ids.includes(lesson.id)) : undefined;
   const lessonTitle = lesson ? resolveContent(lesson.translations, locale) : null;
@@ -294,7 +337,10 @@ export function HomePage() {
               fraction, because 40 is a number somebody can picture finishing.
             */
             meta={format.fraction(vocabularyProgressToday.done, vocabularyProgressToday.total)}
-            caption={t('home:quick.wordsCaption')}
+            caption={
+              readyForWords ? t('home:quick.wordsReady') : t('home:quick.wordsCaption')
+            }
+            suggested={readyForWords}
             progress={vocabularyProgressToday.ratio}
           />
         </div>
@@ -366,6 +412,7 @@ function QuickCard({
   meta,
   caption,
   progress,
+  suggested = false,
 }: {
   to: string;
   icon: React.ReactNode;
@@ -374,6 +421,14 @@ function QuickCard({
   /** Says what the number counts. A bare fraction is not a measurement. */
   caption: string;
   progress: number;
+  /**
+   * Draws the caption in the accent colour instead of the tertiary one.
+   *
+   * The card is otherwise identical — same size, same position, same
+   * navigation. This is a suggestion, not a state change, and it should read
+   * like one.
+   */
+  suggested?: boolean;
 }) {
   return (
     <Link to={to} className={styles.quickLink}>
@@ -381,7 +436,9 @@ function QuickCard({
         <span className={styles.quickIcon}>{icon}</span>
         <span className={styles.quickLabel}>{label}</span>
         <span className={`${styles.quickMeta} hg-numeric`}>{meta}</span>
-        <span className={styles.quickCaption}>{caption}</span>
+        <span className={`${styles.quickCaption} ${suggested ? styles.quickSuggest : ''}`}>
+          {caption}
+        </span>
         <ProgressBar value={progress} label={caption} size="sm" />
       </Card>
     </Link>

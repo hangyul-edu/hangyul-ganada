@@ -88,6 +88,57 @@
   line-height: 1;
 }
 
+/*
+ * The clip written down, for a learner who asked not to be given a clip.
+ *
+ * Sized like `.korean` rather than like a label, because it is doing the same
+ * job — it *is* the prompt, and a question's prompt should look like one. Latin
+ * text is narrower than a syllable block at the same size, so it takes a little
+ * less and keeps the two visually the same weight on the screen.
+ */
+.romanizationPrompt {
+  margin: 0;
+  font-size: clamp(32px, 9vw, 46px);
+  line-height: 1.1;
+  font-weight: var(--hg-weight-medium);
+  letter-spacing: 0.01em;
+  color: var(--hg-text);
+  direction: ltr;
+}
+
+/*
+ * "Can't use audio?"
+ *
+ * Quiet on purpose. It sits below the prompt and above the options, in the
+ * tertiary text colour at caption size, because most learners will never need
+ * it and it must not read as the expected way to answer the question. It is a
+ * real `<button>` — not a link and not a div — so it is reachable by keyboard
+ * and announced as an action, which is the whole point of it.
+ */
+.soundFreeSwitch {
+  align-self: center;
+  margin: 0 auto var(--hg-space-1);
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border: 0;
+  border-radius: var(--hg-radius-full, 999px);
+  background: none;
+  font: inherit;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  /* The 44px target the rest of the app keeps, without a 44px-looking control. */
+  min-height: 44px;
+}
+
+@media (hover: hover) {
+  .soundFreeSwitch:hover {
+    color: var(--hg-text-secondary);
+    background: var(--hg-surface-hover);
+  }
+}
+
 .options {
   display: grid;
   grid-template-columns: 1fr;

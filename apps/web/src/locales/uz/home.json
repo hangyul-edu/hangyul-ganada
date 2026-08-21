@@ -20,7 +20,8 @@
     "letters": "Harflar",
     "lettersCaption": "hangulning 40 harfidan",
     "words": "So‘zlar",
-    "wordsCaption": "bugungi so‘zlar"
+    "wordsCaption": "bugungi so‘zlar",
+    "wordsReady": "birinchi so‘zlarga tayyorsiz"
   },
   "review": {
     "title": "Takrorlash",

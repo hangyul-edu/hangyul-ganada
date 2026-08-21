@@ -31,7 +31,9 @@
       it is the seam between the system splash and the bitmap under it.
 
       It was #FFF6E9 while the splash was an animation, sampled from frame zero.
-      The artwork is a still now and this is sampled from the still.
+      The artwork is a still now and this is sampled from the still — from the
+      wordless reconstruction of it that the launch bitmaps are drawn from,
+      which shares the original's ground exactly.
     -->
     <color name="splashBackground">#FFF1E1</color>
 

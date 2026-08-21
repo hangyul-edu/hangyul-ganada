@@ -103,7 +103,14 @@ export type WordStep =
   | 'produce'
   | 'context'
   /** Assembled from its own syllables. Familiar words only — see `stepsFor`. */
-  | 'build';
+  | 'build'
+  /**
+   * Four words and four meanings, paired.
+   *
+   * The one step that is not about a single word, and the reason
+   * `ScheduledStep` grew a `group`. See `MATCH_SIZE` and `scheduleSteps`.
+   */
+  | 'match';
 
 export interface DailyPlan {
   /** The local calendar day this plan is for. */
@@ -334,8 +341,23 @@ function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number {
  * recall a word they met thirty seconds ago — a harder session is not a more
  * varied one. The variety a beginner actually gets comes back within days, as
  * words start arriving at `review` and `familiar` with their own steps.
+ *
+ * ## Three, not two
+ *
+ * It was two — `meaning` and `context` — after the two listening checks were
+ * removed, and two shapes over ten words is twenty screens of the same two
+ * things on the day a learner is deciding whether this app is worth their time.
+ * `match` is the third, and it is a genuinely different question rather than a
+ * fourth arrangement of four options: four words and four meanings at once,
+ * where every pair made narrows the rest.
+ *
+ * Rotating rather than adding. A new word still owes exactly two steps — its
+ * introduction and one check — so a ten-word sitting is the same length it was.
+ * What changes is that roughly a third of the words now owe a `match`, which is
+ * enough to make one grid, and the grid replaces four separate questions rather
+ * than joining them.
  */
-const NEW_WORD_CHECKS: WordStep[] = ['meaning', 'context'];
+const NEW_WORD_CHECKS: WordStep[] = ['meaning', 'context', 'match'];
 
 /**
  * `soundFree` is accepted and no longer changes anything here. §36.
@@ -409,6 +431,25 @@ export interface ScheduledStep {
   step: WordStep;
   /** True when this is the last step this word owes. Completing it counts. */
   completesWord: boolean;
+  /**
+   * Every word in this question, for a step that asks about more than one.
+   *
+   * Only `match` has it, and for `match` it is the four words in the grid —
+   * `wordId` first, so a caller that only knows about single-word steps still
+   * reads the right word out of it. Everything else leaves it undefined.
+   */
+  group?: string[];
+  /**
+   * Every word this step finishes, `wordId` included where it does.
+   *
+   * The accounting that makes a group step safe. A `match` grid can be the last
+   * thing three of its four words owe and the second-to-last thing the fourth
+   * owes, and the day's counter, the mastery ladder and the activity row all
+   * have to move by exactly three. Single-word steps set it to `[wordId]` or
+   * leave it empty, so one code path credits both kinds and nothing is counted
+   * twice. See `advance` in `WordSessionPage`.
+   */
+  completes: string[];
 }
 
 /**
@@ -421,6 +462,19 @@ export interface ScheduledStep {
  * for the answer to have to be recalled rather than merely still visible.
  */
 export const MIN_WORD_GAP = 2;
+
+/**
+ * Words in one matching grid.
+ *
+ * Four pairs is the largest grid that fits a phone without scrolling and the
+ * smallest that is not simply two questions side by side. Three is allowed at
+ * the end of a session — see `scheduleSteps` — because a grid of three is still
+ * a matching exercise, and two is a single question with extra steps.
+ */
+export const MATCH_SIZE = 4;
+
+/** Below this, the leftover `match` steps are dropped rather than shown. */
+export const MIN_MATCH_SIZE = 3;
 
 /**
  * The plan, flattened into the order the questions are asked.
@@ -442,6 +496,32 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
 
   const out: ScheduledStep[] = [];
   const recent: string[] = [];
+  /*
+   * Words whose turn has come round to a `match`, waiting for a grid.
+   *
+   * A matching grid is the one question that needs several words at once, and
+   * the words cannot be chosen when the plan is built — a grid has to be made
+   * of words the learner has already met *in this sitting*, or it is four
+   * strangers and a guess. So a word reaching its `match` step steps aside into
+   * this queue, the interleave carries on without it, and the grid is emitted
+   * the moment a fourth word joins. That places it naturally: after four words
+   * have been introduced and questioned, which is where it belongs.
+   */
+  const waiting: Array<{ wordId: string; last: boolean }> = [];
+
+  const flush = (minimum: number) => {
+    while (waiting.length >= minimum) {
+      const grid = waiting.splice(0, Math.min(MATCH_SIZE, waiting.length));
+      out.push({
+        wordId: grid[0]!.wordId,
+        step: 'match',
+        completesWord: grid[0]!.last,
+        group: grid.map((entry) => entry.wordId),
+        completes: grid.filter((entry) => entry.last).map((entry) => entry.wordId),
+      });
+      grid.forEach((entry) => recent.push(entry.wordId));
+    }
+  };
 
   while (queues.some((queue) => queue.remaining.length > 0)) {
     // The first word that has something left and has not been asked about in
@@ -455,12 +535,42 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
     if (!picked) break;
 
     const step = picked.remaining.shift()!;
+    const last = picked.remaining.length === 0;
+
+    if (step === 'match') {
+      waiting.push({ wordId: picked.wordId, last });
+      flush(MATCH_SIZE);
+      continue;
+    }
+
     out.push({
       wordId: picked.wordId,
       step,
-      completesWord: picked.remaining.length === 0,
+      completesWord: last,
+      completes: last ? [picked.wordId] : [],
     });
     recent.push(picked.wordId);
+  }
+
+  /*
+   * Whatever is still waiting when the plan runs out.
+   *
+   * Three is a grid; fewer is not, and the words are simply released — their
+   * `match` was an extra angle on a word they have already answered about, so
+   * dropping it costs the session nothing and shows nobody a two-item matching
+   * puzzle. A released word that owed nothing else still has to be *completed*,
+   * or the day's counter would sit one short of a session the learner finished.
+   */
+  flush(MIN_MATCH_SIZE);
+  for (const entry of waiting) {
+    if (!entry.last) continue;
+    // `findLast` needs a newer lib target than this package builds against.
+    let owner: ScheduledStep | undefined;
+    for (const scheduled of out) if (scheduled.wordId === entry.wordId) owner = scheduled;
+    if (owner) {
+      owner.completesWord = true;
+      owner.completes = [...owner.completes, entry.wordId];
+    }
   }
 
   return out;

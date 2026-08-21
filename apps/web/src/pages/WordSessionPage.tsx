@@ -10,6 +10,7 @@ import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { WordIntro } from '../features/learning/WordIntro';
 import { buildDailyQuestions } from '../features/vocabulary/dailyQuestions';
+import { MatchExercise } from '../features/vocabulary/MatchExercise';
 import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
 import { useStudyClock } from '../features/session/useStudyClock';
 import { useLocale } from '../i18n';
@@ -184,8 +185,14 @@ export function WordSessionPage() {
     // Counting the word happens here rather than on the answer, so a word is
     // credited once the learner has *seen the result* — and exactly once,
     // because `completeWord` ignores a repeat.
-    if (current?.completesWord) {
-      completeDailyWord(current.word.id);
+    //
+    // `completes` rather than `completesWord`, because a matching grid finishes
+    // as many as four words in one screen and every one of them has to move the
+    // day's counter, the mastery ladder and the activity row exactly once. A
+    // single-word question puts one id in here or none, so there is one path
+    // for both kinds and no branch to forget. See `ScheduledStep.completes`.
+    for (const wordId of current?.completes ?? []) {
+      completeDailyWord(wordId);
       setWordsDone((n) => n + 1);
       /*
        * …and it moves the mastery ladder, not only the day's counter.
@@ -202,7 +209,7 @@ export function WordSessionPage() {
        * these questions test, and with `WORD_RULES` a word that has been heard
        * and understood is finished.
        */
-      recordRecognition('word', current.word.id, true);
+      recordRecognition('word', wordId, true);
     }
     if (index + 1 >= queue.length) {
       if (sessionId.current) completeSession(sessionId.current);
@@ -319,7 +326,39 @@ export function WordSessionPage() {
       footer={footer}
     >
       <div className={styles.body}>
-        {current.step === 'intro' ? (
+        {current.step === 'match' && current.pairs ? (
+          /*
+           * The one screen that asks about four words at once.
+           *
+           * It reports one result per word rather than one per screen, so the
+           * per-skill memory learns something about each of them — which is the
+           * whole point of a group exercise, and the thing that would be lost
+           * by recording a single "the grid went well".
+           */
+          <MatchExercise
+            key={`match-${index}`}
+            pairs={current.pairs}
+            fontFamily={font.font_family}
+            isLast={isLast}
+            onAnswered={(results) => {
+              for (const result of results) {
+                recordReview({
+                  kind: 'word',
+                  item_key: result.wordId,
+                  skill: 'meaning_recognition',
+                  mode: 'read',
+                  passed: result.correct,
+                  score: result.correct ? 1 : 0,
+                  hint_used: false,
+                  hint_level: 0,
+                  response_ms: result.responseMs,
+                  session_id: sessionId.current,
+                });
+              }
+            }}
+            onContinue={advance}
+          />
+        ) : current.step === 'intro' ? (
           <WordIntro
             word={current.word}
             fontFamily={font.font_family}

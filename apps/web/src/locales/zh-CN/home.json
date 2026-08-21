@@ -20,7 +20,8 @@
     "letters": "字母",
     "words": "单词",
     "lettersCaption": "共 40 个韩文字母",
-    "wordsCaption": "今天的词"
+    "wordsCaption": "今天的词",
+    "wordsReady": "可以开始学单词了"
   },
   "review": {
     "title": "复习",

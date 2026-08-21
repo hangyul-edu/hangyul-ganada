@@ -17,12 +17,13 @@
       "id": "I-01",
       "area": "Release",
       "severity": "P0",
-      "status": "RESOLVED",
-      "summary": "Shipped Android AAB/APK predated every fix in the report",
-      "customerImpact": "Anyone installing today gets a product two cycles old",
-      "evidence": "Rebuilt from the verified commit; markers grepped in both directions out of the delivered package; signing identity compared against the previous artefact.",
-      "recommendedFix": "done",
-      "keepResolved": "One of the two most repeated findings in this product's history. The row stays so the finding is not written a fourth time."
+      "status": "OPEN",
+      "summary": "The shipped APK/AAB predate the current product code by one commit",
+      "customerImpact": "Anyone installing the delivered binary today gets the previous stroke geometry and the retired video splash. The eight syllables re-measured in `e026697` — 구 오 밤 밥 옷 국 꽃 글 — render from the older table, and the launch screen is the MP4 clip the product has stopped shipping.",
+      "evidence": "Fourth occurrence. `app_result/build-info.json` names commit `557edfb`; HEAD is `e026697`, and the one commit between them changed product code, not documents: `compose.ts`, `strokes.ts`, `strokeVectors.ts`, `generated/composition.json`, `LaunchSplash.tsx`, `AppShell.module.css`, `AppHeader.tsx`, the design tokens, the splash artwork and the Android/iOS launch bitmaps. Unpacked from the delivered APK this cycle: `assets/public/brand/splash/splash-ko.mp4`, `splash-en.mp4` and both WebP posters are present — files deleted in `e026697` — and the PNG splash that replaced them is absent. `curriculum-data-*.js` inside the package carries `국:{aspect:.9669,parts:[[.1257,0,.8686,.2597],…]}`, the pre-`e026697` measurement; the current table has `국` at `[.1257,0,.8686,.3646]` with a `cut` field the package never mentions. The same is true of the project snapshots delivered beside the binaries: `result/android-project/.../assets/public/brand/splash/` holds the two MP4s, and the iOS and Android launch bitmaps in `result/` differ by SHA-256 from the ones in the working tree.",
+      "recommendedFix": "Rebuild the web bundle, `cap sync`, and re-sign from HEAD with the working tree clean, then re-grep the delivered package for the two markers that distinguish the cycles: no `splash-*.mp4` under `assets/public/brand/splash/`, and `국` measuring `.3646` rather than `.2597`. Outside this audit — no artefact was rebuilt for it.",
+      "effort": "LOW — one build and one signing run, once the build is allowed",
+      "note": "Written for the fourth time. The three previous cycles each closed this row and each shipped a binary that predated the report describing it. The pattern is not the build failing; it is product work landing after the build and the report not being re-read against the delivered package."
     },
     {
       "id": "I-02",
@@ -87,8 +88,8 @@
       "severity": "P2",
       "status": "OPEN",
       "summary": "The traced guide is smaller than the demonstration for a single letter",
-      "customerImpact": "On a letter lesson the grey glyph a learner traces fills about half the writing square while the demonstration below it fills 0.84 of its own. Same letter, two sizes, one screen.",
-      "evidence": "Measured: Pretendard sets an isolated ㄱ at 0.53 × 0.42 of the box and eight per cent above its centre. Scaling the glyph to match was implemented and reverted: it scales the glyph's stroke too, from 0.057 of the box to 0.090 against a fixed 0.062 pen, and the robustness corpus went from 0.21% false rejections to 21% — one correct letter in five told it was wrong. See `features/writing/glyphSpec.ts`.",
+      "customerImpact": "On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces.",
+      "evidence": "Measured again this cycle, on ㅏ, off the running app: the grey guide the learner traces occupies 0.228 × 0.672 of the writing square and is centred at (0.556, 0.460) rather than (0.5, 0.5), while the taught glyph for the same letter is 0.251 × 0.840 and dead-centre. For ㄱ the gap is wider — Pretendard sets an isolated ㄱ at 0.53 × 0.42 of the box, eight per cent above its centre, against a taught 0.84 × 0.664. So the guide is both smaller and off-centre from the crosshair drawn under it. Scaling the glyph to match was implemented and reverted: it scales the glyph's stroke too, from 0.057 of the box to 0.090 against a fixed 0.062 pen, and the robustness corpus went from 0.21% false rejections to 21% — one correct letter in five told it was wrong. See `features/writing/glyphSpec.ts`. Re-run of `handwriting:robustness` this cycle isolates the cost: Pretendard frr 0.01042 against an overall 0.00208, with the five rejected cases being ㄴ, ㄷ, ㅁ, ㅂ 'small and drifted' and ㄹ 'stopped short'. The same run corrected a labelling error carried by several reports — 0.21% is the false-*reject* rate and 0.78% the false-*accept* rate, not the other way round (§12.2).",
       "recommendedFix": "A grading model that does not measure coverage against a stroke the pen cannot fill, then the glyph can be sized for the eye. Its own calibration, not a side effect of a layout change.",
       "effort": "MEDIUM–HIGH — a grading recalibration with its own corpus run"
     },
@@ -272,6 +273,61 @@
       "evidence": "The alternative was 784 dictionary scrapings, which is why they were deleted.",
       "recommendedFix": "Write it for the words that need it — polysemous, grammar-heavy, high-frequency functional, culturally specific, easily confused — starting with the top 500. Not a paragraph under every word.",
       "effort": "HIGH (content) — start at the top 500"
+    },
+    {
+      "id": "I-26",
+      "area": "Splash",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "The native launch screen shows the English wordmark in every locale",
+      "customerImpact": "A Korean learner opening the Android app sees “Han gyul — Like a slice of tangerine, one letter a day” in English for the moment before the WebView paints, then the Korean artwork replaces it. Two wordmarks in two languages, one launch.",
+      "evidence": "`SPLASH_SOURCE` in `scripts/content/build_app_icons.py` is `apps/common_assets/splash/splash_eng.png`, and every Android drawable and the iOS `Splash.imageset` are generated from it — confirmed by opening `drawable-port-xxxhdpi/splash.png`, which carries the English wordmark and tagline. The in-app splash is correct: `ui/LaunchSplash` reads `LocaleContext` and picks `splash-ko.png` for Korean, `splash-en.png` otherwise. The previous design handed over on a wordless frame of the splash animation; there is no animation any more and so no wordless frame to hand over from.",
+      "recommendedFix": "Either generate a wordless variant of the still — the artwork's ground and radial wash with no type — and use that as the native bitmap on both platforms, or accept the flash and say so. Device locale is not the interface language and must not be used to guess.",
+      "effort": "LOW — one wordless export, regenerated by `mobile:icons`"
+    },
+    {
+      "id": "I-27",
+      "area": "UI",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "Between 430 px and 560 px the bottom navigation floats clear of the screen edges",
+      "customerImpact": "On a large phone in landscape, a small tablet or a split-screen window, the tab bar is 430 px wide on a wider page, so warm ground shows down both sides of it and it does not reach the bottom corners. It reads as a bar that has come loose from the app — the same symptom that was fixed above 560 px.",
+      "evidence": "Measured at a 500 px viewport: `#root` is full-bleed at 500 px with no transform, radius or clipping, while the bottom navigation measures x=35, width=430. Above 560 px `#root` itself becomes the 430 px device and the nav fills it exactly (x=505, width=430 at 1440 px), which is correct. The band exists because `max-width: 430px` stays on `.shell` for 430–560 px while the desktop frame does not start until 560 px.",
+      "recommendedFix": "Let the navigation span the viewport below 560 px while the content column stays capped at 430 px, or start the device frame at 430 px instead of 560 px. A CSS change in `AppShell.module.css` and `styles/global.css`, with a Playwright width case beside the existing safe-area ones.",
+      "effort": "LOW — one media-query boundary"
+    },
+    {
+      "id": "I-28",
+      "area": "Build",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "`docs:consistency` cannot see four of the figures it tracks, and one of them had drifted",
+      "customerImpact": "None to a learner. It matters because this report's credibility rests on its numbers, and a gate that ends with “No document states two different current values for the same metric” while a stale value sits in §2.3 reads as stronger than it is.",
+      "evidence": "`npm run docs:consistency:check` passes and prints, for four of the thirteen metrics it tracks, `— not stated anywhere`: `unitTests 671`, `handwritingTests 95`, `apkMegabytes 63.5` and `aabMegabytes 62.2`. All four *are* stated — the APK and AAB sizes on the first table of §2, the test counts in §2.3 — so the checker is failing to match them, not tolerating an omission. One of the four had also gone stale: §2.3 said **664** web unit tests while the suite has been at **671**, and because the cell was invisible to the matcher nothing reported the drift. The previous report recorded this same checker as fixed for the APK/AAB rows (\"matches by extension\"); it does not match them now.",
+      "recommendedFix": "Have the checker fail on a *missing* mention for any metric it is asked to track, rather than only on a contradictory one — a metric nothing states is a metric nothing is guarding. Then key the report's figure cells to metric names the way the issue tables are keyed to `issues.json`, so matching is exact instead of heuristic.",
+      "effort": "LOW — one check, or one marker convention"
+    },
+    {
+      "id": "I-29",
+      "area": "Build",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "Two end-to-end tests fail, and no `verify` target runs the suite that would have said so",
+      "customerImpact": "None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230.",
+      "evidence": "`npx playwright test` over both projects: 228 passed, 2 failed in 10.8 minutes — `activity.spec.ts:144 a horizontal filter row can be reached with a mouse`, in `mobile` and in `desktop`. Reproducible, not flaky. Root cause found by instrumenting the page: `ui/LaunchSplash` renders above the router on every route, is `position: absolute; inset: 0; z-index: 100`, and only gets `pointer-events: none` once it is *leaving* — so for the 900 ms minimum hold it is what `document.elementFromPoint` returns over the whole app, and it swallows the wheel. Measured: at 0/200/400 ms the element at the row's centre is the splash `<img>`; from ~600 ms it is the chip. Wheeling after 1,000 ms moves the row 54 px as intended, so the feature is not broken. Playwright's `toBeVisible()` does not test occlusion, so the test proceeds while the splash is on top. The cause predates `e026697`, which shortened the hold from 1,800 ms to 900 ms — which makes the previous report's clean-sweep claim doubtful rather than merely stale. Separately: `verify:quick`, `verify:release` and `verify` contain no `test:e2e`, so 230 cases are outside the gate entirely.",
+      "recommendedFix": "Two things, and the second is the one that matters. Give the splash `pointer-events: none` from the start — it has nothing to click and the app beneath it is already mounted — which fixes the test and the swallowed first tap together. Then put `test:e2e` on a gate, so a suite this size cannot drift out of green unnoticed.",
+      "effort": "LOW — one CSS line and one gate entry"
+    },
+    {
+      "id": "I-30",
+      "area": "Docs",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "The report's screenshots have no working generator, and one had gone two cycles stale",
+      "customerImpact": "None to a learner. It matters to anyone reading this report to decide what the product is: Figure 8 showed two vocabulary listening questions a few hundred lines below the prose explaining that none exists or can be generated.",
+      "evidence": "The seven `audit-*.png` files the report embeds are produced by nothing in `scripts/` — `capture-report-shots.mjs` emits a different set and never mentions them, so they were captured by hand in some earlier cycle and never again. That script also no longer runs to completion: `node scripts/capture-report-shots.mjs` fails after 30 s on `getByRole('button', { name: /Animals & Nature/ })`, because the category tiles on `/words` became links. All seven were recaptured by hand in this audit against the build from `e026697`, which is a fix for one cycle and not a fix.",
+      "recommendedFix": "Fold the `audit-*` set into `capture-report-shots.mjs`, repair its category selector, and have `docs:report` refuse to build when a referenced image is older than the newest commit touching `apps/web/src`. The build already hard-fails on a missing image; an out-of-date one should be no different.",
+      "effort": "LOW–MEDIUM — one selector, seven capture steps, one staleness check"
     }
   ]
 }

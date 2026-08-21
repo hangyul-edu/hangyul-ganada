@@ -79,6 +79,45 @@ export interface Exercise {
   /** The prompt itself, where the prompt is a meaning rather than Korean. */
   meaning?: string;
   meaningLocale?: string;
+  /**
+   * The same question, asked without the recording.
+   *
+   * Present only on the two **letter** exercises whose entire prompt is a clip:
+   * `listen` — hear it, pick the letter — and `distinguish` — hear it, pick
+   * which of two look-alikes it was. A learner who cannot use audio meets those
+   * two and has nothing to answer with, and the global setting that used to
+   * skip them was removed along with the vocabulary listening questions it
+   * mostly existed for.
+   *
+   * This is the replacement, and it is per question rather than a setting: a
+   * small *Can't use audio?* under the prompt, which swaps the clip for an
+   * equivalent visual question and nothing else. Same item, same skill, same
+   * answer, same scoring — the learner is not skipping the question, they are
+   * being asked it another way, so there is nothing to penalise and no progress
+   * to lose. See `ChoiceExercise`.
+   *
+   * Absent where no honest substitution exists, and the button is then not
+   * offered. Vocabulary never has one, because vocabulary has no audio-only
+   * question left to accommodate.
+   */
+  soundFree?: SoundFreeVariant;
+}
+
+/**
+ * A patch applied over an `Exercise` when the learner asks for it.
+ *
+ * Deliberately a *patch* rather than a second exercise: the candidate, the
+ * mode, the skill being exercised, the hints and the answer are all the same
+ * question, and building two objects would be two things to keep in step.
+ */
+export interface SoundFreeVariant {
+  promptKey: string;
+  /** Shown in place of the clip, where the substitute prompt is the letter. */
+  korean?: string;
+  /** Shown in place of the clip, where the substitute prompt is the sound. */
+  romanization?: string;
+  options: ExerciseOption[];
+  answerId: string;
 }
 
 /** Resolves the copy for one word in the learner's language. */
@@ -346,14 +385,34 @@ function characterExercise(
       // question is dropped rather than padded with filler.
       const options = recognitionOptions(candidate.itemKey, seed, 4, true);
       if (options.length < 3) return null;
+      const shown = options.map((glyph) => ({ id: glyph, korean: glyph }));
       return {
         candidate,
         mode: 'listen',
         promptKey: 'review.prompt.listenLetter',
         audioId: meta.audio.sound,
-        options: options.map((glyph) => ({ id: glyph, korean: glyph })),
+        options: shown,
         answerId: candidate.itemKey,
         hints,
+        /*
+         * Without the clip: the sound written down, and the same four letters.
+         *
+         * The recording and the romanisation carry the same information — this
+         * letter's sound — so substituting one for the other asks the identical
+         * question, which is what makes this an accommodation rather than an
+         * easier version. It gives nothing away: the options are shapes, and
+         * knowing that the sound is *a* is exactly the mapping being tested.
+         *
+         * Safe here specifically because `recognitionOptions(…, true)` excludes
+         * soundalikes for this mode — no two options share a romanisation, so
+         * the written sound cannot match more than one of them.
+         */
+        soundFree: {
+          promptKey: 'review.prompt.listenLetterSoundFree',
+          romanization: meta.romanization,
+          options: shown,
+          answerId: candidate.itemKey,
+        },
       };
     }
 
@@ -409,6 +468,30 @@ function characterExercise(
         ),
         answerId: candidate.itemKey,
         hints,
+        /*
+         * Without the clip: the question turned round.
+         *
+         * The romanisation trick that works for `listen` would hand this one
+         * over — the options here already carry their romanisations as labels,
+         * so printing the target's sound above them is printing the answer. So
+         * the substitute asks the same distinction from the other end: here is
+         * the letter, which of these two sounds does it make. The options are
+         * the two sounds and the prompt is the shape, which is the same pair
+         * being told apart with the modality swapped rather than a different
+         * exercise.
+         */
+        soundFree: {
+          promptKey: 'review.prompt.distinguishSoundFree',
+          korean: meta.character,
+          options: stableOrder(
+            [
+              { id: meta.character, label: meta.romanization },
+              { id: other.character, label: other.romanization },
+            ],
+            seed,
+          ),
+          answerId: candidate.itemKey,
+        },
       };
     }
 

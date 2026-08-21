@@ -20,7 +20,8 @@
     "letters": "Huruf",
     "lettersCaption": "dari 40 huruf Hangul",
     "words": "Kata",
-    "wordsCaption": "kata hari ini"
+    "wordsCaption": "kata hari ini",
+    "wordsReady": "siap untuk kata pertama"
   },
   "review": {
     "title": "Ulasan",

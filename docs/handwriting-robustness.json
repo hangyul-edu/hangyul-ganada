@@ -13,44 +13,33 @@
  ],
  "genuine_attempts": 2880,
  "wrong_attempts": 2172,
- "false_rejection_rate": 0.00208,
- "false_acceptance_rate": 0.00783,
+ "false_rejection_rate": 0.00278,
+ "false_acceptance_rate": 0.00276,
  "per_font": [
   {
    "font": "pretendard",
-   "frr": 0.01042,
-   "far": 0.00552,
+   "frr": 0.00417,
+   "far": 0,
    "rejected": [
-    "ㄴ/small and drifted",
-    "ㄷ/small and drifted",
     "ㄹ/stopped short",
-    "ㅁ/small and drifted",
-    "ㅂ/small and drifted"
+    "ㅋ/stopped short"
    ],
-   "confused": [
-    "ㅐ<-ㅒ",
-    "ㅒ<-ㅐ"
-   ]
+   "confused": []
   },
   {
    "font": "nanum-gothic",
    "frr": 0,
-   "far": 0.00276,
+   "far": 0,
    "rejected": [],
-   "confused": [
-    "ㅈ<-ㅊ"
-   ]
+   "confused": []
   },
   {
    "font": "nanum-myeongjo",
    "frr": 0,
-   "far": 0.01381,
+   "far": 0.00552,
    "rejected": [],
    "confused": [
-    "ㅈ<-ㅊ",
-    "ㅊ<-ㅈ",
     "ㅐ<-ㅒ",
-    "ㅔ<-ㅐ",
     "ㅒ<-ㅐ"
    ]
   },
@@ -66,25 +55,25 @@
   },
   {
    "font": "gaegu",
-   "frr": 0.00208,
-   "far": 0.01105,
+   "frr": 0.01042,
+   "far": 0,
    "rejected": [
-    "ㅊ/drifted −3%"
+    "ㅅ/drifted −3%",
+    "ㅆ/drifted −3%",
+    "ㅆ/very unsteady hand",
+    "ㅆ/small and drifted",
+    "ㅉ/drifted −3%"
    ],
-   "confused": [
-    "ㅂ<-ㅍ",
-    "ㅍ<-ㅂ",
-    "ㅐ<-ㅒ",
-    "ㅒ<-ㅐ"
-   ]
+   "confused": []
   },
   {
    "font": "gowun-dodum",
-   "frr": 0,
-   "far": 0.00829,
-   "rejected": [],
+   "frr": 0.00208,
+   "far": 0.00552,
+   "rejected": [
+    "ㄹ/stopped short"
+   ],
    "confused": [
-    "ㅈ<-ㅊ",
     "ㅐ<-ㅒ",
     "ㅒ<-ㅐ"
    ]

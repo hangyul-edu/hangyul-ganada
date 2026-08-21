@@ -41,6 +41,10 @@ content-cache/
 .tts-venv/
 .stroke-qa/
 
+# Every screen in every language, written by `npm run qa:locales`. 256 renders
+# and a contact sheet — regenerated on demand, not a source of truth.
+.locale-qa/
+
 # Windows download-provenance stubs (NTFS alternate data streams). Five of
 # these are tracked from the initial import under a legacy name; new ones
 # appear whenever the brand PNGs are copied in from Windows and are not part

@@ -3,7 +3,7 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 import { getWord } from '../../data/vocabulary';
 import type { Skill } from '../../domain/memory';
 import type { ExerciseMode } from '../../domain/review';
-import type { ScheduledStep, WordStep } from '../../domain/vocabularyDay';
+import { MIN_MATCH_SIZE, type ScheduledStep, type WordStep } from '../../domain/vocabularyDay';
 import { buildExercise, type Exercise, type MeaningOf } from '../review/exercises';
 import type { Label } from '../review/hints';
 
@@ -55,15 +55,49 @@ const STEP_EXERCISE: Record<Exclude<WordStep, 'intro'>, { mode: ExerciseMode; sk
    * weaker than it is because the learner has met it in only one of them.
    */
   build: { mode: 'build', skill: 'meaning_recognition' },
+  /**
+   * Four words and four meanings, paired.
+   *
+   * `meaning_recognition` again, and it belongs there: pairing a word with its
+   * meaning is the same knowledge `meaning` and `produce` ask for, with the
+   * pressure that every choice narrows the others. A skill of its own would
+   * split one memory three ways and make a word look weaker for having been
+   * met in more forms.
+   *
+   * The `mode` is unused — a grid is not a `buildExercise` question and does
+   * not go through it — and is set to the mode it is closest to rather than to
+   * a placeholder, so nothing downstream that switches on mode is handed a
+   * value it has no branch for.
+   */
+  match: { mode: 'read', skill: 'meaning_recognition' },
 };
 
+/** One row of a matching grid. */
+export interface MatchPair {
+  wordId: string;
+  korean: string;
+  meaning: string;
+  meaningLocale: string;
+}
+
 export interface DailyQuestion {
-  /** The word this asks about. */
+  /** The word this asks about. For a `match` grid, the first of its words. */
   word: VocabularyWord;
   step: WordStep;
-  /** True when answering this finishes the word for today. */
+  /** True when answering this finishes `word` for today. */
   completesWord: boolean;
-  /** Absent for `intro`, which is a card rather than a question. */
+  /**
+   * Every word this question finishes today.
+   *
+   * `[word.id]` or `[]` for a single-word step, and up to four ids for a
+   * matching grid. The session credits from this rather than from
+   * `completesWord`, which is what keeps a grid that finishes three words from
+   * moving the day's counter by one — or by four.
+   */
+  completes: string[];
+  /** The pairs to lay out. Only for `match`. */
+  pairs?: MatchPair[];
+  /** Absent for `intro` and `match`, neither of which is a `buildExercise`. */
   exercise: Exercise | null;
 }
 
@@ -93,7 +127,50 @@ export function buildDailyQuestions(
     if (!word) continue;
 
     if (scheduled.step === 'intro') {
-      out.push({ word, step: 'intro', completesWord: scheduled.completesWord, exercise: null });
+      out.push({
+        word,
+        step: 'intro',
+        completesWord: scheduled.completesWord,
+        completes: scheduled.completes,
+        exercise: null,
+      });
+      continue;
+    }
+
+    if (scheduled.step === 'match') {
+      /*
+       * A grid is only as good as the meanings in it.
+       *
+       * A word whose meaning the current language pack cannot supply is left
+       * out rather than shown with an English one beside three translated ones,
+       * and if that takes the grid under `MIN_MATCH_SIZE` the whole question is
+       * dropped. `repairCompletion` then re-credits the words that were in it,
+       * so nothing is lost from the day's count — the learner simply does not
+       * meet a matching puzzle with two rows in it.
+       */
+      const members = (scheduled.group ?? [word.id])
+        .map((id) => getWord(id))
+        .filter((member): member is VocabularyWord => Boolean(member));
+      const pairs: MatchPair[] = [];
+      for (const member of members) {
+        const copy = meaningOf(member);
+        if (!copy.value) continue;
+        pairs.push({
+          wordId: member.id,
+          korean: member.word,
+          meaning: copy.value,
+          meaningLocale: copy.locale,
+        });
+      }
+      if (pairs.length < MIN_MATCH_SIZE) continue;
+      out.push({
+        word,
+        step: 'match',
+        completesWord: scheduled.completesWord,
+        completes: scheduled.completes.filter((id) => pairs.some((pair) => pair.wordId === id)),
+        pairs,
+        exercise: null,
+      });
       continue;
     }
 
@@ -123,7 +200,13 @@ export function buildDailyQuestions(
     );
     if (!exercise) continue;
 
-    out.push({ word, step: scheduled.step, completesWord: scheduled.completesWord, exercise });
+    out.push({
+      word,
+      step: scheduled.step,
+      completesWord: scheduled.completesWord,
+      completes: scheduled.completes,
+      exercise,
+    });
   }
 
   return repairCompletion(out);
@@ -141,10 +224,23 @@ export function buildDailyQuestions(
  * question for each word completes it.
  */
 function repairCompletion(questions: DailyQuestion[]): DailyQuestion[] {
+  /*
+   * Every word each question touches, which for a grid is all four of them.
+   *
+   * Taken from the pairs rather than from `completes`, because the question is
+   * "where was this word last asked about", and a grid asks about a word
+   * whether or not it is the step that finishes it.
+   */
+  const touches = (question: DailyQuestion): string[] =>
+    question.pairs ? question.pairs.map((pair) => pair.wordId) : [question.word.id];
+
   const last = new Map<string, number>();
-  questions.forEach((question, index) => last.set(question.word.id, index));
-  return questions.map((question, index) => ({
-    ...question,
-    completesWord: last.get(question.word.id) === index,
-  }));
+  questions.forEach((question, index) => {
+    for (const id of touches(question)) last.set(id, index);
+  });
+
+  return questions.map((question, index) => {
+    const completes = touches(question).filter((id) => last.get(id) === index);
+    return { ...question, completes, completesWord: completes.includes(question.word.id) };
+  });
 }
