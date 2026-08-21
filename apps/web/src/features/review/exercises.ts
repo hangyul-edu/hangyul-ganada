@@ -168,57 +168,26 @@ function wordExercise(
       };
     }
 
-    case 'listenMeaning': {
-      /*
-       * Hear it, and say what it means.
-       *
-       * A different skill from `listen`, which asks the learner to match a
-       * sound to a spelling — something that can be done by ear without any
-       * comprehension at all. This is the question that matters when a person
-       * says the word to them.
-       */
-      if (!word.audio.word) return null;
-      const options = readingOptions(word, seed + 29, (other) => meaningOf(other).value).map(
-        (option) => ({
-          id: option.id,
-          label: meaningOf(option).value,
-          labelLocale: meaningOf(option).locale,
-        }),
-      );
-      return {
-        candidate,
-        mode: 'listenMeaning',
-        promptKey: 'review.prompt.listenMeaning',
-        audioId: word.audio.word,
-        options,
-        answerId: word.id,
-        // Not the meaning: it is the answer here. The ladder offers the kind of
-        // word it is, and then the reveal.
-        hints,
-      };
-    }
-
-    case 'listen': {
-      if (!word.audio.word) return null;
-      // The Korean is *not* shown: that is the whole exercise. A learner who
-      // can see 사과 while it is spoken is matching a shape to a sound they
-      // have already been told the answer to.
-      const options = readingOptions(word, seed + 7, (other) => meaningOf(other).value).map(
-        (option) => ({
-          id: option.id,
-          korean: option.word,
-        }),
-      );
-      return {
-        candidate,
-        mode: 'listen',
-        promptKey: 'review.prompt.listen',
-        audioId: word.audio.word,
-        options,
-        answerId: word.id,
-        hints,
-      };
-    }
+    /*
+     * `listen` and `listenMeaning` were here, and a word can no longer produce
+     * either of them.
+     *
+     * Deleted rather than guarded, for the same reason `write` has never had a
+     * branch in this switch: a mode a word cannot be *built* into is a mode no
+     * route can reach. A stale stored candidate naming `listen` — one written
+     * before this change and read back from a device — falls through to the
+     * `default` below and returns `null`, and the scheduler drops any candidate
+     * it cannot turn into a question. There is no path from any screen, any
+     * plan, any saved word or any wrong-answer retry to a vocabulary question
+     * whose prompt is a recording.
+     *
+     * The word's audio itself is untouched — `read`, `produce` and `context`
+     * all still carry `audioId` and still play the clip beside the question.
+     * What has gone is the question *made of* the clip.
+     */
+    case 'listen':
+    case 'listenMeaning':
+      return null;
 
     case 'context': {
       if (!word.example) return null;

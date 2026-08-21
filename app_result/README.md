@@ -1,6 +1,12 @@
 # Hangyul ganada — the applications
 
-Built from commit `3f500deab967c04e60d6aa2fb1074ce16d302302` at 2026-08-20T18:57:28.388Z.
+Built at 2026-08-21T07:47:00.000Z from commit
+`6fa90bb5af4d422c43bf2cbacc44486135ef78b7` **plus an uncommitted patch** — the
+selected-language flag on the Language row, and the removal of vocabulary
+listening questions. `build-info.json` carries `source.patch_sha256`, a digest
+of `git diff HEAD -- apps packages scripts content`, so what is in these
+binaries can be checked against what is in the tree. Committing that patch is
+the outstanding step before these are uploaded anywhere.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 

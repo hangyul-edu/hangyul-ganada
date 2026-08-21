@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Bu kelime ne demek?",
       "readLetter": "Bu harf hangi sesi verir?",
-      "listen": "Hangi kelimeyi duydun?",
       "listenLetter": "Bu hangi harf?",
       "context": "Buraya hangi kelime uyar?",
       "write": "Bu kelimeyi yaz",
       "writeLetter": "Duyduğunu yaz",
       "distinguish": "Bu sesi hangisi çıkarıyor?",
       "produce": "Hangisi?",
-      "listenMeaning": "Bu ne demek?",
       "build": "Kelimeyi kur"
     },
     "nothingDue": "Şu an tekrar edilecek bir şey yok.",

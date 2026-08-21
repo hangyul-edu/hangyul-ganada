@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Từ này nghĩa là gì?",
       "readLetter": "Chữ này đọc thành âm gì?",
-      "listen": "Bạn vừa nghe từ nào?",
       "listenLetter": "Đây là chữ nào?",
       "context": "Từ nào hợp vào chỗ này?",
       "write": "Viết từ này",
       "writeLetter": "Viết chữ bạn vừa nghe",
       "distinguish": "Chữ nào phát ra âm này?",
       "produce": "Là từ nào?",
-      "listenMeaning": "Từ này nghĩa là gì?",
       "build": "Ghép thành từ"
     },
     "nothingDue": "Bây giờ chưa có gì để ôn.",

@@ -134,10 +134,5 @@
     "notSaving": "Dein Fortschritt wird auf diesem Gerät nicht gespeichert — was du jetzt lernst, ist beim nächsten Öffnen vielleicht weg. Wenn du dieser Seite in den Browsereinstellungen erlaubst, Daten zu speichern, ist das Problem meist behoben.",
     "recovered_one": "Beim Laden wurde {{count, number}} beschädigter Eintrag übersprungen. Der Rest deines Fortschritts ist unversehrt.",
     "recovered_other": "Beim Laden wurden {{count, number}} beschädigte Einträge übersprungen. Der Rest deines Fortschritts ist unversehrt."
-  },
-  "soundFree": {
-    "title": "Fragen ohne Ton",
-    "description": "Manche Fragen sind nur eine Aufnahme — „Welches Wort war das?“. Schalten Sie dies ein, und sie entfallen. Vorlesen lässt sich weiterhin alles.",
-    "toggle": "Hörfragen überspringen"
   }
 }

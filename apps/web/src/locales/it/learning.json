@@ -148,14 +148,12 @@
     "prompt": {
       "read": "Che cosa significa questa parola?",
       "readLetter": "Che suono fa questa lettera?",
-      "listen": "Quale parola hai sentito?",
       "listenLetter": "Che lettera è questa?",
       "context": "Quale parola ci sta qui?",
       "write": "Scrivi questa parola",
       "writeLetter": "Scrivi quello che senti",
       "distinguish": "Quale fa questo suono?",
       "produce": "Qual è?",
-      "listenMeaning": "Che cosa vuol dire?",
       "build": "Componi la parola"
     },
     "nothingDue": "Adesso non c'è niente da ripassare.",

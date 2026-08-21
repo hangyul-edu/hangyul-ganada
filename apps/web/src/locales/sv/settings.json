@@ -134,10 +134,5 @@
     "notSaving": "Dina framsteg sparas inte på den här enheten, så det du lär dig kan vara borta nästa gång du öppnar appen. Att låta den här sidan spara data i webbläsarens inställningar brukar lösa det.",
     "recovered_one": "{{count, number}} skadad post hoppades över vid inläsningen. Resten av dina framsteg är hel.",
     "recovered_other": "{{count, number}} skadade poster hoppades över vid inläsningen. Resten av dina framsteg är hel."
-  },
-  "soundFree": {
-    "title": "Frågor utan ljud",
-    "description": "Vissa frågor är bara en inspelning — ”vilket ord hörde du?”. Slå på det här så hoppas de över. Allt läses fortfarande upp om du vill.",
-    "toggle": "Hoppa över lyssningsfrågor"
   }
 }

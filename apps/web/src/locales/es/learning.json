@@ -56,14 +56,12 @@
     "prompt": {
       "read": "¿Qué significa esta palabra?",
       "readLetter": "¿Qué sonido tiene?",
-      "listen": "¿Qué palabra has oído?",
       "listenLetter": "¿Qué letra es?",
       "context": "¿Qué palabra encaja aquí?",
       "write": "Escribe esta palabra",
       "writeLetter": "Escribe lo que oyes",
       "distinguish": "¿Cuál hace este sonido?",
       "produce": "¿Cuál es?",
-      "listenMeaning": "¿Qué significa?",
       "build": "Forma la palabra"
     },
     "sessionLength_many": "{{count, number}} ejercicios cortos",

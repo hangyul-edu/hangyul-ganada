@@ -56,14 +56,12 @@
     "prompt": {
       "read": "Que veut dire ce mot ?",
       "readLetter": "Quel son fait-elle ?",
-      "listen": "Quel mot avez-vous entendu ?",
       "listenLetter": "Quelle lettre est-ce ?",
       "context": "Quel mot va ici ?",
       "write": "Écrivez ce mot",
       "writeLetter": "Écrivez ce que vous entendez",
       "distinguish": "Laquelle fait ce son ?",
       "produce": "Lequel est-ce ?",
-      "listenMeaning": "Qu’est-ce que cela veut dire ?",
       "build": "Reconstituez le mot"
     },
     "sessionLength_many": "{{count, number}} courts exercices",

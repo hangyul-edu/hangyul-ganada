@@ -134,10 +134,5 @@
     "notSaving": "A haladásod nem mentődik ezen a készüléken, így amit tanulsz, eltűnhet, mire legközelebb megnyitod az alkalmazást. Általában segít, ha a böngésző beállításaiban engedélyezed ennek az oldalnak az adatok tárolását.",
     "recovered_one": "Betöltéskor {{count, number}} sérült bejegyzés kimaradt. A haladásod többi része ép.",
     "recovered_other": "Betöltéskor {{count, number}} sérült bejegyzés kimaradt. A haladásod többi része ép."
-  },
-  "soundFree": {
-    "title": "Kérdések hang nélkül",
-    "description": "Egyes kérdések csak egy felvételből állnak — „melyik szót hallottad?”. Kapcsold be, és ezek kimaradnak. Minden továbbra is felolvasható, ha szeretnéd.",
-    "toggle": "Hallgatós kérdések kihagyása"
   }
 }

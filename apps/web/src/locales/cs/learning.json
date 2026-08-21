@@ -150,14 +150,12 @@
     "prompt": {
       "read": "Co znamená tohle slovo?",
       "readLetter": "Jaký zvuk dělá tahle litera?",
-      "listen": "Které slovo jste slyšeli?",
       "listenLetter": "Co je to za literu?",
       "context": "Které slovo sem patří?",
       "write": "Napište tohle slovo",
       "writeLetter": "Napište, co slyšíte",
       "distinguish": "Která dělá tenhle zvuk?",
       "produce": "Která to je?",
-      "listenMeaning": "Co to znamená?",
       "build": "Složte slovo"
     },
     "nothingDue": "Teď není co opakovat.",

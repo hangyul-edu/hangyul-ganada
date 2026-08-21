@@ -64,11 +64,32 @@ export const WORD_SKILLS = [
   'meaning_recognition',
   /** The written form read aloud in the head — Korean shown, said correctly. */
   'reading_recognition',
-  /** Audio played, word chosen. */
-  'listening_recognition',
   /** The word met inside its example sentence. */
   'sentence_comprehension',
 ] as const;
+
+/**
+ * Skills that exist in stored data and are never asked about again.
+ *
+ * `listening_recognition` — a clip and four words — was a word skill and is
+ * not one any more. Vocabulary is no longer tested by hearing: see
+ * `domain/vocabularyDay.ts` for what a word owes instead, and note that this
+ * removes *the question*, not the sound. Every word still has a play button in
+ * its introduction, in Word Detail and beside its example sentence, because
+ * hearing a word is how it is learned and being made to identify it from a clip
+ * with nothing on screen is a different thing that this product no longer does.
+ *
+ * The name stays here rather than being deleted because it is written into
+ * every learner's stored memory rows. Keeping it in `Skill` means a profile
+ * carrying years of listening history still parses, still migrates and still
+ * round-trips; leaving it out of `WORD_SKILLS` means `candidates()` — which
+ * iterates `skillsFor(kind)` — can never offer it again. Nothing schedules it,
+ * nothing renders it, and nothing had to be deleted from anybody's device.
+ *
+ * `sound_recognition` is not here and is not affected: that is a *letter*
+ * skill, the Hangul curriculum owns it, and it is out of scope.
+ */
+export const DEPRECATED_SKILLS = ['listening_recognition'] as const;
 
 export const CHARACTER_SKILLS = [
   /** Sound played, letter chosen. */
@@ -80,7 +101,10 @@ export const CHARACTER_SKILLS = [
   'lookalike_discrimination',
 ] as const;
 
-export type Skill = (typeof WORD_SKILLS)[number] | (typeof CHARACTER_SKILLS)[number];
+export type Skill =
+  | (typeof WORD_SKILLS)[number]
+  | (typeof CHARACTER_SKILLS)[number]
+  | (typeof DEPRECATED_SKILLS)[number];
 
 export function skillsFor(kind: ItemProgress['kind']): readonly Skill[] {
   return kind === 'word' ? WORD_SKILLS : CHARACTER_SKILLS;

@@ -134,10 +134,5 @@
     "notSaving": "Jarayoningiz bu qurilmada saqlanmayapti, shu sababli o‘rganganlaringiz ilovani keyingi ochganingizda yo‘qolishi mumkin. Odatda brauzer sozlamalarida bu saytga ma’lumot saqlashga ruxsat berish yordam beradi.",
     "recovered_one": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun.",
     "recovered_other": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun."
-  },
-  "soundFree": {
-    "title": "Ovozsiz savollar",
-    "description": "Ba’zi savollar faqat yozuvdan iborat — “qaysi so‘zni eshitdingiz?”. Buni yoqsangiz, ular chiqmaydi. Xohlasangiz, hammasini baribir eshitish mumkin.",
-    "toggle": "Tinglash savollarini o‘tkazib yuborish"
   }
 }

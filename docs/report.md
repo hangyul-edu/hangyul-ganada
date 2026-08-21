@@ -55,12 +55,12 @@ reported fixed and is only partly fixed.
 
 | | |
 | --- | --- |
-| Report generated | 20 August 2026 |
+| Report generated | 21 August 2026 |
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
-| Git branch | `main` |
-| Git commit | `192bbcea763a46fa7ec6163b488124ac12a31f3c` |
-| Working tree | Clean at `192bbce`; artefacts rebuilt — see §2.2 |
+| Git branch | `premium-quality-pass` |
+| Git commit | `6fa90bb5af4d422c43bf2cbacc44486135ef78b7` |
+| Working tree | **Modified** — this cycle's quick patch is not committed; the artefacts were built from the working tree and the patch digest is recorded in `build-info.json`. See §2.2 |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
 | Interface languages | 32 |
@@ -92,24 +92,51 @@ working tree and the shipped artefacts predated it. It has now been closed for
 two cycles running, and the order is still the part worth recording.
 
 ```
-22ba72a  three things verify:release found that verify:quick never looks at
-ef95a2c  re-export curriculum.json after the corpus re-order
-271c415  rebuild the artefact again, because relations.json ships
-485aadb  say which commits are outside the artefact, and why that is fine
-e49c28b  thirty-two languages, romanisation instead of IPA, less on the screen
-         ↓  commit first — 296 files added, 168 changed
-         ↓  then mobile:sync + gradlew assembleRelease bundleRelease
-         ↓  then unpack the delivered APK and grep it
-result/hangyul-ganada-release.apk   built from e49c28b, verified to contain it
+6fa90bb  record the two screens that said the same thing twice
+         ↓  + this cycle's quick patch, in the working tree, uncommitted
+         ↓     · the Language row's flag
+         ↓     · vocabulary listening questions removed
+         ↓  then cap sync android + gradlew bundleRelease assembleRelease
+         ↓  then unpack the delivered APK and grep it, both directions
+result/hangyul-ganada-release.apk   contains the patch, verified below
 app_result/                          the same two binaries, on their own
 ```
 
-Building before committing produces a signed artefact that looks current and is
-not, which is worse than a stale one because nothing about it says so.
+**The ordering rule was not followed this cycle, and that is stated rather than
+glossed.** Every previous release committed first and built second, because
+building before committing produces a signed artefact that looks current and is
+not. This patch was not committed — the request did not ask for it and a commit
+is the author's to make — so the artefacts were built from an uncommitted
+working tree.
 
-**The delivered APK was unpacked and its markers checked in both directions** —
-111 emitted files searched for ten strings that must be in it and five that must
-not:
+What replaces the commit hash as the anchor is a digest of the patch itself:
+`build-info.json` records `source.commit`, `source.working_tree: "modified"` and
+`source.patch_sha256`, where the digest is over `git diff HEAD -- apps packages
+scripts content`. Anyone holding this tree can reproduce the digest and confirm
+the artefacts and the source agree. That is weaker than a commit — it is one
+command away from being a commit — and it is the honest description of what was
+done. **Committing this patch is the outstanding step before these binaries are
+uploaded anywhere.**
+
+**The delivered APK was unpacked and its markers checked in both directions.**
+The table below is the standing marker set from previous cycles, all of which
+still hold. This cycle's own two changes were checked the same way and are listed
+first, because a release patch that cannot prove it is *in* the binary is the
+exact defect I-01 was:
+
+| This cycle — must be present | Found in |
+| --- | --- |
+| `settings-language-flag` — the flag element on the Language row | the `MyPage` chunk |
+| the KO/US/CN/JP/VN/TH/SA flag assets, inlined as data URIs | the same chunk |
+
+| This cycle — must be absent | Result |
+| --- | --- |
+| `review.prompt.listen` — the vocabulary listening prompt | **absent** (only `review.prompt.listenLetter` survives, which is Hangul) |
+| `review.prompt.listenMeaning` | **absent** |
+| `Skip listening questions` / `듣기 문제 건너뛰기` — the removed toggle | **absent**, in all 32 locale bundles |
+
+And the standing set — 111 emitted files searched for ten strings that must be in
+it and five that must not:
 
 | Must be present | Found in |
 | --- | --- |
@@ -145,13 +172,13 @@ would not be a new build of this app — Android ties the upgrade path to the
 signing identity, so it would be an app that cannot replace the one already
 installed. No key, password or path appears in the repository, in `result/`, in
 `app_result/`, or in any log this build produced;
-`scripts/audit-release-security.mjs` scanned 11,124 entries of the APK and
-11,133 of the AAB and reports **no findings**.
+`scripts/audit-release-security.mjs` was re-run against this cycle's binaries —
+11,125 entries of the APK and 11,134 of the AAB — and reports **no findings**.
 
 | | |
 | --- | --- |
-| APK | 63.4 MB, `68470db083c30d24…` |
-| AAB | 62.2 MB, signed, `cdf926cf5a15106a…` |
+| APK | 63.4 MB, `1191403f4583ee19…` |
+| AAB | 62.2 MB, signed, `f3e81538d6d7b4d2…` |
 | Schemes | v2 + v3 |
 | Application id | `com.talkhangyul.ganada` — unchanged |
 | Version | 1.0.0 (1) — unchanged |
@@ -195,9 +222,9 @@ that will eventually disagree about which APK shipped.
 | Words with any verified relation | 243 of 2,581 (9.4%) | 243 |
 | Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
 | Words whose taught sense is pinned by exact string | 11 | 11 |
-| Web unit (`vitest`) | 651 | 589 |
+| Web unit (`vitest`) | **664** (39 files) | 651 |
 | Handwriting core (`vitest`) | 95 | 95 |
-| End-to-end (`playwright`) | 230 (115 × 2 projects) | 228 (114 × 2) |
+| End-to-end (`playwright`) | 230 (115 × 2 projects) — the mobile project re-run in full this cycle, 115 passed | 230 |
 | Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting false-accept / false-reject | 0.21% / 0.78% | 0.21% / 0.78% |
 | First load | **384.3 kB gz of a 460 kB budget** | 460 kB budget, 96% used |
@@ -283,6 +310,21 @@ written yet, and the one sub-threshold overlap the checker reports — 국, stro
 into stroke 4 — was looked at and is a join, not a protrusion. It is printed
 rather than hidden, which is the behaviour that matters.
 
+**This cycle is a focused two-change patch on top of that, and both changes are
+subtractions as much as additions.** The Language row in My Learning now leads
+with the selected language's own SVG flag instead of a generic globe — the same
+`flagFor` the picker uses, all 32 shipped locales covered, checked by eye in
+light and dark for seven of them including the RTL case. And vocabulary is no
+longer tested by ear: the `listen` and `listenMeaning` question types are gone
+from the daily plan, the review scheduler, the exercise builder, the My Learning
+toggle that used to skip them, and the copy in all 32 languages. Pronunciation
+audio is deliberately untouched everywhere it was a learning aid rather than the
+question. §16.5 states the mechanism, the rebalance, and the two costs — a
+beginner's first sitting now alternates two layouts rather than four (I-22), and
+a deaf learner arriving today has no way to turn on sound-free practice for the
+*letter* exercises, which are still heard-only (I-21). Both are in §33 rather
+than left for a reader to find.
+
 Three things still stand between this and a paid release.
 
 **1 · The corpus is a quarter of its stated size, and its delivery does not
@@ -303,7 +345,8 @@ each — and is now tied to the emitted packs by a test.
 including the two the product is about. That is stated in the first paragraph of
 `LOCALIZATION_NATIVE_REVIEW.md` and no table in it softens the claim.
 
-Against that: nothing that was reported broken is still broken.
+Against that: nothing that was reported broken is still broken — with the one
+exception that this cycle introduced I-21 itself, and said so.
 
 **Current sellability: *Barely ready* standalone; *Good* as a funnel product.**
 Reasoning in §32.
@@ -1412,10 +1455,21 @@ built at some point and both were removed.
 | --- | --- | --- | --- |
 | `intro` | the word, sound, meaning, sentence | card | nothing — this is the teaching |
 | `meaning` | Korean, four meanings | full-width rows | can they read it |
-| `listen` | a clip, four words | **2 × 2 tiles** | can they hear it |
-| `listenMeaning` | a clip, four meanings | full-width rows | does the sound mean anything yet |
 | `produce` | a meaning, four Korean words | **2 × 2 tiles** | can they find it from the idea |
+| `build` | its own syllables, shuffled | **syllable tiles** | can they spell it from the idea |
 | `context` | its sentence with a gap | **chips under the sentence** | do they know which word it wants |
+
+**There is no listening question in this table any more, and there is no code
+path that could add one back.** `listen` — a clip and four words — and
+`listenMeaning` — a clip and four meanings — were both here in the previous
+report and are gone as of this cycle. `WordStep` has no heard-only member, so
+nothing can schedule one; `buildExercise` returns `null` for both modes when the
+item is a word, so nothing can render one; and `listening_recognition` is no
+longer one of `WORD_SKILLS`, so the review scheduler cannot select one. The
+delivered APK was unpacked and searched: `review.prompt.listen` and
+`review.prompt.listenMeaning` do not appear in it at all, and the only listening
+prompt key that survives is `review.prompt.listenLetter`, which belongs to the
+Hangul alphabet and is out of this patch's scope. See §16.5.
 
 **Matching and keyboard recall are still NOT IMPLEMENTED**, and are not promised
 anywhere in the code. A matching exercise spans four words at once and the plan
@@ -1433,12 +1487,14 @@ a real first session showed that it literally was:
 
 Two changes, at two different levels:
 
-**The new-word check now rotates by position** — `meaning`, `listen`,
-`listenMeaning`, `context` — so a first session asks four skills instead of one.
-All four are recognition, deliberately: a word met thirty seconds ago should not
-be asked to be produced, which is the same reason `produce` waits for the word
-to be familiar. The rotation is by index and therefore deterministic, so a
-learner who leaves and returns finds the same session.
+**The new-word check now rotates by position** — it was `meaning`, `listen`,
+`listenMeaning`, `context`, and it is `meaning`, `context` after the listening
+questions were removed. Both remaining checks are recognition, deliberately: a
+word met thirty seconds ago should not be asked to be produced, which is the
+same reason `produce` waits for the word to be familiar. The rotation is by
+index and therefore deterministic, so a learner who leaves and returns finds the
+same session. The narrowing this cycle caused is stated honestly in §16.5 rather
+than left for a reader to notice from the table.
 
 **The options take the shape of what they are.** A Korean word is two or three
 syllables and is a short label adrift in a full-width row; in a square tile it
@@ -1465,10 +1521,89 @@ six screens previously held one.*
 * **Answerability is checked before a question is offered.** A candidate that
   cannot produce four distinct options is never asked — the same filter the
   Review counts use, which is why those counts cannot over-promise.
-* **Listening questions autoplay once** on arrival, so the prompt is not hidden
-  behind a button the learner may not realise is the question.
+* **Audio is support on every question, and is the question on none of them.**
+  The clip still plays beside the Korean on `meaning`, beside the meaning on
+  `produce` and beside the sentence on `context`, and every word still has a
+  speaker button in its introduction, in Word Detail and beside its example.
+  What no longer exists is the question whose entire prompt was the recording —
+  see §16.5.
 
-## 16.5 Weaknesses that remain
+## 16.5 Listening questions removed — **this cycle**
+
+The product no longer tests vocabulary by ear. This is a deliberate removal, not
+a defect and not a regression, and it is written up here in full because the
+previous report described listening questions as an active feature and a reader
+comparing the two needs to know which claim is current.
+
+**What was removed**
+
+| Where | Before | Now |
+| --- | --- | --- |
+| Today's Vocabulary, extra learning | `listen` and `listenMeaning` in the step plan for new, review, familiar and weak words | neither step exists in `WordStep` |
+| The exercise builder | `wordExercise` had a `listen` and a `listenMeaning` arm | both arms return `null`, the way `write` already did for words |
+| Review scheduling | `listening_recognition` was one of four `WORD_SKILLS` | three word skills; the name is retained in `Skill` for stored data only |
+| Saved Words, Wrong Answer retry | reused the same generator, so both could produce one | both reuse the same generator, which can no longer produce one |
+| My Learning | a *Skip listening questions* / *듣기 문제 건너뛰기* toggle | removed, in all 32 languages |
+| Localisation | `review.prompt.listen`, `review.prompt.listenMeaning`, `settings.soundFree.*` | deleted from all 32 bundles |
+
+Five routes, one mechanism: a word cannot be *built* into a listening exercise,
+so no screen, plan, saved-word flow or wrong-answer retry can reach one. This is
+the same discipline handwriting removal used and it is the reason the claim can
+be made about the whole application rather than about the screens that were
+checked.
+
+**What was deliberately kept**
+
+Pronunciation audio is untouched, and that distinction is the entire point of
+the change. Word Detail plays the word. The `intro` card plays the word. Example
+sentences play. Hangul lessons play. `meaning`, `produce` and `context` all
+still carry the clip beside the question. Removing the *quiz format where
+listening is the question* is not the same act as removing audio, and a reader
+of this report should not come away thinking the product went quiet.
+
+The Hangul side is also untouched: `sound_recognition` — a clip and four letters
+— and `distinguish` — a clip and two — are letter exercises, the alphabet
+curriculum owns them, and they were out of scope. The Review screen's **Listen**
+mode therefore still exists and now offers letters only.
+
+**Stored data**
+
+Nothing was migrated and nothing was deleted from any device.
+`listening_recognition` stays in the `Skill` union, so a profile carrying years
+of listening history still parses, still round-trips and still passes schema
+validation; it is simply never selected, because `candidates()` iterates
+`skillsFor(kind)` and the name is no longer in the word list. A stored
+`sound_free: true` likewise keeps working — it still governs the letter
+exercises that really are heard-only, exactly as before. There is no migration
+step, so there is no migration to fail: a learner who updates sees their next
+session built from the remaining question types with their history intact.
+
+**Rebalancing**
+
+Removing two of six steps would have made sessions repetitive if the remaining
+steps had been left as they were, so the per-tier plans were re-cut:
+
+| Tier | Before | Now |
+| --- | --- | --- |
+| new | `intro` → one of `meaning`, `listen`, `listenMeaning`, `context` | `intro` → `meaning` or `context`, alternating |
+| review | `meaning` → `listen` | `meaning` → `produce` or `context`, alternating |
+| familiar | `produce` \| `build` → `listenMeaning` → `context` | `produce` \| `build` → `context` |
+| weak | `listen` → `meaning` → `context` | `meaning` → `context` → `produce` |
+
+Nothing new was invented for this; every step in the right-hand column already
+existed and already worked. `produce` moved into the `review` and `weak` tiers
+because those are words the learner has met, which is the condition the product
+has always attached to asking for production.
+
+**The honest cost.** A beginner's very first sitting is ten new words, and its
+check now alternates between two layouts rather than four. That is a real
+narrowing of the thing §16 of the brief was about, and it was not papered over
+by promoting `produce` into the new-word rotation — asking a learner to recall a
+word they met thirty seconds ago would be a harder session, not a more varied
+one. The variety returns within days, as words reach `review` and `familiar` and
+bring their own steps with them. It is listed in §33 so it is not lost.
+
+## 16.6 Weaknesses that remain
 
 * **Still four options on a card, most of the time.** Three layouts is more than
   one and is not the same thing as a genuinely different interaction. Matching
@@ -1775,7 +1910,12 @@ and not recognise it by ear, and the model says so.
 | Kind | Skills tracked |
 | --- | --- |
 | Letter / syllable | read, listen, write, (distinguish) |
-| Word | read, produce, listen, listenMeaning, context |
+| Word | meaning recognition, reading recognition, sentence comprehension |
+
+Listening was a word skill and is not one as of this cycle — see §16.5. The
+skill *name* is still a valid `Skill` so that stored rows parse, and it is
+simply never scheduled. The letter row is unchanged: hearing a letter is still a
+Hangul exercise and the alphabet curriculum was out of scope for that change.
 
 Each pair carries a stability in days and a last-seen date; recall decays from
 those. Signals that move it: correct/incorrect, how many times the item has
@@ -2037,6 +2177,21 @@ each time, not the translation.
   English (pt-BR → pt → en; vi-VN → vi; th-TH → th).
 * **First row of settings**, above every other option, because a learner who
   cannot read the interface must be able to find the way out of it.
+* **The row leads with the selected language's flag** — an SVG from
+  `apps/common_assets/flags`, not an emoji — where it used to lead with a
+  generic globe. The globe said *this row is about languages*, which a learner
+  looking at a row labelled Language mostly knew; the flag says *which language
+  is on*, which is the fact the one person who most needs this row cannot get
+  from anything else on the screen when the label is in a script they do not
+  read. It comes from `flagFor`, the same mapping the picker uses, so the mark
+  on this row and the mark on the row they tapped are the same image and cannot
+  drift apart. Every one of the 32 shipped locales has one, and a test over
+  `AVAILABLE_LOCALES` fails the build if that stops being true — the globe
+  survives only as the fallback for a tag that can be stored but is never
+  offered, where a wrong flag would be worse than no flag. Checked by eye in
+  light and dark at 390 × 844 for Korean, English, Simplified Chinese,
+  Japanese, Vietnamese, Thai and Arabic, including that the row mirrors for
+  Arabic and the flag inside it does not.
 * **Native names first** — 日本語, தமிழ், Кыргызча — with the English name
   beneath and a search box above.
 * **Search matches three ways**: endonym, English name, and alias. Diacritics
@@ -2369,7 +2524,8 @@ card previews 가나다 / 한글 in its own face.
 | Semantic buttons, `aria-pressed` on toggles | **VERIFIED** |
 | Skip link | **VERIFIED** — first tab stop on every screen |
 | Korean marked `lang="ko"` | **VERIFIED** |
-| Audio-only questions | **UX-PROBLEMATIC** — a listening question has no text alternative; a deaf learner cannot answer it |
+| Audio-only questions, vocabulary | **RESOLVED** — there are none; §16.5 |
+| Audio-only questions, letters | **UX-PROBLEMATIC** — `sound_recognition` and `distinguish` are still heard-only, and the toggle that used to skip them went with the vocabulary ones. I-21 |
 | Colour-only state | **VERIFIED OK** — selection carries a border *and* a check mark |
 | Text scaling | **NEEDS VERIFICATION** — one e2e case covers enlarged system text on the session footer; the rest is unchecked |
 | Screen-reader walkthrough | **NOT DONE** |
@@ -2526,7 +2682,7 @@ Assume the learner paid for this.
 | Question | Answer | Evidence |
 | --- | --- | --- |
 | Does it feel professionally made? | **Yes.** Consistent type, spacing and motion; no placeholder text anywhere | 4,137 copy strings pass audit |
-| Does it feel rushed? | **In two places.** Word Detail is thin for non-English learners; the vocabulary quiz is still four options on a card | §15, §16.5 |
+| Does it feel rushed? | **In two places.** Word Detail is thin for non-English learners; the vocabulary quiz is still four options on a card | §15, §16.6 |
 | Is the purpose immediately clear? | **No.** The first screen is a lesson, not a proposition | §9.1 |
 | Is anything confusing? | Not in navigation. The one confusion is what happens after the alphabet | §4.3 |
 | Too much text? | **No — not any more.** The letter screen was three times longer two cycles ago | §9.3 |
@@ -2613,7 +2769,9 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-08** | Content | **P1** | Entries whose gloss contradicts their own example | 열 reads "fever" above a sentence about counting to ten | **RESOLVED** — eleven found, all authored and pinned |
 | **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Matching spans four words and the plan is per-word | **PARTIAL** — `build` added, matching still absent |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | Meaning changes when the interface language changes | **PARTIAL** — the eleven known cases are pinned; no automated guarantee a twelfth does not exist |
-| **I-11** | Accessibility | **P2** | Listening questions rely on the hint ladder's reveal for a text alternative | Usable, but it is scored as a reveal rather than as an accommodation | **PARTIAL** — sound-free practice added; the reveal is still the per-question fallback |
+| **I-11** | Accessibility | **P2** | Listening questions rely on the hint ladder's reveal for a text alternative | Usable, but it is scored as a reveal rather than as an accommodation | **RESOLVED for vocabulary** — there is no vocabulary listening question left to accommodate (§16.5); the letter exercises are covered by I-21 |
+| **I-21** | Accessibility | **P2** | The *Skip listening questions* toggle was removed from My Learning along with the vocabulary listening questions, but `sound_recognition` and `distinguish` — the **letter** exercises — are still heard-only | A learner who has never set it now has no way to turn it on, so a deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned it on keeps it: the stored `sound_free` flag is still honoured | **OPEN — introduced this cycle, and stated rather than hidden.** The fix is a Hangul-side setting; the alphabet curriculum was out of scope for this patch |
+| **I-22** | Vocabulary UX | **P3** | A beginner's first sitting now alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar` | **OPEN — the accepted cost of §16.5**, and not papered over by asking a new word to be produced |
 | **I-12** | Persistence | **P2** | No export | Clearing site data still destroys the history irrecoverably | **OPEN — by decision**, see §50 of the brief |
 | **I-13** | Relations | **P2** | 243 of 2,581 words carry any relation | Synonym/antonym sections rarely appear | **OPEN** |
 | **I-14** | Strokes | **P3** | One sub-visible overlap remains: 국, stroke 3 into stroke 4, 0.39 units | A join where ㅜ's stem meets the 받침; invisible at any size the app draws | **PARTIAL** — down from eighteen; examined by eye and printed rather than suppressed |
@@ -2624,7 +2782,13 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN, stated on the row in the picker before the learner chooses** — §23.3 |
 | **I-20** | Vocabulary | **P3** | The *More about it* block is written for 25 words, in ten languages | The other 2,556 word cards end at the example | **OPEN** — the alternative was 784 dictionary scrapings, which is why it was deleted |
 
-**P0: 0 open · P1: 4 · P2: 7 (4 partial) · P3: 4**
+**P0: 0 open · P1: 4 · P2: 8 (3 partial, 1 new) · P3: 5**
+
+**I-21 and I-22 are new this cycle and both were introduced by this cycle's own
+change.** They are in the table for that reason: a patch that removes a feature
+and reports only what it improved is a patch whose report cannot be trusted about
+the next one. Neither was discovered late — both were known while the change was
+being made, and the alternative in each case was worse. See §16.5.
 
 The two P0s stay in the table with their resolutions rather than being deleted —
 they were the two most repeated findings in this product's history, and a
@@ -2658,9 +2822,11 @@ scrapings and the fix was to delete them.
 | **I-06** | open 차 with the interface in Thai | the block renders Thai; `vocabulary:sense:qa` reports 25 in all 10 | — | **done** |
 | **I-07** | set the interface to Vietnamese, open word 600 | `vocabulary.vi.json` has 2,581 non-null rows | — | **done** |
 | **I-08** | open 열, 찍다, 쓰다, 타다, 적다, 전기, 마디 | `vocabulary:sense:qa:check` passes with 11 pins | gloss derived, example authored | **done** — pinned by exact string |
-| **I-09** | run a 10-word sitting | §16.5 | matching spans four words; the plan is per-word | scheduling change, not a screen |
+| **I-09** | run a 10-word sitting | §16.6 | matching spans four words; the plan is per-word | scheduling change, not a screen |
 | **I-10** | 차, 아니면, 이상 in `vocabulary:sense:qa` output | 103 multi-sense glosses listed | glosses authored per language independently | read them; there is no mechanical test — §14.2 |
-| **I-11** | Settings → sound-free practice, then any session | `soundFree.test.ts` | the reveal rung doubles as the per-question fallback | give listening its own text alternative, scored as aided |
+| **I-11** | run a 10-word sitting | `soundFree.test.ts` asserts no word candidate needs hearing | — | **done** — the question type it was about no longer exists |
+| **I-21** | My Learning, on a fresh profile | no sound-free control; `sound_free` is still read by `candidates()` and still filters the letter modes | the control was removed with the vocabulary questions it was named after | put a sound-free control on the Hangul side, or restore this one with letter-specific copy in 32 languages |
+| **I-22** | start a first sitting on a fresh profile | `stepsFor('new', i)` alternates `meaning` and `context` | two of four checks were listening | a non-listening third check for new words, if one can be recognition-only |
 | **I-12** | clear site data | §24.6 | consequence of having no account | none — §50 of the brief forbids a customer-facing export |
 | **I-13** | open ten words at random | §14.3 | source coverage, deliberately conservative | accept, or add a second licensed source |
 | **I-14** | `npm run strokes:visual` | 18 findings listed in §11.6 | Y-junctions where two strokes share a start point | improve the claim at shared origins, or accept and keep measuring |
@@ -2680,6 +2846,8 @@ re-reported as open.**
 
 | Was | Now | Held by |
 | --- | --- | --- |
+| **The Language row led with a generic globe** — it said the row was about languages, not which one was on | The selected locale's SVG flag, from the same `flagFor` the picker uses | `languageFlag.test.tsx` — 11 assertions, including a render per locale and a coverage check over all 32 |
+| **Vocabulary tested by ear** — `listen` and `listenMeaning` in the daily plan, the review scheduler and the wrong-answer retry | Removed at the model, the plan and the builder, so no route can reach one; pronunciation audio untouched | `vocabularyDay.test.ts`, `soundFree.test.ts`, and the packaged APK grepped for the prompt keys |
 | **Pressing *Hint* printed the answer**, on five of nine question types | A three-rung ladder whose first rung never reveals | 23 assertions across ten languages |
 | Hints rendered as `vocabulary:partOfSpeech.verb` on screen | The pages resolve the keys | `e2e/hints.spec.ts` |
 | The Vietnamese category hint gave away 배우다 | The hint drops the category when it collides with the answer | the same suite, per locale |
@@ -2689,7 +2857,7 @@ re-reported as open.**
 | ㅞ's pen travelling through blank paper | Authored connector corrected; route kept on its own ink | pixel QA |
 | ㅊ's tick authored vertical against a horizontal face | Authored horizontal | pixel QA |
 | **Lesson titles in English for six locales**, undetected for two cycles | All fifteen in all ten | `e2e/hints.spec.ts` asserts Thai on the home heading |
-| A first vocabulary session asking one question shape ten times | Four skills in three layouts | `vocabularyDay.test.ts` |
+| A first vocabulary session asking one question shape ten times | Two skills in two layouts — it was four before the listening questions were removed; see I-22 | `vocabularyDay.test.ts` |
 | A first-time visitor never told what the app is for | One sentence, on a fresh profile only | — |
 | Persistent storage never requested | Requested after the first finished lesson, silently | — |
 | `vocabulary:saved.order.alphabetical` untranslated in four locales | Recorded as a deliberate cognate — "A–Z" *is* the label | `i18n:check` |
@@ -3426,8 +3594,8 @@ speech plan  →  Azure Neural TTS  →  public/audio/*.mp3 + manifest.json
 | Artefact | State |
 | --- | --- |
 | Web build | current, deployable |
-| `result/hangyul-ganada-release.apk` | built from `e49c28b`, **current**, 63.4 MB |
-| `result/hangyul-ganada-release.aab` | built from `e49c28b`, **current**, signed, 62.2 MB |
+| `result/hangyul-ganada-release.apk` | built from `6fa90bb` + this cycle's patch, **current**, 63.4 MB |
+| `result/hangyul-ganada-release.aab` | built from the same tree, **current**, signed, 62.2 MB |
 | `app_result/` | the same two binaries with their checksums and a README |
 | Signing identity | `157a2bb133f6aa3d…` — unchanged from every previous release |
 | iOS `.ipa` | **not built** — needs macOS, Xcode and an Apple Developer signing identity. Not faked; see §2.2 |

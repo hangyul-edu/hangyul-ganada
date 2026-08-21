@@ -134,10 +134,5 @@
     "notSaving": "İlerlemen bu cihaza kaydedilmiyor, bu yüzden öğrendiklerin uygulamayı bir dahaki açışında kaybolabilir. Tarayıcı ayarlarından bu siteye veri saklama izni vermek genelde çözüyor.",
     "recovered_one": "Yüklenirken {{count, number}} bozuk kayıt atlandı. İlerlemenin geri kalanı yerinde.",
     "recovered_other": "Yüklenirken {{count, number}} bozuk kayıt atlandı. İlerlemenin geri kalanı yerinde."
-  },
-  "soundFree": {
-    "title": "Sessiz sorular",
-    "description": "Bazı sorular yalnızca bir kayıttan ibaret — “hangi kelimeyi duydun?”. Bunu aç, o sorular sorulmasın. İstediğinde her şey yine sesli okunur.",
-    "toggle": "Dinleme sorularını atla"
   }
 }

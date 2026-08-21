@@ -131,10 +131,5 @@
   "storage": {
     "notSaving": "Kemajuanmu tidak sedang disimpan di perangkat ini, jadi yang kamu pelajari bisa hilang saat aplikasi dibuka lagi. Mengizinkan situs ini menyimpan data di pengaturan peramban biasanya membereskannya.",
     "recovered_other": "{{count, number}} catatan rusak dilewati saat memuat. Sisa kemajuanmu utuh."
-  },
-  "soundFree": {
-    "title": "Soal tanpa suara",
-    "description": "Sebagian soal hanya berupa rekaman — “kata mana yang kamu dengar?”. Nyalakan ini dan soal seperti itu dilewati. Semuanya tetap bisa dibacakan kalau kamu mau.",
-    "toggle": "Lewati soal menyimak"
   }
 }

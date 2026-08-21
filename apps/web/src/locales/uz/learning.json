@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Bu so‘z nimani anglatadi?",
       "readLetter": "Bu harf qanday tovush beradi?",
-      "listen": "Qaysi so‘zni eshitdingiz?",
       "listenLetter": "Bu qaysi harf?",
       "context": "Bu yerga qaysi so‘z to‘g‘ri keladi?",
       "write": "Shu so‘zni yozing",
       "writeLetter": "Eshitganingizni yozing",
       "distinguish": "Bu tovushni qaysi biri beradi?",
       "produce": "Qaysi biri?",
-      "listenMeaning": "Bu nimani anglatadi?",
       "build": "So‘zni yig‘ing"
     },
     "nothingDue": "Hozir takrorlaydigan narsa yo‘q.",

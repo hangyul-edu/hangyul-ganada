@@ -144,14 +144,12 @@
     "prompt": {
       "read": "Apa arti kata ini?",
       "readLetter": "Huruf ini berbunyi apa?",
-      "listen": "Kata mana yang kamu dengar?",
       "listenLetter": "Huruf apa ini?",
       "context": "Kata mana yang pas di sini?",
       "write": "Tulis kata ini",
       "writeLetter": "Tulis apa yang kamu dengar",
       "distinguish": "Yang mana berbunyi seperti ini?",
       "produce": "Yang mana?",
-      "listenMeaning": "Apa artinya ini?",
       "build": "Susun katanya"
     },
     "nothingDue": "Tidak ada yang perlu diulang sekarang.",

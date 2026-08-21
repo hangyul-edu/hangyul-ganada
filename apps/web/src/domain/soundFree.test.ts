@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
+import { ALL_LETTERS } from '../data/characters';
 import { VOCABULARY } from '../data/vocabulary';
 import { buildDailyPlan, stepsFor } from './vocabularyDay';
 import { buildSession, needsHearing, type ExerciseMode } from './review';
@@ -60,8 +61,24 @@ describe('sound-free practice', () => {
     }
   });
 
+  /*
+   * Letters, not words, and that is the point of the change this test was
+   * rewritten for.
+   *
+   * Vocabulary has no heard-only question left to leave out — `WORD_SKILLS` no
+   * longer contains `listening_recognition`, so a word session is sound-free
+   * whether or not anybody asked for it. What the setting still governs is the
+   * letter side: `sound_recognition` is a clip and four letters and
+   * `distinguish` is a clip and two, and both are genuinely unanswerable
+   * without the sound. Running this on words would now pass its second
+   * assertion trivially and fail its premise, which is exactly the shape of
+   * test that stops measuring anything without saying so.
+   */
   it('leaves heard-only questions out of a review session', () => {
-    const progress = learned('word', VOCABULARY.slice(0, 30).map((word) => word.id));
+    const progress = learned(
+      'character',
+      ALL_LETTERS.slice(0, 20).map((letter) => letter.id),
+    );
     const memory: MemoryMap = {};
     const now = new Date('2026-02-01T09:00:00.000Z');
 
@@ -72,6 +89,18 @@ describe('sound-free practice', () => {
     // assertion is measuring something.
     expect(ordinary.some((candidate) => needsHearing(candidate.mode))).toBe(true);
     expect(quiet.some((candidate) => needsHearing(candidate.mode))).toBe(false);
+  });
+
+  /*
+   * The other half of the same fact, from the vocabulary side: a word session
+   * is now sound-free without the setting, on every route into it.
+   */
+  it('never offers a word question that has to be heard', () => {
+    const progress = learned('word', VOCABULARY.slice(0, 30).map((word) => word.id));
+    const now = new Date('2026-02-01T09:00:00.000Z');
+    const session = buildSession(progress, {}, now, { size: 20 });
+    expect(session.length).toBeGreaterThan(4);
+    expect(session.some((candidate) => needsHearing(candidate.mode))).toBe(false);
   });
 
   it('still produces a session worth doing', () => {
@@ -91,7 +120,9 @@ describe('sound-free practice', () => {
   it('takes the heard-only steps out of every kind of daily word', () => {
     for (const source of ['new', 'review', 'familiar', 'weak'] as const) {
       for (let index = 0; index < 4; index += 1) {
-        const steps = stepsFor(source, index, true);
+        // Asked with the setting *off*, because there is nothing left for it to
+        // turn off: a word owes read steps whatever the learner prefers.
+        const steps = stepsFor(source, index, false);
         expect(steps, `${source} ${index}`).not.toContain('listen');
         expect(steps, `${source} ${index}`).not.toContain('listenMeaning');
         // Never emptied. `intro` alone would be a word met and never checked.
@@ -102,12 +133,12 @@ describe('sound-free practice', () => {
   });
 
   it('keeps the new-word rotation varied without the heard ones', () => {
-    const shapes = new Set([0, 1, 2, 3].map((index) => stepsFor('new', index, true).join('+')));
+    const shapes = new Set([0, 1, 2, 3].map((index) => stepsFor('new', index).join('+')));
     /*
-     * Two of the four checks in the rotation are heard-only, so a sound-free
-     * learner alternates between the other two rather than getting the same
-     * question ten times — which is the defect §16 was about, and it would be a
-     * poor trade to reintroduce it for the learners this setting is for.
+     * The rotation is down to two checks now that the heard ones have gone, so
+     * a beginner alternates between them rather than getting the same question
+     * ten times — which is the defect §16 was about, and the one thing the
+     * removal must not reintroduce.
      */
     expect(shapes.size).toBeGreaterThan(1);
   });

@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Wat betekent dit woord?",
       "readLetter": "Welke klank maakt deze letter?",
-      "listen": "Welk woord hoorde je?",
       "listenLetter": "Welke letter is dit?",
       "context": "Welk woord past hier?",
       "write": "Schrijf dit woord",
       "writeLetter": "Schrijf wat je hoort",
       "distinguish": "Welke maakt deze klank?",
       "produce": "Welke is het?",
-      "listenMeaning": "Wat betekent dit?",
       "build": "Zet het woord in elkaar"
     },
     "nothingDue": "Nu even niets te herhalen.",

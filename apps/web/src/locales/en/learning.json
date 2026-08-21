@@ -146,14 +146,12 @@
     "prompt": {
       "read": "What does this word mean?",
       "readLetter": "What sound does this make?",
-      "listen": "Which word did you hear?",
       "listenLetter": "Which letter is this?",
       "context": "Which word fits here?",
       "write": "Write this word",
       "writeLetter": "Write what you hear",
       "distinguish": "Which one makes this sound?",
       "produce": "Which one is it?",
-      "listenMeaning": "What does this mean?",
       "build": "Put the word together"
     },
     "nothingDue": "Nothing to review right now.",

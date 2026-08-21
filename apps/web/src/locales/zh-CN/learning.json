@@ -55,14 +55,12 @@
     "prompt": {
       "read": "这个词是什么意思？",
       "readLetter": "它发什么音？",
-      "listen": "你听到的是哪个词？",
       "listenLetter": "这是哪个字母？",
       "context": "哪个词填在这里？",
       "write": "写出这个词",
       "writeLetter": "按听到的写下来",
       "distinguish": "这个音是哪一个？",
       "produce": "是哪一个？",
-      "listenMeaning": "这是什么意思？",
       "build": "把这个词拼出来"
     },
     "nothingDue": "现在没有要复习的内容。",

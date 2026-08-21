@@ -137,10 +137,5 @@
     "recovered_few": "La încărcare au fost sărite {{count, number}} înregistrări deteriorate. Restul progresului e intact.",
     "recovered_one": "La încărcare a fost sărită {{count, number}} înregistrare deteriorată. Restul progresului e intact.",
     "recovered_other": "La încărcare au fost sărite {{count, number}} de înregistrări deteriorate. Restul progresului e intact."
-  },
-  "soundFree": {
-    "title": "Întrebări fără sunet",
-    "description": "Unele întrebări sunt doar o înregistrare — „ce cuvânt ai auzit?”. Pornește asta și rămân pe dinafară. Totul se poate asculta în continuare, dacă vrei.",
-    "toggle": "Sari peste întrebările de ascultare"
   }
 }

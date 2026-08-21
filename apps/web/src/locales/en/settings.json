@@ -134,10 +134,5 @@
     "notSaving": "Your progress is not being saved on this device, so what you learn may be gone the next time you open the app. Allowing this site to keep data in your browser settings usually fixes it.",
     "recovered_one": "{{count, number}} damaged record was skipped when loading. The rest of your progress is intact.",
     "recovered_other": "{{count, number}} damaged records were skipped when loading. The rest of your progress is intact."
-  },
-  "soundFree": {
-    "title": "Questions without sound",
-    "description": "Some questions are a recording and nothing else — “which word did you hear?”. Turn this on and they are left out. Everything is still read aloud if you want it.",
-    "toggle": "Skip listening questions"
   }
 }

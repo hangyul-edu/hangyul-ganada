@@ -163,16 +163,28 @@ describe('recognition before recall', () => {
     expect(stepsFor('new')).not.toContain('context');
   });
 
-  it('rebuilds a failing word from the skill that is failing', () => {
-    expect(stepsFor('weak')[0]).toBe('listen');
-    expect(stepsFor('weak')).toContain('context');
+  it('rebuilds a failing word from the easiest question up', () => {
+    // This used to start at `listen`, on the reading that the failing skill was
+    // often the listening one. There is no listening question any more, so the
+    // order is what it says: read it, meet it in its sentence, produce it.
+    expect(stepsFor('weak')).toEqual(['meaning', 'context', 'produce']);
+  });
+
+  it('cannot schedule a listening question for a word, from any state', () => {
+    for (const source of ['new', 'review', 'familiar', 'weak'] as const) {
+      for (let index = 0; index < 6; index += 1) {
+        const steps = stepsFor(source, index);
+        expect(steps, `${source} ${index}`).not.toContain('listen');
+        expect(steps, `${source} ${index}`).not.toContain('listenMeaning');
+      }
+    }
   });
 
   it('never asks for handwriting, in any state', () => {
     // §5, §28, §35. The steps are a closed set and none of them holds a pen.
     for (const source of ['new', 'review', 'weak'] as const) {
       for (const step of stepsFor(source)) {
-        expect(['intro', 'meaning', 'listen', 'produce', 'context']).toContain(step);
+        expect(['intro', 'meaning', 'produce', 'context', 'build']).toContain(step);
       }
     }
   });
@@ -224,7 +236,9 @@ describe('difficulty follows familiarity', () => {
        * be *produced* in one form or the other.
        */
       expect(word.steps.some((step) => step === 'produce' || step === 'build')).toBe(true);
-      expect(word.steps).toContain('listenMeaning');
+      // Was `listenMeaning` here, between the production question and the
+      // sentence. The sentence is what a familiar word keeps.
+      expect(word.steps).toContain('context');
       expect(word.steps).not.toContain('intro');
     }
     // And both forms are in use across the day, not just the first one.
@@ -252,7 +266,7 @@ describe('difficulty follows familiarity', () => {
   });
 
   it('offers no handwriting in any state, including the new ones', () => {
-    const allowed = ['intro', 'meaning', 'listen', 'listenMeaning', 'produce', 'context'];
+    const allowed = ['intro', 'meaning', 'produce', 'context', 'build'];
     for (const source of ['new', 'review', 'familiar', 'weak'] as const) {
       for (const step of stepsFor(source)) expect(allowed).toContain(step);
     }

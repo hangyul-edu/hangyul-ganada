@@ -140,10 +140,5 @@
     "recovered_many": "Při načítání bylo přeskočeno {{count, number}} poškozeného záznamu. Zbytek postupu je celý.",
     "recovered_one": "Při načítání byl přeskočen {{count, number}} poškozený záznam. Zbytek postupu je celý.",
     "recovered_other": "Při načítání bylo přeskočeno {{count, number}} poškozených záznamů. Zbytek postupu je celý."
-  },
-  "soundFree": {
-    "title": "Otázky bez zvuku",
-    "description": "Některé otázky jsou jen nahrávka — „které slovo jste slyšeli?“. Zapněte tohle a nebudou se objevovat. Všechno se pořád dá přehrát, když budete chtít.",
-    "toggle": "Přeskakovat poslechové otázky"
   }
 }

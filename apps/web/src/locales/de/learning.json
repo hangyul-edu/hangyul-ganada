@@ -55,14 +55,12 @@
     "prompt": {
       "read": "Was bedeutet dieses Wort?",
       "readLetter": "Welchen Laut hat er?",
-      "listen": "Welches Wort hast du gehört?",
       "listenLetter": "Welcher Buchstabe ist das?",
       "context": "Welches Wort passt hier?",
       "write": "Schreibe dieses Wort",
       "writeLetter": "Schreibe, was du hörst",
       "distinguish": "Welcher macht diesen Laut?",
       "produce": "Welches ist es?",
-      "listenMeaning": "Was bedeutet das?",
       "build": "Setzen Sie das Wort zusammen"
     },
     "nothingDue": "Gerade gibt es nichts zu wiederholen.",

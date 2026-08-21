@@ -150,14 +150,12 @@
     "prompt": {
       "read": "Co znaczy to słowo?",
       "readLetter": "Jaki dźwięk daje ta litera?",
-      "listen": "Które słowo usłyszałeś?",
       "listenLetter": "Co to za litera?",
       "context": "Które słowo tu pasuje?",
       "write": "Napisz to słowo",
       "writeLetter": "Napisz to, co słyszysz",
       "distinguish": "Która daje ten dźwięk?",
       "produce": "Która to?",
-      "listenMeaning": "Co to znaczy?",
       "build": "Ułóż słowo"
     },
     "nothingDue": "Teraz nie ma czego powtarzać.",

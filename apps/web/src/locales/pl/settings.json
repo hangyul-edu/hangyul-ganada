@@ -140,10 +140,5 @@
     "recovered_many": "Przy wczytywaniu pominięto {{count, number}} uszkodzonych wpisów. Reszta twojego postępu jest cała.",
     "recovered_one": "Przy wczytywaniu pominięto {{count, number}} uszkodzony wpis. Reszta twojego postępu jest cała.",
     "recovered_other": "Przy wczytywaniu pominięto {{count, number}} uszkodzone wpisy. Reszta twojego postępu jest cała."
-  },
-  "soundFree": {
-    "title": "Pytania bez dźwięku",
-    "description": "Niektóre pytania to samo nagranie — „które słowo usłyszałeś?”. Włącz to, a zostaną pominięte. Wszystko nadal można odsłuchać, kiedy zechcesz.",
-    "toggle": "Pomijaj pytania na słuch"
   }
 }

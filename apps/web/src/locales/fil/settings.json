@@ -134,10 +134,5 @@
     "notSaving": "Hindi nase-save ang pag-usad mo sa device na ito, kaya baka mawala ang natutuhan mo sa susunod na pagbukas ng app. Kadalasang naaayos ito kapag pinayagan mo ang site na ito na mag-imbak ng data sa mga setting ng browser.",
     "recovered_one": "May {{count, number}} sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad.",
     "recovered_other": "May {{count, number}} na sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad."
-  },
-  "soundFree": {
-    "title": "Mga tanong na walang tunog",
-    "description": "May mga tanong na rekording lang — “aling salita ang narinig mo?”. Buksan ito at hindi na iyon lalabas. Mapapakinggan mo pa rin ang lahat kung gusto mo.",
-    "toggle": "Laktawan ang mga tanong sa pakikinig"
   }
 }

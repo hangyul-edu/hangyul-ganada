@@ -55,14 +55,12 @@
     "prompt": {
       "read": "この単語の意味は？",
       "readLetter": "どんな音になりますか？",
-      "listen": "どの単語が聞こえましたか？",
       "listenLetter": "どの文字ですか？",
       "context": "ここに入る単語は？",
       "write": "この単語を書きましょう",
       "writeLetter": "聞こえたとおりに書きましょう",
       "distinguish": "この音はどちらですか？",
       "produce": "どれでしょう？",
-      "listenMeaning": "どんな意味でしょう？",
       "build": "文字を並べて単語を作りましょう"
     },
     "nothingDue": "いまは復習するものがありません。",

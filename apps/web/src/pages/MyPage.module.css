@@ -717,7 +717,13 @@
   min-height: 64px;
 }
 
-.languageGlobe {
+/*
+ * The container the mark sits in — the selected language's flag, or the globe
+ * on the fallback path. Named for what it *is* rather than for what it holds,
+ * because it has now held two different things and the fixed 40 px box is the
+ * part the row's alignment depends on.
+ */
+.languageMark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -727,6 +733,30 @@
   border-radius: var(--hg-radius-md);
   background: var(--hg-surface-warm);
   color: var(--hg-primary);
+  overflow: hidden;
+}
+
+/*
+ * The selected language's flag, inside the container the globe used to sit in.
+ *
+ * `contain` inside a fixed box, so a 2:3 flag and a 20:13 one both sit centred
+ * and neither is stretched or cropped — the assets in the pack are 20×13 today
+ * and a refreshed pack must not change the row's height. The hairline is what
+ * keeps a flag with a white field — Japan, Poland, Indonesia — from dissolving
+ * into the warm surface behind it in light mode and into the card in dark;
+ * `color-mix` against the text colour rather than a fixed grey so it is a
+ * hairline in both themes rather than a border in one of them.
+ *
+ * `direction: ltr` because a flag is a picture of a real object: the row
+ * mirrors for Arabic, the flag does not.
+ */
+.languageFlag {
+  width: 26px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--hg-text) 12%, transparent);
+  direction: ltr;
 }
 
 .languageNames {

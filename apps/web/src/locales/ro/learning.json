@@ -148,14 +148,12 @@
     "prompt": {
       "read": "Ce înseamnă cuvântul acesta?",
       "readLetter": "Ce sunet scoate litera aceasta?",
-      "listen": "Ce cuvânt ai auzit?",
       "listenLetter": "Ce literă e aceasta?",
       "context": "Ce cuvânt se potrivește aici?",
       "write": "Scrie cuvântul acesta",
       "writeLetter": "Scrie ce auzi",
       "distinguish": "Care scoate sunetul acesta?",
       "produce": "Care e?",
-      "listenMeaning": "Ce înseamnă asta?",
       "build": "Alcătuiește cuvântul"
     },
     "nothingDue": "Acum nu e nimic de recapitulat.",

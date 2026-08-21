@@ -134,10 +134,5 @@
     "notSaving": "Je voortgang wordt op dit apparaat niet bewaard, dus wat je leert kan weg zijn als je de app opnieuw opent. Deze site in je browserinstellingen toestaan gegevens te bewaren lost het meestal op.",
     "recovered_one": "{{count, number}} beschadigd record is bij het laden overgeslagen. De rest van je voortgang is intact.",
     "recovered_other": "{{count, number}} beschadigde records zijn bij het laden overgeslagen. De rest van je voortgang is intact."
-  },
-  "soundFree": {
-    "title": "Vragen zonder geluid",
-    "description": "Sommige vragen zijn alleen een opname — “welk woord hoorde je?”. Zet dit aan en die blijven weg. Alles wordt nog steeds voorgelezen als je dat wilt.",
-    "toggle": "Luistervragen overslaan"
   }
 }

@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Vad betyder det här ordet?",
       "readLetter": "Vilket ljud gör den här bokstaven?",
-      "listen": "Vilket ord hörde du?",
       "listenLetter": "Vilken bokstav är det här?",
       "context": "Vilket ord passar här?",
       "write": "Skriv det här ordet",
       "writeLetter": "Skriv det du hör",
       "distinguish": "Vilken låter så här?",
       "produce": "Vilken är det?",
-      "listenMeaning": "Vad betyder det här?",
       "build": "Bygg ihop ordet"
     },
     "nothingDue": "Inget att repetera just nu.",

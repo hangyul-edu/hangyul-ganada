@@ -16,9 +16,14 @@ import type { Label } from '../review/hints';
  * pure and testable without a renderer, and the rendering rules need a corpus
  * and a language.
  *
- * ## Every question here is a tap
+ * ## Every question here is a tap, and none of them is a clip
  *
  * There is no writing step and there is no code path that could produce one.
+ * The same is now true of listening: `WordStep` has no `listen` or
+ * `listenMeaning` member, so the table below cannot name one and this function
+ * cannot build one. The audio a word carries is still played — by `intro`, by
+ * Word Detail, by the example sentence — it is simply never the question.
+ *
  * `buildExercise` refuses to build a `write` question for a word at all, and
  * nothing below asks it for one — the two together are what §35 means by
  * "search the complete application": the exercise cannot be constructed, so it
@@ -37,10 +42,6 @@ import type { Label } from '../review/hints';
 const STEP_EXERCISE: Record<Exclude<WordStep, 'intro'>, { mode: ExerciseMode; skill: Skill }> = {
   /** Korean shown, meaning chosen. The easiest check, and the first. */
   meaning: { mode: 'read', skill: 'meaning_recognition' },
-  /** A clip, four words. */
-  listen: { mode: 'listen', skill: 'listening_recognition' },
-  /** A clip, four meanings. Hearing it is not the same as understanding it. */
-  listenMeaning: { mode: 'listenMeaning', skill: 'listening_recognition' },
   /** A meaning, four Korean words. The same skill, from the harder side. */
   produce: { mode: 'produce', skill: 'meaning_recognition' },
   /** The word's own sentence with a gap in it. */

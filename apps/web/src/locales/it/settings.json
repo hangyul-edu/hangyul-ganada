@@ -137,10 +137,5 @@
     "recovered_many": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto.",
     "recovered_one": "{{count, number}} record danneggiato è stato saltato al caricamento. Il resto dei tuoi progressi è intatto.",
     "recovered_other": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto."
-  },
-  "soundFree": {
-    "title": "Domande senza audio",
-    "description": "Alcune domande sono solo una registrazione — «quale parola hai sentito?». Attiva questa opzione e restano fuori. Tutto si può comunque ascoltare quando vuoi.",
-    "toggle": "Salta le domande di ascolto"
   }
 }

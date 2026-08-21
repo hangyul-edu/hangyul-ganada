@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Mit jelent ez a szó?",
       "readLetter": "Milyen hangot ad ez a betű?",
-      "listen": "Melyik szót hallottad?",
       "listenLetter": "Melyik betű ez?",
       "context": "Melyik szó illik ide?",
       "write": "Írd le ezt a szót",
       "writeLetter": "Írd le, amit hallasz",
       "distinguish": "Melyik adja ezt a hangot?",
       "produce": "Melyik az?",
-      "listenMeaning": "Mit jelent ez?",
       "build": "Rakd össze a szót"
     },
     "nothingDue": "Most nincs mit ismételni.",

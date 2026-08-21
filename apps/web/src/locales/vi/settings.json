@@ -134,10 +134,5 @@
     "notSaving": "Tiến độ của bạn đang không được lưu trên máy này, nên những gì bạn học có thể mất khi mở lại ứng dụng. Thường thì chỉ cần cho phép trang này lưu dữ liệu trong cài đặt trình duyệt là xong.",
     "recovered_one": "Đã bỏ qua {{count, number}} bản ghi bị hỏng khi tải. Phần tiến độ còn lại vẫn nguyên vẹn.",
     "recovered_other": "Đã bỏ qua {{count, number}} bản ghi bị hỏng khi tải. Phần tiến độ còn lại vẫn nguyên vẹn."
-  },
-  "soundFree": {
-    "title": "Câu hỏi không cần nghe",
-    "description": "Có những câu chỉ có bản ghi âm — “bạn vừa nghe từ nào?”. Bật mục này lên thì những câu đó sẽ không xuất hiện. Bạn vẫn nghe được mọi thứ bất cứ lúc nào.",
-    "toggle": "Bỏ qua câu hỏi nghe"
   }
 }

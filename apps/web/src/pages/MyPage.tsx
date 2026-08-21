@@ -11,6 +11,7 @@ import { NextStepCard } from '../features/learning/NextStepCard';
 import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
 import { invalidateGlyphCache } from '../features/writing/useEvaluator';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
+import { flagFor } from '../i18n/flags';
 import {
   disableReminder,
   enableReminder,
@@ -55,6 +56,8 @@ export function MyPage() {
   const [confirmReset, setConfirmReset] = useState(false);
   const { t } = useTranslation(['settings', 'common']);
   const { locale, descriptor } = useLocale();
+  // The flag beside the Language row. See the note at the row itself.
+  const selectedFlag = flagFor(descriptor.code);
   const format = useFormatters();
 
   const alphabet = alphabetProgress(state.progress);
@@ -172,17 +175,36 @@ export function MyPage() {
           reader may not be able to read the screen it is on, and every other
           row here is a row they cannot use until this one is right.
 
-          It is also why the globe is here. A learner whose phone opened in a
-          language they do not read cannot find "Language" by reading the word
-          Language; they can find it by looking for the globe, which is why the
-          icon is large, leading, and not decorative. The value beside it is
+          It is also why the row leads with a picture. A learner whose phone
+          opened in a language they do not read cannot find "Language" by
+          reading the word Language; they find it by looking, which is why the
+          mark is large, leading, and not decorative. The value beside it is
           always in its own language — 한국어, never "Korean" — so it is
           recognisable to the one person who most needs to recognise it. See
           §53 and §54.
+
+          The mark is the *selected* language's flag rather than a globe. A
+          globe says "this row is about languages"; the flag says which one is
+          on, so the learner who most needs this row can tell at a glance
+          whether it is already right without reading anything at all. It comes
+          from `flagFor` — the same mapping the picker itself uses, so the mark
+          here and the mark on the row they tapped are the same image and
+          cannot drift apart.
+
+          The globe survives as the fallback and is unreachable for every
+          language the app ships: `flagFor` answers for all thirty-two, and
+          `languageFlag.test.tsx` fails if a shipped locale ever loses its
+          asset. It is there for the tag that is stored but not offered — a
+          deep link, a browser default — where a wrong flag would be worse than
+          no flag.
         */}
         <Link to="/me/language" className={styles.languageRow} data-testid="settings-language">
-          <span className={styles.languageGlobe} aria-hidden="true">
-            <GlobeIcon size={26} />
+          <span className={styles.languageMark} aria-hidden="true">
+            {selectedFlag ? (
+              <img className={styles.languageFlag} src={selectedFlag} alt="" data-testid="settings-language-flag" />
+            ) : (
+              <GlobeIcon size={26} />
+            )}
           </span>
           <span className={styles.languageNames}>
             <span className={styles.languageLabel}>{t('settings:language.title')}</span>
@@ -448,25 +470,31 @@ export function MyPage() {
           </Section>
 
           {/*
-            §36. Sits in Practice rather than in an accessibility section of its
-            own, because it is a way of practising and not a mode for a category
-            of person — a learner on a train with no headphones wants it for the
-            afternoon, and having to find it under a heading about disability
-            would be both wrong and a worse place to look.
-          */}
-          <Section
-            title={t('settings:soundFree.title')}
-            description={t('settings:soundFree.description')}
-          >
-            <ul className={styles.toggleList}>
-              <Toggle
-                label={t('settings:soundFree.toggle')}
-                checked={state.settings.sound_free}
-                onChange={(v) => setPreferences({ sound_free: v })}
-              />
-            </ul>
-          </Section>
+            "Skip listening questions" was here, under §36, and it is gone.
 
+            Not disabled and not relabelled — removed, because the questions it
+            existed to remove no longer exist. Vocabulary is not tested by
+            hearing any more: `WordStep` has no heard-only member and
+            `buildExercise` refuses to build one for a word, so a learner who
+            cannot hear the clip is never shown a word question they cannot
+            answer, whether or not they ever found this switch. A setting whose
+            only effect was to avoid a screen that no longer exists is a screen
+            of its own to read and decide about, for nothing.
+
+            `sound_free` stays in the schema and stays honoured by the
+            scheduler. It is not dead: `sound_recognition` and `distinguish`
+            are *letter* exercises, they really are heard-only, and a learner
+            who had turned this on keeps that. Nothing is migrated and no
+            profile is rewritten — the same treatment the "play automatically"
+            switch got above, and for the same reason.
+
+            The cost, stated plainly because it is real: a learner who has never
+            set it cannot now turn it on, so the letter side has no sound-free
+            route for someone arriving today. That is a Hangul-side question and
+            the alphabet curriculum is out of scope for this patch; it is
+            written up as a known issue in `docs/report.md` rather than fixed
+            quietly here.
+          */}
         </Group>
 
         <Group id="settings-appearance" title={t('settings:groups.appearance')}>

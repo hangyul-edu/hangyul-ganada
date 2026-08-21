@@ -146,14 +146,12 @@
     "prompt": {
       "read": "Ano ang ibig sabihin ng salitang ito?",
       "readLetter": "Anong tunog ang ginagawa ng letrang ito?",
-      "listen": "Aling salita ang narinig mo?",
       "listenLetter": "Anong letra ito?",
       "context": "Aling salita ang bagay dito?",
       "write": "Isulat ang salitang ito",
       "writeLetter": "Isulat ang naririnig mo",
       "distinguish": "Alin ang gumagawa ng tunog na ito?",
       "produce": "Alin ba?",
-      "listenMeaning": "Ano ang ibig sabihin nito?",
       "build": "Buuin ang salita"
     },
     "nothingDue": "Wala munang babalikan ngayon.",

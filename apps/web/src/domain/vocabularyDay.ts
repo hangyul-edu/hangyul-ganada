@@ -73,7 +73,7 @@ export interface PlannedWord {
 }
 
 /**
- * The ways a word is practised. No handwriting, and there never will be.
+ * The ways a word is practised. No handwriting, and no listening questions.
  *
  * Each is a couple of taps and tests something the others do not:
  *
@@ -81,20 +81,25 @@ export interface PlannedWord {
  * | --- | --- | --- |
  * | `intro` | the word, its meaning, its sound, its sentence | nothing — this is the teaching |
  * | `meaning` | the Korean, four meanings | they can read it |
- * | `listen` | a clip, four words | they can hear it |
- * | `listenMeaning` | a clip, four meanings | the sound means something to them |
  * | `produce` | a meaning, four Korean words | they can find it from the idea |
+ * | `build` | its own syllables, shuffled | they can spell it from the idea |
  * | `context` | its sentence with a gap | they know which word the sentence wants |
  *
  * A `usage` step — four sentences, one of which uses the word naturally — was
  * built and then removed: see the note in `domain/review.ts` for the two ways
  * a generated one turns out to have either two right answers or a giveaway.
+ *
+ * `listen` (a clip, four words) and `listenMeaning` (a clip, four meanings)
+ * were here and are gone. Not hidden and not disabled — there is no step to
+ * schedule, so no route into a vocabulary session can produce one. The sound
+ * itself is untouched: `intro` still plays the word, Word Detail still plays
+ * it, the example sentence still plays. What has gone is the *question* whose
+ * entire prompt was a recording, which is a different thing from the audio that
+ * supports every other question on this list.
  */
 export type WordStep =
   | 'intro'
   | 'meaning'
-  | 'listen'
-  | 'listenMeaning'
   | 'produce'
   | 'context'
   /** Assembled from its own syllables. Familiar words only — see `stepsFor`. */
@@ -289,10 +294,10 @@ function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number {
  * unfair questions.
  *
  * ```
- * new       intro → meaning                  met it, then the easiest check there is
- * review    meaning → listen                 two angles on something known
- * familiar  produce → listenMeaning → context  the harder directions, once it is solid
- * weak      listen → meaning → context       the failing skill first, then rebuilt
+ * new       intro → meaning | context        met it, then the easiest check there is
+ * review    meaning → produce | context      two angles on something known
+ * familiar  produce | build → context        the harder directions, once it is solid
+ * weak      meaning → context → produce      the easiest way back in, then rebuilt
  * ```
  *
  * `familiar` is what stops the sessions of a learner three weeks in from being
@@ -314,39 +319,56 @@ function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number {
  * word, pick its meaning*, ten times, in one layout. Watching it back is
  * unmistakable: it reads as one screen shown twenty times.
  *
- * So a new word's check rotates by its position in the plan. All four are
+ * So a new word's check rotates by its position in the plan. Both are
  * recognition rather than production — a word met thirty seconds ago should not
- * be asked to be produced, for the reason two paragraphs up — but they are four
- * different skills asked in three different layouts, and the sitting stops
- * being a single screen repeated. The rotation is by index and therefore
- * deterministic: the same plan builds the same session every time it is
- * scheduled, which is what lets a learner leave and come back to it.
+ * be asked to be produced, for the reason two paragraphs up — but they are two
+ * different skills in two different layouts, and the sitting stops being a
+ * single screen repeated. The rotation is by index and therefore deterministic:
+ * the same plan builds the same session every time it is scheduled, which is
+ * what lets a learner leave and come back to it.
+ *
+ * It was four before the listening questions were removed, and this is the one
+ * place the removal genuinely costs something: a first sitting of ten new words
+ * now alternates two layouts rather than four. It is not made back up by
+ * promoting `produce` into the rotation, which would be asking a learner to
+ * recall a word they met thirty seconds ago — a harder session is not a more
+ * varied one. The variety a beginner actually gets comes back within days, as
+ * words start arriving at `review` and `familiar` with their own steps.
  */
-const NEW_WORD_CHECKS: WordStep[] = ['meaning', 'listen', 'listenMeaning', 'context'];
+const NEW_WORD_CHECKS: WordStep[] = ['meaning', 'context'];
 
 /**
- * Steps a learner who cannot hear the clip has no way of answering. §36.
+ * `soundFree` is accepted and no longer changes anything here. §36.
  *
- * Dropped rather than substituted. A learner who cannot hear "which word did
- * you hear?" does not want a different version of it; they want the session to
- * be made of questions they can actually answer, and a session two steps
- * shorter is a better answer than two steps they finish by pressing *hint*
- * until it gives the word up.
+ * The parameter used to filter out `listen` and `listenMeaning` for a learner
+ * who cannot hear the clip. There are no such steps any more — every step a
+ * word can owe is read rather than heard — so a sound-free plan and an ordinary
+ * one are now the same plan, which is the strongest form the setting could
+ * take: the questions it existed to remove do not exist.
  *
- * Never empty as a result: every source keeps at least one step, because every
- * source's list contains at least one that is read rather than heard.
+ * It stays in the signature because `domain/plan.ts` and `LearnerProvider` both
+ * thread it through for the *letter* side, where `sound_recognition` and
+ * `distinguish` are still genuinely heard-only, and because a stored
+ * `sound_free: true` must keep meaning what it meant.
  */
-const HEARD_ONLY_STEPS: ReadonlySet<WordStep> = new Set(['listen', 'listenMeaning']);
-
-export function stepsFor(source: WordSource, index = 0, soundFree = false): WordStep[] {
+export function stepsFor(source: WordSource, index = 0, _soundFree = false): WordStep[] {
   const steps = ((): WordStep[] => {
     switch (source) {
       case 'new':
-        return soundFree
-          ? ['intro', READABLE_NEW_CHECKS[index % READABLE_NEW_CHECKS.length]!]
-          : ['intro', NEW_WORD_CHECKS[index % NEW_WORD_CHECKS.length]!];
+        return ['intro', NEW_WORD_CHECKS[index % NEW_WORD_CHECKS.length]!];
       case 'review':
-        return ['meaning', 'listen'];
+        /*
+         * Two angles, and which second angle rotates.
+         *
+         * This was `meaning → listen`. With the clip gone it would have been a
+         * single question — read the Korean, pick the meaning — for every
+         * fading word in the sitting, which is exactly the "one screen shown
+         * twenty times" the new-word rotation exists to avoid. So the pair is
+         * kept and the second half alternates between the two directions a
+         * known word can be asked from: produce it from its meaning, or find
+         * it in its own sentence.
+         */
+        return ['meaning', index % 2 === 0 ? 'produce' : 'context'];
       case 'familiar':
         /*
          * The one place a word is assembled rather than chosen.
@@ -363,24 +385,22 @@ export function stepsFor(source: WordSource, index = 0, soundFree = false): Word
          * `produce` in `buildDailyQuestions`, which drops any step it cannot
          * turn into a question and recounts what completes the word.
          */
-        return [index % 2 === 0 ? 'produce' : 'build', 'listenMeaning', 'context'];
+        return [index % 2 === 0 ? 'produce' : 'build', 'context'];
       case 'weak':
-        return ['listen', 'meaning', 'context'];
+        /*
+         * A word that is going badly, rebuilt from the easiest end.
+         *
+         * This was `listen → meaning → context` — the failing skill first, on
+         * the assumption that the failing skill was often the listening one.
+         * With that skill gone the order is simply easiest to hardest: read it,
+         * meet it in its sentence, then produce it. Still three steps, because
+         * a weak word is the one worth spending the sitting on.
+         */
+        return ['meaning', 'context', 'produce'];
     }
   })();
-  return soundFree ? steps.filter((step) => !HEARD_ONLY_STEPS.has(step)) : steps;
+  return steps;
 }
-
-/**
- * The new-word rotation with the heard-only checks taken out.
- *
- * Filtered from `NEW_WORD_CHECKS` rather than written out again, so the two
- * cannot drift and adding a fifth check to the rotation cannot silently leave
- * this one behind.
- */
-const READABLE_NEW_CHECKS: WordStep[] = NEW_WORD_CHECKS.filter(
-  (step) => !HEARD_ONLY_STEPS.has(step),
-);
 
 // --- Turning the plan into a sitting ------------------------------------------
 
