@@ -212,6 +212,36 @@ for (const issue of issues) {
   }
 }
 
+/*
+ * 4. No prose says a resolved thing is still missing.
+ *
+ * The status-word rule above is exact and therefore narrow, and this is what it
+ * let through: the risk table read "there is still no matching (I-09)" while
+ * I-09 stood RESOLVED four hundred lines above it, with the matching exercise
+ * shipped and tested. No status word appears in that sentence — only an
+ * absence, asserted about a feature that exists.
+ *
+ * A report that says a shipped feature is missing is worse than one that omits
+ * it. It is read as the current state of the product by somebody deciding
+ * whether to ship, and it goes into a PDF that goes to a store submission.
+ *
+ * Only for RESOLVED issues, and only for a claim that the thing is *absent* —
+ * "still limited", "still slow", "known to be imperfect" are all fair things to
+ * say about something that was fixed, and none of them is here.
+ */
+const ABSENCE = /\b(?:still\s+no|there\s+is\s+no|there\s+are\s+no|not\s+yet|no\s+longer\s+possible|remains?\s+missing|is\s+missing|are\s+missing|does\s+not\s+exist|absent)\b/gi;
+for (const issue of issues) {
+  if (issue.status !== 'RESOLVED') continue;
+  const near = new RegExp(`[^.\\n]{0,120}${issue.id}[^.\\n]{0,120}`, 'g');
+  for (const sentence of prose.match(near) ?? []) {
+    for (const [phrase] of sentence.matchAll(ABSENCE)) {
+      problems.push(
+        `report.md says "${phrase}" beside ${issue.id}, which is RESOLVED: ${sentence.trim()}`,
+      );
+    }
+  }
+}
+
 if (CHECK) {
   if (next !== report) {
     problems.unshift('the issue tables in docs/report.md are out of date — run `npm run issues`');

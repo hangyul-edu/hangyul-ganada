@@ -26,10 +26,12 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import json
 import re
 import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -84,8 +86,25 @@ class Report:
 _VOLUME = re.compile(r"(mean_volume|max_volume):\s*(-?\d+(?:\.\d+)?) dB")
 
 
+#: `Duration: 00:00:00.46,` out of ffmpeg's own header dump.
+_DURATION = re.compile(r"Duration:\s*(\d+):(\d\d):(\d\d(?:\.\d+)?)")
+
+
 def measure(path: Path) -> tuple[float, float, float]:
-    """(duration_ms, mean_dB, max_dB). Raises if the file does not decode."""
+    """(duration_ms, mean_dB, max_dB). Raises if the file does not decode.
+
+    One subprocess, not two. `volumedetect` has to decode the whole file to
+    report a mean, and ffmpeg prints the container duration in the same stderr
+    it prints the levels in — so asking ffprobe for the duration afterwards was
+    decoding nothing new and doubling the process count. Over 10,454 clips that
+    was 10,454 processes and about four minutes of pure fork overhead.
+
+    The header duration and ffprobe's differ by a few milliseconds on VBR
+    (0.46 against 0.456 on the first clip). Both bounds this feeds are hundreds
+    of milliseconds wide and exist to catch "returned 60 ms of nothing", so the
+    difference is far below anything being asked. ffprobe is still there for the
+    case that matters — a file whose header carries no duration at all.
+    """
     result = subprocess.run(
         ["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-af", "volumedetect",
          "-f", "null", "-"],
@@ -96,14 +115,19 @@ def measure(path: Path) -> tuple[float, float, float]:
         raise RuntimeError(result.stderr.strip().splitlines()[-1] if result.stderr else "decode failed")
     levels = {m.group(1): float(m.group(2)) for m in _VOLUME.finditer(result.stderr)}
 
-    probe = subprocess.run(
-        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
-         "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
-    duration_ms = float(probe.stdout.strip()) * 1000
+    found = _DURATION.search(result.stderr)
+    if found:
+        hours, minutes, seconds = found.groups()
+        duration_ms = (int(hours) * 3600 + int(minutes) * 60 + float(seconds)) * 1000
+    else:
+        probe = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        duration_ms = float(probe.stdout.strip()) * 1000
     return duration_ms, levels.get("mean_volume", -99.0), levels.get("max_volume", -99.0)
 
 
@@ -111,7 +135,9 @@ def syllable_count(text: str) -> int:
     return max(1, sum(1 for ch in text if is_syllable(ch)))
 
 
-def check_clip(entry: dict, voice: str, report: Report, digests: dict[str, str]) -> None:
+def check_clip(
+    entry: dict, voice: str, report: Report, digests: dict[str, str], measured: dict
+) -> None:
     asset = entry.get(voice)
     label = f"{entry['id']} [{voice}] {entry['text']!r}"
     if asset is None:
@@ -130,11 +156,13 @@ def check_clip(entry: dict, voice: str, report: Report, digests: dict[str, str])
     report.checked += 1
     report.total_bytes += size
 
-    try:
-        duration_ms, mean_db, max_db = measure(path)
-    except RuntimeError as error:
-        report.error(f"{label}: does not decode ({error})")
+    probed = measured.get(f"{entry['id']}:{voice}")
+    if probed is None:
         return
+    if isinstance(probed, str):
+        report.error(f"{label}: does not decode ({probed})")
+        return
+    duration_ms, mean_db, max_db, digest = probed
 
     report.durations.append(int(duration_ms))
 
@@ -164,12 +192,61 @@ def check_clip(entry: dict, voice: str, report: Report, digests: dict[str, str])
             f"{label}: mean {mean_db:.1f} dB is far from the {LOUDNESS_TARGET_LUFS:.0f} dB target"
         )
 
-    digests[f"{entry['id']}:{voice}"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    digests[f"{entry['id']}:{voice}"] = digest
+
+
+#: How many clips to decode at once.
+#:
+#: Decoding is one `ffmpeg` process per clip and the work is entirely in that
+#: process, so threads here are just a way to keep several of them alive at
+#: once — the GIL is held for none of it. Capped at the core count because
+#: beyond that the processes queue anyway and the report's progress line starts
+#: lying about how far through it is.
+WORKERS = min(8, (os.cpu_count() or 2))
+
+
+def probe_all(jobs: list[tuple[str, Path]]) -> dict[str, object]:
+    """Decode every clip, in parallel, with a progress line.
+
+    Split out of `check_clip` because this is the whole cost of the check —
+    0.154 s of decoding each, 10,454 clips, 27 minutes in a single file-at-a-
+    time loop that printed nothing until it finished. It was reported as a
+    hang, and a check that looks like a hang is a check nobody runs.
+    """
+    results: dict[str, object] = {}
+    done = 0
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {pool.submit(_probe, path): key for key, path in jobs}
+        for future in as_completed(futures):
+            results[futures[future]] = future.result()
+            done += 1
+            if done % 250 == 0 or done == len(jobs):
+                print(f"\r  decoded {done:,}/{len(jobs):,}", end="", flush=True)
+    print()
+    return results
+
+
+def _probe(path: Path) -> object:
+    try:
+        duration_ms, mean_db, max_db = measure(path)
+    except (RuntimeError, subprocess.CalledProcessError) as error:
+        return str(error)
+    return (duration_ms, mean_db, max_db, hashlib.sha256(path.read_bytes()).hexdigest())
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", type=Path, default=None, help="Write the report as JSON")
+    parser.add_argument(
+        "--sample",
+        type=int,
+        default=None,
+        metavar="N",
+        help=(
+            "Decode only N clips, chosen evenly across the manifest. The "
+            "manifest, plan and duplicate checks still cover everything."
+        ),
+    )
     args = parser.parse_args()
 
     if not MANIFEST.exists():
@@ -179,9 +256,32 @@ def main() -> int:
     report = Report()
     digests: dict[str, str] = {}
 
+    jobs: list[tuple[str, Path]] = []
     for entry in manifest["entries"]:
         for voice in ("female", "male"):
-            check_clip(entry, voice, report, digests)
+            asset = entry.get(voice)
+            if asset and (PUBLIC / asset["src"]).exists():
+                jobs.append((f"{entry['id']}:{voice}", PUBLIC / asset["src"]))
+
+    # A sample decodes a slice and checks everything else in full.
+    #
+    # The distinction worth keeping: the expensive half is "does this file
+    # contain the audio it claims to", and the cheap half — every id has both
+    # voices, the manifest agrees with the speech plan, no two ids share a
+    # recording of different text — reads no audio at all and always runs over
+    # the whole set. So a sampled run is a weaker answer to one question, not a
+    # partial answer to all of them.
+    scanned = jobs
+    if args.sample and args.sample < len(jobs):
+        step = len(jobs) / args.sample
+        scanned = [jobs[int(i * step)] for i in range(args.sample)]
+        print(f"  sampling {len(scanned):,} of {len(jobs):,} clips for decoding")
+
+    measured = probe_all(scanned)
+
+    for entry in manifest["entries"]:
+        for voice in ("female", "male"):
+            check_clip(entry, voice, report, digests, measured)
 
     # The two voices must be two recordings. A retry that silently reused one
     # provider response for both would otherwise ship a "male voice" setting
@@ -258,6 +358,13 @@ def main() -> int:
     else:
         print(f"  rate:   {SPEECH_RATE:g}×")
     print(f"checked {report.checked:,} clips, {report.total_bytes / 1_048_576:.1f} MB")
+    # Said plainly, because a sampled run that reports "checked 10,550" is a
+    # run that will be quoted as evidence it decoded 10,550.
+    if len(measured) < report.checked:
+        print(
+            f"  {len(measured):,} of them decoded — the rest were checked for "
+            "existence, manifest agreement and duplication only"
+        )
     if report.durations:
         ordered = sorted(report.durations)
         print(
@@ -280,6 +387,7 @@ def main() -> int:
             json.dumps(
                 {
                     "checked": report.checked,
+                    "decoded": len(measured),
                     "total_bytes": report.total_bytes,
                     "errors": report.errors,
                     "warnings": report.warnings,

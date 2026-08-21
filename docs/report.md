@@ -3834,11 +3834,11 @@ rather than quality.
 | Moving to vocabulary | **MEDIUM** | Nothing tells the learner *when* to start words; both tracks are simply available and neither refers to the other |
 | First vocabulary sitting | **MEDIUM** | Ten words, twenty screens, two layouts — *what does this mean* and *which word fits here*, alternating (I-22) |
 | Daily vocabulary goal | **LOW** | 10 words, ~5 minutes, honest counter that cannot exceed 100% |
-| Tapping into a word | **MEDIUM** | Word Detail is a headword, a romanisation, a gloss, a part of speech and one example — then half a screen of nothing, for 2,556 of 2,581 words (I-20) |
+| Tapping into a word | **LOW** | Word Detail is a headword, a romanisation, a gloss, a part of speech, an example, the dictionary's other senses of the same spelling, and synonyms and antonyms where they exist (I-20). The 25 words with a written definition still get one; the rest are no longer a short page followed by nothing |
 | Getting one wrong | **LOW** | The right answer is shown immediately and the word turns up in the notebook with what you put and what it was |
 | Review | **LOW** | Small, targeted, never a wall of everything ever learned. The count on the card and the session behind it are the same object |
 | Returning next day | **LOW** | Streak, calendar, today's counters reset, totals do not. Verified across reload, deep-route load and a second tab |
-| Repeated vocabulary sittings | **HIGH** | Variety arrives as words reach `review` and `familiar`, but the first week is two shapes (I-22), and there is still no matching (I-09) |
+| Repeated vocabulary sittings | **MEDIUM** | A new word is now met three ways — meaning, context and a four-pair matching grid (I-09) — and the sound-free variant adds a fourth for anyone who cannot use audio (I-22). The first week is no longer two shapes. What keeps this above LOW is that all four are recognition: nothing yet asks a learner to produce a word |
 | Finishing the alphabet | **HIGH** | Nothing happens. No hand-off, no "what now" (I-03) |
 
 ---
