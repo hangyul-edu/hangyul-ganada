@@ -59,7 +59,7 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `quality-pass-strokes-and-splash` |
-| Git commit | `628bb4c0757579856ca9333f0b867f82c257a0e7` |
+| Git commit | `557edfb2e36abb8259934d1f11bec6655c250cb9` |
 | Working tree | **Clean.** The artefacts were built from that commit and from nothing else. See §2.2 |
 | Signed APK | 63.5 MB · `ba5dbe787cba935c…` |
 | Signed AAB | 62.2 MB · `7c4930804e305a6e…` |
@@ -95,13 +95,13 @@ the work was built from an uncommitted working tree and the report said so. This
 time the order was followed.
 
 ```
-628bb4c  draw the strokes instead of cutting them out of the glyph
+557edfb  draw the strokes instead of cutting them out of the glyph
          ↓  working tree clean — `git status` empty, verified before the build
          ↓  then npm run build + cap sync android
          ↓  then gradlew assembleRelease bundleRelease, signed with the
          ↓     production key from ANDROID_KEYSTORE_PATH
          ↓  then unpack the delivered APK and check what is inside it
-result/hangyul-ganada-release.apk    from 628bb4c, nothing else
+result/hangyul-ganada-release.apk    from 557edfb, nothing else
 app_result/                          the same two binaries, on their own
 ```
 
