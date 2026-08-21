@@ -14,6 +14,8 @@ export interface PracticeCanvasCardProps {
   character: string;
   fontFamily: string;
   fontWeight?: number;
+  /** The face's own probe em, where it has one — `glyph_scale` in `fonts.ts`. */
+  glyphScale?: number;
   /**
    * Grading slack for the selected typeface — `gradingFor(font)`. Omitted, the
    * evaluator's own defaults apply.
@@ -58,6 +60,7 @@ export function PracticeCanvasCard({
   character,
   fontFamily,
   fontWeight,
+  glyphScale,
   grading,
   showGrid = true,
   showCenterCrosshair = true,
@@ -84,7 +87,7 @@ export function PracticeCanvasCard({
         strokes,
         // The same spec the guide is drawn from — see `glyphSpec.ts`. Built
         // separately here, the mask and the traced guide drifted apart.
-        glyph: glyphSpecFor(character, fontFamily, fontWeight),
+        glyph: glyphSpecFor(character, fontFamily, fontWeight, glyphScale),
         config: grading,
       });
       onEvaluated(result, strokes);
@@ -97,6 +100,7 @@ export function PracticeCanvasCard({
     character,
     fontFamily,
     fontWeight,
+    glyphScale,
     grading,
     onEvaluated,
     isEmpty,
@@ -126,6 +130,7 @@ export function PracticeCanvasCard({
         character={character}
         fontFamily={fontFamily}
         fontWeight={fontWeight}
+        glyphScale={glyphScale}
         showGrid={showGrid}
         showCenterCrosshair={showCenterCrosshair}
         status={status}

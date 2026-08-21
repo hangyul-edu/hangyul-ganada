@@ -147,10 +147,10 @@
       "severity": "P2",
       "status": "PARTIAL",
       "summary": "Korean and English glosses describe different senses for some polysemous words",
-      "customerImpact": "The meaning changes when the interface language changes",
-      "evidence": "The eleven known cases are pinned. There is no automated guarantee a twelfth does not exist.",
-      "recommendedFix": "A canonical taught `senseId` per entry that every language's representation derives from.",
-      "effort": "MEDIUM (content) — a senseId per entry"
+      "customerImpact": "The meaning changes when the interface language changes. 차 read \"a car\" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer.",
+      "evidence": "The recommended fix is in: every entry carries a canonical `senseId` derived from its English gloss — 2,581 of 2,581, no collisions — and English is the arbiter because it was the one locale already single-sense throughout. 103 separator-split glosses were read against the sentence each card actually asks; 35 named a sense the sentence never demonstrates and were trimmed, ten cards moved sense outright, and three illustrations moved with them. The remaining 38 are classified in `REVIEWED_SPLIT` and `vocabulary:sense:qa:check` now fails on a split gloss that is not on that list, and on a listed one that has stopped being split. Both directions are negative-tested.\n\nWhat is still unguarded: a gloss merged with a **comma** rather than a semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand — \"coche, té\" for 차 is now \"coche\" — but the rule cannot be widened to catch a new one. Measured over the corpus, \"this locale has more comma-separated parts than the English\" flags 228 glosses and is dominated by descriptive commas: 얼굴 is \"눈, 코, 입이 있는 앞부분\", one definition containing a list, not two senses.",
+      "recommendedFix": "Nothing automatic remains that is worth having. The decidable half is done and gated; the rest is a reading pass over comma-bearing glosses, which is content work.",
+      "effort": "DONE for the decidable half — the rest is a content reading pass"
     },
     {
       "id": "I-11",
@@ -322,12 +322,12 @@
       "id": "I-31",
       "area": "Handwriting",
       "severity": "P3",
-      "status": "OPEN",
-      "summary": "On Gaegu, some letters are still traced much smaller than the target size",
-      "customerImpact": "A learner who picks the handwriting typeface traces a ㅇ that fills a quarter of the writing square where every other face fills about seven tenths. It is legible and it is gradeable — the grader is calibrated per face — but it is visibly smaller than the same letter in the same app a moment earlier.",
-      "evidence": "`fitGlyph` brings a glyph's ink to `GLYPH_INK_EXTENT` (0.72) unless doing so would take its strokes past the pen, and the cap on that is a fixed `MAX_FIT_SCALE` of 1.3. Measured across the 270 glyph-and-face pairs in the fixtures, 27% are held below the target and the ten smallest are all Gaegu — ㅇ at 0.27, ㅁ and ㅅ at 0.28, ㄴ and ㄱ at 0.30. A per-glyph cap on the resulting *stroke width* rather than on scale was implemented and measured: it lifts four faces and Gaegu's worst case barely moves, while every error rate gets worse (0.35% / 0.41% against 0.28% / 0.28%). See the note on `MAX_FIT_SCALE`.",
-      "recommendedFix": "Gaegu draws small letters with heavy strokes, which is a property of the face and not of the fit. The honest options are a per-face `glyphScale` in `data/fonts.ts` — the field already exists — calibrated against the corpus for that face alone, or accepting that a pencil hand is written small. Not another global constant.",
-      "effort": "LOW–MEDIUM — one per-face value, with its own corpus run"
+      "status": "PARTIAL",
+      "summary": "On Gaegu, letters are still traced smaller than on the other five faces",
+      "customerImpact": "A learner who picks the handwriting typeface traces letters that are smaller than the same letters in the same app a moment earlier. The quarter-of-the-square case is gone; a visible difference in size between Gaegu and the rest is not.",
+      "evidence": "Fixed by the recommended route: a per-face `glyph_scale` in `data/fonts.ts`, calibrated against the robustness corpus for that face alone, threaded through `glyphSpecFor` and mirrored by `FACE_SCALE` in `render-fixtures.py` — `data.test.ts` asserts the two agree, so the fixtures cannot drift into measuring a geometry the product does not draw.\n\nGaegu 0.78 → 1.00. Mean ink extent 0.524 → 0.610; smallest glyph 0.27 → 0.35; glyphs below target 37/45 → 25/45. Grading improved rather than degrading: Gaegu's false rejection 1.04% → 0.63%, all-face 0.28% → 0.21%, false acceptance unchanged at 0.28%. A bigger reference is a bigger target for an honest hand, and Gaegu's was small enough that the pen's own width was a large fraction of it.\n\nWhy it stops there. The sweep is jagged — about 480 genuine attempts per face, so one crossing threshold moves the rate 0.21% — and there is a cliff just above: 1.02 reads 0.21% and 1.04 reads 3.33%. 1.00 sits on a plateau with 0.98, two steps clear of it; 1.02 is the minimum and is adjacent to the cliff, which would be fitting to which attempts happen to be in the corpus. Beyond about 1.04 the binding constraint is `MAX_FIT_SCALE`, whose own sweep already showed that raising it costs false rejection.\n\nWhat remains is the typeface. Gaegu's mean extent is 0.610 against 0.653–0.697 for the other five, because it genuinely draws small letters inside its em, and closing that last gap means telling a learner they wrote it wrong more often.",
+      "recommendedFix": "Accept it, or drop the face. A pencil hand is written small, and the remaining difference costs less than the grading accuracy that closing it would buy back.",
+      "effort": "DONE — further closing costs accuracy"
     }
   ]
 }

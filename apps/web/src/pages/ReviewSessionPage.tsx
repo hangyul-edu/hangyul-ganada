@@ -335,6 +335,7 @@ export function ReviewSessionPage() {
               character={exercise.writeTarget ?? ''}
               fontFamily={font.font_family}
               fontWeight={font.weight}
+              glyphScale={font.glyph_scale}
               grading={gradingFor(font)}
               /*
                 The model is on the paper here exactly as it is in a lesson. A

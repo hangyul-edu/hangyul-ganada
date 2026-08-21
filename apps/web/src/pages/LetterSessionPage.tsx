@@ -407,6 +407,7 @@ export function LetterSessionPage() {
               character={current.character}
               fontFamily={font.font_family}
               fontWeight={font.weight}
+              glyphScale={font.glyph_scale}
               grading={gradingFor(font)}
               showGrid={state.settings.show_grid}
               showCenterCrosshair={state.settings.show_center_crosshair}

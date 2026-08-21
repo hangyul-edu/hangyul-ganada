@@ -71,6 +71,15 @@ export function glyphSpecFor(
   character: string,
   fontFamily: string,
   fontWeight?: number,
+  /**
+   * The face's own probe em, where it has one — `glyph_scale` in `fonts.ts`.
+   *
+   * Threaded through rather than looked up here, because this module is given
+   * a font *family string* and not a font: the caller knows which face it
+   * selected and this only knows what CSS to write. Undefined on five of the
+   * six faces, and then `glyphLayout` uses the shared default.
+   */
+  glyphScale?: number,
 ): GlyphSpec {
-  return { character, fontFamily, fontWeight };
+  return { character, fontFamily, fontWeight, glyphScale };
 }

@@ -57,6 +57,16 @@ MAX_FIT_SCALE = float(os.environ.get("HG_MAX_FIT", "1.3"))
 #: what `fitGlyph` measures its bounding box with.
 ALPHA_THRESHOLD = 128
 
+#: Per-face probe scale, where the shared 0.78 is wrong for the face.
+#: `glyph_scale` in `apps/web/src/data/fonts.ts`, and the two must agree —
+#: `apps/web/src/data/data.test.ts` asserts it.
+#:
+#: Overridable from the environment only so the calibration sweep can move it;
+#: the committed fixtures are always rendered at the value in fonts.ts.
+FACE_SCALE = {
+    "gaegu": float(os.environ.get("HG_GAEGU_SCALE", "1.0")),
+}
+
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 MODULES = ROOT / "node_modules"
 
@@ -132,13 +142,13 @@ def _paint(font_bytes: bytes, char: str, size: float, x: float, y: float) -> Ima
     return image
 
 
-def render(font_bytes: bytes, char: str) -> list[int]:
+def render(font_bytes: bytes, char: str, glyph_scale: float = GLYPH_SCALE) -> list[int]:
     """`char` fitted into the box exactly as `drawGlyph` fits it.
 
     Probe, measure, solve, redraw — see `fitGlyph` in src/glyph.ts for why the
     corrected origin is exact rather than iterative.
     """
-    probe_size = RESOLUTION * GLYPH_SCALE
+    probe_size = RESOLUTION * glyph_scale
     centre = RESOLUTION / 2
     probe = _paint(font_bytes, char, probe_size, centre, centre)
 
@@ -171,7 +181,7 @@ def main() -> None:
         font_bytes = load(path)
         glyphs = {}
         for char in CHARACTERS:
-            data = render(font_bytes, char)
+            data = render(font_bytes, char, FACE_SCALE.get(font_id, GLYPH_SCALE))
             ink = sum(data)
             if ink == 0:
                 raise SystemExit(f"{font_id} rendered {char!r} empty — missing glyph?")
@@ -193,6 +203,7 @@ def main() -> None:
                 ),
                 "resolution": RESOLUTION,
                 "glyphScale": GLYPH_SCALE,
+                "faceScale": FACE_SCALE,
                 "inkExtent": GLYPH_INK_EXTENT,
                 "maxFitScale": MAX_FIT_SCALE,
                 #: The face the evaluator's own thresholds were calibrated against,

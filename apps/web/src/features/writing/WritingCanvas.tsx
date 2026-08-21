@@ -20,6 +20,8 @@ export interface WritingCanvasProps {
   character: string;
   fontFamily: string;
   fontWeight?: number;
+  /** The face's own probe em, where it has one — `glyph_scale` in `fonts.ts`. */
+  glyphScale?: number;
   /** Pen width as a fraction of the box edge. */
   penWidth?: number;
   showGrid?: boolean;
@@ -49,6 +51,7 @@ export const WritingCanvas = forwardRef<WritingCanvasHandle, WritingCanvasProps>
       character,
       fontFamily,
       fontWeight = 400,
+      glyphScale,
       penWidth = 0.062,
       showGrid = true,
       showCenterCrosshair = true,
@@ -63,8 +66,8 @@ export const WritingCanvas = forwardRef<WritingCanvasHandle, WritingCanvasProps>
     const { t } = useTranslation('handwriting');
     const canvas = useWritingCanvas({ penWidth, onStrokeEnd: onStrokesChange, initialStrokes });
     const glyphSpec = useMemo(
-      () => glyphSpecFor(character, fontFamily, fontWeight),
-      [character, fontFamily, fontWeight],
+      () => glyphSpecFor(character, fontFamily, fontWeight, glyphScale),
+      [character, fontFamily, fontWeight, glyphScale],
     );
     const glyphRef = useReferenceGlyph(glyphSpec, true);
 

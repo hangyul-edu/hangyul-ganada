@@ -323,6 +323,56 @@ export const PRACTICE_FONTS: PracticeFont[] = [
      * balanced on the edge of one.
      */
     evaluation: { glyph_tolerance_ratio: 0.036 },
+    /**
+     * Gaegu draws small, and the fit could not make up the difference.
+     *
+     * `fitGlyph` magnifies a glyph until its ink spans `GLYPH_INK_EXTENT` of
+     * the box, but no more than `MAX_FIT_SCALE`, and that cap is a ratio of
+     * the probe. Gaegu's letters occupy so little of their em that the ratio
+     * runs out first: measured over the 45 fixture characters, its mean ink
+     * extent was 0.524 where every other face sits between 0.653 and 0.697,
+     * and its ㅅ, ㅇ and ㅁ reached 0.27–0.28 — a letter filling a quarter of
+     * the square a moment after the same letter filled seven tenths of it.
+     * That was issue I-31.
+     *
+     * The lever is the probe rather than the cap. A larger probe leaves the
+     * *target* untouched — a glyph that already reaches 0.72 still reaches
+     * exactly 0.72, because its scale is solved rather than capped — and lifts
+     * only the glyphs the cap was binding. So this changes Gaegu's small
+     * letters and nothing else, on any face.
+     *
+     * Swept against the whole robustness corpus, at Gaegu's own tolerance:
+     *
+     * ```
+     * probe   mean extent   smallest   Gaegu FRR   all-face FRR / FAR
+     * 0.78       0.524        0.27       1.04%       0.28% / 0.28%   <- was
+     * 0.90       0.575        0.30       0.83%       0.24% / 0.28%
+     * 0.98       0.603        0.34       0.63%       0.21% / 0.28%
+     * 1.00       0.610        0.35       0.63%       0.21% / 0.28%   <- chosen
+     * 1.02       0.616        0.35       0.21%       0.14% / 0.28%
+     * 1.04       0.622        0.36       3.33%       0.66% / 0.28%
+     * 1.10       0.637        0.38       2.71%       0.56% / 0.28%
+     * 1.20       0.659        0.41       6.46%       1.18% / 0.28%
+     * ```
+     *
+     * False acceptance does not move at all — the letters stay as distinct
+     * from each other as they were — and false rejection *improves*, which was
+     * not the expected result. A bigger reference is a bigger target for an
+     * honest hand, and Gaegu's was small enough that the pen's own width was a
+     * large fraction of it.
+     *
+     * 1.00 rather than the 1.02 minimum on purpose. The column is jagged, not
+     * smooth: there are about 480 genuine attempts per face, so one attempt
+     * crossing threshold moves the rate by 0.21%, and 1.04 is three points
+     * worse than 1.02 right beside it. Picking the single best cell of a
+     * jagged sweep is fitting to which attempts happened to be in the corpus.
+     * 0.98 and 1.00 read the same and sit two steps from the cliff, so this
+     * takes the round number in the middle of the plateau.
+     *
+     * `FACE_SCALE` in `packages/handwriting-core/scripts/render-fixtures.py`
+     * carries the same number, and `data.test.ts` asserts they agree.
+     */
+    glyph_scale: 1.0,
     translations: {
       en: {
         name: 'Handwriting',

@@ -21,6 +21,7 @@ import {
   LETTER_ORDER,
   getLessonCharacters,
 } from './characters';
+import FIXTURES from '../../../../packages/handwriting-core/src/__tests__/glyph-fixtures.json';
 import { DEFAULT_FONT_ID, PRACTICE_FONTS, getFont } from './fonts';
 import { LEARNING_QUOTES, QUOTE_LOCALES, nextQuote, renderQuote } from './quotes';
 import { AVAILABLE_LOCALES } from '../i18n/resources';
@@ -756,6 +757,20 @@ describe('typeface grading', () => {
     const overridden = PRACTICE_FONTS.filter((font) => font.evaluation);
     expect(overridden.map((f) => f.id)).toEqual(['gaegu']);
     expect(overridden[0]!.evaluation!.glyph_tolerance_ratio).toBe(0.036);
+  });
+
+  it('gives only Gaegu its own probe scale, at the swept value', () => {
+    /*
+      Two copies of a calibration number, for the same reason as the tolerance
+      above: `render-fixtures.py` cannot import the app, so it keeps its own
+      `FACE_SCALE`. If these drift, the fixtures measure a glyph geometry the
+      product does not draw — which is precisely the failure that let an
+      earlier fit change be invisible to the whole corpus.
+    */
+    const scaled = PRACTICE_FONTS.filter((font) => font.glyph_scale !== undefined);
+    expect(scaled.map((f) => f.id)).toEqual(['gaegu']);
+    expect(scaled[0]!.glyph_scale).toBe(1.0);
+    expect(FIXTURES.faceScale).toEqual({ gaegu: 1.0 });
   });
 
   it('offers between six and eight faces, each with a licence that permits shipping', () => {

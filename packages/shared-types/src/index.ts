@@ -599,6 +599,17 @@ export interface PracticeFont {
   /** Grading slack for this face. Absent means the evaluator's defaults. */
   evaluation?: TypefaceEvaluationProfile;
   /**
+   * Probe em for the traced glyph, as a fraction of the writing box.
+   *
+   * Absent on five of the six faces, which share `DEFAULT_GLYPH_SCALE`. It
+   * exists because the fit's magnification cap is a *ratio*, so a face that
+   * draws its letters small inside the em is held below the target size no
+   * matter how much room the box has — and one face does exactly that. Raising
+   * its probe raises only the glyphs the cap was holding down; the ones that
+   * already reach the target still reach it and no further.
+   */
+  glyph_scale?: number;
+  /**
    * The style's name and what practising in it teaches, per locale.
    *
    * `name` is a translation of `name_en`, not of `name`: the Korean style
