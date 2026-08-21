@@ -47,6 +47,29 @@ for (const name of promised) {
   }
 }
 
+/*
+ * Every name is ASCII.
+ *
+ * The buckets were once named with the initial consonant itself, and the signed
+ * APK unpacked with `entries/πä▒-1-....json` in it. The bytes in the archive
+ * were correct UTF-8 — the ZIP entries simply did not set the general-purpose
+ * UTF-8 flag, so a reader following the specification decodes them as CP437.
+ * The app asks its WebView for the name the manifest gives; whether the archive
+ * agrees depends on a flag neither of them owns.
+ *
+ * A dev server reads the filesystem and never sees it, which is why this is a
+ * check and not a test: the failure only exists inside the packaged app.
+ */
+for (const name of promised) {
+  // eslint-disable-next-line no-control-regex
+  if (/[^\u0000-\u007f]/.test(name)) {
+    fail(
+      `${name} has a non-ASCII filename — it survives a dev server and comes out ` +
+        'of a ZIP as mojibake, so the packaged app cannot fetch it',
+    );
+  }
+}
+
 // A file nobody points at is a file the worker may still be holding.
 const onDisk = [
   ...readdirSync(DIR).filter((n) => n.endsWith('.json') && n !== 'manifest.json'),

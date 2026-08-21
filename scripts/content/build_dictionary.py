@@ -89,8 +89,32 @@ OUT = ROOT / "apps" / "web" / "public" / "dictionary"
 #: A Hangul-initial bucket is the one split that is stable under growth: adding
 #: a word never moves an existing one to a different file, so a cached chunk
 #: stays valid. A hash split would have the same property and none of the
-#: legibility — `entries/ㅁ.json` is inspectable and `entries/7f.json` is not.
+#: legibility — `entries/m.json` is inspectable and `entries/7f.json` is not.
 INITIALS = list("ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ")
+
+#: The ASCII name each bucket is written to disk under.
+#:
+#: The bucket *is* an initial consonant and was once named with one — until the
+#: signed APK was unpacked and every chunk came out as `entries/πä▒-1-....json`.
+#: The bytes in the archive were correct UTF-8; the ZIP entries simply did not
+#: set the general-purpose UTF-8 flag, so a reader following the specification
+#: decodes them as CP437. Gradle writes the archive, the app asks its WebView
+#: for the name the manifest gives, and whether those two agree depends on a
+#: flag neither of them owns.
+#:
+#: A dev server reads the filesystem and never notices, which is what makes this
+#: worth removing rather than testing: the failure mode is a dictionary that
+#: works everywhere except inside the shipped app.
+#:
+#: Revised Romanization of the consonant, so `entries/g-1.json` is still
+#: inspectable and still says which bucket it is. Doubled letters take the
+#: doubled spelling — `kk`, `tt` — which keeps ㄱ and ㄲ apart.
+ROMAN_INITIAL = {
+    "ㄱ": "g", "ㄲ": "kk", "ㄴ": "n", "ㄷ": "d", "ㄸ": "tt", "ㄹ": "r",
+    "ㅁ": "m", "ㅂ": "b", "ㅃ": "pp", "ㅅ": "s", "ㅆ": "ss", "ㅇ": "ng",
+    "ㅈ": "j", "ㅉ": "jj", "ㅊ": "ch", "ㅋ": "k", "ㅌ": "t", "ㅍ": "p",
+    "ㅎ": "h",
+}
 
 #: A bucket bigger than this is split again, `ㅅ-1`, `ㅅ-2`, and so on.
 #:
@@ -319,13 +343,14 @@ def build() -> dict[str, object]:
         rows = sorted(buckets.get(initial, []), key=lambda r: r["headword"])
         if not rows:
             continue
+        name = ROMAN_INITIAL[initial]
         if len(rows) <= MAX_BUCKET_ENTRIES:
-            chunks[initial] = rows
+            chunks[name] = rows
             continue
         parts = -(-len(rows) // MAX_BUCKET_ENTRIES)
         size = -(-len(rows) // parts)
         for index in range(parts):
-            chunks[f"{initial}-{index + 1}"] = rows[index * size : (index + 1) * size]
+            chunks[f"{name}-{index + 1}"] = rows[index * size : (index + 1) * size]
     # Anything whose initial is not a modern consonant — there should be none,
     # but a record silently vanishing is worse than an ugly bucket name.
     placed = {row["headword"] for rows in chunks.values() for row in rows}
