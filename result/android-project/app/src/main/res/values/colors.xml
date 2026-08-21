@@ -22,16 +22,20 @@
     <color name="colorAccent">#FF6700</color>
 
     <!--
-      The ground of the brand splash artwork's first frame — `splashGround` in
-      the design tokens, and `backgroundColor` under `SplashScreen` in
-      `capacitor.config.ts`.
+      The ground of the brand splash artwork — `splashGround` in the design
+      tokens, and `backgroundColor` under `SplashScreen` in `capacitor.config.ts`.
 
       Android 12 and newer draw their own splash on this colour rather than on
       the `splash.png` drawables, so it has to be the artwork's ground and not
       the app's. Left at warm.50 it was two units off, which is not a lot until
       it is the seam between the system splash and the bitmap under it.
+
+      It was #FFF6E9 while the splash was an animation, sampled from frame zero.
+      The artwork is a still now and this is sampled from the still — from the
+      wordless reconstruction of it that the launch bitmaps are drawn from,
+      which shares the original's ground exactly.
     -->
-    <color name="splashBackground">#FFF6E9</color>
+    <color name="splashBackground">#FFF1E1</color>
 
     <!--
       warm.50: the ground the app icon is composed on, so the launcher tile and

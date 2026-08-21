@@ -1,8 +1,8 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.0",
-  "commit": "557edfb2e36abb8259934d1f11bec6655c250cb9",
-  "built_at": "2026-08-21T05:09:22.286Z",
+  "commit": "5b9082802219bae1df5f66d25c87337e4aaa740d",
+  "built_at": "2026-08-21T13:01:48.330Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
@@ -10,16 +10,16 @@
     "version_name": "1.0.0",
     "target_sdk": 36,
     "min_sdk": 24,
-    "apk_bytes": 66548999,
-    "apk_sha256": "ba5dbe787cba935cda2a226afcd0dc3d6d74ac014e00364dba84f165d0b79cb6",
+    "apk_bytes": 66912666,
+    "apk_sha256": "bb0fbfb9b46558fffaa6c20b1065897a642541455ef238b66fef181b07eaf913",
     "apk_signature_schemes": [
       "v2",
       "v3"
     ],
     "apk_certificate_sha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
     "apk_certificate_subject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
-    "aab_bytes": 65273702,
-    "aab_sha256": "7c4930804e305a6e6afa0c05da1decb7ced9cefea299fd9312f06649943768d0",
+    "aab_bytes": 65647712,
+    "aab_sha256": "a4e173e9f31d060c2bb41a900fa4929557558ece59cdaf28aa76250ade4c1947",
     "aab_signed": true,
     "permissions": [
       "android.permission.INTERNET",

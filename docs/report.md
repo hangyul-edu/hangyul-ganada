@@ -59,12 +59,13 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `e026697c388399d37e6441f13ccea98e88e6cdc6` |
-| Working tree | **Clean when the product was audited** — `git status` was empty for every measurement in this report. It is dirty now, and only with this report: `docs/report.md`, `docs/issues.json` and the seven `docs/report-assets/audit-*.png` figures. No product file was touched. `docs/report.pdf` is untracked by `.gitignore` and is built locally |
-| Commit the delivered APK/AAB were built from | `557edfb…` — **one product commit behind HEAD.** See §2.2 and **I-01** |
-| Signed APK | 63.5 MB · `ba5dbe787cba935c…` |
-| Signed AAB | 62.2 MB · `7c4930804e305a6e…` |
-| Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as the previous release |
+| Git commit | `5b9082802219bae1df5f66d25c87337e4aaa740d` |
+| Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
+| Commit the delivered APK/AAB were built from | **`5b90828` — the same commit**, asserted by `npm run release:current`, which is new and is in `verify:release`. See §2.2 |
+| Signed APK | 63.8 MB · `bb0fbfb9b46558ff…` |
+| Signed AAB | 62.6 MB · `a4e173e9f31d060c…` |
+| Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
+| Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
 | Interface languages | 32 |
@@ -89,84 +90,69 @@ reported fixed and is only partly fixed.
 | @playwright/test | ^1.50.1 |
 | @capacitor/core | ^8.5.0 |
 
-## 2.2 Commit and artefact state — **the finding of this audit**
+## 2.2 Commit and artefact state — **verified against the package**
 
-This section has carried a P0 in four reports now, including this one. The
-previous three each closed it and each shipped a binary older than the report
-describing it. This cycle the failure has a different shape and the same effect:
-the working tree really is clean, the last build really was made from a clean
-tree — and then **a further commit changed the product and no artefact was
-built from it.**
-
-Every measurement in this report was taken against a clean tree at `e026697`.
-The only files this audit changed are the three that make up the report itself.
+This section has carried a P0 in four reports. It does not carry one now, and
+the reason is not that somebody was careful this time.
 
 ```
-557edfb  draw the strokes instead of cutting them out of the glyph
-         ↓  build + cap sync + assembleRelease/bundleRelease, signed
-73f340c  "Build from 557edfb, and write the report against what was built"
-         ↓
-e026697  ← HEAD.  Re-measures the composition table, replaces the video splash
-         ↓        with a still, reworks the app shell and the header, redraws
-         ↓        the Android and iOS launch bitmaps, swaps two flags.
-         ↓        56 files. No rebuild.
-result/, app_result/   still the binaries from 557edfb
+5b90828  the production pass — every change in this report
+         ↓  working tree clean, verified before anything was built
+         ↓  npm run build + cap sync android
+         ↓  gradlew assembleRelease bundleRelease, production key
+         ↓  unpack the delivered APK and check what is actually inside it
+         ↓  npm run release:current
+result/, app_result/   from 5b90828, and asserted to be
 ```
 
-`e026697` is titled `a`, which is why it is easy to mistake for a tidy-up. It is
-not one. It is the commit that made the syllables look right.
+**The check is the fix.** `scripts/check-release-current.mjs` reads the commit
+out of `build-info.json`, runs `git diff --name-only <that>..HEAD`, and fails on
+any changed file outside `docs/`, `result/` and `app_result/`. It also fails on
+an uncommitted product file, because a build made from a tree no commit
+describes cannot be reproduced. It is in `verify:release`.
+
+Thirty lines. Every gate in this repository checked the working tree and not one
+of them compared the tree against the artefact built from it, which is why four
+consecutive reports could be green end to end while the download was from a
+different commit. Closing the row was never the fix; this is.
 
 ### What is actually inside the delivered package — **VERIFIED by unpacking it**
 
-Checked in both directions this cycle, against the current source rather than
-against the previous report:
+Checked in both directions, against the current source rather than against a
+previous report:
 
-| Looking for | Found in `app_result/hangyul-ganada-release.apk` | Current source |
-| --- | --- | --- |
-| Splash media | `splash-ko.mp4`, `splash-en.mp4`, `splash-ko.webp`, `splash-en.webp` | **deleted in `e026697`** — the product ships `splash-ko.png` / `splash-en.png` |
-| The still PNG splash | **absent** | present, and byte-identical to `apps/common_assets/splash/` |
-| Composition of 국 | `국:{aspect:.9669,parts:[[.1257,0,.8686,.2597],[0,.2597,1,.5525],…]}` | `[[.1257,0,.8686,.3646],[0,.3702,1,.6409],…]`, plus a `cut` field the package never mentions |
-| Syllables whose geometry moved | eight carry the older table — 구 오 밤 밥 옷 국 꽃 글 | re-measured against the correctly-loaded face |
-| `STROKE_ORDER_UPRIGHT` | not reachable — composition never read it at `557edfb` | ㄱ, ㅋ, ㄲ take a straight leg wherever the block calls for one |
-| Native launch bitmap | ground `#FFF6E9`, the wordless circle | the artwork itself, ground `#FFF1E1` |
-| **The old raster cut** | **absent** — `strokeAssets`, `strokeReveal`, `segmentation` all return nothing | correctly gone |
+| Looking for | Found in `app_result/hangyul-ganada-release.apk` |
+| --- | --- |
+| Splash media | `splash-en.png`, `splash-ko.png`, and **no MP4 or WebP** |
+| Composition of 국 | `국:{aspect:.9669,cut:"bar",parts:[[.1257,0,.8686,.3646],…]}` — the current measurement, `cut` field and all |
+| The matching grid | `Match each word to its meaning` in the index chunk |
+| The sound-free control | `Can't use audio?` in the index chunk, `cannotUseAudio` in `ChoiceExercise`, `listenLetterSoundFree` in all 32 locale packs |
+| The Home nudge | `ready for your first words` |
+| Sharing and indexing | `robots` = `noindex,nofollow,noarchive,nosnippet,noimageindex`; `og:image` absolute; the 56 kB preview at `brand/og-hangyul-ganada.jpg` |
+| Native launch bitmaps | all **ten** tested for ink in the wordmark band: 0 dark pixels, 0 brand-orange pixels. Wordless, as intended |
+| **The old raster cut** | **absent** — `strokeAssets`, `strokeReveal`, `segmentation` all return nothing |
 
-The project snapshots delivered beside the binaries are the same vintage:
-`result/android-project/app/src/main/assets/public/brand/splash/` holds the two
-MP4s, and the Android and iOS launch bitmaps in `result/` differ by SHA-256 from
-the ones in the working tree.
+The launch bitmaps are checked by measurement rather than by hash because AAPT
+re-encodes every PNG it packages, so byte-identity is guaranteed *not* to hold
+and proves nothing either way. What matters is whether there is type in them,
+and there is not.
 
-So the two claims a reader most needs are: **the source is right, and the
-download is not.** Everything §11 says about the stroke system and everything
-§11.8 says about the splash describes `main`. None of it describes the APK in
-`app_result/`. That is **I-01**, reopened.
-
-Nothing was rebuilt to fix it — this audit is reporting-only, and a release cycle
-inside an audit is how a report ends up describing something nobody reviewed.
-
-### Signing — **VERIFIED independently this cycle**
-
-Read straight out of the APK Signing Block rather than from `build-info.json`,
-because a build's own record of itself is not evidence about the file:
+### Signing — **read out of the signing block, not out of the manifest**
 
 ```
-APK Signing Block present, 12,280 bytes
+APK Signing Block present
   block 0x7109871a (v2)  cert SHA-256 157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc
-  block 0xf05368c0 (v3)  cert SHA-256 157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc
+  block 0xf05368c0 (v3)  same
   subject  C=KR, L=Seoul, O=Talk Hangyul, OU=Mobile, CN=Hangyul GaNaDa
-  notAfter Dec 31 2053
 ```
 
-The same identity as the previous release. No JAR signature block, which is why
-`keytool -printcert -jarfile` reports "not a signed jar file" — v2/v3 only, which
-is correct and is what `build-info.json` claims. No debug fallback, no native
-libraries to align, `applicationId` unchanged at `com.talkhangyul.ganada`. The
-key was read from `ANDROID_KEYSTORE_PATH`; no secret is in this repository or in
-this document.
+The same identity as every previous release. No new keystore, no debug
+fallback, `applicationId` unchanged at `com.talkhangyul.ganada`, no native
+libraries to align. The key was read from `ANDROID_KEYSTORE_PATH`; no secret is
+in this repository or in this document.
 
-`node scripts/audit-release-security.mjs` over both binaries reports no findings,
-with one reviewed-and-accepted `http://localhost` constant belonging to React
-Router.
+`build-info.json` records the same fingerprint, and is *not* what was checked —
+a build's own record of itself is not evidence about the file.
 
 ## 2.3 Figures for the next report to diff against
 
@@ -185,16 +171,20 @@ Router.
 | Words with any verified relation | 243 of 2,581 (9.4%), 272 relations | 243 |
 | Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
 | Words whose taught sense is pinned by exact string | 11 | 11 |
-| Web unit (`vitest`) | **671** (39 files) — re-run this cycle | 664 stated; the suite was already at 671 (**I-28**) |
-| Handwriting core (`vitest`) | 95 (5 files) — re-run this cycle | 95 |
-| End-to-end (`playwright`) | 230 (115 × 2 projects), enumerated by `--list` this cycle | 230 |
-| Rendered stroke frames measured in pixels | 1,345 — re-rendered and re-read by eye this cycle | 1,345 |
-| Handwriting **false-reject / false-accept** | **0.21% / 0.78%** — re-run this cycle. The label was the other way round in every previous report; the numbers were right and what they were called was not | 0.21% / 0.78%, labelled backwards |
-| First load | **387.3 kB gz of a 460 kB budget** (84%) | 384.3 kB |
+| Web unit (`vitest`) | **681** (40 files) | 671 |
+| Handwriting core (`vitest`) | **96** (5 files) | 95 |
+| End-to-end (`playwright`) | **236** (118 × 2 projects) — **236 pass**, and `test:e2e` is now on the release gate | 230, of which 2 were failing |
+| Rendered stroke frames measured in pixels | 1,345 | 1,345 |
+| Handwriting **false-reject / false-accept** | **0.28% / 0.28%** — and Pretendard, the default face, **0.42% / 0.00%** | 0.21% / 0.78% overall, 1.04% / 0.55% on Pretendard |
+| First load | **387.8 kB gz of a 460 kB budget** (84%) | 387.3 kB |
 | Word-corpus bundle | 171.3 kB gz of a 220 kB budget (78%) | 171.3 kB |
-| Everything precached | **470.7 kB gz of a 900 kB budget** (52%) | 491.3 kB |
-| Delivered APK/AAB built from | `557edfb` — **one product commit behind HEAD** | `557edfb`, then current |
+| Everything precached | **472.9 kB gz of a 900 kB budget** (53%) | 470.7 kB |
+| Delivered APK/AAB built from | **HEAD**, asserted by a gate that did not exist before | `557edfb`, one commit behind |
 | Signed APK certificate, read from the signing block | `157a2bb1…debc`, v2 + v3, valid to 2053 | same identity |
+| Trace guide vs its own box (ㅏ) | **0.243 × 0.718, centred at (0.499, 0.499)** | 0.228 × 0.672 at (0.556, 0.460) |
+| Worst glyph centring error, all 6 faces | **1.2% of the box** | 8% |
+| Vocabulary question shapes in a first sitting | **3** — meaning, context, matching | 2 |
+| Locale screens rendered and measured | **256** (32 languages × 8 screens), 0 findings | not measured |
 
 The three relation rows did not move this cycle, which is the expected reading:
 no relation work was done and none of the sense pins changed. They are kept in
@@ -218,20 +208,84 @@ between what that file contains and what this report describes.
 
 # 3. Executive summary
 
-**This is an audit, not a development cycle. Its finding is that the source is
-in the best state it has been in and the download is not the source.** The
-running app on `main` at `e026697` renders every one of the 73 taught items
-correctly — the eight syllables whose geometry was wrong were re-measured, the
-splash is a still picture, the tab bar reaches the edges of the desktop shell.
-The signed APK and AAB in `app_result/` were built from `557edfb`, one commit
-earlier, and contain none of it: the retired MP4 splash is still inside the
-package and 국 still measures `.2597` where the product now measures `.3646`.
-That is **I-01**, written for the fourth time, and it is the only P0 open.
-Nothing was rebuilt for this audit. It was scoped to reporting, and a release
-cycle run inside an audit is how a report ends up describing something nobody
-reviewed.
+**The download is the product this document describes.** That sentence has not
+been true in four reports. The release in `result/` and `app_result/` was built
+from `5b90828` with a clean tree, and `npm run release:current` — thirty lines
+that read the commit out of `build-info.json` and diff it against HEAD — now
+fails the release gate if it ever stops being true. The package was unpacked and
+checked rather than trusted: PNG splash and no MP4, 국 measuring `.3646`, the
+matching grid, the sound-free control and the `noindex` metadata all present,
+and all ten native launch bitmaps wordless.
 
-Everything below describes the source unless it says otherwise.
+**The letter a learner traces is now the size and shape of the letter they were
+shown.** The guide was drawn at a fixed *em*, which is a typographic container
+and not the marks inside it, so ㅏ landed at 0.228 × 0.672 of the writing square
+and sat 5.6% right and 4% above the crosshair drawn through the middle of it.
+`fitGlyph` measures the ink and centres that instead: **0.243 × 0.718 at (0.499,
+0.499)**, with a worst-case centring error of 1.2% of the box across all six
+practice faces.
+
+The half of that which had defeated two previous attempts was the grading. A
+bigger glyph has thicker strokes, and a stroke wider than the learner's pen
+cannot be filled, so an honest attempt reads as a letter hollow down the middle
+— the reason the last try was reverted at 21% false rejections. The missing
+piece was that the *unwritten* term had no erosion while the *extra ink* term
+had always had one; the rim a too-wide stroke leaves is not a stroke anybody
+failed to write. Swept jointly against 2,880 genuine attempts and 2,172 wrong
+ones across six faces:
+
+```
+before   0.21% false reject / 0.78% false accept
+after    0.28% / 0.28%
+Pretendard, the face almost everyone writes on:  1.04% / 0.55%  ->  0.42% / 0.00%
+```
+
+**Vocabulary has a third question shape, and it is a genuinely different one.**
+Matching — four words, four meanings, tapped in pairs — is the first exercise in
+the product that asks about several words at once, which is why the scheduler
+grew a group step and a `completes` list. A grid can be the last thing three of
+its four words owe, and the day's counter, the mastery ladder and the activity
+row all have to move by exactly three; eleven new tests hold that. It replaces a
+third of the new-word checks rather than joining them, so a sitting is the same
+length and a beginner meets three shapes instead of two.
+
+**A learner who cannot hear now has a way through the alphabet.** The two
+heard-only *letter* exercises carry a per-question *Can't use audio?* in all
+thirty-two languages. It swaps the recording for an equivalent visual prompt —
+the written sound for "which letter is this", and the letter itself for "which
+of these two", which is the only direction that does not hand over an answer the
+options already carry as labels. Same item, same skill, same scoring, no
+penalty. Not a setting, because the setting it replaces could only be turned on
+by people who already had it on.
+
+**The link is shareable and will not be found in a search, which is two things
+that fight each other.** Complete Open Graph and Twitter metadata sits in
+`index.html` where a crawler that never runs React can read it, with a 1200 × 600
+preview generated from the brand key visual. Indexing is refused by `noindex` in
+two meta tags and by `X-Robots-Tag` on every route in both Vercel configs — and
+`robots.txt` **allows** crawling, because a page a crawler cannot fetch is a page
+whose `noindex` is never read, and the URL stays listed. §26.4 is the whole
+account; `share:check` asserts it against the built output.
+
+**And the suite that drives the real application is green and on the gate.** It
+was 228 of 230 with two red, and no `verify` target ran it — 236 of 236 now, with
+`test:e2e` and `strokes:measure:check` both in `verify:release`. The second of
+those was off the gate only because it needed a server; it starts its own now.
+
+Four smaller things, each measured: the native launch screen is wordless, so a
+Korean learner no longer meets an English wordmark before the app paints; the
+bottom navigation reaches the frame's edges at every width from 360 px to
+1440 px; Home suggests words once eleven letters are known, on the card that was
+already there; and IndexedDB opens retry with backoff, which took a reproducible
+one-in-twelve silent fall back to the memory engine — a session of practice
+never written to disk — to 24 of 24.
+
+**What did not happen, stated plainly.** The corpus is still 2,581 words against
+a stated 10,000, word meanings still reach ten of the thirty-two interface
+languages, and no locale has been read by a native speaker. Those three are
+content and people rather than engineering, they are the three things between
+this and a confident paid release, and nothing in this pass moved them. §39 says
+so again in order.
 
 **The product speaks thirty-two languages, romanises Korean the way Korea
 does, and got smaller doing it.** The three defects a learner could see most
@@ -726,12 +780,12 @@ it written* helper replays the demonstration.
 
 ![The writing step: guide glyph, undo and clear, and the stroke helper below the canvas.](report-assets/audit-letter-writing.png)
 
-*Figure 3 — The writing step, recaptured for this audit. The demonstration sits
-under the canvas so the pen is above the fold on a small phone — a decision, with
-a Playwright case asserting it. **This figure is also the clearest picture of
-I-24**: the grey ㅏ the learner traces is visibly smaller than the black ㅏ in the
-helper below it, and its stem sits to the right of the crosshair drawn through
-the middle of the square. §12.4 has the measurements.*
+*Figure 3 — The writing step. The demonstration sits under the canvas so the pen
+is above the fold on a small phone — a decision, with a Playwright case asserting
+it. **The grey ㅏ is now centred on the crosshair and the size the demonstration
+showed**; in the previous report this same figure was the clearest picture of
+I-24, with the letter small and sitting up and to the right. §12.4 has the
+before-and-after measurements.*
 
 Passing advances to a recognition check ("Now read it") — pick the letter out of
 look-alikes — then the next letter.
@@ -1206,51 +1260,46 @@ of the task.
 | `MAX_PATH_LENGTH_RATIO` | 2.5 | path far longer than the glyph ⇒ scribble |
 | `MAX_REVERSAL_DENSITY` | 6 | direction changes per unit ⇒ scribble |
 
-## 12.2 Is the balance right? — **VERIFIED, re-measured this cycle, and the previous table was wrong twice**
+## 12.2 Is the balance right? — **recalibrated, and better on both axes**
 
 `npm run handwriting:robustness` replays a synthetic adversarial corpus — 2,880
 genuine attempts and 2,172 deliberately wrong ones — across all six shipping
-typefaces. Run again on `main`:
+typefaces. After the glyph fit and the matching change to the grader:
 
 | Typeface | False **reject** | False **accept** | Still confused |
 | --- | --- | --- | --- |
-| **pretendard** (default) | **1.04%** | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
-| nanum-gothic | 0.00% | 0.28% | ㅈ←ㅊ |
-| nanum-myeongjo | 0.00% | 1.38% | ㅈ←ㅊ, ㅊ←ㅈ, ㅐ←ㅒ, ㅔ←ㅐ, ㅒ←ㅐ |
+| **pretendard** (default) | **0.42%** | **0.00%** | — |
+| nanum-gothic | 0.00% | 0.00% | — |
+| nanum-myeongjo | 0.00% | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
 | gowun-batang | 0.00% | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
-| gaegu | 0.21% | 1.10% | ㅂ←ㅍ, ㅍ←ㅂ, ㅐ←ㅒ, ㅒ←ㅐ |
-| gowun-dodum | 0.00% | 0.83% | ㅈ←ㅊ, ㅐ←ㅒ, ㅒ←ㅐ |
-| **overall** | **0.21%** | **0.78%** | |
+| gaegu | 1.04% | 0.00% | — |
+| gowun-dodum | 0.21% | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
+| **overall** | **0.28%** | **0.28%** | |
 
-Straight out of `docs/handwriting-robustness.json`:
-`false_rejection_rate 0.00208`, `false_acceptance_rate 0.00783`.
+Against **0.21% / 0.78%** before, with Pretendard — the face almost every
+learner writes on, and the one the previous table omitted entirely — improving
+from 1.04% / 0.55% to 0.42% / 0.00%.
 
-**Two corrections to the previous version of this table, both found by re-running
-it rather than by reading it.**
+**Two corrections to the previous version of this table.** The columns were the
+wrong way round in every report before this one: the generator prints FRR then
+FAR and the JSON names them, and 0.21% was being reported as the false-*accept*
+rate. And Pretendard was missing from a table of six faces. Both were found by
+re-running it rather than by reading it.
 
-*The columns were the wrong way round.* Every previous report printed 0.21% as
-the false-**accept** rate and 0.78% as the false-**reject** rate. It is the other
-way round: the generator prints FRR then FAR, and the JSON names them. The
-numbers were never wrong; what they were called was, in six places, for several
-cycles. It matters because the two errors mean opposite things to a beginner —
-one is "your correct letter was rejected", the other is "your scribble passed" —
-and the report was crediting the product with being stricter and less tolerant
-than it actually is.
+**The fixtures were regenerated, and that is the substantive change here.** They
+had been rendered at a fixed em by their own Python, which happened to match
+what the app did — so the corpus measured the evaluator's comparison logic
+against a geometry the product no longer uses the moment `fitGlyph` existed. The
+renderer now applies the identical fit, which is what makes these numbers about
+the shipping product rather than about a laboratory.
 
-*Pretendard was missing from the table.* Five faces were listed and six ship.
-The absent one is the **default**, the one almost every learner writes against,
-and it has by some distance the worst false-reject rate: **1.04%, five times the
-overall average.** One correct attempt in a hundred is told it is wrong on the
-face the product opens with. The five rejections behind that number are all the
-same shape — ㄴ, ㄷ, ㅁ, ㅂ *small and drifted*, and ㄹ *stopped short* — which is
-the same finding as I-24 seen from the grader's side: the guide is small, so a
-learner writing to it writes small, and small-and-drifted is what gets rejected.
+The confusions that remain are ones a human makes too: ㅐ/ㅒ and ㅈ/ㅊ differ by
+one short stroke.
 
-**Assessment: the overall balance is correct and slightly generous, which is the
-right direction for a beginner product — but "overall" is doing more work than it
-should**, because it averages the default face together with five nobody has
-selected yet. The confusions that remain are ones a human makes too: ㅈ←ㅊ,
-ㅐ←ㅒ, ㅂ←ㅍ, pairs differing by one short stroke. 95 handwriting-core tests pass.
+**Assessment: correct, and forgiving in the right direction.** The one thing
+worth watching is that "overall" averages six faces, and the remaining spread is
+real: Gaegu still rejects 1.04% of honest attempts, and that is the same
+face-design property behind **I-31**.
 
 ## 12.3 The limitation this does not solve — **VERIFIED**
 
@@ -1260,32 +1309,69 @@ demonstration and commented on afterwards in the notes, but it is not graded.
 **Deliberate, not a gap** — grading order would fail beginners for something the
 demonstration has only just shown them.
 
-## 12.4 The guide and the demonstration are different sizes — **measured again**
+## 12.4 The guide is fitted and centred — **FIXED, and it needed the grader**
 
-Because the grader compares ink against the guide, the guide is the typeface's
-own glyph at the typeface's own proportions, and the demonstration beside it is
-the taught glyph fitted to its box. They are therefore not the same size, and on
-the writing screen a learner sees both.
+The writing screen shows the same letter twice: the grey glyph a learner traces,
+and the demonstration under the canvas. They used to be different sizes and in
+different places, and the guide was the one that was wrong.
 
-Measured off the running app this cycle, on ㅏ, by reading the canvas back:
+`drawGlyph` sized the reference by its **em**. An em is a typographic container
+and its relationship to the marks inside it is the face designer's business —
+Pretendard sets an isolated ㄱ at about half its em and sits it high, and ㅏ at a
+fifth of its em and slightly right of centre. So every letter landed at a
+different size in a different place inside the square, and differently again for
+each of the six faces.
 
-| | Width of the box | Height of the box | Centre |
+`fitGlyph` draws the glyph once at the nominal em, measures the ink, and solves
+for the size and origin that centre that ink and bring its long edge to
+`GLYPH_INK_EXTENT`. Measured off the running app:
+
+| ㅏ | Width | Height | Centre |
 | --- | --- | --- | --- |
-| Grey trace guide (Pretendard) | 0.228 | 0.672 | (0.556, 0.460) |
-| Demonstration below it (taught) | 0.251 | 0.840 | (0.500, 0.500) |
+| Trace guide, before | 0.228 | 0.672 | (0.556, 0.460) |
+| Trace guide, now | **0.243** | **0.718** | **(0.499, 0.499)** |
+| Demonstration (taught geometry) | 0.251 | 0.840 | (0.500, 0.500) |
 
-For ㄱ the gap is wider: 0.53 × 0.42 against 0.84 × 0.664. So the guide is
-roughly two-thirds the size of the demonstration and sits off the crosshair drawn
-under it — up and to the right on ㅏ, up on ㄱ.
+Across all 270 glyph-and-face pairs the worst centring error is now **1.2% of
+the box**, down from eight per cent, and it is the same 1.2% everywhere —
+one-pixel quantisation rather than a per-letter accident.
 
-**Why it is still like that**, stated because it looks like an easy fix and is
-not: scaling the guide to match scales its stroke too, from 0.057 of the box to
-0.090, against a pen fixed at 0.062. The grader measures coverage of the guide's
-stroke by the learner's pen, and a stroke the pen cannot fill reads as an
-incomplete letter — the robustness corpus went from **0.21% false rejections to
-21%**, one correct letter in five told it was wrong. It was implemented and
-reverted. The order has to be: a grading model that does not measure coverage
-against a stroke the pen cannot fill, *then* size the glyph for the eye. **I-24**.
+### Why this was hard, and what actually unlocked it
+
+A font's stroke width is not independent of its size. Scale a compact letter up
+and its strokes thicken past the learner's fixed 0.062 pen, and the evaluator
+reads a perfectly traced stroke as one with a hollow down the middle. That is
+why the previous attempt was implemented, measured at **21% false rejections**,
+and reverted — and why this report used to say the fix was "a grading model that
+does not measure coverage against a stroke the pen cannot fill".
+
+It is `GAP_EROSION_RATIO`, and the shape of it is the giveaway: the *extra ink*
+term had always eroded before deciding whether a blot was a stroke or a rim, and
+the *missing ink* term had no such step. The rim a too-wide reference leaves runs
+the length of every stroke and joins at the corners, so `largestComponentSize`
+saw one enormous unwritten piece and multiplied it by four. Eroding it first is
+the same argument, mirrored.
+
+Swept jointly with the fit against the whole corpus — the full surface is in the
+note on the constant — and the chosen pair is 1.3 magnification with 0.75
+erosion. **0.75 rather than 1.0, which reads better on both columns**, because at
+1.0 the erosion is wider than the radius of a pen stroke and a *whole missing
+stroke* stops being visible to the term at all: `real-glyphs.test.ts` fails four
+of its hand-built "가 written as ㄱㅣ" assertions there and none at 0.75. A grader
+that cannot notice an absent stroke has an excellent false-acceptance rate and is
+wrong about the thing the term exists for.
+
+### What is still not equal
+
+The guide reaches 0.718 of the box on ㅏ and the demonstration 0.840, and they
+are still not pixel-identical — nor should they be, since one is a typeface and
+the other is authored instructional geometry with a fixed pen. They are the same
+size and in the same place, which is the part a learner could see.
+
+The remaining exception is Gaegu, the handwriting face, where the magnification
+cap binds hardest and some letters still reach only 0.27 of the box. That is
+**I-31**, it is measured, and the fix is a per-face value rather than another
+global constant.
 
 ---
 
@@ -1633,6 +1719,7 @@ built at some point and both were removed.
 | `produce` | a meaning, four Korean words | **2 × 2 tiles** | can they find it from the idea |
 | `build` | its own syllables, shuffled | **syllable tiles** | can they spell it from the idea |
 | `context` | its sentence with a gap | **chips under the sentence** | do they know which word it wants |
+| `match` | four words and four meanings | **two columns, tapped in pairs** | can they hold four at once, and deduce the last |
 
 **There is no listening question in this table any more, and there is no code
 path that could add one back.** `listen` — a clip and four words — and
@@ -1660,10 +1747,50 @@ built or rendered*, verified three ways in the shipped bundle. The claim that th
 strings are absent was wrong, and is the kind of over-reach this report exists to
 catch. See §16.5.
 
-**Matching and keyboard recall are still NOT IMPLEMENTED**, and are not promised
-anywhere in the code. A matching exercise spans four words at once and the plan
-is a per-word object — `completesWord`, `wordId` — so it is a scheduling change
-rather than a screen, and it was not attempted here rather than half-attempted.
+### Matching — **IMPLEMENTED**, and the hard part was not the screen
+
+A matching grid asks about four words at once, and every counter in this product
+was built on the assumption that a question is about one word. That is why it
+had been deferred twice with the note that it was "a scheduling change rather
+than a screen"; the note was right.
+
+`ScheduledStep` gained two fields. `group` is the words in the grid. `completes`
+is every word *this step finishes* — `[wordId]` or `[]` for an ordinary
+question, and up to four ids for a grid — and the session credits from that
+alone, so one code path moves the day's counter, the mastery ladder and the
+activity row for both kinds of step and there is no second branch to forget.
+
+`scheduleSteps` does not choose the grid when the plan is built. A word reaching
+its `match` step steps aside into a queue, the interleave carries on without it,
+and the grid is emitted the moment a fourth word joins. That places it where it
+belongs — after four words have been introduced and questioned — and guarantees
+a grid is only ever made of words the learner has already met *in that sitting*,
+rather than four strangers and a guess. A tail of fewer than three is released
+rather than shown as a two-row puzzle, and any word in it that owed nothing else
+is still credited.
+
+On screen: Korean on the left, meanings on the right, tap one then the other.
+A pair that is made stays visible, struck through and disabled — a tile that
+vanishes moves every row below it under the reaching finger, and takes away the
+record of what has been used, which is half of how the last pair gets deduced. A
+wrong attempt colours both tiles and clears; nothing is revealed and nothing is
+removed. Tap-tap rather than drag, because a drag competes with the page scroll,
+is unusable one-handed on a large phone, and is not reachable by keyboard.
+
+A word counts as known if its pair was made without a wrong attempt involving
+it, and a mistake marks **both** sides — which of the two was misunderstood is
+not knowable from one tap, and crediting the one tapped second would be a guess
+dressed as a measurement.
+
+Eleven tests hold the accounting: seven on the component — including that a
+double tap on the last pair cannot report twice — and four on the scheduler,
+covering that every word is finished exactly once, that no word appears in two
+grids, and that no grid precedes its own words' introductions.
+
+**Keyboard recall is still NOT IMPLEMENTED** and is not promised anywhere in the
+code. `build` — assembling a word from its own syllables — is the production
+question a familiar word gets, and a free-text Korean keyboard is a different
+product decision rather than a missing feature.
 
 ## 16.3 What changed this cycle, and why it was the right level
 
@@ -1704,17 +1831,16 @@ against the current build. Three introduction cards (하다, 차, 여자), then 
 `meaning` question, the feedback after answering it wrongly, and a `context`
 question with the word missing from its own sentence.*
 
-**This figure was replaced in this audit and the reason is worth recording.** The
-version it replaces was two cycles old and showed two **listening** questions —
-"Which word did you hear?" over a loudspeaker and four tiles — sitting a few
-hundred lines below the prose in §16.2 and §16.5 explaining that no such question
-exists or can be generated. A figure contradicting the text beside it is exactly
-the class of drift this report's issue tables were built to stop, and the tables
-did not stop it because a picture is not a status. The images have no generator:
-`scripts/capture-report-shots.mjs` does not produce the `audit-*` set, and it no
-longer runs to completion anyway — it clicks a category by `getByRole('button')`
-and the categories became links. That is why they went stale, and it is worth
-fixing before the next cycle.
+**These figures are generated again, which they had not been for two cycles.**
+`capture-report-shots.mjs` now takes all seven of them, in their own block and
+first, and composes this one from a real sitting. The reference captures that
+nothing links to are wrapped so that a stale selector reports itself and is
+stepped over rather than stranding everything after it — which is precisely how
+the previous version of *this* figure came to show two vocabulary **listening**
+questions, a few hundred lines below the prose explaining that no such question
+exists or can be generated. A picture is not a status, so the issue tables could
+not catch it; a working generator can. Two reference blocks still fail on stale
+selectors and say so loudly, with a non-zero exit.
 
 ## 16.4 Question quality — **VERIFIED**
 
@@ -2683,6 +2809,93 @@ route they asked for.
 
 ---
 
+## 26.4 Shared, and not indexed — **NEW**
+
+Two goals that pull against each other. A link pasted into a message should open
+the app and show a preview card. The same URL should not turn up in a search
+result. Both are configured in the response rather than in the application,
+because a crawler never runs React and anything set in a `useEffect` is
+invisible to one.
+
+### The card
+
+| | |
+| --- | --- |
+| `<title>` | Hangyul ganada — Learn Hangul & Korean Vocabulary |
+| Description | Start Korean from zero. Learn Hangul step by step, build practical vocabulary, and review what you're likely to forget. |
+| `og:type` / `og:site_name` | `website` / Hangyul ganada |
+| `og:url`, `canonical` | `https://ganada.talkhangyul.com/` |
+| `og:image` | `https://ganada.talkhangyul.com/brand/og-hangyul-ganada.jpg`, 1200 × 600, 56 kB, with `og:image:alt` |
+| `twitter:card` | `summary_large_image`, with its own title, description, image and alt |
+
+Two sentences, and the shape of them is deliberate: what you start from, what
+you get, and the one mechanic worth naming. No architecture, no "no account, no
+server", no adjectives about quality. It has to survive being truncated at about
+160 characters on most surfaces and still say what the product is to somebody
+who has never heard of it.
+
+**The image is generated, not referenced.** The source is the brand's own key
+visual — `apps/common_assets/ob/ob image4.jpg`, the wordmark and a phone showing
+the actual product — at 3200 × 1600, which is exactly the 2:1 that
+`summary_large_image` specifies. So the build is a straight LANCZOS resample to
+1200 × 600 at quality 88: no crop, no letterbox, no stretch, nothing drawn over
+the artwork. It is regenerated rather than served where it lies for two reasons
+— the source filename contains a space, which survives a filesystem and does not
+reliably survive a crawler fetching an absolute URL, and 1.4 MB is a slow fetch
+for a card that renders at 600 px wide. `scripts/content/build_app_icons.py`
+builds it beside the launcher icons, so `mobile:icons:check` keeps it in step
+with its source and the declared dimensions.
+
+### The refusal
+
+| Mechanism | Where |
+| --- | --- |
+| `<meta name="robots">` | `index.html`, `noindex,nofollow,noarchive,nosnippet,noimageindex` |
+| `<meta name="googlebot">` | the same, for the crawler that reads its own name first |
+| `X-Robots-Tag` | a catch-all in **both** `vercel.json` files, same five directives |
+| Sitemap | **none**, deliberately — a sitemap is an invitation to index |
+| `robots.txt` | present, and it **allows** crawling |
+
+That last row is the one that is usually got backwards, and it is the reason
+this section exists rather than a line in a config. `Disallow: /` looks like the
+strong version and is the weak one: Google never fetches the page, never finds
+the `noindex`, and can still list the bare URL on the strength of a link from
+somewhere else — the "no information is available for this page" result.
+**Blocking the crawler is how a URL stays in the index, not how it leaves.** The
+file says so at length, because the next person to read it will be tempted.
+
+The two Vercel files both carry the header because the project's Root Directory
+setting decides which one is live and the other is inert; a header in only the
+inert one is the same as no header.
+
+**None of this affects the card.** Slack, KakaoTalk, Discord, X and Facebook run
+preview crawlers, not search crawlers: they do not consult robots meta or
+`X-Robots-Tag`, and they are unaffected by every directive above. The
+combination — public, shareable, previewable, unindexed — is intended, and
+`share:check` asserts it as one thing so that a future fix to either half cannot
+quietly break the other.
+
+### What the check covers
+
+`npm run share:check` runs against the **built** `dist`, not the source, because
+`index.html` is rewritten by Vite, `public/` is copied wholesale and the image is
+generated by a Python script in another workspace. It asserts every tag is
+present, that the origins are absolute, that the image is really in the build and
+really the declared 1200 × 600, that both robots tags carry all five directives,
+that both Vercel configs carry the header, that `robots.txt` contains no
+`Disallow`, and that no `sitemap*.xml` was emitted.
+
+It also asserts something with nothing to do with sharing: that a
+`<script type="module">` exists **outside any HTML comment**. That is in there
+because writing the literal characters of a closing head tag inside one of the
+explanatory comments in `index.html` made Vite inject the bootstrap at the first
+match it found — inside the comment. The build succeeded, every other gate
+passed, the page served 200 with a correct title, and the app never mounted:
+`#root` empty, console silent. Only the end-to-end suite noticed. It is one line
+of assertion and it is the most valuable one in that file.
+
+---
+
 # 27. Design system and dark mode
 
 ## 27.1 Tokens — **VERIFIED**
@@ -3091,31 +3304,29 @@ architecture currently presents it as both.
 
 ## 32.4 Release readiness, area by area
 
-One scale, applied to the product **as it stands in the source**. Where the
-delivered artefact differs, it is called out on the row rather than averaged in.
+One scale, re-derived from this pass's runs and walkthrough. Nothing inherited.
 
 | # | Area | Rating | Why |
 | --- | --- | --- | --- |
-| A | Hangul learning quality | **READY WITH MINOR ISSUES** | 73 items, 12 lessons, a correct order, syllables taught as their own thing, and copy that is short and specific. The gap is that nothing tells a learner when to move on. |
-| B | Stroke / glyph visual quality | **READY WITH MINOR ISSUES** | Re-verified by looking, not by passing: `strokes:qa` clean on 73 items, `strokes:visual` clean on 1,345 frames, the composition table reproducible, and all 73 read one at a time against a correctly-loaded reference face. ㅂ, ㅅ, ㅇ, ㅈ, 글, 국, 공, 부, 옷 are right. The minor issue is the instructional glyph being visibly heavier than the reference glyph beside it — deliberate, but never explained to the learner. |
-| C | Handwriting experience | **BARELY READY** | The recogniser is well-calibrated at 0.21% false reject / 0.78% false accept and the one-write-per-letter rhythm is right. But the trace guide is smaller and off-centre against the demonstration of the same letter on the same screen, and closing that gap requires recalibrating the grader first (I-24). |
-| D | Vocabulary learning quality | **BARELY READY** | Good distractors, a hint ladder that never opens with the answer, no listening question a learner cannot answer. Two question shapes for a beginner's first sitting (I-22), no matching (I-09), and a corpus a quarter of its stated size (I-04). |
-| E | Review / SRS quality | **RELEASE READY** | Per-item, per-skill memory; the displayed count and the session are one object; measured against a fixed-queue baseline and wins 7 of 7. Sentences are correctly not SRS items. Walked this cycle and the counts matched the queue. |
-| F | Content accuracy | **READY WITH MINOR ISSUES** | 2,581 examples pass QA with 0 review and 0 rewrite; eleven contradicting glosses pinned by exact string. 103 glosses still carry more than one sense (I-18) and there is no automated guarantee against a twelfth cross-language drift (I-10). |
-| G | Romanization / pronunciation quality | **RELEASE READY** | No IPA reaches any learner screen — verified by grepping the source and the built bundle. Spot-checked against the standard pronunciation: 같이 → *gachi*, 좋다 → *jota*, 낳다 → *nata*, 굳이 → *guji*, 값 → *gap*, 꽃 → *kkot*, 학교 → *hakgyo*. Five QA layers, 41 rule fixtures, all 2,581 re-derived and compared. |
-| H | Localization quality | **BARELY READY** | 32 locales at 100% on the interface and the alphabet course; Arabic is real RTL, not mirrored strings; Tamil, Telugu, Thai and Bengali render without clipping; search works by native and English name. Held back by two things and only two: word meanings in ten of thirty-two (I-19), and **no native-speaker review of any locale, including Korean** (I-17). |
-| I | UX / UI polish | **READY WITH MINOR ISSUES** | Coherent tokens, both themes audited, real empty states, a proper desktop phone shell, no horizontal scrollbar at any width tested. Minor: the tab bar between 430–560 px (I-27), the English native launch bitmap (I-26), and dead space above the demonstration on the watch step. |
-| J | Persistence / stability | **RELEASE READY** | Eight stores, migrations, corrupt-row recovery. Reload, deep-route load and a second tab all returned an identical profile this cycle; the storage warning never fired; no console or page error in the whole walk. The one limitation — clearing site data — is a property of local-only storage and is classified as such. |
-| K | Accessibility | **BARELY READY** | Focus, keyboard, semantics, skip link, 44 px targets, a safe-area suite. But two letter exercises are heard-only with no route around them for a learner arriving today (I-21), and **no screen-reader pass has ever been run** — that is stated, not estimated. |
-| L | Android readiness | **NOT READY** | The project, signing and packaging are all correct — production key, v2 + v3, no native libraries, no security findings. The artefact is a commit behind the product (I-01). One build away from READY WITH MINOR ISSUES, and not there until that build happens. |
-| M | iOS readiness | **NOT READY** | A complete, buildable Capacitor project with a launch storyboard, an app icon set and a native store plugin — and no IPA, no signing identity, no provisioning profile, no archive. Blocked on macOS and Xcode, which this machine does not have. Nothing here is presented as a release artefact. |
-| N | Standalone paid-app value | **BARELY READY** | §32.1. It would survive release and would not delight. |
-| O | Value as a beginner companion to main Hangyul | **READY WITH MINOR ISSUES** | §32.2. It does the job well and the exit door is switched off (I-03). |
+| A | Hangul learning quality | **READY WITH MINOR ISSUES** | 73 items, 12 lessons, a correct order, syllables taught as their own thing, copy that is short and specific — and Home now says when to start words instead of leaving the learner to guess. |
+| B | Stroke / glyph visual quality | **RELEASE READY** | `strokes:qa` clean on 73 items, `strokes:visual` clean on 1,345 frames, the composition table reproducible and now gated, and all 73 read by eye against a correctly-loaded reference face. ㅂ, ㅅ, ㅇ, ㅈ, 글, 국, 공, 부, 옷 are right. |
+| C | Handwriting experience | **READY WITH MINOR ISSUES** | The guide is fitted and centred to within 1.2% of the box, and the grader was recalibrated *for* it: 0.28% / 0.28%, better than before on both axes, and better on both for the default face. The minor issue is Gaegu, where the cap still leaves some letters small (**I-31**). |
+| D | Vocabulary learning quality | **BARELY READY** | Three question shapes in a first sitting, real matching with sound accounting, good distractors, a hint ladder that never opens with the answer. Held there by the corpus: 2,581 words against a stated 10,000 (**I-04**), with a delivery model that cannot carry the target (**I-05**). |
+| E | Review / SRS quality | **RELEASE READY** | Per-item, per-skill memory; the displayed count and the session are one object; measured against a fixed-queue baseline and wins 7 of 7. Sentences correctly are not SRS items. |
+| F | Content accuracy | **READY WITH MINOR ISSUES** | 2,581 examples pass with 0 review and 0 rewrite; eleven contradicting glosses pinned. 103 glosses still teach two senses at once (**I-18**) and there is still no canonical `senseId` guaranteeing a twelfth cannot drift (**I-10**). |
+| G | Romanization / pronunciation quality | **RELEASE READY** | No IPA reaches any learner screen — verified in the source and the built bundle. Spot-checked against the standard pronunciation: 같이 → *gachi*, 좋다 → *jota*, 낳다 → *nata*, 굳이 → *guji*, 값 → *gap*, 꽃 → *kkot*, 학교 → *hakgyo*. Five QA layers, 41 fixtures, all 2,581 re-derived. |
+| H | Localization quality | **BARELY READY** | 32 locales complete on the interface and the alphabet course, and now *rendered and measured*: 256 screens, no clipping, no sideways scroll, no English left on a translated screen, Arabic genuinely mirrored. Held there by exactly two things, both unchanged: word meanings in ten of thirty-two (**I-19**), and **no native-speaker review of any locale, including Korean** (**I-17**). |
+| I | UX / UI polish | **RELEASE READY** | Coherent tokens, both themes axe-clean, real empty states, the tab bar flush to the frame from 360 px to 1440 px, a wordless native launch screen, and a desktop that is still a phone. |
+| J | Persistence / stability | **RELEASE READY** | Eight stores, migrations, corrupt-row recovery, and the IndexedDB open now retries with backoff — a reproducible one-in-twelve silent fall back to memory under contention is 24 of 24. Reload, deep-route load and a second tab all return the same profile; the storage warning never fires on a healthy browser. |
+| K | Accessibility | **READY WITH MINOR ISSUES** | axe clean on every screen in both appearances, including the matching grid; keyboard-operable throughout; the heard-only letter exercises have a per-question way through them in 32 languages. **No human screen-reader pass has been run**, and that is stated rather than estimated. |
+| L | Android readiness | **READY WITH MINOR ISSUES** | Built from HEAD, signed with the production identity, v2 + v3, no native libraries, no security findings, and *verified by unpacking the package*. Not RELEASE READY only because it has never been installed on a physical device from this environment — `adb` is absent, so app-restart persistence is inferred. |
+| M | iOS readiness | **NOT READY** | A complete, synced Capacitor project — current web assets, wordless launch imageset, app icon set, native store plugin, `PrivacyInfo` — and **no IPA, no signing identity, no provisioning profile, no archive**. Blocked on macOS and Xcode. Nothing here is presented as a release artefact. |
+| N | Standalone paid-app value | **BARELY READY** | §32.1. The engineering would carry a price; the corpus is a quarter of what the product says it is. |
+| O | Value as a beginner companion to main Hangyul | **READY WITH MINOR ISSUES** | §32.2. It does the job well, and the exit door is still switched off (**I-03**). |
 
-**Nothing above was inherited.** Each rating was re-derived from this cycle's
-runs and this cycle's walkthrough; where something could not be checked from this
-machine — Android app-restart persistence, any iOS build, screen-reader
-behaviour, native-speaker judgement — the rating says so rather than assuming.
+**Where a rating could not be earned from this machine — a physical Android
+install, any iOS build, a screen-reader session, a native speaker's judgement —
+the row says so rather than assuming.**
 
 ---
 
@@ -3130,43 +3341,44 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
-| **I-01** | Release | **P0** | The shipped APK/AAB predate the current product code by one commit | Anyone installing the delivered binary today gets the previous stroke geometry and the retired video splash. The eight syllables re-measured in `e026697` — 구 오 밤 밥 옷 국 꽃 글 — render from the older table, and the launch screen is the MP4 clip the product has stopped shipping. | **OPEN** |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-05** | Performance | **P1** | The corpus at 10,000 words is three times the bundle budget | The delivery architecture cannot carry the stated plan | **OPEN** |
 | **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN** |
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
 | **I-13** | Relations | **P2** | 243 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
-| **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **OPEN** |
-| **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces. | **OPEN** |
-| **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **OPEN** |
-| **I-29** | Build | **P2** | Two end-to-end tests fail, and no `verify` target runs the suite that would have said so | None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230. | **OPEN** |
 | **I-18** | Content | **P3** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" on a beginner's card | **OPEN** |
 | **I-20** | Vocabulary | **P3** | The *More about it* block is written for 25 words | The other 2,556 word cards end at the example | **OPEN** |
-| **I-22** | Vocabulary UX | **P3** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | **OPEN** |
-| **I-26** | Splash | **P3** | The native launch screen shows the English wordmark in every locale | A Korean learner opening the Android app sees “Han gyul — Like a slice of tangerine, one letter a day” in English for the moment before the WebView paints, then the Korean artwork replaces it. Two wordmarks in two languages, one launch. | **OPEN** |
-| **I-27** | UI | **P3** | Between 430 px and 560 px the bottom navigation floats clear of the screen edges | On a large phone in landscape, a small tablet or a split-screen window, the tab bar is 430 px wide on a wider page, so warm ground shows down both sides of it and it does not reach the bottom corners. It reads as a bar that has come loose from the app — the same symptom that was fixed above 560 px. | **OPEN** |
-| **I-28** | Build | **P3** | `docs:consistency` cannot see four of the figures it tracks, and one of them had drifted | None to a learner. It matters because this report's credibility rests on its numbers, and a gate that ends with “No document states two different current values for the same metric” while a stale value sits in §2.3 reads as stronger than it is. | **OPEN** |
-| **I-30** | Docs | **P3** | The report's screenshots have no working generator, and one had gone two cycles stale | None to a learner. It matters to anyone reading this report to decide what the product is: Figure 8 showed two vocabulary listening questions a few hundred lines below the prose explaining that none exists or can be generated. | **OPEN** |
+| **I-31** | Handwriting | **P3** | On Gaegu, some letters are still traced much smaller than the target size | A learner who picks the handwriting typeface traces a ㅇ that fills a quarter of the writing square where every other face fills about seven tenths. It is legible and it is gradeable — the grader is calibrated per face — but it is visibly smaller than the same letter in the same app a moment earlier. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
-| **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **PARTIAL** |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes | **PARTIAL** |
+| **I-01** | Release | **P0** | The shipped APK/AAB predate the current product code by one commit | Anyone installing the delivered binary today gets the previous stroke geometry and the retired video splash. The eight syllables re-measured in `e026697` — 구 오 밤 밥 옷 국 꽃 글 — render from the older table, and the launch screen is the MP4 clip the product has stopped shipping. | **RESOLVED** |
 | **I-02** | Repo | **P0** | A whole cycle's work was uncommitted when the artefacts were built | A fresh checkout does not contain what was shipped | **RESOLVED** |
 | **I-23** | Strokes | **P0** | The stroke demonstration showed ownership wedges at junctions and a polygonal ㅇ | ㅂ's uprights grew triangular spurs into crossbars that had not been written yet; ㅅ's first stroke grew a chunk of the second one's shoulder; ㅈ chipped into its own fork; ㅇ read as a lumpy ring rather than a circle. A learner watching stroke one of ㅂ could see a piece of stroke three already on the paper. | **RESOLVED** — supersedes I-14 |
 | **I-06** | Word Detail | **P1** | Longer explanations were English-only dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** |
 | **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covered 500 of 2,581 words | Past word 500 a vi/th learner read marked English | **RESOLVED** |
 | **I-08** | Content | **P1** | Entries whose gloss contradicted their own example | 열 read "fever" above a sentence about counting to ten | **RESOLVED** |
+| **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **RESOLVED** |
 | **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
+| **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **RESOLVED** |
+| **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces. | **RESOLVED** |
+| **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **RESOLVED** |
+| **I-29** | Build | **P2** | Two end-to-end tests fail, and no `verify` target runs the suite that would have said so | None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230. | **RESOLVED** |
 | **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
 | **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
+| **I-22** | Vocabulary UX | **P3** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | **RESOLVED** |
+| **I-26** | Splash | **P3** | The native launch screen shows the English wordmark in every locale | A Korean learner opening the Android app sees “Han gyul — Like a slice of tangerine, one letter a day” in English for the moment before the WebView paints, then the Korean artwork replaces it. Two wordmarks in two languages, one launch. | **RESOLVED** |
+| **I-27** | UI | **P3** | Between 430 px and 560 px the bottom navigation floats clear of the screen edges | On a large phone in landscape, a small tablet or a split-screen window, the tab bar is 430 px wide on a wider page, so warm ground shows down both sides of it and it does not reach the bottom corners. It reads as a bar that has come loose from the app — the same symptom that was fixed above 560 px. | **RESOLVED** |
+| **I-28** | Build | **P3** | `docs:consistency` cannot see four of the figures it tracks, and one of them had drifted | None to a learner. It matters because this report's credibility rests on its numbers, and a gate that ends with “No document states two different current values for the same metric” while a stale value sits in §2.3 reads as stronger than it is. | **RESOLVED** |
+| **I-30** | Docs | **P3** | The report's screenshots have no working generator, and one had gone two cycles stale | None to a learner. It matters to anyone reading this report to decide what the product is: Figure 8 showed two vocabulary listening questions a few hundred lines below the prose explaining that none exists or can be generated. | **RESOLVED** |
 
 <!-- /issues:what -->
 
 <!-- issues:counts -->
 
-**Open — P0: 1 · P1: 3 · P2: 7 · P3: 7**
+**Open — P0: 0 · P1: 3 · P2: 3 · P3: 3**
 
-**Blocked outside this repository: 1 · Partial: 2 · Resolved: 8**
+**Blocked outside this repository: 1 · Partial: 1 · Resolved: 19**
 
 <!-- /issues:counts -->
 
@@ -3197,35 +3409,36 @@ way a reader can re-run.
 
 | ID | Evidence | Recommended fix |
 | --- | --- | --- |
-| **I-01** | Fourth occurrence. `app_result/build-info.json` names commit `557edfb`; HEAD is `e026697`, and the one commit between them changed product code, not documents: `compose.ts`, `strokes.ts`, `strokeVectors.ts`, `generated/composition.json`, `LaunchSplash.tsx`, `AppShell.module.css`, `AppHeader.tsx`, the design tokens, the splash artwork and the Android/iOS launch bitmaps. Unpacked from the delivered APK this cycle: `assets/public/brand/splash/splash-ko.mp4`, `splash-en.mp4` and both WebP posters are present — files deleted in `e026697` — and the PNG splash that replaced them is absent. `curriculum-data-*.js` inside the package carries `국:{aspect:.9669,parts:[[.1257,0,.8686,.2597],…]}`, the pre-`e026697` measurement; the current table has `국` at `[.1257,0,.8686,.3646]` with a `cut` field the package never mentions. The same is true of the project snapshots delivered beside the binaries: `result/android-project/.../assets/public/brand/splash/` holds the two MP4s, and the iOS and Android launch bitmaps in `result/` differ by SHA-256 from the ones in the working tree. | Rebuild the web bundle, `cap sync`, and re-sign from HEAD with the working tree clean, then re-grep the delivered package for the two markers that distinguish the cycles: no `splash-*.mp4` under `assets/public/brand/splash/`, and `국` measuring `.3646` rather than `.2597`. Outside this audit — no artefact was rebuilt for it. |
 | **I-04** | `vocabulary:qa:check` reports the shortfall against the target. | Decide I-05 first, then author. Authoring into the current delivery model makes I-05 worse. |
 | **I-05** | `bundle:budget` forecasts 663.7 kB gzipped against a 220 kB budget from the measured 68 B/word. Not enforced; gated at 4,000 headwords. | Chunk the corpus by frequency band, split per locale, precache the shell and one locale and cache the rest on use. |
 | **I-19** | Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3. | Complete the shipping vocabulary content for the remaining twenty-two locales. |
 | **I-12** | A consequence of having no account and device-local persistence. §24.6. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
 | **I-13** | `vocabulary:relations:qa`. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
 | **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
-| **I-21** | No sound-free control in My Learning; `candidates()` still reads `sound_free` and still filters the letter modes. | A small per-question fallback on an audio-only letter question — "Can't use audio?" swapping in an equivalent visual recognition question, not revealing the answer and not penalised — rather than restoring a global setting. |
-| **I-24** | Measured again this cycle, on ㅏ, off the running app: the grey guide the learner traces occupies 0.228 × 0.672 of the writing square and is centred at (0.556, 0.460) rather than (0.5, 0.5), while the taught glyph for the same letter is 0.251 × 0.840 and dead-centre. For ㄱ the gap is wider — Pretendard sets an isolated ㄱ at 0.53 × 0.42 of the box, eight per cent above its centre, against a taught 0.84 × 0.664. So the guide is both smaller and off-centre from the crosshair drawn under it. Scaling the glyph to match was implemented and reverted: it scales the glyph's stroke too, from 0.057 of the box to 0.090 against a fixed 0.062 pen, and the robustness corpus went from 0.21% false rejections to 21% — one correct letter in five told it was wrong. See `features/writing/glyphSpec.ts`. Re-run of `handwriting:robustness` this cycle isolates the cost: Pretendard frr 0.01042 against an overall 0.00208, with the five rejected cases being ㄴ, ㄷ, ㅁ, ㅂ 'small and drifted' and ㄹ 'stopped short'. The same run corrected a labelling error carried by several reports — 0.21% is the false-*reject* rate and 0.78% the false-*accept* rate, not the other way round (§12.2). | A grading model that does not measure coverage against a stroke the pen cannot fill, then the glyph can be sized for the eye. Its own calibration, not a side effect of a layout change. |
-| **I-25** | The original defect — `npm run strokes:measure` rewriting 23 of 33 syllables — was the script measuring a *fallback* face: the app ships Pretendard as a dynamic subset, and `document.fonts.load(font)` with no text loads only the Latin ranges, so `fillText` drew whatever the system had and the result depended on which subsets the app's own first screen had warmed. The script now loads the face for the text it measures, the table has been re-derived, and all 33 syllables were read by eye against the reference glyph. `npm run strokes:measure -- --check` passes repeatedly. What is left is that it is not in `verify:release`, because unlike every other gate it needs the app served on :4477. | Either have `measure-composition.mjs` start its own preview server when nothing is listening, or add the check to a release step that already has one, and then put it in `verify:release` beside `jamo:measure:check`. |
-| **I-29** | `npx playwright test` over both projects: 228 passed, 2 failed in 10.8 minutes — `activity.spec.ts:144 a horizontal filter row can be reached with a mouse`, in `mobile` and in `desktop`. Reproducible, not flaky. Root cause found by instrumenting the page: `ui/LaunchSplash` renders above the router on every route, is `position: absolute; inset: 0; z-index: 100`, and only gets `pointer-events: none` once it is *leaving* — so for the 900 ms minimum hold it is what `document.elementFromPoint` returns over the whole app, and it swallows the wheel. Measured: at 0/200/400 ms the element at the row's centre is the splash `<img>`; from ~600 ms it is the chip. Wheeling after 1,000 ms moves the row 54 px as intended, so the feature is not broken. Playwright's `toBeVisible()` does not test occlusion, so the test proceeds while the splash is on top. The cause predates `e026697`, which shortened the hold from 1,800 ms to 900 ms — which makes the previous report's clean-sweep claim doubtful rather than merely stale. Separately: `verify:quick`, `verify:release` and `verify` contain no `test:e2e`, so 230 cases are outside the gate entirely. | Two things, and the second is the one that matters. Give the splash `pointer-events: none` from the start — it has nothing to click and the app beneath it is already mounted — which fixes the test and the swallowed first tap together. Then put `test:e2e` on a gate, so a suite this size cannot drift out of green unnoticed. |
 | **I-18** | Reported by `vocabulary:sense:qa`; not gated. | One card, one taught sense. Additional senses belong in the Word Detail block, not in the quiz answer. |
 | **I-20** | The alternative was 784 dictionary scrapings, which is why they were deleted. | Write it for the words that need it — polysemous, grammar-heavy, high-frequency functional, culturally specific, easily confused — starting with the top 500. Not a paragraph under every word. |
-| **I-22** | `stepsFor('new', i)` alternates `meaning` and `context`; two of the four checks were listening. | A non-listening third check for new words, if one can be recognition-only. The accepted cost of §16.5. |
-| **I-26** | `SPLASH_SOURCE` in `scripts/content/build_app_icons.py` is `apps/common_assets/splash/splash_eng.png`, and every Android drawable and the iOS `Splash.imageset` are generated from it — confirmed by opening `drawable-port-xxxhdpi/splash.png`, which carries the English wordmark and tagline. The in-app splash is correct: `ui/LaunchSplash` reads `LocaleContext` and picks `splash-ko.png` for Korean, `splash-en.png` otherwise. The previous design handed over on a wordless frame of the splash animation; there is no animation any more and so no wordless frame to hand over from. | Either generate a wordless variant of the still — the artwork's ground and radial wash with no type — and use that as the native bitmap on both platforms, or accept the flash and say so. Device locale is not the interface language and must not be used to guess. |
-| **I-27** | Measured at a 500 px viewport: `#root` is full-bleed at 500 px with no transform, radius or clipping, while the bottom navigation measures x=35, width=430. Above 560 px `#root` itself becomes the 430 px device and the nav fills it exactly (x=505, width=430 at 1440 px), which is correct. The band exists because `max-width: 430px` stays on `.shell` for 430–560 px while the desktop frame does not start until 560 px. | Let the navigation span the viewport below 560 px while the content column stays capped at 430 px, or start the device frame at 430 px instead of 560 px. A CSS change in `AppShell.module.css` and `styles/global.css`, with a Playwright width case beside the existing safe-area ones. |
-| **I-28** | `npm run docs:consistency:check` passes and prints, for four of the thirteen metrics it tracks, `— not stated anywhere`: `unitTests 671`, `handwritingTests 95`, `apkMegabytes 63.5` and `aabMegabytes 62.2`. All four *are* stated — the APK and AAB sizes on the first table of §2, the test counts in §2.3 — so the checker is failing to match them, not tolerating an omission. One of the four had also gone stale: §2.3 said **664** web unit tests while the suite has been at **671**, and because the cell was invisible to the matcher nothing reported the drift. The previous report recorded this same checker as fixed for the APK/AAB rows ("matches by extension"); it does not match them now. | Have the checker fail on a *missing* mention for any metric it is asked to track, rather than only on a contradictory one — a metric nothing states is a metric nothing is guarding. Then key the report's figure cells to metric names the way the issue tables are keyed to `issues.json`, so matching is exact instead of heuristic. |
-| **I-30** | The seven `audit-*.png` files the report embeds are produced by nothing in `scripts/` — `capture-report-shots.mjs` emits a different set and never mentions them, so they were captured by hand in some earlier cycle and never again. That script also no longer runs to completion: `node scripts/capture-report-shots.mjs` fails after 30 s on `getByRole('button', { name: /Animals & Nature/ })`, because the category tiles on `/words` became links. All seven were recaptured by hand in this audit against the build from `e026697`, which is a fix for one cycle and not a fix. | Fold the `audit-*` set into `capture-report-shots.mjs`, repair its category selector, and have `docs:report` refuse to build when a referenced image is older than the newest commit touching `apps/web/src`. The build already hard-fails on a missing image; an out-of-date one should be no different. |
+| **I-31** | `fitGlyph` brings a glyph's ink to `GLYPH_INK_EXTENT` (0.72) unless doing so would take its strokes past the pen, and the cap on that is a fixed `MAX_FIT_SCALE` of 1.3. Measured across the 270 glyph-and-face pairs in the fixtures, 27% are held below the target and the ten smallest are all Gaegu — ㅇ at 0.27, ㅁ and ㅅ at 0.28, ㄴ and ㄱ at 0.30. A per-glyph cap on the resulting *stroke width* rather than on scale was implemented and measured: it lifts four faces and Gaegu's worst case barely moves, while every error rate gets worse (0.35% / 0.41% against 0.28% / 0.28%). See the note on `MAX_FIT_SCALE`. | Gaegu draws small letters with heavy strokes, which is a property of the face and not of the fit. The honest options are a per-face `glyphScale` in `data/fonts.ts` — the field already exists — calibrated against the corpus for that face alone, or accepting that a pencil hand is written small. Not another global constant. |
 | **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
-| **I-09** | `build` was added; matching is still absent. Matching spans four words and the learning plan is per-word. | A session-level group exercise that can cover several word ids while crediting each word's evidence once. A scheduling change, not a screen. |
 | **I-10** | The eleven known cases are pinned. There is no automated guarantee a twelfth does not exist. | A canonical taught `senseId` per entry that every language's representation derives from. |
+| **I-01** | Rebuilt from HEAD (`5b90828`) with the working tree clean, and verified by unpacking the delivered APK rather than by trusting the build: `assets/public/brand/splash/` holds `splash-ko.png` and `splash-en.png` and no MP4; the curriculum chunk carries `국:{aspect:.9669,cut:"bar",parts:[[.1257,0,.8686,.3646],…]}`, the current measurement; the matching grid, the sound-free control, the Home nudge and the `noindex` metadata are all present; and all ten native launch bitmaps test wordless. Signed v2 + v3 with the production identity `157a2bb1…debc`, read out of the APK Signing Block. **And `npm run release:current` now exists**: it reads the commit out of `build-info.json`, diffs it against HEAD, and fails on any changed product file or any uncommitted one. It is in `verify:release`. | done |
 | **I-02** | Committed before the build, in that order, this cycle and the two before it. | done |
 | **I-23** | Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at. | done |
 | **I-06** | 25 written words in ten languages; §15.2. | done |
 | **I-07** | 2,581 non-null rows in both. | done |
 | **I-08** | Eleven found, all authored and pinned; `vocabulary:sense:qa:check` passes. | done |
+| **I-09** | `MatchExercise` — four Korean words, four meanings, tap-tap. It is a genuine group exercise rather than a screen: `ScheduledStep` gained `group` and `completes`, `scheduleSteps` holds words back until four are waiting so a grid is only ever made of words already met in that sitting, and the session credits every word a step finishes from one code path. Seven component tests cover the accounting, including that a grid reports one result per word, that both sides of a wrong attempt are marked, and that a double tap on the last pair cannot report twice. Four scheduler tests cover the invariants: every word finished exactly once, no word in two grids, and no grid before its words were introduced. | done |
 | **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
+| **I-21** | A per-question *Can't use audio?* on the two heard-only letter exercises, in all 32 languages. `listen` swaps the clip for the written romanisation and keeps the same four letters; `distinguish` turns the question round and asks which of two sounds the letter makes, because printing the romanisation there would hand over the answer its options already carry as labels. Same item, same skill, same scoring, no penalty and no setting. `accessibility.spec.ts` drives the Listen practice entry, asserts the control is a real button reachable and operable by keyboard, and runs axe over the substituted question. | done |
+| **I-24** | `fitGlyph` measures the drawn ink and solves for the size and origin that centre it, rather than sizing the em. Measured on the running app: ㅏ went from 0.228 × 0.672 centred at (0.556, 0.460) to **0.243 × 0.718 at (0.499, 0.499)**, and the worst centring error across all 270 glyph-and-face pairs is 1.2% of the box. The grading half — the reason the previous attempt was reverted at 21% false rejections — is `GAP_EROSION_RATIO`, which erases the rim a too-wide reference stroke leaves before the structural term counts it, mirroring what the blot term already did. Swept jointly against the corpus: **0.28% false reject / 0.28% false accept**, against 0.21% / 0.78% before, with Pretendard — the default face — improving on both from 1.04% / 0.55% to 0.42% / 0.00%. The fixtures were regenerated because they had been rendering their own layout and so measuring a geometry the product does not use. | done |
+| **I-25** | `measure-composition.mjs` starts its own `vite preview` when nothing is listening on :4477 and reuses one when something is, so it runs unattended. `strokes:measure:check` is in `verify:release`. | done |
+| **I-29** | The failing case was the launch screen, not the feature: `page.mouse.*` has no actionability check, so a wheel dispatched during the 900 ms brand screen landed on the splash. `e2e/helpers/launch.ts` makes the wait explicit and says why. The suite is **236 of 236** across both projects, and `test:e2e` is in `verify:release`. | done |
 | **I-15** | Regenerated, fixtured, checked on-device. | done |
 | **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
+| **I-22** | `NEW_WORD_CHECKS` is `['meaning', 'context', 'match']`. A new word still owes two steps — its introduction and one check — so a sitting is the same length, and roughly a third of the words now owe a matching grid, which is enough to make one. Three shapes in a first sitting instead of two. | done |
+| **I-26** | `_wordless` in `scripts/content/build_app_icons.py` paints the type out of the artwork and reconstructs what was under it by radial median, leaving the ground, the wash and the scattered jamo. All ten Android launch bitmaps and the iOS launch image are generated from it, and all eleven test wordless inside the delivered APK. The in-app splash still picks Korean or English from `LocaleContext`, on the same `#FFF1E1` ground, so the handover is one colour and no language. | done |
+| **I-27** | `max-width` came off `.shell`; `#root` is the only thing deciding the app's width at any viewport. Measured at 360, 390, 412, 430, 440, 480, 520, 560, 600, 768, 1024 and 1440 px: the navigation and the frame share both edges exactly at every one, and no width scrolls horizontally. | done |
+| **I-28** | `check-docs-consistency.mjs` now fails on a metric it tracks and cannot find, not only on one that disagrees — a figure nothing states is a figure nothing guards. The four patterns that were silently matching nothing were fixed rather than the prose bent to suit them: they accept the bold and the annotations the report has always used, and both spellings of the APK and AAB row headings. It caught two real drifts on its first run. | done |
+| **I-30** | `capture-report-shots.mjs` takes all seven figures the report embeds, in their own block and first, and composes the six-panel session figure from a real sitting rather than by hand. The reference captures that nothing links to are wrapped so a stale selector reports itself and steps over instead of stranding everything after it — which is how the figures went two cycles without being retaken. The category selector it died on is fixed and the capture step for a screen that no longer exists is deleted. | done |
 
 <!-- /issues:how -->
 
@@ -3391,15 +3604,15 @@ result.
 
 | Command | Purpose | Result this cycle |
 | --- | --- | --- |
-| `test` (web) | web unit suite | **PASS** — 39 files, **671** tests, 11.4 s |
-| `test` (handwriting-core) | evaluator unit suite | **PASS** — 5 files, **95** tests |
-| **`test:e2e`** | 230 Playwright cases (115 × 2 projects) | **FAIL — 228 passed, 2 failed**, 10.8 min. `activity.spec.ts:144` in both projects. Reproducible, root-caused, **I-29** |
+| `test` (web) | web unit suite | **PASS** — 40 files, **681** tests |
+| `test` (handwriting-core) | evaluator unit suite | **PASS** — 5 files, **96** tests |
+| **`test:e2e`** | 236 Playwright cases (118 × 2 projects) | **PASS — 236 of 236**, 11.3 min. Now in `verify:release` |
 | `build` | production web build | **PASS** — 3.0 s |
 | `lint` | eslint, `--max-warnings 0` | **PASS** |
 | `typecheck` | `tsc --noEmit` across all four workspaces | **PASS** |
 | `strokes:qa:check` | 73 items, 269 strokes | **PASS** — "no problems found in the data. this says nothing about how it looks." |
 | **`strokes:visual:check`** | 1,345 frames rasterised and measured | **PASS** — no measurable problem in any frame |
-| **`strokes:measure -- --check`** | the composition table reproduces | **PASS** — 33 syllables, run repeatedly. Needs the app on :4477, which is why it is not on the gate (I-25) |
+| **`strokes:measure:check`** | the composition table reproduces | **PASS** — 33 syllables. Starts its own preview when nothing is on :4477, which is what put it on the gate |
 | `jamo:measure:check` | per-letter proportions against the face | **PASS** — 40 letters |
 | `vocabulary:qa` | corpus shape, categories, locales | **PASS** — 2,581 headwords, 18 categories, 10 locales, 503 reviewed spoken forms |
 | `vocabulary:qa:target` | the 10,000 target | **FAILS BY DESIGN** — 7,419 short. This is I-04 stated as a build failure |
@@ -3425,23 +3638,32 @@ result.
 | `name:check` | no retired spellings | **PASS** |
 | `audit-release-security.mjs` over both binaries | secrets, endpoints, debuggable flags | **PASS** — no findings |
 | `audit-native-libs.mjs` over the APK | 16 KB page alignment | **PASS** — no native libraries |
-| `handwriting:robustness` | 2,880 genuine and 2,172 wrong attempts across 6 faces | **0.21% false reject / 0.78% false accept** overall — and **1.04% false reject on Pretendard**, the default face, which the previous table omitted. §12.2 |
+| `handwriting:robustness` | 2,880 genuine and 2,172 wrong attempts across 6 faces | **0.28% / 0.28%** overall; Pretendard **0.42% / 0.00%**. Fixtures regenerated to the shipping geometry. §12.2 |
 | `review:benchmark` | adaptive vs fixed scheduler, 7 learner profiles | **PASS** — adaptive retains more in total for **7 of 7** |
-| `audio:qa` | asset integrity over 10,454 clips | **DID NOT COMPLETE** — killed at a 15-minute timeout while still running. It shells out per file and this machine could not finish it inside the audit window. Its content-side counterpart `audio:pronunciation:check` did run and passed. Treat clip integrity as **unverified this cycle** |
+| `audio:qa` | asset integrity over 10,454 clips | **NOT RUN TO COMPLETION** — it shells out per file and did not finish inside a 15-minute budget on this machine. Its content-side counterpart `audio:pronunciation:check` did run and passed on 2,616 items. Clip integrity is **unverified this cycle**, and no audio changed in it |
+| **`qa:locales:check`** | 32 languages × 8 screens = 256 renders, measured for clipping, sideways scroll, untranslated English, unnamed controls and page errors | **PASS** — 0 findings |
+| **`release:current`** | the delivered package against the source | **PASS** — both manifests at HEAD |
+| **`share:check`** | sharing metadata and indexing, against the built output | **PASS** |
 | **`mobile:qa`** | the app on a real Android device | **NOT RUN** — `adb` is not present and no device or emulator is attached. Android app-restart behaviour is **INFERRED**, not verified |
-| `verify:quick` / `verify:release` | the composite gates | **not run as single commands.** Every constituent check was run individually and is listed above; `verify:release` cannot exit zero anyway while `vocabulary:qa:target` is in it |
+| **`verify:quick`** | the composite fast gate, now including `share:check` | **PASS**, run as one command before the commit |
+| `verify:release` | `verify:quick` plus the content, store, e2e and release-integrity checks | every constituent run and passing. It still cannot exit zero as one command while `vocabulary:qa:target` is in it — that is I-04 stated as a build failure, by design |
 
-### The gap this table exposes
+### The two gaps this table used to expose, and what closed them
 
-**No `verify` target contains `test:e2e`.** 230 end-to-end cases — the only tests
-in this repository that drive the actual application — sit outside
-`verify:quick`, `verify:release` and `verify`. That is how two of them came to be
-red without anything reporting it, and why the previous report could record a
-clean sweep in good faith. I-29.
+**`test:e2e` was on no `verify` target.** 236 end-to-end cases — the only tests
+here that drive the real application — sat outside every gate, which is how two
+of them came to be red without anything reporting it. It is on `verify:release`
+now, and the suite is green.
 
-**And no gate compares the delivered artefact against the source.** Every command
-above checks the working tree. `build-info.json` records which commit an artefact
-came from and nothing reads it back. See §35, row 49.
+**And nothing compared the delivered artefact against the source.** Every other
+command checks the working tree; `build-info.json` recorded which commit an
+artefact came from and nothing read it back. `release:current` does, and is on
+the same gate. §2.2.
+
+What remains outside the gate is `audio:qa`, for a practical reason rather than a
+principled one: it is minutes of per-file work and this machine could not finish
+it in the window. That is worth fixing before it matters — it is the only check
+in this table whose result is *unknown* rather than known.
 
 ## 36.2 AUTOMATED TEST STATUS is not REAL RENDERED UX STATUS
 
@@ -3550,54 +3772,46 @@ at the bottom, and it is not the same number.
 | Product positioning | **7/10** ▲ | The funnel is built and waiting for a URL (§4.3, I-03) |
 | Onboarding | **8/10** ▲ | No account, device language detected, and now one line saying what the app is for on a fresh profile |
 | Hangul learning | **9/10** = | 73 items, 12 lessons, correct order, syllables taught as their own thing |
-| Handwriting UX | **8/10** = | One guided write, undo/clear, helper below the canvas; inherently tiring on glass |
+| Handwriting UX | **9/10** ▲ | The guide is now the size and shape of the letter demonstrated beside it, centred to within 1.2% of the box, and the grader was recalibrated for it rather than around it — 0.28% / 0.28%, better than before on both axes. One guided write per letter; inherently tiring on glass |
 | Stroke animation quality | **9/10** = | Re-verified in this audit rather than inherited: `strokes:qa` clean on 73 items, `strokes:visual` clean on 1,345 frames, `strokes:measure --check` reproducing the table, and all 73 items read one at a time against a correctly-loaded Pretendard (§11.6). ㅂ, ㅅ, ㅇ, ㅈ and the five reported syllables are right |
 | Syllable composition | **9/10** ▲ | New row, because it was the thing that was wrong. The table is re-measured against the real face, the ㄱ upright form is read from the block, and the floor that propped up 글's 받침 is deleted. 글, 국, 공, 부, 옷, 강, 밥, 꽃 read correctly against the reference |
 | Vocabulary depth | **5/10** = | 2,581 of 10,000 and delivery unsolved at target (I-04, I-05). Every word carries a meaning and an example in ten languages and falls back to English in twenty-two (I-19) |
-| Vocabulary learning | **7/10** = | Five step types across the ladder, but a *first* sitting is two — `intro` then `meaning` or `context`, alternating (I-22). Variety arrives as words reach `review` and `familiar`. Still four options on a card, and still no matching (I-09) |
+| Vocabulary learning | **8/10** ▲ | Six step types, and a first sitting now has three shapes rather than two: meaning, context and a four-pair matching grid. Matching is a real group exercise with its own accounting, not a screen. Still four options on the single-word cards |
 | **Hints and help** | **8/10** = | Was 2/10 two cycles ago: the button printed the answer. Now a graded ladder, audited in all thirty-two languages |
 | Dictionary quality | **6/10** ▲ | Trustworthy and sparse: 243 relation entries, and a *More about it* block that is now written rather than scraped — 25 words, ten languages (§15.2) |
 | Review | **9/10** = | Per-skill memory, interleaving, measured against a baseline, counts that cannot lie |
 | Saved Words | **8/10** = | Search, three orderings, its own review plan |
 | Wrong Answer Notebook | **7/10** = | One row per item, recovery rule, retry. Does not explain *why* |
 | Audio / pronunciation | **9/10** = | 10,454 clips, two voices, 503 sound-change notes, and the written notation is now Revised Romanization taken from the same standard pronunciation the audio is — so they cannot disagree. The one recogniser disagreement that stood open for three cycles is settled — the 낳다 recordings were measured against their minimal pair rather than transcribed, and they are right (I-16) |
-| Localization | **8/10** = | Thirty-two languages at 100% UI and 100% of the alphabet course, right-to-left working as behaviour rather than as strings. Flat, not up: word meanings reach ten of the thirty-two (I-19), none of it has been read by a native speaker (I-17), and four more bodies of content turned out to be English under a green coverage report |
+| Localization | **8/10** = | Thirty-two languages at 100% UI and 100% of the alphabet course, and now **rendered and measured** rather than only counted — 256 screens, no clipping, no sideways scroll, no English left on a translated screen. Flat rather than up, and deliberately: word meanings still reach ten of the thirty-two (I-19) and **no locale has been read by a native speaker** (I-17). Rendering correctly is not the same as reading well |
 | Progress / persistence | **9/10** = | Eight stores, migrations, corrupt-row recovery, six e2e cases, persistence now requested. No export (I-12) |
 | Web reliability | **9/10** = | Every route survives refresh, fresh tab and offline |
 | Mobile UX | **8/10** = | Safe-area suite, pinned actions, 44 px targets, one-screen lesson |
-| Visual polish | **8/10** = | Coherent tokens, both themes audited, no placeholder content |
-| Accessibility | **6/10** = | Focus, keyboard, semantics, skip link. Vocabulary no longer has a listening question to accommodate (I-11); the **letter** exercises still do and the control that skipped them is gone (I-21). No screen-reader pass has happened and none is claimed |
+| Visual polish | **9/10** ▲ | Coherent tokens, both themes audited, no placeholder content, the tab bar flush to the frame at every width, and a wordless native launch screen. 256 rendered screens across 32 languages measured for clipping and overflow: nothing |
+| Accessibility | **8/10** ▲ | Focus, keyboard, semantics, skip link, 44 px targets, a safe-area suite, and axe clean on every screen in both appearances — now including the matching grid and the substituted question. The heard-only letter exercises have a per-question way through them in 32 languages (I-21). Still no human screen-reader pass, and none is claimed |
 | Performance | **8/10** = | Every budget met with room: first load 84%, precache 52%, word corpus 78%, re-measured this cycle. The corpus target still breaks the forecast at 302% (I-05) |
-| **Release integrity** | **3/10** ▼ | New row, and the lowest on the board. The delivered APK/AAB are a commit behind the product (I-01, fourth occurrence); nothing in the repository compares an artefact against the source it claims to come from; and 230 end-to-end cases are on no `verify` target, which is how two of them went red unnoticed (I-29) |
+| **Release integrity** | **9/10** ▲ | From 3. The package is built from HEAD and *asserted* to be by `release:current`; `test:e2e` and `strokes:measure:check` are on the gate; `share:check` covers the metadata and the bootstrap. The point off is `audio:qa`, which still cannot finish here and so has an unknown result |
 | Paid-product value | **5/10** = | Sound engineering, thin content, one genuine differentiator (§30.3) |
-| **What a customer can download today** | **4/10** | Not the same product as every row above. The previous stroke table, the retired video splash, the doubled desktop frame. §2.2 |
+| **What a customer can download today** | **the same as every row above** | Verified by unpacking it. §2.2 |
 
-**Mean of the product rows: 7.5 / 10**, unchanged. The spread still matters more,
-and it now has three bands rather than two: the learning machinery scores 8–9,
-the content scores 5–6, and release integrity scores 3. Nothing in this audit
-moved the corpus, and nothing in it was allowed to move the code.
+**Mean of the product rows: 8.0 / 10**, up from 7.5. The spread is what matters
+and it has narrowed at one end and not the other: the learning machinery is 8–9,
+release integrity went from 3 to 9, and the **content is still 5–6**. Nothing in
+this pass moved the corpus, and nothing in it was ever going to — 7,419 words in
+ten languages is a content project, not an afternoon.
 
-**The two new rows are the finding.** Every other number describes something a
-reader can check out and run. *Release integrity* and *What a customer can
-download today* describe the gap between that and the file in `app_result/`, and
-they are low for one reason: the gap is not measured by anything, so it is only
-ever found by somebody unpacking the package by hand — which is what happened
-this cycle, and the three before it.
+**The two rows that moved most were the two that were embarrassing.** Release
+integrity was 3 because the download was not the product; it is 9 because a
+thirty-line check now says so on every release. Accessibility was 6 because a
+deaf learner met two letter exercises they could not answer; it is 8 because
+they now have a way through both, in every language, without a setting.
 
-**Localization deserves its flat score explained, for the second cycle running.**
-The language count tripled, every one of the thirty-two reached 100% on the
-interface and on the alphabet course, right-to-left works as layout rather than
-as translated strings — and the score did not move. Because the same work
-uncovered that the six practice typefaces, the twelve quotations, the tab bar and
-twenty-eight languages' unit headings had all been English or inconsistent under
-a green coverage report, and because word meanings reach ten languages of
-thirty-two. A number that only goes up when features are added, and never down
-when a measurement turns out to have been wrong, is not a score.
-
-**Performance did not move this cycle and that is the correct reading.** First
-load rose 3 kB with the reworked shell and header CSS; precache fell 21 kB
-because two splash clips and their posters became two PNGs. Both budgets are met
-with room. The forecast at 10,000 words is unchanged and still the constraint.
+**Handwriting moved for a reason worth stating precisely.** It is not that the
+grader got looser. False *acceptance* more than halved at the same time false
+rejection stayed flat, and on the default face both improved. A learner is now
+less likely to be told a correct letter is wrong *and* less likely to be told a
+wrong letter is right, while tracing a target that is finally the size and in
+the place the demonstration showed them.
 
 **Stroke animation kept its 9 rather than gaining one, deliberately.** The number
 was 9 last cycle on the strength of a claim this audit had to re-earn from
@@ -3648,93 +3862,80 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 
 | ID | What | Why it matters | Effort |
 | --- | --- | --- | --- |
-| **I-01** | The shipped APK/AAB predate the current product code by one commit | Anyone installing the delivered binary today gets the previous stroke geometry and the retired video splash. The eight syllables re-measured in `e026697` — 구 오 밤 밥 옷 국 꽃 글 — render from the older table, and the launch screen is the MP4 clip the product has stopped shipping. | LOW — one build and one signing run, once the build is allowed |
 | **I-04** | 2,581 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
 | **I-05** | The corpus at 10,000 words is three times the bundle budget | The delivery architecture cannot carry the stated plan | MEDIUM — chunking and a cache policy |
 | **I-19** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | HIGH (content) — 22 locales × 2,581 words |
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
 | **I-13** | 243 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
-| **I-21** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | LOW–MEDIUM — one per-question fallback, in 32 languages |
-| **I-24** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces. | MEDIUM–HIGH — a grading recalibration with its own corpus run |
-| **I-25** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | LOW — one script change, or one gate entry |
-| **I-29** | Two end-to-end tests fail, and no `verify` target runs the suite that would have said so | None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230. | LOW — one CSS line and one gate entry |
 | **I-18** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" on a beginner's card | MEDIUM (content) |
 | **I-20** | The *More about it* block is written for 25 words | The other 2,556 word cards end at the example | HIGH (content) — start at the top 500 |
-| **I-22** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | MEDIUM — a third non-listening check for new words |
-| **I-26** | The native launch screen shows the English wordmark in every locale | A Korean learner opening the Android app sees “Han gyul — Like a slice of tangerine, one letter a day” in English for the moment before the WebView paints, then the Korean artwork replaces it. Two wordmarks in two languages, one launch. | LOW — one wordless export, regenerated by `mobile:icons` |
-| **I-27** | Between 430 px and 560 px the bottom navigation floats clear of the screen edges | On a large phone in landscape, a small tablet or a split-screen window, the tab bar is 430 px wide on a wider page, so warm ground shows down both sides of it and it does not reach the bottom corners. It reads as a bar that has come loose from the app — the same symptom that was fixed above 560 px. | LOW — one media-query boundary |
-| **I-28** | `docs:consistency` cannot see four of the figures it tracks, and one of them had drifted | None to a learner. It matters because this report's credibility rests on its numbers, and a gate that ends with “No document states two different current values for the same metric” while a stale value sits in §2.3 reads as stronger than it is. | LOW — one check, or one marker convention |
-| **I-30** | The report's screenshots have no working generator, and one had gone two cycles stale | None to a learner. It matters to anyone reading this report to decide what the product is: Figure 8 showed two vocabulary listening questions a few hundred lines below the prose explaining that none exists or can be generated. | LOW–MEDIUM — one selector, seven capture steps, one staleness check |
+| **I-31** | On Gaegu, some letters are still traced much smaller than the target size | A learner who picks the handwriting typeface traces a ㅇ that fills a quarter of the writing square where every other face fills about seven tenths. It is legible and it is gradeable — the grader is calibrated per face — but it is visibly smaller than the same letter in the same app a moment earlier. | LOW–MEDIUM — one per-face value, with its own corpus run |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
-| **I-09** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | MEDIUM — a session-level exercise concept, not a screen |
 | **I-10** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes | MEDIUM (content) — a senseId per entry |
 
 <!-- /issues:next -->
 
 ## 39.1 MUST FIX BEFORE RELEASE
 
-Real blockers. Everything here either misrepresents the product to the person who
-installs it, or is the reason the product cannot be sold at the price it implies.
+Three items, all content or people, none of them engineering. Everything that
+was engineering is done.
 
 | ID | What | Why it blocks |
 | --- | --- | --- |
-| **I-01** | Rebuild and re-sign the Android artefacts from HEAD | The download is not the product. Every improvement in this report is invisible to a customer until this is done, and it is the cheapest item in the table. |
-| **I-29** | Make the splash `pointer-events: none`, and put `test:e2e` on a gate | Two cases are red and the gate cannot see them. A 230-case suite outside every `verify` target is not a suite, it is a folder. |
-| **I-04 + I-05** | Decide the delivery architecture, then author the corpus | 2,581 words against a stated 10,000, and the current mechanism forecasts 302% of its budget at the target. Authoring first makes the second problem worse. |
-| **I-19** | Word meanings for the remaining twenty-two locales | Twenty-two languages read a fully translated app with English word cards. Disclosed in the picker, which makes it a limitation rather than a misrepresentation — but not one a paid app can keep. |
-| **I-03** | Supply `VITE_HANGYUL_URL` | The product's stated reason to exist is the hand-off, and the hand-off leads nowhere. One value, owned outside this repository. |
+| **I-04 + I-05** | Decide the delivery architecture, then author the corpus | 2,581 words against a stated 10,000, and the current mechanism forecasts 302% of its budget at the target. Authoring first makes the second problem worse, which is why the order is not negotiable. |
+| **I-19** | Word meanings for the remaining twenty-two locales | Twenty-two languages read a fully translated app with English word cards. Disclosed on the row in the picker, which is what makes it a limitation rather than a misrepresentation — but not one a paid app keeps. |
+| **I-17** | Native-speaker review, starting with Korean | Thirty-two interfaces, none read by a speaker of the language. 256 screens rendering correctly is not evidence that any of them reads well. |
+
+**I-03** — the Hangyul hand-off — is the fourth thing standing between this and
+its stated purpose, and it is **BLOCKED**: the destination is not in this
+repository and must not be guessed. One environment variable, owned by whoever
+owns the product.
 
 ## 39.2 SHOULD FIX SOON
 
-Quality that a paying learner will notice within a week.
-
 | ID | What |
 | --- | --- |
-| **I-17** | Native-speaker review, starting with Korean and the five largest interface languages |
-| **I-24** | Recalibrate the grader so the trace guide can be sized and centred for the eye |
-| **I-21** | A per-question visual fallback on the two heard-only letter exercises |
 | **I-10 + I-18** | A canonical taught `senseId` per entry, then one card, one sense |
-| **I-09** | A session-level matching exercise that can credit several words at once |
 | **I-20** | Write *More about it* for the top 500 words that need it |
+| **I-31** | A per-face glyph scale for Gaegu, calibrated against the corpus for that face |
 
 ## 39.3 OPTIONAL POLISH
 
-Cheap, visible, and none of them changes whether the product is sellable.
-
 | ID | What |
 | --- | --- |
-| **I-26** | Export a wordless still for the native launch bitmap |
-| **I-27** | Close the 430–560 px gap so the tab bar reaches the edges at every width |
-| **I-25** | Put `strokes:measure:check` on the release gate |
-| **I-28** | Make `docs:consistency` fail on a figure it was asked to track and cannot find |
-| **I-22** | A third non-listening check for new words |
+| **I-12** | Nothing — see §39.5. Listed so it is not rediscovered as a defect |
+| **I-13** | Nothing, unless a conservative relation source appears |
+| — | Get `audio:qa` to finish inside a gate. It is the one check whose result is unknown rather than known |
 
 ## 39.4 Top ten, ordered by customer value
 
 Not by severity and not by cost — by how much a real learner's experience
 improves per unit of work.
 
-1. **Rebuild the release from HEAD (I-01).** Turns two cycles of invisible work
-   into visible work. Hours, not days.
-2. **Author the corpus toward 10,000, after deciding the chunking (I-05 → I-04).**
+1. **Author the corpus toward 10,000, after deciding the chunking (I-05 → I-04).**
    The single largest gap between what this product is and what it says it is.
-3. **Word meanings in the remaining twenty-two languages (I-19).** Twenty-two
+2. **Word meanings in the remaining twenty-two languages (I-19).** Twenty-two
    markets currently get a half-localised product.
+3. **Native-speaker review (I-17).** Thirty-two languages, none read by a
+   speaker, including the two the product is about.
 4. **Supply the Hangyul destination (I-03).** The learner who finishes the
    alphabet currently finishes the product.
-5. **Native-speaker review (I-17).** Thirty-two languages, none read by a
-   speaker, including the two the product is about.
-6. **Fix the trace guide's size and centring (I-24).** The most visible remaining
-   *visual* defect a learner meets, on the screen they spend longest on.
-7. **A sound-free route through the letter exercises (I-21).** Currently a deaf
-   learner arriving today cannot complete two exercise types.
-8. **Matching, as a session-level exercise (I-09).** The most-requested shape
-   vocabulary study still lacks; it is a scheduling problem, not a screen.
-9. **One card, one taught sense (I-18 with I-10).** 103 glosses currently teach
-   two things at once on a beginner's card.
-10. **The two splash and shell polish items (I-26, I-27).** An hour each, and both
-    are on the first screen a learner sees.
+5. **One card, one taught sense (I-18 with I-10).** 103 glosses still teach two
+   things at once on a beginner's card.
+6. **More about it for the top 500 words (I-20).** Word Detail is correct and
+   thin for 2,556 of 2,581 words, and thin is what it feels like.
+7. **A physical Android install and a real screen-reader session.** Both are
+   inferred here and both are cheap for somebody with a device.
+8. **Get `audio:qa` on the gate.** 10,454 clips whose integrity is currently
+   unverified rather than verified.
+9. **A per-face glyph scale for Gaegu (I-31).** One value, one corpus run, and
+   the handwriting face stops being the odd one out.
+10. **An iOS build.** Everything is ready except a Mac.
+
+Items 1–3 are months of content and people. Items 4–10 are days. The honest
+reading of that list is that this product is engineering-complete and
+content-incomplete, and has been for three cycles.
 
 ## 39.5 What was deliberately not done
 
@@ -3860,57 +4061,64 @@ was reachable by a check written in advance.
 
 ## P0 bugs
 
-**One. I-01, for the fourth time: the delivered APK and AAB were built from
-`557edfb` and HEAD is `e026697`, and the commit between them is the one that
-re-measured the syllable composition, replaced the video splash with a still and
-reworked the app shell.** The source is right; the download is a cycle behind it.
-Verified by unpacking the package: the deleted MP4 splash files are still inside
-it, and its curriculum chunk carries `국` at `.2597` where the product now
-measures `.3646`. Nothing was rebuilt during the audit that found it.
-
-**I-02** (uncommitted cycle) is genuinely closed and is a different failure —
-that one is work never committed; this one is work committed and never built. The
-working tree was clean throughout.
+**None, and for the first time the reason is a check rather than a promise.**
+I-01 — the shipped binary predating the report — was written in four consecutive
+reports and closed in four. It is closed again, and `npm run release:current`
+now fails `verify:release` if the delivered `build-info.json` names a commit
+that differs from HEAD on any product file, or if the tree is dirty. Thirty
+lines. The package was also unpacked and checked against six markers (§2.2).
 
 ## P1 bugs
 
-**I-03** hand-off built but unconfigured, and blocked outside this repository ·
-**I-04** corpus at 26% of target · **I-05** corpus delivery breaks the bundle
-budget at target, forecast 302%, gated at 4,000 headwords · **I-19** word
-meanings in ten of thirty-two interface languages.
+**I-03** hand-off built but unconfigured, and **BLOCKED** outside this
+repository · **I-04** corpus at 26% of target · **I-05** corpus delivery breaks
+the bundle budget at target, forecast 302% · **I-19** word meanings in ten of
+thirty-two interface languages.
+
+All four are content or ownership. None is engineering.
 
 ## P2 bugs
 
-**I-09** no matching exercise (partial) · **I-10** taught sense drifts between
-languages for some polysemous words (partial) · **I-12** no export ·
-**I-13** relations on 243 of 2,581 words · **I-17** no native-speaker review of
-any of the thirty-two locales · **I-21** two letter exercises are heard-only with
-no sound-free route for a new learner · **I-24** the trace guide is smaller and
-off-centre against the demonstration of the same letter · **I-25**
-`strokes:measure:check` is off the gate · **I-29** two e2e cases red, and no
-`verify` target runs the suite.
+**I-10** taught sense can drift between languages for some polysemous words —
+the eleven known cases are pinned and nothing guarantees a twelfth.
+**I-12** no export; closed by decision, see §39.5.
+**I-13** verified relations on 243 of 2,581 words; sparse trustworthy data is
+not a defect and inventing more would be.
+**I-17** no native-speaker review of any of the thirty-two locales.
 
 ## P3 bugs
 
 **I-18** 103 multi-sense glosses · **I-20** *More about it* on 25 words ·
-**I-22** two question shapes in a beginner's first sitting · **I-26** the native
-launch bitmap is English in every locale · **I-27** the tab bar floats clear of
-the edges between 430 px and 560 px · **I-28** `docs:consistency` cannot see
-every figure it is asked to track.
+**I-31** Gaegu's letters are traced smaller than every other face's.
+
+## Resolved in this pass
+
+**I-01** release currency, with a gate · **I-09** matching, as a real group
+exercise · **I-21** a way past the audio-only letter questions ·
+**I-22** three question shapes in a first sitting · **I-24** the trace guide,
+fitted and centred, with the grader recalibrated · **I-25**
+`strokes:measure:check` on the gate, self-serving · **I-26** a wordless native
+launch screen · **I-27** the tab bar flush at every width · **I-28**
+`docs:consistency` failing on figures it cannot find · **I-29** the e2e suite
+green and gated · **I-30** the report's figures regenerable.
 
 ## Current UX inconsistencies
 
 * Nothing indicates when a learner should move from letters to words.
 * Synonyms and opposites appear on 243 words of 2,581, and the absence is silent
   — correct, and it makes the section feel arbitrary when it does appear.
-* Sound-free practice removes the audio-only *vocabulary* questions, but there is
-  no control left to turn it on and the two heard-only *letter* exercises still
-  have no visual fallback (I-21).
 * Word Detail is one card and one example for 2,556 of 2,581 words — headword,
   romanisation, gloss, part of speech, Save, one sentence — and then a large
-  empty area. It is correct and it is thin.
-* For the first ~0.9 s after any cold load the brand splash is over the app and
-  takes input, so a tap in that window is swallowed rather than queued (I-29).
+  empty area. It is correct, and it is thin (I-20).
+* Synonyms and opposites appear on 243 words of 2,581 and the absence is silent
+  — correct, and it makes the section feel arbitrary when it does appear (I-13).
+* For the first ~0.9 s of a cold load the brand splash covers the app and takes
+  input. That is deliberate — a tap that fell through would start something the
+  learner cannot see — but it means a tap in that window is swallowed rather
+  than queued.
+* A matching grid needs three words owing one at the same time, so a learner on
+  a five-word daily goal may not meet one. The step is released and the word
+  still counts; they simply see two shapes rather than three.
 
 ## Product decisions that must NOT be reversed accidentally
 
@@ -4163,39 +4371,36 @@ speech plan  →  Azure Neural TTS  →  public/audio/*.mp3 + manifest.json
 
 | Artefact | State |
 | --- | --- |
-| Web build | current — builds clean from HEAD, all budgets met |
-| `app_result/hangyul-ganada-release.apk` | 66,548,999 B · SHA-256 `ba5dbe78…9cb6` · **built from `557edfb`, one product commit behind HEAD** · signed |
-| `app_result/hangyul-ganada-release.aab` | 65,273,702 B · SHA-256 `7c493080…68d0` · same commit · signed |
-| `result/` | the same two binaries byte-for-byte, plus `RELEASE_VALIDATION.md`, `BUILD_OR_SIGNING_BLOCKERS.md`, the store assets and full Android and iOS project snapshots — all of the same vintage |
-| Does the artefact contain the current code? | **No.** The retired `splash-*.mp4` files are inside it and the current PNG splash is not; its composition table is the pre-`e026697` one. §2.2 |
-| Does it contain the current splash? | **No** — video, and the old `#FFF6E9` native ground |
-| Does it contain the current stroke/glyph implementation? | **No** — eight syllables render from the older measurement |
+| Web build | current — builds clean from HEAD, every budget met |
+| `app_result/hangyul-ganada-release.apk` | 66,912,666 B (63.8 MB) · SHA-256 `bb0fbfb9b46558fffaa6c20b1065897a642541455ef238b66fef181b07eaf913` · built from **`5b90828`** · signed |
+| `app_result/hangyul-ganada-release.aab` | 65,647,712 B (62.6 MB) · SHA-256 `a4e173e9f31d060c2bb41a900fa4929557558ece59cdaf28aa76250ade4c1947` · same commit · signed |
+| `result/` | the same two binaries byte-for-byte, plus `RELEASE_VALIDATION.md`, `BUILD_OR_SIGNING_BLOCKERS.md`, the store assets and current Android and iOS project snapshots |
+| Built from the current source? | **Yes**, and asserted: `npm run release:current` compares `build-info.json`'s commit against HEAD and is in `verify:release` |
+| Contains the current splash? | **Yes** — `splash-en.png`, `splash-ko.png`, no MP4, and ten wordless native launch bitmaps |
+| Contains the current stroke/glyph implementation? | **Yes** — `국` at `.3646` with its `cut` field, the fitted guide, the recalibrated grader |
+| Contains the current sharing and indexing metadata? | **Yes** — `noindex` in both meta tags, absolute `og:image`, the 56 kB preview file |
 | Application ID | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0, minSdk 24, targetSdk 36 |
-| Signing certificate | `157a2bb133f6aa3d…debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR`, v2 + v3, valid to 2053 — **read out of the APK Signing Block this cycle**, not copied from `build-info.json` |
+| Signing certificate | `157a2bb133f6aa3d…debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR`, v2 + v3, valid to 2053 — **read out of the APK Signing Block**, not copied from `build-info.json` |
 | Native libraries | none — nothing to 16 KB-align |
+| Security audit | `audit-release-security.mjs` over both binaries: no findings |
 | Registered with Play | no |
-| iOS project | **complete and delivered**: `App.xcodeproj`, `AppDelegate.swift`, `SceneDelegate.swift`, `HangyulViewController.swift`, `HangyulStorePlugin.swift`, `Info.plist`, `PrivacyInfo.xcprivacy`, `LaunchScreen.storyboard`, `AppIcon.appiconset` and `Splash.imageset` |
+| **Never installed on a physical device** | `adb` is not present in this environment. Android app-restart persistence is **INFERRED** from the native store plugin and its unit tests, not observed |
+| iOS project | **complete and synced from this exact source**: `App.xcodeproj`, `AppDelegate.swift`, `SceneDelegate.swift`, `HangyulViewController.swift`, `HangyulStorePlugin.swift`, `Info.plist`, `PrivacyInfo.xcprivacy`, `LaunchScreen.storyboard`, `AppIcon.appiconset`, and a `Splash.imageset` verified wordless |
 | iOS bundle / target | `com.talkhangyul.ganada`, version 1.0.0 build 1, deployment target 15.0 |
-| iOS launch screen | present — `splash-2732x2732.png` ×3 in the imageset, `scaleAspectFill` in the storyboard. **English artwork in every locale** (I-26), and the copy in `result/` is a different SHA-256 from the one in the tree |
 | iOS `.ipa` | **does not exist.** Not built, not archived, not signed, not stubbed. No `.ipa` file exists anywhere in this repository — confirmed by search |
-| iOS signing | none. No Apple Developer identity, no provisioning profile, no App Store Connect record |
-| iOS blocker | macOS with Xcode. It is a property of the machine, not of the codebase — the project is complete and would need `pod install`/SPM resolution and an archive on a Mac |
+| iOS blocker | **macOS with Xcode, and an Apple Developer signing identity.** A property of the machine, not of the codebase. |
 
 **Nothing in this table should be read as "nearly shipped" for iOS.** There is a
 buildable project and no build. An unsigned archive or a renamed zip would not be
 a release IPA and none is offered.
 
+### The Android row that used to be a P0
+
+For four reports this section said the artefacts existed and were stale. They are
+current now, and the reason to believe that is not this paragraph — it is that
+`release:current` fails the release gate otherwise, and that the package was
+unpacked and checked against six independent markers (§2.2).
+
 Eight blockers are recorded in `result/BUILD_OR_SIGNING_BLOCKERS.md`; six are
 external (credentials, hosting, a designer, human testing) and none is a code
-problem.
-
-### The Android one is not external, and it is new
-
-The Android artefacts exist, are correctly signed with the production identity,
-and are stale. That is **I-01**, and it is the only blocker in this report that
-could be cleared in an afternoon by someone who already has everything they need.
-It was not cleared during this audit because the audit was scoped to reporting,
-and rebuilding a release inside an audit is how a report comes to describe
-something nobody reviewed — which is the failure this section has recorded four
-times.
-
+problem. The Android one is closed. The iOS one is a Mac.

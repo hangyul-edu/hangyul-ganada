@@ -198,7 +198,7 @@ directory it was looking in. It now matches by extension and reports both.
 | `hangyul-ganada-release.aab` | 62.2 MB | rebuilt this cycle from `e49c28b` |
 | `android-project/` | — | re-copied from `apps/mobile/android`, minus `build/`, `.gradle/`, `.kotlin/`, `local.properties`, keystores |
 | `ios-project/` | — | re-copied from `apps/mobile/ios`, minus `build/`, `Pods/`, `xcuserdata/`, `DerivedData/` |
-| `docs/report.pdf` | 1.4 MB | regenerated this cycle |
+| `docs/report.pdf` | 2.2 MB | regenerated this cycle, after the build it describes |
 | `store/` | unchanged | listing material, not a build output |
 
 The same two binaries, on their own with their checksums and a README, are in
@@ -211,10 +211,10 @@ two cannot disagree about which APK shipped.
 ## Checksums
 
 ```
-ba5dbe787cba935cda2a226afcd0dc3d6d74ac014e00364dba84f165d0b79cb6  hangyul-ganada-release.apk
-7c4930804e305a6e6afa0c05da1decb7ced9cefea299fd9312f06649943768d0  hangyul-ganada-release.aab
-1614c5f4417cdc4c58e2c3c5781fcddf5bf16e05d5ffdda140d1809e008e78c5  docs/report.pdf
-6caadd307d365f6adc1fb445f7e5a80cab93ed76e79d8b8155c06d3dcea2d230  build-info.json
+bb0fbfb9b46558fffaa6c20b1065897a642541455ef238b66fef181b07eaf913  hangyul-ganada-release.apk
+a4e173e9f31d060c2bb41a900fa4929557558ece59cdaf28aa76250ade4c1947  hangyul-ganada-release.aab
+42e648e466e9525c2f2a5e70e57fcb051a25049318acfe11ab37224f35bfc0ae  docs/report.pdf
+551dac50dd1a28a002a5e5b8ea7d11f5bede84be3fe035c8bbe4beae577324dd  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has

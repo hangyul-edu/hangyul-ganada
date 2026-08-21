@@ -203,12 +203,16 @@ const METRICS = {
   e2eTests: {
     value: playwright?.total ?? null,
     what: 'end-to-end test cases, both projects',
-    patterns: [/\|\s*End-to-end \(`playwright`\)\s*\|\s*([\d,]+) \([\d,]+ × \d+ projects\)/g],
+    patterns: [
+      /\|\s*End-to-end \(`playwright`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2} \(\*{0,2}[\d,]+\*{0,2} × \d+ projects\)/g,
+    ],
   },
   e2ePerProject: {
     value: playwright ? playwright.perProject : null,
     what: 'end-to-end specs per project',
-    patterns: [/\|\s*End-to-end \(`playwright`\)\s*\|\s*[\d,]+ \(([\d,]+) × \d+ projects\)/g],
+    patterns: [
+      /\|\s*End-to-end \(`playwright`\)\s*\|\s*\*{0,2}[\d,]+\*{0,2} \(\*{0,2}([\d,]+)\*{0,2} × \d+ projects\)/g,
+    ],
   },
   pronunciationNotes: {
     value: vocabulary.words.filter((word) => word.say).length,
