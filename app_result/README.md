@@ -1,12 +1,6 @@
 # Hangyul ganada — the applications
 
-Built at 2026-08-21T07:47:00.000Z from commit
-`6fa90bb5af4d422c43bf2cbacc44486135ef78b7` **plus an uncommitted patch** — the
-selected-language flag on the Language row, and the removal of vocabulary
-listening questions. `build-info.json` carries `source.patch_sha256`, a digest
-of `git diff HEAD -- apps packages scripts content`, so what is in these
-binaries can be checked against what is in the tree. Committing that patch is
-the outstanding step before these are uploaded anywhere.
+Built from commit `628bb4c0757579856ca9333f0b867f82c257a0e7` at 2026-08-21T05:01:47.938Z.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
@@ -14,7 +8,7 @@ the legal pack and the full report — is in `result/`.
 
 | File | Size | What it is for |
 | --- | --- | --- |
-| `hangyul-ganada-release.apk` | 63.4 MB | sideloading, and testing on a device |
+| `hangyul-ganada-release.apk` | 63.5 MB | sideloading, and testing on a device |
 | `hangyul-ganada-release.aab` | 62.2 MB | the upload to Google Play |
 | `build-info.json` | — | what these two are, in full |
 | `checksums.sha256` | — | `sha256sum -c checksums.sha256` |

@@ -1,0 +1,21 @@
+/*
+ * The large reference character.
+ *
+ * Set in the reference face itself rather than the learner's practice face:
+ * see the note in `ReferenceGlyph.tsx`. Sized by the caller, because how big
+ * the character wants to be is a property of the screen it is on, not of the
+ * character.
+ */
+.glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--hg-font-reference, var(--hg-font-ui));
+  font-weight: var(--hg-weight-semibold);
+  line-height: 1;
+  color: var(--hg-canvas-ink);
+  /* Korean needs no letter-spacing help and a block is already square; leaving
+     the UI font's tracking on it pushes a syllable off its own centre. */
+  letter-spacing: 0;
+  user-select: none;
+}

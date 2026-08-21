@@ -1,0 +1,47 @@
+/*
+ * The launch screen.
+ *
+ * Covers the app rather than replacing it, so nothing has to be torn down and
+ * rebuilt when it lifts: the app is already mounted and painted underneath, and
+ * the splash simply stops being in front of it.
+ */
+.splash {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* The same ground as the artwork's own edges and as the native launch screen
+     behind it, so nothing changes colour between the two. */
+  background: var(--hg-splash-ground);
+  opacity: 1;
+  transition: opacity 260ms ease-out;
+}
+
+.leaving {
+  opacity: 0;
+  /* Nothing under it should have to wait for the fade to be tappable. */
+  pointer-events: none;
+}
+
+/*
+ * The artwork fills the frame.
+ *
+ * `cover` rather than `contain`: the art is drawn to bleed, and a letterbox
+ * either side of a brand screen looks like a mistake. It is composed with the
+ * wordmark well inside the middle, so cropping the edges loses only background.
+ */
+.art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    transition: none;
+  }
+}

@@ -1,4 +1,4 @@
-import type { StrokeStep } from '@hangyul-ganada/shared-types';
+import type { CurveSegment, StrokeStep } from '@hangyul-ganada/shared-types';
 
 import COMPOSITION from './generated/composition.json';
 import { MEDIAL_PARTS, branchesLeft, medialForm, toJamo, type MedialForm } from './jamo';
@@ -7,33 +7,35 @@ import { STROKE_ORDER } from './strokes';
 /**
  * Putting letters into a syllable block — for counting and grading, not drawing.
  *
- * ## This no longer decides what anything looks like
+ * ## What this decides, and what it does not
  *
- * It used to. Every demonstration in the app was drawn from what this file
- * produced, and that is where six rounds of "the stroke demo still looks wrong"
- * came from: composing a block at runtime means *inventing* the finished shape,
- * so it can always invent a wrong one — a chamfered ㅂ, a ㄱ leaning the wrong
- * way, a 글 whose ㄹ collapsed into three overlapping lines — and the only way
- * to find out is for a person to look at it.
+ * It decides *where the letters of a block are*: which region of the square each
+ * one occupies, in the reference face's own spacing. It does not decide what a
+ * letter looks like — `strokes.ts` does — and it never invents a shape.
  *
- * The pictures now come from `data/strokeAssets`, where each stroke is an
- * outline cut from the real reference glyph at build time. Nothing in `ui/`
- * imports this file any more, and nothing should: if a demonstration ever looks
- * wrong again, the asset is wrong, and this is not where to fix it.
+ * That distinction is the whole history of this file. Every demonstration in the
+ * app was once drawn from what it produced with the *shapes* invented here too,
+ * and that is where six rounds of "the stroke demo still looks wrong" came from:
+ * inventing a finished shape means you can always invent a wrong one — a
+ * chamfered ㅂ, a ㄱ leaning the wrong way, a 글 whose ㄹ collapsed into three
+ * overlapping lines — and the only way to find out is for a person to look.
  *
- * What is left here is the part that was always sound and is still needed —
- * *stroke-order semantics*. How many strokes a block has, in what order, from
- * which end, travelling which way. That is what the curriculum counts
- * (`stroke_count`), what `features/writing/feedback.ts` grades a learner's
- * handwriting against, and what `data/strokeGuide.ts` turns into "start at the
- * top left". None of those needs the shape to be beautiful; they need the
- * movement to be right, which polylines are good at.
+ * The correction was not to stop composing. It was to stop *guessing*: the part
+ * boxes below are measured off the reference glyph by
+ * `scripts/measure-composition.mjs`, and the letters placed into them are the
+ * authored primitives in `strokes.ts`. Nothing here is a number somebody tuned
+ * until a screenshot looked acceptable.
  *
- * The layout below therefore still runs, and the diagrams in the rest of this
- * comment still describe what it does. Read them as a description of where the
- * letters of a block *are*, which is what a grader needs to know — not as a
- * claim about what the block looks like on screen. That question has one answer
- * now, and it is the reference glyph.
+ * For one cycle the demonstration came from somewhere else entirely — each
+ * stroke cut out of a rasterised glyph, so that the union of them was the glyph
+ * by construction. That held, and its price was that the cut showed: a junction
+ * is ink two strokes both pass through, and dividing it drew a boundary the
+ * learner could see. See `data/strokeVectors`, which draws these polylines
+ * directly and is what the app uses now.
+ *
+ * So the diagrams in the rest of this comment describe where the letters *are*.
+ * Read them that way — it is what a grader needs to know, and what a renderer
+ * needs to place.
  *
  * ## The bug this exists to make impossible
  *
@@ -283,13 +285,34 @@ const MEASURED = COMPOSITION.syllables as unknown as Record<string, Measured>;
  * is inset by half the pen — which is what makes two boxes that share an edge
  * come out as two strokes that touch.
  */
+/**
+ * The shortest a 받침 slot may be, as a fraction of the block.
+ *
+ * Not a taste: it is what a final consonant needs to still be a letter. ㄹ, ㅌ,
+ * ㅁ and ㅂ are three or four bars stacked, and three bars in less than this
+ * much height close up under the pen and arrive as a smudge.
+ *
+ * It exists because the measurement can get one wrong. `measure-composition`
+ * finds the join between the vowel and the 받침 by looking for the quietest row
+ * in the merged ink, and in 글 the ㅡ touches the ㄹ below it — so the quietest
+ * row was not the join at all but a gap between two of the ㄹ's own bars. The ㄹ
+ * came out as the bottom fifth of the block. Every other closed block in the
+ * curriculum measures between 0.29 and 0.45, so this floor fires on that one
+ * syllable and leaves the rest exactly as the face has them.
+ *
+ * The room is taken from the vowel above, which is a single horizontal bar in
+ * every block this can affect and does not need it.
+ */
+const MIN_FINAL_HEIGHT = 0.3;
+
 function measuredRegions(syllable: string): Region[] | null {
   const found = MEASURED[syllable];
   if (!found) return null;
   const width = Math.min(1, found.aspect);
   const height = Math.min(1, 1 / found.aspect);
   const half = PEN / 2;
-  return found.parts.map(([x0, y0, x1, y1]) => {
+  const parts = liftShortFinal(found.parts);
+  return parts.map(([x0, y0, x1, y1]) => {
     const left = 0.5 + (x0! - 0.5) * width;
     const right = 0.5 + (x1! - 0.5) * width;
     const top = 0.5 + (y0! - 0.5) * height;
@@ -301,6 +324,24 @@ function measuredRegions(syllable: string): Region[] | null {
       y1: Math.max(bottom - half, (top + bottom) / 2),
     };
   });
+}
+
+/** Raises the top of a 받침 box that came back too short to hold a letter. */
+function liftShortFinal(parts: number[][]): number[][] {
+  if (parts.length < 3) return parts;
+  const final = parts[2]!;
+  const top = final[1]!;
+  const bottom = final[3]!;
+  if (bottom - top >= MIN_FINAL_HEIGHT) return parts;
+
+  const lifted = Math.max(0, bottom - MIN_FINAL_HEIGHT);
+  const medial = parts[1]!;
+  return [
+    parts[0]!,
+    // The vowel keeps its own bar and gives up the empty paper under it.
+    [medial[0]!, medial[1]!, medial[2]!, Math.min(medial[3]!, lifted)],
+    [final[0]!, lifted, final[2]!, bottom],
+  ];
 }
 
 /** The layout a syllable uses, or null if it is not a composed syllable. */
@@ -382,7 +423,17 @@ function inkBounds(strokes: StrokeStep[]): Region {
  * closed path with enough points to read as round is the same test
  * `strokeGuide.ts` uses to decide whether to call a stroke a circle.
  */
-function isRound(strokes: StrokeStep[]): boolean {
+/**
+ * Whether a letter contains a closed round stroke — ㅇ, and ㅎ's bowl.
+ *
+ * Exported because two tests need the same answer, and the obvious shorthand
+ * for it is wrong: "more than eight points" used to identify ㅇ because it was
+ * the only stroke sampled that finely. Curved strokes are all sampled from
+ * their own curves now, so ㄱ has twenty-five points and a test asking that
+ * question got ㄱ's ninety-degree corner when it wanted ㅇ's arc. What
+ * distinguishes a ring is that it comes back to where it started.
+ */
+export function hasRoundStroke(strokes: StrokeStep[]): boolean {
   return strokes.some((stroke) => {
     const points = stroke.points;
     if (points.length <= 8) return false;
@@ -429,7 +480,7 @@ function fit(
   if (keepShape && scaleX > 0 && scaleY > 0) {
     // A slot bound tightens the letter's own; it never loosens it. ㅇ stays as
     // round in a wide slot as it is anywhere else.
-    const own = isRound(strokes) ? MAX_SQUEEZE_ROUND : MAX_SQUEEZE_ANGULAR;
+    const own = hasRoundStroke(strokes) ? MAX_SQUEEZE_ROUND : MAX_SQUEEZE_ANGULAR;
     const limit = squeeze === undefined ? own : Math.min(squeeze, own);
     // Whichever direction has room to spare gives it up, so the letter keeps as
     // much of its own proportions as the region allows and is centred in what
@@ -444,12 +495,35 @@ function fit(
   const offsetX = centreX - ((ink.x0 + ink.x1) / 2) * scaleX;
   const offsetY = centreY - ((ink.y0 + ink.y1) / 2) * scaleY;
 
-  return strokes.map((stroke) => ({
-    points: stroke.points.map((point) => ({
-      x: scaleX === 0 ? centreX : offsetX + point.x * scaleX,
-      y: scaleY === 0 ? centreY : offsetY + point.y * scaleY,
-    })),
-  }));
+  const move = (point: { x: number; y: number }) => ({
+    x: scaleX === 0 ? centreX : offsetX + point.x * scaleX,
+    y: scaleY === 0 ? centreY : offsetY + point.y * scaleY,
+  });
+
+  // A per-axis scale and offset is a diagonal affine, and an affine maps a cubic
+  // to a cubic by moving its four points — so the exact geometry survives being
+  // fitted into a slot with no resampling and no loss. This is why ㅇ squeezed
+  // into a block is a true ellipse: it is the same four segments, moved.
+  return strokes.map((stroke) => withGeometry(stroke, move));
+}
+
+/** Applies a point transform to a stroke's polyline and its curve together. */
+function withGeometry(
+  stroke: StrokeStep,
+  move: (point: { x: number; y: number }) => { x: number; y: number },
+): StrokeStep {
+  const next: StrokeStep = { points: stroke.points.map(move) };
+  if (stroke.curve) {
+    next.curve = stroke.curve.map(
+      (segment): CurveSegment => ({
+        c1: move(segment.c1),
+        c2: move(segment.c2),
+        to: move(segment.to),
+      }),
+    );
+  }
+  if (stroke.ends) next.ends = stroke.ends;
+  return next;
 }
 
 /**
@@ -479,9 +553,9 @@ export function paperRegion(region: Region): Region {
 
 /** Places a laid-out block on the paper. */
 function setOnPaper(strokes: StrokeStep[]): StrokeStep[] {
-  return strokes.map((stroke) => ({
-    points: stroke.points.map((point) => ({ x: onPaper(point.x), y: onPaper(point.y) })),
-  }));
+  return strokes.map((stroke) =>
+    withGeometry(stroke, (point) => ({ x: onPaper(point.x), y: onPaper(point.y) })),
+  );
 }
 
 /** A letter's own stroke data, or nothing if the app cannot draw it. */

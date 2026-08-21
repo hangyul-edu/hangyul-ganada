@@ -1,4 +1,4 @@
-import type { StrokeStep } from '@hangyul-ganada/shared-types';
+import type { CurveSegment, StrokeStep } from '@hangyul-ganada/shared-types';
 
 /**
  * Stroke order for every letter the curriculum teaches.
@@ -50,8 +50,79 @@ import type { StrokeStep } from '@hangyul-ganada/shared-types';
 /** `[x, y]` pairs in a 0–100 box. Written as tuples so the data stays readable. */
 type Points = Array<[number, number]>;
 
-function stroke(points: Points): StrokeStep {
-  return { points: points.map(([x, y]) => ({ x: x / 100, y: y / 100 })) };
+/** A cubic segment as `[c1x, c1y, c2x, c2y, tox, toy]`, in the same 0–100 box. */
+type Cubic = [number, number, number, number, number, number];
+
+function at(x: number, y: number) {
+  return { x: x / 100, y: y / 100 };
+}
+
+/**
+ * One stroke: the polyline a grader compares against, and optionally the exact
+ * curve a renderer draws.
+ *
+ * Give `curve` only when the stroke is genuinely curved. A straight stroke's
+ * polyline *is* its geometry, and saying so twice is one more thing that can
+ * disagree with itself.
+ */
+function stroke(points: Points, curve?: Cubic[]): StrokeStep {
+  if (!curve) return { points: points.map(([x, y]) => at(x, y)) };
+  return {
+    // Sampled from the curve rather than authored beside it. Everything that
+    // reads `points` — the junction classifier, the grader, the marker layout,
+    // the length the animation is paced by — is then reading the same stroke
+    // the renderer draws. Authoring both is one more pair of things that can
+    // disagree, and a branch point authored on a chord of a bowed stroke sits
+    // just off the stroke, which is exactly the kind of near-miss that used to
+    // put a stray mark on the paper.
+    points: sample(points[0]!, curve),
+    curve: curve.map(
+      ([c1x, c1y, c2x, c2y, tx, ty]): CurveSegment => ({
+        c1: at(c1x, c1y),
+        c2: at(c2x, c2y),
+        to: at(tx, ty),
+      }),
+    ),
+  };
+}
+
+/** Points per cubic. Twelve puts every sample well under the pen at lesson size. */
+const SAMPLES = 12;
+
+function sample(first: [number, number], curve: Cubic[]): Array<{ x: number; y: number }> {
+  const out = [at(first[0], first[1])];
+  let [x0, y0] = first;
+  for (const [c1x, c1y, c2x, c2y, tx, ty] of curve) {
+    for (let i = 1; i <= SAMPLES; i += 1) {
+      const t = i / SAMPLES;
+      const u = 1 - t;
+      const a = u * u * u;
+      const b = 3 * u * u * t;
+      const c = 3 * u * t * t;
+      const d = t * t * t;
+      out.push(at(a * x0 + b * c1x + c * c2x + d * tx, a * y0 + b * c1y + c * c2y + d * ty));
+    }
+    x0 = tx;
+    y0 = ty;
+  }
+  return out;
+}
+
+/** A point on a cubic, for placing something that has to sit on the stroke. */
+function onCubic(
+  from: [number, number],
+  [c1x, c1y, c2x, c2y, tx, ty]: Cubic,
+  t: number,
+): [number, number] {
+  const u = 1 - t;
+  const a = u * u * u;
+  const b = 3 * u * u * t;
+  const c = 3 * u * t * t;
+  const d = t * t * t;
+  return [
+    a * from[0] + b * c1x + c * c2x + d * tx,
+    a * from[1] + b * c1y + c * c2y + d * ty,
+  ];
 }
 
 /**
@@ -72,15 +143,34 @@ function stroke(points: Points): StrokeStep {
  * The middle point is the curve. The leg is an arc, and two segments follow an
  * arc closely enough for a demonstration that reveals the same path it draws.
  */
-function giyeok(left: number, right: number, top = 20, bottom = 80): StrokeStep {
+function giyeok(left: number, right: number, top = 20, bottom = 80, lean = 0.28): StrokeStep {
   const width = right - left;
   const height = bottom - top;
-  return stroke([
-    [left, top],
-    [right, top],
-    [right - width * 0.08, top + height * 0.55],
-    [right - width * 0.28, bottom],
-  ]);
+  const toe = right - width * lean;
+  if (lean === 0) {
+    // Nothing to curve: the leg comes straight down and the corner is square.
+    return stroke([
+      [left, top],
+      [right, top],
+      [right, bottom],
+    ]);
+  }
+  return stroke(
+    [
+      [left, top],
+      [right, top],
+      [right - width * 0.08, top + height * 0.55],
+      [toe, bottom],
+    ],
+    // The corner, then the leg as one cubic rather than two chords of it. The
+    // controls are placed so the curve leaves the corner travelling straight
+    // down — which is what makes the corner a clean right angle instead of a
+    // chamfer — and passes through the same waist the polyline does.
+    [
+      [left, top, right, top, right, top],
+      [right, top + height * 0.45, toe + width * 0.16, bottom - height * 0.32, toe, bottom],
+    ],
+  );
 }
 
 /** A ㄴ: down, then right. One stroke. */
@@ -137,15 +227,43 @@ function bieup(left: number, right: number): StrokeStep[] {
 function siot(apexX: number, left: number, right: number, top = 16): StrokeStep[] {
   const bottom = 84;
   const branch = 0.32;
+  const fall = bottom - top;
+
+  // Both legs leave the fork steeply and flare as they drop, which is what the
+  // reference face does and what a hand does. Authored as one cubic each: the
+  // controls hold the stroke near-vertical for the first half and let it open
+  // out into the last third.
+  const leftLeg: Cubic = [
+    apexX - (apexX - left) * 0.08,
+    top + fall * 0.5,
+    left + (apexX - left) * 0.3,
+    bottom - fall * 0.14,
+    left,
+    bottom,
+  ];
+
+  // Where the second stroke lands, read off the first stroke's *curve*. Taken
+  // off the straight chord instead it sits a little inside the bow, and the
+  // second stroke then starts just short of the first — a hairline of paper
+  // between two strokes that are supposed to meet.
+  const [branchX, branchY] = onCubic([apexX, top], leftLeg, branch);
+  const rightFall = bottom - branchY;
+
   return [
-    stroke([
-      [apexX, top],
-      [left, bottom],
-    ]),
-    stroke([
-      [apexX - (apexX - left) * branch, top + (bottom - top) * branch],
-      [right, bottom],
-    ]),
+    stroke([[apexX, top]], [leftLeg]),
+    stroke(
+      [[branchX, branchY]],
+      [
+        [
+          branchX + (right - branchX) * 0.1,
+          branchY + rightFall * 0.5,
+          right - (right - branchX) * 0.28,
+          bottom - rightFall * 0.14,
+          right,
+          bottom,
+        ],
+      ],
+    ),
   ];
 }
 
@@ -179,27 +297,39 @@ function jieut(left: number, right: number, lidY = 26): StrokeStep[] {
 /**
  * A circle, written anticlockwise from the top, as ㅇ and ㅎ's bowl are.
  *
- * Enough points to *be* a circle rather than to suggest one. Every stroke in
- * this file is drawn as a polyline, so the number of points is the resolution
- * of the curve, and twelve of them left ㅇ reading as a visible dodecagon on
- * screen — a learner looking at 어 saw a rough polygon and reasonably concluded
- * the app did not know what the letter looked like. Enough points that the
- * corners fall well under the ink, with room to spare for the ㅇ that gets
- * flattened most: a block squeezes it out of round, and squeezing a polygon
- * concentrates its turn into the flat ends of the ellipse.
+ * ## Why this is a curve and not forty-eight straight lines
+ *
+ * It used to be only the polyline below, and the polyline was what got drawn.
+ * A polygon is a polygon at any resolution: at the size a lesson shows ㅇ, and
+ * more so once a block flattens it, the turns fell where the eye could find
+ * them and a learner looking at 어 saw a lumpy shape and reasonably concluded
+ * the app did not know what the letter looks like. Adding points moved the
+ * lumps around and made the file bigger; it could not remove them, because the
+ * shape being drawn really was a polygon.
+ *
+ * So the circle is now four cubic segments — the standard construction, with
+ * control points at `kappa` of the radius — which is a circle to within a
+ * fraction of a pixel at any size. The polyline stays as the *sample*: the
+ * grader compares a learner's ink against it, `strokeGuide` measures it, and
+ * neither needs a curve. Both are the same circle, so they cannot disagree.
+ *
+ * `fit` in `compose.ts` scales x and y independently, and that maps a cubic
+ * exactly — so a ㅇ flattened into a block is a true ellipse rather than a
+ * squashed polygon, which is the case that looked worst.
  */
+const KAPPA = 0.5522847498307936;
+
 function circle(cx: number, cy: number, r: number): StrokeStep {
-  const steps = 48;
-  const points: Points = [];
-  for (let i = 0; i <= steps; i += 1) {
-    // Negative angle sweep: anticlockwise on a screen whose y grows downward.
-    const angle = -Math.PI / 2 - (i / steps) * Math.PI * 2;
-    points.push([
-      Math.round((cx + r * Math.cos(angle)) * 10) / 10,
-      Math.round((cy + r * Math.sin(angle)) * 10) / 10,
-    ]);
-  }
-  return stroke(points);
+  const k = r * KAPPA;
+  // From the top, anticlockwise: left, bottom, right, back to the top. The same
+  // direction and the same starting point as the sample above, so the ink grows
+  // the way the pen goes.
+  return stroke([[cx, cy - r]], [
+    [cx - k, cy - r, cx - r, cy - k, cx - r, cy],
+    [cx - r, cy + k, cx - k, cy + r, cx, cy + r],
+    [cx + k, cy + r, cx + r, cy + k, cx + r, cy],
+    [cx + r, cy - k, cx + k, cy - r, cx, cy - r],
+  ]);
 }
 
 /** A vertical, e.g. the upright of ㅏ or the ㅣ of a compound vowel. */
@@ -235,12 +365,18 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ㅠ: [horizontal(38), stroke([[32, 38], [32, 80]]), stroke([[66, 38], [66, 80]])],
 
   // --- Compound vowels: the parts, in order ---------------------------------
-  ㅐ: [vertical(35), stroke([[35, 50], [64, 50]]), vertical(70)],
+  // The connector stops well short of the second stem. The letter is fitted
+  // into the narrow box the face gives it (see `shapeToFace`), which brings the
+  // two stems much closer together than they are written here while the pen
+  // stays the width it is — so a connector authored to end a hair short of the
+  // stem ends up touching it. Sixty-two per cent of the way across leaves the
+  // gap the face leaves, at the width the face uses.
+  ㅐ: [vertical(35), stroke([[35, 50], [57, 50]]), vertical(70)],
   ㅔ: [stroke([[16, 50], [44, 50]]), vertical(44), vertical(74)],
   ㅒ: [
     vertical(30),
-    stroke([[30, 35], [58, 35]]),
-    stroke([[30, 65], [58, 65]]),
+    stroke([[30, 35], [56, 35]]),
+    stroke([[30, 65], [56, 65]]),
     vertical(72),
   ],
   ㅖ: [
@@ -290,9 +426,13 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ㄷ: digeut(24, 80),
   ㄹ: [
     // The ㄱ on top, the waist, then the ㄴ underneath.
-    stroke([[22, 16], [76, 16], [68, 44]]),
+    // The three bars line up on both edges, as the face's do. Authored with the
+    // ㄱ's leg leaning in and the ㄴ's upright set in from the bar, the letter
+    // stepped in and out down its own sides and the leaning leg made a long
+    // mitred beak at the top corner.
+    stroke([[22, 16], [76, 16], [76, 44]]),
     stroke([[22, 46], [76, 46]]),
-    stroke([[26, 48], [26, 82], [78, 82]]),
+    stroke([[22, 48], [22, 82], [76, 82]]),
   ],
   ㅁ: [
     // Left upright, then top-and-right in one turn, then the base. Three
@@ -308,7 +448,10 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ㅎ: [
     stroke([[36, 10], [64, 10]]),
     stroke([[20, 32], [80, 32]]),
-    circle(50, 62, 24),
+    // Clear of the bar, not touching it. At r = 24 the top of the bowl's ink
+    // and the underside of the bar's overlapped by three units and the two
+    // read as one shape — the face leaves a visible gap and so does this.
+    circle(50, 64, 19),
   ],
 
   // --- Aspirates: the plain letter with a stroke added ----------------------
@@ -319,7 +462,10 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   // supposed to be drawing sat above it. See `strokes:visual`, which measures
   // exactly that.
   ㅊ: [stroke([[36, 12], [64, 12]]), ...jieut(18, 82, 30)],
-  ㅋ: [giyeok(20, 78, 18, 84), stroke([[26, 50], [74, 48]])],
+  // The added bar starts on the letter's own left edge, level with the top
+  // bar's, and runs right to cross the leg. Set in from that edge it hung in
+  // open paper with nothing on either end of it.
+  ㅋ: [giyeok(20, 78, 18, 84), stroke([[20, 49], [74, 49]])],
   ㅌ: [
     stroke([[24, 18], [80, 18]]),
     stroke([[26, 48], [80, 48]]),
@@ -338,6 +484,37 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ㅃ: [...bieup(10, 42), ...bieup(58, 90)],
   ㅆ: [...siot(26, 6, 46), ...siot(74, 54, 94)],
   ㅉ: [...jieut(6, 46), ...jieut(54, 94)],
+};
+
+/**
+ * The letters whose *isolated* form differs from the one written inside a block.
+ *
+ * ## This is the face's own distinction, not a preference
+ *
+ * Rendering Pretendard's ㄱ four ways settles it. Alone — the glyph on a lesson
+ * about the letter ㄱ — the leg comes **straight down** from a square corner.
+ * In 가 and 거, where the block gives ㄱ a tall narrow slot, the leg **leans and
+ * curves** away to the left, a real 7. In 고 and 국, where the slot is squat, it
+ * is straight again. ㅋ and ㄲ follow ㄱ.
+ *
+ * `STROKE_ORDER` holds the leaning form because that is the one composition
+ * needs, and the squat blocks get the upright version for free: the slot that
+ * wants it is also the slot that squashes the letter horizontally, and squashing
+ * a leaning leg is what straightens it. What that cannot produce is the
+ * *unsquashed* upright form, which is exactly the isolated letter — so a lesson
+ * on ㄱ drew a leaning leg directly above a reference glyph with a straight one.
+ *
+ * Only `data/strokeVectors` reads this, and only for a letter on its own.
+ * `compose.ts` never does: inside a block, `STROKE_ORDER` is right.
+ */
+export const STROKE_ORDER_ALONE: Record<string, StrokeStep[]> = {
+  ㄱ: [giyeok(20, 78, 20, 80, 0)],
+  // The added bar runs all the way to the leg's centreline, not to just short of
+  // it: stopping short leaves its squared end a fraction of a pen proud of the
+  // leg's right edge, which is a nub on the outside of the letter. Ending on the
+  // centreline puts the end under the leg's own ink, where it cannot be seen.
+  ㅋ: [giyeok(20, 78, 18, 84, 0), stroke([[20, 49], [78, 49]])],
+  ㄲ: [giyeok(10, 46, 20, 80, 0), giyeok(56, 92, 20, 80, 0)],
 };
 
 /** Every character the stroke data covers. */

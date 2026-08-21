@@ -88,7 +88,18 @@ const config: CapacitorConfig = {
       // Hidden by the app itself, once React has painted something worth
       // looking at — a fixed timeout either flashes white or holds too long.
       launchAutoHide: false,
-      backgroundColor: '#FFF8F1',
+      /*
+       * The ground of the splash artwork's first frame, not the app's warm
+       * ground.
+       *
+       * The `splash.png` drawables are frame zero of the brand animation, and
+       * `ui/LaunchSplash` picks that animation up in the WebView and plays it
+       * out. The two are the same picture, so they must be on the same colour
+       * or the handover blinks. `splashGround` in the design tokens is the same
+       * value; it is repeated here because a Capacitor config cannot import
+       * from the web workspace.
+       */
+      backgroundColor: '#FFF6E9',
       androidScaleType: 'CENTER_CROP',
       showSpinner: false,
       splashFullScreen: false,

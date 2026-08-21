@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { drawLength, strokeAsset, strokeReveal } from '../data/strokeAssets';
+import { vectorGlyph } from '../data/strokeVectors';
 import { isSyllable } from '../data/jamo';
 import { layoutMarkers } from './strokeMarkers';
 import styles from './StrokeOrder.module.css';
@@ -33,21 +33,30 @@ import styles from './StrokeOrder.module.css';
  *
  * ## One geometry, and no second opinion
  *
- * Everything here is drawn from `data/strokeAssets`: the grey guide, the ink as
- * it arrives, the completed strokes, the final frame. Each stroke is a filled
- * outline cut from the reference glyph at build time, so the union of them *is*
- * that glyph and the last frame cannot drift into a different shape. That is why
- * this component has no measuring, no fitting and no layout arithmetic in it —
- * the geometry arrives finished, and its only job is to decide how much of it to
- * show. Anything character-specific lives in the asset, never here: there is no
- * place in this file where a particular ㄱ or 글 is worth mentioning, and if one
- * ever seems to be, the asset is wrong and this is not where to fix it.
+ * Everything here is drawn from `data/strokeVectors`: the grey guide, the ink
+ * as it arrives, the completed strokes, the final frame. Each stroke is one
+ * authored centreline path, stroked with the pen the face uses, and the reveal
+ * is that same path with a dash offset walked down to zero. There is no mask,
+ * no second shape and no per-character arithmetic — this component's only job
+ * is to decide how much of the geometry to show, and if a letter ever looks
+ * wrong the geometry is wrong and this is not where to fix it.
  *
- * The previous version measured the practice typeface at runtime and fitted
- * polylines onto what it found. That is where four rounds of "it still looks
- * wrong" came from and could not have stopped coming: it was answering "roughly
- * what does this look like" when the reference glyph two inches above it had
- * already answered exactly.
+ * ## Why a dash offset and not a mask
+ *
+ * The previous model animated a *filled outline* cut from the rasterised glyph,
+ * uncovered by a mask shaped like a ribbon swept along the stroke. Two things
+ * came out of that and neither could be tuned away. The ribbon and the outline
+ * were separate geometry, so they could disagree — and a filled outline cut
+ * from a shared glyph has to decide who owns a junction, which drew a boundary
+ * the learner could see: ㅂ's uprights carried wedges of their crossbars before
+ * the crossbars were written, and ㅇ, traced back from pixels, was a polygon.
+ *
+ * A stroked path has neither problem. `stroke-dasharray` set to the path's own
+ * length with the offset walked from that length down to zero uncovers the path
+ * *along itself*, from the end the pen starts at, at whatever the browser's own
+ * curve arithmetic says — so the ink appears in the order a hand lays it down
+ * and the shape it lands in is the shape that was authored. Two strokes that
+ * meet simply overlap, as two pen strokes on paper do.
  *
  * ## Reduced motion
  *
@@ -83,10 +92,9 @@ export function StrokeOrder({
 }) {
   const { t } = useTranslation('handwriting');
   const reduceMotion = usePrefersReducedMotion();
-  const maskId = useId();
 
-  const asset = useMemo(() => strokeAsset(character), [character]);
-  const strokes = asset.strokes;
+  const glyph = useMemo(() => vectorGlyph(character), [character]);
+  const strokes = glyph.strokes;
   const count = strokes.length;
 
   // A composed block is several letters sharing one box, and it needs smaller
@@ -95,7 +103,7 @@ export function StrokeOrder({
   const markers = useMemo(() => layoutMarkers(strokes, markerRadius), [strokes, markerRadius]);
 
   const schedule = useMemo(
-    () => buildSchedule(strokes.map((stroke) => drawLength(stroke.draw))),
+    () => buildSchedule(strokes.map((stroke) => stroke.length)),
     [strokes],
   );
 
@@ -189,13 +197,12 @@ export function StrokeOrder({
   const complete = Math.floor(drawn);
   const partial = drawn - complete;
   const active = partial > 0 ? strokes[complete] : undefined;
-  const reveal = active ? strokeReveal(active, partial) : null;
 
   return (
     <figure className={styles.wrap}>
       <svg
         className={styles.paper}
-        viewBox={asset.viewBox}
+        viewBox={glyph.viewBox}
         preserveAspectRatio="xMidYMid meet"
         width={size}
         height={size}
@@ -214,43 +221,40 @@ export function StrokeOrder({
           they overlap in, black is painted after grey.
         */}
         {strokes.map((stroke) => (
-          <path key={`guide-${stroke.order}`} d={stroke.shape} className={styles.ghost} />
+          <path
+            key={`guide-${stroke.order}`}
+            d={stroke.d}
+            className={styles.ghost}
+            strokeWidth={glyph.pen}
+          />
         ))}
 
         {strokes.slice(0, complete).map((stroke) => (
-          <path key={`ink-${stroke.order}`} d={stroke.shape} className={styles.ink} />
+          <path
+            key={`ink-${stroke.order}`}
+            d={stroke.d}
+            className={styles.ink}
+            strokeWidth={glyph.pen}
+          />
         ))}
 
         {/*
-          The stroke being written.
+          The stroke being written: its own path, uncovered along itself.
 
-          A mask rather than a clip, because a clip path is filled and this has
-          to be *stroked*: the reveal is a fat line swept along the stroke's own
-          centreline, so the ink appears in the order a pen would lay it down
-          rather than wiping in from one side.
-
-          The region comes from `strokeReveal` rather than being written out
-          here, because `scripts/strokes-qa.mjs` renders the same frames for a
-          person to look at and the two must not be able to differ — the wedge
-          that used to appear at the corner of ㄱ was in both, identically, and
-          passing QA. It is a filled ribbon of the stroke's own varying width,
-          cut square across at the pen; see `strokeReveal` for why a stroked
-          line of one width cannot do this job.
+          One dash as long as the whole path, offset by however much of it has
+          not been written yet. At `partial = 0` the offset is the full length
+          and nothing shows; at 1 it is zero and the stroke is complete. The
+          growing end is cut square by the `butt` cap, which is what a pen tip
+          looks like.
         */}
         {active && (
-          <>
-            <mask
-              id={maskId}
-              maskUnits="userSpaceOnUse"
-              x="0"
-              y="0"
-              width="100"
-              height="100"
-            >
-              <path d={reveal!.path} fill="#fff" fillRule="nonzero" />
-            </mask>
-            <path d={active.shape} className={styles.ink} mask={`url(#${maskId})`} />
-          </>
+          <path
+            d={active.d}
+            className={styles.ink}
+            strokeWidth={glyph.pen}
+            strokeDasharray={active.length}
+            strokeDashoffset={active.length * (1 - partial)}
+          />
         )}
 
         {markers.map((marker, index) => (

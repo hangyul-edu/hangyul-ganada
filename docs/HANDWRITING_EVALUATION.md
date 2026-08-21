@@ -141,7 +141,7 @@ character never passes.
 ## Note on the demonstration
 
 The stroke *animation* is a separate subject from grading, and it is documented
-where it lives: `data/strokeAssets.ts` for the reveal geometry and
+where it lives: `data/strokeVectors.ts` for the instructional geometry and
 `scripts/strokes-qa.mjs` for what is checked. In short, a stroke is uncovered by
 a ribbon of its own varying width cut square across at the pen, and `strokes:qa`
 holds the property that a stroke may only be as black as the pen has travelled.

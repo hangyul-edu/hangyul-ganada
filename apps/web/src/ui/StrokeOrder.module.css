@@ -27,31 +27,59 @@
 }
 
 /*
+ * The centre cross.
+ *
+ * The same one the practice box draws, so the demonstration and the square a
+ * learner writes in agree about where the middle is. It had no rule at all
+ * until now — the path was being filled with the default black rather than
+ * stroked, and a filled path of two zero-width lines draws nothing, so the
+ * cross the comment above it describes was never on the screen.
+ */
+.guide {
+  fill: none;
+  stroke: var(--hg-canvas-guide);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 3;
+}
+
+/*
  * The guide and the ink.
  *
- * Deliberately identical but for colour: the same filled outlines, cut from the
- * same glyph at build time. The guide shows where the writing is going and the
- * ink covers it as it arrives, so the moment a stroke turns from grey to black
- * nothing moves, thickens or shifts — there is one geometry on the screen and
- * both rules are painting it.
+ * Deliberately identical but for colour: the same authored centreline paths,
+ * the same pen, the same caps and joins. The guide shows where the writing is
+ * going and the ink covers it as it arrives, so the moment a stroke turns from
+ * grey to black nothing moves, thickens or shifts — there is one geometry on
+ * the screen and both rules are painting it.
  *
- * Filled rather than stroked. The shapes are the glyph's own outlines, so the
- * ends and joins are whatever the typeface draws — a real pen's, not a round
- * cap approximating one. `evenodd` because a stroke can enclose a counter: the
- * ㅇ of 어 is a ring, and a nonzero rule would fill its middle in.
+ * Stroked, never filled. These are centrelines: a letter is what a pen of a
+ * given width leaves behind when it travels along them, which is what `stroke`
+ * means. Filling them instead would draw the *route* as a closed shape and
+ * produce nothing like a letter.
+ *
+ * `butt` caps because the pen is a real one that starts and stops where the
+ * hand does. A round cap would bulge half a pen past every ending — which is
+ * ink on the paper before the pen got there — and at a junction that bulge is
+ * the visible spur this model exists to remove. Where a terminal is genuinely
+ * wanted, `data/strokeVectors` extends the path itself; see its note on ends.
+ *
+ * `miter` joins because Hangul corners are square in this face, capped at a low
+ * limit so a shallow turn bevels rather than growing a beak. Every corner in
+ * the curriculum turns far enough to stay a miter.
  */
 .ghost,
 .ink {
-  fill-rule: evenodd;
-  stroke: none;
+  fill: none;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 3;
 }
 
 .ghost {
-  fill: var(--hg-canvas-guide);
+  stroke: var(--hg-canvas-guide);
 }
 
 .ink {
-  fill: var(--hg-canvas-ink);
+  stroke: var(--hg-canvas-ink);
 }
 
 /*

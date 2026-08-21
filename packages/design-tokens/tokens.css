@@ -66,6 +66,7 @@
   --hg-canvas-guide: #E6E8EB;
   --hg-canvas-guide-warm: #FFDCC2;
   --hg-canvas-trace-glyph: #ADB4BA;
+  --hg-splash-ground: #FFF6E9;
   /* gradient */
   --hg-gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FFF2E0 100%);
   --hg-gradient-session: linear-gradient(180deg, #FFFEFC 0%, #FFEAD1 100%);
@@ -73,6 +74,7 @@
   /* fontFamily */
   --hg-font-ui: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --hg-font-practice: 'Pretendard Variable', Pretendard, sans-serif;
+  --hg-font-reference: 'Pretendard Variable', Pretendard, sans-serif;
   /* fontSize */
   --hg-text-micro: 11px;
   --hg-text-caption: 13px;

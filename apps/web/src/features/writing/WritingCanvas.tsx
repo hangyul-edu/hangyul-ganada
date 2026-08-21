@@ -1,7 +1,9 @@
 import { forwardRef, useImperativeHandle, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import type { Stroke } from '@hangyul-ganada/handwriting-core';
 
+import { glyphSpecFor } from './glyphSpec';
 import { GUIDE_OPACITY } from './guide';
 import { useReferenceGlyph } from './useReferenceGlyph';
 import { useWritingCanvas } from './useWritingCanvas';
@@ -61,7 +63,7 @@ export const WritingCanvas = forwardRef<WritingCanvasHandle, WritingCanvasProps>
     const { t } = useTranslation('handwriting');
     const canvas = useWritingCanvas({ penWidth, onStrokeEnd: onStrokesChange, initialStrokes });
     const glyphSpec = useMemo(
-      () => ({ character, fontFamily, fontWeight }),
+      () => glyphSpecFor(character, fontFamily, fontWeight),
       [character, fontFamily, fontWeight],
     );
     const glyphRef = useReferenceGlyph(glyphSpec, true);

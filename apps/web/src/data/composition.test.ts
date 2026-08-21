@@ -17,7 +17,7 @@ import { STROKE_ORDER } from './strokes';
  * ## What these assertions are worth now
  *
  * They no longer defend anything a learner sees. The demonstration is drawn
- * from `data/strokeAssets`, where the letters sit exactly where the font puts
+ * from `data/strokeVectors`, where the letters sit where the font puts
  * them because the shapes were cut out of it — so "does 어's ㅇ touch its ㅓ" is
  * settled by the glyph and not by this arithmetic.
  *

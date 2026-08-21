@@ -191,6 +191,23 @@ export const semantic = {
   canvasGuide: gray[200],
   canvasGuideWarm: warm[200],
   canvasTraceGlyph: gray[400],
+
+  /**
+   * The ground the launch screen sits on.
+   *
+   * Sampled from the *first frame* of the splash animation, which is also the
+   * still the native launch screen shows — see `capacitor.config.ts` and the
+   * `splash.png` drawables. That is the whole point of the number: the native
+   * screen holds frame zero, the WebView takes over and the animation carries
+   * on from exactly there, and there is no moment where the colour changes.
+   * Sampled from the finished artwork instead it would be a shade darker than
+   * the frame it hands over from, and the handover would blink.
+   *
+   * In this set and *not* in the dark one, for the same reason `canvasPaper` is
+   * light in both appearances: the artwork is a light picture, and giving it a
+   * dark variant would put a dark border around it.
+   */
+  splashGround: '#FFF6E9',
 } as const;
 
 /**
@@ -283,6 +300,17 @@ export const fontFamily = {
   ui: "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif",
   /** Overridden at runtime by the learner's selected practice typeface. */
   practice: "'Pretendard Variable', Pretendard, sans-serif",
+  /**
+   * The face instruction is set in. Never overridden.
+   *
+   * The same stack as `practice` starts out as, and deliberately a separate
+   * token: the learner may set the practice face to a brush or a serif, and the
+   * large reference character on a lesson screen must not follow it there. That
+   * glyph is the shape being taught, and the stroke geometry underneath it is
+   * fitted to *this* face's proportions (`scripts/measure-jamo.mjs`), so letting
+   * it change would put a letter on the screen the demonstration does not match.
+   */
+  reference: "'Pretendard Variable', Pretendard, sans-serif",
 } as const;
 
 /** Type scale measured off the 375 pt artboards. */

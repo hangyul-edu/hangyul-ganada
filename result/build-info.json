@@ -1,8 +1,8 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.0",
-  "commit": "6fa90bb5af4d422c43bf2cbacc44486135ef78b7",
-  "built_at": "2026-08-21T07:47:00.000Z",
+  "commit": "628bb4c0757579856ca9333f0b867f82c257a0e7",
+  "built_at": "2026-08-21T05:01:47.938Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
@@ -10,16 +10,16 @@
     "version_name": "1.0.0",
     "target_sdk": 36,
     "min_sdk": 24,
-    "apk_bytes": 66491039,
-    "apk_sha256": "1191403f4583ee194a1bb9491207618d470811ef31528700c3ca7003b86bb5af",
+    "apk_bytes": 66548999,
+    "apk_sha256": "ba5dbe787cba935cda2a226afcd0dc3d6d74ac014e00364dba84f165d0b79cb6",
     "apk_signature_schemes": [
       "v2",
       "v3"
     ],
     "apk_certificate_sha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
     "apk_certificate_subject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
-    "aab_bytes": 65213789,
-    "aab_sha256": "f3e81538d6d7b4d219aae180ebecf2265b21c4b598cbbbd80c9af8a32a9198d1",
+    "aab_bytes": 65273702,
+    "aab_sha256": "7c4930804e305a6e6afa0c05da1decb7ced9cefea299fd9312f06649943768d0",
     "aab_signed": true,
     "permissions": [
       "android.permission.INTERNET",
@@ -39,7 +39,7 @@
     "deployment_target": "15.0",
     "sdk": null,
     "ipa_bytes": null,
-    "status": "not built — macOS and Xcode are unavailable in this environment; the Xcode project in result/ios-project is synced with this exact web build",
+    "status": "not built — macOS and Xcode are unavailable in this environment",
     "registered_with_app_store_connect": false
   },
   "product_content": {
@@ -102,11 +102,5 @@
     "gradle": "8.14.3",
     "build_tools": "36.0.0",
     "bundletool": "1.18.1"
-  },
-  "source": {
-    "commit": "6fa90bb5af4d422c43bf2cbacc44486135ef78b7",
-    "working_tree": "modified",
-    "note": "Built from the working tree at this commit plus the uncommitted quick patch — the selected-language flag on the Language row, and the removal of vocabulary listening questions. The patch is reproduced by `git diff HEAD -- apps packages scripts content`; its sha256 is below, so what is in these artefacts can be checked against what is in the tree.",
-    "patch_sha256": "c13d82efd20f236e430852c6646ca18d3fd396b244bde98adf341ac5a3feb522"
   }
 }

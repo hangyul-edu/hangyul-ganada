@@ -99,7 +99,7 @@ const LOCALE_PACK = /^vocabulary\.[\w-]+-.*\.js$/;
  * growing — behind a number that only ever moves when a character is added to
  * the curriculum. Two lines say two different things; one line said neither.
  */
-const STROKE_ASSETS = /^stroke-assets-.*\.js$/;
+const STROKE_ASSETS = /^stroke-geometry-.*\.js$/;
 
 /**
  * The vocabulary itself — headwords, spellings, categories, provenance.
@@ -166,7 +166,15 @@ const BUDGETS = {
   firstLoad: 460 * 1024,
   localePack: 44 * 1024,
   route: 24 * 1024,
-  strokeAssets: 32 * 1024,
+  /**
+   * The instructional stroke geometry, loaded with the first lesson.
+   *
+   * Was 32 kB when this was ~190 kB of generated outlines cut from the glyph,
+   * gzipped. It is now the code that draws the strokes rather than a dump of
+   * them, so the budget comes down with it — and a budget left at the old
+   * number would stop noticing if the outlines ever came back.
+   */
+  strokeAssets: 12 * 1024,
   /**
    * Everything the service worker holds for offline use.
    *

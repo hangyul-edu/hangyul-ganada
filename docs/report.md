@@ -55,12 +55,15 @@ reported fixed and is only partly fixed.
 
 | | |
 | --- | --- |
-| Report generated | 21 August 2026 |
+| Report generated | 21 August 2026, after the build it describes |
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
-| Git branch | `premium-quality-pass` |
-| Git commit | `6fa90bb5af4d422c43bf2cbacc44486135ef78b7` |
-| Working tree | **Modified** — this cycle's quick patch is not committed; the artefacts were built from the working tree and the patch digest is recorded in `build-info.json`. See §2.2 |
+| Git branch | `quality-pass-strokes-and-splash` |
+| Git commit | `628bb4c0757579856ca9333f0b867f82c257a0e7` |
+| Working tree | **Clean.** The artefacts were built from that commit and from nothing else. See §2.2 |
+| Signed APK | 63.5 MB · `ba5dbe787cba935c…` |
+| Signed AAB | 62.2 MB · `7c4930804e305a6e…` |
+| Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as the previous release |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
 | Interface languages | 32 |
@@ -87,123 +90,69 @@ reported fixed and is only partly fixed.
 
 ## 2.2 Commit and artefact state — **VERIFIED**
 
-This section carried a P0 in three reports before last: the work was in the
-working tree and the shipped artefacts predated it. It has now been closed for
-two cycles running, and the order is still the part worth recording.
+This section carried a P0 in three reports, and last cycle it half-slipped again:
+the work was built from an uncommitted working tree and the report said so. This
+time the order was followed.
 
 ```
-6fa90bb  record the two screens that said the same thing twice
-         ↓  + this cycle's quick patch, in the working tree, uncommitted
-         ↓     · the Language row's flag
-         ↓     · vocabulary listening questions removed
-         ↓  then cap sync android + gradlew bundleRelease assembleRelease
-         ↓  then unpack the delivered APK and grep it, both directions
-result/hangyul-ganada-release.apk   contains the patch, verified below
+628bb4c  draw the strokes instead of cutting them out of the glyph
+         ↓  working tree clean — `git status` empty, verified before the build
+         ↓  then npm run build + cap sync android
+         ↓  then gradlew assembleRelease bundleRelease, signed with the
+         ↓     production key from ANDROID_KEYSTORE_PATH
+         ↓  then unpack the delivered APK and check what is inside it
+result/hangyul-ganada-release.apk    from 628bb4c, nothing else
 app_result/                          the same two binaries, on their own
 ```
 
-**The ordering rule was not followed this cycle, and that is stated rather than
-glossed.** Every previous release committed first and built second, because
-building before committing produces a signed artefact that looks current and is
-not. This patch was not committed — the request did not ask for it and a commit
-is the author's to make — so the artefacts were built from an uncommitted
-working tree.
+### What the working tree turned out to be
 
-What replaces the commit hash as the anchor is a digest of the patch itself:
-`build-info.json` records `source.commit`, `source.working_tree: "modified"` and
-`source.patch_sha256`, where the digest is over `git diff HEAD -- apps packages
-scripts content`. Anyone holding this tree can reproduce the digest and confirm
-the artefacts and the source agree. That is weaker than a commit — it is one
-command away from being a commit — and it is the honest description of what was
-done. **Committing this patch is the outstanding step before these binaries are
-uploaded anywhere.**
+`git status` reported 501 modified files. Forty-four of them carried this
+cycle's work. The other 435 differed from `HEAD` by **nothing but their line
+endings** — a CRLF conversion from editing on WSL — and between them accounted
+for about 98,000 lines of a 100,000-line diff.
 
-**The delivered APK was unpacked and its markers checked in both directions.**
-The table below is the standing marker set from previous cycles, all of which
-still hold. This cycle's own two changes were checked the same way and are listed
-first, because a release patch that cannot prove it is *in* the binary is the
-exact defect I-01 was:
+That is not a tidiness problem. A commit nobody can read is a commit nobody
+reviews, and "the working tree was modified" has been this project's most
+repeated finding precisely because the tree was always too noisy to look at. The
+435 were restored to what `HEAD` already held, and `.gitattributes` now pins
+`text=auto eol=lf` so it cannot happen again.
 
-| This cycle — must be present | Found in |
+It also settled a question the last report left open. That report described a
+"quick patch in the working tree, uncommitted" — the Language row's flag and the
+removal of the vocabulary listening questions. Those files are content-identical
+to `HEAD`: the patch *was* committed, in `10148ea`, and the report's own claim
+about it was the stale thing.
+
+### What is inside the delivered package — **VERIFIED**
+
+Unpacked and checked in both directions, because "it built" is not evidence that
+what was built is what was written.
+
+| Looking for | Found |
 | --- | --- |
-| `settings-language-flag` — the flag element on the Language row | the `MyPage` chunk |
-| the KO/US/CN/JP/VN/TH/SA flag assets, inlined as data URIs | the same chunk |
+| The new geometry | one `stroke-geometry-*.js` chunk, 11.6 kB — carries the Bézier κ constant and the measured per-letter aspect table |
+| Its CSS | `stroke-linecap:butt`, `stroke-linejoin:miter`, `fill:none` |
+| The desktop phone shell | the `min-width:560px` block |
+| Splash media | `splash-ko.mp4`, `splash-en.mp4` and both WebP posters under `assets/public/brand/splash/` |
+| Native launch bitmap | `res/-u.png` and ten more: ground `#FFF6E9`, the circle at centre — frame zero of the animation |
+| Android 12+ splash colour | `color/splashBackground` = `#fffff6e9`, matching the bitmap |
+| **The old raster cut** | **absent** — `strokeAssets`, `strokeReveal`, `segmentation` and any `strokeAssets*.json` all return nothing |
 
-| This cycle — must be absent | Result |
-| --- | --- |
-| `review.prompt.listen` — the vocabulary listening prompt | **absent** (only `review.prompt.listenLetter` survives, which is Hangul) |
-| `review.prompt.listenMeaning` | **absent** |
-| `Skip listening questions` / `듣기 문제 건너뛰기` — the removed toggle | **absent**, in all 32 locale bundles |
+The one `fillRule` left in the package belongs to React's own attribute table,
+not to the app.
 
-And the standing set — 111 emitted files searched for ten strings that must be in
-it and five that must not:
+### Signing — **VERIFIED, and it is the same key**
 
-| Must be present | Found in |
-| --- | --- |
-| `jari` — 자리 romanised from its sound | the word corpus chunk |
-| `jangnyeon` — 작년 nasalised, not `jaknyeon` | the same |
-| `hakgyo` — 학교 tensed | the same |
-| `ستة صوائت للبداية` — an Arabic lesson title | the main bundle |
-| `தொடங்க ஆறு உயிரெழுத்துகள்` — the same lesson in Tamil | the Tamil locale chunk |
-| `как а в «мама»` — the Russian hint for ㅏ | `letters.ru` |
-| `మ్యాంగ్‌జో` — a typeface named in Telugu | the main bundle |
-| `لاو تسي` — Laozi, attributed in Arabic | the main bundle |
-| `Word meanings in English` — the picker's caveat | the main bundle |
-| `Try a question` — the CTA that names the quiz | the main bundle |
+```
+previous release  SHA-256 157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc
+this release      SHA-256 157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc
+                  CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR
+```
 
-| Must be absent | Result |
-| --- | --- |
-| `ɕ`, `ɾ` — IPA characters from the retired notation | absent |
-| `jaknyeon` — 작년 romanised from its spelling | absent |
-| `10 left today` — the removed duplicate home row | absent |
-| `About your strokes` — the removed feedback heading | absent |
-
-The two directions matter equally. Ten present strings prove the cycle is *in*
-the package; the absent ones prove the things it replaced are *out* of it, which
-a marker table that only looks for additions cannot tell you.
-
-**The signing key was recovered rather than regenerated.** The keystore is not in
-the repository and not in the environment. Its certificate was compared against
-the superseded artefact before anything was built, and against the new one
-afterwards: `157a2bb133f6aa3d…3323debc`,
-`CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR`, in all three. A second keystore on the same
-machine carries a different certificate and was not used. A different certificate
-would not be a new build of this app — Android ties the upgrade path to the
-signing identity, so it would be an app that cannot replace the one already
-installed. No key, password or path appears in the repository, in `result/`, in
-`app_result/`, or in any log this build produced;
-`scripts/audit-release-security.mjs` was re-run against this cycle's binaries —
-11,125 entries of the APK and 11,134 of the AAB — and reports **no findings**.
-
-| | |
-| --- | --- |
-| APK | 63.4 MB, `1191403f4583ee19…` |
-| AAB | 62.2 MB, signed, `f3e81538d6d7b4d2…` |
-| Schemes | v2 + v3 |
-| Application id | `com.talkhangyul.ganada` — unchanged |
-| Version | 1.0.0 (1) — unchanged |
-| Permissions | 6, unchanged from the last release |
-| Storage schema | 9 |
-
-`build-info.json` reports the storage schema **read from
-`storage/schema.ts`** rather than typed into the build script, which is a small
-fix with a specific cause: it said 6 while the app was on 9. A delivery manifest
-that misreports the schema is a misleading answer to the one question anybody
-asks it after a migration goes wrong.
-
-**iOS: no `.ipa`, and none was faked.** not built — macOS and Xcode are unavailable in this environment. An `.ipa` is a
-signed archive produced by Xcode against an Apple Developer identity; a renamed
-zip would not install and would be a false artefact sitting in a delivery
-directory. The complete Xcode project ships in `result/ios-project/`, and
-`result/BUILD_OR_SIGNING_BLOCKERS.md` gives the exact commands and the exact
-credentials still required. There is no code path in `build-result.mjs` or
-`build-app-result.mjs` that writes a file with that extension.
-
-**`app_result/` is new this cycle**, and is the applications on their own: the
-two binaries, their checksums, `build-info.json`, and a README saying what signed
-them and what is deliberately not there. It is derived from `result/` rather than
-built separately, because two paths that each build their own APK are two paths
-that will eventually disagree about which APK shipped.
+No new keystore, no debug fallback, v2 + v3 schemes, `applicationId` unchanged
+at `com.talkhangyul.ganada`. The key was read from `ANDROID_KEYSTORE_PATH`; no
+secret is in this repository or in this document.
 
 ## 2.3 Figures for the next report to diff against
 
@@ -302,28 +251,44 @@ paragraphs under a two-stroke letter, every attempt — and is now a status, one
 sentence of advice, one note, and the next action. And the finished-alphabet card
 no longer prints "0 %" beside the words *You can read Hangul*.
 
-**The strokes hold.** All 73 items were re-rendered and read by eye this cycle,
-one gallery per eight: reference glyph, per-stroke colouring, numbered starts,
-each stroke isolated, and five moments of each stroke being drawn. 1,345
-rasterised frames pass, no stroke paints into a neighbour that has not been
-written yet, and the one sub-threshold overlap the checker reports — 국, stroke 3
-into stroke 4 — was looked at and is a join, not a protrusion. It is printed
-rather than hidden, which is the behaviour that matters.
+**The strokes were not holding, and the last report said they were.** It called
+the renderer *release quality* and claimed all 73 items had been read by eye. The
+customer answered with four screenshots — ㅂ, ㅅ, ㅇ, ㅈ — and all four defects
+were real: wedges of not-yet-written crossbars showing inside finished uprights,
+a first stroke growing into a second one's shoulder, and a ㅇ that was a lumpy
+polygon. They were reproduced here from the shipped assets before anything was
+touched.
 
-**This cycle is a focused two-change patch on top of that, and both changes are
-subtractions as much as additions.** The Language row in My Learning now leads
-with the selected language's own SVG flag instead of a generic globe — the same
-`flagFor` the picker uses, all 32 shipped locales covered, checked by eye in
-light and dark for seven of them including the RTL case. And vocabulary is no
-longer tested by ear: the `listen` and `listenMeaning` question types are gone
-from the daily plan, the review scheduler, the exercise builder, the My Learning
-toggle that used to skip them, and the copy in all 32 languages. Pronunciation
-audio is deliberately untouched everywhere it was a learning aid rather than the
-question. §16.5 states the mechanism, the rebalance, and the two costs — a
-beginner's first sitting now alternates two layouts rather than four (I-22), and
-a deaf learner arriving today has no way to turn on sound-free practice for the
-*letter* exercises, which are still heard-only (I-21). Both are in §33 rather
-than left for a reader to find.
+**So the architecture was replaced rather than patched a fifth time.** The
+demonstration used to be cut out of a rasterised glyph: award each pixel of ink
+to a stroke, trace the regions, animate the polygons. That produces a boundary
+wherever two strokes genuinely share ink, and the boundary is visible the moment
+one side is black and the other grey — there is nothing to divide, because the
+ink at a junction is written twice. It also produces polygons, which is why ㅇ was
+one. The reference glyph is now the typeface, and the instruction is authored
+vector centrelines drawn as *stroked* paths. Two strokes that meet simply
+overlap. §11 is the whole account, including how the QA passed 73 items and 269
+strokes through every round in which the product was visibly wrong.
+
+Six more defects were found on the way and none of them by a test — 글's 받침
+arriving as a smudge, ㅎ's bowl merged into its bar, a mitred beak on ㄹ, ㅋ's bar
+hanging in open paper, ㅐ and ㅒ's connectors touching a stem they should stop
+short of, and a centre cross that had never once been drawn because its CSS rule
+did not exist. All were found by rendering the letters and looking at them.
+
+**The product also gained a brand launch screen and stopped stretching on a
+desktop.** The native splash is frame zero of the brand animation — ground and
+one circle, no words — and the WebView picks the animation up and plays it out,
+in Korean when the interface is Korean and in English otherwise; one picture
+across the handover instead of two brand screens back to back. On a wide screen
+the app now sits in a phone-sized shell rather than spreading a thumb-designed
+layout across a monitor. §11.8 covers both.
+
+**And 낳다 is finally settled.** Three cycles of "the recogniser hears 낫다" ended
+by measuring the recordings instead of transcribing them: 낳다 is [나타], a short
+closure and a weak breathy release, and 낫다 and 낮다 are [낟따], a long closure
+and a sharp one. The clips are right; the recogniser was not. A check asserts it
+now, and fails if the pair is asserted the other way round.
 
 Three things still stand between this and a paid release.
 
@@ -823,230 +788,238 @@ twice. Leaving stops playback so a clip cannot follow the learner onward.
 
 # 11. Stroke renderer
 
-Reported broken more often than anything else in the product, and reported
-broken again this cycle after the last report called it fixed. That is the most
-useful fact in this section, so it goes first: **the last report was wrong, and
-it was wrong in a way its own evidence could not have caught.**
+## 11.1 Verdict — **REBUILT this cycle, and the previous verdict was wrong**
 
-## 11.1 Verdict
+The demonstration is now sound: 73 items, 269 strokes, 1,345 rendered frames,
+clean on the data gate and the pixel gate, and read by eye at both the size a
+desktop draws it and the 96 px a phone does. What follows is mostly about how it
+got to be wrong, because that is the part with anything to teach.
 
-**RELEASE QUALITY.** Committed, and in the packaged Android artefacts. The
-residual is **one** sub-visible overlap, down from eighteen, and it was examined
-by eye rather than accepted because it sits under a threshold — §11.6 names it
-and says what it is.
+## 11.2 The previous report said this was release quality. It was not.
 
-## 11.2 The thing four fixes got wrong
+The last report stated that the stroke renderer was **RELEASE QUALITY** and that
+all 73 items had been visually inspected. Both statements were false, and the
+customer disproved them with four screenshots:
 
-`StrokeOrder.tsx` paints the active stroke like this:
+* **ㅂ** — the black uprights carried triangular wedges into the crossbars, so a
+  learner watching stroke one could see a piece of stroke three already on the
+  paper.
+* **ㅅ** — the first stroke grew an angular chunk into the second one's shoulder.
+* **ㅇ** — a visibly lumpy ring: flat spots, uneven sides, and a staircase where
+  the tracer met the rasteriser. Not a circle.
+* **ㅈ** — the lid chipped into the fork.
 
-```jsx
-<path d={active.shape} mask={`url(#${maskId})`} />
-```
+They were reproduced here before anything was changed, by rendering the shipped
+`strokeAssets.json` directly. They were all real.
 
-The ink is `active.shape` **intersected with** a reveal ribbon. It is therefore
-always a subset of that stroke's own asset geometry, and it has been for four
-rounds of fixes. **No change to the renderer could ever have stopped a stroke
-bleeding into the next one**, because the renderer cannot paint outside the
-shape it is given. Every previous attempt was aimed at the wrong file.
+### How the QA missed it
 
-The defect was in the shape. Which means it was in the **cut** — how the glyph
-is divided between the strokes — and, one level further back, in the authored
-skeletons the cut is guided by:
+Not by being weak. By asking the wrong question, in two distinct ways.
 
-```ts
-ㅏ: [vertical(45), stroke([[45, 50], [80, 50]])],   // upright first
-ㅓ: [stroke([[20, 50], [55, 50]]), vertical(55)],   // branch first
-                          ▲                  ▲
-                          └── the branch is authored as running ──┘
-                              to the stem's own centreline
-```
+**The data gate could not see it.** `strokes:qa` checked that no path had a NaN
+in it, that nothing fell outside the box, that no stroke claimed no ink, and that
+every taught item had an asset. All of that was true of a glyph with a wedge in
+it, because the wedge was *valid geometry*. It passed 73 items and 269 strokes
+through every round in which the product was visibly broken.
 
-For ㅏ that is harmless: the upright is written first, so by the time the branch
-runs into it the ink is already black. For ㅓ the order is reversed and the same
-line says "draw the connector half a stem *into* a stem that does not exist
-yet". Everything downstream inherits it — the claim follows the route, the
-re-read centreline follows the claim, and by the second pass the intrusion is no
-longer past the end of the route, so the existing safeguard could not see it.
-The same authored pattern is in ㅗ, ㅕ, ㅔ, ㅖ and every syllable built from them.
+**The pixel gate asked about ownership, and ownership was the bug.** The
+invariant it enforced was that ink beyond the end of stroke *i*'s route must not
+fall inside stroke *j*'s body, for *j* later than *i*. That is a sound statement
+about a *correct* cut. It is silent about a cut whose regions are already
+disjoint by construction — which these were, because they were carved out of one
+glyph. The check could never fire on the thing that was wrong.
 
-## 11.3 Architecture — **VERIFIED**
+And the report then wrote "all 73 read by eye this cycle", which is the part with
+no excuse. A number in a table is not a pair of eyes.
 
-One geometry source, built rather than composed at runtime.
+## 11.3 What was replaced
+
+The old architecture, stated plainly:
 
 ```
-Pretendard glyph  ──rasterise──▶  ink mask
-                                     │
-  data/strokes.ts polylines  ──────▶ │ claim ink per stroke (3 passes)
-  (order + direction only)           │ ├ routes trimmed out of later strokes ← new
-                                     │ ├ adaptive per-stroke reach, capped at the pen
-                                     │ ├ centreline re-read from the ink each pass
-                                     │ └ cap ink handed to the later stroke
-                                     │
-                                     │ settle route ⇄ ink, twice          ← new
-                                     │ hand back stray chips              ← new
-                                     │ keep the pen on its own ink        ← new
-                                     ▼
-                            trace + simplify per stroke
-                                     ▼
-              apps/web/src/data/generated/strokeAssets.json
-                 73 items · 269 strokes · shape + draw route + start
-                                     ▼
-     ┌───────────────────────────────┴────────────────────────────────┐
-     │ ui/StrokeOrder.tsx — one <svg viewBox="0 0 100 100">            │
-     │   grey ghost  = every stroke's shape                            │
-     │   black ink   = completed strokes' shapes                       │
-     │   active      = this stroke's shape, through a mask             │
-     │   mask        = a ribbon swept along this stroke's own route    │
-     │   markers     = ui/strokeMarkers.ts, same viewBox               │
-     └─────────────────────────────────────────────────────────────────┘
+Pretendard glyph
+  → rasterise
+  → award each pixel of ink to whichever stroke's centreline reaches it first
+  → trace each awarded region back to a contour
+  → simplify
+  → animate the resulting filled polygons behind reveal masks
 ```
 
-`union(stroke shapes) === the reference glyph` still holds by construction — the
-build reports 100.00% coverage for every item — so the final frame cannot drift
-from the glyph the learner copies.
+Its appeal was a real invariant: `union(strokes)` was the glyph exactly, so the
+finished frame could not drift from the letter above it. It bought that with two
+defects that four rounds of corrective heuristics did not remove, and could not
+have:
 
-## 11.4 The invariant, stated precisely
+**Ownership artefacts.** A T-junction is ink that two strokes both pass through.
+Whatever rule divides it draws a *boundary*, and the boundary becomes visible the
+moment one side is black and the other grey. There is nothing to divide — the ink
+at a junction belongs to both strokes and is written twice — so no division rule
+fixes it.
 
-Two obvious formulations are both wrong, and knowing why is what made the fix
-possible:
+**Polygons.** A traced raster contour is a polygon. ㅇ came back with about thirty
+segments a side. This one is not a tuning problem at all: no ownership rule turns
+a traced polygon into a smooth curve.
 
-* **"Strokes must not overlap"** can never fire. They are cut disjoint from one
-  glyph; the check would pass on the broken build.
-* **"Stroke *i* must not enter stroke *j*'s body"** fires constantly on things
-  that are correct. ㅏ is an upright written first and a crossbar attached to
-  its middle written second, so the upright inevitably occupies ink beside the
-  crossbar's route. Nothing looks wrong, because the crossbar's own region
-  starts to the right of the upright and stays grey.
+## 11.4 What replaced it — **VERIFIED**
 
-What separates them is **where on stroke *i* the contact happens**:
+The reference glyph and the writing animation now answer different questions and
+no longer share geometry.
 
-```
-  ㅏ  upright (1) ─┬─ crossbar (2)     beside route 1's middle
-                   │                     → 1 is passed by 2. Fine.
+| | |
+| --- | --- |
+| **The reference glyph** — the large character a learner studies | Set in the real typeface. `ui/ReferenceGlyph`. A type designer has already solved what the letter looks like. |
+| **The instruction** — the animation, the numbered diagram, the grey guide | `data/strokeVectors`: authored vector centrelines, drawn as *stroked* paths with `fill="none"` and revealed with a dash offset. |
 
-  ㅓ  connector (1) ──┤ upright (2)     past the end of route 1
-                                          → 1 runs into 2. The defect.
-```
+A stroked centreline cannot have an ownership artefact, because ownership is not
+a concept it contains. Two strokes that meet simply overlap, as two pen strokes
+on paper do. There is no boundary to see, so the rule that a learner must never
+be able to infer how the renderer divided a glyph now holds by construction
+rather than by care.
 
-So:
+### The geometry is not new, and that is the point
 
-> **ink(stroke *i*) that lies past the end of route *i* ∩ body(stroke *j*) = ∅,
-> for every *j* > *i*.**
+`data/strokes.ts` has always held the pedagogical truth — which strokes, in what
+order, from which end, travelling which way — as parametric jamo primitives, and
+`data/compose.ts` has always placed those into syllable blocks using part boxes
+measured off the reference face. Both were sound. They were being used only to
+steer a raster cut; now they are drawn directly. Three things were added:
 
-"Body" is the route stroked with **butt** caps — square at the last point, no
-bulge beyond it — so two strokes meeting end-to-end at a corner are not an
-intrusion, which is right.
+1. **Curved strokes carry the curve.** ㅇ is four cubic segments — a true circle,
+   and a true ellipse after a block flattens it, because the per-axis fit in
+   `compose.ts` maps a cubic exactly. ㄱ's leg is one cubic. The polyline that
+   every other consumer reads is now *sampled from* the curve rather than
+   authored beside it, so the two cannot disagree.
+2. **Ends are classified, not decreed.** Each stroke end is read off the geometry
+   as `join` (it lands inside another stroke — cut square, no terminal, because
+   the terminal would be under that stroke's ink anyway), `corner` (it meets
+   another stroke's own end, and this stroke is the later one — extended half a
+   pen to close the corner) or `free`. Only the *later* stroke of a corner
+   extends, which is what keeps a completed stroke from growing a millimetre
+   towards one not yet written.
+3. **Proportions come from the face.** `scripts/measure-jamo.mjs` measures each
+   letter's ink-box aspect off Pretendard, and the authored strokes are fitted
+   into a box of that shape, so the demonstration and the reference character are
+   the same letter in the same proportions.
 
-## 11.5 What the pixel QA found — **VERIFIED**
+### Two letters the face draws twice
 
-`npm run strokes:visual` rasterises every frame and measures it. Run against the
-build the last report called release-quality:
+Pretendard gives ㄱ a **vertical** leg on its own and a **leaning, curved** one in
+가 and 거 — and a vertical one again in 고 and 국, where the block squashes it.
+The old data had only the leaning form, so a lesson on ㄱ drew a leaning leg
+directly under a reference glyph with a straight one. `STROKE_ORDER_ALONE` holds
+the isolated forms for ㄱ, ㅋ and ㄲ; composition never reads it.
 
-| Character | What it did | Size |
-| --- | --- | --- |
-| 어, and the whole ㅓ family | connector reaching into the stem | 4.4 units, half the stem |
-| 하 · 한 | the bar of ㅎ growing a blob into the still-grey ring | 323 and 563 px |
-| ㅈ · ㅉ · 자 | a lump on the leg that is drawn first, in the leg drawn second | 113–216 px |
-| ㅎ · ㅊ · ㅍ | detached chips floating beside the stroke, appearing from nowhere | 74–171 px |
-| ㅞ | stroke 3's route drawn through blank paper while its ink sat elsewhere | 29 samples off-ink |
-| ㅊ | tick authored as a vertical against a face that draws it horizontal | pen travelled 12 units through nothing |
+## 11.5 What the gates check now — **VERIFIED**
 
-Every one of them was invisible to `strokes:qa`, which validated the same 1,345
-frames and reported no problems, because it was reading path data. The gap
-between "the data is well formed" and "the picture is right" is this whole
-section.
+`strokes:qa` is shorter than it was, deliberately. Most of it defended against
+what a raster cut could produce — a stroke with no ink, a region traced into two
+islands, a reveal ribbon that did not match its outline, ink awarded to a stroke
+not yet written — and none of those are reachable. Checks that can no longer fail
+were removed rather than left in to look thorough. What it asserts now: every
+taught item has geometry; stroke counts agree with what the lesson tells the
+learner; nothing including the pen falls outside the box; an end marked `join`
+genuinely lands within half a pen of another stroke; a ring's sample never turns
+more than 15° between points; no two markers overlap.
 
-Four generator changes closed them, each general rather than per-character:
+`strokes:visual` renders all 1,345 frames in Chromium — with the same paths, pen,
+caps, mitre limit and dash offset the shipping component uses, so a frame that
+passes is a frame that shipped — and asserts what a stroked, dash-revealed path
+can still get wrong: a stroke that draws nothing, ink that does not arrive in
+step with its fraction, ink that shrinks as the fraction grows, ink touching the
+edge of the box, a marker off its own start, and a finished frame that is not the
+union of its strokes.
 
-1. **Routes are trimmed out of later strokes.** A route may end *at* a stroke
-   that comes later, never inside one. Trimmed from the two tips inward and
-   nowhere else — which is the safety property: where a later stroke lands in
-   the middle of an earlier one, the earlier route's tips are far away and
-   nothing moves, so no hole opens in ㅏ's upright.
-2. **Route and ink are settled against each other.** The shipped route is
-   re-read from the regions and then trimmed, so it is shorter than the working
-   route the claim used — and "past the end of my own route" is measured against
-   the end of *a* route. The first version of the fix asked about a route the
-   learner never sees and changed almost nothing.
-3. **Stray chips are handed to the ink they touch.** A sliver cut off behind a
-   neighbour has no attachment, so it appears out of nowhere the instant its
-   stroke starts. Given to whichever region it shares the most edge with — and a
-   near-tie goes to the *later* stroke, because a chip under ink that is about
-   to arrive is invisible and a chip on blank paper is the artefact.
-4. **The pen is kept on its own ink**, including through corners, which are
-   between the route's vertices rather than at them: ㄱ's turn had both ends on
-   ink and the straight line between them cutting the corner.
+**And then it writes the gallery, at 160 px and at 96 px, and the answer to
+"does ㅅ look like ㅅ" comes from looking at it.** The reported defect was seen on
+an Android browser, not a desktop; a 150 px review of a 96 px picture is a
+different question, so both sizes are rendered.
 
-Two authored skeletons were also corrected against the reference face — ㅊ's
-tick, and ㅞ's connector, which sits a stroke's width lower than it was written.
-Those are data corrections, not renderer hacks: the polylines are matched
-against the glyph, and one that disagrees with the glyph is wrong.
+## 11.6 Evidence, by layer
 
-![어 animating stroke by stroke: the ㅇ, then the connector stopping at the stem, then the vertical.](report-assets/audit-stroke-frames-eo.png)
+| Layer | Result |
+| --- | --- |
+| Source | 73 items, 269 strokes, `strokes:qa` clean |
+| Automated pixels | 1,345 frames, `strokes:visual` clean |
+| Rendered web | Gallery read by eye at 160 px; each item beside the typeface glyph it must agree with |
+| Rendered mobile | Same gallery at 96 px; lesson screens captured at 390 × 844 |
+| Packaged Android | See §2.2 — the built assets grepped out of the delivered package |
 
-*Figure 5 — 어 at 35%, 70% and 100% of each stroke, with unwritten strokes in
-grey. Stroke 2 stops at the stem instead of painting a block of stroke 3.*
+## 11.7 What it cost, and what it saved
 
-![Stroke-number markers on fourteen representative characters.](report-assets/audit-stroke-markers.png)
+The instructional geometry was 79 kB of generated JSON — about 190 kB of path
+outlines — in its own lazily-loaded chunk. It is now the code that draws the
+strokes: **5.0 kB gzipped**. `scripts/build-stroke-assets.mjs`, 1,889 lines of
+rasterising, distance transforms, contour tracing and four generations of
+corrective heuristics, is deleted.
 
-*Figure 6 — Markers after the anchor fix. Each disc touches the tip of its own
-stroke rather than hovering near it.*
+## 11.8 Launch screen and the desktop shell — **NEW this cycle**
 
-## 11.6 Residual — the honest list
+### The splash, and why it is one picture rather than two
 
-The check draws two lines rather than one, because a boundary between two
-regions traced and simplified independently leaves a rim of a pixel or two that
-is real, invisible, and would get the check switched off if it failed on it.
+The brand supplied two short animations — 한귤 with 작은 귤 한 조각처럼, 매일 한
+문장씩, and *Han gyul* with *When life gives you a tangerine* — as a 3.4-second
+MP4 and a 5.6-second MOV, both 744 × 1622 with an audio track.
 
-**Above the failure line: nothing.** Zero intrusions thicker than the failure
-bar, zero fragmented strokes, zero routes off their own ink, across 73 items,
-269 strokes and 1,345 rasterised frames.
+Neither ships as delivered. The audio is stripped, because a splash that makes a
+sound is one people learn to dread and autoplay with sound is refused anyway.
+And both are **trimmed to 1.8 seconds**, which is the animation: the English art
+settles at about 1.2 s and then holds still for another four, the Korean at about
+1.6 s and holds for two. Shipped whole and dismissed on readiness, a learner saw
+a growing circle and never once the wordmark. Re-encoded at 540 px wide they are
+76 kB and 49 kB, from 1.2 MB and 737 kB.
 
-**Below it, and not rounded away — one, in one character:**
+The harder question was the *native* launch screen, which runs before any of the
+app's code does and therefore cannot know what language the learner has chosen.
+Showing the Korean artwork to a Spanish learner is wrong; showing the app icon
+first and the brand animation second is two brand screens back to back.
 
-| Character | Thickness | Size |
-| --- | --- | --- |
-| 국 stroke 3 → 4 | 0.39 units (1.59 into its ribbon) | 38 px |
+**Frame zero solves it.** The first frame of the animation is the ground and one
+soft circle — no wordmark, no copy, nothing language-specific. That is what the
+Android drawables and the iOS launch image are generated from, so the native
+screen holds frame zero, the WebView takes over, and the animation carries on
+from exactly where the native screen left it. One picture across the handover.
 
-That is the whole list, and it is seventeen fewer than last cycle. Two changes
-did it, both in the *cut* rather than in the renderer:
+Four things have to be the same colour for that to work, and all four are now
+`#FFF6E9`: the artwork's own ground, `splashGround` in the design tokens,
+`backgroundColor` under `SplashScreen` in the Capacitor config, and
+`color/splashBackground` in the Android resources — which is what Android 12 and
+newer actually paint, and which was still `#FFF8F1` until it was checked in the
+built package.
 
-* **The settle loop ends on a reassignment, not on a re-read.** It ran a fixed
-  two rounds and finished by re-reading centrelines that the last reassignment
-  had already invalidated. It now converges — up to six rounds, stopping when
-  neither the claim masks nor the centrelines move — and ends by reassigning.
-* **ㅅ's two legs no longer start from one point.** `siot()` takes a
-  proportional branch at 0.32 so the right leg starts *on* the left leg rather
-  than both radiating from a shared origin, and `jieut()` delegates to it, so
-  ㅈ ㅊ ㅉ inherit the same geometry. The largest residual last cycle was ㅈ at
-  3.14 units; it is now zero.
+| | |
+| --- | --- |
+| Korean interface | `splash-ko.mp4` — 한귤 |
+| Every other language | `splash-en.mp4` — Han gyul |
+| Reduced motion | The still, same picture at rest |
+| Autoplay refused | The poster is already underneath; nothing changes |
+| Native, before the WebView | Frame zero, no words, no language |
 
-The one that remains was looked at rather than trusted to the number. 국's ㅜ has
-a short descender between the horizontal bar and the 받침, and the 0.39 units it
-holds inside stroke 4 are at the point where the stem meets the ㄱ below it. It
-is a join, not a protrusion: the stem does not emerge past the far side of the
-stroke it enters. It is printed by the checker rather than suppressed, which is
-the behaviour that matters — a residual that is invisible in the report is a
-residual nobody re-examines.
+The language is read from `LocaleContext`, which is the only source that is right
+at that moment. Two nearer-looking ones are both wrong by exactly one render:
+`<html lang>` is set by an effect, and effects run after children render, so it
+still says `en`; and i18next is seeded by the same provider after its own first
+render. Both were tried; both gave a Korean learner the English splash.
 
-## 11.7 The gallery — **all 73 read by eye this cycle**
+### The desktop shell
 
-`npm run strokes:visual` writes `.stroke-qa/visual.html` and a full-page PNG:
-every item, the reference glyph, the same character with one colour per stroke,
-the numbered start points, each stroke on its own, then each stroke through five
-moments of being drawn. `--only <characters>` narrows it to a batch.
+Every screen in this product is designed for a thumb: one column, a bottom tab
+bar, a writing square the width of the content, type sized for arm's length.
+Stretched across a desktop browser that does not become a desktop app — it
+becomes the phone app with its buttons pulled apart and a writing box the size of
+a dinner plate.
 
-Every one of the 73 was rendered and read this cycle, nine batches of eight,
-which is the acceptance the brief asks for and is not the same thing as the
-checker passing. What the eye is for here is the colour column: a stroke that
-shows black inside a grey neighbour is obvious at a glance in a way no table
-makes it. Also read: that the decomposition is *right* — 말 is ㅁ(3) + ㅏ(2) +
-ㄹ(3) and not eight strokes assigned some other way; that ㅍ's middle bar
-genuinely arrives in three fragments, because the two uprights are written first
-and own the crossings; that ㅇ is one stroke and ㅎ is three.
+So above 560 px the app is centred in a phone-sized shell — 430 px wide, at most
+932 px tall, on a surface a shade off its own ground. It is a media query on the
+root element rather than a component, which is the whole reason it is reliable:
+there is nothing to decide at runtime, so it covers every route, the launch
+splash, a refresh in the middle of a lesson and a cold start alike, and there is
+no wrapper for one of them to have been left out of.
 
-Machine checks decide what to look at first. They do not decide whether it looks
-right.
+The `transform` on that rule is load-bearing rather than decorative: it makes the
+shell the containing block for `position: fixed` descendants, which is the
+difference between a modal appearing inside the phone and a modal covering the
+whole desktop while the phone sits behind it. `ui/Modal` is the only fixed thing
+in the app.
 
 ---
 
@@ -2757,87 +2730,98 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 ## 33.1 What is wrong, and who it hurts
 
+<!-- issues:what -->
+
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
-| **I-01** | Release | **P0** | Shipped Android AAB/APK predate every fix in this report and the last one | Anyone installing today gets a product two cycles old | **RESOLVED** — rebuilt from `e49c28b`, fifteen markers grepped in both directions, same signing identity |
-| **I-02** | Repo | **P0** | This whole cycle is uncommitted | A fresh checkout has hints that print the answer and strokes that bleed | **RESOLVED** — committed before the build, every cycle since |
-| **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | The card renders nothing; the funnel still does not exist | **OPEN** |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
-| **I-05** | Performance | **P1** | Corpus at 10,000 words is 298% of the bundle budget, and the precache budget was raised twice this release | The delivery architecture cannot carry the plan | **OPEN — costed, deliberately deferred, gated at 4,000 headwords** |
-| **I-06** | Word Detail | **P1** | Longer explanations existed for 784 words, English only, and were dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** — 25 written words in ten languages; §15.2 |
-| **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covers 500 of 2,581 words | Past word 500 a vi/th learner reads marked English | **RESOLVED** — 2,581 in both |
-| **I-08** | Content | **P1** | Entries whose gloss contradicts their own example | 열 reads "fever" above a sentence about counting to ten | **RESOLVED** — eleven found, all authored and pinned |
-| **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Matching spans four words and the plan is per-word | **PARTIAL** — `build` added, matching still absent |
-| **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | Meaning changes when the interface language changes | **PARTIAL** — the eleven known cases are pinned; no automated guarantee a twelfth does not exist |
-| **I-11** | Accessibility | **P2** | Listening questions rely on the hint ladder's reveal for a text alternative | Usable, but it is scored as a reveal rather than as an accommodation | **RESOLVED for vocabulary** — there is no vocabulary listening question left to accommodate (§16.5); the letter exercises are covered by I-21 |
-| **I-21** | Accessibility | **P2** | The *Skip listening questions* toggle was removed from My Learning along with the vocabulary listening questions, but `sound_recognition` and `distinguish` — the **letter** exercises — are still heard-only | A learner who has never set it now has no way to turn it on, so a deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned it on keeps it: the stored `sound_free` flag is still honoured | **OPEN — introduced this cycle, and stated rather than hidden.** The fix is a Hangul-side setting; the alphabet curriculum was out of scope for this patch |
-| **I-22** | Vocabulary UX | **P3** | A beginner's first sitting now alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar` | **OPEN — the accepted cost of §16.5**, and not papered over by asking a new word to be produced |
-| **I-12** | Persistence | **P2** | No export | Clearing site data still destroys the history irrecoverably | **OPEN — by decision**, see §50 of the brief |
-| **I-13** | Relations | **P2** | 243 of 2,581 words carry any relation | Synonym/antonym sections rarely appear | **OPEN** |
-| **I-14** | Strokes | **P3** | One sub-visible overlap remains: 국, stroke 3 into stroke 4, 0.39 units | A join where ㅜ's stem meets the 받침; invisible at any size the app draws | **PARTIAL** — down from eighteen; examined by eye and printed rather than suppressed |
-| **I-15** | Audio | **P3** | 마디 is mispronounced in one voice | One word sounds wrong | **RESOLVED** — regenerated, fixtured, checked on-device |
-| **I-16** | Audio | **P3** | The recogniser screen reports 낳다 as 낫다 in both voices | Unknown — it may be the decoder | **OPEN, and stated as unknown**; §22.4 |
-| **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker — now across thirty-two interfaces and 17,832 strings | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN**, and the severity is raised because the surface tripled |
-| **I-18** | Content | **P3** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" in Korean | **OPEN** — reported by `vocabulary:sense:qa`, not gated |
-| **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN, stated on the row in the picker before the learner chooses** — §23.3 |
-| **I-20** | Vocabulary | **P3** | The *More about it* block is written for 25 words, in ten languages | The other 2,556 word cards end at the example | **OPEN** — the alternative was 784 dictionary scrapings, which is why it was deleted |
+| **I-05** | Performance | **P1** | The corpus at 10,000 words is three times the bundle budget | The delivery architecture cannot carry the stated plan | **OPEN** |
+| **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN** |
+| **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
+| **I-13** | Relations | **P2** | 243 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
+| **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
+| **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **OPEN** |
+| **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about half the writing square while the demonstration below it fills 0.84 of its own. Same letter, two sizes, one screen. | **OPEN** |
+| **I-25** | Build | **P2** | `composition.json` cannot be reproduced by its own generator | None directly — the committed measurements are good, and the syllables built from them were read by eye this cycle. The risk is that nobody can tell whether a future regeneration is a correction or a regression. | **OPEN** |
+| **I-18** | Content | **P3** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" on a beginner's card | **OPEN** |
+| **I-20** | Vocabulary | **P3** | The *More about it* block is written for 25 words | The other 2,556 word cards end at the example | **OPEN** |
+| **I-22** | Vocabulary UX | **P3** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | **OPEN** |
+| **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
+| **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **PARTIAL** |
+| **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes | **PARTIAL** |
+| **I-01** | Release | **P0** | Shipped Android AAB/APK predated every fix in the report | Anyone installing today gets a product two cycles old | **RESOLVED** |
+| **I-02** | Repo | **P0** | A whole cycle's work was uncommitted when the artefacts were built | A fresh checkout does not contain what was shipped | **RESOLVED** |
+| **I-23** | Strokes | **P0** | The stroke demonstration showed ownership wedges at junctions and a polygonal ㅇ | ㅂ's uprights grew triangular spurs into crossbars that had not been written yet; ㅅ's first stroke grew a chunk of the second one's shoulder; ㅈ chipped into its own fork; ㅇ read as a lumpy ring rather than a circle. A learner watching stroke one of ㅂ could see a piece of stroke three already on the paper. | **RESOLVED** — supersedes I-14 |
+| **I-06** | Word Detail | **P1** | Longer explanations were English-only dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** |
+| **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covered 500 of 2,581 words | Past word 500 a vi/th learner read marked English | **RESOLVED** |
+| **I-08** | Content | **P1** | Entries whose gloss contradicted their own example | 열 read "fever" above a sentence about counting to ten | **RESOLVED** |
+| **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
+| **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
+| **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
 
-**P0: 0 open · P1: 4 · P2: 8 (3 partial, 1 new) · P3: 5**
+<!-- /issues:what -->
 
-**I-21 and I-22 are new this cycle and both were introduced by this cycle's own
-change.** They are in the table for that reason: a patch that removes a feature
-and reports only what it improved is a patch whose report cannot be trusted about
-the next one. Neither was discovered late — both were known while the change was
-being made, and the alternative in each case was worse. See §16.5.
+<!-- issues:counts -->
 
-The two P0s stay in the table with their resolutions rather than being deleted —
-they were the two most repeated findings in this product's history, and a
-resolved row is the only thing that stops the same finding being written a fourth
-time.
+**Open — P0: 0 · P1: 3 · P2: 6 · P3: 3**
 
-**I-14 dropped from eighteen residual stroke intrusions to one**, and moved from
-P2 to P3 with it. **I-17 moved the other way**, from P3 to P2: it is the same
-sentence it always was — no locale has been read by a native speaker — but the
-surface it covers tripled this cycle, and a risk that grows should not keep its
-old severity because its wording did not change.
+**Blocked outside this repository: 1 · Partial: 2 · Resolved: 9**
 
-Two rows are new, and both are honest restatements of a gap rather than
-discoveries. **I-19** is the twenty-two languages with English word meanings;
-what makes it a P1 rather than a P0 is that the product says so on the row in the
-picker *before* the learner chooses the language, which is the difference between
-a limitation and a misrepresentation. **I-20** is the *More about it* block,
-written for 25 words: it is listed because 2,556 word cards end at the example,
-and not listed higher because the alternative it replaced was 784 dictionary
-scrapings and the fix was to delete them.
+<!-- /issues:counts -->
+
+Resolved rows stay in the table rather than being deleted. Two of them — **I-01**
+and **I-02**, the shipped binary predating the fixes, and the cycle's work being
+uncommitted when it was built — are the most repeated findings in this product's
+history, and a resolved row is the only thing that stops the same finding being
+written a fourth time. **I-23** stays for a sharper reason: the previous report
+called the stroke renderer *release quality* and said all 73 items had been
+inspected, and the customer's own screenshots showed that both statements were
+false. §11.2 is about how that happened.
 
 ## 33.2 How to confirm it, and what to do
 
-| ID | Reproduction | Evidence | Likely cause | Recommended fix |
-| --- | --- | --- | --- | --- |
-| **I-01** | was: `ls -la result/*.apk` → 19 Aug, `a7cc604` | the delivered APK contains `capability-probe`, `surface-hover`, `showMoreHint`, `hintLevel`, `nextStep`, `Tiếng Việt`, `ไทย` | artefacts had not been rebuilt since | **done** — see `result/RELEASE_VALIDATION.md` |
-| **I-02** | `git log --oneline -6` | `aaf06bb` … `192bbce` | not committed | **done** — committed before the artefacts were built, in that order |
-| **I-03** | finish the alphabet, look at `/letters` | `HANGYUL_URL` is null in a plain checkout | the URL is not in this repository | set `VITE_HANGYUL_URL` at build time |
-| **I-04** | `vocabulary:qa:check` | "7,419 short of the 10,000 target" | content work unfinished | decide I-05 first, then author |
-| **I-05** | `bundle:budget` | 655.3 kB gz forecast vs 220 kB; precache 854 kB of 900 kB | corpus and every locale pack ship eagerly | chunk the corpus; precache the shell and one locale, cache the rest on use — §13.4 has the costing |
-| **I-06** | open 차 with the interface in Thai | the block renders Thai; `vocabulary:sense:qa` reports 25 in all 10 | — | **done** |
-| **I-07** | set the interface to Vietnamese, open word 600 | `vocabulary.vi.json` has 2,581 non-null rows | — | **done** |
-| **I-08** | open 열, 찍다, 쓰다, 타다, 적다, 전기, 마디 | `vocabulary:sense:qa:check` passes with 11 pins | gloss derived, example authored | **done** — pinned by exact string |
-| **I-09** | run a 10-word sitting | §16.6 | matching spans four words; the plan is per-word | scheduling change, not a screen |
-| **I-10** | 차, 아니면, 이상 in `vocabulary:sense:qa` output | 103 multi-sense glosses listed | glosses authored per language independently | read them; there is no mechanical test — §14.2 |
-| **I-11** | run a 10-word sitting | `soundFree.test.ts` asserts no word candidate needs hearing | — | **done** — the question type it was about no longer exists |
-| **I-21** | My Learning, on a fresh profile | no sound-free control; `sound_free` is still read by `candidates()` and still filters the letter modes | the control was removed with the vocabulary questions it was named after | put a sound-free control on the Hangul side, or restore this one with letter-specific copy in 32 languages |
-| **I-22** | start a first sitting on a fresh profile | `stepsFor('new', i)` alternates `meaning` and `context` | two of four checks were listening | a non-listening third check for new words, if one can be recognition-only |
-| **I-12** | clear site data | §24.6 | consequence of having no account | none — §50 of the brief forbids a customer-facing export |
-| **I-13** | open ten words at random | §14.3 | source coverage, deliberately conservative | accept, or add a second licensed source |
-| **I-14** | `npm run strokes:visual` | 18 findings listed in §11.6 | Y-junctions where two strokes share a start point | improve the claim at shared origins, or accept and keep measuring |
-| **I-15** | play 마디 in the male voice | manifest bytes match the file; on-device check in `qa-native-android.mjs` | TTS artefact | **done** |
-| **I-16** | `npm run audio:listen:fixtures` | 낳다 → 낫다 both voices; at beam 5, 낫타 and 락타, and 마디 → 바티 | probably the decoder, possibly the clip | a person listens; §22.4 says why nothing else settles it |
-| **I-17** | — | `docs/LOCALIZATION_NATIVE_REVIEW.md` | not done | native review before a paid launch |
-| **I-18** | `npm run vocabulary:sense:qa` | 103 listed, per locale | one gloss carrying two senses | split or choose, per entry; it is content work |
-| **I-19** | Open the language picker | Twenty-two rows say "Word meanings in English"; `build-info.json` lists ten complete locales | the packs were never written | a speaker per language, 2,581 lines each. The build merges whatever exists — see `content/vocabulary/copy/` |
-| **I-20** | Open any word card | 25 words have a *More about it* block; 2,556 end at the example | written rather than derived, deliberately | write the top 500, in the ten languages that have meanings |
+<!-- issues:how -->
 
----
+| ID | Evidence | Recommended fix |
+| --- | --- | --- |
+| **I-04** | `vocabulary:qa:check` reports the shortfall against the target. | Decide I-05 first, then author. Authoring into the current delivery model makes I-05 worse. |
+| **I-05** | `bundle:budget` forecasts 663.7 kB gzipped against a 220 kB budget from the measured 68 B/word. Not enforced; gated at 4,000 headwords. | Chunk the corpus by frequency band, split per locale, precache the shell and one locale and cache the rest on use. |
+| **I-19** | Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3. | Complete the shipping vocabulary content for the remaining twenty-two locales. |
+| **I-12** | A consequence of having no account and device-local persistence. §24.6. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
+| **I-13** | `vocabulary:relations:qa`. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
+| **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
+| **I-21** | No sound-free control in My Learning; `candidates()` still reads `sound_free` and still filters the letter modes. | A small per-question fallback on an audio-only letter question — "Can't use audio?" swapping in an equivalent visual recognition question, not revealing the answer and not penalised — rather than restoring a global setting. |
+| **I-24** | Measured: Pretendard sets an isolated ㄱ at 0.53 × 0.42 of the box and eight per cent above its centre. Scaling the glyph to match was implemented and reverted: it scales the glyph's stroke too, from 0.057 of the box to 0.090 against a fixed 0.062 pen, and the robustness corpus went from 0.21% false rejections to 21% — one correct letter in five told it was wrong. See `features/writing/glyphSpec.ts`. | A grading model that does not measure coverage against a stroke the pen cannot fill, then the glyph can be sized for the eye. Its own calibration, not a side effect of a layout change. |
+| **I-25** | Running `npm run strokes:measure` against the current font rewrites 23 of 33 syllables, including ones the current generator's code path cannot reach. The committed file was produced by an earlier version of the script, or against a different build of the face. There is no `--check` variant to have caught it. | Re-derive the measurements, review all 33 by eye against the reference glyph, commit both together, and add `strokes:measure:check` to the release gate the way `jamo:measure:check` now is. |
+| **I-18** | Reported by `vocabulary:sense:qa`; not gated. | One card, one taught sense. Additional senses belong in the Word Detail block, not in the quiz answer. |
+| **I-20** | The alternative was 784 dictionary scrapings, which is why they were deleted. | Write it for the words that need it — polysemous, grammar-heavy, high-frequency functional, culturally specific, easily confused — starting with the top 500. Not a paragraph under every word. |
+| **I-22** | `stepsFor('new', i)` alternates `meaning` and `context`; two of the four checks were listening. | A non-listening third check for new words, if one can be recognition-only. The accepted cost of §16.5. |
+| **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
+| **I-09** | `build` was added; matching is still absent. Matching spans four words and the learning plan is per-word. | A session-level group exercise that can cover several word ids while crediting each word's evidence once. A scheduling change, not a screen. |
+| **I-10** | The eleven known cases are pinned. There is no automated guarantee a twelfth does not exist. | A canonical taught `senseId` per entry that every language's representation derives from. |
+| **I-01** | Rebuilt from the verified commit; markers grepped in both directions out of the delivered package; signing identity compared against the previous artefact. | done |
+| **I-02** | Committed before the build, in that order, this cycle and the two before it. | done |
+| **I-23** | Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at. | done |
+| **I-06** | 25 written words in ten languages; §15.2. | done |
+| **I-07** | 2,581 non-null rows in both. | done |
+| **I-08** | Eleven found, all authored and pinned; `vocabulary:sense:qa:check` passes. | done |
+| **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
+| **I-15** | Regenerated, fixtured, checked on-device. | done |
+| **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
+
+<!-- /issues:how -->
+
+### Where these come from
+
+Every row above is generated from `docs/issues.json`, which is the only place in
+this repository that states an issue's status. `npm run issues:check` fails the
+build if the tables have drifted from it, if the report mentions an id that does
+not exist, or — the one that actually caught things — if a *sentence* anywhere
+else in this document gives an issue a status the source disagrees with.
+
+That last check exists because the previous reports were internally
+contradictory, and not through carelessness: the same fact was written down in
+six places, and six copies of a fact kept in step by hand do not stay in step.
 
 # 34. Recently resolved
 
@@ -2963,10 +2947,10 @@ objects instead of rendered sentences, translation files instead of screens.
 | --- | --- | --- |
 | `verify:quick` | The gate: name, i18n, copy, strokes, **stroke pixels**, vocabulary, relations, sense, tokens, lint, typecheck, unit tests, build, bundle budget, routing | **PASS** |
 | `verify:release` | `verify:quick` plus store, curriculum, fonts, icons, content, examples, audio mapping, coverage, docs consistency | **PASS** |
-| `test` | 651 web unit + 95 handwriting-core | **PASS** |
+| `test` | 652 web unit + 95 handwriting-core | **PASS** |
 | `test:e2e` | 230 Playwright cases (115 × 2 projects) | **PASS**, both projects run in full this cycle |
-| `strokes:qa:check` | 73 items, 269 strokes, 1,345 frames — path validity | **PASS** |
-| **`strokes:visual:check`** | the same 1,345 frames **rasterised and measured** | **PASS**, 1 sub-threshold finding reported |
+| `strokes:qa:check` | 73 items, 269 strokes — geometry, junction classification, curve sampling, markers | **PASS** |
+| **`strokes:visual:check`** | 1,345 frames **rasterised and measured**, then written out as a gallery at 160 px and 96 px | **PASS**, nothing reported |
 | `vocabulary:qa:check` | corpus shape, categories, locales | **PASS** |
 | `vocabulary:relations:qa` | typed, bidirectional, non-dangling relations | **PASS** |
 | `content:qa:check` | editorial pack quality | **PASS**, 4 benign warnings |
@@ -2984,6 +2968,8 @@ objects instead of rendered sentences, translation files instead of screens.
 | `routing:check` | SPA fallback against the built dist | **PASS** |
 | `i18n:check` | translation completeness | **PASS**, **32 locales at 100%** |
 | `docs:consistency:check` | one value per metric across docs | **PASS** |
+| **`issues:check`** | the report's issue tables against `docs/issues.json`, and any sentence elsewhere that contradicts a status | **PASS** |
+| **`jamo:measure:check`** | the per-letter proportions still match the reference face | **PASS** |
 | `tokens:check` | tokens.css matches its source | **PASS** |
 
 `verify:quick` is not the whole gate, and last cycle proved it three times. This
@@ -3012,44 +2998,50 @@ fails on "2,581 headwords — 7,419 short of the 10,000 target", which is I-04
 stated as a build failure rather than as a note. Every other check in it passes.
 A future reader should not read that non-zero exit as a broken suite.
 
-## 36.2 The check that was added, and why it matters more than its findings
+## 36.2 What these gates learned this cycle
 
-`strokes:visual` is new. It rasterises the frames the learner actually sees and
-measures the pixels, where `strokes:qa` validates the path data those frames are
-drawn from.
+Two of them were rewritten, and the reason is the same in both cases: they were
+asking a question whose answer stayed *yes* while the product was wrong.
 
-The distinction is the whole lesson of this cycle. `strokes:qa` passed **73
-items, 269 strokes and 1,345 frames** through every round in which the
-demonstration was visibly broken on screen — not because it was weak, but
-because it was testing the wrong thing. The paths were valid. They were valid
-and wrong.
+`strokes:qa` used to check that no path had a NaN in it, that nothing fell
+outside the box, and that every taught item had an asset. All true of a glyph
+with a visible wedge in it, because a wedge is valid geometry. Most of what it
+contained was defending against what a raster cut could produce — a stroke with
+no ink, a region traced into two islands, a reveal ribbon that did not match its
+outline — and none of that is reachable now. **Checks that can no longer fail
+were deleted rather than left in to look thorough.** What it asserts now is what
+a stroked centreline can still get wrong.
 
-The same pattern held for hints (a unit test on the hint object sees translation
-keys, and key names are what the function returns) and for localisation
-(`i18n:check` audits the translation bundles, and lesson titles are not in
-them). Three green checks, three shipped defects, one shape of mistake:
-**measuring the artefact one level away from the thing that can be wrong.**
+`strokes:visual` used to enforce an invariant about *ownership*: ink beyond the
+end of stroke *i*'s route must not fall inside stroke *j*'s body, for later *j*.
+That is a sound statement about a correct cut and silent about a cut whose
+regions are disjoint by construction — which they were. It could never fire on
+the thing that was wrong. It now measures what a dash-revealed path can get
+wrong: a stroke that draws nothing, ink that does not arrive in step with its
+fraction, ink that shrinks, ink at the edge of the box, a marker off its own
+start, a final frame that is not the union of its strokes.
 
-## 36.3 What the tests still do not cover
+**And then it writes the gallery and stops.** Both sizes, 160 px and the 96 px a
+phone actually draws, because the reported defect was seen on an Android browser
+and a desktop-sized review of a phone-sized picture is a different question. The
+last line it prints is that pixels cannot tell you whether ㅅ looks like ㅅ.
 
-* **No human usability testing.** Recorded as a blocker in
-  `result/BUILD_OR_SIGNING_BLOCKERS.md`.
-* **No screen-reader walkthrough.**
-* **No native-speaker review of any of the thirty-two interfaces**, including
-  Korean. See `docs/LOCALIZATION_NATIVE_REVIEW.md`, whose first paragraph says
-  so and whose tables do not soften it.
-* **Word meanings in twenty-two languages are English**, marked and stated but
-  not written. §23.3.
-* **"Does this look right" is still a human judgement.** The pixel QA decides
-  what to look at first; the gallery of all 73 items is for looking at, and was
-  looked at.
-* **Search and corpus performance are untested at the 10,000-word target.**
-* **Nothing tests whether a hint is *useful*.** The suite proves it is not the
-  answer. Whether "It's a verb — something in Everyday Actions" helps anybody is
-  not a machine-checkable property, and against four verb options it plainly
-  helps less than it looks.
+### The gate that stops the report drifting
 
----
+`issues:check` is new and it is not about the product. `docs/issues.json` is now
+the only place an issue's status is written down; the report's tables are
+generated from it, and the check fails if a *sentence* anywhere else contradicts
+one. It found two things on its first run: a quick-wins table whose every row
+referenced an issue that no longer meant what the row said, and a scorecard line
+calling 낳다 unresolved two hundred lines after the table said otherwise.
+
+### A test that measures a recording
+
+`check_contrasts` in `qa_pronunciation.py` decodes the shipped clips for a
+minimal pair and compares the stop closure and the release energy. It exists
+because a recogniser is not a normative judge of a recording, and because
+"somebody should listen to it" had been the recommended fix for three cycles. It
+was verified by asserting the pair in the wrong direction and watching it fail.
 
 # 37. Product scorecard
 
@@ -3070,13 +3062,13 @@ since the last report.
 | Review | **9/10** = | Per-skill memory, interleaving, measured against a baseline, counts that cannot lie |
 | Saved Words | **8/10** = | Search, three orderings, its own review plan |
 | Wrong Answer Notebook | **7/10** = | One row per item, recovery rule, retry. Does not explain *why* |
-| Audio / pronunciation | **9/10** = | 10,454 clips, two voices, 503 sound-change notes, and the written notation is now Revised Romanization taken from the same standard pronunciation the audio is — so they cannot disagree. One recogniser disagreement stands unresolved and is stated as unknown (I-16) |
+| Audio / pronunciation | **9/10** = | 10,454 clips, two voices, 503 sound-change notes, and the written notation is now Revised Romanization taken from the same standard pronunciation the audio is — so they cannot disagree. The one recogniser disagreement that stood open for three cycles is settled — the 낳다 recordings were measured against their minimal pair rather than transcribed, and they are right (I-16) |
 | Localization | **8/10** = | Thirty-two languages at 100% UI and 100% of the alphabet course, right-to-left working as behaviour rather than as strings. Flat, not up: word meanings reach ten of the thirty-two (I-19), none of it has been read by a native speaker (I-17), and four more bodies of content turned out to be English under a green coverage report |
 | Progress / persistence | **9/10** = | Eight stores, migrations, corrupt-row recovery, six e2e cases, persistence now requested. No export (I-12) |
 | Web reliability | **9/10** = | Every route survives refresh, fresh tab and offline |
 | Mobile UX | **8/10** = | Safe-area suite, pinned actions, 44 px targets, one-screen lesson |
 | Visual polish | **8/10** = | Coherent tokens, both themes audited, no placeholder content |
-| Accessibility | **6/10** = | Focus, keyboard, semantics, skip link. The listening fallback exists but is scored as a reveal (I-11); no screen-reader pass |
+| Accessibility | **6/10** = | Focus, keyboard, semantics, skip link. Vocabulary no longer has a listening question to accommodate (I-11); the **letter** exercises still do and the control that skipped them is gone (I-21). No screen-reader pass |
 | Performance | **8/10** ▲ | Every budget met with room: first load 84%, precache 55% — both **fell** while the language count tripled, because the last per-language content moved off the critical path. The corpus target still breaks the forecast (I-05) |
 | Paid-product value | **5/10** = | Sound engineering, thin content, one genuine differentiator (§30.3) |
 
@@ -3118,124 +3110,75 @@ are now fetched for the one language the learner reads.
 
 ---
 
-# 39. Top 10 product problems
+# 39. What is left, in the order it is worth doing
 
-Ranked by customer impact × paid-app perception × learning effectiveness ×
-frequency — not by ease of fixing.
+This used to be four sections — a top ten, a must-fix-before-a-paid-release, a
+should-fix-after, and a quick-wins table. All four were restatements of the same
+list in §33, all four had to be re-derived by hand every cycle, and all four had
+drifted. The quick-wins table had drifted furthest: by the last report every
+single id in it referred to an issue that no longer meant what its row said —
+"translate the one missing i18n key (I-14)" against an I-14 that was a stroke
+overlap, "regenerate the 마디 clip (I-13)" against an I-13 that was lexical
+relations. Nobody had been careless. The list had simply been copied forward
+while the ids underneath it moved.
 
-1. **The funnel is built and switched off (I-03).** One environment variable
-   stands between a dead end and the product's stated purpose, and the product is
-   named after the thing on the other side of it.
-2. **The corpus is a quarter of its promise (I-04)** — and the delivery path for
-   the rest is unsolved (I-05), now saying so from two directions.
-3. **Word meanings exist in ten of thirty-two languages (I-19).** The picker says
-   so before the learner chooses, which is the difference between a limitation
-   and a misrepresentation — and it is still twenty-two languages reading English
-   word cards inside a fully translated app.
-4. **The vocabulary loop is still recognition-on-a-card (I-09).** Better than it
-   was, and not yet varied in the way that changes retention.
-5. **No locale has ever been read by a native speaker (I-17)**, including the
-   Korean the product teaches in — now across thirty-two interfaces rather than
-   ten, which is why it moved from P3 to P2.
-6. **One cleared browser still destroys everything (I-12).** Persistence is now
-   requested, which reduces eviction and does nothing about deletion.
-7. **The dictionary is thin (I-13, I-20).** 243 words of 2,581 carry a verified
-   relation and 25 carry a written explanation. Both numbers are honest and both
-   are small.
-8. **Listening questions still have no first-class text alternative (I-11).**
-   The reveal rung works and is scored as giving up.
-9. **The 낳다 recogniser disagreement is unresolved (I-16)**, and is recorded as
-   unknown rather than guessed at.
-10. **103 glosses carry more than one sense in some language (I-18).** Reported,
-    not gated, and the kind of thing that reads as carelessness on a card.
+So there is one list, generated from `docs/issues.json`, ordered by severity and
+then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 
-The two entries that headed this list in the last three reports — a stale shipped
-build and an uncommitted cycle — are gone from it for the second cycle running.
-That is the only place in this report where the *absence* of a line is the
-finding.
+<!-- issues:next -->
 
----
+| ID | What | Why it matters | Effort |
+| --- | --- | --- | --- |
+| **I-04** | 2,581 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
+| **I-05** | The corpus at 10,000 words is three times the bundle budget | The delivery architecture cannot carry the stated plan | MEDIUM — chunking and a cache policy |
+| **I-19** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | HIGH (content) — 22 locales × 2,581 words |
+| **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
+| **I-13** | 243 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
+| **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
+| **I-21** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | LOW–MEDIUM — one per-question fallback, in 32 languages |
+| **I-24** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about half the writing square while the demonstration below it fills 0.84 of its own. Same letter, two sizes, one screen. | MEDIUM–HIGH — a grading recalibration with its own corpus run |
+| **I-25** | `composition.json` cannot be reproduced by its own generator | None directly — the committed measurements are good, and the syllables built from them were read by eye this cycle. The risk is that nobody can tell whether a future regeneration is a correction or a regression. | LOW–MEDIUM — re-measure, then read 33 syllables by eye |
+| **I-18** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" on a beginner's card | MEDIUM (content) |
+| **I-20** | The *More about it* block is written for 25 words | The other 2,556 word cards end at the example | HIGH (content) — start at the top 500 |
+| **I-22** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | MEDIUM — a third non-listening check for new words |
+| **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
+| **I-09** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | MEDIUM — a session-level exercise concept, not a screen |
+| **I-10** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes | MEDIUM (content) — a senseId per entry |
 
-# 40. Must fix before a paid release
+<!-- /issues:next -->
 
-## P0 — genuine blockers
+## 39.1 The three that decide whether this is sellable
 
-| Item | Why it blocks | Expected impact |
-| --- | --- | --- |
-| ~~I-02 · Commit this cycle~~ | **Done** — `e49c28b` | a checkout is no longer a regression |
-| ~~I-01 · Rebuild and re-sign the release artefacts~~ | **Done** — built from `e49c28b`, fifteen markers grepped out of the delivered APK in both directions, same signing identity | every fix in §34 reaches a customer who installs |
+Reading the table top-down gives the order. Reading it as a *product* gives three:
 
-They were done in that order for a reason, and it is the reason this P0 kept
-recurring: rebuilding from a dirty tree packages the old geometry and the old
-hints and produces a signed artefact that *looks* current. That is worse than a
-stale one, because nothing about it says so.
+**I-03 — the funnel is built and switched off.** This product's stated reason to
+exist is to hand a beginner to the main Hangyul product once they can read. The
+card and the row are built, tested and rendering nothing, because the destination
+is not in this repository and guessing it would ship a card that leads nowhere.
+This is one environment variable away from working and cannot be closed from
+here. It is the single external blocker in this report.
 
-**There are no open P0s.** The next release blocker will be whatever the next
-cycle leaves uncommitted, which is the same failure wearing a different date —
-so `build-info.json` records the commit, `RELEASE_VALIDATION.md` carries a table
-of markers grepped out of the delivered bundle, and this cycle that table checks
-both directions: ten strings that must be in the package and five that must be
-gone from it.
+**I-04 with I-05 — the corpus is a quarter of its promise, and the way to deliver
+the rest does not exist yet.** These are one problem written twice, and the order
+matters: authoring 7,419 more words into the current eager delivery model makes
+I-05 worse rather than better. The architecture comes first.
 
-## P1 — release-quality, not release-blocking
+**I-19 — word meanings reach ten of thirty-two languages.** Twenty-two languages
+read a fully translated interface with English word cards. What keeps it a
+limitation rather than a misrepresentation is that the language picker says so on
+the row, before the learner chooses.
 
-| Item | Why | Expected impact |
-| --- | --- | --- |
-| **I-03 · Set `VITE_HANGYUL_URL`** | The product's stated reason to exist | Turns a dead end into the funnel it is named for. One variable |
-| **I-06 · Explanations in every language, top 500 words** | The dictionary is the credibility claim | Removes the "why is my language worse" gap |
-| ~~I-07 · Finish Vietnamese and Thai vocabulary~~ | **Done** last cycle — 2,581 of 2,581 in both | — |
-| ~~I-08 · Pin one taught sense per entry~~ | **Done** — eleven pinned by exact string | — |
-| **I-09 · One genuinely new vocabulary interaction** | Monotony is the top churn risk | Layout variety was the cheap half; this is the half that changes the rhythm |
-| **I-19 · Word meanings for the twenty-two new languages** | The picker says "Word meanings in English" on twenty-two of thirty-two rows, which is honest and is still a gap | ~57,000 lines. Needs a speaker per language, not a pipeline — the pipeline exists and merges whatever is written |
-| **I-17 · Native review, any language** | Thirty-two interfaces, none read by a native speaker | The one claim this product cannot make and has never made. See `LOCALIZATION_NATIVE_REVIEW.md` |
+## 39.2 What was deliberately not done
 
-**I-04 and I-05 are deliberately *not* release blockers.** 2,581 words is a
-usable product, and shipping it while the corpus grows is reasonable —
-**provided the marketing does not claim 10,000.** If it does, I-04 becomes P0.
+**I-12, no export.** A developer-style JSON export was built once and rejected.
+Device-local persistence without an account means clearing site data destroys the
+history, and the answer is to make that unlikely — IndexedDB kept robust,
+persistent storage requested, migrations tested — rather than to hand a learner a
+file to look after and warn them about it.
 
-# 41. Should fix after release, and nice to have
-
-## Should fix
-
-| Item | Note |
-| --- | --- |
-| I-05 · Corpus delivery mechanism | Must be decided **before** authoring more words, or the work is done twice |
-| I-09 · Text alternative for listening questions | Accessibility, and cheap |
-| I-10 · Export + persistent-storage request | Insurance against the one irrecoverable failure |
-| I-08 · Sense alignment across glosses | A content pass over polysemous headwords |
-| I-17 · Native review of any interface | Before any marketing push into that market — thirty-two now, none reviewed |
-
-## Nice to have
-
-* Explaining *why* a notebook answer was wrong (§20.1).
-* Gamification beyond streak and calendar — but see the caution below.
-* A second relation source to lift the 243-word coverage.
-
-**A caution on gamification.** The product's restraint is currently a feature: no
-ads, no gems, no nagging. Adding Duolingo-style mechanics would compete on the
-one axis where it cannot win. The monotony problem (I-07) is better solved with
-*interaction variety* than with *reward variety*.
-
----
-
-# 42. Quick wins
-
-High customer impact, low effort. Effort is an engineering estimate, not a
-promise.
-
-| Win | Impact | Effort |
-| --- | --- | --- |
-| Translate the one missing i18n key (I-14) | Removes an English word from four languages | **LOW** |
-| One line of purpose on first launch (I-12) | First-run comprehension | **LOW** |
-| Fix the APK/AAB filename in the docs checker (I-15) | Two figures start being verified | **LOW** |
-| Regenerate the 마디 clip (I-13) | One word stops being wrong | **LOW** |
-| Request persistent storage after lesson 1 (I-10, partial) | Materially reduces data-loss risk | **LOW** |
-| "You've finished the alphabet" card linking to Hangyul (I-03, partial) | Implements the funnel's exit | **LOW–MEDIUM** |
-| Show the word as a hint on listening questions (I-09) | Accessibility | **MEDIUM** |
-| One new vocabulary interaction (I-07) | Churn | **MEDIUM–HIGH** |
-| Explanations for the top 500 words × 10 languages (I-06) | Dictionary credibility | **HIGH** (content) |
-
----
+**I-13, sparse lexical relations.** 243 of 2,581 words carry a verified synonym or
+antonym, and the rest show nothing. Sparse trustworthy data is not a defect.
+Filling the gap with invented "similar words" would be.
 
 # 43. ChatGPT handoff brief
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { ALL_CHARACTERS, getCharacterByGlyph } from './characters';
-import { composeSyllableStrokes, paperRegion, syllableLayout } from './compose';
+import { composeSyllableStrokes, paperRegion, syllableLayout, hasRoundStroke } from './compose';
 import { branchesLeft, toJamo } from './jamo';
 import { STROKE_ORDER } from './strokes';
 
@@ -125,14 +125,17 @@ describe('syllable composition', () => {
   });
 
   it('draws ㅇ as a circle a learner reads as round, not as a polygon', () => {
-    // ㅇ is a polyline like every other stroke, so the point count *is* the
-    // resolution of the curve. At twelve points it read as a visible dodecagon
-    // on the 어 screen. What matters is not the count but the corner it
-    // leaves: the angle the pen turns through from one segment to the next,
-    // which at this size has to stay under what an eye can pick out.
+    // ㅇ is drawn from four cubic segments, and the polyline here is a sample
+    // of them — so this is not checking the curve, which is exact, but that the
+    // sample the grader and the marker layout read is fine enough to stand in
+    // for it. The measure is the corner it leaves: the angle the pen turns
+    // through from one segment to the next, which has to stay under what an eye
+    // can pick out at this size.
     for (const syllable of ['어', '아', '오', '우', '이', '으', '안', '강', '공']) {
       const strokes = composeSyllableStrokes(syllable);
-      const round = strokes.find((s) => s.points.length > 8);
+      // The ring, not merely the finely-sampled stroke: ㄱ is a curve too now,
+      // and asking for point count instead handed this ㄱ's square corner.
+      const round = strokes.find((s) => hasRoundStroke([s]));
       expect(round, syllable).toBeDefined();
       let sharpest = 0;
       for (let i = 2; i < round!.points.length; i += 1) {
@@ -161,7 +164,7 @@ describe('syllable composition', () => {
         const scaleX = (drawn.right - drawn.left) / (own.right - own.left);
         const scaleY = (drawn.bottom - drawn.top) / (own.bottom - own.top);
         const distortion = Math.max(scaleX / scaleY, scaleY / scaleX);
-        const round = STROKE_ORDER[part.jamo]!.some((s) => s.points.length > 8);
+        const round = hasRoundStroke(STROKE_ORDER[part.jamo]!);
         expect(distortion, `${character.character} ${part.jamo}`).toBeLessThanOrEqual(
           (round ? 1.8 : 2.9) + 1e-9,
         );

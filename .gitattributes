@@ -1,0 +1,34 @@
+# Line endings.
+#
+# Every source file in this repository is stored with LF, whatever the machine
+# it was edited on uses. Without this, working on WSL — where a Windows editor
+# or a checkout with `core.autocrlf=true` can rewrite a file's endings without
+# changing a character of it — produces a diff that looks like the whole
+# repository has been rewritten.
+#
+# It is not a tidiness rule. The last release had 435 files "modified" that
+# differed from HEAD by nothing but their line endings, and 44 that carried the
+# actual work. A 98,000-line diff with the real change buried in it cannot be
+# reviewed, and the release discipline this project keeps failing at starts with
+# being able to read what is about to be committed.
+* text=auto eol=lf
+
+# Binaries, left exactly as they are.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.svg text eol=lf
+*.mp3 binary
+*.mp4 binary
+*.mov binary
+*.woff binary
+*.woff2 binary
+*.otf binary
+*.ttf binary
+*.pdf binary
+*.apk binary
+*.aab binary
+*.jar binary
+*.keystore binary

@@ -77,6 +77,7 @@ const NotFoundPage = lazy(() =>
 );
 import { useLearner } from './store/LearnerContext';
 import { LearnerProvider } from './store/LearnerProvider';
+import { LaunchSplash } from './ui/LaunchSplash';
 import { AppShell } from './ui/AppShell';
 import { SystemBack } from './ui/SystemBack';
 import { BottomNavigation } from './ui/BottomNavigation';
@@ -167,6 +168,10 @@ export function App() {
     <LearnerProvider>
       <LearnerScopedProviders>
         <DocumentMetadata />
+        {/* Above the router, so it covers the app whatever route was opened —
+            a cold start, a refresh in the middle of a lesson, or a shared link
+            straight to a word. See `ui/LaunchSplash`. */}
+        <LaunchSplash />
         <BrowserRouter>
           <SkipLink />
           {/* The phone's Back button, which means something different from the

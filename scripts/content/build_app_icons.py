@@ -66,9 +66,28 @@ IOS_ASSETS = ROOT / "apps" / "mobile" / "ios" / "App" / "App" / "Assets.xcassets
 #: and installable icon is built from this and from nothing else.
 APP_ICON_SOURCE = BRAND / "app-icon.png"
 
-#: The brand mark on its own. The splash screen and the browser favicon are
-#: built from this — see the note above on why they are not the app icon.
+#: The brand mark on its own. The browser favicon is built from this — see the
+#: note above on why it is not the app icon.
 MARK_SOURCE = BRAND / "logo-symbol.png"
+
+#: The launch screen, which is frame zero of the brand splash animation.
+#:
+#: Not the mark on a plain ground, which is what this used to draw. The app
+#: plays the animation itself once the WebView is up (`ui/LaunchSplash`), and the
+#: native launch screen is what the learner looks at until then — so the two have
+#: to be the same picture at the same moment, or the handover is a cut from one
+#: brand screen to a different one.
+#:
+#: Frame zero is nearly empty: the ground and one soft circle, no wordmark. That
+#: is what makes it usable here. The artwork carries Korean or English copy from
+#: about a second in, and a native launch screen cannot know which language the
+#: learner has chosen — it runs before any of the app's code does. Handing over
+#: on the frame that has no words in it means there is nothing to get wrong.
+#:
+#: Extracted from `한귤스플래시_한글.mp4` with
+#: `ffmpeg -i <source> -vframes 1 handoff-frame.png` and committed, so this
+#: script needs no video decoder.
+SPLASH_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "handoff-frame.png"
 
 #: `warm.50` from the design tokens. Kept in sync by `--check` failing loudly if
 #: the tokens move: the icons are regenerated, not patched.
@@ -99,8 +118,13 @@ MASKABLE_SAFE_FRACTION = 0.64
 #: becomes a black blob. See `_monochrome`.
 MONOCHROME_INK_MAX = 215
 
-#: How much of the splash the mark occupies, against the shorter screen edge.
-SPLASH_FRACTION = 0.36
+#: The ground of the splash artwork, sampled from a corner of frame zero.
+#:
+#: Not `warm.50`. It is `splashGround` in the design tokens and `backgroundColor`
+#: under `SplashScreen` in `capacitor.config.ts`, and all three have to agree —
+#: it is what shows in the sliver the cover crop cannot fill on an unusual
+#: aspect ratio, and a different shade there is a visible edge.
+SPLASH_GROUND = (255, 246, 233, 255)
 
 #: Launcher icon sizes, in px, by Android density bucket.
 ANDROID_DENSITIES = {
@@ -171,6 +195,28 @@ def _monochrome(mark: Image.Image) -> Image.Image:
     silhouette = Image.new("RGBA", mark.size, (0, 0, 0, 255))
     silhouette.putalpha(ink)
     return silhouette
+
+
+def _cover(art: Image.Image, size: tuple[int, int],
+           ground: tuple[int, int, int, int]) -> Image.Image:
+    """`art` scaled to cover `size` and centre-cropped to it.
+
+    The same thing Android's ``CENTER_CROP`` scale type does, done here so the
+    bitmap that ships is the one that was looked at rather than whatever the
+    device decides to do with a differently-shaped one. `ground` fills the
+    canvas first, so a rounding error at an edge is the splash's own colour.
+    """
+    width, height = size
+    scale = max(width / art.width, height / art.height)
+    scaled = art.resize(
+        (max(1, round(art.width * scale)), max(1, round(art.height * scale))),
+        Image.LANCZOS,
+    )
+    left = (scaled.width - width) // 2
+    top = (scaled.height - height) // 2
+    canvas = Image.new("RGBA", size, ground)
+    canvas.alpha_composite(scaled.crop((left, top, left + width, top + height)))
+    return canvas
 
 
 def _centred(mark: Image.Image, size: tuple[int, int], fraction: float,
@@ -253,9 +299,10 @@ def build() -> dict[Path, bytes]:
         files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_monochrome.png"] = _png(themed)
 
     # --- Android legacy splash ----------------------------------------------
+    splash_art = Image.open(SPLASH_SOURCE).convert("RGBA")
     for directory, size in ANDROID_SPLASH.items():
         files[ANDROID_RES / directory / "splash.png"] = _png(
-            _centred(mark, size, SPLASH_FRACTION, GROUND)
+            _cover(splash_art, size, SPLASH_GROUND)
         )
 
     # --- iOS -----------------------------------------------------------------
@@ -270,7 +317,7 @@ def build() -> dict[Path, bytes]:
 
     # iOS draws one splash asset scaled to the device, so it is square and large
     # enough for the biggest iPad in either orientation.
-    splash = _png(_centred(mark, (2732, 2732), SPLASH_FRACTION * 0.6, GROUND))
+    splash = _png(_cover(splash_art, (2732, 2732), SPLASH_GROUND))
     for name in ("splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"):
         files[IOS_ASSETS / "Splash.imageset" / name] = splash
 
@@ -331,7 +378,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    for source in (APP_ICON_SOURCE, MARK_SOURCE):
+    for source in (APP_ICON_SOURCE, MARK_SOURCE, SPLASH_SOURCE):
         if not source.exists():
             print(f"source artwork missing: {source}", file=sys.stderr)
             return 1
@@ -360,7 +407,7 @@ def main() -> int:
         path.write_bytes(data)
     print(
         f"wrote {len(files)} icon, splash and favicon files "
-        f"from {APP_ICON_SOURCE.name} and {MARK_SOURCE.name}"
+        f"from {APP_ICON_SOURCE.name}, {MARK_SOURCE.name} and {SPLASH_SOURCE.name}"
     )
     return 0
 

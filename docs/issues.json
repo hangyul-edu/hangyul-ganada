@@ -1,0 +1,277 @@
+{
+  "_comment": "The single source of truth for what is wrong with Hangyul ganada. Hand-edited; docs/report.md's issue tables are GENERATED from this by scripts/build-issues.mjs, and `npm run issues:check` fails the build if they have drifted or if any prose elsewhere in the report contradicts a status here. Nothing else in the repository may state an issue's status, and no other table may restate the list — the report's what/how/next tables and its counts are all generated from here.",
+  "statuses": {
+    "OPEN": "Not fixed. The customer can still meet it.",
+    "PARTIAL": "The common case is fixed and a real one is not.",
+    "RESOLVED": "Fixed, with evidence a reader can re-run.",
+    "BLOCKED": "Cannot be fixed from this repository. The blocker is named."
+  },
+  "severities": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "issues": [
+    {
+      "id": "I-01",
+      "area": "Release",
+      "severity": "P0",
+      "status": "RESOLVED",
+      "summary": "Shipped Android AAB/APK predated every fix in the report",
+      "customerImpact": "Anyone installing today gets a product two cycles old",
+      "evidence": "Rebuilt from the verified commit; markers grepped in both directions out of the delivered package; signing identity compared against the previous artefact.",
+      "recommendedFix": "done",
+      "keepResolved": "One of the two most repeated findings in this product's history. The row stays so the finding is not written a fourth time."
+    },
+    {
+      "id": "I-02",
+      "area": "Repo",
+      "severity": "P0",
+      "status": "RESOLVED",
+      "summary": "A whole cycle's work was uncommitted when the artefacts were built",
+      "customerImpact": "A fresh checkout does not contain what was shipped",
+      "evidence": "Committed before the build, in that order, this cycle and the two before it.",
+      "recommendedFix": "done",
+      "keepResolved": "The other most-repeated finding. Same reason."
+    },
+    {
+      "id": "I-23",
+      "area": "Strokes",
+      "severity": "P0",
+      "status": "RESOLVED",
+      "summary": "The stroke demonstration showed ownership wedges at junctions and a polygonal ㅇ",
+      "customerImpact": "ㅂ's uprights grew triangular spurs into crossbars that had not been written yet; ㅅ's first stroke grew a chunk of the second one's shoulder; ㅈ chipped into its own fork; ㅇ read as a lumpy ring rather than a circle. A learner watching stroke one of ㅂ could see a piece of stroke three already on the paper.",
+      "evidence": "Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at.",
+      "recommendedFix": "done",
+      "supersedes": "I-14",
+      "note": "The previous report called the stroke renderer RELEASE QUALITY and said all 73 items had been visually inspected. Both statements were false, and the customer's screenshots showed it. See §11.2."
+    },
+    {
+      "id": "I-03",
+      "area": "Product",
+      "severity": "P1",
+      "status": "BLOCKED",
+      "summary": "The Hangyul hand-off is built but has no destination",
+      "customerImpact": "A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere.",
+      "evidence": "`HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination.",
+      "recommendedFix": "Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`.",
+      "blocker": "The value is not in this repository and must not be guessed.",
+      "effort": "LOW — one environment variable, once the value exists"
+    },
+    {
+      "id": "I-04",
+      "area": "Vocabulary",
+      "severity": "P1",
+      "status": "OPEN",
+      "summary": "2,581 of a stated 10,000 words",
+      "customerImpact": "Buyers compare corpus size",
+      "evidence": "`vocabulary:qa:check` reports the shortfall against the target.",
+      "recommendedFix": "Decide I-05 first, then author. Authoring into the current delivery model makes I-05 worse.",
+      "effort": "HIGH (content)"
+    },
+    {
+      "id": "I-05",
+      "area": "Performance",
+      "severity": "P1",
+      "status": "OPEN",
+      "summary": "The corpus at 10,000 words is three times the bundle budget",
+      "customerImpact": "The delivery architecture cannot carry the stated plan",
+      "evidence": "`bundle:budget` forecasts 663.7 kB gzipped against a 220 kB budget from the measured 68 B/word. Not enforced; gated at 4,000 headwords.",
+      "recommendedFix": "Chunk the corpus by frequency band, split per locale, precache the shell and one locale and cache the rest on use.",
+      "effort": "MEDIUM — chunking and a cache policy"
+    },
+    {
+      "id": "I-24",
+      "area": "Handwriting",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "The traced guide is smaller than the demonstration for a single letter",
+      "customerImpact": "On a letter lesson the grey glyph a learner traces fills about half the writing square while the demonstration below it fills 0.84 of its own. Same letter, two sizes, one screen.",
+      "evidence": "Measured: Pretendard sets an isolated ㄱ at 0.53 × 0.42 of the box and eight per cent above its centre. Scaling the glyph to match was implemented and reverted: it scales the glyph's stroke too, from 0.057 of the box to 0.090 against a fixed 0.062 pen, and the robustness corpus went from 0.21% false rejections to 21% — one correct letter in five told it was wrong. See `features/writing/glyphSpec.ts`.",
+      "recommendedFix": "A grading model that does not measure coverage against a stroke the pen cannot fill, then the glyph can be sized for the eye. Its own calibration, not a side effect of a layout change.",
+      "effort": "MEDIUM–HIGH — a grading recalibration with its own corpus run"
+    },
+    {
+      "id": "I-25",
+      "area": "Build",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "`composition.json` cannot be reproduced by its own generator",
+      "customerImpact": "None directly — the committed measurements are good, and the syllables built from them were read by eye this cycle. The risk is that nobody can tell whether a future regeneration is a correction or a regression.",
+      "evidence": "Running `npm run strokes:measure` against the current font rewrites 23 of 33 syllables, including ones the current generator's code path cannot reach. The committed file was produced by an earlier version of the script, or against a different build of the face. There is no `--check` variant to have caught it.",
+      "recommendedFix": "Re-derive the measurements, review all 33 by eye against the reference glyph, commit both together, and add `strokes:measure:check` to the release gate the way `jamo:measure:check` now is.",
+      "effort": "LOW–MEDIUM — re-measure, then read 33 syllables by eye"
+    },
+    {
+      "id": "I-06",
+      "area": "Word Detail",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Longer explanations were English-only dictionary scrapings",
+      "customerImpact": "Non-English learners never saw the block; English learners read \"phylum\" under 문",
+      "evidence": "25 written words in ten languages; §15.2.",
+      "recommendedFix": "done"
+    },
+    {
+      "id": "I-07",
+      "area": "Vocabulary",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Vietnamese and Thai vocabulary covered 500 of 2,581 words",
+      "customerImpact": "Past word 500 a vi/th learner read marked English",
+      "evidence": "2,581 non-null rows in both.",
+      "recommendedFix": "done"
+    },
+    {
+      "id": "I-08",
+      "area": "Content",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Entries whose gloss contradicted their own example",
+      "customerImpact": "열 read \"fever\" above a sentence about counting to ten",
+      "evidence": "Eleven found, all authored and pinned; `vocabulary:sense:qa:check` passes.",
+      "recommendedFix": "done"
+    },
+    {
+      "id": "I-09",
+      "area": "Vocabulary UX",
+      "severity": "P2",
+      "status": "PARTIAL",
+      "summary": "No matching exercise; production is tiles, not a keyboard",
+      "customerImpact": "Vocabulary still feels mostly like recognition on cards",
+      "evidence": "`build` was added; matching is still absent. Matching spans four words and the learning plan is per-word.",
+      "recommendedFix": "A session-level group exercise that can cover several word ids while crediting each word's evidence once. A scheduling change, not a screen.",
+      "effort": "MEDIUM — a session-level exercise concept, not a screen"
+    },
+    {
+      "id": "I-10",
+      "area": "Content",
+      "severity": "P2",
+      "status": "PARTIAL",
+      "summary": "Korean and English glosses describe different senses for some polysemous words",
+      "customerImpact": "The meaning changes when the interface language changes",
+      "evidence": "The eleven known cases are pinned. There is no automated guarantee a twelfth does not exist.",
+      "recommendedFix": "A canonical taught `senseId` per entry that every language's representation derives from.",
+      "effort": "MEDIUM (content) — a senseId per entry"
+    },
+    {
+      "id": "I-11",
+      "area": "Accessibility",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Vocabulary listening questions relied on the hint ladder for a text alternative",
+      "customerImpact": "Usable, but scored as a reveal rather than as an accommodation",
+      "evidence": "There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21.",
+      "recommendedFix": "done"
+    },
+    {
+      "id": "I-21",
+      "area": "Accessibility",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "`sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone",
+      "customerImpact": "A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured.",
+      "evidence": "No sound-free control in My Learning; `candidates()` still reads `sound_free` and still filters the letter modes.",
+      "recommendedFix": "A small per-question fallback on an audio-only letter question — \"Can't use audio?\" swapping in an equivalent visual recognition question, not revealing the answer and not penalised — rather than restoring a global setting.",
+      "effort": "LOW–MEDIUM — one per-question fallback, in 32 languages"
+    },
+    {
+      "id": "I-22",
+      "area": "Vocabulary UX",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "A beginner's first sitting alternates two question layouts rather than four",
+      "customerImpact": "Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`.",
+      "evidence": "`stepsFor('new', i)` alternates `meaning` and `context`; two of the four checks were listening.",
+      "recommendedFix": "A non-listening third check for new words, if one can be recognition-only. The accepted cost of §16.5.",
+      "effort": "MEDIUM — a third non-listening check for new words"
+    },
+    {
+      "id": "I-12",
+      "area": "Persistence",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "No export: clearing site data destroys the history irrecoverably",
+      "customerImpact": "A learner who clears browser data loses everything",
+      "evidence": "A consequence of having no account and device-local persistence. §24.6.",
+      "recommendedFix": "None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it.",
+      "effort": "NONE — closed by decision"
+    },
+    {
+      "id": "I-13",
+      "area": "Relations",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "243 of 2,581 words carry any verified lexical relation",
+      "customerImpact": "Synonym and antonym sections rarely appear",
+      "evidence": "`vocabulary:relations:qa`.",
+      "recommendedFix": "Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be.",
+      "effort": "NONE unless a conservative source appears"
+    },
+    {
+      "id": "I-15",
+      "area": "Audio",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "마디 was mispronounced in one voice",
+      "customerImpact": "One word sounded wrong",
+      "evidence": "Regenerated, fixtured, checked on-device.",
+      "recommendedFix": "done"
+    },
+    {
+      "id": "I-16",
+      "area": "Audio",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "The recogniser screen reported 낳다 as 낫다 in both voices",
+      "customerImpact": "None — the recordings are correct. The open question was the defect.",
+      "evidence": "The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round.",
+      "recommendedFix": "done — the recogniser is not a normative judge of a clip and no longer gates this word."
+    },
+    {
+      "id": "I-17",
+      "area": "i18n copy",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "No locale has been reviewed by a native speaker, across 32 interfaces",
+      "customerImpact": "Unknown awkwardness in thirty-one languages, and in Korean",
+      "evidence": "`docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled.",
+      "recommendedFix": "Native review. Nothing automated substitutes for it, and no document here may claim it has happened.",
+      "effort": "HIGH (people, not engineering)"
+    },
+    {
+      "id": "I-18",
+      "area": "Content",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "103 glosses carry more than one sense in some language",
+      "customerImpact": "차 is \"a car, or the tea you drink\" on a beginner's card",
+      "evidence": "Reported by `vocabulary:sense:qa`; not gated.",
+      "recommendedFix": "One card, one taught sense. Additional senses belong in the Word Detail block, not in the quiz answer.",
+      "effort": "MEDIUM (content)"
+    },
+    {
+      "id": "I-19",
+      "area": "Vocabulary",
+      "severity": "P1",
+      "status": "OPEN",
+      "summary": "Word meanings exist in ten of the thirty-two interface languages",
+      "customerImpact": "Twenty-two languages read a fully translated app with English word cards",
+      "evidence": "Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3.",
+      "recommendedFix": "Complete the shipping vocabulary content for the remaining twenty-two locales.",
+      "effort": "HIGH (content) — 22 locales × 2,581 words"
+    },
+    {
+      "id": "I-20",
+      "area": "Vocabulary",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "The *More about it* block is written for 25 words",
+      "customerImpact": "The other 2,556 word cards end at the example",
+      "evidence": "The alternative was 784 dictionary scrapings, which is why they were deleted.",
+      "recommendedFix": "Write it for the words that need it — polysemous, grammar-heavy, high-frequency functional, culturally specific, easily confused — starting with the top 500. Not a paragraph under every word.",
+      "effort": "HIGH (content) — start at the top 500"
+    }
+  ]
+}

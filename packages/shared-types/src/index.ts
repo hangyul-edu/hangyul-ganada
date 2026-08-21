@@ -139,6 +139,52 @@ export interface CharacterTranslation {
 export interface StrokeStep {
   /** Ordered points, 0..1, top-left origin. Straight between consecutive pairs. */
   points: Array<{ x: number; y: number }>;
+  /**
+   * The stroke's exact geometry, when it is not simply the polyline above.
+   *
+   * `points` is a *sample* of the stroke: enough of it to measure a length, place
+   * a numbered marker, and compare against what a learner drew. That is all any
+   * of those jobs need, and for a stroke made of straight lines it is also the
+   * whole truth.
+   *
+   * It is not the whole truth for a curve. ㅇ sampled as a polyline is a
+   * 48-sided polygon, and a 48-sided polygon drawn at the size a lesson shows it
+   * is a visible polygon — which is exactly what a learner reported seeing. So a
+   * curved stroke also carries the curve itself, as cubic segments, and the
+   * renderer draws *this* when it is present.
+   *
+   * Both live in the same normalised box and are transformed by the same
+   * per-axis scale and offset in `compose.ts`, which maps a cubic exactly. A
+   * circle fitted into a slot is therefore a true ellipse, not a squashed
+   * polygon.
+   */
+  curve?: CurveSegment[];
+  /**
+   * What happens at each end of the stroke.
+   *
+   * `free` is an end the pen lifts from in open paper — it gets a terminal.
+   * `join` is an end that lands on another stroke's centreline, where a terminal
+   * would be swallowed by that stroke's own ink and must not extend past it.
+   *
+   * This is the difference between ㅅ's two strokes meeting cleanly and ㅅ's
+   * first stroke growing a spur into the second one's territory. Defaults to
+   * `free` at both ends.
+   */
+  ends?: { start?: StrokeEnd; end?: StrokeEnd };
+}
+
+/** How a stroke terminates at one of its ends. See `StrokeStep.ends`. */
+export type StrokeEnd = 'free' | 'join';
+
+/**
+ * One cubic segment of a stroke's exact geometry, in the same 0..1 box as
+ * `StrokeStep.points`. `c1`/`c2` are the control points; the segment starts at
+ * the previous segment's `to`, or at `points[0]` for the first.
+ */
+export interface CurveSegment {
+  c1: { x: number; y: number };
+  c2: { x: number; y: number };
+  to: { x: number; y: number };
 }
 
 export interface HangulCharacter {

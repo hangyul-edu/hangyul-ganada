@@ -103,12 +103,12 @@ FIXTURES: tuple[tuple[str, str, str], ...] = (
     ("옮기다", "옴기다", "no tensing before a causative -기-, which the rule used to add"),
 )
 
-#: 낳다, and why a recogniser disagreement is still not a verdict.
+#: 낳다, and how a recogniser disagreement was finally settled.
 #:
-#: The screen reports 낳다 as 낫다 from both voices. That reads like a finding
-#: and it is not one, because the same run's other answers show how much of it
-#: is the decoder rather than the clip. Transcribing the same three words again
-#: at ``beam_size=5`` gives:
+#: The screen reported 낳다 as 낫다 from both voices, and for three cycles that
+#: sat here as an open question, because the same run's other answers showed how
+#: much of it was the decoder rather than the clip. Transcribing the same words
+#: again at ``beam_size=5`` gave:
 #:
 #: ::
 #:
@@ -116,14 +116,161 @@ FIXTURES: tuple[tuple[str, str, str], ...] = (
 #:     낳다 [female] → '락타'      ← not a Korean word
 #:     마디 [female] → '바티'      ← a clip nobody has ever disputed
 #:
-#: An engine that writes 바티 for the female 마디 is not in a position to
-#: convict the female 낳다, and a male reading that comes back 낫타 has the
-#: aspiration the word requires. So the entry stays in FIXTURES — it is the
-#: right thing to keep watching — and this note stands in for the claim that
-#: used to be here, which was that both voices had been confirmed correct.
+#: An engine that writes 바티 for the female 마디 is not in a position to convict
+#: the female 낳다. But "the witness is unreliable" is not an acquittal either,
+#: and what the note used to say next was that a person would have to listen.
 #:
-#: What would settle it is a person listening, which is exactly what layer C is
-#: documented as not being. See docs/AUDIO.md.
+#: A person does not have to listen, because the two readings differ in a way
+#: that can be measured. 낳다 is [나타]: ㅎ + ㄷ aspirate into a ㅌ, which has a
+#: short closure and a long, weak, breathy release. 낫다 and 낮다 are both
+#: [낟따]: an unreleased coda stop, a *long* closure, and a sharp tense release.
+#: So :func:`check_contrasts` measures the closure and the release energy of the
+#: shipped clips and asserts the ordering. On the current recordings, in both
+#: voices:
+#:
+#: ::
+#:
+#:                closure        release peak
+#:     낫다      250 / 190 ms   −4.1 / −2.9 dB
+#:     낮다      250 / 190 ms   −4.1 / −2.8 dB
+#:     낳다      170 / 170 ms   −6.9 / −5.8 dB
+#:
+#: 낫다 and 낮다 are near-identical to each other, which they should be — they
+#: are the same sounds — and 낳다 is apart from both in the direction the
+#: aspiration predicts. The recording is right. The recogniser was wrong.
+#:
+#: So the fixture stays in :data:`FIXTURES` for its *rules*, and the acoustic
+#: contrast below is what watches the audio. The recogniser is not a normative
+#: judge of a clip and no longer stands between this word and a release.
+
+
+#: Pairs whose recordings must be acoustically distinct, and in which direction.
+#:
+#: Each row is ``(aspirated, tense, why)``. The first word's clip must have a
+#: *shorter* stop closure and a *weaker* release than the second's, because that
+#: is what separates an aspirated ㅌ from a tense ㄸ behind a coda stop. A
+#: generator that collapsed the two — which is what a wrong clip would look
+#: like — cannot satisfy it.
+#:
+#: Kept small on purpose. This is an expensive check that decodes audio, and it
+#: earns its place only where two shipped words are a minimal pair a learner
+#: could actually confuse.
+CONTRASTS: tuple[tuple[str, str, str], ...] = (
+    ("낳다", "낫다", "ㅎ + ㄷ aspirates to [나타]; 낫다 is [낟따]"),
+    ("닿다", "닫다", "the same boundary, one step up the frequency list"),
+)
+
+#: How much of a difference counts. Milliseconds of closure, and decibels.
+#:
+#: The measured gaps are 20–80 ms and 2.8–3.0 dB. These bounds are set well
+#: inside that, so the check fails on a collapse rather than on a re-render that
+#: moved a boundary by a frame.
+_MIN_CLOSURE_GAP_MS = 15
+_MIN_RELEASE_GAP_DB = 1.0
+
+
+def _waveform(path: Path) -> "list[float] | None":
+    """The clip as 16 kHz mono samples, or None if it cannot be decoded here."""
+    import shutil
+    import subprocess
+
+    if shutil.which("ffmpeg") is None:
+        return None
+    result = subprocess.run(
+        ["ffmpeg", "-v", "error", "-i", str(path), "-f", "f32le", "-ac", "1", "-ar", "16000", "-"],
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0 or not result.stdout:
+        return None
+    import array
+
+    samples = array.array("f")
+    samples.frombytes(result.stdout)
+    return list(samples)
+
+
+def _stop_shape(samples: "list[float]") -> "dict[str, float] | None":
+    """The longest quiet run inside the word, and how loud it comes back.
+
+    A two-syllable word with a stop across the boundary has exactly one such
+    run: the closure. Its length, and the energy of the first 80 ms after it,
+    are what separate an aspirated release from a tense one.
+    """
+    import math
+
+    frame = 160  # 10 ms at 16 kHz
+    count = len(samples) // frame
+    if count < 20:
+        return None
+    levels = []
+    for i in range(count):
+        window = samples[i * frame : (i + 1) * frame]
+        rms = math.sqrt(sum(v * v for v in window) / frame) + 1e-9
+        levels.append(rms)
+    loudest = max(levels)
+    db = [20 * math.log10(v / loudest) for v in levels]
+
+    speech = [i for i, v in enumerate(db) if v > -35]
+    if not speech:
+        return None
+    word = db[speech[0] : speech[-1] + 1]
+
+    longest = run = 0
+    start = best_start = 0
+    for i, value in enumerate(word):
+        if value < -28:
+            run += 1
+            start = i - run + 1
+        else:
+            if run > longest:
+                longest, best_start = run, start
+            run = 0
+    if run > longest:
+        longest, best_start = run, start
+
+    after = word[best_start + longest : best_start + longest + 8]
+    return {
+        "closure_ms": longest * 10.0,
+        "release_db": max(after) if after else -99.0,
+    }
+
+
+def check_contrasts(report: Report) -> None:
+    """The minimal pairs, measured off the clips that ship."""
+    manifest = {e["text"]: e for e in load_json(MANIFEST)["entries"]}
+    for aspirated, tense, why in CONTRASTS:
+        first, second = manifest.get(aspirated), manifest.get(tense)
+        if first is None or second is None:
+            report.notes.append(
+                f"contrast {aspirated}/{tense}: one of them is not in the curriculum"
+            )
+            continue
+        for voice in ("female", "male"):
+            report.checked += 1
+            shapes = []
+            for entry in (first, second):
+                source = entry.get(voice)
+                if not source:
+                    shapes.append(None)
+                    continue
+                samples = _waveform(PUBLIC / source["src"])
+                shapes.append(_stop_shape(samples) if samples else None)
+            if shapes[0] is None or shapes[1] is None:
+                report.notes.append(
+                    f"contrast {aspirated}/{tense} [{voice}]: not measurable here"
+                    " — ffmpeg is needed to decode the clips"
+                )
+                continue
+            closure_gap = shapes[1]["closure_ms"] - shapes[0]["closure_ms"]
+            release_gap = shapes[1]["release_db"] - shapes[0]["release_db"]
+            if closure_gap < _MIN_CLOSURE_GAP_MS or release_gap < _MIN_RELEASE_GAP_DB:
+                report.error(
+                    f"contrast {aspirated}/{tense} [{voice}] ({why}): "
+                    f"{aspirated} should have the shorter, weaker release — "
+                    f"closure {shapes[0]['closure_ms']:.0f} vs {shapes[1]['closure_ms']:.0f} ms, "
+                    f"release {shapes[0]['release_db']:.1f} vs {shapes[1]['release_db']:.1f} dB"
+                )
 
 
 @dataclass
@@ -640,6 +787,7 @@ def main() -> int:
     report = Report()
     check_mapping(report)
     check_fixtures(report)
+    check_contrasts(report)
     check_delivery(report)
     check_compounds(report)
     check_repairs(report)

@@ -180,16 +180,29 @@ export default defineConfig({
           const locale = /src[\\/]locales[\\/]([\w-]+)[\\/]/.exec(id)?.[1];
           if (locale && locale !== 'en') return `locale-${locale}`;
           /*
-           * The stroke assets are lesson geometry, not curriculum data.
+           * The instructional stroke geometry is lesson material, not curriculum
+           * data.
            *
-           * They are ~190 kB of path outlines and only the demonstration
-           * components import them, which means they are only ever needed once
-           * a learner opens a lesson. Left in `curriculum-data` — which is
-           * loaded before the home screen paints — they pushed the first load
-           * straight through its budget for a screen that never draws a single
-           * stroke. Their own chunk is fetched with the lesson route instead.
+           * Only the demonstration, the numbered diagram and the gallery import
+           * it, which means it is only ever needed once a learner opens a
+           * lesson. Left in `curriculum-data` — which is loaded before the home
+           * screen paints — it pushed the first load towards its budget for a
+           * screen that never draws a single stroke. Its own chunk is fetched
+           * with the lesson route instead.
+           *
+           * It used to be ~190 kB of generated path outlines cut from the
+           * reference glyph. It is now the code that builds the paths, which is
+           * a fraction of that; the chunk is kept anyway, because the reason for
+           * splitting it was never the size but *when* it is needed.
            */
-          if (id.includes('src/data/generated/strokeAssets')) return 'stroke-assets';
+          if (
+            id.includes('src/data/strokeVectors') ||
+            id.includes('src/data/strokes.') ||
+            id.includes('src/data/compose.') ||
+            id.includes('src/data/generated/jamoMetrics')
+          ) {
+            return 'stroke-geometry';
+          }
           /*
            * The word corpus gets a chunk of its own, apart from the alphabet.
            *

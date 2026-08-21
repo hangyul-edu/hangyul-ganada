@@ -22,10 +22,20 @@
     <color name="colorAccent">#FF6700</color>
 
     <!--
-      warm.50. The ground the app icon is composed on, so the system splash and
-      the launcher tile are the same colour, and so the moment before React
-      paints is a warm surface rather than a white flash.
+      The ground of the brand splash artwork's first frame — `splashGround` in
+      the design tokens, and `backgroundColor` under `SplashScreen` in
+      `capacitor.config.ts`.
+
+      Android 12 and newer draw their own splash on this colour rather than on
+      the `splash.png` drawables, so it has to be the artwork's ground and not
+      the app's. Left at warm.50 it was two units off, which is not a lot until
+      it is the seam between the system splash and the bitmap under it.
     -->
-    <color name="splashBackground">#FFF8F1</color>
+    <color name="splashBackground">#FFF6E9</color>
+
+    <!--
+      warm.50: the ground the app icon is composed on, so the launcher tile and
+      the icon are the same colour.
+    -->
     <color name="ic_launcher_background">#FFF8F1</color>
 </resources>

@@ -5,6 +5,7 @@ import type { EvaluationConfig, EvaluationResult, Stroke } from '@hangyul-ganada
 import { Button } from '../../ui/Button';
 import { FocusFooter } from '../../ui/FocusScreen';
 import { EraserIcon, UndoIcon } from '../../ui/icons';
+import { glyphSpecFor } from './glyphSpec';
 import { WritingCanvas, type WritingCanvasHandle } from './WritingCanvas';
 import { useEvaluator } from './useEvaluator';
 import styles from './PracticeCanvasCard.module.css';
@@ -81,7 +82,9 @@ export function PracticeCanvasCard({
     try {
       const result = await evaluator.evaluate({
         strokes,
-        glyph: { character, fontFamily, fontWeight },
+        // The same spec the guide is drawn from — see `glyphSpec.ts`. Built
+        // separately here, the mask and the traced guide drifted apart.
+        glyph: glyphSpecFor(character, fontFamily, fontWeight),
         config: grading,
       });
       onEvaluated(result, strokes);
