@@ -42,7 +42,18 @@ FREQUENCY_URL = (
 #: therefore teach a beginner 있습니다 before 먹다, which is backwards. So verbs
 #: and adjectives come from the dictionary's own lemma lists and are ranked by
 #: stem frequency instead; see `build_vocabulary.stem_frequency`.
-LEMMA_CATEGORIES = ["Category:Korean verbs", "Category:Korean adjectives"]
+#: Nouns and adverbs were added when the product grew a *dictionary* layer
+#: alongside the learning corpus. The token list above is a subtitle corpus and
+#: is excellent at ranking what a learner will actually hear; it is a poor way
+#: to enumerate a lexicon, because it stops wherever the frequency cut falls and
+#: has never heard of a word that is common in writing and rare in speech. The
+#: category lists are the lexicon's own index. See `docs/VOCABULARY_DATA.md`.
+LEMMA_CATEGORIES = [
+    "Category:Korean verbs",
+    "Category:Korean adjectives",
+    "Category:Korean nouns",
+    "Category:Korean adverbs",
+]
 
 
 def fetch_frequency(force: bool = False) -> Path:
@@ -74,14 +85,31 @@ def category_members(category: str) -> list[str]:
             **cont,
         }
         url = "https://en.wiktionary.org/w/api.php?" + urllib.parse.urlencode(query)
-        request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(request, timeout=60) as response:
-            payload = json.load(response)
+        payload = None
+        # Wiktionary answers 429 when a listing walks a large category quickly,
+        # and a category like Korean nouns is tens of thousands of pages. Back
+        # off and keep going rather than losing the whole run — and give up
+        # after a few tries rather than sitting on somebody else's server.
+        for attempt in range(6):
+            request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    payload = json.load(response)
+                break
+            except urllib.error.HTTPError as error:
+                if error.code not in (429, 503):
+                    raise
+                wait = 5 * (attempt + 1)
+                print(f"  {error.code} from the API — waiting {wait}s")
+                time.sleep(wait)
+        if payload is None:
+            print(f"  giving up on {category} after repeated rate limiting")
+            return members
         members.extend(m["title"] for m in payload["query"]["categorymembers"])
         if "continue" not in payload:
             return members
         cont = payload["continue"]
-        time.sleep(0.2)
+        time.sleep(1.0)
 
 
 def main() -> int:

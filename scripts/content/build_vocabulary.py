@@ -35,8 +35,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import sys
+import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -160,6 +162,27 @@ def _field_set(fields: list[str]) -> int:
 
 
 _SOURCE_ORDER = [s.id for s in sources.ALL_SOURCES]
+
+
+def sense_id(identifier: str, gloss: str) -> str:
+    """A stable name for the single sense a learning card teaches.
+
+    `word_cha#car`, not `word_cha#1`. A number is a position and positions move:
+    re-scoring difficulty re-orders the corpus, and an id built from an index
+    would silently repoint every reference that had been written against it. The
+    first substantive word of the English gloss moves only when the gloss does.
+
+    Deliberately the same shape as the dictionary's `dict_cha#car`, so that a
+    taught sense and the dictionary sense it corresponds to can be compared by
+    eye as well as by code.
+    """
+    text = unicodedata.normalize("NFKD", (gloss or "").lower())
+    text = "".join(c for c in text if not unicodedata.combining(c))
+    skip = {"to", "a", "an", "the", "of", "be", "being", "used", "for", "in", "on", "at"}
+    for token in re.findall(r"[a-z]+", text):
+        if token not in skip and len(token) > 1:
+            return f"{identifier}#{token}"
+    return f"{identifier}#sense"
 
 
 def build_provenance(*, observed: bool, gloss_from_dictionary: bool) -> list[list[int]]:
@@ -373,10 +396,29 @@ def main() -> int:
         sound_note = pronunciation.note_for(word)
         spoken_form = pronunciation.spoken_form(word)
 
+        identifier = word_id(word, taken)
         records.append(
             {
-                "id": word_id(word, taken),
+                "id": identifier,
                 "word": word,
+                # The one sense this card teaches, named.
+                #
+                # Every locale's meaning, every example, every distractor and
+                # every relation on this entry is *about this sense* and about
+                # no other. Before it existed that was a convention held by
+                # eleven exact-string pins, and 103 glosses quietly broke it —
+                # 차 read "a car, or the tea you drink" on a beginner's card, so
+                # a learner asked what 차 means had two right answers and one
+                # button.
+                #
+                # Derived from the English gloss because English is the one
+                # locale that was already single-sense throughout, which makes
+                # it the arbiter rather than merely the default: when the Korean
+                # and Japanese glosses for 차 name two things and the English
+                # names one, it is the English that is right about what this
+                # card teaches. `vocabulary:sense:qa` checks the others against
+                # it. See `sense_id`.
+                "senseId": sense_id(identifier, meaning),
                 # Official Revised Romanisation (국어의 로마자 표기법), derived
                 # from the standard pronunciation and not from the letters. See
                 # `revised_romanization` for the two words that proved the

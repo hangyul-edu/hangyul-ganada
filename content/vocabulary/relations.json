@@ -17,8 +17,8 @@
     "antonym"
   ],
   "counts": {
-    "words_with_relations": 243,
-    "synonym_pairs": 71,
+    "words_with_relations": 245,
+    "synonym_pairs": 72,
     "antonym_pairs": 65,
     "corpus_words": 2581
   },
@@ -1655,6 +1655,7 @@
     "word_jasehada": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%84%B8%ED%95%98%EB%8B%A4",
     "word_jasehi": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%84%B8%ED%9E%88",
     "word_jasik": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%8B%9D",
+    "word_jasin": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%8B%A0",
     "word_jayeon": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%97%B0",
     "word_jayu": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%9C%A0",
     "word_jayuropda": "https://ko.wiktionary.org/wiki/%EC%9E%90%EC%9C%A0%EB%A1%AD%EB%8B%A4",
@@ -2987,6 +2988,12 @@
       ],
       "antonyms": []
     },
+    "word_jagi": {
+      "synonyms": [
+        "word_jasin"
+      ],
+      "antonyms": []
+    },
     "word_jalhada": {
       "synonyms": [],
       "antonyms": [
@@ -3004,6 +3011,12 @@
     "word_jareuda": {
       "synonyms": [
         "word_kkeunta"
+      ],
+      "antonyms": []
+    },
+    "word_jasin": {
+      "synonyms": [
+        "word_jagi"
       ],
       "antonyms": []
     },

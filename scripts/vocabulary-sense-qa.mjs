@@ -233,15 +233,74 @@ for (const [headword, expected] of Object.entries(PINNED)) {
   }
 }
 
-// --- More than one sense in one gloss — reported ------------------------------
+// --- More than one sense in one gloss -----------------------------------------
 
-const multi = new Map();
+/**
+ * Split glosses that have been read and found to be one sense, not two.
+ *
+ * A separator in a gloss is not by itself a defect. Japanese has no single verb
+ * for 있다 and must write ある、いる, choosing by animacy; it has no word for
+ * 동생 and must write 弟、妹, choosing by gender. That is one taught sense given
+ * the two renderings the language requires, and the English gloss usually says
+ * so itself — "nephew, niece", "to peel, to cut down".
+ *
+ * What is a defect is the other kind, and 차 was it: 車、お茶, a car *or* the tea
+ * you drink, on a beginner's card whose sentence is 차를 타요. Two answers, one
+ * button. 103 glosses were read against the sentence each card actually asks;
+ * 35 named a sense the sentence never demonstrates and were trimmed to the one
+ * it does. These are the rest.
+ *
+ * Keyed `locale/headword` so that a word may be reviewed in one language and
+ * still be caught in another. Anything not on this list fails: the point of
+ * writing the review down is that the next split gloss has to be read too,
+ * rather than joining a list of warnings nobody reads.
+ *
+ * The obvious wider rule — every gloss must be recognisable in its own example
+ * — is already applied to concrete nouns in `examples_qa.py` and cannot be
+ * widened to verbs: run over the 2,581-word corpus it flags 215, almost all of
+ * them honest paraphrase ("to see" glossing "I watch a movie", "to congratulate"
+ * glossing "Happy birthday to you"). Hence a read list rather than a heuristic.
+ */
+const REVIEWED_SPLIT = new Set(
+  [
+    // English teaches both halves itself.
+    'ko/밥', 'ko/접속', 'ja/안녕', 'ja/아무', 'ja/조카', 'ja/안부', 'ja/맑다', 'ja/짓다',
+    'ja/닿다', 'ja/깎다', 'ja/갈다', 'ja/여기다', 'ja/닦다', 'ja/뚫다', 'ja/빠지다',
+    'ja/외계', 'ja/곱다', 'ja/돋다', 'ja/뜯다', 'ja/이제',
+    // Japanese needs two words where Korean and English need one.
+    'ja/나', 'ja/있다', 'ja/없다', 'ja/알다', 'ja/살다', 'ja/동생', 'ja/받다', 'ja/내다',
+    'ja/풀다', 'ja/담다', 'ja/나다', 'ja/빼다', 'ja/몰다', 'ja/치르다', 'ja/잠그다',
+    'ja/틀다', 'ja/아하',
+    // A collocation list in parentheses, not a second sense: 上（学、班）.
+    'zh-CN/다니다',
+  ],
+);
+
 for (const [locale, rows] of packs) {
-  const found = [];
   rows.forEach((row, index) => {
-    if (row?.[0] && SENSE_SPLIT.test(row[0])) found.push(`${corpus.words[index].word}: ${row[0]}`);
+    if (!row?.[0] || !SENSE_SPLIT.test(row[0])) return;
+    const headword = corpus.words[index].word;
+    if (REVIEWED_SPLIT.has(`${locale}/${headword}`)) return;
+    hard.push(
+      `${headword} reads "${row[0]}" in ${locale} — two senses on a card that ` +
+        `teaches ${corpus.words[index].senseId}. Trim it to the sense the ` +
+        'example demonstrates, or add it to REVIEWED_SPLIT once you have read it',
+    );
   });
-  if (found.length) multi.set(locale, found);
+}
+
+const stale = [...REVIEWED_SPLIT].filter((key) => {
+  const [locale, headword] = key.split('/');
+  const rows = packs.get(locale);
+  if (!rows) return true;
+  const index = corpus.words.findIndex((word) => word.word === headword);
+  return index < 0 || !rows[index]?.[0] || !SENSE_SPLIT.test(rows[index][0]);
+});
+if (stale.length) {
+  hard.push(
+    `${stale.length} REVIEWED_SPLIT entr(ies) no longer name a split gloss and ` +
+      `should be deleted: ${stale.join(', ')}`,
+  );
 }
 
 // --- Report -------------------------------------------------------------------
@@ -266,15 +325,9 @@ for (const [locale, covered] of handWritten) {
   );
 }
 
-if (multi.size > 0) {
-  const total = [...multi.values()].reduce((n, list) => n + list.length, 0);
-  console.log(`\n${total} gloss(es) carry more than one sense — content work, not a build failure:`);
-  for (const [locale, found] of multi) {
-    console.log(`  ${locale}  ${found.length}`);
-    for (const line of found.slice(0, 4)) console.log(`      ${line}`);
-    if (found.length > 4) console.log(`      … and ${found.length - 4} more`);
-  }
-}
+console.log(
+  `  ${REVIEWED_SPLIT.size} gloss(es) hold a separator and have been read as one sense`,
+);
 
 for (const note of notes) console.log(`\nnote: ${note}`);
 

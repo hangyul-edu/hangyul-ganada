@@ -78,6 +78,13 @@ BLOCKED_LABELS = {
 class Sense:
     gloss: str
     labels: list[str] = field(default_factory=list)
+    #: The examples that belong to *this* sense, not to the entry.
+    #:
+    #: Wikitext puts a sense's examples on the `#:` lines directly beneath it,
+    #: so they are attributable — and they have to be attributed, because a
+    #: reader shown an example of "to grow older" underneath the definition
+    #: "to eat" has been told something false about the language. See `_senses`.
+    examples: list["Example"] = field(default_factory=list)
 
 
 @dataclass
@@ -216,14 +223,30 @@ _DEF_LINE = re.compile(r"^#(?!#|:|\*)\s*(.+)$", re.MULTILINE)
 
 
 def _senses(body: str) -> list[Sense]:
+    """Every numbered definition, each carrying its own examples.
+
+    A definition owns the `#:` lines between it and the next `#` line. That is
+    not a convention this code invented — it is how the wikitext is written, and
+    it is the only thing that makes an example attributable to a meaning.
+
+    It matters more than it looks. 먹다 has six senses and eight examples spread
+    across three of them; collecting them at the *entry* level and hanging them
+    all off the first sense files an example about growing older under the
+    definition "to eat", which is not a formatting problem but a false
+    statement about Korean.
+    """
     senses: list[Sense] = []
-    for match in _DEF_LINE.finditer(body):
+    matches = list(_DEF_LINE.finditer(body))
+    for index, match in enumerate(matches):
         raw = match.group(1)
         labels = _labels(raw)
         gloss = clean_markup(raw)
         if not gloss:
             continue
-        senses.append(Sense(gloss=gloss, labels=labels))
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(body)
+        senses.append(
+            Sense(gloss=gloss, labels=labels, examples=_examples(body[match.end() : end]))
+        )
     return senses
 
 
@@ -357,8 +380,22 @@ def clean_markup(raw: str) -> str:
     text = _BOLD_ITALIC.sub("", text)
     text = _HTML_TAG.sub("", text)
     text = text.replace("&nbsp;", " ").replace("&amp;", "&")
+    text = _MORPHEME_JOIN.sub(r"\1\2", text)
     text = _WHITESPACE.sub(" ", text).strip()
     return text.strip(" ,;:")
+
+
+#: A Hangul syllable, a hyphen, and another Hangul syllable.
+#:
+#: Wiktionary links Korean particles and endings as their own entries —
+#: `[[밥]][[-을]]` — because `-을` is a real dictionary headword. The leading
+#: hyphen is lexicographic notation meaning "this attaches to the left", and it
+#: is correct in a dictionary and wrong in a sentence: unlinked, that example
+#: renders as `밥-을 먹다`, which is not how anybody writes Korean.
+#:
+#: Only between two Hangul syllables, so a genuine hyphen in a romanisation or
+#: an English gloss is left alone.
+_MORPHEME_JOIN = re.compile(r"([\uac00-\ud7a3])-([\uac00-\ud7a3])")
 
 
 def _last_positional(args: str) -> str:
