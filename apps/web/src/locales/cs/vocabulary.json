@@ -146,6 +146,7 @@
     "searching": "Hledám ve slovníku…",
     "unavailable": "Slovník při prvním otevření potřebuje připojení.",
     "otherMeaningsPrompt": "Další významy",
+    "moreExamples": "Další příklady",
     "otherMeanings_one": "{{count, number}} další význam",
     "otherMeanings_few": "{{count, number}} další významy",
     "otherMeanings_many": "{{count, number}} dalšího významu",

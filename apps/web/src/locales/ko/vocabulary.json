@@ -125,6 +125,7 @@
     "searching": "사전에서 찾는 중…",
     "unavailable": "사전은 처음 열 때 인터넷 연결이 필요해요.",
     "otherMeaningsPrompt": "다른 뜻",
+    "moreExamples": "예문 더 보기",
     "otherMeanings_other": "다른 뜻 {{count, number}}개",
     "onlyMeaning": "사전에 다른 뜻은 없어요.",
     "source": "출처: {{name}}, {{license}}."

@@ -132,6 +132,7 @@
     "searching": "অভিধানে খোঁজা হচ্ছে…",
     "unavailable": "প্রথমবার খুললে অভিধানের সংযোগ দরকার।",
     "otherMeaningsPrompt": "অন্য অর্থ",
+    "moreExamples": "আরও উদাহরণ",
     "otherMeanings_one": "{{count, number}}টি অন্য অর্থ",
     "otherMeanings_other": "{{count, number}}টি অন্য অর্থ",
     "onlyMeaning": "অভিধানে এই শব্দের অন্য কোনো অর্থ নেই।",

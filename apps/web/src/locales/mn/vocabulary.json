@@ -132,6 +132,7 @@
     "searching": "Толь бичгээс хайж байна…",
     "unavailable": "Толь бичгийг анх нээхэд холболт хэрэгтэй.",
     "otherMeaningsPrompt": "Бусад утга",
+    "moreExamples": "Бусад жишээ",
     "otherMeanings_one": "{{count, number}} өөр утга",
     "otherMeanings_other": "{{count, number}} өөр утга",
     "onlyMeaning": "Толь бичигт энэ үгийн өөр утга алга.",

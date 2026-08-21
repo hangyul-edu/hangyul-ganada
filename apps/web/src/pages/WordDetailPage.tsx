@@ -357,9 +357,31 @@ function OtherMeanings({ word }: { word: VocabularyWord }) {
     is not, which is the failure worth having.
   */
   const taught = wordCopy(word, 'en').value.meaning.toLowerCase();
-  const others = (entry?.senses ?? []).filter(
-    (sense) => !taught.includes(sense.shortGloss.toLowerCase()),
-  );
+  const isTaughtSense = (sense: { shortGloss: string }) =>
+    taught.includes(sense.shortGloss.toLowerCase());
+  const senses = entry?.senses ?? [];
+  const others = senses.filter((sense) => !isTaughtSense(sense));
+
+  /*
+    Extra sentences for the sense this card actually teaches.
+
+    The same gloss comparison, read the other way round. A dictionary sense that
+    matches the taught gloss is dropped from "other meanings" because it is not
+    other — and that makes its examples examples *of the taught sense*, which is
+    the one place they can be shown on this card without breaking the promise
+    the card makes. 419 words gain 581 of them.
+
+    The alternative was tried and rejected. Harvesting extra sentences from
+    other corpus entries' examples looks free — 2,581 graded, translated
+    sentences already sitting there — and produces sense-wrong examples at a
+    rate that would undo the gloss work: filtered to unambiguous surface forms
+    it still files 주사를 맞았어요, getting an injection, under 맞다 meaning
+    "to be right", and matches 열다 inside 여자는 through a real propositive
+    ending. See the note in the commit that added senseId.
+  */
+  const more = senses.filter(isTaughtSense).flatMap((sense) => sense.examples);
+
+  const nothing = state === 'ready' && others.length === 0 && more.length === 0;
 
   return (
     <details
@@ -369,11 +391,31 @@ function OtherMeanings({ word }: { word: VocabularyWord }) {
       <summary className={styles.blockTitle}>{t('dictionary.otherMeaningsPrompt')}</summary>
       {state === 'loading' && <p className={styles.note}>{t('dictionary.searching')}</p>}
       {state === 'unavailable' && <p className={styles.note}>{t('dictionary.unavailable')}</p>}
-      {state === 'ready' && others.length === 0 && (
-        <p className={styles.note}>{t('dictionary.onlyMeaning')}</p>
+      {nothing && <p className={styles.note}>{t('dictionary.onlyMeaning')}</p>}
+
+      {more.length > 0 && (
+        <>
+          <h3 className={styles.blockSubtitle}>{t('dictionary.moreExamples')}</h3>
+          <ul className={styles.dictionaryExamples}>
+            {more.map((example) => (
+              <li key={example.korean}>
+                <span lang="ko" dir="ltr">
+                  {example.korean}
+                </span>
+                {example.translation && (
+                  <span className={styles.exampleTranslation}>{example.translation}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
+
       {others.length > 0 && (
         <>
+          {more.length > 0 && (
+            <h3 className={styles.blockSubtitle}>{t('dictionary.otherMeaningsPrompt')}</h3>
+          )}
           <ul className={styles.otherMeanings}>
             {others.map((sense) => (
               <li key={sense.senseId}>
@@ -381,15 +423,30 @@ function OtherMeanings({ word }: { word: VocabularyWord }) {
                   {t(`partOfSpeech.${sense.partOfSpeech}`, { defaultValue: sense.partOfSpeech })}
                 </span>{' '}
                 {sense.gloss}
+                {sense.examples.length > 0 && (
+                  <ul className={styles.dictionaryExamples}>
+                    {sense.examples.map((example) => (
+                      <li key={example.korean}>
+                        <span lang="ko" dir="ltr">
+                          {example.korean}
+                        </span>
+                        {example.translation && (
+                          <span className={styles.exampleTranslation}>{example.translation}</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
-          {entry && (
-            <p className={styles.note}>
-              {t('dictionary.source', { name: 'Wiktionary', license: entry.source.license })}
-            </p>
-          )}
         </>
+      )}
+
+      {entry && (others.length > 0 || more.length > 0) && (
+        <p className={styles.note}>
+          {t('dictionary.source', { name: 'Wiktionary', license: entry.source.license })}
+        </p>
       )}
     </details>
   );

@@ -132,6 +132,7 @@
     "searching": "Сөздіктен ізделуде…",
     "unavailable": "Сөздікті алғаш ашқанда байланыс қажет.",
     "otherMeaningsPrompt": "Басқа мағыналары",
+    "moreExamples": "Тағы мысалдар",
     "otherMeanings_one": "{{count, number}} басқа мағына",
     "otherMeanings_other": "{{count, number}} басқа мағына",
     "onlyMeaning": "Сөздікте бұл сөздің басқа мағынасы жоқ.",

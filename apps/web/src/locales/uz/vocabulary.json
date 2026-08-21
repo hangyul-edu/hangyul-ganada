@@ -132,6 +132,7 @@
     "searching": "Lug‘atdan qidirilmoqda…",
     "unavailable": "Lug‘at birinchi marta ochilganda ulanish talab qiladi.",
     "otherMeaningsPrompt": "Boshqa ma’nolari",
+    "moreExamples": "Yana misollar",
     "otherMeanings_one": "{{count, number}} boshqa ma’no",
     "otherMeanings_other": "{{count, number}} boshqa ma’no",
     "onlyMeaning": "Lug‘atda bu so‘zning boshqa ma’nosi yo‘q.",

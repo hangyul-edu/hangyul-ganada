@@ -132,6 +132,7 @@
     "searching": "Sözlükte aranıyor…",
     "unavailable": "Sözlüğü ilk açtığında bağlantı gerekiyor.",
     "otherMeaningsPrompt": "Diğer anlamlar",
+    "moreExamples": "Daha fazla örnek",
     "otherMeanings_one": "{{count, number}} başka anlam",
     "otherMeanings_other": "{{count, number}} başka anlam",
     "onlyMeaning": "Sözlükte bu kelimenin başka anlamı yok.",

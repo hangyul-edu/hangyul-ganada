@@ -132,6 +132,7 @@
     "searching": "Zoeken in het woordenboek…",
     "unavailable": "Het woordenboek heeft de eerste keer een verbinding nodig.",
     "otherMeaningsPrompt": "Andere betekenissen",
+    "moreExamples": "Meer voorbeelden",
     "otherMeanings_one": "{{count, number}} andere betekenis",
     "otherMeanings_other": "{{count, number}} andere betekenissen",
     "onlyMeaning": "Het woordenboek kent geen andere betekenis voor dit woord.",

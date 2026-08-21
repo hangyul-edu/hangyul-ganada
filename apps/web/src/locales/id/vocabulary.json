@@ -125,6 +125,7 @@
     "searching": "Mencari di kamus…",
     "unavailable": "Kamus perlu koneksi saat pertama kali dibuka.",
     "otherMeaningsPrompt": "Arti lain",
+    "moreExamples": "Contoh lainnya",
     "otherMeanings_other": "{{count, number}} arti lain",
     "onlyMeaning": "Kamus tidak punya arti lain untuk kata ini.",
     "source": "Dari {{name}}, {{license}}."

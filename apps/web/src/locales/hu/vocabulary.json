@@ -132,6 +132,7 @@
     "searching": "Keresés a szótárban…",
     "unavailable": "A szótárnak az első megnyitáskor internet kell.",
     "otherMeaningsPrompt": "További jelentések",
+    "moreExamples": "További példák",
     "otherMeanings_one": "{{count, number}} további jelentés",
     "otherMeanings_other": "{{count, number}} további jelentés",
     "onlyMeaning": "A szótár nem ismer más jelentést ehhez a szóhoz.",

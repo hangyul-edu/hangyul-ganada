@@ -139,6 +139,7 @@
     "searching": "Procurando no dicionário…",
     "unavailable": "O dicionário precisa de conexão na primeira vez que você o abre.",
     "otherMeaningsPrompt": "Outros significados",
+    "moreExamples": "Mais exemplos",
     "otherMeanings_one": "{{count, number}} outro significado",
     "otherMeanings_many": "{{count, number}} outros significados",
     "otherMeanings_other": "{{count, number}} outros significados",

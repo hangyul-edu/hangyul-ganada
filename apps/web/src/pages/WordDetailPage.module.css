@@ -196,3 +196,40 @@
   font-size: var(--hg-text-caption);
   color: var(--hg-text-tertiary);
 }
+
+.blockSubtitle {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * Dictionary example sentences, wherever they appear on this page.
+ *
+ * Marked off with a rule down the inline start rather than with a card of their
+ * own: they sit inside a sense, sometimes nested inside a list item, and a
+ * second box inside a box is one border too many on a phone.
+ */
+.dictionaryExamples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: var(--hg-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dictionaryExamples li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-inline-start: var(--hg-space-3);
+  border-inline-start: 2px solid var(--hg-border);
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+}
+
+.exampleTranslation {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}

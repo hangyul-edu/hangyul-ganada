@@ -132,6 +132,7 @@
     "searching": "Im Wörterbuch wird gesucht…",
     "unavailable": "Das Wörterbuch braucht beim ersten Öffnen eine Verbindung.",
     "otherMeaningsPrompt": "Weitere Bedeutungen",
+    "moreExamples": "Weitere Beispiele",
     "otherMeanings_one": "{{count, number}} weitere Bedeutung",
     "otherMeanings_other": "{{count, number}} weitere Bedeutungen",
     "onlyMeaning": "Das Wörterbuch kennt keine weitere Bedeutung für dieses Wort.",

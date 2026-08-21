@@ -91,3 +91,24 @@ test('a taught word is never offered twice', async ({ page }) => {
     await expect(dictionary.getByText('차', { exact: true })).toHaveCount(0);
   }
 });
+
+test('a taught word gains dictionary examples of the sense it teaches', async ({ page }) => {
+  /*
+    한 has a dictionary entry with examples, and its taught sense matches one of
+    them — which is what makes those examples showable on the card at all. A
+    dictionary sense whose gloss is *not* the taught one goes under Other
+    meanings with its own examples; this is the other half.
+  */
+  await openApp(page, '/words');
+  await waitForLaunch(page);
+
+  await page.getByRole('searchbox').fill('사람');
+  await page.getByRole('link', { name: /사람/ }).first().click();
+  await expect(page.getByTestId('detail-headword')).toHaveText('사람');
+
+  const more = page.getByRole('group');
+  await more.getByText(/other meanings/i).first().click();
+
+  // Whatever the dictionary has for it, the attribution must arrive with it.
+  await expect(more.getByText(/Wiktionary/)).toBeVisible();
+});
