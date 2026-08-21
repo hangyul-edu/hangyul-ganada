@@ -66,8 +66,27 @@ const STEPS = [0, 0.25, 0.5, 0.75, 1];
 /** The raster the measurements are taken on, for a 0–100 viewBox. */
 const R = 256;
 
-/** The two sizes a learner sees the demonstration at: a wide screen, and a phone. */
-const REVIEW_SIZES = [160, 96];
+/**
+ * The sizes the demonstration is actually drawn at, plus one below all of them.
+ *
+ * This used to read `[160, 96]`, and **the product draws at neither**. 160 is
+ * `StrokeOrder`'s own default and every caller overrides it: the introduction
+ * card asks for 200, the help panel inside a lesson asks for 152, the developer
+ * gallery asks for 150. So the gallery a person reviewed was a rendering nobody
+ * would ever see, at a stroke width and a rounding nobody would ever get —
+ * which is the same failure the whole file was written to catch, one level up.
+ *
+ * 96 is kept and is deliberately not a product size: it is a floor, well under
+ * the smallest thing shipped, where a hairline stroke or a marker that has run
+ * out of room shows up first. A defect visible at 96 and invisible at 152 is
+ * still worth knowing about, because 152 is only one design decision away from
+ * being smaller.
+ *
+ * The size does not vary with the viewport — every caller passes a constant, so
+ * a 360 px phone and a 430 px phone get the same box. Layout at those widths is
+ * a different question and not one pixels in an SVG can answer.
+ */
+const REVIEW_SIZES = [200, 152, 96];
 
 /**
  * How far the ink may lag or lead the fraction it is drawn at.
@@ -344,7 +363,9 @@ console.log(
 if (failures.length === 0) {
   console.log('  no measurable problem in any frame.');
   if (!CHECK) {
-    console.log(`  gallery: ${join(OUT, 'gallery-160.png')} and gallery-96.png`);
+    console.log(
+      `  gallery: ${REVIEW_SIZES.map((size) => join(OUT, `gallery-${size}.png`)).join(', ')}`,
+    );
     console.log('  pixels cannot tell you whether ㅅ looks like ㅅ. Look at them.');
   }
 } else {
