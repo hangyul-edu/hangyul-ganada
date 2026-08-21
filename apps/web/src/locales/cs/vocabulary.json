@@ -138,5 +138,19 @@
     "emptyTitle": "Zatím žádná uložená slova",
     "emptyBody": "Při učení klepněte u kteréhokoli slova na záložku a bude tu čekat, až se k němu budete chtít vrátit.",
     "emptyCta": "Na slova"
+  },
+  "dictionary": {
+    "title": "Slovník",
+    "heading": "Také ve slovníku",
+    "note": "Jen k vyhledání. Tato slova nepatří do denního procvičování.",
+    "searching": "Hledám ve slovníku…",
+    "unavailable": "Slovník při prvním otevření potřebuje připojení.",
+    "otherMeaningsPrompt": "Další významy",
+    "otherMeanings_one": "{{count, number}} další význam",
+    "otherMeanings_few": "{{count, number}} další významy",
+    "otherMeanings_many": "{{count, number}} dalšího významu",
+    "otherMeanings_other": "{{count, number}} dalších významů",
+    "onlyMeaning": "Slovník pro toto slovo nemá další význam.",
+    "source": "Ze zdroje {{name}}, {{license}}."
   }
 }

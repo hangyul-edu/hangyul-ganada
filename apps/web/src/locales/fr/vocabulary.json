@@ -131,5 +131,18 @@
     "emptyTitle": "Aucun mot enregistré",
     "emptyBody": "Touchez le signet sur un mot pendant que vous étudiez, et vous le retrouverez ici.",
     "emptyCta": "Voir les mots"
+  },
+  "dictionary": {
+    "title": "Dictionnaire",
+    "heading": "Aussi dans le dictionnaire",
+    "note": "Pour consultation seulement. Ces mots ne font pas partie de votre pratique quotidienne.",
+    "searching": "Recherche dans le dictionnaire…",
+    "unavailable": "Le dictionnaire a besoin d’une connexion la première fois que vous l’ouvrez.",
+    "otherMeaningsPrompt": "Autres sens",
+    "otherMeanings_one": "{{count, number}} autre sens",
+    "otherMeanings_many": "{{count, number}} autres sens",
+    "otherMeanings_other": "{{count, number}} autres sens",
+    "onlyMeaning": "Le dictionnaire n’a pas d’autre sens pour ce mot.",
+    "source": "De {{name}}, {{license}}."
   }
 }

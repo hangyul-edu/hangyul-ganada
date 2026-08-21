@@ -124,5 +124,17 @@
     "emptyTitle": "Hali saqlangan so‘z yo‘q",
     "emptyBody": "O‘qib turib istalgan so‘zdagi xatcho‘pni bosing — qaytib kelmoqchi bo‘lganingizda shu yerda turadi.",
     "emptyCta": "So‘zlarga o‘tish"
+  },
+  "dictionary": {
+    "title": "Lug‘at",
+    "heading": "Lug‘atda ham bor",
+    "note": "Faqat qidirish uchun. Bu so‘zlar kundalik mashqingizga kirmaydi.",
+    "searching": "Lug‘atdan qidirilmoqda…",
+    "unavailable": "Lug‘at birinchi marta ochilganda ulanish talab qiladi.",
+    "otherMeaningsPrompt": "Boshqa ma’nolari",
+    "otherMeanings_one": "{{count, number}} boshqa ma’no",
+    "otherMeanings_other": "{{count, number}} boshqa ma’no",
+    "onlyMeaning": "Lug‘atda bu so‘zning boshqa ma’nosi yo‘q.",
+    "source": "Manba: {{name}}, {{license}}."
   }
 }

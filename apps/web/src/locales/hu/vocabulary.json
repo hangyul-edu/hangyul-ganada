@@ -124,5 +124,17 @@
     "emptyTitle": "Még nincsenek mentett szavak",
     "emptyBody": "Tanulás közben koppints bármelyik szónál a könyvjelzőre, és itt vár majd, ha vissza akarsz térni hozzá.",
     "emptyCta": "Irány a szavak"
+  },
+  "dictionary": {
+    "title": "Szótár",
+    "heading": "A szótárban is megvan",
+    "note": "Csak kikeresésre. Ezek a szavak nem részei a napi gyakorlásnak.",
+    "searching": "Keresés a szótárban…",
+    "unavailable": "A szótárnak az első megnyitáskor internet kell.",
+    "otherMeaningsPrompt": "További jelentések",
+    "otherMeanings_one": "{{count, number}} további jelentés",
+    "otherMeanings_other": "{{count, number}} további jelentés",
+    "onlyMeaning": "A szótár nem ismer más jelentést ehhez a szóhoz.",
+    "source": "Forrás: {{name}}, {{license}}."
   }
 }

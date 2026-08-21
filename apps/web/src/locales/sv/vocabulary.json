@@ -124,5 +124,17 @@
     "emptyTitle": "Inga sparade ord än",
     "emptyBody": "Tryck på bokmärket vid ett ord medan du pluggar, så ligger det här när du vill tillbaka.",
     "emptyCta": "Till orden"
+  },
+  "dictionary": {
+    "title": "Ordbok",
+    "heading": "Även i ordboken",
+    "note": "Bara för att slå upp. De här orden ingår inte i din dagliga övning.",
+    "searching": "Söker i ordboken…",
+    "unavailable": "Ordboken behöver en anslutning första gången du öppnar den.",
+    "otherMeaningsPrompt": "Andra betydelser",
+    "otherMeanings_one": "{{count, number}} annan betydelse",
+    "otherMeanings_other": "{{count, number}} andra betydelser",
+    "onlyMeaning": "Ordboken har ingen annan betydelse för det här ordet.",
+    "source": "Från {{name}}, {{license}}."
   }
 }

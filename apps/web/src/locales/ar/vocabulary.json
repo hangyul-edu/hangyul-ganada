@@ -152,5 +152,21 @@
     "emptyTitle": "لا كلمات محفوظة بعد",
     "emptyBody": "اضغط علامة الحفظ على أي كلمة أثناء الدراسة، وستجدها هنا حين تعود إليها.",
     "emptyCta": "إلى الكلمات"
+  },
+  "dictionary": {
+    "title": "القاموس",
+    "heading": "موجودة في القاموس أيضًا",
+    "note": "للاطّلاع فقط. هذه الكلمات ليست جزءًا من تدريبك اليومي.",
+    "searching": "جارٍ البحث في القاموس…",
+    "unavailable": "يحتاج القاموس إلى اتصال في أول مرة تفتحه فيها.",
+    "otherMeaningsPrompt": "معانٍ أخرى",
+    "otherMeanings_zero": "لا معانٍ أخرى",
+    "otherMeanings_one": "معنى آخر واحد",
+    "otherMeanings_two": "معنيان آخران",
+    "otherMeanings_few": "{{count, number}} معانٍ أخرى",
+    "otherMeanings_many": "{{count, number}} معنى آخر",
+    "otherMeanings_other": "{{count, number}} معنى آخر",
+    "onlyMeaning": "لا يوجد في القاموس معنى آخر لهذه الكلمة.",
+    "source": "من {{name}}، {{license}}."
   }
 }

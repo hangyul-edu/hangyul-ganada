@@ -138,5 +138,19 @@
     "emptyTitle": "Сохранённых слов пока нет",
     "emptyBody": "Нажмите на закладку у любого слова во время занятий — и оно будет ждать здесь, когда захотите вернуться.",
     "emptyCta": "К словам"
+  },
+  "dictionary": {
+    "title": "Словарь",
+    "heading": "Есть и в словаре",
+    "note": "Только для справки. Эти слова не входят в ежедневную практику.",
+    "searching": "Ищу в словаре…",
+    "unavailable": "При первом открытии словарю нужно подключение.",
+    "otherMeaningsPrompt": "Другие значения",
+    "otherMeanings_one": "{{count, number}} другое значение",
+    "otherMeanings_few": "{{count, number}} других значения",
+    "otherMeanings_many": "{{count, number}} других значений",
+    "otherMeanings_other": "{{count, number}} других значения",
+    "onlyMeaning": "В словаре нет других значений этого слова.",
+    "source": "Источник: {{name}}, {{license}}."
   }
 }

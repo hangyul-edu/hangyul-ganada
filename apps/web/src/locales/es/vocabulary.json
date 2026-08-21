@@ -131,5 +131,18 @@
     "emptyTitle": "Aún no has guardado palabras",
     "emptyBody": "Toca el marcador en cualquier palabra mientras estudias y la encontrarás aquí.",
     "emptyCta": "Ir a las palabras"
+  },
+  "dictionary": {
+    "title": "Diccionario",
+    "heading": "También en el diccionario",
+    "note": "Solo para consultar. Estas palabras no forman parte de tu práctica diaria.",
+    "searching": "Buscando en el diccionario…",
+    "unavailable": "El diccionario necesita conexión la primera vez que lo abres.",
+    "otherMeaningsPrompt": "Otros significados",
+    "otherMeanings_one": "{{count, number}} otro significado",
+    "otherMeanings_many": "{{count, number}} otros significados",
+    "otherMeanings_other": "{{count, number}} otros significados",
+    "onlyMeaning": "El diccionario no tiene otro significado para esta palabra.",
+    "source": "De {{name}}, {{license}}."
   }
 }

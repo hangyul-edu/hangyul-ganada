@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { getFont } from '../data/fonts';
+import { useDictionaryEntry } from '../data/useDictionary';
 import { relationsOf } from '../data/relations';
 import { getWord } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
@@ -257,6 +258,8 @@ function WordDetail({ word }: { word: VocabularyWord }) {
             onOpen={(id) => navigate(`/words/word/${id}`, { replace: true })}
           />
         )}
+
+        <OtherMeanings word={word} />
       </div>
     </div>
   );
@@ -306,5 +309,88 @@ function RelationBlock({
         ))}
       </ul>
     </section>
+  );
+}
+
+
+/**
+ * What else this spelling can mean, from the dictionary, collapsed.
+ *
+ * ## Why the card above says only one thing
+ *
+ * A learning card teaches one sense — `senseId` names which — and the card is
+ * built around that promise: the meaning, the example, the picture and the four
+ * multiple-choice options all describe 차 the car. Adding "or tea" to the
+ * meaning line is how 103 glosses ended up teaching two things at once, which
+ * gave a learner asked what 차 means two right answers and one button.
+ *
+ * But the other senses are real, and a learner who has just met 차 in a café
+ * needs somewhere to find them. Here, below everything the card promises,
+ * behind a disclosure, plainly attributed to the dictionary rather than to the
+ * course. Open it and the app is answering a question; leave it shut and the
+ * card still teaches one thing.
+ *
+ * ## Why it costs nothing to have
+ *
+ * Nothing is fetched until the disclosure is opened — `useDictionaryEntry` is
+ * given `null` until then — so a learner reading the example sentence does not
+ * pay for a dictionary they did not ask for, and the 25 words with a written
+ * definition are unaffected either way.
+ *
+ * Absent entirely when the dictionary has nothing more to say, which is the
+ * common case: a heading promising other meanings and then listing the one
+ * already on the card is worse than no heading.
+ */
+function OtherMeanings({ word }: { word: VocabularyWord }) {
+  const { t } = useTranslation('vocabulary');
+  const [open, setOpen] = useState(false);
+  const { entry, state } = useDictionaryEntry(open ? word.word : null);
+
+  /*
+    The taught sense, removed from the list of others.
+
+    Matched on the gloss rather than on `senseId`, because the two ids are built
+    from different glosses — `word_cha#car` from the hand-written English, and
+    `dict_cha#car` from Wiktionary's — and they agree often enough to be
+    tempting and not often enough to rely on. Comparing the short glosses
+    catches the duplicate when there is one and shows an extra line when there
+    is not, which is the failure worth having.
+  */
+  const taught = wordCopy(word, 'en').value.meaning.toLowerCase();
+  const others = (entry?.senses ?? []).filter(
+    (sense) => !taught.includes(sense.shortGloss.toLowerCase()),
+  );
+
+  return (
+    <details
+      className={styles.block}
+      onToggle={(event) => setOpen((event.currentTarget as HTMLDetailsElement).open)}
+    >
+      <summary className={styles.blockTitle}>{t('dictionary.otherMeaningsPrompt')}</summary>
+      {state === 'loading' && <p className={styles.note}>{t('dictionary.searching')}</p>}
+      {state === 'unavailable' && <p className={styles.note}>{t('dictionary.unavailable')}</p>}
+      {state === 'ready' && others.length === 0 && (
+        <p className={styles.note}>{t('dictionary.onlyMeaning')}</p>
+      )}
+      {others.length > 0 && (
+        <>
+          <ul className={styles.otherMeanings}>
+            {others.map((sense) => (
+              <li key={sense.senseId}>
+                <span className={styles.otherPartOfSpeech}>
+                  {t(`partOfSpeech.${sense.partOfSpeech}`, { defaultValue: sense.partOfSpeech })}
+                </span>{' '}
+                {sense.gloss}
+              </li>
+            ))}
+          </ul>
+          {entry && (
+            <p className={styles.note}>
+              {t('dictionary.source', { name: 'Wiktionary', license: entry.source.license })}
+            </p>
+          )}
+        </>
+      )}
+    </details>
   );
 }

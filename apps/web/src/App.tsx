@@ -40,6 +40,14 @@ const WordCategoryPage = lazy(() =>
 const WordDetailPage = lazy(() =>
   import('./pages/WordDetailPage').then((m) => ({ default: m.WordDetailPage })),
 );
+/*
+ * Lazy like the rest, and for a second reason: the module it pulls in is the
+ * only route that talks to `data/dictionary`, so a learner who never opens a
+ * dictionary entry never parses the code that would fetch one.
+ */
+const DictionaryWordPage = lazy(() =>
+  import('./pages/DictionaryWordPage').then((m) => ({ default: m.DictionaryWordPage })),
+);
 const SavedWordsPage = lazy(() =>
   import('./pages/SavedWordsPage').then((m) => ({ default: m.SavedWordsPage })),
 );
@@ -190,6 +198,7 @@ export function App() {
               {/* One word, in depth. A tab-layout screen: the learner is
                   looking something up, not part-way through a sitting. */}
               <Route path="/words/word/:wordId" element={<WordDetailPage />} />
+              <Route path="/words/dictionary/:headword" element={<DictionaryWordPage />} />
               <Route path="/words/saved" element={<SavedWordsPage />} />
               <Route path="/review/mistakes" element={<MistakesPage />} />
               <Route path="/review" element={<ReviewPage />} />

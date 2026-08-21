@@ -117,5 +117,16 @@
     "emptyTitle": "Belum ada kata tersimpan",
     "emptyBody": "Ketuk penanda di kata mana pun saat belajar, nanti ia ada di sini untuk kamu buka lagi.",
     "emptyCta": "Ke daftar kata"
+  },
+  "dictionary": {
+    "title": "Kamus",
+    "heading": "Ada juga di kamus",
+    "note": "Hanya untuk mencari. Kata-kata ini tidak termasuk latihan harianmu.",
+    "searching": "Mencari di kamus…",
+    "unavailable": "Kamus perlu koneksi saat pertama kali dibuka.",
+    "otherMeaningsPrompt": "Arti lain",
+    "otherMeanings_other": "{{count, number}} arti lain",
+    "onlyMeaning": "Kamus tidak punya arti lain untuk kata ini.",
+    "source": "Dari {{name}}, {{license}}."
   }
 }

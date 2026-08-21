@@ -238,6 +238,21 @@ export function getWord(id: string): VocabularyWord | undefined {
   return BY_ID.get(id);
 }
 
+const BY_HEADWORD = new Map(VOCABULARY.map((w) => [w.word, w]));
+
+/**
+ * The taught card for a Korean spelling, if the app teaches one.
+ *
+ * Used to keep the two corpora from showing the same word twice: a dictionary
+ * link for a word that turns out to be on the syllabus redirects to the card
+ * that has the recording and the hand-written meaning. Headwords are unique in
+ * the corpus — `senseId` exists precisely so that one spelling means one taught
+ * sense — so this map has no collisions to resolve.
+ */
+export function findWordByHeadword(headword: string): VocabularyWord | undefined {
+  return BY_HEADWORD.get(headword);
+}
+
 // --- Priority ------------------------------------------------------------------
 
 /**

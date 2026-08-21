@@ -131,5 +131,18 @@
     "emptyTitle": "Încă niciun cuvânt salvat",
     "emptyBody": "Atinge semnul de carte de la orice cuvânt în timp ce înveți și îl găsești aici când vrei să revii.",
     "emptyCta": "Mergi la cuvinte"
+  },
+  "dictionary": {
+    "title": "Dicționar",
+    "heading": "Și în dicționar",
+    "note": "Doar pentru consultare. Aceste cuvinte nu fac parte din practica zilnică.",
+    "searching": "Caut în dicționar…",
+    "unavailable": "Dicționarul are nevoie de conexiune prima dată când îl deschizi.",
+    "otherMeaningsPrompt": "Alte sensuri",
+    "otherMeanings_one": "{{count, number}} alt sens",
+    "otherMeanings_few": "{{count, number}} alte sensuri",
+    "otherMeanings_other": "{{count, number}} de alte sensuri",
+    "onlyMeaning": "Dicționarul nu are alt sens pentru acest cuvânt.",
+    "source": "Din {{name}}, {{license}}."
   }
 }

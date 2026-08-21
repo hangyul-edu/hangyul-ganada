@@ -171,3 +171,28 @@
   font-size: var(--hg-text-body);
   font-weight: var(--hg-weight-bold);
 }
+
+/*
+ * Dictionary senses other than the one this card teaches.
+ *
+ * Set in body text with the part of speech leading in caption grey, so the list
+ * reads as reference rather than as more of the lesson. It sits inside the
+ * standard .block, so a shut disclosure is one more titled row in a column of
+ * titled rows and costs the page nothing.
+ */
+.otherMeanings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+.otherPartOfSpeech {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}

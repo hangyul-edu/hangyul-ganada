@@ -1,0 +1,131 @@
+/*
+ * A dictionary entry: everything the app knows about a word it does not teach.
+ *
+ * Deliberately quieter than Word Detail. That screen is the product's own work
+ * — a written meaning, a checked recording, a graded sentence — and it is
+ * allowed to look like it. This is a reference lookup with somebody else's
+ * gloss on it, and looking slightly plainer is the honest signal.
+ */
+
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-2) var(--hg-space-5) var(--hg-space-5);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  align-items: flex-start;
+}
+
+/* Target content: never mirrored, whatever the interface direction. */
+.word {
+  direction: ltr;
+  font-size: clamp(36px, 11vw, 52px);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+  line-height: 1.15;
+}
+
+.romanization {
+  direction: ltr;
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}
+
+.note,
+.status,
+.source {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.sense {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-4);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  border: 1px solid var(--hg-border);
+}
+
+.partOfSpeech {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.gloss {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+  text-wrap: pretty;
+}
+
+.labels {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.examples li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-inline-start: var(--hg-space-3);
+  border-inline-start: 2px solid var(--hg-border);
+  font-size: var(--hg-text-body);
+  color: var(--hg-text);
+}
+
+.translation {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+/*
+ * The senses after the first.
+ *
+ * A native <details> rather than a state hook: it is keyboard-operable, it is
+ * announced as a disclosure by every screen reader, it survives having
+ * JavaScript busy elsewhere, and Ctrl-F inside the page opens it in browsers
+ * that support find-in-page expansion. None of that is worth re-implementing.
+ */
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.moreSummary {
+  cursor: pointer;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hg-text-tertiary);
+  /* A 44px target, because a summary is a control and this is a phone. */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.source a {
+  color: var(--hg-text-secondary);
+}

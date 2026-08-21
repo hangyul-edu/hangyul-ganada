@@ -124,5 +124,17 @@
     "emptyTitle": "Noch nichts gemerkt",
     "emptyBody": "Tipp beim Lernen auf das Lesezeichen an einem Wort — dann findest du es hier wieder.",
     "emptyCta": "Zu den Wörtern"
+  },
+  "dictionary": {
+    "title": "Wörterbuch",
+    "heading": "Auch im Wörterbuch",
+    "note": "Nur zum Nachschlagen. Diese Wörter gehören nicht zur täglichen Übung.",
+    "searching": "Im Wörterbuch wird gesucht…",
+    "unavailable": "Das Wörterbuch braucht beim ersten Öffnen eine Verbindung.",
+    "otherMeaningsPrompt": "Weitere Bedeutungen",
+    "otherMeanings_one": "{{count, number}} weitere Bedeutung",
+    "otherMeanings_other": "{{count, number}} weitere Bedeutungen",
+    "onlyMeaning": "Das Wörterbuch kennt keine weitere Bedeutung für dieses Wort.",
+    "source": "Aus {{name}}, {{license}}."
   }
 }

@@ -668,3 +668,24 @@
   font-weight: var(--hg-weight-bold);
   color: var(--hg-primary);
 }
+
+/*
+ * The dictionary half of a search result list.
+ *
+ * Separated from the taught words by a heading and a line of explanation, not
+ * by a different card shape: they are the same kind of thing to tap, and
+ * dressing them differently would suggest they behave differently when tapped.
+ * What differs is what they promise, and that is what the note says.
+ */
+.dictionary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin-block-start: var(--hg-space-5);
+}
+
+.dictionaryNote {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}

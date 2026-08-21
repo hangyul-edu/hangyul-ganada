@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
+import type { DictionaryHit } from '../data/dictionary';
+import { type DictionaryState, useDictionarySearch } from '../data/useDictionary';
 import { VOCABULARY_CATEGORIES, searchWords, wordsByCategory } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
 import { useFormatters, useLocale } from '../i18n';
@@ -19,6 +21,15 @@ import styles from './WordsPage.module.css';
 
 /** Enough results to be useful; more than a phone screen can review at once. */
 const MAX_RESULTS = 40;
+
+/**
+ * How many dictionary hits sit under the taught ones.
+ *
+ * Fewer than the corpus gets, deliberately. This half of the list is a
+ * reference shelf, not a syllabus, and a long tail of it under every search
+ * would bury the words the learner is actually being taught.
+ */
+const MAX_DICTIONARY_RESULTS = 12;
 
 /**
  * The sizes of a second helping.
@@ -91,6 +102,18 @@ export function WordsPage() {
     [deferredQuery, locale],
   );
   const searching = deferredQuery.trim().length > 0;
+
+  /*
+    The other half of the answer.
+
+    The corpus holds the 2,581 words the app teaches; the dictionary holds seven
+    thousand it merely knows. Someone who half-remembers 나가다 and searches for
+    it is asking a question, and "no matches" was a wrong answer to it — the
+    word exists, it is simply not on the syllabus.
+
+    Fetched only from here, and only once somebody types. See `useDictionary`.
+  */
+  const dictionary = useDictionarySearch(deferredQuery, MAX_DICTIONARY_RESULTS);
 
   const categories = useMemo(
     () =>
@@ -244,7 +267,12 @@ export function WordsPage() {
         </div>
 
         {searching ? (
-          <SearchResults query={deferredQuery} results={results} locale={locale} />
+          <SearchResults
+            query={deferredQuery}
+            results={results}
+            locale={locale}
+            dictionary={dictionary}
+          />
         ) : (
           <section aria-labelledby="browse-heading">
             <h2 id="browse-heading" className={styles.sectionTitle}>
@@ -284,17 +312,31 @@ function SearchResults({
   query,
   results,
   locale,
+  dictionary,
 }: {
   query: string;
   results: Array<{ word: VocabularyWord }>;
   locale: string;
+  dictionary: { hits: DictionaryHit[]; state: DictionaryState };
 }) {
   const { t } = useTranslation('vocabulary');
 
-  if (results.length === 0) {
+  /*
+    A word the app teaches is never also offered as a dictionary entry.
+
+    Both halves would match 차, and two rows for one word is a choice a learner
+    should not have to make — especially when one leads to a hand-written card
+    with a picture and a recording and the other to a bare gloss. The taught
+    card wins; the dictionary's *other* senses of 차 are on that card, under
+    Other meanings, where they belong.
+  */
+  const taught = new Set(results.map(({ word }) => word.word));
+  const extra = dictionary.hits.filter((hit) => !taught.has(hit.headword));
+
+  if (results.length === 0 && extra.length === 0) {
     return (
       <p className={styles.empty} role="status">
-        {t('search.none', { query })}
+        {dictionary.state === 'loading' ? t('dictionary.searching') : t('search.none', { query })}
       </p>
     );
   }
@@ -324,6 +366,48 @@ function SearchResults({
           );
         })}
       </ul>
+
+      {/*
+        The reference shelf, under its own heading and clearly not homework.
+
+        The heading does the whole job of keeping the two corpora apart. Above
+        it are words with a lesson, a recording and a translation somebody
+        wrote; below it are dictionary entries, which will never be scheduled,
+        never appear in a review, and never count towards a streak. Saying so
+        once, here, is better than a badge on every row.
+      */}
+      {extra.length > 0 && (
+        <section aria-labelledby="dictionary-heading" className={styles.dictionary}>
+          <h2 id="dictionary-heading" className={styles.sectionTitle}>
+            {t('dictionary.heading')}
+          </h2>
+          <p className={styles.dictionaryNote}>{t('dictionary.note')}</p>
+          <ul className={styles.results}>
+            {extra.map((hit) => (
+              <li key={hit.headword}>
+                <Card padding="md" className={styles.result}>
+                  <Link
+                    to={`/words/dictionary/${encodeURIComponent(hit.headword)}`}
+                    className={styles.resultMain}
+                  >
+                    <span className={styles.resultWord} lang="ko" dir="ltr">
+                      {hit.headword}
+                    </span>
+                    <span className={styles.resultMeaning}>{hit.shortGloss}</span>
+                    <ChevronRightIcon size={18} />
+                  </Link>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {dictionary.state === 'unavailable' && (
+        <p className={styles.dictionaryNote} role="status">
+          {t('dictionary.unavailable')}
+        </p>
+      )}
     </>
   );
 }

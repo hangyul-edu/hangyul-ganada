@@ -124,5 +124,17 @@
     "emptyTitle": "Nog geen bewaarde woorden",
     "emptyBody": "Tik tijdens het leren op de bladwijzer bij een woord, dan staat het hier om op terug te komen.",
     "emptyCta": "Naar de woorden"
+  },
+  "dictionary": {
+    "title": "Woordenboek",
+    "heading": "Ook in het woordenboek",
+    "note": "Alleen om op te zoeken. Deze woorden horen niet bij je dagelijkse oefening.",
+    "searching": "Zoeken in het woordenboek…",
+    "unavailable": "Het woordenboek heeft de eerste keer een verbinding nodig.",
+    "otherMeaningsPrompt": "Andere betekenissen",
+    "otherMeanings_one": "{{count, number}} andere betekenis",
+    "otherMeanings_other": "{{count, number}} andere betekenissen",
+    "onlyMeaning": "Het woordenboek kent geen andere betekenis voor dit woord.",
+    "source": "Uit {{name}}, {{license}}."
   }
 }

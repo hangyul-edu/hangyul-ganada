@@ -124,5 +124,17 @@
     "emptyTitle": "Henüz kaydedilmiş kelime yok",
     "emptyBody": "Çalışırken herhangi bir kelimedeki yer imine dokun, sonra dönmek için burada dursun.",
     "emptyCta": "Kelimelere git"
+  },
+  "dictionary": {
+    "title": "Sözlük",
+    "heading": "Sözlükte de var",
+    "note": "Yalnızca aramak için. Bu kelimeler günlük çalışmanın parçası değil.",
+    "searching": "Sözlükte aranıyor…",
+    "unavailable": "Sözlüğü ilk açtığında bağlantı gerekiyor.",
+    "otherMeaningsPrompt": "Diğer anlamlar",
+    "otherMeanings_one": "{{count, number}} başka anlam",
+    "otherMeanings_other": "{{count, number}} başka anlam",
+    "onlyMeaning": "Sözlükte bu kelimenin başka anlamı yok.",
+    "source": "Kaynak: {{name}}, {{license}}."
   }
 }

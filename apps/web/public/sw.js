@@ -54,11 +54,14 @@ const CONTENT_CACHE = `${VERSION}-content`;
 const AUDIO_CACHE = `${VERSION}-audio-${AUDIO_VERSION}`;
 
 /** Paths whose contents never change under the same name. */
-const IMMUTABLE = [/^\/brand\//, /^\/assets\//];
+const IMMUTABLE = [/^\/brand\//, /^\/assets\//, /^\/dictionary\/(?!manifest\.json$)/];
 
 /** Recordings: immutable *within* an audio build, replaced between them. */
 const AUDIO = /^\/audio\/.+\.mp3$/;
 const AUDIO_MANIFEST = '/audio/manifest.json';
+
+/** How the app finds the current dictionary index and chunks. Never stale. */
+const DICTIONARY_MANIFEST = '/dictionary/manifest.json';
 
 /**
  * The shell, fetched up front so a learner who closes the app and reopens it
@@ -165,6 +168,16 @@ self.addEventListener('fetch', (event) => {
   // point at the previous build's clips and hide the new ones.
   if (url.pathname === AUDIO_MANIFEST) {
     event.respondWith(networkFirst(request, AUDIO_CACHE));
+    return;
+  }
+
+  // The dictionary manifest names the content-hashed index and chunk files, so
+  // it is the one dictionary file that must not go stale: served from cache
+  // while the network is up, it would keep pointing a learner at last build's
+  // chunks. Everything it points at is named after its own bytes and so is
+  // cached for good — which is what makes an opened chunk work offline.
+  if (url.pathname === DICTIONARY_MANIFEST) {
+    event.respondWith(networkFirst(request, CONTENT_CACHE));
     return;
   }
 

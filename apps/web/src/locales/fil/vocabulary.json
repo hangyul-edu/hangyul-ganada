@@ -124,5 +124,17 @@
     "emptyTitle": "Wala pang naka-save na salita",
     "emptyBody": "Pindutin ang bookmark sa kahit anong salita habang nag-aaral, at naririto ito kapag gusto mong balikan.",
     "emptyCta": "Pumunta sa mga salita"
+  },
+  "dictionary": {
+    "title": "Diksyunaryo",
+    "heading": "Nasa diksyunaryo rin",
+    "note": "Panghanap lang. Hindi kasama ang mga salitang ito sa araw-araw mong pagsasanay.",
+    "searching": "Naghahanap sa diksyunaryo…",
+    "unavailable": "Kailangan ng koneksyon ang diksyunaryo sa unang pagbukas.",
+    "otherMeaningsPrompt": "Iba pang kahulugan",
+    "otherMeanings_one": "{{count, number}} pang kahulugan",
+    "otherMeanings_other": "{{count, number}} pang kahulugan",
+    "onlyMeaning": "Walang ibang kahulugan ang diksyunaryo para sa salitang ito.",
+    "source": "Mula sa {{name}}, {{license}}."
   }
 }

@@ -117,5 +117,16 @@
     "emptyTitle": "まだ保存した単語はありません",
     "emptyBody": "学習中に単語のブックマークを押すと、ここに集まります。",
     "emptyCta": "単語を見る"
+  },
+  "dictionary": {
+    "title": "辞書",
+    "heading": "辞書にもあります",
+    "note": "調べるためのものです。毎日の学習には出てきません。",
+    "searching": "辞書を調べています…",
+    "unavailable": "辞書は初めて開くときにインターネット接続が必要です。",
+    "otherMeaningsPrompt": "ほかの意味",
+    "otherMeanings_other": "ほかの意味 {{count, number}} 件",
+    "onlyMeaning": "辞書にほかの意味はありません。",
+    "source": "出典：{{name}}、{{license}}。"
   }
 }

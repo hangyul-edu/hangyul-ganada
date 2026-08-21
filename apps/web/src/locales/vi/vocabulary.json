@@ -124,5 +124,17 @@
     "emptyTitle": "Chưa lưu từ nào",
     "emptyBody": "Khi học, chạm vào dấu đánh dấu ở bất kỳ từ nào, từ đó sẽ nằm ở đây để bạn quay lại.",
     "emptyCta": "Đến phần từ vựng"
+  },
+  "dictionary": {
+    "title": "Từ điển",
+    "heading": "Cũng có trong từ điển",
+    "note": "Chỉ để tra cứu. Những từ này không nằm trong phần luyện tập hằng ngày.",
+    "searching": "Đang tra từ điển…",
+    "unavailable": "Từ điển cần kết nối trong lần mở đầu tiên.",
+    "otherMeaningsPrompt": "Nghĩa khác",
+    "otherMeanings_one": "{{count, number}} nghĩa khác",
+    "otherMeanings_other": "{{count, number}} nghĩa khác",
+    "onlyMeaning": "Từ điển không có nghĩa nào khác cho từ này.",
+    "source": "Nguồn: {{name}}, {{license}}."
   }
 }
