@@ -59,9 +59,9 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `5b9082802219bae1df5f66d25c87337e4aaa740d` |
+| Git commit | `a672dad57a6efe2073c64f46a75dc4ad29aeab51` |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`5b90828` — the same commit**, asserted by `npm run release:current`, which is new and is in `verify:release`. See §2.2 |
+| Commit the delivered APK/AAB were built from | **`a672dad` — the same commit**, asserted by `npm run release:current`, which is new and is in `verify:release`. See §2.2 |
 | Signed APK | 63.8 MB · `bb0fbfb9b46558ff…` |
 | Signed AAB | 62.6 MB · `a4e173e9f31d060c…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
@@ -96,13 +96,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-5b90828  the production pass — every change in this report
+a672dad  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from 5b90828, and asserted to be
+result/, app_result/   from a672dad, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -210,7 +210,7 @@ between what that file contains and what this report describes.
 
 **The download is the product this document describes.** That sentence has not
 been true in four reports. The release in `result/` and `app_result/` was built
-from `5b90828` with a clean tree, and `npm run release:current` — thirty lines
+from `a672dad` with a clean tree, and `npm run release:current` — thirty lines
 that read the commit out of `build-info.json` and diff it against HEAD — now
 fails the release gate if it ever stops being true. The package was unpacked and
 checked rather than trusted: PNG splash and no MP4, 국 measuring `.3646`, the
@@ -3420,7 +3420,7 @@ way a reader can re-run.
 | **I-31** | `fitGlyph` brings a glyph's ink to `GLYPH_INK_EXTENT` (0.72) unless doing so would take its strokes past the pen, and the cap on that is a fixed `MAX_FIT_SCALE` of 1.3. Measured across the 270 glyph-and-face pairs in the fixtures, 27% are held below the target and the ten smallest are all Gaegu — ㅇ at 0.27, ㅁ and ㅅ at 0.28, ㄴ and ㄱ at 0.30. A per-glyph cap on the resulting *stroke width* rather than on scale was implemented and measured: it lifts four faces and Gaegu's worst case barely moves, while every error rate gets worse (0.35% / 0.41% against 0.28% / 0.28%). See the note on `MAX_FIT_SCALE`. | Gaegu draws small letters with heavy strokes, which is a property of the face and not of the fit. The honest options are a per-face `glyphScale` in `data/fonts.ts` — the field already exists — calibrated against the corpus for that face alone, or accepting that a pencil hand is written small. Not another global constant. |
 | **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
 | **I-10** | The eleven known cases are pinned. There is no automated guarantee a twelfth does not exist. | A canonical taught `senseId` per entry that every language's representation derives from. |
-| **I-01** | Rebuilt from HEAD (`5b90828`) with the working tree clean, and verified by unpacking the delivered APK rather than by trusting the build: `assets/public/brand/splash/` holds `splash-ko.png` and `splash-en.png` and no MP4; the curriculum chunk carries `국:{aspect:.9669,cut:"bar",parts:[[.1257,0,.8686,.3646],…]}`, the current measurement; the matching grid, the sound-free control, the Home nudge and the `noindex` metadata are all present; and all ten native launch bitmaps test wordless. Signed v2 + v3 with the production identity `157a2bb1…debc`, read out of the APK Signing Block. **And `npm run release:current` now exists**: it reads the commit out of `build-info.json`, diffs it against HEAD, and fails on any changed product file or any uncommitted one. It is in `verify:release`. | done |
+| **I-01** | Rebuilt from HEAD (`a672dad`) with the working tree clean, and verified by unpacking the delivered APK rather than by trusting the build: `assets/public/brand/splash/` holds `splash-ko.png` and `splash-en.png` and no MP4; the curriculum chunk carries `국:{aspect:.9669,cut:"bar",parts:[[.1257,0,.8686,.3646],…]}`, the current measurement; the matching grid, the sound-free control, the Home nudge and the `noindex` metadata are all present; and all ten native launch bitmaps test wordless. Signed v2 + v3 with the production identity `157a2bb1…debc`, read out of the APK Signing Block. **And `npm run release:current` now exists**: it reads the commit out of `build-info.json`, diffs it against HEAD, and fails on any changed product file or any uncommitted one. It is in `verify:release`. | done |
 | **I-02** | Committed before the build, in that order, this cycle and the two before it. | done |
 | **I-23** | Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at. | done |
 | **I-06** | 25 written words in ten languages; §15.2. | done |
@@ -4372,7 +4372,7 @@ speech plan  →  Azure Neural TTS  →  public/audio/*.mp3 + manifest.json
 | Artefact | State |
 | --- | --- |
 | Web build | current — builds clean from HEAD, every budget met |
-| `app_result/hangyul-ganada-release.apk` | 66,912,666 B (63.8 MB) · SHA-256 `bb0fbfb9b46558fffaa6c20b1065897a642541455ef238b66fef181b07eaf913` · built from **`5b90828`** · signed |
+| `app_result/hangyul-ganada-release.apk` | 66,912,666 B (63.8 MB) · SHA-256 `bb0fbfb9b46558fffaa6c20b1065897a642541455ef238b66fef181b07eaf913` · built from **`a672dad`** · signed |
 | `app_result/hangyul-ganada-release.aab` | 65,647,712 B (62.6 MB) · SHA-256 `a4e173e9f31d060c2bb41a900fa4929557558ece59cdaf28aa76250ade4c1947` · same commit · signed |
 | `result/` | the same two binaries byte-for-byte, plus `RELEASE_VALIDATION.md`, `BUILD_OR_SIGNING_BLOCKERS.md`, the store assets and current Android and iOS project snapshots |
 | Built from the current source? | **Yes**, and asserted: `npm run release:current` compares `build-info.json`'s commit against HEAD and is in `verify:release` |
