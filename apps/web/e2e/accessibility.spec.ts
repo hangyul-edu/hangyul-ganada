@@ -1,6 +1,8 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
+import { waitForLaunch } from './helpers/launch';
+
 /**
  * The accessibility audit, run against the app rather than asserted about it.
  *
@@ -398,4 +400,80 @@ test.describe('what an automated check cannot tell', () => {
       await expect(page.locator('[lang="ko"]').first()).toBeVisible();
     }
   });
+});
+
+/**
+ * WCAG 1.4.4: the text can be doubled and nothing is lost.
+ *
+ * ## Why this needs a browser and not a review
+ *
+ * Every size in this product is a token, most of them are `rem` or `clamp()`,
+ * and reading the stylesheet says they scale. What reading cannot say is what
+ * happens when they all scale at once: a row that fitted at 16 px pushes its
+ * neighbour off the side at 32 px, a `clamp()` with a `px` ceiling stops
+ * growing while the text around it keeps going, and a fixed-height control
+ * clips its own label rather than growing.
+ *
+ * The criterion is about *loss*, not about tidiness — text may reflow, wrap
+ * badly, or become ugly at 200% and still pass. What may not happen is content
+ * disappearing, becoming unreachable, or being cut off. So this asks two
+ * questions a machine can answer honestly: does the page now scroll sideways,
+ * and is any text clipped by an ancestor that will not scroll to reveal it.
+ *
+ * Set on the root as a percentage rather than through Playwright's zoom,
+ * because browser zoom scales *everything* including the viewport, which is a
+ * different criterion (1.4.10) and does not test what a learner who has raised
+ * only their text size will see.
+ */
+test.describe('text at 200%', () => {
+  for (const screen of SCREENS) {
+    test(`${screen.name} loses nothing when text is doubled`, async ({ page }) => {
+      await page.goto(screen.path);
+      await waitForLaunch(page);
+      await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+      // One frame for layout to settle before anything is measured.
+      await page.waitForTimeout(150);
+
+      const overflow = await page.evaluate(() => {
+        const doc = document.documentElement;
+        return doc.scrollWidth - doc.clientWidth;
+      });
+      expect(overflow, `${screen.name} scrolls sideways by ${overflow}px at 200% text`).toBeLessThanOrEqual(1);
+
+      /*
+        Text cut off by an ancestor that cannot be scrolled to reveal it.
+
+        `overflow: hidden` on a box whose text no longer fits is the exact
+        failure this criterion is about, and it is invisible to an axe scan
+        because the markup is perfectly correct — the words are in the DOM,
+        just not on the screen. Elements that scroll are fine: the content is
+        still reachable.
+      */
+      const clipped = await page.evaluate(() => {
+        const bad: string[] = [];
+        for (const el of document.querySelectorAll<HTMLElement>('body *')) {
+          if (!el.textContent?.trim() || el.children.length > 0) continue;
+          const style = getComputedStyle(el);
+          if (style.overflow === 'visible' || style.overflowY === 'auto' || style.overflowY === 'scroll') continue;
+          if (style.display === 'none' || style.visibility === 'hidden') continue;
+          /*
+            Text hidden on purpose, for a screen reader only.
+
+            `hg-sr-only` collapses its box to a pixel and clips — that is how
+            the technique works, and the words are fully available to assistive
+            technology, which is the entire point of them. Detected by the
+            collapsed box rather than by the class name, so a second visually
+            hidden helper does not have to be remembered here. No box holding
+            text a sighted learner is meant to read is one pixel tall.
+          */
+          if (el.clientHeight <= 1 || el.clientWidth <= 1) continue;
+          const cut = el.scrollHeight - el.clientHeight;
+          // A couple of pixels is line-box rounding, not a lost word.
+          if (cut > 3) bad.push(`${el.tagName.toLowerCase()}.${el.className}: ${cut}px hidden — "${el.textContent.trim().slice(0, 40)}"`);
+        }
+        return bad;
+      });
+      expect(clipped, `${screen.name} clips text at 200%:\n${clipped.join('\n')}`).toEqual([]);
+    });
+  }
 });
