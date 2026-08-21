@@ -239,12 +239,12 @@
       "id": "I-18",
       "area": "Content",
       "severity": "P3",
-      "status": "OPEN",
-      "summary": "103 glosses carry more than one sense in some language",
-      "customerImpact": "차 is \"a car, or the tea you drink\" on a beginner's card",
-      "evidence": "Reported by `vocabulary:sense:qa`; not gated.",
-      "recommendedFix": "One card, one taught sense. Additional senses belong in the Word Detail block, not in the quiz answer.",
-      "effort": "MEDIUM (content)"
+      "status": "RESOLVED",
+      "summary": "103 glosses carried more than one sense in some language",
+      "customerImpact": "A learner asked what 차 means had two right answers and one button: the card read 車、お茶 in Japanese and \"coche, té\" in Spanish over the sentence 차를 타요.",
+      "evidence": "All 103 were read against the sentence each card asks. 35 named a sense the sentence never demonstrates and were trimmed across ten languages; ten cards moved sense outright — 맡다 was glossed \"to take charge of\" over 냄새를 맡아 보세요, 시키다 was \"to make someone do\" over \"I ordered pizza\" — and three illustrations moved with them. The remaining 38 were read and kept: Japanese has no single verb for 있다 and must write ある、いる, which is one sense in the two renderings the language requires. `vocabulary:sense:qa:check` now fails on a split gloss that is not on the reviewed list, and on a listed one that has stopped being split; both directions are negative-tested. Comma-merged glosses remain outside the rule and are tracked under I-10.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
     },
     {
       "id": "I-19",
@@ -261,12 +261,12 @@
       "id": "I-20",
       "area": "Vocabulary",
       "severity": "P3",
-      "status": "OPEN",
-      "summary": "The *More about it* block is written for 25 words",
-      "customerImpact": "The other 2,556 word cards end at the example",
-      "evidence": "The alternative was 784 dictionary scrapings, which is why they were deleted.",
-      "recommendedFix": "Write it for the words that need it — polysemous, grammar-heavy, high-frequency functional, culturally specific, easily confused — starting with the top 500. Not a paragraph under every word.",
-      "effort": "HIGH (content) — start at the top 500"
+      "status": "PARTIAL",
+      "summary": "The hand-written *More about it* block is on 25 words of 2,581",
+      "customerImpact": "Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them.",
+      "evidence": "The page now carries the dictionary's own senses for the same spelling, behind a disclosure and attributed: 419 words gain 581 additional examples of the sense the card teaches, and 399 gain 721 more under other senses, each beneath the meaning it demonstrates. 2,564 of 2,581 taught words have a dictionary entry at all.\n\nWhat is still on 25 words is the hand-written block, and that is deliberate — a paragraph under every word is a paragraph nobody reads. The gap this leaves is the words where the dictionary has neither a second sense nor an example: those still show a headword, a romanisation, a gloss, a part of speech and one sentence.",
+      "recommendedFix": "Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed.",
+      "effort": "MEDIUM (content) — one paragraph per word, in ten languages"
     },
     {
       "id": "I-26",
@@ -328,6 +328,17 @@
       "evidence": "Fixed by the recommended route: a per-face `glyph_scale` in `data/fonts.ts`, calibrated against the robustness corpus for that face alone, threaded through `glyphSpecFor` and mirrored by `FACE_SCALE` in `render-fixtures.py` — `data.test.ts` asserts the two agree, so the fixtures cannot drift into measuring a geometry the product does not draw.\n\nGaegu 0.78 → 1.00. Mean ink extent 0.524 → 0.610; smallest glyph 0.27 → 0.35; glyphs below target 37/45 → 25/45. Grading improved rather than degrading: Gaegu's false rejection 1.04% → 0.63%, all-face 0.28% → 0.21%, false acceptance unchanged at 0.28%. A bigger reference is a bigger target for an honest hand, and Gaegu's was small enough that the pen's own width was a large fraction of it.\n\nWhy it stops there. The sweep is jagged — about 480 genuine attempts per face, so one crossing threshold moves the rate 0.21% — and there is a cliff just above: 1.02 reads 0.21% and 1.04 reads 3.33%. 1.00 sits on a plateau with 0.98, two steps clear of it; 1.02 is the minimum and is adjacent to the cliff, which would be fitting to which attempts happen to be in the corpus. Beyond about 1.04 the binding constraint is `MAX_FIT_SCALE`, whose own sweep already showed that raising it costs false rejection.\n\nWhat remains is the typeface. Gaegu's mean extent is 0.610 against 0.653–0.697 for the other five, because it genuinely draws small letters inside its em, and closing that last gap means telling a learner they wrote it wrong more often.",
       "recommendedFix": "Accept it, or drop the face. A pencil hand is written small, and the remaining difference costs less than the grading accuracy that closing it would buy back.",
       "effort": "DONE — further closing costs accuracy"
+    },
+    {
+      "id": "I-32",
+      "area": "Performance",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "Dictionary search is a linear scan and stops meeting budget past about 30,000 headwords",
+      "customerImpact": "None today. If the dictionary grows by roughly another 15%, search results begin to trail the cursor on a mid-range phone — the text box stays responsive because ranking is deferred, but the list under it lags visibly.",
+      "evidence": "`perf:dictionary` scores every row of the index on every keystroke. At the 26,675 headwords that ship it costs 3.9 ms phone-adjusted against a budget of half a frame; on synthetic worst-case rows where nothing exits early, 25,000 costs 7.5 ms and 50,000 costs 13.2 ms. The gate caught this once already: the same code was at 9.0 ms when the corpus first reached this size, and lower-casing the gloss and romanisation once at load instead of per keystroke brought it back. That lever has now been pulled and there is not a second one of the same size.\n\nThe index is also 451 kB gzipped — a download a learner waits through on their first search, comparable to the app's entire first load, and budgeted at 520 kB so it cannot drift upwards unnoticed.",
+      "recommendedFix": "An inverted index built at build time, or moving the scan into a worker. Not a faster loop: the current one is already doing the minimum per row.",
+      "effort": "MEDIUM — a prefix index in build_dictionary.py, or a worker"
     }
   ]
 }
