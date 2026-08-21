@@ -88,7 +88,19 @@ interface Manifest {
   source: { name: string; license: string; url: string };
 }
 
-const BASE = `${import.meta.env.BASE_URL}dictionary/`;
+/**
+ * Where the files live, resolved on use rather than at import.
+ *
+ * `import.meta.env` exists only inside Vite, so reading it at module scope made
+ * this module unimportable anywhere else — which is exactly where the ranking
+ * benchmark wanted it, and would have forced that benchmark to keep its own
+ * copy of the loop it is meant to be measuring. Nothing here needs the base URL
+ * until a fetch actually happens.
+ */
+function base(): string {
+  const url = import.meta.env?.BASE_URL ?? '/';
+  return `${url}dictionary/`;
+}
 
 /**
  * Promises, not values.
@@ -99,11 +111,11 @@ const BASE = `${import.meta.env.BASE_URL}dictionary/`;
  * should get a dictionary when they come back, not a cached failure.
  */
 let manifestPromise: Promise<Manifest> | null = null;
-let indexPromise: Promise<DictionaryHit[]> | null = null;
+let indexPromise: Promise<DictionaryIndex> | null = null;
 const chunkPromises = new Map<string, Promise<Map<string, DictionaryEntry>>>();
 
 function fetchJson<T>(path: string): Promise<T> {
-  return fetch(`${BASE}${path}`).then((response) => {
+  return fetch(`${base()}${path}`).then((response) => {
     if (!response.ok) throw new Error(`dictionary: ${path} — ${response.status}`);
     return response.json() as Promise<T>;
   });
@@ -121,13 +133,32 @@ export function loadManifest(): Promise<Manifest> {
   return manifestPromise;
 }
 
+/**
+ * The searchable index, with the per-query work already done.
+ *
+ * `hits` is the data; the parallel arrays beside it exist because ranking runs
+ * on **every keystroke** over every row. Lower-casing the gloss and the
+ * romanisation inside that loop meant 26,675 `toLowerCase()` calls per
+ * character typed, which measured at 9.0 ms on a phone against a budget of half
+ * a frame. Doing it once when the index arrives costs 7 ms, and brings a
+ * keystroke to 3.2 ms. See `scripts/perf-dictionary.mjs`, which is what caught
+ * it: the same code was comfortably inside budget at 7,865 headwords and went
+ * over when the corpus grew, with nothing else changing.
+ */
+export interface DictionaryIndex {
+  hits: DictionaryHit[];
+  /** Lower-cased once, in the same order as `hits`. */
+  gloss: string[];
+  romanization: string[];
+}
+
 /** Every headword, searchable. One fetch per session, on the first search. */
-export function loadIndex(): Promise<DictionaryHit[]> {
+export function loadIndex(): Promise<DictionaryIndex> {
   indexPromise ??= forget(
     loadManifest()
       .then((manifest) => fetchJson<{ rows: unknown[][] }>(manifest.index))
-      .then(({ rows }) =>
-        rows.map((row) => ({
+      .then(({ rows }) => {
+        const hits = rows.map((row) => ({
           headword: row[0] as string,
           romanization: row[1] as string,
           partOfSpeech: row[2] as string,
@@ -135,8 +166,13 @@ export function loadIndex(): Promise<DictionaryHit[]> {
           senseCount: row[4] as number,
           chunk: row[5] as string,
           frequency: row[6] as number,
-        })),
-      ),
+        }));
+        return {
+          hits,
+          gloss: hits.map((hit) => hit.shortGloss.toLowerCase()),
+          romanization: hits.map((hit) => hit.romanization.toLowerCase()),
+        };
+      }),
     () => {
       indexPromise = null;
     },
@@ -177,27 +213,36 @@ export function loadEntry(headword: string, chunk: string): Promise<DictionaryEn
  * far more use for 나가다 than for a headword nobody says.
  */
 export function rankDictionary(
-  index: DictionaryHit[],
+  index: DictionaryIndex,
   query: string,
   limit: number,
 ): DictionaryHit[] {
   const needle = query.trim().toLowerCase();
   if (!needle) return [];
 
-  const scored: Array<{ hit: DictionaryHit; rank: number }> = [];
-  for (const hit of index) {
-    const gloss = hit.shortGloss.toLowerCase();
+  const { hits, gloss, romanization } = index;
+  // Two parallel arrays of primitives rather than an array of objects: at this
+  // size the allocation per match is a measurable share of the keystroke.
+  const found: number[] = [];
+  const ranks: number[] = [];
+  for (let i = 0; i < hits.length; i += 1) {
+    const headword = hits[i]!.headword;
+    const meaning = gloss[i]!;
     let rank: number;
-    if (hit.headword === needle || gloss === needle) rank = 0;
-    else if (hit.headword.startsWith(needle) || gloss.startsWith(needle)) rank = 1;
-    else if (hit.headword.includes(needle) || gloss.includes(needle)) rank = 2;
-    else if (hit.romanization.toLowerCase().startsWith(needle)) rank = 3;
+    if (headword === needle || meaning === needle) rank = 0;
+    else if (headword.startsWith(needle) || meaning.startsWith(needle)) rank = 1;
+    else if (headword.includes(needle) || meaning.includes(needle)) rank = 2;
+    else if (romanization[i]!.startsWith(needle)) rank = 3;
     else continue;
-    scored.push({ hit, rank });
+    found.push(i);
+    ranks.push(rank);
   }
 
-  scored.sort((a, b) => a.rank - b.rank || b.hit.frequency - a.hit.frequency);
-  return scored.slice(0, limit).map(({ hit }) => hit);
+  const order = found.map((_, position) => position);
+  order.sort(
+    (a, b) => ranks[a]! - ranks[b]! || hits[found[b]!]!.frequency - hits[found[a]!]!.frequency,
+  );
+  return order.slice(0, limit).map((position) => hits[found[position]!]!);
 }
 
 /** Test seam: forget everything fetched, so a test can serve a new manifest. */

@@ -131,14 +131,35 @@ def slug(gloss: str) -> str:
     return words[0] if words else "sense"
 
 
+#: The longest a search row's gloss may be.
+#:
+#: Set from the shape of the list rather than from a round number: a result row
+#: on a 360 px phone fits roughly this much before it wraps to a third line, and
+#: a third line turns a scannable list into a page of prose.
+SHORT_GLOSS_MAX = 60
+
+
 def short_gloss(gloss: str) -> str:
     """The first clause of a definition, for a search result row.
 
     A search list shows one line per word and has no room for "to eat, drink,
     have, consume (food or liquid)". The first clause is what a learner scans.
+
+    Splitting on punctuation is not enough on its own, and for a while that was
+    all this did. A definition written without a comma or a semicolon came
+    through whole: the longest "short" gloss in the corpus was 213 characters,
+    which is a paragraph in a row built for a phrase. So there is also a length,
+    cut at a word boundary — mid-word truncation reads as a rendering fault
+    rather than as a deliberate abbreviation.
     """
-    first = re.split(r"[;,]", gloss)[0].strip()
-    return first if first else gloss.strip()
+    first = re.split(r"[;,]", gloss)[0].strip() or gloss.strip()
+    if len(first) <= SHORT_GLOSS_MAX:
+        return first
+    cut = first[:SHORT_GLOSS_MAX].rstrip()
+    space = cut.rfind(" ")
+    if space > SHORT_GLOSS_MAX // 2:
+        cut = cut[:space]
+    return cut.rstrip(" ,;:-") + "…"
 
 
 def initial_of(word: str) -> str:

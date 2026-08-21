@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {
   type DictionaryEntry,
   type DictionaryHit,
+  type DictionaryIndex,
   loadEntry,
   loadIndex,
   rankDictionary,
@@ -33,7 +34,7 @@ export function useDictionarySearch(
   query: string,
   limit: number,
 ): { hits: DictionaryHit[]; state: DictionaryState } {
-  const [index, setIndex] = useState<DictionaryHit[] | null>(null);
+  const [index, setIndex] = useState<DictionaryIndex | null>(null);
   const [state, setState] = useState<DictionaryState>('idle');
   const wanted = query.trim().length > 0;
 
@@ -42,9 +43,9 @@ export function useDictionarySearch(
     let live = true;
     setState('loading');
     loadIndex().then(
-      (rows) => {
+      (loaded) => {
         if (!live) return;
-        setIndex(rows);
+        setIndex(loaded);
         setState('ready');
       },
       () => {
@@ -84,8 +85,8 @@ export function useDictionaryEntry(headword: string | null): {
     let live = true;
     setState('loading');
     loadIndex()
-      .then((rows) => {
-        const row = rows.find((hit) => hit.headword === headword);
+      .then(({ hits }) => {
+        const row = hits.find((hit) => hit.headword === headword);
         return row ? loadEntry(headword, row.chunk) : null;
       })
       .then(

@@ -75,24 +75,34 @@ function synthesise(count) {
   return rows;
 }
 
-/** The app's own ranking, transcribed. Kept in step by `dictionary.test.ts`. */
-function rank(index, query, limit) {
-  const needle = query.trim().toLowerCase();
-  if (!needle) return [];
-  const scored = [];
-  for (const hit of index) {
-    const gloss = hit[3].toLowerCase();
-    let r;
-    if (hit[0] === needle || gloss === needle) r = 0;
-    else if (hit[0].startsWith(needle) || gloss.startsWith(needle)) r = 1;
-    else if (hit[0].includes(needle) || gloss.includes(needle)) r = 2;
-    else if (hit[1].toLowerCase().startsWith(needle)) r = 3;
-    else continue;
-    scored.push({ hit, r });
-  }
-  scored.sort((a, b) => a.r - b.r || b.hit[6] - a.hit[6]);
-  return scored.slice(0, limit);
+/**
+ * The app's own ranking, imported rather than transcribed.
+ *
+ * A copy of the loop in here would be a benchmark of a function nobody runs.
+ * `rankDictionary` is plain TypeScript with no React and no DOM, so `tsx` can
+ * load the module the product actually ships.
+ */
+const { rankDictionary } = await import('../apps/web/src/data/dictionary.ts');
+
+/** The shape `loadIndex` hands to the ranker: hits plus the lower-cased fields. */
+function prepare(rows) {
+  const hits = rows.map((row) => ({
+    headword: row[0],
+    romanization: row[1],
+    partOfSpeech: row[2],
+    shortGloss: row[3],
+    senseCount: row[4],
+    chunk: row[5],
+    frequency: row[6],
+  }));
+  return {
+    hits,
+    gloss: hits.map((hit) => hit.shortGloss.toLowerCase()),
+    romanization: hits.map((hit) => hit.romanization.toLowerCase()),
+  };
 }
+
+const rank = (index, query, limit) => rankDictionary(index, query, limit);
 
 const problems = [];
 /**
@@ -114,7 +124,7 @@ for (const count of [10_000, 25_000, 50_000]) {
   const gz = gzipSync(Buffer.from(json), { level: 9 }).length;
 
   let t = performance.now();
-  const parsed = JSON.parse(json).rows;
+  const parsed = prepare(JSON.parse(json).rows);
   const parseMs = performance.now() - t;
 
   // Warm, then measure: a cold JIT reports the compiler, not the code.
@@ -152,18 +162,36 @@ console.log(
 // --- What actually ships -------------------------------------------------------
 
 const manifest = JSON.parse(readFileSync(new URL('../apps/web/public/dictionary/manifest.json', import.meta.url), 'utf8'));
-const real = JSON.parse(
-  readFileSync(new URL(`../apps/web/public/dictionary/${manifest.index}`, import.meta.url), 'utf8'),
-).rows;
+const realJson = readFileSync(
+  new URL(`../apps/web/public/dictionary/${manifest.index}`, import.meta.url),
+);
+const real = prepare(JSON.parse(realJson.toString('utf8')).rows);
 for (let i = 0; i < 3; i += 1) rank(real, '가', 12);
 let t = performance.now();
 for (let i = 0; i < 20; i += 1) rank(real, '가', 12);
 const realRank = ((performance.now() - t) / 20) * PHONE;
 
 console.log(
-  `\n  shipping now: ${real.length.toLocaleString('en')} headwords, ` +
+  `\n  shipping now: ${real.hits.length.toLocaleString('en')} headwords, ` +
+    `${(gzipSync(realJson, { level: 9 }).length / 1024).toFixed(0)} kB gzipped, ` +
     `${realRank.toFixed(1)} ms per keystroke on a phone`,
 );
+/**
+ * How large the index may be, gzipped.
+ *
+ * Fetched once, on the first search, and cached for good behind a content hash
+ * — but it is still a download a learner waits through with "Looking in the
+ * dictionary…" on screen, and it is already comparable to the app's entire
+ * first load. Budgeted so that it cannot drift upwards one corpus refresh at a
+ * time without somebody deciding to let it.
+ */
+const INDEX_BUDGET_KB = 520;
+const indexKb = gzipSync(realJson, { level: 9 }).length / 1024;
+if (indexKb > INDEX_BUDGET_KB) {
+  problems.push(
+    `the index is ${indexKb.toFixed(0)} kB gzipped, over the ${INDEX_BUDGET_KB} kB budget`,
+  );
+}
 if (realRank > RANK_BUDGET_MS) {
   problems.push(
     `the shipping index costs ${realRank.toFixed(1)} ms per keystroke on a phone, ` +

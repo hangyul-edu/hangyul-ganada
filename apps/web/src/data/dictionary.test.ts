@@ -87,9 +87,9 @@ describe('lazy delivery', () => {
 
   it('does not fetch a chunk to answer a search', async () => {
     const fetchMock = serve();
-    const index = await loadIndex();
+    const loaded = await loadIndex();
 
-    expect(rankDictionary(index, '나', 5)).toHaveLength(2);
+    expect(rankDictionary(loaded, '나', 5)).toHaveLength(2);
     expect(fetchMock.mock.calls.some(([url]) => String(url).includes('entries/'))).toBe(false);
   });
 
@@ -113,7 +113,7 @@ describe('lazy delivery', () => {
 
     await expect(loadIndex()).rejects.toThrow();
     ok = true;
-    await expect(loadIndex()).resolves.toHaveLength(2);
+    await expect(loadIndex().then((i) => i.hits)).resolves.toHaveLength(2);
   });
 
   it('rejects rather than resolving to nothing when a file is missing', async () => {
@@ -126,7 +126,7 @@ describe('lazy delivery', () => {
 });
 
 describe('ranking', () => {
-  const index: DictionaryHit[] = INDEX.rows.map((row) => ({
+  const hits: DictionaryHit[] = INDEX.rows.map((row) => ({
     headword: row[0] as string,
     romanization: row[1] as string,
     partOfSpeech: row[2] as string,
@@ -135,6 +135,11 @@ describe('ranking', () => {
     chunk: row[5] as string,
     frequency: row[6] as number,
   }));
+  const index = {
+    hits,
+    gloss: hits.map((hit) => hit.shortGloss.toLowerCase()),
+    romanization: hits.map((hit) => hit.romanization.toLowerCase()),
+  };
 
   it('puts an exact headword above a word that merely starts with it', () => {
     expect(rankDictionary(index, '나', 5).map((hit) => hit.headword)).toEqual(['나', '나가다']);
