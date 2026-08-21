@@ -89,17 +89,24 @@ const config: CapacitorConfig = {
       // looking at — a fixed timeout either flashes white or holds too long.
       launchAutoHide: false,
       /*
-       * The ground of the splash artwork's first frame, not the app's warm
-       * ground.
+       * The ground of the splash artwork, not the app's warm ground.
        *
-       * The `splash.png` drawables are frame zero of the brand animation, and
-       * `ui/LaunchSplash` picks that animation up in the WebView and plays it
-       * out. The two are the same picture, so they must be on the same colour
-       * or the handover blinks. `splashGround` in the design tokens is the same
-       * value; it is repeated here because a Capacitor config cannot import
-       * from the web workspace.
+       * The `splash.png` drawables *are* the brand artwork now rather than the
+       * first frame of an animation of it, and `ui/LaunchSplash` shows the same
+       * picture in the WebView a moment later. Same picture, so it has to be on
+       * the same colour or the handover blinks. `splashGround` in the design
+       * tokens and `splashBackground` in `colors.xml` are this value; it is
+       * written out three times because neither Gradle nor a Capacitor config
+       * can import from the web workspace.
+       *
+       * The artwork is English on both platforms and that is not an oversight:
+       * the learner's interface language lives in the app's own storage, which
+       * only the WebView can read, so nothing running this early knows it. The
+       * in-app splash does know, and it takes over on the same ground within a
+       * frame or two — so a Korean learner sees the Korean wordmark, just not
+       * from the very first millisecond.
        */
-      backgroundColor: '#FFF6E9',
+      backgroundColor: '#FFF1E1',
       androidScaleType: 'CENTER_CROP',
       showSpinner: false,
       splashFullScreen: false,

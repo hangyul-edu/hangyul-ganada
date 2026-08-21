@@ -89,13 +89,13 @@
  */
 .optionCorrect {
   border-color: var(--hg-positive);
-  background: color-mix(in srgb, var(--hg-positive) 8%, white);
+  background: var(--hg-positive-subtle);
   color: var(--hg-positive);
 }
 
 .optionWrong {
   border-color: var(--hg-negative);
-  background: color-mix(in srgb, var(--hg-negative) 8%, white);
+  background: var(--hg-negative-subtle);
   color: var(--hg-negative);
 }
 

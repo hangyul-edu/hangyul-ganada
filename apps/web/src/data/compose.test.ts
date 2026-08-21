@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
 import { ALL_CHARACTERS, getCharacterByGlyph } from './characters';
-import { composeSyllableStrokes, paperRegion, syllableLayout, hasRoundStroke } from './compose';
+import {
+  COMPOSED_PEN,
+  composeSyllableStrokes,
+  paperRegion,
+  syllableLayout,
+  hasRoundStroke,
+} from './compose';
+import COMPOSITION from './generated/composition.json';
 import { branchesLeft, toJamo } from './jamo';
 import { STROKE_ORDER } from './strokes';
 
@@ -44,6 +51,12 @@ function componentStrokes(syllable: string) {
   }
   return out;
 }
+
+/** The face's own part boxes, the same table `compose.ts` lays blocks out from. */
+const MEASURED = COMPOSITION.syllables as unknown as Record<
+  string,
+  { aspect: number; parts: number[][] }
+>;
 
 /** Every composed syllable the curriculum teaches. */
 const SYLLABLES = ALL_CHARACTERS.filter((c) => c.group === 'syllable');
@@ -128,20 +141,35 @@ describe('syllable composition', () => {
     // ㅇ is drawn from four cubic segments, and the polyline here is a sample
     // of them — so this is not checking the curve, which is exact, but that the
     // sample the grader and the marker layout read is fine enough to stand in
-    // for it. The measure is the corner it leaves: the angle the pen turns
-    // through from one segment to the next, which has to stay under what an eye
-    // can pick out at this size.
+    // for it.
+    //
+    // The ring is normalised back to a circle before the turn is measured, and
+    // that is not a way of making the number smaller. A block flattens ㅇ by
+    // scaling x and y separately, which is an affine map: it takes the curve to
+    // a true ellipse and the sample to the matching sample of it, so it cannot
+    // add a flat spot. What it does change is the *angle* at each sample, which
+    // grows at the ends of the long axis on any ellipse however finely it is
+    // sampled. Undoing the flattening asks the question the test means to ask —
+    // is the sample fine enough — instead of re-measuring how flat 공's ㅇ is,
+    // which is the face's business and is checked below.
     for (const syllable of ['어', '아', '오', '우', '이', '으', '안', '강', '공']) {
       const strokes = composeSyllableStrokes(syllable);
       // The ring, not merely the finely-sampled stroke: ㄱ is a curve too now,
       // and asking for point count instead handed this ㄱ's square corner.
       const round = strokes.find((s) => hasRoundStroke([s]));
       expect(round, syllable).toBeDefined();
+      const ring = bounds([round!]);
+      const halfWidth = (ring.right - ring.left) / 2;
+      const halfHeight = (ring.bottom - ring.top) / 2;
+      const circular = round!.points.map((p) => ({
+        x: p.x / halfWidth,
+        y: p.y / halfHeight,
+      }));
       let sharpest = 0;
-      for (let i = 2; i < round!.points.length; i += 1) {
-        const a = round!.points[i - 2]!;
-        const b = round!.points[i - 1]!;
-        const c = round!.points[i]!;
+      for (let i = 2; i < circular.length; i += 1) {
+        const a = circular[i - 2]!;
+        const b = circular[i - 1]!;
+        const c = circular[i]!;
         const turn = Math.abs(
           Math.atan2(c.y - b.y, c.x - b.x) - Math.atan2(b.y - a.y, b.x - a.x),
         );
@@ -151,23 +179,45 @@ describe('syllable composition', () => {
     }
   });
 
-  it('keeps a consonant’s own proportions instead of stretching it to its slot', () => {
-    // Filling the region exactly is what made ㄱ lean and ㅇ flatten into a
-    // lens. A consonant is scaled by one factor in both directions, within a
-    // bound that is tighter for a round letter than an angular one.
+  it('gives each letter the proportions the reference face gives it in that block', () => {
+    // What this replaced, and why.
+    //
+    // It used to say a consonant may not be stretched more than a fixed amount
+    // out of its own drawn proportions — 1.8 for a round letter, 2.9 for an
+    // angular one — because filling a region exactly was what had made ㄱ lean
+    // and ㅇ flatten into a lens. Both numbers were guesses, and both were
+    // wrong in the same direction: the face flattens 강's ㅇ to 1.87 and 우's to
+    // 2.08, so the bound was holding those two rounder than Pretendard draws
+    // them, and the demonstration sat under a reference glyph it did not match.
+    //
+    // The bound was standing in for a measurement that now exists. Every part
+    // box in `composition.json` is that letter, in that block, in that face, so
+    // the letter is fitted to it and the assertion is the one that was meant
+    // all along: the drawn letter has the proportions the face gives it. A
+    // letter held *rounder* than the face draws it fails this too, which is
+    // what the old rule was quietly doing.
     for (const character of SYLLABLES) {
+      const measured = MEASURED[character.character];
+      if (!measured) continue;
+      // The glyph's ink is not square, so a part box's fractions are of
+      // different lengths along the two axes — the same conversion
+      // `measuredRegions` makes.
+      const widthOf = Math.min(1, measured.aspect);
+      const heightOf = Math.min(1, 1 / measured.aspect);
       const parts = componentStrokes(character.character);
       for (const [at, part] of parts.entries()) {
         if (at === 1) continue; // the vowel — straight lines, meant to stretch
-        const own = bounds(STROKE_ORDER[part.jamo]!);
+        const box = measured.parts[at]!;
+        const wanted =
+          ((box[2]! - box[0]!) * widthOf) / ((box[3]! - box[1]!) * heightOf);
         const drawn = bounds(part.strokes);
-        const scaleX = (drawn.right - drawn.left) / (own.right - own.left);
-        const scaleY = (drawn.bottom - drawn.top) / (own.bottom - own.top);
-        const distortion = Math.max(scaleX / scaleY, scaleY / scaleX);
-        const round = hasRoundStroke(STROKE_ORDER[part.jamo]!);
-        expect(distortion, `${character.character} ${part.jamo}`).toBeLessThanOrEqual(
-          (round ? 1.8 : 2.9) + 1e-9,
-        );
+        // Centrelines, so the pen has to be added back before the shape of the
+        // ink can be compared with the outline that was measured.
+        const got =
+          (drawn.right - drawn.left + COMPOSED_PEN) /
+          (drawn.bottom - drawn.top + COMPOSED_PEN);
+        expect(got / wanted, `${character.character} ${part.jamo}`).toBeGreaterThan(0.94);
+        expect(got / wanted, `${character.character} ${part.jamo}`).toBeLessThan(1.06);
       }
     }
   });

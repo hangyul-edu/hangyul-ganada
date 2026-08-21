@@ -42,6 +42,7 @@
     "letters:copy": "node scripts/build-letter-copy.mjs",
     "letters:copy:check": "node scripts/build-letter-copy.mjs --check",
     "strokes:measure": "tsx scripts/measure-composition.mjs",
+    "strokes:measure:check": "tsx scripts/measure-composition.mjs --check",
     "fonts:audit": "python3 scripts/content/audit_fonts.py",
     "i18n:report": "node scripts/i18n-report.mjs",
     "i18n:check": "node scripts/i18n-report.mjs --check",

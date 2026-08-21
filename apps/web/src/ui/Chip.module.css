@@ -26,17 +26,17 @@
 }
 
 .mint {
-  background: color-mix(in srgb, var(--hg-secondary) 18%, white);
-  color: color-mix(in srgb, var(--hg-secondary) 78%, black);
+  background: var(--hg-secondary-subtle);
+  color: var(--hg-secondary-text);
 }
 
 .positive {
-  background: color-mix(in srgb, var(--hg-positive) 12%, white);
+  background: var(--hg-positive-subtle);
   color: var(--hg-positive);
 }
 
 .negative {
-  background: color-mix(in srgb, var(--hg-negative) 12%, white);
+  background: var(--hg-negative-subtle);
   color: var(--hg-negative);
 }
 

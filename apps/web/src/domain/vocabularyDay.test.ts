@@ -21,6 +21,7 @@ import {
   buildDailyPlan,
   completeWord,
   dayProgress,
+  extendDay,
   newWordAllowance,
   planIsCurrent,
   scheduleSteps,
@@ -177,6 +178,32 @@ describe('recognition before recall', () => {
         expect(steps, `${source} ${index}`).not.toContain('listen');
         expect(steps, `${source} ${index}`).not.toContain('listenMeaning');
       }
+    }
+  });
+
+  it('cannot schedule one for the extra study either', () => {
+    /*
+     * Extra study is the same words asked the same ways.
+     *
+     * `extendDay` appends by calling `buildDailyPlan` again, so the words it
+     * adds carry steps from the same table as the day's own — the rule above
+     * covers them by construction. Named here anyway, because "the extra
+     * questions come from somewhere else" is the shape the rule would grow back
+     * in, and a learner who asks for more practice is exactly the learner who
+     * would meet it.
+     */
+    const day = plan({ goal: 5 });
+    const longer = extendDay(day, 5, {
+      progress: {},
+      memory: {},
+      corpus: corpus(200),
+      goal: 5,
+      now: NOW,
+    });
+    expect(longer.words.length).toBeGreaterThan(day.words.length);
+    for (const word of longer.words) {
+      expect(word.steps, word.wordId).not.toContain('listen');
+      expect(word.steps, word.wordId).not.toContain('listenMeaning');
     }
   });
 

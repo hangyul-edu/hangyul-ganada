@@ -3,7 +3,7 @@ import type { StrokeStep } from '@hangyul-ganada/shared-types';
 import { COMPOSED_PEN, composeSyllableStrokes } from './compose';
 import METRICS from './generated/jamoMetrics.json';
 import { isSyllable } from './jamo';
-import { STROKE_ORDER, STROKE_ORDER_ALONE } from './strokes';
+import { STROKE_ORDER, STROKE_ORDER_UPRIGHT } from './strokes';
 
 /**
  * The instructional stroke model: what a hand does, drawn as a hand does it.
@@ -311,10 +311,11 @@ function inkBounds(strokes: StrokeStep[]): { x0: number; y0: number; x1: number;
 // --- Geometry ----------------------------------------------------------------
 
 function strokeStepsFor(character: string): StrokeStep[] {
-  // A letter on its own is drawn as the face draws it on its own — see
-  // `STROKE_ORDER_ALONE`. Inside a block it is `compose.ts`'s business and this
-  // branch is never taken.
-  const alone = STROKE_ORDER_ALONE[character];
+  // A letter on its own is drawn as the face draws it on its own: ㄱ's leg comes
+  // straight down. See `STROKE_ORDER_UPRIGHT`, which `compose.ts` also reads for
+  // the block slots the face gives the same form to. Inside a block the choice
+  // is that module's, and this branch is never taken.
+  const alone = STROKE_ORDER_UPRIGHT[character];
   if (alone) return alone;
   const direct = STROKE_ORDER[character];
   if (direct) return direct;

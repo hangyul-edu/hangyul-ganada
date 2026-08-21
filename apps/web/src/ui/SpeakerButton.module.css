@@ -56,7 +56,7 @@
 }
 
 .button:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--hg-primary) 18%, white);
+  background: var(--hg-primary-subtle-hover);
 }
 
 .button:active:not(:disabled) {

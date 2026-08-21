@@ -70,24 +70,27 @@ APP_ICON_SOURCE = BRAND / "app-icon.png"
 #: note above on why it is not the app icon.
 MARK_SOURCE = BRAND / "logo-symbol.png"
 
-#: The launch screen, which is frame zero of the brand splash animation.
+#: The launch screen — the brand splash artwork itself.
 #:
-#: Not the mark on a plain ground, which is what this used to draw. The app
-#: plays the animation itself once the WebView is up (`ui/LaunchSplash`), and the
-#: native launch screen is what the learner looks at until then — so the two have
-#: to be the same picture at the same moment, or the handover is a cut from one
-#: brand screen to a different one.
+#: The app shows the same picture in the WebView a moment later
+#: (`ui/LaunchSplash`), so the two have to be the same picture on the same
+#: ground or the handover is a cut from one brand screen to a different one.
 #:
-#: Frame zero is nearly empty: the ground and one soft circle, no wordmark. That
-#: is what makes it usable here. The artwork carries Korean or English copy from
-#: about a second in, and a native launch screen cannot know which language the
-#: learner has chosen — it runs before any of the app's code does. Handing over
-#: on the frame that has no words in it means there is nothing to get wrong.
+#: This used to be `handoff-frame.png`, a still lifted from the splash
+#: *animation* — the ground and one soft circle, no wordmark — chosen precisely
+#: because it said nothing that could be in the wrong language. There is no
+#: animation any more and no frame zero to hand over from, so the native screen
+#: shows the finished artwork like everything else does.
 #:
-#: Extracted from `한귤스플래시_한글.mp4` with
-#: `ffmpeg -i <source> -vframes 1 handoff-frame.png` and committed, so this
-#: script needs no video decoder.
-SPLASH_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "handoff-frame.png"
+#: The English one, for every device. A native launch screen runs before any of
+#: the app's code, and the learner's chosen interface language lives in the
+#: app's own storage where only the WebView can read it — so nothing at this
+#: point knows whether to draw 한귤 or Han gyul. Device locale is a different
+#: question from interface language and guessing with it is wrong for anyone who
+#: has ever changed the setting. The in-app splash *does* know, and takes over
+#: within a frame or two on this same ground, so a Korean learner sees the
+#: Korean wordmark — just not from the very first millisecond.
+SPLASH_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "splash_eng.png"
 
 #: `warm.50` from the design tokens. Kept in sync by `--check` failing loudly if
 #: the tokens move: the icons are regenerated, not patched.
@@ -118,13 +121,17 @@ MASKABLE_SAFE_FRACTION = 0.64
 #: becomes a black blob. See `_monochrome`.
 MONOCHROME_INK_MAX = 215
 
-#: The ground of the splash artwork, sampled from a corner of frame zero.
+#: The ground of the splash artwork, sampled from its corner.
 #:
-#: Not `warm.50`. It is `splashGround` in the design tokens and `backgroundColor`
-#: under `SplashScreen` in `capacitor.config.ts`, and all three have to agree —
-#: it is what shows in the sliver the cover crop cannot fill on an unusual
-#: aspect ratio, and a different shade there is a visible edge.
-SPLASH_GROUND = (255, 246, 233, 255)
+#: Not `warm.50`. It is `splashGround` in the design tokens, `backgroundColor`
+#: under `SplashScreen` in `capacitor.config.ts` and `splashBackground` in the
+#: Android `colors.xml`, and all four have to agree — it is what Android 12 and
+#: newer paint their own splash on, and what shows in the sliver a cover crop
+#: cannot fill on an unusual aspect ratio. A different shade is a visible edge.
+#:
+#: It was #FFF6E9 while the source was frame zero of the animation. Same
+#: sampling, new picture.
+SPLASH_GROUND = (255, 241, 225, 255)
 
 #: Launcher icon sizes, in px, by Android density bucket.
 ANDROID_DENSITIES = {
@@ -219,6 +226,44 @@ def _cover(art: Image.Image, size: tuple[int, int],
     return canvas
 
 
+def _extend(art: Image.Image, size: tuple[int, int]) -> Image.Image:
+    """`art` fitted to the height of `size`, on a ground grown from its own edge.
+
+    For a target that is square or wider than it is tall. Covering one of those
+    from a 9:19.5 portrait artwork means scaling it up by a factor of three and
+    keeping a third of its height: the wordmark ends up most of the width of the
+    screen and the composition around it is gone. So the art is fitted instead
+    and the rest of the canvas is filled.
+
+    Filled with the artwork's *own* edge rather than with `SPLASH_GROUND`. The
+    flat colour is only right at the corners — the piece has a large soft radial
+    wash, so at mid-height its edge is #FFDDC1, several steps warmer, and
+    padding with the corner colour draws a visible letterbox down both sides. An
+    eight-pixel column of the source, averaged down to 24 rows so the wash's own
+    banding does not print as a horizon, and stretched across the canvas, gives
+    every row the colour that row actually ends on. The seam disappears.
+    """
+    width, height = size
+    edge = art.crop((0, 0, 8, art.height)).resize((1, 24), Image.LANCZOS)
+    canvas = edge.resize(size, Image.BICUBIC)
+    scale = height / art.height
+    fitted = art.resize((max(1, round(art.width * scale)), height), Image.LANCZOS)
+    canvas.alpha_composite(fitted, ((width - fitted.width) // 2, 0))
+    return canvas
+
+
+def _launch_bitmap(art: Image.Image, size: tuple[int, int],
+                   ground: tuple[int, int, int, int]) -> Image.Image:
+    """The launch bitmap for one target, by the shape of the target.
+
+    Taller than it is wide — every phone in portrait, which is the overwhelming
+    majority of launches — takes the cover crop, because the artwork is that
+    shape already and cropping it loses only background. Square or landscape
+    takes `_extend`, for the reason given there.
+    """
+    return _cover(art, size, ground) if size[1] > size[0] else _extend(art, size)
+
+
 def _centred(mark: Image.Image, size: tuple[int, int], fraction: float,
              ground: tuple[int, int, int, int] | None) -> Image.Image:
     """`mark` scaled to `fraction` of the shorter edge, centred on `ground`."""
@@ -302,7 +347,7 @@ def build() -> dict[Path, bytes]:
     splash_art = Image.open(SPLASH_SOURCE).convert("RGBA")
     for directory, size in ANDROID_SPLASH.items():
         files[ANDROID_RES / directory / "splash.png"] = _png(
-            _cover(splash_art, size, SPLASH_GROUND)
+            _launch_bitmap(splash_art, size, SPLASH_GROUND)
         )
 
     # --- iOS -----------------------------------------------------------------
@@ -316,8 +361,11 @@ def build() -> dict[Path, bytes]:
     files[IOS_ASSETS / "AppIcon.appiconset" / "AppIcon-512@2x.png"] = buffer.getvalue()
 
     # iOS draws one splash asset scaled to the device, so it is square and large
-    # enough for the biggest iPad in either orientation.
-    splash = _png(_cover(splash_art, (2732, 2732), SPLASH_GROUND))
+    # enough for the biggest iPad in either orientation. Square, so `_extend`:
+    # the storyboard's `scaleAspectFill` on a portrait iPhone scales this to the
+    # screen's height and crops the sides, and what is left in the middle is
+    # very nearly the artwork at its own proportions.
+    splash = _png(_launch_bitmap(splash_art, (2732, 2732), SPLASH_GROUND))
     for name in ("splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"):
         files[IOS_ASSETS / "Splash.imageset" / name] = splash
 

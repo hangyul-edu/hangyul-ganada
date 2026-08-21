@@ -5,15 +5,16 @@ import { useLearner } from '../store/LearnerContext';
 import styles from './LaunchSplash.module.css';
 
 /*
- * Long enough for the artwork to finish, short enough that nobody waits.
+ * Long enough to be read, short enough that nobody waits.
  *
- * Both clips are trimmed to 1.8 s, which is the animation and none of the hold:
- * the source art settles at about 1.2 s in English and 1.6 s in Korean and then
- * sits still for another four and three seconds respectively. Left whole, and
- * dismissed on readiness, a learner saw a growing circle and never once the
- * wordmark — the splash was over before the brand arrived.
+ * This was 1.8 s when the artwork was a clip, because that was how long the
+ * animation took to reach the wordmark. The artwork is a still now and the
+ * wordmark is there in the first frame, so the only thing left to buy is the
+ * time it takes to actually look at it — under a second, and a splash that
+ * outstays that is a splash people learn to resent. On a cold start the profile
+ * takes longer than this anyway and the readiness below is what decides.
  */
-const MINIMUM_MS = 1800;
+const MINIMUM_MS = 900;
 const CEILING_MS = 4000;
 const FADE_MS = 260;
 
@@ -32,8 +33,8 @@ const FADE_MS = 260;
  * ## Why the language matters here
  *
  * The artwork carries a wordmark and a line of copy, so it is not language
- * neutral: 한귤 with 작은 귤 한 조각처럼, 매일 한 문장씩, or Han gyul with
- * *When life gives you a tangerine*. A learner who has set the app to Spanish
+ * neutral: 한귤 with 작은 귤 한 조각처럼, 매일 한 글자씩, or Han gyul with
+ * *Like a slice of tangerine, one letter a day*. A learner who set the app to Spanish
  * should not be met by a screen in Korean, so the Korean artwork is used when —
  * and only when — the interface language is Korean, and the English artwork for
  * every other language. That is a deliberate two-way split rather than a
@@ -54,13 +55,16 @@ const FADE_MS = 260;
  * tell that from a crash, and the app behind it works perfectly well on
  * defaults.
  *
- * ## Motion
+ * ## It does not move
  *
- * The artwork is a short animation and it is genuinely decorative, so
- * `prefers-reduced-motion` gets the still frame instead — the same picture, at
- * rest. The video is muted and plays once; a splash that makes a sound is a
- * splash people learn to dread. If autoplay is refused, the poster is already
- * underneath and nothing about the screen changes.
+ * The artwork was a short clip and is now a still PNG, which is the whole of
+ * the change. A motion splash is a cost paid on every single launch by every
+ * learner: a video element to decode before first paint, an autoplay policy
+ * that can refuse, a `prefers-reduced-motion` branch to keep in step with the
+ * one that plays, and a second or so of the learner's time bought to show them
+ * something they have already seen. None of that bought anything the picture
+ * does not say by being on screen. There is no `<video>` here, no animated
+ * format, and no motion branch — the file *is* the splash.
  */
 export function LaunchSplash() {
   const { ready } = useLearner();
@@ -115,19 +119,24 @@ export function LaunchSplash() {
 /**
  * The artwork itself.
  *
- * Split out so the language choice and the media element are one small thing
- * that `strokes:visual`-style review and the e2e suite can point at, and so the
- * dismissal clock above has nothing to do with rendering.
+ * Split out so the language choice and the image are one small thing that a
+ * visual review and the e2e suite can point at — `data-splash-language` is on
+ * this element for exactly that — and so the dismissal clock above has nothing
+ * to do with rendering.
  */
 function SplashArt({ leaving }: { leaving: boolean }) {
   const korean = useKoreanInterface();
-  const reduceMotion = usePrefersReducedMotion();
   const tag = korean ? 'ko' : 'en';
-  // WebP: the artwork is flat brand colour, which it stores in a quarter of
-  // what PNG needs, and it is the still shown to anyone who has asked for less
-  // motion — so it is a picture some learners see every launch rather than a
-  // fallback nobody hits.
-  const poster = `${import.meta.env.BASE_URL}brand/splash/splash-${tag}.webp`;
+  /*
+   * Two files, and the only two there are.
+   *
+   * `splash-ko.png` and `splash-en.png`, straight from
+   * `apps/common_assets/splash`. The interface has thirty-odd languages and the
+   * artwork has two, because the split is Korean versus not-Korean rather than
+   * one picture per locale — see the note on this component. A locale with no
+   * artwork of its own is not a gap to fill; it is the English one, by design.
+   */
+  const src = `${import.meta.env.BASE_URL}brand/splash/splash-${tag}.png`;
 
   return (
     <div
@@ -138,19 +147,15 @@ function SplashArt({ leaving }: { leaving: boolean }) {
       data-testid="launch-splash"
       data-splash-language={tag}
     >
-      {reduceMotion ? (
-        <img className={styles.art} src={poster} alt="" />
-      ) : (
-        <video
-          className={styles.art}
-          src={`${import.meta.env.BASE_URL}brand/splash/splash-${tag}.mp4`}
-          poster={poster}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-        />
-      )}
+      <img
+        className={styles.art}
+        src={src}
+        alt=""
+        // The first pixels of the app: never lazy, never queued behind the
+        // fonts and the curriculum.
+        fetchPriority="high"
+        decoding="sync"
+      />
     </div>
   );
 }
@@ -167,20 +172,12 @@ function SplashArt({ leaving }: { leaving: boolean }) {
  * render completes. The context value carries the resolved locale into the
  * first render of every child, which is what this needs.
  *
- * Read once rather than followed. Swapping the artwork part-way through its own
- * animation would be more noticeable than anything it could fix.
+ * Read once rather than followed. A learner changing language mid-launch is not
+ * a case worth a re-render, and swapping the picture out from under them while
+ * they are looking at it would be more noticeable than anything it could fix.
  */
 function useKoreanInterface(): boolean {
   const { locale } = useLocale();
   const [korean] = useState(() => locale.toLowerCase().startsWith('ko'));
   return korean;
-}
-
-function usePrefersReducedMotion(): boolean {
-  const [reduced] = useState(() =>
-    typeof window !== 'undefined' && typeof window.matchMedia === 'function'
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      : false,
-  );
-  return reduced;
 }

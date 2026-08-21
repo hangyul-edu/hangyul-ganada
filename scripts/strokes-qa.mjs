@@ -107,7 +107,7 @@ const distanceToPath = (p, points) =>
  * to be authored as a twelve-point polygon and read on screen as a dodecagon;
  * what says it no longer does is the angle between consecutive samples.
  */
-function sharpestTurn(points) {
+function sharpestTurn(points, asRing = false) {
   // A closed path's `Z` repeats the point it started from, and a segment of no
   // length has no direction — measuring a turn across one reports about 180°
   // for every ring in the curriculum, which is a bug in the ruler rather than a
@@ -115,9 +115,36 @@ function sharpestTurn(points) {
   const real = points.filter(
     (p, i) => i === 0 || Math.hypot(p.x - points[i - 1].x, p.y - points[i - 1].y) > 1e-6,
   );
+  /*
+   * A ring is measured after being scaled back to a circle.
+   *
+   * A block flattens ㅇ by scaling x and y separately. That is an affine map: it
+   * takes the curve to a true ellipse and the sample to the matching sample of
+   * it, so it cannot put a flat spot anywhere. What it does change is the angle
+   * at each sample, which grows at the ends of the long axis on any ellipse
+   * however finely it is sampled — 옷's ㅇ and 공's ㅇ are flattened about two to
+   * one by the face and turn 16.8° and 16.5°, with no polygon on the screen.
+   * Measuring the flattened sample answers "how flat is this ㅇ", which is the
+   * face's business; measuring the circle answers "is the sample fine enough",
+   * which is this check's.
+   */
+  let scaleX = 1;
+  let scaleY = 1;
+  if (asRing) {
+    const xs = real.map((p) => p.x);
+    const ys = real.map((p) => p.y);
+    const width = Math.max(...xs) - Math.min(...xs);
+    const height = Math.max(...ys) - Math.min(...ys);
+    if (width > 1e-6 && height > 1e-6) {
+      scaleX = 1 / width;
+      scaleY = 1 / height;
+    }
+  }
+  const at = (p) => ({ x: p.x * scaleX, y: p.y * scaleY });
+
   let worst = 0;
   for (let i = 2; i < real.length; i += 1) {
-    const [a, b, c] = [real[i - 2], real[i - 1], real[i]];
+    const [a, b, c] = [at(real[i - 2]), at(real[i - 1]), at(real[i])];
     const turn = Math.abs(
       Math.atan2(c.y - b.y, c.x - b.x) - Math.atan2(b.y - a.y, b.x - a.x),
     );
@@ -178,7 +205,7 @@ for (const character of shipping) {
     // Sampled finely enough to stand in for its own curve. Fifteen degrees is
     // about where a turn stops reading as a curve and starts reading as a
     // corner at the size a lesson draws these.
-    const turn = sharpestTurn(points);
+    const turn = sharpestTurn(points, stroke.closed);
     if (stroke.closed && turn > 15) {
       fail(character, `${where} is a ring whose sample turns ${turn.toFixed(1)}° — it will read as a polygon`);
     }

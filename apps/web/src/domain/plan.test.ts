@@ -296,3 +296,92 @@ describe('a resolved practice plan', () => {
     expect(plan.count).toBeLessThanOrEqual(4);
   });
 });
+
+/**
+ * No word is ever asked by ear, on any path into a session.
+ *
+ * The rule is §36 and it is already true structurally — `WORD_SKILLS` has no
+ * listening skill, `listening_recognition` sits in `DEPRECATED_SKILLS` so
+ * `skillsFor('word')` cannot return it, and `wordExercise` has no `listen` or
+ * `listenMeaning` arm to fall into. Three separate things have to stay true,
+ * none of them is local to the other two, and a scheduler is exactly the kind
+ * of code where a skill list grows back.
+ *
+ * So this asserts the *outcome* rather than any one of the three: whatever a
+ * learner's profile looks like and whichever screen resolved the plan, no item
+ * in it is a word that has to be heard. `resolvePlan` is the single door — the
+ * Review screen's Start, its three manual modes, saved-word practice and the
+ * mistakes notebook all come through it — which is why the lock belongs here
+ * and not on any one caller.
+ *
+ * The listening question that survives is the letter one, and it is meant to.
+ * `sound_recognition` belongs to the Hangul curriculum: a clip and four letters
+ * is how you find out whether somebody can hear the difference between ㅐ and
+ * ㅔ, and there is no way to ask that on paper. Vocabulary is what stopped
+ * being tested by ear, and the audio itself never went anywhere — every word
+ * still plays in Word Detail, in its introduction and beside its example
+ * sentence. See `WORD_SKILLS` in `domain/memory.ts`.
+ */
+describe('vocabulary is never tested by ear', () => {
+  const HEARD = ['listen', 'listenMeaning'] as const;
+
+  /** Every shape of request a screen in the product can make. */
+  const SCOPES: Array<[string, Partial<PlanRequest>]> = [
+    ['review', {}],
+    ['mode: read', { mode: 'read' }],
+    ['mode: listen', { mode: 'listen' }],
+    ['mode: write', { mode: 'write' }],
+    ['saved words', { savedOnly: true }],
+    ['mistakes notebook', { mistakesOnly: true }],
+    ['sound-free', { soundFree: true }],
+  ];
+
+  const keys = new Set(VOCABULARY.slice(0, 300).map((w) => `word:${w.id}`));
+
+  for (const [name, scope] of SCOPES) {
+    it(`resolves no listening word from ${name}`, () => {
+      const plan = resolvePlan(
+        request({ progress: EVERYTHING, saved: keys, mistakes: keys, ...scope }),
+      );
+      for (const item of plan.items) {
+        if (item.kind !== 'word') continue;
+        expect(HEARD, `${item.itemKey} was scheduled as ${item.mode}`).not.toContain(item.mode);
+        expect(item.skill, `${item.itemKey}`).not.toBe('listening_recognition');
+      }
+    });
+  }
+
+  it('offers a listening plan made only of letters', () => {
+    // The Listening button on the Review screen still leads somewhere — it is
+    // the Hangul drill — and what it leads to contains no vocabulary at all.
+    const plan = resolvePlan(request({ progress: EVERYTHING, mode: 'listen' }));
+    expect(plan.count).toBeGreaterThan(0);
+    for (const item of plan.items) expect(item.kind).toBe('character');
+  });
+
+  it('refuses to build one even when handed the candidate directly', () => {
+    // The belt to the scheduler's braces. Nothing in the app constructs a
+    // candidate by hand, but a future caller that did would get no question
+    // rather than a word with its spelling hidden behind a play button.
+    for (const word of VOCABULARY.slice(0, 40)) {
+      for (const mode of HEARD) {
+        const exercise = buildExercise(
+          {
+            kind: 'word',
+            itemKey: word.id,
+            skill: 'meaning_recognition',
+            mode,
+            priority: 1,
+            recall: 0.5,
+            partner: null,
+            intervene: false,
+            need: 'due',
+          },
+          meaningOf,
+          1,
+        );
+        expect(exercise, `${word.id} ${mode}`).toBeNull();
+      }
+    }
+  });
+});

@@ -27,6 +27,44 @@
  * fall in, and the group's union is the letter's box. The structural prior only
  * decides grouping; the numbers all come from the ink.
  *
+ * ## Stacked blocks are cut at the vowel's own bar
+ *
+ * Islands answer the vertical-vowel blocks — 가, 안, 밥 — because in those the
+ * letters really are separate. They do not answer 국, 구, 그, 글 or 옷, where
+ * the whole block is one island, and the version of this script that fell back
+ * to "the quietest row somewhere in this window" measured all five wrong: 국's
+ * ㄱ came out as the top quarter of the block, 글's ㄹ as the bottom fifth, and
+ * 꽃's ㅗ swallowed the tick of the ㅊ below it. Those numbers went straight into
+ * the layout, so the demonstration drew a ㄱ stretched to nearly three times its
+ * width and a ㄹ crushed to a smudge. A quiet row is not a landmark; it is
+ * wherever the ink happens to thin out, and in a ㄹ that is between two of its
+ * own bars.
+ *
+ * There *is* a landmark. Every vowel that makes a stacked block — ㅗ ㅛ ㅜ ㅠ ㅡ —
+ * is built on one horizontal bar that runs the full width of the block, and no
+ * consonant does: initials and 받침 are inset on both sides, and the wide ones
+ * that are not solid (ㅅ's two legs) fail the same test. So the bar is found by
+ * asking which rows are a single solid run across essentially the whole block,
+ * and everything else follows from it:
+ *
+ * ```
+ *        ┌───────────┐   initial: the ink above the vowel's stem,
+ *        │    ㄱ     │            plus anything beside the stem
+ *        ├─────┬─────┤
+ *        │═════╪═════│   medial:  the stem, and the bar it stands on
+ *        │     │     │
+ *        ├─────┴─────┤
+ *        │    ㅇ     │   final:   the ink below the stem
+ *        └───────────┘
+ * ```
+ *
+ * The stem is followed up (ㅗ) or down (ㅜ) from the bar along its own column
+ * until the ink there stops being a stem — either it runs out, or the run
+ * through that column widens, which is the letter above or below touching it.
+ * Ink beside the stem belongs to the consonant, which is how 공's ㄱ keeps its
+ * leg while the ㅗ underneath keeps its full stem: the two boxes overlap,
+ * exactly as they do in the face.
+ *
  * ## What is written out
  *
  * `composition.json`: per syllable, one box per letter, in fractions of that
@@ -51,11 +89,27 @@ const CHECK = process.argv.includes('--check');
 const FACE = "'Pretendard Variable', Pretendard, sans-serif";
 const PORT = 4477;
 
+/**
+ * Which side of its bar a stacked vowel's stem is on.
+ *
+ * ㅗ stands on its bar and ㅜ hangs under it; ㅡ is the bar and nothing else.
+ * That is all the segmentation below needs to know about the vowel, and it is a
+ * fact about the letter rather than about this face.
+ */
+const STEM_SIDE = { ㅗ: 'above', ㅛ: 'above', ㅜ: 'below', ㅠ: 'below', ㅡ: 'none' };
+
 const syllables = ALL_CHARACTERS.filter((c) => c.group === 'syllable').map((c) => c.character);
 const structures = Object.fromEntries(
   syllables.map((syllable) => {
     const jamo = toJamo(syllable);
-    return [syllable, { jamo, form: medialForm(jamo[1]) ?? 'vertical' }];
+    return [
+      syllable,
+      {
+        jamo,
+        form: medialForm(jamo[1]) ?? 'vertical',
+        stem: STEM_SIDE[jamo[1]] ?? 'none',
+      },
+    ];
   }),
 );
 
@@ -65,7 +119,23 @@ await page.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: 'networkidle' });
 
 const measured = await page.evaluate(
   async ({ face, structures }) => {
-    await document.fonts.load(`400 300px ${face}`);
+    /*
+     * The face has to be loaded *for the text being measured*.
+     *
+     * The app ships Pretendard as a dynamic subset — ninety-odd @font-face
+     * rules, each with its own unicode-range, each fetched only when something
+     * on the page needs a character in it. `document.fonts.load(font)` with no
+     * text asks for the Latin sample string, so the Korean ranges stayed
+     * `unloaded` and `fillText` quietly drew the *fallback* face instead. The
+     * numbers that came out were a sans-serif's, not Pretendard's — 어 measured
+     * 0.852 wide over tall where Pretendard sets it at 0.806 — and whether it
+     * happened at all depended on which subsets the app's own first screen had
+     * warmed, which is why the table went stale without anybody editing it.
+     */
+    await document.fonts.load(
+      `400 300px ${face}`,
+      Object.keys(structures).join(''),
+    );
     await document.fonts.ready;
 
     const S = 300;
@@ -124,8 +194,178 @@ const measured = await page.evaluate(
       return found;
     }
 
+    /**
+     * A stacked block, cut at the vowel's own bar. Null if the bar is not there.
+     *
+     * `on`, and the block's ink box; `stem` says which side of the bar the
+     * vowel's stem is on. Returns one box per letter in block fractions, or
+     * null, in which case the caller falls back to islands.
+     */
+    function stacked(on, X0, Y0, X1, Y1, stem, closed) {
+      const W = X1 - X0;
+      const H = Y1 - Y0;
+      /** Per row: the ink's left and right edge, and how much of it there is. */
+      const rows = [];
+      for (let y = Y0; y <= Y1; y += 1) {
+        let lo = -1;
+        let hi = -1;
+        let ink = 0;
+        for (let x = X0; x <= X1; x += 1) {
+          if (!on(x, y)) continue;
+          if (lo < 0) lo = x;
+          hi = x;
+          ink += 1;
+        }
+        rows.push({ lo, hi, ink });
+      }
+
+      /*
+       * A bar row: one solid run across essentially the whole block.
+       *
+       * Both halves matter. "Full width" alone would take ㅅ, whose legs reach
+       * the same two edges with nothing between them; "solid" alone would take
+       * any bar of a ㄹ or a ㅂ. Together they pick out exactly the vowel's bar
+       * in every block the curriculum stacks.
+       */
+      const isBar = (i) => {
+        const row = rows[i];
+        if (row.lo < 0) return false;
+        const span = row.hi - row.lo + 1;
+        return span >= W * 0.94 && row.ink >= span * 0.92;
+      };
+      let barTop = -1;
+      let barBottom = -1;
+      for (let i = 0; i < rows.length; i += 1) {
+        if (!isBar(i)) continue;
+        let j = i;
+        while (j + 1 < rows.length && isBar(j + 1)) j += 1;
+        if (j - i > barBottom - barTop) {
+          barTop = i;
+          barBottom = j;
+        }
+        i = j;
+      }
+      if (barTop < 0) return null;
+
+      /** The runs of ink in a row, as `[lo, hi]` pairs in absolute pixels. */
+      const runsIn = (i) => {
+        const y = Y0 + i;
+        const found = [];
+        let start = -1;
+        for (let x = X0; x <= X1; x += 1) {
+          if (on(x, y)) {
+            if (start < 0) start = x;
+          } else if (start >= 0) {
+            found.push([start, x - 1]);
+            start = -1;
+          }
+        }
+        if (start >= 0) found.push([start, X1]);
+        return found;
+      };
+
+      /*
+       * How far the stem reaches away from its bar.
+       *
+       * Followed along its own column rather than by looking for quiet rows, so
+       * a consonant standing beside it — 공's ㄱ, whose leg comes down past the
+       * top of the ㅗ's stem — does not shorten it. The walk stops when the ink
+       * in that column runs out, or when the run through it widens past a stem's
+       * width, which is the letter above or below *touching* the stem: 옷's ㅇ
+       * sits on it, and that is where the ㅇ ends and the ㅗ begins.
+       */
+      const followStem = (from, step) => {
+        const seed = runsIn(from).filter(([lo, hi]) => hi - lo + 1 <= W * 0.4);
+        if (!seed.length) return from - step;
+        const inSeed = (x) => seed.some(([lo, hi]) => x >= lo && x <= hi);
+        let at = from;
+        while (at >= 0 && at < rows.length) {
+          const runs = runsIn(at).filter(([lo, hi]) => {
+            for (let x = lo; x <= hi; x += 1) if (inSeed(x)) return true;
+            return false;
+          });
+          if (!runs.length) break;
+          const widest = Math.max(...runs.map(([lo, hi]) => hi - lo + 1));
+          if (widest > W * 0.4) break;
+          at += step;
+        }
+        return at - step;
+      };
+
+      const medialTop = stem === 'above' ? Math.min(barTop, followStem(barTop - 1, -1)) : barTop;
+      const medialBottom =
+        stem === 'below' ? Math.max(barBottom, followStem(barBottom + 1, 1)) : barBottom;
+
+      /**
+       * The ink in a band of rows, optionally only the part beside the stem.
+       *
+       * "Beside the stem" is what lets the consonant's box overlap the vowel's,
+       * which is what the face does: 고's ㄱ has a leg running down past the top
+       * of the ㅗ under it, and cutting the ㄱ off at the ㅗ's stem would report
+       * a letter the face does not draw.
+       */
+      const boxOf = (from, to, besideOnly) => {
+        let x0 = 1e9;
+        let y0 = 1e9;
+        let x1 = -1;
+        let y1 = -1;
+        for (let i = Math.max(0, from); i <= Math.min(rows.length - 1, to); i += 1) {
+          const y = Y0 + i;
+          for (const [lo, hi] of runsIn(i)) {
+            if (besideOnly && hi - lo + 1 <= W * 0.4 && overlapsStem(lo, hi)) continue;
+            if (lo < x0) x0 = lo;
+            if (hi > x1) x1 = hi;
+            if (y < y0) y0 = y;
+            if (y > y1) y1 = y;
+          }
+        }
+        return x1 < 0 ? null : { x0, y0, x1, y1 };
+      };
+
+      /** The stem's own columns, taken from the row just outside the bar. */
+      const stemRuns =
+        stem === 'above'
+          ? runsIn(Math.max(0, barTop - 1)).filter(([lo, hi]) => hi - lo + 1 <= W * 0.4)
+          : stem === 'below'
+            ? runsIn(Math.min(rows.length - 1, barBottom + 1)).filter(
+                ([lo, hi]) => hi - lo + 1 <= W * 0.4,
+              )
+            : [];
+      function overlapsStem(lo, hi) {
+        return stemRuns.some(([a, b]) => lo <= b && hi >= a);
+      }
+
+      const merge = (a, b) => {
+        if (!a) return b;
+        if (!b) return a;
+        return {
+          x0: Math.min(a.x0, b.x0),
+          y0: Math.min(a.y0, b.y0),
+          x1: Math.max(a.x1, b.x1),
+          y1: Math.max(a.y1, b.y1),
+        };
+      };
+
+      const initial = merge(boxOf(0, medialTop - 1, false), boxOf(medialTop, barTop - 1, true));
+      const medial = boxOf(medialTop, medialBottom, false);
+      const final = closed
+        ? merge(boxOf(barBottom + 1, medialBottom, true), boxOf(medialBottom + 1, rows.length - 1, false))
+        : null;
+      if (!initial || !medial || (closed && !final)) return null;
+
+      const asFraction = (box) => ({
+        x0: (box.x0 - X0) / W,
+        y0: (box.y0 - Y0) / H,
+        x1: (box.x1 - X0) / W,
+        y1: (box.y1 - Y0) / H,
+      });
+      return closed
+        ? [asFraction(initial), asFraction(medial), asFraction(final)]
+        : [asFraction(initial), asFraction(medial)];
+    }
+
     const out = {};
-    for (const [syllable, { jamo, form }] of Object.entries(structures)) {
+    for (const [syllable, { jamo, form, stem }] of Object.entries(structures)) {
       context.clearRect(0, 0, S, S);
       context.fillStyle = '#000';
       context.font = `400 220px ${face}`;
@@ -151,6 +391,34 @@ const measured = await page.evaluate(
       if (X1 < 0) continue;
       const W = X1 - X0;
       const H = Y1 - Y0;
+
+      const closedBlock = jamo.length > 2;
+      /*
+       * A stacked block is cut at its vowel's bar, whether or not the letters
+       * happen to be separate islands.
+       *
+       * Not "only when islands fail": 꽃's letters *are* five islands, and
+       * grouping them by where they sit puts the tick of the ㅊ with the ㅗ
+       * above it, because the tick is nearer the middle of the block than it is
+       * to the body of its own letter. The bar does not have that problem — the
+       * tick is below the bar, so it is part of the 받침, which is what it is.
+       */
+      if (form === 'horizontal') {
+        const boxes = stacked(on, X0, Y0, X1, Y1, stem, closedBlock);
+        if (boxes) {
+          out[syllable] = {
+            aspect: +(W / H).toFixed(4),
+            cut: 'bar',
+            parts: boxes.map((box) => [
+              +box.x0.toFixed(4),
+              +box.y0.toFixed(4),
+              +box.x1.toFixed(4),
+              +box.y1.toFixed(4),
+            ]),
+          };
+          continue;
+        }
+      }
 
       const parts = islands(on, X0, Y0, X1, Y1);
       // Ignore specks: a stray antialiased pixel is not a letter.
@@ -276,6 +544,7 @@ const measured = await page.evaluate(
       }
       out[syllable] = {
         aspect: +(W / H).toFixed(4),
+        cut: 'islands',
         parts: boxes.map((box) => [
           +box.x0.toFixed(4),
           +box.y0.toFixed(4),
@@ -292,6 +561,15 @@ const measured = await page.evaluate(
 await browser.close();
 
 const missing = syllables.filter((syllable) => !measured[syllable]);
+/**
+ * How each syllable was segmented, said out loud.
+ *
+ * A stacked block that falls back to islands has not failed — it may simply
+ * have separate letters — but a *rise* in that number is the sign that the bar
+ * is no longer being found, which is how the previous version got 국 and 글
+ * wrong without saying anything.
+ */
+const byCut = (how) => Object.values(measured).filter((m) => m.cut === how).length;
 const body = `${JSON.stringify(
   {
     face: FACE,
@@ -317,6 +595,7 @@ if (CHECK) {
 } else {
   writeFileSync(OUT, body);
   console.log(`Measured ${Object.keys(measured).length} syllables into ${OUT}`);
+  console.log(`  ${byCut('bar')} cut at the vowel's bar, ${byCut('islands')} split into islands.`);
 }
 
 if (missing.length) {

@@ -122,6 +122,30 @@ export const semantic = {
   positive: accent.positive,
   negative: accent.negative,
 
+  /**
+   * The three accent tints, as roles rather than as mixtures with white.
+   *
+   * A graded answer paints its own background — right is a wash of `positive`,
+   * wrong a wash of `negative` — and every one of those washes was written as
+   * `color-mix(in srgb, var(--hg-positive) 8%, white)`. `white` is a colour and
+   * not a role, so in dark mode the mix lands a shade off #FFFFFF while the
+   * label above it stays at `text`: #F6F0EA on #F1F5FE, which is 1.06:1. The
+   * learner answers a question and the option they chose goes blank. It was
+   * reported on Review and it was every graded option in the product — the
+   * daily vocabulary session and the letter recognition step do the same thing.
+   *
+   * Light keeps the value the mixture produced, so nothing moves in the
+   * appearance that was correct. Dark mixes the same accent into `surface`
+   * instead of into white, which is the same *idea* — a tint of the accent on
+   * the card it sits on — arrived at from the right end. `text` measures
+   * 11.1:1 on the positive tint and 11.4:1 on the negative one.
+   */
+  positiveSubtle: '#F1F5FE',
+  negativeSubtle: '#FEF0F0',
+  secondarySubtle: '#E4F6F6',
+  /** `secondary` as small text, on `secondarySubtle`. */
+  secondaryText: '#2F6E6E',
+
   bg: gray[0],
   bgWarm: warm[50],
   bgMuted: gray[100],
@@ -195,19 +219,23 @@ export const semantic = {
   /**
    * The ground the launch screen sits on.
    *
-   * Sampled from the *first frame* of the splash animation, which is also the
-   * still the native launch screen shows — see `capacitor.config.ts` and the
-   * `splash.png` drawables. That is the whole point of the number: the native
-   * screen holds frame zero, the WebView takes over and the animation carries
-   * on from exactly there, and there is no moment where the colour changes.
-   * Sampled from the finished artwork instead it would be a shade darker than
-   * the frame it hands over from, and the handover would blink.
+   * Sampled from the corner of `splash_ko.png` / `splash_eng.png` in
+   * `apps/common_assets/splash` — both artworks share it — and it is the same
+   * number in three places that cannot import from each other: here, the
+   * `SplashScreen` background in `capacitor.config.ts`, and `splashBackground`
+   * in the Android `colors.xml`. The native launch screen paints it, the
+   * WebView takes over and paints the same picture on the same ground, and
+   * there is no moment where the colour changes.
+   *
+   * It was #FFF6E9 while the splash was an animation, because that was the
+   * ground of *frame zero* rather than of the finished art. There are no frames
+   * any more; this is the picture's own ground, which is the only one there is.
    *
    * In this set and *not* in the dark one, for the same reason `canvasPaper` is
    * light in both appearances: the artwork is a light picture, and giving it a
    * dark variant would put a dark border around it.
    */
-  splashGround: '#FFF6E9',
+  splashGround: '#FFF1E1',
 } as const;
 
 /**
@@ -241,6 +269,20 @@ export const dark = {
   secondary: '#7FD6D6',
   positive: '#8AA6F7',
   negative: '#FF7A80',
+
+  /**
+   * The accent tints, mixed into `surface` rather than into white.
+   *
+   * 18% of the appearance's own accent over #1E1815 — a graded option that
+   * reads as tinted at a glance and still carries `text` at better than 11:1.
+   * See the note beside their light counterparts for why they are tokens at
+   * all rather than a `color-mix` in the component.
+   */
+  positiveSubtle: '#31323E',
+  negativeSubtle: '#462A28',
+  secondarySubtle: '#2F3A38',
+  /** `secondary` needs no darkening here: on dark ground it is already 8.4:1. */
+  secondaryText: '#7FD6D6',
 
   bg: '#15110E',
   bgWarm: '#1B1613',

@@ -446,7 +446,20 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ㅇ: [circle(50, 50, 32)],
   ㅈ: jieut(18, 82),
   ㅎ: [
-    stroke([[36, 10], [64, 10]]),
+    // The mark on top is a short **upright** that comes down onto the bar, not
+    // a second horizontal above it. Measured off the face: Pretendard sets it
+    // about 0.17 of the letter's width and 0.20 of its height — taller than it
+    // is wide — and its ink runs into the bar's, which is why the two come back
+    // from `measure-composition` as one island.
+    //
+    // It was authored as a wide horizontal for four rounds, on a note claiming
+    // the face drew it that way. The face does not, and the note came from
+    // reading a canvas that had quietly fallen back to a system sans because
+    // the Korean subset of Pretendard was never asked for; see
+    // `scripts/measure-composition.mjs`. Drawn as a bar it was 0.44 of the
+    // letter wide and 0.12 tall — half the width of ㅎ laid across the top — so
+    // the letter read as having two horizontals and a circle.
+    stroke([[50, 11], [50, 32]]),
     stroke([[20, 32], [80, 32]]),
     // Clear of the bar, not touching it. At r = 24 the top of the bowl's ink
     // and the underside of the bar's overlapped by three units and the two
@@ -455,13 +468,13 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ],
 
   // --- Aspirates: the plain letter with a stroke added ----------------------
-  // The mark on top is a short *horizontal* in this face, not the upright a
-  // diagram usually draws. Authored as one because these polylines are matched
-  // against the reference glyph, and an upright over a horizontal bar left the
-  // pen travelling twelve units down through blank paper while the bar it was
-  // supposed to be drawing sat above it. See `strokes:visual`, which measures
-  // exactly that.
-  ㅊ: [stroke([[36, 12], [64, 12]]), ...jieut(18, 82, 30)],
+  // The same upright ㅎ carries, ending on the lid rather than short of it.
+  // Both letters had it authored as a wide horizontal, and for the same wrong
+  // reason — see the note on ㅎ. The claim that an upright would leave the pen
+  // travelling through blank paper belonged to the old model, where a stroke
+  // was cut out of the rasterised glyph and could therefore be given ink that
+  // was not its own; a stroked centreline draws exactly where it goes.
+  ㅊ: [stroke([[50, 8], [50, 30]]), ...jieut(18, 82, 30)],
   // The added bar starts on the letter's own left edge, level with the top
   // bar's, and runs right to cross the leg. Set in from that edge it hung in
   // open paper with nothing on either end of it.
@@ -487,27 +500,36 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
 };
 
 /**
- * The letters whose *isolated* form differs from the one written inside a block.
+ * The letters the face draws with a **straight** leg, and when it does.
  *
  * ## This is the face's own distinction, not a preference
  *
- * Rendering Pretendard's ㄱ four ways settles it. Alone — the glyph on a lesson
- * about the letter ㄱ — the leg comes **straight down** from a square corner.
- * In 가 and 거, where the block gives ㄱ a tall narrow slot, the leg **leans and
- * curves** away to the left, a real 7. In 고 and 국, where the slot is squat, it
- * is straight again. ㅋ and ㄲ follow ㄱ.
+ * Rendering Pretendard's ㄱ settles it. Alone — the glyph on a lesson about the
+ * letter ㄱ — the leg comes straight down from a square corner. In 가, 거 and
+ * 기, where the block gives ㄱ a tall narrow slot, the leg **leans and curves**
+ * away to the left, a real 7. In 고, 구, 그, 국, 공 and 글, where the slot is
+ * wide and shallow, it is straight again — and so is the ㄱ at the foot of 국.
+ * ㅋ and ㄲ follow ㄱ.
  *
- * `STROKE_ORDER` holds the leaning form because that is the one composition
- * needs, and the squat blocks get the upright version for free: the slot that
- * wants it is also the slot that squashes the letter horizontally, and squashing
- * a leaning leg is what straightens it. What that cannot produce is the
- * *unsquashed* upright form, which is exactly the isolated letter — so a lesson
- * on ㄱ drew a leaning leg directly above a reference glyph with a straight one.
+ * `STROKE_ORDER` holds the leaning form, and this map holds the other one.
  *
- * Only `data/strokeVectors` reads this, and only for a letter on its own.
- * `compose.ts` never does: inside a block, `STROKE_ORDER` is right.
+ * ## Why it is a second form and not a consequence of the fit
+ *
+ * It used to be the latter. The claim was that a squat slot squashes the letter
+ * horizontally and squashing a leaning leg straightens it, so only the isolated
+ * letter needed saying. That is backwards: a wide, shallow slot **stretches** a
+ * near-square ㄱ sideways, by up to the squeeze bound, and stretching a leaning
+ * leg sideways lays it further over. The lean is authored as a fraction of the
+ * letter's width — a quarter of it — so a ㄱ stretched to two and a bit times
+ * its own proportions arrives with a leg at nearly sixty degrees. Every block
+ * with a horizontal vowel had one, which is why 국, 공, 글, 고, 구 and 그 all
+ * read as a diagonal slash with a bar over it rather than as ㄱ.
+ *
+ * So the two forms are two forms. `strokeVectors` takes this one for a letter
+ * on its own, and `compose.ts` takes it for a letter whose slot would stretch
+ * it wide; see `uprightInWideSlot` there.
  */
-export const STROKE_ORDER_ALONE: Record<string, StrokeStep[]> = {
+export const STROKE_ORDER_UPRIGHT: Record<string, StrokeStep[]> = {
   ㄱ: [giyeok(20, 78, 20, 80, 0)],
   // The added bar runs all the way to the leg's centreline, not to just short of
   // it: stopping short leaves its squared end a fraction of a pen proud of the

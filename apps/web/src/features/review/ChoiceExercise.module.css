@@ -212,12 +212,12 @@
    wrong needs to see which one was right far more than they need telling. */
 .right {
   border-color: var(--hg-positive);
-  background: color-mix(in srgb, var(--hg-positive) 8%, white);
+  background: var(--hg-positive-subtle);
 }
 
 .wrong {
   border-color: var(--hg-negative);
-  background: color-mix(in srgb, var(--hg-negative) 8%, white);
+  background: var(--hg-negative-subtle);
 }
 
 .dimmed {

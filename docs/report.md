@@ -903,11 +903,18 @@ steer a raster cut; now they are drawn directly. Three things were added:
 
 ### Two letters the face draws twice
 
-Pretendard gives ㄱ a **vertical** leg on its own and a **leaning, curved** one in
-가 and 거 — and a vertical one again in 고 and 국, where the block squashes it.
-The old data had only the leaning form, so a lesson on ㄱ drew a leaning leg
-directly under a reference glyph with a straight one. `STROKE_ORDER_ALONE` holds
-the isolated forms for ㄱ, ㅋ and ㄲ; composition never reads it.
+Pretendard gives ㄱ a **leaning, curved** leg in 가, 거, 기 and 강 — every block
+whose vowel stands to its right — and a **straight** one everywhere else: on its
+own, in 고, 구, 그, 국, 공 and 글, and at the foot of 국. `STROKE_ORDER_UPRIGHT`
+holds the straight form for ㄱ, ㅋ and ㄲ, and both `strokeVectors` (for a letter
+alone) and `compose` (by where in the block the letter sits) read it.
+
+Composition used not to. The claim was that a squat slot squashes a leaning leg
+upright, so only the isolated letter needed saying. It does the opposite: a wide,
+shallow slot *stretches* a near-square ㄱ sideways, and the lean is authored as a
+fraction of the letter's width, so every block with a horizontal vowel arrived
+with its leg at nearly sixty degrees — a diagonal slash under a bar rather than
+a ㄱ. Reading the slot has no number in it to get wrong.
 
 ## 11.5 What the gates check now — **VERIFIED**
 
@@ -918,8 +925,10 @@ not yet written — and none of those are reachable. Checks that can no longer f
 were removed rather than left in to look thorough. What it asserts now: every
 taught item has geometry; stroke counts agree with what the lesson tells the
 learner; nothing including the pen falls outside the box; an end marked `join`
-genuinely lands within half a pen of another stroke; a ring's sample never turns
-more than 15° between points; no two markers overlap.
+genuinely lands within half a pen of another stroke; a ring's sample, scaled back to a circle first, never
+turns more than 15° between points — a block flattens ㅇ by an affine map, which
+cannot put a flat spot in the sample but does widen the angle at the ends of the
+long axis; no two markers overlap.
 
 `strokes:visual` renders all 1,345 frames in Chromium — with the same paths, pen,
 caps, mitre limit and dash offset the shipping component uses, so a frame that
@@ -2742,7 +2751,7 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
 | **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **OPEN** |
 | **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about half the writing square while the demonstration below it fills 0.84 of its own. Same letter, two sizes, one screen. | **OPEN** |
-| **I-25** | Build | **P2** | `composition.json` cannot be reproduced by its own generator | None directly — the committed measurements are good, and the syllables built from them were read by eye this cycle. The risk is that nobody can tell whether a future regeneration is a correction or a regression. | **OPEN** |
+| **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **OPEN** |
 | **I-18** | Content | **P3** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" on a beginner's card | **OPEN** |
 | **I-20** | Vocabulary | **P3** | The *More about it* block is written for 25 words | The other 2,556 word cards end at the example | **OPEN** |
 | **I-22** | Vocabulary UX | **P3** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | **OPEN** |
@@ -2792,7 +2801,7 @@ false. §11.2 is about how that happened.
 | **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
 | **I-21** | No sound-free control in My Learning; `candidates()` still reads `sound_free` and still filters the letter modes. | A small per-question fallback on an audio-only letter question — "Can't use audio?" swapping in an equivalent visual recognition question, not revealing the answer and not penalised — rather than restoring a global setting. |
 | **I-24** | Measured: Pretendard sets an isolated ㄱ at 0.53 × 0.42 of the box and eight per cent above its centre. Scaling the glyph to match was implemented and reverted: it scales the glyph's stroke too, from 0.057 of the box to 0.090 against a fixed 0.062 pen, and the robustness corpus went from 0.21% false rejections to 21% — one correct letter in five told it was wrong. See `features/writing/glyphSpec.ts`. | A grading model that does not measure coverage against a stroke the pen cannot fill, then the glyph can be sized for the eye. Its own calibration, not a side effect of a layout change. |
-| **I-25** | Running `npm run strokes:measure` against the current font rewrites 23 of 33 syllables, including ones the current generator's code path cannot reach. The committed file was produced by an earlier version of the script, or against a different build of the face. There is no `--check` variant to have caught it. | Re-derive the measurements, review all 33 by eye against the reference glyph, commit both together, and add `strokes:measure:check` to the release gate the way `jamo:measure:check` now is. |
+| **I-25** | The original defect — `npm run strokes:measure` rewriting 23 of 33 syllables — was the script measuring a *fallback* face: the app ships Pretendard as a dynamic subset, and `document.fonts.load(font)` with no text loads only the Latin ranges, so `fillText` drew whatever the system had and the result depended on which subsets the app's own first screen had warmed. The script now loads the face for the text it measures, the table has been re-derived, and all 33 syllables were read by eye against the reference glyph. `npm run strokes:measure -- --check` passes repeatedly. What is left is that it is not in `verify:release`, because unlike every other gate it needs the app served on :4477. | Either have `measure-composition.mjs` start its own preview server when nothing is listening, or add the check to a release step that already has one, and then put it in `verify:release` beside `jamo:measure:check`. |
 | **I-18** | Reported by `vocabulary:sense:qa`; not gated. | One card, one taught sense. Additional senses belong in the Word Detail block, not in the quiz answer. |
 | **I-20** | The alternative was 784 dictionary scrapings, which is why they were deleted. | Write it for the words that need it — polysemous, grammar-heavy, high-frequency functional, culturally specific, easily confused — starting with the top 500. Not a paragraph under every word. |
 | **I-22** | `stepsFor('new', i)` alternates `meaning` and `context`; two of the four checks were listening. | A non-listening third check for new words, if one can be recognition-only. The accepted cost of §16.5. |
@@ -3137,7 +3146,7 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
 | **I-21** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | LOW–MEDIUM — one per-question fallback, in 32 languages |
 | **I-24** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about half the writing square while the demonstration below it fills 0.84 of its own. Same letter, two sizes, one screen. | MEDIUM–HIGH — a grading recalibration with its own corpus run |
-| **I-25** | `composition.json` cannot be reproduced by its own generator | None directly — the committed measurements are good, and the syllables built from them were read by eye this cycle. The risk is that nobody can tell whether a future regeneration is a correction or a regression. | LOW–MEDIUM — re-measure, then read 33 syllables by eye |
+| **I-25** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | LOW — one script change, or one gate entry |
 | **I-18** | 103 glosses carry more than one sense in some language | 차 is "a car, or the tea you drink" on a beginner's card | MEDIUM (content) |
 | **I-20** | The *More about it* block is written for 25 words | The other 2,556 word cards end at the example | HIGH (content) — start at the top 500 |
 | **I-22** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | MEDIUM — a third non-listening check for new words |

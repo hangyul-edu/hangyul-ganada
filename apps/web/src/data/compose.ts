@@ -2,7 +2,7 @@ import type { CurveSegment, StrokeStep } from '@hangyul-ganada/shared-types';
 
 import COMPOSITION from './generated/composition.json';
 import { MEDIAL_PARTS, branchesLeft, medialForm, toJamo, type MedialForm } from './jamo';
-import { STROKE_ORDER } from './strokes';
+import { STROKE_ORDER, STROKE_ORDER_UPRIGHT } from './strokes';
 
 /**
  * Putting letters into a syllable block — for counting and grading, not drawing.
@@ -67,19 +67,32 @@ import { STROKE_ORDER } from './strokes';
  * result still did not look like Korean, because filling a rectangle is not
  * what a Hangul face does to a letter. Three things had to change.
  *
- * **A consonant keeps its shape.** ㄱ stretched to fill a tall narrow slot
- * leans over; ㅇ stretched to fill a wide flat 받침 slot becomes a lens. So a
- * consonant is scaled by one factor in both directions and centred in its
- * region — up to a bounded amount of squeeze, because a 받침 genuinely *is*
- * squat and holding ㄴ perfectly square at the foot of 안 would leave it a
- * third of the width it should be. Round letters get a much tighter bound than
- * angular ones, which is exactly the difference a real face applies: the ㄴ of
- * 안 flattens to about half its height, the ㅇ of 강 barely flattens at all.
+ * **A letter fills the box the face gives *that* letter in *that* block.** The
+ * measured table below is not a set of slots letters are dropped into; each box
+ * is the ink of one letter of one syllable in the reference face, so filling it
+ * reproduces the face's own proportions for it. ㅇ ends up a wide oval at the
+ * foot of 강 and a wider one in 우 because that is what Pretendard draws, and
+ * the ㅗ of 옷 gets the short stem the face gives it.
  *
- * **A vowel fills its region.** ㅏ, ㅗ and ㅣ are straight lines. Stretching a
- * straight line does not distort it, and the stem of ㅏ *should* run the height
- * of the block while the bar of ㅗ *should* run its width. What matters is
- * where the lines land, not their aspect ratio.
+ * This is not what this file did first, twice over. It stretched letters into
+ * *class-average* slots, which is a different thing and produced a lens for an
+ * ㅇ; the correction to that was to hold each consonant's own drawn proportions
+ * within a fixed bound — 1.8 out of square for a round letter, 2.9 for an
+ * angular one. Both numbers were guesses standing in for a measurement, and
+ * once the measurement existed they were wrong: the face flattens 강's ㅇ to
+ * 1.87 and 우's to 2.08, so the bound was holding them rounder than the
+ * reference glyph two inches above them on the screen. The bounds survive only
+ * on the fallback path below, where the region really is a class average.
+ *
+ * **A vowel fills its region too, for a different reason.** ㅏ, ㅗ and ㅣ are
+ * straight lines. Stretching a straight line does not distort it, and the stem
+ * of ㅏ *should* run the height of the block while the bar of ㅗ *should* run
+ * its width. What matters is where the lines land, not their aspect ratio.
+ *
+ * **A letter can have more than one form, and the block picks.** ㄱ's leg leans
+ * in 가 and comes straight down in 고 — the face's own distinction, and one the
+ * fit cannot produce, because a wide slot *stretches* a leaning leg further
+ * over rather than straightening it. See `strokesOf` and `STROKE_ORDER_UPRIGHT`.
  *
  * **ㅓ is not ㅏ.** They are the same two strokes mirrored, and a block places
  * them differently: 가 puts the stem beside the consonant and lets the branch
@@ -285,34 +298,13 @@ const MEASURED = COMPOSITION.syllables as unknown as Record<string, Measured>;
  * is inset by half the pen — which is what makes two boxes that share an edge
  * come out as two strokes that touch.
  */
-/**
- * The shortest a 받침 slot may be, as a fraction of the block.
- *
- * Not a taste: it is what a final consonant needs to still be a letter. ㄹ, ㅌ,
- * ㅁ and ㅂ are three or four bars stacked, and three bars in less than this
- * much height close up under the pen and arrive as a smudge.
- *
- * It exists because the measurement can get one wrong. `measure-composition`
- * finds the join between the vowel and the 받침 by looking for the quietest row
- * in the merged ink, and in 글 the ㅡ touches the ㄹ below it — so the quietest
- * row was not the join at all but a gap between two of the ㄹ's own bars. The ㄹ
- * came out as the bottom fifth of the block. Every other closed block in the
- * curriculum measures between 0.29 and 0.45, so this floor fires on that one
- * syllable and leaves the rest exactly as the face has them.
- *
- * The room is taken from the vowel above, which is a single horizontal bar in
- * every block this can affect and does not need it.
- */
-const MIN_FINAL_HEIGHT = 0.3;
-
 function measuredRegions(syllable: string): Region[] | null {
   const found = MEASURED[syllable];
   if (!found) return null;
   const width = Math.min(1, found.aspect);
   const height = Math.min(1, 1 / found.aspect);
   const half = PEN / 2;
-  const parts = liftShortFinal(found.parts);
-  return parts.map(([x0, y0, x1, y1]) => {
+  return found.parts.map(([x0, y0, x1, y1]) => {
     const left = 0.5 + (x0! - 0.5) * width;
     const right = 0.5 + (x1! - 0.5) * width;
     const top = 0.5 + (y0! - 0.5) * height;
@@ -324,24 +316,6 @@ function measuredRegions(syllable: string): Region[] | null {
       y1: Math.max(bottom - half, (top + bottom) / 2),
     };
   });
-}
-
-/** Raises the top of a 받침 box that came back too short to hold a letter. */
-function liftShortFinal(parts: number[][]): number[][] {
-  if (parts.length < 3) return parts;
-  const final = parts[2]!;
-  const top = final[1]!;
-  const bottom = final[3]!;
-  if (bottom - top >= MIN_FINAL_HEIGHT) return parts;
-
-  const lifted = Math.max(0, bottom - MIN_FINAL_HEIGHT);
-  const medial = parts[1]!;
-  return [
-    parts[0]!,
-    // The vowel keeps its own bar and gives up the empty paper under it.
-    [medial[0]!, medial[1]!, medial[2]!, Math.min(medial[3]!, lifted)],
-    [final[0]!, lifted, final[2]!, bottom],
-  ];
 }
 
 /** The layout a syllable uses, or null if it is not a composed syllable. */
@@ -367,12 +341,17 @@ const FLAT = 1e-6;
 /**
  * How far out of square a consonant may be squeezed to fit its region.
  *
- * A 받침 slot is about twice as wide as it is tall, and a real Hangul face does
- * flatten a letter that far and further: measured off the reference face, the ㅂ
- * at the foot of 밥 is squeezed to about 2.7 times out of square and the ㅇ of
- * 강 to about 1.8. So the bounds are the face's, and they differ by letter for
- * the reason the face's do — a flattened circle stops reading as ㅇ long before
- * a flattened ㅂ stops reading as ㅂ.
+ * **These apply only to the fallback path** — a syllable the curriculum has
+ * added but nobody has re-measured, which is laid out from `LAYOUTS`, a median
+ * over a class of syllables. A median is nobody, so a letter dropped into one
+ * has to be protected from it, and these are the protection: a 받침 slot is
+ * about twice as wide as it is tall, and a real Hangul face does flatten a
+ * letter that far and further, but not without limit.
+ *
+ * A syllable with a measured box does not come through here, and must not: its
+ * box is that letter's own ink in that block, so a bound could only hold the
+ * letter away from the shape the face gives it. That is what these numbers were
+ * doing before the measurement existed — see the note at the top of the file.
  */
 const MAX_SQUEEZE_ANGULAR = 2.9;
 const MAX_SQUEEZE_ROUND = 1.8;
@@ -558,9 +537,63 @@ function setOnPaper(strokes: StrokeStep[]): StrokeStep[] {
   );
 }
 
-/** A letter's own stroke data, or nothing if the app cannot draw it. */
-function strokesOf(jamo: string): StrokeStep[] {
+/**
+ * Where in a block a letter is, which is what decides which form of it is written.
+ *
+ * Only ㄱ, ㅋ and ㄲ have two forms, and the face chooses between them by exactly
+ * this: the leg leans in 가, 거, 기 and 강 — every block whose vowel stands to
+ * the right — and comes straight down in 고, 구, 그, 국, 공, 글, under 국, and in
+ * the letter written on its own. See `STROKE_ORDER_UPRIGHT`.
+ */
+type Slot = 'initial-beside-vowel' | 'initial-above-vowel' | 'final';
+
+/**
+ * The strokes to write a letter with, given where in the block it goes.
+ *
+ * This used to be left to the fit, on the theory that a squat slot squashes a
+ * leaning leg upright. It does the opposite: a wide, shallow slot *stretches* a
+ * near-square ㄱ sideways, and the lean is authored as a fraction of the letter's
+ * width, so the leg came out at nearly sixty degrees. Every block with a
+ * horizontal vowel had one — 고, 구, 그, 국, 공, 글 all read as a diagonal slash
+ * under a bar rather than as ㄱ.
+ *
+ * Reading the slot instead of measuring the stretch is not a smaller fix; it is
+ * the face's own rule, and it has no number in it to get wrong.
+ */
+function strokesOf(jamo: string, slot?: Slot): StrokeStep[] {
+  if (slot && slot !== 'initial-beside-vowel') {
+    const upright = STROKE_ORDER_UPRIGHT[jamo];
+    if (upright) return upright;
+  }
   return STROKE_ORDER[jamo] ?? [];
+}
+
+/**
+ * The letters a block is written with, each in the form this block writes it in.
+ *
+ * A block is its letters and nothing else, but "its letters" is not quite the
+ * same list as the isolated ones: ㄱ has two forms and which one a block takes
+ * depends on where in the block it sits (see `strokesOf`). Exported so that
+ * anything checking "the block is its letters" checks it against the letters
+ * the block actually writes, rather than against a second copy of that rule.
+ *
+ * The strokes are the authored ones, in the letter's own box — not placed.
+ */
+export function blockLetterForms(
+  syllable: string,
+): Array<{ jamo: string; strokes: StrokeStep[] }> {
+  const layout = syllableLayout(syllable);
+  if (!layout) return [];
+  const jamo = toJamo(syllable);
+  return jamo.map((letter, at) => ({
+    jamo: letter,
+    strokes:
+      at === 0
+        ? strokesOf(letter, layout.form === 'vertical' ? 'initial-beside-vowel' : 'initial-above-vowel')
+        : at === 2
+          ? strokesOf(letter, 'final')
+          : strokesOf(letter),
+  }));
 }
 
 /**
@@ -572,32 +605,32 @@ function strokesOf(jamo: string): StrokeStep[] {
 export function composeSyllableStrokes(syllable: string): StrokeStep[] {
   const layout = syllableLayout(syllable);
   if (!layout) return [];
-  const [initial, medial, final] = toJamo(syllable);
+  const [, medial, final] = toJamo(syllable);
   const measured = measuredRegions(syllable);
+  const [written, , writtenFinal] = blockLetterForms(syllable);
 
   if (measured && measured.length === toJamo(syllable).length) {
     // Measured off the reference glyph: one box per letter, in the face's own
-    // spacing. Consonants keep their shape inside their box; vowels fill theirs,
-    // because a vowel is straight lines and stretching a line does not distort
-    // it.
+    // spacing. Every letter fills its box, because the box *is* that letter's
+    // ink in this block in this face — so filling it is how the demonstration
+    // and the reference character come out as the same letter in the same
+    // proportions, and holding a letter back from its box could only make them
+    // differ.
     const out: StrokeStep[] = [
-      ...fit(strokesOf(initial!), measured[0]!, {
-        keepShape: true,
-        squeeze: layout.form === 'horizontal' ? MAX_SQUEEZE_WIDE_SLOT : undefined,
-      }),
+      ...fit(written!.strokes, measured[0]!, { keepShape: false }),
       ...fit(strokesOf(medial!), measured[1]!, {
         keepShape: false,
         anchorX: branchesLeft(medial!) ? 'end' : 'start',
       }),
     ];
     if (final && measured[2]) {
-      out.push(...fit(strokesOf(final), measured[2], { keepShape: true }));
+      out.push(...fit(writtenFinal!.strokes, measured[2], { keepShape: false }));
     }
     return setOnPaper(out);
   }
 
   const out: StrokeStep[] = [
-    ...fit(strokesOf(initial!), layout.initial, {
+    ...fit(written!.strokes, layout.initial, {
       keepShape: true,
       // A consonant over a horizontal vowel gets a wide, shallow band, and
       // filling it makes every letter as wide as the widest one that has to fit
@@ -632,7 +665,7 @@ export function composeSyllableStrokes(syllable: string): StrokeStep[] {
   }
 
   if (final && layout.final) {
-    out.push(...fit(strokesOf(final), layout.final, { keepShape: true }));
+    out.push(...fit(writtenFinal!.strokes, layout.final, { keepShape: true }));
   }
   return setOnPaper(out);
 }

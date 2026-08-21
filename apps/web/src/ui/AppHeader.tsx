@@ -81,8 +81,16 @@ export function AppHeader({
     );
   }
 
+  // A pill in the right slot is wider than the icon-button track it sits in, so
+  // the header reserves room for it on *both* sides. See `.withAction`.
+  const hasAction = !onClose && Boolean(action);
+
   return (
-    <header className={`${styles.header} ${transparent ? styles.transparent : ''}`}>
+    <header
+      className={`${styles.header} ${hasAction ? styles.withAction : ''} ${
+        transparent ? styles.transparent : ''
+      }`}
+    >
       <div className={styles.side}>
         {onBack ? (
           <button type="button" className={styles.iconButton} onClick={handleBack} aria-label={t('actions.back')}>
@@ -93,7 +101,13 @@ export function AppHeader({
 
       <h1 className={styles.title}>{title}</h1>
 
-      <div className={`${styles.side} ${styles.sideEnd}`}>
+      {/*
+        The action slot is inset further than the close button, and that is
+        deliberate — see `.sideAction`. A close cross is an icon button and
+        belongs on the same rule as the back chevron opposite it; the progress
+        badge is a filled pill, and a pill's own edge is not its optical edge.
+      */}
+      <div className={`${styles.side} ${styles.sideEnd} ${hasAction ? styles.sideAction : ''}`}>
         {onClose ? (
           <button type="button" className={styles.iconButton} onClick={onClose} aria-label={t('actions.close')}>
             <CloseIcon />

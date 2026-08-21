@@ -44,6 +44,10 @@
   --hg-secondary: #66CCCC;
   --hg-positive: #547CF1;
   --hg-negative: #F24147;
+  --hg-positive-subtle: #F1F5FE;
+  --hg-negative-subtle: #FEF0F0;
+  --hg-secondary-subtle: #E4F6F6;
+  --hg-secondary-text: #2F6E6E;
   --hg-bg: #FFFFFF;
   --hg-bg-warm: #FFF8F1;
   --hg-bg-muted: #F2F4F5;
@@ -66,7 +70,7 @@
   --hg-canvas-guide: #E6E8EB;
   --hg-canvas-guide-warm: #FFDCC2;
   --hg-canvas-trace-glyph: #ADB4BA;
-  --hg-splash-ground: #FFF6E9;
+  --hg-splash-ground: #FFF1E1;
   /* gradient */
   --hg-gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FFF2E0 100%);
   --hg-gradient-session: linear-gradient(180deg, #FFFEFC 0%, #FFEAD1 100%);
@@ -166,6 +170,10 @@
   --hg-secondary: #7FD6D6;
   --hg-positive: #8AA6F7;
   --hg-negative: #FF7A80;
+  --hg-positive-subtle: #31323E;
+  --hg-negative-subtle: #462A28;
+  --hg-secondary-subtle: #2F3A38;
+  --hg-secondary-text: #7FD6D6;
   --hg-bg: #15110E;
   --hg-bg-warm: #1B1613;
   --hg-bg-muted: #211B17;
@@ -206,6 +214,10 @@
     --hg-secondary: #7FD6D6;
     --hg-positive: #8AA6F7;
     --hg-negative: #FF7A80;
+    --hg-positive-subtle: #31323E;
+    --hg-negative-subtle: #462A28;
+    --hg-secondary-subtle: #2F3A38;
+    --hg-secondary-text: #7FD6D6;
     --hg-bg: #15110E;
     --hg-bg-warm: #1B1613;
     --hg-bg-muted: #211B17;

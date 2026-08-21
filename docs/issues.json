@@ -97,11 +97,11 @@
       "area": "Build",
       "severity": "P2",
       "status": "OPEN",
-      "summary": "`composition.json` cannot be reproduced by its own generator",
-      "customerImpact": "None directly — the committed measurements are good, and the syllables built from them were read by eye this cycle. The risk is that nobody can tell whether a future regeneration is a correction or a regression.",
-      "evidence": "Running `npm run strokes:measure` against the current font rewrites 23 of 33 syllables, including ones the current generator's code path cannot reach. The committed file was produced by an earlier version of the script, or against a different build of the face. There is no `--check` variant to have caught it.",
-      "recommendedFix": "Re-derive the measurements, review all 33 by eye against the reference glyph, commit both together, and add `strokes:measure:check` to the release gate the way `jamo:measure:check` now is.",
-      "effort": "LOW–MEDIUM — re-measure, then read 33 syllables by eye"
+      "summary": "`strokes:measure:check` is not on the release gate",
+      "customerImpact": "None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told.",
+      "evidence": "The original defect — `npm run strokes:measure` rewriting 23 of 33 syllables — was the script measuring a *fallback* face: the app ships Pretendard as a dynamic subset, and `document.fonts.load(font)` with no text loads only the Latin ranges, so `fillText` drew whatever the system had and the result depended on which subsets the app's own first screen had warmed. The script now loads the face for the text it measures, the table has been re-derived, and all 33 syllables were read by eye against the reference glyph. `npm run strokes:measure -- --check` passes repeatedly. What is left is that it is not in `verify:release`, because unlike every other gate it needs the app served on :4477.",
+      "recommendedFix": "Either have `measure-composition.mjs` start its own preview server when nothing is listening, or add the check to a release step that already has one, and then put it in `verify:release` beside `jamo:measure:check`.",
+      "effort": "LOW — one script change, or one gate entry"
     },
     {
       "id": "I-06",

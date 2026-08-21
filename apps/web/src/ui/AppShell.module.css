@@ -5,6 +5,15 @@
   /* Fills the visual viewport on mobile browsers whose toolbars come and go. */
   height: 100dvh;
   /*
+   * …but never more than the frame it is inside.
+   *
+   * On a wide screen `#root` is a fixed-height device — `min(932px, 100dvh -
+   * 2 * space-5)` — with `overflow: hidden`, so a child asking for the whole
+   * `100dvh` is taller than its parent by the height of the surround and has
+   * its last row silently clipped. The last row is the bottom navigation.
+   */
+  max-height: 100%;
+  /*
    * The warm ground, as a role rather than as a swatch.
    *
    * `--hg-warm-50` is one colour in both appearances — a palette ramp has to be
@@ -45,9 +54,9 @@
 }
 
 /*
- * On a desktop the shell is a card floating on the page, and the insets are
- * zero anyway — but the rule above would still apply if a browser reported one,
- * pushing the card's content away from its own rounded corner.
+ * On a desktop the insets are zero anyway — but the rule above would still
+ * apply if a browser reported one, pushing the content away from the frame's
+ * own rounded corner.
  */
 @media (min-width: 600px) {
   .shell {
@@ -55,19 +64,28 @@
   }
 }
 
-/* Desktop: the shell reads as a device against the warm page. */
-@media (min-width: 600px) {
-  .viewport {
-    padding: var(--hg-space-6) var(--hg-space-4);
-  }
-
-  .shell {
-    height: 100%;
-    max-height: 900px;
-    border-radius: var(--hg-radius-2xl);
-    box-shadow: var(--hg-shadow-raised);
-  }
-}
+/*
+ * There is no second phone here, and there used to be.
+ *
+ * `#root` is already the device on a wide screen: `styles/global.css` gives it
+ * `min(430px, 100vw)`, the corner radius, the shadow and the transform that
+ * makes it the containing block for the app's one fixed element. This file then
+ * drew a *second* one inside it — `padding: 24px 16px` on the viewport and
+ * another rounded, shadowed card at `max-width: 430px` within the 430 px it
+ * already had.
+ *
+ * What that cost was the bottom navigation. The nav is the shell's last child
+ * and fills it exactly, so the shell being inset 16 px on each side and 24 px
+ * top and bottom put a strip of warm ground down both sides of the tab bar and
+ * another under it. The bar read as a floating pill that had come loose from
+ * the app, which is exactly how it was reported.
+ *
+ * So the desktop frame is drawn once, by `#root`, and the shell fills it: no
+ * padding on the viewport, and no second radius or shadow. `max-width` stays on
+ * `.shell` for the 430–560 px window where `#root` is still full-bleed and the
+ * app should not stretch; below 430 the two are the same width and nothing is
+ * inset by anything.
+ */
 
 .plain {
   background: var(--hg-bg);

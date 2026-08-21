@@ -9,6 +9,35 @@
   flex: none;
 }
 
+/*
+ * A header whose right slot holds a pill rather than an icon button.
+ *
+ * Both side tracks widen, not just the one with the pill in it, and that is the
+ * entire point: the middle track is what the title is centred in, so it stays
+ * on the header's centre line only while the two tracks flanking it are the
+ * same width. Widening one would centre the title on a line 14 px off the
+ * screen's, which is the sort of wrongness nobody can name and everybody sees.
+ *
+ * The number: the counter measures 48 px at `0 / 10` and about 54 px at the
+ * widest a real session reaches, plus the 15 px `.sideAction` holds it off the
+ * edge. 72 px covers that with room to spare. Without it the pill overflowed
+ * its 44 px track by 19 px and the *title* paid — at 360 px the longest lesson
+ * name in the corpus, "La consonante encuentra la vocal", truncated with its
+ * ellipsis 11 px underneath the badge. Reserving the room costs the title about
+ * 28 px of width on each side and buys a header where nothing is ever printed
+ * over anything.
+ *
+ * Only on the headers that carry an action: a screen with a close cross, or
+ * with nothing on the right at all, keeps its 44 px tracks and its full-width
+ * title.
+ */
+.withAction {
+  grid-template-columns:
+    calc(var(--hg-size-hit-target) + var(--hg-space-7))
+    1fr
+    calc(var(--hg-size-hit-target) + var(--hg-space-7));
+}
+
 .transparent {
   background: transparent;
 }
@@ -20,6 +49,28 @@
 
 .sideEnd {
   justify-content: flex-end;
+}
+
+/*
+ * The right-hand action, held off the edge.
+ *
+ * The three learning screens put a filled `1 / 5` pill here, and against the
+ * header's own 8 px of padding it read as pushed out of the frame — the pill's
+ * rounded end is much closer to the screen edge than the back chevron's square
+ * box is to the other one, so equal padding does not look equal. 15 px more.
+ *
+ * As padding *inside* the grid item and not as a margin on it, which is the
+ * part that matters: the track is a fixed `--hg-size-hit-target`, so the item's
+ * border box is unchanged, the centre column does not move, and the title stays
+ * on the header's centre line. A margin — or padding on the header — would take
+ * the width off the middle track and pull the title 7 px to the left, which is
+ * a worse fault than the one being fixed and is visible on a long lesson name.
+ *
+ * The badge is wider than what is left of the track and overflows to the left
+ * as it always has; only its right edge moves.
+ */
+.sideAction {
+  padding-inline-end: 15px;
 }
 
 .iconButton {

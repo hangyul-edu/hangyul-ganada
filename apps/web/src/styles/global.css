@@ -70,6 +70,22 @@ body {
 
 #root {
   height: 100%;
+  /*
+   * The app frame, and therefore the frame the launch splash is measured
+   * against.
+   *
+   * `ui/LaunchSplash` is `position: absolute; inset: 0` and renders above the
+   * router, outside `AppShell`. Without a positioned ancestor it resolves
+   * against the initial containing block — the whole browser window — so on a
+   * desktop the brand screen covered 1920 × 1080 and then the app appeared
+   * inside a 430 px phone, which is the one thing §4.2 asks not to happen. The
+   * transform below happens to fix it above 560 px; this fixes it at every
+   * width, including the 430–560 px band where there is no transform.
+   *
+   * Cheap and inert: `relative` with no offsets moves nothing and paints
+   * nothing. It only says which box `inset: 0` means.
+   */
+  position: relative;
 }
 
 /**

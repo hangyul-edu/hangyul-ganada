@@ -26,7 +26,7 @@ import { LEARNING_QUOTES, QUOTE_LOCALES, nextQuote, renderQuote } from './quotes
 import { AVAILABLE_LOCALES } from '../i18n/resources';
 import { hasFinalConsonant, toJamo, toSyllables } from './jamo';
 import { romanizeSyllable } from './romanize';
-import { STROKE_ORDER } from './strokes';
+import { blockLetterForms } from './compose';
 import { WORD_COPY_LOCALES, loadWordCopy, wordCopy } from './wordCopy';
 import {
   CATEGORY_IDS,
@@ -713,10 +713,22 @@ describe('stroke order', () => {
     // stroke data concatenated verbatim, which drew every one of them full size
     // in the same square; `compose.test.ts` owns the geometry now, and what is
     // still true here is that a block is its letters and nothing else.
+    //
+    // "Its letters" is asked of `blockLetterForms` rather than of
+    // `STROKE_ORDER` directly, because ㄱ, ㅋ and ㄲ have two forms and which
+    // one a block writes depends on where in the block the letter sits: 가's ㄱ
+    // has a leaning leg and 고's comes straight down, as the face draws them.
+    // Reading the isolated form here would be a second copy of that rule, and
+    // the copy would be wrong.
     const syllables = ALL_CHARACTERS.filter((c) => c.group === 'syllable');
     expect(syllables.length).toBeGreaterThan(0);
     for (const block of syllables) {
-      const expected = block.components.flatMap((jamo) => STROKE_ORDER[jamo] ?? []);
+      const letters = blockLetterForms(block.character);
+      expect(
+        letters.map((letter) => letter.jamo),
+        block.character,
+      ).toEqual(block.components);
+      const expected = letters.flatMap((letter) => letter.strokes);
       expect(block.strokes.length, block.character).toBe(expected.length);
       expect(block.stroke_count, block.character).toBe(expected.length);
       for (const [i, stroke] of block.strokes.entries()) {
