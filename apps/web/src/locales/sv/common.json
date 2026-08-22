@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Lyssna på uttalet av {{text}}",
+    "playSound": "Spela upp ljudet",
     "retry": "Spela {{text}} igen",
-    "unavailable": "Ingen inspelning för {{text}}"
+    "retrySound": "Spela upp igen",
+    "unavailable": "Ingen inspelning för {{text}}",
+    "unavailableSound": "Inget ljud tillgängligt"
   },
   "progress": {
     "lesson": "Framsteg i {{name}}",

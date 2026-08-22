@@ -83,11 +83,6 @@
 
 /* Stands in for the Korean on a listening question, where showing it would
    give the answer away. */
-.listenMark {
-  font-size: 44px;
-  line-height: 1;
-}
-
 /*
  * The clip written down, for a learner who asked not to be given a clip.
  *

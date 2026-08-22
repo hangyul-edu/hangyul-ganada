@@ -27,8 +27,11 @@
   },
   "audio": {
     "play": "Aussprache von {{text}} abspielen",
+    "playSound": "Ton abspielen",
     "retry": "{{text}} erneut abspielen",
-    "unavailable": "Keine Aussprache für {{text}} vorhanden"
+    "retrySound": "Noch einmal abspielen",
+    "unavailable": "Keine Aussprache für {{text}} vorhanden",
+    "unavailableSound": "Kein Ton verfügbar"
   },
   "report": {
     "action": "Ein Problem melden",

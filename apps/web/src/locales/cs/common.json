@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Poslechnout si výslovnost slova {{text}}",
+    "playSound": "Přehrát zvuk",
     "retry": "Přehrát {{text}} znovu",
-    "unavailable": "Pro {{text}} není nahrávka"
+    "retrySound": "Přehrát znovu",
+    "unavailable": "Pro {{text}} není nahrávka",
+    "unavailableSound": "Zvuk není k dispozici"
   },
   "progress": {
     "lesson": "Postup v části {{name}}",

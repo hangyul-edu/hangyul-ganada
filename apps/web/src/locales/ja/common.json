@@ -26,8 +26,11 @@
   },
   "audio": {
     "play": "{{text}} の発音を再生",
+    "playSound": "音を聞く",
     "retry": "{{text}} をもう一度再生",
-    "unavailable": "{{text}} の音声はありません"
+    "retrySound": "もう一度聞く",
+    "unavailable": "{{text}} の音声はありません",
+    "unavailableSound": "音がありません"
   },
   "report": {
     "action": "問題を知らせる",

@@ -26,8 +26,11 @@
   },
   "audio": {
     "play": "播放 {{text}} 的发音",
+    "playSound": "播放声音",
     "retry": "再播放一次 {{text}}",
-    "unavailable": "{{text}} 暂无发音"
+    "retrySound": "再播放一次",
+    "unavailable": "{{text}} 暂无发音",
+    "unavailableSound": "没有可播放的声音"
   },
   "report": {
     "action": "反馈问题",

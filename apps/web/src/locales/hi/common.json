@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} का उच्चारण सुनिए",
+    "playSound": "आवाज़ सुनें",
     "retry": "{{text}} दोबारा चलाइए",
-    "unavailable": "{{text}} के लिए कोई रिकॉर्डिंग नहीं है"
+    "retrySound": "फिर से सुनें",
+    "unavailable": "{{text}} के लिए कोई रिकॉर्डिंग नहीं है",
+    "unavailableSound": "आवाज़ उपलब्ध नहीं"
   },
   "progress": {
     "lesson": "{{name}} में प्रगति",

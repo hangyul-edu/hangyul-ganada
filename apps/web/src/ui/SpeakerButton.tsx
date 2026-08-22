@@ -69,20 +69,44 @@ export function SpeakerButton({
     .filter(Boolean)
     .join(' ');
 
+  /*
+    Whether there is anything to name.
+
+    On the two letter exercises whose whole prompt is a clip there is no Korean
+    on the screen — that is the question — so the caller has nothing to pass and
+    this was being announced as "Play the pronunciation of ", with the sentence
+    ending on the blank where the word should be. Naming the answer instead
+    would be worse: a screen-reader user would be read the letter they are being
+    asked to identify.
+
+    So an unnamed button says what it does and no more.
+  */
+  const named = label.trim().length > 0;
+
   return (
     <button
       type="button"
       className={classes}
       onClick={handleClick}
       disabled={disabled}
-      aria-label={
-        disabled
+      aria-label={named
+        ? disabled
           ? t('audio.unavailable', { text: label })
           : failed
             ? t('audio.retry', { text: label })
             : t('audio.play', { text: label })
+        : disabled
+          ? t('audio.unavailableSound')
+          : failed
+            ? t('audio.retrySound')
+            : t('audio.playSound')}
+      title={
+        disabled
+          ? named
+            ? t('audio.unavailable', { text: label })
+            : t('audio.unavailableSound')
+          : undefined
       }
-      title={disabled ? t('audio.unavailable', { text: label }) : undefined}
     >
       {disabled ? (
         <SpeakerOffIcon size={iconSize(size)} />

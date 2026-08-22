@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} сөзінің айтылуын тыңдаңыз",
+    "playSound": "Дыбысты тыңдау",
     "retry": "{{text}} сөзін қайта ойнату",
-    "unavailable": "{{text}} үшін жазба жоқ"
+    "retrySound": "Қайта тыңдау",
+    "unavailable": "{{text}} үшін жазба жоқ",
+    "unavailableSound": "Дыбыс жоқ"
   },
   "progress": {
     "lesson": "{{name}} бойынша ілгерілеу",

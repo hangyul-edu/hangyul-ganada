@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} ఉచ్చారణ వినండి",
+    "playSound": "శబ్దం వినండి",
     "retry": "{{text}} మళ్లీ వినిపించు",
-    "unavailable": "{{text}}కి రికార్డింగ్ లేదు"
+    "retrySound": "మళ్లీ వినండి",
+    "unavailable": "{{text}}కి రికార్డింగ్ లేదు",
+    "unavailableSound": "శబ్దం లేదు"
   },
   "progress": {
     "lesson": "{{name}}లో పురోగతి",

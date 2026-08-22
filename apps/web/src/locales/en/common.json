@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Play the pronunciation of {{text}}",
+    "playSound": "Play the sound",
     "retry": "Play {{text}} again",
-    "unavailable": "No pronunciation available for {{text}}"
+    "retrySound": "Play the sound again",
+    "unavailable": "No pronunciation available for {{text}}",
+    "unavailableSound": "No sound available"
   },
   "progress": {
     "lesson": "Progress through {{name}}",

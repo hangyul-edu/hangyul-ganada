@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Nghe cách đọc của {{text}}",
+    "playSound": "Nghe âm thanh",
     "retry": "Nghe lại {{text}}",
-    "unavailable": "Chưa có cách đọc cho {{text}}"
+    "retrySound": "Nghe lại",
+    "unavailable": "Chưa có cách đọc cho {{text}}",
+    "unavailableSound": "Không có âm thanh"
   },
   "progress": {
     "lesson": "Tiến độ bài {{name}}",

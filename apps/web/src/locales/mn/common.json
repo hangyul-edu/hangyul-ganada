@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} үгийн дуудлагыг сонс",
+    "playSound": "Дуу сонсох",
     "retry": "{{text}} үгийг дахин тоглуул",
-    "unavailable": "{{text}} үгэнд бичлэг алга"
+    "retrySound": "Дахин сонсох",
+    "unavailable": "{{text}} үгэнд бичлэг алга",
+    "unavailableSound": "Дуу байхгүй"
   },
   "progress": {
     "lesson": "{{name}} дэх ахиц",

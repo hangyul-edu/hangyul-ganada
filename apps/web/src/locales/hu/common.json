@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Hallgasd meg a(z) {{text}} kiejtését",
+    "playSound": "Hang lejátszása",
     "retry": "Játszd le újra: {{text}}",
-    "unavailable": "Nincs felvétel ehhez: {{text}}"
+    "retrySound": "Lejátszás újra",
+    "unavailable": "Nincs felvétel ehhez: {{text}}",
+    "unavailableSound": "Nincs elérhető hang"
   },
   "progress": {
     "lesson": "Haladás itt: {{name}}",

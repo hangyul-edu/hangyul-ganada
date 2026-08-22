@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} sözcüğünün okunuşunu dinle",
+    "playSound": "Sesi dinle",
     "retry": "{{text}} sözcüğünü yeniden dinle",
-    "unavailable": "{{text}} için kayıt yok"
+    "retrySound": "Tekrar dinle",
+    "unavailable": "{{text}} için kayıt yok",
+    "unavailableSound": "Ses yok"
   },
   "progress": {
     "lesson": "{{name}} içindeki ilerlemen",

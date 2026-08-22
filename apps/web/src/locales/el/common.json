@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Άκου την προφορά του {{text}}",
+    "playSound": "Αναπαραγωγή ήχου",
     "retry": "Ξαναπαίξε το {{text}}",
-    "unavailable": "Δεν υπάρχει ηχογράφηση για {{text}}"
+    "retrySound": "Αναπαραγωγή ξανά",
+    "unavailable": "Δεν υπάρχει ηχογράφηση για {{text}}",
+    "unavailableSound": "Δεν υπάρχει ήχος"
   },
   "progress": {
     "lesson": "Πρόοδος στο {{name}}",

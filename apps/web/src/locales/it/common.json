@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Ascolta la pronuncia di {{text}}",
+    "playSound": "Ascolta il suono",
     "retry": "Riascolta {{text}}",
-    "unavailable": "Nessuna registrazione per {{text}}"
+    "retrySound": "Ascolta di nuovo",
+    "unavailable": "Nessuna registrazione per {{text}}",
+    "unavailableSound": "Nessun suono disponibile"
   },
   "progress": {
     "lesson": "Avanzamento in {{name}}",

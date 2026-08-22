@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} உச்சரிப்பைக் கேளுங்கள்",
+    "playSound": "ஒலியைக் கேட்க",
     "retry": "{{text}} மீண்டும் ஒலிக்கவும்",
-    "unavailable": "{{text}}க்குப் பதிவு இல்லை"
+    "retrySound": "மீண்டும் கேட்க",
+    "unavailable": "{{text}}க்குப் பதிவு இல்லை",
+    "unavailableSound": "ஒலி இல்லை"
   },
   "progress": {
     "lesson": "{{name}} இல் முன்னேற்றம்",

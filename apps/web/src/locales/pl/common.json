@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Posłuchaj wymowy {{text}}",
+    "playSound": "Odtwórz dźwięk",
     "retry": "Odtwórz {{text}} jeszcze raz",
-    "unavailable": "Brak nagrania dla {{text}}"
+    "retrySound": "Odtwórz ponownie",
+    "unavailable": "Brak nagrania dla {{text}}",
+    "unavailableSound": "Brak dźwięku"
   },
   "progress": {
     "lesson": "Postęp w {{name}}",

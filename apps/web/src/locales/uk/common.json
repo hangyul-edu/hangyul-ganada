@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Послухати вимову слова {{text}}",
+    "playSound": "Прослухати звук",
     "retry": "Програти {{text}} ще раз",
-    "unavailable": "Запису для {{text}} немає"
+    "retrySound": "Прослухати ще раз",
+    "unavailable": "Запису для {{text}} немає",
+    "unavailableSound": "Звук недоступний"
   },
   "progress": {
     "lesson": "Поступ у розділі {{name}}",

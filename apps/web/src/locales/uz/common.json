@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}} talaffuzini tinglang",
+    "playSound": "Ovozni tinglash",
     "retry": "{{text}} so‘zini yana eshiting",
-    "unavailable": "{{text}} uchun yozuv yo‘q"
+    "retrySound": "Yana tinglash",
+    "unavailable": "{{text}} uchun yozuv yo‘q",
+    "unavailableSound": "Ovoz yo‘q"
   },
   "progress": {
     "lesson": "{{name}} bo‘yicha jarayon",

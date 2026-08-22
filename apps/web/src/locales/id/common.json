@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Putar pelafalan {{text}}",
+    "playSound": "Putar suara",
     "retry": "Putar {{text}} lagi",
-    "unavailable": "Belum ada pelafalan untuk {{text}}"
+    "retrySound": "Putar lagi",
+    "unavailable": "Belum ada pelafalan untuk {{text}}",
+    "unavailableSound": "Tidak ada suara"
   },
   "progress": {
     "lesson": "Kemajuan di {{name}}",

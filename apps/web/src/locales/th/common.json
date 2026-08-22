@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "ฟังเสียงอ่านของ {{text}}",
+    "playSound": "ฟังเสียง",
     "retry": "ฟัง {{text}} อีกครั้ง",
-    "unavailable": "ยังไม่มีเสียงอ่านของ {{text}}"
+    "retrySound": "ฟังอีกครั้ง",
+    "unavailable": "ยังไม่มีเสียงอ่านของ {{text}}",
+    "unavailableSound": "ไม่มีเสียง"
   },
   "progress": {
     "lesson": "ความคืบหน้าของบท {{name}}",

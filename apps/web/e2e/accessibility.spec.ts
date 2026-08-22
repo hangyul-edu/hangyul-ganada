@@ -251,6 +251,70 @@ test('the sound-free control on a letter question is a real, reachable button', 
   expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
 });
 
+/**
+ * The listening question is one control, in both themes.
+ *
+ * ## What was there
+ *
+ * A 44px 🔊 sat directly above the button that plays the clip: the same action
+ * twice, once as a control and once as an emoji belonging to no part of this
+ * product's drawing. It was `aria-hidden`, so it labelled nothing — it was
+ * filling the space where a prompt would go on the questions that have no
+ * visible prompt, because the sound *is* the prompt.
+ *
+ * ## Why a test and not just a deletion
+ *
+ * Decoration comes back. It comes back as a different emoji, as an inline SVG,
+ * as a "sound wave" flourish under the button — each time defensible on its own
+ * and each time re-creating the thing that was removed. So this asserts the
+ * absence of *any* pictograph on the screen, not the absence of one character,
+ * and it asserts the positive shape as well: one button, big enough to hit, with
+ * a name that says what it does, and the accessibility escape still under it.
+ */
+test.describe('the listening question', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`is one clear control and no decoration, in ${theme} mode`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme: theme });
+      await seedLettersForReview(page);
+      await page.goto('/review');
+
+      const listen = page.getByRole('button', { name: /^Listen/ });
+      await expect(listen).toBeVisible();
+      await listen.click();
+
+      /*
+        No pictograph anywhere on the screen. The range covers the emoji blocks
+        and Miscellaneous Symbols, which is where every candidate for a
+        decorative speaker lives; the product's own icons are inline SVG and are
+        not caught by it.
+      */
+      const rendered = await page.locator('body').innerText();
+      expect(rendered, 'a decorative pictograph is on the listening question').not.toMatch(
+        /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u,
+      );
+
+      /*
+        The one control, named for what it does rather than for the answer.
+        Naming the letter would read the answer aloud to a screen-reader user,
+        which is why an unnamed `SpeakerButton` says "Play the sound" instead of
+        "Play the pronunciation of " with nothing after it — which is what it
+        used to say here.
+      */
+      const speaker = page.getByRole('button', { name: /Play the sound/i });
+      await expect(speaker).toHaveCount(1);
+      const box = await speaker.boundingBox();
+      expect(box?.width, 'the audio control is too small to hit').toBeGreaterThanOrEqual(44);
+      expect(box?.height, 'the audio control is too small to hit').toBeGreaterThanOrEqual(44);
+
+      // The way past a question made of sound is still there, and still secondary.
+      await expect(page.getByRole('button', { name: /Can't use audio/i })).toBeVisible();
+
+      const results = await scan(page);
+      expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
+    });
+  }
+});
+
 /** A profile with letters learned long enough ago to be due for review. */
 async function seedLettersForReview(page: Page) {
   await page.goto('/');

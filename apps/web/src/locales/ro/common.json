@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Ascultă pronunția pentru {{text}}",
+    "playSound": "Redă sunetul",
     "retry": "Redă {{text}} din nou",
-    "unavailable": "Nu există înregistrare pentru {{text}}"
+    "retrySound": "Redă din nou",
+    "unavailable": "Nu există înregistrare pentru {{text}}",
+    "unavailableSound": "Sunetul nu este disponibil"
   },
   "progress": {
     "lesson": "Progresul în {{name}}",

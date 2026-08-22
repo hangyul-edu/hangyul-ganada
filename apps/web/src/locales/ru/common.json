@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Послушать произношение {{text}}",
+    "playSound": "Прослушать звук",
     "retry": "Проиграть {{text}} ещё раз",
-    "unavailable": "Записи для {{text}} нет"
+    "retrySound": "Прослушать ещё раз",
+    "unavailable": "Записи для {{text}} нет",
+    "unavailableSound": "Звук недоступен"
   },
   "progress": {
     "lesson": "Прогресс в разделе {{name}}",

@@ -26,8 +26,11 @@
   },
   "audio": {
     "play": "{{text}} 발음 듣기",
+    "playSound": "소리 듣기",
     "retry": "{{text}} 다시 듣기",
-    "unavailable": "{{text}} 발음이 아직 없어요"
+    "retrySound": "다시 듣기",
+    "unavailable": "{{text}} 발음이 아직 없어요",
+    "unavailableSound": "소리가 없어요"
   },
   "report": {
     "action": "문제 알리기",

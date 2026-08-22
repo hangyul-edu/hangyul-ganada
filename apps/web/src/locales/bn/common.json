@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "{{text}}-এর উচ্চারণ শুনুন",
+    "playSound": "শব্দ শুনুন",
     "retry": "{{text}} আবার শুনুন",
-    "unavailable": "{{text}}-এর কোনো রেকর্ডিং নেই"
+    "retrySound": "আবার শুনুন",
+    "unavailable": "{{text}}-এর কোনো রেকর্ডিং নেই",
+    "unavailableSound": "শব্দ নেই"
   },
   "progress": {
     "lesson": "{{name}}-এ অগ্রগতি",

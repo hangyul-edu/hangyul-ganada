@@ -213,11 +213,22 @@ export function ChoiceExercise({
           <p className={styles.romanizationPrompt} lang="en" dir="ltr">
             {variant.romanization}
           </p>
-        ) : (
-          <span className={styles.listenMark} aria-hidden="true">
-            🔊
-          </span>
-        )}
+        ) : null}
+        {/*
+          Nothing stands in for the sound when the sound is the question.
+
+          There used to be a 44px 🔊 here, directly above the button that plays
+          the clip — the same action said twice, once as a control and once as a
+          decoration, in an emoji that belongs to no part of this product's
+          drawing. It was `aria-hidden`, so it was not even labelling anything;
+          it was filling the space where a prompt would go.
+
+          The space does not need filling. The question is the line of text
+          above, the action is the one button below it, and a learner who sees a
+          single obvious control does not have to work out which of two things
+          to press. See `SpeakerButton`, whose `lg` size is 52px, carries the
+          app's own vector icon, and already changes state while it plays.
+        */}
 
         {/*
           Replay for the questions the sound belongs to, and the answer's sound

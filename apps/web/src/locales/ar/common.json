@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "استمع إلى نطق {{text}}",
+    "playSound": "تشغيل الصوت",
     "retry": "استمع إلى {{text}} مرة أخرى",
-    "unavailable": "لا يوجد نطق مسجَّل لـ {{text}}"
+    "retrySound": "تشغيل الصوت مرة أخرى",
+    "unavailable": "لا يوجد نطق مسجَّل لـ {{text}}",
+    "unavailableSound": "لا يوجد صوت"
   },
   "progress": {
     "lesson": "تقدّمك في {{name}}",

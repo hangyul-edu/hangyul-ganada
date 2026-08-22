@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Beluister de uitspraak van {{text}}",
+    "playSound": "Geluid afspelen",
     "retry": "Speel {{text}} nog eens af",
-    "unavailable": "Geen opname voor {{text}}"
+    "retrySound": "Opnieuw afspelen",
+    "unavailable": "Geen opname voor {{text}}",
+    "unavailableSound": "Geen geluid beschikbaar"
   },
   "progress": {
     "lesson": "Voortgang in {{name}}",

@@ -19,8 +19,11 @@
   },
   "audio": {
     "play": "Pakinggan ang bigkas ng {{text}}",
+    "playSound": "Patugtugin ang tunog",
     "retry": "Ipatugtog ulit ang {{text}}",
-    "unavailable": "Walang rekording para sa {{text}}"
+    "retrySound": "Patugtugin ulit",
+    "unavailable": "Walang rekording para sa {{text}}",
+    "unavailableSound": "Walang tunog"
   },
   "progress": {
     "lesson": "Pag-usad sa {{name}}",

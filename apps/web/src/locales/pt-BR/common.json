@@ -28,8 +28,11 @@
   },
   "audio": {
     "play": "Ouvir a pronúncia de {{text}}",
+    "playSound": "Ouvir o som",
     "retry": "Ouvir {{text}} de novo",
-    "unavailable": "Não há pronúncia para {{text}}"
+    "retrySound": "Ouvir de novo",
+    "unavailable": "Não há pronúncia para {{text}}",
+    "unavailableSound": "Nenhum som disponível"
   },
   "report": {
     "action": "Relatar um problema",
