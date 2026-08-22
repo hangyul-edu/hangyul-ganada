@@ -924,7 +924,9 @@ test('a wrong answer writes itself into the notebook', async ({ page }) => {
   expect(missed, 'the walk has to get something wrong for this to mean anything').toBeGreaterThan(0);
 
   await page.goto('/review/mistakes');
-  await expect(page.getByRole('heading', { name: 'Missed answers' })).toBeVisible();
+  // The name the hub row uses. The screen used to call itself "Missed answers"
+  // and be opened from a row reading "Wrong vocabulary" — one place, two names.
+  await expect(page.getByRole('heading', { name: 'Wrong vocabulary' })).toBeVisible();
   await expect(page.getByText('Answer').first()).toBeVisible();
 
   // Filters, and a session built from the notebook.
