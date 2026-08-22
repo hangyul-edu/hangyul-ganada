@@ -69,13 +69,20 @@ export interface DictionaryEntry {
   source: DictionarySource;
 }
 
-/** A search hit, from the index alone — no chunk has been fetched for it yet. */
+/**
+ * A search hit, from the index alone — no chunk has been fetched for it yet.
+ *
+ * Five fields, and every one of them is used: the headword and the gloss are
+ * the row a learner reads, the romanisation is a way of finding it, the chunk
+ * is where to go next, and the frequency is the tiebreak. The part of speech
+ * and the sense count used to be here too, parsed into thirty thousand objects
+ * on the first search and rendered by no screen — 27.5 kB gzipped of a file
+ * somebody waits for. They are still on the full entry, where they are shown.
+ */
 export interface DictionaryHit {
   headword: string;
   romanization: string;
-  partOfSpeech: string;
   shortGloss: string;
-  senseCount: number;
   chunk: string;
   frequency: number;
 }
@@ -187,11 +194,9 @@ export function loadIndex(): Promise<DictionaryIndex> {
         const hits = rows.map((row) => ({
           headword: row[0] as string,
           romanization: row[1] as string,
-          partOfSpeech: row[2] as string,
-          shortGloss: row[3] as string,
-          senseCount: row[4] as number,
-          chunk: row[5] as string,
-          frequency: row[6] as number,
+          shortGloss: row[2] as string,
+          chunk: row[3] as string,
+          frequency: row[4] as number,
         }));
         return assemble(hits);
       }),

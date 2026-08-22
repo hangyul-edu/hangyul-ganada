@@ -83,12 +83,11 @@ for (const name of onDisk) {
 
 const index = read(manifest.index);
 const headwordsInIndex = new Set();
-for (const [headword, , , gloss, senseCount, chunk] of index.rows) {
+for (const [headword, , gloss, chunk] of index.rows) {
   if (headwordsInIndex.has(headword)) fail(`${headword} appears twice in the index`);
   headwordsInIndex.add(headword);
   if (!manifest.chunks[chunk]) fail(`${headword} names chunk ${chunk}, which does not exist`);
   if (!gloss) fail(`${headword} has no gloss in the index, so search would show a blank row`);
-  if (!(senseCount > 0)) fail(`${headword} claims ${senseCount} senses`);
 }
 
 /**
@@ -136,13 +135,8 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
       fail(`${entry.headword} is in chunk ${name} and not in the index — unreachable by search`);
     }
     const row = index.rows.find((r) => r[0] === entry.headword);
-    if (row && row[5] !== name) {
-      fail(`${entry.headword} is in chunk ${name} but the index sends readers to ${row[5]}`);
-    }
-    if (row && row[4] !== entry.senses.length) {
-      fail(
-        `${entry.headword}: index says ${row[4]} sense(s), the entry has ${entry.senses.length}`,
-      );
+    if (row && row[3] !== name) {
+      fail(`${entry.headword} is in chunk ${name} but the index sends readers to ${row[3]}`);
     }
 
     /*

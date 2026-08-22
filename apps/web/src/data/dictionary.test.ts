@@ -22,8 +22,8 @@ const MANIFEST = {
 
 const INDEX = {
   rows: [
-    ['나가다', 'nagada', 'verb', 'to go out', 3, 'ㄴ', 500],
-    ['나', 'na', 'pronoun', 'I', 1, 'ㄴ', 10042],
+    ['나가다', 'nagada', 'to go out', 'n', 500],
+    ['나', 'na', 'I', 'n', 10042],
   ],
 };
 
@@ -130,11 +130,9 @@ describe('ranking', () => {
   const hits: DictionaryHit[] = INDEX.rows.map((row) => ({
     headword: row[0] as string,
     romanization: row[1] as string,
-    partOfSpeech: row[2] as string,
-    shortGloss: row[3] as string,
-    senseCount: row[4] as number,
-    chunk: row[5] as string,
-    frequency: row[6] as number,
+    shortGloss: row[2] as string,
+    chunk: row[3] as string,
+    frequency: row[4] as number,
   }));
   /*
     Built through the loader rather than hand-assembled, so the test exercises
