@@ -144,6 +144,40 @@ const FORBIDDEN = [
     except: ['settings:legal.intro'],
   },
   {
+    /*
+     * One Korean noun for "a word", and one name per feature.
+     *
+     * The app had three — 낱말 in the quiz prompts, 단어 on Home, 어휘 on the
+     * saved list — for the same thing, on screens a learner moves between in
+     * one session. Korean readers notice; it is the difference between a
+     * product that was written and one that was assembled.
+     *
+     * Settled: **단어** for the everyday noun, because that is what a Korean
+     * speaker calls a word, and **어휘** only in the two feature names —
+     * 저장한 어휘 and 틀린 어휘 — where it means "vocabulary, the collection",
+     * which is what those screens hold. 낱말 is retired.
+     */
+    id: 'korean-word-noun',
+    locales: ['ko'],
+    pattern: /낱말|저장한 단어|저장 어휘|틀린 단어|틀린 낱말/,
+    why: 'Korean uses 단어 for a word and 어휘 only in 저장한 어휘 / 틀린 어휘',
+  },
+  {
+    /*
+     * And the grammar that a find-and-replace breaks.
+     *
+     * 낱말 ends in a consonant and 단어 does not, so every particle attached to
+     * it changes: 는 not 은, 가 not 이, 를 not 을, 와 not 과, 로 not 으로.
+     * Renaming the noun across four files produced ten ungrammatical strings —
+     * 이 단어은 무슨 뜻일까요? — every one of which was a sentence shown to a
+     * learner. This is the check that would have caught them.
+     */
+    id: 'korean-particle',
+    locales: ['ko'],
+    pattern: /단어은|단어이\s|단어을|단어과|단어으로/,
+    why: '단어 ends in a vowel: it takes 는, 가, 를, 와, 로',
+  },
+  {
     id: 'retired-name',
     pattern: /Hangyul\s*GaNaDa|Hangyul\s+Ganada|HANGYUL\s+GANADA|Hangyul\s+Start/,
     why: 'the customer-facing name is "Hangyul ganada"',
@@ -247,6 +281,9 @@ function walk(value, path, locale, namespace) {
     for (const rule of FORBIDDEN) {
       if (rule.except?.includes(key)) continue;
       if (rule.exceptNamespace === namespace) continue;
+      // Some rules are about one language's grammar or terminology and would be
+      // nonsense applied to the other thirty-one.
+      if (rule.locales && !rule.locales.includes(locale)) continue;
       if (rule.pattern.test(value)) {
         findings.errors.push({ locale, key, rule, value });
       }

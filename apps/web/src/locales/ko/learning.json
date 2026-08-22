@@ -41,7 +41,7 @@
     "blank": "빈칸",
     "optionsLabel": "보기",
     "cannotUseAudio": "소리를 들을 수 없나요?",
-    "matchPickWord": "한국어 낱말을 골라요",
+    "matchPickWord": "한국어 단어를 골라요",
     "matchPickMeaning": "이제 뜻을 골라요",
     "showHint": "힌트 보기",
     "right": "맞았어요.",
@@ -52,18 +52,18 @@
       "write": "쓰기"
     },
     "prompt": {
-      "read": "이 낱말은 무슨 뜻일까요?",
+      "read": "이 단어는 무슨 뜻일까요?",
       "readLetter": "어떤 소리가 날까요?",
       "listenLetter": "어떤 글자일까요?",
       "listenLetterSoundFree": "이 소리를 내는 글자는?",
-      "context": "빈칸에 어울리는 낱말은?",
-      "write": "이 낱말을 써 보세요",
+      "context": "빈칸에 어울리는 단어는?",
+      "write": "이 단어를 써 보세요",
       "writeLetter": "들은 대로 써 보세요",
       "distinguish": "이 소리는 어느 쪽일까요?",
       "distinguishSoundFree": "이 글자는 어떤 소리가 날까요?",
-      "produce": "어느 낱말일까요?",
+      "produce": "어느 단어일까요?",
       "build": "글자를 순서대로 놓아 보세요",
-      "match": "낱말과 뜻을 짝지어 보세요"
+      "match": "단어와 뜻을 짝지어 보세요"
     },
     "nothingDue": "지금은 복습할 것이 없어요.",
     "modesEmpty": "오늘은 이 방식으로 볼 것이 없어요.",
@@ -80,7 +80,7 @@
       "letterExample": "{{word}}의 첫 글자예요.",
       "letterSound": "‘{{sound}}’ 소리가 나요.",
       "reveal": "정답은 {{answer}}예요.",
-      "revealWord": "이 낱말은 {{answer}}예요.",
+      "revealWord": "이 단어는 {{answer}}예요.",
       "revealLetter": "이 글자는 {{answer}}예요.",
       "revealStrokes": "획순을 한 번 더 보고 따라 써 보세요.",
       "inSentence": "이렇게 써요: {{sentence}}"
@@ -182,7 +182,7 @@
   "sounds": {
     "title": "소리가 만날 때",
     "blurb": "학교가 왜 쓰인 대로 소리 나지 않을까요.",
-    "intro": "이제 모든 글자를 읽을 수 있어요. 한국어는 낱말을 이루는 조각을 그대로 적고, 그 조각이 만나면 소리가 바뀌기도 해요. 그래서 몇몇 낱말은 보이는 것과 다르게 들려요. 먼저 만나게 될 것들이에요.",
+    "intro": "이제 모든 글자를 읽을 수 있어요. 한국어는 단어를 이루는 조각을 그대로 적고, 그 조각이 만나면 소리가 바뀌기도 해요. 그래서 몇몇 단어는 보이는 것과 다르게 들려요. 먼저 만나게 될 것들이에요.",
     "written": "쓰기",
     "said": "소리",
     "note": "외우지 않아도 괜찮아요. 귀로 익히다 보면 자연스럽게 들려요.",
@@ -201,7 +201,7 @@
     "filter": {
       "all": "전체",
       "character": "글자",
-      "word": "낱말"
+      "word": "단어"
     },
     "youPut": "내 답",
     "answer": "정답",

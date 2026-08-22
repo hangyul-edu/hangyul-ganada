@@ -95,7 +95,7 @@
     "remove": "저장 목록에서 {{word}} 빼기"
   },
   "detail": {
-    "title": "낱말",
+    "title": "단어",
     "romanization": "로마자 표기",
     "definition": "더 알아보기",
     "usage": "이렇게 써요",
@@ -103,10 +103,10 @@
     "antonyms": "반의어"
   },
   "saved": {
-    "title": "저장한 낱말",
+    "title": "저장한 어휘",
     "review_other": "복습 · {{count}}문제",
-    "searchPlaceholder": "저장한 낱말 검색",
-    "searchLabel": "저장한 낱말 검색",
+    "searchPlaceholder": "저장한 어휘 검색",
+    "searchLabel": "저장한 어휘 검색",
     "orderLabel": "정렬",
     "order": {
       "recent": "최근순",
@@ -115,11 +115,11 @@
     },
     "count_other": "{{count}}개",
     "remove": "빼기",
-    "noMatch": "“{{query}}”과 맞는 저장 낱말이 없어요.",
-    "emptyTitle": "아직 저장한 낱말이 없어요",
-    "emptyBody": "공부하다가 낱말의 북마크를 누르면 여기에 모여요.",
-    "emptyCta": "낱말 보러 가기",
-    "notPractisable": "찾아보려고 저장한 단어예요. 문제로 내려면 학습 카드가 있어야 하는데 아직 없어요."
+    "noMatch": "“{{query}}”과 맞는 저장한 어휘가 없어요.",
+    "emptyTitle": "아직 저장한 어휘가 없어요",
+    "emptyBody": "공부하다가 어휘의 북마크를 누르면 여기에 모여요.",
+    "emptyCta": "어휘 보러 가기",
+    "notPractisable": "찾아보려고 저장한 어휘예요. 문제로 내려면 학습 카드가 있어야 하는데 아직 없어요."
   },
   "dictionary": {
     "title": "사전",

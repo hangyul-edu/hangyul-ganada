@@ -16,7 +16,7 @@
   },
   "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
-    "meaning": "이 낱말은 무슨 뜻일까요?",
+    "meaning": "이 단어는 무슨 뜻일까요?",
     "produce": "이 뜻을 가진 단어는?",
     "context": "빈칸에 알맞은 단어는?"
   },
