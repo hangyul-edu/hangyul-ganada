@@ -8,6 +8,24 @@ export interface GlyphSpec {
   fontWeight?: number;
   /** Glyph em size as a fraction of the writing-box edge. */
   glyphScale?: number;
+  /**
+   * Authored centrelines to stroke instead of setting the character in the face.
+   *
+   * SVG path data in the letters' own `0 0 100 100` box, with `pen` as the
+   * stroke width in the same units. Present only where the face and the taught
+   * hand disagree about the *shape* of a letter rather than about its styling —
+   * see `handwrittenGlyph` in the app, which lists the six and why.
+   *
+   * It goes on the spec, and not into the two callers, because the guide the
+   * learner traces and the mask they are graded against both come out of
+   * `drawGlyph`. That is the invariant this module exists to hold: whatever is
+   * painted is, pixel for pixel, what the mask is built from. A second way to
+   * draw a reference would give a learner a shape to trace and grade them
+   * against a different one, which is the exact bug the shared path prevents.
+   */
+  strokes?: readonly string[];
+  /** Pen width for `strokes`, in the same 0–100 units. */
+  pen?: number;
 }
 
 /** How large the glyph is drawn, and where. */
@@ -185,9 +203,10 @@ export function fitGlyph(
   ctx: Canvas2DLike,
   spec: GlyphSpec,
   boxSize: number,
+  path?: PathFactory,
 ): GlyphLayout {
   const probe = glyphLayout(boxSize, spec.glyphScale);
-  paint(ctx, spec, probe, boxSize);
+  paint(ctx, spec, probe, boxSize, path);
   const { data } = ctx.getImageData(0, 0, boxSize, boxSize);
   const ink = boundsOf(data, boxSize);
   // A face with no glyph for this character draws nothing. Leave the probe
@@ -220,8 +239,33 @@ function paint(
   spec: GlyphSpec,
   layout: GlyphLayout,
   boxSize: number,
+  path?: PathFactory,
 ): void {
   ctx.clearRect(0, 0, boxSize, boxSize);
+  if (spec.strokes?.length) {
+    /*
+      The authored hand, stroked rather than set.
+
+      `layout.fontSize` is the em the fit solved for, and the paths are authored
+      in a 0–100 box, so the box scales by fontSize/100 and the whole thing is
+      centred on the layout's centre exactly as `fillText` centres a glyph.
+      Butt caps and mitred joins, matching `ui/StrokeOrder`, so the guide and
+      the demonstration are the same ink.
+    */
+    const scale = layout.fontSize / 100;
+    ctx.save();
+    ctx.translate(layout.centerX - (scale * 100) / 2, layout.centerY - (scale * 100) / 2);
+    ctx.scale(scale, scale);
+    ctx.lineWidth = spec.pen ?? 8;
+    ctx.lineCap = 'butt';
+    ctx.lineJoin = 'miter';
+    ctx.miterLimit = 3;
+    ctx.strokeStyle = typeof ctx.fillStyle === 'string' ? ctx.fillStyle : '#000';
+    if (!path) throw new Error('a spec with `strokes` needs a path factory to draw them');
+    for (const d of spec.strokes) ctx.stroke(path(d));
+    ctx.restore();
+    return;
+  }
   ctx.font = `${spec.fontWeight ?? 400} ${layout.fontSize}px ${spec.fontFamily}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -250,7 +294,35 @@ export interface Canvas2DLike {
   clearRect(x: number, y: number, w: number, h: number): void;
   fillText(text: string, x: number, y: number): void;
   getImageData(x: number, y: number, w: number, h: number): { data: Uint8ClampedArray };
+  /* Stroking an authored centreline, for the letters drawn by hand rather
+     than set in the face. See `GlyphSpec.strokes`. */
+  lineWidth: number;
+  lineCap: string;
+  lineJoin: string;
+  miterLimit: number;
+  strokeStyle: string;
+  save(): void;
+  restore(): void;
+  translate(x: number, y: number): void;
+  scale(x: number, y: number): void;
+  stroke(path: PathLike): void;
 }
+
+/**
+ * A platform path object, opaque to this module.
+ *
+ * Declared rather than imported from `lib.dom`: this package abstracts the
+ * drawing surface on purpose — the browser has canvas, a native shell will have
+ * Skia — and pulling the DOM's types in here to name one constructor would undo
+ * that. The surface supplies the constructor; this module only holds the result
+ * and hands it back.
+ */
+export interface PathLike {
+  readonly __path?: never;
+}
+
+/** How the surface turns SVG path data into something it can stroke. */
+export type PathFactory = (d: string) => PathLike;
 
 /**
  * Draws the reference glyph into a 2-D context, fitted to the box.
@@ -260,6 +332,11 @@ export interface Canvas2DLike {
  * shape they traced. It leaves the fitted glyph on the context: the probe pass
  * inside `fitGlyph` is cleared before the real one is drawn.
  */
-export function drawGlyph(ctx: Canvas2DLike, spec: GlyphSpec, boxSize: number): void {
-  paint(ctx, spec, fitGlyph(ctx, spec, boxSize), boxSize);
+export function drawGlyph(
+  ctx: Canvas2DLike,
+  spec: GlyphSpec,
+  boxSize: number,
+  path?: PathFactory,
+): void {
+  paint(ctx, spec, fitGlyph(ctx, spec, boxSize, path), boxSize, path);
 }

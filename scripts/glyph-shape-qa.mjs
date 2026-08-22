@@ -51,6 +51,7 @@ import { chromium } from 'playwright';
 import { ALL_CHARACTERS } from '../apps/web/src/data/characters.ts';
 import { hasVectorGlyph, vectorGlyph } from '../apps/web/src/data/strokeVectors.ts';
 import { isSyllable } from '../apps/web/src/data/jamo.ts';
+import { HANDWRITTEN_GUIDE } from '../apps/web/src/features/writing/glyphSpec.ts';
 import { blockLetterForms } from '../apps/web/src/data/compose.ts';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -94,24 +95,17 @@ const TOLERANCE_PX = Math.round(R * 0.045);
 const MAX_COMPONENT_DRIFT = 0.12;
 
 /**
- * Letters where the two are known to differ, and the demonstration is right.
+ * Letters the guide is stroked for rather than set.
  *
- * Only one difference is on this list and it is the same one six times. In a
- * compound vowel Pretendard **slants** the ㅗ or ㅜ bar, tilting it down towards
- * the outside and shortening the stem, which is an optical adjustment that
- * stops the two halves of ㅘ colliding at text sizes. It is a property of the
- * typeface, not of the letter: nobody writes a slanted ㅗ, and a demonstration
- * that taught one would be teaching the face rather than the language.
- *
- * So the demonstration keeps the bar level and this is written down instead of
- * the floor being lowered to hide it. A learner tracing the guide really does
- * see a slight tilt the animation does not have; that is a stated, reviewed
- * difference, and §65 of the report says so.
- *
- * Anything not on this list still fails, and an entry that stops disagreeing
- * fails too, so the list cannot quietly outlive the reason for it.
+ * Imported from the app so this cannot drift from what the product draws. It
+ * used to be a list of *exceptions* here — six compound vowels where the guide
+ * tilted the ㅗ bar and the demonstration kept it level, written down and
+ * tolerated. That was the wrong resolution: a learner tracing a slanted bar and
+ * then watching a level one is being taught two shapes, and recording the
+ * difference does not undo it. The guide now strokes the same centrelines, so
+ * there is nothing left to except.
  */
-const SLANTED_IN_THE_FACE = new Set(['ㅘ', 'ㅝ', 'ㅚ', 'ㅟ', 'ㅙ', 'ㅞ']);
+const HANDWRITTEN = HANDWRITTEN_GUIDE;
 
 const composition = JSON.parse(
   readFileSync(join(ROOT, 'apps/web/src/data/generated/composition.json'), 'utf8'),
@@ -127,7 +121,18 @@ const jamoStrokes = Object.fromEntries(
 
 const glyphs = items.map((character) => {
   const g = vectorGlyph(character);
-  return { character, paths: g.strokes.map((s) => s.d), pen: g.pen };
+  return {
+    character,
+    paths: g.strokes.map((s) => s.d),
+    pen: g.pen,
+    /*
+      Whether the guide is set in the face or stroked from the same centrelines
+      the demonstration reveals. For the six the product draws by hand, the two
+      are the same ink by construction — there is nothing left to disagree — and
+      this reports that rather than scoring a comparison of a thing with itself.
+    */
+    handwritten: HANDWRITTEN_GUIDE.has(character),
+  };
 });
 
 /**
@@ -204,7 +209,7 @@ const results = await page.evaluate(
 
     const out = [];
     for (const g of glyphs) {
-      // --- the guide: the face, fitted exactly as `fitGlyph` fits it ---------
+      // --- the guide, drawn the way the app draws it -------------------------
       const rc = ctxOf();
       const paintRef = (size, cx, cy) => {
         rc.clearRect(0, 0, R, R);
@@ -214,11 +219,44 @@ const results = await page.evaluate(
         rc.fillStyle = '#000';
         rc.fillText(g.character, cx, cy);
       };
-      paintRef(R * 0.78, R / 2, R / 2);
+      if (g.handwritten) {
+        // Stroked from the authored centrelines, exactly as `paint` does when a
+        // spec carries them. Identical to the demonstration by construction.
+        const paintHand = (fontSize, cx, cy) => {
+          rc.clearRect(0, 0, R, R);
+          const scale = fontSize / 100;
+          rc.save();
+          rc.translate(cx - (scale * 100) / 2, cy - (scale * 100) / 2);
+          rc.scale(scale, scale);
+          rc.lineWidth = g.pen;
+          rc.lineCap = 'butt';
+          rc.lineJoin = 'miter';
+          rc.miterLimit = 3;
+          rc.strokeStyle = '#000';
+          for (const d of g.paths) rc.stroke(new Path2D(d));
+          rc.restore();
+        };
+        paintHand(R * 0.78, R / 2, R / 2);
+        const hb = boxOf(rc);
+        const hk = (EXTENT * R) / (Math.max(hb.x1 - hb.x0, hb.y1 - hb.y0) + 1);
+        paintHand(
+          R * 0.78 * hk,
+          R / 2 - hk * ((hb.x0 + hb.x1 + 1) / 2 - R / 2),
+          R / 2 - hk * ((hb.y0 + hb.y1 + 1) / 2 - R / 2),
+        );
+      } else {
+        paintRef(R * 0.78, R / 2, R / 2);
+        const b0 = boxOf(rc);
+        if (!b0) { out.push({ character: g.character, error: 'the face drew nothing' }); continue; }
+        const k0 = (EXTENT * R) / (Math.max(b0.x1 - b0.x0, b0.y1 - b0.y0) + 1);
+        paintRef(
+          R * 0.78 * k0,
+          R / 2 - k0 * ((b0.x0 + b0.x1 + 1) / 2 - R / 2),
+          R / 2 - k0 * ((b0.y0 + b0.y1 + 1) / 2 - R / 2),
+        );
+      }
       let b = boxOf(rc);
-      if (!b) { out.push({ character: g.character, error: 'the face drew nothing' }); continue; }
-      const k = (EXTENT * R) / (Math.max(b.x1 - b.x0, b.y1 - b.y0) + 1);
-      paintRef(R * 0.78 * k, R / 2 - k * ((b.x0 + b.x1 + 1) / 2 - R / 2), R / 2 - k * ((b.y0 + b.y1 + 1) / 2 - R / 2));
+      if (!b) { out.push({ character: g.character, error: 'the guide drew nothing' }); continue; }
       const refMask = maskOf(rc);
       const refBox = boxOf(rc);
 
@@ -356,6 +394,7 @@ const results = await page.evaluate(
 
       out.push({
         character: g.character,
+        handwritten: g.handwritten,
         refBox, vecBox,
         guideExplained,
         demoExplained,
@@ -376,7 +415,7 @@ await browser.close();
 const problems = [];
 for (const r of results) {
   if (r.error) { problems.push(`${r.character}: ${r.error}`); continue; }
-  if (r.score < MIN_EXPLAINED && !SLANTED_IN_THE_FACE.has(r.character)) {
+  if (r.score < MIN_EXPLAINED) {
     const which = r.guideExplained < r.demoExplained
       ? `${((1 - r.guideExplained) * 100).toFixed(0)}% of the tracing guide's ink has nothing near it in the demonstration`
       : `${((1 - r.demoExplained) * 100).toFixed(0)}% of the demonstration's ink has nothing near it in the guide`;
@@ -390,17 +429,6 @@ for (const r of results) {
           `where the face puts it — vector ${JSON.stringify(c.vector)}, face ${JSON.stringify(c.face)}`,
       );
     }
-  }
-}
-
-for (const character of SLANTED_IN_THE_FACE) {
-  const r = results.find((x) => x.character === character);
-  if (!r) { problems.push(`${character} is on the reviewed list and is not a taught item`); continue; }
-  if (r.score >= MIN_EXPLAINED) {
-    problems.push(
-      `${character} is on the reviewed list as differing from the face and no longer does ` +
-        `(${(r.score * 100).toFixed(0)}%) — delete the entry`,
-    );
   }
 }
 
@@ -441,9 +469,10 @@ if (!CHECK) {
 }
 
 console.log(
-  `  ${SLANTED_IN_THE_FACE.size} reviewed: the face slants the ㅗ/ㅜ bar in compound vowels ` +
-    'and the demonstration keeps it level',
+  `  ${HANDWRITTEN.size} of them are stroked rather than set — the six compound vowels ` +
+    'the face slants and a hand does not',
 );
+console.log('  0 stated exceptions.');
 
 if (problems.length === 0) {
   console.log('\nevery taught item is the same shape in both representations.');

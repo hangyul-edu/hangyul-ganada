@@ -1,4 +1,6 @@
-import type { GlyphSpec } from '@hangyul-ganada/handwriting-core';
+import type { GlyphSpec, PathLike } from '@hangyul-ganada/handwriting-core';
+
+import { hasVectorGlyph, vectorGlyph } from '../../data/strokeVectors';
 
 /**
  * The one description of the reference glyph, for everything that draws it.
@@ -67,6 +69,34 @@ import type { GlyphSpec } from '@hangyul-ganada/handwriting-core';
  * They are now the same size and in the same place, which is the part a learner
  * could see.
  */
+/**
+ * Letters the guide is drawn by hand rather than set in the face.
+ *
+ * In a compound vowel Pretendard **slants** the ㅗ or ㅜ bar, tilting it down
+ * towards the outside so the two halves do not collide at text sizes. It is an
+ * optical adjustment belonging to the typeface: nobody writes a slanted ㅗ.
+ *
+ * For a while the demonstration drew the level form and the guide underneath it
+ * drew the tilted one, and `glyphshape:qa` carried the six as stated
+ * exceptions. That was the wrong resolution. A learner tracing a slanted bar
+ * and then watching a level one is being taught two shapes, and "we wrote the
+ * difference down" does not undo that.
+ *
+ * The reference *typography* elsewhere in the product is still the face — a
+ * word on a card is set, not drawn. What must agree is the pair a learner
+ * copies: the guide under the pen and the stroke demonstration. So for these
+ * six the guide is stroked from the same authored centrelines the animation
+ * reveals, and the grading mask with it, because both come out of `drawGlyph`.
+ *
+ * Six, and no more. Every other letter agrees with the face to within the
+ * tolerance `glyphshape:qa` measures, and setting a letter in the face is the
+ * better default: it is what the learner will meet in the wild.
+ */
+export const HANDWRITTEN_GUIDE = new Set(['ㅘ', 'ㅝ', 'ㅚ', 'ㅟ', 'ㅙ', 'ㅞ']);
+
+/** The browser's path object, for the letters drawn from centrelines. */
+export const pathFactory = (d: string) => new Path2D(d) as unknown as PathLike;
+
 export function glyphSpecFor(
   character: string,
   fontFamily: string,
@@ -81,5 +111,16 @@ export function glyphSpecFor(
    */
   glyphScale?: number,
 ): GlyphSpec {
+  if (HANDWRITTEN_GUIDE.has(character) && hasVectorGlyph(character)) {
+    const glyph = vectorGlyph(character);
+    return {
+      character,
+      fontFamily,
+      fontWeight,
+      glyphScale,
+      strokes: glyph.strokes.map((stroke) => stroke.d),
+      pen: glyph.pen,
+    };
+  }
   return { character, fontFamily, fontWeight, glyphScale };
 }

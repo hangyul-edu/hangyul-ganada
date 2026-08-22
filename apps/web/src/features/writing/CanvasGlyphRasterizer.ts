@@ -1,3 +1,4 @@
+import { pathFactory } from './glyphSpec';
 import {
   drawGlyph,
   glyphLayout,
@@ -46,7 +47,7 @@ export class CanvasGlyphRasterizer implements GlyphRasterizer {
 
     ctx.clearRect(0, 0, resolution, resolution);
     ctx.fillStyle = '#000000';
-    drawGlyph(ctx as unknown as Canvas2DLike, spec, resolution);
+    drawGlyph(ctx as unknown as Canvas2DLike, spec, resolution, pathFactory);
 
     const { data } = ctx.getImageData(0, 0, resolution, resolution);
     const mask = maskFromAlpha(data, resolution, resolution);

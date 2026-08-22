@@ -48,7 +48,7 @@
     "i18n:check": "node scripts/i18n-report.mjs --check",
     "name:check": "node scripts/check-product-name.mjs --check",
     "qa:i18n": "npm run qa:i18n --workspace @hangyul-ganada/web",
-    "verify:quick": "npm run name:check && npm run i18n:check && npm run copy:audit:check && npm run letters:copy:check && npm run strokes:qa:check && npm run strokes:visual:check && npm run glyphshape:qa:check && npm run vocabulary:qa:check && npm run romanization:qa:check && npm run vocabulary:relations:qa && npm run vocabulary:sense:qa:check && npm run tokens:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run bundle:budget:check && npm run routing:check && npm run share:check",
+    "verify:quick": "npm run name:check && npm run i18n:check && npm run copy:audit:check && npm run letters:copy:check && npm run strokes:qa:check && npm run strokes:visual:check && npm run glyphshape:qa:check && npm run strokes:fixtures:check && npm run vocabulary:qa:check && npm run romanization:qa:check && npm run vocabulary:relations:qa && npm run vocabulary:sense:qa:check && npm run tokens:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run bundle:budget:check && npm run routing:check && npm run share:check",
     "verify:release": "npm run verify:quick && npm run store:check && npm run curriculum:check && npm run fonts:audit && npm run jamo:measure:check && npm run mobile:icons:check && npm run vocabulary:qa:target && npm run vocabulary:relations:check && npm run content:vocabulary:check && npm run content:dictionary:check && npm run dictionary:qa:check && npm run perf:dictionary:check && npm run content:qa:check && npm run examples:qa:check && npm run audio:qa && npm run audio:pronunciation:check && npm run content:coverage:check && npm run issues:check && npm run docs:consistency:check && npm run strokes:measure:check && npm run test:e2e && npm run release:current",
     "verify": "npm run verify:release",
     "content:fetch": "python3 scripts/content/fetch_dictionary.py",
@@ -110,6 +110,8 @@
     "strokes:visual:check": "tsx scripts/stroke-visual-qa.mjs --check",
     "glyphshape:qa": "tsx scripts/glyph-shape-qa.mjs",
     "glyphshape:qa:check": "tsx scripts/glyph-shape-qa.mjs --check",
+    "strokes:fixtures": "python3 packages/handwriting-core/scripts/render-fixtures.py && tsx packages/handwriting-core/scripts/render-vector-fixtures.mjs",
+    "strokes:fixtures:check": "tsx packages/handwriting-core/scripts/render-vector-fixtures.mjs --check",
     "vocabulary:sense:qa": "node scripts/vocabulary-sense-qa.mjs",
     "vocabulary:sense:qa:check": "node scripts/vocabulary-sense-qa.mjs --check"
   },

@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { drawGlyph, type Canvas2DLike, type GlyphSpec } from '@hangyul-ganada/handwriting-core';
 
+import { pathFactory } from './glyphSpec';
+
 /**
  * Paints the reference glyph the learner traces.
  *
@@ -73,7 +75,7 @@ export function useReferenceGlyph(
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle =
         getComputedStyle(canvas).getPropertyValue('--hg-canvas-trace-glyph').trim() || '#ADB4BA';
-      drawGlyph(ctx as unknown as Canvas2DLike, spec, canvas.width);
+      drawGlyph(ctx as unknown as Canvas2DLike, spec, canvas.width, pathFactory);
     };
 
     void paint();
