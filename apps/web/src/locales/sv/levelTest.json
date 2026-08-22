@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Ta reda på din nivå och få ord som passar.",
     "cta": "Gör testet",
-    "retake": "Testa igen"
+    "retake": "Testa igen",
+    "short": "Nivå",
+    "aria": "Ordförrådsnivå {{level}}"
+  },
+  "placement": {
+    "title": "Börja med ord som passar dig?",
+    "body": "Ett kort nivåtest låter oss föreslå ord på din ordnivå. Hoppar du över det börjar du på nivå 1.",
+    "take": "Gör nivåtestet",
+    "start": "Börja på nivå 1"
   }
 }

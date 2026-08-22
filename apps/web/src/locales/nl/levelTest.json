@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Ontdek je niveau en krijg woorden die erbij passen.",
     "cta": "Doe de test",
-    "retake": "Opnieuw testen"
+    "retake": "Opnieuw testen",
+    "short": "Niv.",
+    "aria": "Woordenschatniveau {{level}}"
+  },
+  "placement": {
+    "title": "Beginnen met woorden op jouw niveau?",
+    "body": "Met een korte niveautest kunnen we woorden op jouw niveau voorstellen. Sla je hem over, dan begin je op niveau 1.",
+    "take": "Niveautest doen",
+    "start": "Beginnen op niveau 1"
   }
 }

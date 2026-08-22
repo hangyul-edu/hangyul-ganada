@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import type { EvaluationResult, Stroke } from '@hangyul-ganada/handwriting-core';
+import type { EvaluationResult } from '@hangyul-ganada/handwriting-core';
 import type { HangulCharacter } from '@hangyul-ganada/shared-types';
 
 import { usePronunciation } from '../audio/PronunciationContext';
@@ -16,9 +16,6 @@ import { PracticeCanvasCard } from '../features/writing/PracticeCanvasCard';
 import { gradingFor } from '../features/writing/useEvaluator';
 import {
   feedbackFor,
-  scoreBreakdownParams,
-  strokeOrderNotes,
-  type StrokeOrderNote,
 } from '../features/writing/feedback';
 import { StrokeOrder } from '../ui/StrokeOrder';
 import { useStudyClock } from '../features/session/useStudyClock';
@@ -29,7 +26,6 @@ import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Badge } from '../ui/Chip';
-import { FeedbackState } from '../ui/FeedbackState';
 import { ProgressBar } from '../ui/Progress';
 import { SpeakerButton } from '../ui/SpeakerButton';
 import { StepTrail } from '../ui/StepTrail';
@@ -152,8 +148,6 @@ export function LetterSessionPage() {
     status: 'idle',
     result: null,
   });
-  const [showDetail, setShowDetail] = useState(false);
-  const [orderNotes, setOrderNotes] = useState<StrokeOrderNote[]>([]);
 
   // Time on this screen is study time; time on the unit introduction is not.
   useStudyClock(phase === 'practice');
@@ -196,7 +190,6 @@ export function LetterSessionPage() {
   }, [recognitionRequired]);
 
   const advanceCharacter = useCallback(() => {
-    setShowDetail(false);
     if (index + 1 >= characters.length) {
       if (sessionId.current) completeSession(sessionId.current);
       setFinished(true);
@@ -208,7 +201,6 @@ export function LetterSessionPage() {
   }, [index, characters.length, completeSession, steps]);
 
   const advanceStep = useCallback(() => {
-    setShowDetail(false);
     const position = steps.indexOf(stepState.step);
     const next = steps[position + 1];
     if (!next) {
@@ -216,16 +208,21 @@ export function LetterSessionPage() {
       return;
     }
     setStepState({ step: next, status: 'idle', result: null });
-    setOrderNotes([]);
   }, [steps, stepState.step, advanceCharacter]);
 
   const handleEvaluated = useCallback(
-    (evaluation: EvaluationResult, drawn: Stroke[]) => {
+    (evaluation: EvaluationResult) => {
       if (!current) return;
-      // Stroke order is computed here, from the strokes as they were made, and
-      // kept beside the verdict rather than folded into it. It is shown after
-      // the result and changes nothing about it — see `strokeOrderNotes`.
-      setOrderNotes(strokeOrderNotes(drawn, current.strokes));
+      /*
+        The strokes as they were made are no longer read here.
+
+        `strokeOrderNotes` turned them into a sentence about where the learner
+        started and which way a stroke ran, and that sentence was shown under
+        every wrong attempt. It is gone with the rest of the feedback card —
+        §8. Stroke order was never part of the mark and saying so under the mark
+        was the confusing part; the demonstration above the canvas is where a
+        learner goes to see how the letter is written.
+      */
       setStepState((prev) => ({
         ...prev,
         status: evaluation.passed ? 'correct' : 'incorrect',
@@ -261,8 +258,6 @@ export function LetterSessionPage() {
   /** Fix the attempt that is already on the canvas. */
   const retry = () => {
     setStepState((prev) => ({ ...prev, status: 'idle', result: null }));
-    setShowDetail(false);
-    setOrderNotes([]);
   };
 
   /*
@@ -455,72 +450,59 @@ export function LetterSessionPage() {
               </section>
             )}
 
-            {feedback && stepState.result && stepState.status !== 'idle' && (
-              <FeedbackState
-                status={stepState.status === 'correct' ? 'correct' : 'incorrect'}
-                headline={t(`handwriting:${feedback.headlineKey}`)}
-                actions={
-                  stepState.status === 'correct' ? (
-                    <Button size="md" onClick={advanceStep}>
-                      {nextLabel(t, steps, stepState.step, index + 1 >= characters.length)}
-                    </Button>
-                  ) : (
-                    <>
-                      <Button size="md" variant="ghost" onClick={() => setShowDetail((v) => !v)}>
-                        {showDetail
-                          ? t('handwriting:feedback.hideDetails')
-                          : t('handwriting:feedback.showDetails')}
-                      </Button>
-                      <Button size="md" onClick={retry}>
-                        {t('handwriting:feedback.retry')}
-                      </Button>
-                    </>
-                  )
-                }
-              >
-                <p>{t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}</p>
-                {/*
-                  One note, not a list of them.
+            {/*
+              What happens after the pen lifts — §8, §9.
 
-                  This block used to be a heading, up to three bullets and a
-                  closing sentence about what stroke order is for — five
-                  paragraphs of feedback under a two-stroke letter, every time.
-                  `strokeOrderNotes` already returns them in the order they
-                  matter (count, then where you started, then direction), so
-                  the first one is the one worth saying and the rest are things
-                  the learner will notice on the next attempt anyway.
+              This was a card: a headline ("That's it!"), a line of praise
+              ("beautifully written"), a stroke-order note, a Show details
+              toggle and a numeric breakdown, under a two-stroke letter, every
+              single attempt. Written down it reads as thorough. In the hand it
+              is a panel that appears between the learner and the next stroke,
+              says something congratulatory for the fortieth time, and has to be
+              dismissed.
 
-                  The heading is gone because it labelled a list of one, and
-                  the closing sentence has moved into Show details, where
-                  somebody who wants the reasoning can find it.
-                */}
-                {orderNotes[0] && (
-                  <p className={styles.orderNote}>
-                    {t(`handwriting:${orderNotes[0].key}`, {
-                      ...orderNotes[0].params,
-                      ...(orderNotes[0].params?.corner
-                        ? {
-                            corner: t(
-                              `handwriting:strokeOrder.corners.${String(orderNotes[0].params.corner)}`,
-                            ),
-                          }
-                        : {}),
-                    })}
-                  </p>
-                )}
-                {showDetail && (
-                  <>
-                    <p className={styles.breakdown}>
-                      {t('handwriting:feedback.breakdown', scoreBreakdownParams(stepState.result))}
-                    </p>
-                    {orderNotes.length > 0 && (
-                      <p className={styles.breakdown}>
-                        {t('handwriting:strokeOrder.notesFooter')}
-                      </p>
-                    )}
-                  </>
-                )}
-              </FeedbackState>
+              A learner writing ㄱ for the fourth time does not read "That's
+              it!" — they have read it three times already, and repeated praise
+              stops carrying information the moment it becomes certain. What
+              they need after a correct attempt is to get on with the next one,
+              and after a wrong one is to know *what to change* and be able to
+              try again without leaving the box they were writing in.
+
+              So: correct is one button. Wrong is one sentence and Retry. The
+              sentence is kept because it is the only part of the old card that
+              was ever actionable — "A little small. Try filling the box." tells
+              the learner something they can do, where the headline told them
+              how they had performed.
+
+              The grade itself is unchanged and is still recorded; what was
+              removed is the ceremony around reporting it. The breakdown numbers
+              and the stroke-order notes are gone from the screen entirely
+              rather than moved behind a toggle: a percentage of mismatch is the
+              grader talking about itself.
+            */}
+            {stepState.status === 'correct' && (
+              <div className={styles.after}>
+                {/* Announced, not displayed: a sighted learner sees the box
+                    lock and the button appear, and a screen-reader user needs
+                    to be told the attempt was accepted. */}
+                <p className="hg-sr-only" role="status">
+                  {t('handwriting:feedback.accepted')}
+                </p>
+                <Button size="md" onClick={advanceStep}>
+                  {nextLabel(t, steps, stepState.step, index + 1 >= characters.length)}
+                </Button>
+              </div>
+            )}
+
+            {feedback && stepState.result && stepState.status !== 'idle' && stepState.status !== 'correct' && (
+              <div className={styles.after}>
+                <p className={styles.retryNote} role="status">
+                  {t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}
+                </p>
+                <Button size="md" onClick={retry}>
+                  {t('handwriting:feedback.retry')}
+                </Button>
+              </div>
             )}
 
             {stepState.status === 'idle' && (

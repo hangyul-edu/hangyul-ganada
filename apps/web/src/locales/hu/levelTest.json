@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Nézze meg a szintjét, és kapjon hozzá illő szavakat.",
     "cta": "Teszt indítása",
-    "retake": "Újra"
+    "retake": "Újra",
+    "short": "Szint",
+    "aria": "Szókincsszint {{level}}"
+  },
+  "placement": {
+    "title": "Kezdjük az önhöz illő szavakkal?",
+    "body": "Egy rövid szintfelmérő alapján a szókincséhez illő szavakat ajánlunk. Ha kihagyja, az 1. szinten kezd.",
+    "take": "Szintfelmérő kitöltése",
+    "start": "Kezdés az 1. szinten"
   }
 }

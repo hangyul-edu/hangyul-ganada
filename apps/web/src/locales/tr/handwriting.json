@@ -39,9 +39,8 @@
       "detail": "Kılavuzla hizala ve bir daha dene."
     },
     "retry": "Tekrar dene",
-    "showDetails": "Ayrıntıları göster",
-    "hideDetails": "Ayrıntıları gizle",
-    "breakdown": "Fark {{mismatch, number(style: percent)}} · dışarıda {{outside, number(style: percent)}} · eksik {{missing, number(style: percent)}}"
+    "breakdown": "Fark {{mismatch, number(style: percent)}} · dışarıda {{outside, number(style: percent)}} · eksik {{missing, number(style: percent)}}",
+    "accepted": "Kabul edildi."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} nasıl yazılır, {{count, number}} çizgide",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} çizgi",
     "count_other": "{{count, number}} çizgi",
     "heading": "Yazılışını izle",
-    "notesFooter": "Çizgi sırası puana girmiyor. Yazını doğru gösteren şey o.",
     "notes": {
       "fewer": "{{theirs, number}} çizgi kullandın; bu harf genelde {{expected, number}} çizgide yazılır.",
       "more": "{{theirs, number}} çizgi kullandın; bu harf genelde {{expected, number}} çizgide yazılır.",

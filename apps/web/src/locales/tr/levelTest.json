@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Seviyeni öğren, sana uygun kelimeler al.",
     "cta": "Testi çöz",
-    "retake": "Tekrar çöz"
+    "retake": "Tekrar çöz",
+    "short": "Sv.",
+    "aria": "Kelime seviyesi {{level}}"
+  },
+  "placement": {
+    "title": "Sana uygun kelimelerle başlayalım mı?",
+    "body": "Kısa bir seviye testi, kelime seviyene uygun kelimeler önermemizi sağlar. Atlarsan 1. seviyeden başlarsın.",
+    "take": "Seviye testini yap",
+    "start": "1. seviyeden başla"
   }
 }

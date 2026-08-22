@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Find your level and get words that match it.",
     "cta": "Take the level test",
-    "retake": "Test again"
+    "retake": "Test again",
+    "short": "Lv.",
+    "aria": "Vocabulary level {{level}}"
+  },
+  "placement": {
+    "title": "Start with words that match you?",
+    "body": "A short level test lets us suggest words at your vocabulary level. Skip it and you start at Level 1.",
+    "take": "Take the level test",
+    "start": "Start at Level 1"
   }
 }

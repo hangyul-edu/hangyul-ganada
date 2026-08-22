@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Sprawdź swój poziom i dostawaj dopasowane słowa.",
     "cta": "Zrób test",
-    "retake": "Powtórz test"
+    "retake": "Powtórz test",
+    "short": "Poz.",
+    "aria": "Poziom słownictwa {{level}}"
+  },
+  "placement": {
+    "title": "Zacząć od słów w sam raz dla ciebie?",
+    "body": "Krótki test poziomu pozwoli nam proponować słowa na twoim poziomie. Jeśli go pominiesz, zaczniesz od poziomu 1.",
+    "take": "Zrób test poziomu",
+    "start": "Zacznij od poziomu 1"
   }
 }

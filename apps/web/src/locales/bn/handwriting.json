@@ -39,9 +39,8 @@
       "detail": "নমুনার সঙ্গে মিলিয়ে নিন, তারপর আরেকবার চেষ্টা করুন।"
     },
     "retry": "আবার চেষ্টা করুন",
-    "showDetails": "বিস্তারিত দেখান",
-    "hideDetails": "বিস্তারিত লুকান",
-    "breakdown": "পার্থক্য {{mismatch, number(style: percent)}} · বাইরে {{outside, number(style: percent)}} · বাদ {{missing, number(style: percent)}}"
+    "breakdown": "পার্থক্য {{mismatch, number(style: percent)}} · বাইরে {{outside, number(style: percent)}} · বাদ {{missing, number(style: percent)}}",
+    "accepted": "গৃহীত হয়েছে।"
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}}টি টান",
     "count_other": "{{count, number}}টি টান",
     "heading": "লেখা হতে দেখুন",
-    "notesFooter": "টানের ক্রম নম্বরে ধরা হয় না। তবে ওটাই আপনার লেখাকে ঠিকঠাক দেখায়।",
     "notes": {
       "fewer": "আপনি {{theirs, number}}টি টান দিয়েছেন; এই অক্ষরটি সাধারণত {{expected, number}}টিতে লেখা হয়।",
       "more": "আপনি {{theirs, number}}টি টান দিয়েছেন; এই অক্ষরটি সাধারণত {{expected, number}}টিতে লেখা হয়।",

@@ -39,9 +39,8 @@
       "detail": "Richte ihn an der Hilfslinie aus und versuch es noch mal."
     },
     "retry": "Nochmal schreiben",
-    "showDetails": "Details anzeigen",
-    "hideDetails": "Details ausblenden",
-    "breakdown": "Abweichung {{mismatch, number(style: percent)}} · außerhalb {{outside, number(style: percent)}} · fehlend {{missing, number(style: percent)}}"
+    "breakdown": "Abweichung {{mismatch, number(style: percent)}} · außerhalb {{outside, number(style: percent)}} · fehlend {{missing, number(style: percent)}}",
+    "accepted": "Angenommen."
   },
   "strokeOrder": {
     "diagramLabel_one": "Wie {{character}} geschrieben wird, in {{count, number}} Strich",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} Strich",
     "count_other": "{{count, number}} Striche",
     "heading": "Sieh zu, wie er entsteht",
-    "notesFooter": "Die Strichfolge zählt nicht zur Bewertung. Sie ist es, die deine Schrift richtig aussehen lässt.",
     "notes": {
       "fewer": "Du hast {{theirs, number}} Striche gemacht; dieser Buchstabe wird üblicherweise in {{expected, number}} geschrieben.",
       "more": "Du hast {{theirs, number}} Striche gemacht; dieser Buchstabe wird üblicherweise in {{expected, number}} geschrieben.",

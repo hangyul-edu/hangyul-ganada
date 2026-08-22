@@ -39,9 +39,8 @@
       "detail": "Leg hem op de hulplijn en probeer het nog eens."
     },
     "retry": "Opnieuw",
-    "showDetails": "Toon details",
-    "hideDetails": "Verberg details",
-    "breakdown": "Verschil {{mismatch, number(style: percent)}} · buiten {{outside, number(style: percent)}} · ontbrekend {{missing, number(style: percent)}}"
+    "breakdown": "Verschil {{mismatch, number(style: percent)}} · buiten {{outside, number(style: percent)}} · ontbrekend {{missing, number(style: percent)}}",
+    "accepted": "Geaccepteerd."
   },
   "strokeOrder": {
     "diagramLabel_one": "Hoe {{character}} geschreven wordt, in {{count, number}} streek",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} streek",
     "count_other": "{{count, number}} streken",
     "heading": "Kijk hoe hij geschreven wordt",
-    "notesFooter": "De streekvolgorde telt niet mee voor je score. Het is wel wat je handschrift kloppend maakt.",
     "notes": {
       "fewer": "Je gebruikte {{theirs, number}} streken; deze letter wordt meestal in {{expected, number}} geschreven.",
       "more": "Je gebruikte {{theirs, number}} streken; deze letter wordt meestal in {{expected, number}} geschreven.",

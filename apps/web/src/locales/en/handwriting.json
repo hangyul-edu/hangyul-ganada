@@ -39,9 +39,8 @@
       "detail": "Line it up with the guide and give it another go."
     },
     "retry": "Try again",
-    "showDetails": "Show details",
-    "hideDetails": "Hide details",
-    "breakdown": "Difference {{mismatch, number(style: percent)}} · outside {{outside, number(style: percent)}} · missing {{missing, number(style: percent)}}"
+    "breakdown": "Difference {{mismatch, number(style: percent)}} · outside {{outside, number(style: percent)}} · missing {{missing, number(style: percent)}}",
+    "accepted": "Accepted."
   },
   "strokeOrder": {
     "diagramLabel_one": "How {{character}} is written, in {{count, number}} stroke",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} stroke",
     "count_other": "{{count, number}} strokes",
     "heading": "Watch it written",
-    "notesFooter": "Stroke order isn't part of the mark. It's what makes your writing look right.",
     "notes": {
       "fewer": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",
       "more": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",

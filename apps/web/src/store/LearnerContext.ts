@@ -12,6 +12,7 @@ import type { ExerciseMode } from '../domain/review';
 import type { ReviewSummary, TodaysPractice } from '../domain/review';
 import type { DailyPlan, DayProgress } from '../domain/vocabularyDay';
 import type { LevelTestResult } from '../domain/levelTestTypes';
+import type { PlacementStatus } from '../domain/placement';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
 export interface LearnerContextValue {
@@ -32,6 +33,26 @@ export interface LearnerContextValue {
    * about what the app will teach them next.
    */
   saveLevelTestResult: (result: LevelTestResult) => void;
+  /**
+   * Whether the level in use was measured, defaulted after an explicit skip, or
+   * never asked about.
+   *
+   * Separate from the level itself — §16. A learner shown "Lv. 1" because they
+   * declined the test and one shown "Lv. 1" because they sat it and that is
+   * their level are in different situations, and only the third state,
+   * `untested`, is a reason to interrupt somebody.
+   */
+  placementStatus: PlacementStatus;
+  /** The learner chose Level 1 over sitting the test. Asked once, then never. */
+  skipPlacement: () => void;
+  /**
+   * The Vocabulary Level today's words are chosen around, 1–30.
+   *
+   * The measured result when there is one; otherwise a conservative reading of
+   * what has already been learned, which is 1 for somebody new. Read
+   * `placementStatus` alongside it to know which of those it is.
+   */
+  vocabularyLevel: number;
   startSession: (kind: SessionKind, lessonId: string | null, targetCount: number) => string;
   completeSession: (sessionId: string) => void;
   recordAttempt: (input: RecordAttemptInput) => void;

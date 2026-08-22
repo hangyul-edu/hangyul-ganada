@@ -9,12 +9,27 @@
 /* One sentence about stroke order, tinted so it reads as an aside to the
    verdict above rather than a second verdict. It replaced a headed, bulleted,
    footnoted panel that turned three-line feedback into six. */
-.orderNote {
-  margin: var(--hg-space-3) 0 0;
-  padding: var(--hg-space-2) var(--hg-space-3);
-  border-radius: var(--hg-radius-lg);
-  background: var(--hg-bg-muted);
-  font: var(--hg-text-body-sm);
+
+/*
+  What is left after an attempt: one control, and one sentence when it failed.
+
+  Replaces `.orderNote` and `.breakdown`, which styled a panel that no longer
+  exists — see the note in `LetterSessionPage.tsx`. Centred and unboxed on
+  purpose: a border around two elements would rebuild the card in outline.
+*/
+.after {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-3);
+  margin-top: var(--hg-space-4);
+}
+
+.retryNote {
+  margin: 0;
+  max-width: 32ch;
+  text-align: center;
+  font-size: var(--hg-text-body-sm);
+  line-height: 1.5;
   color: var(--hg-text-secondary);
-  text-align: start;
 }

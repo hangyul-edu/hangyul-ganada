@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Scopri il tuo livello e ricevi parole adatte a te.",
     "cta": "Fai il test",
-    "retake": "Rifai il test"
+    "retake": "Rifai il test",
+    "short": "Liv.",
+    "aria": "Livello di lessico {{level}}"
+  },
+  "placement": {
+    "title": "Iniziamo con parole al tuo livello?",
+    "body": "Un breve test ci permette di suggerirti parole adatte al tuo lessico. Se lo salti, inizi dal livello 1.",
+    "take": "Fai il test",
+    "start": "Inizia dal livello 1"
   }
 }

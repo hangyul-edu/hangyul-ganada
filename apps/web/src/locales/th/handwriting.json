@@ -39,9 +39,8 @@
       "detail": "จัดให้ตรงกับเส้นนำแล้วลองอีกครั้ง"
     },
     "retry": "ลองใหม่",
-    "showDetails": "ดูรายละเอียด",
-    "hideDetails": "ซ่อนรายละเอียด",
-    "breakdown": "คลาดเคลื่อน {{mismatch, number(style: percent)}} · ออกนอกกรอบ {{outside, number(style: percent)}} · ขาดหาย {{missing, number(style: percent)}}"
+    "breakdown": "คลาดเคลื่อน {{mismatch, number(style: percent)}} · ออกนอกกรอบ {{outside, number(style: percent)}} · ขาดหาย {{missing, number(style: percent)}}",
+    "accepted": "ผ่านแล้ว"
   },
   "strokeOrder": {
     "diagramLabel_one": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} เส้น",
     "count_other": "{{count, number}} เส้น",
     "heading": "ดูวิธีเขียน",
-    "notesFooter": "ลำดับเส้นไม่ถูกนำมาคิดคะแนน แต่เป็นสิ่งที่ทำให้ลายมือดูถูกต้อง",
     "notes": {
       "fewer": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",
       "more": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",

@@ -41,9 +41,8 @@
       "detail": "Srovnejte to s předlohou a zkuste to znovu."
     },
     "retry": "Zkusit znovu",
-    "showDetails": "Zobrazit podrobnosti",
-    "hideDetails": "Skrýt podrobnosti",
-    "breakdown": "Rozdíl {{mismatch, number(style: percent)}} · mimo {{outside, number(style: percent)}} · chybí {{missing, number(style: percent)}}"
+    "breakdown": "Rozdíl {{mismatch, number(style: percent)}} · mimo {{outside, number(style: percent)}} · chybí {{missing, number(style: percent)}}",
+    "accepted": "Přijato."
   },
   "strokeOrder": {
     "diagramLabel_few": "Jak se píše {{character}}, {{count, number}} tahy",
@@ -56,7 +55,6 @@
     "count_one": "{{count, number}} tah",
     "count_other": "{{count, number}} tahů",
     "heading": "Podívejte se, jak se píše",
-    "notesFooter": "Pořadí tahů se do hodnocení nepočítá. Právě ono ale dělá písmo správně vypadající.",
     "notes": {
       "fewer": "Použili jste {{theirs, number}} tahů; tahle litera se obvykle píše {{expected, number}}.",
       "more": "Použili jste {{theirs, number}} tahů; tahle litera se obvykle píše {{expected, number}}.",

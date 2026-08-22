@@ -39,9 +39,8 @@
       "detail": "Namuna bilan moslang va yana urinib ko‘ring."
     },
     "retry": "Yana urinib ko‘ring",
-    "showDetails": "Tafsilotlarni ko‘rsatish",
-    "hideDetails": "Tafsilotlarni yashirish",
-    "breakdown": "Farq {{mismatch, number(style: percent)}} · tashqarida {{outside, number(style: percent)}} · yetishmayapti {{missing, number(style: percent)}}"
+    "breakdown": "Farq {{mismatch, number(style: percent)}} · tashqarida {{outside, number(style: percent)}} · yetishmayapti {{missing, number(style: percent)}}",
+    "accepted": "Qabul qilindi."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} chiziq",
     "count_other": "{{count, number}} chiziq",
     "heading": "Qanday yozilishini ko‘ring",
-    "notesFooter": "Chiziqlar tartibi bahoga kirmaydi. Ammo yozuvingiz to‘g‘ri ko‘rinishini aynan shu ta’minlaydi.",
     "notes": {
       "fewer": "Siz {{theirs, number}} chiziq ishlatdingiz; bu harf odatda {{expected, number}} chiziqda yoziladi.",
       "more": "Siz {{theirs, number}} chiziq ishlatdingiz; bu harf odatda {{expected, number}} chiziqda yoziladi.",

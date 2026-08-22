@@ -39,9 +39,8 @@
       "detail": "इसे नमूने से मिलाइए और एक बार और कोशिश कीजिए।"
     },
     "retry": "फिर कोशिश कीजिए",
-    "showDetails": "ब्यौरा दिखाइए",
-    "hideDetails": "ब्यौरा छिपाइए",
-    "breakdown": "अंतर {{mismatch, number(style: percent)}} · बाहर {{outside, number(style: percent)}} · छूटा {{missing, number(style: percent)}}"
+    "breakdown": "अंतर {{mismatch, number(style: percent)}} · बाहर {{outside, number(style: percent)}} · छूटा {{missing, number(style: percent)}}",
+    "accepted": "स्वीकार किया गया।"
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} कैसे लिखा जाता है, {{count, number}} स्ट्रोक में",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} स्ट्रोक",
     "count_other": "{{count, number}} स्ट्रोक",
     "heading": "इसे लिखते हुए देखिए",
-    "notesFooter": "स्ट्रोक का क्रम अंक में नहीं गिना जाता। पर उसी से आपकी लिखाई सही दिखती है।",
     "notes": {
       "fewer": "आपने {{theirs, number}} स्ट्रोक लगाए; यह अक्षर आम तौर पर {{expected, number}} में लिखा जाता है।",
       "more": "आपने {{theirs, number}} स्ट्रोक लगाए; यह अक्षर आम तौर पर {{expected, number}} में लिखा जाता है।",

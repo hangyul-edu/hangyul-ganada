@@ -39,9 +39,8 @@
       "detail": "Ευθυγράμμισέ το με το πρότυπο και ξαναδοκίμασε."
     },
     "retry": "Ξαναδοκίμασε",
-    "showDetails": "Δείξε λεπτομέρειες",
-    "hideDetails": "Κρύψε τις λεπτομέρειες",
-    "breakdown": "Διαφορά {{mismatch, number(style: percent)}} · έξω {{outside, number(style: percent)}} · λείπει {{missing, number(style: percent)}}"
+    "breakdown": "Διαφορά {{mismatch, number(style: percent)}} · έξω {{outside, number(style: percent)}} · λείπει {{missing, number(style: percent)}}",
+    "accepted": "Έγινε δεκτό."
   },
   "strokeOrder": {
     "diagramLabel_one": "Πώς γράφεται το {{character}}, με {{count, number}} γραμμή",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} γραμμή",
     "count_other": "{{count, number}} γραμμές",
     "heading": "Δες πώς γράφεται",
-    "notesFooter": "Η σειρά των γραμμών δεν μετράει στον βαθμό. Αυτή όμως κάνει τον γραφικό σου χαρακτήρα να φαίνεται σωστός.",
     "notes": {
       "fewer": "Χρησιμοποίησες {{theirs, number}} γραμμές· αυτό το γράμμα γράφεται συνήθως με {{expected, number}}.",
       "more": "Χρησιμοποίησες {{theirs, number}} γραμμές· αυτό το γράμμα γράφεται συνήθως με {{expected, number}}.",

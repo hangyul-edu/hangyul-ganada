@@ -39,9 +39,8 @@
       "detail": "Igazítsd a mintához, és próbáld újra."
     },
     "retry": "Próbáld újra",
-    "showDetails": "Részletek mutatása",
-    "hideDetails": "Részletek elrejtése",
-    "breakdown": "Eltérés {{mismatch, number(style: percent)}} · kívül {{outside, number(style: percent)}} · hiányzik {{missing, number(style: percent)}}"
+    "breakdown": "Eltérés {{mismatch, number(style: percent)}} · kívül {{outside, number(style: percent)}} · hiányzik {{missing, number(style: percent)}}",
+    "accepted": "Elfogadva."
   },
   "strokeOrder": {
     "diagramLabel_one": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} vonás",
     "count_other": "{{count, number}} vonás",
     "heading": "Nézd meg, hogyan írjuk",
-    "notesFooter": "A vonássorrend nem számít bele az értékelésbe. De ettől néz ki helyesnek az írásod.",
     "notes": {
       "fewer": "{{theirs, number}} vonást használtál; ezt a betűt általában {{expected, number}} vonással írjuk.",
       "more": "{{theirs, number}} vonást használtál; ezt a betűt általában {{expected, number}} vonással írjuk.",

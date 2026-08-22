@@ -40,9 +40,8 @@
       "detail": "Alinéala con la guía y prueba otra vez."
     },
     "retry": "Escribir otra vez",
-    "showDetails": "Ver detalles",
-    "hideDetails": "Ocultar detalles",
-    "breakdown": "Diferencia {{mismatch, number(style: percent)}} · fuera {{outside, number(style: percent)}} · falta {{missing, number(style: percent)}}"
+    "breakdown": "Diferencia {{mismatch, number(style: percent)}} · fuera {{outside, number(style: percent)}} · falta {{missing, number(style: percent)}}",
+    "accepted": "Aceptado."
   },
   "strokeOrder": {
     "diagramLabel_one": "Cómo se escribe {{character}}, en {{count, number}} trazo",
@@ -53,7 +52,6 @@
     "count_many": "{{count, number}} trazos",
     "count_other": "{{count, number}} trazos",
     "heading": "Míralo escribirse",
-    "notesFooter": "El orden de los trazos no puntúa. Es lo que hace que tu letra se vea bien.",
     "notes": {
       "fewer": "Has usado {{theirs, number}} trazos; esta letra suele escribirse en {{expected, number}}.",
       "more": "Has usado {{theirs, number}} trazos; esta letra suele escribirse en {{expected, number}}.",

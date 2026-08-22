@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Află-ți nivelul și primește cuvinte potrivite.",
     "cta": "Începe testul",
-    "retake": "Reia testul"
+    "retake": "Reia testul",
+    "short": "Niv.",
+    "aria": "Nivel de vocabular {{level}}"
+  },
+  "placement": {
+    "title": "Începem cu cuvinte pe măsura ta?",
+    "body": "Un test scurt ne ajută să-ți sugerăm cuvinte la nivelul tău de vocabular. Dacă îl sari, începi de la nivelul 1.",
+    "take": "Fă testul de nivel",
+    "start": "Începe de la nivelul 1"
   }
 }

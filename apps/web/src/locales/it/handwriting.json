@@ -40,9 +40,8 @@
       "detail": "Allineala alla traccia e riprova."
     },
     "retry": "Riprova",
-    "showDetails": "Mostra i dettagli",
-    "hideDetails": "Nascondi i dettagli",
-    "breakdown": "Differenza {{mismatch, number(style: percent)}} · fuori {{outside, number(style: percent)}} · mancante {{missing, number(style: percent)}}"
+    "breakdown": "Differenza {{mismatch, number(style: percent)}} · fuori {{outside, number(style: percent)}} · mancante {{missing, number(style: percent)}}",
+    "accepted": "Accettato."
   },
   "strokeOrder": {
     "diagramLabel_many": "Come si scrive {{character}}, in {{count, number}} tratti",
@@ -53,7 +52,6 @@
     "count_one": "{{count, number}} tratto",
     "count_other": "{{count, number}} tratti",
     "heading": "Guarda come si scrive",
-    "notesFooter": "L’ordine dei tratti non entra nel voto. È quello che fa sembrare giusta la tua scrittura.",
     "notes": {
       "fewer": "Hai usato {{theirs, number}} tratti; questa lettera di solito se ne scrive con {{expected, number}}.",
       "more": "Hai usato {{theirs, number}} tratti; questa lettera di solito se ne scrive con {{expected, number}}.",

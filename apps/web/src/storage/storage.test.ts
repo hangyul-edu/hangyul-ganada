@@ -215,7 +215,7 @@ describe('migrations', () => {
     const applied = await runMigrations(makeContext(driver, null));
     // Every migration runs on an empty install, in order, and each is a no-op
     // with nothing to convert.
-    expect(applied).toEqual([3, 4, 5, 6, 7, 8, 9, 10, 11]);
+    expect(applied).toEqual([3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
     const meta = await driver.get<SchemaMeta>('meta', META_KEY);
     expect(meta?.schema_version).toBe(SCHEMA_VERSION);
     expect(meta?.install_id).toBeTruthy();

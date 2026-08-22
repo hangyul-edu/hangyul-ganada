@@ -43,9 +43,8 @@
       "detail": "حاذِه مع النموذج وجرّب مرة أخرى."
     },
     "retry": "حاول مرة أخرى",
-    "showDetails": "التفاصيل",
-    "hideDetails": "إخفاء التفاصيل",
-    "breakdown": "الفرق {{mismatch, number(style: percent)}} · خارج {{outside, number(style: percent)}} · ناقص {{missing, number(style: percent)}}"
+    "breakdown": "الفرق {{mismatch, number(style: percent)}} · خارج {{outside, number(style: percent)}} · ناقص {{missing, number(style: percent)}}",
+    "accepted": "مقبول."
   },
   "strokeOrder": {
     "diagramLabel_few": "كيف يُكتب {{character}}، بـ{{count, number}} خطوط",
@@ -62,7 +61,6 @@
     "count_two": "خطان",
     "count_zero": "بلا خطوط",
     "heading": "شاهده وهو يُكتب",
-    "notesFooter": "ترتيب الخطوط لا يدخل في الدرجة، لكنه ما يجعل خطك يبدو صحيحًا.",
     "notes": {
       "fewer": "استعملت {{theirs, number}} خطًا؛ هذا الحرف يُكتب عادةً بـ{{expected, number}}.",
       "more": "استعملت {{theirs, number}} خطًا؛ هذا الحرف يُكتب عادةً بـ{{expected, number}}.",

@@ -40,9 +40,8 @@
       "detail": "Aligne-la sur le guide et réessaie."
     },
     "retry": "Réécrire",
-    "showDetails": "Voir le détail",
-    "hideDetails": "Masquer le détail",
-    "breakdown": "Écart {{mismatch, number(style: percent)}} · hors cadre {{outside, number(style: percent)}} · manquant {{missing, number(style: percent)}}"
+    "breakdown": "Écart {{mismatch, number(style: percent)}} · hors cadre {{outside, number(style: percent)}} · manquant {{missing, number(style: percent)}}",
+    "accepted": "Validé."
   },
   "strokeOrder": {
     "diagramLabel_one": "Comment écrire {{character}}, en {{count, number}} trait",
@@ -53,7 +52,6 @@
     "count_many": "{{count, number}} traits",
     "count_other": "{{count, number}} traits",
     "heading": "Regardez-la s’écrire",
-    "notesFooter": "L’ordre des traits ne compte pas dans la note. C’est lui qui rend votre écriture juste.",
     "notes": {
       "fewer": "Vous avez fait {{theirs, number}} traits ; cette lettre s’écrit habituellement en {{expected, number}}.",
       "more": "Vous avez fait {{theirs, number}} traits ; cette lettre s’écrit habituellement en {{expected, number}}.",

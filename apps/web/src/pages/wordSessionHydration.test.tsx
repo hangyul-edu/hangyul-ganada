@@ -18,7 +18,7 @@
  * screen over a store that answers *slowly*, which is the condition, and asks
  * for the word.
  */
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
@@ -86,9 +86,27 @@ function openSession(driver: PersistenceDriver) {
   );
 }
 
+
+/**
+ * Past the placement prompt and into the words.
+ *
+ * A learner who has never been asked about their level meets it before the
+ * first word — §13, and correctly so. Seeding the profile to skip it was tried
+ * and races the provider's own first write, which is a worse thing to depend on
+ * than the button: this drives the same path a person does, and fails loudly if
+ * the prompt stops appearing for somebody who has never been placed.
+ */
+async function pastPlacement() {
+  const skip = await screen.findByTestId('placement-skip');
+  await act(async () => {
+    skip.click();
+  });
+}
+
 describe("today's session, opened before the store has answered", () => {
   it('shows the day once it arrives, rather than claiming there is none', async () => {
     openSession(slowDriver());
+    await pastPlacement();
 
     // The word, when the plan lands. `word-headword` is the meeting card, which
     // is the first thing a sitting shows.
@@ -104,6 +122,7 @@ describe("today's session, opened before the store has answered", () => {
      * promised are still sitting there.
      */
     const { container } = openSession(slowDriver());
+    await pastPlacement();
     const sightings: string[] = [];
     const observer = new MutationObserver(() => {
       if (container.textContent?.includes('Nothing left for today')) {

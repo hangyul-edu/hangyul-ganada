@@ -57,7 +57,7 @@ const READY_FOR_WORDS = 11;
  */
 export function HomePage() {
   const navigate = useNavigate();
-  const { summary, state, vocabularyProgressToday } = useLearner();
+  const { summary, state, vocabularyProgressToday, vocabularyLevel } = useLearner();
   const { t } = useTranslation(['home', 'common', 'vocabulary', 'learning', 'activity', 'levelTest']);
   const { locale } = useLocale();
   const format = useFormatters();
@@ -147,14 +147,42 @@ export function HomePage() {
         variant="brand"
         title={productName(locale)}
         action={
-          /* Straight to the learner's activity record. It used to open
-             Settings, which answered a question nobody had asked. */
-          <Link to="/me/activity" className={styles.streak} aria-label={t('home:streak.aria')}>
-            <FireIcon size={15} />
-            <span className="hg-numeric">
-              {t('common:units.day', { count: summary.streak_days })}
-            </span>
-          </Link>
+          /*
+            Two facts, one row: how many days in a row, and what level.
+
+            §20. The streak was here on its own and the Vocabulary Level was a
+            card two thirds of the way down the screen, which is where a number
+            goes when nobody is meant to look at it. A level that exists to
+            motivate has to be somewhere the learner passes every time they open
+            the app, and the status corner is that place.
+
+            They are separate links because they answer different questions and
+            go to different screens — the streak to the learning record, the
+            level to the test. Same height, same rhythm, same icon size, so the
+            pair reads as one status area rather than two widgets that happen to
+            be adjacent.
+
+            The level is deliberately plain: "Lv." small, the number strong, no
+            badge, no gradient, no medal. §21 — this is a measurement a learner
+            can be proud of, not a trophy the app awards itself.
+          */
+          <div className={styles.status}>
+            <Link to="/me/activity" className={styles.streak} aria-label={t('home:streak.aria')}>
+              <FireIcon size={15} />
+              <span className="hg-numeric">
+                {t('common:units.day', { count: summary.streak_days })}
+              </span>
+            </Link>
+            <Link
+              to="/me/level-test"
+              className={styles.statusLevel}
+              data-testid="home-status-level"
+              aria-label={t('levelTest:home.aria', { level: vocabularyLevel })}
+            >
+              <span className={styles.statusLevelPrefix}>{t('levelTest:home.short')}</span>
+              <span className={`${styles.statusLevelNumber} hg-numeric`}>{vocabularyLevel}</span>
+            </Link>
+          </div>
         }
       />
 
@@ -193,19 +221,15 @@ export function HomePage() {
           given match it. See the level card below.
         */}
         {/*
-          What this app is for, once, to a learner who has never used it.
-          
-          A first-time visitor used to arrive at a lesson card with no statement
-          of the proposition anywhere on the screen — Unit 1, a progress ring at
-          zero, and a button. That reads as the middle of something.
-          
-          One sentence, and it leaves the moment there is any progress at all.
-          Not a carousel, not three screens, not a dismissable banner with a
-          close button to think about: `started` is the same signal the rest of
-          this screen already uses, so nothing has to be remembered or stored,
-          and a learner who comes back tomorrow gets the space back.
+          There is no introductory sentence here any more — §11.
+
+          It read "Learn Korean from the very first letter — Hangul, then the
+          words you will actually use", and it was shown to a learner who had
+          already installed the app, opened it, and was looking at a lesson
+          card. It described the product to somebody who had chosen the
+          product. The space is worth more than the sentence, and the first
+          thing on the screen is now the thing they came to do.
         */}
-        {!started && <p className={styles.purpose}>{t('home:purpose')}</p>}
 
         {lesson && lessonTitle ? (
           <Card tone="featured" padding="lg" className={styles.featured}>

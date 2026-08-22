@@ -39,9 +39,8 @@
       "detail": "Canh cho khớp với đường dẫn rồi thử lại nhé."
     },
     "retry": "Viết lại",
-    "showDetails": "Xem chi tiết",
-    "hideDetails": "Ẩn chi tiết",
-    "breakdown": "Lệch {{mismatch, number(style: percent)}} · ra ngoài {{outside, number(style: percent)}} · thiếu {{missing, number(style: percent)}}"
+    "breakdown": "Lệch {{mismatch, number(style: percent)}} · ra ngoài {{outside, number(style: percent)}} · thiếu {{missing, number(style: percent)}}",
+    "accepted": "Đã đạt."
   },
   "strokeOrder": {
     "diagramLabel_one": "Cách viết {{character}}, gồm {{count, number}} nét",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} nét",
     "count_other": "{{count, number}} nét",
     "heading": "Xem cách viết",
-    "notesFooter": "Thứ tự nét không tính điểm. Nhưng nó là thứ làm chữ bạn trông đúng.",
     "notes": {
       "fewer": "Bạn viết {{theirs, number}} nét; chữ này thường được viết bằng {{expected, number}} nét.",
       "more": "Bạn viết {{theirs, number}} nét; chữ này thường được viết bằng {{expected, number}} nét.",

@@ -39,9 +39,8 @@
       "detail": "Үлгүгө дал келтирип, дагы бир аракет кылыңыз."
     },
     "retry": "Кайра аракет кылыңыз",
-    "showDetails": "Чоо-жайын көрсөтүү",
-    "hideDetails": "Чоо-жайын жашыруу",
-    "breakdown": "Айырма {{mismatch, number(style: percent)}} · сыртта {{outside, number(style: percent)}} · жетишпейт {{missing, number(style: percent)}}"
+    "breakdown": "Айырма {{mismatch, number(style: percent)}} · сыртта {{outside, number(style: percent)}} · жетишпейт {{missing, number(style: percent)}}",
+    "accepted": "Кабыл алынды."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} кантип жазылат, {{count, number}} сызык менен",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} сызык",
     "count_other": "{{count, number}} сызык",
     "heading": "Кантип жазыларын көрүңүз",
-    "notesFooter": "Сызыктардын тартиби баага кирбейт. Бирок жазууңузду туура көрсөткөн — ошол.",
     "notes": {
       "fewer": "Сиз {{theirs, number}} сызык колдондуңуз; бул тамга көбүнчө {{expected, number}} сызык менен жазылат.",
       "more": "Сиз {{theirs, number}} сызык колдондуңуз; бул тамга көбүнчө {{expected, number}} сызык менен жазылат.",

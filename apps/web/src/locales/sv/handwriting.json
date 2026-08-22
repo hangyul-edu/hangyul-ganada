@@ -39,9 +39,8 @@
       "detail": "Lägg den mot mallen och gör ett försök till."
     },
     "retry": "Försök igen",
-    "showDetails": "Visa detaljer",
-    "hideDetails": "Dölj detaljer",
-    "breakdown": "Skillnad {{mismatch, number(style: percent)}} · utanför {{outside, number(style: percent)}} · saknat {{missing, number(style: percent)}}"
+    "breakdown": "Skillnad {{mismatch, number(style: percent)}} · utanför {{outside, number(style: percent)}} · saknat {{missing, number(style: percent)}}",
+    "accepted": "Godkänt."
   },
   "strokeOrder": {
     "diagramLabel_one": "Hur {{character}} skrivs, med {{count, number}} streck",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} streck",
     "count_other": "{{count, number}} streck",
     "heading": "Se hur den skrivs",
-    "notesFooter": "Streckordningen räknas inte in i bedömningen. Det är den som får din handstil att se rätt ut.",
     "notes": {
       "fewer": "Du använde {{theirs, number}} streck; den här bokstaven skrivs oftast med {{expected, number}}.",
       "more": "Du använde {{theirs, number}} streck; den här bokstaven skrivs oftast med {{expected, number}}.",

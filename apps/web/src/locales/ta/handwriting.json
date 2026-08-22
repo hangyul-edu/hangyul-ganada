@@ -39,9 +39,8 @@
       "detail": "மாதிரியுடன் பொருத்தி மீண்டும் முயலுங்கள்."
     },
     "retry": "மீண்டும் முயற்சி",
-    "showDetails": "விவரங்களைக் காட்டு",
-    "hideDetails": "விவரங்களை மறை",
-    "breakdown": "வேறுபாடு {{mismatch, number(style: percent)}} · வெளியே {{outside, number(style: percent)}} · விடுபட்டது {{missing, number(style: percent)}}"
+    "breakdown": "வேறுபாடு {{mismatch, number(style: percent)}} · வெளியே {{outside, number(style: percent)}} · விடுபட்டது {{missing, number(style: percent)}}",
+    "accepted": "ஏற்கப்பட்டது."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} எப்படி எழுதப்படுகிறது, {{count, number}} கோட்டில்",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} கோடு",
     "count_other": "{{count, number}} கோடுகள்",
     "heading": "எழுதுவதைப் பாருங்கள்",
-    "notesFooter": "கோட்டு வரிசை மதிப்பெண்ணில் சேராது. ஆனால் உங்கள் கையெழுத்து சரியாகத் தெரிவதற்குக் காரணம் அதுவே.",
     "notes": {
       "fewer": "நீங்கள் {{theirs, number}} கோடுகள் பயன்படுத்தினீர்கள்; இந்த எழுத்து பொதுவாக {{expected, number}} கோடுகளில் எழுதப்படும்.",
       "more": "நீங்கள் {{theirs, number}} கோடுகள் பயன்படுத்தினீர்கள்; இந்த எழுத்து பொதுவாக {{expected, number}} கோடுகளில் எழுதப்படும்.",

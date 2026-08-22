@@ -42,7 +42,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 11;
+export const SCHEMA_VERSION = 12;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -106,6 +106,22 @@ export interface StoredSettings extends LearnerPreferences {
    */
   level_test: LevelTestResult | null;
   /**
+   * When the learner said "start me at Level 1" instead of sitting the test.
+   *
+   * Its own field, and deliberately not folded into `level_test`. Those are two
+   * different facts: `level_test` is *what was measured*, this is *what was
+   * decided about measuring*. Collapsing them would make a learner who skipped
+   * indistinguishable from one who was assessed at Level 1 — the app would show
+   * the same number for a measurement and for a default, and the honest
+   * difference between "we know" and "we have not asked" would be gone.
+   *
+   * A timestamp rather than a boolean, so the decision can be reasoned about
+   * later — a skip from six months ago is a fair thing to revisit, a skip from
+   * this morning is not. Nothing reads the date yet; what reads it today only
+   * asks whether it is null. §16, §17.
+   */
+  placement_skipped_at: string | null;
+  /**
    * This learner's own shuffle, made once and never changed.
    *
    * Two people at the same Vocabulary Level should not be taught the same ten
@@ -157,6 +173,7 @@ export function defaultSettings(): StoredSettings {
     saved_items: [],
     daily_plan: null,
     level_test: null,
+    placement_skipped_at: null,
     content_seed: '',
   };
 }
@@ -765,6 +782,27 @@ export function newContentSeed(): string {
   return [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
+/**
+ * Record that nobody has been asked about placement yet.
+ *
+ * Null for everyone, including learners who already have a `level_test`: the
+ * field means "declined the test", and somebody who took it never declined it.
+ * The pair is read together — see `placementStatus` in `LearnerProvider`.
+ */
+const placementDecision: Migration = {
+  to: 12,
+  describe: 'Add the placement decision, undecided',
+  async run({ driver }) {
+    const settings = await driver.get<Partial<StoredSettings>>('settings', SETTINGS_KEY);
+    if (!settings || settings.placement_skipped_at !== undefined) return;
+    await driver.put('settings', SETTINGS_KEY, {
+      ...defaultSettings(),
+      ...settings,
+      placement_skipped_at: null,
+    });
+  },
+};
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
@@ -775,6 +813,7 @@ export const MIGRATIONS: Migration[] = [
   noPracticeStyleSetting,
   levelTestResult,
   learnerContentSeed,
+  placementDecision,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

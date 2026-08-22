@@ -98,6 +98,64 @@
   }
 }
 
+/*
+  The status pair: days in a row, and vocabulary level.
+
+  One flex row so the two chips share a baseline and a gap, and so the header
+  has one child to lay out rather than two competing for the same corner.
+  `flex-shrink` is left alone deliberately — at 360 px with a long streak the
+  pair should wrap or compress as a unit, not have the level slide under the
+  title.
+*/
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  min-width: 0;
+}
+
+/*
+  The level chip.
+
+  Quieter than the streak on purpose: the streak is a thing you can lose today
+  and the level is a thing you measured once, so the streak keeps the filled
+  background and this takes an outline. Same 32 px height and pill radius, so
+  the two read as a set.
+
+  No badge, no gradient, no medal — §21. The hierarchy is inside the chip:
+  "Lv." small and secondary, the number full size and bold, which is the way a
+  measurement is written down rather than the way a game awards one.
+*/
+.statusLevel {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  height: 32px;
+  padding-inline: var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  color: var(--hg-text-secondary);
+  white-space: nowrap;
+}
+
+.statusLevelPrefix {
+  font-size: var(--hg-text-caption-sm, var(--hg-text-caption));
+  font-weight: var(--hg-weight-semibold);
+  opacity: 0.75;
+}
+
+.statusLevelNumber {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-primary);
+}
+
+@media (hover: hover) {
+  .statusLevel:hover {
+    background: var(--hg-surface-subtle, var(--hg-primary-subtle));
+  }
+}
+
 .celebrate {
   display: flex;
   align-items: center;
@@ -444,21 +502,6 @@
   font-size: var(--hg-text-body-sm);
   line-height: var(--hg-leading-snug);
   color: var(--hg-text-secondary);
-}
-
-/*
- * The one-line statement of what this is, on a fresh profile.
- *
- * Sized and coloured as a lede, not a banner: no border, no background, no
- * dismiss control. It is a sentence above the first card, and it disappears on
- * its own the moment the learner has done anything at all.
- */
-.purpose {
-  margin: 0 0 var(--hg-space-4);
-  color: var(--hg-text-secondary);
-  font-size: var(--hg-text-body);
-  line-height: 1.5;
-  text-wrap: pretty;
 }
 
 /*

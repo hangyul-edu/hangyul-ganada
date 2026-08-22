@@ -39,9 +39,8 @@
       "detail": "Ipantay sa gabay at subukan ulit."
     },
     "retry": "Subukan ulit",
-    "showDetails": "Ipakita ang detalye",
-    "hideDetails": "Itago ang detalye",
-    "breakdown": "Pagkakaiba {{mismatch, number(style: percent)}} · sa labas {{outside, number(style: percent)}} · kulang {{missing, number(style: percent)}}"
+    "breakdown": "Pagkakaiba {{mismatch, number(style: percent)}} · sa labas {{outside, number(style: percent)}} · kulang {{missing, number(style: percent)}}",
+    "accepted": "Tanggap na."
   },
   "strokeOrder": {
     "diagramLabel_one": "Paano isinusulat ang {{character}}, sa {{count, number}} guhit",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} guhit",
     "count_other": "{{count, number}} na guhit",
     "heading": "Panoorin kung paano isinusulat",
-    "notesFooter": "Hindi kasama sa marka ang pagkakasunod-sunod ng guhit. Iyon ang nagpapaganda ng hitsura ng sulat mo.",
     "notes": {
       "fewer": "{{theirs, number}} guhit ang ginamit mo; karaniwang {{expected, number}} ang guhit ng letrang ito.",
       "more": "{{theirs, number}} guhit ang ginamit mo; karaniwang {{expected, number}} ang guhit ng letrang ito.",

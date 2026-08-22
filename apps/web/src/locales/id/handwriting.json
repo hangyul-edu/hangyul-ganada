@@ -38,16 +38,14 @@
       "detail": "Sejajarkan dengan panduannya lalu coba lagi."
     },
     "retry": "Coba lagi",
-    "showDetails": "Lihat rincian",
-    "hideDetails": "Sembunyikan rincian",
-    "breakdown": "Selisih {{mismatch, number(style: percent)}} · di luar {{outside, number(style: percent)}} · kurang {{missing, number(style: percent)}}"
+    "breakdown": "Selisih {{mismatch, number(style: percent)}} · di luar {{outside, number(style: percent)}} · kurang {{missing, number(style: percent)}}",
+    "accepted": "Diterima."
   },
   "strokeOrder": {
     "diagramLabel_other": "Cara menulis {{character}}, dalam {{count, number}} goresan",
     "pause": "Jeda",
     "count_other": "{{count, number}} goresan",
     "heading": "Lihat cara menulisnya",
-    "notesFooter": "Urutan goresan tidak masuk penilaian. Tapi itulah yang membuat tulisanmu terlihat benar.",
     "notes": {
       "fewer": "Kamu pakai {{theirs, number}} goresan; huruf ini biasanya ditulis dalam {{expected, number}}.",
       "more": "Kamu pakai {{theirs, number}} goresan; huruf ini biasanya ditulis dalam {{expected, number}}.",

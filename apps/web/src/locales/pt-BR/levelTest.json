@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Descubra seu nível e receba palavras à sua medida.",
     "cta": "Fazer o teste",
-    "retake": "Refazer"
+    "retake": "Refazer",
+    "short": "Nv.",
+    "aria": "Nível de vocabulário {{level}}"
+  },
+  "placement": {
+    "title": "Começar com palavras do seu nível?",
+    "body": "Um teste rápido nos permite sugerir palavras no seu nível de vocabulário. Se pular, você começa no nível 1.",
+    "take": "Fazer o teste",
+    "start": "Começar no nível 1"
   }
 }

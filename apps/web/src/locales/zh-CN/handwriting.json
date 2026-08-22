@@ -38,16 +38,14 @@
       "detail": "对准辅助线，再写一次。"
     },
     "retry": "再写一次",
-    "showDetails": "查看详情",
-    "hideDetails": "收起详情",
-    "breakdown": "差异 {{mismatch, number(style: percent)}} · 越界 {{outside, number(style: percent)}} · 缺失 {{missing, number(style: percent)}}"
+    "breakdown": "差异 {{mismatch, number(style: percent)}} · 越界 {{outside, number(style: percent)}} · 缺失 {{missing, number(style: percent)}}",
+    "accepted": "通过了。"
   },
   "strokeOrder": {
     "diagramLabel_other": "{{character}} 的写法，共 {{count, number}} 笔",
     "pause": "暂停",
     "count_other": "{{count, number}}笔",
     "heading": "看它怎么写",
-    "notesFooter": "笔顺不计入评分，它让你的字看起来更自然。",
     "notes": {
       "fewer": "你写了{{theirs, number}}笔，这个字通常是{{expected, number}}笔。",
       "more": "你写了{{theirs, number}}笔，这个字通常是{{expected, number}}笔。",

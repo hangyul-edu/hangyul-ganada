@@ -39,9 +39,8 @@
       "detail": "నమూనాతో సరిపోల్చి మరోసారి ప్రయత్నించండి."
     },
     "retry": "మళ్లీ ప్రయత్నించండి",
-    "showDetails": "వివరాలు చూపించు",
-    "hideDetails": "వివరాలు దాచు",
-    "breakdown": "తేడా {{mismatch, number(style: percent)}} · బయట {{outside, number(style: percent)}} · తప్పింది {{missing, number(style: percent)}}"
+    "breakdown": "తేడా {{mismatch, number(style: percent)}} · బయట {{outside, number(style: percent)}} · తప్పింది {{missing, number(style: percent)}}",
+    "accepted": "ఆమోదించబడింది."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} ఎలా రాస్తారు, {{count, number}} గీతలో",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} గీత",
     "count_other": "{{count, number}} గీతలు",
     "heading": "రాయడం చూడండి",
-    "notesFooter": "గీతల వరుస మార్కుల్లోకి రాదు. కానీ మీ రాత సరిగ్గా కనిపించేలా చేసేది అదే.",
     "notes": {
       "fewer": "మీరు {{theirs, number}} గీతలు వాడారు; ఈ అక్షరాన్ని సాధారణంగా {{expected, number}} గీతల్లో రాస్తారు.",
       "more": "మీరు {{theirs, number}} గీతలు వాడారు; ఈ అక్షరాన్ని సాధారణంగా {{expected, number}} గీతల్లో రాస్తారు.",

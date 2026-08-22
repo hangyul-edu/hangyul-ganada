@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import { ConfirmDialog } from '../ui/ConfirmDialog';
+
 import { usePronunciation } from '../audio/PronunciationContext';
 import { wordCopy } from '../data/wordCopy';
 import { getFont } from '../data/fonts';
@@ -74,8 +76,10 @@ export function WordSessionPage() {
     isSaved,
     toggleSaved,
     ready,
+    placementStatus,
+    skipPlacement,
   } = useLearner();
-  const { t } = useTranslation(['vocabulary', 'learning', 'common']);
+  const { t } = useTranslation(['vocabulary', 'learning', 'levelTest', 'common']);
   const { contentLocale } = useLocale();
   const { preload } = usePronunciation();
 
@@ -230,6 +234,54 @@ export function WordSessionPage() {
    * furniture and are drawn anyway, so this is a blank body for a fraction of a
    * second rather than a loading screen.
    */
+  /*
+    Before the first word, once: would you like words that match your level?
+
+    §13. A learner who has never been placed is taught from Level 1, which is a
+    sensible default and is not the same thing as knowing their level. This is
+    the one moment where asking is worth an interruption — they have just
+    committed to studying vocabulary, and the answer changes every word they
+    are about to be shown.
+
+    Three properties, and each is a `FAIL` line in §65 if it slips:
+
+    * **Not mandatory.** The second answer starts them immediately, at Level 1.
+    * **Asked once.** Declining is recorded, and `placementStatus` never returns
+      to `untested`. A prompt that comes back every day is not a recommendation.
+    * **Not shown to somebody who has been placed.** `assessed` skips it, so a
+      learner who sat the test is never asked to prove it again.
+
+    It is the app's own confirmation dialog rather than a bespoke modal: the
+    shape — a question, a line of context, two answers — is exactly what that
+    component is, and a second modal implementation would be a second set of
+    focus-trap and escape-key bugs.
+
+    Gated on `ready`, because before the profile has been read every learner
+    looks untested — the defaults say so. Without it, somebody who was assessed
+    months ago opens today's words and sees a prompt asking whether they would
+    like to be assessed, for as long as IndexedDB takes to answer.
+  */
+  if (ready && placementStatus === 'untested') {
+    return (
+      <FocusScreen
+        resetKey="words-placement"
+        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+      >
+        <ConfirmDialog
+          open
+          title={t('levelTest:placement.title')}
+          body={t('levelTest:placement.body')}
+          confirmLabel={t('levelTest:placement.take')}
+          cancelLabel={t('levelTest:placement.start')}
+          onConfirm={() => navigate('/me/level-test')}
+          onCancel={skipPlacement}
+          confirmTestId="placement-take"
+          cancelTestId="placement-skip"
+        />
+      </FocusScreen>
+    );
+  }
+
   if (steps === null) {
     return (
       <FocusScreen

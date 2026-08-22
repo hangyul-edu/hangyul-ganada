@@ -41,9 +41,8 @@
       "detail": "Сумістіть із взірцем і спробуйте ще раз."
     },
     "retry": "Спробувати ще",
-    "showDetails": "Показати подробиці",
-    "hideDetails": "Сховати подробиці",
-    "breakdown": "Розбіжність {{mismatch, number(style: percent)}} · поза рамкою {{outside, number(style: percent)}} · бракує {{missing, number(style: percent)}}"
+    "breakdown": "Розбіжність {{mismatch, number(style: percent)}} · поза рамкою {{outside, number(style: percent)}} · бракує {{missing, number(style: percent)}}",
+    "accepted": "Зараховано."
   },
   "strokeOrder": {
     "diagramLabel_few": "Як пишеться {{character}} — у {{count, number}} риски",
@@ -56,7 +55,6 @@
     "count_one": "{{count, number}} риска",
     "count_other": "{{count, number}} риски",
     "heading": "Подивіться, як її пишуть",
-    "notesFooter": "Порядок рисок в оцінку не входить. Саме він робить почерк правильним на вигляд.",
     "notes": {
       "fewer": "Ви використали {{theirs, number}} рисок; цю літеру зазвичай пишуть у {{expected, number}}.",
       "more": "Ви використали {{theirs, number}} рисок; цю літеру зазвичай пишуть у {{expected, number}}.",

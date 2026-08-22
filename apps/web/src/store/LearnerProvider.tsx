@@ -32,6 +32,7 @@ import {
   streakDays,
 } from '../domain/progress';
 import { applyReview, memoryKey, type ItemMemory } from '../domain/memory';
+import type { PlacementStatus } from '../domain/placement';
 import { levelFromProgress, recentlyIntroduced } from '../domain/vocabularyLevel';
 import { applyAnswer, listMistakes } from '../domain/mistakes';
 import { resolvePlan, type PracticePlan } from '../domain/plan';
@@ -392,6 +393,22 @@ export function LearnerProvider({
         ...prev.settings,
         level_test: { ...result, recentItems: result.recentItems.slice(0, 120) },
       };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, []);
+
+  /**
+   * The learner chose to start at Level 1 rather than sit the test.
+   *
+   * Recorded so the offer is made once. A prompt that reappears every time
+   * somebody opens today's words is not a recommendation, it is a toll — and
+   * the learner already answered it. §17.
+   */
+  const skipPlacement = useCallback(() => {
+    setState((prev) => {
+      if (prev.settings.placement_skipped_at) return prev;
+      const settings = { ...prev.settings, placement_skipped_at: new Date().toISOString() };
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });
@@ -839,6 +856,20 @@ export function LearnerProvider({
     );
   }, [state.settings.level_test, state.progress]);
 
+  /**
+   * Whether the level being used was measured, defaulted, or never asked about.
+   *
+   * Three states and not two, because "Level 1" means something different in
+   * each of them: a learner who sat the test and came out at 1 has been
+   * measured, one who declined has a sensible default, and one who has not been
+   * asked is the only one worth interrupting. §16.
+   */
+  const placementStatus: PlacementStatus = state.settings.level_test
+    ? 'assessed'
+    : state.settings.placement_skipped_at
+      ? 'skipped'
+      : 'untested';
+
   const vocabularyDay = useCorpusMemo<DailyPlan>(() => {
     const now = new Date();
     const stored = state.settings.daily_plan;
@@ -998,6 +1029,9 @@ export function LearnerProvider({
       knownLetters,
       setPreferences,
       saveLevelTestResult,
+      placementStatus,
+      skipPlacement,
+      vocabularyLevel,
       startSession,
       completeSession,
       recordStudyTime,
@@ -1030,6 +1064,9 @@ export function LearnerProvider({
       knownLetters,
       setPreferences,
       saveLevelTestResult,
+      placementStatus,
+      skipPlacement,
+      vocabularyLevel,
       startSession,
       completeSession,
       recordStudyTime,

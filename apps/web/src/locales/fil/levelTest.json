@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Alamin ang antas mo at makakuha ng bagay na salita.",
     "cta": "Subukan ang pagsusulit",
-    "retake": "Ulitin"
+    "retake": "Ulitin",
+    "short": "Lvl",
+    "aria": "Antas ng bokabularyo {{level}}"
+  },
+  "placement": {
+    "title": "Magsimula sa mga salitang bagay sa iyo?",
+    "body": "Sa maikling level test, makakapagmungkahi kami ng mga salitang tugma sa antas mo. Kung laktawan mo, magsisimula ka sa Level 1.",
+    "take": "Kunin ang level test",
+    "start": "Magsimula sa Level 1"
   }
 }

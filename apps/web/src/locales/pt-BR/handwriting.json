@@ -40,9 +40,8 @@
       "detail": "Alinhe com a guia e tente de novo."
     },
     "retry": "Escrever de novo",
-    "showDetails": "Ver detalhes",
-    "hideDetails": "Ocultar detalhes",
-    "breakdown": "Diferença {{mismatch, number(style: percent)}} · fora {{outside, number(style: percent)}} · faltando {{missing, number(style: percent)}}"
+    "breakdown": "Diferença {{mismatch, number(style: percent)}} · fora {{outside, number(style: percent)}} · faltando {{missing, number(style: percent)}}",
+    "accepted": "Aceito."
   },
   "strokeOrder": {
     "diagramLabel_one": "Como se escreve {{character}}, em {{count, number}} traço",
@@ -53,7 +52,6 @@
     "count_many": "{{count, number}} traços",
     "count_other": "{{count, number}} traços",
     "heading": "Veja sendo escrita",
-    "notesFooter": "A ordem dos traços não entra na nota. É o que faz sua letra ficar certa.",
     "notes": {
       "fewer": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",
       "more": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",

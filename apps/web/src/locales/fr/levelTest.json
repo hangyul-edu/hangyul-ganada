@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Situez votre niveau et recevez des mots adaptés.",
     "cta": "Passer le test",
-    "retake": "Refaire le test"
+    "retake": "Refaire le test",
+    "short": "Niv.",
+    "aria": "Niveau de vocabulaire {{level}}"
+  },
+  "placement": {
+    "title": "Commencer par des mots à votre niveau ?",
+    "body": "Un court test nous permet de proposer des mots adaptés à votre vocabulaire. Sans test, vous commencez au niveau 1.",
+    "take": "Faire le test",
+    "start": "Commencer au niveau 1"
   }
 }

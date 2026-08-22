@@ -41,9 +41,8 @@
       "detail": "Совместите с образцом и попробуйте ещё раз."
     },
     "retry": "Попробовать снова",
-    "showDetails": "Показать подробности",
-    "hideDetails": "Скрыть подробности",
-    "breakdown": "Расхождение {{mismatch, number(style: percent)}} · за рамкой {{outside, number(style: percent)}} · не хватает {{missing, number(style: percent)}}"
+    "breakdown": "Расхождение {{mismatch, number(style: percent)}} · за рамкой {{outside, number(style: percent)}} · не хватает {{missing, number(style: percent)}}",
+    "accepted": "Принято."
   },
   "strokeOrder": {
     "diagramLabel_few": "Как пишется {{character}} — в {{count, number}} черты",
@@ -56,7 +55,6 @@
     "count_one": "{{count, number}} черта",
     "count_other": "{{count, number}} черты",
     "heading": "Посмотрите, как её пишут",
-    "notesFooter": "Порядок черт в оценку не входит. Именно он делает почерк правильным на вид.",
     "notes": {
       "fewer": "Вы использовали {{theirs, number}} черт; эту букву обычно пишут в {{expected, number}}.",
       "more": "Вы использовали {{theirs, number}} черт; эту букву обычно пишут в {{expected, number}}.",

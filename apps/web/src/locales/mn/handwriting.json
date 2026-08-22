@@ -39,9 +39,8 @@
       "detail": "Загвартай нь тааруулаад дахин оролдоод үз."
     },
     "retry": "Дахин оролдох",
-    "showDetails": "Дэлгэрэнгүйг харуулах",
-    "hideDetails": "Дэлгэрэнгүйг нуух",
-    "breakdown": "Зөрүү {{mismatch, number(style: percent)}} · гадна {{outside, number(style: percent)}} · дутуу {{missing, number(style: percent)}}"
+    "breakdown": "Зөрүү {{mismatch, number(style: percent)}} · гадна {{outside, number(style: percent)}} · дутуу {{missing, number(style: percent)}}",
+    "accepted": "Хүлээн авлаа."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} хэрхэн бичигддэг вэ, {{count, number}} зураасаар",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} зураас",
     "count_other": "{{count, number}} зураас",
     "heading": "Хэрхэн бичигдэхийг хар",
-    "notesFooter": "Зураасны дараалал онооны хэсэг биш. Гэхдээ бичиг чинь зөв харагдахад л энэ нөлөөлдөг.",
     "notes": {
       "fewer": "Чи {{theirs, number}} зураас хэрэглэлээ; энэ үсгийг ихэвчлэн {{expected, number}} зураасаар бичдэг.",
       "more": "Чи {{theirs, number}} зураас хэрэглэлээ; энэ үсгийг ихэвчлэн {{expected, number}} зураасаар бичдэг.",

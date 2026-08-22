@@ -41,9 +41,8 @@
       "detail": "Nałóż ją na wzór i spróbuj jeszcze raz."
     },
     "retry": "Spróbuj ponownie",
-    "showDetails": "Pokaż szczegóły",
-    "hideDetails": "Ukryj szczegóły",
-    "breakdown": "Różnica {{mismatch, number(style: percent)}} · poza {{outside, number(style: percent)}} · brak {{missing, number(style: percent)}}"
+    "breakdown": "Różnica {{mismatch, number(style: percent)}} · poza {{outside, number(style: percent)}} · brak {{missing, number(style: percent)}}",
+    "accepted": "Zaliczone."
   },
   "strokeOrder": {
     "diagramLabel_few": "Jak pisze się {{character}}, w {{count, number}} kreskach",
@@ -56,7 +55,6 @@
     "count_one": "{{count, number}} kreska",
     "count_other": "{{count, number}} kreski",
     "heading": "Zobacz, jak się ją pisze",
-    "notesFooter": "Kolejność kresek nie wchodzi do oceny. To ona sprawia, że twoje pismo wygląda poprawnie.",
     "notes": {
       "fewer": "Użyłeś {{theirs, number}} kresek; tę literę pisze się zwykle w {{expected, number}}.",
       "more": "Użyłeś {{theirs, number}} kresek; tę literę pisze się zwykle w {{expected, number}}.",

@@ -40,9 +40,8 @@
       "detail": "Aliniaz-o cu modelul și mai încearcă o dată."
     },
     "retry": "Mai încearcă",
-    "showDetails": "Arată detaliile",
-    "hideDetails": "Ascunde detaliile",
-    "breakdown": "Diferență {{mismatch, number(style: percent)}} · în afară {{outside, number(style: percent)}} · lipsă {{missing, number(style: percent)}}"
+    "breakdown": "Diferență {{mismatch, number(style: percent)}} · în afară {{outside, number(style: percent)}} · lipsă {{missing, number(style: percent)}}",
+    "accepted": "Acceptat."
   },
   "strokeOrder": {
     "diagramLabel_few": "Cum se scrie {{character}}, din {{count, number}} linii",
@@ -53,7 +52,6 @@
     "count_one": "{{count, number}} linie",
     "count_other": "{{count, number}} de linii",
     "heading": "Vezi cum se scrie",
-    "notesFooter": "Ordinea liniilor nu intră la notă. Ea e cea care face scrisul să arate corect.",
     "notes": {
       "fewer": "Ai folosit {{theirs, number}} linii; litera aceasta se scrie de obicei din {{expected, number}}.",
       "more": "Ai folosit {{theirs, number}} linii; litera aceasta se scrie de obicei din {{expected, number}}.",

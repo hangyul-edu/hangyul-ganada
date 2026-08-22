@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Zjistěte svou úroveň a dostávejte slova na míru.",
     "cta": "Spustit test",
-    "retake": "Test znovu"
+    "retake": "Test znovu",
+    "short": "Úr.",
+    "aria": "Úroveň slovní zásoby {{level}}"
+  },
+  "placement": {
+    "title": "Začít slovy, která vám sedí?",
+    "body": "Krátký test nám umožní doporučit slova na vaší úrovni. Když ho přeskočíte, začnete na úrovni 1.",
+    "take": "Udělat test",
+    "start": "Začít na úrovni 1"
   }
 }

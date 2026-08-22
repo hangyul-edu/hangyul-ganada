@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Biết trình độ của bạn và nhận từ vừa sức.",
     "cta": "Làm bài kiểm tra",
-    "retake": "Làm lại"
+    "retake": "Làm lại",
+    "short": "Cấp",
+    "aria": "Cấp từ vựng {{level}}"
+  },
+  "placement": {
+    "title": "Bắt đầu với từ hợp trình độ của bạn?",
+    "body": "Một bài kiểm tra ngắn giúp chúng tôi gợi ý từ đúng trình độ của bạn. Bỏ qua thì bạn bắt đầu từ cấp 1.",
+    "take": "Làm bài kiểm tra",
+    "start": "Bắt đầu từ cấp 1"
   }
 }

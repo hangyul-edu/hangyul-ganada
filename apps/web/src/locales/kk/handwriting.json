@@ -39,9 +39,8 @@
       "detail": "Үлгіге сәйкестеп, тағы бір көріңіз."
     },
     "retry": "Қайта көріңіз",
-    "showDetails": "Егжей-тегжейін көрсету",
-    "hideDetails": "Егжей-тегжейін жасыру",
-    "breakdown": "Айырма {{mismatch, number(style: percent)}} · сыртта {{outside, number(style: percent)}} · жетпейді {{missing, number(style: percent)}}"
+    "breakdown": "Айырма {{mismatch, number(style: percent)}} · сыртта {{outside, number(style: percent)}} · жетпейді {{missing, number(style: percent)}}",
+    "accepted": "Қабылданды."
   },
   "strokeOrder": {
     "diagramLabel_one": "{{character}} қалай жазылады, {{count, number}} сызықпен",
@@ -50,7 +49,6 @@
     "count_one": "{{count, number}} сызық",
     "count_other": "{{count, number}} сызық",
     "heading": "Қалай жазылатынын көріңіз",
-    "notesFooter": "Сызық реті бағаға кірмейді. Бірақ жазуыңызды дұрыс көрсететін — сол.",
     "notes": {
       "fewer": "Сіз {{theirs, number}} сызық қолдандыңыз; бұл әріп әдетте {{expected, number}} сызықпен жазылады.",
       "more": "Сіз {{theirs, number}} сызық қолдандыңыз; бұл әріп әдетте {{expected, number}} сызықпен жазылады.",

@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Finde dein Niveau und bekomm passende Wörter.",
     "cta": "Test starten",
-    "retake": "Erneut testen"
+    "retake": "Erneut testen",
+    "short": "Stufe",
+    "aria": "Wortschatzstufe {{level}}"
+  },
+  "placement": {
+    "title": "Mit passenden Wörtern anfangen?",
+    "body": "Ein kurzer Test hilft uns, Wörter auf deinem Niveau vorzuschlagen. Ohne Test startest du auf Stufe 1.",
+    "take": "Test machen",
+    "start": "Auf Stufe 1 starten"
   }
 }

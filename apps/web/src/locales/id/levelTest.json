@@ -43,6 +43,14 @@
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Cari tahu levelmu dan dapatkan kata yang pas.",
     "cta": "Ikuti tes",
-    "retake": "Tes lagi"
+    "retake": "Tes lagi",
+    "short": "Lvl",
+    "aria": "Level kosakata {{level}}"
+  },
+  "placement": {
+    "title": "Mulai dari kata yang pas untukmu?",
+    "body": "Tes level singkat membantu kami menyarankan kata sesuai tingkat kosakatamu. Kalau dilewati, kamu mulai dari Level 1.",
+    "take": "Ikuti tes level",
+    "start": "Mulai dari Level 1"
   }
 }
