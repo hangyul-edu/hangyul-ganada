@@ -134,12 +134,9 @@
     "note": "Bara för att slå upp. De här orden ingår inte i din dagliga övning.",
     "searching": "Söker i ordboken…",
     "unavailable": "Ordboken behöver en anslutning första gången du öppnar den.",
-    "otherMeaningsPrompt": "Andra betydelser",
-    "moreFromDictionary": "Mer ur ordboken",
     "moreExamples": "Fler exempel",
     "otherMeanings_one": "{{count, number}} annan betydelse",
     "otherMeanings_other": "{{count, number}} andra betydelser",
-    "onlyMeaning": "Ordboken har ingen annan betydelse för det här ordet.",
     "source": "Från {{name}}, {{license}}.",
     "save": "Spara ord",
     "saved": "Sparat"

@@ -134,12 +134,9 @@
     "note": "Reference only. These words are not part of your daily practice.",
     "searching": "Looking in the dictionary…",
     "unavailable": "The dictionary needs a connection the first time you open it.",
-    "otherMeaningsPrompt": "Other meanings",
-    "moreFromDictionary": "More from the dictionary",
     "moreExamples": "More examples",
     "otherMeanings_one": "{{count, number}} other meaning",
     "otherMeanings_other": "{{count, number}} other meanings",
-    "onlyMeaning": "The dictionary has no other meaning for this word.",
     "source": "From {{name}}, {{license}}.",
     "save": "Save word",
     "saved": "Saved"

@@ -134,12 +134,9 @@
     "note": "Alleen om op te zoeken. Deze woorden horen niet bij je dagelijkse oefening.",
     "searching": "Zoeken in het woordenboek…",
     "unavailable": "Het woordenboek heeft de eerste keer een verbinding nodig.",
-    "otherMeaningsPrompt": "Andere betekenissen",
-    "moreFromDictionary": "Meer uit het woordenboek",
     "moreExamples": "Meer voorbeelden",
     "otherMeanings_one": "{{count, number}} andere betekenis",
     "otherMeanings_other": "{{count, number}} andere betekenissen",
-    "onlyMeaning": "Het woordenboek kent geen andere betekenis voor dit woord.",
     "source": "Uit {{name}}, {{license}}.",
     "save": "Woord opslaan",
     "saved": "Opgeslagen"

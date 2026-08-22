@@ -134,12 +134,9 @@
     "note": "सिर्फ़ देखने के लिए। ये शब्द आपके रोज़ के अभ्यास का हिस्सा नहीं हैं।",
     "searching": "शब्दकोश में खोज रहे हैं…",
     "unavailable": "पहली बार खोलने पर शब्दकोश को कनेक्शन चाहिए।",
-    "otherMeaningsPrompt": "दूसरे अर्थ",
-    "moreFromDictionary": "शब्दकोश से और",
     "moreExamples": "और उदाहरण",
     "otherMeanings_one": "{{count, number}} दूसरा अर्थ",
     "otherMeanings_other": "{{count, number}} दूसरे अर्थ",
-    "onlyMeaning": "शब्दकोश में इस शब्द का कोई दूसरा अर्थ नहीं है।",
     "source": "स्रोत: {{name}}, {{license}}।",
     "save": "शब्द सहेजें",
     "saved": "सहेजा गया"

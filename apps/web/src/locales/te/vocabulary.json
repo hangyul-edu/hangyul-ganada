@@ -134,12 +134,9 @@
     "note": "వెతకడానికి మాత్రమే. ఈ పదాలు మీ రోజువారీ సాధనలో ఉండవు.",
     "searching": "నిఘంటువులో వెతుకుతున్నాం…",
     "unavailable": "మొదటిసారి తెరిచేటప్పుడు నిఘంటువుకు కనెక్షన్ కావాలి.",
-    "otherMeaningsPrompt": "ఇతర అర్థాలు",
-    "moreFromDictionary": "నిఘంటువు నుండి మరిన్ని",
     "moreExamples": "మరిన్ని ఉదాహరణలు",
     "otherMeanings_one": "{{count, number}} ఇతర అర్థం",
     "otherMeanings_other": "{{count, number}} ఇతర అర్థాలు",
-    "onlyMeaning": "ఈ పదానికి నిఘంటువులో వేరే అర్థం లేదు.",
     "source": "మూలం: {{name}}, {{license}}.",
     "save": "పదాన్ని సేవ్ చేయి",
     "saved": "సేవ్ అయింది"

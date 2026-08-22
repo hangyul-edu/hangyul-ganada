@@ -141,13 +141,10 @@
     "note": "Apenas para consulta. Estas palavras não fazem parte da sua prática diária.",
     "searching": "Procurando no dicionário…",
     "unavailable": "O dicionário precisa de conexão na primeira vez que você o abre.",
-    "otherMeaningsPrompt": "Outros significados",
-    "moreFromDictionary": "Mais do dicionário",
     "moreExamples": "Mais exemplos",
     "otherMeanings_one": "{{count, number}} outro significado",
     "otherMeanings_many": "{{count, number}} outros significados",
     "otherMeanings_other": "{{count, number}} outros significados",
-    "onlyMeaning": "O dicionário não tem outro significado para esta palavra.",
     "source": "De {{name}}, {{license}}.",
     "save": "Salvar palavra",
     "saved": "Salva"

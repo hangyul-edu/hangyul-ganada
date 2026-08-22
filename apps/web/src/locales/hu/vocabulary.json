@@ -134,12 +134,9 @@
     "note": "Csak kikeresésre. Ezek a szavak nem részei a napi gyakorlásnak.",
     "searching": "Keresés a szótárban…",
     "unavailable": "A szótárnak az első megnyitáskor internet kell.",
-    "otherMeaningsPrompt": "További jelentések",
-    "moreFromDictionary": "Több a szótárból",
     "moreExamples": "További példák",
     "otherMeanings_one": "{{count, number}} további jelentés",
     "otherMeanings_other": "{{count, number}} további jelentés",
-    "onlyMeaning": "A szótár nem ismer más jelentést ehhez a szóhoz.",
     "source": "Forrás: {{name}}, {{license}}.",
     "save": "Szó mentése",
     "saved": "Mentve"

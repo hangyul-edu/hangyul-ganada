@@ -134,12 +134,9 @@
     "note": "Nur zum Nachschlagen. Diese Wörter gehören nicht zur täglichen Übung.",
     "searching": "Im Wörterbuch wird gesucht…",
     "unavailable": "Das Wörterbuch braucht beim ersten Öffnen eine Verbindung.",
-    "otherMeaningsPrompt": "Weitere Bedeutungen",
-    "moreFromDictionary": "Mehr aus dem Wörterbuch",
     "moreExamples": "Weitere Beispiele",
     "otherMeanings_one": "{{count, number}} weitere Bedeutung",
     "otherMeanings_other": "{{count, number}} weitere Bedeutungen",
-    "onlyMeaning": "Das Wörterbuch kennt keine weitere Bedeutung für dieses Wort.",
     "source": "Aus {{name}}, {{license}}.",
     "save": "Wort speichern",
     "saved": "Gespeichert"

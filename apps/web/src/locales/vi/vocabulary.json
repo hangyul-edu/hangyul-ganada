@@ -134,12 +134,9 @@
     "note": "Chỉ để tra cứu. Những từ này không nằm trong phần luyện tập hằng ngày.",
     "searching": "Đang tra từ điển…",
     "unavailable": "Từ điển cần kết nối trong lần mở đầu tiên.",
-    "otherMeaningsPrompt": "Nghĩa khác",
-    "moreFromDictionary": "Thêm từ từ điển",
     "moreExamples": "Thêm ví dụ",
     "otherMeanings_one": "{{count, number}} nghĩa khác",
     "otherMeanings_other": "{{count, number}} nghĩa khác",
-    "onlyMeaning": "Từ điển không có nghĩa nào khác cho từ này.",
     "source": "Nguồn: {{name}}, {{license}}.",
     "save": "Lưu từ",
     "saved": "Đã lưu"

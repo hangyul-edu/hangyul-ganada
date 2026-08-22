@@ -134,12 +134,9 @@
     "note": "Panghanap lang. Hindi kasama ang mga salitang ito sa araw-araw mong pagsasanay.",
     "searching": "Naghahanap sa diksyunaryo…",
     "unavailable": "Kailangan ng koneksyon ang diksyunaryo sa unang pagbukas.",
-    "otherMeaningsPrompt": "Iba pang kahulugan",
-    "moreFromDictionary": "Higit pa mula sa diksyunaryo",
     "moreExamples": "Iba pang halimbawa",
     "otherMeanings_one": "{{count, number}} pang kahulugan",
     "otherMeanings_other": "{{count, number}} pang kahulugan",
-    "onlyMeaning": "Walang ibang kahulugan ang diksyunaryo para sa salitang ito.",
     "source": "Mula sa {{name}}, {{license}}.",
     "save": "I-save ang salita",
     "saved": "Naka-save"

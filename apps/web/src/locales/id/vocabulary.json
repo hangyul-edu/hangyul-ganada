@@ -127,11 +127,8 @@
     "note": "Hanya untuk mencari. Kata-kata ini tidak termasuk latihan harianmu.",
     "searching": "Mencari di kamus…",
     "unavailable": "Kamus perlu koneksi saat pertama kali dibuka.",
-    "otherMeaningsPrompt": "Arti lain",
-    "moreFromDictionary": "Selengkapnya dari kamus",
     "moreExamples": "Contoh lainnya",
     "otherMeanings_other": "{{count, number}} arti lain",
-    "onlyMeaning": "Kamus tidak punya arti lain untuk kata ini.",
     "source": "Dari {{name}}, {{license}}.",
     "save": "Simpan kata",
     "saved": "Tersimpan"

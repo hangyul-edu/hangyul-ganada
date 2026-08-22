@@ -134,12 +134,9 @@
     "note": "Faqat qidirish uchun. Bu so‘zlar kundalik mashqingizga kirmaydi.",
     "searching": "Lug‘atdan qidirilmoqda…",
     "unavailable": "Lug‘at birinchi marta ochilganda ulanish talab qiladi.",
-    "otherMeaningsPrompt": "Boshqa ma’nolari",
-    "moreFromDictionary": "Lug‘atdan yana",
     "moreExamples": "Yana misollar",
     "otherMeanings_one": "{{count, number}} boshqa ma’no",
     "otherMeanings_other": "{{count, number}} boshqa ma’no",
-    "onlyMeaning": "Lug‘atda bu so‘zning boshqa ma’nosi yo‘q.",
     "source": "Manba: {{name}}, {{license}}.",
     "save": "So‘zni saqlash",
     "saved": "Saqlandi"

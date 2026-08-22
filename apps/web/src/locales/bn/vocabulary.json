@@ -134,12 +134,9 @@
     "note": "শুধু খোঁজার জন্য। এই শব্দগুলো আপনার প্রতিদিনের অনুশীলনে নেই।",
     "searching": "অভিধানে খোঁজা হচ্ছে…",
     "unavailable": "প্রথমবার খুললে অভিধানের সংযোগ দরকার।",
-    "otherMeaningsPrompt": "অন্য অর্থ",
-    "moreFromDictionary": "অভিধান থেকে আরও",
     "moreExamples": "আরও উদাহরণ",
     "otherMeanings_one": "{{count, number}}টি অন্য অর্থ",
     "otherMeanings_other": "{{count, number}}টি অন্য অর্থ",
-    "onlyMeaning": "অভিধানে এই শব্দের অন্য কোনো অর্থ নেই।",
     "source": "সূত্র: {{name}}, {{license}}।",
     "save": "শব্দ সংরক্ষণ",
     "saved": "সংরক্ষিত"

@@ -162,8 +162,6 @@
     "note": "للاطّلاع فقط. هذه الكلمات ليست جزءًا من تدريبك اليومي.",
     "searching": "جارٍ البحث في القاموس…",
     "unavailable": "يحتاج القاموس إلى اتصال في أول مرة تفتحه فيها.",
-    "otherMeaningsPrompt": "معانٍ أخرى",
-    "moreFromDictionary": "المزيد من القاموس",
     "moreExamples": "أمثلة أخرى",
     "otherMeanings_zero": "لا معانٍ أخرى",
     "otherMeanings_one": "معنى آخر واحد",
@@ -171,7 +169,6 @@
     "otherMeanings_few": "{{count, number}} معانٍ أخرى",
     "otherMeanings_many": "{{count, number}} معنى آخر",
     "otherMeanings_other": "{{count, number}} معنى آخر",
-    "onlyMeaning": "لا يوجد في القاموس معنى آخر لهذه الكلمة.",
     "source": "من {{name}}، {{license}}.",
     "save": "حفظ الكلمة",
     "saved": "محفوظة"

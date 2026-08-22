@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { getFont } from '../data/fonts';
 import { useDictionaryEntry } from '../data/useDictionary';
+import { usableExamples } from '../data/exampleQuality';
 import { relationsOf } from '../data/relations';
 import { Conjugation } from '../features/vocabulary/Conjugation';
 import { getWord } from '../data/vocabulary';
@@ -274,7 +275,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
           />
         )}
 
-        <OtherMeanings word={word} />
+        <TaughtSenseExamples word={word} />
       </div>
     </div>
   );
@@ -329,147 +330,95 @@ function RelationBlock({
 
 
 /**
- * What else this spelling can mean, from the dictionary, collapsed.
+ * A second and third example of the sense this card teaches — and nothing else.
  *
- * ## Why the card above says only one thing
+ * ## What this used to be, and why it is gone
  *
- * A learning card teaches one sense — `senseId` names which — and the card is
- * built around that promise: the meaning, the example, the picture and the four
- * multiple-choice options all describe 차 the car. Adding "or tea" to the
- * meaning line is how 103 glosses ended up teaching two things at once, which
- * gave a learner asked what 차 means two right answers and one button.
+ * It was "More from the dictionary": a disclosure that fetched the upstream
+ * entry and listed every sense of the headword under it. On 발 that produced
+ * *leg*, *Counter: steps*, *a blind or screen*, *strands of noodles*, and
+ * *rounds of ammunition* — five true statements about the Korean word 발 and
+ * five things a beginner who looked up "foot" did not ask for.
  *
- * But the other senses are real, and a learner who has just met 차 in a café
- * needs somewhere to find them. Here, below everything the card promises,
- * behind a disclosure, plainly attributed to the dictionary rather than to the
- * course. Open it and the app is answering a question; leave it shut and the
- * card still teaches one thing.
+ * The argument for it was that the senses are real and a learner who met 차 in
+ * a café needs somewhere to find them. The argument against it is what it
+ * looked like: a page that opens on one clear meaning and then unfolds into raw
+ * lexicography reads as *less* trustworthy, not more complete. A product that
+ * shows six senses because six exist is showing its data, not teaching.
  *
- * ## Why it costs nothing to have
+ * Dictionary *search* is untouched — 30,059 headwords, and the full entry is
+ * still what a search result opens. What changed is that a **taught card**
+ * stopped borrowing the dictionary's other senses. One card, one sense, which
+ * is the promise the rest of this screen already made.
  *
- * Nothing is fetched until the disclosure is opened — `useDictionaryEntry` is
- * given `null` until then — so a learner reading the example sentence does not
- * pay for a dictionary they did not ask for, and the 25 words with a written
- * definition are unaffected either way.
+ * ## What survives, because it earns its place
  *
- * Absent entirely when the dictionary has nothing more to say, which is the
- * common case: a heading promising other meanings and then listing the one
- * already on the card is worse than no heading.
+ * The extra example sentences — and only the ones belonging to the sense the
+ * card teaches. A learner who has read 저는 커피를 마셔요 once benefits from
+ * seeing the same word in two more real sentences; that is §11, and it is the
+ * half of the old block that was ever pedagogy rather than inventory.
+ *
+ * They are matched to the taught sense by gloss and shown in the open, under
+ * the primary example, rather than behind a disclosure — a thing worth reading
+ * should not need a tap, and a thing that needs hiding should not ship.
  */
-function OtherMeanings({ word }: { word: VocabularyWord }) {
+function TaughtSenseExamples({ word }: { word: VocabularyWord }) {
   const { t } = useTranslation('vocabulary');
-  const [open, setOpen] = useState(false);
-  const { entry, state } = useDictionaryEntry(open ? word.word : null);
+  const { contentLocale } = useLocale();
+  const { entry } = useDictionaryEntry(word.word);
 
   /*
-    The taught sense, removed from the list of others.
+    The taught sense, matched on the gloss.
 
-    Matched on the gloss rather than on `senseId`, because the two ids are built
-    from different glosses — `word_cha#car` from the hand-written English, and
-    `dict_cha#car` from Wiktionary's — and they agree often enough to be
-    tempting and not often enough to rely on. Comparing the short glosses
-    catches the duplicate when there is one and shows an extra line when there
-    is not, which is the failure worth having.
+    Not on `senseId`: the two ids are built from different glosses —
+    `word_cha#car` from the hand-written English and `dict_cha#car` from
+    Wiktionary's — and they agree often enough to be tempting and not often
+    enough to rely on. Comparing the short glosses finds the right sense when
+    there is one and finds nothing when there is not, and finding nothing is the
+    correct outcome: no examples is better than an example of another sense.
   */
-  const taught = wordCopy(word, 'en').value.meaning.toLowerCase();
-  const isTaughtSense = (sense: { shortGloss: string }) =>
-    taught.includes(sense.shortGloss.toLowerCase());
-  const senses = entry?.senses ?? [];
-  const others = senses.filter((sense) => !isTaughtSense(sense));
-
+  const taught = wordCopy(word, 'en').value.meaning;
+  const candidates = (entry?.senses ?? [])
+    .filter((sense) => taught.toLowerCase().includes(sense.shortGloss.toLowerCase()))
+    .flatMap((sense) => sense.examples);
   /*
-    Extra sentences for the sense this card actually teaches.
+    And then the quality filter, which throws most of them away.
 
-    The same gloss comparison, read the other way round. A dictionary sense that
-    matches the taught gloss is dropped from "other meanings" because it is not
-    other — and that makes its examples examples *of the taught sense*, which is
-    the one place they can be shown on this card without breaking the promise
-    the card makes. 419 words gain 581 of them.
-
-    The alternative was tried and rejected. Harvesting extra sentences from
-    other corpus entries' examples looks free — 2,581 graded, translated
-    sentences already sitting there — and produces sense-wrong examples at a
-    rate that would undo the gloss work: filtered to unambiguous surface forms
-    it still files 주사를 맞았어요, getting an injection, under 맞다 meaning
-    "to be right", and matches 열다 inside 여자는 through a real propositive
-    ending. See the note in the commit that added senseId.
+    Measured over the first 500 taught words: 261 candidate sentences, 100 fit
+    to show. The rest carry wikitext that survived the parse, are fragments
+    rather than sentences, explain an idiom instead of translating it, run
+    longer than a beginner can read, or are filed under the taught gloss while
+    demonstrating another sense — 술을 먹다, *to drink wine*, under 먹다 meaning
+    *to eat*. See `data/exampleQuality.ts`; every rule there was written against
+    a sentence that had shipped.
   */
-  const more = senses.filter(isTaughtSense).flatMap((sense) => sense.examples);
+  const extra = usableExamples(candidates, {
+    taughtGloss: taught,
+    skip: word.example,
+    limit: 2,
+  });
 
-  const nothing = state === 'ready' && others.length === 0 && more.length === 0;
+  if (extra.length === 0) return null;
 
   return (
-    <details
-      className={styles.block}
-      onToggle={(event) => setOpen((event.currentTarget as HTMLDetailsElement).open)}
-    >
-      {/*
-        The label promises both halves, because both are behind it.
-
-        It read "Other meanings" and opened on a *More examples* heading, which
-        is a disclosure under-describing its own contents — a learner deciding
-        whether to tap it was being told about the smaller half.
-      */}
-      <summary className={styles.blockTitle}>{t('dictionary.moreFromDictionary')}</summary>
-      {state === 'loading' && <p className={styles.note}>{t('dictionary.searching')}</p>}
-      {state === 'unavailable' && <p className={styles.note}>{t('dictionary.unavailable')}</p>}
-      {nothing && <p className={styles.note}>{t('dictionary.onlyMeaning')}</p>}
-
-      {more.length > 0 && (
-        <>
-          <h3 className={styles.blockSubtitle}>{t('dictionary.moreExamples')}</h3>
-          <ul className={styles.dictionaryExamples}>
-            {more.map((example) => (
-              <li key={example.korean}>
-                <span lang="ko" dir="ltr">
-                  {example.korean}
-                </span>
-                {example.translation && (
-                  <span className={styles.exampleTranslation}>{example.translation}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
-      {others.length > 0 && (
-        <>
-          {more.length > 0 && (
-            <h3 className={styles.blockSubtitle}>{t('dictionary.otherMeaningsPrompt')}</h3>
-          )}
-          <ul className={styles.otherMeanings}>
-            {others.map((sense) => (
-              <li key={sense.senseId}>
-                <span className={styles.otherPartOfSpeech}>
-                  {t(`partOfSpeech.${sense.partOfSpeech}`, { defaultValue: sense.partOfSpeech })}
-                </span>{' '}
-                {sense.gloss}
-                {sense.examples.length > 0 && (
-                  <ul className={styles.dictionaryExamples}>
-                    {sense.examples.map((example) => (
-                      <li key={example.korean}>
-                        <span lang="ko" dir="ltr">
-                          {example.korean}
-                        </span>
-                        {example.translation && (
-                          <span className={styles.exampleTranslation}>{example.translation}</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
-      {entry && (others.length > 0 || more.length > 0) && (
-        <p className={styles.note}>
-          {t('dictionary.source', { name: 'Wiktionary', license: entry.source.license })}
-        </p>
-      )}
-    </details>
+    <section className={styles.block} aria-labelledby="detail-more-examples">
+      <h2 id="detail-more-examples" className={styles.blockTitle}>
+        {t('dictionary.moreExamples')}
+      </h2>
+      <ul className={styles.dictionaryExamples}>
+        {extra.map((example) => (
+          <li key={example.korean}>
+            <span lang="ko" dir="ltr">
+              {example.korean}
+            </span>
+            {example.translation && (
+              <LocalizedText as="span" locale={contentLocale} className={styles.exampleTranslation}>
+                {example.translation}
+              </LocalizedText>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

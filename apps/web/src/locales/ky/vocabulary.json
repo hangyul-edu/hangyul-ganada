@@ -134,12 +134,9 @@
     "note": "Издөө үчүн гана. Бул сөздөр күнүмдүк көнүгүүгө кирбейт.",
     "searching": "Сөздүктөн изделүүдө…",
     "unavailable": "Сөздүктү биринчи ачканда байланыш керек.",
-    "otherMeaningsPrompt": "Башка маанилери",
-    "moreFromDictionary": "Сөздүктөн дагы",
     "moreExamples": "Дагы мисалдар",
     "otherMeanings_one": "{{count, number}} башка маани",
     "otherMeanings_other": "{{count, number}} башка маани",
-    "onlyMeaning": "Сөздүктө бул сөздүн башка мааниси жок.",
     "source": "Булак: {{name}}, {{license}}.",
     "save": "Сөздү сактоо",
     "saved": "Сакталды"
