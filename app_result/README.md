@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `cdda958aeaee7a28e1aa6ac6dd23e5985bbf62fc` at 2026-08-22T07:14:59.687Z.
+Built from commit `c350d036e78858d76ef919aef7e80527e8b3039e` at 2026-08-22T16:05:46.666Z.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
@@ -8,8 +8,8 @@ the legal pack and the full report — is in `result/`.
 
 | File | Size | What it is for |
 | --- | --- | --- |
-| `hangyul-ganada-release.apk` | 67.4 MB | sideloading, and testing on a device |
-| `hangyul-ganada-release.aab` | 66.2 MB | the upload to Google Play |
+| `hangyul-ganada-release.apk` | 67.6 MB | sideloading, and testing on a device |
+| `hangyul-ganada-release.aab` | 66.4 MB | the upload to Google Play |
 | `build-info.json` | — | what these two are, in full |
 | `checksums.sha256` | — | `sha256sum -c checksums.sha256` |
 

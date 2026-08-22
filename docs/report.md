@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 22 August 2026
-describes: A re-audit of the running product on `main` at 2516b58 — a canonical taught sense on every card, a 30,059-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
+describes: A re-audit of the running product on `main` at c350d03 — a canonical taught sense on every card, a 30,059-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
 mark: report-assets/mark.png
 ---
 
@@ -59,11 +59,11 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `9beb21a` — see §2.2 for the pipeline |
+| Git commit | `c350d03` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`9beb21a` — the same commit**, asserted by `npm run release:current`. See §2.2 |
-| Signed APK | 67.4 MB · `1a16c6e6194846a9…` |
-| Signed AAB | 66.2 MB · `5205254fb249d1b0…` |
+| Commit the delivered APK/AAB were built from | **`c350d03` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 67.6 MB · `1caf5a9025fdfd43…` |
+| Signed AAB | 66.4 MB · `a0b00016e8307562…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
@@ -97,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-9beb21a  the production pass — every change in this report
+c350d03  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from 9beb21a, and asserted to be
+result/, app_result/   from c350d03, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
