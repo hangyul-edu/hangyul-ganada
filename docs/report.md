@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 22 August 2026
-describes: A re-audit of the running product on `main` at 09dd79b — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
+describes: A re-audit of the running product on `main` at 2516b58 — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
 mark: report-assets/mark.png
 ---
 
@@ -59,11 +59,11 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `09dd79b` — see §2.2 for the pipeline |
+| Git commit | `2516b58` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`09dd79b` — the same commit**, asserted by `npm run release:current`. See §2.2 |
-| Signed APK | 67.0 MB · `619fde22db646750…` |
-| Signed AAB | 65.8 MB · `d920a512a19f48db…` |
+| Commit the delivered APK/AAB were built from | **`2516b58` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 67.0 MB · `d5a62dd9410e9522…` |
+| Signed AAB | 65.8 MB · `baee13d5ceaaa1dd…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
@@ -97,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-09dd79b  the production pass — every change in this report
+2516b58  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from 09dd79b, and asserted to be
+result/, app_result/   from 2516b58, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -136,6 +136,9 @@ previous report:
 | A canonical taught sense | `word_cha#car` in the word-corpus chunk |
 | The corrected ㄱ | `.885` in the bundle, and no `lean = 0.28` anywhere in it |
 | The decorative speaker | **absent** — no 🔊 in any shipped chunk; `Play the sound` is present |
+| The redesigned confirmation dialog | `ConfirmDialog` in the bundle |
+| The corrected streak flame | the new path present, the old one absent |
+| The Android 12+ splash | `windowSplashScreenAnimatedIcon = @mipmap/splash_icon` in the launch theme, and 11 `ko-` splash configurations |
 
 The launch bitmaps are checked by measurement rather than by hash because AAPT
 re-encodes every PNG it packages, so byte-identity is guaranteed *not* to hold
@@ -212,7 +215,7 @@ a build's own record of itself is not evidence about the file.
 | Words whose taught sense is pinned by exact string | 11, now beside a `senseId` on all 2,581 | 11 |
 | Web unit (`vitest`) | **699** (42 files) | 691 |
 | Handwriting core (`vitest`) | **96** (5 files) | 96 |
-| End-to-end (`playwright`) | **268** (134 × 2 projects) | 266 |
+| End-to-end (`playwright`) | **276** (138 × 2 projects) | 268 |
 | Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting **false-reject / false-accept** | **0.28% / 0.28%** — and Pretendard, the default face, **0.42% / 0.00%** | 0.21% / 0.78% overall, 1.04% / 0.55% on Pretendard |
 | First load | **387.8 kB gz of a 460 kB budget** (84%) | 387.3 kB |
@@ -3711,7 +3714,7 @@ card previews 가나다 / 한글 in its own face.
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
-`bundle:budget:check` against the build from `09dd79b` — every budget met:
+`bundle:budget:check` against the build from `2516b58` — every budget met:
 
 | | Now | Budget | Used |
 | --- | --- | --- | --- |
