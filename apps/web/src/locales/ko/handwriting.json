@@ -11,30 +11,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "바로 그거예요!",
       "perfect": "{{character}} — 아주 잘 썼어요.",
       "scored": "모양이 좋아요 — {{score, number(style: percent)}}까지 왔어요."
     },
     "empty": {
-      "headline": "아직 아무것도 없어요",
       "detail": "네모 안에 글자를 써 보세요."
     },
     "incomplete": {
-      "headline": "거의 다 왔어요",
       "tooSmall": "조금 작아요. 네모를 꽉 채워 보세요.",
       "missingStroke": "획이 하나 빠졌어요. 안내선을 끝까지 따라가 보세요."
     },
     "outside": {
-      "headline": "조금 아쉬워요",
       "tooLarge": "네모 밖으로 나갔어요. 조금 작게 써 볼까요.",
       "strayStroke": "획 하나가 벗어났어요. 천천히 선을 따라가 보세요."
     },
     "scribble": {
-      "headline": "조금 더 천천히 해 볼까요",
       "detail": "획을 하나씩, 한 번에 그어 보세요. 덧그리지 않아도 괜찮아요."
     },
     "mixed": {
-      "headline": "조금 아쉬워요",
       "detail": "안내선에 맞춰서 한 번 더 써 보세요."
     },
     "retry": "다시 쓰기",

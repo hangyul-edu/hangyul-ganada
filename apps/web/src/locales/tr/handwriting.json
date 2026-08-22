@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "İşte bu!",
       "perfect": "{{character}} — çok güzel yazılmış.",
       "scored": "Biçim iyi — yolun {{score, number(style: percent)}} kadarı tamam."
     },
     "empty": {
-      "headline": "Henüz bir şey yok",
       "detail": "Harfi kutunun içine yaz."
     },
     "incomplete": {
-      "headline": "Az kaldı",
       "tooSmall": "Biraz küçük. Kutuyu doldurmayı dene.",
       "missingStroke": "Bir çizgi eksik. Kılavuzu sonuna kadar izle."
     },
     "outside": {
-      "headline": "Tam değil",
       "tooLarge": "Kutunun dışına taştı. Bir dahakine biraz küçük.",
       "strayStroke": "Bir çizgi yolundan çıktı. Çizgiyi yavaşça izle."
     },
     "scribble": {
-      "headline": "Biraz daha yavaş deneyelim",
       "detail": "Her çizgiyi bir kez, tek bir akışta çiz — üzerinden tekrar geçmeye gerek yok."
     },
     "mixed": {
-      "headline": "Tam değil",
       "detail": "Kılavuzla hizala ve bir daha dene."
     },
     "retry": "Tekrar dene",

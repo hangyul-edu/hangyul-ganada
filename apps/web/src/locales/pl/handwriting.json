@@ -14,30 +14,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "O właśnie!",
       "perfect": "{{character}} — pięknie napisana.",
       "scored": "Dobry kształt — {{score, number(style: percent)}} drogi za tobą."
     },
     "empty": {
-      "headline": "Jeszcze nic tu nie ma",
       "detail": "Napisz literę wewnątrz ramki."
     },
     "incomplete": {
-      "headline": "Prawie",
       "tooSmall": "Odrobinę za mała. Spróbuj wypełnić ramkę.",
       "missingStroke": "Brakuje kreski. Prowadź po wzorze do samego końca."
     },
     "outside": {
-      "headline": "Nie do końca",
       "tooLarge": "Wyszło poza ramkę. Następnym razem trochę mniej.",
       "strayStroke": "Jedna kreska uciekła w bok. Prowadź po linii spokojnie."
     },
     "scribble": {
-      "headline": "Spróbujmy wolniej",
       "detail": "Prowadź każdą kreskę raz, jednym płynnym ruchem — nie trzeba po niej wracać."
     },
     "mixed": {
-      "headline": "Nie do końca",
       "detail": "Nałóż ją na wzór i spróbuj jeszcze raz."
     },
     "retry": "Spróbuj ponownie",

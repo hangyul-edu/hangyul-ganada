@@ -13,30 +13,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "C’est ça !",
       "perfect": "{{character}} — très joliment écrit.",
       "scored": "Belle forme — {{score, number(style: percent)}} du chemin."
     },
     "empty": {
-      "headline": "Rien pour l’instant",
       "detail": "Écrivez la lettre dans le cadre."
     },
     "incomplete": {
-      "headline": "Presque",
       "tooSmall": "Un peu petite. Essayez de remplir le cadre.",
       "missingStroke": "Il manque un trait. Suivez le guide jusqu’au bout."
     },
     "outside": {
-      "headline": "Pas tout à fait",
       "tooLarge": "Ça dépasse du cadre. Un peu plus petit.",
       "strayStroke": "Un trait s’est écarté. Suivez la ligne doucement."
     },
     "scribble": {
-      "headline": "Reprenons plus doucement",
       "detail": "Tracez chaque trait une seule fois, d’un geste continu. Inutile de repasser dessus."
     },
     "mixed": {
-      "headline": "Pas tout à fait",
       "detail": "Aligne-la sur le guide et réessaie."
     },
     "retry": "Réécrire",

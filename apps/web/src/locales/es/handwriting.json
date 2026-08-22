@@ -13,30 +13,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "¡Eso es!",
       "perfect": "{{character}} — preciosa.",
       "scored": "Buena forma: {{score, number(style: percent)}} del camino."
     },
     "empty": {
-      "headline": "Aún no hay nada",
       "detail": "Escribe la letra dentro del recuadro."
     },
     "incomplete": {
-      "headline": "Casi",
       "tooSmall": "Un poco pequeña. Intenta llenar el recuadro.",
       "missingStroke": "Falta un trazo. Sigue la guía hasta el final."
     },
     "outside": {
-      "headline": "No del todo",
       "tooLarge": "Se salió del recuadro. Un poco más pequeña.",
       "strayStroke": "Un trazo se desvió. Sigue la línea con calma."
     },
     "scribble": {
-      "headline": "Probemos más despacio",
       "detail": "Traza cada línea una sola vez, con un movimiento continuo. No hace falta repasarla."
     },
     "mixed": {
-      "headline": "No del todo",
       "detail": "Alinéala con la guía y prueba otra vez."
     },
     "retry": "Escribir otra vez",

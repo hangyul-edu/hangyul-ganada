@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Ayan!",
       "perfect": "{{character}} — ang ganda ng pagkasulat.",
       "scored": "Maganda ang hugis — {{score, number(style: percent)}} na ang nalakbay."
     },
     "empty": {
-      "headline": "Wala pa riyan",
       "detail": "Isulat ang letra sa loob ng kahon."
     },
     "incomplete": {
-      "headline": "Muntik na",
       "tooSmall": "Medyo maliit. Subukang punuin ang kahon.",
       "missingStroke": "May kulang na guhit. Sundan ang gabay hanggang dulo."
     },
     "outside": {
-      "headline": "Hindi pa",
       "tooLarge": "Lumabas ito sa kahon. Sa susunod, medyo maliit lang.",
       "strayStroke": "May isang guhit na naligaw. Sundan ang linya nang dahan-dahan."
     },
     "scribble": {
-      "headline": "Subukan nating dahan-dahan",
       "detail": "Guhitan ang bawat guhit nang isang beses, sa isang kilos — hindi na kailangang balikan."
     },
     "mixed": {
-      "headline": "Hindi pa",
       "detail": "Ipantay sa gabay at subukan ulit."
     },
     "retry": "Subukan ulit",

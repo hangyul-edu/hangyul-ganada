@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Genau so!",
       "perfect": "{{character}} — wunderschön geschrieben.",
       "scored": "Gute Form — {{score, number(style: percent)}} des Weges."
     },
     "empty": {
-      "headline": "Noch nichts da",
       "detail": "Schreib den Buchstaben ins Kästchen."
     },
     "incomplete": {
-      "headline": "Fast",
       "tooSmall": "Etwas klein. Füll das Kästchen aus.",
       "missingStroke": "Ein Strich fehlt. Folge der Hilfslinie bis zum Ende."
     },
     "outside": {
-      "headline": "Nicht ganz",
       "tooLarge": "Das ging über den Rand. Etwas kleiner.",
       "strayStroke": "Ein Strich ist abgerutscht. Folge der Linie langsam."
     },
     "scribble": {
-      "headline": "Versuchen wir es langsamer",
       "detail": "Zieh jeden Strich einmal, in einer flüssigen Bewegung — du musst nicht nachfahren."
     },
     "mixed": {
-      "headline": "Nicht ganz",
       "detail": "Richte ihn an der Hilfslinie aus und versuch es noch mal."
     },
     "retry": "Nochmal schreiben",

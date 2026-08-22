@@ -15,8 +15,18 @@ import type { EvaluationResult } from '@hangyul-ganada/handwriting-core';
  * think", never "wrong".
  */
 export interface FeedbackCopy {
-  /** Key under `handwriting.feedback.*`. */
-  headlineKey: string;
+  /**
+   * Key under `handwriting.feedback.*` for the one sentence that is shown.
+   *
+   * There is no headline any more. This used to carry one — "That's it!",
+   * "Almost", "Not quite" — above the detail, and §8 removed the card both
+   * were drawn in. The headline said how the learner had performed; the detail
+   * says what to change, and only one of those is worth a line of a screen on
+   * the fortieth attempt at a letter.
+   *
+   * On a *correct* attempt nothing is shown at all, so `feedbackFor` still
+   * returns a detail for that case and no screen reads it.
+   */
   detailKey: string;
   detailParams?: Record<string, string | number>;
 }
@@ -24,7 +34,6 @@ export interface FeedbackCopy {
 export function feedbackFor(result: EvaluationResult, character: string): FeedbackCopy {
   if (result.passed) {
     return {
-      headlineKey: 'feedback.correct.headline',
       ...(result.score > 0.97
         ? {
             detailKey: 'feedback.correct.perfect',
@@ -39,17 +48,15 @@ export function feedbackFor(result: EvaluationResult, character: string): Feedba
 
   switch (result.reason) {
     case 'empty':
-      return { headlineKey: 'feedback.empty.headline', detailKey: 'feedback.empty.detail' };
+      return { detailKey: 'feedback.empty.detail' };
     case 'incomplete':
       return {
-        headlineKey: 'feedback.incomplete.headline',
         detailKey: isTooSmall(result)
           ? 'feedback.incomplete.tooSmall'
           : 'feedback.incomplete.missingStroke',
       };
     case 'outside':
       return {
-        headlineKey: 'feedback.outside.headline',
         detailKey: isTooLarge(result)
           ? 'feedback.outside.tooLarge'
           : 'feedback.outside.strayStroke',
@@ -62,10 +69,10 @@ export function feedbackFor(result: EvaluationResult, character: string): Feedba
        * was not is better served by "one clean stroke at a time" than by being
        * accused of scribbling.
        */
-      return { headlineKey: 'feedback.scribble.headline', detailKey: 'feedback.scribble.detail' };
+      return { detailKey: 'feedback.scribble.detail' };
     case 'mixed':
     default:
-      return { headlineKey: 'feedback.mixed.headline', detailKey: 'feedback.mixed.detail' };
+      return { detailKey: 'feedback.mixed.detail' };
   }
 }
 

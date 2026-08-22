@@ -13,30 +13,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "É isso!",
       "perfect": "{{character}} — escrita lindamente.",
       "scored": "Boa forma — {{score, number(style: percent)}} do caminho."
     },
     "empty": {
-      "headline": "Ainda não há nada",
       "detail": "Escreva a letra dentro do quadro."
     },
     "incomplete": {
-      "headline": "Quase",
       "tooSmall": "Um pouco pequena. Tente preencher o quadro.",
       "missingStroke": "Falta um traço. Siga a guia até o fim."
     },
     "outside": {
-      "headline": "Quase lá",
       "tooLarge": "Saiu do quadro. Um pouco menor.",
       "strayStroke": "Um traço se desviou. Siga a linha com calma."
     },
     "scribble": {
-      "headline": "Vamos com mais calma",
       "detail": "Faça cada traço uma vez só, em um movimento contínuo. Não precisa passar por cima."
     },
     "mixed": {
-      "headline": "Quase lá",
       "detail": "Alinhe com a guia e tente de novo."
     },
     "retry": "Escrever de novo",

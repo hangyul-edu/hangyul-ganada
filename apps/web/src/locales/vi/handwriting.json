@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Chuẩn rồi!",
       "perfect": "{{character}} — viết đẹp lắm.",
       "scored": "Dáng chữ ổn — được {{score, number(style: percent)}} rồi."
     },
     "empty": {
-      "headline": "Chưa có gì cả",
       "detail": "Bạn viết chữ vào trong ô nhé."
     },
     "incomplete": {
-      "headline": "Sắp được rồi",
       "tooSmall": "Hơi nhỏ. Thử viết đầy ô xem.",
       "missingStroke": "Thiếu một nét. Đi theo đường dẫn cho hết nhé."
     },
     "outside": {
-      "headline": "Chưa đúng lắm",
       "tooLarge": "Chữ bị tràn ra ngoài ô. Lần sau nhỏ lại một chút.",
       "strayStroke": "Có một nét đi lạc. Bạn đi theo đường dẫn từ từ thôi."
     },
     "scribble": {
-      "headline": "Mình viết chậm lại nhé",
       "detail": "Mỗi nét vẽ một lần thôi, trong một chuyển động liền mạch — không cần tô lại."
     },
     "mixed": {
-      "headline": "Chưa đúng lắm",
       "detail": "Canh cho khớp với đường dẫn rồi thử lại nhé."
     },
     "retry": "Viết lại",

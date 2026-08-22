@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Ez az!",
       "perfect": "{{character}} — gyönyörűen leírva.",
       "scored": "Jó forma — az út {{score, number(style: percent)}}-a megvan."
     },
     "empty": {
-      "headline": "Még nincs ott semmi",
       "detail": "Írd a betűt a keretbe."
     },
     "incomplete": {
-      "headline": "Majdnem",
       "tooSmall": "Kicsit kicsi. Próbáld kitölteni a keretet.",
       "missingStroke": "Hiányzik egy vonás. Kövesd a mintát végig."
     },
     "outside": {
-      "headline": "Nem egészen",
       "tooLarge": "Kilógott a keretből. Legközelebb egy kicsit kisebbet.",
       "strayStroke": "Az egyik vonás elkalandozott. Kövesd a vonalat lassan."
     },
     "scribble": {
-      "headline": "Próbáljuk lassabban",
       "detail": "Húzd meg minden vonást egyszer, egy mozdulattal — nem kell újra végigmenni rajta."
     },
     "mixed": {
-      "headline": "Nem egészen",
       "detail": "Igazítsd a mintához, és próbáld újra."
     },
     "retry": "Próbáld újra",

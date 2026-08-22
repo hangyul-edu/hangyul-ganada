@@ -34,14 +34,15 @@ const result = (patch: Partial<EvaluationResult> = {}): EvaluationResult => ({
  */
 const i18n = createI18n('en');
 const render = (copy: ReturnType<typeof feedbackFor>) => ({
-  headline: i18n.t(copy.headlineKey, { ns: 'handwriting' }),
   detail: i18n.t(copy.detailKey, { ns: 'handwriting', ...copy.detailParams }),
 });
 
 describe('feedback copy', () => {
-  it('celebrates a pass and names the character', () => {
+  it('scores a pass and names the character', () => {
+    // No headline any more — §8. What is left is the sentence, and on a pass
+    // no screen even shows that; the key still resolves so nothing downstream
+    // can render a dotted path if one ever does.
     const copy = render(feedbackFor(result({ passed: true, score: 0.94, reason: null }), 'ㅏ'));
-    expect(copy.headline).toBe("That's it!");
     expect(copy.detail).toContain('94');
   });
 
@@ -58,7 +59,6 @@ describe('feedback copy', () => {
 
   it('asks for something to be written when the box is empty', () => {
     const copy = feedbackFor(result({ reason: 'empty' }), 'ㅏ');
-    expect(copy.headlineKey).toBe('feedback.empty.headline');
     // Says where to put it, rather than naming a step: the same message shows
     // on both writing steps, and one of them is not tracing.
     expect(render(copy).detail).toMatch(/inside the box/i);
@@ -105,10 +105,10 @@ describe('feedback copy', () => {
     for (const reason of ['empty', 'outside', 'incomplete', 'mixed'] as const) {
       const copy = feedbackFor(result({ reason }), '가');
       const en = render(copy);
-      expect(en.headline).not.toMatch(/wrong|fail|incorrect/i);
+      expect(en.detail).not.toMatch(/wrong|fail|incorrect/i);
       expect(en.detail).toBeTruthy();
 
-      const korean = ko.t(copy.headlineKey, { ns: 'handwriting' });
+      const korean = ko.t(copy.detailKey, { ns: 'handwriting', ...copy.detailParams });
       expect(korean).not.toMatch(/틀렸|실패|오답/);
     }
   });
@@ -124,7 +124,6 @@ describe('feedback copy', () => {
     for (const evaluation of cases) {
       const copy = feedbackFor(evaluation, '가');
       const rendered = render(copy);
-      expect(rendered.headline).not.toContain('.');
       expect(rendered.detail).not.toBe(copy.detailKey);
     }
   });
@@ -282,8 +281,8 @@ describe('stroke order notes', () => {
     // The guard that matters: `feedbackFor` takes an evaluation and a
     // character, and has no way to see a stroke. A future change that tried to
     // fail someone for stroke order would have to change its signature first.
-    expect(feedbackFor(result({ passed: true, score: 0.99 }), 'ㅏ').headlineKey).toBe(
-      'feedback.correct.headline',
+    expect(feedbackFor(result({ passed: true, score: 0.99 }), 'ㅏ').detailKey).toBe(
+      'feedback.correct.perfect',
     );
   });
 });

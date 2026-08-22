@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Dat is 'm!",
       "perfect": "{{character}} — prachtig geschreven.",
       "scored": "Goede vorm — {{score, number(style: percent)}} van de weg."
     },
     "empty": {
-      "headline": "Nog niets",
       "detail": "Schrijf de letter in het vak."
     },
     "incomplete": {
-      "headline": "Bijna",
       "tooSmall": "Een beetje klein. Probeer het vak te vullen.",
       "missingStroke": "Er ontbreekt een streek. Volg de hulplijn helemaal door."
     },
     "outside": {
-      "headline": "Net niet",
       "tooLarge": "Dat ging buiten het vak. Volgende keer iets kleiner.",
       "strayStroke": "Eén streek dwaalde af. Volg de lijn rustig."
     },
     "scribble": {
-      "headline": "Laten we het rustiger proberen",
       "detail": "Zet elke streek één keer, in één vloeiende beweging — je hoeft er niet overheen te gaan."
     },
     "mixed": {
-      "headline": "Net niet",
       "detail": "Leg hem op de hulplijn en probeer het nog eens."
     },
     "retry": "Opnieuw",

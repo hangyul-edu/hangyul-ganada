@@ -14,30 +14,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Přesně tak!",
       "perfect": "{{character}} — krásně napsané.",
       "scored": "Dobrý tvar — {{score, number(style: percent)}} cesty za vámi."
     },
     "empty": {
-      "headline": "Zatím tu nic není",
       "detail": "Napište literu dovnitř rámečku."
     },
     "incomplete": {
-      "headline": "Skoro",
       "tooSmall": "Trochu malé. Zkuste rámeček vyplnit.",
       "missingStroke": "Chybí tah. Veďte po předloze až do konce."
     },
     "outside": {
-      "headline": "Ne tak úplně",
       "tooLarge": "Vyšlo to mimo rámeček. Příště o kus menší.",
       "strayStroke": "Jeden tah utekl stranou. Veďte po čáře pomalu."
     },
     "scribble": {
-      "headline": "Zkusme to pomaleji",
       "detail": "Veďte každý tah jednou, jedním plynulým pohybem — vracet se po něm netřeba."
     },
     "mixed": {
-      "headline": "Ne tak úplně",
       "detail": "Srovnejte to s předlohou a zkuste to znovu."
     },
     "retry": "Zkusit znovu",

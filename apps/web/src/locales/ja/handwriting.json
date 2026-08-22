@@ -11,30 +11,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "そのとおり！",
       "perfect": "{{character}} — とてもきれいに書けました。",
       "scored": "いい形です — {{score, number(style: percent)}} まで来ました。"
     },
     "empty": {
-      "headline": "まだ何もありません",
       "detail": "枠の中に文字を書いてみましょう。"
     },
     "incomplete": {
-      "headline": "もう少し",
       "tooSmall": "少し小さいです。枠いっぱいに書いてみましょう。",
       "missingStroke": "画が一つ足りません。ガイドを最後までなぞってみましょう。"
     },
     "outside": {
-      "headline": "おしい",
       "tooLarge": "枠からはみ出しました。少し小さめに書いてみましょう。",
       "strayStroke": "画が一つそれました。ゆっくり線をたどってみましょう。"
     },
     "scribble": {
-      "headline": "もう少しゆっくりやってみましょう",
       "detail": "一画ずつ、一度でスッと書いてみましょう。なぞり直さなくて大丈夫です。"
     },
     "mixed": {
-      "headline": "おしい",
       "detail": "ガイドに合わせて、もう一度書いてみましょう。"
     },
     "retry": "もう一度書く",

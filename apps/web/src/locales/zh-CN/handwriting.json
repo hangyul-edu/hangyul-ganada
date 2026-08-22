@@ -11,30 +11,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "就是这样！",
       "perfect": "{{character}} —— 写得非常漂亮。",
       "scored": "形状不错 —— 已经到 {{score, number(style: percent)}} 了。"
     },
     "empty": {
-      "headline": "还什么都没有",
       "detail": "在方框里写这个字。"
     },
     "incomplete": {
-      "headline": "快了",
       "tooSmall": "有点小，试着写满方框。",
       "missingStroke": "少了一笔。顺着辅助线一路写到底。"
     },
     "outside": {
-      "headline": "差一点",
       "tooLarge": "写到框外去了，下次小一点。",
       "strayStroke": "有一笔跑偏了，慢慢顺着线走。"
     },
     "scribble": {
-      "headline": "我们慢一点再试一次",
       "detail": "一笔一画，一次写完就好，不用来回描。"
     },
     "mixed": {
-      "headline": "差一点",
       "detail": "对准辅助线，再写一次。"
     },
     "retry": "再写一次",

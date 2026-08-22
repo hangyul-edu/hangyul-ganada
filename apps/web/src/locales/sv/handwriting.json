@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Just så!",
       "perfect": "{{character}} — vackert skrivet.",
       "scored": "Bra form — {{score, number(style: percent)}} av vägen."
     },
     "empty": {
-      "headline": "Inget där än",
       "detail": "Skriv bokstaven inuti rutan."
     },
     "incomplete": {
-      "headline": "Nästan",
       "tooSmall": "Lite liten. Försök fylla rutan.",
       "missingStroke": "Ett streck saknas. Följ mallen hela vägen."
     },
     "outside": {
-      "headline": "Inte riktigt",
       "tooLarge": "Det gick utanför rutan. Lite mindre nästa gång.",
       "strayStroke": "Ett streck kom på villovägar. Följ linjen långsamt."
     },
     "scribble": {
-      "headline": "Vi tar det lite lugnare",
       "detail": "Dra varje streck en gång, i en mjuk rörelse — du behöver inte gå över det igen."
     },
     "mixed": {
-      "headline": "Inte riktigt",
       "detail": "Lägg den mot mallen och gör ett försök till."
     },
     "retry": "Försök igen",

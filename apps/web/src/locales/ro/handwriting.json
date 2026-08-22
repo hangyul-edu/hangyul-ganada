@@ -13,30 +13,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Exact așa!",
       "perfect": "{{character}} — scrisă frumos.",
       "scored": "Formă bună — {{score, number(style: percent)}} din drum."
     },
     "empty": {
-      "headline": "Încă nimic",
       "detail": "Scrie litera înăuntrul casetei."
     },
     "incomplete": {
-      "headline": "Aproape",
       "tooSmall": "Puțin cam mică. Încearcă să umpli caseta.",
       "missingStroke": "Lipsește o linie. Urmează modelul până la capăt."
     },
     "outside": {
-      "headline": "Nu chiar",
       "tooLarge": "A ieșit din casetă. Data viitoare puțin mai mică.",
       "strayStroke": "O linie a luat-o razna. Urmează traseul încet."
     },
     "scribble": {
-      "headline": "Hai s-o luăm mai încet",
       "detail": "Trage fiecare linie o singură dată, dintr-o mișcare — nu e nevoie să treci din nou peste ea."
     },
     "mixed": {
-      "headline": "Nu chiar",
       "detail": "Aliniaz-o cu modelul și mai încearcă o dată."
     },
     "retry": "Mai încearcă",

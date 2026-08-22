@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Mana shu!",
       "perfect": "{{character}} — juda chiroyli yozilibdi.",
       "scored": "Shakli yaxshi — yo‘lning {{score, number(style: percent)}} qismi bosib o‘tildi."
     },
     "empty": {
-      "headline": "Hali hech narsa yo‘q",
       "detail": "Harfni katak ichiga yozing."
     },
     "incomplete": {
-      "headline": "Sal qoldi",
       "tooSmall": "Bir oz kichik. Katakni to‘ldirishga harakat qiling.",
       "missingStroke": "Bir chiziq yetishmayapti. Namunani oxirigacha kuzating."
     },
     "outside": {
-      "headline": "Unchalik emas",
       "tooLarge": "Katakdan chiqib ketdi. Keyingi safar birozgina kichikroq.",
       "strayStroke": "Bir chiziq chetga ketdi. Chiziqni sekin kuzating."
     },
     "scribble": {
-      "headline": "Sekinroq urinib ko‘ramiz",
       "detail": "Har bir chiziqni bir marta, bitta silliq harakatda torting — ustidan qaytib o‘tish shart emas."
     },
     "mixed": {
-      "headline": "Unchalik emas",
       "detail": "Namuna bilan moslang va yana urinib ko‘ring."
     },
     "retry": "Yana urinib ko‘ring",

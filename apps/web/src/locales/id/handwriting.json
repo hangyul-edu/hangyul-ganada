@@ -11,30 +11,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "Nah, itu dia!",
       "perfect": "{{character}} — tulisannya bagus sekali.",
       "scored": "Bentuknya bagus — {{score, number(style: percent)}} menuju sempurna."
     },
     "empty": {
-      "headline": "Belum ada apa-apa",
       "detail": "Tulis hurufnya di dalam kotak."
     },
     "incomplete": {
-      "headline": "Hampir",
       "tooSmall": "Agak kecil. Coba penuhi kotaknya.",
       "missingStroke": "Ada goresan yang kurang. Ikuti panduannya sampai habis."
     },
     "outside": {
-      "headline": "Belum tepat",
       "tooLarge": "Itu keluar dari kotak. Sedikit lebih kecil lain kali.",
       "strayStroke": "Satu goresan melenceng. Ikuti garisnya pelan-pelan."
     },
     "scribble": {
-      "headline": "Coba lebih pelan",
       "detail": "Tarik tiap goresan sekali saja, dalam satu gerakan — tak perlu diulang-ulang."
     },
     "mixed": {
-      "headline": "Belum tepat",
       "detail": "Sejajarkan dengan panduannya lalu coba lagi."
     },
     "retry": "Coba lagi",

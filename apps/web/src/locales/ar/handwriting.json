@@ -16,30 +16,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "أحسنت!",
       "perfect": "{{character}} — خط جميل.",
       "scored": "شكل جيد — {{score, number(style: percent)}} من الطريق."
     },
     "empty": {
-      "headline": "لا شيء بعد",
       "detail": "اكتب الحرف داخل المربّع."
     },
     "incomplete": {
-      "headline": "اقتربت",
       "tooSmall": "صغير قليلًا. حاول ملء المربّع.",
       "missingStroke": "ينقصك خط. اتبع النموذج إلى آخره."
     },
     "outside": {
-      "headline": "ليس تمامًا",
       "tooLarge": "خرج عن المربّع. أصغر قليلًا في المرة القادمة.",
       "strayStroke": "خط واحد شرد. اتبع الخط ببطء."
     },
     "scribble": {
-      "headline": "لنجرّب بهدوء أكثر",
       "detail": "ارسم كل خط مرة واحدة بحركة متصلة — لا داعي لإعادة المرور عليه."
     },
     "mixed": {
-      "headline": "ليس تمامًا",
       "detail": "حاذِه مع النموذج وجرّب مرة أخرى."
     },
     "retry": "حاول مرة أخرى",

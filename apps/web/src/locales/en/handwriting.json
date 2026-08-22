@@ -12,30 +12,24 @@
   },
   "feedback": {
     "correct": {
-      "headline": "That's it!",
       "perfect": "{{character}} — beautifully written.",
       "scored": "Good shape — {{score, number(style: percent)}} of the way there."
     },
     "empty": {
-      "headline": "Nothing there yet",
       "detail": "Write the letter inside the box."
     },
     "incomplete": {
-      "headline": "Almost",
       "tooSmall": "A little small. Try filling the box.",
       "missingStroke": "A stroke is missing. Follow the guide all the way through."
     },
     "outside": {
-      "headline": "Not quite",
       "tooLarge": "That went outside the box. A bit smaller next time.",
       "strayStroke": "One stroke wandered off. Follow the line slowly."
     },
     "scribble": {
-      "headline": "Let's try that more slowly",
       "detail": "Draw each stroke once, in one smooth movement — no need to go over it again."
     },
     "mixed": {
-      "headline": "Not quite",
       "detail": "Line it up with the guide and give it another go."
     },
     "retry": "Try again",
