@@ -47,7 +47,7 @@
  *   Korean and 車、お茶 in Japanese. Those are real and they are content work,
  *   so they are listed rather than made to block a build nobody can unblock.
  */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { COMPLETE_LOCALES } from './lib/locale-status.mjs';
@@ -57,6 +57,27 @@ const GENERATED = join(ROOT, 'apps/web/src/data/generated');
 const CHECK = process.argv.includes('--check');
 
 const read = (name) => JSON.parse(readFileSync(join(GENERATED, name), 'utf8'));
+
+/**
+ * The dictionary entry for a headword, or nothing.
+ *
+ * Read straight off the built chunks rather than through the app's loader,
+ * which fetches over HTTP and would need a server. Thirty thousand entries is
+ * a few seconds and one pass, so they are indexed once here.
+ */
+const DICTIONARY = new Map();
+{
+  const dir = join(ROOT, 'apps/web/public/dictionary/entries');
+  if (existsSync(dir)) {
+    for (const file of readdirSync(dir)) {
+      if (!file.endsWith('.json')) continue;
+      for (const entry of JSON.parse(readFileSync(join(dir, file), 'utf8')).entries) {
+        DICTIONARY.set(entry.headword, entry);
+      }
+    }
+  }
+}
+const dictionaryEntry = (headword) => DICTIONARY.get(headword);
 const corpus = read('vocabulary.json');
 
 /**
@@ -315,6 +336,88 @@ for (const [locale, rows] of packs) {
         'example demonstrates, or add it to REVIEWED_SPLIT once you have read it',
     );
   });
+}
+
+// --- Commas, against the dictionary's own senses -------------------------------
+
+/*
+ * §50: a comma in a gloss may be two renderings of one sense, or two senses.
+ *
+ * `SENSE_SPLIT` deliberately excludes the comma, because "we, us" and "mum,
+ * mummy" are one sense written twice and a rule that flagged those would flag
+ * seven hundred glosses and be switched off within a week. But some comma
+ * glosses really do carry two senses — "a neck, a throat" — and nothing here
+ * could tell them apart.
+ *
+ * The dictionary can. Every taught word has an entry with its senses already
+ * separated by somebody else, so a comma gloss whose parts land on *different*
+ * dictionary senses is the shortlist worth reading. It is a shortlist and not a
+ * verdict: 55 words come back and most are near-synonyms Wiktionary happens to
+ * file apart — "to grab, to catch", "traffic, transport". Five were real, and
+ * the five are what this pass fixed:
+ *
+ * ```
+ *   목    "a neck, a throat"        every example said throat; eight glosses said neck
+ *   밥    "rice, a meal"            English translated its example "a meal"; eight said rice
+ *   근데  "but, by the way"         four glosses said but; every example was by-the-way
+ *   그쪽  "that way, your side"     the example is the polite second person
+ *   기술  "technology, a skill"     the Korean gloss is 솜씨, and every example is technique
+ * ```
+ *
+ * Every remaining word is named below, which is what makes this a review rather
+ * than a filter: a new comma gloss that splits senses is not on the list, and
+ * fails.
+ */
+const REVIEWED_COMMA = new Set([
+  // One sense, two English words for it — no single word does the job.
+  '지금', '여행', '자리', '맞다', '보이다', '아직', '잡다', '약속', '제일', '손님',
+  '우주', '교통', '아무', '시원하다', '행동', '베다', '흐리다', '나누다', '닦다', '얻다',
+  '끊다', '존재', '건드리다', '뿌리다', '깨어나다', '가만히', '이동', '부동산', '사인',
+  '깨지다', '꼬다', '똑바로', '발표하다', '늘어나다', '작전', '부수다', '조종하다',
+  '아깝다', '외부', '대기', '줄곧', '중지', '실행', '떠돌다', '충돌', '채다', '휘다',
+  '돋다', '억지로', '기울다',
+  // Read and kept after the fix: the parts are the same sense either way.
+  '밥',
+]);
+
+const article = /^(?:to|a|an|the)\s+/i;
+const bare = (text) => text.trim().toLowerCase().replace(article, '').trim();
+const unreviewed = [];
+for (const [index, word] of corpus.words.entries()) {
+  const gloss = english[index]?.[0];
+  if (!gloss || !gloss.includes(',')) continue;
+  const entry = dictionaryEntry(word.word);
+  if (!entry) continue;
+  /*
+    Which dictionary sense each part of the gloss belongs to. A part that
+    matches nothing is ignored rather than counted as a third sense — the
+    dictionary is a second opinion here, not the authority, and its silence
+    says nothing.
+  */
+  const senses = new Map();
+  for (const part of gloss.split(',').map(bare).filter(Boolean)) {
+    const match = entry.senses.find((sense) => bare(sense.gloss).includes(part));
+    if (match) senses.set(part, match.senseId);
+  }
+  const distinct = new Set(senses.values());
+  if (senses.size >= 2 && distinct.size > 1 && !REVIEWED_COMMA.has(word.word)) {
+    unreviewed.push(
+      `${word.word} reads "${gloss}", and its parts are ${[...distinct].join(' and ') } in ` +
+        'the dictionary — two senses on one card. Trim it to the sense the example ' +
+        'demonstrates, or add it to REVIEWED_COMMA once you have read it',
+    );
+  }
+}
+hard.push(...unreviewed);
+
+const staleComma = [...REVIEWED_COMMA].filter(
+  (headword) => !corpus.words.some((word) => word.word === headword && english[corpus.words.indexOf(word)]?.[0]?.includes(',')),
+);
+if (staleComma.length) {
+  notes.push(
+    `${staleComma.length} REVIEWED_COMMA entr(ies) no longer hold a comma gloss ` +
+      `and should be deleted: ${staleComma.join(', ')}`,
+  );
 }
 
 const stale = [...REVIEWED_SPLIT].filter((key) => {

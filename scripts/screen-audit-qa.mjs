@@ -52,6 +52,8 @@ import { fileURLToPath } from 'node:url';
 
 import { chromium } from 'playwright';
 
+import { ensurePreview } from './lib/preview.mjs';
+
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const OUT = join(root, '.visual-qa/screens');
@@ -90,6 +92,7 @@ const DEVICES = [
 const BRAND_PAIRS = new Set(['#ffffff on #ff6700', '#ff6700 on #ffffff']);
 
 const findings = [];
+const stopPreview = await ensurePreview(baseUrl);
 const browser = await chromium.launch();
 
 for (const device of DEVICES) {
@@ -337,6 +340,7 @@ for (const device of DEVICES) {
 }
 
 await browser.close();
+await stopPreview();
 
 if (!CHECK) {
   mkdirSync(OUT, { recursive: true });

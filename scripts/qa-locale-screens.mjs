@@ -46,6 +46,8 @@ import { fileURLToPath } from 'node:url';
 
 import { chromium } from 'playwright';
 
+import { ensurePreview } from './lib/preview.mjs';
+
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const OUT = join(root, '.locale-qa');
@@ -107,6 +109,7 @@ const ENGLISH = englishStrings();
 const findings = [];
 const rows = [];
 
+const stopPreview = await ensurePreview(baseUrl);
 const browser = await chromium.launch();
 
 for (const locale of ALL_LOCALES) {
@@ -200,6 +203,7 @@ for (const locale of ALL_LOCALES) {
 }
 
 await browser.close();
+await stopPreview();
 
 if (!CHECK) {
   mkdirSync(OUT, { recursive: true });
