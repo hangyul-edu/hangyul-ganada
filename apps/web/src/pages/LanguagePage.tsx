@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { WORD_COPY_LOCALES } from '../data/wordCopy';
 import { flagFor } from '../i18n/flags';
-import { localeMatches, useLocale } from '../i18n';
+import { describeLocale, localeMatches, useLocale } from '../i18n';
 import { AppHeader } from '../ui/AppHeader';
 import { CheckIcon, SearchIcon } from '../ui/icons';
 import styles from './LanguagePage.module.css';
@@ -25,7 +25,8 @@ import styles from './LanguagePage.module.css';
  */
 export function LanguagePage() {
   const navigate = useNavigate();
-  const { locale, available, setLocale } = useLocale();
+  const { locale, available, setLocale, contentLocale, contentIsBorrowed, contentLocales, setContentLocale } =
+    useLocale();
   const { t } = useTranslation(['settings', 'common']);
 
   const [query, setQuery] = useState('');
@@ -167,6 +168,47 @@ export function LanguagePage() {
               );
             })}
           </ul>
+        )}
+
+        {/*
+          Which language the *word meanings* are in, and a way to change it.
+
+          Only drawn when it is a real question — that is, when the interface
+          language has no meanings of its own. For the ten that do, this whole
+          section would be a setting whose only value is the one already in
+          force, which is a decision the learner does not have to make.
+
+          It exists because "falls back to English" was being done silently, in
+          the middle of a quiz: a Tamil question with four English answers. The
+          fallback itself is not the defect — the corpus genuinely has ten
+          languages — but doing it without saying so, and without offering the
+          learner any of the other nine, is.
+        */}
+        {contentIsBorrowed && contentLocales.length > 0 && (
+          <section className={styles.meanings} aria-labelledby="meaning-language">
+            <h2 id="meaning-language" className={styles.meaningsTitle}>
+              {t('settings:language.meaningsTitle')}
+            </h2>
+            <p className={styles.meaningsBody}>
+              {t('settings:language.meaningsBody', {
+                language: describeLocale(contentLocale).nativeName,
+              })}
+            </p>
+            <div className={styles.meaningsOptions} role="group" aria-label={t('settings:language.meaningsTitle')}>
+              {contentLocales.map((entry) => (
+                <button
+                  key={entry.code}
+                  type="button"
+                  className={`${styles.meaningsOption} ${entry.code === contentLocale ? styles.meaningsOptionOn : ''}`}
+                  onClick={() => setContentLocale(entry.code)}
+                  aria-pressed={entry.code === contentLocale}
+                  lang={entry.code}
+                >
+                  <bdi>{entry.nativeName}</bdi>
+                </button>
+              ))}
+            </div>
+          </section>
         )}
 
         <p className={styles.coverage}>{t('settings:language.coverageNote')}</p>

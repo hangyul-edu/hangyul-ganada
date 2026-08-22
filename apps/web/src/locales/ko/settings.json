@@ -16,7 +16,9 @@
     "noResults": "\"{{query}}\"와 맞는 언어가 없어요.",
     "selected": "선택됨",
     "coverageNote": "여기 있는 언어는 모두 화면과 낱자 수업이 번역되어 있어요. 표시가 있는 언어는 단어 뜻과 예문 번역이 아직 영어로 나와요.",
-    "wordsInEnglish": "단어 뜻은 영어"
+    "wordsInEnglish": "단어 뜻은 영어",
+    "meaningsTitle": "단어 뜻",
+    "meaningsBody": "뜻과 예문 번역을 {{language}}(으)로 보여드려요. 다른 언어로 바꿀 수 있어요."
   },
   "font": {
     "title": "연습 글꼴",

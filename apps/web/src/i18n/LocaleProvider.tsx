@@ -11,15 +11,18 @@ import {
   type LocaleDescriptor,
 } from './locales';
 import {
+  readStoredContentLocale,
   readStoredLocale,
   resolveLocale,
   suggestLocaleFromBrowser,
+  writeStoredContentLocale,
   writeStoredLocale,
   type LocaleSource,
 } from './preference';
 import { AVAILABLE_LOCALES, hasLocaleResources, loadLocaleResources } from './resources';
 import { hasLetterCopy, loadLetterCopy } from '../data/letterCopy';
-import { hasWordCopy, loadWordCopy } from '../data/wordCopy';
+import { WORD_COPY_LOCALES, hasWordCopy, loadWordCopy } from '../data/wordCopy';
+import { contentLocale as resolveContentLocale, isBorrowedContent } from './contentLocale';
 
 export interface LocaleProviderProps {
   children: ReactNode;
@@ -84,7 +87,20 @@ export function LocaleProvider({
    * between — marked as a fallback, the way every other piece of unavailable
    * content is — and this counter re-renders the tree when the pack lands.
    */
-  const [, setCopyLoaded] = useState(0);
+  const [copyLoaded, setCopyLoaded] = useState(0);
+
+  /**
+   * Which language the learner asked to read *word meanings* in.
+   *
+   * Null for almost everybody: it is only a question at all for the
+   * twenty-two interface languages the curriculum has no meanings for. See
+   * `contentLocale.ts` for why the answer is one resolved language rather than
+   * a per-word fallback.
+   */
+  const [contentChoice, setContentChoice] = useState<string | null>(() =>
+    readStoredContentLocale(),
+  );
+
   const loadCopy = useCallback((next: string) => {
     // Two packs, one counter. The letters are small and the words are not, so
     // they land at different moments; either one arriving is a reason to
@@ -92,8 +108,18 @@ export function LocaleProvider({
     if (!hasLetterCopy(next)) {
       void loadLetterCopy(next).then(() => setCopyLoaded((n) => n + 1));
     }
-    if (!hasWordCopy(next)) {
-      void loadWordCopy(next).then(() => setCopyLoaded((n) => n + 1));
+    /*
+      The *content* locale, not the interface one.
+
+      Loading `ta` here would ask for a pack the corpus does not have, fail
+      quietly, and leave every Tamil word card resolving to English one gloss at
+      a time — which was the shape of the mixed-language quiz bug. The language
+      meanings are read in is decided once, in `contentLocale`, and this loads
+      that one.
+    */
+    const forMeanings = resolveContentLocale(next, WORD_COPY_LOCALES, readStoredContentLocale());
+    if (!hasWordCopy(forMeanings)) {
+      void loadWordCopy(forMeanings).then(() => setCopyLoaded((n) => n + 1));
     }
   }, []);
 
@@ -201,6 +227,42 @@ export function LocaleProvider({
     [apply, onLocaleChange],
   );
 
+  /*
+    Recomputed when the corpus lands, because `WORD_COPY_LOCALES` is filled from
+    the corpus manifest rather than compiled in — before it arrives the honest
+    answer is English, and one re-render later it is the learner's language.
+  */
+  const activeContentLocale = useMemo(
+    () => resolveContentLocale(locale, WORD_COPY_LOCALES, contentChoice),
+    // `copyLoaded` is the signal that a pack or the manifest has arrived.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [locale, contentChoice, copyLoaded],
+  );
+
+  const setContentLocale = useCallback(
+    (next: string | null) => {
+      writeStoredContentLocale(next);
+      setContentChoice(next);
+      const forMeanings = resolveContentLocale(locale, WORD_COPY_LOCALES, next);
+      if (!hasWordCopy(forMeanings)) {
+        void loadWordCopy(forMeanings).then(() => setCopyLoaded((n) => n + 1));
+      } else {
+        setCopyLoaded((n) => n + 1);
+      }
+    },
+    [locale],
+  );
+
+  /** The languages a learner may choose meanings in, named in their own script. */
+  const contentLocales = useMemo(
+    () =>
+      WORD_COPY_LOCALES.map((code) => describeLocale(code)).sort((a, b) =>
+        a.englishName.localeCompare(b.englishName),
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [copyLoaded],
+  );
+
   const descriptor = useMemo<LocaleDescriptor>(() => describeLocale(locale), [locale]);
 
   const value = useMemo<LocaleContextValue>(
@@ -212,8 +274,22 @@ export function LocaleProvider({
       available,
       setLocale,
       suggestion,
+      contentLocale: activeContentLocale,
+      contentIsBorrowed: isBorrowedContent(locale, activeContentLocale),
+      contentLocales,
+      setContentLocale,
     }),
-    [locale, descriptor, source, available, setLocale, suggestion],
+    [
+      locale,
+      descriptor,
+      source,
+      available,
+      setLocale,
+      suggestion,
+      activeContentLocale,
+      contentLocales,
+      setContentLocale,
+    ],
   );
 
   return (

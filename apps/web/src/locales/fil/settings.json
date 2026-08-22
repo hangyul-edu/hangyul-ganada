@@ -16,7 +16,9 @@
     "noResults": "Walang wikang tumugma sa “{{query}}”.",
     "selected": "Napili",
     "coverageNote": "Bawat wika rito ay may isinaling buong interface at kurso sa alpabeto. Kung sinasabi ng hanay, nasa Ingles pa rin ang kahulugan ng salita at ang mga halimbawang pangungusap.",
-    "wordsInEnglish": "Kahulugan ng salita sa Ingles"
+    "wordsInEnglish": "Kahulugan ng salita sa Ingles",
+    "meaningsTitle": "Kahulugan ng salita",
+    "meaningsBody": "Ipinapakita ang mga kahulugan at salin ng halimbawa sa {{language}}. Puwede kang pumili ng ibang wika."
   },
   "font": {
     "title": "Titik-pang-ensayo",

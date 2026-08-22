@@ -16,7 +16,9 @@
     "noResults": "Keine Sprache passt zu „{{query}}“.",
     "selected": "Ausgewählt",
     "coverageNote": "Alle Sprachen hier übersetzen die gesamte Oberfläche und den Alphabetkurs. Wo eine Zeile es sagt, sind Wortbedeutungen und Beispielsätze noch auf Englisch.",
-    "wordsInEnglish": "Wortbedeutungen auf Englisch"
+    "wordsInEnglish": "Wortbedeutungen auf Englisch",
+    "meaningsTitle": "Wortbedeutungen",
+    "meaningsBody": "Bedeutungen und Beispielübersetzungen erscheinen auf {{language}}. Du kannst eine andere Sprache wählen."
   },
   "font": {
     "title": "Übungsschrift",

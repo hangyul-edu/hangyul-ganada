@@ -152,6 +152,37 @@ export function writeStoredLocale(locale: string): void {
 }
 
 /**
+ * The language the learner asked to read *word meanings* in.
+ *
+ * Its own key rather than a field on the profile, for the same reason the
+ * interface locale is: both have to be readable synchronously on the first
+ * render, before IndexedDB has opened, or the first screen paints in one
+ * language and repaints in another. Losing it costs a preference, not history.
+ *
+ * Null means "not chosen" and is the common case — most learners read an
+ * interface language the corpus already has meanings for, and never see the
+ * question. See `contentLocale.ts`.
+ */
+export const CONTENT_LOCALE_STORAGE_KEY = 'hangyul_ganada:content-locale';
+
+export function readStoredContentLocale(): string | null {
+  try {
+    return window.localStorage.getItem(CONTENT_LOCALE_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function writeStoredContentLocale(locale: string | null): void {
+  try {
+    if (locale === null) window.localStorage.removeItem(CONTENT_LOCALE_STORAGE_KEY);
+    else window.localStorage.setItem(CONTENT_LOCALE_STORAGE_KEY, locale);
+  } catch {
+    /* nothing to do */
+  }
+}
+
+/**
  * A language worth *offering*, based on where the browser says the learner is.
  *
  * Returns null when the suggestion would be English (already the default) or

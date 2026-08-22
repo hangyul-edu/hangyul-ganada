@@ -16,7 +16,9 @@
     "noResults": "Egy nyelv sem illik erre: „{{query}}”.",
     "selected": "Kiválasztva",
     "coverageNote": "Az itt szereplő nyelvek mindegyike lefordítja a teljes felületet és az ábécétanfolyamot. Ahol a sor jelzi, a szójelentések és a példamondatok még angolul jelennek meg.",
-    "wordsInEnglish": "A szójelentések angolul"
+    "wordsInEnglish": "A szójelentések angolul",
+    "meaningsTitle": "Szójelentések",
+    "meaningsBody": "A jelentések és a példamondatok fordításai {{language}} nyelven jelennek meg. Választhat másik nyelvet."
   },
   "font": {
     "title": "Gyakorló betűtípus",

@@ -151,10 +151,21 @@ export function buildDailyQuestions(
       const members = (scheduled.group ?? [word.id])
         .map((id) => getWord(id))
         .filter((member): member is VocabularyWord => Boolean(member));
+      /*
+        One language in the grid, not just one meaning per row.
+
+        Dropping a member with *no* meaning was half the rule. The other half is
+        that a member whose meaning resolved through a different fallback than
+        the rest puts one English row beside three Tamil ones — the same
+        mixed-language question §6 is about, in a shape that is easier to miss
+        because every individual row looks fine. The taught word sets the
+        language and the rest of the grid has to match it.
+      */
+      const gridLocale = meaningOf(word).locale;
       const pairs: MatchPair[] = [];
       for (const member of members) {
         const copy = meaningOf(member);
-        if (!copy.value) continue;
+        if (!copy.value || copy.locale !== gridLocale) continue;
         pairs.push({
           wordId: member.id,
           korean: member.word,

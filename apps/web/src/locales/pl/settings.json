@@ -16,7 +16,9 @@
     "noResults": "Żaden język nie pasuje do „{{query}}”.",
     "selected": "Wybrany",
     "coverageNote": "Każdy język na tej liście tłumaczy cały interfejs i kurs alfabetu. Tam, gdzie mówi o tym wiersz, znaczenia słów i zdania przykładowe są nadal po angielsku.",
-    "wordsInEnglish": "Znaczenia słów po angielsku"
+    "wordsInEnglish": "Znaczenia słów po angielsku",
+    "meaningsTitle": "Znaczenia słów",
+    "meaningsBody": "Znaczenia i tłumaczenia przykładów są w języku {{language}}. Możesz wybrać inny język."
   },
   "font": {
     "title": "Krój do ćwiczeń",

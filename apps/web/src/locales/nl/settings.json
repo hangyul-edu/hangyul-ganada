@@ -16,7 +16,9 @@
     "noResults": "Geen taal komt overeen met “{{query}}”.",
     "selected": "Gekozen",
     "coverageNote": "Elke taal hier vertaalt de hele interface en de alfabetcursus. Waar de regel het zegt, staan woordbetekenissen en voorbeeldzinnen nog in het Engels.",
-    "wordsInEnglish": "Woordbetekenissen in het Engels"
+    "wordsInEnglish": "Woordbetekenissen in het Engels",
+    "meaningsTitle": "Woordbetekenissen",
+    "meaningsBody": "Betekenissen en voorbeeldvertalingen staan in het {{language}}. Je kunt een andere taal kiezen."
   },
   "font": {
     "title": "Oefenletter",

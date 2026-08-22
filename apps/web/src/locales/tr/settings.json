@@ -16,7 +16,9 @@
     "noResults": "“{{query}}” ile eşleşen dil yok.",
     "selected": "Seçili",
     "coverageNote": "Buradaki her dil, arayüzün tamamını ve alfabe dersini çeviriyor. Satırda belirtildiği yerde sözcük anlamları ve örnek cümleler hâlâ İngilizce görünür.",
-    "wordsInEnglish": "Sözcük anlamları İngilizce"
+    "wordsInEnglish": "Sözcük anlamları İngilizce",
+    "meaningsTitle": "Kelime anlamları",
+    "meaningsBody": "Anlamlar ve örnek çevirileri {{language}} dilinde gösterilir. Başka bir dil seçebilirsin."
   },
   "font": {
     "title": "Alıştırma yazı tipi",

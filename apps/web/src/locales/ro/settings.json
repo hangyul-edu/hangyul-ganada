@@ -16,7 +16,9 @@
     "noResults": "Nicio limbă nu se potrivește cu „{{query}}”.",
     "selected": "Selectată",
     "coverageNote": "Fiecare limbă de aici traduce întreaga interfață și cursul de alfabet. Acolo unde rândul o spune, sensurile cuvintelor și propozițiile-exemplu sunt încă în engleză.",
-    "wordsInEnglish": "Sensurile cuvintelor în engleză"
+    "wordsInEnglish": "Sensurile cuvintelor în engleză",
+    "meaningsTitle": "Sensurile cuvintelor",
+    "meaningsBody": "Sensurile și traducerile exemplelor apar în {{language}}. Poți alege altă limbă."
   },
   "font": {
     "title": "Fontul de exercițiu",

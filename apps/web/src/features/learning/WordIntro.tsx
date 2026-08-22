@@ -69,9 +69,9 @@ export function WordIntro({
   onToggleSaved: () => void;
 }) {
   const { t } = useTranslation(['vocabulary', 'common']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
   const { preload } = usePronunciation();
-  const copy = wordCopy(word, locale);
+  const copy = wordCopy(word, contentLocale);
   const sentence = word.example
     ? splitSentence(word.example, word.surface_form ?? word.word)
     : null;

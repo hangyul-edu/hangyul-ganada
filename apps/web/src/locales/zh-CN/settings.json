@@ -16,7 +16,9 @@
     "noResults": "没有与“{{query}}”匹配的语言。",
     "selected": "已选择",
     "coverageNote": "这里的每种语言，界面和字母课程都已翻译。带标注的语言，词义和例句翻译目前仍是英文。",
-    "wordsInEnglish": "词义为英文"
+    "wordsInEnglish": "词义为英文",
+    "meaningsTitle": "单词释义",
+    "meaningsBody": "释义和例句翻译以{{language}}显示。你可以改成其他语言。"
   },
   "font": {
     "title": "练习字体",

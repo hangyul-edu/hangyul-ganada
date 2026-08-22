@@ -16,7 +16,9 @@
     "noResults": "Inget språk matchar ”{{query}}”.",
     "selected": "Valt",
     "coverageNote": "Alla språk här översätter hela gränssnittet och alfabetskursen. Där raden säger det visas ordbetydelser och exempelmeningar fortfarande på engelska.",
-    "wordsInEnglish": "Ordbetydelser på engelska"
+    "wordsInEnglish": "Ordbetydelser på engelska",
+    "meaningsTitle": "Ordbetydelser",
+    "meaningsBody": "Betydelser och exempelöversättningar visas på {{language}}. Du kan välja ett annat språk."
   },
   "font": {
     "title": "Övningstypsnitt",

@@ -16,7 +16,9 @@
     "noResults": "「{{query}}」に一致する言語はありません。",
     "selected": "選択中",
     "coverageNote": "ここにある言語はすべて、画面と文字のレッスンが翻訳済みです。表示のある言語は、単語の意味と例文の訳がまだ英語です。",
-    "wordsInEnglish": "単語の意味は英語"
+    "wordsInEnglish": "単語の意味は英語",
+    "meaningsTitle": "単語の意味",
+    "meaningsBody": "意味と例文の訳は{{language}}で表示します。ほかの言語に変えられます。"
   },
   "font": {
     "title": "練習フォント",

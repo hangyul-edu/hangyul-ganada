@@ -22,6 +22,22 @@ export interface LocaleContextValue {
    * automatically — English stays the default until the learner chooses.
    */
   suggestion: string | null;
+  /**
+   * The language *word meanings* are shown in.
+   *
+   * Equal to `locale` for the ten languages the curriculum has meanings for,
+   * and a resolved second language for the other twenty-two. Every screen that
+   * glosses a Korean word reads this rather than `locale`, which is what stops
+   * a Tamil question from being answered with English choices. See
+   * `i18n/contentLocale.ts`.
+   */
+  contentLocale: string;
+  /** True when `contentLocale` is not the language the interface is in. */
+  contentIsBorrowed: boolean;
+  /** The languages the corpus has meanings in, sorted by English name. */
+  contentLocales: LocaleDescriptor[];
+  /** Chooses which of `contentLocales` to read meanings in. Null clears it. */
+  setContentLocale: (locale: string | null) => void;
 }
 
 /**

@@ -16,7 +16,9 @@
     "noResults": "Tidak ada bahasa yang cocok dengan “{{query}}”.",
     "selected": "Dipilih",
     "coverageNote": "Setiap bahasa di sini menerjemahkan seluruh antarmuka dan kursus alfabetnya. Di baris yang menyebutkannya, arti kata dan kalimat contoh masih ditampilkan dalam bahasa Inggris.",
-    "wordsInEnglish": "Arti kata dalam bahasa Inggris"
+    "wordsInEnglish": "Arti kata dalam bahasa Inggris",
+    "meaningsTitle": "Arti kata",
+    "meaningsBody": "Arti dan terjemahan contoh ditampilkan dalam {{language}}. Kamu bisa memilih bahasa lain."
   },
   "font": {
     "title": "Huruf latihan",

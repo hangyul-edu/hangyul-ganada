@@ -156,18 +156,36 @@ function wordExercise(
   const copy = meaningOf(word);
   const hints = wordHints(word, candidate.mode, label, copy.value);
 
+  /**
+   * Every meaning in this question, in one language, or no question.
+   *
+   * §6 and §7. A learner reading Tamil was shown a Tamil prompt over four
+   * English answers, because each meaning resolved its own fallback and three
+   * of them happened to land somewhere else than the fourth. Nothing was
+   * individually wrong and the question was unanswerable by the person it was
+   * built for.
+   *
+   * The rule is not "must be the interface language" — that would delete
+   * vocabulary practice outright in the twenty-two languages the corpus has no
+   * meanings for. It is **must be one language**: the app decides which, once,
+   * in `i18n/contentLocale.ts`, tells the learner when it is not theirs, and
+   * lets them change it. A question that cannot be built that way is not built.
+   */
+  const oneLanguage = (options: readonly VocabularyWord[]): boolean =>
+    options.every((option) => meaningOf(option).locale === copy.locale);
+
   switch (candidate.mode) {
     case 'read': {
       // Korean on the card, meanings in the options. The other way round —
       // meaning shown, Korean chosen — is a different skill and is what
       // `listen` and `write` already cover between them.
-      const options = readingOptions(word, seed, (other) => meaningOf(other).value).map(
-        (option) => ({
-          id: option.id,
-          label: meaningOf(option).value,
-          labelLocale: meaningOf(option).locale,
-        }),
-      );
+      const chosen = readingOptions(word, seed, (other) => meaningOf(other).value);
+      if (!oneLanguage(chosen)) return null;
+      const options = chosen.map((option) => ({
+        id: option.id,
+        label: meaningOf(option).value,
+        labelLocale: meaningOf(option).locale,
+      }));
       return {
         candidate,
         mode: 'read',

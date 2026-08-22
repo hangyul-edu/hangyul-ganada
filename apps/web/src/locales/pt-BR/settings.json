@@ -16,7 +16,9 @@
     "noResults": "Nenhum idioma corresponde a “{{query}}”.",
     "selected": "Selecionado",
     "coverageNote": "Todos os idiomas desta lista traduzem toda a interface e o curso do alfabeto. Onde a linha indica, os significados e as frases de exemplo ainda aparecem em inglês.",
-    "wordsInEnglish": "Significados em inglês"
+    "wordsInEnglish": "Significados em inglês",
+    "meaningsTitle": "Significados",
+    "meaningsBody": "Os significados e as traduções dos exemplos aparecem em {{language}}. Você pode escolher outro idioma."
   },
   "font": {
     "title": "Tipografia de prática",

@@ -245,3 +245,61 @@
   font-size: var(--hg-text-micro);
   line-height: var(--hg-leading-relaxed);
 }
+
+/*
+  Which language word meanings are read in.
+
+  Set apart from the language list rather than folded into it: it is a
+  different question from "what language is this app in", and a learner who
+  does not have it does not see it at all. Same chip shape the rest of the
+  product uses for a small set of mutually exclusive choices — see
+  `features/review/SessionSize.module.css`.
+*/
+.meanings {
+  margin-top: var(--hg-space-6);
+  padding-top: var(--hg-space-5);
+  border-top: 1px solid var(--hg-border);
+}
+
+.meaningsTitle {
+  margin: 0 0 var(--hg-space-2);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-primary);
+}
+
+.meaningsBody {
+  margin: 0 0 var(--hg-space-3);
+  font-size: var(--hg-text-body-sm);
+  line-height: 1.5;
+  color: var(--hg-text-secondary);
+}
+
+.meaningsOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-2);
+}
+
+.meaningsOption {
+  min-height: var(--hg-size-hit-target);
+  padding: 0 var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.meaningsOptionOn {
+  border-color: transparent;
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+@media (hover: hover) {
+  .meaningsOption:hover:not(.meaningsOptionOn) {
+    background: var(--hg-primary-subtle-hover);
+  }
+}

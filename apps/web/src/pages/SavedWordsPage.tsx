@@ -66,7 +66,7 @@ export function SavedWordsPage() {
   const navigate = useNavigate();
   const { state, practicePlan, toggleSaved, toggleSavedHeadword } = useLearner();
   const { t } = useTranslation(['vocabulary', 'learning', 'common']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
 
   const [query, setQuery] = useState('');
   const [order, setOrder] = useState<Order>('recent');
@@ -117,9 +117,9 @@ export function SavedWordsPage() {
   const meaningOf = useCallback(
     (row: SavedEntry) =>
       row.kind === 'word'
-        ? wordCopy(row.word, locale).value.meaning
+        ? wordCopy(row.word, contentLocale).value.meaning
         : (glosses.get(row.headword)?.shortGloss ?? ''),
-    [locale, glosses],
+    [contentLocale, glosses],
   );
 
   /** What the scheduler thinks of each saved word. Only used to order by need. */
@@ -262,7 +262,7 @@ export function SavedWordsPage() {
 
         <ul className={styles.list} data-testid="saved-list">
           {shown.map((row) => {
-            const copy = row.kind === 'word' ? wordCopy(row.word, locale) : null;
+            const copy = row.kind === 'word' ? wordCopy(row.word, contentLocale) : null;
             const meaning = meaningOf(row);
             const hit = row.kind === 'dict' ? glosses.get(row.headword) : undefined;
             const open = () =>

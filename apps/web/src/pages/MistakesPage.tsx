@@ -56,7 +56,7 @@ export function MistakesPage() {
   const navigate = useNavigate();
   const { mistakes, practicePlan, clearMistake, state } = useLearner();
   const { t } = useTranslation(['learning', 'vocabulary', 'common']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
 
   /*
     Vocabulary first, because that is the list the learner came for.
@@ -152,7 +152,7 @@ export function MistakesPage() {
             <MistakeRow
               key={mistake.id}
               mistake={mistake}
-              locale={locale}
+              locale={contentLocale}
               fontFamily={state.settings.selected_font_id}
               onOpen={() =>
                 mistake.kind === 'word'
@@ -289,6 +289,7 @@ function MistakeRow({
 function describe(
   kind: ItemProgress['kind'],
   key: string,
+  /** The language *meanings* are read in — see `i18n/contentLocale.ts`. */
   locale: string,
 ): { korean: string; meaning: string; locale: string } {
   if (kind === 'word') {

@@ -16,7 +16,9 @@
     "noResults": "Nessuna lingua corrisponde a «{{query}}».",
     "selected": "Selezionata",
     "coverageNote": "Ogni lingua qui traduce l’intera interfaccia e il corso dell’alfabeto. Dove la riga lo indica, i significati delle parole e le frasi d’esempio sono ancora in inglese.",
-    "wordsInEnglish": "Significati in inglese"
+    "wordsInEnglish": "Significati in inglese",
+    "meaningsTitle": "Significati",
+    "meaningsBody": "I significati e le traduzioni degli esempi sono in {{language}}. Puoi scegliere un’altra lingua."
   },
   "font": {
     "title": "Carattere per esercitarsi",

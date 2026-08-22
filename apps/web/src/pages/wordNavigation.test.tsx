@@ -30,6 +30,11 @@ const locale = {
   available: [],
   setLocale: async () => {},
   suggestion: null,
+  // Meanings are read in the same language here — see `i18n/contentLocale.ts`.
+  contentLocale: 'en',
+  contentIsBorrowed: false,
+  contentLocales: [],
+  setContentLocale: () => {},
 } as unknown as LocaleContextValue;
 
 /** Stands in for the real detail screen: all this asserts is which word arrived. */

@@ -76,16 +76,16 @@ export function WordSessionPage() {
     ready,
   } = useLearner();
   const { t } = useTranslation(['vocabulary', 'learning', 'common']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
   const { preload } = usePronunciation();
 
   const font = getFont(state.settings.selected_font_id);
   const meaningOf = useCallback(
     (word: Parameters<typeof wordCopy>[0]) => {
-      const copy = wordCopy(word, locale);
+      const copy = wordCopy(word, contentLocale);
       return { value: copy.value.meaning, locale: copy.locale };
     },
-    [locale],
+    [contentLocale],
   );
 
   /**

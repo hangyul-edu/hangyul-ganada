@@ -88,7 +88,7 @@ export function WordsPage() {
   const { vocabularyProgressToday, extendVocabularyDay, state } = useLearner();
   const savedCount = state.settings.saved_items.filter((key) => key.startsWith('word:')).length;
   const { t } = useTranslation(['vocabulary', 'common']);
-  const { locale } = useLocale();
+  const { locale, contentLocale } = useLocale();
   const format = useFormatters();
 
   const [query, setQuery] = useState('');
@@ -110,7 +110,7 @@ export function WordsPage() {
   const results = useCorpusMemo(
     () =>
       deferredQuery.trim()
-        ? searchWords(deferredQuery, (word) => wordCopy(word, locale).value.meaning, MAX_RESULTS)
+        ? searchWords(deferredQuery, (word) => wordCopy(word, contentLocale).value.meaning, MAX_RESULTS)
         : [],
     [deferredQuery, locale],
   );
@@ -300,7 +300,8 @@ export function WordsPage() {
           <SearchResults
             query={deferredQuery}
             results={results}
-            locale={locale}
+            /* Meanings, so the *content* locale — see `i18n/contentLocale.ts`. */
+            locale={contentLocale}
             dictionary={dictionary}
           />
         ) : (
@@ -505,7 +506,7 @@ function SearchResults({
  */
 export function WordCategoryPage({ category }: { category: string }) {
   const { t } = useTranslation(['vocabulary', 'common']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
   const { isSaved, toggleSaved } = useLearner();
 
   const words = useMemo(() => wordsByCategory(category), [category]);
@@ -522,7 +523,7 @@ export function WordCategoryPage({ category }: { category: string }) {
         </p>
         <ul className={styles.results}>
           {shown.map((word) => {
-            const copy = wordCopy(word, locale);
+            const copy = wordCopy(word, contentLocale);
             const saved = isSaved('word', word.id);
             return (
               <li key={word.id}>

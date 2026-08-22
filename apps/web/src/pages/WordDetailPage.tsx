@@ -54,10 +54,10 @@ function WordDetail({ word }: { word: VocabularyWord }) {
   const navigate = useNavigate();
   const { state, isSaved, toggleSaved } = useLearner();
   const { t } = useTranslation(['vocabulary', 'common']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
 
   const font = getFont(state.settings.selected_font_id);
-  const copy = wordCopy(word, locale);
+  const copy = wordCopy(word, contentLocale);
   const sentence = word.example
     ? splitSentence(word.example, word.surface_form ?? word.word)
     : null;

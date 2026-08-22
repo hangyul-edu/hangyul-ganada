@@ -38,6 +38,11 @@ const locale = {
   available: [],
   setLocale: async () => {},
   suggestion: null,
+  // Meanings are read in the same language here — see `i18n/contentLocale.ts`.
+  contentLocale: 'en',
+  contentIsBorrowed: false,
+  contentLocales: [],
+  setContentLocale: () => {},
 } as unknown as LocaleContextValue;
 
 const i18n = createI18n('en');

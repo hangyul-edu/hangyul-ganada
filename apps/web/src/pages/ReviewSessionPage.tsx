@@ -73,7 +73,7 @@ export function ReviewSessionPage() {
     useLearner();
   const location = useLocation();
   const { t } = useTranslation(['learning', 'handwriting', 'common', 'vocabulary']);
-  const { locale } = useLocale();
+  const { contentLocale } = useLocale();
 
   const mode = params.get('mode') as ExerciseMode | null;
   const set = params.get('set');
@@ -83,10 +83,10 @@ export function ReviewSessionPage() {
   const font = getFont(state.settings.selected_font_id);
   const meaningOf = useCallback(
     (word: Parameters<typeof wordCopy>[0]) => {
-      const copy = wordCopy(word, locale);
+      const copy = wordCopy(word, contentLocale);
       return { value: copy.value.meaning, locale: copy.locale };
     },
-    [locale],
+    [contentLocale],
   );
 
   /**
@@ -283,7 +283,7 @@ export function ReviewSessionPage() {
       ? feedbackFor(writeResult.current, exercise.writeTarget)
       : null;
   const word = candidate.kind === 'word' ? getWord(candidate.itemKey) : undefined;
-  const copy = word ? wordCopy(word, locale) : null;
+  const copy = word ? wordCopy(word, contentLocale) : null;
 
   return (
     <FocusScreen

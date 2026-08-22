@@ -16,7 +16,9 @@
     "noResults": "“{{query}}” bo‘yicha til topilmadi.",
     "selected": "Tanlangan",
     "coverageNote": "Bu yerdagi har bir til butun ekranni va alifbo kursini tarjima qiladi. Qatorda shunday deyilgan joyda so‘z ma’nolari va misol gaplar hamon ingliz tilida ko‘rsatiladi.",
-    "wordsInEnglish": "So‘z ma’nolari ingliz tilida"
+    "wordsInEnglish": "So‘z ma’nolari ingliz tilida",
+    "meaningsTitle": "So‘z ma’nolari",
+    "meaningsBody": "Ma’nolar va misol tarjimalari {{language}} tilida ko‘rsatiladi. Boshqa tilni tanlashingiz mumkin."
   },
   "font": {
     "title": "Mashq shrifti",

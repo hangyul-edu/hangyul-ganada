@@ -16,7 +16,9 @@
     "noResults": "Žádný jazyk neodpovídá „{{query}}“.",
     "selected": "Vybráno",
     "coverageNote": "Každý jazyk v seznamu překládá celé rozhraní i kurz abecedy. Kde to řádek uvádí, jsou významy slov a vzorové věty stále v angličtině.",
-    "wordsInEnglish": "Významy slov anglicky"
+    "wordsInEnglish": "Významy slov anglicky",
+    "meaningsTitle": "Významy slov",
+    "meaningsBody": "Významy a překlady příkladů se zobrazují v jazyce {{language}}. Můžete zvolit jiný jazyk."
   },
   "font": {
     "title": "Písmo na cvičení",
