@@ -520,10 +520,18 @@ def build() -> dict[Path, bytes]:
     # and who switched the app to Korean gets the English native splash and then
     # the Korean web one; that is a real gap and it is stated in the report
     # rather than papered over.
-    for locale_dir, source in (("", SPLASH_SOURCE), ("-ko", SPLASH_KO_SOURCE)):
+    #
+    # The qualifier goes **after `drawable` and before everything else**.
+    # Android fixes the order — language, then orientation, then density — and
+    # `drawable-land-xhdpi-ko` is not a slightly-wrong name, it is a build
+    # failure: "Invalid resource directory name".
+    for locale, source in ((None, SPLASH_SOURCE), ("ko", SPLASH_KO_SOURCE)):
         art = Image.open(source).convert("RGBA")
         for directory, size in ANDROID_SPLASH.items():
-            files[ANDROID_RES / f"{directory}{locale_dir}" / "splash.png"] = _png(
+            name = directory if locale is None else directory.replace(
+                "drawable", f"drawable-{locale}", 1
+            )
+            files[ANDROID_RES / name / "splash.png"] = _png(
                 _launch_bitmap(art, size, SPLASH_GROUND)
             )
     splash_art = _wordless(Image.open(SPLASH_SOURCE))

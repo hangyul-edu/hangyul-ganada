@@ -30,11 +30,20 @@
 
       * `windowSplashScreenBackground` — the app's warm ground, matching the
         launcher tile the icon just animated out of.
-      * no `windowSplashScreenAnimatedIcon` — deliberately. Left unset, the
-        system uses the adaptive launcher icon, which is already drawn inside
-        the safe circle and already sits on this exact colour. Supplying a
-        second drawable here is how the splash mark and the home-screen mark end
-        up different sizes.
+      * `windowSplashScreenAnimatedIcon` — the splash artwork's own mark.
+
+        This used to be left unset, on the reasoning that the launcher icon is
+        already drawn inside the safe circle and already sits on this colour.
+        On a real device that produced three screens: the mandarin launcher
+        tile, then the app's splash with the jamo mark, then the app. Two
+        different marks one after the other is what makes a single splash read
+        as two, and it is what the launcher-icon-first report was about.
+
+        The system frame now carries the mark the splash carries, so a cold
+        start is the ground, then the mark, then the wordmark resolving on top
+        of it. `mipmap/splash_icon` is generated beside the launcher icons from
+        the same source and on the same adaptive canvas, so the two cannot drift
+        apart in size — which is the thing the old note was worried about.
       * `postSplashScreenTheme` — what the Activity becomes once the splash is
         dismissed.
 
@@ -43,6 +52,10 @@
     -->
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/splashBackground</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/splash_icon</item>
+        <!-- Still, not animated: there is nothing to animate and a duration
+             here only delays the app behind a mark that is not moving. -->
+        <item name="windowSplashScreenAnimationDuration">0</item>
         <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
