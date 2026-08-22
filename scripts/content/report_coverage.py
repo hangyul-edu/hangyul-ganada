@@ -106,7 +106,29 @@ LOCALE_NAMES = {
 }
 
 #: An audio file below this is silence or a truncated write, not a word.
-MIN_AUDIO_BYTES = 1_200
+#:
+#: 600, not the 1,200 it was. The old number was calibrated against an engine
+#: that spoke at 0.82×, which stretched every clip by about a fifth; at the
+#: current 1.0× the shortest closed syllables came in at 1,101 and 1,197 bytes
+#: and this check called three of them missing — 입 in both voices and 밥 in the
+#: female one. A three-byte miss.
+#:
+#: They were measured before the number was moved. Their amplitude envelopes
+#: decay to near-silence — a tail-to-peak ratio of 0.004 to 0.017, *lower* than
+#: 옷 at 0.026 and 밥's male clip at 0.110, both of which pass — and a truncated
+#: recording ends loud, mid-vowel. 입 and 밥 are closed syllables ending in a
+#: stop, so they are short and they end quietly. Nothing is wrong with them.
+#:
+#: A recogniser was tried first and could not settle it: 컵 at 264 ms comes back
+#: as 컵, and 옷 at the same length comes back empty. It cannot tell a short
+#: syllable from a cut one, so it is not evidence here.
+#:
+#: What this floor is for is an *empty or failed* write, and 600 bytes still
+#: catches that with room under every real clip. The question this number used
+#: to be asked — is the clip long enough for what it says — belongs to
+#: `qa_audio.py`, which decodes the audio and bounds its duration per syllable
+#: against the rate the provider declares it was generated at.
+MIN_AUDIO_BYTES = 600
 
 
 @dataclass

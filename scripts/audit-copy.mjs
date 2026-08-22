@@ -117,6 +117,20 @@ const FORBIDDEN = [
      * talks about levels, and a per-key list would be a list of every key.
      */
     exceptNamespace: 'levelTest',
+    /*
+     * And the one place outside that namespace where the level is the subject.
+     *
+     * Today's words are now chosen from the learner's Vocabulary Level, and the
+     * Words screen says so — which is the point of §23: personalisation the
+     * learner cannot see is indistinguishable from none. The level named here
+     * is one they asked for, sat a test for, and can read on Home and on My
+     * page, so it is not the hidden difficulty model this rule is about.
+     *
+     * Listed as a key rather than excepting the namespace, because every *other*
+     * string about a word's difficulty in `vocabulary` is exactly what the rule
+     * is for.
+     */
+    except: ['vocabulary:today.tunedTo'],
   },
   {
     id: 'implementation',

@@ -81,7 +81,10 @@ test('opens the entry, shows its senses, and credits the source', async ({ page 
   */
   const senses = page.getByRole('group');
   await expect(senses).toContainText(/other meaning/i);
-  await senses.getByRole('button').first().click();
+  // A `<details>`/`<summary>`, not a button — the disclosure is native, so
+  // `getByRole('button')` finds nothing inside it and waits until the test
+  // times out. The summary is what opens it.
+  await senses.locator('summary').click();
   // 가지 is the word this spec is built on because it has several unrelated
   // senses; the aubergine and the branch are both in there once it is opened.
   await expect(page.getByText(/twig or branch/i).first()).toBeVisible();
