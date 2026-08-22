@@ -13,7 +13,8 @@
     "allDone": "今日の分はもうありません。",
     "progressAria": "今日の単語の進み具合",
     "moreLabel": "あと何語にしますか",
-    "moreCount_other": "あと{{count}}語"
+    "moreCount_other": "あと{{count}}語",
+    "tunedTo": "レベル {{level}} に合わせた単語です。"
   },
   "browse": {
     "title": "テーマから探す",
@@ -117,7 +118,8 @@
     "noMatch": "「{{query}}」に合う保存単語はありません。",
     "emptyTitle": "まだ保存した単語はありません",
     "emptyBody": "学習中に単語のブックマークを押すと、ここに集まります。",
-    "emptyCta": "単語を見る"
+    "emptyCta": "単語を見る",
+    "notPractisable": "調べるために保存した単語です。出題には学習カードが必要で、まだありません。"
   },
   "dictionary": {
     "title": "辞書",
@@ -130,6 +132,21 @@
     "moreExamples": "ほかの例文",
     "otherMeanings_other": "ほかの意味 {{count, number}} 件",
     "onlyMeaning": "辞書にほかの意味はありません。",
-    "source": "出典：{{name}}、{{license}}。"
+    "source": "出典：{{name}}、{{license}}。",
+    "save": "単語を保存",
+    "saved": "保存済み"
+  },
+  "conjugation": {
+    "title": "活用",
+    "form": {
+      "dictionary": "辞書形",
+      "presentPolite": "現在",
+      "pastPolite": "過去",
+      "futurePolite": "未来",
+      "formalPolite": "かしこまった形",
+      "connective": "～して",
+      "honorific": "～してください",
+      "request": "～してくれますか"
+    }
   }
 }

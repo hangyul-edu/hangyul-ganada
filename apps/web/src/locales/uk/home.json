@@ -23,21 +23,5 @@
     "wordsCaption": "слова на сьогодні",
     "wordsReady": "час для перших слів"
   },
-  "review": {
-    "title": "Повторення",
-    "count_few": "{{count, number}} на повторення",
-    "count_many": "{{count, number}} на повторення",
-    "count_one": "{{count, number}} на повторення",
-    "count_other": "{{count, number}} на повторення",
-    "empty": "Повторювати поки нічого"
-  },
-  "practice": {
-    "title": "Сьогоднішня вправа",
-    "reviews_few": "{{count, number}} повторення готові",
-    "reviews_many": "{{count, number}} повторень готові",
-    "reviews_one": "{{count, number}} повторення готове",
-    "reviews_other": "{{count, number}} повторення готові",
-    "cta": "Почати вправу"
-  },
   "purpose": "Вивчайте корейську з найпершої літери — спершу хангиль, потім слова, якими ви справді користуватиметеся."
 }

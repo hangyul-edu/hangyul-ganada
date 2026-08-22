@@ -6,6 +6,7 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 import { getFont } from '../data/fonts';
 import { useDictionaryEntry } from '../data/useDictionary';
 import { relationsOf } from '../data/relations';
+import { Conjugation } from '../features/vocabulary/Conjugation';
 import { getWord } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
 import { splitSentence } from '../features/review/exercises';
@@ -202,6 +203,20 @@ function WordDetail({ word }: { word: VocabularyWord }) {
             )}
           </section>
         )}
+
+        {/*
+          How it is written in a sentence — the same panel the dictionary shows.
+
+          A taught card needs this as much as a dictionary entry does, and for
+          the same reason: the card says 먹다 and every sentence the learner will
+          ever read says something else. One component, so the two screens
+          cannot drift into showing different tables for the same word.
+        */}
+        <Conjugation
+          lemma={word.word}
+          partOfSpeech={word.part_of_speech}
+          fontFamily={font.font_family}
+        />
 
         {/* How it is said, where that differs from how it is written. */}
         {word.spoken && word.sound_pattern && (

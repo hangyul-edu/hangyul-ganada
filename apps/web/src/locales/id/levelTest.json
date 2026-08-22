@@ -1,20 +1,20 @@
 {
   "title": "Level kosakata",
   "row": {
-    "body": "Cari tahu kira-kira di mana kosakata Korea kamu.",
-    "taken": "Hasil terakhir: level {{level}}"
+    "body": "Cari tahu levelmu dan dapatkan kata yang pas.",
+    "taken": "Level {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Di mana kosakata Korea kamu?",
-    "body": "Rangkaian soal singkat yang menjadi lebih sulit atau lebih mudah sesuai jawabanmu, sehingga tidak perlu ratusan soal.",
-    "length": "Sekitar 3–6 menit, 18 sampai 36 soal.",
-    "noHelp": "Tanpa petunjuk, dan jawaban tidak ditampilkan selama tes.",
-    "noProgress": "Tidak ada yang mengubah pelajaran, rentetan hari, atau ulasanmu.",
+    "title": "Cek level kosakatamu",
+    "body": "Dari kata yang sudah kamu kenal sampai yang sedikit lebih sulit — lihat di mana kosakata Koreamu sekarang.",
+    "shape": "{{questions, number}} soal · {{minutes, number}} menit",
+    "unsure": "Tidak yakin? Tekan “Tidak tahu” saja.",
+    "usedFor": "Hasilnya menentukan tingkat kesulitan kata harianmu.",
     "start": "Mulai tes",
     "retake": "Ulangi tes",
     "previous": "Terakhir kamu berada di level {{level}}."
   },
-  "progress": "{{asked, number}} dari maksimal {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Apa arti kata ini?",
     "produce": "Kata mana yang berarti ini?",
@@ -24,12 +24,25 @@
   "unknown": "Tidak tahu",
   "loading": "Menyiapkan soal…",
   "unavailable": "Tes memerlukan koneksi saat pertama kali dibuka.",
+  "timeLeft": "Sisa waktu",
   "result": {
     "label": "Level kosakata Hangyul",
     "of": "dari {{levels, number}}",
     "band": "Kemungkinan besar antara {{low, number}} dan {{high, number}}.",
     "words": "Pada level ini biasanya dikenali {{count, number}} kata Korea yang paling umum.",
-    "items_other": "Ditentukan dalam {{count, number}} soal."
+    "recommend": "Kata harianmu sekarang dipilih sesuai level ini."
   },
-  "disclaimer": "Level kosakata Hangyul adalah skala kami sendiri. Ini bukan penilaian kemahiran resmi dan bukan hitungan kata yang kamu ketahui."
+  "bands": {
+    "starter": "AWAL",
+    "everyday": "SEHARI-HARI",
+    "confident": "PERCAYA DIRI",
+    "advanced": "MAHIR"
+  },
+  "home": {
+    "title": "Level kosakata",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Cari tahu levelmu dan dapatkan kata yang pas.",
+    "cta": "Ikuti tes",
+    "retake": "Tes lagi"
+  }
 }

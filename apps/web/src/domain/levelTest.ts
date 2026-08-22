@@ -57,30 +57,53 @@ const LOGITS_PER_LEVEL = 0.3;
 /** Chance of a correct answer from someone who does not know the word. */
 const GUESS = 1 / 4;
 
-/** Fewest items before the test may stop, and the most it may ever ask. */
-export const MIN_ITEMS = 18;
-export const MAX_ITEMS = 36;
+/**
+ * Thirty questions. Not "18 to 36", and the difference is the product.
+ *
+ * The test used to stop as soon as the estimate was sure enough, which is what
+ * an adaptive test is for and is why the intro screen had to say *18 to 36
+ * questions, 3 to 6 minutes*. Four numbers, none of which a learner can plan
+ * around. Somebody deciding whether to start a test wants to know what they are
+ * agreeing to, and "somewhere between three and six minutes" is not an answer.
+ *
+ * So the count is fixed and the *difficulty* adapts, which is where the
+ * adaptation was always doing the work: the early-stopping rule saved four
+ * questions on average and cost the learner the ability to know when it would
+ * end. Measured against the same simulation, a fixed thirty is at least as
+ * accurate as the old variable run — see `scripts/level-test-qa.mjs`.
+ */
+export const ITEM_COUNT = 30;
 
 /**
- * How sure the estimate must be before stopping early, in levels.
+ * How the thirty are made up.
  *
- * 1.6 levels of posterior standard deviation puts a 95% interval at about ±3.1,
- * which is the precision the result is reported to. Swept against the
- * simulation, because the number that matters is how long a sitting becomes:
+ * Twelve in a sentence, nine each way round on the word itself. The contextual
+ * items are the ones that measure whether somebody can *use* a word rather than
+ * recognise it, and they are the most expensive to build well — there are 390
+ * of them in the bank against 1,800 of each of the others — so twelve is what
+ * the bank can support at every level without repeating itself.
  *
- * ```
- *   target SE   median items   MAE    within ±3
- *      1.2          36         1.21     96.9%
- *      1.5          36         1.23     97.0%
- *      1.6          32         1.27     97.1%
- *      1.8          26         1.43     94.8%
- * ```
- *
- * Below 1.6 the rule never fires and every sitting runs to the 36-item cap —
- * paying four more questions for a hundredth of a level. Above it accuracy
- * starts to go. 1.6 is where the curve turns.
+ * A sitting that cannot find a contextual item at the level it wants asks
+ * another kind rather than asking nothing: see `planKinds`.
  */
-const TARGET_SE_LEVELS = 1.6;
+/** The three shapes a question comes in. */
+export type ItemKind = 'meaning' | 'produce' | 'context';
+
+export const COMPOSITION: Record<ItemKind, number> = { context: 12, meaning: 9, produce: 9 };
+
+/**
+ * Eight minutes for the whole sitting, and no per-question clock.
+ *
+ * A per-question timer measures reading speed and turns a vocabulary test into
+ * a reflex test, which is a different thing and a worse one. One clock over the
+ * whole sitting is sixteen seconds a question, which is generous for a
+ * four-option question and firm enough that nobody looks anything up.
+ *
+ * When it runs out the sitting is *scored*, not thrown away: what has been
+ * answered is evidence, and the rest is read as "I don't know", which is what
+ * running out of time on a question means. See `LevelTestPage`.
+ */
+export const TIME_LIMIT_MS = 8 * 60 * 1000;
 
 /** Where the grid starts and stops, and how finely it is cut. */
 const GRID_MIN = 0.5;
@@ -208,11 +231,40 @@ export function nextLevel(asked: readonly AskedItem[], available: readonly numbe
   return best;
 }
 
-/** Whether the test has learned enough, or asked enough. */
+/** Whether the sitting is over. Thirty questions, or the clock. */
 export function shouldStop(asked: readonly AskedItem[]): boolean {
-  if (asked.length >= MAX_ITEMS) return true;
-  if (asked.length < MIN_ITEMS) return false;
-  return estimate(asked).se <= TARGET_SE_LEVELS;
+  return asked.length >= ITEM_COUNT;
+}
+
+/**
+ * Which kind of question each of the thirty is, in order.
+ *
+ * Interleaved rather than blocked, so a sitting does not feel like three
+ * separate tests bolted together, and deterministic, so two learners at the
+ * same level meet the same *shape* of test even though the words differ.
+ *
+ * The order starts with a `meaning` item on purpose: it is the gentlest of the
+ * three, and the first question of an assessment sets what somebody expects
+ * from the rest of it.
+ */
+export function planKinds(): ItemKind[] {
+  const remaining: Record<ItemKind, number> = { ...COMPOSITION };
+  const out: ItemKind[] = [];
+  const cycle = ['meaning', 'context', 'produce', 'context', 'meaning', 'produce'] as const;
+  for (let i = 0; out.length < ITEM_COUNT; i += 1) {
+    const kind = cycle[i % cycle.length]!;
+    if (remaining[kind] > 0) {
+      remaining[kind] -= 1;
+      out.push(kind);
+      continue;
+    }
+    // That kind is used up; take whatever is left, in a fixed order.
+    const fallback = (['context', 'meaning', 'produce'] as const).find((k) => remaining[k] > 0);
+    if (!fallback) break;
+    remaining[fallback] -= 1;
+    out.push(fallback);
+  }
+  return out;
 }
 
 /**

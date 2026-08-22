@@ -1,20 +1,20 @@
 {
   "title": "Woordenschatniveau",
   "row": {
-    "body": "Ontdek ongeveer waar je Koreaanse woordenschat staat.",
-    "taken": "Je laatste uitslag: niveau {{level}}"
+    "body": "Ontdek je niveau en krijg woorden die erbij passen.",
+    "taken": "Niveau {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Waar staat je Koreaanse woordenschat?",
-    "body": "Een korte reeks vragen die moeilijker of makkelijker wordt naarmate je antwoordt, zodat er niet honderden nodig zijn.",
-    "length": "Ongeveer 3–6 minuten, 18 tot 36 vragen.",
-    "noHelp": "Geen hints, en de antwoorden worden onderweg niet getoond.",
-    "noProgress": "Niets hiervan verandert je lessen, je reeks of je herhaling.",
+    "title": "Bekijk je woordenschatniveau",
+    "body": "Van bekende woorden tot iets moeilijkere: zie waar je Koreaanse woordenschat nu staat.",
+    "shape": "{{questions, number}} vragen · {{minutes, number}} minuten",
+    "unsure": "Weet je het niet? Tik gerust op ‘Weet ik niet’.",
+    "usedFor": "Je resultaat bepaalt hoe moeilijk je woorden elke dag zijn.",
     "start": "Start de test",
     "retake": "Opnieuw doen",
     "previous": "Vorige keer kwam je uit op niveau {{level}}."
   },
-  "progress": "{{asked, number}} van maximaal {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Wat betekent dit woord?",
     "produce": "Welk woord betekent dit?",
@@ -24,13 +24,25 @@
   "unknown": "Weet ik niet",
   "loading": "De vragen worden klaargezet…",
   "unavailable": "De test heeft de eerste keer een verbinding nodig.",
+  "timeLeft": "Resterende tijd",
   "result": {
     "label": "Hangyul-woordenschatniveau",
     "of": "van {{levels, number}}",
     "band": "Waarschijnlijk tussen {{low, number}} en {{high, number}}.",
     "words": "Op dit niveau herken je meestal de {{count, number}} meest voorkomende Koreaanse woorden.",
-    "items_one": "Bepaald in {{count, number}} vraag.",
-    "items_other": "Bepaald in {{count, number}} vragen."
+    "recommend": "Je dagelijkse woorden volgen vanaf nu dit niveau."
   },
-  "disclaimer": "Het Hangyul-woordenschatniveau is onze eigen schaal. Het is geen officiële taalniveaubeoordeling en geen telling van de woorden die je kent."
+  "bands": {
+    "starter": "START",
+    "everyday": "DAGELIJKS",
+    "confident": "ZEKER",
+    "advanced": "GEVORDERD"
+  },
+  "home": {
+    "title": "Woordenschatniveau",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Ontdek je niveau en krijg woorden die erbij passen.",
+    "cta": "Doe de test",
+    "retake": "Opnieuw testen"
+  }
 }

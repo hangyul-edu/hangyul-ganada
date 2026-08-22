@@ -127,11 +127,7 @@
     "forYou": "Επανάληψη για σένα",
     "sessionLength_one": "{{count, number}} σύντομη άσκηση",
     "sessionLength_other": "{{count, number}} σύντομες ασκήσεις",
-    "needsPractice": "Θέλει εξάσκηση",
-    "dueToday": "Για σήμερα",
-    "savedWords": "Αποθηκευμένες λέξεις",
     "chooseMode": "Ή διάλεξε τι θα εξασκήσεις",
-    "comingUp": "Έρχονται",
     "outcome": "{{practised, number}} εξασκήθηκαν · {{firstTry, number}} ήρθαν αμέσως · {{comingBack, number}} θα ξαναγυρίσουν σύντομα",
     "blank": "κενό",
     "optionsLabel": "Απαντήσεις",
@@ -217,7 +213,8 @@
     "noneOfKind": "Εδώ δεν υπάρχει κάτι αυτή τη στιγμή.",
     "emptyTitle": "Δεν σου έχει ξεφύγει τίποτα ακόμη",
     "emptyBody": "Όταν κάτι σου ξεφεύγει, εμφανίζεται εδώ για να το διορθώσεις.",
-    "emptyCta": "Πήγαινε στην επανάληψη"
+    "emptyCta": "Πήγαινε στην επανάληψη",
+    "wrongVocabulary": "Λέξεις με λάθος"
   },
   "letterGroup": {
     "basic_vowel": "βασικό φωνήεν",
@@ -233,5 +230,9 @@
     "cta": "Συνέχισε στο Hangyul",
     "rowTitle": "Συνέχισε στο Hangyul",
     "rowBody": "Ομιλία και TOPIK, όποτε νιώσεις έτοιμος"
+  },
+  "practice": {
+    "sizeLabel": "Πόσες",
+    "sizeAll": "Όλες ({{count, number}})"
   }
 }

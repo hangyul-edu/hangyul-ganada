@@ -1,20 +1,20 @@
 {
   "title": "词汇等级",
   "row": {
-    "body": "看看你的韩语词汇量大致在什么位置。",
-    "taken": "上次结果：等级 {{level}}"
+    "body": "测一测你的水平，获得合适的单词。",
+    "taken": "等级 {{level}} · {{band}}"
   },
   "intro": {
-    "title": "你的韩语词汇量如何？",
-    "body": "题目会根据你的作答变难或变易，所以不用做几百道题也能定位。",
-    "length": "约 3–6 分钟，18 到 36 题。",
-    "noHelp": "没有提示，作答过程中也不显示答案。",
-    "noProgress": "不会影响你的课程、连续天数或复习。",
+    "title": "测测你的词汇水平",
+    "body": "从熟悉的词到稍难的词，做一遍就知道现在的词汇量在哪里。",
+    "shape": "{{questions, number}} 题 · {{minutes, number}} 分钟",
+    "unsure": "不会的题点“不知道”就好。",
+    "usedFor": "结果会决定你每天单词的难度。",
     "start": "开始测试",
     "retake": "再测一次",
     "previous": "你上次是等级 {{level}}。"
   },
-  "progress": "{{asked, number}} / 最多 {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "这个词是什么意思？",
     "produce": "哪个词是这个意思？",
@@ -24,12 +24,25 @@
   "unknown": "我不知道",
   "loading": "正在准备题目…",
   "unavailable": "首次打开测试需要联网。",
+  "timeLeft": "剩余时间",
   "result": {
     "label": "韩橘词汇等级",
     "of": "/ {{levels, number}}",
     "band": "最可能在 {{low, number}} 到 {{high, number}} 之间。",
     "words": "到这个等级，读者通常能认出韩语中最常用的 {{count, number}} 个词。",
-    "items_other": "用 {{count, number}} 道题得出。"
+    "recommend": "今后每天的单词会按这个水平来挑。"
   },
-  "disclaimer": "韩橘词汇等级是我们自己的标准，不是官方语言能力等级，也不是你认识的词数。"
+  "bands": {
+    "starter": "入门",
+    "everyday": "日常",
+    "confident": "进阶",
+    "advanced": "高级"
+  },
+  "home": {
+    "title": "词汇等级",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "测一测你的水平，获得合适的单词。",
+    "cta": "开始测试",
+    "retake": "重新测试"
+  }
 }

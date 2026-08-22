@@ -127,11 +127,7 @@
     "forYou": "บททบทวนสำหรับคุณ",
     "sessionLength_one": "แบบฝึกสั้น ๆ หนึ่งข้อ",
     "sessionLength_other": "แบบฝึกสั้น ๆ {{count, number}} ข้อ",
-    "needsPractice": "ต้องฝึกเพิ่ม",
-    "dueToday": "ถึงกำหนดวันนี้",
-    "savedWords": "คำที่บันทึกไว้",
     "chooseMode": "หรือเลือกสิ่งที่อยากฝึก",
-    "comingUp": "กำลังจะถึง",
     "outcome": "ฝึกไป {{practised, number}} · จำได้ทันที {{firstTry, number}} · อีก {{comingBack, number}} จะกลับมาเร็ว ๆ นี้",
     "blank": "ช่องว่าง",
     "optionsLabel": "ตัวเลือกคำตอบ",
@@ -217,7 +213,8 @@
     "noneOfKind": "ตอนนี้ยังไม่มีอะไรตรงนี้",
     "emptyTitle": "ยังไม่มีข้อที่ตอบผิด",
     "emptyBody": "เมื่อมีอะไรหลุดไป มันจะมาอยู่ตรงนี้ให้คุณแก้ให้ถูก",
-    "emptyCta": "ไปที่การทบทวน"
+    "emptyCta": "ไปที่การทบทวน",
+    "wrongVocabulary": "คำที่ตอบผิด"
   },
   "letterGroup": {
     "basic_vowel": "สระพื้นฐาน",
@@ -233,5 +230,9 @@
     "cta": "ไปต่อที่ Hangyul",
     "rowTitle": "ไปต่อที่ Hangyul",
     "rowBody": "ฝึกพูดและ TOPIK เมื่อคุณพร้อม"
+  },
+  "practice": {
+    "sizeLabel": "กี่ข้อ",
+    "sizeAll": "ทั้งหมด {{count, number}} ข้อ"
   }
 }

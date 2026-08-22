@@ -562,6 +562,13 @@
   text-wrap: pretty;
 }
 
+/* Quieter than the blurb above it: it is provenance, not instruction. */
+.todayLevel {
+  margin-top: 2px;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+}
+
 .todayDone {
   display: flex;
   align-items: center;
@@ -688,4 +695,60 @@
   font-size: var(--hg-text-caption);
   color: var(--hg-text-secondary);
   text-wrap: pretty;
+}
+
+/*
+ * 먹었어요 → 먹다.
+ *
+ * The row a learner sees when they typed a word the way Korean writes it rather
+ * than the way a dictionary lists it. The arrow is the whole design: it says
+ * that the app understood the form and knows where it came from, which is the
+ * difference between a dictionary and a list of strings.
+ *
+ * `aria-hidden` on the arrow, because a screen reader saying "right arrow"
+ * between two Korean words adds nothing — the link's own text reads
+ * "먹었어요 먹다 to eat", which is the sentence.
+ */
+.inflections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0 0 var(--hg-space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.inflection {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-2);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-text);
+}
+
+.inflectionFrom {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}
+
+.inflectionArrow {
+  color: var(--hg-text-tertiary);
+}
+
+.inflectionTo {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+}
+
+.inflectionGloss {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

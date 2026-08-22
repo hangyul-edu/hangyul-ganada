@@ -23,19 +23,5 @@
     "wordsCaption": "cuvintele de azi",
     "wordsReady": "gata pentru primele cuvinte"
   },
-  "review": {
-    "title": "Recapitulare",
-    "count_few": "{{count, number}} de reluat",
-    "count_one": "{{count, number}} de reluat",
-    "count_other": "{{count, number}} de reluat",
-    "empty": "Încă nu e nimic de reluat"
-  },
-  "practice": {
-    "title": "Exercițiul de azi",
-    "reviews_few": "{{count, number}} recapitulări pregătite",
-    "reviews_one": "{{count, number}} recapitulare pregătită",
-    "reviews_other": "{{count, number}} de recapitulări pregătite",
-    "cta": "Începe exercițiul"
-  },
   "purpose": "Învață coreeana de la prima literă — întâi hangul, apoi cuvintele pe care chiar le vei folosi."
 }

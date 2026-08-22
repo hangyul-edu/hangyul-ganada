@@ -127,11 +127,7 @@
     "forYou": "Balik-aral para sa iyo",
     "sessionLength_one": "{{count, number}} maikling ensayo",
     "sessionLength_other": "{{count, number}} maiikling ensayo",
-    "needsPractice": "Kailangan ng ensayo",
-    "dueToday": "Para ngayong araw",
-    "savedWords": "Mga naka-save na salita",
     "chooseMode": "O pumili kung ano ang ieensayo",
-    "comingUp": "Susunod",
     "outcome": "{{practised, number}} naensayo · {{firstTry, number}} agad naalala · {{comingBack, number}} babalik pa",
     "blank": "puwang",
     "optionsLabel": "Mga sagot",
@@ -217,7 +213,8 @@
     "noneOfKind": "Wala munang laman dito.",
     "emptyTitle": "Wala pang namamali",
     "emptyBody": "Kapag may nakalusot, lilitaw ito rito para maitama mo.",
-    "emptyCta": "Pumunta sa balik-aral"
+    "emptyCta": "Pumunta sa balik-aral",
+    "wrongVocabulary": "Maling salita"
   },
   "letterGroup": {
     "basic_vowel": "isang payak na patinig",
@@ -233,5 +230,9 @@
     "cta": "Magpatuloy sa Hangyul",
     "rowTitle": "Magpatuloy sa Hangyul",
     "rowBody": "Pagsasalita at TOPIK, kapag handa ka na"
+  },
+  "practice": {
+    "sizeLabel": "Ilang tanong",
+    "sizeAll": "Lahat ({{count, number}})"
   }
 }

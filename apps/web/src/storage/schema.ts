@@ -42,7 +42,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 10;
+export const SCHEMA_VERSION = 11;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -105,6 +105,22 @@ export interface StoredSettings extends LearnerPreferences {
    * should not have to sit the test again to see their own result.
    */
   level_test: LevelTestResult | null;
+  /**
+   * This learner's own shuffle, made once and never changed.
+   *
+   * Two people at the same Vocabulary Level should not be taught the same ten
+   * words on the same day. Without something per-learner they would be: the
+   * corpus order is fixed and so is the level, so the only thing left to vary
+   * by is who is asking. This is that.
+   *
+   * A random string, generated on first launch, stored with the preferences and
+   * carried through an export — a learner who restores a backup should get
+   * their sequence back, not a new one. It is not an identifier: it never
+   * leaves the device, nothing is keyed on it, and two learners colliding would
+   * mean two people getting the same word order, which is a coincidence rather
+   * than a fault.
+   */
+  content_seed: string;
 }
 
 export const SETTINGS_KEY = 'preferences';
@@ -141,6 +157,7 @@ export function defaultSettings(): StoredSettings {
     saved_items: [],
     daily_plan: null,
     level_test: null,
+    content_seed: '',
   };
 }
 
@@ -706,6 +723,48 @@ const levelTestResult: Migration = {
   },
 };
 
+/**
+ * Give an existing learner a seed.
+ *
+ * Everyone before this release shared the corpus order, so everyone gets a seed
+ * now and their word list changes from the next day. That is the point of the
+ * change and it is worth being explicit that it is visible: a learner who has
+ * studied for a month will notice that tomorrow's words are not the ones the
+ * old ordering would have given them. Nothing they have learned is affected —
+ * `isMet` still excludes every word they have met.
+ */
+const learnerContentSeed: Migration = {
+  to: 11,
+  describe: 'Give the learner their own vocabulary shuffle',
+  async run({ driver }) {
+    const settings = await driver.get<Partial<StoredSettings>>('settings', SETTINGS_KEY);
+    if (!settings || settings.content_seed) return;
+    await driver.put('settings', SETTINGS_KEY, {
+      ...defaultSettings(),
+      ...settings,
+      content_seed: newContentSeed(),
+    });
+  },
+};
+
+/**
+ * A fresh seed.
+ *
+ * `crypto.getRandomValues` where it exists, which is everywhere the app runs,
+ * and a time-and-Math.random fallback for a test environment that has stubbed
+ * it away. The fallback does not have to be unguessable — nothing is protected
+ * by this — only different between two learners.
+ */
+export function newContentSeed(): string {
+  const bytes = new Uint8Array(8);
+  if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
+    crypto.getRandomValues(bytes);
+  } else {
+    for (let i = 0; i < bytes.length; i += 1) bytes[i] = Math.floor(Math.random() * 256);
+  }
+  return [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
@@ -715,6 +774,7 @@ export const MIGRATIONS: Migration[] = [
   wrongAnswerNotebook,
   noPracticeStyleSetting,
   levelTestResult,
+  learnerContentSeed,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

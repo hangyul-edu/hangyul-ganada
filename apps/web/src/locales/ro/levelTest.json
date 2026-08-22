@@ -1,20 +1,20 @@
 {
   "title": "Nivel de vocabular",
   "row": {
-    "body": "Află aproximativ unde se află vocabularul tău coreean.",
-    "taken": "Ultimul rezultat: nivelul {{level}}"
+    "body": "Află-ți nivelul și primește cuvinte potrivite.",
+    "taken": "Nivelul {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Unde se află vocabularul tău coreean?",
-    "body": "Un set scurt de întrebări care devine mai greu sau mai ușor în funcție de răspunsuri, ca să te poată plasa fără sute de întrebări.",
-    "length": "Aproximativ 3–6 minute, între 18 și 36 de întrebări.",
-    "noHelp": "Fără indicii, iar răspunsurile nu se arată pe parcurs.",
-    "noProgress": "Nimic de aici nu îți schimbă lecțiile, seria sau recapitularea.",
+    "title": "Verifică-ți nivelul de vocabular",
+    "body": "De la cuvinte cunoscute la altele puțin mai grele — vezi unde e acum vocabularul tău de coreeană.",
+    "shape": "{{questions, number}} întrebări · {{minutes, number}} minute",
+    "unsure": "Nu știi? Poți apăsa „Nu știu”.",
+    "usedFor": "Rezultatul stabilește dificultatea cuvintelor tale zilnice.",
     "start": "Începe testul",
     "retake": "Reia testul",
     "previous": "Data trecută ai ieșit la nivelul {{level}}."
   },
-  "progress": "{{asked, number}} din cel mult {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Ce înseamnă cuvântul acesta?",
     "produce": "Care cuvânt înseamnă asta?",
@@ -24,14 +24,25 @@
   "unknown": "Nu știu",
   "loading": "Se pregătesc întrebările…",
   "unavailable": "Testul are nevoie de conexiune prima dată când îl deschizi.",
+  "timeLeft": "Timp rămas",
   "result": {
     "label": "Nivel de vocabular Hangyul",
     "of": "din {{levels, number}}",
     "band": "Cel mai probabil între {{low, number}} și {{high, number}}.",
     "words": "La acest nivel se recunosc de obicei cele mai frecvente {{count, number}} de cuvinte coreene.",
-    "items_one": "Stabilit din {{count, number}} întrebare.",
-    "items_few": "Stabilit din {{count, number}} întrebări.",
-    "items_other": "Stabilit din {{count, number}} de întrebări."
+    "recommend": "De acum cuvintele zilei urmează acest nivel."
   },
-  "disclaimer": "Nivelul de vocabular Hangyul este scala noastră. Nu este o atestare oficială de competență și nu numără cuvintele pe care le știi."
+  "bands": {
+    "starter": "ÎNCEPUT",
+    "everyday": "ZI DE ZI",
+    "confident": "SIGUR",
+    "advanced": "AVANSAT"
+  },
+  "home": {
+    "title": "Nivel de vocabular",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Află-ți nivelul și primește cuvinte potrivite.",
+    "cta": "Începe testul",
+    "retake": "Reia testul"
+  }
 }

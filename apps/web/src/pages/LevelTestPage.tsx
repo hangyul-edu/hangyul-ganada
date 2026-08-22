@@ -2,15 +2,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { loadLevelTestBank, type LevelTestBank } from '../data/levelTest';
+import { levelKind, loadLevelTestBank, type LevelTestBank } from '../data/levelTest';
 import { getFont } from '../data/fonts';
 import {
   CUMULATIVE_WORDS,
+  ITEM_COUNT,
   LEVELS,
-  MAX_ITEMS,
+  TIME_LIMIT_MS,
   type AskedItem,
+  type ItemKind,
   estimate,
   nextLevel,
+  planKinds,
   shouldStop,
 } from '../domain/levelTest';
 import type { LevelTestItem } from '../domain/levelTestTypes';
@@ -25,11 +28,16 @@ import styles from './LevelTestPage.module.css';
  *
  * ## What it is, and what it is careful not to be
  *
- * A placement, not a lesson and not a certificate. It reports a position on the
- * Hangyul Vocabulary Level ladder — level 5 is roughly the first 735 words of
- * Korean by frequency, level 30 beyond 10,635 — with a confidence band, and it
- * says in as many words that it is neither TOPIK nor CEFR and not a count of
- * words the learner knows.
+ * A placement, not a lesson and not a certificate. **Thirty questions, eight
+ * minutes**, one clock over the whole sitting and none on any single question.
+ * It reports a position on the Hangyul Vocabulary Level ladder — level 5 is
+ * roughly the first 735 words of Korean by frequency, level 30 beyond 10,635 —
+ * with a confidence band.
+ *
+ * The count is fixed and the *difficulty* adapts. It used to be the other way
+ * about: the sitting stopped when the estimate was sure enough, so the intro
+ * screen had to promise "18 to 36 questions, 3 to 6 minutes", which is four
+ * numbers and no answer to the only question somebody about to start has.
  *
  * ## Why this screen is stripped
  *
@@ -72,8 +80,12 @@ export function LevelTestPage() {
   const [asked, setAsked] = useState<AskedItem[]>([]);
   const [current, setCurrent] = useState<LevelTestItem | null>(null);
   const [done, setDone] = useState(false);
+  const [deadline, setDeadline] = useState<number | null>(null);
+  const [now, setNow] = useState(() => Date.now());
   const used = useRef<Set<string>>(new Set());
   const seen = useRef<string[]>([]);
+  /** Which kind each of the thirty is. Fixed when the sitting starts. */
+  const kinds = useRef<ItemKind[]>(planKinds());
 
   /*
     Questions the last sitting asked, avoided in this one.
@@ -110,6 +122,17 @@ export function LevelTestPage() {
         setCurrent(null);
         return;
       }
+      /*
+        The plan says what kind; the model says what level.
+
+        The two are chosen independently and then reconciled here, because the
+        contextual bank is thin at the top of the scale — level 27 has one item
+        — and a sitting that insisted on its twelfth contextual question at
+        level 27 would either repeat one or stop. So the kind is a preference:
+        the wanted kind at the wanted level, then the wanted kind at a
+        neighbouring level, then any kind at the wanted level.
+      */
+      const wanted = kinds.current[history.length] ?? 'meaning';
       const open = [...bank.byLevel.keys()].filter((level) =>
         (bank.byLevel.get(level) ?? []).some((item) => !used.current.has(item.id)),
       );
@@ -119,7 +142,24 @@ export function LevelTestPage() {
         setCurrent(null);
         return;
       }
-      const pool = (bank.byLevel.get(level) ?? []).filter((item) => !used.current.has(item.id));
+
+      const unused = (list: readonly LevelTestItem[] | undefined) =>
+        (list ?? []).filter((item) => !used.current.has(item.id));
+
+      let pool = unused(bank.byLevelKind.get(levelKind(level, wanted)));
+      if (pool.length === 0) {
+        for (const nearby of [level - 1, level + 1, level - 2, level + 2]) {
+          pool = unused(bank.byLevelKind.get(levelKind(nearby, wanted)));
+          if (pool.length > 0) break;
+        }
+      }
+      if (pool.length === 0) pool = unused(bank.byLevel.get(level));
+      if (pool.length === 0) {
+        setDone(true);
+        setCurrent(null);
+        return;
+      }
+
       const fresh = pool.filter((item) => !previous.has(item.id));
       const from = fresh.length > 0 ? fresh : pool;
       const item = from[Math.floor(Math.random() * from.length)]!;
@@ -130,8 +170,44 @@ export function LevelTestPage() {
     [bank, previous],
   );
 
+  /**
+   * The clock, and what happens when it stops.
+   *
+   * One deadline for the sitting, set when the first question appears rather
+   * than when the learner taps Start, so that the seconds spent waiting for the
+   * bank to arrive are not charged to them.
+   *
+   * On expiry the sitting is **scored, not discarded**. Everything answered is
+   * evidence; everything unanswered is read as "I don't know", which is exactly
+   * what running out of time on a question means and is a response the model
+   * already understands. Throwing the sitting away would punish the learner for
+   * the one thing the test asked them to do — think about it.
+   */
   useEffect(() => {
-    if (bank && started && !current && !done) advance([]);
+    if (deadline === null || done) return undefined;
+    const tick = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(tick);
+  }, [deadline, done]);
+
+  useEffect(() => {
+    if (deadline === null || done || now < deadline) return;
+    setAsked((history) => {
+      const remaining = Math.max(0, ITEM_COUNT - history.length);
+      const level = current?.level ?? history[history.length - 1]?.level ?? 1;
+      return [
+        ...history,
+        ...Array.from({ length: remaining }, () => ({ level, response: 'unknown' as const })),
+      ];
+    });
+    setDone(true);
+    setCurrent(null);
+  }, [now, deadline, done, current]);
+
+  useEffect(() => {
+    if (bank && started && !current && !done) {
+      advance([]);
+      setDeadline((existing) => existing ?? Date.now() + TIME_LIMIT_MS);
+    }
   }, [bank, started, current, done, advance]);
 
   const answer = (response: AskedItem['response']) => {
@@ -169,24 +245,33 @@ export function LevelTestPage() {
       <div className={styles.page}>
         <AppHeader title={t('levelTest:title')} onBack={() => navigate(-1)} />
         <div className={styles.body}>
-          <Card tone="featured" padding="lg" className={styles.intro}>
-            <h2 className={styles.introTitle}>{t('levelTest:intro.title')}</h2>
-            <p className={styles.introBody}>{t('levelTest:intro.body')}</p>
-            <ul className={styles.facts}>
-              <li>{t('levelTest:intro.length')}</li>
-              <li>{t('levelTest:intro.noHelp')}</li>
-              <li>{t('levelTest:intro.noProgress')}</li>
-            </ul>
-            <Button size="lg" fullWidth onClick={() => setStarted(true)} data-testid="level-start">
-              {state.settings.level_test ? t('levelTest:intro.retake') : t('levelTest:intro.start')}
-            </Button>
-          </Card>
+          {/*
+            Four lines and a button.
+
+            The previous version of this screen explained adaptive testing, said
+            that the scale was our own, and said that it was not an official
+            examination — three paragraphs of methodology in front of somebody
+            who has not started yet. None of it helps them decide, and the last
+            two raise doubts that only exist because the screen raised them. What
+            a person wants before a test is what it costs and what they get, so
+            that is what is here: thirty questions, eight minutes, permission not
+            to know, and what the result will be used for.
+          */}
+          <h2 className={styles.introTitle}>{t('levelTest:intro.title')}</h2>
+          <p className={styles.introBody}>{t('levelTest:intro.body')}</p>
+          <p className={styles.introFacts}>
+            {t('levelTest:intro.shape', { questions: ITEM_COUNT, minutes: TIME_LIMIT_MS / 60000 })}
+          </p>
+          <p className={styles.introNote}>{t('levelTest:intro.unsure')}</p>
+          <p className={styles.introNote}>{t('levelTest:intro.usedFor')}</p>
           {state.settings.level_test && (
             <p className={styles.previous}>
               {t('levelTest:intro.previous', { level: state.settings.level_test.level })}
             </p>
           )}
-          <p className={styles.disclaimer}>{t('levelTest:disclaimer')}</p>
+          <Button size="lg" fullWidth onClick={() => setStarted(true)} data-testid="level-start">
+            {state.settings.level_test ? t('levelTest:intro.retake') : t('levelTest:intro.start')}
+          </Button>
         </div>
       </div>
     );
@@ -221,11 +306,14 @@ export function LevelTestPage() {
               {t('levelTest:result.band', { low: result.low, high: result.high })}
             </p>
             <p className={styles.resultWords}>{t('levelTest:result.words', { count: words })}</p>
-            <p className={styles.resultItems}>
-              {t('levelTest:result.items', { count: asked.length })}
-            </p>
+            {/*
+              What the number is *for*, which is the only thing worth saying
+              about it here. The screen used to end on a disclaimer explaining
+              that this is not an official examination — a sentence that answers
+              a question nobody asked and plants one they had not had.
+            */}
+            <p className={styles.resultRecommend}>{t('levelTest:result.recommend')}</p>
           </Card>
-          <p className={styles.disclaimer}>{t('levelTest:disclaimer')}</p>
           <Button size="lg" fullWidth onClick={() => navigate('/me')}>
             {t('common:actions.done')}
           </Button>
@@ -233,6 +321,9 @@ export function LevelTestPage() {
       </div>
     );
   }
+
+  const remaining = deadline === null ? TIME_LIMIT_MS : Math.max(0, deadline - now);
+  const clock = `${Math.floor(remaining / 60000)}:${String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0')}`;
 
   if (!bank || !current) {
     return (
@@ -253,10 +344,23 @@ export function LevelTestPage() {
       <AppHeader
         title={t('levelTest:title')}
         onBack={() => navigate(-1)}
-        /* How far through, never how well. See the note at the top of the file. */
+        /* How far through and how long is left. Never how well — see the note
+           at the top of the file. */
         action={
-          <span className={`${styles.count} hg-numeric`}>
-            {t('levelTest:progress', { asked: asked.length + 1, most: MAX_ITEMS })}
+          <span className={styles.meta}>
+            <span className={`${styles.count} hg-numeric`}>
+              {t('levelTest:progress', { asked: asked.length + 1, total: ITEM_COUNT })}
+            </span>
+            <span
+              className={`${styles.clock} hg-numeric${remaining <= 60_000 ? ` ${styles.clockLow}` : ''}`}
+              /* Named, because on its own it is four characters that could be
+                 anything, and announced once a minute rather than every second:
+                 a live region that updated 480 times would be unusable. */
+              aria-label={`${t('levelTest:timeLeft')} ${clock}`}
+              aria-live={remaining % 60_000 < 1000 ? 'polite' : 'off'}
+            >
+              {clock}
+            </span>
           </span>
         }
       />

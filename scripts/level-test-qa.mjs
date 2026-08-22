@@ -32,11 +32,12 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
+  COMPOSITION,
+  ITEM_COUNT,
   LEVELS,
-  MAX_ITEMS,
-  MIN_ITEMS,
   estimate,
   nextLevel,
+  planKinds,
   shouldStop,
 } from '../apps/web/src/domain/levelTest.ts';
 
@@ -63,15 +64,21 @@ const LOGITS_PER_LEVEL = 0.3;
 const GUESS = 0.25;
 
 const byLevel = new Map();
+const byLevelKind = new Map();
 for (const item of bank.items) {
   const list = byLevel.get(item.level) ?? [];
   list.push(item);
   byLevel.set(item.level, list);
+  const key = `${item.level}:${item.kind}`;
+  const kindList = byLevelKind.get(key) ?? [];
+  kindList.push(item);
+  byLevelKind.set(key, kindList);
 }
 const levelsAvailable = [...byLevel.keys()].sort((a, b) => a - b);
+const KINDS = planKinds();
 
 /** One sitting, for a learner whose true level is `truth`. */
-function sit(truth, random) {
+function sit(truth, random, kindsAsked = new Map()) {
   const asked = [];
   const used = new Set();
   while (!shouldStop(asked)) {
@@ -80,9 +87,26 @@ function sit(truth, random) {
     );
     const level = nextLevel(asked, open);
     if (level === null) break;
-    const pool = (byLevel.get(level) ?? []).filter((item) => !used.has(item.id));
+    /*
+     * The same fallback the screen uses, because a simulation that draws from
+     * the whole level is measuring a test nobody sits. Twelve of the thirty
+     * questions are contextual and the contextual bank thins out above level
+     * 23, so the fallback fires in real sittings and has to fire here.
+     */
+    const wanted = KINDS[asked.length] ?? 'meaning';
+    const unused = (list) => (list ?? []).filter((item) => !used.has(item.id));
+    let pool = unused(byLevelKind.get(`${level}:${wanted}`));
+    if (pool.length === 0) {
+      for (const nearby of [level - 1, level + 1, level - 2, level + 2]) {
+        pool = unused(byLevelKind.get(`${nearby}:${wanted}`));
+        if (pool.length > 0) break;
+      }
+    }
+    if (pool.length === 0) pool = unused(byLevel.get(level));
+    if (pool.length === 0) break;
     const item = pool[Math.floor(random() * pool.length)];
     used.add(item.id);
+    kindsAsked.set(item.kind, (kindsAsked.get(item.kind) ?? 0) + 1);
 
     // How a learner of this ability answers: they either know the word, or they
     // guess and land it a quarter of the time, or they say so.
@@ -101,12 +125,13 @@ const RUNS = 200;
 const errors = [];
 const lengths = [];
 const perLevel = [];
+const kindTotals = new Map();
 
 for (let truth = 1; truth <= LEVELS; truth += 1) {
   const random = rng(1000 + truth);
   const mine = [];
   for (let run = 0; run < RUNS; run += 1) {
-    const { asked, result } = sit(truth, random);
+    const { asked, result } = sit(truth, random, kindTotals);
     mine.push(result.reported - truth);
     errors.push(Math.abs(result.reported - truth));
     lengths.push(asked.length);
@@ -142,11 +167,34 @@ for (const row of worst) {
 const problems = [];
 if (within3 < 0.9) problems.push(`only ${(within3 * 100).toFixed(1)}% of sittings land within ±3 levels`);
 if (mae > 2) problems.push(`mean absolute error is ${mae.toFixed(2)} levels`);
-if (maxItems > MAX_ITEMS) problems.push(`a sitting asked ${maxItems} items, over the ${MAX_ITEMS} cap`);
-if (minItems < MIN_ITEMS) problems.push(`a sitting asked ${minItems} items, under the ${MIN_ITEMS} floor`);
+if (maxItems !== ITEM_COUNT || minItems !== ITEM_COUNT) {
+  problems.push(`sittings asked ${minItems}–${maxItems} items; every one must ask exactly ${ITEM_COUNT}`);
+}
+
+/*
+ * And the composition, which is a promise the intro screen makes.
+ *
+ * Not exactly 12/9/9 in every sitting: a learner placed at level 27 meets a
+ * contextual bank with one item in it, and the screen asks another kind rather
+ * than asking nothing. What has to hold is that the *average* sitting is close
+ * to the plan, or the twelve contextual questions are a claim rather than a
+ * design.
+ */
+const totalAsked = [...kindTotals.values()].reduce((a, b) => a + b, 0);
+console.log('\n  question kinds, averaged over every sitting:');
+for (const kind of ['context', 'meaning', 'produce']) {
+  const share = ((kindTotals.get(kind) ?? 0) / totalAsked) * ITEM_COUNT;
+  console.log(`    ${kind.padEnd(8)} ${share.toFixed(1)} of ${ITEM_COUNT}   (plan: ${COMPOSITION[kind]})`);
+}
+const contextShare = ((kindTotals.get('context') ?? 0) / totalAsked) * ITEM_COUNT;
+if (contextShare < COMPOSITION.context * 0.8) {
+  problems.push(
+    `the average sitting gets ${contextShare.toFixed(1)} contextual questions, against a plan of ${COMPOSITION.context}`,
+  );
+}
 
 if (problems.length === 0) {
-  console.log('\nthe test places a simulated learner within ±3 levels, in 18–36 items.');
+  console.log(`\nthe test places a simulated learner within ±3 levels, in exactly ${ITEM_COUNT} items.`);
 } else {
   console.log(`\n${problems.length} problem(s):`);
   for (const problem of problems) console.log(`  ${problem}`);

@@ -16,7 +16,8 @@
     "progressAria": "Framsteg i dagens ord",
     "moreLabel": "Hur många till",
     "moreCount_one": "{{count}} till",
-    "moreCount_other": "{{count}} till"
+    "moreCount_other": "{{count}} till",
+    "tunedTo": "Valda för nivå {{level}}."
   },
   "browse": {
     "title": "Bläddra efter ämne",
@@ -124,7 +125,8 @@
     "noMatch": "Inget bland de sparade matchar ”{{query}}”.",
     "emptyTitle": "Inga sparade ord än",
     "emptyBody": "Tryck på bokmärket vid ett ord medan du pluggar, så ligger det här när du vill tillbaka.",
-    "emptyCta": "Till orden"
+    "emptyCta": "Till orden",
+    "notPractisable": "De här är sparade för uppslag. Ett quiz behöver ett inlärningskort, och det finns inte än."
   },
   "dictionary": {
     "title": "Ordbok",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} annan betydelse",
     "otherMeanings_other": "{{count, number}} andra betydelser",
     "onlyMeaning": "Ordboken har ingen annan betydelse för det här ordet.",
-    "source": "Från {{name}}, {{license}}."
+    "source": "Från {{name}}, {{license}}.",
+    "save": "Spara ord",
+    "saved": "Sparat"
+  },
+  "conjugation": {
+    "title": "Böjning",
+    "form": {
+      "dictionary": "Grundform",
+      "presentPolite": "Presens",
+      "pastPolite": "Preteritum",
+      "futurePolite": "Futurum",
+      "formalPolite": "Formellt",
+      "connective": "Och / sedan",
+      "honorific": "Var snäll och gör",
+      "request": "Gör det åt mig"
+    }
   }
 }

@@ -127,11 +127,7 @@
     "forYou": "Сизге арналган кайталоо",
     "sessionLength_one": "{{count, number}} кыска көнүгүү",
     "sessionLength_other": "{{count, number}} кыска көнүгүү",
-    "needsPractice": "Көнүгүү керек",
-    "dueToday": "Бүгүнкүгө",
-    "savedWords": "Сакталган сөздөр",
     "chooseMode": "Же эмнени машыктырууну өзүңүз тандаңыз",
-    "comingUp": "Кезекте",
     "outcome": "{{practised, number}} машыкты · {{firstTry, number}} дароо эсиңизге түштү · {{comingBack, number}} жакында кайра келет",
     "blank": "бош орун",
     "optionsLabel": "Жооптор",
@@ -217,7 +213,8 @@
     "noneOfKind": "Азыр бул жерде эч нерсе жок.",
     "emptyTitle": "Азырынча эч нерсе кетирилген жок",
     "emptyBody": "Бир нерсе колдон кетсе, оңдошуңуз үчүн ал ушул жерде чыгат.",
-    "emptyCta": "Кайталоого өтүү"
+    "emptyCta": "Кайталоого өтүү",
+    "wrongVocabulary": "Ката сөздөр"
   },
   "letterGroup": {
     "basic_vowel": "негизги үндүү",
@@ -233,5 +230,9 @@
     "cta": "Hangyul'де улантуу",
     "rowTitle": "Hangyul'де улантуу",
     "rowBody": "Сүйлөө жана TOPIK — даяр болгонуңузда"
+  },
+  "practice": {
+    "sizeLabel": "Канча суроо",
+    "sizeAll": "Баары {{count, number}}"
   }
 }

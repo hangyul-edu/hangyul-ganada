@@ -61,6 +61,14 @@ export interface LearnerContextValue {
   /** Bookmarks or un-bookmarks a word. */
   toggleSaved: (kind: ItemProgress['kind'], itemKey: string) => void;
   isSaved: (kind: ItemProgress['kind'], itemKey: string) => boolean;
+  /**
+   * Save a word by its Korean spelling, whether or not the app teaches it.
+   *
+   * A learner who looks up 귀족 should be able to keep it. It resolves to the
+   * taught card when there is one, so one word is one bookmark.
+   */
+  toggleSavedHeadword: (headword: string) => void;
+  isSavedHeadword: (headword: string) => boolean;
   /** The counts the Review screen shows. */
   reviewSummary: ReviewSummary;
   /** The plan the home screen offers for today. */
@@ -77,6 +85,8 @@ export interface LearnerContextValue {
     mode?: ExerciseMode;
     savedOnly?: boolean;
     mistakesOnly?: boolean;
+    /** How many questions. Omitted means the usual session length. */
+    size?: number;
   }) => PracticePlan;
   /**
    * The wrong-answer notebook: unresolved mistakes, most recent first.

@@ -3,6 +3,7 @@ import type { ItemProgress, VocabularyWord } from '@hangyul-ganada/shared-types'
 import type { MemoryMap } from './memory';
 import { memoryKey, skillRecall } from './memory';
 import { dateKey } from './progress';
+import { pickNewWords } from './vocabularyLevel';
 
 /**
  * Today's vocabulary, as a small number the learner agreed to.
@@ -174,6 +175,20 @@ export interface DayRequest {
   corpus: readonly VocabularyWord[];
   goal: number;
   now: Date;
+  /**
+   * The learner's Vocabulary Level, and who they are.
+   *
+   * Supplied together or not at all. With them, new words are chosen around
+   * the level and shuffled by the learner's own seed; without them the plan
+   * falls back to the corpus prefix, which is what every learner used to get
+   * and is still right for somebody the app knows nothing about.
+   */
+  level?: number;
+  seed?: string;
+  /** How many days this learner has studied. Rotates the choice. */
+  dayIndex?: number;
+  /** Word ids introduced in the last fortnight. Not offered as new again. */
+  recentlyIntroduced?: ReadonlySet<string>;
 }
 
 /**
@@ -196,6 +211,7 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
   const weak: PlannedWord[] = [];
   const due: PlannedWord[] = [];
   const fresh: PlannedWord[] = [];
+  const personalised = request.level !== undefined && request.seed !== undefined;
 
   /*
    * One pass over the corpus, stopping as soon as no pool can still grow.
@@ -206,12 +222,15 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
    * each kind. It is not a scan of ten thousand rows per session.
    */
   for (const word of corpus) {
-    if (weak.length >= goal && due.length >= goal && fresh.length >= goal) break;
+    if (weak.length >= goal && due.length >= goal && (personalised || fresh.length >= goal)) break;
 
     const row = progress[`word:${word.id}`];
     const met = row !== undefined && row.stage !== 'unseen';
 
     if (!met) {
+      // Collected below, out of the whole corpus rather than its prefix, so
+      // that the learner's level can choose them. See `pickNewWords`.
+      if (personalised) continue;
       if (fresh.length < goal) {
         fresh.push({
           wordId: word.id,
@@ -242,6 +261,37 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
         const source: WordSource = isFamiliar(memory, word.id) ? 'familiar' : 'review';
         due.push({ wordId: word.id, source, steps: stepsFor(source, due.length, soundFree) });
       }
+    }
+  }
+
+  /*
+   * The new words, chosen around the learner's level.
+   *
+   * Asked for *after* the review pools are known, so the number requested is
+   * the number of slots actually left — a learner with eight words to revise
+   * gets two new ones rather than ten picked and eight thrown away.
+   */
+  if (personalised) {
+    const reservedSlots = newWordAllowance(goal);
+    const consolidationCount = Math.min(weak.length + due.length, Math.max(0, goal - reservedSlots));
+    const wantNew = goal - consolidationCount;
+    const met = new Set(
+      Object.values(progress)
+        .filter((row) => row.kind === 'word' && row.stage !== 'unseen')
+        .map((row) => row.item_key),
+    );
+    const recent = request.recentlyIntroduced ?? new Set<string>();
+    const picked = pickNewWords({
+      corpus,
+      level: request.level!,
+      seed: request.seed!,
+      dayIndex: request.dayIndex ?? 0,
+      count: wantNew,
+      isMet: (id) => met.has(id),
+      isRecent: (id) => recent.has(id),
+    });
+    for (const word of picked) {
+      fresh.push({ wordId: word.id, source: 'new', steps: stepsFor('new', fresh.length, soundFree) });
     }
   }
 

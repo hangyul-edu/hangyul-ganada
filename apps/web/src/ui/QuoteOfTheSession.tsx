@@ -1,15 +1,16 @@
 import { useMemo } from 'react';
 
-import { quoteForThisSession, renderQuote } from '../data/quotes';
+import { quoteForToday, renderQuote } from '../data/quotes';
 import { useLocale } from '../i18n';
 import styles from './QuoteOfTheSession.module.css';
 
 /**
- * One quotation, chosen once per app session, in the learner's language.
+ * One quotation, chosen once a day, in the learner's language.
  *
- * The choice itself — once per run of the app, from a shuffled bag that never
- * repeats until the set is exhausted — is `quoteForThisSession` in
- * `data/quotes.ts`.
+ * The choice itself — once per calendar day, from a shuffled bag that walks the
+ * whole library before anything repeats — is `quoteForToday` in
+ * `data/quotes.ts`. It used to be once per *run of the app*, which meant three
+ * different lines to somebody who opened Hangyul three times before breakfast.
  *
  * ## The learner's language is the quotation
  *
@@ -34,7 +35,7 @@ import styles from './QuoteOfTheSession.module.css';
  * Korean voice and the Latin with something that at least tries.
  */
 export function QuoteOfTheSession({ className }: { className?: string }) {
-  const quote = useMemo(quoteForThisSession, []);
+  const quote = useMemo(() => quoteForToday(), []);
   const { locale } = useLocale();
   const rendered = useMemo(() => renderQuote(quote, locale), [quote, locale]);
 
@@ -54,11 +55,20 @@ export function QuoteOfTheSession({ className }: { className?: string }) {
             {rendered.original.text}
           </p>
         )}
-        <figcaption className={styles.author} lang={locale}>
-          {/* An em dash and the name, the way a printed epigraph sets it. */}
-          <span aria-hidden="true">&mdash;&nbsp;</span>
-          {rendered.author}
-        </figcaption>
+        {/*
+          The name, when there is one to give.
+
+          Absent rather than "Anonymous" when there is not: see `renderQuote`.
+          A line that says the author is unknown is a line about the app's
+          research, printed under a sentence meant to encourage somebody.
+        */}
+        {rendered.author && (
+          <figcaption className={styles.author} lang={locale}>
+            {/* An em dash and the name, the way a printed epigraph sets it. */}
+            <span aria-hidden="true">&mdash;&nbsp;</span>
+            {rendered.author}
+          </figcaption>
+        )}
       </div>
     </figure>
   );

@@ -1,20 +1,20 @@
 {
   "title": "Cấp độ từ vựng",
   "row": {
-    "body": "Xem vốn từ tiếng Hàn của bạn đang ở đâu.",
-    "taken": "Kết quả gần nhất: cấp {{level}}"
+    "body": "Biết trình độ của bạn và nhận từ vừa sức.",
+    "taken": "Cấp {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Vốn từ tiếng Hàn của bạn ở đâu?",
-    "body": "Một loạt câu hỏi ngắn, khó dần hoặc dễ dần theo câu trả lời, nên không cần đến hàng trăm câu.",
-    "length": "Khoảng 3–6 phút, 18 đến 36 câu.",
-    "noHelp": "Không có gợi ý, và đáp án không hiện ra trong lúc làm.",
-    "noProgress": "Không có gì ở đây thay đổi bài học, chuỗi ngày hay phần ôn tập của bạn.",
+    "title": "Kiểm tra vốn từ của bạn",
+    "body": "Từ những từ quen thuộc đến từ khó hơn một chút — xem vốn từ tiếng Hàn của bạn đang ở đâu.",
+    "shape": "{{questions, number}} câu · {{minutes, number}} phút",
+    "unsure": "Không chắc? Cứ bấm “Tôi không biết”.",
+    "usedFor": "Kết quả quyết định độ khó của từ mỗi ngày.",
     "start": "Bắt đầu",
     "retake": "Làm lại",
     "previous": "Lần trước bạn ở cấp {{level}}."
   },
-  "progress": "{{asked, number}} trên tối đa {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Từ này nghĩa là gì?",
     "produce": "Từ nào mang nghĩa này?",
@@ -24,13 +24,25 @@
   "unknown": "Tôi không biết",
   "loading": "Đang chuẩn bị câu hỏi…",
   "unavailable": "Lần đầu mở, bài kiểm tra cần kết nối mạng.",
+  "timeLeft": "Thời gian còn lại",
   "result": {
     "label": "Cấp độ từ vựng Hangyul",
     "of": "trên {{levels, number}}",
     "band": "Nhiều khả năng nằm giữa {{low, number}} và {{high, number}}.",
     "words": "Ở cấp này, người đọc thường nhận ra {{count, number}} từ tiếng Hàn thông dụng nhất.",
-    "items_one": "Xác định sau {{count, number}} câu.",
-    "items_other": "Xác định sau {{count, number}} câu."
+    "recommend": "Từ vựng mỗi ngày giờ sẽ theo cấp độ này."
   },
-  "disclaimer": "Cấp độ từ vựng Hangyul là thang đo riêng của chúng tôi. Đây không phải chứng nhận trình độ chính thức, cũng không phải số từ bạn biết."
+  "bands": {
+    "starter": "KHỞI ĐẦU",
+    "everyday": "HẰNG NGÀY",
+    "confident": "TỰ TIN",
+    "advanced": "NÂNG CAO"
+  },
+  "home": {
+    "title": "Cấp độ từ vựng",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Biết trình độ của bạn và nhận từ vừa sức.",
+    "cta": "Làm bài kiểm tra",
+    "retake": "Làm lại"
+  }
 }

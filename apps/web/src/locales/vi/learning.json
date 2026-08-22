@@ -127,11 +127,7 @@
     "forYou": "Bài ôn dành cho bạn",
     "sessionLength_one": "Một bài tập ngắn",
     "sessionLength_other": "{{count, number}} bài tập ngắn",
-    "needsPractice": "Cần luyện thêm",
-    "dueToday": "Đến hạn hôm nay",
-    "savedWords": "Từ đã lưu",
     "chooseMode": "Hoặc chọn phần muốn luyện",
-    "comingUp": "Sắp tới",
     "outcome": "Đã luyện {{practised, number}} · nhớ ngay {{firstTry, number}} · {{comingBack, number}} sẽ quay lại sớm",
     "blank": "chỗ trống",
     "optionsLabel": "Các đáp án",
@@ -217,7 +213,8 @@
     "noneOfKind": "Bây giờ ở đây chưa có gì.",
     "emptyTitle": "Chưa sai câu nào",
     "emptyBody": "Khi có gì đó trượt mất, nó sẽ hiện ở đây để bạn sửa lại.",
-    "emptyCta": "Đến phần ôn tập"
+    "emptyCta": "Đến phần ôn tập",
+    "wrongVocabulary": "Từ đã sai"
   },
   "letterGroup": {
     "basic_vowel": "một nguyên âm cơ bản",
@@ -233,5 +230,9 @@
     "cta": "Học tiếp ở Hangyul",
     "rowTitle": "Học tiếp ở Hangyul",
     "rowBody": "Luyện nói và TOPIK, khi nào bạn sẵn sàng"
+  },
+  "practice": {
+    "sizeLabel": "Bao nhiêu câu",
+    "sizeAll": "Tất cả {{count, number}}"
   }
 }

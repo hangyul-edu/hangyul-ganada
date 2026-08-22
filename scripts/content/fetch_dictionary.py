@@ -49,10 +49,30 @@ FREQUENCY_URL = (
 #: has never heard of a word that is common in writing and rare in speech. The
 #: category lists are the lexicon's own index. See `docs/VOCABULARY_DATA.md`.
 LEMMA_CATEGORIES = [
+    # `Korean lemmas` is the superset — every part of speech Wiktionary has a
+    # Korean lemma page for, including the ones with no category of their own.
+    # Listed first so that a run which is interrupted has already fetched the
+    # broadest index.
+    #
+    # It was not here originally, and the four below were, which is why the
+    # dictionary stopped at 26,675 headwords: the four categories together list
+    # 42,056 pages and the lemma category lists nearly twice that. Coverage
+    # gaps found by the audit fixture — see `scripts/dictionary-coverage-qa.mjs`
+    # — were mostly words that exist on Wiktionary and were never listed.
+    "Category:Korean lemmas",
     "Category:Korean verbs",
     "Category:Korean adjectives",
     "Category:Korean nouns",
     "Category:Korean adverbs",
+    # Smaller closed classes the lemma category also covers, listed separately
+    # so a partial run still gets them: they are short and high-value.
+    "Category:Korean determiners",
+    "Category:Korean numerals",
+    "Category:Korean pronouns",
+    "Category:Korean counters",
+    "Category:Korean interjections",
+    "Category:Korean idioms",
+    "Category:Korean proverbs",
 ]
 
 

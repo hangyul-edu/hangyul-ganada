@@ -131,11 +131,7 @@
     "sessionLength_many": "{{count, number}} krátkého cvičení",
     "sessionLength_one": "{{count, number}} krátké cvičení",
     "sessionLength_other": "{{count, number}} krátkých cvičení",
-    "needsPractice": "Chce procvičit",
-    "dueToday": "Na dnešek",
-    "savedWords": "Uložená slova",
     "chooseMode": "Nebo si vyberte, co procvičit",
-    "comingUp": "Na řadě",
     "outcome": "{{practised, number}} procvičeno · {{firstTry, number}} se vybavilo hned · {{comingBack, number}} se brzy vrátí",
     "blank": "mezera",
     "optionsLabel": "Odpovědi",
@@ -225,7 +221,8 @@
     "noneOfKind": "Zrovna tu nic není.",
     "emptyTitle": "Zatím nic neuteklo",
     "emptyBody": "Když vám něco uteče, objeví se to tady, abyste to napravili.",
-    "emptyCta": "Na opakování"
+    "emptyCta": "Na opakování",
+    "wrongVocabulary": "Chybná slova"
   },
   "letterGroup": {
     "basic_vowel": "základní samohláska",
@@ -241,5 +238,9 @@
     "cta": "Pokračovat v Hangyul",
     "rowTitle": "Pokračovat v Hangyul",
     "rowBody": "Mluvení a TOPIK, až budete chtít"
+  },
+  "practice": {
+    "sizeLabel": "Kolik otázek",
+    "sizeAll": "Vše ({{count, number}})"
   }
 }

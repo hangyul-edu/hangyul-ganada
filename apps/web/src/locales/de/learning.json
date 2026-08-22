@@ -36,11 +36,7 @@
     "forYou": "Wiederholung für dich",
     "sessionLength_one": "Eine kurze Übung",
     "sessionLength_other": "{{count, number}} kurze Übungen",
-    "needsPractice": "Braucht Übung",
-    "dueToday": "Heute dran",
-    "savedWords": "Gespeicherte Wörter",
     "chooseMode": "Oder wähle, was du üben willst",
-    "comingUp": "Als Nächstes",
     "outcome": "{{practised, number}} geübt · {{firstTry, number}} kamen dir sofort wieder · {{comingBack, number}} kommen bald zurück",
     "blank": "Lücke",
     "optionsLabel": "Antworten",
@@ -217,7 +213,8 @@
     "noneOfKind": "Hier ist gerade nichts.",
     "emptyTitle": "Noch nichts falsch",
     "emptyBody": "Wenn du etwas falsch hast, landet es hier — und du kannst es in Ruhe richtigstellen.",
-    "emptyCta": "Zur Wiederholung"
+    "emptyCta": "Zur Wiederholung",
+    "wrongVocabulary": "Falsche Wörter"
   },
   "letterGroup": {
     "basic_vowel": "ein einfacher Vokal",
@@ -233,5 +230,9 @@
     "cta": "In Hangyul weitermachen",
     "rowTitle": "In Hangyul weitermachen",
     "rowBody": "Sprechen und TOPIK, wenn du so weit bist"
+  },
+  "practice": {
+    "sizeLabel": "Wie viele",
+    "sizeAll": "Alle {{count, number}}"
   }
 }

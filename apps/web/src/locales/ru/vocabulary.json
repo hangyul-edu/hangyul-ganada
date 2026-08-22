@@ -22,7 +22,8 @@
     "moreCount_few": "ещё {{count}}",
     "moreCount_many": "ещё {{count}}",
     "moreCount_one": "ещё {{count}}",
-    "moreCount_other": "ещё {{count}}"
+    "moreCount_other": "ещё {{count}}",
+    "tunedTo": "Подобраны для уровня {{level}}."
   },
   "browse": {
     "title": "Смотреть по темам",
@@ -138,7 +139,8 @@
     "noMatch": "Среди сохранённых ничего не совпало с «{{query}}».",
     "emptyTitle": "Сохранённых слов пока нет",
     "emptyBody": "Нажмите на закладку у любого слова во время занятий — и оно будет ждать здесь, когда захотите вернуться.",
-    "emptyCta": "К словам"
+    "emptyCta": "К словам",
+    "notPractisable": "Эти сохранены для поиска. Для вопроса нужна учебная карточка, а её пока нет."
   },
   "dictionary": {
     "title": "Словарь",
@@ -154,6 +156,21 @@
     "otherMeanings_many": "{{count, number}} других значений",
     "otherMeanings_other": "{{count, number}} других значения",
     "onlyMeaning": "В словаре нет других значений этого слова.",
-    "source": "Источник: {{name}}, {{license}}."
+    "source": "Источник: {{name}}, {{license}}.",
+    "save": "Сохранить слово",
+    "saved": "Сохранено"
+  },
+  "conjugation": {
+    "title": "Спряжение",
+    "form": {
+      "dictionary": "Словарная форма",
+      "presentPolite": "Настоящее",
+      "pastPolite": "Прошедшее",
+      "futurePolite": "Будущее",
+      "formalPolite": "Официальное",
+      "connective": "И / затем",
+      "honorific": "Сделайте, пожалуйста",
+      "request": "Сделай это для меня"
+    }
   }
 }

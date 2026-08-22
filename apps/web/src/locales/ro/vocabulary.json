@@ -19,7 +19,8 @@
     "moreLabel": "Câte încă",
     "moreCount_few": "încă {{count}}",
     "moreCount_one": "încă {{count}}",
-    "moreCount_other": "încă {{count}}"
+    "moreCount_other": "încă {{count}}",
+    "tunedTo": "Alese pentru nivelul {{level}}."
   },
   "browse": {
     "title": "Răsfoiește după temă",
@@ -131,7 +132,8 @@
     "noMatch": "Nimic dintre cele salvate nu se potrivește cu „{{query}}”.",
     "emptyTitle": "Încă niciun cuvânt salvat",
     "emptyBody": "Atinge semnul de carte de la orice cuvânt în timp ce înveți și îl găsești aici când vrei să revii.",
-    "emptyCta": "Mergi la cuvinte"
+    "emptyCta": "Mergi la cuvinte",
+    "notPractisable": "Acestea sunt salvate pentru căutare. Un test are nevoie de o fișă de învățare, pe care încă nu o au."
   },
   "dictionary": {
     "title": "Dicționar",
@@ -146,6 +148,21 @@
     "otherMeanings_few": "{{count, number}} alte sensuri",
     "otherMeanings_other": "{{count, number}} de alte sensuri",
     "onlyMeaning": "Dicționarul nu are alt sens pentru acest cuvânt.",
-    "source": "Din {{name}}, {{license}}."
+    "source": "Din {{name}}, {{license}}.",
+    "save": "Salvează cuvântul",
+    "saved": "Salvat"
+  },
+  "conjugation": {
+    "title": "Conjugare",
+    "form": {
+      "dictionary": "Forma de dicționar",
+      "presentPolite": "Prezent",
+      "pastPolite": "Trecut",
+      "futurePolite": "Viitor",
+      "formalPolite": "Formal",
+      "connective": "Și / apoi",
+      "honorific": "Te rog, fă",
+      "request": "Fă-o pentru mine"
+    }
   }
 }

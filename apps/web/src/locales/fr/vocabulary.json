@@ -19,7 +19,8 @@
     "moreLabel": "Combien de plus ?",
     "moreCount_one": "1 de plus",
     "moreCount_other": "{{count}} de plus",
-    "moreCount_many": "{{count}} de plus"
+    "moreCount_many": "{{count}} de plus",
+    "tunedTo": "Choisis pour le niveau {{level}}."
   },
   "browse": {
     "title": "Parcourir par thème",
@@ -131,7 +132,8 @@
     "noMatch": "Aucun mot enregistré ne correspond à « {{query}} ».",
     "emptyTitle": "Aucun mot enregistré",
     "emptyBody": "Touchez le signet sur un mot pendant que vous étudiez, et vous le retrouverez ici.",
-    "emptyCta": "Voir les mots"
+    "emptyCta": "Voir les mots",
+    "notPractisable": "Ceux-ci sont enregistrés pour consultation. Un quiz demande une fiche d’apprentissage, qu’ils n’ont pas encore."
   },
   "dictionary": {
     "title": "Dictionnaire",
@@ -146,6 +148,21 @@
     "otherMeanings_many": "{{count, number}} autres sens",
     "otherMeanings_other": "{{count, number}} autres sens",
     "onlyMeaning": "Le dictionnaire n’a pas d’autre sens pour ce mot.",
-    "source": "De {{name}}, {{license}}."
+    "source": "De {{name}}, {{license}}.",
+    "save": "Enregistrer le mot",
+    "saved": "Enregistré"
+  },
+  "conjugation": {
+    "title": "Conjugaison",
+    "form": {
+      "dictionary": "Forme du dictionnaire",
+      "presentPolite": "Présent",
+      "pastPolite": "Passé",
+      "futurePolite": "Futur",
+      "formalPolite": "Formel",
+      "connective": "Et / puis",
+      "honorific": "Fais, s’il te plaît",
+      "request": "Fais-le pour moi"
+    }
   }
 }

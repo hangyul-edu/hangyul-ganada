@@ -23,17 +23,5 @@
     "wordsCaption": "bugungi so‘zlar",
     "wordsReady": "birinchi so‘zlarga tayyorsiz"
   },
-  "review": {
-    "title": "Takrorlash",
-    "count_one": "{{count, number}} ta takrorlanadi",
-    "count_other": "{{count, number}} ta takrorlanadi",
-    "empty": "Hozircha takrorlaydigan narsa yo‘q"
-  },
-  "practice": {
-    "title": "Bugungi mashq",
-    "reviews_one": "{{count, number}} ta takrorlash tayyor",
-    "reviews_other": "{{count, number}} ta takrorlash tayyor",
-    "cta": "Mashqni boshlash"
-  },
   "purpose": "Koreys tilini eng birinchi harfdan o‘rganing — avval hangul, keyin haqiqatan ishlatadigan so‘zlaringiz."
 }

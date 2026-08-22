@@ -249,46 +249,81 @@
   line-height: 1.4;
 }
 
-/* --- review row --- */
+/* --- vocabulary level --- */
 
-.reviewRow {
+/*
+ * The row that replaced the second Review card.
+ *
+ * Restrained on purpose. A level is a measurement, and the temptation with a
+ * number between 1 and 30 is to draw a ring around it — which would make it
+ * look like something to grind up, which it is not. So: a label, a number, a
+ * band, and the way back to the test. No ring, no colour that means good, and
+ * the same card shape as everything else on the screen.
+ */
+.levelRow {
   display: block;
 }
 
-.reviewCard {
+.levelCard {
   display: flex;
   align-items: center;
   gap: var(--hg-space-3);
   color: var(--hg-text-tertiary);
 }
 
-.reviewIcon {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  flex: none;
-  border-radius: var(--hg-radius-sm);
-  background: var(--hg-primary-subtle);
-  color: var(--hg-primary-text);
-}
-
-.reviewText {
+.levelText {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  gap: 2px;
 }
 
-.reviewTitle {
-  font-size: var(--hg-text-body);
-  font-weight: var(--hg-weight-bold);
-  color: var(--hg-text);
-}
-
-.reviewMeta {
+.levelTitle {
   font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
   color: var(--hg-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.levelValue {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-2);
+  flex-wrap: wrap;
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-extrabold);
+  color: var(--hg-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * The band, which is the only part of this that is a word rather than a number.
+ *
+ * A learner reads "Lv. 14" and has to convert it into a feeling; the band is
+ * the conversion, done for them. Small and quiet, because it is a gloss on the
+ * number and not a rank.
+ */
+.levelBand {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+  letter-spacing: 0.06em;
+}
+
+.levelInvite {
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.levelCta {
+  flex: none;
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+  white-space: nowrap;
 }
 
 /* --- up next --- */

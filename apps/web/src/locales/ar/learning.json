@@ -135,11 +135,7 @@
     "sessionLength_other": "{{count, number}} تمرين قصير",
     "sessionLength_two": "تمرينان قصيران",
     "sessionLength_zero": "لا تمارين",
-    "needsPractice": "يحتاج تمرينًا",
-    "dueToday": "موعدها اليوم",
-    "savedWords": "الكلمات المحفوظة",
     "chooseMode": "أو اختر ما تريد التمرّن عليه",
-    "comingUp": "قادم قريبًا",
     "outcome": "{{practised, number}} تمرّنت عليها · {{firstTry, number}} تذكّرتها من أول مرة · {{comingBack, number}} ستعود قريبًا",
     "blank": "فراغ",
     "optionsLabel": "الإجابات",
@@ -233,7 +229,8 @@
     "noneOfKind": "لا شيء هنا الآن.",
     "emptyTitle": "لم يفتك شيء بعد",
     "emptyBody": "حين يفوتك شيء يظهر هنا لتصحّحه.",
-    "emptyCta": "إلى المراجعة"
+    "emptyCta": "إلى المراجعة",
+    "wrongVocabulary": "الكلمات الخاطئة"
   },
   "letterGroup": {
     "basic_vowel": "صائت أساسي",
@@ -249,5 +246,9 @@
     "cta": "تابع في هانغيول",
     "rowTitle": "تابع في هانغيول",
     "rowBody": "المحادثة وتوبيك، حين تكون مستعدًا"
+  },
+  "practice": {
+    "sizeLabel": "كم سؤالًا",
+    "sizeAll": "الكل ({{count, number}})"
   }
 }

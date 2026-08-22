@@ -33,6 +33,8 @@
  * for a word someone opened.
  */
 
+import { analyse } from '@hangyul-ganada/korean-morphology';
+
 /** Where a sense came from, carried so the licence can be honoured on screen. */
 export interface DictionarySource {
   id: string;
@@ -284,6 +286,102 @@ export function rankDictionary(
     (a, b) => ranks[a]! - ranks[b]! || hits[found[b]!]!.frequency - hits[found[a]!]!.frequency,
   );
   return order.slice(0, limit).map((position) => hits[found[position]!]!);
+}
+
+/**
+ * Whether the dictionary has this exact headword.
+ *
+ * The one thing the inflected-form analyser needs from the dictionary: it
+ * guesses dictionary forms from the shape of what was typed and asks this
+ * whether each guess is a word. One map lookup per guess, against the map the
+ * search already built.
+ */
+export function hasHeadword(index: DictionaryIndex, headword: string): boolean {
+  for (const row of index.exact.get(headword.toLowerCase()) ?? []) {
+    if (index.hits[row]!.headword === headword) return true;
+  }
+  return false;
+}
+
+/**
+ * The particles a noun can be wearing.
+ *
+ * Longest first, because 에서 has to be tried before 에 and 이랑 before 이 —
+ * otherwise 학교에서 strips to 학교서, which is not a word.
+ *
+ * Korean marks a noun's role with a suffix, so the form a learner reads is
+ * almost never the form a dictionary lists: 때문에, 학교에서, 친구를. The verb
+ * analyser cannot help — these are not conjugations — and without this a
+ * dictionary with 때문 in it answers "nothing matches" to 때문에.
+ *
+ * `의`, `도`, `만` and the rest are here for the same reason. What is *not*
+ * here is anything one syllable long that is also a common word on its own
+ * where stripping it would do more harm than good — see the guard below.
+ */
+const PARTICLES = [
+  '이랑', '에서', '에게', '한테', '으로', '까지', '부터', '보다', '처럼', '마다',
+  '조차', '밖에', '이나', '든지', '라도', '이라', '으로서', '으로써',
+  '은', '는', '이', '가', '을', '를', '에', '와', '과', '랑', '도', '만', '의', '께', '나', '뿐',
+];
+
+/**
+ * A noun with its particle taken off, if that leaves a word the dictionary has.
+ *
+ * Only ever offered when the query itself matched nothing, and only when what
+ * is left is at least one syllable and is a real headword — so 나 stays 나 and
+ * does not become the empty string, and 가方 does not become 가.
+ */
+export function stripParticle(
+  index: DictionaryIndex,
+  query: string,
+): Array<{ lemma: string; particle: string; hit: DictionaryHit }> {
+  const typed = query.trim();
+  if (typed.length < 2 || !/^[가-힣]+$/.test(typed)) return [];
+  const out: Array<{ lemma: string; particle: string; hit: DictionaryHit }> = [];
+  const seen = new Set<string>();
+  for (const particle of PARTICLES) {
+    if (!typed.endsWith(particle) || typed.length - particle.length < 1) continue;
+    const stem = typed.slice(0, typed.length - particle.length);
+    if (seen.has(stem)) continue;
+    seen.add(stem);
+    const row = (index.exact.get(stem.toLowerCase()) ?? []).find(
+      (i) => index.hits[i]!.headword === stem,
+    );
+    if (row === undefined) continue;
+    out.push({ lemma: stem, particle, hit: index.hits[row]! });
+  }
+  return out.sort((a, b) => b.hit.frequency - a.hit.frequency);
+}
+
+/**
+ * A typed word resolved back to the dictionary forms it could be.
+ *
+ * 먹었어요 → 먹다. 걸어요 → 걷다 *and* 걸다, because both are real and only the
+ * person typing knows which they meant; they come back in the dictionary's own
+ * frequency order, so the common one is first.
+ *
+ * Runs only when the exact and prefix passes have found nothing, which is what
+ * keeps it off the keystroke path: somebody typing 먹 is matching headwords, and
+ * only a completed inflected form fails to match anything.
+ */
+export function analyseInflection(
+  index: DictionaryIndex,
+  query: string,
+): Array<{ lemma: string; form: string; hit: DictionaryHit }> {
+  const out: Array<{ lemma: string; form: string; hit: DictionaryHit }> = [];
+  for (const analysis of analyse(query.trim(), (lemma) => hasHeadword(index, lemma))) {
+    const row = (index.exact.get(analysis.lemma.toLowerCase()) ?? []).find(
+      (i) => index.hits[i]!.headword === analysis.lemma,
+    );
+    if (row === undefined) continue;
+    out.push({ lemma: analysis.lemma, form: analysis.form, hit: index.hits[row]! });
+  }
+  // And the nouns, which wear a particle rather than a conjugation.
+  for (const stripped of stripParticle(index, query)) {
+    if (out.some((found) => found.lemma === stripped.lemma)) continue;
+    out.push({ lemma: stripped.lemma, form: `+${stripped.particle}`, hit: stripped.hit });
+  }
+  return out.sort((a, b) => b.hit.frequency - a.hit.frequency);
 }
 
 /**

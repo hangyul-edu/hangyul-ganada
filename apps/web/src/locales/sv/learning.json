@@ -127,11 +127,7 @@
     "forYou": "Repetition åt dig",
     "sessionLength_one": "{{count, number}} kort övning",
     "sessionLength_other": "{{count, number}} korta övningar",
-    "needsPractice": "Behöver övning",
-    "dueToday": "Dags i dag",
-    "savedWords": "Sparade ord",
     "chooseMode": "Eller välj vad du vill öva på",
-    "comingUp": "På tur",
     "outcome": "{{practised, number}} övade · {{firstTry, number}} kom direkt · {{comingBack, number}} kommer snart tillbaka",
     "blank": "lucka",
     "optionsLabel": "Svar",
@@ -217,7 +213,8 @@
     "noneOfKind": "Inget här just nu.",
     "emptyTitle": "Inget missat än",
     "emptyBody": "När något glider undan hamnar det här så att du kan rätta till det.",
-    "emptyCta": "Till repetitionen"
+    "emptyCta": "Till repetitionen",
+    "wrongVocabulary": "Fel ord"
   },
   "letterGroup": {
     "basic_vowel": "en grundvokal",
@@ -233,5 +230,9 @@
     "cta": "Fortsätt i Hangyul",
     "rowTitle": "Fortsätt i Hangyul",
     "rowBody": "Tal och TOPIK, när du är redo"
+  },
+  "practice": {
+    "sizeLabel": "Hur många",
+    "sizeAll": "Alla ({{count, number}})"
   }
 }

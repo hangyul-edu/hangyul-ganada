@@ -16,7 +16,8 @@
     "progressAria": "Progress through today's words",
     "moreLabel": "How many more",
     "moreCount_one": "1 more",
-    "moreCount_other": "{{count}} more"
+    "moreCount_other": "{{count}} more",
+    "tunedTo": "Chosen for Level {{level}}."
   },
   "browse": {
     "title": "Browse by topic",
@@ -124,7 +125,8 @@
     "noMatch": "Nothing saved matches “{{query}}”.",
     "emptyTitle": "No saved words yet",
     "emptyBody": "Tap the bookmark on any word while you study, and it will be here to come back to.",
-    "emptyCta": "Go to words"
+    "emptyCta": "Go to words",
+    "notPractisable": "These are saved for looking up. A quiz needs a taught word card, which these do not have yet."
   },
   "dictionary": {
     "title": "Dictionary",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} other meaning",
     "otherMeanings_other": "{{count, number}} other meanings",
     "onlyMeaning": "The dictionary has no other meaning for this word.",
-    "source": "From {{name}}, {{license}}."
+    "source": "From {{name}}, {{license}}.",
+    "save": "Save word",
+    "saved": "Saved"
+  },
+  "conjugation": {
+    "title": "Conjugation",
+    "form": {
+      "dictionary": "Dictionary form",
+      "presentPolite": "Present",
+      "pastPolite": "Past",
+      "futurePolite": "Future",
+      "formalPolite": "Formal",
+      "connective": "And / then",
+      "honorific": "Please do",
+      "request": "Please do (for me)"
+    }
   }
 }

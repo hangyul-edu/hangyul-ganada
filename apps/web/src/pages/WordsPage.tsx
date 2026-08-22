@@ -4,7 +4,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import type { DictionaryHit } from '../data/dictionary';
-import { type DictionaryState, useDictionarySearch } from '../data/useDictionary';
+import {
+  type DictionaryState,
+  type InflectionHit,
+  useDictionarySearch,
+} from '../data/useDictionary';
 import { VOCABULARY_CATEGORIES, corpusReady, searchWords, wordsByCategory } from '../data/vocabulary';
 import { useCorpusMemo } from '../data/useCorpus';
 import { wordCopy } from '../data/wordCopy';
@@ -181,6 +185,23 @@ export function WordsPage() {
                     ? t('vocabulary:today.resumeBlurb')
                     : t('vocabulary:today.startBlurb', { count: day.total })}
               </p>
+              {/*
+                That the words were chosen for this learner, said once and
+                quietly.
+
+                Personalisation the learner cannot see is personalisation they
+                do not get the benefit of — they need to know that today's ten
+                are theirs rather than everybody's, or a word they find easy
+                reads as the app being simple rather than as the app being
+                right. One line, no explanation of how, and nothing at all
+                before they have a level: an app that has not measured anything
+                should not imply that it has.
+              */}
+              {state.settings.level_test && (
+                <p className={styles.todayLevel} data-testid="today-level">
+                  {t('vocabulary:today.tunedTo', { level: state.settings.level_test.level })}
+                </p>
+              )}
             </div>
             {/*
               The ring appears once there is something to show.
@@ -326,7 +347,7 @@ function SearchResults({
   query: string;
   results: Array<{ word: VocabularyWord }>;
   locale: string;
-  dictionary: { hits: DictionaryHit[]; state: DictionaryState };
+  dictionary: { hits: DictionaryHit[]; state: DictionaryState; inflections: InflectionHit[] };
 }) {
   const { t } = useTranslation('vocabulary');
 
@@ -342,7 +363,19 @@ function SearchResults({
   const taught = new Set(results.map(({ word }) => word.word));
   const extra = dictionary.hits.filter((hit) => !taught.has(hit.headword));
 
-  if (results.length === 0 && extra.length === 0) {
+  /*
+    What a learner types is usually not what a dictionary contains.
+
+    Korean never writes the dictionary form in a sentence, so somebody who saw
+    먹었어요 and wanted to know what it was got "nothing matches" — from a
+    dictionary that has 먹다 and 26,674 other words. The analyser turns the
+    typed form back into the words it could be (see `analyseInflection`) and
+    this row says so out loud before opening one: **먹었어요 → 먹다**. A learner
+    should be able to see the connection, not just be silently redirected.
+  */
+  const inflections = dictionary.inflections;
+
+  if (results.length === 0 && extra.length === 0 && inflections.length === 0) {
     /*
       "Nothing matches" is a claim, and it is only true once the corpus is all
       here. Saying it while band 3 is still arriving would tell a learner the
@@ -362,9 +395,36 @@ function SearchResults({
 
   return (
     <>
-      <p className={styles.resultCount} role="status">
-        {t('search.count', { count: results.length })}
-      </p>
+      {inflections.length > 0 && (
+        <ul className={styles.inflections}>
+          {inflections.map((found) => (
+            <li key={found.lemma}>
+              <Link
+                to={`/words/dictionary/${encodeURIComponent(found.lemma)}`}
+                className={styles.inflection}
+                data-testid="inflection-hit"
+              >
+                <span className={styles.inflectionFrom} lang="ko" dir="ltr">
+                  {query.trim()}
+                </span>
+                <span className={styles.inflectionArrow} aria-hidden="true">
+                  →
+                </span>
+                <span className={styles.inflectionTo} lang="ko" dir="ltr">
+                  {found.lemma}
+                </span>
+                <span className={styles.inflectionGloss}>{found.hit.shortGloss}</span>
+                <ChevronRightIcon size={18} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+      {results.length > 0 && (
+        <p className={styles.resultCount} role="status">
+          {t('search.count', { count: results.length })}
+        </p>
+      )}
       <ul className={styles.results}>
         {results.map(({ word }) => {
           const copy = wordCopy(word, locale);

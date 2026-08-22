@@ -37,11 +37,7 @@
     "forYou": "Révision pour vous",
     "sessionLength_one": "Un court exercice",
     "sessionLength_other": "{{count, number}} courts exercices",
-    "needsPractice": "À travailler",
-    "dueToday": "À revoir aujourd’hui",
-    "savedWords": "Mots enregistrés",
     "chooseMode": "Ou choisissez quoi travailler",
-    "comingUp": "À venir",
     "outcome": "{{practised, number}} travaillés · {{firstTry, number}} vous sont revenus tout de suite · {{comingBack, number}} reviendront bientôt",
     "blank": "trou",
     "optionsLabel": "Réponses",
@@ -221,7 +217,8 @@
     "noneOfKind": "Rien ici pour le moment.",
     "emptyTitle": "Aucune erreur pour l’instant",
     "emptyBody": "Quand vous vous tromperez, cela apparaîtra ici pour que vous puissiez corriger.",
-    "emptyCta": "Aller aux révisions"
+    "emptyCta": "Aller aux révisions",
+    "wrongVocabulary": "Mots ratés"
   },
   "letterGroup": {
     "basic_vowel": "une voyelle simple",
@@ -237,5 +234,9 @@
     "cta": "Continuer dans Hangyul",
     "rowTitle": "Continuer dans Hangyul",
     "rowBody": "L’oral et le TOPIK, quand vous voulez"
+  },
+  "practice": {
+    "sizeLabel": "Combien",
+    "sizeAll": "Toutes ({{count, number}})"
   }
 }

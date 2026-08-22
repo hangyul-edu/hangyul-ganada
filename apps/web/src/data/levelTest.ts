@@ -3,7 +3,7 @@ import type { LevelTestItem } from '../domain/levelTestTypes';
 /**
  * The assessment bank, fetched when somebody starts the test and not before.
  *
- * 345 kB gzipped of questions that most learners will never open. It sits in
+ * A hundred-odd kilobytes gzipped of questions that most learners never open. It sits in
  * `public/` for the same reason the dictionary does: an import would go through
  * Vite's `manualChunks` catch-all onto the critical path, so every learner would
  * download the level test in order to see the home screen.
@@ -24,6 +24,20 @@ export interface LevelTestBank {
   items: LevelTestItem[];
   /** Items indexed by level, which is how the engine asks for them. */
   byLevel: Map<number, LevelTestItem[]>;
+  /**
+   * And by level *and kind*, which is how a sitting asks for them.
+   *
+   * A sitting is twelve contextual questions, nine each way on the word. The
+   * engine chooses the level and the plan chooses the kind, so the lookup has
+   * to answer both at once — and has to be able to say "nothing", because the
+   * contextual bank thins out at the top of the scale and level 27 has one.
+   */
+  byLevelKind: Map<string, LevelTestItem[]>;
+}
+
+/** The key `byLevelKind` is indexed on. */
+export function levelKind(level: number, kind: LevelTestItem['kind']): string {
+  return `${level}:${kind}`;
 }
 
 function base(): string {
@@ -41,12 +55,17 @@ export function loadLevelTestBank(): Promise<LevelTestBank> {
     if (!response.ok) throw new Error(`level test: ${manifest.bank} — ${response.status}`);
     const raw = (await response.json()) as { items: LevelTestItem[] };
     const byLevel = new Map<number, LevelTestItem[]>();
+    const byLevelKind = new Map<string, LevelTestItem[]>();
     for (const item of raw.items) {
       const list = byLevel.get(item.level);
       if (list) list.push(item);
       else byLevel.set(item.level, [item]);
+      const key = levelKind(item.level, item.kind);
+      const kindList = byLevelKind.get(key);
+      if (kindList) kindList.push(item);
+      else byLevelKind.set(key, [item]);
     }
-    return { levels: manifest.levels, items: raw.items, byLevel };
+    return { levels: manifest.levels, items: raw.items, byLevel, byLevelKind };
   })().catch((error: unknown) => {
     bankPromise = null;
     throw error;

@@ -22,7 +22,8 @@
     "moreCount_few": "ještě {{count}}",
     "moreCount_many": "ještě {{count}}",
     "moreCount_one": "ještě {{count}}",
-    "moreCount_other": "ještě {{count}}"
+    "moreCount_other": "ještě {{count}}",
+    "tunedTo": "Vybrána pro úroveň {{level}}."
   },
   "browse": {
     "title": "Procházet podle témat",
@@ -138,7 +139,8 @@
     "noMatch": "Mezi uloženými nic neodpovídá „{{query}}“.",
     "emptyTitle": "Zatím žádná uložená slova",
     "emptyBody": "Při učení klepněte u kteréhokoli slova na záložku a bude tu čekat, až se k němu budete chtít vrátit.",
-    "emptyCta": "Na slova"
+    "emptyCta": "Na slova",
+    "notPractisable": "Tato jsou uložená k vyhledání. Kvíz potřebuje výukovou kartu, kterou zatím nemají."
   },
   "dictionary": {
     "title": "Slovník",
@@ -154,6 +156,21 @@
     "otherMeanings_many": "{{count, number}} dalšího významu",
     "otherMeanings_other": "{{count, number}} dalších významů",
     "onlyMeaning": "Slovník pro toto slovo nemá další význam.",
-    "source": "Ze zdroje {{name}}, {{license}}."
+    "source": "Ze zdroje {{name}}, {{license}}.",
+    "save": "Uložit slovo",
+    "saved": "Uloženo"
+  },
+  "conjugation": {
+    "title": "Časování",
+    "form": {
+      "dictionary": "Slovníkový tvar",
+      "presentPolite": "Přítomný",
+      "pastPolite": "Minulý",
+      "futurePolite": "Budoucí",
+      "formalPolite": "Formální",
+      "connective": "A / pak",
+      "honorific": "Udělejte prosím",
+      "request": "Udělej to pro mě"
+    }
   }
 }

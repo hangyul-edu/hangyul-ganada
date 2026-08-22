@@ -19,7 +19,8 @@
     "moreLabel": "Quante ancora",
     "moreCount_many": "{{count}} in più",
     "moreCount_one": "{{count}} in più",
-    "moreCount_other": "{{count}} in più"
+    "moreCount_other": "{{count}} in più",
+    "tunedTo": "Scelte per il livello {{level}}."
   },
   "browse": {
     "title": "Sfoglia per argomento",
@@ -131,7 +132,8 @@
     "noMatch": "Tra le salvate niente corrisponde a «{{query}}».",
     "emptyTitle": "Ancora nessuna parola salvata",
     "emptyBody": "Tocca il segnalibro su una parola qualsiasi mentre studi, e la ritrovi qui quando vuoi tornarci.",
-    "emptyCta": "Vai alle parole"
+    "emptyCta": "Vai alle parole",
+    "notPractisable": "Sono salvate per la consultazione. Un quiz richiede una scheda di studio, che non hanno ancora."
   },
   "dictionary": {
     "title": "Dizionario",
@@ -146,6 +148,21 @@
     "otherMeanings_many": "{{count, number}} altri significati",
     "otherMeanings_other": "{{count, number}} altri significati",
     "onlyMeaning": "Il dizionario non ha altri significati per questa parola.",
-    "source": "Da {{name}}, {{license}}."
+    "source": "Da {{name}}, {{license}}.",
+    "save": "Salva parola",
+    "saved": "Salvata"
+  },
+  "conjugation": {
+    "title": "Coniugazione",
+    "form": {
+      "dictionary": "Forma del dizionario",
+      "presentPolite": "Presente",
+      "pastPolite": "Passato",
+      "futurePolite": "Futuro",
+      "formalPolite": "Formale",
+      "connective": "E / poi",
+      "honorific": "Fai, per favore",
+      "request": "Fallo per me"
+    }
   }
 }

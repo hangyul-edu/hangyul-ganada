@@ -16,7 +16,8 @@
     "progressAria": "Bugungi so‘zlar bo‘yicha jarayon",
     "moreLabel": "Yana nechta",
     "moreCount_one": "yana {{count}} ta",
-    "moreCount_other": "yana {{count}} ta"
+    "moreCount_other": "yana {{count}} ta",
+    "tunedTo": "{{level}}-daraja uchun tanlangan."
   },
   "browse": {
     "title": "Mavzu bo‘yicha ko‘rish",
@@ -124,7 +125,8 @@
     "noMatch": "Saqlanganlar orasida “{{query}}” bo‘yicha hech narsa topilmadi.",
     "emptyTitle": "Hali saqlangan so‘z yo‘q",
     "emptyBody": "O‘qib turib istalgan so‘zdagi xatcho‘pni bosing — qaytib kelmoqchi bo‘lganingizda shu yerda turadi.",
-    "emptyCta": "So‘zlarga o‘tish"
+    "emptyCta": "So‘zlarga o‘tish",
+    "notPractisable": "Bular qidirish uchun saqlangan. Savol tuzish uchun o‘quv kartasi kerak, u hali yo‘q."
   },
   "dictionary": {
     "title": "Lug‘at",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} boshqa ma’no",
     "otherMeanings_other": "{{count, number}} boshqa ma’no",
     "onlyMeaning": "Lug‘atda bu so‘zning boshqa ma’nosi yo‘q.",
-    "source": "Manba: {{name}}, {{license}}."
+    "source": "Manba: {{name}}, {{license}}.",
+    "save": "So‘zni saqlash",
+    "saved": "Saqlandi"
+  },
+  "conjugation": {
+    "title": "Tuslanishi",
+    "form": {
+      "dictionary": "Lug‘at shakli",
+      "presentPolite": "Hozirgi",
+      "pastPolite": "O‘tgan",
+      "futurePolite": "Kelasi",
+      "formalPolite": "Rasmiy",
+      "connective": "Va / keyin",
+      "honorific": "Iltimos, qiling",
+      "request": "Men uchun qiling"
+    }
   }
 }

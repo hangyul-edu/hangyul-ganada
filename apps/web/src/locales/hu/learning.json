@@ -127,11 +127,7 @@
     "forYou": "Ismétlés neked",
     "sessionLength_one": "{{count, number}} rövid gyakorlat",
     "sessionLength_other": "{{count, number}} rövid gyakorlat",
-    "needsPractice": "Gyakorlásra szorul",
-    "dueToday": "Mára esedékes",
-    "savedWords": "Mentett szavak",
     "chooseMode": "Vagy válaszd ki, mit gyakorolsz",
-    "comingUp": "Következik",
     "outcome": "{{practised, number}} gyakorolva · {{firstTry, number}} elsőre megvolt · {{comingBack, number}} hamarosan visszatér",
     "blank": "üres hely",
     "optionsLabel": "Válaszok",
@@ -217,7 +213,8 @@
     "noneOfKind": "Most nincs itt semmi.",
     "emptyTitle": "Még semmi nem csúszott el",
     "emptyBody": "Ha valami elcsúszik, itt bukkan fel, hogy helyre tudd tenni.",
-    "emptyCta": "Irány az ismétlés"
+    "emptyCta": "Irány az ismétlés",
+    "wrongVocabulary": "Elrontott szavak"
   },
   "letterGroup": {
     "basic_vowel": "alap magánhangzó",
@@ -233,5 +230,9 @@
     "cta": "Folytasd a Hangyulban",
     "rowTitle": "Folytasd a Hangyulban",
     "rowBody": "Beszéd és TOPIK, amikor készen állsz"
+  },
+  "practice": {
+    "sizeLabel": "Hány kérdés",
+    "sizeAll": "Mind ({{count, number}})"
   }
 }

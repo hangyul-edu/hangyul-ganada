@@ -241,6 +241,15 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    /*
+     * The test suite reaches one directory outside this workspace.
+     *
+     * `scripts/lib/ipa.test.ts` is collected here (see `test.include` below)
+     * and Vite's dev server will not serve a file outside its own root unless
+     * it is allowed to. Without this the file resolves to "does the file
+     * exist?" — which it does, one level up.
+     */
+    fs: { allow: [join(src, '..', '..', '..')] },
   },
   test: {
     environment: 'jsdom',

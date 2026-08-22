@@ -23,19 +23,5 @@
     "wordsCaption": "parole di oggi",
     "wordsReady": "pronti per le prime parole"
   },
-  "review": {
-    "title": "Ripasso",
-    "count_many": "{{count, number}} da rivedere",
-    "count_one": "{{count, number}} da rivedere",
-    "count_other": "{{count, number}} da rivedere",
-    "empty": "Ancora niente da rivedere"
-  },
-  "practice": {
-    "title": "Esercizio di oggi",
-    "reviews_many": "{{count, number}} ripassi pronti",
-    "reviews_one": "{{count, number}} ripasso pronto",
-    "reviews_other": "{{count, number}} ripassi pronti",
-    "cta": "Inizia l’esercizio"
-  },
   "purpose": "Impara il coreano dalla primissima lettera — prima l’hangul, poi le parole che userai davvero."
 }

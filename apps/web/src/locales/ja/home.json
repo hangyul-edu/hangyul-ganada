@@ -23,16 +23,5 @@
     "wordsCaption": "今日の単語",
     "wordsReady": "はじめての単語へ"
   },
-  "review": {
-    "title": "復習",
-    "count_other": "{{count, number}} 件を見なおす",
-    "empty": "まだ見なおすものはありません"
-  },
-  "practice": {
-    "title": "今日の練習",
-    "reviews_one": "復習 {{count, number}}件",
-    "reviews_other": "復習 {{count, number}}件",
-    "cta": "練習を始める"
-  },
   "purpose": "ハングルの一文字目から、よく使う単語まで。韓国語の第一歩をここから。"
 }

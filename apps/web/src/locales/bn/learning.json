@@ -127,11 +127,7 @@
     "forYou": "আপনার জন্য পুনরালোচনা",
     "sessionLength_one": "{{count, number}}টি ছোট অনুশীলন",
     "sessionLength_other": "{{count, number}}টি ছোট অনুশীলন",
-    "needsPractice": "অনুশীলন দরকার",
-    "dueToday": "আজকের জন্য",
-    "savedWords": "সংরক্ষিত শব্দ",
     "chooseMode": "অথবা নিজেই বেছে নিন কী অনুশীলন করবেন",
-    "comingUp": "সামনে আসছে",
     "outcome": "{{practised, number}}টি অনুশীলন হয়েছে · {{firstTry, number}}টি প্রথমেই মনে এসেছে · {{comingBack, number}}টি শিগগির ফিরে আসবে",
     "blank": "ফাঁকা",
     "optionsLabel": "উত্তর",
@@ -217,7 +213,8 @@
     "noneOfKind": "এখন এখানে কিছু নেই।",
     "emptyTitle": "এখনও কিছু ফসকায়নি",
     "emptyBody": "কিছু ফসকে গেলে তা এখানে আসবে, যাতে আপনি ঠিক করে নিতে পারেন।",
-    "emptyCta": "পুনরালোচনায় যান"
+    "emptyCta": "পুনরালোচনায় যান",
+    "wrongVocabulary": "ভুল শব্দ"
   },
   "letterGroup": {
     "basic_vowel": "একটি মৌলিক স্বর",
@@ -233,5 +230,9 @@
     "cta": "Hangyul-এ চালিয়ে যান",
     "rowTitle": "Hangyul-এ চালিয়ে যান",
     "rowBody": "কথা বলা আর TOPIK, যখন আপনি তৈরি"
+  },
+  "practice": {
+    "sizeLabel": "কয়টি প্রশ্ন",
+    "sizeAll": "সবগুলো {{count, number}}"
   }
 }

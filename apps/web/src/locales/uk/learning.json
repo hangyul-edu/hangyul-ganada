@@ -131,11 +131,7 @@
     "sessionLength_many": "{{count, number}} коротких вправ",
     "sessionLength_one": "{{count, number}} коротка вправа",
     "sessionLength_other": "{{count, number}} короткої вправи",
-    "needsPractice": "Потребує вправляння",
-    "dueToday": "На сьогодні",
-    "savedWords": "Збережені слова",
     "chooseMode": "Або виберіть, що повправляти",
-    "comingUp": "Незабаром",
     "outcome": "{{practised, number}} опрацьовано · {{firstTry, number}} згадали одразу · {{comingBack, number}} повернуться згодом",
     "blank": "пропуск",
     "optionsLabel": "Відповіді",
@@ -225,7 +221,8 @@
     "noneOfKind": "Зараз тут порожньо.",
     "emptyTitle": "Поки нічого не проґавлено",
     "emptyBody": "Коли щось вислизне, воно з'явиться тут — щоб ви це виправили.",
-    "emptyCta": "До повторення"
+    "emptyCta": "До повторення",
+    "wrongVocabulary": "Слова з помилками"
   },
   "letterGroup": {
     "basic_vowel": "проста голосна",
@@ -241,5 +238,9 @@
     "cta": "Продовжити в Hangyul",
     "rowTitle": "Продовжити в Hangyul",
     "rowBody": "Мовлення і TOPIK — коли будете готові"
+  },
+  "practice": {
+    "sizeLabel": "Скільки запитань",
+    "sizeAll": "Усі ({{count, number}})"
   }
 }

@@ -13,7 +13,8 @@
     "allDone": "Tidak ada sisa untuk hari ini.",
     "progressAria": "Kemajuan di kata hari ini",
     "moreLabel": "Berapa lagi",
-    "moreCount_other": "{{count}} lagi"
+    "moreCount_other": "{{count}} lagi",
+    "tunedTo": "Dipilih untuk level {{level}}."
   },
   "browse": {
     "title": "Telusuri per topik",
@@ -117,7 +118,8 @@
     "noMatch": "Tidak ada simpanan yang cocok dengan “{{query}}”.",
     "emptyTitle": "Belum ada kata tersimpan",
     "emptyBody": "Ketuk penanda di kata mana pun saat belajar, nanti ia ada di sini untuk kamu buka lagi.",
-    "emptyCta": "Ke daftar kata"
+    "emptyCta": "Ke daftar kata",
+    "notPractisable": "Ini disimpan untuk dicari. Kuis butuh kartu belajar, yang belum ada untuk kata ini."
   },
   "dictionary": {
     "title": "Kamus",
@@ -130,6 +132,21 @@
     "moreExamples": "Contoh lainnya",
     "otherMeanings_other": "{{count, number}} arti lain",
     "onlyMeaning": "Kamus tidak punya arti lain untuk kata ini.",
-    "source": "Dari {{name}}, {{license}}."
+    "source": "Dari {{name}}, {{license}}.",
+    "save": "Simpan kata",
+    "saved": "Tersimpan"
+  },
+  "conjugation": {
+    "title": "Konjugasi",
+    "form": {
+      "dictionary": "Bentuk dasar",
+      "presentPolite": "Sekarang",
+      "pastPolite": "Lampau",
+      "futurePolite": "Akan datang",
+      "formalPolite": "Formal",
+      "connective": "Dan / lalu",
+      "honorific": "Tolong lakukan",
+      "request": "Lakukan untukku"
+    }
   }
 }

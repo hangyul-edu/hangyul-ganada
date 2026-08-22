@@ -23,19 +23,5 @@
     "wordsCaption": "palavras de hoje",
     "wordsReady": "pronto para as primeiras palavras"
   },
-  "review": {
-    "title": "Revisão",
-    "count_one": "{{count, number}} para revisar",
-    "count_other": "{{count, number}} para revisar",
-    "empty": "Nada para revisar ainda",
-    "count_many": "{{count, number}} de itens para revisar"
-  },
-  "practice": {
-    "title": "A prática de hoje",
-    "reviews_one": "{{count, number}} revisão pronta",
-    "reviews_other": "{{count, number}} revisões prontas",
-    "cta": "Começar a prática",
-    "reviews_many": "{{count, number}} revisões prontas"
-  },
   "purpose": "Aprenda coreano desde a primeira letra: o hangul e depois as palavras que você vai mesmo usar."
 }

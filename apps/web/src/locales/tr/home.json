@@ -23,17 +23,5 @@
     "wordsCaption": "bugünkü kelimeler",
     "wordsReady": "ilk kelimelere hazırsın"
   },
-  "review": {
-    "title": "Tekrar",
-    "count_one": "{{count, number}} tanesi tekrar bekliyor",
-    "count_other": "{{count, number}} tanesi tekrar bekliyor",
-    "empty": "Henüz tekrar edilecek bir şey yok"
-  },
-  "practice": {
-    "title": "Bugünkü alıştırma",
-    "reviews_one": "{{count, number}} tekrar hazır",
-    "reviews_other": "{{count, number}} tekrar hazır",
-    "cta": "Alıştırmaya başla"
-  },
   "purpose": "Korece’yi ilk harften öğren — önce Hangıl, sonra gerçekten kullanacağın kelimeler."
 }

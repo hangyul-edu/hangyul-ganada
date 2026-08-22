@@ -16,7 +16,8 @@
     "progressAria": "Bugünkü kelimelerde ilerlemen",
     "moreLabel": "Kaç tane daha",
     "moreCount_one": "{{count}} tane daha",
-    "moreCount_other": "{{count}} tane daha"
+    "moreCount_other": "{{count}} tane daha",
+    "tunedTo": "Seviye {{level}} için seçildi."
   },
   "browse": {
     "title": "Konuya göre gez",
@@ -124,7 +125,8 @@
     "noMatch": "Kayıtlılarda “{{query}}” ile eşleşen yok.",
     "emptyTitle": "Henüz kaydedilmiş kelime yok",
     "emptyBody": "Çalışırken herhangi bir kelimedeki yer imine dokun, sonra dönmek için burada dursun.",
-    "emptyCta": "Kelimelere git"
+    "emptyCta": "Kelimelere git",
+    "notPractisable": "Bunlar bakmak için kaydedildi. Soru sormak için öğrenme kartı gerekir, henüz yok."
   },
   "dictionary": {
     "title": "Sözlük",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} başka anlam",
     "otherMeanings_other": "{{count, number}} başka anlam",
     "onlyMeaning": "Sözlükte bu kelimenin başka anlamı yok.",
-    "source": "Kaynak: {{name}}, {{license}}."
+    "source": "Kaynak: {{name}}, {{license}}.",
+    "save": "Kelimeyi kaydet",
+    "saved": "Kaydedildi"
+  },
+  "conjugation": {
+    "title": "Çekim",
+    "form": {
+      "dictionary": "Sözlük hâli",
+      "presentPolite": "Şimdiki",
+      "pastPolite": "Geçmiş",
+      "futurePolite": "Gelecek",
+      "formalPolite": "Resmî",
+      "connective": "Ve / sonra",
+      "honorific": "Lütfen yap",
+      "request": "Benim için yap"
+    }
   }
 }

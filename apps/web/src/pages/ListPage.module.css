@@ -285,3 +285,22 @@
   font-size: var(--hg-text-caption);
   color: var(--hg-text-tertiary);
 }
+
+/*
+ * The practice block: how many, then the button.
+ *
+ * One group rather than two loose controls, so the size a learner picked and
+ * the button that uses it read as one decision.
+ */
+.practice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+/* One quiet line where a list has something to explain about itself. */
+.note {
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}

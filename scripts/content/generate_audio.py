@@ -43,6 +43,19 @@ PLAN = ROOT / "content-cache" / "speech-plan.json"
 AUDIO_ROOT = ROOT / "apps" / "web" / "public" / "audio"
 MANIFEST = AUDIO_ROOT / "manifest.json"
 
+#: Where this run writes.
+#:
+#: Normally the shipped directory. `--out` points it somewhere else, which is
+#: what a *voice change* needs: the old corpus keeps working while the new one
+#: is generated and checked beside it, and the switch is one directory move
+#: after both voices have passed. Replacing 10,550 files in place and then
+#: finding a problem would leave the product with no audio at all.
+_out_root = AUDIO_ROOT
+
+
+def audio_root() -> Path:
+    return _out_root
+
 VOICES = ("female", "male")
 
 #: Where each kind of clip lives. Splitting by kind keeps a directory listing
@@ -57,11 +70,12 @@ KIND_DIRS = {
 
 
 def destination(kind: str, voice: str, clip_id: str) -> Path:
-    return AUDIO_ROOT / KIND_DIRS[kind] / voice / f"{clip_id}.mp3"
+    return audio_root() / KIND_DIRS[kind] / voice / f"{clip_id}.mp3"
 
 
 def relative_src(path: Path) -> str:
-    return path.relative_to(AUDIO_ROOT.parent).as_posix()
+    """The path the app asks for: always `audio/...`, whatever `--out` was."""
+    return f"audio/{path.relative_to(audio_root()).as_posix()}"
 
 
 def synthesize_one(
@@ -148,17 +162,18 @@ def prune(assets: dict) -> int:
     counted against the download. Only files under the audio root are touched,
     and only ones the manifest we are about to write does not name.
     """
+    root = audio_root()
     wanted = {
-        (AUDIO_ROOT / asset["src"].removeprefix("audio/")).resolve()
+        (root / asset["src"].removeprefix("audio/")).resolve()
         for voices in assets.values()
         for asset in voices.values()
     }
     removed = 0
-    for path in sorted(AUDIO_ROOT.rglob("*.mp3")):
+    for path in sorted(root.rglob("*.mp3")):
         if path.resolve() not in wanted:
             path.unlink()
             removed += 1
-    for directory in sorted(AUDIO_ROOT.rglob("*"), reverse=True):
+    for directory in sorted(root.rglob("*"), reverse=True):
         if directory.is_dir() and not any(directory.iterdir()):
             directory.rmdir()
     return removed
@@ -166,7 +181,17 @@ def prune(assets: dict) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--provider", default=None, help="edge | azure | google")
+    parser.add_argument("--provider", default=None, help="edge | azure | google | elevenlabs")
+    parser.add_argument(
+        "--out",
+        default=None,
+        help="Write here instead of apps/web/public/audio (for a voice change)",
+    )
+    parser.add_argument(
+        "--only",
+        default=None,
+        help="Comma-separated texts to generate, for a pronunciation check before the full run",
+    )
     parser.add_argument("--force", action="store_true", help="Regenerate clips that exist")
     parser.add_argument("--limit", type=int, default=0, help="Only the first N clips (for a smoke run)")
     parser.add_argument("--workers", type=int, default=6, help="Concurrent syntheses")
@@ -175,13 +200,31 @@ def main() -> int:
     if not PLAN.exists():
         raise SystemExit(f"{PLAN} is missing — run `npm run audio:plan` first")
 
+    global _out_root
+    if args.out:
+        _out_root = Path(args.out).resolve()
+
     entries = json.loads(PLAN.read_text(encoding="utf-8"))["entries"]
+    if args.only:
+        wanted = {text.strip() for text in args.only.split(",") if text.strip()}
+        entries = [entry for entry in entries if entry["text"] in wanted]
+        missing = wanted - {entry["text"] for entry in entries}
+        if missing:
+            # Synthesised anyway, under an id derived the same way the plan
+            # derives one, so a pronunciation fixture can name a word the
+            # curriculum does not teach.
+            for text in sorted(missing):
+                digest = "".join(f"{ord(ch):x}" for ch in text)
+                entries.append({"id": f"probe_{digest}", "text": text, "kind": "word"})
     if args.limit:
         entries = entries[: args.limit]
 
     provider = get_provider(args.provider)
     print(f"provider: {provider.id}  female={provider.voices.female}  male={provider.voices.male}")
-    print(f"speaking rate: {SPEECH_RATE:g}× ({rate_percent()})")
+    if provider.spoken_rate == SPEECH_RATE:
+        print(f"speaking rate: {SPEECH_RATE:g}× ({rate_percent()})")
+    else:
+        print(f"speaking rate: {provider.spoken_rate:g}× — this engine takes no rate parameter")
     print(f"{len(entries):,} clips × {len(VOICES)} voices")
 
     # One recording per distinct utterance.
@@ -242,7 +285,7 @@ def main() -> int:
             # Recorded, not assumed: QA checks its duration bounds against this,
             # and a manifest that predates a rate change is then obvious rather
             # than merely wrong.
-            "speech_rate": SPEECH_RATE,
+            "speech_rate": provider.spoken_rate,
             "notes": provider.notes,
             # Named in the manifest rather than only in the source, so that a
             # clip which does not match the provider's headline voice is
@@ -270,13 +313,14 @@ def main() -> int:
         ],
     }
 
-    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    manifest_path = audio_root() / "manifest.json"
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     # After the manifest, never before: a crash mid-run must not delete clips
     # the previous manifest still points at. --limit writes a partial manifest,
     # so pruning against it would throw away good recordings.
-    stale = 0 if args.limit else prune(assets)
+    stale = 0 if (args.limit or args.only) else prune(assets)
 
     # Counted over distinct files, so a shared recording is not billed twice.
     distinct = {
@@ -285,7 +329,7 @@ def main() -> int:
         for asset in voices.values()
     }
     total_bytes = sum(distinct.values())
-    print(f"wrote {MANIFEST}")
+    print(f"wrote {manifest_path}")
     print(f"  {len(manifest['entries']):,} entries, {total_bytes / 1_048_576:.1f} MB of audio")
     if stale:
         print(f"  removed {stale:,} recording(s) no longer in the plan")

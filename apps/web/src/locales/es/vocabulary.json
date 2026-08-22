@@ -19,7 +19,8 @@
     "moreLabel": "¿Cuántas más?",
     "moreCount_one": "1 más",
     "moreCount_other": "{{count}} más",
-    "moreCount_many": "{{count}} más"
+    "moreCount_many": "{{count}} más",
+    "tunedTo": "Elegidas para el nivel {{level}}."
   },
   "browse": {
     "title": "Explorar por tema",
@@ -131,7 +132,8 @@
     "noMatch": "Nada guardado coincide con «{{query}}».",
     "emptyTitle": "Aún no has guardado palabras",
     "emptyBody": "Toca el marcador en cualquier palabra mientras estudias y la encontrarás aquí.",
-    "emptyCta": "Ir a las palabras"
+    "emptyCta": "Ir a las palabras",
+    "notPractisable": "Están guardadas para consultarlas. Un test necesita una ficha de estudio, y estas aún no la tienen."
   },
   "dictionary": {
     "title": "Diccionario",
@@ -146,6 +148,21 @@
     "otherMeanings_many": "{{count, number}} otros significados",
     "otherMeanings_other": "{{count, number}} otros significados",
     "onlyMeaning": "El diccionario no tiene otro significado para esta palabra.",
-    "source": "De {{name}}, {{license}}."
+    "source": "De {{name}}, {{license}}.",
+    "save": "Guardar palabra",
+    "saved": "Guardada"
+  },
+  "conjugation": {
+    "title": "Conjugación",
+    "form": {
+      "dictionary": "Forma de diccionario",
+      "presentPolite": "Presente",
+      "pastPolite": "Pasado",
+      "futurePolite": "Futuro",
+      "formalPolite": "Formal",
+      "connective": "Y / luego",
+      "honorific": "Por favor, haz",
+      "request": "Hazlo por mí"
+    }
   }
 }

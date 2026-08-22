@@ -16,7 +16,8 @@
     "progressAria": "Өнөөдрийн үгс дэх ахиц",
     "moreLabel": "Бас хэд",
     "moreCount_one": "бас {{count}}",
-    "moreCount_other": "бас {{count}}"
+    "moreCount_other": "бас {{count}}",
+    "tunedTo": "{{level}}-р түвшинд тохируулсан."
   },
   "browse": {
     "title": "Сэдвээр нь үзэх",
@@ -124,7 +125,8 @@
     "noMatch": "Хадгалсан үгсээс «{{query}}»-д тохирох юм олдсонгүй.",
     "emptyTitle": "Одоохондоо хадгалсан үг алга",
     "emptyBody": "Сурч байхдаа дурын үгийн хавчуургыг дар — эргэж ирэхэд чинь энд хүлээж байх болно.",
-    "emptyCta": "Үгс рүү очих"
+    "emptyCta": "Үгс рүү очих",
+    "notPractisable": "Эдгээрийг хайхаар хадгалсан. Асуулт гаргахад сургалтын карт хэрэгтэй, одоохондоо байхгүй."
   },
   "dictionary": {
     "title": "Толь бичиг",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} өөр утга",
     "otherMeanings_other": "{{count, number}} өөр утга",
     "onlyMeaning": "Толь бичигт энэ үгийн өөр утга алга.",
-    "source": "Эх сурвалж: {{name}}, {{license}}."
+    "source": "Эх сурвалж: {{name}}, {{license}}.",
+    "save": "Үг хадгалах",
+    "saved": "Хадгалсан"
+  },
+  "conjugation": {
+    "title": "Хувирал",
+    "form": {
+      "dictionary": "Толь бичгийн хэлбэр",
+      "presentPolite": "Одоо цаг",
+      "pastPolite": "Өнгөрсөн цаг",
+      "futurePolite": "Ирээдүй цаг",
+      "formalPolite": "Албан ёсны",
+      "connective": "Ба / дараа нь",
+      "honorific": "Хийнэ үү",
+      "request": "Надад хийж өгөөч"
+    }
   }
 }

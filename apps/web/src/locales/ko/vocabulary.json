@@ -13,7 +13,8 @@
     "allDone": "오늘 할 것은 다 끝났어요.",
     "progressAria": "오늘의 어휘 진행도",
     "moreLabel": "몇 개 더 할까요?",
-    "moreCount_other": "{{count}}개 더"
+    "moreCount_other": "{{count}}개 더",
+    "tunedTo": "레벨 {{level}}에 맞춘 단어예요."
   },
   "browse": {
     "title": "주제별로 보기",
@@ -117,7 +118,8 @@
     "noMatch": "“{{query}}”과 맞는 저장 낱말이 없어요.",
     "emptyTitle": "아직 저장한 낱말이 없어요",
     "emptyBody": "공부하다가 낱말의 북마크를 누르면 여기에 모여요.",
-    "emptyCta": "낱말 보러 가기"
+    "emptyCta": "낱말 보러 가기",
+    "notPractisable": "찾아보려고 저장한 단어예요. 문제로 내려면 학습 카드가 있어야 하는데 아직 없어요."
   },
   "dictionary": {
     "title": "사전",
@@ -130,6 +132,21 @@
     "moreExamples": "예문 더 보기",
     "otherMeanings_other": "다른 뜻 {{count, number}}개",
     "onlyMeaning": "사전에 다른 뜻은 없어요.",
-    "source": "출처: {{name}}, {{license}}."
+    "source": "출처: {{name}}, {{license}}.",
+    "save": "단어 저장",
+    "saved": "저장됨"
+  },
+  "conjugation": {
+    "title": "활용",
+    "form": {
+      "dictionary": "기본형",
+      "presentPolite": "현재",
+      "pastPolite": "과거",
+      "futurePolite": "미래",
+      "formalPolite": "격식체",
+      "connective": "연결형",
+      "honorific": "권유·명령",
+      "request": "부탁"
+    }
   }
 }

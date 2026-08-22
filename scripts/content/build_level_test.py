@@ -73,7 +73,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CORPUS = ROOT / "apps" / "web" / "src" / "data" / "generated" / "vocabulary.json"
 ENGLISH = ROOT / "apps" / "web" / "src" / "data" / "generated" / "vocabulary.en.json"
 DICTIONARY = ROOT / "apps" / "web" / "public" / "dictionary"
-OUT = ROOT / "apps" / "web" / "public" / "level-test"
+ANCHORS = ROOT / "content-cache" / "level-test-anchors.json"
 
 LEVELS = 30
 
@@ -140,6 +140,57 @@ _FORM_PAGE = re.compile(
 _ASKABLE = {"noun", "verb", "adjective", "adverb"}
 
 
+#: Words a placement test must not put in front of a learner.
+#:
+#: The dictionary layer is 26,675 Wiktionary headwords and nothing curated it
+#: for a learning product: it contains the vocabulary of sexual violence, of
+#: slurs and of graphic injury, all of it perfectly good lexicography and none
+#: of it something a person should meet while finding out how much Korean they
+#: know. A word was already reaching learners — a question about 손을 ____ was
+#: offering 강간했어요 as one of its three wrong answers.
+#:
+#: Deliberately *not* a general profanity filter over the app. The dictionary
+#: still contains these words and search still finds them, which is what a
+#: dictionary is for. This list governs what the *test* may ask about or offer
+#: as a distractor, which is a different question.
+#:
+#: Ordinary words that name difficult things stay: 죽다, 병, 싸우다, 사고,
+#: 살인 and 강도 are all in the teaching corpus with neutral examples, and a
+#: language course that could not say "an accident happened" would be a worse
+#: one.
+_UNSUITABLE = (
+    # Sexual content and sexual violence.
+    "강간", "성폭", "성추행", "추행", "겁탈", "윤간", "성희롱", "매춘", "매음", "창녀",
+    "포르노", "음란", "외설", "성교", "정사", "자위", "애무", "정액", "음경", "음부",
+    "성기", "항문", "변태", "색정", "호색", "기생충"[:0] or "매독", "임질",
+    # Slurs and profanity.
+    "씨발", "새끼", "병신", "지랄", "존나", "개년", "썅", "쌍놈", "잡놈", "화냥",
+    "짱깨", "쪽발", "깜둥", "튀기", "불구자", "벙어리", "귀머거리", "장님", "절름발",
+    # Graphic violence, execution and self-harm.
+    "학살", "참수", "고문", "처형", "총살", "교수형", "사형", "자살", "자해", "시체",
+    "사체", "시신", "도살", "학대", "구타", "폭행", "인신매매", "노예",
+    # Drugs.
+    "마약", "헤로인", "코카인", "필로폰", "대마초", "아편", "각성제", "환각",
+    # Bodily waste.
+    "대변", "소변", "배설", "오줌", "똥",
+)
+
+
+def unsuitable(headword: str, gloss: str) -> bool:
+    """Whether a word is one the test must not show. See `_UNSUITABLE`."""
+    if any(term in headword for term in _UNSUITABLE):
+        return True
+    lowered = gloss.lower()
+    return any(
+        term in lowered
+        for term in (
+            "rape", "sexual", "genital", "obscene", "prostitut", "porn", "masturbat",
+            "slur", "vulgar", "profan", "derogatory", "offensive", "swear word",
+            "excrement", "faeces", "feces", "urine", "narcotic", "heroin", "cocaine",
+            "execute by", "behead", "massacre", "torture", "suicide", "corpse",
+        )
+    )
+
 def usable_anchor(headword: str, gloss: str, pos: str) -> bool:
     """Whether a dictionary entry can carry a question.
 
@@ -171,6 +222,8 @@ def usable_anchor(headword: str, gloss: str, pos: str) -> bool:
         return False
     if any(is_syllable(c) for c in gloss):
         return False
+    if unsuitable(headword, gloss):
+        return False
     return True
 
 
@@ -197,6 +250,8 @@ def dictionary_anchors(taught: set[str]) -> list[dict]:
                 "pos": pos,
                 "example": "",
                 "surface": headword,
+                "senseId": f"dict_{headword}",
+                "category": "",
                 "source": "dictionary",
             }
         )
@@ -213,6 +268,11 @@ def build() -> dict:
         gloss = (english[index][0] or "").strip()
         if not gloss:
             continue
+        # The corpus is curated and the filter still applies to it, because a
+        # rule that only guards the untrusted half is a rule somebody has to
+        # remember to extend when the halves change.
+        if unsuitable(word["word"], gloss):
+            continue
         rows.append(
             {
                 "id": word["id"],
@@ -221,6 +281,8 @@ def build() -> dict:
                 "pos": word["part_of_speech"],
                 "example": word.get("example") or "",
                 "surface": word.get("as") or word["word"],
+                "senseId": word.get("senseId") or word["id"],
+                "category": corpus["categories"][word["c"]],
                 "source": "corpus",
             }
         )
@@ -245,103 +307,21 @@ def build() -> dict:
         row["level"] = level_of(rank)
         rows.append(row)
 
-    by_level: dict[int, list[dict]] = {}
-    for row in rows:
-        by_level.setdefault(row["level"], []).append(row)
-
-    # Deterministic: the same corpus must produce the same bank, or a rebuild
-    # would silently re-ask a learner questions the previous one had retired.
-    rng = random.Random(20260822)
-
-    def distractors(row: dict, key: str, count: int) -> list[str]:
-        pool: list[dict] = []
-        for level in range(row["level"] - DISTRACTOR_SPREAD, row["level"] + DISTRACTOR_SPREAD + 1):
-            pool.extend(by_level.get(level, []))
-        same_pos = [o for o in pool if o["pos"] == row["pos"] and o["id"] != row["id"]]
-        # Part of speech first, because a noun among three verbs is answerable
-        # without knowing the word — the same defect the hint ladder was fixed for.
-        candidates = same_pos or [o for o in pool if o["id"] != row["id"]]
-        rng.shuffle(candidates)
-        out: list[str] = []
-        for other in candidates:
-            value = other[key]
-            if value in out or value == row[key]:
-                continue
-            if key == "gloss" and shares_a_word(value, row["gloss"]):
-                continue
-            out.append(value)
-            if len(out) == count:
-                break
-        return out
-
-    # Thin each level before building items, spreading the keepers across the
-    # level's rank range.
-    kept: list[dict] = []
-    for level in range(1, LEVELS + 1):
-        band = [row for row in rows if row["level"] == level]
-        if len(band) <= PER_LEVEL:
-            kept.extend(band)
-            continue
-        step = len(band) / PER_LEVEL
-        kept.extend(band[int(i * step)] for i in range(PER_LEVEL))
-    rows = kept
-
-    items: list[dict] = []
-    for row in rows:
-        # Korean shown, meaning chosen.
-        glosses = distractors(row, "gloss", OPTIONS - 1)
-        if len(glosses) == OPTIONS - 1:
-            items.append(
-                {
-                    "id": f"{row['id']}:meaning",
-                    "kind": "meaning",
-                    "level": row["level"],
-                    "prompt": row["word"],
-                    "answer": row["gloss"],
-                    "options": sorted([row["gloss"], *glosses]),
-                }
-            )
-        # Meaning shown, Korean chosen. The harder direction, same level.
-        koreans = distractors(row, "word", OPTIONS - 1)
-        if len(koreans) == OPTIONS - 1:
-            items.append(
-                {
-                    "id": f"{row['id']}:produce",
-                    "kind": "produce",
-                    "level": row["level"],
-                    "prompt": row["gloss"],
-                    "answer": row["word"],
-                    "options": sorted([row["word"], *koreans]),
-                }
-            )
-        # The word in a sentence, blanked.
-        if row["example"] and row["surface"] in row["example"] and len(koreans) == OPTIONS - 1:
-            items.append(
-                {
-                    "id": f"{row['id']}:context",
-                    "kind": "context",
-                    "level": row["level"],
-                    "prompt": row["example"].replace(row["surface"], "____", 1),
-                    "answer": row["word"],
-                    "options": sorted([row["word"], *koreans]),
-                }
-            )
-
-    counts: dict[str, int] = {}
-    for item in items:
-        counts[str(item["level"])] = counts.get(str(item["level"]), 0) + 1
-
     return {
         "_comment": (
-            "GENERATED by scripts/content/build_level_test.py. The Vocabulary Level Test's "
-            "item bank — separate from the learning corpus, fetched at runtime, never "
-            "scheduled and never counted as progress. Levels are the corpus ordered by "
-            "frequency rank and cut into thirty equal bands; see the module docstring."
+            "GENERATED by scripts/content/build_level_test.py. Ranked assessment anchors, "
+            "not the bank: `scripts/content/build_level_test.mjs` turns these into items. "
+            "The split exists because building a *context* item means conjugating a verb, "
+            "and there is one conjugator in this repository — a TypeScript one, because the "
+            "app needs it too. Two implementations of Korean morphology would be two answers "
+            "to the same question."
         ),
         "levels": LEVELS,
         "options": OPTIONS,
-        "items": items,
-        "perLevel": counts,
+        "distractorSpread": DISTRACTOR_SPREAD,
+        "perLevel": PER_LEVEL,
+        "cumulative": CUMULATIVE,
+        "anchors": rows,
     }
 
 
@@ -350,52 +330,31 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    bank = build()
-    rendered = json.dumps(bank, ensure_ascii=False, separators=(",", ":")) + "\n"
-    digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()[:8]
-    name = f"bank-{digest}.json"
+    anchors = build()
+    rendered = json.dumps(anchors, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
 
-    manifest = {
-        "_comment": (
-            "GENERATED by scripts/content/build_level_test.py. `bank` names a "
-            "content-hashed file, so the offline worker can cache it for good."
-        ),
-        "levels": bank["levels"],
-        "options": bank["options"],
-        "items": len(bank["items"]),
-        "bank": name,
-        "perLevel": bank["perLevel"],
-    }
-    files = {name: rendered, "manifest.json": json.dumps(manifest, ensure_ascii=False, separators=(",", ":")) + "\n"}
-
-    stale = []
-    for filename, text in files.items():
-        target = OUT / filename
-        if not target.exists() or target.read_text(encoding="utf-8") != text:
-            stale.append(filename)
-            if not args.check:
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text(text, encoding="utf-8")
-    for orphan in sorted(OUT.glob("*.json")) if OUT.exists() else []:
-        if orphan.name not in files:
-            stale.append(f"{orphan.name} (removed)")
-            if not args.check:
-                orphan.unlink()
-
-    thin = [level for level in range(1, LEVELS + 1) if bank["perLevel"].get(str(level), 0) < 12]
-    print(f"Level test bank — {len(bank['items']):,} items across {LEVELS} levels")
-    print(f"  per level: min {min(bank['perLevel'].values())}, max {max(bank['perLevel'].values())}")
-    print(f"  kinds: " + ", ".join(
-        f"{kind} {sum(1 for i in bank['items'] if i['kind'] == kind):,}"
-        for kind in ("meaning", "produce", "context")
-    ))
-    if thin:
-        print(f"  levels with fewer than 12 items: {thin}")
-    if args.check and stale:
-        print(f"\nstale: {stale} — run `npm run content:leveltest`")
-        return 1
+    stale = not ANCHORS.exists() or ANCHORS.read_text(encoding="utf-8") != rendered
     if stale and not args.check:
-        print(f"  wrote {len(stale)} file(s)")
+        ANCHORS.parent.mkdir(parents=True, exist_ok=True)
+        ANCHORS.write_text(rendered, encoding="utf-8")
+
+    rows = anchors["anchors"]
+    per_level: dict[int, int] = {}
+    for row in rows:
+        per_level[row["level"]] = per_level.get(row["level"], 0) + 1
+    with_example = sum(1 for row in rows if row["example"])
+    print(f"Level test anchors — {len(rows):,} ranked words across {LEVELS} levels")
+    print(f"  per level: min {min(per_level.values())}, max {max(per_level.values())}")
+    print(f"  from the teaching corpus: {sum(1 for r in rows if r['source'] == 'corpus'):,}")
+    print(f"  from the dictionary:      {sum(1 for r in rows if r['source'] == 'dictionary'):,}")
+    print(f"  carrying an example sentence: {with_example:,}")
+    if args.check and stale:
+        print("\nanchors are out of date — run `npm run content:leveltest:anchors`")
+        return 1
+    if stale:
+        print(f"\nwrote {ANCHORS.relative_to(ROOT)}")
+    else:
+        print("\nanchors up to date")
     return 0
 
 

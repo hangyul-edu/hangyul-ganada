@@ -1,20 +1,20 @@
 {
   "title": "Antas ng bokabularyo",
   "row": {
-    "body": "Alamin kung nasaan nang tinatayang antas ang bokabularyo mong Koreano.",
-    "taken": "Huling resulta: antas {{level}}"
+    "body": "Alamin ang antas mo at makakuha ng bagay na salita.",
+    "taken": "Antas {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Nasaan ang bokabularyo mong Koreano?",
-    "body": "Maikling hanay ng tanong na humihirap o gumagaan ayon sa sagot mo, para matukoy ka nang hindi nagtatanong nang daan-daan.",
-    "length": "Mga 3–6 minuto, 18 hanggang 36 na tanong.",
-    "noHelp": "Walang pahiwatig, at hindi ipinapakita ang sagot habang sumasagot.",
-    "noProgress": "Walang binabago rito sa aralin, sunod-sunod na araw, o balik-aral mo.",
+    "title": "Tingnan ang antas ng bokabularyo mo",
+    "body": "Mula sa pamilyar na salita hanggang sa medyo mahirap — tingnan kung nasaan na ang Koreano mong bokabularyo.",
+    "shape": "{{questions, number}} tanong · {{minutes, number}} minuto",
+    "unsure": "Hindi sigurado? Pindutin lang ang “Hindi ko alam”.",
+    "usedFor": "Ang resulta ang magtatakda ng hirap ng mga salita mo araw-araw.",
     "start": "Simulan ang pagsusulit",
     "retake": "Ulitin ito",
     "previous": "Noong huli ay antas {{level}} ka."
   },
-  "progress": "{{asked, number}} sa hanggang {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Ano ang ibig sabihin ng salitang ito?",
     "produce": "Aling salita ang nangangahulugan nito?",
@@ -24,13 +24,25 @@
   "unknown": "Hindi ko alam",
   "loading": "Inihahanda ang mga tanong…",
   "unavailable": "Kailangan ng koneksyon ang pagsusulit sa unang pagbukas.",
+  "timeLeft": "Natitirang oras",
   "result": {
     "label": "Antas ng bokabularyo ng Hangyul",
     "of": "sa {{levels, number}}",
     "band": "Malamang nasa pagitan ng {{low, number}} at {{high, number}}.",
     "words": "Sa antas na ito, karaniwang nakikilala ang {{count, number}} pinakakaraniwang salitang Koreano.",
-    "items_one": "Natukoy sa {{count, number}} tanong.",
-    "items_other": "Natukoy sa {{count, number}} na tanong."
+    "recommend": "Susunod na sa antas na ito ang mga salita mo bawat araw."
   },
-  "disclaimer": "Sariling sukatan namin ang Antas ng bokabularyo ng Hangyul. Hindi ito opisyal na pagtatasa ng kasanayan at hindi bilang ng mga salitang alam mo."
+  "bands": {
+    "starter": "SIMULA",
+    "everyday": "ARAW-ARAW",
+    "confident": "TIWALA",
+    "advanced": "MATAAS"
+  },
+  "home": {
+    "title": "Antas ng bokabularyo",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Alamin ang antas mo at makakuha ng bagay na salita.",
+    "cta": "Subukan ang pagsusulit",
+    "retake": "Ulitin"
+  }
 }

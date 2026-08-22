@@ -51,6 +51,23 @@ LICENSE_URL = "https://creativecommons.org/licenses/by-sa/4.0/"
 #: Headings absent from this map are dropped rather than guessed at. "Syllable",
 #: "Hanja" and "Romanization" pages are not vocabulary; "Suffix" and "Affix" are
 #: not words a learner writes on their own.
+#: Wiktionary's Korean part-of-speech headings, and what this product calls them.
+#:
+#: The first ten were here from the start and the rest were found by counting:
+#: 3,700 pages with a Korean section, a definition and a heading this map did
+#: not know, so the whole page was dropped. 것 — one of the commonest words in
+#: the language — is filed under **Dependent noun**, and 거 under that and
+#: **Pronoun** nested inside an Etymology section. A dictionary missing 것 is
+#: not a dictionary.
+#:
+#: What is deliberately *not* here is as important:
+#:
+#: * **Syllable** and **Hanja** are readings of a character, not words.
+#: * **Root**, **Prefix**, **Suffix** and **Affix** are bound morphemes. They
+#:   are real dictionary headwords and they are not words a learner looks up;
+#:   they are also written with a hyphen, which `is_hangul_word` rejects anyway.
+#: * **Verb form**, **Noun form** and the like are inflections. §33: a surface
+#:   form resolves to its lemma and must never become a headword of its own.
 POS_MAP = {
     "Noun": "noun",
     "Verb": "verb",
@@ -62,6 +79,21 @@ POS_MAP = {
     "Interjection": "interjection",
     "Particle": "particle",
     "Conjunction": "adverb",
+    # A noun that cannot stand alone: 것, 수, 줄, 바. Grammatically distinct and
+    # lexically a noun, which is what a learner needs to be told.
+    "Dependent noun": "noun",
+    "Proper noun": "proper noun",
+    "Proper Noun": "proper noun",
+    # 반짝반짝, 두근두근. A part of speech Korean genuinely has and English does
+    # not, and one of the most characteristic parts of the vocabulary.
+    "Ideophone": "ideophone",
+    "Counter": "counter",
+    "Postposition": "particle",
+    "Contraction": "contraction",
+    "Phrase": "phrase",
+    "Idiom": "phrase",
+    "Proverb": "phrase",
+    "Number": "numeral",
 }
 
 #: Senses carrying any of these labels are dropped before the word is even
@@ -366,9 +398,96 @@ _HTML_TAG = re.compile(r"</?[a-zA-Z][^>]*>")
 _WHITESPACE = re.compile(r"\s+")
 
 
+
+#: Definition templates whose meaning is *inside* the template.
+#:
+#: `{{alternative form of|ko|나|t=I, me}}` is a complete definition and the old
+#: cleaner turned it into an empty string, so the sense was dropped and often
+#: the whole word with it. Nine hundred definitions were lost this way, and they
+#: are not obscure ones: 거 is nothing but a `contraction of`, and every place
+#: name in the dictionary is a `place`.
+#:
+#: Each entry is `(template, prefix)`. The rendered gloss is the prefix, the
+#: referenced word, and the translation the template carries in `t=`/`t1=`.
+_CROSS_REFERENCE = {
+    "alternative form of": "alternative form of",
+    "alt form": "alternative form of",
+    "altform": "alternative form of",
+    "standard spelling of": "standard spelling of",
+    "standard form of": "standard form of",
+    "nonstandard form of": "nonstandard form of",
+    "short for": "short for",
+    "contraction of": "contraction of",
+    "clipping of": "clipping of",
+    "syn of": "synonym of",
+    "abbreviation of": "abbreviation of",
+    "initialism of": "initialism of",
+}
+
+#: Templates that *are* the gloss, with nothing to prefix.
+#:
+#: `{{n-g|a word used to …}}` is a definition written out longhand, and
+#: `{{tcl|ko|Asia}}` is the English of a proper noun. Both were being deleted.
+_GLOSS_TEMPLATES = {"n-g", "non-gloss definition", "non-gloss", "ng", "tcl", "place"}
+
+_TEMPLATE = re.compile(r"\{\{([^{}|]+)\|([^{}]*)\}\}")
+
+
+def _template_args(body: str) -> tuple[list[str], dict[str, str]]:
+    positional: list[str] = []
+    named: dict[str, str] = {}
+    for part in body.split("|"):
+        if "=" in part:
+            key, _, value = part.partition("=")
+            named[key.strip()] = value.strip()
+        else:
+            positional.append(part.strip())
+    return positional, named
+
+
+def render_definition_templates(raw: str) -> str:
+    """Turns the templates that *carry* a definition into words.
+
+    Runs before the general cleaner, which deletes any template it does not
+    recognise — correct for a label and destructive for a definition. Anything
+    not listed here is left exactly as it was and handled downstream.
+
+    `inflection of` is deliberately absent: a conjugated form is not a headword
+    and §33 says so. Those senses stay empty and their pages stay out.
+    """
+
+    def replace(match: re.Match[str]) -> str:
+        name = match.group(1).strip().lower()
+        positional, named = _template_args(match.group(2))
+        translation = named.get("t") or named.get("t1") or named.get("gloss") or ""
+
+        if name in _CROSS_REFERENCE:
+            # `{{alternative form of|ko|나|t=I, me}}` — drop the language code.
+            target = next((arg for arg in positional[1:] if arg), "")
+            # A Hanja gloss in brackets is noise in a learner's dictionary:
+            # 한국(韓國) reads as 한국. The caret marks a proper noun.
+            target = re.sub(r"\([^)]*\)", "", target).lstrip("^").strip()
+            head = f"{_CROSS_REFERENCE[name]} {target}".strip()
+            return f"{head} — {translation}" if translation else head
+
+        if name in _GLOSS_TEMPLATES:
+            if translation:
+                return translation
+            # `{{n-g|text}}` puts its text first; `{{place|ko|city|c/China}}`
+            # describes a place whose name is in `t=` and has no text without it.
+            if name in {"n-g", "non-gloss definition", "non-gloss", "ng"}:
+                return positional[0] if positional else ""
+            if name == "tcl":
+                return next((arg for arg in positional[1:] if arg), "")
+            return ""
+        return match.group(0)
+
+    return _TEMPLATE.sub(replace, raw)
+
+
 def clean_markup(raw: str) -> str:
     """Wikitext down to the plain sentence a learner would read."""
-    text = _HTML_COMMENT.sub("", raw)
+    text = render_definition_templates(_HTML_COMMENT.sub("", raw))
     # Repeat, because templates nest: {{lb|ko|...}} inside {{gl|...}}.
     for _ in range(4):
         text = _DROP_TEMPLATES.sub("", text)

@@ -1,20 +1,20 @@
 {
   "title": "Úroveň slovní zásoby",
   "row": {
-    "body": "Zjistěte, kde přibližně je vaše korejská slovní zásoba.",
-    "taken": "Poslední výsledek: úroveň {{level}}"
+    "body": "Zjistěte svou úroveň a dostávejte slova na míru.",
+    "taken": "Úroveň {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Kde je vaše korejská slovní zásoba?",
-    "body": "Krátká sada otázek, která se podle vašich odpovědí ztěžuje nebo zlehčuje, takže nemusí být stovek.",
-    "length": "Zhruba 3–6 minut, 18 až 36 otázek.",
-    "noHelp": "Bez nápověd a odpovědi se během testu neukazují.",
-    "noProgress": "Nic z toho nemění vaše lekce, sérii ani opakování.",
+    "title": "Ověřte si slovní zásobu",
+    "body": "Od slov, která znáte, po trochu těžší — uvidíte, kde vaše korejská slovní zásoba teď je.",
+    "shape": "{{questions, number}} otázek · {{minutes, number}} minut",
+    "unsure": "Nevíte? Klidně ťukněte na „Nevím“.",
+    "usedFor": "Výsledek určí, jak těžká budou vaše každodenní slova.",
     "start": "Spustit test",
     "retake": "Zkusit znovu",
     "previous": "Naposledy vám vyšla úroveň {{level}}."
   },
-  "progress": "{{asked, number}} z nejvýše {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Co znamená tohle slovo?",
     "produce": "Které slovo to znamená?",
@@ -24,15 +24,25 @@
   "unknown": "Nevím",
   "loading": "Připravuji otázky…",
   "unavailable": "Test potřebuje při prvním otevření připojení.",
+  "timeLeft": "Zbývající čas",
   "result": {
     "label": "Úroveň slovní zásoby Hangyul",
     "of": "z {{levels, number}}",
     "band": "Nejspíš mezi {{low, number}} a {{high, number}}.",
     "words": "Na této úrovni čtenáři obvykle poznají {{count, number}} nejběžnějších korejských slov.",
-    "items_one": "Určeno z {{count, number}} otázky.",
-    "items_few": "Určeno z {{count, number}} otázek.",
-    "items_many": "Určeno z {{count, number}} otázky.",
-    "items_other": "Určeno z {{count, number}} otázek."
+    "recommend": "Denní slova se od teď řídí touto úrovní."
   },
-  "disclaimer": "Úroveň slovní zásoby Hangyul je naše vlastní škála. Není to oficiální jazykový certifikát ani počet slov, která znáte."
+  "bands": {
+    "starter": "ZAČÁTEK",
+    "everyday": "BĚŽNÁ",
+    "confident": "JISTOTA",
+    "advanced": "POKROČILÁ"
+  },
+  "home": {
+    "title": "Úroveň slovní zásoby",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Zjistěte svou úroveň a dostávejte slova na míru.",
+    "cta": "Spustit test",
+    "retake": "Test znovu"
+  }
 }

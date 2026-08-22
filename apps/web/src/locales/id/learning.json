@@ -125,11 +125,7 @@
     },
     "forYou": "Ulasan untukmu",
     "sessionLength_other": "{{count, number}} latihan singkat",
-    "needsPractice": "Perlu latihan",
-    "dueToday": "Jatuh tempo hari ini",
-    "savedWords": "Kata tersimpan",
     "chooseMode": "Atau pilih apa yang mau dilatih",
-    "comingUp": "Sebentar lagi",
     "outcome": "{{practised, number}} dilatih · {{firstTry, number}} langsung teringat · {{comingBack, number}} akan kembali lagi",
     "blank": "kosong",
     "optionsLabel": "Jawaban",
@@ -213,7 +209,8 @@
     "noneOfKind": "Tidak ada apa-apa di sini sekarang.",
     "emptyTitle": "Belum ada yang meleset",
     "emptyBody": "Kalau ada yang keliru, ia muncul di sini supaya bisa kamu betulkan.",
-    "emptyCta": "Ke ulasan"
+    "emptyCta": "Ke ulasan",
+    "wrongVocabulary": "Kata yang salah"
   },
   "letterGroup": {
     "basic_vowel": "vokal dasar",
@@ -229,5 +226,9 @@
     "cta": "Lanjut di Hangyul",
     "rowTitle": "Lanjut di Hangyul",
     "rowBody": "Berbicara dan TOPIK, kalau kamu sudah siap"
+  },
+  "practice": {
+    "sizeLabel": "Berapa soal",
+    "sizeAll": "Semua ({{count, number}})"
   }
 }

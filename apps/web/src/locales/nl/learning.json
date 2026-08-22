@@ -127,11 +127,7 @@
     "forYou": "Herhaling voor jou",
     "sessionLength_one": "{{count, number}} korte oefening",
     "sessionLength_other": "{{count, number}} korte oefeningen",
-    "needsPractice": "Heeft oefening nodig",
-    "dueToday": "Vandaag aan de beurt",
-    "savedWords": "Bewaarde woorden",
     "chooseMode": "Of kies zelf wat je oefent",
-    "comingUp": "Komt eraan",
     "outcome": "{{practised, number}} geoefend · {{firstTry, number}} meteen goed · {{comingBack, number}} komen binnenkort terug",
     "blank": "leeg",
     "optionsLabel": "Antwoorden",
@@ -217,7 +213,8 @@
     "noneOfKind": "Hier staat nu niets.",
     "emptyTitle": "Nog niets gemist",
     "emptyBody": "Als er iets misgaat, komt het hier te staan zodat je het recht kunt zetten.",
-    "emptyCta": "Naar herhalen"
+    "emptyCta": "Naar herhalen",
+    "wrongVocabulary": "Foute woorden"
   },
   "letterGroup": {
     "basic_vowel": "een basisklinker",
@@ -233,5 +230,9 @@
     "cta": "Verder in Hangyul",
     "rowTitle": "Verder in Hangyul",
     "rowBody": "Spreken en TOPIK, wanneer je zover bent"
+  },
+  "practice": {
+    "sizeLabel": "Hoeveel",
+    "sizeAll": "Alle {{count, number}}"
   }
 }

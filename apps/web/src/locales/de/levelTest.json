@@ -1,20 +1,20 @@
 {
   "title": "Wortschatzstufe",
   "row": {
-    "body": "Finde ungefähr heraus, wo dein koreanischer Wortschatz steht.",
-    "taken": "Dein letztes Ergebnis: Stufe {{level}}"
+    "body": "Finde dein Niveau und bekomm passende Wörter.",
+    "taken": "Stufe {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Wo steht dein koreanischer Wortschatz?",
-    "body": "Eine kurze Reihe von Fragen, die je nach Antwort schwerer oder leichter wird — so lässt sich deine Stufe ohne Hunderte von Fragen bestimmen.",
-    "length": "Etwa 3–6 Minuten, 18 bis 36 Fragen.",
-    "noHelp": "Keine Hinweise, und die Lösungen werden unterwegs nicht gezeigt.",
-    "noProgress": "Nichts davon ändert deine Lektionen, deine Serie oder deine Wiederholungen.",
+    "title": "Prüf deinen Wortschatz",
+    "body": "Von vertrauten Wörtern bis zu etwas schwereren — so siehst du, wo dein koreanischer Wortschatz gerade steht.",
+    "shape": "{{questions, number}} Fragen · {{minutes, number}} Minuten",
+    "unsure": "Unsicher? Dann tippe einfach auf „Weiß ich nicht“.",
+    "usedFor": "Dein Ergebnis bestimmt, wie schwer deine täglichen Wörter sind.",
     "start": "Test starten",
     "retake": "Noch einmal machen",
     "previous": "Zuletzt lagst du bei Stufe {{level}}."
   },
-  "progress": "{{asked, number}} von höchstens {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Was bedeutet dieses Wort?",
     "produce": "Welches Wort bedeutet das?",
@@ -24,13 +24,25 @@
   "unknown": "Weiß ich nicht",
   "loading": "Die Fragen werden vorbereitet…",
   "unavailable": "Der Test braucht beim ersten Öffnen eine Verbindung.",
+  "timeLeft": "Restzeit",
   "result": {
     "label": "Hangyul-Wortschatzstufe",
     "of": "von {{levels, number}}",
     "band": "Wahrscheinlich zwischen {{low, number}} und {{high, number}}.",
     "words": "Auf dieser Stufe erkennt man meist die {{count, number}} häufigsten koreanischen Wörter.",
-    "items_one": "Mit {{count, number}} Frage bestimmt.",
-    "items_other": "Mit {{count, number}} Fragen bestimmt."
+    "recommend": "Deine täglichen Wörter richten sich ab jetzt danach."
   },
-  "disclaimer": "Das Hangyul-Wortschatzniveau ist unsere eigene Skala. Es ist keine amtliche Sprachniveau-Einstufung und keine Zählung der Wörter, die du kennst."
+  "bands": {
+    "starter": "ANFANG",
+    "everyday": "ALLTAG",
+    "confident": "SICHER",
+    "advanced": "FORTGESCHRITTEN"
+  },
+  "home": {
+    "title": "Wortschatzstufe",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Finde dein Niveau und bekomm passende Wörter.",
+    "cta": "Test starten",
+    "retake": "Erneut testen"
+  }
 }

@@ -30,6 +30,7 @@
     "@fontsource/nanum-myeongjo": "^5.3.0",
     "@hangyul-ganada/design-tokens": "*",
     "@hangyul-ganada/handwriting-core": "*",
+    "@hangyul-ganada/korean-morphology": "*",
     "@hangyul-ganada/shared-types": "*",
     "@tanstack/react-query": "^5.66.0",
     "i18next": "^25.10.10",

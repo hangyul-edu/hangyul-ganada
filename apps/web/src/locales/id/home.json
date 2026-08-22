@@ -23,15 +23,5 @@
     "wordsCaption": "kata hari ini",
     "wordsReady": "siap untuk kata pertama"
   },
-  "review": {
-    "title": "Ulasan",
-    "count_other": "{{count, number}} untuk diulang",
-    "empty": "Belum ada yang perlu diulang"
-  },
-  "practice": {
-    "title": "Latihan hari ini",
-    "reviews_other": "{{count, number}} ulasan siap",
-    "cta": "Mulai latihan"
-  },
   "purpose": "Belajar bahasa Korea dari huruf pertama — Hangul dulu, lalu kata-kata yang benar-benar kamu pakai."
 }

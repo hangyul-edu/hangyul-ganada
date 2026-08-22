@@ -1,20 +1,20 @@
 {
   "title": "Nível de vocabulário",
   "row": {
-    "body": "Descubra aproximadamente onde está o seu vocabulário coreano.",
-    "taken": "Seu último resultado: nível {{level}}"
+    "body": "Descubra seu nível e receba palavras à sua medida.",
+    "taken": "Nível {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Onde está o seu vocabulário coreano?",
-    "body": "Um conjunto curto de perguntas que fica mais difícil ou mais fácil conforme você responde, para situar você sem fazer centenas delas.",
-    "length": "Cerca de 3–6 minutos, de 18 a 36 perguntas.",
-    "noHelp": "Sem dicas, e as respostas não aparecem durante o teste.",
-    "noProgress": "Nada aqui muda suas lições, sua sequência ou sua revisão.",
+    "title": "Veja seu nível de vocabulário",
+    "body": "De palavras que você já conhece a outras um pouco mais difíceis, para ver onde está seu vocabulário de coreano.",
+    "shape": "{{questions, number}} perguntas · {{minutes, number}} minutos",
+    "unsure": "Na dúvida? É só tocar em “Não sei”.",
+    "usedFor": "Seu resultado define a dificuldade das suas palavras de cada dia.",
     "start": "Começar o teste",
     "retake": "Fazer de novo",
     "previous": "Da última vez você ficou no nível {{level}}."
   },
-  "progress": "{{asked, number}} de no máximo {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "O que esta palavra significa?",
     "produce": "Qual palavra significa isto?",
@@ -24,14 +24,25 @@
   "unknown": "Não sei",
   "loading": "Preparando as perguntas…",
   "unavailable": "O teste precisa de conexão na primeira vez que você o abre.",
+  "timeLeft": "Tempo restante",
   "result": {
     "label": "Nível de vocabulário Hangyul",
     "of": "de {{levels, number}}",
     "band": "Provavelmente entre {{low, number}} e {{high, number}}.",
     "words": "Nesse nível, costuma-se reconhecer as {{count, number}} palavras coreanas mais comuns.",
-    "items_one": "Definido em {{count, number}} pergunta.",
-    "items_many": "Definido em {{count, number}} perguntas.",
-    "items_other": "Definido em {{count, number}} perguntas."
+    "recommend": "Suas palavras diárias passam a seguir esse nível."
   },
-  "disclaimer": "O Nível de vocabulário Hangyul é a nossa própria escala. Não é uma certificação oficial de proficiência nem uma contagem das palavras que você conhece."
+  "bands": {
+    "starter": "INÍCIO",
+    "everyday": "DIA A DIA",
+    "confident": "SEGURO",
+    "advanced": "AVANÇADO"
+  },
+  "home": {
+    "title": "Nível de vocabulário",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Descubra seu nível e receba palavras à sua medida.",
+    "cta": "Fazer o teste",
+    "retake": "Refazer"
+  }
 }

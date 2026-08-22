@@ -23,21 +23,5 @@
     "wordsCaption": "слова на сегодня",
     "wordsReady": "пора для первых слов"
   },
-  "review": {
-    "title": "Повторение",
-    "count_few": "{{count, number}} на повторение",
-    "count_many": "{{count, number}} на повторение",
-    "count_one": "{{count, number}} на повторение",
-    "count_other": "{{count, number}} на повторение",
-    "empty": "Повторять пока нечего"
-  },
-  "practice": {
-    "title": "Сегодняшняя тренировка",
-    "reviews_few": "{{count, number}} повторения готовы",
-    "reviews_many": "{{count, number}} повторений готовы",
-    "reviews_one": "{{count, number}} повторение готово",
-    "reviews_other": "{{count, number}} повторения готовы",
-    "cta": "Начать тренировку"
-  },
   "purpose": "Учите корейский с самой первой буквы — сначала хангыль, потом слова, которыми вы правда будете пользоваться."
 }

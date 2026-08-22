@@ -16,7 +16,8 @@
     "progressAria": "ఈ రోజు పదాల్లో పురోగతి",
     "moreLabel": "ఇంకెన్ని",
     "moreCount_one": "ఇంకో {{count}}",
-    "moreCount_other": "ఇంకో {{count}}"
+    "moreCount_other": "ఇంకో {{count}}",
+    "tunedTo": "స్థాయి {{level}} కోసం ఎంపిక చేశాం."
   },
   "browse": {
     "title": "అంశం వారీగా చూడండి",
@@ -124,7 +125,8 @@
     "noMatch": "భద్రపరచినవాటిలో “{{query}}”తో ఏదీ సరిపోలలేదు.",
     "emptyTitle": "ఇంకా పదాలేవీ భద్రపరచలేదు",
     "emptyBody": "చదువుతున్నప్పుడు ఏ పదం మీదైనా బుక్‌మార్క్ నొక్కండి; తిరిగి రావాలనుకున్నప్పుడు అది ఇక్కడే ఉంటుంది.",
-    "emptyCta": "పదాలకు వెళ్లు"
+    "emptyCta": "పదాలకు వెళ్లు",
+    "notPractisable": "ఇవి వెతకడానికి సేవ్ చేసినవి. ప్రశ్న ఇవ్వడానికి లెర్నింగ్ కార్డు కావాలి, అది ఇంకా లేదు."
   },
   "dictionary": {
     "title": "నిఘంటువు",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} ఇతర అర్థం",
     "otherMeanings_other": "{{count, number}} ఇతర అర్థాలు",
     "onlyMeaning": "ఈ పదానికి నిఘంటువులో వేరే అర్థం లేదు.",
-    "source": "మూలం: {{name}}, {{license}}."
+    "source": "మూలం: {{name}}, {{license}}.",
+    "save": "పదాన్ని సేవ్ చేయి",
+    "saved": "సేవ్ అయింది"
+  },
+  "conjugation": {
+    "title": "రూపాలు",
+    "form": {
+      "dictionary": "నిఘంటు రూపం",
+      "presentPolite": "వర్తమానం",
+      "pastPolite": "భూతకాలం",
+      "futurePolite": "భవిష్యత్తు",
+      "formalPolite": "అధికారికం",
+      "connective": "మరియు / తర్వాత",
+      "honorific": "దయచేసి చేయండి",
+      "request": "నా కోసం చేయండి"
+    }
   }
 }

@@ -21,7 +21,9 @@ import { CircularProgress, ProgressBar } from '../ui/Progress';
 import { HangyulMascot } from '../ui/HangyulMascot';
 import { LocalizedText } from '../ui/LocalizedText';
 import { QuoteOfTheSession } from '../ui/QuoteOfTheSession';
-import { ChevronRightIcon, FireIcon, LetterIcon, ReviewIcon, WordIcon } from '../ui/icons';
+import { ChevronRightIcon, FireIcon, LetterIcon, WordIcon } from '../ui/icons';
+import { LEVELS } from '../domain/levelTest';
+import { levelBand } from '../domain/vocabularyLevel';
 import styles from './HomePage.module.css';
 
 /**
@@ -55,8 +57,8 @@ const READY_FOR_WORDS = 11;
  */
 export function HomePage() {
   const navigate = useNavigate();
-  const { summary, state, practicePlan, vocabularyProgressToday } = useLearner();
-  const { t } = useTranslation(['home', 'common', 'vocabulary', 'learning', 'activity']);
+  const { summary, state, vocabularyProgressToday } = useLearner();
+  const { t } = useTranslation(['home', 'common', 'vocabulary', 'learning', 'activity', 'levelTest']);
   const { locale } = useLocale();
   const format = useFormatters();
 
@@ -65,19 +67,18 @@ export function HomePage() {
   const alphabet = alphabetProgress(state.progress);
   const dayComplete = daily.done >= daily.total;
 
-  /**
-   * The review plan, resolved before the card that describes it is drawn.
+  /*
+   * There is no review plan on this screen any more.
    *
-   * Home used to print three lines — "8 to review, 6 letters to finish, 3
-   * useful words" — assembled from three different estimates, none of which was
-   * the thing its button opened. The middle line counted characters left in a
-   * lesson and the button went to review; the last line counted a suggestion
-   * the button could not reach at all.
-   *
-   * There is now one plan and the card says what is in it. See `domain/plan.ts`
-   * and §47.
+   * Home used to resolve one and draw a card from it. The bottom navigation has
+   * a Review tab on every screen in the app; a card on the home screen offering
+   * the same session was the home screen pointing at the tab bar. The plan
+   * itself is unchanged and lives where it always did — `domain/plan.ts`, read
+   * by the Review screen, which is the screen whose job it is.
    */
-  const review = useMemo(() => practicePlan(), [practicePlan]);
+
+  /** The learner's level, if they have asked for one. Null until they do. */
+  const level = state.settings.level_test;
 
   /**
    * This week, in one line.
@@ -178,29 +179,19 @@ export function HomePage() {
           a plan reading "0 reviews, 0 letters" would be a worse first screen.
         */}
         {/*
-          Today's practice: one thing, its size, and the button that starts it.
+          There is no Review card here any more, and that is the change.
 
-          Shown only when there is a resolved review plan to start, and it says
-          that plan's own count. The plan itself travels with the navigation, so
-          the number on this card and the questions the learner gets are the
-          same object — the Review screen does exactly the same thing.
+          Home had two of them: a "today's practice" card with a count and a
+          Start button, and further down a row linking to the Review screen. The
+          bottom navigation has a Review tab on every screen in the app, and it
+          is the third of five. A learner who wants to review taps Review; a
+          card on the home screen offering the same action is the home screen
+          telling them where the tab bar is.
+
+          What the space is used for instead is the one thing the tab bar cannot
+          say: where their vocabulary is, and whether the words they are being
+          given match it. See the level card below.
         */}
-        {review.count > 0 && (
-          <Card padding="md" className={styles.plan}>
-            <h2 className={styles.planTitle}>{t('home:practice.title')}</h2>
-            <p className={styles.planBody}>
-              {t('home:practice.reviews', { count: review.count })}
-            </p>
-            <Button
-              size="md"
-              fullWidth
-              onClick={() => navigate('/review/session', { state: { plan: review } })}
-            >
-              {t('home:practice.cta')}
-            </Button>
-          </Card>
-        )}
-
         {/*
           What this app is for, once, to a learner who has never used it.
           
@@ -346,33 +337,37 @@ export function HomePage() {
         </div>
 
         {/*
-          Review, once.
+          The learner's vocabulary level, which is what this space is for now.
 
-          When there is something to go over, the practice card at the top of
-          the screen already says how much and has the button that starts it;
-          this row said the same number again, four rows further down, linking
-          to a screen whose job is to offer the same session. Two entry points
-          to one action is not two chances to take it, it is a screen that
-          cannot decide what it is asking for.
-
-          So the row survives only for the empty state, where it is not a
-          duplicate but the one place that says Review exists and has nothing
-          in it yet.
+          Before the test it is an invitation with a reason attached — *find
+          your level and get words that match it* — and it is the only place in
+          the product that asks. After the test it is a number, a band and a way
+          back to it. No ring, no badge, no progress towards the next level:
+          this is a measurement somebody asked for, not a game they are playing.
         */}
-        {review.count === 0 && (
-          <Link to="/review" className={styles.reviewRow}>
-            <Card padding="md" className={styles.reviewCard}>
-              <span className={styles.reviewIcon}>
-                <ReviewIcon size={22} />
-              </span>
-              <span className={styles.reviewText}>
-                <span className={styles.reviewTitle}>{t('home:review.title')}</span>
-                <span className={styles.reviewMeta}>{t('home:review.empty')}</span>
-              </span>
-              <ChevronRightIcon size={20} />
-            </Card>
-          </Link>
-        )}
+        <Link to="/me/level-test" className={styles.levelRow} data-testid="home-level">
+          <Card padding="md" className={styles.levelCard}>
+            <span className={styles.levelText}>
+              <span className={styles.levelTitle}>{t('levelTest:home.title')}</span>
+              {level ? (
+                <span className={styles.levelValue}>
+                  <span className="hg-numeric">
+                    {t('levelTest:home.value', { level: level.level, levels: LEVELS })}
+                  </span>
+                  <span className={styles.levelBand}>
+                    {t(`levelTest:bands.${levelBand(level.level)}`)}
+                  </span>
+                </span>
+              ) : (
+                <span className={styles.levelInvite}>{t('levelTest:home.invite')}</span>
+              )}
+            </span>
+            <span className={styles.levelCta}>
+              {level ? t('levelTest:home.retake') : t('levelTest:home.cta')}
+            </span>
+            <ChevronRightIcon size={20} />
+          </Card>
+        </Link>
 
         {/*
           The day's words are the Words card above, and nothing else.

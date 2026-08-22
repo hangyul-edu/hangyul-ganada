@@ -131,11 +131,7 @@
     "sessionLength_many": "{{count, number}} коротких упражнений",
     "sessionLength_one": "{{count, number}} короткое упражнение",
     "sessionLength_other": "{{count, number}} короткого упражнения",
-    "needsPractice": "Нужна тренировка",
-    "dueToday": "На сегодня",
-    "savedWords": "Сохранённые слова",
     "chooseMode": "Или выберите, что потренировать",
-    "comingUp": "Скоро",
     "outcome": "{{practised, number}} отработано · {{firstTry, number}} вспомнили сразу · {{comingBack, number}} вернутся позже",
     "blank": "пропуск",
     "optionsLabel": "Ответы",
@@ -225,7 +221,8 @@
     "noneOfKind": "Сейчас здесь пусто.",
     "emptyTitle": "Пока ничего не упущено",
     "emptyBody": "Когда что-то ускользнёт, оно окажется здесь — чтобы вы это поправили.",
-    "emptyCta": "К повторению"
+    "emptyCta": "К повторению",
+    "wrongVocabulary": "Слова с ошибками"
   },
   "letterGroup": {
     "basic_vowel": "простая гласная",
@@ -241,5 +238,9 @@
     "cta": "Продолжить в Hangyul",
     "rowTitle": "Продолжить в Hangyul",
     "rowBody": "Речь и TOPIK — когда будете готовы"
+  },
+  "practice": {
+    "sizeLabel": "Сколько вопросов",
+    "sizeAll": "Все ({{count, number}})"
   }
 }

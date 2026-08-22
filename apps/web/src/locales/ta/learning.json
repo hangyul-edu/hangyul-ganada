@@ -127,11 +127,7 @@
     "forYou": "உங்களுக்கான மீள்பார்வை",
     "sessionLength_one": "{{count, number}} சிறு பயிற்சி",
     "sessionLength_other": "{{count, number}} சிறு பயிற்சிகள்",
-    "needsPractice": "பயிற்சி தேவை",
-    "dueToday": "இன்றைக்குரியது",
-    "savedWords": "சேமித்த சொற்கள்",
     "chooseMode": "அல்லது எதைப் பயில்வது என்பதை நீங்களே தேர்ந்தெடுங்கள்",
-    "comingUp": "அடுத்து வருவது",
     "outcome": "{{practised, number}} பயிற்சி · {{firstTry, number}} முதல் முயற்சியிலேயே நினைவுக்கு வந்தன · {{comingBack, number}} விரைவில் திரும்பும்",
     "blank": "இடைவெளி",
     "optionsLabel": "விடைகள்",
@@ -217,7 +213,8 @@
     "noneOfKind": "இப்போது இங்கே எதுவும் இல்லை.",
     "emptyTitle": "இன்னும் எதுவும் தவறவில்லை",
     "emptyBody": "ஏதேனும் நழுவினால் அது இங்கே வரும் — நீங்கள் சரிசெய்ய.",
-    "emptyCta": "மீள்பார்வைக்குச் செல்"
+    "emptyCta": "மீள்பார்வைக்குச் செல்",
+    "wrongVocabulary": "தவறான சொற்கள்"
   },
   "letterGroup": {
     "basic_vowel": "ஓர் அடிப்படை உயிரெழுத்து",
@@ -233,5 +230,9 @@
     "cta": "Hangyul இல் தொடரு",
     "rowTitle": "Hangyul இல் தொடரு",
     "rowBody": "பேச்சும் TOPIK உம், நீங்கள் தயாராகும்போது"
+  },
+  "practice": {
+    "sizeLabel": "எத்தனை கேள்வி",
+    "sizeAll": "அனைத்தும் {{count, number}}"
   }
 }

@@ -444,12 +444,19 @@ describe('learning quotes', () => {
       for (const locale of QUOTE_LOCALES) {
         const rendered = renderQuote(quote, locale);
         expect(rendered.text.trim(), `${quote.id} has no ${locale} text`).toBeTruthy();
-        expect(rendered.author.trim(), `${quote.id} has no ${locale} author`).toBeTruthy();
-        // Not merely non-empty: actually present. `renderQuote` falls back to
-        // the English author so a missing name degrades rather than crashes,
-        // and this is the check that stops the fallback being load-bearing.
-        expect(quote.author[locale], `${quote.id} falls back to English for ${locale}`)
-          .toBeTruthy();
+        /*
+         * A quote either names somebody in every language or names nobody at
+         * all. What is forbidden is naming them in some languages and not
+         * others — which is what a fallback to the English name looks like from
+         * inside, and what this checks is not happening.
+         */
+        if (quote.author) {
+          expect(rendered.author?.trim(), `${quote.id} has no ${locale} author`).toBeTruthy();
+          expect(quote.author[locale], `${quote.id} falls back to English for ${locale}`)
+            .toBeTruthy();
+        } else {
+          expect(rendered.author, `${quote.id} invented an author`).toBeNull();
+        }
       }
     }
   });
@@ -512,15 +519,15 @@ describe('learning quotes', () => {
 
   it('localises the descriptor as well as the name', () => {
     const proverb = LEARNING_QUOTES.find((q) => q.id === 'korean-dust-mountain')!;
-    expect(proverb.author.en).toBe('Korean proverb');
-    expect(proverb.author.ko).toBe('한국 속담');
-    expect(proverb.author.ja).toBe('韓国のことわざ');
+    expect(proverb.author?.en).toBe('Korean proverb');
+    expect(proverb.author?.ko).toBe('한국 속담');
+    expect(proverb.author?.ja).toBe('韓国のことわざ');
     // A name, not a phrase: written in the conventional local form where there
     // is one and left alone where there is not. Never transliterated on the fly.
     const plato = LEARNING_QUOTES.find((q) => q.id === 'plato-beginning')!;
-    expect(plato.author.es).toBe('Platón');
-    expect(plato.author['zh-CN']).toBe('柏拉图');
-    expect(plato.author.de).toBe('Platon');
+    expect(plato.author?.es).toBe('Platón');
+    expect(plato.author?.['zh-CN']).toBe('柏拉图');
+    expect(plato.author?.de).toBe('Platon');
   });
 
   it('carries Korean, since this is a Korean app', () => {
@@ -528,8 +535,15 @@ describe('learning quotes', () => {
     expect(korean.length).toBeGreaterThanOrEqual(3);
     for (const quote of korean) {
       expect(quote.originalText, quote.id).toMatch(/[가-힣]/);
-      // A proverb has no author to get wrong, which is why they are here.
-      expect(quote.author.en!.toLowerCase(), quote.id).toContain('proverb');
+      /*
+       * Either a proverb, which has no author to get wrong, or nobody at all.
+       * What a Korean line here may never carry is a *name*, because the
+       * Korean quotations in circulation are exactly the ones whose
+       * attributions are invented — see §35 and `korean-big-dream`.
+       */
+      if (quote.author) {
+        expect(quote.author.en!.toLowerCase(), quote.id).toContain('proverb');
+      }
     }
   });
 
@@ -538,8 +552,15 @@ describe('learning quotes', () => {
     // trust its Korean should not, on the same screen, put words in Confucius's
     // mouth. A quote with no source is exactly the kind that gets invented.
     for (const quote of LEARNING_QUOTES) {
-      expect(quote.originalText.trim(), quote.id).toBeTruthy();
       expect(quote.source.trim(), `${quote.id} has no source`).toBeTruthy();
+      /*
+       * A quotation has to carry the words it is quoting. A line written for
+       * this app has nothing to quote — its source says so — and demanding an
+       * "original" for it would mean inventing one.
+       */
+      if (!quote.source.startsWith('Written for Hangyul')) {
+        expect(quote.originalText.trim(), quote.id).toBeTruthy();
+      }
     }
   });
 

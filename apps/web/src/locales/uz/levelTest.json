@@ -1,20 +1,20 @@
 {
   "title": "Lug‘at darajasi",
   "row": {
-    "body": "Koreys lug‘atingiz taxminan qayerda ekanini bilib oling.",
-    "taken": "Oxirgi natija: {{level}}-daraja"
+    "body": "Darajangizni bilib, mos so‘zlarni oling.",
+    "taken": "{{level}}-daraja · {{band}}"
   },
   "intro": {
-    "title": "Koreys lug‘atingiz qayerda?",
-    "body": "Javoblaringizga qarab qiyinlashadigan yoki osonlashadigan qisqa savollar to‘plami — shu bois yuzlab savol kerak emas.",
-    "length": "Taxminan 3–6 daqiqa, 18 tadan 36 tagacha savol.",
-    "noHelp": "Maslahat yo‘q, javoblar ham jarayonda ko‘rsatilmaydi.",
-    "noProgress": "Bu yerdagi hech narsa darslaringizni, kunlar ketma-ketligini yoki takrorlashni o‘zgartirmaydi.",
+    "title": "Lug‘at darajangizni tekshiring",
+    "body": "Tanish so‘zlardan biroz qiyinroqlarigacha — koreys lug‘atingiz hozir qayerda ekanini ko‘ring.",
+    "shape": "{{questions, number}} savol · {{minutes, number}} daqiqa",
+    "unsure": "Ishonchingiz komil emasmi? “Bilmayman”ni bosavering.",
+    "usedFor": "Natijangiz kunlik so‘zlaringiz qiyinligini belgilaydi.",
     "start": "Testni boshlash",
     "retake": "Qayta topshirish",
     "previous": "O‘tgan safar {{level}}-daraja chiqqan edi."
   },
-  "progress": "{{asked, number}} / ko‘pi bilan {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Bu so‘z nimani anglatadi?",
     "produce": "Qaysi so‘z shuni anglatadi?",
@@ -24,13 +24,25 @@
   "unknown": "Bilmayman",
   "loading": "Savollar tayyorlanmoqda…",
   "unavailable": "Testni birinchi marta ochganda ulanish kerak.",
+  "timeLeft": "Qolgan vaqt",
   "result": {
     "label": "Hangyul lug‘at darajasi",
     "of": "/ {{levels, number}}",
     "band": "Ehtimol {{low, number}} bilan {{high, number}} orasida.",
     "words": "Bu darajada odatda eng ko‘p uchraydigan {{count, number}} koreys so‘zi tanib olinadi.",
-    "items_one": "{{count, number}} savol bilan aniqlandi.",
-    "items_other": "{{count, number}} savol bilan aniqlandi."
+    "recommend": "Endi kunlik so‘zlar shu darajaga moslab tanlanadi."
   },
-  "disclaimer": "Hangyul lug‘at darajasi — bizning o‘z shkalamiz. Bu tilni bilish darajasining rasmiy bahosi ham, siz biladigan so‘zlar soni ham emas."
+  "bands": {
+    "starter": "BOSHLANISH",
+    "everyday": "KUNDALIK",
+    "confident": "ISHONCHLI",
+    "advanced": "YUQORI"
+  },
+  "home": {
+    "title": "Lug‘at darajasi",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Darajangizni bilib, mos so‘zlarni oling.",
+    "cta": "Testni boshlash",
+    "retake": "Qayta topshirish"
+  }
 }

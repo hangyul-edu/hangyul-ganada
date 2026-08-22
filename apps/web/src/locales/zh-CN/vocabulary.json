@@ -13,7 +13,8 @@
     "allDone": "今天没有更多了。",
     "progressAria": "今天的词的进度",
     "moreLabel": "再学多少个",
-    "moreCount_other": "再学 {{count}} 个"
+    "moreCount_other": "再学 {{count}} 个",
+    "tunedTo": "按等级 {{level}} 挑选。"
   },
   "browse": {
     "title": "按主题浏览",
@@ -117,7 +118,8 @@
     "noMatch": "没有收藏的词符合“{{query}}”。",
     "emptyTitle": "还没有收藏的词",
     "emptyBody": "学习时点一下单词旁的书签，就会收在这里。",
-    "emptyCta": "去看单词"
+    "emptyCta": "去看单词",
+    "notPractisable": "这些是为查阅而保存的。出题需要学习卡片，它们暂时还没有。"
   },
   "dictionary": {
     "title": "词典",
@@ -130,6 +132,21 @@
     "moreExamples": "更多例句",
     "otherMeanings_other": "{{count, number}} 个其他意思",
     "onlyMeaning": "词典里没有其他意思。",
-    "source": "来源：{{name}}，{{license}}。"
+    "source": "来源：{{name}}，{{license}}。",
+    "save": "保存单词",
+    "saved": "已保存"
+  },
+  "conjugation": {
+    "title": "变形",
+    "form": {
+      "dictionary": "原形",
+      "presentPolite": "现在",
+      "pastPolite": "过去",
+      "futurePolite": "将来",
+      "formalPolite": "正式体",
+      "connective": "连接形",
+      "honorific": "请（做）",
+      "request": "请帮我（做）"
+    }
   }
 }

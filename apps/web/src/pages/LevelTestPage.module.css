@@ -43,36 +43,37 @@
   text-wrap: pretty;
 }
 
-.facts {
-  display: flex;
-  flex-direction: column;
-  gap: var(--hg-space-2);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/*
+ * The introduction, which is now four lines and a button.
+ *
+ * It was a card with a bulleted list of three facts, one of which explained
+ * adaptive testing and two of which were disclaimers. A calm screen is the
+ * point: a heading, a sentence, what it costs, two short reassurances, and the
+ * button. No card, because a card around the only content on a screen is a
+ * border for its own sake.
+ */
+.intro {
+  gap: var(--hg-space-3);
+}
+
+.introFacts {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.introNote {
   font-size: var(--hg-text-body-sm);
   color: var(--hg-text-secondary);
-  text-align: start;
-}
-
-.facts li::before {
-  content: '·';
-  margin-inline-end: var(--hg-space-2);
-  color: var(--hg-primary-text);
-}
-
-/*
- * The one thing on the screen that must not read as a boast or a verdict.
- *
- * Small, secondary, and present on both the introduction and the result — a
- * learner should meet the caveat before they are given a number and again when
- * they have one.
- */
-.disclaimer {
-  font-size: var(--hg-text-caption);
-  color: var(--hg-text-tertiary);
-  text-align: center;
   text-wrap: pretty;
+}
+
+/* How far through, and how long is left. */
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-2);
 }
 
 .count {
@@ -80,6 +81,27 @@
   font-weight: var(--hg-weight-bold);
   color: var(--hg-text-secondary);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * The clock.
+ *
+ * Tabular figures, because a proportional 1 is narrower than a 0 and a timer
+ * that shifts sideways every second is the most distracting thing that can be
+ * on an assessment screen. Under a minute it takes the product's emphasis
+ * colour and does nothing else — no pulse, no sound, no shake.
+ */
+.clock {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.clockLow {
+  color: var(--hg-primary-text);
+  font-weight: var(--hg-weight-bold);
 }
 
 .prompt {
@@ -195,7 +217,7 @@
 
 .resultBand,
 .resultWords,
-.resultItems {
+.resultRecommend {
   font-size: var(--hg-text-body-sm);
   color: var(--hg-text-secondary);
   text-wrap: pretty;

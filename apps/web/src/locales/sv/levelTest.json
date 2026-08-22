@@ -1,20 +1,20 @@
 {
   "title": "Ordförrådsnivå",
   "row": {
-    "body": "Ta reda på ungefär var ditt koreanska ordförråd ligger.",
-    "taken": "Ditt senaste resultat: nivå {{level}}"
+    "body": "Ta reda på din nivå och få ord som passar.",
+    "taken": "Nivå {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Var ligger ditt koreanska ordförråd?",
-    "body": "En kort omgång frågor som blir svårare eller lättare beroende på hur du svarar, så att den kan placera dig utan hundratals frågor.",
-    "length": "Ungefär 3–6 minuter, 18 till 36 frågor.",
-    "noHelp": "Inga ledtrådar, och svaren visas inte under tiden.",
-    "noProgress": "Inget av det här ändrar dina lektioner, din svit eller din repetition.",
+    "title": "Kolla din ordförrådsnivå",
+    "body": "Från ord du känner igen till lite svårare — se var ditt koreanska ordförråd ligger just nu.",
+    "shape": "{{questions, number}} frågor · {{minutes, number}} minuter",
+    "unsure": "Osäker? Tryck gärna på ”Vet inte”.",
+    "usedFor": "Resultatet avgör hur svåra dina ord blir varje dag.",
     "start": "Starta testet",
     "retake": "Gör om det",
     "previous": "Förra gången hamnade du på nivå {{level}}."
   },
-  "progress": "{{asked, number}} av högst {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Vad betyder det här ordet?",
     "produce": "Vilket ord betyder det här?",
@@ -24,13 +24,25 @@
   "unknown": "Jag vet inte",
   "loading": "Frågorna förbereds…",
   "unavailable": "Testet behöver en anslutning första gången du öppnar det.",
+  "timeLeft": "Tid kvar",
   "result": {
     "label": "Hangyul ordförrådsnivå",
     "of": "av {{levels, number}}",
     "band": "Troligen mellan {{low, number}} och {{high, number}}.",
     "words": "På den här nivån känner man oftast igen de {{count, number}} vanligaste koreanska orden.",
-    "items_one": "Fastställd på {{count, number}} fråga.",
-    "items_other": "Fastställd på {{count, number}} frågor."
+    "recommend": "Dina dagliga ord följer nu den här nivån."
   },
-  "disclaimer": "Hangyuls ordförrådsnivå är vår egen skala. Den är ingen officiell nivåbedömning och räknar inte orden du kan."
+  "bands": {
+    "starter": "BÖRJAN",
+    "everyday": "VARDAG",
+    "confident": "SÄKER",
+    "advanced": "AVANCERAD"
+  },
+  "home": {
+    "title": "Ordförrådsnivå",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Ta reda på din nivå och få ord som passar.",
+    "cta": "Gör testet",
+    "retake": "Testa igen"
+  }
 }

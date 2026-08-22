@@ -23,17 +23,5 @@
     "wordsCaption": "Wörter für heute",
     "wordsReady": "bereit für deine ersten Wörter"
   },
-  "review": {
-    "title": "Wiederholen",
-    "count_one": "{{count, number}} zum Wiederholen",
-    "count_other": "{{count, number}} zum Wiederholen",
-    "empty": "Noch nichts zu wiederholen"
-  },
-  "practice": {
-    "title": "Heutige Übung",
-    "reviews_one": "{{count, number}} Wiederholung bereit",
-    "reviews_other": "{{count, number}} Wiederholungen bereit",
-    "cta": "Übung starten"
-  },
   "purpose": "Koreanisch vom ersten Buchstaben an — erst Hangul, dann die Wörter, die du wirklich brauchst."
 }

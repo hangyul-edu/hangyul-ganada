@@ -23,17 +23,5 @@
     "wordsCaption": "dagens ord",
     "wordsReady": "dags för dina första ord"
   },
-  "review": {
-    "title": "Repetera",
-    "count_one": "{{count, number}} att gå igenom",
-    "count_other": "{{count, number}} att gå igenom",
-    "empty": "Inget att gå igenom än"
-  },
-  "practice": {
-    "title": "Dagens övning",
-    "reviews_one": "{{count, number}} repetition redo",
-    "reviews_other": "{{count, number}} repetitioner redo",
-    "cta": "Börja öva"
-  },
   "purpose": "Lär dig koreanska från allra första bokstaven — hangul först, sedan orden du faktiskt kommer att använda."
 }

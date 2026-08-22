@@ -127,11 +127,7 @@
     "forYou": "Сізге арналған қайталау",
     "sessionLength_one": "{{count, number}} қысқа жаттығу",
     "sessionLength_other": "{{count, number}} қысқа жаттығу",
-    "needsPractice": "Жаттығу керек",
-    "dueToday": "Бүгінге",
-    "savedWords": "Сақталған сөздер",
     "chooseMode": "Немесе нені жаттығатыныңызды өзіңіз таңдаңыз",
-    "comingUp": "Кезекте",
     "outcome": "{{practised, number}} жаттықты · {{firstTry, number}} бірден есіңізге түсті · {{comingBack, number}} жақында қайта оралады",
     "blank": "бос орын",
     "optionsLabel": "Жауаптар",
@@ -217,7 +213,8 @@
     "noneOfKind": "Қазір мұнда ештеңе жоқ.",
     "emptyTitle": "Әзірге ештеңе жіберілмеді",
     "emptyBody": "Бірдеңе қолдан кетсе, түзетуіңіз үшін ол осында шығады.",
-    "emptyCta": "Қайталауға өту"
+    "emptyCta": "Қайталауға өту",
+    "wrongVocabulary": "Қате сөздер"
   },
   "letterGroup": {
     "basic_vowel": "негізгі дауысты",
@@ -233,5 +230,9 @@
     "cta": "Hangyul-де жалғастыру",
     "rowTitle": "Hangyul-де жалғастыру",
     "rowBody": "Сөйлеу мен TOPIK — дайын болғанда"
+  },
+  "practice": {
+    "sizeLabel": "Неше сұрақ",
+    "sizeAll": "Барлығы {{count, number}}"
   }
 }

@@ -131,11 +131,7 @@
     "sessionLength_many": "{{count, number}} krótkich ćwiczeń",
     "sessionLength_one": "{{count, number}} krótkie ćwiczenie",
     "sessionLength_other": "{{count, number}} krótkiego ćwiczenia",
-    "needsPractice": "Wymaga ćwiczeń",
-    "dueToday": "Na dziś",
-    "savedWords": "Zapisane słowa",
     "chooseMode": "Albo wybierz, co poćwiczyć",
-    "comingUp": "Wkrótce",
     "outcome": "{{practised, number}} przećwiczone · {{firstTry, number}} od razu wróciło · {{comingBack, number}} wróci niedługo",
     "blank": "luka",
     "optionsLabel": "Odpowiedzi",
@@ -225,7 +221,8 @@
     "noneOfKind": "Na razie nic tu nie ma.",
     "emptyTitle": "Jeszcze nic nie umknęło",
     "emptyBody": "Kiedy coś ci umknie, trafi tutaj, żebyś mógł to naprostować.",
-    "emptyCta": "Idź do powtórki"
+    "emptyCta": "Idź do powtórki",
+    "wrongVocabulary": "Błędne słowa"
   },
   "letterGroup": {
     "basic_vowel": "samogłoska podstawowa",
@@ -241,5 +238,9 @@
     "cta": "Kontynuuj w Hangyul",
     "rowTitle": "Kontynuuj w Hangyul",
     "rowBody": "Mówienie i TOPIK, kiedy poczujesz się gotów"
+  },
+  "practice": {
+    "sizeLabel": "Ile pytań",
+    "sizeAll": "Wszystkie ({{count, number}})"
   }
 }

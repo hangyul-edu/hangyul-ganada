@@ -16,7 +16,8 @@
     "progressAria": "Бүгінгі сөздер бойынша ілгерілеу",
     "moreLabel": "Тағы қанша",
     "moreCount_one": "тағы {{count}}",
-    "moreCount_other": "тағы {{count}}"
+    "moreCount_other": "тағы {{count}}",
+    "tunedTo": "{{level}}-деңгейге таңдалған."
   },
   "browse": {
     "title": "Тақырып бойынша қарау",
@@ -124,7 +125,8 @@
     "noMatch": "Сақталғандар ішінен «{{query}}» бойынша ештеңе табылмады.",
     "emptyTitle": "Әзірге сақталған сөз жоқ",
     "emptyBody": "Оқып жүріп кез келген сөздегі бетбелгіні басыңыз — қайта оралғыңыз келгенде осында тұрады.",
-    "emptyCta": "Сөздерге өту"
+    "emptyCta": "Сөздерге өту",
+    "notPractisable": "Бұлар іздеу үшін сақталған. Сұрақ құру үшін оқу картасы керек, ол әлі жоқ."
   },
   "dictionary": {
     "title": "Сөздік",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} басқа мағына",
     "otherMeanings_other": "{{count, number}} басқа мағына",
     "onlyMeaning": "Сөздікте бұл сөздің басқа мағынасы жоқ.",
-    "source": "Дереккөз: {{name}}, {{license}}."
+    "source": "Дереккөз: {{name}}, {{license}}.",
+    "save": "Сөзді сақтау",
+    "saved": "Сақталды"
+  },
+  "conjugation": {
+    "title": "Жіктелуі",
+    "form": {
+      "dictionary": "Сөздік тұлғасы",
+      "presentPolite": "Осы шақ",
+      "pastPolite": "Өткен шақ",
+      "futurePolite": "Келер шақ",
+      "formalPolite": "Ресми",
+      "connective": "Және / содан соң",
+      "honorific": "Өтінемін, жасаңыз",
+      "request": "Маған жасап беріңіз"
+    }
   }
 }

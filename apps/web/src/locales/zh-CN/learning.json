@@ -36,11 +36,7 @@
     "forYou": "为你安排的复习",
     "sessionLength_one": "一道小题",
     "sessionLength_other": "{{count, number}} 道小题",
-    "needsPractice": "需要多练",
-    "dueToday": "今天要看",
-    "savedWords": "收藏的词",
     "chooseMode": "或者自己选练什么",
-    "comingUp": "接下来",
     "outcome": "练了 {{practised, number}} 题 · {{firstTry, number}} 题立刻想起来了 · {{comingBack, number}} 题会再出现",
     "blank": "空格",
     "optionsLabel": "选项",
@@ -215,7 +211,8 @@
     "noneOfKind": "现在这里没有内容。",
     "emptyTitle": "还没有错题",
     "emptyBody": "答错的内容会收在这里，方便你回来改正。",
-    "emptyCta": "去复习"
+    "emptyCta": "去复习",
+    "wrongVocabulary": "错的词"
   },
   "letterGroup": {
     "basic_vowel": "基本元音",
@@ -231,5 +228,9 @@
     "cta": "去 Hangyul 继续",
     "rowTitle": "去 Hangyul 继续",
     "rowBody": "准备好了就练口语和 TOPIK"
+  },
+  "practice": {
+    "sizeLabel": "题数",
+    "sizeAll": "全部 {{count, number}} 题"
   }
 }

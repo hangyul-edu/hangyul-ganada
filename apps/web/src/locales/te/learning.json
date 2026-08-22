@@ -127,11 +127,7 @@
     "forYou": "మీ కోసం పునశ్చరణ",
     "sessionLength_one": "{{count, number}} చిన్న అభ్యాసం",
     "sessionLength_other": "{{count, number}} చిన్న అభ్యాసాలు",
-    "needsPractice": "సాధన కావాలి",
-    "dueToday": "ఈ రోజుకి",
-    "savedWords": "భద్రపరచిన పదాలు",
     "chooseMode": "లేదా ఏం సాధన చేయాలో మీరే ఎంచుకోండి",
-    "comingUp": "తర్వాత వచ్చేవి",
     "outcome": "{{practised, number}} సాధన · {{firstTry, number}} మొదటి ప్రయత్నంలోనే గుర్తొచ్చాయి · {{comingBack, number}} త్వరలో తిరిగి వస్తాయి",
     "blank": "ఖాళీ",
     "optionsLabel": "జవాబులు",
@@ -217,7 +213,8 @@
     "noneOfKind": "ఇప్పుడు ఇక్కడ ఏమీ లేదు.",
     "emptyTitle": "ఇంకా ఏదీ తప్పలేదు",
     "emptyBody": "ఏదైనా జారిపోతే అది ఇక్కడికే వస్తుంది — మీరు సరిచేసుకోవడానికి.",
-    "emptyCta": "పునశ్చరణకు వెళ్లు"
+    "emptyCta": "పునశ్చరణకు వెళ్లు",
+    "wrongVocabulary": "తప్పు పదాలు"
   },
   "letterGroup": {
     "basic_vowel": "ఒక ప్రాథమిక అచ్చు",
@@ -233,5 +230,9 @@
     "cta": "Hangyulలో కొనసాగించు",
     "rowTitle": "Hangyulలో కొనసాగించు",
     "rowBody": "మాట్లాడటం, TOPIK — మీరు సిద్ధమైనప్పుడు"
+  },
+  "practice": {
+    "sizeLabel": "ఎన్ని ప్రశ్నలు",
+    "sizeAll": "అన్నీ {{count, number}}"
   }
 }

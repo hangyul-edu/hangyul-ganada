@@ -23,17 +23,5 @@
     "wordsCaption": "a mai szavak",
     "wordsReady": "jöhetnek az első szavak"
   },
-  "review": {
-    "title": "Ismétlés",
-    "count_one": "{{count, number}} átnézni való",
-    "count_other": "{{count, number}} átnézni való",
-    "empty": "Még nincs mit átnézni"
-  },
-  "practice": {
-    "title": "Mai gyakorlás",
-    "reviews_one": "{{count, number}} ismétlés készen áll",
-    "reviews_other": "{{count, number}} ismétlés készen áll",
-    "cta": "Gyakorlás indítása"
-  },
   "purpose": "Tanulj koreaiul a legelső betűtől — előbb a hangul, aztán azok a szavak, amiket tényleg használni fogsz."
 }

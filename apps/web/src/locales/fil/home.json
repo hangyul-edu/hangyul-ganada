@@ -23,17 +23,5 @@
     "wordsCaption": "mga salita ngayong araw",
     "wordsReady": "handa na sa unang mga salita"
   },
-  "review": {
-    "title": "Balik-aral",
-    "count_one": "{{count, number}} ang babalikan",
-    "count_other": "{{count, number}} ang babalikan",
-    "empty": "Wala pang babalikan"
-  },
-  "practice": {
-    "title": "Ensayo ngayong araw",
-    "reviews_one": "{{count, number}} balik-aral ang handa",
-    "reviews_other": "{{count, number}} balik-aral ang handa",
-    "cta": "Simulan ang ensayo"
-  },
   "purpose": "Matuto ng Koreano mula sa kauna-unahang letra — Hangul muna, tapos ang mga salitang talagang gagamitin mo."
 }

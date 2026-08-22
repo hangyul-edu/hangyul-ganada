@@ -1,20 +1,20 @@
 {
   "title": "Vocabulary Level",
   "row": {
-    "body": "Find out roughly where your Korean vocabulary stands.",
-    "taken": "Your last result: Level {{level}}"
+    "body": "Find your level and get words that match it.",
+    "taken": "Level {{level}} · {{band}}"
   },
   "intro": {
-    "title": "Where is your Korean vocabulary?",
-    "body": "A short set of questions that gets harder or easier as you answer, so it can place you without asking hundreds of them.",
-    "length": "About 3–6 minutes, 18 to 36 questions.",
-    "noHelp": "No hints, and the answers are not shown as you go.",
-    "noProgress": "Nothing here changes your lessons, your streak or your review.",
+    "title": "Check your vocabulary level",
+    "body": "Work through words from familiar to a little harder, and see where your Korean vocabulary is now.",
+    "shape": "{{questions, number}} questions · {{minutes, number}} minutes",
+    "unsure": "Not sure? Tapping “I don't know” is fine.",
+    "usedFor": "Your result sets the difficulty of your words each day.",
     "start": "Start the test",
     "retake": "Take it again",
-    "previous": "You last came out at Level {{level}}."
+    "previous": "Last time you came out at Level {{level}}."
   },
-  "progress": "{{asked, number}} of up to {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "What does this word mean?",
     "produce": "Which word means this?",
@@ -24,13 +24,25 @@
   "unknown": "I don't know",
   "loading": "Getting the questions ready…",
   "unavailable": "The test needs a connection the first time you open it.",
+  "timeLeft": "Time left",
   "result": {
     "label": "Hangyul Vocabulary Level",
     "of": "of {{levels, number}}",
     "band": "Most likely between {{low, number}} and {{high, number}}.",
     "words": "Around this level, readers usually recognise the {{count, number}} most common Korean words.",
-    "items_one": "Placed in {{count, number}} question.",
-    "items_other": "Placed in {{count, number}} questions."
+    "recommend": "Your daily words are now chosen to match."
   },
-  "disclaimer": "The Hangyul Vocabulary Level is our own scale. It is not an official proficiency grade, and it is not a count of the words you know."
+  "bands": {
+    "starter": "STARTER",
+    "everyday": "EVERYDAY",
+    "confident": "CONFIDENT",
+    "advanced": "ADVANCED"
+  },
+  "home": {
+    "title": "Vocabulary level",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Find your level and get words that match it.",
+    "cta": "Take the level test",
+    "retake": "Test again"
+  }
 }

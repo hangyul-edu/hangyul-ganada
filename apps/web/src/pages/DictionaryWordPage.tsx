@@ -9,6 +9,8 @@ import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Card } from '../ui/Card';
 import { NotFoundBody } from './NotFoundPage';
+import { Conjugation } from '../features/vocabulary/Conjugation';
+import { BookmarkIcon } from '../ui/icons';
 import styles from './DictionaryWordPage.module.css';
 
 /**
@@ -42,8 +44,9 @@ export function DictionaryWordPage() {
   const headword = params.headword ? decodeURIComponent(params.headword) : null;
   const navigate = useNavigate();
   const { t } = useTranslation(['vocabulary', 'common']);
-  const { state } = useLearner();
+  const { state, toggleSavedHeadword, isSavedHeadword } = useLearner();
   const { entry, state: status } = useDictionaryEntry(headword);
+  const saved = isSavedHeadword(entry?.headword ?? headword ?? '');
   const font = getFont(state.settings.selected_font_id);
 
   /*
@@ -96,9 +99,40 @@ export function DictionaryWordPage() {
                 {entry.romanization}
               </p>
               <p className={styles.note}>{t('vocabulary:dictionary.note')}</p>
+              {/*
+                Saving a word the app does not teach.
+
+                §42: a learner who looks up 귀족 should be able to keep it. It
+                goes on the same Saved words list as a taught card, under the
+                taught card's key when there is one — so 사과 saved here and 사과
+                saved from its lesson are one bookmark rather than two.
+              */}
+              <button
+                type="button"
+                className={styles.save}
+                onClick={() => toggleSavedHeadword(entry.headword)}
+                aria-pressed={saved}
+                data-testid="dictionary-save"
+              >
+                <BookmarkIcon size={18} filled={saved} />
+                {saved ? t('vocabulary:dictionary.saved') : t('vocabulary:dictionary.save')}
+              </button>
             </Card>
 
             <Sense sense={entry.senses[0]!} />
+
+            {/*
+              How the word is actually written in a sentence.
+
+              After the primary sense and before the other ones, because that is
+              the order somebody reads in: what it means, how it appears, and
+              then what else it can mean. See `features/vocabulary/Conjugation`.
+            */}
+            <Conjugation
+              lemma={entry.headword}
+              partOfSpeech={entry.senses[0]!.partOfSpeech}
+              fontFamily={font.font_family}
+            />
 
             {entry.senses.length > 1 && (
               <details className={styles.more}>

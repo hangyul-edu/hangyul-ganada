@@ -48,6 +48,7 @@ import base64
 import json
 import os
 import subprocess
+import time
 import urllib.error
 import urllib.request
 from abc import ABC, abstractmethod
@@ -104,6 +105,14 @@ class TtsProvider(ABC):
     alternates: VoicePair
     #: Free-form note recorded in the manifest, e.g. licensing caveats.
     notes: str = ""
+    #: The pace the clips actually come back at, as a multiple of normal speech.
+    #:
+    #: `SPEECH_RATE` for the engines that take a rate parameter, and 1.0 for the
+    #: ones that do not. QA divides its duration bounds by this, so a provider
+    #: that cannot be slowed down must say so rather than be measured against a
+    #: slowness it was never asked for — which is how five perfectly good clips
+    #: came back as "too short" by ten milliseconds.
+    spoken_rate: float = SPEECH_RATE
 
     @abstractmethod
     def synthesize(self, text: str, voice: str, destination: Path) -> None:
@@ -228,10 +237,154 @@ class GoogleTtsProvider(TtsProvider):
         write_atomic(destination, base64.b64decode(body["audioContent"]))
 
 
+# --- ElevenLabs -------------------------------------------------------------
+
+
+class ElevenLabsProvider(TtsProvider):
+    """The voices this product ships with.
+
+    ## Why these two
+
+    Both are professional Korean voices from the ElevenLabs Voice Library, both
+    verified Korean, both `calm` and `narrative` rather than advertising-bright:
+
+    * **male** ``h5eZa8VFAq0EQ8E81dfL`` — *Yong Gyu, Calm Korean Male Narrator*,
+      Seoul accent.
+    * **female** ``5n5gqmaQi9Ewevrz7bOS`` — *Sian, Tender, Calm & Clear*.
+
+    A teaching voice is a narration voice: even, unhurried, and the same on the
+    four hundredth clip as on the first. What it must not be is *performed* —
+    a voice that acts each word is a voice a learner cannot copy.
+
+    ## Why there is no alternate voice
+
+    The other providers carry a second voice of each gender for the words the
+    first one says wrongly. That mechanism exists because Microsoft's male voice
+    reads 마디 as [마지]; it is a repair for a specific defect in a specific
+    model. These voices are checked against the same fixtures before the corpus
+    is generated (see `--sample` in `generate_audio.py`), and until one of them
+    fails a fixture the alternates are simply the voices themselves — a second
+    voice nobody has a reason to switch to would be an untested code path.
+
+    ## Speaking rate
+
+    ElevenLabs has no rate parameter. The pace comes from the model and the
+    voice, which for both of these is already an unhurried narration pace, and
+    the honest thing is to record that rather than to claim a rate that was not
+    asked for. `SPEECH_RATE` is therefore *not* applied here, and
+    `qa_pronunciation` measures what actually came back.
+
+    ## The key
+
+    Read from the environment, never from the repository. See
+    `scripts/lib/secrets.mjs` for where it lives and why it lives outside the
+    tree. Nothing about the key reaches the manifest, the bundle or the package.
+    """
+
+    id = "elevenlabs"
+    voices = VoicePair(female="5n5gqmaQi9Ewevrz7bOS", male="h5eZa8VFAq0EQ8E81dfL")
+    spoken_rate = 1.0
+    alternates = VoicePair(female="5n5gqmaQi9Ewevrz7bOS", male="h5eZa8VFAq0EQ8E81dfL")
+    model = "eleven_multilingual_v2"
+    output_format = "mp3_44100_128"
+    notes = (
+        "Generated with ElevenLabs eleven_multilingual_v2 using two professional "
+        "Korean voices from the ElevenLabs Voice Library. Synthesised once at "
+        "build time and shipped as files; the application never calls ElevenLabs."
+    )
+
+    def __init__(self) -> None:
+        self.key = read_elevenlabs_key()
+        if not self.key:
+            raise SystemExit(
+                "ELEVENLABS_API_KEY is not set.\n"
+                "Put it in ~/.hangyul-keys/elevenlabs.env as ELEVENLABS_API_KEY=...\n"
+                "It belongs to the machine that generates audio, never to the repository."
+            )
+
+    def synthesize(self, text: str, voice: str, destination: Path) -> None:
+        payload = json.dumps(
+            {
+                "text": text,
+                "model_id": self.model,
+                # Stability high and style at zero: this is a reading voice, and
+                # the variation that makes a character performance interesting is
+                # exactly what makes a pronunciation model inconsistent. Speaker
+                # boost keeps the timbre steady across four thousand short clips.
+                "voice_settings": {
+                    "stability": 0.6,
+                    "similarity_boost": 0.85,
+                    "style": 0.0,
+                    "use_speaker_boost": True,
+                },
+            }
+        ).encode("utf-8")
+        url = (
+            f"https://api.elevenlabs.io/v1/text-to-speech/{voice}"
+            f"?output_format={self.output_format}"
+        )
+        request = urllib.request.Request(
+            url,
+            data=payload,
+            headers={"xi-api-key": self.key, "Content-Type": "application/json"},
+        )
+        write_atomic(destination, http_with_backoff(request))
+
+
+def read_elevenlabs_key() -> str:
+    """The key, from the environment or from the file outside the repository."""
+    from_env = os.environ.get("ELEVENLABS_API_KEY")
+    if from_env:
+        return from_env.strip()
+    path = Path.home() / ".hangyul-keys" / "elevenlabs.env"
+    if not path.exists():
+        return ""
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line.startswith("ELEVENLABS_API_KEY="):
+            return line.split("=", 1)[1].strip()
+    return ""
+
+
+def http_with_backoff(request: urllib.request.Request, *, attempts: int = 6) -> bytes:
+    """One request, retried the way a bulk job has to retry.
+
+    Four thousand requests over an hour will meet a 429 and a 5xx, and a bulk
+    generator that dies on either has to be restarted by a person. It backs off
+    exponentially, honours `Retry-After` when the server sends one, and gives up
+    immediately on the errors that retrying cannot fix — a bad key, a voice that
+    does not exist, an exhausted quota — because retrying those six times is six
+    times as long to find out.
+    """
+    delay = 2.0
+    last: Exception | None = None
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(request, timeout=180) as response:
+                return response.read()
+        except urllib.error.HTTPError as error:
+            last = error
+            body = error.read()[:400].decode("utf-8", "replace")
+            if error.code in (401, 403, 404, 422):
+                raise SystemExit(f"ElevenLabs {error.code}: {body}") from error
+            if error.code == 402:
+                raise SystemExit(f"ElevenLabs quota exhausted: {body}") from error
+            wait = float(error.headers.get("Retry-After") or 0) or delay
+        except (urllib.error.URLError, TimeoutError, OSError) as error:
+            last = error
+            wait = delay
+        if attempt == attempts - 1:
+            break
+        time.sleep(wait)
+        delay = min(delay * 2, 60.0)
+    raise RuntimeError(f"ElevenLabs request failed after {attempts} attempts: {last}")
+
+
 PROVIDERS: dict[str, type[TtsProvider]] = {
     "edge": EdgeTtsProvider,
     "azure": AzureSpeechProvider,
     "google": GoogleTtsProvider,
+    "elevenlabs": ElevenLabsProvider,
 }
 
 

@@ -129,11 +129,7 @@
     "sessionLength_many": "{{count, number}} esercizi brevi",
     "sessionLength_one": "{{count, number}} esercizio breve",
     "sessionLength_other": "{{count, number}} esercizi brevi",
-    "needsPractice": "Da esercitare",
-    "dueToday": "In scadenza oggi",
-    "savedWords": "Parole salvate",
     "chooseMode": "Oppure scegli tu che cosa esercitare",
-    "comingUp": "In arrivo",
     "outcome": "{{practised, number}} esercitate · {{firstTry, number}} venute subito · {{comingBack, number}} torneranno presto",
     "blank": "spazio",
     "optionsLabel": "Risposte",
@@ -221,7 +217,8 @@
     "noneOfKind": "Qui non c’è niente al momento.",
     "emptyTitle": "Ancora nessun errore",
     "emptyBody": "Quando qualcosa ti sfugge finisce qui, così puoi rimetterlo a posto.",
-    "emptyCta": "Vai al ripasso"
+    "emptyCta": "Vai al ripasso",
+    "wrongVocabulary": "Parole sbagliate"
   },
   "letterGroup": {
     "basic_vowel": "una vocale di base",
@@ -237,5 +234,9 @@
     "cta": "Continua su Hangyul",
     "rowTitle": "Continua su Hangyul",
     "rowBody": "Parlato e TOPIK, quando te la senti"
+  },
+  "practice": {
+    "sizeLabel": "Quante",
+    "sizeAll": "Tutte ({{count, number}})"
   }
 }

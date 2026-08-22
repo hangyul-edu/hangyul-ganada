@@ -23,21 +23,5 @@
     "wordsCaption": "dzisiejsze słowa",
     "wordsReady": "czas na pierwsze słowa"
   },
-  "review": {
-    "title": "Powtórka",
-    "count_few": "{{count, number}} do powtórzenia",
-    "count_many": "{{count, number}} do powtórzenia",
-    "count_one": "{{count, number}} do powtórzenia",
-    "count_other": "{{count, number}} do powtórzenia",
-    "empty": "Na razie nie ma czego powtarzać"
-  },
-  "practice": {
-    "title": "Dzisiejsze ćwiczenie",
-    "reviews_few": "{{count, number}} powtórki gotowe",
-    "reviews_many": "{{count, number}} powtórek gotowych",
-    "reviews_one": "{{count, number}} powtórka gotowa",
-    "reviews_other": "{{count, number}} powtórki gotowe",
-    "cta": "Zacznij ćwiczyć"
-  },
   "purpose": "Ucz się koreańskiego od pierwszej litery — najpierw hangeul, potem słowa, których naprawdę użyjesz."
 }

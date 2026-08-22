@@ -127,11 +127,7 @@
     "forYou": "Чамд зориулсан давталт",
     "sessionLength_one": "{{count, number}} богино дасгал",
     "sessionLength_other": "{{count, number}} богино дасгал",
-    "needsPractice": "Дасгал хэрэгтэй",
-    "dueToday": "Өнөөдөрт",
-    "savedWords": "Хадгалсан үгс",
     "chooseMode": "Эсвэл юуг дасгалжуулахаа өөрөө сонго",
-    "comingUp": "Дараалалд",
     "outcome": "{{practised, number}} дасгалжлаа · {{firstTry, number}} шууд санагдлаа · {{comingBack, number}} удахгүй эргэж ирнэ",
     "blank": "хоосон зай",
     "optionsLabel": "Хариултууд",
@@ -217,7 +213,8 @@
     "noneOfKind": "Одоо энд юу ч алга.",
     "emptyTitle": "Одоохондоо юу ч алдаагүй",
     "emptyBody": "Ямар нэг юм мултарвал засах боломжтой байхын тулд энд гарч ирнэ.",
-    "emptyCta": "Давталт руу очих"
+    "emptyCta": "Давталт руу очих",
+    "wrongVocabulary": "Буруу үгс"
   },
   "letterGroup": {
     "basic_vowel": "үндсэн эгшиг",
@@ -233,5 +230,9 @@
     "cta": "Hangyul дээр үргэлжлүүлэх",
     "rowTitle": "Hangyul дээр үргэлжлүүлэх",
     "rowBody": "Ярианы дадлага, TOPIK — бэлэн болохоор чинь"
+  },
+  "practice": {
+    "sizeLabel": "Хэдэн асуулт",
+    "sizeAll": "Бүгд {{count, number}}"
   }
 }

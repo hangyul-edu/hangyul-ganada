@@ -16,7 +16,8 @@
     "progressAria": "Tiến độ từ vựng hôm nay",
     "moreLabel": "Thêm bao nhiêu từ",
     "moreCount_one": "Thêm 1 từ",
-    "moreCount_other": "Thêm {{count}} từ"
+    "moreCount_other": "Thêm {{count}} từ",
+    "tunedTo": "Chọn cho cấp {{level}}."
   },
   "browse": {
     "title": "Xem theo chủ đề",
@@ -124,7 +125,8 @@
     "noMatch": "Không có từ đã lưu nào khớp với “{{query}}”.",
     "emptyTitle": "Chưa lưu từ nào",
     "emptyBody": "Khi học, chạm vào dấu đánh dấu ở bất kỳ từ nào, từ đó sẽ nằm ở đây để bạn quay lại.",
-    "emptyCta": "Đến phần từ vựng"
+    "emptyCta": "Đến phần từ vựng",
+    "notPractisable": "Những từ này được lưu để tra cứu. Muốn ra đề thì cần thẻ học, mà chúng chưa có."
   },
   "dictionary": {
     "title": "Từ điển",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} nghĩa khác",
     "otherMeanings_other": "{{count, number}} nghĩa khác",
     "onlyMeaning": "Từ điển không có nghĩa nào khác cho từ này.",
-    "source": "Nguồn: {{name}}, {{license}}."
+    "source": "Nguồn: {{name}}, {{license}}.",
+    "save": "Lưu từ",
+    "saved": "Đã lưu"
+  },
+  "conjugation": {
+    "title": "Chia động từ",
+    "form": {
+      "dictionary": "Dạng từ điển",
+      "presentPolite": "Hiện tại",
+      "pastPolite": "Quá khứ",
+      "futurePolite": "Tương lai",
+      "formalPolite": "Trang trọng",
+      "connective": "Và / rồi",
+      "honorific": "Xin hãy",
+      "request": "Làm giúp tôi"
+    }
   }
 }

@@ -1,0 +1,51 @@
+/*
+ * A label and a row of small buttons.
+ *
+ * Deliberately not a segmented control: the options are a variable number of
+ * numerals plus a word, and a segmented control with four items of different
+ * widths is a row of buttons pretending to be something else. Wraps rather than
+ * scrolls, because "All 137" is a wide option and a horizontally scrolling
+ * control on a phone hides its own last item.
+ */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.options {
+  display: flex;
+  gap: var(--hg-space-2);
+  flex-wrap: wrap;
+}
+
+.option {
+  min-height: var(--hg-size-hit-target);
+  min-width: var(--hg-size-hit-target);
+  padding: 0 var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.optionOn {
+  border-color: transparent;
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+}
+
+@media (hover: hover) {
+  .option:hover:not(.optionOn) {
+    background: var(--hg-primary-subtle-hover);
+  }
+}

@@ -23,17 +23,5 @@
     "wordsCaption": "คำของวันนี้",
     "wordsReady": "พร้อมเรียนคำแรกแล้ว"
   },
-  "review": {
-    "title": "ทบทวน",
-    "count_one": "{{count, number}} รายการรอทบทวน",
-    "count_other": "{{count, number}} รายการรอทบทวน",
-    "empty": "ยังไม่มีอะไรให้ทบทวน"
-  },
-  "practice": {
-    "title": "ฝึกวันนี้",
-    "reviews_one": "มีบททบทวน {{count, number}} รายการ",
-    "reviews_other": "มีบททบทวน {{count, number}} รายการ",
-    "cta": "เริ่มฝึก"
-  },
   "purpose": "เรียนภาษาเกาหลีตั้งแต่ตัวอักษรแรก — เริ่มที่ฮันกึล แล้วต่อด้วยคำที่ได้ใช้จริง"
 }

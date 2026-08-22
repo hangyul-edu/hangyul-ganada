@@ -7,6 +7,8 @@ import { getCharacterByGlyph } from '../data/characters';
 import { getWord } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
 import type { Mistake } from '../domain/mistakes';
+import { SessionSize } from '../features/review/SessionSize';
+import { defaultSessionSize } from '../features/review/sessionSizes';
 import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
@@ -56,14 +58,28 @@ export function MistakesPage() {
   const { t } = useTranslation(['learning', 'vocabulary', 'common']);
   const { locale } = useLocale();
 
-  const [filter, setFilter] = useState<Filter>('all');
+  /*
+    Vocabulary first, because that is the list the learner came for.
+
+    The notebook holds letter mistakes too and it should — one wrong-answer
+    system, not two — but "wrong vocabulary" is what the Review hub offers and
+    what somebody is looking for when they open it. Letters are one tap away and
+    are never mixed into the vocabulary practice session.
+  */
+  const [filter, setFilter] = useState<Filter>('word');
+  const [size, setSize] = useState<number | null>(null);
 
   const shown = useMemo(
     () => (filter === 'all' ? mistakes : mistakes.filter((row) => row.kind === filter)),
     [mistakes, filter],
   );
 
-  const plan = useMemo(() => practicePlan({ mistakesOnly: true }), [practicePlan]);
+  const full = useMemo(() => practicePlan({ mistakesOnly: true }), [practicePlan]);
+  const chosen = size ?? defaultSessionSize(full.count);
+  const plan = useMemo(
+    () => practicePlan({ mistakesOnly: true, size: Math.max(1, chosen) }),
+    [practicePlan, chosen],
+  );
 
   if (mistakes.length === 0) {
     return (
@@ -96,18 +112,22 @@ export function MistakesPage() {
           is built from the *items*, and asks about them however the scheduler
           would ask about anything else.
         */}
-        {plan.count > 0 && (
-          <Button
-            size="lg"
-            fullWidth
-            onClick={() => navigate('/review/session?set=mistakes', { state: { plan } })}
-          >
-            {t('learning:mistakes.review', { count: plan.count })}
-          </Button>
+        {full.count > 0 && (
+          <div className={styles.practice}>
+            <SessionSize available={full.count} value={chosen} onChange={setSize} />
+            <Button
+              size="lg"
+              fullWidth
+              data-testid="practice-wrong"
+              onClick={() => navigate('/review/session?set=mistakes', { state: { plan } })}
+            >
+              {t('learning:mistakes.review', { count: plan.count })}
+            </Button>
+          </div>
         )}
 
         <div className={styles.chips} role="group" aria-label={t('learning:mistakes.filterLabel')}>
-          {(['all', 'character', 'word'] as const).map((option) => (
+          {(['word', 'character', 'all'] as const).map((option) => (
             <button
               key={option}
               type="button"

@@ -23,16 +23,5 @@
     "wordsCaption": "今天的词",
     "wordsReady": "可以开始学单词了"
   },
-  "review": {
-    "title": "复习",
-    "count_other": "{{count, number}} 个要复习",
-    "empty": "还没有要复习的"
-  },
-  "practice": {
-    "title": "今天的练习",
-    "reviews_one": "{{count, number}} 项复习",
-    "reviews_other": "{{count, number}} 项复习",
-    "cta": "开始练习"
-  },
   "purpose": "从第一个字母开始学韩语 —— 先认识韩文，再学最常用的词。"
 }

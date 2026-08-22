@@ -2,19 +2,13 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { getCharacterByGlyph } from '../data/characters';
-import { getWord } from '../data/vocabulary';
-import { wordCopy } from '../data/wordCopy';
 import type { PracticePlan } from '../domain/plan';
 import type { ExerciseMode } from '../domain/review';
-import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { HangyulMascot } from '../ui/HangyulMascot';
-import { LocalizedText } from '../ui/LocalizedText';
-import { SpeakerButton } from '../ui/SpeakerButton';
 import { ChevronRightIcon } from '../ui/icons';
 import styles from './ReviewPage.module.css';
 
@@ -41,6 +35,22 @@ import styles from './ReviewPage.module.css';
  * syllables only** — no word has a writing skill, so the scheduler cannot put
  * one in a writing plan and this screen cannot offer one.
  *
+ * ## Three questions, three destinations
+ *
+ * A learner arriving here is asking one of three things, and the screen is now
+ * built as those three and nothing else:
+ *
+ * * **What should I review?** — the card at the top, with the session behind it.
+ * * **What did I save?** — Saved words.
+ * * **What did I get wrong?** — Wrong vocabulary.
+ *
+ * What used to be here as well: two scheduler counts (*needs practice*, *due
+ * today*) and a preview list of the next eight items. Both were true and
+ * neither was a question anybody had. The counts restated the number on the
+ * button in two other units, and the preview told a learner what they were
+ * about to be asked before asking it. Five things competing on one screen is
+ * why a learner has to read it rather than recognise it.
+ *
  * ## What is deliberately not here
  *
  * No stability, no difficulty coefficient, no predicted recall percentage.
@@ -56,14 +66,23 @@ const MANUAL_MODES: Array<{ mode: ExerciseMode; key: string }> = [
   { mode: 'write', key: 'write' },
 ];
 
-/** How many items the preview lists before it stops. */
-const PREVIEW = 8;
-
 export function ReviewPage() {
   const navigate = useNavigate();
   const { practicePlan, reviewSummary, mistakes } = useLearner();
   const { t } = useTranslation(['learning', 'common']);
-  const { locale } = useLocale();
+
+  /*
+    Vocabulary only, on this row.
+
+    The notebook holds letter mistakes too and the row that opens it says
+    *wrong vocabulary*, so the number beside it has to be the number of words —
+    a count that included letters would be a label and a figure describing two
+    different things. The notebook screen itself shows both, split.
+  */
+  const wrongWords = useMemo(
+    () => mistakes.filter((row) => row.kind === 'word').length,
+    [mistakes],
+  );
 
   // The plan Start will run. Resolved here, once, and carried to the session
   // rather than rebuilt there — see `handoff` below.
@@ -72,28 +91,6 @@ export function ReviewPage() {
     () => MANUAL_MODES.map((entry) => ({ ...entry, plan: practicePlan({ mode: entry.mode }) })),
     [practicePlan],
   );
-
-  /**
-   * The items coming up, one row per item.
-   *
-   * Read off the plan rather than off the scheduler, so this lists the things
-   * the learner is about to be asked about and not the things that were
-   * considered. Deduplicated by item: ㄱ appearing three times because three
-   * different things about it are weak is a list that looks broken, and how
-   * many ways it will be asked is the scheduler's business.
-   */
-  const upcoming = useMemo(() => {
-    const seen = new Set<string>();
-    const rows: Array<{ kind: 'character' | 'word'; itemKey: string }> = [];
-    for (const item of plan.items) {
-      const key = `${item.kind}:${item.itemKey}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      rows.push({ kind: item.kind, itemKey: item.itemKey });
-      if (rows.length >= PREVIEW) break;
-    }
-    return rows;
-  }, [plan]);
 
   /**
    * Hands a resolved plan to the session.
@@ -130,18 +127,7 @@ export function ReviewPage() {
             got wrong, and a screen that offers only "come back later" hides the
             two things they can still act on.
           */}
-          <div className={styles.owned}>
-            <Link to="/review/mistakes" className={styles.savedRow}>
-              <span className={styles.savedLabel}>{t('learning:mistakes.title')}</span>
-              <span className={`${styles.savedCount} hg-numeric`}>{mistakes.length}</span>
-              <ChevronRightIcon size={16} />
-            </Link>
-            <Link to="/words/saved" className={styles.savedRow}>
-              <span className={styles.savedLabel}>{t('learning:review.savedWords')}</span>
-              <span className={`${styles.savedCount} hg-numeric`}>{reviewSummary.saved}</span>
-              <ChevronRightIcon size={16} />
-            </Link>
-          </div>
+          <Hub saved={reviewSummary.saved} wrong={wrongWords} />
         </div>
       </div>
     );
@@ -165,23 +151,6 @@ export function ReviewPage() {
             {t('learning:review.startCta')}
           </Button>
         </Card>
-
-        {/*
-          Two counts, not three.
-
-          "Needs practice" is *I keep losing these* and "Due today" is *these
-          are fading*, and both are things a learner can recognise about
-          themselves. A third row counted saved words, which is a different kind
-          of fact — a list they made — and it now sits with the button that
-          opens it rather than in a column of scheduler output.
-        */}
-        <ul className={styles.counts}>
-          <CountRow
-            label={t('learning:review.needsPractice')}
-            value={reviewSummary.needsPractice}
-          />
-          <CountRow label={t('learning:review.dueToday')} value={reviewSummary.dueToday} />
-        </ul>
 
         <section aria-labelledby="review-modes">
           <h2 id="review-modes" className={styles.sectionTitle}>
@@ -218,107 +187,33 @@ export function ReviewPage() {
           )}
         </section>
 
-        {/*
-          The two lists the learner owns, as rows rather than as counts in a
-          column of scheduler output — §41. Saved words are *their* choice and
-          the notebook is a record of what happened; neither is the scheduler
-          telling them what is fading, which is what the numbers above are.
-        */}
-        <div className={styles.owned}>
-          <Link to="/review/mistakes" className={styles.savedRow}>
-            <span className={styles.savedLabel}>{t('learning:mistakes.title')}</span>
-            <span className={`${styles.savedCount} hg-numeric`}>{mistakes.length}</span>
-            <ChevronRightIcon size={18} />
-          </Link>
-          <Link to="/words/saved" className={styles.savedRow}>
-            <span className={styles.savedLabel}>{t('learning:review.savedWords')}</span>
-            <span className={`${styles.savedCount} hg-numeric`}>{reviewSummary.saved}</span>
-            <ChevronRightIcon size={18} />
-          </Link>
-        </div>
-
-        <section aria-labelledby="review-next">
-          <h2 id="review-next" className={styles.sectionTitle}>
-            {t('learning:review.comingUp')}
-          </h2>
-          <ul className={styles.list}>
-            {upcoming.map((row) => (
-              <PreviewRow
-                key={`${row.kind}:${row.itemKey}`}
-                kind={row.kind}
-                itemKey={row.itemKey}
-                locale={locale}
-              />
-            ))}
-          </ul>
-        </section>
+        <Hub saved={reviewSummary.saved} wrong={wrongWords} />
       </div>
     </div>
   );
 }
 
-function CountRow({ label, value }: { label: string; value: number }) {
-  return (
-    <li className={styles.count}>
-      <span className={styles.countLink}>
-        <span className={styles.countLabel}>{label}</span>
-        <span className={`${styles.countValue} hg-numeric`}>{value}</span>
-      </span>
-    </li>
-  );
-}
-
 /**
- * One item in the preview.
+ * The learner's own two lists, as two rows.
  *
- * What it is and how it sounds, and nothing about why it was chosen. The row
- * used to say "missed 3 times", which is true, discouraging, and not something
- * a learner can do anything about from a list.
+ * The same component in both states of this screen, because they are the same
+ * two destinations whether or not there is a session waiting — and a quiet day
+ * is exactly when somebody is most likely to want to look at what they saved.
  */
-function PreviewRow({
-  kind,
-  itemKey,
-  locale,
-}: {
-  kind: 'character' | 'word';
-  itemKey: string;
-  locale: string;
-}) {
-  const character = kind === 'character' ? getCharacterByGlyph(itemKey) : undefined;
-  const word = kind === 'word' ? getWord(itemKey) : undefined;
-
-  if (kind === 'character') {
-    return (
-      <li className={styles.row}>
-        <span className={styles.rowGlyph} lang="ko" dir="ltr">
-          {itemKey}
-        </span>
-        <span className={styles.rowText}>
-          <span className={styles.rowPrimary}>{character?.romanization ?? itemKey}</span>
-        </span>
-        <SpeakerButton
-          audioId={character?.audio.sound}
-          label={character?.sound_example ?? itemKey}
-          size="sm"
-          tone="plain"
-        />
-      </li>
-    );
-  }
-
-  if (!word) return null;
-  const meaning = wordCopy(word, locale);
+function Hub({ saved, wrong }: { saved: number; wrong: number }) {
+  const { t } = useTranslation(['learning', 'vocabulary']);
   return (
-    <li className={styles.row}>
-      <span className={styles.rowWord} lang="ko" dir="ltr">
-        {word.word}
-      </span>
-      <span className={styles.rowText}>
-        <LocalizedText as="span" locale={meaning.locale} className={styles.rowPrimary}>
-          {meaning.value.meaning}
-        </LocalizedText>
-      </span>
-      <SpeakerButton audioId={word.audio.word} label={word.word} size="sm" tone="plain" />
-    </li>
+    <div className={styles.owned}>
+      <Link to="/words/saved" className={styles.savedRow} data-testid="hub-saved">
+        <span className={styles.savedLabel}>{t('vocabulary:saved.title')}</span>
+        <span className={`${styles.savedCount} hg-numeric`}>{saved}</span>
+        <ChevronRightIcon size={18} />
+      </Link>
+      <Link to="/review/mistakes" className={styles.savedRow} data-testid="hub-wrong">
+        <span className={styles.savedLabel}>{t('learning:mistakes.wrongVocabulary')}</span>
+        <span className={`${styles.savedCount} hg-numeric`}>{wrong}</span>
+        <ChevronRightIcon size={18} />
+      </Link>
+    </div>
   );
 }

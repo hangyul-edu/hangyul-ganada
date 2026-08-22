@@ -1,0 +1,58 @@
+/*
+ * A table without table lines.
+ *
+ * Six rows of label-and-value, and the temptation is a grid with borders — but
+ * a bordered table on a phone is a spreadsheet, and this is one paragraph's
+ * worth of information. Labels are small and quiet, the Korean is the size of
+ * body text and set in the learner's chosen practice face, and the rows are
+ * separated by space rather than by rules.
+ */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+  padding: var(--hg-space-4) var(--hg-space-5);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  box-shadow: var(--hg-shadow-card);
+}
+
+.heading {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--hg-space-3);
+}
+
+.label {
+  flex: none;
+  /*
+   * Wide enough for the longest label in any of the thirty-two languages, and
+   * fixed so the Korean lines up in a column. `min-width` rather than `width`:
+   * at 200% text a label that would be clipped pushes the row instead.
+   */
+  min-width: 8.5em;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-secondary);
+}
+
+.value {
+  margin: 0;
+  /* Target content: never mirrored, whatever the interface direction. */
+  direction: ltr;
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+}

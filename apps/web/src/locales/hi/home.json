@@ -23,17 +23,5 @@
     "wordsCaption": "आज के शब्द",
     "wordsReady": "पहले शब्द सीखने का समय"
   },
-  "review": {
-    "title": "दोहराव",
-    "count_one": "{{count, number}} दोहराना बाकी",
-    "count_other": "{{count, number}} दोहराना बाकी",
-    "empty": "अभी दोहराने को कुछ नहीं"
-  },
-  "practice": {
-    "title": "आज का अभ्यास",
-    "reviews_one": "{{count, number}} दोहराव तैयार",
-    "reviews_other": "{{count, number}} दोहराव तैयार",
-    "cta": "अभ्यास शुरू करें"
-  },
   "purpose": "कोरियाई पहले अक्षर से सीखिए — पहले हंगुल, फिर वे शब्द जो सचमुच काम आएँगे।"
 }

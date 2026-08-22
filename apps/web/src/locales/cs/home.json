@@ -23,21 +23,5 @@
     "wordsCaption": "dnešní slova",
     "wordsReady": "čas na první slova"
   },
-  "review": {
-    "title": "Opakování",
-    "count_few": "{{count, number}} k projití",
-    "count_many": "{{count, number}} k projití",
-    "count_one": "{{count, number}} k projití",
-    "count_other": "{{count, number}} k projití",
-    "empty": "Zatím není co opakovat"
-  },
-  "practice": {
-    "title": "Dnešní cvičení",
-    "reviews_few": "{{count, number}} opakování jsou připravená",
-    "reviews_many": "{{count, number}} opakování je připravených",
-    "reviews_one": "{{count, number}} opakování je připravené",
-    "reviews_other": "{{count, number}} opakování je připravených",
-    "cta": "Začít cvičit"
-  },
   "purpose": "Učte se korejsky od úplně první litery — nejdřív hangul, potom slova, která opravdu použijete."
 }

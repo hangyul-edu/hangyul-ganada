@@ -22,7 +22,8 @@
     "moreCount_few": "jeszcze {{count}}",
     "moreCount_many": "jeszcze {{count}}",
     "moreCount_one": "jeszcze {{count}}",
-    "moreCount_other": "jeszcze {{count}}"
+    "moreCount_other": "jeszcze {{count}}",
+    "tunedTo": "Dobrane do poziomu {{level}}."
   },
   "browse": {
     "title": "Przeglądaj według tematu",
@@ -138,7 +139,8 @@
     "noMatch": "Nic z zapisanych nie pasuje do „{{query}}”.",
     "emptyTitle": "Nie masz jeszcze zapisanych słów",
     "emptyBody": "Dotknij zakładki przy dowolnym słowie podczas nauki, a znajdziesz je tutaj, kiedy zechcesz do niego wrócić.",
-    "emptyCta": "Przejdź do słów"
+    "emptyCta": "Przejdź do słów",
+    "notPractisable": "Te są zapisane do sprawdzania. Quiz potrzebuje karty nauki, której jeszcze nie mają."
   },
   "dictionary": {
     "title": "Słownik",
@@ -154,6 +156,21 @@
     "otherMeanings_many": "{{count, number}} innych znaczeń",
     "otherMeanings_other": "{{count, number}} innego znaczenia",
     "onlyMeaning": "Słownik nie ma innego znaczenia tego słowa.",
-    "source": "Ze źródła {{name}}, {{license}}."
+    "source": "Ze źródła {{name}}, {{license}}.",
+    "save": "Zapisz słowo",
+    "saved": "Zapisane"
+  },
+  "conjugation": {
+    "title": "Odmiana",
+    "form": {
+      "dictionary": "Forma słownikowa",
+      "presentPolite": "Teraźniejszy",
+      "pastPolite": "Przeszły",
+      "futurePolite": "Przyszły",
+      "formalPolite": "Formalny",
+      "connective": "I / potem",
+      "honorific": "Proszę zrobić",
+      "request": "Zrób to dla mnie"
+    }
   }
 }

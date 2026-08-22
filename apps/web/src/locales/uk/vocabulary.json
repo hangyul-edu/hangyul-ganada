@@ -22,7 +22,8 @@
     "moreCount_few": "ще {{count}}",
     "moreCount_many": "ще {{count}}",
     "moreCount_one": "ще {{count}}",
-    "moreCount_other": "ще {{count}}"
+    "moreCount_other": "ще {{count}}",
+    "tunedTo": "Дібрані для рівня {{level}}."
   },
   "browse": {
     "title": "Переглядати за темами",
@@ -138,7 +139,8 @@
     "noMatch": "Серед збережених нічого не збіглося з «{{query}}».",
     "emptyTitle": "Збережених слів поки немає",
     "emptyBody": "Натисніть закладку на будь-якому слові під час навчання — і воно чекатиме тут, коли захочете повернутися.",
-    "emptyCta": "До слів"
+    "emptyCta": "До слів",
+    "notPractisable": "Ці збережені для пошуку. Для запитання потрібна навчальна картка, а її поки немає."
   },
   "dictionary": {
     "title": "Словник",
@@ -154,6 +156,21 @@
     "otherMeanings_many": "{{count, number}} інших значень",
     "otherMeanings_other": "{{count, number}} іншого значення",
     "onlyMeaning": "У словнику немає інших значень цього слова.",
-    "source": "Джерело: {{name}}, {{license}}."
+    "source": "Джерело: {{name}}, {{license}}.",
+    "save": "Зберегти слово",
+    "saved": "Збережено"
+  },
+  "conjugation": {
+    "title": "Дієвідміна",
+    "form": {
+      "dictionary": "Словникова форма",
+      "presentPolite": "Теперішній",
+      "pastPolite": "Минулий",
+      "futurePolite": "Майбутній",
+      "formalPolite": "Офіційний",
+      "connective": "І / потім",
+      "honorific": "Зробіть, будь ласка",
+      "request": "Зроби це для мене"
+    }
   }
 }

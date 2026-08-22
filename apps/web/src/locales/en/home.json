@@ -23,17 +23,5 @@
     "wordsCaption": "today's words",
     "wordsReady": "ready for your first words"
   },
-  "review": {
-    "title": "Review",
-    "count_one": "{{count, number}} to go over",
-    "count_other": "{{count, number}} to go over",
-    "empty": "Nothing to go over yet"
-  },
-  "practice": {
-    "title": "Today's practice",
-    "reviews_one": "{{count, number}} review ready",
-    "reviews_other": "{{count, number}} reviews ready",
-    "cta": "Start practice"
-  },
   "purpose": "Learn Korean from the very first letter — Hangul, then the words you will actually use."
 }

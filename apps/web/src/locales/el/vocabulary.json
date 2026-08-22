@@ -16,7 +16,8 @@
     "progressAria": "Πρόοδος στις λέξεις της ημέρας",
     "moreLabel": "Πόσες ακόμη",
     "moreCount_one": "{{count}} ακόμη",
-    "moreCount_other": "{{count}} ακόμη"
+    "moreCount_other": "{{count}} ακόμη",
+    "tunedTo": "Επιλεγμένες για το επίπεδο {{level}}."
   },
   "browse": {
     "title": "Περιήγηση ανά θέμα",
@@ -124,7 +125,8 @@
     "noMatch": "Καμία αποθηκευμένη δεν ταιριάζει με «{{query}}».",
     "emptyTitle": "Δεν έχεις αποθηκευμένες λέξεις ακόμη",
     "emptyBody": "Πάτα τον σελιδοδείκτη σε όποια λέξη θες καθώς μελετάς και θα σε περιμένει εδώ.",
-    "emptyCta": "Πήγαινε στις λέξεις"
+    "emptyCta": "Πήγαινε στις λέξεις",
+    "notPractisable": "Αυτές είναι αποθηκευμένες για αναζήτηση. Το κουίζ θέλει κάρτα μάθησης, που δεν έχουν ακόμη."
   },
   "dictionary": {
     "title": "Λεξικό",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} άλλη σημασία",
     "otherMeanings_other": "{{count, number}} άλλες σημασίες",
     "onlyMeaning": "Το λεξικό δεν έχει άλλη σημασία για αυτή τη λέξη.",
-    "source": "Από {{name}}, {{license}}."
+    "source": "Από {{name}}, {{license}}.",
+    "save": "Αποθήκευση λέξης",
+    "saved": "Αποθηκεύτηκε"
+  },
+  "conjugation": {
+    "title": "Κλίση",
+    "form": {
+      "dictionary": "Λεξικός τύπος",
+      "presentPolite": "Ενεστώτας",
+      "pastPolite": "Παρελθόν",
+      "futurePolite": "Μέλλοντας",
+      "formalPolite": "Επίσημος",
+      "connective": "Και / έπειτα",
+      "honorific": "Κάνε, παρακαλώ",
+      "request": "Κάν’ το για μένα"
+    }
   }
 }

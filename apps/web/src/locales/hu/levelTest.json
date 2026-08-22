@@ -1,20 +1,20 @@
 {
   "title": "Szókincsszint",
   "row": {
-    "body": "Nézze meg, nagyjából hol tart a koreai szókincse.",
-    "taken": "Legutóbbi eredmény: {{level}}. szint"
+    "body": "Nézze meg a szintjét, és kapjon hozzá illő szavakat.",
+    "taken": "{{level}}. szint · {{band}}"
   },
   "intro": {
-    "title": "Hol tart a koreai szókincse?",
-    "body": "Rövid kérdéssor, amely a válaszok szerint nehezedik vagy könnyebbedik, így több száz kérdés nélkül is elhelyezi.",
-    "length": "Körülbelül 3–6 perc, 18–36 kérdés.",
-    "noHelp": "Nincs segítség, és a válaszok közben nem látszanak.",
-    "noProgress": "Semmi sem változtat a leckéin, a sorozatán vagy az ismétlésén.",
+    "title": "Nézze meg a szókincsszintjét",
+    "body": "Ismerős szavaktól a kicsit nehezebbekig — így kiderül, hol tart most a koreai szókincse.",
+    "shape": "{{questions, number}} kérdés · {{minutes, number}} perc",
+    "unsure": "Nem tudja? Nyugodtan koppintson a „Nem tudom” gombra.",
+    "usedFor": "Az eredmény szabja meg a napi szavai nehézségét.",
     "start": "Teszt indítása",
     "retake": "Újra megcsinálom",
     "previous": "Legutóbb a(z) {{level}}. szintre került."
   },
-  "progress": "{{asked, number}} / legfeljebb {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "Mit jelent ez a szó?",
     "produce": "Melyik szó jelenti ezt?",
@@ -24,13 +24,25 @@
   "unknown": "Nem tudom",
   "loading": "Kérdések előkészítése…",
   "unavailable": "A tesztnek az első megnyitáskor internet kell.",
+  "timeLeft": "Hátralévő idő",
   "result": {
     "label": "Hangyul szókincsszint",
     "of": "/ {{levels, number}}",
     "band": "Legvalószínűbben {{low, number}} és {{high, number}} között.",
     "words": "Ezen a szinten általában a(z) {{count, number}} leggyakoribb koreai szót ismerik fel.",
-    "items_one": "{{count, number}} kérdésből meghatározva.",
-    "items_other": "{{count, number}} kérdésből meghatározva."
+    "recommend": "A napi szavai mostantól ehhez a szinthez igazodnak."
   },
-  "disclaimer": "A Hangyul szókincsszint a saját skálánk. Nem hivatalos nyelvi szintbesorolás, és nem az ismert szavak száma."
+  "bands": {
+    "starter": "KEZDÉS",
+    "everyday": "MINDENNAPI",
+    "confident": "MAGABIZTOS",
+    "advanced": "HALADÓ"
+  },
+  "home": {
+    "title": "Szókincsszint",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "Nézze meg a szintjét, és kapjon hozzá illő szavakat.",
+    "cta": "Teszt indítása",
+    "retake": "Újra"
+  }
 }

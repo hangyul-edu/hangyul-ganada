@@ -16,7 +16,8 @@
     "progressAria": "Бүгүнкү сөздөр боюнча жылыш",
     "moreLabel": "Дагы канча",
     "moreCount_one": "дагы {{count}}",
-    "moreCount_other": "дагы {{count}}"
+    "moreCount_other": "дагы {{count}}",
+    "tunedTo": "{{level}}-деңгээлге тандалган."
   },
   "browse": {
     "title": "Темага карап кароо",
@@ -124,7 +125,8 @@
     "noMatch": "Сакталгандардан «{{query}}» боюнча эч нерсе табылган жок.",
     "emptyTitle": "Азырынча сакталган сөз жок",
     "emptyBody": "Окуп жүрүп каалаган сөздөгү кыстырманы басыңыз — кайра келгиңиз келгенде ушул жерде турат.",
-    "emptyCta": "Сөздөргө өтүү"
+    "emptyCta": "Сөздөргө өтүү",
+    "notPractisable": "Булар издөө үчүн сакталган. Суроо түзүү үчүн окуу картасы керек, ал азырынча жок."
   },
   "dictionary": {
     "title": "Сөздүк",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} башка маани",
     "otherMeanings_other": "{{count, number}} башка маани",
     "onlyMeaning": "Сөздүктө бул сөздүн башка мааниси жок.",
-    "source": "Булак: {{name}}, {{license}}."
+    "source": "Булак: {{name}}, {{license}}.",
+    "save": "Сөздү сактоо",
+    "saved": "Сакталды"
+  },
+  "conjugation": {
+    "title": "Жөндөлүшү",
+    "form": {
+      "dictionary": "Сөздүк формасы",
+      "presentPolite": "Учур чак",
+      "pastPolite": "Өткөн чак",
+      "futurePolite": "Келер чак",
+      "formalPolite": "Расмий",
+      "connective": "Жана / анан",
+      "honorific": "Сураныч, кылыңыз",
+      "request": "Мага кылып бериңиз"
+    }
   }
 }

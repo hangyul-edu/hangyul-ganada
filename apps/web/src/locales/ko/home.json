@@ -23,16 +23,5 @@
     "wordsCaption": "오늘의 어휘",
     "wordsReady": "이제 첫 낱말을 시작해 보세요"
   },
-  "review": {
-    "title": "복습하기",
-    "count_other": "{{count, number}}개 다시 보기",
-    "empty": "아직 다시 볼 게 없어요"
-  },
-  "practice": {
-    "title": "오늘의 연습",
-    "reviews_one": "복습 {{count, number}}개 준비됨",
-    "reviews_other": "복습 {{count, number}}개 준비됨",
-    "cta": "연습 시작"
-  },
   "purpose": "한글부터 기본 단어까지, 한국어의 첫걸음을 가볍게 시작해요."
 }

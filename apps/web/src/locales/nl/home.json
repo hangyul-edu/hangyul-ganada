@@ -23,17 +23,5 @@
     "wordsCaption": "woorden van vandaag",
     "wordsReady": "klaar voor je eerste woorden"
   },
-  "review": {
-    "title": "Herhalen",
-    "count_one": "{{count, number}} om door te nemen",
-    "count_other": "{{count, number}} om door te nemen",
-    "empty": "Nog niets om door te nemen"
-  },
-  "practice": {
-    "title": "Oefenen vandaag",
-    "reviews_one": "{{count, number}} herhaling klaar",
-    "reviews_other": "{{count, number}} herhalingen klaar",
-    "cta": "Beginnen met oefenen"
-  },
   "purpose": "Leer Koreaans vanaf de allereerste letter — eerst Hangul, dan de woorden die je echt gaat gebruiken."
 }

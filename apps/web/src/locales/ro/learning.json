@@ -129,11 +129,7 @@
     "sessionLength_few": "{{count, number}} exerciții scurte",
     "sessionLength_one": "{{count, number}} exercițiu scurt",
     "sessionLength_other": "{{count, number}} de exerciții scurte",
-    "needsPractice": "Are nevoie de exercițiu",
-    "dueToday": "Pe azi",
-    "savedWords": "Cuvinte salvate",
     "chooseMode": "Sau alege tu ce exersezi",
-    "comingUp": "Urmează",
     "outcome": "{{practised, number}} exersate · {{firstTry, number}} ți-au venit din prima · {{comingBack, number}} se întorc în curând",
     "blank": "spațiu",
     "optionsLabel": "Răspunsuri",
@@ -221,7 +217,8 @@
     "noneOfKind": "Deocamdată nu e nimic aici.",
     "emptyTitle": "Încă n-ai greșit nimic",
     "emptyBody": "Când îți scapă ceva, apare aici ca să poți îndrepta.",
-    "emptyCta": "Mergi la recapitulare"
+    "emptyCta": "Mergi la recapitulare",
+    "wrongVocabulary": "Cuvinte greșite"
   },
   "letterGroup": {
     "basic_vowel": "o vocală de bază",
@@ -237,5 +234,9 @@
     "cta": "Continuă în Hangyul",
     "rowTitle": "Continuă în Hangyul",
     "rowBody": "Vorbit și TOPIK, când te simți pregătit"
+  },
+  "practice": {
+    "sizeLabel": "Câte întrebări",
+    "sizeAll": "Toate ({{count, number}})"
   }
 }

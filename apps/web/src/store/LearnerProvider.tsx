@@ -11,7 +11,13 @@ import type {
 import { ALL_LETTERS, ALL_CHARACTERS } from '../data/characters';
 import { loadCorpusCore, loadCorpusRest } from '../data/corpus';
 import { useCorpusMemo } from '../data/useCorpus';
-import { VOCABULARY, corpusReady, corpusTotal, usesKnownLetters } from '../data/vocabulary';
+import {
+  VOCABULARY,
+  corpusReady,
+  corpusTotal,
+  findWordByHeadword,
+  usesKnownLetters,
+} from '../data/vocabulary';
 import {
   applyAttempt,
   applyDemoSeen,
@@ -26,6 +32,7 @@ import {
   streakDays,
 } from '../domain/progress';
 import { applyReview, memoryKey, type ItemMemory } from '../domain/memory';
+import { levelFromProgress, recentlyIntroduced } from '../domain/vocabularyLevel';
 import { applyAnswer, listMistakes } from '../domain/mistakes';
 import { resolvePlan, type PracticePlan } from '../domain/plan';
 import { summarise, todaysPractice, type ExerciseMode } from '../domain/review';
@@ -59,6 +66,7 @@ import {
   SCHEMA_VERSION,
   clearLegacyBlobFromLocalStorage,
   defaultSettings,
+  newContentSeed,
   progressKey,
   randomId,
   readLegacyBlobFromLocalStorage,
@@ -178,8 +186,22 @@ export function LearnerProvider({
         ]);
       if (cancelled) return;
 
+      /*
+       * A learner with no seed gets one before anything reads it.
+       *
+       * The migration covers everybody who had a stored profile; this covers
+       * the first launch, where there was nothing to migrate. Done before
+       * `setState` rather than after, because a plan built with an empty seed
+       * would be stored, and the learner would keep the un-shuffled order for
+       * the rest of the day.
+       */
+      const seeded = settings.content_seed
+        ? settings
+        : { ...settings, content_seed: newContentSeed() };
+      if (seeded !== settings) void settingsRepo.current.save(seeded);
+
       setState({
-        settings,
+        settings: seeded,
         progress: progress.rows,
         sessions,
         activity,
@@ -596,6 +618,19 @@ export function LearnerProvider({
     [trackActivity],
   );
 
+  /**
+   * The key a saved item is stored under.
+   *
+   * `word:<id>` for a word the app teaches, and `dict:<headword>` for one it
+   * only knows how to look up. Two prefixes rather than one, because the two
+   * are different objects: a taught word has a card, a recording and a
+   * scheduled place in the curriculum, and a dictionary headword has none of
+   * those and must never be handed to the scheduler as though it did.
+   *
+   * A dictionary word that *is* also taught is saved under its taught id, so
+   * saving 사과 from the dictionary and from its card is one bookmark and not
+   * two — see `savedKeyForHeadword`.
+   */
   const toggleSaved = useCallback((kind: ItemProgress['kind'], itemKey: string) => {
     const key = memoryKey(kind, itemKey);
     setState((prev) => {
@@ -637,6 +672,34 @@ export function LearnerProvider({
   const savedSet = useMemo(() => new Set(state.settings.saved_items), [state.settings.saved_items]);
   const isSaved = useCallback(
     (kind: ItemProgress['kind'], itemKey: string) => savedSet.has(memoryKey(kind, itemKey)),
+    [savedSet],
+  );
+
+  /**
+   * Save or unsave a dictionary headword.
+   *
+   * Resolves to the taught card first, so one word is one bookmark however the
+   * learner reached it. Only a headword the curriculum does not teach gets a
+   * `dict:` key of its own.
+   */
+  const toggleSavedHeadword = useCallback((headword: string) => {
+    const taught = findWordByHeadword(headword);
+    const key = taught ? memoryKey('word', taught.id) : `dict:${headword}`;
+    setState((prev) => {
+      const saved = prev.settings.saved_items.includes(key)
+        ? prev.settings.saved_items.filter((entry) => entry !== key)
+        : [...prev.settings.saved_items, key];
+      const settings = { ...prev.settings, saved_items: saved };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, []);
+
+  const isSavedHeadword = useCallback(
+    (headword: string) => {
+      const taught = findWordByHeadword(headword);
+      return savedSet.has(taught ? memoryKey('word', taught.id) : `dict:${headword}`);
+    },
     [savedSet],
   );
 
@@ -699,7 +762,15 @@ export function LearnerProvider({
   );
 
   const practicePlan = useCallback(
-    (options: { mode?: ExerciseMode; savedOnly?: boolean; mistakesOnly?: boolean } = {}): PracticePlan =>
+    (
+      options: {
+        mode?: ExerciseMode;
+        savedOnly?: boolean;
+        mistakesOnly?: boolean;
+        /** How many questions to ask. Omitted means the usual session length. */
+        size?: number;
+      } = {},
+    ): PracticePlan =>
       resolvePlan({
         progress: state.progress,
         memory: state.memory,
@@ -751,6 +822,23 @@ export function LearnerProvider({
    * So until the store has answered, this hook holds whatever it already has
    * and writes nothing.
    */
+  /**
+   * The level the day's words are chosen around.
+   *
+   * The test result if there is one. If there is not, a conservative reading of
+   * what the learner has already learned — which for somebody new is level 1,
+   * so the app behaves exactly as it did before the test existed until they ask
+   * it not to. §16: never make somebody sit a test before they can learn.
+   */
+  const vocabularyLevel = useCorpusMemo<number>(() => {
+    const measured = state.settings.level_test?.level;
+    if (measured) return measured;
+    return levelFromProgress(
+      vocabularyByPriority(),
+      (id: string) => state.progress[`word:${id}`]?.stage === 'learned',
+    );
+  }, [state.settings.level_test, state.progress]);
+
   const vocabularyDay = useCorpusMemo<DailyPlan>(() => {
     const now = new Date();
     const stored = state.settings.daily_plan;
@@ -768,6 +856,10 @@ export function LearnerProvider({
       goal: state.settings.daily_word_goal,
       soundFree: state.settings.sound_free,
       now,
+      level: vocabularyLevel,
+      seed: state.settings.content_seed,
+      dayIndex: state.settings.active_days.length,
+      recentlyIntroduced: recentlyIntroduced(state.progress, now),
     });
     /*
      * A short plan means one of two things, and only one of them is worth
@@ -791,6 +883,9 @@ export function LearnerProvider({
     return built;
   }, [
     ready,
+    vocabularyLevel,
+    state.settings.content_seed,
+    state.settings.active_days.length,
     state.settings.daily_plan,
     state.settings.daily_word_goal,
     state.settings.sound_free,
@@ -914,6 +1009,8 @@ export function LearnerProvider({
       recordReview,
       toggleSaved,
       isSaved,
+      toggleSavedHeadword,
+      isSavedHeadword,
       reviewSummary,
       practice,
       practicePlan,
@@ -944,6 +1041,8 @@ export function LearnerProvider({
       recordReview,
       toggleSaved,
       isSaved,
+      toggleSavedHeadword,
+      isSavedHeadword,
       reviewSummary,
       practice,
       practicePlan,

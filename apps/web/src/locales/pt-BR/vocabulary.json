@@ -19,7 +19,8 @@
     "moreLabel": "Quantas a mais?",
     "moreCount_one": "mais 1",
     "moreCount_other": "mais {{count}}",
-    "moreCount_many": "mais {{count}}"
+    "moreCount_many": "mais {{count}}",
+    "tunedTo": "Escolhidas para o nível {{level}}."
   },
   "browse": {
     "title": "Explorar por tema",
@@ -131,7 +132,8 @@
     "noMatch": "Nada salvo corresponde a “{{query}}”.",
     "emptyTitle": "Nenhuma palavra salva ainda",
     "emptyBody": "Toque no marcador de qualquer palavra enquanto estuda e ela ficará aqui.",
-    "emptyCta": "Ver palavras"
+    "emptyCta": "Ver palavras",
+    "notPractisable": "Estas ficam salvas para consulta. Um quiz precisa de uma ficha de estudo, que elas ainda não têm."
   },
   "dictionary": {
     "title": "Dicionário",
@@ -146,6 +148,21 @@
     "otherMeanings_many": "{{count, number}} outros significados",
     "otherMeanings_other": "{{count, number}} outros significados",
     "onlyMeaning": "O dicionário não tem outro significado para esta palavra.",
-    "source": "De {{name}}, {{license}}."
+    "source": "De {{name}}, {{license}}.",
+    "save": "Salvar palavra",
+    "saved": "Salva"
+  },
+  "conjugation": {
+    "title": "Conjugação",
+    "form": {
+      "dictionary": "Forma do dicionário",
+      "presentPolite": "Presente",
+      "pastPolite": "Passado",
+      "futurePolite": "Futuro",
+      "formalPolite": "Formal",
+      "connective": "E / então",
+      "honorific": "Faça, por favor",
+      "request": "Faça isso para mim"
+    }
   }
 }

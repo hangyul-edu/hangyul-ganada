@@ -37,11 +37,7 @@
     "forYou": "Repaso para ti",
     "sessionLength_one": "Un ejercicio corto",
     "sessionLength_other": "{{count, number}} ejercicios cortos",
-    "needsPractice": "Necesita práctica",
-    "dueToday": "Toca hoy",
-    "savedWords": "Palabras guardadas",
     "chooseMode": "O elige qué practicar",
-    "comingUp": "A continuación",
     "outcome": "{{practised, number}} practicadas · {{firstTry, number}} te vinieron enseguida · {{comingBack, number}} volverán pronto",
     "blank": "hueco",
     "optionsLabel": "Respuestas",
@@ -221,7 +217,8 @@
     "noneOfKind": "Aquí no hay nada ahora mismo.",
     "emptyTitle": "Nada fallado todavía",
     "emptyBody": "Cuando falles algo, aparecerá aquí para que puedas corregirlo.",
-    "emptyCta": "Ir a repasar"
+    "emptyCta": "Ir a repasar",
+    "wrongVocabulary": "Palabras falladas"
   },
   "letterGroup": {
     "basic_vowel": "una vocal básica",
@@ -237,5 +234,9 @@
     "cta": "Continuar en Hangyul",
     "rowTitle": "Continuar en Hangyul",
     "rowBody": "Conversación y TOPIK, cuando quieras"
+  },
+  "practice": {
+    "sizeLabel": "Cuántas",
+    "sizeAll": "Todas ({{count, number}})"
   }
 }

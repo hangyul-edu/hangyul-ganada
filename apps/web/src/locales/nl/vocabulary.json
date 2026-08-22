@@ -16,7 +16,8 @@
     "progressAria": "Voortgang in de woorden van vandaag",
     "moreLabel": "Hoeveel erbij",
     "moreCount_one": "{{count}} erbij",
-    "moreCount_other": "{{count}} erbij"
+    "moreCount_other": "{{count}} erbij",
+    "tunedTo": "Gekozen voor niveau {{level}}."
   },
   "browse": {
     "title": "Bladeren per onderwerp",
@@ -124,7 +125,8 @@
     "noMatch": "Niets in je bewaarde woorden komt overeen met “{{query}}”.",
     "emptyTitle": "Nog geen bewaarde woorden",
     "emptyBody": "Tik tijdens het leren op de bladwijzer bij een woord, dan staat het hier om op terug te komen.",
-    "emptyCta": "Naar de woorden"
+    "emptyCta": "Naar de woorden",
+    "notPractisable": "Deze zijn opgeslagen om op te zoeken. Een quiz heeft een leerkaart nodig, en die is er nog niet."
   },
   "dictionary": {
     "title": "Woordenboek",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} andere betekenis",
     "otherMeanings_other": "{{count, number}} andere betekenissen",
     "onlyMeaning": "Het woordenboek kent geen andere betekenis voor dit woord.",
-    "source": "Uit {{name}}, {{license}}."
+    "source": "Uit {{name}}, {{license}}.",
+    "save": "Woord opslaan",
+    "saved": "Opgeslagen"
+  },
+  "conjugation": {
+    "title": "Vervoeging",
+    "form": {
+      "dictionary": "Woordenboekvorm",
+      "presentPolite": "Tegenwoordig",
+      "pastPolite": "Verleden",
+      "futurePolite": "Toekomst",
+      "formalPolite": "Formeel",
+      "connective": "En / dan",
+      "honorific": "Doe alsjeblieft",
+      "request": "Doe het voor mij"
+    }
   }
 }

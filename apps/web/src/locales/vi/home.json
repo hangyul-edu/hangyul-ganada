@@ -23,17 +23,5 @@
     "wordsCaption": "từ của hôm nay",
     "wordsReady": "sẵn sàng cho những từ đầu tiên"
   },
-  "review": {
-    "title": "Ôn tập",
-    "count_one": "{{count, number}} mục cần xem lại",
-    "count_other": "{{count, number}} mục cần xem lại",
-    "empty": "Chưa có gì để xem lại"
-  },
-  "practice": {
-    "title": "Luyện tập hôm nay",
-    "reviews_one": "{{count, number}} bài ôn đã sẵn sàng",
-    "reviews_other": "{{count, number}} bài ôn đã sẵn sàng",
-    "cta": "Bắt đầu luyện tập"
-  },
   "purpose": "Học tiếng Hàn từ chữ cái đầu tiên — Hangul trước, rồi đến những từ bạn thật sự dùng đến."
 }

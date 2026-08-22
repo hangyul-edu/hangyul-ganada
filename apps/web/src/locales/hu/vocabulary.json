@@ -16,7 +16,8 @@
     "progressAria": "Haladás a mai szavakban",
     "moreLabel": "Mennyi legyen még",
     "moreCount_one": "még {{count}}",
-    "moreCount_other": "még {{count}}"
+    "moreCount_other": "még {{count}}",
+    "tunedTo": "A(z) {{level}}. szinthez válogatva."
   },
   "browse": {
     "title": "Böngészés téma szerint",
@@ -124,7 +125,8 @@
     "noMatch": "A mentettek közül semmi nem illik erre: „{{query}}”.",
     "emptyTitle": "Még nincsenek mentett szavak",
     "emptyBody": "Tanulás közben koppints bármelyik szónál a könyvjelzőre, és itt vár majd, ha vissza akarsz térni hozzá.",
-    "emptyCta": "Irány a szavak"
+    "emptyCta": "Irány a szavak",
+    "notPractisable": "Ezeket kikeresésre mentette. A kvízhez tanulókártya kell, ami ezeknél még nincs."
   },
   "dictionary": {
     "title": "Szótár",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}} további jelentés",
     "otherMeanings_other": "{{count, number}} további jelentés",
     "onlyMeaning": "A szótár nem ismer más jelentést ehhez a szóhoz.",
-    "source": "Forrás: {{name}}, {{license}}."
+    "source": "Forrás: {{name}}, {{license}}.",
+    "save": "Szó mentése",
+    "saved": "Mentve"
+  },
+  "conjugation": {
+    "title": "Ragozás",
+    "form": {
+      "dictionary": "Szótári alak",
+      "presentPolite": "Jelen",
+      "pastPolite": "Múlt",
+      "futurePolite": "Jövő",
+      "formalPolite": "Hivatalos",
+      "connective": "És / aztán",
+      "honorific": "Kérlek, tedd",
+      "request": "Tedd meg nekem"
+    }
   }
 }

@@ -16,7 +16,8 @@
     "progressAria": "আজকের শব্দে অগ্রগতি",
     "moreLabel": "আর কতগুলো",
     "moreCount_one": "আর {{count}}টি",
-    "moreCount_other": "আর {{count}}টি"
+    "moreCount_other": "আর {{count}}টি",
+    "tunedTo": "স্তর {{level}}-এর জন্য বাছাই করা।"
   },
   "browse": {
     "title": "বিষয় ধরে দেখুন",
@@ -124,7 +125,8 @@
     "noMatch": "সংরক্ষিত শব্দে “{{query}}”-এর সঙ্গে কিছু মেলেনি।",
     "emptyTitle": "এখনও কোনো শব্দ সংরক্ষিত নেই",
     "emptyBody": "পড়ার সময় যেকোনো শব্দের বুকমার্কে চাপ দিন, পরে ফিরে আসার জন্য সেটি এখানে থাকবে।",
-    "emptyCta": "শব্দে যান"
+    "emptyCta": "শব্দে যান",
+    "notPractisable": "এগুলো খোঁজার জন্য সংরক্ষিত। প্রশ্ন বানাতে শেখার কার্ড লাগে, যা এখনও নেই।"
   },
   "dictionary": {
     "title": "অভিধান",
@@ -138,6 +140,21 @@
     "otherMeanings_one": "{{count, number}}টি অন্য অর্থ",
     "otherMeanings_other": "{{count, number}}টি অন্য অর্থ",
     "onlyMeaning": "অভিধানে এই শব্দের অন্য কোনো অর্থ নেই।",
-    "source": "সূত্র: {{name}}, {{license}}।"
+    "source": "সূত্র: {{name}}, {{license}}।",
+    "save": "শব্দ সংরক্ষণ",
+    "saved": "সংরক্ষিত"
+  },
+  "conjugation": {
+    "title": "রূপ",
+    "form": {
+      "dictionary": "অভিধান রূপ",
+      "presentPolite": "বর্তমান",
+      "pastPolite": "অতীত",
+      "futurePolite": "ভবিষ্যৎ",
+      "formalPolite": "আনুষ্ঠানিক",
+      "connective": "এবং / তারপর",
+      "honorific": "অনুগ্রহ করে করুন",
+      "request": "আমার জন্য করুন"
+    }
   }
 }

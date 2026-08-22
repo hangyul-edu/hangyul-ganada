@@ -1,20 +1,20 @@
 {
   "title": "語彙レベル",
   "row": {
-    "body": "韓国語の語彙がどのくらいか確かめてみましょう。",
-    "taken": "前回の結果：レベル {{level}}"
+    "body": "レベルを調べて、自分に合う単語を受け取りましょう。",
+    "taken": "レベル {{level}} · {{band}}"
   },
   "intro": {
-    "title": "韓国語の語彙はどのくらい？",
-    "body": "答えに応じて問題が易しくなったり難しくなったりします。だから何百問も解かなくても測れます。",
-    "length": "3〜6分、18〜36問。",
-    "noHelp": "ヒントはなく、途中で答えも表示されません。",
-    "noProgress": "学習・連続日数・復習には影響しません。",
+    "title": "語彙レベルを確認する",
+    "body": "よく知っている単語から少し難しい単語まで解いて、今の語彙力を確かめましょう。",
+    "shape": "{{questions, number}}問 · {{minutes, number}}分",
+    "unsure": "わからない問題は「わかりません」を押して大丈夫です。",
+    "usedFor": "結果に合わせて毎日の単語の難しさを選びます。",
     "start": "はじめる",
     "retake": "もう一度受ける",
     "previous": "前回はレベル {{level}} でした。"
   },
-  "progress": "{{asked, number}} / 最大 {{most, number}}",
+  "progress": "{{asked, number}} / {{total, number}}",
   "ask": {
     "meaning": "この単語の意味は？",
     "produce": "この意味の単語は？",
@@ -24,12 +24,25 @@
   "unknown": "わかりません",
   "loading": "問題を準備しています…",
   "unavailable": "はじめて開くときはインターネット接続が必要です。",
+  "timeLeft": "残り時間",
   "result": {
     "label": "ハンギュル語彙レベル",
     "of": "/ {{levels, number}}",
     "band": "{{low, number}}〜{{high, number}} の可能性が高いです。",
     "words": "このレベルなら、韓国語で最もよく使われる {{count, number}} 語ほどを見分けられます。",
-    "items_other": "{{count, number}} 問で判定しました。"
+    "recommend": "今日からの単語がこのレベルに合わせて選ばれます。"
   },
-  "disclaimer": "ハンギョル語彙レベルは当アプリ独自の目安です。公的な語学資格の等級ではなく、知っている単語の数でもありません。"
+  "bands": {
+    "starter": "入門",
+    "everyday": "日常",
+    "confident": "上達",
+    "advanced": "上級"
+  },
+  "home": {
+    "title": "語彙レベル",
+    "value": "Lv. {{level}} / {{levels}}",
+    "invite": "レベルを調べて、自分に合う単語を受け取りましょう。",
+    "cta": "レベルテスト",
+    "retake": "もう一度"
+  }
 }

@@ -127,11 +127,7 @@
     "forYou": "Sana özel tekrar",
     "sessionLength_one": "{{count, number}} kısa alıştırma",
     "sessionLength_other": "{{count, number}} kısa alıştırma",
-    "needsPractice": "Alıştırma gerek",
-    "dueToday": "Bugün sırada",
-    "savedWords": "Kaydedilen kelimeler",
     "chooseMode": "Ya da neye çalışacağını seç",
-    "comingUp": "Sırada",
     "outcome": "{{practised, number}} çalışıldı · {{firstTry, number}} ilk denemede geldi · {{comingBack, number}} yakında geri dönecek",
     "blank": "boşluk",
     "optionsLabel": "Cevaplar",
@@ -217,7 +213,8 @@
     "noneOfKind": "Şu an burada bir şey yok.",
     "emptyTitle": "Henüz kaçırdığın bir şey yok",
     "emptyBody": "Bir şey elinden kaçtığında burada belirir, düzeltebilesin diye.",
-    "emptyCta": "Tekrara git"
+    "emptyCta": "Tekrara git",
+    "wrongVocabulary": "Yanlış kelimeler"
   },
   "letterGroup": {
     "basic_vowel": "temel bir ünlü",
@@ -233,5 +230,9 @@
     "cta": "Hangyul’da devam et",
     "rowTitle": "Hangyul’da devam et",
     "rowBody": "Hazır olduğunda konuşma ve TOPIK"
+  },
+  "practice": {
+    "sizeLabel": "Kaç soru",
+    "sizeAll": "Tümü ({{count, number}})"
   }
 }

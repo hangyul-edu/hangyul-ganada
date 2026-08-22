@@ -127,11 +127,7 @@
     "forYou": "Review for you",
     "sessionLength_one": "One short exercise",
     "sessionLength_other": "{{count, number}} short exercises",
-    "needsPractice": "Needs practice",
-    "dueToday": "Due today",
-    "savedWords": "Saved words",
     "chooseMode": "Or pick what to practise",
-    "comingUp": "Coming up",
     "outcome": "{{practised, number}} practised · {{firstTry, number}} came straight back to you · {{comingBack, number}} will return soon",
     "blank": "blank",
     "optionsLabel": "Answers",
@@ -217,7 +213,8 @@
     "noneOfKind": "Nothing here right now.",
     "emptyTitle": "Nothing missed yet",
     "emptyBody": "When something slips, it turns up here so you can put it right.",
-    "emptyCta": "Go to review"
+    "emptyCta": "Go to review",
+    "wrongVocabulary": "Wrong vocabulary"
   },
   "letterGroup": {
     "basic_vowel": "a basic vowel",
@@ -233,5 +230,9 @@
     "cta": "Continue in Hangyul",
     "rowTitle": "Continue in Hangyul",
     "rowBody": "Speaking and TOPIK, when you are ready"
+  },
+  "practice": {
+    "sizeLabel": "How many",
+    "sizeAll": "All {{count, number}}"
   }
 }

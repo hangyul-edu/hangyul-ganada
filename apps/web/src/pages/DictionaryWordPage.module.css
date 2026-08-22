@@ -129,3 +129,32 @@
 .source a {
   color: var(--hg-text-secondary);
 }
+
+/*
+ * Save, on a dictionary entry.
+ *
+ * A text-and-icon button rather than the bare bookmark the word cards use:
+ * this is the one place a learner meets the control without the surrounding
+ * lesson to explain it, and an unlabelled outline of a ribbon is not a word
+ * anybody knows. §48 — never an icon alone for save, remove or practise.
+ */
+.save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  align-self: center;
+  min-height: var(--hg-size-hit-target);
+  padding: 0 var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.save[aria-pressed='true'] {
+  border-color: transparent;
+  background: var(--hg-primary-subtle);
+}

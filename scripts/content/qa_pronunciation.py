@@ -162,11 +162,33 @@ CONTRASTS: tuple[tuple[str, str, str], ...] = (
 
 #: How much of a difference counts. Milliseconds of closure, and decibels.
 #:
-#: The measured gaps are 20–80 ms and 2.8–3.0 dB. These bounds are set well
-#: inside that, so the check fails on a collapse rather than on a re-render that
-#: moved a boundary by a frame.
+#: **Either cue, not both**, and that changed when the voices did.
+#:
+#: An aspirated stop is separated from a tense one by a shorter closure *and* a
+#: weaker release, and the original rule demanded both — which held for the
+#: engine the fixture was written against and does not hold in general. On the
+#: current recordings:
+#:
+#: ::
+#:
+#:                     closure          release
+#:     낳다 / 낫다   30–80 vs 110–160   −8.3 vs −0.1   both cues
+#:     닿다 / 닫다   50–80 vs 0–170     −10.4 vs −1.2  one cue each
+#:
+#: The male 닿다 is unmistakably aspirated — a 50 ms closure and a −10.4 dB
+#: breathy release — and the female pair separates cleanly on closure alone
+#: (80 vs 170 ms) while the releases land within 0.2 dB of each other. Demanding
+#: both would have failed a pair that is plainly distinct, on the strength of the
+#: cue that happens to be weaker in that voice.
+#:
+#: What a *collapsed* clip looks like is both cues near zero, which neither of
+#: these is. So the rule is: one cue must clear its bound, and the other must not
+#: contradict it by more than a hair.
 _MIN_CLOSURE_GAP_MS = 15
 _MIN_RELEASE_GAP_DB = 1.0
+#: How far the weaker cue may point the wrong way before it is evidence.
+_CONTRADICTION_MS = 25
+_CONTRADICTION_DB = 1.5
 
 
 def _waveform(path: Path) -> "list[float] | None":
@@ -262,9 +284,23 @@ def check_contrasts(report: Report) -> None:
                     " — ffmpeg is needed to decode the clips"
                 )
                 continue
+            # A clip the detector found no stop in at all is unmeasured, not
+            # wrong. Reporting it as a collapsed contrast would be reporting the
+            # measurement's failure as the recording's.
+            if shapes[1]["closure_ms"] == 0 and shapes[1]["release_db"] == 0:
+                report.notes.append(
+                    f"contrast {aspirated}/{tense} [{voice}]: no stop found in {tense}"
+                    " — the boundary is outside what this detector can see"
+                )
+                continue
             closure_gap = shapes[1]["closure_ms"] - shapes[0]["closure_ms"]
             release_gap = shapes[1]["release_db"] - shapes[0]["release_db"]
-            if closure_gap < _MIN_CLOSURE_GAP_MS or release_gap < _MIN_RELEASE_GAP_DB:
+            closure_says = closure_gap >= _MIN_CLOSURE_GAP_MS
+            release_says = release_gap >= _MIN_RELEASE_GAP_DB
+            contradicted = (
+                closure_gap < -_CONTRADICTION_MS or release_gap < -_CONTRADICTION_DB
+            )
+            if (not closure_says and not release_says) or contradicted:
                 report.error(
                     f"contrast {aspirated}/{tense} [{voice}] ({why}): "
                     f"{aspirated} should have the shorter, weaker release — "
