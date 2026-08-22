@@ -339,6 +339,17 @@
       "evidence": "`perf:dictionary` scores every row of the index on every keystroke. At the 26,675 headwords that ship it costs 3.9 ms phone-adjusted against a budget of half a frame; on synthetic worst-case rows where nothing exits early, 25,000 costs 7.5 ms and 50,000 costs 13.2 ms. The gate caught this once already: the same code was at 9.0 ms when the corpus first reached this size, and lower-casing the gloss and romanisation once at load instead of per keystroke brought it back. That lever has now been pulled and there is not a second one of the same size.\n\nThe index is also 451 kB gzipped — a download a learner waits through on their first search, comparable to the app's entire first load, and budgeted at 520 kB so it cannot drift upwards unnoticed.",
       "recommendedFix": "An inverted index built at build time, or moving the scan into a worker. Not a faster loop: the current one is already doing the minimum per row.",
       "effort": "MEDIUM — a prefix index in build_dictionary.py, or a worker"
+    },
+    {
+      "id": "I-33",
+      "area": "Content",
+      "severity": "P4",
+      "status": "OPEN",
+      "summary": "A secondary category can come from a sense the card does not teach",
+      "customerImpact": "김치 is tagged *communication* as well as *food*. Secondary tags feed search and recommendations rather than the browsing structure, so nothing shows a learner the word under a wrong heading — but a recommendation could.",
+      "evidence": "Wiktionary topics are page-level, not per sense. 김치's page carries `Kimchi` and `Photography`, because 김치 is what Koreans say instead of \"cheese\" for a photograph — an interjection sense the card does not teach. `categories.WIKTIONARY_TOPICS` maps Photography to communication, so the food card picks it up.\n\nFound by `content:vocabulary:check` after the dictionary fetch grew the wikitext cache from 13,495 pages to 50,128: 김치, 교실 and 만두 changed category as new topic data arrived. 교실 gaining *home* from the `Rooms` topic and 만두 gaining *food* from `Foods` are both right.\n\nThis is the same root cause as I-18 — a page describes several senses and the card teaches one — at the one place a `senseId` cannot reach, because the topics are not attached to a sense in the source.",
+      "recommendedFix": "Take topics from the sense rather than the page, which the source does not support; or curate the mapping so that a topic only contributes when it agrees with the gloss-matched primary. The second is cheap and would have caught this one.",
+      "effort": "LOW — a rule in categories.classify, and a re-read of what moves"
     }
   ]
 }

@@ -214,7 +214,7 @@ two cannot disagree about which APK shipped.
 85ed8047e8c4da71b234edb4bcbc432dd66badf919c460e044aea2517d746018  hangyul-ganada-release.apk
 d309d5d8651efe68b41cdfc79308b8367692eec03140fd3fd40a1614402a750e  hangyul-ganada-release.aab
 ef5a21ba5d66e0cc5992515c6ff842eec074106ff0a1ed6935210ccec73aad20  docs/report.pdf
-ade0fbb05caa80e9b379c9f5d7ed7eefed8b7fe46c8c68d6a29d4b2779ffd780  build-info.json
+f9723bf36b1c8f94ce31be919669f8be34fdaccbcc0eecd48e443cf003642088  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has
