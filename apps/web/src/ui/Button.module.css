@@ -75,6 +75,26 @@
   color: var(--hg-text-disabled);
 }
 
+.neutral {
+  background: var(--hg-gray-400);
+  color: var(--hg-text-on-primary);
+}
+
+@media (hover: hover) {
+  .neutral:hover:not(:disabled) {
+    background: var(--hg-gray-600);
+  }
+}
+
+.neutral:active:not(:disabled) {
+  background: var(--hg-gray-600);
+}
+
+.neutral:disabled {
+  background: var(--hg-bg-muted);
+  color: var(--hg-text-disabled);
+}
+
 .secondary {
   background: var(--hg-primary-subtle);
   color: var(--hg-primary-text);

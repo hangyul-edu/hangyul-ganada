@@ -421,6 +421,16 @@ export const shadow = {
   button: '0 2px 8px rgba(255, 103, 0, 0.28)',
   nav: '0 -1px 0 rgba(38, 44, 49, 0.06)',
   modal: '0 12px 40px rgba(120, 82, 40, 0.22)',
+  /**
+   * A confirmation dialog, which sits closer to the page than a celebration.
+   *
+   * Neutral rather than warm, and short rather than wide: the app-service
+   * design file draws these with a hard drop under the card, not the bloom the
+   * cream celebration sits in. It is the one shadow in the set that is not
+   * warm-tinted, because it is not being cast onto the warm ground — the
+   * overlay is already over it.
+   */
+  dialog: '0 4px 12px rgba(38, 44, 49, 0.24)',
 } as const;
 
 /** Minimum hit target, and the fixed chrome heights the layout shell reserves. */

@@ -34,6 +34,60 @@
   animation: pop var(--hg-duration-normal) var(--hg-ease-spring);
 }
 
+/*
+ * A confirmation dialog, in the product's own visual language.
+ *
+ * Taken from the app-service design file (frame `1616:25225`), which is where
+ * this product's dialogs are specified: a plain surface rather than the cream
+ * celebration card, a tighter radius, a close shadow, and the two answers side
+ * by side as equals. The exit dialog before this looked like a browser prompt
+ * that happened to be inside the app.
+ *
+ * The measurements are the reference's, expressed in this project's tokens
+ * rather than copied as numbers: 320 px wide against the reference's 280 + 20 a
+ * side, `--hg-space-5` for the sides and the foot, `--hg-radius-md` for the
+ * buttons where the reference says 12. Two places differ by a pixel because the
+ * project's scale has no exact rung — a 17 px title against 18, and
+ * `--hg-gray-400` against `#BEC5CC` — and a token that already means "the
+ * dialog title" is worth more than the pixel.
+ *
+ * The surface is `--hg-surface`, not the reference's literal white, which is
+ * what makes this work in dark mode without inverting anything: the theme
+ * already knows what a surface is.
+ */
+.confirm {
+  max-width: 320px;
+  padding: var(--hg-space-7) var(--hg-space-5) var(--hg-space-5);
+  background: var(--hg-surface);
+  border-radius: var(--hg-radius-lg);
+  box-shadow: var(--hg-shadow-dialog);
+  animation: pop var(--hg-duration-normal) var(--hg-ease-spring);
+}
+
+.confirm .title {
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+}
+
+.confirm .description {
+  margin-top: var(--hg-space-1);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+/*
+ * 18 px between the words and the answers, as the reference has it, and the
+ * body block owns none of it — so a dialog with no body reads the same.
+ */
+.confirm .body:empty {
+  display: none;
+}
+
+.confirm .footer {
+  margin-top: var(--hg-space-4);
+}
+
 .sheet {
   max-width: var(--hg-size-app-max-width);
   padding-top: var(--hg-space-3);

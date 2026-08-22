@@ -128,6 +128,7 @@
   --hg-shadow-button: 0 2px 8px rgba(255, 103, 0, 0.28);
   --hg-shadow-nav: 0 -1px 0 rgba(38, 44, 49, 0.06);
   --hg-shadow-modal: 0 12px 40px rgba(120, 82, 40, 0.22);
+  --hg-shadow-dialog: 0 4px 12px rgba(38, 44, 49, 0.24);
   /* size */
   --hg-size-hit-target: 44px;
   --hg-size-control-sm: 36px;

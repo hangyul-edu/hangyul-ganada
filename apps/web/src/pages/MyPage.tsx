@@ -23,7 +23,7 @@ import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { LocalizedText } from '../ui/LocalizedText';
-import { Modal } from '../ui/Modal';
+import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { ProgressBar } from '../ui/Progress';
 import { SpeakerButton } from '../ui/SpeakerButton';
 import { AlertIcon, CheckIcon, ChevronRightIcon, GlobeIcon, InfoIcon, LockIcon } from '../ui/icons';
@@ -617,31 +617,20 @@ export function MyPage() {
         </Group>
       </div>
 
-      <Modal
+      <ConfirmDialog
         open={confirmReset}
-        onClose={() => setConfirmReset(false)}
         title={t('settings:reset.title')}
-        description={t('settings:reset.description')}
-        footer={
-          <>
-            <Button
-              size="lg"
-              fullWidth
-              onClick={() => {
-                void reset();
-                setConfirmReset(false);
-              }}
-            >
-              {t('settings:reset.confirm')}
-            </Button>
-            <Button size="lg" variant="ghost" fullWidth onClick={() => setConfirmReset(false)}>
-              {t('settings:reset.cancel')}
-            </Button>
-          </>
-        }
-      >
-        <span className="hg-sr-only">{t('common:a11y.confirmationRequired')}</span>
-      </Modal>
+        body={t('settings:reset.description')}
+        confirmLabel={t('settings:reset.confirm')}
+        cancelLabel={t('settings:reset.cancel')}
+        onConfirm={() => {
+          void reset();
+          setConfirmReset(false);
+        }}
+        onCancel={() => setConfirmReset(false)}
+        confirmTestId="reset-confirm"
+        cancelTestId="reset-cancel"
+      />
     </div>
   );
 }

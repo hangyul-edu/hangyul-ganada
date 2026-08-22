@@ -1,0 +1,15 @@
+/*
+ * The two answers, side by side and the same width.
+ *
+ * `1fr 1fr` rather than a flex row: the reference draws both at 136 px, and
+ * equal columns keep them equal when one translation is much longer than the
+ * other — *Stay* against *Beenden* — instead of letting the wordier answer
+ * grow into the quieter one. At 200% text or in a language that needs two
+ * lines, both buttons grow together and the pair stays symmetrical.
+ */
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--hg-space-2);
+  width: 100%;
+}

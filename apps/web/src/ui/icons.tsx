@@ -164,9 +164,31 @@ export const SettingsIcon = (p: IconProps) => (
   </Icon>
 );
 
+/**
+ * The streak mark: consecutive days, and nothing else.
+ *
+ * ## Why the old one looked wrong
+ *
+ * Two reasons, and only one of them was the drawing. Its ink ran from y=2 to
+ * y=16.9 of a 24-unit box, centring at **9.45** — a tenth of the box above the
+ * middle. Every badge that puts it in an `align-items: center` row was
+ * therefore centring a shape that was not centred in its own square, and it
+ * rode visibly high beside the number. No amount of margin on the badge fixes
+ * that; the glyph has to sit in the middle of the box it declares.
+ *
+ * This one measures 2.3 to 21.6, centring at **11.95**, so the icon box and the
+ * ink agree and the row's own centring does the work.
+ *
+ * The shape is also a flame rather than a suggestion of one: an outer silhouette
+ * that widens to a round base, and an inner curl that reads at 15 px. The old
+ * outline had a flat right side and an inner mark that closed into a blob.
+ *
+ * Stroked like every other icon here — `currentColor`, width 2, round joins —
+ * so it inherits the badge's colour in both themes and needs no second asset.
+ */
 export const FireIcon = (p: IconProps) => (
   <Icon {...p}>
-    <path d="M12 3s5 4 5 8a5 5 0 0 1-10 0c0-1.5.7-2.8 1.5-3.7C9 9 10 10 10 11c0-3 2-5 2-8z" />
+    <path d="M12 3.35c.4 3.3 2.1 4.6 3.5 6.2C16.8 11.05 17.8 12.75 17.8 14.85a5.8 5.8 0 0 1-11.6 0c0-1.9.8-3.4 1.9-4.6.2 1 .8 1.8 1.6 2.2C9.3 8.95 11 6.75 12 3.35Z" />
   </Icon>
 );
 

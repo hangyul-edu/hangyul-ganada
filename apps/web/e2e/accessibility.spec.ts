@@ -494,7 +494,22 @@ test.describe('text at 200%', () => {
     test(`${screen.name} loses nothing when text is doubled`, async ({ page }) => {
       await page.goto(screen.path);
       await waitForLaunch(page);
-      await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+      /*
+        `text-size-adjust`, not `font-size` on the root.
+
+        This test was first written as `html { font-size: 200% }`, which moves
+        `rem`-based type and nothing else — and this product's type scale is in
+        **px**. So it scaled nothing, passed on all nine screens, and reported a
+        result it had not earned. The honest emulation of the mechanism that
+        actually reaches the app is text zoom: Android's accessibility font
+        scale arrives at a WebView as `textZoom`, which multiplies rendered text
+        whatever unit it was authored in, and `-webkit-text-size-adjust` is the
+        nearest thing desktop Chromium offers.
+      */
+      await page.addStyleTag({
+        content:
+          'html { -webkit-text-size-adjust: 200% !important; text-size-adjust: 200% !important; }',
+      });
       // One frame for layout to settle before anything is measured.
       await page.waitForTimeout(150);
 

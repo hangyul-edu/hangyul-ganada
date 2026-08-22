@@ -8,8 +8,12 @@ import styles from './Modal.module.css';
 export interface ModalProps {
   open: boolean;
   onClose: () => void;
-  /** `center` is the celebration dialog; `sheet` slides up from the bottom. */
-  variant?: 'center' | 'sheet';
+  /**
+   * `center` is the celebration dialog, `sheet` slides up from the bottom, and
+   * `confirm` is the two-answer dialog specified in the design file. See
+   * `ConfirmDialog`, which is what callers should reach for rather than this.
+   */
+  variant?: 'center' | 'sheet' | 'confirm';
   /** Accessible name. Rendered as the heading unless `hideTitle`. */
   title: string;
   hideTitle?: boolean;

@@ -4,9 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { exitApp } from '../native/platform';
 import { useSystemBack } from '../native/useSystemBack';
-import { Button } from './Button';
-import { Modal } from './Modal';
-import styles from './SystemBack.module.css';
+import { ConfirmDialog } from './ConfirmDialog';
 
 /** Home. The one screen Back does not leave. */
 const HOME = '/';
@@ -52,23 +50,16 @@ export function SystemBack() {
   );
 
   return (
-    <Modal
+    <ConfirmDialog
       open={leaving}
-      onClose={() => setLeaving(false)}
       title={t('exit.title')}
-      showClose={false}
-      footer={
-        <div className={styles.actions}>
-          <Button variant="secondary" fullWidth onClick={() => setLeaving(false)} data-testid="exit-stay">
-            {t('exit.stay')}
-          </Button>
-          <Button fullWidth onClick={() => void exitApp()} data-testid="exit-confirm">
-            {t('exit.leave')}
-          </Button>
-        </div>
-      }
-    >
-      <p className={styles.body}>{t('exit.body')}</p>
-    </Modal>
+      body={t('exit.body')}
+      cancelLabel={t('exit.stay')}
+      confirmLabel={t('exit.leave')}
+      onCancel={() => setLeaving(false)}
+      onConfirm={() => void exitApp()}
+      cancelTestId="exit-stay"
+      confirmTestId="exit-confirm"
+    />
   );
 }
