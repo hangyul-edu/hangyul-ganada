@@ -81,7 +81,8 @@
     "label": "Sök i ordlistan",
     "count_one": "{{count, number}} träff",
     "count_other": "{{count, number}} träffar",
-    "none": "Inget matchar ”{{query}}”. Pröva koreanskan, eller betydelsen på ditt eget språk."
+    "none": "Inget matchar ”{{query}}”. Pröva koreanskan, eller betydelsen på ditt eget språk.",
+    "loading": "Resten av ordförrådet laddas fortfarande. Försök igen om en stund."
   },
   "sound": {
     "tensing": "Efter en slutkonsonant blir nästa ljud stramare.",

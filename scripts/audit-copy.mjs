@@ -44,6 +44,18 @@ const FORBIDDEN = [
     id: 'official-level',
     pattern: /\b(official|officially|certified|accredited|공인|정식\s*인증|公認|официальн)\b/i,
     why: 'the difficulty model is this product\'s own; nothing here is an official grading',
+    /*
+     * The one string whose job is to say the rule's own sentence out loud.
+     *
+     * Every other match of this pattern would be the product *claiming* to be
+     * official. This is the Vocabulary Level's disclaimer, which claims the
+     * opposite — "it is not an official proficiency grade" — and it exists
+     * because that screen is the only place in the app that shows a learner a
+     * number and calls it their level. A rule that forbade the denial as well
+     * as the claim would force the one screen that needs the disclaimer to go
+     * without it.
+     */
+    except: ['levelTest:disclaimer'],
   },
   {
     id: 'topik',
@@ -89,6 +101,22 @@ const FORBIDDEN = [
     pattern:
       /\b(difficulty (score|level|rating)|level \d|ranking|frequency rank|dictionary grade)\b|난이도|등급|레벨|順序について|难度|排名/i,
     why: 'the product shows no levels, scores or rankings; copy about them describes a model the learner cannot see',
+    /*
+     * The Vocabulary Level is the exception this rule now has to name.
+     *
+     * The rule is about the *curriculum's* difficulty model: a word carries a
+     * difficulty score and a band, the learner is never shown either, and copy
+     * that mentions them describes machinery they cannot see. That is still
+     * true of every word screen in the app.
+     *
+     * The Vocabulary Level Test is the opposite case and is the only one. Its
+     * whole subject is a level: the learner asks for it, it is measured, it is
+     * reported with a confidence band, and the screen carries a disclaimer
+     * saying what kind of number it is. Excluding the namespace rather than
+     * listing keys is deliberate — every string on that screen legitimately
+     * talks about levels, and a per-key list would be a list of every key.
+     */
+    exceptNamespace: 'levelTest',
   },
   {
     id: 'implementation',
@@ -204,6 +232,7 @@ function walk(value, path, locale, namespace) {
     const key = `${namespace}:${path}`;
     for (const rule of FORBIDDEN) {
       if (rule.except?.includes(key)) continue;
+      if (rule.exceptNamespace === namespace) continue;
       if (rule.pattern.test(value)) {
         findings.errors.push({ locale, key, rule, value });
       }

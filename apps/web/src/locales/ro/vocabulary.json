@@ -86,7 +86,8 @@
     "count_few": "{{count, number}} potriviri",
     "count_one": "{{count, number}} potrivire",
     "count_other": "{{count, number}} de potriviri",
-    "none": "Nimic nu se potrivește cu „{{query}}”. Încearcă în coreeană sau sensul în limba ta."
+    "none": "Nimic nu se potrivește cu „{{query}}”. Încearcă în coreeană sau sensul în limba ta.",
+    "loading": "Restul vocabularului încă se încarcă. Încearcă din nou într-o clipă."
   },
   "sound": {
     "tensing": "După o consoană finală, sunetul următor se strânge.",

@@ -33,7 +33,7 @@
   },
   "empty": {
     "title": "Qui non ci sono ancora parole",
-    "body": "Prova un'altra categoria."
+    "body": "Prova un’altra categoria."
   },
   "partOfSpeech": {
     "noun": "sostantivo",
@@ -52,7 +52,7 @@
   },
   "blurb": "Tutte le parole sono aperte. Scegli una categoria e comincia dove vuoi.",
   "categories": {
-    "essentials": "L'indispensabile di ogni giorno",
+    "essentials": "L’indispensabile di ogni giorno",
     "people": "Persone e famiglia",
     "food": "Cibo e bevande",
     "animals-nature": "Animali e natura",
@@ -86,11 +86,12 @@
     "count_many": "{{count, number}} risultati",
     "count_one": "{{count, number}} risultato",
     "count_other": "{{count, number}} risultati",
-    "none": "Niente corrisponde a «{{query}}». Prova con il coreano, o con il significato nella tua lingua."
+    "none": "Niente corrisponde a «{{query}}». Prova con il coreano, o con il significato nella tua lingua.",
+    "loading": "Il resto del vocabolario si sta ancora caricando. Riprova tra un momento."
   },
   "sound": {
     "tensing": "Dopo una consonante finale il suono successivo si stringe.",
-    "aspiration": "ㅎ si fonde con la consonante che segue e aggiunge un soffio d'aria.",
+    "aspiration": "ㅎ si fonde con la consonante che segue e aggiunge un soffio d’aria.",
     "nasal": "Prima di ㄴ o ㅁ la consonante che precede diventa nasale.",
     "lateral": "ㄴ e ㄹ accostate diventano tutte e due ㄹ.",
     "palatal": "Una ㄷ o ㅌ finale prima di 이 si dice come ㅈ o ㅊ.",

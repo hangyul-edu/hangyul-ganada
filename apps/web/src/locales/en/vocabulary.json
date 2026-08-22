@@ -81,7 +81,8 @@
     "label": "Search the vocabulary",
     "count_one": "{{count, number}} match",
     "count_other": "{{count, number}} matches",
-    "none": "Nothing matches “{{query}}”. Try the Korean, or the meaning in your own language."
+    "none": "Nothing matches “{{query}}”. Try the Korean, or the meaning in your own language.",
+    "loading": "Still loading the rest of the vocabulary. Try again in a moment."
   },
   "sound": {
     "tensing": "After a final consonant, the next sound tightens.",

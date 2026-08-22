@@ -1,0 +1,38 @@
+{
+  "title": "Poziom słownictwa",
+  "row": {
+    "body": "Sprawdź, na jakim mniej więcej poziomie jest twoje koreańskie słownictwo.",
+    "taken": "Ostatni wynik: poziom {{level}}"
+  },
+  "intro": {
+    "title": "Na jakim poziomie jest twoje koreańskie słownictwo?",
+    "body": "Krótki zestaw pytań, który staje się trudniejszy albo łatwiejszy w zależności od odpowiedzi — dzięki temu nie trzeba ich setek.",
+    "length": "Około 3–6 minut, od 18 do 36 pytań.",
+    "noHelp": "Bez podpowiedzi, odpowiedzi nie są pokazywane w trakcie.",
+    "noProgress": "Nic z tego nie zmienia twoich lekcji, passy ani powtórek.",
+    "start": "Zacznij test",
+    "retake": "Powtórz test",
+    "previous": "Ostatnio wyszedł ci poziom {{level}}."
+  },
+  "progress": "{{asked, number}} z maks. {{most, number}}",
+  "ask": {
+    "meaning": "Co znaczy to słowo?",
+    "produce": "Które słowo to znaczy?",
+    "context": "Które słowo pasuje w lukę?"
+  },
+  "optionsLabel": "Odpowiedzi",
+  "unknown": "Nie wiem",
+  "loading": "Przygotowuję pytania…",
+  "unavailable": "Test potrzebuje połączenia przy pierwszym otwarciu.",
+  "result": {
+    "label": "Poziom słownictwa Hangyul",
+    "of": "z {{levels, number}}",
+    "band": "Najpewniej między {{low, number}} a {{high, number}}.",
+    "words": "Na tym poziomie zwykle rozpoznaje się {{count, number}} najczęstszych koreańskich słów.",
+    "items_one": "Ustalone na podstawie {{count, number}} pytania.",
+    "items_few": "Ustalone na podstawie {{count, number}} pytań.",
+    "items_many": "Ustalone na podstawie {{count, number}} pytań.",
+    "items_other": "Ustalone na podstawie {{count, number}} pytania."
+  },
+  "disclaimer": "Poziom słownictwa Hangyul to nasza własna skala. To nie jest oficjalny certyfikat biegłości ani liczba słów, które znasz."
+}

@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { waitForLaunch } from './helpers/launch';
 import { drawScribble, traceReferenceGlyph } from './helpers/trace';
 
 /**
@@ -723,6 +724,17 @@ test('nothing in the app sells anything', async ({ page }) => {
 
 test('the whole app is reachable by keyboard', async ({ page }) => {
   await page.goto('/');
+  /*
+   * After the launch screen, like every other test that drives input directly.
+   *
+   * It used to pass without waiting, because the router mounted behind the
+   * splash and the skip link existed from the first frame. It does not any
+   * more: the router waits for the corpus core so that no screen renders
+   * against an empty curriculum (see `data/corpus.ts`), and until it mounts
+   * there is nothing to tab to — which is correct, because until it mounts
+   * there is nothing to skip *to* either.
+   */
+  await waitForLaunch(page);
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Skip to main content' })).toBeFocused();
 

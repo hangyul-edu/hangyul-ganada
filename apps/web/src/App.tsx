@@ -1,11 +1,11 @@
-import { Suspense, lazy, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { Suspense, lazy, useCallback, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import './styles/fonts';
-import { PronunciationProvider } from './audio/PronunciationProvider';
-import { LocaleProvider } from './i18n';
-import { HomePage } from './pages/HomePage';
+import "./styles/fonts";
+import { PronunciationProvider } from "./audio/PronunciationProvider";
+import { LocaleProvider } from "./i18n";
+import { HomePage } from "./pages/HomePage";
 
 /**
  * Every screen but Home is loaded when it is first opened.
@@ -22,52 +22,74 @@ import { HomePage } from './pages/HomePage';
  * a learner who has not left the alphabet yet.
  */
 const ActivityPage = lazy(() =>
-  import('./pages/ActivityPage').then((m) => ({ default: m.ActivityPage })),
+  import("./pages/ActivityPage").then((m) => ({ default: m.ActivityPage })),
 );
 const LanguagePage = lazy(() =>
-  import('./pages/LanguagePage').then((m) => ({ default: m.LanguagePage })),
+  import("./pages/LanguagePage").then((m) => ({ default: m.LanguagePage })),
 );
 const LettersPage = lazy(() =>
-  import('./pages/LettersPage').then((m) => ({ default: m.LettersPage })),
+  import("./pages/LettersPage").then((m) => ({ default: m.LettersPage })),
 );
 const LetterSessionPage = lazy(() =>
-  import('./pages/LetterSessionPage').then((m) => ({ default: m.LetterSessionPage })),
+  import("./pages/LetterSessionPage").then((m) => ({
+    default: m.LetterSessionPage,
+  })),
 );
-const WordsPage = lazy(() => import('./pages/WordsPage').then((m) => ({ default: m.WordsPage })));
+const WordsPage = lazy(() =>
+  import("./pages/WordsPage").then((m) => ({ default: m.WordsPage })),
+);
 const WordCategoryPage = lazy(() =>
-  import('./pages/WordsPage').then((m) => ({ default: m.WordCategoryRoute })),
+  import("./pages/WordsPage").then((m) => ({ default: m.WordCategoryRoute })),
 );
 const WordDetailPage = lazy(() =>
-  import('./pages/WordDetailPage').then((m) => ({ default: m.WordDetailPage })),
+  import("./pages/WordDetailPage").then((m) => ({ default: m.WordDetailPage })),
 );
 /*
  * Lazy like the rest, and for a second reason: the module it pulls in is the
  * only route that talks to `data/dictionary`, so a learner who never opens a
  * dictionary entry never parses the code that would fetch one.
  */
+/* Lazy like the rest, and the only route that pulls in the level-test bank. */
+const LevelTestPage = lazy(() =>
+  import("./pages/LevelTestPage").then((m) => ({ default: m.LevelTestPage })),
+);
 const DictionaryWordPage = lazy(() =>
-  import('./pages/DictionaryWordPage').then((m) => ({ default: m.DictionaryWordPage })),
+  import("./pages/DictionaryWordPage").then((m) => ({
+    default: m.DictionaryWordPage,
+  })),
 );
 const SavedWordsPage = lazy(() =>
-  import('./pages/SavedWordsPage').then((m) => ({ default: m.SavedWordsPage })),
+  import("./pages/SavedWordsPage").then((m) => ({ default: m.SavedWordsPage })),
 );
 const MistakesPage = lazy(() =>
-  import('./pages/MistakesPage').then((m) => ({ default: m.MistakesPage })),
+  import("./pages/MistakesPage").then((m) => ({ default: m.MistakesPage })),
 );
 const WordSessionPage = lazy(() =>
-  import('./pages/WordSessionPage').then((m) => ({ default: m.WordSessionPage })),
+  import("./pages/WordSessionPage").then((m) => ({
+    default: m.WordSessionPage,
+  })),
 );
-const ReviewPage = lazy(() => import('./pages/ReviewPage').then((m) => ({ default: m.ReviewPage })));
+const ReviewPage = lazy(() =>
+  import("./pages/ReviewPage").then((m) => ({ default: m.ReviewPage })),
+);
 const ReviewSessionPage = lazy(() =>
-  import('./pages/ReviewSessionPage').then((m) => ({ default: m.ReviewSessionPage })),
+  import("./pages/ReviewSessionPage").then((m) => ({
+    default: m.ReviewSessionPage,
+  })),
 );
 const SoundChangesPage = lazy(() =>
-  import('./pages/SoundChangesPage').then((m) => ({ default: m.SoundChangesPage })),
+  import("./pages/SoundChangesPage").then((m) => ({
+    default: m.SoundChangesPage,
+  })),
 );
-const MyPage = lazy(() => import('./pages/MyPage').then((m) => ({ default: m.MyPage })));
-const LegalPage = lazy(() => import('./pages/LegalPage').then((m) => ({ default: m.LegalPage })));
+const MyPage = lazy(() =>
+  import("./pages/MyPage").then((m) => ({ default: m.MyPage })),
+);
+const LegalPage = lazy(() =>
+  import("./pages/LegalPage").then((m) => ({ default: m.LegalPage })),
+);
 const PrivacyPage = lazy(() =>
-  import('./pages/PrivacyPage').then((m) => ({ default: m.PrivacyPage })),
+  import("./pages/PrivacyPage").then((m) => ({ default: m.PrivacyPage })),
 );
 /*
  * Development only, and not in the production bundle.
@@ -78,19 +100,23 @@ const PrivacyPage = lazy(() =>
  * `pages/StrokeGalleryPage.tsx`.
  */
 const StrokeGalleryPage = lazy(() =>
-  import('./pages/StrokeGalleryPage').then((m) => ({ default: m.StrokeGalleryPage })),
+  import("./pages/StrokeGalleryPage").then((m) => ({
+    default: m.StrokeGalleryPage,
+  })),
 );
 const NotFoundPage = lazy(() =>
-  import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+  import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
 );
-import { useLearner } from './store/LearnerContext';
-import { LearnerProvider } from './store/LearnerProvider';
-import { LaunchSplash } from './ui/LaunchSplash';
-import { AppShell } from './ui/AppShell';
-import { SystemBack } from './ui/SystemBack';
-import { BottomNavigation } from './ui/BottomNavigation';
-import { DocumentMetadata } from './ui/DocumentMetadata';
-import { useAppearance, useSystemBarStyle } from './ui/appearance';
+import { corpusCoreReady } from "./data/corpus";
+import { useCorpus } from "./data/useCorpus";
+import { useLearner } from "./store/LearnerContext";
+import { LearnerProvider } from "./store/LearnerProvider";
+import { LaunchSplash } from "./ui/LaunchSplash";
+import { AppShell } from "./ui/AppShell";
+import { SystemBack } from "./ui/SystemBack";
+import { BottomNavigation } from "./ui/BottomNavigation";
+import { DocumentMetadata } from "./ui/DocumentMetadata";
+import { useAppearance, useSystemBarStyle } from "./ui/appearance";
 
 /**
  * What fills the frame while a lazily-loaded screen arrives.
@@ -100,7 +126,7 @@ import { useAppearance, useSystemBarStyle } from './ui/appearance';
  * two; a spinner that flashes for 30 ms reads as a glitch, not as progress.
  */
 function ScreenFallback() {
-  return <div aria-busy="true" style={{ minHeight: '50vh' }} />;
+  return <div aria-busy="true" style={{ minHeight: "50vh" }} />;
 }
 
 /** Tabbed screens keep the bottom navigation. */
@@ -135,10 +161,10 @@ function FocusLayout() {
 }
 
 function SkipLink() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   return (
     <a className="hg-skip-link" href="#main">
-      {t('a11y.skipToContent')}
+      {t("a11y.skipToContent")}
     </a>
   );
 }
@@ -165,10 +191,38 @@ function LearnerScopedProviders({ children }: { children: React.ReactNode }) {
   useSystemBarStyle();
 
   return (
-    <LocaleProvider profileLocale={state.settings.locale} onLocaleChange={handleLocaleChange}>
-      <PronunciationProvider voice={state.settings.voice}>{children}</PronunciationProvider>
+    <LocaleProvider
+      profileLocale={state.settings.locale}
+      onLocaleChange={handleLocaleChange}
+    >
+      <PronunciationProvider voice={state.settings.voice}>
+        {children}
+      </PronunciationProvider>
     </LocaleProvider>
   );
+}
+
+/**
+ * Holds the router back until there is a corpus to render against.
+ *
+ * The launch screen is an overlay, not a gate: the route underneath mounts
+ * straight away, behind the picture. That is right for everything the app draws
+ * from its own code and wrong for everything it draws from the corpus, which
+ * arrives over the network a moment later — a screen that reads it once and has
+ * no reason to look again renders empty and stays empty.
+ *
+ * So the corpus core is the gate, and the launch screen is what a learner sees
+ * while it is closed. `LearnerProvider` starts the fetch in the same effect
+ * that opens the database, and both are usually done before the splash's 900 ms
+ * minimum is up. If the fetch fails there is nothing to wait for and the router
+ * mounts anyway: an app with no words is a poor app, and an app that never
+ * appears is not one.
+ */
+function CorpusGate({ children }: { children: ReactNode }) {
+  useCorpus();
+  const { ready } = useLearner();
+  if (!corpusCoreReady() && !ready) return null;
+  return <>{children}</>;
 }
 
 export function App() {
@@ -180,64 +234,82 @@ export function App() {
             a cold start, a refresh in the middle of a lesson, or a shared link
             straight to a word. See `ui/LaunchSplash`. */}
         <LaunchSplash />
-        <BrowserRouter>
-          <SkipLink />
-          {/* The phone's Back button, which means something different from the
+        <CorpusGate>
+          <BrowserRouter>
+            <SkipLink />
+            {/* The phone's Back button, which means something different from the
               header's back arrow — see `ui/SystemBack.tsx`. Inside the router
               because the rule is about where the learner is. */}
-          <SystemBack />
-          <Routes>
-            <Route element={<TabLayout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/letters" element={<LettersPage />} />
-              <Route path="/words" element={<WordsPage />} />
-              {/* Browsing one category. A tab-layout screen rather than a focus
+            <SystemBack />
+            <Routes>
+              <Route element={<TabLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/letters" element={<LettersPage />} />
+                <Route path="/words" element={<WordsPage />} />
+                {/* Browsing one category. A tab-layout screen rather than a focus
                   one: it is a reference view the learner can wander in and out
                   of, not a sitting they are part-way through. */}
-              <Route path="/words/category/:category" element={<WordCategoryPage />} />
-              {/* One word, in depth. A tab-layout screen: the learner is
+                <Route
+                  path="/words/category/:category"
+                  element={<WordCategoryPage />}
+                />
+                {/* One word, in depth. A tab-layout screen: the learner is
                   looking something up, not part-way through a sitting. */}
-              <Route path="/words/word/:wordId" element={<WordDetailPage />} />
-              <Route path="/words/dictionary/:headword" element={<DictionaryWordPage />} />
-              <Route path="/words/saved" element={<SavedWordsPage />} />
-              <Route path="/review/mistakes" element={<MistakesPage />} />
-              <Route path="/review" element={<ReviewPage />} />
-              <Route path="/me" element={<MyPage />} />
-              {/* Reached from the streak on Home. Its own screen rather than a
+                <Route
+                  path="/words/word/:wordId"
+                  element={<WordDetailPage />}
+                />
+                <Route
+                  path="/words/dictionary/:headword"
+                  element={<DictionaryWordPage />}
+                />
+                <Route path="/words/saved" element={<SavedWordsPage />} />
+                <Route path="/review/mistakes" element={<MistakesPage />} />
+                <Route path="/review" element={<ReviewPage />} />
+                <Route path="/me" element={<MyPage />} />
+                {/* Reached from the streak on Home. Its own screen rather than a
                   section of Settings: it is the learner's record, not a
                   preference. */}
-              <Route path="/me/activity" element={<ActivityPage />} />
-              <Route path="/me/language" element={<LanguagePage />} />
-              <Route path="/me/privacy" element={<PrivacyPage />} />
-              <Route path="/me/legal" element={<LegalPage />} />
-            </Route>
+                <Route path="/me/activity" element={<ActivityPage />} />
+                <Route path="/me/level-test" element={<LevelTestPage />} />
+                <Route path="/me/language" element={<LanguagePage />} />
+                <Route path="/me/privacy" element={<PrivacyPage />} />
+                <Route path="/me/legal" element={<LegalPage />} />
+              </Route>
 
-            <Route element={<FocusLayout />}>
-              <Route path="/letters/sounds" element={<SoundChangesPage />} />
-              <Route path="/letters/:lessonId" element={<LetterSessionPage />} />
-              {/*
+              <Route element={<FocusLayout />}>
+                <Route path="/letters/sounds" element={<SoundChangesPage />} />
+                <Route
+                  path="/letters/:lessonId"
+                  element={<LetterSessionPage />}
+                />
+                {/*
                 One route, no lesson id. Vocabulary is no longer browsed as
                 numbered sets and then written syllable by syllable; there is a
                 plan for today and this runs it. See `WordSessionPage`.
               */}
-              <Route path="/words/today" element={<WordSessionPage />} />
-              <Route path="/review/session" element={<ReviewSessionPage />} />
-            </Route>
+                <Route path="/words/today" element={<WordSessionPage />} />
+                <Route path="/review/session" element={<ReviewSessionPage />} />
+              </Route>
 
-            {import.meta.env.DEV && (
-              <Route path="/dev/stroke-gallery" element={<StrokeGalleryPage />} />
-            )}
+              {import.meta.env.DEV && (
+                <Route
+                  path="/dev/stroke-gallery"
+                  element={<StrokeGalleryPage />}
+                />
+              )}
 
-            <Route
-              path="*"
-              element={
-                <AppShell footer={<BottomNavigation />}>
-                  <NotFoundPage />
-                </AppShell>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+              <Route
+                path="*"
+                element={
+                  <AppShell footer={<BottomNavigation />}>
+                    <NotFoundPage />
+                  </AppShell>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        </CorpusGate>
       </LearnerScopedProviders>
     </LearnerProvider>
   );

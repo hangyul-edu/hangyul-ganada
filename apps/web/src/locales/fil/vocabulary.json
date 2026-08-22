@@ -81,7 +81,8 @@
     "label": "Maghanap sa talasalitaan",
     "count_one": "{{count, number}} tugma",
     "count_other": "{{count, number}} na tugma",
-    "none": "Walang tumugma sa “{{query}}”. Subukan sa Koreano, o ang kahulugan sa sarili mong wika."
+    "none": "Walang tumugma sa “{{query}}”. Subukan sa Koreano, o ang kahulugan sa sarili mong wika.",
+    "loading": "Naglo-load pa ang iba pang bokabularyo. Subukan ulit maya-maya."
   },
   "sound": {
     "tensing": "Pagkatapos ng pangwakas na katinig, humihigpit ang susunod na tunog.",

@@ -1,0 +1,36 @@
+{
+  "title": "Antas ng bokabularyo",
+  "row": {
+    "body": "Alamin kung nasaan nang tinatayang antas ang bokabularyo mong Koreano.",
+    "taken": "Huling resulta: antas {{level}}"
+  },
+  "intro": {
+    "title": "Nasaan ang bokabularyo mong Koreano?",
+    "body": "Maikling hanay ng tanong na humihirap o gumagaan ayon sa sagot mo, para matukoy ka nang hindi nagtatanong nang daan-daan.",
+    "length": "Mga 3–6 minuto, 18 hanggang 36 na tanong.",
+    "noHelp": "Walang pahiwatig, at hindi ipinapakita ang sagot habang sumasagot.",
+    "noProgress": "Walang binabago rito sa aralin, sunod-sunod na araw, o balik-aral mo.",
+    "start": "Simulan ang pagsusulit",
+    "retake": "Ulitin ito",
+    "previous": "Noong huli ay antas {{level}} ka."
+  },
+  "progress": "{{asked, number}} sa hanggang {{most, number}}",
+  "ask": {
+    "meaning": "Ano ang ibig sabihin ng salitang ito?",
+    "produce": "Aling salita ang nangangahulugan nito?",
+    "context": "Aling salita ang bagay sa patlang?"
+  },
+  "optionsLabel": "Mga sagot",
+  "unknown": "Hindi ko alam",
+  "loading": "Inihahanda ang mga tanong…",
+  "unavailable": "Kailangan ng koneksyon ang pagsusulit sa unang pagbukas.",
+  "result": {
+    "label": "Antas ng bokabularyo ng Hangyul",
+    "of": "sa {{levels, number}}",
+    "band": "Malamang nasa pagitan ng {{low, number}} at {{high, number}}.",
+    "words": "Sa antas na ito, karaniwang nakikilala ang {{count, number}} pinakakaraniwang salitang Koreano.",
+    "items_one": "Natukoy sa {{count, number}} tanong.",
+    "items_other": "Natukoy sa {{count, number}} na tanong."
+  },
+  "disclaimer": "Sariling sukatan namin ang Antas ng bokabularyo ng Hangyul. Hindi ito opisyal na pagtatasa ng kasanayan at hindi bilang ng mga salitang alam mo."
+}

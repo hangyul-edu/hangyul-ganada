@@ -19,10 +19,15 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+import { loadCorpusForNode } from './lib/corpus.mjs';
+
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const OUT_DIR = join(root, 'content-cache');
 const OUT = join(OUT_DIR, 'speech-plan.json');
+
+// The corpus is fetched, not imported. See `scripts/lib/corpus.mjs`.
+await loadCorpusForNode();
 
 const [{ ALL_CHARACTERS }, vocabulary] = await Promise.all([
   import(join(root, 'apps/web/src/data/characters.ts')),

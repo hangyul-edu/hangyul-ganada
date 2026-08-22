@@ -81,7 +81,8 @@
     "label": "Tìm trong kho từ vựng",
     "count_one": "{{count, number}} kết quả",
     "count_other": "{{count, number}} kết quả",
-    "none": "Không có gì khớp với “{{query}}”. Thử gõ tiếng Hàn, hoặc nghĩa bằng tiếng của bạn."
+    "none": "Không có gì khớp với “{{query}}”. Thử gõ tiếng Hàn, hoặc nghĩa bằng tiếng của bạn.",
+    "loading": "Phần từ vựng còn lại vẫn đang tải. Hãy thử lại sau giây lát."
   },
   "sound": {
     "tensing": "Sau một phụ âm cuối, âm tiếp theo được đọc căng hơn.",

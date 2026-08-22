@@ -91,7 +91,8 @@
     "count_many": "{{count, number}} shody",
     "count_one": "{{count, number}} shoda",
     "count_other": "{{count, number}} shod",
-    "none": "Nic neodpovídá „{{query}}“. Zkuste korejsky, nebo význam ve svém jazyce."
+    "none": "Nic neodpovídá „{{query}}“. Zkuste korejsky, nebo význam ve svém jazyce.",
+    "loading": "Zbytek slovní zásoby se ještě načítá. Zkuste to za chvíli znovu."
   },
   "sound": {
     "tensing": "Po koncové souhlásce se další zvuk sevře.",

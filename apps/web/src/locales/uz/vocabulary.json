@@ -81,7 +81,8 @@
     "label": "Lug‘atdan qidirish",
     "count_one": "{{count, number}} mos keldi",
     "count_other": "{{count, number}} mos keldi",
-    "none": "“{{query}}” bo‘yicha hech narsa topilmadi. Koreyschada urinib ko‘ring yoki ma’nosini o‘z tilingizda yozing."
+    "none": "“{{query}}” bo‘yicha hech narsa topilmadi. Koreyschada urinib ko‘ring yoki ma’nosini o‘z tilingizda yozing.",
+    "loading": "Qolgan so‘zlar hali yuklanmoqda. Birozdan so‘ng qayta urinib ko‘ring."
   },
   "sound": {
     "tensing": "Yopuvchi undoshdan keyingi tovush taranglashadi.",

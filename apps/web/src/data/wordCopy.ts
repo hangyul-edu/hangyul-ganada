@@ -3,17 +3,24 @@
  *
  * ## Why this is not a field on the word
  *
- * The curriculum ships eight languages. A learner reads one of them. Holding
- * all eight on every word — which is what `VocabularyWord.translations` used to
+ * The curriculum ships ten languages. A learner reads one of them. Holding
+ * all ten on every word — which is what `VocabularyWord.translations` used to
  * do — put 696 KB of glosses and example translations into the first JavaScript
- * chunk, seven eighths of it for languages that reader will never select.
+ * chunk, nine tenths of it for languages that reader will never select.
  *
- * So the generator writes one file per locale, each aligned index-for-index
- * with `vocabulary.json`'s `words`, and this module loads the one that is
- * needed. English is imported statically because it is the last link in every
- * fallback chain and because something has to be renderable before any dynamic
- * import resolves; the other seven are `import()`ed, which is what makes Vite
- * emit them as separate chunks.
+ * So the generator writes one file per locale, and `split_corpus.py` cuts each
+ * of them into the same bands as the words themselves. This module loads the
+ * ones that are needed: the language the learner reads, band by band, as the
+ * corpus arrives.
+ *
+ * ## Why the packs are keyed by word id
+ *
+ * They used to be arrays aligned index-for-index with `vocabulary.json`, which
+ * is the tightest possible encoding and a standing invariant that two files
+ * must never disagree about ordering. Now that both arrive in pieces, the
+ * pieces are keyed instead: a band's meanings are looked up by the id of the
+ * word, so a pack and a band that disagree produce a missing meaning rather
+ * than the *wrong* meaning, which is the failure worth having.
  *
  * ## Why it is synchronous to read
  *
@@ -32,46 +39,93 @@ import type { VocabularyTranslation, VocabularyWord } from '@hangyul-ganada/shar
 
 import { fallbackChain } from '../i18n/locales';
 import type { ResolvedContent } from '../i18n/content';
-import generated from './generated/vocabulary.json';
-import englishPack from './generated/vocabulary.en.json';
+import {
+  announceContent,
+  fetchBandCopy,
+  loadCorpusCore,
+  loadedBands,
+  onCorpus,
+  type CopyRow,
+  type CorpusRow,
+  type CorpusTables,
+} from './corpus';
 
-/** `[meaning, example translation | null, long definition | null]`. */
-type CopyRow = [string, string | null, string | null];
-
-interface CopyPack {
-  locale: string;
-  words: CopyRow[];
-}
-
-const WORD_ORDER: string[] = (generated as { words: Array<{ id: string }> }).words.map(
-  (row) => row.id,
-);
-
-/** Row index by word id, so a lookup does not scan 2,504 entries. */
-const ROW_OF = new Map(WORD_ORDER.map((id, index) => [id, index]));
-
-const packs = new Map<string, CopyPack>();
-packs.set('en', englishPack as CopyPack);
+/** Meanings by word id, per locale. Grows as bands and languages arrive. */
+const packs = new Map<string, Map<string, CopyRow>>();
 
 /**
- * The other seven locales, as separate chunks.
+ * The fetch for each (language, band), in flight or finished.
  *
- * `import.meta.glob` rather than a switch on the locale: adding a language must
- * stay a matter of adding a file, the same rule the translation bundles follow.
- * English is excluded because it is already imported above — including it here
- * as well would emit its 155 KB twice.
+ * Promises rather than a set of "already asked for", because both callers can
+ * be racing: a band arriving in the background starts one of these, and
+ * `LocaleProvider` calls `loadWordCopy` for the same language a moment later.
+ * With a boolean the second caller saw "already asked for" and returned
+ * immediately, so it resolved before the meanings existed — and the words on
+ * screen had no glosses until something else re-rendered them.
  */
-const lazyPacks = import.meta.glob<CopyPack>('./generated/vocabulary.*.json', {
-  import: 'default',
-});
+const takenBands = new Map<string, Map<number, Promise<void>>>();
 
-function pathFor(locale: string): string {
-  return `./generated/vocabulary.${locale}.json`;
-}
+/** Word ids per band, remembered so a locale loaded later can be aligned. */
+const bandWordIds = new Map<number, string[]>();
+
+/**
+ * The languages somebody has asked for, whether or not any of them has arrived.
+ *
+ * Separate from `packs`, and the separation is the fix for a defect. A band
+ * arriving in the background has to bring the learner's meanings with it, and
+ * the way it used to find out which language that was, was to look at which
+ * languages were already in `packs` — which is a list of languages that have
+ * *succeeded*. On a cold start in Korean, `LocaleProvider` asked for `ko`
+ * before the corpus existed, there were no bands to take, `ko` never entered
+ * `packs`, and every band that arrived afterwards was fetched in English only.
+ * The word cards read "to do" in a Korean interface, and nothing failed.
+ */
+const wanted = new Set<string>(['en']);
+
+/**
+ * Every locale the curriculum has word copy for.
+ *
+ * Read from the manifest's tables rather than from the loaded packs, so it is
+ * the full set whether or not anything has been loaded yet.
+ */
+export const WORD_COPY_LOCALES: string[] = [];
 
 /** Whether a locale's copy is in memory and can be read synchronously. */
 export function hasWordCopy(locale: string): boolean {
   return packs.has(locale);
+}
+
+function takeBand(locale: string, band: number): Promise<void> {
+  const taken = takenBands.get(locale) ?? new Map<number, Promise<void>>();
+  takenBands.set(locale, taken);
+  const existing = taken.get(band);
+  if (existing) return existing;
+
+  const fetching = (async () => {
+    const rows = await fetchBandCopy(band, locale);
+    const ids = bandWordIds.get(band);
+    // Not every fallback candidate is a locale the curriculum has copy for, so
+    // a missing pack is dropped rather than remembered as done — the next
+    // caller may be asking for a language that does have one.
+    if (!rows || !ids) {
+      taken.delete(band);
+      return;
+    }
+    const pack = packs.get(locale) ?? new Map<string, CopyRow>();
+    packs.set(locale, pack);
+    ids.forEach((id, index) => {
+      const row = rows[index];
+      if (row) pack.set(id, row);
+    });
+    // A screen showing a word from this band is showing it with no meaning
+    // until this lands, so it has to be told. See `announceContent`.
+    announceContent();
+  })().catch(() => {
+    taken.delete(band);
+  });
+
+  taken.set(band, fetching);
+  return fetching;
 }
 
 /**
@@ -82,16 +136,19 @@ export function hasWordCopy(locale: string): boolean {
  * language would otherwise depend on load order.
  */
 export async function loadWordCopy(locale: string): Promise<void> {
+  for (const candidate of fallbackChain(locale)) wanted.add(candidate);
+  // Before the bands, because there may not be any yet: this is called as soon
+  // as the locale is known, which on a cold start is before the corpus has
+  // arrived. Without the await it would resolve having loaded nothing.
+  await loadCorpusCore().catch(() => {});
+  const bands = loadedBands();
   await Promise.all(
-    fallbackChain(locale).map(async (candidate) => {
-      if (packs.has(candidate)) return;
-      const load = lazyPacks[pathFor(candidate)];
+    fallbackChain(locale).flatMap((candidate) =>
       // Not every fallback candidate is a locale the curriculum has copy for —
-      // `pt` on the way to `pt-BR`, for instance. A missing pack is not an
-      // error; the chain simply continues.
-      if (!load) return;
-      packs.set(candidate, await load());
-    }),
+      // `pt` on the way to `pt-BR`, for instance. `fetchBandCopy` reports that
+      // by resolving to null; it is not an error and the chain simply continues.
+      bands.map((band) => takeBand(candidate, band)),
+    ),
   );
 }
 
@@ -108,11 +165,8 @@ export function wordCopy(
   word: Pick<VocabularyWord, 'id'>,
   locale: string,
 ): ResolvedContent<VocabularyTranslation> {
-  const row = ROW_OF.get(word.id);
-  if (row === undefined) return { value: EMPTY, locale, isFallback: false };
   for (const candidate of fallbackChain(locale)) {
-    const pack = packs.get(candidate);
-    const entry = pack?.words[row];
+    const entry = packs.get(candidate)?.get(word.id);
     if (entry) {
       return {
         value: { meaning: entry[0], definition: entry[2], example_translation: entry[1] },
@@ -125,9 +179,23 @@ export function wordCopy(
 }
 
 /**
- * Every locale the curriculum has word copy for.
+ * Keeps the loaded languages level with the loaded bands.
  *
- * Read from the generated file rather than from the loaded packs, so it is the
- * full set whether or not anything has been loaded yet.
+ * A band arriving in the background has to bring the learner's meanings with
+ * it, or the words appear with blank glosses until the language is switched.
+ * Only the languages already in memory are extended — a language nobody has
+ * asked for is not downloaded because a band arrived.
  */
-export const WORD_COPY_LOCALES: string[] = (generated as { locales: string[] }).locales;
+onCorpus({
+  tables: (tables: CorpusTables) => {
+    WORD_COPY_LOCALES.push(...tables.locales);
+  },
+  band: (band) => {
+    const rows = band.words as CorpusRow[];
+    bandWordIds.set(
+      band.band,
+      rows.map((row) => row['id'] as string),
+    );
+    for (const locale of wanted) void takeBand(locale, band.band);
+  },
+});

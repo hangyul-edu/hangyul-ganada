@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { SOUND_PATTERNS, VOCABULARY } from '../data/vocabulary';
+import { useCorpusMemo } from '../data/useCorpus';
 import { AppHeader } from '../ui/AppHeader';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Card } from '../ui/Card';
@@ -42,8 +42,9 @@ export function SoundChangesPage() {
   const { t } = useTranslation(['learning', 'vocabulary', 'common']);
   const { state } = useLearner();
   const font = getFont(state.settings.selected_font_id);
-
-  const lessons = useMemo(() => {
+  // The examples are chosen out of the whole corpus, so the list has to be
+  // rebuilt when a band arrives. See `data/corpus.ts`.
+  const lessons = useCorpusMemo(() => {
     // The easiest example of each pattern: the lowest-difficulty word that
     // demonstrates it, so a learner meeting 경음화 meets it on 학교 and not on
     // a four-syllable noun they have never seen.

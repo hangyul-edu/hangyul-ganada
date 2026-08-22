@@ -1,7 +1,7 @@
 {
   "brand": {
-    "tagline": "Impara l'hangul, un tratto alla volta.",
-    "description": "Impara a leggere e scrivere l'hangul dalla primissima lettera — consonanti e vocali, blocchi sillabici, scrittura a mano e le tue prime parole coreane."
+    "tagline": "Impara l’hangul, un tratto alla volta.",
+    "description": "Impara a leggere e scrivere l’hangul dalla primissima lettera — consonanti e vocali, blocchi sillabici, scrittura a mano e le tue prime parole coreane."
   },
   "actions": {
     "confirm": "OK",
@@ -37,21 +37,21 @@
   "report": {
     "action": "Segnala un problema",
     "title": "Che cosa non va?",
-    "blurb": "Scegli quello che ti sembra sbagliato e ti apriamo un'email da completare. Non alleghiamo nulla del tuo percorso.",
+    "blurb": "Scegli quello che ti sembra sbagliato e ti apriamo un’email da completare. Non alleghiamo nulla del tuo percorso.",
     "field": {
       "item": "Voce",
       "category": "Problema",
-      "version": "Versione dell'app",
+      "version": "Versione dell’app",
       "language": "Lingua"
     },
     "writeHere": "Scrivi qui che cosa hai notato:",
     "category": {
       "meaning": "Il significato",
-      "example": "La frase d'esempio",
+      "example": "La frase d’esempio",
       "translation": "La traduzione",
-      "audio": "L'audio",
+      "audio": "L’audio",
       "writing": "La correzione della scrittura",
-      "other": "Qualcos'altro"
+      "other": "Qualcos’altro"
     }
   },
   "exit": {

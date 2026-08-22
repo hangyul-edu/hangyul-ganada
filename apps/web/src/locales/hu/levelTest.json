@@ -1,0 +1,36 @@
+{
+  "title": "Szókincsszint",
+  "row": {
+    "body": "Nézze meg, nagyjából hol tart a koreai szókincse.",
+    "taken": "Legutóbbi eredmény: {{level}}. szint"
+  },
+  "intro": {
+    "title": "Hol tart a koreai szókincse?",
+    "body": "Rövid kérdéssor, amely a válaszok szerint nehezedik vagy könnyebbedik, így több száz kérdés nélkül is elhelyezi.",
+    "length": "Körülbelül 3–6 perc, 18–36 kérdés.",
+    "noHelp": "Nincs segítség, és a válaszok közben nem látszanak.",
+    "noProgress": "Semmi sem változtat a leckéin, a sorozatán vagy az ismétlésén.",
+    "start": "Teszt indítása",
+    "retake": "Újra megcsinálom",
+    "previous": "Legutóbb a(z) {{level}}. szintre került."
+  },
+  "progress": "{{asked, number}} / legfeljebb {{most, number}}",
+  "ask": {
+    "meaning": "Mit jelent ez a szó?",
+    "produce": "Melyik szó jelenti ezt?",
+    "context": "Melyik szó illik a hiányzó helyre?"
+  },
+  "optionsLabel": "Válaszok",
+  "unknown": "Nem tudom",
+  "loading": "Kérdések előkészítése…",
+  "unavailable": "A tesztnek az első megnyitáskor internet kell.",
+  "result": {
+    "label": "Hangyul szókincsszint",
+    "of": "/ {{levels, number}}",
+    "band": "Legvalószínűbben {{low, number}} és {{high, number}} között.",
+    "words": "Ezen a szinten általában a(z) {{count, number}} leggyakoribb koreai szót ismerik fel.",
+    "items_one": "{{count, number}} kérdésből meghatározva.",
+    "items_other": "{{count, number}} kérdésből meghatározva."
+  },
+  "disclaimer": "A Hangyul szókincsszint a saját skálánk. Nem hivatalos nyelvi szintbesorolás, és nem az ismert szavak száma."
+}

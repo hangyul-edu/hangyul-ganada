@@ -86,7 +86,8 @@
     "count_one": "{{count, number}} resultado",
     "count_other": "{{count, number}} resultados",
     "none": "Nada coincide con «{{query}}». Prueba en coreano o con el significado.",
-    "count_many": "{{count, number}} de resultados"
+    "count_many": "{{count, number}} de resultados",
+    "loading": "Todavía se está cargando el resto del vocabulario. Inténtalo de nuevo en un momento."
   },
   "sound": {
     "tensing": "Tras una consonante final, el sonido siguiente se tensa.",

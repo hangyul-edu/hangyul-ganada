@@ -1,0 +1,35 @@
+{
+  "title": "词汇等级",
+  "row": {
+    "body": "看看你的韩语词汇量大致在什么位置。",
+    "taken": "上次结果：等级 {{level}}"
+  },
+  "intro": {
+    "title": "你的韩语词汇量如何？",
+    "body": "题目会根据你的作答变难或变易，所以不用做几百道题也能定位。",
+    "length": "约 3–6 分钟，18 到 36 题。",
+    "noHelp": "没有提示，作答过程中也不显示答案。",
+    "noProgress": "不会影响你的课程、连续天数或复习。",
+    "start": "开始测试",
+    "retake": "再测一次",
+    "previous": "你上次是等级 {{level}}。"
+  },
+  "progress": "{{asked, number}} / 最多 {{most, number}}",
+  "ask": {
+    "meaning": "这个词是什么意思？",
+    "produce": "哪个词是这个意思？",
+    "context": "哪个词填入空格？"
+  },
+  "optionsLabel": "选项",
+  "unknown": "我不知道",
+  "loading": "正在准备题目…",
+  "unavailable": "首次打开测试需要联网。",
+  "result": {
+    "label": "韩橘词汇等级",
+    "of": "/ {{levels, number}}",
+    "band": "最可能在 {{low, number}} 到 {{high, number}} 之间。",
+    "words": "到这个等级，读者通常能认出韩语中最常用的 {{count, number}} 个词。",
+    "items_other": "用 {{count, number}} 道题得出。"
+  },
+  "disclaimer": "韩橘词汇等级是我们自己的标准，不是官方语言能力等级，也不是你认识的词数。"
+}

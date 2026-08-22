@@ -1,0 +1,36 @@
+{
+  "title": "Woordenschatniveau",
+  "row": {
+    "body": "Ontdek ongeveer waar je Koreaanse woordenschat staat.",
+    "taken": "Je laatste uitslag: niveau {{level}}"
+  },
+  "intro": {
+    "title": "Waar staat je Koreaanse woordenschat?",
+    "body": "Een korte reeks vragen die moeilijker of makkelijker wordt naarmate je antwoordt, zodat er niet honderden nodig zijn.",
+    "length": "Ongeveer 3–6 minuten, 18 tot 36 vragen.",
+    "noHelp": "Geen hints, en de antwoorden worden onderweg niet getoond.",
+    "noProgress": "Niets hiervan verandert je lessen, je reeks of je herhaling.",
+    "start": "Start de test",
+    "retake": "Opnieuw doen",
+    "previous": "Vorige keer kwam je uit op niveau {{level}}."
+  },
+  "progress": "{{asked, number}} van maximaal {{most, number}}",
+  "ask": {
+    "meaning": "Wat betekent dit woord?",
+    "produce": "Welk woord betekent dit?",
+    "context": "Welk woord past in de lege plek?"
+  },
+  "optionsLabel": "Antwoorden",
+  "unknown": "Weet ik niet",
+  "loading": "De vragen worden klaargezet…",
+  "unavailable": "De test heeft de eerste keer een verbinding nodig.",
+  "result": {
+    "label": "Hangyul-woordenschatniveau",
+    "of": "van {{levels, number}}",
+    "band": "Waarschijnlijk tussen {{low, number}} en {{high, number}}.",
+    "words": "Op dit niveau herken je meestal de {{count, number}} meest voorkomende Koreaanse woorden.",
+    "items_one": "Bepaald in {{count, number}} vraag.",
+    "items_other": "Bepaald in {{count, number}} vragen."
+  },
+  "disclaimer": "Het Hangyul-woordenschatniveau is onze eigen schaal. Het is geen officiële taalniveaubeoordeling en geen telling van de woorden die je kent."
+}

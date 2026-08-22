@@ -81,7 +81,8 @@
     "label": "Wortschatz durchsuchen",
     "count_one": "{{count, number}} Treffer",
     "count_other": "{{count, number}} Treffer",
-    "none": "Nichts passt zu „{{query}}“. Versuch es auf Koreanisch oder mit der Bedeutung."
+    "none": "Nichts passt zu „{{query}}“. Versuch es auf Koreanisch oder mit der Bedeutung.",
+    "loading": "Der Rest des Wortschatzes wird noch geladen. Versuch es gleich noch einmal."
   },
   "sound": {
     "tensing": "Nach einem Endkonsonanten wird der nächste Laut gespannt.",

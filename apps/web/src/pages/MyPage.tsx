@@ -6,6 +6,7 @@ import type { VoiceGender } from '@hangyul-ganada/shared-types';
 import { usePronunciation } from '../audio/PronunciationContext';
 import { PRODUCT, productName } from '../config/product';
 import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS } from '../data/fonts';
+import { useCorpus } from '../data/useCorpus';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
 import { NextStepCard } from '../features/learning/NextStepCard';
 import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
@@ -54,13 +55,15 @@ export function MyPage() {
   const { state, setPreferences, reset } = useLearner();
   const { provider } = usePronunciationProvider();
   const [confirmReset, setConfirmReset] = useState(false);
-  const { t } = useTranslation(['settings', 'common']);
+  const { t } = useTranslation(['settings', 'common', 'levelTest']);
   const { locale, descriptor } = useLocale();
   // The flag beside the Language row. See the note at the row itself.
   const selectedFlag = flagFor(descriptor.code);
   const format = useFormatters();
 
   const alphabet = alphabetProgress(state.progress);
+  // Counts words, so it has to be recomputed when a band arrives.
+  useCorpus();
   const vocabulary = vocabularyProgress(state.progress);
   /**
    * Days the learner has studied.
@@ -220,6 +223,27 @@ export function MyPage() {
             <span className={styles.linkText}>
               <span className={styles.linkTitle}>{t('settings:activity.title')}</span>
               <span className={styles.linkBody}>{t('settings:activity.body')}</span>
+            </span>
+            <ChevronRightIcon size={18} />
+          </Link>
+          {/*
+            The level test, available whenever the learner wants it.
+
+            Here rather than on Home, and never prompted: it answers a question
+            somebody has to ask — *where am I?* — and putting it in front of a
+            beginner on day one would be offering them a number they have not
+            earned the context to read. The row carries the last result when
+            there is one, because the most useful thing it can say to somebody
+            who has taken it is what they got.
+          */}
+          <Link to="/me/level-test" className={styles.linkRow}>
+            <span className={styles.linkText}>
+              <span className={styles.linkTitle}>{t('levelTest:title')}</span>
+              <span className={styles.linkBody}>
+                {state.settings.level_test
+                  ? t('levelTest:row.taken', { level: state.settings.level_test.level })
+                  : t('levelTest:row.body')}
+              </span>
             </span>
             <ChevronRightIcon size={18} />
           </Link>

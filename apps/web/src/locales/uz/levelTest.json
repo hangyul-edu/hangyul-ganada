@@ -1,0 +1,36 @@
+{
+  "title": "Lug‘at darajasi",
+  "row": {
+    "body": "Koreys lug‘atingiz taxminan qayerda ekanini bilib oling.",
+    "taken": "Oxirgi natija: {{level}}-daraja"
+  },
+  "intro": {
+    "title": "Koreys lug‘atingiz qayerda?",
+    "body": "Javoblaringizga qarab qiyinlashadigan yoki osonlashadigan qisqa savollar to‘plami — shu bois yuzlab savol kerak emas.",
+    "length": "Taxminan 3–6 daqiqa, 18 tadan 36 tagacha savol.",
+    "noHelp": "Maslahat yo‘q, javoblar ham jarayonda ko‘rsatilmaydi.",
+    "noProgress": "Bu yerdagi hech narsa darslaringizni, kunlar ketma-ketligini yoki takrorlashni o‘zgartirmaydi.",
+    "start": "Testni boshlash",
+    "retake": "Qayta topshirish",
+    "previous": "O‘tgan safar {{level}}-daraja chiqqan edi."
+  },
+  "progress": "{{asked, number}} / ko‘pi bilan {{most, number}}",
+  "ask": {
+    "meaning": "Bu so‘z nimani anglatadi?",
+    "produce": "Qaysi so‘z shuni anglatadi?",
+    "context": "Bo‘sh joyga qaysi so‘z mos keladi?"
+  },
+  "optionsLabel": "Javoblar",
+  "unknown": "Bilmayman",
+  "loading": "Savollar tayyorlanmoqda…",
+  "unavailable": "Testni birinchi marta ochganda ulanish kerak.",
+  "result": {
+    "label": "Hangyul lug‘at darajasi",
+    "of": "/ {{levels, number}}",
+    "band": "Ehtimol {{low, number}} bilan {{high, number}} orasida.",
+    "words": "Bu darajada odatda eng ko‘p uchraydigan {{count, number}} koreys so‘zi tanib olinadi.",
+    "items_one": "{{count, number}} savol bilan aniqlandi.",
+    "items_other": "{{count, number}} savol bilan aniqlandi."
+  },
+  "disclaimer": "Hangyul lug‘at darajasi — bizning o‘z shkalamiz. Bu tilni bilish darajasining rasmiy bahosi ham, siz biladigan so‘zlar soni ham emas."
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Level kosakata",
+  "row": {
+    "body": "Cari tahu kira-kira di mana kosakata Korea kamu.",
+    "taken": "Hasil terakhir: level {{level}}"
+  },
+  "intro": {
+    "title": "Di mana kosakata Korea kamu?",
+    "body": "Rangkaian soal singkat yang menjadi lebih sulit atau lebih mudah sesuai jawabanmu, sehingga tidak perlu ratusan soal.",
+    "length": "Sekitar 3–6 menit, 18 sampai 36 soal.",
+    "noHelp": "Tanpa petunjuk, dan jawaban tidak ditampilkan selama tes.",
+    "noProgress": "Tidak ada yang mengubah pelajaran, rentetan hari, atau ulasanmu.",
+    "start": "Mulai tes",
+    "retake": "Ulangi tes",
+    "previous": "Terakhir kamu berada di level {{level}}."
+  },
+  "progress": "{{asked, number}} dari maksimal {{most, number}}",
+  "ask": {
+    "meaning": "Apa arti kata ini?",
+    "produce": "Kata mana yang berarti ini?",
+    "context": "Kata mana yang cocok di bagian kosong?"
+  },
+  "optionsLabel": "Jawaban",
+  "unknown": "Tidak tahu",
+  "loading": "Menyiapkan soal…",
+  "unavailable": "Tes memerlukan koneksi saat pertama kali dibuka.",
+  "result": {
+    "label": "Level kosakata Hangyul",
+    "of": "dari {{levels, number}}",
+    "band": "Kemungkinan besar antara {{low, number}} dan {{high, number}}.",
+    "words": "Pada level ini biasanya dikenali {{count, number}} kata Korea yang paling umum.",
+    "items_other": "Ditentukan dalam {{count, number}} soal."
+  },
+  "disclaimer": "Level kosakata Hangyul adalah skala kami sendiri. Ini bukan penilaian kemahiran resmi dan bukan hitungan kata yang kamu ketahui."
+}

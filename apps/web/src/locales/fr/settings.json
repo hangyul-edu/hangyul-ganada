@@ -15,7 +15,7 @@
     "searchPlaceholder": "Rechercher par nom ou par code",
     "noResults": "Aucune langue ne correspond à « {{query}} ».",
     "selected": "Sélectionnée",
-    "coverageNote": "Toutes les langues de cette liste traduisent l'interface entière et le cours de l'alphabet. Là où la ligne l'indique, le sens des mots et les phrases d'exemple restent en anglais.",
+    "coverageNote": "Toutes les langues de cette liste traduisent l’interface entière et le cours de l’alphabet. Là où la ligne l’indique, le sens des mots et les phrases d’exemple restent en anglais.",
     "wordsInEnglish": "Sens des mots en anglais"
   },
   "font": {
@@ -92,12 +92,12 @@
   },
   "reminder": {
     "title": "Rappel quotidien",
-    "description": "Un rappel discret par jour, à l'heure de votre choix. Désactivé tant que vous ne l'activez pas, et il ne quitte jamais votre téléphone.",
+    "description": "Un rappel discret par jour, à l’heure de votre choix. Désactivé tant que vous ne l’activez pas, et il ne quitte jamais votre téléphone.",
     "toggle": "Me rappeler de pratiquer",
     "at": "À",
-    "notificationTitle": "C'est l'heure de pratiquer",
+    "notificationTitle": "C’est l’heure de pratiquer",
     "notificationBody": "Quelques minutes de coréen vous attendent.",
-    "refused": "Votre téléphone n'autorise pas les notifications pour cette app. Vous pouvez les activer dans ses réglages."
+    "refused": "Votre téléphone n’autorise pas les notifications pour cette app. Vous pouvez les activer dans ses réglages."
   },
   "privacy": {
     "title": "Confidentialité",

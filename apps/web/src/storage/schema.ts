@@ -6,6 +6,7 @@ import type {
 
 import { DEFAULT_FONT_ID } from '../data/fonts';
 import { type ItemMemory, memoryKey, migrateMemory } from '../domain/memory';
+import type { LevelTestResult } from '../domain/levelTestTypes';
 import type { DailyPlan } from '../domain/vocabularyDay';
 import type { PersistenceDriver } from './driver';
 
@@ -41,7 +42,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 9;
+export const SCHEMA_VERSION = 10;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -90,6 +91,20 @@ export interface StoredSettings extends LearnerPreferences {
    * only thing allowed to decide which.
    */
   daily_plan: DailyPlan | null;
+  /**
+   * The last Vocabulary Level Test result, or `null` if never taken.
+   *
+   * On the settings row, and **deliberately nowhere near progress**. A level is
+   * something the learner asked to be told; it is not evidence about what they
+   * have studied, it does not schedule anything, it does not advance a streak
+   * and nothing in `domain/review.ts` may read it. Keeping it here rather than
+   * in the progress store is what makes that structural instead of a rule
+   * somebody has to remember.
+   *
+   * It survives an export and an import, because a learner who moves devices
+   * should not have to sit the test again to see their own result.
+   */
+  level_test: LevelTestResult | null;
 }
 
 export const SETTINGS_KEY = 'preferences';
@@ -125,6 +140,7 @@ export function defaultSettings(): StoredSettings {
     active_days: [],
     saved_items: [],
     daily_plan: null,
+    level_test: null,
   };
 }
 
@@ -670,6 +686,26 @@ const noPracticeStyleSetting: Migration = {
   },
 };
 
+/**
+ * Gives an existing profile the level-test field, empty.
+ *
+ * A learner who has been using the app has never taken the test, so the honest
+ * value is `null` — the same as a new profile. This exists rather than relying
+ * on the spread in `defaultSettings` because a settings row read back without
+ * the key would be `undefined` rather than `null`, and the difference shows up
+ * as "never taken" versus "taken, result missing" the first time somebody adds
+ * a screen that distinguishes them.
+ */
+const levelTestResult: Migration = {
+  to: 10,
+  describe: 'Add the Vocabulary Level Test result, empty',
+  async run({ driver }) {
+    const settings = await driver.get<Partial<StoredSettings>>('settings', SETTINGS_KEY);
+    if (!settings || settings.level_test !== undefined) return;
+    await driver.put('settings', SETTINGS_KEY, { ...defaultSettings(), ...settings, level_test: null });
+  },
+};
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
@@ -678,6 +714,7 @@ export const MIGRATIONS: Migration[] = [
   singleWritingRung,
   wrongAnswerNotebook,
   noPracticeStyleSetting,
+  levelTestResult,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

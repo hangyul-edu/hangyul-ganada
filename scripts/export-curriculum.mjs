@@ -15,9 +15,14 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+import { loadCorpusForNode } from './lib/corpus.mjs';
+
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const OUT = join(root, 'content', 'curriculum.json');
+
+// The corpus is fetched, not imported. See `scripts/lib/corpus.mjs`.
+await loadCorpusForNode();
 
 const [{ ALL_CHARACTERS, LETTER_LESSONS, CURRICULUM_UNITS }, { PRACTICE_FONTS }, vocabulary] =
   await Promise.all([

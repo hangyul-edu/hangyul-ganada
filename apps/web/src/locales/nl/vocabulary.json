@@ -81,7 +81,8 @@
     "label": "Zoek in de woordenlijst",
     "count_one": "{{count, number}} treffer",
     "count_other": "{{count, number}} treffers",
-    "none": "Niets komt overeen met “{{query}}”. Probeer het Koreaans, of de betekenis in je eigen taal."
+    "none": "Niets komt overeen met “{{query}}”. Probeer het Koreaans, of de betekenis in je eigen taal.",
+    "loading": "De rest van de woordenschat wordt nog geladen. Probeer het zo nog eens."
   },
   "sound": {
     "tensing": "Na een slotmedeklinker wordt de volgende klank strakker.",

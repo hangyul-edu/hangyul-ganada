@@ -1,6 +1,6 @@
 {
   "brand": {
-    "tagline": "Hangıl'ı çizgi çizgi öğren.",
+    "tagline": "Hangıl’ı çizgi çizgi öğren.",
     "description": "Hangıl okumayı ve yazmayı ilk harften itibaren öğren — ünsüzler ve ünlüler, hece blokları, el yazısı ve ilk Korece kelimelerin."
   },
   "actions": {
@@ -54,7 +54,7 @@
     }
   },
   "exit": {
-    "title": "Hangyul ganada'dan çıkılsın mı?",
+    "title": "Hangyul ganada’dan çıkılsın mı?",
     "body": "İlerlemen kayıtlı. Kaldığın yerden devam edebilirsin.",
     "stay": "Kal",
     "leave": "Çık"

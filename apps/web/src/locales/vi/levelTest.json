@@ -1,0 +1,36 @@
+{
+  "title": "Cấp độ từ vựng",
+  "row": {
+    "body": "Xem vốn từ tiếng Hàn của bạn đang ở đâu.",
+    "taken": "Kết quả gần nhất: cấp {{level}}"
+  },
+  "intro": {
+    "title": "Vốn từ tiếng Hàn của bạn ở đâu?",
+    "body": "Một loạt câu hỏi ngắn, khó dần hoặc dễ dần theo câu trả lời, nên không cần đến hàng trăm câu.",
+    "length": "Khoảng 3–6 phút, 18 đến 36 câu.",
+    "noHelp": "Không có gợi ý, và đáp án không hiện ra trong lúc làm.",
+    "noProgress": "Không có gì ở đây thay đổi bài học, chuỗi ngày hay phần ôn tập của bạn.",
+    "start": "Bắt đầu",
+    "retake": "Làm lại",
+    "previous": "Lần trước bạn ở cấp {{level}}."
+  },
+  "progress": "{{asked, number}} trên tối đa {{most, number}}",
+  "ask": {
+    "meaning": "Từ này nghĩa là gì?",
+    "produce": "Từ nào mang nghĩa này?",
+    "context": "Từ nào hợp với chỗ trống?"
+  },
+  "optionsLabel": "Đáp án",
+  "unknown": "Tôi không biết",
+  "loading": "Đang chuẩn bị câu hỏi…",
+  "unavailable": "Lần đầu mở, bài kiểm tra cần kết nối mạng.",
+  "result": {
+    "label": "Cấp độ từ vựng Hangyul",
+    "of": "trên {{levels, number}}",
+    "band": "Nhiều khả năng nằm giữa {{low, number}} và {{high, number}}.",
+    "words": "Ở cấp này, người đọc thường nhận ra {{count, number}} từ tiếng Hàn thông dụng nhất.",
+    "items_one": "Xác định sau {{count, number}} câu.",
+    "items_other": "Xác định sau {{count, number}} câu."
+  },
+  "disclaimer": "Cấp độ từ vựng Hangyul là thang đo riêng của chúng tôi. Đây không phải chứng nhận trình độ chính thức, cũng không phải số từ bạn biết."
+}

@@ -1,7 +1,7 @@
 {
   "letters": {
     "title": "Impara le lettere",
-    "alphabetTitle": "L'alfabeto hangul",
+    "alphabetTitle": "L’alfabeto hangul",
     "alphabetCaption": "lettere imparate",
     "complete": "Imparata",
     "resume": "Continua"
@@ -12,7 +12,7 @@
     "unit-1": {
       "title": "Sei vocali per cominciare",
       "goal": "Ogni sillaba coreana ha bisogno di una vocale. Queste sei sono le più semplici.",
-      "body": "L'hangul è un alfabeto, non un insieme di disegni. Le lettere sono 40, sono state pensate per impararle in fretta, e adesso ne impari sei.",
+      "body": "L’hangul è un alfabeto, non un insieme di disegni. Le lettere sono 40, sono state pensate per impararle in fretta, e adesso ne impari sei.",
       "points": [
         "Le lettere si raggruppano in blocchi quadrati, e ogni blocco è una sillaba.",
         "Una vocale è una linea in piedi oppure una linea sdraiata — è questo a decidere dove va nel blocco.",
@@ -39,14 +39,14 @@
     },
     "unit-5": {
       "title": "Leggere altri blocchi",
-      "goal": "Compresa l'unica lettera che non fa alcun suono."
+      "goal": "Compresa l’unica lettera che non fa alcun suono."
     },
     "unit-6": {
       "title": "Aggiungere un suono i",
       "goal": "Un tratto in più trasforma ㅏ in ㅑ. Vale allo stesso modo per tutte e quattro."
     },
     "unit-7": {
-      "title": "Un soffio d'aria",
+      "title": "Un soffio d’aria",
       "goal": "ㅊ ㅋ ㅌ ㅍ sono lettere che già conosci, con un tratto in più."
     },
     "unit-8": {
@@ -137,7 +137,7 @@
     "outcome": "{{practised, number}} esercitate · {{firstTry, number}} venute subito · {{comingBack, number}} torneranno presto",
     "blank": "spazio",
     "optionsLabel": "Risposte",
-    "cannotUseAudio": "Non puoi usare l'audio?",
+    "cannotUseAudio": "Non puoi usare l’audio?",
     "matchPickWord": "Scegli una parola coreana",
     "matchPickMeaning": "Ora scegli il suo significato",
     "showHint": "Dammi un indizio",
@@ -162,7 +162,7 @@
       "build": "Componi la parola",
       "match": "Abbina ogni parola al suo significato"
     },
-    "nothingDue": "Adesso non c'è niente da ripassare.",
+    "nothingDue": "Adesso non c’è niente da ripassare.",
     "modesEmpty": "Oggi niente in queste modalità.",
     "answerIs": "{{word}} vuol dire «{{meaning}}».",
     "showMoreHint": "Un altro indizio",
@@ -194,7 +194,7 @@
     "note": "Non devi impararle a memoria. Ascoltale, e cominceranno a suonarti normali.",
     "name": {
       "tensing": "Un secondo suono più stretto",
-      "aspiration": "Un soffio d'aria",
+      "aspiration": "Un soffio d’aria",
       "nasal": "Un suono nasale morbido",
       "lateral": "ㄴ e ㄹ insieme",
       "palatal": "ㄷ e ㅌ prima di 이",
@@ -218,7 +218,7 @@
     "times_one": "Sbagliata {{count}} volta",
     "times_other": "Sbagliata {{count}} volte",
     "clear": "Ho sistemato",
-    "noneOfKind": "Qui non c'è niente al momento.",
+    "noneOfKind": "Qui non c’è niente al momento.",
     "emptyTitle": "Ancora nessun errore",
     "emptyBody": "Quando qualcosa ti sfugge finisce qui, così puoi rimetterlo a posto.",
     "emptyCta": "Vai al ripasso"
@@ -233,7 +233,7 @@
   },
   "nextStep": {
     "title": "Pronto per il passo successivo",
-    "body": "Adesso sai leggere l'hangul. Il parlato e la preparazione al TOPIK proseguono su Hangyul.",
+    "body": "Adesso sai leggere l’hangul. Il parlato e la preparazione al TOPIK proseguono su Hangyul.",
     "cta": "Continua su Hangyul",
     "rowTitle": "Continua su Hangyul",
     "rowBody": "Parlato e TOPIK, quando te la senti"

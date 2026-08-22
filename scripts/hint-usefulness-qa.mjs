@@ -31,6 +31,11 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { loadCorpusForNode } from './lib/corpus.mjs';
+
+// The corpus is fetched, not imported. See `scripts/lib/corpus.mjs`.
+await loadCorpusForNode();
+
 import { buildExercise } from '../apps/web/src/features/review/exercises.ts';
 import { usableHints } from '../apps/web/src/features/review/hints.ts';
 import { VOCABULARY, getWord } from '../apps/web/src/data/vocabulary.ts';

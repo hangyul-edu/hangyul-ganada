@@ -1,0 +1,37 @@
+{
+  "title": "Nível de vocabulário",
+  "row": {
+    "body": "Descubra aproximadamente onde está o seu vocabulário coreano.",
+    "taken": "Seu último resultado: nível {{level}}"
+  },
+  "intro": {
+    "title": "Onde está o seu vocabulário coreano?",
+    "body": "Um conjunto curto de perguntas que fica mais difícil ou mais fácil conforme você responde, para situar você sem fazer centenas delas.",
+    "length": "Cerca de 3–6 minutos, de 18 a 36 perguntas.",
+    "noHelp": "Sem dicas, e as respostas não aparecem durante o teste.",
+    "noProgress": "Nada aqui muda suas lições, sua sequência ou sua revisão.",
+    "start": "Começar o teste",
+    "retake": "Fazer de novo",
+    "previous": "Da última vez você ficou no nível {{level}}."
+  },
+  "progress": "{{asked, number}} de no máximo {{most, number}}",
+  "ask": {
+    "meaning": "O que esta palavra significa?",
+    "produce": "Qual palavra significa isto?",
+    "context": "Qual palavra completa a lacuna?"
+  },
+  "optionsLabel": "Respostas",
+  "unknown": "Não sei",
+  "loading": "Preparando as perguntas…",
+  "unavailable": "O teste precisa de conexão na primeira vez que você o abre.",
+  "result": {
+    "label": "Nível de vocabulário Hangyul",
+    "of": "de {{levels, number}}",
+    "band": "Provavelmente entre {{low, number}} e {{high, number}}.",
+    "words": "Nesse nível, costuma-se reconhecer as {{count, number}} palavras coreanas mais comuns.",
+    "items_one": "Definido em {{count, number}} pergunta.",
+    "items_many": "Definido em {{count, number}} perguntas.",
+    "items_other": "Definido em {{count, number}} perguntas."
+  },
+  "disclaimer": "O Nível de vocabulário Hangyul é a nossa própria escala. Não é uma certificação oficial de proficiência nem uma contagem das palavras que você conhece."
+}

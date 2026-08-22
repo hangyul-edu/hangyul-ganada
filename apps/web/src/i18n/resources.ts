@@ -35,6 +35,7 @@ export const NAMESPACES = [
   'vocabulary',
   'activity',
   'settings',
+  'levelTest',
   'errors',
 ] as const;
 
@@ -64,9 +65,22 @@ import handwritingEn from '../locales/en/handwriting.json';
 import vocabularyEn from '../locales/en/vocabulary.json';
 import activityEn from '../locales/en/activity.json';
 import settingsEn from '../locales/en/settings.json';
+import levelTestEn from '../locales/en/levelTest.json';
 import errorsEn from '../locales/en/errors.json';
 
-const ENGLISH: LocaleResources = {
+/*
+ * Typed as complete rather than partial, so this cannot fall behind
+ * `NAMESPACES` again.
+ *
+ * It did once: `levelTest` was added to the list and not to this object, and
+ * because English is the end of every fallback chain the result was not a
+ * missing-translation warning — it was `humanizeKey` rendering the *key*.
+ * "Vocabulary Level" became "Title", in every language, and nothing failed:
+ * `i18n:check` compares locale directories against each other and all 32 of
+ * them had the file. `Record` rather than `Partial<Record>` turns the next one
+ * into a compile error.
+ */
+const ENGLISH: Record<Namespace, Bundle> = {
   common: commonEn,
   navigation: navigationEn,
   home: homeEn,
@@ -75,6 +89,7 @@ const ENGLISH: LocaleResources = {
   vocabulary: vocabularyEn,
   activity: activityEn,
   settings: settingsEn,
+  levelTest: levelTestEn,
   errors: errorsEn,
 };
 

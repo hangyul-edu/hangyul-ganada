@@ -213,14 +213,18 @@ a build's own record of itself is not evidence about the file.
 | Words with any verified relation | 245 of 2,581 (9.5%), 272 relations | 243 |
 | Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
 | Words whose taught sense is pinned by exact string | 11, now beside a `senseId` on all 2,581 | 11 |
-| Web unit (`vitest`) | **699** (42 files) | 691 |
+| Web unit (`vitest`) | **705** (43 files) | 699 |
+| Hangyul Vocabulary Level Test | **10,539 items over 30 levels**; MAE 1.27, 97.1% within ±3, 18–36 items | specified, not built |
+| Languages whose register was inconsistent across screens | **0**, enforced | 5, never measured |
 | Handwriting core (`vitest`) | **96** (5 files) | 96 |
-| End-to-end (`playwright`) | **276** (138 × 2 projects) | 268 |
+| End-to-end (`playwright`) | **278** (139 × 2 projects) | 276 |
 | Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting **false-reject / false-accept** | **0.28% / 0.28%** — and Pretendard, the default face, **0.42% / 0.00%** | 0.21% / 0.78% overall, 1.04% / 0.55% on Pretendard |
-| First load | **387.8 kB gz of a 460 kB budget** (84%) | 387.3 kB |
-| Word-corpus bundle | 171.3 kB gz of a 220 kB budget (78%) | 171.3 kB |
-| Everything precached | **472.9 kB gz of a 900 kB budget** (53%) | 470.7 kB |
+| First load | **219.0 kB gz of a 460 kB budget** (48%) | 387.8 kB (84%) |
+| Word-corpus bundle | **none — the corpus is not a JavaScript chunk any more** | 171.3 kB gz |
+| Corpus a learner waits for before first paint | **45.7 kB gz of a 64 kB budget**, and **the same at 10,000 words** | the whole corpus, in the first load |
+| Corpus forecast at 10,000 words | 776.8 kB gz of a 900 kB budget, background and precached | 754.6 kB of 220 kB — **343%**, in the first load |
+| Everything precached, now including `public/corpus` | **877.2 kB gz of a 1400 kB budget** (63%) | 472.9 kB of 900 kB, corpus not included |
 | Delivered APK/AAB built from | **HEAD**, asserted by a gate that did not exist before | `557edfb`, one commit behind |
 | Signed APK certificate, read from the signing block | `157a2bb1…debc`, v2 + v3, valid to 2053 | same identity |
 | Dictionary chunks reachable inside the delivered APK | **76 of 76**, verified by unpacking it | 0 of 76 on the first attempt — see §2.2 |
@@ -527,10 +531,12 @@ because it is the cheapest item on it and the only one that makes every other
 improvement in this report invisible to the person who installs the app.
 **I-01**.
 
-**1 · The corpus is a quarter of its stated size, and its delivery does not
-scale.** 2,581 words against a 10,000 target, and the bundle forecast says the
-current mechanism could not carry 10,000 anyway — 663.7 kB gz against a 220 kB
-budget, **302%**. Unchanged this cycle; §13.4 costs the three remedies.
+**1 · The corpus is a quarter of its stated size.** 2,581 words against a
+10,000 target. **The delivery half of this is fixed** — the corpus is fetched in
+priority bands, the first load halved to 219 kB, and the part of it that is
+corpus is a flat 45.7 kB at any corpus size (§13.4, I-05). What is left is
+authoring 7,419 words, and nothing about the architecture stands in its way any
+more.
 
 **2 · Word meanings exist in ten of the thirty-two languages.** 2,581 × 22 is
 about 57,000 lines, and writing them without a speaker of each language would
@@ -783,6 +789,7 @@ offline, no signup, nothing to breach, no running cost — and its worst risk
 │
 ├── /me                  My Learning — stats, language, goals, voice, typeface…
 │   ├── /me/activity             Learning activity — calendar, streak, insights
+│   ├── /me/level-test           Hangyul Vocabulary Level Test (1–30, adaptive)
 │   ├── /me/language             Choose a language (32, native names, search)
 │   ├── /me/privacy              Privacy
 │   └── /me/legal                Legal & Licences
@@ -1770,53 +1777,150 @@ The relations row is the remaining content gap and it is not a schema gap: the
 field exists, the sources are conservative, and 243 of 2,581 is what two
 licensed sources actually state.
 
-## 13.4 The 10,000-word strategy — **PARTIALLY WORKING**
+## 13.4 The 10,000-word strategy — **the delivery is now built**
 
 The intent is a corpus deep enough that the app never runs out, surfaced a
-handful of words a day rather than as a list. **The surfacing is built and
-works. The corpus is at 26% of target.**
+handful of words a day rather than as a list. **The surfacing works, the corpus
+is at 26% of target, and the delivery path for the rest is no longer the
+blocker it was.**
 
-**And the delivery path for the rest is unsolved.** `npm run bundle:budget`
-forecasts the corpus at 10,000 headwords as **663.7 kB gzipped against a 220 kB
-budget — 302%**, from a measured 68 B/word. The forecast is printed but *not
-enforced*, and is gated at 4,000 headwords. Today's corpus is
-171.3 kB gz — 78% of that budget — and still ships in the **first load**. Growing it without splitting
-would roughly quadruple the initial download.
+The previous report said this section's remedy was "architecture, not a bigger
+number", listed three candidate architectures, costed each against the code, and
+then explained why none of them was done. That explanation is left in place
+below, because the decision it describes was the right one at the time and
+because the work that has now happened is the *first* of the three options it
+named. This is what changed.
 
-**RECOMMENDED:** decide the delivery mechanism — per-category chunks, or an
-on-demand fetch with an offline-first cache — *before* authoring more words,
-because the choice changes the data shape.
+### The corpus is fetched in bands
 
-### Why it was not done this cycle, stated rather than implied
+`scripts/content/split_corpus.py` cuts the generated corpus into bands under
+`apps/web/public/corpus/`: the shared tables, then band 1 of 600 words and bands
+of 800 after it, each with the matching slice of all ten languages' meanings,
+every file named by its own content hash. `data/corpus.ts` fetches them — the
+tables and band 1 awaited inside the launch screen's existing 900 ms, the rest
+in the background once the learner is looking at something.
 
-It was looked at properly and left alone, and the reasoning belongs in the
-report rather than in a commit nobody reads.
+```
+  first load                      219.0 kB / 460.0 kB     was 437 kB
+  corpus, first paint              45.7 kB /  64.0 kB
+  corpus, first paint at 10,000    45.7 kB /  64.0 kB     flat, by construction
+  corpus, whole                   200.5 kB / 900.0 kB
+  corpus, whole at 10,000         776.8 kB / 900.0 kB     forecast
+```
 
-The three remedies the budget script names were each costed against the code:
+The row that matters is the third. Band 1 is a fixed count of words, so the
+fetch a learner waits behind costs the same at ten thousand headwords as at two
+and a half thousand. The forecast that used to grow does not move any more, and
+that flat line is the finding — not the halved first load, which is only this
+release's share of it.
+
+### The cut is on the same key the app reads the corpus in
+
+This is the part that is load-bearing and the part that would have been easy to
+get wrong. Bands are cut on `difficulty_score` and then the headword — exactly
+the order `vocabularyByPriority` hands the corpus out in, and exactly the order a
+category is browsed in.
+
+That makes a partly-loaded corpus a **prefix** of the curriculum rather than a
+subset of it. Every list built from it grows at the end instead of being
+reshuffled, so a category gains sets without renumbering them and `vocab-food-2`
+cannot quietly become a different five words while a learner is half way through
+it. Cut on anything else — the initial consonant, the category, the file order —
+and a word from band 3 belongs in the middle of a set built from band 1.
+
+`data/corpus.test.ts` asserts it rather than trusting it: it rebuilds every
+study set from the finished corpus in one pass and requires the answer to equal
+what four incremental passes produced.
+
+### What it cost the rest of the code: nearly nothing, on purpose
+
+`data/vocabulary.ts` is now a live registry. `VOCABULARY` is one array that
+grows and every derived structure — the id and headword maps, the categories,
+the study sets — is filled in place as bands land. Nothing rebinds, so roughly
+thirty consumers kept reading it synchronously and were not touched.
+
+Four places read the corpus *whole* and did have to change: browsing, search,
+the progress summary and the sound-change examples. They use `useCorpusMemo`,
+which is `useMemo` plus "and when a band arrives". Search says **"still loading
+the rest of the vocabulary"** rather than "nothing matches" while it is
+incomplete, because "nothing matches" is a claim and it is only true once the
+corpus is all there. Every "x of y words" reads `corpusTotal()` from the
+manifest, so the denominator is right on the first frame instead of climbing
+while the learner watches.
+
+### The defect this shook out, which is the useful part
+
+The launch screen is an **overlay**, not a gate. The route underneath mounts
+immediately, behind the picture. That was invisible while the corpus was a
+static import — it was there before the first render by definition — and it
+stopped being invisible the moment the corpus arrived a beat later.
+
+The Legal screen reads `CONTENT_SOURCES` once at render and has no reason to
+look again. On a cold start it rendered against an empty corpus and stayed that
+way: **one licence credit where three belong**, on the screen whose entire job is
+to show them. Nothing threw, nothing logged, no test failed until the end-to-end
+suite opened the page on a cold load. Five of the six journey failures that
+found it had the same cause on different screens.
+
+The fix is not a subscription on each of those screens, because the next screen
+somebody writes will forget it. The router waits for the corpus core, and the
+launch screen is what the learner sees while it does. No route renders before
+there is a corpus to read.
+
+### What is still true from the previous cycle
+
+The other two options in the original costing are still uncosted work and still
+unnecessary. Shipping only the fields the learning path reads was measured at
+~30 kB for a partial, asynchronous `VocabularyWord` across fifteen call sites;
+sharding by the session's plan is the largest change of the three and buys
+nothing that banding has not already bought.
+
+The gate changed with the architecture. `LAZY_REQUIRED_HEADWORDS = 4_000` is
+gone, because there is nothing left for it to gate. What `check-bundle-budget`
+enforces instead is that a `word-corpus-*.js` chunk does not reappear in the
+eager graph and that `public/corpus` is present in the build — either would mean
+the corpus had come back into the bundle, which is the thing the old gate
+existed to prevent.
+
+**And one budget was re-derived rather than raised, which deserves saying
+plainly.** The whole-corpus ceiling was 220 kB and 220 kB was a first-load
+figure: it was the most of a 460 kB first-load budget the corpus could take when
+every byte of it was parsed before the home screen painted. What that row
+measures now is a background download that nothing waits for and that the
+service worker keeps for good. 900 kB is what that may fairly cost for a
+ten-thousand-word teaching corpus with a language attached; for scale, the
+dictionary's search index alone is 449 kB on the same terms. The property the
+old number protected — *a learner does not wait for the corpus* — is now
+protected by the first-paint row, which is stricter, enforced at both sizes, and
+cannot be satisfied by content happening to shrink.
+
+**What is still not done is the content**: 7,419 words. That is I-04, it is
+authoring, and it is now the only thing between the product and its stated
+target.
+
+### The original costing, kept
+
+The three remedies the budget script named were each costed against the code
+before any of them was attempted, and the reasoning is worth keeping next to the
+one that was chosen:
 
 * **Drop the corpus out of the eager module graph.** `LearnerProvider` builds
   today's plan from `vocabularyByPriority()` and the home screen renders that
   plan, so the corpus is needed *before the first screen paints*. Making it
   lazy is not a bundler setting; it is a loading state on the home screen and a
-  change to what the app promises on a cold start. That is a product decision,
-  and §62 of the brief lists the home screen's behaviour among the things not
-  to reverse.
+  change to what the app promises on a cold start. — **This is what was built.**
+  The loading state turned out to be one the product already had: the launch
+  screen. The plan waits for the whole corpus rather than band 1, because a plan
+  is built once and *stored*, and one built from the first 600 words would give
+  an advanced learner a short day rather than a late one.
 * **Ship only the fields the learning path reads.** Measured field by field:
   dropping provenance saves 2.1 kB gzipped, difficulty 8.4 kB, the frequency
   triple 22 kB. All of them are consumed inside `data/vocabulary.ts` into one
   normalised `VocabularyWord`, so splitting them makes that shape partial and
-  asynchronous across fifteen call sites, for ~30 kB.
-* **Shard by the session's plan.** The largest change of the three, and the
-  only one that actually scales to 10,000.
-
-At 2,581 words the first load is at 95% of its budget with every budget green,
-and the corpus is 77% of its own. The gate that forces the work exists and is
-enforced: `LAZY_REQUIRED_HEADWORDS = 4_000` in `check-bundle-budget.mjs` fails
-the build at the commit where the current architecture becomes the wrong one.
-Doing the refactor now would be a large, risky change to the whole data layer
-for a benefit the product does not yet need; doing it at 4,000 is the same work
-with a reason. **What would be wrong is authoring 7,419 more words first**, and
-that is exactly what the gate prevents.
+  asynchronous across fifteen call sites, for ~30 kB. — Not done, and now
+  unnecessary.
+* **Shard by the session's plan.** The largest change of the three. — Not done,
+  and now unnecessary.
 
 ## 13.5 The dictionary layer — **NEW this cycle, and it is not the corpus**
 
@@ -1908,6 +2012,88 @@ same size. `perf:dictionary` forecasts 25,000 hostile rows at 7.5 ms and 50,000
 at 13.2 ms, and the answer past that is an inverted index or a worker, not a
 faster scan. Tracked as **I-32**.
 
+## 13.6 The Hangyul Vocabulary Level Test — **BUILT this cycle**
+
+The previous report recorded this as specified and not built, and said why:
+"a half-built assessment that reports a level it cannot justify is worse than no
+assessment". It is built now, with the justification attached.
+
+### The scale, and the mistake that was corrected before it shipped
+
+The Hangyul Vocabulary Level is 1–30, cumulative and non-linear:
+
+| Level | ≈ words | Level | ≈ words | Level | ≈ words |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 147 | 11 | 2,166 | 21 | 6,163 |
+| 5 | 735 | 15 | 3,490 | 25 | 8,055 |
+| 10 | 1,835 | 20 | 5,690 | 30 | 10,635+ |
+
+The first attempt at this cut the 2,581-word teaching corpus into thirty equal
+bands and called each band a level. That is not a proficiency scale; it is a
+progress bar with thirty notches, and it would have told a learner who knows
+2,600 words that they had finished Korean. The 2,581 taught words are used
+instead as **calibrated anchors inside** a scale that goes well past them,
+alongside quality-gated dictionary entries, all ranked by the same
+`frequency.measure` the corpus itself is ordered by.
+
+### The bank
+
+`scripts/content/build_level_test.py` writes **10,539 items across the 30
+levels** — 300 to 415 each, 345 kB gzipped — to `public/level-test/`,
+content-hashed and fetched only when somebody opens the test. It is not in the
+bundle and not on any critical path.
+
+Items are Korean→meaning, meaning→Korean, and context. An anchor has to be
+Hangul, one to four syllables, a noun, verb, adjective or adverb, and carry a
+gloss between 3 and 60 characters that is not a grammatical form page — the
+filter that keeps *"informal polite present indicative form of 하다"* out of a
+vocabulary test.
+
+### The scoring, and what the simulation actually says
+
+A 3PL model with a guessing floor of ¼, EAP over a grid, Fisher-information item
+selection, 18 to 36 items, stopping when the standard error is under 1.6 levels.
+**"I don't know" is an answer**, not a skip, and the model reads it as cleaner
+evidence than a wrong guess — a learner who admits they do not know a word has
+told you more than one who picked C.
+
+`npm run leveltest:qa` runs 200 simulated sittings at each of the 30 levels
+against the real bank:
+
+```
+  mean absolute error   1.27 levels
+  within ±3 levels      97.1%
+  within ±5 levels      99.9%
+  items asked           18–36, median 32
+```
+
+The hardest levels to place are the two ends, and the bias says why: level 30
+comes out 2.07 low and level 1 comes out 1.49 high. That is the scale's ceiling
+and floor doing what ceilings and floors do — there is nothing above 30 to
+distinguish a very strong learner from an extremely strong one — and it is
+reported here rather than averaged away.
+
+**What this measures is the machinery, not people.** A simulation says the
+estimator recovers a level it was given; it says nothing about whether Level 14
+means what a Korean teacher would mean by it. That needs learners.
+
+### What it deliberately does not do
+
+No listening, no handwriting, no hints, no answer shown during the test, no
+running score. The progress counter says how far through, never how well.
+
+It writes `settings.level_test` and **nothing else**. An end-to-end test takes
+the whole assessment by answering "I don't know" 18 times, then compares every
+other IndexedDB store before and after and requires them to be identical: no
+progress row, no review memory, no session, no streak day.
+
+The result screen says, in all 32 languages, that this is our own scale, that it
+is not an official proficiency grade, and that it is not a count of the words
+you know. It names no examination board — `copy:audit` forbids that, on the
+argument that a disclaimer naming an exam teaches the acronym to people who had
+not thought of it, and that argument still holds.
+
+
 ---
 
 # 14. Vocabulary content quality
@@ -1924,7 +2110,7 @@ faster scan. Tracked as **I-32**.
 | `audio:qa` | **10,550 clips decoded end to end**, 48.9 MB, 0 errors, 0 warnings, in 2m49s |
 | `dictionary:qa:check` | 26,675 headwords, 34,869 senses, 76 chunks, every name a hash of its contents and every name ASCII |
 | `perf:dictionary:check` | 3.9 ms per keystroke phone-adjusted, 451 kB index — both inside budget |
-| `copy:audit:check` | 18,229 strings across 32 languages, 0 errors |
+| `copy:audit:check` | 19,266 strings across 32 languages, 0 errors |
 
 The four content warnings are loanwords whose translations are the same word in
 Latin script — 호텔 → *hotel*, 골프 → *golf*, 위스키 → *whisky*, 요가 → *yoga*.
@@ -3171,7 +3357,7 @@ has ı; Thai has อือ — where the English has to reach for "the o in song
 ## 23.7 Naturalness, as distinct from coverage
 
 **PARTIALLY VERIFIED, and the honest answer is in a file of its own.**
-`copy:audit:check` passes over **17,672 strings in thirty-two languages** with 0
+`copy:audit:check` passes over **19,266 strings in thirty-two languages** with 0
 errors, and `i18n:check` reports 100% for all thirty-two — but both check
 structure. Neither can tell whether a sentence reads well to someone who grew up
 speaking the language.
@@ -3188,6 +3374,66 @@ contradicts its own example sentence — 열 glossed "fever" beside "please coun
 ten", 찍다 glossed "to take a photo" beside "I stamped it with a seal" — found by
 translating them, which forces a reading of every gloss against its example.
 Those are English-side defects that propagate into every language. See §14.
+
+### The editorial pass that comes before a native review — **NEW this cycle**
+
+`npm run locale:editorial` is new, and it exists because everything above
+measures structure. It reads for four things nothing else looked at, and it
+found seventy-eight real defects.
+
+**Register.** Twenty-one of the shipping languages choose between a familiar and
+a polite second person, and the choice has to be the same on every screen — a
+learner addressed as *du* in the lesson and *Sie* in the settings is reading two
+products. It counts the markers of each and **fails the build** on a language
+that uses both, because there is no reading of a mixed register that is right.
+It found five: German (12 strings, five of them pre-existing — the home screen's
+own one-line description of the product was in the polite form), Greek (3),
+Indonesian (6), Romanian (2). All are now consistent with the form that language
+already used everywhere else.
+
+**One English sentence, two translations.** Where two keys hold the same English
+string, their translations should match. The Level Test was asking "What does
+this word mean?" in wording that differed from the reading exercise's in six
+languages; unified.
+
+**Typography.** Seventy-one straight apostrophes in Italian, French, Turkish,
+Dutch and Filipino, on pages whose other sentences use the typographic one. All
+replaced.
+
+**A label that became a paragraph.** A short English label translated several
+times longer, which is what breaks a layout at 200% text.
+
+#### Writing it found the writer out first, and that is the part worth keeping
+
+Its first run reported **seven** mixed-register languages, and three of the seven
+were its own fault.
+
+JavaScript's `\b` is defined against `\w`, which is ASCII. In *prêtes* the `ê`
+is not a word character, so `\btes\b` matched the last three letters and the
+French for "{{count}} revisions ready" was reported as addressing the reader
+familiarly. Czech `ty` is the nominative *you* and also the plural demonstrative,
+so "under those other two" — about a syllable block — counted as addressing the
+reader. Spanish `su` is the polite possessive and the ordinary third-person one,
+so "to its right", about a letter, did too. German marks politeness by
+*capitalising* an ordinary pronoun, so a sentence beginning "Sie ist es, die
+deine Schrift…" — a sentence about the stroke order, in the familiar register —
+counted as polite because of where the full stop before it fell.
+
+Every pattern now goes through a Unicode-aware boundary; German and Italian are
+read with sentence-initial capitals lowered; and the three ambiguous markers are
+named and excluded with the reason written next to each. **A linguistic check
+that cries wolf is worse than no check**, because it is the kind people switch
+off — which is the same lesson the TOPIK rule below taught, arrived at from the
+other direction.
+
+#### What it still cannot do
+
+Nothing here reads a sentence for whether it is *good*. Register consistency is
+not naturalness and an apostrophe is not a register. Fifteen findings are left
+deliberately as warnings rather than fixed: they are places where two screens
+word the same idea differently, and only somebody who reads the language can say
+which is right — or whether both are. That list is where a native reviewer
+should start, and it is **I-39**, now partial rather than open.
 
 One check was loosened this cycle and it is worth recording why. The copy audit
 forbids the string `TOPIK`, because this product does not teach to that exam. It
@@ -3597,7 +3843,7 @@ prompted them:
 | Are jamo proportions pedagogically trustworthy? | They were not. 30 of 40 were off a fallback face. §12.5 |
 
 **Pictographs in the product: zero.** All 32 locales' copy was scanned for emoji
-and symbol ranges — 0 of 18,229 strings. The source outside comments carries
+and symbol ranges — 0 of 19,266 strings. The source outside comments carries
 five characters in those ranges and all five are the same `→`, used to mean
 *becomes*: 있다 → 읻따 on the sound-changes screen, and a word beside the form
 its example writes it in. That is a word, not an ornament.
@@ -3714,42 +3960,53 @@ card previews 가나다 / 한글 in its own face.
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
-`bundle:budget:check` against the build from `2516b58` — every budget met:
+`bundle:budget:check` against the build in this delivery — every budget met:
 
 | | Now | Budget | Used |
 | --- | --- | --- | --- |
-| First load | 411.5 kB gz, 7 chunks preloaded by `index.html` | 460 kB | 89% |
-| Largest locale pack | 40.5 kB gz (of 9) | 44 kB | 92% |
-| Largest route chunk | 12.3 kB gz | 24 kB | 51% |
-| Stroke assets | 5.0 kB gz, 1 chunk, loaded with the first lesson | 12 kB | 42% |
-| **Word corpus** | **194.8 kB gz** — 2,581 headwords, still in the first load | 220 kB | 89% |
-| Everything precached | 500.2 kB gz, 69 of 139 emitted files | 900 kB | 56% |
-| *Forecast at 10,000 taught words* | *754.6 kB gz, from a measured 77 B/word* | *220 kB* | ***343%** — not enforced, gated at 4,000 headwords* |
+| First load | 219.0 kB gz, 6 chunks preloaded by `index.html` | 460 kB | 48% |
+| **Corpus, first paint** | **45.7 kB gz** — tables + band 1 (600 words) + its meanings | 64 kB | 71% |
+| *Corpus, first paint at 10,000 taught words* | *45.7 kB gz — **the same band 1***  | *64 kB* | *71%* |
+| Corpus, whole | 200.5 kB gz — 2,581 headwords in 4 bands, one language | 900 kB | 22% |
+| *Corpus, whole at 10,000 taught words* | *776.8 kB gz, from a measured 80 B/word* | *900 kB* | *86% — a forecast, not enforced* |
+| Largest route chunk | 13.1 kB gz | 24 kB | 55% |
+| Stroke assets | 5.1 kB gz, 1 chunk, loaded with the first lesson | 12 kB | 43% |
+| Everything precached | 877.2 kB gz, 70 of 131 emitted files **plus `public/corpus`** | 1400 kB | 63% |
 | **Dictionary — not in any of the above** | 14 MB on disk, 451 kB gzipped for the index | — | fetched from `public/`, never imported |
 
-Largest single files: `word-corpus` at 171.3 kB gz (918 kB raw), `index` at
-100.1 kB, `react` at 73.8 kB, then the Thai, German, French, Vietnamese and
-Spanish vocabulary packs at 38–41 kB each.
+**The first load halved, from 411.5 kB to 219.0 kB**, and the reason is the whole
+of §13.4: the corpus is not a JavaScript chunk any more. There is no
+`word-corpus` file in this build, and no locale pack either — both are JSON
+under `public/corpus/`, fetched.
 
-**The stroke-assets row is the one to notice.** It was 22.1 kB gz against a 32 kB
-budget when the demonstration was a rasterised cut; drawing the strokes directly
-made it **5.0 kB against 12 kB**, and the budget was lowered with it rather than
-left generous.
+**The row to read twice is the third one.** It is a forecast, and it does not
+move. Band 1 is a fixed 600 words, so what a learner waits behind before the
+home screen paints costs the same at ten thousand headwords as at two and a half
+thousand. Every other forecast in this report's history grew with the content;
+this one is flat by construction, which is the difference between a budget that
+will one day fail and an architecture that will not.
 
-The precache budget was raised twice in an earlier release for the same two
-languages — 800 → 840 kB when Vietnamese and Thai arrived at 500 words each, and
-840 → 900 kB when their copy was finished to all 2,581. **Two raises in one
-release was the finding, not the kilobytes**, and it is worth keeping in the
-record now that the number has fallen to 52% of that raised budget: the ceiling
-was moved to fit the content, and then the content moved off the critical path
-and made the move unnecessary. The service worker precaches every locale's word
-copy so a learner who installs and goes offline before opening a word screen
-still has their own language; that is right, and it does not scale — the total
-grows by a locale pack per language and by the whole corpus per word. The
-architecture that fixes it is the same one §13.4 is about.
+The precache row went up, from 500.2 kB to 877.2 kB, and the budget with it —
+900 kB to 1400 kB. That is not a regression and it is not a raise to fit: the
+row now measures two different things, the emitted JavaScript **and**
+`public/corpus`, because the worker precaches every band in all ten languages
+out of the corpus manifest. The corpus has to be on the device for the app to
+teach a word on a plane. What changed is that it is no longer on the device *by
+being parsed before the home screen paints*.
 
-The word corpus is in the **first load**, not a lazy chunk. At today's size that
-is affordable; at the target size it is not (§13.4, I-05).
+Largest single files, all of them code now: `index` at 103.1 kB gz (297 kB raw),
+`react` at 73.8 kB, the stylesheet at 20.1 kB, `i18n` at 13.7 kB, then the
+Russian, Ukrainian, Greek and Tamil *interface* bundles at 12.5–13.1 kB each.
+
+**The stroke-assets row is still the one to notice.** It was 22.1 kB gz against a
+32 kB budget when the demonstration was a rasterised cut; drawing the strokes
+directly made it **5.1 kB against 12 kB**, and the budget was lowered with it
+rather than left generous.
+
+The earlier note about the precache budget having been raised twice for
+Vietnamese and Thai is now closed rather than merely recorded. It said the
+ceiling had been moved to fit the content and that the architecture which would
+make the move unnecessary was what §13.4 was about. That architecture is built.
 
 ### Search, now measured rather than inferred
 
@@ -3930,7 +4187,7 @@ that walk.
 
 | Question | Answer | Evidence |
 | --- | --- | --- |
-| Does it feel professionally made? | **Yes.** Consistent type, spacing and motion; no placeholder text anywhere; the empty states are written, not stubbed | 17,672 copy strings pass audit across 32 languages |
+| Does it feel professionally made? | **Yes.** Consistent type, spacing and motion; no placeholder text anywhere; the empty states are written, not stubbed | 19,266 copy strings pass audit across 32 languages |
 | Does it feel rushed? | **In two places.** Word Detail is one card and one example for 2,556 of 2,581 words, with a large empty area under it; the vocabulary quiz is still four options on a card | §15, §16.6, I-20, I-09 |
 | Is the purpose immediately clear? | **Yes, now.** Home opens with one sentence — *Learn Korean from the very first letter — Hangul, then the words you will actually use* — above a single Start now | walked |
 | Is anything confusing? | Not in navigation. The one confusion is what happens after the alphabet | §4.3, I-03 |
@@ -4122,26 +4379,26 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
-| **I-05** | Performance | **P1** | The taught corpus at 10,000 words is three and a half times the bundle budget | The delivery architecture cannot carry the stated plan | **OPEN** |
 | **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN** |
-| **I-37** | Product | **P1** | The adaptive Vocabulary Level Test (1–30) is specified and not built | A learner cannot find out where they stand. There is no way into the product for somebody who already knows some Korean, and no way for anybody to see progress expressed as anything but a count of words met. | **OPEN** |
-| **I-38** | Performance | **P1** | The learning corpus is still shipped whole, in every locale, on first load | None at 2,581 words. At the stated 10,000 the first load is three and a half times its budget, so the corpus cannot grow without the download growing with it. | **OPEN** |
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
 | **I-13** | Relations | **P2** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
-| **I-39** | i18n copy | **P2** | No editorial reading of the rendered interface in 31 of the 32 languages | Coverage is complete and quality is unmeasured. A learner in Tamil or Kazakh may be reading literal English syntax, an awkward register, or terminology that shifts between screens, and nothing in the repository would notice. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | **PARTIAL** |
+| **I-39** | i18n copy | **P2** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | **PARTIAL** |
 | **I-20** | Vocabulary | **P3** | The hand-written *More about it* block is on 25 words of 2,581 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them. | **PARTIAL** |
 | **I-31** | Handwriting | **P3** | On Gaegu, letters are still traced smaller than on the other five faces | A learner who picks the handwriting typeface traces letters that are smaller than the same letters in the same app a moment earlier. The quarter-of-the-square case is gone; a visible difference in size between Gaegu and the rest is not. | **PARTIAL** |
 | **I-01** | Release | **P0** | The shipped APK/AAB predate the current product code by one commit | Anyone installing the delivered binary today gets the previous stroke geometry and the retired video splash. The eight syllables re-measured in `e026697` — 구 오 밤 밥 옷 국 꽃 글 — render from the older table, and the launch screen is the MP4 clip the product has stopped shipping. | **RESOLVED** |
 | **I-02** | Repo | **P0** | A whole cycle's work was uncommitted when the artefacts were built | A fresh checkout does not contain what was shipped | **RESOLVED** |
 | **I-23** | Strokes | **P0** | The stroke demonstration showed ownership wedges at junctions and a polygonal ㅇ | ㅂ's uprights grew triangular spurs into crossbars that had not been written yet; ㅅ's first stroke grew a chunk of the second one's shoulder; ㅈ chipped into its own fork; ㅇ read as a lumpy ring rather than a circle. A learner watching stroke one of ㅂ could see a piece of stroke three already on the paper. | **RESOLVED** — supersedes I-14 |
+| **I-05** | Performance | **P1** | The taught corpus at 10,000 words no longer has to fit in the bundle | The delivery architecture can carry the stated plan. The first load halved to 219 kB and the part of it that is corpus — 45.7 kB — does not grow with the corpus at all. | **RESOLVED** |
 | **I-06** | Word Detail | **P1** | Longer explanations were English-only dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** |
 | **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covered 500 of 2,581 words | Past word 500 a vi/th learner read marked English | **RESOLVED** |
 | **I-08** | Content | **P1** | Entries whose gloss contradicted their own example | 열 read "fever" above a sentence about counting to ten | **RESOLVED** |
 | **I-34** | Handwriting | **P1** | The ㄱ taught beside a vowel had a leg a third too short | A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check. | **RESOLVED** |
 | **I-35** | Handwriting | **P1** | Every jamo proportion was measured off a fallback face, not off Pretendard | ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface. | **RESOLVED** |
+| **I-37** | Product | **P1** | The adaptive Hangyul Vocabulary Level Test (1–30) is built | A learner can now find out roughly where they stand in 3–6 minutes, and somebody who already knows some Korean has a way into the product that is not "start at ㄱ". | **RESOLVED** |
+| **I-38** | Performance | **P1** | The learning corpus is fetched in priority bands instead of shipped whole | The first load halved — 437 kB gzipped to 219 kB — and stopped growing with the curriculum. What a learner waits for before the home screen paints is now a fixed 46 kB whatever the corpus becomes. | **RESOLVED** |
 | **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **RESOLVED** |
 | **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
 | **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **RESOLVED** |
@@ -4164,9 +4421,9 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 <!-- issues:counts -->
 
-**Open — P0: 0 · P1: 5 · P2: 4 · P3: 0**
+**Open — P0: 0 · P1: 2 · P2: 3 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 25**
+**Blocked outside this repository: 1 · Partial: 4 · Resolved: 28**
 
 <!-- /issues:counts -->
 
@@ -4197,27 +4454,27 @@ way a reader can re-run.
 
 | ID | Evidence | Recommended fix |
 | --- | --- | --- |
-| **I-04** | `vocabulary:qa:check` reports the shortfall against the target. | Decide I-05 first, then author. Authoring into the current delivery model makes I-05 worse. |
-| **I-05** | `bundle:budget` forecasts 663.7 kB gzipped against a 220 kB budget from the measured 68 B/word. Not enforced; gated at 4,000 headwords. | Chunk the corpus by frequency band, split per locale, precache the shell and one locale and cache the rest on use. |
+| **I-04** | `vocabulary:qa:check` reports the shortfall against the target. Unchanged this cycle — no words were authored — but the order changed: authoring no longer makes a delivery problem worse, because there is no longer a delivery problem to make worse. | Author. I-05 was the reason to wait and it is resolved: the delivery architecture is built, the bands are generated from the corpus by `split_corpus.py`, and adding words changes the number of bands rather than the first load. |
 | **I-19** | Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3. | Complete the shipping vocabulary content for the remaining twenty-two locales. |
-| **I-37** | Nothing in `apps/web/src` matches `levelTest`, `LevelTest` or `level_test`. The requirement is a self-contained feature: an assessment bank separate from the learning corpus, adaptive item selection, 18–36 items in 3–6 minutes, Korean→meaning, meaning→Korean and context items, no listening, no handwriting, no hints, no answer reveal during the assessment, an explicit "I don't know", probabilistic scoring rather than a percentage, a persistent retakeable result that does not touch learning progress, all 32 locales, and simulation QA reporting MAE and the share of estimates within ±3 levels.  Not started in this pass. Recorded rather than attempted at the end of a release window, because a half-built assessment that reports a level it cannot justify is worse than no assessment. | Build it as its own feature with its own bank and its own simulation harness. The 1–30 scale and the item shapes are already specified; the work is the item bank, the adaptive selection and the scoring model. |
-| **I-38** | The dictionary layer is lazily chunked and the learning corpus is not: `vocabulary.json` and the locale packs are imported and land in the first load. `bundle:budget` forecasts 754.6 kB against a 220 kB budget at 10,000 headwords, and `LAZY_REQUIRED_HEADWORDS = 4_000` fails the build at the commit where the current architecture becomes the wrong one.  The three remedies were costed in §13.4 and the reasoning there still holds; what has changed is that the dictionary now demonstrates the pattern — a manifest, content-hashed chunks, a lazily built index — on 26,675 entries in production. The learning corpus needs the same treatment keyed on difficulty rather than on initial consonant, plus a loading state on the home screen, which is a product decision.  Not built in this pass. This is the architecture item, separate from the content item: **I-04 is the 7,419 missing words and this is the delivery for them.** | Chunk the corpus by difficulty band, fetch the learner's current band and the next one, cache after use — the shape `data/dictionary.ts` already proves. |
 | **I-12** | A consequence of having no account and device-local persistence. §24.6. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
 | **I-13** | `vocabulary:relations:qa`. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
 | **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
-| **I-39** | What exists is mechanical and passes: `i18n:check` at 100% for 565 keys × 32, `copy:audit` clean on 18,229 strings, `qa:locales` rendering 256 screens with 0 findings for clipping, sideways scroll, untranslated English and unnamed controls. None of that reads the language.  This pass added strings in 32 languages and reviewed them as it went, and it measured one genuinely linguistic property end to end — whether a hint gives its answer away — which found Thai unchecked and German compounds leaking. That is a long way from an editorial pass over Home, Letters, Words, Review, My Learning, Word Detail, hints, errors, empty states and accessibility labels in every language.  Distinct from I-17, which is native-speaker review. This is the editorial pass that should happen before one. | A reading pass per locale, screen by screen. It is people, not engineering. |
 | **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
 | **I-10** | The recommended fix is in: every entry carries a canonical `senseId` derived from its English gloss — 2,581 of 2,581, no collisions — and English is the arbiter because it was the one locale already single-sense throughout. 103 separator-split glosses were read against the sentence each card actually asks; 35 named a sense the sentence never demonstrates and were trimmed, ten cards moved sense outright, and three illustrations moved with them. The remaining 38 are classified in `REVIEWED_SPLIT` and `vocabulary:sense:qa:check` now fails on a split gloss that is not on that list, and on a listed one that has stopped being split. Both directions are negative-tested.  What is still unguarded: a gloss merged with a **comma** rather than a semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand — "coche, té" for 차 is now "coche" — but the rule cannot be widened to catch a new one. Measured over the corpus, "this locale has more comma-separated parts than the English" flags 228 glosses and is dominated by descriptive commas: 얼굴 is "눈, 코, 입이 있는 앞부분", one definition containing a list, not two senses. | Nothing automatic remains that is worth having. The decidable half is done and gated; the rest is a reading pass over comma-bearing glosses, which is content work. |
+| **I-39** | `npm run locale:editorial` is new, and it reads for four things nothing else looked at:  * **Register.** Twenty-one of the shipping languages choose between a familiar and a polite second person, and the choice has to be the same on every screen. It counts the markers of each and fails the build on a language that uses both. It found **five languages mixing them** — de (12 strings), el (3), id (6), ro (2), and, once its own false positives were fixed, none in cs. All are now consistent with the register that language already used. * **One English sentence, two translations.** Where two keys hold the same English string their translations should match. Found the Level Test asking "What does this word mean?" in wording that differed from the reading exercise's in six languages; unified. * **Typography.** 71 straight apostrophes in languages whose English source writes the typographic one; all replaced. * **A label that became a paragraph.** A short English label translated several times longer, which is what breaks a layout at 200% text.  Writing it also found the writer out. Its first run reported seven mixed-register languages and three were its own fault: JavaScript's `\b` is defined against ASCII, so `\btes\b` matched inside *prêtes* and French "revisions ready" was reported as addressing the reader familiarly. Every pattern now goes through a Unicode-aware boundary, German and Italian are read with sentence-initial capitals lowered (so *Sie* meaning *she* is not counted), and the ambiguous markers — Spanish `su`, Czech `ty`, Dutch `u` as the abbreviation for hours — are named and excluded with the reason. **A linguistic check that cries wolf is worse than none**, because it is the kind people switch off.  **What is still not done, and this is the whole of the remaining item.** Nothing here reads a sentence for whether it is *good*. Register consistency is not naturalness, and an apostrophe is not a register. The 15 findings it still reports are deliberately left as warnings for a person: they are places where two screens word the same idea differently and only somebody who reads the language can say which is right, or whether both are.  Distinct from I-17, which is native-speaker review. This is the pass that should happen before one, and the mechanical half of it is now done and enforced in `verify:quick`. | A reading pass per locale, screen by screen, by somebody who speaks it. The 15 remaining warnings from `locale:editorial` are where to start. |
 | **I-20** | The page now carries the dictionary's own senses for the same spelling, behind a disclosure and attributed: 419 words gain 581 additional examples of the sense the card teaches, and 399 gain 721 more under other senses, each beneath the meaning it demonstrates. 2,564 of 2,581 taught words have a dictionary entry at all.  What is still on 25 words is the hand-written block, and that is deliberate — a paragraph under every word is a paragraph nobody reads. The gap this leaves is the words where the dictionary has neither a second sense nor an example: those still show a headword, a romanisation, a gloss, a part of speech and one sentence. | Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed. |
 | **I-31** | Fixed by the recommended route: a per-face `glyph_scale` in `data/fonts.ts`, calibrated against the robustness corpus for that face alone, threaded through `glyphSpecFor` and mirrored by `FACE_SCALE` in `render-fixtures.py` — `data.test.ts` asserts the two agree, so the fixtures cannot drift into measuring a geometry the product does not draw.  Gaegu 0.78 → 1.00. Mean ink extent 0.524 → 0.610; smallest glyph 0.27 → 0.35; glyphs below target 37/45 → 25/45. Grading improved rather than degrading: Gaegu's false rejection 1.04% → 0.63%, all-face 0.28% → 0.21%, false acceptance unchanged at 0.28%. A bigger reference is a bigger target for an honest hand, and Gaegu's was small enough that the pen's own width was a large fraction of it.  Why it stops there. The sweep is jagged — about 480 genuine attempts per face, so one crossing threshold moves the rate 0.21% — and there is a cliff just above: 1.02 reads 0.21% and 1.04 reads 3.33%. 1.00 sits on a plateau with 0.98, two steps clear of it; 1.02 is the minimum and is adjacent to the cliff, which would be fitting to which attempts happen to be in the corpus. Beyond about 1.04 the binding constraint is `MAX_FIT_SCALE`, whose own sweep already showed that raising it costs false rejection.  What remains is the typeface. Gaegu's mean extent is 0.610 against 0.653–0.697 for the other five, because it genuinely draws small letters inside its em, and closing that last gap means telling a learner they wrote it wrong more often. | Accept it, or drop the face. A pencil hand is written small, and the remaining difference costs less than the grading accuracy that closing it would buy back. |
 | **I-01** | Rebuilt from HEAD (`a672dad`) with the working tree clean, and verified by unpacking the delivered APK rather than by trusting the build: `assets/public/brand/splash/` holds `splash-ko.png` and `splash-en.png` and no MP4; the curriculum chunk carries `국:{aspect:.9669,cut:"bar",parts:[[.1257,0,.8686,.3646],…]}`, the current measurement; the matching grid, the sound-free control, the Home nudge and the `noindex` metadata are all present; and all ten native launch bitmaps test wordless. Signed v2 + v3 with the production identity `157a2bb1…debc`, read out of the APK Signing Block. **And `npm run release:current` now exists**: it reads the commit out of `build-info.json`, diffs it against HEAD, and fails on any changed product file or any uncommitted one. It is in `verify:release`. | done |
 | **I-02** | Committed before the build, in that order, this cycle and the two before it. | done |
 | **I-23** | Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at. | done |
+| **I-05** | Fixed by the band architecture in **I-38**; this is the budget half of the same work and is closed by it. `bundle:budget` no longer forecasts the corpus into the first load, because the corpus is not in the first load: it is fetched from `public/corpus/` a band at a time.  ```   corpus, first paint              45.7 kB /  64.0 kB   enforced   corpus, first paint at 10,000    45.7 kB /  64.0 kB   enforced, and flat by construction   corpus, whole at 10,000         776.8 kB / 900.0 kB   forecast, background, precached ```  The forecast that used to read 302% of budget was measuring a *first-load* cost. What replaced it is two rows: an enforced first-paint budget that a growing corpus cannot break, and a background figure whose ceiling was re-derived for what a background download may fairly cost. See I-38 for why the second number is 900 kB rather than the old 220, and why that is a retirement rather than a raise. | Done. |
 | **I-06** | 25 written words in ten languages; §15.2. | done |
 | **I-07** | 2,581 non-null rows in both. | done |
 | **I-08** | Eleven found, all authored and pinned; `vocabulary:sense:qa:check` passes. | done |
 | **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
 | **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
+| **I-37** | Built as its own feature, with its own bank, its own scale and its own simulation harness.  **The scale.** The Hangyul Vocabulary Level is 1–30, cumulative and non-linear: Lv1 ≈ 147 words, Lv10 ≈ 1,835, Lv20 ≈ 5,690, Lv30 ≈ 10,635+. It is **not** the teaching corpus cut into thirty equal bands — that would have made a "level" mean 86 words, which is not a proficiency scale, it is a progress bar. The 2,581 taught words are used as *calibrated anchors* inside it, together with quality-gated dictionary entries, all ranked by the same `frequency.measure` the corpus uses.  **The bank.** `scripts/content/build_level_test.py` writes 10,539 items across the 30 levels (300–415 each, 345 kB gzipped) to `public/level-test/`, content-hashed and lazily fetched — it is not in the bundle and not on any critical path. Items are Korean→meaning, meaning→Korean and context; an anchor must be Hangul, 1–4 syllables, a noun/verb/adjective/adverb, and carry a gloss of 3–60 characters that is not a grammatical form page.  **The scoring.** A 3PL/Rasch model with a guessing floor of 1/4, EAP over a grid, Fisher-information item selection, 18–36 items, stopping at SE < 1.6 levels. "I don't know" is an answer and is weighted as cleaner evidence than a wrong guess, not as a skip. `npm run leveltest:qa` simulates 200 sittings at each of the 30 levels against the real bank: **MAE 1.27 levels, 97.1% within ±3, 99.9% within ±5, median 32 items.**  **What it does not do.** No listening, no handwriting, no hints, no answer reveal, no running score. It writes `settings.level_test` and nothing else — an e2e test takes the whole assessment and asserts that every other IndexedDB store is byte-for-byte unchanged. The result screen says, in all 32 languages, that this is our own scale and is not TOPIK and not CEFR. | Done. |
+| **I-38** | `scripts/content/split_corpus.py` cuts the generated corpus into bands under `public/corpus/` — shared tables, then band 1 of 600 words and bands of 800 after it, each with the matching slice of all ten languages' meanings, every file named by its own content hash. `data/corpus.ts` fetches them: the tables and band 1 are awaited inside the launch screen's existing 900 ms, the rest arrive in the background once the learner is looking at something.  **The bands are cut on the same key the app reads the corpus in** — `difficulty_score`, then the headword — and that is the load-bearing part. It makes a partly-loaded corpus a *prefix* of the curriculum rather than a subset of it, so a category only ever grows at the end and `vocab-food-2` cannot quietly become a different five words. `data/corpus.test.ts` rebuilds every study set from the finished corpus in one pass and requires it to equal what four incremental passes produced.  `data/vocabulary.ts` is now a live registry: `VOCABULARY` is one array that grows and every derived structure is filled in place, so roughly thirty consumers stayed synchronous and unchanged. The screens that read the corpus *whole* — browse, search, the progress summary, the sound-change examples — use `useCorpusMemo` so they recompute when a band lands, and search says "still loading the rest of the vocabulary" rather than "nothing matches" while it is incomplete. Every "x of y words" reads `corpusTotal()` from the manifest, so the denominator is right on the first frame instead of climbing.  Measured (`npm run bundle:budget`):  ```   first load                      219.0 kB / 460.0 kB    was 437 kB   corpus, first paint              45.7 kB /  64.0 kB   corpus, first paint at 10,000    45.7 kB /  64.0 kB    flat, by construction   corpus, whole                   200.5 kB / 900.0 kB   corpus, whole at 10,000         776.8 kB / 900.0 kB    forecast ```  The old `LAZY_REQUIRED_HEADWORDS = 4_000` gate is gone because there is nothing left for it to gate; in its place the budget now fails the build if a `word-corpus-*.js` chunk reappears in the eager graph, or if `public/corpus` is missing from the build. The whole-corpus budget was **re-derived rather than raised**: 220 kB was a first-load figure for a chunk that no longer exists, and 900 kB is what a background download for a bought product may cost — the property the old number protected is now protected by the first-paint row, which is stricter and flat.  Offline is unchanged: the service worker precaches every band in all ten languages out of the corpus manifest, because unlike the dictionary this *is* the product. | Done. |
 | **I-09** | `MatchExercise` — four Korean words, four meanings, tap-tap. It is a genuine group exercise rather than a screen: `ScheduledStep` gained `group` and `completes`, `scheduleSteps` holds words back until four are waiting so a grid is only ever made of words already met in that sitting, and the session credits every word a step finishes from one code path. Seven component tests cover the accounting, including that a grid reports one result per word, that both sides of a wrong attempt are marked, and that a double tap on the last pair cannot report twice. Four scheduler tests cover the invariants: every word finished exactly once, no word in two grids, and no grid before its words were introduced. | done |
 | **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
 | **I-21** | A per-question *Can't use audio?* on the two heard-only letter exercises, in all 32 languages. `listen` swaps the clip for the written romanisation and keeps the same four letters; `distinguish` turns the question round and asks which of two sounds the letter makes, because printing the romanisation there would hand over the answer its options already carry as labels. Same item, same skill, same scoring, no penalty and no setting. `accessibility.spec.ts` drives the Listen practice entry, asserts the control is a real button reachable and operable by keyboard, and runs axe over the substituted question. | done |
@@ -4423,9 +4680,13 @@ result.
 | `audio:pronunciation:check` | 2,616 items | **PASS** — 0 errors, 0 warnings |
 | `mobile:icons:check` | 42 generated icon and splash files | **PASS** |
 | `fonts:audit` | bundled practice faces and their licences | **PASS** — 6 faces, all SIL OFL 1.1, 836 Korean characters covered, 0 errors |
-| `copy:audit:check` | **17,672 strings, 32 languages** | **PASS** — 0 errors, 0 warnings |
+| `copy:audit:check` | **19,266 strings, 32 languages** | **PASS** — 0 errors, 0 warnings |
+| **`locale:editorial:check`** | register, split translations, typography and label length across 31 languages | **PASS** — 0 errors, 15 warnings kept for a person. **NEW.** It found five languages mixing polite and familiar address, 71 straight apostrophes, and one question worded two ways in six languages. §23.7 |
+| **`leveltest:qa:check`** | 6,000 simulated sittings against the shipped item bank | **PASS** — MAE 1.27 levels, 97.1% within ±3, 18–36 items. **NEW.** §13.6 |
+| **`content:corpus:check`** | `public/corpus` matches the generated corpus | **PASS** — 2,581 words in 4 bands, 10 locales, 46 files. **NEW.** §13.4 |
+| **`content:leveltest:check`** | `public/level-test` matches the corpus and dictionary it was built from | **PASS** — 10,539 items across 30 levels. **NEW** |
 | `i18n:check` | translation completeness | **PASS** — **32 locales at 100%** |
-| `bundle:budget:check` | size budgets | **PASS** — first load 84%, largest locale pack 92%, word corpus 78%, precache 52%. Forecast at 10,000 words flagged at 302% and not enforced |
+| `bundle:budget:check` | size budgets | **PASS** — first load 48%, corpus at first paint 71%, whole corpus 22%, precache 63%. The first-paint corpus row is *also* enforced at the 10,000-word target and does not move; the whole-corpus forecast at 10,000 is 86% and is not enforced |
 | `routing:check` | SPA fallback against the built dist | **PASS** — 17 routes, 6 static files, worker behaviour |
 | `store:check` | 8 store listings against their limits | **PASS** |
 | `tokens:check` | tokens.css matches its source | **PASS** |
@@ -4588,7 +4849,7 @@ at the bottom, and it is not the same number.
 | Mobile UX | **8/10** = | Safe-area suite, pinned actions, 44 px targets, one-screen lesson |
 | Visual polish | **9/10** ▲ | Coherent tokens, both themes audited, no placeholder content, the tab bar flush to the frame at every width, and a wordless native launch screen. 256 rendered screens across 32 languages measured for clipping and overflow: nothing |
 | Accessibility | **8/10** ▲ | Focus, keyboard, semantics, skip link, 44 px targets, a safe-area suite, and axe clean on every screen in both appearances — now including the matching grid and the substituted question. The heard-only letter exercises have a per-question way through them in 32 languages (I-21). Still no human screen-reader pass, and none is claimed |
-| Performance | **8/10** = | Every budget met with room: first load 84%, precache 52%, word corpus 78%, re-measured this cycle. The corpus target still breaks the forecast at 302% (I-05) |
+| Performance | **9/10** ▲ | Every budget met with room: first load **48%**, down from 84% because the corpus left the bundle; corpus at first paint 71% and flat at the 10,000-word target; precache 63%. The forecast that broke at 302% is retired with the architecture that caused it (I-05, I-38) |
 | **Release integrity** | **9/10** ▲ | From 3. The package is built from HEAD and *asserted* to be by `release:current`; `test:e2e` and `strokes:measure:check` are on the gate; `share:check` covers the metadata and the bootstrap. The point off is `audio:qa`, which still cannot finish here and so has an unknown result |
 | Paid-product value | **5/10** = | Sound engineering, thin content, one genuine differentiator (§30.3) |
 | **What a customer can download today** | **the same as every row above** | Verified by unpacking it. §2.2 |
@@ -4662,16 +4923,13 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 | ID | What | Why it matters | Effort |
 | --- | --- | --- | --- |
 | **I-04** | 2,581 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
-| **I-05** | The taught corpus at 10,000 words is three and a half times the bundle budget | The delivery architecture cannot carry the stated plan | MEDIUM — chunking and a cache policy |
 | **I-19** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | HIGH (content) — 22 locales × 2,581 words |
-| **I-37** | The adaptive Vocabulary Level Test (1–30) is specified and not built | A learner cannot find out where they stand. There is no way into the product for somebody who already knows some Korean, and no way for anybody to see progress expressed as anything but a count of words met. | HIGH — a feature, plus an item bank and a simulation harness |
-| **I-38** | The learning corpus is still shipped whole, in every locale, on first load | None at 2,581 words. At the stated 10,000 the first load is three and a half times its budget, so the corpus cannot grow without the download growing with it. | MEDIUM–HIGH — chunking, a loading state, and a change to what the home screen promises |
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
 | **I-13** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
-| **I-39** | No editorial reading of the rendered interface in 31 of the 32 languages | Coverage is complete and quality is unmeasured. A learner in Tamil or Kazakh may be reading literal English syntax, an awkward register, or terminology that shifts between screens, and nothing in the repository would notice. | HIGH (people) — 32 languages × 10 surfaces |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
 | **I-10** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | DONE for the decidable half — the rest is a content reading pass |
+| **I-39** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | HIGH (people) — 32 languages × 10 surfaces |
 | **I-20** | The hand-written *More about it* block is on 25 words of 2,581 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them. | MEDIUM (content) — one paragraph per word, in ten languages |
 | **I-31** | On Gaegu, letters are still traced smaller than on the other five faces | A learner who picks the handwriting typeface traces letters that are smaller than the same letters in the same app a moment earlier. The quarter-of-the-square case is gone; a visible difference in size between Gaegu and the rest is not. | DONE — further closing costs accuracy |
 
@@ -4684,7 +4942,7 @@ was engineering is done.
 
 | ID | What | Why it blocks |
 | --- | --- | --- |
-| **I-04 + I-05** | Decide the delivery architecture, then author the corpus | 2,581 words against a stated 10,000, and the current mechanism forecasts 302% of its budget at the target. Authoring first makes the second problem worse, which is why the order is not negotiable. |
+| **I-04** | Author the corpus | 2,581 words against a stated 10,000. The reason this used to be second in a queue — I-05, the delivery architecture — is resolved: the corpus is fetched in bands and adding words changes the number of bands rather than the first load. There is nothing left to decide before authoring. |
 | **I-19** | Word meanings for the remaining twenty-two locales | Twenty-two languages read a fully translated app with English word cards. Disclosed on the row in the picker, which is what makes it a limitation rather than a misrepresentation — but not one a paid app keeps. |
 | **I-17** | Native-speaker review, starting with Korean | Thirty-two interfaces, none read by a speaker of the language. 256 screens rendering correctly is not evidence that any of them reads well. |
 
@@ -4872,11 +5130,12 @@ lines. The package was also unpacked and checked against six markers (§2.2).
 ## P1 bugs
 
 **I-03** hand-off built but unconfigured, and **BLOCKED** outside this
-repository · **I-04** corpus at 26% of target · **I-05** corpus delivery breaks
-the bundle budget at target, forecast 302% · **I-19** word meanings in ten of
+repository · **I-04** corpus at 26% of target · **I-19** word meanings in ten of
 thirty-two interface languages.
 
-All four are content or ownership. None is engineering.
+All three are content or ownership. None is engineering. I-05 — corpus delivery
+against the bundle budget — was on this list in every previous report and is
+resolved this cycle (§13.4).
 
 ## P2 bugs
 
@@ -5058,13 +5317,12 @@ stop living outside the gate. I-29.
 environment variable, and the entire feature is behind it. The value has to come
 from whoever owns the product; it must not be guessed. I-03.
 
-**5 · Decide corpus delivery — a written decision, not code.** Deferred by three
-reports now. Two independent budgets report it: the 302%-of-budget forecast at
-10,000 words, and a precache ceiling that was raised twice in one release to fit
-two languages. Per-frequency-band chunks, or on-demand fetch with an
-offline-first cache. Record it in `docs/VOCABULARY_DATA.md`. **Do not author the
-remaining 7,419 words before this exists**, because the delivery mechanism
-decides how the content has to be shaped. I-05 before I-04.
+**5 · Author the remaining 7,419 words.** This entry used to read "decide corpus
+delivery — a written decision, not code", deferred by three reports, and the
+decision is now made and built: priority bands under `public/corpus/`, fetched,
+content-hashed, precached (§13.4). The instruction that went with it — *do not
+author before the delivery exists* — is discharged. Authoring is now the whole
+of I-04, with nothing queued in front of it.
 
 **6 · Pin one taught sense per entry.** A `senseId` on every vocabulary record,
 with the gloss, example, example translation, audio, relations and distractors
@@ -5144,8 +5402,9 @@ went wrong*. They are keyed identically and deliberately kept separate.
 
 Stores: `meta`, `settings`, `progress`, `sessions`, `attempts`, `activity`,
 `memory`, `mistakes`. IndexedDB structure version 2; the data schema version is
-migrated separately by `runMigrations`, so a record-shape change does not need an
-`onupgradeneeded` dance.
+**10**, migrated separately by `runMigrations`, so a record-shape change does not
+need an `onupgradeneeded` dance. Version 10 added `settings.level_test` — the
+Vocabulary Level result, which is the only thing that assessment writes.
 
 ## 45.3 Content pipeline
 
@@ -5154,6 +5413,15 @@ content/vocabulary/entries/*.jsonl        editorial pack, hand-authored
         │  scripts/content/build_vocabulary.py
         ▼
 apps/web/src/data/generated/vocabulary.json + vocabulary.<locale>.json
+        │  scripts/content/split_corpus.py       (delivery, not content)
+        ▼
+apps/web/public/corpus/  manifest + tables + band-<n> + <locale>-<n>
+        the app fetches these; it does not import the generated files
+
+corpus anchors + quality-gated dictionary entries
+        │  scripts/content/build_level_test.py
+        ▼
+apps/web/public/level-test/  manifest + bank-<hash>
 
 content-cache/relations-wikitext.jsonl    fetched, git-ignored
         │  scripts/content/build_relations.py

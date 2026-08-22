@@ -1,0 +1,202 @@
+/*
+ * The Vocabulary Level Test.
+ *
+ * Deliberately plainer than the learning screens. There is no illustration, no
+ * encouragement and no colour that means "right" or "wrong", because none of
+ * those belong in an assessment — a learner should be able to answer thirty
+ * questions without being told how it is going.
+ */
+
+.page {
+  min-height: 100%;
+  background: var(--hg-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-4) var(--hg-space-5) var(--hg-space-8);
+}
+
+.intro,
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+  align-items: stretch;
+  text-align: center;
+}
+
+.introTitle {
+  font-size: var(--hg-text-heading);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-primary-text);
+  line-height: var(--hg-leading-tight);
+}
+
+.introBody,
+.previous,
+.status {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  text-align: start;
+}
+
+.facts li::before {
+  content: '·';
+  margin-inline-end: var(--hg-space-2);
+  color: var(--hg-primary-text);
+}
+
+/*
+ * The one thing on the screen that must not read as a boast or a verdict.
+ *
+ * Small, secondary, and present on both the introduction and the result — a
+ * learner should meet the caveat before they are given a number and again when
+ * they have one.
+ */
+.disclaimer {
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.count {
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text-secondary);
+  white-space: nowrap;
+}
+
+.prompt {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+  text-align: center;
+}
+
+.stimulus {
+  display: grid;
+  place-items: center;
+  min-height: 116px;
+}
+
+/* Target content: never mirrored, whatever the interface direction. */
+.korean {
+  direction: ltr;
+  font-size: clamp(28px, 8vw, 40px);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text);
+  text-align: center;
+  line-height: 1.25;
+}
+
+.meaning {
+  font-size: var(--hg-text-title);
+  color: var(--hg-text);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.options {
+  display: grid;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * One column, not two.
+ *
+ * A meaning option is a phrase and wraps; two columns make one option two lines
+ * and its neighbour one, which reads as though the long one matters more. A
+ * column of four equal rows says nothing about any of them.
+ */
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--hg-size-control-lg);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-medium);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+@media (hover: hover) {
+  .option:hover {
+    border-color: var(--hg-primary);
+  }
+}
+
+.option:active {
+  background: var(--hg-bg-muted);
+}
+
+/*
+ * *I don't know*, as an answer rather than an escape.
+ *
+ * Quiet, but a full-width target and always in the same place, so saying it is
+ * as easy as picking wrongly — which is the point. A learner who feels they
+ * must guess gives the model worse evidence than one who tells the truth.
+ */
+.unknown {
+  width: 100%;
+  min-height: var(--hg-size-hit-target);
+  padding: var(--hg-space-2);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-body-sm);
+  font-weight: var(--hg-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.resultLabel {
+  font-size: var(--hg-text-body);
+  color: var(--hg-text-secondary);
+}
+
+.resultLevel {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--hg-space-2);
+  font-size: clamp(48px, 15vw, 68px);
+  font-weight: var(--hg-weight-extrabold);
+  color: var(--hg-primary-text);
+  line-height: 1;
+}
+
+.resultOf {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+}
+
+.resultBand,
+.resultWords,
+.resultItems {
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+}

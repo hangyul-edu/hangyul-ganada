@@ -11,7 +11,7 @@
   },
   "finished": {
     "badge": "Completato",
-    "title": "Sai leggere l'hangul",
+    "title": "Sai leggere l’hangul",
     "body": "Tutte e {{count, number}} le lettere: viste, scritte e rilette. Da qui in poi si va di parole.",
     "goal": "Parole di oggi",
     "cta": "Le parole di oggi"
@@ -35,7 +35,7 @@
     "reviews_many": "{{count, number}} ripassi pronti",
     "reviews_one": "{{count, number}} ripasso pronto",
     "reviews_other": "{{count, number}} ripassi pronti",
-    "cta": "Inizia l'esercizio"
+    "cta": "Inizia l’esercizio"
   },
-  "purpose": "Impara il coreano dalla primissima lettera — prima l'hangul, poi le parole che userai davvero."
+  "purpose": "Impara il coreano dalla primissima lettera — prima l’hangul, poi le parole che userai davvero."
 }

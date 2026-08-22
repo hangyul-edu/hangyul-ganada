@@ -81,7 +81,8 @@
     "label": "Keresés a szókincsben",
     "count_one": "{{count, number}} találat",
     "count_other": "{{count, number}} találat",
-    "none": "Semmi nem illik erre: „{{query}}”. Próbáld koreaiul, vagy a jelentést a saját nyelveden."
+    "none": "Semmi nem illik erre: „{{query}}”. Próbáld koreaiul, vagy a jelentést a saját nyelveden.",
+    "loading": "A szókincs többi része még töltődik. Próbálja újra egy pillanat múlva."
   },
   "sound": {
     "tensing": "Záró mássalhangzó után a következő hang megfeszül.",

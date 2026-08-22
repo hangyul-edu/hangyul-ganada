@@ -13,7 +13,7 @@
     "title": "Attività",
     "rangeAria": "Scegli un intervallo di tempo",
     "aria": "Esercizio per giorno",
-    "noneYet": "In questo periodo non c'è ancora esercizio.",
+    "noneYet": "In questo periodo non c’è ancora esercizio.",
     "range": {
       "7": "7 giorni",
       "30": "30 giorni",
@@ -74,7 +74,7 @@
     "same": "Lo stesso tempo della settimana scorsa.",
     "moreThanLast": "{{minutes, number}} minuti in più della settimana scorsa.",
     "lessThanLast": "{{minutes, number}} minuti in meno della settimana scorsa.",
-    "quiet": "Questa settimana ancora niente — c'è tempo."
+    "quiet": "Questa settimana ancora niente — c’è tempo."
   },
   "memory": {
     "title": "Come va la memoria",
@@ -83,7 +83,7 @@
     "confusionImproving": "{{a}} e {{b}} si distinguono sempre meglio.",
     "skill": {
       "reading_recognition": "la lettura",
-      "listening_recognition": "l'ascolto",
+      "listening_recognition": "l’ascolto",
       "guided_writing": "la scrittura",
       "meaning_recognition": "il significato",
       "sentence_comprehension": "le frasi",

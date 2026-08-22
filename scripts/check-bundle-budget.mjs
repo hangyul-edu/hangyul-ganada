@@ -24,17 +24,17 @@
  * | Budget | What it covers |
  * | --- | --- |
  * | first load | everything the browser needs before the home screen paints |
- * | one locale | the word copy for the learner's own language, fetched right after |
+ * | corpus, first paint | the shared tables, the first band, and its meanings |
+ * | corpus, whole | every band and every language's meanings, fetched after |
  * | any route | the largest single lazily-loaded screen |
  * | stroke assets | the stroke geometry, fetched when a lesson opens |
- * | word corpus | the vocabulary, measured now and **projected to the target size** |
  * | everything | every chunk the service worker precaches for offline use |
  *
  * ## The projection, and why one budget is not a measurement of today
  *
- * Every other line here answers "how big is this now". The word corpus line
- * also answers "how big will this be when it is finished", because the corpus
- * is deliberately growing towards ten thousand headwords and the difference
+ * Every other line here answers "how big is this now". The corpus lines also
+ * answer "how big will this be when it is finished", because the corpus is
+ * deliberately growing towards ten thousand headwords and the difference
  * between where it is and where it is going is a factor of four.
  *
  * A budget that only measured today would pass every commit and then fail once,
@@ -43,6 +43,12 @@
  * measured and multiplied out to the target, and *that* is what has to fit. It
  * is a linear extrapolation and it is honest about being one; what it is for is
  * making the constraint arrive at the same time as the decision that creates it.
+ *
+ * The **first-paint** corpus row is the one that changed shape. It used to be a
+ * projection that grew with the corpus and would one day fail. It is now a
+ * projection that is *flat*, because the first band is a fixed 600 words
+ * whatever the corpus becomes — and a forecast that does not move is the
+ * evidence that the architecture is right, not a row that stopped mattering.
  *
  * The numbers below are the measured sizes plus a deliberate margin — roughly
  * 10%, enough to absorb an honest feature and not enough to absorb a
@@ -86,8 +92,15 @@ function firstLoadNames() {
   return names;
 }
 
-/** One language's word meanings and example translations. */
-const LOCALE_PACK = /^vocabulary\.[\w-]+-.*\.js$/;
+/**
+ * The corpus, as it is actually delivered.
+ *
+ * Not a chunk any more. `scripts/content/split_corpus.py` writes bands to
+ * `public/corpus/` and `data/corpus.ts` fetches them, so the thing to weigh is
+ * a directory of JSON rather than a JavaScript module — see the corpus rows
+ * below for what is weighed and why it is split in two.
+ */
+const CORPUS = join(DIST, 'corpus');
 
 /**
  * The stroke geometry for every character the curriculum teaches.
@@ -102,11 +115,13 @@ const LOCALE_PACK = /^vocabulary\.[\w-]+-.*\.js$/;
 const STROKE_ASSETS = /^stroke-geometry-.*\.js$/;
 
 /**
- * The vocabulary itself — headwords, spellings, categories, provenance.
+ * The corpus, back in the JavaScript bundle.
  *
- * Split out from the alphabet's curriculum data so it can be measured on its
- * own, because it is the one piece of this build whose size is a content
- * decision rather than a code one.
+ * There should be no such chunk. `manualChunks` still names one, deliberately:
+ * if anything ever imports `src/data/generated/vocabulary*.json` again, the
+ * corpus reappears as `word-corpus-*.js` and this pattern finds it, rather than
+ * the corpus quietly re-entering the first load inside `index.js` where no row
+ * of this table would show it.
  */
 const WORD_CORPUS = /^word-corpus-.*\.js$/;
 
@@ -121,50 +136,59 @@ const WORD_CORPUS = /^word-corpus-.*\.js$/;
 const TARGET_HEADWORDS = 10_000;
 
 /**
- * What the corpus may cost at `TARGET_HEADWORDS`, gzipped.
+ * What the whole corpus may cost at `TARGET_HEADWORDS`, gzipped.
  *
- * Deliberately far below the first-load budget, because at the target size the
- * corpus **must not be in the first load at all**. 220 kB is a figure a learner
- * can wait for once, on the screen that needs it, over a slow connection — and
- * it is unreachable by a corpus that ships every field of every word to a home
- * screen that shows ten of them.
+ * ## This number was re-derived, and that is worth reading before trusting it
  *
- * The projection against this number is printed as a **forecast** rather than
- * enforced, because a build cannot be failed for content that does not exist
- * yet — a permanently red gate is a gate people learn to ignore. What *is*
- * enforced is `LAZY_REQUIRED_HEADWORDS` below, which turns the forecast into a
- * failure at the exact commit where it stops being hypothetical.
+ * It used to be 220 kB, and 220 kB was a **first-load** figure: the corpus was
+ * a statically imported chunk, so every byte of it was downloaded and parsed
+ * before the home screen painted, and 220 kB was the most of the 460 kB
+ * first-load budget it could be allowed to take. The forecast against it ran at
+ * 754 kB and the answer was never going to be a bigger number — it was the
+ * architecture, and the architecture is now done.
  *
- * When it does fail, raising it is the wrong fix and the remedy is one of:
+ * So the quantity changed and the budget had to change with it. What this row
+ * measures now is a **background** download: the app is already on screen and
+ * usable on band 1 when it starts, nothing waits for it, and the service worker
+ * keeps it so that it happens once ever. The constraint on a background fetch
+ * is not "does it fit in the first load" — that is what `CORE_BUDGET` is, and
+ * it is enforced and flat — it is "is this a fair thing to pull down over a
+ * slow connection for a product somebody bought".
  *
- *   * drop the corpus out of the eager module graph and fetch it with the
- *     vocabulary route, which is where it is actually needed;
- *   * ship only the fields the learning path reads — headword, id, category,
- *     priority — and fetch provenance and frequency on demand;
- *   * shard it, so a session loads the slice its plan names.
+ * 900 kB is that figure, for a ten-thousand-word teaching corpus with a
+ * language's meanings attached. For scale, the dictionary layer's search index
+ * alone is 449 kB on exactly these terms and nobody waits for that either.
  *
- * All three are architecture. None of them is a bigger number.
+ * Raising a budget to make your own work pass is the failure mode this file
+ * exists to prevent, so: the old number is not raised, it is *retired*, and the
+ * property it was protecting — that a learner does not wait on the corpus — is
+ * now protected by a different row that is stricter than it was and cannot be
+ * satisfied by content shrinking.
+ *
+ * Still printed as a **forecast** rather than enforced, because a build cannot
+ * be failed for content that does not exist yet: a permanently red gate is a
+ * gate people learn to ignore.
  */
-const CORPUS_TARGET_BUDGET = 220 * 1024;
+const CORPUS_TARGET_BUDGET = 900 * 1024;
 
 /**
- * The size at which the corpus has to stop being eagerly loaded.
+ * What the corpus may cost *before the app can render*, gzipped.
  *
- * At roughly 72 gzipped bytes a word, four thousand headwords is 280 kB — which
- * with React, the interface and the alphabet is the whole first-load budget
- * spent before the home screen draws anything. Below that the corpus can stay
- * in the first load and the simplicity is worth more than the bytes.
+ * This is the number the whole band architecture exists to hold flat. It is the
+ * shared tables plus band 1 plus band 1's meanings in the learner's language —
+ * the fetch `LearnerProvider` awaits behind the launch screen — and because
+ * band 1 is a fixed 600 words it does not grow with the corpus. Sixty-four
+ * kilobytes is the measured 45 kB plus the usual margin.
  *
- * This is the gate that makes the forecast real: it does not fail today at
- * 2,581 words, and it fails the moment the corpus grows past the point where
- * the current architecture is the wrong one. That is deliberately the same
- * commit that a content pipeline would otherwise land quietly.
+ * Unlike the whole-corpus line this one **is enforced**, at today's size and at
+ * the target, because unlike the whole-corpus line it is not a forecast about
+ * content that does not exist: it is a property of the split, and if it ever
+ * fails it means the split has stopped working.
  */
-const LAZY_REQUIRED_HEADWORDS = 4_000;
+const CORE_BUDGET = 64 * 1024;
 
 const BUDGETS = {
   firstLoad: 460 * 1024,
-  localePack: 44 * 1024,
   route: 24 * 1024,
   /**
    * The instructional stroke geometry, loaded with the first lesson.
@@ -197,16 +221,18 @@ const BUDGETS = {
    * 1.1 MB and this number would have been raised again.
    *
    * What happened instead is the architecture the previous note was waiting
-   * for, minus the corpus half: the shell is precached, and the thirty-one
-   * non-English interface bundles and the nine word packs are cached on first
-   * use — which for the learner's own language is during the first launch, so a
-   * cold start offline still has it. The precached total is now 473 kB, half
-   * the budget, with three times the languages.
+   * for: the shell is precached, the thirty-one non-English interface bundles
+   * are cached on first use, and the corpus — which is no longer a chunk at all
+   * — is precached band by band out of its own manifest, all ten languages of
+   * it, because that is the product and it has to work offline.
    *
-   * The corpus half is still outstanding; `LAZY_REQUIRED_HEADWORDS` above is
-   * what will force it.
+   * So this row now covers two different things and the note should say which:
+   * the emitted JavaScript and CSS the worker holds, **plus** `public/corpus/`.
+   * The JavaScript half stopped growing with the corpus, which is the whole
+   * point; the corpus half grows with it and is meant to, and the row is where
+   * that shows up in one number instead of two.
    */
-  total: 900 * 1024,
+  total: 1400 * 1024,
 };
 
 function gzipSize(path) {
@@ -252,13 +278,11 @@ const precached = precacheNames ? files.filter((file) => precacheNames.has(file.
 
 const eager = firstLoadNames();
 const firstLoad = files.filter((f) => eager.has(f.name));
-const localePacks = files.filter((f) => LOCALE_PACK.test(f.name));
 const wordCorpus = files.filter((f) => WORD_CORPUS.test(f.name));
 const strokeAssets = files.filter((f) => STROKE_ASSETS.test(f.name));
 const routes = files.filter(
   (f) =>
     !firstLoad.includes(f) &&
-    !localePacks.includes(f) &&
     !strokeAssets.includes(f) &&
     !wordCorpus.includes(f),
 );
@@ -286,11 +310,53 @@ function headwordCount() {
 }
 
 const headwords = headwordCount();
-const corpusNow = sum(wordCorpus);
-// Linear in the number of words, which is what the data is: one record each,
-// of roughly constant shape. It ignores gzip's improving ratio on a larger
-// dictionary, so it errs high — which is the right direction for a budget.
-const corpusProjected = headwords > 0 ? (corpusNow / headwords) * TARGET_HEADWORDS : 0;
+
+/**
+ * `public/corpus/`, weighed the way a learner pays for it.
+ *
+ * Three numbers, from one manifest:
+ *
+ *   `core`   the tables, band 1, and band 1's English meanings — the fetch the
+ *            launch screen waits behind
+ *   `words`  every band of words
+ *   `copy`   one language's meanings for every band
+ *
+ * English stands in for "the learner's language" because it is the largest
+ * pack and because every learner has it as the end of their fallback chain.
+ */
+function corpusSizes() {
+  let manifest;
+  try {
+    manifest = JSON.parse(readFileSync(join(CORPUS, 'manifest.json'), 'utf8'));
+  } catch {
+    return null;
+  }
+  const size = (name) => gzipSize(join(CORPUS, name));
+  const tables = size(manifest.tables);
+  const words = manifest.bands.map((band) => size(band.words));
+  const copy = manifest.bands.map((band) => (band.locales.en ? size(band.locales.en) : 0));
+  return {
+    bands: manifest.bands.length,
+    coreWords: manifest.bands[0]?.count ?? 0,
+    core: tables + (words[0] ?? 0) + (copy[0] ?? 0),
+    whole: tables + words.reduce((n, x) => n + x, 0) + copy.reduce((n, x) => n + x, 0),
+    // Every language, which is what the worker precaches.
+    everyLanguage: readdirSync(CORPUS).reduce((n, name) => n + gzipSize(join(CORPUS, name)), 0),
+  };
+}
+
+const corpus = corpusSizes();
+
+/*
+ * Linear in the number of words, which is what the data is: one record each, of
+ * roughly constant shape. It ignores gzip's improving ratio on a larger corpus,
+ * so it errs high — the right direction for a budget.
+ *
+ * The core is projected too, and the answer is that it does not move: band 1 is
+ * a fixed count of words, so the fetch that gates first paint costs the same at
+ * ten thousand headwords as at two and a half. That flat line is the finding.
+ */
+const wholeProjected = corpus && headwords > 0 ? (corpus.whole / headwords) * TARGET_HEADWORDS : 0;
 
 const results = [
   {
@@ -300,10 +366,37 @@ const results = [
     budget: BUDGETS.firstLoad,
   },
   {
-    label: 'largest locale pack',
-    detail: localePacks.length ? `of ${localePacks.length}` : 'none found',
-    actual: Math.max(0, ...localePacks.map((f) => f.gzip)),
-    budget: BUDGETS.localePack,
+    label: 'corpus, first paint',
+    detail: corpus
+      ? `tables + band 1 (${corpus.coreWords.toLocaleString('en')} words) + its meanings`
+      : 'none found — public/corpus is missing',
+    actual: corpus?.core ?? 0,
+    budget: CORE_BUDGET,
+  },
+  {
+    label: `corpus, first paint at ${TARGET_HEADWORDS.toLocaleString('en')}`,
+    detail: 'the same band 1 — this line is meant not to move',
+    actual: corpus?.core ?? 0,
+    budget: CORE_BUDGET,
+  },
+  {
+    label: 'corpus, whole',
+    detail: corpus
+      ? `${headwords.toLocaleString('en')} headwords in ${corpus.bands} bands, one language`
+      : 'none found',
+    actual: corpus?.whole ?? 0,
+    // Today's corpus is allowed the room the projection is denied: what has to
+    // fit at the target is the *projection*, on the next line.
+    budget: CORPUS_TARGET_BUDGET,
+  },
+  {
+    label: `corpus, whole at ${TARGET_HEADWORDS.toLocaleString('en')}`,
+    detail: corpus
+      ? `forecast from ${(corpus.whole / headwords).toFixed(0)} B/word — not enforced, see below`
+      : 'cannot project — no corpus found',
+    actual: wholeProjected,
+    budget: CORPUS_TARGET_BUDGET,
+    forecast: true,
   },
   {
     label: 'largest route chunk',
@@ -313,35 +406,16 @@ const results = [
   },
   {
     label: 'stroke assets',
-    detail: strokeAssets.length ? `${strokeAssets.length} chunk(s), loaded with the first lesson` : 'none found',
+    detail: strokeAssets.length
+      ? `${strokeAssets.length} chunk(s), loaded with the first lesson`
+      : 'none found',
     actual: sum(strokeAssets),
     budget: BUDGETS.strokeAssets,
   },
   {
-    label: 'word corpus, now',
-    detail: headwords
-      ? `${headwords.toLocaleString('en')} headwords${
-          wordCorpus.some((f) => eager.has(f.name)) ? ' — still in the first load' : ''
-        }`
-      : 'none found',
-    actual: corpusNow,
-    // Today's corpus is allowed the room the projection is denied: what has to
-    // fit at the target is the *projection*, on the next line.
-    budget: CORPUS_TARGET_BUDGET,
-  },
-  {
-    label: `word corpus at ${TARGET_HEADWORDS.toLocaleString('en')}`,
-    detail: headwords
-      ? `forecast from ${(corpusNow / headwords).toFixed(0)} B/word — not enforced, see below`
-      : 'cannot project — no corpus found',
-    actual: corpusProjected,
-    budget: CORPUS_TARGET_BUDGET,
-    forecast: true,
-  },
-  {
     label: 'everything precached',
-    detail: `${precached.length} of ${files.length} emitted files`,
-    actual: sum(precached),
+    detail: `${precached.length} of ${files.length} emitted files, plus public/corpus`,
+    actual: sum(precached) + (corpus?.everyLanguage ?? 0),
     budget: BUDGETS.total,
   },
 ];
@@ -366,22 +440,28 @@ for (const result of results) {
 /*
  * The forecast, turned into a rule.
  *
- * The corpus may sit in the first load while it is small. Past
- * `LAZY_REQUIRED_HEADWORDS` it may not, and this is where that stops being a
- * note in a file and becomes a failing build — on the commit that grows the
- * corpus, which is the commit where somebody can still do something about it.
+ * The corpus is fetched, and this is what says so rather than trusting that it
+ * still is. Two ways it could come back: something imports the generated JSON
+ * again, which `manualChunks` would emit as `word-corpus-*.js`; or
+ * `public/corpus` stops being written and the app has nothing to fetch. Either
+ * one fails the build here, on the commit that does it.
  */
 const corpusIsEager = wordCorpus.some((f) => eager.has(f.name));
-if (corpusIsEager && headwords > LAZY_REQUIRED_HEADWORDS) {
+if (corpusIsEager) {
   failed += 1;
   console.error(
-    `\n  ! the word corpus is ${headwords.toLocaleString('en')} headwords and is still loaded ` +
-      `before the home screen paints.`,
+    `\n  ! the word corpus is back in the eager module graph — ${wordCorpus
+      .map((f) => f.name)
+      .join(', ')}.`,
   );
   console.error(
-    `    Past ${LAZY_REQUIRED_HEADWORDS.toLocaleString('en')} it has to be fetched with the ` +
-      `vocabulary route instead. See CORPUS_TARGET_BUDGET in this file for the options.`,
+    '    It is meant to be fetched from public/corpus. Something is importing\n' +
+      '    src/data/generated/vocabulary*.json again; see data/corpus.ts.',
   );
+} else if (!corpus) {
+  failed += 1;
+  console.error('\n  ! public/corpus is missing from the build.');
+  console.error('    Run `npm run content:corpus` — the app has nothing to fetch without it.');
 }
 
 console.log('\n  largest files');

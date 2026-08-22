@@ -5,7 +5,8 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import type { DictionaryHit } from '../data/dictionary';
 import { type DictionaryState, useDictionarySearch } from '../data/useDictionary';
-import { VOCABULARY_CATEGORIES, searchWords, wordsByCategory } from '../data/vocabulary';
+import { VOCABULARY_CATEGORIES, corpusReady, searchWords, wordsByCategory } from '../data/vocabulary';
+import { useCorpusMemo } from '../data/useCorpus';
 import { wordCopy } from '../data/wordCopy';
 import { useFormatters, useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
@@ -93,8 +94,16 @@ export function WordsPage() {
   // thousand rows the scan is still a fraction of a frame; deferring it means
   // that stays true on a slow phone without a worker or an index.
   const deferredQuery = useDeferredValue(query);
+  /*
+    This screen is the one that reads the corpus *whole*.
 
-  const results = useMemo(
+    Everything else in the app works on a plan that named its words, so a
+    partly-loaded corpus is invisible to it. Browsing and search are the two
+    places where "what is in the corpus" is the question being asked, so they
+    are the two places that have to notice a band arriving — and, until the last
+    one has, say so rather than answer short. See `data/corpus.ts`.
+  */
+  const results = useCorpusMemo(
     () =>
       deferredQuery.trim()
         ? searchWords(deferredQuery, (word) => wordCopy(word, locale).value.meaning, MAX_RESULTS)
@@ -115,7 +124,7 @@ export function WordsPage() {
   */
   const dictionary = useDictionarySearch(deferredQuery, MAX_DICTIONARY_RESULTS);
 
-  const categories = useMemo(
+  const categories = useCorpusMemo(
     () =>
       VOCABULARY_CATEGORIES.map((entry) => ({
         ...entry,
@@ -334,9 +343,19 @@ function SearchResults({
   const extra = dictionary.hits.filter((hit) => !taught.has(hit.headword));
 
   if (results.length === 0 && extra.length === 0) {
+    /*
+      "Nothing matches" is a claim, and it is only true once the corpus is all
+      here. Saying it while band 3 is still arriving would tell a learner the
+      product does not teach a word it certainly teaches.
+    */
+    const message = !corpusReady()
+      ? t('search.loading')
+      : dictionary.state === 'loading'
+        ? t('dictionary.searching')
+        : t('search.none', { query });
     return (
       <p className={styles.empty} role="status">
-        {dictionary.state === 'loading' ? t('dictionary.searching') : t('search.none', { query })}
+        {message}
       </p>
     );
   }

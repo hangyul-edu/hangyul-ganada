@@ -1,7 +1,7 @@
 import type { ItemProgress, LetterLesson, VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { ALL_LETTERS, CURRICULUM_UNITS, LETTER_LESSONS, getLessonCharacters } from '../data/characters';
-import { VOCABULARY, usesKnownLetters } from '../data/vocabulary';
+import { VOCABULARY, corpusTotal, usesKnownLetters } from '../data/vocabulary';
 import { progressKey } from '../storage/schema';
 
 /**
@@ -167,7 +167,10 @@ export function vocabularyProgress(progress: ProgressMap): VocabularyProgress {
   const letters = knownLetters(progress);
   const done = VOCABULARY.filter((w) => isLearned(progress, 'word', w.id)).length;
   const readable = VOCABULARY.filter((w) => usesKnownLetters(w, letters)).length;
-  return { ...fraction(done, VOCABULARY.length), readable };
+  // The denominator is the *published* corpus, not the part of it that has been
+  // fetched — see `corpusTotal`. A progress bar whose denominator grows while
+  // the learner watches is worse than one that starts at its final size.
+  return { ...fraction(done, corpusTotal()), readable };
 }
 
 export function levelProgress(progress: ProgressMap, words: VocabularyWord[]): Fraction {

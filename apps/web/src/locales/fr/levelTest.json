@@ -1,0 +1,37 @@
+{
+  "title": "Niveau de vocabulaire",
+  "row": {
+    "body": "Situez à peu près votre vocabulaire coréen.",
+    "taken": "Votre dernier résultat : niveau {{level}}"
+  },
+  "intro": {
+    "title": "Où en est votre vocabulaire coréen ?",
+    "body": "Une série courte qui devient plus difficile ou plus facile selon vos réponses, pour vous situer sans en poser des centaines.",
+    "length": "Environ 3 à 6 minutes, de 18 à 36 questions.",
+    "noHelp": "Aucun indice, et les réponses ne sont pas montrées en cours de route.",
+    "noProgress": "Rien ici ne modifie vos leçons, votre série ni vos révisions.",
+    "start": "Commencer le test",
+    "retake": "Le refaire",
+    "previous": "La dernière fois, vous étiez au niveau {{level}}."
+  },
+  "progress": "{{asked, number}} sur {{most, number}} au plus",
+  "ask": {
+    "meaning": "Que veut dire ce mot ?",
+    "produce": "Quel mot veut dire cela ?",
+    "context": "Quel mot va dans le blanc ?"
+  },
+  "optionsLabel": "Réponses",
+  "unknown": "Je ne sais pas",
+  "loading": "Préparation des questions…",
+  "unavailable": "Le test a besoin d’une connexion la première fois que vous l’ouvrez.",
+  "result": {
+    "label": "Niveau de vocabulaire Hangyul",
+    "of": "sur {{levels, number}}",
+    "band": "Sans doute entre {{low, number}} et {{high, number}}.",
+    "words": "À ce niveau, on reconnaît en général les {{count, number}} mots coréens les plus courants.",
+    "items_one": "Établi en {{count, number}} question.",
+    "items_many": "Établi en {{count, number}} questions.",
+    "items_other": "Établi en {{count, number}} questions."
+  },
+  "disclaimer": "Le niveau de vocabulaire Hangyul est notre propre échelle. Ce n’est pas un niveau de compétence officiel, ni un décompte des mots que vous connaissez."
+}

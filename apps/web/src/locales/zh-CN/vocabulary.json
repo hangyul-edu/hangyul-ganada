@@ -76,7 +76,8 @@
     "placeholder": "搜索单词",
     "label": "搜索词汇",
     "count_other": "{{count, number}} 个结果",
-    "none": "没有匹配“{{query}}”的词。试试用韩语或中文的意思来找。"
+    "none": "没有匹配“{{query}}”的词。试试用韩语或中文的意思来找。",
+    "loading": "词汇还在加载中，请稍后再试。"
   },
   "sound": {
     "tensing": "收音后面的辅音会变成紧音。",

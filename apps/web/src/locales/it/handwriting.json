@@ -53,25 +53,25 @@
     "count_one": "{{count, number}} tratto",
     "count_other": "{{count, number}} tratti",
     "heading": "Guarda come si scrive",
-    "notesFooter": "L'ordine dei tratti non entra nel voto. È quello che fa sembrare giusta la tua scrittura.",
+    "notesFooter": "L’ordine dei tratti non entra nel voto. È quello che fa sembrare giusta la tua scrittura.",
     "notes": {
       "fewer": "Hai usato {{theirs, number}} tratti; questa lettera di solito se ne scrive con {{expected, number}}.",
       "more": "Hai usato {{theirs, number}} tratti; questa lettera di solito se ne scrive con {{expected, number}}.",
       "startElsewhere": "Di solito parte {{corner}} del riquadro.",
-      "direction_many": "{{count, number}} tratti sono andati al contrario. In coreano i tratti vanno dall'alto in basso e da sinistra a destra.",
-      "direction_one": "{{count, number}} tratto è andato al contrario. In coreano i tratti vanno dall'alto in basso e da sinistra a destra.",
-      "direction_other": "{{count, number}} tratti sono andati al contrario. In coreano i tratti vanno dall'alto in basso e da sinistra a destra."
+      "direction_many": "{{count, number}} tratti sono andati al contrario. In coreano i tratti vanno dall’alto in basso e da sinistra a destra.",
+      "direction_one": "{{count, number}} tratto è andato al contrario. In coreano i tratti vanno dall’alto in basso e da sinistra a destra.",
+      "direction_other": "{{count, number}} tratti sono andati al contrario. In coreano i tratti vanno dall’alto in basso e da sinistra a destra."
     },
     "corners": {
-      "topLeft": "dall'angolo in alto a sinistra",
-      "topCentre": "dall'alto",
-      "topRight": "dall'angolo in alto a destra",
+      "topLeft": "dall’angolo in alto a sinistra",
+      "topCentre": "dall’alto",
+      "topRight": "dall’angolo in alto a destra",
       "middleLeft": "da sinistra",
       "middleCentre": "dal centro",
       "middleRight": "da destra",
-      "bottomLeft": "dall'angolo in basso a sinistra",
+      "bottomLeft": "dall’angolo in basso a sinistra",
       "bottomCentre": "dal basso",
-      "bottomRight": "dall'angolo in basso a destra"
+      "bottomRight": "dall’angolo in basso a destra"
     },
     "watchAgain": "Guarda di nuovo",
     "back": "Indietro",
@@ -92,7 +92,7 @@
       "cornerDownAcross": "giù lungo il lato sinistro e poi in curva verso destra",
       "slantLeft": "il tratto obliquo che scende a sinistra",
       "slantRight": "il tratto obliquo che scende a destra",
-      "circle": "il cerchio, girando dall'alto"
+      "circle": "il cerchio, girando dall’alto"
     },
     "s1": "Un solo tratto: {{a}}.",
     "s2": "Prima {{a}}. Poi {{b}}.",
@@ -107,7 +107,7 @@
       "right": "Scrivi {{a}}, poi {{b}} alla sua destra, poi {{c}} lungo il fondo.",
       "below": "Scrivi {{a}}, poi {{b}} sotto, poi {{c}} lungo il fondo."
     },
-    "partsDouble": "Scrivi {{a}} due volte, una accanto all'altra — prima quella di sinistra.",
-    "fallback": "{{strokes}} tratti, nell'ordine indicato dai numeri."
+    "partsDouble": "Scrivi {{a}} due volte, una accanto all’altra — prima quella di sinistra.",
+    "fallback": "{{strokes}} tratti, nell’ordine indicato dai numeri."
   }
 }

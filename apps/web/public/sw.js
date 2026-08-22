@@ -54,7 +54,13 @@ const CONTENT_CACHE = `${VERSION}-content`;
 const AUDIO_CACHE = `${VERSION}-audio-${AUDIO_VERSION}`;
 
 /** Paths whose contents never change under the same name. */
-const IMMUTABLE = [/^\/brand\//, /^\/assets\//, /^\/dictionary\/(?!manifest\.json$)/];
+const IMMUTABLE = [
+  /^\/brand\//,
+  /^\/assets\//,
+  /^\/dictionary\/(?!manifest\.json$)/,
+  /^\/corpus\/(?!manifest\.json$)/,
+  /^\/level-test\/(?!manifest\.json$)/,
+];
 
 /** Recordings: immutable *within* an audio build, replaced between them. */
 const AUDIO = /^\/audio\/.+\.mp3$/;
@@ -62,6 +68,30 @@ const AUDIO_MANIFEST = '/audio/manifest.json';
 
 /** How the app finds the current dictionary index and chunks. Never stale. */
 const DICTIONARY_MANIFEST = '/dictionary/manifest.json';
+
+/**
+ * The same rule, for the two datasets that arrive the same way.
+ *
+ * `/corpus/manifest.json` names the content-hashed bands of the *learning*
+ * corpus, and `/level-test/manifest.json` the assessment bank. Both point at
+ * files named after their own bytes, so the files are cached for good and the
+ * manifest never is.
+ */
+const FETCHED_MANIFESTS = ['/corpus/manifest.json', '/level-test/manifest.json'];
+
+/**
+ * The learning corpus, precached on install.
+ *
+ * Unlike the dictionary — 4.3 MB of reference material a learner may never open
+ * — this *is* the product. An app that cannot teach a word offline is not an
+ * offline app, and the corpus stopped being part of the JavaScript bundle when
+ * it was split into bands, so precaching it here is what puts back the offline
+ * guarantee the bundle used to provide for free.
+ *
+ * It is fetched band by band from the manifest rather than listed, because the
+ * names carry content hashes and this file cannot know them.
+ */
+const CORPUS_MANIFEST = '/corpus/manifest.json';
 
 /**
  * The shell, fetched up front so a learner who closes the app and reopens it
@@ -118,6 +148,22 @@ async function precache() {
     for (const match of html?.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g) ?? []) {
       assets.add(match[1]);
     }
+    // The learning corpus, by name, out of its own manifest. See
+    // `CORPUS_MANIFEST`.
+    try {
+      const corpus = await (await fetch(CORPUS_MANIFEST, { cache: 'reload' })).json();
+      for (const band of corpus.bands ?? []) {
+        assets.add(`/corpus/${band.words}`);
+        // Only the languages the curriculum has copy for, and all of them: a
+        // learner who installs the app and changes language on a plane should
+        // still get their own meanings. Ten packs, ~180 kB gzipped in total.
+        for (const file of Object.values(band.locales ?? {})) assets.add(`/corpus/${file}`);
+      }
+      if (corpus.tables) assets.add(`/corpus/${corpus.tables}`);
+    } catch {
+      /* No corpus manifest — an older build, or offline. The app still works. */
+    }
+
     if (assets.size === 0) return;
     const content = await caches.open(CONTENT_CACHE);
     // Individually, not `addAll`: one asset that 404s must not throw away the
@@ -176,7 +222,7 @@ self.addEventListener('fetch', (event) => {
   // while the network is up, it would keep pointing a learner at last build's
   // chunks. Everything it points at is named after its own bytes and so is
   // cached for good — which is what makes an opened chunk work offline.
-  if (url.pathname === DICTIONARY_MANIFEST) {
+  if (url.pathname === DICTIONARY_MANIFEST || FETCHED_MANIFESTS.includes(url.pathname)) {
     event.respondWith(networkFirst(request, CONTENT_CACHE));
     return;
   }

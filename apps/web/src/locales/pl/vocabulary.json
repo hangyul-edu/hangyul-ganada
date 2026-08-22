@@ -91,7 +91,8 @@
     "count_many": "{{count, number}} wyników",
     "count_one": "{{count, number}} wynik",
     "count_other": "{{count, number}} wyniku",
-    "none": "Nic nie pasuje do „{{query}}”. Spróbuj po koreańsku albo znaczeniem w swoim języku."
+    "none": "Nic nie pasuje do „{{query}}”. Spróbuj po koreańsku albo znaczeniem w swoim języku.",
+    "loading": "Reszta słownictwa jeszcze się wczytuje. Spróbuj za chwilę."
   },
   "sound": {
     "tensing": "Po spółgłosce zamykającej następny dźwięk się zacieśnia.",

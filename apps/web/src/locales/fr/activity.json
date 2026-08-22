@@ -79,12 +79,12 @@
   "memory": {
     "title": "Où en est votre mémoire",
     "firstTry": "Cette semaine, vous avez retrouvé {{count, number}} choses du premier coup.",
-    "strongestSkill": "Cette semaine, c'est {{skill}} qui vous réussit le mieux.",
+    "strongestSkill": "Cette semaine, c’est {{skill}} qui vous réussit le mieux.",
     "confusionImproving": "Vous distinguez de mieux en mieux {{a}} et {{b}}.",
     "skill": {
       "reading_recognition": "la lecture",
-      "listening_recognition": "l'écoute",
-      "guided_writing": "l'écriture",
+      "listening_recognition": "l’écoute",
+      "guided_writing": "l’écriture",
       "meaning_recognition": "le sens",
       "sentence_comprehension": "les phrases",
       "sound_recognition": "les sons",

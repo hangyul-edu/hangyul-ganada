@@ -8,13 +8,13 @@
     "startBlurb_many": "Une courte série de {{count}} mots.",
     "startBlurb_other": "Une courte série de {{count}} mots.",
     "resumeBlurb": "Reprenez où vous en étiez.",
-    "doneBlurb": "Terminé pour aujourd'hui. Bravo.",
+    "doneBlurb": "Terminé pour aujourd’hui. Bravo.",
     "completeTitle": "Les mots du jour sont terminés.",
     "completeDetail_one": "Un mot appris.",
     "completeDetail_many": "{{count}} mots appris.",
     "completeDetail_other": "{{count}} mots appris.",
     "more": "Encore un peu",
-    "allDone": "Plus rien pour aujourd'hui.",
+    "allDone": "Plus rien pour aujourd’hui.",
     "progressAria": "Progression des mots du jour",
     "moreLabel": "Combien de plus ?",
     "moreCount_one": "1 de plus",
@@ -52,7 +52,7 @@
   },
   "blurb": "Tous les mots sont ouverts. Choisissez une catégorie et commencez où vous voulez.",
   "categories": {
-    "essentials": "L'essentiel",
+    "essentials": "L’essentiel",
     "people": "Personnes et famille",
     "food": "Nourriture et boissons",
     "animals-nature": "Animaux et nature",
@@ -86,7 +86,8 @@
     "count_one": "{{count, number}} résultat",
     "count_many": "{{count, number}} résultats",
     "count_other": "{{count, number}} résultats",
-    "none": "Rien ne correspond à « {{query}} ». Essayez en coréen, ou avec le sens."
+    "none": "Rien ne correspond à « {{query}} ». Essayez en coréen, ou avec le sens.",
+    "loading": "Le reste du vocabulaire est encore en cours de chargement. Réessayez dans un instant."
   },
   "sound": {
     "tensing": "Après une consonne finale, le son suivant se tend.",

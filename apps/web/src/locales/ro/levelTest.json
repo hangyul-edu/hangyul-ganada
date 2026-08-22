@@ -1,0 +1,37 @@
+{
+  "title": "Nivel de vocabular",
+  "row": {
+    "body": "Află aproximativ unde se află vocabularul tău coreean.",
+    "taken": "Ultimul rezultat: nivelul {{level}}"
+  },
+  "intro": {
+    "title": "Unde se află vocabularul tău coreean?",
+    "body": "Un set scurt de întrebări care devine mai greu sau mai ușor în funcție de răspunsuri, ca să te poată plasa fără sute de întrebări.",
+    "length": "Aproximativ 3–6 minute, între 18 și 36 de întrebări.",
+    "noHelp": "Fără indicii, iar răspunsurile nu se arată pe parcurs.",
+    "noProgress": "Nimic de aici nu îți schimbă lecțiile, seria sau recapitularea.",
+    "start": "Începe testul",
+    "retake": "Reia testul",
+    "previous": "Data trecută ai ieșit la nivelul {{level}}."
+  },
+  "progress": "{{asked, number}} din cel mult {{most, number}}",
+  "ask": {
+    "meaning": "Ce înseamnă cuvântul acesta?",
+    "produce": "Care cuvânt înseamnă asta?",
+    "context": "Care cuvânt se potrivește în spațiu?"
+  },
+  "optionsLabel": "Răspunsuri",
+  "unknown": "Nu știu",
+  "loading": "Se pregătesc întrebările…",
+  "unavailable": "Testul are nevoie de conexiune prima dată când îl deschizi.",
+  "result": {
+    "label": "Nivel de vocabular Hangyul",
+    "of": "din {{levels, number}}",
+    "band": "Cel mai probabil între {{low, number}} și {{high, number}}.",
+    "words": "La acest nivel se recunosc de obicei cele mai frecvente {{count, number}} de cuvinte coreene.",
+    "items_one": "Stabilit din {{count, number}} întrebare.",
+    "items_few": "Stabilit din {{count, number}} întrebări.",
+    "items_other": "Stabilit din {{count, number}} de întrebări."
+  },
+  "disclaimer": "Nivelul de vocabular Hangyul este scala noastră. Nu este o atestare oficială de competență și nu numără cuvintele pe care le știi."
+}

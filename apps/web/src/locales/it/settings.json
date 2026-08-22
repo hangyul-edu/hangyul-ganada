@@ -3,19 +3,19 @@
   "stats": {
     "lettersLearned": "Lettere imparate",
     "wordsLearned": "Parole imparate",
-    "alphabetProgress": "Avanzamento nell'alfabeto hangul",
+    "alphabetProgress": "Avanzamento nell’alfabeto hangul",
     "studyDays": "Giorni di studio"
   },
   "language": {
     "title": "Lingua",
     "pickerTitle": "Scegli una lingua",
-    "pickerIntro": "La lingua dell'app. Quello che impari — lettere hangul, parole e frasi d'esempio — resta in coreano.",
+    "pickerIntro": "La lingua dell’app. Quello che impari — lettere hangul, parole e frasi d’esempio — resta in coreano.",
     "listAria": "Lingue disponibili",
     "searchLabel": "Cerca una lingua",
     "searchPlaceholder": "Cerca per nome o codice",
     "noResults": "Nessuna lingua corrisponde a «{{query}}».",
     "selected": "Selezionata",
-    "coverageNote": "Ogni lingua qui traduce l'intera interfaccia e il corso dell'alfabeto. Dove la riga lo indica, i significati delle parole e le frasi d'esempio sono ancora in inglese.",
+    "coverageNote": "Ogni lingua qui traduce l’intera interfaccia e il corso dell’alfabeto. Dove la riga lo indica, i significati delle parole e le frasi d’esempio sono ancora in inglese.",
     "wordsInEnglish": "Significati in inglese"
   },
   "font": {
@@ -40,12 +40,12 @@
   },
   "guides": {
     "title": "Linee guida",
-    "description": "Le linee d'aiuto dentro il riquadro.",
+    "description": "Le linee d’aiuto dentro il riquadro.",
     "grid": "Linea orizzontale e verticale",
     "crosshair": "Segno al centro"
   },
   "about": {
-    "body": "Leggi e scrivi l'hangul: le lettere, i suoni, i blocchi sillabici e le tue prime parole coreane.",
+    "body": "Leggi e scrivi l’hangul: le lettere, i suoni, i blocchi sillabici e le tue prime parole coreane.",
     "offline": "Ogni lezione, frase e registrazione funziona senza rete.",
     "version": "Versione {{version}}",
     "reset": "Azzera i progressi"
@@ -85,14 +85,14 @@
   },
   "legal": {
     "title": "Note legali e licenze",
-    "body": "Licenze dei contenuti e dei caratteri usati nell'app",
-    "intro": "Una parte di quello che c'è nell'app è usata con licenze che chiedono di essere citate. Le citazioni sono qui.",
+    "body": "Licenze dei contenuti e dei caratteri usati nell’app",
+    "intro": "Una parte di quello che c’è nell’app è usata con licenze che chiedono di essere citate. Le citazioni sono qui.",
     "contentHeading": "Contenuti",
     "fontsHeading": "Caratteri"
   },
   "reminder": {
     "title": "Promemoria quotidiano",
-    "description": "Un richiamo discreto al giorno, all'ora che scegli. Spento finché non lo accendi, e non lascia mai il telefono.",
+    "description": "Un richiamo discreto al giorno, all’ora che scegli. Spento finché non lo accendi, e non lascia mai il telefono.",
     "toggle": "Ricordami di esercitarmi",
     "at": "Alle",
     "notificationTitle": "È ora di esercitarsi",
@@ -107,13 +107,13 @@
       "title": "Quello che impari resta qui",
       "points": [
         "Quello che hai imparato, e quanto bene lo ricordi, è salvato su questo dispositivo. Non viene mai caricato altrove.",
-        "Non c'è nessun account — niente a cui iscriversi, e nessun profilo su di te da nessuna parte."
+        "Non c’è nessun account — niente a cui iscriversi, e nessun profilo su di te da nessuna parte."
       ]
     },
     "tracking": {
       "title": "Niente pubblicità, niente tracciamento",
       "points": [
-        "L'app non guarda come la usi e non riferisce nulla a nessuno.",
+        "L’app non guarda come la usi e non riferisce nulla a nessuno.",
         "La tua scrittura viene valutata sullo schermo mentre la tracci, poi buttata."
       ]
     },
@@ -128,7 +128,7 @@
       "title": "Cancellare tutto",
       "points": [
         "Puoi cancellare tutto quello che hai imparato in fondo a {{screen}}.",
-        "Disinstallare l'app lo cancella insieme a lei."
+        "Disinstallare l’app lo cancella insieme a lei."
       ]
     }
   },

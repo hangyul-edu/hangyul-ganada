@@ -1,0 +1,36 @@
+{
+  "title": "Kelime seviyesi",
+  "row": {
+    "body": "Korece kelime dağarcığınızın yaklaşık olarak nerede olduğunu görün.",
+    "taken": "Son sonucunuz: seviye {{level}}"
+  },
+  "intro": {
+    "title": "Korece kelime dağarcığınız nerede?",
+    "body": "Verdiğiniz cevaplara göre zorlaşan ya da kolaylaşan kısa bir soru dizisi — böylece yüzlerce soru gerekmiyor.",
+    "length": "Yaklaşık 3–6 dakika, 18 ila 36 soru.",
+    "noHelp": "İpucu yok ve cevaplar sırasında gösterilmiyor.",
+    "noProgress": "Buradaki hiçbir şey derslerinizi, serinizi veya tekrarınızı değiştirmez.",
+    "start": "Teste başla",
+    "retake": "Tekrar çöz",
+    "previous": "Geçen sefer seviye {{level}} çıkmıştı."
+  },
+  "progress": "{{asked, number}} / en fazla {{most, number}}",
+  "ask": {
+    "meaning": "Bu kelime ne demek?",
+    "produce": "Hangi kelime bu anlama gelir?",
+    "context": "Boşluğa hangi kelime uyar?"
+  },
+  "optionsLabel": "Cevaplar",
+  "unknown": "Bilmiyorum",
+  "loading": "Sorular hazırlanıyor…",
+  "unavailable": "Test ilk açılışta bağlantı gerektirir.",
+  "result": {
+    "label": "Hangyul kelime seviyesi",
+    "of": "/ {{levels, number}}",
+    "band": "Büyük olasılıkla {{low, number}} ile {{high, number}} arasında.",
+    "words": "Bu seviyede genellikle en sık kullanılan {{count, number}} Korece kelime tanınır.",
+    "items_one": "{{count, number}} soruda belirlendi.",
+    "items_other": "{{count, number}} soruda belirlendi."
+  },
+  "disclaimer": "Hangyul kelime seviyesi bize ait bir ölçektir. Resmî bir dil yeterlilik derecesi değildir ve bildiğiniz kelimelerin sayısı da değildir."
+}

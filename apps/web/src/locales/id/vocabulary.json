@@ -76,7 +76,8 @@
     "placeholder": "Cari kata",
     "label": "Cari di kosakata",
     "count_other": "{{count, number}} hasil",
-    "none": "Tidak ada yang cocok dengan “{{query}}”. Coba tulis Koreanya, atau artinya dalam bahasamu."
+    "none": "Tidak ada yang cocok dengan “{{query}}”. Coba tulis Koreanya, atau artinya dalam bahasamu.",
+    "loading": "Sisa kosakata masih dimuat. Coba lagi sebentar lagi."
   },
   "sound": {
     "tensing": "Setelah konsonan penutup, bunyi berikutnya merapat.",

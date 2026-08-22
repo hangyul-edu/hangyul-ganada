@@ -81,7 +81,8 @@
     "label": "Kelime dağarcığında ara",
     "count_one": "{{count, number}} sonuç",
     "count_other": "{{count, number}} sonuç",
-    "none": "“{{query}}” ile eşleşen bir şey yok. Korecesini ya da kendi dilindeki anlamını dene."
+    "none": "“{{query}}” ile eşleşen bir şey yok. Korecesini ya da kendi dilindeki anlamını dene.",
+    "loading": "Kelimelerin geri kalanı hâlâ yükleniyor. Birazdan tekrar deneyin."
   },
   "sound": {
     "tensing": "Kapatan bir ünsüzden sonra gelen ses sıkışır.",

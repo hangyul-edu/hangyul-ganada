@@ -13,7 +13,7 @@
   },
   "feedback": {
     "correct": {
-      "headline": "C'est ça !",
+      "headline": "C’est ça !",
       "perfect": "{{character}} — très joliment écrit.",
       "scored": "Belle forme — {{score, number(style: percent)}} du chemin."
     },
@@ -33,7 +33,7 @@
     },
     "scribble": {
       "headline": "Reprenons plus doucement",
-      "detail": "Tracez chaque trait une seule fois, d'un geste continu. Inutile de repasser dessus."
+      "detail": "Tracez chaque trait une seule fois, d’un geste continu. Inutile de repasser dessus."
     },
     "mixed": {
       "headline": "Pas tout à fait",
@@ -55,12 +55,12 @@
     "heading": "Regardez-la s’écrire",
     "notesFooter": "L’ordre des traits ne compte pas dans la note. C’est lui qui rend votre écriture juste.",
     "notes": {
-      "fewer": "Vous avez fait {{theirs, number}} traits ; cette lettre s'écrit habituellement en {{expected, number}}.",
-      "more": "Vous avez fait {{theirs, number}} traits ; cette lettre s'écrit habituellement en {{expected, number}}.",
+      "fewer": "Vous avez fait {{theirs, number}} traits ; cette lettre s’écrit habituellement en {{expected, number}}.",
+      "more": "Vous avez fait {{theirs, number}} traits ; cette lettre s’écrit habituellement en {{expected, number}}.",
       "startElsewhere": "On commence habituellement en {{corner}} de la case.",
-      "direction_one": "Un trait est allé dans l'autre sens. En coréen, on écrit de haut en bas et de gauche à droite.",
-      "direction_many": "{{count, number}} traits sont allés dans l'autre sens. En coréen, on écrit de haut en bas et de gauche à droite.",
-      "direction_other": "{{count, number}} traits sont allés dans l'autre sens. En coréen, on écrit de haut en bas et de gauche à droite."
+      "direction_one": "Un trait est allé dans l’autre sens. En coréen, on écrit de haut en bas et de gauche à droite.",
+      "direction_many": "{{count, number}} traits sont allés dans l’autre sens. En coréen, on écrit de haut en bas et de gauche à droite.",
+      "direction_other": "{{count, number}} traits sont allés dans l’autre sens. En coréen, on écrit de haut en bas et de gauche à droite."
     },
     "corners": {
       "topLeft": "haut à gauche",

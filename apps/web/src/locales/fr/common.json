@@ -7,7 +7,7 @@
     "confirm": "OK",
     "close": "Fermer",
     "back": "Retour",
-    "goHome": "Aller à l'accueil",
+    "goHome": "Aller à l’accueil",
     "done": "Terminé",
     "save": "Enregistrer",
     "saved": "Enregistré"
@@ -36,21 +36,21 @@
   },
   "report": {
     "action": "Signaler un problème",
-    "title": "Qu'est-ce qui ne va pas ?",
-    "blurb": "Choisissez ce qui semble incorrect et nous ouvrirons un e-mail que vous pourrez compléter. Rien de votre apprentissage n'y est joint.",
+    "title": "Qu’est-ce qui ne va pas ?",
+    "blurb": "Choisissez ce qui semble incorrect et nous ouvrirons un e-mail que vous pourrez compléter. Rien de votre apprentissage n’y est joint.",
     "field": {
       "item": "Élément",
       "category": "Problème",
-      "version": "Version de l'app",
+      "version": "Version de l’app",
       "language": "Langue"
     },
     "writeHere": "Écrivez ici ce que vous avez remarqué :",
     "category": {
       "meaning": "Le sens",
-      "example": "La phrase d'exemple",
+      "example": "La phrase d’exemple",
       "translation": "La traduction",
-      "audio": "L'audio",
-      "writing": "Le retour sur l'écriture",
+      "audio": "L’audio",
+      "writing": "Le retour sur l’écriture",
       "other": "Autre chose"
     }
   },

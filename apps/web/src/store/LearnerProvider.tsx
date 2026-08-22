@@ -9,7 +9,9 @@ import type {
 } from '@hangyul-ganada/shared-types';
 
 import { ALL_LETTERS, ALL_CHARACTERS } from '../data/characters';
-import { VOCABULARY, usesKnownLetters } from '../data/vocabulary';
+import { loadCorpusCore, loadCorpusRest } from '../data/corpus';
+import { useCorpusMemo } from '../data/useCorpus';
+import { VOCABULARY, corpusReady, corpusTotal, usesKnownLetters } from '../data/vocabulary';
 import {
   applyAttempt,
   applyDemoSeen,
@@ -63,6 +65,7 @@ import {
   runMigrations,
 } from '../storage/schema';
 import { checkPersistence } from '../storage/capability';
+import type { LevelTestResult } from '../domain/levelTestTypes';
 import { LearnerContext, type LearnerContextValue } from './LearnerContext';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
@@ -121,7 +124,22 @@ export function LearnerProvider({
     let cancelled = false;
 
     async function hydrate() {
+      /*
+       * The corpus, before anything else the learner can see.
+       *
+       * `ready` is what takes the launch screen down, so awaiting the core here
+       * is what keeps a first frame of "0 words" from existing at all. It is
+       * the shared tables and the first 600 words — 45 kB gzipped, a fixed cost
+       * whatever the corpus grows to — and it runs *concurrently* with opening
+       * IndexedDB rather than before it, because neither needs the other.
+       *
+       * A failure is not fatal here: the catch below already puts the learner
+       * in front of a working app rather than a spinner, and this is one more
+       * thing that can fail on a first launch with no connection.
+       */
+      const core = loadCorpusCore();
       const driver = injected ?? (await openDriver());
+      await core;
       if (cancelled) return;
       driverRef.current = driver;
       settingsRepo.current = new SettingsRepository(driver);
@@ -173,6 +191,19 @@ export function LearnerProvider({
         recovered: progress.dropped,
       });
       setReady(true);
+      /*
+       * The rest of the corpus, once the learner is looking at something.
+       *
+       * Not awaited, and deliberately after `setReady`: the app is usable on
+       * band 1, and the remaining bands are wanted for browsing and search
+       * rather than for the next thing anybody taps. `corpusReady()` is how the
+       * two screens that need all of it know it has not all arrived yet.
+       */
+      void loadCorpusRest().catch(() => {
+        // Offline mid-download. The bands already in memory stay; the next
+        // launch picks up the rest, and the service worker has whatever
+        // arrived.
+      });
       void sessionRepo.current.prune();
       void activityRepo.current.prune();
       void attemptRepo.current.prune();
@@ -317,6 +348,28 @@ export function LearnerProvider({
   const setPreferences = useCallback((patch: Partial<LearnerPreferences>) => {
     setState((prev) => {
       const settings = { ...prev.settings, ...patch };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, []);
+
+  /**
+   * Stores a level-test result, and nothing else.
+   *
+   * One field on the settings row. No progress row, no memory, no session, no
+   * active day — a level is what the learner asked to be told, not evidence
+   * about what they have studied, and the scheduler must never see it.
+   *
+   * `recentItems` is capped so a learner who retakes the test regularly does
+   * not accumulate an unbounded list on their device; the cap is generous
+   * enough that two consecutive sittings never repeat a question.
+   */
+  const saveLevelTestResult = useCallback((result: LevelTestResult) => {
+    setState((prev) => {
+      const settings = {
+        ...prev.settings,
+        level_test: { ...result, recentItems: result.recentItems.slice(0, 120) },
+      };
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });
@@ -698,7 +751,7 @@ export function LearnerProvider({
    * So until the store has answered, this hook holds whatever it already has
    * and writes nothing.
    */
-  const vocabularyDay = useMemo<DailyPlan>(() => {
+  const vocabularyDay = useCorpusMemo<DailyPlan>(() => {
     const now = new Date();
     const stored = state.settings.daily_plan;
     if (planIsCurrent(stored, now) && stored.goal === state.settings.daily_word_goal) return stored;
@@ -708,7 +761,7 @@ export function LearnerProvider({
     if (!ready) return stored ?? emptyPlan(state.settings.daily_word_goal);
     // A stored plan from an earlier day, or from before the goal changed, is
     // replaced rather than resized: see `planIsCurrent`.
-    return buildDailyPlan({
+    const built = buildDailyPlan({
       progress: state.progress,
       memory: state.memory,
       corpus: vocabularyByPriority(),
@@ -716,6 +769,26 @@ export function LearnerProvider({
       soundFree: state.settings.sound_free,
       now,
     });
+    /*
+     * A short plan means one of two things, and only one of them is worth
+     * waiting for.
+     *
+     * The corpus arrives in priority bands, so what is in memory is always a
+     * *prefix* of the curriculum — the first 600 words after the core has
+     * landed, all of it a moment later. A learner who has met fewer than that
+     * gets exactly the right plan from band 1, which is every learner for their
+     * first several months.
+     *
+     * Past it, the plan comes up short: not because the learner has finished
+     * the corpus but because the rest of it is still arriving. And a plan is
+     * built once and then **stored for the day**, so a short one is not a late
+     * plan, it is a short day. So a plan that is short *and* incomplete waits;
+     * a plan that is short because the learner really has run out does not.
+     */
+    if (built.words.length < state.settings.daily_word_goal && !corpusReady()) {
+      return stored ?? emptyPlan(state.settings.daily_word_goal);
+    }
+    return built;
   }, [
     ready,
     state.settings.daily_plan,
@@ -727,6 +800,13 @@ export function LearnerProvider({
 
   useEffect(() => {
     if (!ready) return;
+    /*
+     * `emptyPlan` has no date, and that is what makes it a placeholder rather
+     * than a plan. Writing one to storage is how "the corpus has not finished
+     * arriving" would turn into "today is over" — persisted, and read back on
+     * the next launch as the day's real answer.
+     */
+    if (!vocabularyDay.date) return;
     if (state.settings.daily_plan === vocabularyDay) return;
     setState((prev) => {
       if (prev.settings.daily_plan === vocabularyDay) return prev;
@@ -784,7 +864,8 @@ export function LearnerProvider({
     });
   }, []);
 
-  const summary = useMemo<ProgressSummary>(() => {
+  // Counts words, so it is rebuilt when a band of the corpus arrives.
+  const summary = useCorpusMemo<ProgressSummary>(() => {
     const rows = Object.values(state.progress);
     const learned = rows.filter((row) => row.stage === 'learned');
     const letterSet = new Set(ALL_LETTERS.map((c) => c.character));
@@ -800,7 +881,7 @@ export function LearnerProvider({
         .length,
       letters_total: ALL_LETTERS.length,
       words_learned: learned.filter((row) => row.kind === 'word').length,
-      words_total: VOCABULARY.length,
+      words_total: corpusTotal(),
       words_available: readable.length,
       review_items: reviewSummary.total,
       review_due: reviewSummary.dueToday,
@@ -821,6 +902,7 @@ export function LearnerProvider({
       summary,
       knownLetters,
       setPreferences,
+      saveLevelTestResult,
       startSession,
       completeSession,
       recordStudyTime,
@@ -850,6 +932,7 @@ export function LearnerProvider({
       summary,
       knownLetters,
       setPreferences,
+      saveLevelTestResult,
       startSession,
       completeSession,
       recordStudyTime,

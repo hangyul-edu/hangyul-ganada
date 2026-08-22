@@ -11,6 +11,7 @@ import type { Mistake } from '../domain/mistakes';
 import type { ExerciseMode } from '../domain/review';
 import type { ReviewSummary, TodaysPractice } from '../domain/review';
 import type { DailyPlan, DayProgress } from '../domain/vocabularyDay';
+import type { LevelTestResult } from '../domain/levelTestTypes';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
 export interface LearnerContextValue {
@@ -21,6 +22,16 @@ export interface LearnerContextValue {
   /** Letters the learner has met. Drives which words are offered. */
   knownLetters: ReadonlySet<string>;
   setPreferences: (patch: Partial<LearnerPreferences>) => void;
+  /**
+   * Stores a finished Vocabulary Level Test result.
+   *
+   * Its own action rather than a `setPreferences` patch, because a level is not
+   * a preference and because the separation is the point: this writes one field
+   * on the settings row and touches nothing in progress, memory, sessions or
+   * the streak. A learner who sits the test five times has changed nothing
+   * about what the app will teach them next.
+   */
+  saveLevelTestResult: (result: LevelTestResult) => void;
   startSession: (kind: SessionKind, lessonId: string | null, targetCount: number) => string;
   completeSession: (sessionId: string) => void;
   recordAttempt: (input: RecordAttemptInput) => void;
