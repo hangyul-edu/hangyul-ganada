@@ -24,7 +24,17 @@ import { ensurePreview } from './lib/preview.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const OUT = join(here, '..', 'docs', 'report-assets');
-const baseUrl = process.argv[2] ?? 'http://127.0.0.1:4173';
+/*
+  4477, the port the other two browser gates use — deliberately not 4173.
+
+  4173 is Playwright's own `webServer`, and its config reuses a server that is
+  already listening. This script starts one when the port is silent and stops
+  it when it is done, so on 4173 it could hand a server to a test run and then
+  take it away underneath it: a whole suite failing with ERR_CONNECTION_REFUSED
+  and nothing in the product wrong. `qa:locales` and `screens:audit` share 4477
+  and never run at the same time as each other.
+*/
+const baseUrl = process.argv[2] ?? 'http://127.0.0.1:4477';
 
 const PHONE = { width: 390, height: 844 };
 
