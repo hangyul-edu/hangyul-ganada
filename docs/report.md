@@ -3862,6 +3862,35 @@ blank screen reads as a failure, and over a drawing it reads as a beginning.
 That is the test this section applies, and a decorative speaker above a speaker
 button did not pass it.
 
+### Simplification, as an accounting rather than an intention
+
+The brief asks for the product to be simpler, which is easy to agree with and
+hard to check. So here is what was actually removed, over this pass and the one
+before it, and what was deliberately not:
+
+| Removed | Why |
+| --- | --- |
+| Backup and restore | A JSON file the learner exported, kept somewhere and imported. The only feature on the settings screen that could not be used without knowing what a file is |
+| The decorative speaker above the audio button | The same action, twice, one of which did nothing. §22.5 |
+| Listening questions in the vocabulary quiz | They asked a learner to identify a word from a recording before the course had taught them to hear it. §16.5 |
+| The video splash | 900 ms of motion nobody asked for, replaced by a still. §11.8 |
+| Two screens that said the same thing | §8.2 |
+| 784 derived "longer explanations" | Written from a dictionary, not worth reading; 25 hand-written ones remain. §15.2 |
+| 73 wrong secondary categories | Metadata a learner could act on and that was wrong. I-33 |
+| Six guide-versus-animation exceptions | A tolerated inconsistency between what is demonstrated and what is traced. §12.5 |
+
+| Kept, and asked about | Why |
+| --- | --- |
+| The mandarin illustration | Two empty states and a unit introduction. An empty state is the one place a picture does work |
+| My Learning's long settings list | Re-audited and kept: every row is a preference somebody changes, and a shorter screen would mean a second screen |
+| The dictionary layer | It is more content, not more product: it answers a question search used to answer wrongly, and adds no screen a learner has to understand |
+
+**And one thing was added, which is worth being honest about.** The Vocabulary
+Level Test is a new screen with a new concept on it. It earns its place by
+answering a question the product had no answer to — *where am I?* — but it is an
+addition in a section about removals, and it is placed where somebody has to go
+looking for it rather than being offered on the home screen. §13.6.
+
 ## 27.2 The dark-mode contrast bug — **VERIFIED FIXED**
 
 **Previously:** hovering a typeface card in dark mode painted it near-white
