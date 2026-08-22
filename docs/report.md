@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 22 August 2026
-describes: A re-audit of the running product on `main` at cead31d — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
+describes: A re-audit of the running product on `main` at 690d24c — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
 mark: report-assets/mark.png
 ---
 
@@ -59,11 +59,11 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `cead31d4359b7d4641eb9ff3ff7600254261eb5f` |
+| Git commit | `690d24c` — the walkthrough pass; see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`cead31d` — the same commit**, asserted by `npm run release:current`. See §2.2 |
-| Signed APK | 66.0 MB · `d470939c2e9256de…` |
-| Signed AAB | 64.8 MB · `d1a35b1b6d2377aa…` |
+| Commit the delivered APK/AAB were built from | **`690d24c` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 66.0 MB · `85ed8047e8c4da71…` |
+| Signed AAB | 64.8 MB · `d309d5d8651efe68…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
@@ -97,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-cead31d  the production pass — every change in this report
+690d24c  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from cead31d, and asserted to be
+result/, app_result/   from 690d24c, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -3295,7 +3295,7 @@ card previews 가나다 / 한글 in its own face.
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
-`bundle:budget:check` against the build from `cead31d` — every budget met:
+`bundle:budget:check` against the build from `690d24c` — every budget met:
 
 | | Now | Budget | Used |
 | --- | --- | --- | --- |
@@ -3683,10 +3683,10 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
-| **I-05** | Performance | **P1** | The corpus at 10,000 words is three times the bundle budget | The delivery architecture cannot carry the stated plan | **OPEN** |
+| **I-05** | Performance | **P1** | The taught corpus at 10,000 words is three and a half times the bundle budget | The delivery architecture cannot carry the stated plan | **OPEN** |
 | **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN** |
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
-| **I-13** | Relations | **P2** | 243 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
+| **I-13** | Relations | **P2** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
 | **I-32** | Performance | **P3** | Dictionary search is a linear scan and stops meeting budget past about 30,000 headwords | None today. If the dictionary grows by roughly another 15%, search results begin to trail the cursor on a mid-range phone — the text box stays responsive because ranking is deferred, but the list under it lags visibly. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
@@ -4209,10 +4209,10 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 | ID | What | Why it matters | Effort |
 | --- | --- | --- | --- |
 | **I-04** | 2,581 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
-| **I-05** | The corpus at 10,000 words is three times the bundle budget | The delivery architecture cannot carry the stated plan | MEDIUM — chunking and a cache policy |
+| **I-05** | The taught corpus at 10,000 words is three and a half times the bundle budget | The delivery architecture cannot carry the stated plan | MEDIUM — chunking and a cache policy |
 | **I-19** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | HIGH (content) — 22 locales × 2,581 words |
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
-| **I-13** | 243 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
+| **I-13** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
 | **I-32** | Dictionary search is a linear scan and stops meeting budget past about 30,000 headwords | None today. If the dictionary grows by roughly another 15%, search results begin to trail the cursor on a mid-range phone — the text box stays responsive because ranking is deferred, but the list under it lags visibly. | MEDIUM — a prefix index in build_dictionary.py, or a worker |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
