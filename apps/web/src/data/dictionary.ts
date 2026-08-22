@@ -150,6 +150,30 @@ export interface DictionaryIndex {
   /** Lower-cased once, in the same order as `hits`. */
   gloss: string[];
   romanization: string[];
+  /**
+   * Rows whose headword or gloss *is* a given string. One lookup, no scan.
+   */
+  exact: Map<string, number[]>;
+  /**
+   * Rows whose headword, romanisation or gloss *starts with* a given key.
+   *
+   * Keyed on the first character for Hangul and the first two for Latin, which
+   * is where the useful discrimination is: 1,210 distinct Hangul first
+   * characters over 26,675 headwords, the largest bucket 328. A keystroke
+   * therefore scores a few hundred rows instead of twenty-six thousand.
+   */
+  prefix: Map<string, number[]>;
+  /**
+   * Rows containing a given two-character sequence, built on first use.
+   *
+   * Substring matching is the one query shape a prefix index cannot answer, and
+   * the postings for it are the expensive part — about thirteen per row once
+   * the gloss is included. Building them with the rest would put that cost on
+   * every learner who searches, including the ones who only ever type a word's
+   * beginning, which is most of them. So it is built the first time a query
+   * actually needs it and kept from then on.
+   */
+  bigrams: Map<string, number[]> | null;
 }
 
 /** Every headword, searchable. One fetch per session, on the first search. */
@@ -167,11 +191,7 @@ export function loadIndex(): Promise<DictionaryIndex> {
           chunk: row[5] as string,
           frequency: row[6] as number,
         }));
-        return {
-          hits,
-          gloss: hits.map((hit) => hit.shortGloss.toLowerCase()),
-          romanization: hits.map((hit) => hit.romanization.toLowerCase()),
-        };
+        return assemble(hits);
       }),
     () => {
       indexPromise = null;
@@ -221,11 +241,12 @@ export function rankDictionary(
   if (!needle) return [];
 
   const { hits, gloss, romanization } = index;
-  // Two parallel arrays of primitives rather than an array of objects: at this
-  // size the allocation per match is a measurable share of the keystroke.
   const found: number[] = [];
   const ranks: number[] = [];
-  for (let i = 0; i < hits.length; i += 1) {
+  const seen = new Set<number>();
+
+  const consider = (i: number) => {
+    if (seen.has(i)) return;
     const headword = hits[i]!.headword;
     const meaning = gloss[i]!;
     let rank: number;
@@ -233,9 +254,29 @@ export function rankDictionary(
     else if (headword.startsWith(needle) || meaning.startsWith(needle)) rank = 1;
     else if (headword.includes(needle) || meaning.includes(needle)) rank = 2;
     else if (romanization[i]!.startsWith(needle)) rank = 3;
-    else continue;
+    else return;
+    seen.add(i);
     found.push(i);
     ranks.push(rank);
+  };
+
+  /*
+    Three narrowing passes instead of one scan of everything.
+
+    Exact and prefix are answered from maps built when the index loaded. The
+    substring pass is the only one that can still be broad, and it is reached
+    only when the first two have not already filled the list — which for a
+    dictionary is the common case, because people type the beginning of a word.
+  */
+  for (const i of index.exact.get(needle) ?? []) consider(i);
+  for (const i of index.prefix.get(needle.slice(0, needle.length > 1 ? 2 : 1)) ?? []) consider(i);
+  if (needle.length === 1) {
+    // A single character never lands in a two-character Latin bucket.
+    for (const i of index.prefix.get(needle) ?? []) consider(i);
+  }
+
+  if (found.length < limit) {
+    for (const i of substringCandidates(index, needle)) consider(i);
   }
 
   const order = found.map((_, position) => position);
@@ -243,6 +284,80 @@ export function rankDictionary(
     (a, b) => ranks[a]! - ranks[b]! || hits[found[b]!]!.frequency - hits[found[a]!]!.frequency,
   );
   return order.slice(0, limit).map((position) => hits[found[position]!]!);
+}
+
+/**
+ * Rows that could contain the query anywhere inside them.
+ *
+ * For two characters or more this is the intersection of the postings for the
+ * query's own bigrams, which is a small set. For a single character there are
+ * no bigrams to intersect and the whole corpus is a candidate — but a
+ * one-character query has already been answered by the prefix pass above, and
+ * asking for every row that merely *contains* one character is not a search
+ * anybody wants.
+ */
+function substringCandidates(index: DictionaryIndex, needle: string): readonly number[] {
+  if (needle.length < 2) return [];
+  index.bigrams ??= buildBigrams(index);
+  let candidates: number[] | null = null;
+  for (let i = 0; i + 1 < needle.length; i += 1) {
+    const posting = index.bigrams.get(needle.slice(i, i + 2));
+    if (!posting) return [];
+    if (candidates === null || posting.length < candidates.length) candidates = posting;
+  }
+  return candidates ?? [];
+}
+
+/** The postings, built once, the first time a substring query needs them. */
+function buildBigrams(index: DictionaryIndex): Map<string, number[]> {
+  const map = new Map<string, number[]>();
+  const push = (key: string, row: number) => {
+    const at = map.get(key);
+    if (at) {
+      if (at[at.length - 1] !== row) at.push(row);
+    } else map.set(key, [row]);
+  };
+  for (let i = 0; i < index.hits.length; i += 1) {
+    const headword = index.hits[i]!.headword;
+    for (let c = 0; c + 1 < headword.length; c += 1) push(headword.slice(c, c + 2), i);
+    const meaning = index.gloss[i]!;
+    for (let c = 0; c + 1 < meaning.length; c += 1) push(meaning.slice(c, c + 2), i);
+  }
+  return map;
+}
+
+/**
+ * The searchable index for a list of hits, without a fetch.
+ *
+ * Exported for the tests and the benchmark, so both search the structure the
+ * app builds rather than a hand-assembled lookalike — a benchmark of a copy is
+ * a benchmark of code nobody runs.
+ */
+export function buildIndexForTest(hits: DictionaryHit[]): DictionaryIndex {
+  return assemble(hits);
+}
+
+/** Lower-cases once, and builds the two maps every keystroke reads. */
+function assemble(hits: DictionaryHit[]): DictionaryIndex {
+  const gloss = hits.map((hit) => hit.shortGloss.toLowerCase());
+  const romanization = hits.map((hit) => hit.romanization.toLowerCase());
+  const exact = new Map<string, number[]>();
+  const prefix = new Map<string, number[]>();
+  const add = (map: Map<string, number[]>, key: string, row: number) => {
+    const at = map.get(key);
+    if (at) at.push(row);
+    else map.set(key, [row]);
+  };
+  for (let i = 0; i < hits.length; i += 1) {
+    const headword = hits[i]!.headword;
+    add(exact, headword, i);
+    if (gloss[i]) add(exact, gloss[i]!, i);
+    // Hangul discriminates on one character; Latin needs two.
+    if (headword) add(prefix, headword.slice(0, 1), i);
+    if (romanization[i]) add(prefix, romanization[i]!.slice(0, 2), i);
+    if (gloss[i]) add(prefix, gloss[i]!.slice(0, 2), i);
+  }
+  return { hits, gloss, romanization, exact, prefix, bigrams: null };
 }
 
 /** Test seam: forget everything fetched, so a test can serve a new manifest. */

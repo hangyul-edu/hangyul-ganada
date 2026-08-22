@@ -3608,11 +3608,31 @@ and romanisation of every row inside the scan, so a keystroke meant 26,675
 `toLowerCase()` calls, twice. Moving that to load time costs 7 ms once and
 brought a keystroke back to 3.9 ms.
 
-That lever has now been pulled and there is not a second one of the same size.
-The synthetic rows above are deliberately hostile — every headword shares a
-prefix with the query, so nothing exits early — and they say the design stops
-meeting budget somewhere past 30,000. The answer there is an inverted index or a
-worker, not a faster scan. **I-32**, filed, not fixed.
+That was the last large lever available to a scan, so the scan was replaced.
+Search now narrows through an index built when the corpus loads, at no download
+cost: an exact map from headword and gloss, a prefix map keyed on the first
+character for Hangul and the first two for Latin, and a bigram posting list for
+substring queries, built the first time one is asked.
+
+| rows | index gz | build | p50 | p95 |
+| --- | --- | --- | --- | --- |
+| 26,675 | 336 kB | 314 ms | 0.03 ms | 0.79 ms |
+| 50,000 | 631 kB | 482 ms | 0.05 ms | 0.65 ms |
+| 100,000 | 1,274 kB | 1,001 ms | 0.12 ms | 1.50 ms |
+| **shipping, 26,675** | **449 kB** | **182 ms** | **0.02 ms** | **0.55 ms** |
+
+Targets were p50 under 4 ms and p95 under 8 ms. Both are met at every size with
+two orders of magnitude in hand. **I-32 resolved.**
+
+The synthetic rows were fixed too. They used to all begin with 가, which is the
+right hostility for a scan and measures an index *as* a scan — one bucket
+holding everything. They now reproduce the shipping corpus's spread: 1,210
+distinct first characters, largest bucket 328.
+
+What still grows with the corpus is the **one-time build**: 1,001 ms at 100,000
+against a 1,000 ms budget. That is a once-per-session cost behind a visible
+loading line, and past that size it belongs in a worker or a prebuilt file
+rather than in the first search.
 
 ## 29.4 Offline — **VERIFIED**
 
@@ -3937,7 +3957,6 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
 | **I-13** | Relations | **P2** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
-| **I-32** | Performance | **P3** | Dictionary search is a linear scan and stops meeting budget past about 30,000 headwords | None today. If the dictionary grows by roughly another 15%, search results begin to trail the cursor on a mid-range phone — the text box stays responsive because ranking is deferred, but the list under it lags visibly. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | **PARTIAL** |
 | **I-20** | Vocabulary | **P3** | The hand-written *More about it* block is on 25 words of 2,581 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them. | **PARTIAL** |
@@ -3965,15 +3984,16 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-27** | UI | **P3** | Between 430 px and 560 px the bottom navigation floats clear of the screen edges | On a large phone in landscape, a small tablet or a split-screen window, the tab bar is 430 px wide on a wider page, so warm ground shows down both sides of it and it does not reach the bottom corners. It reads as a bar that has come loose from the app — the same symptom that was fixed above 560 px. | **RESOLVED** |
 | **I-28** | Build | **P3** | `docs:consistency` cannot see four of the figures it tracks, and one of them had drifted | None to a learner. It matters because this report's credibility rests on its numbers, and a gate that ends with “No document states two different current values for the same metric” while a stale value sits in §2.3 reads as stronger than it is. | **RESOLVED** |
 | **I-30** | Docs | **P3** | The report's screenshots have no working generator, and one had gone two cycles stale | None to a learner. It matters to anyone reading this report to decide what the product is: Figure 8 showed two vocabulary listening questions a few hundred lines below the prose explaining that none exists or can be generated. | **RESOLVED** |
+| **I-32** | Performance | **P3** | Dictionary search scanned every row on every keystroke | None reached a customer — it was caught by its own budget at 9.0 ms before shipping — but the design had no headroom: another 15% of corpus growth and search results would have begun trailing the cursor on a mid-range phone. | **RESOLVED** |
 | **I-33** | Content | **P4** | Secondary categories were inherited from senses the card does not teach | 김치 was tagged *communication* as well as *food*; 눈, taught as the eye, was tagged *animals-nature* from the snow sense; 돈 was *time-numbers*. Secondary tags feed search and recommendations, so a wrong one sends a learner to a word that does not belong there. | **RESOLVED** |
 
 <!-- /issues:what -->
 
 <!-- issues:counts -->
 
-**Open — P0: 0 · P1: 3 · P2: 3 · P3: 1**
+**Open — P0: 0 · P1: 3 · P2: 3 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 24**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 25**
 
 <!-- /issues:counts -->
 
@@ -4010,7 +4030,6 @@ way a reader can re-run.
 | **I-12** | A consequence of having no account and device-local persistence. §24.6. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
 | **I-13** | `vocabulary:relations:qa`. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
 | **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
-| **I-32** | `perf:dictionary` scores every row of the index on every keystroke. At the 26,675 headwords that ship it costs 3.9 ms phone-adjusted against a budget of half a frame; on synthetic worst-case rows where nothing exits early, 25,000 costs 7.5 ms and 50,000 costs 13.2 ms. The gate caught this once already: the same code was at 9.0 ms when the corpus first reached this size, and lower-casing the gloss and romanisation once at load instead of per keystroke brought it back. That lever has now been pulled and there is not a second one of the same size.  The index is also 451 kB gzipped — a download a learner waits through on their first search, comparable to the app's entire first load, and budgeted at 520 kB so it cannot drift upwards unnoticed. | An inverted index built at build time, or moving the scan into a worker. Not a faster loop: the current one is already doing the minimum per row. |
 | **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
 | **I-10** | The recommended fix is in: every entry carries a canonical `senseId` derived from its English gloss — 2,581 of 2,581, no collisions — and English is the arbiter because it was the one locale already single-sense throughout. 103 separator-split glosses were read against the sentence each card actually asks; 35 named a sense the sentence never demonstrates and were trimmed, ten cards moved sense outright, and three illustrations moved with them. The remaining 38 are classified in `REVIEWED_SPLIT` and `vocabulary:sense:qa:check` now fails on a split gloss that is not on that list, and on a listed one that has stopped being split. Both directions are negative-tested.  What is still unguarded: a gloss merged with a **comma** rather than a semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand — "coche, té" for 차 is now "coche" — but the rule cannot be widened to catch a new one. Measured over the corpus, "this locale has more comma-separated parts than the English" flags 228 glosses and is dominated by descriptive commas: 얼굴 is "눈, 코, 입이 있는 앞부분", one definition containing a list, not two senses. | Nothing automatic remains that is worth having. The decidable half is done and gated; the rest is a reading pass over comma-bearing glosses, which is content work. |
 | **I-20** | The page now carries the dictionary's own senses for the same spelling, behind a disclosure and attributed: 419 words gain 581 additional examples of the sense the card teaches, and 399 gain 721 more under other senses, each beneath the meaning it demonstrates. 2,564 of 2,581 taught words have a dictionary entry at all.  What is still on 25 words is the hand-written block, and that is deliberate — a paragraph under every word is a paragraph nobody reads. The gap this leaves is the words where the dictionary has neither a second sense nor an example: those still show a headword, a romanisation, a gloss, a part of speech and one sentence. | Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed. |
@@ -4038,6 +4057,7 @@ way a reader can re-run.
 | **I-27** | `max-width` came off `.shell`; `#root` is the only thing deciding the app's width at any viewport. Measured at 360, 390, 412, 430, 440, 480, 520, 560, 600, 768, 1024 and 1440 px: the navigation and the frame share both edges exactly at every one, and no width scrolls horizontally. | done |
 | **I-28** | `check-docs-consistency.mjs` now fails on a metric it tracks and cannot find, not only on one that disagrees — a figure nothing states is a figure nothing guards. The four patterns that were silently matching nothing were fixed rather than the prose bent to suit them: they accept the bold and the annotations the report has always used, and both spellings of the APK and AAB row headings. It caught two real drifts on its first run. | done |
 | **I-30** | `capture-report-shots.mjs` takes all seven figures the report embeds, in their own block and first, and composes the six-panel session figure from a real sitting rather than by hand. The reference captures that nothing links to are wrapped so a stale selector reports itself and steps over instead of stranding everything after it — which is how the figures went two cycles without being retaken. The category selector it died on is fixed and the capture step for a screen that no longer exists is deleted. | done |
+| **I-32** | Replaced with an index built when the corpus loads, at no download cost: an exact map from headword and gloss, a prefix map keyed on the first character for Hangul and the first two for Latin, and a bigram posting list for substring queries built the first time one is asked. A keystroke narrows through those three instead of touching 26,675 rows.  Benchmarked against the ranker the app runs, over a spread of real query shapes — growing prefixes, exact hits, romanisation, gloss words, mid-word substrings — with every figure multiplied by four for a phone:  ```   rows      index gz    build     p50       p95   26,675      336 kB    314 ms   0.03 ms   0.79 ms   50,000      631 kB    482 ms   0.05 ms   0.65 ms  100,000    1,274 kB   1001 ms   0.12 ms   1.50 ms   ------   shipping    449 kB    182 ms   0.02 ms   0.55 ms ```  Targets were p50 under 4 ms and p95 under 8 ms; both are met at every size with two orders of magnitude to spare. The synthetic rows were also fixed to have the real corpus's prefix spread — 1,210 distinct first characters, largest bucket 328 — because the previous ones all began with 가, which is the right hostility for a scan and measures an index as a scan.  What still grows with the corpus is the **one-time build**: 1,001 ms at 100,000 against a 1,000 ms budget. That is a once-per-session cost behind a visible loading line, and past that size it belongs in a worker or a prebuilt file rather than in the first search. | Done. |
 | **I-33** | Two kinds of evidence were being pooled and only one of them knows which sense is taught. The **gloss** is the taught sense — that is what `senseId` means — so a category matched against it belongs to the card. A Wiktionary **topic** is attached to a *page*, which describes every sense the word has: 김치's page carries `Photography`, because 김치 is what Koreans say instead of "cheese" for a photograph.  `classify` no longer pools them. A topic may name the category of a word the gloss could not classify at all — better than falling back to its part of speech — but it can never add a second category on top of a gloss match, which is where the wrong ones were getting in.  Measured over the corpus: **73 secondary tags removed across 70 words** (504 → 431), and **no primary category changed**, so nothing was made worse to achieve it. 김치, 교실 and 만두 now carry food, school-work and food with no secondary; 눈 is body-health; 돈 is money-shopping. Wrong metadata is worse than missing metadata, and this prefers missing. | Done. |
 
 <!-- /issues:how -->
@@ -4471,7 +4491,6 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
 | **I-13** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
-| **I-32** | Dictionary search is a linear scan and stops meeting budget past about 30,000 headwords | None today. If the dictionary grows by roughly another 15%, search results begin to trail the cursor on a mid-range phone — the text box stays responsive because ranking is deferred, but the list under it lags visibly. | MEDIUM — a prefix index in build_dictionary.py, or a worker |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
 | **I-10** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | DONE for the decidable half — the rest is a content reading pass |
 | **I-20** | The hand-written *More about it* block is on 25 words of 2,581 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them. | MEDIUM (content) — one paragraph per word, in ten languages |

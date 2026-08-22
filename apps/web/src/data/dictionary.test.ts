@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  buildIndexForTest,
   type DictionaryHit,
   loadChunk,
   loadEntry,
@@ -135,11 +136,11 @@ describe('ranking', () => {
     chunk: row[5] as string,
     frequency: row[6] as number,
   }));
-  const index = {
-    hits,
-    gloss: hits.map((hit) => hit.shortGloss.toLowerCase()),
-    romanization: hits.map((hit) => hit.romanization.toLowerCase()),
-  };
+  /*
+    Built through the loader rather than hand-assembled, so the test exercises
+    the index the app actually searches — the maps included.
+  */
+  const index = buildIndexForTest(hits);
 
   it('puts an exact headword above a word that merely starts with it', () => {
     expect(rankDictionary(index, '나', 5).map((hit) => hit.headword)).toEqual(['나', '나가다']);

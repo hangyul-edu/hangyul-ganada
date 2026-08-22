@@ -333,12 +333,12 @@
       "id": "I-32",
       "area": "Performance",
       "severity": "P3",
-      "status": "OPEN",
-      "summary": "Dictionary search is a linear scan and stops meeting budget past about 30,000 headwords",
-      "customerImpact": "None today. If the dictionary grows by roughly another 15%, search results begin to trail the cursor on a mid-range phone — the text box stays responsive because ranking is deferred, but the list under it lags visibly.",
-      "evidence": "`perf:dictionary` scores every row of the index on every keystroke. At the 26,675 headwords that ship it costs 3.9 ms phone-adjusted against a budget of half a frame; on synthetic worst-case rows where nothing exits early, 25,000 costs 7.5 ms and 50,000 costs 13.2 ms. The gate caught this once already: the same code was at 9.0 ms when the corpus first reached this size, and lower-casing the gloss and romanisation once at load instead of per keystroke brought it back. That lever has now been pulled and there is not a second one of the same size.\n\nThe index is also 451 kB gzipped — a download a learner waits through on their first search, comparable to the app's entire first load, and budgeted at 520 kB so it cannot drift upwards unnoticed.",
-      "recommendedFix": "An inverted index built at build time, or moving the scan into a worker. Not a faster loop: the current one is already doing the minimum per row.",
-      "effort": "MEDIUM — a prefix index in build_dictionary.py, or a worker"
+      "status": "RESOLVED",
+      "summary": "Dictionary search scanned every row on every keystroke",
+      "customerImpact": "None reached a customer — it was caught by its own budget at 9.0 ms before shipping — but the design had no headroom: another 15% of corpus growth and search results would have begun trailing the cursor on a mid-range phone.",
+      "evidence": "Replaced with an index built when the corpus loads, at no download cost: an exact map from headword and gloss, a prefix map keyed on the first character for Hangul and the first two for Latin, and a bigram posting list for substring queries built the first time one is asked. A keystroke narrows through those three instead of touching 26,675 rows.\n\nBenchmarked against the ranker the app runs, over a spread of real query shapes — growing prefixes, exact hits, romanisation, gloss words, mid-word substrings — with every figure multiplied by four for a phone:\n\n```\n  rows      index gz    build     p50       p95\n  26,675      336 kB    314 ms   0.03 ms   0.79 ms\n  50,000      631 kB    482 ms   0.05 ms   0.65 ms\n 100,000    1,274 kB   1001 ms   0.12 ms   1.50 ms\n  ------\n  shipping    449 kB    182 ms   0.02 ms   0.55 ms\n```\n\nTargets were p50 under 4 ms and p95 under 8 ms; both are met at every size with two orders of magnitude to spare. The synthetic rows were also fixed to have the real corpus's prefix spread — 1,210 distinct first characters, largest bucket 328 — because the previous ones all began with 가, which is the right hostility for a scan and measures an index as a scan.\n\nWhat still grows with the corpus is the **one-time build**: 1,001 ms at 100,000 against a 1,000 ms budget. That is a once-per-session cost behind a visible loading line, and past that size it belongs in a worker or a prebuilt file rather than in the first search.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
     },
     {
       "id": "I-33",
