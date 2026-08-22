@@ -128,22 +128,65 @@ function onCubic(
 /**
  * A ㄱ, drawn as one stroke that turns the corner, inside `[left, right]`.
  *
- * The leg comes back about a quarter of the letter's width as it descends, on a
- * gentle curve. That number is measured, not guessed — twice now, because the
- * first guess was wrong in both directions.
+ * ## How far the leg leans, measured against the face rather than estimated
  *
- * Rendering the practice face and reading the ink off it row by row: in 가 and
- * 거, where the ㄱ is tall, the leg's centre travels from 0.49 of the block to
- * 0.34 as it falls, a shift of a bit over a quarter of the letter. In 고 and
- * 국, where the ㄱ is squat, the leg comes straight down. One polyline cannot
- * be both — but it does not have to be, because the block that wants the
- * upright version is also the block that squashes the letter horizontally, and
- * squashing a leaning leg is what makes it upright.
+ * Three times now, and the first two were wrong. The number that matters is
+ * where the **toe** lands: the leg's centre at the bottom of the letter, as a
+ * fraction of the letter's own width, with 1.0 meaning straight down from the
+ * corner and 0 meaning all the way back under the bar's left end.
  *
- * The middle point is the curve. The leg is an arc, and two segments follow an
- * arc closely enough for a demonstration that reveals the same path it draws.
+ * Read off the practice face row by row, taking the ㄱ's region from the
+ * measured composition so the vowel's ink cannot be mistaken for the leg:
+ *
+ * ```
+ *            toe    leg centre at 25% / 50% / 75% / 98% of the ㄱ's height
+ *   가      0.120      0.873   0.743   0.459   0.134
+ *   거      0.114      0.866   0.814   0.459   0.131
+ *   기      0.113      0.864   0.738   0.457   0.129
+ *   그      0.945      0.922   0.917   0.901   0.897
+ *   ㄱ      0.915      0.915   0.915   0.915   0.915
+ * ```
+ *
+ * So the face draws two quite different letters, and the split is the one
+ * `strokesOf` already knew about — beside a vowel the leg sweeps almost the
+ * whole width back; above one, or on its own, it comes straight down. What was
+ * wrong was the *size* of the lean, not the rule: this was authored at 0.28,
+ * which puts the toe at 0.72 where the face puts it at 0.115. On screen that
+ * reads as a ㄱ whose leg stops early — top-heavy, and visibly not the letter
+ * the tracing guide shows underneath it.
+ *
+ * 고 and 구 are absent from the table on purpose. Their vowel's stem descends
+ * into the consonant's measured region, so "the lowest ink in that region" is
+ * the stem and not the toe; both measure at almost exactly 0.5, which is where
+ * the stem is. They are covered by the upright form, whose leg is straight.
+ *
+ * ## The curve
+ *
+ * The leg is not a straight diagonal — it leaves the corner travelling down and
+ * turns into the sweep, which is what the four samples above describe. The two
+ * controls below were fitted to them by least squares over the three tall
+ * blocks, to an RMS of 0.017 of the letter's width. `c1` is held on the
+ * corner's own vertical so the corner stays a clean right angle rather than
+ * becoming a chamfer.
+ *
+ * The fit is against the *rendered ink*, not against the bare curve. Those are
+ * not the same thing and the difference is not small: the samples above are
+ * taken at fractions of the letter's ink box, whose top edge is half a pen
+ * above where the curve starts and whose bottom is half a pen below where it
+ * ends, so a curve fitted to them directly comes out about 0.057 of the width
+ * too far left through the middle. Fitted once, measured off the render,
+ * refitted against the offset — which is why the numbers below are not the
+ * ones a first pass produces.
  */
-function giyeok(left: number, right: number, top = 20, bottom = 80, lean = 0.28): StrokeStep {
+export const GIYEOK_LEAN = 0.885;
+
+function giyeok(
+  left: number,
+  right: number,
+  top = 20,
+  bottom = 80,
+  lean = GIYEOK_LEAN,
+): StrokeStep {
   const width = right - left;
   const height = bottom - top;
   const toe = right - width * lean;
@@ -156,21 +199,58 @@ function giyeok(left: number, right: number, top = 20, bottom = 80, lean = 0.28)
     ]);
   }
   return stroke(
+    // The polyline the demonstration reveals, sampled off the same curve: the
+    // corner, the two places the face's leg passes through on its way down, and
+    // the toe. Three segments rather than two, because at this lean two chords
+    // of the arc visibly cut the corner off it.
     [
       [left, top],
       [right, top],
-      [right - width * 0.08, top + height * 0.55],
+      [legX(left, width, toe, 0.5), top + height * 0.5],
+      [legX(left, width, toe, 0.8), top + height * 0.8],
       [toe, bottom],
     ],
-    // The corner, then the leg as one cubic rather than two chords of it. The
-    // controls are placed so the curve leaves the corner travelling straight
-    // down — which is what makes the corner a clean right angle instead of a
-    // chamfer — and passes through the same waist the polyline does.
     [
       [left, top, right, top, right, top],
-      [right, top + height * 0.45, toe + width * 0.16, bottom - height * 0.32, toe, bottom],
+      [
+        right,
+        top + height * 0.67,
+        left + width * 0.15,
+        top + height * 0.9,
+        toe,
+        bottom,
+      ],
     ],
   );
+}
+
+/**
+ * A point on the leg, for the polyline that follows the curve above.
+ *
+ * Evaluated from the same cubic rather than estimated, so the revealed path and
+ * the drawn one cannot drift apart — which is the whole reason the polyline
+ * exists.
+ */
+function legX(left: number, width: number, toe: number, v: number): number {
+  const p0 = 1;
+  const c1 = 1;
+  const c2 = 0.15;
+  const p3 = (toe - left) / width;
+  // Solve the cubic's y for the parameter, then read its x. y is
+  // 3(1-t)²t·0.3 + 3(1-t)t²·0.77 + t³, which is monotonic over [0, 1].
+  let lo = 0;
+  let hi = 1;
+  for (let i = 0; i < 40; i += 1) {
+    const t = (lo + hi) / 2;
+    const m = 1 - t;
+    const y = 3 * m * m * t * 0.67 + 3 * m * t * t * 0.9 + t * t * t;
+    if (y < v) lo = t;
+    else hi = t;
+  }
+  const t = (lo + hi) / 2;
+  const m = 1 - t;
+  const u = m * m * m * p0 + 3 * m * m * t * c1 + 3 * m * t * t * c2 + t * t * t * p3;
+  return left + width * u;
 }
 
 /** A ㄴ: down, then right. One stroke. */

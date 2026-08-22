@@ -73,9 +73,35 @@ const page = await browser.newPage({ viewport: { width: CANVAS, height: CANVAS }
 await page.setContent(
   `<meta charset="utf-8"><style>
    @font-face{font-family:P;src:url(data:font/woff2;base64,${font}) format('woff2');font-weight:100 900}
-   body{margin:0}</style><canvas id="c" width="${CANVAS}" height="${CANVAS}"></canvas>`,
+   body{margin:0}</style><canvas id="c" width="${CANVAS}" height="${CANVAS}"></canvas>
+   <div id="probe" style="position:fixed;left:-9999px;font:${WEIGHT} 40px P">${JAMO.join('')}</div>`,
 );
-await page.evaluate(() => document.fonts.ready);
+/*
+ * Load the face **for these letters**, and prove it, before measuring.
+ *
+ * `document.fonts.ready` on a page whose only content is a `<canvas>` resolves
+ * without loading anything, because nothing on that page uses the family. The
+ * canvas then falls back to a system CJK face and draws perfectly good, wrong
+ * letters. That is what this file did, and the numbers it produced were wrong
+ * for exactly the letters where the fallback's design differs most: ㅗ was
+ * recorded at an aspect of 2.894 where Pretendard draws it at 1.84, so the
+ * demonstration built ㅗ with a stem two fifths too short.
+ *
+ * The check is not "is some face loaded" — the fallback is another Korean face
+ * and passes that. `P` is defined only by the @font-face above, so a positive
+ * `check` for it cannot be anything else.
+ */
+await page.evaluate(
+  async ({ text, weight }) => {
+    await document.fonts.load(`${weight} 40px P`, text);
+    await document.fonts.ready;
+  },
+  { text: JAMO.join(''), weight: WEIGHT },
+);
+if (!(await page.evaluate(({ text, weight }) => document.fonts.check(`${weight} 40px P`, text), { text: JAMO.join(''), weight: WEIGHT }))) {
+  await browser.close();
+  throw new Error('the reference face did not load; every aspect would be measured off a fallback');
+}
 
 const measured = await page.evaluate(
   ({ chars, size, weight, canvas }) => {
