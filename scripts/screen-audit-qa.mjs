@@ -19,7 +19,9 @@
  * | | |
  * | --- | --- |
  * | **320 px** | An iPhone SE, and the narrowest width still worth supporting. |
- * | **390 px** | The modal phone. |
+ * | **360 px** | The commonest Android width in the world. |
+ * | **390 px** | The modal iPhone. |
+ * | **412 px** | The commonest large Android width. |
  * | **430 px** | A Pro Max, where the risk is not clipping but a layout that stops filling the screen. |
  * | **Dark** | `prefers-color-scheme: dark`, which about half of all phones are set to. |
  * | **200% text** | WCAG 1.4.4. A learner who needs it is a learner who cannot read the app without it. |
@@ -82,7 +84,9 @@ const SCREENS = [
 
 const DEVICES = [
   { name: '320', width: 320, height: 568, scheme: 'light', zoom: 1 },
+  { name: '360', width: 360, height: 800, scheme: 'light', zoom: 1 },
   { name: '390', width: 390, height: 844, scheme: 'light', zoom: 1 },
+  { name: '412', width: 412, height: 915, scheme: 'light', zoom: 1 },
   { name: '430', width: 430, height: 932, scheme: 'light', zoom: 1 },
   { name: '390-dark', width: 390, height: 844, scheme: 'dark', zoom: 1 },
   { name: '390-200%', width: 390, height: 844, scheme: 'light', zoom: 2 },
@@ -364,7 +368,7 @@ if (!CHECK) {
 }
 
 console.log(
-  `\nScreens — ${SCREENS.length} screens x ${DEVICES.length} devices = ${SCREENS.length * DEVICES.length} renders`,
+  `\nScreens — ${SCREENS.length} screens x ${DEVICES.length} profiles = ${SCREENS.length * DEVICES.length} renders`,
 );
 if (findings.length === 0) {
   console.log('  nothing clipped, nothing overlapping, nothing unreadable, at any size.');
