@@ -63,10 +63,25 @@ export async function openApp(page: Page, path: string): Promise<void> {
  * Tolerant of the prompt being absent, because a spec that has already been
  * through it once in the same context will not see it again — that is the
  * point of recording the decision.
+ *
+ * ## Why it waits rather than looks
+ *
+ * `isVisible()` answers about the instant it is called, and the dialog arrives
+ * a beat after the launch screen clears — the plan has to resolve before the
+ * page knows whether to ask. Asking instantly won the race often enough to
+ * look correct and lost it often enough to be the worst kind of flake: the
+ * walk in `locale-quiz.spec.ts` clicks the last button on screen to move on,
+ * that button was *Take the level test*, and the test wandered into a
+ * thirty-question assessment and reported "no question appeared" — in a
+ * different locale each run, because which button is last depends on the
+ * reading direction.
+ *
+ * So it waits, briefly, and treats the timeout as "there was no prompt".
  */
 export async function openTodaysWords(page: Page, path = '/words/today'): Promise<void> {
   await page.goto(path);
   await waitForLaunch(page);
   const skip = page.getByTestId('placement-skip');
+  await skip.waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
   if (await skip.isVisible().catch(() => false)) await skip.click();
 }

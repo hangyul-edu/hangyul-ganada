@@ -114,21 +114,30 @@ test('a taught word is never offered twice', async ({ page }) => {
 
 test('a taught word gains dictionary examples of the sense it teaches', async ({ page }) => {
   /*
-    한 has a dictionary entry with examples, and its taught sense matches one of
-    them — which is what makes those examples showable on the card at all. A
-    dictionary sense whose gloss is *not* the taught one goes under Other
-    meanings with its own examples; this is the other half.
+    §8–§15 removed the *More from the dictionary* disclosure and everything under
+    it. The screenshot that prompted it showed 발 offering the learner "leg",
+    "counter for steps", "a blind screen", "strands of noodles" and "rounds of
+    gunfire" on a card that teaches one sense of one word.
+
+    What replaced it is narrower on purpose: sentences from the dictionary that
+    demonstrate *the taught sense*, filtered by `data/exampleQuality.ts`, at most
+    two, with no disclosure to open. 195 of 2,578 cards gain one — see
+    `worddetail:qa` — and 방 is one of them.
   */
   await openApp(page, '/words');
   await waitForLaunch(page);
 
-  await page.getByRole('searchbox').fill('사람');
-  await page.getByRole('link', { name: /사람/ }).first().click();
-  await expect(page.getByTestId('detail-headword')).toHaveText('사람');
+  await page.getByRole('searchbox').fill('방');
+  await page.getByRole('link', { name: /방/ }).first().click();
+  await expect(page.getByTestId('detail-headword')).toHaveText('방');
 
-  const more = page.getByRole('group');
-  await more.getByText(/more from the dictionary/i).first().click();
+  const more = page.getByRole('region', { name: /more examples/i });
+  await expect(more).toBeVisible();
+  // Its own example is on the card already; this section must not repeat it.
+  await expect(more.getByText('방이 깨끗해요.')).toHaveCount(0);
+  await expect(more.locator('li')).not.toHaveCount(0);
+  expect(await more.locator('li').count()).toBeLessThanOrEqual(2);
 
-  // Whatever the dictionary has for it, the attribution must arrive with it.
-  await expect(more.getByText(/Wiktionary/)).toBeVisible();
+  // And nothing offering the senses the card does not teach.
+  await expect(page.getByText(/more from the dictionary/i)).toHaveCount(0);
 });

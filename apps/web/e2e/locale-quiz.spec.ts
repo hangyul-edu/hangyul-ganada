@@ -31,14 +31,47 @@ import { openTodaysWords } from './helpers/launch';
  * is English.
  */
 
-/** Locales with a non-Latin script, where Latin text is unambiguous evidence. */
-const NON_LATIN = ['ta', 'te', 'bn', 'ar', 'hi', 'ru'] as const;
+/**
+ * Locales with a non-Latin script, and the script an answer in them is written
+ * in.
+ *
+ * The range is what makes the walk cheap. It used to collect two question
+ * screens and stop, on the reasoning that one look might land on a `produce`
+ * question whose options are Korean and prove nothing — true, but "two screens"
+ * is a proxy for "a screen with a real answer on it", and the proxy is what
+ * made the test expensive: §22–§32 requeue a word answered wrongly, this clicks
+ * the first option every time, and the number of screens before the second
+ * question runs from four to fourteen. Asking the direct question instead —
+ * *have I seen an option written in this learner's script?* — usually finishes
+ * in three or four.
+ */
+const NON_LATIN = {
+  ta: /[\u0B80-\u0BFF]/,
+  te: /[\u0C00-\u0C7F]/,
+  bn: /[\u0980-\u09FF]/,
+  ar: /[\u0600-\u06FF]/,
+  hi: /[\u0900-\u097F]/,
+  ru: /[\u0400-\u04FF]/,
+} as const;
 
 /** Three or more Latin letters in a row. Not tripped by a stray romanisation. */
 const LATIN_WORD = /[A-Za-z]{3}/;
 
-for (const locale of NON_LATIN) {
+for (const [locale, script] of Object.entries(NON_LATIN)) {
   test(`a ${locale} session never offers an English answer`, async ({ page }) => {
+    /*
+      Declared slow, because it is.
+
+      This drives a real sitting through up to ten screens — each one a route
+      change, a corpus band and a locale pack — and it does that six times per
+      project. Run on an idle machine each case takes about eighteen seconds
+      against a sixty-second cap, which is comfortable; run twenty in a row on
+      a loaded one it is not, and the failures wander between locales, which is
+      the signature of a clock rather than a defect. `test.slow()` says that
+      out loud instead of leaving a suite that fails somewhere different each
+      time.
+    */
+    test.slow();
     await page.addInitScript((code) => {
       window.localStorage.setItem('hangyul_ganada:locale', code);
     }, locale);
@@ -52,8 +85,31 @@ for (const locale of NON_LATIN) {
       question, whose options are Korean, and prove nothing about the `meaning`
       questions where the leak was.
     */
+    /*
+      Stop as soon as there is nothing more to learn from walking further.
+
+      Two things end the walk: an option written in the learner's own script,
+      which is positive proof the meaning came from their pack, or two question
+      screens, which is the older and weaker evidence. Whichever arrives first.
+
+      Only the *stopping* is opportunistic. Script evidence cannot be required,
+      and requiring it was a mistake worth recording: three of the six locales
+      failed on desktop and passed on mobile, because which exercise a sitting
+      offers first is a property of the rotation — `produce`, `context` and
+      `build` all show Korean options, quite correctly — and not of anything
+      this test is about.
+
+      Fourteen steps is the cap, and it is a *budget* rather than a target: a
+      question is usually two or three screens in, and occasionally the plan
+      puts several introductions first. It used to be sixteen and it used to
+      cost ten seconds a step, because the walk was wandering into the level
+      test — see `openTodaysWords`. With that fixed a step is under a second
+      and the cap is cheap insurance rather than the thing that decides
+      whether the run finishes.
+    */
     const collected: string[][] = [];
-    for (let step = 0; step < 18 && collected.length < 2; step += 1) {
+    const inTheirScript = () => collected.flat().some((label) => script.test(label));
+    for (let step = 0; step < 14 && !inTheirScript() && collected.length < 2; step += 1) {
       const options = page.getByRole('group').first();
       const choices = (await options.count())
         ? options.getByRole('button')
@@ -74,7 +130,7 @@ for (const locale of NON_LATIN) {
           layout rather than on meaning.
         */
         await choices!.first().click().catch(() => {});
-        await page.waitForTimeout(400);
+        await page.waitForTimeout(250);
       }
 
       const onward = page
@@ -83,7 +139,7 @@ for (const locale of NON_LATIN) {
         .last();
       if (!(await onward.count())) break;
       await onward.click().catch(() => {});
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(300);
     }
 
     expect(collected.length, `no question appeared in ${locale}`).toBeGreaterThan(0);
