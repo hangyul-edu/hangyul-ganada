@@ -62,7 +62,7 @@ export function MistakesPage() {
     Vocabulary first, because that is the list the learner came for.
 
     The notebook holds letter mistakes too and it should — one wrong-answer
-    system, not two — but "wrong vocabulary" is what the Review hub offers and
+    system, not two — but "wrong words" is what the Review hub offers and
     what somebody is looking for when they open it. Letters are one tap away and
     are never mixed into the vocabulary practice session.
   */
@@ -116,7 +116,7 @@ export function MistakesPage() {
       {/*
         The same words the row on Review used.
 
-        The hub offered "Wrong vocabulary" and this screen called itself "Missed
+        The hub offered "Wrong words" and this screen called itself "Missed
         answers", so a learner tapped one name and arrived at another. Two names
         for one place is a small thing that makes a product feel like it was
         assembled rather than designed, and it is the kind of thing only a

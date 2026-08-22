@@ -12,7 +12,7 @@ import { openApp } from './helpers/launch';
  * ```
  * Review ─┬─▶ Start review          the scheduler's session
  *         ├─▶ Saved words           what the learner bookmarked
- *         └─▶ Wrong vocabulary      what they got wrong
+ *         └─▶ Wrong words           what they got wrong
  * ```
  *
  * ## Why this is an end-to-end spec and not more unit tests
@@ -127,7 +127,7 @@ test('the hub offers the two lists, with counts that match the screens behind th
   const wrong = page.getByTestId('hub-wrong');
   await expect(wrong).toBeVisible();
   await expect(page.getByTestId('hub-saved')).toBeVisible();
-  // The number beside "Wrong vocabulary" is the number of words, and the screen
+  // The number beside "Wrong words" is the number of words, and the screen
   // it opens shows exactly that many rows. Two figures, one fact.
   await expect(wrong).toContainText('6');
 

@@ -42,7 +42,7 @@ import styles from './ReviewPage.module.css';
  *
  * * **What should I review?** — the card at the top, with the session behind it.
  * * **What did I save?** — Saved words.
- * * **What did I get wrong?** — Wrong vocabulary.
+ * * **What did I get wrong?** — Wrong words.
  *
  * What used to be here as well: two scheduler counts (*needs practice*, *due
  * today*) and a preview list of the next eight items. Both were true and
@@ -75,7 +75,7 @@ export function ReviewPage() {
     Vocabulary only, on this row.
 
     The notebook holds letter mistakes too and the row that opens it says
-    *wrong vocabulary*, so the number beside it has to be the number of words —
+    *wrong words*, so the number beside it has to be the number of words —
     a count that included letters would be a label and a figure describing two
     different things. The notebook screen itself shows both, split.
   */

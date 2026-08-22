@@ -222,6 +222,13 @@ const REVIEWED_TONE = new Set([
   // something being wrong is not about them.
   'common:report.title',
   'common:report.blurb',
+  /*
+    The name of a list, and the list holds words. "Wrong words" is the label on
+    the Review hub chip beside "Saved words", and the pair is what makes it
+    read as a category of *word* rather than a verdict on the learner — which
+    is also why the two have to share a noun. See `one-name-per-concept`.
+  */
+  'learning:mistakes.wrongVocabulary',
 ]);
 
 /** Words that are usually a tone problem, always worth a human reading. */
@@ -325,6 +332,77 @@ for (const locale of locales) {
     const count = JSON.stringify(bundle).match(/"[^"]*":\s*"/g)?.length ?? 0;
     strings += count;
     walk(bundle, '', locale, file.replace('.json', ''));
+  }
+}
+
+/*
+  One concept, one word for it.
+
+  The Review hub puts two chips side by side: the words a learner bookmarked
+  and the words they got wrong. §20 fixes the Korean pair as 저장한 어휘 and
+  틀린 어휘, and §21 asks the same of every other language — not the same
+  *translation*, the same *noun*, so the two chips read as a pair rather than
+  as two features that arrived separately.
+
+  Thirty-one languages did that already: Uložená slova / Chybná slova, 保存した
+  単語 / 間違えた単語, Mots enregistrés / Mots ratés. English said "Saved words"
+  and "Wrong vocabulary" — two nouns for one idea, ten pixels apart on a screen
+  anyone can open. Compared by last word, which is the head noun in every
+  language here that inflects it the same way in both labels; Korean is the
+  case the rule was written for and passes on 어휘.
+*/
+for (const locale of locales) {
+  const read = (file) => JSON.parse(readFileSync(join(LOCALES, locale, file), 'utf8'));
+  const saved = read('vocabulary.json').saved?.title ?? '';
+  const wrong = read('learning.json').mistakes?.wrongVocabulary ?? '';
+  /*
+    A shared *word*, where there are words; a shared run of characters where
+    there are not.
+
+    Not the last word: the head noun is last in German, first in Vietnamese and
+    inflected in Ukrainian. Not a bare shared run either — that was the first
+    attempt, and "Gemerkte Wörter" against "Verpasste Vokabeln" passed it on the
+    "te " in the middle of two unrelated adjectives. A whole token has to
+    survive: words / words, слова / слова, salita / salita, 어휘 / 어휘.
+
+    Chinese, Japanese and Thai write without spaces, so there is no token to
+    compare and the run is all there is — two characters, which in those scripts
+    is already the whole noun: 的词, た単語, คำที่.
+  */
+  const tokens = (label) =>
+    new Set(
+      label
+        .toLowerCase()
+        .split(/[\s·,、。.:;()[\]"'“”„«»]+/u)
+        .filter((word) => word.length >= 2),
+    );
+  const shared = (a, b) => {
+    const x = a.toLowerCase();
+    const y = b.toLowerCase();
+    let best = 0;
+    for (let i = 0; i < x.length; i += 1) {
+      for (let j = 0; j < y.length; j += 1) {
+        let run = 0;
+        while (i + run < x.length && j + run < y.length && x[i + run] === y[j + run]) run += 1;
+        if (run > best) best = run;
+      }
+    }
+    return best;
+  };
+  const spaced = /\s/.test(saved) && /\s/.test(wrong);
+  const agrees = spaced
+    ? [...tokens(saved)].some((word) => tokens(wrong).has(word))
+    : shared(saved, wrong) >= 2;
+  if (saved && wrong && !agrees) {
+    findings.errors.push({
+      locale,
+      key: 'vocabulary:saved.title / learning:mistakes.wrongVocabulary',
+      rule: {
+        id: 'one-name-per-concept',
+        why: 'the saved list and the wrong list are the same kind of thing and sit side by side; they must be named with the same noun',
+      },
+      value: `${saved} / ${wrong}`,
+    });
   }
 }
 
