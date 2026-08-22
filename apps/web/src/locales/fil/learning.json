@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Mga naling na sagot",
     "review_one": "Balik-aral · {{count}} tanong",
     "review_other": "Balik-aral · {{count}} tanong",
     "filterLabel": "Ipakita",

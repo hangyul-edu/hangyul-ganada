@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Kaçırdığın cevaplar",
     "review_one": "Tekrar · {{count}} soru",
     "review_other": "Tekrar · {{count}} soru",
     "filterLabel": "Göster",

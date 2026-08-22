@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "오답노트",
     "review_other": "복습 · {{count}}문제",
     "filterLabel": "보기",
     "filter": {

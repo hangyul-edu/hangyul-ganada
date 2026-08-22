@@ -198,7 +198,6 @@
     }
   },
   "mistakes": {
-    "title": "Réponses fausses",
     "review_one": "Réviser · 1 question",
     "review_many": "Réviser · {{count}} questions",
     "review_other": "Réviser · {{count}} questions",

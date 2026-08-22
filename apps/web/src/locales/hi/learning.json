@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "छूटे हुए उत्तर",
     "review_one": "दोहराव · {{count}} सवाल",
     "review_other": "दोहराव · {{count}} सवाल",
     "filterLabel": "दिखाइए",

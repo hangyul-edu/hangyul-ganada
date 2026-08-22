@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "যেসব উত্তর ফসকে গেছে",
     "review_one": "পুনরালোচনা · {{count}}টি প্রশ্ন",
     "review_other": "পুনরালোচনা · {{count}}টি প্রশ্ন",
     "filterLabel": "দেখান",

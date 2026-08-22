@@ -200,7 +200,6 @@
     }
   },
   "mistakes": {
-    "title": "Pomylone odpowiedzi",
     "review_few": "Powtórka · {{count}} pytania",
     "review_many": "Powtórka · {{count}} pytań",
     "review_one": "Powtórka · {{count}} pytanie",

@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Алдсан хариултууд",
     "review_one": "Давталт · {{count}} асуулт",
     "review_other": "Давталт · {{count}} асуулт",
     "filterLabel": "Харуулах",

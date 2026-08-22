@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Missade svar",
     "review_one": "Repetera · {{count}} fråga",
     "review_other": "Repetera · {{count}} frågor",
     "filterLabel": "Visa",

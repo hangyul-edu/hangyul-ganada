@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Câu đã trả lời sai",
     "review_one": "Ôn tập · 1 câu hỏi",
     "review_other": "Ôn tập · {{count}} câu hỏi",
     "filterLabel": "Hiện",

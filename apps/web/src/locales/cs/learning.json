@@ -200,7 +200,6 @@
     }
   },
   "mistakes": {
-    "title": "Chybné odpovědi",
     "review_few": "Opakování · {{count}} otázky",
     "review_many": "Opakování · {{count}} otázky",
     "review_one": "Opakování · {{count}} otázka",

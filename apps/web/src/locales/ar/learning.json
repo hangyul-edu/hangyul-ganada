@@ -204,7 +204,6 @@
     }
   },
   "mistakes": {
-    "title": "إجابات فاتتك",
     "review_few": "مراجعة · {{count}} أسئلة",
     "review_many": "مراجعة · {{count}} سؤالًا",
     "review_one": "مراجعة · سؤال واحد",

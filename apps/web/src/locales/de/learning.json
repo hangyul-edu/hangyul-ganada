@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Falsche Antworten",
     "review_one": "Wiederholen · 1 Frage",
     "review_other": "Wiederholen · {{count}} Fragen",
     "filterLabel": "Anzeigen",

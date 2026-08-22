@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "错题本",
     "review_other": "复习 · {{count}} 题",
     "filterLabel": "显示",
     "filter": {

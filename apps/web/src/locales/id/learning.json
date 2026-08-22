@@ -194,7 +194,6 @@
     }
   },
   "mistakes": {
-    "title": "Jawaban yang meleset",
     "review_other": "Ulasan · {{count}} soal",
     "filterLabel": "Tampilkan",
     "filter": {

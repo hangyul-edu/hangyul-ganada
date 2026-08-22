@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "O‘tkazib yuborilgan javoblar",
     "review_one": "Takrorlash · {{count}} savol",
     "review_other": "Takrorlash · {{count}} savol",
     "filterLabel": "Ko‘rsatish",

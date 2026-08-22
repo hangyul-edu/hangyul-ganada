@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Жіберілген жауаптар",
     "review_one": "Қайталау · {{count}} сұрақ",
     "review_other": "Қайталау · {{count}} сұрақ",
     "filterLabel": "Көрсету",

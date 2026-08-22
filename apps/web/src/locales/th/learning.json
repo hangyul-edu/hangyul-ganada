@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "ข้อที่ตอบผิด",
     "review_one": "ทบทวน · 1 ข้อ",
     "review_other": "ทบทวน · {{count}} ข้อ",
     "filterLabel": "แสดง",

@@ -198,7 +198,6 @@
     }
   },
   "mistakes": {
-    "title": "Respuestas falladas",
     "review_one": "Repasar · 1 pregunta",
     "review_many": "Repasar · {{count}} preguntas",
     "review_other": "Repasar · {{count}} preguntas",

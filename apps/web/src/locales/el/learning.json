@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Λάθος απαντήσεις",
     "review_one": "Επανάληψη · {{count}} ερώτηση",
     "review_other": "Επανάληψη · {{count}} ερωτήσεις",
     "filterLabel": "Εμφάνιση",

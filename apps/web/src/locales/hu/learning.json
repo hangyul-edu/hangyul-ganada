@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Elrontott válaszok",
     "review_one": "Ismétlés · {{count}} kérdés",
     "review_other": "Ismétlés · {{count}} kérdés",
     "filterLabel": "Mutasd",

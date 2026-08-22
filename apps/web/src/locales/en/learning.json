@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Missed answers",
     "review_one": "Review · 1 question",
     "review_other": "Review · {{count}} questions",
     "filterLabel": "Show",

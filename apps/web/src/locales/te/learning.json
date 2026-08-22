@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "తప్పిన జవాబులు",
     "review_one": "పునశ్చరణ · {{count}} ప్రశ్న",
     "review_other": "పునశ్చరణ · {{count}} ప్రశ్నలు",
     "filterLabel": "చూపించు",

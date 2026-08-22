@@ -198,7 +198,6 @@
     }
   },
   "mistakes": {
-    "title": "Răspunsuri greșite",
     "review_few": "Recapitulare · {{count}} întrebări",
     "review_one": "Recapitulare · {{count}} întrebare",
     "review_other": "Recapitulare · {{count}} de întrebări",

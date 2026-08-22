@@ -431,7 +431,17 @@ await optional('tab screens', async () => {
   // when categories got their own route, and this selector went on asking for a
   // button — which is why the whole script stopped completing, and why the
   // `audit-*` figures the report embeds went two cycles without being retaken.
-  await page.getByRole('link', { name: /Animals & Nature/ }).first().click();
+  /*
+    Navigated to, not clicked through.
+
+    Clicking the tile timed out on a seeded profile and not on a fresh one, and
+    the difference is the corpus: bands keep arriving, the category list keeps
+    growing, and Playwright's actionability check waits for an element that is
+    still moving. The tile's own behaviour is covered by `journey.spec.ts`;
+    what this block wants is a *picture of the category screen*, and the route
+    is the honest way to ask for one.
+  */
+  await page.goto(`${baseUrl}/words/category/animals-nature`, { waitUntil: 'networkidle' });
   await settle(page, 500);
   await shoot(page, 'words-category');
 
@@ -472,35 +482,28 @@ await optional('tab screens', async () => {
   await settle(page, 800);
   await shoot(page, 'review-exercise');
 
-  // A word, met the way the redesign meets it: word, sound, meaning, sentence.
-  await page.goto(`${baseUrl}/words/vocab-food-1`, { waitUntil: 'networkidle' });
-  await settle(page, 900);
-  await shoot(page, 'word-intro');
+  /*
+    Four captures were removed here, and their removal is the finding.
 
-  // Writing a long word. 기도하다 is the case the screen was rebuilt around: four
-  // syllables used to mean four boxes in a row that did not fit a phone.
-  await page.goto(`${baseUrl}/words/vocab-society-13`, { waitUntil: 'networkidle' });
-  await settle(page, 900);
-  await page.getByRole('button', { name: 'Practise writing' }).click();
-  await settle(page, 700);
-  await shoot(page, 'word-writing');
+    They photographed `/words/vocab-food-1` and `/words/vocab-society-13` —
+    numbered vocabulary lesson routes that stopped existing when vocabulary
+    became a daily plan — and then drove *Practise writing*, syllable chips and
+    a word-level grading summary. **Vocabulary has not been handwritten for
+    several cycles** (§I-09, and `journey.spec.ts` asserts there is no canvas on
+    a word screen), so those buttons render nowhere and the step timed out on
+    the first of them.
 
-  // ...and the one result it produces. Two syllables traced properly and two
-  // scribbled, so the summary has something of each to show.
-  {
-    const chips = page.getByTestId('syllable-chip');
-    const count = await chips.count();
-    for (let i = 0; i < count; i += 1) {
-      await chips.nth(i).click();
-      await page.waitForTimeout(250);
-      if (i < 2) await traceGlyph(page);
-      else await scribbleGlyph(page);
-    }
-    await page.getByTestId('check-word').click();
-    await page.getByTestId('word-feedback').waitFor();
-    await settle(page, 600);
-    await shoot(page, 'word-feedback');
-  }
+    That timeout is why this whole block was skipped, and why the reference
+    captures after it went stale — the same failure mode, and the same cause, as
+    the `lighter guide` step in the first-run block. A capture script that
+    photographs a product from two versions ago fails silently until somebody
+    reads its output; the `optional` wrapper is what makes it merely quiet
+    rather than fatal, and quiet was still too quiet.
+
+    The screens these were meant to show are covered by figures the report
+    actually embeds: the word card by `audit-word-detail`, the daily sitting by
+    the composed first-session figure.
+  */
 
   // The sound-change lesson.
   await page.goto(`${baseUrl}/letters/sounds`, { waitUntil: 'networkidle' });
@@ -550,23 +553,28 @@ await optional('first-run screens', async () => {
   }
   await shoot(page, 'character-intro');
 
-  await page.getByRole('button', { name: /Trace it/ }).click();
+  /*
+    The writing step, once.
+
+    This block used to capture four screens — trace, feedback, *practise on a
+    lighter guide*, then read — and the middle two have not existed for several
+    cycles: §11.3 replaced two writing rungs with one, so `lighter guide` and
+    `Now read it` were buttons nothing renders. The step timed out on them and
+    took the rest of the block with it, which is why these reference captures
+    went stale without anybody noticing.
+
+    What is left is the flow as it is: write over the guide, check, and go on to
+    the question. There is no `step-feedback` shot any more either — §12.0 took
+    the feedback card out, and a screenshot of a button is not a figure.
+  */
+  await page.getByRole('button', { name: /^(Write it|Trace it)$/ }).click();
   await settle(page, 600);
-  await shoot(page, 'step-trace');
+  await shoot(page, 'step-write');
 
   await traceGlyph(page);
   await page.getByRole('button', { name: 'Check' }).click();
   await page.waitForTimeout(700);
-  await shoot(page, 'step-feedback');
-
-  await page.getByRole('button', { name: /lighter guide/ }).click();
-  await settle(page, 600);
-  await shoot(page, 'step-practise');
-
-  await traceGlyph(page);
-  await page.getByRole('button', { name: 'Check' }).click();
-  await page.waitForTimeout(700);
-  await page.getByRole('button', { name: /Now read it/ }).click();
+  await page.getByRole('button', { name: /Try a question/ }).click();
   await settle(page, 600);
   await shoot(page, 'step-read');
 

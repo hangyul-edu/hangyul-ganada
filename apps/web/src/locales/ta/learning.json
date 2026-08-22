@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "தவறிய விடைகள்",
     "review_one": "மீள்பார்வை · {{count}} கேள்வி",
     "review_other": "மீள்பார்வை · {{count}} கேள்விகள்",
     "filterLabel": "காட்டு",

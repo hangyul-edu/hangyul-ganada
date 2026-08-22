@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Gemiste antwoorden",
     "review_one": "Herhalen · {{count}} vraag",
     "review_other": "Herhalen · {{count}} vragen",
     "filterLabel": "Toon",

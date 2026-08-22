@@ -198,7 +198,6 @@
     }
   },
   "mistakes": {
-    "title": "Risposte sbagliate",
     "review_many": "Ripasso · {{count}} domande",
     "review_one": "Ripasso · {{count}} domanda",
     "review_other": "Ripasso · {{count}} domande",

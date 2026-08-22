@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "まちがえた問題",
     "review_other": "復習 · {{count}}問",
     "filterLabel": "表示",
     "filter": {

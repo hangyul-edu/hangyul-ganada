@@ -196,7 +196,6 @@
     }
   },
   "mistakes": {
-    "title": "Кетирилген жооптор",
     "review_one": "Кайталоо · {{count}} суроо",
     "review_other": "Кайталоо · {{count}} суроо",
     "filterLabel": "Көрсөтүү",

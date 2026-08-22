@@ -84,7 +84,11 @@ export function MistakesPage() {
   if (mistakes.length === 0) {
     return (
       <div className={styles.page}>
-        <AppHeader title={t('learning:mistakes.title')} onBack={() => navigate('/review')} />
+        {/* The name the learner tapped. See the note on the other header. */}
+        <AppHeader
+          title={t('learning:mistakes.wrongVocabulary')}
+          onBack={() => navigate('/review')}
+        />
         <div className={`${styles.body} ${styles.bodyEmpty}`}>
           <Card tone="warm" padding="lg" className={styles.empty}>
             <HangyulMascot mood="happy" size={64} />
@@ -109,7 +113,19 @@ export function MistakesPage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('learning:mistakes.title')} onBack={() => navigate('/review')} />
+      {/*
+        The same words the row on Review used.
+
+        The hub offered "Wrong vocabulary" and this screen called itself "Missed
+        answers", so a learner tapped one name and arrived at another. Two names
+        for one place is a small thing that makes a product feel like it was
+        assembled rather than designed, and it is the kind of thing only a
+        screenshot catches — both strings were correct, translated, and tested.
+      */}
+      <AppHeader
+        title={t('learning:mistakes.wrongVocabulary')}
+        onBack={() => navigate('/review')}
+      />
 
       <div className={styles.body}>
         {/*
