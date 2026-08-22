@@ -146,6 +146,7 @@
     "searching": "Шукаю у словнику…",
     "unavailable": "Під час першого відкриття словнику потрібне з’єднання.",
     "otherMeaningsPrompt": "Інші значення",
+    "moreFromDictionary": "Більше зі словника",
     "moreExamples": "Ще приклади",
     "otherMeanings_one": "{{count, number}} інше значення",
     "otherMeanings_few": "{{count, number}} інші значення",

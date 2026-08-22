@@ -146,6 +146,7 @@
     "searching": "Ищу в словаре…",
     "unavailable": "При первом открытии словарю нужно подключение.",
     "otherMeaningsPrompt": "Другие значения",
+    "moreFromDictionary": "Ещё из словаря",
     "moreExamples": "Ещё примеры",
     "otherMeanings_one": "{{count, number}} другое значение",
     "otherMeanings_few": "{{count, number}} других значения",

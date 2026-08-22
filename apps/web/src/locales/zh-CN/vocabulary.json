@@ -125,6 +125,7 @@
     "searching": "正在查词典…",
     "unavailable": "第一次打开词典需要联网。",
     "otherMeaningsPrompt": "其他意思",
+    "moreFromDictionary": "词典中的更多内容",
     "moreExamples": "更多例句",
     "otherMeanings_other": "{{count, number}} 个其他意思",
     "onlyMeaning": "词典里没有其他意思。",

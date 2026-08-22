@@ -146,6 +146,7 @@
     "searching": "Szukam w słowniku…",
     "unavailable": "Słownik potrzebuje połączenia przy pierwszym otwarciu.",
     "otherMeaningsPrompt": "Inne znaczenia",
+    "moreFromDictionary": "Więcej ze słownika",
     "moreExamples": "Więcej przykładów",
     "otherMeanings_one": "{{count, number}} inne znaczenie",
     "otherMeanings_few": "{{count, number}} inne znaczenia",

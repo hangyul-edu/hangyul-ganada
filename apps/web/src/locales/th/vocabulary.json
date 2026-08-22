@@ -132,6 +132,7 @@
     "searching": "กำลังค้นในพจนานุกรม…",
     "unavailable": "พจนานุกรมต้องต่ออินเทอร์เน็ตในครั้งแรกที่เปิด",
     "otherMeaningsPrompt": "ความหมายอื่น",
+    "moreFromDictionary": "เพิ่มเติมจากพจนานุกรม",
     "moreExamples": "ตัวอย่างเพิ่มเติม",
     "otherMeanings_one": "อีก {{count, number}} ความหมาย",
     "otherMeanings_other": "อีก {{count, number}} ความหมาย",

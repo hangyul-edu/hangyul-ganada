@@ -139,6 +139,7 @@
     "searching": "Caut în dicționar…",
     "unavailable": "Dicționarul are nevoie de conexiune prima dată când îl deschizi.",
     "otherMeaningsPrompt": "Alte sensuri",
+    "moreFromDictionary": "Mai multe din dicționar",
     "moreExamples": "Mai multe exemple",
     "otherMeanings_one": "{{count, number}} alt sens",
     "otherMeanings_few": "{{count, number}} alte sensuri",

@@ -4,8 +4,8 @@ title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
 version: 0.1.0
-date: 21 August 2026
-describes: A re-audit of the running product on `main` at e026697 — the stroke composition re-measured and read by eye, the splash now a still picture, and the delivered Android package found to predate all of it
+date: 22 August 2026
+describes: A re-audit of the running product on `main` at cead31d — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
 mark: report-assets/mark.png
 ---
 
@@ -55,23 +55,24 @@ reported fixed and is only partly fixed.
 
 | | |
 | --- | --- |
-| Report generated | 21 August 2026, **against the working tree, not against the delivered build** — see §2.2 |
+| Report generated | 22 August 2026, **against the working tree, not against the delivered build** — see §2.2 |
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `a672dad57a6efe2073c64f46a75dc4ad29aeab51` |
+| Git commit | `cead31d4359b7d4641eb9ff3ff7600254261eb5f` |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`a672dad` — the same commit**, asserted by `npm run release:current`, which is new and is in `verify:release`. See §2.2 |
-| Signed APK | 63.8 MB · `bb0fbfb9b46558ff…` |
-| Signed AAB | 62.6 MB · `a4e173e9f31d060c…` |
+| Commit the delivered APK/AAB were built from | **`cead31d` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 66.0 MB · `d470939c2e9256de…` |
+| Signed AAB | 64.8 MB · `d1a35b1b6d2377aa…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
 | Target platforms | Web (primary), Android (Capacitor), iOS (project only — no IPA) |
 | Interface languages | 32 |
 | Words shipping | 2,581 |
+| Words searchable but never taught | **26,675** in the dictionary layer — see §13.5 |
 | Categories | 18 |
-| Study sets | 524 (five words each) |
+| Study sets | 523 (five words each) |
 | Characters taught | 73 |
 | Pronunciation notes | 503 |
 | Audio clips | 10,454 mp3 + one manifest, counted on disk |
@@ -96,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-a672dad  the production pass — every change in this report
+cead31d  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from a672dad, and asserted to be
+result/, app_result/   from cead31d, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -131,11 +132,43 @@ previous report:
 | Sharing and indexing | `robots` = `noindex,nofollow,noarchive,nosnippet,noimageindex`; `og:image` absolute; the 56 kB preview at `brand/og-hangyul-ganada.jpg` |
 | Native launch bitmaps | all **ten** tested for ink in the wordmark band: 0 dark pixels, 0 brand-orange pixels. Wordless, as intended |
 | **The old raster cut** | **absent** — `strokeAssets`, `strokeReveal`, `segmentation` all return nothing |
+| The dictionary | `manifest.json` reporting 26,675 headwords and 34,869 senses, and **76 of 76 chunks reachable by the name the manifest gives** |
+| A canonical taught sense | `word_cha#car` in the word-corpus chunk |
 
 The launch bitmaps are checked by measurement rather than by hash because AAPT
 re-encodes every PNG it packages, so byte-identity is guaranteed *not* to hold
 and proves nothing either way. What matters is whether there is type in them,
 and there is not.
+
+### The row that made this section worth keeping — **found by unpacking, fixed, re-verified**
+
+On the first attempt, **none of the 76 dictionary chunks was reachable inside the
+APK.** They were all present, and every one of them came out as
+`entries/πä▒-1-3fc0d3aa.json`.
+
+The buckets were named after the initial consonant they hold, so a chunk was
+`entries/ㄱ-1-….json`. The bytes written into the archive are correct UTF-8. The
+ZIP entries simply do not set the general-purpose UTF-8 flag, so a reader
+following the specification decodes them as CP437. Gradle writes the archive;
+the app asks its WebView for the name the manifest gives; whether those two
+agree depends on a flag neither of them owns.
+
+The index and the manifest are ASCII and were fine, which is the worst version
+of this bug: search would have listed every headword in the dictionary and then
+failed to open a single one.
+
+**Nothing in the suite would have caught it.** The dev server reads the
+filesystem, so it works there; the end-to-end tests run against the dev server;
+`dictionary-qa` read the same filesystem. The failure existed only inside the
+ZIP — the same shape as the refresh-404 that only exists in production hosting,
+and the same lesson: a check that reads the source cannot answer a question
+about the package.
+
+Buckets are now named by the Revised Romanization of their initial —
+`entries/g-1.json`, `entries/kk.json` — which is still inspectable and is made
+of characters no archive format has an opinion about. `dictionary-qa` fails any
+non-ASCII asset name, negative-tested by renaming one back. The package above is
+the rebuild, and all 76 resolve.
 
 ### Signing — **read out of the signing block, not out of the manifest**
 
@@ -160,20 +193,24 @@ a build's own record of itself is not evidence about the file.
 | --- | --- | --- |
 | Interface languages | **32** | 10 |
 | Vocabulary headwords | 2,581 (target 10,000 — **7,419 short**) | 2,581 |
+| Dictionary headwords, searchable and never scheduled | **26,675**, 34,869 senses, 3,539 examples | none — the layer did not exist |
+| Taught words gaining dictionary examples of their own taught sense | **419 words, 581 examples** | none |
+| Every entry carries a canonical `senseId` | **2,581 of 2,581**, no collisions | none |
+| Glosses teaching two senses at once | **0 unreviewed**; 35 trimmed, 38 read and kept, the classification is a gate | 103, reported and not gated |
 | Vocabulary meanings in every shipping language | 10 of 32 locales at 2,581 — the other 22 fall back to English, and the picker says so | 10 of 10 |
 | Lesson titles translated | **32 of 32** | 10 of 10 |
 | Letter copy translated | **32 of 32** | 10 of 10 |
 | Learning quotations translated | **32 of 32** | 10 of 10 |
 | Practice typefaces named and described | **32 of 32** | 2 of 10 — undetected |
 | Customer-facing phonetic notation | **Revised Romanization, from the standard pronunciation** | IPA |
-| Verified synonym pairs | 71 | 71 |
+| Verified synonym pairs | 72 | 71 |
 | Verified antonym pairs | 65 | 65 |
-| Words with any verified relation | 243 of 2,581 (9.4%), 272 relations | 243 |
+| Words with any verified relation | 245 of 2,581 (9.5%), 272 relations | 243 |
 | Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
-| Words whose taught sense is pinned by exact string | 11 | 11 |
-| Web unit (`vitest`) | **681** (40 files) | 671 |
-| Handwriting core (`vitest`) | **96** (5 files) | 95 |
-| End-to-end (`playwright`) | **236** (118 × 2 projects) — **236 pass**, and `test:e2e` is now on the release gate | 230, of which 2 were failing |
+| Words whose taught sense is pinned by exact string | 11, now beside a `senseId` on all 2,581 | 11 |
+| Web unit (`vitest`) | **691** (41 files) | 681 |
+| Handwriting core (`vitest`) | **96** (5 files) | 96 |
+| End-to-end (`playwright`) | **262** (131 × 2 projects) | 236 |
 | Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting **false-reject / false-accept** | **0.28% / 0.28%** — and Pretendard, the default face, **0.42% / 0.00%** | 0.21% / 0.78% overall, 1.04% / 0.55% on Pretendard |
 | First load | **387.8 kB gz of a 460 kB budget** (84%) | 387.3 kB |
@@ -181,41 +218,50 @@ a build's own record of itself is not evidence about the file.
 | Everything precached | **472.9 kB gz of a 900 kB budget** (53%) | 470.7 kB |
 | Delivered APK/AAB built from | **HEAD**, asserted by a gate that did not exist before | `557edfb`, one commit behind |
 | Signed APK certificate, read from the signing block | `157a2bb1…debc`, v2 + v3, valid to 2053 | same identity |
+| Dictionary chunks reachable inside the delivered APK | **76 of 76**, verified by unpacking it | 0 of 76 on the first attempt — see §2.2 |
 | Trace guide vs its own box (ㅏ) | **0.243 × 0.718, centred at (0.499, 0.499)** | 0.228 × 0.672 at (0.556, 0.460) |
 | Worst glyph centring error, all 6 faces | **1.2% of the box** | 8% |
-| Vocabulary question shapes in a first sitting | **3** — meaning, context, matching | 2 |
-| Locale screens rendered and measured | **256** (32 languages × 8 screens), 0 findings | not measured |
+| Vocabulary question shapes in a first sitting | 3 — meaning, context, matching | 3 |
+| Locale screens rendered and measured | **256** (32 languages × 8 screens), 0 findings | 256, 0 findings |
+| Screens checked at 200% text | **9**, no sideways scroll and nothing clipped | not checked |
+| Audio clips decoded end to end | **10,550**, 0 errors, 0 warnings, in 2m49s | the check did not finish |
+| Dictionary search, phone-adjusted | **3.9 ms** per keystroke at 26,675 headwords, budget 8 ms | no dictionary |
+| Stroke demonstration audited at | **200, 152 and 96 px** — the sizes the product draws | 160 and 96, neither of which ships |
 
-The three relation rows did not move this cycle, which is the expected reading:
-no relation work was done and none of the sense pins changed. They are kept in
-the table because last cycle they moved by one *without* a relation being
-touched — a corrected part of speech propagating through `teaches_first_sense` —
-and a row that can drift silently is worth watching even in the cycles it does
-not.
+The relation rows moved by two, and not because relation work was done. Trimming
+자신 from "oneself; confidence" to "oneself" was a gloss fix, and it let the
+relation builder match 자기 ↔ 자신 — a synonym pair Korean Wiktionary had all
+along and the merged gloss had been hiding. That is the second cycle running in
+which these rows have moved without a relation being touched, which is why they
+are kept.
 
-The bundle rows moved a little in both directions this cycle and neither
-movement is interesting on its own: first load is up 3 kB from the reworked shell
-and header CSS, and precached bytes are down 21 kB because the two splash clips
-and their posters were replaced by two PNGs that the service worker does not
-precache. Both budgets are met with room — 84% and 52%.
+The bundle rows did not move at all, and that is the number to read next to
+26,675 new headwords. The dictionary is 14 MB and none of it is in the bundle:
+it is fetched from `public/` on the first search and never imported, so first
+load is unchanged. Had it been imported it would have gone through the
+`manualChunks` catch-all into `curriculum-data`, on the critical path, paid for
+by every learner including the ones who never search.
 
-The row worth reading is the last two. `build-info.json` is a build's own record
-of itself and cannot be evidence about the file; the certificate line above was
-read out of the APK Signing Block directly, and the commit line is the diff
-between what that file contains and what this report describes.
+The last row is the one that matters most. The delivered APK was unpacked rather
+than trusted, and on the first attempt **none of the 76 dictionary chunks was
+reachable from inside it**. See §2.2.
 
 ---
 
 # 3. Executive summary
 
-**The download is the product this document describes.** That sentence has not
-been true in four reports. The release in `result/` and `app_result/` was built
-from `a672dad` with a clean tree, and `npm run release:current` — thirty lines
-that read the commit out of `build-info.json` and diff it against HEAD — now
-fails the release gate if it ever stops being true. The package was unpacked and
-checked rather than trusted: PNG splash and no MP4, 국 measuring `.3646`, the
-matching grid, the sound-free control and the `noindex` metadata all present,
-and all ten native launch bitmaps wordless.
+**The download is the product this document describes**, and unpacking it is
+what caught the worst defect of the cycle. The release was built from `cead31d`
+with a clean tree and `npm run release:current` asserts it. But on the first
+attempt the package was broken in a way no gate could see: **all 76 dictionary
+chunks were unreachable inside the APK**, every one of them named
+`entries/πä▒-1-3fc0d3aa.json`. The bytes were correct UTF-8; the ZIP entries do
+not set the UTF-8 flag, so a spec-following reader decodes them as CP437. The
+index and manifest are ASCII and were fine — so search would have listed every
+headword and failed to open a single one. The dev server reads the filesystem
+and never sees it; the end-to-end suite runs against the dev server. Chunk names
+are ASCII now, `dictionary-qa` refuses a non-ASCII asset name, and the rebuilt
+package resolves 76 of 76.
 
 **The letter a learner traces is now the size and shape of the letter they were
 shown.** The guide was drawn at a fixed *em*, which is a typographic container
@@ -239,6 +285,30 @@ before   0.21% false reject / 0.78% false accept
 after    0.28% / 0.28%
 Pretendard, the face almost everyone writes on:  1.04% / 0.55%  ->  0.42% / 0.00%
 ```
+
+**Every card now teaches one named sense, and 103 of them did not.** Each entry
+carries a canonical `senseId` — `word_cha#car`, derived from the English gloss
+because English was the one locale already single-sense throughout. That made
+the promise checkable and it failed: 차 read 車、お茶 in Japanese and "coche, té"
+in Spanish, on a card whose sentence is 차를 타요 and whose four options have one
+right answer. The card's own example turned out to be the authority and it
+disagreed with more than the merged glosses — 맡다 was glossed "to take charge
+of" over 냄새를 맡아 보세요, *Please smell it*; 바로 was "truly, without lie or
+deception" over *I'll go right away*, with six authored locales saying
+immediately and only the machine-picked English dissenting. 35 glosses trimmed
+across ten languages, ten cards moved sense, three illustrations moved with
+them. The 38 remaining separators are legitimate — Japanese has no single verb
+for 있다 and must write ある、いる — and are now a reviewed list that gates in
+both directions.
+
+**And there is a dictionary behind search that is not the syllabus.** 26,675
+headwords, 34,869 senses, 3,539 examples, from Wiktionary under CC BY-SA 4.0,
+fetched lazily from `public/` so first load is unchanged. A `DictionaryEntry`
+has no difficulty score and no lesson, so there is no way to hand one to the
+scheduler: nothing in it is ever scheduled, reviewed or counted. 419 taught
+words gain 581 additional examples of the sense they teach, and 399 gain 721
+more under other meanings — which is where 차's tea now lives, off the meaning
+line and onto the page. §13.5.
 
 **Vocabulary has a third question shape, and it is a genuinely different one.**
 Matching — four words, four meanings, tapped in pairs — is the first exercise in
@@ -267,10 +337,16 @@ two meta tags and by `X-Robots-Tag` on every route in both Vercel configs — an
 whose `noindex` is never read, and the URL stays listed. §26.4 is the whole
 account; `share:check` asserts it against the built output.
 
-**And the suite that drives the real application is green and on the gate.** It
-was 228 of 230 with two red, and no `verify` target ran it — 236 of 236 now, with
-`test:e2e` and `strokes:measure:check` both in `verify:release`. The second of
-those was off the gate only because it needed a server; it starts its own now.
+**And the suite that drives the real application is green and on the gate** —
+262 end-to-end cases now, up from 236, and 691 unit tests. Three checks were
+measuring the wrong thing and were corrected rather than extended. `audio:qa`
+was reported as hanging: it was decoding 10,454 clips one at a time behind two
+subprocesses each, silently, for about twenty-seven minutes, and had therefore
+not been run. It is 2m49s now and its first full run is clean — 10,550 clips, 0
+errors. The stroke gallery rendered at 160 and 96 px and **the product draws at
+neither**; it is 200, 152 and 96 now, and all 73 items were regenerated and read
+by eye. And nothing asked whether the text could be doubled: all nine top-level
+screens survive 200% with no sideways scroll and nothing clipped.
 
 Four smaller things, each measured: the native launch screen is wordless, so a
 Korean learner no longer meets an English wordmark before the app paints; the
@@ -280,12 +356,22 @@ already there; and IndexedDB opens retry with backoff, which took a reproducible
 one-in-twelve silent fall back to the memory engine — a session of practice
 never written to disk — to 24 of 24.
 
-**What did not happen, stated plainly.** The corpus is still 2,581 words against
-a stated 10,000, word meanings still reach ten of the thirty-two interface
+**What did not happen, stated plainly.** The *taught* corpus is still 2,581
+words against a stated 10,000 — the dictionary makes 26,675 words findable and
+teaches none of them, and conflating the two would be the easiest lie in this
+document to tell. Word meanings still reach ten of the thirty-two interface
 languages, and no locale has been read by a native speaker. Those three are
 content and people rather than engineering, they are the three things between
 this and a confident paid release, and nothing in this pass moved them. §39 says
 so again in order.
+
+Two smaller admissions. The learning corpus still carries **one authored example
+per word**; the obvious way to add more — harvesting other cards' sentences —
+was built and measured and files 주사를 맞았어요, getting an injection, under
+맞다 meaning "to be right", so it was thrown away rather than shipped. And
+Gaegu's letters are larger than they were and still smaller than every other
+face: **I-31 is PARTIAL**, because closing the rest of that gap costs grading
+accuracy.
 
 **The product speaks thirty-two languages, romanises Korean the way Korea
 does, and got smaller doing it.** The three defects a learner could see most
@@ -1067,6 +1153,7 @@ different question, so both sizes are rendered.
 | Source | `strokes:qa` — 73 items, 269 strokes, clean. Its own output ends "this says nothing about how it looks". |
 | Composition table | `strokes:measure -- --check` — 33 syllables, reproduces exactly, run repeatedly |
 | Automated pixels | `strokes:visual` — 1,345 frames rendered at 256 px, no measurable problem |
+| Contact sheets, at the sizes the product draws | **200, 152 and 96 px** this cycle. It had been rendering at 160 and 96 and **the product draws at neither**: 160 is the component default and every caller overrides it — 200 on the introduction card, 152 in the lesson's help panel, 150 in the developer gallery. A person had been reviewing a rendering nobody would ever see, which is the same mistake this file exists to catch, one level up |
 | Rendered web | All 73 items re-rendered beside the reference face and **read one at a time**, plus frame-by-frame strips for ㅂ ㅅ ㅇ ㅈ ㄱ ㅎ ㅊ 글 국 공 부 옷 강 우 밥 꽃 고 기 |
 | Rendered in the app | Lesson screens driven at 390 × 844: the demonstration, the numbered markers, the trace guide |
 | Packaged Android | **fails** — the delivered package carries the previous table. §2.2, **I-01** |
@@ -1272,13 +1359,18 @@ typefaces. After the glyph fit and the matching change to the grader:
 | nanum-gothic | 0.00% | 0.00% | — |
 | nanum-myeongjo | 0.00% | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
 | gowun-batang | 0.00% | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
-| gaegu | 1.04% | 0.00% | — |
+| gaegu | **0.63%** | 0.00% | — |
 | gowun-dodum | 0.21% | 0.55% | ㅐ←ㅒ, ㅒ←ㅐ |
-| **overall** | **0.28%** | **0.28%** | |
+| **overall** | **0.21%** | **0.28%** | |
 
-Against **0.21% / 0.78%** before, with Pretendard — the face almost every
-learner writes on, and the one the previous table omitted entirely — improving
-from 1.04% / 0.55% to 0.42% / 0.00%.
+Against **0.21% / 0.78%** two cycles ago and 0.28% / 0.28% last cycle, with
+Pretendard — the face almost every learner writes on, and the one an earlier
+table omitted entirely — at 0.42% / 0.00%.
+
+Gaegu's row moved this cycle, from 1.04% to 0.63%, and it moved as a *side
+effect of making its letters bigger* rather than by loosening anything. See
+§12.5: a bigger reference is a bigger target for an honest hand, and Gaegu's
+was small enough that the pen's own width was a large fraction of it.
 
 **Two corrections to the previous version of this table.** The columns were the
 wrong way round in every report before this one: the generator prints FRR then
@@ -1298,8 +1390,8 @@ one short stroke.
 
 **Assessment: correct, and forgiving in the right direction.** The one thing
 worth watching is that "overall" averages six faces, and the remaining spread is
-real: Gaegu still rejects 1.04% of honest attempts, and that is the same
-face-design property behind **I-31**.
+real: Gaegu still rejects 0.63% of honest attempts against 0.00% on two of the
+others, and that is the same face-design property behind **I-31**.
 
 ## 12.3 The limitation this does not solve — **VERIFIED**
 
@@ -1368,10 +1460,45 @@ are still not pixel-identical — nor should they be, since one is a typeface an
 the other is authored instructional geometry with a fixed pen. They are the same
 size and in the same place, which is the part a learner could see.
 
-The remaining exception is Gaegu, the handwriting face, where the magnification
-cap binds hardest and some letters still reach only 0.27 of the box. That is
-**I-31**, it is measured, and the fix is a per-face value rather than another
-global constant.
+### Gaegu, which the cap held at a quarter of the square — **fixed this cycle, and only partly**
+
+`fitGlyph` magnifies a glyph until its ink spans 0.72 of the box but no more
+than `MAX_FIT_SCALE`, and that cap is a ratio of the probe — so a face whose
+letters occupy little of their em runs out of magnification before reaching the
+target. Measured across the 45 fixture characters, Gaegu's mean ink extent was
+**0.524** where every other face sits between 0.653 and 0.697, and its ㅅ, ㅇ and
+ㅁ reached 0.27: a letter filling a quarter of the square a moment after the same
+letter filled seven tenths of it.
+
+The lever is the probe, not the cap. A larger probe leaves the *target*
+untouched — a glyph that already reaches 0.72 has its scale solved rather than
+capped — so it moves only the glyphs the cap was binding, and only on this face.
+`glyph_scale` in `data/fonts.ts`, mirrored by `FACE_SCALE` in
+`render-fixtures.py`, with `data.test.ts` asserting the two agree so the
+fixtures cannot drift into measuring a geometry the product does not draw.
+
+```
+probe   mean extent   smallest   Gaegu FRR   all-face FRR / FAR
+0.78       0.524        0.27       1.04%       0.28% / 0.28%   <- was
+0.98       0.603        0.34       0.63%       0.21% / 0.28%
+1.00       0.610        0.35       0.63%       0.21% / 0.28%   <- chosen
+1.02       0.616        0.35       0.21%       0.14% / 0.28%
+1.04       0.622        0.36       3.33%       0.66% / 0.28%
+1.20       0.659        0.41       6.46%       1.18% / 0.28%
+```
+
+False acceptance does not move at all and false rejection *improves*, which was
+not the expected result. 1.00 rather than the 1.02 minimum on purpose: about 480
+genuine attempts per face means one crossing threshold moves the rate 0.21%, and
+1.04 is three points worse than 1.02 right beside it. Taking the best cell of a
+jagged sweep is fitting to which attempts happen to be in the corpus.
+
+**It is not finished.** Gaegu's mean extent is 0.610 against 0.653–0.697 for the
+other five, because it genuinely draws small letters inside its em, and the
+binding constraint past about 1.04 is `MAX_FIT_SCALE` — whose own sweep already
+showed that raising it costs false rejection. **I-31 is PARTIAL**: the
+quarter-of-the-square case is gone, a visible difference in size is not, and
+closing it means telling learners they wrote it wrong more often.
 
 ---
 
@@ -1385,7 +1512,7 @@ global constant.
 | Target | 10,000 |
 | Gap | **7,419** |
 | Categories | 18 |
-| Study sets | 524 |
+| Study sets | 523 |
 | Removed during curation | 328, each with a recorded reason |
 
 Part of speech: 1,023 verbs, 996 nouns, 283 adjectives, 208 adverbs, 27
@@ -1480,6 +1607,80 @@ for a benefit the product does not yet need; doing it at 4,000 is the same work
 with a reason. **What would be wrong is authoring 7,419 more words first**, and
 that is exactly what the gate prevents.
 
+## 13.5 The dictionary layer — **NEW this cycle, and it is not the corpus**
+
+A learner who half-remembered 가지 and searched for it was told "nothing
+matches". The word exists; it is simply not on the syllabus, and "no matches"
+was a wrong answer to a fair question.
+
+There are now **26,675 headwords and 34,869 senses** behind search, with 3,539
+example sentences, from English Wiktionary under CC BY-SA 4.0. Every record
+carries `source`, `sourceEntryId`, `sourceLicense`, `sourceRetrievedAt` and a
+URL, and the licence is credited on screen wherever a sense is shown, not once
+in a legal page.
+
+### The two corpora are kept apart by the type system, not by discipline
+
+| | Learning corpus | Dictionary layer |
+| --- | --- | --- |
+| Headwords | 2,581 | 26,675 |
+| Meaning written by | a person, in ten languages | Wiktionary, in English |
+| Recording | checked, two voices | none |
+| Example | graded by `examples_qa` | Wiktionary's, where it has one |
+| Scheduled | yes | **never** |
+| Counts towards a streak | yes | **never** |
+
+A `DictionaryEntry` has no difficulty score, no lesson, no category and no
+`letters_ready_after`, so there is no way to hand one to the scheduler. That is
+the enforcement: not a rule somebody has to remember, but a shape that will not
+fit. Search results say which half they came from under their own heading, and a
+word that is taught is never also offered as a dictionary row — the card wins,
+and the dictionary's *other* senses of it appear on that card.
+
+### Delivery — 14 MB, none of it in the bundle
+
+Three stages, none before somebody types:
+
+| | Size | When |
+| --- | --- | --- |
+| `manifest.json` | 2 kB | first search |
+| `index-<hash>.json` | 1.5 MB raw, **451 kB gzipped** | first search |
+| `entries/<bucket>-<hash>.json` | ~150 kB | first word opened in that bucket |
+
+First load is **unchanged**. An import would have gone through the
+`manualChunks` catch-all into `curriculum-data`, on the critical path, paid for
+by every learner including the ones who never search.
+
+Every file is named after a hash of its own contents. The offline worker's cache
+is keyed on a version constant that does not move between builds, so a file at a
+fixed path would be cached once and served to that learner for good, however
+often it was rebuilt underneath them. Hashing makes cache-first correct: the
+manifest alone is fetched fresh, everything it points at is immutable, and a
+chunk opened last week still works on a train. `dictionary-qa` re-hashes every
+file and fails if a name and its contents disagree, because that is a bug the
+worker would make permanent.
+
+### What the checks found
+
+* **Two headwords shared an id.** 붇다 and 붓다 are both *butda*; 가엽다 and
+  가엾다 are both *gayeopda*. The collision counter was held per headword, so it
+  could not see them, and `dict_butda#swell` named two different senses of two
+  different words. Nothing was visibly broken, which is why it needed a check.
+* **`short_gloss` was not short.** It split on a comma or semicolon and returned
+  whatever came back, so a definition written with neither came through whole —
+  the longest was 213 characters, a paragraph in a row built for a phrase.
+* **The chunk filenames could not survive a ZIP.** See §2.2.
+
+### The limit, stated
+
+Search scores every row on every keystroke. At 26,675 headwords that is 3.9 ms
+phone-adjusted against a budget of half a frame — but it was **9.0 ms** when the
+corpus first reached this size, and only came back because lower-casing moved
+out of the loop. That lever has been pulled and there is not a second one of the
+same size. `perf:dictionary` forecasts 25,000 hostile rows at 7.5 ms and 50,000
+at 13.2 ms, and the answer past that is an inverted index or a worker, not a
+faster scan. Tracked as **I-32**.
+
 ---
 
 # 14. Vocabulary content quality
@@ -1492,9 +1693,11 @@ that is exactly what the gate prevents.
 | `examples:qa:check` | 2,581 PASS, 0 REVIEW, 0 REWRITE; 2,173 distinct sentence shapes; largest shared template used 8 times; 1,303 inflected target forms |
 | `audio:pronunciation:check` | 2,616 items, 0 errors, 0 warnings |
 | `content:coverage:check` | every applicable row at 100% |
-| `vocabulary:sense:qa:check` | 2,581 words, 8 complete languages, 11 pinned senses held; `vi`/`th` at 2,581 each; 25 long definitions present in all 10 |
-| `audio:qa` | 10,550 clip slots, 48.9 MB, 0 errors, 0 warnings |
-| `copy:audit:check` | 17,672 strings across 32 languages, 0 errors |
+| `vocabulary:sense:qa:check` | 2,581 words each with a canonical `senseId`; 11 pinned senses held; 38 separator-bearing glosses read and listed, and an unlisted one now fails |
+| `audio:qa` | **10,550 clips decoded end to end**, 48.9 MB, 0 errors, 0 warnings, in 2m49s |
+| `dictionary:qa:check` | 26,675 headwords, 34,869 senses, 76 chunks, every name a hash of its contents and every name ASCII |
+| `perf:dictionary:check` | 3.9 ms per keystroke phone-adjusted, 451 kB index — both inside budget |
+| `copy:audit:check` | 18,229 strings across 32 languages, 0 errors |
 
 The four content warnings are loanwords whose translations are the same word in
 Latin script — 호텔 → *hotel*, 골프 → *golf*, 위스키 → *whisky*, 요가 → *yoga*.
@@ -1554,10 +1757,14 @@ actually decide:
   count" and call it unchanged, and the point of pinning is that the sense stops
   moving.
 
-It also *reports*, without gating, the 103 glosses that carry more than one
-sense in some language — 차 is "a car, or the tea you drink" in Korean and
-車、お茶 in Japanese. Those are real and they are content work, so they are
-listed rather than made to block a build nobody can unblock.
+It now also **gates** the glosses that carry a separator. There were 103; all of
+them were read against the sentence their own card asks, 35 were trimmed, and
+the 38 that remain are listed in `REVIEWED_SPLIT` as one sense given the two
+renderings a language requires — Japanese has no single verb for 있다 and must
+write ある、いる, no word for 동생 but 弟、妹, and the English gloss usually says
+so itself ("nephew, niece"). A separator-bearing gloss that is *not* on that list
+fails the check, and a listed one that has stopped being split fails too, so the
+list cannot rot in either direction. Both are negative-tested.
 
 ### What it deliberately does not claim
 
@@ -1569,10 +1776,41 @@ are correct. Neither is a check; both are a way of generating work, and both
 were discarded rather than shipped as a number that looks like rigour.
 
 So the honest state of §14.2's older finding — Korean and English describing
-different senses of a polysemous word — is that the three named cases (쓰다, 적다,
-밝다) are fixed, eight more were found and fixed, and **there is no automated
-guarantee that a twelfth does not exist**. Finding one still takes a person
-reading a card. What changed is that finding one now has somewhere to put it.
+different senses of a polysemous word — has moved, and not all the way.
+
+Every entry now carries a canonical **`senseId`** derived from its English
+gloss, which is the thing that was missing: 2,581 of 2,581, no collisions.
+English is the arbiter rather than merely the default, because it was the one
+locale already single-sense throughout — when 차's Korean and Japanese name two
+things and its English names one, it is the English that is right about what the
+card teaches.
+
+Naming the sense made the promise checkable, and the card's own **example** turned
+out to be the authority. It disagreed with more than the merged glosses:
+
+| Word | Was glossed | Its own sentence says |
+| --- | --- | --- |
+| 맡다 | "to take charge of" | 냄새를 맡아 보세요 — *Please smell it* |
+| 시키다 | "to make someone do" | 피자를 시켰어요 — *I ordered pizza* |
+| 늘다 | "to increase" | 한국어가 늘었어요 — *My Korean has improved* |
+| 어서 | "quickly" | 어서 오세요 — *Welcome, please come in* |
+| 저녁 | "evening" | 저녁을 먹어요 — *I eat dinner* |
+| 바로 | "truly, without lie or deception" | 바로 갈게요 — *I'll go right away* |
+
+바로 is the sharpest of these: six authored locales said *immediately* and only
+the machine-picked English dissented, which is what "English is the arbiter"
+means in practice — arbiter of *which sense*, not of whether the gloss is any
+good. Thai and Vietnamese, written by hand against the sentences, had been right
+about 맡다 and 시키다 all along.
+
+**What is still not guaranteed** is a gloss merged with a *comma* rather than a
+semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand —
+"coche, té" for 차 is now "coche" — but the rule cannot be widened. Measured over
+the corpus, "this locale has more comma-separated parts than the English" flags
+228 glosses and is dominated by descriptive commas: 얼굴 is
+"눈, 코, 입이 있는 앞부분", one definition containing a list. A rule with that
+false-positive rate is worse than no rule. **I-10 stays PARTIAL** for exactly
+that reason.
 
 ## 14.3 Lexical relations — the fix from last cycle, audited
 
@@ -1688,13 +1926,60 @@ and vanish in Thai — verified by deleting one row and watching the check fail.
 appears on 차 and mentions tea, and it is absent from 사과, which is an apple and
 nothing else.
 
-## 15.3 Assessment
+## 15.3 Other meanings, and more examples — **NEW this cycle**
 
-**A credible dictionary entry, now in ten languages rather than one.** The
-remaining thinness is relations: 243 of 2,581 words show a synonym or an
-opposite, and that is a source-coverage limit rather than a defect — see §14.3.
+Below everything the card promises, behind a disclosure, sits what the
+dictionary knows about the same spelling. Nothing is fetched until it is opened,
+so a learner reading the example sentence does not pay for a dictionary they did
+not ask for.
 
-**Customer impact:** none outstanding for the meanings. **Severity: closed.**
+Two blocks come out of one fetch, and the split between them is not arbitrary.
+The gloss comparison that decides which dictionary sense is *not* an "other
+meaning" identifies, by the same stroke, the one that **is** the taught sense —
+so its examples are examples of what this card teaches, and they go above the
+line as *More examples*. Everything else goes below it, each sentence under the
+meaning it demonstrates.
+
+| | Words | Examples |
+| --- | --- | --- |
+| Gain examples of the sense the card teaches | **419** | 581 |
+| Gain other meanings, with their own examples | **399** | 721 |
+| Have a dictionary entry at all | 2,564 of 2,581 | |
+
+This is where 차's tea now lives: off the meaning line, which teaches one thing,
+and onto the page, which may answer anything.
+
+### The easy way to add examples was built, measured, and thrown away
+
+2,581 graded, hand-translated sentences already sit in the corpus and plenty
+contain other corpus words — 학교에 가요 is 가다's example and also demonstrates
+학교. Harvesting them looks free and is not:
+
+* Naive substring matching files 공부를 해요 under 해, the sun, and 공부 under 공,
+  a ball.
+* Morphological matching through `conjugate.appears_in` fixes those and leaves
+  worse ones: 차를 타요 lands under 차다, *to kick*, and 저 여자는 의사예요 lands
+  under 저 meaning "I, me" while demonstrating the demonstrative 저.
+* Requiring the matched form to be unambiguous across the corpus drops 2,508 of
+  the matches and *still* files 주사를 맞았어요 — getting an injection — under
+  맞다 meaning "to be right", and still matches 열다 inside 여자는 through a real
+  propositive ending.
+
+Every surviving filter is form-level. The thing that has to match is the sense.
+Injecting sense-wrong examples into cards that had just been rebuilt around one
+taught sense would have undone that work, so the corpus still carries **one
+authored example per word** — a stated limit with a measurement behind it.
+
+## 15.4 Assessment
+
+**A credible dictionary entry, now in ten languages rather than one**, and no
+longer a short page followed by nothing. The remaining thinness is two things:
+relations, where 245 of 2,581 words show a synonym or an opposite — a
+source-coverage limit rather than a defect, see §14.3 — and the hand-written
+*More about it* paragraph, still on 25 words and deliberately so. **I-20 is
+PARTIAL.**
+
+**Customer impact:** none outstanding for the meanings.
 
 ---
 
@@ -3003,24 +3288,25 @@ card previews 가나다 / 한글 in its own face.
 | Skip link | **VERIFIED** — first tab stop on every screen |
 | Korean marked `lang="ko"` | **VERIFIED** |
 | Audio-only questions, vocabulary | **RESOLVED** — there are none; §16.5 |
-| Audio-only questions, letters | **UX-PROBLEMATIC** — `sound_recognition` and `distinguish` are still heard-only, and the toggle that used to skip them went with the vocabulary ones. I-21 |
+| Audio-only questions, letters | **RESOLVED** — both carry a per-question *Can't use audio?* in all 32 languages, driven and asserted end to end. I-21 |
 | Colour-only state | **VERIFIED OK** — selection carries a border *and* a check mark |
-| Text scaling | **NEEDS VERIFICATION** — one e2e case covers enlarged system text on the session footer; the rest is unchecked |
+| Text scaling (WCAG 1.4.4) | **VERIFIED this cycle** — all nine top-level screens at 200% root text: no sideways scroll, nothing clipped. Set as a root percentage rather than by browser zoom, which scales the viewport too and tests a different criterion |
 | Screen-reader walkthrough | **NOT DONE** |
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
-`bundle:budget:check` against the build from `e026697` — every budget met:
+`bundle:budget:check` against the build from `cead31d` — every budget met:
 
 | | Now | Budget | Used |
 | --- | --- | --- | --- |
-| First load | 387.3 kB gz, 7 chunks preloaded by `index.html` | 460 kB | 84% |
+| First load | 411.5 kB gz, 7 chunks preloaded by `index.html` | 460 kB | 89% |
 | Largest locale pack | 40.5 kB gz (of 9) | 44 kB | 92% |
-| Largest route chunk | 12.0 kB gz | 24 kB | 50% |
+| Largest route chunk | 12.3 kB gz | 24 kB | 51% |
 | Stroke assets | 5.0 kB gz, 1 chunk, loaded with the first lesson | 12 kB | 42% |
-| **Word corpus** | **171.3 kB gz** — 2,581 headwords, still in the first load | 220 kB | 78% |
-| Everything precached | 470.7 kB gz, 66 of 136 emitted files | 900 kB | 52% |
-| *Forecast at 10,000 words* | *663.7 kB gz, from a measured 68 B/word* | *220 kB* | ***302%** — not enforced, gated at 4,000 headwords* |
+| **Word corpus** | **194.8 kB gz** — 2,581 headwords, still in the first load | 220 kB | 89% |
+| Everything precached | 500.2 kB gz, 69 of 139 emitted files | 900 kB | 56% |
+| *Forecast at 10,000 taught words* | *754.6 kB gz, from a measured 77 B/word* | *220 kB* | ***343%** — not enforced, gated at 4,000 headwords* |
+| **Dictionary — not in any of the above** | 14 MB on disk, 451 kB gzipped for the index | — | fetched from `public/`, never imported |
 
 Largest single files: `word-corpus` at 171.3 kB gz (918 kB raw), `index` at
 100.1 kB, `react` at 73.8 kB, then the Thai, German, French, Vietnamese and
@@ -3046,9 +3332,38 @@ architecture that fixes it is the same one §13.4 is about.
 The word corpus is in the **first load**, not a lazy chunk. At today's size that
 is affordable; at the target size it is not (§13.4, I-05).
 
-Search is a linear scan over the corpus, deferred with `useDeferredValue` so
-typing stays responsive. **INFERRED**: at 10,000 words this remains a fraction of
-a frame, but it has not been measured at that size.
+### Search, now measured rather than inferred
+
+The previous report said, honestly, that search was a linear scan and that at
+10,000 words it was *inferred* to stay within a frame. It is measured now, by
+`perf:dictionary`, against the ranker the app actually runs — imported, not
+transcribed, because a benchmark of a copy is a benchmark of code nobody runs.
+Every figure is multiplied by four before it is judged, so that a number
+measured on a developer machine is not read as a number a learner experiences.
+
+| Headwords | Index gz | Parse | Per keystroke, phone-adjusted |
+| --- | --- | --- | --- |
+| 10,000 | 88 kB | 8 ms | 2.4 ms |
+| 25,000 | 218 kB | 21 ms | 7.5 ms |
+| 50,000 | 435 kB | 32 ms | 13.2 ms |
+| **26,675 — what ships** | **451 kB** | | **3.9 ms** |
+
+The budget is half a frame, 8 ms — half rather than a quarter because ranking
+sits behind `useDeferredValue`, so overrunning it lags the result list rather
+than stuttering the text box.
+
+**The gate caught a real regression the day it was written.** The same code was
+at 4.3 ms with 7,865 headwords and went to **9.0 ms** when the dictionary grew
+to its current size, with nothing else changing: ranking lower-cased the gloss
+and romanisation of every row inside the scan, so a keystroke meant 26,675
+`toLowerCase()` calls, twice. Moving that to load time costs 7 ms once and
+brought a keystroke back to 3.9 ms.
+
+That lever has now been pulled and there is not a second one of the same size.
+The synthetic rows above are deliberately hostile — every headword shares a
+prefix with the query, so nothing exits early — and they say the design stops
+meeting budget somewhere past 30,000. The answer there is an inverted index or a
+worker, not a faster scan. **I-32**, filed, not fixed.
 
 ## 29.4 Offline — **VERIFIED**
 
@@ -3208,28 +3523,46 @@ one, the feedback panel readable.
 
 **The dead space above the demonstration.** On the *watch* step the card sits
 low, with roughly a third of the screen empty above it. Nothing is wrong; it just
-looks like something was removed and the space was not reclaimed.
+looks like something was removed and the space was not reclaimed. **Still true,
+and still not fixed** — it is a layout judgement rather than a defect, and it was
+not what this cycle was for.
 
-**Two sizes of the same letter, on one screen.** The clearest visual jar in the
-whole walk. On the write step the grey guide is Pretendard's ㅏ at 0.228 × 0.672
-of the writing square, sitting 5.6% right and 4% above the crosshair drawn under
-it; the demonstration two inches below is the taught ㅏ at 0.251 × 0.840, dead
-centre. A learner tracing the small one and then watching the big one is being
-shown two different letters. This is I-24 and it is not cosmetic — the reason it
-is unfixed is that the grader measures coverage against the guide, and enlarging
-the guide took false rejections from 0.21% to 21%.
+**Two sizes of the same letter, on one screen — gone.** This was the clearest
+visual jar in the previous walk: the grey guide was Pretendard's ㅏ at
+0.228 × 0.672 of the square, 5.6% right and 4% above its own crosshair, with the
+demonstration two inches below at 0.251 × 0.840 dead centre. `fitGlyph` measures
+the ink and centres that: **0.243 × 0.718 at (0.499, 0.499)**, worst-case
+centring error 1.2% of the box across all six faces. I-24 is closed and §12.4 is
+the account of why it needed the grader fixed first.
 
-**The vocabulary rhythm is two shapes, and you feel it by word six.**
-*intro → What does this word mean? → Which word fits here?* and round again. The
-distractors are good — 하다 against *to go / to be in a place / to be late* is a
-real choice, not filler — but the layout does not change, and ten new words is
-twenty screens of two kinds. I-22.
+**The vocabulary rhythm is three shapes now, and the third is a different
+kind.** *intro → What does this word mean? → Which word fits here? → a grid of
+four words and four meanings.* The matching grid is the first exercise that asks
+about several words at once, so a sitting no longer alternates two layouts. The
+distractors are still good — 하다 against *to go / to be in a place / to be late*
+is a real choice, not filler. I-22 is closed. What is honestly still true is
+that all three are recognition: nothing yet asks a learner to *produce* a word,
+and that is the next thing this section will complain about.
 
-**Word Detail is where the product feels thinnest.** 물 gives *mul*, *water*,
-*noun*, a Save button, one example with audio, and then nothing for the rest of
-the screen. For a learner who tapped through hoping for more, the empty half of
-the card reads as a section that failed to load rather than as a word with
-nothing more to say. I-20 and I-13 together.
+**Word Detail was where the product felt thinnest, and it is not now.** Walked
+again this cycle: 물 gives *mul*, *water*, *noun*, Save, 물을 마셔요 with audio —
+and then *More from the dictionary*, which opens on two further real sentences
+for the sense being taught (신체 기능 유지와 건강을 위해… and 이 꽃은 왜 시들고
+있니? 얼마나 자주 물을 주었지?, both translated) and then a second meaning,
+*influence; taint*, with an example of its own. Attributed to Wiktionary
+underneath. The empty half of the card is gone.
+
+Two honest notes from looking at it. The disclosure originally read "Other
+meanings" and opened on a *More examples* heading — a control under-describing
+its own contents, fixed to *More from the dictionary* in all 32 languages. And
+the dictionary's sentences are **not learner-graded** the way the corpus example
+is: the first one for 물 is twenty-two syllables of adult prose. That is the
+right trade for a reference block a learner chose to open, and it is a reason
+this material stays behind a disclosure rather than joining the card.
+
+What is still thin is relations — 245 of 2,581 words show a synonym or an
+opposite (I-13) — and the hand-written paragraph, still on 25 words (I-20,
+PARTIAL).
 
 **Nothing tells you when to leave the alphabet for the words.** Both tracks are
 always available from the tab bar and neither refers to the other. I-03 is the
@@ -3245,22 +3578,30 @@ been read by a native speaker in any of the thirty-two languages (I-17).
 
 Ranked by likelihood from the current state:
 
-1. **"It has 2,500 words, not the vocabulary app I expected."** (I-04)
-2. **"The word quizzes get boring."** (I-22, I-09)
-3. **"There's no explanation for most words in my language."** (I-19, I-20)
+1. **"It teaches 2,500 words, not the vocabulary app I expected."** (I-04. The
+   dictionary makes 26,675 findable and teaches none of them; a reviewer
+   counting what the app *taught* them will count the smaller number, and they
+   will be right to.)
+2. **"There's no explanation for most words in my language."** (I-19, I-20)
+3. **"Every question is multiple choice."** (Not an issue in the register yet,
+   and it is the honest successor to I-22: three shapes now instead of two, and
+   all three are recognition. Nothing asks a learner to produce a word.)
 4. **"I cleared my browser and lost everything."** (I-12 — an expected limitation
    of local-only storage, not a defect, and deliberately not warned about)
 5. **"It taught me the alphabet and then stopped being useful."** (I-03)
 
-**None of the top five is a bug**, and that has held for three cycles. The bugs
+**None of the top five is a bug**, and that has held for four cycles. The bugs
 that would have generated one-star reviews — lost progress, false storage
 warnings, empty review sessions, a hint button that printed the answer — are
 fixed and are held by tests.
 
-**The sixth one would be a bug, and it is the one this audit found:** *"I
-installed the app and the letters look wrong / it plays a video on startup."*
-That review would be about the artefact in `app_result/`, not about the product
-in this repository, and the two are not the same thing. I-01.
+**The sixth one would have been a bug, and this audit found it before a customer
+did:** *"I look a word up and nothing opens."* All 76 dictionary chunks were
+unreachable inside the first APK built this cycle — present in the archive, and
+named in a way the app could not ask for. Search would have listed every
+headword and failed on every tap. It was found by unpacking the package rather
+than by trusting the build, which is now the second cycle running in which that
+habit has been the thing that caught the worst defect. §2.2.
 
 ---
 
@@ -3309,8 +3650,8 @@ One scale, re-derived from this pass's runs and walkthrough. Nothing inherited.
 | # | Area | Rating | Why |
 | --- | --- | --- | --- |
 | A | Hangul learning quality | **READY WITH MINOR ISSUES** | 73 items, 12 lessons, a correct order, syllables taught as their own thing, copy that is short and specific — and Home now says when to start words instead of leaving the learner to guess. |
-| B | Stroke / glyph visual quality | **RELEASE READY** | `strokes:qa` clean on 73 items, `strokes:visual` clean on 1,345 frames, the composition table reproducible and now gated, and all 73 read by eye against a correctly-loaded reference face. ㅂ, ㅅ, ㅇ, ㅈ, 글, 국, 공, 부, 옷 are right. |
-| C | Handwriting experience | **READY WITH MINOR ISSUES** | The guide is fitted and centred to within 1.2% of the box, and the grader was recalibrated *for* it: 0.28% / 0.28%, better than before on both axes, and better on both for the default face. The minor issue is Gaegu, where the cap still leaves some letters small (**I-31**). |
+| B | Stroke / glyph visual quality | **RELEASE READY** | `strokes:qa` clean on 73 items, `strokes:visual` clean on 1,345 frames, the composition table reproducible and gated, and all 73 read by eye this cycle at the three sizes the product actually draws. Two markers looked wrong on the contact sheet and were not — ㅁ's second disc is on the left edge under the first, where that stroke's pen lands, and 글's fourth and fifth are displaced apart with a tether, which is the case the placement code was written for. |
+| C | Handwriting experience | **READY WITH MINOR ISSUES** | The guide is fitted and centred to within 1.2% of the box, and the grader was recalibrated *for* it: **0.21% / 0.28%** overall, 0.42% / 0.00% on the default face. Gaegu's own probe scale took its letters from a mean 0.524 of the box to 0.610 and its false rejection from 1.04% to 0.63%; it is still the smallest of the six faces (**I-31**, PARTIAL). |
 | D | Vocabulary learning quality | **BARELY READY** | Three question shapes in a first sitting, real matching with sound accounting, good distractors, a hint ladder that never opens with the answer. Held there by the corpus: 2,581 words against a stated 10,000 (**I-04**), with a delivery model that cannot carry the target (**I-05**). |
 | E | Review / SRS quality | **RELEASE READY** | Per-item, per-skill memory; the displayed count and the session are one object; measured against a fixed-queue baseline and wins 7 of 7. Sentences correctly are not SRS items. |
 | F | Content accuracy | **READY WITH MINOR ISSUES** | 2,581 examples pass with 0 review and 0 rewrite. Every entry carries a canonical `senseId` and the 103 merged glosses were read against their own sentences: 35 trimmed, ten cards moved sense, and the reviewed remainder is a gate (**I-18**). Glosses merged with a comma rather than a separator are still outside that rule (**I-10**). |
@@ -3635,14 +3976,17 @@ result.
 | `routing:check` | SPA fallback against the built dist | **PASS** — 17 routes, 6 static files, worker behaviour |
 | `store:check` | 8 store listings against their limits | **PASS** |
 | `tokens:check` | tokens.css matches its source | **PASS** |
-| **`issues:check`** | the tables against `docs/issues.json`, and contradicting prose | **PASS** — and it caught two contradictions while this report was being written |
-| `docs:consistency:check` | one value per metric across docs | **PASS** — but reports `not stated anywhere` for 4 of its 13 metrics, all of which this report states. I-28 |
+| **`issues:check`** | the tables against `docs/issues.json`, and contradicting prose | **PASS** — and it grew a rule this cycle. Its status test is exact and therefore narrow, and the risk table slipped a sentence past it saying the matching exercise was still absent — an absence asserted about a shipped feature, with no status word anywhere in it. Absence claims beside a resolved issue now fail, and the new rule caught two more while this report was being written, including one in this very row |
+| `docs:consistency:check` | one value per metric across docs | **PASS** — 18 figures across 5 documents, no metric stated twice with different values. I-28 |
 | `name:check` | no retired spellings | **PASS** |
 | `audit-release-security.mjs` over both binaries | secrets, endpoints, debuggable flags | **PASS** — no findings |
 | `audit-native-libs.mjs` over the APK | 16 KB page alignment | **PASS** — no native libraries |
-| `handwriting:robustness` | 2,880 genuine and 2,172 wrong attempts across 6 faces | **0.28% / 0.28%** overall; Pretendard **0.42% / 0.00%**. Fixtures regenerated to the shipping geometry. §12.2 |
+| `handwriting:robustness` | 2,880 genuine and 2,172 wrong attempts across 6 faces | **0.21% / 0.28%** overall; Pretendard **0.42% / 0.00%**; Gaegu 1.04% → **0.63%** after its own probe scale. §12.2 |
+| **`dictionary:qa:check`** | the generated dictionary against what the app promises about it | **PASS** — 26,675 headwords, every filename a hash of its contents and every filename ASCII. It found two headwords sharing an id, and would now catch the packaging bug in §2.2 |
+| **`perf:dictionary:check`** | search cost and index size, phone-adjusted | **PASS** — 3.9 ms per keystroke, 451 kB index. It failed first, at 9.0 ms, which is why it exists |
+| **`strokes:visual:check`** | 73 items, 269 strokes, 1,345 frames | **PASS** — and the sizes it renders at were wrong: 160 and 96, where the product draws 200, 152 and 150. All 73 regenerated and read by eye |
 | `review:benchmark` | adaptive vs fixed scheduler, 7 learner profiles | **PASS** — adaptive retains more in total for **7 of 7** |
-| `audio:qa` | asset integrity over 10,454 clips | **NOT RUN TO COMPLETION** — it shells out per file and did not finish inside a 15-minute budget on this machine. Its content-side counterpart `audio:pronunciation:check` did run and passed on 2,616 items. Clip integrity is **unverified this cycle**, and no audio changed in it |
+| `audio:qa` | asset integrity over 10,550 clip slots | **RUN TO COMPLETION, and clean** — 0 errors, 0 warnings, in 2m49s. It had not been finishing: it decoded each file with two subprocesses, serially, printing nothing, for about twenty-seven minutes, and was reported as a hang. `volumedetect` already prints the duration ffprobe was being asked for, and the decoding now runs on a pool of eight. A `--sample` mode decodes an even slice for the release gate and **says so in its own summary**, because a sampled run gets quoted as evidence of a full one |
 | **`qa:locales:check`** | 32 languages × 8 screens = 256 renders, measured for clipping, sideways scroll, untranslated English, unnamed controls and page errors | **PASS** — 0 findings |
 | **`release:current`** | the delivered package against the source | **PASS** — both manifests at HEAD |
 | **`share:check`** | sharing metadata and indexing, against the built output | **PASS** |

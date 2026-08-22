@@ -388,7 +388,14 @@ function OtherMeanings({ word }: { word: VocabularyWord }) {
       className={styles.block}
       onToggle={(event) => setOpen((event.currentTarget as HTMLDetailsElement).open)}
     >
-      <summary className={styles.blockTitle}>{t('dictionary.otherMeaningsPrompt')}</summary>
+      {/*
+        The label promises both halves, because both are behind it.
+
+        It read "Other meanings" and opened on a *More examples* heading, which
+        is a disclosure under-describing its own contents — a learner deciding
+        whether to tap it was being told about the smaller half.
+      */}
+      <summary className={styles.blockTitle}>{t('dictionary.moreFromDictionary')}</summary>
       {state === 'loading' && <p className={styles.note}>{t('dictionary.searching')}</p>}
       {state === 'unavailable' && <p className={styles.note}>{t('dictionary.unavailable')}</p>}
       {nothing && <p className={styles.note}>{t('dictionary.onlyMeaning')}</p>}

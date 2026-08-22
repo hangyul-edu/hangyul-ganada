@@ -132,6 +132,7 @@
     "searching": "அகராதியில் தேடுகிறோம்…",
     "unavailable": "முதன்முறை திறக்கும்போது அகராதிக்கு இணைப்பு தேவை.",
     "otherMeaningsPrompt": "மற்ற பொருள்கள்",
+    "moreFromDictionary": "அகராதியிலிருந்து மேலும்",
     "moreExamples": "மேலும் எடுத்துக்காட்டுகள்",
     "otherMeanings_one": "{{count, number}} வேறு பொருள்",
     "otherMeanings_other": "{{count, number}} வேறு பொருள்கள்",

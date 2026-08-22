@@ -132,6 +132,7 @@
     "searching": "शब्दकोश में खोज रहे हैं…",
     "unavailable": "पहली बार खोलने पर शब्दकोश को कनेक्शन चाहिए।",
     "otherMeaningsPrompt": "दूसरे अर्थ",
+    "moreFromDictionary": "शब्दकोश से और",
     "moreExamples": "और उदाहरण",
     "otherMeanings_one": "{{count, number}} दूसरा अर्थ",
     "otherMeanings_other": "{{count, number}} दूसरे अर्थ",

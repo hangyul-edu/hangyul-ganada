@@ -107,7 +107,7 @@ test('a taught word gains dictionary examples of the sense it teaches', async ({
   await expect(page.getByTestId('detail-headword')).toHaveText('사람');
 
   const more = page.getByRole('group');
-  await more.getByText(/other meanings/i).first().click();
+  await more.getByText(/more from the dictionary/i).first().click();
 
   // Whatever the dictionary has for it, the attribution must arrive with it.
   await expect(more.getByText(/Wiktionary/)).toBeVisible();

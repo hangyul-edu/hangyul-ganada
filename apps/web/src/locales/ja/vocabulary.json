@@ -125,6 +125,7 @@
     "searching": "辞書を調べています…",
     "unavailable": "辞書は初めて開くときにインターネット接続が必要です。",
     "otherMeaningsPrompt": "ほかの意味",
+    "moreFromDictionary": "辞書からもっと見る",
     "moreExamples": "ほかの例文",
     "otherMeanings_other": "ほかの意味 {{count, number}} 件",
     "onlyMeaning": "辞書にほかの意味はありません。",

@@ -132,6 +132,7 @@
     "searching": "Naghahanap sa diksyunaryo…",
     "unavailable": "Kailangan ng koneksyon ang diksyunaryo sa unang pagbukas.",
     "otherMeaningsPrompt": "Iba pang kahulugan",
+    "moreFromDictionary": "Higit pa mula sa diksyunaryo",
     "moreExamples": "Iba pang halimbawa",
     "otherMeanings_one": "{{count, number}} pang kahulugan",
     "otherMeanings_other": "{{count, number}} pang kahulugan",

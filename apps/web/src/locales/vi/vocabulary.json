@@ -132,6 +132,7 @@
     "searching": "Đang tra từ điển…",
     "unavailable": "Từ điển cần kết nối trong lần mở đầu tiên.",
     "otherMeaningsPrompt": "Nghĩa khác",
+    "moreFromDictionary": "Thêm từ từ điển",
     "moreExamples": "Thêm ví dụ",
     "otherMeanings_one": "{{count, number}} nghĩa khác",
     "otherMeanings_other": "{{count, number}} nghĩa khác",
