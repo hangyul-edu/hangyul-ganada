@@ -241,6 +241,166 @@
     "word_gage": [
       "bolt",
       "A bolt zárva van."
+    ],
+    "word_gil": [
+      "út",
+      "Az út széles."
+    ],
+    "word_ohu": [
+      "délután",
+      "Találkozzunk délután."
+    ],
+    "word_keopi": [
+      "kávé",
+      "Kávét iszom."
+    ],
+    "word_bap": [
+      "étel",
+      "Eszem."
+    ],
+    "word_eomma": [
+      "anya",
+      "Anya főz."
+    ],
+    "word_gwi": [
+      "fül",
+      "Fáj a fülem."
+    ],
+    "word_beoseu": [
+      "busz",
+      "Jön a busz."
+    ],
+    "word_geurim": [
+      "kép",
+      "Képet rajzolok."
+    ],
+    "word_beon": [
+      "alkalom",
+      "Kérem, csinálja meg még egyszer."
+    ],
+    "word_sul": [
+      "alkohol",
+      "Nem iszom alkoholt."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "A film szórakoztató."
+    ],
+    "word_sada": [
+      "venni",
+      "Kenyeret veszek."
+    ],
+    "word_byeol": [
+      "csillag",
+      "Ragyognak a csillagok."
+    ],
+    "word_bihaenggi": [
+      "repülőgép",
+      "Repülővel utazom."
+    ],
+    "word_bak": [
+      "kint",
+      "Kint esik az eső."
+    ],
+    "word_oda": [
+      "jönni",
+      "Jön a barátom."
+    ],
+    "word_chingu": [
+      "barát",
+      "Találkozom egy baráttal."
+    ],
+    "word_appa": [
+      "apa",
+      "Jó éjt, apa."
+    ],
+    "word_haneul": [
+      "ég",
+      "Az ég kék."
+    ],
+    "word_bada": [
+      "tenger",
+      "A tenger hatalmas."
+    ],
+    "word_sagwa": [
+      "alma",
+      "Az alma édes."
+    ],
+    "word_mulgeon": [
+      "dolog",
+      "Dolgokat veszek."
+    ],
+    "word_moja": [
+      "sapka",
+      "Sapkát veszek fel."
+    ],
+    "word_gogi": [
+      "hús",
+      "Húst sütök."
+    ],
+    "word_jinjja": [
+      "igazi",
+      "Ez tényleg igaz?"
+    ],
+    "word_sinbal": [
+      "cipő",
+      "Felveszem a cipőmet."
+    ],
+    "word_jamkkan": [
+      "pillanat",
+      "Kérem, várjon egy pillanatot."
+    ],
+    "word_namja": [
+      "férfi",
+      "Az a férfi a barátom."
+    ],
+    "word_eumsik": [
+      "étel",
+      "A koreai étel finom."
+    ],
+    "word_saengil": [
+      "születésnap",
+      "Boldog születésnapot."
+    ],
+    "word_daseot": [
+      "öt",
+      "Öt ember jött."
+    ],
+    "word_gihoe": [
+      "lehetőség",
+      "Ez jó lehetőség."
+    ],
+    "word_dul": [
+      "kettő",
+      "Két szék van itt."
+    ],
+    "word_sijang": [
+      "piac",
+      "A piacon veszek zöldséget."
+    ],
+    "word_goyangi": [
+      "macska",
+      "A macska alszik."
+    ],
+    "word_changmun": [
+      "ablak",
+      "Kérem, csukja be az ablakot."
+    ],
+    "word_yeoreum": [
+      "nyár",
+      "Nyáron a tengerhez megyek."
+    ],
+    "word_dongmul": [
+      "állat",
+      "Szeretem az állatokat."
+    ],
+    "word_yeohaeng": [
+      "utazás",
+      "Szeretnék utazni."
+    ],
+    "word_bam": [
+      "éjszaka",
+      "Éjszaka sok a csillag."
     ]
   }
 }

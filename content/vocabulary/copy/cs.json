@@ -241,6 +241,166 @@
     "word_gage": [
       "obchod",
       "Obchod je zavřený."
+    ],
+    "word_gil": [
+      "cesta",
+      "Ta cesta je široká."
+    ],
+    "word_ohu": [
+      "odpoledne",
+      "Sejdeme se odpoledne."
+    ],
+    "word_keopi": [
+      "káva",
+      "Piju kávu."
+    ],
+    "word_bap": [
+      "jídlo",
+      "Jím jídlo."
+    ],
+    "word_eomma": [
+      "máma",
+      "Máma vaří."
+    ],
+    "word_gwi": [
+      "ucho",
+      "Bolí mě ucho."
+    ],
+    "word_beoseu": [
+      "autobus",
+      "Jede autobus."
+    ],
+    "word_geurim": [
+      "obrázek",
+      "Kreslím obrázek."
+    ],
+    "word_beon": [
+      "krát",
+      "Udělejte to prosím ještě jednou."
+    ],
+    "word_sul": [
+      "alkohol",
+      "Nepiju alkohol."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "Ten film je zábavný."
+    ],
+    "word_sada": [
+      "koupit",
+      "Kupuju chleba."
+    ],
+    "word_byeol": [
+      "hvězda",
+      "Hvězdy svítí."
+    ],
+    "word_bihaenggi": [
+      "letadlo",
+      "Letím letadlem."
+    ],
+    "word_bak": [
+      "venek",
+      "Venku prší."
+    ],
+    "word_oda": [
+      "přijít",
+      "Přichází můj kamarád."
+    ],
+    "word_chingu": [
+      "kamarád",
+      "Potkávám kamaráda."
+    ],
+    "word_appa": [
+      "táta",
+      "Dobrou noc, tati."
+    ],
+    "word_haneul": [
+      "nebe",
+      "Nebe je modré."
+    ],
+    "word_bada": [
+      "moře",
+      "Moře je široké."
+    ],
+    "word_sagwa": [
+      "jablko",
+      "To jablko je sladké."
+    ],
+    "word_mulgeon": [
+      "věc",
+      "Kupuju věci."
+    ],
+    "word_moja": [
+      "čepice",
+      "Nasazuju si čepici."
+    ],
+    "word_gogi": [
+      "maso",
+      "Griluju maso."
+    ],
+    "word_jinjja": [
+      "opravdový",
+      "Je to opravdu tak?"
+    ],
+    "word_sinbal": [
+      "boty",
+      "Obouvám si boty."
+    ],
+    "word_jamkkan": [
+      "chvilka",
+      "Počkejte prosím chvilku."
+    ],
+    "word_namja": [
+      "muž",
+      "Ten muž je můj kamarád."
+    ],
+    "word_eumsik": [
+      "jídlo",
+      "Korejské jídlo je výborné."
+    ],
+    "word_saengil": [
+      "narozeniny",
+      "Všechno nejlepší k narozeninám."
+    ],
+    "word_daseot": [
+      "pět",
+      "Přišlo pět lidí."
+    ],
+    "word_gihoe": [
+      "příležitost",
+      "Je to dobrá příležitost."
+    ],
+    "word_dul": [
+      "dva",
+      "Jsou tu dvě židle."
+    ],
+    "word_sijang": [
+      "trh",
+      "Kupuju zeleninu na trhu."
+    ],
+    "word_goyangi": [
+      "kočka",
+      "Kočka spí."
+    ],
+    "word_changmun": [
+      "okno",
+      "Zavřete prosím okno."
+    ],
+    "word_yeoreum": [
+      "léto",
+      "V létě jezdím k moři."
+    ],
+    "word_dongmul": [
+      "zvíře",
+      "Mám rád zvířata."
+    ],
+    "word_yeohaeng": [
+      "cestování",
+      "Chci cestovat."
+    ],
+    "word_bam": [
+      "noc",
+      "V noci je hodně hvězd."
     ]
   }
 }

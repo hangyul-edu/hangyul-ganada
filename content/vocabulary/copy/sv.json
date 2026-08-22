@@ -241,6 +241,166 @@
     "word_gage": [
       "butik",
       "Butiken är stängd."
+    ],
+    "word_gil": [
+      "väg",
+      "Vägen är bred."
+    ],
+    "word_ohu": [
+      "eftermiddag",
+      "Vi ses i eftermiddag."
+    ],
+    "word_keopi": [
+      "kaffe",
+      "Jag dricker kaffe."
+    ],
+    "word_bap": [
+      "mat",
+      "Jag äter."
+    ],
+    "word_eomma": [
+      "mamma",
+      "Mamma lagar mat."
+    ],
+    "word_gwi": [
+      "öra",
+      "Jag har ont i örat."
+    ],
+    "word_beoseu": [
+      "buss",
+      "Bussen kommer."
+    ],
+    "word_geurim": [
+      "teckning",
+      "Jag ritar en teckning."
+    ],
+    "word_beon": [
+      "gång",
+      "Gör det en gång till, tack."
+    ],
+    "word_sul": [
+      "alkohol",
+      "Jag dricker inte alkohol."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "Filmen är rolig."
+    ],
+    "word_sada": [
+      "köpa",
+      "Jag köper bröd."
+    ],
+    "word_byeol": [
+      "stjärna",
+      "Stjärnorna lyser."
+    ],
+    "word_bihaenggi": [
+      "flygplan",
+      "Jag tar flyget."
+    ],
+    "word_bak": [
+      "utsidan",
+      "Det regnar ute."
+    ],
+    "word_oda": [
+      "komma",
+      "Min vän kommer."
+    ],
+    "word_chingu": [
+      "vän",
+      "Jag träffar en vän."
+    ],
+    "word_appa": [
+      "pappa",
+      "God natt, pappa."
+    ],
+    "word_haneul": [
+      "himmel",
+      "Himlen är blå."
+    ],
+    "word_bada": [
+      "hav",
+      "Havet är vidsträckt."
+    ],
+    "word_sagwa": [
+      "äpple",
+      "Äpplet är sött."
+    ],
+    "word_mulgeon": [
+      "sak",
+      "Jag köper saker."
+    ],
+    "word_moja": [
+      "mössa",
+      "Jag sätter på mig en mössa."
+    ],
+    "word_gogi": [
+      "kött",
+      "Jag grillar kött."
+    ],
+    "word_jinjja": [
+      "äkta",
+      "Är det här på riktigt?"
+    ],
+    "word_sinbal": [
+      "skor",
+      "Jag tar på mig skorna."
+    ],
+    "word_jamkkan": [
+      "ett ögonblick",
+      "Vänta ett ögonblick, tack."
+    ],
+    "word_namja": [
+      "man",
+      "Den mannen är min vän."
+    ],
+    "word_eumsik": [
+      "mat",
+      "Koreansk mat är god."
+    ],
+    "word_saengil": [
+      "födelsedag",
+      "Grattis på födelsedagen."
+    ],
+    "word_daseot": [
+      "fem",
+      "Fem personer kom."
+    ],
+    "word_gihoe": [
+      "tillfälle",
+      "Det är ett bra tillfälle."
+    ],
+    "word_dul": [
+      "två",
+      "Det finns två stolar."
+    ],
+    "word_sijang": [
+      "marknad",
+      "Jag köper grönsaker på marknaden."
+    ],
+    "word_goyangi": [
+      "katt",
+      "Katten sover."
+    ],
+    "word_changmun": [
+      "fönster",
+      "Stäng fönstret, tack."
+    ],
+    "word_yeoreum": [
+      "sommar",
+      "På sommaren åker jag till havet."
+    ],
+    "word_dongmul": [
+      "djur",
+      "Jag tycker om djur."
+    ],
+    "word_yeohaeng": [
+      "resa",
+      "Jag vill resa."
+    ],
+    "word_bam": [
+      "natt",
+      "På natten syns många stjärnor."
     ]
   }
 }

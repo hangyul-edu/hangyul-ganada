@@ -241,6 +241,166 @@
     "word_gage": [
       "sklep",
       "Sklep jest zamknięty."
+    ],
+    "word_gil": [
+      "droga",
+      "Droga jest szeroka."
+    ],
+    "word_ohu": [
+      "popołudnie",
+      "Spotkajmy się po południu."
+    ],
+    "word_keopi": [
+      "kawa",
+      "Piję kawę."
+    ],
+    "word_bap": [
+      "posiłek",
+      "Jem posiłek."
+    ],
+    "word_eomma": [
+      "mama",
+      "Mama gotuje."
+    ],
+    "word_gwi": [
+      "ucho",
+      "Boli mnie ucho."
+    ],
+    "word_beoseu": [
+      "autobus",
+      "Nadjeżdża autobus."
+    ],
+    "word_geurim": [
+      "obrazek",
+      "Rysuję obrazek."
+    ],
+    "word_beon": [
+      "raz",
+      "Proszę zrobić to jeszcze raz."
+    ],
+    "word_sul": [
+      "alkohol",
+      "Nie piję alkoholu."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "Film jest ciekawy."
+    ],
+    "word_sada": [
+      "kupić",
+      "Kupuję chleb."
+    ],
+    "word_byeol": [
+      "gwiazda",
+      "Gwiazdy świecą."
+    ],
+    "word_bihaenggi": [
+      "samolot",
+      "Lecę samolotem."
+    ],
+    "word_bak": [
+      "zewnątrz",
+      "Na zewnątrz pada deszcz."
+    ],
+    "word_oda": [
+      "przyjść",
+      "Idzie mój przyjaciel."
+    ],
+    "word_chingu": [
+      "przyjaciel",
+      "Spotykam się z przyjacielem."
+    ],
+    "word_appa": [
+      "tata",
+      "Dobranoc, tato."
+    ],
+    "word_haneul": [
+      "niebo",
+      "Niebo jest niebieskie."
+    ],
+    "word_bada": [
+      "morze",
+      "Morze jest rozległe."
+    ],
+    "word_sagwa": [
+      "jabłko",
+      "Jabłko jest słodkie."
+    ],
+    "word_mulgeon": [
+      "rzecz",
+      "Kupuję różne rzeczy."
+    ],
+    "word_moja": [
+      "czapka",
+      "Zakładam czapkę."
+    ],
+    "word_gogi": [
+      "mięso",
+      "Grilluję mięso."
+    ],
+    "word_jinjja": [
+      "prawdziwy",
+      "Czy to naprawdę?"
+    ],
+    "word_sinbal": [
+      "buty",
+      "Zakładam buty."
+    ],
+    "word_jamkkan": [
+      "chwila",
+      "Proszę chwilę poczekać."
+    ],
+    "word_namja": [
+      "mężczyzna",
+      "Tamten mężczyzna to mój przyjaciel."
+    ],
+    "word_eumsik": [
+      "jedzenie",
+      "Koreańskie jedzenie jest pyszne."
+    ],
+    "word_saengil": [
+      "urodziny",
+      "Wszystkiego najlepszego."
+    ],
+    "word_daseot": [
+      "pięć",
+      "Przyszło pięć osób."
+    ],
+    "word_gihoe": [
+      "okazja",
+      "To dobra okazja."
+    ],
+    "word_dul": [
+      "dwa",
+      "Są dwa krzesła."
+    ],
+    "word_sijang": [
+      "targ",
+      "Kupuję warzywa na targu."
+    ],
+    "word_goyangi": [
+      "kot",
+      "Kot śpi."
+    ],
+    "word_changmun": [
+      "okno",
+      "Proszę zamknąć okno."
+    ],
+    "word_yeoreum": [
+      "lato",
+      "Latem jeżdżę nad morze."
+    ],
+    "word_dongmul": [
+      "zwierzę",
+      "Lubię zwierzęta."
+    ],
+    "word_yeohaeng": [
+      "podróż",
+      "Chcę pojechać w podróż."
+    ],
+    "word_bam": [
+      "noc",
+      "W nocy jest dużo gwiazd."
     ]
   }
 }

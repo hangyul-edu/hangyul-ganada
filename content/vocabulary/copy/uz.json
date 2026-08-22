@@ -241,6 +241,166 @@
     "word_gage": [
       "do‘kon",
       "Do‘kon yopiq."
+    ],
+    "word_gil": [
+      "yo‘l",
+      "Yo‘l keng."
+    ],
+    "word_ohu": [
+      "tushdan keyin",
+      "Tushdan keyin uchrashaylik."
+    ],
+    "word_keopi": [
+      "qahva",
+      "Men qahva ichaman."
+    ],
+    "word_bap": [
+      "ovqat",
+      "Men ovqat yeyman."
+    ],
+    "word_eomma": [
+      "oyim",
+      "Oyim ovqat pishiryapti."
+    ],
+    "word_gwi": [
+      "quloq",
+      "Qulog‘im og‘riyapti."
+    ],
+    "word_beoseu": [
+      "avtobus",
+      "Avtobus kelyapti."
+    ],
+    "word_geurim": [
+      "rasm",
+      "Men rasm chizaman."
+    ],
+    "word_beon": [
+      "marta",
+      "Iltimos, yana bir marta qiling."
+    ],
+    "word_sul": [
+      "spirtli ichimlik",
+      "Men spirtli ichimlik ichmayman."
+    ],
+    "word_yeonghwa": [
+      "kino",
+      "Kino qiziqarli."
+    ],
+    "word_sada": [
+      "sotib olmoq",
+      "Men non sotib olaman."
+    ],
+    "word_byeol": [
+      "yulduz",
+      "Yulduzlar porlayapti."
+    ],
+    "word_bihaenggi": [
+      "samolyot",
+      "Men samolyotda uchaman."
+    ],
+    "word_bak": [
+      "tashqari",
+      "Tashqarida yomg‘ir yog‘yapti."
+    ],
+    "word_oda": [
+      "kelmoq",
+      "Do‘stim kelyapti."
+    ],
+    "word_chingu": [
+      "do‘st",
+      "Men do‘stim bilan uchrashaman."
+    ],
+    "word_appa": [
+      "dadam",
+      "Xayrli tun, dada."
+    ],
+    "word_haneul": [
+      "osmon",
+      "Osmon moviy."
+    ],
+    "word_bada": [
+      "dengiz",
+      "Dengiz keng."
+    ],
+    "word_sagwa": [
+      "olma",
+      "Olma shirin."
+    ],
+    "word_mulgeon": [
+      "narsa",
+      "Men narsalar sotib olaman."
+    ],
+    "word_moja": [
+      "shlyapa",
+      "Men shlyapa kiyaman."
+    ],
+    "word_gogi": [
+      "go‘sht",
+      "Men go‘sht qovuraman."
+    ],
+    "word_jinjja": [
+      "haqiqiy",
+      "Bu rostmi?"
+    ],
+    "word_sinbal": [
+      "oyoq kiyim",
+      "Men oyoq kiyim kiyaman."
+    ],
+    "word_jamkkan": [
+      "bir zum",
+      "Iltimos, bir zum kuting."
+    ],
+    "word_namja": [
+      "erkak",
+      "U erkak mening do‘stim."
+    ],
+    "word_eumsik": [
+      "ovqat",
+      "Koreys taomlari mazali."
+    ],
+    "word_saengil": [
+      "tug‘ilgan kun",
+      "Tug‘ilgan kuning bilan."
+    ],
+    "word_daseot": [
+      "besh",
+      "Besh kishi keldi."
+    ],
+    "word_gihoe": [
+      "imkoniyat",
+      "Bu yaxshi imkoniyat."
+    ],
+    "word_dul": [
+      "ikki",
+      "Ikkita stul bor."
+    ],
+    "word_sijang": [
+      "bozor",
+      "Men bozordan sabzavot olaman."
+    ],
+    "word_goyangi": [
+      "mushuk",
+      "Mushuk uxlayapti."
+    ],
+    "word_changmun": [
+      "deraza",
+      "Iltimos, derazani yoping."
+    ],
+    "word_yeoreum": [
+      "yoz",
+      "Yozda men dengizga boraman."
+    ],
+    "word_dongmul": [
+      "hayvon",
+      "Men hayvonlarni yaxshi ko‘raman."
+    ],
+    "word_yeohaeng": [
+      "sayohat",
+      "Men sayohat qilmoqchiman."
+    ],
+    "word_bam": [
+      "tun",
+      "Tunda yulduz ko‘p bo‘ladi."
     ]
   }
 }

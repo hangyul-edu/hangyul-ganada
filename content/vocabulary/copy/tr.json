@@ -241,6 +241,166 @@
     "word_gage": [
       "dükkân",
       "Dükkân kapalı."
+    ],
+    "word_gil": [
+      "yol",
+      "Yol geniş."
+    ],
+    "word_ohu": [
+      "öğleden sonra",
+      "Öğleden sonra buluşalım."
+    ],
+    "word_keopi": [
+      "kahve",
+      "Kahve içiyorum."
+    ],
+    "word_bap": [
+      "yemek",
+      "Yemek yiyorum."
+    ],
+    "word_eomma": [
+      "anne",
+      "Annem yemek yapıyor."
+    ],
+    "word_gwi": [
+      "kulak",
+      "Kulağım ağrıyor."
+    ],
+    "word_beoseu": [
+      "otobüs",
+      "Otobüs geliyor."
+    ],
+    "word_geurim": [
+      "resim",
+      "Resim çiziyorum."
+    ],
+    "word_beon": [
+      "kez",
+      "Lütfen bir kez daha yapın."
+    ],
+    "word_sul": [
+      "alkol",
+      "Alkol içmiyorum."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "Film eğlenceli."
+    ],
+    "word_sada": [
+      "satın almak",
+      "Ekmek alıyorum."
+    ],
+    "word_byeol": [
+      "yıldız",
+      "Yıldızlar parlıyor."
+    ],
+    "word_bihaenggi": [
+      "uçak",
+      "Uçakla gidiyorum."
+    ],
+    "word_bak": [
+      "dışarısı",
+      "Dışarıda yağmur yağıyor."
+    ],
+    "word_oda": [
+      "gelmek",
+      "Arkadaşım geliyor."
+    ],
+    "word_chingu": [
+      "arkadaş",
+      "Bir arkadaşımla buluşuyorum."
+    ],
+    "word_appa": [
+      "baba",
+      "İyi geceler, baba."
+    ],
+    "word_haneul": [
+      "gökyüzü",
+      "Gökyüzü mavi."
+    ],
+    "word_bada": [
+      "deniz",
+      "Deniz uçsuz bucaksız."
+    ],
+    "word_sagwa": [
+      "elma",
+      "Elma tatlı."
+    ],
+    "word_mulgeon": [
+      "eşya",
+      "Eşya satın alıyorum."
+    ],
+    "word_moja": [
+      "şapka",
+      "Şapka takıyorum."
+    ],
+    "word_gogi": [
+      "et",
+      "Et pişiriyorum."
+    ],
+    "word_jinjja": [
+      "gerçek",
+      "Bu gerçek mi?"
+    ],
+    "word_sinbal": [
+      "ayakkabı",
+      "Ayakkabılarımı giyiyorum."
+    ],
+    "word_jamkkan": [
+      "bir an",
+      "Lütfen bir an bekleyin."
+    ],
+    "word_namja": [
+      "erkek",
+      "O erkek benim arkadaşım."
+    ],
+    "word_eumsik": [
+      "yemek",
+      "Kore yemekleri lezzetli."
+    ],
+    "word_saengil": [
+      "doğum günü",
+      "Doğum günün kutlu olsun."
+    ],
+    "word_daseot": [
+      "beş",
+      "Beş kişi geldi."
+    ],
+    "word_gihoe": [
+      "fırsat",
+      "Bu iyi bir fırsat."
+    ],
+    "word_dul": [
+      "iki",
+      "İki sandalye var."
+    ],
+    "word_sijang": [
+      "pazar",
+      "Pazardan sebze alıyorum."
+    ],
+    "word_goyangi": [
+      "kedi",
+      "Kedi uyuyor."
+    ],
+    "word_changmun": [
+      "pencere",
+      "Lütfen pencereyi kapatın."
+    ],
+    "word_yeoreum": [
+      "yaz",
+      "Yazın denize giderim."
+    ],
+    "word_dongmul": [
+      "hayvan",
+      "Hayvanları severim."
+    ],
+    "word_yeohaeng": [
+      "seyahat",
+      "Seyahat etmek istiyorum."
+    ],
+    "word_bam": [
+      "gece",
+      "Gece çok yıldız oluyor."
     ]
   }
 }
