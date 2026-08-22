@@ -141,7 +141,16 @@
 .statusLevelPrefix {
   font-size: var(--hg-text-caption-sm, var(--hg-text-caption));
   font-weight: var(--hg-weight-semibold);
-  opacity: 0.75;
+  /*
+    No opacity here.
+
+    It was 0.75, to make "Lv." quieter than the number beside it, and axe was
+    right to fail it: fading an already-secondary colour took the contrast under
+    AA. The hierarchy this needed is size and weight, which cost nothing in
+    legibility — `--hg-text-secondary` is a token chosen to pass on this
+    surface, and dimming a compliant colour is how a palette gets undone one
+    component at a time.
+  */
 }
 
 .statusLevelNumber {

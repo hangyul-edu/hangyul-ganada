@@ -176,6 +176,25 @@ export function analyse(
   const seen = new Set<string>();
   const out: Analysis[] = [];
 
+  /*
+   * 겠 is a modal infix, and a learner types it.
+   *
+   * 먹겠습니다 is 먹다 with -겠- between the stem and the ending: it carries
+   * intention or supposition, not tense, and it can sit inside almost any
+   * ending. It is deliberately **not** a `Form` — the conjugation panel shows
+   * the five or six shapes a beginner needs and 먹겠습니다 is not one of them —
+   * but somebody who met it in a shop and typed it into search must land on
+   * 먹다 rather than on nothing.
+   *
+   * So it is peeled off here and the remainder analysed as itself. Anything
+   * that is a real inflection with 겠 in it is a real inflection without it,
+   * which is what makes this sound rather than a special case per ending.
+   */
+  const withoutModal = typed.replace(/겠(?=(습니다|어요|아요|여요|다|지만|고)$)/, '');
+  if (withoutModal !== typed) {
+    return analyse(withoutModal, isHeadword, options);
+  }
+
   // The typed word may be several eojeol — 먹을 거예요 — so the prefix walk runs
   // over the whole string and the space is simply another character.
   for (let cut = 1; cut <= typed.length; cut += 1) {

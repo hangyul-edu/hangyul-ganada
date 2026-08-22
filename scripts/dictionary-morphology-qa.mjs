@@ -49,6 +49,13 @@ const CASES = [
   ['예뻐요', '예쁘다'],
   ['마셨어요', '마시다'],
   ['봐요', '보다'],
+  // §35's list, in full. 먹겠습니다 is here because it was the one that missed:
+  // 겠 is a modal infix rather than a form, so nothing in the conjugator
+  // produced it and the round-trip found nothing. It is peeled off in
+  // `analyse` now — see the note there for why that is sound rather than a
+  // special case.
+  ['먹겠습니다', '먹다'],
+  ['좋았어요', '좋다'],
 ];
 
 const problems = [];
