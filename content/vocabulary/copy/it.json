@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Italian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "it",
+  "words": {
+    "word_hada": [
+      "fare",
+      "Studio."
+    ],
+    "word_cha": [
+      "auto",
+      "Prendo l’auto."
+    ],
+    "word_yeoja": [
+      "donna",
+      "Quella donna è medico."
+    ],
+    "word_na": [
+      "io",
+      "Sto imparando il coreano."
+    ],
+    "word_hae": [
+      "il Sole",
+      "Il sole è luminoso."
+    ],
+    "word_don": [
+      "denaro",
+      "C’è del denaro nel portafoglio."
+    ],
+    "word_uri": [
+      "noi",
+      "Siamo amici."
+    ],
+    "word_jip": [
+      "casa",
+      "Vado a casa."
+    ],
+    "word_itda": [
+      "stare, trovarsi",
+      "Sono a casa."
+    ],
+    "word_ne": [
+      "sì",
+      "Sì, è così."
+    ],
+    "word_son": [
+      "mano",
+      "Scrivo a mano."
+    ],
+    "word_sigan": [
+      "tempo",
+      "Non ho tempo."
+    ],
+    "word_jeo": [
+      "io (formale)",
+      "Sono uno studente."
+    ],
+    "word_gada": [
+      "andare",
+      "Vado a scuola."
+    ],
+    "word_gae": [
+      "cane",
+      "Il cane corre."
+    ],
+    "word_mun": [
+      "porta",
+      "Apro la porta."
+    ],
+    "word_sae": [
+      "uccello",
+      "Un uccello vola."
+    ],
+    "word_mom": [
+      "corpo",
+      "Mi lavo il corpo ogni giorno."
+    ],
+    "word_bang": [
+      "stanza",
+      "La stanza è pulita."
+    ],
+    "word_nun": [
+      "occhio",
+      "Hai degli occhi belli."
+    ],
+    "word_ot": [
+      "vestiti",
+      "I vestiti sono belli."
+    ],
+    "word_neo": [
+      "tu",
+      "Dove sei?"
+    ],
+    "word_eopda": [
+      "non avere",
+      "Non ho soldi."
+    ],
+    "word_meori": [
+      "testa",
+      "Mi fa male la testa."
+    ],
+    "word_ip": [
+      "bocca",
+      "La bocca è piccola."
+    ],
+    "word_mul": [
+      "acqua",
+      "Bevo acqua."
+    ],
+    "word_dari": [
+      "gamba",
+      "Mi fa male la gamba."
+    ],
+    "word_bi": [
+      "pioggia",
+      "Sta piovendo."
+    ],
+    "word_wae": [
+      "perché",
+      "Perché sei in ritardo?"
+    ],
+    "word_eolgul": [
+      "viso",
+      "Mi lavo il viso."
+    ],
+    "word_saram": [
+      "persona",
+      "È una brava persona."
+    ],
+    "word_hakgyo": [
+      "scuola",
+      "La scuola è grande."
+    ],
+    "word_yeogi": [
+      "qui",
+      "Si sieda qui, prego."
+    ],
+    "word_pal": [
+      "braccio",
+      "Hai le braccia lunghe."
+    ],
+    "word_norae": [
+      "canzone",
+      "Canto una canzone."
+    ],
+    "word_chaek": [
+      "libro",
+      "Leggo un libro."
+    ],
+    "word_dal": [
+      "la Luna",
+      "La luna è luminosa."
+    ],
+    "word_jeonhwa": [
+      "telefono",
+      "Rispondo al telefono."
+    ],
+    "word_namu": [
+      "albero",
+      "L’albero è alto."
+    ],
+    "word_dasi": [
+      "di nuovo",
+      "Lo ripeta, per favore."
+    ],
+    "word_nal": [
+      "giorno",
+      "È una bella giornata."
+    ],
+    "word_jigeum": [
+      "adesso",
+      "Vado adesso."
+    ],
+    "word_haru": [
+      "giornata",
+      "La giornata è lunga."
+    ],
+    "word_sesang": [
+      "il mondo",
+      "Il mondo è grande."
+    ],
+    "word_bal": [
+      "piede",
+      "Ho i piedi freddi."
+    ],
+    "word_neutda": [
+      "essere in ritardo",
+      "L’autobus era in ritardo."
+    ],
+    "word_modu": [
+      "tutti",
+      "Si sono riuniti tutti."
+    ],
+    "word_sajin": [
+      "fotografia",
+      "Faccio una foto."
+    ],
+    "word_chimdae": [
+      "letto",
+      "Il letto è comodo."
+    ],
+    "word_ko": [
+      "naso",
+      "Ho il naso chiuso."
+    ],
+    "word_san": [
+      "montagna",
+      "Vado in montagna."
+    ],
+    "word_hana": [
+      "uno",
+      "Una mela, per favore."
+    ],
+    "word_byeongwon": [
+      "ospedale",
+      "Vado in ospedale."
+    ],
+    "word_jeongmal": [
+      "davvero",
+      "Grazie mille."
+    ],
+    "word_seonmul": [
+      "regalo",
+      "Mi piace il regalo."
+    ],
+    "word_boda": [
+      "vedere",
+      "Guardo un film."
+    ],
+    "word_oneul": [
+      "oggi",
+      "Oggi c’è bel tempo."
+    ],
+    "word_gabang": [
+      "borsa",
+      "La borsa è pesante."
+    ],
+    "word_eumak": [
+      "musica",
+      "La musica è bella."
+    ],
+    "word_gage": [
+      "negozio",
+      "Il negozio è chiuso."
+    ]
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Turkish. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "tr",
+  "words": {
+    "word_hada": [
+      "yapmak",
+      "Ders çalışıyorum."
+    ],
+    "word_cha": [
+      "araba",
+      "Arabayla gidiyorum."
+    ],
+    "word_yeoja": [
+      "kadın",
+      "O kadın doktor."
+    ],
+    "word_na": [
+      "ben",
+      "Korece öğreniyorum."
+    ],
+    "word_hae": [
+      "Güneş",
+      "Güneş parlıyor."
+    ],
+    "word_don": [
+      "para",
+      "Cüzdanda para var."
+    ],
+    "word_uri": [
+      "biz",
+      "Biz arkadaşız."
+    ],
+    "word_jip": [
+      "ev",
+      "Eve gidiyorum."
+    ],
+    "word_itda": [
+      "bir yerde olmak",
+      "Evdeyim."
+    ],
+    "word_ne": [
+      "evet",
+      "Evet, doğru."
+    ],
+    "word_son": [
+      "el",
+      "Elle yazıyorum."
+    ],
+    "word_sigan": [
+      "zaman",
+      "Zamanım yok."
+    ],
+    "word_jeo": [
+      "ben (kibarca)",
+      "Ben öğrenciyim."
+    ],
+    "word_gada": [
+      "gitmek",
+      "Okula gidiyorum."
+    ],
+    "word_gae": [
+      "köpek",
+      "Köpek koşuyor."
+    ],
+    "word_mun": [
+      "kapı",
+      "Kapıyı açıyorum."
+    ],
+    "word_sae": [
+      "kuş",
+      "Bir kuş uçuyor."
+    ],
+    "word_mom": [
+      "vücut",
+      "Her gün vücudumu yıkarım."
+    ],
+    "word_bang": [
+      "oda",
+      "Oda temiz."
+    ],
+    "word_nun": [
+      "göz",
+      "Gözlerin güzel."
+    ],
+    "word_ot": [
+      "kıyafet",
+      "Kıyafet güzel."
+    ],
+    "word_neo": [
+      "sen",
+      "Neredesin?"
+    ],
+    "word_eopda": [
+      "olmamak",
+      "Param yok."
+    ],
+    "word_meori": [
+      "baş",
+      "Başım ağrıyor."
+    ],
+    "word_ip": [
+      "ağız",
+      "Ağız küçük."
+    ],
+    "word_mul": [
+      "su",
+      "Su içiyorum."
+    ],
+    "word_dari": [
+      "bacak",
+      "Bacağım ağrıyor."
+    ],
+    "word_bi": [
+      "yağmur",
+      "Yağmur yağıyor."
+    ],
+    "word_wae": [
+      "neden",
+      "Neden geç kaldın?"
+    ],
+    "word_eolgul": [
+      "yüz",
+      "Yüzümü yıkıyorum."
+    ],
+    "word_saram": [
+      "insan",
+      "O iyi bir insan."
+    ],
+    "word_hakgyo": [
+      "okul",
+      "Okul büyük."
+    ],
+    "word_yeogi": [
+      "burada",
+      "Lütfen buraya oturun."
+    ],
+    "word_pal": [
+      "kol",
+      "Kolların uzun."
+    ],
+    "word_norae": [
+      "şarkı",
+      "Bir şarkı söylüyorum."
+    ],
+    "word_chaek": [
+      "kitap",
+      "Kitap okuyorum."
+    ],
+    "word_dal": [
+      "Ay",
+      "Ay parlak."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Telefona cevap veriyorum."
+    ],
+    "word_namu": [
+      "ağaç",
+      "Ağaç yüksek."
+    ],
+    "word_dasi": [
+      "tekrar",
+      "Lütfen tekrar söyleyin."
+    ],
+    "word_nal": [
+      "gün",
+      "Bugün güzel bir gün."
+    ],
+    "word_jigeum": [
+      "şimdi",
+      "Şimdi gidiyorum."
+    ],
+    "word_haru": [
+      "bir gün",
+      "Gün uzun."
+    ],
+    "word_sesang": [
+      "dünya",
+      "Dünya geniş."
+    ],
+    "word_bal": [
+      "ayak",
+      "Ayaklarım üşüyor."
+    ],
+    "word_neutda": [
+      "geç kalmak",
+      "Otobüs geç kaldı."
+    ],
+    "word_modu": [
+      "herkes",
+      "Herkes toplandı."
+    ],
+    "word_sajin": [
+      "fotoğraf",
+      "Fotoğraf çekiyorum."
+    ],
+    "word_chimdae": [
+      "yatak",
+      "Yatak rahat."
+    ],
+    "word_ko": [
+      "burun",
+      "Burnum tıkalı."
+    ],
+    "word_san": [
+      "dağ",
+      "Dağa gidiyorum."
+    ],
+    "word_hana": [
+      "bir",
+      "Bir elma lütfen."
+    ],
+    "word_byeongwon": [
+      "hastane",
+      "Hastaneye gidiyorum."
+    ],
+    "word_jeongmal": [
+      "gerçekten",
+      "Çok teşekkür ederim."
+    ],
+    "word_seonmul": [
+      "hediye",
+      "Hediyeyi beğendim."
+    ],
+    "word_boda": [
+      "görmek",
+      "Film izliyorum."
+    ],
+    "word_oneul": [
+      "bugün",
+      "Bugün hava güzel."
+    ],
+    "word_gabang": [
+      "çanta",
+      "Çanta ağır."
+    ],
+    "word_eumak": [
+      "müzik",
+      "Müzik güzel."
+    ],
+    "word_gage": [
+      "dükkân",
+      "Dükkân kapalı."
+    ]
+  }
+}

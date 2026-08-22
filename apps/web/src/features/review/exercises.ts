@@ -172,7 +172,14 @@ function wordExercise(
    * lets them change it. A question that cannot be built that way is not built.
    */
   const oneLanguage = (options: readonly VocabularyWord[]): boolean =>
-    options.every((option) => meaningOf(option).locale === copy.locale);
+    options.every((option) => {
+      const other = meaningOf(option);
+      // Present, and in the same language as the answer. The emptiness check is
+      // the one that matters now that meanings are resolved strictly: a locale
+      // with no pack returns nothing for every word, so the question is not
+      // built at all rather than built out of blanks.
+      return other.value.trim().length > 0 && other.locale === copy.locale;
+    });
 
   switch (candidate.mode) {
     case 'read': {
@@ -207,6 +214,12 @@ function wordExercise(
        * finding 엄마 among four words that all look like Korean. The daily
        * session schedules it only for words already met; see `stepsFor`.
        */
+      /*
+        The prompt *is* the meaning here, so a missing one is not a thin
+        question — it is a blank one. The options are Korean and always fine;
+        what has to exist is the thing being asked about.
+      */
+      if (!copy.value.trim()) return null;
       const options = readingOptions(word, seed + 21, (other) => meaningOf(other).value).map(
         (option) => ({ id: option.id, korean: option.word }),
       );

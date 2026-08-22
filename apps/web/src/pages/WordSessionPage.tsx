@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog } from '../ui/ConfirmDialog';
 
 import { usePronunciation } from '../audio/PronunciationContext';
-import { wordCopy } from '../data/wordCopy';
+import { strictMeaning, wordCopy } from '../data/wordCopy';
 import { getFont } from '../data/fonts';
 import { retrySteps, scheduleSteps, type WordStep } from '../domain/vocabularyDay';
 import { BuildExercise } from '../features/review/BuildExercise';
@@ -80,16 +80,30 @@ export function WordSessionPage() {
     skipPlacement,
   } = useLearner();
   const { t } = useTranslation(['vocabulary', 'learning', 'levelTest', 'common']);
-  const { contentLocale } = useLocale();
+  const { locale } = useLocale();
   const { preload } = usePronunciation();
 
   const font = getFont(state.settings.selected_font_id);
+  /*
+    Strict: the learner's own language, or nothing.
+
+    §35 and §37. `wordCopy` walks a fallback chain, which is right for reading a
+    word card and wrong for asking a question — a Tamil learner offered four
+    English choices cannot answer, and the app looked as though it had not
+    noticed. `strictMeaning` returns null when this language has no meaning for
+    the word, `buildExercise` refuses to build a question whose options are not
+    all present, and the word is simply not asked about today.
+
+    The cost is real and deliberate: a locale with no pack has no vocabulary
+    questions rather than English ones. A smaller coherent lesson beats a
+    mixed-language lesson.
+  */
   const meaningOf = useCallback(
-    (word: Parameters<typeof wordCopy>[0]) => {
-      const copy = wordCopy(word, contentLocale);
-      return { value: copy.value.meaning, locale: copy.locale };
-    },
-    [contentLocale],
+    (word: Parameters<typeof wordCopy>[0]) => ({
+      value: strictMeaning(word, locale) ?? '',
+      locale,
+    }),
+    [locale],
   );
 
   /**

@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Uzbek. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "uz",
+  "words": {
+    "word_hada": [
+      "qilmoq",
+      "Men dars qilyapman."
+    ],
+    "word_cha": [
+      "mashina",
+      "Men mashinada boraman."
+    ],
+    "word_yeoja": [
+      "ayol",
+      "U ayol shifokor."
+    ],
+    "word_na": [
+      "men",
+      "Men koreys tilini o‘rganyapman."
+    ],
+    "word_hae": [
+      "Quyosh",
+      "Quyosh yorqin."
+    ],
+    "word_don": [
+      "pul",
+      "Hamyonda pul bor."
+    ],
+    "word_uri": [
+      "biz",
+      "Biz do‘stmiz."
+    ],
+    "word_jip": [
+      "uy",
+      "Men uyga ketyapman."
+    ],
+    "word_itda": [
+      "bir joyda bo‘lmoq",
+      "Men uydaman."
+    ],
+    "word_ne": [
+      "ha",
+      "Ha, to‘g‘ri."
+    ],
+    "word_son": [
+      "qo‘l",
+      "Men qo‘lda yozaman."
+    ],
+    "word_sigan": [
+      "vaqt",
+      "Vaqtim yo‘q."
+    ],
+    "word_jeo": [
+      "men (xushmuomala)",
+      "Men talabaman."
+    ],
+    "word_gada": [
+      "bormoq",
+      "Men maktabga boraman."
+    ],
+    "word_gae": [
+      "it",
+      "It yugurayapti."
+    ],
+    "word_mun": [
+      "eshik",
+      "Men eshikni ochaman."
+    ],
+    "word_sae": [
+      "qush",
+      "Bir qush uchyapti."
+    ],
+    "word_mom": [
+      "tana",
+      "Men har kuni tanamni yuvaman."
+    ],
+    "word_bang": [
+      "xona",
+      "Xona toza."
+    ],
+    "word_nun": [
+      "ko‘z",
+      "Ko‘zlaring chiroyli."
+    ],
+    "word_ot": [
+      "kiyim",
+      "Kiyim chiroyli."
+    ],
+    "word_neo": [
+      "sen",
+      "Sen qayerdasan?"
+    ],
+    "word_eopda": [
+      "yo‘q bo‘lmoq",
+      "Mening pulim yo‘q."
+    ],
+    "word_meori": [
+      "bosh",
+      "Boshim og‘riyapti."
+    ],
+    "word_ip": [
+      "og‘iz",
+      "Og‘iz kichkina."
+    ],
+    "word_mul": [
+      "suv",
+      "Men suv ichaman."
+    ],
+    "word_dari": [
+      "oyoq",
+      "Oyog‘im og‘riyapti."
+    ],
+    "word_bi": [
+      "yomg‘ir",
+      "Yomg‘ir yog‘yapti."
+    ],
+    "word_wae": [
+      "nega",
+      "Nega kechikding?"
+    ],
+    "word_eolgul": [
+      "yuz",
+      "Men yuzimni yuvaman."
+    ],
+    "word_saram": [
+      "odam",
+      "U yaxshi odam."
+    ],
+    "word_hakgyo": [
+      "maktab",
+      "Maktab katta."
+    ],
+    "word_yeogi": [
+      "bu yerda",
+      "Marhamat, bu yerga o‘tiring."
+    ],
+    "word_pal": [
+      "qo‘l",
+      "Qo‘llaring uzun."
+    ],
+    "word_norae": [
+      "qo‘shiq",
+      "Men qo‘shiq aytaman."
+    ],
+    "word_chaek": [
+      "kitob",
+      "Men kitob o‘qiyman."
+    ],
+    "word_dal": [
+      "Oy",
+      "Oy yorqin."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Men telefonga javob beraman."
+    ],
+    "word_namu": [
+      "daraxt",
+      "Daraxt baland."
+    ],
+    "word_dasi": [
+      "yana",
+      "Iltimos, yana ayting."
+    ],
+    "word_nal": [
+      "kun",
+      "Bugun yaxshi kun."
+    ],
+    "word_jigeum": [
+      "hozir",
+      "Men hozir ketaman."
+    ],
+    "word_haru": [
+      "bir kun",
+      "Kun uzun."
+    ],
+    "word_sesang": [
+      "dunyo",
+      "Dunyo keng."
+    ],
+    "word_bal": [
+      "oyoq kafti",
+      "Oyoqlarim sovqotdi."
+    ],
+    "word_neutda": [
+      "kechikmoq",
+      "Avtobus kechikdi."
+    ],
+    "word_modu": [
+      "hamma",
+      "Hamma yig‘ildi."
+    ],
+    "word_sajin": [
+      "surat",
+      "Men surat olaman."
+    ],
+    "word_chimdae": [
+      "karavot",
+      "Karavot qulay."
+    ],
+    "word_ko": [
+      "burun",
+      "Burnim bitib qoldi."
+    ],
+    "word_san": [
+      "tog‘",
+      "Men toqqa boraman."
+    ],
+    "word_hana": [
+      "bir",
+      "Bitta olma bering."
+    ],
+    "word_byeongwon": [
+      "kasalxona",
+      "Men kasalxonaga boraman."
+    ],
+    "word_jeongmal": [
+      "rostdan",
+      "Katta rahmat."
+    ],
+    "word_seonmul": [
+      "sovg‘a",
+      "Menga sovg‘a yoqdi."
+    ],
+    "word_boda": [
+      "ko‘rmoq",
+      "Men kino ko‘raman."
+    ],
+    "word_oneul": [
+      "bugun",
+      "Bugun ob-havo yaxshi."
+    ],
+    "word_gabang": [
+      "sumka",
+      "Sumka og‘ir."
+    ],
+    "word_eumak": [
+      "musiqa",
+      "Musiqa chiroyli."
+    ],
+    "word_gage": [
+      "do‘kon",
+      "Do‘kon yopiq."
+    ]
+  }
+}

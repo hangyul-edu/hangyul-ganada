@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Indonesian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "id",
+  "words": {
+    "word_hada": [
+      "melakukan",
+      "Saya belajar."
+    ],
+    "word_cha": [
+      "mobil",
+      "Saya naik mobil."
+    ],
+    "word_yeoja": [
+      "perempuan",
+      "Perempuan itu seorang dokter."
+    ],
+    "word_na": [
+      "aku",
+      "Aku belajar bahasa Korea."
+    ],
+    "word_hae": [
+      "matahari",
+      "Mataharinya terang."
+    ],
+    "word_don": [
+      "uang",
+      "Ada uang di dompet."
+    ],
+    "word_uri": [
+      "kami",
+      "Kami berteman."
+    ],
+    "word_jip": [
+      "rumah",
+      "Saya pulang ke rumah."
+    ],
+    "word_itda": [
+      "berada",
+      "Saya di rumah."
+    ],
+    "word_ne": [
+      "ya",
+      "Ya, benar."
+    ],
+    "word_son": [
+      "tangan",
+      "Saya menulis dengan tangan."
+    ],
+    "word_sigan": [
+      "waktu",
+      "Saya tidak punya waktu."
+    ],
+    "word_jeo": [
+      "saya (sopan)",
+      "Saya seorang pelajar."
+    ],
+    "word_gada": [
+      "pergi",
+      "Saya pergi ke sekolah."
+    ],
+    "word_gae": [
+      "anjing",
+      "Anjing itu berlari."
+    ],
+    "word_mun": [
+      "pintu",
+      "Saya membuka pintu."
+    ],
+    "word_sae": [
+      "burung",
+      "Seekor burung terbang."
+    ],
+    "word_mom": [
+      "tubuh",
+      "Saya mandi setiap hari."
+    ],
+    "word_bang": [
+      "kamar",
+      "Kamarnya bersih."
+    ],
+    "word_nun": [
+      "mata",
+      "Matamu indah."
+    ],
+    "word_ot": [
+      "pakaian",
+      "Pakaiannya bagus."
+    ],
+    "word_neo": [
+      "kamu",
+      "Kamu di mana?"
+    ],
+    "word_eopda": [
+      "tidak punya",
+      "Saya tidak punya uang."
+    ],
+    "word_meori": [
+      "kepala",
+      "Kepala saya sakit."
+    ],
+    "word_ip": [
+      "mulut",
+      "Mulutnya kecil."
+    ],
+    "word_mul": [
+      "air",
+      "Saya minum air."
+    ],
+    "word_dari": [
+      "kaki",
+      "Kaki saya sakit."
+    ],
+    "word_bi": [
+      "hujan",
+      "Sedang hujan."
+    ],
+    "word_wae": [
+      "kenapa",
+      "Kenapa kamu terlambat?"
+    ],
+    "word_eolgul": [
+      "wajah",
+      "Saya mencuci wajah."
+    ],
+    "word_saram": [
+      "orang",
+      "Dia orang baik."
+    ],
+    "word_hakgyo": [
+      "sekolah",
+      "Sekolahnya besar."
+    ],
+    "word_yeogi": [
+      "di sini",
+      "Silakan duduk di sini."
+    ],
+    "word_pal": [
+      "lengan",
+      "Lenganmu panjang."
+    ],
+    "word_norae": [
+      "lagu",
+      "Saya menyanyikan lagu."
+    ],
+    "word_chaek": [
+      "buku",
+      "Saya membaca buku."
+    ],
+    "word_dal": [
+      "bulan",
+      "Bulannya terang."
+    ],
+    "word_jeonhwa": [
+      "telepon",
+      "Saya menjawab telepon."
+    ],
+    "word_namu": [
+      "pohon",
+      "Pohonnya tinggi."
+    ],
+    "word_dasi": [
+      "lagi",
+      "Tolong ulangi lagi."
+    ],
+    "word_nal": [
+      "hari",
+      "Hari ini bagus."
+    ],
+    "word_jigeum": [
+      "sekarang",
+      "Saya pergi sekarang."
+    ],
+    "word_haru": [
+      "sehari",
+      "Harinya panjang."
+    ],
+    "word_sesang": [
+      "dunia",
+      "Dunia itu luas."
+    ],
+    "word_bal": [
+      "telapak kaki",
+      "Kaki saya dingin."
+    ],
+    "word_neutda": [
+      "terlambat",
+      "Busnya terlambat."
+    ],
+    "word_modu": [
+      "semua",
+      "Semua sudah berkumpul."
+    ],
+    "word_sajin": [
+      "foto",
+      "Saya mengambil foto."
+    ],
+    "word_chimdae": [
+      "tempat tidur",
+      "Tempat tidurnya nyaman."
+    ],
+    "word_ko": [
+      "hidung",
+      "Hidung saya tersumbat."
+    ],
+    "word_san": [
+      "gunung",
+      "Saya pergi ke gunung."
+    ],
+    "word_hana": [
+      "satu",
+      "Satu apel, tolong."
+    ],
+    "word_byeongwon": [
+      "rumah sakit",
+      "Saya pergi ke rumah sakit."
+    ],
+    "word_jeongmal": [
+      "sungguh",
+      "Terima kasih banyak."
+    ],
+    "word_seonmul": [
+      "hadiah",
+      "Saya suka hadiahnya."
+    ],
+    "word_boda": [
+      "melihat",
+      "Saya menonton film."
+    ],
+    "word_oneul": [
+      "hari ini",
+      "Cuacanya bagus hari ini."
+    ],
+    "word_gabang": [
+      "tas",
+      "Tasnya berat."
+    ],
+    "word_eumak": [
+      "musik",
+      "Musiknya bagus."
+    ],
+    "word_gage": [
+      "toko",
+      "Tokonya tutup."
+    ]
+  }
+}

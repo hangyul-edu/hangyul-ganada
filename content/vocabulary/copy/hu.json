@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Hungarian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "hu",
+  "words": {
+    "word_hada": [
+      "csinálni",
+      "Tanulok."
+    ],
+    "word_cha": [
+      "autó",
+      "Autóval megyek."
+    ],
+    "word_yeoja": [
+      "nő",
+      "Az a nő orvos."
+    ],
+    "word_na": [
+      "én",
+      "Koreaiul tanulok."
+    ],
+    "word_hae": [
+      "a Nap",
+      "Süt a nap."
+    ],
+    "word_don": [
+      "pénz",
+      "Van pénz a tárcában."
+    ],
+    "word_uri": [
+      "mi",
+      "Barátok vagyunk."
+    ],
+    "word_jip": [
+      "otthon",
+      "Hazamegyek."
+    ],
+    "word_itda": [
+      "lenni valahol",
+      "Otthon vagyok."
+    ],
+    "word_ne": [
+      "igen",
+      "Igen, így van."
+    ],
+    "word_son": [
+      "kéz",
+      "Kézzel írok."
+    ],
+    "word_sigan": [
+      "idő",
+      "Nincs időm."
+    ],
+    "word_jeo": [
+      "én (udvariasan)",
+      "Diák vagyok."
+    ],
+    "word_gada": [
+      "menni",
+      "Iskolába megyek."
+    ],
+    "word_gae": [
+      "kutya",
+      "Fut a kutya."
+    ],
+    "word_mun": [
+      "ajtó",
+      "Kinyitom az ajtót."
+    ],
+    "word_sae": [
+      "madár",
+      "Egy madár repül."
+    ],
+    "word_mom": [
+      "test",
+      "Minden nap megmosakszom."
+    ],
+    "word_bang": [
+      "szoba",
+      "A szoba tiszta."
+    ],
+    "word_nun": [
+      "szem",
+      "Szép a szemed."
+    ],
+    "word_ot": [
+      "ruha",
+      "Szép a ruha."
+    ],
+    "word_neo": [
+      "te",
+      "Hol vagy?"
+    ],
+    "word_eopda": [
+      "nincs",
+      "Nincs pénzem."
+    ],
+    "word_meori": [
+      "fej",
+      "Fáj a fejem."
+    ],
+    "word_ip": [
+      "száj",
+      "A száj kicsi."
+    ],
+    "word_mul": [
+      "víz",
+      "Vizet iszom."
+    ],
+    "word_dari": [
+      "láb",
+      "Fáj a lábam."
+    ],
+    "word_bi": [
+      "eső",
+      "Esik az eső."
+    ],
+    "word_wae": [
+      "miért",
+      "Miért késtél?"
+    ],
+    "word_eolgul": [
+      "arc",
+      "Megmosom az arcom."
+    ],
+    "word_saram": [
+      "ember",
+      "Ő jó ember."
+    ],
+    "word_hakgyo": [
+      "iskola",
+      "Az iskola nagy."
+    ],
+    "word_yeogi": [
+      "itt",
+      "Kérem, üljön ide."
+    ],
+    "word_pal": [
+      "kar",
+      "Hosszú a karod."
+    ],
+    "word_norae": [
+      "dal",
+      "Éneklek egy dalt."
+    ],
+    "word_chaek": [
+      "könyv",
+      "Könyvet olvasok."
+    ],
+    "word_dal": [
+      "a Hold",
+      "Fényes a hold."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Felveszem a telefont."
+    ],
+    "word_namu": [
+      "fa",
+      "Magas a fa."
+    ],
+    "word_dasi": [
+      "újra",
+      "Mondja meg újra, kérem."
+    ],
+    "word_nal": [
+      "nap",
+      "Szép nap van."
+    ],
+    "word_jigeum": [
+      "most",
+      "Most megyek."
+    ],
+    "word_haru": [
+      "egy nap",
+      "Hosszú a nap."
+    ],
+    "word_sesang": [
+      "a világ",
+      "A világ tágas."
+    ],
+    "word_bal": [
+      "lábfej",
+      "Fázik a lábam."
+    ],
+    "word_neutda": [
+      "késni",
+      "A busz késett."
+    ],
+    "word_modu": [
+      "mindenki",
+      "Mindenki összegyűlt."
+    ],
+    "word_sajin": [
+      "fénykép",
+      "Fényképet készítek."
+    ],
+    "word_chimdae": [
+      "ágy",
+      "Az ágy kényelmes."
+    ],
+    "word_ko": [
+      "orr",
+      "Bedugult az orrom."
+    ],
+    "word_san": [
+      "hegy",
+      "Megyek a hegyre."
+    ],
+    "word_hana": [
+      "egy",
+      "Egy almát kérek."
+    ],
+    "word_byeongwon": [
+      "kórház",
+      "Kórházba megyek."
+    ],
+    "word_jeongmal": [
+      "igazán",
+      "Nagyon köszönöm."
+    ],
+    "word_seonmul": [
+      "ajándék",
+      "Tetszik az ajándék."
+    ],
+    "word_boda": [
+      "látni",
+      "Filmet nézek."
+    ],
+    "word_oneul": [
+      "ma",
+      "Ma szép az idő."
+    ],
+    "word_gabang": [
+      "táska",
+      "A táska nehéz."
+    ],
+    "word_eumak": [
+      "zene",
+      "Szép a zene."
+    ],
+    "word_gage": [
+      "bolt",
+      "A bolt zárva van."
+    ]
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Swedish. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "sv",
+  "words": {
+    "word_hada": [
+      "göra",
+      "Jag studerar."
+    ],
+    "word_cha": [
+      "bil",
+      "Jag tar bilen."
+    ],
+    "word_yeoja": [
+      "kvinna",
+      "Den kvinnan är läkare."
+    ],
+    "word_na": [
+      "jag",
+      "Jag lär mig koreanska."
+    ],
+    "word_hae": [
+      "solen",
+      "Solen skiner."
+    ],
+    "word_don": [
+      "pengar",
+      "Det finns pengar i plånboken."
+    ],
+    "word_uri": [
+      "vi",
+      "Vi är vänner."
+    ],
+    "word_jip": [
+      "hem",
+      "Jag går hem."
+    ],
+    "word_itda": [
+      "befinna sig",
+      "Jag är hemma."
+    ],
+    "word_ne": [
+      "ja",
+      "Ja, det stämmer."
+    ],
+    "word_son": [
+      "hand",
+      "Jag skriver för hand."
+    ],
+    "word_sigan": [
+      "tid",
+      "Jag har ingen tid."
+    ],
+    "word_jeo": [
+      "jag (artigt)",
+      "Jag är student."
+    ],
+    "word_gada": [
+      "gå",
+      "Jag går till skolan."
+    ],
+    "word_gae": [
+      "hund",
+      "Hunden springer."
+    ],
+    "word_mun": [
+      "dörr",
+      "Jag öppnar dörren."
+    ],
+    "word_sae": [
+      "fågel",
+      "En fågel flyger."
+    ],
+    "word_mom": [
+      "kropp",
+      "Jag tvättar kroppen varje dag."
+    ],
+    "word_bang": [
+      "rum",
+      "Rummet är rent."
+    ],
+    "word_nun": [
+      "öga",
+      "Du har vackra ögon."
+    ],
+    "word_ot": [
+      "kläder",
+      "Kläderna är fina."
+    ],
+    "word_neo": [
+      "du",
+      "Var är du?"
+    ],
+    "word_eopda": [
+      "inte ha",
+      "Jag har inga pengar."
+    ],
+    "word_meori": [
+      "huvud",
+      "Jag har ont i huvudet."
+    ],
+    "word_ip": [
+      "mun",
+      "Munnen är liten."
+    ],
+    "word_mul": [
+      "vatten",
+      "Jag dricker vatten."
+    ],
+    "word_dari": [
+      "ben",
+      "Jag har ont i benet."
+    ],
+    "word_bi": [
+      "regn",
+      "Det regnar."
+    ],
+    "word_wae": [
+      "varför",
+      "Varför är du sen?"
+    ],
+    "word_eolgul": [
+      "ansikte",
+      "Jag tvättar ansiktet."
+    ],
+    "word_saram": [
+      "människa",
+      "Hen är en bra människa."
+    ],
+    "word_hakgyo": [
+      "skola",
+      "Skolan är stor."
+    ],
+    "word_yeogi": [
+      "här",
+      "Var så god och sitt här."
+    ],
+    "word_pal": [
+      "arm",
+      "Du har långa armar."
+    ],
+    "word_norae": [
+      "sång",
+      "Jag sjunger en sång."
+    ],
+    "word_chaek": [
+      "bok",
+      "Jag läser en bok."
+    ],
+    "word_dal": [
+      "månen",
+      "Månen lyser."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Jag svarar i telefonen."
+    ],
+    "word_namu": [
+      "träd",
+      "Trädet är högt."
+    ],
+    "word_dasi": [
+      "igen",
+      "Säg det igen, tack."
+    ],
+    "word_nal": [
+      "dag",
+      "Det är en fin dag."
+    ],
+    "word_jigeum": [
+      "nu",
+      "Jag går nu."
+    ],
+    "word_haru": [
+      "ett dygn",
+      "Dagen är lång."
+    ],
+    "word_sesang": [
+      "världen",
+      "Världen är stor."
+    ],
+    "word_bal": [
+      "fot",
+      "Jag är kall om fötterna."
+    ],
+    "word_neutda": [
+      "vara sen",
+      "Bussen var sen."
+    ],
+    "word_modu": [
+      "alla",
+      "Alla har samlats."
+    ],
+    "word_sajin": [
+      "fotografi",
+      "Jag tar ett foto."
+    ],
+    "word_chimdae": [
+      "säng",
+      "Sängen är bekväm."
+    ],
+    "word_ko": [
+      "näsa",
+      "Jag är täppt i näsan."
+    ],
+    "word_san": [
+      "berg",
+      "Jag går till berget."
+    ],
+    "word_hana": [
+      "ett",
+      "En äpple, tack."
+    ],
+    "word_byeongwon": [
+      "sjukhus",
+      "Jag går till sjukhuset."
+    ],
+    "word_jeongmal": [
+      "verkligen",
+      "Tack så mycket."
+    ],
+    "word_seonmul": [
+      "present",
+      "Jag gillar presenten."
+    ],
+    "word_boda": [
+      "se",
+      "Jag ser på en film."
+    ],
+    "word_oneul": [
+      "idag",
+      "Vädret är fint idag."
+    ],
+    "word_gabang": [
+      "väska",
+      "Väskan är tung."
+    ],
+    "word_eumak": [
+      "musik",
+      "Musiken är fin."
+    ],
+    "word_gage": [
+      "butik",
+      "Butiken är stängd."
+    ]
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Filipino. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "fil",
+  "words": {
+    "word_hada": [
+      "gawin",
+      "Nag-aaral ako."
+    ],
+    "word_cha": [
+      "kotse",
+      "Sumasakay ako ng kotse."
+    ],
+    "word_yeoja": [
+      "babae",
+      "Doktor ang babaeng iyon."
+    ],
+    "word_na": [
+      "ako",
+      "Nag-aaral ako ng Korean."
+    ],
+    "word_hae": [
+      "araw",
+      "Maliwanag ang araw."
+    ],
+    "word_don": [
+      "pera",
+      "May pera sa pitaka."
+    ],
+    "word_uri": [
+      "kami",
+      "Magkaibigan kami."
+    ],
+    "word_jip": [
+      "bahay",
+      "Uuwi na ako."
+    ],
+    "word_itda": [
+      "nasa isang lugar",
+      "Nasa bahay ako."
+    ],
+    "word_ne": [
+      "oo",
+      "Oo, tama iyan."
+    ],
+    "word_son": [
+      "kamay",
+      "Sumusulat ako gamit ang kamay."
+    ],
+    "word_sigan": [
+      "oras",
+      "Wala akong oras."
+    ],
+    "word_jeo": [
+      "ako (magalang)",
+      "Estudyante ako."
+    ],
+    "word_gada": [
+      "pumunta",
+      "Pumupunta ako sa paaralan."
+    ],
+    "word_gae": [
+      "aso",
+      "Tumatakbo ang aso."
+    ],
+    "word_mun": [
+      "pinto",
+      "Binubuksan ko ang pinto."
+    ],
+    "word_sae": [
+      "ibon",
+      "May ibong lumilipad."
+    ],
+    "word_mom": [
+      "katawan",
+      "Naliligo ako araw-araw."
+    ],
+    "word_bang": [
+      "kuwarto",
+      "Malinis ang kuwarto."
+    ],
+    "word_nun": [
+      "mata",
+      "Maganda ang mga mata mo."
+    ],
+    "word_ot": [
+      "damit",
+      "Maganda ang damit."
+    ],
+    "word_neo": [
+      "ikaw",
+      "Nasaan ka?"
+    ],
+    "word_eopda": [
+      "walang",
+      "Wala akong pera."
+    ],
+    "word_meori": [
+      "ulo",
+      "Masakit ang ulo ko."
+    ],
+    "word_ip": [
+      "bibig",
+      "Maliit ang bibig."
+    ],
+    "word_mul": [
+      "tubig",
+      "Umiinom ako ng tubig."
+    ],
+    "word_dari": [
+      "binti",
+      "Masakit ang binti ko."
+    ],
+    "word_bi": [
+      "ulan",
+      "Umuulan."
+    ],
+    "word_wae": [
+      "bakit",
+      "Bakit ka nahuli?"
+    ],
+    "word_eolgul": [
+      "mukha",
+      "Naghihilamos ako."
+    ],
+    "word_saram": [
+      "tao",
+      "Mabuti siyang tao."
+    ],
+    "word_hakgyo": [
+      "paaralan",
+      "Malaki ang paaralan."
+    ],
+    "word_yeogi": [
+      "dito",
+      "Maupo po kayo dito."
+    ],
+    "word_pal": [
+      "braso",
+      "Mahaba ang mga braso mo."
+    ],
+    "word_norae": [
+      "awit",
+      "Kumakanta ako ng awit."
+    ],
+    "word_chaek": [
+      "libro",
+      "Nagbabasa ako ng libro."
+    ],
+    "word_dal": [
+      "buwan",
+      "Maliwanag ang buwan."
+    ],
+    "word_jeonhwa": [
+      "telepono",
+      "Sinasagot ko ang telepono."
+    ],
+    "word_namu": [
+      "puno",
+      "Matangkad ang puno."
+    ],
+    "word_dasi": [
+      "muli",
+      "Pakiulit po."
+    ],
+    "word_nal": [
+      "araw",
+      "Magandang araw ngayon."
+    ],
+    "word_jigeum": [
+      "ngayon",
+      "Aalis na ako ngayon."
+    ],
+    "word_haru": [
+      "maghapon",
+      "Mahaba ang araw."
+    ],
+    "word_sesang": [
+      "mundo",
+      "Malawak ang mundo."
+    ],
+    "word_bal": [
+      "paa",
+      "Malamig ang mga paa ko."
+    ],
+    "word_neutda": [
+      "mahuli",
+      "Nahuli ang bus."
+    ],
+    "word_modu": [
+      "lahat",
+      "Nagtipon ang lahat."
+    ],
+    "word_sajin": [
+      "larawan",
+      "Kumukuha ako ng larawan."
+    ],
+    "word_chimdae": [
+      "kama",
+      "Komportable ang kama."
+    ],
+    "word_ko": [
+      "ilong",
+      "Barado ang ilong ko."
+    ],
+    "word_san": [
+      "bundok",
+      "Pumupunta ako sa bundok."
+    ],
+    "word_hana": [
+      "isa",
+      "Isang mansanas po."
+    ],
+    "word_byeongwon": [
+      "ospital",
+      "Pumupunta ako sa ospital."
+    ],
+    "word_jeongmal": [
+      "talaga",
+      "Maraming salamat po."
+    ],
+    "word_seonmul": [
+      "regalo",
+      "Gusto ko ang regalo."
+    ],
+    "word_boda": [
+      "makita",
+      "Nanonood ako ng pelikula."
+    ],
+    "word_oneul": [
+      "ngayong araw",
+      "Maganda ang panahon ngayon."
+    ],
+    "word_gabang": [
+      "bag",
+      "Mabigat ang bag."
+    ],
+    "word_eumak": [
+      "musika",
+      "Maganda ang musika."
+    ],
+    "word_gage": [
+      "tindahan",
+      "Sarado ang tindahan."
+    ]
+  }
+}

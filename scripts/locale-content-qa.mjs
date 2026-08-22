@@ -96,51 +96,126 @@ console.log(`  content languages     ${contentLocales.length}  (${contentLocales
 console.log(`  words in the corpus   ${wordIds.size.toLocaleString('en')}\n`);
 
 console.log('  language   meanings   examples   quiz language      mixed?');
+/**
+ * Which script each language is written in, for the ones where a stray
+ * character is unambiguous evidence of a mistake.
+ *
+ * Not a completeness test and not a spellcheck. It catches one specific
+ * failure: text from the wrong language landing in a pack. A Russian row came
+ * back as `День长长…` during authoring — Cyrillic, then two Han characters, then
+ * an ellipsis — which is exactly the kind of thing that survives review because
+ * the first word looks right.
+ *
+ * Latin-script languages are deliberately absent: they legitimately contain
+ * Korean headwords, proper nouns and loanwords, so there is no character that
+ * proves an error.
+ */
+const SCRIPTS = {
+  ar: /\p{Script=Arabic}/u,
+  bn: /\p{Script=Bengali}/u,
+  el: /\p{Script=Greek}/u,
+  hi: /\p{Script=Devanagari}/u,
+  kk: /\p{Script=Cyrillic}/u,
+  ky: /\p{Script=Cyrillic}/u,
+  mn: /\p{Script=Cyrillic}/u,
+  ru: /\p{Script=Cyrillic}/u,
+  ta: /\p{Script=Tamil}/u,
+  te: /\p{Script=Telugu}/u,
+  th: /\p{Script=Thai}/u,
+  uk: /\p{Script=Cyrillic}/u,
+};
+/** Han and kana, which belong only in the three languages that use them. */
+const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u;
+
 const problems = [];
 const rows = [];
+
+// --- the hand-written packs, checked for the wrong language ---------------------
+const COPY = join(ROOT, 'content/vocabulary/copy');
+let handWritten = 0;
+for (const file of readdirSync(COPY).filter((name) => name.endsWith('.json'))) {
+  const locale = file.replace('.json', '');
+  const pack = JSON.parse(readFileSync(join(COPY, file), 'utf8'));
+  const expected = SCRIPTS[locale];
+  for (const [wordId, row] of Object.entries(pack.words ?? {})) {
+    if (!Array.isArray(row)) continue;
+    handWritten += 1;
+    const [meaning, example] = row;
+    if (!meaning || !String(meaning).trim()) {
+      problems.push(`${locale} ${wordId}: no meaning`);
+      continue;
+    }
+    if (!example || !String(example).trim()) {
+      problems.push(`${locale} ${wordId}: no example translation`);
+    }
+    const text = `${meaning} ${example ?? ''}`;
+    if (expected && !expected.test(String(meaning))) {
+      problems.push(`${locale} ${wordId}: "${meaning}" is not written in this language's script`);
+    }
+    if (!['ja', 'zh-CN', 'ko'].includes(locale) && CJK.test(text)) {
+      problems.push(`${locale} ${wordId}: Han or kana in a language that does not use it — "${text.trim()}"`);
+    }
+  }
+}
+console.log(`  hand-written rows checked for script: ${handWritten.toLocaleString('en')}\n`);
+
+
+console.log('  language   meanings   examples   quiz words   status');
 for (const locale of [...interfaceLocales].sort()) {
-  const resolved = contentLocale(locale, contentLocales, null);
   const own = coverage.get(locale);
   const meanings = own ? own.meanings : 0;
   const examples = own ? own.examples : 0;
-  const borrowed = resolved !== locale;
-
   /*
-   * The failure this gate exists for.
+   * How many words this locale can actually be quizzed on.
    *
-   * A pack that covers *some* of the corpus is the dangerous state: the
-   * questions it can fill come out in the learner's language and the rest fall
-   * back, so one screen in ten is mixed and nothing reports it. All or nothing
-   * is safe; partial is not.
+   * A question needs four options and every one of them has to be in the
+   * learner's language — `strictMeaning` returns nothing otherwise and
+   * `buildExercise` declines to build. So the quiz pool is the localized set,
+   * and a locale with three words has no questions rather than three bad ones.
    */
-  const partial = own && meanings > 0 && meanings < wordIds.size;
-  if (partial) {
-    problems.push(
-      `${locale}: ${meanings} of ${wordIds.size} words have a meaning — a partly-filled pack ` +
-        'produces questions with some choices in this language and some in another',
-    );
-  }
-  rows.push({ locale, meanings, examples, resolved, borrowed, partial });
+  const quizzable = meanings >= 4 ? meanings : 0;
+  const status = meanings === 0
+    ? 'no vocabulary questions yet'
+    : meanings < wordIds.size
+      ? `partial — ${((meanings / wordIds.size) * 100).toFixed(0)}% of the corpus`
+      : 'complete';
+  rows.push({ locale, meanings, examples, quizzable, status });
   console.log(
     `  ${locale.padEnd(9)} ${String(meanings).padStart(8)}   ${String(examples).padStart(8)}   ` +
-      `${resolved.padEnd(17)}  ${partial ? 'YES — see below' : 'no'}`,
+      `${String(quizzable).padStart(10)}   ${status}`,
   );
 }
 
-const borrowed = rows.filter((row) => row.borrowed);
+const complete = rows.filter((row) => row.meanings >= wordIds.size);
+const empty = rows.filter((row) => row.meanings === 0);
+const partial = rows.filter((row) => row.meanings > 0 && row.meanings < wordIds.size);
+
 console.log(
-  `\n  ${rows.length - borrowed.length} of ${rows.length} languages read meanings in their own language.`,
+  `\n  ${complete.length} complete · ${partial.length} partial · ${empty.length} with no vocabulary content yet`,
 );
-console.log(
-  `  ${borrowed.length} read them in another, chosen and disclosed rather than silently: ` +
-    `${borrowed.map((row) => row.locale).join(', ')}`,
-);
-console.log(
-  '\n  That second group is I-19 and it is a content gap, not a defect in the code:\n' +
-    '  the meanings do not exist to show. What the code guarantees is that a question\n' +
-    '  is never *half* translated — see `i18n/contentLocale.ts` and the one-language\n' +
-    '  rule in `features/review/exercises.ts`.',
-);
+
+/*
+ * Partial is safe now, and that is a change worth stating.
+ *
+ * It used to be the failing condition here, because a half-filled pack made
+ * *some* questions come out in the learner's language and the rest fall back to
+ * English — one screen in ten, mixed, with nothing reporting it. The fallback is
+ * gone: `strictMeaning` resolves in the learner's language or not at all, so a
+ * partial pack now means a *smaller* pool of questions rather than a mixed one.
+ *
+ * What is still a failure is English reaching a non-English learner, and that is
+ * what the simulation below checks.
+ */
+if (empty.length > 0) {
+  console.log(
+    `\n  no vocabulary questions in: ${empty.map((row) => row.locale).join(', ')}\n` +
+      '  These learners get the interface, the alphabet course and the dictionary,\n' +
+      '  and no vocabulary quiz at all until their pack is written. That is the\n' +
+      '  product decision recorded in §35: a smaller coherent lesson beats a\n' +
+      '  mixed-language one, and no lesson beats a lesson in a language the\n' +
+      '  learner did not choose.',
+  );
+}
 
 if (problems.length > 0) {
   console.error(`\n${problems.length} problem(s):`);

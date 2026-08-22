@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Romanian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "ro",
+  "words": {
+    "word_hada": [
+      "a face",
+      "Învăț."
+    ],
+    "word_cha": [
+      "mașină",
+      "Merg cu mașina."
+    ],
+    "word_yeoja": [
+      "femeie",
+      "Femeia aceea e medic."
+    ],
+    "word_na": [
+      "eu",
+      "Învăț coreeană."
+    ],
+    "word_hae": [
+      "Soarele",
+      "Soarele strălucește."
+    ],
+    "word_don": [
+      "bani",
+      "Sunt bani în portofel."
+    ],
+    "word_uri": [
+      "noi",
+      "Suntem prieteni."
+    ],
+    "word_jip": [
+      "casă",
+      "Merg acasă."
+    ],
+    "word_itda": [
+      "a se afla",
+      "Sunt acasă."
+    ],
+    "word_ne": [
+      "da",
+      "Da, așa e."
+    ],
+    "word_son": [
+      "mână",
+      "Scriu de mână."
+    ],
+    "word_sigan": [
+      "timp",
+      "Nu am timp."
+    ],
+    "word_jeo": [
+      "eu (politicos)",
+      "Sunt student."
+    ],
+    "word_gada": [
+      "a merge",
+      "Merg la școală."
+    ],
+    "word_gae": [
+      "câine",
+      "Câinele aleargă."
+    ],
+    "word_mun": [
+      "ușă",
+      "Deschid ușa."
+    ],
+    "word_sae": [
+      "pasăre",
+      "O pasăre zboară."
+    ],
+    "word_mom": [
+      "corp",
+      "Îmi spăl corpul în fiecare zi."
+    ],
+    "word_bang": [
+      "cameră",
+      "Camera e curată."
+    ],
+    "word_nun": [
+      "ochi",
+      "Ai ochi frumoși."
+    ],
+    "word_ot": [
+      "haine",
+      "Hainele sunt frumoase."
+    ],
+    "word_neo": [
+      "tu",
+      "Unde ești?"
+    ],
+    "word_eopda": [
+      "a nu avea",
+      "Nu am bani."
+    ],
+    "word_meori": [
+      "cap",
+      "Mă doare capul."
+    ],
+    "word_ip": [
+      "gură",
+      "Gura e mică."
+    ],
+    "word_mul": [
+      "apă",
+      "Beau apă."
+    ],
+    "word_dari": [
+      "picior",
+      "Mă doare piciorul."
+    ],
+    "word_bi": [
+      "ploaie",
+      "Plouă."
+    ],
+    "word_wae": [
+      "de ce",
+      "De ce ai întârziat?"
+    ],
+    "word_eolgul": [
+      "față",
+      "Mă spăl pe față."
+    ],
+    "word_saram": [
+      "om",
+      "Este un om bun."
+    ],
+    "word_hakgyo": [
+      "școală",
+      "Școala e mare."
+    ],
+    "word_yeogi": [
+      "aici",
+      "Vă rog să stați aici."
+    ],
+    "word_pal": [
+      "braț",
+      "Ai brațele lungi."
+    ],
+    "word_norae": [
+      "cântec",
+      "Cânt un cântec."
+    ],
+    "word_chaek": [
+      "carte",
+      "Citesc o carte."
+    ],
+    "word_dal": [
+      "Luna",
+      "Luna e strălucitoare."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Răspund la telefon."
+    ],
+    "word_namu": [
+      "copac",
+      "Copacul e înalt."
+    ],
+    "word_dasi": [
+      "din nou",
+      "Mai spuneți o dată, vă rog."
+    ],
+    "word_nal": [
+      "zi",
+      "E o zi frumoasă."
+    ],
+    "word_jigeum": [
+      "acum",
+      "Plec acum."
+    ],
+    "word_haru": [
+      "o zi",
+      "Ziua e lungă."
+    ],
+    "word_sesang": [
+      "lumea",
+      "Lumea e mare."
+    ],
+    "word_bal": [
+      "talpă",
+      "Îmi sunt reci picioarele."
+    ],
+    "word_neutda": [
+      "a întârzia",
+      "Autobuzul a întârziat."
+    ],
+    "word_modu": [
+      "toți",
+      "S-au adunat toți."
+    ],
+    "word_sajin": [
+      "fotografie",
+      "Fac o fotografie."
+    ],
+    "word_chimdae": [
+      "pat",
+      "Patul e comod."
+    ],
+    "word_ko": [
+      "nas",
+      "Mi s-a înfundat nasul."
+    ],
+    "word_san": [
+      "munte",
+      "Merg la munte."
+    ],
+    "word_hana": [
+      "unu",
+      "Un măr, vă rog."
+    ],
+    "word_byeongwon": [
+      "spital",
+      "Merg la spital."
+    ],
+    "word_jeongmal": [
+      "chiar",
+      "Mulțumesc mult."
+    ],
+    "word_seonmul": [
+      "cadou",
+      "Îmi place cadoul."
+    ],
+    "word_boda": [
+      "a vedea",
+      "Mă uit la un film."
+    ],
+    "word_oneul": [
+      "azi",
+      "Azi e vreme frumoasă."
+    ],
+    "word_gabang": [
+      "geantă",
+      "Geanta e grea."
+    ],
+    "word_eumak": [
+      "muzică",
+      "Muzica e frumoasă."
+    ],
+    "word_gage": [
+      "magazin",
+      "Magazinul e închis."
+    ]
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Dutch. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "nl",
+  "words": {
+    "word_hada": [
+      "doen",
+      "Ik studeer."
+    ],
+    "word_cha": [
+      "auto",
+      "Ik ga met de auto."
+    ],
+    "word_yeoja": [
+      "vrouw",
+      "Die vrouw is arts."
+    ],
+    "word_na": [
+      "ik",
+      "Ik leer Koreaans."
+    ],
+    "word_hae": [
+      "de zon",
+      "De zon schijnt."
+    ],
+    "word_don": [
+      "geld",
+      "Er zit geld in de portemonnee."
+    ],
+    "word_uri": [
+      "wij",
+      "We zijn vrienden."
+    ],
+    "word_jip": [
+      "huis",
+      "Ik ga naar huis."
+    ],
+    "word_itda": [
+      "ergens zijn",
+      "Ik ben thuis."
+    ],
+    "word_ne": [
+      "ja",
+      "Ja, dat klopt."
+    ],
+    "word_son": [
+      "hand",
+      "Ik schrijf met de hand."
+    ],
+    "word_sigan": [
+      "tijd",
+      "Ik heb geen tijd."
+    ],
+    "word_jeo": [
+      "ik (beleefd)",
+      "Ik ben student."
+    ],
+    "word_gada": [
+      "gaan",
+      "Ik ga naar school."
+    ],
+    "word_gae": [
+      "hond",
+      "De hond rent."
+    ],
+    "word_mun": [
+      "deur",
+      "Ik doe de deur open."
+    ],
+    "word_sae": [
+      "vogel",
+      "Er vliegt een vogel."
+    ],
+    "word_mom": [
+      "lichaam",
+      "Ik was me elke dag."
+    ],
+    "word_bang": [
+      "kamer",
+      "De kamer is schoon."
+    ],
+    "word_nun": [
+      "oog",
+      "Je hebt mooie ogen."
+    ],
+    "word_ot": [
+      "kleren",
+      "De kleren zijn mooi."
+    ],
+    "word_neo": [
+      "jij",
+      "Waar ben je?"
+    ],
+    "word_eopda": [
+      "niet hebben",
+      "Ik heb geen geld."
+    ],
+    "word_meori": [
+      "hoofd",
+      "Ik heb hoofdpijn."
+    ],
+    "word_ip": [
+      "mond",
+      "De mond is klein."
+    ],
+    "word_mul": [
+      "water",
+      "Ik drink water."
+    ],
+    "word_dari": [
+      "been",
+      "Mijn been doet pijn."
+    ],
+    "word_bi": [
+      "regen",
+      "Het regent."
+    ],
+    "word_wae": [
+      "waarom",
+      "Waarom ben je te laat?"
+    ],
+    "word_eolgul": [
+      "gezicht",
+      "Ik was mijn gezicht."
+    ],
+    "word_saram": [
+      "mens",
+      "Hij is een goed mens."
+    ],
+    "word_hakgyo": [
+      "school",
+      "De school is groot."
+    ],
+    "word_yeogi": [
+      "hier",
+      "Gaat u hier zitten."
+    ],
+    "word_pal": [
+      "arm",
+      "Je hebt lange armen."
+    ],
+    "word_norae": [
+      "lied",
+      "Ik zing een lied."
+    ],
+    "word_chaek": [
+      "boek",
+      "Ik lees een boek."
+    ],
+    "word_dal": [
+      "de maan",
+      "De maan schijnt."
+    ],
+    "word_jeonhwa": [
+      "telefoon",
+      "Ik neem de telefoon op."
+    ],
+    "word_namu": [
+      "boom",
+      "De boom is hoog."
+    ],
+    "word_dasi": [
+      "opnieuw",
+      "Zeg het alstublieft opnieuw."
+    ],
+    "word_nal": [
+      "dag",
+      "Het is een mooie dag."
+    ],
+    "word_jigeum": [
+      "nu",
+      "Ik ga nu."
+    ],
+    "word_haru": [
+      "een dag",
+      "De dag is lang."
+    ],
+    "word_sesang": [
+      "de wereld",
+      "De wereld is groot."
+    ],
+    "word_bal": [
+      "voet",
+      "Mijn voeten zijn koud."
+    ],
+    "word_neutda": [
+      "te laat zijn",
+      "De bus was te laat."
+    ],
+    "word_modu": [
+      "iedereen",
+      "Iedereen is bijeen."
+    ],
+    "word_sajin": [
+      "foto",
+      "Ik maak een foto."
+    ],
+    "word_chimdae": [
+      "bed",
+      "Het bed is comfortabel."
+    ],
+    "word_ko": [
+      "neus",
+      "Mijn neus zit dicht."
+    ],
+    "word_san": [
+      "berg",
+      "Ik ga naar de berg."
+    ],
+    "word_hana": [
+      "één",
+      "Eén appel, alstublieft."
+    ],
+    "word_byeongwon": [
+      "ziekenhuis",
+      "Ik ga naar het ziekenhuis."
+    ],
+    "word_jeongmal": [
+      "echt",
+      "Heel erg bedankt."
+    ],
+    "word_seonmul": [
+      "cadeau",
+      "Ik vind het cadeau leuk."
+    ],
+    "word_boda": [
+      "zien",
+      "Ik kijk een film."
+    ],
+    "word_oneul": [
+      "vandaag",
+      "Het weer is mooi vandaag."
+    ],
+    "word_gabang": [
+      "tas",
+      "De tas is zwaar."
+    ],
+    "word_eumak": [
+      "muziek",
+      "De muziek is mooi."
+    ],
+    "word_gage": [
+      "winkel",
+      "De winkel is dicht."
+    ]
+  }
+}

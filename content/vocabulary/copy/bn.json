@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Bengali. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "bn",
+  "words": {
+    "word_hada": [
+      "করা",
+      "আমি পড়াশোনা করি।"
+    ],
+    "word_cha": [
+      "গাড়ি",
+      "আমি গাড়িতে যাই।"
+    ],
+    "word_yeoja": [
+      "নারী",
+      "ওই নারী একজন ডাক্তার।"
+    ],
+    "word_na": [
+      "আমি",
+      "আমি কোরিয়ান শিখছি।"
+    ],
+    "word_hae": [
+      "সূর্য",
+      "সূর্য উজ্জ্বল।"
+    ],
+    "word_don": [
+      "টাকা",
+      "মানিব্যাগে টাকা আছে।"
+    ],
+    "word_uri": [
+      "আমরা",
+      "আমরা বন্ধু।"
+    ],
+    "word_jip": [
+      "বাড়ি",
+      "আমি বাড়ি যাচ্ছি।"
+    ],
+    "word_itda": [
+      "থাকা",
+      "আমি বাড়িতে আছি।"
+    ],
+    "word_ne": [
+      "হ্যাঁ",
+      "হ্যাঁ, ঠিক বলেছেন।"
+    ],
+    "word_son": [
+      "হাত",
+      "আমি হাতে লিখি।"
+    ],
+    "word_sigan": [
+      "সময়",
+      "আমার সময় নেই।"
+    ],
+    "word_jeo": [
+      "আমি (বিনয়ী)",
+      "আমি একজন ছাত্র।"
+    ],
+    "word_gada": [
+      "যাওয়া",
+      "আমি স্কুলে যাই।"
+    ],
+    "word_gae": [
+      "কুকুর",
+      "কুকুরটি দৌড়াচ্ছে।"
+    ],
+    "word_mun": [
+      "দরজা",
+      "আমি দরজা খুলি।"
+    ],
+    "word_sae": [
+      "পাখি",
+      "একটি পাখি উড়ছে।"
+    ],
+    "word_mom": [
+      "শরীর",
+      "আমি প্রতিদিন শরীর ধুই।"
+    ],
+    "word_bang": [
+      "ঘর",
+      "ঘরটি পরিষ্কার।"
+    ],
+    "word_nun": [
+      "চোখ",
+      "তোমার চোখ সুন্দর।"
+    ],
+    "word_ot": [
+      "পোশাক",
+      "পোশাকটা সুন্দর।"
+    ],
+    "word_neo": [
+      "তুমি",
+      "তুমি কোথায়?"
+    ],
+    "word_eopda": [
+      "না থাকা",
+      "আমার টাকা নেই।"
+    ],
+    "word_meori": [
+      "মাথা",
+      "আমার মাথা ব্যথা করছে।"
+    ],
+    "word_ip": [
+      "মুখ",
+      "মুখটা ছোট।"
+    ],
+    "word_mul": [
+      "পানি",
+      "আমি পানি পান করি।"
+    ],
+    "word_dari": [
+      "পা",
+      "আমার পা ব্যথা করছে।"
+    ],
+    "word_bi": [
+      "বৃষ্টি",
+      "বৃষ্টি হচ্ছে।"
+    ],
+    "word_wae": [
+      "কেন",
+      "তুমি দেরি করলে কেন?"
+    ],
+    "word_eolgul": [
+      "মুখমণ্ডল",
+      "আমি মুখ ধুই।"
+    ],
+    "word_saram": [
+      "মানুষ",
+      "উনি ভালো মানুষ।"
+    ],
+    "word_hakgyo": [
+      "স্কুল",
+      "স্কুলটা বড়।"
+    ],
+    "word_yeogi": [
+      "এখানে",
+      "এখানে বসুন।"
+    ],
+    "word_pal": [
+      "বাহু",
+      "তোমার হাত লম্বা।"
+    ],
+    "word_norae": [
+      "গান",
+      "আমি গান গাই।"
+    ],
+    "word_chaek": [
+      "বই",
+      "আমি বই পড়ি।"
+    ],
+    "word_dal": [
+      "চাঁদ",
+      "চাঁদ উজ্জ্বল।"
+    ],
+    "word_jeonhwa": [
+      "ফোন",
+      "আমি ফোন ধরি।"
+    ],
+    "word_namu": [
+      "গাছ",
+      "গাছটা লম্বা।"
+    ],
+    "word_dasi": [
+      "আবার",
+      "আবার বলুন।"
+    ],
+    "word_nal": [
+      "দিন",
+      "আজ ভালো দিন।"
+    ],
+    "word_jigeum": [
+      "এখন",
+      "আমি এখন যাচ্ছি।"
+    ],
+    "word_haru": [
+      "সারা দিন",
+      "দিনটা লম্বা।"
+    ],
+    "word_sesang": [
+      "পৃথিবী",
+      "পৃথিবী বিশাল।"
+    ],
+    "word_bal": [
+      "পা",
+      "আমার পা ঠান্ডা।"
+    ],
+    "word_neutda": [
+      "দেরি হওয়া",
+      "বাসটা দেরি করেছে।"
+    ],
+    "word_modu": [
+      "সবাই",
+      "সবাই জড়ো হয়েছে।"
+    ],
+    "word_sajin": [
+      "ছবি",
+      "আমি ছবি তুলি।"
+    ],
+    "word_chimdae": [
+      "বিছানা",
+      "বিছানাটা আরামদায়ক।"
+    ],
+    "word_ko": [
+      "নাক",
+      "আমার নাক বন্ধ।"
+    ],
+    "word_san": [
+      "পাহাড়",
+      "আমি পাহাড়ে যাই।"
+    ],
+    "word_hana": [
+      "এক",
+      "একটা আপেল দিন।"
+    ],
+    "word_byeongwon": [
+      "হাসপাতাল",
+      "আমি হাসপাতালে যাই।"
+    ],
+    "word_jeongmal": [
+      "সত্যিই",
+      "অনেক ধন্যবাদ।"
+    ],
+    "word_seonmul": [
+      "উপহার",
+      "উপহারটা আমার পছন্দ।"
+    ],
+    "word_boda": [
+      "দেখা",
+      "আমি সিনেমা দেখি।"
+    ],
+    "word_oneul": [
+      "আজ",
+      "আজ আবহাওয়া ভালো।"
+    ],
+    "word_gabang": [
+      "ব্যাগ",
+      "ব্যাগটা ভারী।"
+    ],
+    "word_eumak": [
+      "সংগীত",
+      "সংগীতটা সুন্দর।"
+    ],
+    "word_gage": [
+      "দোকান",
+      "দোকান বন্ধ।"
+    ]
+  }
+}

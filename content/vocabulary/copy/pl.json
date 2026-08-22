@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Polish. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "pl",
+  "words": {
+    "word_hada": [
+      "robić",
+      "Uczę się."
+    ],
+    "word_cha": [
+      "samochód",
+      "Jadę samochodem."
+    ],
+    "word_yeoja": [
+      "kobieta",
+      "Tamta kobieta jest lekarką."
+    ],
+    "word_na": [
+      "ja",
+      "Uczę się koreańskiego."
+    ],
+    "word_hae": [
+      "Słońce",
+      "Słońce świeci."
+    ],
+    "word_don": [
+      "pieniądze",
+      "W portfelu są pieniądze."
+    ],
+    "word_uri": [
+      "my",
+      "Jesteśmy przyjaciółmi."
+    ],
+    "word_jip": [
+      "dom",
+      "Idę do domu."
+    ],
+    "word_itda": [
+      "być gdzieś",
+      "Jestem w domu."
+    ],
+    "word_ne": [
+      "tak",
+      "Tak, zgadza się."
+    ],
+    "word_son": [
+      "ręka",
+      "Piszę ręcznie."
+    ],
+    "word_sigan": [
+      "czas",
+      "Nie mam czasu."
+    ],
+    "word_jeo": [
+      "ja (grzecznie)",
+      "Jestem studentem."
+    ],
+    "word_gada": [
+      "iść",
+      "Idę do szkoły."
+    ],
+    "word_gae": [
+      "pies",
+      "Pies biegnie."
+    ],
+    "word_mun": [
+      "drzwi",
+      "Otwieram drzwi."
+    ],
+    "word_sae": [
+      "ptak",
+      "Leci ptak."
+    ],
+    "word_mom": [
+      "ciało",
+      "Codziennie myję ciało."
+    ],
+    "word_bang": [
+      "pokój",
+      "Pokój jest czysty."
+    ],
+    "word_nun": [
+      "oko",
+      "Masz piękne oczy."
+    ],
+    "word_ot": [
+      "ubranie",
+      "Ubranie jest ładne."
+    ],
+    "word_neo": [
+      "ty",
+      "Gdzie jesteś?"
+    ],
+    "word_eopda": [
+      "nie mieć",
+      "Nie mam pieniędzy."
+    ],
+    "word_meori": [
+      "głowa",
+      "Boli mnie głowa."
+    ],
+    "word_ip": [
+      "usta",
+      "Usta są małe."
+    ],
+    "word_mul": [
+      "woda",
+      "Piję wodę."
+    ],
+    "word_dari": [
+      "noga",
+      "Boli mnie noga."
+    ],
+    "word_bi": [
+      "deszcz",
+      "Pada deszcz."
+    ],
+    "word_wae": [
+      "dlaczego",
+      "Dlaczego się spóźniłeś?"
+    ],
+    "word_eolgul": [
+      "twarz",
+      "Myję twarz."
+    ],
+    "word_saram": [
+      "człowiek",
+      "To dobry człowiek."
+    ],
+    "word_hakgyo": [
+      "szkoła",
+      "Szkoła jest duża."
+    ],
+    "word_yeogi": [
+      "tutaj",
+      "Proszę usiąść tutaj."
+    ],
+    "word_pal": [
+      "ramię",
+      "Masz długie ręce."
+    ],
+    "word_norae": [
+      "piosenka",
+      "Śpiewam piosenkę."
+    ],
+    "word_chaek": [
+      "książka",
+      "Czytam książkę."
+    ],
+    "word_dal": [
+      "Księżyc",
+      "Księżyc świeci."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Odbieram telefon."
+    ],
+    "word_namu": [
+      "drzewo",
+      "Drzewo jest wysokie."
+    ],
+    "word_dasi": [
+      "jeszcze raz",
+      "Proszę powtórzyć jeszcze raz."
+    ],
+    "word_nal": [
+      "dzień",
+      "Jest ładny dzień."
+    ],
+    "word_jigeum": [
+      "teraz",
+      "Idę teraz."
+    ],
+    "word_haru": [
+      "doba",
+      "Dzień jest długi."
+    ],
+    "word_sesang": [
+      "świat",
+      "Świat jest szeroki."
+    ],
+    "word_bal": [
+      "stopa",
+      "Marzną mi stopy."
+    ],
+    "word_neutda": [
+      "spóźnić się",
+      "Autobus się spóźnił."
+    ],
+    "word_modu": [
+      "wszyscy",
+      "Wszyscy się zebrali."
+    ],
+    "word_sajin": [
+      "zdjęcie",
+      "Robię zdjęcie."
+    ],
+    "word_chimdae": [
+      "łóżko",
+      "Łóżko jest wygodne."
+    ],
+    "word_ko": [
+      "nos",
+      "Mam zatkany nos."
+    ],
+    "word_san": [
+      "góra",
+      "Idę w góry."
+    ],
+    "word_hana": [
+      "jeden",
+      "Poproszę jedno jabłko."
+    ],
+    "word_byeongwon": [
+      "szpital",
+      "Idę do szpitala."
+    ],
+    "word_jeongmal": [
+      "naprawdę",
+      "Bardzo dziękuję."
+    ],
+    "word_seonmul": [
+      "prezent",
+      "Podoba mi się prezent."
+    ],
+    "word_boda": [
+      "widzieć",
+      "Oglądam film."
+    ],
+    "word_oneul": [
+      "dzisiaj",
+      "Dziś jest ładna pogoda."
+    ],
+    "word_gabang": [
+      "torba",
+      "Torba jest ciężka."
+    ],
+    "word_eumak": [
+      "muzyka",
+      "Muzyka jest ładna."
+    ],
+    "word_gage": [
+      "sklep",
+      "Sklep jest zamknięty."
+    ]
+  }
+}

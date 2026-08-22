@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Arabic. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "ar",
+  "words": {
+    "word_hada": [
+      "يفعل",
+      "أنا أدرس."
+    ],
+    "word_cha": [
+      "سيارة",
+      "أركب السيارة."
+    ],
+    "word_yeoja": [
+      "امرأة",
+      "تلك المرأة طبيبة."
+    ],
+    "word_na": [
+      "أنا",
+      "أتعلّم الكورية."
+    ],
+    "word_hae": [
+      "الشمس",
+      "الشمس ساطعة."
+    ],
+    "word_don": [
+      "مال",
+      "هناك مال في المحفظة."
+    ],
+    "word_uri": [
+      "نحن",
+      "نحن أصدقاء."
+    ],
+    "word_jip": [
+      "بيت",
+      "أنا ذاهب إلى البيت."
+    ],
+    "word_itda": [
+      "يكون في مكان",
+      "أنا في البيت."
+    ],
+    "word_ne": [
+      "نعم",
+      "نعم، هذا صحيح."
+    ],
+    "word_son": [
+      "يد",
+      "أكتب بيدي."
+    ],
+    "word_sigan": [
+      "وقت",
+      "ليس لديّ وقت."
+    ],
+    "word_jeo": [
+      "أنا (بأدب)",
+      "أنا طالب."
+    ],
+    "word_gada": [
+      "يذهب",
+      "أذهب إلى المدرسة."
+    ],
+    "word_gae": [
+      "كلب",
+      "الكلب يجري."
+    ],
+    "word_mun": [
+      "باب",
+      "أفتح الباب."
+    ],
+    "word_sae": [
+      "طائر",
+      "طائر يطير."
+    ],
+    "word_mom": [
+      "جسم",
+      "أغسل جسمي كل يوم."
+    ],
+    "word_bang": [
+      "غرفة",
+      "الغرفة نظيفة."
+    ],
+    "word_nun": [
+      "عين",
+      "عيناك جميلتان."
+    ],
+    "word_ot": [
+      "ملابس",
+      "الملابس جميلة."
+    ],
+    "word_neo": [
+      "أنت (غير رسمي)",
+      "أين أنت؟"
+    ],
+    "word_eopda": [
+      "لا يملك",
+      "ليس لديّ مال."
+    ],
+    "word_meori": [
+      "رأس",
+      "رأسي يؤلمني."
+    ],
+    "word_ip": [
+      "فم",
+      "الفم صغير."
+    ],
+    "word_mul": [
+      "ماء",
+      "أشرب الماء."
+    ],
+    "word_dari": [
+      "ساق",
+      "ساقي تؤلمني."
+    ],
+    "word_bi": [
+      "مطر",
+      "إنها تمطر."
+    ],
+    "word_wae": [
+      "لماذا",
+      "لماذا تأخّرت؟"
+    ],
+    "word_eolgul": [
+      "وجه",
+      "أغسل وجهي."
+    ],
+    "word_saram": [
+      "إنسان",
+      "إنه شخص طيّب."
+    ],
+    "word_hakgyo": [
+      "مدرسة",
+      "المدرسة كبيرة."
+    ],
+    "word_yeogi": [
+      "هنا",
+      "تفضّل بالجلوس هنا."
+    ],
+    "word_pal": [
+      "ذراع",
+      "ذراعاك طويلتان."
+    ],
+    "word_norae": [
+      "أغنية",
+      "أغنّي أغنية."
+    ],
+    "word_chaek": [
+      "كتاب",
+      "أقرأ كتابًا."
+    ],
+    "word_dal": [
+      "القمر",
+      "القمر منير."
+    ],
+    "word_jeonhwa": [
+      "هاتف",
+      "أردّ على الهاتف."
+    ],
+    "word_namu": [
+      "شجرة",
+      "الشجرة عالية."
+    ],
+    "word_dasi": [
+      "مرة أخرى",
+      "قل ذلك مرة أخرى من فضلك."
+    ],
+    "word_nal": [
+      "يوم",
+      "إنه يوم جميل."
+    ],
+    "word_jigeum": [
+      "الآن",
+      "سأذهب الآن."
+    ],
+    "word_haru": [
+      "يوم كامل",
+      "اليوم طويل."
+    ],
+    "word_sesang": [
+      "العالم",
+      "العالم واسع."
+    ],
+    "word_bal": [
+      "قدم",
+      "قدماي باردتان."
+    ],
+    "word_neutda": [
+      "يتأخّر",
+      "تأخّرت الحافلة."
+    ],
+    "word_modu": [
+      "الجميع",
+      "اجتمع الجميع."
+    ],
+    "word_sajin": [
+      "صورة",
+      "ألتقط صورة."
+    ],
+    "word_chimdae": [
+      "سرير",
+      "السرير مريح."
+    ],
+    "word_ko": [
+      "أنف",
+      "أنفي مسدود."
+    ],
+    "word_san": [
+      "جبل",
+      "أذهب إلى الجبل."
+    ],
+    "word_hana": [
+      "واحد",
+      "تفاحة واحدة من فضلك."
+    ],
+    "word_byeongwon": [
+      "مستشفى",
+      "أذهب إلى المستشفى."
+    ],
+    "word_jeongmal": [
+      "حقًّا",
+      "شكرًا جزيلًا."
+    ],
+    "word_seonmul": [
+      "هدية",
+      "تعجبني الهدية."
+    ],
+    "word_boda": [
+      "يرى",
+      "أشاهد فيلمًا."
+    ],
+    "word_oneul": [
+      "اليوم",
+      "الطقس جميل اليوم."
+    ],
+    "word_gabang": [
+      "حقيبة",
+      "الحقيبة ثقيلة."
+    ],
+    "word_eumak": [
+      "موسيقى",
+      "الموسيقى جميلة."
+    ],
+    "word_gage": [
+      "متجر",
+      "المتجر مغلق."
+    ]
+  }
+}

@@ -179,6 +179,32 @@ export function wordCopy(
 }
 
 /**
+ * The meaning in exactly this language, or nothing.
+ *
+ * ## Why a second resolver
+ *
+ * `wordCopy` walks a fallback chain, which is right for *reading*: a learner
+ * browsing a word card is better served by an English gloss marked as English
+ * than by a blank. It is wrong for a *question*. A Tamil learner shown four
+ * English answer choices cannot answer, and the app looks as though it did not
+ * notice — which is exactly what shipped, and what §33 reports.
+ *
+ * So the quiz asks a different question of the data: **is this word's meaning
+ * available in the learner's own language?** No fallback, no second-best. A
+ * word that answers no is not asked about, and a locale with no pack has no
+ * vocabulary questions rather than English ones.
+ *
+ * That is a real cost — see `locale:content:check` for who currently pays it —
+ * and it is the cost the product decision chose. A smaller coherent lesson
+ * beats a mixed-language one.
+ */
+export function strictMeaning(word: Pick<VocabularyWord, 'id'>, locale: string): string | null {
+  const entry = packs.get(locale)?.get(word.id);
+  const meaning = entry?.[0]?.trim();
+  return meaning ? meaning : null;
+}
+
+/**
  * Keeps the loaded languages level with the loaded bands.
  *
  * A band arriving in the background has to bring the learner's meanings with

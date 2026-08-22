@@ -1,0 +1,246 @@
+{
+  "_comment": "Vocabulary copy for Czech. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "cs",
+  "words": {
+    "word_hada": [
+      "dělat",
+      "Učím se."
+    ],
+    "word_cha": [
+      "auto",
+      "Jedu autem."
+    ],
+    "word_yeoja": [
+      "žena",
+      "Ta žena je lékařka."
+    ],
+    "word_na": [
+      "já",
+      "Učím se korejsky."
+    ],
+    "word_hae": [
+      "slunce",
+      "Slunce svítí."
+    ],
+    "word_don": [
+      "peníze",
+      "V peněžence jsou peníze."
+    ],
+    "word_uri": [
+      "my",
+      "Jsme přátelé."
+    ],
+    "word_jip": [
+      "domov",
+      "Jdu domů."
+    ],
+    "word_itda": [
+      "být někde",
+      "Jsem doma."
+    ],
+    "word_ne": [
+      "ano",
+      "Ano, je to tak."
+    ],
+    "word_son": [
+      "ruka",
+      "Píšu rukou."
+    ],
+    "word_sigan": [
+      "čas",
+      "Nemám čas."
+    ],
+    "word_jeo": [
+      "já (zdvořile)",
+      "Jsem student."
+    ],
+    "word_gada": [
+      "jít",
+      "Jdu do školy."
+    ],
+    "word_gae": [
+      "pes",
+      "Pes běží."
+    ],
+    "word_mun": [
+      "dveře",
+      "Otevírám dveře."
+    ],
+    "word_sae": [
+      "pták",
+      "Letí pták."
+    ],
+    "word_mom": [
+      "tělo",
+      "Každý den si myju tělo."
+    ],
+    "word_bang": [
+      "pokoj",
+      "Pokoj je čistý."
+    ],
+    "word_nun": [
+      "oko",
+      "Máš krásné oči."
+    ],
+    "word_ot": [
+      "oblečení",
+      "To oblečení je hezké."
+    ],
+    "word_neo": [
+      "ty",
+      "Kde jsi?"
+    ],
+    "word_eopda": [
+      "nemít",
+      "Nemám peníze."
+    ],
+    "word_meori": [
+      "hlava",
+      "Bolí mě hlava."
+    ],
+    "word_ip": [
+      "ústa",
+      "Ústa jsou malá."
+    ],
+    "word_mul": [
+      "voda",
+      "Piju vodu."
+    ],
+    "word_dari": [
+      "noha",
+      "Bolí mě noha."
+    ],
+    "word_bi": [
+      "déšť",
+      "Prší."
+    ],
+    "word_wae": [
+      "proč",
+      "Proč jdeš pozdě?"
+    ],
+    "word_eolgul": [
+      "obličej",
+      "Myju si obličej."
+    ],
+    "word_saram": [
+      "člověk",
+      "Je to dobrý člověk."
+    ],
+    "word_hakgyo": [
+      "škola",
+      "Škola je velká."
+    ],
+    "word_yeogi": [
+      "tady",
+      "Posaďte se tady."
+    ],
+    "word_pal": [
+      "paže",
+      "Máš dlouhé ruce."
+    ],
+    "word_norae": [
+      "píseň",
+      "Zpívám píseň."
+    ],
+    "word_chaek": [
+      "kniha",
+      "Čtu knihu."
+    ],
+    "word_dal": [
+      "měsíc",
+      "Měsíc svítí."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Zvedám telefon."
+    ],
+    "word_namu": [
+      "strom",
+      "Ten strom je vysoký."
+    ],
+    "word_dasi": [
+      "znovu",
+      "Řekněte to prosím znovu."
+    ],
+    "word_nal": [
+      "den",
+      "Je hezký den."
+    ],
+    "word_jigeum": [
+      "teď",
+      "Jdu teď."
+    ],
+    "word_haru": [
+      "celý den",
+      "Ten den je dlouhý."
+    ],
+    "word_sesang": [
+      "svět",
+      "Svět je široký."
+    ],
+    "word_bal": [
+      "chodidlo",
+      "Mám studené nohy."
+    ],
+    "word_neutda": [
+      "být pozdě",
+      "Autobus měl zpoždění."
+    ],
+    "word_modu": [
+      "všichni",
+      "Všichni se sešli."
+    ],
+    "word_sajin": [
+      "fotografie",
+      "Fotím."
+    ],
+    "word_chimdae": [
+      "postel",
+      "Postel je pohodlná."
+    ],
+    "word_ko": [
+      "nos",
+      "Mám ucpaný nos."
+    ],
+    "word_san": [
+      "hora",
+      "Jdu na horu."
+    ],
+    "word_hana": [
+      "jedna",
+      "Jedno jablko, prosím."
+    ],
+    "word_byeongwon": [
+      "nemocnice",
+      "Jdu do nemocnice."
+    ],
+    "word_jeongmal": [
+      "opravdu",
+      "Moc děkuji."
+    ],
+    "word_seonmul": [
+      "dárek",
+      "Ten dárek se mi líbí."
+    ],
+    "word_boda": [
+      "vidět",
+      "Dívám se na film."
+    ],
+    "word_oneul": [
+      "dnes",
+      "Dnes je hezky."
+    ],
+    "word_gabang": [
+      "taška",
+      "Ta taška je těžká."
+    ],
+    "word_eumak": [
+      "hudba",
+      "Ta hudba je pěkná."
+    ],
+    "word_gage": [
+      "obchod",
+      "Obchod je zavřený."
+    ]
+  }
+}

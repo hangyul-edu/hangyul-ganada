@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { EvaluationResult } from '@hangyul-ganada/handwriting-core';
 
 import { getFont } from '../data/fonts';
-import { wordCopy } from '../data/wordCopy';
+import { strictMeaning, wordCopy } from '../data/wordCopy';
 import { getWord } from '../data/vocabulary';
 import type { PracticePlan } from '../domain/plan';
 import { insertRescue, sessionOutcome, type ExerciseMode } from '../domain/review';
@@ -72,7 +72,7 @@ export function ReviewSessionPage() {
     useLearner();
   const location = useLocation();
   const { t } = useTranslation(['learning', 'handwriting', 'common', 'vocabulary']);
-  const { contentLocale } = useLocale();
+  const { locale, contentLocale } = useLocale();
 
   const mode = params.get('mode') as ExerciseMode | null;
   const set = params.get('set');
@@ -80,12 +80,26 @@ export function ReviewSessionPage() {
   const mistakesOnly = set === 'mistakes';
 
   const font = getFont(state.settings.selected_font_id);
+  /*
+    Strict: the learner's own language, or nothing.
+
+    §35 and §37. `wordCopy` walks a fallback chain, which is right for reading a
+    word card and wrong for asking a question — a Tamil learner offered four
+    English choices cannot answer, and the app looked as though it had not
+    noticed. `strictMeaning` returns null when this language has no meaning for
+    the word, `buildExercise` refuses to build a question whose options are not
+    all present, and the word is simply not asked about today.
+
+    The cost is real and deliberate: a locale with no pack has no vocabulary
+    questions rather than English ones. A smaller coherent lesson beats a
+    mixed-language lesson.
+  */
   const meaningOf = useCallback(
-    (word: Parameters<typeof wordCopy>[0]) => {
-      const copy = wordCopy(word, contentLocale);
-      return { value: copy.value.meaning, locale: copy.locale };
-    },
-    [contentLocale],
+    (word: Parameters<typeof wordCopy>[0]) => ({
+      value: strictMeaning(word, locale) ?? '',
+      locale,
+    }),
+    [locale],
   );
 
   /**
