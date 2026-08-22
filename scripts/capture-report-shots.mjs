@@ -3,8 +3,7 @@
  * Captures the screenshots `docs/report.md` embeds.
  *
  *   npm run build --workspace @hangyul-ganada/web
- *   npx vite preview --port 4173      # from apps/web
- *   npm run docs:shots
+ *   npm run docs:shots                # starts its own preview if one is not up
  *
  * Kept separate from `docs:report` on purpose: the report can be rewritten and
  * rebuilt any number of times without a running app, and the pictures only need
@@ -21,6 +20,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 
+import { ensurePreview } from './lib/preview.mjs';
+
 const here = dirname(fileURLToPath(import.meta.url));
 const OUT = join(here, '..', 'docs', 'report-assets');
 const baseUrl = process.argv[2] ?? 'http://127.0.0.1:4173';
@@ -29,6 +30,7 @@ const PHONE = { width: 390, height: 844 };
 
 await mkdir(OUT, { recursive: true });
 
+const stopPreview = await ensurePreview(baseUrl);
 const browser = await chromium.launch();
 
 async function freshPage() {
@@ -628,6 +630,7 @@ await optional('dark appearance', async () => {
 });
 
 await browser.close();
+await stopPreview();
 console.log(`wrote ${shots.length} screenshots to docs/report-assets:\n  ${shots.join('\n  ')}`);
 
 if (skipped.length > 0) {
