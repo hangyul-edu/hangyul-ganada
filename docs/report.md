@@ -3501,6 +3501,85 @@ overrides.
 Themes: **system / light / dark**, applied as `data-theme` on `<html>`, with
 "system" removing the attribute so `prefers-color-scheme` decides.
 
+## 27.4 Confirmation dialogs — **REDESIGNED to the design file**
+
+**Design reference:** the app-service design file, frame **`1616:25225`**. Used
+as a visual reference only — none of its wording is in the product.
+
+**Before:** two dialogs that looked like two different browser prompts. Leaving
+the app stacked its buttons; erasing all progress put them in a row. Both sat on
+the cream celebration card, which is the wrong surface for a question.
+
+**After:** one component, `ConfirmDialog`, built on the existing `Modal` so it
+keeps the focus trap, the Back handling and the overlay.
+
+| | Reference | Here |
+| --- | --- | --- |
+| Surface | white | `--hg-surface` — white in light, `#1E1815` in dark |
+| Width | 280 + 20 a side | 320 px |
+| Radius | 10 | `--hg-radius-lg` |
+| Padding | 30 / 20 / 20 | `--hg-space-7` / `--hg-space-5` / `--hg-space-5` |
+| Title | SemiBold 18, `#262C31` | `--hg-text-title` (17), `--hg-text` |
+| Body | Medium 15, `#778088` | `--hg-text-body`, `--hg-text-secondary` |
+| Buttons | two, 136 × 48, radius 12, gap 8 | measured on screen at **136 × 48**, `--hg-radius-md`, `--hg-space-2` |
+| Cancel | filled `#BEC5CC`, white text | filled `--hg-gray-400`, white text |
+| Confirm | filled `#FF6700`, white text | `--hg-primary` |
+| Shadow | short, hard | `--hg-shadow-dialog`, new |
+
+Two values differ by a pixel because the project's scale has no exact rung — a
+17 px title against 18, `--hg-gray-400` against `#BEC5CC`. A token that already
+means *the dialog title* is worth more than the pixel. The surface is the theme's
+own, not the reference's literal white, which is what makes dark mode work
+without inverting anything.
+
+**Affected dialogs:** leaving the app, and resetting all learning progress.
+**Not** the session celebration, which announces rather than asks, and **not**
+*Report a problem*, which is a menu in a bottom sheet. Making three unlike
+things share a component is how a design system starts describing nothing.
+
+**Behaviour is unchanged.** Back from Home opens it, *Stay* closes it, *Leave*
+calls `exitApp`, and no history is walked. `SystemBack.test.tsx` still holds
+that directly, because the phone's Back button reaches the app through
+Capacitor's `backButton` event and no browser gesture can produce it.
+
+**QA:** looked at in light and dark, at 360 / 390 / 412 / 430, and at genuine
+200% text — where the two answers grow together and stay equal, because they are
+grid columns rather than a flex row. `confirm-dialog.spec.ts` holds that shape,
+including at 200%.
+
+### And it corrected an earlier claim in this report
+
+§29.2 said all nine screens survive 200% text. The test behind it set
+`html { font-size: 200% }`, which moves `rem`-based type — and **this product's
+type scale is in px**, so it scaled nothing and passed nine screens without
+testing them. Android's accessibility font scale reaches a WebView as `textZoom`,
+which multiplies text whatever unit it was authored in;
+`-webkit-text-size-adjust` is the nearest emulation available here. All nine
+still pass, and now the claim is earned.
+
+## 27.5 The streak badge — **ICON REPLACED**
+
+**Before:** a flame whose ink ran from y=2 to y=16.9 of its 24-unit box,
+centring at **9.45**. Every badge that centres its contents was therefore
+centring a shape that was not centred in its own square, and it rode visibly
+high beside the number. The outline also had a flat right side and an inner mark
+that closed into a blob at small sizes.
+
+**After:** the same `FireIcon` in the same icon set — stroked, `currentColor`,
+width 2 — redrawn so its ink measures 2.3 to 21.6 and centres at **11.95**. The
+badge's own `align-items: center` then does the work; there is no margin
+correction anywhere. The silhouette widens to a round base and the inner curl
+still reads at 15 px.
+
+**No new asset.** Not an emoji, not a bitmap, not a second icon family — the
+existing library already had the right component and the wrong path in it.
+
+**Affected screens:** Home and Learning activity, the only two places it
+appears. There is no bitmap flame anywhere in the product.
+
+**QA:** looked at in light and dark, at 15 px and 22 px, with 1 / 2 / 10 / 100
+days and with a long translated label.
+
 ## 27.3 Decoration audit — **NEW, and it found one thing**
 
 Five questions, asked of the whole product rather than of the screen that
