@@ -23,7 +23,7 @@ import {
 } from './characters';
 import FIXTURES from '../../../../packages/handwriting-core/src/__tests__/glyph-fixtures.json';
 import { DEFAULT_FONT_ID, PRACTICE_FONTS, getFont } from './fonts';
-import { LEARNING_QUOTES, QUOTE_LOCALES, nextQuote, renderQuote } from './quotes';
+import { LEARNING_QUOTES, QUOTE_LOCALES, quoteOnOpen, renderQuote, resetSessionQuote } from './quotes';
 import { AVAILABLE_LOCALES } from '../i18n/resources';
 import { hasFinalConsonant, toJamo, toSyllables } from './jamo';
 import { romanizeSyllable } from './romanize';
@@ -517,13 +517,21 @@ describe('learning quotes', () => {
     }
   });
 
-  it('localises the descriptor as well as the name', () => {
-    const proverb = LEARNING_QUOTES.find((q) => q.id === 'korean-dust-mountain')!;
-    expect(proverb.author?.en).toBe('Korean proverb');
-    expect(proverb.author?.ko).toBe('한국 속담');
-    expect(proverb.author?.ja).toBe('韓国のことわざ');
-    // A name, not a phrase: written in the conventional local form where there
-    // is one and left alone where there is not. Never transliterated on the fly.
+  it('names a person, never a category', () => {
+    /*
+     * Proverbs are gone, and this is the test that keeps them gone. A byline
+     * reading "Korean proverb" puts a category where a name should be, and the
+     * attribution policy is now that every quotation names somebody whose
+     * authorship can be checked. A proverb has no author to check.
+     */
+    for (const quote of LEARNING_QUOTES) {
+      expect(quote.author, `${quote.id} has no author`).toBeTruthy();
+      expect(quote.author!.en!.toLowerCase(), quote.id).not.toMatch(
+        /proverb|anonymous|unknown|traditional/,
+      );
+    }
+    // A name, written in the conventional local form where there is one and
+    // left alone where there is not. Never transliterated on the fly.
     const plato = LEARNING_QUOTES.find((q) => q.id === 'plato-beginning')!;
     expect(plato.author?.es).toBe('Platón');
     expect(plato.author?.['zh-CN']).toBe('柏拉图');
@@ -532,18 +540,16 @@ describe('learning quotes', () => {
 
   it('carries Korean, since this is a Korean app', () => {
     const korean = LEARNING_QUOTES.filter((q) => q.originalLanguage === 'ko');
-    expect(korean.length).toBeGreaterThanOrEqual(3);
+    expect(korean.length).toBeGreaterThanOrEqual(1);
     for (const quote of korean) {
       expect(quote.originalText, quote.id).toMatch(/[가-힣]/);
       /*
-       * Either a proverb, which has no author to get wrong, or nobody at all.
-       * What a Korean line here may never carry is a *name*, because the
-       * Korean quotations in circulation are exactly the ones whose
-       * attributions are invented — see §35 and `korean-big-dream`.
+       * And it names a person. The Korean lines that circulate without one are
+       * exactly the ones whose attributions are invented, which is why the
+       * library holds King Sejong writing the preface to his own alphabet —
+       * a documented text by a known hand — rather than a popular saying.
        */
-      if (quote.author) {
-        expect(quote.author.en!.toLowerCase(), quote.id).toContain('proverb');
-      }
+      expect(quote.author?.en, quote.id).toBeTruthy();
     }
   });
 
@@ -591,32 +597,34 @@ describe('learning quotes', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('walks the whole set before repeating anything', () => {
-    // A naive random pick shows the same line twice in a row about one time in
-    // ten — often enough for a learner to conclude there is only one quote.
-    let history: string[] = [];
-    const seen: string[] = [];
-    for (let i = 0; i < LEARNING_QUOTES.length; i += 1) {
-      // Always take the first of the remaining pool, which is the worst case
-      // for a shuffled bag: if it repeats here it repeats anywhere.
-      const next = nextQuote(history, 0);
-      seen.push(next.quote.id);
-      history = next.history;
-    }
-    expect(new Set(seen).size).toBe(LEARNING_QUOTES.length);
-  });
-
-  it('never returns the quote just shown', () => {
-    for (const quote of LEARNING_QUOTES) {
-      for (const random of [0, 0.25, 0.5, 0.75, 0.999]) {
-        expect(nextQuote([quote.id], random).quote.id).not.toBe(quote.id);
-      }
+  it('does not repeat the line it just showed', () => {
+    /*
+     * The one repetition a learner notices. Everything else about the choice is
+     * deliberately random per app load — see `quoteOnOpen` for why a quotation
+     * stopped being pinned to the calendar day.
+     */
+    resetSessionQuote();
+    let previous = '';
+    for (let i = 0; i < 40; i += 1) {
+      // The worst case for a shuffled bag: always take the first of the pool.
+      const id = quoteOnOpen(0).id;
+      expect(id, 'the same line twice in a row').not.toBe(previous);
+      previous = id;
     }
   });
 
-  it('survives a corrupt or oversized history', () => {
-    expect(nextQuote(LEARNING_QUOTES.map((q) => q.id), 0.5).quote).toBeTruthy();
-    expect(nextQuote(['not-a-real-id'], 0.5).quote).toBeTruthy();
+  it('can reach every quotation', () => {
+    resetSessionQuote();
+    const seen = new Set<string>();
+    for (let i = 0; i < 2000; i += 1) seen.add(quoteOnOpen().id);
+    expect(seen.size).toBe(LEARNING_QUOTES.length);
+  });
+
+  it('always returns a quotation, whatever the random value', () => {
+    resetSessionQuote();
+    for (const random of [0, 0.25, 0.5, 0.75, 0.999, 1]) {
+      expect(quoteOnOpen(random)).toBeTruthy();
+    }
   });
 });
 

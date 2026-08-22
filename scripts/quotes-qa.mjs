@@ -32,11 +32,12 @@
  */
 
 /*
- * A browser, near enough for this module.
+ * A browser, near enough for this module — and a witness.
  *
- * `quotes.ts` reads `window.localStorage` to remember the day's choice, and it
- * catches the failure — so without this the day-stability check would pass by
- * never storing anything, which is the opposite of what it is meant to prove.
+ * Nothing in `quotes.ts` should write to storage any more. This provides a
+ * `localStorage` anyway so that if something does, the write lands here and the
+ * last check catches it, rather than throwing and being swallowed by a
+ * try/catch that would look like success.
  */
 const store = new Map();
 globalThis.window = {
@@ -49,7 +50,7 @@ globalThis.window = {
 
 const CHECK = process.argv.includes('--check');
 const quotes = await import('../apps/web/src/data/quotes.ts');
-const { LEARNING_QUOTES, QUOTE_LOCALES, renderQuote, quoteForToday, resetSessionQuote } = quotes;
+const { LEARNING_QUOTES, QUOTE_LOCALES, renderQuote, quoteOnOpen, resetSessionQuote } = quotes;
 
 const problems = [];
 const fail = (message) => problems.push(message);
@@ -58,8 +59,21 @@ console.log('Quotation library\n');
 console.log(`  ${LEARNING_QUOTES.length} quotations · ${QUOTE_LOCALES.length} locales`);
 
 // 1 — size ---------------------------------------------------------------------
-if (LEARNING_QUOTES.length < 95) {
-  fail(`only ${LEARNING_QUOTES.length} quotations, short of the ~100 asked for`);
+/*
+ * Twenty, not a hundred.
+ *
+ * The library was a hundred lines and twelve of them were quotations; the rest
+ * were encouragement this app wrote for itself, displayed in a slot that looks
+ * like a quotation. That is a small dishonesty repeated every time somebody
+ * opens the screen. What is here now is twenty sentences by twenty named
+ * people, each from a source a reader can go and check.
+ *
+ * The band is 16–24 rather than exactly 20 because the policy is quality-first:
+ * a quotation whose attribution cannot be established is dropped, and the count
+ * follows from that rather than the other way round.
+ */
+if (LEARNING_QUOTES.length < 16 || LEARNING_QUOTES.length > 24) {
+  fail(`${LEARNING_QUOTES.length} quotations; the library is meant to be about 20`);
 }
 
 // 2 — no two rows say the same thing -------------------------------------------
@@ -92,37 +106,58 @@ for (const locale of QUOTE_LOCALES) {
 }
 console.log(`  ${duplicateTexts === 0 ? 'ok  ' : '!!  '} no two rows carry the same sentence in any locale`);
 
-// 3 — the quotation §34 requires, without a name -------------------------------
-const REQUIRED = '꿈을 크게 가져라. 깨져도 그 조각이 크다.';
-const required = LEARNING_QUOTES.find(
-  (quote) => normalise(quote.translations.ko ?? '') === normalise(REQUIRED),
-);
-if (!required) {
-  fail(`the quotation §34 names is not in the library: ${REQUIRED}`);
-} else if (required.author !== null) {
-  fail(`${required.id} carries an author; §34 requires none, because every name it circulates under is wrong`);
-} else {
-  console.log(`  ok   "${REQUIRED}" is present with no author`);
+// 3 — every line names a person -------------------------------------------------
+/*
+ * The policy, reversed, and this is the rule that enforces it.
+ *
+ * The library used to require one specific line to ship *without* an author,
+ * because its attribution could not be established. The answer now is that such
+ * a line does not ship at all: if nobody can be named, there is nothing to
+ * quote. 꿈을 크게 가져라 is gone for exactly that reason.
+ */
+const WITHDRAWN = '꿈을 크게 가져라. 깨져도 그 조각이 크다.';
+if (LEARNING_QUOTES.some((q) => normalise(q.translations.ko ?? '') === normalise(WITHDRAWN))) {
+  fail(`${WITHDRAWN} is back in the library; its attribution cannot be established`);
 }
 
-// 4 — nothing attributed on a guess --------------------------------------------
-const HEDGE = /attributed to|probably|possibly|supposedly|reputedly|allegedly|often said|unverified|unknown|uncertain/i;
-let attributed = 0;
+const CATEGORY = /\b(proverb|anonymous|unknown|traditional|saying)\b|작자\s*미상|무명|속담/i;
+let unnamed = 0;
 for (const quote of LEARNING_QUOTES) {
-  if (!quote.source || quote.source.trim() === '') fail(`${quote.id} has no source`);
-  if (quote.author === null) continue;
-  attributed += 1;
-  if (HEDGE.test(quote.source)) {
-    fail(`${quote.id} names an author but its source hedges: "${quote.source}"`);
+  if (!quote.author) {
+    unnamed += 1;
+    fail(`${quote.id} has no author; every quotation must name a person`);
+    continue;
   }
   for (const locale of QUOTE_LOCALES) {
     const name = quote.author[locale] ?? quote.author.en;
-    if (!name || name.trim() === '') fail(`${quote.id} has no author name for ${locale}`);
+    if (!name || !name.trim()) fail(`${quote.id} has no author name for ${locale}`);
+    else if (CATEGORY.test(name)) {
+      fail(`${quote.id} names "${name}" in ${locale} — a category, not a person`);
+    }
   }
 }
-console.log(
-  `  ok   ${attributed} attributed to a named author with a source · ${LEARNING_QUOTES.length - attributed} deliberately unattributed`,
-);
+console.log(`  ${unnamed === 0 ? 'ok  ' : '!!  '} every quotation names a person, in all ${QUOTE_LOCALES.length} languages`);
+
+// 4 — every source is a citation, and none of them hedges -----------------------
+const HEDGE = /attributed to|probably|possibly|supposedly|reputedly|allegedly|often said|unverified|uncertain/i;
+for (const quote of LEARNING_QUOTES) {
+  if (!quote.source || !quote.source.trim()) {
+    fail(`${quote.id} has no source`);
+    continue;
+  }
+  if (HEDGE.test(quote.source)) {
+    fail(`${quote.id}'s source hedges, so the attribution is not established: "${quote.source}"`);
+  }
+  // A citation names a work *and* a place in it, not just a person. "Confucius"
+  // is an author; "Analects II.15 (c. 5th century BC)" is somewhere to look.
+  if (!/\d/.test(quote.source)) {
+    fail(`${quote.id}'s source has no date or reference a reader could follow: "${quote.source}"`);
+  }
+  if (!quote.originalText || !quote.originalText.trim()) {
+    fail(`${quote.id} has no original text; a quotation has to carry the words it quotes`);
+  }
+}
+console.log(`  ok   ${LEARNING_QUOTES.length} sources, each naming a work and a date, none hedging`);
 
 // 5 — every row renders in every locale ----------------------------------------
 let thin = 0;
@@ -157,62 +192,41 @@ for (const quote of LEARNING_QUOTES) {
 }
 console.log(`  ok   ${LEARNING_QUOTES.length * QUOTE_LOCALES.length} renderings, none missing`);
 
-// 6 — the same all day, different tomorrow -------------------------------------
-/** One calendar day, read the way three separate app launches would read it. */
-function dayOf(date) {
-  store.clear();
-  const first = quoteForToday(date).id;
-  resetSessionQuote(); // a cold start: the in-memory cache is gone, storage is not
-  const second = quoteForToday(date).id;
-  resetSessionQuote();
-  const third = quoteForToday(new Date(date.getTime() + 11 * 60 * 60 * 1000)).id;
-  if (first !== second || first !== third) {
-    fail(`the quotation changed during ${date.toDateString()}: ${first} / ${second} / ${third}`);
-  }
-  return first;
-}
-
-const DAYS = 60;
-const start = new Date(2026, 0, 1, 7, 0, 0);
-const perDay = [];
-for (let day = 0; day < DAYS; day += 1) {
-  perDay.push(dayOf(new Date(start.getTime() + day * 24 * 60 * 60 * 1000)));
-}
-console.log(`  ok   the same quotation all day, checked across ${DAYS} days at 07:00, again, and at 18:00`);
-
+// 6 — a different line on the next open ------------------------------------------
 /*
- * Rotation, measured rather than asserted.
+ * The behaviour that replaced the daily pin.
  *
- * The store is cleared per day above, so each day picks fresh from the whole
- * library — which is the worst case for repetition and the honest one to
- * measure. What matters is that consecutive days differ and that the spread
- * over two months is wide.
+ * A quotation is decoration at the foot of a screen, not curriculum state, and
+ * a learner who reopens the app is allowed a different one. What must not
+ * happen is the same line twice in a row — the repetition somebody actually
+ * notices — so that is what is measured, and measured at the worst-case random
+ * value rather than an average one.
  */
-let sameAsYesterday = 0;
-for (let i = 1; i < perDay.length; i += 1) if (perDay[i] === perDay[i - 1]) sameAsYesterday += 1;
-const distinct = new Set(perDay).size;
-console.log(`       ${distinct} distinct quotations over ${DAYS} days · ${sameAsYesterday} repeated the next day`);
-if (sameAsYesterday > 2) fail(`${sameAsYesterday} days repeated the previous day's quotation`);
-if (distinct < DAYS * 0.6) fail(`only ${distinct} distinct quotations in ${DAYS} days`);
-
-/*
- * And the rotation proper: `nextQuote` walks the library, given its history.
- * This is what a learner who keeps their storage actually gets.
- */
-let history = [];
-const walked = [];
-for (let day = 0; day < LEARNING_QUOTES.length; day += 1) {
-  const step = quotes.nextQuote(history, ((day * 7919) % 1000) / 1000);
-  history = step.history;
-  walked.push(step.quote.id);
+resetSessionQuote();
+let previous = '';
+let immediate = 0;
+const shown = new Set();
+for (let open = 0; open < 400; open += 1) {
+  const quote = quoteOnOpen();
+  if (quote.id === previous) immediate += 1;
+  previous = quote.id;
+  shown.add(quote.id);
 }
-const walkedDistinct = new Set(walked).size;
+console.log(`  ${immediate === 0 ? 'ok  ' : '!!  '} 400 opens, ${immediate} immediate repeat(s)`);
 console.log(
-  `  ${walkedDistinct === LEARNING_QUOTES.length ? 'ok  ' : '!!  '} ${walkedDistinct} of ${LEARNING_QUOTES.length} shown before any repeats`,
+  `  ${shown.size === LEARNING_QUOTES.length ? 'ok  ' : '!!  '} ${shown.size} of ${LEARNING_QUOTES.length} quotations reachable`,
 );
-if (walkedDistinct < LEARNING_QUOTES.length) {
-  fail(`the rotation repeated after ${walkedDistinct} of ${LEARNING_QUOTES.length} quotations`);
+if (immediate > 0) fail(`${immediate} of 400 opens repeated the line just shown`);
+if (shown.size < LEARNING_QUOTES.length) {
+  fail(`only ${shown.size} of ${LEARNING_QUOTES.length} quotations can ever appear`);
 }
+
+// And nothing is written to disk for it: a quotation is not learning history.
+const persisted = [...store.keys()].filter((key) => key.includes('quote'));
+if (persisted.length > 0) {
+  fail(`the quotation is persisted under ${persisted.join(', ')}; it is decoration, not state`);
+}
+console.log('  ok   nothing about the quotation is persisted');
 
 if (problems.length > 0) {
   console.error(`\n${problems.length} problem(s):`);
@@ -221,5 +235,5 @@ if (problems.length > 0) {
   process.exit(CHECK ? 1 : 0);
 }
 console.log(
-  `\n${LEARNING_QUOTES.length} quotations, none duplicated, all 32 locales, stable within the day and rotating across days.`,
+  `\n${LEARNING_QUOTES.length} quotations, every one attributed to a named person, all 32 locales, a fresh line on every open.`,
 );

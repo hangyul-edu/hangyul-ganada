@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { quoteForToday, renderQuote } from '../data/quotes';
+import { quoteOnOpen, renderQuote } from '../data/quotes';
 import { useLocale } from '../i18n';
 import styles from './QuoteOfTheSession.module.css';
 
@@ -35,7 +35,15 @@ import styles from './QuoteOfTheSession.module.css';
  * Korean voice and the Latin with something that at least tries.
  */
 export function QuoteOfTheSession({ className }: { className?: string }) {
-  const quote = useMemo(() => quoteForToday(), []);
+  /*
+    Chosen once per mount, which is once per app load.
+
+    `useMemo` with no dependencies rather than `useState`: this must not change
+    while the learner is looking at it — a line that re-rolled on every render
+    would flicker whenever anything above it updated — and it must be different
+    the next time they open the app. See `quoteOnOpen`.
+  */
+  const quote = useMemo(() => quoteOnOpen(), []);
   const { locale } = useLocale();
   const rendered = useMemo(() => renderQuote(quote, locale), [quote, locale]);
 
