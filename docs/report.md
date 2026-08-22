@@ -262,7 +262,8 @@ a build's own record of itself is not evidence about the file.
 | Worst glyph centring error, all 6 faces | **1.2% of the box** | 8% |
 | Vocabulary question shapes in a first sitting | 3 — meaning, context, matching | 3 |
 | Locale screens rendered and measured | **256** (32 languages × 8 screens), 0 findings | 256, 0 findings |
-| Screens rendered at every phone size, in both themes | **85** (17 screens × 320/390/430/dark/200%), 0 findings after 6 fixes | never measured |
+| Screens rendered at every phone size, in both themes | **119** (17 screens × 320/360/390/412/430/dark/200%), 0 findings after 6 fixes | never measured |
+| The header measured at every streak and level a learner can reach | **120** combinations (0–365 days × Lv. 1–30 × two widths × three languages), 0 findings | never measured |
 | Screens checked at 200% text | **17**, no sideways scroll, nothing clipped, nothing overlapping | 9 |
 | Audio clips decoded end to end | **10,550**, 0 errors, 0 warnings, in 2m49s | the check did not finish |
 | Dictionary search, phone-adjusted | **p50 0.02 ms, p95 0.59 ms** at 30,243 headwords — an index, not a scan | p50 0.07 ms, p95 1.40 ms |
@@ -4849,7 +4850,7 @@ card previews 가나다 / 한글 in its own face.
 * **Primary actions are pinned** in a footer that is part of the layout grid and
   are the last tab stop — checked by test.
 * **Touch targets** are 44 px minimum on **every interactive control on
-  seventeen screens at three widths**, which is the first time that has been
+  seventeen screens at five widths**, which is the first time that has been
   measured rather than asserted about a sample. Six were not: see §29.5.
 * **The lesson fits one phone screen** with no scroll after this cycle's
   simplification.
@@ -4868,7 +4869,7 @@ card previews 가나다 / 한글 in its own face.
 | Colour-only state | **VERIFIED OK** — selection carries a border *and* a check mark |
 | Text scaling (WCAG 1.4.4) | **VERIFIED, and widened this cycle** — **seventeen** screens at 200% root text: no sideways scroll, nothing clipped, nothing overlapping. Set as a root percentage rather than by browser zoom, which scales the viewport too and tests a different criterion |
 | Contrast (WCAG 1.4.3) | **VERIFIED, with one disclosed exception** — measured per element on 85 renders against the criterion's own two thresholds. Two real failures found and fixed in the palette; white on the brand orange stays, at 2.92:1, and is disclosed here, in the store notes and in `accessibility.spec.ts` |
-| Touch targets (WCAG 2.5.8) | **VERIFIED this cycle** — every control on 17 screens at 320, 390 and 430 px. Four were under 44 px and are fixed |
+| Touch targets (WCAG 2.5.8) | **VERIFIED this cycle** — every control on 17 screens at 320, 360, 390, 412 and 430 px. Four were under 44 px and are fixed |
 | Screen-reader walkthrough | **NOT DONE** |
 
 ## 29.5 Every screen, at every size — **NEW this cycle, §52–§57**
@@ -4877,8 +4878,8 @@ card previews 가나다 / 한글 in its own face.
 shape for finding a Hungarian button cut in half and the wrong shape for
 everything §54–§57 asks about, which is what happens to one language when the
 *device* changes underneath it. So `screens:audit` does the opposite: seventeen
-screens across 320, 390 and 430 px, in dark, and at 200% root font size — **85
-renders**, measuring clipping, sideways scroll, tap targets, overlapping
+screens across 320, 360, 390, 412 and 430 px, in dark, and at 200% root font
+size — **119 renders**, measuring clipping, sideways scroll, tap targets, overlapping
 controls, dead space and contrast.
 
 The first run reported **355 findings and most were the measurement's fault**,
@@ -4916,8 +4917,28 @@ real sizes and warns against filling empty space with new cards; the measurement
 is a screen that does not scroll and whose content ends more than a third of the
 way up the viewport, and no screen at any of the five profiles does that.
 
-All 85 renders come back clean and `screens:audit:check` is in
+All 119 renders come back clean and `screens:audit:check` is in
 `verify:release`.
+
+### The values a fresh profile never shows — **§72**
+
+Every one of those renders is a new install, and a new install is `0 days` and
+`Lv. 1`: two of the shortest strings the header will ever hold. §72 asks about
+the other end, and none of it is reachable by loading a page. `status:qa`
+writes it into the DOM instead — six streaks from 0 to 365, five levels from 1
+to 30, at 320 and 390 px, in English, German and Tamil. **120 combinations**,
+and the two chips keep the same height, the same vertical centre and a 44 px
+target in all of them.
+
+It reported two things first that were its own fault, and both are recorded in
+the file rather than quietly fixed. Its substitution swallowed the space after
+the number, so "0 days" became "1days" — a *shorter* string that measures
+differently from anything the product renders. And it called every combination
+clipped, including the one `screens:audit` renders cleanly: both chips carry an
+`::after` that extends the touch target past the visible pill, and an
+absolutely positioned child outside the padding box makes `scrollWidth` exceed
+`clientWidth` on an element that is showing every word it has. Two checks
+disagreeing about one header is what found it.
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
@@ -5708,7 +5729,8 @@ result.
 | `fonts:audit` | bundled practice faces and their licences | **PASS** — 6 faces, all SIL OFL 1.1, 836 Korean characters covered, 0 errors |
 | `copy:audit:check` | **19,576 strings, 32 languages**, and one new rule | **PASS** — 0 errors, 0 warnings. The rule is `one-name-per-concept`: the saved list and the wrong list sit side by side on the Review hub and must share a noun in every language. English was the only one that did not, and it is fixed. The *Wrong words* label is on the reviewed-tone list rather than silenced — it names a category of word, not a verdict on the learner, which is also why the two labels have to match. The Korean *레벨 {{level}}에 맞춘 단어예요* stays excepted by name from the no-levels rule, which was written before the Vocabulary Level existed |
 | **`face:size:check`** | the six practice faces, ink height as a fraction of the em | **PASS** — all six within 2.5% of the median. **NEW.** It failed first, on Gaegu at 21.3% under. §12 |
-| **`screens:audit:check`** | 17 screens × 320/390/430/dark/200% = 85 renders, measured for clipping, sideways scroll, tap targets, overlap, dead space and contrast | **PASS** — 0 findings. **NEW.** It failed first, on 6 real defects and 236 findings of its own making. §29.5 |
+| **`screens:audit:check`** | 17 screens × 320/360/390/412/430/dark/200% = 119 renders, measured for clipping, sideways scroll, tap targets, overlap, dead space and contrast | **PASS** — 0 findings. **NEW.** It failed first, on 6 real defects and 236 findings of its own making. §29.5 |
+| **`status:qa:check`** | the streak and level chips at 120 combinations of value, width and language | **PASS** — same height, same centre, 44 px target throughout. **NEW.** §29.5 |
 | **`locale:editorial:check`** | register, split translations, typography and label length across 31 languages | **PASS** — 0 errors, 15 warnings kept for a person. **NEW.** It found five languages mixing polite and familiar address, 71 straight apostrophes, and one question worded two ways in six languages. §23.7 |
 | **`leveltest:qa:check`** | 6,000 simulated sittings against the shipped item bank | **PASS** — MAE 1.34 levels, 95.3% within ±3, exactly 30 items, composition 12/9/9. §13.6 |
 | **`content:corpus:check`** | `public/corpus` matches the generated corpus | **PASS** — 2,581 words in 4 bands, 10 locales, 46 files. **NEW.** §13.4 |
