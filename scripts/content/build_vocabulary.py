@@ -122,13 +122,40 @@ def usable_senses(entry: Entry) -> list[str]:
     return out
 
 
-def choose_entry(entries: list[Entry]) -> Entry | None:
+#: Parts of speech a Korean dictionary form can be. A headword ending in 다 is
+#: one of these, whatever else the dictionary also lists it as.
+_PREDICATE_POS = ("verb", "adjective")
+
+
+def choose_entry(entries: list[Entry], word: str = "") -> Entry | None:
+    """The reading of this headword the curriculum should teach.
+
+    ## Why the preference list is not the whole answer
+
+    `_POS_PREFERENCE` puts `noun` first, which is right for an ambiguous
+    headword — most Korean words are nouns and a noun reading is the one a
+    beginner meets. It is wrong for a **dictionary form**: 빛나다 and 얘기하다 both
+    have noun entries somewhere in Wiktionary, and ranking noun first taught
+    them as nouns glossed *to shine* and *to chat*.
+
+    A Korean headword ending in 다 is a verb or an adjective. That is not a
+    heuristic about this corpus, it is what the dictionary form *is*, so a
+    predicate entry outranks everything else for such a word and the preference
+    list decides the rest.
+
+    The bug was invisible until the dictionary widened: those noun entries were
+    previously dropped for having no readable sense, so the verb entry won by
+    default. Recovering 3,384 headwords also recovered the ones that were
+    winning ties they should lose.
+    """
     scored = [(e, usable_senses(e)) for e in entries]
     scored = [(e, g) for e, g in scored if g]
     if not scored:
         return None
+    predicate = word.endswith("다")
     scored.sort(
         key=lambda pair: (
+            0 if predicate and pair[0].part_of_speech in _PREDICATE_POS else 1,
             _POS_PREFERENCE.index(pair[0].part_of_speech)
             if pair[0].part_of_speech in _POS_PREFERENCE
             else len(_POS_PREFERENCE),
@@ -136,6 +163,34 @@ def choose_entry(entries: list[Entry]) -> Entry | None:
         )
     )
     return scored[0][0]
+
+
+def part_of_speech_of(entries: list[Entry], word: str) -> str:
+    """What this word *is*, even when no entry could supply a usable meaning.
+
+    `choose_entry` returns nothing when every sense of every entry is filtered
+    out — a gloss written in Korean, or one the blocklist rejects — and the
+    caller then fell through to the literal string `"noun"`. That is how 빛나다
+    and 얘기하다 came to be nouns glossed *to shine* and *to chat*: Wiktionary
+    parses both as verbs, and both have exactly one sense, and both senses are
+    unusable (얘기하다's is "contraction of 이야기하다: …", which contains Hangul).
+    The pack supplies the English for those words, so the meaning was never in
+    doubt — only the part of speech was, and it was answered by a default.
+
+    Part of speech and meaning come from different places and one being absent
+    is not a reason to guess the other. A 다-final headword parsed as a verb is a
+    verb whether or not anybody wrote a usable definition of it.
+    """
+    if not entries:
+        return "noun"
+    if word.endswith("다"):
+        for entry in entries:
+            if entry.part_of_speech in _PREDICATE_POS:
+                return entry.part_of_speech
+    known = [e.part_of_speech for e in entries if e.part_of_speech in _POS_PREFERENCE]
+    if not known:
+        return "noun"
+    return min(known, key=_POS_PREFERENCE.index)
 
 
 def word_id(word: str, taken: set[str]) -> str:
@@ -275,7 +330,7 @@ def main() -> int:
     for word, entry in kept.items():
         if not is_hangul_word(word) or not 1 <= len(word) <= MAX_SYLLABLES:
             raise SystemExit(f"{word}: not a writable Korean word of 1–{MAX_SYLLABLES} syllables")
-        dictionary = choose_entry(by_word.get(word, []))
+        dictionary = choose_entry(by_word.get(word, []), word)
         if dictionary is None and entry.english is None:
             missing_from_dictionary.append(word)
             continue
@@ -284,8 +339,10 @@ def main() -> int:
         if meaning is None:
             missing_from_dictionary.append(word)
             continue
-        pos_by_word[word] = entry.part_of_speech or (
-            dictionary.part_of_speech if dictionary else "noun"
+        pos_by_word[word] = (
+            entry.part_of_speech
+            or (dictionary.part_of_speech if dictionary else None)
+            or part_of_speech_of(by_word.get(word, []), word)
         )
         topics_by_word[word] = list(dictionary.categories) if dictionary else []
         # The English meaning has to clear the same bar as the seven written
