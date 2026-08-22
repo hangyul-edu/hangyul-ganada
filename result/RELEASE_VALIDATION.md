@@ -211,10 +211,10 @@ two cannot disagree about which APK shipped.
 ## Checksums
 
 ```
-76a76071d14e6d4f72c5dc5afdc0ba28d69f83ff2712911ddefd7a7396b066e5  hangyul-ganada-release.apk
-a43d2888faf076dd96e856576136695f7fa0a9776664887f119f156108d868e6  hangyul-ganada-release.aab
-4e1b7c324b73db93aaf588184c71bce0f83f4c47f5e5a358db7911b776f328e5  docs/report.pdf
-3bea550b6e44700152c7f408ee29330e8dea654d13626c0d6fe9ae353df6ada6  build-info.json
+40c2d6740dd6d9b47702570ef4f659c45683b75bb68a0cdaa8c20d9f7f08ba2e  hangyul-ganada-release.apk
+1b1c96891044c377fba0754b1e21fb21b9177057707441cef9043a412662a880  hangyul-ganada-release.aab
+491528d27fe42b628739eeeda5f0350962b1e56e6dbfca711d1ed6260cdaccfe  docs/report.pdf
+f115772559b7a9760c41ca1f07819df73a0b146307af003a6e2d6e4d893d1646  build-info.json
 ```
 
 The block above is **rewritten by `build-result.mjs`** from the digests it has

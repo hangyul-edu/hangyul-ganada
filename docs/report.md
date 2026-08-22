@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 22 August 2026
-describes: A re-audit of the running product on `main` at 03882e9 — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
+describes: A re-audit of the running product on `main` at cb5450f — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
 mark: report-assets/mark.png
 ---
 
@@ -59,11 +59,11 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `03882e9` — see §2.2 for the pipeline |
+| Git commit | `cb5450f` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`03882e9` — the same commit**, asserted by `npm run release:current`. See §2.2 |
-| Signed APK | 66.0 MB · `76a76071d14e6d4f…` |
-| Signed AAB | 64.8 MB · `a43d2888faf076dd…` |
+| Commit the delivered APK/AAB were built from | **`cb5450f` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 66.0 MB · `40c2d6740dd6d9b4…` |
+| Signed AAB | 64.8 MB · `1b1c96891044c377…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
@@ -97,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-03882e9  the production pass — every change in this report
+cb5450f  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from 03882e9, and asserted to be
+result/, app_result/   from cb5450f, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -134,6 +134,8 @@ previous report:
 | **The old raster cut** | **absent** — `strokeAssets`, `strokeReveal`, `segmentation` all return nothing |
 | The dictionary | `manifest.json` reporting 26,675 headwords and 34,869 senses, and **76 of 76 chunks reachable by the name the manifest gives** |
 | A canonical taught sense | `word_cha#car` in the word-corpus chunk |
+| The corrected ㄱ | `.885` in the bundle, and no `lean = 0.28` anywhere in it |
+| The decorative speaker | **absent** — no 🔊 in any shipped chunk; `Play the sound` is present |
 
 The launch bitmaps are checked by measurement rather than by hash because AAPT
 re-encodes every PNG it packages, so byte-identity is guaranteed *not* to hold
@@ -3512,7 +3514,7 @@ card previews 가나다 / 한글 in its own face.
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
-`bundle:budget:check` against the build from `03882e9` — every budget met:
+`bundle:budget:check` against the build from `cb5450f` — every budget met:
 
 | | Now | Budget | Used |
 | --- | --- | --- | --- |
