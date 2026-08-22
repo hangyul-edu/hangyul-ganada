@@ -102,10 +102,15 @@
   The status pair: days in a row, and vocabulary level.
 
   One flex row so the two chips share a baseline and a gap, and so the header
-  has one child to lay out rather than two competing for the same corner.
-  `flex-shrink` is left alone deliberately — at 360 px with a long streak the
-  pair should wrap or compress as a unit, not have the level slide under the
-  title.
+  lays out one child rather than two competing for the same corner.
+
+  They are built from the same shape on purpose — same height, same pill radius,
+  same padding, same `align-items: center`. The first version gave the level an
+  outline where the streak had a fill and centred one on `center` and the other
+  on `baseline`, and the result read as two components borrowed from different
+  screens: the level looked like a button that had wandered into a status bar.
+  What separates them now is tint alone, which is enough to say "these are two
+  facts" without saying "these are two systems".
 */
 .status {
   display: inline-flex;
@@ -117,53 +122,65 @@
 /*
   The level chip.
 
-  Quieter than the streak on purpose: the streak is a thing you can lose today
-  and the level is a thing you measured once, so the streak keeps the filled
-  background and this takes an outline. Same 32 px height and pill radius, so
-  the two read as a set.
+  Quieter than the streak deliberately: a streak is a thing you can lose today
+  and a level is a thing you measured once, so the streak keeps the warm accent
+  and this takes a neutral surface. No badge, no gradient, no medal, no crown —
+  §6. It should read as a polished learning service, not a mobile RPG.
 
-  No badge, no gradient, no medal — §21. The hierarchy is inside the chip:
-  "Lv." small and secondary, the number full size and bold, which is the way a
-  measurement is written down rather than the way a game awards one.
+  The hierarchy lives inside the chip: "Lv." small and secondary, the number a
+  step larger and bold. That is how a measurement is written down.
 */
 .statusLevel {
   display: inline-flex;
-  align-items: baseline;
-  gap: 3px;
+  align-items: center;
+  gap: 4px;
   height: 32px;
   padding-inline: var(--hg-space-3);
-  border: 1px solid var(--hg-border);
   border-radius: var(--hg-radius-pill);
+  background: var(--hg-surface-selected);
   color: var(--hg-text-secondary);
   white-space: nowrap;
+  /*
+    A 32 px chip in a 44 px target. The header keeps its compact rhythm and the
+    tappable area still clears the minimum — the pseudo-element grows the hit
+    box without moving anything on screen.
+  */
+  position: relative;
+}
+
+.statusLevel::after {
+  content: '';
+  position: absolute;
+  inset: -6px -4px;
 }
 
 .statusLevelPrefix {
-  font-size: var(--hg-text-caption-sm, var(--hg-text-caption));
+  font-size: var(--hg-text-caption);
   font-weight: var(--hg-weight-semibold);
   /*
     No opacity here.
 
     It was 0.75, to make "Lv." quieter than the number beside it, and axe was
     right to fail it: fading an already-secondary colour took the contrast under
-    AA. The hierarchy this needed is size and weight, which cost nothing in
-    legibility — `--hg-text-secondary` is a token chosen to pass on this
-    surface, and dimming a compliant colour is how a palette gets undone one
+    AA. The hierarchy this needs is size and weight, which cost nothing in
+    legibility — dimming a compliant colour is how a palette comes undone one
     component at a time.
   */
 }
 
 .statusLevelNumber {
-  font-size: var(--hg-text-caption);
+  font-size: var(--hg-text-body-sm);
   font-weight: var(--hg-weight-bold);
-  color: var(--hg-text-primary);
+  color: var(--hg-text);
+  line-height: 1;
 }
 
 @media (hover: hover) {
   .statusLevel:hover {
-    background: var(--hg-surface-subtle, var(--hg-primary-subtle));
+    background: var(--hg-surface-hover);
   }
 }
+
 
 .celebrate {
   display: flex;
