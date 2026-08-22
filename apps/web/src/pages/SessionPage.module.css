@@ -253,3 +253,33 @@
   font-size: var(--hg-text-caption);
   color: var(--hg-text-tertiary);
 }
+
+/*
+  What is left after a handwriting attempt: one control, and one sentence when
+  it failed.
+
+  Replaces the feedback card — see the note in `LetterSessionPage.tsx`. Centred
+  and unboxed on purpose: a border around two elements would rebuild the card
+  in outline.
+
+  Lives here rather than beside either page because **both** grade handwriting:
+  the lesson and the review sitting. Putting it in `LetterSessionPage.module.css`
+  was the same mistake as editing only one of the two screens — they share this
+  stylesheet, and the review session would have rendered an unstyled column.
+*/
+.after {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-3);
+  margin-top: var(--hg-space-4);
+}
+
+.retryNote {
+  margin: 0;
+  max-width: 32ch;
+  text-align: center;
+  font-size: var(--hg-text-body-sm);
+  line-height: 1.5;
+  color: var(--hg-text-secondary);
+}

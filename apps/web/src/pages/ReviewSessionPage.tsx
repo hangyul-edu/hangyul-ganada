@@ -23,7 +23,6 @@ import { AppHeader } from '../ui/AppHeader';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Badge } from '../ui/Chip';
 import { Button } from '../ui/Button';
-import { FeedbackState } from '../ui/FeedbackState';
 import { LocalizedText } from '../ui/LocalizedText';
 import { ProgressBar } from '../ui/Progress';
 import { SpeakerButton } from '../ui/SpeakerButton';
@@ -352,18 +351,35 @@ export function ReviewSessionPage() {
               onEvaluated={handleWritten}
             />
 
+            {/*
+              The same minimum a lesson shows — §8, §9.
+
+              This screen kept the praise card after the lesson lost it, which
+              is the half of a change that gets missed: handwriting is graded in
+              two places and only one of them was edited. A learner reviewing ㄱ
+              met "That's it!" here after it had stopped appearing where they
+              first learned it.
+
+              Correct is the way on. Wrong is the one sentence that says what to
+              change, and the way on — a review sitting moves forward either
+              way, because the scheduler has already recorded the answer and
+              re-asking inside the sitting would be teaching, not reviewing.
+            */}
             {feedback && writeStatus !== 'idle' && (
-              <FeedbackState
-                status={writeStatus === 'correct' ? 'correct' : 'incorrect'}
-                headline={t(`handwriting:${feedback.headlineKey}`)}
-                actions={
-                  <Button size="md" onClick={advance}>
-                    {isLast ? t('learning:session.finish') : t('learning:session.next')}
-                  </Button>
-                }
-              >
-                <p>{t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}</p>
-              </FeedbackState>
+              <div className={styles.after}>
+                {writeStatus === 'correct' ? (
+                  <p className="hg-sr-only" role="status">
+                    {t('handwriting:feedback.accepted')}
+                  </p>
+                ) : (
+                  <p className={styles.retryNote} role="status">
+                    {t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}
+                  </p>
+                )}
+                <Button size="md" onClick={advance}>
+                  {isLast ? t('learning:session.finish') : t('learning:session.next')}
+                </Button>
+              </div>
             )}
           </>
         ) : (
