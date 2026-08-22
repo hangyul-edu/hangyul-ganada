@@ -738,23 +738,48 @@ def classify(
     meaning: str,
     topics: list[str] | None = None,
 ) -> tuple[str, list[str]]:
-    """The category this word belongs in, and the others it also touches."""
-    tags: list[str] = []
+    """The category this word belongs in, and the others it also touches.
 
+    ## Two kinds of evidence, and only one of them knows which sense is taught
+
+    The **gloss** is the sense this card teaches — that is what `senseId` means —
+    so a category matched against it is a category of the taught sense.
+
+    A Wiktionary **topic** is attached to a *page*, and a page describes every
+    sense the word has. 김치's page carries `Photography`, because 김치 is what
+    Koreans say instead of "cheese" for a photograph, and the mapping sends
+    Photography to *communication*. The card teaches the food. Nothing on the
+    record says which sense the topic belongs to, so there is no filter to
+    apply: the information simply is not there.
+
+    So the two are not pooled. A topic may name the category of a word the gloss
+    could not classify at all — better than falling back to its part of speech —
+    but **a topic never adds a second category on top of a gloss match**. That
+    is where the wrong ones were getting in, and a secondary category feeds
+    search and recommendations, so a wrong one sends a learner somewhere the
+    word does not belong.
+
+    Wrong metadata is worse than missing metadata, and this prefers missing.
+    """
+    from_gloss: list[str] = []
     for cid, pattern in _COMPILED:
-        if pattern.search(meaning) and cid not in tags:
-            tags.append(cid)
+        if pattern.search(meaning) and cid not in from_gloss:
+            from_gloss.append(cid)
 
+    from_topic: list[str] = []
     for topic in topics or []:
         mapped = WIKTIONARY_TOPICS.get(topic)
-        if mapped and mapped not in tags:
-            tags.append(mapped)
+        if mapped and mapped not in from_topic:
+            from_topic.append(mapped)
 
     if word in OVERRIDES:
         primary = OVERRIDES[word]
-    elif tags:
-        primary = tags[0]
+    elif from_gloss:
+        primary = from_gloss[0]
+    elif from_topic:
+        primary = from_topic[0]
     else:
         primary = BY_PART_OF_SPEECH.get(part_of_speech, "describing")
 
-    return primary, [t for t in tags if t != primary]
+    # Only the taught sense's own evidence may add a category beyond the primary.
+    return primary, [t for t in from_gloss if t != primary]

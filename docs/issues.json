@@ -344,12 +344,12 @@
       "id": "I-33",
       "area": "Content",
       "severity": "P4",
-      "status": "OPEN",
-      "summary": "A secondary category can come from a sense the card does not teach",
-      "customerImpact": "김치 is tagged *communication* as well as *food*. Secondary tags feed search and recommendations rather than the browsing structure, so nothing shows a learner the word under a wrong heading — but a recommendation could.",
-      "evidence": "Wiktionary topics are page-level, not per sense. 김치's page carries `Kimchi` and `Photography`, because 김치 is what Koreans say instead of \"cheese\" for a photograph — an interjection sense the card does not teach. `categories.WIKTIONARY_TOPICS` maps Photography to communication, so the food card picks it up.\n\nFound by `content:vocabulary:check` after the dictionary fetch grew the wikitext cache from 13,495 pages to 50,128: 김치, 교실 and 만두 changed category as new topic data arrived. 교실 gaining *home* from the `Rooms` topic and 만두 gaining *food* from `Foods` are both right.\n\nThis is the same root cause as I-18 — a page describes several senses and the card teaches one — at the one place a `senseId` cannot reach, because the topics are not attached to a sense in the source.",
-      "recommendedFix": "Take topics from the sense rather than the page, which the source does not support; or curate the mapping so that a topic only contributes when it agrees with the gloss-matched primary. The second is cheap and would have caught this one.",
-      "effort": "LOW — a rule in categories.classify, and a re-read of what moves"
+      "status": "RESOLVED",
+      "summary": "Secondary categories were inherited from senses the card does not teach",
+      "customerImpact": "김치 was tagged *communication* as well as *food*; 눈, taught as the eye, was tagged *animals-nature* from the snow sense; 돈 was *time-numbers*. Secondary tags feed search and recommendations, so a wrong one sends a learner to a word that does not belong there.",
+      "evidence": "Two kinds of evidence were being pooled and only one of them knows which sense is taught. The **gloss** is the taught sense — that is what `senseId` means — so a category matched against it belongs to the card. A Wiktionary **topic** is attached to a *page*, which describes every sense the word has: 김치's page carries `Photography`, because 김치 is what Koreans say instead of \"cheese\" for a photograph.\n\n`classify` no longer pools them. A topic may name the category of a word the gloss could not classify at all — better than falling back to its part of speech — but it can never add a second category on top of a gloss match, which is where the wrong ones were getting in.\n\nMeasured over the corpus: **73 secondary tags removed across 70 words** (504 → 431), and **no primary category changed**, so nothing was made worse to achieve it. 김치, 교실 and 만두 now carry food, school-work and food with no secondary; 눈 is body-health; 돈 is money-shopping. Wrong metadata is worse than missing metadata, and this prefers missing.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
     },
     {
       "id": "I-34",
