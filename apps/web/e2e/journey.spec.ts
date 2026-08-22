@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-import { waitForLaunch } from './helpers/launch';
+import { waitForLaunch, openTodaysWords } from './helpers/launch';
 import { drawScribble, traceReferenceGlyph } from './helpers/trace';
 
 /**
@@ -193,9 +193,17 @@ test('a faithful trace passes and an obvious scribble fails', async ({ page }) =
   await drawScribble(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();
 
+  /*
+    What a wrong attempt says now: one actionable sentence, and Try again.
+
+    It used to be a card with a headline — "Not quite", "Almost" — and this
+    asserted on that headline. §8 took the card out: a learner on their fourth
+    attempt at ㄱ has read the headline three times and it never told them
+    anything they could act on. The sentence that did is what is left.
+  */
   const failure = page.getByRole('status');
   await expect(failure).toBeVisible();
-  await expect(failure).toContainText(/Not quite|Almost/);
+  await expect(failure).toContainText(/box|guide|stroke|slowly/i);
   await expect(firstBox(page)).toHaveClass(/incorrect/);
 
   await page.getByRole('button', { name: 'Try again' }).click();
@@ -204,8 +212,17 @@ test('a faithful trace passes and an obvious scribble fails', async ({ page }) =
   await traceReferenceGlyph(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();
 
-  await expect(page.getByRole('status')).toContainText("That's it!");
+  /*
+    And a correct one says nothing on screen at all.
+
+    The praise is gone; what remains is the box locking and the way forward
+    appearing. The acceptance is still *announced*, because a screen-reader user
+    cannot see either of those — so this asserts the thing a sighted learner
+    sees, and the accessible status separately.
+  */
   await expect(firstBox(page)).toHaveClass(/correct/);
+  await expect(page.getByRole('status')).toContainText('Accepted');
+  await expect(page.getByText("That's it!")).toHaveCount(0);
 });
 
 test('a letter is written once, over a guide, and then read back', async ({ page }) => {
@@ -410,8 +427,9 @@ test('every practice typeface renders its own glyph, and grades against it', asy
 
     await traceReferenceGlyph(page, firstBox(page));
     await page.getByRole('button', { name: 'Check' }).click();
+    // "Accepted." — the announcement that replaced the praise card. §8.
     await expect(page.getByRole('status'), `${face} failed an honest trace`).toContainText(
-      "That's it!",
+      'Accepted',
     );
   }
 });
@@ -443,7 +461,7 @@ test('a word is met, then asked about — and never written', async ({ page }) =
    * in it were already taught with their stroke order. What is asserted now is
    * the opposite of what was asserted then — that the pen never appears.
    */
-  await page.goto('/words/today');
+  await openTodaysWords(page);
 
   // The meeting card: the word, its sound, its meaning, and the sentence it
   // lives in. Asserted by shape rather than by which word it is — which word
@@ -489,7 +507,7 @@ test('a word session with no canvas anywhere in it', async ({ page }) => {
   // handwriting. This walks a full sitting and asserts the canvas never
   // appears — the routes that used to reach it are gone, and this is what
   // notices if one comes back.
-  await page.goto('/words/today');
+  await openTodaysWords(page);
 
   for (let step = 0; step < 12; step += 1) {
     await expect(page.getByTestId('writing-canvas')).toHaveCount(0);
@@ -701,7 +719,7 @@ test('resetting the learning record asks first, then actually clears it', async 
   await startWriting(page);
   await traceReferenceGlyph(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();
-  await expect(page.getByRole('status')).toContainText("That's it!");
+  await expect(page.getByRole('status')).toContainText('Accepted');
 
   await page.goto('/me');
   await page.getByRole('button', { name: 'Reset learning progress' }).click();
@@ -818,7 +836,7 @@ test('the settings screen leads with what the learner has done, not with what is
  * so each is walked to its own screen and its own session here.
  */
 test('a word can be saved, found again, and reviewed from its own list', async ({ page }) => {
-  await page.goto('/words/today');
+  await openTodaysWords(page);
   const headword = await page.getByTestId('word-headword').textContent();
   expect(headword?.trim()).toBeTruthy();
 
@@ -853,7 +871,7 @@ test('the saved list survives a restart, and a word can be taken off it', async 
   page,
   context,
 }) => {
-  await page.goto('/words/today');
+  await openTodaysWords(page);
   const headword = (await page.getByTestId('word-headword').textContent())!.trim();
   await page.getByRole('button', { name: /Save|Saved/ }).first().click();
 
@@ -874,7 +892,7 @@ test('a wrong answer writes itself into the notebook', async ({ page }) => {
    * purpose and then goes and looks, which is the only way to test a thing that
    * is supposed to happen without being asked for.
    */
-  await page.goto('/words/today');
+  await openTodaysWords(page);
 
   let missed = 0;
   for (let step = 0; step < 24 && missed < 2; step += 1) {

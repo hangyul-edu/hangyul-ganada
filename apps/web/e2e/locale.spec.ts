@@ -1,3 +1,4 @@
+import { openTodaysWords } from './helpers/launch';
 import { expect, test, type Page } from '@playwright/test';
 
 /**
@@ -141,7 +142,7 @@ test('Korean learning content is never translated', async ({ page }) => {
   // and the meaning beside it does not.
   // Today's sitting, which is where a word is met now. There is no lesson id:
   // vocabulary is not browsed as numbered sets any more.
-  await page.goto('/words/today');
+  await openTodaysWords(page);
   await page.evaluate(() => document.fonts.ready);
   const koreanWord = page.getByTestId('word-headword');
   await expect(koreanWord).toBeVisible();
@@ -153,7 +154,7 @@ test('Korean learning content is never translated', async ({ page }) => {
   // Switch to Korean: the meaning changes, the word does not.
   await openLanguagePicker(page);
   await page.getByRole('button', { name: /한국어/ }).click();
-  await page.goto('/words/today');
+  await openTodaysWords(page);
   await page.evaluate(() => document.fonts.ready);
 
   await expect(page.getByTestId('word-headword')).toHaveText(korean);

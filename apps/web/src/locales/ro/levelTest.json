@@ -30,7 +30,8 @@
     "of": "din {{levels, number}}",
     "band": "Cel mai probabil între {{low, number}} și {{high, number}}.",
     "words": "La acest nivel se recunosc de obicei cele mai frecvente {{count, number}} de cuvinte coreene.",
-    "recommend": "De acum cuvintele zilei urmează acest nivel."
+    "recommend": "De acum cuvintele zilei urmează acest nivel.",
+    "start": "Învață cuvinte de nivelul meu"
   },
   "bands": {
     "starter": "ÎNCEPUT",

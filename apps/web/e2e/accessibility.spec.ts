@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
-import { waitForLaunch } from './helpers/launch';
+import { waitForLaunch, openTodaysWords } from './helpers/launch';
 
 /**
  * The accessibility audit, run against the app rather than asserted about it.
@@ -158,7 +158,7 @@ async function openWritingBox(page: Page) {
 for (const scheme of ['light', 'dark'] as const) {
   test(`the daily word session has no WCAG A or AA violations (${scheme})`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: scheme });
-    await page.goto('/words/today');
+    await openTodaysWords(page);
     await expect(page.getByTestId('word-headword')).toBeVisible();
     const results = await scan(page);
     expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
@@ -181,7 +181,7 @@ for (const scheme of ['light', 'dark'] as const) {
 for (const scheme of ['light', 'dark'] as const) {
   test(`the matching grid has no WCAG A or AA violations (${scheme})`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: scheme });
-    await page.goto('/words/today');
+    await openTodaysWords(page);
     await expect(page.getByTestId('word-headword')).toBeVisible();
 
     // Walk the session until the grid comes round. It is scheduled after four

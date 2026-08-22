@@ -11,6 +11,7 @@
  * containers directly because jsdom has no layout. This drives a phone-sized
  * viewport with real layout, scrolls a lesson to the bottom, and moves on.
  */
+import { openTodaysWords } from './helpers/launch';
 import { expect, test, type Page } from '@playwright/test';
 
 /**
@@ -104,7 +105,7 @@ test('a word screen scrolled to the bottom opens the next step at the top', asyn
   // how the mechanism is exercised without depending on which word the lesson
   // happens to open on.
   await page.setViewportSize({ width: 390, height: 420 });
-  await page.goto('/words/today');
+  await openTodaysWords(page);
 
   const region = page.locator('[data-scroll-region="focus"]');
   await expect(region).toBeVisible();

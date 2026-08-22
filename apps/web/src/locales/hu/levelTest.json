@@ -30,7 +30,8 @@
     "of": "/ {{levels, number}}",
     "band": "Legvalószínűbben {{low, number}} és {{high, number}} között.",
     "words": "Ezen a szinten általában a(z) {{count, number}} leggyakoribb koreai szót ismerik fel.",
-    "recommend": "A napi szavai mostantól ehhez a szinthez igazodnak."
+    "recommend": "A napi szavai mostantól ehhez a szinthez igazodnak.",
+    "start": "Tanulás a saját szintemen"
   },
   "bands": {
     "starter": "KEZDÉS",

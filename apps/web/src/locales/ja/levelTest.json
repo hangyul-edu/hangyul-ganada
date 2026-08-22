@@ -30,7 +30,8 @@
     "of": "/ {{levels, number}}",
     "band": "{{low, number}}〜{{high, number}} の可能性が高いです。",
     "words": "このレベルなら、韓国語で最もよく使われる {{count, number}} 語ほどを見分けられます。",
-    "recommend": "今日からの単語がこのレベルに合わせて選ばれます。"
+    "recommend": "今日からの単語がこのレベルに合わせて選ばれます。",
+    "start": "自分のレベルの単語を学ぶ"
   },
   "bands": {
     "starter": "入門",

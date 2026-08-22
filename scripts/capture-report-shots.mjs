@@ -336,6 +336,17 @@ async function optional(name, run) {
 {
   const { context, page } = await freshPage();
   await page.goto(`${baseUrl}/words/today`, { waitUntil: 'networkidle' });
+  /*
+   * Past the placement prompt, which a fresh context always meets — §13.
+   *
+   * The figure this composes is *a first vocabulary sitting*, and the prompt is
+   * a screen before the sitting rather than part of it. It has its own shot.
+   */
+  const placementSkip = page.getByTestId('placement-skip');
+  if (await placementSkip.isVisible().catch(() => false)) {
+    await placementSkip.click();
+    await settle(page, 600);
+  }
   await settle(page, 2600);
 
   const panels = [];

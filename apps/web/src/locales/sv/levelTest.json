@@ -30,7 +30,8 @@
     "of": "av {{levels, number}}",
     "band": "Troligen mellan {{low, number}} och {{high, number}}.",
     "words": "På den här nivån känner man oftast igen de {{count, number}} vanligaste koreanska orden.",
-    "recommend": "Dina dagliga ord följer nu den här nivån."
+    "recommend": "Dina dagliga ord följer nu den här nivån.",
+    "start": "Lär dig ord på min nivå"
   },
   "bands": {
     "starter": "BÖRJAN",

@@ -314,8 +314,17 @@ export function LevelTestPage() {
             */}
             <p className={styles.resultRecommend}>{t('levelTest:result.recommend')}</p>
           </Card>
-          <Button size="lg" fullWidth onClick={() => navigate('/me')}>
-            {t('common:actions.done')}
+          {/*
+            The result leads to the words it just changed — §24.
+
+            It used to end on Done, which returned to the settings screen the
+            learner came from. They had sat thirty questions to find out which
+            words suit them, and the app's closing move was to put them back
+            where they started. The number is only worth measuring because it
+            changes what happens next, so the button is what happens next.
+          */}
+          <Button size="lg" fullWidth onClick={() => navigate('/words/today')}>
+            {t('levelTest:result.start')}
           </Button>
         </div>
       </div>

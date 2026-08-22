@@ -43,3 +43,30 @@ export async function openApp(page: Page, path: string): Promise<void> {
   await page.goto(path);
   await waitForLaunch(page);
 }
+
+/**
+ * Opens today's vocabulary, past the placement prompt if it is offered.
+ *
+ * ## Why almost every vocabulary spec needs this
+ *
+ * A learner who has never been placed is asked, once, whether they want words
+ * at their level before the first one appears — §13, and `WordSessionPage`.
+ * Every Playwright test starts in a fresh browser context, so every one of them
+ * is that learner, and every spec that navigated straight to `/words/today`
+ * started asserting against a dialog.
+ *
+ * Skipping is what a test wants in almost every case: the prompt is not the
+ * subject, and "start at Level 1" is the state the suite was implicitly in
+ * before the prompt existed. The flow itself is covered by
+ * `store/placement.test.tsx` and by the placement cases in `journey.spec.ts`.
+ *
+ * Tolerant of the prompt being absent, because a spec that has already been
+ * through it once in the same context will not see it again — that is the
+ * point of recording the decision.
+ */
+export async function openTodaysWords(page: Page, path = '/words/today'): Promise<void> {
+  await page.goto(path);
+  await waitForLaunch(page);
+  const skip = page.getByTestId('placement-skip');
+  if (await skip.isVisible().catch(() => false)) await skip.click();
+}

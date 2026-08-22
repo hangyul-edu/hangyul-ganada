@@ -30,7 +30,8 @@
     "of": "de {{levels, number}}",
     "band": "Provavelmente entre {{low, number}} e {{high, number}}.",
     "words": "Nesse nível, costuma-se reconhecer as {{count, number}} palavras coreanas mais comuns.",
-    "recommend": "Suas palavras diárias passam a seguir esse nível."
+    "recommend": "Suas palavras diárias passam a seguir esse nível.",
+    "start": "Aprender palavras do meu nível"
   },
   "bands": {
     "starter": "INÍCIO",

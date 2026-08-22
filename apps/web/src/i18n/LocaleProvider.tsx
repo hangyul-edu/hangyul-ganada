@@ -117,8 +117,26 @@ export function LocaleProvider({
       meanings are read in is decided once, in `contentLocale`, and this loads
       that one.
     */
+    /*
+      Ask for the learner's own language first, then for whatever the meanings
+      will actually be read in.
+
+      Both, and in that order, because `WORD_COPY_LOCALES` is filled from the
+      corpus manifest and on a cold start it is still empty here — so resolving
+      against it answers "English" for everybody, including a Korean learner
+      whose pack exists. `loadWordCopy` awaits the manifest itself and resolves
+      to nothing for a language the curriculum has no copy for, so asking for
+      `ta` costs a no-op and asking for `ko` is the difference between Korean
+      meanings and English ones.
+
+      The counter bumps after either resolves, which re-runs the resolution with
+      a populated list.
+    */
+    if (!hasWordCopy(next)) {
+      void loadWordCopy(next).then(() => setCopyLoaded((n) => n + 1));
+    }
     const forMeanings = resolveContentLocale(next, WORD_COPY_LOCALES, readStoredContentLocale());
-    if (!hasWordCopy(forMeanings)) {
+    if (forMeanings !== next && !hasWordCopy(forMeanings)) {
       void loadWordCopy(forMeanings).then(() => setCopyLoaded((n) => n + 1));
     }
   }, []);

@@ -30,7 +30,8 @@
     "of": "/ {{levels, number}}",
     "band": "Büyük olasılıkla {{low, number}} ile {{high, number}} arasında.",
     "words": "Bu seviyede genellikle en sık kullanılan {{count, number}} Korece kelime tanınır.",
-    "recommend": "Günlük kelimelerin artık bu seviyeye göre seçiliyor."
+    "recommend": "Günlük kelimelerin artık bu seviyeye göre seçiliyor.",
+    "start": "Seviyeme uygun kelimeleri öğren"
   },
   "bands": {
     "starter": "BAŞLANGIÇ",

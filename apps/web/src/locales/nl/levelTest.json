@@ -30,7 +30,8 @@
     "of": "van {{levels, number}}",
     "band": "Waarschijnlijk tussen {{low, number}} en {{high, number}}.",
     "words": "Op dit niveau herken je meestal de {{count, number}} meest voorkomende Koreaanse woorden.",
-    "recommend": "Je dagelijkse woorden volgen vanaf nu dit niveau."
+    "recommend": "Je dagelijkse woorden volgen vanaf nu dit niveau.",
+    "start": "Woorden op mijn niveau leren"
   },
   "bands": {
     "starter": "START",

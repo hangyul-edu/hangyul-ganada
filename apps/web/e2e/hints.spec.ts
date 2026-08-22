@@ -1,3 +1,4 @@
+import { openTodaysWords } from './helpers/launch';
 import { expect, test, type Page } from '@playwright/test';
 
 /**
@@ -33,7 +34,7 @@ import { expect, test, type Page } from '@playwright/test';
  * was.
  */
 async function firstQuestionWithHelp(page: Page) {
-  await page.goto('/words/today');
+  await openTodaysWords(page);
   const hint = page.getByRole('button', { name: /show a hint/i });
   const forward = page.getByRole('button', { name: /^(got it|next|continue)$/i }).first();
 

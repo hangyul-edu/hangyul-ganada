@@ -216,7 +216,7 @@ a build's own record of itself is not evidence about the file.
 | Words with any verified relation | 245 of 2,581 (9.5%), 272 relations | 243 |
 | Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
 | Words whose taught sense is pinned by exact string | 11, now beside a `senseId` on all 2,581 | 11 |
-| Web unit (`vitest`) | **724** (44 files) | 699 |
+| Web unit (`vitest`) | **739** (46 files) | 699 |
 | Hangyul Vocabulary Level Test | **3,990 items over 30 levels**; MAE 1.34, 95.3% within ±3, **exactly 30 items in one 8-minute timer** | specified, not built |
 | Languages whose register was inconsistent across screens | **0**, enforced | 5, never measured |
 | Handwriting core (`vitest`) | **96** (5 files) | 96 |
@@ -3254,48 +3254,77 @@ only as the `context` exercise — the sentence with a gap where the word goes.
 | | |
 | --- | --- |
 | Clips | 10,454 distinct files — 5,275 entries × two voices |
-| Voices | **ElevenLabs `eleven_multilingual_v2`**, two professional Korean voices from the Voice Library — *Yong Gyu, Calm Korean Male Narrator* (`h5eZa8VFAq0EQ8E81dfL`) and *Sian, Tender, Calm & Clear* (`5n5gqmaQi9Ewevrz7bOS`) |
+| Voices | **Microsoft neural ko-KR via `edge-tts`** — `ko-KR-SunHiNeural` (female), `ko-KR-InJoonNeural` (male) |
 | Generated | at build time, not at runtime |
-| Format | requested `mp3_44100_128`, normalised to 24 kHz mono, 32 kbit/s, EBU R128 −16 LUFS |
+| Format | 24 kHz mono, 32 kbit/s, EBU R128 −16 LUFS |
 | Spoken | letter names, letter sounds, syllables, every word, every example sentence |
 | Delivery | cached by the service worker **on play**, not precached |
-| Rate | 1.0× — the model's own narration pace; see below |
+| Rate | **0.82×**, asked of the engine rather than applied to the waveform |
 
-**Every recording in the product was regenerated this cycle.** The previous
-engine is gone from the pipeline and its attribution is gone from
-`scripts/content/sources.py`, so no screen credits software the product no longer
-uses.
+### The ElevenLabs migration was rolled back
 
-Audio is generated at build time because a runtime TTS call would need a network,
-a key and a per-play cost, and would make the app's core promise — works offline,
-costs nothing to run — untrue. **Nothing in `apps/web/src` can reach ElevenLabs.**
-There is no client, no key and no code path; the clips are static files. The
-generation script is resumable and deduplicated, so a run that stops halfway
-costs nothing to restart.
+Earlier in this cycle every clip was regenerated with two commissioned
+ElevenLabs voices. **They were rejected as too synthetic and the product is back
+on the voices it had before.**
 
-**The speaking rate is 1.0 and that is a correction, not a regression.** The
-previous engine took a rate parameter and the clips were generated at 0.82×;
-ElevenLabs has none, and the pace comes from the model and the voice, which for
-both of these is an unhurried narration pace already. What made this worth
-writing down is that `qa_audio.py` failed five clips as *too short for N
-syllables* — its lower bound divided by a `SPEECH_RATE` constant the new audio
-was never made at, so the check was measuring a setting rather than the
-recordings. Providers now declare `spoken_rate`, it is recorded in the manifest,
-and the QA re-derives its bounds from what the clips were actually generated at.
+The rollback is a *restore*, not a re-generation: all 10,454 files were in git
+and were checked out from `bfe0fbf0`, the last commit before the migration, so
+what ships is byte-identical to audio that had already been verified rather than
+a fresh synthesis that would need verifying again.
+
+**The repairs came back with the voices, and that is the lesson worth keeping.**
+`speech_repairs.py` names words a voice says wrongly. 마디 had been deleted from
+it a few hours earlier on good evidence — re-synthesised unrepaired on the
+ElevenLabs voice, the recogniser heard 마디, so the repair was correcting a
+defect that voice does not have. The moment the voice changed back, that
+evidence stopped being about the shipping voice. The file now states the rule:
+**a repair is evidence about a specific voice, and every entry has to earn its
+place again when the voice does.**
+
+Provenance followed the audio. `sources.py` credits Microsoft again, so the
+Legal screen names the engine whose recordings are in the package, and the
+generated corpus was rebuilt to carry it. The provider class, its two voice IDs,
+the key reader and the backoff helper are gone; **0 references to ElevenLabs
+remain in any source, script or generated file.**
+
+One improvement was kept and stripped of the vendor's name. `qa_audio.py` used
+to test for a hard-coded engine to decide whether a corpus could have been
+slowed down; it now resolves the pace a corpus was spoken at from the provider
+that made it, which is the general form of the rule.
+
+**A guard exists because this went wrong once.** With no provider named,
+`generate_audio.py` falls back to `edge` — right for somebody trying the
+pipeline out, wrong for a rebuild. Run that way it re-walked 10,454 existing
+clips, regenerated none of them, and rewrote the manifest to credit an engine
+that had not touched them, at a rate they were not made at. Nothing failed. The
+audio was correct and its provenance was fiction, which is worse than a crash
+because it is the half nobody plays. It now refuses to change a manifest's
+provider unless `--provider` says so deliberately.
+
+### What was verified after the restore
+
+| Check | Result |
+| --- | --- |
+| `audio:qa` | **0 errors, 0 warnings** over 10,550 clips, 48.9 MB, median 1,010 ms |
+| `audio:pronunciation:check` | **0 errors**, 1 warning (an example sentence that does not contain 얘기하다) |
+| Listening pass, §3 sample | every full example sentence and every multi-syllable word transcribed **exactly**, in both voices |
+
+The listening pass has a limit worth stating rather than hiding. Isolated single
+syllables — 가, 거, 고, 구 — cannot be judged by the recogniser: it returns empty
+strings and YouTube boilerplate for 300 ms of context-free audio, and it does so
+for clips that are known good, so a wrong transcription there is evidence about
+the recogniser and not about the clip. Those rest on the duration, loudness and
+waveform-shape checks in `audio:qa`, which do measure them.
+
+Audio is generated at build time because a runtime TTS call would need a
+network, a key and a per-play cost, and would make the app's core promise —
+works offline, costs nothing to run — untrue. **Nothing in `apps/web/src` calls
+any synthesis vendor.**
 
 **The audio cache is versioned by the audio build's own date stamp**
-(`20260822-ec7ce5a9`), so a corrected recording replaces the old one. This exists
-because a fixed clip would otherwise never reach a learner whose app had already
-played the wrong one — and this cycle is exactly the case it was built for, since
-every file changed underneath a name that did not.
+(`20260818-31822f90`), so a corrected recording replaces the old one, and the
+rollback moved that stamp back with the clips.
 
-### The key
-
-The ElevenLabs API key lives in a file outside the repository, read by
-`scripts/lib/secrets.mjs` from `ELEVENLABS_API_KEY` or from that file. Scanned
-with the **literal key**, not with a pattern, it appears **0 times** in: source,
-scripts, documentation, this report, the built `dist`, generated manifests, the
-signed APK, the AAB, and the whole git history.
 
 ## 22.6 Hints: safe was being checked, useful was not — **FIXED**
 
@@ -3532,6 +3561,58 @@ direction**: the generated `locales` list named only the eight languages the
 corpus entries carry, so the picker told Vietnamese and Thai learners their word
 meanings were in English while shipping 2,581 of each. A false warning is worse
 than no warning.
+
+## 23.8 The localization matrix — **what "32/32" does and does not mean**
+
+§55. Two different bodies of text are counted here, and reporting one number
+for both is what let a Tamil learner be asked a Tamil question over four English
+answers while every check in the repository was green.
+
+| | Languages | Source |
+| --- | --- | --- |
+| **Interface** — every screen, button, label, dialog, empty state | **32 of 32** | translation files, `i18n:check` |
+| **Alphabet course** — 15 lesson titles, 12 unit introductions, 73 letters' hints and mnemonics | **32 of 32** | `letters.*.json` |
+| **Level Test** — intro, prompts, result, placement offer | **32 of 32** | translation files |
+| **Conjugation labels** — 기본형 / 현재 / 과거 / 미래 / 격식체 / 연결형 | **32 of 32** | translation files |
+| **Home quotations** | **32 of 32**, 100 lines | `data/quotes.ts` |
+| **Word meanings** — the 2,581 glosses | **10 of 32** | the curriculum, authored |
+| **Example translations** | **10 of 32** | the curriculum, authored |
+| **Quiz answer choices** | **10 of 32** in the learner's own language; the other 22 in a **chosen and disclosed** second language | derived from the above |
+
+Measured by `npm run locale:content:check`:
+
+```
+  interface languages   32
+  content languages     10  (en, ko, ja, zh-CN, es, fr, de, pt-BR, th, vi)
+  words in the corpus   2,581
+
+  10 of 32 languages read meanings in their own language.
+  22 read them in another, chosen and disclosed rather than silently.
+  no language can produce a mixed-language question.
+```
+
+**The ten are complete and the twenty-two are empty. None is partial**, and that
+is the state the gate is really watching for: a pack covering *some* of the
+corpus produces questions where some choices are in the learner's language and
+some are not, on maybe one screen in ten, with nothing reporting it. All or
+nothing is safe; half is the dangerous shape.
+
+### What the twenty-two get now
+
+Not silent English. `i18n/contentLocale.ts` resolves **one** language for word
+meanings, the language screen says which one it is, and the learner can pick a
+different one from the ten that exist — a Tamil reader who reads Japanese can
+have Japanese. Every meaning in a question comes from that one pack, so a
+question is never half-translated: a reading exercise whose options do not share
+a language is not built, and a matching grid drops a row that does not match.
+
+**This does not close I-19.** Twenty-two languages still have no word meanings
+of their own, and that is authoring — 2,581 glosses, example translations and
+definitions per language, by somebody who speaks it. Machine output would take
+the English off the screen and put an unreviewed sentence in front of a beginner
+instead, which is worse: a learner cannot tell a wrong gloss from a right one,
+and not having to is the product's whole claim. What closed is the gap between
+what the app shows and what it admits to showing.
 
 ## 23.4 The gap a 100% coverage report could not see — again, and wider
 
@@ -4785,7 +4866,8 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-38** | Performance | **P1** | The learning corpus is fetched in priority bands instead of shipped whole | The first load halved — 437 kB gzipped to 219 kB — and stopped growing with the curriculum. What a learner waits for before the home screen paints is now a fixed 46 kB whatever the corpus becomes. | **RESOLVED** |
 | **I-40** | Review | **P1** | Review was a dashboard; the learner's saved words and wrong answers were not screens they could open | The two lists a learner thinks of as *theirs* — what they bookmarked and what they keep getting wrong — now have their own screens, reachable in one tap from Review, each with a practice session behind it. Before this, Review answered a question the app had (what is due) and neither of the two the learner has. | **RESOLVED** |
 | **I-41** | Dictionary | **P1** | The dictionary ingestion silently dropped 3,384 headwords it had already downloaded | Ordinary words a learner would type were missing from a dictionary that claimed 26,675 entries — including 것 and 거, two of the commonest nouns in the language. Searching for one returned nothing, which reads as the product not knowing the word. | **RESOLVED** |
-| **I-42** | Audio | **P1** | Every recording in the product is regenerated, and nothing in the app can reach the synthesis vendor | One voice pair across the whole product instead of the previous engine's, generated once and shipped as files. A learner hears the same two speakers on every screen, offline, with no account and no network call. | **RESOLVED** |
+| **I-42** | Audio | **P1** | The ElevenLabs voice migration was rolled back to the original Microsoft neural voices | The two ElevenLabs voices were rejected as too synthetic, and every clip in the product is now the recording that shipped before them again — Microsoft's ko-KR neural voices, SunHi and InJoon, spoken at 0.82x for beginners. A learner hears the voices the curriculum was checked against, offline, with no account and no network call. | **RESOLVED** |
+| **I-44** | i18n content | **P1** | A Tamil learner was asked a Tamil question and offered four English answers | Twenty-two of the thirty-two interface languages were showing quiz prompts in the learner's language over answer choices in English. The question was unanswerable by the person it was built for, and it looked like carelessness rather than a missing translation. | **RESOLVED** |
 | **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **RESOLVED** |
 | **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
 | **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **RESOLVED** |
@@ -4793,6 +4875,8 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **RESOLVED** |
 | **I-29** | Build | **P2** | Two end-to-end tests fail, and no `verify` target runs the suite that would have said so | None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230. | **RESOLVED** |
 | **I-36** | Design | **P2** | The listening question drew a decorative speaker emoji above the real audio control | The same action appeared twice — a 44px 🔊 and, under it, the button that actually plays the clip. The emoji belonged to no part of the product's drawing and was `aria-hidden`, so it was decoration standing where the prompt would be. | **RESOLVED** |
+| **I-45** | Onboarding | **P2** | Nothing ever asked a new learner what level they were, and the level they had was buried | A learner could use the app for weeks, be taught from Level 1 throughout, and never discover that a two-minute test would give them words that fit. The Vocabulary Level itself sat on a card two thirds of the way down Home, which is where a number goes when nobody is meant to look at it. | **RESOLVED** |
+| **I-46** | Handwriting | **P2** | Five vowels were drawn visibly off centre, and every attempt ended in a panel of praise | Two things a learner meets on every letter. The reference character sat to one side of the square they were being asked to copy it into, and each attempt — right or wrong — was answered with a headline, a compliment, a stroke-order note and a details toggle. | **RESOLVED** |
 | **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
 | **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
 | **I-18** | Content | **P3** | 103 glosses carried more than one sense in some language | A learner asked what 차 means had two right answers and one button: the card read 車、お茶 in Japanese and "coche, té" in Spanish over the sentence 차를 타요. | **RESOLVED** |
@@ -4811,7 +4895,7 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 **Open — P0: 0 · P1: 2 · P2: 3 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 4 · Resolved: 32**
+**Blocked outside this repository: 1 · Partial: 4 · Resolved: 35**
 
 <!-- /issues:counts -->
 
@@ -4865,7 +4949,8 @@ way a reader can re-run.
 | **I-38** | `scripts/content/split_corpus.py` cuts the generated corpus into bands under `public/corpus/` — shared tables, then band 1 of 600 words and bands of 800 after it, each with the matching slice of all ten languages' meanings, every file named by its own content hash. `data/corpus.ts` fetches them: the tables and band 1 are awaited inside the launch screen's existing 900 ms, the rest arrive in the background once the learner is looking at something.  **The bands are cut on the same key the app reads the corpus in** — `difficulty_score`, then the headword — and that is the load-bearing part. It makes a partly-loaded corpus a *prefix* of the curriculum rather than a subset of it, so a category only ever grows at the end and `vocab-food-2` cannot quietly become a different five words. `data/corpus.test.ts` rebuilds every study set from the finished corpus in one pass and requires it to equal what four incremental passes produced.  `data/vocabulary.ts` is now a live registry: `VOCABULARY` is one array that grows and every derived structure is filled in place, so roughly thirty consumers stayed synchronous and unchanged. The screens that read the corpus *whole* — browse, search, the progress summary, the sound-change examples — use `useCorpusMemo` so they recompute when a band lands, and search says "still loading the rest of the vocabulary" rather than "nothing matches" while it is incomplete. Every "x of y words" reads `corpusTotal()` from the manifest, so the denominator is right on the first frame instead of climbing.  Measured (`npm run bundle:budget`):  ```   first load                      219.0 kB / 460.0 kB    was 437 kB   corpus, first paint              45.7 kB /  64.0 kB   corpus, first paint at 10,000    45.7 kB /  64.0 kB    flat, by construction   corpus, whole                   200.5 kB / 900.0 kB   corpus, whole at 10,000         776.8 kB / 900.0 kB    forecast ```  The old `LAZY_REQUIRED_HEADWORDS = 4_000` gate is gone because there is nothing left for it to gate; in its place the budget now fails the build if a `word-corpus-*.js` chunk reappears in the eager graph, or if `public/corpus` is missing from the build. The whole-corpus budget was **re-derived rather than raised**: 220 kB was a first-load figure for a chunk that no longer exists, and 900 kB is what a background download for a bought product may cost — the property the old number protected is now protected by the first-paint row, which is stricter and flat.  Offline is unchanged: the service worker precaches every band in all ten languages out of the corpus manifest, because unlike the dictionary this *is* the product. | Done. |
 | **I-40** | `pages/ReviewPage.tsx` is a hub: one session card, the manual modes, and two rows — Saved words and Wrong vocabulary — each carrying its own count. The two scheduler figures that used to sit there (*needs practice*, *due today*) and the eight-item preview list are gone: both were true, both restated the number already on the Start button, and the preview told the learner what they were about to be asked.  `pages/SavedWordsPage.tsx` and `pages/MistakesPage.tsx` are the two destinations. Both have search or filtering, an empty state that names the action which fills the list, manual removal, and a practice button.  **One canonical saved state.** `toggleSavedHeadword` resolves a Korean spelling to the taught card when the app teaches it and stores `dict:<headword>` when it does not, so saving 하다 from the dictionary and from its word card is one bookmark and not two rows that disagree. A dictionary-only word is saved but not quizzable — there is no distractor pool to build a fair question from — and the screen says so rather than offering a button that opens an empty session.  **Session length is computed, not listed.** `features/review/sessionSizes.ts` returns the standard rungs that fit plus the whole list, so with seven saved words the options are 5 and All 7 — never a 20 that silently gives seven. `defaultSessionSize` starts at ten, which is the daily goal and therefore a length this learner already knows the shape of.  **Removal is removal.** Clearing a notebook row leaves the word in the corpus and the learner's memory of it untouched; unsaving leaves the mistake; clearing the mistake leaves it saved. `store/reviewLists.test.tsx` is 19 tests over the real provider and a persisting driver, including both directions of that independence, the one-bookmark rule, five wrong answers producing one row with `wrongCount` 5, and a practice plan that resolves to more than one exercise type — which is §17 measured rather than asserted.  `e2e/review-hub.spec.ts` covers the same ground from outside: the count on a hub row equals the number of rows on the screen it opens, the size control never offers a session it cannot run, a removed mistake stays removed across a reload, and both empty states name a next step that is not the button the learner just pressed. |  |
 | **I-41** | Found by treating one reported miss as a symptom rather than a bug to patch. 귀족 turned out to be present and first in its result list; the report was still right that something was wrong, so the cache was counted instead of the complaint. Of 52,799 downloaded pages: 20,706 have no Wiktionary page at all (correctly — they are inflected forms, and §33 forbids those from becoming headwords), **4,456 had a Korean section the parser could not read**, and 833 had only senses the blocklist rejects.  Two causes, both in the parser. `POS_MAP` did not know ten part-of-speech headings that Korean entries actually use — *Dependent noun*, *Proper noun*, *Counter*, *Postposition*, *Ideophone*, *Contraction*, *Phrase*, *Idiom*, *Proverb*, *Number* — and a section it cannot name is a section it drops. And definitions written as templates rather than prose (`{{lb\|ko\|...}}`, cross-reference and gloss templates) were run through `clean_markup`, which deletes markup, so the sense came out empty and the entry was discarded as senseless. `render_definition_templates()` now runs first and turns them into the sentence they were meant to be.  Result: **3,384 headwords recovered**, 것 and 거 among them.  `scripts/dictionary-coverage-qa.mjs` is the gate that would have caught this and now does. It is not a headword count — a count said 26,675 while the words were missing. It asks three questions: a named fixture of 160 ordinary words across 16 domains that a general Korean dictionary must have (160/160 present); what share of the commonest spoken Korean reaches an entry, at four depths, exactly and after morphology; and it fails the build on any fixture miss that is not in `UPSTREAM_GAPS`.  `UPSTREAM_GAPS` holds exactly one word. **왕족 is absent from both the English and the Korean Wiktionary** — checked by hand against both APIs, so no change to the ingestion can find it. It is recorded as a gap in the source rather than hidden as a passing test, and the list should empty rather than grow. |  |
-| **I-42** | `scripts/content/tts.py` gained an `ElevenLabsProvider` — `eleven_multilingual_v2`, `mp3_44100_128`, the two commissioned voices, stability 0.6 / similarity 0.85 / style 0. `generate_audio.py` is resumable and deduplicated: it skips a clip whose text and voice already produced the file, so a run that stops halfway costs nothing to restart.  **Nothing at runtime talks to the vendor.** There is no ElevenLabs code in `apps/web/src`, the clips are static files under `public/audio/`, and the service worker caches them on play. The API key lives in a file outside the repository, read by `scripts/lib/secrets.mjs` from `ELEVENLABS_API_KEY` or that file, and appears **0 times** in source, scripts, documentation, the report, the built `dist`, the APK, the AAB and the git history — scanned with the literal key, not a pattern.  One thing the QA had to learn. `qa_audio.py` failed five clips as "too short for N syllables" because its lower bound divided by a `SPEECH_RATE` the previous engine honoured and this one has no parameter for. The bound was measuring a setting the audio was never generated at. Providers now declare `spoken_rate`, it is recorded in the manifest, and the QA re-derives its bounds from what the clips were actually made at — so the check describes the recordings rather than a config value.  `qa_pronunciation.py` also changed on evidence: the minimal-pair contrast check demanded *both* a duration cue and an intensity cue and failed 닿다/닫다, which a listener can tell apart. It now requires either cue and no contradiction, and treats an unmeasurable clip as unmeasurable rather than as a failure.  The retired engine's attribution is gone from `sources.py`, so no screen credits software the product no longer uses. |  |
+| **I-42** | Restored from `bfe0fbf0`, the last commit before the migration, rather than re-synthesised: all 10,454 clips were in git and were checked out, so what ships is byte-identical to what was verified before rather than a fresh generation that would need verifying again.  **The repairs came back with the voices.** 마디 is in `speech_repairs.py` again, because the defect it corrects belongs to Microsoft's male voice — it reads the isolated word as [마지], palatalising across a boundary that is not there. It had been deleted a few hours earlier on good evidence: re-synthesised unrepaired on the ElevenLabs voice, the recogniser heard 마디. That evidence stopped being about the shipping voice the moment the voice changed, which is the rule this file now states: a repair is evidence about *a specific voice*, and every entry has to earn its place again when the voice does.  **Provenance follows the audio.** `sources.py` credits Microsoft Azure Neural TTS again, so the Legal screen names the engine whose recordings are in the package, and the generated corpus was rebuilt to carry it. Removed with the vendor: the provider class and its two voice IDs, the key reader (`scripts/lib/secrets.mjs`), the backoff helper, and the registry entry — **0 references to ElevenLabs remain in any source, script or generated file**.  `qa_audio.py` kept the improvement and lost the vendor name: it no longer tests for a hard-coded engine but resolves the pace a corpus was spoken at from the provider that made it, which is the general form of the rule and keeps working if an engine that cannot be slowed down is added later.  **A guard was added because this went wrong once.** Run with no provider named, `generate_audio.py` falls back to `edge` — which is correct for somebody trying the pipeline out and wrong for a rebuild. It re-walked 10,454 existing clips, regenerated none of them, and rewrote the manifest to credit an engine that had not touched them, at a rate they were not made at. Nothing failed; the audio was right and its provenance was fiction. It now refuses to change a manifest's provider unless `--provider` says so on purpose.  Verified after the restore: `audio:qa` **0 errors, 0 warnings** over 10,550 clips (48.9 MB, median 1,010 ms), `audio:pronunciation:check` **0 errors**, and a listening pass over the sample §3 names — every full example sentence and every multi-syllable word transcribed exactly in both voices. Isolated single syllables are beyond the recogniser (it returns empty strings and YouTube boilerplate for 300 ms of context-free audio, for clips that are known good), so those rest on the duration, loudness and shape checks instead, which is stated rather than papered over. |  |
+| **I-44** | Not one screen's bug. The curriculum ships word meanings in **ten** languages and the interface in **thirty-two**; every screen that glossed a word passed the *interface* locale to `wordCopy`, which walked its fallback chain and returned English. Each call was correct in isolation and the product was incoherent.  **One resolved content locale.** `i18n/contentLocale.ts` decides, once, which language meanings are read in, and every surface that says what a Korean word means reads that instead of the interface locale. Two properties follow and neither held before: a question cannot come out half-translated, because prompt, answer and distractors all resolve from one pack; and the learner is *told* which language the meanings are in and can choose a different one from the ten that exist, on the language screen.  **The rule the exercise builders enforce is one language, not English.** Requiring the interface language would have deleted vocabulary practice outright in twenty-two languages, which is a worse product than an honest, chosen, consistent second language. A reading question whose options do not share a language is not built; a matching grid drops any row whose language differs from the taught word's.  Two smaller decisions worth recording. English is skipped when walking the fallback chain and returned only at the end, because `fallbackChain` terminates every chain with `en` — taking it as written handed a `pt` reader English while Brazilian Portuguese meanings sat in the corpus. And `contentLocale` uses a plain boolean rather than a `code is string` type predicate, which narrowed its own else-branch to `never` and stopped the function compiling.  `locale:content:check` is the gate. It exists because `i18n:check` reports 32 locales at 100% and is *right* — it reads the interface files, which are a different body of text from the content, with a different source. Reporting one number for both is what let this ship. It measures meanings and example translations per locale and fails on the genuinely dangerous state: a **partly** filled pack, which mixes one screen in ten and reports nothing. Measured: ten locales at 2,581 of 2,581, twenty-two at zero, **none partial**.  The twenty-two remain a content gap — I-19 — and this does not close it. What it closes is the gap between what the app shows and what it admits to showing. |  |
 | **I-09** | `MatchExercise` — four Korean words, four meanings, tap-tap. It is a genuine group exercise rather than a screen: `ScheduledStep` gained `group` and `completes`, `scheduleSteps` holds words back until four are waiting so a grid is only ever made of words already met in that sitting, and the session credits every word a step finishes from one code path. Seven component tests cover the accounting, including that a grid reports one result per word, that both sides of a wrong attempt are marked, and that a double tap on the last pair cannot report twice. Four scheduler tests cover the invariants: every word finished exactly once, no word in two grids, and no grid before its words were introduced. | done |
 | **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
 | **I-21** | A per-question *Can't use audio?* on the two heard-only letter exercises, in all 32 languages. `listen` swaps the clip for the written romanisation and keeps the same four letters; `distinguish` turns the question round and asks which of two sounds the letter makes, because printing the romanisation there would hand over the answer its options already carry as labels. Same item, same skill, same scoring, no penalty and no setting. `accessibility.spec.ts` drives the Listen practice entry, asserts the control is a real button reachable and operable by keyboard, and runs axe over the substituted question. | done |
@@ -4873,6 +4958,8 @@ way a reader can re-run.
 | **I-25** | `measure-composition.mjs` starts its own `vite preview` when nothing is listening on :4477 and reuses one when something is, so it runs unattended. `strokes:measure:check` is in `verify:release`. | done |
 | **I-29** | The failing case was the launch screen, not the feature: `page.mouse.*` has no actionability check, so a wheel dispatched during the 900 ms brand screen landed on the splash. `e2e/helpers/launch.ts` makes the wait explicit and says why. The suite is **236 of 236** across both projects, and `test:e2e` is in `verify:release`. | done |
 | **I-36** | Removed, with nothing in its place: the question is the line of text above and the action is the one button below. One shared `ChoiceExercise` renders every choice question in the lesson and in Review, so it is gone from every route at once.  Removing it exposed an accessibility defect. The button's name is built as "Play the pronunciation of {text}" and a listening question shows no Korean — that being the question — so the caller had nothing to pass and screen-reader users heard "Play the pronunciation of " and then nothing. Naming the letter would read out the answer, so an unnamed button now says "Play the sound", in all 32 languages.  A test asserts the absence of *any* pictograph rather than of one character, plus the positive shape — one hit-sized control, named for what it does, with "Can't use audio?" still under it — in both themes, with an axe scan. | Done. |
+| **I-45** | **Asked once, before the first vocabulary session.** A learner who has never been placed is offered the test with two answers: take it, or start at Level 1. It is not a gate — declining begins the session immediately — and it is never asked again, because a prompt that returns tomorrow is a toll rather than a recommendation. An assessed learner never sees it.  **`placement_skipped_at` is a new field and deliberately not part of `level_test`.** Those are different facts: one is what was measured, the other is what was decided about measuring. Collapsed into one, a learner who declined becomes indistinguishable from one assessed at Level 1, and the app loses the difference between *we know* and *we have not asked*. Schema 12, migrated to null for everybody including existing learners with a result — who never declined anything.  The prompt waits for the profile to load. Without that, every learner looks untested for as long as IndexedDB takes to answer, and somebody assessed months ago opens today's words and is asked whether they would like to be assessed.  **The level now sits beside the streak**, in the status corner every learner passes on every launch — outlined rather than filled, "Lv." small and the number bold. A measurement, not a medal: no badge, no gradient, no crown. And the test's result screen now ends on *Learn words at my level* rather than *Done*, which used to return the learner to the settings screen they came from after thirty questions about what to teach them next.  **What the level does and does not do is stated rather than implied.** For a learner who has never been assessed it rises with what they have learned; for one who has, it is the measurement and holds until they retake. No progress bar was added toward the next level, because for an assessed learner ordinary study does not move it and a bar would say otherwise.  `store/placement.test.tsx` covers §59 A–E, including the case easiest to get wrong: retaking mid-day leaves today's words exactly as they were, because a plan is built once and stored and a new level is a fact about tomorrow. |  |
+| **I-46** | **The centring was a font-metrics bug, and it was measured.** `text-align: center` centres a glyph's advance width and a line box centres its ascent-to-descent band; neither is the ink. Compatibility jamo are drawn to read in isolation rather than to fill their em, so off Pretendard at weight 600: ㅜ and ㅠ sit 7.8% and 7.5% of an em too low, ㅏ 6.8% too far right, ㅑ 4.0%, ㅗ 3.8%. About seven pixels at lesson size, and worse in context — the guide square *is* centred, so the model and the target disagreed about where the letter belongs.  `measure-jamo.mjs` already renders each letter in the real face to measure its proportions; it now also records how far the ink falls from the centre of the box centring gives it, and `CenteredGlyph` subtracts that. Nobody types the numbers, which is the difference between this and a per-letter margin.  **Three of the four surfaces were already correct.** The handwriting guide, the stroke-order animation and the *Watch it written* preview are drawn from `strokeVectors.ts`, which fits authored strokes to the ink bounds of the measured box and centres those — ink-centred by construction. Only the reference character is rendered as text. Composed syllables measure within 2.5% and need nothing, because a syllable block is designed to fill its em. `jamo:centering:check` gates the **residual** — the face's offset less the shipped correction — so a font update that moves a glyph without a re-measure fails the build.  **The feedback card is gone.** A headline, a line of praise, a stroke-order note, a Show details toggle and a numeric breakdown, under a two-stroke letter, every attempt. A learner writing ㄱ for the fourth time does not read "That's it!" — they have read it three times, and repeated praise stops carrying information the moment it becomes certain. Correct is now one button; wrong is one actionable sentence and Retry. The grade is unchanged and still recorded; what went is the ceremony around reporting it. The percentages and stroke-order notes were deleted rather than moved behind a toggle — a mismatch percentage is the grader talking about itself. `i18n:check` caught the three strings the panel owned and they are gone from all 32 locales. |  |
 | **I-15** | Regenerated, fixtured, checked on-device. | done |
 | **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
 | **I-18** | All 103 were read against the sentence each card asks. 35 named a sense the sentence never demonstrates and were trimmed across ten languages; ten cards moved sense outright — 맡다 was glossed "to take charge of" over 냄새를 맡아 보세요, 시키다 was "to make someone do" over "I ordered pizza" — and three illustrations moved with them. The remaining 38 were read and kept: Japanese has no single verb for 있다 and must write ある、いる, which is one sense in the two renderings the language requires. `vocabulary:sense:qa:check` now fails on a split gloss that is not on the reviewed list, and on a listed one that has stopped being split; both directions are negative-tested. Comma-merged glosses remain outside the rule and are tracked under I-10. | Done. |
@@ -5049,7 +5136,7 @@ result.
 
 | Command | Purpose | Result this cycle |
 | --- | --- | --- |
-| `test` (web) | web unit suite | **PASS** — 44 files, **724** tests |
+| `test` (web) | web unit suite | **PASS** — 46 files, **739** tests |
 | `test` (handwriting-core) | evaluator unit suite | **PASS** — 5 files, **96** tests |
 | **`test:e2e`** | 312 Playwright cases (156 × 2 projects) | **PASS — 312 of 312**, 18.3 min |
 | `build` | production web build | **PASS** — 3.0 s |

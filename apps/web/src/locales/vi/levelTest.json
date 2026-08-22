@@ -30,7 +30,8 @@
     "of": "trên {{levels, number}}",
     "band": "Nhiều khả năng nằm giữa {{low, number}} và {{high, number}}.",
     "words": "Ở cấp này, người đọc thường nhận ra {{count, number}} từ tiếng Hàn thông dụng nhất.",
-    "recommend": "Từ vựng mỗi ngày giờ sẽ theo cấp độ này."
+    "recommend": "Từ vựng mỗi ngày giờ sẽ theo cấp độ này.",
+    "start": "Học từ đúng trình độ của tôi"
   },
   "bands": {
     "starter": "KHỞI ĐẦU",
