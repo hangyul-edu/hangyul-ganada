@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog } from '../ui/ConfirmDialog';
 
 import { usePronunciation } from '../audio/PronunciationContext';
-import { strictMeaning, wordCopy } from '../data/wordCopy';
+import { strictMeaning, type wordCopy } from '../data/wordCopy';
 import { getFont } from '../data/fonts';
 import { retrySteps, scheduleSteps, type WordStep } from '../domain/vocabularyDay';
 import { BuildExercise } from '../features/review/BuildExercise';
