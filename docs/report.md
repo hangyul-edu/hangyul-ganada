@@ -2381,7 +2381,7 @@ not thought of it, and that argument still holds.
 | `audio:qa` | **10,550 clips decoded end to end**, 48.9 MB, 0 errors, 0 warnings, in 2m49s |
 | `dictionary:qa:check` | 30,059 headwords, 39,640 senses, 83 chunks, every name a hash of its contents and every name ASCII |
 | `perf:dictionary:check` | 3.9 ms per keystroke phone-adjusted, 451 kB index — both inside budget |
-| `copy:audit:check` | 19,266 strings across 32 languages, 0 errors |
+| `copy:audit:check` | 19,736 strings across 32 languages, 0 errors |
 
 The four content warnings are loanwords whose translations are the same word in
 Latin script — 호텔 → *hotel*, 골프 → *golf*, 위스키 → *whisky*, 요가 → *yoga*.
@@ -3829,7 +3829,7 @@ has ı; Thai has อือ — where the English has to reach for "the o in song
 ## 23.7 Naturalness, as distinct from coverage
 
 **PARTIALLY VERIFIED, and the honest answer is in a file of its own.**
-`copy:audit:check` passes over **19,266 strings in thirty-two languages** with 0
+`copy:audit:check` passes over **19,736 strings in thirty-two languages** with 0
 errors, and `i18n:check` reports 100% for all thirty-two — but both check
 structure. Neither can tell whether a sentence reads well to someone who grew up
 speaking the language.
@@ -4315,7 +4315,7 @@ prompted them:
 | Are jamo proportions pedagogically trustworthy? | They were not. 30 of 40 were off a fallback face. §12.5 |
 
 **Pictographs in the product: zero.** All 32 locales' copy was scanned for emoji
-and symbol ranges — 0 of 19,266 strings. The source outside comments carries
+and symbol ranges — 0 of 19,736 strings. The source outside comments carries
 five characters in those ranges and all five are the same `→`, used to mean
 *becomes*: 있다 → 읻따 on the sound-changes screen, and a word beside the form
 its example writes it in. That is a word, not an ornament.
@@ -5265,7 +5265,7 @@ result.
 | `audio:pronunciation:check` | 2,615 items | **PASS** — 0 errors, 0 warnings, against the regenerated ElevenLabs clips |
 | `mobile:icons:check` | 42 generated icon and splash files | **PASS** |
 | `fonts:audit` | bundled practice faces and their licences | **PASS** — 6 faces, all SIL OFL 1.1, 836 Korean characters covered, 0 errors |
-| `copy:audit:check` | **19,544 strings, 32 languages** | **PASS** — 0 errors, **1 warning kept deliberately**. It flags the hub row *Wrong vocabulary* as scolding, which is a fair reading; the name is the one the brief specifies for the feature, so it stands and the flag is recorded rather than silenced. It also caught the Korean *레벨 {{level}}에 맞춘 단어예요* under the rule that says the product shows no levels — a rule written before the Vocabulary Level existed. The learner asks for that level, sits a test for it and reads it on two other screens, so the key is excepted by name and the rule still covers every other difficulty string |
+| `copy:audit:check` | **19,736 strings, 32 languages** | **PASS** — 0 errors, **1 warning kept deliberately**. It flags the hub row *Wrong vocabulary* as scolding, which is a fair reading; the name is the one the brief specifies for the feature, so it stands and the flag is recorded rather than silenced. It also caught the Korean *레벨 {{level}}에 맞춘 단어예요* under the rule that says the product shows no levels — a rule written before the Vocabulary Level existed. The learner asks for that level, sits a test for it and reads it on two other screens, so the key is excepted by name and the rule still covers every other difficulty string |
 | **`locale:editorial:check`** | register, split translations, typography and label length across 31 languages | **PASS** — 0 errors, 15 warnings kept for a person. **NEW.** It found five languages mixing polite and familiar address, 71 straight apostrophes, and one question worded two ways in six languages. §23.7 |
 | **`leveltest:qa:check`** | 6,000 simulated sittings against the shipped item bank | **PASS** — MAE 1.34 levels, 95.3% within ±3, exactly 30 items, composition 12/9/9. §13.6 |
 | **`content:corpus:check`** | `public/corpus` matches the generated corpus | **PASS** — 2,581 words in 4 bands, 10 locales, 46 files. **NEW.** §13.4 |
