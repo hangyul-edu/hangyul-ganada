@@ -91,6 +91,8 @@ MARK_SOURCE = BRAND / "logo-symbol.png"
 #: which is how the English one got here. `_wordless` rebuilds the equivalent
 #: from the still instead. See its docstring.
 SPLASH_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "splash_eng.png"
+#: The Korean artwork, for `drawable-ko`. See the note in `build`.
+SPLASH_KO_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "splash_ko.png"
 
 #: The social-sharing preview, and the one asset here that is not a mark.
 #:
@@ -474,12 +476,57 @@ def build() -> dict[Path, bytes]:
         _assert_inside_safe_zone(themed, 66 / 108, "monochrome icon layer")
         files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_monochrome.png"] = _png(themed)
 
-    # --- Android legacy splash ----------------------------------------------
+    # --- Android 12+ system splash icon --------------------------------------
+    #
+    # Android 12 and newer always draw a system splash and an app cannot opt
+    # out. Left unset, `windowSplashScreenAnimatedIcon` falls back to the
+    # **launcher icon**, so a cold start read as three screens: the mandarin
+    # tile, then the app's own splash with the jamo mark, then the app. Two
+    # different marks in a row is what makes it read as two splashes.
+    #
+    # Supplying the splash's *own* mark makes the system frame the first frame
+    # of the configured splash rather than a picture of the launcher. The ground
+    # colour already matches, so what a learner sees is the ground, the mark,
+    # then the wordmark resolving on top of it — one splash.
+    #
+    # Drawn on the adaptive-icon canvas because the system masks and scales this
+    # the same way it does a launcher icon: 108/48 of the nominal size, artwork
+    # inside the safe circle, transparent outside it.
+    # A shade smaller than the launcher's fraction: the mark is wider than the
+    # app icon's artwork and overflowed the safe circle by two pixels at the
+    # same setting, which the assertion below caught.
+    SPLASH_ICON_FRACTION = ADAPTIVE_SAFE_FRACTION * 0.94
+    for density, size in ANDROID_DENSITIES.items():
+        canvas = round(size * 108 / 48)
+        splash_icon = _centred(mark, (canvas, canvas), SPLASH_ICON_FRACTION, None)
+        _assert_inside_safe_zone(splash_icon, 66 / 108, "splash screen icon")
+        files[ANDROID_RES / f"mipmap-{density}" / "splash_icon.png"] = _png(splash_icon)
+
+    # --- Android legacy splash, localized ------------------------------------
+    #
+    # The pre-Android-12 path, where there is no system splash and the window
+    # background *is* the splash — and the one place the full artwork can be
+    # shown natively.
+    #
+    # Two versions, chosen by resource qualifier: Korean devices get the Korean
+    # artwork, everything else the English. This used to be one wordless bitmap
+    # built by painting the type out, because a single localized file would have
+    # put an English wordmark in front of Korean learners. Qualifying the
+    # resource solves that properly — each learner gets their own words —
+    # without the reconstruction.
+    #
+    # The qualifier follows the *system* locale, or the per-app locale on
+    # Android 13 and newer where one is set. A learner whose phone is in English
+    # and who switched the app to Korean gets the English native splash and then
+    # the Korean web one; that is a real gap and it is stated in the report
+    # rather than papered over.
+    for locale_dir, source in (("", SPLASH_SOURCE), ("-ko", SPLASH_KO_SOURCE)):
+        art = Image.open(source).convert("RGBA")
+        for directory, size in ANDROID_SPLASH.items():
+            files[ANDROID_RES / f"{directory}{locale_dir}" / "splash.png"] = _png(
+                _launch_bitmap(art, size, SPLASH_GROUND)
+            )
     splash_art = _wordless(Image.open(SPLASH_SOURCE))
-    for directory, size in ANDROID_SPLASH.items():
-        files[ANDROID_RES / directory / "splash.png"] = _png(
-            _launch_bitmap(splash_art, size, SPLASH_GROUND)
-        )
 
     # --- iOS -----------------------------------------------------------------
     # One 1024 icon: Xcode 14 and newer generate the rest, so there is no set of
