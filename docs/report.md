@@ -59,9 +59,9 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `b94831b` — see §2.2 for the pipeline |
+| Git commit | `8e9a9a7` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`922bc72`** — one commit behind HEAD, and the difference is this report. `npm run release:current` passes: nothing outside `docs/`, `result/` and `app_result/` changed. See §2.2 |
+| Commit the delivered APK/AAB were built from | **`f215e66`** — one commit behind HEAD, and the difference is this report. `npm run release:current` passes: nothing outside `docs/`, `result/` and `app_result/` changed. See §2.2 |
 | Signed APK | 67.6 MB · `5b7220caeb19ae1b…` |
 | Signed AAB | 66.4 MB · `68f4251cf513aa10…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
@@ -97,14 +97,22 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-922bc72  the production pass — every change in this report
+f215e66  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, the existing production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from 922bc72, and asserted to be
+result/, app_result/   from f215e66, and asserted to be
 ```
+
+**It was built twice, and the second one is evidence.** The package was
+rebuilt after three build scripts were corrected — see I-50's note on the index
+columns — and the APK and AAB came out with the *same* SHA-256 as before:
+`5b7220ca…f747e` and `68f4251c…13717`. Those three scripts and a generated
+export that nothing bundles are exactly the kind of change that looks like it
+might reach a customer and does not, and an identical hash settles it without
+an argument.
 
 **No new keystore, and the certificate was checked in both directions.** The
 keystore at `/root/.hangyul-keys/release.jks` was read before the build and its
@@ -247,7 +255,7 @@ a build's own record of itself is not evidence about the file.
 | Corpus a learner waits for before first paint | **45.7 kB gz of a 64 kB budget**, and **the same at 10,000 words** | the whole corpus, in the first load |
 | Corpus forecast at 10,000 words | 776.8 kB gz of a 900 kB budget, background and precached | 754.6 kB of 220 kB — **343%**, in the first load |
 | Everything precached, now including `public/corpus` | **877.2 kB gz of a 1400 kB budget** (63%) | 472.9 kB of 900 kB, corpus not included |
-| Delivered APK/AAB built from | **`922bc72`**, one commit behind HEAD and the difference is this report — which `release:current` distinguishes | `c350d03`, the same commit |
+| Delivered APK/AAB built from | **`f215e66`**, one commit behind HEAD and the difference is this report — which `release:current` distinguishes | `c350d03`, the same commit |
 | Signed APK certificate, read from the signing block | `157a2bb1…debc`, v2 + v3, valid to 2053 | same identity |
 | Dictionary chunks reachable inside the delivered APK | **76 of 76**, verified by unpacking it | 0 of 76 on the first attempt — see §2.2 |
 | Trace guide vs its own box (ㅏ) | **0.243 × 0.718, centred at (0.499, 0.499)** | 0.228 × 0.672 at (0.556, 0.460) |
@@ -6539,7 +6547,7 @@ speech plan  →  Azure Neural TTS  →  public/audio/*.mp3 + manifest.json
 | Artefact | State |
 | --- | --- |
 | Web build | current — builds clean from HEAD, every budget met |
-| `app_result/hangyul-ganada-release.apk` | 70,898,778 B (67.6 MB) · SHA-256 `5b7220caeb19ae1b912a2959b5e38588370e1b3cd861680e86cca782962f747e` · built from **`922bc72`** · signed |
+| `app_result/hangyul-ganada-release.apk` | 70,898,778 B (67.6 MB) · SHA-256 `5b7220caeb19ae1b912a2959b5e38588370e1b3cd861680e86cca782962f747e` · built from **`f215e66`** · signed |
 | `app_result/hangyul-ganada-release.aab` | 69,638,521 B (66.4 MB) · SHA-256 `68f4251cf513aa106cf52ee7837c309ce726e4012a6ad09b9d8ae2cfcd713717` · same commit · signed |
 | `result/` | the same two binaries byte-for-byte, plus `RELEASE_VALIDATION.md`, `BUILD_OR_SIGNING_BLOCKERS.md`, the store assets and current Android and iOS project snapshots |
 | Built from the current source? | **Yes**, and asserted: `npm run release:current` compares `build-info.json`'s commit against HEAD and is in `verify:release` |
