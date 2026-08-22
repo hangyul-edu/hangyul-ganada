@@ -131,7 +131,34 @@ const measured = await page.evaluate(
       }
       const width = x1 - x0 + 1;
       const height = y1 - y0 + 1;
-      out[character] = Math.round((width / height) * 1000) / 1000;
+
+      /*
+       * And how far the ink sits from the middle of the box that *centring*
+       * would put in the middle.
+       *
+       * `text-align: center` centres the advance width and a line box centres
+       * the ascent-to-descent band; neither is the ink. Compatibility jamo are
+       * drawn to read in isolation rather than to fill their em, so ㅏ's ink
+       * sits well right of its advance centre and ㅜ's well below its line-box
+       * centre — measured at 6.8% and 7.8% of the em. On a lesson card that is
+       * a letter visibly not in the middle of the square the learner is being
+       * asked to copy it into, with nothing in the stylesheet that looks wrong.
+       *
+       * Recorded as a share of the em so it is a property of the face rather
+       * than of any one screen's font size, and applied as a translate by
+       * `CenteredGlyph`. Not a per-letter margin: nobody types these numbers.
+       */
+      const metrics = context.measureText(character);
+      const ascent = metrics.fontBoundingBoxAscent;
+      const descent = metrics.fontBoundingBoxDescent;
+      const originX = canvas * 0.12;
+      const originY = canvas * 0.82;
+      const round = (value) => Math.round((value / size) * 1000) / 1000;
+      out[character] = {
+        aspect: Math.round((width / height) * 1000) / 1000,
+        dx: round((x0 + x1) / 2 - (originX + metrics.width / 2)),
+        dy: round((y0 + y1) / 2 - (originY - ascent + (ascent + descent) / 2)),
+      };
     }
     return out;
   },
@@ -145,7 +172,14 @@ const file = {
   face: "'Pretendard Variable', Pretendard, sans-serif",
   weight: WEIGHT,
   /** Ink-box aspect ratio (width ÷ height) per letter, off the reference face. */
-  aspect: measured,
+  aspect: Object.fromEntries(Object.entries(measured).map(([k, v]) => [k, v.aspect])),
+  /**
+   * How far the ink sits from the centre of the box a centred element occupies,
+   * as a share of the em. Subtract it to put the letter where it looks centred.
+   */
+  inkOffset: Object.fromEntries(
+    Object.entries(measured).map(([k, v]) => [k, { dx: v.dx, dy: v.dy }]),
+  ),
 };
 const text = `${JSON.stringify(file, null, 2)}\n`;
 

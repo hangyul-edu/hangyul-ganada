@@ -24,6 +24,7 @@ import { requestPersistence } from '../storage/capability';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
+import { CenteredGlyph } from '../ui/CenteredGlyph';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Badge } from '../ui/Chip';
 import { ProgressBar } from '../ui/Progress';
@@ -379,14 +380,21 @@ export function LetterSessionPage() {
                 {t(`learning:session.prompt.${stepState.step}`)}
               </p>
               <div className={styles.promptChar}>
-                <span
+                {/*
+                  Centred on its ink, not on its advance width — §10.
+
+                  Pretendard draws ㅏ 6.8% of an em right of the middle of the
+                  space it reserves for it, and ㅜ 7.8% below. `text-align`
+                  cannot see that, so the letter sat visibly to one side of the
+                  square the learner was about to copy it into. The correction
+                  is measured off the face by `measure-jamo.mjs`, not typed.
+                */}
+                <CenteredGlyph
+                  character={current.character}
                   className={styles.promptGlyph}
                   style={{ fontFamily: font.font_family }}
-                  lang="ko"
                   data-testid="prompt-glyph"
-                >
-                  {current.character}
-                </span>
+                />
                 <span className={styles.promptRoman}>{current.romanization}</span>
                 <SpeakerButton
                   audioId={current.audio.sound}
