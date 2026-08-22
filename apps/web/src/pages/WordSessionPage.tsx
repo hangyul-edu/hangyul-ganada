@@ -7,7 +7,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { usePronunciation } from '../audio/PronunciationContext';
 import { wordCopy } from '../data/wordCopy';
 import { getFont } from '../data/fonts';
-import { scheduleSteps } from '../domain/vocabularyDay';
+import { retrySteps, scheduleSteps, type WordStep } from '../domain/vocabularyDay';
 import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { WordIntro } from '../features/learning/WordIntro';
@@ -141,15 +141,44 @@ export function WordSessionPage() {
   useEffect(() => {
     if (steps === null && ready) setSteps(scheduleSteps(vocabularyDay));
   }, [ready, steps, vocabularyDay]);
-  const queue = useMemo(
+  const [index, setIndex] = useState(0);
+  const [finished, setFinished] = useState(false);
+  /**
+   * How the current question was answered, read by `advance`.
+   *
+   * The two are separate events — `record` fires on the answer, `advance` when
+   * the learner presses on — and the day's counter moves in the second. Before
+   * this it moved unconditionally, so a wrong answer completed the word and a
+   * learner could finish 10/10 having missed two of them. §24, §25.
+   */
+  const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(null);
+  /**
+   * Which question each word was missed on, this sitting only.
+   *
+   * Used to ask a different one on the retry — §27. Not persisted: losing it on
+   * a reload costs the learner nothing, because the *word* is still owed either
+   * way and that fact lives in the plan.
+   */
+  const missed = useRef<Map<string, WordStep>>(new Map());
+  /** Retry questions, appended when a pass ends with words still owed. */
+  const [retries, setRetries] = useState<ReturnType<typeof buildDailyQuestions>>([]);
+  /** Words finished *in this sitting*, for the closing card. Not the day's total. */
+  const [wordsDone, setWordsDone] = useState(0);
+  const firstPass = useMemo(
     () => (steps === null ? [] : buildDailyQuestions(steps, meaningOf, label)),
     [steps, meaningOf, label],
   );
+  /*
+    The first pass, then whatever is still owed.
 
-  const [index, setIndex] = useState(0);
-  const [finished, setFinished] = useState(false);
-  /** Words finished *in this sitting*, for the closing card. Not the day's total. */
-  const [wordsDone, setWordsDone] = useState(0);
+    §26 and §29: a session does not end at 8/10 having quietly dropped two words
+    the learner got wrong. They go to the back and come round again, as a
+    *different* question about the same taught sense, until they are answered or
+    the learner leaves. Leaving is fine — the plan remembers what is owed, so
+    tomorrow's first screen is today's unfinished word.
+  */
+  const queue = useMemo(() => [...firstPass, ...retries], [firstPass, retries]);
+
   const sessionId = useRef<string | null>(null);
 
   useStudyClock(!finished);
@@ -195,7 +224,20 @@ export function WordSessionPage() {
     // day's counter, the mastery ladder and the activity row exactly once. A
     // single-word question puts one id in here or none, so there is one path
     // for both kinds and no branch to forget. See `ScheduledStep.completes`.
-    for (const wordId of current?.completes ?? []) {
+    /*
+      Only a correct answer completes a word — §24, §25.
+
+      `answeredCorrectly` is null for a step that asks nothing: the introduction
+      card, which teaches and moves on. §23 is explicit that meeting a word is
+      not finishing it, so an intro credits nothing and a learner who reads all
+      ten introductions and answers nothing still reads 0/10.
+    */
+    const passed = answeredCorrectly === true;
+    if (answeredCorrectly === false && current) {
+      // Remember *how* it was missed, so the retry asks something else.
+      missed.current.set(current.word.id, current.step);
+    }
+    for (const wordId of passed ? (current?.completes ?? []) : []) {
       completeDailyWord(wordId);
       setWordsDone((n) => n + 1);
       /*
@@ -215,13 +257,46 @@ export function WordSessionPage() {
        */
       recordRecognition('word', wordId, true);
     }
+    setAnsweredCorrectly(null);
+
     if (index + 1 >= queue.length) {
+      /*
+        The pass is over. Anything still owed comes round again — §26, §29.
+
+        Read off the plan rather than off a list this component keeps, which is
+        what makes it survive a reload: `completed` is persisted and a word is
+        only in it once answered correctly, so "what is left" is always
+        derivable and can never disagree with the bar above it. The words just
+        credited are included, because `completeDailyWord` has already written
+        them and this reads the result.
+      */
+      const owed = retrySteps(
+        { ...vocabularyDay, completed: [...vocabularyDay.completed, ...(passed ? (current?.completes ?? []) : [])] },
+        missed.current,
+      );
+      const next = buildDailyQuestions(owed, meaningOf, label);
+      if (next.length > 0) {
+        setRetries((previous) => [...previous, ...next]);
+        setIndex((n) => n + 1);
+        return;
+      }
       if (sessionId.current) completeSession(sessionId.current);
       setFinished(true);
       return;
     }
     setIndex((n) => n + 1);
-  }, [current, index, queue.length, completeDailyWord, completeSession, recordRecognition]);
+  }, [
+    current,
+    index,
+    queue.length,
+    completeDailyWord,
+    completeSession,
+    recordRecognition,
+    answeredCorrectly,
+    vocabularyDay,
+    meaningOf,
+    label,
+  ]);
 
   const leave = () => navigate('/words');
 
@@ -434,8 +509,9 @@ export function WordSessionPage() {
               chosen: string;
               hintLevel: number;
               responseMs: number;
-            }) =>
-              recordReview({
+            }) => {
+              setAnsweredCorrectly(result.correct);
+              return recordReview({
                 kind: 'word',
                 item_key: current.word.id,
                 skill: current.exercise!.candidate.skill,
@@ -448,6 +524,7 @@ export function WordSessionPage() {
                 ...(!result.correct ? { confused_with: result.chosen } : {}),
                 session_id: sessionId.current,
               });
+            };
 
             const shared = {
               key: `${current.word.id}-${current.step}-${index}`,

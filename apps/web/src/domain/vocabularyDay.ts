@@ -628,6 +628,72 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
 
 // --- Where the learner is in it -----------------------------------------------
 
+/**
+ * Which assessment to re-ask a word with after a wrong answer.
+ *
+ * ## Why a word comes back at all
+ *
+ * The day's goal is *ten words learned*, not *ten questions attempted* — §22.
+ * A word answered wrongly has not been learned, so it does not count and it is
+ * not finished with: it goes to the back of the session and is asked again. The
+ * alternative, which is what the app used to do, credits the word anyway and
+ * lets the learner reach 10/10 having got two of them wrong. That number then
+ * means nothing, and a learner who notices stops trusting the bar.
+ *
+ * ## Why the retry is a different question
+ *
+ * §27. Asked the identical multiple-choice question a minute later, a learner
+ * can answer from the shape of the screen — the right answer was second, the
+ * long one. That measures short-term memory of a layout. A different exercise
+ * on the same taught sense measures the word.
+ *
+ * The order is fixed rather than random so a session is reproducible: the step
+ * that was failed is dropped to the end of the preference list, and the first
+ * one the word can actually support is used. `buildDailyQuestions` still drops
+ * anything that cannot be built into a fair question, so a word with no example
+ * sentence never gets a `context` retry.
+ */
+const RETRY_ORDER: readonly Exclude<WordStep, 'intro' | 'match'>[] = [
+  'meaning',
+  'produce',
+  'context',
+  'build',
+];
+
+/**
+ * The words still owed at the end of a pass, as questions to ask again.
+ *
+ * Reads the plan rather than a separate list, which is what makes the retry
+ * queue survive a reload for free — §31. `plan.completed` is persisted, a word
+ * is complete only when it has been answered correctly, so "what is left" is
+ * always derivable and can never disagree with the progress bar above it.
+ *
+ * `failed` is this sitting's memory of *how* each word was missed, used only to
+ * pick a different question. Losing it on a reload costs nothing: the learner
+ * gets the first-choice exercise instead of the second, which is still a fair
+ * question about a word they still owe.
+ */
+export function retrySteps(
+  plan: DailyPlan,
+  failed: ReadonlyMap<string, WordStep> = new Map(),
+): ScheduledStep[] {
+  const done = new Set(plan.completed);
+  return plan.words
+    .filter((word) => !done.has(word.wordId))
+    .map((word) => {
+      const missed = failed.get(word.wordId);
+      const supported = RETRY_ORDER.filter((step) => word.steps.includes(step));
+      const pool = supported.length > 0 ? supported : (['meaning'] as const);
+      const step = pool.find((candidate) => candidate !== missed) ?? pool[0]!;
+      return {
+        wordId: word.wordId,
+        step,
+        completesWord: true,
+        completes: [word.wordId],
+      };
+    });
+}
+
 export interface DayProgress {
   /** Words finished today. The numerator the learner reads. */
   done: number;
@@ -643,7 +709,19 @@ export interface DayProgress {
 }
 
 export function dayProgress(plan: DailyPlan): DayProgress {
-  const done = plan.completed.length;
+  /*
+   * Distinct words, not entries.
+   *
+   * `completeDailyWord` ignores a repeat, so the list should already be unique
+   * and counting its length was correct in practice. It was still the wrong
+   * thing to count: the number on the bar is *how many words are finished*, and
+   * deriving it from the length of a log means any future path that appends
+   * twice — a matching grid crediting a word its single-word step also credits,
+   * a retry landing after a slow write — inflates the learner's progress
+   * silently. §28 asks for no duplicate completion; this makes it unrepresentable
+   * rather than merely avoided.
+   */
+  const done = new Set(plan.completed).size;
   /*
    * The denominator is the goal, and only the goal.
    *
