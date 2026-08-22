@@ -59,11 +59,11 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `2516b58` — see §2.2 for the pipeline |
+| Git commit | `9beb21a` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`2516b58` — the same commit**, asserted by `npm run release:current`. See §2.2 |
-| Signed APK | 67.0 MB · `d5a62dd9410e9522…` |
-| Signed AAB | 65.8 MB · `baee13d5ceaaa1dd…` |
+| Commit the delivered APK/AAB were built from | **`9beb21a` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 67.4 MB · `1a16c6e6194846a9…` |
+| Signed AAB | 66.2 MB · `5205254fb249d1b0…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
@@ -97,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-2516b58  the production pass — every change in this report
+9beb21a  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from 2516b58, and asserted to be
+result/, app_result/   from 9beb21a, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -133,7 +133,10 @@ previous report:
 | Native launch bitmaps | all **ten** tested for ink in the wordmark band: 0 dark pixels, 0 brand-orange pixels. Wordless, as intended |
 | **The old raster cut** | **absent** — `strokeAssets`, `strokeReveal`, `segmentation` all return nothing |
 | The dictionary | `manifest.json` reporting 26,675 headwords and 34,869 senses, and **76 of 76 chunks reachable by the name the manifest gives** |
-| A canonical taught sense | `word_cha#car` in the word-corpus chunk |
+| A canonical taught sense | `word_cha#car` in `corpus/band-1-….json` |
+| **The learning corpus** | **46 files** under `assets/public/corpus/` — manifest, tables, 4 bands and 40 locale packs — every name ASCII, and the manifest's `headwords: 2581` |
+| **The Vocabulary Level bank** | `level-test/manifest.json` and `level-test/bank-4cafe65d.json`, 1.7 MB |
+| **The corpus as a JavaScript chunk** | **absent** — no `word-corpus-*.js` in the package, which is the point of §13.4 |
 | The corrected ㄱ | `.885` in the bundle, and no `lean = 0.28` anywhere in it |
 | The decorative speaker | **absent** — no 🔊 in any shipped chunk; `Play the sound` is present |
 | The redesigned confirmation dialog | `ConfirmDialog` in the bundle |
