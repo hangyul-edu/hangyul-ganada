@@ -569,6 +569,27 @@ export interface PracticeFont {
   family_name: string;
   /** CSS font-family stack. Drives both the on-screen glyph and the mask. */
   font_family: string;
+  /**
+   * The family to set *reading* text in, when it differs from the mask's.
+   *
+   * One face needs the distinction. Gaegu draws small letters inside its em —
+   * measured over fifteen syllables, its ink band is 0.712 of the em where the
+   * other five sit at 0.848–0.919 — so a learner who picks 손글씨체 reads the
+   * whole app about a fifth smaller than a learner who picks anything else.
+   * `scripts/face-size-qa.mjs` renders that comparison rather than arguing it
+   * from metrics, which is what §51 asked for.
+   *
+   * The fix cannot be applied to `font_family`, because that string also
+   * builds the mask the handwriting evaluator grades against, and Gaegu's
+   * reference glyph is already at the end of its rope: `glyph_scale` lifted it
+   * from 0.78 to 1.00 and the sweep in `data/fonts.ts` shows false rejection
+   * tripling at 1.04. Enlarging the graded face again would fail honest
+   * attempts, which §51 forbids.
+   *
+   * So reading and grading part company here. Absent means they are the same
+   * string, which is true of every face but one.
+   */
+  text_family?: string;
   category: TypefaceCategory;
   weight: number;
   license: string;

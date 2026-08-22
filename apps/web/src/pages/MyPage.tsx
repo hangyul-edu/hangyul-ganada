@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import type { VoiceGender } from '@hangyul-ganada/shared-types';
 
 import { usePronunciation } from '../audio/PronunciationContext';
-import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS } from '../data/fonts';
+import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS, textFamily } from '../data/fonts';
 import { useCorpus } from '../data/useCorpus';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
 import { NextStepCard } from '../features/learning/NextStepCard';
@@ -432,7 +432,7 @@ export function MyPage() {
                       */}
                       <span
                         className={styles.fontPreview}
-                        style={{ fontFamily: font.font_family, fontWeight: font.weight }}
+                        style={{ fontFamily: textFamily(font), fontWeight: font.weight }}
                         aria-hidden="true"
                       >
                         <span className={styles.fontPreviewLg} lang="ko">

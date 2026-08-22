@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { EvaluationResult } from '@hangyul-ganada/handwriting-core';
 
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import { strictMeaning, wordCopy } from '../data/wordCopy';
 import { getWord } from '../data/vocabulary';
 import type { PracticePlan } from '../domain/plan';
@@ -346,6 +346,12 @@ export function ReviewSessionPage() {
             <PracticeCanvasCard
               key={`${candidate.itemKey}-${index}`}
               character={exercise.writeTarget ?? ''}
+              /*
+                `font_family`, not `textFamily` — the mask the evaluator grades
+                against is built from this string, and Gaegu's graded face is
+                one step from a false-rejection cliff. See `text_family` in
+                `shared-types`: reading and grading part company at this prop.
+              */
               fontFamily={font.font_family}
               fontWeight={font.weight}
               glyphScale={font.glyph_scale}
@@ -400,7 +406,7 @@ export function ReviewSessionPage() {
           <ChoiceExercise
             key={`${candidate.itemKey}-${candidate.skill}-${index}`}
             exercise={exercise}
-            fontFamily={font.font_family}
+            fontFamily={textFamily(font)}
             isLast={isLast}
             onAnswered={(result) =>
               record(result.correct, result.correct ? 1 : 0, {

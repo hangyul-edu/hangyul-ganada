@@ -1,0 +1,44 @@
+/*
+  Gaegu, at the size the other five faces read at.
+
+  ## Why a second family and not a bigger font-size
+
+  `size-adjust` scales the glyph outlines and the face's own metrics against an
+  unchanged `font-size`. Nothing in any layout has to know: a heading stays the
+  same `font-size`, a numeric `line-height` resolves to the same pixels, and a
+  box sized in `em` is unmoved. Multiplying `font-size` at fifteen call sites
+  would have done none of that.
+
+  ## Why 127%
+
+  `scripts/face-size-qa.mjs` renders fifteen syllables in each of the six
+  practice faces at one font size and measures the ink band as a fraction of
+  the em:
+
+      nanum-myeongjo  0.919
+      nanum-gothic    0.908
+      gowun-batang    0.905   <- median
+      gowun-dodum     0.882
+      pretendard      0.848
+      gaegu           0.712   <- -21.3%
+
+  0.905 / 0.712 is 1.27. The check fails a face more than 8% from the median,
+  which is a little wider than the natural spread of the five that were never
+  in question.
+
+  ## Why the files are named here
+
+  @fontsource ships the `@font-face` rules in its own stylesheet and they cannot
+  be amended, so this declares a second family over the same subset files. The
+  `src` list is Gaegu's Korean subset — the only range this app paints in a
+  practice face — and the unicode-range keeps it from being fetched for Latin.
+*/
+@font-face {
+  font-family: 'Gaegu Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  size-adjust: 127%;
+  src: url('@fontsource/gaegu/files/gaegu-korean-400-normal.woff2') format('woff2');
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF;
+}

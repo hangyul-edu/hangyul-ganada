@@ -22,7 +22,7 @@ import {
   getLessonCharacters,
 } from './characters';
 import FIXTURES from '../../../../packages/handwriting-core/src/__tests__/glyph-fixtures.json';
-import { DEFAULT_FONT_ID, PRACTICE_FONTS, getFont } from './fonts';
+import { DEFAULT_FONT_ID, PRACTICE_FONTS, getFont, textFamily } from './fonts';
 import { LEARNING_QUOTES, QUOTE_LOCALES, quoteOnOpen, renderQuote, resetSessionQuote } from './quotes';
 import { AVAILABLE_LOCALES } from '../i18n/resources';
 import { hasFinalConsonant, toJamo, toSyllables } from './jamo';
@@ -800,6 +800,30 @@ describe('typeface grading', () => {
     expect(scaled.map((f) => f.id)).toEqual(['gaegu']);
     expect(scaled[0]!.glyph_scale).toBe(1.0);
     expect(FIXTURES.faceScale).toEqual({ gaegu: 1.0 });
+  });
+
+  it('keeps the reading face out of the graded one', () => {
+    /*
+      Gaegu reads 27% larger than its file draws it — see `styles/faceSize.css`
+      — and the mask the evaluator grades against must not. `font_family` is
+      what `PracticeCanvasCard` passes to `glyphSpecFor`, so it has to stay the
+      plain family; `text_family` is what every reading surface uses.
+
+      This is here because the split is invisible: both fields are strings that
+      name Gaegu, and pointing the canvas at the adjusted one would enlarge the
+      reference glyph a second time, past the false-rejection cliff the sweep
+      in `data/fonts.ts` measured at 1.04.
+    */
+    const adjusted = PRACTICE_FONTS.filter((font) => font.text_family);
+    expect(adjusted.map((f) => f.id)).toEqual(['gaegu']);
+    expect(adjusted[0]!.font_family).not.toContain('Gaegu Text');
+    expect(textFamily(adjusted[0]!)).toContain('Gaegu Text');
+    // The unadjusted family stays behind it, for a browser with no size-adjust.
+    expect(textFamily(adjusted[0]!)).toContain("'Gaegu'");
+    for (const font of PRACTICE_FONTS) {
+      if (font.text_family) continue;
+      expect(textFamily(font), font.id).toBe(font.font_family);
+    }
   });
 
   it('offers between six and eight faces, each with a licence that permits shipping', () => {

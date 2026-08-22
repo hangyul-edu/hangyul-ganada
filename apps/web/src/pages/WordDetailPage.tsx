@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import { useDictionaryEntry } from '../data/useDictionary';
 import { usableExamples } from '../data/exampleQuality';
 import { relationsOf } from '../data/relations';
@@ -89,7 +89,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
           <div className={styles.headRow}>
             <p
               className={styles.word}
-              style={{ fontFamily: font.font_family }}
+              style={{ fontFamily: textFamily(font) }}
               lang="ko"
               dir="ltr"
               data-testid="detail-headword"
@@ -177,7 +177,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
               {t('vocabulary:intro.example')}
             </h2>
             <div className={styles.exampleRow}>
-              <p className={styles.exampleKo} style={{ fontFamily: font.font_family }} lang="ko" dir="ltr">
+              <p className={styles.exampleKo} style={{ fontFamily: textFamily(font) }} lang="ko" dir="ltr">
                 {sentence.before}
                 <strong className={styles.target}>{sentence.target}</strong>
                 {sentence.after}
@@ -216,7 +216,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
         <Conjugation
           lemma={word.word}
           partOfSpeech={word.part_of_speech}
-          fontFamily={font.font_family}
+          fontFamily={textFamily(font)}
         />
 
         {/* How it is said, where that differs from how it is written. */}
@@ -225,7 +225,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
             <h2 id="detail-sound" className={styles.blockTitle}>
               {t('vocabulary:intro.howItSounds')}
             </h2>
-            <p className={styles.spoken} lang="ko" dir="ltr" style={{ fontFamily: font.font_family }}>
+            <p className={styles.spoken} lang="ko" dir="ltr" style={{ fontFamily: textFamily(font) }}>
               {word.spoken}
             </p>
             <p className={styles.note}>

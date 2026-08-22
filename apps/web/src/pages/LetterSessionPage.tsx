@@ -6,7 +6,7 @@ import type { HangulCharacter } from '@hangyul-ganada/shared-types';
 
 import { usePronunciation } from '../audio/PronunciationContext';
 import { CURRICULUM_UNITS, getLesson, getLessonCharacters } from '../data/characters';
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import { CharacterIntro } from '../features/learning/CharacterIntro';
 import { RecognitionStep } from '../features/learning/RecognitionStep';
 import { UnitIntro } from '../features/learning/UnitIntro';
@@ -361,7 +361,7 @@ export function LetterSessionPage() {
         ) : stepState.step === 'read' ? (
           <RecognitionStep
             character={current}
-            fontFamily={font.font_family}
+            fontFamily={textFamily(font)}
             seed={index}
             onAnswered={(correct) => recordRecognition('character', current.character, correct)}
             onContinue={advanceCharacter}
@@ -392,7 +392,7 @@ export function LetterSessionPage() {
                 <CenteredGlyph
                   character={current.character}
                   className={styles.promptGlyph}
-                  style={{ fontFamily: font.font_family }}
+                  style={{ fontFamily: textFamily(font) }}
                   data-testid="prompt-glyph"
                 />
                 <span className={styles.promptRoman}>{current.romanization}</span>
@@ -408,6 +408,12 @@ export function LetterSessionPage() {
             <PracticeCanvasCard
               key={`${current.character}-${stepState.step}`}
               character={current.character}
+              /*
+                `font_family`, not `textFamily` — the mask the evaluator grades
+                against is built from this string, and Gaegu's graded face is
+                one step from a false-rejection cliff. See `text_family` in
+                `shared-types`: reading and grading part company at this prop.
+              */
               fontFamily={font.font_family}
               fontWeight={font.weight}
               glyphScale={font.glyph_scale}

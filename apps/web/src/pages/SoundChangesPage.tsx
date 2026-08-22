@@ -7,7 +7,7 @@ import { AppHeader } from '../ui/AppHeader';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Card } from '../ui/Card';
 import { SpeakerButton } from '../ui/SpeakerButton';
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import { useLearner } from '../store/LearnerContext';
 import styles from './SoundChangesPage.module.css';
 
@@ -73,7 +73,7 @@ export function SoundChangesPage() {
               <div className={styles.pair}>
                 <div className={styles.side}>
                   <span className={styles.sideLabel}>{t('learning:sounds.written')}</span>
-                  <span className={styles.block} style={{ fontFamily: font.font_family }} lang="ko" dir="ltr">
+                  <span className={styles.block} style={{ fontFamily: textFamily(font) }} lang="ko" dir="ltr">
                     {lead.word}
                   </span>
                   {/*
@@ -94,7 +94,7 @@ export function SoundChangesPage() {
                   <span className={styles.sideLabel}>{t('learning:sounds.said')}</span>
                   <span
                     className={`${styles.block} ${styles.spoken}`}
-                    style={{ fontFamily: font.font_family }}
+                    style={{ fontFamily: textFamily(font) }}
                     lang="ko"
                     dir="ltr"
                   >

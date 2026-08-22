@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { levelKind, loadLevelTestBank, type LevelTestBank } from '../data/levelTest';
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import {
   CUMULATIVE_WORDS,
   ITEM_COUNT,
@@ -380,7 +380,7 @@ export function LevelTestPage() {
             className={korean ? styles.korean : styles.meaning}
             lang={korean ? 'ko' : 'en'}
             dir="ltr"
-            style={korean ? { fontFamily: font.font_family } : undefined}
+            style={korean ? { fontFamily: textFamily(font) } : undefined}
           >
             {current.prompt}
           </p>
@@ -394,7 +394,7 @@ export function LevelTestPage() {
                 className={styles.option}
                 lang={current.kind === 'meaning' ? 'en' : 'ko'}
                 dir="ltr"
-                style={current.kind === 'meaning' ? undefined : { fontFamily: font.font_family }}
+                style={current.kind === 'meaning' ? undefined : { fontFamily: textFamily(font) }}
                 onClick={() => answer(option === current.answer ? 'correct' : 'wrong')}
               >
                 {option}

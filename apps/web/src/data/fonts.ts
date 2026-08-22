@@ -296,6 +296,18 @@ export const PRACTICE_FONTS: PracticeFont[] = [
     name_en: 'Handwriting',
     family_name: 'Gaegu',
     font_family: "'Gaegu', cursive",
+    /*
+     * Reading text is set 27% larger than the file draws it. See
+     * `styles/faceSize.css` for the measurement and `text_family` in
+     * `shared-types` for why this cannot be done to `font_family`: that string
+     * also builds the mask the handwriting evaluator grades against, and the
+     * graded face is one step from a false-rejection cliff.
+     *
+     * `'Gaegu'` stays in the stack behind it, so a browser that does not
+     * implement `size-adjust` reads the same letters at the old size rather
+     * than falling out of the family altogether.
+     */
+    text_family: "'Gaegu Text', 'Gaegu', cursive",
     category: 'handwriting',
     weight: 400,
     license: 'SIL Open Font License 1.1',
@@ -478,6 +490,19 @@ const BY_ID = new Map(PRACTICE_FONTS.map((f) => [f.id, f]));
  */
 export function getFont(id: string): PracticeFont {
   return BY_ID.get(id) ?? BY_ID.get(DEFAULT_FONT_ID)!;
+}
+
+/**
+ * The family to set Korean *reading* text in.
+ *
+ * Every screen that shows a word, a syllable or an example calls this, and
+ * every screen that grades handwriting keeps using `font_family` — those are
+ * the two sides of the split `text_family` documents. One function rather than
+ * `font.text_family ?? font.font_family` at fifteen call sites, so a face that
+ * needs the distinction tomorrow gets it everywhere at once.
+ */
+export function textFamily(font: PracticeFont): string {
+  return font.text_family ?? font.font_family;
 }
 
 /**

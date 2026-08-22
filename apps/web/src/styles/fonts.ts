@@ -22,3 +22,11 @@ import '@fontsource/nanum-myeongjo/korean-400.css';
 import '@fontsource/gowun-batang/korean-400.css';
 import '@fontsource/gaegu/korean-400.css';
 import '@fontsource/gowun-dodum/korean-400.css';
+
+/*
+ * And one family this app declares itself: Gaegu at reading size.
+ *
+ * Last, so it wins nothing by order — it is a different family name, not an
+ * override. See `faceSize.css` for the measurement it comes from.
+ */
+import './faceSize.css';

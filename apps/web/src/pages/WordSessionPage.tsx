@@ -6,7 +6,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog';
 
 import { usePronunciation } from '../audio/PronunciationContext';
 import { strictMeaning, type wordCopy } from '../data/wordCopy';
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import { retrySteps, scheduleSteps, type WordStep } from '../domain/vocabularyDay';
 import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
@@ -479,7 +479,7 @@ export function WordSessionPage() {
           <MatchExercise
             key={`match-${index}`}
             pairs={current.pairs}
-            fontFamily={font.font_family}
+            fontFamily={textFamily(font)}
             isLast={isLast}
             onAnswered={(results) => {
               for (const result of results) {
@@ -502,7 +502,7 @@ export function WordSessionPage() {
         ) : current.step === 'intro' ? (
           <WordIntro
             word={current.word}
-            fontFamily={font.font_family}
+            fontFamily={textFamily(font)}
             onHeard={() => recordHeard('word', current.word.id, true)}
             saved={isSaved('word', current.word.id)}
             onToggleSaved={() => toggleSaved('word', current.word.id)}
@@ -543,7 +543,7 @@ export function WordSessionPage() {
             const shared = {
               key: `${current.word.id}-${current.step}-${index}`,
               exercise: current.exercise!,
-              fontFamily: font.font_family,
+              fontFamily: textFamily(font),
               isLast,
               onAnswered: record,
               onContinue: advance,

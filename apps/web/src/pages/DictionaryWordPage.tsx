@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { getFont } from '../data/fonts';
+import { getFont, textFamily } from '../data/fonts';
 import type { DictionarySense } from '../data/dictionary';
 import { useDictionaryEntry } from '../data/useDictionary';
 import { findWordByHeadword } from '../data/vocabulary';
@@ -88,7 +88,7 @@ export function DictionaryWordPage() {
             <Card tone="featured" padding="lg" className={styles.head}>
               <p
                 className={styles.word}
-                style={{ fontFamily: font.font_family }}
+                style={{ fontFamily: textFamily(font) }}
                 lang="ko"
                 dir="ltr"
                 data-testid="dictionary-headword"
@@ -131,7 +131,7 @@ export function DictionaryWordPage() {
             <Conjugation
               lemma={entry.headword}
               partOfSpeech={entry.senses[0]!.partOfSpeech}
-              fontFamily={font.font_family}
+              fontFamily={textFamily(font)}
             />
 
             {entry.senses.length > 1 && (
