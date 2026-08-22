@@ -42,7 +42,12 @@
     "numeral": "sayı",
     "particle": "ek",
     "interjection": "ünlem",
-    "determiner": "belirteç"
+    "determiner": "belirteç",
+    "proper noun": "özel ad",
+    "ideophone": "yansıma sözcük",
+    "counter": "sayı birimi",
+    "phrase": "öbek",
+    "contraction": "kısaltılmış biçim"
   },
   "session": {
     "next": "Sonraki kelime",

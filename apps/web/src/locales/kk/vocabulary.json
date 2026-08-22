@@ -42,7 +42,12 @@
     "numeral": "сан есім",
     "particle": "шылау",
     "interjection": "одағай",
-    "determiner": "анықтауыш"
+    "determiner": "анықтауыш",
+    "proper noun": "жалқы есім",
+    "ideophone": "еліктеуіш сөз",
+    "counter": "есептік сөз",
+    "phrase": "тіркес",
+    "contraction": "қысқарған түрі"
   },
   "session": {
     "next": "Келесі сөз",

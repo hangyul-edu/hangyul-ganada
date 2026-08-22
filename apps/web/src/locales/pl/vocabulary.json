@@ -48,7 +48,12 @@
     "numeral": "liczebnik",
     "particle": "partykuła",
     "interjection": "wykrzyknik",
-    "determiner": "określnik"
+    "determiner": "określnik",
+    "proper noun": "nazwa własna",
+    "ideophone": "ideofon",
+    "counter": "klasyfikator",
+    "phrase": "wyrażenie",
+    "contraction": "forma skrócona"
   },
   "session": {
     "next": "Następne słowo",

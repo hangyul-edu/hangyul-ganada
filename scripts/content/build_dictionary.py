@@ -127,6 +127,15 @@ MAX_BUCKET_ENTRIES = 400
 #: "see 먹다" — rather than a definition somebody can learn anything from.
 MIN_GLOSS_LENGTH = 2
 
+#: A gloss has to contain at least this many letters to be a definition.
+#:
+#: Measured in letters, not characters, because the failure was not short text
+#: — it was punctuation with nothing between it. `MIN_GLOSS_LENGTH` counted
+#: "()" as two characters and let it through, and 252 species names shipped as
+#: an empty pair of brackets. `wiktionary.clean_markup` now renders the taxon
+#: templates that caused it; this is the floor that stops the next one.
+MIN_GLOSS_LETTERS = 2
+
 SOURCE = {
     "id": "en-wiktionary",
     "name": "English Wiktionary",
@@ -228,6 +237,8 @@ def usable(entry: Entry):
             continue
         if len(sense.gloss.strip()) < MIN_GLOSS_LENGTH:
             continue
+        if sum(1 for c in sense.gloss if c.isalpha()) < MIN_GLOSS_LETTERS:
+            continue
         yield sense
 
 
@@ -280,9 +291,25 @@ def build() -> dict[str, object]:
         bases.add(base)
         senses: list[dict] = []
         seen: set[str] = set()
+        # The same gloss twice under one headword.
+        #
+        # Wiktionary lists a word once per part of speech and sometimes twice
+        # within one, so 내일 carried "tomorrow" as senses 1 and 2 and the page
+        # showed the learner the same line under "1 other meaning". 212
+        # headwords did this. The first occurrence wins and keeps its rank;
+        # the later one's examples are folded into it, because dropping a
+        # duplicate gloss must not drop a sentence that only it carried.
+        by_gloss: dict[str, dict] = {}
         for entry in entries:
             for sense in usable(entry):
                 gloss, labels = sense.gloss.strip(), sense.labels
+                duplicate = by_gloss.get(gloss.casefold())
+                if duplicate is not None:
+                    for example in sense.examples:
+                        row = {"korean": example.korean, "translation": example.translation}
+                        if row not in duplicate["examples"] and len(duplicate["examples"]) < 4:
+                            duplicate["examples"].append(row)
+                    continue
                 key = slug(gloss)
                 # A headword can carry the same gloss under two parts of speech,
                 # and two senses can slug to the same word. Both are the same id
@@ -314,6 +341,7 @@ def build() -> dict[str, object]:
                         ][:4],
                     }
                 )
+                by_gloss[gloss.casefold()] = senses[-1]
         if not senses:
             continue
         records.append(

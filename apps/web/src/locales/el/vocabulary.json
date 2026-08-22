@@ -42,7 +42,12 @@
     "numeral": "αριθμητικό",
     "particle": "μόριο",
     "interjection": "επιφώνημα",
-    "determiner": "προσδιοριστής"
+    "determiner": "προσδιοριστής",
+    "proper noun": "κύριο όνομα",
+    "ideophone": "ιδεόφωνο",
+    "counter": "μετρητική λέξη",
+    "phrase": "φράση",
+    "contraction": "συντετμημένος τύπος"
   },
   "session": {
     "next": "Επόμενη λέξη",

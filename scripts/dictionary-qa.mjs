@@ -91,7 +91,40 @@ for (const [headword, , , gloss, senseCount, chunk] of index.rows) {
   if (!(senseCount > 0)) fail(`${headword} claims ${senseCount} senses`);
 }
 
+/**
+ * What a learner must never read on a dictionary page.
+ *
+ * ## Why these and not a spell-check
+ *
+ * §16 asked for the whole dictionary to be looked at rather than the one word
+ * in the screenshot, so it was: thirty thousand entries swept for the defects
+ * a scraped source produces. Five classes came back, every one of them a
+ * *systemic* fault with a single cause in the ingestion, and every one of them
+ * fixed there rather than by listing exceptions:
+ *
+ * ```
+ *   84   a gloss cut at a pipe inside a link      핵  "core of planets or other [[celestial body"
+ *  252   a gloss that is an empty parenthesis     너도밤나무  "()"
+ *  340   Wiktionary's "(to be) " adjective marker  낯설다  "(to be) strange"
+ *  212   the same gloss twice under one headword  내일  "tomorrow", "tomorrow"
+ *   11   a transliteration caret or an entity     안녕  "^안녕? &mdash; …"
+ * ```
+ *
+ * They are gated here, not merely fixed, because the source is refetched and
+ * the cleaner will meet templates it has not met before. A defect that reaches
+ * this file is a defect that reached a reader.
+ */
+const MARKUP = /\{\{|\}\}|\[\[|\]\]|&[a-z]+;|<\/?[a-zA-Z][^>]*>/;
+/** A caret bound to what follows it — the marker, not the character itself. */
+const CAPITAL_MARK = /\^(?=[\uac00-\ud7a3\dA-Z])/;
+/** Nothing but punctuation and space: a definition with no words in it. */
+const CONTENT_FREE = /^[\s()[\].,;:'"]*$/;
+/** Wiktionary's note that Korean has no adjective class. The label says it. */
+const TO_BE = /^\(to be\)\s/;
+
 const senseIds = new Set();
+/** Every part of speech the dictionary actually uses. */
+const parts = new Set();
 let entryCount = 0;
 let senseCount = 0;
 let exampleCount = 0;
@@ -125,6 +158,7 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
       if (!source[field]) fail(`${entry.headword} has no source.${field}`);
     }
 
+    const glossesHere = new Set();
     for (const sense of entry.senses) {
       senseCount += 1;
       exampleCount += sense.examples.length;
@@ -134,7 +168,52 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
       if (!sense.senseId.includes('#')) {
         fail(`${sense.senseId} is not of the form dict_<word>#<sense>`);
       }
+      if (MARKUP.test(sense.gloss)) fail(`${sense.senseId} shows markup: ${sense.gloss}`);
+      if (CAPITAL_MARK.test(sense.gloss)) {
+        fail(`${sense.senseId} shows a transliteration caret: ${sense.gloss}`);
+      }
+      if (CONTENT_FREE.test(sense.gloss)) {
+        fail(`${sense.senseId} has a gloss with no words in it: ${JSON.stringify(sense.gloss)}`);
+      }
+      if (TO_BE.test(sense.gloss)) fail(`${sense.senseId} keeps the "(to be)" marker`);
+      const key = sense.gloss.toLowerCase();
+      if (glossesHere.has(key)) fail(`${entry.headword} shows "${sense.gloss}" twice`);
+      glossesHere.add(key);
+      parts.add(sense.partOfSpeech);
+      for (const example of sense.examples) {
+        if (MARKUP.test(example.korean) || MARKUP.test(example.translation)) {
+          fail(`${sense.senseId} has an example with markup in it: ${example.korean}`);
+        }
+        if (example.korean.includes('^')) {
+          fail(`${sense.senseId} has a transliteration caret in its example`);
+        }
+      }
     }
+  }
+}
+
+// --- Every part of speech has a name in every language -------------------------
+
+/*
+  The label under a headword is `t('partOfSpeech.<value>')` with the raw value
+  as its default, so a part of speech nobody translated does not fail — it
+  prints the English word and looks deliberate. Five of the fourteen the
+  dictionary uses were in that state: `proper noun` (2,310 senses), `ideophone`
+  (787), `counter` (92), `phrase` (21) and `contraction` (1), each showing an
+  English word on 3,211 pages in all thirty-two languages.
+
+  The default is what makes that silent, so the silence is broken here instead.
+*/
+const LOCALES = readdirSync(join(ROOT, 'apps/web/src/locales'), { withFileTypes: true })
+  .filter((row) => row.isDirectory())
+  .map((row) => row.name);
+for (const locale of LOCALES) {
+  const file = join(ROOT, 'apps/web/src/locales', locale, 'vocabulary.json');
+  if (!existsSync(file)) continue;
+  const labels = JSON.parse(readFileSync(file, 'utf8')).partOfSpeech ?? {};
+  const absent = [...parts].filter((part) => !labels[part]);
+  if (absent.length > 0) {
+    fail(`${locale} has no name for ${absent.join(', ')} — the page would show English`);
   }
 }
 
@@ -158,6 +237,9 @@ console.log(
 );
 console.log(`  ${Object.keys(manifest.chunks).length} chunks, every name a hash of its contents`);
 console.log(`  ${manifest.source.name}, ${manifest.source.license}`);
+console.log(
+  `  ${parts.size} part(s) of speech, each named in all ${LOCALES.length} languages`,
+);
 
 if (problems.length === 0) {
   console.log('\nthe dictionary is coherent, attributed, and safe to cache.');

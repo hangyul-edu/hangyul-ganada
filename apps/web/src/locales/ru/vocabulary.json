@@ -48,7 +48,12 @@
     "numeral": "числительное",
     "particle": "частица",
     "interjection": "междометие",
-    "determiner": "определитель"
+    "determiner": "определитель",
+    "proper noun": "имя собственное",
+    "ideophone": "звукоподражание",
+    "counter": "счётное слово",
+    "phrase": "выражение",
+    "contraction": "стяжённая форма"
   },
   "session": {
     "next": "Следующее слово",

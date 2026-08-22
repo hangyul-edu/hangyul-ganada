@@ -42,7 +42,12 @@
     "numeral": "pamilang",
     "particle": "kataga",
     "interjection": "pandamdam",
-    "determiner": "pantukoy"
+    "determiner": "pantukoy",
+    "proper noun": "pantanging pangngalan",
+    "ideophone": "salitang panggaya",
+    "counter": "pambilang",
+    "phrase": "parirala",
+    "contraction": "pinaikling anyo"
   },
   "session": {
     "next": "Susunod na salita",

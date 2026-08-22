@@ -42,7 +42,12 @@
     "numeral": "số từ",
     "particle": "trợ từ",
     "interjection": "thán từ",
-    "determiner": "từ hạn định"
+    "determiner": "từ hạn định",
+    "proper noun": "danh từ riêng",
+    "ideophone": "từ tượng thanh",
+    "counter": "loại từ",
+    "phrase": "cụm từ",
+    "contraction": "dạng rút gọn"
   },
   "session": {
     "next": "Từ tiếp theo",

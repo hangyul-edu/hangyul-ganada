@@ -42,7 +42,12 @@
     "numeral": "тооны нэр",
     "particle": "нөхцөл",
     "interjection": "аялга үг",
-    "determiner": "тодотгогч"
+    "determiner": "тодотгогч",
+    "proper noun": "оноосон нэр",
+    "ideophone": "дуурайх үг",
+    "counter": "тоолох үг",
+    "phrase": "хэллэг",
+    "contraction": "товчилсон хэлбэр"
   },
   "session": {
     "next": "Дараагийн үг",

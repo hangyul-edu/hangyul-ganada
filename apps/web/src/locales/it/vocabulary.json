@@ -45,7 +45,12 @@
     "numeral": "numerale",
     "particle": "particella",
     "interjection": "interiezione",
-    "determiner": "determinante"
+    "determiner": "determinante",
+    "proper noun": "nome proprio",
+    "ideophone": "ideofono",
+    "counter": "classificatore",
+    "phrase": "locuzione",
+    "contraction": "forma contratta"
   },
   "session": {
     "next": "Parola successiva",

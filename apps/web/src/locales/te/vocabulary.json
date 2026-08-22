@@ -42,7 +42,12 @@
     "numeral": "సంఖ్యావాచకం",
     "particle": "విభక్తి",
     "interjection": "ఆశ్చర్యార్థకం",
-    "determiner": "నిర్ధారకం"
+    "determiner": "నిర్ధారకం",
+    "proper noun": "వ్యక్తివాచక నామవాచకం",
+    "ideophone": "ధ్వన్యనుకరణ పదం",
+    "counter": "గణన పదం",
+    "phrase": "పదబంధం",
+    "contraction": "సంక్షిప్త రూపం"
   },
   "session": {
     "next": "తర్వాతి పదం",

@@ -42,7 +42,12 @@
     "numeral": "telwoord",
     "particle": "partikel",
     "interjection": "tussenwerpsel",
-    "determiner": "bepaler"
+    "determiner": "bepaler",
+    "proper noun": "eigennaam",
+    "ideophone": "klanknabootsing",
+    "counter": "maatwoord",
+    "phrase": "uitdrukking",
+    "contraction": "samentrekking"
   },
   "session": {
     "next": "Volgend woord",

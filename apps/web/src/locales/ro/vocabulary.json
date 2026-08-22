@@ -45,7 +45,12 @@
     "numeral": "numeral",
     "particle": "particulă",
     "interjection": "interjecție",
-    "determiner": "determinant"
+    "determiner": "determinant",
+    "proper noun": "nume propriu",
+    "ideophone": "ideofon",
+    "counter": "clasificator",
+    "phrase": "locuțiune",
+    "contraction": "formă contrasă"
   },
   "session": {
     "next": "Cuvântul următor",

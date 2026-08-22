@@ -33,7 +33,12 @@
     "numeral": "数词",
     "particle": "助词",
     "interjection": "感叹词",
-    "determiner": "冠形词"
+    "determiner": "冠形词",
+    "proper noun": "专有名词",
+    "ideophone": "拟声拟态词",
+    "counter": "量词",
+    "phrase": "短语",
+    "contraction": "缩略形式"
   },
   "session": {
     "next": "下一个单词",

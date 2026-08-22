@@ -295,7 +295,28 @@ def _labels(raw: str) -> list[str]:
     return labels
 
 
-_EXAMPLE_TEMPLATE = re.compile(r"\{\{(ux|uxa|coa|co|usex)\|ko\|(.+?)\}\}\s*$", re.MULTILINE)
+#: An example template, to the *last* `}}` on its line rather than the first.
+#:
+#: Non-greedy, this cut `{{ux|ko|21세기 대군부인|t={{w|Perfect Crown}}}}` at the
+#: inner brace and shipped the translation as "{{w|Perfect Crown".
+_EXAMPLE_TEMPLATE = re.compile(r"\{\{(ux|uxa|coa|co|usex)\|ko\|(.+)\}\}\s*$", re.MULTILINE)
+
+#: Wiktionary's marker for a syllable that romanises with a capital letter.
+#:
+#: `^안녕? ^마샤니?` is Korean with two proper nouns flagged for the transliterator.
+#: The caret is an instruction to a machine, not part of the sentence.
+#:
+#: Every caret, in a Korean sentence. It also marks a digit (`^6.25`, the
+#: Korean War) and is sometimes left trailing (`경부-고속도로^`), and no Korean
+#: sentence contains one for its own sake, so there is nothing to protect.
+_CAPITAL_MARK = re.compile(r"\^")
+
+#: The same marker inside a gloss, where a bare caret can be the subject.
+#:
+#: `short for ^일본 제국주의` and `^Marsha says` are the marker; the gloss of 캐럿
+#: is "caret (^)" and
+#: means the character itself. Only a caret bound to what follows it is removed.
+_GLOSS_CAPITAL_MARK = re.compile(r"\^(?=[\uac00-\ud7a3\dA-Z])")
 
 
 def _examples(body: str) -> list[Example]:
@@ -313,7 +334,7 @@ def _examples(body: str) -> list[Example]:
         translation = named.get("t") or named.get("translation") or ""
         if not translation and len(positional) > 1:
             translation = positional[1]
-        korean = korean.strip()
+        korean = _CAPITAL_MARK.sub("", korean).strip()
         translation = clean_markup(translation).strip()
         if korean and translation:
             out.append(Example(korean=korean, translation=translation))
@@ -390,12 +411,51 @@ _DROP_TEMPLATES = re.compile(
 )
 _KEEP_LAST_ARG = re.compile(r"\{\{(?:w|l|m|link|mention)\|([^{}]*)\}\}")
 _ANY_TEMPLATE = re.compile(r"\{\{[^{}]*\}\}")
-_PIPED_LINK = re.compile(r"\[\[[^\]|]*\|([^\]]*)\]\]")
+#: `[[target|display]]`, where the display text may itself contain a `]`.
+#:
+#: `[[time and tide wait for no man|Time [and tide] wait for no man.]]` did, and
+#: a `[^\]]*` display group could not match it, so the whole thing shipped as
+#: wikitext in 세월's example translation.
+_PIPED_LINK = re.compile(r"\[\[[^\]|]*\|((?:[^\]]|\](?!\]))*)\]\]")
 _PLAIN_LINK = re.compile(r"\[\[([^\]]*)\]\]")
 _BOLD_ITALIC = re.compile(r"'{2,5}")
 _HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
 _HTML_TAG = re.compile(r"</?[a-zA-Z][^>]*>")
 _WHITESPACE = re.compile(r"\s+")
+
+#: HTML entities Wiktionary writes into running prose.
+#:
+#: `&mdash;` is the one that mattered: it separates the turns of a dialogue in
+#: an example sentence, so 안녕's example read "안녕하세요? &mdash; ^안녕?".
+_ENTITIES = {
+    "&nbsp;": " ",
+    "&mdash;": "—",
+    "&ndash;": "–",
+    "&quot;": '"',
+    "&apos;": "'",
+    "&#39;": "'",
+    "&hellip;": "…",
+    "&hyphen;": "-",
+    "&amp;": "&",
+}
+
+_TO_BE = re.compile(r"^\(to be\)\s+")
+
+#: An opening brace with no closing one, and everything after it.
+#:
+#: The last resort, after every renderer and remover has had its pass. A
+#: citation template broken across lines leaves `pronoun {{cite-book` behind,
+#: and half a template is worse than none: the reader sees braces, and the words
+#: after them are template arguments rather than a definition. What comes
+#: *before* the brace is a real gloss and is kept.
+_OPEN_TEMPLATE = re.compile(r"\s*\{\{.*$", re.DOTALL)
+#: A stray bracket pair left by a link the pattern above could not close.
+_STRAY_BRACKETS = re.compile(r"\[\[|\]\]")
+
+
+def _residue(text: str) -> str:
+    return _STRAY_BRACKETS.sub("", _OPEN_TEMPLATE.sub("", text))
+_EMPTY_PARENS = re.compile(r"\(\s*\)")
 
 
 
@@ -430,13 +490,29 @@ _CROSS_REFERENCE = {
 #: `{{tcl|ko|Asia}}` is the English of a proper noun. Both were being deleted.
 _GLOSS_TEMPLATES = {"n-g", "non-gloss definition", "non-gloss", "ng", "tcl", "place"}
 
+#: Templates that name a species or a plant, and *are* the definition.
+#:
+#: `{{vern|Chinese beech}} ({{taxlink|Fagus engleriana|species}})` is the whole
+#: of what 너도밤나무 means in its second sense. Neither template was known, both
+#: were deleted as unrecognised, and what shipped was the gloss "()" — 252 of
+#: them, every one a species name for a tree, a fish or a moss.
+_NAME_TEMPLATES = {"vern", "taxlink", "taxfmt", "taxon", "taxlinkwiki"}
+
 _TEMPLATE = re.compile(r"\{\{([^{}|]+)\|([^{}]*)\}\}")
 
 
 def _template_args(body: str) -> tuple[list[str], dict[str, str]]:
+    """The positional and named arguments of a template body.
+
+    Split at depth zero, not on every `|`. A plain split cut
+    `{{n-g|[[core]] of [[planet]]s or other [[celestial body|celestial bodies]]}}`
+    at the pipe inside the link, so 핵 shipped the gloss "core of planets or
+    other [[celestial body" — the closing bracket, and the words after it, gone.
+    Eighty-four glosses carried a fragment like that.
+    """
     positional: list[str] = []
     named: dict[str, str] = {}
-    for part in body.split("|"):
+    for part in _split_template_args(body):
         if "=" in part:
             key, _, value = part.partition("=")
             named[key.strip()] = value.strip()
@@ -470,6 +546,12 @@ def render_definition_templates(raw: str) -> str:
             head = f"{_CROSS_REFERENCE[name]} {target}".strip()
             return f"{head} — {translation}" if translation else head
 
+        if name in _NAME_TEMPLATES:
+            # The name is the first argument; what follows is the rank
+            # ("species", "genus") and the language code, neither of which a
+            # learner reading "beech" needs.
+            return positional[0] if positional else ""
+
         if name in _GLOSS_TEMPLATES:
             if translation:
                 return translation
@@ -487,21 +569,53 @@ def render_definition_templates(raw: str) -> str:
 
 def clean_markup(raw: str) -> str:
     """Wikitext down to the plain sentence a learner would read."""
-    text = render_definition_templates(_HTML_COMMENT.sub("", raw))
+    text = _HTML_COMMENT.sub("", raw)
     # Repeat, because templates nest: {{lb|ko|...}} inside {{gl|...}}.
+    #
+    # `render_definition_templates` runs on every pass rather than once at the
+    # start. `_TEMPLATE` only matches a body with no braces in it, so a
+    # definition wrapping another template — `{{n-g|Augmentative of
+    # {{m|ko|어주}}}}` — was invisible on the first pass, and by the second pass
+    # the general cleaner had already deleted it. 어쭈 shipped as ". Used to
+    # deride or mock another's boastful words", starting with a full stop.
     for _ in range(4):
+        text = render_definition_templates(text)
         text = _DROP_TEMPLATES.sub("", text)
         text = _KEEP_LAST_ARG.sub(lambda m: _last_positional(m.group(1)), text)
+        # Again, because the line above is what *makes* a nested definition
+        # renderable: `{{n-g|Augmentative of {{m|ko|어주}}}}` only becomes a body
+        # with no braces in it once the inner mention has collapsed to a word.
+        text = render_definition_templates(text)
         text = _ANY_TEMPLATE.sub("", text)
     for _ in range(3):
         text = _PIPED_LINK.sub(r"\1", text)
         text = _PLAIN_LINK.sub(r"\1", text)
     text = _BOLD_ITALIC.sub("", text)
     text = _HTML_TAG.sub("", text)
-    text = text.replace("&nbsp;", " ").replace("&amp;", "&")
+    # After the morpheme join, not before. `_MORPHEME_JOIN` closes up a Hangul
+    # syllable, a hyphen and another Hangul syllable, which is right for the
+    # `[[밥]][[-을]]` a particle link leaves behind and wrong for 그리스-로마.
+    # Decoding `&hyphen;` first turned Greco-Roman into 그리스로마.
     text = _MORPHEME_JOIN.sub(r"\1\2", text)
+    for entity, character in _ENTITIES.items():
+        text = text.replace(entity, character)
     text = _WHITESPACE.sub(" ", text).strip()
-    return text.strip(" ,;:")
+    # `(to be) strange` is Wiktionary telling an English reader that Korean has
+    # no separate adjective class. The part-of-speech line beside the gloss
+    # already says that, so on a card it is three words of nothing. 340 senses.
+    text = _TO_BE.sub("", text)
+    text = _GLOSS_CAPITAL_MARK.sub("", text)
+    text = _residue(text)
+    # An empty parenthetical left by a template nobody rendered, and the
+    # dangling punctuation around it.
+    text = _EMPTY_PARENS.sub(" ", text)
+    text = _WHITESPACE.sub(" ", text).strip()
+    # Leading punctuation is debris — a template that rendered to nothing left
+    # its full stop behind. Trailing punctuation is not: a separator is debris
+    # but a full stop is the end of a sentence, and stripping those cut the
+    # terminal period off every example, which is the one thing
+    # `exampleQuality` requires before it will show one.
+    return text.lstrip(" ,;:.-").rstrip(" ,;:")
 
 
 #: A Hangul syllable, a hyphen, and another Hangul syllable.

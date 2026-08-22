@@ -42,7 +42,12 @@
     "numeral": "संख्यावाचक",
     "particle": "परसर्ग",
     "interjection": "विस्मयादिबोधक",
-    "determiner": "निर्धारक"
+    "determiner": "निर्धारक",
+    "proper noun": "व्यक्तिवाचक संज्ञा",
+    "ideophone": "ध्वन्यात्मक शब्द",
+    "counter": "गणक शब्द",
+    "phrase": "वाक्यांश",
+    "contraction": "संक्षिप्त रूप"
   },
   "session": {
     "next": "अगला शब्द",

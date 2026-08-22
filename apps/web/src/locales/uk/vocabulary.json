@@ -48,7 +48,12 @@
     "numeral": "числівник",
     "particle": "частка",
     "interjection": "вигук",
-    "determiner": "означник"
+    "determiner": "означник",
+    "proper noun": "власна назва",
+    "ideophone": "звуконаслідування",
+    "counter": "лічильне слово",
+    "phrase": "вираз",
+    "contraction": "стягнена форма"
   },
   "session": {
     "next": "Наступне слово",

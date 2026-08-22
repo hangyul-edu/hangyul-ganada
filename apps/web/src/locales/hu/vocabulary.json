@@ -42,7 +42,12 @@
     "numeral": "számnév",
     "particle": "partikula",
     "interjection": "indulatszó",
-    "determiner": "determináns"
+    "determiner": "determináns",
+    "proper noun": "tulajdonnév",
+    "ideophone": "hangutánzó szó",
+    "counter": "számlálószó",
+    "phrase": "kifejezés",
+    "contraction": "rövidült alak"
   },
   "session": {
     "next": "Következő szó",

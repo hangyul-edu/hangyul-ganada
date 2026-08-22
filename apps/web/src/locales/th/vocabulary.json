@@ -42,7 +42,12 @@
     "numeral": "คำบอกจำนวน",
     "particle": "คำชี้",
     "interjection": "คำอุทาน",
-    "determiner": "คำกำหนด"
+    "determiner": "คำกำหนด",
+    "proper noun": "คำนามเฉพาะ",
+    "ideophone": "คำเลียนเสียง",
+    "counter": "ลักษณนาม",
+    "phrase": "วลี",
+    "contraction": "รูปย่อ"
   },
   "session": {
     "next": "คำต่อไป",

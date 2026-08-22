@@ -39,7 +39,12 @@
     "numeral": "numeral",
     "particle": "partícula",
     "interjection": "interjeição",
-    "determiner": "determinante"
+    "determiner": "determinante",
+    "proper noun": "nome próprio",
+    "ideophone": "ideofone",
+    "counter": "classificador",
+    "phrase": "locução",
+    "contraction": "contração"
   },
   "session": {
     "next": "Próxima palavra",

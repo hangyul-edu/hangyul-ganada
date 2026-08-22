@@ -42,7 +42,12 @@
     "numeral": "সংখ্যাবাচক",
     "particle": "অনুসর্গ",
     "interjection": "অব্যয়",
-    "determiner": "নির্ধারক"
+    "determiner": "নির্ধারক",
+    "proper noun": "নামবাচক বিশেষ্য",
+    "ideophone": "ধ্বন্যাত্মক শব্দ",
+    "counter": "গণনাসূচক শব্দ",
+    "phrase": "বাক্যাংশ",
+    "contraction": "সংক্ষিপ্ত রূপ"
   },
   "session": {
     "next": "পরের শব্দ",

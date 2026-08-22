@@ -42,7 +42,12 @@
     "numeral": "сан атооч",
     "particle": "бөлүкчө",
     "interjection": "сырдык сөз",
-    "determiner": "аныктооч"
+    "determiner": "аныктооч",
+    "proper noun": "энчилүү ат",
+    "ideophone": "тууранды сөз",
+    "counter": "эсептик сөз",
+    "phrase": "сөз айкашы",
+    "contraction": "кыскарган түрү"
   },
   "session": {
     "next": "Кийинки сөз",

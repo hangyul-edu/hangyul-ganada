@@ -33,7 +33,12 @@
     "numeral": "数詞",
     "particle": "助詞",
     "interjection": "感動詞",
-    "determiner": "連体詞"
+    "determiner": "連体詞",
+    "proper noun": "固有名詞",
+    "ideophone": "擬音語・擬態語",
+    "counter": "助数詞",
+    "phrase": "句",
+    "contraction": "縮約形"
   },
   "session": {
     "next": "つぎの単語",

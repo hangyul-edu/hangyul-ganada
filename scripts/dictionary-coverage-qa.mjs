@@ -121,11 +121,53 @@ for (const depth of [1000, 3000, 5000, 10000]) {
   );
 }
 
+/**
+ * Typing a word must put that word first.
+ *
+ * ## Why a headword can lose to noise
+ *
+ * The ranking ladder — exact, prefix, substring, romanization — puts an exact
+ * match on rung 0 and everything else below it, so in principle this cannot
+ * fail. In practice it can, twice over. A gloss can be exact too: `meaning ===
+ * needle` shares rung 0, so a query that happens to equal some other word's
+ * English gloss ties with the headword and the tiebreak decides. And a common
+ * one-syllable word — 발, 것, 거, 차 — sits in a bucket with thousands of
+ * entries that all begin with it, several of them far more frequent than the
+ * bare headword.
+ *
+ * So the ladder is asserted against the words §18 names rather than reasoned
+ * about. Rank 1 is what a learner sees at the top of the list; the check is
+ * simply that it is the word they typed.
+ */
+const RANK_FIXTURE = [
+  '귀족', '발', '어머니', '만나다', '수고하다', '공부하다', '먹다', '걷다', '듣다', '하다',
+  '것', '거', '사람', '한국어', '사랑', '학교', '사회', '경제', '문화', '과학',
+];
+
+console.log('\n  the exact headword, against everything that merely contains it:\n');
+const mistanked = [];
+for (const word of RANK_FIXTURE) {
+  const results = dictionary.rankDictionary(index, word, 10);
+  const position = results.findIndex((hit) => hit.headword === word);
+  const first = results[0]?.headword ?? '—';
+  if (position !== 0) mistanked.push({ word, first, position });
+  const mark = position === 0 ? 'ok  ' : '  ! ';
+  const note = position === 0 ? `first of ${results.length}` : `first is ${first}`;
+  console.log(`    ${mark}${word.padEnd(6)} ${note}`);
+}
+
 const problems = [];
 const unexplained = missing.filter((row) => !UPSTREAM_GAPS.has(row.word));
 if (unexplained.length > 0) {
   problems.push(
     `${unexplained.length} fixture word(s) missing: ${unexplained.map((r) => r.word).join(', ')}`,
+  );
+}
+for (const row of mistanked) {
+  problems.push(
+    row.position < 0
+      ? `${row.word} does not appear in its own search results`
+      : `${row.word} ranks ${row.position + 1}, behind ${row.first}`,
   );
 }
 if (manifest.headwords < 10_000) {
@@ -149,5 +191,6 @@ if (problems.length > 0) {
   process.exit(CHECK ? 1 : 0);
 }
 console.log(
-  `\n${total - missing.length} of ${total} fixture words are in the dictionary, and the commonest Korean reaches an entry.`,
+  `\n${total - missing.length} of ${total} fixture words are in the dictionary, the commonest Korean reaches an entry, ` +
+    `and all ${RANK_FIXTURE.length} named words rank first for their own spelling.`,
 );

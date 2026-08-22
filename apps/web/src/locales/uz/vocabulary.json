@@ -42,7 +42,12 @@
     "numeral": "son",
     "particle": "yuklama",
     "interjection": "undov",
-    "determiner": "aniqlovchi"
+    "determiner": "aniqlovchi",
+    "proper noun": "atoqli ot",
+    "ideophone": "taqlid so’z",
+    "counter": "sanoq so’zi",
+    "phrase": "ibora",
+    "contraction": "qisqargan shakl"
   },
   "session": {
     "next": "Keyingi so‘z",

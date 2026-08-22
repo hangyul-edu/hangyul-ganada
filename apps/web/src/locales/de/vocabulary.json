@@ -36,7 +36,12 @@
     "numeral": "Numerale",
     "particle": "Partikel",
     "interjection": "Interjektion",
-    "determiner": "Determinativ"
+    "determiner": "Determinativ",
+    "proper noun": "Eigenname",
+    "ideophone": "Ideophon",
+    "counter": "Zähleinheitswort",
+    "phrase": "Wendung",
+    "contraction": "Kurzform"
   },
   "session": {
     "next": "Nächstes Wort",

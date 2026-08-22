@@ -48,7 +48,12 @@
     "numeral": "číslovka",
     "particle": "částice",
     "interjection": "citoslovce",
-    "determiner": "determinátor"
+    "determiner": "determinátor",
+    "proper noun": "vlastní jméno",
+    "ideophone": "ideofon",
+    "counter": "počítací slovo",
+    "phrase": "slovní spojení",
+    "contraction": "stažený tvar"
   },
   "session": {
     "next": "Další slovo",

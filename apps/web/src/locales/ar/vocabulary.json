@@ -54,7 +54,12 @@
     "numeral": "عدد",
     "particle": "أداة",
     "interjection": "أداة تعجّب",
-    "determiner": "أداة تعريف"
+    "determiner": "أداة تعريف",
+    "proper noun": "اسم علم",
+    "ideophone": "لفظ محاكٍ",
+    "counter": "أداة عدّ",
+    "phrase": "عبارة",
+    "contraction": "صيغة مختصرة"
   },
   "session": {
     "next": "الكلمة التالية",

@@ -42,7 +42,12 @@
     "numeral": "எண்ணுப்பெயர்",
     "particle": "இடைச்சொல்",
     "interjection": "வியப்புச்சொல்",
-    "determiner": "சுட்டுச்சொல்"
+    "determiner": "சுட்டுச்சொல்",
+    "proper noun": "சிறப்புப் பெயர்",
+    "ideophone": "ஒலிக்குறிப்புச் சொல்",
+    "counter": "எண்ணல் சொல்",
+    "phrase": "சொற்றொடர்",
+    "contraction": "சுருக்க வடிவம்"
   },
   "session": {
     "next": "அடுத்த சொல்",

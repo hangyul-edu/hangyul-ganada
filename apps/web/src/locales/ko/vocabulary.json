@@ -33,7 +33,12 @@
     "numeral": "수사",
     "particle": "조사",
     "interjection": "감탄사",
-    "determiner": "관형사"
+    "determiner": "관형사",
+    "proper noun": "고유명사",
+    "ideophone": "의성어·의태어",
+    "counter": "단위명사",
+    "phrase": "구",
+    "contraction": "준말"
   },
   "session": {
     "next": "다음 단어",

@@ -42,7 +42,12 @@
     "numeral": "räkneord",
     "particle": "partikel",
     "interjection": "interjektion",
-    "determiner": "bestämningsord"
+    "determiner": "bestämningsord",
+    "proper noun": "egennamn",
+    "ideophone": "ljudhärmande ord",
+    "counter": "mätord",
+    "phrase": "uttryck",
+    "contraction": "sammandragen form"
   },
   "session": {
     "next": "Nästa ord",

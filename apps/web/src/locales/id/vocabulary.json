@@ -39,7 +39,12 @@
     "numeral": "kata bilangan",
     "particle": "partikel",
     "interjection": "kata seru",
-    "determiner": "kata sandang"
+    "determiner": "kata sandang",
+    "proper noun": "nama diri",
+    "ideophone": "kata tiruan bunyi",
+    "counter": "kata penggolong",
+    "phrase": "frasa",
+    "contraction": "bentuk singkat"
   },
   "session": {
     "next": "Kata berikutnya",

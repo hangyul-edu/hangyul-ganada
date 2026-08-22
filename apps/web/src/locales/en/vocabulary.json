@@ -42,7 +42,12 @@
     "numeral": "numeral",
     "particle": "particle",
     "interjection": "interjection",
-    "determiner": "determiner"
+    "determiner": "determiner",
+    "proper noun": "proper noun",
+    "ideophone": "ideophone",
+    "counter": "counter",
+    "phrase": "phrase",
+    "contraction": "contraction"
   },
   "session": {
     "next": "Next word",
