@@ -58,26 +58,12 @@ OPENSUBTITLES_FREQUENCY = Source(
     reference_template="rank {frequency_rank} of 50,000 tokens (ko_50k, 2018)",
 )
 
-#: The voices the app ships.
-#:
-#: Replaced Microsoft's ko-KR neural voices in this release. The old source
-#: record is gone rather than kept beside this one: a licence notice for audio
-#: that is no longer in the package is a claim about content the customer does
-#: not have, which is the same defect in the opposite direction from a missing
-#: notice.
-#:
-#: `attribution` is deliberately absent. ElevenLabs' terms for a paid plan grant
-#: the account holder ownership of the generated audio and require no on-screen
-#: credit, so adding one would be marketing rather than compliance — and this
-#: product's rule is that the Legal screen lists what a licence *asks for*. The
-#: provenance is still recorded here and in the audio manifest, which is where a
-#: reviewer would look for it.
-ELEVENLABS_TTS = Source(
-    id="elevenlabs",
-    name="ElevenLabs (eleven_multilingual_v2, two professional Korean voices)",
-    license="ElevenLabs terms of service, paid plan",
-    license_url="https://elevenlabs.io/terms-of-use",
-    homepage="https://elevenlabs.io/",
+EDGE_TTS = Source(
+    id="microsoft-edge-tts",
+    name="Microsoft Azure Neural TTS (ko-KR-SunHiNeural, ko-KR-InJoonNeural)",
+    license="Microsoft Azure Cognitive Services terms",
+    license_url="https://azure.microsoft.com/en-us/support/legal/",
+    homepage="https://speech.microsoft.com/",
     provides="Pre-generated Korean pronunciation audio, female and male",
 )
 
@@ -98,7 +84,7 @@ HANGYUL_GANADA = Source(
 ALL_SOURCES = [
     WIKTIONARY,
     OPENSUBTITLES_FREQUENCY,
-    ELEVENLABS_TTS,
+    EDGE_TTS,
     HANGYUL_GANADA,
 ]
 

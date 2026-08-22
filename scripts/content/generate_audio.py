@@ -182,7 +182,7 @@ def prune(assets: dict) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--provider", default=None, help="edge | azure | google | elevenlabs")
+    parser.add_argument("--provider", default=None, help="edge | azure | google")
     parser.add_argument(
         "--out",
         default=None,
