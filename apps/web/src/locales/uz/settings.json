@@ -43,8 +43,6 @@
     "crosshair": "O‘rta belgisi"
   },
   "about": {
-    "body": "Hangulni o‘qing va yozing: harflar, tovushlar, bo‘g‘in kataklari va ilk koreyscha so‘zlaringiz.",
-    "offline": "Har bir dars, gap va yozuv internetsiz ishlaydi.",
     "version": "Versiya {{version}}",
     "reset": "O‘qish jarayonini tozalash"
   },

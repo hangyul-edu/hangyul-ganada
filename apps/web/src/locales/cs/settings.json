@@ -47,8 +47,6 @@
     "crosshair": "Značka středu"
   },
   "about": {
-    "body": "Čtěte a pište hangul: litery, zvuky, slabičné bloky a první korejská slova.",
-    "offline": "Každá lekce, věta i nahrávka funguje bez internetu.",
     "version": "Verze {{version}}",
     "reset": "Vynulovat postup"
   },

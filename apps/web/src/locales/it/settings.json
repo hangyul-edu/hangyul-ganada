@@ -45,8 +45,6 @@
     "crosshair": "Segno al centro"
   },
   "about": {
-    "body": "Leggi e scrivi l’hangul: le lettere, i suoni, i blocchi sillabici e le tue prime parole coreane.",
-    "offline": "Ogni lezione, frase e registrazione funziona senza rete.",
     "version": "Versione {{version}}",
     "reset": "Azzera i progressi"
   },

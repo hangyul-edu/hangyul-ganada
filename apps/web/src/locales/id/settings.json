@@ -41,8 +41,6 @@
     "crosshair": "Tanda tengah"
   },
   "about": {
-    "body": "Baca dan tulis Hangul: hurufnya, bunyinya, blok suku katanya, dan kata-kata Korea pertamamu.",
-    "offline": "Semua pelajaran, kalimat, dan rekaman bisa dipakai tanpa internet.",
     "version": "Versi {{version}}",
     "reset": "Hapus kemajuan belajar"
   },

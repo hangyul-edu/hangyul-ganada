@@ -43,8 +43,6 @@
     "crosshair": "Centre mark"
   },
   "about": {
-    "body": "Read and write Hangul: the letters, the sounds, the syllable blocks, and your first Korean words.",
-    "offline": "Every lesson, sentence and recording works offline.",
     "version": "Version {{version}}",
     "reset": "Reset learning progress"
   },

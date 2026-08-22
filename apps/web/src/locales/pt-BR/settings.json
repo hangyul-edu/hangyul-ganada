@@ -45,9 +45,7 @@
     "crosshair": "Marca central"
   },
   "about": {
-    "body": "Ler e escrever hangul: as letras, os sons, os blocos silábicos e suas primeiras palavras em coreano.",
     "reset": "Redefinir o progresso",
-    "offline": "Todas as lições, frases e gravações funcionam sem conexão.",
     "version": "Versão {{version}}"
   },
   "reset": {

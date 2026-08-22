@@ -47,8 +47,6 @@
     "crosshair": "Znacznik środka"
   },
   "about": {
-    "body": "Czytaj i pisz hangeul: litery, dźwięki, bloki sylabowe i pierwsze koreańskie słowa.",
-    "offline": "Każda lekcja, zdanie i nagranie działa bez internetu.",
     "version": "Wersja {{version}}",
     "reset": "Wyzeruj postęp nauki"
   },

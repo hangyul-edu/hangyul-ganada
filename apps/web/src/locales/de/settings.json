@@ -43,9 +43,7 @@
     "crosshair": "Mittelmarke"
   },
   "about": {
-    "body": "Hangul lesen und schreiben: die Buchstaben, die Laute, die Silbenblöcke und deine ersten koreanischen Wörter.",
     "reset": "Lernfortschritt zurücksetzen",
-    "offline": "Alle Lektionen, Sätze und Aufnahmen funktionieren offline.",
     "version": "Version {{version}}"
   },
   "reset": {

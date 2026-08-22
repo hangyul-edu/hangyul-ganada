@@ -45,9 +45,7 @@
     "crosshair": "Repère central"
   },
   "about": {
-    "body": "Lire et écrire le hangul : les lettres, les sons, les blocs syllabiques et vos premiers mots coréens.",
     "reset": "Réinitialiser la progression",
-    "offline": "Toutes les leçons, phrases et voix fonctionnent hors connexion.",
     "version": "Version {{version}}"
   },
   "reset": {

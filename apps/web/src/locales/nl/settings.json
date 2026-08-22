@@ -43,8 +43,6 @@
     "crosshair": "Middelpunt"
   },
   "about": {
-    "body": "Lees en schrijf Hangul: de letters, de klanken, de lettergreepblokken en je eerste Koreaanse woorden.",
-    "offline": "Elke les, zin en opname werkt offline.",
     "version": "Versie {{version}}",
     "reset": "Leervoortgang wissen"
   },

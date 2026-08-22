@@ -43,8 +43,6 @@
     "crosshair": "Dấu tâm ô"
   },
   "about": {
-    "body": "Đọc và viết Hangul: chữ cái, âm thanh, cách ghép chữ, và những từ tiếng Hàn đầu tiên của bạn.",
-    "offline": "Mọi bài học, câu ví dụ và bản ghi âm đều dùng được khi không có mạng.",
     "version": "Phiên bản {{version}}",
     "reset": "Xóa toàn bộ tiến độ học"
   },

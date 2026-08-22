@@ -43,8 +43,6 @@
     "crosshair": "Középjel"
   },
   "about": {
-    "body": "Olvass és írj hangult: a betűket, a hangokat, a szótagblokkokat és az első koreai szavaidat.",
-    "offline": "Minden lecke, mondat és felvétel működik net nélkül.",
     "version": "{{version}} verzió",
     "reset": "Haladás nullázása"
   },

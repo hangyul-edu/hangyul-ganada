@@ -6,10 +6,25 @@
  * what it is.
  */
 
+/*
+ * The page paints its own surface, and that is not decoration.
+ *
+ * Every other tabbed screen sets `--hg-bg` here; these two did not, so the page
+ * was transparent and whatever the shell had behind it showed through. On the
+ * web that is invisible because the shell paints the same colour. In the
+ * Android WebView it is not: the surface behind the page is the system's, and a
+ * transparent page under a scrolling column of cards shows as a band of the
+ * wrong colour beneath the last one — which is what the licence screen was
+ * reported for.
+ *
+ * `flex: 1` on the body for the same reason: a page shorter than the scroll
+ * area used to end where its content ended.
+ */
 .page {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  background: var(--hg-bg);
 }
 
 .body {

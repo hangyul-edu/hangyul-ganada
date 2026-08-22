@@ -320,31 +320,6 @@
   outline-offset: 2px;
 }
 
-/* --- about --- */
-
-.about {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--hg-space-2);
-}
-
-.aboutTitle {
-  font-size: var(--hg-text-body);
-  font-weight: var(--hg-weight-bold);
-}
-
-.aboutBody {
-  font-size: var(--hg-text-caption);
-  color: var(--hg-text-secondary);
-}
-
-.aboutNote {
-  font-size: var(--hg-text-micro);
-  color: var(--hg-text-tertiary);
-  line-height: var(--hg-leading-snug);
-}
-
 [dir='rtl'] .toggleInput:checked + .toggleTrack .toggleThumb {
   translate: -18px 0;
 }
@@ -555,12 +530,6 @@
 .linkBody {
   font-size: var(--hg-text-micro);
   color: var(--hg-text-tertiary);
-}
-
-.aboutVersion {
-  margin-top: var(--hg-space-1);
-  font-size: var(--hg-text-micro);
-  color: var(--hg-text-disabled);
 }
 
 .toggleText {

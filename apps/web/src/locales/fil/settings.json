@@ -43,8 +43,6 @@
     "crosshair": "Marka sa gitna"
   },
   "about": {
-    "body": "Magbasa at sumulat ng Hangul: ang mga letra, ang mga tunog, ang mga kahong pantig, at ang unang mga salitang Koreano mo.",
-    "offline": "Gumagana nang walang internet ang bawat aralin, pangungusap, at rekording.",
     "version": "Bersyon {{version}}",
     "reset": "I-reset ang pag-usad"
   },

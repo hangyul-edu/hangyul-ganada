@@ -45,8 +45,6 @@
     "crosshair": "Semnul din centru"
   },
   "about": {
-    "body": "Citește și scrie hangul: literele, sunetele, blocurile silabice și primele tale cuvinte coreene.",
-    "offline": "Fiecare lecție, propoziție și înregistrare merge fără internet.",
     "version": "Versiunea {{version}}",
     "reset": "Resetează progresul"
   },

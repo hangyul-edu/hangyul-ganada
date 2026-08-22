@@ -43,8 +43,6 @@
     "crosshair": "Orta işareti"
   },
   "about": {
-    "body": "Hangıl oku ve yaz: harfler, sesler, hece blokları ve ilk Korece kelimelerin.",
-    "offline": "Her ders, cümle ve kayıt çevrimdışı çalışır.",
     "version": "Sürüm {{version}}",
     "reset": "Öğrenme ilerlemesini sıfırla"
   },

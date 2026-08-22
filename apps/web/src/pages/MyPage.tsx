@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import type { VoiceGender } from '@hangyul-ganada/shared-types';
 
 import { usePronunciation } from '../audio/PronunciationContext';
-import { PRODUCT, productName } from '../config/product';
 import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS } from '../data/fonts';
 import { useCorpus } from '../data/useCorpus';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
@@ -598,22 +597,21 @@ export function MyPage() {
             <ChevronRightIcon size={18} />
           </Link>
 
-          <Card padding="md" className={styles.about}>
-            <p className={styles.aboutTitle}>{productName(locale)}</p>
-            <p className={styles.aboutBody}>{t('settings:about.body')}</p>
-            {/*
-              The line that explained the grading threshold — "more than 55%
-              different and it asks for another go" — is gone. It answered a
-              question nobody asks about a product they are using, and the
-              number is meaningless without the rest of the evaluator. What a
-              learner wants from About is what this is, whether it works on a
-              plane, and which version they are on.
-            */}
-            <p className={styles.aboutNote}>{t('settings:about.offline')}</p>
-            <p className={styles.aboutVersion}>
-              {t('settings:about.version', { version: PRODUCT.version })}
-            </p>
-          </Card>
+          {/*
+            The About card is gone, and the version went with it to Legal.
+
+            It read: the product's name, "how to read and write Hangul: jamo,
+            sounds, syllable blocks, and your first Korean words", "every lesson
+            and recording works without the internet", and a version number.
+            Four true sentences on a screen belonging to somebody who has
+            already installed the app, already knows what it is, and came here
+            to change a setting. It is the marketing page, printed under the
+            settings.
+
+            The version is a real fact somebody occasionally needs, so it moved
+            to Legal & Licences — one tap away, on the screen where the other
+            facts about the build already are.
+          */}
         </Group>
 
         {/*

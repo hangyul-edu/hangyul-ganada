@@ -43,8 +43,6 @@
     "crosshair": "Mittmarkering"
   },
   "about": {
-    "body": "Läs och skriv hangul: bokstäverna, ljuden, stavelseblocken och dina första koreanska ord.",
-    "offline": "Varje lektion, mening och inspelning fungerar utan nät.",
     "version": "Version {{version}}",
     "reset": "Nollställ dina framsteg"
   },
