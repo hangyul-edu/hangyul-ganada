@@ -1,8 +1,8 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.0",
-  "commit": "cb5450fe0b6f5821922f7d049f23de1409c9ebbd",
-  "built_at": "2026-08-22T02:24:13.263Z",
+  "commit": "314737c7e556d2094159ca6529ae516d2a454b29",
+  "built_at": "2026-08-22T02:53:50.666Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",

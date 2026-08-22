@@ -3413,6 +3413,36 @@ overrides.
 Themes: **system / light / dark**, applied as `data-theme` on `<html>`, with
 "system" removing the attribute so `prefers-color-scheme` decides.
 
+## 27.3 Decoration audit — **NEW, and it found one thing**
+
+Five questions, asked of the whole product rather than of the screen that
+prompted them:
+
+| | |
+| --- | --- |
+| Is any icon decorative without adding meaning? | One was. §22.5 |
+| Is the same action represented twice? | Once. Same place. |
+| Does a functional control already say what an illustration says? | Yes — the 🔊 above the audio button |
+| Does the instructional glyph match the tracing glyph? | Now measured: 73/73. §12.5 |
+| Are jamo proportions pedagogically trustworthy? | They were not. 30 of 40 were off a fallback face. §12.5 |
+
+**Pictographs in the product: zero.** All 32 locales' copy was scanned for emoji
+and symbol ranges — 0 of 18,229 strings. The source outside comments carries
+five characters in those ranges and all five are the same `→`, used to mean
+*becomes*: 있다 → 읻따 on the sound-changes screen, and a word beside the form
+its example writes it in. That is a word, not an ornament.
+
+**Screens read for decoration**, after the change: Home, Letters, a lesson
+introduction, Words, Review, Learning activity, My Learning, When sounds meet.
+Nothing on them repeats an action, and nothing is present only to fill space.
+
+The one illustration in the product — the mandarin, which is what 한귤 means —
+appears in two empty states and on a unit introduction. It is kept. An empty
+state is the one place a picture is doing work: *Nothing to review yet* over a
+blank screen reads as a failure, and over a drawing it reads as a beginning.
+That is the test this section applies, and a decorative speaker above a speaker
+button did not pass it.
+
 ## 27.2 The dark-mode contrast bug — **VERIFIED FIXED**
 
 **Previously:** hovering a typeface card in dark mode painted it near-white
