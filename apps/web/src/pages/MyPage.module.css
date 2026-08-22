@@ -234,6 +234,12 @@
 .targetOption {
   min-width: 56px;
   min-height: var(--hg-size-control-sm);
+  /*
+    36 px of chip in a 44 px target, the same way the home status chips do it.
+    Nine of these sit in two rows, so growing the chips themselves would cost
+    the settings screen its rhythm; growing the hit box costs nothing.
+  */
+  position: relative;
   padding-inline: var(--hg-space-3);
   border-radius: var(--hg-radius-pill);
   background: var(--hg-surface);
@@ -241,6 +247,12 @@
   font-size: var(--hg-text-body-sm);
   font-weight: var(--hg-weight-semibold);
   color: var(--hg-text-secondary);
+}
+
+.targetOption::after {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
 }
 
 .targetSelected {
@@ -483,7 +495,7 @@
   background: color-mix(in srgb, var(--hg-negative) 8%, var(--hg-surface));
   font: var(--hg-text-body-sm);
   line-height: var(--hg-leading-relaxed);
-  color: var(--hg-negative);
+  color: var(--hg-negative-text);
   text-wrap: pretty;
 }
 
@@ -578,7 +590,10 @@
    sitting in the same row where a mis-tap costs a learner their progress. */
 .dataReset {
   align-self: flex-start;
-  color: var(--hg-negative);
+  /* `negativeText`, not `negative` — see the token. #F24147 on the muted grey
+     of a settings group is 3.39:1, and this is the one destructive control in
+     the product. */
+  color: var(--hg-negative-text);
 }
 
 /* --- appearance --- */

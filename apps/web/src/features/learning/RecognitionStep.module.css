@@ -90,13 +90,13 @@
 .optionCorrect {
   border-color: var(--hg-positive);
   background: var(--hg-positive-subtle);
-  color: var(--hg-positive);
+  color: var(--hg-positive-text);
 }
 
 .optionWrong {
   border-color: var(--hg-negative);
   background: var(--hg-negative-subtle);
-  color: var(--hg-negative);
+  color: var(--hg-negative-text);
 }
 
 .optionDimmed {

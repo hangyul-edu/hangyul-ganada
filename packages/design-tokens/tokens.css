@@ -48,6 +48,8 @@
   --hg-negative-subtle: #FEF0F0;
   --hg-secondary-subtle: #E4F6F6;
   --hg-secondary-text: #2F6E6E;
+  --hg-positive-text: #3D63D8;
+  --hg-negative-text: #C81E24;
   --hg-bg: #FFFFFF;
   --hg-bg-warm: #FFF8F1;
   --hg-bg-muted: #F2F4F5;
@@ -175,6 +177,8 @@
   --hg-negative-subtle: #462A28;
   --hg-secondary-subtle: #2F3A38;
   --hg-secondary-text: #7FD6D6;
+  --hg-negative-text: #FF7A80;
+  --hg-positive-text: #8AA6F7;
   --hg-bg: #15110E;
   --hg-bg-warm: #1B1613;
   --hg-bg-muted: #211B17;
@@ -219,6 +223,8 @@
     --hg-negative-subtle: #462A28;
     --hg-secondary-subtle: #2F3A38;
     --hg-secondary-text: #7FD6D6;
+    --hg-negative-text: #FF7A80;
+    --hg-positive-text: #8AA6F7;
     --hg-bg: #15110E;
     --hg-bg-warm: #1B1613;
     --hg-bg-muted: #211B17;

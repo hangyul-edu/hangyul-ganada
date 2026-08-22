@@ -90,6 +90,21 @@
   font-size: var(--hg-text-caption);
   font-weight: var(--hg-weight-bold);
   white-space: nowrap;
+  /*
+    The same 32-in-44 hit box as `.statusLevel` below.
+
+    The two chips sit side by side and were built from one shape, so they have
+    to be tappable to the same standard as well as look alike — this one was
+    88x32 while the level chip beside it measured 44, which is the sort of gap
+    that only shows up in a sweep.
+  */
+  position: relative;
+}
+
+.streak::after {
+  content: '';
+  position: absolute;
+  inset: -6px -4px;
 }
 
 @media (hover: hover) {

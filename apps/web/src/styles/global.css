@@ -239,6 +239,12 @@ svg {
   top: 8px;
   translate: -50% -200%;
   z-index: var(--hg-z-toast);
+  /* The first tab stop, and a 44 px target like every other control. It
+     measured 39 px, which is the kind of thing that goes unnoticed precisely
+     because the control is invisible until somebody needs it. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: var(--hg-space-2) var(--hg-space-4);
   border-radius: var(--hg-radius-pill);
   background: var(--hg-primary);

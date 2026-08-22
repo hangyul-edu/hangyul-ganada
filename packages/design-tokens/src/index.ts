@@ -146,6 +146,29 @@ export const semantic = {
   /** `secondary` as small text, on `secondarySubtle`. */
   secondaryText: '#2F6E6E',
 
+  /**
+   * `positive` as small text, and the reason both of these exist as tokens.
+   *
+   * #547CF1 measures 3.80:1 on white and 3.48:1 on its own tint. It is the
+   * colour a correct answer's label takes, which is a state a page-load audit
+   * cannot reach — so this one was found by looking at the palette after its
+   * mirror image turned up, not by measuring a screen. #3D63D8 is the same hue
+   * at 5.28:1 / 4.84:1.
+   */
+  positiveText: '#3D63D8',
+
+  /**
+   * `negative` as small text, for the same reason `primaryText` exists.
+   *
+   * #F24147 is right as a border and as the base of a wash, and it measures
+   * 3.73:1 on white and 3.39:1 on the muted grey a settings group sits on —
+   * under AA either way. "Reset learning progress" is the label it colours, so
+   * the one destructive action in the product was the hardest sentence in it to
+   * read. #C81E24 is the same hue at the brightest value that clears 4.5:1 on
+   * both (5.73:1 / 5.19:1).
+   */
+  negativeText: '#C81E24',
+
   bg: gray[0],
   bgWarm: warm[50],
   bgMuted: gray[100],
@@ -283,6 +306,10 @@ export const dark = {
   secondarySubtle: '#2F3A38',
   /** `secondary` needs no darkening here: on dark ground it is already 8.4:1. */
   secondaryText: '#7FD6D6',
+  /** Nor does `negative`: #FF7A80 reads 7.0:1 on `surface`. */
+  negativeText: '#FF7A80',
+  /** Nor `positive`: #8AA6F7 reads 7.4:1. */
+  positiveText: '#8AA6F7',
 
   bg: '#15110E',
   bgWarm: '#1B1613',

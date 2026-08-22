@@ -294,6 +294,14 @@
 .search {
   flex: 1;
   min-width: 0;
+  /*
+    Full height of the row, not the height of one line of text.
+
+    The row is 48 px and looks like the target; the input inside it was 25 px
+    and *was* the target, so a tap in the top or bottom eighth of a search bar
+    that plainly invites one did nothing.
+  */
+  align-self: stretch;
   border: 0;
   background: none;
   font: var(--hg-text-body);

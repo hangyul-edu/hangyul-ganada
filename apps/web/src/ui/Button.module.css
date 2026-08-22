@@ -75,19 +75,32 @@
   color: var(--hg-text-disabled);
 }
 
+/*
+  The quiet half of a two-button choice.
+
+  `--hg-gray-600`, not `--hg-gray-400`. White on #ADB4BA measures 2.10:1, which
+  fails AA at any size and is not the disclosed brand pair — the only exception
+  this product ships is white on the primary orange, and a grey button borrows
+  none of that argument. #626B72 measures 5.43:1 and is the colour this button
+  already turned on hover, so the resting state was the lighter of two shades
+  the design had already accepted.
+
+  It stays visibly secondary to the filled primary beside it, which is the job:
+  quieter, not fainter.
+*/
 .neutral {
-  background: var(--hg-gray-400);
+  background: var(--hg-gray-600);
   color: var(--hg-text-on-primary);
 }
 
 @media (hover: hover) {
   .neutral:hover:not(:disabled) {
-    background: var(--hg-gray-600);
+    background: var(--hg-gray-700);
   }
 }
 
 .neutral:active:not(:disabled) {
-  background: var(--hg-gray-600);
+  background: var(--hg-gray-700);
 }
 
 .neutral:disabled {

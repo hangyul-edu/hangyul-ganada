@@ -43,11 +43,11 @@
 }
 
 .correct .headline {
-  color: var(--hg-positive);
+  color: var(--hg-positive-text);
 }
 
 .incorrect .headline {
-  color: var(--hg-negative);
+  color: var(--hg-negative-text);
 }
 
 .body {

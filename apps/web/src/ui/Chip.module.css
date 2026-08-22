@@ -32,12 +32,12 @@
 
 .positive {
   background: var(--hg-positive-subtle);
-  color: var(--hg-positive);
+  color: var(--hg-positive-text);
 }
 
 .negative {
   background: var(--hg-negative-subtle);
-  color: var(--hg-negative);
+  color: var(--hg-negative-text);
 }
 
 .filled.neutral {
