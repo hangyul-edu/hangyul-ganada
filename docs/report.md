@@ -208,9 +208,9 @@ a build's own record of itself is not evidence about the file.
 | Words with any verified relation | 245 of 2,581 (9.5%), 272 relations | 243 |
 | Longer explanations (`definition`) | 25, written, in 10 languages | 25 |
 | Words whose taught sense is pinned by exact string | 11, now beside a `senseId` on all 2,581 | 11 |
-| Web unit (`vitest`) | **691** (41 files) | 681 |
+| Web unit (`vitest`) | **699** (42 files) | 691 |
 | Handwriting core (`vitest`) | **96** (5 files) | 96 |
-| End-to-end (`playwright`) | **262** (131 × 2 projects) | 236 |
+| End-to-end (`playwright`) | **266** (133 × 2 projects) | 262 |
 | Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting **false-reject / false-accept** | **0.28% / 0.28%** — and Pretendard, the default face, **0.42% / 0.00%** | 0.21% / 0.78% overall, 1.04% / 0.55% on Pretendard |
 | First load | **387.8 kB gz of a 460 kB budget** (84%) | 387.3 kB |
@@ -226,7 +226,11 @@ a build's own record of itself is not evidence about the file.
 | Screens checked at 200% text | **9**, no sideways scroll and nothing clipped | not checked |
 | Audio clips decoded end to end | **10,550**, 0 errors, 0 warnings, in 2m49s | the check did not finish |
 | Dictionary search, phone-adjusted | **3.9 ms** per keystroke at 26,675 headwords, budget 8 ms | no dictionary |
-| Stroke demonstration audited at | **200, 152 and 96 px** — the sizes the product draws | 160 and 96, neither of which ships |
+| Stroke demonstration audited at | 200, 152 and 96 px — the sizes the product draws | same |
+| **Glyph shape** — completed letters against the face they are traced from | **73 / 73**, mean 96.9% | never asked |
+| ㄱ's toe beside a vowel, against the face's 0.115 | **0.166–0.175** | 0.72–0.73 |
+| Jamo proportions measured off the real face | **40 / 40** | 10 of 40 — the rest off a silent fallback |
+| Decorative pictographs on a question screen | **0** | one 44px 🔊 above the audio button |
 
 The relation rows moved by two, and not because relation work was done. Trimming
 자신 from "oneself; confidence" to "oneself" was a gloss fix, and it let the
@@ -285,6 +289,44 @@ before   0.21% false reject / 0.78% false accept
 after    0.28% / 0.28%
 Pretendard, the face almost everyone writes on:  1.04% / 0.55%  ->  0.42% / 0.00%
 ```
+
+**The letters were the right strokes in the wrong shape, and no gate could see
+it.** A customer sent a screenshot of 가 and 거: the ㄱ's leg stops short and the
+letter reads top-heavy, not the shape the tracing guide underneath shows. They
+were right. `strokes:qa`, `strokes:visual` and `strokes:measure:check` were
+green on all 73 items throughout — they ask whether the ink is well formed and
+well behaved, and none of them asks whether the completed character is the right
+shape. **Those are different claims and this report had been reporting one as
+the other.**
+
+Measured off the face, the leg's toe lands at 0.115 of the letter's width and
+was authored at 0.72. The rule was already right — a leaning form beside a
+vowel, upright above — so the fix is one constant and a curve refitted to the
+face's own profile, with no per-syllable exception.
+
+Following it to ㅗ found the larger defect. `measure-jamo.mjs` was measuring **a
+system fallback face**: it drew on a page where nothing used the family, so
+`document.fonts.ready` resolved without loading it and the canvas quietly
+substituted another Korean typeface. 30 of the 40 letters were out by more than
+5%; ㅗ was built with a stem two fifths too short. Nothing errored, and the
+check passed because it faithfully reproduced its own mistake. My own first
+attempt to measure it independently had the identical bug and produced eight
+confident, wrong findings before I checked them against the font file.
+
+There is now a `glyphshape:qa` that fits the authored letter and the practice
+face the same way the app fits the guide and overlays them: **73 of 73 pass**,
+and all 73 were also looked at. Six compound vowels differ on purpose —
+Pretendard slants the ㅗ bar in ㅘ and its family, nobody writes a slanted ㅗ,
+and that is listed as reviewed rather than hidden by lowering the bar.
+
+**The listening question said the same thing twice.** A 44px 🔊 sat directly
+above the button that plays the clip — decoration duplicating a control, in a
+pictograph belonging to no part of this product's drawing, `aria-hidden` so not
+even labelling anything. Removed, with nothing in its place. Removing it exposed
+a real defect: the button's name is *"Play the pronunciation of {text}"* and a
+listening question has no text to name, so screen-reader users heard *"Play the
+pronunciation of "* and then silence. It says *"Play the sound"* now, in 32
+languages.
 
 **Every card now teaches one named sense, and 103 of them did not.** Each entry
 carries a canonical `senseId` — `word_cha#car`, derived from the English gloss
@@ -1392,6 +1434,118 @@ one short stroke.
 worth watching is that "overall" averages six faces, and the remaining spread is
 real: Gaegu still rejects 0.63% of honest attempts against 0.00% on two of the
 others, and that is the same face-design property behind **I-31**.
+
+## 12.5 Glyph shape, which is a different claim from stroke integrity — **NEW**
+
+**Stroke integrity: PASS.** `strokes:qa` clean on 73 items and 269 strokes,
+`strokes:visual` clean on 1,345 rendered frames, `strokes:measure:check` clean
+on 33 syllables. Correct order, nothing invisible, nothing arriving early,
+nothing detached, nothing off the paper.
+
+**Glyph-shape quality: PASS, and it did not before this cycle.** All three gates
+above were green throughout, on all 73 items, while 가 and 거 were being taught
+with a ㄱ whose leg stopped a third short of where the face puts it. Every stroke
+was in the right order, drawn cleanly, and the wrong shape.
+
+Those are different claims and this report will not report one as the other
+again. A learner is not learning a stroke order; they are learning what the
+letter looks like.
+
+### The ㄱ — reported from a screenshot, confirmed by measurement
+
+The number that decides it is where the leg's **toe** lands, as a fraction of
+the letter's own width: 1.0 is straight down from the corner, 0 is all the way
+back under the bar's left end. Measured off Pretendard, taking the ㄱ's region
+from the measured composition so the vowel's ink cannot be counted as the leg:
+
+| | face | was | now |
+| --- | --- | --- | --- |
+| 가 | 0.120 | 0.728 | **0.166** |
+| 거 | 0.116 | 0.724 | **0.175** |
+| 기 | 0.113 | 0.723 | **0.167** |
+| 그 | 0.924 | 0.949 | 0.949 |
+| ㄱ alone | 0.915 | 0.941 | 0.941 |
+
+**Root cause:** the *rule* was already right. `strokesOf` picks a leaning form
+beside a vowel and an upright one above or alone, which is exactly what the face
+does. Only the magnitude was wrong — authored at a lean of 0.28 where the face
+uses 0.885 — so the correction is one constant and a refitted curve, in the
+canonical jamo geometry, with no per-syllable exception anywhere.
+
+The leg's two controls were least-squares fitted to the face's profile at 25,
+50, 75 and 98% of the letter's height, with the corner control held on its own
+vertical so the corner stays a right angle. Fitted **twice**: the first fit was
+against the bare curve, and the samples are taken on rendered ink whose box is
+half a pen larger at each end — worth 0.057 of the width through the middle.
+
+All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and
+read by eye. **I-34.**
+
+### And underneath it, every jamo was measured off the wrong typeface
+
+Following the ㄱ report to ㅗ found something larger. `measure-jamo.mjs` set a
+page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which
+resolves immediately when nothing on the page uses the family — and then drew
+with a font that had never loaded. The canvas substituted a system Korean face
+and drew perfectly good, wrong letters. Nothing errored, and `--check` said the
+file was up to date because it faithfully reproduced its own mistake.
+
+**30 of the 40 letters were out by more than 5%.** ㅗ was recorded at an aspect
+of 2.894 where Pretendard draws it at 1.826, so the demonstration built ㅗ with a
+stem two fifths too short; ㅛ the same; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ and ㅎ by 12–20%.
+
+The generator now loads the face for the letters it is about to measure and
+refuses to run if it did not, checking for a family only its own `@font-face`
+can supply — because the fallback here is *another Korean face* and would pass a
+weaker test. The first independent attempt to measure this had the identical bug
+and produced eight confident, wrong findings about compound vowels before the
+numbers were checked against the font file. **I-35.**
+
+### What `glyphshape:qa` asks, and what it refuses to conclude
+
+Two representations reach the learner and they come from different places: the
+pale tracing guide is the **practice typeface**, ink-fitted by `fitGlyph`, and
+*Watch it written* is the **authored vector**. There is no third thing — the
+reference glyph and the guide are the same object. So the check fits both the
+way the app fits the guide, overlays them, and asks how much of each has nothing
+near it in the other, within a tolerance a little over half the pen.
+
+Not intersection over union, which was tried first and is the wrong instrument:
+one is a typeface with modulated strokes and the other a constant-width pen, so
+two renderings of unmistakably the same letter overlap by about half their area
+and the ranking measures pen width rather than shape.
+
+**73 of 73 items pass**, mean 96.9% against a floor of 90%.
+
+| | |
+| --- | --- |
+| ㄱ canonical geometry | **PASS** |
+| 가 | **PASS** |
+| 거 | **PASS** |
+| ㄱ-containing taught items | **14 / 14** |
+| All completed glyph shapes, measured | **73 / 73** |
+| All completed glyph shapes, read by eye | **73 / 73** |
+| Guide ↔ demonstration coherence | **PASS**, with six stated exceptions below |
+
+**Six exceptions, and the demonstration is right in all six.** In a compound
+vowel Pretendard *slants* the ㅗ or ㅜ bar — ㅘ ㅝ ㅚ ㅟ ㅙ ㅞ — tilting it down
+towards the outside to stop the two halves colliding at text sizes. That is a
+property of the typeface, not of the letter: nobody writes a slanted ㅗ, and a
+demonstration that taught one would be teaching the face rather than the
+language. The demonstration keeps the bar level, the six are listed as reviewed
+rather than the floor being lowered to hide them, and a seventh would fail — as
+would one that stopped disagreeing.
+
+A learner tracing the guide on those six really does see a slight tilt the
+animation does not have. That is a stated difference, not a hidden one.
+
+### What the numbers cannot say
+
+`glyphshape:qa` writes every item as guide, demonstration and overlay, and all
+73 were looked at. Two letters that score well can still be wrong to a reader;
+the measurements exist to make a *regression* impossible to miss, not to replace
+the looking. The ㄱ that started this cycle was reported from a screenshot by a
+customer, and no gate in the repository had anything to say about it.
 
 ## 12.3 The limitation this does not solve — **VERIFIED**
 
@@ -2615,6 +2769,53 @@ costs nothing to run — untrue.
 because a fixed clip would otherwise never reach a learner whose app had already
 played the wrong one.
 
+## 22.5 The listening question's visual treatment — **CHANGED this cycle**
+
+**Old:** the question text, then a 44px 🔊, then the button that plays the clip.
+
+**New:** the question text, then the button. Nothing in the emoji's place.
+
+The emoji was the same action said twice — once as a control and once as a
+decoration — in a pictograph belonging to no part of this product's drawing. It
+was `aria-hidden`, so it was not labelling anything either; it was filling the
+space where a prompt would go on the one kind of question that has no visible
+prompt, because the sound *is* the prompt. The space did not need filling.
+
+**Decorative speaker asset: removed.** Nothing replaced it — no second
+illustration, no sound-wave flourish, no new icon family. `SpeakerButton` at
+`lg` is 52px, inside the 48–56px the design calls for, carries the app's own
+vector icon and already changes state while it plays.
+
+**One shared control.** `ChoiceExercise` renders every choice question in both
+the letter lesson and Review, so this is one component and not five slightly
+different speaker treatments. No other route rendered a decorative speaker;
+every other `SpeakerButton` in the product passes a real label.
+
+**The accessibility fallback is intact.** *Can't use audio?* is still under the
+button, still secondary, still keyboard-operable, and still swaps the clip for
+an equivalent visual prompt rather than skipping the question.
+
+**Dark mode: verified by looking, not inferred.** Screenshotted in both themes:
+the button is visible against the dark surface, the icon reads, the fallback
+link reads, the options read. An axe scan runs in both.
+
+### It exposed a real accessibility defect
+
+The button's name is built as *"Play the pronunciation of {text}"*, with the
+text passed by the caller. A listening question shows no Korean — that being the
+question — so the caller had nothing to pass, and a screen-reader user heard
+**"Play the pronunciation of "** and then silence. Naming the letter would have
+been worse: it would read out the answer they are being asked for. An unnamed
+`SpeakerButton` now says *"Play the sound"* / *"Play the sound again"*, in all
+32 languages.
+
+### This does not restore vocabulary listening quizzes
+
+`NEW_WORD_CHECKS` is still meaning, context and matching. `listenMeaning` is
+still absent from vocabulary learning and vocabulary Review, and `plan.test.ts`
+still guards it from returning. Pronunciation audio remains everywhere it was.
+Audio support is not a listening quiz. **I-36.**
+
 ## 22.2 Autoplay — **VERIFIED WORKING**
 
 `useEntryAudio` plays once per arrival, guarded by a ref rather than an effect
@@ -3716,12 +3917,15 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-06** | Word Detail | **P1** | Longer explanations were English-only dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** |
 | **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covered 500 of 2,581 words | Past word 500 a vi/th learner read marked English | **RESOLVED** |
 | **I-08** | Content | **P1** | Entries whose gloss contradicted their own example | 열 read "fever" above a sentence about counting to ten | **RESOLVED** |
+| **I-34** | Handwriting | **P1** | The ㄱ taught beside a vowel had a leg a third too short | A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check. | **RESOLVED** |
+| **I-35** | Handwriting | **P1** | Every jamo proportion was measured off a fallback face, not off Pretendard | ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface. | **RESOLVED** |
 | **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **RESOLVED** |
 | **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
 | **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **RESOLVED** |
 | **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces. | **RESOLVED** |
 | **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **RESOLVED** |
 | **I-29** | Build | **P2** | Two end-to-end tests fail, and no `verify` target runs the suite that would have said so | None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230. | **RESOLVED** |
+| **I-36** | Design | **P2** | The listening question drew a decorative speaker emoji above the real audio control | The same action appeared twice — a 44px 🔊 and, under it, the button that actually plays the clip. The emoji belonged to no part of the product's drawing and was `aria-hidden`, so it was decoration standing where the prompt would be. | **RESOLVED** |
 | **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
 | **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
 | **I-18** | Content | **P3** | 103 glosses carried more than one sense in some language | A learner asked what 차 means had two right answers and one button: the card read 車、お茶 in Japanese and "coche, té" in Spanish over the sentence 차를 타요. | **RESOLVED** |
@@ -3737,7 +3941,7 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 **Open — P0: 0 · P1: 3 · P2: 3 · P3: 1**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 20**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 23**
 
 <!-- /issues:counts -->
 
@@ -3786,12 +3990,15 @@ way a reader can re-run.
 | **I-06** | 25 written words in ten languages; §15.2. | done |
 | **I-07** | 2,581 non-null rows in both. | done |
 | **I-08** | Eleven found, all authored and pinned; `vocabulary:sense:qa:check` passes. | done |
+| **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
+| **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
 | **I-09** | `MatchExercise` — four Korean words, four meanings, tap-tap. It is a genuine group exercise rather than a screen: `ScheduledStep` gained `group` and `completes`, `scheduleSteps` holds words back until four are waiting so a grid is only ever made of words already met in that sitting, and the session credits every word a step finishes from one code path. Seven component tests cover the accounting, including that a grid reports one result per word, that both sides of a wrong attempt are marked, and that a double tap on the last pair cannot report twice. Four scheduler tests cover the invariants: every word finished exactly once, no word in two grids, and no grid before its words were introduced. | done |
 | **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
 | **I-21** | A per-question *Can't use audio?* on the two heard-only letter exercises, in all 32 languages. `listen` swaps the clip for the written romanisation and keeps the same four letters; `distinguish` turns the question round and asks which of two sounds the letter makes, because printing the romanisation there would hand over the answer its options already carry as labels. Same item, same skill, same scoring, no penalty and no setting. `accessibility.spec.ts` drives the Listen practice entry, asserts the control is a real button reachable and operable by keyboard, and runs axe over the substituted question. | done |
 | **I-24** | `fitGlyph` measures the drawn ink and solves for the size and origin that centre it, rather than sizing the em. Measured on the running app: ㅏ went from 0.228 × 0.672 centred at (0.556, 0.460) to **0.243 × 0.718 at (0.499, 0.499)**, and the worst centring error across all 270 glyph-and-face pairs is 1.2% of the box. The grading half — the reason the previous attempt was reverted at 21% false rejections — is `GAP_EROSION_RATIO`, which erases the rim a too-wide reference stroke leaves before the structural term counts it, mirroring what the blot term already did. Swept jointly against the corpus: **0.28% false reject / 0.28% false accept**, against 0.21% / 0.78% before, with Pretendard — the default face — improving on both from 1.04% / 0.55% to 0.42% / 0.00%. The fixtures were regenerated because they had been rendering their own layout and so measuring a geometry the product does not use. | done |
 | **I-25** | `measure-composition.mjs` starts its own `vite preview` when nothing is listening on :4477 and reuses one when something is, so it runs unattended. `strokes:measure:check` is in `verify:release`. | done |
 | **I-29** | The failing case was the launch screen, not the feature: `page.mouse.*` has no actionability check, so a wheel dispatched during the 900 ms brand screen landed on the splash. `e2e/helpers/launch.ts` makes the wait explicit and says why. The suite is **236 of 236** across both projects, and `test:e2e` is in `verify:release`. | done |
+| **I-36** | Removed, with nothing in its place: the question is the line of text above and the action is the one button below. One shared `ChoiceExercise` renders every choice question in the lesson and in Review, so it is gone from every route at once.  Removing it exposed an accessibility defect. The button's name is built as "Play the pronunciation of {text}" and a listening question shows no Korean — that being the question — so the caller had nothing to pass and screen-reader users heard "Play the pronunciation of " and then nothing. Naming the letter would read out the answer, so an unnamed button now says "Play the sound", in all 32 languages.  A test asserts the absence of *any* pictograph rather than of one character, plus the positive shape — one hit-sized control, named for what it does, with "Can't use audio?" still under it — in both themes, with an axe scan. | Done. |
 | **I-15** | Regenerated, fixtured, checked on-device. | done |
 | **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
 | **I-18** | All 103 were read against the sentence each card asks. 35 named a sense the sentence never demonstrates and were trimmed across ten languages; ten cards moved sense outright — 맡다 was glossed "to take charge of" over 냄새를 맡아 보세요, 시키다 was "to make someone do" over "I ordered pizza" — and three illustrations moved with them. The remaining 38 were read and kept: Japanese has no single verb for 있다 and must write ある、いる, which is one sense in the two renderings the language requires. `vocabulary:sense:qa:check` now fails on a split gloss that is not on the reviewed list, and on a listed one that has stopped being split; both directions are negative-tested. Comma-merged glosses remain outside the rule and are tracked under I-10. | Done. |

@@ -350,6 +350,39 @@
       "evidence": "Wiktionary topics are page-level, not per sense. 김치's page carries `Kimchi` and `Photography`, because 김치 is what Koreans say instead of \"cheese\" for a photograph — an interjection sense the card does not teach. `categories.WIKTIONARY_TOPICS` maps Photography to communication, so the food card picks it up.\n\nFound by `content:vocabulary:check` after the dictionary fetch grew the wikitext cache from 13,495 pages to 50,128: 김치, 교실 and 만두 changed category as new topic data arrived. 교실 gaining *home* from the `Rooms` topic and 만두 gaining *food* from `Foods` are both right.\n\nThis is the same root cause as I-18 — a page describes several senses and the card teaches one — at the one place a `senseId` cannot reach, because the topics are not attached to a sense in the source.",
       "recommendedFix": "Take topics from the sense rather than the page, which the source does not support; or curate the mapping so that a topic only contributes when it agrees with the gloss-matched primary. The second is cheap and would have caught this one.",
       "effort": "LOW — a rule in categories.classify, and a re-read of what moves"
+    },
+    {
+      "id": "I-34",
+      "area": "Handwriting",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The ㄱ taught beside a vowel had a leg a third too short",
+      "customerImpact": "A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check.",
+      "evidence": "The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.\n\nThe rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.\n\nNow 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-35",
+      "area": "Handwriting",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Every jamo proportion was measured off a fallback face, not off Pretendard",
+      "customerImpact": "ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface.",
+      "evidence": "`measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.\n\nㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.\n\nFound by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-36",
+      "area": "Design",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The listening question drew a decorative speaker emoji above the real audio control",
+      "customerImpact": "The same action appeared twice — a 44px 🔊 and, under it, the button that actually plays the clip. The emoji belonged to no part of the product's drawing and was `aria-hidden`, so it was decoration standing where the prompt would be.",
+      "evidence": "Removed, with nothing in its place: the question is the line of text above and the action is the one button below. One shared `ChoiceExercise` renders every choice question in the lesson and in Review, so it is gone from every route at once.\n\nRemoving it exposed an accessibility defect. The button's name is built as \"Play the pronunciation of {text}\" and a listening question shows no Korean — that being the question — so the caller had nothing to pass and screen-reader users heard \"Play the pronunciation of \" and then nothing. Naming the letter would read out the answer, so an unnamed button now says \"Play the sound\", in all 32 languages.\n\nA test asserts the absence of *any* pictograph rather than of one character, plus the positive shape — one hit-sized control, named for what it does, with \"Can't use audio?\" still under it — in both themes, with an axe scan.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
     }
   ]
 }
