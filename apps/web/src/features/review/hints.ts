@@ -75,6 +75,22 @@ export interface HintStep {
    * before it gets here, because this module has no `t`.
    */
   values?: Record<string, string>;
+  /**
+   * What this rung *asserts about the answer*, for deciding whether it helps.
+   *
+   * A hint has to be two things and only one of them was being checked. Safe —
+   * it must not contain the answer, which `usableHints` has always enforced.
+   * And **useful** — it must rule something out. "It's a verb" over four verbs
+   * is perfectly safe and tells a learner nothing; they spend a rung of help
+   * and are exactly where they were.
+   *
+   * So a rung that classifies the answer says which properties it is
+   * classifying by, and `usableHints` drops it when every option on screen
+   * already shares them. Rungs that are not classifications — a replay, a first
+   * syllable, an example sentence — have no `about` and are never dropped on
+   * these grounds, because they narrow things a property table cannot describe.
+   */
+  about?: Record<string, string>;
 }
 
 /** The rung a level number maps to. 0 is unaided. */
@@ -116,6 +132,21 @@ export function strengthAt(level: number): HintStrength | null {
  * opinion about what counts as giving the answer away, and the day the two
  * disagreed the test would be certifying a rule the product does not follow.
  */
+/**
+ * Scripts that do not put spaces between words.
+ *
+ * Whole-token matching is the right test for a language that separates its
+ * words and completely useless for one that does not: a Thai sentence splits
+ * into one token, so `tokens.includes(answer)` is false however plainly the
+ * answer is sitting in the middle of it. That is not a hypothetical — 음료수 is
+ * *เครื่องดื่ม* and its category renders as *อาหารและเครื่องดื่ม*, which
+ * contains the answer and was being shown as a hint.
+ *
+ * Korean was already handled here. Thai, Japanese, Chinese, Lao and Khmer were
+ * not, and they have the same property.
+ */
+const UNSPACED = /[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af\u0e00-\u0eff\u1780-\u17ff\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/u;
+
 export function revealsAnswer(text: string, answer: string): boolean {
   const strip = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
   const needle = strip(answer);
@@ -126,10 +157,22 @@ export function revealsAnswer(text: string, answer: string): boolean {
     .split(/\s+/)
     .map((token) => token.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, ''));
 
-  if (/[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af]/u.test(answer)) {
+  if (UNSPACED.test(answer)) {
     return needle.length > 1 ? strip(text).includes(needle) : tokens.includes(needle);
   }
-  return needle.length > 1 && tokens.includes(needle);
+
+  /*
+   * A spaced language: the answer as a whole word, or as the tail of a compound.
+   *
+   * The tail case is German and its relatives. 사다 is *kaufen* and its category
+   * renders as *Geld und Einkaufen*; the tokens do not match and a learner
+   * scanning the options for something that looks like the hint finds it
+   * immediately. Four letters is the floor, which is long enough that a shared
+   * ending is a shared morpheme rather than two words that happen to rhyme.
+   */
+  if (needle.length <= 1) return false;
+  if (tokens.includes(needle)) return true;
+  return needle.length >= 4 && tokens.some((token) => token !== needle && token.endsWith(needle));
 }
 
 /**
@@ -170,10 +213,36 @@ export function usableHints(
   steps: HintStep[],
   render: (step: HintStep) => string,
   answer?: string,
+  /**
+   * The properties of every option on screen, in the same shape as `about`.
+   *
+   * Omitted where the caller cannot resolve them — the tile exercise has no
+   * options — and then only the safety filter runs, which is the behaviour
+   * this function has always had.
+   */
+  options?: ReadonlyArray<Record<string, string>>,
 ): HintStep[] {
-  if (!answer) return steps;
-  return steps.filter(
-    (step) => step.strength === 'answer' || !revealsAnswer(render(step), answer),
+  return steps.filter((step) => {
+    if (step.strength === 'answer') return true;
+    if (answer && revealsAnswer(render(step), answer)) return false;
+    return helps(step, options);
+  });
+}
+
+/**
+ * Whether a classifying rung rules anything out, given what is on screen.
+ *
+ * True when at least one option differs from the answer on a property the rung
+ * names. With nothing to compare against — no options passed, or the rung
+ * classifies nothing — it is kept: this filter exists to remove hints that are
+ * provably useless, not to remove every hint it cannot vouch for.
+ */
+function helps(step: HintStep, options?: ReadonlyArray<Record<string, string>>): boolean {
+  if (!step.about || !options?.length) return true;
+  const keys = Object.keys(step.about);
+  if (keys.length === 0) return true;
+  return options.some((option) =>
+    keys.some((key) => option[key] !== undefined && option[key] !== step.about![key]),
   );
 }
 
@@ -215,8 +284,18 @@ export function wordHints(
    */
   const kind: HintStep =
     answer && revealsAnswer(category, answer)
-      ? { strength: 'light', key: 'review.hint.kindOnly', values: { pos } }
-      : { strength: 'light', key: 'review.hint.kind', values: { pos, category } };
+      ? {
+          strength: 'light',
+          key: 'review.hint.kindOnly',
+          values: { pos },
+          about: { pos: word.part_of_speech },
+        }
+      : {
+          strength: 'light',
+          key: 'review.hint.kind',
+          values: { pos, category },
+          about: { pos: word.part_of_speech, category: word.category },
+        };
 
   /*
    * The first syllable, but only when there is a second one to withhold.
@@ -296,7 +375,12 @@ export function wordHints(
        * is safe, the word's own `meaning` is not.
        */
       return [
-        { strength: 'light', key: 'review.hint.kindOnly', values: { pos } },
+        {
+          strength: 'light',
+          key: 'review.hint.kindOnly',
+          values: { pos },
+          about: { pos: word.part_of_speech },
+        },
         opening,
         reveal,
       ];
@@ -328,6 +412,9 @@ export function characterHints(
     strength: 'light',
     key: 'review.hint.letterFamily',
     values: { family: label(`learning:letterGroup.${meta.group}`) },
+    // "It's a consonant" over four consonants is the letter version of the same
+    // empty hint. See `helps`.
+    about: { group: meta.group },
   };
 
   /*

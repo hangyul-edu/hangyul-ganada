@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useEntryAudio } from '../../audio/useEntryAudio';
+import { getCharacter, getCharacterByGlyph } from '../../data/characters';
+import { getWord } from '../../data/vocabulary';
 import { Button } from '../../ui/Button';
 import { FeedbackState } from '../../ui/FeedbackState';
 import { LocalizedText } from '../../ui/LocalizedText';
@@ -164,10 +166,31 @@ export function ChoiceExercise({
    * see. `usableHints` renders each one with this component's `t` and drops any
    * that hands the answer over. See the note on that function.
    */
+  /*
+    What is on screen, as properties, so a rung that classifies can be checked
+    against it.
+
+    An option's `id` is a word id on a vocabulary question and a letter on a
+    Hangul one, so both resolve. Anything that resolves to neither contributes
+    nothing and `helps` keeps the rung — the filter removes hints that are
+    provably useless, not hints it cannot vouch for.
+  */
+  const optionFacts = useMemo(
+    () =>
+      (asked.options ?? []).map((option): Record<string, string> => {
+        const word = getWord(option.id);
+        if (word) return { pos: word.part_of_speech, category: word.category };
+        const letter = getCharacter(option.id) ?? getCharacterByGlyph(option.korean ?? option.id);
+        return letter ? { group: letter.group } : {};
+      }),
+    [asked.options],
+  );
+
   const hints = usableHints(
     exercise.hints,
     (step) => t(`learning:${step.key}`, { ...step.values, ...answerValues }),
     answerValues.answer,
+    optionFacts,
   );
   const shown = hints.slice(0, level);
 
