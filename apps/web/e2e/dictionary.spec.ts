@@ -65,9 +65,26 @@ test('opens the entry, shows its senses, and credits the source', async ({ page 
     .click();
 
   await expect(page.getByTestId('dictionary-headword')).toHaveText(LOOKUP);
-  // The first sense is open; the rest are behind a disclosure that counts them.
+
+  /*
+    The first sense is open; the rest are behind a disclosure that counts them.
+
+    Which sense comes first is not asserted, and that is deliberate. This used
+    to require "twig or branch" to be the visible one, and it broke the day the
+    ingestion started reading definitions written as templates: 가지 went from
+    two senses to four, "kind, sort; variety" sorted ahead of it, and a passing
+    test turned into a failing one on a change that made the dictionary better.
+    A gloss written by an upstream editor is not this app's fact to pin.
+
+    What *is* this app's promise: one sense is shown, the others are counted and
+    reachable, and the licence is credited on the same screen.
+  */
+  const senses = page.getByRole('group');
+  await expect(senses).toContainText(/other meaning/i);
+  await senses.getByRole('button').first().click();
+  // 가지 is the word this spec is built on because it has several unrelated
+  // senses; the aubergine and the branch are both in there once it is opened.
   await expect(page.getByText(/twig or branch/i).first()).toBeVisible();
-  await expect(page.getByRole('group')).toContainText(/other meaning/i);
 
   /*
     CC BY-SA 4.0 asks for attribution where the material is used, and this is

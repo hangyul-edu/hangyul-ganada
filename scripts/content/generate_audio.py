@@ -30,6 +30,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from speech_repairs import REPAIRS, repair_for  # noqa: E402
 from tts import (  # noqa: E402
+    PROVIDERS,
     SPEECH_RATE,
     TtsProvider,
     get_provider,
@@ -220,6 +221,45 @@ def main() -> int:
         entries = entries[: args.limit]
 
     provider = get_provider(args.provider)
+
+    """
+    A rebuild may not quietly change who recorded the product.
+
+    `get_provider` falls back to `edge` when nothing names one, which is the
+    right default for somebody trying the pipeline out and the wrong one for a
+    rebuild of the shipping audio. Run without the environment variable, this
+    script re-walked 10,454 existing clips, regenerated none of them — they were
+    already on disk — and rewrote the manifest to say the recordings came from
+    an engine that had not touched them, at a speaking rate they were not made
+    at. Nothing failed. The audio was correct and its provenance was fiction,
+    which is worse than a crash because it is the half nobody plays.
+
+    So: if a manifest is already there and it names a different provider, say so
+    and stop. `--provider` is the way to mean it, and it is a deliberate act.
+    """
+    existing = audio_root() / "manifest.json"
+    if existing.exists() and not args.provider:
+        was = json.loads(existing.read_text(encoding="utf-8")).get("provider", {}).get("id")
+        if was and was != provider.id:
+            # Names the *registry key*, not the provider id, because the key is
+            # what the flag and the environment variable take: the id of the
+            # edge provider is `microsoft-edge-tts` and its key is `edge`, and a
+            # message telling somebody to pass an argument that does not parse
+            # is a message that wastes a minute of their time.
+            # `cls.id`, not `cls().id`: constructing a provider is where it
+            # checks for its credential, and building this lookup instantiated
+            # every registered engine — so the message about the *wrong
+            # provider* came out as "AZURE_SPEECH_KEY is not set".
+            keys = {cls.id: key for key, cls in PROVIDERS.items()}
+            raise SystemExit(
+                f"the manifest at {existing} was built by {was!r} and this run would "
+                f"rewrite it as {provider.id!r}.\n"
+                f"The clips on disk are {was!r}'s. Either set "
+                f"HANGYUL_TTS_PROVIDER={keys.get(was, was)} to rebuild as it is, or pass "
+                f"--provider {keys.get(provider.id, provider.id)} to change engines on "
+                "purpose (which regenerates every clip)."
+            )
+
     print(f"provider: {provider.id}  female={provider.voices.female}  male={provider.voices.male}")
     if provider.spoken_rate == SPEECH_RATE:
         print(f"speaking rate: {SPEECH_RATE:g}× ({rate_percent()})")

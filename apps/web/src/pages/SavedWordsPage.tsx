@@ -260,7 +260,7 @@ export function SavedWordsPage() {
           {t('vocabulary:saved.count', { count: shown.length })}
         </p>
 
-        <ul className={styles.list}>
+        <ul className={styles.list} data-testid="saved-list">
           {shown.map((row) => {
             const copy = row.kind === 'word' ? wordCopy(row.word, locale) : null;
             const meaning = meaningOf(row);

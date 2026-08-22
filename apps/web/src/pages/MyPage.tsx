@@ -18,6 +18,7 @@ import {
   reminderState,
   type ReminderState,
 } from '../native/reminder';
+import { levelBand } from '../domain/vocabularyLevel';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
@@ -239,8 +240,17 @@ export function MyPage() {
             <span className={styles.linkText}>
               <span className={styles.linkTitle}>{t('levelTest:title')}</span>
               <span className={styles.linkBody}>
+                {/*
+                  Both halves of the row, because `row.taken` reads
+                  "Level {{level}} · {{band}}" and a missing interpolation is
+                  not an error in i18next — it renders as nothing, so the row
+                  said "Level 1 · " with a separator hanging off the end.
+                */}
                 {state.settings.level_test
-                  ? t('levelTest:row.taken', { level: state.settings.level_test.level })
+                  ? t('levelTest:row.taken', {
+                      level: state.settings.level_test.level,
+                      band: t(`levelTest:bands.${levelBand(state.settings.level_test.level)}`),
+                    })
                   : t('levelTest:row.body')}
               </span>
             </span>

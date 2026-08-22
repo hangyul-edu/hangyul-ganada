@@ -294,10 +294,28 @@ async function optional(name, run) {
   await settle(page, 1600);
   await shoot(page, 'audit-letter-writing');
 
-  // Review on a clean record: an empty state that routes somewhere.
+  // Review on a clean record: an empty state that routes somewhere, with the
+  // learner's own two lists still reachable underneath it.
   await page.goto(`${baseUrl}/review`, { waitUntil: 'networkidle' });
   await settle(page, 900);
   await shoot(page, 'audit-review');
+
+  /*
+   * The two lists, empty.
+   *
+   * Empty is the state every new install is in and the one a screenshot pass
+   * usually skips, because it looks like nothing was captured. It is also where
+   * the wording matters most: a zero on its own reads as something broken, and
+   * what should be there is a sentence naming the action that fills the list
+   * and a way to go and do it.
+   */
+  await page.goto(`${baseUrl}/words/saved`, { waitUntil: 'networkidle' });
+  await settle(page, 900);
+  await shoot(page, 'audit-saved-words');
+
+  await page.goto(`${baseUrl}/review/mistakes`, { waitUntil: 'networkidle' });
+  await settle(page, 900);
+  await shoot(page, 'audit-wrong-vocabulary');
 
   // One word in depth.
   await page.goto(`${baseUrl}/words/word/word_eomma`, { waitUntil: 'networkidle' });

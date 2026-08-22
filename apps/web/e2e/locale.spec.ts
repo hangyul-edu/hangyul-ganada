@@ -7,12 +7,15 @@ import { expect, test, type Page } from '@playwright/test';
  * running page can show — that the document attributes actually change and that
  * a choice survives a reload.
  *
- * There is no right-to-left case here any more. Arabic was the only RTL
- * language the app shipped and it has been withdrawn, so no RTL interface is
- * reachable through the picker. The direction handling itself is still there
- * and still tested, in `src/i18n/LocaleProvider.test.tsx`, against a language
- * with no bundle — which is the state a future Hebrew or Persian translation
- * would start from.
+ * **Right-to-left is covered.** This note used to say Arabic had been withdrawn
+ * and that no RTL interface was reachable; that was wrong, and it had been wrong
+ * long enough for the suite to have no RTL layout coverage at all while shipping
+ * an RTL language. `ar` is in `AVAILABLE_LOCALES`, `describeLocale('ar')` reports
+ * `direction: 'rtl'`, and it is offered in the picker. The layout assertions live
+ * in `review-hub.spec.ts` alongside the other viewport work; the direction
+ * *resolution* is unit-tested in `src/i18n/LocaleProvider.test.tsx`, including
+ * against a language with no bundle, which is the state a future Hebrew or
+ * Persian translation would start from.
  */
 
 const openLanguagePicker = async (page: Page) => {

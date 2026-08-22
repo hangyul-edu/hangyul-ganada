@@ -81,17 +81,36 @@ test('the browser tab icon is a real favicon.ico carrying every small size', asy
   expect(widths.sort((a, b) => a - b)).toEqual([16, 32, 48]);
 });
 
-test('home ends with a quotation, attributed', async ({ page }) => {
+test('home ends with a line, and names an author only when there is one', async ({ page }) => {
   await page.goto('/');
   const quote = page.locator('figure blockquote');
   await expect(quote).toBeVisible();
   const text = (await quote.textContent())!.trim();
   expect(text.length).toBeGreaterThan(20);
 
-  // Named, always. An unattributed quotation is the kind that gets invented.
+  /*
+   * This used to require a name on every line, on the argument that an
+   * unattributed quotation is the kind that gets invented. The argument is
+   * right and the rule it produced was wrong, and the library is now built the
+   * other way round.
+   *
+   * Most of the hundred lines are encouragements written for this app. There is
+   * nobody to credit, and one *is* a quotation whose attribution cannot be
+   * established — "꿈을 크게 가져라. 깨져도 그 조각이 크다" circulates under three
+   * different names and appears in none of their writing. §35 says an uncertain
+   * attribution renders as nothing.
+   *
+   * So what is asserted is the rule that actually protects the learner: when
+   * there is a caption it names somebody real, and when there is not, the space
+   * is empty rather than filled with a word that makes a missing fact look like
+   * a present one.
+   */
   const author = page.locator('figure figcaption');
-  await expect(author).toBeVisible();
-  expect((await author.textContent())!.replace(/[—\s]/g, '').length).toBeGreaterThan(3);
+  if ((await author.count()) > 0) {
+    const name = (await author.textContent())!.replace(/[—\s]/g, '');
+    expect(name.length).toBeGreaterThan(3);
+    expect(name).not.toMatch(/^(anonymous|unknown|작자미상|무명)$/i);
+  }
 });
 
 test('the streak opens the learner’s record, not the settings screen', async ({ page }) => {

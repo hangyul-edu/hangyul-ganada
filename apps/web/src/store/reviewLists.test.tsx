@@ -2,7 +2,7 @@ import { act, render, waitFor } from '@testing-library/react';
 import { useEffect, useRef } from 'react';
 import { describe, expect, it } from 'vitest';
 
-import { getWord } from '../data/vocabulary';
+import { getWord, vocabularyByPriority } from '../data/vocabulary';
 import { defaultSessionSize, sessionSizes } from '../features/review/sessionSizes';
 import { MemoryDriver } from '../storage/driver';
 import { LearnerContext, type LearnerContextValue } from './LearnerContext';
@@ -137,7 +137,7 @@ describe('wrong vocabulary', () => {
     context.recordReview({
       kind: 'word',
       item_key: wordId,
-      skill: 'read',
+      skill: 'meaning_recognition',
       mode: 'read',
       passed: false,
       score: 0,
@@ -192,7 +192,7 @@ describe('saved and wrong are independent', () => {
     context.recordReview({
       kind: 'word',
       item_key: TAUGHT,
-      skill: 'read',
+      skill: 'meaning_recognition',
       mode: 'read',
       passed: false,
       score: 0,
@@ -251,5 +251,110 @@ describe('how long a practice session is', () => {
     expect(defaultSessionSize(7)).toBe(7);
     expect(defaultSessionSize(1)).toBe(1);
     expect(defaultSessionSize(0)).toBe(0);
+  });
+});
+
+describe('what a practice session is made of', () => {
+  /**
+   * Twelve wrong words, so a ten-question session has room to be varied and
+   * still has to choose. Reported through `recordReview`, as everything is.
+   */
+  async function withMistakes(count: number) {
+    const driver = durableDriver();
+    const app = await open(driver);
+    const words = vocabularyByPriority().slice(0, count);
+    for (const word of words) {
+      // Met first. A learner cannot get a word wrong before the app has taught
+      // it, and review only ever considers items with a progress row — so a
+      // fixture that skips this is testing a state the app cannot reach.
+      await act(async () => app.context.recordIntroduced('word', word.id));
+      await act(async () =>
+        app.context.recordReview({
+          kind: 'word',
+          item_key: word.id,
+          skill: 'meaning_recognition',
+          mode: 'read',
+          passed: false,
+          score: 0,
+        }),
+      );
+    }
+    await waitFor(() => expect(app.context.mistakes.length).toBe(count));
+    return { app, words };
+  }
+
+  it('asks about a wrong word in more than one way', async () => {
+    const { app } = await withMistakes(30);
+    const plan = app.context.practicePlan({ mistakesOnly: true, size: 10 });
+    /*
+     * §17: varied exercise types. Not decoration — a session that only ever
+     * showed the Korean and asked for the meaning would let the learner pass
+     * by recognising the shape of the card, which is the failure the notebook
+     * exists to catch. The plan carries the modes it resolved to, so this is
+     * a fact about the questions that will actually be asked rather than about
+     * what the scheduler was willing to consider.
+     */
+    expect(plan.count).toBeGreaterThan(1);
+    expect(plan.modes.length).toBeGreaterThan(1);
+  });
+
+  it('never asks the same question twice in one session', async () => {
+    const { app } = await withMistakes(30);
+    const plan = app.context.practicePlan({ mistakesOnly: true, size: 10 });
+    const keys = plan.items.map((item) => `${item.kind}/${item.itemKey}/${item.skill}`);
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it('stays inside the notebook', async () => {
+    const { app, words } = await withMistakes(30);
+    const wrong = new Set(words.map((word) => word.id));
+    const plan = app.context.practicePlan({ mistakesOnly: true, size: 10 });
+    expect(plan.source).toBe('mistakes');
+    for (const item of plan.items) expect(wrong.has(item.itemKey)).toBe(true);
+  });
+
+  it('honours the size the learner picked', async () => {
+    const { app } = await withMistakes(30);
+    expect(app.context.practicePlan({ mistakesOnly: true, size: 5 }).count).toBeLessThanOrEqual(5);
+    expect(app.context.practicePlan({ mistakesOnly: true, size: 20 }).count).toBeGreaterThan(5);
+  });
+
+  it('says why it is empty rather than running nothing', async () => {
+    const driver = durableDriver();
+    const app = await open(driver);
+    const mistakes = app.context.practicePlan({ mistakesOnly: true, size: 10 });
+    expect(mistakes.count).toBe(0);
+    expect(mistakes.emptyReason).toBe('no-mistakes');
+    const saved = app.context.practicePlan({ savedOnly: true, size: 10 });
+    expect(saved.count).toBe(0);
+    expect(saved.emptyReason).toBe('none-saved');
+  });
+
+  it('a saved-words session contains only saved words', async () => {
+    const driver = durableDriver();
+    const app = await open(driver);
+    const words = vocabularyByPriority().slice(0, 12);
+    for (const word of words) {
+      await act(async () => app.context.recordIntroduced('word', word.id));
+      await act(async () =>
+        app.context.recordReview({
+          kind: 'word',
+          item_key: word.id,
+          skill: 'meaning_recognition',
+          mode: 'read',
+          passed: true,
+          score: 1,
+        }),
+      );
+      await act(async () => app.context.toggleSaved('word', word.id));
+    }
+    await waitFor(() => expect(app.context.state.settings.saved_items.length).toBe(12));
+    const plan = app.context.practicePlan({ savedOnly: true, size: 10 });
+    expect(plan.source).toBe('saved');
+    expect(plan.count).toBeGreaterThan(0);
+    const saved = new Set(words.map((word) => word.id));
+    for (const item of plan.items) expect(saved.has(item.itemKey)).toBe(true);
+    const keys = plan.items.map((item) => `${item.kind}/${item.itemKey}/${item.skill}`);
+    expect(new Set(keys).size).toBe(keys.length);
   });
 });

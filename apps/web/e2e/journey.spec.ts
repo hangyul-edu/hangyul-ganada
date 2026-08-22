@@ -568,10 +568,11 @@ test('a failed letter lands in review, and review is something you can do', asyn
 
   await page.goto('/review');
 
-  // The dashboard, not a list of past mistakes. One button, and two counts a
-  // learner can act on.
+  // The hub: one session to start, and the learner's own two lists under it.
+  // The scheduler counts that used to sit here are gone — see `ReviewPage`.
   await expect(page.getByText('Review for you')).toBeVisible();
-  await expect(page.getByText('Needs practice')).toBeVisible();
+  await expect(page.getByTestId('hub-saved')).toBeVisible();
+  await expect(page.getByTestId('hub-wrong')).toBeVisible();
   await page.getByRole('button', { name: 'Start review' }).click();
 
   // What the sitting asks is chosen by the scheduler from the weakest skill for

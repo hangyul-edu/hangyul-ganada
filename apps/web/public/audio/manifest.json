@@ -1,6 +1,6 @@
 {
  "version": "20260822-ec7ce5a9",
- "generated_at": "2026-08-22T08:44:08+00:00",
+ "generated_at": "2026-08-22T12:45:51+00:00",
  "provider": {
   "id": "elevenlabs",
   "female_voice": "5n5gqmaQi9Ewevrz7bOS",
@@ -14,49 +14,42 @@
     "voice": "female",
     "alternate_voice": false,
     "text_override": "다타",
-    "reason": "Both ko-KR voices read 닿다 as [닫따] — the word 닫다 — instead of [다타]. Measured 0.0005 from a rendering of 닫따 and 0.0430 from one of 다타; the rest of the ㅎ-final family (낳다, 넣다, 쌓다) is correct from the same voices."
+    "reason": "Both shipping voices read 닿다 as something other than [다타]. Measured 0.0005 from a rendering of 닫따 and 0.0430 from one of 다타 on the previous engine; re-tested unrepaired on the current voices, where the recogniser heard 나다. The rest of the ㅎ-final family (낳다, 넣다, 쌓다) is correct from the same voices, which is what makes this a lexicon entry."
    },
    {
     "text": "닿다",
     "voice": "male",
     "alternate_voice": false,
     "text_override": "다타",
-    "reason": "The same defect in the male voice: 0.0007 from 닫따, 0.0287 from 다타."
-   },
-   {
-    "text": "마디",
-    "voice": "male",
-    "alternate_voice": true,
-    "text_override": null,
-    "reason": "ko-KR-InJoonNeural palatalises the 디 of the isolated word 마디 and says [마지]. Korean palatalisation applies across a morpheme boundary (굳이 → 구지) and not inside one, so 마디 is [마디]. Reproduced at every speaking rate from +0% to -25%; the other 디 words in the curriculum are correct from the same voice, so this is one lexicon entry rather than a rule. ko-KR-HyunsuMultilingualNeural reads it correctly."
+    "reason": "The same defect in the male voice: 0.0007 from 닫따, 0.0287 from 다타 on the previous engine, and 닥터 from the current one, unrepaired."
    },
    {
     "text": "옮다",
     "voice": "female",
     "alternate_voice": false,
     "text_override": "옴따",
-    "reason": "Both ko-KR voices misread the ㄻ cluster of 옮다: the recording measures as [옴다] rather than [옴따] (0.004 from 옴다, 0.098 from 옴따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [옴따] instead of the spelling; the word on the card, its id and its file are unchanged."
+    "reason": "Both shipping voices misread the ㄻ cluster of 옮다: the recording measures as [옴다] rather than [옴따] (0.004 from 옴다, 0.098 from 옴따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [옴따] instead of the spelling; the word on the card, its id and its file are unchanged."
    },
    {
     "text": "옮다",
     "voice": "male",
     "alternate_voice": false,
     "text_override": "옴따",
-    "reason": "Both ko-KR voices misread the ㄻ cluster of 옮다: the recording measures as [옴다] rather than [옴따] (0.006 from 옴다, 0.085 from 옴따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [옴따] instead of the spelling; the word on the card, its id and its file are unchanged."
+    "reason": "Both shipping voices misread the ㄻ cluster of 옮다: the recording measures as [옴다] rather than [옴따] (0.006 from 옴다, 0.085 from 옴따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [옴따] instead of the spelling; the word on the card, its id and its file are unchanged."
    },
    {
     "text": "젊다",
     "voice": "female",
     "alternate_voice": false,
     "text_override": "점따",
-    "reason": "Both ko-KR voices misread the ㄻ cluster of 젊다: the recording measures as [절따] rather than [점따] (0.002 from 절따, 0.037 from 점따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [점따] instead of the spelling; the word on the card, its id and its file are unchanged."
+    "reason": "Both shipping voices misread the ㄻ cluster of 젊다: the recording measures as [절따] rather than [점따] (0.002 from 절따, 0.037 from 점따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [점따] instead of the spelling; the word on the card, its id and its file are unchanged."
    },
    {
     "text": "젊다",
     "voice": "male",
     "alternate_voice": false,
     "text_override": "점따",
-    "reason": "Both ko-KR voices misread the ㄻ cluster of 젊다: the recording measures as [절따] rather than [점따] (0.002 from 절따, 0.041 from 점따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [점따] instead of the spelling; the word on the card, its id and its file are unchanged."
+    "reason": "Both shipping voices misread the ㄻ cluster of 젊다: the recording measures as [절따] rather than [점따] (0.002 from 절따, 0.041 from 점따). The cluster itself is not the problem — 삶다, 닮다, 굶다 and 젊은이 are all correct from the same voices — so this is a lexicon entry. The engine is handed the spoken form [점따] instead of the spelling; the word on the card, its id and its file are unchanged."
    }
   ]
  },

@@ -90,7 +90,14 @@ export function MistakesPage() {
             <HangyulMascot mood="happy" size={64} />
             <p className={styles.emptyTitle}>{t('learning:mistakes.emptyTitle')}</p>
             <p className={styles.emptyBody}>{t('learning:mistakes.emptyBody')}</p>
-            <Link to="/review" className={styles.emptyLink}>
+            {/*
+              Today's words, not "back to Review" — the back arrow at the top
+              of this screen already goes there, and an empty state whose only
+              action is the one the learner just used is a dead end with a
+              picture on it. Nothing arrives in this notebook until they answer
+              some questions, so the useful next step is the questions.
+            */}
+            <Link to="/words/today" className={styles.emptyLink}>
               {t('learning:mistakes.emptyCta')}
               <ChevronRightIcon size={16} />
             </Link>
@@ -140,7 +147,7 @@ export function MistakesPage() {
           ))}
         </div>
 
-        <ul className={styles.list}>
+        <ul className={styles.list} data-testid="mistake-list">
           {shown.map((mistake) => (
             <MistakeRow
               key={mistake.id}

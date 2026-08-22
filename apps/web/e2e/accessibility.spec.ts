@@ -99,6 +99,10 @@ const SCREENS: Array<{ name: string; path: string }> = [
   { name: 'letters', path: '/letters' },
   { name: 'words', path: '/words' },
   { name: 'review', path: '/review' },
+  // The two lists the learner owns, in their empty state — which is the state a
+  // scan is most likely to skip and the one every new install is in.
+  { name: 'saved words', path: '/words/saved' },
+  { name: 'wrong vocabulary', path: '/review/mistakes' },
   { name: 'activity', path: '/activity' },
   { name: 'settings', path: '/me' },
   { name: 'privacy', path: '/me/privacy' },
@@ -185,12 +189,24 @@ for (const scheme of ['light', 'dark'] as const) {
     for (let step = 0; step < 30; step += 1) {
       const grid = page.getByRole('group', { name: /Match each word/i });
       if (await grid.count()) break;
+      /*
+        Enabled, and matched on the *whole* label.
+
+        This used to take any visible button containing "Next", which is a
+        substring of an answer option the moment the session schedules a word
+        glossed *next* — 다음. After a wrong answer that option is disabled and
+        still on screen, so the walker clicked it for sixty seconds and the test
+        failed with a timeout that said nothing about the real cause. Which
+        words a session contains is now chosen from the learner's vocabulary
+        level and their content seed, so "the grid never came round" was a
+        matter of which words came up that day.
+      */
       const forward = page
-        .locator('button:visible')
-        .filter({ hasText: /Got it|Next|Continue|Finish/i })
+        .locator('button:visible:not([disabled])')
+        .filter({ hasText: /^\s*(Got it|Next|Continue|Finish)\s*$/i })
         .first();
       const options = page
-        .locator('button:visible')
+        .locator('button:visible:not([disabled])')
         .filter({ hasText: /^(?!Show a hint|Save|Skip|Can't use audio).+/ });
       if (await forward.count()) await forward.click();
       else if (await options.count()) await options.first().click();
