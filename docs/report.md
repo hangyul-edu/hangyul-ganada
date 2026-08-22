@@ -816,12 +816,12 @@ absence from the built output.
 
 | Route | Purpose | Primary action | Persists | Status |
 | --- | --- | --- | --- | --- |
-| `/` | Answer "what do I do now" | **Start now** | reads only | **VERIFIED WORKING** |
+| `/` | Answer "what do I do now" | **Start now** | reads only | **VERIFIED WORKING** — streak and Vocabulary Level in the status bar (§47) |
 | `/letters` | The alphabet as 12 lessons | open a lesson | reads only | **VERIFIED WORKING** |
 | `/letters/:lessonId` | Teach one letter | Write it → Check | progress, memory, attempts, mistakes, activity, session | **VERIFIED WORKING** |
 | `/letters/sounds` | The 6 sound changes | read | — | **VERIFIED WORKING** |
 | `/words` | The day + discovery | **Start / Keep going** | settings (goal, plan) | **VERIFIED WORKING** |
-| `/words/today` | Run the day's plan | answer | plan, progress, memory, mistakes | **VERIFIED WORKING** |
+| `/words/today` | Run the day's plan | answer | plan, progress, memory, mistakes, placement decision | **VERIFIED WORKING** — asks an unplaced learner about their level once, first (§9.5) |
 | `/words/category/:id` | Browse one shelf | tap a word | saved | **VERIFIED WORKING** |
 | `/words/word/:wordId` | The dictionary entry | listen / Save | saved | **VERIFIED WORKING** (§15) |
 | `/words/dictionary/:word` | A word the app does not teach | listen / Save | saved | **VERIFIED WORKING** (§13.5) |
@@ -838,6 +838,28 @@ absence from the built output.
 
 *Figure 1 — Home. One unit, one button, two counters, and a review row that
 disappears when there is nothing to review.*
+
+### Home, after this pass — §11, §47
+
+Two things left and one arrived, and all three are subtractions in effect.
+
+**The introductory sentence is gone.** *"Learn Korean from the very first letter
+— Hangul, then the words you will actually use"* was shown to somebody who had
+installed the app, opened it, and was looking at a lesson card. It described the
+product to a person who had already chosen it. The space is worth more than the
+sentence.
+
+**The Vocabulary Level moved up, and out of a card.** It had a card of its own,
+two thirds of the way down; it is now a chip beside the streak in the status
+corner. That is a smaller amount of screen for a more visible number, and it
+removes a whole card from the scroll.
+
+**No Review card came back.** Review is a destination in the bottom navigation,
+and a card on Home that duplicates a tab is the same defect as the two
+"today's words" entry points this screen already lost.
+
+The order a learner reads now: continue the alphabet, today's vocabulary, the
+status pair, and the day's line. Nothing on it repeats anything else on it.
 
 ### Two screens said the same thing twice, and now do not
 
@@ -944,12 +966,27 @@ look-alikes — then the next letter.
 **Friction: LOW–MEDIUM.** One guided write per letter is the right amount. The
 remaining friction is inherent: writing on glass.
 
-## 9.5 Start today's vocabulary — **VERIFIED**
+## 9.5 Start today's vocabulary — **VERIFIED, and it now asks one question first**
 
-`/words` → the day card shows `0/10` and **Start** → `/words/today`. The first
-screen is a *meeting card*: the word, its sound (played automatically), its
-meaning and the sentence it lives in, with **Save**. **Got it** moves on. Words
+`/words` → the day card shows `0/10` and **Start** → `/words/today`.
+
+**A learner who has never been placed is asked once**, before the first word,
+whether they want words at their level: *take the level test*, or *start at
+Level 1*. Declining begins the session immediately and is remembered, so the
+offer is made once and never again; a learner who has taken the test never sees
+it. See §13.6 and I-45 — the point is that being taught from Level 1 by default
+and *knowing* somebody's level are different things, and only the second is
+worth an interruption.
+
+Then the *meeting card*: the word, its sound (played automatically), its meaning
+and the sentence it lives in, with **Save**. **Got it** moves on. Words
 interleave — you meet two or three before being asked about the first.
+
+**The meaning is in one language throughout.** For the ten languages the
+curriculum has word copy in, that is the learner's own; for the other
+twenty-two it is a second language they are told about and can change. What
+cannot happen any more is a question in one language with answers in another —
+see §23.8.
 
 ## 9.6 Complete a vocabulary item — **VERIFIED**
 
@@ -1479,6 +1516,34 @@ No horizontal scrollbar appears at any width tested.
 ---
 
 # 12. Handwriting recognition
+
+## 12.0 What a learner sees after the pen lifts — **STRIPPED this cycle**
+
+The grader is unchanged. What changed is how much is said about its verdict.
+
+**Before:** a card with a headline ("That's it!", "Almost", "Not quite"), a line
+of praise ("beautifully written"), a stroke-order note, a *Show details* toggle
+and a numeric breakdown — under a two-stroke letter, on every attempt.
+
+**Now:** a correct attempt locks the box and shows the way forward. A wrong one
+shows one sentence saying what to change, and *Try again*.
+
+The argument for the card was thoroughness and the argument against it is what a
+learner actually does. Somebody writing ㄱ for the fourth time has read "That's
+it!" three times; repeated praise stops carrying information the moment it
+becomes certain, and what is left is a panel between them and the next stroke.
+The one part that was ever actionable — *"A little small. Try filling the box."*
+— is the part that stayed.
+
+The numbers went entirely rather than behind a toggle. A mismatch percentage is
+the grader talking about itself, and the stroke-order note was a sentence about
+something that is explicitly **not part of the mark**, printed directly under
+the mark. The demonstration above the canvas is where stroke order is taught.
+
+Acceptance is still *announced* — `role="status"`, visually hidden — because a
+learner using a screen reader cannot see the box lock or the button appear.
+`i18n:check` found the three strings the panel owned and they are deleted from
+all 32 locales.
 
 ## 12.1 How it works — **VERIFIED**
 
@@ -2129,6 +2194,47 @@ headwords and had been **9.0 ms** until lower-casing moved out of the loop.
 That was the last large lever a scan had. At today's 30,059 headwords the index
 answers a keystroke in 0.07 ms at p50 and 1.40 ms at p95 — see §29.3.
 **I-32 resolved.**
+
+### Being placed, and being left alone — **NEW this cycle**
+
+The test existed and nothing ever offered it. A learner could study for weeks,
+be taught from Level 1 throughout, and never find out that two minutes would
+give them words that fit.
+
+| | |
+| --- | --- |
+| Scale | Hangyul Vocabulary Level **1–30** |
+| Questions | **30**, fixed |
+| Time | **8 minutes**, one clock for the sitting |
+| Prompt before the first vocabulary session | **yes**, once, for a learner who has never been placed |
+| If they decline | **Level 1**, session begins immediately |
+| Asked again after declining | **no** |
+| Shown to an assessed learner | **no** |
+| Where the level appears | Home status bar, beside the streak; My Learning; the test screen |
+| Retake | any time, from Home or My Learning |
+| Retake mid-day | today's plan is untouched; the new level applies to the next one |
+
+**Two fields, not one.** `level_test` is what was measured; `placement_skipped_at`
+is what was decided about measuring. Collapsing them would make a learner who
+declined indistinguishable from one assessed at Level 1 — the app would show the
+same number for a measurement and for a default, and lose the difference between
+*we know* and *we have not asked*. That difference is the entire condition the
+prompt is drawn behind.
+
+The prompt waits for the profile to load, because before it does every learner
+looks untested and somebody assessed months ago would be asked whether they
+would like to be assessed.
+
+**What the level does over time, stated plainly.** For a learner who has never
+been assessed it rises with what they have learned. For one who has, it is the
+measurement and holds until they retake. No progress bar toward the next level
+was added: for an assessed learner ordinary study does not move the number, and
+a bar would say that it does.
+
+`store/placement.test.tsx` covers the five flows §59 names, including the one
+most easily broken — a retake in the middle of a partly finished day leaves that
+day's words exactly as they were, because a plan is built once and stored and a
+new level is a fact about tomorrow.
 
 ## 13.6 The Hangyul Vocabulary Level Test — **BUILT this cycle**
 
@@ -4812,12 +4918,12 @@ One scale, re-derived from this pass's runs and walkthrough. Nothing inherited.
 | --- | --- | --- | --- |
 | A | Hangul learning quality | **READY WITH MINOR ISSUES** | 73 items, 12 lessons, a correct order, syllables taught as their own thing, copy that is short and specific — and Home now says when to start words instead of leaving the learner to guess. |
 | B | Stroke / glyph visual quality | **RELEASE READY** | `strokes:qa` clean on 73 items, `strokes:visual` clean on 1,345 frames, the composition table reproducible and gated, and all 73 read by eye this cycle at the three sizes the product actually draws. Two markers looked wrong on the contact sheet and were not — ㅁ's second disc is on the left edge under the first, where that stroke's pen lands, and 글's fourth and fifth are displaced apart with a tether, which is the case the placement code was written for. |
-| C | Handwriting experience | **READY WITH MINOR ISSUES** | The guide is fitted and centred to within 1.2% of the box, and the grader was recalibrated *for* it: **0.21% / 0.28%** overall, 0.42% / 0.00% on the default face. Gaegu's own probe scale took its letters from a mean 0.524 of the box to 0.610 and its false rejection from 1.04% to 0.63%; it is still the smallest of the six faces (**I-31**, PARTIAL). |
+| C | Handwriting experience | **READY WITH MINOR ISSUES** | The reference letter is now centred on its ink rather than its advance width — five vowels were up to 7.8% of an em out — and the post-attempt feedback card is gone (**I-46**, §12.0). The guide is fitted and centred to within 1.2% of the box, and the grader was recalibrated *for* it: **0.21% / 0.28%** overall, 0.42% / 0.00% on the default face. Gaegu's own probe scale took its letters from a mean 0.524 of the box to 0.610 and its false rejection from 1.04% to 0.63%; it is still the smallest of the six faces (**I-31**, PARTIAL). |
 | D | Vocabulary learning quality | **BARELY READY** | Three question shapes in a first sitting, real matching with sound accounting, good distractors, a hint ladder that never opens with the answer — and the day's words are now chosen from the learner's measured Vocabulary Level, stable within a day, different across learners, never repeating a recent or mastered word. Held there by the corpus and only by the corpus: 2,581 words against a stated 10,000 (**I-04**). The delivery model that used to be the second blocker is resolved (**I-05**). |
 | E | Review / SRS quality | **RELEASE READY** | Per-item, per-skill memory; the displayed count and the session are one object; measured against a fixed-queue baseline and wins 7 of 7. Sentences correctly are not SRS items. Review is now a hub with the learner's own two lists behind it — saved words and wrong vocabulary, independent in both directions, with practice sessions whose offered lengths are all lengths that can actually be run (§21.7). |
 | F | Content accuracy | **READY WITH MINOR ISSUES** | 2,581 examples pass with 0 review and 0 rewrite. Every entry carries a canonical `senseId` and the 103 merged glosses were read against their own sentences: 35 trimmed, ten cards moved sense, and the reviewed remainder is a gate (**I-18**). Glosses merged with a comma rather than a separator are still outside that rule (**I-10**). |
-| G | Romanization / pronunciation quality | **RELEASE READY** | No IPA reaches any learner screen — verified in the source and the built bundle. Spot-checked against the standard pronunciation: 같이 → *gachi*, 좋다 → *jota*, 낳다 → *nata*, 굳이 → *guji*, 값 → *gap*, 꽃 → *kkot*, 학교 → *hakgyo*. Five QA layers, 41 fixtures, all 2,581 re-derived. |
-| H | Localization quality | **BARELY READY** | 32 locales complete on the interface and the alphabet course, and now *rendered and measured*: 256 screens, no clipping, no sideways scroll, no English left on a translated screen, Arabic genuinely mirrored. Held there by exactly two things, both unchanged: word meanings in ten of thirty-two (**I-19**), and **no native-speaker review of any locale, including Korean** (**I-17**). |
+| G | Romanization / pronunciation quality | **RELEASE READY** | Voices rolled back to the originals and re-verified: `audio:qa` 0/0 over 10,550 clips, pronunciation gate 0 errors, every sentence in the listening sample exact in both voices (**I-42**, §22.1). No IPA reaches any learner screen — verified in the source and the built bundle. Spot-checked against the standard pronunciation: 같이 → *gachi*, 좋다 → *jota*, 낳다 → *nata*, 굳이 → *guji*, 값 → *gap*, 꽃 → *kkot*, 학교 → *hakgyo*. Five QA layers, 41 fixtures, all 2,581 re-derived. |
+| H | Localization quality | **BARELY READY** | 32 locales complete on the interface and the alphabet course, rendered and measured: 256 screens, no clipping, no sideways scroll, Arabic genuinely mirrored. **The mixed-language quiz is fixed** — a question can no longer be part translated, the language meanings are shown in is named on the language screen, and the learner can change it (**I-44**, §23.8). Still held here by the same two things: word meanings exist in ten of thirty-two (**I-19**), and **no native-speaker review of any locale, including Korean** (**I-17**). |
 | I | UX / UI polish | **RELEASE READY** | Coherent tokens, both themes axe-clean, real empty states, the tab bar flush to the frame from 360 px to 1440 px, a wordless native launch screen, and a desktop that is still a phone. |
 | J | Persistence / stability | **RELEASE READY** | Eight stores, migrations, corrupt-row recovery, and the IndexedDB open now retries with backoff — a reproducible one-in-twelve silent fall back to memory under contention is 24 of 24. Reload, deep-route load and a second tab all return the same profile; the storage warning never fires on a healthy browser. |
 | K | Accessibility | **READY WITH MINOR ISSUES** | axe clean on every screen in both appearances — now including Saved words and Wrong vocabulary — keyboard-operable throughout; the heard-only letter exercises have a per-question way through them in 32 languages; and the whole Review area holds its layout at four phone widths in both reading directions at 200% text. That last check found the suite had **no right-to-left coverage at all** while Arabic was shipping. **No human screen-reader pass has been run**, and that is stated rather than estimated. |
@@ -5164,6 +5270,8 @@ result.
 | **`leveltest:qa:check`** | 6,000 simulated sittings against the shipped item bank | **PASS** — MAE 1.34 levels, 95.3% within ±3, exactly 30 items, composition 12/9/9. §13.6 |
 | **`content:corpus:check`** | `public/corpus` matches the generated corpus | **PASS** — 2,581 words in 4 bands, 10 locales, 46 files. **NEW.** §13.4 |
 | **`content:leveltest:check`** | `public/level-test` matches the corpus and dictionary it was built from | **PASS** — 3,990 items across 30 levels, every context item conjugated by `packages/korean-morphology` |
+| **`locale:content:check`** | the content behind each of the 32 interfaces, not the interface strings | **PASS** — 10 locales complete at 2,581 meanings, 22 empty, **0 partial**, so no language can produce a mixed-language question. **NEW.** §23.8 |
+| **`jamo:centering:check`** | the residual after the shipped ink-offset correction, over 40 letters and 8 syllables | **PASS** — every glyph within 3% of centre once corrected; 5 are drawn off centre by the face and all 5 carry a measured correction. **NEW.** §12.0 |
 | **`quotes:qa:check`** | the 100-line quotation library | **PASS** — 100 lines, no duplicate sentence in any of 32 locales, the §34 line present and unattributed, 3,200 renderings, stable within a day across 60 simulated days, all 100 shown before a repeat. **NEW.** §27.6 |
 | **`conjugation:qa:check`** | the conjugator against the corpus's own recorded surface forms | **PASS** — 1,303 predicates checked, every recorded form reachable from the generated stem. **NEW.** §13.6 |
 | **`leveltest:ambiguity:check`** | eight ambiguity rules over the whole item bank | **PASS** — 0 findings over 3,990 items. **NEW.** §13.6 |
@@ -5421,6 +5529,33 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 
 <!-- /issues:next -->
 
+## 38.9 What this pass changed, and what it deliberately did not
+
+A summary for a reader who has the previous report open beside this one.
+
+| | Before | Now |
+| --- | --- | --- |
+| Voices | ElevenLabs, two commissioned Korean voices | **rolled back** to Microsoft ko-KR neural, the originals, byte-identical |
+| A Tamil learner's quiz | Tamil prompt, English answers | one language throughout, named on the language screen, changeable |
+| First vocabulary session | taught from Level 1, never asked | asked once about their level; declining starts them immediately |
+| Vocabulary Level on Home | a card two thirds down | a chip beside the streak |
+| After a handwriting attempt | headline, praise, stroke note, details toggle, breakdown | a button, or one sentence and Retry |
+| Reference letter | centred on its advance width; five vowels visibly off | centred on its ink, measured off the face |
+| Home | opened with a sentence describing the product | opens with the lesson |
+
+**Deliberately not done.**
+
+* **The 22 languages were not machine-translated.** It would have removed the
+  English from the screen and put an unreviewed gloss in front of a beginner,
+  which is worse: a learner cannot tell a wrong meaning from a right one. I-19
+  stands, and what changed is that the app now says which language it is
+  showing instead of quietly showing English.
+* **No progress bar toward the next level.** For an assessed learner ordinary
+  study does not move the number until they retake, and a bar would imply
+  otherwise. The rule is stated in §13.6 instead.
+* **The Review card did not come back to Home.** Review is a tab.
+* **No new keystore, and no IPA.** Both are external blockers, named in §2.2.
+
 ## 39.1 MUST FIX BEFORE RELEASE
 
 Three items, all content or people, none of them engineering. Everything that
@@ -5505,7 +5640,7 @@ was changed, no artefact was rebuilt, and the only files written were
 
 # 43. ChatGPT handoff brief
 
-## Product in 10 sentences
+## Product in 11 sentences
 
 1. Hangyul ganada teaches a complete beginner to read and write Hangul, then
    gives them practical basic vocabulary.
@@ -5515,28 +5650,33 @@ was changed, no artefact was rebuilt, and the only files written were
    written, write it once over a guide, then recognise it.
 4. Handwriting is graded by comparing rasterised ink against the real typeface
    outline, measured at 0.28% false reject and 0.28% false accept.
-5. Vocabulary is quiz-first and never handwritten: a daily goal of 5–20 words
+5. A learner who has never been placed is offered a thirty-question, eight-minute
+   Vocabulary Level Test before their first session and can decline it and start
+   at Level 1; the level they end up with picks the day's words and sits beside
+   the streak on Home.
+6. Vocabulary is quiz-first and never handwritten: a daily goal of 5–20 words
    and **five** step types — `intro`, `meaning`, `produce`, `context`, `build` —
    with optional extra study past the goal. A beginner's first sitting uses two
    of them; the rest arrive as words mature. There is no listening question and
    none can be generated. Help is a three-rung ladder that never opens with the
    answer.
-6. The corpus is 2,581 words against a stated 10,000 target, each with Revised
+7. The corpus is 2,581 words against a stated 10,000 target, each with Revised
    Romanization taken from its standard pronunciation, audio, an example
    sentence and — for 245 words — verified synonyms or antonyms; behind search
    sits a separate **30,059-headword dictionary** that is never scheduled, and
    the day's words are chosen from the learner's measured Vocabulary Level.
-7. Review is a per-item, per-skill memory model that surfaces only what is
+8. Review is a per-item, per-skill memory model that surfaces only what is
    fading; its displayed count and its session are the same object.
-8. Review is a **hub**: the session the scheduler chose, plus the learner's own
+9. Review is a **hub**: the session the scheduler chose, plus the learner's own
    two lists — **Saved words** and **Wrong vocabulary** — which are separate
    from it and from each other, each with a practice session whose offered
    lengths are lengths that can actually be run.
-9. **Thirty-two** interface languages, detected from the device, switchable from
-   the first row of settings; twenty-two were added this cycle and Arabic brought
-   real right-to-left layout with it. Word meanings reach ten of the thirty-two,
-   and the picker says so on the row before the learner chooses.
-10. The product is positioned as a foundation course that hands the learner on to
+10. **Thirty-two** interface languages, detected from the device, switchable from
+   the first row of settings, with real right-to-left layout for Arabic. Word
+   meanings exist in ten of the thirty-two; the other twenty-two read them in a
+   second language that the app **names and lets the learner change**, and a
+   question is never part-translated.
+11. The product is positioned as a foundation course that hands the learner on to
     the main Hangyul product — the hand-off is now **built and renders nothing**,
     because no destination URL exists in this repository.
 
