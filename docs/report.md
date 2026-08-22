@@ -257,7 +257,7 @@ a build's own record of itself is not evidence about the file.
 | Screens rendered at every phone size, in both themes | **85** (17 screens × 320/390/430/dark/200%), 0 findings after 6 fixes | never measured |
 | Screens checked at 200% text | **17**, no sideways scroll, nothing clipped, nothing overlapping | 9 |
 | Audio clips decoded end to end | **10,550**, 0 errors, 0 warnings, in 2m49s | the check did not finish |
-| Dictionary search, phone-adjusted | **p50 0.03 ms, p95 1.32 ms** at 30,243 headwords — an index, not a scan | p50 0.07 ms, p95 1.40 ms |
+| Dictionary search, phone-adjusted | **p50 0.02 ms, p95 0.59 ms** at 30,243 headwords — an index, not a scan | p50 0.07 ms, p95 1.40 ms |
 | Search index a learner waits for on the first search | **502 kB gz of a 520 kB budget**, after two columns nothing rendered were removed | 529 kB — over budget |
 | Practice faces reading at the same size on the page | **6 of 6**, within 2.5% of the median ink height | 5 of 6; Gaegu 21.3% under |
 | Dictionary senses showing an English part of speech in a translated interface | **0** | 3,211 |
@@ -2348,7 +2348,7 @@ measurement that killed it is the reason the index exists: search used to score
 every row on every keystroke, which was 3.9 ms phone-adjusted at 26,675
 headwords and had been **9.0 ms** until lower-casing moved out of the loop.
 That was the last large lever a scan had. At today's 30,243 headwords the index
-answers a keystroke in 0.03 ms at p50 and 1.32 ms at p95 — see §29.3.
+answers a keystroke in 0.02 ms at p50 and 0.59 ms at p95 — see §29.3.
 **I-32 resolved.**
 
 ### Being placed, and being left alone — **NEW this cycle**
@@ -2536,7 +2536,7 @@ not thought of it, and that argument still holds.
 | `vocabulary:sense:qa:check` | 2,581 words each with a canonical `senseId`; 11 pinned senses held; 38 separator-bearing and 55 comma-bearing glosses read and listed, and an unlisted one of either kind now fails |
 | `audio:qa` | **10,550 clips decoded end to end**, 48.9 MB, 0 errors, 0 warnings, in 2m49s |
 | `dictionary:qa:check` | 30,243 headwords, 39,647 senses, 84 chunks, every name a hash of its contents and every name ASCII, and 14 parts of speech each named in all 32 languages |
-| `perf:dictionary:check` | 0.03 ms per keystroke phone-adjusted, 502 kB index — both inside budget |
+| `perf:dictionary:check` | 0.02 ms per keystroke phone-adjusted, 502 kB index — both inside budget |
 | `copy:audit:check` | 19,736 strings across 32 languages, 0 errors |
 
 The four content warnings are loanwords whose translations are the same word in
@@ -4996,10 +4996,10 @@ substring queries, built the first time one is asked.
 
 | rows | index gz | build | p50 | p95 |
 | --- | --- | --- | --- | --- |
-| 26,675 | 336 kB | 455 ms | 0.04 ms | 0.91 ms |
-| 50,000 | 631 kB | 828 ms | 0.07 ms | 0.97 ms |
-| 100,000 | 1,274 kB | 1,288 ms | 0.18 ms | 2.04 ms |
-| **shipping, 30,243** | **502 kB** | **125 ms** | **0.03 ms** | **1.32 ms** |
+| 26,675 | 322 kB | 316 ms | 0.02 ms | 1.03 ms |
+| 50,000 | 604 kB | 453 ms | 0.02 ms | 0.98 ms |
+| 100,000 | 1,219 kB | 1,101 ms | 0.02 ms | 0.65 ms |
+| **shipping, 30,243** | **502 kB** | **239 ms** | **0.02 ms** | **0.59 ms** |
 
 Targets were p50 under 4 ms and p95 under 8 ms. Both are met at every size with
 two orders of magnitude in hand. **I-32 resolved.**
@@ -5014,8 +5014,10 @@ budget, and the budget's own note says it exists so the file cannot drift
 upwards one corpus refresh at a time without somebody deciding to let it. The
 decision was to look at what the columns were for.
 
-What still grows without limit is the **one-time build**: 1,288 ms at a forecast
-100,000 rows against a 1,000 ms budget. That is a once-per-session cost behind a
+The synthetic rows carry five columns too, which is not a detail: they used to
+carry seven, so the forecast was measuring an index shape the product had
+stopped shipping. What still grows without limit is the **one-time build**:
+1,101 ms at a forecast 100,000 rows against a 1,000 ms budget. That is a once-per-session cost behind a
 visible loading line, and past that size the answer is a worker or a prebuilt
 index rather than a faster build.
 
@@ -5711,7 +5713,7 @@ result.
 | **`dictionary:coverage:check`** | 160 everyday words across 16 domains, and frequency coverage at four depths | **PASS** — 160/160; 73.5% of the top 1,000 tokens reach an entry after morphology. One upstream gap recorded (왕족). **NEW.** §13.5 |
 | **`dictionary:morphology:check`** | every dictionary predicate produces forms, and they find their way home | **PASS** — 4,384 predicates, 0 with fewer than five forms, 99.9% past-tense round trip. **NEW** |
 | **`dailyvocab:qa:check`** | today's words against the learner's level and seed | **PASS** — identical within a day, two level-14 learners share 0 of 10, 875 new words over 100 days with 0 repeats, 90% within one level. **NEW.** §21.7 |
-| **`perf:dictionary:check`** | search at the shipping size and beyond | **PASS** — 30,243 headwords, 502 kB index, p50 0.03 ms and p95 1.32 ms phone-adjusted |
+| **`perf:dictionary:check`** | search at the shipping size and beyond | **PASS** — 30,243 headwords, 502 kB index, p50 0.02 ms and p95 0.59 ms phone-adjusted |
 | `i18n:check` | translation completeness | **PASS** — **32 locales at 100%** |
 | `bundle:budget:check` | size budgets | **PASS** — first load 48%, corpus at first paint 71%, whole corpus 22%, precache 63%. The first-paint corpus row is *also* enforced at the 10,000-word target and does not move; the whole-corpus forecast at 10,000 is 86% and is not enforced |
 | `routing:check` | SPA fallback against the built dist | **PASS** — 17 routes, 6 static files, worker behaviour |
@@ -5724,7 +5726,7 @@ result.
 | `audit-native-libs.mjs` over the APK | 16 KB page alignment | **PASS** — no native libraries |
 | `handwriting:robustness` | 2,880 genuine and 2,172 wrong attempts across 6 faces | **0.21% / 0.28%** overall; Pretendard **0.42% / 0.00%**; Gaegu 1.04% → **0.63%** after its own probe scale. §12.2 |
 | **`dictionary:qa:check`** | the generated dictionary against what the app promises about it | **PASS** — 30,243 headwords, every filename a hash of its contents and every filename ASCII. It found two headwords sharing an id, and would now catch the packaging bug in §2.2 |
-| **`perf:dictionary:check`** | search cost and index size, phone-adjusted | **PASS** — 0.03 ms per keystroke, 502 kB index. It has failed twice, at 9.0 ms and again this cycle at 529 kB, which is why it exists |
+| **`perf:dictionary:check`** | search cost and index size, phone-adjusted | **PASS** — 0.02 ms per keystroke, 502 kB index. It has failed twice, at 9.0 ms and again this cycle at 529 kB, which is why it exists |
 | **`strokes:visual:check`** | 73 items, 269 strokes, 1,345 frames | **PASS** — and the sizes it renders at were wrong: 160 and 96, where the product draws 200, 152 and 150. All 73 regenerated and read by eye |
 | `review:benchmark` | adaptive vs fixed scheduler, 7 learner profiles | **PASS** — adaptive retains more in total for **7 of 7** |
 | `audio:qa` | asset integrity over 10,550 clip slots | **RUN TO COMPLETION, and clean** — 0 errors, 0 warnings, in 2m49s. It had not been finishing: it decoded each file with two subprocesses, serially, printing nothing, for about twenty-seven minutes, and was reported as a hang. `volumedetect` already prints the duration ffprobe was being asked for, and the decoding now runs on a pool of eight. A `--sample` mode decodes an even slice for the release gate and **says so in its own summary**, because a sampled run gets quoted as evidence of a full one |

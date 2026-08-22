@@ -76,12 +76,11 @@ function synthesise(count) {
     // way real ones do rather than every bucket being identical.
     const lead = String.fromCharCode(0xac00 + ((i * 7919) % LEAD));
     const tail = String.fromCharCode(0xac00 + ((i * 31) % 400));
+    // Five columns, the same shape the shipping index has — see `build_dictionary.py`.
     rows.push([
       `${lead}${tail}`,
       `r${i.toString(36)}`,
-      'noun',
       `a thing numbered ${i}`,
-      1 + (i % 5),
       `g-${1 + (i % 3)}`,
       50000 - i,
     ]);
@@ -104,11 +103,9 @@ function prepare(rows) {
     rows.map((row) => ({
       headword: row[0],
       romanization: row[1],
-      partOfSpeech: row[2],
-      shortGloss: row[3],
-      senseCount: row[4],
-      chunk: row[5],
-      frequency: row[6],
+      shortGloss: row[2],
+      chunk: row[3],
+      frequency: row[4],
     })),
   );
 }

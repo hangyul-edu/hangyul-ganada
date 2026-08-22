@@ -228,15 +228,32 @@ def usable_anchor(headword: str, gloss: str, pos: str) -> bool:
 
 
 def dictionary_anchors(taught: set[str]) -> list[dict]:
-    """Entries from the dictionary layer that can carry a question."""
+    """Entries from the dictionary layer that can carry a question.
+
+    The part of speech comes from the entry chunks rather than from the index.
+    It used to be an index column and is not one any more: a search result row
+    renders a headword and a gloss, the part of speech was parsed into thirty
+    thousand objects and shown by nothing, and it cost 27.5 kB gzipped of a file
+    a learner waits for on their first search. Reading 84 chunks here costs a
+    build script a second and costs a phone nothing.
+    """
     manifest_path = DICTIONARY / "manifest.json"
     if not manifest_path.exists():
         return []
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     index = json.loads((DICTIONARY / manifest["index"]).read_text(encoding="utf-8"))
+    part_of_speech: dict[str, str] = {}
+    for chunk in manifest["chunks"].values():
+        for entry in json.loads(
+            (DICTIONARY / chunk["file"]).read_text(encoding="utf-8")
+        )["entries"]:
+            senses = entry.get("senses") or []
+            if senses:
+                part_of_speech[entry["headword"]] = senses[0]["partOfSpeech"]
     out: list[dict] = []
     seen: set[str] = set()
-    for headword, _romanization, pos, gloss, _senses, _chunk, _freq in index["rows"]:
+    for headword, _romanization, gloss, _chunk, _freq in index["rows"]:
+        pos = part_of_speech.get(headword, "")
         if headword in taught or headword in seen:
             continue
         if not usable_anchor(headword, gloss, pos):

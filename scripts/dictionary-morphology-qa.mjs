@@ -26,7 +26,21 @@ const CHECK = process.argv.includes('--check');
 const manifest = JSON.parse(readFileSync(join(DICT, 'manifest.json'), 'utf8'));
 const index = JSON.parse(readFileSync(join(DICT, manifest.index), 'utf8'));
 const headwords = new Set(index.rows.map((row) => row[0]));
-const partOfSpeech = new Map(index.rows.map((row) => [row[0], row[2]]));
+/*
+  The part of speech comes from the entry chunks, not from the index.
+
+  It used to be `row[2]` and `row[2]` is now the short gloss — the index lost
+  two columns that no screen rendered, and this file would have gone on reading
+  the third one and asking whether "to go out" is a verb. Reading 84 chunks is
+  a second in a build script and nothing on a phone.
+*/
+const partOfSpeech = new Map();
+for (const chunk of Object.values(manifest.chunks)) {
+  for (const entry of JSON.parse(readFileSync(join(DICT, chunk.file), 'utf8')).entries) {
+    const first = entry.senses?.[0];
+    if (first) partOfSpeech.set(entry.headword, first.partOfSpeech);
+  }
+}
 const isHeadword = (lemma) => headwords.has(lemma);
 
 /** The brief's list (§69), plus the irregular classes it does not name. */
