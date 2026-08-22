@@ -4,11 +4,13 @@
   "words": {
     "word_hada": [
       "melakukan",
-      "Saya belajar."
+      "Saya belajar.",
+      "Melakukan — sekaligus mesin pembentuk kosakata Korea. Tempelkan pada kata benda dan jadilah kata kerja: 공부 (studi) menjadi 공부하다 (belajar), 사랑 (cinta) menjadi 사랑하다. Ratusan kata kerja dibangun begini."
     ],
     "word_cha": [
       "mobil",
-      "Saya naik mobil."
+      "Saya naik mobil.",
+      "Mobil. Suku kata yang sama juga berarti teh, jadi 차를 마셔요 adalah saya minum teh dan 차를 타요 adalah saya naik mobil. Kata kerjanya yang menentukan."
     ],
     "word_yeoja": [
       "perempuan",
@@ -36,11 +38,13 @@
     ],
     "word_itda": [
       "berada",
-      "Saya di rumah."
+      "Saya di rumah.",
+      "Satu kata untuk dua hal: 있다 berarti berada di suatu tempat sekaligus punya. 책상에 책이 있어요 — bukunya ada di meja; 시간이 있어요 — saya punya waktu. Lawannya 없다."
     ],
     "word_ne": [
       "ya",
-      "Ya, benar."
+      "Ya, benar.",
+      "Ada tiga kata umum yang ditulis 네. Yang ini «ya». Dua lainnya «milikmu» (네 책, bukumu) dan bilangan asli Korea «empat» sebelum kata penggolong (네 개, empat buah). Konteks yang memisahkannya, bukan ejaan."
     ],
     "word_son": [
       "tangan",
@@ -48,7 +52,8 @@
     ],
     "word_sigan": [
       "waktu",
-      "Saya tidak punya waktu."
+      "Saya tidak punya waktu.",
+      "Waktu secara umum, sekaligus kata penggolong untuk jam: 두 시간 berarti dua jam lamanya. Jangan tertukar dengan 시, yaitu jam pada arloji — 두 시 berarti pukul dua, hal yang sama sekali lain."
     ],
     "word_jeo": [
       "saya (sopan)",
@@ -80,7 +85,8 @@
     ],
     "word_nun": [
       "mata",
-      "Matamu indah."
+      "Matamu indah.",
+      "Mata. Ditulis persis seperti kata untuk salju; dalam ucapan yang cermat keduanya dibedakan oleh panjang bunyi: 눈 salju dipanjangkan, 눈 mata pendek. Kebanyakan penutur mengandalkan konteks."
     ],
     "word_ot": [
       "pakaian",
@@ -108,7 +114,8 @@
     ],
     "word_dari": [
       "kaki",
-      "Kaki saya sakit."
+      "Kaki saya sakit.",
+      "Kaki — kaki Anda, kaki meja, kaki kursi. Kata yang sama juga berarti jembatan, karena itu 다리를 건너요 berarti «saya menyeberangi jembatan», bukan sesuatu yang anatomis."
     ],
     "word_bi": [
       "hujan",
@@ -216,7 +223,8 @@
     ],
     "word_jeongmal": [
       "sungguh",
-      "Terima kasih banyak."
+      "Terima kasih banyak.",
+      "Sungguh, benar-benar — penguat di depan kata sifat, seperti pada 정말 좋아요. Berdiri sendiri dengan nada naik, 정말? menjadi pertanyaan satu kata: «masa?» — dan begitulah Anda akan paling sering mendengarnya."
     ],
     "word_seonmul": [
       "hadiah",
@@ -400,7 +408,8 @@
     ],
     "word_bam": [
       "malam",
-      "Banyak bintang di malam hari."
+      "Banyak bintang di malam hari.",
+      "Malam. Ditulis sama dengan kata untuk buah berangan, camilan musim gugur yang lazim di Korea, sehingga 밤을 먹어요 dan 밤에 자요 membicarakan hal yang sangat berbeda."
     ]
   }
 }

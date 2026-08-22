@@ -4,11 +4,13 @@
   "words": {
     "word_hada": [
       "göra",
-      "Jag studerar."
+      "Jag studerar.",
+      "Att göra — och motorn i koreansk ordbildning. Sätt det efter ett substantiv så får du ett verb: 공부 (studier) blir 공부하다 (att studera), 사랑 (kärlek) blir 사랑하다. Hundratals verb byggs så."
     ],
     "word_cha": [
       "bil",
-      "Jag tar bilen."
+      "Jag tar bilen.",
+      "En bil. Samma stavelse är också ordet för te, så 차를 마셔요 betyder jag dricker te och 차를 타요 betyder jag sätter mig i bilen. Verbet talar om vilket det är."
     ],
     "word_yeoja": [
       "kvinna",
@@ -36,11 +38,13 @@
     ],
     "word_itda": [
       "befinna sig",
-      "Jag är hemma."
+      "Jag är hemma.",
+      "Ett ord där svenskan har två: 있다 betyder både att finnas någonstans och att ha. 책상에 책이 있어요 — boken ligger på skrivbordet; 시간이 있어요 — jag har tid. Motsatsen är 없다."
     ],
     "word_ne": [
       "ja",
-      "Ja, det stämmer."
+      "Ja, det stämmer.",
+      "Tre vanliga ord stavas 네. Det här är ”ja”. De andra är ”din” (네 책, din bok) och det inhemska räkneordet ”fyra” framför ett klassifikatorord (네 개, fyra stycken). Sammanhanget skiljer dem åt, inte stavningen."
     ],
     "word_son": [
       "hand",
@@ -48,7 +52,8 @@
     ],
     "word_sigan": [
       "tid",
-      "Jag har ingen tid."
+      "Jag har ingen tid.",
+      "Tid i allmänhet, och även räkneordet för timmar: 두 시간 är två timmar. Blanda inte ihop det med 시, som är klockslaget — 두 시 är klockan två, något helt annat."
     ],
     "word_jeo": [
       "jag (artigt)",
@@ -80,7 +85,8 @@
     ],
     "word_nun": [
       "öga",
-      "Du har vackra ögon."
+      "Du har vackra ögon.",
+      "Ögat. Stavas precis som ordet för snö, och i tydligt tal skiljs de åt med längd: snö-눈 dras ut, öga-눈 är kort. De flesta förlitar sig på sammanhanget."
     ],
     "word_ot": [
       "kläder",
@@ -108,7 +114,8 @@
     ],
     "word_dari": [
       "ben",
-      "Jag har ont i benet."
+      "Jag har ont i benet.",
+      "Ett ben — ditt, ett bords, en stols. Samma ord betyder också bro, och därför betyder 다리를 건너요 ”jag går över bron” och inget anatomiskt."
     ],
     "word_bi": [
       "regn",
@@ -216,7 +223,8 @@
     ],
     "word_jeongmal": [
       "verkligen",
-      "Tack så mycket."
+      "Tack så mycket.",
+      "Verkligen, riktigt — ett förstärkningsord före ett adjektiv, som i 정말 좋아요. Ensamt, med stigande ton, är 정말? en enordsfråga: ”verkligen?” Så hör du det oftast."
     ],
     "word_seonmul": [
       "present",
@@ -400,7 +408,8 @@
     ],
     "word_bam": [
       "natt",
-      "På natten syns många stjärnor."
+      "På natten syns många stjärnor.",
+      "Natt. Stavas som ordet för kastanj, ett vanligt höstsnacks i Korea, så 밤을 먹어요 och 밤에 자요 handlar om mycket olika saker."
     ]
   }
 }

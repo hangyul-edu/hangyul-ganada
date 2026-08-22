@@ -50,6 +50,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { COMPLETE_LOCALES } from './lib/locale-status.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const GENERATED = join(ROOT, 'apps/web/src/data/generated');
@@ -111,6 +112,8 @@ const SENSE_SPLIT = /;|；|또는|、/;
 
 const hard = [];
 const notes = [];
+/** Coverage in the languages still being written — measured, never gated. */
+const backlog = [];
 
 // --- Coverage -----------------------------------------------------------------
 
@@ -125,10 +128,14 @@ const notes = [];
  * below as a *report*: a word added to the corpus tomorrow ships with English
  * in those two languages rather than failing a build nobody can unblock
  * without writing Vietnamese.
+ *
+ * Carrying a pack is no longer the same as promising a full one. Twenty-two of
+ * these languages are being written — see `lib/locale-status.mjs` — so what is
+ * gated below is the ten that have finished, and the rest are measured.
  */
-const complete = corpus.locales;
+const shipped = corpus.locales;
 const packs = new Map();
-for (const locale of complete) {
+for (const locale of shipped) {
   const name = `vocabulary.${locale}.json`;
   if (!existsSync(join(GENERATED, name))) {
     hard.push(`${locale} claims complete copy and has no pack`);
@@ -137,13 +144,26 @@ for (const locale of complete) {
   packs.set(locale, read(name).words);
 }
 
+/*
+ * Row count is a hard failure in every language, written or not: the packs are
+ * positional, so a pack of the wrong length does not leave a word blank — it
+ * shifts every gloss after the gap onto the wrong word.
+ *
+ * Emptiness is the part that depends on the promise. A finished language with a
+ * hole in it is a defect; an unfinished one is a backlog figure, and printed as
+ * one so the number stays visible instead of being suppressed.
+ */
+const written = new Map();
 for (const [locale, rows] of packs) {
   if (rows.length !== corpus.words.length) {
     hard.push(`${locale} has ${rows.length} rows for ${corpus.words.length} words`);
     continue;
   }
-  const empty = rows.reduce((n, row) => n + (row && row[0] ? 0 : 1), 0);
-  if (empty > 0) hard.push(`${locale} is missing ${empty} meaning(s)`);
+  written.set(locale, new Set(rows.flatMap((row, index) => (row && row[0] ? [index] : []))));
+  const empty = corpus.words.length - written.get(locale).size;
+  if (empty === 0) continue;
+  if (COMPLETE_LOCALES.has(locale)) hard.push(`${locale} is missing ${empty} meaning(s)`);
+  else backlog.push(`${locale} ${written.get(locale).size} of ${corpus.words.length} written`);
 }
 
 /**
@@ -205,7 +225,15 @@ const [reference] = [...withDefinition.keys()];
 if (reference) {
   const expected = withDefinition.get(reference);
   for (const [locale, indices] of withDefinition) {
-    const missing = [...expected].filter((index) => !indices.has(index));
+    /*
+     * A language still being written is compared over the rows it has actually
+     * written. Anything else asks it to translate a paragraph for a word whose
+     * one-line meaning it does not have yet, which is not a defect but the
+     * definition of unfinished — and it would drown the real finding, which is
+     * a *written* row that has the section in one language and not another.
+     */
+    const scope = COMPLETE_LOCALES.has(locale) ? null : (written.get(locale) ?? new Set());
+    const missing = [...expected].filter((index) => !indices.has(index) && (!scope || scope.has(index)));
     const extra = [...indices].filter((index) => !expected.has(index));
     for (const index of missing) {
       hard.push(`${corpus.words[index].word} has a long definition in ${reference} and not in ${locale}`);
@@ -307,7 +335,8 @@ if (stale.length) {
 
 console.log(
   `Sense QA — ${corpus.words.length.toLocaleString('en')} words, ` +
-    `${packs.size} language(s) claiming complete copy`,
+    `${packs.size} language(s) with a pack, ` +
+    `${[...packs.keys()].filter((l) => COMPLETE_LOCALES.has(l)).length} of them finished`,
 );
 
 if (reference) {
@@ -315,6 +344,11 @@ if (reference) {
     `  ${withDefinition.get(reference).size} word(s) carry a long definition, ` +
       `in all ${withDefinition.size} language(s)`,
   );
+}
+
+if (backlog.length) {
+  console.log(`  ${backlog.length} language(s) still being written:`);
+  for (const line of backlog) console.log(`    ${line}`);
 }
 
 for (const [locale, covered] of handWritten) {

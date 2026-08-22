@@ -41,6 +41,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { toIpa } from './lib/ipa.ts';
+import { COMPLETE_LOCALES } from './lib/locale-status.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(here, '..');
@@ -162,6 +163,9 @@ for (let i = 1; i < byPriority.length; i += 1) {
   }
 }
 
+/** Gaps in the languages still being written, reported at the end. */
+const inProgress = [];
+
 // --- 4. Glosses, in every language that ships ---------------------------------
 
 const locales = data.locales ?? [];
@@ -204,12 +208,40 @@ for (const locale of locales) {
       noExample.push(row.word);
     }
   });
+  /*
+    A gap is a failure in a language that claims to be finished, and a fact in
+    one that does not.
+
+    Every content locale used to be all-or-nothing: a pack was written in full
+    or the language was absent, so any hole meant a build had gone wrong. Twenty-two
+    languages are now *in progress* — real packs with most rows still empty —
+    and the app is built for that: `strictMeaning` resolves in the learner's own
+    language or not at all, so an unwritten row removes a word from that
+    language's quiz pool instead of falling back to English. Failing the build
+    for it would be failing for the content backlog, every run, forever.
+
+    `COMPLETE_LOCALES` is the list that still has to be perfect. A language moves
+    into it when its pack is finished, and from that moment a missing row is a
+    build failure again.
+  */
+  const complete = COMPLETE_LOCALES.has(locale);
   const report = (list, what) => {
     if (list.length === 0) return;
-    fail(`${locale}: ${list.length} word(s) with no ${what} — e.g. ${list.slice(0, 5).join(', ')}`);
+    const line = `${locale}: ${list.length} word(s) with no ${what} — e.g. ${list.slice(0, 5).join(', ')}`;
+    if (complete) fail(line);
+    else inProgress.push(line);
   };
   report(missing, 'meaning');
   report(noExample, 'example translation');
+}
+
+if (inProgress.length > 0) {
+  console.log(`\n  ${inProgress.length} gap(s) in languages still being written:`);
+  for (const line of inProgress) console.log(`    ${line}`);
+  console.log(
+    '    These remove words from that language\'s quiz pool rather than falling back\n' +
+      "    to English — see §23.8. They are the content backlog, not a build fault.",
+  );
 }
 
 // --- 5. Pronunciation ---------------------------------------------------------

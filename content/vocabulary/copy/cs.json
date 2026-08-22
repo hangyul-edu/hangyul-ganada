@@ -4,11 +4,13 @@
   "words": {
     "word_hada": [
       "dělat",
-      "Učím se."
+      "Učím se.",
+      "Dělat — a motor korejské slovní zásoby. Připojte je k podstatnému jménu a vznikne sloveso: 공부 (studium) → 공부하다 (studovat), 사랑 (láska) → 사랑하다. Takto jsou utvořeny stovky sloves."
     ],
     "word_cha": [
       "auto",
-      "Jedu autem."
+      "Jedu autem.",
+      "Auto. Tatáž slabika znamená i čaj: 차를 마셔요 je piju čaj, 차를 타요 je nastupuji do auta. Které z nich to je, prozradí sloveso."
     ],
     "word_yeoja": [
       "žena",
@@ -36,11 +38,13 @@
     ],
     "word_itda": [
       "být někde",
-      "Jsem doma."
+      "Jsem doma.",
+      "Jedno slovo tam, kde má čeština dvě: 있다 znamená být někde i mít. 책상에 책이 있어요 — kniha je na stole; 시간이 있어요 — mám čas. Opakem je 없다."
     ],
     "word_ne": [
       "ano",
-      "Ano, je to tak."
+      "Ano, je to tak.",
+      "Jako 네 se píšou tři běžná slova. Tohle je „ano“. Další jsou „tvůj“ (네 책, tvoje kniha) a domácí číslovka „čtyři“ před počítacím slovem (네 개, čtyři kusy). Rozliší je kontext, pravopis ne."
     ],
     "word_son": [
       "ruka",
@@ -48,7 +52,8 @@
     ],
     "word_sigan": [
       "čas",
-      "Nemám čas."
+      "Nemám čas.",
+      "Čas obecně a zároveň jednotka pro počítání hodin: 두 시간 jsou dvě hodiny. Nepleťte si je s 시, což je hodina na ciferníku — 두 시 jsou dvě hodiny, něco úplně jiného."
     ],
     "word_jeo": [
       "já (zdvořile)",
@@ -80,7 +85,8 @@
     ],
     "word_nun": [
       "oko",
-      "Máš krásné oči."
+      "Máš krásné oči.",
+      "Oko. Píše se stejně jako slovo pro sníh; v pečlivé výslovnosti je odlišuje délka: sněhové 눈 je protažené, oční 눈 krátké. Většina mluvčích se spoléhá na kontext."
     ],
     "word_ot": [
       "oblečení",
@@ -108,7 +114,8 @@
     ],
     "word_dari": [
       "noha",
-      "Bolí mě noha."
+      "Bolí mě noha.",
+      "Noha — vaše, stolu, židle. Totéž slovo znamená i most, proto 다리를 건너요 je „přecházím most“, nikoli něco anatomického."
     ],
     "word_bi": [
       "déšť",
@@ -216,7 +223,8 @@
     ],
     "word_jeongmal": [
       "opravdu",
-      "Moc děkuji."
+      "Moc děkuji.",
+      "Opravdu, vážně — zesilující slovo před přídavným jménem, jako v 정말 좋아요. Samotné, se stoupavou intonací, je 정말? jednoslovná otázka „opravdu?“ a takto ho uslyšíte nejčastěji."
     ],
     "word_seonmul": [
       "dárek",
@@ -400,7 +408,8 @@
     ],
     "word_bam": [
       "noc",
-      "V noci je hodně hvězd."
+      "V noci je hodně hvězd.",
+      "Noc. Píše se stejně jako slovo pro kaštan, běžnou podzimní pochoutku v Koreji, takže 밤을 먹어요 a 밤에 자요 mluví o velmi odlišných věcech."
     ]
   }
 }

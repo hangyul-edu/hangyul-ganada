@@ -4,11 +4,13 @@
   "words": {
     "word_hada": [
       "qilmoq",
-      "Men dars qilyapman."
+      "Men dars qilyapman.",
+      "Qilmoq — va koreys so’z yasashining dvigateli. Uni otga qo’shsangiz, fe’l hosil bo’ladi: 공부 (o’qish) → 공부하다 (o’qimoq), 사랑 (sevgi) → 사랑하다. Yuzlab fe’l shu tarzda tuzilgan."
     ],
     "word_cha": [
       "mashina",
-      "Men mashinada boraman."
+      "Men mashinada boraman.",
+      "Mashina. Xuddi shu bo’g’in choy ma’nosini ham beradi: 차를 마셔요 — choy ichaman, 차를 타요 — mashinaga o’tiraman. Qaysi biri ekanini fe’l aytadi."
     ],
     "word_yeoja": [
       "ayol",
@@ -36,11 +38,13 @@
     ],
     "word_itda": [
       "bir joyda bo‘lmoq",
-      "Men uydaman."
+      "Men uydaman.",
+      "O’zbekchada ikki so’z kerak bo’lgan joyda koreyschada bitta: 있다 ham biror joyda bo’lmoq, ham ega bo’lmoq degani. 책상에 책이 있어요 — kitob stolda; 시간이 있어요 — vaqtim bor. Qarama-qarshisi — 없다."
     ],
     "word_ne": [
       "ha",
-      "Ha, to‘g‘ri."
+      "Ha, to‘g‘ri.",
+      "네 deb yoziladigan uchta keng tarqalgan so’z bor. Bu — «ha». Qolganlari «sening» (네 책, sening kitobing) va sanoq so’zidan oldin keladigan «to’rt» (네 개, to’rtta). Ularni imlo emas, kontekst ajratadi."
     ],
     "word_son": [
       "qo‘l",
@@ -48,7 +52,8 @@
     ],
     "word_sigan": [
       "vaqt",
-      "Vaqtim yo‘q."
+      "Vaqtim yo‘q.",
+      "Umuman vaqt, shuningdek soatlarni sanash so’zi: 두 시간 — ikki soat. Uni 시 bilan aralashtirmang, u — soatdagi vaqt: 두 시 — soat ikkida, butunlay boshqa narsa."
     ],
     "word_jeo": [
       "men (xushmuomala)",
@@ -80,7 +85,8 @@
     ],
     "word_nun": [
       "ko‘z",
-      "Ko‘zlaring chiroyli."
+      "Ko‘zlaring chiroyli.",
+      "Ko’z. Qor so’zi bilan bir xil yoziladi; sinchkovlik bilan gapirilganda ularni cho’ziqlik ajratadi: qorning 눈-i cho’zib, ko’zning 눈-i qisqa aytiladi. Ko’pchilik kontekstga tayanadi."
     ],
     "word_ot": [
       "kiyim",
@@ -108,7 +114,8 @@
     ],
     "word_dari": [
       "oyoq",
-      "Oyog‘im og‘riyapti."
+      "Oyog‘im og‘riyapti.",
+      "Oyoq — sizniki, stolniki, stulniki. Xuddi shu so’z «ko’prik» ma’nosini ham beradi, shuning uchun 다리를 건너요 — «ko’prikdan o’taman», tanaga aloqasi yo’q."
     ],
     "word_bi": [
       "yomg‘ir",
@@ -216,7 +223,8 @@
     ],
     "word_jeongmal": [
       "rostdan",
-      "Katta rahmat."
+      "Katta rahmat.",
+      "Rostdan, haqiqatan — sifatdan oldin keladigan kuchaytiruvchi so’z: 정말 좋아요. Yolg’iz o’zi, oxirini ko’tarib aytilsa, 정말? bir so’zli savolga aylanadi: «rostdanmi?» — ko’pincha shunday eshitasiz."
     ],
     "word_seonmul": [
       "sovg‘a",
@@ -400,7 +408,8 @@
     ],
     "word_bam": [
       "tun",
-      "Tunda yulduz ko‘p bo‘ladi."
+      "Tunda yulduz ko‘p bo‘ladi.",
+      "Tun. «Kashtan» so’zi bilan bir xil yoziladi, kashtan esa Koreyada kuzning odatiy yengil taomi. Shuning uchun 밤을 먹어요 va 밤에 자요 butunlay boshqa narsa haqida."
     ]
   }
 }

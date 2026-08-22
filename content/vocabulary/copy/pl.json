@@ -4,11 +4,13 @@
   "words": {
     "word_hada": [
       "robić",
-      "Uczę się."
+      "Uczę się.",
+      "Robić — i motor koreańskiego słowotwórstwa. Dołącz je do rzeczownika, a powstanie czasownik: 공부 (nauka) → 공부하다 (uczyć się), 사랑 (miłość) → 사랑하다. Tak zbudowano setki czasowników."
     ],
     "word_cha": [
       "samochód",
-      "Jadę samochodem."
+      "Jadę samochodem.",
+      "Samochód. Ta sama sylaba znaczy też herbatę: 차를 마셔요 to piję herbatę, a 차를 타요 to wsiadam do samochodu. Który to, mówi czasownik."
     ],
     "word_yeoja": [
       "kobieta",
@@ -36,11 +38,13 @@
     ],
     "word_itda": [
       "być gdzieś",
-      "Jestem w domu."
+      "Jestem w domu.",
+      "Jedno słowo tam, gdzie polski ma dwa: 있다 to zarówno być gdzieś, jak i mieć. 책상에 책이 있어요 — książka jest na biurku; 시간이 있어요 — mam czas. Przeciwieństwem jest 없다."
     ],
     "word_ne": [
       "tak",
-      "Tak, zgadza się."
+      "Tak, zgadza się.",
+      "Trzy częste słowa zapisuje się 네. To jest „tak”. Pozostałe to „twój” (네 책, twoja książka) i rodzimy liczebnik „cztery” przed klasyfikatorem (네 개, cztery sztuki). Rozróżnia je kontekst, nie pisownia."
     ],
     "word_son": [
       "ręka",
@@ -48,7 +52,8 @@
     ],
     "word_sigan": [
       "czas",
-      "Nie mam czasu."
+      "Nie mam czasu.",
+      "Czas w ogóle, a także jednostka liczenia godzin: 두 시간 to dwie godziny. Nie mylić z 시, czyli godziną na zegarze — 두 시 to druga, całkiem co innego."
     ],
     "word_jeo": [
       "ja (grzecznie)",
@@ -80,7 +85,8 @@
     ],
     "word_nun": [
       "oko",
-      "Masz piękne oczy."
+      "Masz piękne oczy.",
+      "Oko. Zapisywane tak samo jak słowo „śnieg”; w starannej mowie odróżnia je długość: śniegowe 눈 jest wydłużone, oczne 눈 krótkie. Większość mówiących polega na kontekście."
     ],
     "word_ot": [
       "ubranie",
@@ -108,7 +114,8 @@
     ],
     "word_dari": [
       "noga",
-      "Boli mnie noga."
+      "Boli mnie noga.",
+      "Noga — twoja, stołu, krzesła. To samo słowo znaczy też „most”, dlatego 다리를 건너요 to „przechodzę przez most”, a nie nic anatomicznego."
     ],
     "word_bi": [
       "deszcz",
@@ -216,7 +223,8 @@
     ],
     "word_jeongmal": [
       "naprawdę",
-      "Bardzo dziękuję."
+      "Bardzo dziękuję.",
+      "Naprawdę, doprawdy — wzmocnienie przed przymiotnikiem, jak w 정말 좋아요. Samo, z podniesieniem głosu na końcu, 정말? jest jednowyrazowym pytaniem „naprawdę?” i tak usłyszysz je najczęściej."
     ],
     "word_seonmul": [
       "prezent",
@@ -400,7 +408,8 @@
     ],
     "word_bam": [
       "noc",
-      "W nocy jest dużo gwiazd."
+      "W nocy jest dużo gwiazd.",
+      "Noc. Zapisywana tak samo jak „kasztan”, pospolita jesienna przekąska w Korei, więc 밤을 먹어요 i 밤에 자요 mówią o zupełnie różnych rzeczach."
     ]
   }
 }
