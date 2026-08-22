@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 22 August 2026
-describes: A re-audit of the running product on `main` at cb5450f — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
+describes: A re-audit of the running product on `main` at 09dd79b — a canonical taught sense on every card, a 26,675-headword dictionary that is searchable and never scheduled, and a packaging bug that made every chunk of it unreadable inside the APK
 mark: report-assets/mark.png
 ---
 
@@ -59,11 +59,11 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `cb5450f` — see §2.2 for the pipeline |
+| Git commit | `09dd79b` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`cb5450f` — the same commit**, asserted by `npm run release:current`. See §2.2 |
-| Signed APK | 66.0 MB · `40c2d6740dd6d9b4…` |
-| Signed AAB | 64.8 MB · `1b1c96891044c377…` |
+| Commit the delivered APK/AAB were built from | **`09dd79b` — the same commit**, asserted by `npm run release:current`. See §2.2 |
+| Signed APK | 67.0 MB · `619fde22db646750…` |
+| Signed AAB | 65.8 MB · `d920a512a19f48db…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
 | Search indexing | **Refused** — `noindex` in two meta tags and `X-Robots-Tag` on every route. The link is public and shareable; see §26.4 |
 | Production URL | `https://ganada.talkhangyul.com` |
@@ -97,13 +97,13 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-cb5450f  the production pass — every change in this report
+09dd79b  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from cb5450f, and asserted to be
+result/, app_result/   from 09dd79b, and asserted to be
 ```
 
 **The check is the fix.** `scripts/check-release-current.mjs` reads the commit
@@ -212,7 +212,7 @@ a build's own record of itself is not evidence about the file.
 | Words whose taught sense is pinned by exact string | 11, now beside a `senseId` on all 2,581 | 11 |
 | Web unit (`vitest`) | **699** (42 files) | 691 |
 | Handwriting core (`vitest`) | **96** (5 files) | 96 |
-| End-to-end (`playwright`) | **266** (133 × 2 projects) | 262 |
+| End-to-end (`playwright`) | **268** (134 × 2 projects) | 266 |
 | Rendered stroke frames measured in pixels | 1,345 | 1,345 |
 | Handwriting **false-reject / false-accept** | **0.28% / 0.28%** — and Pretendard, the default face, **0.42% / 0.00%** | 0.21% / 0.78% overall, 1.04% / 0.55% on Pretendard |
 | First load | **387.8 kB gz of a 460 kB budget** (84%) | 387.3 kB |
@@ -227,7 +227,10 @@ a build's own record of itself is not evidence about the file.
 | Locale screens rendered and measured | **256** (32 languages × 8 screens), 0 findings | 256, 0 findings |
 | Screens checked at 200% text | **9**, no sideways scroll and nothing clipped | not checked |
 | Audio clips decoded end to end | **10,550**, 0 errors, 0 warnings, in 2m49s | the check did not finish |
-| Dictionary search, phone-adjusted | **3.9 ms** per keystroke at 26,675 headwords, budget 8 ms | no dictionary |
+| Dictionary search, phone-adjusted | **p50 0.02 ms, p95 0.55 ms** at 26,675 headwords — an index, not a scan | 3.9 ms, a full scan |
+| Hints that rule nothing out, over 149,231 shown in 32 languages | **0** | never measured |
+| Guide ↔ animation exceptions | **0** | 6, stated and tolerated |
+| Wrong secondary categories on taught words | **0** | 73 across 70 words |
 | Stroke demonstration audited at | 200, 152 and 96 px — the sizes the product draws | same |
 | **Glyph shape** — completed letters against the face they are traced from | **73 / 73**, mean 96.9% | never asked |
 | ㄱ's toe beside a vowel, against the face's 0.115 | **0.166–0.175** | 0.72–0.73 |
@@ -1238,6 +1241,55 @@ outlines — in its own lazily-loaded chunk. It is now the code that draws the
 strokes: **5.0 kB gzipped**. `scripts/build-stroke-assets.mjs`, 1,889 lines of
 rasterising, distance transforms, contour tracing and four generations of
 corrective heuristics, is deleted.
+
+## 11.9 The Android cold start showed the launcher icon first — **FIXED, and unverified on a device**
+
+On a real device the app opened as **three** screens: the mandarin launcher
+tile, then the app's own splash carrying the jamo mark, then the app.
+
+Android 12 and newer always draw a system splash and an app cannot opt out. With
+`windowSplashScreenAnimatedIcon` unset the system uses the **launcher icon** —
+so the first frame was a picture of the home-screen tile, and the second was a
+different mark on the same ground. Two different marks in a row is what makes
+one splash read as two.
+
+The system frame now carries the splash's own mark. `mipmap/splash_icon` is
+generated beside the launcher icons from the same source and on the same
+adaptive canvas, so they cannot drift apart in size — which is exactly what the
+old comment was worried about when it left this unset. Animation duration is
+zero: there is nothing to animate, and a duration only holds the app behind a
+still mark.
+
+The pre-Android-12 window background is **localized** rather than wordless:
+`drawable-ko` carries the Korean artwork and the default carries the English. It
+used to be one bitmap with the type painted out, because a single localized file
+would have put an English wordmark in front of Korean learners; a resource
+qualifier solves that properly, and each learner gets their own words.
+
+### Verified in the compiled package, not by listing files
+
+```
+style AppTheme.NoActionBarLaunch
+  windowSplashScreenAnimatedIcon      = @mipmap/splash_icon
+  windowSplashScreenAnimationDuration = 0
+  windowSplashScreenBackground        = @color/splashBackground
+mipmap/splash_icon   all five densities
+drawable/splash      11 default configurations, 11 ko- configurations
+```
+
+The two artworks are different files — 91,994 and 79,319 bytes at port-xhdpi —
+and both carry type in the wordmark band, so neither is the wordless bitmap that
+used to stand in for both.
+
+### Two honest limits
+
+**Physical cold-launch is unverified.** There is no adb, no device and no
+emulator in this environment. What is verified is the compiled resource table
+and the theme it points at, which is the cause; the effect has not been watched.
+
+**The qualifier follows the system locale**, or the per-app locale on Android 13
+and newer where one is set. A learner whose phone is in English and who switched
+*the app* to Korean gets the English native splash and then the Korean web one.
 
 ## 11.8 Launch screen and the desktop shell — **REPLACED again in `e026697`**
 
@@ -2771,6 +2823,42 @@ costs nothing to run — untrue.
 because a fixed clip would otherwise never reach a learner whose app had already
 played the wrong one.
 
+## 22.6 Hints: safe was being checked, useful was not — **FIXED**
+
+A hint has to be two things. **Safe** — it must not contain the answer — has
+been enforced since the ladder was rewritten. **Useful** — it must rule
+something out — was not enforced at all. *"It's a verb"* over four verbs is
+perfectly safe and tells a learner nothing; they spend a rung of help and are
+exactly where they started, which teaches them that help is not worth asking
+for.
+
+A rung that classifies the answer now declares what it classifies by, and the
+filter drops it when every option on screen already shares those properties.
+Rungs that are not classifications — a replay, a first syllable, an example
+sentence — are never dropped on these grounds, because they narrow something a
+property table cannot describe. **When nothing useful is left the ladder simply
+ends and the next press is *Show answer*.** No filler to keep a rung count up.
+
+Measured over **149,231 rungs actually shown**, across the corpus and all 32
+languages: **0 that rule nothing out**.
+
+The same measurement found three answer leaks getting past the safety filter,
+and one cause behind two of them.
+
+**`revealsAnswer` split on whitespace.** A language that does not use spaces was
+therefore never really checked: a Thai hint is one token, so `tokens.includes`
+is false however plainly the answer sits in the middle of it. 음료수 is
+*เครื่องดื่ม* and its category renders as *อาหารและเครื่องดื่ม*. Korean was
+already special-cased; Thai, Japanese, Chinese, Lao and Khmer were not.
+
+**And German compounds.** 사다 is *kaufen* and its category renders as *Geld und
+Einkaufen*. The rule now also catches the answer as the tail of a longer word,
+from four letters up — long enough that the overlap is a shared morpheme rather
+than two words that rhyme.
+
+**0 leaking, 0 useless**, and `hints:qa:check` is on the gate, so the next
+language added is checked in the same breath.
+
 ## 22.5 The listening question's visual treatment — **CHANGED this cycle**
 
 **Old:** the question text, then a 44px 🔊, then the button that plays the clip.
@@ -3544,7 +3632,7 @@ card previews 가나다 / 한글 in its own face.
 
 ## 29.3 Performance — **VERIFIED, re-measured this cycle**
 
-`bundle:budget:check` against the build from `cb5450f` — every budget met:
+`bundle:budget:check` against the build from `09dd79b` — every budget met:
 
 | | Now | Budget | Used |
 | --- | --- | --- | --- |
@@ -3954,9 +4042,12 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 | **I-04** | Vocabulary | **P1** | 2,581 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-05** | Performance | **P1** | The taught corpus at 10,000 words is three and a half times the bundle budget | The delivery architecture cannot carry the stated plan | **OPEN** |
 | **I-19** | Vocabulary | **P1** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | **OPEN** |
+| **I-37** | Product | **P1** | The adaptive Vocabulary Level Test (1–30) is specified and not built | A learner cannot find out where they stand. There is no way into the product for somebody who already knows some Korean, and no way for anybody to see progress expressed as anything but a count of words met. | **OPEN** |
+| **I-38** | Performance | **P1** | The learning corpus is still shipped whole, in every locale, on first load | None at 2,581 words. At the stated 10,000 the first load is three and a half times its budget, so the corpus cannot grow without the download growing with it. | **OPEN** |
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
 | **I-13** | Relations | **P2** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
+| **I-39** | i18n copy | **P2** | No editorial reading of the rendered interface in 31 of the 32 languages | Coverage is complete and quality is unmeasured. A learner in Tamil or Kazakh may be reading literal English syntax, an awkward register, or terminology that shifts between screens, and nothing in the repository would notice. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | **PARTIAL** |
 | **I-20** | Vocabulary | **P3** | The hand-written *More about it* block is on 25 words of 2,581 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them. | **PARTIAL** |
@@ -3991,7 +4082,7 @@ problem is, then how to confirm and fix it. The IDs line up row for row.
 
 <!-- issues:counts -->
 
-**Open — P0: 0 · P1: 3 · P2: 3 · P3: 0**
+**Open — P0: 0 · P1: 5 · P2: 4 · P3: 0**
 
 **Blocked outside this repository: 1 · Partial: 3 · Resolved: 25**
 
@@ -4027,9 +4118,12 @@ way a reader can re-run.
 | **I-04** | `vocabulary:qa:check` reports the shortfall against the target. | Decide I-05 first, then author. Authoring into the current delivery model makes I-05 worse. |
 | **I-05** | `bundle:budget` forecasts 663.7 kB gzipped against a 220 kB budget from the measured 68 B/word. Not enforced; gated at 4,000 headwords. | Chunk the corpus by frequency band, split per locale, precache the shell and one locale and cache the rest on use. |
 | **I-19** | Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3. | Complete the shipping vocabulary content for the remaining twenty-two locales. |
+| **I-37** | Nothing in `apps/web/src` matches `levelTest`, `LevelTest` or `level_test`. The requirement is a self-contained feature: an assessment bank separate from the learning corpus, adaptive item selection, 18–36 items in 3–6 minutes, Korean→meaning, meaning→Korean and context items, no listening, no handwriting, no hints, no answer reveal during the assessment, an explicit "I don't know", probabilistic scoring rather than a percentage, a persistent retakeable result that does not touch learning progress, all 32 locales, and simulation QA reporting MAE and the share of estimates within ±3 levels.  Not started in this pass. Recorded rather than attempted at the end of a release window, because a half-built assessment that reports a level it cannot justify is worse than no assessment. | Build it as its own feature with its own bank and its own simulation harness. The 1–30 scale and the item shapes are already specified; the work is the item bank, the adaptive selection and the scoring model. |
+| **I-38** | The dictionary layer is lazily chunked and the learning corpus is not: `vocabulary.json` and the locale packs are imported and land in the first load. `bundle:budget` forecasts 754.6 kB against a 220 kB budget at 10,000 headwords, and `LAZY_REQUIRED_HEADWORDS = 4_000` fails the build at the commit where the current architecture becomes the wrong one.  The three remedies were costed in §13.4 and the reasoning there still holds; what has changed is that the dictionary now demonstrates the pattern — a manifest, content-hashed chunks, a lazily built index — on 26,675 entries in production. The learning corpus needs the same treatment keyed on difficulty rather than on initial consonant, plus a loading state on the home screen, which is a product decision.  Not built in this pass. This is the architecture item, separate from the content item: **I-04 is the 7,419 missing words and this is the delivery for them.** | Chunk the corpus by difficulty band, fetch the learner's current band and the next one, cache after use — the shape `data/dictionary.ts` already proves. |
 | **I-12** | A consequence of having no account and device-local persistence. §24.6. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
 | **I-13** | `vocabulary:relations:qa`. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
 | **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
+| **I-39** | What exists is mechanical and passes: `i18n:check` at 100% for 565 keys × 32, `copy:audit` clean on 18,229 strings, `qa:locales` rendering 256 screens with 0 findings for clipping, sideways scroll, untranslated English and unnamed controls. None of that reads the language.  This pass added strings in 32 languages and reviewed them as it went, and it measured one genuinely linguistic property end to end — whether a hint gives its answer away — which found Thai unchecked and German compounds leaking. That is a long way from an editorial pass over Home, Letters, Words, Review, My Learning, Word Detail, hints, errors, empty states and accessibility labels in every language.  Distinct from I-17, which is native-speaker review. This is the editorial pass that should happen before one. | A reading pass per locale, screen by screen. It is people, not engineering. |
 | **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
 | **I-10** | The recommended fix is in: every entry carries a canonical `senseId` derived from its English gloss — 2,581 of 2,581, no collisions — and English is the arbiter because it was the one locale already single-sense throughout. 103 separator-split glosses were read against the sentence each card actually asks; 35 named a sense the sentence never demonstrates and were trimmed, ten cards moved sense outright, and three illustrations moved with them. The remaining 38 are classified in `REVIEWED_SPLIT` and `vocabulary:sense:qa:check` now fails on a split gloss that is not on that list, and on a listed one that has stopped being split. Both directions are negative-tested.  What is still unguarded: a gloss merged with a **comma** rather than a semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand — "coche, té" for 차 is now "coche" — but the rule cannot be widened to catch a new one. Measured over the corpus, "this locale has more comma-separated parts than the English" flags 228 glosses and is dominated by descriptive commas: 얼굴 is "눈, 코, 입이 있는 앞부분", one definition containing a list, not two senses. | Nothing automatic remains that is worth having. The decidable half is done and gated; the rest is a reading pass over comma-bearing glosses, which is content work. |
 | **I-20** | The page now carries the dictionary's own senses for the same spelling, behind a disclosure and attributed: 419 words gain 581 additional examples of the sense the card teaches, and 399 gain 721 more under other senses, each beneath the meaning it demonstrates. 2,564 of 2,581 taught words have a dictionary entry at all.  What is still on 25 words is the hand-written block, and that is deliberate — a paragraph under every word is a paragraph nobody reads. The gap this leaves is the words where the dictionary has neither a second sense nor an example: those still show a headword, a romanisation, a gloss, a part of speech and one sentence. | Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed. |
@@ -4488,9 +4582,12 @@ then by how cheap the fix is. Effort is an engineering estimate, not a promise.
 | **I-04** | 2,581 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
 | **I-05** | The taught corpus at 10,000 words is three and a half times the bundle budget | The delivery architecture cannot carry the stated plan | MEDIUM — chunking and a cache policy |
 | **I-19** | Word meanings exist in ten of the thirty-two interface languages | Twenty-two languages read a fully translated app with English word cards | HIGH (content) — 22 locales × 2,581 words |
+| **I-37** | The adaptive Vocabulary Level Test (1–30) is specified and not built | A learner cannot find out where they stand. There is no way into the product for somebody who already knows some Korean, and no way for anybody to see progress expressed as anything but a count of words met. | HIGH — a feature, plus an item bank and a simulation harness |
+| **I-38** | The learning corpus is still shipped whole, in every locale, on first load | None at 2,581 words. At the stated 10,000 the first load is three and a half times its budget, so the corpus cannot grow without the download growing with it. | MEDIUM–HIGH — chunking, a loading state, and a change to what the home screen promises |
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
 | **I-13** | 245 of 2,581 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
+| **I-39** | No editorial reading of the rendered interface in 31 of the 32 languages | Coverage is complete and quality is unmeasured. A learner in Tamil or Kazakh may be reading literal English syntax, an awkward register, or terminology that shifts between screens, and nothing in the repository would notice. | HIGH (people) — 32 languages × 10 surfaces |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
 | **I-10** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | DONE for the decidable half — the rest is a content reading pass |
 | **I-20** | The hand-written *More about it* block is on 25 words of 2,581 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them. | MEDIUM (content) — one paragraph per word, in ten languages |

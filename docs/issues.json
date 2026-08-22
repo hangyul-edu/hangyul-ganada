@@ -383,6 +383,39 @@
       "evidence": "Removed, with nothing in its place: the question is the line of text above and the action is the one button below. One shared `ChoiceExercise` renders every choice question in the lesson and in Review, so it is gone from every route at once.\n\nRemoving it exposed an accessibility defect. The button's name is built as \"Play the pronunciation of {text}\" and a listening question shows no Korean — that being the question — so the caller had nothing to pass and screen-reader users heard \"Play the pronunciation of \" and then nothing. Naming the letter would read out the answer, so an unnamed button now says \"Play the sound\", in all 32 languages.\n\nA test asserts the absence of *any* pictograph rather than of one character, plus the positive shape — one hit-sized control, named for what it does, with \"Can't use audio?\" still under it — in both themes, with an axe scan.",
       "recommendedFix": "Done.",
       "effort": "DONE"
+    },
+    {
+      "id": "I-37",
+      "area": "Product",
+      "severity": "P1",
+      "status": "OPEN",
+      "summary": "The adaptive Vocabulary Level Test (1–30) is specified and not built",
+      "customerImpact": "A learner cannot find out where they stand. There is no way into the product for somebody who already knows some Korean, and no way for anybody to see progress expressed as anything but a count of words met.",
+      "evidence": "Nothing in `apps/web/src` matches `levelTest`, `LevelTest` or `level_test`. The requirement is a self-contained feature: an assessment bank separate from the learning corpus, adaptive item selection, 18–36 items in 3–6 minutes, Korean→meaning, meaning→Korean and context items, no listening, no handwriting, no hints, no answer reveal during the assessment, an explicit \"I don't know\", probabilistic scoring rather than a percentage, a persistent retakeable result that does not touch learning progress, all 32 locales, and simulation QA reporting MAE and the share of estimates within ±3 levels.\n\nNot started in this pass. Recorded rather than attempted at the end of a release window, because a half-built assessment that reports a level it cannot justify is worse than no assessment.",
+      "recommendedFix": "Build it as its own feature with its own bank and its own simulation harness. The 1–30 scale and the item shapes are already specified; the work is the item bank, the adaptive selection and the scoring model.",
+      "effort": "HIGH — a feature, plus an item bank and a simulation harness"
+    },
+    {
+      "id": "I-38",
+      "area": "Performance",
+      "severity": "P1",
+      "status": "OPEN",
+      "summary": "The learning corpus is still shipped whole, in every locale, on first load",
+      "customerImpact": "None at 2,581 words. At the stated 10,000 the first load is three and a half times its budget, so the corpus cannot grow without the download growing with it.",
+      "evidence": "The dictionary layer is lazily chunked and the learning corpus is not: `vocabulary.json` and the locale packs are imported and land in the first load. `bundle:budget` forecasts 754.6 kB against a 220 kB budget at 10,000 headwords, and `LAZY_REQUIRED_HEADWORDS = 4_000` fails the build at the commit where the current architecture becomes the wrong one.\n\nThe three remedies were costed in §13.4 and the reasoning there still holds; what has changed is that the dictionary now demonstrates the pattern — a manifest, content-hashed chunks, a lazily built index — on 26,675 entries in production. The learning corpus needs the same treatment keyed on difficulty rather than on initial consonant, plus a loading state on the home screen, which is a product decision.\n\nNot built in this pass. This is the architecture item, separate from the content item: **I-04 is the 7,419 missing words and this is the delivery for them.**",
+      "recommendedFix": "Chunk the corpus by difficulty band, fetch the learner's current band and the next one, cache after use — the shape `data/dictionary.ts` already proves.",
+      "effort": "MEDIUM–HIGH — chunking, a loading state, and a change to what the home screen promises"
+    },
+    {
+      "id": "I-39",
+      "area": "i18n copy",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "No editorial reading of the rendered interface in 31 of the 32 languages",
+      "customerImpact": "Coverage is complete and quality is unmeasured. A learner in Tamil or Kazakh may be reading literal English syntax, an awkward register, or terminology that shifts between screens, and nothing in the repository would notice.",
+      "evidence": "What exists is mechanical and passes: `i18n:check` at 100% for 565 keys × 32, `copy:audit` clean on 18,229 strings, `qa:locales` rendering 256 screens with 0 findings for clipping, sideways scroll, untranslated English and unnamed controls. None of that reads the language.\n\nThis pass added strings in 32 languages and reviewed them as it went, and it measured one genuinely linguistic property end to end — whether a hint gives its answer away — which found Thai unchecked and German compounds leaking. That is a long way from an editorial pass over Home, Letters, Words, Review, My Learning, Word Detail, hints, errors, empty states and accessibility labels in every language.\n\nDistinct from I-17, which is native-speaker review. This is the editorial pass that should happen before one.",
+      "recommendedFix": "A reading pass per locale, screen by screen. It is people, not engineering.",
+      "effort": "HIGH (people) — 32 languages × 10 surfaces"
     }
   ]
 }
