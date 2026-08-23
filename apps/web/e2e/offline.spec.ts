@@ -22,6 +22,24 @@ async function serviceWorkerReady(page: Page): Promise<boolean> {
   });
 }
 
+/**
+ * Ready is not the same as *in charge*, and only one of them can serve a fetch.
+ *
+ * `navigator.serviceWorker.ready` resolves when a worker is active. A worker
+ * that is active but has not yet claimed this page controls nothing, so a
+ * request made in that window goes to the network — and if the network has just
+ * been cut, it fails. That is what "Failed to fetch" was: not a broken cache,
+ * a race with `clients.claim()`, and it only ever lost the race when the
+ * machine was busy running the rest of the suite.
+ *
+ * `controller` is the thing the test actually depends on.
+ */
+async function serviceWorkerControls(page: Page): Promise<boolean> {
+  return page.evaluate(
+    () => 'serviceWorker' in navigator && navigator.serviceWorker.controller !== null,
+  );
+}
+
 test('the app installs an offline worker on first visit', async ({ page }) => {
   await page.goto('/');
   await expect.poll(() => serviceWorkerReady(page), { timeout: 15_000 }).toBe(true);
@@ -98,6 +116,7 @@ test('a pronunciation that has been played once plays again offline', async ({ p
   });
   expect(played).toBeTruthy();
   await expect.poll(() => serviceWorkerReady(page), { timeout: 15_000 }).toBe(true);
+  await expect.poll(() => serviceWorkerControls(page), { timeout: 15_000 }).toBe(true);
 
   await context.setOffline(true);
   try {

@@ -129,7 +129,7 @@ for (const [locale, script] of Object.entries(NON_LATIN)) {
           everywhere else, which is the signature of a walk that depends on
           layout rather than on meaning.
         */
-        await choices!.first().click().catch(() => {});
+        await choices!.first().click({ timeout: 2000 }).catch(() => {});
         await page.waitForTimeout(250);
       }
 
@@ -138,7 +138,20 @@ for (const [locale, script] of Object.entries(NON_LATIN)) {
         .filter({ hasNotText: /^\s*$/ })
         .last();
       if (!(await onward.count())) break;
-      await onward.click().catch(() => {});
+      /*
+        A two-second budget per click, because this walk is opportunistic.
+
+        Both clicks are already written as "try it and carry on" — the
+        `.catch()` says so — but a bare `click()` carries Playwright's default
+        30-second actionability timeout, and it *waits out the whole thing*
+        before the catch runs. One covered button therefore costs half a minute,
+        and fourteen steps of that is 420 seconds against a 180-second test.
+        That is what a locale-quiz failure has looked like every time it has
+        happened: a different language each run, three minutes long, with no
+        assertion in the trace. A walk that tolerates a failed click has to
+        tolerate it *quickly*.
+      */
+      await onward.click({ timeout: 2000 }).catch(() => {});
       await page.waitForTimeout(300);
     }
 
