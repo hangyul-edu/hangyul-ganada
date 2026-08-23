@@ -260,3 +260,46 @@ describe('the ladder', () => {
     }
   });
 });
+
+/*
+ * Hand-written cases, and the reason they have to be hand-written.
+ *
+ * The suite above asks `revealsAnswer` whether the hints `revealsAnswer` let
+ * through reveal the answer. That is a tautology, and it certified a leak for
+ * as long as the leak existed: the function dropped Unicode combining marks,
+ * so a Bengali vowel sign vanished from the needle but only from the *edges*
+ * of each token — টাকা became টক on one side and টাক on the other, and the two
+ * never met. 돈's category hint reads "টাকা ও কেনাকাটা-এর কিছু" and the answer
+ * is টাকা. In English the identical hint was caught. Every abugida among the
+ * 32 was affected: Bengali, Devanagari, Telugu, Tamil.
+ *
+ * These assert the answer directly, so the implementation cannot be its own
+ * witness.
+ */
+describe('revealsAnswer reads the scripts it is given', () => {
+  it.each([
+    ['bn', '— এটি একটি বিশেষ্য — টাকা ও কেনাকাটা-এর কিছু।', 'টাকা'],
+    ['hi', 'यह एक संज्ञा है — पैसा और खरीदारी से जुड़ी कोई चीज़।', 'पैसा'],
+    ['te', 'ఇది ఒక నామవాచకం — డబ్బు, కొనుగోళ్లుకి సంబంధించినది.', 'డబ్బు'],
+    ['ta', 'இது ஒரு பெயர்ச்சொல் — பணம் மற்றும் ஷாப்பிங் தொடர்பானது.', 'பணம்'],
+    ['en', 'It is a noun — something to do with money and shopping.', 'money'],
+    ['de', 'Es ist ein Verb — etwas mit Geld und Einkaufen.', 'kaufen'],
+  ])('catches the answer inside a %s hint', (_locale, text, answer) => {
+    expect(revealsAnswer(text, answer)).toBe(true);
+  });
+
+  it.each([
+    // হয় "is" and হ্যাঁ "yes" differ only in their marks, so a mark-blind
+    // matcher calls them the same word and censors a hint that was fine.
+    ['bn', 'এভাবে ব্যবহার হয়: 네, 맞아요.', 'হ্যাঁ'],
+    ['en', 'It is a noun — something to do with the body.', 'money'],
+    ['hi', 'यह एक क्रिया है — रोज़मर्रा की कोई चीज़।', 'पैसा'],
+  ])('does not censor an unrelated %s word', (_locale, text, answer) => {
+    expect(revealsAnswer(text, answer)).toBe(false);
+  });
+
+  it('is unaffected by NFC or NFD composition', () => {
+    const composed = 'পণ্য';
+    expect(revealsAnswer(`কিছু ${composed} আছে`, composed.normalize('NFD'))).toBe(true);
+  });
+});

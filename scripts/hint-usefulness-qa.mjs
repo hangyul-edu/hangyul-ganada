@@ -65,8 +65,17 @@ function render(t, step, answerValues) {
 }
 
 const MODES = ['read', 'produce', 'context', 'listen', 'distinguish'];
-/** Enough of the corpus to meet every category and part of speech many times. */
-const WORDS = VOCABULARY.filter((_, i) => i % 4 === 0);
+/**
+ * Every word, and it used to be every fourth.
+ *
+ * `VOCABULARY.filter((_, i) => i % 4 === 0)` samples by *position*, so which
+ * quarter of the corpus is checked depends on how many words there are. Adding
+ * 113 words in one batch shifted the sample onto 돈 and reported three leaking
+ * hints that had been there all along — the guard was blind in Bengali, Hindi
+ * and Telugu, and a sample that moves under you finds that by luck or not at
+ * all. Checking everything costs about half a minute.
+ */
+const WORDS = VOCABULARY;
 
 let asked = 0;
 let leaking = 0;
@@ -142,10 +151,17 @@ for (const locale of LOCALES) {
           So this also counts the answer appearing as the tail of a longer word,
           from four letters up, which is long enough that the overlap is a
           shared morpheme rather than a coincidence.
+
+          `\p{M}` is in the keep-set for the same reason it is in the product's
+          `revealsAnswer`: a Bengali vowel sign is a combining mark, and dropping
+          marks makes হ্যাঁ ("yes") and হয় ("is") the same three letters. Without
+          it this check reported a leak that was not one, having previously
+          missed three that were.
         */
         if (answerValues.answer && step.strength !== 'answer') {
-          const a = answerValues.answer.trim().toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
-          const tokens = text.toLowerCase().split(/\s+/).map((w) => w.replace(/[^\p{L}\p{N}]/gu, ''));
+          const flatten = (v) => v.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\p{M}]/gu, '');
+          const a = flatten(answerValues.answer.trim());
+          const tokens = text.normalize('NFC').toLowerCase().split(/\s+/).map(flatten);
           const whole = a.length > 1 && tokens.includes(a);
           const suffix = a.length >= 4 && tokens.some((w) => w !== a && w.endsWith(a));
           if (whole || suffix) {

@@ -148,14 +148,33 @@ export function strengthAt(level: number): HintStrength | null {
 const UNSPACED = /[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af\u0e00-\u0eff\u1780-\u17ff\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/u;
 
 export function revealsAnswer(text: string, answer: string): boolean {
-  const strip = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
+  /*
+   * `\p{M}` is in the keep-set, and leaving it out made this function blind in
+   * a third of the interface languages.
+   *
+   * A Bengali vowel sign is a combining mark, not a letter: টাকা is ট + া + ক +
+   * া, and only the two consonants are `\p{L}`. Dropping marks *everywhere*
+   * turned the needle into টক, while the token trim below drops them only at
+   * the edges and turned the same word into টাক — so the two never matched and
+   * the guard reported safe. 돈's category hint reads "টাকা ও কেনাকাটা-এর কিছু"
+   * and the answer is টাকা; in English the identical hint was caught.
+   *
+   * Every abugida in the 32 is affected the same way — Bengali, Devanagari,
+   * Telugu, Tamil — which is to say the leak guard was working in the scripts
+   * that write their vowels as letters and nowhere else. Marks are part of the
+   * word, so they stay; NFC first, so a decomposed answer still matches a
+   * composed hint.
+   */
+  const strip = (value: string) =>
+    value.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\p{M}]/gu, '');
   const needle = strip(answer);
   if (needle.length === 0) return false;
 
   const tokens = text
+    .normalize('NFC')
     .toLowerCase()
     .split(/\s+/)
-    .map((token) => token.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, ''));
+    .map((token) => token.replace(/^[^\p{L}\p{N}\p{M}]+|[^\p{L}\p{N}\p{M}]+$/gu, ''));
 
   if (UNSPACED.test(answer)) {
     return needle.length > 1 ? strip(text).includes(needle) : tokens.includes(needle);
