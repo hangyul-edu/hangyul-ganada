@@ -647,6 +647,16 @@
       "customerImpact": "The shared verdict reached the writing box, the recognition step and the review session, and not the two components those sessions render. A learner answering a word question read \"That's it.\" or \"Not quite. Here it is.\" while the same learner, two taps earlier, had read \"Correct.\"",
       "evidence": "`BuildExercise` and `ChoiceExercise` now use `common:verdict.*`, so the wording is decided in one place and is already written in all 32 languages; `learning:review.right` and `.notQuite` are gone from every bundle. The answer stays on the screen below the verdict on purpose — a choice question cannot be retried where it stands, so \"Incorrect.\" alone would be a review that teaches nothing. What is forbidden is the verdict and the answer fused into one breath, 맞아요, 고예요, and that is gone. `feedback.spec.ts` walks a vocabulary session to a real question and answers it, which is how the gap was found.",
       "recommendedFix": "Done."
+    },
+    {
+      "id": "I-63",
+      "area": "Build",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Two end-to-end tests failed only when the machine was busy, and neither was about the machine",
+      "customerImpact": "None directly. It matters because a suite with two tests that fail on a loaded run and pass on a quiet one is a suite whose result nobody can read, and the word for that is usually \"flaky\" — which is where an investigation stops.",
+      "evidence": "**The locale walk waited thirty seconds for every click it expected to fail.** `locale-quiz` walks a session in six languages clicking opportunistically; both clicks are written as try-it-and-carry-on and the `.catch()` says so. A bare `click()` carries Playwright's default 30-second actionability timeout and waits the whole of it out *before* the catch runs, so one covered button costs half a minute and fourteen steps of that is 420 seconds against a 180-second test. That is what the failure had looked like every time: a different language each run, three minutes long, no assertion in the trace. Two seconds a click — six locales in 51 seconds, down from 4.4 minutes with one failure.\n\n**The offline test cut the network before the worker was in charge.** `navigator.serviceWorker.ready` resolves when a worker is *active*; a worker that is active and has not claimed the page controls nothing, so the fetch went to a network that had just been switched off. \"Failed to fetch\" was a race with `clients.claim()`. The test waits for `serviceWorker.controller` now, which is the thing it actually depends on.\n\nBoth were found by running the whole suite from the final commit rather than the specs that had changed, and the clean run after them is 336 of 336, exit 0.",
+      "recommendedFix": "Done."
     }
   ]
 }

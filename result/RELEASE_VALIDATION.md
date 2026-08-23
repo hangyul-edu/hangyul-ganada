@@ -5,10 +5,10 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `7dd285c` on branch `main`, working tree clean at the moment
+**Source:** commit `9c686eb` on branch `main`, working tree clean at the moment
 of the build.
 
-Commits after `7dd285c` touch only `docs/`, `result/` and `app_result/`. None of
+Commits after `9c686eb` touch only `docs/`, `result/` and `app_result/`. None of
 them is inside `assets/public`, so the delivered package is byte-correct for the
 shipping source; a commit that records a build cannot be in the build it
 records, and that is the only gap. `npm run release:current` reads the commit
@@ -65,7 +65,7 @@ so the bytes tested and the bytes delivered are the same (`sha256` in
 
 | Check | Result |
 | --- | --- |
-| Built from the committed tree | `git rev-parse HEAD` = `7dd285c767e99985bfcf6cc467d13400d2477512`, recorded in `build-info.json` |
+| Built from the committed tree | `git rev-parse HEAD` = `9c686eb745ca47743490d2a5ac0eadc1192a721c`, recorded in `build-info.json` |
 | Signed | Yes — the release keystore from `ANDROID_KEYSTORE_PATH`, not the debug key |
 | Signature schemes | v2 ✓, v3 ✓ (v1 deliberately off — `minSdk` 24) |
 | Certificate SHA-256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the project's established release key, compared against the keystore *and* the superseded artefact before rebuilding |
@@ -121,7 +121,7 @@ only looks for additions cannot tell you.
 
 ## Tests — **PASS**
 
-Run from `7dd285c` with the working tree clean.
+Run from `9c686eb` with the working tree clean.
 
 | Suite | Result |
 | --- | --- |
@@ -168,6 +168,6 @@ repository and the artefact beside this file.
 ```
 6ca1da3382c894305ef9f2d04ba31ab6e09bfbcca580a87dbee8123eb97dafa5  hangyul-ganada-release.apk
 b0a7982a58e0bce28d20951db84189940040b25b9bf63ea6fea18b568a641557  hangyul-ganada-release.aab
-8b3dae6adbc454f9effd545718897d1e96c6be966665c04035e165320aeba36b  docs/report.pdf
-051c15fb83f9d3186b022108513ffcad3079319b4bfc3e3eaef3c3e3a43526ba  build-info.json
+e2f80e9f85bf9e5812edf40838f800022d550717d57d1703537675893626c520  docs/report.pdf
+ae0bce347f0d80c4912efd56d42ddce1989760e93e4b10d04c210f0378d578ab  build-info.json
 ```

@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 23 August 2026
-describes: A re-audit written from scratch against the running product at `7dd285c` — every level-test sentence read for a second right answer, the honorific verbs found conjugating into strings that are not Korean, the Korean interface read on the screen rather than in the bundle, 262 example translations that invented a person the sentence does not have, and a signed package rebuilt from this commit with the existing production key.
+describes: A re-audit written from scratch against the running product at `9c686eb` — every level-test sentence read for a second right answer, the honorific verbs found conjugating into strings that are not Korean, the Korean interface read on the screen rather than in the bundle, 262 example translations that invented a person the sentence does not have, and a signed package rebuilt from this commit with the existing production key.
 mark: report-assets/mark.png
 ---
 
@@ -73,7 +73,7 @@ only one of them is true.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Branch | `main` |
-| Source commit described | `7dd285c` |
+| Source commit described | `9c686eb` |
 | Android application id | `com.talkhangyul.ganada` |
 | Platforms in this repository | Web (PWA), Android (Capacitor), an iOS project that cannot be built here |
 
@@ -96,7 +96,7 @@ answered by opening the APK, not by trusting the build log.
 
 | | |
 | --- | --- |
-| Built from | `7dd285c`, working tree clean |
+| Built from | `9c686eb`, working tree clean |
 | APK | 71,321,797 bytes, SHA-256 `6ca1da3382c894305ef9f2d04ba31ab6e09bfbcca580a87dbee8123eb97dafa5` |
 | AAB | 70,065,052 bytes, SHA-256 `b0a7982a58e0bce28d20951db84189940040b25b9bf63ea6fea18b568a641557`, signed |
 | Signature schemes | v2 and v3 |
@@ -146,7 +146,7 @@ build is the normal order of work.
 | Lessons | 15 |
 | Signed APK | 68.0 MB |
 | Signed AAB | 66.8 MB |
-| Issues tracked | 61 |
+| Issues tracked | 62 |
 
 The three test counts are in §36.2; the artefact hashes are in §2.2. "Characters
 taught" counts every entry in the curriculum's character table — the 40 letters
@@ -1383,6 +1383,7 @@ sentence anywhere else contradicts it.
 | **I-60** | Copy | **P2** | The Korean interface called one thing two things, on screens a learner moves between | The home card read 오늘의 어휘 directly above a tab reading 단어; the saved list was 저장한 어휘, filled by a button reading 단어 저장, and its empty state read 어휘의 북마크를 누르면, which is not a thing anyone says. Unit 1 teaches that 낱자 combine into a 글자 and the product then called the letters tab 글자, counted 완료한 글자 in the activity page and 배운 낱자 in the settings. Six strings were in 합쇼체 in a product that speaks 해요체, one of them mixing both inside a single pair of sentences. | **RESOLVED** |
 | **I-61** | Copy | **P2** | Two screens said the same thing twice | "Today's words · 0/10 · A short set of 10 words." — three lines and two of them carry the ten. Home's letters card said 40 the same way. And eight of the twelve units are named after their first lesson, so a unit heading and the card beneath it said the same words forty vertical pixels apart. | **RESOLVED** |
 | **I-62** | Feedback | **P2** | Two review exercises kept their own idea of what being right is called | The shared verdict reached the writing box, the recognition step and the review session, and not the two components those sessions render. A learner answering a word question read "That's it." or "Not quite. Here it is." while the same learner, two taps earlier, had read "Correct." | **RESOLVED** |
+| **I-63** | Build | **P2** | Two end-to-end tests failed only when the machine was busy, and neither was about the machine | None directly. It matters because a suite with two tests that fail on a loaded run and pass on a quiet one is a suite whose result nobody can read, and the word for that is usually "flaky" — which is where an investigation stops. | **RESOLVED** |
 | **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
 | **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
 | **I-18** | Content | **P3** | 103 glosses carried more than one sense in some language | A learner asked what 차 means had two right answers and one button: the card read 車、お茶 in Japanese and "coche, té" in Spanish over the sentence 차를 타요. | **RESOLVED** |
@@ -1402,7 +1403,7 @@ sentence anywhere else contradicts it.
 
 **Open — P0: 0 · P1: 1 · P2: 3 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 4 · Resolved: 52**
+**Blocked outside this repository: 1 · Partial: 4 · Resolved: 53**
 
 <!-- /issues:counts -->
 
@@ -1461,6 +1462,7 @@ sentence anywhere else contradicts it.
 | **I-60** | Found by rendering the Korean screens and reading them, not by grepping. Eleven strings moved from 어휘 to 단어 — 어휘 is a person's lexicon and stays in the level test — and twenty-eight from 글자 to 낱자, wherever the English says "letter"; 글자 stays wherever the thing is a block, which is fourteen more. `review.prompt.build` was a mistranslation rather than a slip: English says "Put the word together" over a tray of syllables and Korean said 글자를 순서대로 놓아 보세요.  All three are gates in `locale:editorial`, each negative-tested by putting the defect back. The register rule reads sentence endings rather than pronouns, which is where Korean marks it — the file had said Korean needed no rule because 해요체 "has no competing form in this product's copy", a claim about the copy the copy did not support. The 낱자 rule uses the English as the referent and exempts any Korean string using both words, because that is a sentence drawing the distinction on purpose. | Done. |
 | **I-61** | Not findable in a bundle: every string involved is correct on its own. `screens:audit` already renders 17 routes and 6 states across 7 profiles, and now reads the text it has in front of it for a sentence rendered twice and a number rendered twice inside one card. `LettersPage` had suppressed the heading case with a proxy — `lessons.length > 1` — which passed unit 11, a two-lesson unit still named after the first of them. The rules had to learn two exemptions: a licences list printing "· OFL 1.1" on six rows is a template, and the first version of the count rule passed the very card it was written for, because "0/10" sits in a `<strong>` inside the `<p>`. | Done. |
 | **I-62** | `BuildExercise` and `ChoiceExercise` now use `common:verdict.*`, so the wording is decided in one place and is already written in all 32 languages; `learning:review.right` and `.notQuite` are gone from every bundle. The answer stays on the screen below the verdict on purpose — a choice question cannot be retried where it stands, so "Incorrect." alone would be a review that teaches nothing. What is forbidden is the verdict and the answer fused into one breath, 맞아요, 고예요, and that is gone. `feedback.spec.ts` walks a vocabulary session to a real question and answers it, which is how the gap was found. | Done. |
+| **I-63** | **The locale walk waited thirty seconds for every click it expected to fail.** `locale-quiz` walks a session in six languages clicking opportunistically; both clicks are written as try-it-and-carry-on and the `.catch()` says so. A bare `click()` carries Playwright's default 30-second actionability timeout and waits the whole of it out *before* the catch runs, so one covered button costs half a minute and fourteen steps of that is 420 seconds against a 180-second test. That is what the failure had looked like every time: a different language each run, three minutes long, no assertion in the trace. Two seconds a click — six locales in 51 seconds, down from 4.4 minutes with one failure.  **The offline test cut the network before the worker was in charge.** `navigator.serviceWorker.ready` resolves when a worker is *active*; a worker that is active and has not claimed the page controls nothing, so the fetch went to a network that had just been switched off. "Failed to fetch" was a race with `clients.claim()`. The test waits for `serviceWorker.controller` now, which is the thing it actually depends on.  Both were found by running the whole suite from the final commit rather than the specs that had changed, and the clean run after them is 336 of 336, exit 0. | Done. |
 | **I-15** | Regenerated, fixtured, checked on-device. | done |
 | **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
 | **I-18** | All 103 were read against the sentence each card asks. 35 named a sense the sentence never demonstrates and were trimmed across ten languages; ten cards moved sense outright — 맡다 was glossed "to take charge of" over 냄새를 맡아 보세요, 시키다 was "to make someone do" over "I ordered pizza" — and three illustrations moved with them. The remaining 38 were read and kept: Japanese has no single verb for 있다 and must write ある、いる, which is one sense in the two renderings the language requires. `vocabulary:sense:qa:check` now fails on a split gloss that is not on the reviewed list, and on a listed one that has stopped being split; both directions are negative-tested. Comma-merged glosses remain outside the rule and are tracked under I-10. | Done. |
@@ -1493,10 +1495,12 @@ The interesting column is the third one.
 | I-61 | The same thing said twice on one screen | **rendering, then teaching the audit to read** |
 | I-62 | Two exercises with their own verdict | an end-to-end test that opened the right screen |
 | I-31 | Gaegu's size correction fitted to one axis | **rendering six faces side by side and looking** |
+| I-63 | Two tests failing only on a loaded machine | running the whole suite, then not accepting "flaky" |
 | — | The dialog's two answers stacked at every width | running the whole end-to-end suite |
 
-Six of the ten were found by looking at the product. None of the six was
-findable in a diff, and two of them were sitting behind green checks.
+Six of the eleven were found by looking at the product. None of the six was
+findable in a diff, and two of them were sitting behind green checks. Three more
+came out of running the whole suite rather than the part that had changed.
 
 ---
 
@@ -1568,10 +1572,12 @@ retries, run in full from the commit this report describes:
 **336 of 336, no failures, no flakes, no retries.** The same run is recorded in
 `result/RELEASE_VALIDATION.md` with the command and the exit code.
 
-The run this cycle earned its keep twice. It found the dialog regression that
-three other gates had passed, and it found five tests that were pinning copy the
-cycle had retired — which is worth naming as a category: **a test that asserts
-the old wording does not protect the product, it protects the mistake.**
+The run earned its keep three times. It found the dialog regression that three
+other gates had passed. It found five tests pinning copy the cycle had
+retired — worth naming as a category: **a test that asserts the old wording does
+not protect the product, it protects the mistake.** And it found two tests that
+failed only when the machine was busy, which is the point at which it is
+tempting to write "flaky" and stop; neither was (I-63).
 
 ## 36.4 What the suite still cannot do
 
