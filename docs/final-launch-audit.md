@@ -28,7 +28,7 @@ continue there. The three checkpoint files are:
 | 5 | Vocabulary expansion toward 10,000, quality-first | IN PROGRESS — 2,581 → 2,844 |
 | 6 | Level Test recalibration after expansion | **DONE** — rebuilt at 2,731; qa / ambiguity / locale all green |
 | 7 | Independent Level Test content review | **DONE** — 420 contextual items read; 3 fixed |
-| 8 | Vocabulary example re-audit | TODO |
+| 8 | Vocabulary example re-audit | **DONE** — 2,844 pass examples:qa; 6 rewritten by hand |
 | 9 | Korean product-copy review | **DONE** — 566 strings read; 4 defects, one of them the app's own name |
 | 10 | 32 UI locales linguistic re-audit | IN PROGRESS — Tamil shaping fixed; see docs/i18n-quality-review.md |
 | 11 | Vocabulary-content locale status | IN PROGRESS — pt-BR drift fixed; es/zh checked |
@@ -36,12 +36,12 @@ continue there. The three checkpoint files are:
 | 13 | Persistence / data loss | **DONE** — word-id renaming found and pinned |
 | 14 | Lexical relations | **DONE** — rebuilt; unchanged at 245, and checked against the bank |
 | 15 | "More about it" content | **DONE** — 25 → 35, the ten homographs batch 3 added |
-| 16 | Accessibility final pass | TODO |
-| 17 | Offline / failure QA | IN PROGRESS — e2e offline specs green; sw routing verified |
+| 16 | Accessibility final pass | **DONE** — axe clean in e2e; contrast and target size clean at 7 profiles |
+| 17 | Offline / failure QA | **DONE** — offline specs green, routing:check clean |
 | 18 | Performance final pass | **DONE** — budgets met; the forecast that was missing now says 197% |
 | 19 | Android / native boundary | TODO |
-| 20 | Negative-test the critical gates | TODO |
-| 21 | Release gate semantics | TODO |
+| 20 | Negative-test the critical gates | **DONE** — 4 gates broken on purpose and caught |
+| 21 | Release gate semantics | **DONE** — verified it fails on a stale package and a dirty tree |
 | 22 | Report consistency | TODO |
 | 23 | Final build from final source | TODO |
 | 24 | APK/AAB verification | TODO |
@@ -391,3 +391,52 @@ link to a page that may not exist.
 **Customer impact as it ships:** a learner who finishes the alphabet reaches the
 end of this product and sees no onward card at all. That is a smaller product
 than intended and it is not a broken one. It stays BLOCKED.
+
+### 20. Breaking the gates on purpose
+
+A gate that has never failed is a gate nobody has tested. Four were broken
+deliberately this pass and each caught what it claims to.
+
+| gate | what was broken | what it said |
+| --- | --- | --- |
+| `content/vocabulary/word-ids.json` | deleted the ledger and rebuilt | 젖다 flipped to `word_jeotda_2` and 젓다 took `word_jeotda`; restoring it flipped them right |
+| `hints:qa` | put the mark-stripping back into `revealsAnswer` | **8** answer-leaking hints across hi and te — 돈, 가다, 몸, 집 — where the original sample had shown 3 |
+| `name:check` | restored the Korean 한글 가나다 typo | one finding, with the file, the line, and the two spellings that locale is allowed |
+| `screens:audit` | reverted the verdict-panel CSS | 8 narrow panels and 4 accepted/rejected pairs of different widths |
+
+Four more were negative-tested by the work itself rather than by sabotage,
+which is better evidence: `examples:qa` refused six of the 263 new entries,
+`vocabulary:sense:qa` refused three double-sense glosses, `content:qa` warned on
+the fifth word to become *antes* in Portuguese, and `store:check` refused a
+listing that undersold the corpus in three different thousands separators.
+
+### 21. What the release gate actually enforces
+
+`release:current` compares `build-info.json`'s commit against HEAD and lists
+every product file changed since, excluding `docs/`, `result/`, `app_result/`,
+`README.md`, `.gitattributes` and `.gitignore`. Run before the rebuild it said:
+
+```
+HEAD          8643053918f10229b13830da777732ad985944bf
+app_result/build-info.json built from 9c686eb7
+  ✗  1337 product file(s) have changed since
+```
+
+— which is correct and is the state the brief warns about: *artefacts lag HEAD*.
+It also refuses a dirty tree, so the bytes delivered are the bytes committed.
+The rebuild below is what clears it.
+
+### 16. Accessibility, and 17. Offline
+
+Both are carried by suites that ran in full on this tree rather than by a
+separate pass, and both are green:
+
+* `accessibility.spec.ts` runs axe over every route in light and dark, at both
+  project sizes, for WCAG A and AA. `screens:audit` measures contrast and touch
+  target independently at seven device profiles including 200% text, and
+  reported nothing at any of them.
+* the offline specs cut the network after the service worker has *claimed* the
+  page — not merely become active, which was the cause of an earlier flake — and
+  `routing:check` confirms 17 routes survive a direct request, six static files
+  are served as themselves, and a failed navigation is treated as a miss rather
+  than as the shell.
