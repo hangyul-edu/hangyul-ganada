@@ -9,22 +9,35 @@
   box sized in `em` is unmoved. Multiplying `font-size` at fifteen call sites
   would have done none of that.
 
-  ## Why 127%
+  ## Why 121%
 
   `scripts/face-size-qa.mjs` renders fifteen syllables in each of the six
   practice faces at one font size and measures the ink band as a fraction of
-  the em:
+  the em, in both directions:
 
-      nanum-myeongjo  0.919
-      nanum-gothic    0.908
-      gowun-batang    0.905   <- median
-      gowun-dodum     0.882
-      pretendard      0.848
-      gaegu           0.712   <- -21.3%
+      face            height   width
+      nanum-myeongjo   0.919   0.881
+      nanum-gothic     0.908   0.839   <- median width
+      gowun-batang     0.905   0.832   <- median height
+      gowun-dodum      0.882   0.818
+      pretendard       0.848   0.785
+      gaegu            0.712   0.722   <- -21.3% and -13.9%
 
-  0.905 / 0.712 is 1.27. The check fails a face more than 8% from the median,
-  which is a little wider than the natural spread of the five that were never
-  in question.
+  It was 127% first, which is 0.905 / 0.712 — the number height alone asks for.
+  Fitted to one axis, it overshot the other: at 127% Gaegu's ink was 9.3% wider
+  than the median, the widest face on the page by a margin nothing else came
+  near, and side by side against the five it plainly read *larger* than them.
+  §48 asked for a rendered comparison rather than the arithmetic, and that is
+  what the rendered comparison showed.
+
+  A single scalar cannot satisfy both axes: height wants 1.27, width wants 1.16.
+  121% is the geometric mean, the value whose error is the same on each side —
+  about 5% short in height and 4% wide — and both axes are now gated, so a
+  correction can no longer be right about one and unmeasured on the other.
+
+  The check fails a face more than 8% from the median on either axis, which is
+  a little wider than the natural spread of the five that were never in
+  question.
 
   ## Why the files are named here
 
@@ -38,7 +51,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  size-adjust: 127%;
+  size-adjust: 121%;
   src: url('@fontsource/gaegu/files/gaegu-korean-400-normal.woff2') format('woff2');
   unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF;
 }

@@ -171,14 +171,34 @@ const rows = Object.entries(measured).map(([id, m]) => ({
   shown: m.height * (shipped[id] ?? 1),
   width: m.width * (shipped[id] ?? 1),
 }));
-const median = [...rows].map((r) => r.shown).sort((a, b) => a - b)[Math.floor(rows.length / 2)];
+const middle = (values) => [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)];
+const median = middle(rows.map((r) => r.shown));
+/*
+ * The second dimension, which the first version of this file measured and then
+ * did not use.
+ *
+ * Height alone said Gaegu needed 127%, and at 127% it was the widest face on
+ * the page by a margin nothing else came close to: 1.04 em of advance per
+ * syllable against a median of 0.92, while every other face sat between 0.86
+ * and 0.95. Rendered side by side it plainly read *larger* than the five it had
+ * been matched to — the correction had been fitted to one axis and had
+ * overshot the other.
+ *
+ * A single scalar cannot satisfy both. Height wanted 1.27 and width wanted
+ * 1.12, so the target is the geometric mean of the two — the value whose error
+ * is the same on each side — and both are gated from here on, so a correction
+ * can no longer be right about one axis and unmeasured on the other.
+ */
+const medianWidth = middle(rows.map((r) => r.width));
 
-console.log(`Practice typefaces — ink height as a fraction of the em, ${SAMPLE.length} syllables\n`);
-console.log('  face              raw    size-adjust   as shown   vs median');
+console.log(`Practice typefaces — ink as a fraction of the em, ${SAMPLE.length} syllables\n`);
+console.log('  face              raw    size-adjust    height  vs med     width  vs med');
 for (const row of rows.sort((a, b) => a.shown - b.shown)) {
-  const delta = ((row.shown / median - 1) * 100).toFixed(1).padStart(6);
+  const dh = ((row.shown / median - 1) * 100).toFixed(1).padStart(6);
+  const dw = ((row.width / medianWidth - 1) * 100).toFixed(1).padStart(6);
   console.log(
-    `  ${row.id.padEnd(16)}${row.raw.toFixed(3)}       ${row.scale.toFixed(2)}       ${row.shown.toFixed(3)}      ${delta}%`,
+    `  ${row.id.padEnd(16)}${row.raw.toFixed(3)}       ${row.scale.toFixed(2)}       ` +
+      `${row.shown.toFixed(3)}  ${dh}%    ${row.width.toFixed(3)}  ${dw}%`,
   );
 }
 
@@ -191,15 +211,22 @@ for (const row of rows.sort((a, b) => a.shown - b.shown)) {
  * face nobody thinks is wrong.
  */
 const TOLERANCE = 0.08;
-const off = rows.filter((row) => Math.abs(row.shown / median - 1) > TOLERANCE);
+const off = rows.filter(
+  (row) =>
+    Math.abs(row.shown / median - 1) > TOLERANCE ||
+    Math.abs(row.width / medianWidth - 1) > TOLERANCE,
+);
 if (off.length > 0) {
   console.log(`\n${off.length} face(s) visibly out of step with the rest:`);
   for (const row of off) {
+    // The scalar that leaves the same error on both axes.
+    const want = row.scale * Math.sqrt((median / row.shown) * (medianWidth / row.width));
     console.log(
-      `  ! ${row.id} shows at ${((row.shown / median - 1) * 100).toFixed(1)}% of the median — ` +
-        `set its size-adjust to ${((row.scale * (median / row.shown)) * 100).toFixed(0)}%`,
+      `  ! ${row.id} shows ${((row.shown / median - 1) * 100).toFixed(1)}% in height and ` +
+        `${((row.width / medianWidth - 1) * 100).toFixed(1)}% in width against the median — ` +
+        `set its size-adjust to ${(want * 100).toFixed(0)}%`,
     );
   }
   process.exit(CHECK ? 1 : 0);
 }
-console.log('\nevery face reads at the same size on the page.');
+console.log('\nevery face reads at the same size, and takes the same room, on the page.');
