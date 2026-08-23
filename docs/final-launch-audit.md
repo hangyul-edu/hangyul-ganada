@@ -22,16 +22,16 @@ continue there. The three checkpoint files are:
 | # | Task | State |
 | --- | --- | --- |
 | 1 | Handwriting Correct/Incorrect panel width | **DONE** |
-| 2 | Re-read report / issues / localisation doc, classify every claim | IN PROGRESS |
+| 2 | Re-read report / issues / localisation doc, classify every claim | **DONE** — 6 issues re-stated at 2,844, 5 added, 8 stale figures found |
 | 3 | Visual quality audit beyond mechanical failures | **DONE** — 2 defects fixed |
 | 4 | Re-render all routes and interactive states | **DONE** — 32 renders, read |
-| 5 | Vocabulary expansion toward 10,000, quality-first | IN PROGRESS — 2,581 → 2,844 |
+| 5 | Vocabulary expansion toward 10,000, quality-first | **STOPPED AND REPORTED** — 2,844 of 10,000; deficit and reason in §5 below |
 | 6 | Level Test recalibration after expansion | **DONE** — rebuilt at 2,731; qa / ambiguity / locale all green |
 | 7 | Independent Level Test content review | **DONE** — 420 contextual items read; 3 fixed |
 | 8 | Vocabulary example re-audit | **DONE** — 2,844 pass examples:qa; 6 rewritten by hand |
 | 9 | Korean product-copy review | **DONE** — 566 strings read; 4 defects, one of them the app's own name |
-| 10 | 32 UI locales linguistic re-audit | IN PROGRESS — Tamil shaping fixed; see docs/i18n-quality-review.md |
-| 11 | Vocabulary-content locale status | IN PROGRESS — pt-BR drift fixed; es/zh checked |
+| 10 | 32 UI locales linguistic re-audit | **DONE** — Tamil shaping, 4 invented brands, Korean read in full |
+| 11 | Vocabulary-content locale status | **DONE** — 10 complete at 2,844, 22 at 100; pt-BR variety fixed |
 | 12 | I-03 Hangyul hand-off | **DONE** — still BLOCKED, and correctly so; verified it degrades to nothing |
 | 13 | Persistence / data loss | **DONE** — word-id renaming found and pinned |
 | 14 | Lexical relations | **DONE** — rebuilt; unchanged at 245, and checked against the bank |
@@ -42,11 +42,11 @@ continue there. The three checkpoint files are:
 | 19 | Android / native boundary | **DONE** — ANDROID EMULATOR VERIFIED / PHYSICAL DEVICE NOT VERIFIED |
 | 20 | Negative-test the critical gates | **DONE** — 4 gates broken on purpose and caught |
 | 21 | Release gate semantics | **DONE** — verified it fails on a stale package and a dirty tree |
-| 22 | Report consistency | TODO |
+| 22 | Report consistency | **DONE** — 17 gated figures agree; issue tables regenerated |
 | 23 | Final build from final source | **DONE** — rebuilt from HEAD, release:current clean |
 | 24 | APK/AAB verification | **DONE** — certificate unchanged, checksums verified |
-| 25 | Rewrite report from scratch | TODO |
-| 26 | Final launch verdict | TODO |
+| 25 | Rewrite report from scratch | **DONE** — docs/report.md and report.pdf rebuilt |
+| 26 | Final launch verdict | **DONE** — LAUNCH READY WITH DISCLOSED NON-BLOCKING LIMITATIONS |
 
 ## Findings
 
@@ -524,3 +524,33 @@ The APK grew from 71.3 MB to 77.8 MB, and the 6.5 MB is the audio for the 263
 new words. `checksums.sha256` verifies in both `result/` and `app_result/`, and
 `release:current` reports both at HEAD with the tree clean outside `docs/` and
 the release directories.
+
+### 5. Where the vocabulary expansion stopped, and why
+
+**2,844 taught entries. Target 10,000. Deficit 7,156.** Every one of the 263
+added this pass survived the production gates before being counted, and six were
+refused and rewritten before they did.
+
+**Why it stopped here rather than at 10,000.** Not because quality fell — it did
+not, and `examples:qa` passes all 2,844. Because the honest arithmetic is worth
+stating instead of being worked around:
+
+* One entry is **20 authored strings** across ten complete locales, measured on
+  the first batch rather than estimated. 7,156 entries is about **143,000
+  strings**.
+* The candidate pool is not a queue of good words. 14,368 untaught anchors exist
+  and reading them shows grammatical fragments, jamo names, wrong glosses,
+  archaic verbs and particles. Batch 3 changed selection to *holes in the core*
+  precisely because reading beat filtering.
+* Every entry added also adds **22 rows** to the partial-locale backlog. The
+  expansion moved those languages from 3.9% coverage to 3.5%.
+* The precache does not fit at the target — 197% of budget — so finishing the
+  corpus requires a delivery change as well as authoring. See §18.
+
+**What would be required, stated as the brief asks.** Roughly 143,000 authored
+strings in ten languages, of which the Korean examples and the Thai and
+Vietnamese rows need writers who have those languages; a delivery change to stop
+precaching every language's corpus; and 60,368 rows of translation if the
+twenty-two partial locales are ever to become complete. None of that is a
+generation problem, and generating it would mean lowering the bar the gates
+enforce — which the brief forbids and this pass did not do.

@@ -159,6 +159,12 @@ const ALLOWED = [
     count: null,
     reason: 'Records why the migration IDs and storage keys were left alone.',
   },
+  {
+    file: 'docs/final-launch-audit.md',
+    count: null,
+    reason:
+      "Quotes the release certificate's subject, and the certificate was issued under the old spelling: CN=Hangyul GaNaDa. Renaming it in the document would make the document disagree with the artefact, and renaming it in the certificate would be a new key and a new app identity forever.",
+  },
 ];
 
 const allowedByFile = new Map(ALLOWED.map((entry) => [entry.file, entry]));
