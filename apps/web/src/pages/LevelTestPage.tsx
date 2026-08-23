@@ -2,7 +2,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { levelKind, loadLevelTestBank, type LevelTestBank } from '../data/levelTest';
+import {
+  levelKind,
+  loadLevelTestBank,
+  resolveItem,
+  type LevelTestBank,
+} from '../data/levelTest';
 import { getFont, textFamily } from '../data/fonts';
 import {
   CUMULATIVE_WORDS,
@@ -16,7 +21,8 @@ import {
   planKinds,
   shouldStop,
 } from '../domain/levelTest';
-import type { LevelTestItem } from '../domain/levelTestTypes';
+import type { LevelTestItem, RenderedItem } from '../domain/levelTestTypes';
+import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
@@ -72,6 +78,7 @@ export function LevelTestPage() {
   const navigate = useNavigate();
   const { t } = useTranslation(['levelTest', 'common']);
   const { state, saveLevelTestResult } = useLearner();
+  const { locale } = useLocale();
   const font = getFont(state.settings.selected_font_id);
 
   const [bank, setBank] = useState<LevelTestBank | null>(null);
@@ -101,17 +108,26 @@ export function LevelTestPage() {
     [state.settings.level_test],
   );
 
+  /*
+    The *interface* language, not `contentLocale`.
+
+    `contentLocale` is the fallback-resolved one — it is what a word card reads
+    so that a learner in a language with no meaning for 사과 sees a marked
+    English gloss instead of a blank. The Level Test must not do that: §3 is
+    absolute, and a question is either asked in the learner's language or not
+    asked. Reading `contentLocale` here would put the English back.
+  */
   useEffect(() => {
     if (!started || bank) return;
     let live = true;
-    loadLevelTestBank().then(
+    loadLevelTestBank(locale).then(
       (loaded) => live && setBank(loaded),
       () => live && setFailed(true),
     );
     return () => {
       live = false;
     };
-  }, [started, bank]);
+  }, [started, bank, locale]);
 
   /** Picks the next question, or ends the sitting. */
   const advance = useCallback(
@@ -347,7 +363,16 @@ export function LevelTestPage() {
     );
   }
 
-  const korean = current.kind !== 'produce';
+  /*
+    Resolved here rather than at pick time so that a language change mid-sitting
+    cannot leave the previous language's strings on screen: the bank is keyed by
+    locale and so is this.
+  */
+  const rendered: RenderedItem | null = bank
+    ? resolveItem(current, bank.meanings, bank.locale)
+    : null;
+  if (!rendered) return null;
+  const korean = rendered.promptLocale === 'ko';
   return (
     <div className={styles.page}>
       <AppHeader
@@ -378,26 +403,38 @@ export function LevelTestPage() {
         <Card padding="lg" className={styles.stimulus}>
           <p
             className={korean ? styles.korean : styles.meaning}
-            lang={korean ? 'ko' : 'en'}
-            dir="ltr"
+            lang={rendered.promptLocale}
+            dir={korean ? 'ltr' : undefined}
             style={korean ? { fontFamily: textFamily(font) } : undefined}
           >
-            {current.prompt}
+            {rendered.prompt}
           </p>
         </Card>
 
         <ul className={styles.options} role="group" aria-label={t('levelTest:optionsLabel')}>
-          {current.options.map((option) => (
-            <li key={option}>
+          {rendered.options.map((option) => (
+            <li key={option.text}>
               <button
                 type="button"
                 className={styles.option}
-                lang={current.kind === 'meaning' ? 'en' : 'ko'}
-                dir="ltr"
-                style={current.kind === 'meaning' ? undefined : { fontFamily: textFamily(font) }}
-                onClick={() => answer(option === current.answer ? 'correct' : 'wrong')}
+                /*
+                  The language each string is *actually* in, from the resolver.
+
+                  It used to be `lang={kind === 'meaning' ? 'en' : 'ko'}` —
+                  the markup asserting that every meaning option was English,
+                  which was true and was the defect. It now says what the
+                  resolver resolved, which is what a screen reader and a
+                  regression test both need.
+                */
+                lang={option.resolvedLocale}
+                dir={option.resolvedLocale === 'ko' ? 'ltr' : undefined}
+                data-resolved-locale={option.resolvedLocale}
+                style={
+                  option.resolvedLocale === 'ko' ? { fontFamily: textFamily(font) } : undefined
+                }
+                onClick={() => answer(option.correct ? 'correct' : 'wrong')}
               >
-                {option}
+                {option.text}
               </button>
             </li>
           ))}

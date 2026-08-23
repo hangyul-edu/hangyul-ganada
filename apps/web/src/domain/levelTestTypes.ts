@@ -1,4 +1,19 @@
-/** One question in the Vocabulary Level Test bank. */
+/**
+ * One question in the Vocabulary Level Test bank, as it is stored.
+ *
+ * ## Why a meaning is an id and a Korean word is not
+ *
+ * The Korean word is the same fact in every language — it is what the question
+ * is *about*. A meaning is a different fact in each of thirty-two, and the bank
+ * used to bake one of them in: `answer: "to divide, to share"`, rendered
+ * verbatim under a Korean interface asking 이 단어는 무슨 뜻일까요?. English had
+ * become the canonical object, so no amount of interface translation could
+ * reach it.
+ *
+ * So anything that is a *meaning* is an anchor id here, and
+ * `meanings-<locale>.json` holds the strings. `resolveItem` puts the two
+ * together and reports which language each string actually came from.
+ */
 export interface LevelTestItem {
   id: string;
   /**
@@ -9,9 +24,44 @@ export interface LevelTestItem {
    */
   kind: 'meaning' | 'produce' | 'context';
   level: number;
+  /** Korean, on `meaning` and `context`. Absent on `produce`, which asks a meaning. */
+  prompt?: string;
+  /** The anchor whose meaning is the prompt. `produce` only. */
+  promptId?: string;
+  /** Korean, on `produce` and `context`. Absent on `meaning`. */
+  answer?: string;
+  /** Korean, on `produce` and `context`. Absent on `meaning`. */
+  options?: string[];
+  /** The anchor whose meaning is the right answer. `meaning` only. */
+  answerId?: string;
+  /** The anchors whose meanings are the four choices. `meaning` only. */
+  optionIds?: string[];
+}
+
+/** One option, and the language its text is actually in. */
+export interface RenderedOption {
+  text: string;
+  /**
+   * The language this string came from — `ko` for a Korean word, the learner's
+   * locale for a meaning.
+   *
+   * Carried so a test can assert it rather than guess from the script: §6 is
+   * explicit that Latin-character detection cannot work when half the supported
+   * languages are written in Latin. An option that came from the wrong pack is
+   * a defect whatever it looks like.
+   */
+  resolvedLocale: string;
+  correct: boolean;
+}
+
+/** A question with every string resolved into one language. */
+export interface RenderedItem {
+  id: string;
+  kind: LevelTestItem['kind'];
+  level: number;
   prompt: string;
-  answer: string;
-  options: string[];
+  promptLocale: string;
+  options: RenderedOption[];
 }
 
 /** A finished sitting, kept so the learner can see it again. */

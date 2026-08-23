@@ -167,21 +167,34 @@ for (const anchor of anchors) {
   const others = pool(level).filter((other) => other.id !== anchor.id && other.pos === anchor.pos);
 
   // --- Korean shown, meaning chosen -----------------------------------------
-  const glosses = [];
+  const chosen = [];
   for (const other of shuffled(others, random)) {
-    if (glosses.length === OPTIONS - 1) break;
-    if (other.gloss === anchor.gloss || glosses.includes(other.gloss)) continue;
+    if (chosen.length === OPTIONS - 1) break;
+    if (other.gloss === anchor.gloss || chosen.some((c) => c.gloss === other.gloss)) continue;
     if (sharesMeaning(other.gloss, anchor.gloss)) continue;
-    glosses.push(other.gloss);
+    chosen.push(other);
   }
-  if (glosses.length === OPTIONS - 1) {
+  if (chosen.length === OPTIONS - 1) {
+    /*
+      Ids, not English.
+
+      This item used to carry `answer: "to divide, to share"` and three more
+      English strings, and every one of the thirty-two languages rendered them
+      verbatim: a Korean learner was asked 나누다 and offered *to divide, to
+      share* / *to do wrong* / *to gather*. The bank had made English the
+      canonical object, so no amount of interface translation could reach it.
+
+      What is language-neutral stays here — the Korean headword, which is what
+      the question is *about* — and what is a meaning becomes an anchor id that
+      `meanings-<locale>.json` resolves at render time. §4.
+    */
     items.push({
       id: `${anchor.id}:meaning`,
       kind: 'meaning',
       level,
       prompt: anchor.word,
-      answer: anchor.gloss,
-      options: [anchor.gloss, ...glosses].sort(),
+      answerId: anchor.id,
+      optionIds: [anchor.id, ...chosen.map((other) => other.id)].sort(),
     });
   }
 
@@ -194,11 +207,13 @@ for (const anchor of anchors) {
     koreans.push(other.word);
   }
   if (koreans.length === OPTIONS - 1) {
+    // The mirror of the above: here the *prompt* is the meaning, so it is the
+    // id, and the options are Korean words and stay as they are.
     items.push({
       id: `${anchor.id}:produce`,
       kind: 'produce',
       level,
-      prompt: anchor.gloss,
+      promptId: anchor.id,
       answer: anchor.word,
       options: [anchor.word, ...koreans].sort(),
     });
@@ -332,6 +347,67 @@ for (let level = 1; level <= LEVELS; level += 1) {
   }
 }
 
+/*
+  The meanings, one file per language.
+
+  ## Why this file exists at all
+
+  Because the bank cannot hold them. An item is a question about a Korean word;
+  the *meaning* of that word is a different fact in each of thirty-two
+  languages, and baking one of them into the item is what produced an English
+  Level Test inside a Korean interface. So the bank holds ids and this holds
+  the strings, and the renderer puts them together knowing which language it is
+  in.
+
+  ## Where the strings come from, and where they do not
+
+  **Taught words** have a hand-written meaning in every language the curriculum
+  has one for — `vocabulary.<locale>.json`, the same file the word cards read.
+  Nothing is generated here and nothing is translated here.
+
+  **Dictionary anchors** carry the upper levels of the scale, and their gloss is
+  Wiktionary's English. There is no other language for them, so they appear in
+  `en` and in no other file. A locale that cannot resolve an item does not ask
+  it — see `resolveItem` — which is the whole point: the alternative is asking
+  it in English, and that is the defect.
+
+  The consequence is a *ceiling* per language rather than a fallback, and the
+  ceiling is measured and printed below rather than discovered by a learner.
+*/
+const GENERATED = join(ROOT, 'apps', 'web', 'src', 'data', 'generated');
+const corpus = JSON.parse(readFileSync(join(GENERATED, 'vocabulary.json'), 'utf8'));
+const corpusIds = corpus.words.map((word) => word.id);
+const locales = corpus.locales;
+
+/** Every anchor id the kept items need a meaning for, in any language. */
+const neededMeanings = new Set();
+for (const item of items) {
+  if (item.kind === 'meaning') for (const id of item.optionIds) neededMeanings.add(id);
+  if (item.kind === 'produce') neededMeanings.add(item.promptId);
+}
+
+const meanings = {};
+for (const locale of locales) {
+  const rows = JSON.parse(readFileSync(join(GENERATED, `vocabulary.${locale}.json`), 'utf8')).words;
+  const table = {};
+  rows.forEach((row, index) => {
+    const id = corpusIds[index];
+    if (!neededMeanings.has(id)) return;
+    const meaning = row?.[0]?.trim();
+    if (meaning) table[id] = meaning;
+  });
+  meanings[locale] = table;
+}
+/*
+  English also gets the dictionary anchors, which is not a favour to English —
+  it is the only language those glosses exist in. Every other language reaches
+  as far up the scale as its written content does, and no further.
+*/
+for (const anchor of anchors) {
+  if (anchor.source !== 'dictionary' || !neededMeanings.has(anchor.id)) continue;
+  meanings.en[anchor.id] = anchor.gloss;
+}
+
 const perLevel = {};
 const perKind = {};
 for (const item of kept) {
@@ -353,17 +429,65 @@ const bank = {
 const rendered = `${JSON.stringify(bank)}\n`;
 const digest = createHash('sha256').update(rendered).digest('hex').slice(0, 8);
 const name = `bank-${digest}.json`;
+
+const files = { [name]: rendered };
+const meaningFiles = {};
+/** How far up the scale each language can actually ask, and with how much. */
+const reach = {};
+for (const locale of locales) {
+  const table = meanings[locale];
+  const text = `${JSON.stringify({ locale, meanings: table })}\n`;
+  const hash = createHash('sha256').update(text).digest('hex').slice(0, 8);
+  const file = `meanings-${locale}-${hash}.json`;
+  files[file] = text;
+  meaningFiles[locale] = file;
+
+  // An item is askable in this language when every meaning it needs resolves.
+  const perLevelHere = {};
+  for (const item of kept) {
+    const needed =
+      item.kind === 'meaning' ? item.optionIds
+      : item.kind === 'produce' ? [item.promptId]
+      : [];
+    if (!needed.every((id) => table[id])) continue;
+    perLevelHere[item.level] = (perLevelHere[item.level] ?? 0) + 1;
+  }
+  const askable = Object.values(perLevelHere).reduce((a, b) => a + b, 0);
+  /*
+    The ceiling is where the scale stops being *continuously* askable.
+
+    Not the highest level with enough items — that reads 30 for a language whose
+    levels 26 to 29 are empty, which is a ladder with the top four rungs
+    missing described as a whole ladder. An adaptive test climbs; it cannot skip
+    a gap. So the ceiling is the last level such that every level below it also
+    has enough, and six is that floor because a sitting asks a handful at any
+    one level and repeating a question inside one test is worse than stopping.
+  */
+  let ceiling = 0;
+  for (let level = 1; level <= LEVELS; level += 1) {
+    if ((perLevelHere[level] ?? 0) < 6) break;
+    ceiling = level;
+  }
+  reach[locale] = { items: askable, ceiling, perLevel: perLevelHere };
+}
+
 const manifest = {
   _comment:
     'GENERATED by scripts/content/build_level_test.mjs. `bank` names a content-hashed file, so ' +
-    'the offline worker can cache it for good.',
+    'the offline worker can cache it for good. `meanings` names one file per language: the bank ' +
+    'holds ids and those hold the strings, because a meaning is a different fact in each language ' +
+    'and baking one of them into an item is what put an English Level Test inside a Korean app.',
   levels: LEVELS,
   options: OPTIONS,
   items: kept.length,
   bank: name,
+  meanings: meaningFiles,
+  reach: Object.fromEntries(
+    Object.entries(reach).map(([locale, r]) => [locale, { items: r.items, ceiling: r.ceiling }]),
+  ),
   perLevel,
 };
-const files = { [name]: rendered, 'manifest.json': `${JSON.stringify(manifest)}\n` };
+files['manifest.json'] = `${JSON.stringify(manifest)}\n`;
 
 const stale = [];
 for (const [filename, text] of Object.entries(files)) {
@@ -405,6 +529,14 @@ for (let level = 1; level <= LEVELS; level += 1) {
   if ((perLevel[level] ?? 0) < 30) thin.push(level);
 }
 if (thin.length) console.log(`\n  levels with fewer than 30 items: ${thin.join(', ')}`);
+
+console.log('\n  how far each language can ask, and with how many items:\n');
+const ordered = [...locales].sort((a, b) => reach[b].ceiling - reach[a].ceiling || a.localeCompare(b));
+for (const locale of ordered) {
+  const r = reach[locale];
+  const bar = r.ceiling === LEVELS ? 'the whole scale' : `levels 1–${r.ceiling}`;
+  console.log(`    ${locale.padEnd(6)} ${String(r.items).padStart(5)} items   ${bar}`);
+}
 
 if (CHECK && stale.length) {
   console.error(`\nstale: ${stale.join(', ')} — run \`npm run content:leveltest\``);
