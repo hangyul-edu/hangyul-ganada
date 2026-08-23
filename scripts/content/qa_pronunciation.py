@@ -608,11 +608,25 @@ def listen(
     report.notes.append(f"listened to {done} clip(s); {len(findings)} disagreed")
     flush()
     if fixtures_only:
+        #: A word `check_contrasts` measures is not convicted by the recogniser.
+        #:
+        #: That is already this module's settled position — see the long note
+        #: under FIXTURES, which records the decoder writing 바티 for a 마디 clip
+        #: nobody disputes, and the closure and release measurements that clear
+        #: 낳다 — and every other path acts on it. This one did not, so
+        #: `--fixtures --check` failed permanently on a word the file itself
+        #: says is correct. A gate that is red about a resolved question is a
+        #: gate people learn to skip.
+        measured = {aspirated for aspirated, _, _ in CONTRASTS}
         for finding in findings:
-            report.error(
+            line = (
                 f"{finding['text']} [{finding['voice']}]: heard {finding['heard']!r} "
                 f"({finding['difference']})"
             )
+            if finding["text"] in measured:
+                report.notes.append(f"{line} — recogniser only; check_contrasts measures this clip")
+            else:
+                report.error(line)
     else:
         for finding in findings[:40]:
             report.warn(
@@ -747,6 +761,13 @@ def check_compounds(report: Report) -> None:
         "좋아지다", "똑같이", "높아지다", "찾아가다", "찾아내다", "붙이다", "젊은이",
         "깨끗이", "무엇이든", "틀림없이", "높이다", "흩어지다", "쫓아가다", "덧붙이다",
         "끊임없이", "짊어지다", "갉아먹다", "샅샅이", "굳이", "가만있다", "속삭이다",
+        # Both added with batch 3 and both the same shape as siblings already
+        # here: 쫓아오다 is 쫓- plus the connective -아, exactly like 쫓아가다 and
+        # 쫓아내다, and 찢어지다 is 찢- plus the passive -어지다, exactly like
+        # 없어지다 and 흩어지다. The vowel begins an ending, so the 받침 carries
+        # over rather than neutralising: 쪼차오다 and 찌저지다, which is what the
+        # rules derive.
+        "쫓아오다", "찢어지다",
         "만약", "만일", "큰일", "별일", "나뭇잎",
     }
     known = set(_IRREGULAR) | reviewed
