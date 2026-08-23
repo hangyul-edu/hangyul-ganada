@@ -354,17 +354,6 @@ for (const anchor of anchors) {
     rejected.honorificSuffixFrame = (rejected.honorificSuffixFrame ?? 0) + 1;
     continue;
   }
-  /*
-   * Nouns, verbs and adjectives only.
-   *
-   * A determiner or an adverb in a blank is a question about style rather than
-   * about vocabulary: "____ 친구를 만났어요" takes 오랜 (an old friend) and 여러
-   * (several friends) equally well, and a learner who knows both words still
-   * cannot choose. The other three parts of speech are the ones a sentence's
-   * arguments actually constrain.
-   */
-  if (!['noun', 'verb', 'adjective'].includes(anchor.pos)) continue;
-
   const blanked = anchor.example.replace(anchor.surface, '____');
   const rest = blanked.replace('____', ' ');
   /*
@@ -389,6 +378,47 @@ for (const anchor of anchors) {
     ['은', '는'], ['이', '가'], ['을', '를'], ['과', '와'], ['으로', '로'],
     ['이나', '나'], ['이랑', '랑'], ['아', '야'], ['이에요', '예요'],
   ];
+  /*
+   * A blank glued to the syllable in front of it is inside a word.
+   *
+   * 삼____에 학교에 가요 asks for 월 — March — and offered 본래, 오렌지 and
+   * 유니폼, so the screen read 삼본래, 삼오렌지, 삼유니폼. Nothing there is a
+   * word, and a learner who has never met 삼월 can still answer.
+   */
+  {
+    const at = blanked.indexOf('____');
+    if (at > 0 && /[가-힣]/.test(blanked[at - 1])) {
+      rejected.gluedToPrefix = (rejected.gluedToPrefix ?? 0) + 1;
+      continue;
+    }
+  }
+  /*
+   * A noun blank glued to 하다 fails whichever way the distractor falls.
+   *
+   * 친구가 병원에 ____했어요 asks for 입원 and offered 반찬, 엽서 and 팝콘 —
+   * 반찬했어요 is not a word, so the item is answerable without Korean. Give it
+   * distractors that *are* 하다 nouns and the other failure arrives instead:
+   * 시험 전에 ____했어요 asks for 긴장 and offered 연습, and 시험 전에
+   * 연습했어요 is a perfectly ordinary sentence.
+   */
+  if (!['verb', 'adjective'].includes(anchor.pos)) {
+    const at = blanked.indexOf('____');
+    if (/^[하했해]/.test(blanked.slice(at + 4))) {
+      rejected.gluedToHada = (rejected.gluedToHada ?? 0) + 1;
+      continue;
+    }
+  }
+  /*
+   * Nouns, verbs and adjectives only.
+   *
+   * A determiner or an adverb in a blank is a question about style rather than
+   * about vocabulary: "____ 친구를 만났어요" takes 오랜 (an old friend) and 여러
+   * (several friends) equally well, and a learner who knows both words still
+   * cannot choose. The other three parts of speech are the ones a sentence's
+   * arguments actually constrain.
+   */
+  if (!['noun', 'verb', 'adjective'].includes(anchor.pos)) continue;
+
   const afterBlank = blanked.slice(blanked.indexOf('____') + 4);
   /** True when `surface` can take the particle this sentence already carries. */
   let particleFits = () => true;
