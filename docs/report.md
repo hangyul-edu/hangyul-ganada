@@ -108,7 +108,7 @@ exactly that.
 | Audio clips | 11,500 |
 | Signed APK | 74.2 MB |
 | Signed AAB | 72.8 MB |
-| Issues tracked | 67 |
+| Issues tracked | 68 |
 
 "Characters taught" counts every entry in the curriculum's character table — the
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
@@ -778,13 +778,36 @@ ship a link to a page that may not exist (I-03).
 | Korean morphology (`vitest`) | **107** |
 | End-to-end (`playwright`) | **338** (169 × 2 projects) |
 
+Two projects — mobile 390×844 and desktop 1440×900 — one worker, no retries,
+run in full from the commit this report describes.
+
+**One of those runs found an eleventh defect, in a test.** A full run failed on
+*a ta session never offers an English answer* while the same six cases passed in
+56 seconds on an idle machine. The walk that drives a real sitting advanced with
+`click()` then `waitForTimeout(300)`, and 300 ms is a bet about how fast the
+machine is. When the bet loses, the next step samples a screen that has not
+rendered, reads no option group, concludes there is no question here, and clicks
+*past the question it came to read*. Fourteen steps later it has collected
+nothing and reports "no question appeared in ta" — which reads as missing Tamil
+content and is a stopwatch.
+
+It now waits for the main region to say something different from what it said
+before the click, up to two seconds, and carries on either way. A screen that
+has changed is ready to be read; a clock is not evidence that anything happened.
+It is also faster, because settling returns as soon as the screen changes rather
+than always paying the delay.
+
+That is the third time this one walk has been fixed for a timing assumption, and
+the class is now named in the file rather than the instance.
+
+The suite was then run in full again from the final source:
+
 ```
-338 passed (21.6m)
+338 passed (20.2m)
 ```
 
-Two projects — mobile 390×844 and desktop 1440×900 — one worker, no retries, run
-from the commit this report describes. **338 of 338, no failures, no flakes, no
-retries.**
+**338 of 338, no failures, no flakes, no retries** — and that run is the one this
+report describes, taken after the last edit rather than before it.
 
 ## 19.2 `verify:release` does not pass today, by design — **VERIFIED**
 
@@ -859,7 +882,9 @@ deleted to stay green.
 
 # 20. What this pass found
 
-Ten defects, in the order they would matter to a customer.
+Eleven defects, in the order they would matter to a customer. The eleventh is
+last because it is in a test rather than in the product, and it is here at all
+because the audit's own final run is what found it.
 
 1. **The verdict panel was 41% wide and changed shape with the answer** (§7).
    Invisible to every existing gate. Now gated three ways.
@@ -879,6 +904,9 @@ Ten defects, in the order they would matter to a customer.
 10. **A level-test result showed "between 1 and 1"** and its screen left 383 px
     of dead space beneath the card a learner had spent eight minutes earning.
     Both fixed earlier in this pass.
+
+11. **A test walked past the question it was checking** (§19.1), on a loaded
+    machine, and reported it as missing Tamil content.
 
 The pattern across 1, 3, 7 and 10 is one sentence: **"nothing is broken" and
 "this is right" are different questions, and only the first one had gates.**
@@ -969,6 +997,7 @@ document they predate.
 | **I-62** | Feedback | **P2** | Two review exercises kept their own idea of what being right is called | The shared verdict reached the writing box, the recognition step and the review session, and not the two components those sessions render. A learner answering a word question read "That's it." or "Not quite. Here it is." while the same learner, two taps earlier, had read "Correct." | **RESOLVED** |
 | **I-63** | Build | **P2** | Two end-to-end tests failed only when the machine was busy, and neither was about the machine | None directly. It matters because a suite with two tests that fail on a loaded run and pass on a quiet one is a suite whose result nobody can read, and the word for that is usually "flaky" — which is where an investigation stops. | **RESOLVED** |
 | **I-68** | Level Test | **P2** | Three contextual items had a second answer that also works | A placement item with two right answers measures nothing, and marks a learner wrong for knowing Korean. `____에서 십 년을 보냈어요` keyed 감옥 and offered 바다, and spending ten years at sea is ordinary Korean. | **RESOLVED** |
+| **I-69** | Build | **P2** | The locale walk advanced on a stopwatch and clicked past the question it came to read | None directly, and it matters for the same reason the last two of these did: a suite that fails somewhere different each run is a suite whose result nobody can read. This one failed as "no question appeared in ta", which reads as missing Tamil content rather than as a timing assumption, so the next person to see it would have gone looking in the wrong place. | **RESOLVED** |
 | **I-43** | Home | **P3** | The line at the foot of Home was one of twelve, then a hundred, and is now twenty real quotations | Twelve lines were exhausted in a fortnight. A hundred fixed that and created a worse problem — eighty-eight of them were written by the app and set exactly like the twelve that were not. Twenty attributed quotations replace both, superseded by I-47. | **RESOLVED** |
 
 <!-- /issues:what -->
@@ -977,7 +1006,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 3 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 4 · Resolved: 58**
+**Blocked outside this repository: 1 · Partial: 4 · Resolved: 59**
 
 <!-- /issues:counts -->
 
@@ -1051,6 +1080,7 @@ document they predate.
 | **I-62** | `BuildExercise` and `ChoiceExercise` now use `common:verdict.*`, so the wording is decided in one place and is already written in all 32 languages; `learning:review.right` and `.notQuite` are gone from every bundle. The answer stays on the screen below the verdict on purpose — a choice question cannot be retried where it stands, so "Incorrect." alone would be a review that teaches nothing. What is forbidden is the verdict and the answer fused into one breath, 맞아요, 고예요, and that is gone. `feedback.spec.ts` walks a vocabulary session to a real question and answers it, which is how the gap was found. | Done. |
 | **I-63** | **The locale walk waited thirty seconds for every click it expected to fail.** `locale-quiz` walks a session in six languages clicking opportunistically; both clicks are written as try-it-and-carry-on and the `.catch()` says so. A bare `click()` carries Playwright's default 30-second actionability timeout and waits the whole of it out *before* the catch runs, so one covered button costs half a minute and fourteen steps of that is 420 seconds against a 180-second test. That is what the failure had looked like every time: a different language each run, three minutes long, no assertion in the trace. Two seconds a click — six locales in 51 seconds, down from 4.4 minutes with one failure.  **The offline test cut the network before the worker was in charge.** `navigator.serviceWorker.ready` resolves when a worker is *active*; a worker that is active and has not claimed the page controls nothing, so the fetch went to a network that had just been switched off. "Failed to fetch" was a race with `clients.claim()`. The test waits for `serviceWorker.controller` now, which is the thing it actually depends on.  Both were found by running the whole suite from the final commit rather than the specs that had changed, and the clean run after them is 336 of 336, exit 0. | Done. |
 | **I-68** | `leveltest:ambiguity` passed all 420 contextual items before and after, on all twelve of its rules. These were found by reading the 60 the new vocabulary added, one at a time against their three distractors. All three shared one cause: the example sentence was a bare frame whose only verb fits anything — 보내다, 하다, 사다 — so nothing constrained the blank. | Done. The class is recorded rather than gated; see docs/final-launch-audit.md §7. |
+| **I-69** | One full run of the end-to-end suite failed on `a ta session never offers an English answer` at 16.1 s while the same six cases passed in 56 s on an idle machine, and the mobile project passed the identical case in the same run. The walk advanced with `click()` then `waitForTimeout(300)`. When 300 ms is not enough the next step samples a screen that has not rendered, finds no option group, concludes there is no question on this screen, and clicks onward — past the question. Fourteen steps of that collects nothing and trips the guard that says a question must have appeared. | Done. |
 | **I-43** | Kept as the record of a decision that was made and then reversed. Expanding to a hundred solved the repetition and introduced app-authored copy into a slot a reader takes for quotation; **I-47** cut it back to twenty, all named and all citable, and changed the selection from a persisted daily pin to a fresh line on every open. The intermediate state shipped in no release. |  |
 
 <!-- /issues:how -->

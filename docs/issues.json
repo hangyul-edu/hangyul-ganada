@@ -712,6 +712,17 @@
       "evidence": "`leveltest:ambiguity` passed all 420 contextual items before and after, on all twelve of its rules. These were found by reading the 60 the new vocabulary added, one at a time against their three distractors. All three shared one cause: the example sentence was a bare frame whose only verb fits anything — 보내다, 하다, 사다 — so nothing constrained the blank.",
       "note": "Fixed in the content rather than the builder, because each sentence was weak as a *teaching example* for the same reason it was weak as a question. No new gate, deliberately: the tempting generalisation — a noun blank whose sentence ends in a general verb — fires on 54 of the 164 noun items, and reading them shows the constraint usually comes from the sentence's other argument rather than its verb (`____에서 채소를 사요` is pinned by 채소). A rule that deleted 54 items to fix three would be a worse bank.",
       "recommendedFix": "Done. The class is recorded rather than gated; see docs/final-launch-audit.md §7."
+    },
+    {
+      "id": "I-69",
+      "area": "Build",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The locale walk advanced on a stopwatch and clicked past the question it came to read",
+      "customerImpact": "None directly, and it matters for the same reason the last two of these did: a suite that fails somewhere different each run is a suite whose result nobody can read. This one failed as \"no question appeared in ta\", which reads as missing Tamil content rather than as a timing assumption, so the next person to see it would have gone looking in the wrong place.",
+      "evidence": "One full run of the end-to-end suite failed on `a ta session never offers an English answer` at 16.1 s while the same six cases passed in 56 s on an idle machine, and the mobile project passed the identical case in the same run. The walk advanced with `click()` then `waitForTimeout(300)`. When 300 ms is not enough the next step samples a screen that has not rendered, finds no option group, concludes there is no question on this screen, and clicks onward — past the question. Fourteen steps of that collects nothing and trips the guard that says a question must have appeared.",
+      "note": "It now waits for `main` to say something different from what it said before the click, bounded at two seconds, and carries on either way. Faster as well as steadier: twelve cases in 1.0 minute against 56 seconds for six, because settling returns as soon as the screen changes instead of always paying the delay. This is the third timing assumption removed from this one walk — see I-63 — so the file now names the class rather than the instance.",
+      "recommendedFix": "Done."
     }
   ]
 }
