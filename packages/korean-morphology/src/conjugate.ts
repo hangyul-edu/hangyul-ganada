@@ -32,7 +32,13 @@ import {
   VOWELS,
   vowelOf,
 } from './hangul';
-import { classify, stemOf, type ClassifyOptions, type ConjugationClass } from './classes';
+import {
+  classify,
+  HONORIFIC_SUFFIXED,
+  stemOf,
+  type ClassifyOptions,
+  type ConjugationClass,
+} from './classes';
 
 export type Form =
   /** 먹다 */
@@ -182,12 +188,6 @@ function infinitiveStem(stem: string, cls: ConjugationClass): string {
         이: '이어',
         아니: '아니야',
         드리: '드려',
-        // -시- contracts with 어요 to 세요, not to 셔요.
-        계시: '계세',
-        드시: '드세',
-        주무시: '주무세',
-        잡수시: '잡수세',
-        돌아가시: '돌아가세',
         // The only ㅜ-irregular verb in the language: 푸 + 어 → 퍼, not 풔.
         푸: '퍼',
       };
@@ -292,6 +292,11 @@ function prospective(stem: string, cls: ConjugationClass): string {
   return withEu.slice(0, -1) + compose(parts.initial, parts.medial, FINALS.indexOf('ㄹ'));
 }
 
+/** 계시 → 계세요. The honorific suffix drops its 시 before the fused 세요. */
+function honorificPolite(stem: string): string {
+  return `${stem.slice(0, -1)}세요`;
+}
+
 /** 먹었 / 했 / 갔 — the past stem, one operation on the 아/어 form. */
 function pastStem(infinitive: string): string {
   const last = infinitive[infinitive.length - 1]!;
@@ -319,7 +324,10 @@ export function conjugate(lemma: string, form: Form, shape: WordShape = {}): str
     case 'infinitive':
       return infinitive;
     case 'presentPolite':
-      return `${infinitive}요`;
+      // 계세요, 드세요, 주무세요 — the fused form, not the 계셔요 the vowel
+      // rule gives. Only this form and `honorific` are irregular; the past and
+      // the 아/어 connective are built on the regular 계셔 like any ㅣ-stem.
+      return HONORIFIC_SUFFIXED.has(stem) ? `${honorificPolite(stem)}` : `${infinitive}요`;
     case 'pastPolite':
       return `${pastStem(infinitive)}어요`;
     case 'futurePolite':
@@ -339,8 +347,10 @@ export function conjugate(lemma: string, form: Form, shape: WordShape = {}): str
       return `${stem}고`;
     case 'honorific':
       // -(으)세요. `euStem` has already turned 듣 into 들으 and 살 into 사, so
-      // the ending is the same three characters in every class.
-      return takesImperative(shape) ? `${euStem(stem, cls)}세요` : null;
+      // the ending is the same three characters in every class. A stem that
+      // already carries -시- does not take a second one: 계세요, not 계시세요.
+      if (!takesImperative(shape)) return null;
+      return HONORIFIC_SUFFIXED.has(stem) ? honorificPolite(stem) : `${euStem(stem, cls)}세요`;
     case 'request':
       return takesImperative(shape) ? `${infinitive} 주세요` : null;
     case 'adnominal': {

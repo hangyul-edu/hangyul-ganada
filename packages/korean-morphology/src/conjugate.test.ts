@@ -97,6 +97,28 @@ const TABLE: Row[] = [
   // --- the stems that are their own class ---------------------------------------
   ['있다', V, { presentPolite: '있어요', pastPolite: '있었어요', formalPolite: '있습니다' }],
   ['없다', A, { presentPolite: '없어요', pastPolite: '없었어요', adnominal: '없는' }],
+
+  /*
+   * --- the honorific suffix -시- -------------------------------------------
+   *
+   * Irregular in exactly two forms. The polite present fuses to 세요 (계세요,
+   * not the 계셔요 the ㅣ-stem rule gives) and an already-honorific stem does
+   * not take -시- twice (계세요, not 계시세요). Everywhere else 시 + 어 → 셔
+   * like any other ㅣ-stem, which is what makes the past 계셨어요.
+   *
+   * Pinning the whole word to 계세 instead — which is what the code used to do
+   * — produced 계셌어요 and 계세 주세요, and two of them reached the level test.
+   */
+  ['계시다', V, { presentPolite: '계세요', pastPolite: '계셨어요', honorific: '계세요', request: '계셔 주세요', infinitive: '계셔', connective: '계시고', formalPolite: '계십니다', futurePolite: '계실 거예요', adnominal: '계시는' }],
+  ['드시다', V, { presentPolite: '드세요', pastPolite: '드셨어요', honorific: '드세요', request: '드셔 주세요' }],
+  ['주무시다', V, { presentPolite: '주무세요', pastPolite: '주무셨어요', formalPolite: '주무십니다' }],
+  ['잡수시다', V, { presentPolite: '잡수세요', pastPolite: '잡수셨어요' }],
+  ['돌아가시다', V, { presentPolite: '돌아가세요', pastPolite: '돌아가셨어요' }],
+  ['있으시다', V, { presentPolite: '있으세요', pastPolite: '있으셨어요' }],
+  // 마시다 ends in the same syllable and is not honorific: 마세요 is 말다.
+  ['마시다', V, { presentPolite: '마셔요', honorific: '마시세요' }],
+  // Nor is 가시다 in the sense the curriculum teaches — 맛이 가시다, to fade.
+  ['가시다', V, { presentPolite: '가셔요', pastPolite: '가셨어요' }],
 ];
 
 describe('the conjugation table', () => {

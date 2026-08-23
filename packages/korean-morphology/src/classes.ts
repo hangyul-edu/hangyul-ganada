@@ -126,13 +126,28 @@ export const REU_REGULAR = new Set(['따르', '들르', '치르', '다다르']);
 export const REO_IRREGULAR = new Set(['푸르', '노르']);
 
 /** Stems whose conjugation is not derived at all. */
-export const SUPPLETIVE = new Set([
-  '있', '없', '이', '아니', '드리', '푸',
-  // The honorific stems. `-시-` is an honorific *suffix*, and a suffixed stem
-  // takes 세요 rather than the 셔요 the vowel rule would give: 계세요, 드세요,
-  // 주무세요. It cannot be done by spelling — 마시다 also ends in 시 and is not
-  // honorific at all, and 마세요 would be the wrong verb ("please don't").
-  '계시', '드시', '주무시', '잡수시', '돌아가시',
+export const SUPPLETIVE = new Set(['있', '없', '이', '아니', '드리', '푸']);
+
+/**
+ * Stems built on the honorific suffix `-시-`.
+ *
+ * These conjugate regularly everywhere except in the two forms that end in
+ * 요 and address the listener: 시 + 어 contracts to 셔 like any other ㅣ-stem
+ * (계셔서, 계셨어요, 계셔 주세요), but the polite present is the fused 계세요,
+ * not 계셔요, and asking an already-honorific verb to be honorific again gives
+ * 계세요 rather than 계시세요.
+ *
+ * It cannot be done by spelling — 마시다 also ends in 시 and is not honorific
+ * at all, and 마세요 would be the wrong verb ("please don't") — so the stems
+ * are listed.
+ *
+ * This used to live in `SUPPLETIVE`, where the whole word was pinned to 계세
+ * and every other form was derived from *that*: the past came out 계셌어요,
+ * which is not a Korean word, and 계세 주세요 with it. Two of those shipped in
+ * the level test. The fix is to pin only the forms that are actually irregular.
+ */
+export const HONORIFIC_SUFFIXED = new Set([
+  '계시', '드시', '주무시', '잡수시', '돌아가시', '자시', '있으시',
 ]);
 
 /** Suffixes that make an adjective ㅂ-irregular by construction. */
