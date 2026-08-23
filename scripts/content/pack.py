@@ -37,6 +37,7 @@ learner as an English fallback.
 | `en` | optional replacement for the dictionary's English meaning |
 | `pos` | optional correction to the dictionary's part of speech |
 | `ex` | the Korean example sentence |
+| `ctx` | 0 when the example must not be reused as a Level Test gap-fill |
 | `t` | the example sentence in every other shipping locale |
 
 `t` has no `ko` key on purpose. The sentence is already Korean; printing a
@@ -108,6 +109,17 @@ class Entry:
     #: The fuller explanation, per locale, or empty. See `DEFINITION_LOCALES`.
     definitions: dict[str, str]
     reason: str | None
+    #: Whether this example may also be used as a Level Test gap-fill.
+    #:
+    #: A teaching example and a test context are different assets, and treating
+    #: them as one asset is where 힘찬 목소리로 말했어요 came from. As the
+    #: sentence on 힘차다's card it is exactly right: short, natural, and it shows
+    #: what the word is for. As a four-choice gap-fill it is unanswerable,
+    #: because 활기찬 목소리로 말했어요 and 공손한 목소리로 말했어요 are also
+    #: things people say and the frame does not choose between them.
+    #:
+    #: `ctx: 0` on the pack row says "keep teaching this, stop testing with it".
+    context_ok: bool = True
 
     @property
     def removed(self) -> bool:
@@ -127,7 +139,7 @@ def parse_row(row: dict, where: str) -> Entry:
     if not keep:
         if not reason:
             raise PackError(f"{where}: {word} is removed without a reason")
-        return Entry(word, False, 0, "", {}, "", {}, None, None, {}, reason)
+        return Entry(word, False, 0, "", {}, "", {}, None, None, {}, reason, True)
 
     usefulness = int(_require(row, "u", where))
     if not 1 <= usefulness <= USEFULNESS_MAX:
@@ -162,6 +174,7 @@ def parse_row(row: dict, where: str) -> Entry:
     return Entry(
         word=word,
         keep=True,
+        context_ok=bool(row.get("ctx", 1)),
         usefulness=usefulness,
         semantics=str(_require(row, "sem", where)).strip(),
         meanings={loc: meanings[loc].strip() for loc in MEANING_LOCALES},

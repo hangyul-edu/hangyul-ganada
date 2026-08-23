@@ -288,6 +288,57 @@ for (const [, group] of byPrompt) {
   }
 }
 
+/*
+ * The six item states that were photographed, kept as fixtures.
+ *
+ * Each was reported from a screenshot of the running product, and each is a
+ * class rather than an instance — the bank is regenerated with a different
+ * distractor draw every build, so pinning the exact four options would pin
+ * nothing. What is pinned is the frame: a sentence that cannot have one answer,
+ * or an option that must never be offered at all.
+ */
+const REGRESSIONS = [
+  {
+    name: '힘찬 / 활기찬',
+    why: '두 형용사 모두 목소리를 자연스럽게 꾸민다 — the frame chooses neither',
+    hit: (item) => item.prompt?.includes('목소리로 말했어요') && item.kind === 'context',
+  },
+  {
+    name: '제 이름을 ____?',
+    why: 'an honorific -세요 with a question mark: request or question, unclear',
+    hit: (item) => item.prompt === '제 이름을 ____?',
+  },
+  {
+    name: '____는 회사에 가요',
+    why: 'every person noun in the language fits, and the particle is fixed',
+    hit: (item) => item.prompt === '____는 회사에 가요.',
+  },
+  {
+    name: '저를 친구로 ____',
+    why: 'no subject and no context — grammatical, and not a sentence anybody says',
+    hit: (item) => item.prompt === '저를 친구로 ____.',
+  },
+  {
+    name: '보지 as an option',
+    why: 'read as a crude anatomical term whatever the dictionary filed it under',
+    hit: (item) => (item.options ?? []).includes('보지'),
+  },
+  {
+    name: '여자를 타요',
+    why: 'innocent words, and a sentence this product may never compose',
+    hit: (item) =>
+      item.kind === 'context' &&
+      (item.options ?? []).some((o) => item.prompt.replace('____', o).includes('여자를 타')),
+  },
+];
+for (const regression of REGRESSIONS) {
+  for (const item of bank.items) {
+    if (regression.hit(item)) {
+      fail(item, 'photographed-regression', `${regression.name} — ${regression.why}`);
+    }
+  }
+}
+
 console.log(
   `Level test items — ${bank.items.length.toLocaleString('en')} in the bank, ` +
     `${contexts.length.toLocaleString('en')} of them contextual\n`,

@@ -317,6 +317,18 @@ for (const anchor of anchors) {
   // --- The word in a sentence -------------------------------------------------
   if (!anchor.example || !anchor.surface || !anchor.example.includes(anchor.surface)) continue;
   /*
+   * A teaching example that has been read and refused as a gap-fill.
+   *
+   * The two are different assets. 힘찬 목소리로 말했어요 is the right sentence on
+   * 힘차다's card and an unanswerable question, because 활기찬 목소리 and 공손한
+   * 목소리 are also things people say. `ctx: 0` on the pack row is that judgement
+   * written down, and the word keeps its meaning and produce items.
+   */
+  if (anchor.context_ok === false) {
+    rejected.refusedAsContext = (rejected.refusedAsContext ?? 0) + 1;
+    continue;
+  }
+  /*
    * Nouns, verbs and adjectives only.
    *
    * A determiner or an adverb in a blank is a question about style rather than

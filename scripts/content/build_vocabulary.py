@@ -483,6 +483,10 @@ def main() -> int:
         # differs from its spelling. Read once, because two things need it: the
         # note a learner sees under the word, and the romanisation, which the
         # standard bases on pronunciation rather than on spelling.
+        # Whether this example may also become a Level Test gap-fill. See
+        # `pack.Entry.context_ok`; only the refusals are written, so the field is
+        # absent on the overwhelming majority of words.
+        context_ok = kept[word].context_ok
         sound_note = pronunciation.note_for(word)
         spoken_form = pronunciation.spoken_form(word)
 
@@ -558,6 +562,7 @@ def main() -> int:
                 # point: a note on every card is a note nobody reads. See
                 # `pronunciation.py`.
                 **({"say": sound_note[0], "sayWhy": sound_note[1]} if sound_note else {}),
+                **({} if context_ok else {"noContext": True}),
                 # Where the example writes the word in a different form —
                 # 먹다 appearing as 먹어요. Stored rather than derived in the
                 # app, because deriving it needs the conjugator and there must

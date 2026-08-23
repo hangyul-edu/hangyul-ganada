@@ -331,6 +331,9 @@ def build() -> dict:
                 "surface": word.get("as") or word["word"],
                 "senseId": word.get("senseId") or word["id"],
                 "category": corpus["categories"][word["c"]],
+                # A teaching example that has been judged unusable as a
+                # gap-fill. See `pack.Entry.context_ok`.
+                "context_ok": not word.get("noContext"),
                 "source": "corpus",
             }
         )
