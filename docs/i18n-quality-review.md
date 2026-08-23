@@ -56,7 +56,41 @@ keyword — a preference list, not a download, and nothing is fetched.
 | `en` | **Read.** Capitalisation reconciled (`Vocabulary level`), one redundant line removed, the verdict wording unified. |
 | `fr` `de` | Subject-pronoun question in example sentences re-opened; see below. |
 | `ta` | Rendering fixed. Prose not read by a speaker. |
-| the other 27 | Technically clean, warnings triaged, **prose not read by a speaker**. |
+| `pt-BR` | **Re-read, and the whole vocabulary pack was the wrong Portuguese.** See below. |
+| `zh-CN` `ja` `ar` | Brand strings only: each had invented a name for the product. Fixed and gated. |
+| the other 24 | Technically clean, warnings triaged, **prose not read by a speaker**. |
+
+## The two findings that a technically clean locale still had
+
+**`pt-BR` was written in European Portuguese, for four batches.** The locale is
+pt-BR and the pre-existing pack is unambiguously Brazilian — você ×44, trem,
+celular, banheiro, resfriado, xícara — and every entry authored during this pass
+drifted European: 143 strings of *telemóvel*, *comboio*, *palavra-passe*,
+*porta-bagagens*, *estou a aprender*, *toda a gente*, enclitic *doem-me*. Two of
+them taught the wrong word outright: **camisola**, given as the meaning of
+스웨터, is a nightgown in Brazil, and **constipação**, used for 독감's symptoms,
+is constipation. All 143 rewritten, plus *autocarro* and *o teu livro* which
+predated the pass, and 컴퓨터's *computadora* — the pack's Spanish being
+Peninsular (coche ×11, autobús ×14, patata, gafas, conducir).
+
+Spanish and Chinese were checked the same way and are consistent: the Spanish
+batches used móvil, patata and billete, matching, and there is no traditional
+character anywhere in the zh pack.
+
+**Nothing was reading for this, and nothing is now.** It was caught by
+`content:qa`'s meaning-collision warning — five words had become *antes* — which
+is a warning about learnability that happened to point at a register defect four
+batches late. A gate for "this locale is written in the wrong variety of its
+language" is not obviously writable; the marker list used here is in
+`docs/final-launch-audit.md`.
+
+**Four locales had invented a brand**, against a policy `config/product.ts`
+states in its opening comment. Korean misspelled its own official name — 한글
+가나다 for 한귤 가나다, the writing system for the brand — Chinese showed that
+same wrong Korean to a reader who cannot read it, Japanese said ハングルガナダ on
+one screen and ハンギュル on another, and Arabic had transliterated the family
+name five times. `name:check` now reads every locale bundle and fails on a brand
+spelling the config does not define for that locale.
 
 ## Open linguistic risks
 
