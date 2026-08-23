@@ -109,6 +109,34 @@ for (const [locale, script] of Object.entries(NON_LATIN)) {
     */
     const collected: string[][] = [];
     const inTheirScript = () => collected.flat().some((label) => script.test(label));
+    const main = page.locator('main');
+    /*
+      Wait for the screen to change, not for a number of milliseconds.
+
+      This is the third time this walk has been fixed for the same reason, so
+      it is worth naming the class rather than the instance. Advancing used to
+      be `click(); waitForTimeout(300)`, and 300 ms is a bet about how fast the
+      machine is. When the bet loses, the next step samples a screen that has
+      not rendered yet, reads no option group, decides there is no question
+      here, and *clicks past the question it came to read*. The walk then runs
+      out of its fourteen steps having collected nothing, and the failure says
+      "no question appeared in ta" — which sounds like missing Tamil content and
+      is actually a stopwatch. It reproduced once in a full suite run on a
+      loaded machine and never on an idle one, which is the signature.
+
+      So the walk now waits for `main` to say something different from what it
+      said before the click, up to two seconds, and carries on either way. A
+      screen that has changed is ready to be read; a clock is not evidence that
+      anything happened.
+    */
+    const settle = async (before: string) => {
+      const deadline = Date.now() + 2000;
+      while (Date.now() < deadline) {
+        const now = await main.innerText().catch(() => before);
+        if (now !== before) return;
+        await page.waitForTimeout(50);
+      }
+    };
     for (let step = 0; step < 14 && !inTheirScript() && collected.length < 2; step += 1) {
       const options = page.getByRole('group').first();
       const choices = (await options.count())
@@ -129,8 +157,9 @@ for (const [locale, script] of Object.entries(NON_LATIN)) {
           everywhere else, which is the signature of a walk that depends on
           layout rather than on meaning.
         */
+        const before = await main.innerText().catch(() => '');
         await choices!.first().click({ timeout: 2000 }).catch(() => {});
-        await page.waitForTimeout(250);
+        await settle(before);
       }
 
       const onward = page
@@ -151,8 +180,9 @@ for (const [locale, script] of Object.entries(NON_LATIN)) {
         assertion in the trace. A walk that tolerates a failed click has to
         tolerate it *quickly*.
       */
+      const before = await main.innerText().catch(() => '');
       await onward.click({ timeout: 2000 }).catch(() => {});
-      await page.waitForTimeout(300);
+      await settle(before);
     }
 
     expect(collected.length, `no question appeared in ${locale}`).toBeGreaterThan(0);
