@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `629c26fcb5ccf04491909d87db6bcefa1615155c` at 2026-08-23T16:04:37.700Z.
+Built from commit `a7598f70cb56264908c11f8ee7fe1b278f4b1028` at 2026-08-23T16:31:18.943Z.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 

@@ -168,6 +168,6 @@ repository and the artefact beside this file.
 ```
 0e20bea5a36ae929a53262243221e155048d124cde06a78c24dc31ff52520eee  hangyul-ganada-release.apk
 09954f863a7e1ebe5d0c61fad80e96d789829c618e449eec2e4be0ed8e76975e  hangyul-ganada-release.aab
-61621caea853248e5729bf08b75b6c72b772d3ae46d193533969ef1436a54479  docs/report.pdf
-2f5709f4f4bdcf6f177a96a40e5c6f29b18bb3f290e305b6fead3c4bf5d32362  build-info.json
+ac6c5e193c63827b04e9824d154d42513eb2d17a30394a5557034c50a0fbd3fd  docs/report.pdf
+240bdb9e7c181890c198868da8c8b0c4813c96d32693176b8efc5b780d089915  build-info.json
 ```
