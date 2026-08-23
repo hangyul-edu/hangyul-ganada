@@ -44,7 +44,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { conjugate, decompose, FINALS, stemOf } from '../packages/korean-morphology/src/index.ts';
+import { conjugate, decompose, FINALS, finalOf, hasFinal, stemOf } from '../packages/korean-morphology/src/index.ts';
 import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from './lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -219,6 +219,56 @@ for (const item of bank.items) {
 const contexts = bank.items.filter((item) => item.kind === 'context');
 
 /*
+ * The particle the sentence already carries has to fit all four options.
+ *
+ * A contextual sentence is authored with its particle attached — ____는 회사에
+ * 가요 — and the options are bare words dropped into the gap. A distractor
+ * ending in a consonant therefore landed in front of 는 and produced 거짓말는,
+ * and 197 composed sentences across 113 of 475 items read like that.
+ *
+ * None was ever the keyed answer, which is the part that matters: a quarter of
+ * the contextual bank could be answered by picking the option whose particle
+ * agreed, without reading the sentence or knowing one word of Korean. A gate
+ * that reads only the keyed sentence cannot see this, which is why this one
+ * composes all four.
+ */
+const PARTICLE_PAIRS = [
+  ['은', '는'], ['이', '가'], ['을', '를'], ['과', '와'], ['으로', '로'],
+  ['이나', '나'], ['이랑', '랑'], ['아', '야'], ['이에요', '예요'],
+];
+for (const item of contexts) {
+  const at = item.prompt.indexOf('____');
+  if (at < 0) continue;
+  const after = item.prompt.slice(at + 4);
+  for (const [consonantForm, vowelForm] of PARTICLE_PAIRS) {
+    const takesC = after.startsWith(consonantForm);
+    const takesV = after.startsWith(vowelForm);
+    if (!takesC && !takesV) continue;
+    const attached =
+      takesC && (!takesV || consonantForm.length >= vowelForm.length) ? consonantForm : vowelForm;
+    for (const option of item.options ?? []) {
+      const last = option[option.length - 1];
+      if (!last || !/[가-힣]/.test(last)) continue;
+      const wants =
+        consonantForm === '으로' && finalOf(last) === 'ㄹ'
+          ? vowelForm
+          : hasFinal(last)
+            ? consonantForm
+            : vowelForm;
+      if (wants !== attached) {
+        fail(
+          item,
+          'particle-mismatch',
+          `${option}${attached} — ${option} takes ${wants}, so this option is ` +
+            'ungrammatical and the answer can be found without reading the sentence',
+        );
+      }
+    }
+    break;
+  }
+}
+
+/*
  * Two words with the same sentence. Each item is answerable alone — the other
  * word is not among its four options — but the bank is its own proof that the
  * sentence does not pin the meaning down, which is the whole requirement.
@@ -246,7 +296,7 @@ console.log(
 const byRule = new Map();
 for (const finding of findings) byRule.set(finding.rule, (byRule.get(finding.rule) ?? 0) + 1);
 if (byRule.size === 0) {
-  console.log('  no item breaks any of the twelve rules.');
+  console.log('  no item breaks any of the thirteen rules.');
 } else {
   for (const [rule, count] of [...byRule].sort((a, b) => b[1] - a[1])) {
     console.log(`  ${String(count).padStart(5)}  ${rule}`);

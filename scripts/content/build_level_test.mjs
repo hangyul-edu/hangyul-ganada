@@ -44,7 +44,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFile
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { conjugate, FORMS, stemOf } from '../../packages/korean-morphology/src/index.ts';
+import { conjugate, FORMS, finalOf, hasFinal, stemOf } from '../../packages/korean-morphology/src/index.ts';
 import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from '../lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -276,6 +276,54 @@ for (const anchor of anchors) {
 
   const blanked = anchor.example.replace(anchor.surface, '____');
   const rest = blanked.replace('____', ' ');
+  /*
+   * Which particle allomorph the blank is followed by, if any.
+   *
+   * The sentence is authored with its particle already attached — ____는 회사에
+   * 가요 — and the options are bare words dropped into the gap. So a distractor
+   * whose last syllable ends in a consonant lands in front of 는 and produces
+   * 거짓말는, which is not Korean, and 197 composed sentences across 113 items
+   * looked like that. None of them was ever the keyed answer, which is worse
+   * than it sounds: it means a quarter of the contextual bank could be answered
+   * by picking the option whose particle agreed, without reading the sentence
+   * or knowing a single word.
+   *
+   * The fix is not to rewrite the particle. §12 of the review brief is right
+   * that the authored sentence is the authority and a generic repairer would
+   * turn good Korean into bad. It is to require the *distractors to agree with
+   * the answer*, so all four read grammatically and none of them gives the game
+   * away.
+   */
+  const PARTICLE_PAIRS = [
+    ['은', '는'], ['이', '가'], ['을', '를'], ['과', '와'], ['으로', '로'],
+    ['이나', '나'], ['이랑', '랑'], ['아', '야'], ['이에요', '예요'],
+  ];
+  const afterBlank = blanked.slice(blanked.indexOf('____') + 4);
+  /** True when `surface` can take the particle this sentence already carries. */
+  let particleFits = () => true;
+  for (const [consonantForm, vowelForm] of PARTICLE_PAIRS) {
+    const takesConsonantForm = afterBlank.startsWith(consonantForm);
+    const takesVowelForm = afterBlank.startsWith(vowelForm);
+    if (!takesConsonantForm && !takesVowelForm) continue;
+    // Longest match wins: 이에요 before 이, 으로 before 으.
+    const attached =
+      takesConsonantForm && (!takesVowelForm || consonantForm.length >= vowelForm.length)
+        ? consonantForm
+        : vowelForm;
+    particleFits = (surface) => {
+      const last = surface[surface.length - 1];
+      if (!last) return false;
+      // ㄹ takes 로, not 으로 — the one place a final behaves like a vowel.
+      const wants =
+        consonantForm === '으로' && finalOf(last) === 'ㄹ'
+          ? vowelForm
+          : hasFinal(last)
+            ? consonantForm
+            : vowelForm;
+      return wants === attached;
+    };
+    break;
+  }
   if (!ARGUMENT_PARTICLE.test(rest)) {
     // "천천히 ____ 주세요." Nothing here says which verb. "선생님께 ____."
     // has a particle and still says nothing about which verb.
@@ -361,6 +409,11 @@ for (const anchor of anchors) {
       surface = other.word;
     }
     if (surface === anchor.surface || choices.some((c) => c.surface === surface)) continue;
+    // Agrees with the particle the sentence already carries — see above.
+    if (!particleFits(surface)) {
+      rejected.particleMismatch = (rejected.particleMismatch ?? 0) + 1;
+      continue;
+    }
     // Already in the sentence, so substituting it would repeat a word.
     if (anchor.example.includes(surface)) continue;
     /*
