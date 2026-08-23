@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 23 August 2026
-describes: A re-audit written from scratch against the running product at `1367418` — every level-test sentence read for a second right answer, the honorific verbs found conjugating into strings that are not Korean, the Korean interface read on the screen rather than in the bundle, 262 example translations that invented a person the sentence does not have, and a signed package rebuilt from this commit with the existing production key.
+describes: A re-audit written from scratch against the running product at `7dd285c` — every level-test sentence read for a second right answer, the honorific verbs found conjugating into strings that are not Korean, the Korean interface read on the screen rather than in the bundle, 262 example translations that invented a person the sentence does not have, and a signed package rebuilt from this commit with the existing production key.
 mark: report-assets/mark.png
 ---
 
@@ -73,7 +73,7 @@ only one of them is true.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Branch | `main` |
-| Source commit described | `1367418` |
+| Source commit described | `7dd285c` |
 | Android application id | `com.talkhangyul.ganada` |
 | Platforms in this repository | Web (PWA), Android (Capacitor), an iOS project that cannot be built here |
 
@@ -96,9 +96,9 @@ answered by opening the APK, not by trusting the build log.
 
 | | |
 | --- | --- |
-| Built from | `1367418`, working tree clean |
-| APK | 71,321,805 bytes, SHA-256 `b78df86ad4c0d6dca0b6699823c8afba9ec715301f19ef6407edb5feacde1c2d` |
-| AAB | 70,065,064 bytes, signed |
+| Built from | `7dd285c`, working tree clean |
+| APK | 71,321,797 bytes, SHA-256 `6ca1da3382c894305ef9f2d04ba31ab6e09bfbcca580a87dbee8123eb97dafa5` |
+| AAB | 70,065,052 bytes, SHA-256 `b0a7982a58e0bce28d20951db84189940040b25b9bf63ea6fea18b568a641557`, signed |
 | Signature schemes | v2 and v3 |
 | Certificate SHA-256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` |
 | Certificate subject | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |

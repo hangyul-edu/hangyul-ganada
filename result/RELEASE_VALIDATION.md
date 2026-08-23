@@ -5,10 +5,10 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `67313dd` on branch `main`, working tree clean at the moment
+**Source:** commit `7dd285c` on branch `main`, working tree clean at the moment
 of the build.
 
-Commits after `67313dd` touch only `docs/`, `result/` and `app_result/`. None of
+Commits after `7dd285c` touch only `docs/`, `result/` and `app_result/`. None of
 them is inside `assets/public`, so the delivered package is byte-correct for the
 shipping source; a commit that records a build cannot be in the build it
 records, and that is the only gap. `npm run release:current` reads the commit
@@ -65,15 +65,15 @@ so the bytes tested and the bytes delivered are the same (`sha256` in
 
 | Check | Result |
 | --- | --- |
-| Built from the committed tree | `git rev-parse HEAD` = `67313ddfaf53a979a93e31b86d06959c949c3f62`, recorded in `build-info.json` |
+| Built from the committed tree | `git rev-parse HEAD` = `7dd285c767e99985bfcf6cc467d13400d2477512`, recorded in `build-info.json` |
 | Signed | Yes — the release keystore from `ANDROID_KEYSTORE_PATH`, not the debug key |
 | Signature schemes | v2 ✓, v3 ✓ (v1 deliberately off — `minSdk` 24) |
 | Certificate SHA-256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the project's established release key, compared against the keystore *and* the superseded artefact before rebuilding |
 | Certificate subject | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Package / version | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK levels | minSdk 24, targetSdk 36, compileSdk 36 |
-| APK | 71,321,801 bytes, SHA-256 `bc6ddb866b59475995121f00263b7b75b9f7b2becd9c951bfa17cd53773a220e` |
-| AAB | 70,065,061 bytes, SHA-256 `51da207b5e49ede1fe7ba8e084e1ccc369747e6ccc61426f67e990d71aef28a8`, signed |
+| APK | 71,321,797 bytes, SHA-256 `6ca1da3382c894305ef9f2d04ba31ab6e09bfbcca580a87dbee8123eb97dafa5` |
+| AAB | 70,065,052 bytes, SHA-256 `b0a7982a58e0bce28d20951db84189940040b25b9bf63ea6fea18b568a641557`, signed |
 | Entries in the package | 11,396 |
 | Interface locales in the package | 32, as separate lazy chunks |
 | Vocabulary locales complete | 10 of 32, counted from the emitted packs — the rest fall back to English past word 100 and the picker says so before the learner chooses |
@@ -121,7 +121,7 @@ only looks for additions cannot tell you.
 
 ## Tests — **PASS**
 
-Run from `67313dd` with the working tree clean.
+Run from `7dd285c` with the working tree clean.
 
 | Suite | Result |
 | --- | --- |
@@ -166,8 +166,8 @@ repository and the artefact beside this file.
 ## Checksums
 
 ```
-bc6ddb866b59475995121f00263b7b75b9f7b2becd9c951bfa17cd53773a220e  hangyul-ganada-release.apk
-51da207b5e49ede1fe7ba8e084e1ccc369747e6ccc61426f67e990d71aef28a8  hangyul-ganada-release.aab
-a4ae875c3b0607745928ca97bd3f907ff6e6dfe0e64872f4823838a58fd07d34  docs/report.pdf
-d6033fa685b5f6e4338c993e57f02355a0bc6c1b97eb52d47ee87b1a649a6b2a  build-info.json
+6ca1da3382c894305ef9f2d04ba31ab6e09bfbcca580a87dbee8123eb97dafa5  hangyul-ganada-release.apk
+b0a7982a58e0bce28d20951db84189940040b25b9bf63ea6fea18b568a641557  hangyul-ganada-release.aab
+8b3dae6adbc454f9effd545718897d1e96c6be966665c04035e165320aeba36b  docs/report.pdf
+051c15fb83f9d3186b022108513ffcad3079319b4bfc3e3eaef3c3e3a43526ba  build-info.json
 ```
