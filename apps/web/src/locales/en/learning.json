@@ -132,8 +132,6 @@
     "matchPickWord": "Pick a Korean word",
     "matchPickMeaning": "Now pick its meaning",
     "showHint": "Show a hint",
-    "right": "That's it.",
-    "notQuite": "Not quite. Here it is.",
     "mode": {
       "read": "Read",
       "listen": "Listen",

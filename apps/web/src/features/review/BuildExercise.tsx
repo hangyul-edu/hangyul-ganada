@@ -244,7 +244,7 @@ export function BuildExercise({
       ) : (
         <FeedbackState
           status={settled ? 'correct' : 'incorrect'}
-          headline={settled ? t('learning:review.right') : t('learning:review.notQuite')}
+          headline={t(settled ? 'common:verdict.correct' : 'common:verdict.incorrect')}
           actions={
             <Button size="md" onClick={onContinue}>
               {isLast ? t('vocabulary:session.finish') : t('vocabulary:session.next')}

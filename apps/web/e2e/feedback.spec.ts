@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-import { openApp } from './helpers/launch';
+import { openApp, openTodaysWords } from './helpers/launch';
 import { drawScribble, traceReferenceGlyph } from './helpers/trace';
 
 /**
@@ -109,4 +109,48 @@ test('a recognition answer is told apart from the screen describing itself', asy
   expect(text, 'the answer was restated at the learner').not.toMatch(
     /(Correct|That's right)[,:]\s*\S/i,
   );
+});
+
+test('a word answered wrong says so, in the same words as everywhere else', async ({ page }) => {
+  /*
+   * The review and vocabulary exercises had their own verdicts — "That's it."
+   * and "Not quite. Here it is." — while the writing box and the recognition
+   * step said "Correct." and "Incorrect.". Three screens of one product,
+   * disagreeing about what being right is called, and only the first two were
+   * covered when the shared verdict was introduced.
+   *
+   * The answer itself stays on the screen below the verdict. A choice question
+   * cannot be retried where it stands — a missed word comes back through the
+   * schedule, not through a button — so a wrong answer that showed nothing
+   * would be a review that teaches nothing. What §16 forbids is the verdict and
+   * the answer fused into one breath, 맞아요, 고예요, and that is gone.
+   */
+  await openTodaysWords(page);
+
+  // Walk to the first question with options, then answer it wrongly on purpose.
+  for (let step = 0; step < 14; step += 1) {
+    const options = page.getByRole('group').first();
+    const choices = (await options.count()) ? options.getByRole('button') : null;
+    const count = choices ? await choices.count() : 0;
+    if (count >= 3) {
+      const before = await screen(page);
+      // The last option is wrong unless the shuffle put the answer there; if it
+      // was right the assertion below simply reads the other verdict.
+      await choices.nth(count - 1).click();
+      await expect(
+        page.getByText('Correct.', { exact: true }).or(page.getByText('Incorrect.', { exact: true })),
+      ).toBeVisible();
+      const text = await screen(page);
+      expect(text, 'the old review verdict came back').not.toContain('Not quite');
+      expect(text, 'the old review verdict came back').not.toContain("That's it.");
+      expect(text, 'a placeholder key reached the screen').not.toContain('Headline');
+      expect(before.length).toBeGreaterThan(0);
+      return;
+    }
+    const forward = page.getByRole('button', { name: /Continue|Next|Got it|Start|Check/ }).last();
+    if (!(await forward.count())) break;
+    await forward.click();
+    await page.waitForTimeout(200);
+  }
+  throw new Error('no question with options appeared in fourteen steps');
 });

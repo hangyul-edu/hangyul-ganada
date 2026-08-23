@@ -396,11 +396,7 @@ export function ChoiceExercise({
       ) : (
         <FeedbackState
           status={correct ? 'correct' : 'incorrect'}
-          headline={
-            correct
-              ? t('learning:review.right')
-              : t('learning:review.notQuite')
-          }
+          headline={t(correct ? 'common:verdict.correct' : 'common:verdict.incorrect')}
           actions={
             <Button size="md" onClick={onContinue}>
               {/*

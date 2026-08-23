@@ -44,8 +44,6 @@
     "matchPickWord": "한국어 단어를 골라요",
     "matchPickMeaning": "이제 뜻을 골라요",
     "showHint": "힌트 보기",
-    "right": "맞았어요.",
-    "notQuite": "아쉬워요. 정답은 이거예요.",
     "mode": {
       "read": "읽기",
       "listen": "듣기",

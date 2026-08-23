@@ -44,8 +44,6 @@
     "matchPickWord": "选一个韩语单词",
     "matchPickMeaning": "再选它的意思",
     "showHint": "看提示",
-    "right": "答对了。",
-    "notQuite": "差一点，正确答案是这个。",
     "mode": {
       "read": "读",
       "listen": "听",
