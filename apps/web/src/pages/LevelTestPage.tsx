@@ -318,9 +318,21 @@ export function LevelTestPage() {
               <span className="hg-numeric">{result.reported}</span>
               <span className={styles.resultOf}>{t('levelTest:result.of', { levels: LEVELS })}</span>
             </p>
-            <p className={styles.resultBand}>
-              {t('levelTest:result.band', { low: result.low, high: result.high })}
-            </p>
+            {/*
+              The confidence band, and only when it is a band.
+
+              `estimate` reports a low and a high, and on a sitting answered
+              entirely with "I don't know" both come back 1 — so the screen read
+              "Most likely between 1 and 1.", which is not a range and not a
+              sentence anybody would write. Where the estimator is certain to a
+              single level the number above has already said it, and the honest
+              thing is to say nothing more.
+            */}
+            {result.low !== result.high && (
+              <p className={styles.resultBand}>
+                {t('levelTest:result.band', { low: result.low, high: result.high })}
+              </p>
+            )}
             <p className={styles.resultWords}>{t('levelTest:result.words', { count: words })}</p>
             {/*
               How far the test could actually ask, when that is not the whole

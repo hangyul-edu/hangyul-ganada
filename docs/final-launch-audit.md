@@ -23,8 +23,8 @@ continue there. The three checkpoint files are:
 | --- | --- | --- |
 | 1 | Handwriting Correct/Incorrect panel width | **DONE** |
 | 2 | Re-read report / issues / localisation doc, classify every claim | IN PROGRESS |
-| 3 | Visual quality audit beyond mechanical failures | TODO |
-| 4 | Re-render all routes and interactive states | TODO |
+| 3 | Visual quality audit beyond mechanical failures | IN PROGRESS |
+| 4 | Re-render all routes and interactive states | **DONE** — 32 renders, read |
 | 5 | Vocabulary expansion toward 10,000, quality-first | TODO |
 | 6 | Level Test recalibration after expansion | TODO |
 | 7 | Independent Level Test content review | TODO |
@@ -108,3 +108,35 @@ verdict states differ — 4
 
 **What this proves about the previous pass**, and why §2 below re-reads every
 claim: "nothing clipped" is not "looks right", and the report said the first.
+
+### 3–4. Rendered audit — 32 routes and states, read rather than counted
+
+Every route plus the transient states a learner actually meets: splash,
+placement dialog, handwriting idle / drawn / correct / incorrect, recognition,
+a vocabulary question, a level-test question, the level-test result, the reset
+dialog, offline, and Home / My Learning in Arabic, Korean, Japanese, Tamil and
+Thai. The existing `screens:audit` passed all 143 of its renders throughout;
+these are the things it does not measure.
+
+**F1 — "Most likely between 1 and 1."** The level-test result prints a
+confidence band from `estimate`'s low and high. On a sitting answered entirely
+with *I don't know* both come back 1, so the screen showed a range that is not a
+range. Fixed: the line appears only when the two differ, because where the
+estimator is certain to a single level the number above has already said it.
+
+**F2 — 383 px of dead space under the result.** Measured at 390×844: the last
+control ended at y=397 and the tab bar begins at 780, so 45% of the screen sat
+empty beneath a card the learner had spent eight minutes earning. Nothing was
+clipped; it looked like a page that had not finished loading. The product's own
+empty states already centre themselves in the space they are given, and a result
+is the same shape of screen. Fixed by making `.body` grow and centre. The
+question screens are unaffected — they are taller than the viewport, so there is
+nothing to distribute.
+
+**Checked and *not* a defect** — recorded because measuring beats impression:
+
+* the Words card's gap between "0/10" and *Start* looked wide after §58 removed
+  the blurb; measured at 16 px, which is the design token. Left alone.
+* the empty states (Wrong words, Saved words, Review) are vertically centred
+  with generous space. That is the pattern, not a fault, and it is what F2 was
+  fixed *to*.
