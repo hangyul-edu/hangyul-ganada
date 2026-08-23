@@ -74,11 +74,20 @@ export function ConfirmDialog({
       description={body}
       showClose={false}
       footer={
+        /*
+          No `fullWidth` on either answer.
+
+          It was there under the old grid, where the track dictated the width
+          and `width: 100%` merely filled it. In a flex row `width` becomes the
+          flex basis, so each button claimed the whole line and the pair was
+          stacked at every width in the product — including 430 px with two
+          one-word labels. The row sizes them now; see the stylesheet.
+        */
         <div className={styles.answers}>
-          <Button variant="neutral" fullWidth onClick={onCancel} data-testid={cancelTestId}>
+          <Button variant="neutral" onClick={onCancel} data-testid={cancelTestId}>
             {cancelLabel}
           </Button>
-          <Button fullWidth onClick={onConfirm} data-testid={confirmTestId}>
+          <Button onClick={onConfirm} data-testid={confirmTestId}>
             {confirmLabel}
           </Button>
         </div>

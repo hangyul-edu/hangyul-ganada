@@ -137,7 +137,21 @@ test('a new customer can start learning with no account of any kind', async ({ p
 
 test('the first lesson explains what Hangul is before asking for a stroke', async ({ page }) => {
   await page.goto(FIRST_LESSON);
-  await expect(page.getByRole('heading', { level: 2, name: 'Six vowels to start' })).toBeVisible();
+  /*
+   * The explanation, and the unit's name exactly once.
+   *
+   * This used to assert an `<h2>` carrying the unit title. Eight of the twelve
+   * units are named after their first lesson, and the session header already
+   * shows the lesson — so on unit 1 the words "Six vowels to start" were on the
+   * screen twice, forty vertical pixels apart. The heading is the copy that
+   * went; the explanation it sat above is the thing this test is about, and it
+   * is still here.
+   */
+  await expect(page.getByText('Hangul is an alphabet, not a set of pictures.')).toBeVisible();
+  expect(
+    (await page.locator('main').innerText()).split('Six vowels to start').length - 1,
+    'the unit is named twice on one screen',
+  ).toBe(1);
   await page.getByRole('button', { name: "Got it — let's start" }).click();
 
   // Then the letter itself — as the demonstration, which is the only glyph on
@@ -194,16 +208,18 @@ test('a faithful trace passes and an obvious scribble fails', async ({ page }) =
   await page.getByRole('button', { name: 'Check' }).click();
 
   /*
-    What a wrong attempt says now: one actionable sentence, and Try again.
+    What a wrong attempt says now: the verdict, and Try again.
 
-    It used to be a card with a headline — "Not quite", "Almost" — and this
-    asserted on that headline. §8 took the card out: a learner on their fourth
-    attempt at ㄱ has read the headline three times and it never told them
-    anything they could act on. The sentence that did is what is left.
+    Three wordings have stood here. First a card with a headline — "Not quite",
+    "Almost" — which a learner on their fourth attempt at ㄱ has read three times
+    without being told anything they can act on. Then one actionable sentence
+    ("write inside the box", "follow the guide"), which this test asserted on.
+    Now neither: §15 asks for the verdict and the way to try again, and nothing
+    else. A grader that explains itself is a grader talking about itself.
   */
   const failure = page.getByRole('status');
   await expect(failure).toBeVisible();
-  await expect(failure).toContainText(/box|guide|stroke|slowly/i);
+  await expect(failure).toContainText('Incorrect.');
   await expect(firstBox(page)).toHaveClass(/incorrect/);
 
   await page.getByRole('button', { name: 'Try again' }).click();
@@ -213,15 +229,16 @@ test('a faithful trace passes and an obvious scribble fails', async ({ page }) =
   await page.getByRole('button', { name: 'Check' }).click();
 
   /*
-    And a correct one says nothing on screen at all.
+    And a correct one says two words.
 
-    The praise is gone; what remains is the box locking and the way forward
-    appearing. The acceptance is still *announced*, because a screen-reader user
-    cannot see either of those — so this asserts the thing a sighted learner
-    sees, and the accessible status separately.
+    It said nothing at all for a while: the acceptance was announced to a screen
+    reader and shown to nobody, on the reasoning that a sighted learner sees the
+    box lock and the button appear. They do, and they were also entitled to be
+    told. The same two words are on every screen in the product that has a
+    verdict, which is what `common:verdict.*` is for.
   */
   await expect(firstBox(page)).toHaveClass(/correct/);
-  await expect(page.getByRole('status')).toContainText('Accepted');
+  await expect(page.getByRole('status')).toContainText('Correct.');
   await expect(page.getByText("That's it!")).toHaveCount(0);
 });
 
@@ -261,7 +278,14 @@ test('a letter is written once, over a guide, and then read back', async ({ page
   // Reading: the same letter among its look-alikes.
   await expect(page.getByText('Which one makes this sound?')).toBeVisible();
   await page.getByRole('button', { name: 'Choose ㅏ' }).click();
-  await expect(page.getByRole('status')).toContainText('That is ㅏ');
+  /*
+   * The verdict, and not a restatement of it.
+   *
+   * This used to read "That is ㅏ", which tells somebody who has just tapped the
+   * tile marked ㅏ that the answer is ㅏ. §16 removed the pattern everywhere it
+   * appeared.
+   */
+  await expect(page.getByRole('status')).toContainText('Correct.');
 });
 
 test('no step ever presents an empty writing box, and nothing offers a fainter one', async ({
@@ -340,7 +364,14 @@ test('progress survives closing and reopening the app', async ({ page, context }
   await page.waitForTimeout(2500);
   await passStep(page, 'Try a question', false);
   await page.getByRole('button', { name: 'Choose ㅏ' }).click();
-  await expect(page.getByRole('status')).toContainText('That is ㅏ');
+  /*
+   * The verdict, and not a restatement of it.
+   *
+   * This used to read "That is ㅏ", which tells somebody who has just tapped the
+   * tile marked ㅏ that the answer is ㅏ. §16 removed the pattern everywhere it
+   * appeared.
+   */
+  await expect(page.getByRole('status')).toContainText('Correct.');
 
   // Close every page in the context and open a fresh one — the same profile,
   // read back from IndexedDB rather than from anything in memory.
@@ -381,7 +412,8 @@ test('an interrupted lesson resumes at the letter that is unfinished', async ({ 
   await page.getByRole('button', { name: 'Check' }).click();
   await page.getByRole('button', { name: 'Try a question' }).click();
   await page.getByRole('button', { name: `Choose ${first}` }).click();
-  await expect(page.getByRole('status')).toContainText(first);
+  // The verdict, not the letter read back to somebody who just tapped it. §16.
+  await expect(page.getByRole('status')).toContainText('Correct.');
 
   // Away, and back — without the restart parameter.
   await page.goto('/letters/lesson-vowels-core');
@@ -427,9 +459,9 @@ test('every practice typeface renders its own glyph, and grades against it', asy
 
     await traceReferenceGlyph(page, firstBox(page));
     await page.getByRole('button', { name: 'Check' }).click();
-    // "Accepted." — the announcement that replaced the praise card. §8.
+    // The shared verdict, the same two words every screen with one uses.
     await expect(page.getByRole('status'), `${face} failed an honest trace`).toContainText(
-      'Accepted',
+      'Correct.',
     );
   }
 });
@@ -719,7 +751,7 @@ test('resetting the learning record asks first, then actually clears it', async 
   await startWriting(page);
   await traceReferenceGlyph(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();
-  await expect(page.getByRole('status')).toContainText('Accepted');
+  await expect(page.getByRole('status')).toContainText('Correct.');
 
   await page.goto('/me');
   await page.getByRole('button', { name: 'Reset learning progress' }).click();

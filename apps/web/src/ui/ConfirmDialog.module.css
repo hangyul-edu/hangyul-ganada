@@ -31,36 +31,66 @@
  * also correct.
  */
 .answers {
-  display: grid;
   /*
-    `min(9rem, 100%)`, not `9rem`.
+    Flex rather than grid, and the reason is the label.
 
-    A bare `minmax(9rem, 1fr)` promises the track will never be narrower than
-    9 rem — including when the container is narrower than 9 rem, at which point
-    the grid overflows by the difference and the promise is the bug. At 200%
-    text 9 rem is 288 px and the modal's content box is 280, so both buttons
-    hung 8 px past the right edge: the same defect this file was written to fix,
-    one root cause further down.
+    The first fix here was `repeat(auto-fit, minmax(min(9rem, 100%), 1fr))`,
+    which stacks when two 9-rem tracks will not fit. It never overflows, and it
+    also never stopped stacking: the dialog's action row is 240 px at 320 and
+    280 px everywhere above it, so two 144 px tracks plus the gap never fit and
+    *Cancel* and *Reset* — two words — were stacked at every width in the
+    product. A rule that always takes the fallback is not a responsive rule.
 
-    Wrapping the minimum in `min(…, 100%)` says what was meant: at least 9 rem,
-    or the whole container if that is less.
+    The mistake was measuring against a constant. What decides whether two
+    buttons fit side by side is how long their labels are, and `max-content` is
+    that number. `min-width: min(max-content, 100%)` says: never squeeze a
+    button below its own unwrapped label, unless the label is wider than the
+    row, in which case take the row and wrap inside it. Flex then does the rest
+    — both on one line while they fit, one per line when they do not — and it
+    adapts to the translation rather than to a guess about it.
   */
-  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--hg-space-2);
   width: 100%;
-  /* The grid may not be wider than what contains it, whatever a track wants. */
+  /* The row may not be wider than what contains it, whatever a button wants. */
   max-width: 100%;
 }
 
 /*
- * And the tracks may shrink.
+ * The default `min-width: auto` is the right rule here, and it is the whole
+ * reason this is flex and not grid.
  *
- * `min-width: 0` is the half of the fix that makes `1fr` mean what everybody
- * reads it as meaning. With it, a long label wraps to two lines inside its own
- * button instead of pushing the button through the wall.
+ * A flex item's automatic minimum is its **min-content** width, which — with
+ * `white-space: normal` below — is the longest single word in the label, not
+ * the whole label. So a button never overflows the modal, and `flex-basis:
+ * auto` still sizes it from its content, which is what lets two short answers
+ * share a line and two long ones take one each.
+ *
+ * `min-width: min(max-content, 100%)` was written here first and does nothing:
+ * a math function may not take an intrinsic keyword, so the declaration is
+ * invalid and dropped. It computed as `auto`, which happened to be correct,
+ * and a rule that works because it was ignored is a rule that will be
+ * "corrected" one day into the bug.
  */
 .answers > * {
-  min-width: 0;
+  /*
+    Half the row each, minus half the gap — so the two together are exactly the
+    row and both are the same width.
+
+    `flex: 1 1 auto` was tried first and gives *unequal* halves: the basis is
+    each button's own content, and growth only shares out what is left over, so
+    Cancel came out 120 px against Reset's 112. The two answers are equals and
+    should measure as equals.
+
+    `flex: 1 1 0` would also equalise them and would never wrap, because with a
+    zero basis the line never overflows however long the labels are — it would
+    squeeze both to half and let the text overflow instead. A basis of half the
+    row keeps the wrap: a button cannot shrink below its own min-content, so
+    when a label needs more than half the row the line no longer fits and the
+    second answer moves to its own line, full width.
+  */
+  flex: 1 1 calc(50% - (var(--hg-space-2) / 2));
   max-width: 100%;
 }
 
@@ -75,5 +105,4 @@
 .answers button {
   white-space: normal;
   text-wrap: balance;
-  overflow-wrap: anywhere;
 }
