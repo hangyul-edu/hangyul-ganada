@@ -94,9 +94,18 @@ const ARGUMENT_PARTICLE = /[가-힣]{1,6}(을|를|에서|에|으로|로|와|과|
 const SAFETY = JSON.parse(
   readFileSync(join(ROOT, 'content', 'vocabulary', 'learner-safety.json'), 'utf8'),
 );
-const NOUN_CLASSES = JSON.parse(
+const NOUN_CLASS_FILE = JSON.parse(
   readFileSync(join(ROOT, 'content', 'vocabulary', 'noun-classes.json'), 'utf8'),
-).classes;
+);
+const NOUN_CLASSES = NOUN_CLASS_FILE.classes;
+/** Classes that compete with each other as well as with themselves. */
+const CLASS_CONFLICTS = NOUN_CLASS_FILE.conflicts.groups;
+function classesCompete(a, b) {
+  if (a.some((kind) => b.includes(kind))) return true;
+  return CLASS_CONFLICTS.some(
+    (group) => a.some((kind) => group.includes(kind)) && b.some((kind) => group.includes(kind)),
+  );
+}
 const NOT_STANDALONE = new Set(
   Object.entries(SAFETY.notStandalone)
     .filter(([name]) => name !== '_comment')
@@ -444,6 +453,25 @@ for (const anchor of anchors) {
      * `scripts/content/categories.py` from the taught sense.
      */
     if (anchor.category && other.category === anchor.category) continue;
+    /*
+     * And the same *class*, which the category cannot see.
+     *
+     * The browse categories are topical, because that is where a learner looks
+     * for a word: 의사 is filed under body-health beside 배 and 약. So the rule
+     * above happily offered 의사 against 거지, and 선생님 against 형, and 아이
+     * against 그녀 — and 길에 의사가 있었어요, 선생님이 밥을 사 줬어요 and
+     * 아이는 노래를 잘해요 are all ordinary Korean. Reading the first fifty noun
+     * items found four of these; a frame that wants a person accepts any person.
+     *
+     * `noun-classes.json` is the coarse layer the category is not: person,
+     * animal, body part, food.
+     */
+    const answerClasses = NOUN_CLASSES[anchor.word];
+    const otherClasses = NOUN_CLASSES[other.word];
+    if (answerClasses && otherClasses && classesCompete(answerClasses, otherClasses)) {
+      rejected.sameNounClass = (rejected.sameNounClass ?? 0) + 1;
+      continue;
+    }
     /*
      * A general verb fits any object, so it can never be ruled out by reading
      * the sentence. See `GENERAL_VERBS`.

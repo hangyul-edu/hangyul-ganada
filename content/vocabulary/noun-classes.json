@@ -632,5 +632,26 @@
     "환자": [
       "person"
     ]
+  },
+  "conflicts": {
+    "_comment": [
+      "Classes that must not be offered against each other, beyond the obvious",
+      "rule that a class does not compete with itself.",
+      "",
+      "A person, an animal and a body part are all things that can be ill, hurt,",
+      "old or in the way. ____가 아파서 병원에 갔어요 was keyed 배 and offered 아빠,",
+      "and both are sentences: my stomach hurt so I went to hospital, my dad was",
+      "ill so he went to hospital. Different classes, one frame, two answers.",
+      "",
+      "Over-rejecting here is cheap — the distractor pool is thousands of words —",
+      "and under-rejecting puts two right answers in front of a learner."
+    ],
+    "groups": [
+      [
+        "person",
+        "animal",
+        "bodypart"
+      ]
+    ]
   }
 }
