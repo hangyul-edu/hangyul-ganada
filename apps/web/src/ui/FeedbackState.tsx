@@ -25,7 +25,7 @@ export function FeedbackState({ status, headline, children, actions }: FeedbackS
     <div className={`${styles.card} ${correct ? styles.correct : styles.incorrect}`} role="status">
       <div className={styles.head}>
         <span className={styles.icon} aria-hidden="true">
-          {correct ? <CheckIcon size={16} /> : <AlertIcon size={16} />}
+          {correct ? <CheckIcon size={18} /> : <AlertIcon size={18} />}
         </span>
         <p className={styles.headline}>{headline}</p>
       </div>

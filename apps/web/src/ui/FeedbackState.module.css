@@ -1,4 +1,25 @@
+/*
+  The verdict panel, at the width of the thing it is a verdict about.
+
+  ## The defect this is written against
+
+  It had no width of its own, so it took its content's: on the writing screen
+  the incorrect state came out 143 px inside a 350 px column — 41% — and the
+  correct state 180 px, because "Correct." is a longer word than "Incorrect."
+  is tall. Two things were wrong with that. A card floating at two fifths of the
+  width, a hundred pixels below a canvas that fills the column, does not read as
+  *this screen's answer to what you just did*; it reads as something that landed
+  there. And the two states measured differently, so the panel changed shape
+  according to whether the learner had got it right.
+
+  Filling the column fixes both, and it is the same rule the canvas card, the
+  option grid and the session's other cards already follow — the content column
+  is the product's unit of width, and a component that opts out of it is the one
+  that looks wrong.
+*/
 .card {
+  width: 100%;
+  max-width: 100%;
   border-radius: var(--hg-radius-lg);
   background: var(--hg-surface);
   padding: var(--hg-space-4);
@@ -16,14 +37,20 @@
 .head {
   display: flex;
   align-items: center;
-  gap: var(--hg-space-2);
+  gap: var(--hg-space-3);
 }
 
+/*
+  The verdict is the most important thing on the screen at this moment, and it
+  was set two steps below the header above it — 15 px bold beside a 48 px
+  button, in a card the width of the canvas. `title` is the smallest size that
+  reads as an answer rather than as a caption on one.
+*/
 .icon {
   display: grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   flex: none;
   border-radius: var(--hg-radius-pill);
   color: var(--hg-gray-0);
@@ -38,8 +65,9 @@
 }
 
 .headline {
-  font-size: var(--hg-text-body);
+  font-size: var(--hg-text-title);
   font-weight: var(--hg-weight-bold);
+  line-height: var(--hg-leading-snug);
 }
 
 .correct .headline {

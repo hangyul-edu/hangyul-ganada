@@ -221,6 +221,8 @@ const DEVICES = [
 const BRAND_PAIRS = new Set(['#ffffff on #ff6700', '#ff6700 on #ffffff']);
 
 const findings = [];
+/** Verdict-panel widths per device, so the two states can be compared. */
+const verdictWidths = new Map();
 const stopPreview = await ensurePreview(baseUrl);
 const browser = await chromium.launch();
 
@@ -566,6 +568,46 @@ for (const device of DEVICES) {
         }
       }
 
+      /*
+       * A verdict panel that shrank to fit its own words.
+       *
+       * `FeedbackState` had no width of its own, so on the writing screen it
+       * took its content's: 143 px of "Incorrect." inside a 350 px column, a
+       * hundred pixels below a canvas card that filled it. Nothing was clipped,
+       * nothing overlapped, every contrast passed — and the screen looked
+       * broken, because a card at two fifths of the column does not read as
+       * this screen's answer to what the learner just did.
+       *
+       * Two rules, because the defect had two halves. The panel fills the
+       * column it is in; and the correct and incorrect states measure the same,
+       * which they did not — "Correct." is a shorter word than "Incorrect." and
+       * the panel was 180 px in one state and 143 in the other.
+       *
+       * 0.9 rather than 1.0: a panel is allowed its own margin inside a padded
+       * column. Anything under nine tenths is the defect.
+       */
+      for (const panel of document.querySelectorAll('#root [role="status"]')) {
+        if (!visible(panel)) continue;
+        const column = panel.parentElement;
+        if (!column) continue;
+        const style = getComputedStyle(column);
+        const inner =
+          column.getBoundingClientRect().width -
+          Number.parseFloat(style.paddingLeft || '0') -
+          Number.parseFloat(style.paddingRight || '0');
+        if (inner <= 0) continue;
+        const ratio = panel.getBoundingClientRect().width / inner;
+        if (ratio < 0.9) {
+          problems.push({
+            kind: 'narrow panel',
+            detail:
+              `${(panel.textContent ?? '').trim().slice(0, 24)} — ` +
+              `${Math.round(panel.getBoundingClientRect().width)}px in a ${Math.round(inner)}px ` +
+              `column, ${(ratio * 100).toFixed(0)}% of it`,
+          });
+        }
+      }
+
       return problems;
     });
 
@@ -580,6 +622,27 @@ for (const device of DEVICES) {
        */
       if (problem.kind === 'low contrast' && BRAND_PAIRS.has(problem.pair)) continue;
       findings.push({ device: device.name, screen: screen.name, ...problem });
+    }
+
+    /*
+     * The other half of the verdict-panel rule, which one render cannot see.
+     *
+     * A learner meets both states on the same screen minutes apart, so they
+     * have to be the same shape. They were not: the panel sized itself to its
+     * own words, and "Correct." is shorter than "Incorrect.", so the card was
+     * 180 px after a good attempt and 143 after a bad one. Measured here, per
+     * device, and compared once both states have been rendered.
+     */
+    if (screen.name === 'writing accepted' || screen.name === 'writing rejected') {
+      const width = await page.evaluate(() => {
+        const panel = document.querySelector('#root [role="status"]');
+        return panel ? Math.round(panel.getBoundingClientRect().width) : null;
+      });
+      if (width !== null) {
+        const seen = verdictWidths.get(device.name) ?? {};
+        seen[screen.name] = width;
+        verdictWidths.set(device.name, seen);
+      }
     }
 
     if (!CHECK) {
@@ -630,6 +693,19 @@ console.log(
 if (findings.length === 0) {
   console.log('  nothing clipped, nothing overlapping, nothing unreadable, at any size.');
   process.exit(0);
+}
+
+for (const [device, seen] of verdictWidths) {
+  const { 'writing accepted': ok, 'writing rejected': no } = seen;
+  if (ok === undefined || no === undefined) continue;
+  if (Math.abs(ok - no) > 1) {
+    findings.push({
+      device,
+      screen: 'writing accepted / rejected',
+      kind: 'verdict states differ',
+      detail: `the panel is ${ok}px when the letter is accepted and ${no}px when it is not`,
+    });
+  }
 }
 
 const byKind = new Map();

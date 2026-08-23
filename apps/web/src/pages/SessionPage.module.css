@@ -267,16 +267,30 @@
   was the same mistake as editing only one of the two screens — they share this
   stylesheet, and the review session would have rendered an unstyled column.
 */
+/*
+  `stretch`, not `center`.
+
+  A flex column that centres its children sizes them to their own content, which
+  is how the verdict panel came to be 143 px wide under a 350 px canvas. The
+  things in here are cards and notes that belong to the column, not badges
+  floating in it; the one child that genuinely wants to be centred says so
+  itself (`.retryNote` has its own `max-width` and `text-align`).
+*/
 .after {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: var(--hg-space-3);
-  margin-top: var(--hg-space-4);
+  /*
+    The canvas sits 12 px above the Undo/Clear row; the verdict sat 32 below it,
+    which is what made it read as a card that had landed on the screen rather
+    than as this screen's answer. Same rhythm on both sides of the controls.
+  */
+  margin-top: var(--hg-space-3);
 }
 
 .retryNote {
-  margin: 0;
+  margin: 0 auto;
   max-width: 32ch;
   text-align: center;
   font-size: var(--hg-text-body-sm);

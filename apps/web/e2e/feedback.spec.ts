@@ -154,3 +154,47 @@ test('a word answered wrong says so, in the same words as everywhere else', asyn
   }
   throw new Error('no question with options appeared in fourteen steps');
 });
+
+test('the verdict panel is as wide as the thing it is a verdict about', async ({ page }) => {
+  /*
+   * The panel had no width of its own, so it took its content's: 143 px of
+   * "Incorrect." inside a 350 px column, a hundred pixels below a canvas card
+   * that filled it. Nothing clipped, nothing overlapped, every contrast passed,
+   * and the screen looked broken.
+   *
+   * `screens:audit` gates the ratio at seven device profiles; this holds the
+   * two halves a learner actually meets — that it fills the column, and that
+   * the correct and incorrect states are the same shape, which they were not.
+   */
+  const measure = async () => {
+    const panel = page.getByRole('status').first();
+    await expect(panel).toBeVisible();
+    return panel.evaluate((el) => {
+      const column = el.parentElement!;
+      const style = getComputedStyle(column);
+      const inner =
+        column.getBoundingClientRect().width -
+        Number.parseFloat(style.paddingLeft || '0') -
+        Number.parseFloat(style.paddingRight || '0');
+      return { width: el.getBoundingClientRect().width, inner };
+    });
+  };
+
+  await reachTheBox(page);
+  await drawScribble(page, box(page));
+  await page.getByRole('button', { name: 'Check' }).click();
+  const rejected = await measure();
+  expect(rejected.width / rejected.inner, 'the incorrect panel is narrower than its column').toBeGreaterThan(0.9);
+
+  await page.getByRole('button', { name: /Write it again|Try again/ }).click();
+  await page.getByRole('button', { name: 'Clear' }).click();
+  await traceReferenceGlyph(page, box(page));
+  await page.getByRole('button', { name: 'Check' }).click();
+  const accepted = await measure();
+  expect(accepted.width / accepted.inner, 'the correct panel is narrower than its column').toBeGreaterThan(0.9);
+
+  expect(
+    Math.abs(accepted.width - rejected.width),
+    'the two verdicts are different shapes',
+  ).toBeLessThan(1.5);
+});
