@@ -338,6 +338,46 @@ for (const [locale, rows] of packs) {
   });
 }
 
+// --- Brackets and slashes, the other shapes a second sense hides in -----------
+
+/*
+ * §9: separators are not the only way two senses get onto one card.
+ *
+ * A parenthetical can be a *restriction* — "yo (formal)", "hermano mayor (de
+ * una mujer)", "ขึ้น (รถ)" — which is exactly what a good Korean gloss needs,
+ * because 저 and 나 differ by register and 오빠 and 형 by who is speaking. Or it
+ * can be a second sense in brackets, which is the defect.
+ *
+ * Swept over all ten complete languages: 328 parentheticals, 231 distinct, and
+ * every one of them a register or usage marker. None is longer than 24
+ * characters and five contain a list — 신다 "đi (giày, tất)", 끼다 "ponerse
+ * (anillo, guantes)" — which name the *things the verb takes*, not two
+ * meanings. Slashes came to two, both Thai politeness particles that differ by
+ * the speaker's gender: ไม่ครับ/ค่ะ is one word with two forms the language
+ * requires.
+ *
+ * So the rule is the shape rather than a list of words: a marker is short and
+ * is not a clause. A parenthetical that runs past a marker's length is the one
+ * to read.
+ */
+const BRACKETED = /\(([^)]{2,})\)/g;
+const MARKER_MAX = 24;
+for (const [locale, rows] of packs) {
+  if (!COMPLETE_LOCALES.has(locale)) continue;
+  rows.forEach((row, index) => {
+    const gloss = row?.[0];
+    if (!gloss) return;
+    for (const match of gloss.matchAll(BRACKETED)) {
+      if (match[1].length <= MARKER_MAX) continue;
+      hard.push(
+        `${corpus.words[index].word} reads "${gloss}" in ${locale} — the bracketed part is ` +
+          `${match[1].length} characters, which is a clause rather than a register marker. ` +
+          'A second sense in brackets is still a second sense',
+      );
+    }
+  });
+}
+
 // --- Commas, against the dictionary's own senses -------------------------------
 
 /*

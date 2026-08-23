@@ -136,6 +136,22 @@ MIN_GLOSS_LENGTH = 2
 #: templates that caused it; this is the floor that stops the next one.
 MIN_GLOSS_LETTERS = 2
 
+#: A cross-reference whose target did not survive the parse.
+#:
+#: `찬` shipped the whole of its definition as "conjugative form of", and `싸`
+#: as "Infinitive form of" — a sentence with its object missing, which tells a
+#: reader nothing at all. 39 of them across the corpus.
+#:
+#: Dropped rather than repaired. The target is genuinely unrecoverable from
+#: what is left — the template that held it is gone by the time the gloss is
+#: read — and a definition that trails off mid-phrase is worse than an entry
+#: that does not claim to have one.
+DANGLING_REFERENCE = re.compile(
+    r"^(?:\w+\s+){0,4}(?:form|spelling|short|abbreviation|initialism|clipping|synonym)"
+    r"\s+(?:of|for)$",
+    re.IGNORECASE,
+)
+
 SOURCE = {
     "id": "en-wiktionary",
     "name": "English Wiktionary",
@@ -238,6 +254,8 @@ def usable(entry: Entry):
         if len(sense.gloss.strip()) < MIN_GLOSS_LENGTH:
             continue
         if sum(1 for c in sense.gloss if c.isalpha()) < MIN_GLOSS_LETTERS:
+            continue
+        if DANGLING_REFERENCE.match(sense.gloss.strip()):
             continue
         yield sense
 

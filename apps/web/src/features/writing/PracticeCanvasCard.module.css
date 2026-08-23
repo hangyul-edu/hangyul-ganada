@@ -24,6 +24,30 @@
   flex-wrap: wrap;
 }
 
+/*
+ * Undo and Clear are 36 px of chip in a 44 px target.
+ *
+ * `size="sm"` is `--hg-size-control-sm`, which is 36, and these two sit under
+ * the writing box where a finger has just been drawing — the worst place in the
+ * product to need a precise tap. They stay visually small, because a pair of
+ * chunky buttons under the paper would compete with the letter; the hit box
+ * grows instead, the same way the home status chips and the daily-goal chips
+ * do.
+ *
+ * Found by rendering the writing screen *after an attempt*, which no check had
+ * ever done — the route audit only ever saw the empty box, where both are
+ * disabled and therefore exempt.
+ */
+.toolRow > * {
+  position: relative;
+}
+
+.toolRow > *::after {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
+}
+
 .compact .toolRow {
   gap: var(--hg-space-1);
 }

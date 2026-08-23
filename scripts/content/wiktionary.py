@@ -441,6 +441,36 @@ _ENTITIES = {
 
 _TO_BE = re.compile(r"^\(to be\)\s+")
 
+#: A citation that came along with the definition.
+#:
+#: `초목` ended "…(Chinese pepper tree).[https://ko.dict.naver.com/ NAVER Korean
+#: Dictionary]" and `걸어오다` ended "Information from
+#: https://www.howtostudykorean.com/unit-3-intermediate…". A learner reading a
+#: word does not need the editor's working, and a URL in a definition is the
+#: clearest possible signal that something was copied rather than written.
+_CITATION = re.compile(
+    r"\s*(?:\[\s*https?://[^\]]*\]|\(?\s*(?:Information\s+from|Source)?\s*https?://\S+\)?).*$",
+    re.IGNORECASE | re.DOTALL,
+)
+
+#: MediaWiki's interwiki prefixes, which are addresses rather than words.
+#:
+#: `홍대` read "short for w:ko:홍익대학교 — Hongik University". The `w:` is a link
+#: to Wikipedia and `ko:` is the language it is in; neither is part of the name.
+_INTERWIKI = re.compile(r"\b(?:w|wikipedia|wikt|wiktionary|s|q)::?(?:[a-z-]{2,12}:)?")
+
+#: A cross-reference whose target did not survive the parse.
+#:
+#: `찬` shipped the whole of its definition as "conjugative form of" — a
+#: sentence with its object missing, which says nothing at all. 39 of them.
+#: These are dropped rather than repaired: the target is not recoverable from
+#: what is left, and a definition that trails off is worse than no entry.
+_DANGLING_REFERENCE = re.compile(
+    r"^(?:\w+\s+){0,4}(?:form|spelling|short|abbreviation|initialism|clipping|synonym)"
+    r"\s+(?:of|for)$",
+    re.IGNORECASE,
+)
+
 #: An opening brace with no closing one, and everything after it.
 #:
 #: The last resort, after every renderer and remover has had its pass. A
@@ -455,6 +485,41 @@ _STRAY_BRACKETS = re.compile(r"\[\[|\]\]")
 
 def _residue(text: str) -> str:
     return _STRAY_BRACKETS.sub("", _OPEN_TEMPLATE.sub("", text))
+
+
+def _balance_brackets(text: str) -> str:
+    """Drops a closing bracket that never had an opening one, and vice versa.
+
+    `집유령거미` read "cellar spider (Pholcus phalangioides), a small long-legged
+    spider)" — a stray `)` from a parenthetical whose opening half was inside a
+    template that got removed. Three of them, and each one reads as a typo in a
+    reference work, which is the kind of small wrongness that makes a reader
+    distrust the rest of the page.
+
+    Only unmatched brackets are touched; a correctly paired one is left exactly
+    where it is, including nested pairs.
+    """
+    for opener, closer in (("(", ")"), ("[", "]")):
+        depth = 0
+        drop: set[int] = set()
+        for index, char in enumerate(text):
+            if char == opener:
+                depth += 1
+            elif char == closer:
+                if depth == 0:
+                    drop.add(index)
+                else:
+                    depth -= 1
+        if depth:
+            # Unclosed openers: drop the last `depth` of them.
+            remaining = depth
+            for index in range(len(text) - 1, -1, -1):
+                if text[index] == opener and remaining:
+                    drop.add(index)
+                    remaining -= 1
+        if drop:
+            text = "".join(c for i, c in enumerate(text) if i not in drop)
+    return re.sub(r"\s{2,}", " ", text).strip()
 _EMPTY_PARENS = re.compile(r"\(\s*\)")
 
 
@@ -605,6 +670,9 @@ def clean_markup(raw: str) -> str:
     # already says that, so on a card it is three words of nothing. 340 senses.
     text = _TO_BE.sub("", text)
     text = _GLOSS_CAPITAL_MARK.sub("", text)
+    text = _CITATION.sub("", text)
+    text = _INTERWIKI.sub("", text)
+    text = _balance_brackets(text)
     text = _residue(text)
     # An empty parenthetical left by a template nobody rendered, and the
     # dangling punctuation around it.

@@ -201,6 +201,53 @@ const FORBIDDEN = [
     pattern: /\b(TODO|TBD|FIXME|XXX)\b|\b(lorem ipsum|placeholder)\b/,
     why: 'unfinished copy',
   },
+  {
+    id: 'implementation-word',
+    /*
+     * A word from the inside of the program, on the outside of it.
+     *
+     * This rule exists because of **"Headline"**. A `t()` call named a key that
+     * did not exist, `parseMissingKeyHandler` humanised the missing path into
+     * its last segment — leaf, de-camelised, capitalised — and every learner
+     * who answered a letter correctly was congratulated by the word *Headline*.
+     * A raw `handwriting.feedback.correct.headline` on screen would have been
+     * reported in a day; a capitalised English noun looked like copy.
+     *
+     * `i18n:check` now refuses a call with no key behind it, which stops that
+     * at source. This is the second net, on the strings themselves, and it
+     * catches the other way in: somebody typing an implementation word into a
+     * bundle on purpose. The list is words that are *only* ever internal —
+     * "mode" and "item" and "sense" are ordinary English and are not here.
+     *
+     * Bounded by Unicode letters, not by `\b`. JavaScript's word boundary is
+     * ASCII-only, so `\bnull\b` matches inside *nullázása* — Hungarian for
+     * "resetting" — because `á` is not an ASCII word character and therefore
+     * counts as a boundary. The rule's first run reported "Haladás nullázása"
+     * as an implementation leak, which is the sort of finding that teaches
+     * people to skim past this list.
+     */
+    pattern:
+      /(?<![\p{L}\p{N}_])(Headline|headline|undefined|null|NaN|payload|scoreId|itemKey|senseId|localeCode|i18nKey|titlePlaceholder|feedbackHeadline)(?![\p{L}\p{N}_])/u,
+    why: 'a word from inside the program reached a learner-facing string',
+  },
+  {
+    id: 'answer-restated',
+    /*
+     * A verdict that reads the learner's own answer back to them.
+     *
+     * "맞아요, 고예요." sat under a recognition question, telling somebody who
+     * had just tapped the tile marked 고 that the answer is 고. The information
+     * content is zero and the screen is narrating itself; §17 forbids the
+     * pattern rather than that one sentence.
+     *
+     * Matched as *correctness word plus an interpolation of the answer* — the
+     * shape, in any language — rather than as a phrase list, because the phrase
+     * list would be thirty-two entries long and would miss the thirty-third.
+     */
+    pattern:
+      /(맞아요|맞았|정답|correct|right|richtig|correcto|correct[oe]|正解|正确)[^.!?]{0,12}\{\{\s*(answer|character|word|letter|option|choice)\b/i,
+    why: 'the verdict repeats the answer the learner can already see',
+  },
 
 ];
 
@@ -212,6 +259,19 @@ const FORBIDDEN = [
  * technical failure the learner did not cause. Listing them here is what keeps
  * the warning list short enough that a new entry gets read.
  */
+/**
+ * Strings that state the answer, and are meant to.
+ *
+ * `answer-restated` forbids a verdict that reads the learner's tap back to
+ * them. A *hint* is the opposite situation: the last rung of the ladder exists
+ * to reveal, the learner asked for it twice to get there, and the answer is by
+ * definition not on screen — see `hints.test.ts`, which asserts the first rung
+ * never reveals and the last one always does.
+ *
+ * One entry, named, rather than a carve-out in the pattern.
+ */
+const REVEALS_ON_PURPOSE = new Set(['learning:review.hint.reveal']);
+
 const REVIEWED_TONE = new Set([
   'errors:generic',
   'learning:review.intro',
@@ -286,6 +346,7 @@ function walk(value, path, locale, namespace) {
   if (typeof value === 'string') {
     const key = `${namespace}:${path}`;
     for (const rule of FORBIDDEN) {
+      if (rule.id === 'answer-restated' && REVEALS_ON_PURPOSE.has(key)) continue;
       if (rule.except?.includes(key)) continue;
       if (rule.exceptNamespace === namespace) continue;
       // Some rules are about one language's grammar or terminology and would be

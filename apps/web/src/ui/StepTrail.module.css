@@ -16,7 +16,22 @@
   border-radius: var(--hg-radius-pill);
   font-size: var(--hg-text-micro);
   font-weight: var(--hg-weight-medium);
-  color: var(--hg-text-disabled);
+  /*
+    Quieter than the step you are on, and still readable.
+
+    This was `--hg-text-disabled`, which measures 1.99:1 on the warm card in
+    light and 3.11:1 in dark — under AA either way, on the one component whose
+    entire purpose is that "a beginner who can see that writing comes after
+    tracing understands why they are being asked to trace". A step nobody can
+    read is a step that is not there.
+
+    `--hg-text-tertiary` is 5.16:1 and 7.17:1. The hierarchy survives, because
+    what separates the current step from the others is a filled dot and a
+    tinted pill, not whether the word can be made out. Found by rendering the
+    lesson *after* an attempt — the empty-box route this audit used to measure
+    shows the trail on step one, where nothing is upcoming yet.
+  */
+  color: var(--hg-text-tertiary);
 }
 
 .dot {
@@ -27,6 +42,8 @@
 }
 
 .done {
+  /* A finished step is the same weight of grey as an upcoming one; what marks
+     it done is the filled dot, not a second shade nobody can name. */
   color: var(--hg-text-tertiary);
 }
 

@@ -55,6 +55,16 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
+/*
+  The e2e suite's own tracer, imported rather than reimplemented.
+
+  The first version of this file had its own copy that read ink out of
+  `canvas` — and read the wrong canvas, so the attempt never passed and the
+  recognition state was reported unreachable at every width. A second
+  implementation of "draw the letter" is a second thing that can be subtly
+  wrong, and this repository has been bitten by that twice before.
+*/
+import { drawScribble, traceReferenceGlyph } from '../apps/web/e2e/helpers/trace';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -62,10 +72,29 @@ const OUT = join(root, '.visual-qa/screens');
 const CHECK = process.argv.includes('--check');
 const baseUrl = process.argv.find((arg) => arg.startsWith('http')) ?? 'http://127.0.0.1:4477';
 
+/*
+  Routes, and the states behind them.
+
+  A `path` screen is a route: navigate, wait, measure. A `state` screen is
+  something a learner has to *do* something to see — a modal, a graded answer, a
+  populated list — and it carries an `arrive` that does it.
+
+  The distinction is the whole reason this list grew. Everything here was a
+  route, so the placement modal shipped with a button hanging outside it and
+  this check reported nothing: a modal is not a route, and neither is "the
+  screen after you got it wrong". §51.
+
+  `lesson` was also wrong in a quieter way — it pointed at
+  `/letters/lesson-vowels-1`, which does not exist. The lesson ids are
+  `lesson-vowels-core`, `lesson-consonants-first` and so on, so for however long
+  that entry has been there this audit has been measuring the not-found page and
+  reporting it as a clean lesson screen. A route in a fixture is a claim like
+  any other.
+*/
 const SCREENS = [
   { name: 'home', path: '/' },
   { name: 'letters', path: '/letters' },
-  { name: 'lesson', path: '/letters/lesson-vowels-1' },
+  { name: 'lesson', path: '/letters/lesson-vowels-core' },
   { name: 'sounds', path: '/letters/sounds' },
   { name: 'words', path: '/words' },
   { name: 'session', path: '/words/today' },
@@ -81,6 +110,102 @@ const SCREENS = [
   { name: 'legal', path: '/me/legal' },
   { name: 'privacy', path: '/me/privacy' },
 ];
+
+/**
+ * The states a learner reaches by doing something.
+ *
+ * Measured on fewer device profiles than the routes are, and deliberately: each
+ * of these costs a walk through the product, and what they are being asked is a
+ * *layout* question — does anything clip, overlap or escape — which the narrow
+ * width, the doubled text and the dark palette answer between them. A fifth
+ * profile would cost minutes and repeat what 390 already said.
+ */
+const STATES = [
+  {
+    name: 'placement modal',
+    async arrive(page, url) {
+      await page.goto(`${url}/words/today`, { waitUntil: 'networkidle' });
+      await page.getByTestId('placement-skip').waitFor({ state: 'visible', timeout: 8000 });
+    },
+  },
+  {
+    name: 'writing accepted',
+    async arrive(page, url) {
+      await reachTheWritingBox(page, url);
+      await traceReferenceGlyph(page, page.getByTestId('writing-canvas').first());
+      await page.getByRole('button', { name: /Check|확인/ }).click();
+      await page.waitForTimeout(700);
+    },
+  },
+  {
+    name: 'writing rejected',
+    async arrive(page, url) {
+      await reachTheWritingBox(page, url);
+      await drawScribble(page, page.getByTestId('writing-canvas').first());
+      await page.getByRole('button', { name: /Check|확인/ }).click();
+      await page.waitForTimeout(700);
+    },
+  },
+  {
+    name: 'recognition answered',
+    async arrive(page, url) {
+      await reachTheWritingBox(page, url);
+      await traceReferenceGlyph(page, page.getByTestId('writing-canvas').first());
+      await page.getByRole('button', { name: /Check|확인/ }).click();
+      await page.getByRole('button', { name: /Try a question|문제 풀어 보기/ }).click();
+      await page.waitForTimeout(700);
+      const tile = page.getByRole('button').filter({ hasText: /^[\u3130-\u318f\uac00-\ud7a3]$/ });
+      await tile.first().waitFor({ state: 'visible', timeout: 8000 });
+      await tile.first().click();
+      await page.waitForTimeout(700);
+    },
+  },
+  {
+    name: 'level test question',
+    async arrive(page, url) {
+      await page.goto(`${url}/me/level-test`, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(1200);
+      await page.locator('main button:visible').last().click();
+      await page.waitForTimeout(1500);
+    },
+  },
+  {
+    name: 'vocabulary answered',
+    async arrive(page, url) {
+      await page.goto(`${url}/words/today`, { waitUntil: 'networkidle' });
+      const skip = page.getByTestId('placement-skip');
+      await skip.waitFor({ state: 'visible', timeout: 6000 }).catch(() => {});
+      if (await skip.isVisible().catch(() => false)) await skip.click();
+      // Past the introduction, then answer whatever question comes up.
+      for (let step = 0; step < 6; step += 1) {
+        const options = page.getByRole('group').first().getByRole('button');
+        if (await options.count()) {
+          await options.first().click();
+          await page.waitForTimeout(700);
+          return;
+        }
+        const onward = page.locator('main button:visible:not([disabled])').last();
+        if (!(await onward.count())) return;
+        await onward.click();
+        await page.waitForTimeout(600);
+      }
+    },
+  },
+];
+
+/** Past the unit card and the letter's introduction, to the writing box. */
+async function reachTheWritingBox(page, url) {
+  await page.goto(`${url}/letters/lesson-vowels-core?from=start`, { waitUntil: 'networkidle' });
+  const unit = page.getByRole('button', { name: /Got it/ });
+  const intro = page.getByRole('button', { name: /Trace it|Write it/ });
+  const box = page.getByTestId('writing-canvas').first();
+  await unit.or(intro).or(box).first().waitFor({ state: 'visible', timeout: 10_000 });
+  if (await unit.isVisible().catch(() => false)) await unit.click();
+  if (await intro.isVisible().catch(() => false)) await intro.click();
+  await page.evaluate(() => document.fonts.ready);
+  await box.locator('canvas').first().waitFor({ state: 'visible', timeout: 10_000 });
+  await page.waitForTimeout(400);
+}
 
 const DEVICES = [
   { name: '320', width: 320, height: 568, scheme: 'light', zoom: 1 },
@@ -130,9 +255,28 @@ for (const device of DEVICES) {
     }, device.zoom);
   }
 
-  for (const screen of SCREENS) {
-    await page.goto(`${baseUrl}${screen.path}`, { waitUntil: 'networkidle' });
-    await page.waitForTimeout(1400);
+  /*
+    The routes on every profile, the states on the ones that decide layout:
+    the narrowest width, the modal one, the doubled text and the dark palette.
+  */
+  const STATE_PROFILES = new Set(['320', '390', '390-dark', '390-200%']);
+  const here = [
+    ...SCREENS,
+    ...(STATE_PROFILES.has(device.name) ? STATES : []),
+  ];
+
+  for (const screen of here) {
+    if (screen.arrive) {
+      try {
+        await screen.arrive(page, baseUrl);
+      } catch {
+        findings.push({ device: device.name, screen: screen.name, kind: 'unreachable', detail: 'the state could not be reached' });
+        continue;
+      }
+    } else {
+      await page.goto(`${baseUrl}${screen.path}`, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(1400);
+    }
 
     const measured = await page.evaluate(() => {
       const problems = [];
@@ -141,9 +285,28 @@ for (const device of DEVICES) {
         if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
           return false;
         }
+        /*
+          Screen-reader-only text is not on screen, whatever its box says.
+
+          The `hg-sr-only` pattern is a 1×1 absolutely positioned element with
+          `clip: rect(0,0,0,0)`, so it has a non-zero rectangle and passes every
+          naive visibility test. The stroke counter is one, and this check
+          duly reported it as 1.11:1 contrast — #f6f0ea on the canvas paper —
+          which is true of two colours that are never both painted.
+        */
+        if (element.closest('.hg-sr-only')) return false;
         const box = element.getBoundingClientRect();
+        if (box.width <= 1 || box.height <= 1) return false;
         return box.width > 0 && box.height > 0;
       };
+      /*
+        A disabled control is exempt from WCAG 1.4.3 by name, and the criterion
+        says so: "text or images of text that are part of an inactive user
+        interface component". The step tabs are disabled until the writing is
+        accepted, and greying them out is how they say so.
+      */
+      const inactive = (element) =>
+        !!element.closest('[disabled], [aria-disabled="true"], fieldset:disabled');
 
       if (document.documentElement.scrollWidth > window.innerWidth + 1) {
         problems.push({
@@ -294,7 +457,7 @@ for (const device of DEVICES) {
         return `#${[r, g, b].map((v) => Math.round(v).toString(16).padStart(2, '0')).join('')}`;
       };
       for (const element of document.querySelectorAll('#root p, #root span, #root h1, #root h2, #root h3, #root li')) {
-        if (!visible(element) || !(element.textContent ?? '').trim()) continue;
+        if (!visible(element) || inactive(element) || !(element.textContent ?? '').trim()) continue;
         if ([...element.children].some((child) => (child.textContent ?? '').trim())) continue;
         const style = getComputedStyle(element);
         const front = luminance(style.color);
@@ -339,7 +502,9 @@ for (const device of DEVICES) {
   }
 
   const mine = findings.filter((f) => f.device === device.name).length;
-  console.log(`  ${device.name.padEnd(9)} ${mine === 0 ? 'ok' : `${mine} finding(s)`}`);
+  console.log(
+    `  ${device.name.padEnd(9)} ${here.length} screen(s)   ${mine === 0 ? 'ok' : `${mine} finding(s)`}`,
+  );
   await context.close();
 }
 
@@ -367,8 +532,13 @@ if (!CHECK) {
   );
 }
 
+const renders = DEVICES.reduce(
+  (total, device) => total + SCREENS.length + (['320', '390', '390-dark', '390-200%'].includes(device.name) ? STATES.length : 0),
+  0,
+);
 console.log(
-  `\nScreens — ${SCREENS.length} screens x ${DEVICES.length} profiles = ${SCREENS.length * DEVICES.length} renders`,
+  `\nScreens — ${SCREENS.length} routes and ${STATES.length} states across ` +
+    `${DEVICES.length} device profiles = ${renders} renders`,
 );
 if (findings.length === 0) {
   console.log('  nothing clipped, nothing overlapping, nothing unreadable, at any size.');

@@ -121,6 +121,44 @@ const CONTENT_FREE = /^[\s()[\].,;:'"]*$/;
 /** Wiktionary's note that Korean has no adjective class. The label says it. */
 const TO_BE = /^\(to be\)\s/;
 
+/**
+ * The second sweep, and what it found that the first did not.
+ *
+ * Fixing five defect classes is not evidence that there is no sixth. So the
+ * whole corpus was read again against a wider net, and six more came back —
+ * every one of them, again, with a single cause in the ingestion:
+ *
+ * ```
+ *    6   a citation in the definition   초목  "…(Chinese pepper tree).[https://ko.dict.naver.com/ …]"
+ *    5   a MediaWiki interwiki prefix   홍대  "short for w:ko:홍익대학교 — Hongik University"
+ *    3   a bracket with no partner      집유령거미  "…a small long-legged spider)"
+ *   39   a reference with no referent   찬    "conjugative form of"
+ * ```
+ *
+ * The last of those is dropped rather than repaired: the target is gone by the
+ * time the gloss is read, and a definition that trails off mid-phrase is worse
+ * than an entry that does not claim to have one.
+ */
+const CITATION = /https?:\/\//;
+const INTERWIKI = /\b(?:w|wikt|wikipedia|s|q)::?[a-z-]*:?[^\s]/;
+const DANGLING =
+  /^(?:\w+\s+){0,4}(?:form|spelling|short|abbreviation|initialism|clipping|synonym)\s+(?:of|for)$/i;
+const REPLACEMENT = /\uFFFD/;
+
+/**
+ * A definition long enough to be an encyclopaedia entry — reported, not failed.
+ *
+ * 27 of 39,610, and they are real Wiktionary content: 설잡대's 626 characters
+ * explain a piece of university slang, 강신무's 418 describe a kind of shaman.
+ * Truncating them would manufacture the "obviously truncated text" this sweep
+ * exists to remove — first-sentence extraction cuts 전통 mid-parenthetical —
+ * and dropping them would lose the headword. So the count is the gate: it may
+ * not grow, and if it does somebody has widened the ingestion again.
+ */
+const ENCYCLOPAEDIC = 200;
+const ENCYCLOPAEDIC_BUDGET = 27;
+let encyclopaedic = 0;
+
 const senseIds = new Set();
 /** Every part of speech the dictionary actually uses. */
 const parts = new Set();
@@ -170,6 +208,22 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
         fail(`${sense.senseId} has a gloss with no words in it: ${JSON.stringify(sense.gloss)}`);
       }
       if (TO_BE.test(sense.gloss)) fail(`${sense.senseId} keeps the "(to be)" marker`);
+      if (CITATION.test(sense.gloss)) fail(`${sense.senseId} carries a citation URL: ${sense.gloss}`);
+      if (INTERWIKI.test(sense.gloss)) {
+        fail(`${sense.senseId} carries an interwiki prefix: ${sense.gloss}`);
+      }
+      if (DANGLING.test(sense.gloss.trim())) {
+        fail(`${sense.senseId} is a cross-reference with no target: "${sense.gloss}"`);
+      }
+      if (REPLACEMENT.test(sense.gloss)) fail(`${sense.senseId} contains a replacement character`);
+      for (const [open, close] of [['(', ')'], ['[', ']']]) {
+        const opens = [...sense.gloss].filter((c) => c === open).length;
+        const closes = [...sense.gloss].filter((c) => c === close).length;
+        if (opens !== closes) {
+          fail(`${sense.senseId} has ${opens} "${open}" and ${closes} "${close}": ${sense.gloss}`);
+        }
+      }
+      if (sense.gloss.length > ENCYCLOPAEDIC) encyclopaedic += 1;
       const key = sense.gloss.toLowerCase();
       if (glossesHere.has(key)) fail(`${entry.headword} shows "${sense.gloss}" twice`);
       glossesHere.add(key);
@@ -184,6 +238,14 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
       }
     }
   }
+}
+
+if (encyclopaedic > ENCYCLOPAEDIC_BUDGET) {
+  fail(
+    `${encyclopaedic} gloss(es) run past ${ENCYCLOPAEDIC} characters, up from ` +
+      `${ENCYCLOPAEDIC_BUDGET}. These are encyclopaedia entries rather than definitions and the ` +
+      'budget exists so the number cannot creep — see the note beside it',
+  );
 }
 
 // --- Every part of speech has a name in every language -------------------------
@@ -233,6 +295,9 @@ console.log(`  ${Object.keys(manifest.chunks).length} chunks, every name a hash 
 console.log(`  ${manifest.source.name}, ${manifest.source.license}`);
 console.log(
   `  ${parts.size} part(s) of speech, each named in all ${LOCALES.length} languages`,
+);
+console.log(
+  `  ${encyclopaedic} gloss(es) longer than ${ENCYCLOPAEDIC} characters, of a budget of ${ENCYCLOPAEDIC_BUDGET}`,
 );
 
 if (problems.length === 0) {
