@@ -358,6 +358,30 @@ const corpus = corpusSizes();
  */
 const wholeProjected = corpus && headwords > 0 ? (corpus.whole / headwords) * TARGET_HEADWORDS : 0;
 
+/*
+ * The precache, projected — and this is the line the forecast was missing.
+ *
+ * `corpus, whole at 10,000` measures **one** language. The service worker
+ * precaches `public/corpus` entire, which is the shared tables plus every
+ * complete language's meanings: 698 kB of the 1,026 kB precached today, two
+ * thirds of it. So the row that has a budget was being projected and the row
+ * that would break first was not.
+ *
+ * At the target that is about 2.5 MB of corpus against a 1.4 MB total, which is
+ * not a number a better gzip closes. It is a finding about the delivery
+ * strategy rather than about the budget: precaching every language's meanings
+ * is affordable at 2,844 headwords and is not affordable at 10,000, and the
+ * answer when it stops being affordable is to precache the learner's own
+ * language and fetch the others on demand — the same band mechanism that
+ * already keeps first paint flat.
+ *
+ * Reported, not enforced, exactly like the row above it. What ships today fits.
+ */
+const precacheProjected =
+  corpus && headwords > 0
+    ? sum(precached) + (corpus.everyLanguage / headwords) * TARGET_HEADWORDS
+    : 0;
+
 const results = [
   {
     label: 'first load',
@@ -417,6 +441,15 @@ const results = [
     detail: `${precached.length} of ${files.length} emitted files, plus public/corpus`,
     actual: sum(precached) + (corpus?.everyLanguage ?? 0),
     budget: BUDGETS.total,
+  },
+  {
+    label: `everything precached at ${TARGET_HEADWORDS.toLocaleString('en')}`,
+    detail: corpus
+      ? `the corpus is ${(corpus.everyLanguage / 1024).toFixed(0)} kB of the row above, in every complete language — not enforced`
+      : 'cannot project — no corpus found',
+    actual: precacheProjected,
+    budget: BUDGETS.total,
+    forecast: true,
   },
 ];
 

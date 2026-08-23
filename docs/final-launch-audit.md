@@ -38,7 +38,7 @@ continue there. The three checkpoint files are:
 | 15 | "More about it" content | **DONE** — 25 → 35, the ten homographs batch 3 added |
 | 16 | Accessibility final pass | TODO |
 | 17 | Offline / failure QA | TODO |
-| 18 | Performance final pass | TODO |
+| 18 | Performance final pass | **DONE** — budgets met; the forecast that was missing now says 197% |
 | 19 | Android / native boundary | TODO |
 | 20 | Negative-test the critical gates | TODO |
 | 21 | Release gate semantics | TODO |
@@ -326,3 +326,43 @@ of them Korean, where one English string is translated two ways. All three read
 correctly: a unit title and a sound-rule name that share an English word but not
 a context, two question forms deliberately distinguished, and a Home button
 shorter than the dialog button beside it.
+
+### 18. What ships fits, and the forecast that was not being made
+
+Every enforced budget is met at 2,844 words:
+
+```
+first load                       235.8 kB /  460.0 kB   51%
+corpus, first paint               46.0 kB /   64.0 kB   72%
+corpus, whole                    221.8 kB /  900.0 kB   25%
+largest route chunk               12.6 kB /   24.0 kB   52%
+everything precached            1025.7 kB / 1400.0 kB   73%
+```
+
+Dictionary search answers in p50 0.07 ms and p95 2.42 ms per keystroke, phone
+adjusted, over 30,229 headwords built in 1,022 ms.
+
+**The finding is a line that was not there.** `corpus, whole at 10,000` is
+forecast, and it lands at 779.8 kB against a 900 kB budget — 87%, which reads
+comfortable. But that row measures **one language**. The service worker
+precaches `public/corpus` entire: the shared tables plus every complete
+language's meanings, 691 kB of the 1,026 kB precached today, two thirds of it.
+The row with the total budget was not being projected at all, and it is the one
+that breaks first.
+
+Added, and reported rather than enforced, like the row above it:
+
+```
+everything precached at 10,000  2763.7 kB / 1400.0 kB  197%
+```
+
+**Nearly twice the budget, and not a number a better gzip closes.** This is a
+finding about the delivery strategy, not about the budget. Precaching every
+language's meanings is affordable at 2,844 headwords and is not affordable at
+10,000; when it stops being affordable the answer is to precache the learner's
+own language and fetch the rest on demand — the same band mechanism that already
+keeps first paint flat at any corpus size.
+
+It matters for §5 as much as for §18: reaching 10,000 taught words is not only
+an authoring problem. Whoever finishes the corpus has to change how it is
+delivered somewhere on the way there, and now there is a line that will say when.
