@@ -145,22 +145,30 @@ const FORBIDDEN = [
   },
   {
     /*
-     * One Korean noun for "a word", and one name per feature.
+     * One Korean noun for "a word". 낱말 is retired.
      *
      * The app had three — 낱말 in the quiz prompts, 단어 on Home, 어휘 on the
      * saved list — for the same thing, on screens a learner moves between in
      * one session. Korean readers notice; it is the difference between a
      * product that was written and one that was assembled.
      *
-     * Settled: **단어** for the everyday noun, because that is what a Korean
-     * speaker calls a word, and **어휘** only in the two feature names —
-     * 저장한 어휘 and 틀린 어휘 — where it means "vocabulary, the collection",
-     * which is what those screens hold. 낱말 is retired.
+     * This rule used to carve out 저장한 어휘 and 틀린 어휘, on the reasoning
+     * that 어휘 means "vocabulary, the collection", which is what those screens
+     * hold. Rendered, they do not: each is a *counted list* — 저장한 어휘 0,
+     * 틀린 어휘 0 — of rows you can remove one at a time, saved by a button
+     * reading 단어 저장, under a tab reading 단어, and the empty state read
+     * 어휘의 북마크를 누르면, which is not a thing anyone says. English calls
+     * both screens "words". They are 단어.
+     *
+     * Where 어휘 may still appear is a question about namespaces rather than
+     * about strings, so it is `locale:editorial` that owns it now — 어휘 is the
+     * lexicon a person has, which is what the level test measures and the only
+     * place it is left.
      */
     id: 'korean-word-noun',
     locales: ['ko'],
-    pattern: /낱말|저장한 단어|저장 어휘|틀린 단어|틀린 낱말/,
-    why: 'Korean uses 단어 for a word and 어휘 only in 저장한 어휘 / 틀린 어휘',
+    pattern: /낱말/,
+    why: 'Korean uses 단어 for a word; 낱말 is retired',
   },
   {
     /*
