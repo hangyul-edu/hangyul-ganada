@@ -210,8 +210,68 @@ for (const file of walk(root)) {
   for (const hit of hits) findings.push({ file: rel, ...hit });
 }
 
+/*
+ * The second half: a locale bundle may not invent a brand.
+ *
+ * `apps/web/src/config/product.ts` says it plainly — the brand is not
+ * translated, `localizedName` carries only the locales with an officially
+ * defined representation, and today that is English and Korean. Four bundles
+ * had quietly decided otherwise. Japanese called the app ハングルガナダ on the
+ * exit dialog and ハンギュル on the level-test result, so it disagreed with the
+ * config and with itself. Arabic had transliterated the whole family name to
+ * هانغيول in five places. Chinese put 한글 가나다 — Korean script, in a Chinese
+ * dialog, naming the app wrongly — in front of a reader who cannot read it.
+ *
+ * And Korean, the one locale that *does* have an official name, misspelled it:
+ * 한글 가나다 where the product is 한귤 가나다. The name means a tangerine and a
+ * first alphabet; 한글 is the writing system. The app was asking whether to
+ * close something else.
+ *
+ * The rule is narrow on purpose. It does not ask that the brand appear, only
+ * that where a bundle names the product or the family, it uses the spelling
+ * the config defines for that locale and no other.
+ */
+const BRAND_SPELLINGS = {
+  //: locale → the only forms allowed to name the product or family there.
+  ko: ['한귤 가나다', '한귤'],
+  '*': ['Hangyul ganada', 'Hangyul'],
+};
+//: Invented or misspelled forms seen in the bundles, each with what it is.
+const INVENTED = [
+  [/한글\s*가나다/g, 'the writing system 한글, not the brand 한귤'],
+  [/ハングルガナダ/g, 'a katakana brand; the config defines none for ja'],
+  [/ハンギュル/g, 'a katakana brand; the config defines none for ja'],
+  [/هانغيول/g, 'an Arabic brand; the config defines none for ar'],
+  [/غانادا/g, 'an Arabic brand; the config defines none for ar'],
+];
+
+const localeRoot = join(root, 'apps/web/src/locales');
+for (const locale of readdirSync(localeRoot).sort()) {
+  const dir = join(localeRoot, locale);
+  if (!statSync(dir).isDirectory()) continue;
+  const allowed = BRAND_SPELLINGS[locale] ?? BRAND_SPELLINGS['*'];
+  for (const file of readdirSync(dir)) {
+    if (!file.endsWith('.json')) continue;
+    const rel = relative(root, join(dir, file));
+    const text = readFileSync(join(dir, file), 'utf8');
+    for (const [pattern, why] of INVENTED) {
+      pattern.lastIndex = 0;
+      for (const match of text.matchAll(pattern)) {
+        if (allowed.some((form) => form.includes(match[0]))) continue;
+        findings.push({
+          file: rel,
+          line: text.slice(0, match.index).split('\n').length,
+          text: match[0],
+          note: `${why} — ${locale} may write ${allowed.map((f) => `"${f}"`).join(' or ')}`,
+        });
+      }
+    }
+  }
+}
+
 if (findings.length === 0) {
   console.log('Product name: no unintended references to a retired spelling.');
+  console.log('  and no locale bundle names the product anything the config does not define.');
   if (accountedFor.size) {
     console.log('\nDeliberate references, kept for backward compatibility:');
     for (const entry of ALLOWED) {
@@ -226,7 +286,7 @@ if (findings.length === 0) {
     console.error(`  ${finding.file}:${finding.line}  ${finding.text}${finding.note ? `  (${finding.note})` : ''}`);
   }
   console.error(
-    '\nRename them, or add the file to ALLOWED in scripts/check-product-name.mjs with a reason.',
+    '\nRename them, or add the file to ALLOWED in scripts/check-product-name.mjs with a reason.\n' + 'A locale finding means the bundle named the product something apps/web/src/config/product.ts\n' + 'does not define for that locale. The brand is not translated: add it to localizedName there\n' + 'if it should be, or use the Latin wordmark.',
   );
 }
 

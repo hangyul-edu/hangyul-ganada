@@ -53,7 +53,7 @@
     }
   },
   "exit": {
-    "title": "要退出 한글 가나다 吗？",
+    "title": "要退出 Hangyul ganada 吗？",
     "body": "学习进度已保存，下次可以接着来。",
     "stay": "继续学",
     "leave": "退出"

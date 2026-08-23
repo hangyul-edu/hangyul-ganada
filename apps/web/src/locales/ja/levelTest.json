@@ -26,7 +26,7 @@
   "unavailable": "はじめて開くときはインターネット接続が必要です。",
   "timeLeft": "残り時間",
   "result": {
-    "label": "ハンギュル語彙レベル",
+    "label": "Hangyul 語彙レベル",
     "of": "/ {{levels, number}}",
     "band": "{{low, number}}〜{{high, number}} の可能性が高いです。",
     "words": "このレベルなら、韓国語で最もよく使われる {{count, number}} 語ほどを見分けられます。",

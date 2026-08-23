@@ -13,7 +13,7 @@
     "listAria": "Các ngôn ngữ có sẵn",
     "searchLabel": "Tìm ngôn ngữ",
     "searchPlaceholder": "Tìm theo tên hoặc mã",
-    "noResults": "Không có ngôn ngữ nào khớp với \"{{query}}\".",
+    "noResults": "Không có ngôn ngữ nào khớp với “{{query}}”.",
     "selected": "Đang chọn",
     "coverageNote": "Mọi ngôn ngữ ở đây đều đã dịch toàn bộ giao diện và khoá học bảng chữ cái. Ở những dòng có ghi chú, nghĩa của từ và câu ví dụ vẫn hiển thị bằng tiếng Anh.",
     "wordsInEnglish": "Nghĩa của từ bằng tiếng Anh",

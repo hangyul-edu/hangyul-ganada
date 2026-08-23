@@ -13,7 +13,7 @@
     "listAria": "Available languages",
     "searchLabel": "Search languages",
     "searchPlaceholder": "Search by name or code",
-    "noResults": "No language matches \"{{query}}\".",
+    "noResults": "No language matches “{{query}}”.",
     "selected": "Selected",
     "coverageNote": "Every language here translates the whole interface and the alphabet course. Where a row says so, word meanings and example sentences are still shown in English.",
     "wordsInEnglish": "Word meanings in English",

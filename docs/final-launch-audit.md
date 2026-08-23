@@ -29,13 +29,13 @@ continue there. The three checkpoint files are:
 | 6 | Level Test recalibration after expansion | **DONE** — rebuilt at 2,731; qa / ambiguity / locale all green |
 | 7 | Independent Level Test content review | **DONE** — 420 contextual items read; 3 fixed |
 | 8 | Vocabulary example re-audit | TODO |
-| 9 | Korean product-copy review | TODO |
+| 9 | Korean product-copy review | **DONE** — 566 strings read; 4 defects, one of them the app's own name |
 | 10 | 32 UI locales linguistic re-audit | IN PROGRESS — Tamil shaping fixed; see docs/i18n-quality-review.md |
 | 11 | Vocabulary-content locale status | IN PROGRESS — pt-BR drift fixed; es/zh checked |
 | 12 | I-03 Hangyul hand-off | TODO |
 | 13 | Persistence / data loss | **DONE** — word-id renaming found and pinned |
-| 14 | Lexical relations | TODO |
-| 15 | "More about it" content | TODO |
+| 14 | Lexical relations | **DONE** — rebuilt; unchanged at 245, and checked against the bank |
+| 15 | "More about it" content | **DONE** — 25 → 35, the ten homographs batch 3 added |
 | 16 | Accessibility final pass | TODO |
 | 17 | Offline / failure QA | TODO |
 | 18 | Performance final pass | TODO |
@@ -271,3 +271,58 @@ not looking for, four batches after the drift began. There was no gate for
 "this locale is written in the wrong variety of its language", and the honest
 statement is that there still is not one; what there is now is a corrected pack
 and a marker list in this file.
+
+### 9. Reading the Korean, all 566 strings
+
+Korean is one of the ten complete locales and the only one where a mistake in
+the *interface* is a mistake in the language being taught. Every string in the
+ten `ko` bundles was read against its English source. The copy is good — one
+consistent 해요체 register, no calques, no key leaking through. Four things were
+wrong.
+
+**The app called itself by the wrong name.** `common:exit.title` read
+"**한글** 가나다를 닫을까요?" The product is **한귤** 가나다 — `config/product.ts`
+defines it and `i18n.test.ts` asserts it. 한글 is the writing system; 한귤 is the
+brand, a tangerine and a first alphabet. The one dialog that names the product
+to a Korean speaker named a different thing.
+
+Pulling that thread found three more locales that had invented a brand, against
+a policy `product.ts` states in its opening comment — *the brand is not
+translated; `localizedName` carries only the locales with an officially defined
+representation, and today that is English and Korean*:
+
+| locale | said | should say |
+| --- | --- | --- |
+| ko | 한글 가나다 | 한귤 가나다 |
+| zh-CN | 한글 가나다 | Hangyul ganada |
+| ja | ハングルガナダ (exit) but ハンギュル (level test) | Hangyul ganada |
+| ar | هانغيول غانادا, in five places | Hangyul ganada |
+
+Chinese put Korean script a Chinese reader cannot read in front of them, and
+named the app wrongly while doing it. Japanese disagreed with the config and
+with itself. **Gated**: `name:check` now reads every locale bundle and fails on
+a brand spelling the config does not define for that locale. Negative-tested by
+restoring the Korean typo — one finding, naming the file, the line and what the
+locale is allowed to write.
+
+**A band label that is a feeling among three levels.** The level-test result
+bands read 입문 · 생활 · **자신감** · 고급. The first, second and fourth are
+levels; 자신감 is self-confidence. Now 능숙.
+
+**A category name that means conversation.** *Coming & Going* was 오가는 말 —
+which is a set phrase for words exchanged in conversation — while the
+*communication* category next to it is 말과 미디어. Two categories, one about
+talking, and the movement one also said 말. Now 오고 가기.
+
+**Straight quotes in four locales.** `settings:language.noResults` wrote
+`"{{query}}"` where every other search-empty message in the same product writes
+`“{{query}}”`. Fixed in en, ko, th and vi. The Korean also read `"{{query}}"와
+맞는`, and 와/과 depends on the final consonant of a value chosen at runtime, so
+half of all queries would have taken the wrong particle. Rewritten to the
+invariant 에, which is what the vocabulary search already used.
+
+**Not changed.** `locale:editorial` reports 37 split-translation warnings, three
+of them Korean, where one English string is translated two ways. All three read
+correctly: a unit title and a sound-rule name that share an English word but not
+a context, two question forms deliberately distinguished, and a Home button
+shorter than the dialog button beside it.

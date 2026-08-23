@@ -13,7 +13,7 @@
     "listAria": "사용할 수 있는 언어",
     "searchLabel": "언어 검색",
     "searchPlaceholder": "이름이나 코드로 검색",
-    "noResults": "\"{{query}}\"와 맞는 언어가 없어요.",
+    "noResults": "“{{query}}”에 맞는 언어가 없어요.",
     "selected": "선택됨",
     "coverageNote": "여기 있는 언어는 모두 화면과 낱자 수업이 번역되어 있어요. 표시가 있는 언어는 단어 뜻과 예문 번역이 아직 영어로 나와요.",
     "wordsInEnglish": "단어 뜻은 영어",
