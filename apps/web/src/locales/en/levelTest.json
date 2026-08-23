@@ -31,7 +31,8 @@
     "band": "Most likely between {{low, number}} and {{high, number}}.",
     "words": "Around this level, readers usually recognise the {{count, number}} most common Korean words.",
     "recommend": "Your daily words are now chosen to match.",
-    "start": "Learn words at my level"
+    "start": "Learn words at my level",
+    "ceiling": "For now the test reaches level {{ceiling, number}}. The words above it are not translated yet."
   },
   "bands": {
     "starter": "STARTER",

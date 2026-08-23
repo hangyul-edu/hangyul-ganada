@@ -31,7 +31,8 @@
     "band": "Nhiều khả năng nằm giữa {{low, number}} và {{high, number}}.",
     "words": "Ở cấp này, người đọc thường nhận ra {{count, number}} từ tiếng Hàn thông dụng nhất.",
     "recommend": "Từ vựng mỗi ngày giờ sẽ theo cấp độ này.",
-    "start": "Học từ đúng trình độ của tôi"
+    "start": "Học từ đúng trình độ của tôi",
+    "ceiling": "Hiện bài kiểm tra chỉ hỏi đến cấp {{ceiling, number}}. Những từ cao hơn chưa được dịch."
   },
   "bands": {
     "starter": "KHỞI ĐẦU",

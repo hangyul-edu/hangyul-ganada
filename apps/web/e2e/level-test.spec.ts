@@ -114,6 +114,43 @@ test.describe('the vocabulary level test', () => {
     await expect(page.getByText(/Level 1 · STARTER/i)).toBeVisible();
   });
 
+  test('says how far it could ask, where that is not the whole scale', async ({ page }) => {
+    /*
+     * Twenty-two languages have a hundred of the 2,581 taught words written, so
+     * their bank is the Korean-only contextual items and it stops at level 23;
+     * nine more stop at 25 because the levels above are ranked from the
+     * dictionary and only English carries those glosses.
+     *
+     * The failure this pins is not a missing string but a silent one. A learner
+     * in Hungarian who is never asked a question above level 23 is still shown
+     * a number "of 30", and without the line below that number reads as a
+     * verdict on them rather than a limit of the bank.
+     */
+    await page.addInitScript(() => {
+      window.localStorage.setItem('hangyul_ganada:locale', 'hu');
+    });
+    await page.goto('/me/level-test');
+    await waitForLaunch(page);
+    await page.getByTestId('level-start').click();
+    await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+    await takeIt(page);
+    await expect(page.getByTestId('level-result')).toBeVisible();
+    // `levelTest:result.ceiling` in Hungarian, with the bank's own number in it.
+    await expect(page.getByText(/23\. szintig kérdez/)).toBeVisible();
+  });
+
+  test('says nothing about a ceiling when there is not one', async ({ page }) => {
+    // English is the one language whose bank reaches all thirty levels, and a
+    // line explaining a limit that does not apply is worse than no line.
+    await page.goto('/me/level-test');
+    await waitForLaunch(page);
+    await page.getByTestId('level-start').click();
+    await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+    await takeIt(page);
+    await expect(page.getByTestId('level-result')).toBeVisible();
+    await expect(page.getByText(/the test reaches level/i)).toHaveCount(0);
+  });
+
   test('leaves the learning progress alone', async ({ page }) => {
     /** Every store except settings, and how many rows each holds. */
     const counts = () =>

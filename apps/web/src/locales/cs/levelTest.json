@@ -31,7 +31,8 @@
     "band": "Nejspíš mezi {{low, number}} a {{high, number}}.",
     "words": "Na této úrovni čtenáři obvykle poznají {{count, number}} nejběžnějších korejských slov.",
     "recommend": "Denní slova se od teď řídí touto úrovní.",
-    "start": "Učit se slova na mé úrovni"
+    "start": "Učit se slova na mé úrovni",
+    "ceiling": "Test zatím sahá po úroveň {{ceiling, number}}. Slova nad ní ještě nejsou přeložena."
   },
   "bands": {
     "starter": "ZAČÁTEK",

@@ -31,7 +31,8 @@
     "band": "Najpewniej między {{low, number}} a {{high, number}}.",
     "words": "Na tym poziomie zwykle rozpoznaje się {{count, number}} najczęstszych koreańskich słów.",
     "recommend": "Od teraz codzienne słowa będą pod ten poziom.",
-    "start": "Ucz się słów na moim poziomie"
+    "start": "Ucz się słów na moim poziomie",
+    "ceiling": "Na razie test sięga poziomu {{ceiling, number}}. Słowa powyżej nie są jeszcze przetłumaczone."
   },
   "bands": {
     "starter": "POCZĄTEK",

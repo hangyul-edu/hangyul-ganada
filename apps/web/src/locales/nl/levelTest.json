@@ -31,7 +31,8 @@
     "band": "Waarschijnlijk tussen {{low, number}} en {{high, number}}.",
     "words": "Op dit niveau herken je meestal de {{count, number}} meest voorkomende Koreaanse woorden.",
     "recommend": "Je dagelijkse woorden volgen vanaf nu dit niveau.",
-    "start": "Woorden op mijn niveau leren"
+    "start": "Woorden op mijn niveau leren",
+    "ceiling": "De toets komt voorlopig tot niveau {{ceiling, number}}. De woorden daarboven zijn nog niet vertaald."
   },
   "bands": {
     "starter": "START",

@@ -217,8 +217,14 @@
 
 .resultBand,
 .resultWords,
-.resultRecommend {
+.resultRecommend,
+.resultCeiling {
   font-size: var(--hg-text-body-sm);
   color: var(--hg-text-secondary);
   text-wrap: pretty;
+}
+
+/* The reach of the bank in this language — quieter than the result itself. */
+.resultCeiling {
+  color: var(--hg-text-tertiary);
 }

@@ -192,11 +192,25 @@ for (const locale of LOCALES) {
 await browser.close();
 await stopPreview();
 
-const full = LOCALES.filter((l) => reachTable[l].ceiling === bank.levels).length;
-console.log(
-  `\n${LOCALES.length} languages: ${full} reach the whole scale, ` +
-    `${LOCALES.length - full} reach a lower ceiling and the result says so.`,
-);
+/*
+ * The distribution rather than a pass mark.
+ *
+ * "32/32" was the shape of the claim this whole gate exists to replace, and
+ * "n reach the whole scale" is the same claim with a smaller number in it. What
+ * a reader needs is how many languages sit at each ceiling, because that is the
+ * content backlog stated as the learner meets it.
+ */
+const byCeiling = new Map();
+for (const locale of LOCALES) {
+  const { ceiling } = reachTable[locale];
+  byCeiling.set(ceiling, [...(byCeiling.get(ceiling) ?? []), locale]);
+}
+console.log(`\n${LOCALES.length} languages, by how far the bank can ask:\n`);
+for (const [ceiling, group] of [...byCeiling].sort((a, b) => b[0] - a[0])) {
+  const scale = ceiling === bank.levels ? 'the whole scale' : `levels 1–${ceiling}`;
+  console.log(`  ${String(group.length).padStart(3)}  ${scale.padEnd(16)} ${group.join(' ')}`);
+}
+console.log('\nEvery ceiling below the full scale is stated on the result screen.');
 
 if (findings.length === 0) {
   console.log('No answer option, in any language, resolved from anywhere but that language.');

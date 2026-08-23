@@ -31,7 +31,8 @@
     "band": "Wahrscheinlich zwischen {{low, number}} und {{high, number}}.",
     "words": "Auf dieser Stufe erkennt man meist die {{count, number}} häufigsten koreanischen Wörter.",
     "recommend": "Deine täglichen Wörter richten sich ab jetzt danach.",
-    "start": "Wörter auf meiner Stufe lernen"
+    "start": "Wörter auf meiner Stufe lernen",
+    "ceiling": "Der Test reicht vorerst bis Stufe {{ceiling, number}}. Die Wörter darüber sind noch nicht übersetzt."
   },
   "bands": {
     "starter": "ANFANG",

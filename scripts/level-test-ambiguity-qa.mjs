@@ -25,6 +25,10 @@
  * | a distractor that means the same thing | two right answers |
  * | a distractor from the same semantic category | usually two right answers |
  * | a sentence with nothing to constrain the blank | 천천히 ____ 주세요 |
+ * | a distractor that is a verb fitting any object | 연필을 사고 있어요 |
+ * | another thing you can simply do, where the verb is 하다 | 친구와 낚시를 해요 |
+ * | a distractor the dictionary calls a synonym or an antonym | 불을 켜 / 꺼 |
+ * | the same sentence built for two different words | 둘에 셋을 더해요 / 곱해요 |
  * | an answer that appears elsewhere in its own sentence | the sentence answers itself |
  * | a duplicated option | three choices wearing four labels |
  *
@@ -41,6 +45,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { conjugate, decompose, FINALS, stemOf } from '../packages/korean-morphology/src/index.ts';
+import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from './lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BANK_DIR = join(ROOT, 'apps', 'web', 'public', 'level-test');
@@ -49,13 +54,28 @@ const CHECK = process.argv.includes('--check');
 
 const manifest = JSON.parse(readFileSync(join(BANK_DIR, 'manifest.json'), 'utf8'));
 const bank = JSON.parse(readFileSync(join(BANK_DIR, manifest.bank), 'utf8'));
-const anchors = new Map(
-  JSON.parse(readFileSync(ANCHORS, 'utf8')).anchors.map((anchor) => [anchor.id, anchor]),
+const anchorList = JSON.parse(readFileSync(ANCHORS, 'utf8')).anchors;
+const anchors = new Map(anchorList.map((anchor) => [anchor.id, anchor]));
+const lemmas = new Set(anchorList.map((anchor) => anchor.word));
+const related = new Map(
+  Object.entries(
+    JSON.parse(
+      readFileSync(join(ROOT, 'apps', 'web', 'src', 'data', 'generated', 'relations.json'), 'utf8'),
+    ).entries,
+  ).map(([id, entry]) => [id, new Set([...(entry.synonyms ?? []), ...(entry.antonyms ?? [])])]),
 );
+const isRelated = (a, b) => Boolean(related.get(a)?.has(b) || related.get(b)?.has(a));
 
 const findings = [];
 function fail(item, rule, detail) {
-  findings.push({ id: item.id, level: item.level, rule, detail, prompt: item.prompt, options: item.options });
+  findings.push({
+    id: item.id,
+    level: item.level,
+    rule,
+    detail,
+    prompt: item.prompt ?? item.promptId,
+    options: item.options ?? item.optionIds ?? [],
+  });
 }
 
 const ARGUMENT_PARTICLE = /[가-힣]{1,6}(을|를|에서|에|으로|로|와|과|랑)(\s|$)/;
@@ -99,13 +119,28 @@ for (const item of bank.items) {
   if (seen.has(item.id)) fail(item, 'duplicate-id', 'two items share an id');
   seen.add(item.id);
 
-  if (item.options.length !== bank.options) {
-    fail(item, 'option-count', `${item.options.length} options`);
+  /*
+   * A meaning item carries ids rather than strings — its four options are four
+   * meanings, and which language they are written in is the renderer's
+   * business (§4). The three checks below are about the *shape* of a question,
+   * so they apply either way; they just have to read the right field.
+   *
+   * Reading only `options` is how this file spent a build crashing on the
+   * first meaning item instead of checking 3,960 of them.
+   */
+  const options = item.options ?? item.optionIds;
+  const answer = item.answer ?? item.answerId;
+  if (!options || !answer) {
+    fail(item, 'shapeless', 'the item has neither options nor optionIds');
+    continue;
   }
-  if (new Set(item.options).size !== item.options.length) {
+  if (options.length !== bank.options) {
+    fail(item, 'option-count', `${options.length} options`);
+  }
+  if (new Set(options).size !== options.length) {
     fail(item, 'duplicate-option', 'the same option appears twice');
   }
-  if (!item.options.includes(item.answer)) {
+  if (!options.includes(answer)) {
     fail(item, 'answer-missing', 'the answer is not among the options');
   }
 
@@ -163,6 +198,15 @@ for (const item of bank.items) {
     if (other.senseId === anchor.senseId) {
       fail(item, 'same-sense', `${other.word} teaches the same sense`);
     }
+    if (isRelated(anchor.id, other.id)) {
+      fail(item, 'related-option', `${other.word} is a recorded synonym or antonym of ${anchor.word}`);
+    }
+    if (inflects && GENERAL_VERBS.has(other.word)) {
+      fail(item, 'general-verb', `${other.word} fits any object, so the sentence cannot rule it out`);
+    }
+    if (!inflects && isHadaFrame(item.prompt) && isActivityNoun(other.word, lemmas)) {
+      fail(item, 'activity-noun', `${other.word}하다 is a thing you can do, and the verb here is 하다`);
+    }
     if (inflects) {
       const expected = conjugate(other.word, item.form, { partOfSpeech: other.pos });
       if (expected && !item.options.includes(expected)) {
@@ -173,6 +217,27 @@ for (const item of bank.items) {
 }
 
 const contexts = bank.items.filter((item) => item.kind === 'context');
+
+/*
+ * Two words with the same sentence. Each item is answerable alone — the other
+ * word is not among its four options — but the bank is its own proof that the
+ * sentence does not pin the meaning down, which is the whole requirement.
+ */
+const byPrompt = new Map();
+for (const item of contexts) {
+  if (!byPrompt.has(item.prompt)) byPrompt.set(item.prompt, []);
+  byPrompt.get(item.prompt).push(item);
+}
+for (const [, group] of byPrompt) {
+  if (group.length < 2) continue;
+  for (const item of group) {
+    fail(item, 'shared-prompt', `the same sentence also asks for ${group
+      .filter((other) => other !== item)
+      .map((other) => other.answer)
+      .join(', ')}`);
+  }
+}
+
 console.log(
   `Level test items — ${bank.items.length.toLocaleString('en')} in the bank, ` +
     `${contexts.length.toLocaleString('en')} of them contextual\n`,
@@ -181,7 +246,7 @@ console.log(
 const byRule = new Map();
 for (const finding of findings) byRule.set(finding.rule, (byRule.get(finding.rule) ?? 0) + 1);
 if (byRule.size === 0) {
-  console.log('  no item breaks any of the eight rules.');
+  console.log('  no item breaks any of the twelve rules.');
 } else {
   for (const [rule, count] of [...byRule].sort((a, b) => b[1] - a[1])) {
     console.log(`  ${String(count).padStart(5)}  ${rule}`);

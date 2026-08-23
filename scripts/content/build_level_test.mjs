@@ -45,6 +45,7 @@ import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { conjugate, FORMS, stemOf } from '../../packages/korean-morphology/src/index.ts';
+import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from '../lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const ANCHORS = join(ROOT, 'content-cache', 'level-test-anchors.json');
@@ -80,6 +81,29 @@ const ARGUMENT_PARTICLE = /[가-힣]{1,6}(을|를|에서|에|으로|로|와|과|
 const anchorFile = JSON.parse(readFileSync(ANCHORS, 'utf8'));
 const LEVELS = anchorFile.levels;
 const anchors = anchorFile.anchors;
+/** Every lemma the ranking knows, so `축구하다` can be looked up from `축구`. */
+const LEMMAS = new Set(anchors.map((anchor) => anchor.word));
+
+/*
+ * The verified relation graph, used here to keep a word away from its own
+ * synonym and its own antonym.
+ *
+ * A synonym in the options is two right answers by definition. An antonym is
+ * subtler and just as bad: 불을 켜 주세요 and 불을 꺼 주세요 are both ordinary
+ * requests, so a sentence built around one of them never rules out the other.
+ * Both relations are in `content/vocabulary/relations.json`, and both are only
+ * there because two Wiktionary headwords state them about the sense this app
+ * teaches — so this is evidence rather than similarity.
+ */
+const RELATED = new Map();
+{
+  const graph = JSON.parse(
+    readFileSync(join(ROOT, 'apps', 'web', 'src', 'data', 'generated', 'relations.json'), 'utf8'),
+  ).entries;
+  for (const [id, entry] of Object.entries(graph)) {
+    RELATED.set(id, new Set([...(entry.synonyms ?? []), ...(entry.antonyms ?? [])]));
+  }
+}
 
 /** Deterministic: the same corpus must produce the same bank, twice. */
 function rng(seed) {
@@ -160,7 +184,21 @@ function formOfSurface(anchor) {
 
 const random = rng(20260822);
 const items = [];
-const rejected = { weakContext: 0, noForm: 0, noDistractors: 0, sharedArgument: 0 };
+const rejected = {
+  weakContext: 0,
+  noForm: 0,
+  noDistractors: 0,
+  sharedArgument: 0,
+  generalVerb: 0,
+  activityNoun: 0,
+  sharedPrompt: 0,
+  related: 0,
+};
+
+/** Whether the graph records the two as synonyms or antonyms, either way round. */
+function isRelated(a, b) {
+  return Boolean(RELATED.get(a)?.has(b) || RELATED.get(b)?.has(a));
+}
 
 for (const anchor of anchors) {
   const level = anchor.level;
@@ -172,6 +210,9 @@ for (const anchor of anchors) {
     if (chosen.length === OPTIONS - 1) break;
     if (other.gloss === anchor.gloss || chosen.some((c) => c.gloss === other.gloss)) continue;
     if (sharesMeaning(other.gloss, anchor.gloss)) continue;
+    // Two glosses that the dictionary says mean the same thing are two right
+    // answers however differently they are worded. See `RELATED`.
+    if (isRelated(anchor.id, other.id)) continue;
     chosen.push(other);
   }
   if (chosen.length === OPTIONS - 1) {
@@ -204,6 +245,7 @@ for (const anchor of anchors) {
     if (koreans.length === OPTIONS - 1) break;
     if (other.word === anchor.word || koreans.includes(other.word)) continue;
     if (sharesMeaning(other.gloss, anchor.gloss)) continue;
+    if (isRelated(anchor.id, other.id)) continue;
     koreans.push(other.word);
   }
   if (koreans.length === OPTIONS - 1) {
@@ -259,6 +301,8 @@ for (const anchor of anchors) {
   }
 
   const mine = arguments_(anchor.example);
+  /* 친구와 ____를 해요 — the blank is the object of 하다. */
+  const hadaFrame = isHadaFrame(blanked);
   const choices = [];
   /*
    * Curated words first.
@@ -287,6 +331,27 @@ for (const anchor of anchors) {
      * `scripts/content/categories.py` from the taught sense.
      */
     if (anchor.category && other.category === anchor.category) continue;
+    /*
+     * A general verb fits any object, so it can never be ruled out by reading
+     * the sentence. See `GENERAL_VERBS`.
+     */
+    if (isRelated(anchor.id, other.id)) {
+      rejected.related += 1;
+      continue;
+    }
+    if (inflects && GENERAL_VERBS.has(other.word)) {
+      rejected.generalVerb += 1;
+      continue;
+    }
+    /*
+     * 친구와 ____를 해요 took 축구 and offered 낚시 beside it, and fishing with
+     * a friend is as good an answer as football. When the sentence's verb is
+     * 하다 and the blank is a noun, every noun that can be *done* fits.
+     */
+    if (!inflects && hadaFrame && isActivityNoun(other.word, LEMMAS)) {
+      rejected.activityNoun += 1;
+      continue;
+    }
     let surface;
     if (inflects) {
       if (!stemOf(other.word)) continue;
@@ -331,6 +396,32 @@ for (const anchor of anchors) {
     form: surfaces?.form ?? 'noun',
     distractorIds: choices.map((c) => c.id),
   });
+}
+
+/*
+ * Two words with the same sentence.
+ *
+ * 불을 ____ 주세요 was built twice, once from 끄다 and once from 켜다, and the
+ * bank shipped both — the same six characters asking for opposite verbs. So
+ * were 소리를 ____ 주세요 (줄이다, 낮추다), 둘에 셋을 ____ (더하다, 곱하다) and
+ * eleven more. Each item is answerable on its own, because the other verb is
+ * not among its four options; but the bank is its own proof that the sentence
+ * does not pin the meaning down, and that is the whole requirement for a
+ * contextual item. Where the evidence exists, it is used: every item sharing a
+ * prompt with another goes, not just the later one.
+ */
+const promptCount = new Map();
+for (const item of items) {
+  if (item.kind !== 'context') continue;
+  promptCount.set(item.prompt, (promptCount.get(item.prompt) ?? 0) + 1);
+}
+for (let i = items.length - 1; i >= 0; i -= 1) {
+  const item = items[i];
+  if (item.kind !== 'context') continue;
+  if ((promptCount.get(item.prompt) ?? 0) > 1) {
+    items.splice(i, 1);
+    rejected.sharedPrompt += 1;
+  }
 }
 
 /** Thin each level, keeping a spread rather than a prefix. */
@@ -523,6 +614,10 @@ console.log(`    ${rejected.weakContext.toLocaleString('en')}  nothing in the se
 console.log(`    ${rejected.noForm.toLocaleString('en')}  the sentence uses an ending the conjugator does not generate`);
 console.log(`    ${rejected.noDistractors.toLocaleString('en')}  fewer than three usable distractors`);
 console.log(`    ${rejected.sharedArgument.toLocaleString('en')}  a distractor acts on the same noun, so it would fit too`);
+console.log(`    ${rejected.related.toLocaleString('en')}  a distractor is the answer's recorded synonym or antonym`);
+console.log(`    ${rejected.generalVerb.toLocaleString('en')}  a distractor is a verb that fits any object`);
+console.log(`    ${rejected.activityNoun.toLocaleString('en')}  a distractor is another thing you can simply do`);
+console.log(`    ${rejected.sharedPrompt.toLocaleString('en')}  the same sentence was built for two different words`);
 
 const thin = [];
 for (let level = 1; level <= LEVELS; level += 1) {

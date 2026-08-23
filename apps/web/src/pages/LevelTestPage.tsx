@@ -323,6 +323,24 @@ export function LevelTestPage() {
             </p>
             <p className={styles.resultWords}>{t('levelTest:result.words', { count: words })}</p>
             {/*
+              How far the test could actually ask, when that is not the whole
+              scale.
+
+              Twenty-two languages have a hundred of the 2,581 taught words
+              written, so their bank is the Korean-only contextual items and it
+              runs out at level 23; nine more reach 25, because the levels above
+              are ranked from the dictionary and only English has those glosses.
+              The test still reports a number out of thirty, which is the scale
+              — but a learner who was never asked a question above 23 is owed
+              the reason, and a number that silently means "as high as we could
+              measure" is the kind of result that reads as a verdict.
+            */}
+            {bank && bank.ceiling < LEVELS ? (
+              <p className={styles.resultCeiling}>
+                {t('levelTest:result.ceiling', { ceiling: bank.ceiling })}
+              </p>
+            ) : null}
+            {/*
               What the number is *for*, which is the only thing worth saying
               about it here. The screen used to end on a disclaimer explaining
               that this is not an official examination — a sentence that answers

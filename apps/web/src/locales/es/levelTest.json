@@ -31,7 +31,8 @@
     "band": "Probablemente entre {{low, number}} y {{high, number}}.",
     "words": "En este nivel se suelen reconocer las {{count, number}} palabras coreanas más frecuentes.",
     "recommend": "A partir de ahora tus palabras diarias se ajustan a este nivel.",
-    "start": "Aprender palabras de mi nivel"
+    "start": "Aprender palabras de mi nivel",
+    "ceiling": "Por ahora la prueba llega al nivel {{ceiling, number}}. Las palabras por encima aún no están traducidas."
   },
   "bands": {
     "starter": "INICIO",
