@@ -238,9 +238,12 @@ face inside a run.
 ## 6. What a native review would have to cover
 Per locale, in order of how much it would change:
 
-1. **Encouragement and feedback.** "That's it.", "Not quite. Here it is.",
-   "Nice work!" — the strings a learner sees most, and the ones where a literal
-   translation reads as a machine most quickly.
+1. **Encouragement and feedback.** The verdict a learner sees after every
+   answer is now two words — `common:verdict.correct` and `.incorrect`, written
+   in all thirty-two — and the strings around it ("Nice work!", "Pick up where
+   you left off.") are the ones a literal translation reads as a machine most
+   quickly. Two words are easier to get right than a sentence and no easier to
+   *know* are right without a speaker.
 2. **The hint ladder.** Thirty-two languages × twelve hint templates, each of which has
    to be helpful without giving the answer away *in that language*. The
    automated check in `hints.test.ts` catches the mechanical failure — the
@@ -291,6 +294,39 @@ the eleven, and none of the ones described in §2 could have.
 파리 is not in the table and is not a defect of this kind: the gloss is "a fly"
 and the example is about the insect, so they agree. The city is a second sense
 the entry does not teach.
+
+### A person the Korean does not have
+
+Korean drops the subject, and the example translations filled the gap. 발을
+밟았어요 — a foot was stepped on, no owner named — read "I stepped on his foot";
+목소리가 다정해요 read "Her voice is affectionate". Counted across the pack:
+
+| Language | Rewritten | Still carries an invented third person |
+| --- | --- | --- |
+| English | 58 | 0 |
+| Chinese | 67 | 0 |
+| Portuguese | 59 | 0 |
+| Spanish | 2 | 0 |
+| German | 30 | 51 |
+| French | 0 | 72 |
+| Japanese | 0 | 0 — Japanese drops the subject as Korean does |
+
+The count is itself a finding: of the 58 English, fifty said *he* and eight said
+*she*, and the eight were the elegant, the graceful, the sweetly-spoken, the one
+who dressed up and the one who plays the piano.
+
+**What is left, and why.** French and German have no third-person singular that
+is not gendered, and in both the masculine is the unmarked form for an
+unspecified person, so "Il ronfle" does not assert what "He snores" asserts.
+German's *possessives* do mark the owner's gender, which is why thirty of its
+seventy-four could go; French's agree with the thing possessed, so *sa voix* was
+never the problem. Recasting the remaining hundred and twenty-three with
+*quelqu'un* and *jemand* would be faithful and would read like a grammar
+exercise, and which of those two is worse is a judgement for a speaker of each
+language. It is on the
+review list rather than done.
+
+`examples:qa` gates the rule in the five languages where it is decidable.
 
 ## 8. The "More about it" section
 
