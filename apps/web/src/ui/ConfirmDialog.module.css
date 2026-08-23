@@ -1,15 +1,79 @@
 /*
- * The two answers, side by side and the same width.
+ * The two answers: side by side when they fit, stacked when they do not.
  *
- * `1fr 1fr` rather than a flex row: the reference draws both at 136 px, and
- * equal columns keep them equal when one translation is much longer than the
- * other — *Stay* against *Beenden* — instead of letting the wordier answer
- * grow into the quieter one. At 200% text or in a language that needs two
- * lines, both buttons grow together and the pair stays symmetrical.
+ * ## The defect this is written against
+ *
+ * The placement prompt rendered with its orange *Take the level test* button
+ * hanging outside the right edge of the modal. The rule here was
+ * `grid-template-columns: 1fr 1fr`, which looks like it can never overflow —
+ * `1fr` is a share of the available space, after all.
+ *
+ * It can, and this is how. A grid item's `min-width` defaults to `auto`, which
+ * resolves to its *min-content* width, and a `1fr` track will not shrink below
+ * that. `.button` sets `white-space: nowrap`, so a button's min-content width
+ * is its whole label on one line. Two long labels therefore demand more than
+ * the modal has, the tracks refuse to shrink, and the grid overflows its own
+ * container. Nothing in the cascade complains.
+ *
+ * ## Why `auto-fit` rather than a breakpoint
+ *
+ * A media query would have to guess the modal's inner width from the viewport,
+ * and the modal has padding, a gap, and a `max-width` — so the guess is wrong
+ * on some device or other, and wrong again the day a translation gets longer.
+ * `repeat(auto-fit, minmax(…, 1fr))` asks the *actual* container: if two
+ * columns of at least the minimum fit, there are two; otherwise there is one
+ * and the buttons stack. §12 asks for exactly that behaviour and this is the
+ * declarative form of it.
+ *
+ * 9rem is the threshold. Below that a side-by-side button is narrower than a
+ * comfortable tap target with a real label in it, so stacking is the better
+ * answer — and at 200% text, where 9rem is 288 px, everything stacks, which is
+ * also correct.
  */
 .answers {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /*
+    `min(9rem, 100%)`, not `9rem`.
+
+    A bare `minmax(9rem, 1fr)` promises the track will never be narrower than
+    9 rem — including when the container is narrower than 9 rem, at which point
+    the grid overflows by the difference and the promise is the bug. At 200%
+    text 9 rem is 288 px and the modal's content box is 280, so both buttons
+    hung 8 px past the right edge: the same defect this file was written to fix,
+    one root cause further down.
+
+    Wrapping the minimum in `min(…, 100%)` says what was meant: at least 9 rem,
+    or the whole container if that is less.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
   gap: var(--hg-space-2);
   width: 100%;
+  /* The grid may not be wider than what contains it, whatever a track wants. */
+  max-width: 100%;
+}
+
+/*
+ * And the tracks may shrink.
+ *
+ * `min-width: 0` is the half of the fix that makes `1fr` mean what everybody
+ * reads it as meaning. With it, a long label wraps to two lines inside its own
+ * button instead of pushing the button through the wall.
+ */
+.answers > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/*
+ * A label in a dialog may wrap; a label on a page control may not.
+ *
+ * `.button`'s `white-space: nowrap` is right in a toolbar and wrong here, where
+ * the width is dictated by a modal and the text by a translator. Scoped to this
+ * component rather than changed globally, because everywhere else the nowrap is
+ * doing a job.
+ */
+.answers button {
+  white-space: normal;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
