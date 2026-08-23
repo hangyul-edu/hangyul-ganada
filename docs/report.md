@@ -786,7 +786,33 @@ Two projects — mobile 390×844 and desktop 1440×900 — one worker, no retrie
 from the commit this report describes. **338 of 338, no failures, no flakes, no
 retries.**
 
-## 19.2 What the release gate enforces — **VERIFIED**
+## 19.2 `verify:release` does not pass today, by design — **VERIFIED**
+
+This has to be said plainly, because a reader who runs one command and sees it
+fail should know why.
+
+`verify:release` is 32 steps, and step 12 is `vocabulary:qa:target`:
+
+```
+1 error(s):
+  2,844 headwords — 7,156 short of the 10,000 target
+```
+
+That gate exists to fail. It is the corpus target held open in the release
+chain so the shortfall cannot be forgotten, and it cannot pass until the corpus
+reaches 10,000 — which is the honest state of the product and the subject of
+§8.3.
+
+The other 31 steps were run individually against this tree and all pass:
+`verify:quick` (29 checks), the store listing, the curriculum export, the fonts,
+the three jamo and face measurements, the status group, the modals, the 143
+rendered screens, the app icons, the relations, the four content builds, the
+four dictionary gates, the dictionary performance budget, the content and
+example QA, Word Detail, the audio and pronunciation gates, the coverage report,
+the issue tables, the documentation figures, the stroke measurements, the
+end-to-end suite and the release currency check.
+
+## 19.3 What the release gate enforces — **VERIFIED**
 
 `release:current` compares `build-info.json`'s commit against HEAD and lists
 every product file changed since, excluding `docs/`, `result/`, `app_result/`,
@@ -794,7 +820,7 @@ every product file changed since, excluding `docs/`, `result/`, `app_result/`,
 the bytes delivered are the bytes committed. Run before the rebuild, it
 correctly reported the delivered package 1,337 product files behind.
 
-## 19.3 Breaking the gates on purpose
+## 19.4 Breaking the gates on purpose
 
 A gate that has never failed is a gate nobody has tested.
 
@@ -811,14 +837,14 @@ three double-sense glosses, `content:qa` warned on the fifth word to become
 *antes*, and `store:check` refused a listing that undersold the corpus in three
 different thousands separators.
 
-## 19.4 A gate that was sampling by position
+## 19.5 A gate that was sampling by position
 
 `hint-usefulness-qa` checked every fourth word **by index**, so which quarter of
 the corpus it examined depended on how many words existed. Adding 113 words
 shifted the sample onto 돈 and surfaced a leak that had always been there. It now
 checks all 2,844 words — 607,866 rungs across 32 languages in 43 seconds.
 
-## 19.5 The store listings
+## 19.6 The store listings
 
 Eight listings, the release notes, the age-rating note and the review notes were
 all still selling 2,581 words. `store:check` caught it, and half of it would
@@ -848,7 +874,7 @@ Ten defects, in the order they would matter to a customer.
 6. **Three level-test items had two right answers** (§10).
 7. **A native safe-area check had stopped running** (§18.3) after a button was
    renamed, on the exact screen it was written for.
-8. **The store listings undersold the product** (§19.5) in eight languages.
+8. **The store listings undersold the product** (§19.6) in eight languages.
 9. **The precache had no forecast at the target** (§16) — 197% when made.
 10. **A level-test result showed "between 1 and 1"** and its screen left 383 px
     of dead space beneath the card a learner had spent eight minutes earning.
