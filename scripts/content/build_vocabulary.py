@@ -193,8 +193,36 @@ def part_of_speech_of(entries: list[Entry], word: str) -> str:
     return min(known, key=_POS_PREFERENCE.index)
 
 
-def word_id(word: str, taken: set[str]) -> str:
-    """`word_sagwa`. ASCII, stable, and readable in a directory listing."""
+#: Every word's identifier, once it has had one. See `word_id`.
+IDS = ROOT / "content" / "vocabulary" / "word-ids.json"
+
+
+def word_id(word: str, taken: set[str], pinned: dict[str, str]) -> str:
+    """`word_sagwa`. ASCII, readable in a directory listing, and *permanent*.
+
+    Permanent is the part that matters, and it is why `word-ids.json` exists.
+
+    Two Korean words can romanise the same — 젓다 (to stir) and 젖다 (to get
+    wet) are both `word_jeotda` — so the second one to ask gets `_2`. Which one
+    asks first was, until this ledger, decided by
+    `sorted(words, key=(level, score, word))`: the *difficulty order*, which
+    every content change perturbs. Adding 젓다 to the pack renamed the already
+    shipped 젖다 from `word_jeotda` to `word_jeotda_2`.
+
+    A renamed word is not a cosmetic problem. `progressKey(kind, itemKey)` in
+    `apps/web/src/storage/schema.ts` keys every progress row by this id, on a
+    device, with no cloud copy. So the rename does two things to a learner who
+    updates: it loses 젖다's history, and it hands that history to 젓다 — a word
+    they have never seen, now shown as one they know. The storage layer is
+    written specifically to survive updates without resetting progress, and
+    that guarantee cannot hold if the *content* renumbers underneath it.
+
+    So an id, once written down here, belongs to that word forever. New words
+    are allocated around the ledger and appended to it.
+    """
+    settled = pinned.get(word)
+    if settled is not None:
+        return settled
     base = f"word_{romanize(word)}"
     if base not in taken:
         taken.add(base)
@@ -396,7 +424,12 @@ def main() -> int:
     levels = difficulty.tiers(scores, LEVELS)
     mean = difficulty.baseline(list(feature_sets.values()))
 
-    taken: set[str] = set()
+    # The ledger first: every id it already hands out is spoken for, so a word
+    # new to this build allocates around them rather than through them.
+    pinned: dict[str, str] = (
+        json.loads(IDS.read_text(encoding="utf-8")) if IDS.exists() else {}
+    )
+    taken: set[str] = {pinned[word] for word in words if word in pinned}
     locale_ids = ["en", *[pack.LOCALE_IDS[loc] for loc in pack.MEANING_LOCALES]]
     copy_by_locale: dict[str, list] = {loc: [] for loc in locale_ids}
     for word in sorted(words, key=lambda w: (levels[w], scores[w], w)):
@@ -453,7 +486,7 @@ def main() -> int:
         sound_note = pronunciation.note_for(word)
         spoken_form = pronunciation.spoken_form(word)
 
-        identifier = word_id(word, taken)
+        identifier = word_id(word, taken, pinned)
         records.append(
             {
                 "id": identifier,
@@ -595,6 +628,25 @@ def main() -> int:
     #: One file per locale, each aligned index-for-index with `words`.
     #: `[meaning, example translation | null, long definition | null]`.
     outputs = {OUT: dump(payload)}
+    #: The id ledger, rewritten with this build's words.
+    #:
+    #: Additions only, and that includes words the pack has since dropped: a
+    #: retired word keeps its line so that re-adding it later returns the id its
+    #: learners already have on disk, and so that its base id is never quietly
+    #: handed to a homograph in the meantime.
+    ledger = dict(pinned)
+    ledger.update({record["word"]: record["id"] for record in records})
+    if len(set(ledger.values())) != len(ledger):
+        seen: dict[str, str] = {}
+        for word, identifier in sorted(ledger.items()):
+            if identifier in seen:
+                raise SystemExit(
+                    f"{IDS.name}: {seen[identifier]} and {word} both claim {identifier}"
+                )
+            seen[identifier] = word
+    outputs[IDS] = (
+        json.dumps({w: ledger[w] for w in sorted(ledger)}, ensure_ascii=False, indent=2) + "\n"
+    )
     for locale, rows in copy_by_locale.items():
         outputs[OUT.with_name(f"vocabulary.{locale}.json")] = dump(
             {"locale": locale, "words": rows}

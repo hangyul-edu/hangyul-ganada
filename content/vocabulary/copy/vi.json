@@ -10950,6 +10950,458 @@
     "word_jisihada": [
       "chỉ thị",
       "Trưởng nhóm đã chỉ thị thứ tự."
+    ],
+    "word_ap": [
+      "phía trước",
+      "Gặp nhau trước cửa hàng nhé."
+    ],
+    "word_dwi": [
+      "phía sau",
+      "Tôi đã viết tên ở mặt sau quyển vở."
+    ],
+    "word_ttae": [
+      "lúc, khi",
+      "Hồi nhỏ tôi sống ở quê."
+    ],
+    "word_il": [
+      "công việc",
+      "Hôm nay nhiều việc thật."
+    ],
+    "word_mal": [
+      "lời nói",
+      "Hãy ăn nói cẩn thận."
+    ],
+    "word_bul": [
+      "lửa",
+      "Trên núi đã xảy ra cháy."
+    ],
+    "word_him": [
+      "sức lực",
+      "Đứa trẻ đó rất khỏe."
+    ],
+    "word_kkum": [
+      "giấc mơ",
+      "Đêm qua tôi có một giấc mơ lạ."
+    ],
+    "word_jam": [
+      "giấc ngủ",
+      "Dạo này tôi khó ngủ."
+    ],
+    "word_kkeut": [
+      "phần cuối",
+      "Xin đứng ở cuối hàng."
+    ],
+    "word_pi": [
+      "máu",
+      "Ngón tay đang chảy máu."
+    ],
+    "word_ppyeo": [
+      "xương",
+      "Con chó đang ngậm một khúc xương."
+    ],
+    "word_hyeo": [
+      "lưỡi",
+      "Lưỡi đau nên không ăn được."
+    ],
+    "word_sum": [
+      "hơi thở",
+      "Leo cầu thang lên nên hụt hơi."
+    ],
+    "word_al": [
+      "trứng",
+      "Con chim đã đẻ ba quả trứng."
+    ],
+    "word_bae": [
+      "bụng",
+      "Đau bụng nên tôi đã đi bệnh viện."
+    ],
+    "word_ki": [
+      "chiều cao",
+      "Em tôi cao hơn tôi."
+    ],
+    "word_mat": [
+      "vị",
+      "Món canh này vị ngon thật."
+    ],
+    "word_bit": [
+      "ánh sáng",
+      "Ánh sáng buổi sáng lọt qua cửa sổ."
+    ],
+    "word_chum": [
+      "điệu nhảy",
+      "Họ đã nhảy trên sân khấu."
+    ],
+    "word_seom": [
+      "hòn đảo",
+      "Chúng tôi đi thuyền ra đảo."
+    ],
+    "word_sup": [
+      "khu rừng",
+      "Trong rừng nghe thấy tiếng chim."
+    ],
+    "word_dol": [
+      "hòn đá",
+      "Đường nhiều đá nên phải cẩn thận."
+    ],
+    "word_geum": [
+      "vàng",
+      "Chiếc nhẫn này làm bằng vàng."
+    ],
+    "word_byeong": [
+      "cái chai",
+      "Tôi đã vứt cái chai rỗng ra ngoài."
+    ],
+    "word_jan": [
+      "cái ly",
+      "Cho tôi một ly nước thôi."
+    ],
+    "word_jim": [
+      "hành lý",
+      "Hành lý nặng quá không nhấc nổi."
+    ],
+    "word_kal": [
+      "con dao",
+      "Tôi gọt táo bằng dao."
+    ],
+    "word_wang": [
+      "vua",
+      "Ngày xưa nước này có một vị vua."
+    ],
+    "word_yak": [
+      "thuốc",
+      "Xin uống thuốc sau khi ăn."
+    ],
+    "word_beop": [
+      "pháp luật",
+      "Ai cũng phải tuân thủ pháp luật."
+    ],
+    "word_got": [
+      "nơi chốn",
+      "Tôi đã tìm được một nơi yên tĩnh."
+    ],
+    "word_ban": [
+      "một nửa",
+      "Tôi cắt quả táo làm đôi."
+    ],
+    "word_jwi": [
+      "con chuột",
+      "Tôi thấy một con chuột trong bếp."
+    ],
+    "word_pa": [
+      "hành lá",
+      "Tôi cho một ít hành lá vào canh."
+    ],
+    "word_gim": [
+      "rong biển khô",
+      "Chúng tôi cuộn cơm trong rong biển rồi ăn."
+    ],
+    "word_beol": [
+      "con ong",
+      "Một con ong đậu trên bông hoa."
+    ],
+    "word_nalgae": [
+      "cánh",
+      "Con chim đã dang rộng đôi cánh."
+    ],
+    "word_jeongwon": [
+      "khu vườn",
+      "Tôi đã trồng hoa trong vườn."
+    ],
+    "word_changgo": [
+      "nhà kho",
+      "Tôi đã cất những chiếc hộp trong nhà kho."
+    ],
+    "word_mudeom": [
+      "ngôi mộ",
+      "Trên núi có một ngôi mộ cổ."
+    ],
+    "word_iut": [
+      "hàng xóm",
+      "Hàng xóm đã chia bánh tteok cho chúng tôi."
+    ],
+    "word_seulpeum": [
+      "nỗi buồn",
+      "Nỗi buồn dần dần tan biến."
+    ],
+    "word_chai": [
+      "sự khác biệt",
+      "Hãy thử tìm sự khác biệt giữa hai bức tranh."
+    ],
+    "word_jeungsang": [
+      "triệu chứng",
+      "Triệu chứng cảm nặng thêm."
+    ],
+    "word_mokpyo": [
+      "mục tiêu",
+      "Tôi đã đặt mục tiêu cho năm nay."
+    ],
+    "word_yeokal": [
+      "vai trò",
+      "Tôi đã đóng vai vua trong vở kịch."
+    ],
+    "word_baneung": [
+      "phản ứng",
+      "Phản ứng của mọi người rất tốt."
+    ],
+    "word_naeyong": [
+      "nội dung",
+      "Tôi đã đọc lại nội dung bức thư."
+    ],
+    "word_jaeneung": [
+      "tài năng",
+      "Người ấy có tài năng vẽ."
+    ],
+    "word_mideum": [
+      "niềm tin",
+      "Niềm tin đã nảy sinh giữa hai người."
+    ],
+    "word_gonggan": [
+      "không gian",
+      "Dưới bàn còn nhiều không gian."
+    ],
+    "word_hwa": [
+      "sự tức giận",
+      "Em tôi đã rất tức giận."
+    ],
+    "word_haebyeon": [
+      "bãi biển",
+      "Mùa hè chúng tôi đi chơi ở bãi biển."
+    ],
+    "word_yong": [
+      "con rồng",
+      "Trong bức tranh có một con rồng lớn."
+    ],
+    "word_geul": [
+      "bài viết",
+      "Tôi đã viết một bài ngắn."
+    ],
+    "word_gijeok": [
+      "phép màu",
+      "Chuyện đó thật sự như một phép màu."
+    ],
+    "word_jean": [
+      "đề nghị",
+      "Tôi đã nhận được một đề nghị tốt từ công ty."
+    ],
+    "word_gwajeong": [
+      "quá trình",
+      "Tôi đã học quá trình làm kimchi."
+    ],
+    "word_jangmyeon": [
+      "cảnh phim",
+      "Tôi vẫn nhớ cảnh đó."
+    ],
+    "word_busang": [
+      "chấn thương",
+      "Vận động viên bị chấn thương nặng."
+    ],
+    "word_sidae": [
+      "thời đại",
+      "Một thời đại mới đã mở ra."
+    ],
+    "word_isa": [
+      "việc chuyển nhà",
+      "Tháng sau chúng tôi chuyển nhà."
+    ],
+    "word_wonin": [
+      "nguyên nhân",
+      "Vẫn chưa biết nguyên nhân vụ tai nạn."
+    ],
+    "word_dangye": [
+      "giai đoạn",
+      "Bây giờ ta sang giai đoạn tiếp theo."
+    ],
+    "word_jogeon": [
+      "điều kiện",
+      "Hợp đồng lần này có điều kiện tốt."
+    ],
+    "word_hwangnyul": [
+      "xác suất",
+      "Xác suất mai trời mưa rất cao."
+    ],
+    "word_jaryo": [
+      "tài liệu",
+      "Tôi đã chuẩn bị tài liệu họp từ trước."
+    ],
+    "word_bomul": [
+      "kho báu",
+      "Bọn trẻ đang đi tìm kho báu."
+    ],
+    "word_ujuseon": [
+      "tàu vũ trụ",
+      "Tàu vũ trụ đã bay lên bầu trời."
+    ],
+    "word_silheomsil": [
+      "phòng thí nghiệm",
+      "Tôi đã làm việc cả ngày trong phòng thí nghiệm."
+    ],
+    "word_sujun": [
+      "trình độ",
+      "Cuốn sách này vừa đúng trình độ của tôi."
+    ],
+    "word_aidieo": [
+      "ý tưởng",
+      "Một ý tưởng hay bỗng nảy ra trong đầu tôi."
+    ],
+    "word_daehoe": [
+      "cuộc thi",
+      "Tôi đã tham gia cuộc thi hát."
+    ],
+    "word_hwaldong": [
+      "hoạt động",
+      "Tuần này có nhiều hoạt động."
+    ],
+    "word_keugi": [
+      "kích thước",
+      "Tôi đã thử đo kích thước của cái hộp."
+    ],
+    "word_uisim": [
+      "sự nghi ngờ",
+      "Câu nói đó làm nảy sinh nghi ngờ."
+    ],
+    "word_jungsim": [
+      "trung tâm",
+      "Ở trung tâm thành phố có một công viên lớn."
+    ],
+    "word_gyeongnyeok": [
+      "kinh nghiệm làm việc",
+      "Kinh nghiệm làm việc của tôi đã được mười năm."
+    ],
+    "word_beopjeong": [
+      "tòa án",
+      "Ngày mai tôi phải đến tòa."
+    ],
+    "word_jimseung": [
+      "thú rừng",
+      "Trong rừng vang lên tiếng thú."
+    ],
+    "word_wangbi": [
+      "hoàng hậu",
+      "Tôi đã xem áo của một hoàng hậu xưa ở bảo tàng."
+    ],
+    "word_wangja": [
+      "hoàng tử",
+      "Hoàng tử mở cửa bước vào."
+    ],
+    "word_gineung": [
+      "chức năng",
+      "Chiếc điện thoại này có rất nhiều chức năng."
+    ],
+    "word_moyang": [
+      "hình dạng",
+      "Hình dạng đám mây thật thú vị."
+    ],
+    "word_bangsik": [
+      "cách thức",
+      "Cách này nhanh hơn nhiều."
+    ],
+    "word_machangaji": [
+      "cũng vậy",
+      "Tôi cũng vậy."
+    ],
+    "word_dahaeng": [
+      "điều may",
+      "May là mưa đã tạnh."
+    ],
+    "word_choeak": [
+      "tệ nhất",
+      "Hôm nay là ngày tệ nhất trong năm."
+    ],
+    "word_sajang": [
+      "giám đốc công ty",
+      "Giám đốc đã bắt đầu cuộc họp."
+    ],
+    "word_myeochil": [
+      "mấy ngày",
+      "Trời mưa liên tục mấy ngày."
+    ],
+    "word_sangdae": [
+      "đối thủ",
+      "Chúng tôi gặp một đối thủ mạnh trong trận đấu."
+    ],
+    "word_deokbun": [
+      "nhờ có",
+      "Nhờ có một người bạn, tôi đã tìm ra đường."
+    ],
+    "word_miri": [
+      "trước",
+      "Tôi đã mua vé tàu trước."
+    ],
+    "word_deol": [
+      "ít hơn",
+      "Hôm nay lạnh ít hơn hôm qua."
+    ],
+    "word_neul": [
+      "luôn luôn",
+      "Bố tôi luôn tập thể dục vào buổi sáng."
+    ],
+    "word_tto": [
+      "lại, nữa",
+      "Mai gặp lại nhé."
+    ],
+    "word_got_2": [
+      "sắp",
+      "Cuộc họp sắp bắt đầu."
+    ],
+    "word_kkok": [
+      "nhất định",
+      "Xin nhất định giữ đúng giờ hẹn."
+    ],
+    "word_cham": [
+      "thật là",
+      "Hôm nay thời tiết thật là đẹp."
+    ],
+    "word_geunyang": [
+      "chỉ đơn giản",
+      "Cuối tuần tôi chỉ ở nhà."
+    ],
+    "word_ama": [
+      "có lẽ",
+      "Ngày mai có lẽ trời sẽ mưa."
+    ],
+    "word_jikjeop": [
+      "tự mình",
+      "Tôi đã tự mình làm chiếc bánh."
+    ],
+    "word_dongan": [
+      "trong khoảng thời gian",
+      "Trong kỳ nghỉ tôi đã đi du lịch."
+    ],
+    "word_hu": [
+      "sau",
+      "Sau giờ học tôi đến thư viện."
+    ],
+    "word_jeon": [
+      "trước",
+      "Tôi rửa tay trước khi ăn."
+    ],
+    "word_najung": [
+      "sau này",
+      "Lát nữa tôi sẽ gọi lại."
+    ],
+    "word_jukda": [
+      "chết",
+      "Không tưới nước nên hoa trong chậu đã chết."
+    ],
+    "word_jugida": [
+      "giết",
+      "Tôi đã đập chết con muỗi bay vào phòng."
+    ],
+    "word_ssauda": [
+      "cãi nhau",
+      "Tôi hay cãi nhau với em."
+    ],
+    "word_jeotda_2": [
+      "khuấy",
+      "Tôi đã khuấy cà phê bằng thìa."
+    ],
+    "word_hangahada": [
+      "rảnh rỗi",
+      "Chiều nay tôi rảnh."
+    ],
+    "word_neukkihada": [
+      "ngấy, béo ngậy",
+      "Miếng thịt này hơi ngấy."
     ]
   }
 }
