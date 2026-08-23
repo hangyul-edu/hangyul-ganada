@@ -64,9 +64,9 @@
       "area": "Vocabulary",
       "severity": "P1",
       "status": "OPEN",
-      "summary": "2,581 of a stated 10,000 words",
+      "summary": "2,844 of a stated 10,000 words",
       "customerImpact": "Buyers compare corpus size",
-      "evidence": "`vocabulary:qa:check` reports the shortfall against the target. Unchanged this cycle — no words were authored — but the order changed: authoring no longer makes a delivery problem worse, because there is no longer a delivery problem to make worse.\n\n**Unchanged again, and now unambiguous.** §49 separates the two products: the dictionary is 30,229 searchable headwords and none of them is ever scheduled, while the taught corpus is 2,581. Nothing was authored this cycle. `vocabulary:qa:target` — the release variant — fails on exactly this and is the one gate in `verify:release` that does not pass.",
+      "evidence": "`vocabulary:qa:check` reports the shortfall against the target. Unchanged this cycle — no words were authored — but the order changed: authoring no longer makes a delivery problem worse, because there is no longer a delivery problem to make worse.\n\n**Unchanged again, and now unambiguous.** §49 separates the two products: the dictionary is 30,229 searchable headwords and none of them is ever scheduled, while the taught corpus is 2,581. Nothing was authored this cycle. `vocabulary:qa:target` — the release variant — fails on exactly this and is the one gate in `verify:release` that does not pass.\n\n**Re-audited 23 August 2026 at 2,844 words.** 263 entries were authored across three batches this pass — 2,581 → 2,844 — and every one of them passed the production gates before being counted. The shortfall is 7,156. Batch 3 changed the selection rule: the pool was read rather than filtered, and it showed the corpus had holes in its *core* (앞, 뒤, 때, 일, 말, 불, 힘, 꿈, 죽다 were untaught while 위, 아래 and 옆 were taught), so 113 of the 263 fill those rather than extend the tail. The rate is the finding: one entry is 20 authored strings across ten complete locales, and the remaining 7,156 are therefore about 143,000 strings. That is the honest distance, and it is not closable by generation without lowering the bar the gates enforce.",
       "recommendedFix": "Author. I-05 was the reason to wait and it is resolved: the delivery architecture is built, the bands are generated from the corpus by `split_corpus.py`, and adding words changes the number of bands rather than the first load.",
       "effort": "HIGH (content)"
     },
@@ -198,9 +198,9 @@
       "area": "Relations",
       "severity": "P2",
       "status": "OPEN",
-      "summary": "245 of 2,581 words carry any verified lexical relation",
+      "summary": "245 of 2,844 words carry any verified lexical relation",
       "customerImpact": "Synonym and antonym sections rarely appear",
-      "evidence": "`vocabulary:relations:qa`.",
+      "evidence": "`vocabulary:relations:qa`.\n\n**Re-audited 23 August 2026 at 2,844 words.** Rebuilt after the expansion: still 245 words and 274 relations, because the builder records only what two Wiktionary headwords state about the taught sense and the 263 new words brought no new evidence. Checked separately that the sparse graph is not letting an unrecorded opposite into the Level Test — no bank item offers 앞 against 뒤, 전 against 후 or 죽다 against 살다.",
       "recommendedFix": "Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be.",
       "effort": "NONE unless a conservative source appears"
     },
@@ -231,7 +231,7 @@
       "status": "OPEN",
       "summary": "No locale has been reviewed by a native speaker, across 32 interfaces",
       "customerImpact": "Unknown awkwardness in thirty-one languages, and in Korean",
-      "evidence": "`docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled.",
+      "evidence": "`docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled.\n\n**Re-audited 23 August 2026 at 2,844 words.** Still true, and this pass produced a concrete demonstration of what goes unnoticed without it: the Portuguese pack had been written in European Portuguese in a pt-BR product for four batches — camisola, a nightgown in Brazil, taught as the meaning of 스웨터, and constipação, constipation, used for a head cold. No gate reads for the variety of a language. A native reader finds that in a minute.",
       "recommendedFix": "Native review. Nothing automated substitutes for it, and no document here may claim it has happened.",
       "effort": "HIGH (people, not engineering)"
     },
@@ -253,8 +253,8 @@
       "status": "PARTIAL",
       "summary": "Word meanings are complete in ten languages and a hundred words deep in twenty-two",
       "customerImpact": "A learner in one of the twenty-two has a fully translated interface and word meanings for the first hundred words only. Past that the card shows the English gloss, marked as English — and the *quiz* shows nothing, because §33 forbids a mixed-language question: a word with no meaning in the learner's language is not asked about rather than asked in English.",
-      "evidence": "Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3.\n\n**Twenty-two locale packs were written this cycle** — ar, bn, cs, el, fil, hi, hu, id, it, kk, ky, mn, nl, pl, ro, ru, sv, ta, te, tr, uk, uz — a hundred words each, with the meaning and the example translation, and the nine polysemy notes that fall inside those hundred. `strictMeaning` in `wordCopy.ts` resolves in the learner's own language or not at all, so the gap removes words from a quiz pool instead of switching it to English; `e2e/locale-quiz.spec.ts` renders six non-Latin locales and fails on any Latin-script option. `locale:content:check` prints the coverage per language, and `lib/locale-status.mjs` names the ten that must stay complete, so a hole in one of those still fails the build.",
-      "recommendedFix": "2,481 more rows in each of twenty-two languages. The mechanism, the gate and the honesty are in place; what remains is 54,582 lines of translation.",
+      "evidence": "Stated on the row in the language picker before the learner chooses, which is what makes it a limitation rather than a misrepresentation. §23.3.\n\n**Twenty-two locale packs were written this cycle** — ar, bn, cs, el, fil, hi, hu, id, it, kk, ky, mn, nl, pl, ro, ru, sv, ta, te, tr, uk, uz — a hundred words each, with the meaning and the example translation, and the nine polysemy notes that fall inside those hundred. `strictMeaning` in `wordCopy.ts` resolves in the learner's own language or not at all, so the gap removes words from a quiz pool instead of switching it to English; `e2e/locale-quiz.spec.ts` renders six non-Latin locales and fails on any Latin-script option. `locale:content:check` prints the coverage per language, and `lib/locale-status.mjs` names the ten that must stay complete, so a hole in one of those still fails the build.\n\n**Re-audited 23 August 2026 at 2,844 words.** The ten complete locales are complete at 2,844 — every batch carried all twenty strings, including the Thai and Vietnamese rows that live in content/vocabulary/copy/ rather than on the pack entry. The twenty-two partial locales are unchanged at 100 rows, so growing the corpus lowered their coverage from 3.9% to 3.5%: expansion widens this gap rather than narrowing it. The outstanding translation is now 22 × 2,744 = 60,368 rows.",
+      "recommendedFix": "2,744 more rows in each of twenty-two languages — 60,368 lines of translation. The mechanism, the gate and the honesty are in place. Note that every word added to the corpus adds twenty-two rows to this number.",
       "effort": "HIGH (content) — 22 locales × 2,581 words"
     },
     {
@@ -262,9 +262,9 @@
       "area": "Vocabulary",
       "severity": "P3",
       "status": "PARTIAL",
-      "summary": "The hand-written *More about it* block is on 25 words of 2,581",
+      "summary": "The hand-written *More about it* block is on 35 words of 2,844",
       "customerImpact": "Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is still on 25 of them.",
-      "evidence": "The page now carries the dictionary's own senses for the same spelling, behind a disclosure and attributed: 419 words gain 581 additional examples of the sense the card teaches, and 399 gain 721 more under other senses, each beneath the meaning it demonstrates. 2,564 of 2,581 taught words have a dictionary entry at all.\n\nWhat is still on 25 words is the hand-written block, and that is deliberate — a paragraph under every word is a paragraph nobody reads. The gap this leaves is the words where the dictionary has neither a second sense nor an example: those still show a headword, a romanisation, a gloss, a part of speech and one sentence.\n\n**The nine notes inside the written hundred are now in all 32 languages.** They were English-only, which meant a Tamil learner read the meaning in Tamil and the disambiguation in English — and these are the polysemy notes, the content that most needs to be readable: 눈 eye against snow, 다리 leg against bridge, 차 car against tea, 밤 night against chestnut. `vocabulary:sense:qa` compares the long-definition set across languages and now scopes an unfinished language to the rows it has actually written, so the check reports coverage instead of failing on the backlog.",
+      "evidence": "The page now carries the dictionary's own senses for the same spelling, behind a disclosure and attributed: 419 words gain 581 additional examples of the sense the card teaches, and 399 gain 721 more under other senses, each beneath the meaning it demonstrates. 2,564 of 2,581 taught words have a dictionary entry at all.\n\nWhat is still on 25 words is the hand-written block, and that is deliberate — a paragraph under every word is a paragraph nobody reads. The gap this leaves is the words where the dictionary has neither a second sense nor an example: those still show a headword, a romanisation, a gloss, a part of speech and one sentence.\n\n**The nine notes inside the written hundred are now in all 32 languages.** They were English-only, which meant a Tamil learner read the meaning in Tamil and the disambiguation in English — and these are the polysemy notes, the content that most needs to be readable: 눈 eye against snow, 다리 leg against bridge, 차 car against tea, 밤 night against chestnut. `vocabulary:sense:qa` compares the long-definition set across languages and now scopes an unfinished language to the rows it has actually written, so the check reports coverage instead of failing on the backlog.\n\n**Re-audited 23 August 2026 at 2,844 words.** Ten were written this pass, in all ten complete languages, for homographs batch 3 introduced: 말 is also a horse, 배 also a boat and a pear, 병 also an illness, 반 also a school class, 김 also the commonest surname and steam, 벌 also a punishment and a counter for clothes, 일 also one and day, 금 also a crack, 전 also war and a savoury pancake, 키 also a key. Adding a homograph to the corpus without a note is a regression the gates do not catch, so this is now part of what a batch owes.",
       "recommendedFix": "Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed.",
       "effort": "MEDIUM (content) — one paragraph per word, in ten languages"
     },
@@ -615,7 +615,7 @@
       "status": "PARTIAL",
       "summary": "Example translations invented a person the Korean does not have",
       "customerImpact": "Korean drops the subject, and 262 translations filled the gap. 발을 밟았어요 — a foot was stepped on, no owner named — read \"I stepped on his foot\", teaching a possessive that is not in the sentence. And the distribution is its own finding: of the 58 in English, fifty said *he* and eight said *she*, and the eight were the elegant, the graceful, the sweetly-spoken, the one who dressed up and the one who plays the piano.",
-      "evidence": "Found by reading a spread of 25 taught entries, then counted across the pack. Rewritten where the language has somewhere to go: 58 English (singular *they*, or *someone* where an object needs naming), 67 Chinese, 59 Portuguese, 2 Spanish, and 30 German — the possessive that marks its owner's gender, the gendered object, and five 마세요 sentences that had answered in *du* inside a product that speaks *Sie*.\n\n**What is left: 72 French and 51 German subject pronouns.** Neither language has a third-person singular that is not gendered and in both the masculine is the unmarked form, so \"Il ronfle\" does not assert what \"He snores\" asserts. French possessives agree with the thing possessed, so *sa voix* was never the problem; German's agree with the owner, which is why thirty of its could go. Recasting the remainder with *quelqu'un* and *jemand* is faithful and reads like a grammar exercise, and which is worse is a judgement for a speaker of each language. `examples:qa` gates the rule in the five languages where it is decidable.",
+      "evidence": "Found by reading a spread of 25 taught entries, then counted across the pack. Rewritten where the language has somewhere to go: 58 English (singular *they*, or *someone* where an object needs naming), 67 Chinese, 59 Portuguese, 2 Spanish, and 30 German — the possessive that marks its owner's gender, the gendered object, and five 마세요 sentences that had answered in *du* inside a product that speaks *Sie*.\n\n**What is left: 72 French and 51 German subject pronouns.** Neither language has a third-person singular that is not gendered and in both the masculine is the unmarked form, so \"Il ronfle\" does not assert what \"He snores\" asserts. French possessives agree with the thing possessed, so *sa voix* was never the problem; German's agree with the owner, which is why thirty of its could go. Recasting the remainder with *quelqu'un* and *jemand* is faithful and reads like a grammar exercise, and which is worse is a judgement for a speaker of each language. `examples:qa` gates the rule in the five languages where it is decidable.\n\n**Re-audited 23 August 2026 at 2,844 words.** The rule held on new authoring: 15/invented-person fired once during batch 3, on a Portuguese translation that had grown an *Ela*, and refused the build. The 123 French and German cases the issue describes are unchanged and still need a native speaker.",
       "recommendedFix": "A French and a German speaker read the 123 and decide between the unmarked masculine and a recast. It is on the native-review list in `docs/LOCALIZATION_NATIVE_REVIEW.md` §7."
     },
     {
@@ -657,6 +657,61 @@
       "customerImpact": "None directly. It matters because a suite with two tests that fail on a loaded run and pass on a quiet one is a suite whose result nobody can read, and the word for that is usually \"flaky\" — which is where an investigation stops.",
       "evidence": "**The locale walk waited thirty seconds for every click it expected to fail.** `locale-quiz` walks a session in six languages clicking opportunistically; both clicks are written as try-it-and-carry-on and the `.catch()` says so. A bare `click()` carries Playwright's default 30-second actionability timeout and waits the whole of it out *before* the catch runs, so one covered button costs half a minute and fourteen steps of that is 420 seconds against a 180-second test. That is what the failure had looked like every time: a different language each run, three minutes long, no assertion in the trace. Two seconds a click — six locales in 51 seconds, down from 4.4 minutes with one failure.\n\n**The offline test cut the network before the worker was in charge.** `navigator.serviceWorker.ready` resolves when a worker is *active*; a worker that is active and has not claimed the page controls nothing, so the fetch went to a network that had just been switched off. \"Failed to fetch\" was a race with `clients.claim()`. The test waits for `serviceWorker.controller` now, which is the thing it actually depends on.\n\nBoth were found by running the whole suite from the final commit rather than the specs that had changed, and the clean run after them is 336 of 336, exit 0.",
       "recommendedFix": "Done."
+    },
+    {
+      "id": "I-64",
+      "area": "Feedback",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The handwriting verdict panel was 41% of the width it sat in, and a different width when you got it right",
+      "customerImpact": "The moment a learner has been working toward — the pen lifts, the app says whether the letter is right — was delivered on a card narrower than everything around it, floating in the middle of the column. And because \"Correct.\" is a shorter word than \"Incorrect.\", the card physically changed shape according to the answer: 180 px when right, 143 px when wrong, in a 350 px column. The most emotionally loaded surface in the product looked unfinished, and looked unfinished in two different ways.",
+      "evidence": "Measured at 390 px on `/letters/lesson-vowels-core` before anything was changed. `FeedbackState` declared no width and `.after` was a flex column with `align-items: center`, which sizes children to their content. Nothing was clipped, nothing overlapped, every contrast ratio passed — which is why `screens:audit` had been green on this screen for its whole life. The existing checks only ever asked whether something had gone *outside* its box.",
+      "note": "Fixed by giving the card `width: 100%` and stretching the column, with `margin: 0 auto` kept on the one child that genuinely wants centring. Gated in three places, because one of them would have been a rule about this bug rather than about the class: `screens:audit` now fails any visible `role=\"status\"` panel under 90% of its column's inner width, compares the accepted and rejected widths per device profile, and an e2e case asserts both. Negative-tested by reverting the CSS: eight narrow panels and four differing pairs reported.",
+      "recommendedFix": "Done."
+    },
+    {
+      "id": "I-65",
+      "area": "Persistence",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Adding a word to the corpus renamed a different word's id, and word ids key saved progress",
+      "customerImpact": "A learner who updated would lose 젖다's history and find it credited to 젓다 — a word they had never seen, now treated as one they knew. Progress is device-local with no cloud copy, so there is nothing to restore it from. The storage layer's own opening comment says an update that silently resets progress is unacceptable for a paid app; this defeated that from the content side.",
+      "evidence": "Ids are `word_` plus the romanisation, and two Korean words can romanise the same — 젓다 (to stir) and 젖다 (to get wet) are both `word_jeotda`, so the second to ask gets `_2`. Which asked first was decided by `sorted(words, key=lambda w: (levels[w], scores[w], w))` in `build_vocabulary.py`: difficulty order, which every content change perturbs. Adding 젓다 in batch 3 renamed the already-shipped 젖다. `progressKey(kind, itemKey)` in `apps/web/src/storage/schema.ts` keys every progress row by that id.",
+      "note": "Fixed with `content/vocabulary/word-ids.json`, a checked-in ledger seeded from the ids at HEAD. Pinned ids are reserved before allocation so a new word cannot take one, retired words keep their line so a re-added word returns the id its learners still have on disk, and a duplicate id in the ledger is a build error. Negative-tested: deleting the ledger flips the pair back and restoring it flips them right. The rename never shipped — it was introduced by an uncommitted batch and caught in the same session.",
+      "recommendedFix": "Done."
+    },
+    {
+      "id": "I-66",
+      "area": "i18n content",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The Portuguese pack was written in European Portuguese, in a pt-BR product",
+      "customerImpact": "143 strings. Most of it merely reads foreign to the reader it is for — telemóvel, comboio, palavra-passe, estou a aprender, toda a gente. Two of them teach the wrong word: camisola was given as the meaning of 스웨터, and in Brazil that is a nightgown; constipação was used for 독감's symptoms, and in Brazil that is constipation.",
+      "evidence": "The locale is pt-BR and the pre-existing pack is unambiguously Brazilian — você ×44, trem, celular, banheiro, resfriado, xícara. Every batch authored during this pass drifted European and nothing noticed for four of them. What finally caught it was `content:qa`'s meaning-collision warning: five words had become *antes* (예전, 이전, 앞서, 차라리, 전), a warning about learnability that happened to point at a register defect it was not looking for.",
+      "note": "All 143 rewritten, plus two strings that predated the pass (autocarro and \"o teu livro\" in 000.jsonl) and 컴퓨터's *computadora*, the pack's Spanish being Peninsular. Spanish and Chinese were checked the same way and are consistent — the Spanish batches used móvil, patata and billete, matching, and there is no traditional character anywhere in the zh pack.",
+      "recommendedFix": "Done for Portuguese. There is still no gate that reads for the *variety* of a language, and writing one is not obviously possible; the marker list used here is recorded in docs/final-launch-audit.md. This is one of the things native review is for — see I-17."
+    },
+    {
+      "id": "I-67",
+      "area": "Review",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The answer-leak guard on hints was blind in every abugida",
+      "customerImpact": "A learner in Bengali, Hindi or Telugu who asked for help on 돈 was shown the answer. The category rung reads \"টাকা ও কেনাকাটা-এর কিছু\" — something to do with money and shopping — and the answer is টাকা. The identical hint in English was caught and withheld. Retrieval is the exercise, so a hint that hands the answer over does not merely fail to help: it removes the thing the question was for.",
+      "evidence": "`revealsAnswer` stripped everything outside `\\p{L}\\p{N}`, and a Bengali vowel sign is `\\p{M}`. টাকা is ট + া + ক + া, so the needle became টক while the token trim — which removes marks only at the *edges* — made টাক, and the two could never match. Bengali, Devanagari, Telugu and Tamil were all affected: the guard worked in the scripts that write their vowels as letters and nowhere else.",
+      "note": "Marks are now in the keep-set, in the product and in the gate's own copy of the check, with NFC normalisation so a decomposed answer still matches a composed hint. Two things had hidden it and both are closed. `hints.test.ts` asked `revealsAnswer` whether the hints `revealsAnswer` allowed reveal the answer — a tautology that certified the leak for as long as it existed — so ten hand-written cases now assert the behaviour directly. And `hint-usefulness-qa.mjs` sampled every fourth word *by position*, so which quarter it checked depended on how many words existed; adding 113 words shifted the sample onto 돈 and the leak appeared. It now checks all 2,844 words — 607,866 rungs across 32 languages in 43 seconds.",
+      "recommendedFix": "Done."
+    },
+    {
+      "id": "I-68",
+      "area": "Level Test",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Three contextual items had a second answer that also works",
+      "customerImpact": "A placement item with two right answers measures nothing, and marks a learner wrong for knowing Korean. `____에서 십 년을 보냈어요` keyed 감옥 and offered 바다, and spending ten years at sea is ordinary Korean.",
+      "evidence": "`leveltest:ambiguity` passed all 420 contextual items before and after, on all twelve of its rules. These were found by reading the 60 the new vocabulary added, one at a time against their three distractors. All three shared one cause: the example sentence was a bare frame whose only verb fits anything — 보내다, 하다, 사다 — so nothing constrained the blank.",
+      "note": "Fixed in the content rather than the builder, because each sentence was weak as a *teaching example* for the same reason it was weak as a question. No new gate, deliberately: the tempting generalisation — a noun blank whose sentence ends in a general verb — fires on 54 of the 164 noun items, and reading them shows the constraint usually comes from the sentence's other argument rather than its verb (`____에서 채소를 사요` is pinned by 채소). A rule that deleted 54 items to fix three would be a worse bank.",
+      "recommendedFix": "Done. The class is recorded rather than gated; see docs/final-launch-audit.md §7."
     }
   ]
 }
