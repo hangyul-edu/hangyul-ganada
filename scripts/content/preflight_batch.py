@@ -34,6 +34,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 import pack  # noqa: E402
+from conjugate import appears_in  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -109,7 +110,7 @@ def main() -> int:
                 problems.append(f"{where}: {word} has no translation in {', '.join(sorted(missing))}")
 
             example = str(row.get("ex", ""))
-            if word and word not in example and not _inflected(word, example):
+            if word and appears_in(word, example) is None:
                 problems.append(f"{where}: {word} does not appear in its own example {example!r}")
             eojeol = len([piece for piece in example.split() if piece])
             if not 2 <= eojeol <= 8:
@@ -165,9 +166,13 @@ def main() -> int:
     return 0
 
 
-def _inflected(word: str, example: str) -> bool:
-    """A verb or adjective appears conjugated, so compare on the stem."""
-    return len(word) > 1 and word[:-1] in example
+# The target-appears check uses `conjugate.appears_in`, the same function the
+# build uses, rather than a rule of thumb about stems. The first version here
+# stripped the final 다 and looked for the rest, which reports 쫓아오다 as
+# missing from 강아지가 계속 쫓아왔어요 — 쫓아오 + 았어요 contracts to 쫓아왔,
+# and no amount of string-slicing knows that. Korean morphology has one
+# implementation in this repository and a second one written in a hurry is a
+# second one to be wrong.
 
 
 def _shape(example: str, word: str) -> str:

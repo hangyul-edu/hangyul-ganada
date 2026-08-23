@@ -90,3 +90,39 @@ connective the product does not teach at this level. Rewritten as 양심이
 
 **The preflight paid for itself immediately**: 고객 was caught before a build
 rather than after two.
+
+### Batch 2a — 50 entries · 2,681 → 2,731
+
+Deliberately **not nouns**: the first two batches were noun-heavy and the corpus
+needed verbs, adjectives and adverbs to keep its part-of-speech balance.
+
+| | |
+| --- | --- |
+| Selection | 30 verbs, 4 adjectives, 16 adverbs — work, travel, tech, shopping, health |
+| Authored | 50 |
+| Refused by preflight | 5 (연결되다 해결되다 확인되다 진행되다 제법 were already taught; replaced with 충전하다 환불하다 탑승하다 수리하다 어느새) |
+| Rejected by the gates, then repaired | 2 |
+| Final total | **2,731** |
+| Remaining to target | 7,269 |
+
+**A defect in the preflight itself, found by this batch.** It reported 쫓아오다,
+합류하다 and 지시하다 as missing from their own examples. They were not: the
+check stripped the final 다 and looked for the rest, and 쫓아오 + 았어요
+contracts to 쫓아왔 — no amount of string-slicing knows that. It calls
+`conjugate.appears_in` now, the same function the build uses. Korean morphology
+has one implementation in this repository, and a second one written in a hurry
+is a second one to be wrong.
+
+**Two gate findings.**
+
+`H/unknown-support` — 은행잎이 노랗게 물들었어요 leans on 은행잎 and 물들다,
+neither taught nor common, for a word at 노랗다's level. Rewritten as 이 꽃은
+노란색이에요.
+
+`vocabulary:sense:qa` — 탑승하다 came out of the dictionary as a *noun* glossed
+with an infinitive, "to board". Fixed with a `pos` override in the pack, which
+is what that field is for.
+
+**Part-of-speech balance after three batches:** verb 1,054 · noun 1,100 ·
+adjective 288 · adverb 218 · pronoun 27 · interjection 21 · determiner 13 ·
+numeral 10.

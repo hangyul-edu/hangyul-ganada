@@ -10750,6 +10750,206 @@
     "word_oneullal": [
       "ngày nay",
       "Ngày nay ai cũng dùng điện thoại di động."
+    ],
+    "word_chulgeunhada": [
+      "đi làm",
+      "Tôi đi làm trước chín giờ."
+    ],
+    "word_toegeunhada": [
+      "tan làm",
+      "Hôm nay tôi tan làm sớm."
+    ],
+    "word_gyeolsimhada": [
+      "quyết tâm",
+      "Tôi quyết tâm bắt đầu tập thể dục."
+    ],
+    "word_sincheonghada": [
+      "đăng ký",
+      "Tôi đã đăng ký lớp học qua mạng."
+    ],
+    "word_jeondalhada": [
+      "chuyển lời",
+      "Tôi đã chuyển tin ngay."
+    ],
+    "word_chucheonhada": [
+      "giới thiệu",
+      "Tôi rất giới thiệu cuốn sách này."
+    ],
+    "word_tujahada": [
+      "đầu tư",
+      "Tôi đã đầu tư vào một cửa hàng nhỏ."
+    ],
+    "word_mokgyeokada": [
+      "chứng kiến",
+      "Tôi đã chứng kiến vụ tai nạn ngay trước mắt."
+    ],
+    "word_annaehada": [
+      "dẫn đường",
+      "Tôi sẽ dẫn quý khách tới chỗ ngồi."
+    ],
+    "word_gobaekada": [
+      "thổ lộ",
+      "Tôi lấy hết can đảm và thổ lộ."
+    ],
+    "word_gijeolhada": [
+      "ngất",
+      "Tôi suýt ngất vì nóng."
+    ],
+    "word_changnyukada": [
+      "hạ cánh",
+      "Máy bay đã hạ cánh an toàn."
+    ],
+    "word_haegohada": [
+      "sa thải",
+      "Công ty đã sa thải một nhân viên."
+    ],
+    "word_oeuda": [
+      "học thuộc",
+      "Tôi đã học thuộc mười từ."
+    ],
+    "word_nogida": [
+      "làm tan chảy",
+      "Hãy đun chảy bơ ở lửa nhỏ."
+    ],
+    "word_deureonada": [
+      "lộ ra",
+      "Cuối cùng sự thật đã lộ ra."
+    ],
+    "word_chungjeonhada": [
+      "sạc pin",
+      "Tôi đã sạc điện thoại cả đêm."
+    ],
+    "word_hwanbulhada": [
+      "hoàn tiền",
+      "Phải có hóa đơn mới hoàn tiền được."
+    ],
+    "word_tapseunghada": [
+      "lên tàu xe",
+      "Tất cả hành khách đã lên máy bay."
+    ],
+    "word_chwisodoeda": [
+      "bị hủy",
+      "Trận đấu bị hủy vì mưa."
+    ],
+    "word_surihada": [
+      "sửa chữa",
+      "Tôi tự sửa chiếc xe đạp."
+    ],
+    "word_siljongdoeda": [
+      "mất tích",
+      "Một người leo núi đã mất tích trên núi."
+    ],
+    "word_gyeoljeongdoeda": [
+      "được quyết định",
+      "Ngày đã được ấn định là tuần sau."
+    ],
+    "word_norata": [
+      "màu vàng",
+      "Bông hoa này màu vàng."
+    ],
+    "word_jinhada": [
+      "đậm",
+      "Cà phê đậm quá."
+    ],
+    "word_gadeukada": [
+      "đầy",
+      "Trong phòng đầy tiếng cười."
+    ],
+    "word_sunhada": [
+      "hiền lành",
+      "Chú chó con rất hiền."
+    ],
+    "word_heunhi": [
+      "thường",
+      "Đây là cách nói thường dùng."
+    ],
+    "word_seoseohi": [
+      "dần dần",
+      "Thời tiết dần dần ấm lên."
+    ],
+    "word_geupi": [
+      "vội vàng",
+      "Tôi ra ngoài vội quá nên quên ô."
+    ],
+    "word_hankkeobeone": [
+      "cùng một lúc",
+      "Tôi chuyển hết hành lý cùng một lúc."
+    ],
+    "word_daegae": [
+      "thường thì",
+      "Cuối tuần tôi thường ở nhà."
+    ],
+    "word_daso": [
+      "hơi",
+      "Phần giải thích hơi khó."
+    ],
+    "word_pyeonanhi": [
+      "thoải mái",
+      "Hãy nghỉ ngơi thoải mái rồi đi."
+    ],
+    "word_iriri": [
+      "từng cái một",
+      "Tên được gọi từng người một."
+    ],
+    "word_hwaljjak": [
+      "mở toang",
+      "Tôi mở toang cửa sổ."
+    ],
+    "word_bollae": [
+      "vốn dĩ",
+      "Kế hoạch ban đầu thì khác."
+    ],
+    "word_hayeoteun": [
+      "dù sao thì",
+      "Dù sao thì kết quả cũng tốt."
+    ],
+    "word_bulhaenghi": [
+      "không may",
+      "Không may là vé đã bán hết."
+    ],
+    "word_eoneusae": [
+      "lúc nào không hay",
+      "Lúc nào không hay mùa xuân đã đến."
+    ],
+    "word_maksang": [
+      "khi thực sự bắt tay vào",
+      "Khi bắt đầu rồi thì lại dễ."
+    ],
+    "word_deopchida": [
+      "ập xuống",
+      "Một con sóng lớn ập xuống con thuyền."
+    ],
+    "word_maryeonhada": [
+      "chuẩn bị sẵn",
+      "Tôi đã chuẩn bị chỗ cho khách."
+    ],
+    "word_geochida": [
+      "đi qua",
+      "Tôi đến bằng đường qua Busan."
+    ],
+    "word_jamgida": [
+      "ngập",
+      "Đường bị ngập vì mưa."
+    ],
+    "word_jjijeojida": [
+      "bị rách",
+      "Phong bì rách làm đôi."
+    ],
+    "word_dachida_2": [
+      "tự đóng",
+      "Cửa đóng lại vì gió."
+    ],
+    "word_jjochaoda": [
+      "đuổi theo",
+      "Chú chó con cứ đuổi theo tôi."
+    ],
+    "word_hamnyuhada": [
+      "nhập hội",
+      "Buổi tối tôi sẽ nhập hội."
+    ],
+    "word_jisihada": [
+      "chỉ thị",
+      "Trưởng nhóm đã chỉ thị thứ tự."
     ]
   }
 }
