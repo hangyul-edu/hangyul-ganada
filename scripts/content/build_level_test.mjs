@@ -338,6 +338,23 @@ for (const anchor of anchors) {
     continue;
   }
   /*
+   * A blank followed by 님 can never have three good distractors.
+   *
+   * ____님이 강의를 하세요 was keyed 교수 and offered 서울, 정상 and 최대한, so
+   * the screen read 서울님, 정상님, 최대한님 — none of them words. 님 attaches to
+   * people and to nothing else, which is the same shape as the particle problem:
+   * the suffix is baked into the frame and hands the answer to anybody who knows
+   * what 님 is for.
+   *
+   * Requiring person distractors would fix the grammar and break the item a
+   * different way, because a frame that wants a person accepts any person. So
+   * the sentence keeps its place on the card and stops being a question.
+   */
+  if (/^님/.test(anchor.example.slice(anchor.example.indexOf(anchor.surface) + anchor.surface.length))) {
+    rejected.honorificSuffixFrame = (rejected.honorificSuffixFrame ?? 0) + 1;
+    continue;
+  }
+  /*
    * Nouns, verbs and adjectives only.
    *
    * A determiner or an adverb in a blank is a question about style rather than

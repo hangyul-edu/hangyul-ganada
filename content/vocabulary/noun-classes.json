@@ -14,7 +14,8 @@
     "knowing that 여자 is a person and 타다 takes a vehicle is the only way to see it.",
     "",
     "Derived from the English meanings and then read by hand — the derivation put",
-    "우유 among the animals, 마음 among the body parts and 별 among the people."
+    "우유 among the animals, 마음 among the body parts and 별 among the people.",
+    "The person list was widened after reading the second and third batches of noun items: 경관이 떡을 나눠 줬어요, 상사가 책을 썼어요, 경비가 질문을 해요, 그림에 숙녀가 있어요 and 영화에 물고기가 나와요 were all offered against a person, and all are ordinary Korean. Ghosts, angels, robots and zombies are in it too — a frame that wants somebody to appear in a story accepts any of them."
   ],
   "classes": {
     "가슴": [
@@ -38,6 +39,9 @@
     "감자튀김": [
       "food"
     ],
+    "강도": [
+      "person"
+    ],
     "강아지": [
       "animal"
     ],
@@ -48,6 +52,12 @@
       "person"
     ],
     "건축가": [
+      "person"
+    ],
+    "경관": [
+      "person"
+    ],
+    "경비": [
       "person"
     ],
     "경찰": [
@@ -77,17 +87,26 @@
     "과일": [
       "food"
     ],
+    "괴물": [
+      "person"
+    ],
     "교수": [
       "person"
     ],
     "국": [
       "food"
     ],
+    "군대": [
+      "person"
+    ],
     "군인": [
       "person"
     ],
     "귀": [
       "bodypart"
+    ],
+    "귀신": [
+      "person"
     ],
     "그": [
       "person"
@@ -116,10 +135,19 @@
     "김치": [
       "food"
     ],
+    "꼬마": [
+      "person"
+    ],
     "나비": [
       "animal"
     ],
+    "남성": [
+      "person"
+    ],
     "남자": [
+      "person"
+    ],
+    "남자친구": [
       "person"
     ],
     "남편": [
@@ -162,6 +190,9 @@
     "동물": [
       "animal"
     ],
+    "동생": [
+      "person"
+    ],
     "돼지": [
       "animal"
     ],
@@ -173,6 +204,9 @@
     ],
     "라면": [
       "food"
+    ],
+    "로봇": [
+      "person"
     ],
     "리더": [
       "person"
@@ -220,11 +254,17 @@
       "animal",
       "food"
     ],
+    "미국인": [
+      "person"
+    ],
     "미아": [
       "person"
     ],
     "바나나": [
       "food"
+    ],
+    "바보": [
+      "person"
     ],
     "반찬": [
       "food"
@@ -250,6 +290,9 @@
     "벌": [
       "animal"
     ],
+    "범인": [
+      "person"
+    ],
     "범죄자": [
       "person"
     ],
@@ -260,6 +303,9 @@
       "person"
     ],
     "본인": [
+      "person"
+    ],
+    "부대": [
       "person"
     ],
     "부부": [
@@ -283,6 +329,9 @@
     "사자": [
       "animal"
     ],
+    "사장": [
+      "person"
+    ],
     "사촌": [
       "person"
     ],
@@ -293,6 +342,9 @@
       "person"
     ],
     "상대": [
+      "person"
+    ],
+    "상사": [
       "person"
     ],
     "새": [
@@ -352,6 +404,9 @@
     "스타": [
       "person"
     ],
+    "스파이": [
+      "person"
+    ],
     "시민": [
       "person"
     ],
@@ -403,8 +458,14 @@
     "아줌마": [
       "person"
     ],
+    "악마": [
+      "person"
+    ],
     "알": [
       "food"
+    ],
+    "애인": [
+      "person"
     ],
     "어깨": [
       "bodypart"
@@ -434,6 +495,9 @@
       "person"
     ],
     "여자": [
+      "person"
+    ],
+    "여자친구": [
       "person"
     ],
     "염소": [
@@ -466,6 +530,15 @@
     "왕자": [
       "person"
     ],
+    "외계인": [
+      "person"
+    ],
+    "요괴": [
+      "person"
+    ],
+    "요정": [
+      "person"
+    ],
     "용": [
       "animal"
     ],
@@ -477,6 +550,9 @@
     ],
     "원숭이": [
       "animal"
+    ],
+    "유령": [
+      "person"
     ],
     "음식": [
       "food"
@@ -517,6 +593,9 @@
     "조카": [
       "person"
     ],
+    "좀비": [
+      "person"
+    ],
     "주인": [
       "person"
     ],
@@ -534,6 +613,12 @@
     ],
     "채소": [
       "food"
+    ],
+    "천사": [
+      "person"
+    ],
+    "천재": [
+      "person"
     ],
     "체온": [
       "bodypart"
@@ -562,6 +647,9 @@
     ],
     "쿠키": [
       "food"
+    ],
+    "탐정": [
+      "person"
     ],
     "토끼": [
       "animal"
@@ -621,6 +709,9 @@
       "person"
     ],
     "형님": [
+      "person"
+    ],
+    "형사": [
       "person"
     ],
     "호랑이": [
