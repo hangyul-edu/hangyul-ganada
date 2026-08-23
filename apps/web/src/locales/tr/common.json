@@ -58,5 +58,9 @@
     "body": "İlerlemen kayıtlı. Kaldığın yerden devam edebilirsin.",
     "stay": "Kal",
     "leave": "Çık"
+  },
+  "verdict": {
+    "correct": "Doğru.",
+    "incorrect": "Yanlış."
   }
 }

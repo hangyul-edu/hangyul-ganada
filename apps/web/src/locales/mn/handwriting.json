@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} зураас бичлээ."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — маш сайхан бичжээ.",
-      "scored": "Хэлбэр нь сайн — замын {{score, number(style: percent)}} хувийг туулсан."
-    },
-    "empty": {
-      "detail": "Үсгийг нүдний дотор бич."
-    },
-    "incomplete": {
-      "tooSmall": "Жаахан жижиг байна. Нүдийг дүүргэхийг оролдоод үз.",
-      "missingStroke": "Нэг зураас дутуу байна. Загварыг эцэс хүртэл дага."
-    },
-    "outside": {
-      "tooLarge": "Нүднээс гарчихлаа. Дараагийн удаа жаахан жижиг.",
-      "strayStroke": "Нэг зураас хажуу тийш явчихлаа. Шугамыг удаанаар дага."
-    },
-    "scribble": {
-      "detail": "Зураас бүрийг нэг л удаа, нэг хөдөлгөөнөөр тат — дээгүүр нь дахин явах шаардлагагүй."
-    },
-    "mixed": {
-      "detail": "Загвартай нь тааруулаад дахин оролдоод үз."
-    },
-    "retry": "Дахин оролдох",
-    "breakdown": "Зөрүү {{mismatch, number(style: percent)}} · гадна {{outside, number(style: percent)}} · дутуу {{missing, number(style: percent)}}",
-    "accepted": "Хүлээн авлаа."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} хэрхэн бичигддэг вэ, {{count, number}} зураасаар",
-    "diagramLabel_other": "{{character}} хэрхэн бичигддэг вэ, {{count, number}} зураасаар",
-    "pause": "Түр зогсоох",
-    "count_one": "{{count, number}} зураас",
-    "count_other": "{{count, number}} зураас",
-    "heading": "Хэрхэн бичигдэхийг хар",
-    "notes": {
-      "fewer": "Чи {{theirs, number}} зураас хэрэглэлээ; энэ үсгийг ихэвчлэн {{expected, number}} зураасаар бичдэг.",
-      "more": "Чи {{theirs, number}} зураас хэрэглэлээ; энэ үсгийг ихэвчлэн {{expected, number}} зураасаар бичдэг.",
-      "startElsewhere": "Ихэвчлэн нүдний {{corner}} талаас эхэлдэг.",
-      "direction_one": "{{count, number}} зураас эсрэг зүг рүү явлаа. Солонгос зураасууд дээрээс доош, зүүнээс баруун тийш явдаг.",
-      "direction_other": "{{count, number}} зураас эсрэг зүг рүү явлаа. Солонгос зураасууд дээрээс доош, зүүнээс баруун тийш явдаг."
-    },
-    "corners": {
-      "topLeft": "зүүн дээд",
-      "topCentre": "дээд",
-      "topRight": "баруун дээд",
-      "middleLeft": "зүүн",
-      "middleCentre": "дунд",
-      "middleRight": "баруун",
-      "bottomLeft": "зүүн доод",
-      "bottomCentre": "доод",
-      "bottomRight": "баруун доод"
-    },
-    "watchAgain": "Дахин үзэх",
-    "back": "Буцах",
-    "next": "Урагш",
-    "position": "{{count, number}}-аас {{current, number}}-р зураас"
+    "retry": "Дахин оролдох"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}}-г хоёр удаа, зэрэгцүүлж бич — эхлээд зүүн талынхыг.",
     "fallback": "{{strokes}} зураас, тоонуудын заасан дарааллаар."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} хэрхэн бичигддэг вэ, {{count, number}} зураасаар",
+    "diagramLabel_other": "{{character}} хэрхэн бичигддэг вэ, {{count, number}} зураасаар",
+    "pause": "Түр зогсоох",
+    "count_one": "{{count, number}} зураас",
+    "count_other": "{{count, number}} зураас",
+    "heading": "Хэрхэн бичигдэхийг хар",
+    "watchAgain": "Дахин үзэх",
+    "back": "Буцах",
+    "next": "Урагш",
+    "position": "{{count, number}}-аас {{current, number}}-р зураас"
   }
 }

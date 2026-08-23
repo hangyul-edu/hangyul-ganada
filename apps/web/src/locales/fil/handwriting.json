@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} na guhit ang naisulat."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — ang ganda ng pagkasulat.",
-      "scored": "Maganda ang hugis — {{score, number(style: percent)}} na ang nalakbay."
-    },
-    "empty": {
-      "detail": "Isulat ang letra sa loob ng kahon."
-    },
-    "incomplete": {
-      "tooSmall": "Medyo maliit. Subukang punuin ang kahon.",
-      "missingStroke": "May kulang na guhit. Sundan ang gabay hanggang dulo."
-    },
-    "outside": {
-      "tooLarge": "Lumabas ito sa kahon. Sa susunod, medyo maliit lang.",
-      "strayStroke": "May isang guhit na naligaw. Sundan ang linya nang dahan-dahan."
-    },
-    "scribble": {
-      "detail": "Guhitan ang bawat guhit nang isang beses, sa isang kilos — hindi na kailangang balikan."
-    },
-    "mixed": {
-      "detail": "Ipantay sa gabay at subukan ulit."
-    },
-    "retry": "Subukan ulit",
-    "breakdown": "Pagkakaiba {{mismatch, number(style: percent)}} · sa labas {{outside, number(style: percent)}} · kulang {{missing, number(style: percent)}}",
-    "accepted": "Tanggap na."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "Paano isinusulat ang {{character}}, sa {{count, number}} guhit",
-    "diagramLabel_other": "Paano isinusulat ang {{character}}, sa {{count, number}} na guhit",
-    "pause": "I-pause",
-    "count_one": "{{count, number}} guhit",
-    "count_other": "{{count, number}} na guhit",
-    "heading": "Panoorin kung paano isinusulat",
-    "notes": {
-      "fewer": "{{theirs, number}} guhit ang ginamit mo; karaniwang {{expected, number}} ang guhit ng letrang ito.",
-      "more": "{{theirs, number}} guhit ang ginamit mo; karaniwang {{expected, number}} ang guhit ng letrang ito.",
-      "startElsewhere": "Karaniwang nagsisimula ito sa {{corner}} ng kahon.",
-      "direction_one": "{{count, number}} guhit ang pabaliktad. Pababa at pakanan ang mga guhit sa Koreano.",
-      "direction_other": "{{count, number}} na guhit ang pabaliktad. Pababa at pakanan ang mga guhit sa Koreano."
-    },
-    "corners": {
-      "topLeft": "kaliwang itaas",
-      "topCentre": "itaas",
-      "topRight": "kanang itaas",
-      "middleLeft": "kaliwa",
-      "middleCentre": "gitna",
-      "middleRight": "kanan",
-      "bottomLeft": "kaliwang ibaba",
-      "bottomCentre": "ibaba",
-      "bottomRight": "kanang ibaba"
-    },
-    "watchAgain": "Panoorin ulit",
-    "back": "Balik",
-    "next": "Susunod",
-    "position": "Guhit {{current, number}} sa {{count, number}}"
+    "retry": "Subukan ulit"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "Isulat ang {{a}} nang dalawang beses, magkatabi — kaliwa muna.",
     "fallback": "{{strokes}} na guhit, sa pagkakasunod na ipinapakita ng mga numero."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Paano isinusulat ang {{character}}, sa {{count, number}} guhit",
+    "diagramLabel_other": "Paano isinusulat ang {{character}}, sa {{count, number}} na guhit",
+    "pause": "I-pause",
+    "count_one": "{{count, number}} guhit",
+    "count_other": "{{count, number}} na guhit",
+    "heading": "Panoorin kung paano isinusulat",
+    "watchAgain": "Panoorin ulit",
+    "back": "Balik",
+    "next": "Susunod",
+    "position": "Guhit {{current, number}} sa {{count, number}}"
   }
 }

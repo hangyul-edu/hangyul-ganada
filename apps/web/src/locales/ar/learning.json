@@ -91,9 +91,6 @@
     "question": "أي حرف يعطي هذا الصوت؟",
     "optionsAria": "اختر الحرف الذي سمعته",
     "optionAria": "اختر {{character}}",
-    "correctDetail": "نعم، هذا {{character}}.",
-    "wrongHeadline": "ليس هذا.",
-    "wrongDetail": "{{character}} هو الذي يشبه صوته {{sound}}.",
     "hearAgain": "استمع مرة أخرى",
     "tryAgain": "حاول مرة أخرى"
   },

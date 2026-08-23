@@ -91,9 +91,6 @@
     "question": "Alin ang gumagawa ng tunog na ito?",
     "optionsAria": "Piliin ang letrang narinig mo",
     "optionAria": "Piliin ang {{character}}",
-    "correctDetail": "Oo, {{character}} nga iyan.",
-    "wrongHeadline": "Hindi iyan.",
-    "wrongDetail": "Ang {{character}} ang tumutunog na parang {{sound}}.",
     "hearAgain": "Pakinggan ulit",
     "tryAgain": "Subukan ulit"
   },

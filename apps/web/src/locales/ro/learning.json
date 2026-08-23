@@ -91,9 +91,6 @@
     "question": "Care scoate sunetul acesta?",
     "optionsAria": "Alege litera pe care ai auzit-o",
     "optionAria": "Alege {{character}}",
-    "correctDetail": "Da, e {{character}}.",
-    "wrongHeadline": "Nu aceea.",
-    "wrongDetail": "{{character}} e cea care sună ca {{sound}}.",
     "hearAgain": "Ascultă din nou",
     "tryAgain": "Mai încearcă"
   },

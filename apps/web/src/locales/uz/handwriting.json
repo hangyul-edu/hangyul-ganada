@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} chiziq yozildi."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — juda chiroyli yozilibdi.",
-      "scored": "Shakli yaxshi — yo‘lning {{score, number(style: percent)}} qismi bosib o‘tildi."
-    },
-    "empty": {
-      "detail": "Harfni katak ichiga yozing."
-    },
-    "incomplete": {
-      "tooSmall": "Bir oz kichik. Katakni to‘ldirishga harakat qiling.",
-      "missingStroke": "Bir chiziq yetishmayapti. Namunani oxirigacha kuzating."
-    },
-    "outside": {
-      "tooLarge": "Katakdan chiqib ketdi. Keyingi safar birozgina kichikroq.",
-      "strayStroke": "Bir chiziq chetga ketdi. Chiziqni sekin kuzating."
-    },
-    "scribble": {
-      "detail": "Har bir chiziqni bir marta, bitta silliq harakatda torting — ustidan qaytib o‘tish shart emas."
-    },
-    "mixed": {
-      "detail": "Namuna bilan moslang va yana urinib ko‘ring."
-    },
-    "retry": "Yana urinib ko‘ring",
-    "breakdown": "Farq {{mismatch, number(style: percent)}} · tashqarida {{outside, number(style: percent)}} · yetishmayapti {{missing, number(style: percent)}}",
-    "accepted": "Qabul qilindi."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
-    "diagramLabel_other": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
-    "pause": "To‘xtatish",
-    "count_one": "{{count, number}} chiziq",
-    "count_other": "{{count, number}} chiziq",
-    "heading": "Qanday yozilishini ko‘ring",
-    "notes": {
-      "fewer": "Siz {{theirs, number}} chiziq ishlatdingiz; bu harf odatda {{expected, number}} chiziqda yoziladi.",
-      "more": "Siz {{theirs, number}} chiziq ishlatdingiz; bu harf odatda {{expected, number}} chiziqda yoziladi.",
-      "startElsewhere": "Odatda katakning {{corner}} qismidan boshlanadi.",
-      "direction_one": "{{count, number}} chiziq teskari yo‘nalishda ketdi. Koreys chiziqlari yuqoridan pastga, chapdan o‘ngga yuradi.",
-      "direction_other": "{{count, number}} chiziq teskari yo‘nalishda ketdi. Koreys chiziqlari yuqoridan pastga, chapdan o‘ngga yuradi."
-    },
-    "corners": {
-      "topLeft": "yuqori chap",
-      "topCentre": "yuqori",
-      "topRight": "yuqori o‘ng",
-      "middleLeft": "chap",
-      "middleCentre": "o‘rta",
-      "middleRight": "o‘ng",
-      "bottomLeft": "pastki chap",
-      "bottomCentre": "pastki",
-      "bottomRight": "pastki o‘ng"
-    },
-    "watchAgain": "Yana ko‘rish",
-    "back": "Orqaga",
-    "next": "Oldinga",
-    "position": "{{count, number}} tadan {{current, number}}-chiziq"
+    "retry": "Yana urinib ko‘ring"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}} ni ikki marta, yonma-yon yozing — avval chapdagisini.",
     "fallback": "{{strokes}} chiziq, raqamlar ko‘rsatgan tartibda."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
+    "diagramLabel_other": "{{character}} qanday yoziladi, {{count, number}} chiziqda",
+    "pause": "To‘xtatish",
+    "count_one": "{{count, number}} chiziq",
+    "count_other": "{{count, number}} chiziq",
+    "heading": "Qanday yozilishini ko‘ring",
+    "watchAgain": "Yana ko‘rish",
+    "back": "Orqaga",
+    "next": "Oldinga",
+    "position": "{{count, number}} tadan {{current, number}}-chiziq"
   }
 }

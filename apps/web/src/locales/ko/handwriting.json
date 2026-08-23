@@ -10,57 +10,7 @@
     "strokes_other": "획 {{count, number}}개를 썼어요."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — 아주 잘 썼어요.",
-      "scored": "모양이 좋아요 — {{score, number(style: percent)}}까지 왔어요."
-    },
-    "empty": {
-      "detail": "네모 안에 글자를 써 보세요."
-    },
-    "incomplete": {
-      "tooSmall": "조금 작아요. 네모를 꽉 채워 보세요.",
-      "missingStroke": "획이 하나 빠졌어요. 안내선을 끝까지 따라가 보세요."
-    },
-    "outside": {
-      "tooLarge": "네모 밖으로 나갔어요. 조금 작게 써 볼까요.",
-      "strayStroke": "획 하나가 벗어났어요. 천천히 선을 따라가 보세요."
-    },
-    "scribble": {
-      "detail": "획을 하나씩, 한 번에 그어 보세요. 덧그리지 않아도 괜찮아요."
-    },
-    "mixed": {
-      "detail": "안내선에 맞춰서 한 번 더 써 보세요."
-    },
-    "retry": "다시 쓰기",
-    "breakdown": "차이 {{mismatch, number(style: percent)}} · 벗어난 획 {{outside, number(style: percent)}} · 빠진 부분 {{missing, number(style: percent)}}",
-    "accepted": "통과했어요."
-  },
-  "strokeOrder": {
-    "diagramLabel_other": "{{character}} 쓰는 법, 총 {{count, number}}획",
-    "pause": "멈춤",
-    "count_other": "{{count, number}}획",
-    "heading": "쓰는 걸 보세요",
-    "notes": {
-      "fewer": "{{theirs, number}}획으로 썼어요. 이 글자는 보통 {{expected, number}}획이에요.",
-      "more": "{{theirs, number}}획으로 썼어요. 이 글자는 보통 {{expected, number}}획이에요.",
-      "startElsewhere": "보통은 칸의 {{corner}}에서 시작해요.",
-      "direction_other": "{{count, number}}획이 반대 방향으로 갔어요. 한글은 위에서 아래로, 왼쪽에서 오른쪽으로 써요."
-    },
-    "corners": {
-      "topLeft": "왼쪽 위",
-      "topCentre": "위",
-      "topRight": "오른쪽 위",
-      "middleLeft": "왼쪽",
-      "middleCentre": "가운데",
-      "middleRight": "오른쪽",
-      "bottomLeft": "왼쪽 아래",
-      "bottomCentre": "아래",
-      "bottomRight": "오른쪽 아래"
-    },
-    "watchAgain": "다시 보기",
-    "back": "이전",
-    "next": "다음",
-    "position": "{{count, number}}획 중 {{current, number}}획"
+    "retry": "다시 쓰기"
   },
   "strokeGuide": {
     "shape": {
@@ -93,5 +43,15 @@
     },
     "partsDouble": "{{a}} 두 개를 나란히, 왼쪽부터.",
     "fallback": "{{strokes}}획, 번호 순서대로."
+  },
+  "strokeOrder": {
+    "diagramLabel_other": "{{character}} 쓰는 법, 총 {{count, number}}획",
+    "pause": "멈춤",
+    "count_other": "{{count, number}}획",
+    "heading": "쓰는 걸 보세요",
+    "watchAgain": "다시 보기",
+    "back": "이전",
+    "next": "다음",
+    "position": "{{count, number}}획 중 {{current, number}}획"
   }
 }

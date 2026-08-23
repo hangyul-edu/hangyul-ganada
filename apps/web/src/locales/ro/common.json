@@ -59,5 +59,9 @@
     "body": "Progresul e salvat. Reiei de unde ai rămas.",
     "stay": "Rămâi",
     "leave": "Ieși"
+  },
+  "verdict": {
+    "correct": "Corect.",
+    "incorrect": "Incorect."
   }
 }

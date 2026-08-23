@@ -119,13 +119,29 @@ export function RecognitionStep({
       </div>
 
       {picked !== null && (
+        /*
+          Two words, and the way on — §16, §17, §21.
+
+          This block produced the two worst strings in the product. The
+          headline read `handwriting:feedback.correct.headline`, and that key
+          **does not exist**: the handwriting bundle has `correct.perfect` and
+          `correct.scored` and never had a `headline`. `parseMissingKeyHandler`
+          turned the missing path into its last segment, capitalised — so every
+          learner who answered correctly, in all thirty-two languages, was
+          congratulated by the word **"Headline"**. The safety net that exists
+          to stop a dotted path reaching a learner had produced something that
+          looks like real copy instead, which is why nobody noticed.
+
+          Under it sat "맞아요, 고예요." — telling somebody who has just tapped
+          the tile marked 고 that the answer is 고. The screen narrating itself
+          back at the learner.
+
+          Both are gone. The verdict is the shared one every other answer in
+          the product uses, and there is nothing beneath it.
+        */
         <FeedbackState
           status={correct ? 'correct' : 'incorrect'}
-          headline={
-            correct
-              ? t('handwriting:feedback.correct.headline')
-              : t('learning:recognition.wrongHeadline')
-          }
+          headline={t(correct ? 'common:verdict.correct' : 'common:verdict.incorrect')}
           actions={
             correct ? (
               <Button size="md" onClick={onContinue}>
@@ -156,16 +172,7 @@ export function RecognitionStep({
               </>
             )
           }
-        >
-          <p>
-            {correct
-              ? t('learning:recognition.correctDetail', { character: character.character })
-              : t('learning:recognition.wrongDetail', {
-                  character: character.character,
-                  sound: spoken,
-                })}
-          </p>
-        </FeedbackState>
+        />
       )}
     </div>
   );

@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} గీతలు రాశారు."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — చక్కగా రాశారు.",
-      "scored": "ఆకారం బాగుంది — దారిలో {{score, number(style: percent)}} దాటారు."
-    },
-    "empty": {
-      "detail": "అక్షరాన్ని పెట్టె లోపల రాయండి."
-    },
-    "incomplete": {
-      "tooSmall": "కొంచెం చిన్నదైంది. పెట్టెను నింపడానికి ప్రయత్నించండి.",
-      "missingStroke": "ఒక గీత తప్పిపోయింది. నమూనాను చివరిదాకా అనుసరించండి."
-    },
-    "outside": {
-      "tooLarge": "పెట్టె బయటికి వెళ్లిపోయింది. తర్వాతిసారి కొంచెం చిన్నగా.",
-      "strayStroke": "ఒక గీత పక్కకు వెళ్లింది. గీతను నెమ్మదిగా అనుసరించండి."
-    },
-    "scribble": {
-      "detail": "ప్రతి గీతనూ ఒకేసారి, ఒకే కదలికలో గీయండి — దాని మీద మళ్లీ వెళ్లనవసరం లేదు."
-    },
-    "mixed": {
-      "detail": "నమూనాతో సరిపోల్చి మరోసారి ప్రయత్నించండి."
-    },
-    "retry": "మళ్లీ ప్రయత్నించండి",
-    "breakdown": "తేడా {{mismatch, number(style: percent)}} · బయట {{outside, number(style: percent)}} · తప్పింది {{missing, number(style: percent)}}",
-    "accepted": "ఆమోదించబడింది."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} ఎలా రాస్తారు, {{count, number}} గీతలో",
-    "diagramLabel_other": "{{character}} ఎలా రాస్తారు, {{count, number}} గీతల్లో",
-    "pause": "ఆపు",
-    "count_one": "{{count, number}} గీత",
-    "count_other": "{{count, number}} గీతలు",
-    "heading": "రాయడం చూడండి",
-    "notes": {
-      "fewer": "మీరు {{theirs, number}} గీతలు వాడారు; ఈ అక్షరాన్ని సాధారణంగా {{expected, number}} గీతల్లో రాస్తారు.",
-      "more": "మీరు {{theirs, number}} గీతలు వాడారు; ఈ అక్షరాన్ని సాధారణంగా {{expected, number}} గీతల్లో రాస్తారు.",
-      "startElsewhere": "ఇది సాధారణంగా పెట్టె {{corner}} నుంచి మొదలవుతుంది.",
-      "direction_one": "{{count, number}} గీత వ్యతిరేక దిశలో వెళ్లింది. కొరియన్ గీతలు పై నుంచి కిందికి, ఎడమ నుంచి కుడికి వెళ్తాయి.",
-      "direction_other": "{{count, number}} గీతలు వ్యతిరేక దిశలో వెళ్లాయి. కొరియన్ గీతలు పై నుంచి కిందికి, ఎడమ నుంచి కుడికి వెళ్తాయి."
-    },
-    "corners": {
-      "topLeft": "పై ఎడమ మూల",
-      "topCentre": "పైభాగం",
-      "topRight": "పై కుడి మూల",
-      "middleLeft": "ఎడమవైపు",
-      "middleCentre": "మధ్య",
-      "middleRight": "కుడివైపు",
-      "bottomLeft": "కింది ఎడమ మూల",
-      "bottomCentre": "కిందిభాగం",
-      "bottomRight": "కింది కుడి మూల"
-    },
-    "watchAgain": "మళ్లీ చూడండి",
-    "back": "వెనక్కి",
-    "next": "తర్వాత",
-    "position": "{{count, number}}లో {{current, number}}వ గీత"
+    "retry": "మళ్లీ ప్రయత్నించండి"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}}ని రెండుసార్లు, పక్కపక్కనే రాయండి — ముందు ఎడమది.",
     "fallback": "{{strokes}} గీతలు, సంఖ్యలు చూపే వరుసలో."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} ఎలా రాస్తారు, {{count, number}} గీతలో",
+    "diagramLabel_other": "{{character}} ఎలా రాస్తారు, {{count, number}} గీతల్లో",
+    "pause": "ఆపు",
+    "count_one": "{{count, number}} గీత",
+    "count_other": "{{count, number}} గీతలు",
+    "heading": "రాయడం చూడండి",
+    "watchAgain": "మళ్లీ చూడండి",
+    "back": "వెనక్కి",
+    "next": "తర్వాత",
+    "position": "{{count, number}}లో {{current, number}}వ గీత"
   }
 }

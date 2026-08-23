@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} vonás leírva."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — gyönyörűen leírva.",
-      "scored": "Jó forma — az út {{score, number(style: percent)}}-a megvan."
-    },
-    "empty": {
-      "detail": "Írd a betűt a keretbe."
-    },
-    "incomplete": {
-      "tooSmall": "Kicsit kicsi. Próbáld kitölteni a keretet.",
-      "missingStroke": "Hiányzik egy vonás. Kövesd a mintát végig."
-    },
-    "outside": {
-      "tooLarge": "Kilógott a keretből. Legközelebb egy kicsit kisebbet.",
-      "strayStroke": "Az egyik vonás elkalandozott. Kövesd a vonalat lassan."
-    },
-    "scribble": {
-      "detail": "Húzd meg minden vonást egyszer, egy mozdulattal — nem kell újra végigmenni rajta."
-    },
-    "mixed": {
-      "detail": "Igazítsd a mintához, és próbáld újra."
-    },
-    "retry": "Próbáld újra",
-    "breakdown": "Eltérés {{mismatch, number(style: percent)}} · kívül {{outside, number(style: percent)}} · hiányzik {{missing, number(style: percent)}}",
-    "accepted": "Elfogadva."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
-    "diagramLabel_other": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
-    "pause": "Szünet",
-    "count_one": "{{count, number}} vonás",
-    "count_other": "{{count, number}} vonás",
-    "heading": "Nézd meg, hogyan írjuk",
-    "notes": {
-      "fewer": "{{theirs, number}} vonást használtál; ezt a betűt általában {{expected, number}} vonással írjuk.",
-      "more": "{{theirs, number}} vonást használtál; ezt a betűt általában {{expected, number}} vonással írjuk.",
-      "startElsewhere": "Általában a keret {{corner}} részéből indul.",
-      "direction_one": "{{count, number}} vonás fordítva ment. A koreai vonások fentről lefelé és balról jobbra haladnak.",
-      "direction_other": "{{count, number}} vonás fordítva ment. A koreai vonások fentről lefelé és balról jobbra haladnak."
-    },
-    "corners": {
-      "topLeft": "bal felső",
-      "topCentre": "felső",
-      "topRight": "jobb felső",
-      "middleLeft": "bal",
-      "middleCentre": "középső",
-      "middleRight": "jobb",
-      "bottomLeft": "bal alsó",
-      "bottomCentre": "alsó",
-      "bottomRight": "jobb alsó"
-    },
-    "watchAgain": "Nézd meg újra",
-    "back": "Vissza",
-    "next": "Előre",
-    "position": "{{count, number}} vonásból a(z) {{current, number}}."
+    "retry": "Próbáld újra"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "Írd le {{a}} kétszer, egymás mellé — előbb a balt.",
     "fallback": "{{strokes}} vonás, a számok által mutatott sorrendben."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
+    "diagramLabel_other": "Hogyan írjuk a(z) {{character}} betűt, {{count, number}} vonással",
+    "pause": "Szünet",
+    "count_one": "{{count, number}} vonás",
+    "count_other": "{{count, number}} vonás",
+    "heading": "Nézd meg, hogyan írjuk",
+    "watchAgain": "Nézd meg újra",
+    "back": "Vissza",
+    "next": "Előre",
+    "position": "{{count, number}} vonásból a(z) {{current, number}}."
   }
 }

@@ -91,9 +91,6 @@
     "question": "Энэ дууг аль нь гаргаж байна вэ?",
     "optionsAria": "Сонссон үсгээ сонго",
     "optionAria": "{{character}} сонгох",
-    "correctDetail": "Тийм, энэ бол {{character}}.",
-    "wrongHeadline": "Тэр биш.",
-    "wrongDetail": "{{sound}} шиг сонсогддог нь {{character}}.",
     "hearAgain": "Дахин сонсох",
     "tryAgain": "Дахин оролдох"
   },

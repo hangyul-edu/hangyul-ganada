@@ -58,5 +58,9 @@
     "body": "Naka-save ang pag-usad mo. Doon ka rin magsisimula kung saan ka tumigil.",
     "stay": "Manatili",
     "leave": "Lumabas"
+  },
+  "verdict": {
+    "correct": "Tama.",
+    "incorrect": "Mali."
   }
 }

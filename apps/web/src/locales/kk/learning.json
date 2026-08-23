@@ -91,9 +91,6 @@
     "question": "Бұл дыбысты қайсысы береді?",
     "optionsAria": "Естіген әріпті таңдаңыз",
     "optionAria": "{{character}} таңдау",
-    "correctDetail": "Иә, бұл — {{character}}.",
-    "wrongHeadline": "Ол емес.",
-    "wrongDetail": "{{sound}} сияқты естілетіні — {{character}}.",
     "hearAgain": "Қайта тыңдау",
     "tryAgain": "Қайта көріңіз"
   },

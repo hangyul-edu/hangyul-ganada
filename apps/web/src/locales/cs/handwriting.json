@@ -13,66 +13,7 @@
     "strokes_other": "Napsáno {{count, number}} tahů."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — krásně napsané.",
-      "scored": "Dobrý tvar — {{score, number(style: percent)}} cesty za vámi."
-    },
-    "empty": {
-      "detail": "Napište literu dovnitř rámečku."
-    },
-    "incomplete": {
-      "tooSmall": "Trochu malé. Zkuste rámeček vyplnit.",
-      "missingStroke": "Chybí tah. Veďte po předloze až do konce."
-    },
-    "outside": {
-      "tooLarge": "Vyšlo to mimo rámeček. Příště o kus menší.",
-      "strayStroke": "Jeden tah utekl stranou. Veďte po čáře pomalu."
-    },
-    "scribble": {
-      "detail": "Veďte každý tah jednou, jedním plynulým pohybem — vracet se po něm netřeba."
-    },
-    "mixed": {
-      "detail": "Srovnejte to s předlohou a zkuste to znovu."
-    },
-    "retry": "Zkusit znovu",
-    "breakdown": "Rozdíl {{mismatch, number(style: percent)}} · mimo {{outside, number(style: percent)}} · chybí {{missing, number(style: percent)}}",
-    "accepted": "Přijato."
-  },
-  "strokeOrder": {
-    "diagramLabel_few": "Jak se píše {{character}}, {{count, number}} tahy",
-    "diagramLabel_many": "Jak se píše {{character}}, {{count, number}} tahu",
-    "diagramLabel_one": "Jak se píše {{character}}, {{count, number}} tahem",
-    "diagramLabel_other": "Jak se píše {{character}}, {{count, number}} tahy",
-    "pause": "Pauza",
-    "count_few": "{{count, number}} tahy",
-    "count_many": "{{count, number}} tahu",
-    "count_one": "{{count, number}} tah",
-    "count_other": "{{count, number}} tahů",
-    "heading": "Podívejte se, jak se píše",
-    "notes": {
-      "fewer": "Použili jste {{theirs, number}} tahů; tahle litera se obvykle píše {{expected, number}}.",
-      "more": "Použili jste {{theirs, number}} tahů; tahle litera se obvykle píše {{expected, number}}.",
-      "startElsewhere": "Obvykle začíná {{corner}} rámečku.",
-      "direction_few": "{{count, number}} tahy šly opačným směrem. Korejské tahy jdou shora dolů a zleva doprava.",
-      "direction_many": "{{count, number}} tahu šlo opačným směrem. Korejské tahy jdou shora dolů a zleva doprava.",
-      "direction_one": "{{count, number}} tah šel opačným směrem. Korejské tahy jdou shora dolů a zleva doprava.",
-      "direction_other": "{{count, number}} tahů šlo opačným směrem. Korejské tahy jdou shora dolů a zleva doprava."
-    },
-    "corners": {
-      "topLeft": "vlevo nahoře",
-      "topCentre": "nahoře",
-      "topRight": "vpravo nahoře",
-      "middleLeft": "vlevo",
-      "middleCentre": "uprostřed",
-      "middleRight": "vpravo",
-      "bottomLeft": "vlevo dole",
-      "bottomCentre": "dole",
-      "bottomRight": "vpravo dole"
-    },
-    "watchAgain": "Přehrát znovu",
-    "back": "Zpět",
-    "next": "Dál",
-    "position": "Tah {{current, number}} z {{count, number}}"
+    "retry": "Zkusit znovu"
   },
   "strokeGuide": {
     "shape": {
@@ -105,5 +46,21 @@
     },
     "partsDouble": "Napište {{a}} dvakrát, vedle sebe — nejdřív levou.",
     "fallback": "{{strokes}} tahů, v pořadí, které ukazují čísla."
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Jak se píše {{character}}, {{count, number}} tahy",
+    "diagramLabel_many": "Jak se píše {{character}}, {{count, number}} tahu",
+    "diagramLabel_one": "Jak se píše {{character}}, {{count, number}} tahem",
+    "diagramLabel_other": "Jak se píše {{character}}, {{count, number}} tahy",
+    "pause": "Pauza",
+    "count_few": "{{count, number}} tahy",
+    "count_many": "{{count, number}} tahu",
+    "count_one": "{{count, number}} tah",
+    "count_other": "{{count, number}} tahů",
+    "heading": "Podívejte se, jak se píše",
+    "watchAgain": "Přehrát znovu",
+    "back": "Zpět",
+    "next": "Dál",
+    "position": "Tah {{current, number}} z {{count, number}}"
   }
 }

@@ -15,72 +15,7 @@
     "strokes_zero": "لم تكتب أي خط."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — خط جميل.",
-      "scored": "شكل جيد — {{score, number(style: percent)}} من الطريق."
-    },
-    "empty": {
-      "detail": "اكتب الحرف داخل المربّع."
-    },
-    "incomplete": {
-      "tooSmall": "صغير قليلًا. حاول ملء المربّع.",
-      "missingStroke": "ينقصك خط. اتبع النموذج إلى آخره."
-    },
-    "outside": {
-      "tooLarge": "خرج عن المربّع. أصغر قليلًا في المرة القادمة.",
-      "strayStroke": "خط واحد شرد. اتبع الخط ببطء."
-    },
-    "scribble": {
-      "detail": "ارسم كل خط مرة واحدة بحركة متصلة — لا داعي لإعادة المرور عليه."
-    },
-    "mixed": {
-      "detail": "حاذِه مع النموذج وجرّب مرة أخرى."
-    },
-    "retry": "حاول مرة أخرى",
-    "breakdown": "الفرق {{mismatch, number(style: percent)}} · خارج {{outside, number(style: percent)}} · ناقص {{missing, number(style: percent)}}",
-    "accepted": "مقبول."
-  },
-  "strokeOrder": {
-    "diagramLabel_few": "كيف يُكتب {{character}}، بـ{{count, number}} خطوط",
-    "diagramLabel_many": "كيف يُكتب {{character}}، بـ{{count, number}} خطًا",
-    "diagramLabel_one": "كيف يُكتب {{character}}، بخط واحد",
-    "diagramLabel_other": "كيف يُكتب {{character}}، بـ{{count, number}} خط",
-    "diagramLabel_two": "كيف يُكتب {{character}}، بخطين",
-    "diagramLabel_zero": "كيف يُكتب {{character}}",
-    "pause": "إيقاف",
-    "count_few": "{{count, number}} خطوط",
-    "count_many": "{{count, number}} خطًا",
-    "count_one": "خط واحد",
-    "count_other": "{{count, number}} خط",
-    "count_two": "خطان",
-    "count_zero": "بلا خطوط",
-    "heading": "شاهده وهو يُكتب",
-    "notes": {
-      "fewer": "استعملت {{theirs, number}} خطًا؛ هذا الحرف يُكتب عادةً بـ{{expected, number}}.",
-      "more": "استعملت {{theirs, number}} خطًا؛ هذا الحرف يُكتب عادةً بـ{{expected, number}}.",
-      "startElsewhere": "يبدأ عادةً من {{corner}} المربّع.",
-      "direction_few": "{{count, number}} خطوط سارت في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
-      "direction_many": "{{count, number}} خطًا سارت في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
-      "direction_one": "خط واحد سار في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
-      "direction_other": "{{count, number}} خط سار في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
-      "direction_two": "خطان ساروا في الاتجاه المعاكس. الخطوط الكورية تمضي من أعلى إلى أسفل ومن اليسار إلى اليمين.",
-      "direction_zero": "لم يسر أي خط في الاتجاه المعاكس."
-    },
-    "corners": {
-      "topLeft": "أعلى اليسار",
-      "topCentre": "الأعلى",
-      "topRight": "أعلى اليمين",
-      "middleLeft": "اليسار",
-      "middleCentre": "الوسط",
-      "middleRight": "اليمين",
-      "bottomLeft": "أسفل اليسار",
-      "bottomCentre": "الأسفل",
-      "bottomRight": "أسفل اليمين"
-    },
-    "watchAgain": "شاهد مرة أخرى",
-    "back": "السابق",
-    "next": "التالي",
-    "position": "الخط {{current, number}} من {{count, number}}"
+    "retry": "حاول مرة أخرى"
   },
   "strokeGuide": {
     "shape": {
@@ -113,5 +48,25 @@
     },
     "partsDouble": "اكتب {{a}} مرتين، جنبًا إلى جنب — الأيسر أولًا.",
     "fallback": "{{strokes}} خطوط، بالترتيب الذي تشير إليه الأرقام."
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "كيف يُكتب {{character}}، بـ{{count, number}} خطوط",
+    "diagramLabel_many": "كيف يُكتب {{character}}، بـ{{count, number}} خطًا",
+    "diagramLabel_one": "كيف يُكتب {{character}}، بخط واحد",
+    "diagramLabel_other": "كيف يُكتب {{character}}، بـ{{count, number}} خط",
+    "diagramLabel_two": "كيف يُكتب {{character}}، بخطين",
+    "diagramLabel_zero": "كيف يُكتب {{character}}",
+    "pause": "إيقاف",
+    "count_few": "{{count, number}} خطوط",
+    "count_many": "{{count, number}} خطًا",
+    "count_one": "خط واحد",
+    "count_other": "{{count, number}} خط",
+    "count_two": "خطان",
+    "count_zero": "بلا خطوط",
+    "heading": "شاهده وهو يُكتب",
+    "watchAgain": "شاهد مرة أخرى",
+    "back": "السابق",
+    "next": "التالي",
+    "position": "الخط {{current, number}} من {{count, number}}"
   }
 }

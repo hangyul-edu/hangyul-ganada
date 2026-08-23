@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}}টি টান লেখা হয়েছে।"
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — চমৎকার লেখা।",
-      "scored": "আকার ভালো — পথের {{score, number(style: percent)}} পেরিয়েছেন।"
-    },
-    "empty": {
-      "detail": "অক্ষরটি বাক্সের ভিতরে লিখুন।"
-    },
-    "incomplete": {
-      "tooSmall": "একটু ছোট হয়েছে। বাক্সটা ভরার চেষ্টা করুন।",
-      "missingStroke": "একটি টান বাদ পড়েছে। নমুনা ধরে শেষ পর্যন্ত যান।"
-    },
-    "outside": {
-      "tooLarge": "বাক্সের বাইরে চলে গেছে। পরের বার একটু ছোট করে।",
-      "strayStroke": "একটি টান বেপথে গেছে। রেখা ধরে ধীরে চলুন।"
-    },
-    "scribble": {
-      "detail": "প্রতিটি টান একবারই, এক টানে দিন — উপর দিয়ে আবার যাওয়ার দরকার নেই।"
-    },
-    "mixed": {
-      "detail": "নমুনার সঙ্গে মিলিয়ে নিন, তারপর আরেকবার চেষ্টা করুন।"
-    },
-    "retry": "আবার চেষ্টা করুন",
-    "breakdown": "পার্থক্য {{mismatch, number(style: percent)}} · বাইরে {{outside, number(style: percent)}} · বাদ {{missing, number(style: percent)}}",
-    "accepted": "গৃহীত হয়েছে।"
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
-    "diagramLabel_other": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
-    "pause": "থামান",
-    "count_one": "{{count, number}}টি টান",
-    "count_other": "{{count, number}}টি টান",
-    "heading": "লেখা হতে দেখুন",
-    "notes": {
-      "fewer": "আপনি {{theirs, number}}টি টান দিয়েছেন; এই অক্ষরটি সাধারণত {{expected, number}}টিতে লেখা হয়।",
-      "more": "আপনি {{theirs, number}}টি টান দিয়েছেন; এই অক্ষরটি সাধারণত {{expected, number}}টিতে লেখা হয়।",
-      "startElsewhere": "সাধারণত এটি বাক্সের {{corner}} থেকে শুরু হয়।",
-      "direction_one": "{{count, number}}টি টান উল্টো দিকে গেছে। কোরীয় টান উপর থেকে নিচে আর বাঁ থেকে ডানে চলে।",
-      "direction_other": "{{count, number}}টি টান উল্টো দিকে গেছে। কোরীয় টান উপর থেকে নিচে আর বাঁ থেকে ডানে চলে।"
-    },
-    "corners": {
-      "topLeft": "উপর বাঁ কোণ",
-      "topCentre": "উপর",
-      "topRight": "উপর ডান কোণ",
-      "middleLeft": "বাঁ দিক",
-      "middleCentre": "মাঝখান",
-      "middleRight": "ডান দিক",
-      "bottomLeft": "নিচ বাঁ কোণ",
-      "bottomCentre": "নিচ",
-      "bottomRight": "নিচ ডান কোণ"
-    },
-    "watchAgain": "আবার দেখুন",
-    "back": "পিছনে",
-    "next": "পরেরটা",
-    "position": "{{count, number}}টির মধ্যে টান {{current, number}}"
+    "retry": "আবার চেষ্টা করুন"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}} দুবার লিখুন, পাশাপাশি — আগে বাঁয়েরটা।",
     "fallback": "{{strokes}}টি টান, সংখ্যাগুলো যে ক্রম দেখাচ্ছে সেই ক্রমে।"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
+    "diagramLabel_other": "{{character}} কীভাবে লেখা হয়, {{count, number}}টি টানে",
+    "pause": "থামান",
+    "count_one": "{{count, number}}টি টান",
+    "count_other": "{{count, number}}টি টান",
+    "heading": "লেখা হতে দেখুন",
+    "watchAgain": "আবার দেখুন",
+    "back": "পিছনে",
+    "next": "পরেরটা",
+    "position": "{{count, number}}টির মধ্যে টান {{current, number}}"
   }
 }

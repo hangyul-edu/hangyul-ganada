@@ -91,9 +91,6 @@
     "question": "Welke maakt deze klank?",
     "optionsAria": "Kies de letter die je hoorde",
     "optionAria": "Kies {{character}}",
-    "correctDetail": "Ja, dat is {{character}}.",
-    "wrongHeadline": "Die niet.",
-    "wrongDetail": "{{character}} is degene die klinkt als {{sound}}.",
     "hearAgain": "Nog eens horen",
     "tryAgain": "Opnieuw"
   },

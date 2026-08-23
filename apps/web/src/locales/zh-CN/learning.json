@@ -173,9 +173,6 @@
     "question": "哪个字发这个音？",
     "optionsAria": "选出你听到的字",
     "optionAria": "选择 {{character}}",
-    "correctDetail": "对，是 {{character}}。",
-    "wrongHeadline": "不是这个。",
-    "wrongDetail": "读作 {{sound}} 的是 {{character}}。",
     "hearAgain": "再听一次",
     "tryAgain": "再做一次"
   },

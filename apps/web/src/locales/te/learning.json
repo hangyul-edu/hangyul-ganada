@@ -91,9 +91,6 @@
     "question": "ఈ శబ్దం ఏది ఇస్తుంది?",
     "optionsAria": "మీరు విన్న అక్షరాన్ని ఎంచుకోండి",
     "optionAria": "{{character}} ఎంచుకోండి",
-    "correctDetail": "అవును, ఇదే {{character}}.",
-    "wrongHeadline": "అది కాదు.",
-    "wrongDetail": "{{sound}} లాగా వినిపించేది {{character}}.",
     "hearAgain": "మళ్లీ వినండి",
     "tryAgain": "మళ్లీ ప్రయత్నించండి"
   },

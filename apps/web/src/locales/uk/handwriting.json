@@ -13,66 +13,7 @@
     "strokes_other": "Написано {{count, number}} риски."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — написано чудово.",
-      "scored": "Форма гарна — пройдено {{score, number(style: percent)}} шляху."
-    },
-    "empty": {
-      "detail": "Напишіть літеру всередині рамки."
-    },
-    "incomplete": {
-      "tooSmall": "Трохи дрібно. Спробуйте заповнити рамку.",
-      "missingStroke": "Бракує риски. Ведіть по взірцю до самого кінця."
-    },
-    "outside": {
-      "tooLarge": "Вийшло за рамку. Наступного разу трохи дрібніше.",
-      "strayStroke": "Одна риска пішла вбік. Ведіть по лінії неквапом."
-    },
-    "scribble": {
-      "detail": "Ведіть кожну риску один раз, одним плавним рухом — повертатися по ній не треба."
-    },
-    "mixed": {
-      "detail": "Сумістіть із взірцем і спробуйте ще раз."
-    },
-    "retry": "Спробувати ще",
-    "breakdown": "Розбіжність {{mismatch, number(style: percent)}} · поза рамкою {{outside, number(style: percent)}} · бракує {{missing, number(style: percent)}}",
-    "accepted": "Зараховано."
-  },
-  "strokeOrder": {
-    "diagramLabel_few": "Як пишеться {{character}} — у {{count, number}} риски",
-    "diagramLabel_many": "Як пишеться {{character}} — у {{count, number}} рисок",
-    "diagramLabel_one": "Як пишеться {{character}} — у {{count, number}} риску",
-    "diagramLabel_other": "Як пишеться {{character}} — у {{count, number}} риски",
-    "pause": "Пауза",
-    "count_few": "{{count, number}} риски",
-    "count_many": "{{count, number}} рисок",
-    "count_one": "{{count, number}} риска",
-    "count_other": "{{count, number}} риски",
-    "heading": "Подивіться, як її пишуть",
-    "notes": {
-      "fewer": "Ви використали {{theirs, number}} рисок; цю літеру зазвичай пишуть у {{expected, number}}.",
-      "more": "Ви використали {{theirs, number}} рисок; цю літеру зазвичай пишуть у {{expected, number}}.",
-      "startElsewhere": "Зазвичай вона починається {{corner}} рамки.",
-      "direction_few": "{{count, number}} риски пішли у зворотний бік. Корейські риски йдуть згори вниз і зліва направо.",
-      "direction_many": "{{count, number}} рисок пішли у зворотний бік. Корейські риски йдуть згори вниз і зліва направо.",
-      "direction_one": "{{count, number}} риска пішла у зворотний бік. Корейські риски йдуть згори вниз і зліва направо.",
-      "direction_other": "{{count, number}} риски пішли у зворотний бік. Корейські риски йдуть згори вниз і зліва направо."
-    },
-    "corners": {
-      "topLeft": "з лівого верхнього кута",
-      "topCentre": "згори",
-      "topRight": "з правого верхнього кута",
-      "middleLeft": "ліворуч",
-      "middleCentre": "з центру",
-      "middleRight": "праворуч",
-      "bottomLeft": "з лівого нижнього кута",
-      "bottomCentre": "знизу",
-      "bottomRight": "з правого нижнього кута"
-    },
-    "watchAgain": "Подивитися ще раз",
-    "back": "Назад",
-    "next": "Уперед",
-    "position": "Риска {{current, number}} з {{count, number}}"
+    "retry": "Спробувати ще"
   },
   "strokeGuide": {
     "shape": {
@@ -105,5 +46,21 @@
     },
     "partsDouble": "Напишіть {{a}} двічі, поруч — спершу ліву.",
     "fallback": "{{strokes}} рисок, у тому порядку, що показують цифри."
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Як пишеться {{character}} — у {{count, number}} риски",
+    "diagramLabel_many": "Як пишеться {{character}} — у {{count, number}} рисок",
+    "diagramLabel_one": "Як пишеться {{character}} — у {{count, number}} риску",
+    "diagramLabel_other": "Як пишеться {{character}} — у {{count, number}} риски",
+    "pause": "Пауза",
+    "count_few": "{{count, number}} риски",
+    "count_many": "{{count, number}} рисок",
+    "count_one": "{{count, number}} риска",
+    "count_other": "{{count, number}} риски",
+    "heading": "Подивіться, як її пишуть",
+    "watchAgain": "Подивитися ще раз",
+    "back": "Назад",
+    "next": "Уперед",
+    "position": "Риска {{current, number}} з {{count, number}}"
   }
 }

@@ -91,9 +91,6 @@
     "question": "Chữ nào phát ra âm này?",
     "optionsAria": "Chọn chữ bạn vừa nghe",
     "optionAria": "Chọn {{character}}",
-    "correctDetail": "Đó là {{character}}.",
-    "wrongHeadline": "Không phải chữ đó.",
-    "wrongDetail": "{{character}} mới là chữ đọc nghe như {{sound}}.",
     "hearAgain": "Nghe lại",
     "tryAgain": "Thử lại"
   },

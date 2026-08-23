@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} கோடுகள் எழுதப்பட்டன."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — அழகாக எழுதப்பட்டது.",
-      "scored": "வடிவம் நன்று — பாதையில் {{score, number(style: percent)}} கடந்தாயிற்று."
-    },
-    "empty": {
-      "detail": "எழுத்தைப் பெட்டிக்குள் எழுதுங்கள்."
-    },
-    "incomplete": {
-      "tooSmall": "கொஞ்சம் சிறியது. பெட்டியை நிரப்ப முயலுங்கள்.",
-      "missingStroke": "ஒரு கோடு விடுபட்டுள்ளது. மாதிரியை இறுதிவரை பின்தொடருங்கள்."
-    },
-    "outside": {
-      "tooLarge": "பெட்டிக்கு வெளியே சென்றுவிட்டது. அடுத்த முறை சற்றுச் சிறியதாக.",
-      "strayStroke": "ஒரு கோடு விலகிச் சென்றது. கோட்டை மெதுவாகப் பின்தொடருங்கள்."
-    },
-    "scribble": {
-      "detail": "ஒவ்வொரு கோட்டையும் ஒரே முறை, ஒரே இழுவையில் வரையுங்கள் — மீண்டும் அதன் மேல் செல்லத் தேவையில்லை."
-    },
-    "mixed": {
-      "detail": "மாதிரியுடன் பொருத்தி மீண்டும் முயலுங்கள்."
-    },
-    "retry": "மீண்டும் முயற்சி",
-    "breakdown": "வேறுபாடு {{mismatch, number(style: percent)}} · வெளியே {{outside, number(style: percent)}} · விடுபட்டது {{missing, number(style: percent)}}",
-    "accepted": "ஏற்கப்பட்டது."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} எப்படி எழுதப்படுகிறது, {{count, number}} கோட்டில்",
-    "diagramLabel_other": "{{character}} எப்படி எழுதப்படுகிறது, {{count, number}} கோடுகளில்",
-    "pause": "நிறுத்து",
-    "count_one": "{{count, number}} கோடு",
-    "count_other": "{{count, number}} கோடுகள்",
-    "heading": "எழுதுவதைப் பாருங்கள்",
-    "notes": {
-      "fewer": "நீங்கள் {{theirs, number}} கோடுகள் பயன்படுத்தினீர்கள்; இந்த எழுத்து பொதுவாக {{expected, number}} கோடுகளில் எழுதப்படும்.",
-      "more": "நீங்கள் {{theirs, number}} கோடுகள் பயன்படுத்தினீர்கள்; இந்த எழுத்து பொதுவாக {{expected, number}} கோடுகளில் எழுதப்படும்.",
-      "startElsewhere": "இது பொதுவாகப் பெட்டியின் {{corner}} இல் தொடங்கும்.",
-      "direction_one": "{{count, number}} கோடு எதிர்த் திசையில் சென்றது. கொரியக் கோடுகள் மேலிருந்து கீழும் இடமிருந்து வலமும் செல்லும்.",
-      "direction_other": "{{count, number}} கோடுகள் எதிர்த் திசையில் சென்றன. கொரியக் கோடுகள் மேலிருந்து கீழும் இடமிருந்து வலமும் செல்லும்."
-    },
-    "corners": {
-      "topLeft": "மேல் இடது மூலை",
-      "topCentre": "மேற்பகுதி",
-      "topRight": "மேல் வலது மூலை",
-      "middleLeft": "இடப்புறம்",
-      "middleCentre": "நடு",
-      "middleRight": "வலப்புறம்",
-      "bottomLeft": "கீழ் இடது மூலை",
-      "bottomCentre": "அடிப்பகுதி",
-      "bottomRight": "கீழ் வலது மூலை"
-    },
-    "watchAgain": "மீண்டும் பாரு",
-    "back": "பின்",
-    "next": "அடுத்து",
-    "position": "{{count, number}} இல் {{current, number}}-ஆம் கோடு"
+    "retry": "மீண்டும் முயற்சி"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}} ஐ இருமுறை, அருகருகே எழுதுங்கள் — முதலில் இடதுபுறம்.",
     "fallback": "{{strokes}} கோடுகள், எண்கள் காட்டும் வரிசையில்."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} எப்படி எழுதப்படுகிறது, {{count, number}} கோட்டில்",
+    "diagramLabel_other": "{{character}} எப்படி எழுதப்படுகிறது, {{count, number}} கோடுகளில்",
+    "pause": "நிறுத்து",
+    "count_one": "{{count, number}} கோடு",
+    "count_other": "{{count, number}} கோடுகள்",
+    "heading": "எழுதுவதைப் பாருங்கள்",
+    "watchAgain": "மீண்டும் பாரு",
+    "back": "பின்",
+    "next": "அடுத்து",
+    "position": "{{count, number}} இல் {{current, number}}-ஆம் கோடு"
   }
 }

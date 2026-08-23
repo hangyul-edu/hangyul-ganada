@@ -12,63 +12,7 @@
     "strokes_other": "{{count, number}} tratti scritti."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — scritta benissimo.",
-      "scored": "Bella forma — {{score, number(style: percent)}} del percorso."
-    },
-    "empty": {
-      "detail": "Scrivi la lettera dentro il riquadro."
-    },
-    "incomplete": {
-      "tooSmall": "Un po' piccola. Prova a riempire il riquadro.",
-      "missingStroke": "Manca un tratto. Segui la traccia fino in fondo."
-    },
-    "outside": {
-      "tooLarge": "È uscita dal riquadro. La prossima volta un po' più piccola.",
-      "strayStroke": "Un tratto è andato per la sua strada. Segui la linea con calma."
-    },
-    "scribble": {
-      "detail": "Traccia ogni segno una volta sola, in un movimento continuo — non serve ripassarci sopra."
-    },
-    "mixed": {
-      "detail": "Allineala alla traccia e riprova."
-    },
-    "retry": "Riprova",
-    "breakdown": "Differenza {{mismatch, number(style: percent)}} · fuori {{outside, number(style: percent)}} · mancante {{missing, number(style: percent)}}",
-    "accepted": "Accettato."
-  },
-  "strokeOrder": {
-    "diagramLabel_many": "Come si scrive {{character}}, in {{count, number}} tratti",
-    "diagramLabel_one": "Come si scrive {{character}}, in {{count, number}} tratto",
-    "diagramLabel_other": "Come si scrive {{character}}, in {{count, number}} tratti",
-    "pause": "Pausa",
-    "count_many": "{{count, number}} tratti",
-    "count_one": "{{count, number}} tratto",
-    "count_other": "{{count, number}} tratti",
-    "heading": "Guarda come si scrive",
-    "notes": {
-      "fewer": "Hai usato {{theirs, number}} tratti; questa lettera di solito se ne scrive con {{expected, number}}.",
-      "more": "Hai usato {{theirs, number}} tratti; questa lettera di solito se ne scrive con {{expected, number}}.",
-      "startElsewhere": "Di solito parte {{corner}} del riquadro.",
-      "direction_many": "{{count, number}} tratti sono andati al contrario. In coreano i tratti vanno dall’alto in basso e da sinistra a destra.",
-      "direction_one": "{{count, number}} tratto è andato al contrario. In coreano i tratti vanno dall’alto in basso e da sinistra a destra.",
-      "direction_other": "{{count, number}} tratti sono andati al contrario. In coreano i tratti vanno dall’alto in basso e da sinistra a destra."
-    },
-    "corners": {
-      "topLeft": "dall’angolo in alto a sinistra",
-      "topCentre": "dall’alto",
-      "topRight": "dall’angolo in alto a destra",
-      "middleLeft": "da sinistra",
-      "middleCentre": "dal centro",
-      "middleRight": "da destra",
-      "bottomLeft": "dall’angolo in basso a sinistra",
-      "bottomCentre": "dal basso",
-      "bottomRight": "dall’angolo in basso a destra"
-    },
-    "watchAgain": "Guarda di nuovo",
-    "back": "Indietro",
-    "next": "Avanti",
-    "position": "Tratto {{current, number}} di {{count, number}}"
+    "retry": "Riprova"
   },
   "strokeGuide": {
     "shape": {
@@ -101,5 +45,19 @@
     },
     "partsDouble": "Scrivi {{a}} due volte, una accanto all’altra — prima quella di sinistra.",
     "fallback": "{{strokes}} tratti, nell’ordine indicato dai numeri."
+  },
+  "strokeOrder": {
+    "diagramLabel_many": "Come si scrive {{character}}, in {{count, number}} tratti",
+    "diagramLabel_one": "Come si scrive {{character}}, in {{count, number}} tratto",
+    "diagramLabel_other": "Come si scrive {{character}}, in {{count, number}} tratti",
+    "pause": "Pausa",
+    "count_many": "{{count, number}} tratti",
+    "count_one": "{{count, number}} tratto",
+    "count_other": "{{count, number}} tratti",
+    "heading": "Guarda come si scrive",
+    "watchAgain": "Guarda di nuovo",
+    "back": "Indietro",
+    "next": "Avanti",
+    "position": "Tratto {{current, number}} di {{count, number}}"
   }
 }

@@ -91,9 +91,6 @@
     "question": "Бул үндү кайсынысы берет?",
     "optionsAria": "Уккан тамганы тандаңыз",
     "optionAria": "{{character}} тандоо",
-    "correctDetail": "Ооба, бул — {{character}}.",
-    "wrongHeadline": "Ал эмес.",
-    "wrongDetail": "{{sound}} сыяктуу угулганы — {{character}}.",
     "hearAgain": "Кайра угуу",
     "tryAgain": "Кайра аракет кылыңыз"
   },

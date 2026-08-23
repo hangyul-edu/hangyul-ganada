@@ -57,8 +57,6 @@ describe('particles', () => {
     expect(i18n.t('learning:review.answerIs', { word: '사람', meaning: 'person' })).toContain(
       '사람은',
     );
-    expect(i18n.t('learning:recognition.correctDetail', { character: 'ㄱ' })).toBe('맞아요, ㄱ이에요.');
-    expect(i18n.t('learning:recognition.correctDetail', { character: 'ㅏ' })).toBe('맞아요, ㅏ예요.');
   });
 
   it('leaves every other language alone', () => {

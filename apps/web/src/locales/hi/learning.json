@@ -91,9 +91,6 @@
     "question": "यह ध्वनि कौन-सा अक्षर देता है?",
     "optionsAria": "जो अक्षर आपने सुना वह चुनिए",
     "optionAria": "{{character}} चुनिए",
-    "correctDetail": "हाँ, यही {{character}} है।",
-    "wrongHeadline": "वह नहीं।",
-    "wrongDetail": "{{sound}} जैसी आवाज़ {{character}} की है।",
     "hearAgain": "फिर सुनिए",
     "tryAgain": "फिर कोशिश कीजिए"
   },

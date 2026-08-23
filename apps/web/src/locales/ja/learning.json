@@ -173,9 +173,6 @@
     "question": "この音を出す文字はどれ？",
     "optionsAria": "聞こえた文字を選ぶ",
     "optionAria": "{{character}} を選ぶ",
-    "correctDetail": "そう、{{character}} です。",
-    "wrongHeadline": "それではありません。",
-    "wrongDetail": "{{sound}} と読むのは {{character}} です。",
     "hearAgain": "もう一度聞く",
     "tryAgain": "もう一度"
   },

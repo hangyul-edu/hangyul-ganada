@@ -10,57 +10,7 @@
     "strokes_other": "{{count, number}} goresan ditulis."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — tulisannya bagus sekali.",
-      "scored": "Bentuknya bagus — {{score, number(style: percent)}} menuju sempurna."
-    },
-    "empty": {
-      "detail": "Tulis hurufnya di dalam kotak."
-    },
-    "incomplete": {
-      "tooSmall": "Agak kecil. Coba penuhi kotaknya.",
-      "missingStroke": "Ada goresan yang kurang. Ikuti panduannya sampai habis."
-    },
-    "outside": {
-      "tooLarge": "Itu keluar dari kotak. Sedikit lebih kecil lain kali.",
-      "strayStroke": "Satu goresan melenceng. Ikuti garisnya pelan-pelan."
-    },
-    "scribble": {
-      "detail": "Tarik tiap goresan sekali saja, dalam satu gerakan — tak perlu diulang-ulang."
-    },
-    "mixed": {
-      "detail": "Sejajarkan dengan panduannya lalu coba lagi."
-    },
-    "retry": "Coba lagi",
-    "breakdown": "Selisih {{mismatch, number(style: percent)}} · di luar {{outside, number(style: percent)}} · kurang {{missing, number(style: percent)}}",
-    "accepted": "Diterima."
-  },
-  "strokeOrder": {
-    "diagramLabel_other": "Cara menulis {{character}}, dalam {{count, number}} goresan",
-    "pause": "Jeda",
-    "count_other": "{{count, number}} goresan",
-    "heading": "Lihat cara menulisnya",
-    "notes": {
-      "fewer": "Kamu pakai {{theirs, number}} goresan; huruf ini biasanya ditulis dalam {{expected, number}}.",
-      "more": "Kamu pakai {{theirs, number}} goresan; huruf ini biasanya ditulis dalam {{expected, number}}.",
-      "startElsewhere": "Biasanya dimulai dari {{corner}} kotak.",
-      "direction_other": "{{count, number}} goresan berjalan terbalik. Goresan Korea bergerak dari atas ke bawah dan dari kiri ke kanan."
-    },
-    "corners": {
-      "topLeft": "kiri atas",
-      "topCentre": "atas",
-      "topRight": "kanan atas",
-      "middleLeft": "kiri",
-      "middleCentre": "tengah",
-      "middleRight": "kanan",
-      "bottomLeft": "kiri bawah",
-      "bottomCentre": "bawah",
-      "bottomRight": "kanan bawah"
-    },
-    "watchAgain": "Lihat lagi",
-    "back": "Sebelumnya",
-    "next": "Berikutnya",
-    "position": "Goresan {{current, number}} dari {{count, number}}"
+    "retry": "Coba lagi"
   },
   "strokeGuide": {
     "shape": {
@@ -93,5 +43,15 @@
     },
     "partsDouble": "Tulis {{a}} dua kali, berdampingan — yang kiri dulu.",
     "fallback": "{{strokes}} goresan, dalam urutan yang ditunjukkan angkanya."
+  },
+  "strokeOrder": {
+    "diagramLabel_other": "Cara menulis {{character}}, dalam {{count, number}} goresan",
+    "pause": "Jeda",
+    "count_other": "{{count, number}} goresan",
+    "heading": "Lihat cara menulisnya",
+    "watchAgain": "Lihat lagi",
+    "back": "Sebelumnya",
+    "next": "Berikutnya",
+    "position": "Goresan {{current, number}} dari {{count, number}}"
   }
 }

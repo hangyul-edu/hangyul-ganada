@@ -91,9 +91,6 @@
     "question": "Melyik adja ezt a hangot?",
     "optionsAria": "Válaszd ki a hallott betűt",
     "optionAria": "Válaszd: {{character}}",
-    "correctDetail": "Igen, ez a(z) {{character}}.",
-    "wrongHeadline": "Nem az.",
-    "wrongDetail": "A(z) {{character}} az, ami úgy szól, mint {{sound}}.",
     "hearAgain": "Hallgasd újra",
     "tryAgain": "Próbáld újra"
   },

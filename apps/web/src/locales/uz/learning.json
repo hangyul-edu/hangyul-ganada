@@ -91,9 +91,6 @@
     "question": "Bu tovushni qaysi biri beradi?",
     "optionsAria": "Eshitgan harfingizni tanlang",
     "optionAria": "{{character}} ni tanlang",
-    "correctDetail": "Ha, bu {{character}}.",
-    "wrongHeadline": "U emas.",
-    "wrongDetail": "{{sound}} kabi jaranglaydigani {{character}}.",
     "hearAgain": "Yana eshitish",
     "tryAgain": "Yana urinib ko‘ring"
   },

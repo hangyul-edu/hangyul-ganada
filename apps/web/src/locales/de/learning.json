@@ -173,9 +173,6 @@
     "question": "Welcher macht diesen Laut?",
     "optionsAria": "Wähle den gehörten Buchstaben",
     "optionAria": "{{character}} wählen",
-    "correctDetail": "Genau, das ist {{character}}.",
-    "wrongHeadline": "Der war es nicht.",
-    "wrongDetail": "{{character}} ist der, der wie {{sound}} klingt.",
     "hearAgain": "Noch einmal hören",
     "tryAgain": "Nochmal versuchen"
   },

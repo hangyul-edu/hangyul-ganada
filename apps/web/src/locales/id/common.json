@@ -57,5 +57,9 @@
     "body": "Kemajuanmu tersimpan. Nanti bisa dilanjutkan dari tempat terakhir.",
     "stay": "Tetap di sini",
     "leave": "Keluar"
+  },
+  "verdict": {
+    "correct": "Benar.",
+    "incorrect": "Salah."
   }
 }

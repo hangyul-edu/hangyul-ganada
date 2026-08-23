@@ -91,9 +91,6 @@
     "question": "ตัวไหนออกเสียงนี้",
     "optionsAria": "เลือกตัวอักษรที่คุณได้ยิน",
     "optionAria": "เลือก {{character}}",
-    "correctDetail": "นั่นคือ {{character}}",
-    "wrongHeadline": "ไม่ใช่ตัวนั้น",
-    "wrongDetail": "{{character}} ต่างหากที่ออกเสียงเหมือน {{sound}}",
     "hearAgain": "ฟังอีกครั้ง",
     "tryAgain": "ลองใหม่"
   },

@@ -91,9 +91,6 @@
     "question": "Ποιο κάνει αυτόν τον ήχο;",
     "optionsAria": "Διάλεξε το γράμμα που άκουσες",
     "optionAria": "Διάλεξε {{character}}",
-    "correctDetail": "Ναι, αυτό είναι το {{character}}.",
-    "wrongHeadline": "Όχι αυτό.",
-    "wrongDetail": "Το {{character}} είναι αυτό που ακούγεται σαν {{sound}}.",
     "hearAgain": "Άκου το ξανά",
     "tryAgain": "Ξαναδοκίμασε"
   },

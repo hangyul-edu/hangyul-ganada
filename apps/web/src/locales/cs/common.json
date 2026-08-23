@@ -60,5 +60,9 @@
     "body": "Postup je uložený. Navážete tam, kde jste skončili.",
     "stay": "Zůstat",
     "leave": "Odejít"
+  },
+  "verdict": {
+    "correct": "Správně.",
+    "incorrect": "Špatně."
   }
 }

@@ -91,9 +91,6 @@
     "question": "Vilken låter så här?",
     "optionsAria": "Välj bokstaven du hörde",
     "optionAria": "Välj {{character}}",
-    "correctDetail": "Ja, det är {{character}}.",
-    "wrongHeadline": "Inte den.",
-    "wrongDetail": "{{character}} är den som låter som {{sound}}.",
     "hearAgain": "Hör den igen",
     "tryAgain": "Försök igen"
   },

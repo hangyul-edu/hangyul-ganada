@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} сызык жазылды."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — абдан кооз жазылды.",
-      "scored": "Формасы жакшы — жолдун {{score, number(style: percent)}} бөлүгү өттү."
-    },
-    "empty": {
-      "detail": "Тамганы кутучанын ичине жазыңыз."
-    },
-    "incomplete": {
-      "tooSmall": "Бир аз кичине. Кутучаны толтурууга аракет кылыңыз.",
-      "missingStroke": "Бир сызык жетишпейт. Үлгүнү аягына чейин ээрчиңиз."
-    },
-    "outside": {
-      "tooLarge": "Кутучадан чыгып кетти. Кийинки жолу бир аз кичирээк.",
-      "strayStroke": "Бир сызык четке кетти. Сызыкты жайбаракат ээрчиңиз."
-    },
-    "scribble": {
-      "detail": "Ар бир сызыкты бир жолу, бир кыймылда тартыңыз — үстүнөн кайра жүрүүнүн кереги жок."
-    },
-    "mixed": {
-      "detail": "Үлгүгө дал келтирип, дагы бир аракет кылыңыз."
-    },
-    "retry": "Кайра аракет кылыңыз",
-    "breakdown": "Айырма {{mismatch, number(style: percent)}} · сыртта {{outside, number(style: percent)}} · жетишпейт {{missing, number(style: percent)}}",
-    "accepted": "Кабыл алынды."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} кантип жазылат, {{count, number}} сызык менен",
-    "diagramLabel_other": "{{character}} кантип жазылат, {{count, number}} сызык менен",
-    "pause": "Токтотуу",
-    "count_one": "{{count, number}} сызык",
-    "count_other": "{{count, number}} сызык",
-    "heading": "Кантип жазыларын көрүңүз",
-    "notes": {
-      "fewer": "Сиз {{theirs, number}} сызык колдондуңуз; бул тамга көбүнчө {{expected, number}} сызык менен жазылат.",
-      "more": "Сиз {{theirs, number}} сызык колдондуңуз; бул тамга көбүнчө {{expected, number}} сызык менен жазылат.",
-      "startElsewhere": "Көбүнчө кутучанын {{corner}} жагынан башталат.",
-      "direction_one": "{{count, number}} сызык тескери багытта кетти. Корей сызыктары жогорудан ылдый, солдон оңго жүрөт.",
-      "direction_other": "{{count, number}} сызык тескери багытта кетти. Корей сызыктары жогорудан ылдый, солдон оңго жүрөт."
-    },
-    "corners": {
-      "topLeft": "жогорку сол",
-      "topCentre": "жогорку",
-      "topRight": "жогорку оң",
-      "middleLeft": "сол",
-      "middleCentre": "орто",
-      "middleRight": "оң",
-      "bottomLeft": "төмөнкү сол",
-      "bottomCentre": "төмөнкү",
-      "bottomRight": "төмөнкү оң"
-    },
-    "watchAgain": "Кайра көрүү",
-    "back": "Артка",
-    "next": "Алга",
-    "position": "{{count, number}} ичинен {{current, number}}-сызык"
+    "retry": "Кайра аракет кылыңыз"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}} тамгасын эки жолу, катар жазыңыз — адегенде сол жактагысын.",
     "fallback": "{{strokes}} сызык, сандар көрсөткөн тартипте."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} кантип жазылат, {{count, number}} сызык менен",
+    "diagramLabel_other": "{{character}} кантип жазылат, {{count, number}} сызык менен",
+    "pause": "Токтотуу",
+    "count_one": "{{count, number}} сызык",
+    "count_other": "{{count, number}} сызык",
+    "heading": "Кантип жазыларын көрүңүз",
+    "watchAgain": "Кайра көрүү",
+    "back": "Артка",
+    "next": "Алга",
+    "position": "{{count, number}} ичинен {{current, number}}-сызык"
   }
 }

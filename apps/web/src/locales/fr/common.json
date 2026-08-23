@@ -59,5 +59,9 @@
     "body": "Votre progression est enregistrée. Vous reprendrez où vous en étiez.",
     "stay": "Rester",
     "leave": "Quitter"
+  },
+  "verdict": {
+    "correct": "Correct.",
+    "incorrect": "Incorrect."
   }
 }

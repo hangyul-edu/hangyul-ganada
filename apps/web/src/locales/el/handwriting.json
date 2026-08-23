@@ -11,60 +11,7 @@
     "strokes_other": "Γράφτηκαν {{count, number}} γραμμές."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — γραμμένο υπέροχα.",
-      "scored": "Καλό σχήμα — {{score, number(style: percent)}} της διαδρομής."
-    },
-    "empty": {
-      "detail": "Γράψε το γράμμα μέσα στο πλαίσιο."
-    },
-    "incomplete": {
-      "tooSmall": "Λίγο μικρό. Δοκίμασε να γεμίσεις το πλαίσιο.",
-      "missingStroke": "Λείπει μια γραμμή. Ακολούθησε το πρότυπο ως το τέλος."
-    },
-    "outside": {
-      "tooLarge": "Βγήκε έξω από το πλαίσιο. Την επόμενη φορά λίγο πιο μικρό.",
-      "strayStroke": "Μια γραμμή ξέφυγε. Ακολούθησε τη διαδρομή αργά."
-    },
-    "scribble": {
-      "detail": "Τράβα κάθε γραμμή μία φορά, με μία κίνηση — δεν χρειάζεται να ξαναπεράσεις από πάνω."
-    },
-    "mixed": {
-      "detail": "Ευθυγράμμισέ το με το πρότυπο και ξαναδοκίμασε."
-    },
-    "retry": "Ξαναδοκίμασε",
-    "breakdown": "Διαφορά {{mismatch, number(style: percent)}} · έξω {{outside, number(style: percent)}} · λείπει {{missing, number(style: percent)}}",
-    "accepted": "Έγινε δεκτό."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "Πώς γράφεται το {{character}}, με {{count, number}} γραμμή",
-    "diagramLabel_other": "Πώς γράφεται το {{character}}, με {{count, number}} γραμμές",
-    "pause": "Παύση",
-    "count_one": "{{count, number}} γραμμή",
-    "count_other": "{{count, number}} γραμμές",
-    "heading": "Δες πώς γράφεται",
-    "notes": {
-      "fewer": "Χρησιμοποίησες {{theirs, number}} γραμμές· αυτό το γράμμα γράφεται συνήθως με {{expected, number}}.",
-      "more": "Χρησιμοποίησες {{theirs, number}} γραμμές· αυτό το γράμμα γράφεται συνήθως με {{expected, number}}.",
-      "startElsewhere": "Συνήθως ξεκινάει από {{corner}} του πλαισίου.",
-      "direction_one": "{{count, number}} γραμμή πήγε ανάποδα. Οι κορεατικές γραμμές πάνε από πάνω προς τα κάτω και από αριστερά προς τα δεξιά.",
-      "direction_other": "{{count, number}} γραμμές πήγαν ανάποδα. Οι κορεατικές γραμμές πάνε από πάνω προς τα κάτω και από αριστερά προς τα δεξιά."
-    },
-    "corners": {
-      "topLeft": "την πάνω αριστερή γωνία",
-      "topCentre": "την κορυφή",
-      "topRight": "την πάνω δεξιά γωνία",
-      "middleLeft": "την αριστερή πλευρά",
-      "middleCentre": "το κέντρο",
-      "middleRight": "τη δεξιά πλευρά",
-      "bottomLeft": "την κάτω αριστερή γωνία",
-      "bottomCentre": "τη βάση",
-      "bottomRight": "την κάτω δεξιά γωνία"
-    },
-    "watchAgain": "Δες το ξανά",
-    "back": "Πίσω",
-    "next": "Μπροστά",
-    "position": "Γραμμή {{current, number}} από {{count, number}}"
+    "retry": "Ξαναδοκίμασε"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "Γράψε το {{a}} δύο φορές, δίπλα-δίπλα — πρώτα το αριστερό.",
     "fallback": "{{strokes}} γραμμές, με τη σειρά που δείχνουν οι αριθμοί."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Πώς γράφεται το {{character}}, με {{count, number}} γραμμή",
+    "diagramLabel_other": "Πώς γράφεται το {{character}}, με {{count, number}} γραμμές",
+    "pause": "Παύση",
+    "count_one": "{{count, number}} γραμμή",
+    "count_other": "{{count, number}} γραμμές",
+    "heading": "Δες πώς γράφεται",
+    "watchAgain": "Δες το ξανά",
+    "back": "Πίσω",
+    "next": "Μπροστά",
+    "position": "Γραμμή {{current, number}} από {{count, number}}"
   }
 }

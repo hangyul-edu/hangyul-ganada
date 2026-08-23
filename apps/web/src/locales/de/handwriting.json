@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} Striche geschrieben."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — wunderschön geschrieben.",
-      "scored": "Gute Form — {{score, number(style: percent)}} des Weges."
-    },
-    "empty": {
-      "detail": "Schreib den Buchstaben ins Kästchen."
-    },
-    "incomplete": {
-      "tooSmall": "Etwas klein. Füll das Kästchen aus.",
-      "missingStroke": "Ein Strich fehlt. Folge der Hilfslinie bis zum Ende."
-    },
-    "outside": {
-      "tooLarge": "Das ging über den Rand. Etwas kleiner.",
-      "strayStroke": "Ein Strich ist abgerutscht. Folge der Linie langsam."
-    },
-    "scribble": {
-      "detail": "Zieh jeden Strich einmal, in einer flüssigen Bewegung — du musst nicht nachfahren."
-    },
-    "mixed": {
-      "detail": "Richte ihn an der Hilfslinie aus und versuch es noch mal."
-    },
-    "retry": "Nochmal schreiben",
-    "breakdown": "Abweichung {{mismatch, number(style: percent)}} · außerhalb {{outside, number(style: percent)}} · fehlend {{missing, number(style: percent)}}",
-    "accepted": "Angenommen."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "Wie {{character}} geschrieben wird, in {{count, number}} Strich",
-    "diagramLabel_other": "Wie {{character}} geschrieben wird, in {{count, number}} Strichen",
-    "pause": "Pause",
-    "count_one": "{{count, number}} Strich",
-    "count_other": "{{count, number}} Striche",
-    "heading": "Sieh zu, wie er entsteht",
-    "notes": {
-      "fewer": "Du hast {{theirs, number}} Striche gemacht; dieser Buchstabe wird üblicherweise in {{expected, number}} geschrieben.",
-      "more": "Du hast {{theirs, number}} Striche gemacht; dieser Buchstabe wird üblicherweise in {{expected, number}} geschrieben.",
-      "startElsewhere": "Üblich ist der Beginn {{corner}} im Feld.",
-      "direction_one": "Ein Strich lief in die andere Richtung. Koreanisch schreibt man von oben nach unten und von links nach rechts.",
-      "direction_other": "{{count, number}} Striche liefen in die andere Richtung. Koreanisch schreibt man von oben nach unten und von links nach rechts."
-    },
-    "corners": {
-      "topLeft": "oben links",
-      "topCentre": "oben",
-      "topRight": "oben rechts",
-      "middleLeft": "links",
-      "middleCentre": "in der Mitte",
-      "middleRight": "rechts",
-      "bottomLeft": "unten links",
-      "bottomCentre": "unten",
-      "bottomRight": "unten rechts"
-    },
-    "watchAgain": "Nochmal ansehen",
-    "back": "Zurück",
-    "next": "Weiter",
-    "position": "Strich {{current, number}} von {{count, number}}"
+    "retry": "Nochmal schreiben"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "Schreibe {{a}} zweimal nebeneinander — links zuerst.",
     "fallback": "{{strokes}} Striche, in der Reihenfolge der Zahlen."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Wie {{character}} geschrieben wird, in {{count, number}} Strich",
+    "diagramLabel_other": "Wie {{character}} geschrieben wird, in {{count, number}} Strichen",
+    "pause": "Pause",
+    "count_one": "{{count, number}} Strich",
+    "count_other": "{{count, number}} Striche",
+    "heading": "Sieh zu, wie er entsteht",
+    "watchAgain": "Nochmal ansehen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "position": "Strich {{current, number}} von {{count, number}}"
   }
 }

@@ -57,5 +57,9 @@
     "body": "学习进度已保存，下次可以接着来。",
     "stay": "继续学",
     "leave": "退出"
+  },
+  "verdict": {
+    "correct": "正确。",
+    "incorrect": "不正确。"
   }
 }

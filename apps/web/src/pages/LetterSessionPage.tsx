@@ -14,15 +14,13 @@ import { canRecognise } from '../features/learning/lookAlikes';
 import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
 import { PracticeCanvasCard } from '../features/writing/PracticeCanvasCard';
 import { gradingFor } from '../features/writing/useEvaluator';
-import {
-  feedbackFor,
-} from '../features/writing/feedback';
 import { StrokeOrder } from '../ui/StrokeOrder';
 import { useStudyClock } from '../features/session/useStudyClock';
 import { resolveContent, useLocale } from '../i18n';
 import { requestPersistence } from '../storage/capability';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
+import { FeedbackState } from '../ui/FeedbackState';
 import { Button } from '../ui/Button';
 import { CenteredGlyph } from '../ui/CenteredGlyph';
 import { FocusScreen } from '../ui/FocusScreen';
@@ -287,7 +285,6 @@ export function LetterSessionPage() {
 
   const lessonTitle = resolveContent(lesson.translations, locale).value.title;
   const copy = letterCopy(current, locale);
-  const feedback = stepState.result ? feedbackFor(stepState.result, current.character) : null;
   // The bar measures this session: how many of the lesson's letters have been
   // finished, plus how far through the current letter's steps the learner is.
   const stepShare = phase === 'practice' ? (steps.indexOf(stepState.step) + 1) / (steps.length + 1) : 0;
@@ -496,26 +493,56 @@ export function LetterSessionPage() {
             */}
             {stepState.status === 'correct' && (
               <div className={styles.after}>
-                {/* Announced, not displayed: a sighted learner sees the box
-                    lock and the button appear, and a screen-reader user needs
-                    to be told the attempt was accepted. */}
-                <p className="hg-sr-only" role="status">
-                  {t('handwriting:feedback.accepted')}
-                </p>
-                <Button size="md" onClick={advanceStep}>
-                  {nextLabel(t, steps, stepState.step, index + 1 >= characters.length)}
-                </Button>
+                {/*
+                  The verdict, on screen — §14.
+
+                  This was `hg-sr-only`, announced to a screen reader and shown
+                  to nobody, on the reasoning that "a sighted learner sees the
+                  box lock and the button appear". They do not. What a learner
+                  reported seeing after writing 고 was a button reading *문제
+                  풀어 보기* and no way to tell whether the grader had accepted
+                  the letter or given up on it. Locking a box is not an answer
+                  to "was I right".
+
+                  Two words, once, and then the way forward. Not the card this
+                  replaced — no praise, no stroke note, no percentage, and
+                  nothing that says the letter's name back to somebody who has
+                  just drawn it.
+                */}
+                <FeedbackState
+                  status="correct"
+                  headline={t('common:verdict.correct')}
+                  actions={
+                    <Button size="md" onClick={advanceStep}>
+                      {nextLabel(t, steps, stepState.step, index + 1 >= characters.length)}
+                    </Button>
+                  }
+                />
               </div>
             )}
 
-            {feedback && stepState.result && stepState.status !== 'idle' && stepState.status !== 'correct' && (
+            {stepState.result && stepState.status !== 'idle' && stepState.status !== 'correct' && (
               <div className={styles.after}>
-                <p className={styles.retryNote} role="status">
-                  {t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}
-                </p>
-                <Button size="md" onClick={retry}>
-                  {t('handwriting:feedback.retry')}
-                </Button>
+                {/*
+                  And the other verdict, which the learner was also not being
+                  given: the screen used to show only the actionable note —
+                  "조금 작아요. 네모를 꽉 채워 보세요." — which describes a fix
+                  without ever saying the attempt was rejected.
+
+                  The note is gone with it. §15 asks for the state and nothing
+                  else, and a learner who is told 틀렸어요 with the guide still
+                  under their pen can see what to change; a sentence explaining
+                  it is the ceremony this screen keeps growing back.
+                */}
+                <FeedbackState
+                  status="incorrect"
+                  headline={t('common:verdict.incorrect')}
+                  actions={
+                    <Button size="md" onClick={retry}>
+                      {t('handwriting:feedback.retry')}
+                    </Button>
+                  }
+                />
               </div>
             )}
 

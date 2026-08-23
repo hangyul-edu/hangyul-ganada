@@ -91,9 +91,6 @@
     "question": "Which one makes this sound?",
     "optionsAria": "Choose the letter you heard",
     "optionAria": "Choose {{character}}",
-    "correctDetail": "That is {{character}}.",
-    "wrongHeadline": "Not that one.",
-    "wrongDetail": "{{character}} is the one that sounds like {{sound}}.",
     "hearAgain": "Hear it again",
     "tryAgain": "Try again"
   },

@@ -91,9 +91,6 @@
     "question": "কোনটি এই শব্দ করে?",
     "optionsAria": "যে অক্ষর শুনলেন সেটি বেছে নিন",
     "optionAria": "{{character}} বেছে নিন",
-    "correctDetail": "হ্যাঁ, এটাই {{character}}।",
-    "wrongHeadline": "ওটা নয়।",
-    "wrongDetail": "{{sound}}-এর মতো শোনায় {{character}}।",
     "hearAgain": "আবার শুনুন",
     "tryAgain": "আবার চেষ্টা করুন"
   },

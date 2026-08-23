@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} strokes written."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — beautifully written.",
-      "scored": "Good shape — {{score, number(style: percent)}} of the way there."
-    },
-    "empty": {
-      "detail": "Write the letter inside the box."
-    },
-    "incomplete": {
-      "tooSmall": "A little small. Try filling the box.",
-      "missingStroke": "A stroke is missing. Follow the guide all the way through."
-    },
-    "outside": {
-      "tooLarge": "That went outside the box. A bit smaller next time.",
-      "strayStroke": "One stroke wandered off. Follow the line slowly."
-    },
-    "scribble": {
-      "detail": "Draw each stroke once, in one smooth movement — no need to go over it again."
-    },
-    "mixed": {
-      "detail": "Line it up with the guide and give it another go."
-    },
-    "retry": "Try again",
-    "breakdown": "Difference {{mismatch, number(style: percent)}} · outside {{outside, number(style: percent)}} · missing {{missing, number(style: percent)}}",
-    "accepted": "Accepted."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "How {{character}} is written, in {{count, number}} stroke",
-    "diagramLabel_other": "How {{character}} is written, in {{count, number}} strokes",
-    "pause": "Pause",
-    "count_one": "{{count, number}} stroke",
-    "count_other": "{{count, number}} strokes",
-    "heading": "Watch it written",
-    "notes": {
-      "fewer": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",
-      "more": "You used {{theirs, number}} strokes; this letter is usually written in {{expected, number}}.",
-      "startElsewhere": "It usually starts at the {{corner}} of the box.",
-      "direction_one": "One stroke ran the other way. Korean strokes go top to bottom and left to right.",
-      "direction_other": "{{count, number}} strokes ran the other way. Korean strokes go top to bottom and left to right."
-    },
-    "corners": {
-      "topLeft": "top left",
-      "topCentre": "top",
-      "topRight": "top right",
-      "middleLeft": "left",
-      "middleCentre": "centre",
-      "middleRight": "right",
-      "bottomLeft": "bottom left",
-      "bottomCentre": "bottom",
-      "bottomRight": "bottom right"
-    },
-    "watchAgain": "Watch again",
-    "back": "Back",
-    "next": "Next",
-    "position": "Stroke {{current, number}} of {{count, number}}"
+    "retry": "Try again"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "Write {{a}} twice, side by side — the left one first.",
     "fallback": "{{strokes}} strokes, in the order the numbers show."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "How {{character}} is written, in {{count, number}} stroke",
+    "diagramLabel_other": "How {{character}} is written, in {{count, number}} strokes",
+    "pause": "Pause",
+    "count_one": "{{count, number}} stroke",
+    "count_other": "{{count, number}} strokes",
+    "heading": "Watch it written",
+    "watchAgain": "Watch again",
+    "back": "Back",
+    "next": "Next",
+    "position": "Stroke {{current, number}} of {{count, number}}"
   }
 }

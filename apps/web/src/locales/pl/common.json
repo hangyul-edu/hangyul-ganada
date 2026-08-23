@@ -60,5 +60,9 @@
     "body": "Twój postęp jest zapisany. Wrócisz w to samo miejsce.",
     "stay": "Zostań",
     "leave": "Wyjdź"
+  },
+  "verdict": {
+    "correct": "Poprawnie.",
+    "incorrect": "Niepoprawnie."
   }
 }

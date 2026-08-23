@@ -91,9 +91,6 @@
     "question": "Bu sesi hangisi çıkarıyor?",
     "optionsAria": "Duyduğun harfi seç",
     "optionAria": "{{character}} harfini seç",
-    "correctDetail": "Evet, bu {{character}}.",
-    "wrongHeadline": "O değil.",
-    "wrongDetail": "{{sound}} gibi ses veren harf {{character}}.",
     "hearAgain": "Yeniden dinle",
     "tryAgain": "Tekrar dene"
   },

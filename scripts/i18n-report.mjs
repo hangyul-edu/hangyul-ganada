@@ -223,6 +223,68 @@ function isUsed(key) {
 
 const source = readLocale(SOURCE_LOCALE);
 const sourceKeys = Object.keys(source).sort();
+
+/**
+ * The other direction: a `t()` call with no string behind it.
+ *
+ * ## Why this half was missing, and what it cost
+ *
+ * Everything above asks "does this key have a caller". Nothing asked "does this
+ * caller have a key", and `RecognitionStep` called
+ * `t('handwriting:feedback.correct.headline')` — a path that has never existed
+ * in any bundle. The handwriting namespace has `feedback.correct.perfect` and
+ * `feedback.correct.scored`; it has never had a `headline`.
+ *
+ * `parseMissingKeyHandler` then did what it was written to do, which is the
+ * cruel part. Rather than let a dotted path reach a learner it humanised the
+ * key — leaf, de-camelised, capitalised — and produced the word **"Headline"**.
+ * So every learner who answered a letter correctly, in all thirty-two
+ * languages, was congratulated by a placeholder that looks exactly like real
+ * copy. A raw `handwriting.feedback.correct.headline` on screen would have been
+ * reported in a day.
+ *
+ * ## Static keys only, and that is not a weakness
+ *
+ * A key assembled at runtime cannot be resolved by reading source, so template
+ * literals are skipped — and separately covered, because `unused` above proves
+ * every *shipped* key has a caller. What is checked here is every key written
+ * out in full, which is the overwhelming majority and is where this defect was.
+ */
+const CALL = /\bt\(\s*(['"])([^'"`$]+?)\1/g;
+/*
+  Product source only.
+
+  A test may name a key on purpose to prove what happens when one is missing —
+  `i18n.test.ts` does exactly that, and adds its own resource at runtime for the
+  formatter case. Scanning tests here would make the check report its own
+  fixtures, which is the fastest way to have it switched off.
+*/
+const productText = SOURCE_DIRS.flatMap((d) => walkSources(d))
+  .filter((file) => !/\.test\.tsx?$/.test(file) && !/[\\/]e2e[\\/]/.test(file))
+  .map((file) => readFileSync(file, 'utf8'))
+  .join('\n');
+const everyKey = new Set();
+for (const locale of readdirSync(LOCALES_DIR).filter((d) => statSync(join(LOCALES_DIR, d)).isDirectory())) {
+  for (const key of Object.keys(readLocale(locale))) {
+    const [, path] = key.split(/:(.*)/s);
+    everyKey.add(path);
+    everyKey.add(key);
+    const plural = pluralBase(path);
+    if (plural) everyKey.add(plural);
+  }
+}
+const unresolved = [];
+for (const match of productText.matchAll(CALL)) {
+  const key = match[2];
+  // A `t()` argument that is plainly not a key: a sentence, a URL, a selector.
+  if (!/^[A-Za-z][\w-]*(?::[\w.-]+)?(?:\.[\w-]+)*$/.test(key)) continue;
+  if (!key.includes('.') && !key.includes(':')) continue;
+  const bare = key.includes(':') ? key.split(/:(.*)/s)[1] : key;
+  if (everyKey.has(key) || everyKey.has(bare)) continue;
+  // A prefix used with a runtime suffix, e.g. `t(\`partOfSpeech.${pos}\`)`.
+  if ([...everyKey].some((known) => known.startsWith(`${bare}.`))) continue;
+  unresolved.push(key);
+}
 const locales = readdirSync(LOCALES_DIR).filter((d) =>
   statSync(join(LOCALES_DIR, d)).isDirectory(),
 );
@@ -317,6 +379,13 @@ for (const code of locales.sort()) {
   }
 }
 
+if (unresolved.length) {
+  report.unresolved = unresolved;
+  report.errors.push(
+    `${unresolved.length} t() call(s) name a key that exists in no bundle — see the note above ` +
+      `"the other direction"; this is how the word "Headline" reached learners`,
+  );
+}
 if (unused.length) {
   report.errors.push(`${SOURCE_LOCALE}: ${unused.length} key(s) no source file references`);
 }
@@ -346,6 +415,10 @@ if (JSON_OUT) {
     console.log(`\n[${code}] plural categories: ${data.pluralCategories.join(', ')}`);
     for (const note of notes.slice(0, 40)) console.log(`  ${note}`);
     if (notes.length > 40) console.log(`  … and ${notes.length - 40} more`);
+  }
+  if (unresolved.length) {
+    console.log('');
+    for (const key of unresolved) console.log(`  no such key    ${key}`);
   }
   if (unused.length) {
     console.log(`\n[${SOURCE_LOCALE}] keys no source file references:`);

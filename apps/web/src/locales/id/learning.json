@@ -91,9 +91,6 @@
     "question": "Yang mana berbunyi seperti ini?",
     "optionsAria": "Pilih huruf yang kamu dengar",
     "optionAria": "Pilih {{character}}",
-    "correctDetail": "Betul, itu {{character}}.",
-    "wrongHeadline": "Bukan yang itu.",
-    "wrongDetail": "{{character}} yang berbunyi seperti {{sound}}.",
     "hearAgain": "Dengar lagi",
     "tryAgain": "Coba lagi"
   },

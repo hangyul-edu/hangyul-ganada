@@ -13,13 +13,13 @@ import { buildExercise } from '../features/review/exercises';
 import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
 import { useStudyClock } from '../features/session/useStudyClock';
 import { PracticeCanvasCard } from '../features/writing/PracticeCanvasCard';
-import { feedbackFor } from '../features/writing/feedback';
 import { gradingFor } from '../features/writing/useEvaluator';
 import { useEntryAudio } from '../audio/useEntryAudio';
 import { hapticPass, hapticRetry } from '../native/haptics';
 import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
+import { FeedbackState } from '../ui/FeedbackState';
 import { FocusScreen } from '../ui/FocusScreen';
 import { Badge } from '../ui/Chip';
 import { Button } from '../ui/Button';
@@ -291,10 +291,6 @@ export function ReviewSessionPage() {
 
   const outcome = sessionOutcome(results, state.memory, new Date());
   const isLast = index + 1 >= queue.length;
-  const feedback =
-    writeResult.current && exercise.writeTarget
-      ? feedbackFor(writeResult.current, exercise.writeTarget)
-      : null;
   const word = candidate.kind === 'word' ? getWord(candidate.itemKey) : undefined;
   const copy = word ? wordCopy(word, contentLocale) : null;
 
@@ -385,20 +381,30 @@ export function ReviewSessionPage() {
               way, because the scheduler has already recorded the answer and
               re-asking inside the sitting would be teaching, not reviewing.
             */}
-            {feedback && writeStatus !== 'idle' && (
+            {writeStatus !== 'idle' && (
               <div className={styles.after}>
-                {writeStatus === 'correct' ? (
-                  <p className="hg-sr-only" role="status">
-                    {t('handwriting:feedback.accepted')}
-                  </p>
-                ) : (
-                  <p className={styles.retryNote} role="status">
-                    {t(`handwriting:${feedback.detailKey}`, feedback.detailParams)}
-                  </p>
-                )}
-                <Button size="md" onClick={advance}>
-                  {isLast ? t('learning:session.finish') : t('learning:session.next')}
-                </Button>
+                {/*
+                  The same two words as the lesson — §40.
+
+                  The correct branch here was `hg-sr-only` too, so a review
+                  sitting had the same hole as a first lesson: the learner
+                  writes, something happens, and the only thing on screen is a
+                  Next button. One verdict component, one pair of strings, one
+                  answer to "was I right", wherever the writing happened.
+                */}
+                <FeedbackState
+                  status={writeStatus === 'correct' ? 'correct' : 'incorrect'}
+                  headline={t(
+                    writeStatus === 'correct'
+                      ? 'common:verdict.correct'
+                      : 'common:verdict.incorrect',
+                  )}
+                  actions={
+                    <Button size="md" onClick={advance}>
+                      {isLast ? t('learning:session.finish') : t('learning:session.next')}
+                    </Button>
+                  }
+                />
               </div>
             )}
           </>

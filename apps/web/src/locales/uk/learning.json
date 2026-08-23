@@ -91,9 +91,6 @@
     "question": "Яка дає цей звук?",
     "optionsAria": "Виберіть літеру, яку почули",
     "optionAria": "Вибрати {{character}}",
-    "correctDetail": "Так, це {{character}}.",
-    "wrongHeadline": "Не ця.",
-    "wrongDetail": "{{character}} — ось та, що звучить як {{sound}}.",
     "hearAgain": "Послухати ще раз",
     "tryAgain": "Спробувати ще"
   },

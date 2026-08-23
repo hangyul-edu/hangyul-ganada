@@ -339,10 +339,31 @@ describe('locale-aware formatting', () => {
   });
 
   it('formats percentages rather than concatenating a % sign', () => {
+    /*
+      Against a `defaultValue`, not a shipped string.
+
+      This used to assert on `handwriting:feedback.correct.scored` — "모양이
+      좋아요 — 94%까지 왔어요" — and that string is gone: §15 removed the score
+      from the screen, because a percentage of mismatch is the grader talking
+      about itself. Nothing in the product formats a percentage today.
+
+      The *configuration* still can, and a test that disappears with the last
+      caller leaves the next one to find out the hard way. So this exercises the
+      formatter directly and does not depend on any particular sentence
+      existing.
+    */
     const en = createI18n('en');
-    expect(en.t('feedback.correct.scored', { ns: 'handwriting', character: '가', score: 0.94 })).toContain(
-      '94%',
-    );
+    /*
+      Added as a resource, not passed as a `defaultValue`.
+
+      `defaultValue` does not survive: `parseMissingKeyHandler` runs first and
+      wins, so `t('a.key.that.does.not.ship', { defaultValue: '…' })` returns
+      "Ship". Worth knowing — it is the same handler that turned a missing
+      handwriting key into the word "Headline" — and worth not building a test
+      on top of.
+    */
+    en.addResource('en', 'common', 'testPercent', '{{score, number(style: percent)}}');
+    expect(en.t('common:testPercent', { score: 0.94 })).toContain('94%');
   });
 });
 

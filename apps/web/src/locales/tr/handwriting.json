@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} çizgi yazıldı."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — çok güzel yazılmış.",
-      "scored": "Biçim iyi — yolun {{score, number(style: percent)}} kadarı tamam."
-    },
-    "empty": {
-      "detail": "Harfi kutunun içine yaz."
-    },
-    "incomplete": {
-      "tooSmall": "Biraz küçük. Kutuyu doldurmayı dene.",
-      "missingStroke": "Bir çizgi eksik. Kılavuzu sonuna kadar izle."
-    },
-    "outside": {
-      "tooLarge": "Kutunun dışına taştı. Bir dahakine biraz küçük.",
-      "strayStroke": "Bir çizgi yolundan çıktı. Çizgiyi yavaşça izle."
-    },
-    "scribble": {
-      "detail": "Her çizgiyi bir kez, tek bir akışta çiz — üzerinden tekrar geçmeye gerek yok."
-    },
-    "mixed": {
-      "detail": "Kılavuzla hizala ve bir daha dene."
-    },
-    "retry": "Tekrar dene",
-    "breakdown": "Fark {{mismatch, number(style: percent)}} · dışarıda {{outside, number(style: percent)}} · eksik {{missing, number(style: percent)}}",
-    "accepted": "Kabul edildi."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "{{character}} nasıl yazılır, {{count, number}} çizgide",
-    "diagramLabel_other": "{{character}} nasıl yazılır, {{count, number}} çizgide",
-    "pause": "Duraklat",
-    "count_one": "{{count, number}} çizgi",
-    "count_other": "{{count, number}} çizgi",
-    "heading": "Yazılışını izle",
-    "notes": {
-      "fewer": "{{theirs, number}} çizgi kullandın; bu harf genelde {{expected, number}} çizgide yazılır.",
-      "more": "{{theirs, number}} çizgi kullandın; bu harf genelde {{expected, number}} çizgide yazılır.",
-      "startElsewhere": "Genelde kutunun {{corner}} tarafından başlar.",
-      "direction_one": "{{count, number}} çizgi ters yönde gitti. Korece çizgiler yukarıdan aşağıya ve soldan sağa gider.",
-      "direction_other": "{{count, number}} çizgi ters yönde gitti. Korece çizgiler yukarıdan aşağıya ve soldan sağa gider."
-    },
-    "corners": {
-      "topLeft": "sol üst",
-      "topCentre": "üst",
-      "topRight": "sağ üst",
-      "middleLeft": "sol",
-      "middleCentre": "orta",
-      "middleRight": "sağ",
-      "bottomLeft": "sol alt",
-      "bottomCentre": "alt",
-      "bottomRight": "sağ alt"
-    },
-    "watchAgain": "Yeniden izle",
-    "back": "Geri",
-    "next": "İleri",
-    "position": "{{count, number}} çizgiden {{current, number}}."
+    "retry": "Tekrar dene"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "{{a}} harfini yan yana iki kez yaz — önce soldaki.",
     "fallback": "{{strokes}} çizgi, rakamların gösterdiği sırada."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "{{character}} nasıl yazılır, {{count, number}} çizgide",
+    "diagramLabel_other": "{{character}} nasıl yazılır, {{count, number}} çizgide",
+    "pause": "Duraklat",
+    "count_one": "{{count, number}} çizgi",
+    "count_other": "{{count, number}} çizgi",
+    "heading": "Yazılışını izle",
+    "watchAgain": "Yeniden izle",
+    "back": "Geri",
+    "next": "İleri",
+    "position": "{{count, number}} çizgiden {{current, number}}."
   }
 }

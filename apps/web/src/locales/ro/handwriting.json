@@ -12,63 +12,7 @@
     "strokes_other": "{{count, number}} de linii scrise."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — scrisă frumos.",
-      "scored": "Formă bună — {{score, number(style: percent)}} din drum."
-    },
-    "empty": {
-      "detail": "Scrie litera înăuntrul casetei."
-    },
-    "incomplete": {
-      "tooSmall": "Puțin cam mică. Încearcă să umpli caseta.",
-      "missingStroke": "Lipsește o linie. Urmează modelul până la capăt."
-    },
-    "outside": {
-      "tooLarge": "A ieșit din casetă. Data viitoare puțin mai mică.",
-      "strayStroke": "O linie a luat-o razna. Urmează traseul încet."
-    },
-    "scribble": {
-      "detail": "Trage fiecare linie o singură dată, dintr-o mișcare — nu e nevoie să treci din nou peste ea."
-    },
-    "mixed": {
-      "detail": "Aliniaz-o cu modelul și mai încearcă o dată."
-    },
-    "retry": "Mai încearcă",
-    "breakdown": "Diferență {{mismatch, number(style: percent)}} · în afară {{outside, number(style: percent)}} · lipsă {{missing, number(style: percent)}}",
-    "accepted": "Acceptat."
-  },
-  "strokeOrder": {
-    "diagramLabel_few": "Cum se scrie {{character}}, din {{count, number}} linii",
-    "diagramLabel_one": "Cum se scrie {{character}}, din {{count, number}} linie",
-    "diagramLabel_other": "Cum se scrie {{character}}, din {{count, number}} de linii",
-    "pause": "Pauză",
-    "count_few": "{{count, number}} linii",
-    "count_one": "{{count, number}} linie",
-    "count_other": "{{count, number}} de linii",
-    "heading": "Vezi cum se scrie",
-    "notes": {
-      "fewer": "Ai folosit {{theirs, number}} linii; litera aceasta se scrie de obicei din {{expected, number}}.",
-      "more": "Ai folosit {{theirs, number}} linii; litera aceasta se scrie de obicei din {{expected, number}}.",
-      "startElsewhere": "De obicei începe din {{corner}} casetei.",
-      "direction_few": "{{count, number}} linii au mers invers. Liniile coreene merg de sus în jos și de la stânga la dreapta.",
-      "direction_one": "{{count, number}} linie a mers invers. Liniile coreene merg de sus în jos și de la stânga la dreapta.",
-      "direction_other": "{{count, number}} de linii au mers invers. Liniile coreene merg de sus în jos și de la stânga la dreapta."
-    },
-    "corners": {
-      "topLeft": "colțul din stânga sus",
-      "topCentre": "partea de sus",
-      "topRight": "colțul din dreapta sus",
-      "middleLeft": "partea stângă",
-      "middleCentre": "mijloc",
-      "middleRight": "partea dreaptă",
-      "bottomLeft": "colțul din stânga jos",
-      "bottomCentre": "partea de jos",
-      "bottomRight": "colțul din dreapta jos"
-    },
-    "watchAgain": "Vezi din nou",
-    "back": "Înapoi",
-    "next": "Înainte",
-    "position": "Linia {{current, number}} din {{count, number}}"
+    "retry": "Mai încearcă"
   },
   "strokeGuide": {
     "shape": {
@@ -101,5 +45,19 @@
     },
     "partsDouble": "Scrie {{a}} de două ori, una lângă alta — întâi cea din stânga.",
     "fallback": "{{strokes}} linii, în ordinea arătată de cifre."
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Cum se scrie {{character}}, din {{count, number}} linii",
+    "diagramLabel_one": "Cum se scrie {{character}}, din {{count, number}} linie",
+    "diagramLabel_other": "Cum se scrie {{character}}, din {{count, number}} de linii",
+    "pause": "Pauză",
+    "count_few": "{{count, number}} linii",
+    "count_one": "{{count, number}} linie",
+    "count_other": "{{count, number}} de linii",
+    "heading": "Vezi cum se scrie",
+    "watchAgain": "Vezi din nou",
+    "back": "Înapoi",
+    "next": "Înainte",
+    "position": "Linia {{current, number}} din {{count, number}}"
   }
 }

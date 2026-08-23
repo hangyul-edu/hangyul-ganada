@@ -10,57 +10,7 @@
     "strokes_other": "{{count, number}}画書きました。"
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — とてもきれいに書けました。",
-      "scored": "いい形です — {{score, number(style: percent)}} まで来ました。"
-    },
-    "empty": {
-      "detail": "枠の中に文字を書いてみましょう。"
-    },
-    "incomplete": {
-      "tooSmall": "少し小さいです。枠いっぱいに書いてみましょう。",
-      "missingStroke": "画が一つ足りません。ガイドを最後までなぞってみましょう。"
-    },
-    "outside": {
-      "tooLarge": "枠からはみ出しました。少し小さめに書いてみましょう。",
-      "strayStroke": "画が一つそれました。ゆっくり線をたどってみましょう。"
-    },
-    "scribble": {
-      "detail": "一画ずつ、一度でスッと書いてみましょう。なぞり直さなくて大丈夫です。"
-    },
-    "mixed": {
-      "detail": "ガイドに合わせて、もう一度書いてみましょう。"
-    },
-    "retry": "もう一度書く",
-    "breakdown": "差 {{mismatch, number(style: percent)}} · はみ出し {{outside, number(style: percent)}} · 不足 {{missing, number(style: percent)}}",
-    "accepted": "合格しました。"
-  },
-  "strokeOrder": {
-    "diagramLabel_other": "{{character}} の書き方、全 {{count, number}} 画",
-    "pause": "一時停止",
-    "count_other": "{{count, number}}画",
-    "heading": "書くところを見る",
-    "notes": {
-      "fewer": "{{theirs, number}}画で書きました。この字はふつう{{expected, number}}画です。",
-      "more": "{{theirs, number}}画で書きました。この字はふつう{{expected, number}}画です。",
-      "startElsewhere": "ふつうはマスの{{corner}}から始めます。",
-      "direction_other": "{{count, number}}画が逆方向でした。ハングルは上から下、左から右に書きます。"
-    },
-    "corners": {
-      "topLeft": "左上",
-      "topCentre": "上",
-      "topRight": "右上",
-      "middleLeft": "左",
-      "middleCentre": "中央",
-      "middleRight": "右",
-      "bottomLeft": "左下",
-      "bottomCentre": "下",
-      "bottomRight": "右下"
-    },
-    "watchAgain": "もう一度見る",
-    "back": "まえ",
-    "next": "つぎ",
-    "position": "{{count, number}} 画のうち {{current, number}} 画目"
+    "retry": "もう一度書く"
   },
   "strokeGuide": {
     "shape": {
@@ -93,5 +43,15 @@
     },
     "partsDouble": "{{a}} を二つ並べて、左から。",
     "fallback": "全{{strokes}}画。番号の順に書きます。"
+  },
+  "strokeOrder": {
+    "diagramLabel_other": "{{character}} の書き方、全 {{count, number}} 画",
+    "pause": "一時停止",
+    "count_other": "{{count, number}}画",
+    "heading": "書くところを見る",
+    "watchAgain": "もう一度見る",
+    "back": "まえ",
+    "next": "つぎ",
+    "position": "{{count, number}} 画のうち {{current, number}} 画目"
   }
 }

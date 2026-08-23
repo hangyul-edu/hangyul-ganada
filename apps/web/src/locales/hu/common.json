@@ -58,5 +58,9 @@
     "body": "A haladásod elmentve. Ott folytatod, ahol abbahagytad.",
     "stay": "Maradok",
     "leave": "Kilépés"
+  },
+  "verdict": {
+    "correct": "Helyes.",
+    "incorrect": "Helytelen."
   }
 }

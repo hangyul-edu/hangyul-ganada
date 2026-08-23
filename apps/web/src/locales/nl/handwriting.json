@@ -11,60 +11,7 @@
     "strokes_other": "{{count, number}} streken geschreven."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — prachtig geschreven.",
-      "scored": "Goede vorm — {{score, number(style: percent)}} van de weg."
-    },
-    "empty": {
-      "detail": "Schrijf de letter in het vak."
-    },
-    "incomplete": {
-      "tooSmall": "Een beetje klein. Probeer het vak te vullen.",
-      "missingStroke": "Er ontbreekt een streek. Volg de hulplijn helemaal door."
-    },
-    "outside": {
-      "tooLarge": "Dat ging buiten het vak. Volgende keer iets kleiner.",
-      "strayStroke": "Eén streek dwaalde af. Volg de lijn rustig."
-    },
-    "scribble": {
-      "detail": "Zet elke streek één keer, in één vloeiende beweging — je hoeft er niet overheen te gaan."
-    },
-    "mixed": {
-      "detail": "Leg hem op de hulplijn en probeer het nog eens."
-    },
-    "retry": "Opnieuw",
-    "breakdown": "Verschil {{mismatch, number(style: percent)}} · buiten {{outside, number(style: percent)}} · ontbrekend {{missing, number(style: percent)}}",
-    "accepted": "Geaccepteerd."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "Hoe {{character}} geschreven wordt, in {{count, number}} streek",
-    "diagramLabel_other": "Hoe {{character}} geschreven wordt, in {{count, number}} streken",
-    "pause": "Pauze",
-    "count_one": "{{count, number}} streek",
-    "count_other": "{{count, number}} streken",
-    "heading": "Kijk hoe hij geschreven wordt",
-    "notes": {
-      "fewer": "Je gebruikte {{theirs, number}} streken; deze letter wordt meestal in {{expected, number}} geschreven.",
-      "more": "Je gebruikte {{theirs, number}} streken; deze letter wordt meestal in {{expected, number}} geschreven.",
-      "startElsewhere": "Hij begint meestal {{corner}} in het vak.",
-      "direction_one": "{{count, number}} streek liep de andere kant op. Koreaanse streken gaan van boven naar beneden en van links naar rechts.",
-      "direction_other": "{{count, number}} streken liepen de andere kant op. Koreaanse streken gaan van boven naar beneden en van links naar rechts."
-    },
-    "corners": {
-      "topLeft": "linksboven",
-      "topCentre": "bovenaan",
-      "topRight": "rechtsboven",
-      "middleLeft": "links",
-      "middleCentre": "in het midden",
-      "middleRight": "rechts",
-      "bottomLeft": "linksonder",
-      "bottomCentre": "onderaan",
-      "bottomRight": "rechtsonder"
-    },
-    "watchAgain": "Nog eens kijken",
-    "back": "Terug",
-    "next": "Verder",
-    "position": "Streek {{current, number}} van {{count, number}}"
+    "retry": "Opnieuw"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "Schrijf {{a}} twee keer, naast elkaar — de linker eerst.",
     "fallback": "{{strokes}} streken, in de volgorde die de cijfers aangeven."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Hoe {{character}} geschreven wordt, in {{count, number}} streek",
+    "diagramLabel_other": "Hoe {{character}} geschreven wordt, in {{count, number}} streken",
+    "pause": "Pauze",
+    "count_one": "{{count, number}} streek",
+    "count_other": "{{count, number}} streken",
+    "heading": "Kijk hoe hij geschreven wordt",
+    "watchAgain": "Nog eens kijken",
+    "back": "Terug",
+    "next": "Verder",
+    "position": "Streek {{current, number}} van {{count, number}}"
   }
 }

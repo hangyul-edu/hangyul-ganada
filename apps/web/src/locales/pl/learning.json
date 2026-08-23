@@ -91,9 +91,6 @@
     "question": "Która daje ten dźwięk?",
     "optionsAria": "Wybierz literę, którą usłyszałeś",
     "optionAria": "Wybierz {{character}}",
-    "correctDetail": "Tak, to {{character}}.",
-    "wrongHeadline": "Nie ta.",
-    "wrongDetail": "{{character}} to ta, która brzmi jak {{sound}}.",
     "hearAgain": "Posłuchaj jeszcze raz",
     "tryAgain": "Spróbuj ponownie"
   },

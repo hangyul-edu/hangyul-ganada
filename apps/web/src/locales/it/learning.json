@@ -91,9 +91,6 @@
     "question": "Quale fa questo suono?",
     "optionsAria": "Scegli la lettera che hai sentito",
     "optionAria": "Scegli {{character}}",
-    "correctDetail": "Sì, è {{character}}.",
-    "wrongHeadline": "Non quella.",
-    "wrongDetail": "{{character}} è quella che suona come {{sound}}.",
     "hearAgain": "Riascolta",
     "tryAgain": "Riprova"
   },

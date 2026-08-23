@@ -59,5 +59,9 @@
     "body": "Tu progreso está guardado. Puedes seguir donde lo dejaste.",
     "stay": "Seguir aquí",
     "leave": "Salir"
+  },
+  "verdict": {
+    "correct": "Correcto.",
+    "incorrect": "Incorrecto."
   }
 }

@@ -175,9 +175,6 @@
     "question": "Qual faz este som?",
     "optionsAria": "Escolha a letra que você ouviu",
     "optionAria": "Escolher {{character}}",
-    "correctDetail": "Isso: {{character}}.",
-    "wrongHeadline": "Essa não.",
-    "wrongDetail": "{{character}} é o que soa como {{sound}}.",
     "hearAgain": "Ouvir de novo",
     "tryAgain": "Tentar de novo"
   },

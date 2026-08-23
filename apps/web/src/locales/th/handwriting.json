@@ -11,60 +11,7 @@
     "strokes_other": "เขียนไปแล้ว {{count, number}} เส้น"
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — เขียนสวยมาก",
-      "scored": "รูปทรงใช้ได้ — ได้ {{score, number(style: percent)}} แล้ว"
-    },
-    "empty": {
-      "detail": "เขียนตัวอักษรลงในกรอบนะ"
-    },
-    "incomplete": {
-      "tooSmall": "เล็กไปหน่อย ลองเขียนให้เต็มกรอบดู",
-      "missingStroke": "ยังขาดไปหนึ่งเส้น ลากตามเส้นนำให้ครบนะ"
-    },
-    "outside": {
-      "tooLarge": "เขียนล้นออกนอกกรอบ คราวหน้าเล็กลงอีกนิด",
-      "strayStroke": "มีเส้นหนึ่งหลุดออกไป ค่อย ๆ ลากตามเส้นนะ"
-    },
-    "scribble": {
-      "detail": "ลากแต่ละเส้นครั้งเดียวให้จบในจังหวะเดียว ไม่ต้องลากทับซ้ำ"
-    },
-    "mixed": {
-      "detail": "จัดให้ตรงกับเส้นนำแล้วลองอีกครั้ง"
-    },
-    "retry": "ลองใหม่",
-    "breakdown": "คลาดเคลื่อน {{mismatch, number(style: percent)}} · ออกนอกกรอบ {{outside, number(style: percent)}} · ขาดหาย {{missing, number(style: percent)}}",
-    "accepted": "ผ่านแล้ว"
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
-    "diagramLabel_other": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
-    "pause": "หยุดชั่วคราว",
-    "count_one": "{{count, number}} เส้น",
-    "count_other": "{{count, number}} เส้น",
-    "heading": "ดูวิธีเขียน",
-    "notes": {
-      "fewer": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",
-      "more": "คุณเขียน {{theirs, number}} เส้น ตัวอักษรนี้ปกติเขียน {{expected, number}} เส้น",
-      "startElsewhere": "ปกติจะเริ่มที่{{corner}}ของกรอบ",
-      "direction_one": "มีเส้นหนึ่งลากสวนทาง เส้นภาษาเกาหลีลากจากบนลงล่างและจากซ้ายไปขวา",
-      "direction_other": "มี {{count, number}} เส้นลากสวนทาง เส้นภาษาเกาหลีลากจากบนลงล่างและจากซ้ายไปขวา"
-    },
-    "corners": {
-      "topLeft": "มุมบนซ้าย",
-      "topCentre": "ด้านบน",
-      "topRight": "มุมบนขวา",
-      "middleLeft": "ด้านซ้าย",
-      "middleCentre": "ตรงกลาง",
-      "middleRight": "ด้านขวา",
-      "bottomLeft": "มุมล่างซ้าย",
-      "bottomCentre": "ด้านล่าง",
-      "bottomRight": "มุมล่างขวา"
-    },
-    "watchAgain": "ดูอีกครั้ง",
-    "back": "ก่อนหน้า",
-    "next": "ถัดไป",
-    "position": "เส้นที่ {{current, number}} จาก {{count, number}}"
+    "retry": "ลองใหม่"
   },
   "strokeGuide": {
     "shape": {
@@ -97,5 +44,17 @@
     },
     "partsDouble": "เขียน {{a}} สองครั้งเรียงกัน โดยเริ่มจากตัวซ้าย",
     "fallback": "{{strokes}} เส้น ตามลำดับที่ตัวเลขบอกไว้"
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
+    "diagramLabel_other": "วิธีเขียน {{character}} ด้วย {{count, number}} เส้น",
+    "pause": "หยุดชั่วคราว",
+    "count_one": "{{count, number}} เส้น",
+    "count_other": "{{count, number}} เส้น",
+    "heading": "ดูวิธีเขียน",
+    "watchAgain": "ดูอีกครั้ง",
+    "back": "ก่อนหน้า",
+    "next": "ถัดไป",
+    "position": "เส้นที่ {{current, number}} จาก {{count, number}}"
   }
 }

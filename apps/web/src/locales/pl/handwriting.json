@@ -13,66 +13,7 @@
     "strokes_other": "Napisane {{count, number}} kreski."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — pięknie napisana.",
-      "scored": "Dobry kształt — {{score, number(style: percent)}} drogi za tobą."
-    },
-    "empty": {
-      "detail": "Napisz literę wewnątrz ramki."
-    },
-    "incomplete": {
-      "tooSmall": "Odrobinę za mała. Spróbuj wypełnić ramkę.",
-      "missingStroke": "Brakuje kreski. Prowadź po wzorze do samego końca."
-    },
-    "outside": {
-      "tooLarge": "Wyszło poza ramkę. Następnym razem trochę mniej.",
-      "strayStroke": "Jedna kreska uciekła w bok. Prowadź po linii spokojnie."
-    },
-    "scribble": {
-      "detail": "Prowadź każdą kreskę raz, jednym płynnym ruchem — nie trzeba po niej wracać."
-    },
-    "mixed": {
-      "detail": "Nałóż ją na wzór i spróbuj jeszcze raz."
-    },
-    "retry": "Spróbuj ponownie",
-    "breakdown": "Różnica {{mismatch, number(style: percent)}} · poza {{outside, number(style: percent)}} · brak {{missing, number(style: percent)}}",
-    "accepted": "Zaliczone."
-  },
-  "strokeOrder": {
-    "diagramLabel_few": "Jak pisze się {{character}}, w {{count, number}} kreskach",
-    "diagramLabel_many": "Jak pisze się {{character}}, w {{count, number}} kreskach",
-    "diagramLabel_one": "Jak pisze się {{character}}, w {{count, number}} kresce",
-    "diagramLabel_other": "Jak pisze się {{character}}, w {{count, number}} kreskach",
-    "pause": "Pauza",
-    "count_few": "{{count, number}} kreski",
-    "count_many": "{{count, number}} kresek",
-    "count_one": "{{count, number}} kreska",
-    "count_other": "{{count, number}} kreski",
-    "heading": "Zobacz, jak się ją pisze",
-    "notes": {
-      "fewer": "Użyłeś {{theirs, number}} kresek; tę literę pisze się zwykle w {{expected, number}}.",
-      "more": "Użyłeś {{theirs, number}} kresek; tę literę pisze się zwykle w {{expected, number}}.",
-      "startElsewhere": "Zwykle zaczyna się od {{corner}} ramki.",
-      "direction_few": "{{count, number}} kreski poszły w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej.",
-      "direction_many": "{{count, number}} kresek poszło w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej.",
-      "direction_one": "{{count, number}} kreska poszła w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej.",
-      "direction_other": "{{count, number}} kreski poszły w drugą stronę. Koreańskie kreski biegną z góry na dół i od lewej do prawej."
-    },
-    "corners": {
-      "topLeft": "lewego górnego rogu",
-      "topCentre": "góry",
-      "topRight": "prawego górnego rogu",
-      "middleLeft": "lewej strony",
-      "middleCentre": "środka",
-      "middleRight": "prawej strony",
-      "bottomLeft": "lewego dolnego rogu",
-      "bottomCentre": "dołu",
-      "bottomRight": "prawego dolnego rogu"
-    },
-    "watchAgain": "Obejrzyj jeszcze raz",
-    "back": "Wstecz",
-    "next": "Dalej",
-    "position": "Kreska {{current, number}} z {{count, number}}"
+    "retry": "Spróbuj ponownie"
   },
   "strokeGuide": {
     "shape": {
@@ -105,5 +46,21 @@
     },
     "partsDouble": "Napisz {{a}} dwa razy, obok siebie — najpierw lewą.",
     "fallback": "{{strokes}} kresek, w kolejności, którą pokazują cyfry."
+  },
+  "strokeOrder": {
+    "diagramLabel_few": "Jak pisze się {{character}}, w {{count, number}} kreskach",
+    "diagramLabel_many": "Jak pisze się {{character}}, w {{count, number}} kreskach",
+    "diagramLabel_one": "Jak pisze się {{character}}, w {{count, number}} kresce",
+    "diagramLabel_other": "Jak pisze się {{character}}, w {{count, number}} kreskach",
+    "pause": "Pauza",
+    "count_few": "{{count, number}} kreski",
+    "count_many": "{{count, number}} kresek",
+    "count_one": "{{count, number}} kreska",
+    "count_other": "{{count, number}} kreski",
+    "heading": "Zobacz, jak się ją pisze",
+    "watchAgain": "Obejrzyj jeszcze raz",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "position": "Kreska {{current, number}} z {{count, number}}"
   }
 }

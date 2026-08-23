@@ -91,9 +91,6 @@
     "question": "Která dělá tenhle zvuk?",
     "optionsAria": "Vyberte literu, kterou jste slyšeli",
     "optionAria": "Vybrat {{character}}",
-    "correctDetail": "Ano, to je {{character}}.",
-    "wrongHeadline": "Tahle ne.",
-    "wrongDetail": "{{character}} je ta, co zní jako {{sound}}.",
     "hearAgain": "Poslechnout znovu",
     "tryAgain": "Zkusit znovu"
   },

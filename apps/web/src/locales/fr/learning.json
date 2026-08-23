@@ -175,9 +175,6 @@
     "question": "Laquelle fait ce son ?",
     "optionsAria": "Choisissez la lettre entendue",
     "optionAria": "Choisir {{character}}",
-    "correctDetail": "C’est bien {{character}}.",
-    "wrongHeadline": "Pas celle-là.",
-    "wrongDetail": "C’est {{character}} qui se prononce {{sound}}.",
     "hearAgain": "Réécouter",
     "tryAgain": "Réessayer"
   },

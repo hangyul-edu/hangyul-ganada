@@ -58,5 +58,9 @@
     "body": "Your progress is saved. You can pick up where you left off.",
     "stay": "Stay",
     "leave": "Leave"
+  },
+  "verdict": {
+    "correct": "Correct.",
+    "incorrect": "Incorrect."
   }
 }

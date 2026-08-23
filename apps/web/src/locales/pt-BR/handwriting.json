@@ -12,63 +12,7 @@
     "strokes_many": "{{count, number}} de traços escritos."
   },
   "feedback": {
-    "correct": {
-      "perfect": "{{character}} — escrita lindamente.",
-      "scored": "Boa forma — {{score, number(style: percent)}} do caminho."
-    },
-    "empty": {
-      "detail": "Escreva a letra dentro do quadro."
-    },
-    "incomplete": {
-      "tooSmall": "Um pouco pequena. Tente preencher o quadro.",
-      "missingStroke": "Falta um traço. Siga a guia até o fim."
-    },
-    "outside": {
-      "tooLarge": "Saiu do quadro. Um pouco menor.",
-      "strayStroke": "Um traço se desviou. Siga a linha com calma."
-    },
-    "scribble": {
-      "detail": "Faça cada traço uma vez só, em um movimento contínuo. Não precisa passar por cima."
-    },
-    "mixed": {
-      "detail": "Alinhe com a guia e tente de novo."
-    },
-    "retry": "Escrever de novo",
-    "breakdown": "Diferença {{mismatch, number(style: percent)}} · fora {{outside, number(style: percent)}} · faltando {{missing, number(style: percent)}}",
-    "accepted": "Aceito."
-  },
-  "strokeOrder": {
-    "diagramLabel_one": "Como se escreve {{character}}, em {{count, number}} traço",
-    "diagramLabel_many": "Como se escreve {{character}}, em {{count, number}} traços",
-    "diagramLabel_other": "Como se escreve {{character}}, em {{count, number}} traços",
-    "pause": "Pausar",
-    "count_one": "{{count, number}} traço",
-    "count_many": "{{count, number}} traços",
-    "count_other": "{{count, number}} traços",
-    "heading": "Veja sendo escrita",
-    "notes": {
-      "fewer": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",
-      "more": "Você fez {{theirs, number}} traços; esta letra costuma ser escrita em {{expected, number}}.",
-      "startElsewhere": "Normalmente começa no {{corner}} do quadro.",
-      "direction_one": "Um traço foi no sentido contrário. Em coreano escreve-se de cima para baixo e da esquerda para a direita.",
-      "direction_many": "{{count, number}} traços foram no sentido contrário. Em coreano escreve-se de cima para baixo e da esquerda para a direita.",
-      "direction_other": "{{count, number}} traços foram no sentido contrário. Em coreano escreve-se de cima para baixo e da esquerda para a direita."
-    },
-    "corners": {
-      "topLeft": "canto superior esquerdo",
-      "topCentre": "topo",
-      "topRight": "canto superior direito",
-      "middleLeft": "lado esquerdo",
-      "middleCentre": "centro",
-      "middleRight": "lado direito",
-      "bottomLeft": "canto inferior esquerdo",
-      "bottomCentre": "rodapé",
-      "bottomRight": "canto inferior direito"
-    },
-    "watchAgain": "Ver de novo",
-    "back": "Anterior",
-    "next": "Próximo",
-    "position": "Traço {{current, number}} de {{count, number}}"
+    "retry": "Escrever de novo"
   },
   "strokeGuide": {
     "shape": {
@@ -101,5 +45,19 @@
     },
     "partsDouble": "Escreva {{a}} duas vezes, lado a lado — a da esquerda primeiro.",
     "fallback": "{{strokes}} traços, na ordem dos números."
+  },
+  "strokeOrder": {
+    "diagramLabel_one": "Como se escreve {{character}}, em {{count, number}} traço",
+    "diagramLabel_many": "Como se escreve {{character}}, em {{count, number}} traços",
+    "diagramLabel_other": "Como se escreve {{character}}, em {{count, number}} traços",
+    "pause": "Pausar",
+    "count_one": "{{count, number}} traço",
+    "count_many": "{{count, number}} traços",
+    "count_other": "{{count, number}} traços",
+    "heading": "Veja sendo escrita",
+    "watchAgain": "Ver de novo",
+    "back": "Anterior",
+    "next": "Próximo",
+    "position": "Traço {{current, number}} de {{count, number}}"
   }
 }
