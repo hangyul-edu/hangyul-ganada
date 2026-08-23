@@ -4,8 +4,6 @@
     "title": "আজকের শব্দ",
     "start": "শুরু",
     "resume": "চালিয়ে যান",
-    "startBlurb_one": "আজ একটি শব্দ।",
-    "startBlurb_other": "{{count}}টি শব্দের ছোট্ট একটা সেট।",
     "resumeBlurb": "যেখানে ছেড়েছিলেন সেখান থেকে ধরুন।",
     "doneBlurb": "আজকের মতো শেষ। চমৎকার।",
     "completeTitle": "আজকের শব্দ শেষ।",

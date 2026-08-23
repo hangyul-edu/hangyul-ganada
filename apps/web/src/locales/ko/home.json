@@ -19,7 +19,6 @@
   "quick": {
     "letters": "낱자",
     "words": "단어",
-    "lettersCaption": "한글 40자 중",
     "wordsCaption": "오늘의 단어",
     "wordsReady": "이제 첫 단어를 시작해 보세요"
   }

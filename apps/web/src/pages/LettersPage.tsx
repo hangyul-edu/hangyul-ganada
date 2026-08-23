@@ -70,6 +70,7 @@ export function LettersPage() {
           const lessons = LETTER_LESSONS.filter((lesson) => unit.lesson_ids.includes(lesson.id));
           const progress = unitProgress(state.progress, unit.id);
           const complete = progress.total > 0 && progress.done === progress.total;
+          const unitTitle = t(`learning:units.unit-${unit.index}.title`);
 
           return (
             <section key={unit.id} className={styles.unit} aria-labelledby={`unit-${unit.index}`}>
@@ -79,7 +80,7 @@ export function LettersPage() {
                 </span>
                 <div className={styles.unitText}>
                   <h2 id={`unit-${unit.index}`} className={styles.unitTitle}>
-                    {t(`learning:units.unit-${unit.index}.title`)}
+                    {unitTitle}
                   </h2>
                   <p className={styles.unitGoal}>{t(`learning:units.unit-${unit.index}.goal`)}</p>
                 </div>
@@ -100,10 +101,23 @@ export function LettersPage() {
                         <Card padding="md" className={styles.row}>
                           <div className={styles.rowHead}>
                             <div className={styles.rowText}>
-                              {/* A unit with one lesson has already said this
-                                  in its header; repeating it on the card is
-                                  the same words twice in 40 vertical pixels. */}
-                              {lessons.length > 1 && (
+                              {/*
+                                A card that repeats its unit's heading.
+
+                                Eight of the twelve units are named after their
+                                first lesson, so the card under the heading says
+                                the same words again, forty vertical pixels
+                                lower. The condition used to be `lessons.length
+                                > 1` — a proxy for the same idea, on the
+                                reasoning that a single-lesson unit is the case
+                                where the two coincide. Unit 11 has two lessons
+                                and is still called after the first of them, so
+                                the proxy passed it through and the screen read
+                                "A letter at the foot" twice. Comparing the two
+                                strings is the thing the proxy was standing in
+                                for.
+                              */}
+                              {title.value.title !== unitTitle && (
                                 <LocalizedText
                                   as="h3"
                                   locale={title.locale}

@@ -177,14 +177,20 @@ export function WordsPage() {
                 A learner part-way through is told they can pick up where they
                 left off; one who has finished is told so and left alone. There
                 is no third line explaining the scheduler.
+
+                The rule was written here and then broken on the line below it:
+                the third state said "A short set of 10 words." under a fraction
+                reading 0/10, which is the ten twice in forty vertical pixels
+                and nothing else. A learner opening the card has the title, the
+                fraction and the button; there is nothing left to tell them.
               */}
-              <p className={styles.todayBlurb}>
-                {day.complete
-                  ? t('vocabulary:today.doneBlurb')
-                  : day.done > 0
-                    ? t('vocabulary:today.resumeBlurb')
-                    : t('vocabulary:today.startBlurb', { count: day.total })}
-              </p>
+              {(day.complete || day.done > 0) && (
+                <p className={styles.todayBlurb}>
+                  {day.complete
+                    ? t('vocabulary:today.doneBlurb')
+                    : t('vocabulary:today.resumeBlurb')}
+                </p>
+              )}
               {/*
                 That the words were chosen for this learner, said once and
                 quietly.

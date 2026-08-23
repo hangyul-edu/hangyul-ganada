@@ -333,7 +333,7 @@ export function HomePage() {
             icon={<LetterIcon size={26} />}
             label={t('home:quick.letters')}
             meta={format.fraction(alphabet.done, alphabet.total)}
-            caption={t('home:quick.lettersCaption')}
+            caption={t('learning:letters.alphabetCaption')}
             progress={alphabet.ratio}
           />
           <QuickCard

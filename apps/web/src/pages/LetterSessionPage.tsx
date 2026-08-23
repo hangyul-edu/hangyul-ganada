@@ -348,7 +348,7 @@ export function LetterSessionPage() {
     >
       <div className={styles.body}>
         {phase === 'unit' && unit ? (
-          <UnitIntro unit={unit} />
+          <UnitIntro unit={unit} headerTitle={lessonTitle} />
         ) : phase === 'intro' ? (
           <CharacterIntro
             character={current}

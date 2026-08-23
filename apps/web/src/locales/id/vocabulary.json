@@ -4,7 +4,6 @@
     "title": "Kata hari ini",
     "start": "Mulai",
     "resume": "Lanjutkan",
-    "startBlurb_other": "Satu set singkat berisi {{count}} kata.",
     "resumeBlurb": "Lanjut dari tempat terakhir.",
     "doneBlurb": "Selesai untuk hari ini. Kerja bagus.",
     "completeTitle": "Kata hari ini sudah selesai.",

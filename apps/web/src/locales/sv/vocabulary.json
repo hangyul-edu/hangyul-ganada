@@ -4,8 +4,6 @@
     "title": "Dagens ord",
     "start": "Börja",
     "resume": "Fortsätt",
-    "startBlurb_one": "Ett ord i dag.",
-    "startBlurb_other": "En kort omgång på {{count}} ord.",
     "resumeBlurb": "Ta vid där du slutade.",
     "doneBlurb": "Klart för i dag. Fint jobbat.",
     "completeTitle": "Dagens ord är klara.",

@@ -4,8 +4,6 @@
     "title": "Từ của hôm nay",
     "start": "Bắt đầu",
     "resume": "Học tiếp",
-    "startBlurb_one": "Hôm nay một từ.",
-    "startBlurb_other": "Một loạt ngắn gồm {{count}} từ.",
     "resumeBlurb": "Học tiếp từ chỗ bạn dừng lại.",
     "doneBlurb": "Hôm nay xong rồi. Tốt lắm!",
     "completeTitle": "Đã học xong từ của hôm nay.",

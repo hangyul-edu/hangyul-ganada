@@ -4,7 +4,6 @@
     "title": "今日の単語",
     "start": "始める",
     "resume": "続きから",
-    "startBlurb_other": "今日は{{count}}語だけ。",
     "resumeBlurb": "続きからどうぞ。",
     "doneBlurb": "今日の分は終わりです。おつかれさま。",
     "completeTitle": "今日の単語が終わりました。",

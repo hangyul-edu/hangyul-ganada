@@ -479,6 +479,93 @@ for (const device of DEVICES) {
         }
       }
 
+      /*
+       * §58 — the same thing said twice on one screen.
+       *
+       * Two shapes, both found by reading rendered screens rather than the
+       * bundles, because neither is visible in a string on its own.
+       *
+       * **A sentence rendered twice.** Two components, each correct, each
+       * saying it. The learner reads it once and then reads it again.
+       *
+       * **A number rendered twice inside one card.** "Today's words · 0/10 · A
+       * short set of 10 words." is three lines and two of them carry the ten.
+       * Scoped to a card rather than the page, because a count legitimately
+       * appears in a list header and again on a row.
+       *
+       * Both are limited to text of substance — three words or more for the
+       * sentence, two digits or a number inside a sentence for the count — so
+       * that "Start", "5", "10" and the goal chips do not trip it.
+       */
+      const own = (element) =>
+        [...element.childNodes]
+          .filter((node) => node.nodeType === 3)
+          .map((node) => node.textContent.trim())
+          .filter(Boolean)
+          .join(' ');
+      const blocks = [...document.querySelectorAll('#root p, #root h1, #root h2, #root h3, #root li')]
+        .filter((element) => visible(element))
+        .map((element) => ({ element, text: own(element) }))
+        .filter((block) => block.text.split(/\s+/).length >= 3);
+      const seenText = new Map();
+      for (const block of blocks) {
+        const key = block.text.toLowerCase().replace(/\s+/g, ' ');
+        seenText.set(key, (seenText.get(key) ?? 0) + 1);
+      }
+      for (const [text, count] of seenText) {
+        if (count > 1) {
+          problems.push({ kind: 'said twice', detail: `"${text.slice(0, 48)}" appears ${count} times` });
+        }
+      }
+
+      for (const card of document.querySelectorAll('#root [class*="card" i], #root section, #root article')) {
+        if (!visible(card)) continue;
+        if (card.querySelector('[class*="card" i], section, article')) continue;
+        const numbers = new Map();
+        /*
+         * `strong` and `b` are in the list because the count is usually in one.
+         * Leaving them out is how the first version of this check passed the
+         * card it was written for: "0/10" lives in a <strong> inside the <p>,
+         * so the <p> has no text of its own and nothing was collected.
+         */
+        for (const element of card.querySelectorAll('p, h1, h2, h3, span, div, strong, b, em, li')) {
+          if (!visible(element)) continue;
+          const text = own(element);
+          if (!text) continue;
+          for (const match of text.matchAll(/\d+/g)) {
+            const value = match[0];
+            if (value.length < 2 && text.split(/\s+/).length < 3) continue;
+            const where = numbers.get(value) ?? new Set();
+            where.add(text.slice(0, 40));
+            numbers.set(value, where);
+          }
+        }
+        for (const [value, where] of numbers) {
+          if (where.size < 2) continue;
+          /*
+           * A list of rows built from one template is not a repetition.
+           *
+           * The licences screen prints "Pretendard · OFL 1.1", "Nanum Gothic ·
+           * OFL 1.1" and four more, so the 1 is on the screen six times and
+           * every one of them belongs there. What they share is a suffix; a
+           * card that genuinely says its count twice does not.
+           */
+          const texts = [...where];
+          let shared = 0;
+          while (
+            shared < texts[0].length &&
+            texts.every((text) => text[text.length - 1 - shared] === texts[0][texts[0].length - 1 - shared])
+          ) {
+            shared += 1;
+          }
+          if (shared >= 5) continue;
+          problems.push({
+            kind: 'counted twice',
+            detail: `${value} appears in ${texts.map((t) => `"${t}"`).join(' and ')}`,
+          });
+        }
+      }
+
       return problems;
     });
 

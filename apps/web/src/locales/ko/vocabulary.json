@@ -4,7 +4,6 @@
     "title": "오늘의 단어",
     "start": "학습 시작",
     "resume": "이어 학습하기",
-    "startBlurb_other": "{{count}}개만 짧게 해 볼까요?",
     "resumeBlurb": "하던 곳부터 이어서 해요.",
     "doneBlurb": "오늘 몫은 끝났어요. 잘하셨어요.",
     "completeTitle": "오늘 단어 목표를 완료했어요.",

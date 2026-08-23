@@ -26,18 +26,42 @@ import styles from './UnitIntro.module.css';
  * that knows how much of the foot of the phone belongs to Android — see
  * `ui/FocusScreen.tsx`.
  */
-export function UnitIntro({ unit }: { unit: CurriculumUnit }) {
+export function UnitIntro({
+  unit,
+  /**
+   * The title the screen is already showing above this card.
+   *
+   * Eight of the twelve units are named after their first lesson, and the
+   * session header shows the lesson. On unit 1 that put "Six vowels to start"
+   * twice on one screen, once in the header and once as this card's heading.
+   * Where they are the same string the heading goes and the section keeps its
+   * accessible name from `aria-label`, so a screen reader still hears it named
+   * — it is the *seeing* of it twice that is the defect.
+   */
+  headerTitle,
+}: {
+  unit: CurriculumUnit;
+  headerTitle?: string;
+}) {
   const { t } = useTranslation('learning');
   const key = `units.${unit.id}`;
   const points = t(`${key}.points`, { returnObjects: true }) as unknown;
   const bullets = Array.isArray(points) ? (points as string[]) : [];
+  const title = t(`${key}.title`);
+  const repeatsHeader = title === headerTitle;
 
   return (
-    <section className={styles.intro} aria-labelledby="unit-intro-title">
+    <section
+      className={styles.intro}
+      aria-labelledby={repeatsHeader ? undefined : 'unit-intro-title'}
+      aria-label={repeatsHeader ? title : undefined}
+    >
       <HangyulMascot mood="happy" size={64} />
-      <h2 id="unit-intro-title" className={styles.title}>
-        {t(`${key}.title`)}
-      </h2>
+      {!repeatsHeader && (
+        <h2 id="unit-intro-title" className={styles.title}>
+          {title}
+        </h2>
+      )}
       <p className={styles.body}>{t(`${key}.body`)}</p>
 
       {unit.intro_diagram &&

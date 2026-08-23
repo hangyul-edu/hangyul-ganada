@@ -4,8 +4,6 @@
     "title": "Mga salita ngayong araw",
     "start": "Simulan",
     "resume": "Ituloy",
-    "startBlurb_one": "Isang salita ngayong araw.",
-    "startBlurb_other": "Maikling set ng {{count}} salita.",
     "resumeBlurb": "Ituloy kung saan ka tumigil.",
     "doneBlurb": "Tapos na ngayong araw. Magaling.",
     "completeTitle": "Tapos na ang mga salita ngayong araw.",

@@ -4,8 +4,6 @@
     "title": "Bugünkü kelimeler",
     "start": "Başla",
     "resume": "Devam et",
-    "startBlurb_one": "Bugün tek kelime.",
-    "startBlurb_other": "{{count}} kelimelik kısa bir set.",
     "resumeBlurb": "Kaldığın yerden devam et.",
     "doneBlurb": "Bugünlük tamam. Güzel iş.",
     "completeTitle": "Bugünkü kelimeler bitti.",

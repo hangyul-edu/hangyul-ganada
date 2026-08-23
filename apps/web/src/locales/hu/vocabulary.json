@@ -4,8 +4,6 @@
     "title": "A mai szavak",
     "start": "Kezdés",
     "resume": "Folytatás",
-    "startBlurb_one": "Ma egy szó.",
-    "startBlurb_other": "Egy rövid, {{count}} szavas adag.",
     "resumeBlurb": "Vedd fel a fonalat ott, ahol abbahagytad.",
     "doneBlurb": "Mára kész. Szép munka.",
     "completeTitle": "A mai szavak megvannak.",

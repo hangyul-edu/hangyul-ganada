@@ -4,8 +4,6 @@
     "title": "Woorden van vandaag",
     "start": "Beginnen",
     "resume": "Doorgaan",
-    "startBlurb_one": "Eén woord vandaag.",
-    "startBlurb_other": "Een korte reeks van {{count}} woorden.",
     "resumeBlurb": "Ga verder waar je gebleven was.",
     "doneBlurb": "Klaar voor vandaag. Mooi werk.",
     "completeTitle": "De woorden van vandaag zijn af.",

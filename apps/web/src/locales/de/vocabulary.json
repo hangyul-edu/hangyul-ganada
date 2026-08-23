@@ -4,8 +4,6 @@
     "title": "Wörter für heute",
     "start": "Starten",
     "resume": "Weitermachen",
-    "startBlurb_one": "Heute ein Wort.",
-    "startBlurb_other": "Eine kurze Runde mit {{count}} Wörtern.",
     "resumeBlurb": "Mach da weiter, wo du aufgehört hast.",
     "doneBlurb": "Für heute geschafft. Gut gemacht.",
     "completeTitle": "Die Wörter für heute sind geschafft.",

@@ -4,8 +4,6 @@
     "title": "Bugungi so‘zlar",
     "start": "Boshlash",
     "resume": "Davom etish",
-    "startBlurb_one": "Bugun bitta so‘z.",
-    "startBlurb_other": "{{count}} ta so‘zdan iborat qisqa to‘plam.",
     "resumeBlurb": "To‘xtagan joyingizdan davom eting.",
     "doneBlurb": "Bugunga tamom. Barakalla.",
     "completeTitle": "Bugungi so‘zlar tugadi.",

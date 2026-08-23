@@ -4,7 +4,6 @@
     "title": "今天的词",
     "start": "开始",
     "resume": "继续学习",
-    "startBlurb_other": "今天只学 {{count}} 个词。",
     "resumeBlurb": "从上次的地方继续。",
     "doneBlurb": "今天的部分完成了，做得好。",
     "completeTitle": "今天的词学完了。",

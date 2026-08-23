@@ -4,8 +4,6 @@
     "title": "คำของวันนี้",
     "start": "เริ่ม",
     "resume": "เรียนต่อ",
-    "startBlurb_one": "วันนี้หนึ่งคำ",
-    "startBlurb_other": "ชุดสั้น ๆ {{count}} คำ",
     "resumeBlurb": "เรียนต่อจากที่ค้างไว้",
     "doneBlurb": "วันนี้เสร็จแล้ว เก่งมาก",
     "completeTitle": "เรียนคำของวันนี้ครบแล้ว",

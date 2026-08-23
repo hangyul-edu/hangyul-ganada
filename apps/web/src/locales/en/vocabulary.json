@@ -4,8 +4,6 @@
     "title": "Today's words",
     "start": "Start",
     "resume": "Keep going",
-    "startBlurb_one": "One word today.",
-    "startBlurb_other": "A short set of {{count}} words.",
     "resumeBlurb": "Pick up where you left off.",
     "doneBlurb": "Done for today. Nice work.",
     "completeTitle": "Today's words are done.",
