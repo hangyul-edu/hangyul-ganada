@@ -1,0 +1,240 @@
+{
+  "_comment": [
+    "What a foundation Korean course may never surface at random.",
+    "",
+    "Two separate things live here, because they fail in two different ways.",
+    "",
+    "`terms` is the word list. It exists because 보지 reached the Level Test as an",
+    "answer choice. The taught pack had already refused it — 004.jsonl carries the",
+    "entry with keep=0 and the reason written out — but the Level Test draws its",
+    "anchors from the *dictionary* as well, and there 보지 sits at level 4 glossed",
+    "'preservation', which is a real but obscure Sino-Korean noun. The spelling is",
+    "immediately read as a crude anatomical term by every Korean speaker alive, and",
+    "the gloss it was filed under is no defence at all.",
+    "",
+    "`frames` is the part a word list cannot do. 여자 is a completely ordinary word",
+    "and 타다 is a completely ordinary verb, and 여자를 타요 is a sentence this",
+    "product must never generate. The harm is in the combination, so the check has",
+    "to run on the composed sentence and know that 여자 is a person and that 타다",
+    "takes a vehicle. See `content/vocabulary/noun-classes.json`.",
+    "",
+    "This is an exclusion layer for RANDOM and GENERATED educational surfaces only.",
+    "The dictionary keeps its entries: a dictionary is allowed to contain adult",
+    "vocabulary and a learner who searches for it deliberately is not the risk. The",
+    "risk is a beginner meeting it in a four-choice question they did not ask for."
+  ],
+  "frames": {
+    "_comment": [
+      "A predicate, and the noun classes that must never fill its object slot.",
+      "",
+      "Each row is a real sentence the generators could produce. They are written as",
+      "the class rather than as the word so that adding 남자 or 아이 to the corpus",
+      "cannot reopen a hole that closing 여자 shut."
+    ],
+    "rules": [
+      {
+        "predicates": [
+          "타다",
+          "몰다",
+          "운전하다"
+        ],
+        "forbidObject": [
+          "person",
+          "bodypart"
+        ],
+        "why": "여자를 타요 — 타다 takes a vehicle, and with a person it is sexual."
+      },
+      {
+        "predicates": [
+          "먹다",
+          "드시다",
+          "잡수시다",
+          "삼키다",
+          "씹다",
+          "잡아먹다",
+          "맛보다"
+        ],
+        "forbidObject": [
+          "person",
+          "bodypart"
+        ],
+        "why": "동생을 드세요 — eating a person or a body part."
+      },
+      {
+        "predicates": [
+          "사다",
+          "팔다",
+          "거래하다",
+          "빌리다",
+          "빌려주다"
+        ],
+        "forbidObject": [
+          "person"
+        ],
+        "why": "여자를 팔아요 — trafficking."
+      },
+      {
+        "predicates": [
+          "벗다",
+          "벗기다",
+          "만지다",
+          "쓰다듬다"
+        ],
+        "forbidObject": [
+          "person",
+          "bodypart"
+        ],
+        "why": "여자를 만져요 — non-consensual or sexual reading."
+      },
+      {
+        "predicates": [
+          "죽이다",
+          "때리다",
+          "치다",
+          "차다",
+          "찌르다",
+          "베다",
+          "패다",
+          "해치다"
+        ],
+        "forbidObject": [
+          "person",
+          "animal",
+          "bodypart"
+        ],
+        "why": "아이를 때려요 — violence against a person or animal."
+      },
+      {
+        "predicates": [
+          "버리다",
+          "던지다",
+          "묻다",
+          "숨기다",
+          "치우다"
+        ],
+        "forbidObject": [
+          "person",
+          "bodypart"
+        ],
+        "why": "빈 몸을 버렸어요 — disposing of a person or a body part."
+      }
+    ]
+  },
+  "excluded": {
+    "_comment": [
+      "Tier one: never anywhere a learner can reach without asking for it.",
+      "Matched against the whole headword, not as a substring, so 년도 and 청소년",
+      "are untouched by the entry for 년 below — which is in the other tier anyway.",
+      "The dictionary keeps these; only the teaching and generating surfaces refuse."
+    ],
+    "sexual": [
+      "보지",
+      "자지",
+      "좆",
+      "씹",
+      "섹스",
+      "정사",
+      "성교",
+      "자위",
+      "포르노",
+      "야동",
+      "매춘",
+      "창녀",
+      "매춘부",
+      "성기",
+      "음경",
+      "음부",
+      "고환",
+      "불알",
+      "젖꼭지",
+      "유두",
+      "발기",
+      "강간",
+      "성폭행",
+      "성추행",
+      "변태",
+      "음란"
+    ],
+    "profanity": [
+      "씨발",
+      "시발",
+      "씨팔",
+      "개새끼",
+      "놈",
+      "병신",
+      "지랄",
+      "닥쳐",
+      "미친놈",
+      "미친년",
+      "등신",
+      "머저리",
+      "빌어먹을",
+      "제기랄",
+      "엿먹어"
+    ],
+    "slur": [
+      "짱깨",
+      "쪽바리",
+      "깜둥이",
+      "튀기",
+      "병신새끼",
+      "절름발이",
+      "벙어리",
+      "귀머거리",
+      "장님",
+      "미치광이",
+      "정신병자"
+    ],
+    "drug": [
+      "마약",
+      "히로뽕",
+      "필로폰",
+      "코카인",
+      "헤로인",
+      "대마초",
+      "뽕"
+    ],
+    "graphic": [
+      "시체",
+      "송장",
+      "학살",
+      "고문",
+      "참수",
+      "사체"
+    ]
+  },
+  "notStandalone": {
+    "_comment": [
+      "Tier two: legitimately taught, and never usable as a bare option.",
+      "",
+      "년 is taught as the counter for years and its example is 이 년 동안",
+      "배웠어요, which is correct and useful. Standing alone in a list of four it",
+      "is read as the insult, and it stood alone in 년이 요리를 해요. 새끼 is the",
+      "same shape: taught as a young animal with 고양이 새끼가 귀여워요, and on its",
+      "own it is one of the strongest things you can call somebody.",
+      "",
+      "The rest are bound nouns — 명, 살, 원 never appear without a number in front",
+      "of them, so as a standalone answer choice they are not words a learner has",
+      "ever met.",
+      "질, 사정 and 기생 were on the excluded list and are off it: each is an everyday word — quality, circumstances, a parasite — and an exact-match exclusion would have taken the everyday sense with the other one. 벌, 개, 잔, 번 and 원 came off the bound-noun list for the same reason: the curriculum teaches them as a bee, a dog, a drinking glass, a time and the won, and they are perfectly good answer choices."
+    ],
+    "insultHomograph": [
+      "년",
+      "새끼",
+      "놈",
+      "자식"
+    ],
+    "boundNoun": [
+      "명",
+      "살",
+      "권",
+      "장",
+      "마리",
+      "그루",
+      "송이",
+      "켤레",
+      "대",
+      "채"
+    ]
+  }
+}

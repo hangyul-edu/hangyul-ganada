@@ -176,8 +176,39 @@ _UNSUITABLE = (
 )
 
 
+#: The reviewed exclusion layer, read from content rather than repeated here.
+#:
+#: `_UNSUITABLE` above matches substrings, which is right for morphological
+#: families — 성폭행 and 성폭력 share 성폭 — and wrong for anything short: 년
+#: would take 작년 and 청소년 with it. So the reviewed file is matched against the
+#: whole headword, and it is the tier that caught 보지.
+#:
+#: 보지 is the reason both exist. The taught pack had already refused it, with the
+#: reason written on the entry. The dictionary half of the anchor pool had not:
+#: there it sits at level 4 glossed "preservation", a real but obscure
+#: Sino-Korean noun, and neither the substring list nor the English gloss test
+#: had anything to say about it. It reached the Level Test as an answer choice.
+_SAFETY = json.loads(
+    (ROOT / "content" / "vocabulary" / "learner-safety.json").read_text(encoding="utf-8")
+)
+_EXCLUDED = {
+    term
+    for name, terms in _SAFETY["excluded"].items()
+    if name != "_comment"
+    for term in terms
+}
+_NOT_STANDALONE = {
+    term
+    for name, terms in _SAFETY["notStandalone"].items()
+    if name != "_comment"
+    for term in terms
+}
+
+
 def unsuitable(headword: str, gloss: str) -> bool:
     """Whether a word is one the test must not show. See `_UNSUITABLE`."""
+    if headword in _EXCLUDED:
+        return True
     if any(term in headword for term in _UNSUITABLE):
         return True
     lowered = gloss.lower()

@@ -1,0 +1,636 @@
+{
+  "_comment": [
+    "Coarse semantic classes for nouns, used by QA and never shown to a learner.",
+    "",
+    "Why this exists rather than the browse category. The categories on the Words",
+    "screen are topical: 의사 (doctor) is filed under body-health beside 배 and 약,",
+    "because that is where a learner would look for it. The Level Test builder was",
+    "refusing a distractor from the same *category*, which meant 거지 could be",
+    "offered against 의사 — 길에 거지가 있었어요 and 길에 의사가 있었어요 are both",
+    "ordinary Korean, and the item has two answers.",
+    "",
+    "It is also what the composed-sentence safety check needs. 여자 is a completely",
+    "normal word and 여자를 타요 is not a sentence a learning product may generate;",
+    "knowing that 여자 is a person and 타다 takes a vehicle is the only way to see it.",
+    "",
+    "Derived from the English meanings and then read by hand — the derivation put",
+    "우유 among the animals, 마음 among the body parts and 별 among the people."
+  ],
+  "classes": {
+    "가슴": [
+      "bodypart"
+    ],
+    "가족": [
+      "person"
+    ],
+    "각자": [
+      "person"
+    ],
+    "간호사": [
+      "person"
+    ],
+    "감독": [
+      "person"
+    ],
+    "감자": [
+      "food"
+    ],
+    "감자튀김": [
+      "food"
+    ],
+    "강아지": [
+      "animal"
+    ],
+    "개": [
+      "animal"
+    ],
+    "거지": [
+      "person"
+    ],
+    "건축가": [
+      "person"
+    ],
+    "경찰": [
+      "person"
+    ],
+    "고개": [
+      "bodypart"
+    ],
+    "고객": [
+      "person"
+    ],
+    "고기": [
+      "food"
+    ],
+    "고래": [
+      "animal"
+    ],
+    "고양이": [
+      "animal"
+    ],
+    "곰": [
+      "animal"
+    ],
+    "공주": [
+      "person"
+    ],
+    "과일": [
+      "food"
+    ],
+    "교수": [
+      "person"
+    ],
+    "국": [
+      "food"
+    ],
+    "군인": [
+      "person"
+    ],
+    "귀": [
+      "bodypart"
+    ],
+    "그": [
+      "person"
+    ],
+    "그녀": [
+      "person"
+    ],
+    "그분": [
+      "person"
+    ],
+    "근육": [
+      "bodypart"
+    ],
+    "금발": [
+      "bodypart"
+    ],
+    "기름": [
+      "food"
+    ],
+    "기자": [
+      "person"
+    ],
+    "김": [
+      "food"
+    ],
+    "김치": [
+      "food"
+    ],
+    "나비": [
+      "animal"
+    ],
+    "남자": [
+      "person"
+    ],
+    "남편": [
+      "person"
+    ],
+    "누나": [
+      "person"
+    ],
+    "눈": [
+      "bodypart"
+    ],
+    "늑대": [
+      "animal"
+    ],
+    "다리": [
+      "bodypart"
+    ],
+    "달걀": [
+      "food"
+    ],
+    "닭": [
+      "animal",
+      "food"
+    ],
+    "대장": [
+      "person"
+    ],
+    "대통령": [
+      "person"
+    ],
+    "도둑": [
+      "person"
+    ],
+    "독수리": [
+      "animal"
+    ],
+    "동료": [
+      "person"
+    ],
+    "동물": [
+      "animal"
+    ],
+    "돼지": [
+      "animal"
+    ],
+    "등": [
+      "bodypart"
+    ],
+    "딸": [
+      "person"
+    ],
+    "라면": [
+      "food"
+    ],
+    "리더": [
+      "person"
+    ],
+    "막내": [
+      "person"
+    ],
+    "만두": [
+      "food"
+    ],
+    "말": [
+      "animal"
+    ],
+    "맥주": [
+      "food"
+    ],
+    "머리": [
+      "bodypart"
+    ],
+    "머리카락": [
+      "bodypart"
+    ],
+    "명": [
+      "person"
+    ],
+    "모기": [
+      "animal"
+    ],
+    "목": [
+      "bodypart"
+    ],
+    "목구멍": [
+      "bodypart"
+    ],
+    "몸": [
+      "bodypart"
+    ],
+    "무릎": [
+      "bodypart"
+    ],
+    "물": [
+      "food"
+    ],
+    "물고기": [
+      "animal",
+      "food"
+    ],
+    "미아": [
+      "person"
+    ],
+    "바나나": [
+      "food"
+    ],
+    "반찬": [
+      "food"
+    ],
+    "발": [
+      "bodypart"
+    ],
+    "발목": [
+      "bodypart"
+    ],
+    "밥": [
+      "food"
+    ],
+    "배": [
+      "bodypart"
+    ],
+    "배우": [
+      "person"
+    ],
+    "뱀": [
+      "animal"
+    ],
+    "벌": [
+      "animal"
+    ],
+    "범죄자": [
+      "person"
+    ],
+    "변호사": [
+      "person"
+    ],
+    "보스": [
+      "person"
+    ],
+    "본인": [
+      "person"
+    ],
+    "부부": [
+      "person"
+    ],
+    "부인": [
+      "person"
+    ],
+    "빵": [
+      "food"
+    ],
+    "뼈": [
+      "bodypart"
+    ],
+    "사과": [
+      "food"
+    ],
+    "사람": [
+      "person"
+    ],
+    "사자": [
+      "animal"
+    ],
+    "사촌": [
+      "person"
+    ],
+    "사탕": [
+      "food"
+    ],
+    "삼촌": [
+      "person"
+    ],
+    "상대": [
+      "person"
+    ],
+    "새": [
+      "animal"
+    ],
+    "샌드위치": [
+      "food"
+    ],
+    "선배": [
+      "person"
+    ],
+    "선생": [
+      "person"
+    ],
+    "선생님": [
+      "person"
+    ],
+    "선수": [
+      "person"
+    ],
+    "설탕": [
+      "food"
+    ],
+    "성인": [
+      "person"
+    ],
+    "소": [
+      "animal"
+    ],
+    "소금": [
+      "food"
+    ],
+    "소녀": [
+      "person"
+    ],
+    "소년": [
+      "person"
+    ],
+    "손": [
+      "bodypart"
+    ],
+    "손가락": [
+      "bodypart"
+    ],
+    "손님": [
+      "person"
+    ],
+    "숙녀": [
+      "person"
+    ],
+    "술": [
+      "food"
+    ],
+    "숨": [
+      "bodypart"
+    ],
+    "스타": [
+      "person"
+    ],
+    "시민": [
+      "person"
+    ],
+    "신랑": [
+      "person"
+    ],
+    "신부": [
+      "person"
+    ],
+    "신사": [
+      "person"
+    ],
+    "신체": [
+      "bodypart"
+    ],
+    "심장": [
+      "bodypart"
+    ],
+    "아가씨": [
+      "person"
+    ],
+    "아기": [
+      "person"
+    ],
+    "아내": [
+      "person"
+    ],
+    "아들": [
+      "person"
+    ],
+    "아버지": [
+      "person"
+    ],
+    "아빠": [
+      "person"
+    ],
+    "아우": [
+      "person"
+    ],
+    "아이": [
+      "person"
+    ],
+    "아저씨": [
+      "person"
+    ],
+    "아주머니": [
+      "person"
+    ],
+    "아줌마": [
+      "person"
+    ],
+    "알": [
+      "food"
+    ],
+    "어깨": [
+      "bodypart"
+    ],
+    "어머니": [
+      "person"
+    ],
+    "언니": [
+      "person"
+    ],
+    "얼굴": [
+      "bodypart"
+    ],
+    "엄마": [
+      "person"
+    ],
+    "여동생": [
+      "person"
+    ],
+    "여러분": [
+      "person"
+    ],
+    "여성": [
+      "person"
+    ],
+    "여왕": [
+      "person"
+    ],
+    "여자": [
+      "person"
+    ],
+    "염소": [
+      "animal"
+    ],
+    "영웅": [
+      "person"
+    ],
+    "오렌지": [
+      "food"
+    ],
+    "오리": [
+      "animal"
+    ],
+    "오빠": [
+      "person"
+    ],
+    "옥수수": [
+      "food"
+    ],
+    "와인": [
+      "food"
+    ],
+    "왕": [
+      "person"
+    ],
+    "왕비": [
+      "person"
+    ],
+    "왕자": [
+      "person"
+    ],
+    "용": [
+      "animal"
+    ],
+    "용의자": [
+      "person"
+    ],
+    "우유": [
+      "food"
+    ],
+    "원숭이": [
+      "animal"
+    ],
+    "음식": [
+      "food"
+    ],
+    "의사": [
+      "person"
+    ],
+    "이모": [
+      "person"
+    ],
+    "이빨": [
+      "bodypart"
+    ],
+    "이웃": [
+      "person"
+    ],
+    "인간": [
+      "person"
+    ],
+    "인턴": [
+      "person"
+    ],
+    "입": [
+      "bodypart"
+    ],
+    "자식": [
+      "person"
+    ],
+    "작가": [
+      "person"
+    ],
+    "장군": [
+      "person"
+    ],
+    "젊은이": [
+      "person"
+    ],
+    "조카": [
+      "person"
+    ],
+    "주인": [
+      "person"
+    ],
+    "쥐": [
+      "animal"
+    ],
+    "직원": [
+      "person"
+    ],
+    "짐승": [
+      "animal"
+    ],
+    "집안": [
+      "person"
+    ],
+    "채소": [
+      "food"
+    ],
+    "체온": [
+      "bodypart"
+    ],
+    "초콜릿": [
+      "food"
+    ],
+    "치즈": [
+      "food"
+    ],
+    "치킨": [
+      "animal",
+      "food"
+    ],
+    "친구": [
+      "person"
+    ],
+    "커피": [
+      "food"
+    ],
+    "케이크": [
+      "food"
+    ],
+    "코": [
+      "bodypart"
+    ],
+    "쿠키": [
+      "food"
+    ],
+    "토끼": [
+      "animal"
+    ],
+    "팀": [
+      "person"
+    ],
+    "파": [
+      "food"
+    ],
+    "파리": [
+      "animal"
+    ],
+    "파트너": [
+      "person"
+    ],
+    "팔": [
+      "bodypart"
+    ],
+    "팝콘": [
+      "food"
+    ],
+    "피": [
+      "bodypart"
+    ],
+    "피부": [
+      "bodypart"
+    ],
+    "피자": [
+      "food"
+    ],
+    "피해자": [
+      "person"
+    ],
+    "학생": [
+      "person"
+    ],
+    "할머니": [
+      "person"
+    ],
+    "할아버지": [
+      "person"
+    ],
+    "허리": [
+      "bodypart"
+    ],
+    "혀": [
+      "bodypart"
+    ],
+    "혈압": [
+      "bodypart"
+    ],
+    "혈액": [
+      "bodypart"
+    ],
+    "형": [
+      "person"
+    ],
+    "형님": [
+      "person"
+    ],
+    "호랑이": [
+      "animal"
+    ],
+    "화가": [
+      "person"
+    ],
+    "환자": [
+      "person"
+    ]
+  }
+}

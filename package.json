@@ -151,7 +151,9 @@
     "face:size": "node scripts/face-size-qa.mjs",
     "face:size:check": "node scripts/face-size-qa.mjs --check",
     "vocabulary:sense:qa": "node scripts/vocabulary-sense-qa.mjs",
-    "vocabulary:sense:qa:check": "node scripts/vocabulary-sense-qa.mjs --check"
+    "vocabulary:sense:qa:check": "node scripts/vocabulary-sense-qa.mjs --check",
+    "content:safety:qa": "tsx scripts/content-safety-qa.mjs",
+    "content:safety:check": "tsx scripts/content-safety-qa.mjs --check"
   },
   "devDependencies": {
     "marked": "^18.0.9",

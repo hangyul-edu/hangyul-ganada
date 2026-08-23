@@ -78,6 +78,59 @@ const PER_LEVEL_PER_KIND = 60;
  */
 const ARGUMENT_PARTICLE = /[가-힣]{1,6}(을|를|에서|에|으로|로|와|과|랑)(\s|$)/;
 
+/*
+ * The learner-safety layer, and the coarse noun classes it needs.
+ *
+ * Two of the four rules a word list cannot express. 미아 is *a lost child* and
+ * 바나나's sentence is 아침에 ____를 하나 먹어요, so substituting one into the
+ * other produced 아침에 미아를 하나 먹어요 — I eat a lost child for breakfast.
+ * 그분 is *that person* and 약's sentence ends 드세요, which gave 밥을 먹고
+ * 그분을 드세요. Every word involved is innocent and the sentences are not, so
+ * the check has to run on the composition and know that 미아 and 그분 are people.
+ *
+ * The other tier is words that are fine as words and wrong alone in a slot:
+ * 년 is the counter for years, and 년이 요리를 해요 reads as an insult.
+ */
+const SAFETY = JSON.parse(
+  readFileSync(join(ROOT, 'content', 'vocabulary', 'learner-safety.json'), 'utf8'),
+);
+const NOUN_CLASSES = JSON.parse(
+  readFileSync(join(ROOT, 'content', 'vocabulary', 'noun-classes.json'), 'utf8'),
+).classes;
+const NOT_STANDALONE = new Set(
+  Object.entries(SAFETY.notStandalone)
+    .filter(([name]) => name !== '_comment')
+    .flatMap(([, terms]) => terms),
+);
+/** Conjugated surfaces of every predicate a frame rule names. */
+const FRAME_RULES = SAFETY.frames.rules.map((rule) => ({
+  forbid: rule.forbidObject,
+  surfaces: rule.predicates.flatMap((predicate) => {
+    const forms = new Set([predicate]);
+    for (const form of FORMS) {
+      const value = conjugate(predicate, form, { partOfSpeech: 'verb' });
+      if (value) forms.add(value);
+    }
+    return [...forms].filter((f) => f.length >= 2);
+  }),
+}));
+
+/** Whether putting `surface` in this sentence's blank composes something unsafe. */
+function unsafeInFrame(blanked, surface) {
+  const kinds = NOUN_CLASSES[surface];
+  if (!kinds) return false;
+  const at = blanked.indexOf('____');
+  if (at < 0) return false;
+  const rest = blanked.slice(at + 4);
+  // Object position only. As a subject a person noun is ordinary.
+  if (!/^(을|를)/.test(rest)) return false;
+  return FRAME_RULES.some(
+    (rule) =>
+      rule.forbid.some((kind) => kinds.includes(kind)) &&
+      rule.surfaces.some((form) => rest.includes(form)),
+  );
+}
+
 const anchorFile = JSON.parse(readFileSync(ANCHORS, 'utf8'));
 const LEVELS = anchorFile.levels;
 const anchors = anchorFile.anchors;
@@ -412,6 +465,17 @@ for (const anchor of anchors) {
     // Agrees with the particle the sentence already carries — see above.
     if (!particleFits(surface)) {
       rejected.particleMismatch = (rejected.particleMismatch ?? 0) + 1;
+      continue;
+    }
+    // A word that is fine as a word and wrong alone in a sentence slot. Only
+    // where the slot takes a noun: 채 is a counter and also 채다's infinitive.
+    if (!inflects && NOT_STANDALONE.has(surface)) {
+      rejected.notStandalone = (rejected.notStandalone ?? 0) + 1;
+      continue;
+    }
+    // And the composition itself — see `unsafeInFrame`.
+    if (unsafeInFrame(blanked, surface)) {
+      rejected.unsafeComposition = (rejected.unsafeComposition ?? 0) + 1;
       continue;
     }
     // Already in the sentence, so substituting it would repeat a word.
