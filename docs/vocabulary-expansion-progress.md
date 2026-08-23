@@ -64,3 +64,29 @@ It reports sentence-shape concentration rather than failing on it. The first
 version failed a batch because eight of fifty sentences shared "… @… …." —
 which is not a template, it is Korean. A batch cannot see the 2,600 sentences
 already written; `examples:qa` can, and its rule is 1% of the whole corpus.
+
+### Batch 1b — 50 entries · 2,631 → 2,681
+
+| | |
+| --- | --- |
+| Selection | everyday nouns across body, home, clothing, travel, food, health, work, feeling — levels 12–22 |
+| Authored | 50 |
+| Refused by preflight, before any build | 1 (고객 was already in the pack; replaced with 감자튀김) |
+| Accepted first pass through the gates | 48 |
+| Rejected by `examples:qa`, then repaired | 2 |
+| Final total | **2,681** |
+| Remaining to target | 7,319 |
+
+**Findings, both mine.**
+
+`15/question` ×5 locales — 추천 좀 해 주세요 is a *statement* in Korean, a polite
+request, and I had translated it as a question in five languages ("Could you
+give me a recommendation?"). The gate compares mood across every translation and
+was right. Rewritten as imperatives.
+
+`O/advanced-grammar` + `O/register` — 양심에 따라 행동해요 uses 에 따라, a formal
+connective the product does not teach at this level. Rewritten as 양심이
+허락하지 않아요.
+
+**The preflight paid for itself immediately**: 고객 was caught before a build
+rather than after two.
