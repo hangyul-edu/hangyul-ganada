@@ -1,47 +1,48 @@
 # Release validation
 
-What was built, what was tested, and what was observed. Every line below is
-something that was run on this machine during this refresh; nothing is carried
-over from an earlier cycle. Where something could not be verified it says so
-rather than being left blank or implied.
+What was built, what was tested, and what was observed. Every line below was run
+on this machine during this refresh; nothing is carried over from an earlier
+cycle. Where something could not be verified it says so rather than being left
+blank or implied.
 
-**Source:** commit `e49c28b` on branch `premium-quality-pass`, working
-tree clean at the moment of the build.
+**Source:** commit `67313dd` on branch `main`, working tree clean at the moment
+of the build.
 
-Commits after `e49c28b` touch only this file, `docs/report.md`,
-`result/` and `app_result/`. None of them is inside `assets/public`, so the
-delivered package is byte-correct for the shipping source; a commit that records
-a build cannot be in the build it records, and that is the only gap.
+Commits after `67313dd` touch only `docs/`, `result/` and `app_result/`. None of
+them is inside `assets/public`, so the delivered package is byte-correct for the
+shipping source; a commit that records a build cannot be in the build it
+records, and that is the only gap. `npm run release:current` reads the commit
+back out of `build-info.json` and fails if anything outside those directories
+has moved since.
 
-**Built:** 2026-08-21, Linux (WSL2), JDK 21, Android SDK build-tools 36.0.0.
+**Built:** 23 August 2026, Linux (WSL2), JDK 21, Android SDK build-tools 36.0.0.
 
-**This supersedes the earlier validation of `22ba72a`.** Those artefacts were
-correct for their commit and are one commit behind this one; they have been
-replaced.
+**This supersedes the validation of `e49c28b`.** Those artefacts were correct for
+their commit and are several commits behind this one; they have been replaced.
 
 ---
 
 ## Why this rebuild happened
 
-One commit of product work landed after the last artefacts were built, and it is
-a large one: twenty-two interface languages, the whole alphabet course written in
-all thirty-two, the customer-facing notation replaced with Revised Romanization
-derived from the standard pronunciation, three screens simplified, and the letter
-explanations moved off the critical path. An artefact that predates any of that
-is the P0 this document exists to keep closed.
+Nine defects were fixed after the previous artefacts were built, and two of them
+are things a customer meets on their first session: the confirmation dialog's
+two answers were stacked at every phone width, and the honorific verbs were
+conjugating into strings that are not Korean — two of which were answer options
+in the placement test. An artefact that predates that work is the P0 this
+document exists to keep closed.
 
-The order matters and was followed again: **commit first, then build from the
-commit.** Building from a dirty working tree produces a signed artefact that
-looks current and is not, which is worse than a stale one because nothing about
-it says so.
+The order matters and was followed: **commit first, then build from the commit.**
+Building from a dirty working tree produces a signed artefact that looks current
+and is not, which is worse than a stale one because nothing about it says so.
 
 ### The signing key was recovered, not regenerated
 
-The release keystore is not in this repository and not in the shell environment,
-and the obvious next step — generate one — would have been the wrong one: a new
-key is a different app identity forever. It was found in the environment
-instead, and **its certificate was compared with the previously delivered
-artefact before anything was rebuilt**:
+The release keystore is not in this repository and not in the shell environment.
+The obvious next step — generate one — would have been the wrong one: a new key
+is a different app identity forever, and an installed app cannot be updated by a
+package signed with anything else. It was found on disk instead, at the path
+`ANDROID_KEYSTORE_PATH` names, and **its certificate was compared with the
+previously delivered artefact before anything was rebuilt**:
 
 ```
 keystore  SHA256: 15:7A:2B:B1:33:F6:AA:3D:…:33:23:DE:BC   CN=Hangyul GaNaDa
@@ -53,6 +54,8 @@ No keystore, password or key value appears in this repository, in `result/`, or
 in any log written during this build. A second keystore on the same machine
 (`qa-not-for-store.jks`) carries a *different* certificate and was not used.
 
+---
+
 ## Android APK — **PASS**
 
 Built by `npm run mobile:sync` then `./gradlew assembleRelease bundleRelease`,
@@ -62,168 +65,109 @@ so the bytes tested and the bytes delivered are the same (`sha256` in
 
 | Check | Result |
 | --- | --- |
-| Built from the committed tree | `git rev-parse HEAD` = `e49c28b…`, recorded in `build-info.json` |
-| Signed | Yes — release keystore from `ANDROID_KEYSTORE_PATH`, not the debug key |
+| Built from the committed tree | `git rev-parse HEAD` = `67313ddfaf53a979a93e31b86d06959c949c3f62`, recorded in `build-info.json` |
+| Signed | Yes — the release keystore from `ANDROID_KEYSTORE_PATH`, not the debug key |
 | Signature schemes | v2 ✓, v3 ✓ (v1 deliberately off — `minSdk` 24) |
 | Certificate SHA-256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the project's established release key, compared against the keystore *and* the superseded artefact before rebuilding |
+| Certificate subject | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Package / version | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK levels | minSdk 24, targetSdk 36, compileSdk 36 |
-| APK / AAB | 63.4 MB / 62.2 MB, both signed |
+| APK | 71,321,801 bytes, SHA-256 `bc6ddb866b59475995121f00263b7b75b9f7b2becd9c951bfa17cd53773a220e` |
+| AAB | 70,065,061 bytes, SHA-256 `51da207b5e49ede1fe7ba8e084e1ccc369747e6ccc61426f67e990d71aef28a8`, signed |
+| Entries in the package | 11,396 |
 | Interface locales in the package | 32, as separate lazy chunks |
-| Vocabulary locales complete | 10 of 32, counted from the emitted packs — the rest fall back to English and the picker says so |
-| Storage schema | 9, read from `storage/schema.ts` |
-| Secret scan | `audit-release-security.mjs` over 11,124 APK entries and 11,133 AAB entries — **no findings** |
+| Vocabulary locales complete | 10 of 32, counted from the emitted packs — the rest fall back to English past word 100 and the picker says so before the learner chooses |
 
-### The check that was missing last time
+---
 
-The failure this rebuild exists to fix was *not* that a build was broken — it
-was that nobody confirmed the packaged bundle contained the code. So it is now
-confirmed by unpacking the delivered APK and grepping `assets/public`:
+## The check this document exists for
 
-**This cycle's work** — 111 emitted files searched:
+The failure it was written against was *not* a broken build — it was that nobody
+confirmed the packaged bundle contained the code. So it is confirmed by
+unpacking the delivered APK and reading `assets/public`.
+
+**This cycle's work — present:**
 
 | Marker | What it proves is in the build | Found |
 | --- | --- | --- |
-| `jari` | 자리 romanised from its sound, not its spelling | ✓ |
-| `jangnyeon` | 작년 nasalised — the romanization comes from the standard pronunciation | ✓ |
-| `hakgyo` | 학교 tensed, the same way | ✓ |
-| `ستة صوائت للبداية` | a lesson title in Arabic | ✓ |
-| `தொடங்க ஆறு உயிரெழுத்துகள்` | the same lesson in Tamil | ✓ |
-| `как а в «мама»` | the Russian sound hint for ㅏ, from `letters.ru` | ✓ |
-| `మ్యాంగ్‌జో` | a practice typeface named in Telugu | ✓ |
-| `لاو تسي` | Laozi, attributed in Arabic — the quotations that used to blank the screen | ✓ |
-| `Word meanings in English` | the picker's caveat on the twenty-two | ✓ |
-| `Try a question` | the CTA that names the quiz it opens | ✓ |
-| `Негізгі` | the bottom navigation in Kazakh | ✓ |
+| `bank-e6759230.json` | the level-test bank rebuilt after the four ambiguity rules | ✓ |
+| `"en": {"items": 3960, "ceiling": 30}` | the reach the result screen reads | ✓ |
+| `"hu": {"items": 399, "ceiling": 23}` | and the ceiling a Hungarian learner is told about | ✓ |
+| `지금은 …단계까지 물어볼 수 있어요` | that ceiling, written in Korean | ✓ |
+| `A teszt egyelőre a(z) …. szintig kérdez` | and in Hungarian | ✓ |
+| `맞았어요` | the shared verdict, in Korean | ✓ |
+| `저장한 단어` | the terminology fix on the saved list | ✓ |
+| `낱자 배우기` | and on the letters screen | ✓ |
+| `display:flex;flex-wrap:wrap` on `.answers` | the dialog action row that stopped stacking | ✓ |
+| `flex:1 1 calc(50% - (var(--hg-space-2) / 2))` | and the half-row basis that made the two answers equal | ✓ |
+| `size-adjust:121%` | Gaegu's corrected reading size | ✓ |
 
 **And what should no longer be in it:**
 
 | Marker | Was | Found |
 | --- | --- | --- |
-| `ɕ`, `ɾ` | IPA characters from the retired notation | gone |
-| `jaknyeon` | 작년 romanised from its spelling | gone |
-| `10 left today` | the duplicate home row | gone |
-| `About your strokes` | the feedback heading over a list of one | gone |
+| `Not quite` | the review exercises' own verdict | gone |
+| `That's it.` | the other half of it | gone |
+| `저장한 어휘` | the saved list under two names | gone |
+| `글자 배우기` | the letters screen under the wrong noun | gone |
+| `size-adjust: 127%` | Gaegu fitted to one axis | gone |
+| `elevenlabs`, `xi-api-key`, any key material | the retired TTS vendor | **none anywhere in the package** |
 
 The two directions matter equally. Present markers prove the cycle is *in* the
 package; absent ones prove what it replaced is *out* of it, which a table that
 only looks for additions cannot tell you.
 
-**Earlier cycles, confirmed still present:** `capability-probe` (the storage
-write/read probe), `showMoreHint` (the hint ladder), `Tiếng Việt`.
+---
 
-One thing this table cannot show: `usableHints`, the render-time filter that
-drops a hint rung which would give the answer away, is code and is minified to
-nothing greppable. It is held by `hints.test.ts`, not by this table, and that is
-stated here rather than papered over with a marker that proves something else.
+## Tests — **PASS**
 
-This table is the point of the whole document. Any future release should
-reproduce it against whatever that cycle changed.
-
-### Smoke test — **not run this cycle, and that is stated rather than implied**
-
-The previous validation installed and launched the APK on a wiped Android 16
-emulator and recorded what it could reach before the emulator's own system
-processes wedged under a software renderer. That evidence belongs to the previous
-artefact and is not carried forward here: an emulator session that was not run
-cannot be reported as if it were.
-
-What this cycle has instead, and what each thing actually establishes:
-
-| Evidence | What it establishes |
-| --- | --- |
-| The marker table above, in both directions | this cycle's content **is in** the delivered package, and what it replaced is not |
-| `apksigner verify --print-certs` on the delivered bytes | it is signed, by the identity every previous release carries |
-| 230 Playwright cases across two projects | the same web bundle **renders and behaves**, on a mobile and a desktop viewport |
-| 651 unit + 95 handwriting-core tests | the logic under it |
-| The screens in this cycle read by eye, in six languages including Arabic | it **looks right**, which no suite decides |
-
-The gap is device-specific behaviour: WebView quirks, real touch input, and the
-system bars. Those were checked on a device last cycle against a package built
-from the same Capacitor configuration, and nothing in this cycle changed the
-native shell — but that is an argument, not an observation, and it is written
-here as one.
-
-## What this does not claim
-
-* **Nothing was run on a device or an emulator this cycle.** See the smoke-test
-  section above, which says what stands in for it and what that does and does not
-  establish.
-* **No audio was listened to.** Nobody heard a clip.
-* **No handwriting was drawn** on a device; the canvas was exercised in a browser
-  and by the handwriting-core suite, not through real touch input.
-* **No native speaker read any of the thirty-two languages.** Not one, including
-  Korean. `docs/LOCALIZATION_NATIVE_REVIEW.md` is the whole subject.
-* **Word meanings ship in ten languages of thirty-two.** The other twenty-two
-  fall back to English on the word cards. That is marked in the interface and
-  said on the row in the language picker before the learner chooses; it is a
-  stated gap and not a defect, and it is not a claim of completeness.
-* **Nothing was validated for iOS.** See `BUILD_OR_SIGNING_BLOCKERS.md` — no
-  macOS, no Xcode, no signing identity, therefore no `.ipa`. The Xcode project in
-  `ios-project/` is synced with this web build and is not a release artefact. No
-  file in this delivery has been given that extension.
-
-## Web suites, run on the same commit
+Run from `67313dd` with the working tree clean.
 
 | Suite | Result |
 | --- | --- |
-| `verify:quick` | **PASS** — 16 checks including lint, typecheck, unit, build, bundle budget, routing, romanization QA and the letter-pack freshness check |
-| `verify:release` | every check passes except `vocabulary:qa:target`, which fails on "2,581 headwords — 7,419 short of the 10,000 target" by design; that is I-04 stated as a build failure |
-| Unit (`vitest`) | **651 passed** |
-| Handwriting core | **95 passed** |
-| End-to-end (`playwright`) | **230 passed** — 115 × mobile and desktop projects |
-| `strokes:qa:check` | 73 items, 269 strokes, 1,345 frames — **PASS** |
-| `strokes:visual:check` | the same 1,345 frames rasterised — **PASS**, 1 sub-threshold finding reported |
-| `romanization:qa:check` | five layers, including all 2,581 words re-derived and compared — **PASS** |
-| `i18n:check` / `copy:audit:check` | 32 locales at 100%; 17,832 strings, 0 errors |
-| `audit-release-security.mjs` | APK and AAB scanned — **no findings** |
+| `npm run verify:quick` | 29 checks, **exit 0** |
+| `npm run test` | 740 web unit tests, 47 files, **all pass** |
+| `npm run test:e2e` | **336 passed (20.3m)**, two projects, one worker, no retries, **exit 0** |
+| `npm run screens:audit -- --check` | 17 routes and 6 states across 7 device profiles, 143 renders, **clean** |
+| `npm run modals:qa` | 18 dialog states across 6 widths, in each dialog's longest language, **all inside the modal** |
+| `npm run examples:qa` | 2,581 sentences, **every example passes** |
+| `npm run leveltest:ambiguity` | 3,960 items, twelve rules, **no findings** |
+| `npm run leveltest:locale` | 32 languages, resolver and rendered, **no option resolved from another language** |
+| `npm run locale:editorial` | **0 errors**, 37 warnings for a person to read |
+| `npm run docs:consistency` | 15 figures across 5 documents, **no contradictions** |
+| `npm run vocabulary:qa:target` | **FAILS** — 2,581 words against a stated 10,000. Left failing on purpose; see I-04. |
 
-## Filenames
+### What the suite still cannot do
 
-The delivered artefacts are now `hangyul-ganada-release.apk` and `.aab`, which is
-what `scripts/build-result.mjs` has always written. The files this replaces were
-`HangyulGaNaDa-release.*` — an older spelling of the product name, produced by an
-earlier release process and never repackaged.
+It runs in Chromium on a desktop kernel. It does not run on a real Android
+device, does not exercise the notification permission flow, and cannot see what
+the app looks like on a phone with a physical notch. The safe-area behaviour is
+asserted against simulated insets, which is the closest this machine gets.
 
-That mismatch had a consequence worth recording: `docs:consistency` looked for
-the current name, found nothing, and reported the APK and AAB sizes as "not built
-yet, skipped" on every run for two cycles, with a 63 MB APK sitting in the
-directory it was looking in. It now matches by extension and reports both.
+---
 
-## Contents
+## iOS — **NOT BUILT**
 
-| Item | Size | Note |
-| --- | --- | --- |
-| `hangyul-ganada-release.apk` | 63.4 MB | rebuilt this cycle from `e49c28b` |
-| `hangyul-ganada-release.aab` | 62.2 MB | rebuilt this cycle from `e49c28b` |
-| `android-project/` | — | re-copied from `apps/mobile/android`, minus `build/`, `.gradle/`, `.kotlin/`, `local.properties`, keystores |
-| `ios-project/` | — | re-copied from `apps/mobile/ios`, minus `build/`, `Pods/`, `xcuserdata/`, `DerivedData/` |
-| `docs/report.pdf` | 2.2 MB | regenerated this cycle, after the build it describes |
-| `store/` | unchanged | listing material, not a build output |
+macOS and Xcode are unavailable in this environment. The Xcode project is
+present and synced in `result/ios-project/`, and there is no code path anywhere
+in this repository that renames anything to `.ipa`. See
+`BUILD_OR_SIGNING_BLOCKERS.md`.
 
-The same two binaries, on their own with their checksums and a README, are in
-`app_result/` — derived from this directory rather than built separately, so the
-two cannot disagree about which APK shipped.
+---
 
-`checksums.sha256` covers the APK, the AAB, `docs/report.pdf` and
-`build-info.json`.
+## What a reviewer should do with this
+
+Re-run any row above. Every one of them is a single command, and the two that
+matter most — `test:e2e` and unpacking the APK — need nothing but this
+repository and the artefact beside this file.
+
+---
 
 ## Checksums
 
 ```
-b78df86ad4c0d6dca0b6699823c8afba9ec715301f19ef6407edb5feacde1c2d  hangyul-ganada-release.apk
-d31e4057917e22a69d3525fa002e4818936034e6270fe5f59ccdb533fb3c4805  hangyul-ganada-release.aab
-c3eeb29b935d7c32a09b4adfcb96cd7510ad21e997c79739e5716e8d718ea980  docs/report.pdf
-4ba46d46a188555c02e33fe155fa1020f67b8ad4ef1acacd84ac398058f9e691  build-info.json
+bc6ddb866b59475995121f00263b7b75b9f7b2becd9c951bfa17cd53773a220e  hangyul-ganada-release.apk
+51da207b5e49ede1fe7ba8e084e1ccc369747e6ccc61426f67e990d71aef28a8  hangyul-ganada-release.aab
+a4ae875c3b0607745928ca97bd3f907ff6e6dfe0e64872f4823838a58fd07d34  docs/report.pdf
+d6033fa685b5f6e4338c993e57f02355a0bc6c1b97eb52d47ee87b1a649a6b2a  build-info.json
 ```
-
-The block above is **rewritten by `build-result.mjs`** from the digests it has
-just computed, not maintained by hand — a hand-copied digest goes stale on the
-first rebuild, and `build-info.json` changes every time because it records when
-it was built. `checksums.sha256` in this directory carries the same values in
-the format `sha256sum -c` expects.
-
-The last cycle recorded that this block was missing and that the script exited
-non-zero on it *after* having already written every artefact — so the delivery
-directory was correct and the command reported failure. It exists now, which is
-the half of that finding that was actually a defect.
