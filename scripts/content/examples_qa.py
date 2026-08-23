@@ -678,7 +678,67 @@ def _translation_findings(
             out.append(
                 Finding(f"16/expansion:{locale}", f"{text!r} against {english!r}", decisive=False)
             )
+
+    # A person the Korean does not have.
+    #
+    # Korean drops the subject, and 58 English translations filled the gap with
+    # "he" and eight with "she" — 발을 밟았어요 became "I stepped on his foot",
+    # 목소리가 다정해요 became "Her voice is affectionate". Two things are wrong
+    # with that. It asserts something the sentence being taught does not say,
+    # which is the one thing an example translation may not do; and the eight
+    # were not a random eight — they were the elegant, the graceful, the
+    # sweetly-spoken, the one who dressed up and the one who played the piano.
+    #
+    # Checked in the languages that have a neutral option and where the marker
+    # is unambiguous: English has singular "they", Chinese can drop the subject,
+    # Spanish and Portuguese are pro-drop, and German's possessive marks the
+    # possessor's gender where French's and Spanish's mark the noun's. French
+    # and German subject pronouns are *not* checked: neither language has a
+    # third-person singular that is not gendered, and the masculine is their
+    # unmarked form. That remainder is recorded rather than gated — see
+    # docs/LOCALIZATION_NATIVE_REVIEW.md.
+    if not _KOREAN_HAS_A_PERSON.search(entry.example):
+        for locale, pattern in _INVENTED_PERSON.items():
+            text = entry.translations.get(locale, "")
+            if not text:
+                continue
+            match = pattern.search(text)
+            # A German possessive whose owner is named earlier in the sentence
+            # belongs to that noun, not to an invented person: der Vogel brütet
+            # *seine* Eier, jeder erledigt *seine* eigene Arbeit.
+            if match and locale == "de" and _GERMAN_ANTECEDENT.search(text[: match.start()]):
+                continue
+            if match:
+                out.append(
+                    Finding(
+                        f"15/invented-person:{locale}",
+                        f"{entry.example!r} names nobody and {text!r} does",
+                    )
+                )
     return out
+
+
+#: Korean words that put a specific person in the sentence, so a translation may.
+_KOREAN_HAS_A_PERSON = re.compile(
+    "그는|그가|그를|그의|그녀|아버지|아빠|형|오빠|남편|아들|삼촌|할아버지|어머니|엄마"
+    "|언니|누나|아내|딸|할머니|소년|소녀|남자|여자|아저씨|아줌마|아주머니|아가씨"
+    "|신사|숙녀|왕|여왕|장군"
+)
+
+#: A noun already in the German sentence that a possessive can belong to.
+_GERMAN_ANTECEDENT = re.compile(r"\b(Der|Die|Das|Den|Dem|Jeder|Jede|Jedes|Ein|Eine|Einer|das|dies\w*)\b")
+
+#: The marker of a person invented by the translator, per language.
+_INVENTED_PERSON = {
+    "en": re.compile(r"\b(He|he|his|His|him|Him|She|she|her|Her)\b"),
+    # 吉他 is a guitar and 其他 is "other"; neither is a third person.
+    "zh": re.compile(r"(?<![吉其])[他她](?!们)"),
+    "es": re.compile(r"\b(Él|él|Ella|ella)\b"),
+    "pt": re.compile(r"\b(Ele|ele|Ela|ela|dele|dela)\b"),
+    # German only: the possessive. `sein` bare is the infinitive "to be", and
+    # `Sie`/`Ihre` are the formal second person this product speaks in.
+    "de": re.compile(r"\b(seine[nmrs]?|Seine[nmrs]?|ihre[nmrs]?\s+(Stimme|Bewegungen|Ausdrucksweise))\b"),
+}
 
 
 def _score(
