@@ -126,3 +126,49 @@ is what that field is for.
 **Part-of-speech balance after three batches:** verb 1,054 · noun 1,100 ·
 adjective 288 · adverb 218 · pronoun 27 · interjection 21 · determiner 13 ·
 numeral 10.
+
+### Batch 3 — 113 entries · 2,731 → 2,844
+
+| | |
+| --- | --- |
+| Candidates considered | 2,443 untaught anchors at level ≤18, read rather than filtered |
+| Selection | **holes in the core**, not rarities — see below |
+| Authored | 113 (103.jsonl 40, 104.jsonl 73) |
+| Accepted first pass | 108 |
+| Rejected, then repaired | 5 |
+| Final total | **2,844** |
+| Remaining to target | 7,156 |
+
+**Selection changed, and the reason is worth writing down.** Batches 1 and 2
+worked down the frequency list, which is how a corpus grows outward. Reading
+the candidate pool this time showed it grows *inward* too: 앞, 뒤, 때, 일, 말,
+불, 힘, 꿈, 잠, 끝, 곳, 후, 전, 또, 곧, 늘 and 죽다 were all untaught, while
+위, 아래, 옆, 사이, 오른쪽 and 왼쪽 were taught. A learner could say "to the
+left of the desk" and not "in front of the shop". Sixty of the 113 are that
+kind of word. They cost the same to author as a rare one and are worth more.
+
+**Rejections, all caught by a gate.**
+
+* `15/meaning-absent` — 뒤 "집 뒤에 큰 나무가 있어요" translated as "There is a
+  big tree behind the house", where the taught meaning *the back* is not
+  visible. Rewritten as 공책 뒤에 이름을 썼어요.
+* `A/wrong-sense` — 배 taught as *the stomach* but demonstrated with 배가
+  불러요, which reads as the idiom. Rewritten as 배가 아파서 병원에 갔어요.
+* `13/clauses` — 곳 "조용한 곳에서 쉬고 싶어요", two joins. Now 조용한 곳을
+  찾았어요.
+* `vocabulary:sense:qa` ×3 — 잔 "a glass, a cup", 배 "the stomach, the belly"
+  and 자료 "materials, data" each split into two dictionary senses on one card.
+  Trimmed to one.
+* `15/invented-person:pt` ×1 — introduced during the Portuguese rewrite below,
+  and caught by the same gate that catches it in authoring.
+
+**Two defects the batch exposed that were not about the batch.** Both are
+written up in `docs/final-launch-audit.md`: the word-id renaming (§13) and the
+Portuguese pack being European (§11).
+
+**Level Test after the rebuild.** Bank 4,020 → 4,072 items; the nine complete
+non-English locales go from 1,374 askable items to 1,549, and their ceiling from
+26 back to **25**. The ceiling moved *down* because the new words are core words
+and land at low levels, which shifts the difficulty tiers; the test got deeper
+where learners actually sit rather than taller at the top. Calibration is
+unchanged: mean absolute error 1.34 levels, 95.3% within ±3.

@@ -25,15 +25,15 @@ continue there. The three checkpoint files are:
 | 2 | Re-read report / issues / localisation doc, classify every claim | IN PROGRESS |
 | 3 | Visual quality audit beyond mechanical failures | **DONE** — 2 defects fixed |
 | 4 | Re-render all routes and interactive states | **DONE** — 32 renders, read |
-| 5 | Vocabulary expansion toward 10,000, quality-first | IN PROGRESS — 2,581 → 2,731 |
+| 5 | Vocabulary expansion toward 10,000, quality-first | IN PROGRESS — 2,581 → 2,844 |
 | 6 | Level Test recalibration after expansion | **DONE** — rebuilt at 2,731; qa / ambiguity / locale all green |
 | 7 | Independent Level Test content review | **DONE** — 420 contextual items read; 3 fixed |
 | 8 | Vocabulary example re-audit | TODO |
 | 9 | Korean product-copy review | TODO |
 | 10 | 32 UI locales linguistic re-audit | IN PROGRESS — Tamil shaping fixed; see docs/i18n-quality-review.md |
-| 11 | Vocabulary-content locale status | TODO |
+| 11 | Vocabulary-content locale status | IN PROGRESS — pt-BR drift fixed; es/zh checked |
 | 12 | I-03 Hangyul hand-off | TODO |
-| 13 | Persistence / data loss | TODO |
+| 13 | Persistence / data loss | **DONE** — word-id renaming found and pinned |
 | 14 | Lexical relations | TODO |
 | 15 | "More about it" content | TODO |
 | 16 | Accessibility final pass | TODO |
@@ -201,3 +201,73 @@ comes from the sentence's *other* argument rather than from its verb:
 `____에서 채소를 사요` is pinned by 채소 no matter that 사다 is general. A rule
 that deleted 54 items to fix three would be a worse bank, so the finding is
 recorded here instead of encoded as a gate that does not generalise.
+
+### 13. A content change was renaming words out from under saved progress
+
+Found while adding 젓다 (to stir) in batch 3. The build assigns ids by
+romanisation — `word_jeotda` — and two Korean words can romanise the same, so
+the second one to ask gets `_2`. Which one asks first was decided by the
+iteration order in `build_vocabulary.py`:
+
+```
+for word in sorted(words, key=lambda w: (levels[w], scores[w], w)):
+```
+
+— *difficulty* order, which every content change perturbs. Adding 젓다 renamed
+the already-shipped 젖다 (to get wet) from `word_jeotda` to `word_jeotda_2`.
+
+That is not cosmetic. `progressKey(kind, itemKey)` in
+`apps/web/src/storage/schema.ts` keys every progress row by this id, on the
+device, with no cloud copy — and the file's own opening comment says an update
+that silently resets progress is unacceptable for a paid app. The rename does
+two things to a learner who updates: 젖다 loses its history, and that history is
+handed to 젓다, a word they have never seen, which the app will then treat as
+one they know. The storage layer is written to survive updates; it cannot, if
+the content renumbers underneath it.
+
+**Fixed** with `content/vocabulary/word-ids.json`, a checked-in ledger seeded
+from the ids at HEAD. `word_id()` returns the pinned id when the word has one,
+and the pinned ids are reserved before allocation so a new word cannot take one.
+Retired words keep their line, so re-adding a word later returns the id its
+learners still have on disk. A duplicate id in the ledger is a build error.
+
+**Negative-tested.** Deleting the ledger and rebuilding flips the ids back —
+젖다 → `word_jeotda_2`, 젓다 → `word_jeotda` — and restoring it flips them
+right. Across the whole 2,581 → 2,844 expansion, exactly one word was affected
+before the fix and none after.
+
+**Scope of the damage in the field: none.** The rename had not shipped — it was
+introduced by an uncommitted batch and caught in the same session.
+
+### 11. The Portuguese pack was European, in a pt-BR product
+
+The locale is `pt-BR`, and the existing pack is unambiguously Brazilian: você
+×44, trem, celular, banheiro, resfriado, xícara. Every batch written during
+this pass was European Portuguese, and the surface of it was 143 strings.
+
+Some of it merely reads foreign to the reader it is for — *telemóvel*,
+*comboio*, *palavra-passe*, *porta-bagagens*, *estou a aprender*, *toda a
+gente*, enclitic *doem-me* and *encontramo-nos*. Two of them are simply wrong:
+
+* **camisola** was the meaning taught for 스웨터. In Brazil that is a
+  nightgown.
+* **constipação** was the meaning used for 독감's symptoms. In Brazil that is
+  constipation, not a head cold.
+
+All 143 rewritten. Two strings in the pre-existing pack went with them
+(*autocarro* and *o teu livro* in `000.jsonl`), and 컴퓨터's *computadora*
+became *ordenador*, the pack's Spanish being Peninsular — coche ×11, autobús
+×14, patata, gafas, conducir.
+
+**The other locales were checked the same way and are consistent.** Spanish:
+my batches used móvil / patata / billete, matching. Chinese: no traditional
+characters anywhere in the pack.
+
+**How it was caught, which is the part worth keeping.** Not by reading — by
+`content:qa`, which warns when several words share one meaning string. Five
+words had become *antes* (예전 이전 앞서 차라리 전) and the fifth was mine. The
+warning is about learnability, and it found a regional-register defect it was
+not looking for, four batches after the drift began. There was no gate for
+"this locale is written in the wrong variety of its language", and the honest
+statement is that there still is not one; what there is now is a corrected pack
+and a marker list in this file.
