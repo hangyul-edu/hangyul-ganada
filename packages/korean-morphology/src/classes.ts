@@ -148,7 +148,23 @@ export const SUPPLETIVE = new Set(['있', '없', '이', '아니', '드리', '푸
  */
 export const HONORIFIC_SUFFIXED = new Set([
   '계시', '드시', '주무시', '잡수시', '돌아가시', '자시', '있으시',
+  // 주시 was missing, so 주시다 gave 주셔요 and 주시세요 where the language has
+  // 주세요 — the single most common honorific form there is.
+  '주시',
 ]);
+
+/**
+ * Why this is a list and not "the stem ends in 시".
+ *
+ * Because 마시다 and 모시다 also end in 시 and are not honorific. 마시다 is *to
+ * drink*: its polite form is 마셔요, and 마세요 would mean something else
+ * entirely. 모시다 is humble rather than honorific. A rule keyed on the syllable
+ * would rewrite both into words the learner would then say to a waiter.
+ *
+ * So the membership is lexical and stays lexical. What must not happen is a new
+ * honorific entering the corpus without a line here, which is what the fixtures
+ * in `conjugate.test.ts` are for.
+ */
 
 /** Suffixes that make an adjective ㅂ-irregular by construction. */
 const B_SUFFIXES = ['답', '롭', '스럽', '겹'];

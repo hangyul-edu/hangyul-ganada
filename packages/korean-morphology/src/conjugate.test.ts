@@ -119,6 +119,94 @@ const TABLE: Row[] = [
   ['마시다', V, { presentPolite: '마셔요', honorific: '마시세요' }],
   // Nor is 가시다 in the sense the curriculum teaches — 맛이 가시다, to fade.
   ['가시다', V, { presentPolite: '가셔요', pastPolite: '가셨어요' }],
+  // 주시다 was missing from the honorific set, so it gave 주셔요 and 주시세요
+  // where the language has the commonest honorific form there is.
+  ['주시다', V, { presentPolite: '주세요', pastPolite: '주셨어요', honorific: '주세요', request: undefined }],
+
+  /*
+   * --- 있 and 없 in front of a noun ------------------------------------------
+   *
+   * Both take the *verb* adnominal -는, and so does every compound of them.
+   * The code said so in a comment and tested `cls === 'irregularStem'`, which
+   * only the bare 있다 and 없다 satisfy — so 맛없다 became 맛없은 and 재미있다
+   * became 재미있은, and two non-words reached the Level Test as answer choices.
+   */
+  ['맛없다', A, { adnominal: '맛없는', presentPolite: '맛없어요' }],
+  ['맛있다', A, { adnominal: '맛있는' }],
+  ['재미있다', A, { adnominal: '재미있는' }],
+  ['재미없다', A, { adnominal: '재미없는' }],
+  ['상관없다', A, { adnominal: '상관없는' }],
+  ['틀림없다', A, { adnominal: '틀림없는' }],
+  ['가만있다', V, { adnominal: '가만있는' }],
+
+  /*
+   * --- the thirteen that were classed as verbs -------------------------------
+   *
+   * Their own examples give them away — 이 가방은 커요, 머리가 길어요 — and the
+   * verb rule turned them into 크는, 기는, 다는 and 머는, none of which is the
+   * word. Pinned here as adjectives so the part of speech cannot drift back.
+   */
+  ['크다', A, { adnominal: '큰', request: undefined, honorific: undefined }],
+  ['멀다', A, { adnominal: '먼', request: undefined }],
+  ['길다', A, { adnominal: '긴', request: undefined }],
+  ['달다', A, { adnominal: '단', request: undefined }],
+  ['짜다', A, { adnominal: '짠' }],
+  ['싸다', A, { adnominal: '싼' }],
+  ['밝다', A, { adnominal: '밝은' }],
+  ['어리다', A, { adnominal: '어린', request: undefined }],
+  ['늦다', A, { adnominal: '늦은' }],
+  ['잘생기다', A, { adnominal: '잘생긴', request: undefined }],
+  ['근사하다', A, { adnominal: '근사한', request: undefined }],
+  ['납작하다', A, { adnominal: '납작한', request: undefined }],
+  ['유리하다', A, { adnominal: '유리한', request: undefined }],
+];
+
+/**
+ * `-아/어 주세요` is licensed by the verb, not produced by the grammar.
+ *
+ * Every row below was on a word card. The left column is what the generator
+ * produced and the right is why nobody says it. See `request.ts`.
+ */
+const NO_REQUEST: [string, string][] = [
+  ['죽이다', '죽여 주세요 — please kill'],
+  ['사망하다', '사망해 주세요 — please die'],
+  ['숨지다', '숨져 주세요 — please die'],
+  ['꺼지다', '꺼져 주세요 — the polite form of a vulgar dismissal'],
+  ['벌거벗다', '벌거벗어 주세요 — please get naked'],
+  ['임신하다', '임신해 주세요 — please get pregnant'],
+  ['키스하다', 'not a foundation-course request'],
+  ['괴롭히다', '괴롭혀 주세요 — please bully me'],
+  ['굶주리다', '굶주려 주세요 — please starve'],
+  ['협박하다', '협박해 주세요 — please threaten me'],
+  ['배신하다', '배신해 주세요 — please betray me'],
+  ['실종되다', '실종돼 주세요 — please go missing'],
+  ['취소되다', '취소돼 주세요 — not Korean'],
+  ['결정되다', '결정돼 주세요 — not Korean'],
+  ['닫히다', '닫혀 주세요 — please be closed'],
+  ['갇히다', '갇혀 주세요 — please be imprisoned'],
+  ['넘어지다', '넘어져 주세요 — please fall over'],
+  ['부러지다', '부러져 주세요 — please break'],
+  ['늙다', '늙어 주세요 — please age'],
+  ['썩다', '썩어 주세요 — please rot'],
+  ['발생하다', '발생해 주세요 — things happen, they are not asked'],
+  ['주시다', '주셔 주세요 — says "please give" twice'],
+  ['돌아가시다', '돌아가셔 주세요 — please pass away'],
+];
+
+/** And the ones that must keep it, so the denial cannot creep. */
+const KEEPS_REQUEST: [string, string][] = [
+  ['먹다', '먹어 주세요'],
+  ['가다', '가 주세요'],
+  ['공부하다', '공부해 주세요'],
+  ['보이다', '보여 주세요'],
+  ['만지다', '만져 주세요'],
+  ['던지다', '던져 주세요'],
+  ['일어나다', '일어나 주세요'],
+  ['알리다', '알려 주세요'],
+  ['기다리다', '기다려 주세요'],
+  ['계시다', '계셔 주세요'],
+  ['드시다', '드셔 주세요'],
+  ['되다', '돼 주세요'],
 ];
 
 describe('the conjugation table', () => {
@@ -181,5 +269,42 @@ describe('the classes', () => {
     expect(conjugate('사랑스럽다', 'presentPolite', { partOfSpeech: 'adjective' })).toBe('사랑스러워요');
     expect(conjugate('자유롭다', 'presentPolite', { partOfSpeech: 'adjective' })).toBe('자유로워요');
     expect(conjugate('정답다', 'presentPolite', { partOfSpeech: 'adjective' })).toBe('정다워요');
+  });
+});
+
+
+describe('a request is licensed, not generated', () => {
+  it.each(NO_REQUEST)('shows no request form for %s (%s)', (lemma) => {
+    expect(conjugate(lemma, 'request', { partOfSpeech: 'verb' })).toBeNull();
+  });
+
+  it.each(KEEPS_REQUEST)('keeps the request form of %s', (lemma, expected) => {
+    expect(conjugate(lemma, 'request', { partOfSpeech: 'verb' })).toBe(expected);
+  });
+
+  /*
+   * The honorific set is a list because 마시다 and 모시다 end in the same
+   * syllable and are not honorific. A new honorific entering the corpus without
+   * a line in HONORIFIC_SUFFIXED is the way this breaks, so the ones the
+   * curriculum has are pinned.
+   */
+  it.each([
+    ['계시다', '계세요'],
+    ['드시다', '드세요'],
+    ['주무시다', '주무세요'],
+    ['잡수시다', '잡수세요'],
+    ['돌아가시다', '돌아가세요'],
+    ['주시다', '주세요'],
+  ])('fuses -시- + 어요 to 세요 for %s', (lemma, expected) => {
+    expect(conjugate(lemma, 'presentPolite', { partOfSpeech: 'verb' })).toBe(expected);
+  });
+
+  it.each([
+    ['마시다', '마셔요'],
+    ['모시다', '모셔요'],
+    ['가시다', '가셔요'],
+    ['성가시다', '성가셔요'],
+  ])('leaves the 시-final verbs that are not honorific alone: %s', (lemma, expected) => {
+    expect(conjugate(lemma, 'presentPolite', { partOfSpeech: 'verb' })).toBe(expected);
   });
 });

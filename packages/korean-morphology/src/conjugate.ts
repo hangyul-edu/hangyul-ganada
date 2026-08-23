@@ -39,6 +39,7 @@ import {
   type ClassifyOptions,
   type ConjugationClass,
 } from './classes';
+import { licensesRequest } from './request';
 
 export type Form =
   /** 먹다 */
@@ -352,15 +353,26 @@ export function conjugate(lemma: string, form: Form, shape: WordShape = {}): str
       if (!takesImperative(shape)) return null;
       return HONORIFIC_SUFFIXED.has(stem) ? honorificPolite(stem) : `${euStem(stem, cls)}세요`;
     case 'request':
-      return takesImperative(shape) ? `${infinitive} 주세요` : null;
+      // Morphology is not the whole question here: see `licensesRequest`, which
+      // decides whether asking somebody to do this is a favour or an insult.
+      if (!takesImperative(shape)) return null;
+      return licensesRequest(lemma, stem) ? `${infinitive} 주세요` : null;
     case 'adnominal': {
       /*
        * 있다 and 없다 are adjectives that take the *verb* adnominal: 있는 사람,
        * 없는 사람 — never 있은 or 없은. They are the two words in the language
        * where the part of speech gives the wrong answer, and every compound of
        * them (재미있다, 맛없다) inherits it.
+       *
+       * That last sentence was in this comment while the code did not do it.
+       * The test was `cls === 'irregularStem' && …`, and only the bare 있다 and
+       * 없다 classify as `irregularStem` — every compound is `regular`. So
+       * 맛없다 became 맛없은, 재미있다 became 재미있은 and 상관없다 became
+       * 상관없은, none of which are Korean words, and two of them shipped in the
+       * Level Test as answer choices. The stem ending is the whole rule; the
+       * class was never part of it.
        */
-      if (cls === 'irregularStem' && (stem.endsWith('있') || stem.endsWith('없'))) {
+      if (stem.endsWith('있') || stem.endsWith('없')) {
         return `${stem}는`;
       }
       if (shape.partOfSpeech === 'adjective') {
