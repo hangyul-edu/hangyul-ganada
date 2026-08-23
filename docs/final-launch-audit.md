@@ -32,12 +32,12 @@ continue there. The three checkpoint files are:
 | 9 | Korean product-copy review | **DONE** — 566 strings read; 4 defects, one of them the app's own name |
 | 10 | 32 UI locales linguistic re-audit | IN PROGRESS — Tamil shaping fixed; see docs/i18n-quality-review.md |
 | 11 | Vocabulary-content locale status | IN PROGRESS — pt-BR drift fixed; es/zh checked |
-| 12 | I-03 Hangyul hand-off | TODO |
+| 12 | I-03 Hangyul hand-off | **DONE** — still BLOCKED, and correctly so; verified it degrades to nothing |
 | 13 | Persistence / data loss | **DONE** — word-id renaming found and pinned |
 | 14 | Lexical relations | **DONE** — rebuilt; unchanged at 245, and checked against the bank |
 | 15 | "More about it" content | **DONE** — 25 → 35, the ten homographs batch 3 added |
 | 16 | Accessibility final pass | TODO |
-| 17 | Offline / failure QA | TODO |
+| 17 | Offline / failure QA | IN PROGRESS — e2e offline specs green; sw routing verified |
 | 18 | Performance final pass | **DONE** — budgets met; the forecast that was missing now says 197% |
 | 19 | Android / native boundary | TODO |
 | 20 | Negative-test the critical gates | TODO |
@@ -366,3 +366,28 @@ keeps first paint flat at any corpus size.
 It matters for §5 as much as for §18: reaching 10,000 taught words is not only
 an authoring problem. Whoever finishes the corpus has to change how it is
 delivered somewhere on the way there, and now there is a line that will say when.
+
+### 12. The Hangyul hand-off — still blocked, and the block is the right answer
+
+I-03 says the hand-off is built and has no destination. Re-checked, and nothing
+about it has changed or should:
+
+* `HANGYUL_URL` reads `VITE_HANGYUL_URL` at build time and is `null` in a plain
+  checkout. It is documented in `.env.example` line 47, commented out.
+* `NextStepCard` returns `null` when it is unset, so the card and the My
+  Learning row render nothing rather than rendering a link that goes nowhere.
+* `routing:check` passes: 17 application routes survive a direct request, six
+  static files are served as themselves, and the worker treats a failed
+  navigation as a miss rather than as the shell.
+
+The one thing worth saying plainly is that **this is not a defect to fix in
+code**. The destination is a business fact somebody outside this repository
+owns — a landing page, a store listing or a universal link. Neither repository
+on this machine declares a learner-facing web address for the main Hangyul app;
+the single occurrence of `https://hangyul.app` is a fallback inside a `catch` in
+a billing modal, which is not a declared destination. Inventing one would ship a
+link to a page that may not exist.
+
+**Customer impact as it ships:** a learner who finishes the alphabet reaches the
+end of this product and sees no onward card at all. That is a smaller product
+than intended and it is not a broken one. It stays BLOCKED.
