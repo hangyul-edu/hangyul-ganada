@@ -364,9 +364,31 @@ export const darkGradient = {
   ground: 'linear-gradient(180deg, rgba(58,36,21,0) 0%, #3A2415 100%)',
 } as const;
 
-/** Pretendard is OFL-1.1 and matches the letterforms in the design PDF. */
+/**
+ * Pretendard is OFL-1.1 and matches the letterforms in the design PDF.
+ *
+ * ## Why the Noto families are at the end
+ *
+ * Pretendard covers Latin, Cyrillic, Greek and Korean. It does not cover Tamil,
+ * Telugu, Bengali, Devanagari, Thai, Arabic or Khmer, so for a learner reading
+ * the interface in one of those the browser falls through the stack to whatever
+ * the platform calls `sans-serif`. On Android and iOS that resolves to a face
+ * with a correct Noto fallback chain and everything shapes properly.
+ *
+ * On a desktop Linux browser it can resolve to DejaVu Sans, which claims Tamil
+ * coverage and shapes it wrongly: ை (U+0BC8) is a *prepositioned* vowel sign
+ * and DejaVu draws it as a detached mark, so சொற்களைப் renders as சொற்கஉளப்.
+ * The word is not misspelled and nothing is clipped — it is unreadable anyway,
+ * and no check in this repository looks at glyph shaping. Compared side by side
+ * at 34 px, Noto Sans Tamil UI shapes the same string correctly.
+ *
+ * Naming the Noto UI families ahead of the generic keyword costs nothing where
+ * the earlier entries already work — a font-family list is a preference, not a
+ * download, and nothing here is fetched. It only changes the outcome on a
+ * machine whose `sans-serif` is a poor choice for the script being read.
+ */
 export const fontFamily = {
-  ui: "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif",
+  ui: "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans Tamil UI', 'Noto Sans Telugu UI', 'Noto Sans Bengali UI', 'Noto Sans Devanagari UI', 'Noto Sans Thai UI', 'Noto Sans Arabic UI', 'Noto Sans', sans-serif",
   /** Overridden at runtime by the learner's selected practice typeface. */
   practice: "'Pretendard Variable', Pretendard, sans-serif",
   /**

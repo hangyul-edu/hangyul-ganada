@@ -78,7 +78,7 @@
   --hg-gradient-session: linear-gradient(180deg, #FFFEFC 0%, #FFEAD1 100%);
   --hg-gradient-ground: linear-gradient(180deg, rgba(255,236,220,0) 0%, #FFDCC2 100%);
   /* fontFamily */
-  --hg-font-ui: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --hg-font-ui: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans Tamil UI', 'Noto Sans Telugu UI', 'Noto Sans Bengali UI', 'Noto Sans Devanagari UI', 'Noto Sans Thai UI', 'Noto Sans Arabic UI', 'Noto Sans', sans-serif;
   --hg-font-practice: 'Pretendard Variable', Pretendard, sans-serif;
   --hg-font-reference: 'Pretendard Variable', Pretendard, sans-serif;
   /* fontSize */
