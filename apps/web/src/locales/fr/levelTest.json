@@ -32,7 +32,7 @@
     "words": "À ce niveau, on reconnaît en général les {{count, number}} mots coréens les plus courants.",
     "recommend": "Vos mots du jour suivent désormais ce niveau.",
     "start": "Apprendre des mots à mon niveau",
-    "ceiling": "Pour l'instant, le test va jusqu'au niveau {{ceiling, number}}. Les mots au-delà ne sont pas encore traduits."
+    "ceiling": "Pour l’instant, le test va jusqu’au niveau {{ceiling, number}}. Les mots au-delà ne sont pas encore traduits."
   },
   "bands": {
     "starter": "DÉBUT",

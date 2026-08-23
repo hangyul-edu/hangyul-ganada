@@ -1,5 +1,5 @@
 {
-  "title": "Vocabulary Level",
+  "title": "Vocabulary level",
   "row": {
     "body": "Find your level and get words that match it.",
     "taken": "Level {{level}} · {{band}}"
