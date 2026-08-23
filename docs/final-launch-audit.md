@@ -23,14 +23,14 @@ continue there. The three checkpoint files are:
 | --- | --- | --- |
 | 1 | Handwriting Correct/Incorrect panel width | **DONE** |
 | 2 | Re-read report / issues / localisation doc, classify every claim | IN PROGRESS |
-| 3 | Visual quality audit beyond mechanical failures | IN PROGRESS |
+| 3 | Visual quality audit beyond mechanical failures | **DONE** — 2 defects fixed |
 | 4 | Re-render all routes and interactive states | **DONE** — 32 renders, read |
-| 5 | Vocabulary expansion toward 10,000, quality-first | TODO |
-| 6 | Level Test recalibration after expansion | TODO |
-| 7 | Independent Level Test content review | TODO |
+| 5 | Vocabulary expansion toward 10,000, quality-first | IN PROGRESS — 2,581 → 2,731 |
+| 6 | Level Test recalibration after expansion | **DONE** — rebuilt at 2,731; qa / ambiguity / locale all green |
+| 7 | Independent Level Test content review | **DONE** — 420 contextual items read; 3 fixed |
 | 8 | Vocabulary example re-audit | TODO |
 | 9 | Korean product-copy review | TODO |
-| 10 | 32 UI locales linguistic re-audit | TODO |
+| 10 | 32 UI locales linguistic re-audit | IN PROGRESS — Tamil shaping fixed; see docs/i18n-quality-review.md |
 | 11 | Vocabulary-content locale status | TODO |
 | 12 | I-03 Hangyul hand-off | TODO |
 | 13 | Persistence / data loss | TODO |
@@ -140,3 +140,64 @@ nothing to distribute.
 * the empty states (Wrong words, Saved words, Review) are vertically centred
   with generous space. That is the pattern, not a fault, and it is what F2 was
   fixed *to*.
+
+### 10. Script rendering — Tamil
+
+Full record in `docs/i18n-quality-review.md`. In one line: the Tamil strings
+were correct and the *shaping* was not, because the font stack ended at the
+generic `sans-serif` keyword and the platform resolved it to a face that draws
+ை detached. Fixed in the design tokens; a preference list, nothing fetched.
+
+### 6. Level Test recalibration at 2,731 taught words
+
+The corpus grew, so the bank was rebuilt rather than left calibrated against the
+2,581 it was built from. What changed: the anchor pool now draws 2,729 words
+from the teaching corpus, the bank is 4,020 items (meaning 1,800, produce 1,800,
+context 420), and the **ceiling for the nine complete non-English locales rose
+from 25 to 26** — the expansion bought a level of headroom, which is the point
+of it. English still reaches 30; the twenty-two partial locales still reach 23
+and the result screen still says so.
+
+All three gates re-run against the rebuilt bank:
+
+* `leveltest:qa` — mean absolute error 1.34 levels, 95.3% within ±3, 99.7%
+  within ±5, 30 items every sitting, kinds 12/9/9 as planned.
+* `leveltest:ambiguity` — 4,020 items, 420 contextual, none breaking any of the
+  twelve rules.
+* `leveltest:locale` — every item resolves in all 32 languages, and no answer
+  option in any language resolved from another one.
+
+### 7. Reading the contextual items rather than counting them
+
+`leveltest:ambiguity` checks twelve mechanical rules and passed all 420
+contextual items both before and after this section. So the 60 items the new
+vocabulary added were read one at a time, against their three distractors,
+asking only: is the keyed answer the *only* defensible one?
+
+Three were not. All three are the same fault — the example sentence is a bare
+frame whose only verb is one that fits anything, so the blank is unconstrained:
+
+| item | second answer that also works |
+| --- | --- |
+| `____에서 십 년을 보냈어요.` → 감옥 | 바다에서 십 년을 보냈어요 is ordinary Korean |
+| `____ 준비를 해야 해요.` → 입원 | 국 준비를 해야 해요 |
+| `____을 새로 샀어요.` → 화장품 | 칠판을 새로 샀어요 |
+
+The fix is in the content, not the builder. Each of the three example sentences
+was weak *as a teaching example* for the same reason it was weak as a question —
+"I bought new cosmetics" shows the word in a slot rather than in a life — so
+they were rewritten to carry their own context (경찰이 그 사람을 감옥에 보냈어요 ·
+친구가 병원에 입원했어요 · 엄마 생일 선물로 화장품을 샀어요), and the th and vi
+copy rows with them. `examples:qa` passes all 2,731; the three rebuilt items now
+read `경찰이 그 사람을 ____에 보냈어요`, `친구가 병원에 ____했어요` and
+`엄마 생일 선물로 ____을 샀어요`, none of which any distractor fits.
+
+**No new gate, and the reason.** The tempting generalisation is "a noun blank
+whose sentence ends in a general verb constrains nothing" — the repository
+already keeps that judgement, in `GENERAL_VERBS`, and applies it to *distractors*
+for verb items. Applied to noun frames it fires on 54 of the 164 noun items, and
+reading them shows the overwhelming majority are fine, because the constraint
+comes from the sentence's *other* argument rather than from its verb:
+`____에서 채소를 사요` is pinned by 채소 no matter that 사다 is general. A rule
+that deleted 54 items to fix three would be a worse bank, so the finding is
+recorded here instead of encoded as a gate that does not generalise.
