@@ -9,7 +9,7 @@
  * ## The bug this exists because of
  *
  * A physical Samsung photographed the ㄱ lesson with the bottom of its orange
- * **Trace it** button inside the three-button navigation bar. Nothing in this
+ * **Write it** button inside the three-button navigation bar. Nothing in this
  * repository had caught it, and it is worth being precise about why, because
  * every one of the reasons is a habit rather than an oversight:
  *
@@ -80,7 +80,17 @@ const SCREENS = [
   {
     id: 'consonant-intro',
     path: '/letters/lesson-consonants-first',
-    control: 'Trace it',
+    /*
+     * "Write it", and it was "Trace it" here until this pass.
+     *
+     * The button was renamed in the interface and this file was not, so for
+     * every run since, the one check this script exists for — does the primary
+     * action on the consonant lesson clear the three-button navigation bar? —
+     * reported "not found" on all six device configurations instead of running.
+     * `e2e/safe-area.spec.ts` was updated with the rename and this was missed,
+     * which is what a label duplicated in two places does eventually.
+     */
+    control: 'Write it',
     // ㄱ's lesson opens on a unit explainer; the screen under test is the one
     // after it.
     pastUnitIntro: true,

@@ -39,12 +39,12 @@ continue there. The three checkpoint files are:
 | 16 | Accessibility final pass | **DONE** — axe clean in e2e; contrast and target size clean at 7 profiles |
 | 17 | Offline / failure QA | **DONE** — offline specs green, routing:check clean |
 | 18 | Performance final pass | **DONE** — budgets met; the forecast that was missing now says 197% |
-| 19 | Android / native boundary | TODO |
+| 19 | Android / native boundary | **DONE** — ANDROID EMULATOR VERIFIED / PHYSICAL DEVICE NOT VERIFIED |
 | 20 | Negative-test the critical gates | **DONE** — 4 gates broken on purpose and caught |
 | 21 | Release gate semantics | **DONE** — verified it fails on a stale package and a dirty tree |
 | 22 | Report consistency | TODO |
-| 23 | Final build from final source | TODO |
-| 24 | APK/AAB verification | TODO |
+| 23 | Final build from final source | **DONE** — rebuilt from HEAD, release:current clean |
+| 24 | APK/AAB verification | **DONE** — certificate unchanged, checksums verified |
 | 25 | Rewrite report from scratch | TODO |
 | 26 | Final launch verdict | TODO |
 
@@ -440,3 +440,87 @@ separate pass, and both are green:
   `routing:check` confirms 17 routes survive a direct request, six static files
   are served as themselves, and a failed navigation is treated as a miss rather
   than as the shell.
+
+### 19. Android — **ANDROID EMULATOR VERIFIED / PHYSICAL DEVICE NOT VERIFIED**
+
+There is no physical Android device on this machine, so nothing below is a
+physical-device claim. What follows was done on an emulated Pixel 7, Android 16,
+software-rendered.
+
+**The delivered artefact, installed and walked.** Not a debug build — the signed
+`app_result/hangyul-ganada-release.apk`, installed with `adb install -r`:
+
+* Home renders complete: brand, Unit 1 card, the Letters and Words tiles, the
+  vocabulary-level row, the quote, the tab bar.
+* The lesson opens on its explainer, the stroke demonstration draws ㅏ with
+  numbered strokes and its sound, the canvas shows the guide with Undo, Clear
+  and Check correctly disabled.
+* Two swipes and Check produced **the §1 fix on a real device**: the verdict
+  panel spans the full content width, its edges level with the canvas above it,
+  the CTA full width beneath a divider. This is the first time that fix has been
+  seen anywhere but a headless browser.
+* Words renders the hub and the topic browse. Searching *dragon* returns
+  **1 match** — 용, authored in batch 3 today — so the expansion is in the
+  delivered binary and not merely in the repository.
+* `logcat` carries no `FATAL`, no `AndroidRuntime`, and no ANR naming
+  `com.talkhangyul.ganada`. The emulator's own SystemUI did ANR twice under
+  software rendering, which is the emulator and not the app.
+
+**`mobile:qa` — 14/14** against the debug variant, which is the one with a
+debuggable WebView: Capacitor native platform, every asset served from the
+bundle at `https://localhost`, launch screen gone, **progress stored in native
+SQLite**, insets reaching the layout at top 52 px / bottom 24 px and honoured
+exactly, nothing under the system bars, navigation and hardware back working,
+the lesson clip playing once on arrival, the corrected 마디 recording served
+rather than a cached older one, no service worker in the native build, and no
+console error during the walk.
+
+**`mobile:qa:safe-area` — 60/60**, and it was 42/48. The six failures were one
+check, repeated across six device configurations: the script looked for a
+button called **Trace it** and the interface renamed it **Write it**. That
+check is the reason the script exists — the comment names the failure
+photograph it was written from — so the thing it was built to watch had not
+been watched since the rename. `e2e/safe-area.spec.ts` was updated with the
+rename and this file was missed, which is what a label duplicated in two places
+eventually does. Fixed, and the check now runs and passes at every inset,
+theme and text scale.
+
+**A false alarm worth recording**, because it looked like a serious defect for
+several minutes. Running `mobile:qa` after launching the activity twice reported
+*progress is stored in native SQLite — not reported* and then threw. Attaching
+to DevTools by hand found **two** `page` targets, one answering `sqlite` and one
+answering `memory`. The second was a WebView left attached from the extra
+launch; `launchMode` is `singleTask` and a single clean launch has exactly one
+target and 14/14 passes. The script takes `targets.find(t => t.type === 'page')`
+and so picks arbitrarily when two exist — worth knowing, and not a customer
+defect.
+
+**Native libraries:** none in either artefact, so 16 KB page-size compatibility
+holds by construction.
+
+### 23–24. The build, and what is in it
+
+Rebuilt from HEAD with a clean tree after every source change above, using the
+existing production signing identity found at `ANDROID_KEYSTORE_PATH`. **No key
+was generated.** The keystore's certificate was read before the build and
+compared with the superseded artefact:
+
+```
+keystore   SHA256 15:7A:2B:B1:…:33:23:DE:BC   CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR
+old APK    157a2bb133f6aa3d…3323debc
+new APK    157a2bb133f6aa3d…3323debc
+```
+
+| | |
+| --- | --- |
+| Built from | `0f79feee`, recorded in `build-info.json` |
+| APK | 77,763,323 bytes · `2dd51fd51ad56518b46397f7e7ed439a7311a5a0f9e7975103542b4b51251faa` |
+| AAB | 76,299,626 bytes · `96f67ee755e97e8acc0b0634887aa1ab3e1d09b67feb6739b3aa0d6010fec9e2` |
+| Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
+| Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
+| SDK | min 24, target 36 |
+
+The APK grew from 71.3 MB to 77.8 MB, and the 6.5 MB is the audio for the 263
+new words. `checksums.sha256` verifies in both `result/` and `app_result/`, and
+`release:current` reports both at HEAD with the tree clean outside `docs/` and
+the release directories.

@@ -33,7 +33,7 @@ Every item is *None*:
 
 ## Content that could be questioned, and why it is not a rating issue
 
-The vocabulary is a 2,581-word beginner corpus built from the sources in
+The vocabulary is a 2,844-word beginner corpus built from the sources in
 `content/vocabulary/METHODOLOGY.md`, hand-reviewed word by word, with 328
 candidates removed and each removal carrying its reason in the pack. Words
 whose register is wrong for a beginner product were among the categories cut.

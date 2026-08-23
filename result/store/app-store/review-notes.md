@@ -35,7 +35,7 @@ there is nothing to describe.
 **Encryption.** `ITSAppUsesNonExemptEncryption` is false. The app contains no
 cryptography and makes no TLS connection.
 
-**Content.** 2,581 beginner Korean words, hand-reviewed, with sources recorded in
+**Content.** 2,844 beginner Korean words, hand-reviewed, with sources recorded in
 `content/vocabulary/METHODOLOGY.md`. Every example sentence passes an automated
 teaching-quality gate before it can ship (`npm run examples:qa`).
 
