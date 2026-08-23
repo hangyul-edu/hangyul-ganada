@@ -9,7 +9,7 @@
     "body": "익숙한 단어부터 조금 어려운 단어까지 풀어 보며 현재 어휘 수준을 확인해 보세요.",
     "shape": "{{questions, number}}문제 · {{minutes, number}}분",
     "unsure": "모르는 문제는 ‘모르겠어요’를 눌러도 괜찮아요.",
-    "usedFor": "결과에 맞춰 오늘의 어휘 난이도를 추천해 드려요.",
+    "usedFor": "결과에 맞춰 오늘의 단어 난이도를 추천해 드려요.",
     "start": "시작하기",
     "retake": "다시 해보기",
     "previous": "지난번에는 레벨 {{level}}이었어요."
@@ -30,7 +30,7 @@
     "of": "/ {{levels, number}}",
     "band": "{{low, number}}~{{high, number}} 사이일 가능성이 높아요.",
     "words": "이 레벨이면 보통 한국어에서 가장 많이 쓰는 {{count, number}}개 단어를 알아봐요.",
-    "recommend": "이제 오늘의 어휘가 이 수준에 맞춰집니다.",
+    "recommend": "이제 오늘의 단어가 이 수준에 맞춰져요.",
     "start": "내 수준에 맞는 단어 배우기",
     "ceiling": "지금은 {{ceiling, number}}단계까지 물어볼 수 있어요. 그 위 단계의 단어는 아직 번역되지 않았어요."
   },

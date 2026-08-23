@@ -9,7 +9,7 @@
   "language": {
     "title": "언어",
     "pickerTitle": "언어 선택",
-    "pickerIntro": "화면 언어를 고르세요. 배우는 대상인 한글 글자와 단어, 예문은 언제나 한국어로 표시돼요.",
+    "pickerIntro": "화면 언어를 고르세요. 배우는 대상인 한글 낱자와 단어, 예문은 언제나 한국어로 표시돼요.",
     "listAria": "사용할 수 있는 언어",
     "searchLabel": "언어 검색",
     "searchPlaceholder": "이름이나 코드로 검색",
@@ -22,16 +22,16 @@
   },
   "font": {
     "title": "연습 글꼴",
-    "description": "따라 쓰는 글자가 고른 서체로 그려져요."
+    "description": "따라 쓰는 낱자가 고른 서체로 그려져요."
   },
   "dailyTarget": {
-    "title": "하루 글자 목표",
-    "description": "하루에 글자를 몇 개 끝낼지 정해요.",
+    "title": "하루 낱자 목표",
+    "description": "하루에 낱자를 몇 개 끝낼지 정해요.",
     "option_other": "{{count, number}}개",
     "optionAria_other": "하루 {{count, number}}개"
   },
   "wordGoal": {
-    "title": "하루 어휘 목표",
+    "title": "하루 단어 목표",
     "description": "하루에 몇 개를 끝낼지 정해요. 언제든 바꿀 수 있어요.",
     "option": "{{count}}개",
     "optionAria": "하루 {{count}}개"
@@ -55,7 +55,7 @@
   },
   "voice": {
     "title": "발음 목소리",
-    "description": "글자와 음절, 단어를 읽어 줄 목소리예요.",
+    "description": "낱자와 음절, 단어를 읽어 줄 목소리예요.",
     "female": "여성 목소리",
     "male": "남성 목소리",
     "preview": "선택한 목소리 들어보기",
@@ -82,7 +82,7 @@
   "legal": {
     "title": "법적 고지 및 라이선스",
     "body": "앱에 쓰인 콘텐츠와 서체의 라이선스",
-    "intro": "앱에 쓰인 일부 자료는 출처를 밝히도록 요구하는 라이선스를 따릅니다. 그 표기를 여기에 모았습니다.",
+    "intro": "앱에 쓰인 일부 자료는 출처를 밝히도록 요구하는 라이선스를 따라요. 그 표기를 여기에 모았어요.",
     "contentHeading": "콘텐츠",
     "fontsHeading": "서체"
   },

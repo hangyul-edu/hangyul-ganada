@@ -1,6 +1,6 @@
 {
   "letters": {
-    "title": "글자 배우기",
+    "title": "낱자 배우기",
     "complete": "학습 완료",
     "alphabetTitle": "한글 낱자",
     "alphabetCaption": "낱자를 익혔어요",
@@ -8,8 +8,8 @@
   },
   "session": {
     "counter": "{{current, number}} / {{total, number}}",
-    "skip": "이 글자 건너뛰기",
-    "next": "다음 글자",
+    "skip": "이번 건 건너뛰기",
+    "next": "다음 낱자",
     "finish": "마치기",
     "startWriting": "써 보기",
     "prompt": {
@@ -20,15 +20,15 @@
   },
   "complete": {
     "title": "잘했어요!",
-    "letters_other": "{{lesson}}에서 글자 {{count, number}}개를 끝냈어요.",
-    "letters_one": "{{lesson}}에서 글자 {{count, number}}개를 끝냈어요."
+    "letters_other": "{{lesson}}에서 낱자 {{count, number}}개를 끝냈어요.",
+    "letters_one": "{{lesson}}에서 낱자 {{count, number}}개를 끝냈어요."
   },
   "review": {
     "title": "복습",
     "empty": {
       "title": "복습할 게 아직 없어요",
-      "body": "틀린 건 여기에 모여요. 지금은 새 글자를 하나 배워 볼까요?",
-      "cta": "글자 배우기"
+      "body": "틀린 건 여기에 모여요. 지금은 새 낱자를 하나 배워 볼까요?",
+      "cta": "낱자 배우기"
     },
     "startCta": "복습 시작",
     "sessionTitle": "복습",
@@ -54,15 +54,15 @@
     "prompt": {
       "read": "이 단어는 무슨 뜻일까요?",
       "readLetter": "어떤 소리가 날까요?",
-      "listenLetter": "어떤 글자일까요?",
-      "listenLetterSoundFree": "이 소리를 내는 글자는?",
+      "listenLetter": "어떤 낱자일까요?",
+      "listenLetterSoundFree": "이 소리를 내는 낱자는?",
       "context": "빈칸에 어울리는 단어는?",
       "write": "이 단어를 써 보세요",
       "writeLetter": "들은 대로 써 보세요",
       "distinguish": "이 소리는 어느 쪽일까요?",
-      "distinguishSoundFree": "이 글자는 어떤 소리가 날까요?",
+      "distinguishSoundFree": "이 낱자는 어떤 소리가 날까요?",
       "produce": "어느 단어일까요?",
-      "build": "글자를 순서대로 놓아 보세요",
+      "build": "단어를 맞춰 보세요",
       "match": "단어와 뜻을 짝지어 보세요"
     },
     "nothingDue": "지금은 복습할 것이 없어요.",
@@ -77,11 +77,11 @@
       "startsWithSound": "첫소리는 ‘{{sound}}’예요.",
       "replay": "다시 들어 보세요. 몇 번이든 괜찮아요.",
       "letterFamily": "{{family}}이에요.",
-      "letterExample": "{{word}}의 첫 글자예요.",
+      "letterExample": "{{word}}의 첫 낱자예요.",
       "letterSound": "‘{{sound}}’ 소리가 나요.",
       "reveal": "정답은 {{answer}}예요.",
       "revealWord": "이 단어는 {{answer}}예요.",
-      "revealLetter": "이 글자는 {{answer}}예요.",
+      "revealLetter": "이 낱자는 {{answer}}예요.",
       "revealStrokes": "획순을 한 번 더 보고 따라 써 보세요.",
       "inSentence": "이렇게 써요: {{sentence}}"
     },
@@ -120,12 +120,12 @@
       "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — 예사소리의 나머지예요."
     },
     "unit-5": {
-      "title": "글자 더 읽기",
-      "goal": "소리가 전혀 나지 않는 낱자 하나도 함께 배웁니다."
+      "title": "낱자 더 읽기",
+      "goal": "소리가 전혀 나지 않는 낱자 하나도 함께 배워요."
     },
     "unit-6": {
       "title": "\"이\" 소리 더하기",
-      "goal": "획 하나만 더하면 ㅏ가 ㅑ가 돼요. 네 글자 모두 같은 규칙이에요."
+      "goal": "획 하나만 더하면 ㅏ가 ㅑ가 돼요. 네 낱자 모두 같은 규칙이에요."
     },
     "unit-7": {
       "title": "거센 바람",
@@ -137,11 +137,11 @@
     },
     "unit-9": {
       "title": "겹쳐서 세게",
-      "goal": "낱자 다섯 개를 두 번 써서, 더 세게 냅니다."
+      "goal": "낱자 다섯 개를 두 번 써서, 더 세게 내요."
     },
     "unit-10": {
       "title": "\"오/우\" 모음",
-      "goal": "모음 두 개를 하나로 씁니다. 40개 낱자 중 마지막이에요."
+      "goal": "모음 두 개를 하나로 써요. 40개 낱자 중 마지막이에요."
     },
     "unit-11": {
       "title": "발밑의 낱자",
@@ -165,13 +165,13 @@
     "reads": "이렇게 읽어요"
   },
   "steps": {
-    "label": "이 글자를 배우는 순서",
+    "label": "이 낱자를 배우는 순서",
     "write": "쓰기",
     "read": "읽기"
   },
   "recognition": {
-    "question": "이 소리를 내는 글자는?",
-    "optionsAria": "들은 글자 고르기",
+    "question": "이 소리를 내는 낱자는?",
+    "optionsAria": "들은 낱자 고르기",
     "optionAria": "{{character}} 고르기",
     "hearAgain": "다시 듣기",
     "tryAgain": "다시 풀기"
@@ -179,7 +179,7 @@
   "sounds": {
     "title": "소리가 만날 때",
     "blurb": "학교가 왜 쓰인 대로 소리 나지 않을까요.",
-    "intro": "이제 모든 글자를 읽을 수 있어요. 한국어는 단어를 이루는 조각을 그대로 적고, 그 조각이 만나면 소리가 바뀌기도 해요. 그래서 몇몇 단어는 보이는 것과 다르게 들려요. 먼저 만나게 될 것들이에요.",
+    "intro": "이제 모든 낱자를 읽을 수 있어요. 한국어는 단어를 이루는 조각을 그대로 적고, 그 조각이 만나면 소리가 바뀌기도 해요. 그래서 몇몇 단어는 보이는 것과 다르게 들려요. 먼저 만나게 될 것들이에요.",
     "written": "쓰기",
     "said": "소리",
     "note": "외우지 않아도 괜찮아요. 귀로 익히다 보면 자연스럽게 들려요.",
@@ -197,7 +197,7 @@
     "filterLabel": "보기",
     "filter": {
       "all": "전체",
-      "character": "글자",
+      "character": "낱자",
       "word": "단어"
     },
     "youPut": "내 답",
@@ -208,7 +208,7 @@
     "emptyTitle": "아직 틀린 게 없어요",
     "emptyBody": "틀린 것이 있으면 여기에 모여서 다시 볼 수 있어요.",
     "emptyCta": "오늘의 단어 시작하기",
-    "wrongVocabulary": "틀린 어휘"
+    "wrongVocabulary": "틀린 단어"
   },
   "letterGroup": {
     "basic_vowel": "기본 모음",
@@ -220,7 +220,7 @@
   },
   "nextStep": {
     "title": "다음 단계로",
-    "body": "이제 한글을 읽을 수 있어요. 말하기와 TOPIK 준비는 한귤에서 이어집니다.",
+    "body": "이제 한글을 읽을 수 있어요. 말하기와 TOPIK 준비는 한귤에서 이어져요.",
     "cta": "한귤에서 계속하기",
     "rowTitle": "한귤에서 계속하기",
     "rowBody": "준비되면 말하기와 TOPIK으로"

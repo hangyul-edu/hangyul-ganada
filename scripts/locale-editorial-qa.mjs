@@ -64,8 +64,14 @@ const SOURCE = 'en';
  * Pronouns and possessives only — verb morphology would need a parser, and the
  * pronoun is what a slip shows up in first. `polite` and `familiar` are the two
  * registers; a language appears here only if the product genuinely has to
- * choose, so English, Korean's 해요체 (which has no competing form in this
- * product's copy) and the languages with no T–V distinction are absent.
+ * choose, so English and the languages with no T–V distinction are absent.
+ *
+ * Korean is absent from *this* table and checked by `KOREAN_REGISTER` below,
+ * because Korean marks the choice in the verb rather than in a pronoun. This
+ * comment used to say Korean had "no competing form in this product's copy",
+ * which was a claim about the copy that the copy did not support: six strings
+ * were in 합쇼체, one of them mixing both registers inside a single pair of
+ * sentences.
  *
  * The chosen register per language is not written down here on purpose. It is
  * whichever one the language already uses for the overwhelming majority of its
@@ -106,6 +112,68 @@ const REGISTER = {
   ky: { polite: /(сиз|сизд(ин|и))/i, familiar: /(сен|сен(ин|и))/i },
   uz: { polite: /(siz|sizning)/i, familiar: /(sen|sening)/i },
   mn: { polite: /(та|таны|танд)/i, familiar: /(чи|чиний|чамд)/i },
+};
+
+/**
+ * Korean, where the register is in the verb ending rather than in a pronoun.
+ *
+ * The product speaks 해요체 throughout — 배워요, 없어요, 시작해 보세요 — which
+ * is the register a friendly app uses. 합쇼체 (배웁니다, 따릅니다) is the
+ * register of an announcement, and a sentence of it among a hundred of the
+ * other reads as a paragraph lifted from somewhere else. Both are polite, so
+ * neither is a mistake in isolation; mixing them is.
+ *
+ * Matched at the end of a sentence, because that is where the ending lives.
+ * 습니까/ㅂ니까 is the same register asking a question. Nothing here looks for
+ * 한다체 or 해라체: neither appears, and both would be caught by the same shape
+ * if they did.
+ */
+const KOREAN_REGISTER = {
+  formal: /(니다|니까)[.!?"'”’)\]]*\s*$/m,
+  friendly: /(요|죠|봐요|세요)[.!?"'”’)\]]*\s*$/m,
+};
+
+/**
+ * One thing, one name — in Korean, where the two are near-synonyms.
+ *
+ * 단어 is a word; 어휘 is the vocabulary a person has. English says "words" on
+ * every one of these screens, and Korean said 어휘 on eleven of them and 단어 on
+ * the rest, so the home screen showed 오늘의 어휘 above a tab reading 단어 and
+ * the saved list was 저장한 어휘 saved with a button reading 단어 저장.
+ *
+ * 어휘 is right where the thing being named really is a person's lexicon rather
+ * than an item — 어휘 레벨, 어휘 수준 — so the rule is scoped to the namespace
+ * that measures it rather than banning the word.
+ */
+const KOREAN_GLOSSARY = [
+  {
+    avoid: '어휘',
+    prefer: '단어',
+    allowedIn: ['levelTest'],
+    why: 'a countable thing the learner studies is 단어; 어휘 is the lexicon they have',
+  },
+];
+
+/**
+ * 낱자 and 글자, told apart by what the English says.
+ *
+ * Both mean "letter" loosely, and the app itself draws the line in unit 1:
+ * 낱자는 네모난 블록으로 묶이고, 블록 하나가 한 글자예요 — the forty things you
+ * learn are 낱자, and the block they combine into is a 글자. Having taught that,
+ * the product then called the letters tab 글자, counted 완료한 글자 in the
+ * activity page and 배운 낱자 in the settings, and put 오늘의 글자 above a card
+ * reading 낱자 0/40.
+ *
+ * A word list cannot decide this one, because 글자 is right wherever the thing
+ * really is a block. The English is the referent instead: where the source
+ * string says "letter", the Korean is about a 낱자. A Korean string that uses
+ * *both* words is exempt — that is a sentence drawing the distinction on
+ * purpose, which is where 글자 belongs.
+ */
+const KOREAN_LETTER = {
+  english: /\bletters?\b/i,
+  avoid: '글자',
+  prefer: '낱자',
 };
 
 /**
@@ -236,6 +304,58 @@ for (const locale of locales) {
           (minority.length > 6 ? ` (+${minority.length - 6} more)` : ''),
         sample: bundle.get(minority[0]),
       });
+    }
+  }
+
+  // 1b. Korean register, and the Korean glossary.
+  if (locale === 'ko') {
+    const formal = [];
+    const friendly = [];
+    for (const [key, value] of bundle) {
+      for (const sentence of value.split(/(?<=[.!?])\s+/)) {
+        if (KOREAN_REGISTER.formal.test(sentence.trim())) formal.push(key);
+        else if (KOREAN_REGISTER.friendly.test(sentence.trim())) friendly.push(key);
+      }
+    }
+    if (formal.length > 0 && friendly.length > 0) {
+      errors.push({
+        locale,
+        id: 'mixed-register',
+        detail:
+          `${friendly.length} sentence(s) are 해요체 and ${formal.length} are 합쇼체. ` +
+          `The 합쇼체 ones are: ${[...new Set(formal)].slice(0, 6).join(', ')}`,
+        sample: bundle.get(formal[0]),
+      });
+    }
+    const strayLetter = [...bundle]
+      .filter(([key, value]) => value.includes(KOREAN_LETTER.avoid) && !value.includes(KOREAN_LETTER.prefer))
+      .filter(([key]) => KOREAN_LETTER.english.test(english.get(key) ?? ''))
+      .map(([key]) => key);
+    if (strayLetter.length > 0) {
+      errors.push({
+        locale,
+        id: 'two-names-for-one-thing',
+        detail:
+          `${strayLetter.length} string(s) say 글자 where the English says "letter" and the app ` +
+          `teaches 낱자: ${strayLetter.slice(0, 6).join(', ')}`,
+        sample: bundle.get(strayLetter[0]),
+      });
+    }
+    for (const term of KOREAN_GLOSSARY) {
+      const stray = [...bundle]
+        .filter(([key, value]) => value.includes(term.avoid))
+        .filter(([key]) => !term.allowedIn.includes(key.split(':')[0]))
+        .map(([key]) => key);
+      if (stray.length > 0) {
+        errors.push({
+          locale,
+          id: 'two-names-for-one-thing',
+          detail:
+            `${stray.length} string(s) say ${term.avoid} where the product says ${term.prefer} — ` +
+            `${term.why}: ${stray.slice(0, 6).join(', ')}`,
+          sample: bundle.get(stray[0]),
+        });
+      }
     }
   }
 
