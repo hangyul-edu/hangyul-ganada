@@ -59,9 +59,9 @@ reported fixed and is only partly fixed.
 | Product | Hangyul ganada (한귤 가나다) |
 | Application version | 0.1.0 |
 | Git branch | `main` |
-| Git commit | `8e9a9a7` — see §2.2 for the pipeline |
+| Git commit | `854bc55` — see §2.2 for the pipeline |
 | Working tree | Clean when the release was built. Dirty now, and only with this report — `docs/`, `result/` and `app_result/`; no product file. `docs/report.pdf` is untracked by `.gitignore` |
-| Commit the delivered APK/AAB were built from | **`f215e66`** — one commit behind HEAD, and the difference is this report. `npm run release:current` passes: nothing outside `docs/`, `result/` and `app_result/` changed. See §2.2 |
+| Commit the delivered APK/AAB were built from | **`ea806f3`** — one commit behind HEAD, and the difference is this report. `npm run release:current` passes: nothing outside `docs/`, `result/` and `app_result/` changed. See §2.2 |
 | Signed APK | 67.6 MB · `5b7220caeb19ae1b…` |
 | Signed AAB | 66.4 MB · `68f4251cf513aa10…` |
 | Signing certificate | `157a2bb133f6aa3d…` — `CN=Hangyul GaNaDa, O=Talk Hangyul` — the same identity as every previous release, read out of the APK Signing Block |
@@ -97,22 +97,22 @@ This section has carried a P0 in four reports. It does not carry one now, and
 the reason is not that somebody was careful this time.
 
 ```
-f215e66  the production pass — every change in this report
+ea806f3  the production pass — every change in this report
          ↓  working tree clean, verified before anything was built
          ↓  npm run build + cap sync android
          ↓  gradlew assembleRelease bundleRelease, the existing production key
          ↓  unpack the delivered APK and check what is actually inside it
          ↓  npm run release:current
-result/, app_result/   from f215e66, and asserted to be
+result/, app_result/   from ea806f3, and asserted to be
 ```
 
-**It was built twice, and the second one is evidence.** The package was
-rebuilt after three build scripts were corrected — see I-50's note on the index
-columns — and the APK and AAB came out with the *same* SHA-256 as before:
-`5b7220ca…f747e` and `68f4251c…13717`. Those three scripts and a generated
-export that nothing bundles are exactly the kind of change that looks like it
-might reach a customer and does not, and an identical hash settles it without
-an argument.
+**It was built three times, and the repeats are evidence.** After the first
+package, three build scripts were corrected and two QA scripts were added, and
+each rebuild produced the *same* APK and AAB bytes: `5b7220ca…f747e` and
+`68f4251c…13717`, every time. Build scripts, QA scripts and a generated export
+that nothing bundles are exactly the kind of change that looks like it might
+reach a customer and does not, and an identical hash settles it without an
+argument.
 
 **No new keystore, and the certificate was checked in both directions.** The
 keystore at `/root/.hangyul-keys/release.jks` was read before the build and its
@@ -255,7 +255,7 @@ a build's own record of itself is not evidence about the file.
 | Corpus a learner waits for before first paint | **45.7 kB gz of a 64 kB budget**, and **the same at 10,000 words** | the whole corpus, in the first load |
 | Corpus forecast at 10,000 words | 776.8 kB gz of a 900 kB budget, background and precached | 754.6 kB of 220 kB — **343%**, in the first load |
 | Everything precached, now including `public/corpus` | **877.2 kB gz of a 1400 kB budget** (63%) | 472.9 kB of 900 kB, corpus not included |
-| Delivered APK/AAB built from | **`f215e66`**, one commit behind HEAD and the difference is this report — which `release:current` distinguishes | `c350d03`, the same commit |
+| Delivered APK/AAB built from | **`ea806f3`**, one commit behind HEAD and the difference is this report — which `release:current` distinguishes | `c350d03`, the same commit |
 | Signed APK certificate, read from the signing block | `157a2bb1…debc`, v2 + v3, valid to 2053 | same identity |
 | Dictionary chunks reachable inside the delivered APK | **76 of 76**, verified by unpacking it | 0 of 76 on the first attempt — see §2.2 |
 | Trace guide vs its own box (ㅏ) | **0.243 × 0.718, centred at (0.499, 0.499)** | 0.228 × 0.672 at (0.556, 0.460) |
@@ -5698,9 +5698,27 @@ anybody looked was that the numbers disagreed with a rendered screen.
 
 ## 36.1 What was actually run in this audit — **AUTOMATED TEST STATUS**
 
-Re-run from scratch on `main` at `b94831b`. Nothing in this table is copied
+Re-run from scratch on `main` at `854bc55`. Nothing in this table is copied
 forward; where a command was not run, the row says so instead of inheriting a
 result.
+
+**One row needs its conditions stated.** This machine has 5.9 GB of memory and
+was sharing it, for the length of this pass, with another project's build. The
+end-to-end suite is 324 cases that each drive a real browser, and under that
+pressure the Playwright workers were being killed and restarted: a full
+two-project run in one process could not be completed at the end of the cycle.
+What *was* completed, and is what this table reports:
+
+| | |
+| --- | --- |
+| A full two-project run, earlier in the cycle | **320 of 324**. The four failures were in two specs, both diagnosed and fixed — see the note below |
+| `dictionary.spec.ts` + `locale-quiz.spec.ts`, after the fix | **20 of 20**, both projects, three consecutive runs |
+| The mobile project, at the end of the cycle | **161 of 162**. The one failure is `the storage warning stays away on an ordinary browser`, which found `engine: memory` where it expects `indexeddb` — the browser declining to open a database on a machine with 94 MB free. It passes 6 of 6 when the spec is run on its own |
+| The desktop project, at the end of the cycle | **113 of 162 with 0 failures** before the run was stopped |
+
+Every one of the 324 cases has a pass behind it. What there is not is a single
+green two-project run from the final commit, and that is a property of this
+machine rather than of the product — stated here rather than rounded up.
 
 | Command | Purpose | Result this cycle |
 | --- | --- | --- |
@@ -6569,7 +6587,7 @@ speech plan  →  Azure Neural TTS  →  public/audio/*.mp3 + manifest.json
 | Artefact | State |
 | --- | --- |
 | Web build | current — builds clean from HEAD, every budget met |
-| `app_result/hangyul-ganada-release.apk` | 70,898,778 B (67.6 MB) · SHA-256 `5b7220caeb19ae1b912a2959b5e38588370e1b3cd861680e86cca782962f747e` · built from **`f215e66`** · signed |
+| `app_result/hangyul-ganada-release.apk` | 70,898,778 B (67.6 MB) · SHA-256 `5b7220caeb19ae1b912a2959b5e38588370e1b3cd861680e86cca782962f747e` · built from **`ea806f3`** · signed |
 | `app_result/hangyul-ganada-release.aab` | 69,638,521 B (66.4 MB) · SHA-256 `68f4251cf513aa106cf52ee7837c309ce726e4012a6ad09b9d8ae2cfcd713717` · same commit · signed |
 | `result/` | the same two binaries byte-for-byte, plus `RELEASE_VALIDATION.md`, `BUILD_OR_SIGNING_BLOCKERS.md`, the store assets and current Android and iOS project snapshots |
 | Built from the current source? | **Yes**, and asserted: `npm run release:current` compares `build-info.json`'s commit against HEAD and is in `verify:release` |
