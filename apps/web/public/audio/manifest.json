@@ -1,6 +1,6 @@
 {
- "version": "20260823-4c30a280",
- "generated_at": "2026-08-23T13:34:03+00:00",
+ "version": "20260824-f06b55b1",
+ "generated_at": "2026-08-24T02:54:52+00:00",
  "provider": {
   "id": "microsoft-edge-tts",
   "female_voice": "ko-KR-SunHiNeural",
@@ -212,18 +212,18 @@
    }
   },
   {
-   "id": "ex_ac00b9ccd78820acc4c138c6942e",
-   "text": "가만히 계세요.",
+   "id": "ex_ac00b9cc2c20bb34c2a820c18cb9acc608c6943f",
+   "text": "가만, 무슨 소리예요?",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_ac00b9ccd78820acc4c138c6942e.mp3",
-    "duration_ms": 1224,
-    "bytes": 5133
+    "src": "audio/sentences/female/ex_ac00b9cc2c20bb34c2a820c18cb9acc608c6943f.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
    },
    "male": {
-    "src": "audio/sentences/male/ex_ac00b9ccd78820acc4c138c6942e.mp3",
-    "duration_ms": 1224,
-    "bytes": 5133
+    "src": "audio/sentences/male/ex_ac00b9cc2c20bb34c2a820c18cb9acc608c6943f.mp3",
+    "duration_ms": 2352,
+    "bytes": 9645
    }
   },
   {
@@ -527,6 +527,21 @@
    }
   },
   {
+   "id": "ex_ac00c74420c800b141c77420c120c120d574c6942e",
+   "text": "가을 저녁이 선선해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ac00c74420c800b141c77420c120c120d574c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ac00c74420c800b141c77420c120c120d574c6942e.mp3",
+    "duration_ms": 1680,
+    "bytes": 6957
+   }
+  },
+  {
    "id": "ex_ac00c744c5d020bc14b78cc77420c2dcc6d0d574c6942e",
    "text": "가을에 바람이 시원해요.",
    "kind": "sentence",
@@ -539,6 +554,21 @@
     "src": "audio/sentences/male/ex_ac00c744c5d020bc14b78cc77420c2dcc6d0d574c6942e.mp3",
     "duration_ms": 1872,
     "bytes": 7725
+   }
+  },
+  {
+   "id": "ex_ac00c744c5d020c78ec77420b178b798c6942e",
+   "text": "가을에 잎이 노래요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ac00c744c5d020c78ec77420b178b798c6942e.mp3",
+    "duration_ms": 1464,
+    "bytes": 6093
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ac00c744c5d020c78ec77420b178b798c6942e.mp3",
+    "duration_ms": 1560,
+    "bytes": 6477
    }
   },
   {
@@ -584,6 +614,21 @@
     "src": "audio/sentences/male/ex_ac00c871c74420c704d57420c77cd574c6942e.mp3",
     "duration_ms": 1464,
     "bytes": 6093
+   }
+  },
+  {
+   "id": "ex_ac00c871c74420c9c0cf1cc8fcace020c2f6c5b4c6942e",
+   "text": "가족을 지켜주고 싶어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ac00c871c74420c9c0cf1cc8fcace020c2f6c5b4c6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ac00c871c74420c9c0cf1cc8fcace020c2f6c5b4c6942e.mp3",
+    "duration_ms": 1848,
+    "bytes": 7629
    }
   },
   {
@@ -1007,6 +1052,21 @@
    }
   },
   {
+   "id": "ex_ac12b3c420c2f8ace020b9dbb3c420c88bc73cb2c820ae08c0c1cca8d654c608c6942e",
+   "text": "값도 싸고 맛도 좋으니 금상첨화예요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ac12b3c420c2f8ace020b9dbb3c420c88bc73cb2c820ae08c0c1cca8d654c608c6942e.mp3",
+    "duration_ms": 3048,
+    "bytes": 12429
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ac12b3c420c2f8ace020b9dbb3c420c88bc73cb2c820ae08c0c1cca8d654c608c6942e.mp3",
+    "duration_ms": 3048,
+    "bytes": 12429
+   }
+  },
+  {
    "id": "ex_ac12c74420b9e4acbcc5b4c6942e",
    "text": "값을 매겼어요.",
    "kind": "sentence",
@@ -1127,6 +1187,21 @@
    }
   },
   {
+   "id": "ex_ac15c544c9c020c774be68c77420d558b09820be60c84cc5b4c6942e",
+   "text": "강아지 이빨이 하나 빠졌어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ac15c544c9c020c774be68c77420d558b09820be60c84cc5b4c6942e.mp3",
+    "duration_ms": 2280,
+    "bytes": 9357
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ac15c544c9c020c774be68c77420d558b09820be60c84cc5b4c6942e.mp3",
+    "duration_ms": 2328,
+    "bytes": 9549
+   }
+  },
+  {
    "id": "ex_ac15c544c9c0ac0020acc4c18d20cad3c544c654c5b4c6942e",
    "text": "강아지가 계속 쫓아왔어요.",
    "kind": "sentence",
@@ -1172,18 +1247,18 @@
    }
   },
   {
-   "id": "ex_ac15c544c9c0ac0020b9c8b2f9c5d020b204c5c8c5b4c6942e",
-   "text": "강아지가 마당에 누었어요.",
+   "id": "ex_ac15c544c9c0ac0020b9c8b2f9c5d020c624c90cc74420b204c5c8c5b4c6942e",
+   "text": "강아지가 마당에 오줌을 누었어요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_ac15c544c9c0ac0020b9c8b2f9c5d020b204c5c8c5b4c6942e.mp3",
-    "duration_ms": 2184,
-    "bytes": 8973
+    "src": "audio/sentences/female/ex_ac15c544c9c0ac0020b9c8b2f9c5d020c624c90cc74420b204c5c8c5b4c6942e.mp3",
+    "duration_ms": 2760,
+    "bytes": 11277
    },
    "male": {
-    "src": "audio/sentences/male/ex_ac15c544c9c0ac0020b9c8b2f9c5d020b204c5c8c5b4c6942e.mp3",
-    "duration_ms": 2136,
-    "bytes": 8781
+    "src": "audio/sentences/male/ex_ac15c544c9c0ac0020b9c8b2f9c5d020c624c90cc74420b204c5c8c5b4c6942e.mp3",
+    "duration_ms": 2688,
+    "bytes": 10989
    }
   },
   {
@@ -1274,6 +1349,21 @@
     "src": "audio/sentences/male/ex_ac15c544c9c0ac0020c800b97c20bc18aca8c6942e.mp3",
     "duration_ms": 1824,
     "bytes": 7533
+   }
+  },
+  {
+   "id": "ex_ac15c544c9c0ac0020c870c6a9d78820b4a4b530b790c5b4c6942e",
+   "text": "강아지가 조용히 뒤따랐어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ac15c544c9c0ac0020c870c6a9d78820b4a4b530b790c5b4c6942e.mp3",
+    "duration_ms": 2352,
+    "bytes": 9645
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ac15c544c9c0ac0020c870c6a9d78820b4a4b530b790c5b4c6942e.mp3",
+    "duration_ms": 2208,
+    "bytes": 9069
    }
   },
   {
@@ -2042,6 +2132,21 @@
    }
   },
   {
+   "id": "ex_aca8c6b020c704d5d8c5d0c11c20bc97c5b4b0acc5b4c6942e",
+   "text": "겨우 위험에서 벗어났어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_aca8c6b020c704d5d8c5d0c11c20bc97c5b4b0acc5b4c6942e.mp3",
+    "duration_ms": 2328,
+    "bytes": 9549
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_aca8c6b020c704d5d8c5d0c11c20bc97c5b4b0acc5b4c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   }
+  },
+  {
    "id": "ex_aca8c6b8c5d020b208c77420b9cec77420c640c6942e",
    "text": "겨울에 눈이 많이 와요.",
    "kind": "sentence",
@@ -2114,6 +2219,21 @@
     "src": "audio/sentences/male/ex_acb0acfcac0020ad81ae08d574c6942e.mp3",
     "duration_ms": 1416,
     "bytes": 5901
+   }
+  },
+  {
+   "id": "ex_acb0acfcac0020b098c624ba7420c54cb824c904ac8cc6942e",
+   "text": "결과가 나오면 알려줄게요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_acb0acfcac0020b098c624ba7420c54cb824c904ac8cc6942e.mp3",
+    "duration_ms": 2304,
+    "bytes": 9453
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_acb0acfcac0020b098c624ba7420c54cb824c904ac8cc6942e.mp3",
+    "duration_ms": 2208,
+    "bytes": 9069
    }
   },
   {
@@ -2192,6 +2312,21 @@
    }
   },
   {
+   "id": "ex_acb0acfcb97c20ae30b2e4b9acba7020cd08c870d588c5b4c6942e",
+   "text": "결과를 기다리며 초조했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_acb0acfcb97c20ae30b2e4b9acba7020cd08c870d588c5b4c6942e.mp3",
+    "duration_ms": 2376,
+    "bytes": 9741
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_acb0acfcb97c20ae30b2e4b9acba7020cd08c870d588c5b4c6942e.mp3",
+    "duration_ms": 2232,
+    "bytes": 9165
+   }
+  },
+  {
    "id": "ex_acb0acfcb97c20bc1cd45cd588c5b4c6942e",
    "text": "결과를 발표했어요.",
    "kind": "sentence",
@@ -2219,6 +2354,21 @@
     "src": "audio/sentences/male/ex_acb0acfcb97c20bcf4ace0d588c5b4c6942e.mp3",
     "duration_ms": 1512,
     "bytes": 6285
+   }
+  },
+  {
+   "id": "ex_acb0acfcb97c20bcf4b2c820b9c8c74cc77420bfccb4efd574c6942e",
+   "text": "결과를 보니 마음이 뿌듯해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_acb0acfcb97c20bcf4b2c820b9c8c74cc77420bfccb4efd574c6942e.mp3",
+    "duration_ms": 2304,
+    "bytes": 9453
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_acb0acfcb97c20bcf4b2c820b9c8c74cc77420bfccb4efd574c6942e.mp3",
+    "duration_ms": 2304,
+    "bytes": 9453
    }
   },
   {
@@ -2552,6 +2702,21 @@
    }
   },
   {
+   "id": "ex_acbdcc30c11cc5d0c11c20c2e0ace0b97c20d588c5b4c6942e",
+   "text": "경찰서에서 신고를 했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_acbdcc30c11cc5d0c11c20c2e0ace0b97c20d588c5b4c6942e.mp3",
+    "duration_ms": 2232,
+    "bytes": 9165
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_acbdcc30c11cc5d0c11c20c2e0ace0b97c20d588c5b4c6942e.mp3",
+    "duration_ms": 2232,
+    "bytes": 9165
+   }
+  },
+  {
    "id": "ex_acbdcc30c5d020c2e0ace0d588c5b4c6942e",
    "text": "경찰에 신고했어요.",
    "kind": "sentence",
@@ -2639,21 +2804,6 @@
     "src": "audio/sentences/male/ex_acbdcc30c77420c0acac74c74420c218c0acd574c6942e.mp3",
     "duration_ms": 1944,
     "bytes": 8013
-   }
-  },
-  {
-   "id": "ex_acbdcc30c77420ccb4d3ecb97c20d588c5b4c6942e",
-   "text": "경찰이 체포를 했어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_acbdcc30c77420ccb4d3ecb97c20d588c5b4c6942e.mp3",
-    "duration_ms": 1872,
-    "bytes": 7725
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_acbdcc30c77420ccb4d3ecb97c20d588c5b4c6942e.mp3",
-    "duration_ms": 1752,
-    "bytes": 7245
    }
   },
   {
@@ -3449,6 +3599,21 @@
     "src": "audio/sentences/male/ex_acf5bd80b97c20bc29d574d558c9c020b9c8c138c6942e.mp3",
     "duration_ms": 1872,
     "bytes": 7725
+   }
+  },
+  {
+   "id": "ex_acf5bd80b97c20c54820d588c73cb2c820c790c5c5c790b4ddc774c5d0c6942e",
+   "text": "공부를 안 했으니 자업자득이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_acf5bd80b97c20c54820d588c73cb2c820c790c5c5c790b4ddc774c5d0c6942e.mp3",
+    "duration_ms": 2664,
+    "bytes": 10893
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_acf5bd80b97c20c54820d588c73cb2c820c790c5c5c790b4ddc774c5d0c6942e.mp3",
+    "duration_ms": 2616,
+    "bytes": 10701
    }
   },
   {
@@ -4532,6 +4697,36 @@
    }
   },
   {
+   "id": "ex_adf820c0acb78c20c774b984c74420c544c9c120ae30c5b5d574c6942e",
+   "text": "그 사람 이름을 아직 기억해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_adf820c0acb78c20c774b984c74420c544c9c120ae30c5b5d574c6942e.mp3",
+    "duration_ms": 2328,
+    "bytes": 9549
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_adf820c0acb78c20c774b984c74420c544c9c120ae30c5b5d574c6942e.mp3",
+    "duration_ms": 2208,
+    "bytes": 9069
+   }
+  },
+  {
+   "id": "ex_adf820c0acb78cc74020c800b97c20ce5cad6cb85c20c5ecaca8c6942e",
+   "text": "그 사람은 저를 친구로 여겨요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_adf820c0acb78cc74020c800b97c20ce5cad6cb85c20c5ecaca8c6942e.mp3",
+    "duration_ms": 2376,
+    "bytes": 9741
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_adf820c0acb78cc74020c800b97c20ce5cad6cb85c20c5ecaca8c6942e.mp3",
+    "duration_ms": 2448,
+    "bytes": 10029
+   }
+  },
+  {
    "id": "ex_adf820c0acc2e4c77420c758c2ecb3fcc6942e",
    "text": "그 사실이 의심돼요.",
    "kind": "sentence",
@@ -4709,6 +4904,21 @@
     "src": "audio/sentences/male/ex_adf8ac0020d300c75820b9acb354c608c6942e.mp3",
     "duration_ms": 1512,
     "bytes": 6285
+   }
+  },
+  {
+   "id": "ex_adf8ac7420bb34c9c0c5d0c11c20b098c62820b9d0c774c5d0c6942e",
+   "text": "그건 무지에서 나온 말이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_adf8ac7420bb34c9c0c5d0c11c20b098c62820b9d0c774c5d0c6942e.mp3",
+    "duration_ms": 2184,
+    "bytes": 8973
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_adf8ac7420bb34c9c0c5d0c11c20b098c62820b9d0c774c5d0c6942e.mp3",
+    "duration_ms": 2304,
+    "bytes": 9453
    }
   },
   {
@@ -4982,6 +5192,21 @@
    }
   },
   {
+   "id": "ex_adf8b54cc75820c2e4d328ac0020c804d654c704bcf5c77420b410c5b4c6942e",
+   "text": "그때의 실패가 전화위복이 됐어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_adf8b54cc75820c2e4d328ac0020c804d654c704bcf5c77420b410c5b4c6942e.mp3",
+    "duration_ms": 2976,
+    "bytes": 12141
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_adf8b54cc75820c2e4d328ac0020c804d654c704bcf5c77420b410c5b4c6942e.mp3",
+    "duration_ms": 2568,
+    "bytes": 10509
+   }
+  },
+  {
    "id": "ex_adf8b7ecb2e420b2e4ccd0c6942e",
    "text": "그러다 다쳐요.",
    "kind": "sentence",
@@ -5234,6 +5459,21 @@
     "src": "audio/sentences/male/ex_adf8bd84c74020bc15c0acc608c6942e.mp3",
     "duration_ms": 1512,
     "bytes": 6285
+   }
+  },
+  {
+   "id": "ex_adf8bd84c74020d559ad5020c120c0ddc774c5d0c6942e",
+   "text": "그분은 학교 선생이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_adf8bd84c74020d559ad5020c120c0ddc774c5d0c6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_adf8bd84c74020d559ad5020c120c0ddc774c5d0c6942e.mp3",
+    "duration_ms": 1920,
+    "bytes": 7917
    }
   },
   {
@@ -5897,6 +6137,21 @@
    }
   },
   {
+   "id": "ex_ae30cc28ac0020d130b110c74420c9c0b098ac14c5b4c6942e",
+   "text": "기차가 터널을 지나갔어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ae30cc28ac0020d130b110c74420c9c0b098ac14c5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ae30cc28ac0020d130b110c74420c9c0b098ac14c5b4c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   }
+  },
+  {
    "id": "ex_ae30cc28d45cb97c20bbf8b9ac20c0c0c5b4c6942e",
    "text": "기차표를 미리 샀어요.",
    "kind": "sentence",
@@ -5969,6 +6224,21 @@
     "src": "audio/sentences/male/ex_ae30d68cb97c20b178b824c6942e.mp3",
     "duration_ms": 1080,
     "bytes": 4557
+   }
+  },
+  {
+   "id": "ex_ae3420d68cc75820b05dc5d020acb0b860c77420b0acc5b4c6942e",
+   "text": "긴 회의 끝에 결론이 났어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ae3420d68cc75820b05dc5d020acb0b860c77420b0acc5b4c6942e.mp3",
+    "duration_ms": 2424,
+    "bytes": 9933
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ae3420d68cc75820b05dc5d020acb0b860c77420b0acc5b4c6942e.mp3",
+    "duration_ms": 2280,
+    "bytes": 9357
    }
   },
   {
@@ -6617,6 +6887,21 @@
    }
   },
   {
+   "id": "ex_b05dae4cc9c020cc38c73cba7420ace0c9c4ac10b798c608c6942e",
+   "text": "끝까지 참으면 고진감래예요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b05dae4cc9c020cc38c73cba7420ace0c9c4ac10b798c608c6942e.mp3",
+    "duration_ms": 2400,
+    "bytes": 9837
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b05dae4cc9c020cc38c73cba7420ace0c9c4ac10b798c608c6942e.mp3",
+    "duration_ms": 2424,
+    "bytes": 9933
+   }
+  },
+  {
    "id": "ex_b05dbd80bd84c74420c798b77cb0c8c5b4c6942e",
    "text": "끝부분을 잘라냈어요.",
    "kind": "sentence",
@@ -6827,18 +7112,18 @@
    }
   },
   {
-   "id": "ex_b098bb47c78ec77420c544c8fc20b113c5b4c6942e",
-   "text": "나뭇잎이 아주 넓어요.",
+   "id": "ex_b098bb47c78ec77420bc14b78cc5d020d754b4e4b824c6942e",
+   "text": "나뭇잎이 바람에 흔들려요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_b098bb47c78ec77420c544c8fc20b113c5b4c6942e.mp3",
-    "duration_ms": 1848,
-    "bytes": 7629
+    "src": "audio/sentences/female/ex_b098bb47c78ec77420bc14b78cc5d020d754b4e4b824c6942e.mp3",
+    "duration_ms": 2088,
+    "bytes": 8589
    },
    "male": {
-    "src": "audio/sentences/male/ex_b098bb47c78ec77420c544c8fc20b113c5b4c6942e.mp3",
-    "duration_ms": 1896,
-    "bytes": 7821
+    "src": "audio/sentences/male/ex_b098bb47c78ec77420bc14b78cc5d020d754b4e4b824c6942e.mp3",
+    "duration_ms": 2136,
+    "bytes": 8781
    }
   },
   {
@@ -7577,6 +7862,21 @@
    }
   },
   {
+   "id": "ex_b0b4c77c20c7a5b840c2ddc5d020ac00c6942e",
+   "text": "내일 장례식에 가요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b0b4c77c20c7a5b840c2ddc5d020ac00c6942e.mp3",
+    "duration_ms": 1704,
+    "bytes": 7053
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b0b4c77c20c7a5b840c2ddc5d020ac00c6942e.mp3",
+    "duration_ms": 1608,
+    "bytes": 6669
+   }
+  },
+  {
    "id": "ex_b0b4c77cc74020c544b9c820be44ac0020c62c20ac70c608c6942e",
    "text": "내일은 아마 비가 올 거예요.",
    "kind": "sentence",
@@ -7709,6 +8009,21 @@
     "src": "audio/sentences/male/ex_b108bb3420c2e0acbdc4f0c9c020b9c8c138c6942e.mp3",
     "duration_ms": 1896,
     "bytes": 7821
+   }
+  },
+  {
+   "id": "ex_b108bb3420c7accd09d558c9c020b9c8c138c6942e",
+   "text": "너무 재촉하지 마세요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b108bb3420c7accd09d558c9c020b9c8c138c6942e.mp3",
+    "duration_ms": 1728,
+    "bytes": 7149
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b108bb3420c7accd09d558c9c020b9c8c138c6942e.mp3",
+    "duration_ms": 1848,
+    "bytes": 7629
    }
   },
   {
@@ -8024,6 +8339,21 @@
     "src": "audio/sentences/male/ex_b18db2f4d558c9c020b9c8c138c6942e.mp3",
     "duration_ms": 1392,
     "bytes": 5805
+   }
+  },
+  {
+   "id": "ex_b18dc7a5c5d0c11c20c18cb97c20d0a4c6ccc6942e",
+   "text": "농장에서 소를 키워요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b18dc7a5c5d0c11c20c18cb97c20d0a4c6ccc6942e.mp3",
+    "duration_ms": 1872,
+    "bytes": 7725
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b18dc7a5c5d0c11c20c18cb97c20d0a4c6ccc6942e.mp3",
+    "duration_ms": 1872,
+    "bytes": 7725
    }
   },
   {
@@ -8372,6 +8702,21 @@
    }
   },
   {
+   "id": "ex_b2a6c5c8b294b37020c124c0c1ac00c0c1c73cb85c20be44ae4cc9c020c654c5b4c6942e",
+   "text": "늦었는데 설상가상으로 비까지 왔어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b2a6c5c8b294b37020c124c0c1ac00c0c1c73cb85c20be44ae4cc9c020c654c5b4c6942e.mp3",
+    "duration_ms": 3216,
+    "bytes": 13101
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b2a6c5c8b294b37020c124c0c1ac00c0c1c73cb85c20be44ae4cc9c020c654c5b4c6942e.mp3",
+    "duration_ms": 3120,
+    "bytes": 12717
+   }
+  },
+  {
    "id": "ex_b2e4b4e420c79820c9c0b0b4c6943f",
    "text": "다들 잘 지내요?",
    "kind": "sentence",
@@ -8594,6 +8939,21 @@
     "src": "audio/sentences/male/ex_b2e4c74c20c5edc5d0c11c20b0b4b824c6942e.mp3",
     "duration_ms": 1440,
     "bytes": 5997
+   }
+  },
+  {
+   "id": "ex_b2e4c74c20c5edc5d0c11c20c9c0d558cca0c74420ac08c544d0c0c6942e",
+   "text": "다음 역에서 지하철을 갈아타요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b2e4c74c20c5edc5d0c11c20c9c0d558cca0c74420ac08c544d0c0c6942e.mp3",
+    "duration_ms": 2544,
+    "bytes": 10413
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b2e4c74c20c5edc5d0c11c20c9c0d558cca0c74420ac08c544d0c0c6942e.mp3",
+    "duration_ms": 2400,
+    "bytes": 9837
    }
   },
   {
@@ -10337,6 +10697,21 @@
    }
   },
   {
+   "id": "ex_b45020c0acb78cc77420b098b780d78820ac78c5c8c5b4c6942e",
+   "text": "두 사람이 나란히 걸었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b45020c0acb78cc77420b098b780d78820ac78c5c8c5b4c6942e.mp3",
+    "duration_ms": 2136,
+    "bytes": 8781
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b45020c0acb78cc77420b098b780d78820ac78c5c8c5b4c6942e.mp3",
+    "duration_ms": 1992,
+    "bytes": 8205
+   }
+  },
+  {
    "id": "ex_b45020c0acb78cc77420c815b2e4c6ccc6942e",
    "text": "두 사람이 정다워요.",
    "kind": "sentence",
@@ -10694,6 +11069,21 @@
     "src": "audio/sentences/male/ex_b531d78820d56020b9d0c77420c5c6c5b4c6942e.mp3",
     "duration_ms": 1728,
     "bytes": 7149
+   }
+  },
+  {
+   "id": "ex_b538c75820ac74ac15c74420c5fcb824d574c6942e",
+   "text": "딸의 건강을 염려해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_b538c75820ac74ac15c74420c5fcb824d574c6942e.mp3",
+    "duration_ms": 1848,
+    "bytes": 7629
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_b538c75820ac74ac15c74420c5fcb824d574c6942e.mp3",
+    "duration_ms": 1752,
+    "bytes": 7245
    }
   },
   {
@@ -12797,21 +13187,6 @@
    }
   },
   {
-   "id": "ex_bb34c9c0c5d0c11c20bc97c5b4b098c6942e",
-   "text": "무지에서 벗어나요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_bb34c9c0c5d0c11c20bc97c5b4b098c6942e.mp3",
-    "duration_ms": 1560,
-    "bytes": 6477
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_bb34c9c0c5d0c11c20bc97c5b4b098c6942e.mp3",
-    "duration_ms": 1608,
-    "bytes": 6669
-   }
-  },
-  {
    "id": "ex_bb34cc9920bc18ac00c6ccc6942e",
    "text": "무척 반가워요.",
    "kind": "sentence",
@@ -12824,6 +13199,21 @@
     "src": "audio/sentences/male/ex_bb34cc9920bc18ac00c6ccc6942e.mp3",
     "duration_ms": 1344,
     "bytes": 5613
+   }
+  },
+  {
+   "id": "ex_bb38b4dd20c61bb0a020c0ddac01c77420b0acc5b4c6942e",
+   "text": "문득 옛날 생각이 났어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_bb38b4dd20c61bb0a020c0ddac01c77420b0acc5b4c6942e.mp3",
+    "duration_ms": 2280,
+    "bytes": 9357
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_bb38b4dd20c61bb0a020c0ddac01c77420b0acc5b4c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
    }
   },
   {
@@ -13682,6 +14072,21 @@
    }
   },
   {
+   "id": "ex_bc14b2e5c5d0c11c20c5f0d544c74420c9d1c5b4b4e4c5c8c5b4c6942e",
+   "text": "바닥에서 연필을 집어들었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_bc14b2e5c5d0c11c20c5f0d544c74420c9d1c5b4b4e4c5c8c5b4c6942e.mp3",
+    "duration_ms": 2520,
+    "bytes": 10317
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_bc14b2e5c5d0c11c20c5f0d544c74420c9d1c5b4b4e4c5c8c5b4c6942e.mp3",
+    "duration_ms": 2400,
+    "bytes": 9837
+   }
+  },
+  {
    "id": "ex_bc14b2e5c74420b2e6c544c6942e",
    "text": "바닥을 닦아요.",
    "kind": "sentence",
@@ -14042,6 +14447,21 @@
    }
   },
   {
+   "id": "ex_bc18c9c0c5d020c791c74020bcf4c11dc77420c788c5b4c6942e",
+   "text": "반지에 작은 보석이 있어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_bc18c9c0c5d020c791c74020bcf4c11dc77420c788c5b4c6942e.mp3",
+    "duration_ms": 2184,
+    "bytes": 8973
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_bc18c9c0c5d020c791c74020bcf4c11dc77420c788c5b4c6942e.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
+   }
+  },
+  {
    "id": "ex_bc18cc2cc77420b9dbc788c5b4c6942e",
    "text": "반찬이 맛있어요.",
    "kind": "sentence",
@@ -14354,6 +14774,21 @@
     "src": "audio/sentences/male/ex_bc25c0c1c74420cc28b838c5b4c6942e.mp3",
     "duration_ms": 1416,
     "bytes": 5901
+   }
+  },
+  {
+   "id": "ex_bc25c5d020c18cc2a4b97c20b4ecbfcd20bfccb838c5b4c6942e",
+   "text": "밥에 소스를 듬뿍 뿌렸어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_bc25c5d020c18cc2a4b97c20b4ecbfcd20bfccb838c5b4c6942e.mp3",
+    "duration_ms": 2328,
+    "bytes": 9549
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_bc25c5d020c18cc2a4b97c20b4ecbfcd20bfccb838c5b4c6942e.mp3",
+    "duration_ms": 2328,
+    "bytes": 9549
    }
   },
   {
@@ -15317,6 +15752,21 @@
    }
   },
   {
+   "id": "ex_bc94c77820ccb4d3ec20c18cc2ddc74420b4e4c5c8c5b4c6942e",
+   "text": "범인 체포 소식을 들었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_bc94c77820ccb4d3ec20c18cc2ddc74420b4e4c5c8c5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_bc94c77820ccb4d3ec20c18cc2ddc74420b4e4c5c8c5b4c6942e.mp3",
+    "duration_ms": 2256,
+    "bytes": 9261
+   }
+  },
+  {
    "id": "ex_bc94c778c74420cc3ec558c5b4c6942e",
    "text": "범인을 찾았어요.",
    "kind": "sentence",
@@ -16154,6 +16604,21 @@
     "src": "audio/sentences/male/ex_bd80d0c1c74420b4e4c5b4c92cc5b4c6942e.mp3",
     "duration_ms": 1536,
     "bytes": 6381
+   }
+  },
+  {
+   "id": "ex_bd80d0c1c74420d754cf8cd78820b4e4c5b4c92cc5b4c6942e",
+   "text": "부탁을 흔쾌히 들어줬어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_bd80d0c1c74420d754cf8cd78820b4e4c5b4c92cc5b4c6942e.mp3",
+    "duration_ms": 2280,
+    "bytes": 9357
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_bd80d0c1c74420d754cf8cd78820b4e4c5b4c92cc5b4c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
    }
   },
   {
@@ -17027,6 +17492,21 @@
    }
   },
   {
+   "id": "ex_be75c74420c808bc18b9cc20ba39c5c8c5b4c6942e",
+   "text": "빵을 절반만 먹었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_be75c74420c808bc18b9cc20ba39c5c8c5b4c6942e.mp3",
+    "duration_ms": 2040,
+    "bytes": 8397
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_be75c74420c808bc18b9cc20ba39c5c8c5b4c6942e.mp3",
+    "duration_ms": 1920,
+    "bytes": 7917
+   }
+  },
+  {
    "id": "ex_be75c77420b531b531d574c6942e",
    "text": "빵이 딱딱해요.",
    "kind": "sentence",
@@ -17129,6 +17609,21 @@
     "src": "audio/sentences/male/ex_c0acace0b85c20c0acb9ddd588c5b4c6942e.mp3",
     "duration_ms": 1608,
     "bytes": 6669
+   }
+  },
+  {
+   "id": "ex_c0acace0b85c20d55c20c0acb78cc77420c228c84cc5b4c6942e",
+   "text": "사고로 한 사람이 숨졌어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c0acace0b85c20d55c20c0acb78cc77420c228c84cc5b4c6942e.mp3",
+    "duration_ms": 2256,
+    "bytes": 9261
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c0acace0b85c20d55c20c0acb78cc77420c228c84cc5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
    }
   },
   {
@@ -17492,6 +17987,21 @@
    }
   },
   {
+   "id": "ex_c0acb9c9c74020b0aec5d020c544c8fc20b354c6ccc6942e",
+   "text": "사막은 낮에 아주 더워요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c0acb9c9c74020b0aec5d020c544c8fc20b354c6ccc6942e.mp3",
+    "duration_ms": 2088,
+    "bytes": 8589
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c0acb9c9c74020b0aec5d020c544c8fc20b354c6ccc6942e.mp3",
+    "duration_ms": 2088,
+    "bytes": 8589
+   }
+  },
+  {
    "id": "ex_c0acb9dd20c6d0c778c74420c870c0acd574c6942e",
    "text": "사망 원인을 조사해요.",
    "kind": "sentence",
@@ -17612,18 +18122,18 @@
    }
   },
   {
-   "id": "ex_c0acc6a9c77420c26cc6ccc6942e",
-   "text": "사용이 쉬워요.",
+   "id": "ex_c0acc6a920bc29bc95c74420c54cb82420c8fcc138c6942e",
+   "text": "사용 방법을 알려 주세요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c0acc6a9c77420c26cc6ccc6942e.mp3",
-    "duration_ms": 1248,
-    "bytes": 5229
+    "src": "audio/sentences/female/ex_c0acc6a920bc29bc95c74420c54cb82420c8fcc138c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
    },
    "male": {
-    "src": "audio/sentences/male/ex_c0acc6a9c77420c26cc6ccc6942e.mp3",
-    "duration_ms": 1296,
-    "bytes": 5421
+    "src": "audio/sentences/male/ex_c0acc6a920bc29bc95c74420c54cb82420c8fcc138c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
    }
   },
   {
@@ -18677,6 +19187,21 @@
    }
   },
   {
+   "id": "ex_c0ddac01bcf4b2e420c77cc77420c218c6d4d588c5b4c6942e",
+   "text": "생각보다 일이 수월했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c0ddac01bcf4b2e420c77cc77420c218c6d4d588c5b4c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c0ddac01bcf4b2e420c77cc77420c218c6d4d588c5b4c6942e.mp3",
+    "duration_ms": 2184,
+    "bytes": 8973
+   }
+  },
+  {
    "id": "ex_c0ddac01c74420ac15c694d558c9c020b9c8c138c6942e",
    "text": "생각을 강요하지 마세요.",
    "kind": "sentence",
@@ -18902,6 +19427,21 @@
    }
   },
   {
+   "id": "ex_c11cb958b97c20be60b974ac8c20d6d1c5b4bd24c5b4c6942e",
+   "text": "서류를 빠르게 훑어봤어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c11cb958b97c20be60b974ac8c20d6d1c5b4bd24c5b4c6942e.mp3",
+    "duration_ms": 2208,
+    "bytes": 9069
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c11cb958b97c20be60b974ac8c20d6d1c5b4bd24c5b4c6942e.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
+   }
+  },
+  {
    "id": "ex_c11cb958b97c20c791c131d588c5b4c6942e",
    "text": "서류를 작성했어요.",
    "kind": "sentence",
@@ -18977,6 +19517,21 @@
    }
   },
   {
+   "id": "ex_c120b73b20c790b9acb97c20b0b4c8fcc5c8c5b4c6942e",
+   "text": "선뜻 자리를 내주었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c120b73b20c790b9acb97c20b0b4c8fcc5c8c5b4c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c120b73b20c790b9acb97c20b0b4c8fcc5c8c5b4c6942e.mp3",
+    "duration_ms": 1920,
+    "bytes": 7917
+   }
+  },
+  {
    "id": "ex_c120bb3cc74420bc1bc558c5b4c6942e",
    "text": "선물을 받았어요.",
    "kind": "sentence",
@@ -19049,21 +19604,6 @@
     "src": "audio/sentences/male/ex_c120bc30ac0020b3c4c640c92cc5b4c6942e.mp3",
     "duration_ms": 1536,
     "bytes": 6381
-   }
-  },
-  {
-   "id": "ex_c120c0ddacfc20c774c57cae30d588c5b4c6942e",
-   "text": "선생과 이야기했어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c120c0ddacfc20c774c57cae30d588c5b4c6942e.mp3",
-    "duration_ms": 1872,
-    "bytes": 7725
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c120c0ddacfc20c774c57cae30d588c5b4c6942e.mp3",
-    "duration_ms": 1848,
-    "bytes": 7629
    }
   },
   {
@@ -19229,6 +19769,21 @@
     "src": "audio/sentences/male/ex_c120c0ddb2d8c77420c55ec7a5c130c5b4c6942e.mp3",
     "duration_ms": 1920,
     "bytes": 7917
+   }
+  },
+  {
+   "id": "ex_c120c0ddb2d8c77420c5c4d558c138c6942e",
+   "text": "선생님이 엄하세요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c120c0ddb2d8c77420c5c4d558c138c6942e.mp3",
+    "duration_ms": 1560,
+    "bytes": 6477
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c120c0ddb2d8c77420c5c4d558c138c6942e.mp3",
+    "duration_ms": 1608,
+    "bytes": 6669
    }
   },
   {
@@ -20342,6 +20897,21 @@
    }
   },
   {
+   "id": "ex_c190c5d020d759c74420bb3bd614c5b4c6942e",
+   "text": "손에 흙을 묻혔어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c190c5d020d759c74420bb3bd614c5b4c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c190c5d020d759c74420bb3bd614c5b4c6942e.mp3",
+    "duration_ms": 1680,
+    "bytes": 6957
+   }
+  },
+  {
    "id": "ex_c190c73cb85c20ae00c528b97c20c368c6942e",
    "text": "손으로 글씨를 써요.",
    "kind": "sentence",
@@ -20684,6 +21254,21 @@
     "src": "audio/sentences/male/ex_c218ace0d558c168c2b5b2c8b2e42e.mp3",
     "duration_ms": 1320,
     "bytes": 5517
+   }
+  },
+  {
+   "id": "ex_c218b9ac20be44c6a9c77420b9cec77420b4e4c5c8c5b4c6942e",
+   "text": "수리 비용이 많이 들었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c218b9ac20be44c6a9c77420b9cec77420b4e4c5c8c5b4c6942e.mp3",
+    "duration_ms": 2136,
+    "bytes": 8781
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c218b9ac20be44c6a9c77420b9cec77420b4e4c5c8c5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
    }
   },
   {
@@ -21737,21 +22322,6 @@
    }
   },
   {
-   "id": "ex_c2dcd5d8c5d020c131acf5d588c5b4c6942e",
-   "text": "시험에 성공했어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c2dcd5d8c5d020c131acf5d588c5b4c6942e.mp3",
-    "duration_ms": 1704,
-    "bytes": 7053
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c2dcd5d8c5d020c131acf5d588c5b4c6942e.mp3",
-    "duration_ms": 1560,
-    "bytes": 6477
-   }
-  },
-  {
    "id": "ex_c2dcd5d8c5d020d589c6b4c74420be4cc5b4c6942e",
    "text": "시험에 행운을 빌어요.",
    "kind": "sentence",
@@ -22259,6 +22829,21 @@
     "src": "audio/sentences/male/ex_c2e4b840d569b2c8b2e42e.mp3",
     "duration_ms": 1104,
     "bytes": 4653
+   }
+  },
+  {
+   "id": "ex_c2e4c218b97c20b2a6ac8c20c54cc544cc58c5b4c6942e",
+   "text": "실수를 늦게 알아챘어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c2e4c218b97c20b2a6ac8c20c54cc544cc58c5b4c6942e.mp3",
+    "duration_ms": 2256,
+    "bytes": 9261
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c2e4c218b97c20b2a6ac8c20c54cc544cc58c5b4c6942e.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
    }
   },
   {
@@ -22907,21 +23492,6 @@
    }
   },
   {
-   "id": "ex_c544b4e4c75820ac74ac15c74420c5fcb824d574c6942e",
-   "text": "아들의 건강을 염려해요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c544b4e4c75820ac74ac15c74420c5fcb824d574c6942e.mp3",
-    "duration_ms": 1968,
-    "bytes": 8109
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c544b4e4c75820ac74ac15c74420c5fcb824d574c6942e.mp3",
-    "duration_ms": 1896,
-    "bytes": 7821
-   }
-  },
-  {
    "id": "ex_c544b4e4c77420d559ad50c5d020ac00c6942e",
    "text": "아들이 학교에 가요.",
    "kind": "sentence",
@@ -23087,21 +23657,6 @@
    }
   },
   {
-   "id": "ex_c544bc84c9c0ac0020c5c4d558c138c6942e",
-   "text": "아버지가 엄하세요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c544bc84c9c0ac0020c5c4d558c138c6942e.mp3",
-    "duration_ms": 1512,
-    "bytes": 6285
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c544bc84c9c0ac0020c5c4d558c138c6942e.mp3",
-    "duration_ms": 1512,
-    "bytes": 6285
-   }
-  },
-  {
    "id": "ex_c544bc84c9c0ac0020c694b9acd574c6942e",
    "text": "아버지가 요리해요.",
    "kind": "sentence",
@@ -23144,51 +23699,6 @@
     "src": "audio/sentences/male/ex_c544bc84c9c0ac0020c800b141c74420b4dcc138c6942e.mp3",
     "duration_ms": 1824,
     "bytes": 7533
-   }
-  },
-  {
-   "id": "ex_c544bc84c9c0ac0020cc28b97c20bab0c544c6942e",
-   "text": "아버지가 차를 몰아요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c544bc84c9c0ac0020cc28b97c20bab0c544c6942e.mp3",
-    "duration_ms": 1752,
-    "bytes": 7245
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c544bc84c9c0ac0020cc28b97c20bab0c544c6942e.mp3",
-    "duration_ms": 1728,
-    "bytes": 7149
-   }
-  },
-  {
-   "id": "ex_c544bc84c9c0b29420b29820c544ce68c5d020c6b4b3d9d558c138c6942e",
-   "text": "아버지는 늘 아침에 운동하세요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c544bc84c9c0b29420b29820c544ce68c5d020c6b4b3d9d558c138c6942e.mp3",
-    "duration_ms": 2616,
-    "bytes": 10701
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c544bc84c9c0b29420b29820c544ce68c5d020c6b4b3d9d558c138c6942e.mp3",
-    "duration_ms": 2472,
-    "bytes": 10125
-   }
-  },
-  {
-   "id": "ex_c544bc84c9c0b29420bcd1c6d0c5d0c11c20c77cd574c6942e",
-   "text": "아버지는 병원에서 일해요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c544bc84c9c0b29420bcd1c6d0c5d0c11c20c77cd574c6942e.mp3",
-    "duration_ms": 2064,
-    "bytes": 8493
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c544bc84c9c0b29420bcd1c6d0c5d0c11c20c77cd574c6942e.mp3",
-    "duration_ms": 2040,
-    "bytes": 8397
    }
   },
   {
@@ -23537,6 +24047,21 @@
    }
   },
   {
+   "id": "ex_c544c774b4e4c5d0ac8c20c0acd0d5c74420b098b220c92cc5b4c6942e",
+   "text": "아이들에게 사탕을 나눠줬어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c544c774b4e4c5d0ac8c20c0acd0d5c74420b098b220c92cc5b4c6942e.mp3",
+    "duration_ms": 2472,
+    "bytes": 10125
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c544c774b4e4c5d0ac8c20c0acd0d5c74420b098b220c92cc5b4c6942e.mp3",
+    "duration_ms": 2304,
+    "bytes": 9453
+   }
+  },
+  {
    "id": "ex_c544c774b4e4c77420b180c544c6942e",
    "text": "아이들이 놀아요.",
    "kind": "sentence",
@@ -23792,6 +24317,21 @@
    }
   },
   {
+   "id": "ex_c544ce6820acf5ae30ac0020c300c300d574c6942e",
+   "text": "아침 공기가 쌀쌀해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c544ce6820acf5ae30ac0020c300c300d574c6942e.mp3",
+    "duration_ms": 1992,
+    "bytes": 8205
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c544ce6820acf5ae30ac0020c300c300d574c6942e.mp3",
+    "duration_ms": 1872,
+    "bytes": 7725
+   }
+  },
+  {
    "id": "ex_c544ce6820c77ccc0d20cd9cbc1cd574c6942e",
    "text": "아침 일찍 출발해요.",
    "kind": "sentence",
@@ -23954,6 +24494,21 @@
     "src": "audio/sentences/male/ex_c544ce68c5d020c77ccc0d20ae7cc5b4c6942e.mp3",
     "duration_ms": 1728,
     "bytes": 7149
+   }
+  },
+  {
+   "id": "ex_c544ce68c5d020d574ac0020b5a0c6942e",
+   "text": "아침에 해가 떠요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c544ce68c5d020d574ac0020b5a0c6942e.mp3",
+    "duration_ms": 1344,
+    "bytes": 5613
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c544ce68c5d020d574ac0020b5a0c6942e.mp3",
+    "duration_ms": 1368,
+    "bytes": 5709
    }
   },
   {
@@ -24467,21 +25022,6 @@
    }
   },
   {
-   "id": "ex_c57dc18dc74420d589d588c5b4c6942e",
-   "text": "약속을 행했어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c57dc18dc74420d589d588c5b4c6942e.mp3",
-    "duration_ms": 1488,
-    "bytes": 6189
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c57dc18dc74420d589d588c5b4c6942e.mp3",
-    "duration_ms": 1344,
-    "bytes": 5613
-   }
-  },
-  {
    "id": "ex_c57dc18dc77420c5b4ae0bb0acc5b4c6942e",
    "text": "약속이 어긋났어요.",
    "kind": "sentence",
@@ -24947,6 +25487,21 @@
    }
   },
   {
+   "id": "ex_c5b4ba38b2c8ac0020cc28b97c20bab0c544c6942e",
+   "text": "어머니가 차를 몰아요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5b4ba38b2c8ac0020cc28b97c20bab0c544c6942e.mp3",
+    "duration_ms": 1752,
+    "bytes": 7245
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5b4ba38b2c8ac0020cc28b97c20bab0c544c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
+   }
+  },
+  {
    "id": "ex_c5b4ba38b2c8aed820d3b8c9c0b97c20c368c6942e",
    "text": "어머니께 편지를 써요.",
    "kind": "sentence",
@@ -24959,6 +25514,21 @@
     "src": "audio/sentences/male/ex_c5b4ba38b2c8aed820d3b8c9c0b97c20c368c6942e.mp3",
     "duration_ms": 1776,
     "bytes": 7341
+   }
+  },
+  {
+   "id": "ex_c5b4ba38b2c8b29420bcd1c6d0c5d0c11c20c77cd574c6942e",
+   "text": "어머니는 병원에서 일해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5b4ba38b2c8b29420bcd1c6d0c5d0c11c20c77cd574c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5b4ba38b2c8b29420bcd1c6d0c5d0c11c20c77cd574c6942e.mp3",
+    "duration_ms": 2040,
+    "bytes": 8397
    }
   },
   {
@@ -25292,6 +25862,36 @@
    }
   },
   {
+   "id": "ex_c5b8b2c8b29420d574ad70c774c5d0c6942e",
+   "text": "언니는 해군이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5b8b2c8b29420d574ad70c774c5d0c6942e.mp3",
+    "duration_ms": 1464,
+    "bytes": 6093
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5b8b2c8b29420d574ad70c774c5d0c6942e.mp3",
+    "duration_ms": 1392,
+    "bytes": 5805
+   }
+  },
+  {
+   "id": "ex_c5b8b2c8b97c20b530b77cac14c5b4c6942e",
+   "text": "언니를 따라갔어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5b8b2c8b97c20b530b77cac14c5b4c6942e.mp3",
+    "duration_ms": 1608,
+    "bytes": 6669
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5b8b2c8b97c20b530b77cac14c5b4c6942e.mp3",
+    "duration_ms": 1536,
+    "bytes": 6381
+   }
+  },
+  {
    "id": "ex_c5b8c5b420c7a5bcbdc77420b192c544c6942e",
    "text": "언어 장벽이 높아요.",
    "kind": "sentence",
@@ -25514,21 +26114,6 @@
     "src": "audio/sentences/male/ex_c5bcc74cc77420b2e8b2e8d574c6942e.mp3",
     "duration_ms": 1392,
     "bytes": 5805
-   }
-  },
-  {
-   "id": "ex_c5c4b9c820c0ddc77c20c120bb3cb85c20d654c7a5d488c74420c0c0c5b4c6942e",
-   "text": "엄마 생일 선물로 화장품을 샀어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c5c4b9c820c0ddc77c20c120bb3cb85c20d654c7a5d488c74420c0c0c5b4c6942e.mp3",
-    "duration_ms": 2904,
-    "bytes": 11853
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c5c4b9c820c0ddc77c20c120bb3cb85c20d654c7a5d488c74420c0c0c5b4c6942e.mp3",
-    "duration_ms": 2904,
-    "bytes": 11853
    }
   },
   {
@@ -26027,6 +26612,21 @@
    }
   },
   {
+   "id": "ex_c5ecc655c77420b098b77cb97c20d1b5ce58d588c5b4c6942e",
+   "text": "여왕이 나라를 통치했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5ecc655c77420b098b77cb97c20d1b5ce58d588c5b4c6942e.mp3",
+    "duration_ms": 2208,
+    "bytes": 9069
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5ecc655c77420b098b77cb97c20d1b5ce58d588c5b4c6942e.mp3",
+    "duration_ms": 2136,
+    "bytes": 8781
+   }
+  },
+  {
    "id": "ex_c5ecc6b0ac0020b2edc74420c7a1c544ba39c5c8c5b4c6942e",
    "text": "여우가 닭을 잡아먹었어요.",
    "kind": "sentence",
@@ -26192,6 +26792,21 @@
    }
   },
   {
+   "id": "ex_c5edae4cc9c020d0dcc6ccc904ac8cc6942e",
+   "text": "역까지 태워줄게요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5edae4cc9c020d0dcc6ccc904ac8cc6942e.mp3",
+    "duration_ms": 1632,
+    "bytes": 6765
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5edae4cc9c020d0dcc6ccc904ac8cc6942e.mp3",
+    "duration_ms": 1656,
+    "bytes": 6861
+   }
+  },
+  {
    "id": "ex_c5edc2dc20b9dbc788c5b4c6942e",
    "text": "역시 맛있어요.",
    "kind": "sentence",
@@ -26219,6 +26834,21 @@
     "src": "audio/sentences/male/ex_c5edc5d0c11c20b9ccb098c6942e.mp3",
     "duration_ms": 1272,
     "bytes": 5325
+   }
+  },
+  {
+   "id": "ex_c5edc5d0c11c20c5ecae30ae4cc9c020ac78c5b4c654c5b4c6942e",
+   "text": "역에서 여기까지 걸어왔어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c5edc5d0c11c20c5ecae30ae4cc9c020ac78c5b4c654c5b4c6942e.mp3",
+    "duration_ms": 2424,
+    "bytes": 9933
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c5edc5d0c11c20c5ecae30ae4cc9c020ac78c5b4c654c5b4c6942e.mp3",
+    "duration_ms": 2400,
+    "bytes": 9837
    }
   },
   {
@@ -27137,6 +27767,21 @@
    }
   },
   {
+   "id": "ex_c624b29820c218c5c520c8fcc81cac0020c5b4b824c6ccc6942e",
+   "text": "오늘 수업 주제가 어려워요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c624b29820c218c5c520c8fcc81cac0020c5b4b824c6ccc6942e.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c624b29820c218c5c520c8fcc81cac0020c5b4b824c6ccc6942e.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
+   }
+  },
+  {
    "id": "ex_c624b29820c624d6c4b29420d55cac00d574c6942e",
    "text": "오늘 오후는 한가해요.",
    "kind": "sentence",
@@ -27179,6 +27824,21 @@
     "src": "audio/sentences/male/ex_c624b29820c77cc77420d798b4e4c5c8c5b4c6942e.mp3",
     "duration_ms": 1704,
     "bytes": 7053
+   }
+  },
+  {
+   "id": "ex_c624b29820c800b141c5d020baa8c784c77420c788c5b4c6942e",
+   "text": "오늘 저녁에 모임이 있어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c624b29820c800b141c5d020baa8c784c77420c788c5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c624b29820c800b141c5d020baa8c784c77420c788c5b4c6942e.mp3",
+    "duration_ms": 1968,
+    "bytes": 8109
    }
   },
   {
@@ -27887,21 +28547,6 @@
    }
   },
   {
-   "id": "ex_c637c5d020bb3cac10c77420bb3bd614c5b4c6942e",
-   "text": "옷에 물감이 묻혔어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c637c5d020bb3cac10c77420bb3bd614c5b4c6942e.mp3",
-    "duration_ms": 1896,
-    "bytes": 7821
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c637c5d020bb3cac10c77420bb3bd614c5b4c6942e.mp3",
-    "duration_ms": 1944,
-    "bytes": 8013
-   }
-  },
-  {
    "id": "ex_c637c74420ac08c544c785c5c8c5b4c6942e",
    "text": "옷을 갈아입었어요.",
    "kind": "sentence",
@@ -28082,21 +28727,6 @@
    }
   },
   {
-   "id": "ex_c644c80420c0c820ac70c608c6942e",
-   "text": "완전 새 거예요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c644c80420c0c820ac70c608c6942e.mp3",
-    "duration_ms": 1344,
-    "bytes": 5613
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c644c80420c0c820ac70c608c6942e.mp3",
-    "duration_ms": 1296,
-    "bytes": 5421
-   }
-  },
-  {
    "id": "ex_c644c804d55c20bb38c7a5c74420c4f0c138c6942e",
    "text": "완전한 문장을 쓰세요.",
    "kind": "sentence",
@@ -28124,21 +28754,6 @@
     "src": "audio/sentences/male/ex_c644c804d78820b098c558c5b4c6942e.mp3",
     "duration_ms": 1368,
     "bytes": 5709
-   }
-  },
-  {
-   "id": "ex_c655c77420b098b77cb97c20d1b5ce58d588c5b4c6942e",
-   "text": "왕이 나라를 통치했어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c655c77420b098b77cb97c20d1b5ce58d588c5b4c6942e.mp3",
-    "duration_ms": 2016,
-    "bytes": 8301
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c655c77420b098b77cb97c20d1b5ce58d588c5b4c6942e.mp3",
-    "duration_ms": 1872,
-    "bytes": 7725
    }
   },
   {
@@ -28364,6 +28979,21 @@
     "src": "audio/sentences/male/ex_c694c99820ace0bbfcc77420b9cec544c6942e.mp3",
     "duration_ms": 1680,
     "bytes": 6957
+   }
+  },
+  {
+   "id": "ex_c694c99820b0a0c528ac0020bd80ca4d20cd94c6ccc84cc5b4c6942e",
+   "text": "요즘 날씨가 부쩍 추워졌어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c694c99820b0a0c528ac0020bd80ca4d20cd94c6ccc84cc5b4c6942e.mp3",
+    "duration_ms": 2592,
+    "bytes": 10605
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c694c99820b0a0c528ac0020bd80ca4d20cd94c6ccc84cc5b4c6942e.mp3",
+    "duration_ms": 2520,
+    "bytes": 10317
    }
   },
   {
@@ -28832,6 +29462,21 @@
    }
   },
   {
+   "id": "ex_c6b4b3d9b3c420acfcc720bd88ae09c774c5d0c6942e",
+   "text": "운동도 과유불급이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c6b4b3d9b3c420acfcc720bd88ae09c774c5d0c6942e.mp3",
+    "duration_ms": 2040,
+    "bytes": 8397
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c6b4b3d9b3c420acfcc720bd88ae09c774c5d0c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   }
+  },
+  {
    "id": "ex_c6b4b3d9c74420c2dcc791d558ae30b85c20acb0c2ecd588c5b4c6942e",
    "text": "운동을 시작하기로 결심했어요.",
    "kind": "sentence",
@@ -29042,18 +29687,18 @@
    }
   },
   {
-   "id": "ex_c704c2a4d0a4b29420c544c8fc20c138c6942e",
-   "text": "위스키는 아주 세요.",
+   "id": "ex_c704c2a4d0a4b97c20c870ae0820b9c8c168c5b4c6942e",
+   "text": "위스키를 조금 마셨어요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c704c2a4d0a4b29420c544c8fc20c138c6942e.mp3",
-    "duration_ms": 1536,
-    "bytes": 6381
+    "src": "audio/sentences/female/ex_c704c2a4d0a4b97c20c870ae0820b9c8c168c5b4c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
    },
    "male": {
-    "src": "audio/sentences/male/ex_c704c2a4d0a4b29420c544c8fc20c138c6942e.mp3",
-    "duration_ms": 1608,
-    "bytes": 6669
+    "src": "audio/sentences/male/ex_c704c2a4d0a4b97c20c870ae0820b9c8c168c5b4c6942e.mp3",
+    "duration_ms": 2040,
+    "bytes": 8397
    }
   },
   {
@@ -29129,6 +29774,36 @@
     "src": "audio/sentences/male/ex_c720b9acac0020ae68c84cc5b4c6942e.mp3",
     "duration_ms": 1392,
     "bytes": 5805
+   }
+  },
+  {
+   "id": "ex_c720b9accef5c5d020c9c0bb38c77420b0a8c558c5b4c6942e",
+   "text": "유리컵에 지문이 남았어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c720b9accef5c5d020c9c0bb38c77420b0a8c558c5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c720b9accef5c5d020c9c0bb38c77420b0a8c558c5b4c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   }
+  },
+  {
+   "id": "ex_c720be44bb34d658c774b77cace020bbf8b9ac20c900be44d588c5b4c6942e",
+   "text": "유비무환이라고 미리 준비했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c720be44bb34d658c774b77cace020bbf8b9ac20c900be44d588c5b4c6942e.mp3",
+    "duration_ms": 2928,
+    "bytes": 11949
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c720be44bb34d658c774b77cace020bbf8b9ac20c900be44d588c5b4c6942e.mp3",
+    "duration_ms": 2568,
+    "bytes": 10509
    }
   },
   {
@@ -29747,6 +30422,21 @@
    }
   },
   {
+   "id": "ex_c77420ad6dc74020b2f4bc31d574c6942e",
+   "text": "이 국은 담백해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c77420ad6dc74020b2f4bc31d574c6942e.mp3",
+    "duration_ms": 1776,
+    "bytes": 7341
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c77420ad6dc74020b2f4bc31d574c6942e.mp3",
+    "duration_ms": 1608,
+    "bytes": 6669
+   }
+  },
+  {
    "id": "ex_c77420ad6dc74020b9dbc5c6c5b4c6942e",
    "text": "이 국은 맛없어요.",
    "kind": "sentence",
@@ -29789,21 +30479,6 @@
     "src": "audio/sentences/male/ex_c77420addcce59c74020c800c5d0ac8c20d574b2f9d574c6942e.mp3",
     "duration_ms": 2304,
     "bytes": 9453
-   }
-  },
-  {
-   "id": "ex_c77420af43c74020b178b780c0c9c774c5d0c6942e",
-   "text": "이 꽃은 노란색이에요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c77420af43c74020b178b780c0c9c774c5d0c6942e.mp3",
-    "duration_ms": 1896,
-    "bytes": 7821
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c77420af43c74020b178b780c0c9c774c5d0c6942e.mp3",
-    "duration_ms": 1944,
-    "bytes": 8013
    }
   },
   {
@@ -29897,6 +30572,21 @@
    }
   },
   {
+   "id": "ex_c77420bb38c74020c644c80420c790b3d9c774c5d0c6942e",
+   "text": "이 문은 완전 자동이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c77420bb38c74020c644c80420c790b3d9c774c5d0c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c77420bb38c74020c644c80420c790b3d9c774c5d0c6942e.mp3",
+    "duration_ms": 2112,
+    "bytes": 8685
+   }
+  },
+  {
    "id": "ex_c77420bb38c81cb29420c5b4b824c6ccc6942e",
    "text": "이 문제는 어려워요.",
    "kind": "sentence",
@@ -29942,6 +30632,21 @@
    }
   },
   {
+   "id": "ex_c77420bc29bc95c77420c815b9d020c77cc11dc774c870c608c6942e",
+   "text": "이 방법이 정말 일석이조예요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c77420bc29bc95c77420c815b9d020c77cc11dc774c870c608c6942e.mp3",
+    "duration_ms": 2544,
+    "bytes": 10413
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c77420bc29bc95c77420c815b9d020c77cc11dc774c870c608c6942e.mp3",
+    "duration_ms": 2544,
+    "bytes": 10413
+   }
+  },
+  {
    "id": "ex_c77420bc29c2ddc77420d6e8c52c20b35420be68b77cc6942e",
    "text": "이 방식이 훨씬 더 빨라요.",
    "kind": "sentence",
@@ -29954,6 +30659,21 @@
     "src": "audio/sentences/male/ex_c77420bc29c2ddc77420d6e8c52c20b35420be68b77cc6942e.mp3",
     "duration_ms": 2304,
     "bytes": 9453
+   }
+  },
+  {
+   "id": "ex_c77420bc29c74020c791c9c0b9cc20c544b291d574c6942e",
+   "text": "이 방은 작지만 아늑해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c77420bc29c74020c791c9c0b9cc20c544b291d574c6942e.mp3",
+    "duration_ms": 2232,
+    "bytes": 9165
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c77420bc29c74020c791c9c0b9cc20c544b291d574c6942e.mp3",
+    "duration_ms": 2088,
+    "bytes": 8589
    }
   },
   {
@@ -30284,6 +31004,21 @@
     "src": "audio/sentences/male/ex_c77420d504b85cadf8b7a8c77420c7acbbf8c788c5b4c6942e.mp3",
     "duration_ms": 1992,
     "bytes": 8205
+   }
+  },
+  {
+   "id": "ex_c77420d559ad50b29420c2dcc124c77420c88bc544c6942e",
+   "text": "이 학교는 시설이 좋아요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c77420d559ad50b29420c2dcc124c77420c88bc544c6942e.mp3",
+    "duration_ms": 1896,
+    "bytes": 7821
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c77420d559ad50b29420c2dcc124c77420c88bc544c6942e.mp3",
+    "duration_ms": 2136,
+    "bytes": 8781
    }
   },
   {
@@ -30812,6 +31547,21 @@
    }
   },
   {
+   "id": "ex_c774bc8820c2e4d5d8c5d020c131acf5d588c5b4c6942e",
+   "text": "이번 실험에 성공했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c774bc8820c2e4d5d8c5d020c131acf5d588c5b4c6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c774bc8820c2e4d5d8c5d020c131acf5d588c5b4c6942e.mp3",
+    "duration_ms": 1872,
+    "bytes": 7725
+   }
+  },
+  {
    "id": "ex_c774bc8820c810c218ac0020b9cec77420c62cb790c5b4c6942e",
    "text": "이번 점수가 많이 올랐어요.",
    "kind": "sentence",
@@ -30857,6 +31607,21 @@
    }
   },
   {
+   "id": "ex_c774bc88c5d0b3c420c791c2ecc0bcc77cb85c20b05db0acc5b4c6942e",
+   "text": "이번에도 작심삼일로 끝났어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c774bc88c5d0b3c420c791c2ecc0bcc77cb85c20b05db0acc5b4c6942e.mp3",
+    "duration_ms": 2544,
+    "bytes": 10413
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c774bc88c5d0b3c420c791c2ecc0bcc77cb85c20b05db0acc5b4c6942e.mp3",
+    "duration_ms": 2496,
+    "bytes": 10221
+   }
+  },
+  {
    "id": "ex_c774bd88c77420b530b73bd574c6942e",
    "text": "이불이 따뜻해요.",
    "kind": "sentence",
@@ -30887,18 +31652,18 @@
    }
   },
   {
-   "id": "ex_c774be68c77420c544d30cc6942e",
-   "text": "이빨이 아파요.",
+   "id": "ex_c774bd88c77420cc3820d3ecadfcd574c6942e",
+   "text": "이불이 참 포근해요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c774be68c77420c544d30cc6942e.mp3",
-    "duration_ms": 1272,
-    "bytes": 5325
+    "src": "audio/sentences/female/ex_c774bd88c77420cc3820d3ecadfcd574c6942e.mp3",
+    "duration_ms": 1608,
+    "bytes": 6669
    },
    "male": {
-    "src": "audio/sentences/male/ex_c774be68c77420c544d30cc6942e.mp3",
-    "duration_ms": 1224,
-    "bytes": 5133
+    "src": "audio/sentences/male/ex_c774bd88c77420cc3820d3ecadfcd574c6942e.mp3",
+    "duration_ms": 1584,
+    "bytes": 6573
    }
   },
   {
@@ -31457,6 +32222,21 @@
    }
   },
   {
+   "id": "ex_c778c0acb3c420c5c6c77420ac00c11c20c12dc12dd588c5b4c6942e",
+   "text": "인사도 없이 가서 섭섭했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c778c0acb3c420c5c6c77420ac00c11c20c12dc12dd588c5b4c6942e.mp3",
+    "duration_ms": 2496,
+    "bytes": 10221
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c778c0acb3c420c5c6c77420ac00c11c20c12dc12dd588c5b4c6942e.mp3",
+    "duration_ms": 2448,
+    "bytes": 10029
+   }
+  },
+  {
    "id": "ex_c778c0acb97c20c804d57420c8fcc138c6942e",
    "text": "인사를 전해 주세요.",
    "kind": "sentence",
@@ -31499,6 +32279,21 @@
     "src": "audio/sentences/male/ex_c778c0ddc74020ae38c5b4c6942e.mp3",
     "duration_ms": 1272,
     "bytes": 5325
+   }
+  },
+  {
+   "id": "ex_c778c0ddc74020c0c8c639c9c0b9c8c608c6942e",
+   "text": "인생은 새옹지마예요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c778c0ddc74020c0c8c639c9c0b9c8c608c6942e.mp3",
+    "duration_ms": 1752,
+    "bytes": 7245
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c778c0ddc74020c0c8c639c9c0b9c8c608c6942e.mp3",
+    "duration_ms": 1728,
+    "bytes": 7149
    }
   },
   {
@@ -32732,6 +33527,21 @@
    }
   },
   {
+   "id": "ex_c7a0ae5020d734c2dd20c2dcac04c74420ac00c838c6942e",
+   "text": "잠깐 휴식 시간을 가져요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c7a0ae5020d734c2dd20c2dcac04c74420ac00c838c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c7a0ae5020d734c2dd20c2dcac04c74420ac00c838c6942e.mp3",
+    "duration_ms": 2088,
+    "bytes": 8589
+   }
+  },
+  {
    "id": "ex_c7a0ae50b9cc20ac00b9ccc788c73cc138c6942e",
    "text": "잠깐만 가만있으세요.",
    "kind": "sentence",
@@ -33527,21 +34337,6 @@
    }
   },
   {
-   "id": "ex_c800b97c20ce5cad6cb85c20c5ecaca8c6942e",
-   "text": "저를 친구로 여겨요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c800b97c20ce5cad6cb85c20c5ecaca8c6942e.mp3",
-    "duration_ms": 1704,
-    "bytes": 7053
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c800b97c20ce5cad6cb85c20c5ecaca8c6942e.mp3",
-    "duration_ms": 1536,
-    "bytes": 6381
-   }
-  },
-  {
    "id": "ex_c800b9ac20ac00c138c6942e",
    "text": "저리 가세요.",
    "kind": "sentence",
@@ -33719,6 +34514,21 @@
     "src": "audio/sentences/male/ex_c804ae30ac0020b098ac14c5b4c6942e.mp3",
     "duration_ms": 1464,
     "bytes": 6093
+   }
+  },
+  {
+   "id": "ex_c804bb38ac00c5d0ac8c20bb3cc5b4bd24c5b4c6942e",
+   "text": "전문가에게 물어봤어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c804bb38ac00c5d0ac8c20bb3cc5b4bd24c5b4c6942e.mp3",
+    "duration_ms": 2040,
+    "bytes": 8397
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c804bb38ac00c5d0ac8c20bb3cc5b4bd24c5b4c6942e.mp3",
+    "duration_ms": 1968,
+    "bytes": 8109
    }
   },
   {
@@ -33932,6 +34742,21 @@
    }
   },
   {
+   "id": "ex_c808cc28ac0020b108bb3420bc88ac70b85cc6ccc6942e",
+   "text": "절차가 너무 번거로워요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c808cc28ac0020b108bb3420bc88ac70b85cc6ccc6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c808cc28ac0020b108bb3420bc88ac70b85cc6ccc6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   }
+  },
+  {
    "id": "ex_c80ac740c774ac0020b9cec544c6942e",
    "text": "젊은이가 많아요.",
    "kind": "sentence",
@@ -34124,6 +34949,21 @@
     "src": "audio/sentences/male/ex_c815b9d020c7a5d574c6942e.mp3",
     "duration_ms": 1176,
     "bytes": 4941
+   }
+  },
+  {
+   "id": "ex_c815bcf4b29420b2e4b2e4c775c120c774c5d0c6942e",
+   "text": "정보는 다다익선이에요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c815bcf4b29420b2e4b2e4c775c120c774c5d0c6942e.mp3",
+    "duration_ms": 1896,
+    "bytes": 7821
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c815bcf4b29420b2e4b2e4c775c120c774c5d0c6942e.mp3",
+    "duration_ms": 1920,
+    "bytes": 7917
    }
   },
   {
@@ -34322,21 +35162,6 @@
    }
   },
   {
-   "id": "ex_c81c20c774b984c74420ae30c5b5d558c138c6943f",
-   "text": "제 이름을 기억하세요?",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c81c20c774b984c74420ae30c5b5d558c138c6943f.mp3",
-    "duration_ms": 1680,
-    "bytes": 6957
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c81c20c774b984c74420ae30c5b5d558c138c6943f.mp3",
-    "duration_ms": 1752,
-    "bytes": 7245
-   }
-  },
-  {
    "id": "ex_c81c20c77cc5d020ac04c12dd558c9c020b9c8c138c6942e",
    "text": "제 일에 간섭하지 마세요.",
    "kind": "sentence",
@@ -34379,6 +35204,21 @@
     "src": "audio/sentences/male/ex_c81c20c798babbc774c5d0c6942e.mp3",
     "duration_ms": 1272,
     "bytes": 5325
+   }
+  },
+  {
+   "id": "ex_c81c20c9c8bb38c5d020b3d9bb38c11cb2f5b9cc20d588c5b4c6942e",
+   "text": "제 질문에 동문서답만 했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c81c20c9c8bb38c5d020b3d9bb38c11cb2f5b9cc20d588c5b4c6942e.mp3",
+    "duration_ms": 2568,
+    "bytes": 10509
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c81c20c9c8bb38c5d020b3d9bb38c11cb2f5b9cc20d588c5b4c6942e.mp3",
+    "duration_ms": 2448,
+    "bytes": 10029
    }
   },
   {
@@ -35372,6 +36212,21 @@
    }
   },
   {
+   "id": "ex_c8fcb9d0c5d020c2dcb0b4c5d020b098ac14c5b4c6942e",
+   "text": "주말에 시내에 나갔어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c8fcb9d0c5d020c2dcb0b4c5d020b098ac14c5b4c6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c8fcb9d0c5d020c2dcb0b4c5d020b098ac14c5b4c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
+   }
+  },
+  {
    "id": "ex_c8fcb9d0c5d0b29420adf8b0e520c9d1c5d020c788c5c8c5b4c6942e",
    "text": "주말에는 그냥 집에 있었어요.",
    "kind": "sentence",
@@ -35444,6 +36299,21 @@
     "src": "audio/sentences/male/ex_c8fcba38b2c8c5d020b123c5c8c5b4c6942e.mp3",
     "duration_ms": 1512,
     "bytes": 6285
+   }
+  },
+  {
+   "id": "ex_c8fcba39c74420af2d20c950c5c8c5b4c6942e",
+   "text": "주먹을 꼭 쥐었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c8fcba39c74420af2d20c950c5c8c5b4c6942e.mp3",
+    "duration_ms": 1776,
+    "bytes": 7341
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c8fcba39c74420af2d20c950c5c8c5b4c6942e.mp3",
+    "duration_ms": 1656,
+    "bytes": 6861
    }
   },
   {
@@ -35654,6 +36524,21 @@
     "src": "audio/sentences/male/ex_c900be44ac0020b2e420b410c5b4c6942e.mp3",
     "duration_ms": 1512,
     "bytes": 6285
+   }
+  },
+  {
+   "id": "ex_c900be44ac0020c5bccd9420b05db0acc5b4c6942e",
+   "text": "준비가 얼추 끝났어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c900be44ac0020c5bccd9420b05db0acc5b4c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c900be44ac0020c5bccd9420b05db0acc5b4c6942e.mp3",
+    "duration_ms": 1896,
+    "bytes": 7821
    }
   },
   {
@@ -36092,6 +36977,21 @@
    }
   },
   {
+   "id": "ex_c9c0d558c2e4c5d020c9d0c74420b450c5c8c5b4c6942e",
+   "text": "지하실에 짐을 두었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c9c0d558c2e4c5d020c9d0c74420b450c5c8c5b4c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c9c0d558c2e4c5d020c9d0c74420b450c5c8c5b4c6942e.mp3",
+    "duration_ms": 2040,
+    "bytes": 8397
+   }
+  },
+  {
    "id": "ex_c9c0d558c5d020ac00ac8cac0020c788c5b4c6942e",
    "text": "지하에 가게가 있어요.",
    "kind": "sentence",
@@ -36254,21 +37154,6 @@
     "src": "audio/sentences/male/ex_c9c4c2ecc73cb85c20ac10c0acb4dcb824c6942e.mp3",
     "duration_ms": 1776,
     "bytes": 7341
-   }
-  },
-  {
-   "id": "ex_c9c4c815d558c138c6942e",
-   "text": "진정하세요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c9c4c815d558c138c6942e.mp3",
-    "duration_ms": 1080,
-    "bytes": 4557
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c9c4c815d558c138c6942e.mp3",
-    "duration_ms": 1032,
-    "bytes": 4365
    }
   },
   {
@@ -36449,6 +37334,21 @@
     "src": "audio/sentences/male/ex_c9d1c548c77420d654baa9d574c6942e.mp3",
     "duration_ms": 1344,
     "bytes": 5613
+   }
+  },
+  {
+   "id": "ex_c9d1c5d020ac00b29420ae38c5d020ac00ac8cc5d020b4e4b800c5b4c6942e",
+   "text": "집에 가는 길에 가게에 들렀어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_c9d1c5d020ac00b29420ae38c5d020ac00ac8cc5d020b4e4b800c5b4c6942e.mp3",
+    "duration_ms": 2568,
+    "bytes": 10509
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_c9d1c5d020ac00b29420ae38c5d020ac00ac8cc5d020b4e4b800c5b4c6942e.mp3",
+    "duration_ms": 2424,
+    "bytes": 9933
    }
   },
   {
@@ -36887,6 +37787,21 @@
    }
   },
   {
+   "id": "ex_cc38ae30b98420b0c4c0c8ac0020ace0c18cd574c6942e",
+   "text": "참기름 냄새가 고소해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_cc38ae30b98420b0c4c0c8ac0020ace0c18cd574c6942e.mp3",
+    "duration_ms": 2088,
+    "bytes": 8589
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_cc38ae30b98420b0c4c0c8ac0020ace0c18cd574c6942e.mp3",
+    "duration_ms": 2064,
+    "bytes": 8493
+   }
+  },
+  {
    "id": "ex_cc38c73cb85c20ace0b9c8c6b420c77cc774c5d0c6942e",
    "text": "참으로 고마운 일이에요.",
    "kind": "sentence",
@@ -37019,6 +37934,21 @@
     "src": "audio/sentences/male/ex_cc44c18cac0020c2e0c120d574c6942e.mp3",
     "duration_ms": 1416,
     "bytes": 5901
+   }
+  },
+  {
+   "id": "ex_cc44c18cb3c420ace8ace0b8e820b4dcc138c6942e",
+   "text": "채소도 골고루 드세요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_cc44c18cb3c420ace8ace0b8e820b4dcc138c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_cc44c18cb3c420ace8ace0b8e820b4dcc138c6942e.mp3",
+    "duration_ms": 1680,
+    "bytes": 6957
    }
   },
   {
@@ -37847,6 +38777,21 @@
    }
   },
   {
+   "id": "ex_cd94c6ccc11c20c637c74420aef4c785c5c8c5b4c6942e",
+   "text": "추워서 옷을 껴입었어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_cd94c6ccc11c20c637c74420aef4c785c5c8c5b4c6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_cd94c6ccc11c20c637c74420aef4c785c5c8c5b4c6942e.mp3",
+    "duration_ms": 2136,
+    "bytes": 8781
+   }
+  },
+  {
    "id": "ex_cd94c6ccc11c20c6c5d06cb838c5b4c6942e",
    "text": "추워서 웅크렸어요.",
    "kind": "sentence",
@@ -37904,6 +38849,21 @@
     "src": "audio/sentences/male/ex_cd9cad6cac0020c800cabdc5d020c788c5b4c6942e.mp3",
     "duration_ms": 1728,
     "bytes": 7149
+   }
+  },
+  {
+   "id": "ex_cd9cbc1c20c2dcac04c74420d55c20c2dcac0420c55eb2f9acbcc5b4c6942e",
+   "text": "출발 시간을 한 시간 앞당겼어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_cd9cbc1c20c2dcac04c74420d55c20c2dcac0420c55eb2f9acbcc5b4c6942e.mp3",
+    "duration_ms": 2784,
+    "bytes": 11373
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_cd9cbc1c20c2dcac04c74420d55c20c2dcac0420c55eb2f9acbcc5b4c6942e.mp3",
+    "duration_ms": 2640,
+    "bytes": 10797
    }
   },
   {
@@ -38039,6 +38999,21 @@
     "src": "audio/sentences/male/ex_ce5cad6c20b355bd84c5d020ae38c74420cc3ec558c5b4c6942e.mp3",
     "duration_ms": 2112,
     "bytes": 8685
+   }
+  },
+  {
+   "id": "ex_ce5cad6c20c0ddc77c20c120bb3cb85c20d654c7a5d488c74420c0c0c5b4c6942e",
+   "text": "친구 생일 선물로 화장품을 샀어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ce5cad6c20c0ddc77c20c120bb3cb85c20d654c7a5d488c74420c0c0c5b4c6942e.mp3",
+    "duration_ms": 2928,
+    "bytes": 11949
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ce5cad6c20c0ddc77c20c120bb3cb85c20d654c7a5d488c74420c0c0c5b4c6942e.mp3",
+    "duration_ms": 2760,
+    "bytes": 11277
    }
   },
   {
@@ -38309,6 +39284,21 @@
     "src": "audio/sentences/male/ex_ce5cad6cb97c20c9d1c5d020cd08b300d588c5b4c6942e.mp3",
     "duration_ms": 1872,
     "bytes": 7725
+   }
+  },
+  {
+   "id": "ex_ce5cad6cc5d0ac8c20c6b0c0b0c74420be4cb824c92cc5b4c6942e",
+   "text": "친구에게 우산을 빌려줬어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_ce5cad6cc5d0ac8c20c6b0c0b0c74420be4cb824c92cc5b4c6942e.mp3",
+    "duration_ms": 2376,
+    "bytes": 9741
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_ce5cad6cc5d0ac8c20c6b0c0b0c74420be4cb824c92cc5b4c6942e.mp3",
+    "duration_ms": 2376,
+    "bytes": 9741
    }
   },
   {
@@ -38867,6 +39857,21 @@
    }
   },
   {
+   "id": "ex_cf54b07cb9acac0020bb3cc74420b9c8c154c6942e",
+   "text": "코끼리가 물을 마셔요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_cf54b07cb9acac0020bb3cc74420b9c8c154c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_cf54b07cb9acac0020bb3cc74420b9c8c154c6942e.mp3",
+    "duration_ms": 1752,
+    "bytes": 7245
+   }
+  },
+  {
    "id": "ex_cf54b108b97c20b3ccba7420c788c5b4c6942e",
    "text": "코너를 돌면 있어요.",
    "kind": "sentence",
@@ -39362,6 +40367,21 @@
    }
   },
   {
+   "id": "ex_d1b5d654ac0020ac11c790ae3020b04aacbcc5b4c6942e",
+   "text": "통화가 갑자기 끊겼어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d1b5d654ac0020ac11c790ae3020b04aacbcc5b4c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d1b5d654ac0020ac11c790ae3020b04aacbcc5b4c6942e.mp3",
+    "duration_ms": 1944,
+    "bytes": 8013
+   }
+  },
+  {
    "id": "ex_d1b5d654b97c20c0bcac0020c8fcc138c6942e",
    "text": "통화를 삼가 주세요.",
    "kind": "sentence",
@@ -39374,6 +40394,21 @@
     "src": "audio/sentences/male/ex_d1b5d654b97c20c0bcac0020c8fcc138c6942e.mp3",
     "duration_ms": 1464,
     "bytes": 6093
+   }
+  },
+  {
+   "id": "ex_d280ae40c77420c544c8fc20bc14c0add574c6942e",
+   "text": "튀김이 아주 바삭해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d280ae40c77420c544c8fc20bc14c0add574c6942e.mp3",
+    "duration_ms": 1776,
+    "bytes": 7341
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d280ae40c77420c544c8fc20bc14c0add574c6942e.mp3",
+    "duration_ms": 1800,
+    "bytes": 7437
    }
   },
   {
@@ -40607,6 +41642,21 @@
    }
   },
   {
+   "id": "ex_d55c20ac78c74c20c55ec73cb85c20b2e4ac00c130c5b4c6942e",
+   "text": "한 걸음 앞으로 다가섰어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d55c20ac78c74c20c55ec73cb85c20b2e4ac00c130c5b4c6942e.mp3",
+    "duration_ms": 2184,
+    "bytes": 8973
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d55c20ac78c74c20c55ec73cb85c20b2e4ac00c130c5b4c6942e.mp3",
+    "duration_ms": 2208,
+    "bytes": 9069
+   }
+  },
+  {
    "id": "ex_d55c20b9c8b514b9cc20d560ac8cc6942e",
    "text": "한 마디만 할게요.",
    "kind": "sentence",
@@ -41147,6 +42197,21 @@
    }
   },
   {
+   "id": "ex_d55ccc3820b4a4c5d020c9c4c815c74420b418cc3ec558c5b4c6942e",
+   "text": "한참 뒤에 진정을 되찾았어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d55ccc3820b4a4c5d020c9c4c815c74420b418cc3ec558c5b4c6942e.mp3",
+    "duration_ms": 2616,
+    "bytes": 10701
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d55ccc3820b4a4c5d020c9c4c815c74420b418cc3ec558c5b4c6942e.mp3",
+    "duration_ms": 2352,
+    "bytes": 9645
+   }
+  },
+  {
    "id": "ex_d55ccc3820b9ddc124c600c5b4c6942e",
    "text": "한참 망설였어요.",
    "kind": "sentence",
@@ -41189,6 +42254,21 @@
     "src": "audio/sentences/male/ex_d55cd31020b35420d574c6942e.mp3",
     "duration_ms": 1104,
     "bytes": 4653
+   }
+  },
+  {
+   "id": "ex_d560ba38b2c820ba38b9acac0020d76cc5b4c6942e",
+   "text": "할머니 머리가 희어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d560ba38b2c820ba38b9acac0020d76cc5b4c6942e.mp3",
+    "duration_ms": 1776,
+    "bytes": 7341
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d560ba38b2c820ba38b9acac0020d76cc5b4c6942e.mp3",
+    "duration_ms": 1704,
+    "bytes": 7053
    }
   },
   {
@@ -41267,18 +42347,18 @@
    }
   },
   {
-   "id": "ex_d560c544bc84c9c020ba38b9acac0020d76cc5b4c6942e",
-   "text": "할아버지 머리가 희어요.",
+   "id": "ex_d560ba38b2c8b29420b29820c544ce68c5d020c6b4b3d9d558c138c6942e",
+   "text": "할머니는 늘 아침에 운동하세요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_d560c544bc84c9c020ba38b9acac0020d76cc5b4c6942e.mp3",
-    "duration_ms": 1848,
-    "bytes": 7629
+    "src": "audio/sentences/female/ex_d560ba38b2c8b29420b29820c544ce68c5d020c6b4b3d9d558c138c6942e.mp3",
+    "duration_ms": 2616,
+    "bytes": 10701
    },
    "male": {
-    "src": "audio/sentences/male/ex_d560c544bc84c9c020ba38b9acac0020d76cc5b4c6942e.mp3",
-    "duration_ms": 1824,
-    "bytes": 7533
+    "src": "audio/sentences/male/ex_d560ba38b2c8b29420b29820c544ce68c5d020c6b4b3d9d558c138c6942e.mp3",
+    "duration_ms": 2520,
+    "bytes": 10317
    }
   },
   {
@@ -41294,21 +42374,6 @@
     "src": "audio/sentences/male/ex_d560c544bc84c9c020c218c5fcc77420ae38c5b4c6942e.mp3",
     "duration_ms": 1896,
     "bytes": 7821
-   }
-  },
-  {
-   "id": "ex_d560c544bc84c9c0ac0020c228c9c0c168c5b4c6942e",
-   "text": "할아버지가 숨지셨어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_d560c544bc84c9c0ac0020c228c9c0c168c5b4c6942e.mp3",
-    "duration_ms": 1872,
-    "bytes": 7725
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_d560c544bc84c9c0ac0020c228c9c0c168c5b4c6942e.mp3",
-    "duration_ms": 1944,
-    "bytes": 8013
    }
   },
   {
@@ -41447,21 +42512,6 @@
    }
   },
   {
-   "id": "ex_d574ac0020bc1dc544c6942e",
-   "text": "해가 밝아요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_d574ac0020bc1dc544c6942e.mp3",
-    "duration_ms": 1056,
-    "bytes": 4461
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_d574ac0020bc1dc544c6942e.mp3",
-    "duration_ms": 1056,
-    "bytes": 4461
-   }
-  },
-  {
    "id": "ex_d574ac0020c11ccabdc73cb85c20c838c6942e",
    "text": "해가 서쪽으로 져요.",
    "kind": "sentence",
@@ -41474,6 +42524,21 @@
     "src": "audio/sentences/male/ex_d574ac0020c11ccabdc73cb85c20c838c6942e.mp3",
     "duration_ms": 1440,
     "bytes": 5997
+   }
+  },
+  {
+   "id": "ex_d574b9c8b2e420ac19c74020c758c2ddc74420d589d574c6942e",
+   "text": "해마다 같은 의식을 행해요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d574b9c8b2e420ac19c74020c758c2ddc74420d589d574c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d574b9c8b2e420ac19c74020c758c2ddc74420d589d574c6942e.mp3",
+    "duration_ms": 2160,
+    "bytes": 8877
    }
   },
   {
@@ -41507,18 +42572,18 @@
    }
   },
   {
-   "id": "ex_d587be5bc77420b208bd80c154c6942e",
-   "text": "햇빛이 눈부셔요.",
+   "id": "ex_d587be5bc5d020b208c77420bd80c154c6942e",
+   "text": "햇빛에 눈이 부셔요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_d587be5bc77420b208bd80c154c6942e.mp3",
-    "duration_ms": 1584,
-    "bytes": 6573
+    "src": "audio/sentences/female/ex_d587be5bc5d020b208c77420bd80c154c6942e.mp3",
+    "duration_ms": 1752,
+    "bytes": 7245
    },
    "male": {
-    "src": "audio/sentences/male/ex_d587be5bc77420b208bd80c154c6942e.mp3",
-    "duration_ms": 1440,
-    "bytes": 5997
+    "src": "audio/sentences/male/ex_d587be5bc5d020b208c77420bd80c154c6942e.mp3",
+    "duration_ms": 1608,
+    "bytes": 6669
    }
   },
   {
@@ -41687,6 +42752,21 @@
    }
   },
   {
+   "id": "ex_d604ae08c73cb85c20acc4c0b0d588c5b4c6942e",
+   "text": "현금으로 계산했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d604ae08c73cb85c20acc4c0b0d588c5b4c6942e.mp3",
+    "duration_ms": 1848,
+    "bytes": 7629
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d604ae08c73cb85c20acc4c0b0d588c5b4c6942e.mp3",
+    "duration_ms": 1656,
+    "bytes": 6861
+   }
+  },
+  {
    "id": "ex_d604ba85d55c20c120d0ddc774c5c8c5b4c6942e",
    "text": "현명한 선택이었어요.",
    "kind": "sentence",
@@ -41819,36 +42899,6 @@
     "src": "audio/sentences/male/ex_d615c0acac0020c870c0acd574c6942e.mp3",
     "duration_ms": 1392,
     "bytes": 5805
-   }
-  },
-  {
-   "id": "ex_d615c74020d574ad70c774c5d0c6942e",
-   "text": "형은 해군이에요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_d615c74020d574ad70c774c5d0c6942e.mp3",
-    "duration_ms": 1368,
-    "bytes": 5709
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_d615c74020d574ad70c774c5d0c6942e.mp3",
-    "duration_ms": 1248,
-    "bytes": 5229
-   }
-  },
-  {
-   "id": "ex_d615c74420b530b77cac14c5b4c6942e",
-   "text": "형을 따라갔어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_d615c74420b530b77cac14c5b4c6942e.mp3",
-    "duration_ms": 1512,
-    "bytes": 6285
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_d615c74420b530b77cac14c5b4c6942e.mp3",
-    "duration_ms": 1296,
-    "bytes": 5421
    }
   },
   {
@@ -42119,6 +43169,21 @@
     "src": "audio/sentences/male/ex_d654c0b4c74420c3d8c544c6942e.mp3",
     "duration_ms": 1200,
     "bytes": 5037
+   }
+  },
+  {
+   "id": "ex_d654c0b4c77420acfcb141c5d020b9dec558c5b4c6942e",
+   "text": "화살이 과녁에 맞았어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d654c0b4c77420acfcb141c5d020b9dec558c5b4c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d654c0b4c77420acfcb141c5d020b9dec558c5b4c6942e.mp3",
+    "duration_ms": 1992,
+    "bytes": 8205
    }
   },
   {
@@ -42404,6 +43469,21 @@
     "src": "audio/sentences/male/ex_d68cc0acc5d0c11c20c88bc74020c81cc548c74420bc1bc558c5b4c6942e.mp3",
     "duration_ms": 2448,
     "bytes": 10029
+   }
+  },
+  {
+   "id": "ex_d68cc75820b0a0c9dcb97c20c815d588c5b4c6942e",
+   "text": "회의 날짜를 정했어요.",
+   "kind": "sentence",
+   "female": {
+    "src": "audio/sentences/female/ex_d68cc75820b0a0c9dcb97c20c815d588c5b4c6942e.mp3",
+    "duration_ms": 1968,
+    "bytes": 8109
+   },
+   "male": {
+    "src": "audio/sentences/male/ex_d68cc75820b0a0c9dcb97c20c815d588c5b4c6942e.mp3",
+    "duration_ms": 1776,
+    "bytes": 7341
    }
   },
   {
@@ -45257,6 +46337,21 @@
    }
   },
   {
+   "id": "word_ac08c544d0c0b2e4",
+   "text": "갈아타다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_ac08c544d0c0b2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_ac08c544d0c0b2e4.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   }
+  },
+  {
    "id": "word_ac09c544ba39b2e4",
    "text": "갉아먹다",
    "kind": "word",
@@ -46367,6 +47462,21 @@
    }
   },
   {
+   "id": "word_ac78c5b4c624b2e4",
+   "text": "걸어오다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_ac78c5b4c624b2e4.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_ac78c5b4c624b2e4.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   }
+  },
+  {
    "id": "word_ac78ce58b2e4",
    "text": "걸치다",
    "kind": "word",
@@ -46652,6 +47762,21 @@
    }
   },
   {
+   "id": "word_acb0b860",
+   "text": "결론",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_acb0b860.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_acb0b860.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
+   }
+  },
+  {
    "id": "word_acb0c2ecd558b2e4",
    "text": "결심하다",
    "kind": "word",
@@ -46919,6 +48044,21 @@
     "src": "audio/vocabulary/male/word_acbdcc30.mp3",
     "duration_ms": 720,
     "bytes": 3117
+   }
+  },
+  {
+   "id": "word_acbdcc30c11c",
+   "text": "경찰서",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_acbdcc30c11c.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_acbdcc30c11c.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
    }
   },
   {
@@ -47327,6 +48467,21 @@
    }
   },
   {
+   "id": "word_ace0c18cd558b2e4",
+   "text": "고소하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_ace0c18cd558b2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_ace0c18cd558b2e4.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   }
+  },
+  {
    "id": "word_ace0c591c774",
    "text": "고양이",
    "kind": "word",
@@ -47429,6 +48584,21 @@
     "src": "audio/vocabulary/male/word_ace0c815b418b2e4.mp3",
     "duration_ms": 912,
     "bytes": 3885
+   }
+  },
+  {
+   "id": "word_ace0c9c4ac10b798",
+   "text": "고진감래",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_ace0c9c4ac10b798.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_ace0c9c4ac10b798.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
    }
   },
   {
@@ -47549,6 +48719,21 @@
     "src": "audio/vocabulary/male/word_ace7c7a5.mp3",
     "duration_ms": 672,
     "bytes": 2925
+   }
+  },
+  {
+   "id": "word_ace8ace0b8e8",
+   "text": "골고루",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_ace8ace0b8e8.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_ace8ace0b8e8.mp3",
+    "duration_ms": 744,
+    "bytes": 3213
    }
   },
   {
@@ -48029,6 +49214,21 @@
     "src": "audio/vocabulary/male/word_acfcc5f0.mp3",
     "duration_ms": 576,
     "bytes": 2541
+   }
+  },
+  {
+   "id": "word_acfcc720bd88ae09",
+   "text": "과유불급",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_acfcc720bd88ae09.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_acfcc720bd88ae09.mp3",
+    "duration_ms": 984,
+    "bytes": 4173
    }
   },
   {
@@ -49682,6 +50882,21 @@
    }
   },
   {
+   "id": "word_ae08c0c1cca8d654",
+   "text": "금상첨화",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_ae08c0c1cca8d654.mp3",
+    "duration_ms": 1248,
+    "bytes": 5229
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_ae08c0c1cca8d654.mp3",
+    "duration_ms": 1080,
+    "bytes": 4557
+   }
+  },
+  {
    "id": "word_ae08c694c77c",
    "text": "금요일",
    "kind": "word",
@@ -50837,6 +52052,21 @@
    }
   },
   {
+   "id": "word_aef4c785b2e4",
+   "text": "껴입다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_aef4c785b2e4.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_aef4c785b2e4.mp3",
+    "duration_ms": 720,
+    "bytes": 3117
+   }
+  },
+  {
    "id": "word_af2cb2e4",
    "text": "꼬다",
    "kind": "word",
@@ -51074,6 +52304,21 @@
     "src": "audio/vocabulary/male/word_b048c9c8ae30b2e4.mp3",
     "duration_ms": 864,
     "bytes": 3693
+   }
+  },
+  {
+   "id": "word_b04aae30b2e4",
+   "text": "끊기다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b04aae30b2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b04aae30b2e4.mp3",
+    "duration_ms": 672,
+    "bytes": 2925
    }
   },
   {
@@ -51332,6 +52577,21 @@
    }
   },
   {
+   "id": "word_b098b220c8fcb2e4",
+   "text": "나눠주다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b098b220c8fcb2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b098b220c8fcb2e4.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   }
+  },
+  {
    "id": "word_b098b2e4",
    "text": "나다",
    "kind": "word",
@@ -51374,6 +52634,21 @@
     "src": "audio/vocabulary/male/word_b098b77c.mp3",
     "duration_ms": 504,
     "bytes": 2253
+   }
+  },
+  {
+   "id": "word_b098b780d788",
+   "text": "나란히",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b098b780d788.mp3",
+    "duration_ms": 768,
+    "bytes": 3309
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b098b780d788.mp3",
+    "duration_ms": 744,
+    "bytes": 3213
    }
   },
   {
@@ -51764,6 +53039,21 @@
     "src": "audio/vocabulary/male/word_b0a0c544ac00b2e4.mp3",
     "duration_ms": 864,
     "bytes": 3693
+   }
+  },
+  {
+   "id": "word_b0a0c9dc",
+   "text": "날짜",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b0a0c9dc.mp3",
+    "duration_ms": 792,
+    "bytes": 3405
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b0a0c9dc.mp3",
+    "duration_ms": 720,
+    "bytes": 3117
    }
   },
   {
@@ -52832,6 +54122,21 @@
    }
   },
   {
+   "id": "word_b18dc7a5",
+   "text": "농장",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b18dc7a5.mp3",
+    "duration_ms": 792,
+    "bytes": 3405
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b18dc7a5.mp3",
+    "duration_ms": 672,
+    "bytes": 2925
+   }
+  },
+  {
    "id": "word_b192b2e4",
    "text": "높다",
    "kind": "word",
@@ -53312,6 +54617,21 @@
    }
   },
   {
+   "id": "word_b2e4ac00c11cb2e4",
+   "text": "다가서다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b2e4ac00c11cb2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b2e4ac00c11cb2e4.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   }
+  },
+  {
    "id": "word_b2e4ac00c624b2e4",
    "text": "다가오다",
    "kind": "word",
@@ -53354,6 +54674,21 @@
     "src": "audio/vocabulary/male/word_b2e4b2c8b2e4.mp3",
     "duration_ms": 672,
     "bytes": 2925
+   }
+  },
+  {
+   "id": "word_b2e4b2e4c775c120",
+   "text": "다다익선",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b2e4b2e4c775c120.mp3",
+    "duration_ms": 1200,
+    "bytes": 5037
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b2e4b2e4c775c120.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
    }
   },
   {
@@ -54104,6 +55439,21 @@
     "src": "audio/vocabulary/male/word_b2f4bc30.mp3",
     "duration_ms": 648,
     "bytes": 2829
+   }
+  },
+  {
+   "id": "word_b2f4bc31d558b2e4",
+   "text": "담백하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b2f4bc31d558b2e4.mp3",
+    "duration_ms": 1032,
+    "bytes": 4365
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b2f4bc31d558b2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
    }
   },
   {
@@ -55427,6 +56777,21 @@
    }
   },
   {
+   "id": "word_b3d9bb38c11cb2f5",
+   "text": "동문서답",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b3d9bb38c11cb2f5.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b3d9bb38c11cb2f5.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
+   }
+  },
+  {
    "id": "word_b3d9bb3c",
    "text": "동물",
    "kind": "word",
@@ -55757,6 +57122,21 @@
    }
   },
   {
+   "id": "word_b4a4b530b974b2e4",
+   "text": "뒤따르다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b4a4b530b974b2e4.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b4a4b530b974b2e4.mp3",
+    "duration_ms": 672,
+    "bytes": 2925
+   }
+  },
+  {
    "id": "word_b4a4c9c0b2e4",
    "text": "뒤지다",
    "kind": "word",
@@ -56027,6 +57407,21 @@
    }
   },
   {
+   "id": "word_b4e4b974b2e4",
+   "text": "들르다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b4e4b974b2e4.mp3",
+    "duration_ms": 744,
+    "bytes": 3213
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b4e4b974b2e4.mp3",
+    "duration_ms": 672,
+    "bytes": 2925
+   }
+  },
+  {
    "id": "word_b4e4b9acb2e4",
    "text": "들리다",
    "kind": "word",
@@ -56129,6 +57524,21 @@
     "src": "audio/vocabulary/male/word_b4e4d0a4b2e4.mp3",
     "duration_ms": 768,
     "bytes": 3309
+   }
+  },
+  {
+   "id": "word_b4ecbfcd",
+   "text": "듬뿍",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_b4ecbfcd.mp3",
+    "duration_ms": 648,
+    "bytes": 2829
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_b4ecbfcd.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
    }
   },
   {
@@ -58637,6 +60047,21 @@
    }
   },
   {
+   "id": "word_baa8c784",
+   "text": "모임",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_baa8c784.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_baa8c784.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
+   }
+  },
+  {
    "id": "word_baa8c790",
    "text": "모자",
    "kind": "word",
@@ -59324,6 +60749,21 @@
     "src": "audio/vocabulary/male/word_bb38.mp3",
     "duration_ms": 432,
     "bytes": 1965
+   }
+  },
+  {
+   "id": "word_bb38b4dd",
+   "text": "문득",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bb38b4dd.mp3",
+    "duration_ms": 576,
+    "bytes": 2541
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bb38b4dd.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
    }
   },
   {
@@ -60029,6 +61469,21 @@
     "src": "audio/vocabulary/male/word_bc14c058b2e4.mp3",
     "duration_ms": 720,
     "bytes": 3117
+   }
+  },
+  {
+   "id": "word_bc14c0add558b2e4",
+   "text": "바삭하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bc14c0add558b2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bc14c0add558b2e4.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
    }
   },
   {
@@ -61082,6 +62537,21 @@
    }
   },
   {
+   "id": "word_bc88ac70b86db2e4",
+   "text": "번거롭다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bc88ac70b86db2e4.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bc88ac70b86db2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   }
+  },
+  {
    "id": "word_bc88c5ed",
    "text": "번역",
    "kind": "word",
@@ -61394,6 +62864,21 @@
     "src": "audio/vocabulary/male/word_bc97b2e4.mp3",
     "duration_ms": 624,
     "bytes": 2733
+   }
+  },
+  {
+   "id": "word_bc97c5b4b098b2e4",
+   "text": "벗어나다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bc97c5b4b098b2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bc97c5b4b098b2e4.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
    }
   },
   {
@@ -61754,6 +63239,21 @@
     "src": "audio/vocabulary/male/word_bcf4c0b4d53cb2e4.mp3",
     "duration_ms": 912,
     "bytes": 3885
+   }
+  },
+  {
+   "id": "word_bcf4c11d",
+   "text": "보석",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bcf4c11d.mp3",
+    "duration_ms": 552,
+    "bytes": 2445
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bcf4c11d.mp3",
+    "duration_ms": 528,
+    "bytes": 2349
    }
   },
   {
@@ -62429,6 +63929,21 @@
     "src": "audio/vocabulary/male/word_bd80c871d558b2e4.mp3",
     "duration_ms": 864,
     "bytes": 3693
+   }
+  },
+  {
+   "id": "word_bd80ca4d",
+   "text": "부쩍",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bd80ca4d.mp3",
+    "duration_ms": 576,
+    "bytes": 2541
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bd80ca4d.mp3",
+    "duration_ms": 552,
+    "bytes": 2445
    }
   },
   {
@@ -63137,6 +64652,21 @@
    }
   },
   {
+   "id": "word_be44c6a9",
+   "text": "비용",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_be44c6a9.mp3",
+    "duration_ms": 696,
+    "bytes": 3021
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_be44c6a9.mp3",
+    "duration_ms": 552,
+    "bytes": 2445
+   }
+  },
+  {
    "id": "word_be44c6b0b2e4",
    "text": "비우다",
    "kind": "word",
@@ -63284,6 +64814,21 @@
     "src": "audio/vocabulary/male/word_be4cb2e4.mp3",
     "duration_ms": 624,
     "bytes": 2733
+   }
+  },
+  {
+   "id": "word_be4cb824c8fcb2e4",
+   "text": "빌려주다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_be4cb824c8fcb2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_be4cb824c8fcb2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
    }
   },
   {
@@ -63587,6 +65132,21 @@
    }
   },
   {
+   "id": "word_bfccb4efd558b2e4",
+   "text": "뿌듯하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_bfccb4efd558b2e4.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_bfccb4efd558b2e4.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   }
+  },
+  {
    "id": "word_bfccb9acb2e4",
    "text": "뿌리다",
    "kind": "word",
@@ -63854,6 +65414,21 @@
     "src": "audio/vocabulary/male/word_c0acb85cc7a1b2e4.mp3",
     "duration_ms": 960,
     "bytes": 4077
+   }
+  },
+  {
+   "id": "word_c0acb9c9",
+   "text": "사막",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c0acb9c9.mp3",
+    "duration_ms": 576,
+    "bytes": 2541
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c0acb9c9.mp3",
+    "duration_ms": 576,
+    "bytes": 2541
    }
   },
   {
@@ -64727,6 +66302,21 @@
    }
   },
   {
+   "id": "word_c0c8c639c9c0b9c8",
+   "text": "새옹지마",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c0c8c639c9c0b9c8.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c0c8c639c9c0b9c8.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   }
+  },
+  {
    "id": "word_c0c8c6b0b2e4",
    "text": "새우다",
    "kind": "word",
@@ -65162,6 +66752,21 @@
    }
   },
   {
+   "id": "word_c120b73b",
+   "text": "선뜻",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c120b73b.mp3",
+    "duration_ms": 720,
+    "bytes": 3117
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c120b73b.mp3",
+    "duration_ms": 672,
+    "bytes": 2925
+   }
+  },
+  {
    "id": "word_c120ba85d558b2e4",
    "text": "선명하다",
    "kind": "word",
@@ -65232,6 +66837,21 @@
    },
    "male": {
     "src": "audio/vocabulary/male/word_c120c0ddb2d8.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   }
+  },
+  {
+   "id": "word_c120c120d558b2e4",
+   "text": "선선하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c120c120d558b2e4.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c120c120d558b2e4.mp3",
     "duration_ms": 912,
     "bytes": 3885
    }
@@ -65372,6 +66992,21 @@
    }
   },
   {
+   "id": "word_c124c0c1ac00c0c1",
+   "text": "설상가상",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c124c0c1ac00c0c1.mp3",
+    "duration_ms": 1176,
+    "bytes": 4941
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c124c0c1ac00c0c1.mp3",
+    "duration_ms": 1104,
+    "bytes": 4653
+   }
+  },
+  {
    "id": "word_c124ce58b2e4",
    "text": "설치다",
    "kind": "word",
@@ -65444,6 +67079,21 @@
     "src": "audio/vocabulary/male/word_c12cae30b2e4.mp3",
     "duration_ms": 840,
     "bytes": 3597
+   }
+  },
+  {
+   "id": "word_c12dc12dd558b2e4",
+   "text": "섭섭하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c12dc12dd558b2e4.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c12dc12dd558b2e4.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
    }
   },
   {
@@ -66422,6 +68072,21 @@
    }
   },
   {
+   "id": "word_c218c6d4d558b2e4",
+   "text": "수월하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c218c6d4d558b2e4.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c218c6d4d558b2e4.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
+   }
+  },
+  {
    "id": "word_c218c815",
    "text": "수정",
    "kind": "word",
@@ -67142,6 +68807,21 @@
    }
   },
   {
+   "id": "word_c2dcb0b4",
+   "text": "시내",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c2dcb0b4.mp3",
+    "duration_ms": 720,
+    "bytes": 3117
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c2dcb0b4.mp3",
+    "duration_ms": 528,
+    "bytes": 2349
+   }
+  },
+  {
    "id": "word_c2dcb2e4",
    "text": "시다",
    "kind": "word",
@@ -67259,6 +68939,21 @@
     "src": "audio/vocabulary/male/word_c2dcbbfc.mp3",
     "duration_ms": 600,
     "bytes": 2637
+   }
+  },
+  {
+   "id": "word_c2dcc124",
+   "text": "시설",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c2dcc124.mp3",
+    "duration_ms": 768,
+    "bytes": 3309
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c2dcc124.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
    }
   },
   {
@@ -68237,6 +69932,21 @@
    }
   },
   {
+   "id": "word_c300c300d558b2e4",
+   "text": "쌀쌀하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c300c300d558b2e4.mp3",
+    "duration_ms": 1080,
+    "bytes": 4557
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c300c300d558b2e4.mp3",
+    "duration_ms": 984,
+    "bytes": 4173
+   }
+  },
+  {
    "id": "word_c30db465c774",
    "text": "쌍둥이",
    "kind": "word",
@@ -68654,6 +70364,21 @@
     "src": "audio/vocabulary/male/word_c544b0b4.mp3",
     "duration_ms": 504,
     "bytes": 2253
+   }
+  },
+  {
+   "id": "word_c544b291d558b2e4",
+   "text": "아늑하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c544b291d558b2e4.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c544b291d558b2e4.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
    }
   },
   {
@@ -69482,6 +71207,21 @@
    }
   },
   {
+   "id": "word_c54cb824c8fcb2e4",
+   "text": "알려주다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c54cb824c8fcb2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c54cb824c8fcb2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   }
+  },
+  {
    "id": "word_c54cb824c9c0b2e4",
    "text": "알려지다",
    "kind": "word",
@@ -69572,6 +71312,21 @@
    }
   },
   {
+   "id": "word_c54cc544cc44b2e4",
+   "text": "알아채다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c54cc544cc44b2e4.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c54cc544cc44b2e4.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   }
+  },
+  {
    "id": "word_c553b2e4",
    "text": "앓다",
    "kind": "word",
@@ -69644,6 +71399,21 @@
     "src": "audio/vocabulary/male/word_c55e.mp3",
     "duration_ms": 312,
     "bytes": 1485
+   }
+  },
+  {
+   "id": "word_c55eb2f9ae30b2e4",
+   "text": "앞당기다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c55eb2f9ae30b2e4.mp3",
+    "duration_ms": 1104,
+    "bytes": 4653
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c55eb2f9ae30b2e4.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
    }
   },
   {
@@ -70767,6 +72537,21 @@
    },
    "male": {
     "src": "audio/vocabulary/male/word_c5bcc74c.mp3",
+    "duration_ms": 576,
+    "bytes": 2541
+   }
+  },
+  {
+   "id": "word_c5bccd94",
+   "text": "얼추",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c5bccd94.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c5bccd94.mp3",
     "duration_ms": 576,
     "bytes": 2541
    }
@@ -74012,6 +75797,21 @@
    }
   },
   {
+   "id": "word_c720be44bb34d658",
+   "text": "유비무환",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c720be44bb34d658.mp3",
+    "duration_ms": 1104,
+    "bytes": 4653
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c720be44bb34d658.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   }
+  },
+  {
    "id": "word_c720c6a9d558b2e4",
    "text": "유용하다",
    "kind": "word",
@@ -75407,6 +77207,21 @@
    }
   },
   {
+   "id": "word_c77cc11dc774c870",
+   "text": "일석이조",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c77cc11dc774c870.mp3",
+    "duration_ms": 1080,
+    "bytes": 4557
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c77cc11dc774c870.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   }
+  },
+  {
    "id": "word_c77cc5b4b098b2e4",
    "text": "일어나다",
    "kind": "word",
@@ -76037,6 +77852,21 @@
    }
   },
   {
+   "id": "word_c790c5c5c790b4dd",
+   "text": "자업자득",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c790c5c5c790b4dd.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c790c5c5c790b4dd.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   }
+  },
+  {
    "id": "word_c790c5f0",
    "text": "자연",
    "kind": "word",
@@ -76214,6 +78044,21 @@
     "src": "audio/vocabulary/male/word_c791c131d558b2e4.mp3",
     "duration_ms": 936,
     "bytes": 3981
+   }
+  },
+  {
+   "id": "word_c791c2ecc0bcc77c",
+   "text": "작심삼일",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c791c2ecc0bcc77c.mp3",
+    "duration_ms": 1152,
+    "bytes": 4845
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c791c2ecc0bcc77c.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
    }
   },
   {
@@ -76742,6 +78587,21 @@
    }
   },
   {
+   "id": "word_c7a5b840c2dd",
+   "text": "장례식",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c7a5b840c2dd.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c7a5b840c2dd.mp3",
+    "duration_ms": 792,
+    "bytes": 3405
+   }
+  },
+  {
    "id": "word_c7a5ba74",
    "text": "장면",
    "kind": "word",
@@ -76934,6 +78794,21 @@
     "src": "audio/vocabulary/male/word_c7acc6b0b2e4.mp3",
     "duration_ms": 744,
     "bytes": 3213
+   }
+  },
+  {
+   "id": "word_c7accd09d558b2e4",
+   "text": "재촉하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c7accd09d558b2e4.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c7accd09d558b2e4.mp3",
+    "duration_ms": 960,
+    "bytes": 4077
    }
   },
   {
@@ -77357,6 +79232,21 @@
    }
   },
   {
+   "id": "word_c804bb38ac00",
+   "text": "전문가",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c804bb38ac00.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c804bb38ac00.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   }
+  },
+  {
    "id": "word_c804bd80",
    "text": "전부",
    "kind": "word",
@@ -77537,6 +79427,21 @@
    }
   },
   {
+   "id": "word_c804d654c704bcf5",
+   "text": "전화위복",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c804d654c704bcf5.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c804d654c704bcf5.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   }
+  },
+  {
    "id": "word_c804d654d558b2e4",
    "text": "전화하다",
    "kind": "word",
@@ -77577,6 +79482,21 @@
    },
    "male": {
     "src": "audio/vocabulary/male/word_c808b300.mp3",
+    "duration_ms": 696,
+    "bytes": 3021
+   }
+  },
+  {
+   "id": "word_c808bc18",
+   "text": "절반",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c808bc18.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c808bc18.mp3",
     "duration_ms": 696,
     "bytes": 3021
    }
@@ -78917,6 +80837,21 @@
    }
   },
   {
+   "id": "word_c8fcba39",
+   "text": "주먹",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c8fcba39.mp3",
+    "duration_ms": 552,
+    "bytes": 2445
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c8fcba39.mp3",
+    "duration_ms": 528,
+    "bytes": 2349
+   }
+  },
+  {
    "id": "word_c8fcbaa9",
    "text": "주목",
    "kind": "word",
@@ -79139,6 +81074,21 @@
     "src": "audio/vocabulary/male/word_c8fcc7a5d558b2e4.mp3",
     "duration_ms": 840,
     "bytes": 3597
+   }
+  },
+  {
+   "id": "word_c8fcc81c",
+   "text": "주제",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c8fcc81c.mp3",
+    "duration_ms": 672,
+    "bytes": 2925
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c8fcc81c.mp3",
+    "duration_ms": 528,
+    "bytes": 2349
    }
   },
   {
@@ -79757,6 +81707,21 @@
    }
   },
   {
+   "id": "word_c9c0bb38",
+   "text": "지문",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c9c0bb38.mp3",
+    "duration_ms": 744,
+    "bytes": 3213
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c9c0bb38.mp3",
+    "duration_ms": 576,
+    "bytes": 2541
+   }
+  },
+  {
    "id": "word_c9c0bc30d558b2e4",
    "text": "지배하다",
    "kind": "word",
@@ -79982,6 +81947,21 @@
    }
   },
   {
+   "id": "word_c9c0cf1cc8fcb2e4",
+   "text": "지켜주다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c9c0cf1cc8fcb2e4.mp3",
+    "duration_ms": 984,
+    "bytes": 4173
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c9c0cf1cc8fcb2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   }
+  },
+  {
    "id": "word_c9c0d0a4b2e4",
    "text": "지키다",
    "kind": "word",
@@ -80009,6 +81989,21 @@
     "src": "audio/vocabulary/male/word_c9c0d558.mp3",
     "duration_ms": 552,
     "bytes": 2445
+   }
+  },
+  {
+   "id": "word_c9c0d558c2e4",
+   "text": "지하실",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c9c0d558c2e4.mp3",
+    "duration_ms": 984,
+    "bytes": 4173
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c9c0d558c2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
    }
   },
   {
@@ -80384,6 +82379,21 @@
     "src": "audio/vocabulary/male/word_c9d1c5b4b123b2e4.mp3",
     "duration_ms": 912,
     "bytes": 3885
+   }
+  },
+  {
+   "id": "word_c9d1c5b4b4e4b2e4",
+   "text": "집어들다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_c9d1c5b4b4e4b2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_c9d1c5b4b4e4b2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
    }
   },
   {
@@ -81767,6 +83777,21 @@
    }
   },
   {
+   "id": "word_cd08c870d558b2e4",
+   "text": "초조하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_cd08c870d558b2e4.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_cd08c870d558b2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   }
+  },
+  {
    "id": "word_cd08cf5cb9bf",
    "text": "초콜릿",
    "kind": "word",
@@ -82817,6 +84842,21 @@
    }
   },
   {
+   "id": "word_cf54b07cb9ac",
+   "text": "코끼리",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_cf54b07cb9ac.mp3",
+    "duration_ms": 840,
+    "bytes": 3597
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_cf54b07cb9ac.mp3",
+    "duration_ms": 648,
+    "bytes": 2829
+   }
+  },
+  {
    "id": "word_cf54b108",
    "text": "코너",
    "kind": "word",
@@ -83162,6 +85202,21 @@
    }
   },
   {
+   "id": "word_d0dcc6ccc8fcb2e4",
+   "text": "태워주다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d0dcc6ccc8fcb2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d0dcc6ccc8fcb2e4.mp3",
+    "duration_ms": 768,
+    "bytes": 3309
+   }
+  },
+  {
    "id": "word_d0ddc2dc",
    "text": "택시",
    "kind": "word",
@@ -83174,6 +85229,21 @@
     "src": "audio/vocabulary/male/word_d0ddc2dc.mp3",
     "duration_ms": 624,
     "bytes": 2733
+   }
+  },
+  {
+   "id": "word_d130b110",
+   "text": "터널",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d130b110.mp3",
+    "duration_ms": 720,
+    "bytes": 3117
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d130b110.mp3",
+    "duration_ms": 552,
+    "bytes": 2445
    }
   },
   {
@@ -84164,6 +86234,21 @@
     "src": "audio/vocabulary/male/word_d3c9d654b86db2e4.mp3",
     "duration_ms": 888,
     "bytes": 3789
+   }
+  },
+  {
+   "id": "word_d3ecadfcd558b2e4",
+   "text": "포근하다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d3ecadfcd558b2e4.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d3ecadfcd558b2e4.mp3",
+    "duration_ms": 816,
+    "bytes": 3501
    }
   },
   {
@@ -85787,6 +87872,21 @@
    }
   },
   {
+   "id": "word_d604ae08",
+   "text": "현금",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d604ae08.mp3",
+    "duration_ms": 864,
+    "bytes": 3693
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d604ae08.mp3",
+    "duration_ms": 648,
+    "bytes": 2829
+   }
+  },
+  {
    "id": "word_d604ba85d558b2e4",
    "text": "현명하다",
    "kind": "word",
@@ -86204,6 +88304,21 @@
     "src": "audio/vocabulary/male/word_d654ba74.mp3",
     "duration_ms": 552,
     "bytes": 2445
+   }
+  },
+  {
+   "id": "word_d654c0b4",
+   "text": "화살",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d654c0b4.mp3",
+    "duration_ms": 696,
+    "bytes": 3021
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d654c0b4.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
    }
   },
   {
@@ -86672,6 +88787,21 @@
    }
   },
   {
+   "id": "word_d6d1c5b4bcf4b2e4",
+   "text": "훑어보다",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d6d1c5b4bcf4b2e4.mp3",
+    "duration_ms": 1008,
+    "bytes": 4269
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d6d1c5b4bcf4b2e4.mp3",
+    "duration_ms": 936,
+    "bytes": 3981
+   }
+  },
+  {
    "id": "word_d6d4ce58b2e4",
    "text": "훔치다",
    "kind": "word",
@@ -86777,6 +88907,21 @@
    }
   },
   {
+   "id": "word_d734c2dd",
+   "text": "휴식",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d734c2dd.mp3",
+    "duration_ms": 624,
+    "bytes": 2733
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d734c2dd.mp3",
+    "duration_ms": 600,
+    "bytes": 2637
+   }
+  },
+  {
    "id": "word_d749b0b4b0b4b2e4",
    "text": "흉내내다",
    "kind": "word",
@@ -86864,6 +89009,21 @@
     "src": "audio/vocabulary/male/word_d754c801.mp3",
     "duration_ms": 528,
     "bytes": 2349
+   }
+  },
+  {
+   "id": "word_d754cf8cd788",
+   "text": "흔쾌히",
+   "kind": "word",
+   "female": {
+    "src": "audio/vocabulary/female/word_d754cf8cd788.mp3",
+    "duration_ms": 912,
+    "bytes": 3885
+   },
+   "male": {
+    "src": "audio/vocabulary/male/word_d754cf8cd788.mp3",
+    "duration_ms": 744,
+    "bytes": 3213
    }
   },
   {

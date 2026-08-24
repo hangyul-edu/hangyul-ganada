@@ -50,3 +50,4 @@ content-cache/
 # appear whenever the brand PNGs are copied in from Windows and are not part
 # of the product.
 *Zone.Identifier
+.walk-shots/
