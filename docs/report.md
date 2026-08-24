@@ -77,7 +77,7 @@ exactly that.
 
 | | |
 | --- | --- |
-| Commit | `8e72a50f` |
+| Commit | `622b29f5` |
 | Working tree | clean outside `docs/` and the release directories |
 | Node | v24.19.0 |
 | Web | React 19, Vite 7, TypeScript |
@@ -106,8 +106,8 @@ exactly that.
 | Curriculum units | 12 |
 | Lessons | 15 |
 | Audio clips | 11,916 |
-| Signed APK | 76.0 MB |
-| Signed AAB | 74.6 MB |
+| Signed APK | 80.6 MB |
+| Signed AAB | 79.0 MB |
 | Vocabulary levels populated | 30 of 30 |
 | Level anchors held | 162 |
 | Words with a pronunciation note | 699 |
