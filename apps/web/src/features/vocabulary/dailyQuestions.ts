@@ -185,6 +185,36 @@ export function buildDailyQuestions(
       continue;
     }
 
+    /*
+     * The step that was planned, or spelling, or nothing.
+     *
+     * A word can fail to produce its planned question for two quite different
+     * reasons, and only one of them is a reason to say nothing about the word.
+     *
+     * The corpus reason: 빵을 ___어요 has no valid gap-fill, because more than
+     * one of its options fits the frame. That word genuinely cannot be asked
+     * *that* way and the frame is refused at build time — see `data/cloze.ts`.
+     *
+     * The **language** reason, which is the one this fallback is for: a learner
+     * whose interface is Hindi has meanings for a hundred of the 2,916 taught
+     * words, `strictMeaning` correctly refuses to mix languages in one question,
+     * and so `meaning`, `produce` and `match` cannot be built for the other
+     * 2,816. Combined with a gap-fill the corpus also refused, a level-1 sitting
+     * in Hindi came out as **ten introduction cards and no questions at all** —
+     * the session-complete card said *0 शब्द सीखा*, zero words learned, which is
+     * exactly what had happened.
+     *
+     * `build` is the answer, and it is a better one than a patch. Assembling
+     * 학교 from 학, 교 and two decoy syllables needs no translation, no example
+     * sentence and no distractor pool: it is a question about Korean spelling,
+     * asked in Korean, and the twenty-two partial locales can have it today
+     * rather than when their packs are written. It is already one of the steps
+     * a familiar word owes, so nothing new is introduced — it is offered
+     * earlier, to the learners who would otherwise be asked nothing.
+     *
+     * Order matters. The planned step is tried first and always wins, so no
+     * learner in a complete language sees a different sitting because of this.
+     */
     const spec = STEP_EXERCISE[scheduled.step];
     const exercise = buildExercise(
       {
@@ -209,14 +239,34 @@ export function buildDailyQuestions(
       index + 1,
       label,
     );
-    if (!exercise) continue;
+    const fallback =
+      exercise ??
+      (scheduled.step === 'build'
+        ? null
+        : buildExercise(
+            {
+              kind: 'word',
+              itemKey: word.id,
+              skill: STEP_EXERCISE.build.skill,
+              mode: STEP_EXERCISE.build.mode,
+              priority: 0,
+              recall: 0,
+              partner: null,
+              intervene: false,
+              need: 'due',
+            },
+            meaningOf,
+            index + 1,
+            label,
+          ));
+    if (!fallback) continue;
 
     out.push({
       word,
-      step: scheduled.step,
+      step: fallback.mode === 'build' ? 'build' : scheduled.step,
       completesWord: scheduled.completesWord,
       completes: scheduled.completes,
-      exercise,
+      exercise: fallback,
     });
   }
 
