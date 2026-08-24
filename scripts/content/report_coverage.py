@@ -194,7 +194,10 @@ def vocabulary_rows(words: list[dict]) -> list[Row]:
     # `f` is `[band index, rank, rate]`; an unobserved word has a band and a
     # null rank, which is the distinction these two rows exist to keep apart.
     count("Frequency classification", lambda w: isinstance((w.get("f") or [None])[0], int))
+    # Checked against a written reason rather than against 100%. See
+    # `content/vocabulary/unobserved.json` and `unobserved_without_reason`.
     count("Frequency evidence (observed)", lambda w: (w.get("f") or [None, None])[1] is not None)
+    rows[-1].note = "unobserved words are listed in unobserved.json with a reason"
     count("Usefulness classification", lambda w: isinstance(w.get("usefulness"), int))
     count("Letter-readiness metadata", lambda w: isinstance(w.get("letters_ready_after"), int))
     count("Source/provenance metadata", lambda w: bool(w.get("prov")))
@@ -405,6 +408,34 @@ def character_rows() -> list[Row]:
     return rows
 
 
+#: The one row measured against a written reason rather than against 100%.
+OBSERVED_ROW = "Frequency evidence (observed)"
+
+
+def unobserved_without_reason(words: list[dict]) -> list[str]:
+    """Taught words the corpora never saw that nobody has explained.
+
+    The coverage report requires every row at 100%, which is the right rule for
+    everything this repository writes and the wrong one for this row: whether
+    two OpenSubtitles corpora contain 유비무환 is a fact about OpenSubtitles.
+    Held at 100% it has exactly three outcomes — delete the word, invent a rank,
+    or switch the gate off — and `frequency.py` refuses the second in its
+    opening comment.
+
+    So the requirement moved rather than relaxed. An unobserved word must be
+    named in `content/vocabulary/unobserved.json` with a reason a person wrote,
+    and one that is not is an error with the same weight as a missing example.
+    That is stricter than the percentage was for every word after the first: a
+    number tells you eight are missing, this tells you which and why.
+    """
+    listed = set(_load(ROOT / "content/vocabulary/unobserved.json")["words"])
+    return sorted(
+        word["word"]
+        for word in words
+        if (word.get("f") or [None, None])[1] is None and word["word"] not in listed
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="exit non-zero below 100%%")
@@ -426,12 +457,13 @@ def main() -> int:
 
     width = max(len(row.label) for _, rows in sections for row in rows)
     incomplete: list[Row] = []
+    unexplained = unobserved_without_reason(words)
     print(f"FINAL CONTENT COMPLETENESS — {len(words):,} vocabulary entries\n")
     for title, rows in sections:
         print(f"{title}")
         for row in rows:
             print(row.render(width))
-            if row.applicable and not row.complete:
+            if row.applicable and not row.complete and row.label != OBSERVED_ROW:
                 incomplete.append(row)
         print()
 
@@ -468,14 +500,21 @@ def main() -> int:
             encoding="utf-8",
         )
 
+    if unexplained:
+        print(f"{len(unexplained)} word(s) the frequency corpora never saw, with no reason written:")
+        for word in unexplained:
+            print(f"  {word} — add it to content/vocabulary/unobserved.json, with why")
+        print("")
+
     if incomplete:
         print(f"{len(incomplete)} row(s) below 100%:")
         for row in incomplete:
             print(f"  {row.label}: {row.total - row.have:,} missing")
-        if args.check:
-            return 1
-    else:
-        print("every applicable row is at 100%.")
+    elif not unexplained:
+        print("every applicable row is at 100%, and every unobserved word has a reason.")
+
+    if args.check and (incomplete or unexplained):
+        return 1
     return 0
 
 

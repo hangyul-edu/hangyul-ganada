@@ -234,6 +234,28 @@ def stated_relations(scope: str) -> dict[str, list[str]]:
     return found
 
 
+#: See `content/vocabulary/relation-headings.json` for what this is and is not.
+READ_INSTEAD = {
+    word: value["heading"]
+    for word, value in json.loads(
+        (ROOT / "content/vocabulary/relation-headings.json").read_text(encoding="utf-8")
+    )["readInstead"].items()
+}
+
+
+def heading_for(word: str, taught_pos: str) -> str:
+    """Which part-of-speech block to read for this word.
+
+    The taught part of speech, except for the handful of words where the wiki
+    files the app's own sense under a different heading. Scoping by part of
+    speech is what stops a homograph's relations leaking in, and it costs four
+    true pairs to do it — those four are named in the file rather than recovered
+    by a rule, because no rule distinguishes "the wiki filed this wrongly" from
+    "these are two different words".
+    """
+    return READ_INSTEAD.get(word, taught_pos)
+
+
 def corpus() -> tuple[dict[str, dict], dict[str, str]]:
     """Headword → the shipping entry, and headword → the meaning the app teaches.
 
@@ -276,7 +298,8 @@ def main() -> int:
         entry = words.get(word)
         if entry is None:
             continue
-        block = pos_block(korean_section(row["wikitext"]), entry["part_of_speech"])
+        section = korean_section(row["wikitext"])
+        block = pos_block(section, heading_for(word, entry["part_of_speech"]))
         if not block:
             continue
         # A headword the wiki splits into homographs contributes nothing unless

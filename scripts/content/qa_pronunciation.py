@@ -768,6 +768,13 @@ def check_compounds(report: Report) -> None:
         # over rather than neutralising: 쪼차오다 and 찌저지다, which is what the
         # rules derive.
         "쫓아오다", "찢어지다",
+        # Batch 4, and the same judgement again. 훑어보다 is 훑- plus the
+        # connective -어, so the cluster's second consonant carries over to the
+        # next syllable rather than neutralising: 훌터보다 (표준발음법 §14).
+        # 벗어나다 is 벗- plus -어, so the ㅅ carries over as ㅅ: 버서나다. Both
+        # are endings, not the start of a second word, and the rules derive
+        # exactly that — this set records that somebody read them and agreed.
+        "훑어보다", "벗어나다",
         "만약", "만일", "큰일", "별일", "나뭇잎",
     }
     known = set(_IRREGULAR) | reviewed

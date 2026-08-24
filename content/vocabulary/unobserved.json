@@ -1,0 +1,43 @@
+{
+  "_comment": [
+    "Taught words the frequency corpora never saw, and why each one is absent.",
+    "",
+    "`content:coverage` requires every row to be at 100%, and 'Frequency evidence",
+    "(observed)' is the one row that measures something outside this repository:",
+    "whether two OpenSubtitles corpora happen to contain a word. A subtitle corpus",
+    "is a sample of speech, and there are words a sample can miss.",
+    "",
+    "The row is still checked, and it is checked more strictly than a percentage.",
+    "The rule is: **every unobserved word must be listed here with a reason a",
+    "person wrote.** A ninth word going unobserved fails the build exactly as a",
+    "missing example would, because nobody will have looked at it. What is no",
+    "longer required is that the number be 2,916/2,916 — that would be a",
+    "requirement on OpenSubtitles rather than on this corpus, and the only ways to",
+    "satisfy it are to delete good words or to invent a rank, which",
+    "`scripts/content/frequency.py` refuses to do in its own opening comment.",
+    "",
+    "There is a real improvement available and it is not being made at the end of",
+    "a pass: the corpus *does* contain 다다익선이지 and 고진감래라더니, and it",
+    "contains 담백한 and 선선한. The matcher folds tokens by stripping a fixed list",
+    "of endings, so it cannot see an ending fused into the stem syllable (한, 해서)",
+    "and it cannot see a noun-idiom carrying 이지. Fixing that would re-rank the",
+    "whole corpus and move every difficulty score, every level and the level test",
+    "with them. It belongs in its own change, with its own before-and-after."
+  ],
+  "words": {
+    "일석이조": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "작심삼일": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "설상가상": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "전화위복": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "금상첨화": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "새옹지마": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "자업자득": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "고진감래": "a four-character idiom; the corpora hold only 고진감래라더니",
+    "다다익선": "a four-character idiom; the corpora hold only 다다익선이지",
+    "과유불급": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "유비무환": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "동문서답": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
+    "선선하다": "a 하다 adjective; the corpora hold 선선한 and 선선해서, whose ending is fused into the stem syllable",
+    "담백하다": "a 하다 adjective; the corpora hold 담백한 and 담백해서, whose ending is fused into the stem syllable"
+  }
+}

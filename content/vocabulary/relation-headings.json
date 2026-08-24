@@ -1,0 +1,45 @@
+{
+  "_comment": [
+    "Words whose relations ko.wiktionary files under the wrong part of speech.",
+    "",
+    "`build_relations.py` scopes a page to the heading matching how this app",
+    "teaches the word, and that scoping is what stops 쪼다 the verb inheriting",
+    "쪼다 the insult's 유의어 바보, and 만세 the cheer inheriting 만세 the noun's",
+    "노년 · 늘그막 · 만년. Twenty-nine taught words have relations stated under a",
+    "heading other than their own, and twenty-five of them are that case: a",
+    "homograph, correctly ignored.",
+    "",
+    "The four here are the other case. The word is the same word, the relations",
+    "are the ones a Korean speaker would give, and the wiki filed them under a",
+    "heading this app does not use for it. 밝다 is the clearest: the page's",
+    "*유의어: 환하다 / *반의어: 어둡다 sit in the 동사 block, whose sense is 해가",
+    "떠올라 날이 새다 — 'to dawn'. 밝다 as taught here is 빛이 많아 환하다, which",
+    "is the 형용사 block, and 어둡다 is its opposite in either reading.",
+    "",
+    "Each entry names the heading to read instead, and says why. Nothing else",
+    "changes: the relation still has to be stated on the page, still has to be",
+    "mutual, and still has to point at a word this app ships. This file widens",
+    "*where the parser looks*, never what counts as a relation.",
+    "",
+    "Adding to it should be rare and should always mean 'the wiki is wrong about",
+    "the part of speech', never 'I would like this pair to appear'."
+  ],
+  "readInstead": {
+    "밝다": {
+      "heading": "verb",
+      "why": "the 형용사 block carries the taught sense and no relations; 환하다 and 어둡다 are stated in the 동사 block and hold for both readings"
+    },
+    "잘생기다": {
+      "heading": "verb",
+      "why": "표준국어대사전 files 잘생기다 as a verb and this app teaches it as an adjective; 못생기다 is its opposite either way"
+    },
+    "잘나다": {
+      "heading": "verb",
+      "why": "the same split as 잘생기다 — filed 동사 on the wiki, taught here as a description"
+    },
+    "신선하다": {
+      "heading": "verb",
+      "why": "a 하다 descriptive the wiki put under 동사; the taught sense is the one the block defines"
+    }
+  }
+}

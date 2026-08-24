@@ -445,8 +445,14 @@ _FUTURE = ("ㄹ 거", "을 거", "ㄹ게", "을게", "겠어", "겠습니", "ㄹ
 #: ordinary affirmative predicate — 배터리가 없어요 is "the battery is dead" —
 #: so counting it as negation makes the polarity rule fire on correct
 #: translations.
+#: `지 마` needs an ending after it, for the same reason 안 needs a boundary
+#: before it. Written bare it matches inside 새옹지마 — a four-syllable idiom
+#: about the unpredictability of fortune, reported as a grammatically negative
+#: sentence whose English translation had failed to be negative. The prohibitive
+#: is a verb ending, so it is followed by a sentence ending or by nothing.
 _NEGATION_RE = re.compile(
-    r"(?:^|[\s,])(?:안|못)\s|지\s?않|지\s?못|아니에|아닙니|아니야|지\s?마|말고"
+    r"(?:^|[\s,])(?:안|못)\s|지\s?않|지\s?못|아니에|아닙니|아니야"
+    r"|지\s?마(?:세요|요|라|십시오)?(?=[\s.,!?]|$)|말고"
 )
 _IMPERATIVE = ("세요", "십시오", "아라", "어라", "지 마", "ㅂ시다", "읍시다")
 #: What a 해요체 or 합쇼체 sentence ends in. `니다` rather than `습니다`,
