@@ -106,8 +106,8 @@ exactly that.
 | Curriculum units | 12 |
 | Lessons | 15 |
 | Audio clips | 11,916 |
-| Signed APK | 80.6 MB |
-| Signed AAB | 79.0 MB |
+| Signed APK | 76.8 MB |
+| Signed AAB | 75.3 MB |
 | Vocabulary levels populated | 30 of 30 |
 | Level anchors held | 162 |
 | Words with a pronunciation note | 699 |
