@@ -113,13 +113,46 @@ export type WordStep =
    */
   | 'match';
 
+/**
+ * The day, as it is stored.
+ *
+ * ## What `completed` means, and why there is no migration for the change
+ *
+ * §60. `completed` used to mean *the learner pressed past this word's last
+ * step* and now means *the learner answered this word correctly*. That is a
+ * change of meaning in a persisted field, which is normally the definition of
+ * something needing a numbered migration in `storage/schema.ts`. There is none,
+ * deliberately, and the reasoning is worth writing down because "we forgot" and
+ * "we decided" look identical in a diff.
+ *
+ * **The shape did not change.** Both meanings are a list of word ids. Nothing
+ * stored by the old build is unreadable by the new one, so `isReadablePlan` in
+ * `storage/repositories.ts` accepts it and no data is lost.
+ *
+ * **The exposure is one day, and it is self-clearing.** `planIsCurrent` rejects
+ * any plan whose `date` is not today, and `LearnerProvider` then builds a fresh
+ * one. So the only learner affected is one who updates the app *during* a
+ * session they have already partly done: the words they had pressed past stay
+ * credited, as they were a moment before the update. Tomorrow the field means
+ * only what it now means, for everybody, with no code left behind to explain.
+ *
+ * **The alternative is worse.** A migration that cleared `completed` would take
+ * a learner who had genuinely answered six words this morning back to zero, to
+ * correct a number that was at worst generous for a few hours. Discarding real
+ * work to fix an estimate is not a trade a learner would choose.
+ *
+ * A migration *would* be needed if the field had grown a member the old build
+ * writes wrongly — say a per-word `{ id, correct }` — and that is the line: a
+ * new shape needs a migration, a new meaning for the same shape needs a reason
+ * not to have one. This is the reason.
+ */
 export interface DailyPlan {
   /** The local calendar day this plan is for. */
   date: string;
   /** The goal in force when it was built. A mid-day change does not rewrite it. */
   goal: number;
   words: PlannedWord[];
-  /** Word ids finished today, in the order they were finished. */
+  /** Word ids **answered correctly** today, in the order they were finished. */
   completed: string[];
 }
 
@@ -692,6 +725,36 @@ export function retrySteps(
         completes: [word.wordId],
       };
     });
+}
+
+/**
+ * Whether answering this step ends the session.
+ *
+ * Asked of the obligations, never of the position in a list. `index + 1 >=
+ * queue.length` was the whole test once, and it is wrong the moment a wrong
+ * answer can put a word back: a learner at 9 / 10 who answers the last unseen
+ * word *wrong* is on the last item of the current queue, so the button read
+ * 마치기 while the word was being requeued and the session was continuing.
+ * Nine done, one owed, and a button offering to finish.
+ *
+ * So it asks what the caller is about to do — credit this answer if it was
+ * right — and then what the plan still owes. Only when nothing is owed and
+ * nothing is left in the queue is this the end.
+ *
+ * @param plan          the day, as it stands before this answer is credited
+ * @param missed        which step each word has already got wrong
+ * @param stepsAfter    how many queued steps follow this one
+ * @param creditedNow   word ids this answer completes, or none if it was wrong
+ */
+export function endsSession(
+  plan: DailyPlan,
+  missed: ReadonlyMap<string, WordStep>,
+  stepsAfter: number,
+  creditedNow: readonly string[] = [],
+): boolean {
+  if (stepsAfter > 0) return false;
+  const after = { ...plan, completed: [...plan.completed, ...creditedNow] };
+  return retrySteps(after, missed).length === 0;
 }
 
 export interface DayProgress {

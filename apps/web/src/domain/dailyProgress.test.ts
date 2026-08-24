@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 
-import { dayProgress, retrySteps, scheduleSteps, type DailyPlan } from './vocabularyDay';
+import {
+  dayProgress,
+  endsSession,
+  planIsCurrent,
+  retrySteps,
+  scheduleSteps,
+  sessionProgress,
+  type DailyPlan,
+  type WordStep,
+} from './vocabularyDay';
 
 /**
  * What moves the progress bar, and what does not.
@@ -123,5 +132,87 @@ describe("today's vocabulary progress", () => {
   it('never counts a word twice, however often it is completed', () => {
     const day = plan(5, ['a', 'b', 'c', 'd', 'e'], ['a', 'a', 'a']);
     expect(dayProgress(day).done).toBe(1);
+  });
+});
+
+/**
+ * The one day a plan written by the previous build is still readable.
+ *
+ * §60. `completed` changed meaning without changing shape, so there is no
+ * migration; what bounds the exposure is that a plan is only ever run on its
+ * own calendar day. This holds that bound, because if `planIsCurrent` ever
+ * stopped checking the date the missing migration would become a real one.
+ */
+describe('a plan from before the change', () => {
+  it('is dropped tomorrow, whatever it credited today', () => {
+    const day = plan(10, ['a', 'b'], ['a']);
+    const today = new Date(`${day.date}T09:00:00`);
+    expect(planIsCurrent(day, today)).toBe(true);
+    expect(planIsCurrent(day, new Date(today.getTime() + 86_400_000))).toBe(false);
+  });
+});
+
+/**
+ * Two numbers, photographed disagreeing.
+ *
+ * The header counted the day and the bar under it counted the session, and on a
+ * day the learner had extended they were 10 and 15 — the screen said `10 / 10`
+ * over a bar a third empty. They are genuinely different questions and both are
+ * worth asking; what was wrong was asking them in the same sentence.
+ */
+describe('the session bar and the day bar', () => {
+  it('H — a fifteen-word session against a ten-word goal reads 0 / 15, not 0 / 10', () => {
+    const ids = Array.from({ length: 15 }, (_, n) => `w${n}`);
+    const day = plan(10, ids);
+    expect(sessionProgress(day).total).toBe(15);
+    expect(dayProgress(day).total).toBe(10);
+  });
+
+  it('I — five extra words do not appear as five extra out of ten', () => {
+    // The photographed case: a ten-word day extended by five, five of them done.
+    const ids = Array.from({ length: 15 }, (_, n) => `w${n}`);
+    const done = ids.slice(0, 5);
+    const day = plan(10, ids, done);
+    expect(sessionProgress(day)).toMatchObject({ done: 5, total: 15, percent: 33 });
+    expect(dayProgress(day)).toMatchObject({ done: 5, total: 10, percent: 50 });
+  });
+});
+
+/**
+ * When the button says 마치기.
+ *
+ * §53. Photographed at 9 / 10: the last unseen word answered wrong, the retry
+ * already scheduled, and a button offering to finish. The rule is that the end
+ * of the queue is not the end of the session while the plan is still owed a
+ * word — and that is a question about obligations, so `endsSession` asks the
+ * obligations.
+ */
+describe('whether this is the last question', () => {
+  const missed = (entries: [string, WordStep][] = []) => new Map<string, WordStep>(entries);
+
+  it('J — mid-queue is never the end', () => {
+    const day = plan(2, ['a', 'b']);
+    expect(endsSession(day, missed(), 3, [])).toBe(false);
+  });
+
+  it('K — the last queued step, answered wrong, is not the end', () => {
+    // Nine of ten done, on the tenth, and it was wrong: the word is owed again.
+    const ids = Array.from({ length: 10 }, (_, n) => `w${n}`);
+    const day = plan(10, ids, ids.slice(0, 9));
+    expect(endsSession(day, missed([['w9', 'meaning']]), 0, [])).toBe(false);
+  });
+
+  it('L — the same step answered right is the end', () => {
+    const ids = Array.from({ length: 10 }, (_, n) => `w${n}`);
+    const day = plan(10, ids, ids.slice(0, 9));
+    expect(endsSession(day, missed(), 0, ['w9'])).toBe(true);
+  });
+
+  it('M — a word owed from earlier keeps the session open', () => {
+    // The learner got w3 wrong at question four and has now answered the last
+    // queued step correctly. w3 is still owed, so this is not the end.
+    const ids = Array.from({ length: 10 }, (_, n) => `w${n}`);
+    const day = plan(10, ids, ids.filter((id) => id !== 'w3' && id !== 'w9'));
+    expect(endsSession(day, missed([['w3', 'meaning']]), 0, ['w9'])).toBe(false);
   });
 });

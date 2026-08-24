@@ -7,7 +7,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { usePronunciation } from '../audio/PronunciationContext';
 import { strictMeaning, type wordCopy } from '../data/wordCopy';
 import { getFont, textFamily } from '../data/fonts';
-import { retrySteps, scheduleSteps, sessionProgress, type WordStep } from '../domain/vocabularyDay';
+import { endsSession, retrySteps, scheduleSteps, sessionProgress, type WordStep } from '../domain/vocabularyDay';
 import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { WordIntro } from '../features/learning/WordIntro';
@@ -244,15 +244,16 @@ export function WordSessionPage() {
    * right, then look at what the plan still owes. Only when nothing is owed and
    * nothing is left in the queue is this genuinely the end.
    */
-  const isLast = useMemo(() => {
-    if (index + 1 < queue.length) return false;
-    const creditedNow = answeredCorrectly === true ? (current?.completes ?? []) : [];
-    const owed = retrySteps(
-      { ...vocabularyDay, completed: [...vocabularyDay.completed, ...creditedNow] },
-      missed.current,
-    );
-    return owed.length === 0;
-  }, [index, queue.length, answeredCorrectly, current, vocabularyDay]);
+  const isLast = useMemo(
+    () =>
+      endsSession(
+        vocabularyDay,
+        missed.current,
+        queue.length - index - 1,
+        answeredCorrectly === true ? (current?.completes ?? []) : [],
+      ),
+    [index, queue.length, answeredCorrectly, current, vocabularyDay],
+  );
 
   // The next two words' clips, while the learner is still on this one.
   useEffect(() => {
