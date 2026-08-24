@@ -17,10 +17,10 @@
     "antonym"
   ],
   "counts": {
-    "words_with_relations": 245,
+    "words_with_relations": 252,
     "synonym_pairs": 72,
-    "antonym_pairs": 65,
-    "corpus_words": 2844
+    "antonym_pairs": 69,
+    "corpus_words": 2916
   },
   "pages": {
     "word_gage": "https://ko.wiktionary.org/wiki/%EA%B0%80%EA%B2%8C",
@@ -41,6 +41,7 @@
     "word_garikida": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%A6%AC%ED%82%A4%EB%8B%A4",
     "word_gaman": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%A7%8C",
     "word_gamanduda": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%A7%8C%EB%91%90%EB%8B%A4",
+    "word_gamanitda": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%A7%8C%EC%9E%88%EB%8B%A4",
     "word_gamanhi": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%A7%8C%ED%9E%88",
     "word_gamyeon": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%A9%B4",
     "word_gabang": "https://ko.wiktionary.org/wiki/%EA%B0%80%EB%B0%A9",
@@ -296,6 +297,7 @@
     "word_geunde": "https://ko.wiktionary.org/wiki/%EA%B7%BC%EB%8D%B0",
     "word_geunmu": "https://ko.wiktionary.org/wiki/%EA%B7%BC%EB%AC%B4",
     "word_geunmuhada": "https://ko.wiktionary.org/wiki/%EA%B7%BC%EB%AC%B4%ED%95%98%EB%8B%A4",
+    "word_geunsahada": "https://ko.wiktionary.org/wiki/%EA%B7%BC%EC%82%AC%ED%95%98%EB%8B%A4",
     "word_geuncheo": "https://ko.wiktionary.org/wiki/%EA%B7%BC%EC%B2%98",
     "word_geulsseyo": "https://ko.wiktionary.org/wiki/%EA%B8%80%EC%8E%84%EC%9A%94",
     "word_geulssi": "https://ko.wiktionary.org/wiki/%EA%B8%80%EC%94%A8",
@@ -499,10 +501,12 @@
     "word_daman": "https://ko.wiktionary.org/wiki/%EB%8B%A4%EB%A7%8C",
     "word_damulda": "https://ko.wiktionary.org/wiki/%EB%8B%A4%EB%AC%BC%EB%8B%A4",
     "word_daseot": "https://ko.wiktionary.org/wiki/%EB%8B%A4%EC%84%AF",
+    "word_dasi": "https://ko.wiktionary.org/wiki/%EB%8B%A4%EC%8B%9C",
     "word_dajeonghada": "https://ko.wiktionary.org/wiki/%EB%8B%A4%EC%A0%95%ED%95%98%EB%8B%A4",
     "word_dachida": "https://ko.wiktionary.org/wiki/%EB%8B%A4%EC%B9%98%EB%8B%A4",
     "word_datuda": "https://ko.wiktionary.org/wiki/%EB%8B%A4%ED%88%AC%EB%8B%A4",
     "word_dahada": "https://ko.wiktionary.org/wiki/%EB%8B%A4%ED%95%98%EB%8B%A4",
+    "word_dahaenghi": "https://ko.wiktionary.org/wiki/%EB%8B%A4%ED%96%89%ED%9E%88",
     "word_dakchida": "https://ko.wiktionary.org/wiki/%EB%8B%A5%EC%B9%98%EB%8B%A4",
     "word_dandanhada": "https://ko.wiktionary.org/wiki/%EB%8B%A8%EB%8B%A8%ED%95%98%EB%8B%A4",
     "word_dansunhada": "https://ko.wiktionary.org/wiki/%EB%8B%A8%EC%88%9C%ED%95%98%EB%8B%A4",
@@ -656,6 +660,7 @@
     "word_tteottteothada": "https://ko.wiktionary.org/wiki/%EB%96%B3%EB%96%B3%ED%95%98%EB%8B%A4",
     "word_tteda": "https://ko.wiktionary.org/wiki/%EB%96%BC%EB%8B%A4",
     "word_ttoneun": "https://ko.wiktionary.org/wiki/%EB%98%90%EB%8A%94",
+    "word_ttodasi": "https://ko.wiktionary.org/wiki/%EB%98%90%EB%8B%A4%EC%8B%9C",
     "word_ttohan": "https://ko.wiktionary.org/wiki/%EB%98%90%ED%95%9C",
     "word_ttokgatda": "https://ko.wiktionary.org/wiki/%EB%98%91%EA%B0%99%EB%8B%A4",
     "word_ttokgachi": "https://ko.wiktionary.org/wiki/%EB%98%91%EA%B0%99%EC%9D%B4",
@@ -1206,6 +1211,7 @@
     "word_sido": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EB%8F%84",
     "word_sidohada": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EB%8F%84%ED%95%98%EB%8B%A4",
     "word_sidong": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EB%8F%99",
+    "word_sirida": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EB%A6%AC%EB%8B%A4",
     "word_siseutem": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EC%8A%A4%ED%85%9C",
     "word_siwonhada": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EC%9B%90%ED%95%98%EB%8B%A4",
     "word_sijak": "https://ko.wiktionary.org/wiki/%EC%8B%9C%EC%9E%91",
@@ -1254,6 +1260,7 @@
     "word_simjieo": "https://ko.wiktionary.org/wiki/%EC%8B%AC%EC%A7%80%EC%96%B4",
     "word_simhada": "https://ko.wiktionary.org/wiki/%EC%8B%AC%ED%95%98%EB%8B%A4",
     "word_ssaguryeo": "https://ko.wiktionary.org/wiki/%EC%8B%B8%EA%B5%AC%EB%A0%A4",
+    "word_ssada": "https://ko.wiktionary.org/wiki/%EC%8B%B8%EB%8B%A4",
     "word_ssaum": "https://ko.wiktionary.org/wiki/%EC%8B%B8%EC%9B%80",
     "word_ssangdungi": "https://ko.wiktionary.org/wiki/%EC%8C%8D%EB%91%A5%EC%9D%B4",
     "word_ssata": "https://ko.wiktionary.org/wiki/%EC%8C%93%EB%8B%A4",
@@ -1269,7 +1276,6 @@
     "word_sseureojida": "https://ko.wiktionary.org/wiki/%EC%93%B0%EB%9F%AC%EC%A7%80%EB%8B%A4",
     "word_sseuregi": "https://ko.wiktionary.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0",
     "word_sseuregitong": "https://ko.wiktionary.org/wiki/%EC%93%B0%EB%A0%88%EA%B8%B0%ED%86%B5",
-    "word_sseurida": "https://ko.wiktionary.org/wiki/%EC%93%B0%EB%A6%AC%EB%8B%A4",
     "word_sseulda": "https://ko.wiktionary.org/wiki/%EC%93%B8%EB%8B%A4",
     "word_sseuldeeopda": "https://ko.wiktionary.org/wiki/%EC%93%B8%EB%8D%B0%EC%97%86%EB%8B%A4",
     "word_sseulmo": "https://ko.wiktionary.org/wiki/%EC%93%B8%EB%AA%A8",
@@ -1373,6 +1379,7 @@
     "word_eojetbam": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%A0%AF%EB%B0%A4",
     "word_eojjaetdeun": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%A8%8C%EB%93%A0",
     "word_eojjeoda": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%A9%8C%EB%8B%A4",
+    "word_eojjeomyeon": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%A9%8C%EB%A9%B4",
     "word_eojjeonji": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%A9%90%EC%A7%80",
     "word_eojji": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%B0%8C",
     "word_eochapi": "https://ko.wiktionary.org/wiki/%EC%96%B4%EC%B0%A8%ED%94%BC",
@@ -1546,7 +1553,6 @@
     "word_wiheomhada": "https://ko.wiktionary.org/wiki/%EC%9C%84%ED%97%98%ED%95%98%EB%8B%A4",
     "word_wihyeopada": "https://ko.wiktionary.org/wiki/%EC%9C%84%ED%98%91%ED%95%98%EB%8B%A4",
     "word_yuryeong": "https://ko.wiktionary.org/wiki/%EC%9C%A0%EB%A0%B9",
-    "word_yurihada": "https://ko.wiktionary.org/wiki/%EC%9C%A0%EB%A6%AC%ED%95%98%EB%8B%A4",
     "word_yuyonghada": "https://ko.wiktionary.org/wiki/%EC%9C%A0%EC%9A%A9%ED%95%98%EB%8B%A4",
     "word_yuilhada": "https://ko.wiktionary.org/wiki/%EC%9C%A0%EC%9D%BC%ED%95%98%EB%8B%A4",
     "word_yujeonja": "https://ko.wiktionary.org/wiki/%EC%9C%A0%EC%A0%84%EC%9E%90",
@@ -1673,6 +1679,7 @@
     "word_jakpum": "https://ko.wiktionary.org/wiki/%EC%9E%91%ED%92%88",
     "word_jantteuk": "https://ko.wiktionary.org/wiki/%EC%9E%94%EB%9C%A9",
     "word_jallagada": "https://ko.wiktionary.org/wiki/%EC%9E%98%EB%82%98%EA%B0%80%EB%8B%A4",
+    "word_jallada": "https://ko.wiktionary.org/wiki/%EC%9E%98%EB%82%98%EB%8B%A4",
     "word_jalda": "https://ko.wiktionary.org/wiki/%EC%9E%98%EB%8B%A4",
     "word_jaldoeda": "https://ko.wiktionary.org/wiki/%EC%9E%98%EB%90%98%EB%8B%A4",
     "word_jalmot": "https://ko.wiktionary.org/wiki/%EC%9E%98%EB%AA%BB",
@@ -1880,6 +1887,7 @@
     "word_jitda_2": "https://ko.wiktionary.org/wiki/%EC%A7%96%EB%8B%A4",
     "word_jitda_3": "https://ko.wiktionary.org/wiki/%EC%A7%99%EB%8B%A4",
     "word_jipda_2": "https://ko.wiktionary.org/wiki/%EC%A7%9A%EB%8B%A4",
+    "word_jjada": "https://ko.wiktionary.org/wiki/%EC%A7%9C%EB%8B%A4",
     "word_jjajeung": "https://ko.wiktionary.org/wiki/%EC%A7%9C%EC%A6%9D",
     "word_jjoda": "https://ko.wiktionary.org/wiki/%EC%AA%BC%EB%8B%A4",
     "word_jjotgida": "https://ko.wiktionary.org/wiki/%EC%AB%93%EA%B8%B0%EB%8B%A4",
@@ -2331,6 +2339,12 @@
         "word_chada"
       ]
     },
+    "word_bissada": {
+      "synonyms": [],
+      "antonyms": [
+        "word_ssada"
+      ]
+    },
     "word_bokjonghada": {
       "synonyms": [
         "word_ttareuda"
@@ -2676,6 +2690,12 @@
         "word_meolli"
       ]
     },
+    "word_gakkapda": {
+      "synonyms": [],
+      "antonyms": [
+        "word_meolda"
+      ]
+    },
     "word_gamanhi": {
       "synonyms": [
         "word_joyonghi",
@@ -2994,6 +3014,12 @@
       ],
       "antonyms": []
     },
+    "word_jakda": {
+      "synonyms": [],
+      "antonyms": [
+        "word_keuda"
+      ]
+    },
     "word_jalhada": {
       "synonyms": [],
       "antonyms": [
@@ -3136,6 +3162,12 @@
         "word_neureonada"
       ]
     },
+    "word_keuda": {
+      "synonyms": [],
+      "antonyms": [
+        "word_jakda"
+      ]
+    },
     "word_kkaeda": {
       "synonyms": [],
       "antonyms": [
@@ -3217,6 +3249,12 @@
       "antonyms": [
         "word_teullida",
         "word_eogeunnada"
+      ]
+    },
+    "word_meolda": {
+      "synonyms": [],
+      "antonyms": [
+        "word_gakkapda"
       ]
     },
     "word_meolli": {
@@ -3385,6 +3423,12 @@
       ],
       "antonyms": []
     },
+    "word_orae": {
+      "synonyms": [],
+      "antonyms": [
+        "word_ppalli"
+      ]
+    },
     "word_oreuda": {
       "synonyms": [],
       "antonyms": [
@@ -3420,7 +3464,8 @@
         "word_eolleun"
       ],
       "antonyms": [
-        "word_cheoncheonhi"
+        "word_cheoncheonhi",
+        "word_orae"
       ]
     },
     "word_ppareuda": {
@@ -3572,6 +3617,12 @@
         "word_sseuldeeopda"
       ],
       "antonyms": []
+    },
+    "word_ssada": {
+      "synonyms": [],
+      "antonyms": [
+        "word_bissada"
+      ]
     },
     "word_sseuda": {
       "synonyms": [
