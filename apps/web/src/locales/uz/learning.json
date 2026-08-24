@@ -10,8 +10,8 @@
     "badge": "{{index, number}}-bo‘lim",
     "continue": "Tushunarli — boshladik",
     "unit-1": {
-      "title": "Boshlash uchun oltita unli",
-      "goal": "Har bir koreys bo‘g‘iniga unli kerak. Shu oltitasi eng oddiysi.",
+      "title": "Oltita asosiy unli",
+      "goal": "Har bir koreys bo'g'iniga unli kerak. Bu oltitasi eng oson.",
       "body": "Hangul — alifbo, rasmlar to‘plami emas. Unda 40 harf bor, tez o‘rganilsin deb shunday tuzilgan, va hozir siz ulardan oltitasini o‘rganasiz.",
       "points": [
         "Harflar to‘rtburchak kataklarga yig‘iladi, har bir katak bitta bo‘g‘in.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Birinchi undoshlaringiz",
-      "goal": "Beshta undosh. Bilgan unlilaringiz bilan qo‘shsak, allaqachon 30 bo‘g‘in."
+      "title": "Dastlabki beshta undosh",
+      "goal": "Beshta undosh. Bilgan unlilaringiz bilan bu o'ttizta bo'g'in."
     },
     "unit-3": {
-      "title": "Birlashtiramiz",
-      "goal": "Undosh va unli qo‘shilsa, o‘qiy oladigan katak chiqadi.",
+      "title": "Bo'g'in tuzish",
+      "goal": "Undosh bilan unlini bitta kvadratga qo'ying va hosil bo'lgan bo'g'inni o'qing.",
       "body": "Koreys bo‘g‘ini bitta to‘rtburchak sifatida yoziladi. Undosh oldin keladi — tik unli bilan chapda, yotiq unli bilan tepada.",
       "points": [
         "Tik unli (ㅏ ㅓ ㅣ) undoshning o‘ng tomonida turadi.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Yana beshta undosh",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — oddiy qatorning qolgani."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — qolgan oddiy undoshlar."
     },
     "unit-5": {
-      "title": "Yana kataklarni o‘qiymiz",
-      "goal": "Umuman tovush bermaydigan yagona harf ham shular qatorida."
+      "title": "Yangi bo'g'inlarni o'qish",
+      "goal": "Yangi undoshlar bilan bo'g'in o'qing, ovozsiz ㅇ ham bor."
     },
     "unit-6": {
-      "title": "Y tovushini qo‘shish",
-      "goal": "Bitta qo‘shimcha chiziq ㅏ ni ㅑ ga aylantiradi. To‘rtalasida ham shu qoida."
+      "title": "ㅑ ㅕ ㅛ ㅠ unlilari",
+      "goal": "ㅑ ㅕ ㅛ ㅠ shakli ㅏ ㅓ ㅗ ㅜ ga o'xshaydi. Tovushlarni solishtirib o'rganing."
     },
     "unit-7": {
-      "title": "Bir puf havo",
-      "goal": "ㅊ ㅋ ㅌ ㅍ — siz biladigan harflar, bitta chiziq qo‘shilgani."
+      "title": "Nafasli undoshlar ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Kuchli nafas bilan aytiladigan to'rtta undosh."
     },
     "unit-8": {
-      "title": "E-unlilar",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — ㅣ qo‘shish orqali hosil bo‘lgan unlilar."
+      "title": "ㅐ ㅔ ㅒ ㅖ unlilari",
+      "goal": "Yana to'rtta unli va ularning tovushini ajratish."
     },
     "unit-9": {
-      "title": "Ikkilangan va tarang",
-      "goal": "Ikki marta yoziladigan va taranglashib aytiladigan beshta harf."
+      "title": "Zich undoshlar ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Ikki marta yoziladigan va qattiqroq aytiladigan beshta undosh."
     },
     "unit-10": {
-      "title": "V-unlilar",
-      "goal": "Ikki unli bittadek yozilgan. 40 harfning oxirgilari."
+      "title": "Qo'shma unlilar",
+      "goal": "Ikki unlidan tuzilgan unlilar. Qirq harfning oxirgisi."
     },
     "unit-11": {
-      "title": "Ostda bir harf",
-      "goal": "받침 — bo‘g‘inni yopadigan undosh.",
+      "title": "Oxirgi undosh: 받침",
+      "goal": "Bo'g'in ostiga tushadigan undosh.",
       "body": "Katakka qolgan ikkitasining ostiga uchinchi harf ham sig‘adi. Uning nomi 받침, u bo‘g‘inni yopadi.",
       "points": [
         "Uchinchi harf har doim to‘rtburchakning eng ostiga tushadi.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "한글 ni o‘qish",
-      "goal": "Endi har bir harfni bilasiz. Yozuv tizimining o‘z nomini o‘qing."
+      "title": "Koreys so'zlarini o'qish",
+      "goal": "O'rgangan hamma narsangiz bilan haqiqiy koreys so'zlarini o'qing."
     }
   },
   "intro": {

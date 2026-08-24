@@ -10,7 +10,7 @@
     "badge": "Deel {{index, number}}",
     "continue": "Duidelijk — we gaan",
     "unit-1": {
-      "title": "Zes klinkers om te beginnen",
+      "title": "De zes basisklinkers",
       "goal": "Elke Koreaanse lettergreep heeft een klinker nodig. Deze zes zijn de eenvoudigste.",
       "body": "Hangul is een alfabet, geen verzameling plaatjes. Er zijn 40 letters, ze zijn ontworpen om snel te leren, en je gaat er nu zes leren.",
       "points": [
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Je eerste medeklinkers",
-      "goal": "Vijf medeklinkers. Met de klinkers die je kent zijn dat al 30 lettergrepen."
+      "title": "De eerste vijf medeklinkers",
+      "goal": "Vijf medeklinkers. Met de klinkers die je kent zijn dat dertig lettergrepen."
     },
     "unit-3": {
-      "title": "Alles bij elkaar",
-      "goal": "Medeklinker plus klinker maakt een blok dat je kunt lezen.",
+      "title": "Een lettergreep bouwen",
+      "goal": "Zet een medeklinker en een klinker in één vierkant en lees de lettergreep.",
       "body": "Een Koreaanse lettergreep wordt als één vierkant geschreven. De medeklinker komt eerst — links bij een staande klinker, bovenaan bij een liggende.",
       "points": [
         "Een staande klinker (ㅏ ㅓ ㅣ) staat rechts van de medeklinker.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Nog vijf medeklinkers",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — de rest van de gewone reeks."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — de rest van de gewone medeklinkers."
     },
     "unit-5": {
-      "title": "Meer blokken lezen",
-      "goal": "Inclusief die ene letter die helemaal geen klank heeft."
+      "title": "Nieuwe lettergrepen lezen",
+      "goal": "Lees lettergrepen met de nieuwe medeklinkers, ook de ㅇ die geen klank heeft."
     },
     "unit-6": {
-      "title": "Een j-klank erbij",
-      "goal": "Eén extra streepje maakt van ㅏ een ㅑ. Dat patroon geldt voor alle vier."
+      "title": "De klinkers ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ lijken op ㅏ ㅓ ㅗ ㅜ. Leer ze door de klanken te vergelijken."
     },
     "unit-7": {
-      "title": "Een pufje lucht",
-      "goal": "ㅊ ㅋ ㅌ ㅍ zijn letters die je kent, met één streepje erbij."
+      "title": "De geaspireerde ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Vier medeklinkers die met een krachtige luchtstoot worden uitgesproken."
     },
     "unit-8": {
-      "title": "De e-klinkers",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — klinkers gemaakt door ㅣ toe te voegen."
+      "title": "De klinkers ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Nog vier klinkers, en hoe je hun klanken uit elkaar houdt."
     },
     "unit-9": {
-      "title": "Verdubbeld en aangespannen",
-      "goal": "Vijf letters die dubbel geschreven en strakker uitgesproken worden."
+      "title": "De gespannen ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Vijf medeklinkers, dubbel geschreven en strakker uitgesproken."
     },
     "unit-10": {
-      "title": "De w-klinkers",
-      "goal": "Twee klinkers als één geschreven. De laatste van de 40 letters."
+      "title": "De samengestelde klinkers",
+      "goal": "Klinkers uit twee samengevoegde klinkers. De laatste van de veertig letters."
     },
     "unit-11": {
-      "title": "Een letter onderaan",
-      "goal": "받침 — de medeklinker die een lettergreep afsluit.",
+      "title": "De slotmedeklinker: 받침",
+      "goal": "De medeklinker die onder de lettergreep komt.",
       "body": "Een blok kan een derde letter dragen, onder de andere twee. Die heet 받침 en sluit de lettergreep af.",
       "points": [
         "De derde letter staat altijd onderaan het vierkant.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "한글 lezen",
-      "goal": "Je kent nu elke letter. Lees de naam van het schrift zelf."
+      "title": "Koreaanse woorden lezen",
+      "goal": "Lees echte Koreaanse woorden met alles wat je hebt geleerd."
     }
   },
   "intro": {

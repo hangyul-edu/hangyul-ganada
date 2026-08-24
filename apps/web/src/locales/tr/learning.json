@@ -10,8 +10,8 @@
     "badge": "{{index, number}}. ünite",
     "continue": "Anladım — başlayalım",
     "unit-1": {
-      "title": "Başlangıç için altı ünlü",
-      "goal": "Her Korece hecede bir ünlü olmak zorunda. Bu altısı en basitleri.",
+      "title": "Altı temel ünlü",
+      "goal": "Her Korece hecede bir ünlü gerekir. Bu altısı en kolayları.",
       "body": "Hangıl bir alfabe, resim topluluğu değil. 40 harfi var, hızlı öğrenilsin diye tasarlandı ve şimdi altısını öğreneceksin.",
       "points": [
         "Harfler kare bloklar hâlinde toplanır ve her blok bir hecedir.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "İlk ünsüzlerin",
-      "goal": "Beş ünsüz. Bildiğin ünlülerle birlikte bu şimdiden 30 hece eder."
+      "title": "İlk beş ünsüz",
+      "goal": "Beş ünsüz. Bildiğin ünlülerle birlikte otuz hece eder."
     },
     "unit-3": {
-      "title": "Birleştirmek",
-      "goal": "Ünsüz artı ünlü, okuyabileceğin bir blok eder.",
+      "title": "Hece kurmak",
+      "goal": "Bir ünsüzle bir ünlüyü tek kareye koy ve çıkan heceyi oku.",
       "body": "Korece hece tek bir kare olarak yazılır. Önce ünsüz gelir — dik ünlüde solda, yatık ünlüde üstte.",
       "points": [
         "Dik ünlü (ㅏ ㅓ ㅣ) ünsüzün sağında durur.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Beş ünsüz daha",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — yalın dizinin geri kalanı."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — sade ünsüzlerin geri kalanı."
     },
     "unit-5": {
-      "title": "Daha çok blok okumak",
-      "goal": "Hiç ses vermeyen o tek harf de dâhil."
+      "title": "Yeni heceleri okumak",
+      "goal": "Yeni ünsüzlerle heceler oku; ses vermeyen ㅇ dâhil."
     },
     "unit-6": {
-      "title": "Bir y sesi eklemek",
-      "goal": "Tek bir çizgi ㅏ harfini ㅑ yapar. Aynı kural dördünde de geçerli."
+      "title": "ㅑ ㅕ ㅛ ㅠ ünlüleri",
+      "goal": "ㅑ ㅕ ㅛ ㅠ, ㅏ ㅓ ㅗ ㅜ ile benzer görünür. Sesleri karşılaştırarak öğren."
     },
     "unit-7": {
-      "title": "Bir soluk hava",
-      "goal": "ㅊ ㅋ ㅌ ㅍ, bildiğin harflere bir çizgi eklenmiş hâlleri."
+      "title": "Soluklu ünsüzler ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Güçlü bir nefesle söylenen dört ünsüz."
     },
     "unit-8": {
-      "title": "e ünlüleri",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — ㅣ eklenerek yapılan ünlüler."
+      "title": "ㅐ ㅔ ㅒ ㅖ ünlüleri",
+      "goal": "Dört ünlü daha ve seslerini ayırt etmenin yolu."
     },
     "unit-9": {
-      "title": "İkilenmiş ve sıkılmış",
-      "goal": "İki kez yazılan, daha sıkı söylenen beş harf."
+      "title": "Gergin ünsüzler ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "İki kez yazılan ve daha gergin söylenen beş ünsüz."
     },
     "unit-10": {
-      "title": "w ünlüleri",
-      "goal": "Tek harf gibi yazılan iki ünlü. 40 harfin sonuncuları."
+      "title": "Bileşik ünlüler",
+      "goal": "İki ünlünün birleşmesiyle oluşan ünlüler. Kırk harfin sonuncuları."
     },
     "unit-11": {
-      "title": "Dipte bir harf",
-      "goal": "받침 — heceyi kapatan ünsüz.",
+      "title": "Son ünsüz: 받침",
+      "goal": "Hecenin altına gelen ünsüz.",
       "body": "Bir blok, diğer ikisinin altında üçüncü bir harf taşıyabilir. Adı 받침 ve heceyi kapatır.",
       "points": [
         "Üçüncü harf her zaman karenin dibine gider.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "한글 okumak",
-      "goal": "Artık bütün harfleri biliyorsun. Yazı sisteminin kendi adını oku."
+      "title": "Korece kelimeler okumak",
+      "goal": "Öğrendiğin her şeyle gerçek Korece kelimeler oku."
     }
   },
   "intro": {

@@ -10,8 +10,8 @@
     "badge": "Unit {{index, number}}",
     "continue": "Paham — ayo mulai",
     "unit-1": {
-      "title": "Enam vokal untuk memulai",
-      "goal": "Setiap suku kata Korea butuh vokal. Enam ini yang paling sederhana.",
+      "title": "Enam vokal dasar",
+      "goal": "Setiap suku kata Korea butuh vokal. Enam ini yang paling mudah.",
       "body": "Hangul itu abjad, bukan kumpulan gambar. Ada 40 huruf, dirancang supaya cepat dipelajari, dan enam di antaranya akan kamu pelajari sekarang.",
       "points": [
         "Huruf dikelompokkan dalam blok persegi, dan satu blok adalah satu suku kata.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Konsonan pertamamu",
-      "goal": "Lima konsonan. Digabung dengan vokal yang sudah kamu tahu, itu sudah 30 suku kata."
+      "title": "Lima konsonan pertama",
+      "goal": "Lima konsonan. Dengan vokal yang sudah kamu tahu, itu tiga puluh suku kata."
     },
     "unit-3": {
-      "title": "Menyatukannya",
-      "goal": "Konsonan ditambah vokal menjadi blok yang bisa kamu baca.",
+      "title": "Menyusun suku kata",
+      "goal": "Letakkan konsonan dan vokal dalam satu kotak, lalu baca suku katanya.",
       "body": "Satu suku kata Korea ditulis sebagai satu persegi. Konsonan lebih dulu — di kiri untuk vokal tegak, di atas untuk vokal mendatar.",
       "points": [
         "Vokal tegak (ㅏ ㅓ ㅣ) berdiri di kanan konsonan.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Lima konsonan lagi",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — sisa deret polos."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — sisa konsonan biasa."
     },
     "unit-5": {
-      "title": "Membaca lebih banyak blok",
-      "goal": "Termasuk satu huruf yang sama sekali tidak berbunyi."
+      "title": "Membaca suku kata baru",
+      "goal": "Baca suku kata dengan konsonan baru, termasuk ㅇ yang tidak berbunyi."
     },
     "unit-6": {
-      "title": "Menambahkan bunyi y",
-      "goal": "Satu goresan tambahan mengubah ㅏ menjadi ㅑ. Polanya sama untuk keempatnya."
+      "title": "Vokal ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ mirip ㅏ ㅓ ㅗ ㅜ. Pelajari dengan membandingkan bunyinya."
     },
     "unit-7": {
-      "title": "Sedikit embusan napas",
-      "goal": "ㅊ ㅋ ㅌ ㅍ adalah huruf yang sudah kamu kenal, dengan satu goresan tambahan."
+      "title": "Konsonan beraspirasi ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Empat konsonan yang diucapkan dengan embusan napas kuat."
     },
     "unit-8": {
-      "title": "Vokal e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — vokal yang dibentuk dengan menambahkan ㅣ."
+      "title": "Vokal ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Empat vokal lagi, dan cara membedakan bunyinya."
     },
     "unit-9": {
-      "title": "Digandakan dan dirapatkan",
-      "goal": "Lima huruf yang ditulis dua kali dan diucapkan lebih rapat."
+      "title": "Konsonan tegang ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Lima konsonan yang ditulis dua kali dan diucapkan lebih tegang."
     },
     "unit-10": {
-      "title": "Vokal w",
-      "goal": "Dua vokal ditulis sebagai satu. Yang terakhir dari 40 huruf."
+      "title": "Vokal gabungan",
+      "goal": "Vokal dari dua vokal yang disatukan. Yang terakhir dari empat puluh huruf."
     },
     "unit-11": {
-      "title": "Satu huruf di dasar",
-      "goal": "받침 — konsonan yang menutup suku kata.",
+      "title": "Konsonan akhir: 받침",
+      "goal": "Konsonan yang berada di bawah suku kata.",
       "body": "Satu blok bisa memuat huruf ketiga, di bawah dua huruf lainnya. Namanya 받침, dan ia menutup suku kata itu.",
       "points": [
         "Huruf ketiga selalu berada di dasar persegi.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Membaca 한글",
-      "goal": "Sekarang kamu tahu semua huruf. Bacalah nama sistem tulisannya sendiri."
+      "title": "Membaca kata Korea",
+      "goal": "Baca kata Korea sungguhan dengan semua yang sudah kamu pelajari."
     }
   },
   "intro": {

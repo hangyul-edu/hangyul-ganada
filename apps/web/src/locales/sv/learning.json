@@ -10,8 +10,8 @@
     "badge": "Del {{index, number}}",
     "continue": "Uppfattat — nu kör vi",
     "unit-1": {
-      "title": "Sex vokaler att börja med",
-      "goal": "Varje koreansk stavelse behöver en vokal. De här sex är de enklaste.",
+      "title": "De sex grundvokalerna",
+      "goal": "Varje koreansk stavelse behöver en vokal. Dessa sex är de enklaste.",
       "body": "Hangul är ett alfabet, inte en samling bilder. Det finns 40 bokstäver, de gjordes för att läras in snabbt, och nu ska du lära dig sex av dem.",
       "points": [
         "Bokstäverna samlas i fyrkantiga block, och varje block är en stavelse.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Dina första konsonanter",
-      "goal": "Fem konsonanter. Med vokalerna du kan blir det redan 30 stavelser."
+      "title": "De första fem konsonanterna",
+      "goal": "Fem konsonanter. Med vokalerna du kan blir det trettio stavelser."
     },
     "unit-3": {
-      "title": "Sätta ihop dem",
-      "goal": "Konsonant plus vokal blir ett block du kan läsa.",
+      "title": "Bygga en stavelse",
+      "goal": "Sätt en konsonant och en vokal i en ruta och läs stavelsen som blir.",
       "body": "En koreansk stavelse skrivs som en enda fyrkant. Konsonanten kommer först — till vänster vid en stående vokal, överst vid en liggande.",
       "points": [
         "En stående vokal (ㅏ ㅓ ㅣ) står till höger om konsonanten.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Fem konsonanter till",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — resten av den enkla serien."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — resten av de enkla konsonanterna."
     },
     "unit-5": {
-      "title": "Läsa fler block",
-      "goal": "Inklusive den enda bokstaven som inte låter alls."
+      "title": "Läsa nya stavelser",
+      "goal": "Läs stavelser med de nya konsonanterna, även ㅇ som inte låter."
     },
     "unit-6": {
-      "title": "Lägga till ett j-ljud",
-      "goal": "Ett extra streck gör ㅏ till ㅑ. Samma mönster gäller alla fyra."
+      "title": "Vokalerna ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ liknar ㅏ ㅓ ㅗ ㅜ. Lär dig dem genom att jämföra ljuden."
     },
     "unit-7": {
-      "title": "En pust luft",
-      "goal": "ㅊ ㅋ ㅌ ㅍ är bokstäver du känner igen, med ett streck till."
+      "title": "De aspirerade ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Fyra konsonanter som uttalas med en kraftig luftpuff."
     },
     "unit-8": {
-      "title": "E-vokalerna",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — vokaler som byggs genom att lägga till ㅣ."
+      "title": "Vokalerna ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Fyra vokaler till, och hur du skiljer deras ljud åt."
     },
     "unit-9": {
-      "title": "Fördubblade och spända",
-      "goal": "Fem bokstäver som skrivs dubbelt och sägs stramare."
+      "title": "De spända ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Fem konsonanter skrivna dubbelt och uttalade hårdare."
     },
     "unit-10": {
-      "title": "W-vokalerna",
-      "goal": "Två vokaler skrivna som en. De sista av de 40 bokstäverna."
+      "title": "De sammansatta vokalerna",
+      "goal": "Vokaler av två sammanfogade vokaler. De sista av de fyrtio bokstäverna."
     },
     "unit-11": {
-      "title": "En bokstav längst ned",
-      "goal": "받침 — konsonanten som stänger stavelsen.",
+      "title": "Slutkonsonanten: 받침",
+      "goal": "Konsonanten som står under stavelsen.",
       "body": "Ett block kan bära en tredje bokstav, under de två andra. Den heter 받침 och stänger stavelsen.",
       "points": [
         "Den tredje bokstaven hamnar alltid längst ned i fyrkanten.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Läsa 한글",
-      "goal": "Nu kan du varje bokstav. Läs namnet på skriftsystemet självt."
+      "title": "Läsa koreanska ord",
+      "goal": "Läs riktiga koreanska ord med allt du har lärt dig."
     }
   },
   "intro": {

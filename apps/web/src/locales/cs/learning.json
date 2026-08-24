@@ -10,8 +10,8 @@
     "badge": "Oddíl {{index, number}}",
     "continue": "Jasně — jdeme na to",
     "unit-1": {
-      "title": "Šest samohlásek na začátek",
-      "goal": "Každá korejská slabika potřebuje samohlásku. Těchhle šest je nejjednodušších.",
+      "title": "Šest základních samohlásek",
+      "goal": "Každá korejská slabika potřebuje samohlásku. Těchto šest je nejjednodušších.",
       "body": "Hangul je abeceda, ne sada obrázků. Má 40 liter, byl navržený tak, aby se dal zvládnout rychle, a šest z nich se teď naučíte.",
       "points": [
         "Litery se skládají do čtvercových bloků a každý blok je jedna slabika.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "První souhlásky",
-      "goal": "Pět souhlásek. Se samohláskami, které už znáte, je to rovnou 30 slabik."
+      "title": "Prvních pět souhlásek",
+      "goal": "Pět souhlásek. Se známými samohláskami to je třicet slabik."
     },
     "unit-3": {
-      "title": "Skládáme dohromady",
-      "goal": "Souhláska plus samohláska dá blok, který přečtete.",
+      "title": "Skládání slabiky",
+      "goal": "Dejte souhlásku a samohlásku do jednoho čtverce a přečtěte vzniklou slabiku.",
       "body": "Korejská slabika se píše jako jeden čtverec. Souhláska jde první — vlevo u stojaté samohlásky, nahoře u ležaté.",
       "points": [
         "Stojatá samohláska (ㅏ ㅓ ㅣ) stojí napravo od souhlásky.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Dalších pět souhlásek",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — zbytek prosté řady."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — zbytek prostých souhlásek."
     },
     "unit-5": {
-      "title": "Čteme víc bloků",
-      "goal": "Včetně té jediné litery, která nezní vůbec."
+      "title": "Čtení nových slabik",
+      "goal": "Čtěte slabiky s novými souhláskami, včetně ㅇ, které se nevyslovuje."
     },
     "unit-6": {
-      "title": "Přidáváme zvuk j",
-      "goal": "Jedna čárka navíc udělá z ㅏ literu ㅑ. U všech čtyř to platí stejně."
+      "title": "Samohlásky ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ se podobají ㅏ ㅓ ㅗ ㅜ. Učte se je porovnáváním zvuků."
     },
     "unit-7": {
-      "title": "Závan vzduchu",
-      "goal": "ㅊ ㅋ ㅌ ㅍ jsou litery, které znáte, s jednou čárkou navíc."
+      "title": "Aspirované souhlásky ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Čtyři souhlásky vyslovované se silným výdechem."
     },
     "unit-8": {
-      "title": "Samohlásky s e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — samohlásky, které vzniknou přidáním ㅣ."
+      "title": "Samohlásky ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Další čtyři samohlásky a jak rozlišit jejich zvuky."
     },
     "unit-9": {
-      "title": "Zdvojené a napjaté",
-      "goal": "Pět liter, které se píšou dvakrát a vyslovují se sevřeněji."
+      "title": "Napjaté souhlásky ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Pět souhlásek psaných dvakrát a vyslovovaných napjatěji."
     },
     "unit-10": {
-      "title": "Samohlásky s v",
-      "goal": "Dvě samohlásky zapsané jako jedna. Poslední ze 40 liter."
+      "title": "Složené samohlásky",
+      "goal": "Samohlásky ze dvou spojených samohlásek. Poslední ze čtyřiceti písmen."
     },
     "unit-11": {
-      "title": "Litera dole",
-      "goal": "받침 — souhláska, která uzavírá slabiku.",
+      "title": "Koncová souhláska: 받침",
+      "goal": "Souhláska, která stojí pod slabikou.",
       "body": "Do bloku se vejde třetí litera, pod ty dvě ostatní. Jmenuje se 받침 a slabiku uzavírá.",
       "points": [
         "Třetí litera stojí vždycky úplně dole ve čtverci.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Čteme 한글",
-      "goal": "Teď znáte všechny litery. Přečtěte si název samotného písma."
+      "title": "Čtení korejských slov",
+      "goal": "Čtěte skutečná korejská slova se vším, co jste se naučili."
     }
   },
   "intro": {

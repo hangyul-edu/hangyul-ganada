@@ -92,8 +92,8 @@
     "badge": "Unité {{index, number}}",
     "continue": "Compris — commençons",
     "unit-1": {
-      "title": "Six voyelles pour commencer",
-      "goal": "Chaque syllabe coréenne a besoin d’une voyelle. Ces six-là sont les plus simples.",
+      "title": "Les six voyelles de base",
+      "goal": "Chaque syllabe coréenne a besoin d'une voyelle. Ces six-là sont les plus simples.",
       "body": "Le hangeul est un alphabet, pas un ensemble de dessins. Il compte 40 lettres, conçues pour être apprises vite — vous allez en apprendre six.",
       "points": [
         "Les lettres se regroupent en blocs carrés, et chaque bloc est une syllabe.",
@@ -102,12 +102,12 @@
       ]
     },
     "unit-2": {
-      "title": "Vos premières consonnes",
-      "goal": "Cinq consonnes. Avec les voyelles que vous connaissez, cela fait déjà 30 syllabes."
+      "title": "Les cinq premières consonnes",
+      "goal": "Cinq consonnes. Avec les voyelles connues, cela fait trente syllabes."
     },
     "unit-3": {
-      "title": "Les assembler",
-      "goal": "Une consonne plus une voyelle donne un bloc que vous savez lire.",
+      "title": "Former une syllabe",
+      "goal": "Placez une consonne et une voyelle dans un carré, puis lisez la syllabe obtenue.",
       "body": "Une syllabe coréenne s’écrit dans un carré. La consonne vient d’abord : à gauche pour une voyelle verticale, au-dessus pour une voyelle horizontale.",
       "points": [
         "Une voyelle verticale (ㅏ ㅓ ㅣ) se place à droite de la consonne.",
@@ -117,35 +117,35 @@
     },
     "unit-4": {
       "title": "Cinq consonnes de plus",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — le reste de la série simple."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — le reste des consonnes simples."
     },
     "unit-5": {
-      "title": "Lire plus de blocs",
-      "goal": "Y compris la seule lettre qui ne se prononce pas du tout."
+      "title": "Lire de nouvelles syllabes",
+      "goal": "Lisez des syllabes avec les nouvelles consonnes, dont le ㅇ qui ne se prononce pas."
     },
     "unit-6": {
-      "title": "Ajouter un son y",
-      "goal": "Un trait de plus transforme ㅏ en ㅑ. La règle vaut pour les quatre."
+      "title": "Les voyelles ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ ressemblent à ㅏ ㅓ ㅗ ㅜ. Apprenez-les en comparant les sons."
     },
     "unit-7": {
-      "title": "Un souffle d’air",
-      "goal": "ㅊ ㅋ ㅌ ㅍ sont des lettres que vous connaissez, avec un trait de plus."
+      "title": "Les consonnes aspirées ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Quatre consonnes prononcées avec un souffle d'air marqué."
     },
     "unit-8": {
-      "title": "Les voyelles e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — des voyelles formées en ajoutant ㅣ."
+      "title": "Les voyelles ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Quatre voyelles de plus, et comment distinguer leurs sons."
     },
     "unit-9": {
-      "title": "Doublées et tendues",
-      "goal": "Cinq lettres écrites deux fois, prononcées plus tendues."
+      "title": "Les consonnes tendues ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Cinq consonnes écrites deux fois et prononcées plus fermement."
     },
     "unit-10": {
-      "title": "Les voyelles w",
-      "goal": "Deux voyelles écrites comme une seule. Les dernières des 40 lettres."
+      "title": "Les voyelles composées",
+      "goal": "Des voyelles formées de deux voyelles jointes. Les dernières des quarante lettres."
     },
     "unit-11": {
-      "title": "Une lettre au pied",
-      "goal": "받침 — la consonne qui ferme une syllabe.",
+      "title": "La consonne finale : 받침",
+      "goal": "La consonne qui se place sous le bloc.",
       "body": "Un bloc peut porter une troisième lettre, sous les deux autres. On l’appelle 받침, et elle ferme la syllabe.",
       "points": [
         "La troisième lettre se place toujours en bas du carré.",
@@ -154,8 +154,8 @@
       ]
     },
     "unit-12": {
-      "title": "Lire 한글",
-      "goal": "Vous connaissez désormais toutes les lettres. Lisez le nom du système d’écriture lui-même."
+      "title": "Lire des mots coréens",
+      "goal": "Lisez de vrais mots coréens avec tout ce que vous avez appris."
     }
   },
   "intro": {

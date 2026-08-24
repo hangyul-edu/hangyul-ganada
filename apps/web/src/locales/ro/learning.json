@@ -10,8 +10,8 @@
     "badge": "Unitatea {{index, number}}",
     "continue": "Am înțeles — începem",
     "unit-1": {
-      "title": "Șase vocale pentru început",
-      "goal": "Orice silabă coreeană are nevoie de o vocală. Acestea șase sunt cele mai simple.",
+      "title": "Cele șase vocale de bază",
+      "goal": "Fiecare silabă coreeană are nevoie de o vocală. Acestea șase sunt cele mai simple.",
       "body": "Hangul e un alfabet, nu o colecție de desene. Are 40 de litere, a fost gândit ca să fie învățat repede, iar acum înveți șase dintre ele.",
       "points": [
         "Literele se adună în blocuri pătrate, iar fiecare bloc e o silabă.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Primele tale consoane",
-      "goal": "Cinci consoane. Cu vocalele pe care le știi deja, ies 30 de silabe."
+      "title": "Primele cinci consoane",
+      "goal": "Cinci consoane. Cu vocalele știute, înseamnă treizeci de silabe."
     },
     "unit-3": {
-      "title": "Le punem împreună",
-      "goal": "Consoană plus vocală înseamnă un bloc pe care îl poți citi.",
+      "title": "Formarea unei silabe",
+      "goal": "Pune o consoană și o vocală într-un pătrat și citește silaba rezultată.",
       "body": "O silabă coreeană se scrie ca un singur pătrat. Consoana vine prima — la stânga cu o vocală verticală, sus cu una orizontală.",
       "points": [
         "O vocală verticală (ㅏ ㅓ ㅣ) stă la dreapta consoanei.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Încă cinci consoane",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — restul seriei simple."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — restul consoanelor simple."
     },
     "unit-5": {
-      "title": "Citim mai multe blocuri",
-      "goal": "Inclusiv singura literă care nu sună deloc."
+      "title": "Citirea silabelor noi",
+      "goal": "Citește silabe cu noile consoane, inclusiv ㅇ care nu se pronunță."
     },
     "unit-6": {
-      "title": "Adăugăm un sunet i",
-      "goal": "O linie în plus face din ㅏ litera ㅑ. Regula e aceeași la toate patru."
+      "title": "Vocalele ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ seamănă cu ㅏ ㅓ ㅗ ㅜ. Învață-le comparând sunetele."
     },
     "unit-7": {
-      "title": "O suflare de aer",
-      "goal": "ㅊ ㅋ ㅌ ㅍ sunt litere pe care le știi, cu o linie în plus."
+      "title": "Consoanele aspirate ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Patru consoane rostite cu o expirație puternică."
     },
     "unit-8": {
-      "title": "Vocalele cu e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — vocale făcute prin adăugarea lui ㅣ."
+      "title": "Vocalele ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Încă patru vocale și cum să le deosebești sunetele."
     },
     "unit-9": {
-      "title": "Dublate și încordate",
-      "goal": "Cinci litere scrise de două ori și rostite mai strâns."
+      "title": "Consoanele tensionate ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Cinci consoane scrise de două ori și rostite mai apăsat."
     },
     "unit-10": {
-      "title": "Vocalele cu u",
-      "goal": "Două vocale scrise ca una singură. Ultimele din cele 40 de litere."
+      "title": "Vocalele compuse",
+      "goal": "Vocale formate din două vocale unite. Ultimele dintre cele patruzeci de litere."
     },
     "unit-11": {
-      "title": "O literă la bază",
-      "goal": "받침 — consoana care închide silaba.",
+      "title": "Consoana finală: 받침",
+      "goal": "Consoana care stă sub silabă.",
       "body": "Un bloc poate ține o a treia literă, sub celelalte două. Se cheamă 받침 și închide silaba.",
       "points": [
         "A treia literă stă mereu la baza pătratului.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Citim 한글",
-      "goal": "Acum știi fiecare literă. Citește numele scrierii înseși."
+      "title": "Citirea cuvintelor coreene",
+      "goal": "Citește cuvinte coreene reale cu tot ce ai învățat."
     }
   },
   "intro": {

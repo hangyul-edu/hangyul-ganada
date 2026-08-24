@@ -10,7 +10,7 @@
     "badge": "Rozdział {{index, number}}",
     "continue": "Jasne — zaczynamy",
     "unit-1": {
-      "title": "Sześć samogłosek na początek",
+      "title": "Sześć podstawowych samogłosek",
       "goal": "Każda koreańska sylaba potrzebuje samogłoski. Te sześć jest najprostszych.",
       "body": "Hangeul to alfabet, a nie zbiór obrazków. Ma 40 liter, zaprojektowano go tak, żeby dało się go szybko opanować, a ty poznasz teraz sześć z nich.",
       "points": [
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Twoje pierwsze spółgłoski",
-      "goal": "Pięć spółgłosek. Ze znanymi ci samogłoskami daje to już 30 sylab."
+      "title": "Pierwsze pięć spółgłosek",
+      "goal": "Pięć spółgłosek. Ze znanymi samogłoskami daje to trzydzieści sylab."
     },
     "unit-3": {
-      "title": "Składamy je razem",
-      "goal": "Spółgłoska plus samogłoska daje blok, który umiesz przeczytać.",
+      "title": "Składanie sylaby",
+      "goal": "Umieść spółgłoskę i samogłoskę w jednym kwadracie i przeczytaj sylabę.",
       "body": "Koreańska sylaba zapisywana jest jako jeden kwadrat. Spółgłoska idzie pierwsza — po lewej przy samogłosce pionowej, na górze przy poziomej.",
       "points": [
         "Samogłoska pionowa (ㅏ ㅓ ㅣ) stoi po prawej stronie spółgłoski.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Jeszcze pięć spółgłosek",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — reszta zwykłego szeregu."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — pozostałe zwykłe spółgłoski."
     },
     "unit-5": {
-      "title": "Więcej bloków do czytania",
-      "goal": "Łącznie z tą jedną literą, która nie brzmi wcale."
+      "title": "Czytanie nowych sylab",
+      "goal": "Czytaj sylaby z nowymi spółgłoskami, w tym z niemym ㅇ."
     },
     "unit-6": {
-      "title": "Dokładamy dźwięk j",
-      "goal": "Jedna kreska więcej zamienia ㅏ w ㅑ. Ta sama zasada działa we wszystkich czterech."
+      "title": "Samogłoski ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ przypominają ㅏ ㅓ ㅗ ㅜ. Ucz się ich, porównując dźwięki."
     },
     "unit-7": {
-      "title": "Podmuch powietrza",
-      "goal": "ㅊ ㅋ ㅌ ㅍ to litery, które już znasz, z jedną kreską więcej."
+      "title": "Spółgłoski przydechowe ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Cztery spółgłoski wymawiane z mocnym wydechem."
     },
     "unit-8": {
-      "title": "Samogłoski e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — samogłoski powstałe przez dodanie ㅣ."
+      "title": "Samogłoski ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Jeszcze cztery samogłoski i jak odróżnić ich dźwięki."
     },
     "unit-9": {
-      "title": "Podwojone i napięte",
-      "goal": "Pięć liter pisanych dwa razy i wymawianych ciaśniej."
+      "title": "Spółgłoski napięte ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Pięć spółgłosek pisanych podwójnie i wymawianych mocniej."
     },
     "unit-10": {
-      "title": "Samogłoski w",
-      "goal": "Dwie samogłoski zapisane jako jedna. Ostatnie z 40 liter."
+      "title": "Samogłoski złożone",
+      "goal": "Samogłoski powstałe z dwóch połączonych. Ostatnie z czterdziestu liter."
     },
     "unit-11": {
-      "title": "Litera u dołu",
-      "goal": "받침 — spółgłoska zamykająca sylabę.",
+      "title": "Spółgłoska końcowa: 받침",
+      "goal": "Spółgłoska, która stoi pod sylabą.",
       "body": "Blok może pomieścić trzecią literę, pod dwiema pozostałymi. Nazywa się 받침 i zamyka sylabę.",
       "points": [
         "Trzecia litera zawsze trafia na dół kwadratu.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Czytamy 한글",
-      "goal": "Znasz już każdą literę. Przeczytaj nazwę samego pisma."
+      "title": "Czytanie koreańskich słów",
+      "goal": "Czytaj prawdziwe koreańskie słowa, korzystając ze wszystkiego, czego się nauczyłeś."
     }
   },
   "intro": {

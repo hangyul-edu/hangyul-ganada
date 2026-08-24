@@ -10,8 +10,8 @@
     "badge": "{{index, number}}. egység",
     "continue": "Értem — kezdjük",
     "unit-1": {
-      "title": "Hat magánhangzó kezdésnek",
-      "goal": "Minden koreai szótaghoz kell egy magánhangzó. Ez a hat a legegyszerűbb.",
+      "title": "A hat alapmagánhangzó",
+      "goal": "Minden koreai szótaghoz kell magánhangzó. Ez a hat a legegyszerűbb.",
       "body": "A hangul ábécé, nem képek gyűjteménye. Negyven betűje van, úgy tervezték, hogy gyorsan meg lehessen tanulni, és most hatot fogsz elsajátítani belőle.",
       "points": [
         "A betűk négyzetes blokkokba rendeződnek, és minden blokk egy szótag.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Az első mássalhangzóid",
-      "goal": "Öt mássalhangzó. A már ismert magánhangzókkal ez már 30 szótag."
+      "title": "Az első öt mássalhangzó",
+      "goal": "Öt mássalhangzó. Az ismert magánhangzókkal ez harminc szótag."
     },
     "unit-3": {
-      "title": "Összerakjuk őket",
-      "goal": "Mássalhangzó meg magánhangzó: kész a blokk, amit el tudsz olvasni.",
+      "title": "Szótag összerakása",
+      "goal": "Tegyél egy mássalhangzót és egy magánhangzót egy négyzetbe, és olvasd el.",
       "body": "A koreai szótag egyetlen négyzetként íródik. A mássalhangzó megy előre — balra álló magánhangzónál, felülre fekvőnél.",
       "points": [
         "Az álló magánhangzó (ㅏ ㅓ ㅣ) a mássalhangzótól jobbra áll.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Még öt mássalhangzó",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — az egyszerű sor maradéka."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — a többi egyszerű mássalhangzó."
     },
     "unit-5": {
-      "title": "Több blokk olvasása",
-      "goal": "Beleértve azt az egy betűt, aminek egyáltalán nincs hangja."
+      "title": "Új szótagok olvasása",
+      "goal": "Olvass szótagokat az új mássalhangzókkal, a néma ㅇ-vel együtt."
     },
     "unit-6": {
-      "title": "Egy j hang hozzáadása",
-      "goal": "Egy plusz vonás ㅏ-ból ㅑ-t csinál. Mind a négynél ugyanez a szabály."
+      "title": "A ㅑ ㅕ ㅛ ㅠ magánhangzók",
+      "goal": "A ㅑ ㅕ ㅛ ㅠ hasonlít a ㅏ ㅓ ㅗ ㅜ-re. A hangok összevetésével tanuld meg."
     },
     "unit-7": {
-      "title": "Egy leheletnyi levegő",
-      "goal": "ㅊ ㅋ ㅌ ㅍ — ismerős betűk, egy vonással kiegészítve."
+      "title": "A hehezetes ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Négy mássalhangzó, erős levegőfújással ejtve."
     },
     "unit-8": {
-      "title": "Az e-magánhangzók",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — magánhangzók, amiket ㅣ hozzáadásával kapunk."
+      "title": "A ㅐ ㅔ ㅒ ㅖ magánhangzók",
+      "goal": "Még négy magánhangzó, és hogyan különböztesd meg a hangjukat."
     },
     "unit-9": {
-      "title": "Megkettőzve és feszesen",
-      "goal": "Öt betű, amit kétszer írunk le és feszesebben ejtünk."
+      "title": "A feszes ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Öt mássalhangzó kétszer írva, feszesebben ejtve."
     },
     "unit-10": {
-      "title": "A v-magánhangzók",
-      "goal": "Két magánhangzó egyként leírva. A 40 betű utolsói."
+      "title": "Az összetett magánhangzók",
+      "goal": "Két magánhangzóból összekapcsolt magánhangzók. A negyven betű utolsói."
     },
     "unit-11": {
-      "title": "Egy betű a talpnál",
-      "goal": "받침 — a mássalhangzó, ami lezárja a szótagot.",
+      "title": "A záró mássalhangzó: 받침",
+      "goal": "A mássalhangzó, amely a szótag alá kerül.",
       "body": "Egy blokkba elfér egy harmadik betű is, a másik kettő alatt. A neve 받침, és lezárja a szótagot.",
       "points": [
         "A harmadik betű mindig a négyzet aljára kerül.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "한글 olvasása",
-      "goal": "Most már minden betűt ismersz. Olvasd el magának az írásrendszernek a nevét."
+      "title": "Koreai szavak olvasása",
+      "goal": "Olvass valódi koreai szavakat mindazzal, amit megtanultál."
     }
   },
   "intro": {

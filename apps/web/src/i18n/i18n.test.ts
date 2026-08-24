@@ -537,10 +537,19 @@ describe('learning content is not translated', () => {
   it('keeps lesson subtitles as the letters they teach', () => {
     const first = LETTER_LESSONS[0]!;
     expect(first.subtitle).toBe('ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ');
-    expect(pickContent(first.translations, 'en').title).toBe('Six vowels to start');
-    expect(pickContent(first.translations, 'ko').title).toBe('첫 모음 여섯 개');
+    /*
+     * The titles were rewritten to say what the lesson teaches.
+     *
+     * "Six vowels to start" and 첫 모음 여섯 개 are pleasant and tell a beginner
+     * looking at the curriculum almost nothing; they were part of a set that
+     * included 거센 바람, 겹쳐서 세게 and 발밑의 낱자 — a puff of wind, doubled
+     * and tightened, a letter at the foot. A learner should be able to read the
+     * overview and know what they are about to learn.
+     */
+    expect(pickContent(first.translations, 'en').title).toBe('The six basic vowels');
+    expect(pickContent(first.translations, 'ko').title).toBe('기본 모음 여섯 개');
     // A locale with no lesson titles still gets the same letters.
-    expect(pickContent(first.translations, 'sw').title).toBe('Six vowels to start');
+    expect(pickContent(first.translations, 'sw').title).toBe('The six basic vowels');
   });
 
   it('gives every curriculum record an English entry, since English ends every chain', () => {

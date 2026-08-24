@@ -92,8 +92,8 @@
     "badge": "Unidad {{index, number}}",
     "continue": "Entendido: empecemos",
     "unit-1": {
-      "title": "Seis vocales para empezar",
-      "goal": "Toda sílaba coreana necesita una vocal. Estas seis son las más simples.",
+      "title": "Las seis vocales básicas",
+      "goal": "Toda sílaba coreana necesita una vocal. Estas seis son las más sencillas.",
       "body": "El hangul es un alfabeto, no un conjunto de dibujos. Tiene 40 letras, se diseñó para aprenderse rápido, y estás a punto de aprender seis.",
       "points": [
         "Las letras se agrupan en bloques cuadrados, y cada bloque es una sílaba.",
@@ -102,12 +102,12 @@
       ]
     },
     "unit-2": {
-      "title": "Tus primeras consonantes",
-      "goal": "Cinco consonantes. Con las vocales que ya sabes, son 30 sílabas."
+      "title": "Las cinco primeras consonantes",
+      "goal": "Cinco consonantes. Con las vocales que ya sabes, son treinta sílabas."
     },
     "unit-3": {
-      "title": "Juntarlas",
-      "goal": "Consonante más vocal forma un bloque que ya puedes leer.",
+      "title": "Formar una sílaba",
+      "goal": "Pon una consonante y una vocal en un cuadrado y lee la sílaba que sale.",
       "body": "Una sílaba coreana se escribe como un cuadrado. La consonante va primero: a la izquierda si la vocal es alta, arriba si es plana.",
       "points": [
         "Una vocal alta (ㅏ ㅓ ㅣ) se pone a la derecha de la consonante.",
@@ -117,35 +117,35 @@
     },
     "unit-4": {
       "title": "Cinco consonantes más",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ: el resto de la serie simple."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — el resto de las consonantes simples."
     },
     "unit-5": {
-      "title": "Leer más bloques",
-      "goal": "Incluida la única letra que no suena en absoluto."
+      "title": "Leer sílabas nuevas",
+      "goal": "Lee sílabas con las consonantes nuevas, incluida la ㅇ que no suena."
     },
     "unit-6": {
-      "title": "Añadir un sonido y",
-      "goal": "Un trazo más convierte ㅏ en ㅑ. El patrón vale para las cuatro."
+      "title": "Las vocales ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ se parecen a ㅏ ㅓ ㅗ ㅜ. Apréndelas comparando los sonidos."
     },
     "unit-7": {
-      "title": "Un soplo de aire",
-      "goal": "ㅊ ㅋ ㅌ ㅍ son letras que ya conoces con un trazo añadido."
+      "title": "Las consonantes aspiradas ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Cuatro consonantes que se dicen con un golpe fuerte de aire."
     },
     "unit-8": {
-      "title": "Las vocales e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ: vocales formadas añadiendo ㅣ."
+      "title": "Las vocales ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Cuatro vocales más, y cómo distinguir sus sonidos."
     },
     "unit-9": {
-      "title": "Dobladas y tensas",
-      "goal": "Cinco letras escritas dos veces y pronunciadas con más tensión."
+      "title": "Las consonantes tensas ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Cinco consonantes escritas dos veces y dichas con más tensión."
     },
     "unit-10": {
-      "title": "Las vocales w",
-      "goal": "Dos vocales escritas como una. Las últimas de las 40 letras."
+      "title": "Las vocales combinadas",
+      "goal": "Vocales formadas por dos vocales unidas. Las últimas de las cuarenta letras."
     },
     "unit-11": {
-      "title": "Una letra al pie",
-      "goal": "받침: la consonante que cierra una sílaba.",
+      "title": "La consonante final: 받침",
+      "goal": "La consonante que va debajo del bloque.",
       "body": "Un bloque puede llevar una tercera letra debajo de las otras dos. Se llama 받침 y cierra la sílaba.",
       "points": [
         "La tercera letra va siempre en la parte baja del cuadrado.",
@@ -154,8 +154,8 @@
       ]
     },
     "unit-12": {
-      "title": "Leer 한글",
-      "goal": "Ya conoces todas las letras. Lee el nombre del propio sistema de escritura."
+      "title": "Leer palabras coreanas",
+      "goal": "Lee palabras coreanas de verdad con todo lo aprendido."
     }
   },
   "intro": {

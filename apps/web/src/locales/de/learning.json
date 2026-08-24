@@ -90,7 +90,7 @@
     "badge": "Einheit {{index, number}}",
     "continue": "Verstanden — los geht’s",
     "unit-1": {
-      "title": "Sechs Vokale zum Start",
+      "title": "Die sechs Grundvokale",
       "goal": "Jede koreanische Silbe braucht einen Vokal. Diese sechs sind die einfachsten.",
       "body": "Hangeul ist ein Alphabet, keine Bildersammlung. Es hat 40 Buchstaben, entworfen zum schnellen Lernen — sechs davon lernst du gleich.",
       "points": [
@@ -100,12 +100,12 @@
       ]
     },
     "unit-2": {
-      "title": "Deine ersten Konsonanten",
-      "goal": "Fünf Konsonanten. Mit den Vokalen, die du kennst, sind das schon 30 Silben."
+      "title": "Die ersten fünf Konsonanten",
+      "goal": "Fünf Konsonanten. Mit den bekannten Vokalen sind das dreißig Silben."
     },
     "unit-3": {
-      "title": "Zusammensetzen",
-      "goal": "Konsonant plus Vokal ergibt einen Block, den du lesen kannst.",
+      "title": "Eine Silbe bauen",
+      "goal": "Setze einen Konsonanten und einen Vokal in ein Quadrat und lies die Silbe.",
       "body": "Eine koreanische Silbe wird als Quadrat geschrieben. Der Konsonant kommt zuerst — links bei einem hohen Vokal, oben bei einem flachen.",
       "points": [
         "Ein hoher Vokal (ㅏ ㅓ ㅣ) steht rechts vom Konsonanten.",
@@ -115,35 +115,35 @@
     },
     "unit-4": {
       "title": "Fünf weitere Konsonanten",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — der Rest der einfachen Reihe."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — der Rest der einfachen Konsonanten."
     },
     "unit-5": {
-      "title": "Mehr Blöcke lesen",
-      "goal": "Einschließlich des einen Buchstabens, der gar keinen Laut hat."
+      "title": "Neue Silben lesen",
+      "goal": "Lies Silben mit den neuen Konsonanten, auch dem ㅇ, das keinen Laut hat."
     },
     "unit-6": {
-      "title": "Ein j hinzufügen",
-      "goal": "Ein Strich mehr macht aus ㅏ ein ㅑ. Das Muster gilt für alle vier."
+      "title": "Die Vokale ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ ähneln ㅏ ㅓ ㅗ ㅜ. Lerne sie, indem du die Laute vergleichst."
     },
     "unit-7": {
-      "title": "Ein Hauch Luft",
-      "goal": "ㅊ ㅋ ㅌ ㅍ sind Buchstaben, die du kennst, mit einem Strich mehr."
+      "title": "Die behauchten Konsonanten ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Vier Konsonanten, die mit kräftigem Luftstoß gesprochen werden."
     },
     "unit-8": {
-      "title": "Die e-Vokale",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — Vokale, die durch Anfügen von ㅣ entstehen."
+      "title": "Die Vokale ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Vier weitere Vokale und wie man ihre Laute unterscheidet."
     },
     "unit-9": {
-      "title": "Verdoppelt und gespannt",
-      "goal": "Fünf Buchstaben doppelt geschrieben, angespannter gesprochen."
+      "title": "Die gespannten Konsonanten ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Fünf Konsonanten, doppelt geschrieben und fester gesprochen."
     },
     "unit-10": {
-      "title": "Die w-Vokale",
-      "goal": "Zwei Vokale als einer geschrieben. Die letzten der 40 Buchstaben."
+      "title": "Die zusammengesetzten Vokale",
+      "goal": "Vokale aus zwei verbundenen Vokalen. Die letzten der vierzig Buchstaben."
     },
     "unit-11": {
-      "title": "Ein Buchstabe am Fuß",
-      "goal": "받침 — der Konsonant, der eine Silbe schließt.",
+      "title": "Der Schlusskonsonant: 받침",
+      "goal": "Der Konsonant, der unter den Block kommt.",
       "body": "Ein Block kann einen dritten Buchstaben tragen, unter den beiden anderen. Er heißt 받침 und schließt die Silbe.",
       "points": [
         "Der dritte Buchstabe steht immer unten im Quadrat.",
@@ -152,8 +152,8 @@
       ]
     },
     "unit-12": {
-      "title": "한글 lesen",
-      "goal": "Du kennst jetzt jeden Buchstaben. Lies den Namen des Schriftsystems selbst."
+      "title": "Koreanische Wörter lesen",
+      "goal": "Lies echte koreanische Wörter mit allem, was du gelernt hast."
     }
   },
   "intro": {

@@ -10,8 +10,8 @@
     "badge": "Phần {{index, number}}",
     "continue": "Hiểu rồi — bắt đầu thôi",
     "unit-1": {
-      "title": "Sáu nguyên âm đầu tiên",
-      "goal": "Mọi âm tiết tiếng Hàn đều cần một nguyên âm. Sáu chữ này là đơn giản nhất.",
+      "title": "Sáu nguyên âm cơ bản",
+      "goal": "Mỗi âm tiết tiếng Hàn đều cần một nguyên âm. Sáu chữ này là dễ nhất.",
       "body": "Hangul là một bảng chữ cái, không phải một bộ hình vẽ. Có 40 chữ cái, được thiết kế để học nhanh, và bạn sắp học sáu chữ trong số đó.",
       "points": [
         "Các chữ cái được xếp thành từng khối vuông, mỗi khối là một âm tiết.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Những phụ âm đầu tiên",
-      "goal": "Năm phụ âm. Cùng với các nguyên âm bạn đã biết, vậy là đã có 30 âm tiết."
+      "title": "Năm phụ âm đầu tiên",
+      "goal": "Năm phụ âm. Ghép với các nguyên âm đã biết là ba mươi âm tiết."
     },
     "unit-3": {
-      "title": "Ghép chúng lại",
-      "goal": "Phụ âm cộng nguyên âm tạo thành một khối bạn đọc được.",
+      "title": "Ghép phụ âm với nguyên âm",
+      "goal": "Đặt một phụ âm và một nguyên âm vào một ô vuông rồi đọc âm tiết tạo thành.",
       "body": "Một âm tiết tiếng Hàn được viết thành một ô vuông. Phụ âm đứng trước — bên trái nếu nguyên âm là nét đứng, bên trên nếu là nét nằm.",
       "points": [
         "Nguyên âm nét đứng (ㅏ ㅓ ㅣ) đứng bên phải phụ âm.",
@@ -34,36 +34,36 @@
       ]
     },
     "unit-4": {
-      "title": "Thêm năm phụ âm",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — phần còn lại của nhóm phụ âm thường."
+      "title": "Thêm năm phụ âm nữa",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — những phụ âm thường còn lại."
     },
     "unit-5": {
-      "title": "Đọc thêm nhiều khối chữ",
-      "goal": "Trong đó có chữ duy nhất hoàn toàn không phát ra âm nào."
+      "title": "Đọc âm tiết mới",
+      "goal": "Đọc âm tiết với các phụ âm mới, kể cả ㅇ không phát ra âm."
     },
     "unit-6": {
-      "title": "Thêm âm y",
-      "goal": "Chỉ một nét nữa là ㅏ thành ㅑ. Quy luật này đúng cho cả bốn chữ."
+      "title": "Học ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ có hình giống ㅏ ㅓ ㅗ ㅜ. Hãy học bằng cách so sánh âm."
     },
     "unit-7": {
-      "title": "Một hơi bật",
-      "goal": "ㅊ ㅋ ㅌ ㅍ là những chữ bạn đã biết, thêm một nét."
+      "title": "Phụ âm bật hơi ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Bốn phụ âm phát âm kèm luồng hơi mạnh."
     },
     "unit-8": {
-      "title": "Nhóm nguyên âm e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — các nguyên âm tạo ra bằng cách thêm ㅣ."
+      "title": "Học ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Thêm bốn nguyên âm nữa, và cách phân biệt âm của chúng."
     },
     "unit-9": {
-      "title": "Viết đôi, đọc căng",
-      "goal": "Năm chữ cái viết hai lần, đọc căng hơn."
+      "title": "Phụ âm căng ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Năm phụ âm viết đôi và phát âm căng hơn."
     },
     "unit-10": {
-      "title": "Nhóm nguyên âm w",
-      "goal": "Hai nguyên âm viết thành một. Những chữ cuối cùng trong 40 chữ."
+      "title": "Học nguyên âm ghép",
+      "goal": "Nguyên âm tạo từ hai nguyên âm nối lại. Nhóm cuối trong bốn mươi chữ cái."
     },
     "unit-11": {
-      "title": "Một chữ ở chân khối",
-      "goal": "받침 — phụ âm đóng lại một âm tiết.",
+      "title": "Học phụ âm cuối (받침)",
+      "goal": "Phụ âm nằm bên dưới khối chữ.",
       "body": "Một khối chữ có thể chứa chữ thứ ba, nằm dưới hai chữ kia. Nó gọi là 받침, và nó đóng âm tiết lại.",
       "points": [
         "Chữ thứ ba luôn nằm ở đáy ô vuông.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Đọc chữ 한글",
-      "goal": "Giờ bạn đã biết mọi chữ cái. Hãy đọc chính cái tên của hệ chữ này."
+      "title": "Đọc từ tiếng Hàn",
+      "goal": "Đọc những từ tiếng Hàn thật bằng tất cả những gì đã học."
     }
   },
   "intro": {

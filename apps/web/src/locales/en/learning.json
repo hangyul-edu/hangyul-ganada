@@ -10,7 +10,7 @@
     "badge": "Unit {{index, number}}",
     "continue": "Got it — let's start",
     "unit-1": {
-      "title": "Six vowels to start",
+      "title": "The six basic vowels",
       "goal": "Every Korean syllable needs a vowel. These six are the simplest.",
       "body": "Hangul is an alphabet, not a set of pictures. There are 40 letters, they were designed to be learned quickly, and you are about to learn six of them.",
       "points": [
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Your first consonants",
-      "goal": "Five consonants. With the vowels you know, that is already 30 syllables."
+      "title": "The first five consonants",
+      "goal": "Five consonants. With the vowels you know, that is thirty syllables."
     },
     "unit-3": {
-      "title": "Putting them together",
-      "goal": "Consonant plus vowel makes a block you can read.",
+      "title": "Building a syllable block",
+      "goal": "Put a consonant and a vowel in one square, and read the syllable it makes.",
       "body": "A Korean syllable is written as one square. The consonant goes first — on the left for a tall vowel, on top for a flat one.",
       "points": [
         "A tall vowel (ㅏ ㅓ ㅣ) stands to the right of the consonant.",
@@ -35,35 +35,35 @@
     },
     "unit-4": {
       "title": "Five more consonants",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — the rest of the plain series."
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — the rest of the plain consonants."
     },
     "unit-5": {
-      "title": "Reading more blocks",
-      "goal": "Including the one letter that makes no sound at all."
+      "title": "Reading new blocks",
+      "goal": "Read blocks with the new consonants, including the ㅇ that makes no sound."
     },
     "unit-6": {
-      "title": "Adding a y sound",
-      "goal": "One extra stroke turns ㅏ into ㅑ. The pattern holds for all four."
+      "title": "The vowels ㅑ ㅕ ㅛ ㅠ",
+      "goal": "ㅑ ㅕ ㅛ ㅠ look like ㅏ ㅓ ㅗ ㅜ. Learn them by comparing the sounds."
     },
     "unit-7": {
-      "title": "A puff of air",
-      "goal": "ㅊ ㅋ ㅌ ㅍ are letters you know, with one stroke added."
+      "title": "The aspirated consonants ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Four consonants said with a strong puff of air."
     },
     "unit-8": {
-      "title": "The e vowels",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — vowels made by adding ㅣ."
+      "title": "The vowels ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Four more vowels, and how to tell their sounds apart."
     },
     "unit-9": {
-      "title": "Doubled and tightened",
-      "goal": "Five letters written twice, said tighter."
+      "title": "The tense consonants ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Five consonants written twice and said more tightly."
     },
     "unit-10": {
-      "title": "The w vowels",
-      "goal": "Two vowels written as one. The last of the 40 letters."
+      "title": "The combined vowels",
+      "goal": "Vowels written from two vowels joined. The last of the forty letters."
     },
     "unit-11": {
-      "title": "A letter at the foot",
-      "goal": "받침 — the consonant that closes a syllable.",
+      "title": "Final consonants: 받침",
+      "goal": "The consonant that goes underneath a block.",
       "body": "A block can hold a third letter, underneath the other two. It is called a 받침, and it closes the syllable.",
       "points": [
         "The third letter always goes at the bottom of the square.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Reading 한글",
-      "goal": "You now know every letter. Read the name of the writing system itself."
+      "title": "Reading Korean words",
+      "goal": "Read real Korean words with everything you have learned."
     }
   },
   "intro": {

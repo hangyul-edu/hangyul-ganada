@@ -10,8 +10,8 @@
     "badge": "Yunit {{index, number}}",
     "continue": "Naintindihan — simulan na natin",
     "unit-1": {
-      "title": "Anim na patinig na panimula",
-      "goal": "Kailangan ng patinig ang bawat pantig sa Koreano. Ang anim na ito ang pinakasimple.",
+      "title": "Ang anim na pangunahing patinig",
+      "goal": "Kailangan ng patinig ang bawat pantig na Koreano. Ang anim na ito ang pinakamadali.",
       "body": "Alpabeto ang Hangul, hindi koleksyon ng larawan. May 40 letra ito, ginawa itong madaling matutuhan agad, at anim doon ang matututuhan mo ngayon.",
       "points": [
         "Nagkakabuklod ang mga letra sa parisukat na kahon, at isang pantig ang bawat kahon.",
@@ -20,12 +20,12 @@
       ]
     },
     "unit-2": {
-      "title": "Ang unang mga katinig mo",
-      "goal": "Limang katinig. Kasama ang mga patinig na alam mo, 30 pantig na agad iyan."
+      "title": "Ang unang limang katinig",
+      "goal": "Limang katinig. Kasama ang mga patinig na alam mo, tatlumpung pantig na iyon."
     },
     "unit-3": {
-      "title": "Pagsama-samahin",
-      "goal": "Katinig at patinig — kahon na mababasa mo ang labas.",
+      "title": "Pagbuo ng pantig",
+      "goal": "Ilagay ang katinig at patinig sa isang parisukat, at basahin ang pantig.",
       "body": "Isang parisukat ang isang pantig na Koreano. Nauuna ang katinig — sa kaliwa kapag patayong patinig, sa itaas kapag pahiga.",
       "points": [
         "Sa kanan ng katinig nakatayo ang patayong patinig (ㅏ ㅓ ㅣ).",
@@ -34,36 +34,36 @@
       ]
     },
     "unit-4": {
-      "title": "Lima pang katinig",
-      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — ang natitira sa payak na serye."
+      "title": "Limang katinig pa",
+      "goal": "ㅂ ㅅ ㅇ ㅈ ㅎ — ang natitirang payak na katinig."
     },
     "unit-5": {
-      "title": "Mas maraming kahon ang babasahin",
-      "goal": "Kasama ang isang letrang wala talagang tunog."
+      "title": "Pagbasa ng bagong pantig",
+      "goal": "Magbasa ng pantig gamit ang bagong katinig, pati ang ㅇ na walang tunog."
     },
     "unit-6": {
-      "title": "Pagdaragdag ng tunog na y",
-      "goal": "Isang dagdag na guhit at ㅏ ay nagiging ㅑ. Ganoon din sa apat."
+      "title": "Ang mga patinig ㅑ ㅕ ㅛ ㅠ",
+      "goal": "Kahawig ng ㅏ ㅓ ㅗ ㅜ ang ㅑ ㅕ ㅛ ㅠ. Ihambing ang tunog habang natututo."
     },
     "unit-7": {
-      "title": "Isang buga ng hangin",
-      "goal": "Ang ㅊ ㅋ ㅌ ㅍ ay mga letrang kilala mo na, may dagdag na isang guhit."
+      "title": "Ang mga katinig na ㅊ ㅋ ㅌ ㅍ",
+      "goal": "Apat na katinig na binibigkas nang may malakas na hangin."
     },
     "unit-8": {
-      "title": "Ang mga patinig na e",
-      "goal": "ㅐ ㅔ ㅒ ㅖ — mga patinig na nabubuo sa pagdagdag ng ㅣ."
+      "title": "Ang mga patinig ㅐ ㅔ ㅒ ㅖ",
+      "goal": "Apat pang patinig, at kung paano ibahin ang tunog ng bawat isa."
     },
     "unit-9": {
-      "title": "Doble at mahigpit",
-      "goal": "Limang letrang isinusulat nang dalawang beses at binibigkas nang mas mahigpit."
+      "title": "Ang mga katinig na ㄲ ㄸ ㅃ ㅆ ㅉ",
+      "goal": "Limang katinig na isinusulat nang doble at binibigkas nang mas mahigpit."
     },
     "unit-10": {
-      "title": "Ang mga patinig na w",
-      "goal": "Dalawang patinig na isinusulat bilang isa. Ang huli sa 40 letra."
+      "title": "Ang mga pinagsamang patinig",
+      "goal": "Mga patinig mula sa dalawang pinagdugtong na patinig. Huli sa apatnapung titik."
     },
     "unit-11": {
-      "title": "Isang letra sa ilalim",
-      "goal": "받침 — ang katinig na nagsasara ng pantig.",
+      "title": "Ang pangwakas na katinig: 받침",
+      "goal": "Ang katinig na nasa ilalim ng pantig.",
       "body": "Kasya ang pangatlong letra sa isang kahon, sa ilalim ng dalawa. 받침 ang tawag dito, at ito ang nagsasara ng pantig.",
       "points": [
         "Laging nasa pinakailalim ng parisukat ang pangatlong letra.",
@@ -72,8 +72,8 @@
       ]
     },
     "unit-12": {
-      "title": "Pagbasa ng 한글",
-      "goal": "Alam mo na ang bawat letra. Basahin ang pangalan mismo ng sistema ng pagsulat."
+      "title": "Pagbasa ng salitang Koreano",
+      "goal": "Magbasa ng totoong salitang Koreano gamit ang lahat ng natutuhan mo."
     }
   },
   "intro": {
