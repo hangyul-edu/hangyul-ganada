@@ -1107,6 +1107,16 @@ questions to 7. Five fixtures hold both halves of the rule.
 screens the photographs came from and re-reads each one: 6/6. `npm run mobile:qa`
 is 14/14 on the same build. Screenshots are written to `.walk-shots/`.
 
+**One of those fourteen was sampling rather than waiting, and the larger bundle
+found it.** *Progress is stored in native SQLite* read the `data-storage-engine`
+attribute once, immediately after first paint. The attribute genuinely starts at
+`memory` and becomes `sqlite` when the native driver finishes opening the
+database, so the check was a race the app won on the old bundle and lost on one
+with sixty more words of audio in it. Probed by hand a second later it said
+`sqlite`. It waits now. That is the third instance today of the same class —
+sample an unrendered state, report the product as broken — and it is recorded in
+§19.1 alongside the other two.
+
 **This is an emulator. No physical device was used, and nothing in this section
 is evidence about one.** The distinction matters most for the two things an
 emulator models worst — real touch latency and a real speaker — and neither is

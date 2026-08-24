@@ -177,7 +177,21 @@ async function main() {
   // The splash is dismissed by the app after first paint, not by a timeout.
   check('the launch screen is gone and the app is drawn', await waitFor("document.querySelector('#root')?.childElementCount > 0"));
 
-  // Storage is the native database, not the WebView's.
+  /*
+   * Storage is the native database, not the WebView's — waited for, not sampled.
+   *
+   * `AppShell` publishes `data-storage-engine` from the moment it renders and
+   * the value changes when the driver resolves: `memory` while the native
+   * plugin is still opening the database, `sqlite` once it has. Reading the
+   * attribute once, immediately after first paint, is therefore a race that the
+   * app wins on a small bundle and loses on a larger one — this reported
+   * `memory` on a build whose only difference was sixty more words of audio and
+   * corpus, and the same probe run by hand a second later said `sqlite`.
+   *
+   * A check that depends on how fast the machine is says nothing about the
+   * product. Wait for the engine to settle, and report whatever it settled on.
+   */
+  await waitFor("document.querySelector('[data-storage-engine]')?.dataset.storageEngine === 'sqlite'");
   const engine = await evaluate(`
     const el = document.querySelector('[data-storage-engine]');
     return el ? el.dataset.storageEngine : null;
