@@ -708,6 +708,40 @@ export interface DayProgress {
   stepsLeft: number;
 }
 
+/**
+ * How far through the *session in front of the learner* they are.
+ *
+ * Deliberately a different number from `dayProgress`, and the difference is the
+ * one thing about this pair worth remembering.
+ *
+ * `dayProgress` measures the promise: the goal the learner chose, so twelve
+ * words against a goal of ten is 12/10 and 120%, which is an achievement and
+ * reads like one on My Learning.
+ *
+ * `sessionProgress` measures the work still on the screen. A learner who
+ * finishes ten and taps *5개 더 풀기* has fifteen words in front of them, and a
+ * header that goes on saying **10 / 10** while asking an eleventh question is
+ * lying about what is left. So the denominator here follows the plan.
+ *
+ * Both were the same number until a session could be extended, which is why
+ * conflating them was invisible for so long.
+ */
+export function sessionProgress(plan: DailyPlan): DayProgress {
+  const done = new Set(plan.completed).size;
+  // The plan can be shorter than the goal early on — a learner three days in
+  // may not have ten words' worth of anything yet — so the target is whichever
+  // is larger. Extending the plan moves it; the goal never does.
+  const total = Math.max(plan.goal, plan.words.length);
+  return {
+    done,
+    total,
+    ratio: total === 0 ? 1 : Math.min(1, done / total),
+    percent: total === 0 ? 100 : Math.round((done / total) * 100),
+    complete: plan.words.length > 0 && done >= plan.words.length,
+    stepsLeft: scheduleSteps(plan).length,
+  };
+}
+
 export function dayProgress(plan: DailyPlan): DayProgress {
   /*
    * Distinct words, not entries.

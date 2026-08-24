@@ -28,11 +28,8 @@
   "result": {
     "label": "韩橘词汇等级",
     "of": "/ {{levels, number}}",
-    "band": "最可能在 {{low, number}} 到 {{high, number}} 之间。",
-    "words": "到这个等级，读者通常能认出韩语中最常用的 {{count, number}} 个词。",
     "recommend": "今后每天的单词会按这个水平来挑。",
-    "start": "学习适合我等级的单词",
-    "ceiling": "目前测试最高只能问到第 {{ceiling, number}} 级。更高级别的词还没有翻译。"
+    "start": "学习适合我等级的单词"
   },
   "bands": {
     "starter": "入门",

@@ -28,11 +28,8 @@
   "result": {
     "label": "Nivel de vocabulario Hangyul",
     "of": "de {{levels, number}}",
-    "band": "Probablemente entre {{low, number}} y {{high, number}}.",
-    "words": "En este nivel se suelen reconocer las {{count, number}} palabras coreanas más frecuentes.",
     "recommend": "A partir de ahora tus palabras diarias se ajustan a este nivel.",
-    "start": "Aprender palabras de mi nivel",
-    "ceiling": "Por ahora la prueba llega al nivel {{ceiling, number}}. Las palabras por encima aún no están traducidas."
+    "start": "Aprender palabras de mi nivel"
   },
   "bands": {
     "starter": "INICIO",

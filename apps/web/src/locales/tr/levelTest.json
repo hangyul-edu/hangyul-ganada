@@ -28,11 +28,8 @@
   "result": {
     "label": "Hangyul kelime seviyesi",
     "of": "/ {{levels, number}}",
-    "band": "Büyük olasılıkla {{low, number}} ile {{high, number}} arasında.",
-    "words": "Bu seviyede genellikle en sık kullanılan {{count, number}} Korece kelime tanınır.",
     "recommend": "Günlük kelimelerin artık bu seviyeye göre seçiliyor.",
-    "start": "Seviyeme uygun kelimeleri öğren",
-    "ceiling": "Test şimdilik {{ceiling, number}}. seviyeye kadar soruyor. Bunun üstündeki kelimeler henüz çevrilmedi."
+    "start": "Seviyeme uygun kelimeleri öğren"
   },
   "bands": {
     "starter": "BAŞLANGIÇ",

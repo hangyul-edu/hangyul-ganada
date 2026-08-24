@@ -28,11 +28,8 @@
   "result": {
     "label": "Hangyul szókincsszint",
     "of": "/ {{levels, number}}",
-    "band": "Legvalószínűbben {{low, number}} és {{high, number}} között.",
-    "words": "Ezen a szinten általában a(z) {{count, number}} leggyakoribb koreai szót ismerik fel.",
     "recommend": "A napi szavai mostantól ehhez a szinthez igazodnak.",
-    "start": "Tanulás a saját szintemen",
-    "ceiling": "A teszt egyelőre a(z) {{ceiling, number}}. szintig kérdez. A fölötte lévő szavak még nincsenek lefordítva."
+    "start": "Tanulás a saját szintemen"
   },
   "bands": {
     "starter": "KEZDÉS",

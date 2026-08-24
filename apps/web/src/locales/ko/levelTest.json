@@ -28,11 +28,8 @@
   "result": {
     "label": "한귤 어휘 레벨",
     "of": "/ {{levels, number}}",
-    "band": "{{low, number}}~{{high, number}} 사이일 가능성이 높아요.",
-    "words": "이 레벨이면 보통 한국어에서 가장 많이 쓰는 {{count, number}}개 단어를 알아봐요.",
     "recommend": "이제 오늘의 단어가 이 수준에 맞춰져요.",
-    "start": "내 수준에 맞는 단어 배우기",
-    "ceiling": "지금은 {{ceiling, number}}단계까지 물어볼 수 있어요. 그 위 단계의 단어는 아직 번역되지 않았어요."
+    "start": "내 수준에 맞는 단어 배우기"
   },
   "bands": {
     "starter": "입문",

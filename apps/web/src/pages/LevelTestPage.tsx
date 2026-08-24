@@ -10,7 +10,6 @@ import {
 } from '../data/levelTest';
 import { getFont, textFamily } from '../data/fonts';
 import {
-  CUMULATIVE_WORDS,
   ITEM_COUNT,
   LEVELS,
   TIME_LIMIT_MS,
@@ -74,6 +73,14 @@ import styles from './LevelTestPage.module.css';
  * and nowhere else. No progress, no memory, no session, no streak. Sitting the
  * test five times changes nothing about what the app will teach next.
  */
+/**
+ * How many questions must pass before the same word may be asked about again.
+ *
+ * Six is "several other learning events" — enough that the answer has to be
+ * recalled rather than still being on the screen behind this one.
+ */
+const WORD_COOLDOWN = 6;
+
 export function LevelTestPage() {
   const navigate = useNavigate();
   const { t } = useTranslation(['levelTest', 'common']);
@@ -85,6 +92,8 @@ export function LevelTestPage() {
   const [failed, setFailed] = useState(false);
   const [started, setStarted] = useState(false);
   const [asked, setAsked] = useState<AskedItem[]>([]);
+  /** Item ids asked most recently, newest first. Feeds the word cooldown. */
+  const recentWords = useRef<string[]>([]);
   const [current, setCurrent] = useState<LevelTestItem | null>(null);
   const [done, setDone] = useState(false);
   const [deadline, setDeadline] = useState<number | null>(null);
@@ -176,10 +185,31 @@ export function LevelTestPage() {
         return;
       }
 
-      const fresh = pool.filter((item) => !previous.has(item.id));
-      const from = fresh.length > 0 ? fresh : pool;
+      /*
+        Not the same word twice in a row, whatever kind the two questions are.
+
+        `used` holds item ids, and one word has several: 끝없다 owns both
+        word_kkeuteopda:context and word_kkeuteopda:meaning. So a sitting could
+        end one question by revealing 끝없다 as the answer and open the next with
+        끝없다 · 이 단어는 무슨 뜻일까요?, which is not a question — the learner
+        was looking at the answer a second ago. It was reported from a device
+        and it is the sort of thing that makes an adaptive test feel random.
+
+        The word id is the part of the item id before the colon, so no data
+        change is needed to group them. Spacing is a preference and finishing
+        the sitting is the contract, so if honouring it would empty the pool the
+        cooldown is dropped rather than the question.
+      */
+      const wordOf = (id: string) => id.split(':')[0]!;
+      const cooling = new Set(recentWords.current.slice(0, WORD_COOLDOWN).map(wordOf));
+      const spaced = pool.filter((item) => !cooling.has(wordOf(item.id)));
+      const respectful = spaced.length > 0 ? spaced : pool;
+
+      const fresh = respectful.filter((item) => !previous.has(item.id));
+      const from = fresh.length > 0 ? fresh : respectful;
       const item = from[Math.floor(Math.random() * from.length)]!;
       used.current.add(item.id);
+      recentWords.current.unshift(item.id);
       seen.current.unshift(item.id);
       setCurrent(item);
     },
@@ -307,7 +337,6 @@ export function LevelTestPage() {
   }
 
   if (done) {
-    const words = CUMULATIVE_WORDS[Math.min(CUMULATIVE_WORDS.length, result.reported) - 1];
     return (
       <div className={styles.page}>
         <AppHeader title={t('levelTest:title')} onBack={() => navigate('/me')} />
@@ -319,44 +348,26 @@ export function LevelTestPage() {
               <span className={styles.resultOf}>{t('levelTest:result.of', { levels: LEVELS })}</span>
             </p>
             {/*
-              The confidence band, and only when it is a band.
+              One number, and nothing about how it was arrived at.
 
-              `estimate` reports a low and a high, and on a sitting answered
-              entirely with "I don't know" both come back 1 — so the screen read
-              "Most likely between 1 and 1.", which is not a range and not a
-              sentence anybody would write. Where the estimator is certain to a
-              single level the number above has already said it, and the honest
-              thing is to say nothing more.
-            */}
-            {result.low !== result.high && (
-              <p className={styles.resultBand}>
-                {t('levelTest:result.band', { low: result.low, high: result.high })}
-              </p>
-            )}
-            <p className={styles.resultWords}>{t('levelTest:result.words', { count: words })}</p>
-            {/*
-              How far the test could actually ask, when that is not the whole
-              scale.
+              Two things used to be printed here and both were the product
+              talking to itself in front of a customer.
 
-              Twenty-two languages have a hundred of the 2,581 taught words
-              written, so their bank is the Korean-only contextual items and it
-              runs out at level 23; nine more reach 25, because the levels above
-              are ranked from the dictionary and only English has those glosses.
-              The test still reports a number out of thirty, which is the scale
-              — but a learner who was never asked a question above 23 is owed
-              the reason, and a number that silently means "as high as we could
-              measure" is the kind of result that reads as a verdict.
-            */}
-            {bank && bank.ceiling < LEVELS ? (
-              <p className={styles.resultCeiling}>
-                {t('levelTest:result.ceiling', { ceiling: bank.ceiling })}
-              </p>
-            ) : null}
-            {/*
-              What the number is *for*, which is the only thing worth saying
-              about it here. The screen used to end on a disclaimer explaining
-              that this is not an official examination — a sentence that answers
-              a question nobody asked and plants one they had not had.
+              The confidence band — "15~21 사이일 가능성이 높아요" — is a real
+              property of the estimator and not a result. A learner who has just
+              spent eight minutes being measured is told the measurement is
+              uncertain to six levels, which reads as an apology and is of no
+              use to anybody outside this repository. `result.low` and
+              `result.high` are still computed and still saved; they are
+              analytics.
+
+              The ceiling notice — "지금은 23단계까지 물어볼 수 있어요. 그 위
+              단계의 단어는 아직 번역되지 않았어요" — is worse: it is a content
+              backlog, described to the person who bought the finished product.
+              Whether this language's bank reaches level 23 or level 30 is ours
+              to fix, and until it is fixed the honest thing is to report the
+              level actually measured rather than to explain the engineering.
+              §15 of the review brief is unambiguous about this and it is right.
             */}
             <p className={styles.resultRecommend}>{t('levelTest:result.recommend')}</p>
           </Card>

@@ -28,11 +28,8 @@
   "result": {
     "label": "Level kosakata Hangyul",
     "of": "dari {{levels, number}}",
-    "band": "Kemungkinan besar antara {{low, number}} dan {{high, number}}.",
-    "words": "Pada level ini biasanya dikenali {{count, number}} kata Korea yang paling umum.",
     "recommend": "Kata harianmu sekarang dipilih sesuai level ini.",
-    "start": "Pelajari kata di level saya",
-    "ceiling": "Untuk saat ini tes hanya sampai level {{ceiling, number}}. Kata-kata di atasnya belum diterjemahkan."
+    "start": "Pelajari kata di level saya"
   },
   "bands": {
     "starter": "AWAL",

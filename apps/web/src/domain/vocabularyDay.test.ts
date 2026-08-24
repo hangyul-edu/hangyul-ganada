@@ -21,6 +21,7 @@ import {
   buildDailyPlan,
   completeWord,
   dayProgress,
+  sessionProgress,
   extendDay,
   newWordAllowance,
   planIsCurrent,
@@ -460,5 +461,89 @@ describe('leaving and coming back', () => {
     expect(progress.complete).toBe(true);
     expect(progress.ratio).toBe(1);
     expect(progress.stepsLeft).toBe(0);
+  });
+});
+
+
+
+/**
+ * The session in front of the learner, and the goal they agreed to.
+ *
+ * These are different numbers and were the same number until a session could be
+ * extended. Every case below was reported from a real device.
+ */
+describe('the session and the day are different measurements', () => {
+  const request = { progress: {}, memory: {}, corpus: corpus(200), goal: 10, now: NOW };
+  const built = () => buildDailyPlan(request);
+
+  it('does not move for an introduction, only for a right answer', () => {
+    const day = built();
+    expect(sessionProgress(day).done).toBe(0);
+    expect(sessionProgress(day).ratio).toBe(0);
+  });
+
+  it('counts a word once however many attempts it took', () => {
+    let day = built();
+    const first = day.words[0]!.wordId;
+    day = completeWord(day, first);
+    day = completeWord(day, first);
+    expect(sessionProgress(day).done).toBe(1);
+  });
+
+  it('keeps the learner at 9/10 when the last unseen word is missed', () => {
+    let day = built();
+    for (const word of day.words.slice(0, 9)) day = completeWord(day, word.wordId);
+    const progress = sessionProgress(day);
+    expect(progress.done).toBe(9);
+    expect(progress.total).toBe(10);
+    expect(progress.complete).toBe(false);
+    expect(dayProgress(day).complete).toBe(false);
+  });
+
+  it('extends the denominator when the learner asks for five more', () => {
+    let day = built();
+    for (const word of day.words) day = completeWord(day, word.wordId);
+    expect(sessionProgress(day)).toMatchObject({ done: 10, total: 10 });
+
+    const extended = extendDay(day, 5, request);
+    const after = sessionProgress(extended);
+    expect(after.done).toBe(10);
+    // §31: the session in front of them is now fifteen words, and a header that
+    // went on saying 10 / 10 while asking an eleventh question was lying.
+    expect(after.total).toBe(15);
+    expect(after.ratio).toBeCloseTo(10 / 15, 3);
+    expect(after.complete).toBe(false);
+  });
+
+  it('leaves the daily goal alone when the session is extended', () => {
+    let day = built();
+    for (const word of day.words) day = completeWord(day, word.wordId);
+    const extended = extendDay(day, 5, request);
+    // §32: the promise was ten words and it has been kept. My Learning says so.
+    expect(dayProgress(extended).total).toBe(10);
+    expect(dayProgress(extended).percent).toBe(100);
+  });
+
+  it('reports more than a hundred per cent without clamping it', () => {
+    let day = extendDay(built(), 5, request);
+    for (const word of day.words.slice(0, 12)) day = completeWord(day, word.wordId);
+    const achievement = dayProgress(day);
+    // §33: twelve of ten is 120%, and the ring used to say 100% beside it.
+    expect(achievement.done).toBe(12);
+    expect(achievement.total).toBe(10);
+    expect(achievement.percent).toBe(120);
+    // The bar still stops at full, because a bar that overflows is a bug.
+    expect(achievement.ratio).toBe(1);
+  });
+
+  it('adds five distinct words that are not already done', () => {
+    let day = built();
+    for (const word of day.words) day = completeWord(day, word.wordId);
+    const extended = extendDay(day, 5, request);
+    const ids = extended.words.map((word) => word.wordId);
+    // §63: five more, all new, no duplicates, and the finished ten untouched.
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(ids.length).toBe(15);
+    expect(extended.completed).toEqual(day.completed);
   });
 });

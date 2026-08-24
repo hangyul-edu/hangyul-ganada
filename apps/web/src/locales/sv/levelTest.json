@@ -28,11 +28,8 @@
   "result": {
     "label": "Hangyul ordförrådsnivå",
     "of": "av {{levels, number}}",
-    "band": "Troligen mellan {{low, number}} och {{high, number}}.",
-    "words": "På den här nivån känner man oftast igen de {{count, number}} vanligaste koreanska orden.",
     "recommend": "Dina dagliga ord följer nu den här nivån.",
-    "start": "Lär dig ord på min nivå",
-    "ceiling": "Testet når tills vidare nivå {{ceiling, number}}. Orden ovanför är inte översatta än."
+    "start": "Lär dig ord på min nivå"
   },
   "bands": {
     "starter": "BÖRJAN",

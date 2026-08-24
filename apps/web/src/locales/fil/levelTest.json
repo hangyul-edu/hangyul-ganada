@@ -28,11 +28,8 @@
   "result": {
     "label": "Antas ng bokabularyo ng Hangyul",
     "of": "sa {{levels, number}}",
-    "band": "Malamang nasa pagitan ng {{low, number}} at {{high, number}}.",
-    "words": "Sa antas na ito, karaniwang nakikilala ang {{count, number}} pinakakaraniwang salitang Koreano.",
     "recommend": "Susunod na sa antas na ito ang mga salita mo bawat araw.",
-    "start": "Mag-aral ng salita sa antas ko",
-    "ceiling": "Sa ngayon, umaabot ang pagsusulit hanggang antas {{ceiling, number}}. Hindi pa naisasalin ang mga salitang mas mataas dito."
+    "start": "Mag-aral ng salita sa antas ko"
   },
   "bands": {
     "starter": "SIMULA",

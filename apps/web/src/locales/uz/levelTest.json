@@ -28,11 +28,8 @@
   "result": {
     "label": "Hangyul lug‘at darajasi",
     "of": "/ {{levels, number}}",
-    "band": "Ehtimol {{low, number}} bilan {{high, number}} orasida.",
-    "words": "Bu darajada odatda eng ko‘p uchraydigan {{count, number}} koreys so‘zi tanib olinadi.",
     "recommend": "Endi kunlik so‘zlar shu darajaga moslab tanlanadi.",
-    "start": "O‘z darajamdagi so‘zlarni o‘rganish",
-    "ceiling": "Hozircha test {{ceiling, number}}-darajagacha so'raydi. Undan yuqoridagi so'zlar hali tarjima qilinmagan."
+    "start": "O‘z darajamdagi so‘zlarni o‘rganish"
   },
   "bands": {
     "starter": "BOSHLANISH",

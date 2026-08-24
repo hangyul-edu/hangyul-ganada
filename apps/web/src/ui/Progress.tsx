@@ -53,13 +53,22 @@ export function CircularProgress({
   showValue = true,
   caption,
 }: CircularProgressProps) {
+  /*
+   * The arc is capped and the number is not.
+   *
+   * A ring cannot draw more than one revolution, so the geometry has to stop at
+   * full. The *label* has no such excuse, and clamping both is why a learner
+   * who had done twelve words against a goal of ten read `12/10` beside a ring
+   * that said `100%`. Two numbers about the same fact, on the same card,
+   * disagreeing — and the one that was wrong was the one being celebrated.
+   */
   const pct = clamp01(value);
   // The design sets the numeral large and the percent sign small, so the two
   // are separate elements — but they still have to be the locale's numeral and
   // the locale's percent sign, in the locale's order. `formatToParts` gives
   // both without hand-assembling `${n}%`, which is wrong in several of the
   // languages this app ships.
-  const percent = usePercentParts(pct);
+  const percent = usePercentParts(Math.max(0, value));
   const stroke = size * 0.11;
   const r = (size - stroke) / 2;
   const circumference = 2 * Math.PI * r;

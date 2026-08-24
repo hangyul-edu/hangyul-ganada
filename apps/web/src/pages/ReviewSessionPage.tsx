@@ -147,6 +147,17 @@ export function ReviewSessionPage() {
     }>
   >([]);
   const [finished, setFinished] = useState(false);
+  /**
+   * Items answered correctly, which is what the bar above measures.
+   *
+   * Distinct items rather than results, so a retry cannot count twice: an item
+   * answered wrong and then right is one completion, exactly as it is in the
+   * word session.
+   */
+  const completedCount = useMemo(
+    () => new Set(results.filter((r) => r.passed).map((r) => r.candidate.itemKey)).size,
+    [results],
+  );
   const failedOnce = useRef(new Set<string>());
   const sessionId = useRef<string | null>(null);
   const writeResult = useRef<EvaluationResult | null>(null);
@@ -313,7 +324,16 @@ export function ReviewSessionPage() {
             transparent
           />
           <div className={styles.progressRow}>
-            <ProgressBar value={index / queue.length} label={t('common:progress.review')} />
+            {/*
+              Items answered, not screens visited — the same correction the
+              word session needed. A review bar driven by the queue index moves
+              when the learner presses on and not when they get something right,
+              which is the opposite of what a progress bar is for.
+            */}
+            <ProgressBar
+              value={queue.length === 0 ? 1 : completedCount / queue.length}
+              label={t('common:progress.review')}
+            />
           </div>
         </>
       }

@@ -7,7 +7,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog';
 import { usePronunciation } from '../audio/PronunciationContext';
 import { strictMeaning, type wordCopy } from '../data/wordCopy';
 import { getFont, textFamily } from '../data/fonts';
-import { retrySteps, scheduleSteps, type WordStep } from '../domain/vocabularyDay';
+import { retrySteps, scheduleSteps, sessionProgress, type WordStep } from '../domain/vocabularyDay';
 import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { WordIntro } from '../features/learning/WordIntro';
@@ -193,6 +193,21 @@ export function WordSessionPage() {
   */
   const queue = useMemo(() => [...firstPass, ...retries], [firstPass, retries]);
 
+  /**
+   * The session's own numbers, which are not the day's.
+   *
+   * `vocabularyProgressToday` answers "how am I doing against the goal I chose"
+   * and belongs on My Learning, where twelve of ten is 120% and reads as an
+   * achievement. This screen has to answer a different question — how much of
+   * what is in front of me is left — and after *5개 더 풀기* the two diverge:
+   * the goal is still ten and there are fifteen words to do. The header used to
+   * show the day's numbers and went on saying 10 / 10 while asking an eleventh
+   * question.
+   */
+  const session = useMemo(() => sessionProgress(vocabularyDay), [vocabularyDay]);
+
+
+
   const sessionId = useRef<string | null>(null);
 
   useStudyClock(!finished);
@@ -214,6 +229,30 @@ export function WordSessionPage() {
   }, [queue.length, startSession]);
 
   const current = queue[index];
+
+  /*
+   * Whether pressing on ends the session — asked of the obligations, not of the
+   * position in a list.
+   *
+   * `index + 1 >= queue.length` was the whole test, and it is wrong the moment
+   * retries exist. A learner at 9 / 10 who answers the last unseen word *wrong*
+   * is on the last item of the current queue, so the button said 마치기 — while
+   * the word was about to be requeued and the session was about to continue.
+   * Nine words done, one owed, and a button offering to finish.
+   *
+   * So it asks what `advance` is about to do: credit this answer if it was
+   * right, then look at what the plan still owes. Only when nothing is owed and
+   * nothing is left in the queue is this genuinely the end.
+   */
+  const isLast = useMemo(() => {
+    if (index + 1 < queue.length) return false;
+    const creditedNow = answeredCorrectly === true ? (current?.completes ?? []) : [];
+    const owed = retrySteps(
+      { ...vocabularyDay, completed: [...vocabularyDay.completed, ...creditedNow] },
+      missed.current,
+    );
+    return owed.length === 0;
+  }, [index, queue.length, answeredCorrectly, current, vocabularyDay]);
 
   // The next two words' clips, while the learner is still on this one.
   useEffect(() => {
@@ -408,7 +447,7 @@ export function WordSessionPage() {
     );
   }
 
-  const isLast = index + 1 >= queue.length;
+
 
   /*
    * Meeting a word has one action and it belongs in the safe footer. A question
@@ -449,18 +488,25 @@ export function WordSessionPage() {
                */
               <Badge tone="primary" filled numeric>
                 {t('learning:session.counter', {
-                  current: vocabularyProgressToday.done,
-                  total: vocabularyProgressToday.total,
+                  current: session.done,
+                  total: session.total,
                 })}
               </Badge>
             }
             transparent
           />
           <div className={styles.progressRow}>
-            <ProgressBar
-              value={queue.length === 0 ? 1 : index / queue.length}
-              label={t('vocabulary:today.progressAria')}
-            />
+            {/*
+              The same state as the counter above it, which it was not.
+
+              The bar was `index / queue.length` — how far down the list of
+              screens the learner had scrolled — while the counter beside it
+              counted words finished. So reading ten introductions filled the
+              bar without moving the number, and a session that had genuinely
+              reached 10 / 10 could show an empty bar after its queue was
+              rebuilt for a retry. Two numbers, two sources, one screen.
+            */}
+            <ProgressBar value={session.ratio} label={t('vocabulary:today.progressAria')} />
           </div>
         </>
       }
