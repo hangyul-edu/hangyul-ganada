@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 0.1.0
 date: 24 August 2026
-describes: A pre-launch re-audit written from scratch against the running product at `0e50416f` — the corpus grown from 2,581 to 2,916 words by hand, every one of its 2,916 Korean examples read one at a time, a quarter of the contextual Level Test found answerable without reading the Korean, three classes of Korean the conjugator was inventing, a sentence the distractor generator could compose that no learning product may show, 125 translations that invented a person the Korean does not have, and the signed package rebuilt from this commit with the existing production key and verified on an emulator.
+describes: A pre-launch re-audit written from scratch against the running product at `8e72a50f` — the corpus grown from 2,581 to 2,916 words by hand, every one of its 2,916 Korean examples read one at a time, a quarter of the contextual Level Test found answerable without reading the Korean, three classes of Korean the conjugator was inventing, a sentence the distractor generator could compose that no learning product may show, 125 translations that invented a person the Korean does not have, and the signed package rebuilt from this commit with the existing production key and verified on an emulator.
 mark: report-assets/mark.png
 ---
 
@@ -77,7 +77,7 @@ exactly that.
 
 | | |
 | --- | --- |
-| Commit | `0e50416f` |
+| Commit | `8e72a50f` |
 | Working tree | clean outside `docs/` and the release directories |
 | Node | v24.19.0 |
 | Web | React 19, Vite 7, TypeScript |
@@ -106,8 +106,8 @@ exactly that.
 | Curriculum units | 12 |
 | Lessons | 15 |
 | Audio clips | 11,788 |
-| Signed APK | 74.2 MB |
-| Signed AAB | 72.8 MB |
+| Signed APK | 76.0 MB |
+| Signed AAB | 74.6 MB |
 | Issues tracked | 68 |
 
 "Characters taught" counts every entry in the curriculum's character table — the
@@ -803,8 +803,20 @@ new APK    157a2bb133f6aa3d…3323debc
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
 
-The APK grew from 68.0 MB to 74.2 MB; the difference is the audio for the 263
-new words. `checksums.sha256` verifies in both `result/` and `app_result/`.
+The APK grew from 68.0 MB to 76.0 MB across the whole cycle; the difference is
+the audio for the 335 new words. `checksums.sha256` verifies in both `result/`
+and `app_result/`.
+
+**Two Android permissions, and neither is ever asked for.** The package declared
+five before this cycle — the notification, boot and wake-lock permissions that
+the optional daily reminder brought with it. The reminder was removed and they
+went with it, leaving INTERNET, which the WebView bridge needs to serve the
+bundled app over its own origin, and VIBRATE, which is the tap you feel when a
+letter is accepted. Both are granted by Android at install without a prompt, so
+there is no permission dialog anywhere in this product. `aapt2 dump permissions`
+on the shipped package prints those two and the Capacitor receiver guard, and
+`audit-release-security` fails the build if any of the four removed ones comes
+back.
 
 No keystore, password or key value appears in this repository, in `result/`, or
 in any log written during this build. A second keystore on this machine
