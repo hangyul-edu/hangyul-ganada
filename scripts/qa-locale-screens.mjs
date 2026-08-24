@@ -59,6 +59,18 @@ const PHONE = { width: 390, height: 844 };
 /** Every locale directory, which is the same list the app ships. */
 const ALL_LOCALES = readdirSync(join(root, 'apps/web/src/locales')).sort();
 
+/*
+ * `--only ta,ko` renders a subset.
+ *
+ * The full sweep is 256 pages and takes about ten minutes, which is the right
+ * cost for a release gate and the wrong one for checking whether a fix works.
+ * The subset is for that, and for negative-testing this file's own checks; it
+ * never narrows a `--check` run that CI makes, because CI does not pass it.
+ */
+const only = process.argv[process.argv.indexOf('--only') + 1];
+const LOCALES =
+  process.argv.includes('--only') && only ? only.split(',').filter((l) => ALL_LOCALES.includes(l)) : ALL_LOCALES;
+
 /**
  * The screens worth looking at in every language.
  *
@@ -112,7 +124,7 @@ const rows = [];
 const stopPreview = await ensurePreview(baseUrl);
 const browser = await chromium.launch();
 
-for (const locale of ALL_LOCALES) {
+for (const locale of LOCALES) {
   /*
    * The **browser's** language, not a row written into the app's storage.
    *
@@ -171,6 +183,33 @@ for (const locale of ALL_LOCALES) {
         }
       }
 
+      /*
+       * Text that was *designed* to truncate, and is.
+       *
+       * The scan above reads interactive elements only, and it was right about
+       * every button in the product and blind to the screen's own name: an
+       * `<h1>` is not a button, so `இன்றைய சொற்...` in the header of the daily
+       * session went eight locales unreported through a gate that renders that
+       * exact screen in all thirty-two.
+       *
+       * `text-overflow: ellipsis` is the signature to look for, because it is
+       * an author saying "this may be cut off". Whether it *is* cut off is then
+       * a measurement, and one worth failing on: every place in this product
+       * that sets it is showing a string the product itself wrote, so a
+       * truncation there is a translation that does not fit its own design,
+       * not a user's long filename.
+       */
+      for (const element of document.querySelectorAll('*')) {
+        const style = getComputedStyle(element);
+        if (!style.textOverflow.startsWith('ellipsis')) continue;
+        if (style.display === 'none' || style.visibility === 'hidden') continue;
+        if (element.scrollWidth <= element.clientWidth + 2) continue;
+        problems.push({
+          kind: 'ellipsed',
+          detail: `${(element.textContent ?? '').trim().slice(0, 40)} — ${element.scrollWidth}>${element.clientWidth}px`,
+        });
+      }
+
       const text = (document.body.innerText ?? '').replace(/\s+/g, ' ');
       for (const phrase of english) {
         if (text.includes(phrase)) {
@@ -215,7 +254,7 @@ if (!CHECK) {
      figure{margin:0;flex:0 0 auto} img{width:180px;border:1px solid #ddd;background:#fff}
      figcaption{font-size:11px;color:#666}</style></head><body>
      <h1>Every screen, every language</h1>
-     ${ALL_LOCALES.map(
+     ${LOCALES.map(
        (locale) => `<h2>${locale}</h2><div class="row">${SCREENS.map(
          (screen) =>
            `<figure><img src="${locale}/${screen.name}.png" loading="lazy"><figcaption>${screen.name}</figcaption></figure>`,
@@ -229,8 +268,8 @@ const byKind = {};
 for (const finding of findings) byKind[finding.kind] = (byKind[finding.kind] ?? 0) + 1;
 
 console.log(
-  `\nLocale screens — ${ALL_LOCALES.length} languages x ${SCREENS.length} screens = ` +
-    `${ALL_LOCALES.length * SCREENS.length} renders`,
+  `\nLocale screens — ${LOCALES.length} languages x ${SCREENS.length} screens = ` +
+    `${LOCALES.length * SCREENS.length} renders`,
 );
 for (const [kind, count] of Object.entries(byKind)) console.log(`  ${kind.padEnd(14)} ${count}`);
 

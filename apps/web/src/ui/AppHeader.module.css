@@ -87,15 +87,43 @@
   background: var(--hg-bg-muted);
 }
 
+/*
+ * Two lines, not an ellipsis.
+ *
+ * This used to be `white-space: nowrap` with `text-overflow: ellipsis`, on the
+ * reasoning that a truncated title is better than side slots knocked out of
+ * alignment. That reasoning is right about the alignment and wrong about the
+ * learner. Tamil's name for the daily session is இன்றைய சொற்கள், and inside
+ * the 226 px the middle track has at 390 px with the counter pill reserved, it
+ * rendered as `இன்றைய சொற்...` — the screen's own name, cut off, on the screen
+ * the learner spends most of their time on. Twelve of the thirty-two interface
+ * languages write that heading long enough to lose characters to it.
+ *
+ * Wrapping keeps the alignment the ellipsis was protecting: the tracks are
+ * unchanged, the title is still centred in the middle one, and the rows stay
+ * centred on each other because the grid is `align-items: center`. Two lines of
+ * 17 px at 1.25 is 43 px, so the header does not grow past its 56 px either —
+ * the wrap is invisible except that the words are all there.
+ *
+ * `line-clamp: 2` is the floor under a pathological case: a locale that writes
+ * a heading in four lines would push the header down the screen, and two lines
+ * with an ellipsis is the right failure for that. No shipped locale reaches it.
+ *
+ * `word-break: keep-all` is inherited from `body` and matters here: Korean must
+ * break between words and not inside them. See `styles/global.css`.
+ */
 .title {
   text-align: center;
   font-size: var(--hg-text-title);
   font-weight: var(--hg-weight-semibold);
+  line-height: 1.25;
   color: var(--hg-text);
-  /* Long titles truncate rather than pushing the side slots out of alignment. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 /* --- brand variant (home) --- */
