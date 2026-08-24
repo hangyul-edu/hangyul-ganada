@@ -86,15 +86,6 @@
     "contentHeading": "콘텐츠",
     "fontsHeading": "서체"
   },
-  "reminder": {
-    "title": "매일 알림",
-    "description": "하루에 한 번, 원하는 시간에 조용히 알려 드려요. 켜지 않으면 울리지 않고, 알림은 이 기기를 벗어나지 않아요.",
-    "toggle": "연습 알림 받기",
-    "at": "시간",
-    "notificationTitle": "연습할 시간이에요",
-    "notificationBody": "한국어 몇 분이 기다리고 있어요.",
-    "refused": "이 앱의 알림이 꺼져 있어요. 기기 설정에서 켤 수 있어요."
-  },
   "privacy": {
     "title": "개인정보",
     "body": "학습 기록을 어떻게 다루는지",

@@ -90,15 +90,6 @@
     "contentHeading": "Conținut",
     "fontsHeading": "Fonturi"
   },
-  "reminder": {
-    "title": "Memento zilnic",
-    "description": "Un singur ghiont liniștit pe zi, la ora pe care o alegi. Oprit dacă nu îl pornești, și nu părăsește niciodată telefonul.",
-    "toggle": "Amintește-mi să exersez",
-    "at": "La ora",
-    "notificationTitle": "E vremea de exercițiu",
-    "notificationBody": "Te așteaptă câteva minute de coreeană.",
-    "refused": "Telefonul nu permite notificări pentru aplicația aceasta. Le poți porni din setările lui."
-  },
   "privacy": {
     "title": "Confidențialitate",
     "body": "Ce se întâmplă cu ce înveți",

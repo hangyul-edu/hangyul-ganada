@@ -86,15 +86,6 @@
     "contentHeading": "内容",
     "fontsHeading": "字体"
   },
-  "reminder": {
-    "title": "每日提醒",
-    "description": "每天一次，在你选择的时间轻轻提醒。不开就不会响，提醒不会离开这台设备。",
-    "toggle": "提醒我练习",
-    "at": "时间",
-    "notificationTitle": "该练习了",
-    "notificationBody": "几分钟的韩语在等你。",
-    "refused": "系统没有允许本应用发送通知。你可以在设置里打开。"
-  },
   "privacy": {
     "title": "隐私",
     "body": "学习记录如何处理",

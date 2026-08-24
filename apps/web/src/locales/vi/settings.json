@@ -88,15 +88,6 @@
     "contentHeading": "Nội dung",
     "fontsHeading": "Kiểu chữ"
   },
-  "reminder": {
-    "title": "Nhắc học mỗi ngày",
-    "description": "Một lời nhắc nhẹ nhàng mỗi ngày, vào giờ bạn chọn. Mặc định là tắt, và lời nhắc không bao giờ rời khỏi máy bạn.",
-    "toggle": "Nhắc tôi luyện tập",
-    "at": "Lúc",
-    "notificationTitle": "Đến giờ luyện tập rồi",
-    "notificationBody": "Vài phút tiếng Hàn đang đợi bạn.",
-    "refused": "Máy của bạn đang không cho ứng dụng này gửi thông báo. Bạn có thể bật lại trong phần cài đặt của máy."
-  },
   "privacy": {
     "title": "Quyền riêng tư",
     "body": "Chuyện gì xảy ra với dữ liệu học của bạn",

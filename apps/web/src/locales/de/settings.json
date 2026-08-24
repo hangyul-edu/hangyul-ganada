@@ -88,15 +88,6 @@
     "contentHeading": "Inhalte",
     "fontsHeading": "Schriften"
   },
-  "reminder": {
-    "title": "Tägliche Erinnerung",
-    "description": "Ein leiser Hinweis am Tag, zu einer Zeit, die du wählst. Aus, bis du sie einschaltest, und sie verlässt dein Telefon nie.",
-    "toggle": "An das Üben erinnern",
-    "at": "Um",
-    "notificationTitle": "Zeit zum Üben",
-    "notificationBody": "Ein paar Minuten Koreanisch warten auf dich.",
-    "refused": "Dein Telefon lässt für diese App keine Mitteilungen zu. In den Einstellungen kannst du sie erlauben."
-  },
   "privacy": {
     "title": "Datenschutz",
     "body": "Was mit deinem Lernfortschritt passiert",

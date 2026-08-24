@@ -90,15 +90,6 @@
     "contentHeading": "Contenu",
     "fontsHeading": "Polices"
   },
-  "reminder": {
-    "title": "Rappel quotidien",
-    "description": "Un rappel discret par jour, à l’heure de votre choix. Désactivé tant que vous ne l’activez pas, et il ne quitte jamais votre téléphone.",
-    "toggle": "Me rappeler de pratiquer",
-    "at": "À",
-    "notificationTitle": "C’est l’heure de pratiquer",
-    "notificationBody": "Quelques minutes de coréen vous attendent.",
-    "refused": "Votre téléphone n’autorise pas les notifications pour cette app. Vous pouvez les activer dans ses réglages."
-  },
   "privacy": {
     "title": "Confidentialité",
     "body": "Ce que deviennent vos données d’apprentissage",

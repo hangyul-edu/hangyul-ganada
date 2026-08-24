@@ -90,15 +90,6 @@
     "contentHeading": "Contenuti",
     "fontsHeading": "Caratteri"
   },
-  "reminder": {
-    "title": "Promemoria quotidiano",
-    "description": "Un richiamo discreto al giorno, all’ora che scegli. Spento finché non lo accendi, e non lascia mai il telefono.",
-    "toggle": "Ricordami di esercitarmi",
-    "at": "Alle",
-    "notificationTitle": "È ora di esercitarsi",
-    "notificationBody": "Ti aspettano pochi minuti di coreano.",
-    "refused": "Il telefono non permette notifiche per questa app. Puoi attivarle nelle sue impostazioni."
-  },
   "privacy": {
     "title": "Privacy",
     "body": "Che fine fa quello che impari",

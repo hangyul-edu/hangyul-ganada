@@ -90,15 +90,6 @@
     "contentHeading": "Conteúdo",
     "fontsHeading": "Fontes"
   },
-  "reminder": {
-    "title": "Lembrete diário",
-    "description": "Um aviso discreto por dia, no horário que você escolher. Desligado até você ligar, e nunca sai do seu telefone.",
-    "toggle": "Lembrar de praticar",
-    "at": "Às",
-    "notificationTitle": "Hora de praticar",
-    "notificationBody": "Alguns minutos de coreano estão esperando.",
-    "refused": "Seu telefone não está permitindo notificações para este app. Você pode ativá-las nas configurações."
-  },
   "privacy": {
     "title": "Privacidade",
     "body": "O que acontece com o seu aprendizado",

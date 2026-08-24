@@ -42,16 +42,20 @@ if (artefacts.length === 0) {
 /**
  * Permissions this app must never ship, whatever a dependency decides.
  *
- * A deny-list rather than "everything Android calls dangerous", because the app
- * does have one dangerous permission and it is deliberate: `POST_NOTIFICATIONS`
- * is the optional daily study reminder, it is off until the learner turns it on,
- * and the system prompt appears at that moment and nowhere else. Listing it here
- * would mean either failing every release or switching the check off, and a gate
- * that has been switched off is worse than one that was never written.
+ * The app now ships exactly one permission — INTERNET, which Capacitor's
+ * WebView bridge needs to serve the bundled app over its own https origin — and
+ * there is nothing the learner is ever prompted for.
  *
- * Everything below would arrive by accident — a library that wants the camera,
- * a plugin that reads external storage — which is exactly the case a release
- * gate is for.
+ * `POST_NOTIFICATIONS` used to be the exception argued for here, on the grounds
+ * that the daily study reminder was worth one prompt. The reminder has been
+ * removed, so the exception is gone and the permission is on the list with the
+ * rest. The three that arrived with `@capacitor/local-notifications` are listed
+ * too: the dependency is gone, and naming them is what turns "we removed the
+ * feature" into something a build can check.
+ *
+ * Everything below would now arrive by accident — a library that wants the
+ * camera, a plugin that reads external storage, a reinstated notifications
+ * plugin — which is exactly the case a release gate is for.
  */
 const DANGEROUS = [
   'CAMERA',
@@ -75,13 +79,21 @@ const DANGEROUS = [
   'SYSTEM_ALERT_WINDOW',
   'REQUEST_INSTALL_PACKAGES',
   /*
-   * Restricted rather than dangerous, and here for the same reason: Play grants
-   * it to alarm-clock and calendar apps and asks everyone else to justify it.
-   * `@capacitor/local-notifications` declares it, this app removes it at the
-   * manifest merger, and this line is what makes a plugin upgrade that
-   * reintroduces it fail the build instead of reaching a submission.
+   * The four the daily reminder used to bring with it.
+   *
+   * SCHEDULE_EXACT_ALARM is restricted rather than dangerous — Play grants it
+   * to alarm-clock and calendar apps and asks everyone else to justify it — and
+   * the other three are the notification, boot and wake permissions
+   * `@capacitor/local-notifications` declares. All four left with the feature.
+   * They are listed rather than merely absent so that reinstating the plugin,
+   * by upgrade or by accident, fails the build instead of reaching a submission
+   * and sending a learner back into Android's *Alarms & reminders* screen.
    */
   'SCHEDULE_EXACT_ALARM',
+  'USE_EXACT_ALARM',
+  'POST_NOTIFICATIONS',
+  'RECEIVE_BOOT_COMPLETED',
+  'WAKE_LOCK',
 ];
 
 /**

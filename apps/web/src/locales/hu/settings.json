@@ -88,15 +88,6 @@
     "contentHeading": "Tartalom",
     "fontsHeading": "Betűtípusok"
   },
-  "reminder": {
-    "title": "Napi emlékeztető",
-    "description": "Naponta egy csendes bökés, az általad választott időpontban. Alapból ki van kapcsolva, és soha nem hagyja el a telefonodat.",
-    "toggle": "Emlékeztess a gyakorlásra",
-    "at": "Ekkor:",
-    "notificationTitle": "Itt a gyakorlás ideje",
-    "notificationBody": "Néhány perc koreai vár rád.",
-    "refused": "A telefonod nem engedélyezi az értesítéseket ehhez az alkalmazáshoz. A beállításaiban bekapcsolhatod."
-  },
   "privacy": {
     "title": "Adatvédelem",
     "body": "Mi történik a tanulásoddal",

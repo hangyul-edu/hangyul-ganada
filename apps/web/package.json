@@ -21,7 +21,6 @@
     "@capacitor/core": "^8.5.0",
     "@capacitor/haptics": "^8.0.0",
     "@capacitor/keyboard": "^8.0.0",
-    "@capacitor/local-notifications": "^8.3.0",
     "@capacitor/splash-screen": "^8.0.0",
     "@fontsource/gaegu": "^5.3.0",
     "@fontsource/gowun-batang": "^5.3.0",

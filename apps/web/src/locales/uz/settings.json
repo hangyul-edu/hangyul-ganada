@@ -88,15 +88,6 @@
     "contentHeading": "Kontent",
     "fontsHeading": "Shriftlar"
   },
-  "reminder": {
-    "title": "Kunlik eslatma",
-    "description": "Kuniga bitta xotirjam turtki, o‘zingiz tanlagan vaqtda. Yoqmaguningizcha o‘chiq turadi va telefoningizdan hech qayerga chiqmaydi.",
-    "toggle": "Mashqni eslatib turing",
-    "at": "Soat",
-    "notificationTitle": "Mashq vaqti",
-    "notificationBody": "Bir necha daqiqalik koreyscha sizni kutyapti.",
-    "refused": "Telefoningiz bu ilovaga bildirishnomalarni ruxsat bermayapti. Uning sozlamalaridan yoqishingiz mumkin."
-  },
   "privacy": {
     "title": "Maxfiylik",
     "body": "O‘qishingiz bilan nima bo‘ladi",

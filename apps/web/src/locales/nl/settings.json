@@ -88,15 +88,6 @@
     "contentHeading": "Inhoud",
     "fontsHeading": "Lettertypen"
   },
-  "reminder": {
-    "title": "Dagelijkse herinnering",
-    "description": "Eén rustig duwtje per dag, op een tijd die jij kiest. Staat uit tenzij je hem aanzet, en hij verlaat je telefoon nooit.",
-    "toggle": "Herinner me aan oefenen",
-    "at": "Om",
-    "notificationTitle": "Tijd om te oefenen",
-    "notificationBody": "Er staan een paar minuten Koreaans klaar.",
-    "refused": "Je telefoon laat meldingen voor deze app niet toe. Je kunt ze aanzetten in de instellingen van je telefoon."
-  },
   "privacy": {
     "title": "Privacy",
     "body": "Wat er met je leerwerk gebeurt",

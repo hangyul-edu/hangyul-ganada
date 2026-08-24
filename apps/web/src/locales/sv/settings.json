@@ -88,15 +88,6 @@
     "contentHeading": "Innehåll",
     "fontsHeading": "Typsnitt"
   },
-  "reminder": {
-    "title": "Daglig påminnelse",
-    "description": "En stillsam knuff om dagen, vid en tid du väljer. Avstängd om du inte slår på den, och den lämnar aldrig telefonen.",
-    "toggle": "Påminn mig att öva",
-    "at": "Klockan",
-    "notificationTitle": "Dags att öva",
-    "notificationBody": "Några minuter koreanska väntar.",
-    "refused": "Telefonen tillåter inte aviseringar för den här appen. Du kan slå på dem i telefonens inställningar."
-  },
   "privacy": {
     "title": "Integritet",
     "body": "Vad som händer med ditt lärande",

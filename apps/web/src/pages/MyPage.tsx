@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import type { VoiceGender } from '@hangyul-ganada/shared-types';
@@ -12,12 +12,6 @@ import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
 import { invalidateGlyphCache } from '../features/writing/useEvaluator';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
 import { flagFor } from '../i18n/flags';
-import {
-  disableReminder,
-  enableReminder,
-  reminderState,
-  type ReminderState,
-} from '../native/reminder';
 import { levelBand } from '../domain/vocabularyLevel';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
@@ -29,15 +23,6 @@ import { ProgressBar } from '../ui/Progress';
 import { SpeakerButton } from '../ui/SpeakerButton';
 import { AlertIcon, CheckIcon, ChevronRightIcon, GlobeIcon, InfoIcon, LockIcon } from '../ui/icons';
 import styles from './MyPage.module.css';
-
-/**
- * When the reminder fires, if the learner turns it on without picking a time.
- *
- * Early evening: after work or school, before the part of the night when a
- * notification is an intrusion. It is a default, not a recommendation — the
- * time picker is right there.
- */
-const DEFAULT_REMINDER_TIME = '19:00';
 
 const DAILY_TARGETS = [3, 5, 10, 15, 20];
 
@@ -563,15 +548,15 @@ export function MyPage() {
 
         <Group id="settings-app" title={t('settings:groups.app')}>
           {/*
-            The daily reminder.
+            The daily reminder lived here and has been removed entirely.
 
-            Native only — a browser tab cannot set an alarm on a phone, and
-            offering a switch that silently does nothing would be worse than not
-            offering one. Off until the learner turns it on, and the system
-            permission prompt appears at that moment and no earlier: see
-            `native/reminder.ts`.
+            Not hidden — removed: the component, `native/reminder.ts`, the
+            `@capacitor/local-notifications` dependency, the three Android
+            permissions that arrived with it, and the settings strings in all 32
+            languages. It sent the learner into Android's *Alarms & reminders*
+            screen to grant a permission for a feature that did not reliably
+            fire, which is a worse first impression than having no reminder.
           */}
-          <DailyReminder />
 
           {/*
             Privacy and licences, as two rows near the bottom.
@@ -679,77 +664,6 @@ function Stat({ label, value }: { label: string; value: string }) {
       <span className={styles.statLabel}>{label}</span>
       <span className={styles.statValue}>{value}</span>
     </div>
-  );
-}
-
-/**
- * The optional daily reminder.
- *
- * Renders nothing at all off-device, and nothing until it has asked the
- * platform whether it can. A row that appears and then disappears is worse than
- * one that never appeared, so the state is resolved before the first paint of
- * the row rather than after it.
- */
-function DailyReminder() {
-  const { t } = useTranslation(['settings']);
-  const [state, setState] = useState<ReminderState | null>(null);
-  const [refused, setRefused] = useState(false);
-
-  useEffect(() => {
-    void reminderState().then(setState);
-  }, []);
-
-  if (!state?.available) return null;
-
-  const on = state.at !== null;
-  const time = state.at ?? DEFAULT_REMINDER_TIME;
-
-  const apply = async (next: { on: boolean; at: string }) => {
-    if (!next.on) {
-      await disableReminder();
-      setRefused(false);
-      setState({ ...state, at: null });
-      return;
-    }
-    const granted = await enableReminder(next.at, {
-      title: t('settings:reminder.notificationTitle'),
-      body: t('settings:reminder.notificationBody'),
-    });
-    setRefused(!granted);
-    setState({ ...state, at: granted ? next.at : null });
-  };
-
-  return (
-    <Section
-      title={t('settings:reminder.title')}
-      description={t('settings:reminder.description')}
-    >
-      <ul className={styles.toggleList}>
-        <Toggle
-          label={t('settings:reminder.toggle')}
-          checked={on}
-          onChange={(value) => void apply({ on: value, at: time })}
-        />
-        {on && (
-          <li className={styles.toggleRow}>
-            <label className={styles.toggleLabel}>
-              <span className={styles.toggleText}>{t('settings:reminder.at')}</span>
-              <input
-                type="time"
-                className={styles.timeInput}
-                value={time}
-                onChange={(event) => void apply({ on: true, at: event.target.value })}
-              />
-            </label>
-          </li>
-        )}
-      </ul>
-      {refused && (
-        <p className={styles.sectionDesc} role="status">
-          {t('settings:reminder.refused')}
-        </p>
-      )}
-    </Section>
   );
 }
 

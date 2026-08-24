@@ -92,15 +92,6 @@
     "contentHeading": "Obsah",
     "fontsHeading": "Písma"
   },
-  "reminder": {
-    "title": "Denní připomínka",
-    "description": "Jedno tiché pošťouchnutí za den, v čase, který si vyberete. Vypnuté, dokud ho nezapnete, a telefon nikdy neopustí.",
-    "toggle": "Připomínat mi cvičení",
-    "at": "V",
-    "notificationTitle": "Čas na cvičení",
-    "notificationBody": "Čeká na vás pár minut korejštiny.",
-    "refused": "Telefon téhle aplikaci nepovoluje oznámení. Zapnout je můžete v jeho nastavení."
-  },
   "privacy": {
     "title": "Soukromí",
     "body": "Co se děje s vaším učením",

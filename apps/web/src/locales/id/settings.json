@@ -86,15 +86,6 @@
     "contentHeading": "Konten",
     "fontsHeading": "Jenis huruf"
   },
-  "reminder": {
-    "title": "Pengingat harian",
-    "description": "Satu dorongan tenang setiap hari, pada jam yang kamu pilih. Mati kecuali kamu nyalakan, dan tidak pernah keluar dari ponselmu.",
-    "toggle": "Ingatkan aku berlatih",
-    "at": "Pukul",
-    "notificationTitle": "Waktunya berlatih",
-    "notificationBody": "Beberapa menit bahasa Korea sudah menunggu.",
-    "refused": "Ponselmu tidak mengizinkan notifikasi untuk aplikasi ini. Kamu bisa menyalakannya di pengaturan ponsel."
-  },
   "privacy": {
     "title": "Privasi",
     "body": "Apa yang terjadi pada data belajarmu",

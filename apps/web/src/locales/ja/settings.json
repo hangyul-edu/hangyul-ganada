@@ -86,15 +86,6 @@
     "contentHeading": "コンテンツ",
     "fontsHeading": "書体"
   },
-  "reminder": {
-    "title": "毎日のお知らせ",
-    "description": "選んだ時間に、1日1回だけそっとお知らせします。オンにしなければ鳴らず、通知はこの端末から出ません。",
-    "toggle": "練習のお知らせを受け取る",
-    "at": "時刻",
-    "notificationTitle": "練習の時間です",
-    "notificationBody": "韓国語が数分、待っています。",
-    "refused": "この端末で通知が許可されていません。設定からオンにできます。"
-  },
   "privacy": {
     "title": "プライバシー",
     "body": "学習の記録の扱いについて",

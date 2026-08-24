@@ -88,15 +88,6 @@
     "contentHeading": "Content",
     "fontsHeading": "Typefaces"
   },
-  "reminder": {
-    "title": "Daily reminder",
-    "description": "One quiet nudge a day, at a time you choose. Off unless you turn it on, and it never leaves your phone.",
-    "toggle": "Remind me to practise",
-    "at": "At",
-    "notificationTitle": "Time to practise",
-    "notificationBody": "A few minutes of Korean is waiting.",
-    "refused": "Your phone is not allowing notifications for this app. You can turn them on in its settings."
-  },
   "privacy": {
     "title": "Privacy",
     "body": "What happens to your learning",

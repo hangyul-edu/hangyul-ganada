@@ -90,15 +90,6 @@
     "contentHeading": "Contenido",
     "fontsHeading": "Tipografías"
   },
-  "reminder": {
-    "title": "Recordatorio diario",
-    "description": "Un aviso discreto al día, a la hora que elijas. Apagado salvo que lo enciendas, y nunca sale de tu teléfono.",
-    "toggle": "Recordarme practicar",
-    "at": "A las",
-    "notificationTitle": "Hora de practicar",
-    "notificationBody": "Te esperan unos minutos de coreano.",
-    "refused": "Tu teléfono no permite notificaciones para esta app. Puedes activarlas en sus ajustes."
-  },
   "privacy": {
     "title": "Privacidad",
     "body": "Qué pasa con lo que aprendes",

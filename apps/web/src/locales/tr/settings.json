@@ -88,15 +88,6 @@
     "contentHeading": "İçerik",
     "fontsHeading": "Yazı tipleri"
   },
-  "reminder": {
-    "title": "Günlük hatırlatma",
-    "description": "Günde bir sessiz dürtme, senin seçtiğin saatte. Açmadıkça kapalı ve telefonundan hiç çıkmaz.",
-    "toggle": "Bana çalışmayı hatırlat",
-    "at": "Saat",
-    "notificationTitle": "Çalışma vakti",
-    "notificationBody": "Birkaç dakikalık Korece seni bekliyor.",
-    "refused": "Telefonun bu uygulamaya bildirim izni vermiyor. Telefon ayarlarından açabilirsin."
-  },
   "privacy": {
     "title": "Gizlilik",
     "body": "Öğrendiklerine ne oluyor",

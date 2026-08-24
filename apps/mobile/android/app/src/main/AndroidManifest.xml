@@ -48,48 +48,26 @@
       bundled app over its internal https origin; nothing in the app makes a
       network request, and the release binary has been audited for it.
 
-      POST_NOTIFICATIONS is the daily study reminder, and it is the only
-      permission the learner is ever prompted for. Declaring it here does not
-      ask for it: on Android 13 and later the prompt is shown when the app calls
-      for it, and this app calls for it at exactly one moment — the learner has
-      turned the reminder on in Settings and picked a time. See
-      `apps/web/src/native/reminder.ts`. With the reminder off, which is the
-      default, no prompt is ever shown and nothing is ever scheduled.
+      This app now asks for **nothing else**, and there is no permission the
+      learner is ever prompted for.
+
+      POST_NOTIFICATIONS, RECEIVE_BOOT_COMPLETED, WAKE_LOCK and the removal of
+      SCHEDULE_EXACT_ALARM were all here for the daily study reminder, which has
+      been removed — see `apps/web/src/pages/MyPage.tsx`. They arrived with
+      `@capacitor/local-notifications`, that dependency is gone, and with it go
+      the plugin's three broadcast receivers and its boot receiver. That last
+      point is what settles the upgrade question: an alarm already scheduled by
+      an older build is delivered to `TimedNotificationPublisher`, and after
+      this release there is no such receiver in the package for the system to
+      deliver it to, so a pending reminder is dropped rather than orphaned. The
+      boot receiver that used to re-register alarms after a restart is gone too,
+      so nothing survives a reboot either.
 
       Deliberately NOT requested, because no implemented feature needs them:
-      location, contacts, microphone, camera, phone, SMS, storage.
+      notifications, alarms, location, contacts, microphone, camera, phone, SMS,
+      storage.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-    <!--
-      Two normal permissions that arrive with `@capacitor/local-notifications`
-      and are kept, because the reminder is broken without them: an alarm is
-      dropped by the system on reboot unless the app can re-register it, and
-      WAKE_LOCK is how the notification is delivered on a sleeping device.
-      Neither is prompted for.
-    -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!--
-      And one that arrives with it and is removed.
-
-      `SCHEDULE_EXACT_ALARM` is a *restricted* permission: Google Play grants it
-      to alarm-clock and calendar apps and asks everyone else to justify it, and
-      "a study reminder that arrives at 19:00 rather than 19:00:00" is not a
-      justification. The plugin declares it because some of its scheduling modes
-      need it; the mode this app uses does not. `reminder.ts` schedules with
-      `on: {hour, minute}, repeats: true` and no `allowWhileIdle`, which reaches
-      `AlarmManager.set()` — inexact, and permitted without this.
-
-      Removed at the merger rather than by patching the dependency, so upgrading
-      the plugin cannot quietly reintroduce it. `scripts/audit-release-security.mjs`
-      fails the build if it appears in a packaged APK.
-    -->
-    <uses-permission
-        android:name="android.permission.SCHEDULE_EXACT_ALARM"
-        tools:node="remove" />
 
     <!--
       A touchscreen is how you write Hangul, but not having a stylus or a

@@ -92,15 +92,6 @@
     "contentHeading": "Treści",
     "fontsHeading": "Kroje pisma"
   },
-  "reminder": {
-    "title": "Codzienne przypomnienie",
-    "description": "Jedno spokojne szturchnięcie dziennie, o godzinie, którą wybierzesz. Wyłączone, dopóki go nie włączysz, i nigdy nie opuszcza telefonu.",
-    "toggle": "Przypominaj mi o ćwiczeniu",
-    "at": "O godzinie",
-    "notificationTitle": "Czas poćwiczyć",
-    "notificationBody": "Czeka na ciebie kilka minut koreańskiego.",
-    "refused": "Twój telefon nie zezwala tej aplikacji na powiadomienia. Możesz je włączyć w jego ustawieniach."
-  },
   "privacy": {
     "title": "Prywatność",
     "body": "Co dzieje się z twoją nauką",

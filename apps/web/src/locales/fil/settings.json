@@ -88,15 +88,6 @@
     "contentHeading": "Nilalaman",
     "fontsHeading": "Mga titik"
   },
-  "reminder": {
-    "title": "Pang-araw-araw na paalala",
-    "description": "Isang tahimik na tapik kada araw, sa oras na pipiliin mo. Nakapatay hangga’t hindi mo binubuksan, at hindi umaalis sa telepono mo.",
-    "toggle": "Paalalahanan akong mag-ensayo",
-    "at": "Sa ganap na",
-    "notificationTitle": "Oras na para mag-ensayo",
-    "notificationBody": "May ilang minutong Koreano na naghihintay.",
-    "refused": "Hindi pinapayagan ng telepono mo ang mga abiso para sa app na ito. Puwede mong buksan sa mga setting nito."
-  },
   "privacy": {
     "title": "Privacy",
     "body": "Ano ang nangyayari sa pag-aaral mo",
