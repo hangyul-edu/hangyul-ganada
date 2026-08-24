@@ -172,3 +172,53 @@ non-English locales go from 1,374 askable items to 1,549, and their ceiling from
 and land at low levels, which shifts the difficulty tiers; the test got deeper
 where learners actually sit rather than taller at the top. Calibration is
 unchanged: mean absolute error 1.34 levels, 95.3% within ±3.
+
+### Batch 4 — 60 entries · 2,856 → 2,916
+
+Authored during the educational-integrity pass, after the corpus had been read
+end to end. That order matters: batches 1–3 were selected from a candidate list,
+and this one was selected from *what reading 2,856 examples showed was missing*.
+
+| | |
+| --- | --- |
+| Selection | 22 nouns, 18 verbs, 12 adjectives, 8 adverbs — deliberately not noun-led |
+| Refused by preflight, before any build | 0 |
+| Refused by `content:vocabulary` for length | 5 (내려다보다, 올려다보다, 데려다주다, 되풀이하다, 이루어지다 are five syllables; the pack allows four) |
+| Rejected by the gates, then repaired | 3 |
+| Final total | **2,916** |
+| Remaining to target | 7,084 |
+
+**Why the adjectives and adverbs.** Reading the whole corpus made one gap
+obvious: a learner had 춥다 and 덥다 and nothing between them. 쌀쌀하다,
+선선하다 and 포근하다 are how Koreans actually describe weather, and the same
+was true of food — 맛있다 and 맛없다, with no 고소하다, 담백하다 or 바삭하다.
+Twelve adjectives and eight adverbs of manner (문득, 나란히, 골고루, 듬뿍,
+선뜻, 흔쾌히, 부쩍, 얼추) close that, and they are worth more per entry than
+another noun because they attach to sentences the learner can already build.
+
+**Three gate findings, and one of them was not about the batch.**
+
+* `vocabulary:sense:qa` ×12 — every verb and adjective came out of the
+  dictionary as a *noun* glossed with an infinitive, the same defect 탑승하다
+  hit in batch 2a. Fixed with `pos` overrides. Worth noting that the heuristic
+  used to write those overrides then misfiled four adjectives as verbs, because
+  it keyed on the gloss starting "to be" and 고소하다 is glossed "to taste
+  nutty". Read, corrected by hand.
+* `15/invented-person:fr` ×1 — 추워서 옷을 껴입었어요 translated "Il faisait
+  froid, alors…", where `il` is the dummy subject and not a man. The gate's
+  French impersonal list had `fait` and not `faisait`; the list was widened
+  rather than the finding waived.
+* **`conjugation:qa` ×1, a real defect in `packages/korean-morphology`.**
+  뒤따르다 conjugated as 뒤딸라요. 따르 is on the closed list of 르 stems that
+  do not double their ㄹ, and the classifier looked the stem up *whole*, so
+  every compound of those four verbs fell through to the productive rule.
+  `classify` now matches the compounds too, and `conjugate.test.ts` holds
+  뒤따르다, 잇따르다 and 다다르다 alongside 모르다 and 부르다 so that widening
+  the exception too far fails as loudly as not widening it at all.
+
+**Part of speech after four batches:** noun 1,227 · verb 1,062 · adjective 316 ·
+adverb 241 · pronoun 28 · interjection 19 · determiner 13 · numeral 10.
+
+**Level Test after the rebuild.** Bank 4,078 → 4,106 items; contextual items
+478 → 506; validated gap-fills 508 → 536.
+

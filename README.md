@@ -317,6 +317,10 @@ Run from the repository root unless noted.
 | `npm run docs:shots` | Retake the screenshots the report embeds (needs the preview server) |
 | `npm run docs:report` | Build `docs/report.pdf` from `docs/report.md` |
 | `npm run examples:qa` | Example-sentence teaching quality — a release blocker |
+| `npm run korean:education:qa` | Every check that reads the Korean, run as one gate — and it prints, every time, that a green run does **not** prove native naturalness |
+| `npm run content:safety:qa` | What a learner can be shown, checked on the *composed* sentence rather than on the word |
+| `npm run examples:stereotypes` | Who does what in the corpus, counted by domain and by gendered marker. A report to read, not a gate |
+| `npm run mobile:walk` | The photographed screens, re-read on the Android emulator (needs `ANDROID_HOME` and the debug build installed) |
 | `npm run review:benchmark` | The adaptive review scheduler against the fixed-interval one it replaced |
 | `npm run result:build` | Assemble `./result`: artefacts, checksums, build info |
 | `npm run verify:quick` | Name, i18n, copy, tokens, lint, types, unit tests, build, bundle budget — the tier for an ordinary UI or copy change |
@@ -338,7 +342,7 @@ Content pipeline — see [`docs/VOCABULARY_DATA.md`](docs/VOCABULARY_DATA.md) an
 | `npm run content:vocabulary` | Build the dataset from the cache and the curation layer |
 | `npm run audio:plan` | List every utterance the app can play |
 | `npm run audio:build` | Generate it, both voices, normalised |
-| `npm run audio:qa` | Check all 11,602 voice slots over 11,500 files |
+| `npm run audio:qa` | Check all 11,890 voice slots over 11,788 files |
 | `npm run audio:pronunciation` | Check every clip is filed under the right item and its note is right |
 | `npm run audio:listen` | Listen to the clips with a recogniser and report disagreements |
 
@@ -484,7 +488,7 @@ does not reorder punctuation.
 | `packages/handwriting-core` | 69 tests: mask geometry, the evaluator, real-glyph calibration, six-typeface tolerance |
 | `apps/web` unit | 363 tests: curriculum content, mastery ladder, every progress calculation, the daily activity roll-ups and streaks, storage migrations, the pronunciation player and its entry-audio rule, scroll reset, Korean particle agreement, generated-question answer keys, locale resolution, quote attribution |
 | `apps/web` e2e | the fresh-install journey, the four-step writing progression and the hint, word learning, review, the learning record, the simplified settings screen, horizontal scrolling by wheel and drag, persistence across a restart, offline, no-monetisation, 10 languages — each run at a phone and a desktop viewport |
-| `npm run audio:qa` | All 11,602 voice slots over 11,500 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
+| `npm run audio:qa` | All 11,890 voice slots over 11,788 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
 | `npm run audio:pronunciation` | The chain from the word on screen to the file on disk: ids, plan, manifest, notes against the sound-change rules, example ownership, and the service worker's audio-cache stamp |
 | `npm run audio:listen` | A speech recogniser over the clips. A screen for a person to read, not a gate — see [`docs/AUDIO.md`](docs/AUDIO.md) |
 | `npm run fonts:audit:strict` | Six typefaces: licence allowlist, files on disk, all 846 practice glyphs present |
