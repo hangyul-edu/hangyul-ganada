@@ -1,5 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { copy } from './helpers/copy';
+
 /**
  * Offline.
  *
@@ -62,7 +64,9 @@ test('every core screen still opens with the network cut', async ({ page, contex
     // cached empty shell.
     await page.goto('/letters');
     await expect(page.getByText('The Hangul alphabet')).toBeVisible();
-    await expect(page.getByRole('heading', { level: 2, name: 'Six vowels to start' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 2, name: copy('learning', 'units.unit-1.title') }),
+    ).toBeVisible();
 
     await page.goto('/words');
     await expect(page.getByRole('link', { name: /Food & Drink/ })).toBeVisible();

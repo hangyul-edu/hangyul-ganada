@@ -2,6 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 import { waitForLaunch, openTodaysWords } from './helpers/launch';
+import { CONTINUE } from './helpers/copy';
 
 /**
  * The accessibility audit, run against the app rather than asserted about it.
@@ -184,9 +185,17 @@ for (const scheme of ['light', 'dark'] as const) {
     await openTodaysWords(page);
     await expect(page.getByTestId('word-headword')).toBeVisible();
 
-    // Walk the session until the grid comes round. It is scheduled after four
-    // words have been introduced and questioned, so it is a few screens in.
-    for (let step = 0; step < 30; step += 1) {
+    /*
+     * Walk the session until the grid comes round.
+     *
+     * It is scheduled after four words have been introduced and questioned, so
+     * it is a few screens in — but "a screen" is not "a step". A build question
+     * takes one press per syllable and one more to move on, so a sitting with
+     * three of them in it is fifteen presses before the grid, and the budget
+     * was thirty for the whole walk. It ran out mid-sitting and the failure
+     * read "the grid never appeared", which is true and unhelpful.
+     */
+    for (let step = 0; step < 60; step += 1) {
       const grid = page.getByRole('group', { name: /Match each word/i });
       if (await grid.count()) break;
       /*
@@ -203,10 +212,24 @@ for (const scheme of ['light', 'dark'] as const) {
       */
       const forward = page
         .locator('button:visible:not([disabled])')
-        .filter({ hasText: /^\s*(Got it|Next|Continue|Finish)\s*$/i })
+        .filter({ hasText: CONTINUE })
         .first();
+      /*
+        Inside a `role="group"`, which is where every *answer* lives.
+        
+        This used to take any visible enabled button with text on it, and a
+        build question has a second row of buttons that are not answers: a
+        filled slot is a button whose job is to *put the syllable back*, and it
+        precedes the tray in the DOM. So the walk placed a syllable, then took
+        it out again, then placed it, for the whole of its budget — which
+        photographs as a build question with empty slots and reports itself as
+        "the matching grid never appeared".
+        
+        The options of a choice question and the tray of a build question are
+        both groups; the slots row is not.
+      */
       const options = page
-        .locator('button:visible:not([disabled])')
+        .locator('[role="group"] button:visible:not([disabled])')
         .filter({ hasText: /^(?!Show a hint|Save|Skip|Can't use audio).+/ });
       if (await forward.count()) await forward.click();
       else if (await options.count()) await options.first().click();

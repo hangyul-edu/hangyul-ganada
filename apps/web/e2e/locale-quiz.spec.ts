@@ -138,6 +138,27 @@ for (const [locale, script] of Object.entries(NON_LATIN)) {
       }
     };
     for (let step = 0; step < 14 && !inTheirScript() && collected.length < 2; step += 1) {
+      /*
+        Wait for the screen to have rendered *something to press*, before
+        counting what is on it.
+
+        `settle` waits for `main` to say something different, which is the right
+        test for "the click did something" and the wrong one for "the next
+        screen is ready": React can commit the new route's text a frame before
+        it commits the option group, and `innerText` also throws mid-navigation,
+        in which case `settle` returns immediately by design. Either way the
+        step below then reads no group, decides there is no question here, and
+        clicks past the question it came to read — and the run ends with
+        "no question appeared in te", which reads as missing Telugu content and
+        is a stopwatch. Fourth instance of the same class; this is the one that
+        stops sampling an unrendered screen rather than the one that waits
+        longer before sampling it.
+      */
+      await page
+        .locator('main button:visible')
+        .first()
+        .waitFor({ state: 'visible', timeout: 5000 })
+        .catch(() => {});
       const options = page.getByRole('group').first();
       const choices = (await options.count())
         ? options.getByRole('button')

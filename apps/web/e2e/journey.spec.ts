@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { waitForLaunch, openTodaysWords } from './helpers/launch';
+import { CONTINUE, copy } from './helpers/copy';
 import { drawScribble, traceReferenceGlyph } from './helpers/trace';
 
 /**
@@ -142,14 +143,19 @@ test('the first lesson explains what Hangul is before asking for a stroke', asyn
    *
    * This used to assert an `<h2>` carrying the unit title. Eight of the twelve
    * units are named after their first lesson, and the session header already
-   * shows the lesson — so on unit 1 the words "Six vowels to start" were on the
-   * screen twice, forty vertical pixels apart. The heading is the copy that
-   * went; the explanation it sat above is the thing this test is about, and it
-   * is still here.
+   * shows the lesson — so on unit 1 the unit's name was on the screen twice,
+   * forty vertical pixels apart. The heading is the copy that went; the
+   * explanation it sat above is the thing this test is about, and it is still
+   * here.
+   *
+   * The title is read from the bundle rather than written out. It used to be
+   * written out, the twelve unit titles were then rewritten, and this case
+   * failed on wording it was never about.
    */
   await expect(page.getByText('Hangul is an alphabet, not a set of pictures.')).toBeVisible();
+  const unitName = copy('learning', 'units.unit-1.title');
   expect(
-    (await page.locator('main').innerText()).split('Six vowels to start').length - 1,
+    (await page.locator('main').innerText()).split(unitName).length - 1,
     'the unit is named twice on one screen',
   ).toBe(1);
   await page.getByRole('button', { name: "Got it — let's start" }).click();
@@ -838,7 +844,13 @@ test('the privacy policy is one tap from settings, and the licences are still th
   await expect(page.getByText(/Nothing you do here leaves this device/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'No ads, no tracking' })).toBeVisible();
   await expect(page.getByText(/There is no account/)).toBeVisible();
-  await expect(page.getByText(/Notifications, and only if you turn the daily reminder on/)).toBeVisible();
+  /*
+   * The permissions line, asserted literally because *this* case is about what
+   * the privacy screen says. It read "Notifications, and only if you turn the
+   * daily reminder on" until the reminder was removed, at which point the
+   * screen was naming a permission the package no longer declares.
+   */
+  await expect(page.getByText(/asks for no permissions at all/)).toBeVisible();
   await expect(page.getByText(/Deleting the app deletes it with it/)).toBeVisible();
   // And nothing about how any of it is implemented.
   await expect(page.getByText(/IndexedDB|SQLite|service worker/i)).toHaveCount(0);
@@ -948,7 +960,35 @@ test('a wrong answer writes itself into the notebook', async ({ page }) => {
      * depend on which language the run happens to be in.
      */
     await options.first().click();
-    const next = page.getByRole('button', { name: /^(Next|Finish)$/ });
+
+    /*
+     * One press is not always a whole answer.
+     *
+     * A multiple-choice question is decided by the choice; *Put the word
+     * together* is decided when the last syllable lands in the last slot, and
+     * its tiles are in a `role="group"` too. Pressing once there fills one slot
+     * and nothing else happens, so this walk used to stand in front of a
+     * half-assembled 거짓말 waiting for a Next that only appears when the word
+     * is finished. Keep pressing until the screen offers a way on.
+     *
+     * Whether the assembly is right does not matter. The subject of this test
+     * is what the notebook does with a wrong *answer*, and the loop carries on
+     * to the next question either way.
+     */
+    /*
+     * "Next", "Next word" or "Finish".
+     *
+     * A choice question's Continue reads *Next*; a build question's reads *Next
+     * word*, because there the next thing genuinely is a word and naming it is
+     * better than not. An anchored `/^(Next|Finish)$/` matched neither of the
+     * build screens and the walk stood in front of a finished question.
+     */
+    const next = page.getByRole('button', { name: CONTINUE });
+    for (let press = 0; press < 5 && !(await next.count()); press += 1) {
+      const remaining = page.getByRole('group').locator('button:not([disabled])');
+      if (!(await remaining.count())) break;
+      await remaining.first().click({ timeout: 2000 }).catch(() => {});
+    }
     await expect(next.first()).toBeVisible();
     if (await page.locator('button[class*="wrong"]').count()) missed += 1;
     await next.first().click();

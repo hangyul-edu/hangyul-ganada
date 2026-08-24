@@ -114,17 +114,19 @@ test.describe('the vocabulary level test', () => {
     await expect(page.getByText(/Level 1 · STARTER/i)).toBeVisible();
   });
 
-  test('says how far it could ask, where that is not the whole scale', async ({ page }) => {
+  test('reports one level, and nothing about how it got there', async ({ page }) => {
     /*
-     * Twenty-two languages have a hundred of the 2,581 taught words written, so
-     * their bank is the Korean-only contextual items and it stops at level 23;
-     * nine more stop at 25 because the levels above are ranked from the
-     * dictionary and only English carries those glosses.
+     * §14–16, photographed. The result card printed three things a learner did
+     * not ask for and could not use: a confidence band — *15~21 사이일 가능성이
+     * 높아요*, which tells somebody who has just spent eight minutes being
+     * measured that the measurement is uncertain to six levels — and, under it,
+     * *지금은 23단계까지 물어볼 수 있어요. 그 위 단계의 단어는 아직 번역되지
+     * 않았어요*, which is a content backlog described to the person who bought
+     * the finished product.
      *
-     * The failure this pins is not a missing string but a silent one. A learner
-     * in Hungarian who is never asked a question above level 23 is still shown
-     * a number "of 30", and without the line below that number reads as a
-     * verdict on them rather than a limit of the bank.
+     * Hungarian, because it is one of the twenty-two languages whose bank stops
+     * short and therefore the one where the removed line used to appear. The
+     * band and the ceiling are still computed and still saved; they are ours.
      */
     await page.addInitScript(() => {
       window.localStorage.setItem('hangyul_ganada:locale', 'hu');
@@ -134,14 +136,25 @@ test.describe('the vocabulary level test', () => {
     await page.getByTestId('level-start').click();
     await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
     await takeIt(page);
-    await expect(page.getByTestId('level-result')).toBeVisible();
-    // `levelTest:result.ceiling` in Hungarian, with the bank's own number in it.
-    await expect(page.getByText(/23\. szintig kérdez/)).toBeVisible();
+
+    const result = page.getByTestId('level-result');
+    await expect(result).toBeVisible();
+    // One number, then "of 30". Not "15~21", and not "1–3".
+    await expect(result).toHaveText(/^\s*\d{1,2}\s*\/?\s*\D/);
+    const card = (await page.locator('main').innerText()).replace(/\s+/g, ' ');
+    expect(/\d{1,2}\s*[~–—]\s*\d{1,2}/.test(card), `a range on the result card: ${card}`).toBe(
+      false,
+    );
+    expect(
+      /szintig kérdez|nincs.*lefordítva|not been translated|번역되지 않았어요/.test(card),
+      `a translation backlog on the result card: ${card}`,
+    ).toBe(false);
   });
 
-  test('says nothing about a ceiling when there is not one', async ({ page }) => {
-    // English is the one language whose bank reaches all thirty levels, and a
-    // line explaining a limit that does not apply is worse than no line.
+  test('says nothing about a ceiling in English either', async ({ page }) => {
+    // The English bank reaches all thirty levels, so there was never a line
+    // here. Kept as the other half of the pair: the card is the same card in
+    // every language, and it says one number in all of them.
     await page.goto('/me/level-test');
     await waitForLaunch(page);
     await page.getByTestId('level-start').click();
