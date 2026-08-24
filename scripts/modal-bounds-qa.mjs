@@ -149,14 +149,35 @@ let opened = 0;
 
 console.log('Dialogs — every action, inside its own modal\n');
 
+/*
+ * Two languages per dialog, and the second one is not about length.
+ *
+ * This used to open each dialog in whichever language wrote its buttons most
+ * verbosely, on the reasonable theory that the longest label is the hardest
+ * case. It is the hardest case for *containment* and it is the wrong test for
+ * everything else, because the placement prompt's Korean buttons fitted their
+ * modal perfectly while reading
+ *
+ *     레벨 1부      레벨 테
+ *     터 시작하기    스트 하기
+ *
+ * Korean is nowhere near the longest of the 32 and was therefore never opened.
+ * Breaking a word in half is a property of the *script*, not of the string
+ * length: CSS breaks CJK between any two characters unless told otherwise. So
+ * Korean is now always tested, whether or not it is the verbose one — this is a
+ * Korean-learning product and its own language is worth a pass of its own.
+ */
+const ALWAYS = 'ko';
+
 for (const dialog of DIALOGS) {
   // The language that writes this dialog's actions most verbosely.
   const worst = dialog.keys
     .map(([bundle, path]) => longest(bundle, path))
     .sort((a, b) => b.text.length - a.text.length)[0];
-  const locale = worst?.locale ?? 'en';
-  console.log(`  ${dialog.name} — longest labels in ${locale} ("${(worst?.text ?? '').slice(0, 40)}")`);
+  const worstLocale = worst?.locale ?? 'en';
+  console.log(`  ${dialog.name} — longest labels in ${worstLocale} ("${(worst?.text ?? '').slice(0, 40)}")`);
 
+  for (const locale of [...new Set([worstLocale, ALWAYS])])
   for (const device of DEVICES) {
     const context = await browser.newContext({
       viewport: { width: device.width, height: device.height },
@@ -216,13 +237,43 @@ for (const dialog of DIALOGS) {
                 width: r.width,
                 height: r.height,
                 clipped: node.scrollWidth > node.clientWidth + 2,
+                /*
+                 * Where the label actually breaks, measured rather than assumed.
+                 *
+                 * Containment was the only thing checked here, and the buttons
+                 * on the placement prompt were contained perfectly while reading
+                 *
+                 *     레벨 1부      레벨 테
+                 *     터 시작하기    스트 하기
+                 *
+                 * CSS breaks CJK between any two characters unless told not to,
+                 * so 부터 and 테스트 were split down the middle to keep two
+                 * buttons on one line. Nothing about the box was wrong; the text
+                 * inside it was unreadable. A Range over each word reports its
+                 * client rectangles, and a word with more than one was broken.
+                 */
+                brokenWords: (() => {
+                  const broken = [];
+                  const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+                  for (let text = walker.nextNode(); text; text = walker.nextNode()) {
+                    const value = text.textContent ?? '';
+                    const word = /\S+/g;
+                    for (let hit = word.exec(value); hit; hit = word.exec(value)) {
+                      const range = document.createRange();
+                      range.setStart(text, hit.index);
+                      range.setEnd(text, hit.index + hit[0].length);
+                      if (range.getClientRects().length > 1) broken.push(hit[0]);
+                    }
+                  }
+                  return broken;
+                })(),
               };
             }),
           };
         })
       : null;
 
-    const where = `${dialog.name} @ ${device.name}`;
+    const where = `${dialog.name} @ ${device.name} (${locale})`;
     if (!reached || !measured) {
       findings.push(`${where}: the dialog could not be opened`);
       await context.close();
@@ -239,6 +290,9 @@ for (const dialog of DIALOGS) {
         );
       }
       if (action.clipped) findings.push(`${where}: "${action.text}" clips its own label`);
+      for (const word of action.brokenWords ?? []) {
+        findings.push(`${where}: the label breaks inside "${word}" — see word-break: keep-all`);
+      }
       if (action.width < 43 || action.height < 43) {
         findings.push(
           `${where}: "${action.text}" is ${Math.round(action.width)}x${Math.round(action.height)}`,

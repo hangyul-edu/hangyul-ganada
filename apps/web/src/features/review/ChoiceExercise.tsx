@@ -414,40 +414,23 @@ export function ChoiceExercise({
           }
         >
           {/*
-            The answer, in one line, and no more than that.
+            Nothing. The options have already said it.
 
-            §42: a simple mistake gets the correct answer and stops. It used to
-            render the Korean and the meaning as two bare fragments side by
-            side, which reads as a label with no sentence around it; where both
-            exist they are now one sentence, and in Korean that sentence takes
-            the right particle — 엄마는, 사람은 — because 엄마은 is the kind of
-            error a learner will notice in a language-learning app.
+            This printed 정답은 X예요 under a list in which the right answer was
+            already marked in blue and the learner's wrong pick in red. On a
+            device the whole feedback card read as the correct option's meaning
+            repeated a second time, directly beneath the option showing it —
+            "어떤 종류의", twice, once as the answer and once as the explanation
+            of the answer.
+
+            §21: where the choices already carry the verdict, the card says 맞았어요
+            or 틀렸어요 and stops. A short note about *usage* would earn its place
+            here; restating the option the learner is looking at does not.
+
+            The other exercise kinds are unaffected. Writing and building have no
+            options to mark, so their feedback still names the answer — see
+            `BuildExercise` and the write branch of `ReviewSessionPage`.
           */}
-          {!correct && answer && (
-            <p>
-              {answer.korean && answer.label ? (
-                <LocalizedText as="span" locale={answer.labelLocale ?? 'en'}>
-                  {t('learning:review.answerIs', {
-                    word: answer.korean,
-                    meaning: answer.label,
-                  })}
-                </LocalizedText>
-              ) : (
-                <>
-                  {answer.korean && (
-                    <span lang="ko" dir="ltr" className={styles.answerKorean}>
-                      {answer.korean}
-                    </span>
-                  )}
-                  {answer.label && (
-                    <LocalizedText as="span" locale={answer.labelLocale ?? 'en'}>
-                      {answer.label}
-                    </LocalizedText>
-                  )}
-                </>
-              )}
-            </p>
-          )}
         </FeedbackState>
       )}
     </div>

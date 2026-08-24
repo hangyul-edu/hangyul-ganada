@@ -66,6 +66,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* Stops iOS rubber-banding the page while a learner drags on the canvas. */
   overscroll-behavior: none;
+  /*
+   * Korean does not break in the middle of a word, and the browser's default
+   * says otherwise.
+   *
+   * CSS treats CJK as breakable between any two characters, which is right for
+   * Chinese and Japanese and wrong for Korean: Korean is written with spaces
+   * between eojeol and readers expect the line to break at one. Left to the
+   * default, the placement dialog rendered
+   *
+   *     레벨 1부      레벨 테
+   *     터 시작하기    스트 하기
+   *
+   * splitting 부터 and 테스트 down the middle to keep two buttons side by side.
+   * A learner reading that has to reassemble the word before they can read it.
+   *
+   * `keep-all` is the whole fix and it is safe everywhere: it changes nothing
+   * for Latin, Cyrillic, Thai or Arabic, where the default already breaks at
+   * spaces. Its one risk is a single word longer than its container, and
+   * `break-word` covers that — deliberately not `anywhere`, which would also
+   * shrink min-content and let the mid-word breaks back in whenever a flex item
+   * was under pressure, which is exactly the case that produced 레벨 1부 / 터.
+   */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 #root {
