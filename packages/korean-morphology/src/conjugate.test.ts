@@ -55,6 +55,24 @@ const TABLE: Row[] = [
   ['다르다', A, { presentPolite: '달라요', adnominal: '다른' }],
   ['따르다', V, { presentPolite: '따라요', pastPolite: '따랐어요' }],
   ['치르다', V, { presentPolite: '치러요', pastPolite: '치렀어요' }],
+  /*
+   * 르 stems that do *not* double their ㄹ, and their compounds.
+   *
+   * 뒤따르다 came into the curriculum and came out as 뒤딸라요: the exception
+   * list held 따르 and the classifier looked the stem up whole, so the compound
+   * fell through to the productive 르-doubling rule. 잇따르다 is here for the
+   * same reason and 다다르다 because it is the one member of the list that is
+   * itself already a compound-looking word.
+   */
+  ['따르다', V, { presentPolite: '따라요', pastPolite: '따랐어요' }],
+  ['뒤따르다', V, { presentPolite: '뒤따라요', pastPolite: '뒤따랐어요' }],
+  ['잇따르다', V, { presentPolite: '잇따라요', pastPolite: '잇따랐어요' }],
+  ['들르다', V, { presentPolite: '들러요', pastPolite: '들렀어요' }],
+  ['다다르다', V, { presentPolite: '다다라요', pastPolite: '다다랐어요' }],
+  // The productive rule the exceptions are exceptions to, so a fix that widened
+  // the exception too far would be caught here.
+  ['모르다', V, { presentPolite: '몰라요', pastPolite: '몰랐어요' }],
+  ['부르다', V, { presentPolite: '불러요', pastPolite: '불렀어요' }],
 
   // --- ㄷ becomes ㄹ ----------------------------------------------------------
   ['걷다', V, { presentPolite: '걸어요', pastPolite: '걸었어요', futurePolite: '걸을 거예요', formalPolite: '걷습니다', honorific: '걸으세요', adnominal: '걷는' }],

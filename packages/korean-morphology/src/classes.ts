@@ -116,6 +116,28 @@ export const H_IRREGULAR = new Set([
 export const REU_REGULAR = new Set(['따르', '들르', '치르', '다다르']);
 
 /**
+ * Whether a 르 stem is one of the regular ones — including its compounds.
+ *
+ * The set above lists the base verbs, and a set lookup was the whole test until
+ * 뒤따르다 was added to the curriculum. 뒤따르 is not 따르, so it fell through to
+ * the productive 르-doubling rule and produced 뒤딸라요, which is not a word.
+ * The same hole is open for 잇따르다 and for any other compound of these four.
+ *
+ * Suffix matching is safe here in a way it usually is not, because all four are
+ * whole verbs rather than syllables that recur: a Korean stem that ends in 따르
+ * is a compound of 따르, and there is no unrelated verb whose stem happens to
+ * end that way. `stem.length > base.length` keeps the base verbs on the fast
+ * path and stops a one-syllable coincidence matching.
+ */
+function isReuRegular(stem: string): boolean {
+  if (REU_REGULAR.has(stem)) return true;
+  for (const base of REU_REGULAR) {
+    if (stem.length > base.length && stem.endsWith(base)) return true;
+  }
+  return false;
+}
+
+/**
  * 르 stems that take 러: 푸르 + 어 → 푸르러.
  *
  * 누르다 is deliberately absent. It is two words — "press", which is a verb and
@@ -198,7 +220,7 @@ export function classify(lemma: string, options: ClassifyOptions = {}): Conjugat
     if (last === '하') return 'hada';
     if (last === '르') {
       if (REO_IRREGULAR.has(stem)) return 'reo';
-      if (REU_REGULAR.has(stem)) return 'eu';
+      if (isReuRegular(stem)) return 'eu';
       // Every other 르 stem doubles its ㄹ. This is the productive default and
       // the two exception sets above are both closed.
       return stem.length > 1 ? 'reu' : 'eu';
