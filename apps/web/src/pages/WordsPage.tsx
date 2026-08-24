@@ -384,15 +384,25 @@ function SearchResults({
 
   if (results.length === 0 && extra.length === 0 && inflections.length === 0) {
     /*
-      "Nothing matches" is a claim, and it is only true once the corpus is all
-      here. Saying it while band 3 is still arriving would tell a learner the
-      product does not teach a word it certainly teaches.
+      Four states, and each of them says a different true thing.
+
+      "Nothing matches" is a claim, and it is only true once both halves have
+      arrived and neither is still working. Said while band 3 of the corpus is
+      in flight it tells a learner the product does not teach a word it
+      certainly teaches; said while the dictionary index is downloading it is
+      simply early. And it used to be said when the dictionary had *failed* to
+      download, which is the worst of the four: a learner offline in a train
+      was told their word does not exist, when what happened is that the
+      reference half of the app could not be fetched. `unavailable` is a state
+      the hook has always had and this screen never rendered.
     */
     const message = !corpusReady()
       ? t('search.loading')
       : dictionary.state === 'loading'
         ? t('dictionary.searching')
-        : t('search.none', { query });
+        : dictionary.state === 'unavailable'
+          ? t('dictionary.unavailable')
+          : t('search.none', { query });
     return (
       <p className={styles.empty} role="status">
         {message}
@@ -427,11 +437,26 @@ function SearchResults({
           ))}
         </ul>
       )}
-      {results.length > 0 && (
+      {results.length + extra.length > 0 && (
         <p className={styles.resultCount} role="status">
-          {t('search.count', { count: results.length })}
+          {t('search.count', { count: results.length + extra.length })}
         </p>
       )}
+      {/*
+        One list, taught words first.
+
+        It used to be two, under a heading that said the lower half was
+        "reference only, not part of your daily practice". That sentence is
+        true and it is the wrong screen for it: somebody who has typed a word
+        into a search box wants to know whether the word is there, not which of
+        the app's two corpora it came from. Splitting the answer in half made
+        them read a paragraph to find out.
+
+        The distinction has not been dropped — it is made where it matters, on
+        the entry itself, which opens with exactly that line. Here the rows
+        differ by where they lead, which is the only difference a learner acts
+        on: a taught word opens its card, a dictionary word opens its entry.
+      */}
       <ul className={styles.results}>
         {results.map(({ word }) => {
           const copy = wordCopy(word, locale);
@@ -453,21 +478,8 @@ function SearchResults({
         })}
       </ul>
 
-      {/*
-        The reference shelf, under its own heading and clearly not homework.
-
-        The heading does the whole job of keeping the two corpora apart. Above
-        it are words with a lesson, a recording and a translation somebody
-        wrote; below it are dictionary entries, which will never be scheduled,
-        never appear in a review, and never count towards a streak. Saying so
-        once, here, is better than a badge on every row.
-      */}
       {extra.length > 0 && (
-        <section aria-labelledby="dictionary-heading" className={styles.dictionary}>
-          <h2 id="dictionary-heading" className={styles.sectionTitle}>
-            {t('dictionary.heading')}
-          </h2>
-          <p className={styles.dictionaryNote}>{t('dictionary.note')}</p>
+        <>
           <ul className={styles.results}>
             {extra.map((hit) => (
               <li key={hit.headword}>
@@ -486,7 +498,7 @@ function SearchResults({
               </li>
             ))}
           </ul>
-        </section>
+        </>
       )}
 
       {dictionary.state === 'unavailable' && (

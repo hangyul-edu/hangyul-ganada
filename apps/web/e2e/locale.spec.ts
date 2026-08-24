@@ -112,7 +112,7 @@ test('the chosen language survives a reload', async ({ page }) => {
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ko');
   await page.goto('/letters');
-  await expect(page.getByRole('heading', { name: '낱자 배우기' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '글자 배우기' })).toBeVisible();
 });
 
 test('a long-text European language does not break the layout', async ({ page }) => {

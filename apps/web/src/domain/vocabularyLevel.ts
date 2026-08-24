@@ -45,10 +45,49 @@ export interface LevelRange {
   max: number;
 }
 
-/** How new words are spread around the learner's level. Shares of ten. */
-export const MIX = { atLevel: 7, easier: 2, harder: 1 } as const;
+/**
+ * How new words are spread around the learner's level. Shares of ten.
+ *
+ * Six at the level, two a little below, two a little above. The two below are
+ * not padding: they are the words a placement test says the learner probably
+ * knows, and being right about them is what makes a session feel possible. The
+ * two above are the reason to come back.
+ */
+export const MIX = { atLevel: 6, easier: 2, harder: 2 } as const;
 
-/** The level a frequency rank falls in. The scale the test reports on. */
+/**
+ * The band a learner may be taught from, before any widening.
+ *
+ * §17 and §18. A learner at level L is taught from L−1 to L+1, and the ends of
+ * the scale are asymmetric because they have to be: nothing exists below 1, and
+ * a learner at 30 has nothing above them, so their band deepens downward
+ * instead. **A learner placed at 30 is never offered ordinary new vocabulary
+ * from level 1 to 27**, and that is the whole point of the exercise — the app
+ * knowing they already read Korean is the difference between a level system and
+ * a number beside `Lv.`
+ *
+ * Words they got *wrong*, words due for review and words they saved themselves
+ * are a different question and are not selected here. Remediation is allowed to
+ * reach anywhere; ordinary new study is not.
+ */
+export function teachingZone(level: number): { min: number; max: number } {
+  const clamp = (value: number) => Math.min(LEVELS, Math.max(1, value));
+  if (level <= 2) return { min: 1, max: clamp(level + 1) };
+  if (level >= LEVELS - 1) return { min: clamp(LEVELS - 2), max: LEVELS };
+  return { min: clamp(level - 1), max: clamp(level + 1) };
+}
+
+/**
+ * The level a frequency rank falls in. **Not** a word's level any more.
+ *
+ * Kept because the Level Test's *dictionary* anchors have no taught level —
+ * they are not taught — and a rank is the only evidence there is about them.
+ * Nothing that selects a word for a learner may call this: the corpus stopped
+ * at rank 3,500 while the ladder ran to 10,635, so it returned a number between
+ * 1 and 14 for every word the product owns and 30 for the eight it had never
+ * seen a rank for. Levels 15 to 29 were empty and everybody above 14 was taught
+ * the same eighty words.
+ */
 export function levelOfRank(rank: number | null): number {
   if (rank === null) return LEVELS;
   for (let level = 0; level < CUMULATIVE_WORDS.length; level += 1) {
@@ -57,8 +96,17 @@ export function levelOfRank(rank: number | null): number {
   return LEVELS;
 }
 
+/**
+ * A word's Vocabulary Level, 1–30.
+ *
+ * Read from the word, not computed here. It is decided once, at content build
+ * time, from frequency *and* learner utility *and* linguistic complexity *and*
+ * semantic complexity — see `scripts/content/level.py` — and it is the same
+ * number the Level Test reports and this module selects by. §31 of the brief:
+ * one meaning of level 18, not two.
+ */
 export function wordLevel(word: VocabularyWord): number {
-  return levelOfRank(word.frequency.rank);
+  return word.level;
 }
 
 /**
@@ -79,25 +127,56 @@ export function hash(text: string): number {
 }
 
 /**
- * A learner's level when they have never taken the test.
+ * The level a learner has *outgrown*, read from what they have learned.
  *
- * Conservative, and derived from what they have actually done rather than
- * guessed: the level of the hardest word they have learned, one below, floored
- * at 1. Somebody who has learned nothing starts at level 1, which is where the
- * corpus starts anyway — so the app behaves exactly as it did before the test
- * existed until the learner asks it not to.
+ * The lowest level where they still have real work left — under two thirds of
+ * it learned — floored at 1. Somebody who has learned nothing is at level 1,
+ * which is where the corpus starts, so the app behaves exactly as it did before
+ * the test existed until they ask it not to.
+ *
+ * ## Why this is evidence and not gamification
+ *
+ * §64 is right that an assessed level is a measurement and studying does not
+ * move it: the number on the home screen is what the test said, and it only
+ * changes when the test is taken again. This is a different question. A learner
+ * placed at 1 who has since finished every word at levels 1 and 2 cannot be
+ * *taught* from levels 1 and 2 any more — there is nothing left in them — and
+ * the honest response is to teach the next band rather than to hand them a
+ * short day forever. §19 says fix the content rather than widen the range; this
+ * is the case where the content is fine and the learner has simply used it.
+ *
+ * It only ever moves *upward* from the measured level. A learner who is
+ * assessed at 20 and has learned nothing is still taught at 20 — their history
+ * in this installation is not evidence about their Korean, which is §15.
  */
 export function levelFromProgress(
   corpus: readonly VocabularyWord[],
   isLearned: (wordId: string) => boolean,
 ): number {
-  let hardest = 0;
+  const total = new Map<number, number>();
+  const done = new Map<number, number>();
   for (const word of corpus) {
-    if (!isLearned(word.id)) continue;
-    const level = wordLevel(word);
-    if (level > hardest) hardest = level;
+    const at = wordLevel(word);
+    total.set(at, (total.get(at) ?? 0) + 1);
+    if (isLearned(word.id)) done.set(at, (done.get(at) ?? 0) + 1);
   }
-  return Math.max(1, hardest - 1);
+  for (let at = 1; at <= LEVELS; at += 1) {
+    const size = total.get(at) ?? 0;
+    if (size === 0) continue;
+    if ((done.get(at) ?? 0) / size < 2 / 3) return at;
+  }
+  return LEVELS;
+}
+
+/**
+ * The level the day's words are chosen around.
+ *
+ * The measured level, or what they have outgrown, whichever is higher. Never
+ * lower than the measurement: an empty app is not evidence that somebody has
+ * forgotten Korean.
+ */
+export function teachingLevel(measured: number | null, outgrown: number): number {
+  return Math.min(LEVELS, Math.max(1, measured ?? 1, outgrown));
 }
 
 /** The levels present in a corpus, so the mix can be clamped to reality. */
@@ -115,9 +194,15 @@ export function levelRange(corpus: readonly VocabularyWord[]): LevelRange {
 /**
  * Which level each of `count` new words should come from.
  *
- * Deterministic given the seed and the day, and shuffled rather than blocked —
- * a session that opened with two easy words and closed with the hard one would
- * be a session with a shape, and the shape would be the wrong lesson.
+ * Every target lands inside `teachingZone`, and that is the change worth
+ * naming. The version this replaces added an offset of −2 to +2 and then
+ * clamped to whatever levels the corpus happened to have — which, when levels
+ * 15 to 29 were empty, meant a learner at 20 was clamped to 14 and taught the
+ * same eighty words as a learner at 15.
+ *
+ * Deterministic given the seed and the day, and shuffled rather than blocked: a
+ * session that opened with two easy words and closed with the hard one would be
+ * a session with a shape, and the shape would be the wrong lesson.
  */
 export function targetLevels(
   level: number,
@@ -126,21 +211,40 @@ export function targetLevels(
   seed: string,
   dayIndex: number,
 ): number[] {
-  const clamp = (value: number) => Math.min(range.max, Math.max(range.min, value));
+  const zone = teachingZone(level);
+  // The zone is what the learner may be taught; the range is what the corpus
+  // has. Where they disagree the corpus wins, because a level with no words in
+  // it cannot be taught from — and `pickNewWords` records that as a deficit
+  // rather than quietly reaching further down.
+  const low = Math.max(zone.min, range.min);
+  const high = Math.min(zone.max, range.max);
+  const clamp = (value: number) => Math.min(high, Math.max(low, value));
   const out: number[] = [];
   for (let i = 0; i < count; i += 1) {
     const roll = hash(`${seed}:${dayIndex}:slot:${i}`) % 10;
     let offset: number;
-    if (roll < MIX.atLevel) {
-      offset = (hash(`${seed}:${dayIndex}:near:${i}`) % 3) - 1; // -1, 0, +1
-    } else if (roll < MIX.atLevel + MIX.easier) {
-      offset = -1 - (hash(`${seed}:${dayIndex}:easy:${i}`) % 2); // -1, -2
-    } else {
-      offset = 1 + (hash(`${seed}:${dayIndex}:hard:${i}`) % 2); // +1, +2
-    }
+    if (roll < MIX.atLevel) offset = 0;
+    else if (roll < MIX.atLevel + MIX.easier) offset = -1;
+    else offset = 1;
     out.push(clamp(level + offset));
   }
   return out;
+}
+
+/**
+ * What a day could not find, and where it looked.
+ *
+ * §19 and §20: when a level runs out of candidates the selector may widen by
+ * **one** level and no further, and if that still fails the day is short and
+ * the shortfall is recorded. The alternative — widening until something is
+ * found — is how a content problem becomes a teaching problem, and it is what
+ * produced a level-30 learner being handed 엄마.
+ */
+export interface LevelDeficit {
+  /** The level the plan wanted a word from. */
+  wanted: number;
+  /** How many it could not supply from `wanted` or one level either side. */
+  short: number;
 }
 
 export interface NewWordRequest {
@@ -179,10 +283,19 @@ export interface NewWordRequest {
  * words, a recent word is better than a short day.
  */
 export function pickNewWords(request: NewWordRequest): VocabularyWord[] {
+  return planNewWords(request).words;
+}
+
+/** The same choice, with what it could not find. See `LevelDeficit`. */
+export function planNewWords(request: NewWordRequest): {
+  words: VocabularyWord[];
+  deficits: LevelDeficit[];
+} {
   const { corpus, level, seed, dayIndex, count, isMet, isRecent } = request;
-  if (count <= 0) return [];
+  if (count <= 0) return { words: [], deficits: [] };
 
   const range = levelRange(corpus);
+  const zone = teachingZone(level);
   const eligible = new Map<number, VocabularyWord[]>();
   for (const word of corpus) {
     if (isMet(word.id)) continue;
@@ -200,20 +313,27 @@ export function pickNewWords(request: NewWordRequest): VocabularyWord[] {
   const wanted = targetLevels(level, count, range, seed, dayIndex);
   const chosen: VocabularyWord[] = [];
   const taken = new Set<string>();
+  const short = new Map<number, number>();
 
-  /** Nearest levels to `at`, closest first, so a miss widens rather than fails. */
+  /**
+   * Where a target level may look, in order.
+   *
+   * The target, then one level either side, and **that is all**. Widening past
+   * the teaching zone is refused: the previous version walked outward across
+   * the whole thirty-level scale until it found something, which is why a
+   * learner placed at 25 was handed level-14 vocabulary without anything
+   * anywhere reporting a problem.
+   */
   function search(at: number): number[] {
-    const order = [at];
-    for (let d = 1; d <= LEVELS; d += 1) {
-      if (at - d >= range.min) order.push(at - d);
-      if (at + d <= range.max) order.push(at + d);
-    }
-    return order;
+    const inside = (value: number) =>
+      value >= Math.max(1, zone.min - 1) && value <= Math.min(LEVELS, zone.max + 1);
+    return [at, at - 1, at + 1].filter(inside);
   }
 
   for (const target of wanted) {
     let picked: VocabularyWord | undefined;
-    // Two passes: everything that is not recent, then everything.
+    // Two passes: everything that is not recent, then everything. A word met in
+    // the last fortnight is Review's job, and a repeat beats a short day.
     for (const allowRecent of [false, true]) {
       for (const at of search(target)) {
         picked = (eligible.get(at) ?? []).find(
@@ -223,11 +343,17 @@ export function pickNewWords(request: NewWordRequest): VocabularyWord[] {
       }
       if (picked) break;
     }
-    if (!picked) break;
+    if (!picked) {
+      short.set(target, (short.get(target) ?? 0) + 1);
+      continue;
+    }
     taken.add(picked.id);
     chosen.push(picked);
   }
-  return chosen;
+  return {
+    words: chosen,
+    deficits: [...short].map(([level, count]) => ({ wanted: level, short: count })),
+  };
 }
 
 /** The name shown beside a level on the home screen. Four bands, thirty levels. */

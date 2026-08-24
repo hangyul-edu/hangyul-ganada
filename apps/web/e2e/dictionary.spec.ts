@@ -36,22 +36,30 @@ import { openApp, waitForLaunch } from './helpers/launch';
  */
 const LOOKUP = '가지';
 
-test('finds a word the app does not teach, and says it is not homework', async ({ page }) => {
+test('finds a word the app does not teach, and says on the entry that it is not homework', async ({ page }) => {
   await openApp(page, '/words');
   await waitForLaunch(page);
 
   await page.getByRole('searchbox').fill(LOOKUP);
 
-  const dictionary = page.getByRole('region', { name: /dictionary/i });
-  await expect(dictionary).toBeVisible();
+  /*
+    One list, and the untaught word is simply in it.
+
+    The results used to be split under a *Dictionary* heading carrying the line
+    "reference only, not part of your daily practice". That sentence is true and
+    it was on the wrong screen: somebody who has typed a word into a search box
+    wants to know whether the word is there, not which of the app's two corpora
+    answered. The distinction is made where a learner acts on it — on the entry
+    they open — and this test now follows them there.
+  */
+  const results = page.getByRole('main');
   // Exact: the dictionary holds longer words containing this one, and a
   // substring match would find one of those and call it a pass for a search
   // that had failed.
-  await expect(dictionary.getByText(LOOKUP, { exact: true })).toBeVisible();
+  await expect(results.getByText(LOOKUP, { exact: true }).first()).toBeVisible();
 
-  // The promise the heading is there to make. A learner cannot tell a curated
-  // card from a scraped gloss by looking, so the app has to say which is which.
-  await expect(dictionary).toContainText(/not part of your daily practice/i);
+  await results.getByText(LOOKUP, { exact: true }).first().click();
+  await expect(page.getByText(/not part of your daily practice/i)).toBeVisible();
 });
 
 test('opens the entry, shows its senses, and credits the source', async ({ page }) => {
@@ -59,10 +67,8 @@ test('opens the entry, shows its senses, and credits the source', async ({ page 
   await waitForLaunch(page);
 
   await page.getByRole('searchbox').fill(LOOKUP);
-  await page
-    .getByRole('region', { name: /dictionary/i })
-    .getByText(LOOKUP, { exact: true })
-    .click();
+  // One list since the search results were unified; the row is simply in it.
+  await page.getByRole('main').getByText(LOOKUP, { exact: true }).first().click();
 
   await expect(page.getByTestId('dictionary-headword')).toHaveText(LOOKUP);
 
@@ -106,10 +112,10 @@ test('a taught word is never offered twice', async ({ page }) => {
   // dictionary's other senses of it live on that card, under Other meanings.
   await page.getByRole('searchbox').fill('차');
 
-  const dictionary = page.getByRole('region', { name: /dictionary/i });
-  if (await dictionary.isVisible()) {
-    await expect(dictionary.getByText('차', { exact: true })).toHaveCount(0);
-  }
+  // One row, in one list. Two would be a choice the learner should not have to
+  // make — one leading to a hand-written card with a recording, the other to a
+  // bare gloss of the same spelling.
+  await expect(page.getByRole('main').getByText('차', { exact: true })).toHaveCount(1);
 });
 
 test('a taught word gains dictionary examples of the sense it teaches', async ({ page }) => {

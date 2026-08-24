@@ -74,6 +74,8 @@ export interface CorpusTables {
   categories: string[];
   frequency_bands: string[];
   sound_patterns: string[];
+  /** The subset a word card may note. Absent on a pre-2026-08 build. */
+  noted_patterns?: string[];
   words_per_lesson: number;
   sources: Array<Record<string, unknown>>;
   field_sets: string[][];

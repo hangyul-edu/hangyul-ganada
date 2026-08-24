@@ -113,14 +113,34 @@ const GRID_STEP = 0.1;
 /**
  * The prior, in levels.
  *
- * Centred low and wide: this is a product for people starting Korean, so before
- * any evidence the best guess is "nearer the bottom than the top" — but eight
- * levels of standard deviation is weak enough that four or five answers move it
- * wherever the answers say. A flat prior was tried and behaves worse on short
- * runs, where it lets one lucky guess carry the estimate a long way.
+ * Centred on the scale and deliberately weak. A Bayesian estimate is pulled
+ * toward its prior, so wherever the prior sits is where the ends of the scale
+ * get squeezed toward — and this was centred at 9 on a scale that runs to 30.
+ * Simulated, that showed up as a systematic direction rather than as noise:
+ * learners at levels 1–5 were placed **+0.78 levels too high** and learners at
+ * 26–30 **1.39 levels too low**, with level 30 coming out at 28 every single
+ * time. A test that cannot report its own top level is a test with a ceiling,
+ * which is exactly what §34 asks about.
+ *
+ * 15 is the middle of 1–30 and carries no opinion about who is taking the test.
+ * The width went from 8 to 20 for the same reason: at 8, the prior was still
+ * strong enough at the ends to bend them inward, and this product has no
+ * business having a strong opinion about a learner it has not yet asked
+ * anything. A *flat* prior was tried and behaves worse on short runs, where it
+ * lets one lucky guess carry the estimate a long way — so the prior stays, and
+ * stops leaning.
+ *
+ * `LOGITS_PER_LEVEL` was swept alongside these and deliberately left alone.
+ * Raising it improves every number in the simulation, and it does so
+ * circularly: the simulated learner answers with the same curve the estimator
+ * assumes, so a sharper curve makes both the learner more predictable and the
+ * estimator more confident. That is not evidence about the test. The prior's
+ * centre is different — it does not appear in the simulated learner at all —
+ * so moving it is a real finding and moving the discrimination would be a
+ * flattering one.
  */
-const PRIOR_MEAN = 9;
-const PRIOR_SD = 8;
+const PRIOR_MEAN = 15;
+const PRIOR_SD = 20;
 
 export type Response = 'correct' | 'wrong' | 'unknown';
 

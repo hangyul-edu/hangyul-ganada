@@ -232,6 +232,55 @@ def stem_of(word: str) -> str | None:
     return _stem_of(word)
 
 
+def written_forms(word: str) -> list[str]:
+    """Complete tokens a speaker writes that no suffix can be stripped off.
+
+    The frequency reader folds a corpus by removing an ending from each token —
+    먹었어 gives its count to 먹 — and that works for every ending that is a
+    string sitting on the end of one. Two of the commonest are not.
+
+    **The formal ㅂ니다 fuses into the last syllable.** 감사하 + ㅂ니다 is
+    감사합니다, where the ㅂ is the final consonant of 합 rather than a character
+    of its own, so `"감사합니다".endswith("ㅂ니다")` is false and always was.
+    감사합니다 is one of the first sentences anybody learns in Korean and it was
+    contributing nothing to 감사하다, which is why the word scored as rare and
+    came out at level 11.
+
+    **요 attaches to an already-contracted form.** 감사해요 is 감사해 plus 요,
+    and neither 해요 nor 어요 can be stripped off it — 해 is not 어. The bare
+    ending 요 cannot go in the fold's list because it is also a case particle
+    (책이요), so the only way to count these is to generate the finished token
+    and match it whole.
+
+    Bare 아/어 forms are here for a third reason: the fold deliberately refuses
+    to count a token with no ending at all, because a bare 우리 is the pronoun
+    and not the stem of 우리다. 감사해 and 먹어 are not stems and carry no such
+    risk, and a subtitle corpus is full of them.
+
+    Everything here is matched exactly, against the raw counts, and the caller
+    drops any form the fold could already have reached — see `measure`. Nothing
+    is counted twice.
+    """
+    stem = _stem_of(word)
+    if stem is None:
+        return []
+    forms: list[str] = []
+    for form in infinitive_forms(stem):
+        if form == stem:
+            continue
+        forms.append(form)
+        forms.append(form + "\uc694")
+        tail = decompose(form[-1])
+        if tail is not None and tail[2] == 0:
+            past = form[:-1] + compose(tail[0], tail[1], FINALS.index("\u3146"))
+            forms.append(past + "\uc5b4\uc694")
+            forms.append(past + "\uc2b5\ub2c8\ub2e4")
+    head = decompose(stem[-1])
+    if head is not None and head[2] == 0:
+        forms.append(stem[:-1] + compose(head[0], head[1], FINALS.index("\u3142")) + "\ub2c8\ub2e4")
+    return list(dict.fromkeys(forms))
+
+
 def derived_forms(word: str) -> list[str]:
     """Complete word-forms that are the *only* way some adjectives are written.
 

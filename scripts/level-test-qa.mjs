@@ -138,7 +138,7 @@ for (let truth = 1; truth <= LEVELS; truth += 1) {
   }
   const bias = mine.reduce((a, b) => a + b, 0) / mine.length;
   const mae = mine.reduce((a, b) => a + Math.abs(b), 0) / mine.length;
-  perLevel.push({ truth, bias, mae });
+  perLevel.push({ truth, bias, mae, deltas: mine });
 }
 
 const mae = errors.reduce((a, b) => a + b, 0) / errors.length;
@@ -158,6 +158,46 @@ console.log(`  within ±5 levels      ${(within5 * 100).toFixed(1)}%`);
 console.log(`  items asked           ${minItems}–${maxItems}, median ${medianItems}`);
 console.log(`  bank per level        min ${Math.min(...byLevel.values().map?.((v) => v.length) ?? [0])}`);
 
+/*
+ * Error by band, because a good global figure hides the failure that matters.
+ *
+ * §32 and §33. A test can place the middle of the scale beautifully and
+ * compress the top — every advanced learner comes out at 23 because the bank
+ * has nothing harder to ask them — and the mean absolute error over all thirty
+ * levels barely moves. The band table is what makes that visible, and `bias` is
+ * the column to read: a large negative bias at the top *is* compression.
+ */
+const BANDS = [
+  { label: 'levels 1–5', min: 1, max: 5 },
+  { label: 'levels 6–10', min: 6, max: 10 },
+  { label: 'levels 11–20', min: 11, max: 20 },
+  { label: 'levels 21–25', min: 21, max: 25 },
+  { label: 'levels 26–30', min: 26, max: 30 },
+];
+console.log('\n  error by band — a good average can hide a compressed top:');
+console.log('    band            MAE   bias   ±1     ±2     ±3');
+const bandRows = [];
+for (const band of BANDS) {
+  const rows = perLevel.filter((r) => r.truth >= band.min && r.truth <= band.max);
+  const all = rows.flatMap((r) => r.deltas);
+  const mean = (xs) => xs.reduce((a, b) => a + b, 0) / Math.max(1, xs.length);
+  const share = (n) => all.filter((d) => Math.abs(d) <= n).length / Math.max(1, all.length);
+  const row = {
+    label: band.label,
+    mae: mean(all.map(Math.abs)),
+    bias: mean(all),
+    within1: share(1),
+    within2: share(2),
+    within3: share(3),
+  };
+  bandRows.push(row);
+  console.log(
+    `    ${row.label.padEnd(14)} ${row.mae.toFixed(2)}  ${(row.bias >= 0 ? '+' : '') + row.bias.toFixed(2)}  ` +
+      `${(row.within1 * 100).toFixed(0).padStart(4)}%  ${(row.within2 * 100).toFixed(0).padStart(4)}%  ` +
+      `${(row.within3 * 100).toFixed(0).padStart(4)}%`,
+  );
+}
+
 const worst = [...perLevel].sort((a, b) => b.mae - a.mae).slice(0, 5);
 console.log('\n  hardest levels to place:');
 for (const row of worst) {
@@ -167,6 +207,18 @@ for (const row of worst) {
 const problems = [];
 if (within3 < 0.9) problems.push(`only ${(within3 * 100).toFixed(1)}% of sittings land within ±3 levels`);
 if (mae > 2) problems.push(`mean absolute error is ${mae.toFixed(2)} levels`);
+/*
+ * Compression, checked rather than eyeballed.
+ *
+ * A band whose learners are pulled two whole levels toward the middle is a band
+ * the test cannot see. Two levels is the threshold because one is inside the
+ * noise of a thirty-item adaptive walk and three is a different product.
+ */
+for (const row of bandRows) {
+  if (Math.abs(row.bias) > 2) {
+    problems.push(`${row.label} are placed ${row.bias.toFixed(2)} levels from the truth on average`);
+  }
+}
 if (maxItems !== ITEM_COUNT || minItems !== ITEM_COUNT) {
   problems.push(`sittings asked ${minItems}–${maxItems} items; every one must ask exactly ${ITEM_COUNT}`);
 }

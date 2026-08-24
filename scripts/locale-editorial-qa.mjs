@@ -155,26 +155,31 @@ const KOREAN_GLOSSARY = [
 ];
 
 /**
- * 낱자 and 글자, told apart by what the English says.
+ * 글자 and 음절, told apart by what the English says.
  *
- * Both mean "letter" loosely, and the app itself draws the line in unit 1:
- * 낱자는 네모난 블록으로 묶이고, 블록 하나가 한 글자예요 — the forty things you
- * learn are 낱자, and the block they combine into is a 글자. Having taught that,
- * the product then called the letters tab 글자, counted 완료한 글자 in the
- * activity page and 배운 낱자 in the settings, and put 오늘의 글자 above a card
- * reading 낱자 0/40.
+ * The app teaches two things and has to name them separately: the forty letters
+ * a learner traces, and the square block those letters combine into. English
+ * has two ordinary words for that — *letter* and *syllable* — and Korean has
+ * three, of which 글자 means both.
  *
- * A word list cannot decide this one, because 글자 is right wherever the thing
- * really is a block. The English is the referent instead: where the source
- * string says "letter", the Korean is about a 낱자. A Korean string that uses
- * *both* words is exempt — that is a sentence drawing the distinction on
- * purpose, which is where 글자 belongs.
+ * This rule used to say the letter was a 낱자 and the block a 글자, which is
+ * what a Korean linguistics textbook says and is not what a beginner has ever
+ * read. The learner-facing terms are now 글자 for the letter and 음절 for the
+ * block, and the lessons that named both in one sentence were rewritten rather
+ * than substituted: 낱자는 네모난 블록으로 묶이고, 블록 하나가 한 글자예요 had
+ * become "a letter is grouped into a letter" under a substitution, and now
+ * reads 글자는 네모난 칸 하나에 모여요. 그 칸 하나가 한 음절이에요.
+ *
+ * The check itself is unchanged in kind, and runs in both directions: where the
+ * English says *letter* the Korean must not be about a 음절, and where it says
+ * *syllable* or *block* the Korean must not be about a 글자. A string that uses
+ * both words is exempt — that is a sentence drawing the distinction on purpose,
+ * which is exactly where both belong.
  */
-const KOREAN_LETTER = {
-  english: /\bletters?\b/i,
-  avoid: '글자',
-  prefer: '낱자',
-};
+const KOREAN_LETTER = [
+  { english: /\bletters?\b/i, avoid: '음절', prefer: '글자' },
+  { english: /\b(syllables?|blocks?)\b/i, avoid: '글자', prefer: '음절' },
+];
 
 /**
  * A whole-word match that understands letters outside ASCII.
@@ -327,19 +332,21 @@ for (const locale of locales) {
         sample: bundle.get(formal[0]),
       });
     }
-    const strayLetter = [...bundle]
-      .filter(([key, value]) => value.includes(KOREAN_LETTER.avoid) && !value.includes(KOREAN_LETTER.prefer))
-      .filter(([key]) => KOREAN_LETTER.english.test(english.get(key) ?? ''))
-      .map(([key]) => key);
-    if (strayLetter.length > 0) {
-      errors.push({
-        locale,
-        id: 'two-names-for-one-thing',
-        detail:
-          `${strayLetter.length} string(s) say 글자 where the English says "letter" and the app ` +
-          `teaches 낱자: ${strayLetter.slice(0, 6).join(', ')}`,
-        sample: bundle.get(strayLetter[0]),
-      });
+    for (const rule of KOREAN_LETTER) {
+      const stray = [...bundle]
+        .filter(([, value]) => value.includes(rule.avoid) && !value.includes(rule.prefer))
+        .filter(([key]) => rule.english.test(english.get(key) ?? ''))
+        .map(([key]) => key);
+      if (stray.length > 0) {
+        errors.push({
+          locale,
+          id: 'two-names-for-one-thing',
+          detail:
+            `${stray.length} string(s) say ${rule.avoid} where the English calls it something ` +
+            `else and the app teaches ${rule.prefer}: ${stray.slice(0, 6).join(', ')}`,
+          sample: bundle.get(stray[0]),
+        });
+      }
     }
     for (const term of KOREAN_GLOSSARY) {
       const stray = [...bundle]

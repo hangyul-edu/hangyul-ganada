@@ -151,19 +151,50 @@ describe('placement', () => {
 
   it('a retake does not disturb the day already in progress', async () => {
     /*
-     * Case E. Today's plan is built once and stored, and a new level is a fact
-     * about tomorrow. Rebuilding the day underneath somebody who is four words
-     * into it would lose the four words and replace the six they were promised.
+     * Case E. Rebuilding the day underneath somebody who is four words into it
+     * would lose the four words and replace the six they were promised, so a
+     * plan with work in it stands and the new level starts tomorrow.
      */
     const app = await open(durableDriver());
     const before = app.context.vocabularyDay;
     expect(before.words.length).toBeGreaterThan(0);
+    // Start the day. This is what makes it a day in progress rather than a
+    // plan nobody has looked at — see the next test.
+    await act(async () => app.context.completeDailyWord(before.words[0]!.wordId));
+    await waitFor(() => expect(app.context.vocabularyDay.completed.length).toBe(1));
+    const started = app.context.vocabularyDay;
+
+    await act(async () => app.context.saveLevelTestResult(assessedAt14));
+    await waitFor(() => expect(app.context.vocabularyLevel).toBe(14));
+
+    const after = app.context.vocabularyDay;
+    expect(after.date).toBe(started.date);
+    expect(after.words).toEqual(started.words);
+  });
+
+  it('a retake before the day is started rebuilds it for the new level', async () => {
+    /*
+     * Case F, and the defect this pair exists for.
+     *
+     * Sitting the Vocabulary Level Test is something a learner does minutes
+     * after opening the app for the first time — which is exactly when a plan
+     * has just been written at the default level. Case E's rule, applied to a
+     * plan nobody has touched, is how somebody measured at 30 was taught 남자.
+     *
+     * Nothing is lost by replacing a plan with no work in it, so it is
+     * replaced, and the level the learner was just measured at is the level
+     * they are taught at today rather than tomorrow.
+     */
+    const app = await open(durableDriver());
+    const before = app.context.vocabularyDay;
+    expect(before.words.length).toBeGreaterThan(0);
+    expect(before.completed).toEqual([]);
 
     await act(async () => app.context.saveLevelTestResult(assessedAt14));
     await waitFor(() => expect(app.context.vocabularyLevel).toBe(14));
 
     const after = app.context.vocabularyDay;
     expect(after.date).toBe(before.date);
-    expect(after.words).toEqual(before.words);
+    expect(after.words).not.toEqual(before.words);
   });
 });

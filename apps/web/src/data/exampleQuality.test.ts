@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { usableExamples } from './exampleQuality';
+import { compatiblePartOfSpeech, usableExamples } from './exampleQuality';
 
 /**
  * Which upstream sentences are fit for a learner's card.
@@ -84,5 +84,54 @@ describe('extra examples on a taught card', () => {
     const kept = usableExamples(many, opts('today'));
     expect(kept).toHaveLength(2);
     expect(new Set(kept.map((k) => k.korean)).size).toBe(2);
+  });
+});
+
+/**
+ * 거의, and the shape of the defect rather than the sentence.
+ *
+ * The card teaches the adverb — 거의 다 왔어요 — and Wiktionary also files a rare
+ * *nominal* 거의 under the same gloss, "almost", whose citations decline it:
+ * 손님은 거의가 오셨습니다, 남은 시간의 거의를. The gloss matched, so those were
+ * shown under an adverb card and taught a learner that 거의 takes 가 and 를.
+ *
+ * The sentences themselves are not the bug and are not banned: on the
+ * dictionary page they sit under "noun · used exclusively with the particles
+ * -가 and -를" and illustrate exactly what that label says. What is fixed is the
+ * matching, so the test is written against the matching.
+ */
+describe('a sense may only illustrate the grammar the card teaches', () => {
+  it('refuses a nominal sense under a word taught as an adverb', () => {
+    expect(compatiblePartOfSpeech('noun', 'adverb')).toBe(false);
+    expect(compatiblePartOfSpeech('proper noun', 'verb')).toBe(false);
+    expect(compatiblePartOfSpeech('numeral', 'adjective')).toBe(false);
+  });
+
+  it('allows the adverb sense of a word taught as a noun', () => {
+    // 오늘 and 지금 are taught as nouns and used adverbially every day;
+    // 오늘 뭐 했어요? is the ordinary sentence and must survive.
+    expect(compatiblePartOfSpeech('adverb', 'noun')).toBe(true);
+    expect(compatiblePartOfSpeech('pronoun', 'noun')).toBe(true);
+  });
+
+  it('says nothing when either side has no part of speech', () => {
+    expect(compatiblePartOfSpeech(undefined, 'adverb')).toBe(true);
+    expect(compatiblePartOfSpeech('noun', undefined)).toBe(true);
+  });
+
+  it('drops a citation glossed with an English infinitive', () => {
+    const kept = usableExamples(
+      [ex('우편을 외국으로 보내다.', 'To send mail to a foreign country.')],
+      opts('to send'),
+    );
+    expect(kept).toHaveLength(0);
+  });
+
+  it('keeps a real sentence whose translation merely mentions "to"', () => {
+    const kept = usableExamples(
+      [ex('학교에 가고 싶어요.', 'I want to go to school.')],
+      opts('to go'),
+    );
+    expect(kept).toHaveLength(1);
   });
 });

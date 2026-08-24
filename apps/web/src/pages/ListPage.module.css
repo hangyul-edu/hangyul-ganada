@@ -45,13 +45,23 @@
   text-wrap: pretty;
 }
 
+/*
+ * `--hg-primary-text`, not `--hg-primary`.
+ *
+ * The brand orange is for filled buttons, progress and selection. Set as 15px
+ * text on the warm empty-state card it measures 2.77:1 against #fff8f1, where
+ * AA asks 4.5:1 — so the one link on an otherwise empty screen was the least
+ * readable thing on it. `--hg-primary-text` is the same hue at the brightest
+ * value that clears 4.5:1 on both white and the warm tint; `ReviewPage.module.css`
+ * already used it for the same link and this file did not.
+ */
 .emptyLink {
   display: inline-flex;
   align-items: center;
   gap: var(--hg-space-1);
   min-height: 44px;
   font-weight: var(--hg-weight-semibold);
-  color: var(--hg-primary);
+  color: var(--hg-primary-text);
 }
 
 .searchRow {

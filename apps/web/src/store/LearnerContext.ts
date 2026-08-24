@@ -51,8 +51,21 @@ export interface LearnerContextValue {
    * The measured result when there is one; otherwise a conservative reading of
    * what has already been learned, which is 1 for somebody new. Read
    * `placementStatus` alongside it to know which of those it is.
+   *
+   * **This is the number to show.** It is a measurement, and ordinary studying
+   * does not move it — see §64 and `levelFromProgress`. What the day's words are
+   * actually chosen around is `teachingLevel`, which is this or higher.
    */
   vocabularyLevel: number;
+  /**
+   * The level the day's new words are drawn from.
+   *
+   * The measured level, or the level the learner has outgrown by finishing
+   * everything below it, whichever is higher. Never shown: a learner told they
+   * are "really level 4 now" has been given a number the test would not agree
+   * with, and the test is what the number means.
+   */
+  teachingLevel: number;
   startSession: (kind: SessionKind, lessonId: string | null, targetCount: number) => string;
   completeSession: (sessionId: string) => void;
   recordAttempt: (input: RecordAttemptInput) => void;

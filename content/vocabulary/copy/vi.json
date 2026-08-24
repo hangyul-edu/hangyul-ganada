@@ -380,7 +380,7 @@
     ],
     "word_dul": [
       "hai",
-      "Có hai cái ghế."
+      "Hai chúng tôi cùng đi."
     ],
     "word_sijang": [
       "chợ",
@@ -590,7 +590,7 @@
     ],
     "word_geurigo": [
       "và",
-      "Tôi mua bánh mì và sữa."
+      "Tôi đã mua bánh mì. Và cũng mua cả sữa."
     ],
     "word_achim": [
       "buổi sáng",
@@ -766,7 +766,7 @@
     ],
     "word_siksa": [
       "bữa ăn",
-      "Bạn ăn cơm chưa?"
+      "Bữa ăn rất ngon."
     ],
     "word_jada": [
       "ngủ",
@@ -1052,7 +1052,7 @@
     ],
     "word_set": [
       "ba",
-      "Có ba quả táo."
+      "Ba người bạn đã tụ họp."
     ],
     "word_anda": [
       "ngồi",
@@ -1177,8 +1177,8 @@
       "Mọi người đều cười."
     ],
     "word_bumo": [
-      "bố mẹ",
-      "Bố mẹ bạn đâu rồi?"
+      "cha mẹ",
+      "Trẻ con cần có cha mẹ."
     ],
     "word_sayong": [
       "việc sử dụng",
@@ -1751,7 +1751,7 @@
     ],
     "word_net": [
       "bốn",
-      "Có bốn cái ghế."
+      "Bốn chúng tôi là một đội."
     ],
     "word_ssada": [
       "rẻ",
@@ -2441,8 +2441,8 @@
       "Thứ Hai tôi bắt đầu đi làm."
     ],
     "word_seonsaeng": [
-      "thầy cô",
-      "Vị đó là giáo viên trường học."
+      "giáo viên",
+      "Người đó là giáo viên trường học."
     ],
     "word_animyeon": [
       "hoặc",
@@ -4612,7 +4612,7 @@
     ],
     "word_sugo": [
       "sự vất vả",
-      "Bạn đã vất vả nhiều rồi."
+      "Hôm nay anh vất vả rồi."
     ],
     "word_geureona": [
       "tuy nhiên",
@@ -5491,8 +5491,8 @@
       "Trời ơi, muộn mất rồi."
     ],
     "word_mareuda": [
-      "khô, khát",
-      "Tôi khát nước."
+      "khô",
+      "Quần áo đã khô hẳn."
     ],
     "word_ppajida": [
       "rơi vào",
@@ -5992,7 +5992,7 @@
     ],
     "word_silje": [
       "thực tế",
-      "Thực tế tôi đã đến đó."
+      "Khác thực tế rất nhiều."
     ],
     "word_kkeojida": [
       "tắt ngấm",
@@ -7709,7 +7709,7 @@
     ],
     "word_oesang": [
       "vết thương ngoài",
-      "Không có vết thương bên ngoài."
+      "May mà không có vết thương lớn."
     ],
     "word_eochapi": [
       "dù sao",
@@ -8152,8 +8152,8 @@
       "Tôi phải lòng ngay từ cái nhìn đầu."
     ],
     "word_bamsaeda": [
-      "thức thâu đêm",
-      "Tôi đã học thâu đêm."
+      "thức trắng đêm",
+      "Hôm qua tôi thức trắng đêm ôn thi."
     ],
     "word_daman": [
       "chỉ có điều",
@@ -8224,8 +8224,8 @@
       "Bạn đừng đỗ xe trái phép nhé."
     ],
     "word_jesi": [
-      "sự đưa ra",
-      "Bạn đưa tài liệu ra nhé."
+      "việc trình bày",
+      "Xin hãy trình bày tài liệu."
     ],
     "word_yeotdeutda": [
       "nghe lén",
@@ -8276,8 +8276,8 @@
       "Cuộc lục soát đã bắt đầu."
     ],
     "word_jeonja": [
-      "điện tử",
-      "Tôi đã mua một thiết bị điện tử."
+      "electron",
+      "Electron thì không nhìn thấy được."
     ],
     "word_soyong": [
       "sự hữu dụng",
@@ -11712,6 +11712,134 @@
     "word_eolchu": [
       "khoảng chừng",
       "Việc chuẩn bị gần như xong rồi."
+    ],
+    "word_chima": [
+      "váy",
+      "Chiếc váy này rất đẹp."
+    ],
+    "word_ssal": [
+      "gạo sống",
+      "Vo gạo rồi nấu cơm."
+    ],
+    "word_gyeran": [
+      "quả trứng",
+      "Buổi sáng tôi luộc trứng."
+    ],
+    "word_kape": [
+      "quán cà phê",
+      "Tôi gặp bạn ở quán cà phê."
+    ],
+    "word_yachae": [
+      "rau",
+      "Hãy ăn nhiều rau."
+    ],
+    "word_chitsol": [
+      "bàn chải đánh răng",
+      "Tôi mua bàn chải đánh răng mới."
+    ],
+    "word_saengseon": [
+      "cá (để ăn)",
+      "Buổi tối tôi nướng cá."
+    ],
+    "word_naengjanggo": [
+      "tủ lạnh",
+      "Tôi để sữa vào tủ lạnh."
+    ],
+    "word_jeongnyujang": [
+      "trạm xe buýt",
+      "Tôi đợi xe buýt ở trạm."
+    ],
+    "word_pyeonuijeom": [
+      "cửa hàng tiện lợi",
+      "Có một cửa hàng tiện lợi trước nhà."
+    ],
+    "word_dubu": [
+      "đậu phụ",
+      "Cho đậu phụ vào rồi nấu canh."
+    ],
+    "word_podo": [
+      "nho",
+      "Nho rất ngọt."
+    ],
+    "word_jemok": [
+      "tựa đề",
+      "Tựa đề của cuốn sách này là gì?"
+    ],
+    "word_subak": [
+      "dưa hấu",
+      "Mùa hè dưa hấu rất ngon."
+    ],
+    "word_ttalgi": [
+      "dâu tây",
+      "Tôi rửa dâu tây rồi ăn."
+    ],
+    "word_gimbap": [
+      "gimbap",
+      "Buổi trưa tôi ăn gimbap."
+    ],
+    "word_sogogi": [
+      "thịt bò",
+      "Chúng tôi nướng thịt bò ăn."
+    ],
+    "word_juseu": [
+      "nước ép",
+      "Đứa bé đang uống nước ép."
+    ],
+    "word_chwimi": [
+      "sở thích",
+      "Sở thích của tôi là chụp ảnh."
+    ],
+    "word_dakgogi": [
+      "thịt gà",
+      "Thịt gà ít mỡ."
+    ],
+    "word_binu": [
+      "xà phòng",
+      "Tôi rửa tay bằng xà phòng."
+    ],
+    "word_ucheguk": [
+      "bưu điện",
+      "Tôi gửi thư ở bưu điện."
+    ],
+    "word_yoil": [
+      "thứ trong tuần",
+      "Hôm nay là thứ mấy?"
+    ],
+    "word_yakguk": [
+      "hiệu thuốc",
+      "Tôi mua thuốc ở hiệu thuốc."
+    ],
+    "word_suyoil": [
+      "thứ Tư",
+      "Thứ Tư tôi đi bệnh viện."
+    ],
+    "word_mogyoil": [
+      "thứ Năm",
+      "Xin hãy đợi đến thứ Năm."
+    ],
+    "word_hwayoil": [
+      "thứ Ba",
+      "Thứ Ba có bài kiểm tra."
+    ],
+    "word_sanchaek": [
+      "việc đi dạo",
+      "Tối nào tôi cũng đi dạo."
+    ],
+    "word_jollida": [
+      "buồn ngủ",
+      "Ăn cơm xong là buồn ngủ."
+    ],
+    "word_simsimhada": [
+      "buồn chán",
+      "Cuối tuần tôi hơi buồn chán."
+    ],
+    "word_ppallaehada": [
+      "giặt quần áo",
+      "Cuối tuần tôi đã giặt quần áo."
+    ],
+    "word_undongjang": [
+      "sân vận động",
+      "Bọn trẻ chạy ở sân vận động."
     ]
   }
 }

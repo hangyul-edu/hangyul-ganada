@@ -5,10 +5,10 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { getFont, textFamily } from '../data/fonts';
 import { useDictionaryEntry } from '../data/useDictionary';
-import { usableExamples } from '../data/exampleQuality';
+import { compatiblePartOfSpeech, usableExamples } from '../data/exampleQuality';
 import { relationsOf } from '../data/relations';
 import { Conjugation } from '../features/vocabulary/Conjugation';
-import { getWord } from '../data/vocabulary';
+import { getWord, NOTED_SOUND_PATTERNS } from '../data/vocabulary';
 import { wordCopy } from '../data/wordCopy';
 import { splitSentence } from '../features/review/exercises';
 import { useLocale } from '../i18n';
@@ -220,7 +220,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
         />
 
         {/* How it is said, where that differs from how it is written. */}
-        {word.spoken && word.sound_pattern && (
+        {word.spoken && word.sound_pattern && NOTED_SOUND_PATTERNS.includes(word.sound_pattern) && (
           <section className={styles.block} aria-labelledby="detail-sound">
             <h2 id="detail-sound" className={styles.blockTitle}>
               {t('vocabulary:intro.howItSounds')}
@@ -380,6 +380,14 @@ function TaughtSenseExamples({ word }: { word: VocabularyWord }) {
   const taught = wordCopy(word, 'en').value.meaning;
   const candidates = (entry?.senses ?? [])
     .filter((sense) => taught.toLowerCase().includes(sense.shortGloss.toLowerCase()))
+    /*
+      And matched on grammar as well, because a gloss is not a part of speech.
+
+      Wiktionary carries a rare *nominal* 거의 glossed "almost", and the taught
+      card teaches the adverb. The glosses matched, so 손님은 거의가 오셨습니다
+      was shown under it. See `compatiblePartOfSpeech`.
+    */
+    .filter((sense) => compatiblePartOfSpeech(sense.partOfSpeech, word.part_of_speech))
     .flatMap((sense) => sense.examples);
   /*
     And then the quality filter, which throws most of them away.

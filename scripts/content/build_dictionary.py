@@ -240,6 +240,25 @@ def frequency_table() -> dict[str, float]:
     return counts
 
 
+#: Sentences a reviewer read and refused, with the reason for each.
+#:
+#: The shape rules cannot see these — every one is well-formed enough to pass a
+#: regex and wrong enough that a Korean reader stops at it. Dropped here rather
+#: than in the app so the word card and the dictionary page agree; a sentence
+#: with a misspelling or a word that is not a word is not reference material
+#: either. See the comment at the top of the file for how the list was made.
+BLOCKED_EXAMPLES = frozenset(
+    json.loads((ROOT / "content/vocabulary/example-blocklist.json").read_text("utf-8"))[
+        "examples"
+    ]
+)
+
+
+def readable(example) -> bool:
+    """Is this sentence one a learner may be shown?"""
+    return example.korean.strip() not in BLOCKED_EXAMPLES
+
+
 def usable(entry: Entry):
     """The senses of an entry worth showing.
 
@@ -324,6 +343,8 @@ def build() -> dict[str, object]:
                 duplicate = by_gloss.get(gloss.casefold())
                 if duplicate is not None:
                     for example in sense.examples:
+                        if not readable(example):
+                            continue
                         row = {"korean": example.korean, "translation": example.translation}
                         if row not in duplicate["examples"] and len(duplicate["examples"]) < 4:
                             duplicate["examples"].append(row)
@@ -356,6 +377,7 @@ def build() -> dict[str, object]:
                         "examples": [
                             {"korean": example.korean, "translation": example.translation}
                             for example in sense.examples
+                            if readable(example)
                         ][:4],
                     }
                 )

@@ -77,6 +77,16 @@ const TURNS = [0, -30, 30, -60, 60, -90, 90, -120, 120, -150, 150, 180];
  */
 const REACHES = [1.05, 1.6, 2.2, 2.9, 3.7];
 
+/**
+ * The pen width the markers assume when deciding what counts as *on the ink*.
+ *
+ * The demonstration strokes at 9 units in a 100-unit box. It is a constant here
+ * rather than a parameter because every caller draws at that width and a marker
+ * layout that changed with the pen would move between the lesson, the writing
+ * helper and the gallery — which are the same picture.
+ */
+const PEN = 9;
+
 export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMarker[] {
   const edge = radius + 1.5;
   const placed: StrokeMarker[] = [];
@@ -103,6 +113,28 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
         for (const other of placed) {
           const gap =
             Math.hypot(label.x - other.label.x, label.y - other.label.y) - (radius * 2 + 0.8);
+          if (gap < clearance) clearance = gap;
+        }
+        /*
+         * And how much room it leaves the *letter*.
+         *
+         * This used to consider only the other discs, and ㅊ is what that
+         * costs. Its third stroke starts where the ㅅ hangs from the lid, and
+         * the direction the pen comes from there points straight up — into the
+         * short tick above the bar. The disc landed on the tick, disc 1 landed
+         * on the top of it, and between them the stroke that makes a ㅈ into a
+         * ㅊ was invisible. Two orange circles and a bar: a learner reading
+         * that screen is being shown the wrong letter.
+         *
+         * A disc may still touch the stroke it labels — that is the whole
+         * point of it, and `REACHES` starts at one radius so it does. What it
+         * may not do is sit on a *different* stroke. The number is an
+         * instruction about where the pen goes; covering the ink it is pointing
+         * at makes it an obstacle instead.
+         */
+        for (const other of strokes) {
+          if (other.order === stroke.order) continue;
+          const gap = distanceToStroke(other, label, PEN) - radius * 0.8;
           if (gap < clearance) clearance = gap;
         }
         if (clearance >= 0) {

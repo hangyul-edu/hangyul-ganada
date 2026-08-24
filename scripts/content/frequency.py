@@ -38,7 +38,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from conjugate import derived_forms, stem_of, surface_forms  # noqa: E402
+from conjugate import derived_forms, stem_of, surface_forms, written_forms  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 CACHE = ROOT / "content-cache"
@@ -164,6 +164,22 @@ def _fold(
     return folded
 
 
+def _reachable_by_fold(token: str, forms: "dict[str, None] | set[str]") -> bool:
+    """Would the suffix fold already have credited this token to this word?
+
+    Only if stripping one of the verb endings off it leaves a form the word
+    actually has. 먹어요 minus 어요 is 먹, so the fold has it and adding it here
+    would count it twice; 감사합니다 minus 다 is 감사합니, which is not a form of
+    anything, so the fold silently dropped it and it belongs here.
+    """
+    for suffix in VERB_SUFFIXES:
+        if suffix and token.endswith(suffix):
+            base = token[: -len(suffix)]
+            if base and base in forms:
+                return True
+    return False
+
+
 def measure(words: list[str], inflecting: frozenset[str] = frozenset()) -> dict[str, Reading]:
     """Read every word against every corpus.
 
@@ -189,6 +205,16 @@ def measure(words: list[str], inflecting: frozenset[str] = frozenset()) -> dict[
                 forms = dict.fromkeys([word])
                 table = by_noun
             hits = sum(table.get(form, 0) for form in forms)
+            if word in inflecting:
+                # Tokens the fold structurally cannot produce: 감사합니다,
+                # where the ㅂ is inside 합, and 감사해요, where nothing
+                # strippable sits on the end. `_reachable_by_fold` drops any
+                # form the fold already credited, so nothing is counted twice.
+                hits += sum(
+                    counts.get(form, 0)
+                    for form in written_forms(word)
+                    if form not in claimed and not _reachable_by_fold(form, forms)
+                )
             if word in inflecting and stem_of(word) not in claimed:
                 # Whole-token forms, matched exactly. See conjugate.derived_forms
                 # for why these cannot go through the suffix fold.

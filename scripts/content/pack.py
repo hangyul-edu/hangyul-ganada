@@ -38,6 +38,7 @@ learner as an English fallback.
 | `pos` | optional correction to the dictionary's part of speech |
 | `ex` | the Korean example sentence |
 | `ctx` | 0 when the example must not be reused as a Level Test gap-fill |
+| `idm` | 1 when the word is a fixed idiom whose meaning is not its parts |
 | `t` | the example sentence in every other shipping locale |
 
 `t` has no `ko` key on purpose. The sentence is already Korean; printing a
@@ -120,6 +121,15 @@ class Entry:
     #:
     #: `ctx: 0` on the pack row says "keep teaching this, stop testing with it".
     context_ok: bool = True
+    #: A fixed expression whose meaning is not the sum of its syllables.
+    #:
+    #: Declared rather than detected. 일석이조 is four Sino-Korean syllables and
+    #: so is 국제공항, and the difference between them — that one has to be
+    #: learned whole and the other can be read — is exactly the judgement a
+    #: heuristic gets wrong. The difficulty model treats an idiom as advanced;
+    #: getting that from a spelling pattern would have made every four-syllable
+    #: compound noun advanced too.
+    idiom: bool = False
 
     @property
     def removed(self) -> bool:
@@ -175,6 +185,7 @@ def parse_row(row: dict, where: str) -> Entry:
         word=word,
         keep=True,
         context_ok=bool(row.get("ctx", 1)),
+        idiom=bool(row.get("idm", 0)),
         usefulness=usefulness,
         semantics=str(_require(row, "sem", where)).strip(),
         meanings={loc: meanings[loc].strip() for loc in MEANING_LOCALES},

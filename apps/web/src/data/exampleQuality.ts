@@ -54,6 +54,22 @@ export const ENDS = /[.?!。？！]\s*$/;
 export const COMMENTARY =
   /\((saying|idiom|proverb|literally|figuratively|lit\.|colloquial|informal|formal|slang|archaic|dialect|honorific|humble)\)|\bi\.e\.|\be\.g\.|\bliterally\b/i;
 
+/**
+ * A citation glossed as a phrase, not translated as a sentence.
+ *
+ * Wiktionary cites the bare construction as often as it cites a sentence —
+ * 우편을 외국으로 보내다, *To send mail to a foreign country* — and the two are
+ * indistinguishable in Korean, because a plain `-다` ending is ordinary written
+ * Korean and 인간은 죽기 마련이다 is a real sentence with the same shape.
+ *
+ * The English gives it away. A translator writing an infinitive is glossing a
+ * verb phrase; a translator writing a sentence writes a sentence. Over the 248
+ * sentences that reach a card this drops six and keeps every other one:
+ * 한 귀로 듣고 다른 귀로 흘리다, 은행에 계좌를 가지고 있다, 차를 멈추다,
+ * 사기꾼이 하는 말에 속다, 상대방의 기분을 달래다 and the 보내다 citation above.
+ */
+export const INFINITIVE_GLOSS = /^to\s+\p{L}/iu;
+
 /** Words too common to carry meaning when comparing a gloss to a translation. */
 const STOP = new Set([
   'a', 'an', 'the', 'to', 'of', 'in', 'on', 'at', 'be', 'is', 'are', 'am', 'it',
@@ -109,6 +125,46 @@ export function sameSense(translation: string, taughtGloss: string): boolean {
 }
 
 /**
+ * The parts of speech that take a case particle, and so demonstrate case.
+ *
+ * Wiktionary files senses by part of speech, and its citations illustrate the
+ * grammar of the sense they sit under. That is correct in a dictionary and it
+ * is the whole problem here, because a taught card names one part of speech and
+ * the app matches senses to it by *gloss*.
+ *
+ * 거의 is the sentence that found this. The card teaches the adverb — 거의 다
+ * 왔어요, *almost there* — and Wiktionary also carries a rare nominal 거의
+ * glossed "almost", whose citations are what a nominal sense's citations are:
+ * 손님은 거의가 오셨습니다, 남은 시간의 거의를 공부를 하는 데 쓰더라. Both
+ * decline the word. The gloss matched, so they were shown under an adverb card,
+ * and a learner reading them takes away that 거의 takes 가 and 를 — which for
+ * the word they were taught it does not.
+ *
+ * So the constraint runs one way only, and it is about grammar rather than
+ * about labels. A nominal sense may only lend its sentences to a taught word
+ * that is itself nominal. Nothing stops the reverse: 지금 and 오늘 are taught as
+ * nouns and Wiktionary files an adverb sense for each, and 오늘 뭐 했어요 is the
+ * ordinary way to use them. Measured over the whole corpus this drops two
+ * sentences and keeps the other 248.
+ */
+const NOMINAL = new Set(['noun', 'proper noun', 'pronoun', 'numeral', 'counter', 'determiner']);
+
+/**
+ * May a sense of `sensePart` illustrate a word taught as `taughtPart`?
+ *
+ * Unknown on either side means yes: a missing part of speech is not evidence of
+ * a mismatch, and this is a veto on a sentence that is otherwise good.
+ */
+export function compatiblePartOfSpeech(
+  sensePart: string | undefined,
+  taughtPart: string | undefined,
+): boolean {
+  if (!sensePart || !taughtPart) return true;
+  if (sensePart === taughtPart) return true;
+  return !NOMINAL.has(sensePart) || NOMINAL.has(taughtPart);
+}
+
+/**
  * The examples worth showing under a taught card, best first, at most `limit`.
  *
  * Returns an empty list far more often than not, and that is the intended
@@ -138,6 +194,7 @@ export function usableExamples(
     if (MARKUP.test(korean) || MARKUP.test(translation)) continue;
     if (!ENDS.test(korean)) continue;
     if (COMMENTARY.test(translation)) continue;
+    if (INFINITIVE_GLOSS.test(translation)) continue;
     /*
       One sentence, not a small essay.
 

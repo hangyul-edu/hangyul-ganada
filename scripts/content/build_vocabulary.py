@@ -46,6 +46,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 import curation  # noqa: E402
 import difficulty  # noqa: E402
+import level as leveller  # noqa: E402
 import frequency
 import categories
 import gloss  # noqa: E402
@@ -424,6 +425,45 @@ def main() -> int:
     levels = difficulty.tiers(scores, LEVELS)
     mean = difficulty.baseline(list(feature_sets.values()))
 
+    # --- the 1-30 Vocabulary Level -------------------------------------------
+    #
+    # A different question from `difficulty_level`, and worth keeping separate.
+    # `difficulty_level` is one of eight tiers used to *describe* a word on its
+    # card; `level` is the 1-30 scale the Level Test reports on and Today's
+    # Vocabulary selects by, and it has to be an absolute property of the word
+    # rather than a position in this build's sort. See `scripts/content/level.py`.
+    signals = leveller.load_signals()
+    overrides = leveller.load_overrides()
+    # The browsing category, resolved before the emit loop because the level
+    # model reads it: a word in essentials or food is one a learner needs early
+    # whatever the frequency corpora say about it.
+    primary_by_word = {
+        word: categories.classify(
+            word, pos_by_word[word], english[word][0], topics_by_word.get(word, [])
+        )[0]
+        for word in words
+    }
+    level_components: dict[str, leveller.Components] = {}
+    word_levels: dict[str, int] = {}
+    for word in words:
+        reading = readings[word]
+        parts = leveller.components(
+            word=word,
+            part_of_speech=pos_by_word[word],
+            rank=reading.rank,
+            per_million=reading.rate,
+            observed_total=total_observed,
+            usefulness=kept[word].usefulness,
+            semantics=kept[word].semantics,
+            category=primary_by_word[word],
+            spelling=difficulty.spelling_cost(word),
+            irregular=difficulty.is_irregular(word, pos_by_word[word]),
+            signals=signals.get(word, {}),
+        )
+        level_components[word] = parts
+        word_levels[word] = overrides.get(word, leveller.level_of(parts.score))
+
+
     # The ledger first: every id it already hands out is spoken for, so a word
     # new to this build allocates around them rather than through them.
     pinned: dict[str, str] = (
@@ -487,7 +527,7 @@ def main() -> int:
         # `pack.Entry.context_ok`; only the refusals are written, so the field is
         # absent on the overwhelming majority of words.
         context_ok = kept[word].context_ok
-        sound_note = pronunciation.note_for(word)
+        sound_note = pronunciation.sound_for(word)
         spoken_form = pronunciation.spoken_form(word)
 
         identifier = word_id(word, taken, pinned)
@@ -529,6 +569,18 @@ def main() -> int:
                 ],
                 "difficulty_score": scores[word],
                 "difficulty_level": levels[word],
+                # The 1-30 Vocabulary Level. One number per word, absolute, and
+                # the same one the Level Test reports and the daily plan selects
+                # by — see `scripts/content/level.py` and §31 of the brief.
+                "level": word_levels[word],
+                # The four components behind it, rounded, for the level QA
+                # report and for tracing a surprising placement. Never shown.
+                "lv": [
+                    round(level_components[word].frequency, 3),
+                    round(level_components[word].utility, 3),
+                    round(level_components[word].linguistic, 3),
+                    round(level_components[word].semantic, 3),
+                ],
                 # An index into `difficulty_reasons`, not the string.
                 "r": list(difficulty.REASONS).index(
                     difficulty.dominant(feature_sets[word], mean)
@@ -556,11 +608,15 @@ def main() -> int:
                 "prov": build_provenance(
                     observed=reading.observed, gloss_from_dictionary=entry.english is None
                 ),
-                # How it is actually said, and which pattern makes it differ —
-                # but only where a learner would get it wrong by reading the
-                # spelling. Absent on the great majority of words, which is the
-                # point: a note on every card is a note nobody reads. See
-                # `pronunciation.py`.
+                # How it is actually said, and which pattern makes it differ.
+                #
+                # Every word a named rule changes, which is what the
+                # sound-change lesson is built from — including liaison, whose
+                # card that page could never draw while this field came from
+                # `note_for`. A *card* still shows the note only for the five
+                # patterns in `NOTEWORTHY`, and the app knows which those are
+                # because `noted_patterns` below tells it. One judgement, made
+                # once, in `pronunciation.py`.
                 **({"say": sound_note[0], "sayWhy": sound_note[1]} if sound_note else {}),
                 **({} if context_ok else {"noContext": True}),
                 # Where the example writes the word in a different form —
@@ -608,6 +664,11 @@ def main() -> int:
         # The sound-change patterns a word may be tagged with. Closed, so a new
         # pattern cannot reach a learner without a translation for it.
         "sound_patterns": [name for name, _ in pronunciation.PATTERNS],
+        # The subset a word card may show a note for. The lesson shows all of
+        # them; a note on half the vocabulary is a note nobody reads.
+        "noted_patterns": [
+            name for name, _ in pronunciation.PATTERNS if name in pronunciation.NOTEWORTHY
+        ],
         "words_per_lesson": WORDS_PER_LESSON,
         "sources": [
             {

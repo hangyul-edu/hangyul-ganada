@@ -72,20 +72,30 @@ test('the first hint does not contain the answer, and the last one does', async 
   await expect(options).toHaveCount(4);
   const answers = (await options.allInnerTexts()).map((text) => text.trim().toLowerCase());
 
+  /*
+   * What a light hint may not do is *add* a copy of an option to the page.
+   *
+   * The first version of this counted instead: at most one occurrence of each
+   * option, since each is on screen once in its own button. That is the right
+   * rule stated the wrong way, and it eventually reported a question that was
+   * perfectly correct — 여기, offered against *there*, *over there*, *here* and
+   * *I, me*. "there" occurs twice on that page and both are buttons, because
+   * one option is a substring of another. Nothing had leaked.
+   *
+   * So the measurement is the difference the hint makes. The page is read
+   * before and after, and no option may occur more often afterwards. That is
+   * exactly the sentence the test is named for, it cannot be fooled by one
+   * option containing another, and it is stricter than the count was: a hint
+   * that repeated an option already on screen twice would now be caught.
+   */
+  const before = (await page.locator('body').innerText()).toLowerCase();
   await hint.click();
   const afterFirst = (await page.locator('body').innerText()).toLowerCase();
-  /*
-   * At most one option may appear in the page text after a light hint, and only
-   * because it is an option — they are all on screen. What must not happen is a
-   * *new* line of text that is one of them. Checked by counting: the answer
-   * appears once, in its own button, and the hint has not added a second copy.
-   */
+  const occurrencesOf = (text: string, needle: string) => text.split(needle).length - 1;
   for (const answer of answers) {
     if (answer.length < 3) continue;
-    const occurrences = afterFirst.split(answer).length - 1;
-    expect(occurrences, `“${answer}” appears ${occurrences} times after a light hint`).toBeLessThan(
-      2,
-    );
+    const added = occurrencesOf(afterFirst, answer) - occurrencesOf(before, answer);
+    expect(added, `the hint added ${added} more copies of “${answer}”`).toBe(0);
   }
 
   // Press through to the reveal. The label changes when the next press gives up

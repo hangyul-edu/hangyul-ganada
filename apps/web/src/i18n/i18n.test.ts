@@ -266,7 +266,7 @@ describe('runtime language switching', () => {
 
     await i18n.changeLanguage('ko');
     expect(i18n.language).toBe('ko');
-    expect(i18n.t('tabs.letters', { ns: 'navigation' })).toBe('낱자');
+    expect(i18n.t('tabs.letters', { ns: 'navigation' })).toBe('글자');
 
     await i18n.changeLanguage('en');
     expect(i18n.t('tabs.letters', { ns: 'navigation' })).toBe('Letters');

@@ -3,8 +3,8 @@
     "aria": "학습 기록 보기"
   },
   "celebrate": "오늘 목표를 다 했어요. 훌륭해요.",
-  "dailyGoal": "오늘의 낱자",
-  "dailyGoalAria": "오늘의 낱자: {{total, number}}개 중 {{done, number}}개",
+  "dailyGoal": "오늘의 글자",
+  "dailyGoalAria": "오늘의 글자: {{total, number}}개 중 {{done, number}}개",
   "cta": {
     "start": "바로 시작하기",
     "continue": "이어서 학습하기"
@@ -12,12 +12,12 @@
   "finished": {
     "badge": "완료",
     "title": "이제 한글을 읽을 수 있어요",
-    "body": "낱자 {{count, number}}개를 모두 배우고 써 봤어요. 이제 단어 차례예요.",
+    "body": "글자 {{count, number}}개를 모두 배우고 써 봤어요. 이제 단어 차례예요.",
     "goal": "오늘의 단어",
     "cta": "오늘의 단어"
   },
   "quick": {
-    "letters": "낱자",
+    "letters": "글자",
     "words": "단어",
     "wordsCaption": "오늘의 단어",
     "wordsReady": "이제 첫 단어를 시작해 보세요"

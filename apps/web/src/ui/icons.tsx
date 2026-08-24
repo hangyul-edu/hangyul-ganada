@@ -42,17 +42,98 @@ export const HomeIcon = (p: IconProps) => (
   </Icon>
 );
 
+/*
+  Letters and Words.
+
+  ## What they were
+
+  Letters was a sheet of paper with a folded corner and two ruled lines. Words
+  was an open book split down the middle into two rounded panels. Neither said
+  anything about this product: the page is the icon every application uses for a
+  document, and the two panels read as blocks rather than as a book. Neither
+  said anything about *Korean* either, which is the one thing both sections are
+  entirely about.
+
+  ## What they are
+
+  **Letters is ㄱㄴㄷ** — the opening of the Korean alphabet, and what a Korean
+  speaker says for the alphabet itself the way an English speaker says ABC.
+  Three letters rather than one, because one letter is a letter and three in a
+  row are an *alphabet*, which is what the course teaches. It is also the
+  product's own name: 가나다.
+
+  **Words is a word card with 가 on it** — the syllable every learner writes
+  first, set on the card the app teaches vocabulary with.
+
+  It got there by elimination, drawn and looked at rather than argued about. A
+  plain open book is the icon every application uses for *reading*, and it says
+  nothing about words in particular; adding page lines to it helped a little and
+  still read as "a book". A book with 가 inside it cramps the ㅏ against the
+  cover's right edge. A deck of cards puts a line above the card that reads as a
+  lid. 가 sitting above a book merges with the book's top edge into 감, which is
+  a different word and the worst outcome of the set.
+
+  The card is the shape that carries the glyph without fighting it, and a
+  Korean syllable on a card is what a vocabulary card *is*. Beside ㄱㄴㄷ the
+  pair reads as the course reads: letters, then letters made into a word.
+
+  ## How they were sized, which is where the first attempt went wrong
+
+  Both were drawn against the surface they actually appear on: a 44px square
+  filled `--hg-orange-200`, `--hg-radius-md`, with the icon set at 26px — plus
+  20px in the tab bar. The first ㄱㄴㄷ was drawn on the geometric grid and the
+  three letters ran together on the card, because a 2px stroke with round caps
+  puts a unit of ink *past* each path endpoint at both ends. A nominal 1.9-unit
+  gap is therefore 0.1 units of actual daylight, which is none.
+
+  So the spacing here is computed in ink rather than in path: each letter is 4.6
+  units wide and so 6.6 units of ink, the gaps are a real 1.6 units, and the
+  three sit on 0.5–23.5 of the 24 grid — optically centred, and separated by an
+  amount that survives being drawn at 20px.
+
+  The card is centred the same way, and its 가 is spaced by the same ink
+  arithmetic: 2 units of real daylight between the ㄱ and the ㅏ, and the glyph
+  as a whole optically centred inside the card rather than inside the 24 grid.
+
+  The 가 itself was drawn against Pretendard rather than by eye, and took three
+  passes, each of which is worth recording because each was a different way of
+  getting a letter wrong with correct-looking numbers.
+
+  The first started the ㄱ *below* the vowel's top, gave its leg almost no lean,
+  and cut the ㅏ's branch short and high. It read as three strokes parked near
+  each other.
+
+  The second levelled the tops and leaned the leg, which fixed the shapes and
+  not the *block*: with a short leg, all of the ㄱ's ink sits in the upper left
+  while the ㅏ runs the full height beside it, and the two read as two pieces
+  rather than as one syllable. Lowering the ㄱ is the obvious answer and it is
+  the wrong one — it trades a gap at the bottom for uneven tops, which no
+  Korean face has.
+
+  What the face actually does is run the ㄱ's leg most of the way down, so the
+  two components overlap along nearly their whole height and the eye reads one
+  square. That is this version: tops level, a lean of about twelve degrees, and
+  a leg reaching to within a unit of the vowel's foot.
+
+  Both are stroked at the set's 2px with no filled shapes, so they carry the
+  same weight as Home, Review and My Learning beside them. There is nothing
+  platform-specific: they are inline SVG in the bundle, so the browser and the
+  Android WebView draw the same paths from this file.
+*/
 export const LetterIcon = (p: IconProps) => (
   <Icon {...p}>
-    <path d="M5 4h11l3 3v13H5z" />
-    <path d="M8.5 9.5h7M8.5 14h4" />
+    <path d="M1.5 7.75h4.6l-1 8.5" />
+    <path d="M9.7 7.75v8.5h4.6" />
+    <path d="M22.5 7.75h-4.6v8.5h4.6" />
   </Icon>
 );
 
 export const WordIcon = (p: IconProps) => (
   <Icon {...p}>
-    <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z" />
-    <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" />
+    <rect x="3.5" y="5" width="17" height="14" rx="3" />
+    <path d="M6.6 8.2h4.9l-1.5 6.8" />
+    <path d="M15.4 8.2v7.7" />
+    <path d="M15.4 12.1h2" />
   </Icon>
 );
 

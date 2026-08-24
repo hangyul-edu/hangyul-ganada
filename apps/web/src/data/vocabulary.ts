@@ -69,6 +69,10 @@ interface GeneratedWord {
   f: [number, number | null, number | null];
   difficulty_score: number;
   difficulty_level: number;
+  /** The 1–30 Vocabulary Level. See `scripts/content/level.py`. */
+  level: number;
+  /** The four components behind it, for QA. Never rendered. */
+  lv: [number, number, number, number];
   /** Index into `tables.difficulty_reasons`. */
   r: number;
   usefulness: number;
@@ -163,6 +167,20 @@ export const FREQUENCY_BANDS: string[] = [];
  * is a panel that says a word is pronounced differently and does not say why.
  */
 export const SOUND_PATTERNS: string[] = [];
+
+/**
+ * The patterns a *word card* may show a pronunciation note for.
+ *
+ * A subset of `SOUND_PATTERNS`, and the difference is liaison. It is real, it
+ * is the first thing a Korean teacher explains, and it applies to so many words
+ * that a note for it would put a panel on hundreds of cards — at which point
+ * the panel stops meaning "look at this one". So it is taught once, on the
+ * sound-change lesson, which shows every pattern.
+ *
+ * Decided in `scripts/content/pronunciation.py` and published in the tables, so
+ * the judgement is written down in one place rather than twice.
+ */
+export const NOTED_SOUND_PATTERNS: string[] = [];
 
 /**
  * Rebuilds a word's full provenance from the interned form.
@@ -507,6 +525,7 @@ function installTables(tables: CorpusTables): void {
   CONTENT_SOURCES.push(...(tables.sources as unknown as ContentSourceRecord[]));
   FREQUENCY_BANDS.push(...tables.frequency_bands);
   SOUND_PATTERNS.push(...tables.sound_patterns);
+  NOTED_SOUND_PATTERNS.push(...(tables.noted_patterns ?? tables.sound_patterns));
   CATEGORY_IDS.push(...tables.categories);
   for (const [index, id] of tables.categories.entries()) {
     BY_CATEGORY.set(id, []);
@@ -527,6 +546,7 @@ function toWord(row: GeneratedWord): VocabularyWord {
       rank: row.f[1],
       rate: row.f[2],
     } as VocabularyWord['frequency'],
+    level: row.level,
     difficulty_level: row.difficulty_level as VocabularyWord['difficulty_level'],
     difficulty_score: row.difficulty_score,
     difficulty_reason: difficultyReasons[row.r]!,

@@ -41,6 +41,27 @@ const CHECK = process.argv.includes('--check');
 /** Claims that must not appear anywhere, in any language. */
 const FORBIDDEN = [
   {
+    id: 'bookish-korean-terms',
+    /*
+     * The two words a beginner would have to look up.
+     *
+     * 낱자 and 낱말 are both correct Korean and both are what a linguistics
+     * textbook says. The learner reading this interface is meeting Hangul for
+     * the first time, and the words they already know are 글자 and 단어 — which
+     * are also the words the rest of the app uses, in the tab bar and in the
+     * search box. Two vocabularies for one thing is one too many.
+     *
+     * 낱자 was the harder of the two to remove, because 글자 already meant the
+     * composed block here — 낱자는 네모난 블록으로 묶이고, 블록 하나가 한
+     * 글자예요. Substituting would have made that sentence say a letter is
+     * grouped into a letter. The block is called 음절 now, so 글자 means one
+     * letter and only that, and the lessons that talked about both were
+     * rewritten rather than substituted.
+     */
+    pattern: /낱자|낱말/,
+    why: 'the learner-facing terms are 글자 and 단어; 음절 is the composed block',
+  },
+  {
     id: 'official-level',
     pattern: /\b(official|officially|certified|accredited|공인|정식\s*인증|公認|официальн)\b/i,
     why: 'the difficulty model is this product\'s own; nothing here is an official grading',

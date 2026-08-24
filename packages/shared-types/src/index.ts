@@ -417,6 +417,18 @@ export interface VocabularyWord {
   translations?: LocalizedMap<VocabularyTranslation>;
   /** What the corpora saw. **A statistic, not a level.** */
   frequency: WordFrequency;
+  /**
+   * The Vocabulary Level, 1–30. The scale the placement test reports on and
+   * the daily plan selects by.
+   *
+   * A different question from `difficulty_level`, and the two are deliberately
+   * separate. `difficulty_level` is one of eight tiers used to *describe* a
+   * word on its card. `level` is an absolute property used to *choose* it: it
+   * comes from a fixed ladder of score thresholds, so it does not move when
+   * another word is added, and it is the same number the Level Test means when
+   * it says 18. See `scripts/content/level.py`.
+   */
+  level: number;
   /** Hangyul ganada's own lexical-difficulty rating, 1–8. Not a TOPIK grade. */
   difficulty_level: DifficultyLevel;
   /** 0–1 raw score behind `difficulty_level`. Decides order within a level. */

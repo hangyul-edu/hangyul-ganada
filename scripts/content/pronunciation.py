@@ -186,24 +186,50 @@ def pattern_of(word: str) -> str | None:
 
     The first one that fires, in `PATTERNS` order — a word can involve two, and
     naming both would be a grammar lesson on a vocabulary card. The order puts
-    the patterns a beginner meets earliest first.
+    the patterns a beginner meets earliest first, and liaison last, because a
+    word that does both is better shown as the one a learner would otherwise
+    get wrong.
+
+    Returns None for a word whose only difference is 받침 neutralisation. That
+    is a rule, but it is not one of these six, and this used to answer
+    `liaison` for it — see the comment at the bottom.
     """
     if word in _IRREGULAR:
         return _IRREGULAR[word][1] or "liaison"
     if spoken_form(word) == word:
         return None
-    for name in ("tensing", "aspiration", "nasal", "lateral", "palatal"):
+    for name in ("tensing", "aspiration", "nasal", "lateral", "palatal", "liaison"):
         if _fires(word, name):
             return name
-    return "liaison"
+    # Nothing named fired, and the word is still said differently: what is
+    # left is 받침 neutralisation on its own — 옷 is [옫], 꽃 is [꼳]. That is a
+    # real rule and it is *not* one of the six this page teaches, so returning
+    # a pattern for it was returning the wrong one. `liaison` used to be the
+    # catch-all here, which meant the sound-change lesson, had it ever shown a
+    # liaison card, would have led with 옷 → 옫 under a heading that says the
+    # final consonant moves onto the next syllable. Nothing moves in 옷.
+    return None
+
+
+def sound_for(word: str) -> tuple[str, str] | None:
+    """`(spoken form, pattern)` for every word a named rule changes.
+
+    This is what the *lesson* is built from, and it includes liaison. The
+    editorial judgement in `NOTEWORTHY` is about a note on a word card, which
+    is a different question with a different answer: see `note_for`.
+    """
+    pattern = pattern_of(word)
+    if pattern is None:
+        return None
+    return spoken_form(word), pattern
 
 
 def note_for(word: str) -> tuple[str, str] | None:
-    """`(spoken form, pattern)` where a learner should be told, else None."""
-    pattern = pattern_of(word)
-    if pattern is None or pattern not in NOTEWORTHY:
+    """`(spoken form, pattern)` where a *card* should tell the learner."""
+    found = sound_for(word)
+    if found is None or found[1] not in NOTEWORTHY:
         return None
-    return spoken_form(word), pattern
+    return found
 
 
 # --- The rules ----------------------------------------------------------------
@@ -306,5 +332,12 @@ def _fires(word: str, pattern: str) -> bool:
                 return True
         elif pattern == "palatal":
             if final in ("ㄷ", "ㅌ") and initial == "ㅇ" and medial == "ㅣ":
+                return True
+        elif pattern == "liaison":
+            # A 받침 with a vowel behind it, which is the whole rule: the
+            # consonant leaves the block it is written in and starts the next
+            # one. 음악 → 으막. ㅇ is the silent initial, so a following block
+            # that begins with it begins with a vowel.
+            if initial == "ㅇ":
                 return True
     return False

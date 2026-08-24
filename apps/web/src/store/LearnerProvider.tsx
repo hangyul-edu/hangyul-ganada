@@ -33,7 +33,7 @@ import {
 } from '../domain/progress';
 import { applyReview, memoryKey, type ItemMemory } from '../domain/memory';
 import type { PlacementStatus } from '../domain/placement';
-import { levelFromProgress, recentlyIntroduced } from '../domain/vocabularyLevel';
+import { levelFromProgress, recentlyIntroduced, teachingLevel } from '../domain/vocabularyLevel';
 import { applyAnswer, listMistakes } from '../domain/mistakes';
 import { resolvePlan, type PracticePlan } from '../domain/plan';
 import { summarise, todaysPractice, type ExerciseMode } from '../domain/review';
@@ -842,11 +842,19 @@ export function LearnerProvider({
   /**
    * The level the day's words are chosen around.
    *
-   * The test result if there is one. If there is not, a conservative reading of
-   * what the learner has already learned — which for somebody new is level 1,
+   * The test result if there is one, or what they have outgrown, whichever is
+   * higher — never lower than the measurement, because an empty installation is
+   * not evidence that somebody has forgotten Korean (§15).
+   *
+   * For a learner who has never been tested and never studied that is level 1,
    * so the app behaves exactly as it did before the test existed until they ask
    * it not to. §16: never make somebody sit a test before they can learn.
+   *
+   * The number on the home screen is *not* this; it is the measured level, and
+   * it moves only when the test is taken again. See `levelFromProgress` for why
+   * the two are different questions.
    */
+  /** What the test said, or level 1 for somebody who has not sat it. Shown. */
   const vocabularyLevel = useCorpusMemo<number>(() => {
     const measured = state.settings.level_test?.level;
     if (measured) return measured;
@@ -854,6 +862,16 @@ export function LearnerProvider({
       vocabularyByPriority(),
       (id: string) => state.progress[`word:${id}`]?.stage === 'learned',
     );
+  }, [state.settings.level_test, state.progress]);
+
+  /** What the day is built from. Never shown. See `LearnerContext`. */
+  const planningLevel = useCorpusMemo<number>(() => {
+    const measured = state.settings.level_test?.level ?? null;
+    const outgrown = levelFromProgress(
+      vocabularyByPriority(),
+      (id: string) => state.progress[`word:${id}`]?.stage === 'learned',
+    );
+    return teachingLevel(measured, outgrown);
   }, [state.settings.level_test, state.progress]);
 
   /**
@@ -873,7 +891,24 @@ export function LearnerProvider({
   const vocabularyDay = useCorpusMemo<DailyPlan>(() => {
     const now = new Date();
     const stored = state.settings.daily_plan;
-    if (planIsCurrent(stored, now) && stored.goal === state.settings.daily_word_goal) return stored;
+    /*
+      Today's plan, if it is still today's plan *for this learner*.
+
+      The level is part of that and the goal is not. A goal is a preference the
+      learner can change back, so changing it takes effect tomorrow rather than
+      resizing a session in progress. A level is a measurement: a learner who
+      opens the app, gets a plan at the default level and then sits the
+      Vocabulary Level Test has not changed their mind about anything — the app
+      has found something out about them, and a plan built before it knew is a
+      plan for somebody else. Measured at 30 and taught 남자 is what that looked
+      like.
+    */
+    if (
+      planIsCurrent(stored, now, planningLevel) &&
+      stored.goal === state.settings.daily_word_goal
+    ) {
+      return stored;
+    }
     // Before the store has answered, an empty plan for the goal the learner
     // has — so the card reads `0 / 10` for the moment it takes rather than
     // flashing `0 / 0` and then jumping.
@@ -887,7 +922,7 @@ export function LearnerProvider({
       goal: state.settings.daily_word_goal,
       soundFree: state.settings.sound_free,
       now,
-      level: vocabularyLevel,
+      level: planningLevel,
       seed: state.settings.content_seed,
       dayIndex: state.settings.active_days.length,
       recentlyIntroduced: recentlyIntroduced(state.progress, now),
@@ -914,7 +949,7 @@ export function LearnerProvider({
     return built;
   }, [
     ready,
-    vocabularyLevel,
+    planningLevel,
     state.settings.content_seed,
     state.settings.active_days.length,
     state.settings.daily_plan,
@@ -1032,6 +1067,7 @@ export function LearnerProvider({
       placementStatus,
       skipPlacement,
       vocabularyLevel,
+      teachingLevel: planningLevel,
       startSession,
       completeSession,
       recordStudyTime,
@@ -1067,6 +1103,7 @@ export function LearnerProvider({
       placementStatus,
       skipPlacement,
       vocabularyLevel,
+      planningLevel,
       startSession,
       completeSession,
       recordStudyTime,

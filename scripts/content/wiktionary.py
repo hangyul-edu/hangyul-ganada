@@ -282,16 +282,69 @@ def _senses(body: str) -> list[Sense]:
     return senses
 
 
-_LABEL_TEMPLATE = re.compile(r"\{\{(?:lb|lbl|label)\|ko\|([^}]*)\}\}")
+_LABEL_OPEN = re.compile(r"\{\{(?:lb|lbl|label)\|ko\|")
+
+
+def _template_body(raw: str, start: int) -> tuple[str, int]:
+    """The text inside a template that opens at `start`, and where it ends.
+
+    Counting braces rather than matching a regex, because a label template may
+    contain another template and `[^}]*` stops at the inner one's first brace.
+    Returns the body and the index just past the closing `}}`.
+    """
+    depth, index = 1, start
+    while index < len(raw) and depth:
+        if raw.startswith("{{", index):
+            depth, index = depth + 1, index + 2
+        elif raw.startswith("}}", index):
+            depth, index = depth - 1, index + 2
+        else:
+            index += 1
+    return raw[start : index - 2 if depth == 0 else len(raw)], index
+
+
+def _top_level_split(body: str) -> list[str]:
+    """Split on the pipes that belong to *this* template, not a nested one."""
+    parts, depth, current = [], 0, []
+    for index, character in enumerate(body):
+        if body.startswith("{{", index):
+            depth += 1
+        elif body.startswith("}}", index):
+            depth -= 1
+        if character == "|" and depth == 0:
+            parts.append("".join(current))
+            current = []
+        else:
+            current.append(character)
+    parts.append("".join(current))
+    return parts
 
 
 def _labels(raw: str) -> list[str]:
+    """The usage labels on a definition, rendered rather than sliced.
+
+    `{{lb|ko|used exclusively with the particles {{m|ko|-가}}}}` is one label
+    that mentions a particle. Read with a regex that stopped at the first `}`
+    and split on every pipe, it became three — `used exclusively with the
+    particles {{m`, `ko`, and `-가` — and the 거의 entry printed all three,
+    the middle one being a language code. 142 labels on 44 distinct strings
+    were broken this way, 65 of them the bare word `ko`.
+
+    So: the body is taken with brace counting, split only on the pipes at its
+    own depth, and each part goes through the same cleaner the gloss does,
+    which is what turns the inner mention into `-가`.
+    """
     labels: list[str] = []
-    for match in _LABEL_TEMPLATE.finditer(raw):
-        for part in match.group(1).split("|"):
+    position = 0
+    while (match := _LABEL_OPEN.search(raw, position)) is not None:
+        body, position = _template_body(raw, match.end())
+        for part in _top_level_split(body):
             part = part.strip()
-            if part and "=" not in part and part not in ("_", "and", "or"):
-                labels.append(part)
+            if not part or "=" in part or part in ("_", "and", "or"):
+                continue
+            rendered = clean_markup(part).strip()
+            if rendered:
+                labels.append(rendered)
     return labels
 
 
@@ -328,7 +381,11 @@ def _examples(body: str) -> list[Example]:
     out: list[Example] = []
     for match in _EXAMPLE_TEMPLATE.finditer(body):
         args = _split_template_args(match.group(2))
-        positional = [a for a in args if "=" not in a.split("=")[0][:12] or not _is_named(a)]
+        # `_is_named` now requires the `=`, so this is the plain test it always
+        # meant to be. Before, the left half of the old `or` was always true and
+        # a named argument could land in `positional` — which is how a `lit=`
+        # argument could be shown to a learner as the translation.
+        positional = [a for a in args if not _is_named(a)]
         named = {k: v for k, v in (_named_pair(a) for a in args) if k}
         korean = clean_markup(positional[0]) if positional else ""
         translation = named.get("t") or named.get("translation") or ""
@@ -342,6 +399,14 @@ def _examples(body: str) -> list[Example]:
 
 
 def _is_named(arg: str) -> bool:
+    """Is this `key=value` rather than a positional argument?
+
+    The `=` is required. Without that check the key of an argument that has no
+    `=` is the whole argument, so every plain-ASCII positional looked named:
+    `{{w|Joseon}}` rendered as nothing and 나그네's label read "of the period".
+    """
+    if "=" not in arg:
+        return False
     key = arg.split("=", 1)[0]
     return bool(re.fullmatch(r"[a-zA-Z_][a-zA-Z0-9_]*", key))
 
@@ -421,6 +486,15 @@ _PLAIN_LINK = re.compile(r"\[\[([^\]]*)\]\]")
 _BOLD_ITALIC = re.compile(r"'{2,5}")
 _HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
 _HTML_TAG = re.compile(r"</?[a-zA-Z][^>]*>")
+#: A footnote, with its contents.
+#:
+#: `_HTML_TAG` removes the `<ref>` and leaves what is inside it, so 나오다's
+#: example was translated "The student came out of school.Example from" — the
+#: opening words of the citation, run straight onto the sentence. A reference is
+#: never part of the sentence, so it goes whole. The second branch is for one
+#: that never closes: the template argument is split on the pipe inside the
+#: citation, which cuts the tag off mid-way.
+_REFERENCE = re.compile(r"<ref[^>]*/>|<ref[^>]*>.*?(?:</ref>|$)", re.DOTALL | re.IGNORECASE)
 _WHITESPACE = re.compile(r"\s+")
 
 #: HTML entities Wiktionary writes into running prose.
@@ -656,6 +730,7 @@ def clean_markup(raw: str) -> str:
         text = _PIPED_LINK.sub(r"\1", text)
         text = _PLAIN_LINK.sub(r"\1", text)
     text = _BOLD_ITALIC.sub("", text)
+    text = _REFERENCE.sub("", text)
     text = _HTML_TAG.sub("", text)
     # After the morpheme join, not before. `_MORPHEME_JOIN` closes up a Hangul
     # syllable, a hyphen and another Hangul syllable, which is right for the

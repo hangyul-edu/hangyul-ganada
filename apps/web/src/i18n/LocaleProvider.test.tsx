@@ -101,7 +101,7 @@ describe('LocaleProvider', () => {
     const glyphNode = screen.getByTestId('glyph');
     await user.click(screen.getByRole('button', { name: 'korean' }));
 
-    await waitFor(() => expect(screen.getByTestId('letters')).toHaveTextContent('낱자'));
+    await waitFor(() => expect(screen.getByTestId('letters')).toHaveTextContent('글자'));
     expect(screen.getByTestId('prompt')).toHaveTextContent('안내선을 따라 손가락으로 써 보세요');
     expect(document.documentElement.getAttribute('lang')).toBe('ko');
     // The same DOM node: nothing was torn down, so a half-drawn character
@@ -121,7 +121,7 @@ describe('LocaleProvider', () => {
     renderApp();
     expect(screen.getByTestId('locale')).toHaveTextContent('ko');
     expect(screen.getByTestId('source')).toHaveTextContent('stored');
-    expect(screen.getByTestId('letters')).toHaveTextContent('낱자');
+    expect(screen.getByTestId('letters')).toHaveTextContent('글자');
   });
 
   it('translates chrome that never re-renders on its own', async () => {
@@ -146,7 +146,7 @@ describe('LocaleProvider', () => {
         </LocaleProvider>,
       );
       expect(screen.getByTestId('chrome')).toHaveTextContent('Letters');
-      await waitFor(() => expect(screen.getByTestId('chrome')).toHaveTextContent('낱자'));
+      await waitFor(() => expect(screen.getByTestId('chrome')).toHaveTextContent('글자'));
     } finally {
       RESOURCES.ko = korean;
     }

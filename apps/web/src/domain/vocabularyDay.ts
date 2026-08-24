@@ -151,6 +151,22 @@ export interface DailyPlan {
   date: string;
   /** The goal in force when it was built. A mid-day change does not rewrite it. */
   goal: number;
+  /**
+   * The teaching level the new words were chosen for.
+   *
+   * A plan used to be identified by its date and its goal, and that was wrong
+   * in exactly one situation, which is the situation every new learner is in:
+   * open the app, get a plan built at the default level, then sit the
+   * Vocabulary Level Test. A learner who came out at 30 went to Today's
+   * Vocabulary and was taught 남자, because the plan from twenty minutes
+   * earlier was still *current* — same day, same goal — and nothing on the
+   * freshness check knew the learner had since been measured.
+   *
+   * Optional because plans written before this field existed are still in
+   * storage; `planIsCurrent` treats a plan with no level as belonging to
+   * whatever level is asking, so nobody's day is thrown away on upgrade.
+   */
+  level?: number;
   words: PlannedWord[];
   /** Word ids **answered correctly** today, in the order they were finished. */
   completed: string[];
@@ -335,7 +351,7 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
   const consolidation = [...weak, ...due].slice(0, Math.max(0, goal - reserved));
   const words = [...consolidation, ...fresh.slice(0, goal - consolidation.length)];
 
-  return { date: dateKey(now), goal, words, completed: [] };
+  return { date: dateKey(now), goal, level: request.level, words, completed: [] };
 }
 
 /** Answers in a row, across every skill, before the harder questions start. */
@@ -892,12 +908,41 @@ export function completeWord(plan: DailyPlan, wordId: string): DailyPlan {
 /**
  * Whether a stored plan is the one for right now.
  *
- * A plan is for a day. It survives the app being closed, being backgrounded for
- * an hour, and the learner changing their goal — a goal change takes effect
- * tomorrow rather than rewriting a session in progress, because a plan that
- * changes length underneath somebody is worse than one that starts fresh in the
- * morning.
+ * A plan is for a day *at a level*. It survives the app being closed, being
+ * backgrounded for an hour, and the learner changing their goal — a goal change
+ * takes effect tomorrow rather than rewriting a session in progress, because a
+ * plan that changes length underneath somebody is worse than one that starts
+ * fresh in the morning.
+ *
+ * It does **not** survive the learner being measured at a different level, and
+ * that is the difference between a preference and a fact. A goal is something
+ * they chose and can choose back; a level is what the test found out about
+ * them, and a plan built before the app knew it is teaching the wrong person.
+ * Passing no `level` keeps the old date-only behaviour, for callers that only
+ * want to know whether the plan is from today.
  */
-export function planIsCurrent(plan: DailyPlan | null, now: Date): plan is DailyPlan {
-  return plan !== null && plan.date === dateKey(now);
+export function planIsCurrent(
+  plan: DailyPlan | null,
+  now: Date,
+  level?: number,
+): plan is DailyPlan {
+  if (plan === null || plan.date !== dateKey(now)) return false;
+  // A plan written before plans carried a level: kept, rather than discarding
+  // a day's work the first time an upgraded app opens.
+  if (level === undefined || plan.level === undefined) return true;
+  if (plan.level === level) return true;
+  /*
+    The level changed under a plan built for a different one.
+
+    Whether that plan is still today's depends on whether the learner has
+    started it. Nobody is disturbed by replacing a plan they have not touched,
+    and that is the case the defect was in: open the app, get a plan at the
+    default level, sit the Vocabulary Level Test, come out at 30, and be taught
+    남자 by a plan written ten minutes earlier for a beginner.
+
+    A plan with work in it is a different matter. Rebuilding underneath somebody
+    four words into their day loses those four and replaces the six they were
+    promised, so their day stands and the new level starts tomorrow.
+  */
+  return plan.completed.length > 0;
 }

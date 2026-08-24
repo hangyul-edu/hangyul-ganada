@@ -1,0 +1,42 @@
+{
+  "_comment": [
+    "Levels a person decided, and the reason for each.",
+    "",
+    "Two kinds of row. One carries a `level` and moves the word; the other",
+    "carries `keep: true` and says the model's level is right and the check that",
+    "flagged it was reading the wrong evidence. Both are decisions somebody made",
+    "and can be argued with, which is the point — a weight nudged until one word",
+    "moves is a decision nobody can find later.",
+    "",
+    "`vocabulary:level:qa` skips its contamination checks for any word listed",
+    "here, because a listed word has already been looked at. It does not skip the",
+    "anchor check: an anchor is a stronger statement than an override and if the",
+    "two disagree the disagreement should be visible."
+  ],
+  "words": {
+    "그들": {
+      "level": 14,
+      "why": "Written Korean. Spoken Korean says 그 사람들 or drops the subject entirely, and a learner who says 그들이 in conversation sounds like a subtitle. The frequency corpora are subtitles, which is exactly why they rank it high."
+    },
+    "저": {
+      "keep": true,
+      "why": "Flagged literary because Wiktionary's first pronoun sense for this spelling is the distal demonstrative, not the humble first person this app teaches. The taught sense is the most ordinary word in polite Korean and level 1 is right."
+    },
+    "잇다": {
+      "level": 18,
+      "why": "The frequency matcher gives it rank 1, which is wrong: it folds every token ending in a verb suffix that begins 이- or 잇- onto this stem. 잇다 is an ordinary but not common verb and the other three components put it here."
+    },
+    "잘다": {
+      "level": 27,
+      "why": "Rank 296 for the same reason — 잘 is a very frequent adverb and tokens like 잘게 and 잘지 fold onto this stem. 잘다 itself is uncommon and mostly written."
+    },
+    "크다": {
+      "level": 4,
+      "why": "The model puts it at 10 on polysemy: 크다 is big, and grows, and is a lot. A beginner meets the first sense in week one and the others years later, and the card teaches the first."
+    },
+    "그녀": {
+      "level": 12,
+      "why": "Written Korean, like 그들. Common in subtitles because subtitles are written; a beginner should learn 그 사람 first and will not be understood using 그녀 in speech."
+    }
+  }
+}

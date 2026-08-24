@@ -5,6 +5,7 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 import { usePronunciation } from '../../audio/PronunciationContext';
 import { useEntryAudio } from '../../audio/useEntryAudio';
 import { useLocale } from '../../i18n';
+import { NOTED_SOUND_PATTERNS } from '../../data/vocabulary';
 import { wordCopy } from '../../data/wordCopy';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SaveButton } from '../../ui/SaveButton';
@@ -166,7 +167,7 @@ export function WordIntro({
         </section>
       )}
 
-      {word.spoken && word.sound_pattern && (
+      {word.spoken && word.sound_pattern && NOTED_SOUND_PATTERNS.includes(word.sound_pattern) && (
         <section className={styles.sound} aria-labelledby="sound-heading">
           <h3 id="sound-heading" className={styles.soundLabel}>
             {t('vocabulary:intro.howItSounds')}

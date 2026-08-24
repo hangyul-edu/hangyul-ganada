@@ -114,6 +114,67 @@ describe('stroke markers', () => {
     }
   });
 
+  it('never lets a disc sit on a stroke it does not label', () => {
+    /*
+     * ㅊ, photographed. Its third stroke starts where the ㅅ hangs from the
+     * lid, and the direction the pen comes from there points straight up —
+     * into the short tick that is the entire difference between ㅊ and ㅈ.
+     * Disc 3 landed on the tick, disc 1 landed on the top of it, and between
+     * them the tick was invisible: the lesson that teaches ㅊ was showing a ㅈ
+     * with two orange circles over the mark that makes it a ㅊ.
+     *
+     * The rule is not "a disc may not touch ink" — a disc is *supposed* to
+     * touch the stroke it labels, and `REACHES` starts at one radius so that it
+     * does. The rule is that it may not cover a *different* stroke.
+     *
+     * Checked over every taught character rather than over ㅊ, because the
+     * placement is one algorithm and a rule that held for one letter would say
+     * nothing about the next one added.
+     */
+    const PEN = 9;
+    for (const character of ALL_CHARACTERS) {
+      const glyph = vectorGlyph(character.character);
+      const radius = radiusFor(character.character);
+      const markers = layoutMarkers(glyph.strokes, radius);
+      for (const marker of markers) {
+        for (const stroke of glyph.strokes) {
+          if (stroke.order === marker.order) continue;
+          const clearance = distanceToStroke(stroke, marker.label, PEN);
+          expect(
+            clearance,
+            `${character.character}: disc ${marker.order} sits on stroke ${stroke.order}`,
+          ).toBeGreaterThan(-radius * 0.8);
+        }
+      }
+    }
+  });
+
+  it('shows the whole of the tick that makes ㅊ a ㅊ', () => {
+    /*
+     * The named fixture for the defect above. It asserts the thing a learner
+     * needs — that the first stroke is *visible* — rather than that the layout
+     * produced particular coordinates, which would fail the next time anything
+     * moved for a good reason.
+     *
+     * The tick runs from (50, 8) to the lid at (50, 30). Sampled along it, no
+     * point may be underneath a disc except near its own start, where disc 1
+     * legitimately touches the stroke it labels.
+     */
+    const glyph = vectorGlyph('ㅊ');
+    const radius = radiusFor('ㅊ');
+    const markers = layoutMarkers(glyph.strokes, radius);
+    const tick = glyph.strokes.find((stroke) => stroke.order === 1)!;
+    let covered = 0;
+    for (let t = 0.25; t <= 1.0001; t += 0.05) {
+      const point = { x: tick.start[0], y: tick.start[1] + (30 - tick.start[1]) * t };
+      for (const marker of markers) {
+        if (marker.order === 1) continue;
+        if (Math.hypot(point.x - marker.label.x, point.y - marker.label.y) < radius) covered += 1;
+      }
+    }
+    expect(covered, 'a disc is drawn over the tick of ㅊ').toBe(0);
+  });
+
   it('keeps every disc on the paper', () => {
     for (const character of ALL_CHARACTERS) {
       const radius = radiusFor(character.character);

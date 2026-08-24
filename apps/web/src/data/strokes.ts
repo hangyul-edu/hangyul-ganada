@@ -479,24 +479,46 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   ],
   ㅚ: [stroke([[30, 18], [30, 52]]), stroke([[8, 52], [56, 52]]), vertical(78)],
   ㅟ: [stroke([[8, 38], [56, 38]]), stroke([[30, 38], [30, 80]]), vertical(78)],
+  /*
+    ㅗ, then the ㅐ — and the ㅐ has to look like a ㅐ.
+
+    Its two uprights were 28 apart in a letter 100 wide, which measures 31 of
+    the ink box against Pretendard's 24. Nearly a third too wide, and what that
+    costs is not subtle: the branch reaches out of the first upright and stops
+    in open paper, and the second upright reads as a bar standing on its own
+    rather than as the other half of a ㅐ. A learner copying it writes ㅗ ㅏ ㅣ.
+
+    69 and 93 of the ink box is where the face puts them, which is 63 and 84
+    here once the pen is accounted for, and the branch keeps the standalone ㅐ's
+    proportion — a little under two thirds of the gap.
+  */
   ㅙ: [
     stroke([[22, 18], [22, 52]]),
     stroke([[4, 52], [42, 52]]),
-    vertical(58),
-    stroke([[58, 50], [78, 50]]),
-    vertical(86),
+    vertical(63),
+    stroke([[63, 50], [77, 50]]),
+    vertical(84),
   ],
+  /*
+    ㅜ, then the ㅔ, and the same correction as ㅙ above.
+
+    The uprights measured 76 and 95 of the ink box against the face's 71 and
+    93 — pushed right and squeezed, so the ㅔ sat against the edge with its
+    connector a stub between two bars. 65 and 86 here puts them where the face
+    has them.
+
+    The connector stays low. Authored level with the middle of the box it
+    landed a stroke's width above the ink it was meant to claim, the claim went
+    to the upright beside it, and it was left holding a scrap of somebody
+    else's letter with its route drawn through empty paper — which is what
+    `strokes:visual` is for and what it caught.
+  */
   ㅞ: [
     stroke([[4, 38], [42, 38]]),
     stroke([[22, 38], [22, 78]]),
-    // The ㅔ's connector sits low here, under the ㅜ's bar rather than level
-    // with the middle of the box. Authored at 50 it landed a stroke's width
-    // above the ink it was meant to claim, the claim went to the upright
-    // beside it, and the connector was left holding a scrap of somebody else's
-    // letter with its route drawn through empty paper.
-    stroke([[50, 62], [70, 62]]),
-    vertical(70),
-    vertical(88),
+    stroke([[52, 62], [65, 62]]),
+    vertical(65),
+    vertical(86),
   ],
   ㅢ: [stroke([[10, 55], [60, 55]]), vertical(78)],
 
@@ -554,6 +576,14 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   // travelling through blank paper belonged to the old model, where a stroke
   // was cut out of the rasterised glyph and could therefore be given ink that
   // was not its own; a stroked centreline draws exactly where it goes.
+  //
+  // The tick runs from 8 to the lid at 30, and it was shortened to 13 once on
+  // the reasoning that Pretendard's tick is 22% of the letter's height against
+  // this one's 29%. That arithmetic forgot the pen: the lid is a stroked
+  // centreline nine units wide, so a tick ending at the lid's *centre* shows
+  // only as far as the lid's top edge, and 8 → 30 shows 23% — the face's
+  // number. Shortened to 13 it showed 17% and `glyphshape:qa` reported ㅊ at
+  // 92%, its worst score of the seventy-three. Left at 8.
   ㅊ: [stroke([[50, 8], [50, 30]]), ...jieut(18, 82, 30)],
   // The added bar starts on the letter's own left edge, level with the top
   // bar's, and runs right to cross the leg. Set in from that edge it hung in

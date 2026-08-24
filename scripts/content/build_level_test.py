@@ -348,6 +348,9 @@ def build() -> dict:
             }
         )
     taught = {row["word"] for row in rows}
+    # The curriculum's own level for every taught word, so the test reports on
+    # the same scale the daily plan selects by.
+    taught_levels = {word["word"]: word["level"] for word in corpus["words"]}
     rows.extend(dictionary_anchors(taught))
 
     """Rank every candidate against Korean, not against each other's curation.
@@ -365,7 +368,20 @@ def build() -> dict:
     rows = []
     for rank, row in enumerate(observed, start=1):
         row["rank"] = rank
-        row["level"] = level_of(rank)
+        # A taught word carries the level the *curriculum* gives it; anything
+        # else is levelled by rank.
+        #
+        # §31: one meaning of level 18. The two used to disagree by construction
+        # — the test levelled every anchor by frequency rank while Today's
+        # Vocabulary did too, and then the vocabulary side moved to a real
+        # difficulty model and the test did not follow. A learner told they were
+        # 18 would have been taught from a band the test had never measured.
+        #
+        # Dictionary anchors have no taught level because they are not taught,
+        # and rank is the only evidence there is about them. That is a real
+        # seam and it is where the top of the scale comes from; it is recorded
+        # in the report rather than hidden behind an average.
+        row["level"] = taught_levels.get(row["word"]) or level_of(rank)
         rows.append(row)
 
     return {

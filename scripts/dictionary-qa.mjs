@@ -22,6 +22,22 @@ const CHECK = process.argv.includes('--check');
 const ROOT = new URL('..', import.meta.url).pathname;
 const DIR = join(ROOT, 'apps/web/public/dictionary');
 
+/*
+  Sentences a reviewer read and refused, and the reason each one was refused.
+
+  The build drops them; this checks the build did. A defective sentence that
+  comes back — because the upstream cache was refetched, or because somebody
+  edited the builder — comes back silently otherwise, and the whole point of
+  writing the reasons down is that nobody has to find them twice.
+*/
+const REFUSED = new Map(
+  Object.entries(
+    JSON.parse(
+      readFileSync(join(ROOT, 'content/vocabulary/example-blocklist.json'), 'utf8'),
+    ).examples,
+  ),
+);
+
 const problems = [];
 const fail = (message) => problems.push(message);
 
@@ -228,12 +244,34 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
       if (glossesHere.has(key)) fail(`${entry.headword} shows "${sense.gloss}" twice`);
       glossesHere.add(key);
       parts.add(sense.partOfSpeech);
+      /*
+        A label is one label.
+
+        `{{lb|ko|used exclusively with the particles {{m|ko|-가}}}}` was read
+        with a regex that stopped at the first brace and split on every pipe, so
+        the 거의 entry printed three labels — the first ending in `{{m`, the
+        second the bare language code `ko`. 142 labels on 44 distinct strings
+        were broken this way and 65 of them were the word `ko`, which is not a
+        label at all. See `_labels` in `scripts/content/wiktionary.py`.
+      */
+      for (const label of sense.labels ?? []) {
+        if (MARKUP.test(label) || label.includes('|')) {
+          fail(`${sense.senseId} has an unparsed label: ${JSON.stringify(label)}`);
+        }
+        if (label === 'ko') fail(`${sense.senseId} shows the language code as a label`);
+      }
       for (const example of sense.examples) {
         if (MARKUP.test(example.korean) || MARKUP.test(example.translation)) {
           fail(`${sense.senseId} has an example with markup in it: ${example.korean}`);
         }
         if (example.korean.includes('^')) {
           fail(`${sense.senseId} has a transliteration caret in its example`);
+        }
+        if (REFUSED.has(example.korean.trim())) {
+          fail(
+            `${sense.senseId} still ships a sentence a reviewer refused: ${example.korean} — ` +
+              REFUSED.get(example.korean.trim()),
+          );
         }
       }
     }

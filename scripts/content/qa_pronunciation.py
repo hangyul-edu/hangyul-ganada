@@ -58,7 +58,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from hangul import decompose, is_syllable  # noqa: E402
-from pronunciation import note_for, pattern_of, spoken_form  # noqa: E402
+from pronunciation import note_for, sound_for, pattern_of, spoken_form  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 PUBLIC = ROOT / "apps" / "web" / "public"
@@ -384,8 +384,10 @@ def _check_word(word: dict, plan: dict, entries: dict, report: Report) -> None:
             f"{text}: synthesised from {planned['text']!r} rather than from the headword"
         )
 
-    # The pronunciation note, against the rules that produce it.
-    expected = note_for(text)
+    # The pronunciation note, against the rules that produce it. `sound_for`,
+    # not `note_for`: the row carries every word a rule changes, and the
+    # smaller `NOTEWORTHY` set decides only whether a *card* shows it.
+    expected = sound_for(text)
     say, why = word.get("say"), word.get("sayWhy")
     if expected is None:
         if say is not None:
@@ -683,7 +685,7 @@ def check_fixtures(report: Report) -> None:
         row = vocabulary.get(word)
         if row is None:
             continue
-        note = note_for(word)
+        note = sound_for(word)
         if note and row.get("say") != note[0]:
             report.error(f"fixture {word}: shipped note {row.get('say')!r} ≠ {note[0]!r}")
 
