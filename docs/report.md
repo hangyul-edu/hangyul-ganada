@@ -108,7 +108,7 @@ exactly that.
 | Audio clips | 11,788 |
 | Signed APK | 76.0 MB |
 | Signed AAB | 74.6 MB |
-| Issues tracked | 68 |
+| Issues tracked | 69 |
 
 "Characters taught" counts every entry in the curriculum's character table — the
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
@@ -443,9 +443,19 @@ kinds per sitting     context 12, meaning 9, produce 9
 | de es fr ja ko pt-BR th vi zh-CN | 1,572 | 23 |
 | the other 22 | 535 | 23 |
 
-The ceiling is stated on the result screen where it is below the full scale, and
-an end-to-end case asserts both that it says so and that it says nothing when
-there is no ceiling.
+**The ceiling is no longer stated on the result screen, and that is a change
+this cycle made deliberately.** It used to read *지금은 23단계까지 물어볼 수
+있어요. 그 위 단계의 단어는 아직 번역되지 않았어요* — a content backlog,
+described to the person who bought the finished product. Whether a language's
+bank reaches level 23 or level 30 is ours to fix; until it is, the honest thing
+is to report the level measured rather than to explain the engineering. The
+confidence band went with it for the same reason: a learner who has just spent
+eight minutes being measured does not need to be told the measurement is
+uncertain to six levels. Both are still computed and still saved.
+
+The table above is therefore the place the ceiling is stated, and an end-to-end
+case asserts the card shows one number with no range and no backlog line, in
+Hungarian — the language where the removed line used to appear.
 
 **The expansion moved this the other way from the obvious direction, and that is
 worth stating plainly.** The nine complete non-English locales went from 1,374
@@ -846,7 +856,7 @@ ship a link to a page that may not exist (I-03).
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **766** (48 files) |
+| Web unit (`vitest`) | **771** (49 files) |
 | Handwriting core (`vitest`) | **96** |
 | Korean morphology (`vitest`) | **146** |
 | End-to-end (`playwright`) | **338** (169 × 2 projects) |
@@ -872,6 +882,27 @@ than always paying the delay.
 
 That is the third time this one walk has been fixed for a timing assumption, and
 the class is now named in the file rather than the instance.
+
+**Three more walks were fixed for the same class of reason, and the class is
+worth naming because it is not flakiness.** A session now schedules a `build`
+question — assemble the word from its own syllables — wherever a gap-fill was
+refused, which is more often than before. Three end-to-end walks did not know
+what to do in front of one:
+
+* two pinned the *label* on the button that moves on, and a build question's
+  reads **Next word** rather than **Next**, because there the next thing
+  genuinely is a word. Both now share one anchored matcher;
+* one clicked the first enabled button on the screen, and on a build question
+  the first enabled button is a *filled slot*, whose job is to put the syllable
+  back. It placed a syllable, removed it, placed it, for the whole of its
+  budget — and reported "the matching grid never appeared". It is scoped to
+  `[role="group"]` now, which is where every answer lives and no slot does.
+
+None of the three was a defect in the product and all three were correct to
+fail: the sitting genuinely changed shape. What they had in common is that each
+pinned a *rendering* — a label, a position — where the thing being tested was a
+behaviour. Two more specs were unpinned from the wording of a unit title for the
+same reason, and read it from the shipped bundle instead.
 
 The suite was then run in full again from the final source:
 
@@ -1038,7 +1069,37 @@ The counts are the counts; where a number is small it is written small.
 | New vocabulary entries authored | 60 |
 | Corpus, before → after | 2,856 → **2,916** |
 | Gates added | 3 (`content:safety:qa`, `korean:education:qa`, `mobile:walk`) |
+| Defects this pass introduced, then found and fixed | 1 — the partial-locale sitting with no questions in it |
 | Gate rules widened rather than waived | 4 |
+
+### The one this pass broke, and how it was found
+
+Moving gap-fill construction to one validated place had a consequence nobody
+looked for. Only 536 of the 2,916 words survive the rules — a good teaching
+example is often not a good question — where the browser had previously built a
+gap-fill for *any* word with an example, badly. In the ten complete languages
+that is a straight improvement. In the other twenty-two it was not.
+
+Those languages have word meanings for a hundred words, and `strictMeaning`
+refuses — correctly, and this is I-19 working as designed — to put one English
+choice beside three Hindi ones. So `meaning`, `produce` and `match` cannot be
+built for the other 2,816 words, and the sitting rested entirely on the
+gap-fill. Take most of those away and a level-1 Hindi session is **ten
+introduction cards and no questions at all**. The session-complete card said
+*0 शब्द सीखा* — zero words learned — and it was telling the truth.
+
+It was caught by an end-to-end case that has failed for a timing reason three
+times before, which is the uncomfortable part: `a hi session never offers an
+English answer` reported *no question appeared in hi*, the same sentence a
+loaded machine produces, and the screenshot in the trace is what separated them.
+
+The fix is not a patch. `build` — assemble the word from its own syllables —
+needs no translation, no example sentence and no distractor pool, so it is the
+question those learners can always be asked, and it was already one of the steps
+a familiar word owes. `buildDailyQuestions` now falls back to it when the
+planned step cannot be built, in that order, so no learner in a complete
+language sees a different sitting. A level-1 Hindi session goes from 0
+questions to 7. Five fixtures hold both halves of the rule.
 
 ### What the emulator walk says, and what it does not
 
@@ -1104,6 +1165,7 @@ document they predate.
 | **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces. | **RESOLVED** |
 | **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **RESOLVED** |
 | **I-29** | Build | **P2** | Two end-to-end tests fail, and no `verify` target runs the suite that would have said so | None directly — the failing assertion is about a mouse wheel on the Activity screen's range row, and the behaviour works a second after the screen opens. It matters because the previous report recorded `test:e2e` as PASS with both projects run in full, and this cycle it is 228 of 230. | **RESOLVED** |
+| **I-36** | Design | **P2** | The listening question drew a decorative speaker emoji above the real audio control | The same action appeared twice — a 44px 🔊 and, under it, the button that actually plays the clip. The emoji belonged to no part of the product's drawing and was `aria-hidden`, so it was decoration standing where the prompt would be. | **RESOLVED** |
 | **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
 | **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
 | **I-18** | Content | **P3** | 103 glosses carried more than one sense in some language | A learner asked what 차 means had two right answers and one button: the card read 車、お茶 in Japanese and "coche, té" in Spanish over the sentence 차를 타요. | **RESOLVED** |
@@ -1134,7 +1196,7 @@ document they predate.
 | **I-65** | Persistence | **P1** | Adding a word to the corpus renamed a different word's id, and word ids key saved progress | A learner who updated would lose 젖다's history and find it credited to 젓다 — a word they had never seen, now treated as one they knew. Progress is device-local with no cloud copy, so there is nothing to restore it from. The storage layer's own opening comment says an update that silently resets progress is unacceptable for a paid app; this defeated that from the content side. | **RESOLVED** |
 | **I-66** | i18n content | **P1** | The Portuguese pack was written in European Portuguese, in a pt-BR product | 143 strings. Most of it merely reads foreign to the reader it is for — telemóvel, comboio, palavra-passe, estou a aprender, toda a gente. Two of them teach the wrong word: camisola was given as the meaning of 스웨터, and in Brazil that is a nightgown; constipação was used for 독감's symptoms, and in Brazil that is constipation. | **RESOLVED** |
 | **I-67** | Review | **P1** | The answer-leak guard on hints was blind in every abugida | A learner in Bengali, Hindi or Telugu who asked for help on 돈 was shown the answer. The category rung reads "টাকা ও কেনাকাটা-এর কিছু" — something to do with money and shopping — and the answer is টাকা. The identical hint in English was caught and withheld. Retrieval is the exercise, so a hint that hands the answer over does not merely fail to help: it removes the thing the question was for. | **RESOLVED** |
-| **I-36** | Design | **P2** | The listening question drew a decorative speaker emoji above the real audio control | The same action appeared twice — a 44px 🔊 and, under it, the button that actually plays the clip. The emoji belonged to no part of the product's drawing and was `aria-hidden`, so it was decoration standing where the prompt would be. | **RESOLVED** |
+| **I-70** | Vocabulary session | **P1** | A sitting in twenty-two of the interface languages contained no questions | A learner whose interface is Hindi, Tamil, Telugu, Bengali, Arabic or one of seventeen more opened Today's Vocabulary, pressed through ten introduction cards, and was shown a closing card reading "0 words learned". Not a slow session or a short one — a session with nothing in it to answer, on the screen the product is bought for. | **RESOLVED** |
 | **I-45** | Onboarding | **P2** | Nothing ever asked a new learner what level they were, and the level they had was buried | A learner could use the app for weeks, be taught from Level 1 throughout, and never discover that a two-minute test would give them words that fit. The Vocabulary Level itself sat on a card two thirds of the way down Home, which is where a number goes when nobody is meant to look at it. | **RESOLVED** |
 | **I-46** | Handwriting | **P2** | Five vowels were drawn visibly off centre, and every attempt ended in a panel of praise | Two things a learner meets on every letter. The reference character sat to one side of the square they were being asked to copy it into, and each attempt — right or wrong — was answered with a headline, a compliment, a stroke-order note and a details toggle. | **RESOLVED** |
 | **I-47** | Home | **P2** | The quotation slot held a hundred lines, eighty-eight of which the app had written itself | A learner reading the foot of Home could not tell a sentence Seneca wrote from a sentence a product manager wrote, because both were set the same way in the same slot. Twenty attributed quotations replace them. | **RESOLVED** |
@@ -1155,7 +1217,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 3 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 60**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 61**
 
 <!-- /issues:counts -->
 
@@ -1187,6 +1249,7 @@ document they predate.
 | **I-24** | `fitGlyph` measures the drawn ink and solves for the size and origin that centre it, rather than sizing the em. Measured on the running app: ㅏ went from 0.228 × 0.672 centred at (0.556, 0.460) to **0.243 × 0.718 at (0.499, 0.499)**, and the worst centring error across all 270 glyph-and-face pairs is 1.2% of the box. The grading half — the reason the previous attempt was reverted at 21% false rejections — is `GAP_EROSION_RATIO`, which erases the rim a too-wide reference stroke leaves before the structural term counts it, mirroring what the blot term already did. Swept jointly against the corpus: **0.28% false reject / 0.28% false accept**, against 0.21% / 0.78% before, with Pretendard — the default face — improving on both from 1.04% / 0.55% to 0.42% / 0.00%. The fixtures were regenerated because they had been rendering their own layout and so measuring a geometry the product does not use. | done |
 | **I-25** | `measure-composition.mjs` starts its own `vite preview` when nothing is listening on :4477 and reuses one when something is, so it runs unattended. `strokes:measure:check` is in `verify:release`. | done |
 | **I-29** | The failing case was the launch screen, not the feature: `page.mouse.*` has no actionability check, so a wheel dispatched during the 900 ms brand screen landed on the splash. `e2e/helpers/launch.ts` makes the wait explicit and says why. The suite is **236 of 236** across both projects, and `test:e2e` is in `verify:release`. | done |
+| **I-36** | Removed, with nothing in its place: the question is the line of text above and the action is the one button below. One shared `ChoiceExercise` renders every choice question in the lesson and in Review, so it is gone from every route at once.  Removing it exposed an accessibility defect. The button's name is built as "Play the pronunciation of {text}" and a listening question shows no Korean — that being the question — so the caller had nothing to pass and screen-reader users heard "Play the pronunciation of " and then nothing. Naming the letter would read out the answer, so an unnamed button now says "Play the sound", in all 32 languages.  A test asserts the absence of *any* pictograph rather than of one character, plus the positive shape — one hit-sized control, named for what it does, with "Can't use audio?" still under it — in both themes, with an axe scan. | Done. |
 | **I-15** | Regenerated, fixtured, checked on-device. | done |
 | **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
 | **I-18** | All 103 were read against the sentence each card asks. 35 named a sense the sentence never demonstrates and were trimmed across ten languages; ten cards moved sense outright — 맡다 was glossed "to take charge of" over 냄새를 맡아 보세요, 시키다 was "to make someone do" over "I ordered pizza" — and three illustrations moved with them. The remaining 38 were read and kept: Japanese has no single verb for 있다 and must write ある、いる, which is one sense in the two renderings the language requires. `vocabulary:sense:qa:check` now fails on a split gloss that is not on the reviewed list, and on a listed one that has stopped being split; both directions are negative-tested. Comma-merged glosses remain outside the rule and are tracked under I-10. | Done. |
@@ -1217,7 +1280,7 @@ document they predate.
 | **I-65** | Ids are `word_` plus the romanisation, and two Korean words can romanise the same — 젓다 (to stir) and 젖다 (to get wet) are both `word_jeotda`, so the second to ask gets `_2`. Which asked first was decided by `sorted(words, key=lambda w: (levels[w], scores[w], w))` in `build_vocabulary.py`: difficulty order, which every content change perturbs. Adding 젓다 in batch 3 renamed the already-shipped 젖다. `progressKey(kind, itemKey)` in `apps/web/src/storage/schema.ts` keys every progress row by that id. | Done. |
 | **I-66** | The locale is pt-BR and the pre-existing pack is unambiguously Brazilian — você ×44, trem, celular, banheiro, resfriado, xícara. Every batch authored during this pass drifted European and nothing noticed for four of them. What finally caught it was `content:qa`'s meaning-collision warning: five words had become *antes* (예전, 이전, 앞서, 차라리, 전), a warning about learnability that happened to point at a register defect it was not looking for. | Done for Portuguese. There is still no gate that reads for the *variety* of a language, and writing one is not obviously possible; the marker list used here is recorded in docs/final-launch-audit.md. This is one of the things native review is for — see I-17. |
 | **I-67** | `revealsAnswer` stripped everything outside `\p{L}\p{N}`, and a Bengali vowel sign is `\p{M}`. টাকা is ট + া + ক + া, so the needle became টক while the token trim — which removes marks only at the *edges* — made টাক, and the two could never match. Bengali, Devanagari, Telugu and Tamil were all affected: the guard worked in the scripts that write their vowels as letters and nowhere else. | Done. |
-| **I-36** | Removed, with nothing in its place: the question is the line of text above and the action is the one button below. One shared `ChoiceExercise` renders every choice question in the lesson and in Review, so it is gone from every route at once.  Removing it exposed an accessibility defect. The button's name is built as "Play the pronunciation of {text}" and a listening question shows no Korean — that being the question — so the caller had nothing to pass and screen-reader users heard "Play the pronunciation of " and then nothing. Naming the letter would read out the answer, so an unnamed button now says "Play the sound", in all 32 languages.  A test asserts the absence of *any* pictograph rather than of one character, plus the positive shape — one hit-sized control, named for what it does, with "Can't use audio?" still under it — in both themes, with an axe scan. | Done. |
+| **I-70** | Introduced by this pass and found by it. Gap-fills moved from the browser to a single validated builder, and only 536 of the 2,916 words survive its rules — which is right, and is the point: the browser had been building a gap-fill for any word with an example, and building it badly.  The twenty-two partial locales have meanings for a hundred words, and `strictMeaning` refuses to mix languages inside one question (I-19, working as designed), so `meaning`, `produce` and `match` cannot be built for the other 2,816. With most gap-fills gone as well, the plan's checks all dropped and only the introductions were left. Measured at three levels before the fix: 0 of 8 planned checks askable in Hindi at level 1, 1 of 8 at levels 3 and 6.  Found by `e2e/locale-quiz.spec.ts`, which reported *no question appeared in hi* — the same sentence that walk produces when it loses a race on a loaded machine, three times before. The screenshot in the trace is what separated them: a session-complete card reading 0 शब्द सीखा over an introduction card.  Fixed in `buildDailyQuestions`: when the planned step cannot be built, fall back to `build` — assemble the word from its own syllables — which needs no translation, no example sentence and no distractor pool. The planned step is tried first and always wins, so no learner in a complete language sees a different sitting. A level-1 Hindi session goes from 0 questions to 7. `dailyQuestions.test.ts` holds five cases including the two negatives: a word too short to assemble is still not asked about, and an introduction is still an introduction. | Nothing outstanding for the defect. The underlying asymmetry is I-19 and is unchanged: twenty-two languages have a hundred words written, and the fallback makes their sittings answerable rather than complete. |
 | **I-45** | **Asked once, before the first vocabulary session.** A learner who has never been placed is offered the test with two answers: take it, or start at Level 1. It is not a gate — declining begins the session immediately — and it is never asked again, because a prompt that returns tomorrow is a toll rather than a recommendation. An assessed learner never sees it.  **`placement_skipped_at` is a new field and deliberately not part of `level_test`.** Those are different facts: one is what was measured, the other is what was decided about measuring. Collapsed into one, a learner who declined becomes indistinguishable from one assessed at Level 1, and the app loses the difference between *we know* and *we have not asked*. Schema 12, migrated to null for everybody including existing learners with a result — who never declined anything.  The prompt waits for the profile to load. Without that, every learner looks untested for as long as IndexedDB takes to answer, and somebody assessed months ago opens today's words and is asked whether they would like to be assessed.  **The level now sits beside the streak**, in the status corner every learner passes on every launch — outlined rather than filled, "Lv." small and the number bold. A measurement, not a medal: no badge, no gradient, no crown. And the test's result screen now ends on *Learn words at my level* rather than *Done*, which used to return the learner to the settings screen they came from after thirty questions about what to teach them next.  **What the level does and does not do is stated rather than implied.** For a learner who has never been assessed it rises with what they have learned; for one who has, it is the measurement and holds until they retake. No progress bar was added toward the next level, because for an assessed learner ordinary study does not move it and a bar would say otherwise.  `store/placement.test.tsx` covers §59 A–E, including the case easiest to get wrong: retaking mid-day leaves today's words exactly as they were, because a plan is built once and stored and a new level is a fact about tomorrow. |  |
 | **I-46** | **The centring was a font-metrics bug, and it was measured.** `text-align: center` centres a glyph's advance width and a line box centres its ascent-to-descent band; neither is the ink. Compatibility jamo are drawn to read in isolation rather than to fill their em, so off Pretendard at weight 600: ㅜ and ㅠ sit 7.8% and 7.5% of an em too low, ㅏ 6.8% too far right, ㅑ 4.0%, ㅗ 3.8%. About seven pixels at lesson size, and worse in context — the guide square *is* centred, so the model and the target disagreed about where the letter belongs.  `measure-jamo.mjs` already renders each letter in the real face to measure its proportions; it now also records how far the ink falls from the centre of the box centring gives it, and `CenteredGlyph` subtracts that. Nobody types the numbers, which is the difference between this and a per-letter margin.  **Three of the four surfaces were already correct.** The handwriting guide, the stroke-order animation and the *Watch it written* preview are drawn from `strokeVectors.ts`, which fits authored strokes to the ink bounds of the measured box and centres those — ink-centred by construction. Only the reference character is rendered as text. Composed syllables measure within 2.5% and need nothing, because a syllable block is designed to fill its em. `jamo:centering:check` gates the **residual** — the face's offset less the shipped correction — so a font update that moves a glyph without a re-measure fails the build.  **The feedback card is gone.** A headline, a line of praise, a stroke-order note, a Show details toggle and a numeric breakdown, under a two-stroke letter, every attempt. A learner writing ㄱ for the fourth time does not read "That's it!" — they have read it three times, and repeated praise stops carrying information the moment it becomes certain. Correct is now one button; wrong is one actionable sentence and Retry. The grade is unchanged and still recorded; what went is the ceremony around reporting it. The percentages and stroke-order notes were deleted rather than moved behind a toggle — a mismatch percentage is the grader talking about itself. `i18n:check` caught the three strings the panel owned and they are gone from all 32 locales. |  |
 | **I-47** | Twelve of the hundred were quotations. The rest were encouragement written for this app — "Two words a day is seven hundred a year", "Progress is quiet" — labelled honestly in the data and not on the screen, which is the only place it counts.  The library is now **20 quotations, each by a named person, each from a work and a place in it a reader can check**: Confucius to Analects II.15 and XV.30, Seneca to letters 7 and 76, Aristotle to Nicomachean Ethics 1103a, and King Sejong to the preface of the Hunminjeongeum — which is the right quotation for this product to carry.  **Proverbs went with the app-authored lines.** A byline reading "Korean proverb" is a category where a name should be, and a proverb has no author to verify. 꿈을 크게 가져라 is withdrawn for the same reason: it used to ship deliberately unattributed because its three circulating attributions are all wrong, and under a policy requiring a person, a quotation nobody can be credited with is not one.  **A fresh line on every open**, never the same one twice running, nothing persisted. Pinning it to the calendar day had made decoration into stored state — a key, a date, a migration — for a sentence at the foot of a screen.  `quotes:qa:check` enforces the policy: 16–24 lines, no duplicate sentence in any locale, every byline a person and not a category, every source carrying a work and a date with no hedging words, all 640 renderings present, and nothing written to storage — proved by handing the module a `localStorage` and failing if anything lands in it. |  |
