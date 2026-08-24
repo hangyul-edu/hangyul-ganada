@@ -111,7 +111,7 @@
     "permissions": {
       "title": "Autorisations",
       "points": [
-        "Les notifications, et seulement si vous activez le rappel quotidien.",
+        "L'application ne demande aucune autorisation.",
         "Jamais l’appareil photo, le micro, les photos, les contacts ou la position."
       ]
     },

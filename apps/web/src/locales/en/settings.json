@@ -109,7 +109,7 @@
     "permissions": {
       "title": "Permissions",
       "points": [
-        "Notifications, and only if you turn the daily reminder on.",
+        "The app asks for no permissions at all.",
         "Never the camera, microphone, photos, contacts or location."
       ]
     },

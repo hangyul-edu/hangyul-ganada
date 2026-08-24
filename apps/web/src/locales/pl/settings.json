@@ -113,7 +113,7 @@
     "permissions": {
       "title": "Uprawnienia",
       "points": [
-        "Powiadomienia, i tylko jeśli włączysz codzienne przypomnienie.",
+        "Aplikacja nie prosi o żadne uprawnienia.",
         "Nigdy aparat, mikrofon, zdjęcia, kontakty ani lokalizacja."
       ]
     },

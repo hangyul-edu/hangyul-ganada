@@ -109,7 +109,7 @@
     "permissions": {
       "title": "Berechtigungen",
       "points": [
-        "Mitteilungen, und nur wenn du die tägliche Erinnerung einschaltest.",
+        "Die App fragt überhaupt keine Berechtigungen ab.",
         "Nie Kamera, Mikrofon, Fotos, Kontakte oder Standort."
       ]
     },

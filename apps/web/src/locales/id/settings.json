@@ -107,7 +107,7 @@
     "permissions": {
       "title": "Izin",
       "points": [
-        "Notifikasi, dan hanya kalau kamu menyalakan pengingat harian.",
+        "Aplikasi tidak meminta izin apa pun.",
         "Tidak pernah kamera, mikrofon, foto, kontak, atau lokasi."
       ]
     },

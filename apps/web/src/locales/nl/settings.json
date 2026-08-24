@@ -109,7 +109,7 @@
     "permissions": {
       "title": "Toestemmingen",
       "points": [
-        "Meldingen, en alleen als je de dagelijkse herinnering aanzet.",
+        "De app vraagt helemaal geen toestemmingen.",
         "Nooit de camera, microfoon, foto’s, contacten of locatie."
       ]
     },

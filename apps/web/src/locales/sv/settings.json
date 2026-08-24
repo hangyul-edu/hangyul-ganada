@@ -109,7 +109,7 @@
     "permissions": {
       "title": "Behörigheter",
       "points": [
-        "Aviseringar, och bara om du slår på den dagliga påminnelsen.",
+        "Appen begär inga behörigheter alls.",
         "Aldrig kameran, mikrofonen, bilderna, kontakterna eller platsen."
       ]
     },

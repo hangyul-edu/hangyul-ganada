@@ -111,7 +111,7 @@
     "permissions": {
       "title": "Permissões",
       "points": [
-        "Notificações, e só se você ligar o lembrete diário.",
+        "O aplicativo não pede nenhuma permissão.",
         "Nunca a câmera, o microfone, as fotos, os contatos ou a localização."
       ]
     },

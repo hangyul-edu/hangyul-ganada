@@ -113,7 +113,7 @@
     "permissions": {
       "title": "Oprávnění",
       "points": [
-        "Oznámení — a jen když si zapnete denní připomínku.",
+        "Aplikace nežádá o žádná oprávnění.",
         "Nikdy fotoaparát, mikrofon, fotky, kontakty ani poloha."
       ]
     },

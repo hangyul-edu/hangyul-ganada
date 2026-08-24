@@ -109,7 +109,7 @@
     "permissions": {
       "title": "Engedélyek",
       "points": [
-        "Értesítések — és csak ha bekapcsolod a napi emlékeztetőt.",
+        "Az alkalmazás semmilyen engedélyt nem kér.",
         "Soha nem a kamera, a mikrofon, a fényképek, a névjegyek vagy a helyzet."
       ]
     },

@@ -29,7 +29,7 @@ web browser it is IndexedDB.
 | Which wrong answers you chose | so the app can notice that you mix up two particular letters and give you the two side by side |
 | A short history of recent exercises | so the weekly summary can be true rather than generic |
 | One roll-up row per day you practised | the calendar and the streak on the Learning activity screen |
-| Your settings — language, voice, typeface, daily goal, appearance, reminder time | so the app is the way you left it |
+| Your settings — language, voice, typeface, daily goal, appearance | so the app is the way you left it |
 | Words you saved | so you can study them again |
 | An install identifier | a random string, generated on this device, used to stamp the stored record. It is not linked to you, it is not sent anywhere, and resetting your progress replaces it |
 
@@ -53,11 +53,24 @@ any of those.
 
 ## Permissions
 
-| Permission | When it is asked for |
+**The app never asks you for a permission.** There is no prompt to accept and
+none to decline, on any screen, at any point.
+
+Two are granted by Android at install, without asking, because they cannot be
+used to learn anything about you:
+
+| Permission | Why the package declares it |
 | --- | --- |
-| Notifications | Only if you switch the optional daily reminder on in Settings and choose a time. If you never do, you are never asked. The reminder is set by the app on your own device; there is no push server, and the message does not mention anything about you. |
-| Internet (Android) | Granted at install without a prompt. The app's own screens are served to the system web view over an internal address; no remote server is contacted. |
-| Vibration (Android) | Granted at install without a prompt. It is the small tap you feel when a letter is accepted. |
+| Internet (Android) | The app's own screens are served to the system web view over an internal address. No remote server is contacted. |
+| Vibration (Android) | The small tap you feel when a letter is accepted. |
+
+That is the whole list; `aapt2 dump permissions` on the shipped package prints
+those two and nothing else. The notification permission was here until this
+release, for an optional daily reminder. **The reminder has been removed** —
+not hidden, removed: the feature, its stored time, its Android permissions and
+its Android receivers are all gone. An alarm set by an earlier version is
+delivered to a receiver this package no longer contains, so it is dropped by
+Android rather than shown.
 
 ## Your copy of your data
 

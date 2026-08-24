@@ -109,7 +109,7 @@
     "permissions": {
       "title": "Quyền truy cập",
       "points": [
-        "Chỉ thông báo, và chỉ khi bạn bật lời nhắc hằng ngày.",
+        "Ứng dụng không xin bất kỳ quyền nào.",
         "Không bao giờ dùng máy ảnh, micro, ảnh, danh bạ hay vị trí."
       ]
     },

@@ -111,7 +111,7 @@
     "permissions": {
       "title": "Permisos",
       "points": [
-        "Notificaciones, y solo si activas el recordatorio diario.",
+        "La aplicación no pide ningún permiso.",
         "Nunca la cámara, el micrófono, las fotos, los contactos ni la ubicación."
       ]
     },

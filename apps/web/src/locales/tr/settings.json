@@ -109,7 +109,7 @@
     "permissions": {
       "title": "İzinler",
       "points": [
-        "Yalnızca bildirimler, ve yalnızca günlük hatırlatmayı açarsan.",
+        "Uygulama hiçbir izin istemez.",
         "Kamera, mikrofon, fotoğraflar, kişiler ya da konum asla."
       ]
     },

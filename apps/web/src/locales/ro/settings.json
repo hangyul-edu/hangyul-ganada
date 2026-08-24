@@ -111,7 +111,7 @@
     "permissions": {
       "title": "Permisiuni",
       "points": [
-        "Notificări — și doar dacă pornești mementoul zilnic.",
+        "Aplicația nu cere nicio permisiune.",
         "Niciodată camera, microfonul, pozele, contactele sau locația."
       ]
     },
