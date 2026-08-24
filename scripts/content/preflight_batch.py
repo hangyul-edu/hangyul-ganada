@@ -42,19 +42,34 @@ MEANINGS = set(pack.MEANING_LOCALES)
 SENTENCES = set(pack.SENTENCE_LOCALES)
 HANGUL = re.compile(r"^[가-힣]+$")
 
-#: A person the Korean does not have. The same rule `examples:qa` gates, run
-#: early because it is the authoring mistake that recurs most.
-INVENTED = {
-    "en": re.compile(r"\b(He|he|his|His|him|Him|She|she|her|Her)\b"),
-    "zh": re.compile(r"(?<![吉其])[他她](?!们)"),
-    "es": re.compile(r"\b(Él|él|Ella|ella)\b"),
-    "pt": re.compile(r"\b(Ele|ele|Ela|ela|dele|dela)\b"),
-}
-KOREAN_PERSON = re.compile(
-    "그는|그가|그를|그의|그녀|아버지|아빠|형|오빠|남편|아들|삼촌|할아버지|어머니|엄마"
-    "|언니|누나|아내|딸|할머니|소년|소녀|남자|여자|아저씨|아줌마|아주머니|아가씨"
-    "|신사|숙녀|왕|여왕|장군"
+#: A person the Korean does not have.
+#:
+#: Imported from `examples_qa` rather than restated. This file's whole reason to
+#: exist is to say early what that gate would say late, and a second copy of its
+#: rules is a second copy to fall behind: while these were written out here, the
+#: gate grew French and German and the preflight did not, so a batch could pass
+#: this and fail the build on exactly the check this exists to pre-empt.
+from examples_qa import (  # noqa: E402
+    _ANTECEDENT as ANTECEDENT,
+    _FRENCH_IMPERSONAL as FRENCH_IMPERSONAL,
+    _INVENTED_PERSON as INVENTED,
+    _KOREAN_HAS_A_PERSON as KOREAN_PERSON,
 )
+
+
+def invents_a_person(locale: str, text: str) -> bool:
+    """Whether `text` puts a third person in a sentence whose Korean has none."""
+    pattern = INVENTED.get(locale)
+    if pattern is None:
+        return False
+    for match in pattern.finditer(text):
+        if locale == "fr" and FRENCH_IMPERSONAL.search(text[max(0, match.start() - 8) : match.end() + 44]):
+            continue
+        guard = ANTECEDENT.get(locale)
+        if guard and guard.search(text[: match.start()]):
+            continue
+        return True
+    return False
 
 
 def main() -> int:
@@ -131,9 +146,9 @@ def main() -> int:
             seen_examples[example] = word
 
             if not KOREAN_PERSON.search(example):
-                for locale, pattern in INVENTED.items():
+                for locale in INVENTED:
                     text = str(translations.get(locale, ""))
-                    if pattern.search(text):
+                    if text and invents_a_person(locale, text):
                         problems.append(
                             f"{where}: {word} — {example!r} names nobody and the {locale} does: {text!r}"
                         )

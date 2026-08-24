@@ -689,32 +689,55 @@ def _translation_findings(
     # were not a random eight — they were the elegant, the graceful, the
     # sweetly-spoken, the one who dressed up and the one who played the piano.
     #
-    # Checked in the languages that have a neutral option and where the marker
-    # is unambiguous: English has singular "they", Chinese can drop the subject,
-    # Spanish and Portuguese are pro-drop, and German's possessive marks the
-    # possessor's gender where French's and Spanish's mark the noun's. French
-    # and German subject pronouns are *not* checked: neither language has a
-    # third-person singular that is not gendered, and the masculine is their
-    # unmarked form. That remainder is recorded rather than gated — see
-    # docs/LOCALIZATION_NATIVE_REVIEW.md.
+    # Checked in every locale that ships a written translation, including the
+    # two that were left out of the first pass.
+    #
+    # French and German were exempted on the grounds that neither has a
+    # third-person singular that is not gendered, so a translator must choose
+    # and the masculine is the unmarked choice. That is true about the pronoun
+    # and false about the sentence. Both languages have ways of not naming a
+    # third person at all, and the corpus now uses them:
+    #
+    #   * the Korean's own subject, where it has one. 목소리가 다정해요 is a
+    #     sentence about a voice — "La voix est tendre", "Die Stimme ist sanft"
+    #     — and it was "Sa voix est tendre", "Ihre Stimme ist sanft".
+    #   * `on` and `man` for a statement about how something is done.
+    #   * `cette personne` / `diese Person` for a specific person the Korean
+    #     leaves unnamed. Slightly formal, and exactly as specific as 그분.
+    #
+    # What that was worth: before the rewrite the German translations of
+    # subjectless examples were masculine 49 times out of 49, and the four
+    # French feminines were the piano player, the one who dressed up, the one
+    # who walked with poise, and the pregnancy. Choosing the unmarked form is
+    # not neutral when the marked form is only ever used for that.
+    #
+    # 125 translations were rewritten. `npm run examples:stereotypes` counts
+    # what is left, in every language at once.
     if not _KOREAN_HAS_A_PERSON.search(entry.example):
         for locale, pattern in _INVENTED_PERSON.items():
             text = entry.translations.get(locale, "")
             if not text:
                 continue
-            match = pattern.search(text)
-            # A German possessive whose owner is named earlier in the sentence
-            # belongs to that noun, not to an invented person: der Vogel brütet
-            # *seine* Eier, jeder erledigt *seine* eigene Arbeit.
-            if match and locale == "de" and _GERMAN_ANTECEDENT.search(text[: match.start()]):
-                continue
-            if match:
+            for match in pattern.finditer(text):
+                # An impersonal `il`: il pleut, il y a, il faut, il est tard,
+                # quelle heure est-il. French's dummy subject is spelled the
+                # same as its masculine pronoun and is nobody at all.
+                if locale == "fr" and _FRENCH_IMPERSONAL.search(text[max(0, match.start() - 8) : match.end() + 44]):
+                    continue
+                # A pronoun or possessive whose owner is named earlier in the
+                # sentence belongs to that noun, not to an invented person: der
+                # Vogel brütet *seine* Eier, l'oiseau déploie *ses* ailes,
+                # chacun fait *son* propre travail.
+                antecedent = _ANTECEDENT.get(locale)
+                if antecedent and antecedent.search(text[: match.start()]):
+                    continue
                 out.append(
                     Finding(
                         f"15/invented-person:{locale}",
                         f"{entry.example!r} names nobody and {text!r} does",
                     )
                 )
+                break
     return out
 
 
@@ -725,8 +748,50 @@ _KOREAN_HAS_A_PERSON = re.compile(
     "|신사|숙녀|왕|여왕|장군"
 )
 
-#: A noun already in the German sentence that a possessive can belong to.
-_GERMAN_ANTECEDENT = re.compile(r"\b(Der|Die|Das|Den|Dem|Jeder|Jede|Jedes|Ein|Eine|Einer|das|dies\w*)\b")
+#: A noun already in the sentence that a pronoun or possessive can belong to.
+#:
+#: Per language, because the article systems differ and because French's
+#: `cette personne` and German's `diese Person` — the neutral rendering the
+#: corpus now uses for an unnamed human — must license the agreement that
+#: follows them: *cette personne est sortie*, *elle est gentille*.
+_ANTECEDENT = {
+    # Case-insensitive: German articles are capitalised at the start of a
+    # sentence and lowercase inside one, and `esse ihn` after `den Reis` is the
+    # rice either way.
+    "de": re.compile(
+        r"\b(der|die|das|den|dem|jede[srnm]?|ein|eine|einer|einem|einen|dies\w*|alle|man|"
+        r"mein\w*|dein\w*|unser\w*|eure?\w*|Reis|Obst)\b",
+        re.IGNORECASE,
+    ),
+    "fr": re.compile(
+        r"\b([Ll]e|[Ll]a|[Ll]es|[Ll]'|[Uu]n|[Uu]ne|[Dd]es|[Cc]e|[Cc]et|[Cc]ette|[Cc]es|[Dd]u|"
+        r"[Cc]haque|[Cc]hacun|[Oo]n|[Cc]ela|[Qq]uelqu|[Nn]ous|[Jj]'|[Jj]e|"
+        r"[Mm]on|[Mm]a|[Mm]es|[Tt]on|[Tt]a|[Tt]es|[Nn]otre|[Nn]os|[Vv]otre|[Vv]os)\b"
+    ),
+}
+
+#: French's dummy subject. Spelled `il` and referring to nobody.
+#:
+#: Every construction the corpus uses, written out rather than approximated,
+#: because the two failure modes are opposite and both are bad: a pattern that
+#: is too narrow reports `Il pleut` as an invented man, and one that is too wide
+#: stops seeing the invented man in `Il n'est pas encore arrivé`. The list is
+#: long for that reason and each entry is a sentence that exists.
+_FRENCH_IMPERSONAL = re.compile(
+    r"\b[Ii]l\s+(?:"
+    r"y\s+(?:a|avait|en\s+a)|"
+    r"n'y\s+(?:a|en\s+a|avait)|"
+    r"ne\s+(?:reste|sert|faut)|"
+    r"reste|manque|faut|fallait|"
+    r"(?:me|te|lui|nous|vous|leur)\s+(?:manque|reste|faut)|"
+    r"pleut|pleuvra|pleuvrait|neige|neigeait|a\s+(?:plu|neigé)|faisait|"
+    r"(?:continue|cesse|commence)\s+(?:de|à)\s+(?:pleuvoir|neiger)|"
+    r"fait\b|s'est\s+(?:passé|mis|soudain\s+mis)|semble|s'agit|arrive\s+que|"
+    r"est\s+(?:encore\s+|déjà\s+|vraiment\s+)?"
+    r"(?:tôt|tard|temps|important|difficile|possible|nécessaire|préférable|dommage)"
+    r")"
+    r"|-(?:t-)?il\b|\bqu'il\b|\boù\s+il\b|\bs'il\b|\bquoi\s+qu'il\b|\bcas\s+où\s+il\b"
+)
 
 #: The marker of a person invented by the translator, per language.
 _INVENTED_PERSON = {
@@ -735,9 +800,16 @@ _INVENTED_PERSON = {
     "zh": re.compile(r"(?<![吉其])[他她](?!们)"),
     "es": re.compile(r"\b(Él|él|Ella|ella)\b"),
     "pt": re.compile(r"\b(Ele|ele|Ela|ela|dele|dela)\b"),
-    # German only: the possessive. `sein` bare is the infinitive "to be", and
-    # `Sie`/`Ihre` are the formal second person this product speaks in.
-    "de": re.compile(r"\b(seine[nmrs]?|Seine[nmrs]?|ihre[nmrs]?\s+(Stimme|Bewegungen|Ausdrucksweise))\b"),
+    # German. The possessive plus the bare subject pronoun. `sein` on its own is
+    # the infinitive "to be", and capitalised `Sie`/`Ihre` are the formal second
+    # person this product speaks in, so neither is matched.
+    "de": re.compile(
+        r"\b(Er|er|ihn|ihm|seine[nmrs]?|Seine[nmrs]?|ihre[nmrs]?\s+"
+        r"(Stimme|Bewegungen|Ausdrucksweise|Fähigkeiten|Schultern|Gesicht|Haltung))\b"
+    ),
+    # French. The subject pronouns and the possessives; `_FRENCH_IMPERSONAL`
+    # takes the dummy `il` back out again.
+    "fr": re.compile(r"\b(Il|il|Elle|elle|[Ss]on|[Ss]a|[Ss]es)\b"),
 }
 
 
