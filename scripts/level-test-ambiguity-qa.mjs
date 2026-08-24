@@ -297,6 +297,18 @@ for (const [, group] of byPrompt) {
  * nothing. What is pinned is the frame: a sentence that cannot have one answer,
  * or an option that must never be offered at all.
  */
+/**
+ * Person nouns, from the file the builder classifies by.
+ *
+ * Read rather than listed, so that adding 남자 or 아이 to the classes cannot
+ * reopen the hole that closing 여자 shut. See `content/vocabulary/noun-classes.json`.
+ */
+const PERSON_NOUNS = new Set(
+  Object.entries(JSON.parse(readFileSync(join(ROOT, 'content/vocabulary/noun-classes.json'), 'utf8')).classes)
+    .filter(([, classes]) => classes.includes('person'))
+    .map(([word]) => word),
+);
+
 const REGRESSIONS = [
   {
     name: '힘찬 / 활기찬',
@@ -329,6 +341,30 @@ const REGRESSIONS = [
     hit: (item) =>
       item.kind === 'context' &&
       (item.options ?? []).some((o) => item.prompt.replace('____', o).includes('여자를 타')),
+  },
+  {
+    name: '____을 안 마셔요 with 여자',
+    why: 'a person in the object slot of 마시다 — the same defect as 여자를 타요, on the daily screen',
+    hit: (item) =>
+      item.kind === 'context' &&
+      /안 마셔요|마시지 않아요/.test(item.prompt) &&
+      (item.options ?? []).some((o) => PERSON_NOUNS.has(o)),
+  },
+  {
+    name: '____가 있어요',
+    why: 'a frame with nothing in it but a particle: every noun in the language is an answer',
+    hit: (item) =>
+      item.kind === 'context' && /^_{4}(이|가|은|는|을|를)\s*(있어요|없어요|이에요|예요)[.?!]?$/.test(item.prompt),
+  },
+  {
+    name: '끝없다 beside 끝없다',
+    why: 'the answer is printed in the prompt it answers, so reading the sentence gives it away',
+    hit: (item) =>
+      item.kind === 'context' &&
+      (item.options ?? []).some((o) => {
+        const stem = o.endsWith('다') && o.length > 1 ? o.slice(0, -1) : o;
+        return stem.length >= 2 && item.prompt.replace('____', '').includes(stem);
+      }),
   },
 ];
 for (const regression of REGRESSIONS) {

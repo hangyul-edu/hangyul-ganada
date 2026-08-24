@@ -21,9 +21,9 @@
  * comes out and know what kind of noun went in.
  *
  * So this composes. For every contextual Level Test item it builds all four
- * sentences, and for every daily and review question it builds the options the
- * runtime would build, then reads each result against the frame rules —
- * a predicate plus the noun classes that must not fill its object slot.
+ * sentences, and for every daily and review gap-fill it builds the four the
+ * runtime will render, then reads each result against the frame rules — a
+ * predicate plus the noun classes that must not fill its object slot.
  *
  * ## What it deliberately does not do
  *
@@ -150,7 +150,41 @@ for (const item of contexts) {
   }
 }
 
-// --- 3. The taught examples themselves ---------------------------------------
+// --- 3. The daily and review gap-fills ---------------------------------------
+/*
+ * The same rules, read off the file the runtime actually uses.
+ *
+ * The bank above is what the Level Test asks. `cloze.json` is what Today's
+ * Vocabulary and Review ask, and although the same builder writes both from the
+ * same anchors, they are not the same rows: the bank carries every contextual
+ * item, the cloze file only the ones whose anchor came from the corpus, and the
+ * surfaces in it are conjugated where the bank's are lemmas. A gate that reads
+ * one and claims both is a gate that would not have caught 여자를 안 마셔요 on
+ * the screen it appeared on, which was the daily session.
+ */
+const clozeWords = read('apps/web/src/data/generated/cloze.json').words;
+const byId = new Map(vocabulary.words.map((word) => [word.id, word.word]));
+let clozeSentences = 0;
+
+for (const [wordId, gap] of Object.entries(clozeWords)) {
+  for (const option of gap.options) {
+    const sentence = `${gap.before}${option.surface}${gap.after}`;
+    clozeSentences += 1;
+
+    // The lemma, not the surface: 마셨어요 is not on any list and 마시다 is.
+    const lemma = byId.get(option.id);
+    if (lemma && EXCLUDED.has(lemma)) {
+      report('cloze-option', wordId, `${lemma} is an excluded term`);
+    }
+    if (gap.form === 'noun' && NOT_STANDALONE.has(option.surface)) {
+      report('cloze-standalone', wordId, `${option.surface} may not stand alone in a sentence`);
+    }
+    const why = unsafeComposition(sentence, option.surface);
+    if (why) report('cloze-composed', wordId, `${sentence} — ${why}`);
+  }
+}
+
+// --- 4. The taught examples themselves ---------------------------------------
 for (const word of vocabulary.words) {
   const example = word.example ?? '';
   if (!example) continue;
@@ -178,6 +212,7 @@ console.log(`  frame rules               ${FRAMES.length}`);
 console.log(`  taught words read         ${vocabulary.words.length.toLocaleString('en')}`);
 console.log(`  bank items read           ${(bank.items ?? bank).length.toLocaleString('en')}`);
 console.log(`  contextual sentences composed  ${contexts.length * 4}`);
+console.log(`  gap-fill sentences composed    ${clozeSentences.toLocaleString('en')}`);
 
 if (findings.length === 0) {
   console.log('\nnothing a learner can reach at random is unsafe, as a word or as a sentence.');
