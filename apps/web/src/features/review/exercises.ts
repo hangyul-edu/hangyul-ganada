@@ -2,11 +2,12 @@ import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import { ALL_CHARACTERS, getCharacterByGlyph } from '../../data/characters';
 import { toSyllables } from '../../data/jamo';
+import { clozeFor } from '../../data/cloze';
 import { VOCABULARY, getWord } from '../../data/vocabulary';
 import type { ExerciseMode } from '../../domain/review';
 import type { ReviewCandidate } from '../../domain/review';
 import { recognitionOptions, soundsTheSame } from '../learning/lookAlikes';
-import { MIN_OPTIONS, contextOptions, readingOptions } from '../learning/wordOptions';
+import { MIN_OPTIONS, readingOptions } from '../learning/wordOptions';
 import { type HintStep, type Label, characterHints, wordHints } from './hints';
 
 /**
@@ -260,29 +261,31 @@ function wordExercise(
       return null;
 
     case 'context': {
-      if (!word.example) return null;
-      const split = splitSentence(word.example, word.word);
-      if (!split) return null;
       /*
-       * `contextOptions`, not `readingOptions` — see `wordOptions.ts`.
+       * Read, not built. See `data/cloze.ts` for what this used to do and why
+       * it stopped: the blank was the stem and the options were dictionary
+       * forms, so 빵을 ___어요 was asked with 만들다 among the answers.
        *
-       * A gap-fill offered look-alike distractors of the same category is the
-       * `저 ___ 는 의사예요 / 남자 / 여자` bug: every option fits, and the
-       * learner is marked wrong for a defensible answer. The pool here is
-       * deliberately drawn from elsewhere in the corpus, and when it cannot
-       * produce a full set the question is dropped rather than padded.
+       * A word with no entry has no gap-fill, and that is the right answer for
+       * a sentence that cannot have one. The step planner asks something else.
        */
-      const chosen = contextOptions(word, word.example, seed + 13, (other) => meaningOf(other).value);
-      if (chosen.length < MIN_OPTIONS) return null;
-      const options = chosen.map((option) => ({
+      const gap = clozeFor(word.id);
+      if (!gap) return null;
+      const options = gap.options.map((option) => ({
         id: option.id,
-        korean: option.word,
+        korean: option.surface,
       }));
+      if (options.length < MIN_OPTIONS) return null;
       return {
         candidate,
         mode: 'context',
         promptKey: 'review.prompt.context',
-        sentence: { ...split, audioId: word.audio.example },
+        sentence: {
+          before: gap.before,
+          target: gap.target,
+          after: gap.after,
+          audioId: word.audio.example,
+        },
         options,
         answerId: word.id,
         hints,

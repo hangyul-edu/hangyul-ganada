@@ -331,6 +331,16 @@ def build() -> dict:
                 "surface": word.get("as") or word["word"],
                 "senseId": word.get("senseId") or word["id"],
                 "category": corpus["categories"][word["c"]],
+                # Every category the word is filed or tagged under. The tags
+                # matter as much as the category: 하다 and 두다 are filed apart
+                # and both tagged `actions`, and a gap-fill that offers one
+                # against the other has two answers. The runtime chooser used to
+                # check both and the builder only checked one, which is the
+                # regression `answerable.test.ts` caught when the two were
+                # merged.
+                "category_tags": [
+                    corpus["categories"][tag] for tag in (word.get("ct") or [])
+                ],
                 # A teaching example that has been judged unusable as a
                 # gap-fill. See `pack.Entry.context_ok`.
                 "context_ok": not word.get("noContext"),

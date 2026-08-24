@@ -197,28 +197,21 @@ export function readingOptions(
  * still answerable; a question with two right answers is not, and the whole
  * point of this function is that the second one never ships.
  */
-export function contextOptions(
-  word: VocabularyWord,
-  sentence: string,
-  seed: number,
-  meaningOf?: MeaningLookup,
-): VocabularyWord[] {
-  const tags = new Set([word.category, ...word.category_tags]);
-  const pool = VOCABULARY.filter((other) => {
-    if (other.id === word.id) return false;
-    if (other.part_of_speech !== word.part_of_speech) return false;
-    // Rule 2, both directions: neither may be filed or tagged where the other
-    // is. Checking one direction lets a broadly-tagged word slip through.
-    if (tags.has(other.category)) return false;
-    if (other.category_tags.some((tag) => tags.has(tag))) return false;
-    // Rule 3.
-    if (sentence.includes(other.word)) return false;
-    return true;
-  }).sort((a, b) => a.difficulty_score - b.difficulty_score);
-
-  const chosen = take(word, [pool], meaningOf);
-  return shuffle([word, ...chosen], seed);
-}
+/*
+ * `contextOptions` used to live here and has been removed.
+ *
+ * It chose the four words for a gap-fill in the browser, and the browser is the
+ * wrong place to decide that. It knew about categories and it did not know
+ * about the particle the sentence carries, about which surface form the blank
+ * needs, about person nouns in an object slot, or about whether more than one
+ * of its four choices made a sentence. So Today's Vocabulary asked 빵을 ___어요
+ * with 만들다 among the options, and ___을 안 마셔요 with 여자.
+ *
+ * `scripts/content/build_level_test.mjs` already answered all of those
+ * questions for the Level Test. It now writes its answers to
+ * `data/generated/cloze.json` and every quiz surface reads them. See
+ * `apps/web/src/data/cloze.ts`.
+ */
 
 /** How many options a question must have before it is worth asking. */
 export const MIN_OPTIONS = OPTION_COUNT;
