@@ -51,3 +51,9 @@ content-cache/
 # of the product.
 *Zone.Identifier
 .walk-shots/
+
+# The letter/face comparison sheet, written by `npm run letters:face`. Every
+# letter at three sizes against the font file — regenerated on demand, and the
+# JSON beside it is a measurement, not a source of truth.
+.letter-face-qa/
+.cv-audit/

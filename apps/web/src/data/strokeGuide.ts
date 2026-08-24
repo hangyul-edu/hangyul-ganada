@@ -1,6 +1,7 @@
 import type { HangulCharacter, StrokeStep } from '@hangyul-ganada/shared-types';
 
 import { syllableLayout } from './compose';
+import { placedSteps } from './strokeVectors';
 
 /**
  * "Where do I start, which way do I go, what comes next" — for this character.
@@ -18,7 +19,13 @@ import { syllableLayout } from './compose';
  * ## Where the instruction comes from
  *
  * From `data/strokes.ts` — the same polylines the demonstration animates and
- * the same ones `strokeOrderNotes` grades against. Not from a second, hand-typed
+ * the same ones `strokeOrderNotes` grades against, read *after* they have been
+ * placed into the writing box. That last part matters: `strokes.ts` authors a
+ * letter's proportions and `shapeToFace` decides how much of the box it fills,
+ * so "half the box" is a fact about the placed geometry and not about the
+ * numbers in the table. Measured on the table instead, ㅏ acquired a long line
+ * across it the day the vowels were re-authored in the face's own fractions,
+ * and nothing about the letter had changed. Not from a second, hand-typed
  * description of them, which is a copy that will eventually disagree with the
  * animation the learner is watching while they read it. Everything below is
  * derived: which way each stroke runs, how long it is relative to the box,
@@ -86,8 +93,17 @@ export type StrokeGuide =
 
 /** Below this, two coordinates are the same coordinate rather than a slope. */
 const FLAT = 0.05;
-/** A vertical stroke spanning at least this much of the box is a long one. */
-const LONG_DOWN = 0.55;
+/**
+ * A vertical stroke spanning at least this much of the box is a long one.
+ *
+ * The curriculum's verticals fall into two groups with nothing between them:
+ * ㅎ's tick and ㅗ's stem at 0.21 to 0.44, then ㅍ's uprights at 0.56 and ㅁ's
+ * at 0.60 and upwards to ㅣ at 0.84. The cut is placed in the gap above ㅍ,
+ * because a learner told ㅍ has "two long lines down" would be being told
+ * something about the box rather than about the letter: they are the shortest
+ * full-height strokes in the curriculum and two thirds the length of ㅣ.
+ */
+const LONG_DOWN = 0.58;
 /** And a horizontal one. Lower, because the box is as wide as it is tall but a
     letter's horizontals sit inside its verticals. */
 const LONG_ACROSS = 0.45;
@@ -206,7 +222,10 @@ export function strokeGuideFor(character: HangulCharacter): StrokeGuide {
     return { kind: 'parts', parts: [...parts], doubled, placement };
   }
 
-  const measured = character.strokes.map(measure).filter((m): m is Measured => m !== null);
+  // The placed geometry, not the authored table. See the note at the top.
+  const placed = placedSteps(character.character);
+  const strokes = placed.length === character.strokes.length ? placed : character.strokes;
+  const measured = strokes.map(measure).filter((m): m is Measured => m !== null);
   const shapes = collapse(measured);
   return { kind: 'strokes', shapes };
 }

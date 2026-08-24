@@ -33,6 +33,20 @@
  * with the face the learner is tracing, and it is asked by fitting both exactly
  * the way the app fits the guide and overlaying them.
  *
+ * ## Except for six letters, where this file is comparing itself
+ *
+ * For the compound vowels in `HANDWRITTEN_GUIDE` the guide is *also* stroked
+ * from the authored centrelines — deliberately, so a learner does not trace a
+ * slanted ㅗ bar and then watch a level one — and both sides of the comparison
+ * are then the same ink. It scored ㅙ and ㅞ at 100% in both directions while
+ * the app drew them with their halves visibly apart, which is the only thing it
+ * could have done.
+ *
+ * Those six are reported here as **deferred**, not scored: a number that cannot
+ * fall is worse than no number, because it reads as evidence. What actually
+ * checks them is `npm run letters:face`, which measures every letter against
+ * the font file — a reference the product does not control.
+ *
  * ## What it measures, and what it refuses to conclude
  *
  * Intersection over union of the two ink masks, and for composed syllables the
@@ -415,6 +429,7 @@ await browser.close();
 const problems = [];
 for (const r of results) {
   if (r.error) { problems.push(`${r.character}: ${r.error}`); continue; }
+  if (r.handwritten) continue;
   if (r.score < MIN_EXPLAINED) {
     const which = r.guideExplained < r.demoExplained
       ? `${((1 - r.guideExplained) * 100).toFixed(0)}% of the tracing guide's ink has nothing near it in the demonstration`
@@ -432,8 +447,18 @@ for (const r of results) {
   }
 }
 
-const scored = results.filter((r) => !r.error).sort((a, b) => a.score - b.score);
-console.log(`Glyph shape — ${results.length} taught items, demonstration against tracing guide\n`);
+/*
+  The six the guide is stroked for are not scored: for them both sides of this
+  comparison are the same object. See the note at the top, and `letters:face`.
+*/
+const deferred = results.filter((r) => !r.error && r.handwritten);
+const scored = results
+  .filter((r) => !r.error && !r.handwritten)
+  .sort((a, b) => a.score - b.score);
+console.log(
+  `Glyph shape — ${results.length} taught items, ${scored.length} scored: ` +
+    'demonstration against tracing guide\n',
+);
 console.log('  worst ten, by the less well explained of the two directions:');
 console.log('    item   guide explained   demo explained   worst jamo drift');
 for (const r of scored.slice(0, 10)) {
@@ -449,6 +474,12 @@ const mean = scored.reduce((n, r) => n + r.score, 0) / scored.length;
 console.log(
   `\n  mean ${(mean * 100).toFixed(1)}%, floor ${(MIN_EXPLAINED * 100).toFixed(0)}%, ` +
     `tolerance ${TOLERANCE_PX}px of a ${R}px raster`,
+);
+console.log(
+  `  ${deferred.length} deferred to \`npm run letters:face\` — ${deferred
+    .map((r) => r.character)
+    .join(' ')} are stroked for both representations, so a score here would be` +
+    ' a comparison of a thing with itself',
 );
 
 if (!CHECK) {
@@ -468,10 +499,6 @@ if (!CHECK) {
   console.log('  numbers cannot tell you whether it looks like the letter. Look at them.');
 }
 
-console.log(
-  `  ${HANDWRITTEN.size} of them are stroked rather than set — the six compound vowels ` +
-    'the face slants and a hand does not',
-);
 console.log('  0 stated exceptions.');
 
 if (problems.length === 0) {

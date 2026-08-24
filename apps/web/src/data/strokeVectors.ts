@@ -189,6 +189,7 @@ interface Point {
 }
 
 const cache = new Map<string, VectorGlyph>();
+const placedCache = new Map<string, StrokeStep[]>();
 
 /**
  * The instructional strokes for a character.
@@ -224,6 +225,43 @@ export function vectorGlyph(character: string): VectorGlyph {
   return glyph;
 }
 
+/**
+ * The character's strokes as they are finally *placed*, in the 0–1 box.
+ *
+ * `data/strokes.ts` authors a letter's proportions, not the box it ends up in:
+ * the vowels are written there in fractions of the **face's ink**, and every
+ * letter is then fitted by `shapeToFace`. So anything reasoning about how long
+ * a stroke is *relative to the writing box* — which is what a learner is told
+ * in `data/strokeGuide.ts` — has to read the placed geometry. Reading the
+ * authored numbers is reading an authoring convention, and it said ㅏ had a
+ * long line across it the day the convention changed.
+ */
+export function placedSteps(character: string): StrokeStep[] {
+  const hit = placedCache.get(character);
+  if (hit) return hit;
+  const steps = strokeStepsFor(character);
+  if (!steps.length) return [];
+  const syllable = isSyllable(character);
+  const pen = syllable ? SYLLABLE_PEN : JAMO_PEN;
+  const scaled = steps.map((step) => scale(step, BOX));
+  const placed = (syllable ? scaled : shapeToFace(scaled, character, pen)).map(
+    (step): StrokeStep => ({
+      points: step.points.map((p) => ({ x: p.x / BOX, y: p.y / BOX })),
+      ...(step.curve
+        ? {
+            curve: step.curve.map((segment) => ({
+              c1: { x: segment.c1.x / BOX, y: segment.c1.y / BOX },
+              c2: { x: segment.c2.x / BOX, y: segment.c2.y / BOX },
+              to: { x: segment.to.x / BOX, y: segment.to.y / BOX },
+            })),
+          }
+        : {}),
+    }),
+  );
+  placedCache.set(character, placed);
+  return placed;
+}
+
 export function hasVectorGlyph(character: string): boolean {
   return strokeStepsFor(character).length > 0;
 }
@@ -255,41 +293,139 @@ function shapeToFace(strokes: StrokeStep[], character: string, pen: number): Str
   const aspect = ASPECT[character];
   if (!aspect) return strokes;
 
-  const source = inkBounds(strokes);
   const inkWidth = aspect >= 1 ? JAMO_SPAN : JAMO_SPAN * aspect;
   const inkHeight = aspect >= 1 ? JAMO_SPAN / aspect : JAMO_SPAN;
 
-  // The measurement is of ink; these strokes are centrelines, and the pen puts
-  // half its width outside each one. Inset by that and the drawn result
-  // reproduces the box that was measured rather than a fatter version of it.
-  const half = pen / 2;
-  const spanX = Math.max(0, inkWidth - pen);
-  const spanY = Math.max(0, inkHeight - pen);
-  void half;
-
+  const source = inkBounds(strokes);
   const sourceWidth = source.x1 - source.x0;
   const sourceHeight = source.y1 - source.y0;
-  const scaleX = sourceWidth < 0.01 ? 0 : spanX / sourceWidth;
-  const scaleY = sourceHeight < 0.01 ? 0 : spanY / sourceHeight;
-  const midX = (source.x0 + source.x1) / 2;
-  const midY = (source.y0 + source.y1) / 2;
+  /*
+    A letter with no extent on an axis — ㅣ and ㅡ — has nothing on that axis to
+    scale, and its measurement across it is the pen. Left alone rather than
+    divided by zero, and the aspect it lands at is the one the pen allows.
+  */
+  const fitX = sourceWidth >= 0.01;
+  const fitY = sourceHeight >= 0.01;
 
-  const move = (point: Point): Point => ({
-    x: round(BOX / 2 + (point.x - midX) * scaleX),
-    y: round(BOX / 2 + (point.y - midY) * scaleY),
-  });
+  let scaleX = fitX ? (inkWidth - pen) / sourceWidth : 0;
+  let scaleY = fitY ? (inkHeight - pen) / sourceHeight : 0;
 
-  return strokes.map((stroke) => {
-    const next: StrokeStep = { points: stroke.points.map(move) };
-    if (stroke.curve) {
-      next.curve = stroke.curve.map((segment) => ({
-        c1: move(segment.c1),
-        c2: move(segment.c2),
-        to: move(segment.to),
-      }));
+  const apply = (sx: number, sy: number, ox: number, oy: number, exact: boolean) => {
+    const at = (point: Point): Point => {
+      const x = point.x * sx + ox;
+      const y = point.y * sy + oy;
+      return exact ? { x, y } : { x: round(x), y: round(y) };
+    };
+    return strokes.map((stroke) => {
+      const next: StrokeStep = { points: stroke.points.map(at) };
+      if (stroke.curve) {
+        next.curve = stroke.curve.map((segment) => ({
+          c1: at(segment.c1),
+          c2: at(segment.c2),
+          to: at(segment.to),
+        }));
+      }
+      return next;
+    });
+  };
+
+  /*
+    Solve for the scale whose *ink* is the measured box, rather than assuming
+    it. `drawnInkBox` is not a linear function of the scale — the pen does not
+    scale with the letter, and which end of which stroke reaches furthest can
+    change — so this is iterated. Four passes takes every letter in the
+    curriculum inside a hundredth of a unit; the first pass alone is already
+    within a tenth on all but the narrowest.
+  */
+  for (let pass = 0; pass < 4; pass += 1) {
+    const box = drawnInkBox(apply(scaleX, scaleY, 0, 0, true), pen);
+    const width = box.x1 - box.x0;
+    const height = box.y1 - box.y0;
+    if (fitX && width > 0.01) scaleX *= inkWidth / width;
+    if (fitY && height > 0.01) scaleY *= inkHeight / height;
+  }
+
+  const box = drawnInkBox(apply(scaleX, scaleY, 0, 0, true), pen);
+  return apply(
+    scaleX,
+    scaleY,
+    BOX / 2 - (box.x0 + box.x1) / 2,
+    BOX / 2 - (box.y0 + box.y1) / 2,
+    false,
+  );
+}
+
+/**
+ * The box the letter's **ink** occupies, which is not its centreline box grown
+ * by half a pen on every side.
+ *
+ * A pen widens a stroke across its own direction and not along it, and these
+ * strokes are drawn with butt caps: a vertical is exactly as tall as its
+ * centreline and one pen wider, a horizontal is the mirror of that. So growing
+ * the centreline box uniformly — which is what the fit used to do — describes a
+ * box the letter does not fill, and the error is anisotropic. It is a whole pen
+ * on the axis no stroke ends on and nothing on the axis every extreme is a butt
+ * cap on, so the letter comes out at the wrong *proportion* rather than merely
+ * the wrong size.
+ *
+ * Measured on this tree before the change, every one of the forty jamo missed
+ * the proportion `measure-jamo.mjs` took off the face, ㅐ and ㅒ by twelve per
+ * cent — two uprights and a crossbar, stretched an eighth wider than Pretendard
+ * draws them, which is a visible part of why the halves of a compound vowel
+ * read as separate letters. The fit is now solved against this.
+ *
+ * The `corner` extension `build` adds is part of the drawn path, so it is part
+ * of the ink and is included here; the classification is the same one, run on
+ * the same geometry, so the two cannot disagree about which ends are corners.
+ */
+function drawnInkBox(
+  strokes: StrokeStep[],
+  pen: number,
+): { x0: number; y0: number; x1: number; y1: number } {
+  const half = pen / 2;
+  let x0 = Infinity;
+  let y0 = Infinity;
+  let x1 = -Infinity;
+  let y1 = -Infinity;
+
+  strokes.forEach((step, index) => {
+    const points = step.points;
+    const first = points[0]!;
+    const last = points[points.length - 1]!;
+    const closed = distance(first, last) < 0.01 && points.length > 2;
+    const ends = closed
+      ? { start: 'free' as StrokeEndKind, end: 'free' as StrokeEndKind }
+      : {
+          start: classify(first, index, strokes, pen),
+          end: classify(last, index, strokes, pen),
+        };
+
+    const drawn = points.slice();
+    if (!closed && ends.start === 'corner') {
+      drawn.unshift(extend(first, tangentAt(step, 'start'), half));
     }
-    return next;
+    if (!closed && ends.end === 'corner') {
+      drawn.push(extend(last, tangentAt(step, 'end'), half));
+    }
+
+    for (let i = 1; i < drawn.length; i += 1) {
+      const a = drawn[i - 1]!;
+      const b = drawn[i]!;
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const length = Math.hypot(dx, dy);
+      // The pen's reach across each axis is its half width times the size of
+      // the segment normal's component on that axis.
+      const padX = length < 1e-6 ? half : (half * Math.abs(dy)) / length;
+      const padY = length < 1e-6 ? half : (half * Math.abs(dx)) / length;
+      x0 = Math.min(x0, Math.min(a.x, b.x) - padX);
+      x1 = Math.max(x1, Math.max(a.x, b.x) + padX);
+      y0 = Math.min(y0, Math.min(a.y, b.y) - padY);
+      y1 = Math.max(y1, Math.max(a.y, b.y) + padY);
+    }
   });
+
+  return { x0, y0, x1, y1 };
 }
 
 function inkBounds(strokes: StrokeStep[]): { x0: number; y0: number; x1: number; y1: number } {

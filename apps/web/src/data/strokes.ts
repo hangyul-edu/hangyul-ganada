@@ -273,7 +273,15 @@ function digeut(left: number, right: number): StrokeStep[] {
   ];
 }
 
-/** The four strokes of a ㅂ: both uprights, the waist, then the base. */
+/**
+ * The four strokes of a ㅂ: both uprights, the waist, then the base.
+ *
+ * The waist sits at 0.41 of the letter's ink, which is where Pretendard puts
+ * it — noticeably above the middle. It was authored at 0.50, and a ㅂ with its
+ * waist on the centre line reads as a box with a shelf in it rather than as ㅂ:
+ * the counter above the waist should be the shallower of the two. Measured by
+ * `letters:face`, which is also what found it.
+ */
 function bieup(left: number, right: number): StrokeStep[] {
   return [
     stroke([
@@ -285,8 +293,8 @@ function bieup(left: number, right: number): StrokeStep[] {
       [right, 86],
     ]),
     stroke([
-      [left, 52],
-      [right, 52],
+      [left, 45.5],
+      [right, 45.5],
     ]),
     stroke([
       [left, 86],
@@ -412,15 +420,58 @@ function circle(cx: number, cy: number, r: number): StrokeStep {
   ]);
 }
 
-/** A vertical, e.g. the upright of ㅏ or the ㅣ of a compound vowel. */
-function vertical(x: number, top = 10, bottom = 90): StrokeStep {
+/**
+ * ## The vowels are authored in the face's own fractions
+ *
+ * Every number in the vowel table below is a position in the letter's **ink
+ * box** as Pretendard draws it, times a hundred: `upright(15.6)` is the stem
+ * Pretendard centres 15.6% of the way across ㅏ's ink. They were read off the
+ * face by `scripts/compound-vowel-qa.mjs`, which renders the glyph, finds its
+ * uprights and bars, and reports where they are — and which then re-reads the
+ * app's own drawing the same way and compares the two.
+ *
+ * `shapeToFace` renormalises whatever box these are authored in, so the
+ * absolute values do not survive; the proportions do, and stating them in the
+ * face's units is what makes the table checkable against the face by eye as
+ * well as by the gate.
+ *
+ * ### Why this was rewritten
+ *
+ * The previous numbers were authored by eye in a roughly square box, and two
+ * defects came out of it that no gate could see, because `glyphshape:qa`
+ * compares the tracing guide with the demonstration and for these letters both
+ * are drawn from this table.
+ *
+ * **The bars were short.** Pretendard carries ㅗ's bar 68% of the way across ㅘ
+ * and stops it a twentieth of the letter short of the ㅏ; this table stopped it
+ * at 49% and left an open channel three times as wide. Every ㅗ/ㅜ/ㅡ compound
+ * had it. A learner sees two letters side by side instead of one vowel, which
+ * is the thing a compound vowel most needs not to look like.
+ *
+ * **The crossbars did not arrive.** In ㅐ, ㅒ and ㅙ the face runs the ㅏ's
+ * branch into the second upright — one connected mark. This table stopped the
+ * branch an eighth of the letter short of it, so the second upright stood on
+ * its own and the letter read as ㅏ then ㅣ. The branch now ends a third of a
+ * pen *inside* the upright it belongs to: far enough that the ink is
+ * continuous, not so far that the animation draws a stroke past where the pen
+ * has been.
+ *
+ * Where the face slants a bar — it tilts ㅗ and ㅜ down towards the outside so
+ * the halves do not collide at text sizes — the number here is the slant's mean
+ * height, and the guide draws it level. That is an optical adjustment belonging
+ * to the typeface, and nobody writes a slanted ㅗ.
+ */
+
+/** An upright — ㅏ's stem, ㅣ, the second half of a ㅐ. Ink-box fractions ×100. */
+function upright(x: number, top = 0, bottom = 99.8): StrokeStep {
   return stroke([
     [x, top],
     [x, bottom],
   ]);
 }
 
-function horizontal(y: number, left = 12, right = 88): StrokeStep {
+/** A full-width bar — ㅗ's, ㅜ's, ㅡ. Ink-box fractions ×100. */
+function crossbar(y: number, left = 0, right = 99.8): StrokeStep {
   return stroke([
     [left, y],
     [right, y],
@@ -430,111 +481,138 @@ function horizontal(y: number, left = 12, right = 88): StrokeStep {
 export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   // --- Basic vowels ---------------------------------------------------------
   // The upright first, then the branch, because the branch is to its right.
-  ㅏ: [vertical(45), stroke([[45, 50], [80, 50]])],
+  ㅏ: [upright(15.6), stroke([[15.6, 44.6], [99.4, 44.6]])],
   // The branch first, because here it is on the *left* of the upright.
-  ㅓ: [stroke([[20, 50], [55, 50]]), vertical(55)],
-  ㅗ: [stroke([[50, 18], [50, 62]]), horizontal(62)],
-  ㅜ: [horizontal(38), stroke([[50, 38], [50, 82]])],
-  ㅡ: [horizontal(50)],
-  ㅣ: [vertical(50)],
+  ㅓ: [stroke([[0, 43.9], [83.8, 43.9]]), upright(83.8)],
+  ㅗ: [stroke([[49.9, 0], [49.9, 91.1]]), crossbar(91.1)],
+  ㅜ: [crossbar(8.5), stroke([[49.8, 8.5], [49.8, 99.6]])],
+  ㅡ: [crossbar(48.9)],
+  ㅣ: [upright(49)],
 
   // --- Iotised vowels: the upright, then its branches, top before bottom -----
-  ㅑ: [vertical(45), stroke([[45, 35], [80, 35]]), stroke([[45, 65], [80, 65]])],
-  ㅕ: [stroke([[20, 35], [55, 35]]), stroke([[20, 65], [55, 65]]), vertical(55)],
-  ㅛ: [stroke([[32, 18], [32, 62]]), stroke([[66, 18], [66, 62]]), horizontal(62)],
-  ㅠ: [horizontal(38), stroke([[32, 38], [32, 80]]), stroke([[66, 38], [66, 80]])],
+  ㅑ: [
+    upright(15.9),
+    stroke([[15.9, 32.6], [99.4, 32.6]]),
+    stroke([[15.9, 60.7], [99.4, 60.7]]),
+  ],
+  ㅕ: [
+    stroke([[0, 31.2], [84, 31.2]]),
+    stroke([[0, 58.4], [84, 58.4]]),
+    upright(84),
+  ],
+  ㅛ: [
+    stroke([[30.7, 0], [30.7, 91.1]]),
+    stroke([[69.4, 0], [69.4, 91.1]]),
+    crossbar(91.1),
+  ],
+  ㅠ: [
+    crossbar(8.4),
+    stroke([[31.2, 8.4], [31.2, 99.6]]),
+    stroke([[68, 8.4], [68, 99.6]]),
+  ],
 
   // --- Compound vowels: the parts, in order ---------------------------------
-  // The connector stops well short of the second stem. The letter is fitted
-  // into the narrow box the face gives it (see `shapeToFace`), which brings the
-  // two stems much closer together than they are written here while the pen
-  // stays the width it is — so a connector authored to end a hair short of the
-  // stem ends up touching it. Sixty-two per cent of the way across leaves the
-  // gap the face leaves, at the width the face uses.
-  ㅐ: [vertical(35), stroke([[35, 50], [57, 50]]), vertical(70)],
-  ㅔ: [stroke([[16, 50], [44, 50]]), vertical(44), vertical(74)],
+  /*
+    ㅏ then ㅣ, and the branch reaches the ㅣ.
+
+    Pretendard's ㅐ is one connected mark: the crossbar runs from the first
+    upright into the second. Stopped short — which is what this used to do, by
+    an eighth of the letter — the second upright stands on its own and a learner
+    copying it writes ㅏ ㅣ. It ends a third of a pen inside the upright now, so
+    the ink is continuous without the animation drawing past the pen.
+  */
+  ㅐ: [upright(13.6), stroke([[13.6, 43.9], [81.3, 43.9]]), upright(85.9)],
+  // ㅓ then ㅣ. Here the face does *not* carry the bar across, and neither does
+  // this: the branch belongs to the ㅓ and stops on its upright.
+  ㅔ: [stroke([[0, 43.8], [46.4, 43.8]]), upright(46.4), upright(88.9)],
   ㅒ: [
-    vertical(30),
-    stroke([[30, 35], [56, 35]]),
-    stroke([[30, 65], [56, 65]]),
-    vertical(72),
+    upright(13.7),
+    stroke([[13.7, 31.2], [80.7, 31.2]]),
+    stroke([[13.7, 58.8], [80.7, 58.8]]),
+    upright(85.4),
   ],
   ㅖ: [
-    stroke([[12, 35], [42, 35]]),
-    stroke([[12, 65], [42, 65]]),
-    vertical(42),
-    vertical(74),
+    stroke([[0, 30.8], [47.7, 30.8]]),
+    stroke([[0, 57.8], [47.7, 57.8]]),
+    upright(47.7),
+    upright(89.2),
   ],
   ㅘ: [
-    stroke([[26, 18], [26, 52]]),
-    stroke([[6, 52], [48, 52]]),
-    vertical(68),
-    stroke([[68, 50], [92, 50]]),
+    stroke([[34.1, 31.1], [34.1, 69.8]]),
+    stroke([[0, 69.8], [67.9, 69.8]]),
+    upright(78.1),
+    stroke([[78.1, 44.5], [99.8, 44.5]]),
   ],
   ㅝ: [
-    stroke([[6, 38], [48, 38]]),
-    stroke([[26, 38], [26, 78]]),
-    stroke([[56, 50], [76, 50]]),
-    vertical(76),
+    stroke([[0, 47.4], [78.9, 47.4]]),
+    stroke([[37, 47.4], [37, 92.1]]),
+    stroke([[60.2, 66.9], [93.6, 66.9]]),
+    upright(93.6),
   ],
-  ㅚ: [stroke([[30, 18], [30, 52]]), stroke([[8, 52], [56, 52]]), vertical(78)],
-  ㅟ: [stroke([[8, 38], [56, 38]]), stroke([[30, 38], [30, 80]]), vertical(78)],
+  ㅚ: [stroke([[40.6, 32.1], [40.6, 68.1]]), stroke([[0, 68.1], [79.7, 68.1]]), upright(93.1)],
+  ㅟ: [stroke([[0, 48.4], [81, 48.4]]), stroke([[40.9, 48.4], [40.9, 91.9]]), upright(93.3)],
   /*
     ㅗ, then the ㅐ — and the ㅐ has to look like a ㅐ.
 
-    Its two uprights were 28 apart in a letter 100 wide, which measures 31 of
-    the ink box against Pretendard's 24. Nearly a third too wide, and what that
-    costs is not subtle: the branch reaches out of the first upright and stops
-    in open paper, and the second upright reads as a bar standing on its own
-    rather than as the other half of a ㅐ. A learner copying it writes ㅗ ㅏ ㅣ.
+    Two things were wrong here and only one of them had been found. The uprights
+    were 31 of the ink box apart against the face's 24, which a previous pass
+    corrected. The branch between them was still a stub: it stopped in open
+    paper two units short of the second upright, so the letter came apart into
+    ㅗ ㅏ ㅣ at exactly the place the eye looks for the join. The face runs it
+    through, and so does this.
 
-    69 and 93 of the ink box is where the face puts them, which is 63 and 84
-    here once the pen is accounted for, and the branch keeps the standalone ㅐ's
-    proportion — a little under two thirds of the gap.
+    The ㅗ's bar is the other half of the same defect: 44 of the ink box against
+    the face's 60, leaving a channel between the ㅗ and the ㅐ a third of the
+    letter wide.
   */
   ㅙ: [
-    stroke([[22, 18], [22, 52]]),
-    stroke([[4, 52], [42, 52]]),
-    vertical(63),
-    stroke([[63, 50], [77, 50]]),
-    vertical(84),
+    stroke([[30.5, 31], [30.5, 67.8]]),
+    stroke([[0, 67.8], [59.9, 67.8]]),
+    upright(70.2),
+    stroke([[70.2, 44.7], [91.9, 44.7]]),
+    upright(93.9),
   ],
   /*
-    ㅜ, then the ㅔ, and the same correction as ㅙ above.
+    ㅜ, then the ㅔ, and the same corrections as ㅙ above.
 
-    The uprights measured 76 and 95 of the ink box against the face's 71 and
-    93 — pushed right and squeezed, so the ㅔ sat against the edge with its
-    connector a stub between two bars. 65 and 86 here puts them where the face
-    has them.
-
-    The connector stays low. Authored level with the middle of the box it
-    landed a stroke's width above the ink it was meant to claim, the claim went
-    to the upright beside it, and it was left holding a scrap of somebody
-    else's letter with its route drawn through empty paper — which is what
-    `strokes:visual` is for and what it caught.
+    The connector stays low — 67 of the ink box, not 50. That is not a fudge to
+    keep it clear of the ㅜ's bar: it is where Pretendard puts it, in ㅝ as well
+    as ㅞ, because the ㅜ's bar has taken the middle of the letter and the ㅓ's
+    branch goes under it. Measured off the face, not chosen.
   */
   ㅞ: [
-    stroke([[4, 38], [42, 38]]),
-    stroke([[22, 38], [22, 78]]),
-    stroke([[52, 62], [65, 62]]),
-    vertical(65),
-    vertical(86),
+    stroke([[0, 48], [60.5, 48]]),
+    stroke([[30.2, 48], [30.2, 92.3]]),
+    stroke([[45.9, 66.9], [71.5, 66.9]]),
+    upright(71.5),
+    upright(94),
   ],
-  ㅢ: [stroke([[10, 55], [60, 55]]), vertical(78)],
+  ㅢ: [stroke([[0, 62.4], [80.3, 62.4]]), upright(93.5)],
 
   // --- Basic consonants -----------------------------------------------------
   ㄱ: [giyeok(20, 78)],
   ㄴ: [nieun(26, 82)],
   ㄷ: digeut(24, 80),
   ㄹ: [
-    // The ㄱ on top, the waist, then the ㄴ underneath.
-    // The three bars line up on both edges, as the face's do. Authored with the
-    // ㄱ's leg leaning in and the ㄴ's upright set in from the bar, the letter
-    // stepped in and out down its own sides and the leaning leg made a long
-    // mitred beak at the top corner.
-    stroke([[22, 16], [76, 16], [76, 44]]),
-    stroke([[22, 46], [76, 46]]),
-    stroke([[22, 48], [22, 82], [76, 82]]),
+    /*
+      The ㄱ on top, the waist, then the ㄴ underneath.
+
+      The three bars line up on both edges, as the face's do — and lining them
+      up means lining up the *ink*, not the centrelines. A bar is cut square
+      where its centreline stops; an upright puts half a pen outside its own.
+      Authored to the same x, the top bar therefore began half a pen inside the
+      upright below it and the letter stepped in at the top left and again at
+      the bottom right, which `letters:face` reads as the left edge of ㄹ
+      carrying ink for half its height where the face carries it for all of it.
+      So the bars that end in open paper are given that half pen. On the right
+      the face is not symmetrical about it: the waist stops flush with the leg's
+      ink and only the base runs past it, by about a fortieth of the letter, so
+      that is what these do — 79.3 for the waist and 80.8 for the base against
+      the leg's 76.
+    */
+    stroke([[18.7, 16], [76, 16], [76, 44]]),
+    stroke([[18.7, 46], [79.3, 46]]),
+    stroke([[22, 48], [22, 82], [80.8, 82]]),
   ],
   ㅁ: [
     // Left upright, then top-and-right in one turn, then the base. Three
@@ -594,10 +672,13 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
     stroke([[26, 48], [80, 48]]),
     stroke([[24, 20], [24, 80], [80, 80]]),
   ],
+  // The two uprights stand at 0.28 and 0.72 across the ink, not 0.22 and 0.78:
+  // Pretendard sets them a little inside where they were authored, and pushed
+  // out they crowd the lid's ends and leave the middle counter too wide.
   ㅍ: [
     stroke([[18, 24], [82, 24]]),
-    stroke([[32, 24], [32, 74]]),
-    stroke([[68, 24], [68, 74]]),
+    stroke([[35.9, 24], [35.9, 74]]),
+    stroke([[64.3, 24], [64.3, 74]]),
     stroke([[18, 76], [82, 76]]),
   ],
 
