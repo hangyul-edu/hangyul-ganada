@@ -87,7 +87,7 @@ exactly that.
 
 | | |
 | --- | --- |
-| Commit | `622b29f5` |
+| Commit | `683b9671` — the product commit the artefacts were built from; the commits after it are this document and the release directory |
 | Working tree | clean outside `docs/` and the release directories |
 | Node | v24.19.0 |
 | Web | React 19, Vite 7, TypeScript |
@@ -134,8 +134,8 @@ without trusting the row.
 | Unobserved words with a written reason | 33 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
 | Issues tracked | 106 | `docs/issues.json` |
-| Signed APK | @@APK_MB@@ MB | `result/build-info.json` |
-| Signed AAB | @@AAB_MB@@ MB | same |
+| Signed APK | 78.5 MB | `result/build-info.json` |
+| Signed AAB | 76.8 MB | same |
 
 "Characters taught" counts every entry in the curriculum's character table — the
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
@@ -1188,13 +1188,14 @@ on an emulated Pixel 7, Android 16, software-rendered.
 Not a debug build: the signed `result/hangyul-ganada-release.apk`, installed on
 an emulated Pixel 7 with `adb install -r` and opened.
 
-* Home renders complete — brand, the Unit 1 card with its six vowels, Letters
-  and Words tiles, the vocabulary-level row, the Cicero quote, the tab bar.
-* Letters reaches **Unit 10, *The combined vowels*, 0/7**, and its seven chips
-  — ㅘ ㅝ ㅚ ㅟ ㅙ ㅞ ㅢ — each read as one letter at chip size.
-* Opening it shows the demonstration with four numbered strokes, the sound
-  button, *like wa in "wander"*, and a *Write it* button. That screen is §7.2 on
-  a device: the ㅗ's bar reaches the ㅏ and the letter is one shape.
+* Home renders complete — brand, the Unit 1 card with its six vowels, the
+  streak chip and level chip, Letters and Words tiles, the vocabulary-level
+  row, the quotation, the tab bar. The install was `-r` over the previous
+  cycle's build, and the existing profile's streak and study time survived the
+  update — which is the persistence promise, exercised.
+* Words renders its goal card, saved-words row, search and all eighteen
+  categories; starting the day walks placement prompt → skip → the first
+  introduction card with its 0/10 counter, audio buttons and example.
 * `logcat` carries no `FATAL`, no `AndroidRuntime` and no ANR naming
   `com.talkhangyul.ganada`.
 
@@ -1265,18 +1266,22 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `7f21b034`, working tree clean |
+| Built from | `683b9671`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.4 MB**, `e68f7a7803a0180f…d3e51fff` |
-| Release AAB | **81.7 MB**, `40d2cf02d05ecb75…0d98043d` |
+| Release APK | **78.5 MB** (82,316,042 B), `7f856430b49ca865…` |
+| Release AAB | **76.8 MB** (80,533,803 B), `85c85432612595d4…` |
 
-The APK grew from 76.8 MB to 83.4 MB this cycle. The difference is the audio for
-the 273 new words and the core-band packs for twenty-two languages;
-`checksums.sha256` verifies in both `result/` and `app_result/`, and the two
-directories hold byte-identical binaries.
+The APK shrank from 83.4 MB to 78.5 MB this cycle — the `.woff` twins and the
+web-only files of §20E — with nothing removed from the product. The package
+was read rather than trusted: zero `.woff` files, zero copies of the social
+preview, 3,220 corpus words with the rewritten 화나다 example inside band 2,
+4,169 level-test items, the current audio build `20260825-a037f9bc`, the
+curated 3,721-example dictionary, and the corrected demonstrative-verb table
+(`어쩌:"어째"`) inside the shipped morphology chunk — a string that exists
+nowhere in the previous geometry of that module.
 
 **Two Android permissions, and neither is ever asked for.** The package declared
 five before an earlier cycle — the notification, boot and wake-lock permissions
@@ -1326,7 +1331,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 | Web unit (`vitest`) | **810** (53 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
-| End-to-end (`playwright`) | **346** (both projects) |
+| End-to-end (`playwright`) | **346** (173 × 2 projects) |
 
 The web suite grew by 21 this pass — the streak edge cases, the per-word
 crediting fixtures, and the 2,000-sitting randomized state machine (counted
@@ -2293,8 +2298,8 @@ full inventory and each decision's reasoning is
 
 | Component | Before | After | Saved |
 | --- | --- | --- | --- |
-| APK (signed) | 87,413,933 B (87.4 MB) | @@APK_BYTES@@ | @@APK_SAVED@@ |
-| AAB (signed) | 85,627,920 B (85.6 MB) | @@AAB_BYTES@@ | @@AAB_SAVED@@ |
+| APK (signed) | 87,413,933 B (83.4 MB) | 82,316,042 B (78.5 MB) | 5,097,891 B — 5.8% |
+| AAB (signed) | 85,627,920 B (81.7 MB) | 80,533,803 B (76.8 MB) | 5,094,117 B — 5.9% |
 | Audio | 68.3 MB | 68.3 MB | 0 — measured, deliberately unchanged |
 | Dictionary JSON | 16.0 MB | ~15.9 MB | example curation only |
 | JS/CSS/fonts | 12.6 MB | ~7.4 MB | 5.2 MB — the `.woff` twins |
