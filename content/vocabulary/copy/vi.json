@@ -834,7 +834,7 @@
     ],
     "word_geonmul": [
       "tòa nhà",
-      "Tòa nhà đó mới."
+      "Tòa nhà đó rất cao."
     ],
     "word_sipda": [
       "muốn",
@@ -1984,7 +1984,7 @@
     ],
     "word_wiheom": [
       "sự nguy hiểm",
-      "Nguy hiểm đấy, bạn cẩn thận nhé."
+      "Nguy cơ xảy ra tai nạn rất cao."
     ],
     "word_manyak": [
       "nếu",
@@ -2410,7 +2410,7 @@
     ],
     "word_teukbyeol": [
       "đặc biệt",
-      "Hôm nay là một ngày đặc biệt."
+      "Cuối tuần có giảm giá đặc biệt."
     ],
     "word_botong": [
       "thường",
@@ -3358,7 +3358,7 @@
     ],
     "word_hwanada": [
       "nổi giận",
-      "Bạn đừng giận nhé."
+      "Nghe câu đó tôi đã rất tức giận."
     ],
     "word_syupeo": [
       "siêu thị",
@@ -3655,7 +3655,7 @@
     ],
     "word_ttareuda": [
       "đi theo",
-      "Bạn đi theo tôi nhé."
+      "Phải tuân theo nội quy của trường."
     ],
     "word_indo": [
       "vỉa hè",
@@ -4280,7 +4280,7 @@
     ],
     "word_chada": [
       "đầy",
-      "Căn phòng đầy người."
+      "Căn phòng chật kín người."
     ],
     "word_hwaginhada": [
       "kiểm tra",
@@ -5355,7 +5355,7 @@
       "Không khí ở đây dễ chịu."
     ],
     "word_akkida": [
-      "trân trọng",
+      "tiết kiệm, quý trọng",
       "Tôi tiết kiệm nước."
     ],
     "word_teuksu": [
@@ -6177,7 +6177,7 @@
     ],
     "word_ginjang": [
       "sự căng thẳng",
-      "Trước kỳ thi tôi rất hồi hộp."
+      "Hãy thả lỏng và làm từ từ."
     ],
     "word_domang": [
       "sự bỏ trốn",
@@ -6229,7 +6229,7 @@
     ],
     "word_gadeuk": [
       "đầy ắp",
-      "Cái giỏ đầy ắp táo."
+      "Trong hộp đầy sách."
     ],
     "word_johajida": [
       "tốt lên",
@@ -7571,7 +7571,7 @@
     ],
     "word_naseoda": [
       "bước ra",
-      "Có người bước ra trước."
+      "Tôi đã đứng ra trước."
     ],
     "word_geomnada": [
       "thấy sợ",
@@ -8034,10 +8034,6 @@
       "sự bắt giữ",
       "Tôi nghe tin bắt được thủ phạm."
     ],
-    "word_buditda": [
-      "va phải",
-      "Tôi va đầu vào tường."
-    ],
     "word_jombi": [
       "thây ma",
       "Trong phim có thây ma."
@@ -8140,7 +8136,7 @@
     ],
     "word_pohamhada": [
       "bao gồm",
-      "Giá đã bao gồm thuế."
+      "Nếu bao gồm phí vận chuyển thì là ba mươi nghìn won."
     ],
     "word_geonneda": [
       "đưa cho",
@@ -8523,7 +8519,7 @@
       "Củi bùng cháy."
     ],
     "word_jiwonhada": [
-      "ứng tuyển, hỗ trợ",
+      "ứng tuyển",
       "Tôi đã ứng tuyển vào công ty."
     ],
     "word_hamburo": [
@@ -9857,7 +9853,7 @@
     ],
     "word_pokbalhada": [
       "nổ",
-      "Quả bóng bay đã nổ."
+      "Khí ga đã phát nổ."
     ],
     "word_wichihada": [
       "tọa lạc",
@@ -12076,7 +12072,7 @@
     ],
     "word_seumul": [
       "hai mươi",
-      "Hãy đếm từ hai mươi mốt."
+      "Năm nay tôi hai mươi tuổi."
     ],
     "word_harin": [
       "giảm giá",
