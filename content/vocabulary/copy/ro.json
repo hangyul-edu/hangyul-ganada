@@ -1,2415 +1,2444 @@
 {
- "_comment": "Vocabulary copy for Romanian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
- "locale": "ro",
- "words": {
-  "word_hada": [
-   "a face",
-   "Învăț.",
-   "A face — și motorul vocabularului coreean. Atașat unui substantiv, dă un verb: 공부 (studiu) devine 공부하다 (a studia), 사랑 (dragoste) devine 사랑하다. Sute de verbe se construiesc așa."
-  ],
-  "word_cha": [
-   "mașină",
-   "Merg cu mașina.",
-   "Mașină. Aceeași silabă înseamnă și ceai: 차를 마셔요 este beau ceai, iar 차를 타요 este urc în mașină. Verbul îți spune despre care e vorba."
-  ],
-  "word_yeoja": [
-   "femeie",
-   "Femeia aceea e medic."
-  ],
-  "word_na": [
-   "eu",
-   "Învăț coreeană."
-  ],
-  "word_hae": [
-   "Soarele",
-   "Soarele strălucește."
-  ],
-  "word_don": [
-   "bani",
-   "Sunt bani în portofel."
-  ],
-  "word_uri": [
-   "noi",
-   "Suntem prieteni."
-  ],
-  "word_jip": [
-   "casă",
-   "Merg acasă."
-  ],
-  "word_itda": [
-   "a se afla",
-   "Sunt acasă.",
-   "Un singur cuvânt acolo unde româna folosește două: 있다 înseamnă și a fi undeva, și a avea. 책상에 책이 있어요 — cartea este pe birou; 시간이 있어요 — am timp. Opusul este 없다."
-  ],
-  "word_ne": [
-   "da",
-   "Da, așa e.",
-   "Trei cuvinte frecvente se scriu 네. Acesta este „da”. Celelalte sunt „al tău” (네 책, cartea ta) și numeralul coreean „patru” înaintea unui clasificator (네 개, patru bucăți). Le separă contextul, nu scrierea."
-  ],
-  "word_son": [
-   "mână",
-   "Scriu de mână."
-  ],
-  "word_sigan": [
-   "timp",
-   "Nu am timp.",
-   "Timpul în general și, totodată, unitatea pentru numărat orele: 두 시간 înseamnă două ore. Nu-l confunda cu 시, ora de pe ceas — 두 시 înseamnă ora două, cu totul altceva."
-  ],
-  "word_jeo": [
-   "eu (politicos)",
-   "Sunt student."
-  ],
-  "word_gada": [
-   "a merge",
-   "Merg la școală."
-  ],
-  "word_gae": [
-   "câine",
-   "Câinele aleargă."
-  ],
-  "word_mun": [
-   "ușă",
-   "Deschid ușa."
-  ],
-  "word_sae": [
-   "pasăre",
-   "O pasăre zboară."
-  ],
-  "word_mom": [
-   "corp",
-   "Îmi spăl corpul în fiecare zi."
-  ],
-  "word_bang": [
-   "cameră",
-   "Camera e curată."
-  ],
-  "word_nun": [
-   "ochi",
-   "Ai ochi frumoși.",
-   "Ochiul. Se scrie identic cu cuvântul pentru zăpadă, iar în vorbirea îngrijită cele două se deosebesc prin lungime: 눈-zăpadă se lungește, 눈-ochi este scurt. Cei mai mulți vorbitori se bazează pe context."
-  ],
-  "word_ot": [
-   "haine",
-   "Hainele sunt frumoase."
-  ],
-  "word_neo": [
-   "tu",
-   "Unde ești?"
-  ],
-  "word_eopda": [
-   "a nu avea",
-   "Nu am bani."
-  ],
-  "word_meori": [
-   "cap",
-   "Mă doare capul."
-  ],
-  "word_ip": [
-   "gură",
-   "Gura e mică."
-  ],
-  "word_mul": [
-   "apă",
-   "Beau apă."
-  ],
-  "word_dari": [
-   "picior",
-   "Mă doare piciorul.",
-   "Picior — al tău, al mesei, al scaunului. Același cuvânt înseamnă și pod, de aceea 다리를 건너요 este „trec podul”, nu ceva anatomic."
-  ],
-  "word_bi": [
-   "ploaie",
-   "Plouă."
-  ],
-  "word_wae": [
-   "de ce",
-   "De ce ai întârziat?"
-  ],
-  "word_eolgul": [
-   "față",
-   "Mă spăl pe față."
-  ],
-  "word_saram": [
-   "om",
-   "Este un om bun."
-  ],
-  "word_hakgyo": [
-   "școală",
-   "Școala e mare."
-  ],
-  "word_yeogi": [
-   "aici",
-   "Vă rog să stați aici."
-  ],
-  "word_pal": [
-   "braț",
-   "Ai brațele lungi."
-  ],
-  "word_norae": [
-   "cântec",
-   "Cânt un cântec."
-  ],
-  "word_chaek": [
-   "carte",
-   "Citesc o carte."
-  ],
-  "word_dal": [
-   "Luna",
-   "Luna e strălucitoare."
-  ],
-  "word_jeonhwa": [
-   "telefon",
-   "Răspund la telefon."
-  ],
-  "word_namu": [
-   "copac",
-   "Copacul e înalt."
-  ],
-  "word_dasi": [
-   "din nou",
-   "Mai spuneți o dată, vă rog."
-  ],
-  "word_nal": [
-   "zi",
-   "E o zi frumoasă."
-  ],
-  "word_jigeum": [
-   "acum",
-   "Plec acum."
-  ],
-  "word_haru": [
-   "o zi",
-   "Ziua e lungă."
-  ],
-  "word_sesang": [
-   "lumea",
-   "Lumea e mare."
-  ],
-  "word_bal": [
-   "talpă",
-   "Îmi sunt reci picioarele."
-  ],
-  "word_neutda": [
-   "a întârzia",
-   "Autobuzul a întârziat."
-  ],
-  "word_modu": [
-   "toți",
-   "S-au adunat toți."
-  ],
-  "word_sajin": [
-   "fotografie",
-   "Fac o fotografie."
-  ],
-  "word_chimdae": [
-   "pat",
-   "Patul e comod."
-  ],
-  "word_ko": [
-   "nas",
-   "Mi s-a înfundat nasul."
-  ],
-  "word_san": [
-   "munte",
-   "Merg la munte."
-  ],
-  "word_hana": [
-   "unu",
-   "Un măr, vă rog."
-  ],
-  "word_byeongwon": [
-   "spital",
-   "Merg la spital."
-  ],
-  "word_jeongmal": [
-   "chiar",
-   "Mulțumesc mult.",
-   "Chiar, într-adevăr — un intensificator pus înaintea adjectivului, ca în 정말 좋아요. Singur, cu intonație urcătoare, 정말? este o întrebare dintr-un cuvânt: „serios?” — așa îl vei auzi cel mai des."
-  ],
-  "word_seonmul": [
-   "cadou",
-   "Îmi place cadoul."
-  ],
-  "word_boda": [
-   "a vedea",
-   "Mă uit la un film."
-  ],
-  "word_oneul": [
-   "azi",
-   "Azi e vreme frumoasă."
-  ],
-  "word_gabang": [
-   "geantă",
-   "Geanta e grea."
-  ],
-  "word_eumak": [
-   "muzică",
-   "Muzica e frumoasă."
-  ],
-  "word_gage": [
-   "magazin",
-   "Magazinul e închis."
-  ],
-  "word_gil": [
-   "drum",
-   "Drumul e lat."
-  ],
-  "word_ohu": [
-   "după-amiază",
-   "Să ne vedem după-amiază."
-  ],
-  "word_keopi": [
-   "cafea",
-   "Beau cafea."
-  ],
-  "word_bap": [
-   "masă",
-   "Mănânc."
-  ],
-  "word_eomma": [
-   "mama",
-   "Mama gătește."
-  ],
-  "word_gwi": [
-   "ureche",
-   "Mă doare urechea."
-  ],
-  "word_beoseu": [
-   "autobuz",
-   "Vine autobuzul."
-  ],
-  "word_geurim": [
-   "desen",
-   "Fac un desen."
-  ],
-  "word_beon": [
-   "dată",
-   "Mai faceți o dată, vă rog."
-  ],
-  "word_sul": [
-   "alcool",
-   "Nu beau alcool."
-  ],
-  "word_yeonghwa": [
-   "film",
-   "Filmul e amuzant."
-  ],
-  "word_sada": [
-   "a cumpăra",
-   "Cumpăr pâine."
-  ],
-  "word_byeol": [
-   "stea",
-   "Stelele strălucesc."
-  ],
-  "word_bihaenggi": [
-   "avion",
-   "Merg cu avionul."
-  ],
-  "word_bak": [
-   "exterior",
-   "Afară plouă."
-  ],
-  "word_oda": [
-   "a veni",
-   "Vine prietenul meu."
-  ],
-  "word_chingu": [
-   "prieten",
-   "Mă întâlnesc cu un prieten."
-  ],
-  "word_appa": [
-   "tata",
-   "Noapte bună, tată."
-  ],
-  "word_haneul": [
-   "cer",
-   "Cerul e albastru."
-  ],
-  "word_bada": [
-   "mare",
-   "Marea e întinsă."
-  ],
-  "word_sagwa": [
-   "măr",
-   "Mărul e dulce."
-  ],
-  "word_mulgeon": [
-   "lucru",
-   "Cumpăr lucruri."
-  ],
-  "word_moja": [
-   "pălărie",
-   "Îmi pun o pălărie."
-  ],
-  "word_gogi": [
-   "carne",
-   "Frig carne."
-  ],
-  "word_jinjja": [
-   "adevărat",
-   "Chiar e adevărat?"
-  ],
-  "word_sinbal": [
-   "pantofi",
-   "Îmi pun pantofii."
-  ],
-  "word_jamkkan": [
-   "o clipă",
-   "Așteptați o clipă, vă rog."
-  ],
-  "word_namja": [
-   "bărbat",
-   "Bărbatul acela e prietenul meu."
-  ],
-  "word_eumsik": [
-   "mâncare",
-   "Mâncarea coreeană e delicioasă."
-  ],
-  "word_saengil": [
-   "zi de naștere",
-   "La mulți ani."
-  ],
-  "word_daseot": [
-   "cinci",
-   "Au venit cinci persoane."
-  ],
-  "word_gihoe": [
-   "ocazie",
-   "E o ocazie bună."
-  ],
-  "word_dul": [
-   "doi",
-   "Sunt două scaune."
-  ],
-  "word_sijang": [
-   "piață",
-   "Cumpăr legume din piață."
-  ],
-  "word_goyangi": [
-   "pisică",
-   "Pisica doarme."
-  ],
-  "word_changmun": [
-   "fereastră",
-   "Închideți fereastra, vă rog."
-  ],
-  "word_yeoreum": [
-   "vară",
-   "Vara merg la mare."
-  ],
-  "word_dongmul": [
-   "animal",
-   "Îmi plac animalele."
-  ],
-  "word_yeohaeng": [
-   "călătorie",
-   "Vreau să călătoresc."
-  ],
-  "word_bam": [
-   "noapte",
-   "Noaptea sunt multe stele.",
-   "Noapte. Se scrie la fel ca substantivul pentru castană, o gustare obișnuită de toamnă în Coreea, așa că 밤을 먹어요 și 밤에 자요 vorbesc despre lucruri foarte diferite."
-  ],
-  "word_geot": [
-   "un lucru",
-   "Am cumpărat lucrurile de care aveam nevoie."
-  ],
-  "word_mal": [
-   "cuvinte, ce spune cineva",
-   "Alege-ți cuvintele cu grijă."
-  ],
-  "word_bun": [
-   "un minut",
-   "Vă rog să așteptați doar zece minute."
-  ],
-  "word_dwi": [
-   "spatele",
-   "Mi-am scris numele pe spatele caietului."
-  ],
-  "word_si": [
-   "ora fixă",
-   "Ora se termină la două."
-  ],
-  "word_deo": [
-   "mai mult",
-   "Încă puțin, vă rog."
-  ],
-  "word_ap": [
-   "partea din față",
-   "Ne vedem în fața magazinului."
-  ],
-  "word_da": [
-   "tot",
-   "Am mâncat tot orezul."
-  ],
-  "word_jom": [
-   "puțin, și o îndulcire a unei rugăminți",
-   "Puțină apă, vă rog."
-  ],
-  "word_jeon": [
-   "înainte",
-   "Mă spăl pe mâini înainte de masă."
-  ],
-  "word_alda": [
-   "a ști",
-   "Știu numele."
-  ],
-  "word_yak": [
-   "medicament",
-   "Luați medicamentul după masă."
-  ],
-  "word_jota": [
-   "a fi bun",
-   "Mă simt bine."
-  ],
-  "word_jal": [
-   "bine",
-   "Ai dormit bine?"
-  ],
-  "word_anida": [
-   "a nu fi ceva",
-   "Nu sunt student."
-  ],
-  "word_bul": [
-   "foc",
-   "A izbucnit un incendiu pe munte."
-  ],
-  "word_uyu": [
-   "lapte",
-   "Laptele este rece."
-  ],
-  "word_meokda": [
-   "a mânca",
-   "Mănânc fructe."
-  ],
-  "word_ppang": [
-   "pâine",
-   "Mănânc pâine."
-  ],
-  "word_ttae": [
-   "momentul când se întâmplă ceva",
-   "Când eram mic locuiam la țară."
-  ],
-  "word_il": [
-   "muncă",
-   "Azi este multă muncă."
-  ],
-  "word_baji": [
-   "pantaloni",
-   "Pantalonii sunt lungi."
-  ],
-  "word_sigye": [
-   "ceas",
-   "Nu am ceas."
-  ],
-  "word_siheom": [
-   "un test, un examen",
-   "Mâine am examen."
-  ],
-  "word_keompyuteo": [
-   "calculator",
-   "Pornesc calculatorul."
-  ],
-  "word_nalssi": [
-   "vremea",
-   "Vremea este frumoasă."
-  ],
-  "word_jongi": [
-   "hârtie",
-   "Desenez pe hârtie."
-  ],
-  "word_dosi": [
-   "oraș",
-   "Orașul este foarte mare."
-  ],
-  "word_munje": [
-   "problemă",
-   "Este o problemă."
-  ],
-  "word_wi": [
-   "partea de sus",
-   "Pe geantă este o pălărie."
-  ],
-  "word_bom": [
-   "primăvară",
-   "Primăvara înfloresc florile."
-  ],
-  "word_jeonyeok": [
-   "cina",
-   "Iau cina."
-  ],
-  "word_gyeoul": [
-   "iarnă",
-   "Iarna ninge mult."
-  ],
-  "word_abeoji": [
-   "tată",
-   "Tatăl meu merge la serviciu."
-  ],
-  "word_eoseo": [
-   "poftiți, vă rog",
-   "Bine ați venit, poftiți înăuntru."
-  ],
-  "word_mot": [
-   "a nu putea, deși vrei",
-   "Este atât de iute încât nu pot mânca."
-  ],
-  "word_salda": [
-   "a locui, a trăi",
-   "Locuiesc în Seul."
-  ],
-  "word_ai": [
-   "copil",
-   "Copilul râde."
-  ],
-  "word_jeomsim": [
-   "prânz",
-   "Să luăm prânzul împreună."
-  ],
-  "word_nugu": [
-   "cine",
-   "Cine este persoana aceea?"
-  ],
-  "word_eonje": [
-   "când",
-   "Când vii?"
-  ],
-  "word_geori": [
-   "o stradă",
-   "Sunt mulți oameni pe stradă."
-  ],
-  "word_annyeong": [
-   "bună și la revedere",
-   "Pa, ne mai vedem!"
-  ],
-  "word_gakkeum": [
-   "uneori",
-   "Uneori mă uit la filme."
-  ],
-  "word_manta": [
-   "a fi mulți",
-   "Sunt mulți oameni."
-  ],
-  "word_chima": [
-   "o fustă",
-   "Fusta aceasta este foarte frumoasă."
-  ],
-  "word_uija": [
-   "scaun",
-   "Stau pe scaun."
-  ],
-  "word_jeogi": [
-   "acolo",
-   "Acolo este școala."
-  ],
-  "word_gongwon": [
-   "parc",
-   "Mă plimb prin parc."
-  ],
-  "word_ssal": [
-   "orez nefiert",
-   "Spăl orezul și îl fierb."
-  ],
-  "word_jigu": [
-   "Pământul",
-   "Pământul este rotund."
-  ],
-  "word_eodi": [
-   "unde",
-   "Unde este toaleta?"
-  ],
-  "word_byeok": [
-   "un perete",
-   "Atârn un tablou pe perete."
-  ],
-  "word_gyeran": [
-   "un ou",
-   "Dimineața am fiert un ou."
-  ],
-  "word_tada": [
-   "a urca, a merge cu",
-   "Iau autobuzul."
-  ],
-  "word_segye": [
-   "lumea",
-   "Cunosc multe țări ale lumii."
-  ],
-  "word_ireum": [
-   "nume",
-   "Cum te cheamă?"
-  ],
-  "word_guk": [
-   "supă",
-   "Dimineața mănânc supă."
-  ],
-  "word_malhada": [
-   "a vorbi",
-   "Vorbiți rar, vă rog."
-  ],
-  "word_geotda": [
-   "a merge pe jos",
-   "Mă plimb prin parc."
-  ],
-  "word_gangaji": [
-   "cățeluș",
-   "Cățelușul este mic."
-  ],
-  "word_sori": [
-   "sunet",
-   "Sunetul este puternic."
-  ],
-  "word_yeop": [
-   "latura",
-   "Stați lângă mine, vă rog."
-  ],
-  "word_saenggak": [
-   "gând",
-   "Este o idee bună."
-  ],
-  "word_geogi": [
-   "acolo",
-   "Este cineva acolo?"
-  ],
-  "word_adeul": [
-   "fiu",
-   "Fiul meu merge la școală."
-  ],
-  "word_doeda": [
-   "a deveni",
-   "Vreau să devin medic."
-  ],
-  "word_maeul": [
-   "un sat",
-   "Satul este liniștit."
-  ],
-  "word_kape": [
-   "o cafenea",
-   "Mă întâlnesc cu prietenul meu la cafenea."
-  ],
-  "word_gong": [
-   "o minge",
-   "Lovesc mingea cu piciorul."
-  ],
-  "word_gajok": [
-   "familie",
-   "Am o familie mare."
-  ],
-  "word_ssi": [
-   "domnule sau doamnă, după un nume",
-   "Minsu, o clipă."
-  ],
-  "word_achim": [
-   "dimineață",
-   "Mă trezesc dimineața."
-  ],
-  "word_jeonhwahada": [
-   "a suna la telefon",
-   "Te sun mai târziu."
-  ],
-  "word_gaeul": [
-   "toamnă",
-   "Toamna vântul este răcoros."
-  ],
-  "word_kkot": [
-   "floare",
-   "Floarea este frumoasă."
-  ],
-  "word_jido": [
-   "hartă",
-   "Mă uit pe hartă."
-  ],
-  "word_saek": [
-   "o culoare",
-   "Această culoare este frumoasă."
-  ],
-  "word_juda": [
-   "a da",
-   "Ofer un cadou."
-  ],
-  "word_yachae": [
-   "legume",
-   "Mâncați multe legume, vă rog."
-  ],
-  "word_chaeksang": [
-   "birou",
-   "Pe birou este o carte."
-  ],
-  "word_cheoeum": [
-   "prima dată",
-   "Îmi pare bine de cunoștință."
-  ],
-  "word_gwail": [
-   "fructe",
-   "Îmi plac fructele."
-  ],
-  "word_uisa": [
-   "medic",
-   "Medicul mă consultă."
-  ],
-  "word_ttal": [
-   "o fiică",
-   "Fiica mea merge la școală."
-  ],
-  "word_yeoboseyo": [
-   "alo, la telefon",
-   "Alo, cine este?"
-  ],
-  "word_so": [
-   "o vacă",
-   "Vaca mănâncă iarbă."
-  ],
-  "word_pyeonji": [
-   "scrisoare",
-   "Îi scriu o scrisoare mamei."
-  ],
-  "word_jogeum": [
-   "puțin",
-   "Doar puțin, vă rog."
-  ],
-  "word_boida": [
-   "a se vedea",
-   "Se vede muntele."
-  ],
-  "word_jari": [
-   "un loc de stat",
-   "Nu sunt locuri."
-  ],
-  "word_hu": [
-   "după",
-   "După oră merg la bibliotecă."
-  ],
-  "word_kadeu": [
-   "card",
-   "Plătesc cu cardul."
-  ],
-  "word_naeil": [
-   "mâine",
-   "Pe mâine."
-  ],
-  "word_jungyohada": [
-   "a fi important",
-   "Sănătatea este cel mai important lucru."
-  ],
-  "word_dalgyal": [
-   "un ou",
-   "Dimineața mănânc un ou."
-  ],
-  "word_aju": [
-   "foarte",
-   "Este foarte gustos."
-  ],
-  "word_matda": [
-   "a fi corect",
-   "Acest răspuns este corect."
-  ],
-  "word_hanguk": [
-   "Coreea",
-   "Îmi place mâncarea coreeană."
-  ],
-  "word_gang": [
-   "un râu",
-   "Râul este foarte lat."
-  ],
-  "word_cho": [
-   "o secundă",
-   "Au mai rămas treizeci de secunde."
-  ],
-  "word_hoesa": [
-   "o firmă, un birou",
-   "Merg la birou."
-  ],
-  "word_sosik": [
-   "vești de la cineva",
-   "Am o veste bună."
-  ],
-  "word_jakda": [
-   "a fi mic",
-   "Pantofii sunt mici."
-  ],
-  "word_gimchi": [
-   "kimchi",
-   "Kimchi este iute."
-  ],
-  "word_ikda": [
-   "a citi",
-   "Citesc ziarul."
-  ],
-  "word_geurigo": [
-   "și, și apoi",
-   "Am cumpărat pâine. Și am cumpărat și lapte."
-  ],
-  "word_keuda": [
-   "a fi mare",
-   "Geanta aceasta este mare."
-  ],
-  "word_yeollak": [
-   "contact",
-   "Luați legătura cu mine mai târziu."
-  ],
-  "word_gachi": [
-   "împreună",
-   "Să mâncăm împreună."
-  ],
-  "word_neomu": [
-   "prea",
-   "Hainele acestea sunt prea mari."
-  ],
-  "word_yong": [
-   "un dragon",
-   "În desen este un dragon mare."
-  ],
-  "word_geureota": [
-   "a fi așa",
-   "Da, așa este."
-  ],
-  "word_hotel": [
-   "hotel",
-   "Am dormit la hotel."
-  ],
-  "word_yeolsoe": [
-   "cheie",
-   "Nu am cheia."
-  ],
-  "word_yeppeuda": [
-   "a fi frumos",
-   "Florile sunt chiar frumoase."
-  ],
-  "word_geugeot": [
-   "acela",
-   "Dați-mi acela, vă rog."
-  ],
-  "word_daeum": [
-   "următorul",
-   "Pe data viitoare."
-  ],
-  "word_maeum": [
-   "inimă, suflet",
-   "Au o inimă caldă."
-  ],
-  "word_jadongcha": [
-   "automobil",
-   "Mașina este rapidă."
-  ],
-  "word_jukda": [
-   "a muri",
-   "Floarea din ghiveci a murit pentru că nu a fost udată."
-  ],
-  "word_nalda": [
-   "a zbura",
-   "O pasăre zboară pe cer."
-  ],
-  "word_siksa": [
-   "masă",
-   "Masa a fost foarte bună."
-  ],
-  "word_gigye": [
-   "o mașinărie",
-   "Mașinăria s-a stricat."
-  ],
-  "word_ttang": [
-   "pământul, solul",
-   "Pământul este ud."
-  ],
-  "word_jada": [
-   "a dormi",
-   "Mă culc devreme."
-  ],
-  "word_beorida": [
-   "a arunca",
-   "Aruncați-l la coș, vă rog."
-  ],
-  "word_juso": [
-   "o adresă",
-   "Spuneți-mi adresa, vă rog."
-  ],
-  "word_gicha": [
-   "tren",
-   "Trenul a plecat."
-  ],
-  "word_chitsol": [
-   "o periuță de dinți",
-   "Am cumpărat o periuță nouă."
-  ],
-  "word_sarang": [
-   "dragoste",
-   "Dragostea este frumoasă."
-  ],
-  "word_gongbu": [
-   "studiu",
-   "Este plăcut să înveți."
-  ],
-  "word_saengseon": [
-   "pește de mâncat",
-   "Am fript pește la cină."
-  ],
-  "word_mok": [
-   "gât",
-   "Mă doare gâtul."
-  ],
-  "word_sipda": [
-   "a vrea",
-   "Vreau să merg în Coreea."
-  ],
-  "word_nyuseu": [
-   "știrile",
-   "Mă uit la știri."
-  ],
-  "word_chatda": [
-   "a căuta",
-   "Caut cheia."
-  ],
-  "word_iljjik": [
-   "devreme",
-   "Mâine mă trezesc devreme."
-  ],
-  "word_geonmul": [
-   "clădire",
-   "Clădirea aceea este nouă."
-  ],
-  "word_seonsaengnim": [
-   "profesor",
-   "Profesorul predă."
-  ],
-  "word_eomeoni": [
-   "mamă",
-   "Mama este acasă."
-  ],
-  "word_gibun": [
-   "stare de spirit",
-   "Cum te simți?"
-  ],
-  "word_honja": [
-   "singur",
-   "Pot să merg singur."
-  ],
-  "word_ani": [
-   "nu",
-   "Nu, nu m-am dus."
-  ],
-  "word_eoje": [
-   "ieri",
-   "Ieri a plouat."
-  ],
-  "word_sseuda": [
-   "a scrie",
-   "Îmi scriu numele."
-  ],
-  "word_masida": [
-   "a bea",
-   "Beau lapte."
-  ],
-  "word_syeocheu": [
-   "o cămașă",
-   "Port o cămașă albă."
-  ],
-  "word_junbi": [
-   "pregătire",
-   "Totul este gata."
-  ],
-  "word_mian": [
-   "scuze",
-   "Scuze, am întârziat."
-  ],
-  "word_geokjeong": [
-   "grijă",
-   "Am multe griji."
-  ],
-  "word_hajiman": [
-   "dar, totuși",
-   "Plouă. Dar tot merg."
-  ],
-  "word_kamera": [
-   "aparat foto",
-   "Am cumpărat un aparat foto."
-  ],
-  "word_dongne": [
-   "cartier",
-   "Cartierul nostru este liniștit."
-  ],
-  "word_naengjanggo": [
-   "un frigider",
-   "Am pus laptele în frigider."
-  ],
-  "word_anda": [
-   "a se așeza",
-   "M-am așezat pe scaun."
-  ],
-  "word_ppalli": [
-   "repede",
-   "Veniți repede, vă rog."
-  ],
-  "word_yaegi": [
-   "o discuție",
-   "Să vorbim o clipă."
-  ],
-  "word_got": [
-   "un loc",
-   "Am găsit un loc liniștit."
-  ],
-  "word_nat": [
-   "ziua, când e lumină",
-   "Ziua este cald."
-  ],
-  "word_sangja": [
-   "cutie",
-   "Deschid cutia."
-  ],
-  "word_wonhada": [
-   "a dori",
-   "Ce dorești?"
-  ],
-  "word_sikdang": [
-   "restaurant",
-   "Unde este restaurantul?"
-  ],
-  "word_geurida": [
-   "a desena",
-   "Copilul desenează un copac."
-  ],
-  "word_yuri": [
-   "sticlă",
-   "Sticla s-a spart."
-  ],
-  "word_igeot": [
-   "acesta",
-   "Dați-mi acesta, vă rog."
-  ],
-  "word_geoul": [
-   "oglindă",
-   "Mă uit în oglindă."
-  ],
-  "word_gijeok": [
-   "un miracol",
-   "A fost cu adevărat ca un miracol."
-  ],
-  "word_kal": [
-   "un cuțit",
-   "Am curățat mărul cu cuțitul."
-  ],
-  "word_gatda": [
-   "a fi la fel",
-   "Gențile noastre sunt la fel."
-  ],
-  "word_pul": [
-   "iarbă",
-   "Iarba este verde."
-  ],
-  "word_eolma": [
-   "cât",
-   "Cât costă asta?"
-  ],
-  "word_saenggakada": [
-   "a gândi",
-   "Și eu cred la fel."
-  ],
-  "word_jilmun": [
-   "o întrebare",
-   "Am o întrebare."
-  ],
-  "word_geunyeo": [
-   "ea",
-   "Ea cântă bine."
-  ],
-  "word_nota": [
-   "a pune jos",
-   "Am pus geanta pe podea."
-  ],
-  "word_banggeum": [
-   "adineauri",
-   "Am ajuns adineauri."
-  ],
-  "word_bonaeda": [
-   "a trimite",
-   "Trimit o scrisoare."
-  ],
-  "word_arae": [
-   "dedesubt",
-   "Cartea este sub birou."
-  ],
-  "word_naoda": [
-   "a ieși",
-   "Iese apă."
-  ],
-  "word_nai": [
-   "vârstă",
-   "Ce vârstă aveți?"
-  ],
-  "word_eotteoke": [
-   "cum",
-   "Cum ajung acolo?"
-  ],
-  "word_eunhaeng": [
-   "o bancă",
-   "Banca s-a deschis."
-  ],
-  "word_al": [
-   "un ou",
-   "Pasărea a făcut trei ouă."
-  ],
-  "word_moreuda": [
-   "a nu ști",
-   "Nu știu."
-  ],
-  "word_badak": [
-   "podeaua",
-   "Șterg podeaua."
-  ],
-  "word_hwajangsil": [
-   "baie",
-   "Toaleta este curată."
-  ],
-  "word_yeok": [
-   "gară",
-   "Ne vedem la gară."
-  ],
-  "word_seoul": [
-   "Seul",
-   "Seulul este foarte mare."
-  ],
-  "word_gwiyeopda": [
-   "a fi drăguț",
-   "Cățelușul este drăguț."
-  ],
-  "word_areumdapda": [
-   "a fi frumos",
-   "Peisajul este frumos."
-  ],
-  "word_ajik": [
-   "încă, încă nu",
-   "Încă nu au venit."
-  ],
-  "word_gyedan": [
-   "scări",
-   "Sunt multe trepte."
-  ],
-  "word_maeil": [
-   "în fiecare zi",
-   "Scriu hangul în fiecare zi."
-  ],
-  "word_agi": [
-   "un bebeluș",
-   "Bebelușul doarme."
-  ],
-  "word_dwaeji": [
-   "porc",
-   "Porcul mănâncă."
-  ],
-  "word_ju": [
-   "o săptămână",
-   "Ne vedem săptămâna viitoare."
-  ],
-  "word_iyagi": [
-   "poveste",
-   "Este o poveste interesantă."
-  ],
-  "word_tto": [
-   "din nou",
-   "Ne vedem din nou mâine."
-  ],
-  "word_beolsseo": [
-   "deja",
-   "S-a terminat deja totul."
-  ],
-  "word_dangsin": [
-   "dumneavoastră",
-   "V-am așteptat."
-  ],
-  "word_gap": [
-   "un preț",
-   "Prețul este mare."
-  ],
-  "word_mianhada": [
-   "a-i părea rău",
-   "Îmi pare rău că am întârziat."
-  ],
-  "word_jeongnyujang": [
-   "o stație de autobuz",
-   "Aștept autobuzul în stație."
-  ],
-  "word_anta": [
-   "a nu face",
-   "Nu beau cafea."
-  ],
-  "word_taeksi": [
-   "taxi",
-   "Chemați un taxi, vă rog."
-  ],
-  "word_haksaeng": [
-   "elev",
-   "În clasă sunt mulți elevi."
-  ],
-  "word_bomul": [
-   "comoară",
-   "Copiii caută o comoară."
-  ],
-  "word_jumun": [
-   "o comandă",
-   "Doriți să comandați?"
-  ],
-  "word_sinmun": [
-   "ziar",
-   "Citiți ziarul, vă rog."
-  ],
-  "word_dak": [
-   "o găină",
-   "Găina face un ou."
-  ],
-  "word_keop": [
-   "o cană",
-   "Torn apă în cană."
-  ],
-  "word_set": [
-   "trei",
-   "S-au adunat trei prieteni."
-  ],
-  "word_hangugeo": [
-   "limba coreeană",
-   "Coreeana este interesantă."
-  ],
-  "word_geuraeseo": [
-   "deci, de aceea",
-   "Plouă, deci nu merg."
-  ],
-  "word_manhi": [
-   "mult",
-   "Mâncați mult, vă rog."
-  ],
-  "word_du": [
-   "doi, înaintea unui clasificator",
-   "Două cafele, vă rog."
-  ],
-  "word_pyeonuijeom": [
-   "un magazin non-stop",
-   "În fața casei mele este un magazin non-stop."
-  ],
-  "word_miguk": [
-   "Statele Unite",
-   "Vin din Statele Unite."
-  ],
-  "word_gyesok": [
-   "continuare",
-   "Continuă să plouă."
-  ],
-  "word_gagyeok": [
-   "un preț",
-   "Prețul este mai mare decât credeam."
-  ],
-  "word_dongsaeng": [
-   "frate sau soră mai mic",
-   "Fratele meu mai mic este drăguț."
-  ],
-  "word_tokki": [
-   "iepure",
-   "Iepurele sare."
-  ],
-  "word_seoda": [
-   "a sta în picioare",
-   "Stau la rând."
-  ],
-  "word_eoreum": [
-   "gheață",
-   "Puneți gheață, vă rog."
-  ],
-  "word_jayeon": [
-   "natura",
-   "Natura este frumoasă."
-  ],
-  "word_jjikda": [
-   "a ștampila",
-   "Am ștampilat cu sigiliul."
-  ],
-  "word_yeol": [
-   "zece",
-   "Numărați până la zece, vă rog."
-  ],
-  "word_sasil": [
-   "un fapt",
-   "Acesta este un fapt."
-  ],
-  "word_unjeon": [
-   "condusul",
-   "Învăț să conduc."
-  ],
-  "word_gamja": [
-   "cartof",
-   "Fierb cartofii."
-  ],
-  "word_gureum": [
-   "nor",
-   "Sunt mulți nori."
-  ],
-  "word_iyu": [
-   "un motiv",
-   "Spuneți-mi motivul, vă rog."
-  ],
-  "word_dareun": [
-   "altul, diferit",
-   "Aveți și alte culori?"
-  ],
-  "word_songarak": [
-   "deget",
-   "Mă doare degetul."
-  ],
-  "word_japda": [
-   "a apuca",
-   "Te țin de mână."
-  ],
-  "word_bueok": [
-   "o bucătărie",
-   "Gătesc în bucătărie."
-  ],
-  "word_piryo": [
-   "o nevoie",
-   "Nu am nevoie de ajutor."
-  ],
-  "word_pa": [
-   "ceapă verde",
-   "Am pus puțină ceapă verde în supă."
-  ],
-  "word_batda": [
-   "a primi",
-   "Am primit un cadou."
-  ],
-  "word_pida": [
-   "a înflori",
-   "Florile au înflorit."
-  ],
-  "word_sayong": [
-   "folosire",
-   "Spuneți-mi cum se folosește, vă rog."
-  ],
-  "word_jeongbo": [
-   "informație",
-   "Caut informații."
-  ],
-  "word_gonghang": [
-   "aeroport",
-   "Am ajuns la aeroport."
-  ],
-  "word_bumo": [
-   "părinți",
-   "Un copil are nevoie de părinți."
-  ],
-  "word_saranghada": [
-   "a iubi",
-   "Îmi iubesc familia."
-  ],
-  "word_ireoke": [
-   "așa",
-   "Scrieți așa, vă rog."
-  ],
-  "word_ilhada": [
-   "a lucra",
-   "Mama lucrează la spital."
-  ],
-  "word_suyeong": [
-   "înot",
-   "Învăț să înot."
-  ],
-  "word_piryohada": [
-   "a avea nevoie",
-   "Am nevoie de bani."
-  ],
-  "word_bukjjok": [
-   "nordul",
-   "Au mers spre nord."
-  ],
-  "word_cheung": [
-   "un etaj",
-   "Biroul este la etajul doi."
-  ],
-  "word_hwanja": [
-   "un pacient",
-   "Pacientul se odihnește."
-  ],
-  "word_halmeoni": [
-   "bunică",
-   "Bunica zâmbește."
-  ],
-  "word_palda": [
-   "a vinde",
-   "Vând fructe."
-  ],
-  "word_itda_2": [
-   "a lega, a uni",
-   "Am legat cele două frânghii."
-  ],
-  "word_nara": [
-   "țară",
-   "Coreea este o țară frumoasă."
-  ],
-  "word_apateu": [
-   "bloc de locuințe",
-   "Locuiesc la bloc."
-  ],
-  "word_hamkke": [
-   "împreună",
-   "Să mergem împreună."
-  ],
-  "word_modeun": [
-   "toți, fiecare",
-   "Toată lumea a râs."
-  ],
-  "word_gwaenchanta": [
-   "a fi în regulă",
-   "Sunt bine."
-  ],
-  "word_johahada": [
-   "a plăcea",
-   "Îmi place cafeaua."
-  ],
-  "word_jimseung": [
-   "o fiară",
-   "În pădure s-a auzit o fiară."
-  ],
-  "word_dongan": [
-   "timp de",
-   "Am călătorit în timpul vacanței."
-  ],
-  "word_ipgu": [
-   "o intrare",
-   "Ne vedem la intrarea în clădire."
-  ],
-  "word_silta": [
-   "a nu plăcea",
-   "Nu îmi plac zilele reci."
-  ],
-  "word_meonjeo": [
-   "mai întâi",
-   "Mai întâi mă spăl pe mâini."
-  ],
-  "word_dubu": [
-   "tofu",
-   "Adaug tofu și fac supă."
-  ],
-  "word_bumonim": [
-   "proprii părinți",
-   "Locuiesc cu părinții."
-  ],
-  "word_gomapda": [
-   "a fi recunoscător",
-   "Mulțumesc pentru ajutor."
-  ],
-  "word_gyesan": [
-   "calculul",
-   "Calculul este puțin greșit."
-  ],
-  "word_hyeo": [
-   "limba din gură",
-   "Mă doare limba și nu pot mânca."
-  ],
-  "word_sugeon": [
-   "un prosop",
-   "Îmi șterg mâinile cu prosopul."
-  ],
-  "word_saeropda": [
-   "a fi nou",
-   "Mă simt înviorat."
-  ],
-  "word_sup": [
-   "o pădure",
-   "În pădure se aud păsările."
-  ],
-  "word_chum": [
-   "un dans",
-   "Au dansat pe scenă."
-  ],
-  "word_sukje": [
-   "teme",
-   "Mi-am terminat temele."
-  ],
-  "word_gaji": [
-   "un fel, un tip",
-   "Vreau să întreb un singur lucru."
-  ],
-  "word_mothada": [
-   "a nu fi în stare",
-   "Nu știu să înot."
-  ],
-  "word_nagada": [
-   "a ieși",
-   "Ies afară."
-  ],
-  "word_meotjida": [
-   "a fi splendid",
-   "Azi arăți foarte bine."
-  ],
-  "word_podo": [
-   "struguri",
-   "Strugurii sunt foarte dulci."
-  ],
-  "word_jeopsi": [
-   "o farfurie",
-   "Scoateți două farfurii, vă rog."
-  ],
-  "word_yori": [
-   "gătitul",
-   "Mâncarea este delicioasă."
-  ],
-  "word_sogeum": [
-   "sare",
-   "Adaug puțină sare."
-  ],
-  "word_duda": [
-   "a pune",
-   "Am pus cartea pe birou."
-  ],
-  "word_gamsahada": [
-   "a fi recunoscător",
-   "Mulțumesc pentru ajutor."
-  ],
-  "word_kkeut": [
-   "sfârșitul",
-   "Stați la coada rândului, vă rog."
-  ],
-  "word_yeolda": [
-   "a deschide",
-   "Deschid fereastra."
-  ],
-  "word_ibul": [
-   "o plapumă",
-   "Plapuma este caldă."
-  ],
-  "word_najung": [
-   "mai târziu",
-   "Sun din nou mai târziu."
-  ],
-  "word_manjida": [
-   "a atinge",
-   "Nu atingeți, vă rog."
-  ],
-  "word_gajang": [
-   "cel mai",
-   "Acesta este cel mai bun."
-  ],
-  "word_namjjok": [
-   "sudul",
-   "În sud este cald."
-  ],
-  "word_doum": [
-   "ajutor",
-   "Am nevoie de ajutor."
-  ],
-  "word_jung": [
-   "în mijlocul, printre",
-   "Sunt în ședință."
-  ],
-  "word_sudo": [
-   "capitala",
-   "Capitala Coreei este Seul."
-  ],
-  "word_gidarida": [
-   "a aștepta",
-   "Așteptați o clipă, vă rog."
-  ],
-  "word_chaeso": [
-   "o legumă",
-   "Mănânc multe legume."
-  ],
-  "word_kkeunnada": [
-   "a se termina",
-   "Ora s-a terminat."
-  ],
-  "word_butak": [
-   "o rugăminte, o favoare",
-   "Am o rugăminte."
-  ],
-  "word_seom": [
-   "o insulă",
-   "Am luat o barcă până la insulă."
-  ],
-  "word_teuki": [
-   "mai ales",
-   "Îmi place mai ales iarna."
-  ],
-  "word_jemok": [
-   "un titlu",
-   "Care este titlul acestei cărți?"
-  ],
-  "word_insa": [
-   "un salut",
-   "Am salutat."
-  ],
-  "word_seoltang": [
-   "zahăr",
-   "Adaug puțin zahăr."
-  ],
-  "word_jajeongeo": [
-   "bicicletă",
-   "Merg cu bicicleta."
-  ],
-  "word_inteonet": [
-   "internetul",
-   "Internetul este lent."
-  ],
-  "word_aniyo": [
-   "nu",
-   "Nu, sunt bine."
-  ],
-  "word_ama": [
-   "probabil",
-   "Mâine probabil va ploua."
-  ],
-  "word_jamsi": [
-   "o clipă",
-   "Să ne odihnim o clipă."
-  ],
-  "word_beol": [
-   "o albină",
-   "O albină s-a așezat pe floare."
-  ],
-  "word_won": [
-   "won",
-   "Sunt două mii de woni."
-  ],
-  "word_ujuseon": [
-   "o navă spațială",
-   "Nava spațială s-a ridicat spre cer."
-  ],
-  "word_myeot": [
-   "câți",
-   "Cât este ceasul?"
-  ],
-  "word_sueop": [
-   "o oră de curs",
-   "Ora este interesantă."
-  ],
-  "word_sijak": [
-   "un început",
-   "Este un început bun."
-  ],
-  "word_yeogwon": [
-   "un pașaport",
-   "Nu uita să iei pașaportul."
-  ],
-  "word_gyosil": [
-   "o sală de clasă",
-   "Sala de clasă este luminoasă."
-  ],
-  "word_nyeon": [
-   "an",
-   "Am învățat timp de doi ani."
-  ],
-  "word_bae": [
-   "burta",
-   "M-a durut burta, așa că am mers la spital."
-  ],
-  "word_satang": [
-   "o bomboană",
-   "Mănânc o bomboană."
-  ],
-  "word_dalleo": [
-   "dolar",
-   "Sunt o sută de dolari."
-  ],
-  "word_usan": [
-   "o umbrelă",
-   "Ploua, așa că am cumpărat o umbrelă."
-  ],
-  "word_museun": [
-   "ce fel de",
-   "Cu ce vă ocupați?"
-  ],
-  "word_pari": [
-   "o muscă",
-   "O muscă zboară prin cameră."
-  ],
-  "word_ije": [
-   "acum",
-   "Să începem acum."
-  ],
-  "word_geollida": [
-   "a dura",
-   "Durează o oră."
-  ],
-  "word_choego": [
-   "cel mai bun",
-   "Restaurantul acesta este cel mai bun."
-  ],
-  "word_naeda": [
-   "a plăti",
-   "Azi plătesc eu."
-  ],
-  "word_daneo": [
-   "un cuvânt",
-   "Învăț un cuvânt nou."
-  ],
-  "word_jikjeop": [
-   "personal",
-   "Am făcut tortul chiar eu."
-  ],
-  "word_yangmal": [
-   "o șosetă",
-   "Șosetele sunt calde."
-  ],
-  "word_nopda": [
-   "a fi înalt",
-   "Clădirea este înaltă."
-  ],
-  "word_haendeupon": [
-   "un telefon mobil",
-   "Îmi încarc telefonul."
-  ],
-  "word_jigap": [
-   "portofel",
-   "Mi-am pierdut portofelul."
-  ],
-  "word_hyudaepon": [
-   "un telefon mobil",
-   "Mi-am pierdut telefonul."
-  ],
-  "word_agassi": [
-   "o tânără",
-   "O tânără întreabă de drum."
-  ],
-  "word_gieok": [
-   "memorie",
-   "Nu îmi amintesc."
-  ],
-  "word_geutda": [
-   "a trasa o linie",
-   "Am trasat o linie."
-  ],
-  "word_ipda": [
-   "a se îmbrăca",
-   "Mă îmbrac."
-  ],
-  "word_sai": [
-   "spațiul dintre",
-   "Între cele două case este un copac."
-  ],
-  "word_gireum": [
-   "ulei",
-   "Îl prăjesc în ulei."
-  ],
-  "word_mulgogi": [
-   "un pește",
-   "Peștele înoată."
-  ],
-  "word_jang": [
-   "cuvântul pentru a număra foile",
-   "Am nevoie de trei foi de hârtie."
-  ],
-  "word_kkum": [
-   "un vis",
-   "Azi-noapte am avut un vis ciudat."
-  ],
-  "word_sijakada": [
-   "a începe",
-   "Ora începe."
-  ],
-  "word_ajikdo": [
-   "încă",
-   "Încă aștept."
-  ],
-  "word_teureok": [
-   "camion",
-   "Trece un camion."
-  ],
-  "word_eotteon": [
-   "ce fel de",
-   "Ce culoare îți place?"
-  ],
-  "word_geulssi": [
-   "scrisul de mână",
-   "Ai un scris frumos."
-  ],
-  "word_deutda": [
-   "a asculta, a auzi",
-   "Ascult muzică."
-  ],
-  "word_subak": [
-   "pepene verde",
-   "Vara pepenele verde este bun."
-  ],
-  "word_ttalgi": [
-   "căpșună",
-   "Spăl căpșunile și le mănânc."
-  ],
-  "word_baram": [
-   "vânt",
-   "Vântul este răcoros."
-  ],
-  "word_sigol": [
-   "la țară",
-   "Aerul de la țară este bun."
-  ],
-  "word_pulda": [
-   "a rezolva",
-   "Am rezolvat problema."
-  ],
-  "word_angyeong": [
-   "ochelari",
-   "Port ochelari."
-  ],
-  "word_yeonpil": [
-   "un creion",
-   "Desenez cu creionul."
-  ],
-  "word_jumal": [
-   "weekend",
-   "În weekend mă odihnesc."
-  ],
-  "word_jugida": [
-   "a omorî",
-   "Am omorât țânțarul care a intrat în cameră."
-  ],
-  "word_him": [
-   "putere",
-   "Copilul acela este foarte puternic."
-  ],
-  "word_jeonbu": [
-   "tot, în total",
-   "Cât face în total?"
-  ],
-  "word_gyeongchal": [
-   "poliția",
-   "Chemați poliția, vă rog."
-  ],
-  "word_geureut": [
-   "un bol",
-   "Pun orez în bol."
-  ],
-  "word_nappeuda": [
-   "a fi rău",
-   "Vremea este rea."
-  ],
-  "word_oppa": [
-   "fratele mai mare al unei femei",
-   "Fratele meu mai mare conduce."
-  ],
-  "word_mannada": [
-   "a se întâlni",
-   "Ne întâlnim des."
-  ],
-  "word_huimang": [
-   "speranță",
-   "Nu vă pierdeți speranța."
-  ],
-  "word_hyeong": [
-   "fratele mai mare al unui bărbat",
-   "Fratele meu mai mare m-a invitat la masă."
-  ],
-  "word_doro": [
-   "un drum",
-   "Drumul este blocat."
-  ],
-  "word_ttwida": [
-   "a alerga",
-   "Copilul aleargă."
-  ],
-  "word_mueot": [
-   "ce",
-   "Ce este asta?"
-  ],
-  "word_oenjjok": [
-   "partea stângă",
-   "Faceți la stânga, vă rog."
-  ],
-  "word_chukgu": [
-   "fotbal",
-   "Joc fotbal cu prietenul meu."
-  ],
-  "word_jayu": [
-   "libertate",
-   "Libertatea este prețioasă."
-  ],
-  "word_sungan": [
-   "o clipă",
-   "Nu pot uita acea clipă."
-  ],
-  "word_sayonghada": [
-   "a folosi",
-   "Pot folosi camera aceasta?"
-  ],
-  "word_pada": [
-   "a săpa",
-   "Sap în pământ."
-  ],
-  "word_nampyeon": [
-   "soț",
-   "Soțul meu gătește."
-  ],
-  "word_silheomsil": [
-   "un laborator",
-   "Am lucrat toată ziua în laborator."
-  ],
-  "word_dambae": [
-   "o țigară",
-   "Mirosul de țigară mi-a intrat în haine."
-  ],
-  "word_banana": [
-   "o banană",
-   "Dimineața mănânc o banană."
-  ],
-  "word_geum": [
-   "aur",
-   "Inelul acesta este din aur."
-  ],
-  "word_mandeulda": [
-   "a face",
-   "Fac pâine."
-  ],
-  "word_ibeon": [
-   "de data aceasta",
-   "De data aceasta o fac eu."
-  ],
-  "word_gomawo": [
-   "mersi",
-   "Mersi pentru ajutor."
-  ],
-  "word_banchan": [
-   "o garnitură",
-   "Garniturile sunt gustoase."
-  ],
-  "word_apeuda": [
-   "a durea",
-   "Mă doare burta."
-  ],
-  "word_doseogwan": [
-   "o bibliotecă",
-   "Am împrumutat o carte de la bibliotecă."
-  ],
-  "word_ppyeo": [
-   "un os",
-   "Câinele ține un os în gură."
-  ],
-  "word_gamsa": [
-   "mulțumire",
-   "Am mulțumit."
-  ],
-  "word_geolda": [
-   "a atârna",
-   "Atârn hainele."
-  ],
-  "word_gim": [
-   "alge marine uscate",
-   "Înfășurăm orezul în alge și îl mâncăm."
-  ],
-  "word_jalhada": [
-   "a face bine ceva",
-   "Cânți bine."
-  ],
-  "word_saengmyeong": [
-   "viață",
-   "Viața este prețioasă."
-  ],
-  "word_mureup": [
-   "genunchi",
-   "Mă doare genunchiul."
-  ],
-  "word_jjalda": [
-   "a fi scurt",
-   "Creionul este scurt."
-  ],
-  "word_chijeu": [
-   "brânză",
-   "Îmi place brânza."
-  ],
-  "word_hanbeon": [
-   "o dată",
-   "Încercați o dată, vă rog."
-  ],
-  "word_gohyang": [
-   "locul natal",
-   "M-am dus în locul meu natal."
-  ],
-  "word_jihacheol": [
-   "metroul",
-   "Merg cu metroul."
-  ],
-  "word_sal": [
-   "an de vârstă",
-   "Am douăzeci de ani."
-  ],
-  "word_anae": [
-   "soție",
-   "Am venit cu soția."
-  ],
-  "word_swida": [
-   "a se odihni",
-   "Să ne odihnim puțin."
-  ],
-  "word_gimbap": [
-   "gimbap",
-   "La prânz am mâncat gimbap."
-  ],
-  "word_gayo": [
-   "muzică pop coreeană",
-   "Îmi place muzica pop coreeană."
-  ],
-  "word_swipda": [
-   "a fi ușor",
-   "Hangulul este ușor."
-  ],
-  "word_pyojeong": [
-   "o expresie a feței",
-   "Are o expresie luminoasă."
-  ],
-  "word_dareuda": [
-   "a fi diferit",
-   "Culorile sunt diferite."
-  ],
-  "word_geunyang": [
-   "pur și simplu",
-   "În weekend am stat pur și simplu acasă."
-  ],
-  "word_majimak": [
-   "ultimul",
-   "Am luat ultimul autobuz."
-  ],
-  "word_bangbeop": [
-   "o metodă",
-   "Există o metodă bună."
-  ],
-  "word_huinsaek": [
-   "culoarea albă",
-   "Peretele alb este curat."
-  ],
-  "word_jalmot": [
-   "o greșeală",
-   "Este vina mea."
-  ],
-  "word_daehakgyo": [
-   "universitate",
-   "Studiez la universitate."
-  ],
-  "word_haengun": [
-   "noroc",
-   "Mult noroc la examen."
-  ],
-  "word_harabeoji": [
-   "bunic",
-   "Bunicul citește ziarul."
-  ],
-  "word_bimil": [
-   "secret",
-   "Păstrați secretul, vă rog."
-  ],
-  "word_sogogi": [
-   "carne de vită",
-   "Am fript carne de vită și am mâncat."
-  ],
-  "word_net": [
-   "patru",
-   "Noi patru suntem o echipă."
-  ],
-  "word_sinda": [
-   "a se încălța",
-   "Îmi pun șosetele."
-  ],
-  "word_dap": [
-   "un răspuns",
-   "Am găsit răspunsul."
-  ],
-  "word_yeonseup": [
-   "exercițiu",
-   "Exersez în fiecare zi."
-  ],
-  "word_gongchaek": [
-   "un caiet",
-   "Îmi scriu numele în caiet."
-  ],
-  "word_ssada": [
-   "a fi ieftin",
-   "Fructele acestea sunt ieftine."
-  ],
-  "word_dowajuda": [
-   "a da o mână de ajutor",
-   "Dați-mi o mână de ajutor, vă rog."
-  ],
-  "word_maekju": [
-   "bere",
-   "Berea este rece."
-  ],
-  "word_jjada": [
-   "a fi sărat",
-   "Supa este sărată."
-  ],
-  "word_gyehoek": [
-   "un plan",
-   "Am făcut un plan."
-  ],
-  "word_pyeonghwa": [
-   "pace",
-   "Dorim pace."
-  ],
-  "word_yaksok": [
-   "o promisiune, o întâlnire",
-   "Îmi țin promisiunea."
-  ],
-  "word_oreunjjok": [
-   "partea dreaptă",
-   "Mergeți la dreapta, vă rog."
-  ],
-  "word_gippeuda": [
-   "a fi bucuros",
-   "M-am bucurat să aud vestea."
-  ],
-  "word_baeuda": [
-   "a învăța",
-   "Învăț coreeana."
-  ],
-  "word_jebal": [
-   "te rog",
-   "Te rog, ajută-mă."
-  ],
-  "word_dopda": [
-   "a ajuta",
-   "Îmi ajut prietenul."
-  ],
-  "word_jaryo": [
-   "materiale pentru o sarcină",
-   "Am pregătit din timp materialele ședinței."
-  ],
-  "word_hullyunghada": [
-   "a fi excelent",
-   "Este o idee excelentă."
-  ],
-  "word_moseup": [
-   "înfățișare",
-   "Înfățișarea lor s-a schimbat."
-  ],
-  "word_undong": [
-   "mișcare, sport",
-   "Fac sport dimineața."
-  ],
-  "word_geureonde": [
-   "apropo, dar",
-   "Apropo, ce este asta?"
-  ],
-  "word_juseu": [
-   "suc",
-   "Copilul bea suc."
-  ],
-  "word_jwi": [
-   "un șoarece",
-   "Am văzut un șoarece în bucătărie."
-  ],
-  "word_chwimi": [
-   "un hobby",
-   "Hobby-ul meu este fotografia."
-  ],
-  "word_deung": [
-   "spatele",
-   "Mă mănâncă spatele."
-  ],
-  "word_jeoldae": [
-   "niciodată",
-   "Să nu întârziați sub nicio formă."
-  ],
-  "word_dol": [
-   "o piatră",
-   "Pe potecă erau multe pietre, așa că am fost atenți."
-  ],
-  "word_bappeuda": [
-   "a fi ocupat",
-   "Azi sunt ocupat."
-  ],
-  "word_ireon": [
-   "de felul acesta",
-   "Așa ceva mi se întâmplă prima dată."
-  ],
-  "word_yeoseong": [
-   "o femeie",
-   "Au venit multe femei."
-  ],
-  "word_paransaek": [
-   "culoarea albastră",
-   "Hainele albastre îți vin bine."
-  ],
-  "word_ireonada": [
-   "a se trezi",
-   "Mă trezesc la șapte."
-  ],
-  "word_gom": [
-   "un urs",
-   "Urșii trăiesc în munți."
-  ],
-  "word_jam": [
-   "somn",
-   "În ultima vreme nu pot dormi bine."
-  ],
-  "word_haebyeon": [
-   "o plajă",
-   "Vara am fost la plajă."
-  ],
-  "word_hosu": [
-   "lac",
-   "Lacul este liniștit."
-  ],
-  "word_dakgogi": [
-   "carne de pui",
-   "Puiul are puțină grăsime."
-  ],
-  "word_geunde": [
-   "apropo",
-   "Apropo, cât e ceasul acum?"
-  ],
-  "word_jaeneung": [
-   "un talent",
-   "Are talent la desen."
-  ],
-  "word_gyeolhon": [
-   "căsătorie",
-   "Felicitări pentru căsătorie."
-  ],
-  "word_binu": [
-   "săpun",
-   "Mă spăl pe mâini cu săpun."
-  ],
-  "word_saja": [
-   "un leu",
-   "Leul este mare."
-  ],
-  "word_eoneu": [
-   "care",
-   "Care îți place?"
-  ],
-  "word_mureoboda": [
-   "a întreba",
-   "L-am întrebat pe profesor."
-  ],
-  "word_ucheguk": [
-   "un oficiu poștal",
-   "Am trimis o scrisoare la poștă."
-  ],
-  "word_japji": [
-   "revistă",
-   "Citesc o revistă."
-  ],
-  "word_jean": [
-   "o propunere",
-   "Am primit o propunere bună de la firmă."
-  ],
-  "word_yojeum": [
-   "în ultima vreme",
-   "Ce mai faci în ultima vreme?"
-  ],
-  "word_ulda": [
-   "a plânge",
-   "Bebelușul plânge."
-  ],
-  "word_namda": [
-   "a rămâne",
-   "A mai rămas puțin orez."
-  ],
-  "word_miso": [
-   "un zâmbet",
-   "Este un zâmbet frumos."
-  ],
-  "word_daehak": [
-   "facultate",
-   "Am fost admis la facultate."
-  ],
-  "word_uimi": [
-   "înțeles",
-   "Ce înseamnă cuvântul acesta?"
-  ],
-  "word_geim": [
-   "un joc",
-   "Joc un joc."
-  ],
-  "word_cham": [
-   "chiar, într-adevăr",
-   "Vremea este chiar frumoasă azi."
-  ],
-  "word_kong": [
-   "o fasole",
-   "Am pus fasole în orez."
-  ],
-  "word_saebyeok": [
-   "zorii",
-   "M-am trezit înainte de zori."
-  ],
-  "word_utda": [
-   "a râde",
-   "Prietenul meu râde tare."
-  ],
-  "word_imi": [
-   "deja",
-   "S-a terminat deja."
-  ],
-  "word_sutgarak": [
-   "o lingură",
-   "Mănânc supa cu lingura."
-  ],
-  "word_bureuda": [
-   "a chema",
-   "Chem un taxi."
-  ],
-  "word_koteu": [
-   "palton",
-   "Puneți-vă paltonul, vă rog."
-  ],
-  "word_meolda": [
-   "a fi departe",
-   "Școala este departe."
-  ],
-  "word_myeong": [
-   "o persoană",
-   "Sunt cinci elevi."
-  ],
-  "word_eonni": [
-   "sora mai mare a unei femei",
-   "Sora mea mai mare este studentă."
-  ],
-  "word_ihae": [
-   "înțelegere",
-   "Înțeleg bine."
-  ],
-  "word_samda": [
-   "a fierbe în apă",
-   "Fierb un ou."
-  ],
-  "word_noransaek": [
-   "culoarea galbenă",
-   "Am folosit o umbrelă galbenă."
-  ],
-  "word_mudeom": [
-   "un mormânt",
-   "Pe munte este un mormânt vechi."
-  ],
-  "word_gita": [
-   "o chitară",
-   "Cânt la chitară."
-  ],
-  "word_itda_3": [
-   "a uita",
-   "Am uitat numele."
-  ],
-  "word_gongyeon": [
-   "un spectacol",
-   "Spectacolul începe."
-  ],
-  "word_ilta": [
-   "a pierde",
-   "Mi-am pierdut cheia."
-  ],
-  "word_baneung": [
-   "o reacție",
-   "Reacția oamenilor a fost foarte bună."
-  ],
-  "word_gudu": [
-   "pantofi eleganți",
-   "Pantofii sunt comozi."
-  ],
-  "word_hyuga": [
-   "concediu",
-   "Am fost în concediu."
-  ],
-  "word_jeohui": [
-   "noi, cu modestie",
-   "Vă vom ajuta noi."
-  ],
-  "word_geuttae": [
-   "atunci",
-   "Atunci ploua."
-  ],
-  "word_sopa": [
-   "o canapea",
-   "Stați pe canapea și odihniți-vă."
-  ]
- }
+  "_comment": "Vocabulary copy for Romanian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "ro",
+  "words": {
+    "word_hada": [
+      "a face",
+      "Învăț.",
+      "A face — și motorul vocabularului coreean. Atașat unui substantiv, dă un verb: 공부 (studiu) devine 공부하다 (a studia), 사랑 (dragoste) devine 사랑하다. Sute de verbe se construiesc așa."
+    ],
+    "word_cha": [
+      "mașină",
+      "Merg cu mașina.",
+      "Mașină. Aceeași silabă înseamnă și ceai: 차를 마셔요 este beau ceai, iar 차를 타요 este urc în mașină. Verbul îți spune despre care e vorba."
+    ],
+    "word_yeoja": [
+      "femeie",
+      "Femeia aceea e medic."
+    ],
+    "word_na": [
+      "eu",
+      "Învăț coreeană."
+    ],
+    "word_hae": [
+      "Soarele",
+      "Soarele strălucește."
+    ],
+    "word_don": [
+      "bani",
+      "Sunt bani în portofel."
+    ],
+    "word_uri": [
+      "noi",
+      "Suntem prieteni."
+    ],
+    "word_jip": [
+      "casă",
+      "Merg acasă."
+    ],
+    "word_itda": [
+      "a se afla",
+      "Sunt acasă.",
+      "Un singur cuvânt acolo unde româna folosește două: 있다 înseamnă și a fi undeva, și a avea. 책상에 책이 있어요 — cartea este pe birou; 시간이 있어요 — am timp. Opusul este 없다."
+    ],
+    "word_ne": [
+      "da",
+      "Da, așa e.",
+      "Trei cuvinte frecvente se scriu 네. Acesta este „da”. Celelalte sunt „al tău” (네 책, cartea ta) și numeralul coreean „patru” înaintea unui clasificator (네 개, patru bucăți). Le separă contextul, nu scrierea."
+    ],
+    "word_son": [
+      "mână",
+      "Scriu de mână."
+    ],
+    "word_sigan": [
+      "timp",
+      "Nu am timp.",
+      "Timpul în general și, totodată, unitatea pentru numărat orele: 두 시간 înseamnă două ore. Nu-l confunda cu 시, ora de pe ceas — 두 시 înseamnă ora două, cu totul altceva."
+    ],
+    "word_jeo": [
+      "eu (politicos)",
+      "Sunt student."
+    ],
+    "word_gada": [
+      "a merge",
+      "Merg la școală."
+    ],
+    "word_gae": [
+      "câine",
+      "Câinele aleargă."
+    ],
+    "word_mun": [
+      "ușă",
+      "Deschid ușa."
+    ],
+    "word_sae": [
+      "pasăre",
+      "O pasăre zboară."
+    ],
+    "word_mom": [
+      "corp",
+      "Îmi spăl corpul în fiecare zi."
+    ],
+    "word_bang": [
+      "cameră",
+      "Camera e curată."
+    ],
+    "word_nun": [
+      "ochi",
+      "Ai ochi frumoși.",
+      "Ochiul. Se scrie identic cu cuvântul pentru zăpadă, iar în vorbirea îngrijită cele două se deosebesc prin lungime: 눈-zăpadă se lungește, 눈-ochi este scurt. Cei mai mulți vorbitori se bazează pe context."
+    ],
+    "word_ot": [
+      "haine",
+      "Hainele sunt frumoase."
+    ],
+    "word_neo": [
+      "tu",
+      "Unde ești?"
+    ],
+    "word_eopda": [
+      "a nu avea",
+      "Nu am bani."
+    ],
+    "word_meori": [
+      "cap",
+      "Mă doare capul."
+    ],
+    "word_ip": [
+      "gură",
+      "Gura e mică."
+    ],
+    "word_mul": [
+      "apă",
+      "Beau apă."
+    ],
+    "word_dari": [
+      "picior",
+      "Mă doare piciorul.",
+      "Picior — al tău, al mesei, al scaunului. Același cuvânt înseamnă și pod, de aceea 다리를 건너요 este „trec podul”, nu ceva anatomic."
+    ],
+    "word_bi": [
+      "ploaie",
+      "Plouă."
+    ],
+    "word_wae": [
+      "de ce",
+      "De ce ai întârziat?"
+    ],
+    "word_eolgul": [
+      "față",
+      "Mă spăl pe față."
+    ],
+    "word_saram": [
+      "om",
+      "Este un om bun."
+    ],
+    "word_hakgyo": [
+      "școală",
+      "Școala e mare."
+    ],
+    "word_yeogi": [
+      "aici",
+      "Vă rog să stați aici."
+    ],
+    "word_pal": [
+      "braț",
+      "Ai brațele lungi."
+    ],
+    "word_norae": [
+      "cântec",
+      "Cânt un cântec."
+    ],
+    "word_chaek": [
+      "carte",
+      "Citesc o carte."
+    ],
+    "word_dal": [
+      "Luna",
+      "Luna e strălucitoare."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Răspund la telefon."
+    ],
+    "word_namu": [
+      "copac",
+      "Copacul e înalt."
+    ],
+    "word_dasi": [
+      "din nou",
+      "Mai spuneți o dată, vă rog."
+    ],
+    "word_nal": [
+      "zi",
+      "E o zi frumoasă."
+    ],
+    "word_jigeum": [
+      "acum",
+      "Plec acum."
+    ],
+    "word_haru": [
+      "o zi",
+      "Ziua e lungă."
+    ],
+    "word_sesang": [
+      "lumea",
+      "Lumea e mare."
+    ],
+    "word_bal": [
+      "talpă",
+      "Îmi sunt reci picioarele."
+    ],
+    "word_neutda": [
+      "a întârzia",
+      "Autobuzul a întârziat."
+    ],
+    "word_modu": [
+      "toți",
+      "S-au adunat toți."
+    ],
+    "word_sajin": [
+      "fotografie",
+      "Fac o fotografie."
+    ],
+    "word_chimdae": [
+      "pat",
+      "Patul e comod."
+    ],
+    "word_ko": [
+      "nas",
+      "Mi s-a înfundat nasul."
+    ],
+    "word_san": [
+      "munte",
+      "Merg la munte."
+    ],
+    "word_hana": [
+      "unu",
+      "Un măr, vă rog."
+    ],
+    "word_byeongwon": [
+      "spital",
+      "Merg la spital."
+    ],
+    "word_jeongmal": [
+      "chiar",
+      "Mulțumesc mult.",
+      "Chiar, într-adevăr — un intensificator pus înaintea adjectivului, ca în 정말 좋아요. Singur, cu intonație urcătoare, 정말? este o întrebare dintr-un cuvânt: „serios?” — așa îl vei auzi cel mai des."
+    ],
+    "word_seonmul": [
+      "cadou",
+      "Îmi place cadoul."
+    ],
+    "word_boda": [
+      "a vedea",
+      "Mă uit la un film."
+    ],
+    "word_oneul": [
+      "azi",
+      "Azi e vreme frumoasă."
+    ],
+    "word_gabang": [
+      "geantă",
+      "Geanta e grea."
+    ],
+    "word_eumak": [
+      "muzică",
+      "Muzica e frumoasă."
+    ],
+    "word_gage": [
+      "magazin",
+      "Magazinul e închis."
+    ],
+    "word_gil": [
+      "drum",
+      "Drumul e lat."
+    ],
+    "word_ohu": [
+      "după-amiază",
+      "Să ne vedem după-amiază."
+    ],
+    "word_keopi": [
+      "cafea",
+      "Beau cafea."
+    ],
+    "word_bap": [
+      "masă",
+      "Mănânc."
+    ],
+    "word_eomma": [
+      "mama",
+      "Mama gătește."
+    ],
+    "word_gwi": [
+      "ureche",
+      "Mă doare urechea."
+    ],
+    "word_beoseu": [
+      "autobuz",
+      "Vine autobuzul."
+    ],
+    "word_geurim": [
+      "desen",
+      "Fac un desen."
+    ],
+    "word_beon": [
+      "dată",
+      "Mai faceți o dată, vă rog."
+    ],
+    "word_sul": [
+      "alcool",
+      "Nu beau alcool."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "Filmul e amuzant."
+    ],
+    "word_sada": [
+      "a cumpăra",
+      "Cumpăr pâine."
+    ],
+    "word_byeol": [
+      "stea",
+      "Stelele strălucesc."
+    ],
+    "word_bihaenggi": [
+      "avion",
+      "Merg cu avionul."
+    ],
+    "word_bak": [
+      "exterior",
+      "Afară plouă."
+    ],
+    "word_oda": [
+      "a veni",
+      "Vine prietenul meu."
+    ],
+    "word_chingu": [
+      "prieten",
+      "Mă întâlnesc cu un prieten."
+    ],
+    "word_appa": [
+      "tata",
+      "Noapte bună, tată."
+    ],
+    "word_haneul": [
+      "cer",
+      "Cerul e albastru."
+    ],
+    "word_bada": [
+      "mare",
+      "Marea e întinsă."
+    ],
+    "word_sagwa": [
+      "măr",
+      "Mărul e dulce."
+    ],
+    "word_mulgeon": [
+      "lucru",
+      "Cumpăr lucruri."
+    ],
+    "word_moja": [
+      "pălărie",
+      "Îmi pun o pălărie."
+    ],
+    "word_gogi": [
+      "carne",
+      "Frig carne."
+    ],
+    "word_jinjja": [
+      "adevărat",
+      "Chiar e adevărat?"
+    ],
+    "word_sinbal": [
+      "pantofi",
+      "Îmi pun pantofii."
+    ],
+    "word_jamkkan": [
+      "o clipă",
+      "Așteptați o clipă, vă rog."
+    ],
+    "word_namja": [
+      "bărbat",
+      "Bărbatul acela e prietenul meu."
+    ],
+    "word_eumsik": [
+      "mâncare",
+      "Mâncarea coreeană e delicioasă."
+    ],
+    "word_saengil": [
+      "zi de naștere",
+      "La mulți ani."
+    ],
+    "word_daseot": [
+      "cinci",
+      "Au venit cinci persoane."
+    ],
+    "word_gihoe": [
+      "ocazie",
+      "E o ocazie bună."
+    ],
+    "word_dul": [
+      "doi",
+      "Sunt două scaune."
+    ],
+    "word_sijang": [
+      "piață",
+      "Cumpăr legume din piață."
+    ],
+    "word_goyangi": [
+      "pisică",
+      "Pisica doarme."
+    ],
+    "word_changmun": [
+      "fereastră",
+      "Închideți fereastra, vă rog."
+    ],
+    "word_yeoreum": [
+      "vară",
+      "Vara merg la mare."
+    ],
+    "word_dongmul": [
+      "animal",
+      "Îmi plac animalele."
+    ],
+    "word_yeohaeng": [
+      "călătorie",
+      "Vreau să călătoresc."
+    ],
+    "word_bam": [
+      "noapte",
+      "Noaptea sunt multe stele.",
+      "Noapte. Se scrie la fel ca substantivul pentru castană, o gustare obișnuită de toamnă în Coreea, așa că 밤을 먹어요 și 밤에 자요 vorbesc despre lucruri foarte diferite."
+    ],
+    "word_geot": [
+      "un lucru",
+      "Am cumpărat lucrurile de care aveam nevoie.",
+      "Cel mai obișnuit substantiv coreean: ține locul a ceea ce nu ai numit. 제 것 înseamnă *al meu*; 먹을 것 înseamnă *ceva de mâncat*. În vorbire se scurtează la 거 — 이거, 그거, 저거 — și aceasta e forma pe care începătorii o întâlnesc prima."
+    ],
+    "word_mal": [
+      "cuvinte, ce spune cineva",
+      "Alege-ți cuvintele cu grijă.",
+      "Vorba — cuvintele, ceea ce spune cineva. Aceeași silabă înseamnă și cal, iar 말 încheie 한국말, limba coreeană. În scris nimic nu le desparte: 말을 하다 e a vorbi, 말을 타다 e a călări."
+    ],
+    "word_bun": [
+      "un minut",
+      "Vă rog să așteptați doar zece minute.",
+      "Alte două cuvinte se scriu 분. Unul e modul politicos de a număra persoane — 세 분, trei persoane, spus despre oaspeți sau vârstnici. Celălalt înseamnă mânie, ca în 분이 풀리다. Doar propoziția le deosebește."
+    ],
+    "word_dwi": [
+      "spatele",
+      "Mi-am scris numele pe spatele caietului."
+    ],
+    "word_si": [
+      "ora fixă",
+      "Ora se termină la două.",
+      "Ora ia numeralele native — 한 시, 두 시, 세 시 — iar minutul pe cele sino-coreene: 세 시 십 분, trei și zece. Inversarea lor e greșeala clasică a începătorului și se aude imediat."
+    ],
+    "word_deo": [
+      "mai mult",
+      "Încă puțin, vă rog."
+    ],
+    "word_ap": [
+      "partea din față",
+      "Ne vedem în fața magazinului."
+    ],
+    "word_da": [
+      "tot",
+      "Am mâncat tot orezul."
+    ],
+    "word_jom": [
+      "puțin, și o îndulcire a unei rugăminți",
+      "Puțină apă, vă rog.",
+      "Prescurtare de la 조금, *puțin* — dar jumătate din munca lui e să îndulcească. Strecurat într-o cerere îi ia din asprime: 도와주세요 e *ajută-mă*, 좀 도와주세요 sună a *m-ai putea ajuta*. Tocmai de aceea coreenii îl folosesc necontenit."
+    ],
+    "word_jeon": [
+      "înainte",
+      "Mă spăl pe mâini înainte de masă.",
+      "Înainte, în timp. Mai multe cuvinte se scriu 전: 전쟁 e război și se scurtează la 전, 전기 e electricitate, iar 전 în meniu e o clătită sărată. Înaintea unui verb e cel temporal — 먹기 전에, înainte de a mânca."
+    ],
+    "word_alda": [
+      "a ști",
+      "Știu numele."
+    ],
+    "word_yak": [
+      "medicament",
+      "Luați medicamentul după masă."
+    ],
+    "word_jota": [
+      "a fi bun",
+      "Mă simt bine."
+    ],
+    "word_jal": [
+      "bine",
+      "Ai dormit bine?"
+    ],
+    "word_anida": [
+      "a nu fi ceva",
+      "Nu sunt student.",
+      "Opusul lui 이다. Cere 이/가 pe lucrul negat, nu 을/를: 학생이 아니에요, niciodată 학생을 아니에요. Cine învață acest tipar poate nega orice propoziție nominală coreeană."
+    ],
+    "word_bul": [
+      "foc",
+      "A izbucnit un incendiu pe munte."
+    ],
+    "word_uyu": [
+      "lapte",
+      "Laptele este rece."
+    ],
+    "word_meokda": [
+      "a mânca",
+      "Mănânc fructe."
+    ],
+    "word_ppang": [
+      "pâine",
+      "Mănânc pâine."
+    ],
+    "word_ttae": [
+      "momentul când se întâmplă ceva",
+      "Când eram mic locuiam la țară."
+    ],
+    "word_il": [
+      "muncă",
+      "Azi este multă muncă.",
+      "Munca, sau un lucru care trebuie făcut. Aceeași silabă e unu sino-coreean — 일 번, numărul unu — și e ziua din 일요일, duminică, și din 삼 일, trei zile."
+    ],
+    "word_baji": [
+      "pantaloni",
+      "Pantalonii sunt lungi."
+    ],
+    "word_sigye": [
+      "ceas",
+      "Nu am ceas."
+    ],
+    "word_siheom": [
+      "un test, un examen",
+      "Mâine am examen."
+    ],
+    "word_keompyuteo": [
+      "calculator",
+      "Pornesc calculatorul."
+    ],
+    "word_nalssi": [
+      "vremea",
+      "Vremea este frumoasă."
+    ],
+    "word_jongi": [
+      "hârtie",
+      "Desenez pe hârtie."
+    ],
+    "word_dosi": [
+      "oraș",
+      "Orașul este foarte mare."
+    ],
+    "word_munje": [
+      "problemă",
+      "Este o problemă."
+    ],
+    "word_wi": [
+      "partea de sus",
+      "Pe geantă este o pălărie."
+    ],
+    "word_bom": [
+      "primăvară",
+      "Primăvara înfloresc florile."
+    ],
+    "word_jeonyeok": [
+      "cina",
+      "Iau cina."
+    ],
+    "word_gyeoul": [
+      "iarnă",
+      "Iarna ninge mult."
+    ],
+    "word_abeoji": [
+      "tată",
+      "Tatăl meu merge la serviciu."
+    ],
+    "word_eoseo": [
+      "poftiți, vă rog",
+      "Bine ați venit, poftiți înăuntru."
+    ],
+    "word_mot": [
+      "a nu putea, deși vrei",
+      "Este atât de iute încât nu pot mânca.",
+      "Coreeana are două negații și spun lucruri diferite. 안 e *nu vreau*; 못 e *nu pot*. 안 먹어요 înseamnă că alegi să nu mănânci; 못 먹어요 că ceva te împiedică. Un substantiv scris la fel, 못, e cuiul."
+    ],
+    "word_salda": [
+      "a locui, a trăi",
+      "Locuiesc în Seul."
+    ],
+    "word_ai": [
+      "copil",
+      "Copilul râde."
+    ],
+    "word_jeomsim": [
+      "prânz",
+      "Să luăm prânzul împreună."
+    ],
+    "word_nugu": [
+      "cine",
+      "Cine este persoana aceea?"
+    ],
+    "word_eonje": [
+      "când",
+      "Când vii?"
+    ],
+    "word_geori": [
+      "o stradă",
+      "Sunt mulți oameni pe stradă."
+    ],
+    "word_annyeong": [
+      "bună și la revedere",
+      "Pa, ne mai vedem!"
+    ],
+    "word_gakkeum": [
+      "uneori",
+      "Uneori mă uit la filme."
+    ],
+    "word_manta": [
+      "a fi mulți",
+      "Sunt mulți oameni."
+    ],
+    "word_chima": [
+      "o fustă",
+      "Fusta aceasta este foarte frumoasă."
+    ],
+    "word_uija": [
+      "scaun",
+      "Stau pe scaun."
+    ],
+    "word_jeogi": [
+      "acolo",
+      "Acolo este școala."
+    ],
+    "word_gongwon": [
+      "parc",
+      "Mă plimb prin parc."
+    ],
+    "word_ssal": [
+      "orez nefiert",
+      "Spăl orezul și îl fierb."
+    ],
+    "word_jigu": [
+      "Pământul",
+      "Pământul este rotund."
+    ],
+    "word_eodi": [
+      "unde",
+      "Unde este toaleta?"
+    ],
+    "word_byeok": [
+      "un perete",
+      "Atârn un tablou pe perete."
+    ],
+    "word_gyeran": [
+      "un ou",
+      "Dimineața am fiert un ou."
+    ],
+    "word_tada": [
+      "a urca, a merge cu",
+      "Iau autobuzul.",
+      "A urca în orice te duce — un autobuz, o bicicletă, un lift. Alte două verbe foarte frecvente au aceeași scriere: 타다 înseamnă și a arde, și a dizolva ceva într-o băutură."
+    ],
+    "word_segye": [
+      "lumea",
+      "Cunosc multe țări ale lumii."
+    ],
+    "word_ireum": [
+      "nume",
+      "Cum te cheamă?"
+    ],
+    "word_guk": [
+      "supă",
+      "Dimineața mănânc supă."
+    ],
+    "word_malhada": [
+      "a vorbi",
+      "Vorbiți rar, vă rog."
+    ],
+    "word_geotda": [
+      "a merge pe jos",
+      "Mă plimb prin parc."
+    ],
+    "word_gangaji": [
+      "cățeluș",
+      "Cățelușul este mic."
+    ],
+    "word_sori": [
+      "sunet",
+      "Sunetul este puternic."
+    ],
+    "word_yeop": [
+      "latura",
+      "Stați lângă mine, vă rog."
+    ],
+    "word_saenggak": [
+      "gând",
+      "Este o idee bună."
+    ],
+    "word_geogi": [
+      "acolo",
+      "Este cineva acolo?"
+    ],
+    "word_adeul": [
+      "fiu",
+      "Fiul meu merge la școală."
+    ],
+    "word_doeda": [
+      "a deveni",
+      "Vreau să devin medic.",
+      "A deveni. E și cuvântul de zi cu zi pentru ceva care merge sau e permis: 안 돼요 înseamnă nu se poate, iar 다 됐어요 înseamnă e gata. Pe acestea le vei auzi mult mai des decât sensul din dicționar."
+    ],
+    "word_maeul": [
+      "un sat",
+      "Satul este liniștit."
+    ],
+    "word_kape": [
+      "o cafenea",
+      "Mă întâlnesc cu prietenul meu la cafenea."
+    ],
+    "word_gong": [
+      "o minge",
+      "Lovesc mingea cu piciorul."
+    ],
+    "word_gajok": [
+      "familie",
+      "Am o familie mare."
+    ],
+    "word_ssi": [
+      "domnule sau doamnă, după un nume",
+      "Minsu, o clipă.",
+      "După prenume e politicos și prietenos între egali: 민수 씨. După numele de familie singur — 김 씨 — sună distant sau chiar sec, așa că folosește prenumele. Cu un superior folosește titlul: 부장님, 선생님."
+    ],
+    "word_achim": [
+      "dimineață",
+      "Mă trezesc dimineața."
+    ],
+    "word_jeonhwahada": [
+      "a suna la telefon",
+      "Te sun mai târziu."
+    ],
+    "word_gaeul": [
+      "toamnă",
+      "Toamna vântul este răcoros."
+    ],
+    "word_kkot": [
+      "floare",
+      "Floarea este frumoasă."
+    ],
+    "word_jido": [
+      "hartă",
+      "Mă uit pe hartă."
+    ],
+    "word_saek": [
+      "o culoare",
+      "Această culoare este frumoasă."
+    ],
+    "word_juda": [
+      "a da",
+      "Ofer un cadou."
+    ],
+    "word_yachae": [
+      "legume",
+      "Mâncați multe legume, vă rog."
+    ],
+    "word_chaeksang": [
+      "birou",
+      "Pe birou este o carte."
+    ],
+    "word_cheoeum": [
+      "prima dată",
+      "Îmi pare bine de cunoștință."
+    ],
+    "word_gwail": [
+      "fructe",
+      "Îmi plac fructele."
+    ],
+    "word_uisa": [
+      "medic",
+      "Medicul mă consultă."
+    ],
+    "word_ttal": [
+      "o fiică",
+      "Fiica mea merge la școală."
+    ],
+    "word_yeoboseyo": [
+      "alo, la telefon",
+      "Alo, cine este?"
+    ],
+    "word_so": [
+      "o vacă",
+      "Vaca mănâncă iarbă."
+    ],
+    "word_pyeonji": [
+      "scrisoare",
+      "Îi scriu o scrisoare mamei."
+    ],
+    "word_jogeum": [
+      "puțin",
+      "Doar puțin, vă rog."
+    ],
+    "word_boida": [
+      "a se vedea",
+      "Se vede muntele."
+    ],
+    "word_jari": [
+      "un loc de stat",
+      "Nu sunt locuri."
+    ],
+    "word_hu": [
+      "după",
+      "După oră merg la bibliotecă."
+    ],
+    "word_kadeu": [
+      "card",
+      "Plătesc cu cardul."
+    ],
+    "word_naeil": [
+      "mâine",
+      "Pe mâine."
+    ],
+    "word_jungyohada": [
+      "a fi important",
+      "Sănătatea este cel mai important lucru."
+    ],
+    "word_dalgyal": [
+      "un ou",
+      "Dimineața mănânc un ou."
+    ],
+    "word_aju": [
+      "foarte",
+      "Este foarte gustos."
+    ],
+    "word_matda": [
+      "a fi corect",
+      "Acest răspuns este corect."
+    ],
+    "word_hanguk": [
+      "Coreea",
+      "Îmi place mâncarea coreeană."
+    ],
+    "word_gang": [
+      "un râu",
+      "Râul este foarte lat."
+    ],
+    "word_cho": [
+      "o secundă",
+      "Au mai rămas treizeci de secunde."
+    ],
+    "word_hoesa": [
+      "o firmă, un birou",
+      "Merg la birou."
+    ],
+    "word_sosik": [
+      "vești de la cineva",
+      "Am o veste bună."
+    ],
+    "word_jakda": [
+      "a fi mic",
+      "Pantofii sunt mici."
+    ],
+    "word_gimchi": [
+      "kimchi",
+      "Kimchi este iute."
+    ],
+    "word_ikda": [
+      "a citi",
+      "Citesc ziarul."
+    ],
+    "word_geurigo": [
+      "și, și apoi",
+      "Am cumpărat pâine. Și am cumpărat și lapte."
+    ],
+    "word_keuda": [
+      "a fi mare",
+      "Geanta aceasta este mare."
+    ],
+    "word_yeollak": [
+      "contact",
+      "Luați legătura cu mine mai târziu."
+    ],
+    "word_gachi": [
+      "împreună",
+      "Să mâncăm împreună."
+    ],
+    "word_neomu": [
+      "prea",
+      "Hainele acestea sunt prea mari."
+    ],
+    "word_yong": [
+      "un dragon",
+      "În desen este un dragon mare."
+    ],
+    "word_geureota": [
+      "a fi așa",
+      "Da, așa este."
+    ],
+    "word_hotel": [
+      "hotel",
+      "Am dormit la hotel."
+    ],
+    "word_yeolsoe": [
+      "cheie",
+      "Nu am cheia."
+    ],
+    "word_yeppeuda": [
+      "a fi frumos",
+      "Florile sunt chiar frumoase."
+    ],
+    "word_geugeot": [
+      "acela",
+      "Dați-mi acela, vă rog."
+    ],
+    "word_daeum": [
+      "următorul",
+      "Pe data viitoare."
+    ],
+    "word_maeum": [
+      "inimă, suflet",
+      "Au o inimă caldă."
+    ],
+    "word_jadongcha": [
+      "automobil",
+      "Mașina este rapidă."
+    ],
+    "word_jukda": [
+      "a muri",
+      "Floarea din ghiveci a murit pentru că nu a fost udată."
+    ],
+    "word_nalda": [
+      "a zbura",
+      "O pasăre zboară pe cer."
+    ],
+    "word_siksa": [
+      "masă",
+      "Masa a fost foarte bună."
+    ],
+    "word_gigye": [
+      "o mașinărie",
+      "Mașinăria s-a stricat."
+    ],
+    "word_ttang": [
+      "pământul, solul",
+      "Pământul este ud."
+    ],
+    "word_jada": [
+      "a dormi",
+      "Mă culc devreme."
+    ],
+    "word_beorida": [
+      "a arunca",
+      "Aruncați-l la coș, vă rog."
+    ],
+    "word_juso": [
+      "o adresă",
+      "Spuneți-mi adresa, vă rog."
+    ],
+    "word_gicha": [
+      "tren",
+      "Trenul a plecat."
+    ],
+    "word_chitsol": [
+      "o periuță de dinți",
+      "Am cumpărat o periuță nouă."
+    ],
+    "word_sarang": [
+      "dragoste",
+      "Dragostea este frumoasă."
+    ],
+    "word_gongbu": [
+      "studiu",
+      "Este plăcut să înveți."
+    ],
+    "word_saengseon": [
+      "pește de mâncat",
+      "Am fript pește la cină."
+    ],
+    "word_mok": [
+      "gât",
+      "Mă doare gâtul."
+    ],
+    "word_sipda": [
+      "a vrea",
+      "Vreau să merg în Coreea."
+    ],
+    "word_nyuseu": [
+      "știrile",
+      "Mă uit la știri."
+    ],
+    "word_chatda": [
+      "a căuta",
+      "Caut cheia."
+    ],
+    "word_iljjik": [
+      "devreme",
+      "Mâine mă trezesc devreme."
+    ],
+    "word_geonmul": [
+      "clădire",
+      "Clădirea aceea este nouă."
+    ],
+    "word_seonsaengnim": [
+      "profesor",
+      "Profesorul predă."
+    ],
+    "word_eomeoni": [
+      "mamă",
+      "Mama este acasă."
+    ],
+    "word_gibun": [
+      "stare de spirit",
+      "Cum te simți?"
+    ],
+    "word_honja": [
+      "singur",
+      "Pot să merg singur."
+    ],
+    "word_ani": [
+      "nu",
+      "Nu, nu m-am dus."
+    ],
+    "word_eoje": [
+      "ieri",
+      "Ieri a plouat."
+    ],
+    "word_sseuda": [
+      "a scrie",
+      "Îmi scriu numele.",
+      "A scrie. Același verb înseamnă și a folosi ceva, a purta o pălărie sau ochelari pe cap și — ca adjectiv — a fi amar. Patru sensuri obișnuite, o singură scriere."
+    ],
+    "word_masida": [
+      "a bea",
+      "Beau lapte."
+    ],
+    "word_syeocheu": [
+      "o cămașă",
+      "Port o cămașă albă."
+    ],
+    "word_junbi": [
+      "pregătire",
+      "Totul este gata."
+    ],
+    "word_mian": [
+      "scuze",
+      "Scuze, am întârziat."
+    ],
+    "word_geokjeong": [
+      "grijă",
+      "Am multe griji."
+    ],
+    "word_hajiman": [
+      "dar, totuși",
+      "Plouă. Dar tot merg."
+    ],
+    "word_kamera": [
+      "aparat foto",
+      "Am cumpărat un aparat foto."
+    ],
+    "word_dongne": [
+      "cartier",
+      "Cartierul nostru este liniștit."
+    ],
+    "word_naengjanggo": [
+      "un frigider",
+      "Am pus laptele în frigider."
+    ],
+    "word_anda": [
+      "a se așeza",
+      "M-am așezat pe scaun."
+    ],
+    "word_ppalli": [
+      "repede",
+      "Veniți repede, vă rog."
+    ],
+    "word_yaegi": [
+      "o discuție",
+      "Să vorbim o clipă."
+    ],
+    "word_got": [
+      "un loc",
+      "Am găsit un loc liniștit."
+    ],
+    "word_nat": [
+      "ziua, când e lumină",
+      "Ziua este cald."
+    ],
+    "word_sangja": [
+      "cutie",
+      "Deschid cutia."
+    ],
+    "word_wonhada": [
+      "a dori",
+      "Ce dorești?"
+    ],
+    "word_sikdang": [
+      "restaurant",
+      "Unde este restaurantul?"
+    ],
+    "word_geurida": [
+      "a desena",
+      "Copilul desenează un copac."
+    ],
+    "word_yuri": [
+      "sticlă",
+      "Sticla s-a spart."
+    ],
+    "word_igeot": [
+      "acesta",
+      "Dați-mi acesta, vă rog."
+    ],
+    "word_geoul": [
+      "oglindă",
+      "Mă uit în oglindă."
+    ],
+    "word_gijeok": [
+      "un miracol",
+      "A fost cu adevărat ca un miracol."
+    ],
+    "word_kal": [
+      "un cuțit",
+      "Am curățat mărul cu cuțitul."
+    ],
+    "word_gatda": [
+      "a fi la fel",
+      "Gențile noastre sunt la fel."
+    ],
+    "word_pul": [
+      "iarbă",
+      "Iarba este verde."
+    ],
+    "word_eolma": [
+      "cât",
+      "Cât costă asta?"
+    ],
+    "word_saenggakada": [
+      "a gândi",
+      "Și eu cred la fel."
+    ],
+    "word_jilmun": [
+      "o întrebare",
+      "Am o întrebare."
+    ],
+    "word_geunyeo": [
+      "ea",
+      "Ea cântă bine."
+    ],
+    "word_nota": [
+      "a pune jos",
+      "Am pus geanta pe podea."
+    ],
+    "word_banggeum": [
+      "adineauri",
+      "Am ajuns adineauri."
+    ],
+    "word_bonaeda": [
+      "a trimite",
+      "Trimit o scrisoare."
+    ],
+    "word_arae": [
+      "dedesubt",
+      "Cartea este sub birou."
+    ],
+    "word_naoda": [
+      "a ieși",
+      "Iese apă."
+    ],
+    "word_nai": [
+      "vârstă",
+      "Ce vârstă aveți?"
+    ],
+    "word_eotteoke": [
+      "cum",
+      "Cum ajung acolo?"
+    ],
+    "word_eunhaeng": [
+      "o bancă",
+      "Banca s-a deschis."
+    ],
+    "word_al": [
+      "un ou",
+      "Pasărea a făcut trei ouă."
+    ],
+    "word_moreuda": [
+      "a nu ști",
+      "Nu știu."
+    ],
+    "word_badak": [
+      "podeaua",
+      "Șterg podeaua."
+    ],
+    "word_hwajangsil": [
+      "baie",
+      "Toaleta este curată."
+    ],
+    "word_yeok": [
+      "gară",
+      "Ne vedem la gară."
+    ],
+    "word_seoul": [
+      "Seul",
+      "Seulul este foarte mare."
+    ],
+    "word_gwiyeopda": [
+      "a fi drăguț",
+      "Cățelușul este drăguț."
+    ],
+    "word_areumdapda": [
+      "a fi frumos",
+      "Peisajul este frumos."
+    ],
+    "word_ajik": [
+      "încă, încă nu",
+      "Încă nu au venit."
+    ],
+    "word_gyedan": [
+      "scări",
+      "Sunt multe trepte."
+    ],
+    "word_maeil": [
+      "în fiecare zi",
+      "Scriu hangul în fiecare zi."
+    ],
+    "word_agi": [
+      "un bebeluș",
+      "Bebelușul doarme."
+    ],
+    "word_dwaeji": [
+      "porc",
+      "Porcul mănâncă."
+    ],
+    "word_ju": [
+      "o săptămână",
+      "Ne vedem săptămâna viitoare."
+    ],
+    "word_iyagi": [
+      "poveste",
+      "Este o poveste interesantă."
+    ],
+    "word_tto": [
+      "din nou",
+      "Ne vedem din nou mâine."
+    ],
+    "word_beolsseo": [
+      "deja",
+      "S-a terminat deja totul."
+    ],
+    "word_dangsin": [
+      "dumneavoastră",
+      "V-am așteptat."
+    ],
+    "word_gap": [
+      "un preț",
+      "Prețul este mare."
+    ],
+    "word_mianhada": [
+      "a-i părea rău",
+      "Îmi pare rău că am întârziat."
+    ],
+    "word_jeongnyujang": [
+      "o stație de autobuz",
+      "Aștept autobuzul în stație."
+    ],
+    "word_anta": [
+      "a nu face",
+      "Nu beau cafea."
+    ],
+    "word_taeksi": [
+      "taxi",
+      "Chemați un taxi, vă rog."
+    ],
+    "word_haksaeng": [
+      "elev",
+      "În clasă sunt mulți elevi."
+    ],
+    "word_bomul": [
+      "comoară",
+      "Copiii caută o comoară."
+    ],
+    "word_jumun": [
+      "o comandă",
+      "Doriți să comandați?"
+    ],
+    "word_sinmun": [
+      "ziar",
+      "Citiți ziarul, vă rog."
+    ],
+    "word_dak": [
+      "o găină",
+      "Găina face un ou."
+    ],
+    "word_keop": [
+      "o cană",
+      "Torn apă în cană."
+    ],
+    "word_set": [
+      "trei",
+      "S-au adunat trei prieteni."
+    ],
+    "word_hangugeo": [
+      "limba coreeană",
+      "Coreeana este interesantă."
+    ],
+    "word_geuraeseo": [
+      "deci, de aceea",
+      "Plouă, deci nu merg."
+    ],
+    "word_manhi": [
+      "mult",
+      "Mâncați mult, vă rog."
+    ],
+    "word_du": [
+      "doi, înaintea unui clasificator",
+      "Două cafele, vă rog.",
+      "Numeralele native coreene își schimbă forma înaintea unui clasificator. 하나 둘 셋 넷 devin 한 두 세 네: 하나 singur, 한 개 pentru un obiect. 두 e acea formă a lui 둘 și nu stă niciodată singur."
+    ],
+    "word_pyeonuijeom": [
+      "un magazin non-stop",
+      "În fața casei mele este un magazin non-stop."
+    ],
+    "word_miguk": [
+      "Statele Unite",
+      "Vin din Statele Unite."
+    ],
+    "word_gyesok": [
+      "continuare",
+      "Continuă să plouă."
+    ],
+    "word_gagyeok": [
+      "un preț",
+      "Prețul este mai mare decât credeam."
+    ],
+    "word_dongsaeng": [
+      "frate sau soră mai mic",
+      "Fratele meu mai mic este drăguț.",
+      "Singurul cuvânt pentru frate care nu se schimbă cu vorbitorul: oricine e mai mic e 동생, indiferent cine vorbește. Adaugă o silabă când conteaza sexul — 남동생 frate mai mic, 여동생 soră mai mică."
+    ],
+    "word_tokki": [
+      "iepure",
+      "Iepurele sare."
+    ],
+    "word_seoda": [
+      "a sta în picioare",
+      "Stau la rând."
+    ],
+    "word_eoreum": [
+      "gheață",
+      "Puneți gheață, vă rog."
+    ],
+    "word_jayeon": [
+      "natura",
+      "Natura este frumoasă."
+    ],
+    "word_jjikda": [
+      "a ștampila",
+      "Am ștampilat cu sigiliul.",
+      "A apăsa ceva pe o suprafață: o pecete, o ștampilă, o amprentă. Același verb acoperă și fotografiatul — 사진을 찍다 — și înmuiatul mâncării în sos, toate trei din aceeași idee de apăsare."
+    ],
+    "word_yeol": [
+      "zece",
+      "Numărați până la zece, vă rog.",
+      "Aici 열 e zecele nativ coreean, cel cu care numeri lucruri — 열 개, zece bucăți. Alt 열 înseamnă febră, iar verbul 열다 înseamnă a deschide. Două litere, trei cuvinte fără legătură."
+    ],
+    "word_sasil": [
+      "un fapt",
+      "Acesta este un fapt."
+    ],
+    "word_unjeon": [
+      "condusul",
+      "Învăț să conduc."
+    ],
+    "word_gamja": [
+      "cartof",
+      "Fierb cartofii."
+    ],
+    "word_gureum": [
+      "nor",
+      "Sunt mulți nori."
+    ],
+    "word_iyu": [
+      "un motiv",
+      "Spuneți-mi motivul, vă rog."
+    ],
+    "word_dareun": [
+      "altul, diferit",
+      "Aveți și alte culori?"
+    ],
+    "word_songarak": [
+      "deget",
+      "Mă doare degetul."
+    ],
+    "word_japda": [
+      "a apuca",
+      "Te țin de mână."
+    ],
+    "word_bueok": [
+      "o bucătărie",
+      "Gătesc în bucătărie."
+    ],
+    "word_piryo": [
+      "o nevoie",
+      "Nu am nevoie de ajutor."
+    ],
+    "word_pa": [
+      "ceapă verde",
+      "Am pus puțină ceapă verde în supă."
+    ],
+    "word_batda": [
+      "a primi",
+      "Am primit un cadou."
+    ],
+    "word_pida": [
+      "a înflori",
+      "Florile au înflorit."
+    ],
+    "word_sayong": [
+      "folosire",
+      "Spuneți-mi cum se folosește, vă rog."
+    ],
+    "word_jeongbo": [
+      "informație",
+      "Caut informații."
+    ],
+    "word_gonghang": [
+      "aeroport",
+      "Am ajuns la aeroport."
+    ],
+    "word_bumo": [
+      "părinți",
+      "Un copil are nevoie de părinți."
+    ],
+    "word_saranghada": [
+      "a iubi",
+      "Îmi iubesc familia."
+    ],
+    "word_ireoke": [
+      "așa",
+      "Scrieți așa, vă rog."
+    ],
+    "word_ilhada": [
+      "a lucra",
+      "Mama lucrează la spital."
+    ],
+    "word_suyeong": [
+      "înot",
+      "Învăț să înot."
+    ],
+    "word_piryohada": [
+      "a avea nevoie",
+      "Am nevoie de bani."
+    ],
+    "word_bukjjok": [
+      "nordul",
+      "Au mers spre nord."
+    ],
+    "word_cheung": [
+      "un etaj",
+      "Biroul este la etajul doi."
+    ],
+    "word_hwanja": [
+      "un pacient",
+      "Pacientul se odihnește."
+    ],
+    "word_halmeoni": [
+      "bunică",
+      "Bunica zâmbește."
+    ],
+    "word_palda": [
+      "a vinde",
+      "Vând fructe."
+    ],
+    "word_itda_2": [
+      "a lega, a uni",
+      "Am legat cele două frânghii."
+    ],
+    "word_nara": [
+      "țară",
+      "Coreea este o țară frumoasă."
+    ],
+    "word_apateu": [
+      "bloc de locuințe",
+      "Locuiesc la bloc."
+    ],
+    "word_hamkke": [
+      "împreună",
+      "Să mergem împreună."
+    ],
+    "word_modeun": [
+      "toți, fiecare",
+      "Toată lumea a râs."
+    ],
+    "word_gwaenchanta": [
+      "a fi în regulă",
+      "Sunt bine."
+    ],
+    "word_johahada": [
+      "a plăcea",
+      "Îmi place cafeaua."
+    ],
+    "word_jimseung": [
+      "o fiară",
+      "În pădure s-a auzit o fiară."
+    ],
+    "word_dongan": [
+      "timp de",
+      "Am călătorit în timpul vacanței."
+    ],
+    "word_ipgu": [
+      "o intrare",
+      "Ne vedem la intrarea în clădire."
+    ],
+    "word_silta": [
+      "a nu plăcea",
+      "Nu îmi plac zilele reci."
+    ],
+    "word_meonjeo": [
+      "mai întâi",
+      "Mai întâi mă spăl pe mâini."
+    ],
+    "word_dubu": [
+      "tofu",
+      "Adaug tofu și fac supă."
+    ],
+    "word_bumonim": [
+      "proprii părinți",
+      "Locuiesc cu părinții."
+    ],
+    "word_gomapda": [
+      "a fi recunoscător",
+      "Mulțumesc pentru ajutor."
+    ],
+    "word_gyesan": [
+      "calculul",
+      "Calculul este puțin greșit."
+    ],
+    "word_hyeo": [
+      "limba din gură",
+      "Mă doare limba și nu pot mânca."
+    ],
+    "word_sugeon": [
+      "un prosop",
+      "Îmi șterg mâinile cu prosopul."
+    ],
+    "word_saeropda": [
+      "a fi nou",
+      "Mă simt înviorat."
+    ],
+    "word_sup": [
+      "o pădure",
+      "În pădure se aud păsările."
+    ],
+    "word_chum": [
+      "un dans",
+      "Au dansat pe scenă."
+    ],
+    "word_sukje": [
+      "teme",
+      "Mi-am terminat temele."
+    ],
+    "word_gaji": [
+      "un fel, un tip",
+      "Vreau să întreb un singur lucru.",
+      "E și numele vinetei, și ramura unui copac. Ca clasificator îl folosești pentru lucruri care se pot enumera: 두 가지 방법, două metode; 세 가지 이유, trei motive."
+    ],
+    "word_mothada": [
+      "a nu fi în stare",
+      "Nu știu să înot."
+    ],
+    "word_nagada": [
+      "a ieși",
+      "Ies afară."
+    ],
+    "word_meotjida": [
+      "a fi splendid",
+      "Azi arăți foarte bine."
+    ],
+    "word_podo": [
+      "struguri",
+      "Strugurii sunt foarte dulci."
+    ],
+    "word_jeopsi": [
+      "o farfurie",
+      "Scoateți două farfurii, vă rog."
+    ],
+    "word_yori": [
+      "gătitul",
+      "Mâncarea este delicioasă."
+    ],
+    "word_sogeum": [
+      "sare",
+      "Adaug puțină sare."
+    ],
+    "word_duda": [
+      "a pune",
+      "Am pus cartea pe birou."
+    ],
+    "word_gamsahada": [
+      "a fi recunoscător",
+      "Mulțumesc pentru ajutor."
+    ],
+    "word_kkeut": [
+      "sfârșitul",
+      "Stați la coada rândului, vă rog."
+    ],
+    "word_yeolda": [
+      "a deschide",
+      "Deschid fereastra."
+    ],
+    "word_ibul": [
+      "o plapumă",
+      "Plapuma este caldă."
+    ],
+    "word_najung": [
+      "mai târziu",
+      "Sun din nou mai târziu."
+    ],
+    "word_manjida": [
+      "a atinge",
+      "Nu atingeți, vă rog."
+    ],
+    "word_gajang": [
+      "cel mai",
+      "Acesta este cel mai bun."
+    ],
+    "word_namjjok": [
+      "sudul",
+      "În sud este cald."
+    ],
+    "word_doum": [
+      "ajutor",
+      "Am nevoie de ajutor."
+    ],
+    "word_jung": [
+      "în mijlocul, printre",
+      "Sunt în ședință."
+    ],
+    "word_sudo": [
+      "capitala",
+      "Capitala Coreei este Seul.",
+      "Capitala unei țări. Un alt 수도 e rețeaua de apă — 수도꼭지 e robinetul, 수도 요금 e factura la apă. Le deosebește doar contextul."
+    ],
+    "word_gidarida": [
+      "a aștepta",
+      "Așteptați o clipă, vă rog."
+    ],
+    "word_chaeso": [
+      "o legumă",
+      "Mănânc multe legume."
+    ],
+    "word_kkeunnada": [
+      "a se termina",
+      "Ora s-a terminat."
+    ],
+    "word_butak": [
+      "o rugăminte, o favoare",
+      "Am o rugăminte."
+    ],
+    "word_seom": [
+      "o insulă",
+      "Am luat o barcă până la insulă."
+    ],
+    "word_teuki": [
+      "mai ales",
+      "Îmi place mai ales iarna."
+    ],
+    "word_jemok": [
+      "un titlu",
+      "Care este titlul acestei cărți?"
+    ],
+    "word_insa": [
+      "un salut",
+      "Am salutat."
+    ],
+    "word_seoltang": [
+      "zahăr",
+      "Adaug puțin zahăr."
+    ],
+    "word_jajeongeo": [
+      "bicicletă",
+      "Merg cu bicicleta."
+    ],
+    "word_inteonet": [
+      "internetul",
+      "Internetul este lent."
+    ],
+    "word_aniyo": [
+      "nu",
+      "Nu, sunt bine."
+    ],
+    "word_ama": [
+      "probabil",
+      "Mâine probabil va ploua."
+    ],
+    "word_jamsi": [
+      "o clipă",
+      "Să ne odihnim o clipă."
+    ],
+    "word_beol": [
+      "o albină",
+      "O albină s-a așezat pe floare.",
+      "O albină. Alte două cuvinte se scriu 벌: o pedeapsă și clasificatorul pentru un rând de haine — 옷 한 벌, un costum."
+    ],
+    "word_won": [
+      "won",
+      "Sunt două mii de woni."
+    ],
+    "word_ujuseon": [
+      "o navă spațială",
+      "Nava spațială s-a ridicat spre cer."
+    ],
+    "word_myeot": [
+      "câți",
+      "Cât este ceasul?"
+    ],
+    "word_sueop": [
+      "o oră de curs",
+      "Ora este interesantă."
+    ],
+    "word_sijak": [
+      "un început",
+      "Este un început bun."
+    ],
+    "word_yeogwon": [
+      "un pașaport",
+      "Nu uita să iei pașaportul."
+    ],
+    "word_gyosil": [
+      "o sală de clasă",
+      "Sala de clasă este luminoasă."
+    ],
+    "word_nyeon": [
+      "an",
+      "Am învățat timp de doi ani."
+    ],
+    "word_bae": [
+      "burta",
+      "M-a durut burta, așa că am mers la spital.",
+      "Burta. Alte două cuvinte obișnuite se scriu 배: o barcă și o pară. 배가 아파요 e mă doare burta, 배를 타요 e urc într-o barcă, iar 배를 먹어요 e mănânc o pară."
+    ],
+    "word_satang": [
+      "o bomboană",
+      "Mănânc o bomboană."
+    ],
+    "word_dalleo": [
+      "dolar",
+      "Sunt o sută de dolari."
+    ],
+    "word_usan": [
+      "o umbrelă",
+      "Ploua, așa că am cumpărat o umbrelă."
+    ],
+    "word_museun": [
+      "ce fel de",
+      "Cu ce vă ocupați?"
+    ],
+    "word_pari": [
+      "o muscă",
+      "O muscă zboară prin cameră.",
+      "Insecta. Coreeana scrie la fel orașul Paris, așa că 파리에 갔어요 înseamnă am fost la Paris, iar 파리가 있어요 înseamnă e o muscă. Nimic în afară de propoziție nu le desparte."
+    ],
+    "word_ije": [
+      "acum",
+      "Să începem acum."
+    ],
+    "word_geollida": [
+      "a dura",
+      "Durează o oră."
+    ],
+    "word_choego": [
+      "cel mai bun",
+      "Restaurantul acesta este cel mai bun."
+    ],
+    "word_naeda": [
+      "a plăti",
+      "Azi plătesc eu."
+    ],
+    "word_daneo": [
+      "un cuvânt",
+      "Învăț un cuvânt nou."
+    ],
+    "word_jikjeop": [
+      "personal",
+      "Am făcut tortul chiar eu."
+    ],
+    "word_yangmal": [
+      "o șosetă",
+      "Șosetele sunt calde."
+    ],
+    "word_nopda": [
+      "a fi înalt",
+      "Clădirea este înaltă."
+    ],
+    "word_haendeupon": [
+      "un telefon mobil",
+      "Îmi încarc telefonul."
+    ],
+    "word_jigap": [
+      "portofel",
+      "Mi-am pierdut portofelul."
+    ],
+    "word_hyudaepon": [
+      "un telefon mobil",
+      "Mi-am pierdut telefonul."
+    ],
+    "word_agassi": [
+      "o tânără",
+      "O tânără întreabă de drum.",
+      "O femeie tânără nemăritată — dar ca *formulă de adresare* către o necunoscută s-a acrit, iar multe femei îl găsesc nepoliticos sau umilitor. Folosește-l despre cineva, nu către cineva; ca să atragi atenția unui străin spune 저기요."
+    ],
+    "word_gieok": [
+      "memorie",
+      "Nu îmi amintesc."
+    ],
+    "word_geutda": [
+      "a trasa o linie",
+      "Am trasat o linie."
+    ],
+    "word_ipda": [
+      "a se îmbrăca",
+      "Mă îmbrac."
+    ],
+    "word_sai": [
+      "spațiul dintre",
+      "Între cele două case este un copac."
+    ],
+    "word_gireum": [
+      "ulei",
+      "Îl prăjesc în ulei."
+    ],
+    "word_mulgogi": [
+      "un pește",
+      "Peștele înoată."
+    ],
+    "word_jang": [
+      "cuvântul pentru a număra foile",
+      "Am nevoie de trei foi de hârtie."
+    ],
+    "word_kkum": [
+      "un vis",
+      "Azi-noapte am avut un vis ciudat."
+    ],
+    "word_sijakada": [
+      "a începe",
+      "Ora începe."
+    ],
+    "word_ajikdo": [
+      "încă",
+      "Încă aștept."
+    ],
+    "word_teureok": [
+      "camion",
+      "Trece un camion."
+    ],
+    "word_eotteon": [
+      "ce fel de",
+      "Ce culoare îți place?"
+    ],
+    "word_geulssi": [
+      "scrisul de mână",
+      "Ai un scris frumos."
+    ],
+    "word_deutda": [
+      "a asculta, a auzi",
+      "Ascult muzică."
+    ],
+    "word_subak": [
+      "pepene verde",
+      "Vara pepenele verde este bun."
+    ],
+    "word_ttalgi": [
+      "căpșună",
+      "Spăl căpșunile și le mănânc."
+    ],
+    "word_baram": [
+      "vânt",
+      "Vântul este răcoros."
+    ],
+    "word_sigol": [
+      "la țară",
+      "Aerul de la țară este bun."
+    ],
+    "word_pulda": [
+      "a rezolva",
+      "Am rezolvat problema."
+    ],
+    "word_angyeong": [
+      "ochelari",
+      "Port ochelari."
+    ],
+    "word_yeonpil": [
+      "un creion",
+      "Desenez cu creionul."
+    ],
+    "word_jumal": [
+      "weekend",
+      "În weekend mă odihnesc."
+    ],
+    "word_jugida": [
+      "a omorî",
+      "Am omorât țânțarul care a intrat în cameră."
+    ],
+    "word_him": [
+      "putere",
+      "Copilul acela este foarte puternic."
+    ],
+    "word_jeonbu": [
+      "tot, în total",
+      "Cât face în total?"
+    ],
+    "word_gyeongchal": [
+      "poliția",
+      "Chemați poliția, vă rog."
+    ],
+    "word_geureut": [
+      "un bol",
+      "Pun orez în bol."
+    ],
+    "word_nappeuda": [
+      "a fi rău",
+      "Vremea este rea."
+    ],
+    "word_oppa": [
+      "fratele mai mare al unei femei",
+      "Fratele meu mai mare conduce.",
+      "Coreeana alege cuvântul pentru frate după sexul vorbitorului: o femeie își numește fratele mai mare 오빠, un bărbat îi spune 형. Se folosește și pentru un bărbat mai în vârstă de care o femeie e apropiată, de aceea îl auzi mult în afara familiei."
+    ],
+    "word_mannada": [
+      "a se întâlni",
+      "Ne întâlnim des."
+    ],
+    "word_huimang": [
+      "speranță",
+      "Nu vă pierdeți speranța."
+    ],
+    "word_hyeong": [
+      "fratele mai mare al unui bărbat",
+      "Fratele meu mai mare m-a invitat la masă.",
+      "Cuvântul pe care un bărbat îl folosește pentru fratele mai mare. O femeie ar spune 오빠 pentru aceeași persoană. Ca și 오빠, se extinde la un bărbat mai în vârstă apropiat, care nu e rudă deloc."
+    ],
+    "word_doro": [
+      "un drum",
+      "Drumul este blocat."
+    ],
+    "word_ttwida": [
+      "a alerga",
+      "Copilul aleargă."
+    ],
+    "word_mueot": [
+      "ce",
+      "Ce este asta?"
+    ],
+    "word_oenjjok": [
+      "partea stângă",
+      "Faceți la stânga, vă rog."
+    ],
+    "word_chukgu": [
+      "fotbal",
+      "Joc fotbal cu prietenul meu."
+    ],
+    "word_jayu": [
+      "libertate",
+      "Libertatea este prețioasă."
+    ],
+    "word_sungan": [
+      "o clipă",
+      "Nu pot uita acea clipă."
+    ],
+    "word_sayonghada": [
+      "a folosi",
+      "Pot folosi camera aceasta?"
+    ],
+    "word_pada": [
+      "a săpa",
+      "Sap în pământ."
+    ],
+    "word_nampyeon": [
+      "soț",
+      "Soțul meu gătește."
+    ],
+    "word_silheomsil": [
+      "un laborator",
+      "Am lucrat toată ziua în laborator."
+    ],
+    "word_dambae": [
+      "o țigară",
+      "Mirosul de țigară mi-a intrat în haine."
+    ],
+    "word_banana": [
+      "o banană",
+      "Dimineața mănânc o banană."
+    ],
+    "word_geum": [
+      "aur",
+      "Inelul acesta este din aur.",
+      "Aurul, metalul. Aceeași silabă înseamnă și o linie zgâriată sau trasată — 금이 갔어요 e s-a crăpat — și deschide 금요일, vineri."
+    ],
+    "word_mandeulda": [
+      "a face",
+      "Fac pâine."
+    ],
+    "word_ibeon": [
+      "de data aceasta",
+      "De data aceasta o fac eu."
+    ],
+    "word_gomawo": [
+      "mersi",
+      "Mersi pentru ajutor."
+    ],
+    "word_banchan": [
+      "o garnitură",
+      "Garniturile sunt gustoase."
+    ],
+    "word_apeuda": [
+      "a durea",
+      "Mă doare burta."
+    ],
+    "word_doseogwan": [
+      "o bibliotecă",
+      "Am împrumutat o carte de la bibliotecă."
+    ],
+    "word_ppyeo": [
+      "un os",
+      "Câinele ține un os în gură."
+    ],
+    "word_gamsa": [
+      "mulțumire",
+      "Am mulțumit."
+    ],
+    "word_geolda": [
+      "a atârna",
+      "Atârn hainele."
+    ],
+    "word_gim": [
+      "alge marine uscate",
+      "Înfășurăm orezul în alge și îl mâncăm.",
+      "Alga subțire uscată mâncată cu orez. Aceeași silabă e cel mai răspândit nume de familie coreean și e și aburul care se ridică de pe ceva fierbinte — 김이 나요, aburește."
+    ],
+    "word_jalhada": [
+      "a face bine ceva",
+      "Cânți bine."
+    ],
+    "word_saengmyeong": [
+      "viață",
+      "Viața este prețioasă."
+    ],
+    "word_mureup": [
+      "genunchi",
+      "Mă doare genunchiul."
+    ],
+    "word_jjalda": [
+      "a fi scurt",
+      "Creionul este scurt."
+    ],
+    "word_chijeu": [
+      "brânză",
+      "Îmi place brânza."
+    ],
+    "word_hanbeon": [
+      "o dată",
+      "Încercați o dată, vă rog."
+    ],
+    "word_gohyang": [
+      "locul natal",
+      "M-am dus în locul meu natal."
+    ],
+    "word_jihacheol": [
+      "metroul",
+      "Merg cu metroul."
+    ],
+    "word_sal": [
+      "an de vârstă",
+      "Am douăzeci de ani."
+    ],
+    "word_anae": [
+      "soție",
+      "Am venit cu soția."
+    ],
+    "word_swida": [
+      "a se odihni",
+      "Să ne odihnim puțin."
+    ],
+    "word_gimbap": [
+      "gimbap",
+      "La prânz am mâncat gimbap."
+    ],
+    "word_gayo": [
+      "muzică pop coreeană",
+      "Îmi place muzica pop coreeană.",
+      "Muzica populară coreeană ca gen — K-popul e 가요. Se scrie exact ca 가요 «merge», prezentul politicos al lui 가다, așa că propoziția din jur decide pe care dintre ele îl citești."
+    ],
+    "word_swipda": [
+      "a fi ușor",
+      "Hangulul este ușor."
+    ],
+    "word_pyojeong": [
+      "o expresie a feței",
+      "Are o expresie luminoasă."
+    ],
+    "word_dareuda": [
+      "a fi diferit",
+      "Culorile sunt diferite."
+    ],
+    "word_geunyang": [
+      "pur și simplu",
+      "În weekend am stat pur și simplu acasă."
+    ],
+    "word_majimak": [
+      "ultimul",
+      "Am luat ultimul autobuz."
+    ],
+    "word_bangbeop": [
+      "o metodă",
+      "Există o metodă bună."
+    ],
+    "word_huinsaek": [
+      "culoarea albă",
+      "Peretele alb este curat."
+    ],
+    "word_jalmot": [
+      "o greșeală",
+      "Este vina mea."
+    ],
+    "word_daehakgyo": [
+      "universitate",
+      "Studiez la universitate."
+    ],
+    "word_haengun": [
+      "noroc",
+      "Mult noroc la examen."
+    ],
+    "word_harabeoji": [
+      "bunic",
+      "Bunicul citește ziarul."
+    ],
+    "word_bimil": [
+      "secret",
+      "Păstrați secretul, vă rog."
+    ],
+    "word_sogogi": [
+      "carne de vită",
+      "Am fript carne de vită și am mâncat."
+    ],
+    "word_net": [
+      "patru",
+      "Noi patru suntem o echipă."
+    ],
+    "word_sinda": [
+      "a se încălța",
+      "Îmi pun șosetele."
+    ],
+    "word_dap": [
+      "un răspuns",
+      "Am găsit răspunsul."
+    ],
+    "word_yeonseup": [
+      "exercițiu",
+      "Exersez în fiecare zi."
+    ],
+    "word_gongchaek": [
+      "un caiet",
+      "Îmi scriu numele în caiet."
+    ],
+    "word_ssada": [
+      "a fi ieftin",
+      "Fructele acestea sunt ieftine."
+    ],
+    "word_dowajuda": [
+      "a da o mână de ajutor",
+      "Dați-mi o mână de ajutor, vă rog."
+    ],
+    "word_maekju": [
+      "bere",
+      "Berea este rece."
+    ],
+    "word_jjada": [
+      "a fi sărat",
+      "Supa este sărată."
+    ],
+    "word_gyehoek": [
+      "un plan",
+      "Am făcut un plan."
+    ],
+    "word_pyeonghwa": [
+      "pace",
+      "Dorim pace."
+    ],
+    "word_yaksok": [
+      "o promisiune, o întâlnire",
+      "Îmi țin promisiunea."
+    ],
+    "word_oreunjjok": [
+      "partea dreaptă",
+      "Mergeți la dreapta, vă rog."
+    ],
+    "word_gippeuda": [
+      "a fi bucuros",
+      "M-am bucurat să aud vestea."
+    ],
+    "word_baeuda": [
+      "a învăța",
+      "Învăț coreeana."
+    ],
+    "word_jebal": [
+      "te rog",
+      "Te rog, ajută-mă."
+    ],
+    "word_dopda": [
+      "a ajuta",
+      "Îmi ajut prietenul."
+    ],
+    "word_jaryo": [
+      "materiale pentru o sarcină",
+      "Am pregătit din timp materialele ședinței."
+    ],
+    "word_hullyunghada": [
+      "a fi excelent",
+      "Este o idee excelentă."
+    ],
+    "word_moseup": [
+      "înfățișare",
+      "Înfățișarea lor s-a schimbat."
+    ],
+    "word_undong": [
+      "mișcare, sport",
+      "Fac sport dimineața."
+    ],
+    "word_geureonde": [
+      "apropo, dar",
+      "Apropo, ce este asta?"
+    ],
+    "word_juseu": [
+      "suc",
+      "Copilul bea suc."
+    ],
+    "word_jwi": [
+      "un șoarece",
+      "Am văzut un șoarece în bucătărie."
+    ],
+    "word_chwimi": [
+      "un hobby",
+      "Hobby-ul meu este fotografia."
+    ],
+    "word_deung": [
+      "spatele",
+      "Mă mănâncă spatele."
+    ],
+    "word_jeoldae": [
+      "niciodată",
+      "Să nu întârziați sub nicio formă."
+    ],
+    "word_dol": [
+      "o piatră",
+      "Pe potecă erau multe pietre, așa că am fost atenți."
+    ],
+    "word_bappeuda": [
+      "a fi ocupat",
+      "Azi sunt ocupat."
+    ],
+    "word_ireon": [
+      "de felul acesta",
+      "Așa ceva mi se întâmplă prima dată."
+    ],
+    "word_yeoseong": [
+      "o femeie",
+      "Au venit multe femei."
+    ],
+    "word_paransaek": [
+      "culoarea albastră",
+      "Hainele albastre îți vin bine."
+    ],
+    "word_ireonada": [
+      "a se trezi",
+      "Mă trezesc la șapte."
+    ],
+    "word_gom": [
+      "un urs",
+      "Urșii trăiesc în munți."
+    ],
+    "word_jam": [
+      "somn",
+      "În ultima vreme nu pot dormi bine."
+    ],
+    "word_haebyeon": [
+      "o plajă",
+      "Vara am fost la plajă."
+    ],
+    "word_hosu": [
+      "lac",
+      "Lacul este liniștit."
+    ],
+    "word_dakgogi": [
+      "carne de pui",
+      "Puiul are puțină grăsime."
+    ],
+    "word_geunde": [
+      "apropo",
+      "Apropo, cât e ceasul acum?"
+    ],
+    "word_jaeneung": [
+      "un talent",
+      "Are talent la desen."
+    ],
+    "word_gyeolhon": [
+      "căsătorie",
+      "Felicitări pentru căsătorie."
+    ],
+    "word_binu": [
+      "săpun",
+      "Mă spăl pe mâini cu săpun."
+    ],
+    "word_saja": [
+      "un leu",
+      "Leul este mare."
+    ],
+    "word_eoneu": [
+      "care",
+      "Care îți place?"
+    ],
+    "word_mureoboda": [
+      "a întreba",
+      "L-am întrebat pe profesor."
+    ],
+    "word_ucheguk": [
+      "un oficiu poștal",
+      "Am trimis o scrisoare la poștă."
+    ],
+    "word_japji": [
+      "revistă",
+      "Citesc o revistă."
+    ],
+    "word_jean": [
+      "o propunere",
+      "Am primit o propunere bună de la firmă."
+    ],
+    "word_yojeum": [
+      "în ultima vreme",
+      "Ce mai faci în ultima vreme?"
+    ],
+    "word_ulda": [
+      "a plânge",
+      "Bebelușul plânge."
+    ],
+    "word_namda": [
+      "a rămâne",
+      "A mai rămas puțin orez."
+    ],
+    "word_miso": [
+      "un zâmbet",
+      "Este un zâmbet frumos."
+    ],
+    "word_daehak": [
+      "facultate",
+      "Am fost admis la facultate."
+    ],
+    "word_uimi": [
+      "înțeles",
+      "Ce înseamnă cuvântul acesta?"
+    ],
+    "word_geim": [
+      "un joc",
+      "Joc un joc."
+    ],
+    "word_cham": [
+      "chiar, într-adevăr",
+      "Vremea este chiar frumoasă azi."
+    ],
+    "word_kong": [
+      "o fasole",
+      "Am pus fasole în orez."
+    ],
+    "word_saebyeok": [
+      "zorii",
+      "M-am trezit înainte de zori."
+    ],
+    "word_utda": [
+      "a râde",
+      "Prietenul meu râde tare."
+    ],
+    "word_imi": [
+      "deja",
+      "S-a terminat deja."
+    ],
+    "word_sutgarak": [
+      "o lingură",
+      "Mănânc supa cu lingura."
+    ],
+    "word_bureuda": [
+      "a chema",
+      "Chem un taxi."
+    ],
+    "word_koteu": [
+      "palton",
+      "Puneți-vă paltonul, vă rog."
+    ],
+    "word_meolda": [
+      "a fi departe",
+      "Școala este departe."
+    ],
+    "word_myeong": [
+      "o persoană",
+      "Sunt cinci elevi."
+    ],
+    "word_eonni": [
+      "sora mai mare a unei femei",
+      "Sora mea mai mare este studentă.",
+      "Cuvântul pe care o femeie îl folosește pentru sora mai mare; un bărbat spune 누나 pentru aceeași persoană. E și felul în care femeile se adresează unei femei ceva mai în vârstă cu care sunt apropiate, inclusiv în magazine."
+    ],
+    "word_ihae": [
+      "înțelegere",
+      "Înțeleg bine."
+    ],
+    "word_samda": [
+      "a fierbe în apă",
+      "Fierb un ou."
+    ],
+    "word_noransaek": [
+      "culoarea galbenă",
+      "Am folosit o umbrelă galbenă."
+    ],
+    "word_mudeom": [
+      "un mormânt",
+      "Pe munte este un mormânt vechi."
+    ],
+    "word_gita": [
+      "o chitară",
+      "Cânt la chitară."
+    ],
+    "word_itda_3": [
+      "a uita",
+      "Am uitat numele."
+    ],
+    "word_gongyeon": [
+      "un spectacol",
+      "Spectacolul începe."
+    ],
+    "word_ilta": [
+      "a pierde",
+      "Mi-am pierdut cheia."
+    ],
+    "word_baneung": [
+      "o reacție",
+      "Reacția oamenilor a fost foarte bună."
+    ],
+    "word_gudu": [
+      "pantofi eleganți",
+      "Pantofii sunt comozi."
+    ],
+    "word_hyuga": [
+      "concediu",
+      "Am fost în concediu."
+    ],
+    "word_jeohui": [
+      "noi, cu modestie",
+      "Vă vom ajuta noi."
+    ],
+    "word_geuttae": [
+      "atunci",
+      "Atunci ploua."
+    ],
+    "word_sopa": [
+      "o canapea",
+      "Stați pe canapea și odihniți-vă."
+    ]
+  }
 }

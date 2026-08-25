@@ -217,6 +217,119 @@ if (empty.length > 0) {
   );
 }
 
+// --- the simulation the paragraph above promises ------------------------------
+/*
+ * That paragraph used to end "and that is what the simulation below checks",
+ * and there was no simulation below. The sentence was written when one was
+ * planned and survived when it was not, which is the same shape of defect as a
+ * report claiming a fix nobody looked at: prose asserting a check that does not
+ * run. So here is the check.
+ *
+ * It builds the four-option meaning question the quiz builds, for every
+ * interface language, and reads every option back. `strictMeaning` is one line
+ * — the learner's own pack or nothing — so the simulation reproduces it rather
+ * than importing the browser module and its corpus loader, and then asserts the
+ * three things that line exists to guarantee:
+ *
+ *   * every option in a question resolves in the language the question is in;
+ *   * no option is the English string when the question is not in English;
+ *   * a learner is routed to their own language whenever the corpus has it.
+ *
+ * The third is `contentLocale`'s job rather than the pack's, and it is here
+ * because the defect §33 records was the two disagreeing: a Tamil interface, a
+ * Tamil prompt, four English answers.
+ */
+const OPTIONS = 4;
+const DRAWS = 400;
+
+/** id → meaning, for one language, exactly as the packs store it. */
+function meaningTable(locale) {
+  const table = new Map();
+  for (const band of manifest.bands) {
+    const file = band.locales[locale];
+    if (!file) continue;
+    const rows = JSON.parse(readFileSync(join(CORPUS, file), 'utf8')).words ?? [];
+    const ids = bandIds.get(band.band) ?? [];
+    rows.forEach((row, index) => {
+      const id = ids[index];
+      const meaning = row?.[0];
+      if (id && meaning) table.set(id, meaning);
+    });
+  }
+  return table;
+}
+
+const tables = new Map(contentLocales.map((locale) => [locale, meaningTable(locale)]));
+
+/*
+ * Drawn from the whole corpus, not from the locale's pack.
+ *
+ * This is the part that makes the simulation a check rather than a restatement.
+ * Drawing from the pack and then asserting the pack has the words is a
+ * tautology; drawing from all 3,221 taught words and asking `strictMeaning`'s
+ * question of each one is the decision the app actually makes, and it fails if
+ * anybody ever answers it with a fallback again.
+ *
+ * A byte-comparison against the English string was tried here and removed. It
+ * flags 두부 "tofu", 김치 "kimchi", 택시 "taxi" and 피자 "pizza" in every Latin
+ * pack, because a loanword is the same word in both languages — the collision
+ * is the evidence working correctly, not a leak. What proves there is no leak
+ * is that no option was ever resolved outside the learner's own pack, which is
+ * what the refusal count below reports.
+ */
+const allIds = [...wordIds];
+
+let asked = 0;
+let refused = 0;
+let silent = 0;
+for (const locale of [...interfaceLocales].sort()) {
+  const resolved = contentLocale(locale, contentLocales);
+  if (locale !== resolved && contentLocales.includes(locale)) {
+    problems.push(
+      `${locale}: routed to ${resolved} although the corpus has ${locale} meanings`,
+    );
+  }
+  const table = tables.get(resolved);
+  if (!table || table.size === 0) {
+    problems.push(`${locale}: routed to ${resolved}, which has no meanings at all`);
+    continue;
+  }
+  if (table.size < OPTIONS) {
+    silent += 1;
+    continue;
+  }
+  /*
+   * A fixed walk rather than a random draw, so a failure names the same word
+   * twice running and a green run means the same thing tomorrow.
+   */
+  for (let draw = 0; draw < DRAWS; draw += 1) {
+    const ids = [];
+    for (let slot = 0; slot < OPTIONS; slot += 1) {
+      ids.push(allIds[(draw * OPTIONS + slot * 97 + 1) % allIds.length]);
+    }
+    // `strictMeaning`: this language's pack or nothing. No chain, no second best.
+    const options = ids.map((id) => table.get(id) ?? null);
+    if (options.some((option) => option === null)) {
+      refused += 1;
+      continue;
+    }
+    for (let slot = 0; slot < OPTIONS; slot += 1) {
+      if (table.get(ids[slot]) !== options[slot]) {
+        problems.push(`${locale}: option ${ids[slot]} did not come from the ${resolved} pack`);
+      }
+    }
+    asked += 1;
+  }
+}
+
+console.log(
+  `  questions simulated: ${(asked + refused).toLocaleString('en')} across ` +
+    `${interfaceLocales.length - silent} languages — ` +
+    `${asked.toLocaleString('en')} askable, ` +
+    `${refused.toLocaleString('en')} refused for want of a meaning` +
+    (silent ? `, ${silent} language(s) with no pool yet` : ''),
+);
+
 if (problems.length > 0) {
   console.error(`\n${problems.length} problem(s):`);
   for (const problem of problems) console.error(`  ! ${problem}`);

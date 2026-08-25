@@ -116,9 +116,61 @@ for (const word of words) {
   const forms = reachable(word.word, shape);
   if (forms.has(recorded)) continue;
 
+  const infinitive = conjugate(word.word, 'infinitive', shape) ?? '';
+
+  /*
+   * A form wearing the honorific is held to the honorific, not to the stem.
+   *
+   * Every escape below this accepts a recorded form that merely *starts* with
+   * the stem, because an example may continue past any ending this module
+   * generates — 먹어서, 먹었는데. That is right for endings and wrong for the
+   * honorific, whose whole difficulty lives in the joint between the stem and
+   * the ending: 있다 takes 계세요, a consonant stem takes 으세요, an ㄹ stem
+   * drops the ㄹ, and a stem already carrying -시- takes no second one. 있세요
+   * and 만들세요 both start with their stem and neither is a form anybody says,
+   * so a stem-prefix escape passes them and this gate was blind to the whole
+   * class until a negative test said so.
+   *
+   * What survives is the compound rule: 부시다's sentence writes 눈부셔요, and
+   * the headword's own conjugation is still inside it. The bare stem is
+   * excluded from that list on purpose — it is what the escape below already
+   * covers, and letting it back in here would restore the blindness.
+   */
+  if (/(?:세요|셔요|십니다|시어요|십시오)$/u.test(recorded)) {
+    /*
+     * Asked of the verb form on purpose. `conjugate` refuses an honorific on an
+     * adjective because it refuses an *imperative* on one, and -(으)세요 on an
+     * adjective is not an imperative: 건강하세요 wishes somebody health and
+     * 편찮으세요 asks where it hurts. The joint being checked — 하 + 세요, 편찮
+     * + 으세요 — is the same one either way, so the check asks for it directly.
+     */
+    const honorific = conjugate(word.word, 'honorific', { ...shape, partOfSpeech: 'verb' });
+    const stemOnly = stemOf(word.word);
+    const compounds = [...forms].filter((form) => form.length > 1 && form !== stemOnly);
+    if (honorific && (recorded === honorific || recorded.endsWith(honorific))) continue;
+    if (compounds.some((form) => recorded.endsWith(form))) continue;
+    /*
+     * 따라오세요 is 따르다 followed by 오다, and the 세요 belongs to 오다. The
+     * infinitive prefix is what says so — 따라 is 따르다's — and it is a safe
+     * thing to accept here where the bare stem is not: 있세요 does not start
+     * with 있어, 만들세요 does not start with 만들어, and 먹시어요 does not
+     * start with 먹어. A malformed joint never survives its own infinitive.
+     */
+    if (infinitive && recorded.startsWith(infinitive)) continue;
+    failures.push({
+      word: word.word,
+      pos: word.part_of_speech,
+      cls,
+      recorded,
+      generated: honorific ?? present,
+      example: word.example,
+      why: 'honorific',
+    });
+    continue;
+  }
+
   // Not an exact form, so: does it *start* with one of the two stems every
   // longer ending is built on? 먹어서 starts with 먹어; 먹었는데 with 먹었.
-  const infinitive = conjugate(word.word, 'infinitive', shape) ?? '';
   const past = infinitive ? `${infinitive.slice(0, -1)}${nextWithSsang(infinitive)}` : '';
   if (infinitive && recorded.startsWith(infinitive)) continue;
   if (past && recorded.startsWith(past)) continue;

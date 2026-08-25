@@ -1,2415 +1,2444 @@
 {
- "_comment": "Vocabulary copy for Swedish. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
- "locale": "sv",
- "words": {
-  "word_hada": [
-   "göra",
-   "Jag studerar.",
-   "Att göra — och motorn i koreansk ordbildning. Sätt det efter ett substantiv så får du ett verb: 공부 (studier) blir 공부하다 (att studera), 사랑 (kärlek) blir 사랑하다. Hundratals verb byggs så."
-  ],
-  "word_cha": [
-   "bil",
-   "Jag tar bilen.",
-   "En bil. Samma stavelse är också ordet för te, så 차를 마셔요 betyder jag dricker te och 차를 타요 betyder jag sätter mig i bilen. Verbet talar om vilket det är."
-  ],
-  "word_yeoja": [
-   "kvinna",
-   "Den kvinnan är läkare."
-  ],
-  "word_na": [
-   "jag",
-   "Jag lär mig koreanska."
-  ],
-  "word_hae": [
-   "solen",
-   "Solen skiner."
-  ],
-  "word_don": [
-   "pengar",
-   "Det finns pengar i plånboken."
-  ],
-  "word_uri": [
-   "vi",
-   "Vi är vänner."
-  ],
-  "word_jip": [
-   "hem",
-   "Jag går hem."
-  ],
-  "word_itda": [
-   "befinna sig",
-   "Jag är hemma.",
-   "Ett ord där svenskan har två: 있다 betyder både att finnas någonstans och att ha. 책상에 책이 있어요 — boken ligger på skrivbordet; 시간이 있어요 — jag har tid. Motsatsen är 없다."
-  ],
-  "word_ne": [
-   "ja",
-   "Ja, det stämmer.",
-   "Tre vanliga ord stavas 네. Det här är ”ja”. De andra är ”din” (네 책, din bok) och det inhemska räkneordet ”fyra” framför ett klassifikatorord (네 개, fyra stycken). Sammanhanget skiljer dem åt, inte stavningen."
-  ],
-  "word_son": [
-   "hand",
-   "Jag skriver för hand."
-  ],
-  "word_sigan": [
-   "tid",
-   "Jag har ingen tid.",
-   "Tid i allmänhet, och även räkneordet för timmar: 두 시간 är två timmar. Blanda inte ihop det med 시, som är klockslaget — 두 시 är klockan två, något helt annat."
-  ],
-  "word_jeo": [
-   "jag (artigt)",
-   "Jag är student."
-  ],
-  "word_gada": [
-   "gå",
-   "Jag går till skolan."
-  ],
-  "word_gae": [
-   "hund",
-   "Hunden springer."
-  ],
-  "word_mun": [
-   "dörr",
-   "Jag öppnar dörren."
-  ],
-  "word_sae": [
-   "fågel",
-   "En fågel flyger."
-  ],
-  "word_mom": [
-   "kropp",
-   "Jag tvättar kroppen varje dag."
-  ],
-  "word_bang": [
-   "rum",
-   "Rummet är rent."
-  ],
-  "word_nun": [
-   "öga",
-   "Du har vackra ögon.",
-   "Ögat. Stavas precis som ordet för snö, och i tydligt tal skiljs de åt med längd: snö-눈 dras ut, öga-눈 är kort. De flesta förlitar sig på sammanhanget."
-  ],
-  "word_ot": [
-   "kläder",
-   "Kläderna är fina."
-  ],
-  "word_neo": [
-   "du",
-   "Var är du?"
-  ],
-  "word_eopda": [
-   "inte ha",
-   "Jag har inga pengar."
-  ],
-  "word_meori": [
-   "huvud",
-   "Jag har ont i huvudet."
-  ],
-  "word_ip": [
-   "mun",
-   "Munnen är liten."
-  ],
-  "word_mul": [
-   "vatten",
-   "Jag dricker vatten."
-  ],
-  "word_dari": [
-   "ben",
-   "Jag har ont i benet.",
-   "Ett ben — ditt, ett bords, en stols. Samma ord betyder också bro, och därför betyder 다리를 건너요 ”jag går över bron” och inget anatomiskt."
-  ],
-  "word_bi": [
-   "regn",
-   "Det regnar."
-  ],
-  "word_wae": [
-   "varför",
-   "Varför är du sen?"
-  ],
-  "word_eolgul": [
-   "ansikte",
-   "Jag tvättar ansiktet."
-  ],
-  "word_saram": [
-   "människa",
-   "Hen är en bra människa."
-  ],
-  "word_hakgyo": [
-   "skola",
-   "Skolan är stor."
-  ],
-  "word_yeogi": [
-   "här",
-   "Var så god och sitt här."
-  ],
-  "word_pal": [
-   "arm",
-   "Du har långa armar."
-  ],
-  "word_norae": [
-   "sång",
-   "Jag sjunger en sång."
-  ],
-  "word_chaek": [
-   "bok",
-   "Jag läser en bok."
-  ],
-  "word_dal": [
-   "månen",
-   "Månen lyser."
-  ],
-  "word_jeonhwa": [
-   "telefon",
-   "Jag svarar i telefonen."
-  ],
-  "word_namu": [
-   "träd",
-   "Trädet är högt."
-  ],
-  "word_dasi": [
-   "igen",
-   "Säg det igen, tack."
-  ],
-  "word_nal": [
-   "dag",
-   "Det är en fin dag."
-  ],
-  "word_jigeum": [
-   "nu",
-   "Jag går nu."
-  ],
-  "word_haru": [
-   "ett dygn",
-   "Dagen är lång."
-  ],
-  "word_sesang": [
-   "världen",
-   "Världen är stor."
-  ],
-  "word_bal": [
-   "fot",
-   "Jag är kall om fötterna."
-  ],
-  "word_neutda": [
-   "vara sen",
-   "Bussen var sen."
-  ],
-  "word_modu": [
-   "alla",
-   "Alla har samlats."
-  ],
-  "word_sajin": [
-   "fotografi",
-   "Jag tar ett foto."
-  ],
-  "word_chimdae": [
-   "säng",
-   "Sängen är bekväm."
-  ],
-  "word_ko": [
-   "näsa",
-   "Jag är täppt i näsan."
-  ],
-  "word_san": [
-   "berg",
-   "Jag går till berget."
-  ],
-  "word_hana": [
-   "ett",
-   "En äpple, tack."
-  ],
-  "word_byeongwon": [
-   "sjukhus",
-   "Jag går till sjukhuset."
-  ],
-  "word_jeongmal": [
-   "verkligen",
-   "Tack så mycket.",
-   "Verkligen, riktigt — ett förstärkningsord före ett adjektiv, som i 정말 좋아요. Ensamt, med stigande ton, är 정말? en enordsfråga: ”verkligen?” Så hör du det oftast."
-  ],
-  "word_seonmul": [
-   "present",
-   "Jag gillar presenten."
-  ],
-  "word_boda": [
-   "se",
-   "Jag ser på en film."
-  ],
-  "word_oneul": [
-   "idag",
-   "Vädret är fint idag."
-  ],
-  "word_gabang": [
-   "väska",
-   "Väskan är tung."
-  ],
-  "word_eumak": [
-   "musik",
-   "Musiken är fin."
-  ],
-  "word_gage": [
-   "butik",
-   "Butiken är stängd."
-  ],
-  "word_gil": [
-   "väg",
-   "Vägen är bred."
-  ],
-  "word_ohu": [
-   "eftermiddag",
-   "Vi ses i eftermiddag."
-  ],
-  "word_keopi": [
-   "kaffe",
-   "Jag dricker kaffe."
-  ],
-  "word_bap": [
-   "mat",
-   "Jag äter."
-  ],
-  "word_eomma": [
-   "mamma",
-   "Mamma lagar mat."
-  ],
-  "word_gwi": [
-   "öra",
-   "Jag har ont i örat."
-  ],
-  "word_beoseu": [
-   "buss",
-   "Bussen kommer."
-  ],
-  "word_geurim": [
-   "teckning",
-   "Jag ritar en teckning."
-  ],
-  "word_beon": [
-   "gång",
-   "Gör det en gång till, tack."
-  ],
-  "word_sul": [
-   "alkohol",
-   "Jag dricker inte alkohol."
-  ],
-  "word_yeonghwa": [
-   "film",
-   "Filmen är rolig."
-  ],
-  "word_sada": [
-   "köpa",
-   "Jag köper bröd."
-  ],
-  "word_byeol": [
-   "stjärna",
-   "Stjärnorna lyser."
-  ],
-  "word_bihaenggi": [
-   "flygplan",
-   "Jag tar flyget."
-  ],
-  "word_bak": [
-   "utsidan",
-   "Det regnar ute."
-  ],
-  "word_oda": [
-   "komma",
-   "Min vän kommer."
-  ],
-  "word_chingu": [
-   "vän",
-   "Jag träffar en vän."
-  ],
-  "word_appa": [
-   "pappa",
-   "God natt, pappa."
-  ],
-  "word_haneul": [
-   "himmel",
-   "Himlen är blå."
-  ],
-  "word_bada": [
-   "hav",
-   "Havet är vidsträckt."
-  ],
-  "word_sagwa": [
-   "äpple",
-   "Äpplet är sött."
-  ],
-  "word_mulgeon": [
-   "sak",
-   "Jag köper saker."
-  ],
-  "word_moja": [
-   "mössa",
-   "Jag sätter på mig en mössa."
-  ],
-  "word_gogi": [
-   "kött",
-   "Jag grillar kött."
-  ],
-  "word_jinjja": [
-   "äkta",
-   "Är det här på riktigt?"
-  ],
-  "word_sinbal": [
-   "skor",
-   "Jag tar på mig skorna."
-  ],
-  "word_jamkkan": [
-   "ett ögonblick",
-   "Vänta ett ögonblick, tack."
-  ],
-  "word_namja": [
-   "man",
-   "Den mannen är min vän."
-  ],
-  "word_eumsik": [
-   "mat",
-   "Koreansk mat är god."
-  ],
-  "word_saengil": [
-   "födelsedag",
-   "Grattis på födelsedagen."
-  ],
-  "word_daseot": [
-   "fem",
-   "Fem personer kom."
-  ],
-  "word_gihoe": [
-   "tillfälle",
-   "Det är ett bra tillfälle."
-  ],
-  "word_dul": [
-   "två",
-   "Det finns två stolar."
-  ],
-  "word_sijang": [
-   "marknad",
-   "Jag köper grönsaker på marknaden."
-  ],
-  "word_goyangi": [
-   "katt",
-   "Katten sover."
-  ],
-  "word_changmun": [
-   "fönster",
-   "Stäng fönstret, tack."
-  ],
-  "word_yeoreum": [
-   "sommar",
-   "På sommaren åker jag till havet."
-  ],
-  "word_dongmul": [
-   "djur",
-   "Jag tycker om djur."
-  ],
-  "word_yeohaeng": [
-   "resa",
-   "Jag vill resa."
-  ],
-  "word_bam": [
-   "natt",
-   "På natten syns många stjärnor.",
-   "Natt. Stavas som ordet för kastanj, ett vanligt höstsnacks i Korea, så 밤을 먹어요 och 밤에 자요 handlar om mycket olika saker."
-  ],
-  "word_geot": [
-   "en sak",
-   "Jag köpte de saker jag behövde."
-  ],
-  "word_mal": [
-   "ord, det man säger",
-   "Välj dina ord med omsorg."
-  ],
-  "word_bun": [
-   "en minut",
-   "Vänta bara tio minuter, tack."
-  ],
-  "word_dwi": [
-   "baksidan",
-   "Jag skrev mitt namn på baksidan av skrivboken."
-  ],
-  "word_si": [
-   "klockslag",
-   "Lektionen slutar klockan två."
-  ],
-  "word_deo": [
-   "mer",
-   "Lite till, tack."
-  ],
-  "word_ap": [
-   "framsidan",
-   "Vi ses framför affären."
-  ],
-  "word_da": [
-   "allt",
-   "Jag åt upp allt ris."
-  ],
-  "word_jom": [
-   "lite, och ett sätt att mjuka upp en begäran",
-   "Lite vatten, tack."
-  ],
-  "word_jeon": [
-   "före",
-   "Jag tvättar händerna före maten."
-  ],
-  "word_alda": [
-   "att veta",
-   "Jag vet namnet."
-  ],
-  "word_yak": [
-   "medicin",
-   "Ta medicinen efter maten."
-  ],
-  "word_jota": [
-   "att vara bra",
-   "Jag mår bra."
-  ],
-  "word_jal": [
-   "bra",
-   "Sov du gott?"
-  ],
-  "word_anida": [
-   "att inte vara något",
-   "Jag är inte student."
-  ],
-  "word_bul": [
-   "eld",
-   "Det bröt ut en brand på berget."
-  ],
-  "word_uyu": [
-   "mjölk",
-   "Mjölken är kall."
-  ],
-  "word_meokda": [
-   "att äta",
-   "Jag äter frukt."
-  ],
-  "word_ppang": [
-   "bröd",
-   "Jag äter bröd."
-  ],
-  "word_ttae": [
-   "stunden när något händer",
-   "När jag var liten bodde jag på landet."
-  ],
-  "word_il": [
-   "arbete",
-   "Det är mycket arbete i dag."
-  ],
-  "word_baji": [
-   "byxor",
-   "Byxorna är långa."
-  ],
-  "word_sigye": [
-   "klocka",
-   "Jag har ingen klocka."
-  ],
-  "word_siheom": [
-   "ett prov, en tenta",
-   "Jag har prov i morgon."
-  ],
-  "word_keompyuteo": [
-   "dator",
-   "Jag sätter på datorn."
-  ],
-  "word_nalssi": [
-   "vädret",
-   "Vädret är fint."
-  ],
-  "word_jongi": [
-   "papper",
-   "Jag ritar på papper."
-  ],
-  "word_dosi": [
-   "stad",
-   "Staden är mycket stor."
-  ],
-  "word_munje": [
-   "problem",
-   "Det finns ett problem."
-  ],
-  "word_wi": [
-   "ovansidan",
-   "Det ligger en hatt på väskan."
-  ],
-  "word_bom": [
-   "vår",
-   "På våren blommar blommorna."
-  ],
-  "word_jeonyeok": [
-   "middag, kvällsmålet",
-   "Jag äter middag."
-  ],
-  "word_gyeoul": [
-   "vinter",
-   "På vintern snöar det mycket."
-  ],
-  "word_abeoji": [
-   "far",
-   "Min far går till jobbet."
-  ],
-  "word_eoseo": [
-   "varsågod, stig på",
-   "Välkommen, stig på."
-  ],
-  "word_mot": [
-   "att inte kunna, hur gärna man än vill",
-   "Det är så starkt att jag inte kan äta det."
-  ],
-  "word_salda": [
-   "att bo, att leva",
-   "Jag bor i Seoul."
-  ],
-  "word_ai": [
-   "barn",
-   "Barnet skrattar."
-  ],
-  "word_jeomsim": [
-   "lunch",
-   "Vi äter lunch tillsammans."
-  ],
-  "word_nugu": [
-   "vem",
-   "Vem är den personen?"
-  ],
-  "word_eonje": [
-   "när",
-   "När kommer du?"
-  ],
-  "word_geori": [
-   "en gata",
-   "Det är mycket folk på gatan."
-  ],
-  "word_annyeong": [
-   "hej och hej då",
-   "Hej då, vi ses igen!"
-  ],
-  "word_gakkeum": [
-   "ibland",
-   "Ibland ser jag på film."
-  ],
-  "word_manta": [
-   "att vara många",
-   "Det är mycket folk."
-  ],
-  "word_chima": [
-   "en kjol",
-   "Den här kjolen är mycket fin."
-  ],
-  "word_uija": [
-   "stol",
-   "Jag sitter på stolen."
-  ],
-  "word_jeogi": [
-   "där borta",
-   "Där borta ligger skolan."
-  ],
-  "word_gongwon": [
-   "park",
-   "Jag går i parken."
-  ],
-  "word_ssal": [
-   "okokt ris",
-   "Jag sköljer riset och kokar det."
-  ],
-  "word_jigu": [
-   "jorden",
-   "Jorden är rund."
-  ],
-  "word_eodi": [
-   "var",
-   "Var är toaletten?"
-  ],
-  "word_byeok": [
-   "en vägg",
-   "Jag hänger en tavla på väggen."
-  ],
-  "word_gyeran": [
-   "ett ägg",
-   "I morse kokade jag ett ägg."
-  ],
-  "word_tada": [
-   "att åka med, att stiga på",
-   "Jag tar bussen."
-  ],
-  "word_segye": [
-   "världen",
-   "Jag känner till många länder i världen."
-  ],
-  "word_ireum": [
-   "namn",
-   "Vad heter du?"
-  ],
-  "word_guk": [
-   "soppa",
-   "Jag äter soppa på morgonen."
-  ],
-  "word_malhada": [
-   "att tala",
-   "Tala långsamt, tack."
-  ],
-  "word_geotda": [
-   "att gå till fots",
-   "Jag går i parken."
-  ],
-  "word_gangaji": [
-   "valp",
-   "Valpen är liten."
-  ],
-  "word_sori": [
-   "ljud",
-   "Ljudet är högt."
-  ],
-  "word_yeop": [
-   "sidan",
-   "Sitt bredvid mig, tack."
-  ],
-  "word_saenggak": [
-   "tanke",
-   "Det är en bra idé."
-  ],
-  "word_geogi": [
-   "där",
-   "Är det någon där?"
-  ],
-  "word_adeul": [
-   "son",
-   "Min son går i skolan."
-  ],
-  "word_doeda": [
-   "att bli",
-   "Jag vill bli läkare."
-  ],
-  "word_maeul": [
-   "en by",
-   "Byn är lugn."
-  ],
-  "word_kape": [
-   "ett kafé",
-   "Jag träffar min vän på kaféet."
-  ],
-  "word_gong": [
-   "en boll",
-   "Jag sparkar bollen."
-  ],
-  "word_gajok": [
-   "familj",
-   "Jag har en stor familj."
-  ],
-  "word_ssi": [
-   "herr eller fru, efter ett namn",
-   "Minsu, ett ögonblick."
-  ],
-  "word_achim": [
-   "morgon",
-   "Jag går upp på morgonen."
-  ],
-  "word_jeonhwahada": [
-   "att ringa",
-   "Jag ringer dig senare."
-  ],
-  "word_gaeul": [
-   "höst",
-   "På hösten är vinden sval."
-  ],
-  "word_kkot": [
-   "blomma",
-   "Blomman är vacker."
-  ],
-  "word_jido": [
-   "karta",
-   "Jag tittar på kartan."
-  ],
-  "word_saek": [
-   "en färg",
-   "Den här färgen är fin."
-  ],
-  "word_juda": [
-   "att ge",
-   "Jag ger en present."
-  ],
-  "word_yachae": [
-   "grönsaker",
-   "Ät mycket grönsaker, tack."
-  ],
-  "word_chaeksang": [
-   "skrivbord",
-   "Det ligger en bok på skrivbordet."
-  ],
-  "word_cheoeum": [
-   "första gången",
-   "Trevligt att träffas."
-  ],
-  "word_gwail": [
-   "frukt",
-   "Jag tycker om frukt."
-  ],
-  "word_uisa": [
-   "läkare",
-   "Läkaren undersöker mig."
-  ],
-  "word_ttal": [
-   "en dotter",
-   "Min dotter går i skolan."
-  ],
-  "word_yeoboseyo": [
-   "hallå, i telefon",
-   "Hallå, vem är det?"
-  ],
-  "word_so": [
-   "en ko",
-   "Kon äter gräs."
-  ],
-  "word_pyeonji": [
-   "brev",
-   "Jag skriver ett brev till min mor."
-  ],
-  "word_jogeum": [
-   "lite",
-   "Bara lite, tack."
-  ],
-  "word_boida": [
-   "att synas",
-   "Jag kan se berget."
-  ],
-  "word_jari": [
-   "en sittplats",
-   "Det finns inga platser."
-  ],
-  "word_hu": [
-   "efter",
-   "Efter lektionen går jag till biblioteket."
-  ],
-  "word_kadeu": [
-   "kort",
-   "Jag betalar med kort."
-  ],
-  "word_naeil": [
-   "i morgon",
-   "Vi ses i morgon."
-  ],
-  "word_jungyohada": [
-   "att vara viktig",
-   "Hälsan är det viktigaste."
-  ],
-  "word_dalgyal": [
-   "ett ägg",
-   "Jag äter ett ägg på morgonen."
-  ],
-  "word_aju": [
-   "mycket",
-   "Det är mycket gott."
-  ],
-  "word_matda": [
-   "att stämma",
-   "Det här svaret stämmer."
-  ],
-  "word_hanguk": [
-   "Korea",
-   "Jag tycker om koreansk mat."
-  ],
-  "word_gang": [
-   "en flod",
-   "Floden är mycket bred."
-  ],
-  "word_cho": [
-   "en sekund",
-   "Det är trettio sekunder kvar."
-  ],
-  "word_hoesa": [
-   "ett företag, ett kontor",
-   "Jag går till kontoret."
-  ],
-  "word_sosik": [
-   "nyhet från någon",
-   "Jag har goda nyheter."
-  ],
-  "word_jakda": [
-   "att vara liten",
-   "Skorna är små."
-  ],
-  "word_gimchi": [
-   "kimchi",
-   "Kimchin är stark."
-  ],
-  "word_ikda": [
-   "att läsa",
-   "Jag läser tidningen."
-  ],
-  "word_geurigo": [
-   "och, och sedan",
-   "Jag köpte bröd. Och jag köpte mjölk också."
-  ],
-  "word_keuda": [
-   "att vara stor",
-   "Den här väskan är stor."
-  ],
-  "word_yeollak": [
-   "kontakt",
-   "Hör av dig senare."
-  ],
-  "word_gachi": [
-   "tillsammans",
-   "Vi äter tillsammans."
-  ],
-  "word_neomu": [
-   "för, alltför",
-   "De här kläderna är för stora."
-  ],
-  "word_yong": [
-   "en drake",
-   "På teckningen finns en stor drake."
-  ],
-  "word_geureota": [
-   "att vara så",
-   "Ja, det stämmer."
-  ],
-  "word_hotel": [
-   "hotell",
-   "Jag sov på hotell."
-  ],
-  "word_yeolsoe": [
-   "nyckel",
-   "Jag har inte nyckeln."
-  ],
-  "word_yeppeuda": [
-   "att vara vacker",
-   "Blommorna är verkligen vackra."
-  ],
-  "word_geugeot": [
-   "det där",
-   "Ge mig det där, tack."
-  ],
-  "word_daeum": [
-   "nästa",
-   "Vi ses nästa gång."
-  ],
-  "word_maeum": [
-   "hjärta, sinne",
-   "De har ett varmt hjärta."
-  ],
-  "word_jadongcha": [
-   "bil",
-   "Bilen är snabb."
-  ],
-  "word_jukda": [
-   "att dö",
-   "Blomman i krukan dog eftersom den inte vattnades."
-  ],
-  "word_nalda": [
-   "att flyga",
-   "En fågel flyger på himlen."
-  ],
-  "word_siksa": [
-   "måltid",
-   "Måltiden var mycket god."
-  ],
-  "word_gigye": [
-   "en maskin",
-   "Maskinen har gått sönder."
-  ],
-  "word_ttang": [
-   "marken",
-   "Marken är blöt."
-  ],
-  "word_jada": [
-   "att sova",
-   "Jag lägger mig tidigt."
-  ],
-  "word_beorida": [
-   "att kasta bort",
-   "Släng det i papperskorgen, tack."
-  ],
-  "word_juso": [
-   "en adress",
-   "Säg adressen, tack."
-  ],
-  "word_gicha": [
-   "tåg",
-   "Tåget har gått."
-  ],
-  "word_chitsol": [
-   "en tandborste",
-   "Jag köpte en ny tandborste."
-  ],
-  "word_sarang": [
-   "kärlek",
-   "Kärlek är vackert."
-  ],
-  "word_gongbu": [
-   "studier",
-   "Det är roligt att plugga."
-  ],
-  "word_saengseon": [
-   "fisk att äta",
-   "Jag grillade fisk till middag."
-  ],
-  "word_mok": [
-   "hals",
-   "Halsen gör ont."
-  ],
-  "word_sipda": [
-   "att vilja",
-   "Jag vill åka till Korea."
-  ],
-  "word_nyuseu": [
-   "nyheterna",
-   "Jag ser på nyheterna."
-  ],
-  "word_chatda": [
-   "att leta efter",
-   "Jag letar efter nyckeln."
-  ],
-  "word_iljjik": [
-   "tidigt",
-   "I morgon går jag upp tidigt."
-  ],
-  "word_geonmul": [
-   "byggnad",
-   "Den byggnaden är ny."
-  ],
-  "word_seonsaengnim": [
-   "lärare",
-   "Läraren undervisar."
-  ],
-  "word_eomeoni": [
-   "mor",
-   "Min mor är hemma."
-  ],
-  "word_gibun": [
-   "humör",
-   "Hur mår du?"
-  ],
-  "word_honja": [
-   "ensam",
-   "Jag kan gå ensam."
-  ],
-  "word_ani": [
-   "nej",
-   "Nej, jag gick inte."
-  ],
-  "word_eoje": [
-   "i går",
-   "I går regnade det."
-  ],
-  "word_sseuda": [
-   "att skriva",
-   "Jag skriver mitt namn."
-  ],
-  "word_masida": [
-   "att dricka",
-   "Jag dricker mjölk."
-  ],
-  "word_syeocheu": [
-   "en skjorta",
-   "Jag har en vit skjorta."
-  ],
-  "word_junbi": [
-   "förberedelse",
-   "Allt är klart."
-  ],
-  "word_mian": [
-   "förlåt",
-   "Förlåt, jag är sen."
-  ],
-  "word_geokjeong": [
-   "oro",
-   "Jag har många bekymmer."
-  ],
-  "word_hajiman": [
-   "men",
-   "Det regnar. Men jag går ändå."
-  ],
-  "word_kamera": [
-   "kamera",
-   "Jag köpte en kamera."
-  ],
-  "word_dongne": [
-   "ett kvarter",
-   "Vårt kvarter är lugnt."
-  ],
-  "word_naengjanggo": [
-   "ett kylskåp",
-   "Jag ställde mjölken i kylskåpet."
-  ],
-  "word_anda": [
-   "att sätta sig",
-   "Jag satte mig på stolen."
-  ],
-  "word_ppalli": [
-   "snabbt",
-   "Kom snabbt, tack."
-  ],
-  "word_yaegi": [
-   "ett samtal",
-   "Vi pratar en stund."
-  ],
-  "word_got": [
-   "en plats",
-   "Jag hittade en lugn plats."
-  ],
-  "word_nat": [
-   "dagen, dagtid",
-   "På dagen är det varmt."
-  ],
-  "word_sangja": [
-   "låda",
-   "Jag öppnar lådan."
-  ],
-  "word_wonhada": [
-   "att vilja ha",
-   "Vad vill du ha?"
-  ],
-  "word_sikdang": [
-   "restaurang",
-   "Var ligger restaurangen?"
-  ],
-  "word_geurida": [
-   "att rita",
-   "Barnet ritar ett träd."
-  ],
-  "word_yuri": [
-   "glas",
-   "Glaset gick sönder."
-  ],
-  "word_igeot": [
-   "det här",
-   "Ge mig det här, tack."
-  ],
-  "word_geoul": [
-   "spegel",
-   "Jag tittar mig i spegeln."
-  ],
-  "word_gijeok": [
-   "ett under",
-   "Det var verkligen som ett under."
-  ],
-  "word_kal": [
-   "en kniv",
-   "Jag skalade äpplet med kniv."
-  ],
-  "word_gatda": [
-   "att vara likadan",
-   "Våra väskor är likadana."
-  ],
-  "word_pul": [
-   "gräs",
-   "Gräset är grönt."
-  ],
-  "word_eolma": [
-   "hur mycket",
-   "Hur mycket kostar det här?"
-  ],
-  "word_saenggakada": [
-   "att tänka",
-   "Jag tycker också så."
-  ],
-  "word_jilmun": [
-   "en fråga",
-   "Jag har en fråga."
-  ],
-  "word_geunyeo": [
-   "hon",
-   "Hon sjunger bra."
-  ],
-  "word_nota": [
-   "att ställa ned",
-   "Jag ställde väskan på golvet."
-  ],
-  "word_banggeum": [
-   "nyss",
-   "Jag kom nyss."
-  ],
-  "word_bonaeda": [
-   "att skicka",
-   "Jag skickar ett brev."
-  ],
-  "word_arae": [
-   "under",
-   "Boken ligger under skrivbordet."
-  ],
-  "word_naoda": [
-   "att komma ut",
-   "Det kommer vatten."
-  ],
-  "word_nai": [
-   "ålder",
-   "Hur gammal är ni?"
-  ],
-  "word_eotteoke": [
-   "hur",
-   "Hur kommer jag dit?"
-  ],
-  "word_eunhaeng": [
-   "en bank",
-   "Banken har öppnat."
-  ],
-  "word_al": [
-   "ett ägg",
-   "Fågeln lade tre ägg."
-  ],
-  "word_moreuda": [
-   "att inte veta",
-   "Jag vet inte."
-  ],
-  "word_badak": [
-   "golvet",
-   "Jag torkar golvet."
-  ],
-  "word_hwajangsil": [
-   "toalett",
-   "Toaletten är ren."
-  ],
-  "word_yeok": [
-   "station",
-   "Vi ses vid stationen."
-  ],
-  "word_seoul": [
-   "Seoul",
-   "Seoul är mycket stort."
-  ],
-  "word_gwiyeopda": [
-   "att vara söt",
-   "Valpen är söt."
-  ],
-  "word_areumdapda": [
-   "att vara vacker",
-   "Landskapet är vackert."
-  ],
-  "word_ajik": [
-   "ännu, ännu inte",
-   "De har inte kommit ännu."
-  ],
-  "word_gyedan": [
-   "trappa",
-   "Det är många trappsteg."
-  ],
-  "word_maeil": [
-   "varje dag",
-   "Jag skriver hangul varje dag."
-  ],
-  "word_agi": [
-   "en bebis",
-   "Bebisen sover."
-  ],
-  "word_dwaeji": [
-   "gris",
-   "Grisen äter."
-  ],
-  "word_ju": [
-   "en vecka",
-   "Vi ses nästa vecka."
-  ],
-  "word_iyagi": [
-   "berättelse",
-   "Det är en intressant berättelse."
-  ],
-  "word_tto": [
-   "igen",
-   "Vi ses igen i morgon."
-  ],
-  "word_beolsseo": [
-   "redan",
-   "Det är redan över."
-  ],
-  "word_dangsin": [
-   "ni, artigt",
-   "Jag väntade på er."
-  ],
-  "word_gap": [
-   "ett pris",
-   "Priset är högt."
-  ],
-  "word_mianhada": [
-   "att vara ledsen",
-   "Förlåt att jag är sen."
-  ],
-  "word_jeongnyujang": [
-   "en hållplats",
-   "Jag väntar på bussen vid hållplatsen."
-  ],
-  "word_anta": [
-   "att inte göra",
-   "Jag dricker inte kaffe."
-  ],
-  "word_taeksi": [
-   "taxi",
-   "Ring en taxi, tack."
-  ],
-  "word_haksaeng": [
-   "elev",
-   "Det är många elever i klassrummet."
-  ],
-  "word_bomul": [
-   "skatt",
-   "Barnen letar efter en skatt."
-  ],
-  "word_jumun": [
-   "en beställning",
-   "Vill ni beställa?"
-  ],
-  "word_sinmun": [
-   "tidning",
-   "Läs tidningen, tack."
-  ],
-  "word_dak": [
-   "en höna",
-   "Hönan lägger ett ägg."
-  ],
-  "word_keop": [
-   "en mugg",
-   "Jag häller vatten i muggen."
-  ],
-  "word_set": [
-   "tre",
-   "Tre vänner samlades."
-  ],
-  "word_hangugeo": [
-   "koreanska språket",
-   "Koreanska är intressant."
-  ],
-  "word_geuraeseo": [
-   "så, därför",
-   "Det regnar, så jag går inte."
-  ],
-  "word_manhi": [
-   "mycket",
-   "Ät mycket, tack."
-  ],
-  "word_du": [
-   "två, före ett räkneord",
-   "Två koppar kaffe, tack."
-  ],
-  "word_pyeonuijeom": [
-   "en närbutik",
-   "Det finns en närbutik framför mitt hus."
-  ],
-  "word_miguk": [
-   "Förenta staterna",
-   "Jag kommer från Förenta staterna."
-  ],
-  "word_gyesok": [
-   "fortsättning",
-   "Det fortsätter att regna."
-  ],
-  "word_gagyeok": [
-   "ett pris",
-   "Priset är högre än väntat."
-  ],
-  "word_dongsaeng": [
-   "yngre syskon",
-   "Mitt yngre syskon är sött."
-  ],
-  "word_tokki": [
-   "kanin",
-   "Kaninen hoppar."
-  ],
-  "word_seoda": [
-   "att stå",
-   "Jag står i kön."
-  ],
-  "word_eoreum": [
-   "is",
-   "Lägg i is, tack."
-  ],
-  "word_jayeon": [
-   "naturen",
-   "Naturen är vacker."
-  ],
-  "word_jjikda": [
-   "att stämpla",
-   "Jag stämplade det med sigill."
-  ],
-  "word_yeol": [
-   "tio",
-   "Räkna till tio, tack."
-  ],
-  "word_sasil": [
-   "ett faktum",
-   "Det är ett faktum."
-  ],
-  "word_unjeon": [
-   "körning",
-   "Jag lär mig köra."
-  ],
-  "word_gamja": [
-   "potatis",
-   "Jag kokar potatis."
-  ],
-  "word_gureum": [
-   "moln",
-   "Det är många moln."
-  ],
-  "word_iyu": [
-   "ett skäl",
-   "Säg skälet, tack."
-  ],
-  "word_dareun": [
-   "annan, olik",
-   "Har ni andra färger?"
-  ],
-  "word_songarak": [
-   "finger",
-   "Mitt finger gör ont."
-  ],
-  "word_japda": [
-   "att gripa",
-   "Jag håller din hand."
-  ],
-  "word_bueok": [
-   "ett kök",
-   "Jag lagar mat i köket."
-  ],
-  "word_piryo": [
-   "ett behov",
-   "Jag behöver ingen hjälp."
-  ],
-  "word_pa": [
-   "salladslök",
-   "Jag lade lite salladslök i soppan."
-  ],
-  "word_batda": [
-   "att ta emot",
-   "Jag fick en present."
-  ],
-  "word_pida": [
-   "att slå ut",
-   "Blommorna har slagit ut."
-  ],
-  "word_sayong": [
-   "användning",
-   "Berätta hur man använder det, tack."
-  ],
-  "word_jeongbo": [
-   "information",
-   "Jag söker information."
-  ],
-  "word_gonghang": [
-   "flygplats",
-   "Jag kom fram till flygplatsen."
-  ],
-  "word_bumo": [
-   "föräldrar",
-   "Ett barn behöver föräldrar."
-  ],
-  "word_saranghada": [
-   "att älska",
-   "Jag älskar min familj."
-  ],
-  "word_ireoke": [
-   "så här",
-   "Skriv det så här, tack."
-  ],
-  "word_ilhada": [
-   "att arbeta",
-   "Min mor arbetar på sjukhus."
-  ],
-  "word_suyeong": [
-   "simning",
-   "Jag lär mig simma."
-  ],
-  "word_piryohada": [
-   "att behöva",
-   "Jag behöver pengar."
-  ],
-  "word_bukjjok": [
-   "norr",
-   "De gick norrut."
-  ],
-  "word_cheung": [
-   "en våning",
-   "Kontoret ligger på andra våningen."
-  ],
-  "word_hwanja": [
-   "en patient",
-   "Patienten vilar."
-  ],
-  "word_halmeoni": [
-   "farmor",
-   "Farmor ler."
-  ],
-  "word_palda": [
-   "att sälja",
-   "De säljer frukt."
-  ],
-  "word_itda_2": [
-   "att foga ihop",
-   "Jag fogade ihop de två repen."
-  ],
-  "word_nara": [
-   "land",
-   "Korea är ett vackert land."
-  ],
-  "word_apateu": [
-   "lägenhet",
-   "Jag bor i en lägenhet."
-  ],
-  "word_hamkke": [
-   "tillsammans",
-   "Vi går tillsammans."
-  ],
-  "word_modeun": [
-   "alla, varje",
-   "Alla skrattade."
-  ],
-  "word_gwaenchanta": [
-   "att vara okej",
-   "Jag mår bra."
-  ],
-  "word_johahada": [
-   "att tycka om",
-   "Jag tycker om kaffe."
-  ],
-  "word_jimseung": [
-   "ett vilddjur",
-   "I skogen hördes ett djur."
-  ],
-  "word_dongan": [
-   "under en tid",
-   "Jag reste under skollovet."
-  ],
-  "word_ipgu": [
-   "en ingång",
-   "Vi ses vid byggnadens ingång."
-  ],
-  "word_silta": [
-   "att inte tycka om",
-   "Jag tycker inte om kalla dagar."
-  ],
-  "word_meonjeo": [
-   "först",
-   "Först tvättar jag händerna."
-  ],
-  "word_dubu": [
-   "tofu",
-   "Jag lägger i tofu och kokar soppa."
-  ],
-  "word_bumonim": [
-   "de egna föräldrarna",
-   "Jag bor hos mina föräldrar."
-  ],
-  "word_gomapda": [
-   "att vara tacksam",
-   "Tack för hjälpen."
-  ],
-  "word_gyesan": [
-   "uträkning",
-   "Uträkningen är lite fel."
-  ],
-  "word_hyeo": [
-   "tungan",
-   "Tungan gör ont, så jag kan inte äta."
-  ],
-  "word_sugeon": [
-   "en handduk",
-   "Jag torkar händerna med handduken."
-  ],
-  "word_saeropda": [
-   "att vara ny",
-   "Det känns friskt."
-  ],
-  "word_sup": [
-   "en skog",
-   "I skogen hörs fågelsång."
-  ],
-  "word_chum": [
-   "en dans",
-   "De dansade på scenen."
-  ],
-  "word_sukje": [
-   "läxa",
-   "Jag har gjort läxan."
-  ],
-  "word_gaji": [
-   "ett slag, en sort",
-   "Jag vill bara fråga en sak."
-  ],
-  "word_mothada": [
-   "att inte kunna",
-   "Jag kan inte simma."
-  ],
-  "word_nagada": [
-   "att gå ut",
-   "Jag går ut."
-  ],
-  "word_meotjida": [
-   "att vara snygg",
-   "Du ser jättebra ut i dag."
-  ],
-  "word_podo": [
-   "vindruvor",
-   "Vindruvorna är mycket söta."
-  ],
-  "word_jeopsi": [
-   "en tallrik",
-   "Ta fram två tallrikar, tack."
-  ],
-  "word_yori": [
-   "matlagning",
-   "Maten är utsökt."
-  ],
-  "word_sogeum": [
-   "salt",
-   "Jag lägger i lite salt."
-  ],
-  "word_duda": [
-   "att lägga",
-   "Jag lade boken på skrivbordet."
-  ],
-  "word_gamsahada": [
-   "att vara tacksam",
-   "Tack för hjälpen."
-  ],
-  "word_kkeut": [
-   "slutet",
-   "Ställ dig sist i kön, tack."
-  ],
-  "word_yeolda": [
-   "att öppna",
-   "Jag öppnar fönstret."
-  ],
-  "word_ibul": [
-   "ett täcke",
-   "Täcket är varmt."
-  ],
-  "word_najung": [
-   "senare",
-   "Jag ringer igen senare."
-  ],
-  "word_manjida": [
-   "att röra",
-   "Rör inte, tack."
-  ],
-  "word_gajang": [
-   "mest",
-   "Den här är bäst."
-  ],
-  "word_namjjok": [
-   "söder",
-   "I söder är det varmt."
-  ],
-  "word_doum": [
-   "hjälp",
-   "Jag behöver hjälp."
-  ],
-  "word_jung": [
-   "mitt i, bland",
-   "Jag sitter i möte."
-  ],
-  "word_sudo": [
-   "huvudstaden",
-   "Koreas huvudstad är Seoul."
-  ],
-  "word_gidarida": [
-   "att vänta",
-   "Vänta ett ögonblick, tack."
-  ],
-  "word_chaeso": [
-   "en grönsak",
-   "Jag äter mycket grönsaker."
-  ],
-  "word_kkeunnada": [
-   "att sluta",
-   "Lektionen är slut."
-  ],
-  "word_butak": [
-   "en begäran, en tjänst",
-   "Jag har en tjänst att be om."
-  ],
-  "word_seom": [
-   "en ö",
-   "Vi tog båten till ön."
-  ],
-  "word_teuki": [
-   "särskilt",
-   "Jag tycker särskilt om vintern."
-  ],
-  "word_jemok": [
-   "en titel",
-   "Vad heter den här boken?"
-  ],
-  "word_insa": [
-   "en hälsning",
-   "Jag hälsade."
-  ],
-  "word_seoltang": [
-   "socker",
-   "Jag lägger i lite socker."
-  ],
-  "word_jajeongeo": [
-   "cykel",
-   "Jag cyklar."
-  ],
-  "word_inteonet": [
-   "internet",
-   "Internet är långsamt."
-  ],
-  "word_aniyo": [
-   "nej",
-   "Nej, jag mår bra."
-  ],
-  "word_ama": [
-   "förmodligen",
-   "I morgon regnar det förmodligen."
-  ],
-  "word_jamsi": [
-   "ett ögonblick",
-   "Vi vilar ett ögonblick."
-  ],
-  "word_beol": [
-   "ett bi",
-   "Ett bi landade på blomman."
-  ],
-  "word_won": [
-   "won",
-   "Det är tvåtusen won."
-  ],
-  "word_ujuseon": [
-   "ett rymdskepp",
-   "Rymdskeppet steg upp mot himlen."
-  ],
-  "word_myeot": [
-   "hur många",
-   "Hur mycket är klockan?"
-  ],
-  "word_sueop": [
-   "en lektion",
-   "Lektionen är intressant."
-  ],
-  "word_sijak": [
-   "en början",
-   "Det är en bra början."
-  ],
-  "word_yeogwon": [
-   "ett pass",
-   "Glöm inte att ta med passet."
-  ],
-  "word_gyosil": [
-   "ett klassrum",
-   "Klassrummet är ljust."
-  ],
-  "word_nyeon": [
-   "år",
-   "Jag studerade i två år."
-  ],
-  "word_bae": [
-   "magen",
-   "Magen gjorde ont, så jag gick till sjukhuset."
-  ],
-  "word_satang": [
-   "en karamell",
-   "Jag äter en karamell."
-  ],
-  "word_dalleo": [
-   "dollar",
-   "Det är hundra dollar."
-  ],
-  "word_usan": [
-   "ett paraply",
-   "Det regnade, så jag köpte ett paraply."
-  ],
-  "word_museun": [
-   "vad för",
-   "Vad arbetar ni med?"
-  ],
-  "word_pari": [
-   "en fluga",
-   "En fluga surrar omkring."
-  ],
-  "word_ije": [
-   "nu",
-   "Vi börjar nu."
-  ],
-  "word_geollida": [
-   "att ta tid",
-   "Det tar en timme."
-  ],
-  "word_choego": [
-   "den bästa",
-   "Den här restaurangen är bäst."
-  ],
-  "word_naeda": [
-   "att betala",
-   "I dag betalar jag."
-  ],
-  "word_daneo": [
-   "ett ord",
-   "Jag lär mig ett nytt ord."
-  ],
-  "word_jikjeop": [
-   "själv, personligen",
-   "Jag bakade tårtan själv."
-  ],
-  "word_yangmal": [
-   "en strumpa",
-   "Strumporna är varma."
-  ],
-  "word_nopda": [
-   "att vara hög",
-   "Byggnaden är hög."
-  ],
-  "word_haendeupon": [
-   "en mobiltelefon",
-   "Jag laddar mobilen."
-  ],
-  "word_jigap": [
-   "plånbok",
-   "Jag har tappat plånboken."
-  ],
-  "word_hyudaepon": [
-   "en mobiltelefon",
-   "Jag har tappat mobilen."
-  ],
-  "word_agassi": [
-   "en ung kvinna",
-   "En ung kvinna frågar om vägen."
-  ],
-  "word_gieok": [
-   "minne",
-   "Jag kommer inte ihåg."
-  ],
-  "word_geutda": [
-   "att dra ett streck",
-   "Jag drog ett streck."
-  ],
-  "word_ipda": [
-   "att ta på sig",
-   "Jag tar på mig kläder."
-  ],
-  "word_sai": [
-   "utrymmet emellan",
-   "Mellan de två husen står ett träd."
-  ],
-  "word_gireum": [
-   "olja",
-   "Jag steker det i olja."
-  ],
-  "word_mulgogi": [
-   "en fisk",
-   "Fisken simmar."
-  ],
-  "word_jang": [
-   "ordet för att räkna ark",
-   "Jag behöver tre ark papper."
-  ],
-  "word_kkum": [
-   "en dröm",
-   "I natt hade jag en konstig dröm."
-  ],
-  "word_sijakada": [
-   "att börja",
-   "Lektionen börjar."
-  ],
-  "word_ajikdo": [
-   "fortfarande",
-   "Jag väntar fortfarande."
-  ],
-  "word_teureok": [
-   "lastbil",
-   "En lastbil kör förbi."
-  ],
-  "word_eotteon": [
-   "vad för slags",
-   "Vilken färg tycker du om?"
-  ],
-  "word_geulssi": [
-   "handstil",
-   "Du har fin handstil."
-  ],
-  "word_deutda": [
-   "att lyssna, att höra",
-   "Jag lyssnar på musik."
-  ],
-  "word_subak": [
-   "vattenmelon",
-   "På sommaren smakar vattenmelon gott."
-  ],
-  "word_ttalgi": [
-   "jordgubbe",
-   "Jag sköljer jordgubbarna och äter dem."
-  ],
-  "word_baram": [
-   "vind",
-   "Vinden är sval."
-  ],
-  "word_sigol": [
-   "landsbygden",
-   "Luften på landet är god."
-  ],
-  "word_pulda": [
-   "att lösa",
-   "Jag löste uppgiften."
-  ],
-  "word_angyeong": [
-   "glasögon",
-   "Jag har glasögon."
-  ],
-  "word_yeonpil": [
-   "en penna",
-   "Jag ritar med penna."
-  ],
-  "word_jumal": [
-   "helg",
-   "På helgen vilar jag."
-  ],
-  "word_jugida": [
-   "att döda",
-   "Jag dödade myggan som kom in i rummet."
-  ],
-  "word_him": [
-   "styrka",
-   "Det barnet är mycket starkt."
-  ],
-  "word_jeonbu": [
-   "allt sammanlagt",
-   "Hur mycket blir det sammanlagt?"
-  ],
-  "word_gyeongchal": [
-   "polis",
-   "Ring polisen, tack."
-  ],
-  "word_geureut": [
-   "en skål",
-   "Jag lägger ris i skålen."
-  ],
-  "word_nappeuda": [
-   "att vara dålig",
-   "Vädret är dåligt."
-  ],
-  "word_oppa": [
-   "en kvinnas storebror",
-   "Min storebror kör."
-  ],
-  "word_mannada": [
-   "att träffas",
-   "Vi träffas ofta."
-  ],
-  "word_huimang": [
-   "hopp",
-   "Förlora inte hoppet."
-  ],
-  "word_hyeong": [
-   "en mans storebror",
-   "Min storebror bjöd mig på mat."
-  ],
-  "word_doro": [
-   "en väg",
-   "Vägen är blockerad."
-  ],
-  "word_ttwida": [
-   "att springa",
-   "Barnet springer."
-  ],
-  "word_mueot": [
-   "vad",
-   "Vad är det här?"
-  ],
-  "word_oenjjok": [
-   "vänster sida",
-   "Sväng vänster, tack."
-  ],
-  "word_chukgu": [
-   "fotboll",
-   "Jag spelar fotboll med min vän."
-  ],
-  "word_jayu": [
-   "frihet",
-   "Friheten är dyrbar."
-  ],
-  "word_sungan": [
-   "ett ögonblick",
-   "Jag kan inte glömma det ögonblicket."
-  ],
-  "word_sayonghada": [
-   "att använda",
-   "Får jag använda det här rummet?"
-  ],
-  "word_pada": [
-   "att gräva",
-   "Jag gräver i marken."
-  ],
-  "word_nampyeon": [
-   "make",
-   "Min man lagar mat."
-  ],
-  "word_silheomsil": [
-   "ett laboratorium",
-   "Jag arbetade i laboratoriet hela dagen."
-  ],
-  "word_dambae": [
-   "en cigarett",
-   "Cigarettlukten satte sig i kläderna."
-  ],
-  "word_banana": [
-   "en banan",
-   "Jag äter en banan på morgonen."
-  ],
-  "word_geum": [
-   "guld",
-   "Den här ringen är av guld."
-  ],
-  "word_mandeulda": [
-   "att göra",
-   "Jag bakar bröd."
-  ],
-  "word_ibeon": [
-   "den här gången",
-   "Den här gången gör jag det."
-  ],
-  "word_gomawo": [
-   "tack",
-   "Tack för hjälpen."
-  ],
-  "word_banchan": [
-   "en sidorätt",
-   "Sidorätterna är goda."
-  ],
-  "word_apeuda": [
-   "att göra ont",
-   "Magen gör ont."
-  ],
-  "word_doseogwan": [
-   "ett bibliotek",
-   "Jag lånade en bok på biblioteket."
-  ],
-  "word_ppyeo": [
-   "ett ben",
-   "Hunden håller ett ben i munnen."
-  ],
-  "word_gamsa": [
-   "tack",
-   "Jag tackade."
-  ],
-  "word_geolda": [
-   "att hänga upp",
-   "Jag hänger upp kläderna."
-  ],
-  "word_gim": [
-   "torkad sjögräsalg",
-   "Vi rullar ris i sjögräs och äter det."
-  ],
-  "word_jalhada": [
-   "att vara bra på något",
-   "Du sjunger bra."
-  ],
-  "word_saengmyeong": [
-   "liv",
-   "Livet är dyrbart."
-  ],
-  "word_mureup": [
-   "knä",
-   "Knät gör ont."
-  ],
-  "word_jjalda": [
-   "att vara kort",
-   "Pennan är kort."
-  ],
-  "word_chijeu": [
-   "ost",
-   "Jag tycker om ost."
-  ],
-  "word_hanbeon": [
-   "en gång",
-   "Prova en gång, tack."
-  ],
-  "word_gohyang": [
-   "hembygd",
-   "Jag åkte till min hembygd."
-  ],
-  "word_jihacheol": [
-   "tunnelbanan",
-   "Jag åker tunnelbana."
-  ],
-  "word_sal": [
-   "levnadsår",
-   "Jag är tjugo år gammal."
-  ],
-  "word_anae": [
-   "hustru",
-   "Jag kom med min fru."
-  ],
-  "word_swida": [
-   "att vila",
-   "Vi vilar en stund."
-  ],
-  "word_gimbap": [
-   "gimbap",
-   "Jag åt gimbap till lunch."
-  ],
-  "word_gayo": [
-   "koreansk populärmusik",
-   "Jag tycker om koreansk popmusik."
-  ],
-  "word_swipda": [
-   "att vara lätt",
-   "Hangul är lätt."
-  ],
-  "word_pyojeong": [
-   "ett ansiktsuttryck",
-   "De ser glada ut."
-  ],
-  "word_dareuda": [
-   "att vara olik",
-   "Färgerna är olika."
-  ],
-  "word_geunyang": [
-   "bara, utan särskild orsak",
-   "I helgen var jag bara hemma."
-  ],
-  "word_majimak": [
-   "den sista",
-   "Jag tog sista bussen."
-  ],
-  "word_bangbeop": [
-   "ett sätt",
-   "Det finns ett bra sätt."
-  ],
-  "word_huinsaek": [
-   "färgen vit",
-   "Den vita väggen är ren."
-  ],
-  "word_jalmot": [
-   "ett fel",
-   "Det är mitt fel."
-  ],
-  "word_daehakgyo": [
-   "universitet",
-   "Jag studerar på universitetet."
-  ],
-  "word_haengun": [
-   "lycka",
-   "Lycka till på provet."
-  ],
-  "word_harabeoji": [
-   "farfar",
-   "Farfar läser tidningen."
-  ],
-  "word_bimil": [
-   "hemlighet",
-   "Behåll hemligheten, tack."
-  ],
-  "word_sogogi": [
-   "nötkött",
-   "Vi grillade nötkött och åt."
-  ],
-  "word_net": [
-   "fyra",
-   "Vi fyra är ett lag."
-  ],
-  "word_sinda": [
-   "att ta på sig skor",
-   "Jag tar på mig strumpor."
-  ],
-  "word_dap": [
-   "ett svar",
-   "Jag hittade svaret."
-  ],
-  "word_yeonseup": [
-   "övning",
-   "Jag övar varje dag."
-  ],
-  "word_gongchaek": [
-   "en skrivbok",
-   "Jag skriver mitt namn i skrivboken."
-  ],
-  "word_ssada": [
-   "att vara billig",
-   "Den här frukten är billig."
-  ],
-  "word_dowajuda": [
-   "att hjälpa till",
-   "Hjälp mig lite, tack."
-  ],
-  "word_maekju": [
-   "öl",
-   "Ölen är kall."
-  ],
-  "word_jjada": [
-   "att vara salt",
-   "Soppan är salt."
-  ],
-  "word_gyehoek": [
-   "en plan",
-   "Jag gjorde en plan."
-  ],
-  "word_pyeonghwa": [
-   "fred",
-   "Vi önskar fred."
-  ],
-  "word_yaksok": [
-   "ett löfte, en överenskommelse",
-   "Jag håller mitt löfte."
-  ],
-  "word_oreunjjok": [
-   "höger sida",
-   "Gå åt höger, tack."
-  ],
-  "word_gippeuda": [
-   "att vara glad",
-   "Jag blev glad över nyheten."
-  ],
-  "word_baeuda": [
-   "att lära sig",
-   "Jag lär mig koreanska."
-  ],
-  "word_jebal": [
-   "snälla",
-   "Snälla, hjälp mig."
-  ],
-  "word_dopda": [
-   "att hjälpa",
-   "Jag hjälper min vän."
-  ],
-  "word_jaryo": [
-   "material för en uppgift",
-   "Jag förberedde mötesmaterialet i förväg."
-  ],
-  "word_hullyunghada": [
-   "att vara utmärkt",
-   "Det är en utmärkt idé."
-  ],
-  "word_moseup": [
-   "utseende, gestalt",
-   "Deras utseende har förändrats."
-  ],
-  "word_undong": [
-   "motion",
-   "Jag motionerar på morgonen."
-  ],
-  "word_geureonde": [
-   "förresten, men",
-   "Förresten, vad är det här?"
-  ],
-  "word_juseu": [
-   "juice",
-   "Barnet dricker juice."
-  ],
-  "word_jwi": [
-   "en mus",
-   "Jag såg en mus i köket."
-  ],
-  "word_chwimi": [
-   "en hobby",
-   "Min hobby är att fotografera."
-  ],
-  "word_deung": [
-   "ryggen",
-   "Det kliar på ryggen."
-  ],
-  "word_jeoldae": [
-   "aldrig",
-   "Var absolut inte sen."
-  ],
-  "word_dol": [
-   "en sten",
-   "Det låg många stenar på stigen, så vi var försiktiga."
-  ],
-  "word_bappeuda": [
-   "att ha bråttom",
-   "I dag har jag mycket att göra."
-  ],
-  "word_ireon": [
-   "sådan här",
-   "Något sådant här händer för första gången."
-  ],
-  "word_yeoseong": [
-   "en kvinna",
-   "Många kvinnor kom."
-  ],
-  "word_paransaek": [
-   "färgen blå",
-   "Blå kläder klär dig."
-  ],
-  "word_ireonada": [
-   "att stiga upp",
-   "Jag stiger upp klockan sju."
-  ],
-  "word_gom": [
-   "en björn",
-   "Björnar lever i bergen."
-  ],
-  "word_jam": [
-   "sömn",
-   "Jag har inte kunnat sova bra på sistone."
-  ],
-  "word_haebyeon": [
-   "en strand",
-   "På sommaren åkte vi till stranden."
-  ],
-  "word_hosu": [
-   "sjö",
-   "Sjön är stilla."
-  ],
-  "word_dakgogi": [
-   "kycklingkött",
-   "Kyckling har lite fett."
-  ],
-  "word_geunde": [
-   "förresten",
-   "Förresten, vad är klockan nu?"
-  ],
-  "word_jaeneung": [
-   "en talang",
-   "De har talang för att teckna."
-  ],
-  "word_gyeolhon": [
-   "giftermål",
-   "Grattis till giftermålet."
-  ],
-  "word_binu": [
-   "tvål",
-   "Jag tvättar händerna med tvål."
-  ],
-  "word_saja": [
-   "ett lejon",
-   "Lejonet är stort."
-  ],
-  "word_eoneu": [
-   "vilken",
-   "Vilken tycker du om?"
-  ],
-  "word_mureoboda": [
-   "att fråga",
-   "Jag frågade läraren."
-  ],
-  "word_ucheguk": [
-   "ett postkontor",
-   "Jag skickade ett brev på postkontoret."
-  ],
-  "word_japji": [
-   "tidskrift",
-   "Jag läser en tidskrift."
-  ],
-  "word_jean": [
-   "ett förslag",
-   "Jag fick ett bra förslag från företaget."
-  ],
-  "word_yojeum": [
-   "nuförtiden",
-   "Hur har du haft det på sistone?"
-  ],
-  "word_ulda": [
-   "att gråta",
-   "Bebisen gråter."
-  ],
-  "word_namda": [
-   "att bli kvar",
-   "Det är lite ris kvar."
-  ],
-  "word_miso": [
-   "ett leende",
-   "Det är ett vackert leende."
-  ],
-  "word_daehak": [
-   "högskola",
-   "Jag kom in på universitetet."
-  ],
-  "word_uimi": [
-   "betydelse",
-   "Vad betyder det här ordet?"
-  ],
-  "word_geim": [
-   "ett spel",
-   "Jag spelar ett spel."
-  ],
-  "word_cham": [
-   "verkligen",
-   "Vädret är verkligen fint i dag."
-  ],
-  "word_kong": [
-   "en böna",
-   "Jag lade bönor i riset."
-  ],
-  "word_saebyeok": [
-   "tidiga morgontimmar",
-   "Jag gick upp före gryningen."
-  ],
-  "word_utda": [
-   "att skratta",
-   "Min vän skrattar högt."
-  ],
-  "word_imi": [
-   "redan",
-   "Det är redan över."
-  ],
-  "word_sutgarak": [
-   "en sked",
-   "Jag äter soppa med sked."
-  ],
-  "word_bureuda": [
-   "att kalla på",
-   "Jag ringer efter en taxi."
-  ],
-  "word_koteu": [
-   "kappa",
-   "Ta på dig kappan, tack."
-  ],
-  "word_meolda": [
-   "att vara långt bort",
-   "Skolan är långt bort."
-  ],
-  "word_myeong": [
-   "en person",
-   "Det är fem elever."
-  ],
-  "word_eonni": [
-   "en kvinnas storasyster",
-   "Min storasyster är student."
-  ],
-  "word_ihae": [
-   "förståelse",
-   "Jag förstår det bra."
-  ],
-  "word_samda": [
-   "att koka i vatten",
-   "Jag kokar ett ägg."
-  ],
-  "word_noransaek": [
-   "färgen gul",
-   "Jag använde ett gult paraply."
-  ],
-  "word_mudeom": [
-   "en grav",
-   "På berget finns en gammal grav."
-  ],
-  "word_gita": [
-   "en gitarr",
-   "Jag spelar gitarr."
-  ],
-  "word_itda_3": [
-   "att glömma",
-   "Jag glömde namnet."
-  ],
-  "word_gongyeon": [
-   "en föreställning",
-   "Föreställningen börjar."
-  ],
-  "word_ilta": [
-   "att tappa bort",
-   "Jag tappade bort nyckeln."
-  ],
-  "word_baneung": [
-   "en reaktion",
-   "Folks reaktion var mycket god."
-  ],
-  "word_gudu": [
-   "finskor",
-   "Skorna är bekväma."
-  ],
-  "word_hyuga": [
-   "semester",
-   "Jag var på semester."
-  ],
-  "word_jeohui": [
-   "vi, ödmjukt",
-   "Vi ska hjälpa er."
-  ],
-  "word_geuttae": [
-   "då",
-   "Då regnade det."
-  ],
-  "word_sopa": [
-   "en soffa",
-   "Sätt dig i soffan och vila."
-  ]
- }
+  "_comment": "Vocabulary copy for Swedish. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+  "locale": "sv",
+  "words": {
+    "word_hada": [
+      "göra",
+      "Jag studerar.",
+      "Att göra — och motorn i koreansk ordbildning. Sätt det efter ett substantiv så får du ett verb: 공부 (studier) blir 공부하다 (att studera), 사랑 (kärlek) blir 사랑하다. Hundratals verb byggs så."
+    ],
+    "word_cha": [
+      "bil",
+      "Jag tar bilen.",
+      "En bil. Samma stavelse är också ordet för te, så 차를 마셔요 betyder jag dricker te och 차를 타요 betyder jag sätter mig i bilen. Verbet talar om vilket det är."
+    ],
+    "word_yeoja": [
+      "kvinna",
+      "Den kvinnan är läkare."
+    ],
+    "word_na": [
+      "jag",
+      "Jag lär mig koreanska."
+    ],
+    "word_hae": [
+      "solen",
+      "Solen skiner."
+    ],
+    "word_don": [
+      "pengar",
+      "Det finns pengar i plånboken."
+    ],
+    "word_uri": [
+      "vi",
+      "Vi är vänner."
+    ],
+    "word_jip": [
+      "hem",
+      "Jag går hem."
+    ],
+    "word_itda": [
+      "befinna sig",
+      "Jag är hemma.",
+      "Ett ord där svenskan har två: 있다 betyder både att finnas någonstans och att ha. 책상에 책이 있어요 — boken ligger på skrivbordet; 시간이 있어요 — jag har tid. Motsatsen är 없다."
+    ],
+    "word_ne": [
+      "ja",
+      "Ja, det stämmer.",
+      "Tre vanliga ord stavas 네. Det här är ”ja”. De andra är ”din” (네 책, din bok) och det inhemska räkneordet ”fyra” framför ett klassifikatorord (네 개, fyra stycken). Sammanhanget skiljer dem åt, inte stavningen."
+    ],
+    "word_son": [
+      "hand",
+      "Jag skriver för hand."
+    ],
+    "word_sigan": [
+      "tid",
+      "Jag har ingen tid.",
+      "Tid i allmänhet, och även räkneordet för timmar: 두 시간 är två timmar. Blanda inte ihop det med 시, som är klockslaget — 두 시 är klockan två, något helt annat."
+    ],
+    "word_jeo": [
+      "jag (artigt)",
+      "Jag är student."
+    ],
+    "word_gada": [
+      "gå",
+      "Jag går till skolan."
+    ],
+    "word_gae": [
+      "hund",
+      "Hunden springer."
+    ],
+    "word_mun": [
+      "dörr",
+      "Jag öppnar dörren."
+    ],
+    "word_sae": [
+      "fågel",
+      "En fågel flyger."
+    ],
+    "word_mom": [
+      "kropp",
+      "Jag tvättar kroppen varje dag."
+    ],
+    "word_bang": [
+      "rum",
+      "Rummet är rent."
+    ],
+    "word_nun": [
+      "öga",
+      "Du har vackra ögon.",
+      "Ögat. Stavas precis som ordet för snö, och i tydligt tal skiljs de åt med längd: snö-눈 dras ut, öga-눈 är kort. De flesta förlitar sig på sammanhanget."
+    ],
+    "word_ot": [
+      "kläder",
+      "Kläderna är fina."
+    ],
+    "word_neo": [
+      "du",
+      "Var är du?"
+    ],
+    "word_eopda": [
+      "inte ha",
+      "Jag har inga pengar."
+    ],
+    "word_meori": [
+      "huvud",
+      "Jag har ont i huvudet."
+    ],
+    "word_ip": [
+      "mun",
+      "Munnen är liten."
+    ],
+    "word_mul": [
+      "vatten",
+      "Jag dricker vatten."
+    ],
+    "word_dari": [
+      "ben",
+      "Jag har ont i benet.",
+      "Ett ben — ditt, ett bords, en stols. Samma ord betyder också bro, och därför betyder 다리를 건너요 ”jag går över bron” och inget anatomiskt."
+    ],
+    "word_bi": [
+      "regn",
+      "Det regnar."
+    ],
+    "word_wae": [
+      "varför",
+      "Varför är du sen?"
+    ],
+    "word_eolgul": [
+      "ansikte",
+      "Jag tvättar ansiktet."
+    ],
+    "word_saram": [
+      "människa",
+      "Hen är en bra människa."
+    ],
+    "word_hakgyo": [
+      "skola",
+      "Skolan är stor."
+    ],
+    "word_yeogi": [
+      "här",
+      "Var så god och sitt här."
+    ],
+    "word_pal": [
+      "arm",
+      "Du har långa armar."
+    ],
+    "word_norae": [
+      "sång",
+      "Jag sjunger en sång."
+    ],
+    "word_chaek": [
+      "bok",
+      "Jag läser en bok."
+    ],
+    "word_dal": [
+      "månen",
+      "Månen lyser."
+    ],
+    "word_jeonhwa": [
+      "telefon",
+      "Jag svarar i telefonen."
+    ],
+    "word_namu": [
+      "träd",
+      "Trädet är högt."
+    ],
+    "word_dasi": [
+      "igen",
+      "Säg det igen, tack."
+    ],
+    "word_nal": [
+      "dag",
+      "Det är en fin dag."
+    ],
+    "word_jigeum": [
+      "nu",
+      "Jag går nu."
+    ],
+    "word_haru": [
+      "ett dygn",
+      "Dagen är lång."
+    ],
+    "word_sesang": [
+      "världen",
+      "Världen är stor."
+    ],
+    "word_bal": [
+      "fot",
+      "Jag är kall om fötterna."
+    ],
+    "word_neutda": [
+      "vara sen",
+      "Bussen var sen."
+    ],
+    "word_modu": [
+      "alla",
+      "Alla har samlats."
+    ],
+    "word_sajin": [
+      "fotografi",
+      "Jag tar ett foto."
+    ],
+    "word_chimdae": [
+      "säng",
+      "Sängen är bekväm."
+    ],
+    "word_ko": [
+      "näsa",
+      "Jag är täppt i näsan."
+    ],
+    "word_san": [
+      "berg",
+      "Jag går till berget."
+    ],
+    "word_hana": [
+      "ett",
+      "En äpple, tack."
+    ],
+    "word_byeongwon": [
+      "sjukhus",
+      "Jag går till sjukhuset."
+    ],
+    "word_jeongmal": [
+      "verkligen",
+      "Tack så mycket.",
+      "Verkligen, riktigt — ett förstärkningsord före ett adjektiv, som i 정말 좋아요. Ensamt, med stigande ton, är 정말? en enordsfråga: ”verkligen?” Så hör du det oftast."
+    ],
+    "word_seonmul": [
+      "present",
+      "Jag gillar presenten."
+    ],
+    "word_boda": [
+      "se",
+      "Jag ser på en film."
+    ],
+    "word_oneul": [
+      "idag",
+      "Vädret är fint idag."
+    ],
+    "word_gabang": [
+      "väska",
+      "Väskan är tung."
+    ],
+    "word_eumak": [
+      "musik",
+      "Musiken är fin."
+    ],
+    "word_gage": [
+      "butik",
+      "Butiken är stängd."
+    ],
+    "word_gil": [
+      "väg",
+      "Vägen är bred."
+    ],
+    "word_ohu": [
+      "eftermiddag",
+      "Vi ses i eftermiddag."
+    ],
+    "word_keopi": [
+      "kaffe",
+      "Jag dricker kaffe."
+    ],
+    "word_bap": [
+      "mat",
+      "Jag äter."
+    ],
+    "word_eomma": [
+      "mamma",
+      "Mamma lagar mat."
+    ],
+    "word_gwi": [
+      "öra",
+      "Jag har ont i örat."
+    ],
+    "word_beoseu": [
+      "buss",
+      "Bussen kommer."
+    ],
+    "word_geurim": [
+      "teckning",
+      "Jag ritar en teckning."
+    ],
+    "word_beon": [
+      "gång",
+      "Gör det en gång till, tack."
+    ],
+    "word_sul": [
+      "alkohol",
+      "Jag dricker inte alkohol."
+    ],
+    "word_yeonghwa": [
+      "film",
+      "Filmen är rolig."
+    ],
+    "word_sada": [
+      "köpa",
+      "Jag köper bröd."
+    ],
+    "word_byeol": [
+      "stjärna",
+      "Stjärnorna lyser."
+    ],
+    "word_bihaenggi": [
+      "flygplan",
+      "Jag tar flyget."
+    ],
+    "word_bak": [
+      "utsidan",
+      "Det regnar ute."
+    ],
+    "word_oda": [
+      "komma",
+      "Min vän kommer."
+    ],
+    "word_chingu": [
+      "vän",
+      "Jag träffar en vän."
+    ],
+    "word_appa": [
+      "pappa",
+      "God natt, pappa."
+    ],
+    "word_haneul": [
+      "himmel",
+      "Himlen är blå."
+    ],
+    "word_bada": [
+      "hav",
+      "Havet är vidsträckt."
+    ],
+    "word_sagwa": [
+      "äpple",
+      "Äpplet är sött."
+    ],
+    "word_mulgeon": [
+      "sak",
+      "Jag köper saker."
+    ],
+    "word_moja": [
+      "mössa",
+      "Jag sätter på mig en mössa."
+    ],
+    "word_gogi": [
+      "kött",
+      "Jag grillar kött."
+    ],
+    "word_jinjja": [
+      "äkta",
+      "Är det här på riktigt?"
+    ],
+    "word_sinbal": [
+      "skor",
+      "Jag tar på mig skorna."
+    ],
+    "word_jamkkan": [
+      "ett ögonblick",
+      "Vänta ett ögonblick, tack."
+    ],
+    "word_namja": [
+      "man",
+      "Den mannen är min vän."
+    ],
+    "word_eumsik": [
+      "mat",
+      "Koreansk mat är god."
+    ],
+    "word_saengil": [
+      "födelsedag",
+      "Grattis på födelsedagen."
+    ],
+    "word_daseot": [
+      "fem",
+      "Fem personer kom."
+    ],
+    "word_gihoe": [
+      "tillfälle",
+      "Det är ett bra tillfälle."
+    ],
+    "word_dul": [
+      "två",
+      "Det finns två stolar."
+    ],
+    "word_sijang": [
+      "marknad",
+      "Jag köper grönsaker på marknaden."
+    ],
+    "word_goyangi": [
+      "katt",
+      "Katten sover."
+    ],
+    "word_changmun": [
+      "fönster",
+      "Stäng fönstret, tack."
+    ],
+    "word_yeoreum": [
+      "sommar",
+      "På sommaren åker jag till havet."
+    ],
+    "word_dongmul": [
+      "djur",
+      "Jag tycker om djur."
+    ],
+    "word_yeohaeng": [
+      "resa",
+      "Jag vill resa."
+    ],
+    "word_bam": [
+      "natt",
+      "På natten syns många stjärnor.",
+      "Natt. Stavas som ordet för kastanj, ett vanligt höstsnacks i Korea, så 밤을 먹어요 och 밤에 자요 handlar om mycket olika saker."
+    ],
+    "word_geot": [
+      "en sak",
+      "Jag köpte de saker jag behövde.",
+      "Koreanskans vanligaste substantiv: det står för det du inte har namngett. 제 것 är *mitt*; 먹을 것 är *något att äta*. I tal krymper det till 거 — 이거, 그거, 저거 — och det är den formen nybörjare möter först."
+    ],
+    "word_mal": [
+      "ord, det man säger",
+      "Välj dina ord med omsorg.",
+      "Tal — ord, det någon säger. Samma stavelse betyder också häst, och 말 avslutar 한국말, det koreanska språket. I skrift skiljer ingenting dem åt: 말을 하다 är att tala, 말을 타다 är att rida."
+    ],
+    "word_bun": [
+      "en minut",
+      "Vänta bara tio minuter, tack.",
+      "Två andra ord skrivs 분. Det ena är det artiga sättet att räkna människor — 세 분, tre personer, sagt om gäster eller äldre. Det andra betyder vrede, som i 분이 풀리다. Bara meningen skiljer dem."
+    ],
+    "word_dwi": [
+      "baksidan",
+      "Jag skrev mitt namn på baksidan av skrivboken."
+    ],
+    "word_si": [
+      "klockslag",
+      "Lektionen slutar klockan två.",
+      "Timmen tar de inhemska räkneorden — 한 시, 두 시, 세 시 — och minuten de sinokoreanska: 세 시 십 분, tio över tre. Att kasta om dem är nybörjarmisstaget framför andra, och det hörs direkt."
+    ],
+    "word_deo": [
+      "mer",
+      "Lite till, tack."
+    ],
+    "word_ap": [
+      "framsidan",
+      "Vi ses framför affären."
+    ],
+    "word_da": [
+      "allt",
+      "Jag åt upp allt ris."
+    ],
+    "word_jom": [
+      "lite, och ett sätt att mjuka upp en begäran",
+      "Lite vatten, tack.",
+      "Kort för 조금, *lite* — men hälften av dess arbete är att mjuka upp. Insatt i en begäran tar det bort udden: 도와주세요 är *hjälp mig*, 좀 도와주세요 låter mer som *skulle du kunna hjälpa mig*. Just därför använder koreaner det oavbrutet."
+    ],
+    "word_jeon": [
+      "före",
+      "Jag tvättar händerna före maten.",
+      "Före, i tid. Flera andra ord skrivs 전: 전쟁 är krig och kortas till 전, 전기 är elektricitet, och 전 på en meny är en salt pannkaka. Framför ett verb är det tidsordet — 먹기 전에, före maten."
+    ],
+    "word_alda": [
+      "att veta",
+      "Jag vet namnet."
+    ],
+    "word_yak": [
+      "medicin",
+      "Ta medicinen efter maten."
+    ],
+    "word_jota": [
+      "att vara bra",
+      "Jag mår bra."
+    ],
+    "word_jal": [
+      "bra",
+      "Sov du gott?"
+    ],
+    "word_anida": [
+      "att inte vara något",
+      "Jag är inte student.",
+      "Motsatsen till 이다. Det tar 이/가 på det som förnekas, inte 을/를: 학생이 아니에요, aldrig 학생을 아니에요. Den som lär sig det mönstret kan neka vilken nominalsats som helst på koreanska."
+    ],
+    "word_bul": [
+      "eld",
+      "Det bröt ut en brand på berget."
+    ],
+    "word_uyu": [
+      "mjölk",
+      "Mjölken är kall."
+    ],
+    "word_meokda": [
+      "att äta",
+      "Jag äter frukt."
+    ],
+    "word_ppang": [
+      "bröd",
+      "Jag äter bröd."
+    ],
+    "word_ttae": [
+      "stunden när något händer",
+      "När jag var liten bodde jag på landet."
+    ],
+    "word_il": [
+      "arbete",
+      "Det är mycket arbete i dag.",
+      "Arbete, eller något som måste göras. Samma stavelse är det sinokoreanska ett — 일 번, nummer ett — och den är dagen i 일요일, söndag, och i 삼 일, tre dagar."
+    ],
+    "word_baji": [
+      "byxor",
+      "Byxorna är långa."
+    ],
+    "word_sigye": [
+      "klocka",
+      "Jag har ingen klocka."
+    ],
+    "word_siheom": [
+      "ett prov, en tenta",
+      "Jag har prov i morgon."
+    ],
+    "word_keompyuteo": [
+      "dator",
+      "Jag sätter på datorn."
+    ],
+    "word_nalssi": [
+      "vädret",
+      "Vädret är fint."
+    ],
+    "word_jongi": [
+      "papper",
+      "Jag ritar på papper."
+    ],
+    "word_dosi": [
+      "stad",
+      "Staden är mycket stor."
+    ],
+    "word_munje": [
+      "problem",
+      "Det finns ett problem."
+    ],
+    "word_wi": [
+      "ovansidan",
+      "Det ligger en hatt på väskan."
+    ],
+    "word_bom": [
+      "vår",
+      "På våren blommar blommorna."
+    ],
+    "word_jeonyeok": [
+      "middag, kvällsmålet",
+      "Jag äter middag."
+    ],
+    "word_gyeoul": [
+      "vinter",
+      "På vintern snöar det mycket."
+    ],
+    "word_abeoji": [
+      "far",
+      "Min far går till jobbet."
+    ],
+    "word_eoseo": [
+      "varsågod, stig på",
+      "Välkommen, stig på."
+    ],
+    "word_mot": [
+      "att inte kunna, hur gärna man än vill",
+      "Det är så starkt att jag inte kan äta det.",
+      "Koreanskan har två nekningar och de säger olika saker. 안 är *jag vill inte*; 못 är *jag kan inte*. 안 먹어요 betyder att du väljer att inte äta; 못 먹어요 att något hindrar dig. Ett likadant stavat substantiv, 못, är en spik."
+    ],
+    "word_salda": [
+      "att bo, att leva",
+      "Jag bor i Seoul."
+    ],
+    "word_ai": [
+      "barn",
+      "Barnet skrattar."
+    ],
+    "word_jeomsim": [
+      "lunch",
+      "Vi äter lunch tillsammans."
+    ],
+    "word_nugu": [
+      "vem",
+      "Vem är den personen?"
+    ],
+    "word_eonje": [
+      "när",
+      "När kommer du?"
+    ],
+    "word_geori": [
+      "en gata",
+      "Det är mycket folk på gatan."
+    ],
+    "word_annyeong": [
+      "hej och hej då",
+      "Hej då, vi ses igen!"
+    ],
+    "word_gakkeum": [
+      "ibland",
+      "Ibland ser jag på film."
+    ],
+    "word_manta": [
+      "att vara många",
+      "Det är mycket folk."
+    ],
+    "word_chima": [
+      "en kjol",
+      "Den här kjolen är mycket fin."
+    ],
+    "word_uija": [
+      "stol",
+      "Jag sitter på stolen."
+    ],
+    "word_jeogi": [
+      "där borta",
+      "Där borta ligger skolan."
+    ],
+    "word_gongwon": [
+      "park",
+      "Jag går i parken."
+    ],
+    "word_ssal": [
+      "okokt ris",
+      "Jag sköljer riset och kokar det."
+    ],
+    "word_jigu": [
+      "jorden",
+      "Jorden är rund."
+    ],
+    "word_eodi": [
+      "var",
+      "Var är toaletten?"
+    ],
+    "word_byeok": [
+      "en vägg",
+      "Jag hänger en tavla på väggen."
+    ],
+    "word_gyeran": [
+      "ett ägg",
+      "I morse kokade jag ett ägg."
+    ],
+    "word_tada": [
+      "att åka med, att stiga på",
+      "Jag tar bussen.",
+      "Att kliva på eller i vad som helst som bär dig — en buss, en cykel, en hiss. Två andra mycket vanliga verb delar stavningen: 타다 betyder också att brinna, och att röra ner något i en dryck."
+    ],
+    "word_segye": [
+      "världen",
+      "Jag känner till många länder i världen."
+    ],
+    "word_ireum": [
+      "namn",
+      "Vad heter du?"
+    ],
+    "word_guk": [
+      "soppa",
+      "Jag äter soppa på morgonen."
+    ],
+    "word_malhada": [
+      "att tala",
+      "Tala långsamt, tack."
+    ],
+    "word_geotda": [
+      "att gå till fots",
+      "Jag går i parken."
+    ],
+    "word_gangaji": [
+      "valp",
+      "Valpen är liten."
+    ],
+    "word_sori": [
+      "ljud",
+      "Ljudet är högt."
+    ],
+    "word_yeop": [
+      "sidan",
+      "Sitt bredvid mig, tack."
+    ],
+    "word_saenggak": [
+      "tanke",
+      "Det är en bra idé."
+    ],
+    "word_geogi": [
+      "där",
+      "Är det någon där?"
+    ],
+    "word_adeul": [
+      "son",
+      "Min son går i skolan."
+    ],
+    "word_doeda": [
+      "att bli",
+      "Jag vill bli läkare.",
+      "Att bli. Det är också det vardagliga ordet för att något fungerar eller är tillåtet: 안 돼요 betyder det går inte, och 다 됐어요 betyder det är klart. Dem hör du långt oftare än ordboksbetydelsen."
+    ],
+    "word_maeul": [
+      "en by",
+      "Byn är lugn."
+    ],
+    "word_kape": [
+      "ett kafé",
+      "Jag träffar min vän på kaféet."
+    ],
+    "word_gong": [
+      "en boll",
+      "Jag sparkar bollen."
+    ],
+    "word_gajok": [
+      "familj",
+      "Jag har en stor familj."
+    ],
+    "word_ssi": [
+      "herr eller fru, efter ett namn",
+      "Minsu, ett ögonblick.",
+      "Efter ett förnamn är det artigt och vänligt mellan jämlikar: 민수 씨. Efter enbart efternamnet — 김 씨 — låter det distanserat eller rentav snäsigt, så använd förnamnet. Till en överordnad använder man titeln: 부장님, 선생님."
+    ],
+    "word_achim": [
+      "morgon",
+      "Jag går upp på morgonen."
+    ],
+    "word_jeonhwahada": [
+      "att ringa",
+      "Jag ringer dig senare."
+    ],
+    "word_gaeul": [
+      "höst",
+      "På hösten är vinden sval."
+    ],
+    "word_kkot": [
+      "blomma",
+      "Blomman är vacker."
+    ],
+    "word_jido": [
+      "karta",
+      "Jag tittar på kartan."
+    ],
+    "word_saek": [
+      "en färg",
+      "Den här färgen är fin."
+    ],
+    "word_juda": [
+      "att ge",
+      "Jag ger en present."
+    ],
+    "word_yachae": [
+      "grönsaker",
+      "Ät mycket grönsaker, tack."
+    ],
+    "word_chaeksang": [
+      "skrivbord",
+      "Det ligger en bok på skrivbordet."
+    ],
+    "word_cheoeum": [
+      "första gången",
+      "Trevligt att träffas."
+    ],
+    "word_gwail": [
+      "frukt",
+      "Jag tycker om frukt."
+    ],
+    "word_uisa": [
+      "läkare",
+      "Läkaren undersöker mig."
+    ],
+    "word_ttal": [
+      "en dotter",
+      "Min dotter går i skolan."
+    ],
+    "word_yeoboseyo": [
+      "hallå, i telefon",
+      "Hallå, vem är det?"
+    ],
+    "word_so": [
+      "en ko",
+      "Kon äter gräs."
+    ],
+    "word_pyeonji": [
+      "brev",
+      "Jag skriver ett brev till min mor."
+    ],
+    "word_jogeum": [
+      "lite",
+      "Bara lite, tack."
+    ],
+    "word_boida": [
+      "att synas",
+      "Jag kan se berget."
+    ],
+    "word_jari": [
+      "en sittplats",
+      "Det finns inga platser."
+    ],
+    "word_hu": [
+      "efter",
+      "Efter lektionen går jag till biblioteket."
+    ],
+    "word_kadeu": [
+      "kort",
+      "Jag betalar med kort."
+    ],
+    "word_naeil": [
+      "i morgon",
+      "Vi ses i morgon."
+    ],
+    "word_jungyohada": [
+      "att vara viktig",
+      "Hälsan är det viktigaste."
+    ],
+    "word_dalgyal": [
+      "ett ägg",
+      "Jag äter ett ägg på morgonen."
+    ],
+    "word_aju": [
+      "mycket",
+      "Det är mycket gott."
+    ],
+    "word_matda": [
+      "att stämma",
+      "Det här svaret stämmer."
+    ],
+    "word_hanguk": [
+      "Korea",
+      "Jag tycker om koreansk mat."
+    ],
+    "word_gang": [
+      "en flod",
+      "Floden är mycket bred."
+    ],
+    "word_cho": [
+      "en sekund",
+      "Det är trettio sekunder kvar."
+    ],
+    "word_hoesa": [
+      "ett företag, ett kontor",
+      "Jag går till kontoret."
+    ],
+    "word_sosik": [
+      "nyhet från någon",
+      "Jag har goda nyheter."
+    ],
+    "word_jakda": [
+      "att vara liten",
+      "Skorna är små."
+    ],
+    "word_gimchi": [
+      "kimchi",
+      "Kimchin är stark."
+    ],
+    "word_ikda": [
+      "att läsa",
+      "Jag läser tidningen."
+    ],
+    "word_geurigo": [
+      "och, och sedan",
+      "Jag köpte bröd. Och jag köpte mjölk också."
+    ],
+    "word_keuda": [
+      "att vara stor",
+      "Den här väskan är stor."
+    ],
+    "word_yeollak": [
+      "kontakt",
+      "Hör av dig senare."
+    ],
+    "word_gachi": [
+      "tillsammans",
+      "Vi äter tillsammans."
+    ],
+    "word_neomu": [
+      "för, alltför",
+      "De här kläderna är för stora."
+    ],
+    "word_yong": [
+      "en drake",
+      "På teckningen finns en stor drake."
+    ],
+    "word_geureota": [
+      "att vara så",
+      "Ja, det stämmer."
+    ],
+    "word_hotel": [
+      "hotell",
+      "Jag sov på hotell."
+    ],
+    "word_yeolsoe": [
+      "nyckel",
+      "Jag har inte nyckeln."
+    ],
+    "word_yeppeuda": [
+      "att vara vacker",
+      "Blommorna är verkligen vackra."
+    ],
+    "word_geugeot": [
+      "det där",
+      "Ge mig det där, tack."
+    ],
+    "word_daeum": [
+      "nästa",
+      "Vi ses nästa gång."
+    ],
+    "word_maeum": [
+      "hjärta, sinne",
+      "De har ett varmt hjärta."
+    ],
+    "word_jadongcha": [
+      "bil",
+      "Bilen är snabb."
+    ],
+    "word_jukda": [
+      "att dö",
+      "Blomman i krukan dog eftersom den inte vattnades."
+    ],
+    "word_nalda": [
+      "att flyga",
+      "En fågel flyger på himlen."
+    ],
+    "word_siksa": [
+      "måltid",
+      "Måltiden var mycket god."
+    ],
+    "word_gigye": [
+      "en maskin",
+      "Maskinen har gått sönder."
+    ],
+    "word_ttang": [
+      "marken",
+      "Marken är blöt."
+    ],
+    "word_jada": [
+      "att sova",
+      "Jag lägger mig tidigt."
+    ],
+    "word_beorida": [
+      "att kasta bort",
+      "Släng det i papperskorgen, tack."
+    ],
+    "word_juso": [
+      "en adress",
+      "Säg adressen, tack."
+    ],
+    "word_gicha": [
+      "tåg",
+      "Tåget har gått."
+    ],
+    "word_chitsol": [
+      "en tandborste",
+      "Jag köpte en ny tandborste."
+    ],
+    "word_sarang": [
+      "kärlek",
+      "Kärlek är vackert."
+    ],
+    "word_gongbu": [
+      "studier",
+      "Det är roligt att plugga."
+    ],
+    "word_saengseon": [
+      "fisk att äta",
+      "Jag grillade fisk till middag."
+    ],
+    "word_mok": [
+      "hals",
+      "Halsen gör ont."
+    ],
+    "word_sipda": [
+      "att vilja",
+      "Jag vill åka till Korea."
+    ],
+    "word_nyuseu": [
+      "nyheterna",
+      "Jag ser på nyheterna."
+    ],
+    "word_chatda": [
+      "att leta efter",
+      "Jag letar efter nyckeln."
+    ],
+    "word_iljjik": [
+      "tidigt",
+      "I morgon går jag upp tidigt."
+    ],
+    "word_geonmul": [
+      "byggnad",
+      "Den byggnaden är ny."
+    ],
+    "word_seonsaengnim": [
+      "lärare",
+      "Läraren undervisar."
+    ],
+    "word_eomeoni": [
+      "mor",
+      "Min mor är hemma."
+    ],
+    "word_gibun": [
+      "humör",
+      "Hur mår du?"
+    ],
+    "word_honja": [
+      "ensam",
+      "Jag kan gå ensam."
+    ],
+    "word_ani": [
+      "nej",
+      "Nej, jag gick inte."
+    ],
+    "word_eoje": [
+      "i går",
+      "I går regnade det."
+    ],
+    "word_sseuda": [
+      "att skriva",
+      "Jag skriver mitt namn.",
+      "Att skriva. Samma verb betyder också att använda något, att bära hatt eller glasögon på huvudet och — som adjektiv — att smaka beskt. Fyra vardagliga betydelser, en stavning."
+    ],
+    "word_masida": [
+      "att dricka",
+      "Jag dricker mjölk."
+    ],
+    "word_syeocheu": [
+      "en skjorta",
+      "Jag har en vit skjorta."
+    ],
+    "word_junbi": [
+      "förberedelse",
+      "Allt är klart."
+    ],
+    "word_mian": [
+      "förlåt",
+      "Förlåt, jag är sen."
+    ],
+    "word_geokjeong": [
+      "oro",
+      "Jag har många bekymmer."
+    ],
+    "word_hajiman": [
+      "men",
+      "Det regnar. Men jag går ändå."
+    ],
+    "word_kamera": [
+      "kamera",
+      "Jag köpte en kamera."
+    ],
+    "word_dongne": [
+      "ett kvarter",
+      "Vårt kvarter är lugnt."
+    ],
+    "word_naengjanggo": [
+      "ett kylskåp",
+      "Jag ställde mjölken i kylskåpet."
+    ],
+    "word_anda": [
+      "att sätta sig",
+      "Jag satte mig på stolen."
+    ],
+    "word_ppalli": [
+      "snabbt",
+      "Kom snabbt, tack."
+    ],
+    "word_yaegi": [
+      "ett samtal",
+      "Vi pratar en stund."
+    ],
+    "word_got": [
+      "en plats",
+      "Jag hittade en lugn plats."
+    ],
+    "word_nat": [
+      "dagen, dagtid",
+      "På dagen är det varmt."
+    ],
+    "word_sangja": [
+      "låda",
+      "Jag öppnar lådan."
+    ],
+    "word_wonhada": [
+      "att vilja ha",
+      "Vad vill du ha?"
+    ],
+    "word_sikdang": [
+      "restaurang",
+      "Var ligger restaurangen?"
+    ],
+    "word_geurida": [
+      "att rita",
+      "Barnet ritar ett träd."
+    ],
+    "word_yuri": [
+      "glas",
+      "Glaset gick sönder."
+    ],
+    "word_igeot": [
+      "det här",
+      "Ge mig det här, tack."
+    ],
+    "word_geoul": [
+      "spegel",
+      "Jag tittar mig i spegeln."
+    ],
+    "word_gijeok": [
+      "ett under",
+      "Det var verkligen som ett under."
+    ],
+    "word_kal": [
+      "en kniv",
+      "Jag skalade äpplet med kniv."
+    ],
+    "word_gatda": [
+      "att vara likadan",
+      "Våra väskor är likadana."
+    ],
+    "word_pul": [
+      "gräs",
+      "Gräset är grönt."
+    ],
+    "word_eolma": [
+      "hur mycket",
+      "Hur mycket kostar det här?"
+    ],
+    "word_saenggakada": [
+      "att tänka",
+      "Jag tycker också så."
+    ],
+    "word_jilmun": [
+      "en fråga",
+      "Jag har en fråga."
+    ],
+    "word_geunyeo": [
+      "hon",
+      "Hon sjunger bra."
+    ],
+    "word_nota": [
+      "att ställa ned",
+      "Jag ställde väskan på golvet."
+    ],
+    "word_banggeum": [
+      "nyss",
+      "Jag kom nyss."
+    ],
+    "word_bonaeda": [
+      "att skicka",
+      "Jag skickar ett brev."
+    ],
+    "word_arae": [
+      "under",
+      "Boken ligger under skrivbordet."
+    ],
+    "word_naoda": [
+      "att komma ut",
+      "Det kommer vatten."
+    ],
+    "word_nai": [
+      "ålder",
+      "Hur gammal är ni?"
+    ],
+    "word_eotteoke": [
+      "hur",
+      "Hur kommer jag dit?"
+    ],
+    "word_eunhaeng": [
+      "en bank",
+      "Banken har öppnat."
+    ],
+    "word_al": [
+      "ett ägg",
+      "Fågeln lade tre ägg."
+    ],
+    "word_moreuda": [
+      "att inte veta",
+      "Jag vet inte."
+    ],
+    "word_badak": [
+      "golvet",
+      "Jag torkar golvet."
+    ],
+    "word_hwajangsil": [
+      "toalett",
+      "Toaletten är ren."
+    ],
+    "word_yeok": [
+      "station",
+      "Vi ses vid stationen."
+    ],
+    "word_seoul": [
+      "Seoul",
+      "Seoul är mycket stort."
+    ],
+    "word_gwiyeopda": [
+      "att vara söt",
+      "Valpen är söt."
+    ],
+    "word_areumdapda": [
+      "att vara vacker",
+      "Landskapet är vackert."
+    ],
+    "word_ajik": [
+      "ännu, ännu inte",
+      "De har inte kommit ännu."
+    ],
+    "word_gyedan": [
+      "trappa",
+      "Det är många trappsteg."
+    ],
+    "word_maeil": [
+      "varje dag",
+      "Jag skriver hangul varje dag."
+    ],
+    "word_agi": [
+      "en bebis",
+      "Bebisen sover."
+    ],
+    "word_dwaeji": [
+      "gris",
+      "Grisen äter."
+    ],
+    "word_ju": [
+      "en vecka",
+      "Vi ses nästa vecka."
+    ],
+    "word_iyagi": [
+      "berättelse",
+      "Det är en intressant berättelse."
+    ],
+    "word_tto": [
+      "igen",
+      "Vi ses igen i morgon."
+    ],
+    "word_beolsseo": [
+      "redan",
+      "Det är redan över."
+    ],
+    "word_dangsin": [
+      "ni, artigt",
+      "Jag väntade på er."
+    ],
+    "word_gap": [
+      "ett pris",
+      "Priset är högt."
+    ],
+    "word_mianhada": [
+      "att vara ledsen",
+      "Förlåt att jag är sen."
+    ],
+    "word_jeongnyujang": [
+      "en hållplats",
+      "Jag väntar på bussen vid hållplatsen."
+    ],
+    "word_anta": [
+      "att inte göra",
+      "Jag dricker inte kaffe."
+    ],
+    "word_taeksi": [
+      "taxi",
+      "Ring en taxi, tack."
+    ],
+    "word_haksaeng": [
+      "elev",
+      "Det är många elever i klassrummet."
+    ],
+    "word_bomul": [
+      "skatt",
+      "Barnen letar efter en skatt."
+    ],
+    "word_jumun": [
+      "en beställning",
+      "Vill ni beställa?"
+    ],
+    "word_sinmun": [
+      "tidning",
+      "Läs tidningen, tack."
+    ],
+    "word_dak": [
+      "en höna",
+      "Hönan lägger ett ägg."
+    ],
+    "word_keop": [
+      "en mugg",
+      "Jag häller vatten i muggen."
+    ],
+    "word_set": [
+      "tre",
+      "Tre vänner samlades."
+    ],
+    "word_hangugeo": [
+      "koreanska språket",
+      "Koreanska är intressant."
+    ],
+    "word_geuraeseo": [
+      "så, därför",
+      "Det regnar, så jag går inte."
+    ],
+    "word_manhi": [
+      "mycket",
+      "Ät mycket, tack."
+    ],
+    "word_du": [
+      "två, före ett räkneord",
+      "Två koppar kaffe, tack.",
+      "Koreanskans inhemska räkneord byter form framför ett klassificerande ord. 하나 둘 셋 넷 blir 한 두 세 네: 하나 ensamt, 한 개 för ett föremål. 두 är den formen av 둘, och den står aldrig ensam."
+    ],
+    "word_pyeonuijeom": [
+      "en närbutik",
+      "Det finns en närbutik framför mitt hus."
+    ],
+    "word_miguk": [
+      "Förenta staterna",
+      "Jag kommer från Förenta staterna."
+    ],
+    "word_gyesok": [
+      "fortsättning",
+      "Det fortsätter att regna."
+    ],
+    "word_gagyeok": [
+      "ett pris",
+      "Priset är högre än väntat."
+    ],
+    "word_dongsaeng": [
+      "yngre syskon",
+      "Mitt yngre syskon är sött.",
+      "Det enda syskonordet som inte ändrar sig med talaren: alla som är yngre är 동생, vem som än talar. Lägg till en stavelse när könet behövs — 남동생 yngre bror, 여동생 yngre syster."
+    ],
+    "word_tokki": [
+      "kanin",
+      "Kaninen hoppar."
+    ],
+    "word_seoda": [
+      "att stå",
+      "Jag står i kön."
+    ],
+    "word_eoreum": [
+      "is",
+      "Lägg i is, tack."
+    ],
+    "word_jayeon": [
+      "naturen",
+      "Naturen är vacker."
+    ],
+    "word_jjikda": [
+      "att stämpla",
+      "Jag stämplade det med sigill.",
+      "Att trycka ner något mot en yta: ett sigill, en stämpel, ett fingeravtryck. Samma verb täcker att ta ett foto — 사진을 찍다 — och att doppa mat i sås, alla tre ur samma tanke om tryck."
+    ],
+    "word_yeol": [
+      "tio",
+      "Räkna till tio, tack.",
+      "Här är 열 det inhemska koreanska tio, det man räknar saker med — 열 개, tio stycken. Ett annat 열 betyder feber, och verbet 열다 betyder att öppna. Två bokstäver, tre obesläktade ord."
+    ],
+    "word_sasil": [
+      "ett faktum",
+      "Det är ett faktum."
+    ],
+    "word_unjeon": [
+      "körning",
+      "Jag lär mig köra."
+    ],
+    "word_gamja": [
+      "potatis",
+      "Jag kokar potatis."
+    ],
+    "word_gureum": [
+      "moln",
+      "Det är många moln."
+    ],
+    "word_iyu": [
+      "ett skäl",
+      "Säg skälet, tack."
+    ],
+    "word_dareun": [
+      "annan, olik",
+      "Har ni andra färger?"
+    ],
+    "word_songarak": [
+      "finger",
+      "Mitt finger gör ont."
+    ],
+    "word_japda": [
+      "att gripa",
+      "Jag håller din hand."
+    ],
+    "word_bueok": [
+      "ett kök",
+      "Jag lagar mat i köket."
+    ],
+    "word_piryo": [
+      "ett behov",
+      "Jag behöver ingen hjälp."
+    ],
+    "word_pa": [
+      "salladslök",
+      "Jag lade lite salladslök i soppan."
+    ],
+    "word_batda": [
+      "att ta emot",
+      "Jag fick en present."
+    ],
+    "word_pida": [
+      "att slå ut",
+      "Blommorna har slagit ut."
+    ],
+    "word_sayong": [
+      "användning",
+      "Berätta hur man använder det, tack."
+    ],
+    "word_jeongbo": [
+      "information",
+      "Jag söker information."
+    ],
+    "word_gonghang": [
+      "flygplats",
+      "Jag kom fram till flygplatsen."
+    ],
+    "word_bumo": [
+      "föräldrar",
+      "Ett barn behöver föräldrar."
+    ],
+    "word_saranghada": [
+      "att älska",
+      "Jag älskar min familj."
+    ],
+    "word_ireoke": [
+      "så här",
+      "Skriv det så här, tack."
+    ],
+    "word_ilhada": [
+      "att arbeta",
+      "Min mor arbetar på sjukhus."
+    ],
+    "word_suyeong": [
+      "simning",
+      "Jag lär mig simma."
+    ],
+    "word_piryohada": [
+      "att behöva",
+      "Jag behöver pengar."
+    ],
+    "word_bukjjok": [
+      "norr",
+      "De gick norrut."
+    ],
+    "word_cheung": [
+      "en våning",
+      "Kontoret ligger på andra våningen."
+    ],
+    "word_hwanja": [
+      "en patient",
+      "Patienten vilar."
+    ],
+    "word_halmeoni": [
+      "farmor",
+      "Farmor ler."
+    ],
+    "word_palda": [
+      "att sälja",
+      "De säljer frukt."
+    ],
+    "word_itda_2": [
+      "att foga ihop",
+      "Jag fogade ihop de två repen."
+    ],
+    "word_nara": [
+      "land",
+      "Korea är ett vackert land."
+    ],
+    "word_apateu": [
+      "lägenhet",
+      "Jag bor i en lägenhet."
+    ],
+    "word_hamkke": [
+      "tillsammans",
+      "Vi går tillsammans."
+    ],
+    "word_modeun": [
+      "alla, varje",
+      "Alla skrattade."
+    ],
+    "word_gwaenchanta": [
+      "att vara okej",
+      "Jag mår bra."
+    ],
+    "word_johahada": [
+      "att tycka om",
+      "Jag tycker om kaffe."
+    ],
+    "word_jimseung": [
+      "ett vilddjur",
+      "I skogen hördes ett djur."
+    ],
+    "word_dongan": [
+      "under en tid",
+      "Jag reste under skollovet."
+    ],
+    "word_ipgu": [
+      "en ingång",
+      "Vi ses vid byggnadens ingång."
+    ],
+    "word_silta": [
+      "att inte tycka om",
+      "Jag tycker inte om kalla dagar."
+    ],
+    "word_meonjeo": [
+      "först",
+      "Först tvättar jag händerna."
+    ],
+    "word_dubu": [
+      "tofu",
+      "Jag lägger i tofu och kokar soppa."
+    ],
+    "word_bumonim": [
+      "de egna föräldrarna",
+      "Jag bor hos mina föräldrar."
+    ],
+    "word_gomapda": [
+      "att vara tacksam",
+      "Tack för hjälpen."
+    ],
+    "word_gyesan": [
+      "uträkning",
+      "Uträkningen är lite fel."
+    ],
+    "word_hyeo": [
+      "tungan",
+      "Tungan gör ont, så jag kan inte äta."
+    ],
+    "word_sugeon": [
+      "en handduk",
+      "Jag torkar händerna med handduken."
+    ],
+    "word_saeropda": [
+      "att vara ny",
+      "Det känns friskt."
+    ],
+    "word_sup": [
+      "en skog",
+      "I skogen hörs fågelsång."
+    ],
+    "word_chum": [
+      "en dans",
+      "De dansade på scenen."
+    ],
+    "word_sukje": [
+      "läxa",
+      "Jag har gjort läxan."
+    ],
+    "word_gaji": [
+      "ett slag, en sort",
+      "Jag vill bara fråga en sak.",
+      "Också namnet på auberginen, och en gren på ett träd. Som klassificerande ord är det vad du tar till för sådant som kan räknas upp: 두 가지 방법, två sätt; 세 가지 이유, tre skäl."
+    ],
+    "word_mothada": [
+      "att inte kunna",
+      "Jag kan inte simma."
+    ],
+    "word_nagada": [
+      "att gå ut",
+      "Jag går ut."
+    ],
+    "word_meotjida": [
+      "att vara snygg",
+      "Du ser jättebra ut i dag."
+    ],
+    "word_podo": [
+      "vindruvor",
+      "Vindruvorna är mycket söta."
+    ],
+    "word_jeopsi": [
+      "en tallrik",
+      "Ta fram två tallrikar, tack."
+    ],
+    "word_yori": [
+      "matlagning",
+      "Maten är utsökt."
+    ],
+    "word_sogeum": [
+      "salt",
+      "Jag lägger i lite salt."
+    ],
+    "word_duda": [
+      "att lägga",
+      "Jag lade boken på skrivbordet."
+    ],
+    "word_gamsahada": [
+      "att vara tacksam",
+      "Tack för hjälpen."
+    ],
+    "word_kkeut": [
+      "slutet",
+      "Ställ dig sist i kön, tack."
+    ],
+    "word_yeolda": [
+      "att öppna",
+      "Jag öppnar fönstret."
+    ],
+    "word_ibul": [
+      "ett täcke",
+      "Täcket är varmt."
+    ],
+    "word_najung": [
+      "senare",
+      "Jag ringer igen senare."
+    ],
+    "word_manjida": [
+      "att röra",
+      "Rör inte, tack."
+    ],
+    "word_gajang": [
+      "mest",
+      "Den här är bäst."
+    ],
+    "word_namjjok": [
+      "söder",
+      "I söder är det varmt."
+    ],
+    "word_doum": [
+      "hjälp",
+      "Jag behöver hjälp."
+    ],
+    "word_jung": [
+      "mitt i, bland",
+      "Jag sitter i möte."
+    ],
+    "word_sudo": [
+      "huvudstaden",
+      "Koreas huvudstad är Seoul.",
+      "Ett lands huvudstad. Ett separat 수도 är vattenledningsnätet — 수도꼭지 är en kran, 수도 요금 är vattenräkningen. Bara sammanhanget skiljer dem."
+    ],
+    "word_gidarida": [
+      "att vänta",
+      "Vänta ett ögonblick, tack."
+    ],
+    "word_chaeso": [
+      "en grönsak",
+      "Jag äter mycket grönsaker."
+    ],
+    "word_kkeunnada": [
+      "att sluta",
+      "Lektionen är slut."
+    ],
+    "word_butak": [
+      "en begäran, en tjänst",
+      "Jag har en tjänst att be om."
+    ],
+    "word_seom": [
+      "en ö",
+      "Vi tog båten till ön."
+    ],
+    "word_teuki": [
+      "särskilt",
+      "Jag tycker särskilt om vintern."
+    ],
+    "word_jemok": [
+      "en titel",
+      "Vad heter den här boken?"
+    ],
+    "word_insa": [
+      "en hälsning",
+      "Jag hälsade."
+    ],
+    "word_seoltang": [
+      "socker",
+      "Jag lägger i lite socker."
+    ],
+    "word_jajeongeo": [
+      "cykel",
+      "Jag cyklar."
+    ],
+    "word_inteonet": [
+      "internet",
+      "Internet är långsamt."
+    ],
+    "word_aniyo": [
+      "nej",
+      "Nej, jag mår bra."
+    ],
+    "word_ama": [
+      "förmodligen",
+      "I morgon regnar det förmodligen."
+    ],
+    "word_jamsi": [
+      "ett ögonblick",
+      "Vi vilar ett ögonblick."
+    ],
+    "word_beol": [
+      "ett bi",
+      "Ett bi landade på blomman.",
+      "Ett bi. Två andra ord skrivs 벌: ett straff, och klassificeraren för en omgång kläder — 옷 한 벌, en kostym."
+    ],
+    "word_won": [
+      "won",
+      "Det är tvåtusen won."
+    ],
+    "word_ujuseon": [
+      "ett rymdskepp",
+      "Rymdskeppet steg upp mot himlen."
+    ],
+    "word_myeot": [
+      "hur många",
+      "Hur mycket är klockan?"
+    ],
+    "word_sueop": [
+      "en lektion",
+      "Lektionen är intressant."
+    ],
+    "word_sijak": [
+      "en början",
+      "Det är en bra början."
+    ],
+    "word_yeogwon": [
+      "ett pass",
+      "Glöm inte att ta med passet."
+    ],
+    "word_gyosil": [
+      "ett klassrum",
+      "Klassrummet är ljust."
+    ],
+    "word_nyeon": [
+      "år",
+      "Jag studerade i två år."
+    ],
+    "word_bae": [
+      "magen",
+      "Magen gjorde ont, så jag gick till sjukhuset.",
+      "Magen. Två andra vanliga ord skrivs 배: en båt och ett päron. 배가 아파요 är jag har ont i magen, 배를 타요 är jag går ombord på en båt, och 배를 먹어요 är jag äter ett päron."
+    ],
+    "word_satang": [
+      "en karamell",
+      "Jag äter en karamell."
+    ],
+    "word_dalleo": [
+      "dollar",
+      "Det är hundra dollar."
+    ],
+    "word_usan": [
+      "ett paraply",
+      "Det regnade, så jag köpte ett paraply."
+    ],
+    "word_museun": [
+      "vad för",
+      "Vad arbetar ni med?"
+    ],
+    "word_pari": [
+      "en fluga",
+      "En fluga surrar omkring.",
+      "Insekten. Koreanskan skriver staden Paris precis likadant, så 파리에 갔어요 betyder jag åkte till Paris medan 파리가 있어요 betyder det finns en fluga. Ingenting utom meningen skiljer dem."
+    ],
+    "word_ije": [
+      "nu",
+      "Vi börjar nu."
+    ],
+    "word_geollida": [
+      "att ta tid",
+      "Det tar en timme."
+    ],
+    "word_choego": [
+      "den bästa",
+      "Den här restaurangen är bäst."
+    ],
+    "word_naeda": [
+      "att betala",
+      "I dag betalar jag."
+    ],
+    "word_daneo": [
+      "ett ord",
+      "Jag lär mig ett nytt ord."
+    ],
+    "word_jikjeop": [
+      "själv, personligen",
+      "Jag bakade tårtan själv."
+    ],
+    "word_yangmal": [
+      "en strumpa",
+      "Strumporna är varma."
+    ],
+    "word_nopda": [
+      "att vara hög",
+      "Byggnaden är hög."
+    ],
+    "word_haendeupon": [
+      "en mobiltelefon",
+      "Jag laddar mobilen."
+    ],
+    "word_jigap": [
+      "plånbok",
+      "Jag har tappat plånboken."
+    ],
+    "word_hyudaepon": [
+      "en mobiltelefon",
+      "Jag har tappat mobilen."
+    ],
+    "word_agassi": [
+      "en ung kvinna",
+      "En ung kvinna frågar om vägen.",
+      "En ung ogift kvinna — men som *tilltal* till en främling har det surnat, och många kvinnor tycker att det är oartigt eller nedlåtande. Använd det om någon, inte till någon; för att få en främlings uppmärksamhet säger man 저기요."
+    ],
+    "word_gieok": [
+      "minne",
+      "Jag kommer inte ihåg."
+    ],
+    "word_geutda": [
+      "att dra ett streck",
+      "Jag drog ett streck."
+    ],
+    "word_ipda": [
+      "att ta på sig",
+      "Jag tar på mig kläder."
+    ],
+    "word_sai": [
+      "utrymmet emellan",
+      "Mellan de två husen står ett träd."
+    ],
+    "word_gireum": [
+      "olja",
+      "Jag steker det i olja."
+    ],
+    "word_mulgogi": [
+      "en fisk",
+      "Fisken simmar."
+    ],
+    "word_jang": [
+      "ordet för att räkna ark",
+      "Jag behöver tre ark papper."
+    ],
+    "word_kkum": [
+      "en dröm",
+      "I natt hade jag en konstig dröm."
+    ],
+    "word_sijakada": [
+      "att börja",
+      "Lektionen börjar."
+    ],
+    "word_ajikdo": [
+      "fortfarande",
+      "Jag väntar fortfarande."
+    ],
+    "word_teureok": [
+      "lastbil",
+      "En lastbil kör förbi."
+    ],
+    "word_eotteon": [
+      "vad för slags",
+      "Vilken färg tycker du om?"
+    ],
+    "word_geulssi": [
+      "handstil",
+      "Du har fin handstil."
+    ],
+    "word_deutda": [
+      "att lyssna, att höra",
+      "Jag lyssnar på musik."
+    ],
+    "word_subak": [
+      "vattenmelon",
+      "På sommaren smakar vattenmelon gott."
+    ],
+    "word_ttalgi": [
+      "jordgubbe",
+      "Jag sköljer jordgubbarna och äter dem."
+    ],
+    "word_baram": [
+      "vind",
+      "Vinden är sval."
+    ],
+    "word_sigol": [
+      "landsbygden",
+      "Luften på landet är god."
+    ],
+    "word_pulda": [
+      "att lösa",
+      "Jag löste uppgiften."
+    ],
+    "word_angyeong": [
+      "glasögon",
+      "Jag har glasögon."
+    ],
+    "word_yeonpil": [
+      "en penna",
+      "Jag ritar med penna."
+    ],
+    "word_jumal": [
+      "helg",
+      "På helgen vilar jag."
+    ],
+    "word_jugida": [
+      "att döda",
+      "Jag dödade myggan som kom in i rummet."
+    ],
+    "word_him": [
+      "styrka",
+      "Det barnet är mycket starkt."
+    ],
+    "word_jeonbu": [
+      "allt sammanlagt",
+      "Hur mycket blir det sammanlagt?"
+    ],
+    "word_gyeongchal": [
+      "polis",
+      "Ring polisen, tack."
+    ],
+    "word_geureut": [
+      "en skål",
+      "Jag lägger ris i skålen."
+    ],
+    "word_nappeuda": [
+      "att vara dålig",
+      "Vädret är dåligt."
+    ],
+    "word_oppa": [
+      "en kvinnas storebror",
+      "Min storebror kör.",
+      "Koreanskan väljer syskonordet efter talarens eget kön: en kvinna kallar sin äldre bror 오빠, en man kallar honom 형. Det används också om en äldre man som en kvinna står nära, och därför hörs det långt utanför familjen."
+    ],
+    "word_mannada": [
+      "att träffas",
+      "Vi träffas ofta."
+    ],
+    "word_huimang": [
+      "hopp",
+      "Förlora inte hoppet."
+    ],
+    "word_hyeong": [
+      "en mans storebror",
+      "Min storebror bjöd mig på mat.",
+      "Ordet en man använder om sin äldre bror. En kvinna skulle säga 오빠 om samma person. Liksom 오빠 sträcker det sig till en nära äldre man som inte är släkt alls."
+    ],
+    "word_doro": [
+      "en väg",
+      "Vägen är blockerad."
+    ],
+    "word_ttwida": [
+      "att springa",
+      "Barnet springer."
+    ],
+    "word_mueot": [
+      "vad",
+      "Vad är det här?"
+    ],
+    "word_oenjjok": [
+      "vänster sida",
+      "Sväng vänster, tack."
+    ],
+    "word_chukgu": [
+      "fotboll",
+      "Jag spelar fotboll med min vän."
+    ],
+    "word_jayu": [
+      "frihet",
+      "Friheten är dyrbar."
+    ],
+    "word_sungan": [
+      "ett ögonblick",
+      "Jag kan inte glömma det ögonblicket."
+    ],
+    "word_sayonghada": [
+      "att använda",
+      "Får jag använda det här rummet?"
+    ],
+    "word_pada": [
+      "att gräva",
+      "Jag gräver i marken."
+    ],
+    "word_nampyeon": [
+      "make",
+      "Min man lagar mat."
+    ],
+    "word_silheomsil": [
+      "ett laboratorium",
+      "Jag arbetade i laboratoriet hela dagen."
+    ],
+    "word_dambae": [
+      "en cigarett",
+      "Cigarettlukten satte sig i kläderna."
+    ],
+    "word_banana": [
+      "en banan",
+      "Jag äter en banan på morgonen."
+    ],
+    "word_geum": [
+      "guld",
+      "Den här ringen är av guld.",
+      "Guld, metallen. Samma stavelse betyder också en repad eller dragen linje — 금이 갔어요 är det har spruckit — och inleder 금요일, fredag."
+    ],
+    "word_mandeulda": [
+      "att göra",
+      "Jag bakar bröd."
+    ],
+    "word_ibeon": [
+      "den här gången",
+      "Den här gången gör jag det."
+    ],
+    "word_gomawo": [
+      "tack",
+      "Tack för hjälpen."
+    ],
+    "word_banchan": [
+      "en sidorätt",
+      "Sidorätterna är goda."
+    ],
+    "word_apeuda": [
+      "att göra ont",
+      "Magen gör ont."
+    ],
+    "word_doseogwan": [
+      "ett bibliotek",
+      "Jag lånade en bok på biblioteket."
+    ],
+    "word_ppyeo": [
+      "ett ben",
+      "Hunden håller ett ben i munnen."
+    ],
+    "word_gamsa": [
+      "tack",
+      "Jag tackade."
+    ],
+    "word_geolda": [
+      "att hänga upp",
+      "Jag hänger upp kläderna."
+    ],
+    "word_gim": [
+      "torkad sjögräsalg",
+      "Vi rullar ris i sjögräs och äter det.",
+      "Det tunna torkade sjögräset som äts till ris. Samma stavelse är det vanligaste koreanska efternamnet, och den är också ångan som stiger från något hett — 김이 나요, det ryker."
+    ],
+    "word_jalhada": [
+      "att vara bra på något",
+      "Du sjunger bra."
+    ],
+    "word_saengmyeong": [
+      "liv",
+      "Livet är dyrbart."
+    ],
+    "word_mureup": [
+      "knä",
+      "Knät gör ont."
+    ],
+    "word_jjalda": [
+      "att vara kort",
+      "Pennan är kort."
+    ],
+    "word_chijeu": [
+      "ost",
+      "Jag tycker om ost."
+    ],
+    "word_hanbeon": [
+      "en gång",
+      "Prova en gång, tack."
+    ],
+    "word_gohyang": [
+      "hembygd",
+      "Jag åkte till min hembygd."
+    ],
+    "word_jihacheol": [
+      "tunnelbanan",
+      "Jag åker tunnelbana."
+    ],
+    "word_sal": [
+      "levnadsår",
+      "Jag är tjugo år gammal."
+    ],
+    "word_anae": [
+      "hustru",
+      "Jag kom med min fru."
+    ],
+    "word_swida": [
+      "att vila",
+      "Vi vilar en stund."
+    ],
+    "word_gimbap": [
+      "gimbap",
+      "Jag åt gimbap till lunch."
+    ],
+    "word_gayo": [
+      "koreansk populärmusik",
+      "Jag tycker om koreansk popmusik.",
+      "Koreansk populärmusik som kategori — K-pop är 가요. Det stavas exakt som 가요 «går», presens artigt av 가다, så meningen omkring avgör vilket av dem du läser."
+    ],
+    "word_swipda": [
+      "att vara lätt",
+      "Hangul är lätt."
+    ],
+    "word_pyojeong": [
+      "ett ansiktsuttryck",
+      "De ser glada ut."
+    ],
+    "word_dareuda": [
+      "att vara olik",
+      "Färgerna är olika."
+    ],
+    "word_geunyang": [
+      "bara, utan särskild orsak",
+      "I helgen var jag bara hemma."
+    ],
+    "word_majimak": [
+      "den sista",
+      "Jag tog sista bussen."
+    ],
+    "word_bangbeop": [
+      "ett sätt",
+      "Det finns ett bra sätt."
+    ],
+    "word_huinsaek": [
+      "färgen vit",
+      "Den vita väggen är ren."
+    ],
+    "word_jalmot": [
+      "ett fel",
+      "Det är mitt fel."
+    ],
+    "word_daehakgyo": [
+      "universitet",
+      "Jag studerar på universitetet."
+    ],
+    "word_haengun": [
+      "lycka",
+      "Lycka till på provet."
+    ],
+    "word_harabeoji": [
+      "farfar",
+      "Farfar läser tidningen."
+    ],
+    "word_bimil": [
+      "hemlighet",
+      "Behåll hemligheten, tack."
+    ],
+    "word_sogogi": [
+      "nötkött",
+      "Vi grillade nötkött och åt."
+    ],
+    "word_net": [
+      "fyra",
+      "Vi fyra är ett lag."
+    ],
+    "word_sinda": [
+      "att ta på sig skor",
+      "Jag tar på mig strumpor."
+    ],
+    "word_dap": [
+      "ett svar",
+      "Jag hittade svaret."
+    ],
+    "word_yeonseup": [
+      "övning",
+      "Jag övar varje dag."
+    ],
+    "word_gongchaek": [
+      "en skrivbok",
+      "Jag skriver mitt namn i skrivboken."
+    ],
+    "word_ssada": [
+      "att vara billig",
+      "Den här frukten är billig."
+    ],
+    "word_dowajuda": [
+      "att hjälpa till",
+      "Hjälp mig lite, tack."
+    ],
+    "word_maekju": [
+      "öl",
+      "Ölen är kall."
+    ],
+    "word_jjada": [
+      "att vara salt",
+      "Soppan är salt."
+    ],
+    "word_gyehoek": [
+      "en plan",
+      "Jag gjorde en plan."
+    ],
+    "word_pyeonghwa": [
+      "fred",
+      "Vi önskar fred."
+    ],
+    "word_yaksok": [
+      "ett löfte, en överenskommelse",
+      "Jag håller mitt löfte."
+    ],
+    "word_oreunjjok": [
+      "höger sida",
+      "Gå åt höger, tack."
+    ],
+    "word_gippeuda": [
+      "att vara glad",
+      "Jag blev glad över nyheten."
+    ],
+    "word_baeuda": [
+      "att lära sig",
+      "Jag lär mig koreanska."
+    ],
+    "word_jebal": [
+      "snälla",
+      "Snälla, hjälp mig."
+    ],
+    "word_dopda": [
+      "att hjälpa",
+      "Jag hjälper min vän."
+    ],
+    "word_jaryo": [
+      "material för en uppgift",
+      "Jag förberedde mötesmaterialet i förväg."
+    ],
+    "word_hullyunghada": [
+      "att vara utmärkt",
+      "Det är en utmärkt idé."
+    ],
+    "word_moseup": [
+      "utseende, gestalt",
+      "Deras utseende har förändrats."
+    ],
+    "word_undong": [
+      "motion",
+      "Jag motionerar på morgonen."
+    ],
+    "word_geureonde": [
+      "förresten, men",
+      "Förresten, vad är det här?"
+    ],
+    "word_juseu": [
+      "juice",
+      "Barnet dricker juice."
+    ],
+    "word_jwi": [
+      "en mus",
+      "Jag såg en mus i köket."
+    ],
+    "word_chwimi": [
+      "en hobby",
+      "Min hobby är att fotografera."
+    ],
+    "word_deung": [
+      "ryggen",
+      "Det kliar på ryggen."
+    ],
+    "word_jeoldae": [
+      "aldrig",
+      "Var absolut inte sen."
+    ],
+    "word_dol": [
+      "en sten",
+      "Det låg många stenar på stigen, så vi var försiktiga."
+    ],
+    "word_bappeuda": [
+      "att ha bråttom",
+      "I dag har jag mycket att göra."
+    ],
+    "word_ireon": [
+      "sådan här",
+      "Något sådant här händer för första gången."
+    ],
+    "word_yeoseong": [
+      "en kvinna",
+      "Många kvinnor kom."
+    ],
+    "word_paransaek": [
+      "färgen blå",
+      "Blå kläder klär dig."
+    ],
+    "word_ireonada": [
+      "att stiga upp",
+      "Jag stiger upp klockan sju."
+    ],
+    "word_gom": [
+      "en björn",
+      "Björnar lever i bergen."
+    ],
+    "word_jam": [
+      "sömn",
+      "Jag har inte kunnat sova bra på sistone."
+    ],
+    "word_haebyeon": [
+      "en strand",
+      "På sommaren åkte vi till stranden."
+    ],
+    "word_hosu": [
+      "sjö",
+      "Sjön är stilla."
+    ],
+    "word_dakgogi": [
+      "kycklingkött",
+      "Kyckling har lite fett."
+    ],
+    "word_geunde": [
+      "förresten",
+      "Förresten, vad är klockan nu?"
+    ],
+    "word_jaeneung": [
+      "en talang",
+      "De har talang för att teckna."
+    ],
+    "word_gyeolhon": [
+      "giftermål",
+      "Grattis till giftermålet."
+    ],
+    "word_binu": [
+      "tvål",
+      "Jag tvättar händerna med tvål."
+    ],
+    "word_saja": [
+      "ett lejon",
+      "Lejonet är stort."
+    ],
+    "word_eoneu": [
+      "vilken",
+      "Vilken tycker du om?"
+    ],
+    "word_mureoboda": [
+      "att fråga",
+      "Jag frågade läraren."
+    ],
+    "word_ucheguk": [
+      "ett postkontor",
+      "Jag skickade ett brev på postkontoret."
+    ],
+    "word_japji": [
+      "tidskrift",
+      "Jag läser en tidskrift."
+    ],
+    "word_jean": [
+      "ett förslag",
+      "Jag fick ett bra förslag från företaget."
+    ],
+    "word_yojeum": [
+      "nuförtiden",
+      "Hur har du haft det på sistone?"
+    ],
+    "word_ulda": [
+      "att gråta",
+      "Bebisen gråter."
+    ],
+    "word_namda": [
+      "att bli kvar",
+      "Det är lite ris kvar."
+    ],
+    "word_miso": [
+      "ett leende",
+      "Det är ett vackert leende."
+    ],
+    "word_daehak": [
+      "högskola",
+      "Jag kom in på universitetet."
+    ],
+    "word_uimi": [
+      "betydelse",
+      "Vad betyder det här ordet?"
+    ],
+    "word_geim": [
+      "ett spel",
+      "Jag spelar ett spel."
+    ],
+    "word_cham": [
+      "verkligen",
+      "Vädret är verkligen fint i dag."
+    ],
+    "word_kong": [
+      "en böna",
+      "Jag lade bönor i riset."
+    ],
+    "word_saebyeok": [
+      "tidiga morgontimmar",
+      "Jag gick upp före gryningen."
+    ],
+    "word_utda": [
+      "att skratta",
+      "Min vän skrattar högt."
+    ],
+    "word_imi": [
+      "redan",
+      "Det är redan över."
+    ],
+    "word_sutgarak": [
+      "en sked",
+      "Jag äter soppa med sked."
+    ],
+    "word_bureuda": [
+      "att kalla på",
+      "Jag ringer efter en taxi."
+    ],
+    "word_koteu": [
+      "kappa",
+      "Ta på dig kappan, tack."
+    ],
+    "word_meolda": [
+      "att vara långt bort",
+      "Skolan är långt bort."
+    ],
+    "word_myeong": [
+      "en person",
+      "Det är fem elever."
+    ],
+    "word_eonni": [
+      "en kvinnas storasyster",
+      "Min storasyster är student.",
+      "Ordet en kvinna använder om sin äldre syster; en man säger 누나 om samma person. Det är också så kvinnor tilltalar en något äldre kvinna som de är förtrogna med, butiker inräknade."
+    ],
+    "word_ihae": [
+      "förståelse",
+      "Jag förstår det bra."
+    ],
+    "word_samda": [
+      "att koka i vatten",
+      "Jag kokar ett ägg."
+    ],
+    "word_noransaek": [
+      "färgen gul",
+      "Jag använde ett gult paraply."
+    ],
+    "word_mudeom": [
+      "en grav",
+      "På berget finns en gammal grav."
+    ],
+    "word_gita": [
+      "en gitarr",
+      "Jag spelar gitarr."
+    ],
+    "word_itda_3": [
+      "att glömma",
+      "Jag glömde namnet."
+    ],
+    "word_gongyeon": [
+      "en föreställning",
+      "Föreställningen börjar."
+    ],
+    "word_ilta": [
+      "att tappa bort",
+      "Jag tappade bort nyckeln."
+    ],
+    "word_baneung": [
+      "en reaktion",
+      "Folks reaktion var mycket god."
+    ],
+    "word_gudu": [
+      "finskor",
+      "Skorna är bekväma."
+    ],
+    "word_hyuga": [
+      "semester",
+      "Jag var på semester."
+    ],
+    "word_jeohui": [
+      "vi, ödmjukt",
+      "Vi ska hjälpa er."
+    ],
+    "word_geuttae": [
+      "då",
+      "Då regnade det."
+    ],
+    "word_sopa": [
+      "en soffa",
+      "Sätt dig i soffan och vila."
+    ]
+  }
 }
