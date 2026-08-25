@@ -973,6 +973,16 @@
       "customerImpact": "None. It failed a full release run for a plan that was still being built, which costs the next person a rerun and a doubt.",
       "evidence": "`open()` in `vocabularyProgress.test.tsx` waits for the day's plan to be built over the whole corpus. At 2,581 words that finished inside testing-library's one-second default on a loaded machine; at 3,221 it did not, and a full `verify:release` — fifty test files, a production build and a Playwright suite competing for the same cores — reported `expected 0 to be greater than 0`. It passed on its own every time.\n\nThe third distinct place in this repository where a fixed delay became a false failure as the content grew, after two end-to-end walks. Fixed once rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the shared setup, with the reasoning written there. Nothing in the unit suite measures speed — `perf:dictionary` does that, against a budget, on purpose — and a genuine hang still fails, five seconds later, with the same message.",
       "recommendedFix": "Done."
+    },
+    {
+      "id": "I-94",
+      "area": "Release engineering",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "The dictionary end-to-end spec pinned a headword the syllabus then taught",
+      "customerImpact": "None. It failed the suite for the second time in three cycles for the same reason, and each time the reason was that the product had got better.",
+      "evidence": "`dictionary.spec.ts` exists to prove that search reaches the 30,282-word dictionary and not only the taught corpus, so it needs a headword the dictionary has and the syllabus does not. 나가다 was the first choice and turned out to be taught, so the dedupe correctly hid it and the test failed for the one reason that meant the feature worked. 가지 replaced it, survived three cycles, and this cycle's vocabulary batch taught it — the click landed on the word card and the entry never opened.\n\nThere is no safely untaught headword in a product whose plan is to grow the syllabus toward ten thousand words. The spec now reads the shipped dictionary index and the shipped corpus and picks the most frequent Hangul headword that is in the first and not in the second and carries at least three senses — frequency so the choice is a real word, three senses so the disclosure has something to disclose. The assertion that the disclosure opened reads the last sense's gloss out of the same entry instead of naming 가지's aubergine.\n\nDeterministic, because the inputs are files: the same tree picks the same word every time, and a tree that teaches that word picks the next one instead of failing.",
+      "recommendedFix": "Done."
     }
   ]
 }

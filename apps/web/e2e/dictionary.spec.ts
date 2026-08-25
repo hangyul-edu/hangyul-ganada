@@ -1,3 +1,7 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { expect, test } from '@playwright/test';
 
 import { openApp, waitForLaunch } from './helpers/launch';
@@ -26,15 +30,92 @@ import { openApp, waitForLaunch } from './helpers/launch';
  */
 
 /**
- * A headword the dictionary has and the syllabus does not.
+ * A headword the dictionary has and the syllabus does not — **chosen at run
+ * time, not written down.**
  *
- * Checked to be absent from the corpus, which is the whole point: 나가다 was the
- * first choice and is *taught*, so the dedupe correctly hid it from the
- * dictionary section and the test failed for the one reason that meant the
- * feature was working. 가지 is a common noun nobody is taught, with three
- * senses, so it also exercises the disclosure.
+ * This constant has now broken twice for the same reason, and the second time
+ * is what changed the approach. 나가다 was the first choice and turned out to
+ * be *taught*, so the dedupe correctly hid it from the dictionary results and
+ * the test failed for the one reason that meant the feature was working. 가지
+ * replaced it, was untaught for three cycles, and then a vocabulary batch
+ * taught it — so the click landed on the word card and the entry never opened.
+ *
+ * A word that is untaught today is a word somebody may teach tomorrow, and
+ * there is no such thing as a safely untaught headword in a product whose whole
+ * plan is to grow the syllabus toward ten thousand words. So the spec asks the
+ * two files rather than remembering: it reads the shipped dictionary index and
+ * the shipped corpus, and picks the most frequent Hangul headword that is in
+ * the first and not in the second and has at least three senses — frequency so
+ * the choice is a real word, three senses so the disclosure has something to
+ * disclose.
+ *
+ * Deterministic, because the inputs are files rather than a random draw: the
+ * same tree picks the same word every time, and a tree that teaches that word
+ * picks the next one instead of failing.
  */
-const LOOKUP = '가지';
+const PUBLIC = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
+
+interface DictionarySense {
+  shortGloss: string;
+}
+interface DictionaryEntry {
+  headword: string;
+  senses: DictionarySense[];
+}
+
+function pickUntaughtHeadword(): { headword: string; senses: string[] } {
+  const manifest = JSON.parse(readFileSync(join(PUBLIC, 'dictionary/manifest.json'), 'utf8')) as {
+    index: string;
+  };
+  const index = JSON.parse(readFileSync(join(PUBLIC, 'dictionary', manifest.index), 'utf8')) as {
+    rows: [string, string, string, string, number | null][];
+  };
+  const corpus = JSON.parse(
+    readFileSync(join(PUBLIC, '..', 'src/data/generated/vocabulary.json'), 'utf8'),
+  ) as { words: { word: string }[] };
+  const taught = new Set(corpus.words.map((word) => word.word));
+
+  const chunkFiles = new Map<string, string>();
+  for (const name of readdirSync(join(PUBLIC, 'dictionary/entries'))) {
+    chunkFiles.set(name.slice(0, name.lastIndexOf('-')), name);
+  }
+  const loaded = new Map<string, Map<string, DictionaryEntry>>();
+  const entriesIn = (chunk: string): Map<string, DictionaryEntry> => {
+    const already = loaded.get(chunk);
+    if (already) return already;
+    const file = chunkFiles.get(chunk);
+    const table = new Map<string, DictionaryEntry>();
+    if (file) {
+      const parsed = JSON.parse(
+        readFileSync(join(PUBLIC, 'dictionary/entries', file), 'utf8'),
+      ) as { entries: DictionaryEntry[] };
+      for (const entry of parsed.entries) table.set(entry.headword, entry);
+    }
+    loaded.set(chunk, table);
+    return table;
+  };
+
+  const candidates = index.rows
+    .filter(
+      ([headword, , , , frequency]) =>
+        !taught.has(headword) &&
+        headword.length >= 2 &&
+        headword.length <= 3 &&
+        [...headword].every((letter) => letter >= '가' && letter <= '힣') &&
+        (frequency ?? 0) >= 300,
+    )
+    .sort((a, b) => (b[4] ?? 0) - (a[4] ?? 0));
+
+  for (const [headword, , , chunk] of candidates) {
+    const entry = entriesIn(chunk).get(headword);
+    if (entry && entry.senses.length >= 3) {
+      return { headword, senses: entry.senses.map((sense) => sense.shortGloss) };
+    }
+  }
+  throw new Error('no untaught dictionary headword with three senses — has the dictionary shrunk?');
+}
+
+const { headword: LOOKUP, senses: LOOKUP_SENSES } = pickUntaughtHeadword();
 
 test('finds a word the app does not teach, and says on the entry that it is not homework', async ({ page }) => {
   await openApp(page, '/words');
@@ -91,9 +172,16 @@ test('opens the entry, shows its senses, and credits the source', async ({ page 
   // `getByRole('button')` finds nothing inside it and waits until the test
   // times out. The summary is what opens it.
   await senses.locator('summary').click();
-  // 가지 is the word this spec is built on because it has several unrelated
-  // senses; the aubergine and the branch are both in there once it is opened.
-  await expect(page.getByText(/twig or branch/i).first()).toBeVisible();
+  /*
+    The *last* sense, read from the shipped entry rather than named here.
+
+    Which gloss that is depends on which headword the picker chose, and pinning
+    a string is what put 가지's "twig or branch" in this file in the first
+    place. The last sense is the one that cannot be the one already visible, so
+    seeing it is proof the disclosure opened.
+  */
+  const hidden = LOOKUP_SENSES[LOOKUP_SENSES.length - 1]!;
+  await expect(page.getByText(hidden, { exact: false }).first()).toBeVisible();
 
   /*
     CC BY-SA 4.0 asks for attribution where the material is used, and this is
