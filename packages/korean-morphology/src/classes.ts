@@ -77,6 +77,8 @@ export const D_IRREGULAR = new Set([
   '내리걷',
   '되묻',
   '알아듣',
+  // 치닫다, to head fast towards an extreme: 치닫 + 아 → 치달아.
+  '치닫',
 ]);
 
 /**

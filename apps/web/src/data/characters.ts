@@ -615,10 +615,10 @@ export const SYLLABLES_FINAL_BASIC: HangulCharacter[] = [
     en: t('ㅇ + ㅏ + ㄴ', 'The third letter goes underneath. Read the block top to bottom.'),
     ko: t('ㅇ + ㅏ + ㄴ', '세 번째 글자는 아래에. 위에서 아래로 읽어요.'),
   }),
-  syllable('말', { en: t('ㅁ + ㅏ + ㄹ — the word for "words"'), ko: t('ㅁ + ㅏ + ㄹ — "말"이라는 단어이에요.') }),
-  syllable('밤', { en: t('ㅂ + ㅏ + ㅁ — the word for "night"'), ko: t('ㅂ + ㅏ + ㅁ — "밤"이라는 단어이에요.') }),
+  syllable('말', { en: t('ㅁ + ㅏ + ㄹ — the word for "words"'), ko: t('ㅁ + ㅏ + ㄹ — "말"이라는 단어예요.') }),
+  syllable('밤', { en: t('ㅂ + ㅏ + ㅁ — the word for "night"'), ko: t('ㅂ + ㅏ + ㅁ — "밤"이라는 단어예요.') }),
   syllable('강', { en: t('ㄱ + ㅏ + ㅇ — here ㅇ *is* a sound: ng'), ko: t('ㄱ + ㅏ + ㅇ — 받침 ㅇ은 "응" 소리가 나요.') }),
-  syllable('산', { en: t('ㅅ + ㅏ + ㄴ — the word for "mountain"'), ko: t('ㅅ + ㅏ + ㄴ — "산"이라는 단어이에요.') }),
+  syllable('산', { en: t('ㅅ + ㅏ + ㄴ — the word for "mountain"'), ko: t('ㅅ + ㅏ + ㄴ — "산"이라는 단어예요.') }),
 ];
 
 export const SYLLABLES_FINAL_SOUNDS: HangulCharacter[] = [
@@ -630,7 +630,7 @@ export const SYLLABLES_FINAL_SOUNDS: HangulCharacter[] = [
     en: t('ㅅ at the foot is said as t', 'Seven sounds only: ㅅ ㅆ ㅈ ㅊ ㅌ ㅎ all become t down there.'),
     ko: t('받침 ㅅ은 "ㄷ" 소리로 나요.', '받침 소리는 일곱 개뿐이에요.'),
   }),
-  syllable('국', { en: t('ends in a held k — the word for "soup"'), ko: t('받침 ㄱ. "국"이라는 단어이에요.') }),
+  syllable('국', { en: t('ends in a held k — the word for "soup"'), ko: t('받침 ㄱ. "국"이라는 단어예요.') }),
   syllable('꽃', {
     en: t('ㅊ at the foot is said as t, so this is "kkot"'),
     ko: t('받침 ㅊ도 "ㄷ" 소리. "꼳"처럼 들려요.'),
