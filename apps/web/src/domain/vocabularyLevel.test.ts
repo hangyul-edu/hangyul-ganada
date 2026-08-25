@@ -44,11 +44,11 @@ const PER_DAY = 10;
  * the only way the pool can run out, and running out is the case where the
  * old code quietly reached down the scale.
  */
-function tenDays(level: number): { words: VocabularyWord[]; shortfall: number } {
+function tenDays(level: number, days: number = DAYS): { words: VocabularyWord[]; shortfall: number } {
   const met = new Set<string>();
   const out: VocabularyWord[] = [];
   let shortfall = 0;
-  for (let day = 0; day < DAYS; day += 1) {
+  for (let day = 0; day < days; day += 1) {
     const { words, deficits } = planNewWords({
       corpus: CORPUS,
       level,
@@ -75,8 +75,9 @@ describe('a learner is taught from their own level', () => {
   const plans = new Map([...runs].map(([level, run]) => [level, run.words]));
 
   it('fills ten days for every learner the corpus can supply', () => {
-    // 10, 20 and 30 have hundreds of words inside their zones. Level 1 does
-    // not — its zone is levels 1–2, and the whole corpus holds 93 of those.
+    // 10, 20 and 30 have hundreds of words inside their zones. Level 1 is the
+    // thin end — its zone is levels 1–2 and the reachable pool is around a
+    // hundred words — so it is checked by the deficit test below instead.
     for (const level of [10, 20, 30] as const) {
       expect(plans.get(level), `learner ${level}`).toHaveLength(DAYS * PER_DAY);
       expect(runs.get(level)?.shortfall, `learner ${level}`).toBe(0);
@@ -85,18 +86,40 @@ describe('a learner is taught from their own level', () => {
 
   it('runs short and says so, rather than reaching down the scale', () => {
     /*
-      The bottom of the scale is the one place a hundred distinct words cannot
-      be found, and what happens there is the whole point of this file.
+      The bottom of the scale is the one place the pool is small enough to
+      empty, and what happens when it empties is the whole point of this file.
 
       The previous planner walked outward across all thirty levels until it
       found something, so a learner placed at 25 was handed level-14 vocabulary
       and nothing anywhere said so. This one stops one level outside the zone
       and returns the gap as a deficit. A short day is visible; a silently
       widened range is not.
+
+      ## Why the demand is named here and not taken from DAYS
+
+      This assertion used to be `tenDays(1).words.length < 100`, and it was
+      true because level 1's reachable pool held 93 words. Growing the corpus
+      to 3,221 took that pool to 102, the ten days filled, and a test whose
+      subject is *what happens when the pool empties* failed for the one reason
+      that is not a defect: the pool no longer empties in ten days.
+
+      A test that a content change can invert was measuring the corpus, not the
+      planner. So the demand is set past whatever the pool holds — thirty days
+      against a bottom-of-scale zone — and the assertion is the invariant it
+      always meant: every word still comes from inside the zone, and the gap
+      between what was asked for and what arrived is reported rather than
+      filled from somewhere else.
     */
-    const run = runs.get(1);
-    expect(run?.words.length).toBeLessThan(DAYS * PER_DAY);
-    expect(run?.shortfall).toBe(DAYS * PER_DAY - (run?.words.length ?? 0));
+    const HUNGRY_DAYS = 30;
+    const run = tenDays(1, HUNGRY_DAYS);
+    const asked = HUNGRY_DAYS * PER_DAY;
+    expect(run.words.length).toBeLessThan(asked);
+    expect(run.shortfall).toBe(asked - run.words.length);
+    const zone = teachingZone(1);
+    for (const word of run.words) {
+      expect(wordLevel(word), word.word).toBeGreaterThanOrEqual(zone.min - 1);
+      expect(wordLevel(word), word.word).toBeLessThanOrEqual(zone.max + 1);
+    }
   });
 
   it('never looks more than one level outside the teaching zone', () => {
