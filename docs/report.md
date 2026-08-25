@@ -334,9 +334,7 @@ floated free of the rest — three marks in a row.
 A learner copying that copies the wrong shape. It is the one thing a
 handwriting app must not get wrong, and it had been reported fixed.
 
-| | |
-| --- | --- |
-| ![Before](report-assets/compound-vowels-before.png) | |
+![The eleven vowels before the fix, app against Pretendard](report-assets/compound-vowels-before.png)
 
 Eleven vowels, drawn by the app on the left, set in Pretendard in the middle,
 and overlaid on the right. Blue is the app; red is the face. Look at ㅘ, ㅙ and
@@ -381,9 +379,7 @@ and `shapeToFace` was replaced with an iterative solve over a new
 `drawnInkBox()` that pads each segment by the pen only perpendicular to it, then
 centres the resulting box.
 
-| | |
-| --- | --- |
-| ![After](report-assets/compound-vowels-after.png) | |
+![All twenty-one vowels after the fix, app against Pretendard](report-assets/compound-vowels-after.png)
 
 All twenty-one vowels, same three columns. The overlay column is now a single
 purple — the app's ink and the face's ink coincide — for every letter including
