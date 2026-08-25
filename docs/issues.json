@@ -993,6 +993,16 @@
       "customerImpact": "None in the product — the save lands. In the suite it produced *No saved words yet* on a screen where a word had been saved a few milliseconds earlier, which reads exactly like a data-loss defect.",
       "evidence": "`a word can be saved, found again, and reviewed from its own list` clicked Save and then called `goto('/words/saved')`. The write to IndexedDB is asynchronous and on a loaded machine the navigation won.\n\nThe first fix was wrong in an instructive way: it waited for the button to read *Saved*, and failed with `element(s) not found`. The button's accessible name goes from \"Save 하나\" to \"Remove 하나 from saved\", so a locator written around the word *Save* stops matching at the exact moment the thing it is waiting for happens. That reads like the button vanishing and is the button answering correctly.\n\nIt now waits on `aria-pressed` going false → true, which is the same fact without the wording. Fourth timing assumption found this cycle, after two in the unit suite and one in the e2e walk before them; each was a clock or a rendering standing in for evidence that something had happened.",
       "recommendedFix": "Done."
+    },
+    {
+      "id": "I-96",
+      "area": "Localization",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Seventy new translations flattened the distinction their card teaches",
+      "customerImpact": "A learner in one of the twenty-two languages met 감사합니다, 고마워요 and 고마워 on three separate cards with one identical translation under all three, so the register — which is the whole reason those are three cards — was invisible. Same for 벌써 against 이미, 잠깐만 against 조금만, and the pronoun 나.",
+      "evidence": "Found by comparing each partial pack's example translations against each other and against the English pack: fourteen groups where two or three words in one language shared a sentence. Two are shared in English too and are correct — 걷다 and 공원 both give \"I walk in the park\", 감사하다 and 고맙다 both give \"Thank you for helping me\". The other twelve were introduced this cycle.\n\nOne was a plain mistranslation rather than a flattening: Kyrgyz gave 그림을 그려요 and 사진을 찍어요 the same sentence, and сүрөт тартуу is drawing where photographing is сүрөткө тартуу.\n\n70 rows rewritten across all 22 languages. The check that found it is three lines, and it belongs to the class this cycle keeps returning to: content compared with itself shows nothing, and content compared with a reference that does make the distinction shows all of it.",
+      "recommendedFix": "Done for the core band. The same comparison would be worth running against the ten complete packs, which have 2,621 more words each and have never had it."
     }
   ]
 }
