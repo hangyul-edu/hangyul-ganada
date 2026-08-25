@@ -129,21 +129,38 @@ in song" and "lips flat and wide, no English equivalent".
 
 | Locale | Words covered | Of | Source |
 | --- | --- | --- | --- |
-| `en` `ko` `ja` `zh-CN` `es` `fr` `de` `pt-BR` | 2,581 | 2,581 | the corpus entries; `pack.py` refuses an entry missing any of them |
-| `vi` | 2,581 | 2,581 | `content/vocabulary/copy/vi.json`, written by hand |
-| `th` | 2,581 | 2,581 | `content/vocabulary/copy/th.json`, written by hand |
-| the other 22 | 0 | 2,581 | **not written** — falls back to English, marked |
+| `en` `ko` `ja` `zh-CN` `es` `fr` `de` `pt-BR` | 3,221 | 3,221 | the corpus entries; `pack.py` refuses an entry missing any of them |
+| `vi` | 3,221 | 3,221 | `content/vocabulary/copy/vi.json`, written by hand |
+| `th` | 3,221 | 3,221 | `content/vocabulary/copy/th.json`, written by hand |
+| the other 22 | **600** | 3,221 | `content/vocabulary/copy/<locale>.json` — the 600-word core band, written by hand, **read by no native speaker** |
 
-**The twenty-two are a stated gap, not an oversight and not a claim.** 2,581
-words × 22 languages is roughly 57,000 lines of meaning, part of speech and
-example translation. Writing them without a speaker of each language would
-produce exactly the machine-translation tone this document exists to refuse, at
-a scale where nobody could check it afterwards; shipping them would convert an
-honest, visible English fallback into 57,000 sentences that look authored. The
-fallback machinery is the correct behaviour in the meantime and is already
-built: `wordCopy` resolves a missing pack down the chain to English and reports
-`isFallback`, the interface renders the run marked with its real language, and
-the language picker says so before the learner picks the language.
+**The twenty-two moved from 0 to 100 and then to 600, and the reasoning that
+kept them at 0 is worth reproducing rather than deleting.** It said: 2,581 words
+× 22 languages is roughly 57,000 lines, writing them without a speaker of each
+language would produce exactly the machine-translation tone this document exists
+to refuse, and shipping them would convert an honest, visible English fallback
+into 57,000 sentences that look authored.
+
+Two things changed and neither of them is "a speaker was found".
+
+First, the *quiz* stopped falling back. `strictMeaning` resolves in the
+learner's own language or not at all, so a word with no meaning in Tamil is not
+asked about rather than asked in English. That turned the gap from a
+mixed-language defect into a smaller lesson, and it made depth worth buying: a
+language with 100 words can ask a hundred questions and one with 600 can ask six
+hundred.
+
+Second, the scope was bounded. 600 is band 1 — the band the splitter puts on the
+critical path and the worker precaches — so it is the band every learner meets
+first, and it is 13,200 pairs rather than 57,000 lines. That is a quantity a
+reviewer could actually be asked to read.
+
+**They are still not reviewed.** This document does not claim otherwise and the
+report does not either: `locale:content:qa` reports coverage, and coverage is not
+review. The fallback machinery is unchanged for everything past word 600 —
+`wordCopy` resolves down the chain to English and reports `isFallback`, the
+interface renders it marked with its real language, and the language picker says
+so before the learner picks.
 
 `npm run vocabulary:sense:qa` prints the covered count each run, so the number
 in this table is checkable rather than remembered.

@@ -909,6 +909,12 @@ Android build — confirmed on device, not inferred. There is no account and no
 server copy. Progress rows are keyed by `progressKey(kind, itemKey)`, and for a
 word that key is the word's id.
 
+The ledger that keeps those ids stable was negative-tested again this cycle:
+renaming 가다 in `content/vocabulary/word-ids.json` made every generated file
+report itself out of date and dropped the twenty-two copy packs from 600 written
+words to 599, because a pack is keyed by id and an id that moves takes its row
+with it. That is the harm, made visible in one command.
+
 ## 13.2 A content change was renaming words out from under saved progress — **fixed**
 
 This is the most serious defect of the pass and it was found by accident.
@@ -1406,9 +1412,20 @@ deleted to stay green.
 
 # 20. What this pass found
 
-Eleven defects, in the order they would matter to a customer. The eleventh is
-last because it is in a test rather than in the product, and it is here at all
-because the audit's own final run is what found it.
+**This section is cumulative and its subsections are dated by brief.** §20.1 to
+§20.3 record the three passes that produced the previous edition of this report,
+at 2,916 and then 2,948 words; §20.4 records the pass this edition describes, at
+3,221. Their figures are as-of their own pass and were deliberately not edited
+into agreement with today's — a record of what was found is not improved by
+being rewritten in a later cycle's numbers.
+
+The subsections below §20.4 therefore say 2,948 in places, and mean it.
+
+## 20.0 The three earlier briefs, in the order they would matter to a customer
+
+Eleven defects. The eleventh is last because it is in a test rather than in the
+product, and it is here at all because the audit's own final run is what found
+it.
 
 1. **The verdict panel was 41% wide and changed shape with the answer** (§7).
    Invisible to every existing gate. Now gated three ways.

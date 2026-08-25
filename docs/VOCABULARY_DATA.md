@@ -2,7 +2,7 @@
 
 ## What ships today
 
-**2,581 words**, every one of them reviewed by hand, with per-field provenance
+**3,221 words**, every one of them reviewed by hand, with per-field provenance
 on every row.
 
 ### …and where it is going
@@ -166,7 +166,7 @@ target must genuinely appear, the supporting vocabulary must be common Korean,
 the register must be the one the product teaches, and no sentence shape may be
 shared by more than 1% of the corpus.
 
-**2,581 / 2,581 PASS.**
+**3,221 / 3,221 PASS.**
 
 ## Pronunciation
 
@@ -252,7 +252,7 @@ re-fetching anything.
 
 Word Detail carries two relation sections, 유의어 and 반의어, and it carries them
 only where a dictionary states the relation for the sense this app teaches. 242
-of 2,581 words have one. The other 2,339 show no relation section at all.
+of 3,221 words have one. The other 2,969 show no relation section at all.
 
 That is a replacement rather than a refinement. The screen used to end with a
 section headed *비슷한 낱말* — "words like this" — whose contents were computed:
