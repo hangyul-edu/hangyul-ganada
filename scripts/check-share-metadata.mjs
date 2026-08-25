@@ -157,6 +157,8 @@ const og = {
   'og:title': property('og:title'),
   'og:description': property('og:description'),
   'og:image': property('og:image'),
+  'og:image:secure_url': property('og:image:secure_url'),
+  'og:image:type': property('og:image:type'),
   'og:image:alt': property('og:image:alt'),
   'og:image:width': property('og:image:width'),
   'og:image:height': property('og:image:height'),
@@ -165,10 +167,36 @@ for (const [key, value] of Object.entries(og)) {
   if (!value) fail(`missing ${key}`);
 }
 if (og['og:type'] && og['og:type'] !== 'website') fail(`og:type is ${og['og:type']}, expected website`);
-for (const key of ['og:url', 'og:image']) {
+for (const key of ['og:url', 'og:image', 'og:image:secure_url']) {
   const value = og[key];
   if (value && !value.startsWith(ORIGIN)) {
     fail(`${key} is not an absolute ${ORIGIN} URL: ${value}`);
+  }
+}
+if (
+  og['og:image'] &&
+  og['og:image:secure_url'] &&
+  og['og:image'] !== og['og:image:secure_url']
+) {
+  fail(`og:image and og:image:secure_url disagree: ${og['og:image']} vs ${og['og:image:secure_url']}`);
+}
+
+/*
+ * Nothing a crawler must not see. `startsWith(ORIGIN)` above already refuses a
+ * relative path or a foreign host, but a URL can start with the origin and
+ * still smuggle a development value in later edits of this file — so the
+ * poison list is checked against every image URL explicitly, including
+ * twitter:image, which the origin rule below does not cover.
+ */
+const POISON = ['localhost', '127.0.0.1', 'file://', '/root/', 'vercel.app', '192.168.'];
+for (const [key, value] of [
+  ['og:image', og['og:image']],
+  ['og:image:secure_url', og['og:image:secure_url']],
+  ['og:url', og['og:url']],
+]) {
+  if (!value) continue;
+  for (const marker of POISON) {
+    if (value.includes(marker)) fail(`${key} contains a development value: ${value}`);
   }
 }
 
@@ -186,6 +214,18 @@ for (const [key, value] of Object.entries(twitter)) {
 if (twitter['twitter:card'] && twitter['twitter:card'] !== 'summary_large_image') {
   fail(`twitter:card is ${twitter['twitter:card']}, expected summary_large_image`);
 }
+if (twitter['twitter:image'] && !twitter['twitter:image'].startsWith(ORIGIN)) {
+  fail(`twitter:image is not an absolute ${ORIGIN} URL: ${twitter['twitter:image']}`);
+}
+if (
+  twitter['twitter:image'] &&
+  og['og:image'] &&
+  twitter['twitter:image'] !== og['og:image']
+) {
+  // One artwork by design: the same key visual on every platform. A deliberate
+  // second artwork would relax this line, with the reason written beside it.
+  fail(`twitter:image and og:image disagree: ${twitter['twitter:image']} vs ${og['og:image']}`);
+}
 
 // --- 4. The image is really there, and is really that size -----------------
 
@@ -195,9 +235,13 @@ if (og['og:image']) {
     fail(`og:image is not in the build: ${og['og:image'].slice(ORIGIN.length)}`);
   } else {
     const bytes = readFileSync(path);
-    const size = jpegSize(bytes);
-    if (!size) fail('og:image is not a readable JPEG');
+    const probe = imageSize(bytes);
+    if (!probe) fail('og:image is not a readable PNG or JPEG');
     else {
+      const size = probe.size;
+      if (og['og:image:type'] && og['og:image:type'] !== probe.mime) {
+        fail(`og:image:type declares ${og['og:image:type']} but the file is ${probe.mime}`);
+      }
       const declared = [Number(og['og:image:width']), Number(og['og:image:height'])];
       if (size[0] !== declared[0] || size[1] !== declared[1]) {
         fail(
@@ -212,12 +256,27 @@ if (og['og:image']) {
       if (size[0] < 600) fail(`og:image is only ${size[0]} px wide`);
       if (bytes.length > 5_000_000) fail(`og:image is ${(bytes.length / 1e6).toFixed(1)} MB`);
       notes.push(
-        `og:image ${size[0]}x${size[1]}, ${(bytes.length / 1024).toFixed(0)} kB, ratio ${(
+        `og:image ${size[0]}x${size[1]} ${probe.mime}, ${(bytes.length / 1024).toFixed(0)} kB, ratio ${(
           size[0] / size[1]
         ).toFixed(2)}:1`,
       );
     }
   }
+}
+
+/*
+ * The preview this one replaced must be gone, not merely unreferenced.
+ *
+ * `og-hangyul-ganada.jpg` was the generated preview before the canonical
+ * artwork became `apps/common_assets/ob/hangyul_ganada_ob_image.png`. Social
+ * platforms cache aggressively, so an old file left in the build keeps the old
+ * card alive for anyone whose cache resolves it — and a tag that still names
+ * it would never show the new artwork at all.
+ */
+const OBSOLETE_PREVIEWS = ['og-hangyul-ganada.jpg'];
+for (const name of OBSOLETE_PREVIEWS) {
+  if (visible.includes(name)) fail(`the retired social preview ${name} is still referenced in index.html`);
+  if (existsSync(join(DIST, 'brand', name))) fail(`the retired social preview ${name} is still in the build`);
 }
 
 // --- 5. Not indexed, and readably so ---------------------------------------
@@ -320,19 +379,39 @@ if (problems.length) {
 
 console.log('\n0 error(s).');
 
-/** Width and height out of a JPEG's SOF marker, or null. */
-function jpegSize(bytes) {
-  if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
-  let offset = 2;
-  while (offset < bytes.length) {
-    if (bytes[offset] !== 0xff) return null;
-    const marker = bytes[offset + 1];
-    const length = bytes.readUInt16BE(offset + 2);
-    // Any SOF except the four that are not frame headers.
-    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
-      return [bytes.readUInt16BE(offset + 7), bytes.readUInt16BE(offset + 5)];
+/**
+ * `{ size: [w, h], mime }` read out of the file's own header, or null.
+ *
+ * PNG first because that is what ships; JPEG kept so the gate reports a
+ * wrong-format file as a type mismatch rather than as unreadable.
+ */
+function imageSize(bytes) {
+  // PNG: 8-byte signature, then the IHDR chunk holds width and height.
+  if (
+    bytes.length > 24 &&
+    bytes[0] === 0x89 &&
+    bytes[1] === 0x50 &&
+    bytes[2] === 0x4e &&
+    bytes[3] === 0x47
+  ) {
+    return { size: [bytes.readUInt32BE(16), bytes.readUInt32BE(20)], mime: 'image/png' };
+  }
+  // JPEG: walk the markers to the first SOF frame header.
+  if (bytes[0] === 0xff && bytes[1] === 0xd8) {
+    let offset = 2;
+    while (offset < bytes.length) {
+      if (bytes[offset] !== 0xff) return null;
+      const marker = bytes[offset + 1];
+      const length = bytes.readUInt16BE(offset + 2);
+      // Any SOF except the four that are not frame headers.
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        return {
+          size: [bytes.readUInt16BE(offset + 7), bytes.readUInt16BE(offset + 5)],
+          mime: 'image/jpeg',
+        };
+      }
+      offset += 2 + length;
     }
-    offset += 2 + length;
   }
   return null;
 }

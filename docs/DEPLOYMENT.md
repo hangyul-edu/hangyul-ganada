@@ -106,16 +106,24 @@ Open Graph and Twitter set in the file: `og:type`, `og:site_name`, `og:url`,
 text, and `twitter:card=summary_large_image` with its own title, description and
 image. Every URL is absolute — a crawler resolves nothing relative.
 
-The preview image is `/brand/og-hangyul-ganada.jpg`, **generated** by
-`scripts/content/build_app_icons.py` from `apps/common_assets/ob/ob image4.jpg`.
-The source is 3200 × 1600, exactly the 2:1 that `summary_large_image` specifies,
-so the build is a straight LANCZOS resample to 1200 × 600 at quality 88 — no
-crop, no letterbox, no stretch, nothing drawn over the artwork. It is
-regenerated rather than referenced in place for two reasons: the source filename
-contains a space, which survives a filesystem and does not reliably survive a
-crawler fetching an absolute URL, and 1.4 MB is a slow fetch for a card that
-renders at 600 px. The generated file is 56 kB. `npm run mobile:icons:check`
-keeps it in step with its source.
+The preview image is `/brand/og-hangyul-ganada.png`, **generated** by
+`scripts/content/build_app_icons.py` from
+`apps/common_assets/ob/hangyul_ganada_ob_image.png` — the canonical
+social-share artwork. The source is 3200 × 1600, exactly the 2:1 that
+`summary_large_image` specifies, so the build is a straight LANCZOS resample to
+1200 × 600 — no crop, no letterbox, no stretch, nothing drawn over the artwork.
+It is regenerated rather than referenced in place because 1.1 MB at 3200 px is
+a slow fetch for a card that renders at 600 px; the generated file is ~200 kB
+and stays PNG so `og:image:type` tells the truth. `npm run mobile:icons:check`
+keeps it in step with its source, and `npm run share:check` holds the built
+HTML to the generated file — including that the retired
+`og-hangyul-ganada.jpg` never comes back.
+
+Social platforms cache preview cards, sometimes for days. The filename is
+deliberately stable, so after a deploy the old card may keep appearing until
+each platform's cache expires or is refreshed by hand (Facebook's Sharing
+Debugger, Kakao's link cache clearer, and X re-fetch on request). That is
+external caching, not a defect in the build.
 
 **The same URL must not appear in a search result.** The product is a paid
 application, not a content site. The authoritative mechanism is `noindex`, in

@@ -96,29 +96,33 @@ SPLASH_KO_SOURCE = ROOT / "apps" / "common_assets" / "splash" / "splash_ko.png"
 
 #: The social-sharing preview, and the one asset here that is not a mark.
 #:
-#: `apps/common_assets/ob/ob image4.jpg` is the brand's own key visual — the
-#: wordmark, the line, and a phone showing the actual product. It is 3200 x 1600,
-#: which is exactly the 2:1 that `twitter:card=summary_large_image` specifies and
-#: close enough to Open Graph's preferred 1.91:1 that no crop is needed. So this
-#: is a straight resample: no crop, no letterbox, no stretch, and nothing drawn
-#: over the artwork.
+#: `apps/common_assets/ob/hangyul_ganada_ob_image.png` is the brand's own key
+#: visual — the wordmark, the line, and a phone showing the actual product. It
+#: is 3200 x 1600, which is exactly the 2:1 that `twitter:card=summary_large_image`
+#: specifies and close enough to Open Graph's preferred 1.91:1 that no crop is
+#: needed. So this is a straight resample: no crop, no letterbox, no stretch,
+#: and nothing drawn over the artwork.
 #:
-#: It is regenerated rather than copied for two reasons. The source filename has
-#: a space in it, which survives a filesystem and does not reliably survive a
-#: crawler fetching an absolute URL; and a 1.4 MB JPEG is a slow first fetch for
-#: a preview card that renders at 600 px wide. The generated file is one
-#: deterministic, web-safe name at a sensible size.
-SHARE_SOURCE = ROOT / "apps" / "common_assets" / "ob" / "ob image4.jpg"
+#: It is regenerated rather than copied because a 1.1 MB, 3200 px PNG is a slow
+#: first fetch for a preview card that renders at 600 px wide. The generated
+#: file is one deterministic, web-safe name at a sensible size. It stays PNG —
+#: the format the artwork was delivered in — so the `og:image:type` the HTML
+#: declares is the type the crawler receives. The source's alpha channel is
+#: 254–255 everywhere, i.e. visually opaque, so flattening to RGB changes
+#: nothing a viewer can see and avoids messengers compositing near-transparent
+#: pixels over their own background.
+SHARE_SOURCE = ROOT / "apps" / "common_assets" / "ob" / "hangyul_ganada_ob_image.png"
 
 #: The generated preview. Width and height are declared in the HTML as
 #: `og:image:width` / `og:image:height`, so these two numbers and those two tags
 #: have to agree; `--check` is what keeps them agreeing.
 SHARE_SIZE = (1200, 600)
 
-#: JPEG quality for the preview. 88 with 4:2:0 chroma keeps the wordmark and the
-#: phone's UI text crisp at the size a card actually renders, and lands well
-#: under the 1 MB that some crawlers stop reading at.
-SHARE_QUALITY = 88
+#: The generated preview file, under the web public root. `.png` because the
+#: canonical source is a PNG and the HTML declares `og:image:type` `image/png`;
+#: at 1200x600 the optimized PNG is ~200 kB, well under the ~5 MB where some
+#: crawlers stop reading.
+SHARE_OUTPUT_NAME = "og-hangyul-ganada.png"
 
 #: `warm.50` from the design tokens. Kept in sync by `--check` failing loudly if
 #: the tokens move: the icons are regenerated, not patched.
@@ -592,10 +596,8 @@ def build() -> dict[Path, bytes]:
             "the source at the same aspect ratio, or decide here what to lose."
         )
     buffer = io.BytesIO()
-    share.resize(SHARE_SIZE, Image.LANCZOS).save(
-        buffer, "JPEG", quality=SHARE_QUALITY, optimize=True, progressive=True
-    )
-    files[BRAND / "og-hangyul-ganada.jpg"] = buffer.getvalue()
+    share.resize(SHARE_SIZE, Image.LANCZOS).save(buffer, "PNG", optimize=True)
+    files[BRAND / SHARE_OUTPUT_NAME] = buffer.getvalue()
 
     # --- Store artwork ---------------------------------------------------------
     # The same icon a phone shows, at the sizes the two consoles ask to upload,
