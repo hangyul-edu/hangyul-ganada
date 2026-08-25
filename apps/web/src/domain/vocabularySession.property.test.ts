@@ -211,7 +211,7 @@ describe('randomized sittings', () => {
   });
 
   it('a sitting of pure wrong answers never moves progress and never ends', () => {
-    let plan = buildDailyPlan({ progress: {}, memory: {}, corpus: corpus(40), goal: 10, now: NOW });
+    const plan = buildDailyPlan({ progress: {}, memory: {}, corpus: corpus(40), goal: 10, now: NOW });
     const missed = new Map<string, WordStep>();
     for (let round = 0; round < 5; round += 1) {
       const queue = round === 0 ? scheduleSteps(plan) : retrySteps(plan, missed);

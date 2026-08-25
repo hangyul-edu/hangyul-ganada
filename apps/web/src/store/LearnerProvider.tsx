@@ -1049,7 +1049,7 @@ export function LearnerProvider({
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });
-  }, []);
+  }, [canPractiseWord]);
 
   // Counts words, so it is rebuilt when a band of the corpus arrives.
   const summary = useCorpusMemo<ProgressSummary>(() => {
