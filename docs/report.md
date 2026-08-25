@@ -104,13 +104,13 @@ without trusting the row.
 | --- | --- | --- |
 | Words shipping | 3,221 | `vocabulary.json` `words.length` |
 | Categories | 18 | `vocabulary.json` `categories` |
-| Study sets | 645 (five words each) | ⌈3,221 ÷ 5⌉ |
+| Study sets | 650 (five words each) | per category, ⌈words ÷ 5⌉ summed |
 | Characters taught | 73 | `characters.ts` `ALL_CHARACTERS` |
 | Hangul letters taught | 40 | `characters.ts` `ALL_LETTERS` |
 | Curriculum units | 12 | `characters.ts` `CURRICULUM_UNITS` |
 | Lessons | 15 | `characters.ts` `LETTER_LESSONS` |
-| Words with a pronunciation note | 596 | `pronunciation.note_for` over the corpus |
-| Words any sound rule touches | 756 | `pronunciation.pattern_of` over the corpus |
+| Pronunciation notes | 756 | words carrying a `say` field in `vocabulary.json` |
+| Of those, shown as a note on a card | 596 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
 | Sound-change patterns taught | 6 | `vocabulary.json` `sound_patterns` |
 | Patterns a word card may note | 5 | `vocabulary.json` `noted_patterns` |
 | Dictionary headwords | 30,282 | `public/dictionary/manifest.json` |
@@ -124,7 +124,8 @@ without trusting the row.
 | Level-test items, English | 4,166 | `public/level-test/manifest.json` |
 | Level-test contextual items | 566 | the bank, `kind === "context"` |
 | Level-test reach, 22 partial languages | 1,021 items each | `manifest.json` `reach` |
-| Audio clips | 13,110 | `public/audio/manifest.json`, two voices each |
+| Audio clips | 13,006 | distinct files in `public/audio/manifest.json` |
+| Audio voice slots | 13,110 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
 | Words at levels 28–30 | 383 | the corpus, by level |
 | Level anchors held | 162 | `level-anchors.json` |
@@ -139,15 +140,15 @@ without trusting the row.
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
 "Hangul letters taught" is the 40 a learner would name.
 
-**The pronunciation-note row is the one that did not reproduce.** The previous
-report gave 699 for a 2,948-word corpus; the module gives 596 for a 3,221-word
-one. The number here counts *words whose card shows a note* — the five noted
-patterns, liaison excluded, because liaison applies to so many words that a note
-for it would stop meaning "look at this one" and is taught once in the
-sound-change lesson instead. 756 words are touched by some rule; 596 of them get
-a note. Which of those two questions the older figure answered is not
-recoverable from the older document, which is the argument for the right-hand
-column above.
+**The pronunciation-note row is the one that had to be pinned down.** The
+previous report gave a single figure, 699, and there are two questions it could
+have been answering. 756 words carry a recorded spoken form because some rule
+changes them; 596 of those get a *note on the card*, because liaison applies to
+so many words that a note for it would stop meaning "look at this one" and is
+taught once in the sound-change lesson instead. Both numbers are now in the
+table with their definitions, and `docs:consistency:check` holds the first of
+them to the corpus — which is how the ambiguity was found, by the gate refusing
+a figure that had no source.
 
 Test counts are in §19; artefact hashes are in §18.
 
@@ -239,7 +240,7 @@ it, which is why §7.2 is written the way it is.
 A standalone paid application, web and Android from one codebase. Twelve
 curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,221
 words. Everything a learner needs is in the binary: the curriculum, the fonts,
-the stroke data and 13,110 pronunciation clips in two voices.
+the stroke data and 13,006 pronunciation clips in two voices.
 
 ## 4.2 The intended journey — **VERIFIED**
 
@@ -1184,7 +1185,7 @@ ship a link to a page that may not exist (I-03).
 | Web unit (`vitest`) | **789** (50 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **180** (2 files) |
-| End-to-end (`playwright`) | **338** (169 × 2 projects) |
+| End-to-end (`playwright`) | **346** (173 × 2 projects) |
 
 Counted from this cycle's runs. The morphology suite reads 180 where the
 previous edition said 146; the difference is the irregular-class fixtures added
