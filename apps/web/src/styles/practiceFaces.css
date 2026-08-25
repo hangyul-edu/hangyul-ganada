@@ -1,0 +1,65 @@
+/*
+ * The five practice typefaces, declared woff2-only.
+ *
+ * These used to come from `@fontsource/<face>/korean-400.css`, whose rules
+ * list a woff2 source and a woff fallback — so Vite bundled BOTH files and
+ * the Android package carried 5.2 MB of .woff that no supported browser ever
+ * downloads. WOFF2 has shipped in every engine this product supports: the
+ * Android WebView is Chromium (minSdk 24 → Chromium 51+), Safari has read it
+ * since 12, and every evergreen browser since 2016. The .woff twin was pure
+ * package weight.
+ *
+ * Each rule below is the @fontsource rule verbatim minus the woff source, and
+ * the url() targets the same @fontsource-shipped file, so the artwork cannot
+ * drift from the packaged library. `fonts:audit` still checks the licences.
+ */
+
+/* nanum-gothic-korean-400-normal */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../../../../node_modules/@fontsource/nanum-gothic/files/nanum-gothic-korean-400-normal.woff2')
+    format('woff2');
+}
+
+/* nanum-myeongjo-korean-400-normal */
+@font-face {
+  font-family: 'Nanum Myeongjo';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../../../../node_modules/@fontsource/nanum-myeongjo/files/nanum-myeongjo-korean-400-normal.woff2')
+    format('woff2');
+}
+
+/* gowun-batang-korean-400-normal */
+@font-face {
+  font-family: 'Gowun Batang';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../../../../node_modules/@fontsource/gowun-batang/files/gowun-batang-korean-400-normal.woff2')
+    format('woff2');
+}
+
+/* gaegu-korean-400-normal */
+@font-face {
+  font-family: 'Gaegu';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../../../../node_modules/@fontsource/gaegu/files/gaegu-korean-400-normal.woff2')
+    format('woff2');
+}
+
+/* gowun-dodum-korean-400-normal */
+@font-face {
+  font-family: 'Gowun Dodum';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../../../../node_modules/@fontsource/gowun-dodum/files/gowun-dodum-korean-400-normal.woff2')
+    format('woff2');
+}

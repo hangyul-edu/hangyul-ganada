@@ -17,11 +17,11 @@
  * Every face is SIL OFL 1.1 — see `src/data/fonts.ts` for licence, source and
  * the reasoning behind each choice.
  */
-import '@fontsource/nanum-gothic/korean-400.css';
-import '@fontsource/nanum-myeongjo/korean-400.css';
-import '@fontsource/gowun-batang/korean-400.css';
-import '@fontsource/gaegu/korean-400.css';
-import '@fontsource/gowun-dodum/korean-400.css';
+// The five faces, declared in our own stylesheet rather than @fontsource's —
+// woff2 only, because the @fontsource rules also name a .woff fallback that no
+// supported engine downloads and that added 5.2 MB to every package. The file
+// documents the support matrix; the font binaries still come from @fontsource.
+import './practiceFaces.css';
 
 /*
  * And one family this app declares itself: Gaegu at reading size.

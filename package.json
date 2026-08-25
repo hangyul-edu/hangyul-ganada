@@ -114,7 +114,7 @@
     "fonts:audit:strict": "python3 scripts/content/audit_fonts.py --strict",
     "mobile:icons": "python3 scripts/content/build_app_icons.py",
     "mobile:icons:check": "python3 scripts/content/build_app_icons.py --check",
-    "mobile:sync": "npm run build --workspace @hangyul-ganada/web && npx --workspace @hangyul-ganada/mobile cap sync",
+    "mobile:sync": "npm run build --workspace @hangyul-ganada/web && npx --workspace @hangyul-ganada/mobile cap sync && node scripts/prune-native-assets.mjs",
     "mobile:audit:libs": "node scripts/audit-native-libs.mjs",
     "mobile:qa": "node scripts/qa-native-android.mjs",
     "mobile:walk": "node scripts/qa-learner-walk-android.mjs",
