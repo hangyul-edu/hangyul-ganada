@@ -1905,9 +1905,12 @@ matches*, then the words; or *Nothing matches "…"*, and nothing else.
 Nothing above proves the Korean is *natural*. Every gate in
 `npm run korean:education:qa` says so in its own output, and
 `docs/LEVEL_TEST_KOREAN_REVIEW.md` records, dimension by dimension, who read
-what: eleven rows read by a program, three read by an AI assistant, and one row
-— naturalness — read by nobody. That row is closed by a Korean native speaker
-and by nothing else.
+what. Re-counted from the file this cycle: **ten rows read by a program, two by
+a program and an assistant together, three by an assistant, and two by
+nobody.** The two are naturalness, which has always been there, and a new one —
+the 22,638 word meanings and example translations written this cycle in
+twenty-two languages, whose script and completeness a gate checks and whose
+prose nobody has read. Both are closed by a native speaker and by nothing else.
 
 ## 20.4 This pass, in the order the findings arrived
 
