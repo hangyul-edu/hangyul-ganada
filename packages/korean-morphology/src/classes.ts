@@ -150,7 +150,14 @@ function isReuRegular(stem: string): boolean {
 export const REO_IRREGULAR = new Set(['푸르', '노르']);
 
 /** Stems whose conjugation is not derived at all. */
-export const SUPPLETIVE = new Set(['있', '없', '이', '아니', '드리', '푸']);
+/*
+ * 그러, 이러, 저러 and 어쩌 are the contracted demonstrative verbs — 그리하다,
+ * 이리하다, 저리하다, 어찌하다 — and their 아/어 form keeps the 하다 family's
+ * fronting: 그래, 이래, 저래, 어째. The vowel-contraction default gave 그러 +
+ * 어 → 그러, so the cards read 그러요 and 그렀어요, neither of which is a
+ * Korean word; the real forms are 그래요 and 그랬어요.
+ */
+export const SUPPLETIVE = new Set(['있', '없', '이', '아니', '드리', '푸', '그러', '이러', '저러', '어쩌']);
 
 /**
  * Stems built on the honorific suffix `-시-`.

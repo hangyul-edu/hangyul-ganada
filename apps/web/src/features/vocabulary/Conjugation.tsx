@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { conjugationTable, type Form } from '@hangyul-ganada/korean-morphology';
+import { displayConjugations, type Form } from '@hangyul-ganada/korean-morphology';
 
 import styles from './Conjugation.module.css';
 
@@ -51,13 +51,11 @@ export function Conjugation({
   const { t } = useTranslation(['vocabulary']);
   if (partOfSpeech !== 'verb' && partOfSpeech !== 'adjective') return null;
 
-  const rows = conjugationTable(lemma, { partOfSpeech }).filter(
-    // The 아/어 stem and the adnominal are building blocks rather than things a
-    // learner says: 먹어 on its own is blunt, and 먹는 only exists in front of a
-    // noun. They are generated because the rest is built on them, and they are
-    // not shown because neither is a sentence.
-    (row) => row.form !== 'infinitive' && row.form !== 'adnominal',
-  );
+  // The display policy — which generated forms are worth a learner's eyes —
+  // lives in the morphology package beside the generator, and
+  // `conjugation:display:qa` reads the same function, so the gate checks what
+  // the screen actually shows.
+  const rows = displayConjugations(lemma, { partOfSpeech });
   if (rows.length === 0) return null;
 
   return (

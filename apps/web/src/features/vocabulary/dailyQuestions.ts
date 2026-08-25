@@ -230,7 +230,6 @@ export function buildDailyQuestions(
      */
     const candidates: Exclude<WordStep, 'intro' | 'match'>[] = [];
     for (const step of [scheduled.step, 'build', 'meaning', 'produce', 'context'] as const) {
-      if (step === 'match' || step === 'intro') continue;
       if (!candidates.includes(step)) candidates.push(step);
     }
 

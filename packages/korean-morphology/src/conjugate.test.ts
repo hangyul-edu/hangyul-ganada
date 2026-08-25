@@ -326,3 +326,105 @@ describe('a request is licensed, not generated', () => {
     expect(conjugate(lemma, 'presentPolite', { partOfSpeech: 'verb' })).toBe(expected);
   });
 });
+
+describe('the command row is licensed, not generated', () => {
+  /*
+   * -(으)세요 is displayed under a label meaning "Please do", so it obeys the
+   * same volitionality the request row does. Every one of these was on a card
+   * before the gate existed — 죽으세요 under "Please do" included.
+   */
+  it.each([
+    ['죽다'], ['죽이다'], ['다치다'], ['틀리다'], ['꺼지다'], ['늙다'],
+    ['맞다'], ['모르다'], ['원하다'], ['끓다'], ['닮다'], ['태어나다'],
+    ['떨어지다'], ['놀라다'], ['실패하다'],
+  ])('shows no command form for %s', (lemma) => {
+    expect(conjugate(lemma, 'honorific', { partOfSpeech: 'verb' })).toBeNull();
+  });
+
+  it.each([
+    ['가다', '가세요'],
+    ['먹다', '먹으세요'],
+    ['앉다', '앉으세요'],
+    ['계시다', '계세요'],
+    ['주무시다', '주무세요'],
+    ['되다', '되세요'],
+    ['조심하다', '조심하세요'],
+    // 좋은 꿈 꾸세요 — the command is Korean even where the favour is not.
+    ['꾸다', '꾸세요'],
+  ])('keeps the command form of %s', (lemma, expected) => {
+    expect(conjugate(lemma, 'honorific', { partOfSpeech: 'verb' })).toBe(expected);
+  });
+
+  it('맞다 — the photographed card — shows neither command nor request', () => {
+    // The taught sense is "to be right". 맞으세요 under "Please do" and
+    // 맞아 주세요 under "Please do (for me)" were both on the card.
+    expect(conjugate('맞다', 'honorific', { partOfSpeech: 'verb' })).toBeNull();
+    expect(conjugate('맞다', 'request', { partOfSpeech: 'verb' })).toBeNull();
+    // The forms a learner needs for that sense are untouched.
+    expect(conjugate('맞다', 'presentPolite', { partOfSpeech: 'verb' })).toBe('맞아요');
+    expect(conjugate('맞다', 'pastPolite', { partOfSpeech: 'verb' })).toBe('맞았어요');
+    expect(conjugate('맞다', 'formalPolite', { partOfSpeech: 'verb' })).toBe('맞습니다');
+    expect(conjugate('맞다', 'connective', { partOfSpeech: 'verb' })).toBe('맞고');
+  });
+
+  it('a 주다 compound folds the favour into itself', () => {
+    // 도와줘 주세요 says "for me" twice; the request row is the command row.
+    for (const lemma of ['주다', '도와주다', '알려주다', '빌려주다', '들려주다']) {
+      expect(conjugate(lemma, 'request', { partOfSpeech: 'verb' })).toBeNull();
+    }
+    expect(conjugate('도와주다', 'honorific', { partOfSpeech: 'verb' })).toBe('도와주세요');
+  });
+
+  it('the favour rows the family rules wrongly denied are back', () => {
+    expect(conjugate('다지다', 'request', { partOfSpeech: 'verb' })).toBe('다져 주세요');
+    expect(conjugate('헤아리다', 'request', { partOfSpeech: 'verb' })).toBe('헤아려 주세요');
+  });
+});
+
+describe('the contracted demonstrative verbs', () => {
+  /*
+   * 그러다, 이러다, 저러다 and 어쩌다 contract 그리하다, 이리하다, 저리하다
+   * and 어찌하다, and their 아/어 form fronts like 하다's: 그래, not 그러.
+   * The default vowel contraction produced 그러요 and 그렀어요, which are not
+   * Korean words, and both were on the card.
+   */
+  it.each([
+    ['그러다', '그래요', '그랬어요'],
+    ['이러다', '이래요', '이랬어요'],
+    ['저러다', '저래요', '저랬어요'],
+    ['어쩌다', '어째요', '어쨌어요'],
+  ])('%s gives %s and %s', (lemma, present, past) => {
+    expect(conjugate(lemma, 'presentPolite', { partOfSpeech: 'verb' })).toBe(present);
+    expect(conjugate(lemma, 'pastPolite', { partOfSpeech: 'verb' })).toBe(past);
+  });
+
+  it('their non-infinitive forms are the regular ones', () => {
+    expect(conjugate('그러다', 'futurePolite', { partOfSpeech: 'verb' })).toBe('그럴 거예요');
+    expect(conjugate('그러다', 'formalPolite', { partOfSpeech: 'verb' })).toBe('그럽니다');
+    expect(conjugate('그러다', 'honorific', { partOfSpeech: 'verb' })).toBe('그러세요');
+  });
+});
+
+describe('contractions Korean does not write', () => {
+  /*
+   * 한글맞춤법 §35–36 permit 비어 → 벼 exactly as they permit 가지어 → 가져,
+   * but the written language keeps 비어요, 삐었어요, 기어요 and 쪼아요 — and
+   * the cards were teaching 벼요, 뼜어요, 겨요 and 쫘요.
+   */
+  it.each([
+    ['비다', '비어요', '비었어요'],
+    ['삐다', '삐어요', '삐었어요'],
+    ['기다', '기어요', '기었어요'],
+    ['쪼다', '쪼아요', '쪼았어요'],
+  ])('%s stays uncontracted: %s, %s', (lemma, present, past) => {
+    expect(conjugate(lemma, 'presentPolite', { partOfSpeech: 'verb' })).toBe(present);
+    expect(conjugate(lemma, 'pastPolite', { partOfSpeech: 'verb' })).toBe(past);
+  });
+
+  it('the ordinary contractions are untouched', () => {
+    expect(conjugate('보다', 'presentPolite', { partOfSpeech: 'verb' })).toBe('봐요');
+    expect(conjugate('마시다', 'presentPolite', { partOfSpeech: 'verb' })).toBe('마셔요');
+    expect(conjugate('치다', 'presentPolite', { partOfSpeech: 'verb' })).toBe('쳐요');
+    expect(conjugate('되다', 'presentPolite', { partOfSpeech: 'verb' })).toBe('돼요');
+  });
+});

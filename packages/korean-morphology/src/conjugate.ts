@@ -39,7 +39,7 @@ import {
   type ClassifyOptions,
   type ConjugationClass,
 } from './classes';
-import { licensesRequest } from './request';
+import { licensesImperative, licensesRequest } from './request';
 
 export type Form =
   /** 먹다 */
@@ -87,6 +87,23 @@ export function takesImperative(shape: WordShape): boolean {
   // is not a sentence, and a word card that prints one is teaching a mistake.
   return shape.partOfSpeech === 'verb';
 }
+
+/**
+ * Single-syllable vowel stems whose contraction Korean does not actually write.
+ *
+ * The contraction rules are orthographically permitted for every one of these —
+ * 한글맞춤법 §35 and §36 allow 비어 → 벼 exactly as they allow 가지어 → 가져 —
+ * but permission is not usage. Nobody writes 벼요 for an empty seat, 뼜어요 for
+ * a sprained ankle, 겨요 for crawling or 쫘요 for a pecking bird; the written
+ * language keeps 비어요, 삐었어요, 기어요 and 쪼아요. The uncontracted form is
+ * always grammatical, so where usage prefers it, preferring it too costs
+ * nothing and stops the card teaching a form a Korean reader stops at.
+ *
+ * Deliberately not 보다, 오다, 주다, 치다, 지다, 찌다 or 피다, where the
+ * contraction is the ordinary written form (봐요, 와요, 줘요, 쳐요, 져요,
+ * 쪄요, 폈어요).
+ */
+const UNCONTRACTED_STEMS = new Set(['비', '삐', '기', '쪼']);
 
 /**
  * The 아/어 stem — the single hardest piece, and everything else is built on it.
@@ -191,6 +208,11 @@ function infinitiveStem(stem: string, cls: ConjugationClass): string {
         드리: '드려',
         // The only ㅜ-irregular verb in the language: 푸 + 어 → 퍼, not 풔.
         푸: '퍼',
+        // The contracted demonstrative verbs front like 하다: see `SUPPLETIVE`.
+        그러: '그래',
+        이러: '이래',
+        저러: '저래',
+        어쩌: '어째',
       };
       return table[stem] ?? stem;
     }
@@ -225,7 +247,9 @@ function infinitiveStem(stem: string, cls: ConjugationClass): string {
   const merged = CONTRACTIONS[`${vowel}+${ending}`];
   // ㅟ is in the table so the rule is visible, but Korean does not write the
   // contraction: 쉬어요, not 쉐요. Falling through gives the right answer.
-  if (merged && vowel !== 'ㅟ') return head + compose(initial, VOWELS.indexOf(merged), 0);
+  if (merged && vowel !== 'ㅟ' && !UNCONTRACTED_STEMS.has(stem)) {
+    return head + compose(initial, VOWELS.indexOf(merged), 0);
+  }
   return stem + (ending === 'ㅏ' ? '아' : '어');
 }
 
@@ -351,6 +375,10 @@ export function conjugate(lemma: string, form: Form, shape: WordShape = {}): str
       // the ending is the same three characters in every class. A stem that
       // already carries -시- does not take a second one: 계세요, not 계시세요.
       if (!takesImperative(shape)) return null;
+      // The row is labelled as a command in every language, so semantics gate
+      // it exactly as they gate `request`: 죽으세요 and 틀리세요 are perfectly
+      // formed and must never be printed under "Please do".
+      if (!licensesImperative(lemma, stem)) return null;
       return HONORIFIC_SUFFIXED.has(stem) ? honorificPolite(stem) : `${euStem(stem, cls)}세요`;
     case 'request':
       // Morphology is not the whole question here: see `licensesRequest`, which
@@ -394,6 +422,32 @@ export function conjugate(lemma: string, form: Form, shape: WordShape = {}): str
     default:
       return null;
   }
+}
+
+/**
+ * The rows the 활용 panel shows, and only those.
+ *
+ * The one place display policy lives, shared by the app's panel and by
+ * `conjugation:display:qa` so the two cannot drift. On top of
+ * `conjugationTable` it:
+ *
+ * - drops `infinitive` and `adnominal`, which are building blocks rather than
+ *   sentences (먹어 on its own is blunt; 먹는 only exists before a noun);
+ * - drops a row whose surface duplicates an earlier one. The honorific verbs
+ *   are why: 계시다's polite present *is* 계세요 and so is its command, and a
+ *   table printing the same string under two labels teaches confusion.
+ */
+export function displayConjugations(
+  lemma: string,
+  shape: WordShape = {},
+): Array<{ form: Form; value: string }> {
+  const seen = new Set<string>();
+  return conjugationTable(lemma, shape).filter((row) => {
+    if (row.form === 'infinitive' || row.form === 'adnominal') return false;
+    if (seen.has(row.value)) return false;
+    seen.add(row.value);
+    return true;
+  });
 }
 
 /** Every form of a word, for the 활용 panel. Missing forms are omitted. */
