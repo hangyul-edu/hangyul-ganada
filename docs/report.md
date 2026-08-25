@@ -797,9 +797,36 @@ photographing is сүрөткө тартуу.
 Seventy rows rewritten. The check is three lines, and it is the same shape as
 everything else this cycle found: content compared with itself shows nothing,
 and content compared with a reference that *does* make the distinction shows all
-of it. The ten complete packs have 2,621 more words each and have never had this
-comparison run over them — that is in I-96 as the next thing to do rather than
-as a claim that they are clean.
+of it.
+
+**Then the same three lines were pointed at the eight complete packs, which have
+shipped for several cycles.** 66 colliding groups. 41 of them said materially
+different things:
+
+| | |
+| --- | --- |
+| ja | 이메일 and 문자 — an email and a text message — had one sentence |
+| zh-CN, th, vi | 말리다 and 널다 — drying the washing and hanging it out |
+| fr, de, th | 깨지다 and 유리 — a cup breaking and a pane of glass breaking |
+| es, fr, de, th | 다니다 and 가다 — attending school and going to it |
+| es | 도둑을 잡았어요 and 도둑이 잡혔어요 — an active and its passive |
+| pt-BR | 말하다, 말씀하다 and 얘기하다 — three registers, one sentence |
+| ja, zh-CN | 받들다 and 섬기다 — serving with reverence and serving |
+
+138 rows rewritten across ja, zh-CN, es, fr, de, pt-BR, th and vi.
+
+**25 groups are left and are deliberate.** They are near-synonym pairs the
+target language merges: 멈추다 and 정지 are both *el coche se detuvo*, 종일 and
+내내 are both *todo el día*, 오래 and 오랫동안 are both *lange*. Inventing a
+distinction the language does not make is worse than sharing a sentence, and the
+English pack itself shares 27 sentences for exactly that reason. Which merges
+are legitimate is a question for a speaker, which is I-17.
+
+**And `examples:qa` caught this work.** Two of the new Portuguese sentences
+invented a feminine subject for a Korean sentence that names nobody — the same
+class as the 125 the previous cycle found and the 43 this one found in the new
+vocabulary. Rewritten without the pronoun. A gate that catches the person
+repairing the content is a gate worth having.
 
 ### The mixed-language invariant, now actually simulated
 
@@ -2107,7 +2134,7 @@ document they predate.
 | **I-87** | Release engineering | **P2** | `conjugation:qa` passed every malformed honorific | None observed in shipped content; the gate was blind rather than the content wrong. A card or a distractor reading 있세요 or 만들세요 would have passed the gate that exists to catch exactly that. | **RESOLVED** |
 | **I-88** | Release engineering | **P2** | `locale:content:qa` promised a simulation that did not exist | None directly, and it is the same shape of defect as a report claiming a fix nobody looked at: a comment ending "and that is what the simulation below checks" with nothing below it. | **RESOLVED** |
 | **I-90** | Level test | **P2** | The shipped bank held a distractor the morphology module had stopped producing | A level-28 item offered 치닫아요 as an option. 치닫다 is a ㄷ-irregular and conjugates to 치달아요; the string in the bank was not Korean. | **RESOLVED** |
-| **I-96** | Localization | **P2** | Seventy new translations flattened the distinction their card teaches | A learner in one of the twenty-two languages met 감사합니다, 고마워요 and 고마워 on three separate cards with one identical translation under all three, so the register — which is the whole reason those are three cards — was invisible. Same for 벌써 against 이미, 잠깐만 against 조금만, and the pronoun 나. | **RESOLVED** |
+| **I-96** | Localization | **P2** | A hundred and seventy translations flattened the distinction their card teaches | A learner met 감사합니다, 고마워요 and 고마워 on three separate cards with one identical translation under all three, so the register — the whole reason those are three cards — was invisible. The same for 이메일 against 문자 in Japanese (email and text message, one sentence), 말리다 against 널다 in three languages (drying the washing and hanging it out), 깨지다 against 유리 (a cup and a pane of glass), and 다니다 against 가다 (attending school and going to it). | **RESOLVED** |
 | **I-43** | Home | **P3** | The line at the foot of Home was one of twelve, then a hundred, and is now twenty real quotations | Twelve lines were exhausted in a fortnight. A hundred fixed that and created a worse problem — eighty-eight of them were written by the app and set exactly like the twelve that were not. Twenty attributed quotations replace both, superseded by I-47. | **RESOLVED** |
 | **I-89** | i18n copy | **P3** | Two category labels named the answer they were hinting at | A Kyrgyz learner asked what 가족 means was shown the hint *Адамдар жана үй-бүлө*, and үй-бүлө is the answer. Same in Uzbek for 공부 under *O'qish va ish*. Two of 581,542 rungs, and both introduced by this cycle's expansion. | **RESOLVED** |
 | **I-91** | Release engineering | **P3** | A unit test asserted a shortage instead of the behaviour under one | None. It failed the build for the one reason that is not a defect: the corpus grew past the shortage the test encoded. | **RESOLVED** |
@@ -2217,7 +2244,7 @@ document they predate.
 | **I-87** | Every escape in the gate accepted a recorded surface form that merely *starts* with the stem, because an example may continue past any ending the module generates — 먹어서, 먹었는데. The honorific's whole difficulty is in the joint between stem and ending: 있다 takes 계세요, a consonant stem takes 으세요, an ㄹ stem drops the ㄹ. Injecting 있세요, 만들세요, 듣으세요 and 먹시어요 produced a green run.  A form wearing the honorific is now held to the honorific. All four are reported; the corpus's own five honorific forms — 따라오세요, 건강하세요, 안녕하세요, 편찮으세요, 엄하세요 — still pass. | Done. |
 | **I-88** | The paragraph was written when a simulation was planned and survived when it was not. It now runs: 12,800 four-option questions drawn from all 3,221 taught words, asked of every interface language through `strictMeaning`'s rule — the learner's own pack or nothing. 5,694 askable, 7,106 refused for want of a meaning, and no option resolved outside the learner's own language. It also asserts the routing, which is where the defect I-44 records actually lived; pointing `contentLocale` at English for a language the corpus has fails it.  A byte-comparison against the English string was tried and removed: it flags 두부 "tofu", 김치 "kimchi" and 택시 "taxi" in every Latin pack, because a loanword is the same word in both languages. | Done. |
 | **I-90** | The previous pass added 치닫 to `D_IRREGULAR`, which fixed the module and the editorial pack. The bank had been built before that change and nothing rebuilt it, so `leveltest:ambiguity` reported `wrong-conjugation` on the shipped artefact. Rebuilt: 4,166 items, 566 contextual, and the 22 expanded languages rise from 645 reachable items to 1,021. | Done. The class — a generated artefact older than the rule that generated it — is the same one `release:current` exists for at the package level. |
-| **I-96** | Found by comparing each partial pack's example translations against each other and against the English pack: fourteen groups where two or three words in one language shared a sentence. Two are shared in English too and are correct — 걷다 and 공원 both give "I walk in the park", 감사하다 and 고맙다 both give "Thank you for helping me". The other twelve were introduced this cycle.  One was a plain mistranslation rather than a flattening: Kyrgyz gave 그림을 그려요 and 사진을 찍어요 the same sentence, and сүрөт тартуу is drawing where photographing is сүрөткө тартуу.  70 rows rewritten across all 22 languages. The check that found it is three lines, and it belongs to the class this cycle keeps returning to: content compared with itself shows nothing, and content compared with a reference that does make the distinction shows all of it. | Done for the core band. The same comparison would be worth running against the ten complete packs, which have 2,621 more words each and have never had it. |
+| **I-96** | Found by comparing every pack's example translations against each other and against the English pack, which does make these distinctions. The check is three lines and had never been run.  **In the twenty-two partial packs**, written this cycle: 14 colliding groups, 12 of them wrong. 70 rows rewritten. One was a plain mistranslation rather than a flattening — Kyrgyz gave 그림을 그려요 and 사진을 찍어요 the same sentence, and сүрөт тартуу is drawing where photographing is сүрөткө тартуу.  **In the eight complete non-English packs**, shipped for several cycles and never checked this way: 66 colliding groups. 41 of them said materially different things — an email against a text message, a cup against a pane, attending school against going to it, an active against a passive, three registers of thank-you under one sentence — and 138 rows were rewritten across ja, zh-CN, es, fr, de, pt-BR, th and vi.  **25 groups are left and are deliberate.** They are near-synonym pairs the target language merges: 멈추다 and 정지 are both *el coche se detuvo*, 종일 and 내내 are both *todo el día*, 오래 and 오랫동안 are both *lange*. Inventing a distinction the language does not make would be worse than sharing a sentence, and the English pack itself shares 27 sentences for the same reason.  The gate that caught the last two rows was `examples:qa`, and it caught *this* work: two new Portuguese sentences invented a feminine subject for a Korean sentence that names nobody. Rewritten without the pronoun. | Done. The comparison is worth keeping as a gate rather than as a one-off; it is not one yet, because deciding which merges are legitimate needs a speaker of the language and that is I-17. |
 | **I-43** | Kept as the record of a decision that was made and then reversed. Expanding to a hundred solved the repetition and introduced app-authored copy into a slot a reader takes for quotation; **I-47** cut it back to twenty, all named and all citable, and changed the selection from a persisted daily pin to a fresh line on every open. The intermediate state shipped in no release. |  |
 | **I-89** | `hints:qa` reported both. The labels were renamed rather than the glosses, because the gloss is the word being taught: *Адамдар жана туугандар* and *Ta'lim va mehnat*. 0 leaking and 0 useless rungs afterwards. | Done. |
 | **I-91** | `runs short and says so` asserted that ten days of level-1 recommendations cannot be filled, which was true while level 1's reachable pool held 93 words. The core-band work took it to 102 and the ten days filled. The demand is now set past whatever the pool holds — thirty days at the thin end — and the assertion is the invariant it always meant: the gap is reported as a deficit, and every word still comes from inside the zone. | Done. |
