@@ -215,58 +215,64 @@ export function buildDailyQuestions(
      * Order matters. The planned step is tried first and always wins, so no
      * learner in a complete language sees a different sitting because of this.
      */
-    const spec = STEP_EXERCISE[scheduled.step];
-    const exercise = buildExercise(
-      {
-        kind: 'word',
-        itemKey: word.id,
-        skill: spec.skill,
-        mode: spec.mode,
-        // The daily session is not the scheduler, and these fields are the
-        // scheduler's reasoning. They are filled with neutral values rather
-        // than invented ones: nothing downstream reads them for a daily
-        // question, and a fabricated priority would be a number that looked
-        // like evidence.
-        priority: 0,
-        recall: 0,
-        partner: null,
-        intervene: false,
-        need: 'due',
-      },
-      meaningOf,
-      // The position, so a learner who leaves and returns gets the options in
-      // the same places. A reshuffle on resume makes progress unreadable.
-      index + 1,
-      label,
-    );
-    const fallback =
-      exercise ??
-      (scheduled.step === 'build'
-        ? null
-        : buildExercise(
-            {
-              kind: 'word',
-              itemKey: word.id,
-              skill: STEP_EXERCISE.build.skill,
-              mode: STEP_EXERCISE.build.mode,
-              priority: 0,
-              recall: 0,
-              partner: null,
-              intervene: false,
-              need: 'due',
-            },
-            meaningOf,
-            index + 1,
-            label,
-          ));
-    if (!fallback) continue;
+    /*
+     * The planned step, then every other askable shape, in a fixed order.
+     *
+     * The chain used to be *planned step, then `build`, then nothing*, and the
+     * gap mattered for retries: a retry step is chosen by preference rather
+     * than from the plan, so it can name an exercise this word cannot support
+     * — a `context` for a word whose sentence has no valid gap-fill — and with
+     * only `build` behind it, a one-syllable word fell through both and the
+     * question was silently dropped. A dropped retry is a word that stays owed
+     * with nothing left to ask, which is the stuck-at-9/10 class. Any word
+     * that was ever asked has at least one buildable shape, and this chain
+     * reaches it.
+     */
+    const candidates: Exclude<WordStep, 'intro' | 'match'>[] = [];
+    for (const step of [scheduled.step, 'build', 'meaning', 'produce', 'context'] as const) {
+      if (step === 'match' || step === 'intro') continue;
+      if (!candidates.includes(step)) candidates.push(step);
+    }
+
+    let built: { step: Exclude<WordStep, 'intro' | 'match'>; exercise: Exercise } | null = null;
+    for (const step of candidates) {
+      const spec = STEP_EXERCISE[step];
+      const exercise = buildExercise(
+        {
+          kind: 'word',
+          itemKey: word.id,
+          skill: spec.skill,
+          mode: spec.mode,
+          // The daily session is not the scheduler, and these fields are the
+          // scheduler's reasoning. They are filled with neutral values rather
+          // than invented ones: nothing downstream reads them for a daily
+          // question, and a fabricated priority would be a number that looked
+          // like evidence.
+          priority: 0,
+          recall: 0,
+          partner: null,
+          intervene: false,
+          need: 'due',
+        },
+        meaningOf,
+        // The position, so a learner who leaves and returns gets the options in
+        // the same places. A reshuffle on resume makes progress unreadable.
+        index + 1,
+        label,
+      );
+      if (exercise) {
+        built = { step, exercise };
+        break;
+      }
+    }
+    if (!built) continue;
 
     out.push({
       word,
-      step: fallback.mode === 'build' ? 'build' : scheduled.step,
+      step: built.step,
       completesWord: scheduled.completesWord,
       completes: scheduled.completes,
-      exercise: fallback,
+      exercise: built.exercise,
     });
   }
 

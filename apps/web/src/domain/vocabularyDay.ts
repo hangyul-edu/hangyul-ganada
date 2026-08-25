@@ -696,11 +696,11 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
  * long one. That measures short-term memory of a layout. A different exercise
  * on the same taught sense measures the word.
  *
- * The order is fixed rather than random so a session is reproducible: the step
- * that was failed is dropped to the end of the preference list, and the first
- * one the word can actually support is used. `buildDailyQuestions` still drops
- * anything that cannot be built into a fair question, so a word with no example
- * sentence never gets a `context` retry.
+ * The order is fixed rather than random so a session is reproducible: easiest
+ * first, skipping the step that was failed whenever an alternative exists.
+ * `buildDailyQuestions` substitutes the nearest buildable exercise when the
+ * chosen one cannot be built for this word in this language, so a word with no
+ * example sentence never actually shows a `context` retry.
  */
 const RETRY_ORDER: readonly Exclude<WordStep, 'intro' | 'match'>[] = [
   'meaning',
@@ -731,9 +731,18 @@ export function retrySteps(
     .filter((word) => !done.has(word.wordId))
     .map((word) => {
       const missed = failed.get(word.wordId);
-      const supported = RETRY_ORDER.filter((step) => word.steps.includes(step));
-      const pool = supported.length > 0 ? supported : (['meaning'] as const);
-      const step = pool.find((candidate) => candidate !== missed) ?? pool[0]!;
+      /*
+       * Any check is a fair retry, not only the ones the plan happened to
+       * schedule. The pool used to be filtered to `word.steps`, and a new word
+       * owes exactly one check — so a learner who missed 엄마's meaning
+       * question was shown 엄마's meaning question again, which is the
+       * identical-multiple-choice the paragraph above promises not to ask.
+       * The preference order runs easiest first, the missed step is skipped
+       * whenever an alternative exists, and `buildDailyQuestions` substitutes
+       * the nearest buildable exercise if the preferred one cannot be built
+       * for this word in this language.
+       */
+      const step = RETRY_ORDER.find((candidate) => candidate !== missed) ?? RETRY_ORDER[0]!;
       return {
         wordId: word.wordId,
         step,

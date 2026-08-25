@@ -11,7 +11,7 @@ import { endsSession, retrySteps, scheduleSteps, sessionProgress, type WordStep 
 import { BuildExercise } from '../features/review/BuildExercise';
 import { ChoiceExercise } from '../features/review/ChoiceExercise';
 import { WordIntro } from '../features/learning/WordIntro';
-import { buildDailyQuestions } from '../features/vocabulary/dailyQuestions';
+import { buildDailyQuestions, type DailyQuestion } from '../features/vocabulary/dailyQuestions';
 import { MatchExercise } from '../features/vocabulary/MatchExercise';
 import { SessionCompleteModal } from '../features/session/SessionCompleteModal';
 import { useStudyClock } from '../features/session/useStudyClock';
@@ -60,6 +60,33 @@ import styles from './SessionPage.module.css';
  * were left. The queue is rebuilt from the *stored* plan on every mount rather
  * than held in a ref, which is what makes that true without a save-on-exit.
  */
+/**
+ * The word ids pressing Continue on this screen credits to the day.
+ *
+ * The one place the crediting rule is written, read by both `advance` (which
+ * does the crediting) and `isLast` (which predicts it for the button label), so
+ * the two can never disagree about whether the session is over.
+ *
+ * - A question credits the words it completes **that were answered correctly**
+ *   — per word, because a matching grid answers about four at once and can be
+ *   right about three of them.
+ * - An introduction credits whatever `completes` carries. For a word with any
+ *   askable question that is nothing (§26 — viewing is not learning). For a
+ *   word with none — a partial-locale learner meeting a one-syllable word the
+ *   pack has no meaning for — `repairCompletion` makes the intro the word's
+ *   whole obligation, and refusing to credit it would leave the day stuck one
+ *   short with nothing left to answer.
+ */
+export function creditsFor(
+  question: DailyQuestion | undefined,
+  answered: { correct: readonly string[]; wrong: readonly string[] } | null,
+): string[] {
+  if (!question) return [];
+  if (question.step === 'intro') return [...question.completes];
+  if (!answered) return [];
+  return question.completes.filter((id) => answered.correct.includes(id));
+}
+
 export function WordSessionPage() {
   const navigate = useNavigate();
   const {
@@ -158,14 +185,27 @@ export function WordSessionPage() {
   const [index, setIndex] = useState(0);
   const [finished, setFinished] = useState(false);
   /**
-   * How the current question was answered, read by `advance`.
+   * How the current screen was answered, per word, read by `advance`.
    *
-   * The two are separate events — `record` fires on the answer, `advance` when
-   * the learner presses on — and the day's counter moves in the second. Before
-   * this it moved unconditionally, so a wrong answer completed the word and a
-   * learner could finish 10/10 having missed two of them. §24, §25.
+   * The two are separate events — the exercise reports on the answer, `advance`
+   * fires when the learner presses on — and the day's counter moves in the
+   * second. Before this it moved unconditionally, so a wrong answer completed
+   * the word and a learner could finish 10/10 having missed two of them. §24,
+   * §25.
+   *
+   * Per **word**, not per screen, because one screen can answer about four
+   * words at once. This was a boolean, and the matching grid could not set it —
+   * its result is *which* words were matched cleanly, not whether "the screen"
+   * went well — so it set nothing, `advance` read null as failure, and every
+   * word a grid completed was silently requeued. A learner whose tenth word
+   * ended on a correctly-answered grid watched the counter hold at 9/10 and
+   * was asked the word again. Null until the current screen has been answered;
+   * an introduction, which asks nothing, leaves it null.
    */
-  const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(null);
+  const [answered, setAnswered] = useState<{
+    correct: readonly string[];
+    wrong: readonly string[];
+  } | null>(null);
   /**
    * Which question each word was missed on, this sitting only.
    *
@@ -250,9 +290,9 @@ export function WordSessionPage() {
         vocabularyDay,
         missed.current,
         queue.length - index - 1,
-        answeredCorrectly === true ? (current?.completes ?? []) : [],
+        creditsFor(current, answered),
       ),
-    [index, queue.length, answeredCorrectly, current, vocabularyDay],
+    [index, queue.length, answered, current, vocabularyDay],
   );
 
   // The next two words' clips, while the learner is still on this one.
@@ -268,7 +308,21 @@ export function WordSessionPage() {
     if (current) recordIntroduced('word', current.word.id);
   }, [current, recordIntroduced]);
 
+  /**
+   * The screen `advance` last acted on.
+   *
+   * A guard, not bookkeeping. `advance` is called from a button, and a fast
+   * double tap runs it twice with the same closed-over `index` before React
+   * has re-rendered. The second run used to credit again (harmless — the store
+   * ignores repeats), inflate `wordsDone`, append the retry pass twice, and
+   * step the index by two — skipping a question the learner never saw. One run
+   * per screen, whatever the input device does.
+   */
+  const advancedFrom = useRef(-1);
+
   const advance = useCallback(() => {
+    if (advancedFrom.current === index) return;
+    advancedFrom.current = index;
     // Counting the word happens here rather than on the answer, so a word is
     // credited once the learner has *seen the result* — and exactly once,
     // because `completeWord` ignores a repeat.
@@ -279,19 +333,24 @@ export function WordSessionPage() {
     // single-word question puts one id in here or none, so there is one path
     // for both kinds and no branch to forget. See `ScheduledStep.completes`.
     /*
-      Only a correct answer completes a word — §24, §25.
-
-      `answeredCorrectly` is null for a step that asks nothing: the introduction
-      card, which teaches and moves on. §23 is explicit that meeting a word is
-      not finishing it, so an intro credits nothing and a learner who reads all
-      ten introductions and answers nothing still reads 0/10.
+      Only a correct answer completes a word — §24, §25 — with one deliberate
+      exception, and it is `creditsFor`'s to make: an introduction whose word
+      has no askable question in this language credits at the intro, because
+      the intro is that word's entire obligation (see `repairCompletion`).
+      Without that, the word could never complete and the day was stuck one
+      short of its goal with nothing left to answer. An intro for a word that
+      *does* have a question still credits nothing — reading ten introductions
+      is still 0/10.
     */
-    const passed = answeredCorrectly === true;
-    if (answeredCorrectly === false && current) {
-      // Remember *how* it was missed, so the retry asks something else.
-      missed.current.set(current.word.id, current.step);
+    const credited = creditsFor(current, answered);
+    if (current && answered) {
+      // Remember *how* each word was missed, so the retry asks something else.
+      // A grid marks every word it caught out; a single question marks its one.
+      for (const wordId of answered.wrong) {
+        missed.current.set(wordId, current.step);
+      }
     }
-    for (const wordId of passed ? (current?.completes ?? []) : []) {
+    for (const wordId of credited) {
       completeDailyWord(wordId);
       setWordsDone((n) => n + 1);
       /*
@@ -311,7 +370,7 @@ export function WordSessionPage() {
        */
       recordRecognition('word', wordId, true);
     }
-    setAnsweredCorrectly(null);
+    setAnswered(null);
 
     if (index + 1 >= queue.length) {
       /*
@@ -325,7 +384,7 @@ export function WordSessionPage() {
         them and this reads the result.
       */
       const owed = retrySteps(
-        { ...vocabularyDay, completed: [...vocabularyDay.completed, ...(passed ? (current?.completes ?? []) : [])] },
+        { ...vocabularyDay, completed: [...vocabularyDay.completed, ...credited] },
         missed.current,
       );
       const next = buildDailyQuestions(owed, meaningOf, label);
@@ -346,7 +405,7 @@ export function WordSessionPage() {
     completeDailyWord,
     completeSession,
     recordRecognition,
-    answeredCorrectly,
+    answered,
     vocabularyDay,
     meaningOf,
     label,
@@ -529,6 +588,18 @@ export function WordSessionPage() {
             fontFamily={textFamily(font)}
             isLast={isLast}
             onAnswered={(results) => {
+              /*
+               * The grid's outcome, per word, for `advance` to credit from.
+               *
+               * This line is the fix for the photographed 9/10: without it the
+               * grid recorded its reviews and told the crediting path nothing,
+               * so every word it completed read as failed and was requeued —
+               * including words the learner had just matched cleanly.
+               */
+              setAnswered({
+                correct: results.filter((r) => r.correct).map((r) => r.wordId),
+                wrong: results.filter((r) => !r.correct).map((r) => r.wordId),
+              });
               for (const result of results) {
                 recordReview({
                   kind: 'word',
@@ -571,7 +642,11 @@ export function WordSessionPage() {
               hintLevel: number;
               responseMs: number;
             }) => {
-              setAnsweredCorrectly(result.correct);
+              setAnswered(
+                result.correct
+                  ? { correct: [current.word.id], wrong: [] }
+                  : { correct: [], wrong: [current.word.id] },
+              );
               return recordReview({
                 kind: 'word',
                 item_key: current.word.id,
