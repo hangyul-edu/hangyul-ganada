@@ -231,8 +231,24 @@ const BUDGETS = {
    * The JavaScript half stopped growing with the corpus, which is the whole
    * point; the corpus half grows with it and is meant to, and the row is where
    * that shows up in one number instead of two.
+   *
+   * **Raised to 1,500 kB, and this is the corpus half doing exactly that.**
+   * The measured total went to 1,454 kB when the twenty-two partial languages
+   * went from 100 words to the whole 600-word core band. Band 1 is the band the
+   * splitter precaches for every language, so 500 words x 22 languages of
+   * meanings, example translations and 38 long definitions each land in this
+   * row and nowhere else. The JavaScript half did not move: 367 kB of it
+   * before and after, against 1,087 kB of corpus.
+   *
+   * Raised rather than trimmed, for the reason the first paragraph gives. The
+   * alternative is to stop precaching twenty-two languages a learner might
+   * actually be using, which is the offline promise, to save 54 kB. The line
+   * that *is* the finding is the projection below it — 3,741 kB at 10,000
+   * words — and it is unchanged in kind: precaching every language stops being
+   * affordable long before the target, and the answer is the learner's own
+   * language plus on-demand, not a smaller pack.
    */
-  total: 1400 * 1024,
+  total: 1500 * 1024,
 };
 
 function gzipSize(path) {
