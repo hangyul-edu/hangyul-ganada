@@ -18,8 +18,7 @@
     "tunedTo": "Chọn cho cấp {{level}}."
   },
   "browse": {
-    "title": "Xem theo chủ đề",
-    "showing": "Đang hiện {{shown}} trên {{total}}"
+    "title": "Xem theo chủ đề"
   },
   "intro": {
     "example": "Ví dụ",

@@ -18,8 +18,7 @@
     "tunedTo": "A(z) {{level}}. szinthez válogatva."
   },
   "browse": {
-    "title": "Böngészés téma szerint",
-    "showing": "{{total}} közül {{shown}} látszik"
+    "title": "Böngészés téma szerint"
   },
   "intro": {
     "example": "Példa",

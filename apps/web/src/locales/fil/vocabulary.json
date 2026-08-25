@@ -18,8 +18,7 @@
     "tunedTo": "Piniling para sa antas {{level}}."
   },
   "browse": {
-    "title": "Maghanap ayon sa paksa",
-    "showing": "Ipinapakita ang {{shown}} sa {{total}}"
+    "title": "Maghanap ayon sa paksa"
   },
   "intro": {
     "example": "Halimbawa",

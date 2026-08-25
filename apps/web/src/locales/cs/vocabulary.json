@@ -22,8 +22,7 @@
     "tunedTo": "Vybrána pro úroveň {{level}}."
   },
   "browse": {
-    "title": "Procházet podle témat",
-    "showing": "Zobrazeno {{shown}} z {{total}}"
+    "title": "Procházet podle témat"
   },
   "intro": {
     "example": "Příklad",

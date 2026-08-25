@@ -18,8 +18,7 @@
     "tunedTo": "Gekozen voor niveau {{level}}."
   },
   "browse": {
-    "title": "Bladeren per onderwerp",
-    "showing": "{{shown}} van {{total}} te zien"
+    "title": "Bladeren per onderwerp"
   },
   "intro": {
     "example": "Voorbeeld",

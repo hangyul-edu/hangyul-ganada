@@ -16,8 +16,7 @@
     "tunedTo": "Dipilih untuk level {{level}}."
   },
   "browse": {
-    "title": "Telusuri per topik",
-    "showing": "Menampilkan {{shown}} dari {{total}}"
+    "title": "Telusuri per topik"
   },
   "intro": {
     "example": "Contoh",

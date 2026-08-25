@@ -18,8 +18,7 @@
     "tunedTo": "{{level}}-daraja uchun tanlangan."
   },
   "browse": {
-    "title": "Mavzu bo‘yicha ko‘rish",
-    "showing": "{{total}} tadan {{shown}} tasi ko‘rinyapti"
+    "title": "Mavzu bo‘yicha ko‘rish"
   },
   "intro": {
     "example": "Namuna",

@@ -20,8 +20,7 @@
     "tunedTo": "Escolhidas para o nível {{level}}."
   },
   "browse": {
-    "title": "Explorar por tema",
-    "showing": "Mostrando {{shown}} de {{total}}"
+    "title": "Explorar por tema"
   },
   "empty": {
     "title": "Ainda não há palavras aqui",

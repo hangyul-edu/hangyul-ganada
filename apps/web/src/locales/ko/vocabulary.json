@@ -16,8 +16,7 @@
     "tunedTo": "레벨 {{level}}에 맞춘 단어예요."
   },
   "browse": {
-    "title": "주제별로 보기",
-    "showing": "{{total}}개 중 {{shown}}개 표시"
+    "title": "주제별로 보기"
   },
   "empty": {
     "title": "여기엔 아직 단어가 없어요",

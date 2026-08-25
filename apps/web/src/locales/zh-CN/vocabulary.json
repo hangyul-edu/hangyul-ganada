@@ -16,8 +16,7 @@
     "tunedTo": "按等级 {{level}} 挑选。"
   },
   "browse": {
-    "title": "按主题浏览",
-    "showing": "显示 {{total}} 个中的 {{shown}} 个"
+    "title": "按主题浏览"
   },
   "empty": {
     "title": "这里还没有词",

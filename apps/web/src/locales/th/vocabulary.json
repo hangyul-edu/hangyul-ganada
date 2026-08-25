@@ -18,8 +18,7 @@
     "tunedTo": "เลือกให้ระดับ {{level}}"
   },
   "browse": {
-    "title": "ดูตามหมวด",
-    "showing": "แสดง {{shown}} จาก {{total}}"
+    "title": "ดูตามหมวด"
   },
   "intro": {
     "example": "ตัวอย่าง",

@@ -26,8 +26,7 @@
     "tunedTo": "مختارة للمستوى {{level}}."
   },
   "browse": {
-    "title": "تصفَّح حسب الموضوع",
-    "showing": "معروض {{shown}} من {{total}}"
+    "title": "تصفَّح حسب الموضوع"
   },
   "intro": {
     "example": "مثال",

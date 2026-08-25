@@ -18,8 +18,7 @@
     "tunedTo": "Für Stufe {{level}} ausgewählt."
   },
   "browse": {
-    "title": "Nach Thema stöbern",
-    "showing": "{{shown}} von {{total}} werden gezeigt"
+    "title": "Nach Thema stöbern"
   },
   "empty": {
     "title": "Hier gibt es noch keine Wörter",

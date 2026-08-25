@@ -18,8 +18,7 @@
     "tunedTo": "Seviye {{level}} için seçildi."
   },
   "browse": {
-    "title": "Konuya göre gez",
-    "showing": "{{total}} kelimeden {{shown}} tanesi"
+    "title": "Konuya göre gez"
   },
   "intro": {
     "example": "Örnek",

@@ -20,8 +20,7 @@
     "tunedTo": "Alese pentru nivelul {{level}}."
   },
   "browse": {
-    "title": "Răsfoiește după temă",
-    "showing": "Se văd {{shown}} din {{total}}"
+    "title": "Răsfoiește după temă"
   },
   "intro": {
     "example": "Exemplu",

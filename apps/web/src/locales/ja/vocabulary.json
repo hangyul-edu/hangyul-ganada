@@ -16,8 +16,7 @@
     "tunedTo": "レベル {{level}} に合わせた単語です。"
   },
   "browse": {
-    "title": "テーマから探す",
-    "showing": "{{total}}語中 {{shown}}語を表示"
+    "title": "テーマから探す"
   },
   "empty": {
     "title": "ここにはまだ単語がありません",

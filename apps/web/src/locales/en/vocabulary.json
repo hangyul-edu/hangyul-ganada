@@ -18,8 +18,7 @@
     "tunedTo": "Chosen for Level {{level}}."
   },
   "browse": {
-    "title": "Browse by topic",
-    "showing": "Showing {{shown}} of {{total}}"
+    "title": "Browse by topic"
   },
   "intro": {
     "example": "Example",

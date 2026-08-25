@@ -1,4 +1,4 @@
-import { useDeferredValue, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
@@ -519,8 +519,11 @@ function SearchResults({
  * which is why there is no "start this category" button here to compete with
  * the day's goal.
  *
- * Capped, because a category of two thousand words is a scroll nobody finishes
- * and a DOM nobody should build. The cap is stated rather than silent.
+ * Every word in the category is reachable. Rendering starts at a page-sized
+ * batch and grows as the learner approaches the bottom — an implementation
+ * detail the screen never mentions, because "Showing 120 of 200" is a fact
+ * about the DOM and not about the category. The one number shown is the size
+ * of the category itself.
  */
 export function WordCategoryPage({ category }: { category: string }) {
   const { t } = useTranslation(['vocabulary', 'common']);
@@ -528,16 +531,43 @@ export function WordCategoryPage({ category }: { category: string }) {
   const { isSaved, toggleSaved } = useLearner();
 
   const words = useMemo(() => wordsByCategory(category), [category]);
-  const shown = words.slice(0, CATEGORY_LIMIT);
+  const [renderCount, setRenderCount] = useState(CATEGORY_BATCH);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+
+  // Grow the list before the learner reaches its end. The sentinel sits under
+  // the last rendered card; a viewport-margin of two screens means the next
+  // batch is usually in the DOM before the scroll arrives, so the growth is
+  // invisible. Falls back to rendering everything where IntersectionObserver
+  // does not exist (old WebViews, some test environments) — a long list is
+  // slower than a grown one, but every word is still there.
+  useEffect(() => {
+    if (renderCount >= words.length) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setRenderCount(words.length);
+      return;
+    }
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setRenderCount((count) => Math.min(count + CATEGORY_BATCH, words.length));
+        }
+      },
+      { rootMargin: '200% 0px' },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [renderCount, words.length]);
+
+  const shown = words.slice(0, renderCount);
 
   return (
     <div className={styles.page}>
       <AppHeader title={t(`vocabulary:categories.${category}`)} />
       <div className={styles.body}>
         <p className={styles.categoryNote}>
-          {words.length > CATEGORY_LIMIT
-            ? t('vocabulary:browse.showing', { shown: shown.length, total: words.length })
-            : t('vocabulary:category.count', { count: words.length })}
+          {t('vocabulary:category.count', { count: words.length })}
         </p>
         <ul className={styles.results}>
           {shown.map((word) => {
@@ -579,21 +609,20 @@ export function WordCategoryPage({ category }: { category: string }) {
             );
           })}
         </ul>
+        {renderCount < words.length && <div ref={sentinelRef} aria-hidden="true" />}
       </div>
     </div>
   );
 }
 
 /**
- * How many of a category's words are rendered.
+ * How many category words are rendered per growth step.
  *
- * A hard cap rather than pagination or virtualisation, because this is a
- * secondary screen and the honest answer to "show me two thousand words" is
- * that nobody reads two thousand words. The count above the list says what was
- * shown and what was not, so the cap is visible rather than a silent truncation
- * that reads as "this is all of them".
+ * The list grows seamlessly as the learner scrolls (see the observer in
+ * `WordCategoryPage`), so this number is about frame budget, not about how
+ * much of the category a learner may see — they can always reach all of it.
  */
-const CATEGORY_LIMIT = 120;
+const CATEGORY_BATCH = 120;
 
 /** Reads the category out of the route. Kept apart so the page stays testable. */
 export function WordCategoryRoute() {

@@ -22,8 +22,7 @@
     "tunedTo": "Dobrane do poziomu {{level}}."
   },
   "browse": {
-    "title": "Przeglądaj według tematu",
-    "showing": "Widać {{shown}} z {{total}}"
+    "title": "Przeglądaj według tematu"
   },
   "intro": {
     "example": "Przykład",

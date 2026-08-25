@@ -18,8 +18,7 @@
     "tunedTo": "Valda för nivå {{level}}."
   },
   "browse": {
-    "title": "Bläddra efter ämne",
-    "showing": "Visar {{shown}} av {{total}}"
+    "title": "Bläddra efter ämne"
   },
   "intro": {
     "example": "Exempel",
