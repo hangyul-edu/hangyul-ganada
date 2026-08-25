@@ -156,11 +156,18 @@ for (const heading of ['English', '한국어', '日本語', '简体中文', 'Esp
   if (!notes.includes(`## ${heading}`)) problems.push(`release notes: no ${heading} section`);
 }
 // Every thousands separator the eight languages use, so a stale count cannot
-// hide behind a comma, a full stop or a space.
-const claimed = [...notes.matchAll(/2[.,\u00a0 ](\d{3})\b/g)].map((match) => Number(match[1]));
+// hide behind a comma, a full stop or a space \u2014 and every thousands *digit*,
+// because the first version of this rule matched only `2,XXX` and went blind
+// the day the corpus crossed three thousand: it certified listings claiming
+// 3,221 over a corpus of 3,220. A word count is any 4-digit-with-separator
+// figure in the customer copy; there is nothing else in the notes that looks
+// like one.
+const claimed = [...notes.matchAll(/\b(\d)[.,\u00a0 ](\d{3})\b/g)].map(
+  (match) => Number(match[1]) * 1000 + Number(match[2]),
+);
 for (const value of new Set(claimed)) {
-  if (2000 + value !== words) {
-    problems.push(`release notes: claims 2,${value} words; the corpus has ${words}`);
+  if (value !== words) {
+    problems.push(`release notes: claims ${value.toLocaleString('en')} words; the corpus has ${words}`);
   }
 }
 for (const pattern of [/\bpicture\b/i, /\billustrat/i, /ilustraci/i, /\bBild\b/, /插图/, /\u7d75/, /그림/]) {
