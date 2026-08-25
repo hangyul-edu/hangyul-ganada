@@ -1325,7 +1325,7 @@ report describes, taken after the last edit rather than before it.
 This has to be said plainly, because a reader who runs one command and sees it
 fail should know why.
 
-`verify:release` is 34 steps, and one of them is `vocabulary:qa:target`:
+`verify:release` is 36 steps, and one of them is `vocabulary:qa:target`:
 
 ```
 1 error(s):
@@ -1337,8 +1337,9 @@ chain so the shortfall cannot be forgotten, and it cannot pass until the corpus
 reaches 10,000 — which is the honest state of the product and the subject of
 §8.3.
 
-The other 33 steps were run individually against this tree and all pass:
-`verify:quick` (29 checks), the store listing, the curriculum export, the fonts,
+The other 35 steps were run individually against this tree and all pass:
+`verify:quick` (31 checks, two more than last cycle — the letter-face gate and
+the two-words-one-sentence gate), the store listing, the curriculum export, the fonts,
 the three jamo and face measurements, the status group, the modals, the 143
 rendered screens, the app icons, the relations, the four content builds, the
 four dictionary gates, the dictionary performance budget, the content and
@@ -2323,8 +2324,9 @@ wrong Korean, or be unable to complete the product's core journey. The one
 data-loss mechanism found in these passes — word ids renaming under saved
 progress — is pinned and negative-tested, and was negative-tested again this
 cycle by renaming 가다 in the ledger and watching the copy packs drop a word.
-The suites run green in full: 1,065 unit cases across three packages, 338
-end-to-end, 143 rendered screens, 256 locale screens, 60/60 on device. The
+The suites run green in full: 1,065 unit cases across three packages — 789 web,
+180 Korean morphology, 96 handwriting — 346 end-to-end, 143 rendered screens,
+256 locale screens, 60/60 on device. The
 letters are checked against a face the app does not draw.
 
 **Why not LAUNCH READY.** Four limitations are real, none is a defect, and a
