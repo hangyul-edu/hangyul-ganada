@@ -133,8 +133,8 @@ without trusting the row.
 | Unobserved words with a written reason | 33 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
 | Issues tracked | 95 | `docs/issues.json` |
-| Signed APK | see §18 | `result/build-info.json` |
-| Signed AAB | see §18 | same |
+| Signed APK | 83.4 MB | `result/build-info.json` |
+| Signed AAB | 81.7 MB | same |
 
 "Characters taught" counts every entry in the curriculum's character table — the
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
@@ -385,15 +385,16 @@ All twenty-one vowels, same three columns. The overlay column is now a single
 purple — the app's ink and the face's ink coincide — for every letter including
 ㅙ and ㅞ.
 
-### And then the screen itself, from the built bundle
+### And then the screen itself, out of the shipped package
 
-Two sheets of geometry are not a screen. These are the writing screens for ㅙ
-and ㅞ, captured from `apps/web/dist` — the same bundle `cap sync` copies into
-the Android package — rather than from a dev server:
+Two sheets of geometry are not a screen, and a screen from a dev server is not
+the product. These two were rendered from **the web bundle unzipped out of
+`result/hangyul-ganada-release.apk`** — the file a customer downloads — served
+back and walked to the writing screen:
 
-![The writing screen for ㅙ, from the built bundle](report-assets/runtime-wae-writing.png)
+![The writing screen for ㅙ, from the shipped APK](report-assets/apk-wae-writing.png)
 
-![The writing screen for ㅞ, from the built bundle](report-assets/runtime-we-writing.png)
+![The writing screen for ㅞ, from the shipped APK](report-assets/apk-we-writing.png)
 
 Four representations of the letter are on each of those screens and §4 of the
 brief asks that they agree: the reference glyph beside the romanisation, set in
@@ -401,6 +402,15 @@ the face; the tracing guide on the canvas; the stroke demonstration under *Watch
 it written*; and the numbered stroke order on it. They agree — the ㅜ's bar meets
 the ㅔ's first upright, the two uprights stand close, the crossbar reaches the
 second, and the numbers run 1–5 in the order a hand makes them.
+
+The same package, installed and opened on an emulated Pixel 7, reaches the same
+lesson from the Letters tab:
+
+![The combined vowels lesson on the emulator, from the installed release build](report-assets/device-combined-vowel.png)
+
+That is ㅘ rather than ㅙ — the lesson opens at its first letter — and it is the
+same fix: the ㅗ's bar reaches the ㅏ, the four strokes are numbered in the order
+a hand makes them, and the reference glyph beside *wa* reads as one letter.
 
 ### The gate that would have caught it
 
@@ -1150,40 +1160,60 @@ on an emulated Pixel 7, Android 16, software-rendered.
 
 ## 18.1 The delivered artefact, installed and walked — **VERIFIED**
 
-Not a debug build: the signed `app_result/hangyul-ganada-release.apk`.
+Not a debug build: the signed `result/hangyul-ganada-release.apk`, installed on
+an emulated Pixel 7 with `adb install -r` and opened.
 
-* Home renders complete — brand, Unit 1 card, Letters and Words tiles, the
-  vocabulary-level row, the quote, the tab bar.
-* The lesson opens on its explainer, the demonstration draws ㅏ with numbered
-  strokes and its sound, the canvas shows the guide with Undo, Clear and Check
-  correctly disabled.
-* Two swipes and Check produced the §7 fix on a real device: the verdict panel
-  spanning the full content width, edges level with the canvas above it.
-* Words renders the hub and the topic browse. Searching *dragon* returns **1
-  match** — 용, authored in this cycle's third batch — so the expansion is in
-  the delivered binary and not merely in the repository.
+* Home renders complete — brand, the Unit 1 card with its six vowels, Letters
+  and Words tiles, the vocabulary-level row, the Cicero quote, the tab bar.
+* Letters reaches **Unit 10, *The combined vowels*, 0/7**, and its seven chips
+  — ㅘ ㅝ ㅚ ㅟ ㅙ ㅞ ㅢ — each read as one letter at chip size.
+* Opening it shows the demonstration with four numbered strokes, the sound
+  button, *like wa in "wander"*, and a *Write it* button. That screen is §7.2 on
+  a device: the ㅗ's bar reaches the ㅏ and the letter is one shape.
 * `logcat` carries no `FATAL`, no `AndroidRuntime` and no ANR naming
-  `com.talkhangyul.ganada`. The emulator's own SystemUI did ANR twice under
-  software rendering, which is the emulator and not the app.
+  `com.talkhangyul.ganada`.
+
+**And the package was read rather than trusted.** `unzip -p` on the APK, against
+the tree it claims to be built from:
+
+```
+  ok  taught words in the corpus manifest    3,221  =  3,221
+  ok  corpus bands                               5  =      5
+  ok  locales in band 1                         32  =     32
+  ok  Uzbek meanings in band 1                 600  =    600
+  ok  Uzbek long definitions in band 1          38  =     38
+  ok  level-test items                       4,166  =  4,166
+  ok  level-test reach, Uzbek                1,021  =  1,021
+  ok  audio entries                          6,555  =  6,555
+  ok  ㅙ's second upright in stroke-geometry-oFDEPQa4.js
+```
+
+The last line is the one worth explaining. `93.9` is the x-position of ㅙ's
+second upright in the re-authored vowel table, a number that exists nowhere in
+the previous geometry; finding it inside the package's own JavaScript chunk is
+how the geometry fix is proven to have arrived, rather than the build being
+believed. The same bundle was then unzipped, served, and walked to the writing
+screens shown in §7.2.
 
 ## 18.2 `mobile:qa` — 14/14 — **VERIFIED**
 
-Capacitor native platform; every asset served from the bundle at
-`https://localhost`; launch screen gone; **progress stored in native SQLite**;
-insets reaching the layout at top 52 px, bottom 24 px and honoured exactly;
-nothing drawn under the system bars; navigation and hardware back working; the
-lesson clip playing once on arrival; the corrected 마디 recording served rather
-than a cached older one; no service worker; no console error during the walk.
+Run against a debug build of the same commit, because WebView debugging is off
+in release and this check talks to the running app through DevTools. Capacitor
+native platform; every asset served from the bundle at `https://localhost`;
+launch screen gone; **progress stored in native SQLite**; insets reaching the
+layout at top 52 px, bottom 24 px and honoured exactly; nothing drawn under the
+system bars; navigation and hardware back working; the lesson clip playing once
+on arrival; **the audio build the device serves is `20260825-89f334b3`**, this
+cycle's, not a cached older one; no service worker; no console error during the
+walk.
 
-## 18.3 `mobile:qa:safe-area` — 60/60, and it was 42/48
+## 18.3 `mobile:qa:safe-area` — 60/60 — **VERIFIED**
 
-Six failures, one check, repeated across six device configurations: the script
-looked for a button called **Trace it** and the interface had renamed it **Write
-it**. That check is the reason the script exists — its comment names the failure
-photograph it was written from — so the thing it was built to watch had not been
-watched since the rename. The web end-to-end suite was updated with the rename
-and this file was missed, which is what a label duplicated in two places
-eventually does.
+Six device configurations of navigation style, theme and text scale, re-run this
+cycle on this build. It was 42/48 two cycles ago because the script looked for a
+button called **Trace it** and the interface had renamed it **Write it** — the
+check that exists for a photographed defect had not been watching the thing it
+was written for. Both are fixed and both were re-run here.
 
 ## 18.4 A false alarm, recorded because it looked serious
 
@@ -1199,30 +1229,34 @@ arbitrarily when two exist — worth knowing, not a customer defect.
 
 Built from HEAD with a clean tree, using the existing production signing
 identity found at `ANDROID_KEYSTORE_PATH`. **No key was generated.** The
-keystore's certificate was read before the build and compared with the
-superseded artefact:
+keystore's certificate was read before the build and compared with the artefact
+being superseded:
 
 ```
-keystore   SHA256 15:7A:2B:B1:…:33:23:DE:BC   CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR
+keystore   SHA256 15:7A:2B:B1:33:F6:AA:3D:…:33:23:DE:BC   CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR
 old APK    157a2bb133f6aa3d…3323debc
 new APK    157a2bb133f6aa3d…3323debc
 ```
 
 | | |
 | --- | --- |
+| Built from | `7f21b034`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
+| Release APK | **83.4 MB**, `e68f7a7803a0180f…d3e51fff` |
+| Release AAB | **81.7 MB**, `40d2cf02d05ecb75…0d98043d` |
 
-The APK grew from 68.0 MB to 76.0 MB across the whole cycle; the difference is
-the audio for the 335 new words. `checksums.sha256` verifies in both `result/`
-and `app_result/`.
+The APK grew from 76.8 MB to 83.4 MB this cycle. The difference is the audio for
+the 273 new words and the core-band packs for twenty-two languages;
+`checksums.sha256` verifies in both `result/` and `app_result/`, and the two
+directories hold byte-identical binaries.
 
 **Two Android permissions, and neither is ever asked for.** The package declared
-five before this cycle — the notification, boot and wake-lock permissions that
-the optional daily reminder brought with it. The reminder was removed and they
-went with it, leaving INTERNET, which the WebView bridge needs to serve the
+five before an earlier cycle — the notification, boot and wake-lock permissions
+that the optional daily reminder brought with it. The reminder was removed and
+they went with it, leaving INTERNET, which the WebView bridge needs to serve the
 bundled app over its own origin, and VIBRATE, which is the tap you feel when a
 letter is accepted. Both are granted by Android at install without a prompt, so
 there is no permission dialog anywhere in this product. `aapt2 dump permissions`
@@ -1249,6 +1283,12 @@ that goes nowhere. Neither repository on this machine declares a learner-facing
 web address for the main Hangyul app; the one occurrence of `https://hangyul.app`
 is a fallback inside a `catch` in a billing modal. Inventing a destination would
 ship a link to a page that may not exist (I-03).
+
+**Re-checked this cycle**, because a blocked issue is the easiest kind to carry
+forward without looking: `VITE_HANGYUL_URL` is unset in the environment this
+package was built in, and nothing in this repository declares a value for it.
+The brief for this pass said in as many words not to invent one. None was
+invented, and the hand-off stays hidden rather than pointing at a guess.
 
 ---
 
