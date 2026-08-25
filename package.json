@@ -81,6 +81,8 @@
     "conjugation:qa:check": "tsx scripts/conjugation-qa.mjs --check",
     "conjugation:display:qa": "tsx scripts/conjugation-display-qa.mjs",
     "conjugation:display:qa:check": "tsx scripts/conjugation-display-qa.mjs --check",
+    "synthetic:users:qa": "tsx scripts/synthetic-users-qa.mjs",
+    "synthetic:users:qa:check": "tsx scripts/synthetic-users-qa.mjs --check",
     "leveltest:ambiguity": "tsx scripts/level-test-ambiguity-qa.mjs",
     "leveltest:ambiguity:check": "tsx scripts/level-test-ambiguity-qa.mjs --check",
     "dailyvocab:qa": "tsx scripts/daily-vocabulary-qa.mjs",

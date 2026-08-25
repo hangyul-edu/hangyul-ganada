@@ -238,6 +238,23 @@ export interface DayRequest {
   dayIndex?: number;
   /** Word ids introduced in the last fortnight. Not offered as new again. */
   recentlyIntroduced?: ReadonlySet<string>;
+  /**
+   * Whether the session can ask this word anything in the learner's language.
+   *
+   * A *met* word — weak or due — owes only questions, and a question needs
+   * either a meaning in the learner's own pack, a validated gap-fill, or a
+   * word that can be assembled from its syllables. In a partial locale a met
+   * word can have none of those, and scheduling it anyway leaves it owed with
+   * nothing to answer: the day sticks one short forever. New words are exempt
+   * — their introduction is itself worth scheduling, and an unaskable new word
+   * completes at the intro (see `repairCompletion` and `creditsFor`).
+   *
+   * Supplied by the caller because askability depends on the interface
+   * language, which this module deliberately knows nothing about. Absent, no
+   * word is filtered — the behaviour of every complete locale, where every
+   * word has a meaning.
+   */
+  canPractise?: (wordId: string) => boolean;
 }
 
 /**
@@ -290,6 +307,10 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
       // Keep scanning: a later word may be a review, and reviews outrank new.
       continue;
     }
+
+    // A met word the session could not ask in this language is not scheduled:
+    // it would be owed with nothing to answer. See `DayRequest.canPractise`.
+    if (request.canPractise && !request.canPractise(word.id)) continue;
 
     const recall = weakestRecall(memory, word.id, now);
     if (recall < WEAK_RECALL) {

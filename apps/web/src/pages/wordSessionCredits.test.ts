@@ -11,8 +11,7 @@
 import { describe, expect, it } from 'vitest';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
-import type { DailyQuestion } from '../features/vocabulary/dailyQuestions';
-import { creditsFor } from './WordSessionPage';
+import { creditsFor, type DailyQuestion } from '../features/vocabulary/dailyQuestions';
 
 const word = { id: 'w1', word: '엄마' } as unknown as VocabularyWord;
 

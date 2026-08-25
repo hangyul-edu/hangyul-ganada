@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type {
   ActivityEvent,
   ItemProgress,
@@ -16,6 +16,7 @@ import {
   corpusReady,
   corpusTotal,
   findWordByHeadword,
+  getWord,
   usesKnownLetters,
 } from '../data/vocabulary';
 import {
@@ -37,6 +38,9 @@ import { applyAnswer, listMistakes } from '../domain/mistakes';
 import { resolvePlan, type PracticePlan } from '../domain/plan';
 import { summarise, todaysPractice, type ExerciseMode } from '../domain/review';
 import { canAsk } from '../features/review/exercises';
+import { canPractise } from '../features/vocabulary/dailyQuestions';
+import { strictMeaning } from '../data/wordCopy';
+import { LocaleContext } from '../i18n/LocaleContext';
 import {
   emptyPlan,
   buildDailyPlan,
@@ -874,6 +878,27 @@ export function LearnerProvider({
   }, [state.settings.level_test, state.progress]);
 
   /**
+   * Whether the daily session could ask this word anything in the learner's
+   * language. Threaded into the plan builder so a met word with no askable
+   * question in a partial locale is not scheduled — scheduled anyway it stays
+   * owed with nothing to answer, and the day sticks one short forever. See
+   * `DayRequest.canPractise`.
+   */
+  // Read leniently rather than through `useLocale`, because store tests mount
+  // this provider without a LocaleProvider. English is the right default there:
+  // it is a complete locale, where every word is practisable and the filter is
+  // a no-op — exactly the behaviour those tests pin.
+  const locale = useContext(LocaleContext)?.locale ?? 'en';
+  const canPractiseWord = useCallback(
+    (wordId: string) => {
+      const word = getWord(wordId);
+      if (!word) return false;
+      return canPractise(word, (w) => ({ value: strictMeaning(w, locale) ?? '', locale }));
+    },
+    [locale],
+  );
+
+  /**
    * Whether the level being used was measured, defaulted, or never asked about.
    *
    * Three states and not two, because "Level 1" means something different in
@@ -925,6 +950,7 @@ export function LearnerProvider({
       seed: state.settings.content_seed,
       dayIndex: state.settings.active_days.length,
       recentlyIntroduced: recentlyIntroduced(state.progress, now),
+      canPractise: canPractiseWord,
     });
     /*
      * A short plan means one of two things, and only one of them is worth
@@ -1016,6 +1042,7 @@ export function LearnerProvider({
         goal: prev.settings.daily_word_goal,
         soundFree: prev.settings.sound_free,
         now: new Date(),
+        canPractise: canPractiseWord,
       });
       if (next === plan) return prev;
       const settings = { ...prev.settings, daily_plan: next };

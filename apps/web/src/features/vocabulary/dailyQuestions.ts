@@ -310,3 +310,69 @@ function repairCompletion(questions: DailyQuestion[]): DailyQuestion[] {
     return { ...question, completes, completesWord: completes.includes(question.word.id) };
   });
 }
+
+/**
+ * The word ids pressing Continue on this screen credits to the day.
+ *
+ * The one place the crediting rule is written, read by both `advance` (which
+ * does the crediting) and `isLast` (which predicts it for the button label), so
+ * the two can never disagree about whether the session is over.
+ *
+ * - A question credits the words it completes **that were answered correctly**
+ *   — per word, because a matching grid answers about four at once and can be
+ *   right about three of them.
+ * - An introduction credits whatever `completes` carries. For a word with any
+ *   askable question that is nothing (§26 — viewing is not learning). For a
+ *   word with none — a partial-locale learner meeting a one-syllable word the
+ *   pack has no meaning for — `repairCompletion` makes the intro the word's
+ *   whole obligation, and refusing to credit it would leave the day stuck one
+ *   short with nothing left to answer.
+ */
+export function creditsFor(
+  question: DailyQuestion | undefined,
+  answered: { correct: readonly string[]; wrong: readonly string[] } | null,
+): string[] {
+  if (!question) return [];
+  if (question.step === 'intro') return [...question.completes];
+  if (!answered) return [];
+  return question.completes.filter((id) => answered.correct.includes(id));
+}
+
+/**
+ * Whether the daily session can ask this word anything **in this language**.
+ *
+ * `canAsk` on the review side deliberately uses a stub meaning, because review
+ * answerability is structural. The daily session is not so lucky: a partial
+ * locale has meanings for its core band only, `strictMeaning` correctly
+ * refuses the rest, and a *review* word — one with no introduction left to
+ * credit it — that also has no gap-fill and cannot be assembled (one syllable,
+ * or five) has no question at all. Scheduled anyway, it stays owed forever and
+ * the learner's day sticks at 9/10 with nothing left to answer. The plan
+ * builder threads this probe through `DayRequest.canPractise` so such a word
+ * is simply not scheduled for consolidation today.
+ *
+ * It probes with the very builder the session uses, so it cannot drift from
+ * what the session can actually show.
+ */
+export function canPractise(word: VocabularyWord, meaningOf: MeaningOf): boolean {
+  for (const step of ['meaning', 'context', 'build'] as const) {
+    const spec = STEP_EXERCISE[step];
+    const exercise = buildExercise(
+      {
+        kind: 'word',
+        itemKey: word.id,
+        skill: spec.skill,
+        mode: spec.mode,
+        priority: 0,
+        recall: 0,
+        partner: null,
+        intervene: false,
+        need: 'due',
+      },
+      meaningOf,
+      1,
+    );
+    if (exercise) return true;
+  }
+  return false;
+}
