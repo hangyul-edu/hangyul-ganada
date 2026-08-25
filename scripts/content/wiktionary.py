@@ -392,10 +392,32 @@ def _examples(body: str) -> list[Example]:
         if not translation and len(positional) > 1:
             translation = positional[1]
         korean = _CAPITAL_MARK.sub("", korean).strip()
+        korean = _strip_interlinear_hyphens(korean)
         translation = clean_markup(translation).strip()
         if korean and translation:
             out.append(Example(korean=korean, translation=translation))
     return out
+
+
+#: Interlinear-gloss hyphens that survive into a Korean example sentence.
+#:
+#: Wiktionary's usex templates mark morpheme boundaries with `&hyphen;`, and
+#: entities decode *after* `_MORPHEME_JOIN` runs (deliberately — see the note
+#: in `clean_markup` about 그리스-로마 in glosses). In a Korean **sentence**
+#: nothing legitimate survives that ordering: 죽었--네, 김-일성, 새끼들-아 and
+#: `흡연- 구역` are all interlinear notation, not orthography — an audit of all
+#: 3,830 shipped examples found roughly two hundred carrying it and not one
+#: genuine in-sentence hyphen. So a Korean example closes up every hyphen run
+#: between Hangul syllables, and drops a run that hangs off a syllable into
+#: space or punctuation.
+_INTERLINEAR_AFTER = re.compile(r"([가-힣'\"”’)\]])-{1,3}")
+_INTERLINEAR_BEFORE = re.compile(r"-{1,3}(?=[가-힣])")
+
+
+def _strip_interlinear_hyphens(korean: str) -> str:
+    korean = _INTERLINEAR_AFTER.sub(r"\1", korean)
+    korean = _INTERLINEAR_BEFORE.sub("", korean)
+    return korean
 
 
 def _is_named(arg: str) -> bool:

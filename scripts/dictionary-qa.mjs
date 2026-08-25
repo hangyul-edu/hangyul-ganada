@@ -267,6 +267,13 @@ for (const [name, { file }] of Object.entries(manifest.chunks)) {
         if (example.korean.includes('^')) {
           fail(`${sense.senseId} has a transliteration caret in its example`);
         }
+        // Interlinear-gloss hyphens: 죽었--네, 김-일성, 새끼들-아. Notation,
+        // not orthography — an audit of every shipped example found no genuine
+        // in-sentence hyphen, so any hyphen touching a Hangul syllable in an
+        // example is markup the ingestion failed to strip.
+        if (/[가-힣]-|-[가-힣]/.test(example.korean)) {
+          fail(`${sense.senseId} has an interlinear hyphen in its example: ${example.korean}`);
+        }
         if (REFUSED.has(example.korean.trim())) {
           fail(
             `${sense.senseId} still ships a sentence a reviewer refused: ${example.korean} — ` +
