@@ -1382,6 +1382,30 @@ rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the
 shared setup, with the reasoning written there. A genuine hang still fails, five
 seconds later, with the same message.
 
+## 19.5c A spec that pinned a word the syllabus then taught
+
+`dictionary.spec.ts` exists to prove that search reaches the 30,282-word
+dictionary and not only the taught corpus, so it needs a headword the dictionary
+has and the syllabus does not. That constant has now broken twice.
+
+나가다 was the first choice and turned out to be *taught*, so the dedupe
+correctly hid it from the results and the test failed for the one reason that
+meant the feature was working. 가지 replaced it, survived three cycles, and this
+cycle's vocabulary batch taught it — so the click landed on the word card and
+the dictionary entry never opened.
+
+**There is no safely untaught headword in a product whose plan is to grow the
+syllabus toward ten thousand words.** The spec now reads the shipped dictionary
+index and the shipped corpus and picks the most frequent Hangul headword that is
+in the first and not in the second and carries at least three senses. Frequency
+so the choice is a real word; three senses so the disclosure has something to
+disclose. The assertion that the disclosure opened reads the last sense's gloss
+out of the same entry rather than naming 가지's aubergine.
+
+Deterministic, because the inputs are files: the same tree picks the same word
+every time, and a tree that teaches that word picks the next one instead of
+failing.
+
 ## 19.5b A test that measured the corpus instead of the code
 
 `runs short and says so` asserted that ten days of level-1 recommendations
@@ -1900,12 +1924,14 @@ Still model-written, still unread by a speaker, still PARTIAL.
 French translation inventing a gender the Korean does not have — the same class
 as the previous cycle's 125, arriving again in fresh content. §9.2.
 
-**6. Six gates found six more things.** A level-test bank older than the rule
+**6. Seven gates found seven more things.** A level-test bank older than the rule
 that built it (I-90); two category labels naming the answer they hinted at
 (I-89); nineteen new words the frequency corpora never saw, each now explained
 against the corpora rather than assumed (§8.5); a unit test asserting a shortage
 instead of the behaviour under one (I-91); an offline precache 4% over budget,
-raised with the arithmetic written beside it (I-92).
+raised with the arithmetic written beside it (I-92); a one-second test timeout
+the corpus grew past (I-93); and an end-to-end spec pinned to a word the
+syllabus then taught, for the second time in three cycles (I-94).
 
 **What none of it did.** No native speaker read anything. The corpus is 32% of
 its stated target. The hand-off has no destination and none was invented. Those
