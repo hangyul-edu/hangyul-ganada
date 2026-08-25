@@ -167,6 +167,42 @@ export interface StreakSummary {
  * punishes people for the hour they happen to practise. `longest` is a plain
  * historical maximum and never shrinks.
  */
+/**
+ * The one place a streak day is defined.
+ *
+ * A streak day is **a day with any recorded study activity**: an attempt, a
+ * completed item (both land in `settings.active_days` via `trackActivity`), or
+ * measured time on a session screen (which lands in the activity map via
+ * `recordStudyTime` and nowhere else). The union covers both, and both screens
+ * that show a current streak read it through here.
+ *
+ * Why a union rather than one of the two: the two stores are written by
+ * different events. Opening a session and studying the introduction cards for
+ * a minute writes study time but no attempt, so that day exists in the
+ * activity map and not in `active_days`. Before this function, Home computed
+ * its streak from `active_days` and the Activity screen from the activity map
+ * — and a learner with three such days read "4 days" on Home under a
+ * "7 days in a row" on the very next screen. Same learner, same history, two
+ * answers. One definition, used everywhere, is the fix; which store a day
+ * happens to be recorded in is an implementation detail no learner should be
+ * able to observe.
+ */
+export function studyDays(activity: ActivityMap, activeDays: readonly string[]): string[] {
+  return [...new Set([...Object.keys(activity), ...activeDays])];
+}
+
+/**
+ * Streak figures every screen shares. See `studyDays` for the definition of a
+ * day; see `streakSummary` for the arithmetic.
+ */
+export function learningStreak(
+  activity: ActivityMap,
+  activeDays: readonly string[],
+  now: Date,
+): StreakSummary {
+  return streakSummary(studyDays(activity, activeDays), now);
+}
+
 export function streakSummary(dates: readonly string[], now: Date): StreakSummary {
   const unique = [...new Set(dates)].sort();
   if (unique.length === 0) return { current: 0, longest: 0, totalDays: 0 };

@@ -9,7 +9,7 @@ import {
   activitySeries,
   availableRanges,
   calendarMonth,
-  streakSummary,
+  learningStreak,
   type ActivityRange,
 } from '../domain/activity';
 import { weeklyInsights } from '../domain/review';
@@ -64,9 +64,11 @@ export function ActivityPage() {
   const [month, setMonth] = useState(() => ({ year: now.getFullYear(), month: now.getMonth() }));
   const [selected, setSelected] = useState<string | null>(null);
 
+  // The same function Home's chip reads through — see `learningStreak` for
+  // the one definition of a streak day.
   const streak = useMemo(
-    () => streakSummary(Object.keys(activity), now),
-    [activity, now],
+    () => learningStreak(activity, state.settings.active_days, now),
+    [activity, state.settings.active_days, now],
   );
   const series = useMemo(
     () => activitySeries(activity, effectiveRange, now),

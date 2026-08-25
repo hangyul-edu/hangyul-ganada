@@ -33,10 +33,10 @@ import {
   nextLesson,
   REVIEW_SESSION_SIZE,
   reviewQueue,
-  streakDays,
   unitProgress,
   vocabularyProgress,
 } from './progress';
+import { streakSummary } from './activity';
 
 const T0 = new Date('2026-04-10T08:00:00.000Z');
 /** A letter: heard, watched, written once over a guide, and read back. */
@@ -349,11 +349,11 @@ describe('progress figures', () => {
     const today = dateKey(T0);
     const yesterday = dateKey(new Date(T0.getTime() - 86_400_000));
     const dayBefore = dateKey(new Date(T0.getTime() - 2 * 86_400_000));
-    expect(streakDays([dayBefore, yesterday], T0)).toBe(2);
-    expect(streakDays([dayBefore, yesterday, today], T0)).toBe(3);
+    expect(streakSummary([dayBefore, yesterday], T0).current).toBe(2);
+    expect(streakSummary([dayBefore, yesterday, today], T0).current).toBe(3);
     // A gap ends it.
-    expect(streakDays([dayBefore], T0)).toBe(0);
-    expect(streakDays([], T0)).toBe(0);
+    expect(streakSummary([dayBefore], T0).current).toBe(0);
+    expect(streakSummary([], T0).current).toBe(0);
   });
 });
 

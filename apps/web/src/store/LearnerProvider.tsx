@@ -29,7 +29,6 @@ import {
   dateKey,
   knownLetters as computeKnownLetters,
   learnedToday,
-  streakDays,
 } from '../domain/progress';
 import { applyReview, memoryKey, type ItemMemory } from '../domain/memory';
 import type { PlacementStatus } from '../domain/placement';
@@ -49,7 +48,7 @@ import {
 } from '../domain/vocabularyDay';
 import { vocabularyByPriority } from '../data/vocabulary';
 import { nextLesson, lessonProgress } from '../domain/progress';
-import { recordActivity, recordStudyTime as recordStudyTime_ } from '../domain/activity';
+import { learningStreak, recordActivity, recordStudyTime as recordStudyTime_ } from '../domain/activity';
 import { MemoryDriver, type PersistenceDriver } from '../storage/driver';
 import { openDriver } from '../storage/open';
 import {
@@ -1051,7 +1050,10 @@ export function LearnerProvider({
       sessions_completed: state.sessions.filter((s) => s.completed_at).length,
       today_completed: learnedToday(state.progress, now),
       daily_target: state.settings.daily_target,
-      streak_days: streakDays(state.settings.active_days, now),
+      // One streak truth for every screen: `learningStreak` unions the
+      // activity map (study time) with `active_days` (practice events), so
+      // Home and the Activity screen can never disagree about the current run.
+      streak_days: learningStreak(state.activity, state.settings.active_days, now).current,
       selected_font_id: state.settings.selected_font_id,
     };
   }, [state, knownLetters, reviewSummary]);

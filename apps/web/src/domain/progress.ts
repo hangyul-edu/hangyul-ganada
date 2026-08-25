@@ -216,28 +216,10 @@ export function dailyProgress(progress: ProgressMap, target: number, now: Date):
   return fraction(learnedToday(progress, now), Math.max(1, target));
 }
 
-/**
- * Consecutive days ending today, or ending yesterday.
- *
- * Yesterday still counts: a learner who has not practised *yet today* has not
- * broken anything, and a streak that resets at midnight punishes people for
- * the hour they happen to open the app.
- */
-export function streakDays(activeDays: readonly string[], now: Date): number {
-  if (activeDays.length === 0) return 0;
-  const days = new Set(activeDays);
-  const cursor = new Date(now);
-  if (!days.has(dateKey(cursor))) {
-    cursor.setDate(cursor.getDate() - 1);
-    if (!days.has(dateKey(cursor))) return 0;
-  }
-  let streak = 0;
-  while (days.has(dateKey(cursor))) {
-    streak += 1;
-    cursor.setDate(cursor.getDate() - 1);
-  }
-  return streak;
-}
+// The streak arithmetic lives in `domain/activity.ts` (`streakSummary`,
+// `learningStreak`) and only there. A second implementation used to live here
+// and was read by Home while the Activity screen read the other one — two
+// truths for one number, over two different day sets. Do not add one back.
 
 // --- Review ------------------------------------------------------------------
 
