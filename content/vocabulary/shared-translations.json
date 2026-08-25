@@ -1,0 +1,205 @@
+{
+  "_comment": [
+    "Pairs of taught words whose example translations are the same sentence in a",
+    "language, where the English pack distinguishes them.",
+    "",
+    "`vocabulary:translation:qa` reports every such pair and fails on one that is",
+    "not listed here. The point is not that sharing a sentence is wrong — the",
+    "English pack shares 27 of its own — but that it should be a decision. When",
+    "이메일 and 문자 shared one Japanese sentence, an email and a text message were",
+    "being taught as the same thing, and nothing said so for several releases.",
+    "",
+    "Each entry names the languages that merge the pair and why the merge is",
+    "acceptable. The reason is always the same shape: the target language has one",
+    "ordinary word where English has two, and inventing a distinction it does not",
+    "make would read worse than sharing a sentence.",
+    "",
+    "Which merges are legitimate is ultimately a question for a speaker of the",
+    "language, and no speaker has read any of these — see I-17. This file records",
+    "a judgement, not a review."
+  ],
+  "pairs": {
+    "강하다·거세다": {
+      "locales": [
+        "pt-BR"
+      ],
+      "why": "strong and fierce, of wind; Portuguese reaches for forte for both"
+    },
+    "고약하다·불쾌하다": {
+      "locales": [
+        "pt-BR"
+      ],
+      "why": "nasty and unpleasant, of a smell; Portuguese has one ordinary word"
+    },
+    "공원·산책하다": {
+      "locales": [
+        "de",
+        "th",
+        "vi",
+        "zh-CN"
+      ],
+      "why": "walking in the park and taking a walk in the park; only English separates the noun from the activity here"
+    },
+    "구역·지역": {
+      "locales": [
+        "es",
+        "vi"
+      ],
+      "why": "zone and area; one word in Spanish and Vietnamese"
+    },
+    "기다리다·잠깐": {
+      "locales": [
+        "es",
+        "fr",
+        "th"
+      ],
+      "why": "wait a moment and wait just a moment; the intensifier has no idiomatic counterpart"
+    },
+    "기다리다·잠깐만": {
+      "locales": [
+        "vi",
+        "zh-CN"
+      ],
+      "why": "the same pair with the other 잠깐만 sentence"
+    },
+    "끝내다·숙제": {
+      "locales": [
+        "th",
+        "vi"
+      ],
+      "why": "I finished the homework and I finished my homework; the English barely separates them either"
+    },
+    "낮추다·줄이다": {
+      "locales": [
+        "de",
+        "es",
+        "fr",
+        "pt-BR"
+      ],
+      "why": "lower and turn down, of a volume; one verb in these languages"
+    },
+    "내내·종일": {
+      "locales": [
+        "de",
+        "es",
+        "fr",
+        "pt-BR"
+      ],
+      "why": "all day and the whole day"
+    },
+    "대단히·정말": {
+      "locales": [
+        "de"
+      ],
+      "why": "thank you very much indeed and thank you very much"
+    },
+    "되찾다·회복하다": {
+      "locales": [
+        "es",
+        "pt-BR",
+        "zh-CN"
+      ],
+      "why": "got back and recovered, of health"
+    },
+    "들리다·분명히": {
+      "locales": [
+        "vi"
+      ],
+      "why": "I can hear it clearly and I heard it clearly; the modality is not carried"
+    },
+    "막다·차단하다": {
+      "locales": [
+        "th"
+      ],
+      "why": "blocked and blocked off, of a road"
+    },
+    "말다·염려": {
+      "locales": [
+        "de",
+        "fr",
+        "pt-BR"
+      ],
+      "why": "don't worry and don't be concerned"
+    },
+    "멈추다·정지": {
+      "locales": [
+        "es",
+        "fr",
+        "pt-BR",
+        "th",
+        "vi"
+      ],
+      "why": "stopped and came to a stop, of a car"
+    },
+    "모욕하다·욕하다": {
+      "locales": [
+        "es",
+        "fr"
+      ],
+      "why": "insult and badmouth"
+    },
+    "수고하다·애쓰다": {
+      "locales": [
+        "de",
+        "vi"
+      ],
+      "why": "thank you for your hard work and thank you for going to such trouble"
+    },
+    "쉬다·잠시": {
+      "locales": [
+        "zh-CN"
+      ],
+      "why": "rest a little and rest for a moment"
+    },
+    "아무·언제든지": {
+      "locales": [
+        "de",
+        "ja",
+        "pt-BR",
+        "th"
+      ],
+      "why": "come any time and please come any time; the politeness is in the ending, not in the adverb"
+    },
+    "없애다·제거하다": {
+      "locales": [
+        "es",
+        "vi"
+      ],
+      "why": "got rid of and removed, of a stain"
+    },
+    "오래·오랫동안": {
+      "locales": [
+        "de",
+        "vi"
+      ],
+      "why": "a long time and for a long time"
+    },
+    "요청하다·청하다": {
+      "locales": [
+        "fr",
+        "th",
+        "zh-CN"
+      ],
+      "why": "requested and asked for, of help"
+    },
+    "정리하다·치우다": {
+      "locales": [
+        "de",
+        "vi"
+      ],
+      "why": "tidied and cleared, of a desk"
+    },
+    "조심하다·주의하다": {
+      "locales": [
+        "th"
+      ],
+      "why": "be careful and watch out"
+    },
+    "주변·지역": {
+      "locales": [
+        "th"
+      ],
+      "why": "the surroundings and this area"
+    }
+  }
+}
