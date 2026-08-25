@@ -38,6 +38,25 @@
     "유비무환": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
     "동문서답": "a four-character idiom; the corpora hold inflected phrases, not the bare noun",
     "선선하다": "a 하다 adjective; the corpora hold 선선한 and 선선해서, whose ending is fused into the stem syllable",
-    "담백하다": "a 하다 adjective; the corpora hold 담백한 and 담백해서, whose ending is fused into the stem syllable"
+    "담백하다": "a 하다 adjective; the corpora hold 담백한 and 담백해서, whose ending is fused into the stem syllable",
+    "결자해지": "a four-character idiom; neither corpus contains it in any form",
+    "동병상련": "a four-character idiom; neither corpus contains it in any form",
+    "명실상부": "a four-character idiom; neither corpus contains it in any form",
+    "살신성인": "a four-character idiom; neither corpus contains it in any form",
+    "유유상종": "a four-character idiom; neither corpus contains it in any form",
+    "이심전심": "a four-character idiom; neither corpus contains it in any form",
+    "일거양득": "a four-character idiom; the corpora hold only 일거양득이란",
+    "조삼모사": "a four-character idiom; neither corpus contains it in any form",
+    "천고마비": "a four-character idiom; neither corpus contains it in any form",
+    "노심초사": "a four-character idiom; the corpora hold 노심초사했어요 and 노심초사할, the 하다 verb, never the bare noun this card teaches",
+    "다재다능": "a four-character idiom; the corpora hold 다재다능한 and 다재다능하지, never the bare noun",
+    "대동소이": "a four-character idiom; the corpora hold only 대동소이합니다, never the bare noun",
+    "비일비재": "a four-character idiom; the corpora hold only 비일비재하죠, never the bare noun",
+    "반려": "the corpora hold 반려자, 반려동물 and 반려했습니다 — two compounds and the 하다 verb — but never 반려 standing alone, which is the noun this card teaches",
+    "매만지다": "the corpora hold only 매만지기 and 매만지자는; the fold strips neither the nominaliser -기 nor -자는",
+    "불거지다": "a -지다 verb; neither corpus contains any form of it",
+    "빚어지다": "a -지다 verb; neither corpus contains any form of it",
+    "저조하다": "the corpora hold only the adnominal 저조한 (five occurrences, 2018 list). The fold indexes a token by what is left after an ending is stripped, and 저조한 has nothing to strip because the ㄴ is fused into 한 — so it reaches neither the noun table nor the verb one",
+    "지긋하다": "the corpora hold only the adnominal 지긋한 (two occurrences in each list); the fused ㄴ puts it out of the fold's reach, as with 저조하다. 지긋지긋하다, which both corpora do hold, is a different word"
   }
 }
