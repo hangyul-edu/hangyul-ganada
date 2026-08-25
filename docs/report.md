@@ -1326,7 +1326,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 | Web unit (`vitest`) | **810** (53 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
-| End-to-end (`playwright`) | **@@E2E@@** (both projects) |
+| End-to-end (`playwright`) | **346** (both projects) |
 
 The web suite grew by 21 this pass — the streak edge cases, the per-word
 crediting fixtures, and the 2,000-sitting randomized state machine (counted
@@ -1381,11 +1381,12 @@ same reason, and read it from the shipped bundle instead.
 The suite was then run in full again from the final source:
 
 ```
-338 passed (20.2m)
+346 passed (18.1m)
 ```
 
-**338 of 338, no failures, no flakes, no retries** — and that run is the one this
-report describes, taken after the last edit rather than before it.
+**346 of 346, no failures, no flakes, no retries** — and that run is the one
+this report describes, taken after the last product edit rather than before
+it.
 
 ## 19.2 `verify:release` does not pass today, by design — **VERIFIED**
 
@@ -1493,6 +1494,24 @@ the output — and a byte-comparison against the English string was tried inside
 it and removed, because it flags 두부 *tofu*, 김치 *kimchi* and 택시 *taxi* in
 every Latin pack: a loanword is the same word in both languages, and the
 collision is the evidence working.
+
+### This cycle's breakage, and one gate found blind
+
+The gates this pass added were broken on purpose before being believed, and
+one existing gate was caught certifying a stale figure:
+
+| gate | what was broken | what it said |
+| --- | --- | --- |
+| `share:check` | a localhost `og:image`; the tag deleted; the asset deleted; the retired preview referenced; the retired file restored to the build | every one refused, each with its own finding |
+| `conjugation:display:qa` | five broken fixtures — a doubled 주세요, an adjective imperative, a known-bad form, a duplicate surface, the photographed 맞다 request — injected on **every run** | the gate refuses to certify anything unless all five are caught |
+| the dictionary hyphen rule | run against the previous build, before the parser fix | 300+ findings — the strongest form of a negative test, fired on real shipped data |
+| `synthetic:users:qa` | nothing injected — its first run caught a live defect (I-100) | five journeys failing with a learner stuck at 9/10 every day |
+| `store:check` | **found blind**: its word-count rule matched only `2,XXX`, so it certified notes claiming 3,221 over a corpus of 3,220 | widened to any thousands figure; negative-tested by restoring the stale claim |
+
+The `store:check` row is the same lesson as §7.2 one more time: the rule was
+written against the corpus of its day and went quiet the day the corpus
+crossed a digit boundary. A gate that has stopped matching is
+indistinguishable from a gate that is satisfied.
 
 ## 19.5 A gate that was sampling by position
 
@@ -2623,7 +2642,7 @@ ways a day could stick at 9/10 are fixed and pinned — by the per-word
 crediting fixtures, by 2,000 randomized sittings, and by the hundred
 synthetic journeys that found the second of them. The suites run green in
 full: 1,122 unit cases across three packages — 810 web, 216 Korean
-morphology, 96 handwriting — @@E2E@@ end-to-end, 143 rendered screens, 256
+morphology, 96 handwriting — 346 end-to-end, 143 rendered screens, 256
 locale screens, and the hundred journeys. The letters are checked against a
 face the app does not draw, and the conjugation panel against a reading of
 all 1,458 predicates.
