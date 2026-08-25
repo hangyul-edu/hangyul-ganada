@@ -884,8 +884,26 @@ test('a word can be saved, found again, and reviewed from its own list', async (
   const headword = await page.getByTestId('word-headword').textContent();
   expect(headword?.trim()).toBeTruthy();
 
-  // Saving is on the meeting card, where a learner meets the word.
-  await page.getByRole('button', { name: /Save|Saved/ }).first().click();
+  /*
+    Saving is on the meeting card, where a learner meets the word — and the
+    navigation waits for the button to say it happened.
+
+    `click()` then `goto()` leaves the page while the write to IndexedDB is
+    still in flight, and on a loaded machine the navigation wins: the saved-words
+    screen renders "No saved words yet" and the test fails for a save that
+    landed a few milliseconds later.
+
+    `aria-pressed` is what is waited on, and the accessible *name* is why. It
+    goes from "Save 하나" to "Remove 하나 from saved", so a locator written
+    around the word Save stops matching the moment the thing it is watching
+    for happens — the first attempt at this failed with "element(s) not found",
+    which reads like the button vanishing and is the button answering
+    correctly. The pressed state is the same fact without the wording.
+  */
+  const save = page.locator('button[aria-pressed]').first();
+  await expect(save).toHaveAttribute('aria-pressed', 'false');
+  await save.click();
+  await expect(save).toHaveAttribute('aria-pressed', 'true');
 
   await page.goto('/words/saved');
   await expect(page.getByRole('heading', { name: 'Saved words' })).toBeVisible();

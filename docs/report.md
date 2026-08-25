@@ -132,7 +132,7 @@ without trusting the row.
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Unobserved words with a written reason | 33 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
-| Issues tracked | 93 | `docs/issues.json` |
+| Issues tracked | 94 | `docs/issues.json` |
 | Signed APK | see §18 | `result/build-info.json` |
 | Signed AAB | see §18 | same |
 
@@ -214,7 +214,7 @@ the frequency corpora never saw and nobody had explained; a unit test that
 asserted a shortage rather than the behaviour under one, and failed when the
 corpus grew past it; and an offline precache 4% over budget, raised with the
 reason written beside it rather than the packs trimmed to fit. §21 has all of
-them as I-85 … I-94.
+them as I-85 … I-95.
 
 ## What did not change
 
@@ -1395,6 +1395,25 @@ rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the
 shared setup, with the reasoning written there. A genuine hang still fails, five
 seconds later, with the same message.
 
+## 19.5d A spec that left the page while its own save was in flight
+
+`a word can be saved, found again, and reviewed from its own list` clicked Save
+and then navigated to the saved-words screen. The write to IndexedDB is
+asynchronous; on a loaded machine the navigation won, and the screen rendered
+*No saved words yet* about a word that had been saved a few milliseconds
+earlier. That reads exactly like a data-loss defect and is not one.
+
+**The first fix was wrong in a way worth keeping.** It waited for the button to
+read *Saved*, and failed with `element(s) not found`. The button's accessible
+name goes from "Save 하나" to "Remove 하나 from saved", so a locator written
+around the word *Save* stops matching at the exact moment the thing it is
+waiting for happens. It now waits on `aria-pressed` going false → true, which is
+the same fact without the wording.
+
+Fourth timing assumption found this cycle. Each was a clock or a rendering
+standing in for evidence that something had happened, and each grew into a
+failure as the product got bigger rather than as it got worse.
+
 ## 19.5c A spec that pinned a word the syllabus then taught
 
 `dictionary.spec.ts` exists to prove that search reaches the 30,282-word
@@ -2067,6 +2086,7 @@ document they predate.
 | **I-92** | Performance | **P3** | The offline precache went 4% over its budget | A first install downloads 1,454 kB gzipped for offline use instead of the 1,400 kB the budget allowed. Nothing breaks; the number is a promise about how much a learner pays to be able to work on a plane. | **RESOLVED** |
 | **I-93** | Release engineering | **P3** | A one-second test timeout became a false failure as the corpus grew | None. It failed a full release run for a plan that was still being built, which costs the next person a rerun and a doubt. | **RESOLVED** |
 | **I-94** | Release engineering | **P3** | The dictionary end-to-end spec pinned a headword the syllabus then taught | None. It failed the suite for the second time in three cycles for the same reason, and each time the reason was that the product had got better. | **RESOLVED** |
+| **I-95** | Release engineering | **P3** | A journey spec navigated away while the save it had just made was still in flight | None in the product — the save lands. In the suite it produced *No saved words yet* on a screen where a word had been saved a few milliseconds earlier, which reads exactly like a data-loss defect. | **RESOLVED** |
 
 <!-- /issues:what -->
 
@@ -2074,7 +2094,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 4 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 84**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 85**
 
 <!-- /issues:counts -->
 
@@ -2175,6 +2195,7 @@ document they predate.
 | **I-92** | `bundle:budget:check` reported 1454.1 kB / 1400.0 kB. The whole increase is the corpus half: band 1 is the band the splitter precaches in every language, so taking the twenty-two partial languages from 100 words to the 600-word core band put 500 words x 22 languages of meanings, example translations and 38 long definitions each into this one row. The JavaScript half did not move — 367 kB before and after, against 1,087 kB of corpus.  Budget raised to 1,500 kB with the reason written beside it, rather than the packs being trimmed to fit a round figure. Trimming would mean not precaching twenty-two languages a learner might be using, to save 54 kB.  The row that is still a finding is the projection beneath it: 3,741 kB at 10,000 words. It is reported and not enforced, and the answer when it arrives is to precache the learner's own language and fetch the rest on demand — the same band mechanism that already keeps first paint flat at 52.9 kB. | Done for today's size. The projection is tracked by I-04's arithmetic rather than separately. |
 | **I-93** | `open()` in `vocabularyProgress.test.tsx` waits for the day's plan to be built over the whole corpus. At 2,581 words that finished inside testing-library's one-second default on a loaded machine; at 3,221 it did not, and a full `verify:release` — fifty test files, a production build and a Playwright suite competing for the same cores — reported `expected 0 to be greater than 0`. It passed on its own every time.  The third distinct place in this repository where a fixed delay became a false failure as the content grew, after two end-to-end walks. Fixed once rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the shared setup, with the reasoning written there. Nothing in the unit suite measures speed — `perf:dictionary` does that, against a budget, on purpose — and a genuine hang still fails, five seconds later, with the same message. | Done. |
 | **I-94** | `dictionary.spec.ts` exists to prove that search reaches the 30,282-word dictionary and not only the taught corpus, so it needs a headword the dictionary has and the syllabus does not. 나가다 was the first choice and turned out to be taught, so the dedupe correctly hid it and the test failed for the one reason that meant the feature worked. 가지 replaced it, survived three cycles, and this cycle's vocabulary batch taught it — the click landed on the word card and the entry never opened.  There is no safely untaught headword in a product whose plan is to grow the syllabus toward ten thousand words. The spec now reads the shipped dictionary index and the shipped corpus and picks the most frequent Hangul headword that is in the first and not in the second and carries at least three senses — frequency so the choice is a real word, three senses so the disclosure has something to disclose. The assertion that the disclosure opened reads the last sense's gloss out of the same entry instead of naming 가지's aubergine.  Deterministic, because the inputs are files: the same tree picks the same word every time, and a tree that teaches that word picks the next one instead of failing. | Done. |
+| **I-95** | `a word can be saved, found again, and reviewed from its own list` clicked Save and then called `goto('/words/saved')`. The write to IndexedDB is asynchronous and on a loaded machine the navigation won.  The first fix was wrong in an instructive way: it waited for the button to read *Saved*, and failed with `element(s) not found`. The button's accessible name goes from "Save 하나" to "Remove 하나 from saved", so a locator written around the word *Save* stops matching at the exact moment the thing it is waiting for happens. That reads like the button vanishing and is the button answering correctly.  It now waits on `aria-pressed` going false → true, which is the same fact without the wording. Fourth timing assumption found this cycle, after two in the unit suite and one in the e2e walk before them; each was a clock or a rendering standing in for evidence that something had happened. | Done. |
 
 <!-- /issues:how -->
 

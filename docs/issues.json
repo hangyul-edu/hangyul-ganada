@@ -983,6 +983,16 @@
       "customerImpact": "None. It failed the suite for the second time in three cycles for the same reason, and each time the reason was that the product had got better.",
       "evidence": "`dictionary.spec.ts` exists to prove that search reaches the 30,282-word dictionary and not only the taught corpus, so it needs a headword the dictionary has and the syllabus does not. 나가다 was the first choice and turned out to be taught, so the dedupe correctly hid it and the test failed for the one reason that meant the feature worked. 가지 replaced it, survived three cycles, and this cycle's vocabulary batch taught it — the click landed on the word card and the entry never opened.\n\nThere is no safely untaught headword in a product whose plan is to grow the syllabus toward ten thousand words. The spec now reads the shipped dictionary index and the shipped corpus and picks the most frequent Hangul headword that is in the first and not in the second and carries at least three senses — frequency so the choice is a real word, three senses so the disclosure has something to disclose. The assertion that the disclosure opened reads the last sense's gloss out of the same entry instead of naming 가지's aubergine.\n\nDeterministic, because the inputs are files: the same tree picks the same word every time, and a tree that teaches that word picks the next one instead of failing.",
       "recommendedFix": "Done."
+    },
+    {
+      "id": "I-95",
+      "area": "Release engineering",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "A journey spec navigated away while the save it had just made was still in flight",
+      "customerImpact": "None in the product — the save lands. In the suite it produced *No saved words yet* on a screen where a word had been saved a few milliseconds earlier, which reads exactly like a data-loss defect.",
+      "evidence": "`a word can be saved, found again, and reviewed from its own list` clicked Save and then called `goto('/words/saved')`. The write to IndexedDB is asynchronous and on a loaded machine the navigation won.\n\nThe first fix was wrong in an instructive way: it waited for the button to read *Saved*, and failed with `element(s) not found`. The button's accessible name goes from \"Save 하나\" to \"Remove 하나 from saved\", so a locator written around the word *Save* stops matching at the exact moment the thing it is waiting for happens. That reads like the button vanishing and is the button answering correctly.\n\nIt now waits on `aria-pressed` going false → true, which is the same fact without the wording. Fourth timing assumption found this cycle, after two in the unit suite and one in the e2e walk before them; each was a clock or a rendering standing in for evidence that something had happened.",
+      "recommendedFix": "Done."
     }
   ]
 }
