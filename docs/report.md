@@ -131,7 +131,7 @@ without trusting the row.
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Unobserved words with a written reason | 33 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
-| Issues tracked | 90 | `docs/issues.json` |
+| Issues tracked | 92 | `docs/issues.json` |
 | Signed APK | see §18 | `result/build-info.json` |
 | Signed AAB | see §18 | same |
 
@@ -213,7 +213,7 @@ the frequency corpora never saw and nobody had explained; a unit test that
 asserted a shortage rather than the behaviour under one, and failed when the
 corpus grew past it; and an offline precache 4% over budget, raised with the
 reason written beside it rather than the packs trimmed to fit. §21 has all of
-them as I-85 … I-92.
+them as I-85 … I-93.
 
 ## What did not change
 
@@ -1355,6 +1355,26 @@ meaning is үй-бүлө; Uzbek *O'qish va ish* is the hint for 공부, meaning 
 The labels were renamed rather than the glosses — the gloss is the word being
 taught — and the run is back to 0 leaking and 0 useless rungs.
 
+## 19.5a A one-second bet that the corpus grew past
+
+Testing-library's `waitFor` defaults to one second. Nothing in the unit suite
+measures speed — `perf:dictionary` does that, against a budget, on purpose — so
+every `waitFor` in it is waiting for a driver to load or for React to flush an
+effect, and one second is a bet about how fast the machine is.
+
+The bet started losing. `open()` in `vocabularyProgress.test.tsx` waits for the
+day's plan to be built over the whole corpus; at 2,581 words that finished
+inside a second under load and at 3,221 it did not. A full `verify:release`,
+with fifty test files and a production build and a Playwright suite competing
+for the same cores, reported `expected 0 to be greater than 0` for a plan that
+was simply still being built — and it passed on its own every time.
+
+**That is the third distinct place in this repository where a fixed delay became
+a false failure as the content grew**, after two end-to-end walks. Fixed once
+rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the
+shared setup, with the reasoning written there. A genuine hang still fails, five
+seconds later, with the same message.
+
 ## 19.5b A test that measured the corpus instead of the code
 
 `runs short and says so` asserted that ten days of level-1 recommendations
@@ -1985,6 +2005,7 @@ document they predate.
 | **I-89** | i18n copy | **P3** | Two category labels named the answer they were hinting at | A Kyrgyz learner asked what 가족 means was shown the hint *Адамдар жана үй-бүлө*, and үй-бүлө is the answer. Same in Uzbek for 공부 under *O'qish va ish*. Two of 581,542 rungs, and both introduced by this cycle's expansion. | **RESOLVED** |
 | **I-91** | Release engineering | **P3** | A unit test asserted a shortage instead of the behaviour under one | None. It failed the build for the one reason that is not a defect: the corpus grew past the shortage the test encoded. | **RESOLVED** |
 | **I-92** | Performance | **P3** | The offline precache went 4% over its budget | A first install downloads 1,454 kB gzipped for offline use instead of the 1,400 kB the budget allowed. Nothing breaks; the number is a promise about how much a learner pays to be able to work on a plane. | **RESOLVED** |
+| **I-93** | Release engineering | **P3** | A one-second test timeout became a false failure as the corpus grew | None. It failed a full release run for a plan that was still being built, which costs the next person a rerun and a doubt. | **RESOLVED** |
 
 <!-- /issues:what -->
 
@@ -1992,7 +2013,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 4 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 82**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 83**
 
 <!-- /issues:counts -->
 
@@ -2091,6 +2112,7 @@ document they predate.
 | **I-89** | `hints:qa` reported both. The labels were renamed rather than the glosses, because the gloss is the word being taught: *Адамдар жана туугандар* and *Ta'lim va mehnat*. 0 leaking and 0 useless rungs afterwards. | Done. |
 | **I-91** | `runs short and says so` asserted that ten days of level-1 recommendations cannot be filled, which was true while level 1's reachable pool held 93 words. The core-band work took it to 102 and the ten days filled. The demand is now set past whatever the pool holds — thirty days at the thin end — and the assertion is the invariant it always meant: the gap is reported as a deficit, and every word still comes from inside the zone. | Done. |
 | **I-92** | `bundle:budget:check` reported 1454.1 kB / 1400.0 kB. The whole increase is the corpus half: band 1 is the band the splitter precaches in every language, so taking the twenty-two partial languages from 100 words to the 600-word core band put 500 words x 22 languages of meanings, example translations and 38 long definitions each into this one row. The JavaScript half did not move — 367 kB before and after, against 1,087 kB of corpus.  Budget raised to 1,500 kB with the reason written beside it, rather than the packs being trimmed to fit a round figure. Trimming would mean not precaching twenty-two languages a learner might be using, to save 54 kB.  The row that is still a finding is the projection beneath it: 3,741 kB at 10,000 words. It is reported and not enforced, and the answer when it arrives is to precache the learner's own language and fetch the rest on demand — the same band mechanism that already keeps first paint flat at 52.9 kB. | Done for today's size. The projection is tracked by I-04's arithmetic rather than separately. |
+| **I-93** | `open()` in `vocabularyProgress.test.tsx` waits for the day's plan to be built over the whole corpus. At 2,581 words that finished inside testing-library's one-second default on a loaded machine; at 3,221 it did not, and a full `verify:release` — fifty test files, a production build and a Playwright suite competing for the same cores — reported `expected 0 to be greater than 0`. It passed on its own every time.  The third distinct place in this repository where a fixed delay became a false failure as the content grew, after two end-to-end walks. Fixed once rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the shared setup, with the reasoning written there. Nothing in the unit suite measures speed — `perf:dictionary` does that, against a budget, on purpose — and a genuine hang still fails, five seconds later, with the same message. | Done. |
 
 <!-- /issues:how -->
 

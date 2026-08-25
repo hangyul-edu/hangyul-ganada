@@ -963,6 +963,16 @@
       "customerImpact": "A first install downloads 1,454 kB gzipped for offline use instead of the 1,400 kB the budget allowed. Nothing breaks; the number is a promise about how much a learner pays to be able to work on a plane.",
       "evidence": "`bundle:budget:check` reported 1454.1 kB / 1400.0 kB. The whole increase is the corpus half: band 1 is the band the splitter precaches in every language, so taking the twenty-two partial languages from 100 words to the 600-word core band put 500 words x 22 languages of meanings, example translations and 38 long definitions each into this one row. The JavaScript half did not move — 367 kB before and after, against 1,087 kB of corpus.\n\nBudget raised to 1,500 kB with the reason written beside it, rather than the packs being trimmed to fit a round figure. Trimming would mean not precaching twenty-two languages a learner might be using, to save 54 kB.\n\nThe row that is still a finding is the projection beneath it: 3,741 kB at 10,000 words. It is reported and not enforced, and the answer when it arrives is to precache the learner's own language and fetch the rest on demand — the same band mechanism that already keeps first paint flat at 52.9 kB.",
       "recommendedFix": "Done for today's size. The projection is tracked by I-04's arithmetic rather than separately."
+    },
+    {
+      "id": "I-93",
+      "area": "Release engineering",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "A one-second test timeout became a false failure as the corpus grew",
+      "customerImpact": "None. It failed a full release run for a plan that was still being built, which costs the next person a rerun and a doubt.",
+      "evidence": "`open()` in `vocabularyProgress.test.tsx` waits for the day's plan to be built over the whole corpus. At 2,581 words that finished inside testing-library's one-second default on a loaded machine; at 3,221 it did not, and a full `verify:release` — fifty test files, a production build and a Playwright suite competing for the same cores — reported `expected 0 to be greater than 0`. It passed on its own every time.\n\nThe third distinct place in this repository where a fixed delay became a false failure as the content grew, after two end-to-end walks. Fixed once rather than three more times: `configure({ asyncUtilTimeout: 5_000 })` in the shared setup, with the reasoning written there. Nothing in the unit suite measures speed — `perf:dictionary` does that, against a budget, on purpose — and a genuine hang still fails, five seconds later, with the same message.",
+      "recommendedFix": "Done."
     }
   ]
 }

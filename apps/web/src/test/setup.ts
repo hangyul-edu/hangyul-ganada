@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 
+import { configure } from '@testing-library/react';
+
 import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,6 +24,30 @@ class ResizeObserverStub {
 }
 
 globalThis.ResizeObserver ??= ResizeObserverStub as unknown as typeof ResizeObserver;
+
+/*
+ * `waitFor` gets five seconds instead of one, everywhere.
+ *
+ * Nothing in this suite measures speed — `perf:dictionary` does that, against a
+ * budget, on purpose. Every `waitFor` here is waiting for a driver to load or
+ * for React to flush an effect, and the one-second default is a bet about how
+ * fast the machine is rather than an assertion about the product.
+ *
+ * The bet started losing as the corpus grew. `open()` in
+ * `vocabularyProgress.test.tsx` waits for the day's plan to be built over the
+ * whole corpus; at 2,581 words that finished inside a second on a loaded
+ * machine and at 3,221 it did not, so a full `verify:release` — fifty test
+ * files, a production build and a Playwright suite competing for the same
+ * cores — reported `expected 0 to be greater than 0` for a plan that was
+ * simply still being built. It passed on its own every time.
+ *
+ * That is the third distinct place in this repository where a fixed delay
+ * became a false failure as the content grew, after two end-to-end walks. The
+ * class is worth fixing once rather than three more times: a timeout is not an
+ * assertion unless somebody wrote it to be one, and a hang still fails — five
+ * seconds later, with the same message.
+ */
+configure({ asyncUtilTimeout: 5_000 });
 
 if (typeof HTMLCanvasElement !== 'undefined') {
   HTMLCanvasElement.prototype.getContext ??= (() => null) as never;
