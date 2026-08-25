@@ -777,6 +777,14 @@ def check_compounds(report: Report) -> None:
         # are endings, not the start of a second word, and the rules derive
         # exactly that — this set records that somebody read them and agreed.
         "훑어보다", "벗어나다",
+        # Batch 5, and the same judgement a third time. 빚어지다 is 빚- plus the
+        # passive -어지다, the same shape as 찢어지다 and 없어지다 already here,
+        # so the ㅈ carries over rather than neutralising: 비저지다. 잦아들다 is
+        # 잦- plus the connective -아, the same shape as 쫓아가다: 자자들다. In
+        # both the vowel begins an ending, not a second word, and the rules
+        # derive exactly that — this set records that somebody read them and
+        # agreed rather than that the gate was quietened.
+        "빚어지다", "잦아들다",
         "만약", "만일", "큰일", "별일", "나뭇잎",
     }
     known = set(_IRREGULAR) | reviewed
