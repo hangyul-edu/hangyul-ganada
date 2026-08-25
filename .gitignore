@@ -57,3 +57,7 @@ content-cache/
 # JSON beside it is a measurement, not a source of truth.
 .letter-face-qa/
 .cv-audit/
+
+# The conjugation display ledger, rewritten by conjugation:display:qa on
+# every run. A reading surface, not a source of truth.
+.conjugation-display/
