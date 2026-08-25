@@ -1,415 +1,2415 @@
 {
-  "_comment": "Vocabulary copy for Dutch. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
-  "locale": "nl",
-  "words": {
-    "word_hada": [
-      "doen",
-      "Ik studeer.",
-      "Doen — en de motor van de Koreaanse woordvorming. Zet het achter een zelfstandig naamwoord en je hebt een werkwoord: 공부 (studie) wordt 공부하다 (studeren), 사랑 (liefde) wordt 사랑하다. Honderden werkwoorden zijn zo gebouwd."
-    ],
-    "word_cha": [
-      "auto",
-      "Ik ga met de auto.",
-      "Een auto. Dezelfde lettergreep is ook het woord voor thee, dus 차를 마셔요 is ik drink thee en 차를 타요 is ik stap in de auto. Het werkwoord vertelt je welke van de twee."
-    ],
-    "word_yeoja": [
-      "vrouw",
-      "Die vrouw is arts."
-    ],
-    "word_na": [
-      "ik",
-      "Ik leer Koreaans."
-    ],
-    "word_hae": [
-      "de zon",
-      "De zon schijnt."
-    ],
-    "word_don": [
-      "geld",
-      "Er zit geld in de portemonnee."
-    ],
-    "word_uri": [
-      "wij",
-      "We zijn vrienden."
-    ],
-    "word_jip": [
-      "huis",
-      "Ik ga naar huis."
-    ],
-    "word_itda": [
-      "ergens zijn",
-      "Ik ben thuis.",
-      "Eén woord waar het Nederlands er twee heeft: 있다 betekent zowel ergens zijn als hebben. 책상에 책이 있어요 — het boek ligt op het bureau; 시간이 있어요 — ik heb tijd. Het tegenovergestelde is 없다."
-    ],
-    "word_ne": [
-      "ja",
-      "Ja, dat klopt.",
-      "Drie veelvoorkomende woorden worden als 네 geschreven. Dit is „ja”. De andere zijn „jouw” (네 책, jouw boek) en het inheemse telwoord „vier” vóór een maatwoord (네 개, vier stuks). De context scheidt ze; de spelling niet."
-    ],
-    "word_son": [
-      "hand",
-      "Ik schrijf met de hand."
-    ],
-    "word_sigan": [
-      "tijd",
-      "Ik heb geen tijd.",
-      "Tijd in het algemeen, en ook het telwoord voor uren: 두 시간 is twee uur lang. Verwar het niet met 시, het uur op de klok — 두 시 is twee uur, iets heel anders."
-    ],
-    "word_jeo": [
-      "ik (beleefd)",
-      "Ik ben student."
-    ],
-    "word_gada": [
-      "gaan",
-      "Ik ga naar school."
-    ],
-    "word_gae": [
-      "hond",
-      "De hond rent."
-    ],
-    "word_mun": [
-      "deur",
-      "Ik doe de deur open."
-    ],
-    "word_sae": [
-      "vogel",
-      "Er vliegt een vogel."
-    ],
-    "word_mom": [
-      "lichaam",
-      "Ik was me elke dag."
-    ],
-    "word_bang": [
-      "kamer",
-      "De kamer is schoon."
-    ],
-    "word_nun": [
-      "oog",
-      "Je hebt mooie ogen.",
-      "Het oog. Wordt precies zo geschreven als het woord voor sneeuw; in verzorgde spraak verschillen ze in lengte: de sneeuw-눈 wordt gerekt, het oog-눈 is kort. De meeste sprekers vertrouwen op de context."
-    ],
-    "word_ot": [
-      "kleren",
-      "De kleren zijn mooi."
-    ],
-    "word_neo": [
-      "jij",
-      "Waar ben je?"
-    ],
-    "word_eopda": [
-      "niet hebben",
-      "Ik heb geen geld."
-    ],
-    "word_meori": [
-      "hoofd",
-      "Ik heb hoofdpijn."
-    ],
-    "word_ip": [
-      "mond",
-      "De mond is klein."
-    ],
-    "word_mul": [
-      "water",
-      "Ik drink water."
-    ],
-    "word_dari": [
-      "been",
-      "Mijn been doet pijn.",
-      "Een been — van jou, van een tafel, van een stoel. Hetzelfde woord betekent ook brug, en daarom is 다리를 건너요 „ik steek de brug over” en niet iets anatomisch."
-    ],
-    "word_bi": [
-      "regen",
-      "Het regent."
-    ],
-    "word_wae": [
-      "waarom",
-      "Waarom ben je te laat?"
-    ],
-    "word_eolgul": [
-      "gezicht",
-      "Ik was mijn gezicht."
-    ],
-    "word_saram": [
-      "mens",
-      "Hij is een goed mens."
-    ],
-    "word_hakgyo": [
-      "school",
-      "De school is groot."
-    ],
-    "word_yeogi": [
-      "hier",
-      "Gaat u hier zitten."
-    ],
-    "word_pal": [
-      "arm",
-      "Je hebt lange armen."
-    ],
-    "word_norae": [
-      "lied",
-      "Ik zing een lied."
-    ],
-    "word_chaek": [
-      "boek",
-      "Ik lees een boek."
-    ],
-    "word_dal": [
-      "de maan",
-      "De maan schijnt."
-    ],
-    "word_jeonhwa": [
-      "telefoon",
-      "Ik neem de telefoon op."
-    ],
-    "word_namu": [
-      "boom",
-      "De boom is hoog."
-    ],
-    "word_dasi": [
-      "opnieuw",
-      "Zeg het alstublieft opnieuw."
-    ],
-    "word_nal": [
-      "dag",
-      "Het is een mooie dag."
-    ],
-    "word_jigeum": [
-      "nu",
-      "Ik ga nu."
-    ],
-    "word_haru": [
-      "een dag",
-      "De dag is lang."
-    ],
-    "word_sesang": [
-      "de wereld",
-      "De wereld is groot."
-    ],
-    "word_bal": [
-      "voet",
-      "Mijn voeten zijn koud."
-    ],
-    "word_neutda": [
-      "te laat zijn",
-      "De bus was te laat."
-    ],
-    "word_modu": [
-      "iedereen",
-      "Iedereen is bijeen."
-    ],
-    "word_sajin": [
-      "foto",
-      "Ik maak een foto."
-    ],
-    "word_chimdae": [
-      "bed",
-      "Het bed is comfortabel."
-    ],
-    "word_ko": [
-      "neus",
-      "Mijn neus zit dicht."
-    ],
-    "word_san": [
-      "berg",
-      "Ik ga naar de berg."
-    ],
-    "word_hana": [
-      "één",
-      "Eén appel, alstublieft."
-    ],
-    "word_byeongwon": [
-      "ziekenhuis",
-      "Ik ga naar het ziekenhuis."
-    ],
-    "word_jeongmal": [
-      "echt",
-      "Heel erg bedankt.",
-      "Echt, werkelijk — een versterker vóór een bijvoeglijk naamwoord, zoals in 정말 좋아요. Op zichzelf, met een stijgende toon, is 정말? een vraag van één woord: „echt?” En zo hoor je het het vaakst."
-    ],
-    "word_seonmul": [
-      "cadeau",
-      "Ik vind het cadeau leuk."
-    ],
-    "word_boda": [
-      "zien",
-      "Ik kijk een film."
-    ],
-    "word_oneul": [
-      "vandaag",
-      "Het weer is mooi vandaag."
-    ],
-    "word_gabang": [
-      "tas",
-      "De tas is zwaar."
-    ],
-    "word_eumak": [
-      "muziek",
-      "De muziek is mooi."
-    ],
-    "word_gage": [
-      "winkel",
-      "De winkel is dicht."
-    ],
-    "word_gil": [
-      "weg",
-      "De weg is breed."
-    ],
-    "word_ohu": [
-      "middag",
-      "Laten we vanmiddag afspreken."
-    ],
-    "word_keopi": [
-      "koffie",
-      "Ik drink koffie."
-    ],
-    "word_bap": [
-      "maaltijd",
-      "Ik eet."
-    ],
-    "word_eomma": [
-      "mama",
-      "Mama kookt."
-    ],
-    "word_gwi": [
-      "oor",
-      "Mijn oor doet pijn."
-    ],
-    "word_beoseu": [
-      "bus",
-      "De bus komt eraan."
-    ],
-    "word_geurim": [
-      "tekening",
-      "Ik maak een tekening."
-    ],
-    "word_beon": [
-      "keer",
-      "Doe het nog een keer, alstublieft."
-    ],
-    "word_sul": [
-      "alcohol",
-      "Ik drink geen alcohol."
-    ],
-    "word_yeonghwa": [
-      "film",
-      "De film is leuk."
-    ],
-    "word_sada": [
-      "kopen",
-      "Ik koop brood."
-    ],
-    "word_byeol": [
-      "ster",
-      "De sterren schijnen."
-    ],
-    "word_bihaenggi": [
-      "vliegtuig",
-      "Ik neem het vliegtuig."
-    ],
-    "word_bak": [
-      "buiten",
-      "Buiten regent het."
-    ],
-    "word_oda": [
-      "komen",
-      "Mijn vriend komt eraan."
-    ],
-    "word_chingu": [
-      "vriend",
-      "Ik ontmoet een vriend."
-    ],
-    "word_appa": [
-      "papa",
-      "Welterusten, papa."
-    ],
-    "word_haneul": [
-      "lucht",
-      "De lucht is blauw."
-    ],
-    "word_bada": [
-      "zee",
-      "De zee is wijd."
-    ],
-    "word_sagwa": [
-      "appel",
-      "De appel is zoet."
-    ],
-    "word_mulgeon": [
-      "ding",
-      "Ik koop spullen."
-    ],
-    "word_moja": [
-      "muts",
-      "Ik zet een muts op."
-    ],
-    "word_gogi": [
-      "vlees",
-      "Ik gril vlees."
-    ],
-    "word_jinjja": [
-      "echt",
-      "Is dit echt?"
-    ],
-    "word_sinbal": [
-      "schoenen",
-      "Ik trek mijn schoenen aan."
-    ],
-    "word_jamkkan": [
-      "momentje",
-      "Wacht alstublieft even."
-    ],
-    "word_namja": [
-      "man",
-      "Die man is mijn vriend."
-    ],
-    "word_eumsik": [
-      "eten",
-      "Koreaans eten is lekker."
-    ],
-    "word_saengil": [
-      "verjaardag",
-      "Gefeliciteerd met je verjaardag."
-    ],
-    "word_daseot": [
-      "vijf",
-      "Er kwamen vijf mensen."
-    ],
-    "word_gihoe": [
-      "kans",
-      "Dit is een goede kans."
-    ],
-    "word_dul": [
-      "twee",
-      "Er staan twee stoelen."
-    ],
-    "word_sijang": [
-      "markt",
-      "Ik koop groente op de markt."
-    ],
-    "word_goyangi": [
-      "kat",
-      "De kat slaapt."
-    ],
-    "word_changmun": [
-      "raam",
-      "Doe het raam alstublieft dicht."
-    ],
-    "word_yeoreum": [
-      "zomer",
-      "In de zomer ga ik naar zee."
-    ],
-    "word_dongmul": [
-      "dier",
-      "Ik hou van dieren."
-    ],
-    "word_yeohaeng": [
-      "reis",
-      "Ik wil op reis."
-    ],
-    "word_bam": [
-      "nacht",
-      "’s Nachts zijn er veel sterren.",
-      "Nacht. Wordt hetzelfde geschreven als het woord voor kastanje, een gewone herfstsnack in Korea, dus 밤을 먹어요 en 밤에 자요 gaan over heel verschillende dingen."
-    ]
-  }
+ "_comment": "Vocabulary copy for Dutch. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+ "locale": "nl",
+ "words": {
+  "word_hada": [
+   "doen",
+   "Ik studeer.",
+   "Doen — en de motor van de Koreaanse woordvorming. Zet het achter een zelfstandig naamwoord en je hebt een werkwoord: 공부 (studie) wordt 공부하다 (studeren), 사랑 (liefde) wordt 사랑하다. Honderden werkwoorden zijn zo gebouwd."
+  ],
+  "word_cha": [
+   "auto",
+   "Ik ga met de auto.",
+   "Een auto. Dezelfde lettergreep is ook het woord voor thee, dus 차를 마셔요 is ik drink thee en 차를 타요 is ik stap in de auto. Het werkwoord vertelt je welke van de twee."
+  ],
+  "word_yeoja": [
+   "vrouw",
+   "Die vrouw is arts."
+  ],
+  "word_na": [
+   "ik",
+   "Ik leer Koreaans."
+  ],
+  "word_hae": [
+   "de zon",
+   "De zon schijnt."
+  ],
+  "word_don": [
+   "geld",
+   "Er zit geld in de portemonnee."
+  ],
+  "word_uri": [
+   "wij",
+   "We zijn vrienden."
+  ],
+  "word_jip": [
+   "huis",
+   "Ik ga naar huis."
+  ],
+  "word_itda": [
+   "ergens zijn",
+   "Ik ben thuis.",
+   "Eén woord waar het Nederlands er twee heeft: 있다 betekent zowel ergens zijn als hebben. 책상에 책이 있어요 — het boek ligt op het bureau; 시간이 있어요 — ik heb tijd. Het tegenovergestelde is 없다."
+  ],
+  "word_ne": [
+   "ja",
+   "Ja, dat klopt.",
+   "Drie veelvoorkomende woorden worden als 네 geschreven. Dit is „ja”. De andere zijn „jouw” (네 책, jouw boek) en het inheemse telwoord „vier” vóór een maatwoord (네 개, vier stuks). De context scheidt ze; de spelling niet."
+  ],
+  "word_son": [
+   "hand",
+   "Ik schrijf met de hand."
+  ],
+  "word_sigan": [
+   "tijd",
+   "Ik heb geen tijd.",
+   "Tijd in het algemeen, en ook het telwoord voor uren: 두 시간 is twee uur lang. Verwar het niet met 시, het uur op de klok — 두 시 is twee uur, iets heel anders."
+  ],
+  "word_jeo": [
+   "ik (beleefd)",
+   "Ik ben student."
+  ],
+  "word_gada": [
+   "gaan",
+   "Ik ga naar school."
+  ],
+  "word_gae": [
+   "hond",
+   "De hond rent."
+  ],
+  "word_mun": [
+   "deur",
+   "Ik doe de deur open."
+  ],
+  "word_sae": [
+   "vogel",
+   "Er vliegt een vogel."
+  ],
+  "word_mom": [
+   "lichaam",
+   "Ik was me elke dag."
+  ],
+  "word_bang": [
+   "kamer",
+   "De kamer is schoon."
+  ],
+  "word_nun": [
+   "oog",
+   "Je hebt mooie ogen.",
+   "Het oog. Wordt precies zo geschreven als het woord voor sneeuw; in verzorgde spraak verschillen ze in lengte: de sneeuw-눈 wordt gerekt, het oog-눈 is kort. De meeste sprekers vertrouwen op de context."
+  ],
+  "word_ot": [
+   "kleren",
+   "De kleren zijn mooi."
+  ],
+  "word_neo": [
+   "jij",
+   "Waar ben je?"
+  ],
+  "word_eopda": [
+   "niet hebben",
+   "Ik heb geen geld."
+  ],
+  "word_meori": [
+   "hoofd",
+   "Ik heb hoofdpijn."
+  ],
+  "word_ip": [
+   "mond",
+   "De mond is klein."
+  ],
+  "word_mul": [
+   "water",
+   "Ik drink water."
+  ],
+  "word_dari": [
+   "been",
+   "Mijn been doet pijn.",
+   "Een been — van jou, van een tafel, van een stoel. Hetzelfde woord betekent ook brug, en daarom is 다리를 건너요 „ik steek de brug over” en niet iets anatomisch."
+  ],
+  "word_bi": [
+   "regen",
+   "Het regent."
+  ],
+  "word_wae": [
+   "waarom",
+   "Waarom ben je te laat?"
+  ],
+  "word_eolgul": [
+   "gezicht",
+   "Ik was mijn gezicht."
+  ],
+  "word_saram": [
+   "mens",
+   "Hij is een goed mens."
+  ],
+  "word_hakgyo": [
+   "school",
+   "De school is groot."
+  ],
+  "word_yeogi": [
+   "hier",
+   "Gaat u hier zitten."
+  ],
+  "word_pal": [
+   "arm",
+   "Je hebt lange armen."
+  ],
+  "word_norae": [
+   "lied",
+   "Ik zing een lied."
+  ],
+  "word_chaek": [
+   "boek",
+   "Ik lees een boek."
+  ],
+  "word_dal": [
+   "de maan",
+   "De maan schijnt."
+  ],
+  "word_jeonhwa": [
+   "telefoon",
+   "Ik neem de telefoon op."
+  ],
+  "word_namu": [
+   "boom",
+   "De boom is hoog."
+  ],
+  "word_dasi": [
+   "opnieuw",
+   "Zeg het alstublieft opnieuw."
+  ],
+  "word_nal": [
+   "dag",
+   "Het is een mooie dag."
+  ],
+  "word_jigeum": [
+   "nu",
+   "Ik ga nu."
+  ],
+  "word_haru": [
+   "een dag",
+   "De dag is lang."
+  ],
+  "word_sesang": [
+   "de wereld",
+   "De wereld is groot."
+  ],
+  "word_bal": [
+   "voet",
+   "Mijn voeten zijn koud."
+  ],
+  "word_neutda": [
+   "te laat zijn",
+   "De bus was te laat."
+  ],
+  "word_modu": [
+   "iedereen",
+   "Iedereen is bijeen."
+  ],
+  "word_sajin": [
+   "foto",
+   "Ik maak een foto."
+  ],
+  "word_chimdae": [
+   "bed",
+   "Het bed is comfortabel."
+  ],
+  "word_ko": [
+   "neus",
+   "Mijn neus zit dicht."
+  ],
+  "word_san": [
+   "berg",
+   "Ik ga naar de berg."
+  ],
+  "word_hana": [
+   "één",
+   "Eén appel, alstublieft."
+  ],
+  "word_byeongwon": [
+   "ziekenhuis",
+   "Ik ga naar het ziekenhuis."
+  ],
+  "word_jeongmal": [
+   "echt",
+   "Heel erg bedankt.",
+   "Echt, werkelijk — een versterker vóór een bijvoeglijk naamwoord, zoals in 정말 좋아요. Op zichzelf, met een stijgende toon, is 정말? een vraag van één woord: „echt?” En zo hoor je het het vaakst."
+  ],
+  "word_seonmul": [
+   "cadeau",
+   "Ik vind het cadeau leuk."
+  ],
+  "word_boda": [
+   "zien",
+   "Ik kijk een film."
+  ],
+  "word_oneul": [
+   "vandaag",
+   "Het weer is mooi vandaag."
+  ],
+  "word_gabang": [
+   "tas",
+   "De tas is zwaar."
+  ],
+  "word_eumak": [
+   "muziek",
+   "De muziek is mooi."
+  ],
+  "word_gage": [
+   "winkel",
+   "De winkel is dicht."
+  ],
+  "word_gil": [
+   "weg",
+   "De weg is breed."
+  ],
+  "word_ohu": [
+   "middag",
+   "Laten we vanmiddag afspreken."
+  ],
+  "word_keopi": [
+   "koffie",
+   "Ik drink koffie."
+  ],
+  "word_bap": [
+   "maaltijd",
+   "Ik eet."
+  ],
+  "word_eomma": [
+   "mama",
+   "Mama kookt."
+  ],
+  "word_gwi": [
+   "oor",
+   "Mijn oor doet pijn."
+  ],
+  "word_beoseu": [
+   "bus",
+   "De bus komt eraan."
+  ],
+  "word_geurim": [
+   "tekening",
+   "Ik maak een tekening."
+  ],
+  "word_beon": [
+   "keer",
+   "Doe het nog een keer, alstublieft."
+  ],
+  "word_sul": [
+   "alcohol",
+   "Ik drink geen alcohol."
+  ],
+  "word_yeonghwa": [
+   "film",
+   "De film is leuk."
+  ],
+  "word_sada": [
+   "kopen",
+   "Ik koop brood."
+  ],
+  "word_byeol": [
+   "ster",
+   "De sterren schijnen."
+  ],
+  "word_bihaenggi": [
+   "vliegtuig",
+   "Ik neem het vliegtuig."
+  ],
+  "word_bak": [
+   "buiten",
+   "Buiten regent het."
+  ],
+  "word_oda": [
+   "komen",
+   "Mijn vriend komt eraan."
+  ],
+  "word_chingu": [
+   "vriend",
+   "Ik ontmoet een vriend."
+  ],
+  "word_appa": [
+   "papa",
+   "Welterusten, papa."
+  ],
+  "word_haneul": [
+   "lucht",
+   "De lucht is blauw."
+  ],
+  "word_bada": [
+   "zee",
+   "De zee is wijd."
+  ],
+  "word_sagwa": [
+   "appel",
+   "De appel is zoet."
+  ],
+  "word_mulgeon": [
+   "ding",
+   "Ik koop spullen."
+  ],
+  "word_moja": [
+   "muts",
+   "Ik zet een muts op."
+  ],
+  "word_gogi": [
+   "vlees",
+   "Ik gril vlees."
+  ],
+  "word_jinjja": [
+   "echt",
+   "Is dit echt?"
+  ],
+  "word_sinbal": [
+   "schoenen",
+   "Ik trek mijn schoenen aan."
+  ],
+  "word_jamkkan": [
+   "momentje",
+   "Wacht alstublieft even."
+  ],
+  "word_namja": [
+   "man",
+   "Die man is mijn vriend."
+  ],
+  "word_eumsik": [
+   "eten",
+   "Koreaans eten is lekker."
+  ],
+  "word_saengil": [
+   "verjaardag",
+   "Gefeliciteerd met je verjaardag."
+  ],
+  "word_daseot": [
+   "vijf",
+   "Er kwamen vijf mensen."
+  ],
+  "word_gihoe": [
+   "kans",
+   "Dit is een goede kans."
+  ],
+  "word_dul": [
+   "twee",
+   "Er staan twee stoelen."
+  ],
+  "word_sijang": [
+   "markt",
+   "Ik koop groente op de markt."
+  ],
+  "word_goyangi": [
+   "kat",
+   "De kat slaapt."
+  ],
+  "word_changmun": [
+   "raam",
+   "Doe het raam alstublieft dicht."
+  ],
+  "word_yeoreum": [
+   "zomer",
+   "In de zomer ga ik naar zee."
+  ],
+  "word_dongmul": [
+   "dier",
+   "Ik hou van dieren."
+  ],
+  "word_yeohaeng": [
+   "reis",
+   "Ik wil op reis."
+  ],
+  "word_bam": [
+   "nacht",
+   "’s Nachts zijn er veel sterren.",
+   "Nacht. Wordt hetzelfde geschreven als het woord voor kastanje, een gewone herfstsnack in Korea, dus 밤을 먹어요 en 밤에 자요 gaan over heel verschillende dingen."
+  ],
+  "word_geot": [
+   "een ding",
+   "Ik heb de dingen gekocht die ik nodig had."
+  ],
+  "word_mal": [
+   "woorden, wat iemand zegt",
+   "Kies je woorden zorgvuldig."
+  ],
+  "word_bun": [
+   "een minuut",
+   "Wacht alstublieft maar tien minuten."
+  ],
+  "word_dwi": [
+   "de achterkant",
+   "Ik schreef mijn naam op de achterkant van het schrift."
+  ],
+  "word_si": [
+   "uur, op de klok",
+   "De les eindigt om twee uur."
+  ],
+  "word_deo": [
+   "meer",
+   "Nog een beetje, alstublieft."
+  ],
+  "word_ap": [
+   "de voorkant",
+   "Laten we voor de winkel afspreken."
+  ],
+  "word_da": [
+   "alles",
+   "Ik heb alle rijst opgegeten."
+  ],
+  "word_jom": [
+   "een beetje, en een verzachting bij een verzoek",
+   "Een beetje water, alstublieft."
+  ],
+  "word_jeon": [
+   "voor, eerder dan",
+   "Ik was mijn handen voor het eten."
+  ],
+  "word_alda": [
+   "weten",
+   "Ik weet de naam."
+  ],
+  "word_yak": [
+   "medicijn",
+   "Neem het medicijn na het eten."
+  ],
+  "word_jota": [
+   "goed zijn",
+   "Ik voel me goed."
+  ],
+  "word_jal": [
+   "goed",
+   "Heb je goed geslapen?"
+  ],
+  "word_anida": [
+   "iets niet zijn",
+   "Ik ben geen student."
+  ],
+  "word_bul": [
+   "vuur",
+   "Er brak brand uit op de berg."
+  ],
+  "word_uyu": [
+   "melk",
+   "De melk is koud."
+  ],
+  "word_meokda": [
+   "eten",
+   "Ik eet fruit."
+  ],
+  "word_ppang": [
+   "brood",
+   "Ik eet brood."
+  ],
+  "word_ttae": [
+   "het moment waarop iets gebeurt",
+   "Toen ik klein was, woonde ik op het platteland."
+  ],
+  "word_il": [
+   "werk",
+   "Er is vandaag veel werk."
+  ],
+  "word_baji": [
+   "een broek",
+   "De broek is lang."
+  ],
+  "word_sigye": [
+   "klok, horloge",
+   "Ik heb geen horloge."
+  ],
+  "word_siheom": [
+   "een proef, een examen",
+   "Ik heb morgen een examen."
+  ],
+  "word_keompyuteo": [
+   "computer",
+   "Ik zet de computer aan."
+  ],
+  "word_nalssi": [
+   "het weer",
+   "Het weer is mooi."
+  ],
+  "word_jongi": [
+   "papier",
+   "Ik teken op papier."
+  ],
+  "word_dosi": [
+   "stad",
+   "De stad is heel groot."
+  ],
+  "word_munje": [
+   "probleem",
+   "Er is een probleem."
+  ],
+  "word_wi": [
+   "de bovenkant",
+   "Er ligt een hoed op de tas."
+  ],
+  "word_bom": [
+   "lente",
+   "In de lente bloeien de bloemen."
+  ],
+  "word_jeonyeok": [
+   "het avondeten",
+   "Ik eet avondeten."
+  ],
+  "word_gyeoul": [
+   "winter",
+   "In de winter sneeuwt het veel."
+  ],
+  "word_abeoji": [
+   "vader",
+   "Mijn vader gaat naar zijn werk."
+  ],
+  "word_eoseo": [
+   "kom binnen, ga uw gang",
+   "Welkom, kom binnen."
+  ],
+  "word_mot": [
+   "niet kunnen, hoe graag ook",
+   "Het is zo pittig dat ik het niet kan eten."
+  ],
+  "word_salda": [
+   "wonen, leven",
+   "Ik woon in Seoel."
+  ],
+  "word_ai": [
+   "kind",
+   "Het kind lacht."
+  ],
+  "word_jeomsim": [
+   "lunch",
+   "Laten we samen lunchen."
+  ],
+  "word_nugu": [
+   "wie",
+   "Wie is die persoon?"
+  ],
+  "word_eonje": [
+   "wanneer",
+   "Wanneer kom je?"
+  ],
+  "word_geori": [
+   "een straat",
+   "Er zijn veel mensen op straat."
+  ],
+  "word_annyeong": [
+   "hallo en dag",
+   "Dag, tot ziens!"
+  ],
+  "word_gakkeum": [
+   "soms",
+   "Ik kijk soms een film."
+  ],
+  "word_manta": [
+   "veel zijn",
+   "Er zijn veel mensen."
+  ],
+  "word_chima": [
+   "een rok",
+   "Deze rok is heel mooi."
+  ],
+  "word_uija": [
+   "stoel",
+   "Ik zit op de stoel."
+  ],
+  "word_jeogi": [
+   "daarginds",
+   "Daarginds is de school."
+  ],
+  "word_gongwon": [
+   "park",
+   "Ik wandel in het park."
+  ],
+  "word_ssal": [
+   "ongekookte rijst",
+   "Ik was de rijst en kook hem."
+  ],
+  "word_jigu": [
+   "de aarde",
+   "De aarde is rond."
+  ],
+  "word_eodi": [
+   "waar",
+   "Waar is het toilet?"
+  ],
+  "word_byeok": [
+   "een muur",
+   "Ik hang een schilderij aan de muur."
+  ],
+  "word_gyeran": [
+   "een ei",
+   "Ik heb vanochtend een ei gekookt."
+  ],
+  "word_tada": [
+   "instappen, rijden op",
+   "Ik neem de bus."
+  ],
+  "word_segye": [
+   "de wereld",
+   "Ik ken veel landen van de wereld."
+  ],
+  "word_ireum": [
+   "naam",
+   "Hoe heet je?"
+  ],
+  "word_guk": [
+   "soep",
+   "Ik eet 's ochtends soep."
+  ],
+  "word_malhada": [
+   "spreken, praten",
+   "Praat alstublieft langzaam."
+  ],
+  "word_geotda": [
+   "lopen",
+   "Ik wandel in het park."
+  ],
+  "word_gangaji": [
+   "puppy",
+   "De puppy is klein."
+  ],
+  "word_sori": [
+   "geluid",
+   "Het geluid is hard."
+  ],
+  "word_yeop": [
+   "de zijkant",
+   "Ga alstublieft naast mij zitten."
+  ],
+  "word_saenggak": [
+   "gedachte",
+   "Dat is een goed idee."
+  ],
+  "word_geogi": [
+   "daar",
+   "Is daar iemand?"
+  ],
+  "word_adeul": [
+   "zoon",
+   "Mijn zoon gaat naar school."
+  ],
+  "word_doeda": [
+   "worden",
+   "Ik wil dokter worden."
+  ],
+  "word_maeul": [
+   "een dorp",
+   "Het dorp is rustig."
+  ],
+  "word_kape": [
+   "een café",
+   "Ik ontmoet mijn vriend in het café."
+  ],
+  "word_gong": [
+   "een bal",
+   "Ik trap tegen de bal."
+  ],
+  "word_gajok": [
+   "familie",
+   "Ik heb een grote familie."
+  ],
+  "word_ssi": [
+   "meneer of mevrouw, na een naam",
+   "Minsu, een momentje."
+  ],
+  "word_achim": [
+   "ochtend",
+   "Ik sta 's ochtends op."
+  ],
+  "word_jeonhwahada": [
+   "opbellen",
+   "Ik bel je later."
+  ],
+  "word_gaeul": [
+   "herfst",
+   "In de herfst is de wind koel."
+  ],
+  "word_kkot": [
+   "bloem",
+   "De bloem is mooi."
+  ],
+  "word_jido": [
+   "kaart",
+   "Ik kijk op de kaart."
+  ],
+  "word_saek": [
+   "een kleur",
+   "Deze kleur is mooi."
+  ],
+  "word_juda": [
+   "geven",
+   "Ik geef een cadeau."
+  ],
+  "word_yachae": [
+   "groenten",
+   "Eet alstublieft veel groenten."
+  ],
+  "word_chaeksang": [
+   "bureau",
+   "Er ligt een boek op het bureau."
+  ],
+  "word_cheoeum": [
+   "de eerste keer",
+   "Aangenaam kennis te maken."
+  ],
+  "word_gwail": [
+   "fruit",
+   "Ik houd van fruit."
+  ],
+  "word_uisa": [
+   "dokter",
+   "De dokter onderzoekt mij."
+  ],
+  "word_ttal": [
+   "een dochter",
+   "Mijn dochter gaat naar school."
+  ],
+  "word_yeoboseyo": [
+   "hallo aan de telefoon",
+   "Hallo, met wie spreek ik?"
+  ],
+  "word_so": [
+   "een koe",
+   "De koe eet gras."
+  ],
+  "word_pyeonji": [
+   "brief",
+   "Ik schrijf een brief aan mijn moeder."
+  ],
+  "word_jogeum": [
+   "een beetje",
+   "Maar een beetje, alstublieft."
+  ],
+  "word_boida": [
+   "te zien zijn",
+   "Ik kan de berg zien."
+  ],
+  "word_jari": [
+   "een zitplaats",
+   "Er zijn geen plaatsen."
+  ],
+  "word_hu": [
+   "na",
+   "Na de les ga ik naar de bibliotheek."
+  ],
+  "word_kadeu": [
+   "kaart",
+   "Ik betaal met de kaart."
+  ],
+  "word_naeil": [
+   "morgen",
+   "Tot morgen."
+  ],
+  "word_jungyohada": [
+   "belangrijk zijn",
+   "Gezondheid is het belangrijkst."
+  ],
+  "word_dalgyal": [
+   "een ei",
+   "Ik eet 's ochtends een ei."
+  ],
+  "word_aju": [
+   "heel",
+   "Het is heel lekker."
+  ],
+  "word_matda": [
+   "kloppen, juist zijn",
+   "Dit antwoord klopt."
+  ],
+  "word_hanguk": [
+   "Korea",
+   "Ik houd van Koreaans eten."
+  ],
+  "word_gang": [
+   "een rivier",
+   "De rivier is heel breed."
+  ],
+  "word_cho": [
+   "een seconde",
+   "Er zijn nog dertig seconden."
+  ],
+  "word_hoesa": [
+   "een bedrijf, kantoor",
+   "Ik ga naar kantoor."
+  ],
+  "word_sosik": [
+   "nieuws van iemand",
+   "Ik heb goed nieuws."
+  ],
+  "word_jakda": [
+   "klein zijn",
+   "De schoenen zijn klein."
+  ],
+  "word_gimchi": [
+   "kimchi",
+   "De kimchi is pittig."
+  ],
+  "word_ikda": [
+   "lezen",
+   "Ik lees de krant."
+  ],
+  "word_geurigo": [
+   "en, en toen",
+   "Ik kocht brood. En ik kocht ook melk."
+  ],
+  "word_keuda": [
+   "groot zijn",
+   "Deze tas is groot."
+  ],
+  "word_yeollak": [
+   "contact",
+   "Neem later contact met me op."
+  ],
+  "word_gachi": [
+   "samen",
+   "Laten we samen eten."
+  ],
+  "word_neomu": [
+   "te, al te",
+   "Deze kleren zijn te groot."
+  ],
+  "word_yong": [
+   "een draak",
+   "Op de tekening staat een grote draak."
+  ],
+  "word_geureota": [
+   "zo zijn",
+   "Ja, dat klopt."
+  ],
+  "word_hotel": [
+   "hotel",
+   "Ik sliep in een hotel."
+  ],
+  "word_yeolsoe": [
+   "sleutel",
+   "Ik heb de sleutel niet."
+  ],
+  "word_yeppeuda": [
+   "mooi zijn",
+   "De bloemen zijn echt mooi."
+  ],
+  "word_geugeot": [
+   "dat daar",
+   "Geef mij dat, alstublieft."
+  ],
+  "word_daeum": [
+   "de volgende",
+   "Tot de volgende keer."
+  ],
+  "word_maeum": [
+   "hart, gemoed",
+   "Ze hebben een warm hart."
+  ],
+  "word_jadongcha": [
+   "auto",
+   "De auto is snel."
+  ],
+  "word_jukda": [
+   "sterven",
+   "De bloem in de pot ging dood omdat hij geen water kreeg."
+  ],
+  "word_nalda": [
+   "vliegen",
+   "Een vogel vliegt in de lucht."
+  ],
+  "word_siksa": [
+   "maaltijd",
+   "De maaltijd was heel goed."
+  ],
+  "word_gigye": [
+   "een machine",
+   "De machine is kapot."
+  ],
+  "word_ttang": [
+   "de grond",
+   "De grond is nat."
+  ],
+  "word_jada": [
+   "slapen",
+   "Ik ga vroeg naar bed."
+  ],
+  "word_beorida": [
+   "weggooien",
+   "Gooi het alstublieft in de prullenbak."
+  ],
+  "word_juso": [
+   "een adres",
+   "Zeg me alstublieft het adres."
+  ],
+  "word_gicha": [
+   "trein",
+   "De trein is vertrokken."
+  ],
+  "word_chitsol": [
+   "een tandenborstel",
+   "Ik heb een nieuwe tandenborstel gekocht."
+  ],
+  "word_sarang": [
+   "liefde",
+   "Liefde is mooi."
+  ],
+  "word_gongbu": [
+   "studie",
+   "Studeren is leuk."
+  ],
+  "word_saengseon": [
+   "vis om te eten",
+   "Ik heb vis gegrild voor het avondeten."
+  ],
+  "word_mok": [
+   "een hals",
+   "Mijn nek doet pijn."
+  ],
+  "word_sipda": [
+   "willen",
+   "Ik wil naar Korea gaan."
+  ],
+  "word_nyuseu": [
+   "het nieuws",
+   "Ik kijk naar het nieuws."
+  ],
+  "word_chatda": [
+   "zoeken",
+   "Ik zoek de sleutel."
+  ],
+  "word_iljjik": [
+   "vroeg",
+   "Ik sta morgen vroeg op."
+  ],
+  "word_geonmul": [
+   "gebouw",
+   "Dat gebouw is nieuw."
+  ],
+  "word_seonsaengnim": [
+   "leraar",
+   "De leraar geeft les."
+  ],
+  "word_eomeoni": [
+   "moeder",
+   "Mijn moeder is thuis."
+  ],
+  "word_gibun": [
+   "gevoel, stemming",
+   "Hoe voel je je?"
+  ],
+  "word_honja": [
+   "alleen",
+   "Ik kan alleen gaan."
+  ],
+  "word_ani": [
+   "nee",
+   "Nee, ik ben niet gegaan."
+  ],
+  "word_eoje": [
+   "gisteren",
+   "Gisteren regende het."
+  ],
+  "word_sseuda": [
+   "schrijven",
+   "Ik schrijf mijn naam."
+  ],
+  "word_masida": [
+   "drinken",
+   "Ik drink melk."
+  ],
+  "word_syeocheu": [
+   "een overhemd",
+   "Ik draag een wit overhemd."
+  ],
+  "word_junbi": [
+   "voorbereiding",
+   "Alles is klaar."
+  ],
+  "word_mian": [
+   "sorry",
+   "Sorry, ik ben laat."
+  ],
+  "word_geokjeong": [
+   "zorg",
+   "Ik heb veel zorgen."
+  ],
+  "word_hajiman": [
+   "maar, echter",
+   "Het regent. Maar ik ga toch."
+  ],
+  "word_kamera": [
+   "camera",
+   "Ik heb een camera gekocht."
+  ],
+  "word_dongne": [
+   "een buurt",
+   "Onze buurt is rustig."
+  ],
+  "word_naengjanggo": [
+   "een koelkast",
+   "Ik heb de melk in de koelkast gezet."
+  ],
+  "word_anda": [
+   "zitten gaan",
+   "Ik ging op de stoel zitten."
+  ],
+  "word_ppalli": [
+   "snel",
+   "Kom alstublieft snel."
+  ],
+  "word_yaegi": [
+   "een praatje",
+   "Laten we even praten."
+  ],
+  "word_got": [
+   "een plek",
+   "Ik vond een rustige plek."
+  ],
+  "word_nat": [
+   "de dag, overdag",
+   "Overdag is het warm."
+  ],
+  "word_sangja": [
+   "doos",
+   "Ik open de doos."
+  ],
+  "word_wonhada": [
+   "willen",
+   "Wat wil je?"
+  ],
+  "word_sikdang": [
+   "restaurant",
+   "Waar is het restaurant?"
+  ],
+  "word_geurida": [
+   "tekenen",
+   "Het kind tekent een boom."
+  ],
+  "word_yuri": [
+   "glas",
+   "Het glas is gebroken."
+  ],
+  "word_igeot": [
+   "dit",
+   "Geef mij dit, alstublieft."
+  ],
+  "word_geoul": [
+   "spiegel",
+   "Ik kijk in de spiegel."
+  ],
+  "word_gijeok": [
+   "een wonder",
+   "Dat was echt als een wonder."
+  ],
+  "word_kal": [
+   "een mes",
+   "Ik schilde de appel met een mes."
+  ],
+  "word_gatda": [
+   "hetzelfde zijn",
+   "Onze tassen zijn hetzelfde."
+  ],
+  "word_pul": [
+   "gras",
+   "Het gras is groen."
+  ],
+  "word_eolma": [
+   "hoeveel",
+   "Hoeveel kost dit?"
+  ],
+  "word_saenggakada": [
+   "denken",
+   "Dat denk ik ook."
+  ],
+  "word_jilmun": [
+   "een vraag",
+   "Ik heb een vraag."
+  ],
+  "word_geunyeo": [
+   "zij",
+   "Zij zingt goed."
+  ],
+  "word_nota": [
+   "neerzetten",
+   "Ik zette de tas op de vloer."
+  ],
+  "word_banggeum": [
+   "zojuist",
+   "Ik ben zojuist aangekomen."
+  ],
+  "word_bonaeda": [
+   "sturen",
+   "Ik stuur een brief."
+  ],
+  "word_arae": [
+   "onder",
+   "Het boek ligt onder het bureau."
+  ],
+  "word_naoda": [
+   "naar buiten komen",
+   "Er komt water uit."
+  ],
+  "word_nai": [
+   "leeftijd",
+   "Hoe oud bent u?"
+  ],
+  "word_eotteoke": [
+   "hoe",
+   "Hoe kom ik daar?"
+  ],
+  "word_eunhaeng": [
+   "een bank",
+   "De bank is open."
+  ],
+  "word_al": [
+   "een ei",
+   "De vogel legde drie eieren."
+  ],
+  "word_moreuda": [
+   "niet weten",
+   "Ik weet het niet."
+  ],
+  "word_badak": [
+   "de vloer",
+   "Ik dweil de vloer."
+  ],
+  "word_hwajangsil": [
+   "toilet",
+   "Het toilet is schoon."
+  ],
+  "word_yeok": [
+   "station",
+   "Laten we bij het station afspreken."
+  ],
+  "word_seoul": [
+   "Seoel",
+   "Seoel is heel groot."
+  ],
+  "word_gwiyeopda": [
+   "schattig zijn",
+   "De puppy is schattig."
+  ],
+  "word_areumdapda": [
+   "mooi zijn",
+   "Het landschap is mooi."
+  ],
+  "word_ajik": [
+   "nog, nog niet",
+   "Ze zijn er nog niet."
+  ],
+  "word_gyedan": [
+   "trap",
+   "Er zijn veel treden."
+  ],
+  "word_maeil": [
+   "elke dag",
+   "Ik schrijf elke dag hangul."
+  ],
+  "word_agi": [
+   "een baby",
+   "De baby slaapt."
+  ],
+  "word_dwaeji": [
+   "varken",
+   "Het varken eet."
+  ],
+  "word_ju": [
+   "een week",
+   "Laten we volgende week afspreken."
+  ],
+  "word_iyagi": [
+   "verhaal",
+   "Het is een interessant verhaal."
+  ],
+  "word_tto": [
+   "weer",
+   "Tot morgen weer."
+  ],
+  "word_beolsseo": [
+   "al",
+   "Het is al helemaal voorbij."
+  ],
+  "word_dangsin": [
+   "u, beleefd",
+   "Ik heb op u gewacht."
+  ],
+  "word_gap": [
+   "een prijs",
+   "De prijs is hoog."
+  ],
+  "word_mianhada": [
+   "spijt hebben",
+   "Sorry dat ik laat ben."
+  ],
+  "word_jeongnyujang": [
+   "een bushalte",
+   "Ik wacht op de bus bij de halte."
+  ],
+  "word_anta": [
+   "niet doen",
+   "Ik drink geen koffie."
+  ],
+  "word_taeksi": [
+   "taxi",
+   "Bel alstublieft een taxi."
+  ],
+  "word_haksaeng": [
+   "student",
+   "Er zijn veel leerlingen in het lokaal."
+  ],
+  "word_bomul": [
+   "schat",
+   "De kinderen zoeken een schat."
+  ],
+  "word_jumun": [
+   "een bestelling",
+   "Wilt u bestellen?"
+  ],
+  "word_sinmun": [
+   "krant",
+   "Lees alstublieft de krant."
+  ],
+  "word_dak": [
+   "een kip",
+   "De kip legt een ei."
+  ],
+  "word_keop": [
+   "een beker",
+   "Ik schenk water in de beker."
+  ],
+  "word_set": [
+   "drie",
+   "Drie vrienden kwamen bij elkaar."
+  ],
+  "word_hangugeo": [
+   "de Koreaanse taal",
+   "Koreaans is interessant."
+  ],
+  "word_geuraeseo": [
+   "dus, daarom",
+   "Het regent, dus ik ga niet."
+  ],
+  "word_manhi": [
+   "veel",
+   "Eet alstublieft veel."
+  ],
+  "word_du": [
+   "twee, voor een telwoord",
+   "Twee koffie, alstublieft."
+  ],
+  "word_pyeonuijeom": [
+   "een buurtwinkel",
+   "Er is een buurtwinkel voor mijn huis."
+  ],
+  "word_miguk": [
+   "de Verenigde Staten",
+   "Ik kom uit de Verenigde Staten."
+  ],
+  "word_gyesok": [
+   "voortduring",
+   "Het blijft regenen."
+  ],
+  "word_gagyeok": [
+   "een prijs",
+   "De prijs is hoger dan verwacht."
+  ],
+  "word_dongsaeng": [
+   "jonger broertje of zusje",
+   "Mijn jongere broertje is schattig."
+  ],
+  "word_tokki": [
+   "konijn",
+   "Het konijn springt."
+  ],
+  "word_seoda": [
+   "staan",
+   "Ik sta in de rij."
+  ],
+  "word_eoreum": [
+   "ijs",
+   "Doe er alstublieft ijs bij."
+  ],
+  "word_jayeon": [
+   "natuur",
+   "De natuur is mooi."
+  ],
+  "word_jjikda": [
+   "stempelen",
+   "Ik heb het met een zegel gestempeld."
+  ],
+  "word_yeol": [
+   "tien",
+   "Tel alstublieft tot tien."
+  ],
+  "word_sasil": [
+   "een feit",
+   "Dat is een feit."
+  ],
+  "word_unjeon": [
+   "het rijden",
+   "Ik leer autorijden."
+  ],
+  "word_gamja": [
+   "aardappel",
+   "Ik kook de aardappelen."
+  ],
+  "word_gureum": [
+   "wolk",
+   "Er zijn veel wolken."
+  ],
+  "word_iyu": [
+   "een reden",
+   "Zeg mij alstublieft de reden."
+  ],
+  "word_dareun": [
+   "ander, verschillend",
+   "Hebt u ook andere kleuren?"
+  ],
+  "word_songarak": [
+   "vinger",
+   "Mijn vinger doet pijn."
+  ],
+  "word_japda": [
+   "vastpakken",
+   "Ik houd je hand vast."
+  ],
+  "word_bueok": [
+   "een keuken",
+   "Ik kook in de keuken."
+  ],
+  "word_piryo": [
+   "een behoefte",
+   "Ik heb geen hulp nodig."
+  ],
+  "word_pa": [
+   "een lente-ui",
+   "Ik deed wat lente-ui in de soep."
+  ],
+  "word_batda": [
+   "ontvangen",
+   "Ik heb een cadeau gekregen."
+  ],
+  "word_pida": [
+   "bloeien",
+   "De bloemen zijn opengegaan."
+  ],
+  "word_sayong": [
+   "gebruik",
+   "Leg mij alstublieft uit hoe het werkt."
+  ],
+  "word_jeongbo": [
+   "informatie",
+   "Ik zoek informatie."
+  ],
+  "word_gonghang": [
+   "luchthaven",
+   "Ik ben op de luchthaven aangekomen."
+  ],
+  "word_bumo": [
+   "ouders",
+   "Een kind heeft ouders nodig."
+  ],
+  "word_saranghada": [
+   "liefhebben",
+   "Ik houd van mijn familie."
+  ],
+  "word_ireoke": [
+   "zo, op deze manier",
+   "Schrijf het alstublieft zo."
+  ],
+  "word_ilhada": [
+   "werken",
+   "Mijn moeder werkt in een ziekenhuis."
+  ],
+  "word_suyeong": [
+   "zwemmen",
+   "Ik leer zwemmen."
+  ],
+  "word_piryohada": [
+   "nodig hebben",
+   "Ik heb geld nodig."
+  ],
+  "word_bukjjok": [
+   "het noorden",
+   "Ze gingen naar het noorden."
+  ],
+  "word_cheung": [
+   "een verdieping",
+   "Het kantoor is op de tweede verdieping."
+  ],
+  "word_hwanja": [
+   "een patiënt",
+   "De patiënt rust uit."
+  ],
+  "word_halmeoni": [
+   "oma",
+   "Oma lacht."
+  ],
+  "word_palda": [
+   "verkopen",
+   "Ze verkopen fruit."
+  ],
+  "word_itda_2": [
+   "verbinden",
+   "Ik heb de twee touwen verbonden."
+  ],
+  "word_nara": [
+   "land",
+   "Korea is een mooi land."
+  ],
+  "word_apateu": [
+   "appartement",
+   "Ik woon in een appartement."
+  ],
+  "word_hamkke": [
+   "samen",
+   "Laten we samen gaan."
+  ],
+  "word_modeun": [
+   "alle, elk",
+   "Iedereen lachte."
+  ],
+  "word_gwaenchanta": [
+   "in orde zijn",
+   "Met mij gaat het goed."
+  ],
+  "word_johahada": [
+   "leuk vinden",
+   "Ik houd van koffie."
+  ],
+  "word_jimseung": [
+   "een beest",
+   "In het bos klonk het geluid van een beest."
+  ],
+  "word_dongan": [
+   "gedurende",
+   "Ik ben op reis geweest tijdens de vakantie."
+  ],
+  "word_ipgu": [
+   "een ingang",
+   "Laten we bij de ingang van het gebouw afspreken."
+  ],
+  "word_silta": [
+   "niet leuk vinden",
+   "Ik houd niet van koude dagen."
+  ],
+  "word_meonjeo": [
+   "eerst",
+   "Eerst was ik mijn handen."
+  ],
+  "word_dubu": [
+   "tofoe",
+   "Ik doe tofoe erbij en maak soep."
+  ],
+  "word_bumonim": [
+   "de eigen ouders",
+   "Ik woon bij mijn ouders."
+  ],
+  "word_gomapda": [
+   "dankbaar zijn",
+   "Bedankt voor de hulp."
+  ],
+  "word_gyesan": [
+   "het uitrekenen",
+   "De berekening klopt net niet."
+  ],
+  "word_hyeo": [
+   "de tong",
+   "Mijn tong doet pijn, dus ik kan niet eten."
+  ],
+  "word_sugeon": [
+   "een handdoek",
+   "Ik droog mijn handen met de handdoek."
+  ],
+  "word_saeropda": [
+   "nieuw zijn",
+   "Het voelt fris."
+  ],
+  "word_sup": [
+   "een bos",
+   "In het bos hoor je vogels zingen."
+  ],
+  "word_chum": [
+   "een dans",
+   "Ze dansten op het podium."
+  ],
+  "word_sukje": [
+   "huiswerk",
+   "Ik heb mijn huiswerk af."
+  ],
+  "word_gaji": [
+   "een soort",
+   "Ik wil maar één ding vragen."
+  ],
+  "word_mothada": [
+   "niet kunnen",
+   "Ik kan niet zwemmen."
+  ],
+  "word_nagada": [
+   "naar buiten gaan",
+   "Ik ga naar buiten."
+  ],
+  "word_meotjida": [
+   "prachtig zijn",
+   "Je ziet er vandaag geweldig uit."
+  ],
+  "word_podo": [
+   "druiven",
+   "De druiven zijn heel zoet."
+  ],
+  "word_jeopsi": [
+   "een bord",
+   "Pak alstublieft twee borden."
+  ],
+  "word_yori": [
+   "het koken",
+   "Het eten is heerlijk."
+  ],
+  "word_sogeum": [
+   "zout",
+   "Ik doe er wat zout bij."
+  ],
+  "word_duda": [
+   "neerleggen",
+   "Ik legde het boek op het bureau."
+  ],
+  "word_gamsahada": [
+   "dankbaar zijn",
+   "Bedankt voor de hulp."
+  ],
+  "word_kkeut": [
+   "het einde",
+   "Ga alstublieft achter in de rij staan."
+  ],
+  "word_yeolda": [
+   "openen",
+   "Ik doe het raam open."
+  ],
+  "word_ibul": [
+   "een dekbed",
+   "Het dekbed is warm."
+  ],
+  "word_najung": [
+   "later",
+   "Ik bel later weer."
+  ],
+  "word_manjida": [
+   "aanraken",
+   "Niet aanraken, alstublieft."
+  ],
+  "word_gajang": [
+   "het meest",
+   "Deze is de beste."
+  ],
+  "word_namjjok": [
+   "het zuiden",
+   "In het zuiden is het warm."
+  ],
+  "word_doum": [
+   "hulp",
+   "Ik heb hulp nodig."
+  ],
+  "word_jung": [
+   "midden in, onder",
+   "Ik ben in vergadering."
+  ],
+  "word_sudo": [
+   "de hoofdstad",
+   "De hoofdstad van Korea is Seoel."
+  ],
+  "word_gidarida": [
+   "wachten",
+   "Wacht alstublieft even."
+  ],
+  "word_chaeso": [
+   "een groente",
+   "Ik eet veel groente."
+  ],
+  "word_kkeunnada": [
+   "eindigen",
+   "De les is afgelopen."
+  ],
+  "word_butak": [
+   "een verzoek, een gunst",
+   "Ik wil je om een gunst vragen."
+  ],
+  "word_seom": [
+   "een eiland",
+   "We namen een boot naar het eiland."
+  ],
+  "word_teuki": [
+   "vooral",
+   "Ik houd vooral van de winter."
+  ],
+  "word_jemok": [
+   "een titel",
+   "Wat is de titel van dit boek?"
+  ],
+  "word_insa": [
+   "een groet",
+   "Ik heb gedag gezegd."
+  ],
+  "word_seoltang": [
+   "suiker",
+   "Ik doe er wat suiker bij."
+  ],
+  "word_jajeongeo": [
+   "fiets",
+   "Ik fiets."
+  ],
+  "word_inteonet": [
+   "het internet",
+   "Het internet is traag."
+  ],
+  "word_aniyo": [
+   "nee",
+   "Nee, met mij gaat het goed."
+  ],
+  "word_ama": [
+   "waarschijnlijk",
+   "Morgen regent het waarschijnlijk."
+  ],
+  "word_jamsi": [
+   "een moment",
+   "Laten we even rusten."
+  ],
+  "word_beol": [
+   "een bij",
+   "Een bij landde op de bloem."
+  ],
+  "word_won": [
+   "de won",
+   "Het is tweeduizend won."
+  ],
+  "word_ujuseon": [
+   "een ruimteschip",
+   "Het ruimteschip steeg op naar de hemel."
+  ],
+  "word_myeot": [
+   "hoeveel",
+   "Hoe laat is het?"
+  ],
+  "word_sueop": [
+   "een les",
+   "De les is interessant."
+  ],
+  "word_sijak": [
+   "een begin",
+   "Dat is een goed begin."
+  ],
+  "word_yeogwon": [
+   "een paspoort",
+   "Vergeet je paspoort niet mee te nemen."
+  ],
+  "word_gyosil": [
+   "een klaslokaal",
+   "Het klaslokaal is licht."
+  ],
+  "word_nyeon": [
+   "jaar",
+   "Ik heb twee jaar gestudeerd."
+  ],
+  "word_bae": [
+   "de buik",
+   "Mijn buik deed pijn, dus ik ging naar het ziekenhuis."
+  ],
+  "word_satang": [
+   "een snoepje",
+   "Ik eet een snoepje."
+  ],
+  "word_dalleo": [
+   "dollar",
+   "Het is honderd dollar."
+  ],
+  "word_usan": [
+   "een paraplu",
+   "Het regende, dus ik kocht een paraplu."
+  ],
+  "word_museun": [
+   "wat voor",
+   "Wat voor werk doet u?"
+  ],
+  "word_pari": [
+   "een vlieg",
+   "Er vliegt een vlieg rond."
+  ],
+  "word_ije": [
+   "nu",
+   "Laten we nu beginnen."
+  ],
+  "word_geollida": [
+   "tijd kosten",
+   "Het duurt een uur."
+  ],
+  "word_choego": [
+   "de beste",
+   "Dit restaurant is het beste."
+  ],
+  "word_naeda": [
+   "betalen",
+   "Vandaag betaal ik."
+  ],
+  "word_daneo": [
+   "een woord",
+   "Ik leer een nieuw woord."
+  ],
+  "word_jikjeop": [
+   "zelf, persoonlijk",
+   "Ik heb de taart zelf gemaakt."
+  ],
+  "word_yangmal": [
+   "een sok",
+   "De sokken zijn warm."
+  ],
+  "word_nopda": [
+   "hoog zijn",
+   "Het gebouw is hoog."
+  ],
+  "word_haendeupon": [
+   "een mobiele telefoon",
+   "Ik laad mijn mobiel op."
+  ],
+  "word_jigap": [
+   "portemonnee",
+   "Ik ben mijn portemonnee kwijt."
+  ],
+  "word_hyudaepon": [
+   "een mobiele telefoon",
+   "Ik ben mijn mobiel kwijt."
+  ],
+  "word_agassi": [
+   "een jonge vrouw",
+   "Een jonge vrouw vraagt de weg."
+  ],
+  "word_gieok": [
+   "geheugen",
+   "Ik kan het me niet herinneren."
+  ],
+  "word_geutda": [
+   "een lijn trekken",
+   "Ik trok een lijn."
+  ],
+  "word_ipda": [
+   "aantrekken",
+   "Ik trek kleren aan."
+  ],
+  "word_sai": [
+   "de ruimte ertussen",
+   "Tussen de twee huizen staat een boom."
+  ],
+  "word_gireum": [
+   "olie",
+   "Ik bak het in olie."
+  ],
+  "word_mulgogi": [
+   "een vis",
+   "De vis zwemt."
+  ],
+  "word_jang": [
+   "het woord om vellen te tellen",
+   "Ik heb drie vellen papier nodig."
+  ],
+  "word_kkum": [
+   "een droom",
+   "Ik had gisternacht een vreemde droom."
+  ],
+  "word_sijakada": [
+   "beginnen",
+   "De les begint."
+  ],
+  "word_ajikdo": [
+   "nog steeds",
+   "Ik wacht nog steeds."
+  ],
+  "word_teureok": [
+   "vrachtwagen",
+   "Er rijdt een vrachtwagen voorbij."
+  ],
+  "word_eotteon": [
+   "wat voor",
+   "Welke kleur vind je mooi?"
+  ],
+  "word_geulssi": [
+   "handschrift",
+   "Je hebt een mooi handschrift."
+  ],
+  "word_deutda": [
+   "luisteren, horen",
+   "Ik luister naar muziek."
+  ],
+  "word_subak": [
+   "watermeloen",
+   "In de zomer smaakt watermeloen goed."
+  ],
+  "word_ttalgi": [
+   "aardbei",
+   "Ik was de aardbeien en eet ze op."
+  ],
+  "word_baram": [
+   "wind",
+   "De wind is koel."
+  ],
+  "word_sigol": [
+   "het platteland",
+   "De lucht op het platteland is goed."
+  ],
+  "word_pulda": [
+   "oplossen",
+   "Ik heb het probleem opgelost."
+  ],
+  "word_angyeong": [
+   "bril",
+   "Ik draag een bril."
+  ],
+  "word_yeonpil": [
+   "een potlood",
+   "Ik teken met een potlood."
+  ],
+  "word_jumal": [
+   "weekend",
+   "In het weekend rust ik uit."
+  ],
+  "word_jugida": [
+   "doden",
+   "Ik heb de mug gedood die de kamer in kwam."
+  ],
+  "word_him": [
+   "kracht",
+   "Dat kind is heel sterk."
+  ],
+  "word_jeonbu": [
+   "alles bij elkaar",
+   "Hoeveel is het bij elkaar?"
+  ],
+  "word_gyeongchal": [
+   "politie",
+   "Bel alstublieft de politie."
+  ],
+  "word_geureut": [
+   "een kom",
+   "Ik doe rijst in de kom."
+  ],
+  "word_nappeuda": [
+   "slecht zijn",
+   "Het weer is slecht."
+  ],
+  "word_oppa": [
+   "oudere broer van een vrouw",
+   "Mijn oudere broer rijdt."
+  ],
+  "word_mannada": [
+   "ontmoeten",
+   "We zien elkaar vaak."
+  ],
+  "word_huimang": [
+   "hoop",
+   "Verlies alstublieft de hoop niet."
+  ],
+  "word_hyeong": [
+   "oudere broer van een man",
+   "Mijn oudere broer trakteerde me op eten."
+  ],
+  "word_doro": [
+   "een weg",
+   "De weg is versperd."
+  ],
+  "word_ttwida": [
+   "rennen",
+   "Het kind rent."
+  ],
+  "word_mueot": [
+   "wat",
+   "Wat is dit?"
+  ],
+  "word_oenjjok": [
+   "de linkerkant",
+   "Sla alstublieft linksaf."
+  ],
+  "word_chukgu": [
+   "voetbal",
+   "Ik voetbal met mijn vriend."
+  ],
+  "word_jayu": [
+   "vrijheid",
+   "Vrijheid is kostbaar."
+  ],
+  "word_sungan": [
+   "een ogenblik",
+   "Dat moment kan ik niet vergeten."
+  ],
+  "word_sayonghada": [
+   "gebruiken",
+   "Mag ik deze kamer gebruiken?"
+  ],
+  "word_pada": [
+   "graven",
+   "Ik graaf in de grond."
+  ],
+  "word_nampyeon": [
+   "echtgenoot",
+   "Mijn man kookt."
+  ],
+  "word_silheomsil": [
+   "een laboratorium",
+   "Ik heb de hele dag in het laboratorium gewerkt."
+  ],
+  "word_dambae": [
+   "een sigaret",
+   "De geur van sigaretten trok in mijn kleren."
+  ],
+  "word_banana": [
+   "een banaan",
+   "Ik eet 's ochtends een banaan."
+  ],
+  "word_geum": [
+   "goud",
+   "Deze ring is van goud."
+  ],
+  "word_mandeulda": [
+   "maken",
+   "Ik bak brood."
+  ],
+  "word_ibeon": [
+   "deze keer",
+   "Deze keer doe ik het."
+  ],
+  "word_gomawo": [
+   "bedankt",
+   "Bedankt voor de hulp."
+  ],
+  "word_banchan": [
+   "een bijgerecht",
+   "De bijgerechten zijn lekker."
+  ],
+  "word_apeuda": [
+   "pijn doen",
+   "Mijn buik doet pijn."
+  ],
+  "word_doseogwan": [
+   "een bibliotheek",
+   "Ik heb een boek geleend in de bibliotheek."
+  ],
+  "word_ppyeo": [
+   "een bot",
+   "De hond heeft een bot in zijn bek."
+  ],
+  "word_gamsa": [
+   "dank",
+   "Ik heb bedankt."
+  ],
+  "word_geolda": [
+   "ophangen",
+   "Ik hang de kleren op."
+  ],
+  "word_gim": [
+   "gedroogd zeewier",
+   "We rollen rijst in zeewier en eten het op."
+  ],
+  "word_jalhada": [
+   "iets goed kunnen",
+   "Je zingt goed."
+  ],
+  "word_saengmyeong": [
+   "leven",
+   "Het leven is kostbaar."
+  ],
+  "word_mureup": [
+   "knie",
+   "Mijn knie doet pijn."
+  ],
+  "word_jjalda": [
+   "kort zijn",
+   "Het potlood is kort."
+  ],
+  "word_chijeu": [
+   "kaas",
+   "Ik houd van kaas."
+  ],
+  "word_hanbeon": [
+   "een keer",
+   "Probeer het eens."
+  ],
+  "word_gohyang": [
+   "de eigen geboortestreek",
+   "Ik ben naar mijn geboortestreek gegaan."
+  ],
+  "word_jihacheol": [
+   "de metro",
+   "Ik ga met de metro."
+  ],
+  "word_sal": [
+   "een levensjaar",
+   "Ik ben twintig jaar oud."
+  ],
+  "word_anae": [
+   "echtgenote",
+   "Ik ben met mijn vrouw gekomen."
+  ],
+  "word_swida": [
+   "rusten",
+   "Laten we even rusten."
+  ],
+  "word_gimbap": [
+   "gimbap",
+   "Ik heb gimbap gegeten als lunch."
+  ],
+  "word_gayo": [
+   "Koreaanse popmuziek",
+   "Ik houd van Koreaanse popmuziek."
+  ],
+  "word_swipda": [
+   "makkelijk zijn",
+   "Hangul is makkelijk."
+  ],
+  "word_pyojeong": [
+   "een gezichtsuitdrukking",
+   "Hun gezicht staat vrolijk."
+  ],
+  "word_dareuda": [
+   "verschillen",
+   "De kleuren verschillen."
+  ],
+  "word_geunyang": [
+   "gewoon, zomaar",
+   "In het weekend bleef ik gewoon thuis."
+  ],
+  "word_majimak": [
+   "de laatste",
+   "Ik nam de laatste bus."
+  ],
+  "word_bangbeop": [
+   "een manier",
+   "Er is een goede manier."
+  ],
+  "word_huinsaek": [
+   "de kleur wit",
+   "De witte muur is schoon."
+  ],
+  "word_jalmot": [
+   "een fout",
+   "Het is mijn fout."
+  ],
+  "word_daehakgyo": [
+   "universiteit",
+   "Ik studeer aan de universiteit."
+  ],
+  "word_haengun": [
+   "geluk",
+   "Veel succes met het examen."
+  ],
+  "word_harabeoji": [
+   "opa",
+   "Opa leest de krant."
+  ],
+  "word_bimil": [
+   "geheim",
+   "Houd het geheim, alstublieft."
+  ],
+  "word_sogogi": [
+   "rundvlees",
+   "We hebben rundvlees gegrild en opgegeten."
+  ],
+  "word_net": [
+   "vier",
+   "Wij vieren zijn één team."
+  ],
+  "word_sinda": [
+   "schoenen aantrekken",
+   "Ik trek sokken aan."
+  ],
+  "word_dap": [
+   "een antwoord",
+   "Ik heb het antwoord gevonden."
+  ],
+  "word_yeonseup": [
+   "oefening",
+   "Ik oefen elke dag."
+  ],
+  "word_gongchaek": [
+   "een schrift",
+   "Ik schrijf mijn naam in het schrift."
+  ],
+  "word_ssada": [
+   "goedkoop zijn",
+   "Dit fruit is goedkoop."
+  ],
+  "word_dowajuda": [
+   "een handje helpen",
+   "Help me alstublieft even."
+  ],
+  "word_maekju": [
+   "bier",
+   "Het bier is koud."
+  ],
+  "word_jjada": [
+   "zout zijn",
+   "De soep is zout."
+  ],
+  "word_gyehoek": [
+   "een plan",
+   "Ik heb een plan gemaakt."
+  ],
+  "word_pyeonghwa": [
+   "vrede",
+   "Wij wensen vrede."
+  ],
+  "word_yaksok": [
+   "een afspraak, een belofte",
+   "Ik houd mijn belofte."
+  ],
+  "word_oreunjjok": [
+   "de rechterkant",
+   "Ga alstublieft naar rechts."
+  ],
+  "word_gippeuda": [
+   "blij zijn",
+   "Ik was blij het nieuws te horen."
+  ],
+  "word_baeuda": [
+   "leren",
+   "Ik leer Koreaans."
+  ],
+  "word_jebal": [
+   "alsjeblieft",
+   "Help me alsjeblieft."
+  ],
+  "word_dopda": [
+   "helpen",
+   "Ik help mijn vriend."
+  ],
+  "word_jaryo": [
+   "materiaal voor een taak",
+   "Ik heb het vergadermateriaal van tevoren klaargemaakt."
+  ],
+  "word_hullyunghada": [
+   "uitstekend zijn",
+   "Dat is een uitstekend idee."
+  ],
+  "word_moseup": [
+   "uiterlijk, gestalte",
+   "Hun uiterlijk is veranderd."
+  ],
+  "word_undong": [
+   "beweging, sport",
+   "Ik sport 's ochtends."
+  ],
+  "word_geureonde": [
+   "trouwens, maar",
+   "Trouwens, wat is dit?"
+  ],
+  "word_juseu": [
+   "sap",
+   "Het kind drinkt sap."
+  ],
+  "word_jwi": [
+   "een muis",
+   "Ik zag een muis in de keuken."
+  ],
+  "word_chwimi": [
+   "een hobby",
+   "Mijn hobby is fotograferen."
+  ],
+  "word_deung": [
+   "de rug",
+   "Mijn rug jeukt."
+  ],
+  "word_jeoldae": [
+   "nooit",
+   "Kom absoluut niet te laat."
+  ],
+  "word_dol": [
+   "een steen",
+   "Er lagen veel stenen op het pad, dus we waren voorzichtig."
+  ],
+  "word_bappeuda": [
+   "druk zijn",
+   "Ik heb het vandaag druk."
+  ],
+  "word_ireon": [
+   "zo'n",
+   "Zoiets maak ik voor het eerst mee."
+  ],
+  "word_yeoseong": [
+   "een vrouw",
+   "Er kwamen veel vrouwen."
+  ],
+  "word_paransaek": [
+   "de kleur blauw",
+   "Blauwe kleren staan je goed."
+  ],
+  "word_ireonada": [
+   "opstaan",
+   "Ik sta om zeven uur op."
+  ],
+  "word_gom": [
+   "een beer",
+   "Beren leven in de bergen."
+  ],
+  "word_jam": [
+   "slaap",
+   "Ik kan de laatste tijd niet goed slapen."
+  ],
+  "word_haebyeon": [
+   "een strand",
+   "In de zomer zijn we naar het strand geweest."
+  ],
+  "word_hosu": [
+   "meer",
+   "Het meer is stil."
+  ],
+  "word_dakgogi": [
+   "kippenvlees",
+   "Kip bevat weinig vet."
+  ],
+  "word_geunde": [
+   "trouwens",
+   "Trouwens, hoe laat is het nu?"
+  ],
+  "word_jaeneung": [
+   "een talent",
+   "Ze hebben talent voor tekenen."
+  ],
+  "word_gyeolhon": [
+   "huwelijk",
+   "Gefeliciteerd met jullie huwelijk."
+  ],
+  "word_binu": [
+   "zeep",
+   "Ik was mijn handen met zeep."
+  ],
+  "word_saja": [
+   "een leeuw",
+   "De leeuw is groot."
+  ],
+  "word_eoneu": [
+   "welke",
+   "Welke vind je mooi?"
+  ],
+  "word_mureoboda": [
+   "vragen",
+   "Ik heb het de leraar gevraagd."
+  ],
+  "word_ucheguk": [
+   "een postkantoor",
+   "Ik heb een brief verstuurd op het postkantoor."
+  ],
+  "word_japji": [
+   "tijdschrift",
+   "Ik lees een tijdschrift."
+  ],
+  "word_jean": [
+   "een voorstel",
+   "Ik kreeg een goed voorstel van het bedrijf."
+  ],
+  "word_yojeum": [
+   "tegenwoordig",
+   "Hoe gaat het de laatste tijd?"
+  ],
+  "word_ulda": [
+   "huilen",
+   "De baby huilt."
+  ],
+  "word_namda": [
+   "overblijven",
+   "Er is nog wat rijst over."
+  ],
+  "word_miso": [
+   "een glimlach",
+   "Dat is een mooie glimlach."
+  ],
+  "word_daehak": [
+   "hogeschool, universiteit",
+   "Ik ben toegelaten tot de universiteit."
+  ],
+  "word_uimi": [
+   "betekenis",
+   "Wat betekent dit woord?"
+  ],
+  "word_geim": [
+   "een spel",
+   "Ik speel een spel."
+  ],
+  "word_cham": [
+   "echt, werkelijk",
+   "Het weer is vandaag echt mooi."
+  ],
+  "word_kong": [
+   "een boon",
+   "Ik heb bonen in de rijst gedaan."
+  ],
+  "word_saebyeok": [
+   "de vroege ochtend",
+   "Ik stond op voor het licht werd."
+  ],
+  "word_utda": [
+   "lachen",
+   "Mijn vriend lacht hard."
+  ],
+  "word_imi": [
+   "al",
+   "Het is al voorbij."
+  ],
+  "word_sutgarak": [
+   "een lepel",
+   "Ik eet soep met een lepel."
+  ],
+  "word_bureuda": [
+   "roepen",
+   "Ik roep een taxi."
+  ],
+  "word_koteu": [
+   "jas",
+   "Trek alstublieft je jas aan."
+  ],
+  "word_meolda": [
+   "ver zijn",
+   "De school is ver."
+  ],
+  "word_myeong": [
+   "een persoon",
+   "Er zijn vijf leerlingen."
+  ],
+  "word_eonni": [
+   "oudere zus van een vrouw",
+   "Mijn oudere zus is studente."
+  ],
+  "word_ihae": [
+   "begrip",
+   "Ik begrijp het goed."
+  ],
+  "word_samda": [
+   "koken in water",
+   "Ik kook een ei."
+  ],
+  "word_noransaek": [
+   "de kleur geel",
+   "Ik gebruikte een gele paraplu."
+  ],
+  "word_mudeom": [
+   "een graf",
+   "Op de berg ligt een oud graf."
+  ],
+  "word_gita": [
+   "een gitaar",
+   "Ik speel gitaar."
+  ],
+  "word_itda_3": [
+   "vergeten",
+   "Ik ben de naam vergeten."
+  ],
+  "word_gongyeon": [
+   "een voorstelling",
+   "De voorstelling begint."
+  ],
+  "word_ilta": [
+   "verliezen",
+   "Ik ben mijn sleutel kwijt."
+  ],
+  "word_baneung": [
+   "een reactie",
+   "De reactie van de mensen was heel goed."
+  ],
+  "word_gudu": [
+   "nette schoenen",
+   "De schoenen zitten lekker."
+  ],
+  "word_hyuga": [
+   "vakantie, verlof",
+   "Ik ben op vakantie geweest."
+  ],
+  "word_jeohui": [
+   "wij, bescheiden",
+   "Wij zullen u helpen."
+  ],
+  "word_geuttae": [
+   "dat moment",
+   "Toen regende het."
+  ],
+  "word_sopa": [
+   "een bank",
+   "Ga op de bank zitten en rust uit."
+  ]
+ }
 }

@@ -1,415 +1,2415 @@
 {
-  "_comment": "Vocabulary copy for Czech. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
-  "locale": "cs",
-  "words": {
-    "word_hada": [
-      "dělat",
-      "Učím se.",
-      "Dělat — a motor korejské slovní zásoby. Připojte je k podstatnému jménu a vznikne sloveso: 공부 (studium) → 공부하다 (studovat), 사랑 (láska) → 사랑하다. Takto jsou utvořeny stovky sloves."
-    ],
-    "word_cha": [
-      "auto",
-      "Jedu autem.",
-      "Auto. Tatáž slabika znamená i čaj: 차를 마셔요 je piju čaj, 차를 타요 je nastupuji do auta. Které z nich to je, prozradí sloveso."
-    ],
-    "word_yeoja": [
-      "žena",
-      "Ta žena je lékařka."
-    ],
-    "word_na": [
-      "já",
-      "Učím se korejsky."
-    ],
-    "word_hae": [
-      "slunce",
-      "Slunce svítí."
-    ],
-    "word_don": [
-      "peníze",
-      "V peněžence jsou peníze."
-    ],
-    "word_uri": [
-      "my",
-      "Jsme přátelé."
-    ],
-    "word_jip": [
-      "domov",
-      "Jdu domů."
-    ],
-    "word_itda": [
-      "být někde",
-      "Jsem doma.",
-      "Jedno slovo tam, kde má čeština dvě: 있다 znamená být někde i mít. 책상에 책이 있어요 — kniha je na stole; 시간이 있어요 — mám čas. Opakem je 없다."
-    ],
-    "word_ne": [
-      "ano",
-      "Ano, je to tak.",
-      "Jako 네 se píšou tři běžná slova. Tohle je „ano“. Další jsou „tvůj“ (네 책, tvoje kniha) a domácí číslovka „čtyři“ před počítacím slovem (네 개, čtyři kusy). Rozliší je kontext, pravopis ne."
-    ],
-    "word_son": [
-      "ruka",
-      "Píšu rukou."
-    ],
-    "word_sigan": [
-      "čas",
-      "Nemám čas.",
-      "Čas obecně a zároveň jednotka pro počítání hodin: 두 시간 jsou dvě hodiny. Nepleťte si je s 시, což je hodina na ciferníku — 두 시 jsou dvě hodiny, něco úplně jiného."
-    ],
-    "word_jeo": [
-      "já (zdvořile)",
-      "Jsem student."
-    ],
-    "word_gada": [
-      "jít",
-      "Jdu do školy."
-    ],
-    "word_gae": [
-      "pes",
-      "Pes běží."
-    ],
-    "word_mun": [
-      "dveře",
-      "Otevírám dveře."
-    ],
-    "word_sae": [
-      "pták",
-      "Letí pták."
-    ],
-    "word_mom": [
-      "tělo",
-      "Každý den si myju tělo."
-    ],
-    "word_bang": [
-      "pokoj",
-      "Pokoj je čistý."
-    ],
-    "word_nun": [
-      "oko",
-      "Máš krásné oči.",
-      "Oko. Píše se stejně jako slovo pro sníh; v pečlivé výslovnosti je odlišuje délka: sněhové 눈 je protažené, oční 눈 krátké. Většina mluvčích se spoléhá na kontext."
-    ],
-    "word_ot": [
-      "oblečení",
-      "To oblečení je hezké."
-    ],
-    "word_neo": [
-      "ty",
-      "Kde jsi?"
-    ],
-    "word_eopda": [
-      "nemít",
-      "Nemám peníze."
-    ],
-    "word_meori": [
-      "hlava",
-      "Bolí mě hlava."
-    ],
-    "word_ip": [
-      "ústa",
-      "Ústa jsou malá."
-    ],
-    "word_mul": [
-      "voda",
-      "Piju vodu."
-    ],
-    "word_dari": [
-      "noha",
-      "Bolí mě noha.",
-      "Noha — vaše, stolu, židle. Totéž slovo znamená i most, proto 다리를 건너요 je „přecházím most“, nikoli něco anatomického."
-    ],
-    "word_bi": [
-      "déšť",
-      "Prší."
-    ],
-    "word_wae": [
-      "proč",
-      "Proč jdeš pozdě?"
-    ],
-    "word_eolgul": [
-      "obličej",
-      "Myju si obličej."
-    ],
-    "word_saram": [
-      "člověk",
-      "Je to dobrý člověk."
-    ],
-    "word_hakgyo": [
-      "škola",
-      "Škola je velká."
-    ],
-    "word_yeogi": [
-      "tady",
-      "Posaďte se tady."
-    ],
-    "word_pal": [
-      "paže",
-      "Máš dlouhé ruce."
-    ],
-    "word_norae": [
-      "píseň",
-      "Zpívám píseň."
-    ],
-    "word_chaek": [
-      "kniha",
-      "Čtu knihu."
-    ],
-    "word_dal": [
-      "měsíc",
-      "Měsíc svítí."
-    ],
-    "word_jeonhwa": [
-      "telefon",
-      "Zvedám telefon."
-    ],
-    "word_namu": [
-      "strom",
-      "Ten strom je vysoký."
-    ],
-    "word_dasi": [
-      "znovu",
-      "Řekněte to prosím znovu."
-    ],
-    "word_nal": [
-      "den",
-      "Je hezký den."
-    ],
-    "word_jigeum": [
-      "teď",
-      "Jdu teď."
-    ],
-    "word_haru": [
-      "celý den",
-      "Ten den je dlouhý."
-    ],
-    "word_sesang": [
-      "svět",
-      "Svět je široký."
-    ],
-    "word_bal": [
-      "chodidlo",
-      "Mám studené nohy."
-    ],
-    "word_neutda": [
-      "být pozdě",
-      "Autobus měl zpoždění."
-    ],
-    "word_modu": [
-      "všichni",
-      "Všichni se sešli."
-    ],
-    "word_sajin": [
-      "fotografie",
-      "Fotím."
-    ],
-    "word_chimdae": [
-      "postel",
-      "Postel je pohodlná."
-    ],
-    "word_ko": [
-      "nos",
-      "Mám ucpaný nos."
-    ],
-    "word_san": [
-      "hora",
-      "Jdu na horu."
-    ],
-    "word_hana": [
-      "jedna",
-      "Jedno jablko, prosím."
-    ],
-    "word_byeongwon": [
-      "nemocnice",
-      "Jdu do nemocnice."
-    ],
-    "word_jeongmal": [
-      "opravdu",
-      "Moc děkuji.",
-      "Opravdu, vážně — zesilující slovo před přídavným jménem, jako v 정말 좋아요. Samotné, se stoupavou intonací, je 정말? jednoslovná otázka „opravdu?“ a takto ho uslyšíte nejčastěji."
-    ],
-    "word_seonmul": [
-      "dárek",
-      "Ten dárek se mi líbí."
-    ],
-    "word_boda": [
-      "vidět",
-      "Dívám se na film."
-    ],
-    "word_oneul": [
-      "dnes",
-      "Dnes je hezky."
-    ],
-    "word_gabang": [
-      "taška",
-      "Ta taška je těžká."
-    ],
-    "word_eumak": [
-      "hudba",
-      "Ta hudba je pěkná."
-    ],
-    "word_gage": [
-      "obchod",
-      "Obchod je zavřený."
-    ],
-    "word_gil": [
-      "cesta",
-      "Ta cesta je široká."
-    ],
-    "word_ohu": [
-      "odpoledne",
-      "Sejdeme se odpoledne."
-    ],
-    "word_keopi": [
-      "káva",
-      "Piju kávu."
-    ],
-    "word_bap": [
-      "jídlo",
-      "Jím jídlo."
-    ],
-    "word_eomma": [
-      "máma",
-      "Máma vaří."
-    ],
-    "word_gwi": [
-      "ucho",
-      "Bolí mě ucho."
-    ],
-    "word_beoseu": [
-      "autobus",
-      "Jede autobus."
-    ],
-    "word_geurim": [
-      "obrázek",
-      "Kreslím obrázek."
-    ],
-    "word_beon": [
-      "krát",
-      "Udělejte to prosím ještě jednou."
-    ],
-    "word_sul": [
-      "alkohol",
-      "Nepiju alkohol."
-    ],
-    "word_yeonghwa": [
-      "film",
-      "Ten film je zábavný."
-    ],
-    "word_sada": [
-      "koupit",
-      "Kupuju chleba."
-    ],
-    "word_byeol": [
-      "hvězda",
-      "Hvězdy svítí."
-    ],
-    "word_bihaenggi": [
-      "letadlo",
-      "Letím letadlem."
-    ],
-    "word_bak": [
-      "venek",
-      "Venku prší."
-    ],
-    "word_oda": [
-      "přijít",
-      "Přichází můj kamarád."
-    ],
-    "word_chingu": [
-      "kamarád",
-      "Potkávám kamaráda."
-    ],
-    "word_appa": [
-      "táta",
-      "Dobrou noc, tati."
-    ],
-    "word_haneul": [
-      "nebe",
-      "Nebe je modré."
-    ],
-    "word_bada": [
-      "moře",
-      "Moře je široké."
-    ],
-    "word_sagwa": [
-      "jablko",
-      "To jablko je sladké."
-    ],
-    "word_mulgeon": [
-      "věc",
-      "Kupuju věci."
-    ],
-    "word_moja": [
-      "čepice",
-      "Nasazuju si čepici."
-    ],
-    "word_gogi": [
-      "maso",
-      "Griluju maso."
-    ],
-    "word_jinjja": [
-      "opravdový",
-      "Je to opravdu tak?"
-    ],
-    "word_sinbal": [
-      "boty",
-      "Obouvám si boty."
-    ],
-    "word_jamkkan": [
-      "chvilka",
-      "Počkejte prosím chvilku."
-    ],
-    "word_namja": [
-      "muž",
-      "Ten muž je můj kamarád."
-    ],
-    "word_eumsik": [
-      "jídlo",
-      "Korejské jídlo je výborné."
-    ],
-    "word_saengil": [
-      "narozeniny",
-      "Všechno nejlepší k narozeninám."
-    ],
-    "word_daseot": [
-      "pět",
-      "Přišlo pět lidí."
-    ],
-    "word_gihoe": [
-      "příležitost",
-      "Je to dobrá příležitost."
-    ],
-    "word_dul": [
-      "dva",
-      "Jsou tu dvě židle."
-    ],
-    "word_sijang": [
-      "trh",
-      "Kupuju zeleninu na trhu."
-    ],
-    "word_goyangi": [
-      "kočka",
-      "Kočka spí."
-    ],
-    "word_changmun": [
-      "okno",
-      "Zavřete prosím okno."
-    ],
-    "word_yeoreum": [
-      "léto",
-      "V létě jezdím k moři."
-    ],
-    "word_dongmul": [
-      "zvíře",
-      "Mám rád zvířata."
-    ],
-    "word_yeohaeng": [
-      "cestování",
-      "Chci cestovat."
-    ],
-    "word_bam": [
-      "noc",
-      "V noci je hodně hvězd.",
-      "Noc. Píše se stejně jako slovo pro kaštan, běžnou podzimní pochoutku v Koreji, takže 밤을 먹어요 a 밤에 자요 mluví o velmi odlišných věcech."
-    ]
-  }
+ "_comment": "Vocabulary copy for Czech. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+ "locale": "cs",
+ "words": {
+  "word_hada": [
+   "dělat",
+   "Učím se.",
+   "Dělat — a motor korejské slovní zásoby. Připojte je k podstatnému jménu a vznikne sloveso: 공부 (studium) → 공부하다 (studovat), 사랑 (láska) → 사랑하다. Takto jsou utvořeny stovky sloves."
+  ],
+  "word_cha": [
+   "auto",
+   "Jedu autem.",
+   "Auto. Tatáž slabika znamená i čaj: 차를 마셔요 je piju čaj, 차를 타요 je nastupuji do auta. Které z nich to je, prozradí sloveso."
+  ],
+  "word_yeoja": [
+   "žena",
+   "Ta žena je lékařka."
+  ],
+  "word_na": [
+   "já",
+   "Učím se korejsky."
+  ],
+  "word_hae": [
+   "slunce",
+   "Slunce svítí."
+  ],
+  "word_don": [
+   "peníze",
+   "V peněžence jsou peníze."
+  ],
+  "word_uri": [
+   "my",
+   "Jsme přátelé."
+  ],
+  "word_jip": [
+   "domov",
+   "Jdu domů."
+  ],
+  "word_itda": [
+   "být někde",
+   "Jsem doma.",
+   "Jedno slovo tam, kde má čeština dvě: 있다 znamená být někde i mít. 책상에 책이 있어요 — kniha je na stole; 시간이 있어요 — mám čas. Opakem je 없다."
+  ],
+  "word_ne": [
+   "ano",
+   "Ano, je to tak.",
+   "Jako 네 se píšou tři běžná slova. Tohle je „ano“. Další jsou „tvůj“ (네 책, tvoje kniha) a domácí číslovka „čtyři“ před počítacím slovem (네 개, čtyři kusy). Rozliší je kontext, pravopis ne."
+  ],
+  "word_son": [
+   "ruka",
+   "Píšu rukou."
+  ],
+  "word_sigan": [
+   "čas",
+   "Nemám čas.",
+   "Čas obecně a zároveň jednotka pro počítání hodin: 두 시간 jsou dvě hodiny. Nepleťte si je s 시, což je hodina na ciferníku — 두 시 jsou dvě hodiny, něco úplně jiného."
+  ],
+  "word_jeo": [
+   "já (zdvořile)",
+   "Jsem student."
+  ],
+  "word_gada": [
+   "jít",
+   "Jdu do školy."
+  ],
+  "word_gae": [
+   "pes",
+   "Pes běží."
+  ],
+  "word_mun": [
+   "dveře",
+   "Otevírám dveře."
+  ],
+  "word_sae": [
+   "pták",
+   "Letí pták."
+  ],
+  "word_mom": [
+   "tělo",
+   "Každý den si myju tělo."
+  ],
+  "word_bang": [
+   "pokoj",
+   "Pokoj je čistý."
+  ],
+  "word_nun": [
+   "oko",
+   "Máš krásné oči.",
+   "Oko. Píše se stejně jako slovo pro sníh; v pečlivé výslovnosti je odlišuje délka: sněhové 눈 je protažené, oční 눈 krátké. Většina mluvčích se spoléhá na kontext."
+  ],
+  "word_ot": [
+   "oblečení",
+   "To oblečení je hezké."
+  ],
+  "word_neo": [
+   "ty",
+   "Kde jsi?"
+  ],
+  "word_eopda": [
+   "nemít",
+   "Nemám peníze."
+  ],
+  "word_meori": [
+   "hlava",
+   "Bolí mě hlava."
+  ],
+  "word_ip": [
+   "ústa",
+   "Ústa jsou malá."
+  ],
+  "word_mul": [
+   "voda",
+   "Piju vodu."
+  ],
+  "word_dari": [
+   "noha",
+   "Bolí mě noha.",
+   "Noha — vaše, stolu, židle. Totéž slovo znamená i most, proto 다리를 건너요 je „přecházím most“, nikoli něco anatomického."
+  ],
+  "word_bi": [
+   "déšť",
+   "Prší."
+  ],
+  "word_wae": [
+   "proč",
+   "Proč jdeš pozdě?"
+  ],
+  "word_eolgul": [
+   "obličej",
+   "Myju si obličej."
+  ],
+  "word_saram": [
+   "člověk",
+   "Je to dobrý člověk."
+  ],
+  "word_hakgyo": [
+   "škola",
+   "Škola je velká."
+  ],
+  "word_yeogi": [
+   "tady",
+   "Posaďte se tady."
+  ],
+  "word_pal": [
+   "paže",
+   "Máš dlouhé ruce."
+  ],
+  "word_norae": [
+   "píseň",
+   "Zpívám píseň."
+  ],
+  "word_chaek": [
+   "kniha",
+   "Čtu knihu."
+  ],
+  "word_dal": [
+   "měsíc",
+   "Měsíc svítí."
+  ],
+  "word_jeonhwa": [
+   "telefon",
+   "Zvedám telefon."
+  ],
+  "word_namu": [
+   "strom",
+   "Ten strom je vysoký."
+  ],
+  "word_dasi": [
+   "znovu",
+   "Řekněte to prosím znovu."
+  ],
+  "word_nal": [
+   "den",
+   "Je hezký den."
+  ],
+  "word_jigeum": [
+   "teď",
+   "Jdu teď."
+  ],
+  "word_haru": [
+   "celý den",
+   "Ten den je dlouhý."
+  ],
+  "word_sesang": [
+   "svět",
+   "Svět je široký."
+  ],
+  "word_bal": [
+   "chodidlo",
+   "Mám studené nohy."
+  ],
+  "word_neutda": [
+   "být pozdě",
+   "Autobus měl zpoždění."
+  ],
+  "word_modu": [
+   "všichni",
+   "Všichni se sešli."
+  ],
+  "word_sajin": [
+   "fotografie",
+   "Fotím."
+  ],
+  "word_chimdae": [
+   "postel",
+   "Postel je pohodlná."
+  ],
+  "word_ko": [
+   "nos",
+   "Mám ucpaný nos."
+  ],
+  "word_san": [
+   "hora",
+   "Jdu na horu."
+  ],
+  "word_hana": [
+   "jedna",
+   "Jedno jablko, prosím."
+  ],
+  "word_byeongwon": [
+   "nemocnice",
+   "Jdu do nemocnice."
+  ],
+  "word_jeongmal": [
+   "opravdu",
+   "Moc děkuji.",
+   "Opravdu, vážně — zesilující slovo před přídavným jménem, jako v 정말 좋아요. Samotné, se stoupavou intonací, je 정말? jednoslovná otázka „opravdu?“ a takto ho uslyšíte nejčastěji."
+  ],
+  "word_seonmul": [
+   "dárek",
+   "Ten dárek se mi líbí."
+  ],
+  "word_boda": [
+   "vidět",
+   "Dívám se na film."
+  ],
+  "word_oneul": [
+   "dnes",
+   "Dnes je hezky."
+  ],
+  "word_gabang": [
+   "taška",
+   "Ta taška je těžká."
+  ],
+  "word_eumak": [
+   "hudba",
+   "Ta hudba je pěkná."
+  ],
+  "word_gage": [
+   "obchod",
+   "Obchod je zavřený."
+  ],
+  "word_gil": [
+   "cesta",
+   "Ta cesta je široká."
+  ],
+  "word_ohu": [
+   "odpoledne",
+   "Sejdeme se odpoledne."
+  ],
+  "word_keopi": [
+   "káva",
+   "Piju kávu."
+  ],
+  "word_bap": [
+   "jídlo",
+   "Jím jídlo."
+  ],
+  "word_eomma": [
+   "máma",
+   "Máma vaří."
+  ],
+  "word_gwi": [
+   "ucho",
+   "Bolí mě ucho."
+  ],
+  "word_beoseu": [
+   "autobus",
+   "Jede autobus."
+  ],
+  "word_geurim": [
+   "obrázek",
+   "Kreslím obrázek."
+  ],
+  "word_beon": [
+   "krát",
+   "Udělejte to prosím ještě jednou."
+  ],
+  "word_sul": [
+   "alkohol",
+   "Nepiju alkohol."
+  ],
+  "word_yeonghwa": [
+   "film",
+   "Ten film je zábavný."
+  ],
+  "word_sada": [
+   "koupit",
+   "Kupuju chleba."
+  ],
+  "word_byeol": [
+   "hvězda",
+   "Hvězdy svítí."
+  ],
+  "word_bihaenggi": [
+   "letadlo",
+   "Letím letadlem."
+  ],
+  "word_bak": [
+   "venek",
+   "Venku prší."
+  ],
+  "word_oda": [
+   "přijít",
+   "Přichází můj kamarád."
+  ],
+  "word_chingu": [
+   "kamarád",
+   "Potkávám kamaráda."
+  ],
+  "word_appa": [
+   "táta",
+   "Dobrou noc, tati."
+  ],
+  "word_haneul": [
+   "nebe",
+   "Nebe je modré."
+  ],
+  "word_bada": [
+   "moře",
+   "Moře je široké."
+  ],
+  "word_sagwa": [
+   "jablko",
+   "To jablko je sladké."
+  ],
+  "word_mulgeon": [
+   "věc",
+   "Kupuju věci."
+  ],
+  "word_moja": [
+   "čepice",
+   "Nasazuju si čepici."
+  ],
+  "word_gogi": [
+   "maso",
+   "Griluju maso."
+  ],
+  "word_jinjja": [
+   "opravdový",
+   "Je to opravdu tak?"
+  ],
+  "word_sinbal": [
+   "boty",
+   "Obouvám si boty."
+  ],
+  "word_jamkkan": [
+   "chvilka",
+   "Počkejte prosím chvilku."
+  ],
+  "word_namja": [
+   "muž",
+   "Ten muž je můj kamarád."
+  ],
+  "word_eumsik": [
+   "jídlo",
+   "Korejské jídlo je výborné."
+  ],
+  "word_saengil": [
+   "narozeniny",
+   "Všechno nejlepší k narozeninám."
+  ],
+  "word_daseot": [
+   "pět",
+   "Přišlo pět lidí."
+  ],
+  "word_gihoe": [
+   "příležitost",
+   "Je to dobrá příležitost."
+  ],
+  "word_dul": [
+   "dva",
+   "Jsou tu dvě židle."
+  ],
+  "word_sijang": [
+   "trh",
+   "Kupuju zeleninu na trhu."
+  ],
+  "word_goyangi": [
+   "kočka",
+   "Kočka spí."
+  ],
+  "word_changmun": [
+   "okno",
+   "Zavřete prosím okno."
+  ],
+  "word_yeoreum": [
+   "léto",
+   "V létě jezdím k moři."
+  ],
+  "word_dongmul": [
+   "zvíře",
+   "Mám rád zvířata."
+  ],
+  "word_yeohaeng": [
+   "cestování",
+   "Chci cestovat."
+  ],
+  "word_bam": [
+   "noc",
+   "V noci je hodně hvězd.",
+   "Noc. Píše se stejně jako slovo pro kaštan, běžnou podzimní pochoutku v Koreji, takže 밤을 먹어요 a 밤에 자요 mluví o velmi odlišných věcech."
+  ],
+  "word_geot": [
+   "věc",
+   "Koupil jsem věci, které jsem potřeboval."
+  ],
+  "word_mal": [
+   "slova, to, co někdo říká",
+   "Volte slova opatrně."
+  ],
+  "word_bun": [
+   "minuta",
+   "Počkejte prosím jen deset minut."
+  ],
+  "word_dwi": [
+   "zadní strana",
+   "Napsal jsem si jméno na zadní stranu sešitu."
+  ],
+  "word_si": [
+   "hodina na hodinách",
+   "Hodina končí ve dvě."
+  ],
+  "word_deo": [
+   "více",
+   "Ještě trochu, prosím."
+  ],
+  "word_ap": [
+   "přední strana",
+   "Sejdeme se před obchodem."
+  ],
+  "word_da": [
+   "všechno",
+   "Snědl jsem všechnu rýži."
+  ],
+  "word_jom": [
+   "trochu, a způsob, jak zjemnit prosbu",
+   "Trochu vody, prosím."
+  ],
+  "word_jeon": [
+   "před",
+   "Před jídlem si myji ruce."
+  ],
+  "word_alda": [
+   "vědět",
+   "Znám to jméno."
+  ],
+  "word_yak": [
+   "lék",
+   "Užijte lék po jídle."
+  ],
+  "word_jota": [
+   "být dobrý",
+   "Cítím se dobře."
+  ],
+  "word_jal": [
+   "dobře",
+   "Spal jsi dobře?"
+  ],
+  "word_anida": [
+   "nebýt něčím",
+   "Nejsem student."
+  ],
+  "word_bul": [
+   "oheň",
+   "Na hoře vypukl požár."
+  ],
+  "word_uyu": [
+   "mléko",
+   "Mléko je studené."
+  ],
+  "word_meokda": [
+   "jíst",
+   "Jím ovoce."
+  ],
+  "word_ppang": [
+   "chléb",
+   "Jím chléb."
+  ],
+  "word_ttae": [
+   "chvíle, kdy se něco děje",
+   "Když jsem byl malý, bydlel jsem na venkově."
+  ],
+  "word_il": [
+   "práce",
+   "Dnes je hodně práce."
+  ],
+  "word_baji": [
+   "kalhoty",
+   "Kalhoty jsou dlouhé."
+  ],
+  "word_sigye": [
+   "hodiny, hodinky",
+   "Nemám hodinky."
+  ],
+  "word_siheom": [
+   "zkouška",
+   "Zítra mám zkoušku."
+  ],
+  "word_keompyuteo": [
+   "počítač",
+   "Zapínám počítač."
+  ],
+  "word_nalssi": [
+   "počasí",
+   "Počasí je hezké."
+  ],
+  "word_jongi": [
+   "papír",
+   "Kreslím na papír."
+  ],
+  "word_dosi": [
+   "město",
+   "Město je velmi velké."
+  ],
+  "word_munje": [
+   "problém",
+   "Je tu problém."
+  ],
+  "word_wi": [
+   "horní strana",
+   "Na tašce leží čepice."
+  ],
+  "word_bom": [
+   "jaro",
+   "Na jaře kvetou květiny."
+  ],
+  "word_jeonyeok": [
+   "večeře",
+   "Večeřím."
+  ],
+  "word_gyeoul": [
+   "zima",
+   "V zimě hodně sněží."
+  ],
+  "word_abeoji": [
+   "otec",
+   "Můj otec chodí do práce."
+  ],
+  "word_eoseo": [
+   "prosím, jen dál",
+   "Vítejte, pojďte prosím dál."
+  ],
+  "word_mot": [
+   "nemoci, ač bych chtěl",
+   "Je to tak pálivé, že to nemůžu sníst."
+  ],
+  "word_salda": [
+   "bydlet, žít",
+   "Bydlím v Soulu."
+  ],
+  "word_ai": [
+   "dítě",
+   "Dítě se směje."
+  ],
+  "word_jeomsim": [
+   "oběd",
+   "Pojďme spolu na oběd."
+  ],
+  "word_nugu": [
+   "kdo",
+   "Kdo je ten člověk?"
+  ],
+  "word_eonje": [
+   "kdy",
+   "Kdy přijdeš?"
+  ],
+  "word_geori": [
+   "ulice",
+   "Na ulici je hodně lidí."
+  ],
+  "word_annyeong": [
+   "ahoj a na shledanou",
+   "Ahoj, zase se uvidíme!"
+  ],
+  "word_gakkeum": [
+   "někdy",
+   "Někdy se dívám na filmy."
+  ],
+  "word_manta": [
+   "být početný",
+   "Je tu hodně lidí."
+  ],
+  "word_chima": [
+   "sukně",
+   "Tahle sukně je moc pěkná."
+  ],
+  "word_uija": [
+   "židle",
+   "Sedím na židli."
+  ],
+  "word_jeogi": [
+   "tamhle",
+   "Tamhle je škola."
+  ],
+  "word_gongwon": [
+   "park",
+   "Procházím se v parku."
+  ],
+  "word_ssal": [
+   "syrová rýže",
+   "Rýži propláchnu a uvařím."
+  ],
+  "word_jigu": [
+   "Země",
+   "Země je kulatá."
+  ],
+  "word_eodi": [
+   "kde",
+   "Kde je záchod?"
+  ],
+  "word_byeok": [
+   "stěna",
+   "Věším obraz na stěnu."
+  ],
+  "word_gyeran": [
+   "vejce",
+   "Ráno jsem uvařil vejce."
+  ],
+  "word_tada": [
+   "nastoupit, jet čím",
+   "Jedu autobusem."
+  ],
+  "word_segye": [
+   "svět",
+   "Znám mnoho zemí světa."
+  ],
+  "word_ireum": [
+   "jméno",
+   "Jak se jmenuješ?"
+  ],
+  "word_guk": [
+   "polévka",
+   "Ráno jím polévku."
+  ],
+  "word_malhada": [
+   "mluvit",
+   "Mluvte prosím pomalu."
+  ],
+  "word_geotda": [
+   "chodit pěšky",
+   "Procházím se v parku."
+  ],
+  "word_gangaji": [
+   "štěně",
+   "Štěně je malé."
+  ],
+  "word_sori": [
+   "zvuk",
+   "Zvuk je hlasitý."
+  ],
+  "word_yeop": [
+   "bok, strana",
+   "Posaďte se prosím vedle mě."
+  ],
+  "word_saenggak": [
+   "myšlenka",
+   "To je dobrý nápad."
+  ],
+  "word_geogi": [
+   "tam",
+   "Je tam někdo?"
+  ],
+  "word_adeul": [
+   "syn",
+   "Můj syn chodí do školy."
+  ],
+  "word_doeda": [
+   "stát se",
+   "Chci se stát lékařem."
+  ],
+  "word_maeul": [
+   "vesnice",
+   "Vesnice je klidná."
+  ],
+  "word_kape": [
+   "kavárna",
+   "Scházím se s kamarádem v kavárně."
+  ],
+  "word_gong": [
+   "míč",
+   "Kopu do míče."
+  ],
+  "word_gajok": [
+   "rodina",
+   "Mám velkou rodinu."
+  ],
+  "word_ssi": [
+   "pan nebo paní, po jménu",
+   "Minsu, moment."
+  ],
+  "word_achim": [
+   "ráno",
+   "Vstávám ráno."
+  ],
+  "word_jeonhwahada": [
+   "zatelefonovat",
+   "Zavolám ti později."
+  ],
+  "word_gaeul": [
+   "podzim",
+   "Na podzim je vítr chladný."
+  ],
+  "word_kkot": [
+   "květina",
+   "Květina je hezká."
+  ],
+  "word_jido": [
+   "mapa",
+   "Dívám se do mapy."
+  ],
+  "word_saek": [
+   "barva",
+   "Tato barva je hezká."
+  ],
+  "word_juda": [
+   "dát",
+   "Dávám dárek."
+  ],
+  "word_yachae": [
+   "zelenina",
+   "Jezte prosím hodně zeleniny."
+  ],
+  "word_chaeksang": [
+   "psací stůl",
+   "Na stole leží kniha."
+  ],
+  "word_cheoeum": [
+   "poprvé",
+   "Těší mě, že vás poznávám."
+  ],
+  "word_gwail": [
+   "ovoce",
+   "Mám rád ovoce."
+  ],
+  "word_uisa": [
+   "lékař",
+   "Lékař mě vyšetřuje."
+  ],
+  "word_ttal": [
+   "dcera",
+   "Moje dcera chodí do školy."
+  ],
+  "word_yeoboseyo": [
+   "haló, do telefonu",
+   "Haló, kdo volá?"
+  ],
+  "word_so": [
+   "kráva",
+   "Kráva žere trávu."
+  ],
+  "word_pyeonji": [
+   "dopis",
+   "Píšu mamince dopis."
+  ],
+  "word_jogeum": [
+   "trochu",
+   "Jen trochu, prosím."
+  ],
+  "word_boida": [
+   "být vidět",
+   "Je vidět hora."
+  ],
+  "word_jari": [
+   "místo k sezení",
+   "Nejsou volná místa."
+  ],
+  "word_hu": [
+   "po",
+   "Po hodině jdu do knihovny."
+  ],
+  "word_kadeu": [
+   "karta",
+   "Zaplatím kartou."
+  ],
+  "word_naeil": [
+   "zítra",
+   "Uvidíme se zítra."
+  ],
+  "word_jungyohada": [
+   "být důležitý",
+   "Zdraví je nejdůležitější."
+  ],
+  "word_dalgyal": [
+   "vejce",
+   "Ráno jím vejce."
+  ],
+  "word_aju": [
+   "velmi",
+   "Je to velmi dobré."
+  ],
+  "word_matda": [
+   "být správný",
+   "Tahle odpověď je správná."
+  ],
+  "word_hanguk": [
+   "Korea",
+   "Mám rád korejské jídlo."
+  ],
+  "word_gang": [
+   "řeka",
+   "Řeka je velmi široká."
+  ],
+  "word_cho": [
+   "vteřina",
+   "Zbývá třicet vteřin."
+  ],
+  "word_hoesa": [
+   "firma, kancelář",
+   "Jdu do kanceláře."
+  ],
+  "word_sosik": [
+   "zpráva od někoho",
+   "Mám dobrou zprávu."
+  ],
+  "word_jakda": [
+   "být malý",
+   "Boty jsou malé."
+  ],
+  "word_gimchi": [
+   "kimčchi",
+   "Kimčchi je pálivé."
+  ],
+  "word_ikda": [
+   "číst",
+   "Čtu noviny."
+  ],
+  "word_geurigo": [
+   "a, a pak",
+   "Koupil jsem chleba. A koupil jsem i mléko."
+  ],
+  "word_keuda": [
+   "být velký",
+   "Tahle taška je velká."
+  ],
+  "word_yeollak": [
+   "kontakt",
+   "Ozvěte se prosím později."
+  ],
+  "word_gachi": [
+   "společně",
+   "Najíme se společně."
+  ],
+  "word_neomu": [
+   "příliš",
+   "Tohle oblečení je příliš velké."
+  ],
+  "word_yong": [
+   "drak",
+   "Na obrázku je velký drak."
+  ],
+  "word_geureota": [
+   "být tak",
+   "Ano, je to tak."
+  ],
+  "word_hotel": [
+   "hotel",
+   "Spal jsem v hotelu."
+  ],
+  "word_yeolsoe": [
+   "klíč",
+   "Nemám klíč."
+  ],
+  "word_yeppeuda": [
+   "být hezký",
+   "Květiny jsou opravdu hezké."
+  ],
+  "word_geugeot": [
+   "tamto",
+   "Podejte mi prosím tamto."
+  ],
+  "word_daeum": [
+   "další",
+   "Zase příště."
+  ],
+  "word_maeum": [
+   "srdce, mysl",
+   "Mají teplé srdce."
+  ],
+  "word_jadongcha": [
+   "automobil",
+   "Auto je rychlé."
+  ],
+  "word_jukda": [
+   "zemřít",
+   "Květina v květináči uschla, protože se nezalévala."
+  ],
+  "word_nalda": [
+   "létat",
+   "Pták letí po obloze."
+  ],
+  "word_siksa": [
+   "jídlo, pokrm",
+   "Jídlo bylo velmi dobré."
+  ],
+  "word_gigye": [
+   "stroj",
+   "Stroj se porouchal."
+  ],
+  "word_ttang": [
+   "země, půda",
+   "Země je mokrá."
+  ],
+  "word_jada": [
+   "spát",
+   "Chodím spát brzy."
+  ],
+  "word_beorida": [
+   "vyhodit",
+   "Vyhoďte to prosím do koše."
+  ],
+  "word_juso": [
+   "adresa",
+   "Řekněte mi prosím adresu."
+  ],
+  "word_gicha": [
+   "vlak",
+   "Vlak odjel."
+  ],
+  "word_chitsol": [
+   "kartáček na zuby",
+   "Koupil jsem nový kartáček."
+  ],
+  "word_sarang": [
+   "láska",
+   "Láska je krásná."
+  ],
+  "word_gongbu": [
+   "studium",
+   "Učit se je zábava."
+  ],
+  "word_saengseon": [
+   "ryba k jídlu",
+   "K večeři jsem opekl rybu."
+  ],
+  "word_mok": [
+   "krk",
+   "Bolí mě krk."
+  ],
+  "word_sipda": [
+   "chtít",
+   "Chci jet do Koreje."
+  ],
+  "word_nyuseu": [
+   "zprávy",
+   "Dívám se na zprávy."
+  ],
+  "word_chatda": [
+   "hledat",
+   "Hledám klíč."
+  ],
+  "word_iljjik": [
+   "brzy",
+   "Zítra vstávám brzy."
+  ],
+  "word_geonmul": [
+   "budova",
+   "Ta budova je nová."
+  ],
+  "word_seonsaengnim": [
+   "učitel",
+   "Učitel učí."
+  ],
+  "word_eomeoni": [
+   "matka",
+   "Moje matka je doma."
+  ],
+  "word_gibun": [
+   "nálada",
+   "Jak se cítíš?"
+  ],
+  "word_honja": [
+   "sám",
+   "Můžu jít sám."
+  ],
+  "word_ani": [
+   "ne",
+   "Ne, nešel jsem."
+  ],
+  "word_eoje": [
+   "včera",
+   "Včera pršelo."
+  ],
+  "word_sseuda": [
+   "psát",
+   "Píšu své jméno."
+  ],
+  "word_masida": [
+   "pít",
+   "Piju mléko."
+  ],
+  "word_syeocheu": [
+   "košile",
+   "Nosím bílou košili."
+  ],
+  "word_junbi": [
+   "příprava",
+   "Všechno je připraveno."
+  ],
+  "word_mian": [
+   "promiň",
+   "Promiň, jdu pozdě."
+  ],
+  "word_geokjeong": [
+   "starost",
+   "Mám hodně starostí."
+  ],
+  "word_hajiman": [
+   "ale, avšak",
+   "Prší. Ale stejně půjdu."
+  ],
+  "word_kamera": [
+   "fotoaparát",
+   "Koupil jsem fotoaparát."
+  ],
+  "word_dongne": [
+   "čtvrť",
+   "Naše čtvrť je klidná."
+  ],
+  "word_naengjanggo": [
+   "lednička",
+   "Dal jsem mléko do ledničky."
+  ],
+  "word_anda": [
+   "posadit se",
+   "Posadil jsem se na židli."
+  ],
+  "word_ppalli": [
+   "rychle",
+   "Přijďte prosím rychle."
+  ],
+  "word_yaegi": [
+   "povídání",
+   "Popovídáme si chvíli."
+  ],
+  "word_got": [
+   "místo",
+   "Našel jsem klidné místo."
+  ],
+  "word_nat": [
+   "den, denní doba",
+   "Přes den je teplo."
+  ],
+  "word_sangja": [
+   "krabice",
+   "Otevírám krabici."
+  ],
+  "word_wonhada": [
+   "chtít",
+   "Co chceš?"
+  ],
+  "word_sikdang": [
+   "restaurace",
+   "Kde je restaurace?"
+  ],
+  "word_geurida": [
+   "kreslit",
+   "Dítě kreslí strom."
+  ],
+  "word_yuri": [
+   "sklo",
+   "Sklo se rozbilo."
+  ],
+  "word_igeot": [
+   "tohle",
+   "Podejte mi prosím tohle."
+  ],
+  "word_geoul": [
+   "zrcadlo",
+   "Dívám se do zrcadla."
+  ],
+  "word_gijeok": [
+   "zázrak",
+   "Bylo to opravdu jako zázrak."
+  ],
+  "word_kal": [
+   "nůž",
+   "Oloupal jsem jablko nožem."
+  ],
+  "word_gatda": [
+   "být stejný",
+   "Naše tašky jsou stejné."
+  ],
+  "word_pul": [
+   "tráva",
+   "Tráva je zelená."
+  ],
+  "word_eolma": [
+   "kolik",
+   "Kolik to stojí?"
+  ],
+  "word_saenggakada": [
+   "myslet",
+   "Taky si to myslím."
+  ],
+  "word_jilmun": [
+   "otázka",
+   "Mám otázku."
+  ],
+  "word_geunyeo": [
+   "ona",
+   "Ona hezky zpívá."
+  ],
+  "word_nota": [
+   "položit",
+   "Položil jsem tašku na podlahu."
+  ],
+  "word_banggeum": [
+   "právě teď",
+   "Právě jsem dorazil."
+  ],
+  "word_bonaeda": [
+   "poslat",
+   "Posílám dopis."
+  ],
+  "word_arae": [
+   "pod",
+   "Kniha je pod stolem."
+  ],
+  "word_naoda": [
+   "vycházet",
+   "Teče voda."
+  ],
+  "word_nai": [
+   "věk",
+   "Kolik je vám let?"
+  ],
+  "word_eotteoke": [
+   "jak",
+   "Jak se tam dostanu?"
+  ],
+  "word_eunhaeng": [
+   "banka",
+   "Banka otevřela."
+  ],
+  "word_al": [
+   "vejce",
+   "Pták snesl tři vejce."
+  ],
+  "word_moreuda": [
+   "nevědět",
+   "Nevím."
+  ],
+  "word_badak": [
+   "podlaha",
+   "Utírám podlahu."
+  ],
+  "word_hwajangsil": [
+   "toaleta",
+   "Toaleta je čistá."
+  ],
+  "word_yeok": [
+   "nádraží",
+   "Sejdeme se na nádraží."
+  ],
+  "word_seoul": [
+   "Soul",
+   "Soul je velmi velký."
+  ],
+  "word_gwiyeopda": [
+   "být roztomilý",
+   "Štěně je roztomilé."
+  ],
+  "word_areumdapda": [
+   "být krásný",
+   "Krajina je krásná."
+  ],
+  "word_ajik": [
+   "ještě, ještě ne",
+   "Ještě nepřišli."
+  ],
+  "word_gyedan": [
+   "schody",
+   "Je tu hodně schodů."
+  ],
+  "word_maeil": [
+   "každý den",
+   "Každý den píšu hangul."
+  ],
+  "word_agi": [
+   "miminko",
+   "Miminko spí."
+  ],
+  "word_dwaeji": [
+   "prase",
+   "Prase žere."
+  ],
+  "word_ju": [
+   "týden",
+   "Sejdeme se příští týden."
+  ],
+  "word_iyagi": [
+   "příběh",
+   "Je to zajímavý příběh."
+  ],
+  "word_tto": [
+   "zase",
+   "Zítra se zase uvidíme."
+  ],
+  "word_beolsseo": [
+   "už",
+   "Už je po všem."
+  ],
+  "word_dangsin": [
+   "vy, zdvořile",
+   "Čekal jsem na vás."
+  ],
+  "word_gap": [
+   "cena",
+   "Cena je vysoká."
+  ],
+  "word_mianhada": [
+   "být líto",
+   "Promiňte, že jdu pozdě."
+  ],
+  "word_jeongnyujang": [
+   "zastávka",
+   "Čekám na autobus na zastávce."
+  ],
+  "word_anta": [
+   "nedělat",
+   "Nepiju kávu."
+  ],
+  "word_taeksi": [
+   "taxi",
+   "Zavolejte prosím taxi."
+  ],
+  "word_haksaeng": [
+   "student",
+   "Ve třídě je hodně studentů."
+  ],
+  "word_bomul": [
+   "poklad",
+   "Děti hledají poklad."
+  ],
+  "word_jumun": [
+   "objednávka",
+   "Přejete si objednat?"
+  ],
+  "word_sinmun": [
+   "noviny",
+   "Přečtěte si prosím noviny."
+  ],
+  "word_dak": [
+   "slepice",
+   "Slepice snáší vejce."
+  ],
+  "word_keop": [
+   "hrnek",
+   "Naliji vodu do hrnku."
+  ],
+  "word_set": [
+   "tři",
+   "Sešli se tři přátelé."
+  ],
+  "word_hangugeo": [
+   "korejský jazyk",
+   "Korejština je zajímavá."
+  ],
+  "word_geuraeseo": [
+   "takže, proto",
+   "Prší, takže nejdu."
+  ],
+  "word_manhi": [
+   "hodně",
+   "Jezte prosím hodně."
+  ],
+  "word_du": [
+   "dva, před počitatelným slovem",
+   "Dvě kávy, prosím."
+  ],
+  "word_pyeonuijeom": [
+   "večerka",
+   "Před mým domem je večerka."
+  ],
+  "word_miguk": [
+   "Spojené státy",
+   "Pocházím ze Spojených států."
+  ],
+  "word_gyesok": [
+   "pokračování",
+   "Pořád prší."
+  ],
+  "word_gagyeok": [
+   "cena",
+   "Cena je vyšší, než jsem čekal."
+  ],
+  "word_dongsaeng": [
+   "mladší sourozenec",
+   "Můj mladší sourozenec je roztomilý."
+  ],
+  "word_tokki": [
+   "králík",
+   "Králík skáče."
+  ],
+  "word_seoda": [
+   "stát",
+   "Stojím ve frontě."
+  ],
+  "word_eoreum": [
+   "led",
+   "Přidejte prosím led."
+  ],
+  "word_jayeon": [
+   "příroda",
+   "Příroda je krásná."
+  ],
+  "word_jjikda": [
+   "razítkovat",
+   "Orazítkoval jsem to pečetí."
+  ],
+  "word_yeol": [
+   "deset",
+   "Počítejte prosím do deseti."
+  ],
+  "word_sasil": [
+   "fakt",
+   "To je fakt."
+  ],
+  "word_unjeon": [
+   "řízení",
+   "Učím se řídit."
+  ],
+  "word_gamja": [
+   "brambora",
+   "Vařím brambory."
+  ],
+  "word_gureum": [
+   "mrak",
+   "Je hodně mraků."
+  ],
+  "word_iyu": [
+   "důvod",
+   "Řekněte mi prosím důvod."
+  ],
+  "word_dareun": [
+   "jiný",
+   "Máte i jiné barvy?"
+  ],
+  "word_songarak": [
+   "prst",
+   "Bolí mě prst."
+  ],
+  "word_japda": [
+   "chytit",
+   "Držím tě za ruku."
+  ],
+  "word_bueok": [
+   "kuchyně",
+   "Vařím v kuchyni."
+  ],
+  "word_piryo": [
+   "potřeba",
+   "Nepotřebuji pomoc."
+  ],
+  "word_pa": [
+   "jarní cibulka",
+   "Přidal jsem do polévky trochu jarní cibulky."
+  ],
+  "word_batda": [
+   "dostat",
+   "Dostal jsem dárek."
+  ],
+  "word_pida": [
+   "rozkvést",
+   "Květiny rozkvetly."
+  ],
+  "word_sayong": [
+   "použití",
+   "Vysvětlete mi prosím, jak se to používá."
+  ],
+  "word_jeongbo": [
+   "informace",
+   "Hledám informace."
+  ],
+  "word_gonghang": [
+   "letiště",
+   "Dorazil jsem na letiště."
+  ],
+  "word_bumo": [
+   "rodiče",
+   "Dítě potřebuje rodiče."
+  ],
+  "word_saranghada": [
+   "milovat",
+   "Miluji svou rodinu."
+  ],
+  "word_ireoke": [
+   "takto",
+   "Napište to prosím takto."
+  ],
+  "word_ilhada": [
+   "pracovat",
+   "Moje matka pracuje v nemocnici."
+  ],
+  "word_suyeong": [
+   "plavání",
+   "Učím se plavat."
+  ],
+  "word_piryohada": [
+   "potřebovat",
+   "Potřebuji peníze."
+  ],
+  "word_bukjjok": [
+   "sever",
+   "Šli na sever."
+  ],
+  "word_cheung": [
+   "patro",
+   "Kancelář je ve druhém patře."
+  ],
+  "word_hwanja": [
+   "pacient",
+   "Pacient odpočívá."
+  ],
+  "word_halmeoni": [
+   "babička",
+   "Babička se usmívá."
+  ],
+  "word_palda": [
+   "prodávat",
+   "Prodávají ovoce."
+  ],
+  "word_itda_2": [
+   "spojit",
+   "Spojil jsem dvě lana."
+  ],
+  "word_nara": [
+   "země",
+   "Korea je krásná země."
+  ],
+  "word_apateu": [
+   "panelový byt",
+   "Bydlím v bytě."
+  ],
+  "word_hamkke": [
+   "společně",
+   "Pojďme společně."
+  ],
+  "word_modeun": [
+   "všichni, každý",
+   "Všichni se smáli."
+  ],
+  "word_gwaenchanta": [
+   "být v pořádku",
+   "Jsem v pořádku."
+  ],
+  "word_johahada": [
+   "mít rád",
+   "Mám rád kávu."
+  ],
+  "word_jimseung": [
+   "zvíře, šelma",
+   "V lese bylo slyšet zvíře."
+  ],
+  "word_dongan": [
+   "po nějakou dobu",
+   "Cestoval jsem během prázdnin."
+  ],
+  "word_ipgu": [
+   "vchod",
+   "Sejdeme se u vchodu do budovy."
+  ],
+  "word_silta": [
+   "nemít rád",
+   "Nemám rád studené dny."
+  ],
+  "word_meonjeo": [
+   "nejdřív",
+   "Nejdřív si myji ruce."
+  ],
+  "word_dubu": [
+   "tofu",
+   "Přidám tofu a uvařím polévku."
+  ],
+  "word_bumonim": [
+   "vlastní rodiče",
+   "Bydlím s rodiči."
+  ],
+  "word_gomapda": [
+   "být vděčný",
+   "Děkuji za pomoc."
+  ],
+  "word_gyesan": [
+   "výpočet",
+   "Výpočet je trochu chybný."
+  ],
+  "word_hyeo": [
+   "jazyk v ústech",
+   "Bolí mě jazyk, takže nemůžu jíst."
+  ],
+  "word_sugeon": [
+   "ručník",
+   "Utírám si ruce ručníkem."
+  ],
+  "word_saeropda": [
+   "být nový",
+   "Cítím se osvěženě."
+  ],
+  "word_sup": [
+   "les",
+   "V lese je slyšet zpěv ptáků."
+  ],
+  "word_chum": [
+   "tanec",
+   "Tančili na pódiu."
+  ],
+  "word_sukje": [
+   "domácí úkol",
+   "Dodělal jsem úkol."
+  ],
+  "word_gaji": [
+   "druh",
+   "Chci se zeptat jen na jednu věc."
+  ],
+  "word_mothada": [
+   "neumět",
+   "Neumím plavat."
+  ],
+  "word_nagada": [
+   "jít ven",
+   "Jdu ven."
+  ],
+  "word_meotjida": [
+   "být skvělý",
+   "Dnes vypadáš skvěle."
+  ],
+  "word_podo": [
+   "hrozny",
+   "Hrozny jsou velmi sladké."
+  ],
+  "word_jeopsi": [
+   "talíř",
+   "Vyndejte prosím dva talíře."
+  ],
+  "word_yori": [
+   "vaření",
+   "Jídlo je výborné."
+  ],
+  "word_sogeum": [
+   "sůl",
+   "Přidám trochu soli."
+  ],
+  "word_duda": [
+   "položit",
+   "Položil jsem knihu na stůl."
+  ],
+  "word_gamsahada": [
+   "být vděčný",
+   "Děkuji za pomoc."
+  ],
+  "word_kkeut": [
+   "konec",
+   "Postavte se prosím na konec fronty."
+  ],
+  "word_yeolda": [
+   "otevřít",
+   "Otevírám okno."
+  ],
+  "word_ibul": [
+   "přikrývka",
+   "Přikrývka je teplá."
+  ],
+  "word_najung": [
+   "později",
+   "Zavolám znovu později."
+  ],
+  "word_manjida": [
+   "dotýkat se",
+   "Nedotýkejte se prosím."
+  ],
+  "word_gajang": [
+   "nejvíce",
+   "Tenhle je nejlepší."
+  ],
+  "word_namjjok": [
+   "jih",
+   "Na jihu je teplo."
+  ],
+  "word_doum": [
+   "pomoc",
+   "Potřebuji pomoc."
+  ],
+  "word_jung": [
+   "uprostřed, mezi",
+   "Jsem na poradě."
+  ],
+  "word_sudo": [
+   "hlavní město",
+   "Hlavní město Koreje je Soul."
+  ],
+  "word_gidarida": [
+   "čekat",
+   "Počkejte prosím chvilku."
+  ],
+  "word_chaeso": [
+   "zelenina",
+   "Jím hodně zeleniny."
+  ],
+  "word_kkeunnada": [
+   "skončit",
+   "Hodina skončila."
+  ],
+  "word_butak": [
+   "prosba, laskavost",
+   "Mám prosbu."
+  ],
+  "word_seom": [
+   "ostrov",
+   "Jeli jsme lodí na ostrov."
+  ],
+  "word_teuki": [
+   "zvlášť",
+   "Zvlášť mám rád zimu."
+  ],
+  "word_jemok": [
+   "název",
+   "Jaký je název téhle knihy?"
+  ],
+  "word_insa": [
+   "pozdrav",
+   "Pozdravil jsem."
+  ],
+  "word_seoltang": [
+   "cukr",
+   "Přidám trochu cukru."
+  ],
+  "word_jajeongeo": [
+   "kolo",
+   "Jezdím na kole."
+  ],
+  "word_inteonet": [
+   "internet",
+   "Internet je pomalý."
+  ],
+  "word_aniyo": [
+   "ne",
+   "Ne, jsem v pořádku."
+  ],
+  "word_ama": [
+   "asi",
+   "Zítra bude asi pršet."
+  ],
+  "word_jamsi": [
+   "chvilka",
+   "Odpočineme si chvilku."
+  ],
+  "word_beol": [
+   "včela",
+   "Na květinu usedla včela."
+  ],
+  "word_won": [
+   "won",
+   "Je to dva tisíce wonů."
+  ],
+  "word_ujuseon": [
+   "kosmická loď",
+   "Kosmická loď se zvedla k nebi."
+  ],
+  "word_myeot": [
+   "kolik",
+   "Kolik je hodin?"
+  ],
+  "word_sueop": [
+   "vyučovací hodina",
+   "Hodina je zajímavá."
+  ],
+  "word_sijak": [
+   "začátek",
+   "To je dobrý začátek."
+  ],
+  "word_yeogwon": [
+   "pas",
+   "Nezapomeňte si vzít pas."
+  ],
+  "word_gyosil": [
+   "učebna",
+   "Učebna je světlá."
+  ],
+  "word_nyeon": [
+   "rok",
+   "Učil jsem se dva roky."
+  ],
+  "word_bae": [
+   "břicho",
+   "Bolelo mě břicho, tak jsem šel do nemocnice."
+  ],
+  "word_satang": [
+   "bonbon",
+   "Jím bonbon."
+  ],
+  "word_dalleo": [
+   "dolar",
+   "Je to sto dolarů."
+  ],
+  "word_usan": [
+   "deštník",
+   "Pršelo, tak jsem si koupil deštník."
+  ],
+  "word_museun": [
+   "jaký",
+   "Čím se živíte?"
+  ],
+  "word_pari": [
+   "moucha",
+   "Kolem lítá moucha."
+  ],
+  "word_ije": [
+   "teď",
+   "Začneme teď."
+  ],
+  "word_geollida": [
+   "trvat",
+   "Trvá to hodinu."
+  ],
+  "word_choego": [
+   "nejlepší",
+   "Tahle restaurace je nejlepší."
+  ],
+  "word_naeda": [
+   "zaplatit",
+   "Dnes platím já."
+  ],
+  "word_daneo": [
+   "slovo",
+   "Učím se nové slovo."
+  ],
+  "word_jikjeop": [
+   "osobně",
+   "Dort jsem upekl sám."
+  ],
+  "word_yangmal": [
+   "ponožka",
+   "Ponožky jsou teplé."
+  ],
+  "word_nopda": [
+   "být vysoký",
+   "Budova je vysoká."
+  ],
+  "word_haendeupon": [
+   "mobilní telefon",
+   "Nabíjím si mobil."
+  ],
+  "word_jigap": [
+   "peněženka",
+   "Ztratil jsem peněženku."
+  ],
+  "word_hyudaepon": [
+   "mobilní telefon",
+   "Ztratil jsem mobil."
+  ],
+  "word_agassi": [
+   "mladá žena",
+   "Mladá žena se ptá na cestu."
+  ],
+  "word_gieok": [
+   "paměť",
+   "Nemůžu si vzpomenout."
+  ],
+  "word_geutda": [
+   "udělat čáru",
+   "Udělal jsem čáru."
+  ],
+  "word_ipda": [
+   "obléknout si",
+   "Oblékám si oblečení."
+  ],
+  "word_sai": [
+   "prostor mezi",
+   "Mezi dvěma domy stojí strom."
+  ],
+  "word_gireum": [
+   "olej",
+   "Smažím to na oleji."
+  ],
+  "word_mulgogi": [
+   "ryba",
+   "Ryba plave."
+  ],
+  "word_jang": [
+   "slovo pro počítání listů",
+   "Potřebuji tři listy papíru."
+  ],
+  "word_kkum": [
+   "sen",
+   "Včera v noci se mi zdál divný sen."
+  ],
+  "word_sijakada": [
+   "začít",
+   "Hodina začíná."
+  ],
+  "word_ajikdo": [
+   "pořád",
+   "Pořád čekám."
+  ],
+  "word_teureok": [
+   "náklaďák",
+   "Projíždí náklaďák."
+  ],
+  "word_eotteon": [
+   "jaký",
+   "Jakou barvu máš rád?"
+  ],
+  "word_geulssi": [
+   "rukopis",
+   "Máš hezký rukopis."
+  ],
+  "word_deutda": [
+   "poslouchat, slyšet",
+   "Poslouchám hudbu."
+  ],
+  "word_subak": [
+   "meloun",
+   "V létě meloun chutná."
+  ],
+  "word_ttalgi": [
+   "jahoda",
+   "Umyji jahody a sním je."
+  ],
+  "word_baram": [
+   "vítr",
+   "Vítr je chladný."
+  ],
+  "word_sigol": [
+   "venkov",
+   "Na venkově je dobrý vzduch."
+  ],
+  "word_pulda": [
+   "vyřešit",
+   "Vyřešil jsem úlohu."
+  ],
+  "word_angyeong": [
+   "brýle",
+   "Nosím brýle."
+  ],
+  "word_yeonpil": [
+   "tužka",
+   "Kreslím tužkou."
+  ],
+  "word_jumal": [
+   "víkend",
+   "O víkendu odpočívám."
+  ],
+  "word_jugida": [
+   "zabít",
+   "Zabil jsem komára, který vletěl do pokoje."
+  ],
+  "word_him": [
+   "síla",
+   "To dítě je velmi silné."
+  ],
+  "word_jeonbu": [
+   "všechno dohromady",
+   "Kolik to je dohromady?"
+  ],
+  "word_gyeongchal": [
+   "policie",
+   "Zavolejte prosím policii."
+  ],
+  "word_geureut": [
+   "miska",
+   "Nandávám rýži do misky."
+  ],
+  "word_nappeuda": [
+   "být špatný",
+   "Počasí je špatné."
+  ],
+  "word_oppa": [
+   "starší bratr ženy",
+   "Můj starší bratr řídí."
+  ],
+  "word_mannada": [
+   "setkat se",
+   "Setkáváme se často."
+  ],
+  "word_huimang": [
+   "naděje",
+   "Neztrácejte prosím naději."
+  ],
+  "word_hyeong": [
+   "starší bratr muže",
+   "Starší bratr mě pozval na jídlo."
+  ],
+  "word_doro": [
+   "silnice",
+   "Silnice je zablokovaná."
+  ],
+  "word_ttwida": [
+   "běžet",
+   "Dítě běží."
+  ],
+  "word_mueot": [
+   "co",
+   "Co je to?"
+  ],
+  "word_oenjjok": [
+   "levá strana",
+   "Odbočte prosím doleva."
+  ],
+  "word_chukgu": [
+   "fotbal",
+   "Hraju fotbal s kamarádem."
+  ],
+  "word_jayu": [
+   "svoboda",
+   "Svoboda je vzácná."
+  ],
+  "word_sungan": [
+   "okamžik",
+   "Ten okamžik nemůžu zapomenout."
+  ],
+  "word_sayonghada": [
+   "používat",
+   "Můžu použít tento pokoj?"
+  ],
+  "word_pada": [
+   "kopat",
+   "Kopu do země."
+  ],
+  "word_nampyeon": [
+   "manžel",
+   "Můj manžel vaří."
+  ],
+  "word_silheomsil": [
+   "laboratoř",
+   "Celý den jsem pracoval v laboratoři."
+  ],
+  "word_dambae": [
+   "cigareta",
+   "Zápach cigaret se mi vsákl do oblečení."
+  ],
+  "word_banana": [
+   "banán",
+   "Ráno jím banán."
+  ],
+  "word_geum": [
+   "zlato",
+   "Tenhle prsten je ze zlata."
+  ],
+  "word_mandeulda": [
+   "dělat",
+   "Peču chleba."
+  ],
+  "word_ibeon": [
+   "tentokrát",
+   "Tentokrát to udělám já."
+  ],
+  "word_gomawo": [
+   "díky",
+   "Díky za pomoc."
+  ],
+  "word_banchan": [
+   "příloha k rýži",
+   "Přílohy jsou výborné."
+  ],
+  "word_apeuda": [
+   "bolet",
+   "Bolí mě břicho."
+  ],
+  "word_doseogwan": [
+   "knihovna",
+   "Půjčil jsem si knihu v knihovně."
+  ],
+  "word_ppyeo": [
+   "kost",
+   "Pes drží v tlamě kost."
+  ],
+  "word_gamsa": [
+   "poděkování",
+   "Poděkoval jsem."
+  ],
+  "word_geolda": [
+   "pověsit",
+   "Věším oblečení."
+  ],
+  "word_gim": [
+   "sušená mořská řasa",
+   "Zabalíme rýži do řasy a sníme ji."
+  ],
+  "word_jalhada": [
+   "umět něco dobře",
+   "Zpíváš dobře."
+  ],
+  "word_saengmyeong": [
+   "život",
+   "Život je vzácný."
+  ],
+  "word_mureup": [
+   "koleno",
+   "Bolí mě koleno."
+  ],
+  "word_jjalda": [
+   "být krátký",
+   "Tužka je krátká."
+  ],
+  "word_chijeu": [
+   "sýr",
+   "Mám rád sýr."
+  ],
+  "word_hanbeon": [
+   "jednou",
+   "Zkuste to prosím jednou."
+  ],
+  "word_gohyang": [
+   "rodný kraj",
+   "Jel jsem do rodného kraje."
+  ],
+  "word_jihacheol": [
+   "metro",
+   "Jedu metrem."
+  ],
+  "word_sal": [
+   "rok věku",
+   "Je mi dvacet let."
+  ],
+  "word_anae": [
+   "manželka",
+   "Přišel jsem s manželkou."
+  ],
+  "word_swida": [
+   "odpočívat",
+   "Odpočineme si chvíli."
+  ],
+  "word_gimbap": [
+   "kimbap",
+   "K obědu jsem měl kimbap."
+  ],
+  "word_gayo": [
+   "korejská populární hudba",
+   "Mám rád korejský pop."
+  ],
+  "word_swipda": [
+   "být snadný",
+   "Hangul je snadný."
+  ],
+  "word_pyojeong": [
+   "výraz tváře",
+   "Tváří se vesele."
+  ],
+  "word_dareuda": [
+   "být jiný",
+   "Barvy jsou jiné."
+  ],
+  "word_geunyang": [
+   "prostě, jen tak",
+   "O víkendu jsem prostě zůstal doma."
+  ],
+  "word_majimak": [
+   "poslední",
+   "Jel jsem posledním autobusem."
+  ],
+  "word_bangbeop": [
+   "způsob",
+   "Existuje dobrý způsob."
+  ],
+  "word_huinsaek": [
+   "bílá barva",
+   "Bílá stěna je čistá."
+  ],
+  "word_jalmot": [
+   "chyba",
+   "Je to moje chyba."
+  ],
+  "word_daehakgyo": [
+   "univerzita",
+   "Studuji na univerzitě."
+  ],
+  "word_haengun": [
+   "štěstí",
+   "Hodně štěstí u zkoušky."
+  ],
+  "word_harabeoji": [
+   "dědeček",
+   "Dědeček čte noviny."
+  ],
+  "word_bimil": [
+   "tajemství",
+   "Zachovejte prosím tajemství."
+  ],
+  "word_sogogi": [
+   "hovězí maso",
+   "Opekli jsme hovězí a snědli."
+  ],
+  "word_net": [
+   "čtyři",
+   "My čtyři jsme jeden tým."
+  ],
+  "word_sinda": [
+   "obout si",
+   "Obouvám si ponožky."
+  ],
+  "word_dap": [
+   "odpověď",
+   "Našel jsem odpověď."
+  ],
+  "word_yeonseup": [
+   "cvičení",
+   "Cvičím každý den."
+  ],
+  "word_gongchaek": [
+   "sešit",
+   "Píšu si jméno do sešitu."
+  ],
+  "word_ssada": [
+   "být levný",
+   "Tohle ovoce je levné."
+  ],
+  "word_dowajuda": [
+   "pomoci",
+   "Pomozte mi prosím trochu."
+  ],
+  "word_maekju": [
+   "pivo",
+   "Pivo je studené."
+  ],
+  "word_jjada": [
+   "být slaný",
+   "Polévka je slaná."
+  ],
+  "word_gyehoek": [
+   "plán",
+   "Udělal jsem plán."
+  ],
+  "word_pyeonghwa": [
+   "mír",
+   "Přejeme si mír."
+  ],
+  "word_yaksok": [
+   "slib, schůzka",
+   "Dodržuji slib."
+  ],
+  "word_oreunjjok": [
+   "pravá strana",
+   "Jděte prosím doprava."
+  ],
+  "word_gippeuda": [
+   "být rád",
+   "Byl jsem rád, když jsem tu zprávu slyšel."
+  ],
+  "word_baeuda": [
+   "učit se",
+   "Učím se korejsky."
+  ],
+  "word_jebal": [
+   "prosím",
+   "Prosím, pomoz mi."
+  ],
+  "word_dopda": [
+   "pomáhat",
+   "Pomáhám kamarádovi."
+  ],
+  "word_jaryo": [
+   "podklady k práci",
+   "Podklady na poradu jsem připravil předem."
+  ],
+  "word_hullyunghada": [
+   "být výborný",
+   "To je výborný nápad."
+  ],
+  "word_moseup": [
+   "vzhled, podoba",
+   "Jejich vzhled se změnil."
+  ],
+  "word_undong": [
+   "pohyb, sport",
+   "Ráno cvičím."
+  ],
+  "word_geureonde": [
+   "mimochodem, ale",
+   "Mimochodem, co je tohle?"
+  ],
+  "word_juseu": [
+   "džus",
+   "Dítě pije džus."
+  ],
+  "word_jwi": [
+   "myš",
+   "Viděl jsem v kuchyni myš."
+  ],
+  "word_chwimi": [
+   "koníček",
+   "Mým koníčkem je fotografování."
+  ],
+  "word_deung": [
+   "záda",
+   "Svědí mě záda."
+  ],
+  "word_jeoldae": [
+   "nikdy",
+   "Rozhodně nechoďte pozdě."
+  ],
+  "word_dol": [
+   "kámen",
+   "Na cestě bylo hodně kamenů, tak jsme dávali pozor."
+  ],
+  "word_bappeuda": [
+   "být zaneprázdněný",
+   "Dnes mám hodně práce."
+  ],
+  "word_ireon": [
+   "takový",
+   "Něco takového zažívám poprvé."
+  ],
+  "word_yeoseong": [
+   "žena",
+   "Přišlo mnoho žen."
+  ],
+  "word_paransaek": [
+   "modrá barva",
+   "Modré oblečení ti sluší."
+  ],
+  "word_ireonada": [
+   "vstávat",
+   "Vstávám v sedm."
+  ],
+  "word_gom": [
+   "medvěd",
+   "Medvědi žijí v horách."
+  ],
+  "word_jam": [
+   "spánek",
+   "Poslední dobou nemůžu dobře spát."
+  ],
+  "word_haebyeon": [
+   "pláž",
+   "V létě jsme jeli na pláž."
+  ],
+  "word_hosu": [
+   "jezero",
+   "Jezero je klidné."
+  ],
+  "word_dakgogi": [
+   "kuřecí maso",
+   "Kuřecí má málo tuku."
+  ],
+  "word_geunde": [
+   "mimochodem",
+   "Mimochodem, kolik je teď hodin?"
+  ],
+  "word_jaeneung": [
+   "talent",
+   "Mají talent na kreslení."
+  ],
+  "word_gyeolhon": [
+   "svatba",
+   "Gratuluji ke svatbě."
+  ],
+  "word_binu": [
+   "mýdlo",
+   "Myji si ruce mýdlem."
+  ],
+  "word_saja": [
+   "lev",
+   "Lev je velký."
+  ],
+  "word_eoneu": [
+   "který",
+   "Který se ti líbí?"
+  ],
+  "word_mureoboda": [
+   "zeptat se",
+   "Zeptal jsem se učitele."
+  ],
+  "word_ucheguk": [
+   "pošta",
+   "Poslal jsem dopis na poště."
+  ],
+  "word_japji": [
+   "časopis",
+   "Čtu časopis."
+  ],
+  "word_jean": [
+   "návrh",
+   "Dostal jsem od firmy dobrý návrh."
+  ],
+  "word_yojeum": [
+   "v poslední době",
+   "Jak se ti v poslední době daří?"
+  ],
+  "word_ulda": [
+   "plakat",
+   "Miminko pláče."
+  ],
+  "word_namda": [
+   "zbýt",
+   "Zbylo trochu rýže."
+  ],
+  "word_miso": [
+   "úsměv",
+   "To je krásný úsměv."
+  ],
+  "word_daehak": [
+   "vysoká škola",
+   "Přijali mě na vysokou školu."
+  ],
+  "word_uimi": [
+   "význam",
+   "Co znamená tohle slovo?"
+  ],
+  "word_geim": [
+   "hra",
+   "Hraju hru."
+  ],
+  "word_cham": [
+   "opravdu",
+   "Počasí je dnes opravdu hezké."
+  ],
+  "word_kong": [
+   "fazole",
+   "Dal jsem do rýže fazole."
+  ],
+  "word_saebyeok": [
+   "časné ráno",
+   "Vstal jsem před svítáním."
+  ],
+  "word_utda": [
+   "smát se",
+   "Můj kamarád se hlasitě směje."
+  ],
+  "word_imi": [
+   "už",
+   "Už je po všem."
+  ],
+  "word_sutgarak": [
+   "lžíce",
+   "Polévku jím lžící."
+  ],
+  "word_bureuda": [
+   "volat",
+   "Volám taxi."
+  ],
+  "word_koteu": [
+   "kabát",
+   "Oblečte si prosím kabát."
+  ],
+  "word_meolda": [
+   "být daleko",
+   "Škola je daleko."
+  ],
+  "word_myeong": [
+   "osoba",
+   "Je tam pět studentů."
+  ],
+  "word_eonni": [
+   "starší sestra ženy",
+   "Moje starší sestra je studentka."
+  ],
+  "word_ihae": [
+   "pochopení",
+   "Dobře tomu rozumím."
+  ],
+  "word_samda": [
+   "vařit ve vodě",
+   "Vařím vejce."
+  ],
+  "word_noransaek": [
+   "žlutá barva",
+   "Použil jsem žlutý deštník."
+  ],
+  "word_mudeom": [
+   "hrob",
+   "Na hoře je starý hrob."
+  ],
+  "word_gita": [
+   "kytara",
+   "Hraju na kytaru."
+  ],
+  "word_itda_3": [
+   "zapomenout",
+   "Zapomněl jsem jméno."
+  ],
+  "word_gongyeon": [
+   "představení",
+   "Představení začíná."
+  ],
+  "word_ilta": [
+   "ztratit",
+   "Ztratil jsem klíč."
+  ],
+  "word_baneung": [
+   "reakce",
+   "Reakce lidí byla velmi dobrá."
+  ],
+  "word_gudu": [
+   "společenské boty",
+   "Boty jsou pohodlné."
+  ],
+  "word_hyuga": [
+   "dovolená",
+   "Byl jsem na dovolené."
+  ],
+  "word_jeohui": [
+   "my, skromně",
+   "Pomůžeme vám."
+  ],
+  "word_geuttae": [
+   "tehdy",
+   "Tehdy pršelo."
+  ],
+  "word_sopa": [
+   "pohovka",
+   "Posaďte se na pohovku a odpočiňte si."
+  ]
+ }
 }

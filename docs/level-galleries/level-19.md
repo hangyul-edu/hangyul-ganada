@@ -1,10 +1,10 @@
 # Vocabulary level 19
 
-141 words. 46 shown: the easiest ten, the middle ten, the
+149 words. 46 shown: the easiest ten, the middle ten, the
 hardest ten, and twenty spread evenly through the rest.
 
-Parts of speech: noun 57, verb 52, adverb 15, adjective 14, interjection 2, numeral 1.
-Median frequency rank: 1556.
+Parts of speech: noun 58, verb 51, adjective 20, adverb 17, interjection 2, numeral 1.
+Median frequency rank: 1642.
 
 The four columns after the score are the components it is made of —
 frequency, learner utility, linguistic complexity, semantic complexity.
@@ -12,49 +12,49 @@ A word that looks wrong here can be traced to whichever of them is large.
 
 | | word | pos | gloss | rank | score | freq | util | ling | sem | example |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| easiest | **변하다** | verb | to change | 818 | 0.510 | 0.84 | 0.59 | 0.23 | 0.12 | 날씨가 변했어요. |
-| easiest | **관리** | noun | management, upkeep | 1594 | 0.510 | 0.92 | 0.61 | 0.13 | 0.06 | 건강 관리가 중요해요. |
-| easiest | **목구멍** | noun | a throat | 2768 | 0.510 | 0.99 | 0.52 | 0.15 | 0.02 | 목구멍이 아파서 병원에 갔어요. |
-| easiest | **보험** | noun | insurance | 1726 | 0.510 | 0.93 | 0.61 | 0.11 | 0.06 | 보험에 들었어요. |
-| easiest | **고민하다** | verb | to agonise over | 2486 | 0.511 | 0.98 | 0.45 | 0.23 | 0.06 | 진로를 고민해요. |
-| easiest | **두려움** | noun | fear | 1155 | 0.511 | 0.88 | 0.61 | 0.19 | 0.06 | 두려움을 이겨냈어요. |
-| easiest | **차량** | noun | a vehicle | 1304 | 0.511 | 0.90 | 0.69 | 0.11 | 0.02 | 차량이 많아요. |
-| easiest | **살피다** | verb | to look carefully at | 2030 | 0.511 | 0.95 | 0.52 | 0.22 | 0.02 | 주위를 살피고 건너세요. |
-| easiest | **이사하다** | verb | to move house | 2617 | 0.511 | 0.98 | 0.45 | 0.22 | 0.06 | 다음 달에 이사해요. |
-| easiest | **절다** | verb | to be pickled, to be steeped | 448 | 0.511 | 0.76 | 0.69 | 0.26 | 0.09 | 배추가 잘 절었어요. |
-| spread | **엔진** | noun | an engine | 1080 | 0.511 | 0.88 | 0.69 | 0.15 | 0.02 | 엔진 소리가 커요. |
-| spread | **재능** | noun | a talent | 1091 | 0.512 | 0.88 | 0.62 | 0.13 | 0.14 | 그림에 재능이 있어요. |
-| spread | **영원히** | adverb | forever | 594 | 0.512 | 0.80 | 0.61 | 0.33 | 0.06 | 영원히 기억할게요. |
-| spread | **유니폼** | noun | a uniform | 2451 | 0.513 | 0.98 | 0.52 | 0.19 | 0.02 | 선수들이 새 유니폼을 입었어요. |
-| spread | **다하다** | verb | to run out | 797 | 0.513 | 0.84 | 0.61 | 0.21 | 0.13 | 힘이 다했어요. |
-| spread | **나타나다** | verb | to appear | 663 | 0.514 | 0.81 | 0.59 | 0.29 | 0.12 | 갑자기 나타났어요. |
-| spread | **쓸다** | verb | to sweep | 311 | 0.514 | 0.72 | 0.61 | 0.28 | 0.28 | 방을 쓸어요. |
-| spread | **신고하다** | verb | to report | 2035 | 0.514 | 0.95 | 0.52 | 0.23 | 0.02 | 사고를 신고했어요. |
-| median | **다행히** | adverb | fortunately | 1874 | 0.515 | 0.94 | 0.45 | 0.23 | 0.15 | 다행히 다치지 않았어요. |
-| median | **인턴** | noun | an intern | 623 | 0.515 | 0.81 | 0.77 | 0.14 | 0.06 | 인턴으로 일해요. |
-| median | **종종** | adverb | now and then | 1755 | 0.515 | 0.94 | 0.45 | 0.25 | 0.15 | 종종 편지를 써요. |
-| median | **부러지다** | verb | to break, to snap | 2079 | 0.515 | 0.96 | 0.45 | 0.29 | 0.06 | 연필이 부러졌어요. |
-| median | **다행** | noun | a lucky thing, a relief | 879 | 0.515 | 0.85 | 0.70 | 0.13 | 0.10 | 비가 그쳐서 다행이에요. |
-| median | **재미없다** | adjective | to be no fun | 1818 | 0.515 | 0.94 | 0.46 | 0.23 | 0.14 | 이 게임은 재미없어요. |
-| median | **대사** | noun | an ambassador | 1528 | 0.515 | 0.92 | 0.69 | 0.10 | 0.02 | 대사가 한국에 왔어요. |
-| median | **존경하다** | verb | to look up to | 1744 | 0.516 | 0.94 | 0.45 | 0.32 | 0.06 | 선생님을 존경해요. |
-| median | **약물** | noun | a drug | 1286 | 0.516 | 0.90 | 0.69 | 0.14 | 0.02 | 약물 치료를 받아요. |
-| median | **예상** | noun | an expectation, a forecast | 1824 | 0.516 | 0.94 | 0.61 | 0.13 | 0.06 | 예상과 달랐어요. |
-| spread | **어차피** | adverb | anyway, in any case | 815 | 0.516 | 0.84 | 0.61 | 0.28 | 0.06 | 어차피 늦었어요. |
-| spread | **좁다** | adjective | to be narrow | 1917 | 0.517 | 0.95 | 0.44 | 0.26 | 0.13 | 길이 좁아요. |
-| spread | **인터뷰** | noun | an interview | 1340 | 0.517 | 0.90 | 0.61 | 0.19 | 0.06 | 인터뷰가 있어요. |
-| spread | **그중** | noun | among those | 2053 | 0.518 | 0.95 | 0.61 | 0.11 | 0.06 | 그중 하나를 골랐어요. |
-| spread | **본부** | noun | headquarters | 1551 | 0.518 | 0.92 | 0.69 | 0.11 | 0.02 | 본부에 연락했어요. |
-| spread | **신체** | noun | the body | 1964 | 0.519 | 0.95 | 0.61 | 0.13 | 0.06 | 신체가 건강해요. |
-| spread | **수천** | numeral | thousands | 1942 | 0.519 | 0.95 | 0.61 | 0.13 | 0.06 | 수천 명이 모였어요. |
-| spread | **보고서** | noun | a report | 1170 | 0.520 | 0.89 | 0.69 | 0.17 | 0.02 | 보고서를 냈어요. |
-| hardest | **삐다** | verb | to sprain | 2867 | 0.520 | 1.00 | 0.52 | 0.13 | 0.09 | 발목을 삐었어요. |
-| hardest | **느끼하다** | adjective | to be greasy | 883 | 0.520 | 0.85 | 0.52 | 0.31 | 0.16 | 이 고기가 좀 느끼해요. |
-| hardest | **굴리다** | verb | to roll | 2555 | 0.520 | 0.98 | 0.52 | 0.22 | 0.02 | 공을 굴려요. |
-| hardest | **심지어** | adverb | even, what is more | 816 | 0.520 | 0.84 | 0.61 | 0.30 | 0.06 | 심지어 밤에도 일해요. |
-| hardest | **밴드** | noun | a band | 1110 | 0.520 | 0.88 | 0.69 | 0.13 | 0.09 | 밴드가 노래를 해요. |
-| hardest | **정치** | noun | politics | 2184 | 0.521 | 0.96 | 0.61 | 0.11 | 0.06 | 정치에 관심이 많아요. |
-| hardest | **불쌍하다** | adjective | to be pitiful | 1887 | 0.521 | 0.94 | 0.45 | 0.33 | 0.06 | 저 새가 불쌍해요. |
-| hardest | **온통** | noun | entirely, all over | 1926 | 0.521 | 0.95 | 0.61 | 0.14 | 0.06 | 온통 눈으로 덮였어요. |
-| hardest | **연료** | noun | fuel | 1636 | 0.521 | 0.93 | 0.69 | 0.11 | 0.02 | 연료가 부족해요. |
-| hardest | **짖다** | verb | to bark | 2798 | 0.521 | 0.99 | 0.52 | 0.14 | 0.09 | 개가 크게 짖어요. |
+| easiest | **형사** | noun | a detective | 680 | 0.510 | 0.81 | 0.77 | 0.11 | 0.06 | 형사가 조사해요. |
+| easiest | **상담** | noun | a consultation | 1628 | 0.510 | 0.92 | 0.61 | 0.14 | 0.06 | 상담을 받았어요. |
+| easiest | **영원히** | adverb | forever | 609 | 0.510 | 0.80 | 0.61 | 0.33 | 0.06 | 영원히 기억할게요. |
+| easiest | **역사** | noun | history | 963 | 0.511 | 0.85 | 0.45 | 0.11 | 0.45 | 한국 역사를 배워요. |
+| easiest | **경비** | noun | expenses | 1400 | 0.511 | 0.90 | 0.69 | 0.11 | 0.02 | 경비가 많이 들어요. |
+| easiest | **물리다** | verb | to get bitten | 2201 | 0.511 | 0.95 | 0.52 | 0.22 | 0.02 | 모기에 물렸어요. |
+| easiest | **제안** | noun | a proposal | 1149 | 0.511 | 0.87 | 0.62 | 0.13 | 0.14 | 회사에서 좋은 제안을 받았어요. |
+| easiest | **유니폼** | noun | a uniform | 2520 | 0.511 | 0.97 | 0.52 | 0.19 | 0.02 | 선수들이 새 유니폼을 입었어요. |
+| easiest | **저리다** | adjective | to go numb, to have pins and needles | 3114 | 0.511 | 1.00 | 0.52 | 0.15 | 0.02 | 다리가 저려요. |
+| easiest | **업무** | noun | business, duties | 1890 | 0.511 | 0.94 | 0.61 | 0.11 | 0.06 | 업무가 많아요. |
+| spread | **범인** | noun | the culprit | 617 | 0.511 | 0.80 | 0.77 | 0.14 | 0.06 | 범인을 찾았어요. |
+| spread | **틀림없이** | adverb | surely, without fail | 1840 | 0.512 | 0.93 | 0.45 | 0.31 | 0.06 | 틀림없이 올 거예요. |
+| spread | **알맞다** | adjective | to be just right | 2781 | 0.512 | 0.98 | 0.45 | 0.23 | 0.06 | 크기가 알맞아요. |
+| spread | **며칠** | noun | a few days | 775 | 0.512 | 0.82 | 0.65 | 0.11 | 0.22 | 며칠 동안 비가 계속 왔어요. |
+| spread | **요원** | noun | an operative, personnel | 589 | 0.513 | 0.79 | 0.79 | 0.13 | 0.06 | 요원이 도착했어요. |
+| spread | **최소한** | adverb | at the very least | 1078 | 0.514 | 0.86 | 0.61 | 0.23 | 0.06 | 최소한 이틀은 걸려요. |
+| spread | **탈출하다** | verb | to escape | 2103 | 0.514 | 0.95 | 0.52 | 0.24 | 0.02 | 불길에서 탈출했어요. |
+| spread | **재다** | verb | to measure | 2567 | 0.515 | 0.97 | 0.45 | 0.13 | 0.22 | 키를 재요. |
+| median | **본부** | noun | headquarters | 1576 | 0.515 | 0.91 | 0.69 | 0.11 | 0.02 | 본부에 연락했어요. |
+| median | **내려놓다** | verb | to put down | 2063 | 0.516 | 0.95 | 0.45 | 0.31 | 0.06 | 가방을 내려놓으세요. |
+| median | **미루다** | verb | to put off, to postpone | 2616 | 0.516 | 0.97 | 0.45 | 0.20 | 0.13 | 약속을 미뤘어요. |
+| median | **이동** | noun | movement, transfer | 1109 | 0.516 | 0.87 | 0.61 | 0.11 | 0.21 | 이동 중이에요. |
+| median | **언어** | noun | a language | 1903 | 0.516 | 0.94 | 0.55 | 0.11 | 0.16 | 새 언어를 배우고 있어요. |
+| median | **어쩌다** | verb | to come about, to happen | 620 | 0.516 | 0.80 | 0.61 | 0.21 | 0.22 | 어쩌다 이렇게 됐어요? |
+| median | **곧바로** | adverb | straight away | 2307 | 0.516 | 0.96 | 0.45 | 0.23 | 0.13 | 곧바로 출발했어요. |
+| median | **녹이다** | verb | to melt something | 2605 | 0.516 | 0.97 | 0.36 | 0.22 | 0.24 | 버터를 약한 불에 녹여요. |
+| median | **달리** | adverb | differently, otherwise | 1199 | 0.516 | 0.88 | 0.61 | 0.22 | 0.06 | 달리 방법이 없어요. |
+| median | **마주치다** | verb | to bump into | 2327 | 0.516 | 0.96 | 0.45 | 0.29 | 0.06 | 길에서 친구를 마주쳤어요. |
+| spread | **형님** | noun | elder brother | 729 | 0.517 | 0.82 | 0.61 | 0.14 | 0.28 | 형님, 어서 오세요. |
+| spread | **결정되다** | verb | to be decided | 2591 | 0.517 | 0.97 | 0.45 | 0.27 | 0.06 | 날짜가 다음 주로 결정됐어요. |
+| spread | **다물다** | verb | to keep quiet | 1004 | 0.518 | 0.86 | 0.52 | 0.34 | 0.09 | 입을 다물었어요. |
+| spread | **가볍다** | adjective | to be light | 1431 | 0.518 | 0.90 | 0.44 | 0.34 | 0.13 | 가방이 가벼워요. |
+| spread | **빌다** | verb | to pray, to wish | 758 | 0.518 | 0.82 | 0.61 | 0.26 | 0.13 | 건강을 빌어요. |
+| spread | **실패** | noun | failure | 1611 | 0.519 | 0.92 | 0.60 | 0.13 | 0.13 | 실패해도 괜찮아요. |
+| spread | **수십** | noun | dozens, scores | 2296 | 0.519 | 0.96 | 0.61 | 0.11 | 0.06 | 수십 명이 왔어요. |
+| spread | **곧장** | adverb | straight ahead | 2263 | 0.520 | 0.96 | 0.45 | 0.25 | 0.13 | 오른쪽으로 돌아 곧장 가세요. |
+| hardest | **외계인** | noun | an alien | 1379 | 0.520 | 0.90 | 0.69 | 0.16 | 0.02 | 영화에 외계인이 나와요. |
+| hardest | **지다** | verb | to lose | 487 | 0.520 | 0.77 | 0.60 | 0.11 | 0.43 | 경기에서 졌어요. |
+| hardest | **벗기다** | verb | to take off | 2001 | 0.520 | 0.94 | 0.52 | 0.22 | 0.09 | 아이 옷을 벗겼어요. |
+| hardest | **위성** | noun | a satellite | 1637 | 0.520 | 0.92 | 0.69 | 0.13 | 0.02 | 위성이 지구를 돌아요. |
+| hardest | **차라리** | adverb | rather, sooner | 956 | 0.520 | 0.85 | 0.61 | 0.28 | 0.06 | 차라리 걸어갈게요. |
+| hardest | **녹음** | noun | a recording | 2082 | 0.521 | 0.95 | 0.61 | 0.14 | 0.06 | 녹음을 들어 보세요. |
+| hardest | **해군** | noun | navy | 1642 | 0.521 | 0.92 | 0.69 | 0.13 | 0.02 | 언니는 해군이에요. |
+| hardest | **간단히** | adverb | briefly, simply | 2216 | 0.521 | 0.95 | 0.45 | 0.32 | 0.06 | 간단히 말씀드릴게요. |
+| hardest | **상관없다** | adjective | to not matter | 540 | 0.521 | 0.78 | 0.62 | 0.25 | 0.21 | 저는 상관없어요. |
+| hardest | **조만간** | adverb | sooner or later | 1657 | 0.521 | 0.92 | 0.52 | 0.32 | 0.02 | 조만간 다시 만나요. |
