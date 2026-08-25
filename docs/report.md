@@ -385,6 +385,23 @@ All twenty-one vowels, same three columns. The overlay column is now a single
 purple — the app's ink and the face's ink coincide — for every letter including
 ㅙ and ㅞ.
 
+### And then the screen itself, from the built bundle
+
+Two sheets of geometry are not a screen. These are the writing screens for ㅙ
+and ㅞ, captured from `apps/web/dist` — the same bundle `cap sync` copies into
+the Android package — rather than from a dev server:
+
+![The writing screen for ㅙ, from the built bundle](report-assets/runtime-wae-writing.png)
+
+![The writing screen for ㅞ, from the built bundle](report-assets/runtime-we-writing.png)
+
+Four representations of the letter are on each of those screens and §4 of the
+brief asks that they agree: the reference glyph beside the romanisation, set in
+the face; the tracing guide on the canvas; the stroke demonstration under *Watch
+it written*; and the numbered stroke order on it. They agree — the ㅜ's bar meets
+the ㅔ's first upright, the two uprights stand close, the crossbar reaches the
+second, and the numbers run 1–5 in the order a hand makes them.
+
 ### The gate that would have caught it
 
 `scripts/letter-face-qa.mjs`, run as `npm run letters:face:check` and wired into
