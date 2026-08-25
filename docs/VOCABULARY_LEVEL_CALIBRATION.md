@@ -27,7 +27,7 @@ obvious the moment anything was simulated:
 | Most of the scale held nothing | levels 15–29 were empty |
 
 The cause was arithmetic, not judgement. `wordLevel()` bucketed a word's
-frequency rank against a 10,635-word scale while the taught corpus holds 2,948
+frequency rank against a 10,635-word scale while the taught corpus held 2,948
 words, so every taught word landed in the bottom half of the range and the top
 half was unreachable. The learner had a number beside `Lv.` and the number
 changed nothing.
@@ -141,18 +141,24 @@ looked untidy.
 `npm run vocabulary:level:qa`:
 
 ```
-  taught words          2,948
+  taught words          3,221
   levels populated      30/30
-  smallest level        44 words
-  largest level         149 words
+  smallest level        51 words
+  largest level         204 words
   anchors held          162
   levels set by hand    6
 ```
 
-Median difficulty rises strictly from level 1 (0.247) to level 30 (0.648), with
-no reversal anywhere. Level 1 holds 44 words and level 30 holds 51; the bulge in
-the middle (levels 11–20 hold 114–149 each) is the corpus, not the model — most
-of a 2,948-word foundation vocabulary is intermediate.
+Median difficulty rises strictly from level 1 to level 30 with no reversal
+anywhere. Re-run after this cycle's expansion: level 1 holds 51 words and
+level 30 holds 204; the bulge in the middle (levels 11–20 hold 116–154
+each) is the corpus, not the model — most of a 3,221-word foundation vocabulary
+is intermediate.
+
+**Level 30 is no longer the thin end.** It held 51 words before this cycle and
+holds 204 now, because 162 of the 273 words added were chosen for the top of
+the scale. That is I-79 moving: a learner placed at 30 goes from about three
+weeks of new vocabulary to about five and a half.
 
 ## 5. Reading the levels rather than the graph
 
