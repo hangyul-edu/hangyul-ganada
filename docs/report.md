@@ -91,7 +91,7 @@ exactly that.
 
 | | |
 | --- | --- |
-| Commit | `d9178282` — the product commit the artefacts were built from; the commits after it are this document and the release directory |
+| Commit | `37d2f82b` — the product commit the artefacts were built from; the commits after it are the release directories and this document |
 | Working tree | clean outside `docs/` and the release directories |
 | Node | v24.19.0 |
 | Web | React 19, Vite 7, TypeScript |
@@ -138,8 +138,8 @@ without trusting the row.
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
 | Issues tracked | 113 | `docs/issues.json` |
-| Signed APK | 79.6 MB | `result/build-info.json` |
-| Signed AAB | 77.9 MB | same |
+| Signed APK | 81.9 MB | `result/build-info.json` |
+| Signed AAB | 80.1 MB | same |
 
 "Characters taught" counts every entry in the curriculum's character table — the
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
@@ -1277,15 +1277,15 @@ an emulated Pixel 7 with `adb install -r` and opened.
 the tree it claims to be built from:
 
 ```
-  ok  taught words in the corpus manifest    3,221  =  3,221
-  ok  corpus bands                               5  =      5
-  ok  locales in band 1                         32  =     32
-  ok  Uzbek meanings in band 1                 600  =    600
-  ok  Uzbek long definitions in band 1          38  =     38
-  ok  level-test items                       4,166  =  4,166
-  ok  level-test reach, Uzbek                1,021  =  1,021
-  ok  audio entries                          6,555  =  6,555
-  ok  ㅙ's second upright in stroke-geometry-oFDEPQa4.js
+  ok  taught words in the corpus manifest    3,334  =  3,334
+  ok  level-test items                       4,196  =  4,196
+  ok  level-test reach, Uzbek                1,049  =  1,049
+  ok  audio entries                          6,781  =  6,781, build 20260826-b4e32ee8
+  ok  batch 920's words inside the corpus bands (죽마고우, band 4)
+  ok  당신's corrected gloss inside the English band-1 pack
+  ok  the volitionality table naming 좌절하다 and 간과하다, inside the shipped chunk
+  ok  ㅙ's second upright (93.9) in stroke-geometry-DL2g56yq.js
+  ok  assets/public/index.html byte-identical to the dist the e2e suite ran against
 ```
 
 The last line is the one worth explaining. `93.9` is the x-position of ㅙ's
@@ -1303,7 +1303,7 @@ native platform; every asset served from the bundle at `https://localhost`;
 launch screen gone; **progress stored in native SQLite**; insets reaching the
 layout at top 52 px, bottom 24 px and honoured exactly; nothing drawn under the
 system bars; navigation and hardware back working; the lesson clip playing once
-on arrival; **the audio build the device serves is `20260825-89f334b3`**, this
+on arrival; **the audio build the device serves is `20260826-b4e32ee8`**, this
 cycle's, not a cached older one; no service worker; no console error during the
 walk.
 
@@ -1314,6 +1314,13 @@ cycle on this build. It was 42/48 two cycles ago because the script looked for a
 button called **Trace it** and the interface had renamed it **Write it** — the
 check that exists for a photographed defect had not been watching the thing it
 was written for. Both are fixed and both were re-run here.
+
+**This cycle it failed first, and the failure is worth recording.** Run after
+`qa-level-change-android.mjs`, the matrix reported 24/36: the walk expected a
+fresh learner's intro screens and the level-change QA had left a seeded
+Level-30 profile with a part-finished day on the device. `pm clear` and a
+clean launch returned 60/60 (and the learner walk 6/6). The device suites
+assume a fresh profile and say so nowhere — worth knowing, not a defect.
 
 ## 18.4 A false alarm, recorded because it looked serious
 
@@ -1340,22 +1347,20 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `683b9671`, working tree clean |
+| Built from | `37d2f82b`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **79.6 MB** (83,489,478 B), `a117849b490feb7f…` |
-| Release AAB | **77.9 MB** (81,675,564 B), `ba06249c090b47ca…` |
+| Release APK | **81.9 MB** (85,854,550 B), `a5509016b73f3ee0…` |
+| Release AAB | **80.1 MB** (83,973,841 B), `dc16ee111f6ddd6e…` |
 
-The APK shrank from 83.4 MB to 78.5 MB this cycle — the `.woff` twins and the
-web-only files of §20E — with nothing removed from the product. The package
-was read rather than trusted: zero `.woff` files, zero copies of the social
-preview, 3,220 corpus words with the rewritten 화나다 example inside band 2,
-4,169 level-test items, the current audio build `20260825-a037f9bc`, the
-curated 3,721-example dictionary, and the corrected demonstrative-verb table
-(`어쩌:"어째"`) inside the shipped morphology chunk — a string that exists
-nowhere in the previous geometry of that module.
+The APK grew from 79.6 MB to 81.9 MB this cycle, and the growth is the
+product: 78 new words' recordings in both voices (312 clips), their corpus
+rows in ten languages, their level-test items, and the re-recorded rewritten
+examples. Nothing was removed and nothing else moved — the earlier passes'
+savings (the `.woff` twins, the pruned web-only files) are still absent from
+the package, which was read rather than trusted (§18.1).
 
 **Two Android permissions, and neither is ever asked for.** The package declared
 five before an earlier cycle — the notification, boot and wake-lock permissions
