@@ -1,6 +1,6 @@
 {
- "version": "20260826-b4e32ee8",
- "generated_at": "2026-08-26T17:06:45+00:00",
+ "version": "20260826-299bca46",
+ "generated_at": "2026-08-26T19:25:31+00:00",
  "provider": {
   "id": "microsoft-edge-tts",
   "female_voice": "ko-KR-SunHiNeural",
@@ -18569,21 +18569,6 @@
     "src": "audio/sentences/male/ex_bd09d22cb97c20b72fc5c8c5b4c6942e.mp3",
     "duration_ms": 1392,
     "bytes": 5805
-   }
-  },
-  {
-   "id": "ex_bd80b044b7ecc6ccc11c20ace0ac1cac0020c800c808b85c20c219c5c8c5b4c6942e",
-   "text": "부끄러워서 고개가 저절로 숙었어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_bd80b044b7ecc6ccc11c20ace0ac1cac0020c800c808b85c20c219c5c8c5b4c6942e.mp3",
-    "duration_ms": 3048,
-    "bytes": 12429
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_bd80b044b7ecc6ccc11c20ace0ac1cac0020c800c808b85c20c219c5c8c5b4c6942e.mp3",
-    "duration_ms": 2784,
-    "bytes": 11373
    }
   },
   {
@@ -77489,21 +77474,6 @@
     "src": "audio/vocabulary/male/word_c219b140.mp3",
     "duration_ms": 624,
     "bytes": 2733
-   }
-  },
-  {
-   "id": "word_c219b2e4",
-   "text": "숙다",
-   "kind": "word",
-   "female": {
-    "src": "audio/vocabulary/female/word_c219b2e4.mp3",
-    "duration_ms": 816,
-    "bytes": 3501
-   },
-   "male": {
-    "src": "audio/vocabulary/male/word_c219b2e4.mp3",
-    "duration_ms": 696,
-    "bytes": 3021
    }
   },
   {
