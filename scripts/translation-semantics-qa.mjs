@@ -81,7 +81,7 @@ const koNegated = (ex, headword) => {
 // u flag for every non-ASCII script — \bне\b can never match Cyrillic text.
 const NEGATION = {
   ru: /(?:^|\P{L})(?:не|нет|нельзя|ник[тч]|нич)/iu, uk: /(?:^|\P{L})(?:не|нема|ні)(?:\P{L}|$)?/iu,
-  pl: /\bnie/i, cs: /\bne\b|\bne\p{L}|\bnení|\bnikd/iu, it: /\bnon\b|\bniente|\bnessun/i,
+  pl: /\bnie/i, cs: /\bne\b|\bne\p{L}|\bnení|\bnikd|\bpřesta|\bzřídka/iu, it: /\bnon\b|\bniente|\bnessun|\bsmett|\bdi rado|\braramente/i,
   nl: /\bniet\b|\bgeen\b|\bnooit/i, sv: /\binte\b|\bingen|\binga|\baldrig/i,
   de: /\bnicht\b|\bkein|\bnie\b|\bniemand|\bniemals|\bnichts\b|\bkaum\b|\bh[öo]r(?:en)? .{0,14}auf\b|\bauf zu\b/iu, es: /\bno\b|\bnunca|\bnada\b|\bnadie\b|\bjam[aá]s|\brara vez|\bdej[ae] de/iu,
   fr: /\bne\b|\bn['’]|\bpas\b|\bjamais|\bpersonne\b|\brarement|\barr[eê]te|\bfaute d/iu, 'pt-BR': /\bnão\b|\bnunca|\bnada\b|\bningu[eé]m|\bjamais\b|\braramente|\bnem\b|\bpare de|\bde forma alguma/iu,
@@ -90,7 +90,7 @@ const NEGATION = {
   id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b/i,
   hi: /नहीं|मत |बिना| न /, bn: /না|নেই|নয়|নি(?:\P{L}|$)/u, ta: /இல்லை|ில்லை|மாட்|வேண்டாம்|ாதே|ாது|ாமல்|வேண்டா|ாதீர்கள்|ாதீர்/, te: /లేదు|కాదు|వద్దు|కూడదు|కుండా|కండి|కు(?:\P{L}|$)|రు(?:\P{L}|$)|దు(?:\P{L}|$)|ను(?:\P{L}|$)/u,
   th: /ไม่|อย่า|ห้าม|เลิก|หยุด/, vi: /(?:^|\P{L})(?:không|chưa|đừng|chẳng|chớ|hiếm khi|xin đừng)/iu,
-  ar: /لا|ليس|لم|لن|غير|ما\s/, kk: /емес|жоқ|ма[ңйғс]|ме[ңйс]|ба[ңй]|бе[ңй]|па[ңй]|пе[ңй]|мау|меу|майды|мейді|лма|лме|рма|рме|збе|зба/iu,
+  ar: /لا|ليس|لم|لن|غير|ما\s|كف|توقف|نادرا|نادرًا/, kk: /емес|жоқ|ма[ңйғс]|ме[ңйс]|ба[ңй]|бе[ңй]|па[ңй]|пе[ңй]|мау|меу|майды|мейді|лма|лме|рма|рме|збе|зба/iu,
   ky: /эмес|жок|элек|ба[йң]|бе[йң]|па[йң]|пе[йң]|бо[йң]|бө[йң]|мой|бол?бо|байт|бейт|лба|лбе|рба|рбе|збе|зба|түк/iu, mn: /гүй|биш|үгүй|болохгүй|бүү|битгий/iu,
   ja: /ない|ません|ぬ|ず|な[かく]|誰も|めったに|やめ|無理/, 'zh-CN': /不|没|别|勿|无|谁也|难得/, ko: null,
   en: /\bnot\b|\bno\b|n['’]t|\bnever\b|\bnothing\b|\bnobody\b|\bwithout\b|\bcannot\b|\brarely\b|\bhardly\b|\bstop\b/i,

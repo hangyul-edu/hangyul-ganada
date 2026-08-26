@@ -177,7 +177,9 @@
     "vocabulary:translation:check": "node scripts/vocabulary-translation-qa.mjs --check",
     "translation:semantics": "tsx scripts/translation-semantics-qa.mjs",
     "translation:semantics:check": "tsx scripts/translation-semantics-qa.mjs --check",
-    "exercise:availability": "tsx scripts/exercise-availability.mjs"
+    "exercise:availability": "tsx scripts/exercise-availability.mjs",
+    "translation:matrix": "tsx scripts/build-translation-quality-matrix.mjs",
+    "native:review:packs": "tsx scripts/build-native-review-packs.mjs"
   },
   "devDependencies": {
     "marked": "^18.0.9",
