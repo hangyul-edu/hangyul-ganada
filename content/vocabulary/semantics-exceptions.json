@@ -1,0 +1,10 @@
+{
+ "_comment": "Rows a person read and accepted against a semantics-qa rule, keyed locale/wordId/rule, value = the reason. Same shape as unobserved.json.",
+ "rows": {
+  "ru/word_jam/polarity": "잠이 잘 안 와요 → «я плохо сплю»: the negation is absorbed into плохо (sleep badly), which is the natural Russian rendering; a literal «сон не приходит» is not idiomatic.",
+  "uk/word_jam/polarity": "Same as Russian: «погано сплю» absorbs the negation naturally.",
+  "de/word_jam/polarity": "«schlafe schlecht ein» absorbs 안 와요 into schlecht; a literal negation (kein Schlaf kommt) is not German.",
+  "vi/word_jam/polarity": "«khó ngủ» (hard to sleep) is the natural Vietnamese for 잠이 잘 안 와요; the negation lives in khó.",
+  "fr/word_jeonja/polarity": "보이지 않아요 → «invisible à l'œil»: the negation is the in- prefix, which is the natural French rendering."
+ }
+}
