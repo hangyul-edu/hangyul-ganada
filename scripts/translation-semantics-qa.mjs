@@ -80,7 +80,7 @@ const koNegated = (ex, headword) => {
 // JS \b is ASCII-defined, so word boundaries are written as (^|\P{L}) via the
 // u flag for every non-ASCII script — \bне\b can never match Cyrillic text.
 const NEGATION = {
-  ru: /(?:^|\P{L})(?:не|нет|нельзя|ник[тч]|нич)/iu, uk: /(?:^|\P{L})(?:не|нема|ні)(?:\P{L}|$)?/iu,
+  ru: /(?:^|\P{L})(?:не|нет|нельзя|ник[тч]|нич|без|переста|редко)/iu, uk: /(?:^|\P{L})(?:не|нема|ні)(?:\P{L}|$)?/iu,
   pl: /\bnie/i, cs: /\bne\b|\bne\p{L}|\bnení|\bnikd|\bpřesta|\bzřídka/iu, it: /\bnon\b|\bniente|\bnessun|\bsmett|\bdi rado|\braramente/i,
   nl: /\bniet\b|\bgeen\b|\bnooit/i, sv: /\binte\b|\bingen|\binga|\baldrig/i,
   de: /\bnicht\b|\bkein|\bnie\b|\bniemand|\bniemals|\bnichts\b|\bkaum\b|\bh[öo]r(?:en)? .{0,14}auf\b|\bauf zu\b/iu, es: /\bno\b|\bnunca|\bnada\b|\bnadie\b|\bjam[aá]s|\brara vez|\bdej[ae] de/iu,
