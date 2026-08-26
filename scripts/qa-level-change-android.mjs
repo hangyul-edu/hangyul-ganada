@@ -222,10 +222,10 @@ async function main() {
 
   // And the screen the learner sees agrees with the store.
   const cardShows = await waitFor(
-    `document.querySelector('[data-testid="today-card"]')?.textContent?.replace(/\\s+/g, ' ')?.includes('3 / ${plan.goal}')`,
+    `/3\\s*\\/\\s*${plan.goal}/.test(document.querySelector('[data-testid="today-card"]')?.textContent ?? '')`,
     15000,
   );
-  check(`the Today card reads 3 / ${plan.goal}`, cardShows);
+  check(`the Today card reads 3/${plan.goal}`, cardShows);
   screenshot('02-level30-day');
 
   const failed = results.filter((row) => !row.ok);
