@@ -37,6 +37,14 @@
     "그녀": {
       "level": 12,
       "why": "Written Korean, like 그들. Common in subtitles because subtitles are written; a beginner should learn 그 사람 first and will not be understood using 그녀 in speech."
+    },
+    "월": {
+      "level": 8,
+      "why": "The month word every date carries: a learner reads 3월 in their first weeks. The frequency fold only ever sees it fused into month names (삼월, 유월), so the model files it as rare when it is bound-but-everywhere. Same class as 감사합니다 (I-73)."
+    },
+    "아이디어": {
+      "level": 20,
+      "why": "An English loanword whose meaning costs nothing once sounded out; the model's semantic-abstraction term prices it like an abstract Sino noun. A learner who can read Hangul owns this word immediately."
     }
   }
 }

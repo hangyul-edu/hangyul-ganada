@@ -1,1 +1,37 @@
-{"_comment":"Editorial verdicts rendered into VOCABULARY_LEVEL_EDITORIAL_QA.md. moved: {level: [{word, why}]}; suspicious: {level: [{word, verdict}]}.","moved":{},"suspicious":{}}
+{
+ "_comment": "Editorial verdicts rendered into VOCABULARY_LEVEL_EDITORIAL_QA.md. moved: {level: [{word, why}]}; suspicious: {level: [{word, verdict}]}.",
+ "moved": {
+  "18": [
+   {
+    "word": "월",
+    "why": "→8: bound month word every date carries; frequency fold blind to fused forms (I-73 class)"
+   }
+  ],
+  "26": [
+   {
+    "word": "아이디어",
+    "why": "→20: transparent loanword priced as an abstract Sino noun"
+   }
+  ]
+ },
+ "suspicious": {
+  "22": [
+   {
+    "word": "켤레",
+    "verdict": "read and kept — a counter is late-acquired machinery even for early nouns"
+   }
+  ],
+  "26": [
+   {
+    "word": "양반",
+    "verdict": "read and kept — taught as historical vocabulary, level reflects usefulness not frequency"
+   }
+  ],
+  "12": [
+   {
+    "word": "그녀",
+    "verdict": "already overridden to 12 with a written reason; POS corrected to pronoun this pass"
+   }
+  ]
+ }
+}
