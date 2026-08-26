@@ -1,0 +1,466 @@
+{
+ "_comment": [
+  "Machine-readable editorial rules for every learner language. Read by the",
+  "translation pipeline (scripts/translation-*), by translation agents as the",
+  "style contract for a batch, and by translation-semantics QA. `script` names",
+  "the Unicode ranges a translation must be written in; `terminal` the",
+  "sentence-final punctuation convention observed in the shipping rows;",
+  "`secondPerson` and `register` the address policy the existing 600-word band",
+  "established. Rules of the invariant kind (never invent a subject, gender or",
+  "number Korean does not state) live in every entry because every language is",
+  "exposed to them. None of this is native review; see LOCALIZATION_NATIVE_REVIEW.md."
+ ],
+ "_invariants": {
+  "neverInvent": "If the Korean names no subject, gender, plural or possessor, the translation must not invent one unless the grammar of the language forces a choice; then prefer the construction that adds the least (subjectless, impersonal, or the Korean sentence's own topic).",
+  "taughtSenseOnly": "Translate the canonical taught sense the card carries, never another dictionary reading of the same spelling.",
+  "koreanMeaningFirst": "Translate the Korean sentence's meaning; the English row is a disambiguator, not the source. Do not copy English word order, articles or idioms into the target language.",
+  "noKorean": "Meanings and example translations carry no Hangul; a More-about-it note may name Korean words.",
+  "noEnglish": "No English words except true loanwords the language itself uses."
+ },
+ "locales": {
+  "ar": {
+   "language": "Arabic",
+   "variant": "Modern Standard Arabic",
+   "script": "Arabic",
+   "terminal": ".",
+   "question": "؟",
+   "secondPerson": "أنتَ/أنتِ avoided; imperative polite forms as in the shipping rows",
+   "register": "neutral MSA, no dialect",
+   "quotes": "«»",
+   "traps": [
+    "do not drift into Egyptian/Levantine colloquialisms",
+    "verbal nouns for Korean nominalisations"
+   ]
+  },
+  "bn": {
+   "language": "Bengali",
+   "variant": "Standard (Kolkata/Dhaka neutral)",
+   "script": "Bengali",
+   "terminal": "।",
+   "question": "?",
+   "secondPerson": "আপনি when Korean is polite, আমি first person as shipped",
+   "register": "polite neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "danda । not period",
+    "do not calque English progressive"
+   ]
+  },
+  "cs": {
+   "language": "Czech",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "vy for polite Korean, consistent with shipping rows",
+   "register": "neutral polite",
+   "quotes": "„“",
+   "traps": [
+    "aspect choice must follow Korean completedness",
+    "no anglicised word order"
+   ]
+  },
+  "el": {
+   "language": "Greek",
+   "variant": "standard",
+   "script": "Greek",
+   "terminal": ".",
+   "question": ";",
+   "secondPerson": "εσείς for polite, εσύ only where Korean is casual",
+   "register": "neutral polite",
+   "quotes": "«»",
+   "traps": [
+    "Greek question mark is the semicolon ;",
+    "gendered articles: prefer plural or impersonal when Korean names nobody"
+   ]
+  },
+  "fil": {
+   "language": "Filipino",
+   "variant": "Tagalog-based Filipino",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "kayo/po for Korean 해요체, as the shipping rows do",
+   "register": "po/opo politeness where Korean is polite",
+   "quotes": "\"\"",
+   "traps": [
+    "keep po particles consistent",
+    "no deep Tagalog nobody speaks; no pure English substitutions"
+   ]
+  },
+  "hi": {
+   "language": "Hindi",
+   "variant": "standard",
+   "script": "Devanagari",
+   "terminal": "।",
+   "question": "?",
+   "secondPerson": "आप for polite Korean",
+   "register": "polite neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "danda । not period",
+    "gender agreement of verbs: prefer constructions that avoid inventing the speaker's gender (e.g. करना चाहिए, हो गया)"
+   ]
+  },
+  "hu": {
+   "language": "Hungarian",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "ön for polite; shipping rows use ön",
+   "register": "neutral polite",
+   "quotes": "„”",
+   "traps": [
+    "definite vs indefinite conjugation",
+    "no pro-drop violation — Hungarian drops subjects naturally, keep it"
+   ]
+  },
+  "id": {
+   "language": "Indonesian",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "Anda for polite Korean",
+   "register": "neutral polite",
+   "quotes": "\"\"",
+   "traps": [
+    "no Malay-specific vocabulary",
+    "saya not aku for the polite register"
+   ]
+  },
+  "it": {
+   "language": "Italian",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "lei for polite, tu only where Korean is casual; shipping rows lean impersonal",
+   "register": "neutral polite",
+   "quotes": "«»",
+   "traps": [
+    "gendered participles: prefer constructions that avoid inventing gender (si impersonale, plural)"
+   ]
+  },
+  "kk": {
+   "language": "Kazakh",
+   "variant": "standard (Cyrillic)",
+   "script": "Cyrillic",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "сіз for polite Korean",
+   "register": "polite neutral",
+   "quotes": "«»",
+   "traps": [
+    "Kazakh-specific letters ә ғ қ ң ө ұ ү һ і must appear where the word needs them — their absence signals Russian leakage",
+    "no Russian loan where a Kazakh word is normal"
+   ]
+  },
+  "ky": {
+   "language": "Kyrgyz",
+   "variant": "standard (Cyrillic)",
+   "script": "Cyrillic",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "сиз for polite Korean",
+   "register": "polite neutral",
+   "quotes": "«»",
+   "traps": [
+    "Kyrgyz ң ө ү must appear where needed; watch Kazakh/Russian bleed-through"
+   ]
+  },
+  "mn": {
+   "language": "Mongolian",
+   "variant": "Khalkha (Cyrillic)",
+   "script": "Cyrillic",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "та for polite Korean",
+   "register": "polite neutral",
+   "quotes": "«»",
+   "traps": [
+    "Mongolian ө ү must appear where needed",
+    "vowel harmony in suffixes"
+   ]
+  },
+  "nl": {
+   "language": "Dutch",
+   "variant": "Netherlands",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "u for polite Korean, as shipped",
+   "register": "neutral polite",
+   "quotes": "\"\"",
+   "traps": [
+    "no Flemish-only vocabulary",
+    "keep u consistent — no drift to je mid-pack"
+   ]
+  },
+  "pl": {
+   "language": "Polish",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "pan/pani for polite Korean, as shipped",
+   "register": "neutral polite",
+   "quotes": "„”",
+   "traps": [
+    "aspect must follow Korean completedness",
+    "past-tense gender: prefer constructions avoiding an invented speaker gender where natural"
+   ]
+  },
+  "ro": {
+   "language": "Romanian",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "dumneavoastră for polite Korean",
+   "register": "neutral polite",
+   "quotes": "„”",
+   "traps": [
+    "comma-diacritics ș ț not cedilla ş ţ"
+   ]
+  },
+  "ru": {
+   "language": "Russian",
+   "variant": "standard",
+   "script": "Cyrillic",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "вы for polite Korean",
+   "register": "neutral polite",
+   "quotes": "«»",
+   "traps": [
+    "aspect must follow Korean completedness",
+    "past-tense gender: prefer constructions avoiding an invented speaker gender (у меня..., мне...) where natural"
+   ]
+  },
+  "sv": {
+   "language": "Swedish",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "du (modern Swedish default), ni only in fixed polite formulas",
+   "register": "neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "en/ett agreement",
+    "no Danish/Norwegian bleed"
+   ]
+  },
+  "ta": {
+   "language": "Tamil",
+   "variant": "standard modern written",
+   "script": "Tamil",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "நீங்கள் for polite Korean",
+   "register": "polite neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "formal written verb endings as shipped",
+    "no Sri Lankan/colloquial mix"
+   ]
+  },
+  "te": {
+   "language": "Telugu",
+   "variant": "standard",
+   "script": "Telugu",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "మీరు for polite Korean",
+   "register": "polite neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "keep the shipped polite verb endings (-ండి for requests)"
+   ]
+  },
+  "th": {
+   "language": "Thai",
+   "variant": "standard",
+   "script": "Thai",
+   "terminal": "",
+   "question": "",
+   "secondPerson": "คุณ; polite particles as shipped (ครับ/ค่ะ omitted in neutral teaching rows)",
+   "register": "neutral polite, ฉัน first person as shipped",
+   "quotes": "\"\"",
+   "traps": [
+    "no sentence-final period",
+    "spaces only between clauses, not words"
+   ]
+  },
+  "tr": {
+   "language": "Turkish",
+   "variant": "standard",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "siz for polite Korean",
+   "register": "neutral polite",
+   "quotes": "\"\"",
+   "traps": [
+    "dotted/dotless i must be right",
+    "evidential -miş only when Korean implies hearsay"
+   ]
+  },
+  "uk": {
+   "language": "Ukrainian",
+   "variant": "standard",
+   "script": "Cyrillic",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "ви for polite Korean",
+   "register": "neutral polite",
+   "quotes": "«»",
+   "traps": [
+    "і/и/ї correct; no Russian lexical bleed (місто not город)",
+    "aspect follows Korean completedness"
+   ]
+  },
+  "uz": {
+   "language": "Uzbek",
+   "variant": "standard (Latin)",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "siz for polite Korean",
+   "register": "polite neutral",
+   "quotes": "«»",
+   "traps": [
+    "Latin Uzbek with oʻ/gʻ written as o' g' apostrophe forms as shipped",
+    "no Cyrillic"
+   ]
+  },
+  "en": {
+   "language": "English",
+   "variant": "neutral international",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "you",
+   "register": "neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "singular they for unnamed third persons",
+    "no gloss may smuggle a second dictionary sense"
+   ]
+  },
+  "ko": {
+   "language": "Korean",
+   "variant": "standard 해요체 teaching register",
+   "script": "Hangul",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "avoided as Korean avoids it",
+   "register": "해요체",
+   "quotes": "“”",
+   "traps": [
+    "글자=letter, 음절=block, 단어=word — the fixed terminology"
+   ]
+  },
+  "ja": {
+   "language": "Japanese",
+   "variant": "standard",
+   "script": "Japanese",
+   "terminal": "。",
+   "question": "？or 。per shipped rows",
+   "secondPerson": "avoided as Japanese avoids it",
+   "register": "です/ます teaching register",
+   "quotes": "「」",
+   "traps": [
+    "no invented subjects — Japanese drops them like Korean",
+    "kanji per shipped usage"
+   ]
+  },
+  "zh-CN": {
+   "language": "Chinese",
+   "variant": "Simplified, mainland",
+   "script": "Han (simplified)",
+   "terminal": "。",
+   "question": "？",
+   "secondPerson": "你 neutral, 您 only for explicit deference",
+   "register": "neutral",
+   "quotes": "“”",
+   "traps": [
+    "no traditional characters",
+    "full-width punctuation"
+   ]
+  },
+  "es": {
+   "language": "Spanish",
+   "variant": "neutral Latin American",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "¿…?",
+   "secondPerson": "usted/tú per shipped rows; keep consistent",
+   "register": "neutral polite",
+   "quotes": "«»",
+   "traps": [
+    "opening ¿ required",
+    "gendered participles: prefer impersonal where Korean names nobody"
+   ]
+  },
+  "fr": {
+   "language": "French",
+   "variant": "France",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "vous for polite Korean",
+   "register": "neutral polite",
+   "quotes": "«»",
+   "traps": [
+    "il impersonal only for weather/time — otherwise no invented il/elle",
+    "espace before ? per shipped rows: follow existing pack"
+   ]
+  },
+  "de": {
+   "language": "German",
+   "variant": "Germany",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "du — the product addresses the learner as du everywhere; Sie only inside quoted formal speech",
+   "register": "du, informal-neutral",
+   "quotes": "„“",
+   "traps": [
+    "no du/Sie alternation",
+    "gendered nouns for people: prefer plural or the Korean's own topic where nobody is named"
+   ]
+  },
+  "pt-BR": {
+   "language": "Portuguese",
+   "variant": "Brazilian — NEVER European",
+   "script": "Latin",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "você",
+   "register": "neutral",
+   "quotes": "\"\"",
+   "traps": [
+    "trem/celular/banheiro/ônibus — not comboio/telemóvel/casa de banho/autocarro",
+    "estou aprendendo, not estou a aprender",
+    "camisola=nightgown: banned as sweater"
+   ]
+  },
+  "vi": {
+   "language": "Vietnamese",
+   "variant": "standard (Northern-leaning written)",
+   "script": "Latin (Vietnamese)",
+   "terminal": ".",
+   "question": "?",
+   "secondPerson": "bạn",
+   "register": "neutral polite, tôi first person",
+   "quotes": "\"\"",
+   "traps": [
+    "full diacritics always",
+    "classifier choice per shipped rows"
+   ]
+  }
+ }
+}
