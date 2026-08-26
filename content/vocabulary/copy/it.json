@@ -1,2444 +1,2445 @@
 {
-  "_comment": "Vocabulary copy for Italian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
-  "locale": "it",
-  "words": {
-    "word_hada": [
-      "fare",
-      "Studio.",
-      "Fare — e il motore del lessico coreano. Attaccalo a un sostantivo e ottieni un verbo: 공부 (studio) diventa 공부하다 (studiare), 사랑 (amore) diventa 사랑하다. Centinaia di verbi si costruiscono così."
-    ],
-    "word_cha": [
-      "auto",
-      "Prendo l’auto.",
-      "Un’auto. La stessa sillaba è anche la parola per tè, quindi 차를 마셔요 è bevo il tè e 차를 타요 è salgo in macchina. È il verbo a dirti di quale si tratta."
-    ],
-    "word_yeoja": [
-      "donna",
-      "Quella donna è medico."
-    ],
-    "word_na": [
-      "io",
-      "Sto imparando il coreano."
-    ],
-    "word_hae": [
-      "il Sole",
-      "Il sole è luminoso."
-    ],
-    "word_don": [
-      "denaro",
-      "C’è del denaro nel portafoglio."
-    ],
-    "word_uri": [
-      "noi",
-      "Siamo amici."
-    ],
-    "word_jip": [
-      "casa",
-      "Vado a casa."
-    ],
-    "word_itda": [
-      "stare, trovarsi",
-      "Sono a casa.",
-      "Una sola parola dove l’italiano ne usa due: 있다 significa sia trovarsi in un luogo sia avere. 책상에 책이 있어요 — il libro è sulla scrivania; 시간이 있어요 — ho tempo. Il suo contrario è 없다."
-    ],
-    "word_ne": [
-      "sì",
-      "Sì, è così.",
-      "Tre parole comuni si scrivono 네. Questa è «sì». Le altre sono «tuo» (네 책, il tuo libro) e il numerale nativo «quattro» davanti a un classificatore (네 개, quattro pezzi). Le distingue il contesto, non l’ortografia."
-    ],
-    "word_son": [
-      "mano",
-      "Scrivo a mano."
-    ],
-    "word_sigan": [
-      "tempo",
-      "Non ho tempo.",
-      "Il tempo in generale, e anche il classificatore per le ore: 두 시간 significa due ore. Non confonderlo con 시, che è l’ora dell’orologio — 두 시 sono le due, tutt’altra cosa."
-    ],
-    "word_jeo": [
-      "io (formale)",
-      "Sono uno studente."
-    ],
-    "word_gada": [
-      "andare",
-      "Vado a scuola."
-    ],
-    "word_gae": [
-      "cane",
-      "Il cane corre."
-    ],
-    "word_mun": [
-      "porta",
-      "Apro la porta."
-    ],
-    "word_sae": [
-      "uccello",
-      "Un uccello vola."
-    ],
-    "word_mom": [
-      "corpo",
-      "Mi lavo il corpo ogni giorno."
-    ],
-    "word_bang": [
-      "stanza",
-      "La stanza è pulita."
-    ],
-    "word_nun": [
-      "occhio",
-      "Hai degli occhi belli.",
-      "L’occhio. Si scrive esattamente come la parola per neve; nel parlato accurato le due si distinguono per la durata: il 눈 della neve è allungato, quello dell’occhio è breve. La maggior parte dei parlanti si affida al contesto."
-    ],
-    "word_ot": [
-      "vestiti",
-      "I vestiti sono belli."
-    ],
-    "word_neo": [
-      "tu",
-      "Dove sei?"
-    ],
-    "word_eopda": [
-      "non avere",
-      "Non ho soldi."
-    ],
-    "word_meori": [
-      "testa",
-      "Mi fa male la testa."
-    ],
-    "word_ip": [
-      "bocca",
-      "La bocca è piccola."
-    ],
-    "word_mul": [
-      "acqua",
-      "Bevo acqua."
-    ],
-    "word_dari": [
-      "gamba",
-      "Mi fa male la gamba.",
-      "Una gamba — la tua, quella di un tavolo, di una sedia. La stessa parola significa anche ponte, ed è per questo che 다리를 건너요 vuol dire «attraverso il ponte» e non qualcosa di anatomico."
-    ],
-    "word_bi": [
-      "pioggia",
-      "Sta piovendo."
-    ],
-    "word_wae": [
-      "perché",
-      "Perché sei in ritardo?"
-    ],
-    "word_eolgul": [
-      "viso",
-      "Mi lavo il viso."
-    ],
-    "word_saram": [
-      "persona",
-      "È una brava persona."
-    ],
-    "word_hakgyo": [
-      "scuola",
-      "La scuola è grande."
-    ],
-    "word_yeogi": [
-      "qui",
-      "Si sieda qui, prego."
-    ],
-    "word_pal": [
-      "braccio",
-      "Hai le braccia lunghe."
-    ],
-    "word_norae": [
-      "canzone",
-      "Canto una canzone."
-    ],
-    "word_chaek": [
-      "libro",
-      "Leggo un libro."
-    ],
-    "word_dal": [
-      "la Luna",
-      "La luna è luminosa."
-    ],
-    "word_jeonhwa": [
-      "telefono",
-      "Rispondo al telefono."
-    ],
-    "word_namu": [
-      "albero",
-      "L’albero è alto."
-    ],
-    "word_dasi": [
-      "di nuovo",
-      "Lo ripeta, per favore."
-    ],
-    "word_nal": [
-      "giorno",
-      "È una bella giornata."
-    ],
-    "word_jigeum": [
-      "adesso",
-      "Vado adesso."
-    ],
-    "word_haru": [
-      "giornata",
-      "La giornata è lunga."
-    ],
-    "word_sesang": [
-      "il mondo",
-      "Il mondo è grande."
-    ],
-    "word_bal": [
-      "piede",
-      "Ho i piedi freddi."
-    ],
-    "word_neutda": [
-      "essere in ritardo",
-      "L’autobus era in ritardo."
-    ],
-    "word_modu": [
-      "tutti",
-      "Si sono riuniti tutti."
-    ],
-    "word_sajin": [
-      "fotografia",
-      "Faccio una foto."
-    ],
-    "word_chimdae": [
-      "letto",
-      "Il letto è comodo."
-    ],
-    "word_ko": [
-      "naso",
-      "Ho il naso chiuso."
-    ],
-    "word_san": [
-      "montagna",
-      "Vado in montagna."
-    ],
-    "word_hana": [
-      "uno",
-      "Una mela, per favore."
-    ],
-    "word_byeongwon": [
-      "ospedale",
-      "Vado in ospedale."
-    ],
-    "word_jeongmal": [
-      "davvero",
-      "Grazie mille.",
-      "Davvero, veramente — un rafforzativo che precede l’aggettivo, come in 정말 좋아요. Da solo, con l’intonazione che sale, 정말? è una domanda di una parola sola: «davvero?». È così che lo sentirai più spesso."
-    ],
-    "word_seonmul": [
-      "regalo",
-      "Mi piace il regalo."
-    ],
-    "word_boda": [
-      "vedere",
-      "Guardo un film."
-    ],
-    "word_oneul": [
-      "oggi",
-      "Oggi c’è bel tempo."
-    ],
-    "word_gabang": [
-      "borsa",
-      "La borsa è pesante."
-    ],
-    "word_eumak": [
-      "musica",
-      "La musica è bella."
-    ],
-    "word_gage": [
-      "negozio",
-      "Il negozio è chiuso."
-    ],
-    "word_gil": [
-      "strada",
-      "La strada è larga."
-    ],
-    "word_ohu": [
-      "pomeriggio",
-      "Vediamoci nel pomeriggio."
-    ],
-    "word_keopi": [
-      "caffè",
-      "Bevo un caffè."
-    ],
-    "word_bap": [
-      "pasto",
-      "Mangio."
-    ],
-    "word_eomma": [
-      "mamma",
-      "La mamma cucina."
-    ],
-    "word_gwi": [
-      "orecchio",
-      "Mi fa male l’orecchio."
-    ],
-    "word_beoseu": [
-      "autobus",
-      "Arriva l’autobus."
-    ],
-    "word_geurim": [
-      "disegno",
-      "Faccio un disegno."
-    ],
-    "word_beon": [
-      "volta",
-      "Lo rifaccia ancora una volta, per favore."
-    ],
-    "word_sul": [
-      "alcol",
-      "Non bevo alcol."
-    ],
-    "word_yeonghwa": [
-      "film",
-      "Il film è divertente."
-    ],
-    "word_sada": [
-      "comprare",
-      "Compro il pane."
-    ],
-    "word_byeol": [
-      "stella",
-      "Le stelle brillano."
-    ],
-    "word_bihaenggi": [
-      "aereo",
-      "Prendo l’aereo."
-    ],
-    "word_bak": [
-      "esterno",
-      "Fuori piove."
-    ],
-    "word_oda": [
-      "venire",
-      "Sta arrivando il mio amico."
-    ],
-    "word_chingu": [
-      "amico",
-      "Incontro un amico."
-    ],
-    "word_appa": [
-      "papà",
-      "Buonanotte, papà."
-    ],
-    "word_haneul": [
-      "cielo",
-      "Il cielo è azzurro."
-    ],
-    "word_bada": [
-      "mare",
-      "Il mare è vasto."
-    ],
-    "word_sagwa": [
-      "mela",
-      "La mela è dolce."
-    ],
-    "word_mulgeon": [
-      "cosa",
-      "Compro delle cose."
-    ],
-    "word_moja": [
-      "cappello",
-      "Mi metto un cappello."
-    ],
-    "word_gogi": [
-      "carne",
-      "Griglio la carne."
-    ],
-    "word_jinjja": [
-      "vero",
-      "È vero questo?"
-    ],
-    "word_sinbal": [
-      "scarpe",
-      "Mi metto le scarpe."
-    ],
-    "word_jamkkan": [
-      "un attimo",
-      "Aspetti un attimo, per favore."
-    ],
-    "word_namja": [
-      "uomo",
-      "Quell’uomo è mio amico."
-    ],
-    "word_eumsik": [
-      "cibo",
-      "Il cibo coreano è buonissimo."
-    ],
-    "word_saengil": [
-      "compleanno",
-      "Buon compleanno."
-    ],
-    "word_daseot": [
-      "cinque",
-      "Sono venute cinque persone."
-    ],
-    "word_gihoe": [
-      "occasione",
-      "È una buona occasione."
-    ],
-    "word_dul": [
-      "due",
-      "Ci sono due sedie."
-    ],
-    "word_sijang": [
-      "mercato",
-      "Compro verdura al mercato."
-    ],
-    "word_goyangi": [
-      "gatto",
-      "Il gatto dorme."
-    ],
-    "word_changmun": [
-      "finestra",
-      "Chiuda la finestra, per favore."
-    ],
-    "word_yeoreum": [
-      "estate",
-      "D’estate vado al mare."
-    ],
-    "word_dongmul": [
-      "animale",
-      "Mi piacciono gli animali."
-    ],
-    "word_yeohaeng": [
-      "viaggio",
-      "Vorrei viaggiare."
-    ],
-    "word_bam": [
-      "notte",
-      "Di notte ci sono molte stelle.",
-      "Notte. Si scrive come la parola per castagna, uno spuntino autunnale comune in Corea, quindi 밤을 먹어요 e 밤에 자요 parlano di cose molto diverse."
-    ],
-    "word_geot": [
-      "una cosa",
-      "Ho comprato le cose di cui avevo bisogno.",
-      "Il sostantivo più comune del coreano: sta al posto di ciò che non hai nominato. 제 것 è *il mio*; 먹을 것 è *qualcosa da mangiare*. Nel parlato si accorcia in 거 — 이거, 그거, 저거 — ed è la forma che i principianti incontrano per prima."
-    ],
-    "word_mal": [
-      "parole, ciò che si dice",
-      "Scegli le parole con cura.",
-      "La parola, ciò che qualcuno dice. La stessa sillaba significa anche cavallo, e 말 chiude 한국말, la lingua coreana. Nulla le distingue nella scrittura: 말을 하다 è parlare, 말을 타다 è cavalcare."
-    ],
-    "word_bun": [
-      "un minuto",
-      "Aspetti solo dieci minuti, per favore.",
-      "Altre due parole si scrivono 분. Una è il modo cortese di contare le persone — 세 분, tre persone, detto di ospiti o anziani. L'altra significa collera, come in 분이 풀리다. Solo la frase le distingue."
-    ],
-    "word_dwi": [
-      "il retro",
-      "Ho scritto il mio nome sul retro del quaderno."
-    ],
-    "word_si": [
-      "in punto, ora",
-      "La lezione finisce alle due.",
-      "L'ora prende i numeri nativi — 한 시, 두 시, 세 시 — e i minuti quelli sino-coreani: 세 시 십 분, le tre e dieci. Invertirli è l'errore classico del principiante, e si nota subito."
-    ],
-    "word_deo": [
-      "di più",
-      "Ancora un po', per favore."
-    ],
-    "word_ap": [
-      "il davanti",
-      "Ci vediamo davanti al negozio."
-    ],
-    "word_da": [
-      "tutto",
-      "Ho mangiato tutto il riso."
-    ],
-    "word_jom": [
-      "un po', e un modo di addolcire una richiesta",
-      "Un po' d'acqua, per favore.",
-      "Abbreviazione di 조금, *un po'* — ma metà del suo lavoro è addolcire. Inserito in una richiesta ne smussa il bordo: 도와주세요 è *aiutami*, 좀 도와주세요 suona come *potresti aiutarmi*. I coreani lo usano continuamente proprio per questo."
-    ],
-    "word_jeon": [
-      "prima",
-      "Mi lavo le mani prima di mangiare.",
-      "Prima, nel tempo. Diverse altre parole si scrivono 전: 전쟁 è guerra e si abbrevia in 전, 전기 è elettricità, e 전 al ristorante è una frittella salata. Davanti a un verbo è quello temporale — 먹기 전에, prima di mangiare."
-    ],
-    "word_alda": [
-      "sapere",
-      "So il nome."
-    ],
-    "word_yak": [
-      "medicina",
-      "Prenda la medicina dopo mangiato."
-    ],
-    "word_jota": [
-      "essere buono",
-      "Mi sento bene."
-    ],
-    "word_jal": [
-      "bene",
-      "Hai dormito bene?"
-    ],
-    "word_anida": [
-      "non essere qualcosa",
-      "Non sono uno studente.",
-      "Il contrario di 이다. Vuole 이/가 sulla cosa negata, non 을/를: 학생이 아니에요, mai 학생을 아니에요. Chi impara questo schema può negare qualsiasi frase nominale coreana."
-    ],
-    "word_bul": [
-      "fuoco",
-      "È scoppiato un incendio sulla montagna."
-    ],
-    "word_uyu": [
-      "latte",
-      "Il latte è freddo."
-    ],
-    "word_meokda": [
-      "mangiare",
-      "Mangio frutta."
-    ],
-    "word_ppang": [
-      "pane",
-      "Mangio pane."
-    ],
-    "word_ttae": [
-      "il momento in cui accade qualcosa",
-      "Da piccolo vivevo in campagna."
-    ],
-    "word_il": [
-      "lavoro",
-      "Oggi c'è molto lavoro.",
-      "Il lavoro, o una cosa da fare. La stessa sillaba è il numero sino-coreano — 일 번, numero uno — ed è il giorno in 일요일, domenica, e in 삼 일, tre giorni."
-    ],
-    "word_baji": [
-      "pantaloni",
-      "I pantaloni sono lunghi."
-    ],
-    "word_sigye": [
-      "orologio",
-      "Non ho un orologio."
-    ],
-    "word_siheom": [
-      "una prova, un esame",
-      "Domani ho un esame."
-    ],
-    "word_keompyuteo": [
-      "computer",
-      "Accendo il computer."
-    ],
-    "word_nalssi": [
-      "il tempo atmosferico",
-      "Il tempo è bello."
-    ],
-    "word_jongi": [
-      "carta",
-      "Disegno su un foglio di carta."
-    ],
-    "word_dosi": [
-      "città",
-      "La città è molto grande."
-    ],
-    "word_munje": [
-      "problema",
-      "C'è un problema."
-    ],
-    "word_wi": [
-      "la parte di sopra",
-      "C'è un cappello sulla borsa."
-    ],
-    "word_bom": [
-      "primavera",
-      "In primavera sbocciano i fiori."
-    ],
-    "word_jeonyeok": [
-      "la cena",
-      "Ceno."
-    ],
-    "word_gyeoul": [
-      "inverno",
-      "D'inverno nevica molto."
-    ],
-    "word_abeoji": [
-      "padre",
-      "Mio padre va al lavoro."
-    ],
-    "word_eoseo": [
-      "prego, si accomodi",
-      "Benvenuto, prego, entri."
-    ],
-    "word_mot": [
-      "non potere, pur volendo",
-      "È così piccante che non riesco a mangiarlo.",
-      "Il coreano ha due negazioni e dicono cose diverse. 안 è *non voglio*; 못 è *non posso*. 안 먹어요 significa che scegli di non mangiare; 못 먹어요 che qualcosa te lo impedisce. Un sostantivo scritto uguale, 못, è il chiodo."
-    ],
-    "word_salda": [
-      "vivere, abitare",
-      "Abito a Seul."
-    ],
-    "word_ai": [
-      "bambino",
-      "Il bambino ride."
-    ],
-    "word_jeomsim": [
-      "pranzo",
-      "Pranziamo insieme."
-    ],
-    "word_nugu": [
-      "chi",
-      "Chi è quella persona?"
-    ],
-    "word_eonje": [
-      "quando",
-      "Quando vieni?"
-    ],
-    "word_geori": [
-      "una strada",
-      "C'è molta gente per la strada."
-    ],
-    "word_annyeong": [
-      "ciao, arrivederci",
-      "Ciao, alla prossima!"
-    ],
-    "word_gakkeum": [
-      "a volte",
-      "A volte guardo dei film."
-    ],
-    "word_manta": [
-      "essere molti",
-      "C'è molta gente."
-    ],
-    "word_chima": [
-      "una gonna",
-      "Questa gonna è molto carina."
-    ],
-    "word_uija": [
-      "sedia",
-      "Mi siedo sulla sedia."
-    ],
-    "word_jeogi": [
-      "laggiù",
-      "Laggiù c'è la scuola."
-    ],
-    "word_gongwon": [
-      "parco",
-      "Cammino nel parco."
-    ],
-    "word_ssal": [
-      "riso crudo",
-      "Lavo il riso e lo cuocio."
-    ],
-    "word_jigu": [
-      "la Terra",
-      "La Terra è rotonda."
-    ],
-    "word_eodi": [
-      "dove",
-      "Dov'è il bagno?"
-    ],
-    "word_byeok": [
-      "un muro",
-      "Appendo un quadro al muro."
-    ],
-    "word_gyeran": [
-      "un uovo",
-      "Stamattina ho bollito un uovo."
-    ],
-    "word_tada": [
-      "salire su, prendere un mezzo",
-      "Prendo l'autobus.",
-      "Salire su qualsiasi cosa che ti trasporti: un autobus, una bici, un ascensore. Due altri verbi molto comuni condividono la grafia: 타다 significa anche bruciare, e sciogliere qualcosa in una bevanda."
-    ],
-    "word_segye": [
-      "il mondo",
-      "Conosco molti paesi del mondo."
-    ],
-    "word_ireum": [
-      "nome",
-      "Come ti chiami?"
-    ],
-    "word_guk": [
-      "zuppa",
-      "La mattina mangio la zuppa."
-    ],
-    "word_malhada": [
-      "parlare",
-      "Parli lentamente, per favore."
-    ],
-    "word_geotda": [
-      "camminare",
-      "Cammino nel parco."
-    ],
-    "word_gangaji": [
-      "cucciolo",
-      "Il cucciolo è piccolo."
-    ],
-    "word_sori": [
-      "suono",
-      "Il suono è forte."
-    ],
-    "word_yeop": [
-      "il fianco",
-      "Si sieda accanto a me, per favore."
-    ],
-    "word_saenggak": [
-      "pensiero",
-      "È una buona idea."
-    ],
-    "word_geogi": [
-      "lì",
-      "C'è qualcuno lì?"
-    ],
-    "word_adeul": [
-      "figlio",
-      "Mio figlio va a scuola."
-    ],
-    "word_doeda": [
-      "diventare",
-      "Voglio diventare medico.",
-      "Diventare. È anche la parola quotidiana per qualcosa che funziona o è permesso: 안 돼요 vuol dire non si può, e 다 됐어요 vuol dire è pronto. Le sentirai molto più spesso del senso da dizionario."
-    ],
-    "word_maeul": [
-      "un villaggio",
-      "Il villaggio è tranquillo."
-    ],
-    "word_kape": [
-      "un caffè, un locale",
-      "Incontro il mio amico al caffè."
-    ],
-    "word_gong": [
-      "una palla",
-      "Calcio la palla."
-    ],
-    "word_gajok": [
-      "famiglia",
-      "Ho una famiglia numerosa."
-    ],
-    "word_ssi": [
-      "signore o signora, dopo un nome",
-      "Minsu, un momento.",
-      "Attaccato al nome proprio è cortese e amichevole tra pari: 민수 씨. Attaccato al solo cognome — 김 씨 — suona distante o perfino brusco, quindi usa il nome. Con un superiore si usa il titolo: 부장님, 선생님."
-    ],
-    "word_achim": [
-      "mattina",
-      "Mi alzo la mattina."
-    ],
-    "word_jeonhwahada": [
-      "telefonare",
-      "Ti chiamo più tardi."
-    ],
-    "word_gaeul": [
-      "autunno",
-      "In autunno il vento è fresco."
-    ],
-    "word_kkot": [
-      "fiore",
-      "Il fiore è bello."
-    ],
-    "word_jido": [
-      "mappa",
-      "Guardo la mappa."
-    ],
-    "word_saek": [
-      "un colore",
-      "Questo colore è bello."
-    ],
-    "word_juda": [
-      "dare",
-      "Faccio un regalo."
-    ],
-    "word_yachae": [
-      "verdure",
-      "Mangi molta verdura, per favore."
-    ],
-    "word_chaeksang": [
-      "scrivania",
-      "C'è un libro sulla scrivania."
-    ],
-    "word_cheoeum": [
-      "la prima volta",
-      "Piacere di conoscerla."
-    ],
-    "word_gwail": [
-      "frutta",
-      "Mi piace la frutta."
-    ],
-    "word_uisa": [
-      "medico",
-      "Il medico mi visita."
-    ],
-    "word_ttal": [
-      "una figlia",
-      "Mia figlia va a scuola."
-    ],
-    "word_yeoboseyo": [
-      "pronto, al telefono",
-      "Pronto, chi parla?"
-    ],
-    "word_so": [
-      "una mucca",
-      "La mucca mangia l'erba."
-    ],
-    "word_pyeonji": [
-      "lettera",
-      "Scrivo una lettera a mia madre."
-    ],
-    "word_jogeum": [
-      "un po'",
-      "Solo un po', per favore."
-    ],
-    "word_boida": [
-      "essere visibile",
-      "Si vede la montagna."
-    ],
-    "word_jari": [
-      "un posto a sedere",
-      "Non ci sono posti."
-    ],
-    "word_hu": [
-      "dopo",
-      "Dopo la lezione vado in biblioteca."
-    ],
-    "word_kadeu": [
-      "carta di pagamento",
-      "Pago con la carta."
-    ],
-    "word_naeil": [
-      "domani",
-      "A domani."
-    ],
-    "word_jungyohada": [
-      "essere importante",
-      "La salute è la cosa più importante."
-    ],
-    "word_dalgyal": [
-      "un uovo",
-      "La mattina mangio un uovo."
-    ],
-    "word_aju": [
-      "molto",
-      "È molto buono."
-    ],
-    "word_matda": [
-      "essere giusto, esatto",
-      "Questa risposta è giusta."
-    ],
-    "word_hanguk": [
-      "Corea",
-      "Mi piace la cucina coreana."
-    ],
-    "word_gang": [
-      "un fiume",
-      "Il fiume è molto largo."
-    ],
-    "word_cho": [
-      "un secondo",
-      "Mancano trenta secondi."
-    ],
-    "word_hoesa": [
-      "un'azienda, un ufficio",
-      "Vado in ufficio."
-    ],
-    "word_sosik": [
-      "notizie",
-      "Ho una bella notizia."
-    ],
-    "word_jakda": [
-      "essere piccolo",
-      "Le scarpe sono piccole."
-    ],
-    "word_gimchi": [
-      "kimchi",
-      "Il kimchi è piccante."
-    ],
-    "word_ikda": [
-      "leggere",
-      "Leggo il giornale."
-    ],
-    "word_geurigo": [
-      "e, e poi",
-      "Ho comprato il pane. E ho comprato anche il latte."
-    ],
-    "word_keuda": [
-      "essere grande",
-      "Questa borsa è grande."
-    ],
-    "word_yeollak": [
-      "contatto",
-      "Mi contatti più tardi, per favore."
-    ],
-    "word_gachi": [
-      "insieme",
-      "Mangiamo insieme."
-    ],
-    "word_neomu": [
-      "troppo",
-      "Questi vestiti sono troppo grandi."
-    ],
-    "word_yong": [
-      "un drago",
-      "Nel disegno c'è un grande drago."
-    ],
-    "word_geureota": [
-      "essere così",
-      "Sì, è proprio così."
-    ],
-    "word_hotel": [
-      "albergo",
-      "Ho dormito in albergo."
-    ],
-    "word_yeolsoe": [
-      "chiave",
-      "Non ho la chiave."
-    ],
-    "word_yeppeuda": [
-      "essere carino",
-      "I fiori sono davvero belli."
-    ],
-    "word_geugeot": [
-      "quello",
-      "Mi dia quello, per favore."
-    ],
-    "word_daeum": [
-      "il prossimo",
-      "Alla prossima."
-    ],
-    "word_maeum": [
-      "cuore, animo",
-      "Ha un cuore caldo."
-    ],
-    "word_jadongcha": [
-      "automobile",
-      "L'auto è veloce."
-    ],
-    "word_jukda": [
-      "morire",
-      "Il fiore nel vaso è morto perché non è stato annaffiato."
-    ],
-    "word_nalda": [
-      "volare",
-      "Un uccello vola nel cielo."
-    ],
-    "word_siksa": [
-      "pasto",
-      "Il pasto era ottimo."
-    ],
-    "word_gigye": [
-      "una macchina",
-      "La macchina si è guastata."
-    ],
-    "word_ttang": [
-      "la terra, il suolo",
-      "Il terreno è bagnato."
-    ],
-    "word_jada": [
-      "dormire",
-      "Vado a letto presto."
-    ],
-    "word_beorida": [
-      "buttare via",
-      "Lo getti nel cestino, per favore."
-    ],
-    "word_juso": [
-      "un indirizzo",
-      "Mi dica l'indirizzo, per favore."
-    ],
-    "word_gicha": [
-      "treno",
-      "Il treno è partito."
-    ],
-    "word_chitsol": [
-      "uno spazzolino",
-      "Ho comprato uno spazzolino nuovo."
-    ],
-    "word_sarang": [
-      "amore",
-      "L'amore è bello."
-    ],
-    "word_gongbu": [
-      "studio",
-      "Studiare è divertente."
-    ],
-    "word_saengseon": [
-      "pesce da mangiare",
-      "Ho grigliato del pesce per cena."
-    ],
-    "word_mok": [
-      "un collo",
-      "Mi fa male il collo."
-    ],
-    "word_sipda": [
-      "volere",
-      "Voglio andare in Corea."
-    ],
-    "word_nyuseu": [
-      "il notiziario",
-      "Guardo il notiziario."
-    ],
-    "word_chatda": [
-      "cercare",
-      "Sto cercando la chiave."
-    ],
-    "word_iljjik": [
-      "presto",
-      "Domani mi alzo presto."
-    ],
-    "word_geonmul": [
-      "edificio",
-      "Quell’edificio è molto alto."
-    ],
-    "word_seonsaengnim": [
-      "insegnante",
-      "L'insegnante insegna."
-    ],
-    "word_eomeoni": [
-      "madre",
-      "Mia madre è a casa."
-    ],
-    "word_gibun": [
-      "umore, stato d'animo",
-      "Come ti senti?"
-    ],
-    "word_honja": [
-      "da solo",
-      "Posso andare da solo."
-    ],
-    "word_ani": [
-      "no",
-      "No, non ci sono andato."
-    ],
-    "word_eoje": [
-      "ieri",
-      "Ieri ha piovuto."
-    ],
-    "word_sseuda": [
-      "scrivere",
-      "Scrivo il mio nome.",
-      "Scrivere. Lo stesso verbo significa anche usare qualcosa, portare un cappello o gli occhiali sulla testa e — come aggettivo — essere amaro. Quattro sensi quotidiani, una sola grafia."
-    ],
-    "word_masida": [
-      "bere",
-      "Bevo il latte."
-    ],
-    "word_syeocheu": [
-      "una camicia",
-      "Indosso una camicia bianca."
-    ],
-    "word_junbi": [
-      "preparativi",
-      "È tutto pronto."
-    ],
-    "word_mian": [
-      "scusa",
-      "Scusa, sono in ritardo."
-    ],
-    "word_geokjeong": [
-      "preoccupazione",
-      "Ho molte preoccupazioni."
-    ],
-    "word_hajiman": [
-      "ma, però",
-      "Piove. Però ci vado."
-    ],
-    "word_kamera": [
-      "macchina fotografica",
-      "Ho comprato una macchina fotografica."
-    ],
-    "word_dongne": [
-      "un quartiere",
-      "Il nostro quartiere è tranquillo."
-    ],
-    "word_naengjanggo": [
-      "un frigorifero",
-      "Ho messo il latte in frigorifero."
-    ],
-    "word_anda": [
-      "sedersi",
-      "Mi sono seduto sulla sedia."
-    ],
-    "word_ppalli": [
-      "in fretta",
-      "Venga in fretta, per favore."
-    ],
-    "word_yaegi": [
-      "due chiacchiere",
-      "Parliamo un momento."
-    ],
-    "word_got": [
-      "un luogo",
-      "Ho trovato un posto tranquillo."
-    ],
-    "word_nat": [
-      "il giorno, le ore di luce",
-      "Di giorno fa caldo."
-    ],
-    "word_sangja": [
-      "scatola",
-      "Apro la scatola."
-    ],
-    "word_wonhada": [
-      "volere",
-      "Che cosa vuoi?"
-    ],
-    "word_sikdang": [
-      "ristorante",
-      "Dov'è il ristorante?"
-    ],
-    "word_geurida": [
-      "disegnare",
-      "Il bambino disegna un albero."
-    ],
-    "word_yuri": [
-      "vetro",
-      "Il vetro si è rotto."
-    ],
-    "word_igeot": [
-      "questo",
-      "Mi dia questo, per favore."
-    ],
-    "word_geoul": [
-      "specchio",
-      "Mi guardo allo specchio."
-    ],
-    "word_gijeok": [
-      "un miracolo",
-      "È stato davvero come un miracolo."
-    ],
-    "word_kal": [
-      "un coltello",
-      "Ho sbucciato la mela con il coltello."
-    ],
-    "word_gatda": [
-      "essere uguale",
-      "Le nostre borse sono uguali."
-    ],
-    "word_pul": [
-      "erba",
-      "L'erba è verde."
-    ],
-    "word_eolma": [
-      "quanto",
-      "Quanto costa questo?"
-    ],
-    "word_saenggakada": [
-      "pensare",
-      "La penso così anch'io."
-    ],
-    "word_jilmun": [
-      "una domanda",
-      "Ho una domanda."
-    ],
-    "word_geunyeo": [
-      "lei",
-      "Lei canta bene."
-    ],
-    "word_nota": [
-      "posare",
-      "Ho messo la borsa per terra."
-    ],
-    "word_banggeum": [
-      "poco fa",
-      "Sono arrivato poco fa."
-    ],
-    "word_bonaeda": [
-      "mandare",
-      "Mando una lettera."
-    ],
-    "word_arae": [
-      "sotto",
-      "Il libro è sotto la scrivania."
-    ],
-    "word_naoda": [
-      "uscire fuori",
-      "Esce dell'acqua."
-    ],
-    "word_nai": [
-      "età",
-      "Quanti anni ha?"
-    ],
-    "word_eotteoke": [
-      "come",
-      "Come ci si arriva?"
-    ],
-    "word_eunhaeng": [
-      "una banca",
-      "La banca ha aperto."
-    ],
-    "word_al": [
-      "un uovo",
-      "L'uccello ha deposto tre uova."
-    ],
-    "word_moreuda": [
-      "non sapere",
-      "Non lo so."
-    ],
-    "word_badak": [
-      "il pavimento",
-      "Pulisco il pavimento."
-    ],
-    "word_hwajangsil": [
-      "bagno",
-      "Il bagno è pulito."
-    ],
-    "word_yeok": [
-      "stazione",
-      "Ci vediamo alla stazione."
-    ],
-    "word_seoul": [
-      "Seul",
-      "Seul è molto grande."
-    ],
-    "word_gwiyeopda": [
-      "essere carino",
-      "Il cucciolo è carino."
-    ],
-    "word_areumdapda": [
-      "essere bello",
-      "Il paesaggio è bello."
-    ],
-    "word_ajik": [
-      "ancora, non ancora",
-      "Non sono ancora arrivati."
-    ],
-    "word_gyedan": [
-      "scale",
-      "Ci sono molte scale."
-    ],
-    "word_maeil": [
-      "ogni giorno",
-      "Scrivo in hangul ogni giorno."
-    ],
-    "word_agi": [
-      "un neonato",
-      "Il bambino dorme."
-    ],
-    "word_dwaeji": [
-      "maiale",
-      "Il maiale sta mangiando."
-    ],
-    "word_ju": [
-      "una settimana",
-      "Ci vediamo la prossima settimana."
-    ],
-    "word_iyagi": [
-      "un racconto",
-      "È una storia interessante."
-    ],
-    "word_tto": [
-      "di nuovo",
-      "Ci vediamo di nuovo domani."
-    ],
-    "word_beolsseo": [
-      "già",
-      "È già tutto finito."
-    ],
-    "word_dangsin": [
-      "lei, in modo formale",
-      "Ti ho aspettato."
-    ],
-    "word_gap": [
-      "un prezzo",
-      "Il prezzo è alto."
-    ],
-    "word_mianhada": [
-      "essere spiacente",
-      "Scusa il ritardo."
-    ],
-    "word_jeongnyujang": [
-      "una fermata dell'autobus",
-      "Aspetto l'autobus alla fermata."
-    ],
-    "word_anta": [
-      "non fare",
-      "Non bevo caffè."
-    ],
-    "word_taeksi": [
-      "taxi",
-      "Chiami un taxi, per favore."
-    ],
-    "word_haksaeng": [
-      "studente",
-      "In aula ci sono molti studenti."
-    ],
-    "word_bomul": [
-      "tesoro",
-      "I bambini cercano un tesoro."
-    ],
-    "word_jumun": [
-      "un'ordinazione",
-      "Desidera ordinare?"
-    ],
-    "word_sinmun": [
-      "giornale",
-      "Legga il giornale, per favore."
-    ],
-    "word_dak": [
-      "una gallina",
-      "La gallina depone un uovo."
-    ],
-    "word_keop": [
-      "una tazza",
-      "Verso l'acqua nella tazza."
-    ],
-    "word_set": [
-      "tre",
-      "Tre amici si sono riuniti."
-    ],
-    "word_hangugeo": [
-      "la lingua coreana",
-      "Il coreano è interessante."
-    ],
-    "word_geuraeseo": [
-      "quindi, perciò",
-      "Piove, perciò non ci vado."
-    ],
-    "word_manhi": [
-      "molto",
-      "Mangi pure molto."
-    ],
-    "word_du": [
-      "due, davanti a un classificatore",
-      "Due caffè, per favore.",
-      "I numeri nativi coreani cambiano forma davanti a un classificatore. 하나 둘 셋 넷 diventano 한 두 세 네: 하나 da solo, 한 개 per un oggetto. 두 è quella forma di 둘, e non sta mai da solo."
-    ],
-    "word_pyeonuijeom": [
-      "un minimarket",
-      "C'è un minimarket davanti a casa mia."
-    ],
-    "word_miguk": [
-      "gli Stati Uniti",
-      "Vengo dagli Stati Uniti."
-    ],
-    "word_gyesok": [
-      "continuazione",
-      "Continua a piovere."
-    ],
-    "word_gagyeok": [
-      "un prezzo",
-      "Il prezzo è più alto del previsto."
-    ],
-    "word_dongsaeng": [
-      "fratello o sorella minore",
-      "Il mio fratellino è carino.",
-      "L'unica parola per fratello che non cambia con chi parla: chiunque sia più giovane è 동생. Aggiungi una sillaba se serve il sesso — 남동생 fratello minore, 여동생 sorella minore."
-    ],
-    "word_tokki": [
-      "coniglio",
-      "Il coniglio salta."
-    ],
-    "word_seoda": [
-      "stare in piedi",
-      "Faccio la fila."
-    ],
-    "word_eoreum": [
-      "ghiaccio",
-      "Aggiunga del ghiaccio, per favore."
-    ],
-    "word_jayeon": [
-      "natura",
-      "La natura è bella."
-    ],
-    "word_jjikda": [
-      "timbrare",
-      "L'ho timbrato con un sigillo.",
-      "Premere qualcosa su una superficie: un sigillo, un timbro, un'impronta. Lo stesso verbo copre lo scattare una foto — 사진을 찍다 — e l'intingere il cibo nella salsa, tutti e tre dalla stessa idea di premere."
-    ],
-    "word_yeol": [
-      "dieci",
-      "Conti fino a dieci, per favore.",
-      "Qui 열 è il dieci nativo coreano, quello per contare le cose — 열 개, dieci pezzi. Un altro 열 significa febbre, e il verbo 열다 significa aprire. Due lettere, tre parole senza rapporto."
-    ],
-    "word_sasil": [
-      "un fatto",
-      "Questo è un fatto."
-    ],
-    "word_unjeon": [
-      "guida",
-      "Sto imparando a guidare."
-    ],
-    "word_gamja": [
-      "patata",
-      "Lesso le patate."
-    ],
-    "word_gureum": [
-      "nuvola",
-      "Ci sono molte nuvole."
-    ],
-    "word_iyu": [
-      "un motivo",
-      "Mi dica il motivo, per favore."
-    ],
-    "word_dareun": [
-      "altro, diverso",
-      "Avete altri colori?"
-    ],
-    "word_songarak": [
-      "dito",
-      "Mi fa male il dito."
-    ],
-    "word_japda": [
-      "afferrare",
-      "Ti tengo la mano."
-    ],
-    "word_bueok": [
-      "una cucina",
-      "Cucino in cucina."
-    ],
-    "word_piryo": [
-      "un bisogno",
-      "Non ho bisogno di aiuto."
-    ],
-    "word_pa": [
-      "un cipollotto",
-      "Ho aggiunto un po' di cipollotto alla zuppa."
-    ],
-    "word_batda": [
-      "ricevere",
-      "Ho ricevuto un regalo."
-    ],
-    "word_pida": [
-      "sbocciare",
-      "I fiori sono sbocciati."
-    ],
-    "word_sayong": [
-      "uso",
-      "Mi spieghi come si usa, per favore."
-    ],
-    "word_jeongbo": [
-      "informazioni",
-      "Cerco informazioni."
-    ],
-    "word_gonghang": [
-      "aeroporto",
-      "Sono arrivato all'aeroporto."
-    ],
-    "word_bumo": [
-      "genitori",
-      "Un bambino ha bisogno dei genitori."
-    ],
-    "word_saranghada": [
-      "amare",
-      "Amo la mia famiglia."
-    ],
-    "word_ireoke": [
-      "così",
-      "Lo scriva così, per favore."
-    ],
-    "word_ilhada": [
-      "lavorare",
-      "Mia madre lavora in ospedale."
-    ],
-    "word_suyeong": [
-      "nuoto",
-      "Sto imparando a nuotare."
-    ],
-    "word_piryohada": [
-      "avere bisogno",
-      "Ho bisogno di soldi."
-    ],
-    "word_bukjjok": [
-      "il nord",
-      "Sono andati a nord."
-    ],
-    "word_cheung": [
-      "un piano di un edificio",
-      "L'ufficio è al secondo piano."
-    ],
-    "word_hwanja": [
-      "un paziente",
-      "Il paziente sta riposando."
-    ],
-    "word_halmeoni": [
-      "nonna",
-      "La nonna sorride."
-    ],
-    "word_palda": [
-      "vendere",
-      "Vendono frutta."
-    ],
-    "word_itda_2": [
-      "unire, collegare",
-      "Ho unito le due corde."
-    ],
-    "word_nara": [
-      "paese, nazione",
-      "La Corea è un bel paese."
-    ],
-    "word_apateu": [
-      "appartamento",
-      "Vivo in un appartamento."
-    ],
-    "word_hamkke": [
-      "insieme",
-      "Andiamo insieme."
-    ],
-    "word_modeun": [
-      "tutti, ogni",
-      "Tutti hanno riso."
-    ],
-    "word_gwaenchanta": [
-      "andare bene",
-      "Sto bene."
-    ],
-    "word_johahada": [
-      "piacere",
-      "Mi piace il caffè."
-    ],
-    "word_jimseung": [
-      "una bestia",
-      "Nel bosco si è sentito il verso di una bestia."
-    ],
-    "word_dongan": [
-      "per un certo tempo",
-      "Ho viaggiato durante le vacanze scolastiche."
-    ],
-    "word_ipgu": [
-      "un ingresso",
-      "Ci vediamo all'ingresso dell'edificio."
-    ],
-    "word_silta": [
-      "non piacere",
-      "Non mi piacciono i giorni freddi."
-    ],
-    "word_meonjeo": [
-      "prima di tutto",
-      "Prima mi lavo le mani."
-    ],
-    "word_dubu": [
-      "tofu",
-      "Aggiungo il tofu e faccio la zuppa."
-    ],
-    "word_bumonim": [
-      "i propri genitori",
-      "Vivo con i miei genitori."
-    ],
-    "word_gomapda": [
-      "essere grato",
-      "Grazie per l'aiuto."
-    ],
-    "word_gyesan": [
-      "il conto, il calcolo",
-      "Il conto è leggermente sbagliato."
-    ],
-    "word_hyeo": [
-      "la lingua",
-      "Mi fa male la lingua e non riesco a mangiare."
-    ],
-    "word_sugeon": [
-      "un asciugamano",
-      "Mi asciugo le mani con l'asciugamano."
-    ],
-    "word_saeropda": [
-      "essere nuovo",
-      "Mi sento rinfrescato."
-    ],
-    "word_sup": [
-      "un bosco",
-      "Nel bosco si sente il canto degli uccelli."
-    ],
-    "word_chum": [
-      "una danza",
-      "Hanno ballato sul palco."
-    ],
-    "word_sukje": [
-      "compiti",
-      "Ho finito i compiti."
-    ],
-    "word_gaji": [
-      "un tipo, una specie",
-      "Vorrei chiedere solo una cosa.",
-      "È anche il nome della melanzana e il ramo di un albero. Come classificatore è quello che usi con le cose elencabili: 두 가지 방법, due modi; 세 가지 이유, tre ragioni."
-    ],
-    "word_mothada": [
-      "non essere capace",
-      "Non so nuotare."
-    ],
-    "word_nagada": [
-      "uscire",
-      "Esco fuori."
-    ],
-    "word_meotjida": [
-      "essere splendido",
-      "Oggi stai benissimo."
-    ],
-    "word_podo": [
-      "uva",
-      "L'uva è molto dolce."
-    ],
-    "word_jeopsi": [
-      "un piatto",
-      "Tiri fuori due piatti, per favore."
-    ],
-    "word_yori": [
-      "cucina",
-      "La cucina è deliziosa."
-    ],
-    "word_sogeum": [
-      "sale",
-      "Aggiungo un po' di sale."
-    ],
-    "word_duda": [
-      "mettere, posare",
-      "Ho messo il libro sulla scrivania."
-    ],
-    "word_gamsahada": [
-      "essere grato",
-      "Grazie per l'aiuto."
-    ],
-    "word_kkeut": [
-      "la fine",
-      "Si metta in fondo alla fila, per favore."
-    ],
-    "word_yeolda": [
-      "aprire",
-      "Apro la finestra."
-    ],
-    "word_ibul": [
-      "una trapunta",
-      "La trapunta è calda."
-    ],
-    "word_najung": [
-      "più tardi",
-      "Richiamo più tardi."
-    ],
-    "word_manjida": [
-      "toccare",
-      "Non tocchi, per favore."
-    ],
-    "word_gajang": [
-      "il più",
-      "Questo è il migliore."
-    ],
-    "word_namjjok": [
-      "il sud",
-      "Al sud fa caldo."
-    ],
-    "word_doum": [
-      "aiuto",
-      "Ho bisogno di aiuto."
-    ],
-    "word_jung": [
-      "nel mezzo di, tra",
-      "Sono in riunione."
-    ],
-    "word_sudo": [
-      "la capitale",
-      "La capitale della Corea è Seul.",
-      "La capitale di un paese. Un altro 수도 è la rete idrica — 수도꼭지 è il rubinetto, 수도 요금 la bolletta dell'acqua. Le distingue solo il contesto."
-    ],
-    "word_gidarida": [
-      "aspettare",
-      "Aspetti un momento, per favore."
-    ],
-    "word_chaeso": [
-      "un ortaggio",
-      "Mangio molta verdura."
-    ],
-    "word_kkeunnada": [
-      "finire",
-      "La lezione è finita."
-    ],
-    "word_butak": [
-      "una richiesta, un favore",
-      "Ho un favore da chiedere."
-    ],
-    "word_seom": [
-      "un'isola",
-      "Abbiamo preso una barca per l'isola."
-    ],
-    "word_teuki": [
-      "soprattutto",
-      "Mi piace soprattutto l'inverno."
-    ],
-    "word_jemok": [
-      "un titolo",
-      "Qual è il titolo di questo libro?"
-    ],
-    "word_insa": [
-      "un saluto",
-      "Ho salutato."
-    ],
-    "word_seoltang": [
-      "zucchero",
-      "Aggiungo un po' di zucchero."
-    ],
-    "word_jajeongeo": [
-      "bicicletta",
-      "Vado in bicicletta."
-    ],
-    "word_inteonet": [
-      "Internet",
-      "Internet è lento."
-    ],
-    "word_aniyo": [
-      "no",
-      "No, sto bene."
-    ],
-    "word_ama": [
-      "probabilmente",
-      "Domani probabilmente pioverà."
-    ],
-    "word_jamsi": [
-      "un momento",
-      "Riposiamo un momento."
-    ],
-    "word_beol": [
-      "un'ape",
-      "Un'ape si è posata sul fiore.",
-      "Un'ape. Altre due parole si scrivono 벌: una punizione, e il classificatore per un completo di vestiti — 옷 한 벌, un completo."
-    ],
-    "word_won": [
-      "il won",
-      "Sono duemila won."
-    ],
-    "word_ujuseon": [
-      "un'astronave",
-      "L'astronave si è alzata in cielo."
-    ],
-    "word_myeot": [
-      "quanti",
-      "Che ore sono?"
-    ],
-    "word_sueop": [
-      "una lezione",
-      "La lezione è interessante."
-    ],
-    "word_sijak": [
-      "un inizio",
-      "È un buon inizio."
-    ],
-    "word_yeogwon": [
-      "un passaporto",
-      "Non dimentichi di portare il passaporto."
-    ],
-    "word_gyosil": [
-      "un'aula",
-      "L'aula è luminosa."
-    ],
-    "word_nyeon": [
-      "anno",
-      "Ho studiato per due anni."
-    ],
-    "word_bae": [
-      "lo stomaco",
-      "Mi faceva male lo stomaco, così sono andato in ospedale.",
-      "Lo stomaco, la pancia. Altre due parole comuni si scrivono 배: una barca e una pera. 배가 아파요 è mi fa male la pancia, 배를 타요 è salgo su una barca, 배를 먹어요 è mangio una pera."
-    ],
-    "word_satang": [
-      "una caramella",
-      "Mangio una caramella."
-    ],
-    "word_dalleo": [
-      "dollaro",
-      "Sono cento dollari."
-    ],
-    "word_usan": [
-      "un ombrello",
-      "Pioveva, così ho comprato un ombrello."
-    ],
-    "word_museun": [
-      "che, che tipo di",
-      "Che lavoro fa?"
-    ],
-    "word_pari": [
-      "una mosca",
-      "Una mosca ronza in giro.",
-      "L'insetto. Il coreano scrive allo stesso modo la città di Parigi, quindi 파리에 갔어요 è sono andato a Parigi mentre 파리가 있어요 è c'è una mosca. Solo la frase le distingue."
-    ],
-    "word_ije": [
-      "adesso",
-      "Cominciamo adesso."
-    ],
-    "word_geollida": [
-      "volerci del tempo",
-      "Ci vuole un'ora."
-    ],
-    "word_choego": [
-      "il migliore",
-      "Questo ristorante è il migliore."
-    ],
-    "word_naeda": [
-      "pagare",
-      "Oggi pago io."
-    ],
-    "word_daneo": [
-      "una parola",
-      "Imparo una parola nuova."
-    ],
-    "word_jikjeop": [
-      "di persona",
-      "Ho fatto la torta io stesso."
-    ],
-    "word_yangmal": [
-      "un calzino",
-      "I calzini sono caldi."
-    ],
-    "word_nopda": [
-      "essere alto",
-      "L'edificio è alto."
-    ],
-    "word_haendeupon": [
-      "un cellulare",
-      "Metto in carica il cellulare."
-    ],
-    "word_jigap": [
-      "portafoglio",
-      "Ho perso il portafoglio."
-    ],
-    "word_hyudaepon": [
-      "un cellulare",
-      "Ho perso il cellulare."
-    ],
-    "word_agassi": [
-      "una giovane donna",
-      "Una giovane donna chiede indicazioni.",
-      "Una giovane donna non sposata — ma come modo di *rivolgersi* a una sconosciuta è diventato sgradevole, e molte donne lo trovano scortese o sminuente. Usalo parlando di qualcuno, non a qualcuno; per attirare l'attenzione di uno sconosciuto di' 저기요."
-    ],
-    "word_gieok": [
-      "memoria",
-      "Non me lo ricordo."
-    ],
-    "word_geutda": [
-      "tracciare una linea",
-      "Ho tracciato una linea."
-    ],
-    "word_ipda": [
-      "indossare",
-      "Mi vesto."
-    ],
-    "word_sai": [
-      "lo spazio tra due cose",
-      "Tra le due case c'è un albero."
-    ],
-    "word_gireum": [
-      "olio",
-      "Lo friggo nell'olio."
-    ],
-    "word_mulgogi": [
-      "un pesce",
-      "Il pesce nuota."
-    ],
-    "word_jang": [
-      "la parola per contare i fogli",
-      "Mi servono tre fogli di carta."
-    ],
-    "word_kkum": [
-      "un sogno",
-      "Ieri notte ho fatto uno strano sogno."
-    ],
-    "word_sijakada": [
-      "cominciare",
-      "La lezione sta cominciando."
-    ],
-    "word_ajikdo": [
-      "ancora, tuttora",
-      "Sto ancora aspettando."
-    ],
-    "word_teureok": [
-      "camion",
-      "Passa un camion."
-    ],
-    "word_eotteon": [
-      "che tipo di",
-      "Che colore ti piace?"
-    ],
-    "word_geulssi": [
-      "la scrittura a mano",
-      "Hai una bella grafia."
-    ],
-    "word_deutda": [
-      "ascoltare",
-      "Ascolto la musica."
-    ],
-    "word_subak": [
-      "anguria",
-      "D'estate l'anguria è buona."
-    ],
-    "word_ttalgi": [
-      "fragola",
-      "Lavo le fragole e le mangio."
-    ],
-    "word_baram": [
-      "vento",
-      "Il vento è fresco."
-    ],
-    "word_sigol": [
-      "la campagna",
-      "L'aria di campagna è buona."
-    ],
-    "word_pulda": [
-      "risolvere",
-      "Ho risolto il problema."
-    ],
-    "word_angyeong": [
-      "occhiali",
-      "Porto gli occhiali."
-    ],
-    "word_yeonpil": [
-      "una matita",
-      "Disegno con la matita."
-    ],
-    "word_jumal": [
-      "fine settimana",
-      "Nel fine settimana riposo."
-    ],
-    "word_jugida": [
-      "uccidere",
-      "Ho ucciso la zanzara entrata nella stanza."
-    ],
-    "word_him": [
-      "forza",
-      "Quel bambino è molto forte."
-    ],
-    "word_jeonbu": [
-      "tutto quanto",
-      "Quant'è in tutto?"
-    ],
-    "word_gyeongchal": [
-      "polizia",
-      "Chiami la polizia, per favore."
-    ],
-    "word_geureut": [
-      "una ciotola",
-      "Metto il riso nella ciotola."
-    ],
-    "word_nappeuda": [
-      "essere cattivo",
-      "Il tempo è brutto."
-    ],
-    "word_oppa": [
-      "fratello maggiore, detto da una donna",
-      "Mio fratello maggiore guida.",
-      "Il coreano sceglie la parola per fratello in base al sesso di chi parla: una donna chiama il fratello maggiore 오빠, un uomo lo chiama 형. Si usa anche per un uomo più grande a cui una donna è legata, ed è per questo che lo si sente ben oltre la famiglia."
-    ],
-    "word_mannada": [
-      "incontrare",
-      "Ci incontriamo spesso."
-    ],
-    "word_huimang": [
-      "speranza",
-      "Non perda la speranza."
-    ],
-    "word_hyeong": [
-      "fratello maggiore, detto da un uomo",
-      "Mio fratello maggiore mi ha offerto il pranzo.",
-      "La parola che un uomo usa per il fratello maggiore. Una donna direbbe 오빠 per la stessa persona. Come 오빠, si estende a un uomo più grande con cui si è in confidenza, anche fuori dalla famiglia."
-    ],
-    "word_doro": [
-      "una strada",
-      "La strada è bloccata."
-    ],
-    "word_ttwida": [
-      "correre",
-      "Il bambino corre."
-    ],
-    "word_mueot": [
-      "che cosa",
-      "Che cos'è questo?"
-    ],
-    "word_oenjjok": [
-      "il lato sinistro",
-      "Giri a sinistra, per favore."
-    ],
-    "word_chukgu": [
-      "calcio",
-      "Gioco a calcio con il mio amico."
-    ],
-    "word_jayu": [
-      "libertà",
-      "La libertà è preziosa."
-    ],
-    "word_sungan": [
-      "un istante",
-      "Non riesco a dimenticare quel momento."
-    ],
-    "word_sayonghada": [
-      "usare",
-      "Posso usare questa stanza?"
-    ],
-    "word_pada": [
-      "scavare",
-      "Scavo la terra."
-    ],
-    "word_nampyeon": [
-      "marito",
-      "Mio marito cucina."
-    ],
-    "word_silheomsil": [
-      "un laboratorio",
-      "Ho lavorato in laboratorio tutto il giorno."
-    ],
-    "word_dambae": [
-      "una sigaretta",
-      "L'odore di sigaretta si è impregnato nei vestiti."
-    ],
-    "word_banana": [
-      "una banana",
-      "La mattina mangio una banana."
-    ],
-    "word_geum": [
-      "oro",
-      "Questo anello è d'oro.",
-      "L'oro, il metallo. La stessa sillaba significa anche una riga graffiata o tracciata — 금이 갔어요 è si è incrinato — e apre 금요일, venerdì."
-    ],
-    "word_mandeulda": [
-      "fare",
-      "Faccio il pane."
-    ],
-    "word_ibeon": [
-      "questa volta",
-      "Questa volta lo faccio io."
-    ],
-    "word_gomawo": [
-      "grazie",
-      "Grazie di avermi aiutato."
-    ],
-    "word_banchan": [
-      "un contorno",
-      "I contorni sono deliziosi."
-    ],
-    "word_apeuda": [
-      "essere dolorante",
-      "Mi fa male lo stomaco."
-    ],
-    "word_doseogwan": [
-      "una biblioteca",
-      "Ho preso in prestito un libro in biblioteca."
-    ],
-    "word_ppyeo": [
-      "un osso",
-      "Il cane tiene un osso in bocca."
-    ],
-    "word_gamsa": [
-      "ringraziamento",
-      "Ho ringraziato."
-    ],
-    "word_geolda": [
-      "appendere",
-      "Appendo i vestiti."
-    ],
-    "word_gim": [
-      "alga secca",
-      "Avvolgiamo il riso nell'alga e lo mangiamo.",
-      "L'alga sottile ed essiccata che si mangia con il riso. La stessa sillaba è il cognome coreano più diffuso, ed è anche il vapore che sale da qualcosa di caldo — 김이 나요, fuma."
-    ],
-    "word_jalhada": [
-      "fare bene qualcosa",
-      "Canti bene."
-    ],
-    "word_saengmyeong": [
-      "vita",
-      "La vita è preziosa."
-    ],
-    "word_mureup": [
-      "ginocchio",
-      "Mi fa male il ginocchio."
-    ],
-    "word_jjalda": [
-      "essere corto",
-      "La matita è corta."
-    ],
-    "word_chijeu": [
-      "formaggio",
-      "Mi piace il formaggio."
-    ],
-    "word_hanbeon": [
-      "una volta",
-      "Provi una volta, per favore."
-    ],
-    "word_gohyang": [
-      "la propria città natale",
-      "Sono andato alla mia città natale."
-    ],
-    "word_jihacheol": [
-      "la metropolitana",
-      "Vado in metropolitana."
-    ],
-    "word_sal": [
-      "un anno d'età",
-      "Ho vent'anni."
-    ],
-    "word_anae": [
-      "moglie",
-      "Sono venuto con mia moglie."
-    ],
-    "word_swida": [
-      "riposare",
-      "Riposiamo un po'."
-    ],
-    "word_gimbap": [
-      "gimbap",
-      "A pranzo ho mangiato del gimbap."
-    ],
-    "word_gayo": [
-      "canzone popolare",
-      "Mi piace la musica pop coreana.",
-      "La canzone popolare coreana come categoria: il K-pop è 가요. Si scrive esattamente come 가요 «va / sta andando», presente cortese di 가다, quindi è la frase intorno a decidere quale dei due stai leggendo."
-    ],
-    "word_swipda": [
-      "essere facile",
-      "L'hangul è facile."
-    ],
-    "word_pyojeong": [
-      "un'espressione del viso",
-      "Ha un'espressione luminosa."
-    ],
-    "word_dareuda": [
-      "essere diverso",
-      "I colori sono diversi."
-    ],
-    "word_geunyang": [
-      "semplicemente",
-      "Nel fine settimana sono semplicemente rimasto a casa."
-    ],
-    "word_majimak": [
-      "l'ultimo",
-      "Ho preso l'ultimo autobus."
-    ],
-    "word_bangbeop": [
-      "un metodo, un modo",
-      "C'è un buon metodo."
-    ],
-    "word_huinsaek": [
-      "il colore bianco",
-      "Il muro bianco è pulito."
-    ],
-    "word_jalmot": [
-      "un errore",
-      "È colpa mia."
-    ],
-    "word_daehakgyo": [
-      "università",
-      "Studio all'università."
-    ],
-    "word_haengun": [
-      "buona fortuna",
-      "Buona fortuna per l'esame."
-    ],
-    "word_harabeoji": [
-      "nonno",
-      "Il nonno legge il giornale."
-    ],
-    "word_bimil": [
-      "segreto",
-      "Mantenga il segreto, per favore."
-    ],
-    "word_sogogi": [
-      "manzo",
-      "Abbiamo grigliato il manzo e l'abbiamo mangiato."
-    ],
-    "word_net": [
-      "quattro",
-      "Noi quattro siamo una squadra."
-    ],
-    "word_sinda": [
-      "mettersi le scarpe",
-      "Mi metto i calzini."
-    ],
-    "word_dap": [
-      "una risposta",
-      "Ho trovato la risposta."
-    ],
-    "word_yeonseup": [
-      "esercizio, pratica",
-      "Mi esercito ogni giorno."
-    ],
-    "word_gongchaek": [
-      "un quaderno",
-      "Scrivo il mio nome sul quaderno."
-    ],
-    "word_ssada": [
-      "essere economico",
-      "Questa frutta è economica."
-    ],
-    "word_dowajuda": [
-      "dare una mano",
-      "Mi dia una mano, per favore."
-    ],
-    "word_maekju": [
-      "birra",
-      "La birra è fredda."
-    ],
-    "word_jjada": [
-      "essere salato",
-      "La zuppa è salata."
-    ],
-    "word_gyehoek": [
-      "un piano",
-      "Ho fatto un piano."
-    ],
-    "word_pyeonghwa": [
-      "pace",
-      "Auguriamo la pace."
-    ],
-    "word_yaksok": [
-      "una promessa, un appuntamento",
-      "Mantengo la promessa."
-    ],
-    "word_oreunjjok": [
-      "il lato destro",
-      "Vada a destra, per favore."
-    ],
-    "word_gippeuda": [
-      "essere contento",
-      "Sono stato contento di sentire la notizia."
-    ],
-    "word_baeuda": [
-      "imparare",
-      "Imparo il coreano."
-    ],
-    "word_jebal": [
-      "per favore",
-      "La prego, mi aiuti."
-    ],
-    "word_dopda": [
-      "aiutare",
-      "Aiuto il mio amico."
-    ],
-    "word_jaryo": [
-      "materiali raccolti per un lavoro",
-      "Ho preparato in anticipo i materiali della riunione."
-    ],
-    "word_hullyunghada": [
-      "essere eccellente",
-      "È un'idea eccellente."
-    ],
-    "word_moseup": [
-      "aspetto, figura",
-      "Il suo aspetto è cambiato."
-    ],
-    "word_undong": [
-      "esercizio fisico",
-      "Mi alleno la mattina."
-    ],
-    "word_geureonde": [
-      "a proposito",
-      "A proposito, che cos'è questo?"
-    ],
-    "word_juseu": [
-      "succo",
-      "Il bambino beve un succo."
-    ],
-    "word_jwi": [
-      "un topo",
-      "Ho visto un topo in cucina."
-    ],
-    "word_chwimi": [
-      "un passatempo",
-      "Il mio passatempo è fotografare."
-    ],
-    "word_deung": [
-      "la schiena",
-      "Ho prurito alla schiena."
-    ],
-    "word_jeoldae": [
-      "mai",
-      "Non arrivi assolutamente in ritardo."
-    ],
-    "word_dol": [
-      "una pietra",
-      "Sul sentiero c'erano molte pietre, così siamo stati attenti."
-    ],
-    "word_bappeuda": [
-      "essere occupato",
-      "Oggi sono occupato."
-    ],
-    "word_ireon": [
-      "di questo tipo",
-      "È la prima volta che succede una cosa così."
-    ],
-    "word_yeoseong": [
-      "una donna",
-      "Sono venute molte donne."
-    ],
-    "word_paransaek": [
-      "il colore blu",
-      "Il blu ti sta bene."
-    ],
-    "word_ireonada": [
-      "alzarsi",
-      "Mi alzo alle sette."
-    ],
-    "word_gom": [
-      "un orso",
-      "Gli orsi vivono in montagna."
-    ],
-    "word_jam": [
-      "sonno",
-      "Ultimamente non riesco a dormire bene."
-    ],
-    "word_haebyeon": [
-      "una spiaggia",
-      "D'estate siamo andati in spiaggia."
-    ],
-    "word_hosu": [
-      "lago",
-      "Il lago è tranquillo."
-    ],
-    "word_dakgogi": [
-      "carne di pollo",
-      "Il pollo ha poco grasso."
-    ],
-    "word_geunde": [
-      "a proposito",
-      "A proposito, che ore sono adesso?"
-    ],
-    "word_jaeneung": [
-      "un talento",
-      "Ha talento per il disegno."
-    ],
-    "word_gyeolhon": [
-      "matrimonio",
-      "Congratulazioni per il matrimonio."
-    ],
-    "word_binu": [
-      "sapone",
-      "Mi lavo le mani con il sapone."
-    ],
-    "word_saja": [
-      "un leone",
-      "Il leone è grande."
-    ],
-    "word_eoneu": [
-      "quale",
-      "Quale ti piace?"
-    ],
-    "word_mureoboda": [
-      "chiedere",
-      "Ho chiesto all'insegnante."
-    ],
-    "word_ucheguk": [
-      "un ufficio postale",
-      "Ho spedito una lettera all'ufficio postale."
-    ],
-    "word_japji": [
-      "rivista",
-      "Leggo una rivista."
-    ],
-    "word_jean": [
-      "una proposta",
-      "Ho ricevuto una buona proposta dall'azienda."
-    ],
-    "word_yojeum": [
-      "di questi tempi",
-      "Come sei stato ultimamente?"
-    ],
-    "word_ulda": [
-      "piangere",
-      "Il bambino piange."
-    ],
-    "word_namda": [
-      "restare, avanzare",
-      "È rimasto un po' di riso."
-    ],
-    "word_miso": [
-      "un sorriso",
-      "È un bel sorriso."
-    ],
-    "word_daehak": [
-      "università",
-      "Sono stato ammesso all'università."
-    ],
-    "word_uimi": [
-      "significato",
-      "Che cosa significa questa parola?"
-    ],
-    "word_geim": [
-      "un gioco",
-      "Faccio un gioco."
-    ],
-    "word_cham": [
-      "davvero",
-      "Oggi il tempo è davvero bello."
-    ],
-    "word_kong": [
-      "un fagiolo",
-      "Ho messo i fagioli nel riso."
-    ],
-    "word_saebyeok": [
-      "le prime ore del mattino",
-      "Mi sono alzato prima dell'alba."
-    ],
-    "word_utda": [
-      "ridere",
-      "Il mio amico ride forte."
-    ],
-    "word_imi": [
-      "già",
-      "È già finito."
-    ],
-    "word_sutgarak": [
-      "un cucchiaio",
-      "Mangio la zuppa con il cucchiaio."
-    ],
-    "word_bureuda": [
-      "chiamare",
-      "Chiamo un taxi."
-    ],
-    "word_koteu": [
-      "cappotto",
-      "Si metta il cappotto, per favore."
-    ],
-    "word_meolda": [
-      "essere lontano",
-      "La scuola è lontana."
-    ],
-    "word_myeong": [
-      "una persona",
-      "Ci sono cinque studenti."
-    ],
-    "word_eonni": [
-      "sorella maggiore, detta da una donna",
-      "Mia sorella maggiore è una studentessa.",
-      "La parola che una donna usa per la sorella maggiore; un uomo dice 누나 per la stessa persona. È anche il modo in cui le donne si rivolgono a una donna poco più grande con cui hanno confidenza, negozi compresi."
-    ],
-    "word_ihae": [
-      "comprensione",
-      "Lo capisco bene."
-    ],
-    "word_samda": [
-      "lessare",
-      "Lesso un uovo."
-    ],
-    "word_noransaek": [
-      "il colore giallo",
-      "Ho usato un ombrello giallo."
-    ],
-    "word_mudeom": [
-      "una tomba",
-      "Sulla montagna c'è una tomba antica."
-    ],
-    "word_gita": [
-      "una chitarra",
-      "Suono la chitarra."
-    ],
-    "word_itda_3": [
-      "dimenticare",
-      "Ho dimenticato il nome."
-    ],
-    "word_gongyeon": [
-      "uno spettacolo",
-      "Lo spettacolo sta cominciando."
-    ],
-    "word_ilta": [
-      "perdere",
-      "Ho perso la chiave."
-    ],
-    "word_baneung": [
-      "una reazione",
-      "La reazione della gente è stata ottima."
-    ],
-    "word_gudu": [
-      "scarpe eleganti",
-      "Le scarpe sono comode."
-    ],
-    "word_hyuga": [
-      "una vacanza, un congedo",
-      "Sono andato in vacanza."
-    ],
-    "word_jeohui": [
-      "noi, umilmente",
-      "La aiuteremo noi."
-    ],
-    "word_geuttae": [
-      "quel momento",
-      "Allora pioveva."
-    ],
-    "word_sopa": [
-      "un divano",
-      "Si sieda sul divano e riposi."
-    ]
-  }
+ "_comment": "Vocabulary copy for Italian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+ "locale": "it",
+ "words": {
+  "word_hada": [
+   "fare",
+   "Studio.",
+   "Fare — e il motore del lessico coreano. Attaccalo a un sostantivo e ottieni un verbo: 공부 (studio) diventa 공부하다 (studiare), 사랑 (amore) diventa 사랑하다. Centinaia di verbi si costruiscono così."
+  ],
+  "word_cha": [
+   "auto",
+   "Prendo l’auto.",
+   "Un’auto. La stessa sillaba è anche la parola per tè, quindi 차를 마셔요 è bevo il tè e 차를 타요 è salgo in macchina. È il verbo a dirti di quale si tratta."
+  ],
+  "word_yeoja": [
+   "donna",
+   "Quella donna è medico."
+  ],
+  "word_na": [
+   "io",
+   "Sto imparando il coreano."
+  ],
+  "word_hae": [
+   "il Sole",
+   "Il sole è luminoso."
+  ],
+  "word_don": [
+   "denaro",
+   "C’è del denaro nel portafoglio."
+  ],
+  "word_uri": [
+   "noi",
+   "Siamo amici."
+  ],
+  "word_jip": [
+   "casa",
+   "Vado a casa."
+  ],
+  "word_itda": [
+   "stare, trovarsi",
+   "Sono a casa.",
+   "Una sola parola dove l’italiano ne usa due: 있다 significa sia trovarsi in un luogo sia avere. 책상에 책이 있어요 — il libro è sulla scrivania; 시간이 있어요 — ho tempo. Il suo contrario è 없다."
+  ],
+  "word_ne": [
+   "sì",
+   "Sì, è così.",
+   "Tre parole comuni si scrivono 네. Questa è «sì». Le altre sono «tuo» (네 책, il tuo libro) e il numerale nativo «quattro» davanti a un classificatore (네 개, quattro pezzi). Le distingue il contesto, non l’ortografia."
+  ],
+  "word_son": [
+   "mano",
+   "Scrivo a mano."
+  ],
+  "word_sigan": [
+   "tempo",
+   "Non ho tempo.",
+   "Il tempo in generale, e anche il classificatore per le ore: 두 시간 significa due ore. Non confonderlo con 시, che è l’ora dell’orologio — 두 시 sono le due, tutt’altra cosa."
+  ],
+  "word_jeo": [
+   "io (formale)",
+   "Sono uno studente."
+  ],
+  "word_gada": [
+   "andare",
+   "Vado a scuola."
+  ],
+  "word_gae": [
+   "cane",
+   "Il cane corre."
+  ],
+  "word_mun": [
+   "porta",
+   "Apro la porta."
+  ],
+  "word_sae": [
+   "uccello",
+   "Un uccello vola."
+  ],
+  "word_mom": [
+   "corpo",
+   "Mi lavo il corpo ogni giorno."
+  ],
+  "word_bang": [
+   "stanza",
+   "La stanza è pulita."
+  ],
+  "word_nun": [
+   "occhio",
+   "Hai degli occhi belli.",
+   "L’occhio. Si scrive esattamente come la parola per neve; nel parlato accurato le due si distinguono per la durata: il 눈 della neve è allungato, quello dell’occhio è breve. La maggior parte dei parlanti si affida al contesto."
+  ],
+  "word_ot": [
+   "vestiti",
+   "I vestiti sono belli."
+  ],
+  "word_neo": [
+   "tu",
+   "Dove sei?"
+  ],
+  "word_eopda": [
+   "non avere",
+   "Non ho soldi."
+  ],
+  "word_meori": [
+   "testa",
+   "Mi fa male la testa."
+  ],
+  "word_ip": [
+   "bocca",
+   "La bocca è piccola."
+  ],
+  "word_mul": [
+   "acqua",
+   "Bevo acqua."
+  ],
+  "word_dari": [
+   "gamba",
+   "Mi fa male la gamba.",
+   "Una gamba — la tua, quella di un tavolo, di una sedia. La stessa parola significa anche ponte, ed è per questo che 다리를 건너요 vuol dire «attraverso il ponte» e non qualcosa di anatomico."
+  ],
+  "word_bi": [
+   "pioggia",
+   "Sta piovendo."
+  ],
+  "word_wae": [
+   "perché",
+   "Perché sei in ritardo?"
+  ],
+  "word_eolgul": [
+   "viso",
+   "Mi lavo il viso."
+  ],
+  "word_saram": [
+   "persona",
+   "È una brava persona."
+  ],
+  "word_hakgyo": [
+   "scuola",
+   "La scuola è grande."
+  ],
+  "word_yeogi": [
+   "qui",
+   "Si sieda qui, prego."
+  ],
+  "word_pal": [
+   "braccio",
+   "Hai le braccia lunghe."
+  ],
+  "word_norae": [
+   "canzone",
+   "Canto una canzone."
+  ],
+  "word_chaek": [
+   "libro",
+   "Leggo un libro."
+  ],
+  "word_dal": [
+   "la Luna",
+   "La luna è luminosa."
+  ],
+  "word_jeonhwa": [
+   "telefono",
+   "Rispondo al telefono."
+  ],
+  "word_namu": [
+   "albero",
+   "L’albero è alto."
+  ],
+  "word_dasi": [
+   "di nuovo",
+   "Lo ripeta, per favore."
+  ],
+  "word_nal": [
+   "giorno",
+   "È una bella giornata."
+  ],
+  "word_jigeum": [
+   "adesso",
+   "Vado adesso."
+  ],
+  "word_haru": [
+   "giornata",
+   "La giornata è lunga."
+  ],
+  "word_sesang": [
+   "il mondo",
+   "Il mondo è grande."
+  ],
+  "word_bal": [
+   "piede",
+   "Ho i piedi freddi."
+  ],
+  "word_neutda": [
+   "essere in ritardo",
+   "L’autobus era in ritardo."
+  ],
+  "word_modu": [
+   "tutti",
+   "Si sono riuniti tutti."
+  ],
+  "word_sajin": [
+   "fotografia",
+   "Faccio una foto."
+  ],
+  "word_chimdae": [
+   "letto",
+   "Il letto è comodo."
+  ],
+  "word_ko": [
+   "naso",
+   "Ho il naso chiuso."
+  ],
+  "word_san": [
+   "montagna",
+   "Vado in montagna."
+  ],
+  "word_hana": [
+   "uno",
+   "Una mela, per favore."
+  ],
+  "word_byeongwon": [
+   "ospedale",
+   "Vado in ospedale."
+  ],
+  "word_jeongmal": [
+   "davvero",
+   "Grazie mille.",
+   "Davvero, veramente — un rafforzativo che precede l’aggettivo, come in 정말 좋아요. Da solo, con l’intonazione che sale, 정말? è una domanda di una parola sola: «davvero?». È così che lo sentirai più spesso."
+  ],
+  "word_seonmul": [
+   "regalo",
+   "Mi piace il regalo."
+  ],
+  "word_boda": [
+   "vedere",
+   "Guardo un film."
+  ],
+  "word_oneul": [
+   "oggi",
+   "Oggi c’è bel tempo."
+  ],
+  "word_gabang": [
+   "borsa",
+   "La borsa è pesante."
+  ],
+  "word_eumak": [
+   "musica",
+   "La musica è bella."
+  ],
+  "word_gage": [
+   "negozio",
+   "Il negozio è chiuso."
+  ],
+  "word_gil": [
+   "strada",
+   "La strada è larga."
+  ],
+  "word_ohu": [
+   "pomeriggio",
+   "Vediamoci nel pomeriggio."
+  ],
+  "word_keopi": [
+   "caffè",
+   "Bevo un caffè."
+  ],
+  "word_bap": [
+   "pasto",
+   "Mangio."
+  ],
+  "word_eomma": [
+   "mamma",
+   "La mamma cucina."
+  ],
+  "word_gwi": [
+   "orecchio",
+   "Mi fa male l’orecchio."
+  ],
+  "word_beoseu": [
+   "autobus",
+   "Arriva l’autobus."
+  ],
+  "word_geurim": [
+   "disegno",
+   "Faccio un disegno."
+  ],
+  "word_beon": [
+   "volta",
+   "Lo rifaccia ancora una volta, per favore."
+  ],
+  "word_sul": [
+   "alcol",
+   "Non bevo alcol."
+  ],
+  "word_yeonghwa": [
+   "film",
+   "Il film è divertente."
+  ],
+  "word_sada": [
+   "comprare",
+   "Compro il pane."
+  ],
+  "word_byeol": [
+   "stella",
+   "Le stelle brillano."
+  ],
+  "word_bihaenggi": [
+   "aereo",
+   "Prendo l’aereo."
+  ],
+  "word_bak": [
+   "esterno",
+   "Fuori piove."
+  ],
+  "word_oda": [
+   "venire",
+   "Sta arrivando il mio amico."
+  ],
+  "word_chingu": [
+   "amico",
+   "Incontro un amico."
+  ],
+  "word_appa": [
+   "papà",
+   "Buonanotte, papà."
+  ],
+  "word_haneul": [
+   "cielo",
+   "Il cielo è azzurro."
+  ],
+  "word_bada": [
+   "mare",
+   "Il mare è vasto."
+  ],
+  "word_sagwa": [
+   "mela",
+   "La mela è dolce."
+  ],
+  "word_mulgeon": [
+   "cosa",
+   "Compro delle cose."
+  ],
+  "word_moja": [
+   "cappello",
+   "Mi metto un cappello."
+  ],
+  "word_gogi": [
+   "carne",
+   "Griglio la carne."
+  ],
+  "word_jinjja": [
+   "vero",
+   "È vero questo?"
+  ],
+  "word_sinbal": [
+   "scarpe",
+   "Mi metto le scarpe."
+  ],
+  "word_jamkkan": [
+   "un attimo",
+   "Aspetti un attimo, per favore."
+  ],
+  "word_namja": [
+   "uomo",
+   "Quell’uomo è mio amico."
+  ],
+  "word_eumsik": [
+   "cibo",
+   "Il cibo coreano è buonissimo."
+  ],
+  "word_saengil": [
+   "compleanno",
+   "Buon compleanno."
+  ],
+  "word_daseot": [
+   "cinque",
+   "Sono venute cinque persone."
+  ],
+  "word_gihoe": [
+   "occasione",
+   "È una buona occasione."
+  ],
+  "word_dul": [
+   "due",
+   "Ci sono due sedie."
+  ],
+  "word_sijang": [
+   "mercato",
+   "Compro verdura al mercato."
+  ],
+  "word_goyangi": [
+   "gatto",
+   "Il gatto dorme."
+  ],
+  "word_changmun": [
+   "finestra",
+   "Chiuda la finestra, per favore."
+  ],
+  "word_yeoreum": [
+   "estate",
+   "D’estate vado al mare."
+  ],
+  "word_dongmul": [
+   "animale",
+   "Mi piacciono gli animali."
+  ],
+  "word_yeohaeng": [
+   "viaggio",
+   "Vorrei viaggiare."
+  ],
+  "word_bam": [
+   "notte",
+   "Di notte ci sono molte stelle.",
+   "Notte. Si scrive come la parola per castagna, uno spuntino autunnale comune in Corea, quindi 밤을 먹어요 e 밤에 자요 parlano di cose molto diverse."
+  ],
+  "word_geot": [
+   "una cosa",
+   "Ho comprato le cose di cui avevo bisogno.",
+   "Il sostantivo più comune del coreano: sta al posto di ciò che non hai nominato. 제 것 è *il mio*; 먹을 것 è *qualcosa da mangiare*. Nel parlato si accorcia in 거 — 이거, 그거, 저거 — ed è la forma che i principianti incontrano per prima."
+  ],
+  "word_mal": [
+   "parole, ciò che si dice",
+   "Scegli le parole con cura.",
+   "La parola, ciò che qualcuno dice. La stessa sillaba significa anche cavallo, e 말 chiude 한국말, la lingua coreana. Nulla le distingue nella scrittura: 말을 하다 è parlare, 말을 타다 è cavalcare."
+  ],
+  "word_bun": [
+   "un minuto",
+   "Aspetti solo dieci minuti, per favore.",
+   "Altre due parole si scrivono 분. Una è il modo cortese di contare le persone — 세 분, tre persone, detto di ospiti o anziani. L'altra significa collera, come in 분이 풀리다. Solo la frase le distingue."
+  ],
+  "word_dwi": [
+   "il retro",
+   "Ho scritto il mio nome sul retro del quaderno."
+  ],
+  "word_si": [
+   "in punto, ora",
+   "La lezione finisce alle due.",
+   "L'ora prende i numeri nativi — 한 시, 두 시, 세 시 — e i minuti quelli sino-coreani: 세 시 십 분, le tre e dieci. Invertirli è l'errore classico del principiante, e si nota subito."
+  ],
+  "word_deo": [
+   "di più",
+   "Ancora un po', per favore."
+  ],
+  "word_ap": [
+   "il davanti",
+   "Ci vediamo davanti al negozio."
+  ],
+  "word_da": [
+   "tutto",
+   "Ho mangiato tutto il riso."
+  ],
+  "word_jom": [
+   "un po', e un modo di addolcire una richiesta",
+   "Un po' d'acqua, per favore.",
+   "Abbreviazione di 조금, *un po'* — ma metà del suo lavoro è addolcire. Inserito in una richiesta ne smussa il bordo: 도와주세요 è *aiutami*, 좀 도와주세요 suona come *potresti aiutarmi*. I coreani lo usano continuamente proprio per questo."
+  ],
+  "word_jeon": [
+   "prima",
+   "Mi lavo le mani prima di mangiare.",
+   "Prima, nel tempo. Diverse altre parole si scrivono 전: 전쟁 è guerra e si abbrevia in 전, 전기 è elettricità, e 전 al ristorante è una frittella salata. Davanti a un verbo è quello temporale — 먹기 전에, prima di mangiare."
+  ],
+  "word_alda": [
+   "sapere",
+   "So il nome."
+  ],
+  "word_yak": [
+   "medicina",
+   "Prenda la medicina dopo mangiato."
+  ],
+  "word_jota": [
+   "essere buono",
+   "Mi sento bene."
+  ],
+  "word_jal": [
+   "bene",
+   "Hai dormito bene?"
+  ],
+  "word_anida": [
+   "non essere qualcosa",
+   "Non sono uno studente.",
+   "Il contrario di 이다. Vuole 이/가 sulla cosa negata, non 을/를: 학생이 아니에요, mai 학생을 아니에요. Chi impara questo schema può negare qualsiasi frase nominale coreana."
+  ],
+  "word_bul": [
+   "fuoco",
+   "È scoppiato un incendio sulla montagna."
+  ],
+  "word_uyu": [
+   "latte",
+   "Il latte è freddo."
+  ],
+  "word_meokda": [
+   "mangiare",
+   "Mangio frutta."
+  ],
+  "word_ppang": [
+   "pane",
+   "Mangio pane."
+  ],
+  "word_ttae": [
+   "il momento in cui accade qualcosa",
+   "Da piccolo vivevo in campagna."
+  ],
+  "word_il": [
+   "lavoro",
+   "Oggi c'è molto lavoro.",
+   "Il lavoro, o una cosa da fare. La stessa sillaba è il numero sino-coreano — 일 번, numero uno — ed è il giorno in 일요일, domenica, e in 삼 일, tre giorni."
+  ],
+  "word_baji": [
+   "pantaloni",
+   "I pantaloni sono lunghi."
+  ],
+  "word_sigye": [
+   "orologio",
+   "Non ho un orologio."
+  ],
+  "word_siheom": [
+   "una prova, un esame",
+   "Domani ho un esame."
+  ],
+  "word_keompyuteo": [
+   "computer",
+   "Accendo il computer."
+  ],
+  "word_nalssi": [
+   "il tempo atmosferico",
+   "Il tempo è bello."
+  ],
+  "word_jongi": [
+   "carta",
+   "Disegno su un foglio di carta."
+  ],
+  "word_dosi": [
+   "città",
+   "La città è molto grande."
+  ],
+  "word_munje": [
+   "problema",
+   "C'è un problema."
+  ],
+  "word_wi": [
+   "la parte di sopra",
+   "C'è un cappello sulla borsa."
+  ],
+  "word_bom": [
+   "primavera",
+   "In primavera sbocciano i fiori."
+  ],
+  "word_jeonyeok": [
+   "la cena",
+   "Ceno."
+  ],
+  "word_gyeoul": [
+   "inverno",
+   "D'inverno nevica molto."
+  ],
+  "word_abeoji": [
+   "padre",
+   "Mio padre va al lavoro."
+  ],
+  "word_eoseo": [
+   "prego, si accomodi",
+   "Benvenuto, prego, entri."
+  ],
+  "word_mot": [
+   "non potere, pur volendo",
+   "È così piccante che non riesco a mangiarlo.",
+   "Il coreano ha due negazioni e dicono cose diverse. 안 è *non voglio*; 못 è *non posso*. 안 먹어요 significa che scegli di non mangiare; 못 먹어요 che qualcosa te lo impedisce. Un sostantivo scritto uguale, 못, è il chiodo."
+  ],
+  "word_salda": [
+   "vivere, abitare",
+   "Abito a Seul."
+  ],
+  "word_ai": [
+   "bambino",
+   "Il bambino ride."
+  ],
+  "word_jeomsim": [
+   "pranzo",
+   "Pranziamo insieme."
+  ],
+  "word_nugu": [
+   "chi",
+   "Chi è quella persona?"
+  ],
+  "word_eonje": [
+   "quando",
+   "Quando vieni?"
+  ],
+  "word_geori": [
+   "una strada",
+   "C'è molta gente per la strada."
+  ],
+  "word_annyeong": [
+   "ciao, arrivederci",
+   "Ciao, alla prossima!"
+  ],
+  "word_gakkeum": [
+   "a volte",
+   "A volte guardo dei film."
+  ],
+  "word_manta": [
+   "essere molti",
+   "C'è molta gente."
+  ],
+  "word_chima": [
+   "una gonna",
+   "Questa gonna è molto carina."
+  ],
+  "word_uija": [
+   "sedia",
+   "Mi siedo sulla sedia."
+  ],
+  "word_jeogi": [
+   "laggiù",
+   "Laggiù c'è la scuola."
+  ],
+  "word_gongwon": [
+   "parco",
+   "Cammino nel parco."
+  ],
+  "word_ssal": [
+   "riso crudo",
+   "Lavo il riso e lo cuocio."
+  ],
+  "word_jigu": [
+   "la Terra",
+   "La Terra è rotonda."
+  ],
+  "word_eodi": [
+   "dove",
+   "Dov'è il bagno?"
+  ],
+  "word_byeok": [
+   "un muro",
+   "Appendo un quadro al muro."
+  ],
+  "word_gyeran": [
+   "un uovo",
+   "Stamattina ho bollito un uovo."
+  ],
+  "word_tada": [
+   "salire su, prendere un mezzo",
+   "Prendo l'autobus.",
+   "Salire su qualsiasi cosa che ti trasporti: un autobus, una bici, un ascensore. Due altri verbi molto comuni condividono la grafia: 타다 significa anche bruciare, e sciogliere qualcosa in una bevanda."
+  ],
+  "word_segye": [
+   "il mondo",
+   "Conosco molti paesi del mondo."
+  ],
+  "word_ireum": [
+   "nome",
+   "Come ti chiami?"
+  ],
+  "word_guk": [
+   "zuppa",
+   "La mattina mangio la zuppa."
+  ],
+  "word_malhada": [
+   "parlare",
+   "Parli lentamente, per favore."
+  ],
+  "word_geotda": [
+   "camminare",
+   "Cammino nel parco."
+  ],
+  "word_gangaji": [
+   "cucciolo",
+   "Il cucciolo è piccolo."
+  ],
+  "word_sori": [
+   "suono",
+   "Il suono è forte."
+  ],
+  "word_yeop": [
+   "il fianco",
+   "Si sieda accanto a me, per favore."
+  ],
+  "word_saenggak": [
+   "pensiero",
+   "È una buona idea."
+  ],
+  "word_geogi": [
+   "lì",
+   "C'è qualcuno lì?"
+  ],
+  "word_adeul": [
+   "figlio",
+   "Mio figlio va a scuola."
+  ],
+  "word_doeda": [
+   "diventare",
+   "Voglio diventare medico.",
+   "Diventare. È anche la parola quotidiana per qualcosa che funziona o è permesso: 안 돼요 vuol dire non si può, e 다 됐어요 vuol dire è pronto. Le sentirai molto più spesso del senso da dizionario."
+  ],
+  "word_maeul": [
+   "un villaggio",
+   "Il villaggio è tranquillo."
+  ],
+  "word_kape": [
+   "un caffè, un locale",
+   "Incontro il mio amico al caffè."
+  ],
+  "word_gong": [
+   "una palla",
+   "Calcio la palla."
+  ],
+  "word_gajok": [
+   "famiglia",
+   "Ho una famiglia numerosa."
+  ],
+  "word_ssi": [
+   "signore o signora, dopo un nome",
+   "Minsu, un momento.",
+   "Attaccato al nome proprio è cortese e amichevole tra pari: 민수 씨. Attaccato al solo cognome — 김 씨 — suona distante o perfino brusco, quindi usa il nome. Con un superiore si usa il titolo: 부장님, 선생님."
+  ],
+  "word_achim": [
+   "mattina",
+   "Mi alzo la mattina."
+  ],
+  "word_jeonhwahada": [
+   "telefonare",
+   "Ti chiamo più tardi."
+  ],
+  "word_gaeul": [
+   "autunno",
+   "In autunno il vento è fresco."
+  ],
+  "word_kkot": [
+   "fiore",
+   "Il fiore è bello."
+  ],
+  "word_jido": [
+   "mappa",
+   "Guardo la mappa."
+  ],
+  "word_saek": [
+   "un colore",
+   "Questo colore è bello."
+  ],
+  "word_juda": [
+   "dare",
+   "Faccio un regalo."
+  ],
+  "word_yachae": [
+   "verdure",
+   "Mangi molta verdura, per favore."
+  ],
+  "word_chaeksang": [
+   "scrivania",
+   "C'è un libro sulla scrivania."
+  ],
+  "word_cheoeum": [
+   "la prima volta",
+   "Piacere di conoscerla."
+  ],
+  "word_gwail": [
+   "frutta",
+   "Mi piace la frutta."
+  ],
+  "word_uisa": [
+   "medico",
+   "Il medico mi visita."
+  ],
+  "word_ttal": [
+   "una figlia",
+   "Mia figlia va a scuola."
+  ],
+  "word_yeoboseyo": [
+   "pronto, al telefono",
+   "Pronto, chi parla?"
+  ],
+  "word_so": [
+   "una mucca",
+   "La mucca mangia l'erba."
+  ],
+  "word_pyeonji": [
+   "lettera",
+   "Scrivo una lettera a mia madre."
+  ],
+  "word_jogeum": [
+   "un po'",
+   "Solo un po', per favore."
+  ],
+  "word_boida": [
+   "essere visibile",
+   "Si vede la montagna."
+  ],
+  "word_jari": [
+   "un posto a sedere",
+   "Non ci sono posti."
+  ],
+  "word_hu": [
+   "dopo",
+   "Dopo la lezione vado in biblioteca."
+  ],
+  "word_kadeu": [
+   "carta di pagamento",
+   "Pago con la carta."
+  ],
+  "word_naeil": [
+   "domani",
+   "A domani."
+  ],
+  "word_jungyohada": [
+   "essere importante",
+   "La salute è la cosa più importante."
+  ],
+  "word_dalgyal": [
+   "un uovo",
+   "La mattina mangio un uovo."
+  ],
+  "word_aju": [
+   "molto",
+   "È molto buono."
+  ],
+  "word_matda": [
+   "essere giusto, esatto",
+   "Questa risposta è giusta."
+  ],
+  "word_hanguk": [
+   "Corea",
+   "Mi piace la cucina coreana."
+  ],
+  "word_gang": [
+   "un fiume",
+   "Il fiume è molto largo."
+  ],
+  "word_cho": [
+   "un secondo",
+   "Mancano trenta secondi."
+  ],
+  "word_hoesa": [
+   "un'azienda, un ufficio",
+   "Vado in ufficio."
+  ],
+  "word_sosik": [
+   "notizie",
+   "Ho una bella notizia."
+  ],
+  "word_jakda": [
+   "essere piccolo",
+   "Le scarpe sono piccole."
+  ],
+  "word_gimchi": [
+   "kimchi",
+   "Il kimchi è piccante."
+  ],
+  "word_ikda": [
+   "leggere",
+   "Leggo il giornale."
+  ],
+  "word_geurigo": [
+   "e, e poi",
+   "Ho comprato il pane. E ho comprato anche il latte."
+  ],
+  "word_keuda": [
+   "essere grande",
+   "Questa borsa è grande."
+  ],
+  "word_yeollak": [
+   "contatto",
+   "Mi contatti più tardi, per favore."
+  ],
+  "word_gachi": [
+   "insieme",
+   "Mangiamo insieme."
+  ],
+  "word_neomu": [
+   "troppo",
+   "Questi vestiti sono troppo grandi."
+  ],
+  "word_yong": [
+   "un drago",
+   "Nel disegno c'è un grande drago."
+  ],
+  "word_geureota": [
+   "essere così",
+   "Sì, è proprio così."
+  ],
+  "word_hotel": [
+   "albergo",
+   "Ho dormito in albergo."
+  ],
+  "word_yeolsoe": [
+   "chiave",
+   "Non ho la chiave."
+  ],
+  "word_yeppeuda": [
+   "essere carino",
+   "I fiori sono davvero belli."
+  ],
+  "word_geugeot": [
+   "quello",
+   "Mi dia quello, per favore."
+  ],
+  "word_daeum": [
+   "il prossimo",
+   "Alla prossima."
+  ],
+  "word_maeum": [
+   "cuore, animo",
+   "Ha un cuore caldo."
+  ],
+  "word_jadongcha": [
+   "automobile",
+   "L'auto è veloce."
+  ],
+  "word_jukda": [
+   "morire",
+   "Il fiore nel vaso è morto perché non è stato annaffiato."
+  ],
+  "word_nalda": [
+   "volare",
+   "Un uccello vola nel cielo."
+  ],
+  "word_siksa": [
+   "pasto",
+   "Il pasto era ottimo."
+  ],
+  "word_gigye": [
+   "una macchina",
+   "La macchina si è guastata."
+  ],
+  "word_ttang": [
+   "la terra, il suolo",
+   "Il terreno è bagnato."
+  ],
+  "word_jada": [
+   "dormire",
+   "Vado a letto presto."
+  ],
+  "word_beorida": [
+   "buttare via",
+   "Lo getti nel cestino, per favore."
+  ],
+  "word_juso": [
+   "un indirizzo",
+   "Mi dica l'indirizzo, per favore."
+  ],
+  "word_gicha": [
+   "treno",
+   "Il treno è partito."
+  ],
+  "word_chitsol": [
+   "uno spazzolino",
+   "Ho comprato uno spazzolino nuovo."
+  ],
+  "word_sarang": [
+   "amore",
+   "L'amore è bello."
+  ],
+  "word_gongbu": [
+   "studio",
+   "Studiare è divertente."
+  ],
+  "word_saengseon": [
+   "pesce da mangiare",
+   "Ho grigliato del pesce per cena."
+  ],
+  "word_mok": [
+   "un collo",
+   "Mi fa male il collo."
+  ],
+  "word_sipda": [
+   "volere",
+   "Voglio andare in Corea."
+  ],
+  "word_nyuseu": [
+   "il notiziario",
+   "Guardo il notiziario."
+  ],
+  "word_chatda": [
+   "cercare",
+   "Sto cercando la chiave."
+  ],
+  "word_iljjik": [
+   "presto",
+   "Domani mi alzo presto."
+  ],
+  "word_geonmul": [
+   "edificio",
+   "Quell’edificio è molto alto."
+  ],
+  "word_seonsaengnim": [
+   "insegnante",
+   "L'insegnante insegna."
+  ],
+  "word_eomeoni": [
+   "madre",
+   "Mia madre è a casa."
+  ],
+  "word_gibun": [
+   "umore, stato d'animo",
+   "Come ti senti?"
+  ],
+  "word_honja": [
+   "da solo",
+   "Posso andare da solo."
+  ],
+  "word_ani": [
+   "no",
+   "No, non ci sono andato."
+  ],
+  "word_eoje": [
+   "ieri",
+   "Ieri ha piovuto."
+  ],
+  "word_sseuda": [
+   "scrivere",
+   "Scrivo il mio nome.",
+   "Scrivere. Lo stesso verbo significa anche usare qualcosa, portare un cappello o gli occhiali sulla testa e — come aggettivo — essere amaro. Quattro sensi quotidiani, una sola grafia."
+  ],
+  "word_masida": [
+   "bere",
+   "Bevo il latte."
+  ],
+  "word_syeocheu": [
+   "una camicia",
+   "Indosso una camicia bianca."
+  ],
+  "word_junbi": [
+   "preparativi",
+   "È tutto pronto."
+  ],
+  "word_mian": [
+   "scusa",
+   "Scusa, sono in ritardo."
+  ],
+  "word_geokjeong": [
+   "preoccupazione",
+   "Ho molte preoccupazioni."
+  ],
+  "word_hajiman": [
+   "ma, però",
+   "Piove. Però ci vado."
+  ],
+  "word_kamera": [
+   "macchina fotografica",
+   "Ho comprato una macchina fotografica."
+  ],
+  "word_dongne": [
+   "un quartiere",
+   "Il nostro quartiere è tranquillo."
+  ],
+  "word_naengjanggo": [
+   "un frigorifero",
+   "Ho messo il latte in frigorifero."
+  ],
+  "word_anda": [
+   "sedersi",
+   "Mi sono seduto sulla sedia."
+  ],
+  "word_ppalli": [
+   "in fretta",
+   "Venga in fretta, per favore."
+  ],
+  "word_yaegi": [
+   "due chiacchiere",
+   "Parliamo un momento."
+  ],
+  "word_got": [
+   "un luogo",
+   "Ho trovato un posto tranquillo."
+  ],
+  "word_nat": [
+   "il giorno, le ore di luce",
+   "Di giorno fa caldo."
+  ],
+  "word_sangja": [
+   "scatola",
+   "Apro la scatola."
+  ],
+  "word_wonhada": [
+   "volere",
+   "Che cosa vuoi?"
+  ],
+  "word_sikdang": [
+   "ristorante",
+   "Dov'è il ristorante?"
+  ],
+  "word_geurida": [
+   "disegnare",
+   "Il bambino disegna un albero."
+  ],
+  "word_yuri": [
+   "vetro",
+   "Il vetro si è rotto."
+  ],
+  "word_igeot": [
+   "questo",
+   "Mi dia questo, per favore."
+  ],
+  "word_geoul": [
+   "specchio",
+   "Mi guardo allo specchio."
+  ],
+  "word_gijeok": [
+   "un miracolo",
+   "È stato davvero come un miracolo."
+  ],
+  "word_kal": [
+   "un coltello",
+   "Ho sbucciato la mela con il coltello."
+  ],
+  "word_gatda": [
+   "essere uguale",
+   "Le nostre borse sono uguali."
+  ],
+  "word_pul": [
+   "erba",
+   "L'erba è verde."
+  ],
+  "word_eolma": [
+   "quanto",
+   "Quanto costa questo?"
+  ],
+  "word_saenggakada": [
+   "pensare",
+   "La penso così anch'io."
+  ],
+  "word_jilmun": [
+   "una domanda",
+   "Ho una domanda."
+  ],
+  "word_geunyeo": [
+   "lei",
+   "Lei canta bene."
+  ],
+  "word_nota": [
+   "posare",
+   "Ho messo la borsa per terra."
+  ],
+  "word_banggeum": [
+   "poco fa",
+   "Sono arrivato poco fa."
+  ],
+  "word_bonaeda": [
+   "mandare",
+   "Mando una lettera."
+  ],
+  "word_arae": [
+   "sotto",
+   "Il libro è sotto la scrivania."
+  ],
+  "word_naoda": [
+   "uscire fuori",
+   "Esce dell'acqua."
+  ],
+  "word_nai": [
+   "età",
+   "Quanti anni ha?"
+  ],
+  "word_eotteoke": [
+   "come",
+   "Come ci si arriva?"
+  ],
+  "word_eunhaeng": [
+   "una banca",
+   "La banca ha aperto."
+  ],
+  "word_al": [
+   "un uovo",
+   "L'uccello ha deposto tre uova."
+  ],
+  "word_moreuda": [
+   "non sapere",
+   "Non lo so."
+  ],
+  "word_badak": [
+   "il pavimento",
+   "Pulisco il pavimento."
+  ],
+  "word_hwajangsil": [
+   "bagno",
+   "Il bagno è pulito."
+  ],
+  "word_yeok": [
+   "stazione",
+   "Ci vediamo alla stazione."
+  ],
+  "word_seoul": [
+   "Seul",
+   "Seul è molto grande."
+  ],
+  "word_gwiyeopda": [
+   "essere carino",
+   "Il cucciolo è carino."
+  ],
+  "word_areumdapda": [
+   "essere bello",
+   "Il paesaggio è bello."
+  ],
+  "word_ajik": [
+   "ancora, non ancora",
+   "Non sono ancora arrivati."
+  ],
+  "word_gyedan": [
+   "scale",
+   "Ci sono molte scale."
+  ],
+  "word_maeil": [
+   "ogni giorno",
+   "Scrivo in hangul ogni giorno."
+  ],
+  "word_agi": [
+   "un neonato",
+   "Il bambino dorme."
+  ],
+  "word_dwaeji": [
+   "maiale",
+   "Il maiale sta mangiando."
+  ],
+  "word_ju": [
+   "una settimana",
+   "Ci vediamo la prossima settimana."
+  ],
+  "word_iyagi": [
+   "un racconto",
+   "È una storia interessante."
+  ],
+  "word_tto": [
+   "di nuovo",
+   "Ci vediamo di nuovo domani."
+  ],
+  "word_beolsseo": [
+   "già",
+   "È già tutto finito."
+  ],
+  "word_dangsin": [
+   "lei, in modo formale",
+   "Ti ho aspettato.",
+   "I manuali presentano 당신 come un «lei» cortese, ma nel parlato reale si usa soprattutto tra coniugi — detto a uno sconosciuto suona provocatorio. I coreani di solito evitano il «tu»: usano il nome o il titolo della persona (선생님, 사장님). Da usare con cautela."
+  ],
+  "word_gap": [
+   "un prezzo",
+   "Il prezzo è alto."
+  ],
+  "word_mianhada": [
+   "essere spiacente",
+   "Scusa il ritardo."
+  ],
+  "word_jeongnyujang": [
+   "una fermata dell'autobus",
+   "Aspetto l'autobus alla fermata."
+  ],
+  "word_anta": [
+   "non fare",
+   "Non bevo caffè."
+  ],
+  "word_taeksi": [
+   "taxi",
+   "Chiami un taxi, per favore."
+  ],
+  "word_haksaeng": [
+   "studente",
+   "In aula ci sono molti studenti."
+  ],
+  "word_bomul": [
+   "tesoro",
+   "I bambini cercano un tesoro."
+  ],
+  "word_jumun": [
+   "un'ordinazione",
+   "Desidera ordinare?"
+  ],
+  "word_sinmun": [
+   "giornale",
+   "Legga il giornale, per favore."
+  ],
+  "word_dak": [
+   "una gallina",
+   "La gallina depone un uovo."
+  ],
+  "word_keop": [
+   "una tazza",
+   "Verso l'acqua nella tazza."
+  ],
+  "word_set": [
+   "tre",
+   "Tre amici si sono riuniti."
+  ],
+  "word_hangugeo": [
+   "la lingua coreana",
+   "Il coreano è interessante."
+  ],
+  "word_geuraeseo": [
+   "quindi, perciò",
+   "Piove, perciò non ci vado."
+  ],
+  "word_manhi": [
+   "molto",
+   "Mangi pure molto."
+  ],
+  "word_du": [
+   "due, davanti a un classificatore",
+   "Due caffè, per favore.",
+   "I numeri nativi coreani cambiano forma davanti a un classificatore. 하나 둘 셋 넷 diventano 한 두 세 네: 하나 da solo, 한 개 per un oggetto. 두 è quella forma di 둘, e non sta mai da solo."
+  ],
+  "word_pyeonuijeom": [
+   "un minimarket",
+   "C'è un minimarket davanti a casa mia."
+  ],
+  "word_miguk": [
+   "gli Stati Uniti",
+   "Vengo dagli Stati Uniti."
+  ],
+  "word_gyesok": [
+   "continuazione",
+   "Continua a piovere."
+  ],
+  "word_gagyeok": [
+   "un prezzo",
+   "Il prezzo è più alto del previsto."
+  ],
+  "word_dongsaeng": [
+   "fratello o sorella minore",
+   "Il mio fratellino è carino.",
+   "L'unica parola per fratello che non cambia con chi parla: chiunque sia più giovane è 동생. Aggiungi una sillaba se serve il sesso — 남동생 fratello minore, 여동생 sorella minore."
+  ],
+  "word_tokki": [
+   "coniglio",
+   "Il coniglio salta."
+  ],
+  "word_seoda": [
+   "stare in piedi",
+   "Faccio la fila."
+  ],
+  "word_eoreum": [
+   "ghiaccio",
+   "Aggiunga del ghiaccio, per favore."
+  ],
+  "word_jayeon": [
+   "natura",
+   "La natura è bella."
+  ],
+  "word_jjikda": [
+   "timbrare",
+   "L'ho timbrato con un sigillo.",
+   "Premere qualcosa su una superficie: un sigillo, un timbro, un'impronta. Lo stesso verbo copre lo scattare una foto — 사진을 찍다 — e l'intingere il cibo nella salsa, tutti e tre dalla stessa idea di premere."
+  ],
+  "word_yeol": [
+   "dieci",
+   "Conti fino a dieci, per favore.",
+   "Qui 열 è il dieci nativo coreano, quello per contare le cose — 열 개, dieci pezzi. Un altro 열 significa febbre, e il verbo 열다 significa aprire. Due lettere, tre parole senza rapporto."
+  ],
+  "word_sasil": [
+   "un fatto",
+   "Questo è un fatto."
+  ],
+  "word_unjeon": [
+   "guida",
+   "Sto imparando a guidare."
+  ],
+  "word_gamja": [
+   "patata",
+   "Lesso le patate."
+  ],
+  "word_gureum": [
+   "nuvola",
+   "Ci sono molte nuvole."
+  ],
+  "word_iyu": [
+   "un motivo",
+   "Mi dica il motivo, per favore."
+  ],
+  "word_dareun": [
+   "altro, diverso",
+   "Avete altri colori?"
+  ],
+  "word_songarak": [
+   "dito",
+   "Mi fa male il dito."
+  ],
+  "word_japda": [
+   "afferrare",
+   "Ti tengo la mano."
+  ],
+  "word_bueok": [
+   "una cucina",
+   "Cucino in cucina."
+  ],
+  "word_piryo": [
+   "un bisogno",
+   "Non ho bisogno di aiuto."
+  ],
+  "word_pa": [
+   "un cipollotto",
+   "Ho aggiunto un po' di cipollotto alla zuppa."
+  ],
+  "word_batda": [
+   "ricevere",
+   "Ho ricevuto un regalo."
+  ],
+  "word_pida": [
+   "sbocciare",
+   "I fiori sono sbocciati."
+  ],
+  "word_sayong": [
+   "uso",
+   "Mi spieghi come si usa, per favore."
+  ],
+  "word_jeongbo": [
+   "informazioni",
+   "Cerco informazioni."
+  ],
+  "word_gonghang": [
+   "aeroporto",
+   "Sono arrivato all'aeroporto."
+  ],
+  "word_bumo": [
+   "genitori",
+   "Un bambino ha bisogno dei genitori."
+  ],
+  "word_saranghada": [
+   "amare",
+   "Amo la mia famiglia."
+  ],
+  "word_ireoke": [
+   "così",
+   "Lo scriva così, per favore."
+  ],
+  "word_ilhada": [
+   "lavorare",
+   "Mia madre lavora in ospedale."
+  ],
+  "word_suyeong": [
+   "nuoto",
+   "Sto imparando a nuotare."
+  ],
+  "word_piryohada": [
+   "avere bisogno",
+   "Ho bisogno di soldi."
+  ],
+  "word_bukjjok": [
+   "il nord",
+   "Sono andati a nord."
+  ],
+  "word_cheung": [
+   "un piano di un edificio",
+   "L'ufficio è al secondo piano."
+  ],
+  "word_hwanja": [
+   "un paziente",
+   "Il paziente sta riposando."
+  ],
+  "word_halmeoni": [
+   "nonna",
+   "La nonna sorride."
+  ],
+  "word_palda": [
+   "vendere",
+   "Vendono frutta."
+  ],
+  "word_itda_2": [
+   "unire, collegare",
+   "Ho unito le due corde."
+  ],
+  "word_nara": [
+   "paese, nazione",
+   "La Corea è un bel paese."
+  ],
+  "word_apateu": [
+   "appartamento",
+   "Vivo in un appartamento."
+  ],
+  "word_hamkke": [
+   "insieme",
+   "Andiamo insieme."
+  ],
+  "word_modeun": [
+   "tutti, ogni",
+   "Tutti hanno riso."
+  ],
+  "word_gwaenchanta": [
+   "andare bene",
+   "Sto bene."
+  ],
+  "word_johahada": [
+   "piacere",
+   "Mi piace il caffè."
+  ],
+  "word_jimseung": [
+   "una bestia",
+   "Nel bosco si è sentito il verso di una bestia."
+  ],
+  "word_dongan": [
+   "per un certo tempo",
+   "Ho viaggiato durante le vacanze scolastiche."
+  ],
+  "word_ipgu": [
+   "un ingresso",
+   "Ci vediamo all'ingresso dell'edificio."
+  ],
+  "word_silta": [
+   "non piacere",
+   "Non mi piacciono i giorni freddi."
+  ],
+  "word_meonjeo": [
+   "prima di tutto",
+   "Prima mi lavo le mani."
+  ],
+  "word_dubu": [
+   "tofu",
+   "Aggiungo il tofu e faccio la zuppa."
+  ],
+  "word_bumonim": [
+   "i propri genitori",
+   "Vivo con i miei genitori."
+  ],
+  "word_gomapda": [
+   "essere grato",
+   "Grazie per l'aiuto."
+  ],
+  "word_gyesan": [
+   "il conto, il calcolo",
+   "Il conto è leggermente sbagliato."
+  ],
+  "word_hyeo": [
+   "la lingua",
+   "Mi fa male la lingua e non riesco a mangiare."
+  ],
+  "word_sugeon": [
+   "un asciugamano",
+   "Mi asciugo le mani con l'asciugamano."
+  ],
+  "word_saeropda": [
+   "essere nuovo",
+   "Mi sento rinfrescato."
+  ],
+  "word_sup": [
+   "un bosco",
+   "Nel bosco si sente il canto degli uccelli."
+  ],
+  "word_chum": [
+   "una danza",
+   "Hanno ballato sul palco."
+  ],
+  "word_sukje": [
+   "compiti",
+   "Ho finito i compiti."
+  ],
+  "word_gaji": [
+   "un tipo, una specie",
+   "Vorrei chiedere solo una cosa.",
+   "È anche il nome della melanzana e il ramo di un albero. Come classificatore è quello che usi con le cose elencabili: 두 가지 방법, due modi; 세 가지 이유, tre ragioni."
+  ],
+  "word_mothada": [
+   "non essere capace",
+   "Non so nuotare."
+  ],
+  "word_nagada": [
+   "uscire",
+   "Esco fuori."
+  ],
+  "word_meotjida": [
+   "essere splendido",
+   "Oggi stai benissimo."
+  ],
+  "word_podo": [
+   "uva",
+   "L'uva è molto dolce."
+  ],
+  "word_jeopsi": [
+   "un piatto",
+   "Tiri fuori due piatti, per favore."
+  ],
+  "word_yori": [
+   "cucina",
+   "La cucina è deliziosa."
+  ],
+  "word_sogeum": [
+   "sale",
+   "Aggiungo un po' di sale."
+  ],
+  "word_duda": [
+   "mettere, posare",
+   "Ho messo il libro sulla scrivania."
+  ],
+  "word_gamsahada": [
+   "essere grato",
+   "Grazie per l'aiuto."
+  ],
+  "word_kkeut": [
+   "la fine",
+   "Si metta in fondo alla fila, per favore."
+  ],
+  "word_yeolda": [
+   "aprire",
+   "Apro la finestra."
+  ],
+  "word_ibul": [
+   "una trapunta",
+   "La trapunta è calda."
+  ],
+  "word_najung": [
+   "più tardi",
+   "Richiamo più tardi."
+  ],
+  "word_manjida": [
+   "toccare",
+   "Non tocchi, per favore."
+  ],
+  "word_gajang": [
+   "il più",
+   "Questo è il migliore."
+  ],
+  "word_namjjok": [
+   "il sud",
+   "Al sud fa caldo."
+  ],
+  "word_doum": [
+   "aiuto",
+   "Ho bisogno di aiuto."
+  ],
+  "word_jung": [
+   "nel mezzo di, tra",
+   "Sono in riunione."
+  ],
+  "word_sudo": [
+   "la capitale",
+   "La capitale della Corea è Seul.",
+   "La capitale di un paese. Un altro 수도 è la rete idrica — 수도꼭지 è il rubinetto, 수도 요금 la bolletta dell'acqua. Le distingue solo il contesto."
+  ],
+  "word_gidarida": [
+   "aspettare",
+   "Aspetti un momento, per favore."
+  ],
+  "word_chaeso": [
+   "un ortaggio",
+   "Mangio molta verdura."
+  ],
+  "word_kkeunnada": [
+   "finire",
+   "La lezione è finita."
+  ],
+  "word_butak": [
+   "una richiesta, un favore",
+   "Ho un favore da chiedere."
+  ],
+  "word_seom": [
+   "un'isola",
+   "Abbiamo preso una barca per l'isola."
+  ],
+  "word_teuki": [
+   "soprattutto",
+   "Mi piace soprattutto l'inverno."
+  ],
+  "word_jemok": [
+   "un titolo",
+   "Qual è il titolo di questo libro?"
+  ],
+  "word_insa": [
+   "un saluto",
+   "Ho salutato."
+  ],
+  "word_seoltang": [
+   "zucchero",
+   "Aggiungo un po' di zucchero."
+  ],
+  "word_jajeongeo": [
+   "bicicletta",
+   "Vado in bicicletta."
+  ],
+  "word_inteonet": [
+   "Internet",
+   "Internet è lento."
+  ],
+  "word_aniyo": [
+   "no",
+   "No, sto bene."
+  ],
+  "word_ama": [
+   "probabilmente",
+   "Domani probabilmente pioverà."
+  ],
+  "word_jamsi": [
+   "un momento",
+   "Riposiamo un momento."
+  ],
+  "word_beol": [
+   "un'ape",
+   "Un'ape si è posata sul fiore.",
+   "Un'ape. Altre due parole si scrivono 벌: una punizione, e il classificatore per un completo di vestiti — 옷 한 벌, un completo."
+  ],
+  "word_won": [
+   "il won",
+   "Sono duemila won."
+  ],
+  "word_ujuseon": [
+   "un'astronave",
+   "L'astronave si è alzata in cielo."
+  ],
+  "word_myeot": [
+   "quanti",
+   "Che ore sono?"
+  ],
+  "word_sueop": [
+   "una lezione",
+   "La lezione è interessante."
+  ],
+  "word_sijak": [
+   "un inizio",
+   "È un buon inizio."
+  ],
+  "word_yeogwon": [
+   "un passaporto",
+   "Non dimentichi di portare il passaporto."
+  ],
+  "word_gyosil": [
+   "un'aula",
+   "L'aula è luminosa."
+  ],
+  "word_nyeon": [
+   "anno",
+   "Ho studiato per due anni."
+  ],
+  "word_bae": [
+   "lo stomaco",
+   "Mi faceva male lo stomaco, così sono andato in ospedale.",
+   "Lo stomaco, la pancia. Altre due parole comuni si scrivono 배: una barca e una pera. 배가 아파요 è mi fa male la pancia, 배를 타요 è salgo su una barca, 배를 먹어요 è mangio una pera."
+  ],
+  "word_satang": [
+   "una caramella",
+   "Mangio una caramella."
+  ],
+  "word_dalleo": [
+   "dollaro",
+   "Sono cento dollari."
+  ],
+  "word_usan": [
+   "un ombrello",
+   "Pioveva, così ho comprato un ombrello."
+  ],
+  "word_museun": [
+   "che, che tipo di",
+   "Che lavoro fa?"
+  ],
+  "word_pari": [
+   "una mosca",
+   "Una mosca ronza in giro.",
+   "L'insetto. Il coreano scrive allo stesso modo la città di Parigi, quindi 파리에 갔어요 è sono andato a Parigi mentre 파리가 있어요 è c'è una mosca. Solo la frase le distingue."
+  ],
+  "word_ije": [
+   "adesso",
+   "Cominciamo adesso."
+  ],
+  "word_geollida": [
+   "volerci del tempo",
+   "Ci vuole un'ora."
+  ],
+  "word_choego": [
+   "il migliore",
+   "Questo ristorante è il migliore."
+  ],
+  "word_naeda": [
+   "pagare",
+   "Oggi pago io."
+  ],
+  "word_daneo": [
+   "una parola",
+   "Imparo una parola nuova."
+  ],
+  "word_jikjeop": [
+   "di persona",
+   "Ho fatto la torta io stesso."
+  ],
+  "word_yangmal": [
+   "un calzino",
+   "I calzini sono caldi."
+  ],
+  "word_nopda": [
+   "essere alto",
+   "L'edificio è alto."
+  ],
+  "word_haendeupon": [
+   "un cellulare",
+   "Metto in carica il cellulare."
+  ],
+  "word_jigap": [
+   "portafoglio",
+   "Ho perso il portafoglio."
+  ],
+  "word_hyudaepon": [
+   "un cellulare",
+   "Ho perso il cellulare."
+  ],
+  "word_agassi": [
+   "una giovane donna",
+   "Una giovane donna chiede indicazioni.",
+   "Una giovane donna non sposata — ma come modo di *rivolgersi* a una sconosciuta è diventato sgradevole, e molte donne lo trovano scortese o sminuente. Usalo parlando di qualcuno, non a qualcuno; per attirare l'attenzione di uno sconosciuto di' 저기요."
+  ],
+  "word_gieok": [
+   "memoria",
+   "Non me lo ricordo."
+  ],
+  "word_geutda": [
+   "tracciare una linea",
+   "Ho tracciato una linea."
+  ],
+  "word_ipda": [
+   "indossare",
+   "Mi vesto."
+  ],
+  "word_sai": [
+   "lo spazio tra due cose",
+   "Tra le due case c'è un albero."
+  ],
+  "word_gireum": [
+   "olio",
+   "Lo friggo nell'olio."
+  ],
+  "word_mulgogi": [
+   "un pesce",
+   "Il pesce nuota."
+  ],
+  "word_jang": [
+   "la parola per contare i fogli",
+   "Mi servono tre fogli di carta."
+  ],
+  "word_kkum": [
+   "un sogno",
+   "Ieri notte ho fatto uno strano sogno."
+  ],
+  "word_sijakada": [
+   "cominciare",
+   "La lezione sta cominciando."
+  ],
+  "word_ajikdo": [
+   "ancora, tuttora",
+   "Sto ancora aspettando."
+  ],
+  "word_teureok": [
+   "camion",
+   "Passa un camion."
+  ],
+  "word_eotteon": [
+   "che tipo di",
+   "Che colore ti piace?"
+  ],
+  "word_geulssi": [
+   "la scrittura a mano",
+   "Hai una bella grafia."
+  ],
+  "word_deutda": [
+   "ascoltare",
+   "Ascolto la musica."
+  ],
+  "word_subak": [
+   "anguria",
+   "D'estate l'anguria è buona."
+  ],
+  "word_ttalgi": [
+   "fragola",
+   "Lavo le fragole e le mangio."
+  ],
+  "word_baram": [
+   "vento",
+   "Il vento è fresco."
+  ],
+  "word_sigol": [
+   "la campagna",
+   "L'aria di campagna è buona."
+  ],
+  "word_pulda": [
+   "risolvere",
+   "Ho risolto il problema."
+  ],
+  "word_angyeong": [
+   "occhiali",
+   "Porto gli occhiali."
+  ],
+  "word_yeonpil": [
+   "una matita",
+   "Disegno con la matita."
+  ],
+  "word_jumal": [
+   "fine settimana",
+   "Nel fine settimana riposo."
+  ],
+  "word_jugida": [
+   "uccidere",
+   "Ho ucciso la zanzara entrata nella stanza."
+  ],
+  "word_him": [
+   "forza",
+   "Quel bambino è molto forte."
+  ],
+  "word_jeonbu": [
+   "tutto quanto",
+   "Quant'è in tutto?"
+  ],
+  "word_gyeongchal": [
+   "polizia",
+   "Chiami la polizia, per favore."
+  ],
+  "word_geureut": [
+   "una ciotola",
+   "Metto il riso nella ciotola."
+  ],
+  "word_nappeuda": [
+   "essere cattivo",
+   "Il tempo è brutto."
+  ],
+  "word_oppa": [
+   "fratello maggiore, detto da una donna",
+   "Mio fratello maggiore guida.",
+   "Il coreano sceglie la parola per fratello in base al sesso di chi parla: una donna chiama il fratello maggiore 오빠, un uomo lo chiama 형. Si usa anche per un uomo più grande a cui una donna è legata, ed è per questo che lo si sente ben oltre la famiglia."
+  ],
+  "word_mannada": [
+   "incontrare",
+   "Ci incontriamo spesso."
+  ],
+  "word_huimang": [
+   "speranza",
+   "Non perda la speranza."
+  ],
+  "word_hyeong": [
+   "fratello maggiore, detto da un uomo",
+   "Mio fratello maggiore mi ha offerto il pranzo.",
+   "La parola che un uomo usa per il fratello maggiore. Una donna direbbe 오빠 per la stessa persona. Come 오빠, si estende a un uomo più grande con cui si è in confidenza, anche fuori dalla famiglia."
+  ],
+  "word_doro": [
+   "una strada",
+   "La strada è congestionata."
+  ],
+  "word_ttwida": [
+   "correre",
+   "Il bambino corre."
+  ],
+  "word_mueot": [
+   "che cosa",
+   "Che cos'è questo?"
+  ],
+  "word_oenjjok": [
+   "il lato sinistro",
+   "Giri a sinistra, per favore."
+  ],
+  "word_chukgu": [
+   "calcio",
+   "Gioco a calcio con il mio amico."
+  ],
+  "word_jayu": [
+   "libertà",
+   "La libertà è preziosa."
+  ],
+  "word_sungan": [
+   "un istante",
+   "Non riesco a dimenticare quel momento."
+  ],
+  "word_sayonghada": [
+   "usare",
+   "Posso usare questa stanza?"
+  ],
+  "word_pada": [
+   "scavare",
+   "Scavo la terra."
+  ],
+  "word_nampyeon": [
+   "marito",
+   "Mio marito cucina."
+  ],
+  "word_silheomsil": [
+   "un laboratorio",
+   "Ho lavorato in laboratorio tutto il giorno."
+  ],
+  "word_dambae": [
+   "una sigaretta",
+   "L'odore di sigaretta si è impregnato nei vestiti."
+  ],
+  "word_banana": [
+   "una banana",
+   "La mattina mangio una banana."
+  ],
+  "word_geum": [
+   "oro",
+   "Questo anello è d'oro.",
+   "L'oro, il metallo. La stessa sillaba significa anche una riga graffiata o tracciata — 금이 갔어요 è si è incrinato — e apre 금요일, venerdì."
+  ],
+  "word_mandeulda": [
+   "fare",
+   "Faccio il pane."
+  ],
+  "word_ibeon": [
+   "questa volta",
+   "Questa volta lo faccio io."
+  ],
+  "word_gomawo": [
+   "grazie",
+   "Grazie di avermi aiutato."
+  ],
+  "word_banchan": [
+   "un contorno",
+   "I contorni sono deliziosi."
+  ],
+  "word_apeuda": [
+   "essere dolorante",
+   "Mi fa male lo stomaco."
+  ],
+  "word_doseogwan": [
+   "una biblioteca",
+   "Ho preso in prestito un libro in biblioteca."
+  ],
+  "word_ppyeo": [
+   "un osso",
+   "Il cane tiene un osso in bocca."
+  ],
+  "word_gamsa": [
+   "ringraziamento",
+   "Ho ringraziato."
+  ],
+  "word_geolda": [
+   "appendere",
+   "Appendo i vestiti."
+  ],
+  "word_gim": [
+   "alga secca",
+   "Avvolgiamo il riso nell'alga e lo mangiamo.",
+   "L'alga sottile ed essiccata che si mangia con il riso. La stessa sillaba è il cognome coreano più diffuso, ed è anche il vapore che sale da qualcosa di caldo — 김이 나요, fuma."
+  ],
+  "word_jalhada": [
+   "fare bene qualcosa",
+   "Canti bene."
+  ],
+  "word_saengmyeong": [
+   "vita",
+   "La vita è preziosa."
+  ],
+  "word_mureup": [
+   "ginocchio",
+   "Mi fa male il ginocchio."
+  ],
+  "word_jjalda": [
+   "essere corto",
+   "La matita è corta."
+  ],
+  "word_chijeu": [
+   "formaggio",
+   "Mi piace il formaggio."
+  ],
+  "word_hanbeon": [
+   "una volta",
+   "Provi una volta, per favore."
+  ],
+  "word_gohyang": [
+   "la propria città natale",
+   "Sono andato alla mia città natale."
+  ],
+  "word_jihacheol": [
+   "la metropolitana",
+   "Vado in metropolitana."
+  ],
+  "word_sal": [
+   "un anno d'età",
+   "Ho vent'anni."
+  ],
+  "word_anae": [
+   "moglie",
+   "Sono venuto con mia moglie."
+  ],
+  "word_swida": [
+   "riposare",
+   "Riposiamo un po'."
+  ],
+  "word_gimbap": [
+   "gimbap",
+   "A pranzo ho mangiato del gimbap."
+  ],
+  "word_gayo": [
+   "canzone popolare",
+   "Mi piace la musica pop coreana.",
+   "La canzone popolare coreana come categoria: il K-pop è 가요. Si scrive esattamente come 가요 «va / sta andando», presente cortese di 가다, quindi è la frase intorno a decidere quale dei due stai leggendo."
+  ],
+  "word_swipda": [
+   "essere facile",
+   "L'hangul è facile."
+  ],
+  "word_pyojeong": [
+   "un'espressione del viso",
+   "Ha un'espressione luminosa."
+  ],
+  "word_dareuda": [
+   "essere diverso",
+   "I colori sono diversi."
+  ],
+  "word_geunyang": [
+   "semplicemente",
+   "Nel fine settimana sono semplicemente rimasto a casa."
+  ],
+  "word_majimak": [
+   "l'ultimo",
+   "Ho preso l'ultimo autobus."
+  ],
+  "word_bangbeop": [
+   "un metodo, un modo",
+   "C'è un buon metodo."
+  ],
+  "word_huinsaek": [
+   "il colore bianco",
+   "Il muro bianco è pulito."
+  ],
+  "word_jalmot": [
+   "un errore",
+   "È colpa mia."
+  ],
+  "word_daehakgyo": [
+   "università",
+   "Studio all'università."
+  ],
+  "word_haengun": [
+   "buona fortuna",
+   "Buona fortuna per l'esame."
+  ],
+  "word_harabeoji": [
+   "nonno",
+   "Il nonno legge il giornale."
+  ],
+  "word_bimil": [
+   "segreto",
+   "Mantenga il segreto, per favore."
+  ],
+  "word_sogogi": [
+   "manzo",
+   "Abbiamo grigliato il manzo e l'abbiamo mangiato."
+  ],
+  "word_net": [
+   "quattro",
+   "Noi quattro siamo una squadra."
+  ],
+  "word_sinda": [
+   "mettersi le scarpe",
+   "Mi metto i calzini."
+  ],
+  "word_dap": [
+   "una risposta",
+   "Ho trovato la risposta."
+  ],
+  "word_yeonseup": [
+   "esercizio, pratica",
+   "Mi esercito ogni giorno."
+  ],
+  "word_gongchaek": [
+   "un quaderno",
+   "Scrivo il mio nome sul quaderno."
+  ],
+  "word_ssada": [
+   "essere economico",
+   "Questa frutta è economica."
+  ],
+  "word_dowajuda": [
+   "dare una mano",
+   "Mi dia una mano, per favore."
+  ],
+  "word_maekju": [
+   "birra",
+   "La birra è fredda."
+  ],
+  "word_jjada": [
+   "essere salato",
+   "La zuppa è salata."
+  ],
+  "word_gyehoek": [
+   "un piano",
+   "Ho fatto un piano."
+  ],
+  "word_pyeonghwa": [
+   "pace",
+   "Auguriamo la pace."
+  ],
+  "word_yaksok": [
+   "una promessa, un appuntamento",
+   "Mantengo la promessa."
+  ],
+  "word_oreunjjok": [
+   "il lato destro",
+   "Vada a destra, per favore."
+  ],
+  "word_gippeuda": [
+   "essere contento",
+   "Sono stato contento di sentire la notizia."
+  ],
+  "word_baeuda": [
+   "imparare",
+   "Imparo il coreano."
+  ],
+  "word_jebal": [
+   "per favore",
+   "La prego, mi aiuti."
+  ],
+  "word_dopda": [
+   "aiutare",
+   "Aiuto il mio amico."
+  ],
+  "word_jaryo": [
+   "materiali raccolti per un lavoro",
+   "Ho preparato in anticipo i materiali della riunione."
+  ],
+  "word_hullyunghada": [
+   "essere eccellente",
+   "È un'idea eccellente."
+  ],
+  "word_moseup": [
+   "aspetto, figura",
+   "Il suo aspetto è cambiato."
+  ],
+  "word_undong": [
+   "esercizio fisico",
+   "Mi alleno la mattina."
+  ],
+  "word_geureonde": [
+   "a proposito",
+   "A proposito, che cos'è questo?"
+  ],
+  "word_juseu": [
+   "succo",
+   "Il bambino beve un succo."
+  ],
+  "word_jwi": [
+   "un topo",
+   "Ho visto un topo in cucina."
+  ],
+  "word_chwimi": [
+   "un passatempo",
+   "Il mio passatempo è fotografare."
+  ],
+  "word_deung": [
+   "la schiena",
+   "Ho prurito alla schiena."
+  ],
+  "word_jeoldae": [
+   "mai",
+   "Non arrivi assolutamente in ritardo."
+  ],
+  "word_dol": [
+   "una pietra",
+   "Sul sentiero c'erano molte pietre, così siamo stati attenti."
+  ],
+  "word_bappeuda": [
+   "essere occupato",
+   "Oggi sono occupato."
+  ],
+  "word_ireon": [
+   "di questo tipo",
+   "È la prima volta che succede una cosa così."
+  ],
+  "word_yeoseong": [
+   "una donna",
+   "Sono venute molte donne."
+  ],
+  "word_paransaek": [
+   "il colore blu",
+   "Il blu ti sta bene."
+  ],
+  "word_ireonada": [
+   "alzarsi",
+   "Mi alzo alle sette."
+  ],
+  "word_gom": [
+   "un orso",
+   "Gli orsi vivono in montagna."
+  ],
+  "word_jam": [
+   "sonno",
+   "Ultimamente non riesco a dormire bene."
+  ],
+  "word_haebyeon": [
+   "una spiaggia",
+   "D'estate siamo andati in spiaggia."
+  ],
+  "word_hosu": [
+   "lago",
+   "Il lago è tranquillo."
+  ],
+  "word_dakgogi": [
+   "carne di pollo",
+   "Il pollo ha poco grasso."
+  ],
+  "word_geunde": [
+   "a proposito",
+   "A proposito, che ore sono adesso?"
+  ],
+  "word_jaeneung": [
+   "un talento",
+   "Ha talento per il disegno."
+  ],
+  "word_gyeolhon": [
+   "matrimonio",
+   "Congratulazioni per il matrimonio."
+  ],
+  "word_binu": [
+   "sapone",
+   "Mi lavo le mani con il sapone."
+  ],
+  "word_saja": [
+   "un leone",
+   "Il leone è grande."
+  ],
+  "word_eoneu": [
+   "quale",
+   "Quale ti piace?"
+  ],
+  "word_mureoboda": [
+   "chiedere",
+   "Ho chiesto all'insegnante."
+  ],
+  "word_ucheguk": [
+   "un ufficio postale",
+   "Ho spedito una lettera all'ufficio postale."
+  ],
+  "word_japji": [
+   "rivista",
+   "Leggo una rivista."
+  ],
+  "word_jean": [
+   "una proposta",
+   "Ho ricevuto una buona proposta dall'azienda."
+  ],
+  "word_yojeum": [
+   "di questi tempi",
+   "Come sei stato ultimamente?"
+  ],
+  "word_ulda": [
+   "piangere",
+   "Il bambino piange."
+  ],
+  "word_namda": [
+   "restare, avanzare",
+   "È rimasto un po' di riso."
+  ],
+  "word_miso": [
+   "un sorriso",
+   "È un bel sorriso."
+  ],
+  "word_daehak": [
+   "università",
+   "Sono stato ammesso all'università."
+  ],
+  "word_uimi": [
+   "significato",
+   "Che cosa significa questa parola?"
+  ],
+  "word_geim": [
+   "un gioco",
+   "Faccio un gioco."
+  ],
+  "word_cham": [
+   "davvero",
+   "Oggi il tempo è davvero bello."
+  ],
+  "word_kong": [
+   "un fagiolo",
+   "Ho messo i fagioli nel riso."
+  ],
+  "word_saebyeok": [
+   "le prime ore del mattino",
+   "Mi sono alzato prima dell'alba."
+  ],
+  "word_utda": [
+   "ridere",
+   "Il mio amico ride forte."
+  ],
+  "word_imi": [
+   "già",
+   "È già finito."
+  ],
+  "word_sutgarak": [
+   "un cucchiaio",
+   "Mangio la zuppa con il cucchiaio."
+  ],
+  "word_bureuda": [
+   "chiamare",
+   "Chiamo un taxi."
+  ],
+  "word_koteu": [
+   "cappotto",
+   "Si metta il cappotto, per favore."
+  ],
+  "word_meolda": [
+   "essere lontano",
+   "La scuola è lontana."
+  ],
+  "word_myeong": [
+   "una persona",
+   "Ci sono cinque studenti."
+  ],
+  "word_eonni": [
+   "sorella maggiore, detta da una donna",
+   "Mia sorella maggiore è una studentessa.",
+   "La parola che una donna usa per la sorella maggiore; un uomo dice 누나 per la stessa persona. È anche il modo in cui le donne si rivolgono a una donna poco più grande con cui hanno confidenza, negozi compresi."
+  ],
+  "word_ihae": [
+   "comprensione",
+   "Lo capisco bene."
+  ],
+  "word_samda": [
+   "lessare",
+   "Lesso un uovo."
+  ],
+  "word_noransaek": [
+   "il colore giallo",
+   "Ho usato un ombrello giallo."
+  ],
+  "word_mudeom": [
+   "una tomba",
+   "Sulla montagna c'è una tomba antica."
+  ],
+  "word_gita": [
+   "una chitarra",
+   "Suono la chitarra."
+  ],
+  "word_itda_3": [
+   "dimenticare",
+   "Ho dimenticato il nome."
+  ],
+  "word_gongyeon": [
+   "uno spettacolo",
+   "Lo spettacolo sta cominciando."
+  ],
+  "word_ilta": [
+   "perdere",
+   "Ho perso la chiave."
+  ],
+  "word_baneung": [
+   "una reazione",
+   "La reazione della gente è stata ottima."
+  ],
+  "word_gudu": [
+   "scarpe eleganti",
+   "Le scarpe sono comode."
+  ],
+  "word_hyuga": [
+   "una vacanza, un congedo",
+   "Sono andato in vacanza."
+  ],
+  "word_jeohui": [
+   "noi, umilmente",
+   "La aiuteremo noi."
+  ],
+  "word_geuttae": [
+   "quel momento",
+   "Allora pioveva."
+  ],
+  "word_sopa": [
+   "un divano",
+   "Si sieda sul divano e riposi."
+  ]
+ }
 }

@@ -176,6 +176,22 @@ for (const pattern of [/\bpicture\b/i, /\billustrat/i, /ilustraci/i, /\bBild\b/,
   }
 }
 
+// The same word-count rule, over every listing's customer copy. The release
+// notes were gated and the listings were not, and the listings drifted two
+// thousand-boundary crossings behind (2,844 against 3,334) while the gate
+// stayed green — the §19.6 class, one directory over.
+for (const file of files) {
+  const body = readFileSync(join(DIR, file), 'utf8');
+  const stale = [...body.matchAll(/\b(\d)[.,\u00a0 ](\d{3})\b/g)].map(
+    (match) => Number(match[1]) * 1000 + Number(match[2]),
+  );
+  for (const value of new Set(stale)) {
+    if (value !== words) {
+      problems.push(`${file}: claims ${value.toLocaleString('en')} words; the corpus has ${words}`);
+    }
+  }
+}
+
 if (problems.length === 0) {
   console.log('\nevery listing is within its limits, and the release notes match the product.');
   process.exit(0);

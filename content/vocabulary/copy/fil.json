@@ -1,2444 +1,2445 @@
 {
-  "_comment": "Vocabulary copy for Filipino. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
-  "locale": "fil",
-  "words": {
-    "word_hada": [
-      "gawin",
-      "Nag-aaral ako.",
-      "Gawin — at ang makina ng pagbuo ng salitang Koreano. Ikabit ito sa isang pangngalan at magiging pandiwa: ang 공부 (pag-aaral) ay nagiging 공부하다 (mag-aral), ang 사랑 (pag-ibig) ay nagiging 사랑하다. Daan-daang pandiwa ang ganito ang pagkakabuo."
-    ],
-    "word_cha": [
-      "kotse",
-      "Sumasakay ako ng kotse.",
-      "Kotse. Ang parehong pantig ay salita rin para sa tsaa, kaya ang 차를 마셔요 ay umiinom ako ng tsaa at ang 차를 타요 ay sumasakay ako sa kotse. Ang pandiwa ang nagsasabi kung alin."
-    ],
-    "word_yeoja": [
-      "babae",
-      "Doktor ang babaeng iyon."
-    ],
-    "word_na": [
-      "ako",
-      "Nag-aaral ako ng Korean."
-    ],
-    "word_hae": [
-      "araw",
-      "Maliwanag ang araw."
-    ],
-    "word_don": [
-      "pera",
-      "May pera sa pitaka."
-    ],
-    "word_uri": [
-      "kami",
-      "Magkaibigan kami."
-    ],
-    "word_jip": [
-      "bahay",
-      "Uuwi na ako."
-    ],
-    "word_itda": [
-      "nasa isang lugar",
-      "Nasa bahay ako.",
-      "Iisang salita para sa dalawang bagay: ang 있다 ay parehong nasa isang lugar at mayroon. 책상에 책이 있어요 — nasa mesa ang libro; 시간이 있어요 — may oras ako. Ang kasalungat nito ay 없다."
-    ],
-    "word_ne": [
-      "oo",
-      "Oo, tama iyan.",
-      "Tatlong karaniwang salita ang binabaybay na 네. Ito ang «oo». Ang iba ay «iyo» (네 책, ang libro mo) at ang katutubong bilang na «apat» bago ang pantukoy ng bilang (네 개, apat na piraso). Konteksto ang naghihiwalay sa kanila, hindi ang baybay."
-    ],
-    "word_son": [
-      "kamay",
-      "Sumusulat ako gamit ang kamay."
-    ],
-    "word_sigan": [
-      "oras",
-      "Wala akong oras.",
-      "Oras sa pangkalahatan, at pambilang din ng oras: ang 두 시간 ay dalawang oras. Huwag ipagkamali sa 시, na siyang oras sa relo — ang 두 시 ay alas-dos, ibang-iba."
-    ],
-    "word_jeo": [
-      "ako (magalang)",
-      "Estudyante ako."
-    ],
-    "word_gada": [
-      "pumunta",
-      "Pumupunta ako sa paaralan."
-    ],
-    "word_gae": [
-      "aso",
-      "Tumatakbo ang aso."
-    ],
-    "word_mun": [
-      "pinto",
-      "Binubuksan ko ang pinto."
-    ],
-    "word_sae": [
-      "ibon",
-      "May ibong lumilipad."
-    ],
-    "word_mom": [
-      "katawan",
-      "Naliligo ako araw-araw."
-    ],
-    "word_bang": [
-      "kuwarto",
-      "Malinis ang kuwarto."
-    ],
-    "word_nun": [
-      "mata",
-      "Maganda ang mga mata mo.",
-      "Mata. Kapareho ng baybay ng salita para sa niyebe, at sa maingat na pagsasalita ang haba ang nagpapaiba: hinahaba ang 눈 na niyebe, maikli ang 눈 na mata. Karamihan ay umaasa na lang sa konteksto."
-    ],
-    "word_ot": [
-      "damit",
-      "Maganda ang damit."
-    ],
-    "word_neo": [
-      "ikaw",
-      "Nasaan ka?"
-    ],
-    "word_eopda": [
-      "walang",
-      "Wala akong pera."
-    ],
-    "word_meori": [
-      "ulo",
-      "Masakit ang ulo ko."
-    ],
-    "word_ip": [
-      "bibig",
-      "Maliit ang bibig."
-    ],
-    "word_mul": [
-      "tubig",
-      "Umiinom ako ng tubig."
-    ],
-    "word_dari": [
-      "binti",
-      "Masakit ang binti ko.",
-      "Binti — sa iyo, sa mesa, sa upuan. Ang parehong salita ay tulay din, kaya ang 다리를 건너요 ay «tumatawid ako sa tulay», hindi tungkol sa katawan."
-    ],
-    "word_bi": [
-      "ulan",
-      "Umuulan."
-    ],
-    "word_wae": [
-      "bakit",
-      "Bakit ka nahuli?"
-    ],
-    "word_eolgul": [
-      "mukha",
-      "Naghihilamos ako."
-    ],
-    "word_saram": [
-      "tao",
-      "Mabuti siyang tao."
-    ],
-    "word_hakgyo": [
-      "paaralan",
-      "Malaki ang paaralan."
-    ],
-    "word_yeogi": [
-      "dito",
-      "Maupo po kayo dito."
-    ],
-    "word_pal": [
-      "braso",
-      "Mahaba ang mga braso mo."
-    ],
-    "word_norae": [
-      "awit",
-      "Kumakanta ako ng awit."
-    ],
-    "word_chaek": [
-      "libro",
-      "Nagbabasa ako ng libro."
-    ],
-    "word_dal": [
-      "buwan",
-      "Maliwanag ang buwan."
-    ],
-    "word_jeonhwa": [
-      "telepono",
-      "Sinasagot ko ang telepono."
-    ],
-    "word_namu": [
-      "puno",
-      "Matangkad ang puno."
-    ],
-    "word_dasi": [
-      "muli",
-      "Pakiulit po."
-    ],
-    "word_nal": [
-      "araw",
-      "Magandang araw ngayon."
-    ],
-    "word_jigeum": [
-      "ngayon",
-      "Aalis na ako ngayon."
-    ],
-    "word_haru": [
-      "maghapon",
-      "Mahaba ang araw."
-    ],
-    "word_sesang": [
-      "mundo",
-      "Malawak ang mundo."
-    ],
-    "word_bal": [
-      "paa",
-      "Malamig ang mga paa ko."
-    ],
-    "word_neutda": [
-      "mahuli",
-      "Nahuli ang bus."
-    ],
-    "word_modu": [
-      "lahat",
-      "Nagtipon ang lahat."
-    ],
-    "word_sajin": [
-      "larawan",
-      "Kumukuha ako ng larawan."
-    ],
-    "word_chimdae": [
-      "kama",
-      "Komportable ang kama."
-    ],
-    "word_ko": [
-      "ilong",
-      "Barado ang ilong ko."
-    ],
-    "word_san": [
-      "bundok",
-      "Pumupunta ako sa bundok."
-    ],
-    "word_hana": [
-      "isa",
-      "Isang mansanas po."
-    ],
-    "word_byeongwon": [
-      "ospital",
-      "Pumupunta ako sa ospital."
-    ],
-    "word_jeongmal": [
-      "talaga",
-      "Maraming salamat po.",
-      "Talaga, totoo — pampatingkad bago ang pang-uri, tulad sa 정말 좋아요. Mag-isa, na pataas ang bigkas sa dulo, ang 정말? ay tanong na iisang salita: «talaga?» — at ganito mo ito madalas maririnig."
-    ],
-    "word_seonmul": [
-      "regalo",
-      "Gusto ko ang regalo."
-    ],
-    "word_boda": [
-      "makita",
-      "Nanonood ako ng pelikula."
-    ],
-    "word_oneul": [
-      "ngayong araw",
-      "Maganda ang panahon ngayon."
-    ],
-    "word_gabang": [
-      "bag",
-      "Mabigat ang bag."
-    ],
-    "word_eumak": [
-      "musika",
-      "Maganda ang musika."
-    ],
-    "word_gage": [
-      "tindahan",
-      "Sarado ang tindahan."
-    ],
-    "word_gil": [
-      "daan",
-      "Malapad ang daan."
-    ],
-    "word_ohu": [
-      "hapon",
-      "Magkita tayo sa hapon."
-    ],
-    "word_keopi": [
-      "kape",
-      "Umiinom ako ng kape."
-    ],
-    "word_bap": [
-      "kanin",
-      "Kumakain ako."
-    ],
-    "word_eomma": [
-      "nanay",
-      "Nagluluto si Nanay."
-    ],
-    "word_gwi": [
-      "tainga",
-      "Masakit ang tainga ko."
-    ],
-    "word_beoseu": [
-      "bus",
-      "Dumarating ang bus."
-    ],
-    "word_geurim": [
-      "larawan",
-      "Gumuguhit ako ng larawan."
-    ],
-    "word_beon": [
-      "beses",
-      "Pakiulit po ng isang beses."
-    ],
-    "word_sul": [
-      "alak",
-      "Hindi ako umiinom ng alak."
-    ],
-    "word_yeonghwa": [
-      "pelikula",
-      "Masaya ang pelikula."
-    ],
-    "word_sada": [
-      "bumili",
-      "Bumibili ako ng tinapay."
-    ],
-    "word_byeol": [
-      "bituin",
-      "Kumikinang ang mga bituin."
-    ],
-    "word_bihaenggi": [
-      "eroplano",
-      "Sumasakay ako ng eroplano."
-    ],
-    "word_bak": [
-      "labas",
-      "Umuulan sa labas."
-    ],
-    "word_oda": [
-      "dumating",
-      "Dumarating ang kaibigan ko."
-    ],
-    "word_chingu": [
-      "kaibigan",
-      "Nakikipagkita ako sa kaibigan."
-    ],
-    "word_appa": [
-      "tatay",
-      "Magandang gabi, Tatay."
-    ],
-    "word_haneul": [
-      "langit",
-      "Bughaw ang langit."
-    ],
-    "word_bada": [
-      "dagat",
-      "Malawak ang dagat."
-    ],
-    "word_sagwa": [
-      "mansanas",
-      "Matamis ang mansanas."
-    ],
-    "word_mulgeon": [
-      "bagay",
-      "Bumibili ako ng mga bagay."
-    ],
-    "word_moja": [
-      "sumbrero",
-      "Nagsusuot ako ng sumbrero."
-    ],
-    "word_gogi": [
-      "karne",
-      "Nag-iihaw ako ng karne."
-    ],
-    "word_jinjja": [
-      "totoo",
-      "Totoo ba ito?"
-    ],
-    "word_sinbal": [
-      "sapatos",
-      "Nagsusuot ako ng sapatos."
-    ],
-    "word_jamkkan": [
-      "sandali",
-      "Sandali lang po."
-    ],
-    "word_namja": [
-      "lalaki",
-      "Kaibigan ko ang lalaking iyon."
-    ],
-    "word_eumsik": [
-      "pagkain",
-      "Masarap ang pagkaing Koreano."
-    ],
-    "word_saengil": [
-      "kaarawan",
-      "Maligayang kaarawan."
-    ],
-    "word_daseot": [
-      "lima",
-      "Limang tao ang dumating."
-    ],
-    "word_gihoe": [
-      "pagkakataon",
-      "Magandang pagkakataon ito."
-    ],
-    "word_dul": [
-      "dalawa",
-      "May dalawang upuan."
-    ],
-    "word_sijang": [
-      "palengke",
-      "Bumibili ako ng gulay sa palengke."
-    ],
-    "word_goyangi": [
-      "pusa",
-      "Natutulog ang pusa."
-    ],
-    "word_changmun": [
-      "bintana",
-      "Pakisara po ang bintana."
-    ],
-    "word_yeoreum": [
-      "tag-init",
-      "Pumupunta ako sa dagat tuwing tag-init."
-    ],
-    "word_dongmul": [
-      "hayop",
-      "Gusto ko ang mga hayop."
-    ],
-    "word_yeohaeng": [
-      "paglalakbay",
-      "Gusto kong maglakbay."
-    ],
-    "word_bam": [
-      "gabi",
-      "Maraming bituin sa gabi.",
-      "Gabi. Kapareho ng baybay ng salita para sa kastanyas, karaniwang meryenda tuwing taglagas sa Korea, kaya magkaibang-magkaiba ang pinag-uusapan ng 밤을 먹어요 at 밤에 자요."
-    ],
-    "word_geot": [
-      "bagay",
-      "Binili ko ang mga bagay na kailangan ko.",
-      "Ang pinakakaraniwang pangngalan sa Koreano: pumapalit ito sa anumang hindi mo pinangalanan. 제 것 ay *akin*; 먹을 것 ay *may makakain*. Sa pagsasalita ay umiikli itong 거 — 이거, 그거, 저거 — at iyan ang unang anyong nakikilala ng nagsisimula."
-    ],
-    "word_mal": [
-      "salita, ang sinasabi ng isang tao",
-      "Mag-ingat ka sa iyong mga salita.",
-      "Salita — ang sinasabi ng isang tao. Ang parehong pantig ay nangangahulugan ding kabayo, at ang 말 ang nagtatapos sa 한국말, ang wikang Koreano. Walang naghihiwalay sa kanila sa sulat: 말을 하다 ay magsalita, 말을 타다 ay sumakay sa kabayo."
-    ],
-    "word_bun": [
-      "minuto",
-      "Maghintay lang po ng sampung minuto.",
-      "May dalawa pang salitang isinusulat na 분. Isa ang magalang na paraan ng pagbilang ng tao — 세 분, tatlong tao, para sa panauhin o nakatatanda. Ang isa ay galit, gaya sa 분이 풀리다. Ang pangungusap lamang ang naghihiwalay sa kanila."
-    ],
-    "word_dwi": [
-      "likuran",
-      "Isinulat ko ang pangalan ko sa likod ng kuwaderno."
-    ],
-    "word_si": [
-      "oras sa orasan",
-      "Natatapos ang klase nang alas-dos.",
-      "Ang oras ay gumagamit ng katutubong bilang — 한 시, 두 시, 세 시 — at ang minuto ng Sino-Koreano: 세 시 십 분, alas-tres diyes. Ang pagpapalit sa dalawa ang klasikong pagkakamali ng nagsisimula, at agad itong napapansin."
-    ],
-    "word_deo": [
-      "mas marami pa",
-      "Kaunti pa po."
-    ],
-    "word_ap": [
-      "harapan",
-      "Magkita tayo sa harap ng tindahan."
-    ],
-    "word_da": [
-      "lahat",
-      "Kinain ko ang lahat ng kanin."
-    ],
-    "word_jom": [
-      "kaunti, at pampalambot din ng pakiusap",
-      "Pahingi po ng kaunting tubig.",
-      "Pinaikli mula sa 조금, *kaunti* — ngunit kalahati ng gawain nito ay pagpapalambot. Isinisingit sa isang pakiusap, inaalis nito ang talim: 도와주세요 ay *tulungan mo ako*, 좀 도와주세요 ay parang *maaari po bang tulungan ninyo ako*. Kaya nga ito ginagamit nang paulit-ulit ng mga Koreano."
-    ],
-    "word_jeon": [
-      "bago",
-      "Naghuhugas ako ng kamay bago kumain.",
-      "Bago, sa oras. May iba pang salitang isinusulat na 전: ang 전쟁 ay digmaan at pinaiikling 전, ang 전기 ay kuryente, at ang 전 sa menu ay maalat na palaman-panipis. Sa harap ng pandiwa, ito ang pang-oras — 먹기 전에, bago kumain."
-    ],
-    "word_alda": [
-      "malaman",
-      "Alam ko ang pangalan."
-    ],
-    "word_yak": [
-      "gamot",
-      "Inumin po ang gamot pagkatapos kumain."
-    ],
-    "word_jota": [
-      "maganda, mabuti",
-      "Maganda ang pakiramdam ko."
-    ],
-    "word_jal": [
-      "mabuti",
-      "Nakatulog ka ba nang mahimbing?"
-    ],
-    "word_anida": [
-      "hindi ito iyon",
-      "Hindi ako estudyante.",
-      "Ang kabaligtaran ng 이다. Kumukuha ito ng 이/가 sa bagay na tinatanggihan, hindi 을/를: 학생이 아니에요, hindi kailanman 학생을 아니에요. Ang nakakatutunan ng isang padrong ito ay kayang tanggihan ang anumang pangungusap na pangngalan sa Koreano."
-    ],
-    "word_bul": [
-      "apoy",
-      "May sunog sa bundok."
-    ],
-    "word_uyu": [
-      "gatas",
-      "Malamig ang gatas."
-    ],
-    "word_meokda": [
-      "kumain",
-      "Kumakain ako ng prutas."
-    ],
-    "word_ppang": [
-      "tinapay",
-      "Kumakain ako ng tinapay."
-    ],
-    "word_ttae": [
-      "sandaling nangyari ang isang bagay",
-      "Noong bata ako, sa probinsiya ako nakatira."
-    ],
-    "word_il": [
-      "trabaho",
-      "Maraming trabaho ngayon.",
-      "Trabaho, o bagay na dapat gawin. Ang parehong pantig ay ang Sino-Koreanong isa — 일 번, numero uno — at ito ang araw sa 일요일, Linggo, at sa 삼 일, tatlong araw."
-    ],
-    "word_baji": [
-      "pantalon",
-      "Mahaba ang pantalon."
-    ],
-    "word_sigye": [
-      "relo",
-      "Wala akong relo."
-    ],
-    "word_siheom": [
-      "pagsusulit",
-      "May pagsusulit ako bukas."
-    ],
-    "word_keompyuteo": [
-      "kompyuter",
-      "Binubuksan ko ang kompyuter."
-    ],
-    "word_nalssi": [
-      "panahon",
-      "Maganda ang panahon."
-    ],
-    "word_jongi": [
-      "papel",
-      "Gumuguhit ako sa papel."
-    ],
-    "word_dosi": [
-      "lungsod",
-      "Napakalaki ng lungsod."
-    ],
-    "word_munje": [
-      "problema",
-      "May problema."
-    ],
-    "word_wi": [
-      "itaas",
-      "May sumbrero sa ibabaw ng bag."
-    ],
-    "word_bom": [
-      "tagsibol",
-      "Namumukadkad ang mga bulaklak sa tagsibol."
-    ],
-    "word_jeonyeok": [
-      "hapunan",
-      "Kumakain ako ng hapunan."
-    ],
-    "word_gyeoul": [
-      "taglamig",
-      "Maraming niyebe sa taglamig."
-    ],
-    "word_abeoji": [
-      "ama",
-      "Pumapasok sa trabaho ang tatay ko."
-    ],
-    "word_eoseo": [
-      "tuloy po kayo",
-      "Tuloy po kayo, maligayang pagdating."
-    ],
-    "word_mot": [
-      "hindi kaya kahit gusto",
-      "Napakaanghang kaya hindi ko ito makain.",
-      "May dalawang pagtanggi ang Koreano at magkaiba ang sinasabi nila. Ang 안 ay *ayaw ko*; ang 못 ay *hindi ko kaya*. Ang 안 먹어요 ay pinipili mong huwag kumain; ang 못 먹어요 ay may pumipigil sa iyo. Ang pangngalang kaparehong baybay, 못, ay pako."
-    ],
-    "word_salda": [
-      "manirahan",
-      "Nakatira ako sa Seoul."
-    ],
-    "word_ai": [
-      "bata",
-      "Tumatawa ang bata."
-    ],
-    "word_jeomsim": [
-      "tanghalian",
-      "Mananghalian tayo nang sabay."
-    ],
-    "word_nugu": [
-      "sino",
-      "Sino ang taong iyon?"
-    ],
-    "word_eonje": [
-      "kailan",
-      "Kailan ka darating?"
-    ],
-    "word_geori": [
-      "kalye",
-      "Maraming tao sa kalye."
-    ],
-    "word_annyeong": [
-      "hello at paalam",
-      "Paalam, magkita tayo ulit!"
-    ],
-    "word_gakkeum": [
-      "kung minsan",
-      "Kung minsan ay nanonood ako ng pelikula."
-    ],
-    "word_manta": [
-      "marami",
-      "Maraming tao."
-    ],
-    "word_chima": [
-      "palda",
-      "Napakaganda ng paldang ito."
-    ],
-    "word_uija": [
-      "upuan",
-      "Nakaupo ako sa upuan."
-    ],
-    "word_jeogi": [
-      "doon",
-      "May paaralan doon."
-    ],
-    "word_gongwon": [
-      "parke",
-      "Naglalakad ako sa parke."
-    ],
-    "word_ssal": [
-      "bigas",
-      "Hinuhugasan ko ang bigas bago lutuin."
-    ],
-    "word_jigu": [
-      "Daigdig",
-      "Bilog ang Daigdig."
-    ],
-    "word_eodi": [
-      "saan",
-      "Saan po ang banyo?"
-    ],
-    "word_byeok": [
-      "dingding",
-      "Nagsasabit ako ng larawan sa dingding."
-    ],
-    "word_gyeran": [
-      "itlog",
-      "Nagpakulo ako ng itlog kaninang umaga."
-    ],
-    "word_tada": [
-      "sumakay",
-      "Sumasakay ako ng bus.",
-      "Sumakay sa anumang nagdadala sa iyo — bus, bisikleta, elevator. May dalawa pang karaniwang pandiwa ang magkaparehong baybay: ang 타다 ay nangangahulugan ding masunog, at maghalo ng isang bagay sa inumin."
-    ],
-    "word_segye": [
-      "mundo",
-      "Marami akong alam na bansa sa mundo."
-    ],
-    "word_ireum": [
-      "pangalan",
-      "Ano ang pangalan mo?"
-    ],
-    "word_guk": [
-      "sabaw",
-      "Kumakain ako ng sabaw sa umaga."
-    ],
-    "word_malhada": [
-      "magsalita",
-      "Magsalita po kayo nang dahan-dahan."
-    ],
-    "word_geotda": [
-      "maglakad",
-      "Naglalakad ako sa parke."
-    ],
-    "word_gangaji": [
-      "tuta",
-      "Maliit ang tuta."
-    ],
-    "word_sori": [
-      "tunog",
-      "Malakas ang tunog."
-    ],
-    "word_yeop": [
-      "tabi",
-      "Maupo po kayo sa tabi ko."
-    ],
-    "word_saenggak": [
-      "ideya, iniisip",
-      "Magandang ideya iyan."
-    ],
-    "word_geogi": [
-      "diyan",
-      "May tao ba diyan?"
-    ],
-    "word_adeul": [
-      "anak na lalaki",
-      "Nag-aaral ang anak kong lalaki."
-    ],
-    "word_doeda": [
-      "maging",
-      "Gusto kong maging doktor.",
-      "Maging. Ito rin ang pang-araw-araw na salita para sa isang bagay na gumagana o pinapayagan: ang 안 돼요 ay hindi puwede, at ang 다 됐어요 ay tapos na. Mas madalas mo itong maririnig kaysa sa kahulugang nasa diksiyonaryo."
-    ],
-    "word_maeul": [
-      "nayon",
-      "Tahimik ang nayon."
-    ],
-    "word_kape": [
-      "kapihan",
-      "Nakikipagkita ako sa kaibigan sa kapihan."
-    ],
-    "word_gong": [
-      "bola",
-      "Sinisipa ko ang bola."
-    ],
-    "word_gajok": [
-      "pamilya",
-      "Malaki ang pamilya ko."
-    ],
-    "word_ssi": [
-      "panggalang na kasunod ng pangalan",
-      "Minsu, sandali lang.",
-      "Ikinakabit sa pangalan, ito ay magalang at palakaibigan sa magkapantay: 민수 씨. Ikinakabit sa apelyido lamang — 김 씨 — tumutunog itong malayo o maging matabang, kaya gamitin ang pangalan. Sa nakatataas, gamitin ang titulo: 부장님, 선생님."
-    ],
-    "word_achim": [
-      "umaga",
-      "Gumigising ako sa umaga."
-    ],
-    "word_jeonhwahada": [
-      "tumawag sa telepono",
-      "Tatawagan kita mamaya."
-    ],
-    "word_gaeul": [
-      "taglagas",
-      "Malamig ang hangin sa taglagas."
-    ],
-    "word_kkot": [
-      "bulaklak",
-      "Maganda ang bulaklak."
-    ],
-    "word_jido": [
-      "mapa",
-      "Tinitingnan ko ang mapa."
-    ],
-    "word_saek": [
-      "kulay",
-      "Maganda ang kulay na ito."
-    ],
-    "word_juda": [
-      "magbigay",
-      "Nagbibigay ako ng regalo."
-    ],
-    "word_yachae": [
-      "gulay",
-      "Kumain po kayo ng maraming gulay."
-    ],
-    "word_chaeksang": [
-      "mesa sa pag-aaral",
-      "May libro sa ibabaw ng mesa."
-    ],
-    "word_cheoeum": [
-      "unang pagkakataon",
-      "Ikinagagalak kong makilala kayo."
-    ],
-    "word_gwail": [
-      "prutas",
-      "Gusto ko ang prutas."
-    ],
-    "word_uisa": [
-      "doktor",
-      "Sinusuri ako ng doktor."
-    ],
-    "word_ttal": [
-      "anak na babae",
-      "Nag-aaral ang anak kong babae."
-    ],
-    "word_yeoboseyo": [
-      "hello sa telepono",
-      "Hello, sino po ito?"
-    ],
-    "word_so": [
-      "baka",
-      "Kumakain ng damo ang baka."
-    ],
-    "word_pyeonji": [
-      "liham",
-      "Sumusulat ako ng liham sa nanay ko."
-    ],
-    "word_jogeum": [
-      "kaunti",
-      "Kaunti lang po."
-    ],
-    "word_boida": [
-      "makita, mahagip ng mata",
-      "Kita ang bundok."
-    ],
-    "word_jari": [
-      "puwesto, upuan",
-      "Walang bakanteng upuan."
-    ],
-    "word_hu": [
-      "pagkatapos",
-      "Pagkatapos ng klase ay pupunta ako sa aklatan."
-    ],
-    "word_kadeu": [
-      "kard",
-      "Magbabayad ako gamit ang kard."
-    ],
-    "word_naeil": [
-      "bukas",
-      "Hanggang bukas."
-    ],
-    "word_jungyohada": [
-      "mahalaga",
-      "Ang kalusugan ang pinakamahalaga."
-    ],
-    "word_dalgyal": [
-      "itlog",
-      "Kumakain ako ng itlog sa umaga."
-    ],
-    "word_aju": [
-      "napaka",
-      "Napakasarap nito."
-    ],
-    "word_matda": [
-      "tama",
-      "Tama ang sagot na ito."
-    ],
-    "word_hanguk": [
-      "Korea",
-      "Gusto ko ang pagkaing Koreano."
-    ],
-    "word_gang": [
-      "ilog",
-      "Napakalapad ng ilog."
-    ],
-    "word_cho": [
-      "segundo",
-      "Tatlumpung segundo na lang."
-    ],
-    "word_hoesa": [
-      "kompanya, opisina",
-      "Pumupunta ako sa opisina."
-    ],
-    "word_sosik": [
-      "balita mula sa isang tao",
-      "May magandang balita ako."
-    ],
-    "word_jakda": [
-      "maliit",
-      "Maliit ang sapatos."
-    ],
-    "word_gimchi": [
-      "kimchi",
-      "Maanghang ang kimchi."
-    ],
-    "word_ikda": [
-      "magbasa",
-      "Nagbabasa ako ng diyaryo."
-    ],
-    "word_geurigo": [
-      "at, at saka",
-      "Bumili ako ng tinapay. At bumili rin ako ng gatas."
-    ],
-    "word_keuda": [
-      "malaki",
-      "Malaki ang bag na ito."
-    ],
-    "word_yeollak": [
-      "pakikipag-ugnayan",
-      "Pakikontak po ako mamaya."
-    ],
-    "word_gachi": [
-      "magkasama",
-      "Kumain tayo nang sabay."
-    ],
-    "word_neomu": [
-      "masyado",
-      "Masyadong malaki ang damit na ito."
-    ],
-    "word_yong": [
-      "dragon",
-      "May malaking dragon sa larawan."
-    ],
-    "word_geureota": [
-      "ganoon nga",
-      "Oo, ganoon nga."
-    ],
-    "word_hotel": [
-      "hotel",
-      "Sa hotel ako natulog."
-    ],
-    "word_yeolsoe": [
-      "susi",
-      "Wala akong susi."
-    ],
-    "word_yeppeuda": [
-      "maganda",
-      "Talagang maganda ang mga bulaklak."
-    ],
-    "word_geugeot": [
-      "iyan",
-      "Pakiabot po niyan."
-    ],
-    "word_daeum": [
-      "susunod",
-      "Hanggang sa susunod."
-    ],
-    "word_maeum": [
-      "puso, kalooban",
-      "Mabait ang kanilang kalooban."
-    ],
-    "word_jadongcha": [
-      "kotse",
-      "Mabilis ang kotse."
-    ],
-    "word_jukda": [
-      "mamatay",
-      "Namatay ang bulaklak sa paso dahil hindi nadiligan."
-    ],
-    "word_nalda": [
-      "lumipad",
-      "Lumilipad ang ibon sa langit."
-    ],
-    "word_siksa": [
-      "pagkain, salu-salo",
-      "Napakasarap ng pagkain."
-    ],
-    "word_gigye": [
-      "makina",
-      "Nasira ang makina."
-    ],
-    "word_ttang": [
-      "lupa",
-      "Basa ang lupa."
-    ],
-    "word_jada": [
-      "matulog",
-      "Maaga akong natutulog."
-    ],
-    "word_beorida": [
-      "itapon",
-      "Itapon po ninyo sa basurahan."
-    ],
-    "word_juso": [
-      "address",
-      "Pakisabi po ang address."
-    ],
-    "word_gicha": [
-      "tren",
-      "Umalis na ang tren."
-    ],
-    "word_chitsol": [
-      "sipilyo",
-      "Bumili ako ng bagong sipilyo."
-    ],
-    "word_sarang": [
-      "pag-ibig",
-      "Maganda ang pag-ibig."
-    ],
-    "word_gongbu": [
-      "pag-aaral",
-      "Masaya ang pag-aaral."
-    ],
-    "word_saengseon": [
-      "isdang pagkain",
-      "Nagprito ako ng isda para sa hapunan."
-    ],
-    "word_mok": [
-      "leeg",
-      "Masakit ang leeg ko."
-    ],
-    "word_sipda": [
-      "gusto",
-      "Gusto kong pumunta sa Korea."
-    ],
-    "word_nyuseu": [
-      "balita",
-      "Nanonood ako ng balita."
-    ],
-    "word_chatda": [
-      "maghanap",
-      "Hinahanap ko ang susi."
-    ],
-    "word_iljjik": [
-      "maaga",
-      "Maaga akong babangon bukas."
-    ],
-    "word_geonmul": [
-      "gusali",
-      "Napakataas ng gusaling iyon."
-    ],
-    "word_seonsaengnim": [
-      "guro",
-      "Nagtuturo ang guro."
-    ],
-    "word_eomeoni": [
-      "ina",
-      "Nasa bahay ang nanay ko."
-    ],
-    "word_gibun": [
-      "pakiramdam",
-      "Kumusta ang pakiramdam mo?"
-    ],
-    "word_honja": [
-      "mag-isa",
-      "Kaya kong pumunta nang mag-isa."
-    ],
-    "word_ani": [
-      "hindi",
-      "Hindi, hindi ako pumunta."
-    ],
-    "word_eoje": [
-      "kahapon",
-      "Umulan kahapon."
-    ],
-    "word_sseuda": [
-      "magsulat",
-      "Isinusulat ko ang pangalan ko.",
-      "Sumulat. Ang parehong pandiwa ay nangangahulugan ding gumamit ng isang bagay, magsuot ng sombrero o salamin sa ulo, at — bilang pang-uri — mapait. Apat na pang-araw-araw na kahulugan, isang baybay."
-    ],
-    "word_masida": [
-      "uminom",
-      "Umiinom ako ng gatas."
-    ],
-    "word_syeocheu": [
-      "kamiseta",
-      "Nakasuot ako ng puting kamiseta."
-    ],
-    "word_junbi": [
-      "paghahanda",
-      "Handa na ang lahat."
-    ],
-    "word_mian": [
-      "pasensiya na",
-      "Pasensiya na, na-late ako."
-    ],
-    "word_geokjeong": [
-      "alalahanin",
-      "Marami akong alalahanin."
-    ],
-    "word_hajiman": [
-      "pero",
-      "Umuulan. Pero pupunta pa rin ako."
-    ],
-    "word_kamera": [
-      "kamera",
-      "Bumili ako ng kamera."
-    ],
-    "word_dongne": [
-      "kapitbahayan",
-      "Tahimik ang aming kapitbahayan."
-    ],
-    "word_naengjanggo": [
-      "reprigerator",
-      "Inilagay ko ang gatas sa reprigerator."
-    ],
-    "word_anda": [
-      "maupo",
-      "Naupo ako sa upuan."
-    ],
-    "word_ppalli": [
-      "mabilis",
-      "Bilisan mo po ang pagpunta."
-    ],
-    "word_yaegi": [
-      "usapan",
-      "Mag-usap muna tayo sandali."
-    ],
-    "word_got": [
-      "lugar",
-      "Nakahanap ako ng tahimik na lugar."
-    ],
-    "word_nat": [
-      "araw, tanghaling tapat",
-      "Mainit sa araw."
-    ],
-    "word_sangja": [
-      "kahon",
-      "Binubuksan ko ang kahon."
-    ],
-    "word_wonhada": [
-      "gustuhin",
-      "Ano ang gusto mo?"
-    ],
-    "word_sikdang": [
-      "kainan",
-      "Saan po ang kainan?"
-    ],
-    "word_geurida": [
-      "gumuhit",
-      "Gumuguhit ng puno ang bata."
-    ],
-    "word_yuri": [
-      "salamin, bubog",
-      "Nabasag ang salamin."
-    ],
-    "word_igeot": [
-      "ito",
-      "Pakiabot po nito."
-    ],
-    "word_geoul": [
-      "salamin sa pagtingin",
-      "Tumitingin ako sa salamin."
-    ],
-    "word_gijeok": [
-      "himala",
-      "Parang himala talaga iyon."
-    ],
-    "word_kal": [
-      "kutsilyo",
-      "Binalatan ko ang mansanas gamit ang kutsilyo."
-    ],
-    "word_gatda": [
-      "magkapareho",
-      "Magkapareho ang mga bag namin."
-    ],
-    "word_pul": [
-      "damo",
-      "Berde ang damo."
-    ],
-    "word_eolma": [
-      "magkano",
-      "Magkano po ito?"
-    ],
-    "word_saenggakada": [
-      "mag-isip",
-      "Ganoon din ang iniisip ko."
-    ],
-    "word_jilmun": [
-      "tanong",
-      "May tanong ako."
-    ],
-    "word_geunyeo": [
-      "siya, para sa babae",
-      "Maganda siyang kumanta."
-    ],
-    "word_nota": [
-      "ilagay",
-      "Inilagay ko ang bag sa sahig."
-    ],
-    "word_banggeum": [
-      "kanina lang",
-      "Kararating ko lang."
-    ],
-    "word_bonaeda": [
-      "magpadala",
-      "Nagpapadala ako ng liham."
-    ],
-    "word_arae": [
-      "sa ilalim",
-      "Nasa ilalim ng mesa ang libro."
-    ],
-    "word_naoda": [
-      "lumabas",
-      "Lumalabas ang tubig."
-    ],
-    "word_nai": [
-      "edad",
-      "Ilang taon na po kayo?"
-    ],
-    "word_eotteoke": [
-      "paano",
-      "Paano po pumunta doon?"
-    ],
-    "word_eunhaeng": [
-      "bangko",
-      "Bukas na ang bangko."
-    ],
-    "word_al": [
-      "itlog ng hayop",
-      "Nangitlog ng tatlo ang ibon."
-    ],
-    "word_moreuda": [
-      "hindi alam",
-      "Hindi ko alam."
-    ],
-    "word_badak": [
-      "sahig",
-      "Naglilinis ako ng sahig."
-    ],
-    "word_hwajangsil": [
-      "banyo",
-      "Malinis ang banyo."
-    ],
-    "word_yeok": [
-      "istasyon",
-      "Magkita tayo sa istasyon."
-    ],
-    "word_seoul": [
-      "Seoul",
-      "Napakalaki ng Seoul."
-    ],
-    "word_gwiyeopda": [
-      "cute",
-      "Cute ang tuta."
-    ],
-    "word_areumdapda": [
-      "napakaganda",
-      "Napakaganda ng tanawin."
-    ],
-    "word_ajik": [
-      "hindi pa",
-      "Hindi pa sila dumarating."
-    ],
-    "word_gyedan": [
-      "hagdan",
-      "Maraming baitang."
-    ],
-    "word_maeil": [
-      "araw-araw",
-      "Araw-araw akong sumusulat ng hangul."
-    ],
-    "word_agi": [
-      "sanggol",
-      "Natutulog ang sanggol."
-    ],
-    "word_dwaeji": [
-      "baboy",
-      "Kumakain ang baboy."
-    ],
-    "word_ju": [
-      "linggo",
-      "Magkita tayo sa susunod na linggo."
-    ],
-    "word_iyagi": [
-      "kuwento",
-      "Kawili-wiling kuwento iyon."
-    ],
-    "word_tto": [
-      "muli",
-      "Magkita tayo ulit bukas."
-    ],
-    "word_beolsseo": [
-      "kanina pa",
-      "Tapos na talaga ang lahat."
-    ],
-    "word_dangsin": [
-      "kayo, magalang",
-      "Hinintay ko po kayo."
-    ],
-    "word_gap": [
-      "presyo",
-      "Mataas ang presyo."
-    ],
-    "word_mianhada": [
-      "humingi ng paumanhin",
-      "Paumanhin sa pagka-late ko."
-    ],
-    "word_jeongnyujang": [
-      "hintuan",
-      "Naghihintay ako ng bus sa hintuan."
-    ],
-    "word_anta": [
-      "hindi ginagawa",
-      "Hindi ako umiinom ng kape."
-    ],
-    "word_taeksi": [
-      "taksi",
-      "Pakitawag po ng taksi."
-    ],
-    "word_haksaeng": [
-      "estudyante",
-      "Maraming estudyante sa silid-aralan."
-    ],
-    "word_bomul": [
-      "kayamanan",
-      "Naghahanap ng kayamanan ang mga bata."
-    ],
-    "word_jumun": [
-      "order",
-      "Mag-o-order na po ba kayo?"
-    ],
-    "word_sinmun": [
-      "diyaryo",
-      "Basahin po ninyo ang diyaryo."
-    ],
-    "word_dak": [
-      "manok",
-      "Nangingitlog ang manok."
-    ],
-    "word_keop": [
-      "baso",
-      "Naglalagay ako ng tubig sa baso."
-    ],
-    "word_set": [
-      "tatlo",
-      "Nagsama-sama ang tatlong magkakaibigan."
-    ],
-    "word_hangugeo": [
-      "wikang Koreano",
-      "Kawili-wili ang wikang Koreano."
-    ],
-    "word_geuraeseo": [
-      "kaya nga",
-      "Umuulan, kaya hindi ako pupunta."
-    ],
-    "word_manhi": [
-      "marami",
-      "Kumain po kayo nang marami."
-    ],
-    "word_du": [
-      "dalawa, bago ang pambilang",
-      "Dalawang kape po.",
-      "Nagbabago ang anyo ng katutubong bilang ng Koreano bago ang pambilang. Ang 하나 둘 셋 넷 ay nagiging 한 두 세 네: 하나 nang mag-isa, 한 개 para sa isang piraso. Ang 두 ay ang anyong iyon ng 둘, at hindi ito kailanman nag-iisa."
-    ],
-    "word_pyeonuijeom": [
-      "convenience store",
-      "May convenience store sa harap ng bahay ko."
-    ],
-    "word_miguk": [
-      "Estados Unidos",
-      "Taga-Estados Unidos ako."
-    ],
-    "word_gyesok": [
-      "tuloy-tuloy",
-      "Tuloy-tuloy ang ulan."
-    ],
-    "word_gagyeok": [
-      "presyo",
-      "Mas mataas ang presyo kaysa sa inaasahan ko."
-    ],
-    "word_dongsaeng": [
-      "nakababatang kapatid",
-      "Cute ang nakababata kong kapatid.",
-      "Ang tanging salita para sa kapatid na hindi nagbabago ayon sa nagsasalita: sinumang mas bata ay 동생, kahit sino pa ang nagsasalita. Magdagdag ng pantig kapag kailangan ang kasarian — 남동생 nakababatang lalaki, 여동생 nakababatang babae."
-    ],
-    "word_tokki": [
-      "kuneho",
-      "Tumatalon ang kuneho."
-    ],
-    "word_seoda": [
-      "tumayo",
-      "Nakatayo ako sa pila."
-    ],
-    "word_eoreum": [
-      "yelo",
-      "Dagdagan po ninyo ng yelo."
-    ],
-    "word_jayeon": [
-      "kalikasan",
-      "Maganda ang kalikasan."
-    ],
-    "word_jjikda": [
-      "magtatak",
-      "Nagtatak ako ng selyo.",
-      "Idiin ang isang bagay sa ibabaw: selyo, tatak, bakat ng daliri. Sakop din ng parehong pandiwa ang pagkuha ng larawan — 사진을 찍다 — at ang pagsawsaw ng pagkain sa sarsa, tatlo mula sa iisang ideya ng pagdiin."
-    ],
-    "word_yeol": [
-      "sampu",
-      "Magbilang po kayo hanggang sampu.",
-      "Dito ang 열 ay ang katutubong sampu ng Koreano, ang ginagamit sa pagbilang ng bagay — 열 개, sampung piraso. May ibang 열 na nangangahulugang lagnat, at ang pandiwang 열다 ay magbukas. Dalawang letra, tatlong walang kaugnayang salita."
-    ],
-    "word_sasil": [
-      "katotohanan",
-      "Katotohanan iyon."
-    ],
-    "word_unjeon": [
-      "pagmamaneho",
-      "Natututo akong magmaneho."
-    ],
-    "word_gamja": [
-      "patatas",
-      "Pinapakuluan ko ang patatas."
-    ],
-    "word_gureum": [
-      "ulap",
-      "Maraming ulap."
-    ],
-    "word_iyu": [
-      "dahilan",
-      "Pakisabi po ang dahilan."
-    ],
-    "word_dareun": [
-      "iba",
-      "May iba pa po bang kulay?"
-    ],
-    "word_songarak": [
-      "daliri",
-      "Masakit ang daliri ko."
-    ],
-    "word_japda": [
-      "hawakan",
-      "Hinahawakan ko ang kamay mo."
-    ],
-    "word_bueok": [
-      "kusina",
-      "Nagluluto ako sa kusina."
-    ],
-    "word_piryo": [
-      "pangangailangan",
-      "Hindi ko kailangan ng tulong."
-    ],
-    "word_pa": [
-      "sibuyas na mura",
-      "Naglagay ako ng kaunting sibuyas sa sabaw."
-    ],
-    "word_batda": [
-      "tumanggap",
-      "Tumanggap ako ng regalo."
-    ],
-    "word_pida": [
-      "mamukadkad",
-      "Namukadkad ang mga bulaklak."
-    ],
-    "word_sayong": [
-      "paggamit",
-      "Pakituro po kung paano ito gamitin."
-    ],
-    "word_jeongbo": [
-      "impormasyon",
-      "Naghahanap ako ng impormasyon."
-    ],
-    "word_gonghang": [
-      "paliparan",
-      "Nakarating ako sa paliparan."
-    ],
-    "word_bumo": [
-      "magulang",
-      "Kailangan ng bata ang magulang."
-    ],
-    "word_saranghada": [
-      "magmahal",
-      "Mahal ko ang pamilya ko."
-    ],
-    "word_ireoke": [
-      "ganito",
-      "Isulat po ninyo nang ganito."
-    ],
-    "word_ilhada": [
-      "magtrabaho",
-      "Nagtatrabaho ang nanay ko sa ospital."
-    ],
-    "word_suyeong": [
-      "paglangoy",
-      "Natututo akong lumangoy."
-    ],
-    "word_piryohada": [
-      "kailanganin",
-      "Kailangan ko ng pera."
-    ],
-    "word_bukjjok": [
-      "hilaga",
-      "Pumunta sila sa hilaga."
-    ],
-    "word_cheung": [
-      "palapag",
-      "Nasa ikalawang palapag ang opisina."
-    ],
-    "word_hwanja": [
-      "pasyente",
-      "Nagpapahinga ang pasyente."
-    ],
-    "word_halmeoni": [
-      "lola",
-      "Nakangiti ang lola."
-    ],
-    "word_palda": [
-      "magbenta",
-      "Nagbebenta sila ng prutas."
-    ],
-    "word_itda_2": [
-      "pagdugtungin",
-      "Pinagdugtong ko ang dalawang lubid."
-    ],
-    "word_nara": [
-      "bansa",
-      "Magandang bansa ang Korea."
-    ],
-    "word_apateu": [
-      "apartment",
-      "Nakatira ako sa apartment."
-    ],
-    "word_hamkke": [
-      "magkasama",
-      "Sabay tayong pumunta."
-    ],
-    "word_modeun": [
-      "lahat ng",
-      "Tumawa ang lahat."
-    ],
-    "word_gwaenchanta": [
-      "ayos lang",
-      "Ayos lang ako."
-    ],
-    "word_johahada": [
-      "magustuhan",
-      "Gusto ko ang kape."
-    ],
-    "word_jimseung": [
-      "mailap na hayop",
-      "May narinig na hayop sa gubat."
-    ],
-    "word_dongan": [
-      "sa loob ng panahon",
-      "Naglakbay ako noong bakasyon."
-    ],
-    "word_ipgu": [
-      "pasukan",
-      "Magkita tayo sa pasukan ng gusali."
-    ],
-    "word_silta": [
-      "ayaw",
-      "Ayaw ko sa malamig na araw."
-    ],
-    "word_meonjeo": [
-      "una",
-      "Naghuhugas muna ako ng kamay."
-    ],
-    "word_dubu": [
-      "tokwa",
-      "Naglagay ako ng tokwa saka nagluto ng sabaw."
-    ],
-    "word_bumonim": [
-      "sariling magulang",
-      "Kasama ko ang mga magulang ko sa bahay."
-    ],
-    "word_gomapda": [
-      "magpasalamat",
-      "Salamat sa tulong."
-    ],
-    "word_gyesan": [
-      "kalkulasyon",
-      "Medyo mali ang kalkulasyon."
-    ],
-    "word_hyeo": [
-      "dila",
-      "Masakit ang dila ko kaya hindi ako makakain."
-    ],
-    "word_sugeon": [
-      "tuwalya",
-      "Pinupunasan ko ang kamay ko ng tuwalya."
-    ],
-    "word_saeropda": [
-      "bago",
-      "Sariwa ang pakiramdam ko."
-    ],
-    "word_sup": [
-      "gubat",
-      "May tunog ng ibon sa gubat."
-    ],
-    "word_chum": [
-      "sayaw",
-      "Sumayaw sila sa entablado."
-    ],
-    "word_sukje": [
-      "takdang-aralin",
-      "Tapos ko na ang takdang-aralin."
-    ],
-    "word_gaji": [
-      "uri, klase",
-      "Isang bagay lang ang gusto kong itanong.",
-      "Pangalan din ito ng talong, at sanga ng puno. Bilang pambilang, ito ang ginagamit sa mga bagay na maaaring italaga isa-isa: 두 가지 방법, dalawang paraan; 세 가지 이유, tatlong dahilan."
-    ],
-    "word_mothada": [
-      "hindi kaya",
-      "Hindi ako marunong lumangoy."
-    ],
-    "word_nagada": [
-      "lumabas",
-      "Lumalabas ako."
-    ],
-    "word_meotjida": [
-      "astig, kahanga-hanga",
-      "Ang ganda mo ngayong araw."
-    ],
-    "word_podo": [
-      "ubas",
-      "Napakatamis ng ubas."
-    ],
-    "word_jeopsi": [
-      "plato",
-      "Maglabas po kayo ng dalawang plato."
-    ],
-    "word_yori": [
-      "lutuin",
-      "Masarap ang lutuin."
-    ],
-    "word_sogeum": [
-      "asin",
-      "Naglalagay ako ng kaunting asin."
-    ],
-    "word_duda": [
-      "ilagay",
-      "Inilagay ko ang libro sa mesa."
-    ],
-    "word_gamsahada": [
-      "magpasalamat",
-      "Salamat po sa tulong."
-    ],
-    "word_kkeut": [
-      "dulo",
-      "Tumayo po kayo sa dulo ng pila."
-    ],
-    "word_yeolda": [
-      "magbukas",
-      "Binubuksan ko ang bintana."
-    ],
-    "word_ibul": [
-      "kumot",
-      "Mainit ang kumot."
-    ],
-    "word_najung": [
-      "mamaya",
-      "Tatawag ako ulit mamaya."
-    ],
-    "word_manjida": [
-      "hawakan",
-      "Huwag po ninyong hawakan."
-    ],
-    "word_gajang": [
-      "pinaka",
-      "Ito ang pinakamaganda."
-    ],
-    "word_namjjok": [
-      "timog",
-      "Mainit sa timog."
-    ],
-    "word_doum": [
-      "tulong",
-      "Kailangan ko ng tulong."
-    ],
-    "word_jung": [
-      "sa gitna ng",
-      "Nasa miting ako."
-    ],
-    "word_sudo": [
-      "kabisera",
-      "Ang kabisera ng Korea ay Seoul.",
-      "Ang kabisera ng isang bansa. May hiwalay na 수도 na tumutukoy sa tubig sa gripo — ang 수도꼭지 ay gripo, ang 수도 요금 ay bayad sa tubig. Konteksto lamang ang naghihiwalay sa kanila."
-    ],
-    "word_gidarida": [
-      "maghintay",
-      "Sandali lang po, maghintay kayo."
-    ],
-    "word_chaeso": [
-      "gulay",
-      "Kumakain ako ng maraming gulay."
-    ],
-    "word_kkeunnada": [
-      "matapos",
-      "Tapos na ang klase."
-    ],
-    "word_butak": [
-      "pakiusap",
-      "May pakiusap ako."
-    ],
-    "word_seom": [
-      "isla",
-      "Nagbangka kami papunta sa isla."
-    ],
-    "word_teuki": [
-      "lalo na",
-      "Lalo na ang taglamig ang gusto ko."
-    ],
-    "word_jemok": [
-      "pamagat",
-      "Ano ang pamagat ng aklat na ito?"
-    ],
-    "word_insa": [
-      "pagbati",
-      "Bumati ako."
-    ],
-    "word_seoltang": [
-      "asukal",
-      "Naglalagay ako ng kaunting asukal."
-    ],
-    "word_jajeongeo": [
-      "bisikleta",
-      "Nagbibisikleta ako."
-    ],
-    "word_inteonet": [
-      "internet",
-      "Mabagal ang internet."
-    ],
-    "word_aniyo": [
-      "hindi po",
-      "Hindi po, ayos lang ako."
-    ],
-    "word_ama": [
-      "siguro",
-      "Baka umulan bukas."
-    ],
-    "word_jamsi": [
-      "sandali",
-      "Magpahinga tayo saglit."
-    ],
-    "word_beol": [
-      "bubuyog",
-      "Dumapo ang bubuyog sa bulaklak.",
-      "Isang bubuyog. May dalawa pang salitang isinusulat na 벌: parusa, at ang pambilang para sa isang terno ng damit — 옷 한 벌, isang terno."
-    ],
-    "word_won": [
-      "won",
-      "Dalawang libong won po."
-    ],
-    "word_ujuseon": [
-      "spaceship",
-      "Umakyat sa langit ang spaceship."
-    ],
-    "word_myeot": [
-      "ilan",
-      "Anong oras na po?"
-    ],
-    "word_sueop": [
-      "klase",
-      "Kawili-wili ang klase."
-    ],
-    "word_sijak": [
-      "simula",
-      "Magandang simula ito."
-    ],
-    "word_yeogwon": [
-      "pasaporte",
-      "Huwag mong kalimutang dalhin ang pasaporte."
-    ],
-    "word_gyosil": [
-      "silid-aralan",
-      "Maliwanag ang silid-aralan."
-    ],
-    "word_nyeon": [
-      "taon",
-      "Dalawang taon akong nag-aral."
-    ],
-    "word_bae": [
-      "tiyan",
-      "Sumakit ang tiyan ko kaya pumunta ako sa ospital.",
-      "Tiyan. May dalawa pang karaniwang salitang isinusulat na 배: bangka at peras. Ang 배가 아파요 ay masakit ang tiyan ko, ang 배를 타요 ay sumasakay ako sa bangka, at ang 배를 먹어요 ay kumakain ako ng peras."
-    ],
-    "word_satang": [
-      "kendi",
-      "Kumakain ako ng kendi."
-    ],
-    "word_dalleo": [
-      "dolyar",
-      "Isang daang dolyar po."
-    ],
-    "word_usan": [
-      "payong",
-      "Umulan kaya bumili ako ng payong."
-    ],
-    "word_museun": [
-      "anong",
-      "Anong trabaho po ninyo?"
-    ],
-    "word_pari": [
-      "langaw",
-      "May langaw na lumilipad-lipad.",
-      "Ang insekto. Ganito rin isinusulat ng Koreano ang lungsod na Paris, kaya ang 파리에 갔어요 ay pumunta ako sa Paris samantalang ang 파리가 있어요 ay may langaw. Walang naghihiwalay sa kanila kundi ang pangungusap."
-    ],
-    "word_ije": [
-      "ngayon na",
-      "Magsimula na tayo ngayon."
-    ],
-    "word_geollida": [
-      "tumagal",
-      "Isang oras ang tinatagal nito."
-    ],
-    "word_choego": [
-      "pinakamahusay",
-      "Ang kainang ito ang pinakamahusay."
-    ],
-    "word_naeda": [
-      "magbayad",
-      "Ako ang magbabayad ngayon."
-    ],
-    "word_daneo": [
-      "salita bilang yunit",
-      "Nag-aaral ako ng bagong salita."
-    ],
-    "word_jikjeop": [
-      "mismong sarili",
-      "Ako mismo ang gumawa ng cake."
-    ],
-    "word_yangmal": [
-      "medyas",
-      "Mainit ang medyas."
-    ],
-    "word_nopda": [
-      "mataas",
-      "Mataas ang gusali."
-    ],
-    "word_haendeupon": [
-      "selpon",
-      "Nagcha-charge ako ng selpon."
-    ],
-    "word_jigap": [
-      "pitaka",
-      "Nawala ang pitaka ko."
-    ],
-    "word_hyudaepon": [
-      "selpon",
-      "Nawala ang selpon ko."
-    ],
-    "word_agassi": [
-      "dalaga",
-      "May dalagang nagtatanong ng daan.",
-      "Batang babaeng walang asawa — ngunit bilang *pantawag* sa isang di-kakilala ay lumamlam ito, at itinuturing ng maraming babae na bastos o nakakababa. Gamitin ito tungkol sa isang tao, hindi sa kanya; para makuha ang atensiyon ng estranghero sabihin ang 저기요."
-    ],
-    "word_gieok": [
-      "alaala",
-      "Hindi ko maalala."
-    ],
-    "word_geutda": [
-      "gumuhit ng linya",
-      "Gumuhit ako ng linya."
-    ],
-    "word_ipda": [
-      "magsuot ng damit",
-      "Nagsusuot ako ng damit."
-    ],
-    "word_sai": [
-      "pagitan",
-      "May puno sa pagitan ng dalawang bahay."
-    ],
-    "word_gireum": [
-      "langis",
-      "Pinirito ko ito sa langis."
-    ],
-    "word_mulgogi": [
-      "isda",
-      "Lumalangoy ang isda."
-    ],
-    "word_jang": [
-      "pambilang para sa pirasong papel",
-      "Kailangan ko ng tatlong pirasong papel."
-    ],
-    "word_kkum": [
-      "panaginip",
-      "Kakaiba ang napanaginipan ko kagabi."
-    ],
-    "word_sijakada": [
-      "magsimula",
-      "Nagsisimula na ang klase."
-    ],
-    "word_ajikdo": [
-      "hanggang ngayon",
-      "Naghihintay pa rin ako."
-    ],
-    "word_teureok": [
-      "trak",
-      "May dumadaang trak."
-    ],
-    "word_eotteon": [
-      "anong klase",
-      "Anong kulay ang gusto mo?"
-    ],
-    "word_geulssi": [
-      "sulat-kamay",
-      "Maganda ang sulat-kamay mo."
-    ],
-    "word_deutda": [
-      "makinig",
-      "Nakikinig ako ng musika."
-    ],
-    "word_subak": [
-      "pakwan",
-      "Masarap ang pakwan sa tag-init."
-    ],
-    "word_ttalgi": [
-      "strawberry",
-      "Hinuhugasan ko ang strawberry bago kainin."
-    ],
-    "word_baram": [
-      "hangin",
-      "Malamig ang hangin."
-    ],
-    "word_sigol": [
-      "probinsiya",
-      "Sariwa ang hangin sa probinsiya."
-    ],
-    "word_pulda": [
-      "lutasin",
-      "Nalutas ko ang problema."
-    ],
-    "word_angyeong": [
-      "salamin sa mata",
-      "Nakasuot ako ng salamin sa mata."
-    ],
-    "word_yeonpil": [
-      "lapis",
-      "Gumuguhit ako gamit ang lapis."
-    ],
-    "word_jumal": [
-      "katapusan ng linggo",
-      "Nagpapahinga ako tuwing katapusan ng linggo."
-    ],
-    "word_jugida": [
-      "pumatay",
-      "Pinatay ko ang lamok na pumasok sa kuwarto."
-    ],
-    "word_him": [
-      "lakas",
-      "Napakalakas ng batang iyon."
-    ],
-    "word_jeonbu": [
-      "lahat-lahat",
-      "Magkano lahat?"
-    ],
-    "word_gyeongchal": [
-      "pulis",
-      "Pakitawag po ang pulis."
-    ],
-    "word_geureut": [
-      "mangkok",
-      "Naglalagay ako ng kanin sa mangkok."
-    ],
-    "word_nappeuda": [
-      "masama",
-      "Masama ang panahon."
-    ],
-    "word_oppa": [
-      "kuya ng isang babae",
-      "Nagmamaneho ang kuya ko.",
-      "Pinipili ng Koreano ang salita para sa kapatid ayon sa kasarian ng nagsasalita: tinatawag ng babae ang nakatatandang kapatid na lalaki na 오빠, tinatawag naman siya ng lalaki na 형. Ginagamit din ito para sa mas nakatatandang lalaking malapit sa isang babae, kaya naririnig ito nang malayo sa pamilya."
-    ],
-    "word_mannada": [
-      "magkita",
-      "Madalas kaming magkita."
-    ],
-    "word_huimang": [
-      "pag-asa",
-      "Huwag po kayong mawalan ng pag-asa."
-    ],
-    "word_hyeong": [
-      "kuya ng isang lalaki",
-      "Nilibre ako ng kuya ko ng pagkain.",
-      "Ang salitang ginagamit ng lalaki para sa nakatatandang kapatid na lalaki. Sasabihin ng babae na 오빠 para sa parehong tao. Tulad ng 오빠, umaabot ito sa isang malapit na nakatatandang lalaking hindi naman kadugo."
-    ],
-    "word_doro": [
-      "kalsada",
-      "Sarado ang kalsada."
-    ],
-    "word_ttwida": [
-      "tumakbo",
-      "Tumatakbo ang bata."
-    ],
-    "word_mueot": [
-      "ano",
-      "Ano ito?"
-    ],
-    "word_oenjjok": [
-      "kaliwa",
-      "Kumaliwa po kayo."
-    ],
-    "word_chukgu": [
-      "soccer",
-      "Naglalaro ako ng soccer kasama ang kaibigan ko."
-    ],
-    "word_jayu": [
-      "kalayaan",
-      "Mahalaga ang kalayaan."
-    ],
-    "word_sungan": [
-      "sandali",
-      "Hindi ko malilimutan ang sandaling iyon."
-    ],
-    "word_sayonghada": [
-      "gamitin",
-      "Puwede ko po bang gamitin ang kuwartong ito?"
-    ],
-    "word_pada": [
-      "maghukay",
-      "Naghuhukay ako ng lupa."
-    ],
-    "word_nampyeon": [
-      "asawang lalaki",
-      "Nagluluto ang asawa kong lalaki."
-    ],
-    "word_silheomsil": [
-      "laboratoryo",
-      "Buong araw akong nagtrabaho sa laboratoryo."
-    ],
-    "word_dambae": [
-      "sigarilyo",
-      "Kumapit sa damit ang amoy ng sigarilyo."
-    ],
-    "word_banana": [
-      "saging",
-      "Kumakain ako ng saging sa umaga."
-    ],
-    "word_geum": [
-      "ginto",
-      "Ginto ang singsing na ito.",
-      "Ginto, ang metal. Ang parehong pantig ay nangangahulugan ding gasgas o guhit na linya — ang 금이 갔어요 ay pumitak — at binubuksan nito ang 금요일, Biyernes."
-    ],
-    "word_mandeulda": [
-      "gumawa",
-      "Gumagawa ako ng tinapay."
-    ],
-    "word_ibeon": [
-      "sa pagkakataong ito",
-      "Ako na ang gagawa sa pagkakataong ito."
-    ],
-    "word_gomawo": [
-      "salamat",
-      "Salamat sa tulong mo."
-    ],
-    "word_banchan": [
-      "ulam na kasabay ng kanin",
-      "Masarap ang mga ulam."
-    ],
-    "word_apeuda": [
-      "masaktan",
-      "Masakit ang tiyan ko."
-    ],
-    "word_doseogwan": [
-      "aklatan",
-      "Nanghiram ako ng libro sa aklatan."
-    ],
-    "word_ppyeo": [
-      "buto",
-      "May hawak na buto ang aso."
-    ],
-    "word_gamsa": [
-      "pasasalamat",
-      "Nagpasalamat ako."
-    ],
-    "word_geolda": [
-      "isabit",
-      "Isinasabit ko ang damit."
-    ],
-    "word_gim": [
-      "tuyong damong-dagat",
-      "Binabalot namin ng damong-dagat ang kanin bago kainin.",
-      "Ang manipis at pinatuyong damong-dagat na kinakain kasama ng kanin. Ang parehong pantig ay ang pinakakaraniwang apelyidong Koreano, at ito rin ang singaw na umaakyat mula sa mainit — 김이 나요, umuusok."
-    ],
-    "word_jalhada": [
-      "magaling gumawa ng isang bagay",
-      "Magaling kang kumanta."
-    ],
-    "word_saengmyeong": [
-      "buhay",
-      "Mahalaga ang buhay."
-    ],
-    "word_mureup": [
-      "tuhod",
-      "Masakit ang tuhod ko."
-    ],
-    "word_jjalda": [
-      "maikli",
-      "Maikli ang lapis."
-    ],
-    "word_chijeu": [
-      "keso",
-      "Gusto ko ang keso."
-    ],
-    "word_hanbeon": [
-      "isang beses",
-      "Subukan po ninyo minsan."
-    ],
-    "word_gohyang": [
-      "bayang sinilangan",
-      "Umuwi ako sa bayang sinilangan ko."
-    ],
-    "word_jihacheol": [
-      "subway",
-      "Sumasakay ako ng subway."
-    ],
-    "word_sal": [
-      "taong gulang",
-      "Dalawampung taong gulang ako."
-    ],
-    "word_anae": [
-      "asawang babae",
-      "Kasama ko ang asawa kong babae."
-    ],
-    "word_swida": [
-      "magpahinga",
-      "Magpahinga muna tayo sandali."
-    ],
-    "word_gimbap": [
-      "gimbap",
-      "Kumain ako ng gimbap sa tanghalian."
-    ],
-    "word_gayo": [
-      "Koreanong popular na musika",
-      "Gusto ko ang Koreanong popular na musika.",
-      "Ang popular na awiting Koreano bilang uri — ang K-pop ay 가요. Kaparehong-kapareho ang baybay nito ng 가요 «pumupunta», ang magalang na kasalukuyan ng 가다, kaya ang pangungusap sa paligid ang magpapasya kung alin ang binabasa mo."
-    ],
-    "word_swipda": [
-      "madali",
-      "Madali ang hangul."
-    ],
-    "word_pyojeong": [
-      "ekspresyon ng mukha",
-      "Maaliwalas ang ekspresyon ng mukha niya."
-    ],
-    "word_dareuda": [
-      "magkaiba",
-      "Magkaiba ang mga kulay."
-    ],
-    "word_geunyang": [
-      "basta na lang",
-      "Nasa bahay lang ako noong katapusan ng linggo."
-    ],
-    "word_majimak": [
-      "huli",
-      "Nasakyan ko ang huling bus."
-    ],
-    "word_bangbeop": [
-      "paraan",
-      "May magandang paraan."
-    ],
-    "word_huinsaek": [
-      "puting kulay",
-      "Malinis ang puting dingding."
-    ],
-    "word_jalmot": [
-      "pagkakamali",
-      "Kasalanan ko ito."
-    ],
-    "word_daehakgyo": [
-      "unibersidad",
-      "Nag-aaral ako sa unibersidad."
-    ],
-    "word_haengun": [
-      "suwerte",
-      "Suwerte sa pagsusulit."
-    ],
-    "word_harabeoji": [
-      "lolo",
-      "Nagbabasa ng diyaryo ang lolo."
-    ],
-    "word_bimil": [
-      "lihim",
-      "Pakitago po ang lihim."
-    ],
-    "word_sogogi": [
-      "karne ng baka",
-      "Inihaw namin ang karne ng baka saka kinain."
-    ],
-    "word_net": [
-      "apat",
-      "Kaming apat ay isang koponan."
-    ],
-    "word_sinda": [
-      "magsuot sa paa",
-      "Nagsusuot ako ng medyas."
-    ],
-    "word_dap": [
-      "sagot",
-      "Nahanap ko ang sagot."
-    ],
-    "word_yeonseup": [
-      "pagsasanay",
-      "Nagsasanay ako araw-araw."
-    ],
-    "word_gongchaek": [
-      "kuwaderno",
-      "Isinusulat ko ang pangalan sa kuwaderno."
-    ],
-    "word_ssada": [
-      "mura",
-      "Mura ang prutas na ito."
-    ],
-    "word_dowajuda": [
-      "tumulong",
-      "Tulungan mo naman ako."
-    ],
-    "word_maekju": [
-      "serbesa",
-      "Malamig ang serbesa."
-    ],
-    "word_jjada": [
-      "maalat",
-      "Maalat ang sabaw."
-    ],
-    "word_gyehoek": [
-      "plano",
-      "Gumawa ako ng plano."
-    ],
-    "word_pyeonghwa": [
-      "kapayapaan",
-      "Kapayapaan ang hinihiling namin."
-    ],
-    "word_yaksok": [
-      "pangako",
-      "Tinutupad ko ang pangako."
-    ],
-    "word_oreunjjok": [
-      "kanan",
-      "Kumanan po kayo."
-    ],
-    "word_gippeuda": [
-      "matuwa",
-      "Natuwa ako nang marinig ang balita."
-    ],
-    "word_baeuda": [
-      "matuto",
-      "Nag-aaral ako ng Koreano."
-    ],
-    "word_jebal": [
-      "pakiusap",
-      "Pakiusap, tulungan mo ako."
-    ],
-    "word_dopda": [
-      "tumulong",
-      "Tinutulungan ko ang kaibigan ko."
-    ],
-    "word_jaryo": [
-      "materyal para sa trabaho",
-      "Inihanda ko nang maaga ang materyales para sa miting."
-    ],
-    "word_hullyunghada": [
-      "napakahusay",
-      "Napakahusay na ideya iyan."
-    ],
-    "word_moseup": [
-      "anyo",
-      "Nagbago ang anyo nila."
-    ],
-    "word_undong": [
-      "ehersisyo",
-      "Nag-eehersisyo ako sa umaga."
-    ],
-    "word_geureonde": [
-      "siya nga pala, pero",
-      "Siya nga pala, ano ito?"
-    ],
-    "word_juseu": [
-      "juice",
-      "Umiinom ng juice ang bata."
-    ],
-    "word_jwi": [
-      "daga",
-      "May nakita akong daga sa kusina."
-    ],
-    "word_chwimi": [
-      "libangan",
-      "Ang libangan ko ay pagkuha ng litrato."
-    ],
-    "word_deung": [
-      "likod",
-      "Makati ang likod ko."
-    ],
-    "word_jeoldae": [
-      "kailanman",
-      "Huwag na huwag kang male-late."
-    ],
-    "word_dol": [
-      "bato",
-      "Maraming bato sa daan kaya nag-ingat kami."
-    ],
-    "word_bappeuda": [
-      "abala",
-      "Abala ako ngayong araw."
-    ],
-    "word_ireon": [
-      "ganito",
-      "Unang beses kong nakaranas ng ganito."
-    ],
-    "word_yeoseong": [
-      "babae",
-      "Maraming babae ang dumating."
-    ],
-    "word_paransaek": [
-      "asul na kulay",
-      "Bagay sa iyo ang asul na damit."
-    ],
-    "word_ireonada": [
-      "bumangon",
-      "Bumabangon ako nang alas-siyete."
-    ],
-    "word_gom": [
-      "oso",
-      "Sa bundok nakatira ang mga oso."
-    ],
-    "word_jam": [
-      "tulog",
-      "Hindi ako makatulog nang maayos kamakailan."
-    ],
-    "word_haebyeon": [
-      "dalampasigan",
-      "Pumunta kami sa dalampasigan noong tag-init."
-    ],
-    "word_hosu": [
-      "lawa",
-      "Tahimik ang lawa."
-    ],
-    "word_dakgogi": [
-      "karne ng manok",
-      "Mababa ang taba ng karne ng manok."
-    ],
-    "word_geunde": [
-      "siya nga pala",
-      "Siya nga pala, anong oras na?"
-    ],
-    "word_jaeneung": [
-      "talento",
-      "May talento siya sa pagguhit."
-    ],
-    "word_gyeolhon": [
-      "kasal",
-      "Maligayang bati sa inyong kasal."
-    ],
-    "word_binu": [
-      "sabon",
-      "Naghuhugas ako ng kamay gamit ang sabon."
-    ],
-    "word_saja": [
-      "leon",
-      "Malaki ang leon."
-    ],
-    "word_eoneu": [
-      "alin",
-      "Alin ang gusto mo?"
-    ],
-    "word_mureoboda": [
-      "magtanong",
-      "Nagtanong ako sa guro."
-    ],
-    "word_ucheguk": [
-      "post office",
-      "Nagpadala ako ng liham sa post office."
-    ],
-    "word_japji": [
-      "magasin",
-      "Nagbabasa ako ng magasin."
-    ],
-    "word_jean": [
-      "alok, mungkahi",
-      "Nakatanggap ako ng magandang alok mula sa kompanya."
-    ],
-    "word_yojeum": [
-      "kamakailan",
-      "Kumusta ka na kamakailan?"
-    ],
-    "word_ulda": [
-      "umiyak",
-      "Umiiyak ang sanggol."
-    ],
-    "word_namda": [
-      "matira",
-      "May natirang kaunting kanin."
-    ],
-    "word_miso": [
-      "ngiti",
-      "Napakagandang ngiti."
-    ],
-    "word_daehak": [
-      "kolehiyo",
-      "Nakapasa ako sa unibersidad."
-    ],
-    "word_uimi": [
-      "kahulugan",
-      "Ano ang kahulugan ng salitang ito?"
-    ],
-    "word_geim": [
-      "laro",
-      "Naglalaro ako ng game."
-    ],
-    "word_cham": [
-      "talaga",
-      "Talagang maganda ang panahon ngayon."
-    ],
-    "word_kong": [
-      "beans",
-      "Naglagay ako ng beans sa kanin."
-    ],
-    "word_saebyeok": [
-      "bukang-liwayway",
-      "Bumangon ako bago mag-bukang-liwayway."
-    ],
-    "word_utda": [
-      "tumawa",
-      "Malakas na tumatawa ang kaibigan ko."
-    ],
-    "word_imi": [
-      "tapos na",
-      "Tapos na ang lahat."
-    ],
-    "word_sutgarak": [
-      "kutsara",
-      "Kumakain ako ng sabaw gamit ang kutsara."
-    ],
-    "word_bureuda": [
-      "tumawag",
-      "Tumatawag ako ng taksi."
-    ],
-    "word_koteu": [
-      "coat",
-      "Isuot po ninyo ang coat."
-    ],
-    "word_meolda": [
-      "malayo",
-      "Malayo ang paaralan."
-    ],
-    "word_myeong": [
-      "pambilang para sa tao",
-      "May limang estudyante."
-    ],
-    "word_eonni": [
-      "ate ng isang babae",
-      "Estudyante sa unibersidad ang ate ko.",
-      "Ang salitang ginagamit ng babae para sa nakatatandang kapatid na babae; sasabihin ng lalaki na 누나 para sa parehong tao. Ganito rin tumatawag ang mga babae sa bahagyang nakatatandang babaeng malapit sa kanila, pati sa mga tindahan."
-    ],
-    "word_ihae": [
-      "pag-unawa",
-      "Naiintindihan ko itong mabuti."
-    ],
-    "word_samda": [
-      "pakuluan",
-      "Nagpapakulo ako ng itlog."
-    ],
-    "word_noransaek": [
-      "dilaw na kulay",
-      "Nagdala ako ng dilaw na payong."
-    ],
-    "word_mudeom": [
-      "libingan",
-      "May lumang libingan sa bundok."
-    ],
-    "word_gita": [
-      "gitara",
-      "Tumutugtog ako ng gitara."
-    ],
-    "word_itda_3": [
-      "makalimutan",
-      "Nakalimutan ko ang pangalan."
-    ],
-    "word_gongyeon": [
-      "palabas",
-      "Nagsisimula na ang palabas."
-    ],
-    "word_ilta": [
-      "mawala",
-      "Nawala ang susi ko."
-    ],
-    "word_baneung": [
-      "reaksiyon",
-      "Napakaganda ng reaksiyon ng mga tao."
-    ],
-    "word_gudu": [
-      "sapatos na katad",
-      "Komportable ang sapatos."
-    ],
-    "word_hyuga": [
-      "bakasyon mula sa trabaho",
-      "Nagbakasyon ako."
-    ],
-    "word_jeohui": [
-      "kami, mapagkumbaba",
-      "Kami po ang tutulong sa inyo."
-    ],
-    "word_geuttae": [
-      "noong panahong iyon",
-      "Umuulan noon."
-    ],
-    "word_sopa": [
-      "sopa",
-      "Maupo po kayo sa sopa at magpahinga."
-    ]
-  }
+ "_comment": "Vocabulary copy for Filipino. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+ "locale": "fil",
+ "words": {
+  "word_hada": [
+   "gawin",
+   "Nag-aaral ako.",
+   "Gawin — at ang makina ng pagbuo ng salitang Koreano. Ikabit ito sa isang pangngalan at magiging pandiwa: ang 공부 (pag-aaral) ay nagiging 공부하다 (mag-aral), ang 사랑 (pag-ibig) ay nagiging 사랑하다. Daan-daang pandiwa ang ganito ang pagkakabuo."
+  ],
+  "word_cha": [
+   "kotse",
+   "Sumasakay ako ng kotse.",
+   "Kotse. Ang parehong pantig ay salita rin para sa tsaa, kaya ang 차를 마셔요 ay umiinom ako ng tsaa at ang 차를 타요 ay sumasakay ako sa kotse. Ang pandiwa ang nagsasabi kung alin."
+  ],
+  "word_yeoja": [
+   "babae",
+   "Doktor ang babaeng iyon."
+  ],
+  "word_na": [
+   "ako",
+   "Nag-aaral ako ng Korean."
+  ],
+  "word_hae": [
+   "araw",
+   "Maliwanag ang araw."
+  ],
+  "word_don": [
+   "pera",
+   "May pera sa pitaka."
+  ],
+  "word_uri": [
+   "kami",
+   "Magkaibigan kami."
+  ],
+  "word_jip": [
+   "bahay",
+   "Uuwi na ako."
+  ],
+  "word_itda": [
+   "nasa isang lugar",
+   "Nasa bahay ako.",
+   "Iisang salita para sa dalawang bagay: ang 있다 ay parehong nasa isang lugar at mayroon. 책상에 책이 있어요 — nasa mesa ang libro; 시간이 있어요 — may oras ako. Ang kasalungat nito ay 없다."
+  ],
+  "word_ne": [
+   "oo",
+   "Oo, tama iyan.",
+   "Tatlong karaniwang salita ang binabaybay na 네. Ito ang «oo». Ang iba ay «iyo» (네 책, ang libro mo) at ang katutubong bilang na «apat» bago ang pantukoy ng bilang (네 개, apat na piraso). Konteksto ang naghihiwalay sa kanila, hindi ang baybay."
+  ],
+  "word_son": [
+   "kamay",
+   "Sumusulat ako gamit ang kamay."
+  ],
+  "word_sigan": [
+   "oras",
+   "Wala akong oras.",
+   "Oras sa pangkalahatan, at pambilang din ng oras: ang 두 시간 ay dalawang oras. Huwag ipagkamali sa 시, na siyang oras sa relo — ang 두 시 ay alas-dos, ibang-iba."
+  ],
+  "word_jeo": [
+   "ako (magalang)",
+   "Estudyante ako."
+  ],
+  "word_gada": [
+   "pumunta",
+   "Pumupunta ako sa paaralan."
+  ],
+  "word_gae": [
+   "aso",
+   "Tumatakbo ang aso."
+  ],
+  "word_mun": [
+   "pinto",
+   "Binubuksan ko ang pinto."
+  ],
+  "word_sae": [
+   "ibon",
+   "May ibong lumilipad."
+  ],
+  "word_mom": [
+   "katawan",
+   "Naliligo ako araw-araw."
+  ],
+  "word_bang": [
+   "kuwarto",
+   "Malinis ang kuwarto."
+  ],
+  "word_nun": [
+   "mata",
+   "Maganda ang mga mata mo.",
+   "Mata. Kapareho ng baybay ng salita para sa niyebe, at sa maingat na pagsasalita ang haba ang nagpapaiba: hinahaba ang 눈 na niyebe, maikli ang 눈 na mata. Karamihan ay umaasa na lang sa konteksto."
+  ],
+  "word_ot": [
+   "damit",
+   "Maganda ang damit."
+  ],
+  "word_neo": [
+   "ikaw",
+   "Nasaan ka?"
+  ],
+  "word_eopda": [
+   "walang",
+   "Wala akong pera."
+  ],
+  "word_meori": [
+   "ulo",
+   "Masakit ang ulo ko."
+  ],
+  "word_ip": [
+   "bibig",
+   "Maliit ang bibig."
+  ],
+  "word_mul": [
+   "tubig",
+   "Umiinom ako ng tubig."
+  ],
+  "word_dari": [
+   "binti",
+   "Masakit ang binti ko.",
+   "Binti — sa iyo, sa mesa, sa upuan. Ang parehong salita ay tulay din, kaya ang 다리를 건너요 ay «tumatawid ako sa tulay», hindi tungkol sa katawan."
+  ],
+  "word_bi": [
+   "ulan",
+   "Umuulan."
+  ],
+  "word_wae": [
+   "bakit",
+   "Bakit ka nahuli?"
+  ],
+  "word_eolgul": [
+   "mukha",
+   "Naghihilamos ako."
+  ],
+  "word_saram": [
+   "tao",
+   "Mabuti siyang tao."
+  ],
+  "word_hakgyo": [
+   "paaralan",
+   "Malaki ang paaralan."
+  ],
+  "word_yeogi": [
+   "dito",
+   "Maupo po kayo dito."
+  ],
+  "word_pal": [
+   "braso",
+   "Mahaba ang mga braso mo."
+  ],
+  "word_norae": [
+   "awit",
+   "Kumakanta ako ng awit."
+  ],
+  "word_chaek": [
+   "libro",
+   "Nagbabasa ako ng libro."
+  ],
+  "word_dal": [
+   "buwan",
+   "Maliwanag ang buwan."
+  ],
+  "word_jeonhwa": [
+   "telepono",
+   "Sinasagot ko ang telepono."
+  ],
+  "word_namu": [
+   "puno",
+   "Matangkad ang puno."
+  ],
+  "word_dasi": [
+   "muli",
+   "Pakiulit po."
+  ],
+  "word_nal": [
+   "araw",
+   "Magandang araw ngayon."
+  ],
+  "word_jigeum": [
+   "ngayon",
+   "Aalis na ako ngayon."
+  ],
+  "word_haru": [
+   "maghapon",
+   "Mahaba ang araw."
+  ],
+  "word_sesang": [
+   "mundo",
+   "Malawak ang mundo."
+  ],
+  "word_bal": [
+   "paa",
+   "Malamig ang mga paa ko."
+  ],
+  "word_neutda": [
+   "mahuli",
+   "Nahuli ang bus."
+  ],
+  "word_modu": [
+   "lahat",
+   "Nagtipon ang lahat."
+  ],
+  "word_sajin": [
+   "larawan",
+   "Kumukuha ako ng larawan."
+  ],
+  "word_chimdae": [
+   "kama",
+   "Komportable ang kama."
+  ],
+  "word_ko": [
+   "ilong",
+   "Barado ang ilong ko."
+  ],
+  "word_san": [
+   "bundok",
+   "Pumupunta ako sa bundok."
+  ],
+  "word_hana": [
+   "isa",
+   "Isang mansanas po."
+  ],
+  "word_byeongwon": [
+   "ospital",
+   "Pumupunta ako sa ospital."
+  ],
+  "word_jeongmal": [
+   "talaga",
+   "Maraming salamat po.",
+   "Talaga, totoo — pampatingkad bago ang pang-uri, tulad sa 정말 좋아요. Mag-isa, na pataas ang bigkas sa dulo, ang 정말? ay tanong na iisang salita: «talaga?» — at ganito mo ito madalas maririnig."
+  ],
+  "word_seonmul": [
+   "regalo",
+   "Gusto ko ang regalo."
+  ],
+  "word_boda": [
+   "makita",
+   "Nanonood ako ng pelikula."
+  ],
+  "word_oneul": [
+   "ngayong araw",
+   "Maganda ang panahon ngayon."
+  ],
+  "word_gabang": [
+   "bag",
+   "Mabigat ang bag."
+  ],
+  "word_eumak": [
+   "musika",
+   "Maganda ang musika."
+  ],
+  "word_gage": [
+   "tindahan",
+   "Sarado ang tindahan."
+  ],
+  "word_gil": [
+   "daan",
+   "Malapad ang daan."
+  ],
+  "word_ohu": [
+   "hapon",
+   "Magkita tayo sa hapon."
+  ],
+  "word_keopi": [
+   "kape",
+   "Umiinom ako ng kape."
+  ],
+  "word_bap": [
+   "kanin",
+   "Kumakain ako."
+  ],
+  "word_eomma": [
+   "nanay",
+   "Nagluluto si Nanay."
+  ],
+  "word_gwi": [
+   "tainga",
+   "Masakit ang tainga ko."
+  ],
+  "word_beoseu": [
+   "bus",
+   "Dumarating ang bus."
+  ],
+  "word_geurim": [
+   "larawan",
+   "Gumuguhit ako ng larawan."
+  ],
+  "word_beon": [
+   "beses",
+   "Pakiulit po ng isang beses."
+  ],
+  "word_sul": [
+   "alak",
+   "Hindi ako umiinom ng alak."
+  ],
+  "word_yeonghwa": [
+   "pelikula",
+   "Masaya ang pelikula."
+  ],
+  "word_sada": [
+   "bumili",
+   "Bumibili ako ng tinapay."
+  ],
+  "word_byeol": [
+   "bituin",
+   "Kumikinang ang mga bituin."
+  ],
+  "word_bihaenggi": [
+   "eroplano",
+   "Sumasakay ako ng eroplano."
+  ],
+  "word_bak": [
+   "labas",
+   "Umuulan sa labas."
+  ],
+  "word_oda": [
+   "dumating",
+   "Dumarating ang kaibigan ko."
+  ],
+  "word_chingu": [
+   "kaibigan",
+   "Nakikipagkita ako sa kaibigan."
+  ],
+  "word_appa": [
+   "tatay",
+   "Magandang gabi, Tatay."
+  ],
+  "word_haneul": [
+   "langit",
+   "Bughaw ang langit."
+  ],
+  "word_bada": [
+   "dagat",
+   "Malawak ang dagat."
+  ],
+  "word_sagwa": [
+   "mansanas",
+   "Matamis ang mansanas."
+  ],
+  "word_mulgeon": [
+   "bagay",
+   "Bumibili ako ng mga bagay."
+  ],
+  "word_moja": [
+   "sumbrero",
+   "Nagsusuot ako ng sumbrero."
+  ],
+  "word_gogi": [
+   "karne",
+   "Nag-iihaw ako ng karne."
+  ],
+  "word_jinjja": [
+   "totoo",
+   "Totoo ba ito?"
+  ],
+  "word_sinbal": [
+   "sapatos",
+   "Nagsusuot ako ng sapatos."
+  ],
+  "word_jamkkan": [
+   "sandali",
+   "Sandali lang po."
+  ],
+  "word_namja": [
+   "lalaki",
+   "Kaibigan ko ang lalaking iyon."
+  ],
+  "word_eumsik": [
+   "pagkain",
+   "Masarap ang pagkaing Koreano."
+  ],
+  "word_saengil": [
+   "kaarawan",
+   "Maligayang kaarawan."
+  ],
+  "word_daseot": [
+   "lima",
+   "Limang tao ang dumating."
+  ],
+  "word_gihoe": [
+   "pagkakataon",
+   "Magandang pagkakataon ito."
+  ],
+  "word_dul": [
+   "dalawa",
+   "May dalawang upuan."
+  ],
+  "word_sijang": [
+   "palengke",
+   "Bumibili ako ng gulay sa palengke."
+  ],
+  "word_goyangi": [
+   "pusa",
+   "Natutulog ang pusa."
+  ],
+  "word_changmun": [
+   "bintana",
+   "Pakisara po ang bintana."
+  ],
+  "word_yeoreum": [
+   "tag-init",
+   "Pumupunta ako sa dagat tuwing tag-init."
+  ],
+  "word_dongmul": [
+   "hayop",
+   "Gusto ko ang mga hayop."
+  ],
+  "word_yeohaeng": [
+   "paglalakbay",
+   "Gusto kong maglakbay."
+  ],
+  "word_bam": [
+   "gabi",
+   "Maraming bituin sa gabi.",
+   "Gabi. Kapareho ng baybay ng salita para sa kastanyas, karaniwang meryenda tuwing taglagas sa Korea, kaya magkaibang-magkaiba ang pinag-uusapan ng 밤을 먹어요 at 밤에 자요."
+  ],
+  "word_geot": [
+   "bagay",
+   "Binili ko ang mga bagay na kailangan ko.",
+   "Ang pinakakaraniwang pangngalan sa Koreano: pumapalit ito sa anumang hindi mo pinangalanan. 제 것 ay *akin*; 먹을 것 ay *may makakain*. Sa pagsasalita ay umiikli itong 거 — 이거, 그거, 저거 — at iyan ang unang anyong nakikilala ng nagsisimula."
+  ],
+  "word_mal": [
+   "salita, ang sinasabi ng isang tao",
+   "Mag-ingat ka sa iyong mga salita.",
+   "Salita — ang sinasabi ng isang tao. Ang parehong pantig ay nangangahulugan ding kabayo, at ang 말 ang nagtatapos sa 한국말, ang wikang Koreano. Walang naghihiwalay sa kanila sa sulat: 말을 하다 ay magsalita, 말을 타다 ay sumakay sa kabayo."
+  ],
+  "word_bun": [
+   "minuto",
+   "Maghintay lang po ng sampung minuto.",
+   "May dalawa pang salitang isinusulat na 분. Isa ang magalang na paraan ng pagbilang ng tao — 세 분, tatlong tao, para sa panauhin o nakatatanda. Ang isa ay galit, gaya sa 분이 풀리다. Ang pangungusap lamang ang naghihiwalay sa kanila."
+  ],
+  "word_dwi": [
+   "likuran",
+   "Isinulat ko ang pangalan ko sa likod ng kuwaderno."
+  ],
+  "word_si": [
+   "oras sa orasan",
+   "Natatapos ang klase nang alas-dos.",
+   "Ang oras ay gumagamit ng katutubong bilang — 한 시, 두 시, 세 시 — at ang minuto ng Sino-Koreano: 세 시 십 분, alas-tres diyes. Ang pagpapalit sa dalawa ang klasikong pagkakamali ng nagsisimula, at agad itong napapansin."
+  ],
+  "word_deo": [
+   "mas marami pa",
+   "Kaunti pa po."
+  ],
+  "word_ap": [
+   "harapan",
+   "Magkita tayo sa harap ng tindahan."
+  ],
+  "word_da": [
+   "lahat",
+   "Kinain ko ang lahat ng kanin."
+  ],
+  "word_jom": [
+   "kaunti, at pampalambot din ng pakiusap",
+   "Pahingi po ng kaunting tubig.",
+   "Pinaikli mula sa 조금, *kaunti* — ngunit kalahati ng gawain nito ay pagpapalambot. Isinisingit sa isang pakiusap, inaalis nito ang talim: 도와주세요 ay *tulungan mo ako*, 좀 도와주세요 ay parang *maaari po bang tulungan ninyo ako*. Kaya nga ito ginagamit nang paulit-ulit ng mga Koreano."
+  ],
+  "word_jeon": [
+   "bago",
+   "Naghuhugas ako ng kamay bago kumain.",
+   "Bago, sa oras. May iba pang salitang isinusulat na 전: ang 전쟁 ay digmaan at pinaiikling 전, ang 전기 ay kuryente, at ang 전 sa menu ay maalat na palaman-panipis. Sa harap ng pandiwa, ito ang pang-oras — 먹기 전에, bago kumain."
+  ],
+  "word_alda": [
+   "malaman",
+   "Alam ko ang pangalan."
+  ],
+  "word_yak": [
+   "gamot",
+   "Inumin po ang gamot pagkatapos kumain."
+  ],
+  "word_jota": [
+   "maganda, mabuti",
+   "Maganda ang pakiramdam ko."
+  ],
+  "word_jal": [
+   "mabuti",
+   "Nakatulog ka ba nang mahimbing?"
+  ],
+  "word_anida": [
+   "hindi ito iyon",
+   "Hindi ako estudyante.",
+   "Ang kabaligtaran ng 이다. Kumukuha ito ng 이/가 sa bagay na tinatanggihan, hindi 을/를: 학생이 아니에요, hindi kailanman 학생을 아니에요. Ang nakakatutunan ng isang padrong ito ay kayang tanggihan ang anumang pangungusap na pangngalan sa Koreano."
+  ],
+  "word_bul": [
+   "apoy",
+   "May sunog sa bundok."
+  ],
+  "word_uyu": [
+   "gatas",
+   "Malamig ang gatas."
+  ],
+  "word_meokda": [
+   "kumain",
+   "Kumakain ako ng prutas."
+  ],
+  "word_ppang": [
+   "tinapay",
+   "Kumakain ako ng tinapay."
+  ],
+  "word_ttae": [
+   "sandaling nangyari ang isang bagay",
+   "Noong bata ako, sa probinsiya ako nakatira."
+  ],
+  "word_il": [
+   "trabaho",
+   "Maraming trabaho ngayon.",
+   "Trabaho, o bagay na dapat gawin. Ang parehong pantig ay ang Sino-Koreanong isa — 일 번, numero uno — at ito ang araw sa 일요일, Linggo, at sa 삼 일, tatlong araw."
+  ],
+  "word_baji": [
+   "pantalon",
+   "Mahaba ang pantalon."
+  ],
+  "word_sigye": [
+   "relo",
+   "Wala akong relo."
+  ],
+  "word_siheom": [
+   "pagsusulit",
+   "May pagsusulit ako bukas."
+  ],
+  "word_keompyuteo": [
+   "kompyuter",
+   "Binubuksan ko ang kompyuter."
+  ],
+  "word_nalssi": [
+   "panahon",
+   "Maganda ang panahon."
+  ],
+  "word_jongi": [
+   "papel",
+   "Gumuguhit ako sa papel."
+  ],
+  "word_dosi": [
+   "lungsod",
+   "Napakalaki ng lungsod."
+  ],
+  "word_munje": [
+   "problema",
+   "May problema."
+  ],
+  "word_wi": [
+   "itaas",
+   "May sumbrero sa ibabaw ng bag."
+  ],
+  "word_bom": [
+   "tagsibol",
+   "Namumukadkad ang mga bulaklak sa tagsibol."
+  ],
+  "word_jeonyeok": [
+   "hapunan",
+   "Kumakain ako ng hapunan."
+  ],
+  "word_gyeoul": [
+   "taglamig",
+   "Maraming niyebe sa taglamig."
+  ],
+  "word_abeoji": [
+   "ama",
+   "Pumapasok sa trabaho ang tatay ko."
+  ],
+  "word_eoseo": [
+   "tuloy po kayo",
+   "Tuloy po kayo, maligayang pagdating."
+  ],
+  "word_mot": [
+   "hindi kaya kahit gusto",
+   "Napakaanghang kaya hindi ko ito makain.",
+   "May dalawang pagtanggi ang Koreano at magkaiba ang sinasabi nila. Ang 안 ay *ayaw ko*; ang 못 ay *hindi ko kaya*. Ang 안 먹어요 ay pinipili mong huwag kumain; ang 못 먹어요 ay may pumipigil sa iyo. Ang pangngalang kaparehong baybay, 못, ay pako."
+  ],
+  "word_salda": [
+   "manirahan",
+   "Nakatira ako sa Seoul."
+  ],
+  "word_ai": [
+   "bata",
+   "Tumatawa ang bata."
+  ],
+  "word_jeomsim": [
+   "tanghalian",
+   "Mananghalian tayo nang sabay."
+  ],
+  "word_nugu": [
+   "sino",
+   "Sino ang taong iyon?"
+  ],
+  "word_eonje": [
+   "kailan",
+   "Kailan ka darating?"
+  ],
+  "word_geori": [
+   "kalye",
+   "Maraming tao sa kalye."
+  ],
+  "word_annyeong": [
+   "hello at paalam",
+   "Paalam, magkita tayo ulit!"
+  ],
+  "word_gakkeum": [
+   "kung minsan",
+   "Kung minsan ay nanonood ako ng pelikula."
+  ],
+  "word_manta": [
+   "marami",
+   "Maraming tao."
+  ],
+  "word_chima": [
+   "palda",
+   "Napakaganda ng paldang ito."
+  ],
+  "word_uija": [
+   "upuan",
+   "Nakaupo ako sa upuan."
+  ],
+  "word_jeogi": [
+   "doon",
+   "May paaralan doon."
+  ],
+  "word_gongwon": [
+   "parke",
+   "Naglalakad ako sa parke."
+  ],
+  "word_ssal": [
+   "bigas",
+   "Hinuhugasan ko ang bigas bago lutuin."
+  ],
+  "word_jigu": [
+   "Daigdig",
+   "Bilog ang Daigdig."
+  ],
+  "word_eodi": [
+   "saan",
+   "Saan po ang banyo?"
+  ],
+  "word_byeok": [
+   "dingding",
+   "Nagsasabit ako ng larawan sa dingding."
+  ],
+  "word_gyeran": [
+   "itlog",
+   "Nagpakulo ako ng itlog kaninang umaga."
+  ],
+  "word_tada": [
+   "sumakay",
+   "Sumasakay ako ng bus.",
+   "Sumakay sa anumang nagdadala sa iyo — bus, bisikleta, elevator. May dalawa pang karaniwang pandiwa ang magkaparehong baybay: ang 타다 ay nangangahulugan ding masunog, at maghalo ng isang bagay sa inumin."
+  ],
+  "word_segye": [
+   "mundo",
+   "Marami akong alam na bansa sa mundo."
+  ],
+  "word_ireum": [
+   "pangalan",
+   "Ano ang pangalan mo?"
+  ],
+  "word_guk": [
+   "sabaw",
+   "Kumakain ako ng sabaw sa umaga."
+  ],
+  "word_malhada": [
+   "magsalita",
+   "Magsalita po kayo nang dahan-dahan."
+  ],
+  "word_geotda": [
+   "maglakad",
+   "Naglalakad ako sa parke."
+  ],
+  "word_gangaji": [
+   "tuta",
+   "Maliit ang tuta."
+  ],
+  "word_sori": [
+   "tunog",
+   "Malakas ang tunog."
+  ],
+  "word_yeop": [
+   "tabi",
+   "Maupo po kayo sa tabi ko."
+  ],
+  "word_saenggak": [
+   "ideya, iniisip",
+   "Magandang ideya iyan."
+  ],
+  "word_geogi": [
+   "diyan",
+   "May tao ba diyan?"
+  ],
+  "word_adeul": [
+   "anak na lalaki",
+   "Nag-aaral ang anak kong lalaki."
+  ],
+  "word_doeda": [
+   "maging",
+   "Gusto kong maging doktor.",
+   "Maging. Ito rin ang pang-araw-araw na salita para sa isang bagay na gumagana o pinapayagan: ang 안 돼요 ay hindi puwede, at ang 다 됐어요 ay tapos na. Mas madalas mo itong maririnig kaysa sa kahulugang nasa diksiyonaryo."
+  ],
+  "word_maeul": [
+   "nayon",
+   "Tahimik ang nayon."
+  ],
+  "word_kape": [
+   "kapihan",
+   "Nakikipagkita ako sa kaibigan sa kapihan."
+  ],
+  "word_gong": [
+   "bola",
+   "Sinisipa ko ang bola."
+  ],
+  "word_gajok": [
+   "pamilya",
+   "Malaki ang pamilya ko."
+  ],
+  "word_ssi": [
+   "panggalang na kasunod ng pangalan",
+   "Minsu, sandali lang.",
+   "Ikinakabit sa pangalan, ito ay magalang at palakaibigan sa magkapantay: 민수 씨. Ikinakabit sa apelyido lamang — 김 씨 — tumutunog itong malayo o maging matabang, kaya gamitin ang pangalan. Sa nakatataas, gamitin ang titulo: 부장님, 선생님."
+  ],
+  "word_achim": [
+   "umaga",
+   "Gumigising ako sa umaga."
+  ],
+  "word_jeonhwahada": [
+   "tumawag sa telepono",
+   "Tatawagan kita mamaya."
+  ],
+  "word_gaeul": [
+   "taglagas",
+   "Malamig ang hangin sa taglagas."
+  ],
+  "word_kkot": [
+   "bulaklak",
+   "Maganda ang bulaklak."
+  ],
+  "word_jido": [
+   "mapa",
+   "Tinitingnan ko ang mapa."
+  ],
+  "word_saek": [
+   "kulay",
+   "Maganda ang kulay na ito."
+  ],
+  "word_juda": [
+   "magbigay",
+   "Nagbibigay ako ng regalo."
+  ],
+  "word_yachae": [
+   "gulay",
+   "Kumain po kayo ng maraming gulay."
+  ],
+  "word_chaeksang": [
+   "mesa sa pag-aaral",
+   "May libro sa ibabaw ng mesa."
+  ],
+  "word_cheoeum": [
+   "unang pagkakataon",
+   "Ikinagagalak kong makilala kayo."
+  ],
+  "word_gwail": [
+   "prutas",
+   "Gusto ko ang prutas."
+  ],
+  "word_uisa": [
+   "doktor",
+   "Sinusuri ako ng doktor."
+  ],
+  "word_ttal": [
+   "anak na babae",
+   "Nag-aaral ang anak kong babae."
+  ],
+  "word_yeoboseyo": [
+   "hello sa telepono",
+   "Hello, sino po ito?"
+  ],
+  "word_so": [
+   "baka",
+   "Kumakain ng damo ang baka."
+  ],
+  "word_pyeonji": [
+   "liham",
+   "Sumusulat ako ng liham sa nanay ko."
+  ],
+  "word_jogeum": [
+   "kaunti",
+   "Kaunti lang po."
+  ],
+  "word_boida": [
+   "makita, mahagip ng mata",
+   "Kita ang bundok."
+  ],
+  "word_jari": [
+   "puwesto, upuan",
+   "Walang bakanteng upuan."
+  ],
+  "word_hu": [
+   "pagkatapos",
+   "Pagkatapos ng klase ay pupunta ako sa aklatan."
+  ],
+  "word_kadeu": [
+   "kard",
+   "Magbabayad ako gamit ang kard."
+  ],
+  "word_naeil": [
+   "bukas",
+   "Hanggang bukas."
+  ],
+  "word_jungyohada": [
+   "mahalaga",
+   "Ang kalusugan ang pinakamahalaga."
+  ],
+  "word_dalgyal": [
+   "itlog",
+   "Kumakain ako ng itlog sa umaga."
+  ],
+  "word_aju": [
+   "napaka",
+   "Napakasarap nito."
+  ],
+  "word_matda": [
+   "tama",
+   "Tama ang sagot na ito."
+  ],
+  "word_hanguk": [
+   "Korea",
+   "Gusto ko ang pagkaing Koreano."
+  ],
+  "word_gang": [
+   "ilog",
+   "Napakalapad ng ilog."
+  ],
+  "word_cho": [
+   "segundo",
+   "Tatlumpung segundo na lang."
+  ],
+  "word_hoesa": [
+   "kompanya, opisina",
+   "Pumupunta ako sa opisina."
+  ],
+  "word_sosik": [
+   "balita mula sa isang tao",
+   "May magandang balita ako."
+  ],
+  "word_jakda": [
+   "maliit",
+   "Maliit ang sapatos."
+  ],
+  "word_gimchi": [
+   "kimchi",
+   "Maanghang ang kimchi."
+  ],
+  "word_ikda": [
+   "magbasa",
+   "Nagbabasa ako ng diyaryo."
+  ],
+  "word_geurigo": [
+   "at, at saka",
+   "Bumili ako ng tinapay. At bumili rin ako ng gatas."
+  ],
+  "word_keuda": [
+   "malaki",
+   "Malaki ang bag na ito."
+  ],
+  "word_yeollak": [
+   "pakikipag-ugnayan",
+   "Pakikontak po ako mamaya."
+  ],
+  "word_gachi": [
+   "magkasama",
+   "Kumain tayo nang sabay."
+  ],
+  "word_neomu": [
+   "masyado",
+   "Masyadong malaki ang damit na ito."
+  ],
+  "word_yong": [
+   "dragon",
+   "May malaking dragon sa larawan."
+  ],
+  "word_geureota": [
+   "ganoon nga",
+   "Oo, ganoon nga."
+  ],
+  "word_hotel": [
+   "hotel",
+   "Sa hotel ako natulog."
+  ],
+  "word_yeolsoe": [
+   "susi",
+   "Wala akong susi."
+  ],
+  "word_yeppeuda": [
+   "maganda",
+   "Talagang maganda ang mga bulaklak."
+  ],
+  "word_geugeot": [
+   "iyan",
+   "Pakiabot po niyan."
+  ],
+  "word_daeum": [
+   "susunod",
+   "Hanggang sa susunod."
+  ],
+  "word_maeum": [
+   "puso, kalooban",
+   "Mabait ang kanilang kalooban."
+  ],
+  "word_jadongcha": [
+   "kotse",
+   "Mabilis ang kotse."
+  ],
+  "word_jukda": [
+   "mamatay",
+   "Namatay ang bulaklak sa paso dahil hindi nadiligan."
+  ],
+  "word_nalda": [
+   "lumipad",
+   "Lumilipad ang ibon sa langit."
+  ],
+  "word_siksa": [
+   "pagkain, salu-salo",
+   "Napakasarap ng pagkain."
+  ],
+  "word_gigye": [
+   "makina",
+   "Nasira ang makina."
+  ],
+  "word_ttang": [
+   "lupa",
+   "Basa ang lupa."
+  ],
+  "word_jada": [
+   "matulog",
+   "Maaga akong natutulog."
+  ],
+  "word_beorida": [
+   "itapon",
+   "Itapon po ninyo sa basurahan."
+  ],
+  "word_juso": [
+   "address",
+   "Pakisabi po ang address."
+  ],
+  "word_gicha": [
+   "tren",
+   "Umalis na ang tren."
+  ],
+  "word_chitsol": [
+   "sipilyo",
+   "Bumili ako ng bagong sipilyo."
+  ],
+  "word_sarang": [
+   "pag-ibig",
+   "Maganda ang pag-ibig."
+  ],
+  "word_gongbu": [
+   "pag-aaral",
+   "Masaya ang pag-aaral."
+  ],
+  "word_saengseon": [
+   "isdang pagkain",
+   "Nagprito ako ng isda para sa hapunan."
+  ],
+  "word_mok": [
+   "leeg",
+   "Masakit ang leeg ko."
+  ],
+  "word_sipda": [
+   "gusto",
+   "Gusto kong pumunta sa Korea."
+  ],
+  "word_nyuseu": [
+   "balita",
+   "Nanonood ako ng balita."
+  ],
+  "word_chatda": [
+   "maghanap",
+   "Hinahanap ko ang susi."
+  ],
+  "word_iljjik": [
+   "maaga",
+   "Maaga akong babangon bukas."
+  ],
+  "word_geonmul": [
+   "gusali",
+   "Napakataas ng gusaling iyon."
+  ],
+  "word_seonsaengnim": [
+   "guro",
+   "Nagtuturo ang guro."
+  ],
+  "word_eomeoni": [
+   "ina",
+   "Nasa bahay ang nanay ko."
+  ],
+  "word_gibun": [
+   "pakiramdam",
+   "Kumusta ang pakiramdam mo?"
+  ],
+  "word_honja": [
+   "mag-isa",
+   "Kaya kong pumunta nang mag-isa."
+  ],
+  "word_ani": [
+   "hindi",
+   "Hindi, hindi ako pumunta."
+  ],
+  "word_eoje": [
+   "kahapon",
+   "Umulan kahapon."
+  ],
+  "word_sseuda": [
+   "magsulat",
+   "Isinusulat ko ang pangalan ko.",
+   "Sumulat. Ang parehong pandiwa ay nangangahulugan ding gumamit ng isang bagay, magsuot ng sombrero o salamin sa ulo, at — bilang pang-uri — mapait. Apat na pang-araw-araw na kahulugan, isang baybay."
+  ],
+  "word_masida": [
+   "uminom",
+   "Umiinom ako ng gatas."
+  ],
+  "word_syeocheu": [
+   "kamiseta",
+   "Nakasuot ako ng puting kamiseta."
+  ],
+  "word_junbi": [
+   "paghahanda",
+   "Handa na ang lahat."
+  ],
+  "word_mian": [
+   "pasensiya na",
+   "Pasensiya na, na-late ako."
+  ],
+  "word_geokjeong": [
+   "alalahanin",
+   "Marami akong alalahanin."
+  ],
+  "word_hajiman": [
+   "pero",
+   "Umuulan. Pero pupunta pa rin ako."
+  ],
+  "word_kamera": [
+   "kamera",
+   "Bumili ako ng kamera."
+  ],
+  "word_dongne": [
+   "kapitbahayan",
+   "Tahimik ang aming kapitbahayan."
+  ],
+  "word_naengjanggo": [
+   "reprigerator",
+   "Inilagay ko ang gatas sa reprigerator."
+  ],
+  "word_anda": [
+   "maupo",
+   "Naupo ako sa upuan."
+  ],
+  "word_ppalli": [
+   "mabilis",
+   "Bilisan mo po ang pagpunta."
+  ],
+  "word_yaegi": [
+   "usapan",
+   "Mag-usap muna tayo sandali."
+  ],
+  "word_got": [
+   "lugar",
+   "Nakahanap ako ng tahimik na lugar."
+  ],
+  "word_nat": [
+   "araw, tanghaling tapat",
+   "Mainit sa araw."
+  ],
+  "word_sangja": [
+   "kahon",
+   "Binubuksan ko ang kahon."
+  ],
+  "word_wonhada": [
+   "gustuhin",
+   "Ano ang gusto mo?"
+  ],
+  "word_sikdang": [
+   "kainan",
+   "Saan po ang kainan?"
+  ],
+  "word_geurida": [
+   "gumuhit",
+   "Gumuguhit ng puno ang bata."
+  ],
+  "word_yuri": [
+   "salamin, bubog",
+   "Nabasag ang salamin."
+  ],
+  "word_igeot": [
+   "ito",
+   "Pakiabot po nito."
+  ],
+  "word_geoul": [
+   "salamin sa pagtingin",
+   "Tumitingin ako sa salamin."
+  ],
+  "word_gijeok": [
+   "himala",
+   "Parang himala talaga iyon."
+  ],
+  "word_kal": [
+   "kutsilyo",
+   "Binalatan ko ang mansanas gamit ang kutsilyo."
+  ],
+  "word_gatda": [
+   "magkapareho",
+   "Magkapareho ang mga bag namin."
+  ],
+  "word_pul": [
+   "damo",
+   "Berde ang damo."
+  ],
+  "word_eolma": [
+   "magkano",
+   "Magkano po ito?"
+  ],
+  "word_saenggakada": [
+   "mag-isip",
+   "Ganoon din ang iniisip ko."
+  ],
+  "word_jilmun": [
+   "tanong",
+   "May tanong ako."
+  ],
+  "word_geunyeo": [
+   "siya, para sa babae",
+   "Maganda siyang kumanta."
+  ],
+  "word_nota": [
+   "ilagay",
+   "Inilagay ko ang bag sa sahig."
+  ],
+  "word_banggeum": [
+   "kanina lang",
+   "Kararating ko lang."
+  ],
+  "word_bonaeda": [
+   "magpadala",
+   "Nagpapadala ako ng liham."
+  ],
+  "word_arae": [
+   "sa ilalim",
+   "Nasa ilalim ng mesa ang libro."
+  ],
+  "word_naoda": [
+   "lumabas",
+   "Lumalabas ang tubig."
+  ],
+  "word_nai": [
+   "edad",
+   "Ilang taon na po kayo?"
+  ],
+  "word_eotteoke": [
+   "paano",
+   "Paano po pumunta doon?"
+  ],
+  "word_eunhaeng": [
+   "bangko",
+   "Bukas na ang bangko."
+  ],
+  "word_al": [
+   "itlog ng hayop",
+   "Nangitlog ng tatlo ang ibon."
+  ],
+  "word_moreuda": [
+   "hindi alam",
+   "Hindi ko alam."
+  ],
+  "word_badak": [
+   "sahig",
+   "Naglilinis ako ng sahig."
+  ],
+  "word_hwajangsil": [
+   "banyo",
+   "Malinis ang banyo."
+  ],
+  "word_yeok": [
+   "istasyon",
+   "Magkita tayo sa istasyon."
+  ],
+  "word_seoul": [
+   "Seoul",
+   "Napakalaki ng Seoul."
+  ],
+  "word_gwiyeopda": [
+   "cute",
+   "Cute ang tuta."
+  ],
+  "word_areumdapda": [
+   "napakaganda",
+   "Napakaganda ng tanawin."
+  ],
+  "word_ajik": [
+   "hindi pa",
+   "Hindi pa sila dumarating."
+  ],
+  "word_gyedan": [
+   "hagdan",
+   "Maraming baitang."
+  ],
+  "word_maeil": [
+   "araw-araw",
+   "Araw-araw akong sumusulat ng hangul."
+  ],
+  "word_agi": [
+   "sanggol",
+   "Natutulog ang sanggol."
+  ],
+  "word_dwaeji": [
+   "baboy",
+   "Kumakain ang baboy."
+  ],
+  "word_ju": [
+   "linggo",
+   "Magkita tayo sa susunod na linggo."
+  ],
+  "word_iyagi": [
+   "kuwento",
+   "Kawili-wiling kuwento iyon."
+  ],
+  "word_tto": [
+   "muli",
+   "Magkita tayo ulit bukas."
+  ],
+  "word_beolsseo": [
+   "kanina pa",
+   "Tapos na talaga ang lahat."
+  ],
+  "word_dangsin": [
+   "kayo, magalang",
+   "Hinintay ko po kayo.",
+   "Sa mga aklat, ang 당신 ay magalang na «kayo», pero sa totoong usapan ito'y ginagamit pangunahin ng mag-asawa — kapag sinabi sa estranghero, parang naghahamon. Karaniwang iniiwasan ng mga Koreano ang «ikaw» at ginagamit ang pangalan o titulo (선생님, 사장님). Ingatan ang paggamit nito."
+  ],
+  "word_gap": [
+   "presyo",
+   "Mataas ang presyo."
+  ],
+  "word_mianhada": [
+   "humingi ng paumanhin",
+   "Paumanhin sa pagka-late ko."
+  ],
+  "word_jeongnyujang": [
+   "hintuan",
+   "Naghihintay ako ng bus sa hintuan."
+  ],
+  "word_anta": [
+   "hindi ginagawa",
+   "Hindi ako umiinom ng kape."
+  ],
+  "word_taeksi": [
+   "taksi",
+   "Pakitawag po ng taksi."
+  ],
+  "word_haksaeng": [
+   "estudyante",
+   "Maraming estudyante sa silid-aralan."
+  ],
+  "word_bomul": [
+   "kayamanan",
+   "Naghahanap ng kayamanan ang mga bata."
+  ],
+  "word_jumun": [
+   "order",
+   "Mag-o-order na po ba kayo?"
+  ],
+  "word_sinmun": [
+   "diyaryo",
+   "Basahin po ninyo ang diyaryo."
+  ],
+  "word_dak": [
+   "manok",
+   "Nangingitlog ang manok."
+  ],
+  "word_keop": [
+   "baso",
+   "Naglalagay ako ng tubig sa baso."
+  ],
+  "word_set": [
+   "tatlo",
+   "Nagsama-sama ang tatlong magkakaibigan."
+  ],
+  "word_hangugeo": [
+   "wikang Koreano",
+   "Kawili-wili ang wikang Koreano."
+  ],
+  "word_geuraeseo": [
+   "kaya nga",
+   "Umuulan, kaya hindi ako pupunta."
+  ],
+  "word_manhi": [
+   "marami",
+   "Kumain po kayo nang marami."
+  ],
+  "word_du": [
+   "dalawa, bago ang pambilang",
+   "Dalawang kape po.",
+   "Nagbabago ang anyo ng katutubong bilang ng Koreano bago ang pambilang. Ang 하나 둘 셋 넷 ay nagiging 한 두 세 네: 하나 nang mag-isa, 한 개 para sa isang piraso. Ang 두 ay ang anyong iyon ng 둘, at hindi ito kailanman nag-iisa."
+  ],
+  "word_pyeonuijeom": [
+   "convenience store",
+   "May convenience store sa harap ng bahay ko."
+  ],
+  "word_miguk": [
+   "Estados Unidos",
+   "Taga-Estados Unidos ako."
+  ],
+  "word_gyesok": [
+   "tuloy-tuloy",
+   "Tuloy-tuloy ang ulan."
+  ],
+  "word_gagyeok": [
+   "presyo",
+   "Mas mataas ang presyo kaysa sa inaasahan ko."
+  ],
+  "word_dongsaeng": [
+   "nakababatang kapatid",
+   "Cute ang nakababata kong kapatid.",
+   "Ang tanging salita para sa kapatid na hindi nagbabago ayon sa nagsasalita: sinumang mas bata ay 동생, kahit sino pa ang nagsasalita. Magdagdag ng pantig kapag kailangan ang kasarian — 남동생 nakababatang lalaki, 여동생 nakababatang babae."
+  ],
+  "word_tokki": [
+   "kuneho",
+   "Tumatalon ang kuneho."
+  ],
+  "word_seoda": [
+   "tumayo",
+   "Nakatayo ako sa pila."
+  ],
+  "word_eoreum": [
+   "yelo",
+   "Dagdagan po ninyo ng yelo."
+  ],
+  "word_jayeon": [
+   "kalikasan",
+   "Maganda ang kalikasan."
+  ],
+  "word_jjikda": [
+   "magtatak",
+   "Nagtatak ako ng selyo.",
+   "Idiin ang isang bagay sa ibabaw: selyo, tatak, bakat ng daliri. Sakop din ng parehong pandiwa ang pagkuha ng larawan — 사진을 찍다 — at ang pagsawsaw ng pagkain sa sarsa, tatlo mula sa iisang ideya ng pagdiin."
+  ],
+  "word_yeol": [
+   "sampu",
+   "Magbilang po kayo hanggang sampu.",
+   "Dito ang 열 ay ang katutubong sampu ng Koreano, ang ginagamit sa pagbilang ng bagay — 열 개, sampung piraso. May ibang 열 na nangangahulugang lagnat, at ang pandiwang 열다 ay magbukas. Dalawang letra, tatlong walang kaugnayang salita."
+  ],
+  "word_sasil": [
+   "katotohanan",
+   "Katotohanan iyon."
+  ],
+  "word_unjeon": [
+   "pagmamaneho",
+   "Natututo akong magmaneho."
+  ],
+  "word_gamja": [
+   "patatas",
+   "Pinapakuluan ko ang patatas."
+  ],
+  "word_gureum": [
+   "ulap",
+   "Maraming ulap."
+  ],
+  "word_iyu": [
+   "dahilan",
+   "Pakisabi po ang dahilan."
+  ],
+  "word_dareun": [
+   "iba",
+   "May iba pa po bang kulay?"
+  ],
+  "word_songarak": [
+   "daliri",
+   "Masakit ang daliri ko."
+  ],
+  "word_japda": [
+   "hawakan",
+   "Hinahawakan ko ang kamay mo."
+  ],
+  "word_bueok": [
+   "kusina",
+   "Nagluluto ako sa kusina."
+  ],
+  "word_piryo": [
+   "pangangailangan",
+   "Hindi ko kailangan ng tulong."
+  ],
+  "word_pa": [
+   "sibuyas na mura",
+   "Naglagay ako ng kaunting sibuyas sa sabaw."
+  ],
+  "word_batda": [
+   "tumanggap",
+   "Tumanggap ako ng regalo."
+  ],
+  "word_pida": [
+   "mamukadkad",
+   "Namukadkad ang mga bulaklak."
+  ],
+  "word_sayong": [
+   "paggamit",
+   "Pakituro po kung paano ito gamitin."
+  ],
+  "word_jeongbo": [
+   "impormasyon",
+   "Naghahanap ako ng impormasyon."
+  ],
+  "word_gonghang": [
+   "paliparan",
+   "Nakarating ako sa paliparan."
+  ],
+  "word_bumo": [
+   "magulang",
+   "Kailangan ng bata ang magulang."
+  ],
+  "word_saranghada": [
+   "magmahal",
+   "Mahal ko ang pamilya ko."
+  ],
+  "word_ireoke": [
+   "ganito",
+   "Isulat po ninyo nang ganito."
+  ],
+  "word_ilhada": [
+   "magtrabaho",
+   "Nagtatrabaho ang nanay ko sa ospital."
+  ],
+  "word_suyeong": [
+   "paglangoy",
+   "Natututo akong lumangoy."
+  ],
+  "word_piryohada": [
+   "kailanganin",
+   "Kailangan ko ng pera."
+  ],
+  "word_bukjjok": [
+   "hilaga",
+   "Pumunta sila sa hilaga."
+  ],
+  "word_cheung": [
+   "palapag",
+   "Nasa ikalawang palapag ang opisina."
+  ],
+  "word_hwanja": [
+   "pasyente",
+   "Nagpapahinga ang pasyente."
+  ],
+  "word_halmeoni": [
+   "lola",
+   "Nakangiti ang lola."
+  ],
+  "word_palda": [
+   "magbenta",
+   "Nagbebenta sila ng prutas."
+  ],
+  "word_itda_2": [
+   "pagdugtungin",
+   "Pinagdugtong ko ang dalawang lubid."
+  ],
+  "word_nara": [
+   "bansa",
+   "Magandang bansa ang Korea."
+  ],
+  "word_apateu": [
+   "apartment",
+   "Nakatira ako sa apartment."
+  ],
+  "word_hamkke": [
+   "magkasama",
+   "Sabay tayong pumunta."
+  ],
+  "word_modeun": [
+   "lahat ng",
+   "Tumawa ang lahat."
+  ],
+  "word_gwaenchanta": [
+   "ayos lang",
+   "Ayos lang ako."
+  ],
+  "word_johahada": [
+   "magustuhan",
+   "Gusto ko ang kape."
+  ],
+  "word_jimseung": [
+   "mailap na hayop",
+   "May narinig na hayop sa gubat."
+  ],
+  "word_dongan": [
+   "sa loob ng panahon",
+   "Naglakbay ako noong bakasyon."
+  ],
+  "word_ipgu": [
+   "pasukan",
+   "Magkita tayo sa pasukan ng gusali."
+  ],
+  "word_silta": [
+   "ayaw",
+   "Ayaw ko sa malamig na araw."
+  ],
+  "word_meonjeo": [
+   "una",
+   "Naghuhugas muna ako ng kamay."
+  ],
+  "word_dubu": [
+   "tokwa",
+   "Naglagay ako ng tokwa saka nagluto ng sabaw."
+  ],
+  "word_bumonim": [
+   "sariling magulang",
+   "Kasama ko ang mga magulang ko sa bahay."
+  ],
+  "word_gomapda": [
+   "magpasalamat",
+   "Salamat sa tulong."
+  ],
+  "word_gyesan": [
+   "kalkulasyon",
+   "Medyo mali ang kalkulasyon."
+  ],
+  "word_hyeo": [
+   "dila",
+   "Masakit ang dila ko kaya hindi ako makakain."
+  ],
+  "word_sugeon": [
+   "tuwalya",
+   "Pinupunasan ko ang kamay ko ng tuwalya."
+  ],
+  "word_saeropda": [
+   "bago",
+   "Sariwa ang pakiramdam ko."
+  ],
+  "word_sup": [
+   "gubat",
+   "May tunog ng ibon sa gubat."
+  ],
+  "word_chum": [
+   "sayaw",
+   "Sumayaw sila sa entablado."
+  ],
+  "word_sukje": [
+   "takdang-aralin",
+   "Tapos ko na ang takdang-aralin."
+  ],
+  "word_gaji": [
+   "uri, klase",
+   "Isang bagay lang ang gusto kong itanong.",
+   "Pangalan din ito ng talong, at sanga ng puno. Bilang pambilang, ito ang ginagamit sa mga bagay na maaaring italaga isa-isa: 두 가지 방법, dalawang paraan; 세 가지 이유, tatlong dahilan."
+  ],
+  "word_mothada": [
+   "hindi kaya",
+   "Hindi ako marunong lumangoy."
+  ],
+  "word_nagada": [
+   "lumabas",
+   "Lumalabas ako."
+  ],
+  "word_meotjida": [
+   "astig, kahanga-hanga",
+   "Ang ganda mo ngayong araw."
+  ],
+  "word_podo": [
+   "ubas",
+   "Napakatamis ng ubas."
+  ],
+  "word_jeopsi": [
+   "plato",
+   "Maglabas po kayo ng dalawang plato."
+  ],
+  "word_yori": [
+   "lutuin",
+   "Masarap ang lutuin."
+  ],
+  "word_sogeum": [
+   "asin",
+   "Naglalagay ako ng kaunting asin."
+  ],
+  "word_duda": [
+   "ilagay",
+   "Inilagay ko ang libro sa mesa."
+  ],
+  "word_gamsahada": [
+   "magpasalamat",
+   "Salamat po sa tulong."
+  ],
+  "word_kkeut": [
+   "dulo",
+   "Tumayo po kayo sa dulo ng pila."
+  ],
+  "word_yeolda": [
+   "magbukas",
+   "Binubuksan ko ang bintana."
+  ],
+  "word_ibul": [
+   "kumot",
+   "Mainit ang kumot."
+  ],
+  "word_najung": [
+   "mamaya",
+   "Tatawag ako ulit mamaya."
+  ],
+  "word_manjida": [
+   "hawakan",
+   "Huwag po ninyong hawakan."
+  ],
+  "word_gajang": [
+   "pinaka",
+   "Ito ang pinakamaganda."
+  ],
+  "word_namjjok": [
+   "timog",
+   "Mainit sa timog."
+  ],
+  "word_doum": [
+   "tulong",
+   "Kailangan ko ng tulong."
+  ],
+  "word_jung": [
+   "sa gitna ng",
+   "Nasa miting ako."
+  ],
+  "word_sudo": [
+   "kabisera",
+   "Ang kabisera ng Korea ay Seoul.",
+   "Ang kabisera ng isang bansa. May hiwalay na 수도 na tumutukoy sa tubig sa gripo — ang 수도꼭지 ay gripo, ang 수도 요금 ay bayad sa tubig. Konteksto lamang ang naghihiwalay sa kanila."
+  ],
+  "word_gidarida": [
+   "maghintay",
+   "Sandali lang po, maghintay kayo."
+  ],
+  "word_chaeso": [
+   "gulay",
+   "Kumakain ako ng maraming gulay."
+  ],
+  "word_kkeunnada": [
+   "matapos",
+   "Tapos na ang klase."
+  ],
+  "word_butak": [
+   "pakiusap",
+   "May pakiusap ako."
+  ],
+  "word_seom": [
+   "isla",
+   "Nagbangka kami papunta sa isla."
+  ],
+  "word_teuki": [
+   "lalo na",
+   "Lalo na ang taglamig ang gusto ko."
+  ],
+  "word_jemok": [
+   "pamagat",
+   "Ano ang pamagat ng aklat na ito?"
+  ],
+  "word_insa": [
+   "pagbati",
+   "Bumati ako."
+  ],
+  "word_seoltang": [
+   "asukal",
+   "Naglalagay ako ng kaunting asukal."
+  ],
+  "word_jajeongeo": [
+   "bisikleta",
+   "Nagbibisikleta ako."
+  ],
+  "word_inteonet": [
+   "internet",
+   "Mabagal ang internet."
+  ],
+  "word_aniyo": [
+   "hindi po",
+   "Hindi po, ayos lang ako."
+  ],
+  "word_ama": [
+   "siguro",
+   "Baka umulan bukas."
+  ],
+  "word_jamsi": [
+   "sandali",
+   "Magpahinga tayo saglit."
+  ],
+  "word_beol": [
+   "bubuyog",
+   "Dumapo ang bubuyog sa bulaklak.",
+   "Isang bubuyog. May dalawa pang salitang isinusulat na 벌: parusa, at ang pambilang para sa isang terno ng damit — 옷 한 벌, isang terno."
+  ],
+  "word_won": [
+   "won",
+   "Dalawang libong won po."
+  ],
+  "word_ujuseon": [
+   "spaceship",
+   "Umakyat sa langit ang spaceship."
+  ],
+  "word_myeot": [
+   "ilan",
+   "Anong oras na po?"
+  ],
+  "word_sueop": [
+   "klase",
+   "Kawili-wili ang klase."
+  ],
+  "word_sijak": [
+   "simula",
+   "Magandang simula ito."
+  ],
+  "word_yeogwon": [
+   "pasaporte",
+   "Huwag mong kalimutang dalhin ang pasaporte."
+  ],
+  "word_gyosil": [
+   "silid-aralan",
+   "Maliwanag ang silid-aralan."
+  ],
+  "word_nyeon": [
+   "taon",
+   "Dalawang taon akong nag-aral."
+  ],
+  "word_bae": [
+   "tiyan",
+   "Sumakit ang tiyan ko kaya pumunta ako sa ospital.",
+   "Tiyan. May dalawa pang karaniwang salitang isinusulat na 배: bangka at peras. Ang 배가 아파요 ay masakit ang tiyan ko, ang 배를 타요 ay sumasakay ako sa bangka, at ang 배를 먹어요 ay kumakain ako ng peras."
+  ],
+  "word_satang": [
+   "kendi",
+   "Kumakain ako ng kendi."
+  ],
+  "word_dalleo": [
+   "dolyar",
+   "Isang daang dolyar po."
+  ],
+  "word_usan": [
+   "payong",
+   "Umulan kaya bumili ako ng payong."
+  ],
+  "word_museun": [
+   "anong",
+   "Anong trabaho po ninyo?"
+  ],
+  "word_pari": [
+   "langaw",
+   "May langaw na lumilipad-lipad.",
+   "Ang insekto. Ganito rin isinusulat ng Koreano ang lungsod na Paris, kaya ang 파리에 갔어요 ay pumunta ako sa Paris samantalang ang 파리가 있어요 ay may langaw. Walang naghihiwalay sa kanila kundi ang pangungusap."
+  ],
+  "word_ije": [
+   "ngayon na",
+   "Magsimula na tayo ngayon."
+  ],
+  "word_geollida": [
+   "tumagal",
+   "Isang oras ang tinatagal nito."
+  ],
+  "word_choego": [
+   "pinakamahusay",
+   "Ang kainang ito ang pinakamahusay."
+  ],
+  "word_naeda": [
+   "magbayad",
+   "Ako ang magbabayad ngayon."
+  ],
+  "word_daneo": [
+   "salita bilang yunit",
+   "Nag-aaral ako ng bagong salita."
+  ],
+  "word_jikjeop": [
+   "mismong sarili",
+   "Ako mismo ang gumawa ng cake."
+  ],
+  "word_yangmal": [
+   "medyas",
+   "Mainit ang medyas."
+  ],
+  "word_nopda": [
+   "mataas",
+   "Mataas ang gusali."
+  ],
+  "word_haendeupon": [
+   "selpon",
+   "Nagcha-charge ako ng selpon."
+  ],
+  "word_jigap": [
+   "pitaka",
+   "Nawala ang pitaka ko."
+  ],
+  "word_hyudaepon": [
+   "selpon",
+   "Nawala ang selpon ko."
+  ],
+  "word_agassi": [
+   "dalaga",
+   "May dalagang nagtatanong ng daan.",
+   "Batang babaeng walang asawa — ngunit bilang *pantawag* sa isang di-kakilala ay lumamlam ito, at itinuturing ng maraming babae na bastos o nakakababa. Gamitin ito tungkol sa isang tao, hindi sa kanya; para makuha ang atensiyon ng estranghero sabihin ang 저기요."
+  ],
+  "word_gieok": [
+   "alaala",
+   "Hindi ko maalala."
+  ],
+  "word_geutda": [
+   "gumuhit ng linya",
+   "Gumuhit ako ng linya."
+  ],
+  "word_ipda": [
+   "magsuot ng damit",
+   "Nagsusuot ako ng damit."
+  ],
+  "word_sai": [
+   "pagitan",
+   "May puno sa pagitan ng dalawang bahay."
+  ],
+  "word_gireum": [
+   "langis",
+   "Pinirito ko ito sa langis."
+  ],
+  "word_mulgogi": [
+   "isda",
+   "Lumalangoy ang isda."
+  ],
+  "word_jang": [
+   "pambilang para sa pirasong papel",
+   "Kailangan ko ng tatlong pirasong papel."
+  ],
+  "word_kkum": [
+   "panaginip",
+   "Kakaiba ang napanaginipan ko kagabi."
+  ],
+  "word_sijakada": [
+   "magsimula",
+   "Nagsisimula na ang klase."
+  ],
+  "word_ajikdo": [
+   "hanggang ngayon",
+   "Naghihintay pa rin ako."
+  ],
+  "word_teureok": [
+   "trak",
+   "May dumadaang trak."
+  ],
+  "word_eotteon": [
+   "anong klase",
+   "Anong kulay ang gusto mo?"
+  ],
+  "word_geulssi": [
+   "sulat-kamay",
+   "Maganda ang sulat-kamay mo."
+  ],
+  "word_deutda": [
+   "makinig",
+   "Nakikinig ako ng musika."
+  ],
+  "word_subak": [
+   "pakwan",
+   "Masarap ang pakwan sa tag-init."
+  ],
+  "word_ttalgi": [
+   "strawberry",
+   "Hinuhugasan ko ang strawberry bago kainin."
+  ],
+  "word_baram": [
+   "hangin",
+   "Malamig ang hangin."
+  ],
+  "word_sigol": [
+   "probinsiya",
+   "Sariwa ang hangin sa probinsiya."
+  ],
+  "word_pulda": [
+   "lutasin",
+   "Nalutas ko ang problema."
+  ],
+  "word_angyeong": [
+   "salamin sa mata",
+   "Nakasuot ako ng salamin sa mata."
+  ],
+  "word_yeonpil": [
+   "lapis",
+   "Gumuguhit ako gamit ang lapis."
+  ],
+  "word_jumal": [
+   "katapusan ng linggo",
+   "Nagpapahinga ako tuwing katapusan ng linggo."
+  ],
+  "word_jugida": [
+   "pumatay",
+   "Pinatay ko ang lamok na pumasok sa kuwarto."
+  ],
+  "word_him": [
+   "lakas",
+   "Napakalakas ng batang iyon."
+  ],
+  "word_jeonbu": [
+   "lahat-lahat",
+   "Magkano lahat?"
+  ],
+  "word_gyeongchal": [
+   "pulis",
+   "Pakitawag po ang pulis."
+  ],
+  "word_geureut": [
+   "mangkok",
+   "Naglalagay ako ng kanin sa mangkok."
+  ],
+  "word_nappeuda": [
+   "masama",
+   "Masama ang panahon."
+  ],
+  "word_oppa": [
+   "kuya ng isang babae",
+   "Nagmamaneho ang kuya ko.",
+   "Pinipili ng Koreano ang salita para sa kapatid ayon sa kasarian ng nagsasalita: tinatawag ng babae ang nakatatandang kapatid na lalaki na 오빠, tinatawag naman siya ng lalaki na 형. Ginagamit din ito para sa mas nakatatandang lalaking malapit sa isang babae, kaya naririnig ito nang malayo sa pamilya."
+  ],
+  "word_mannada": [
+   "magkita",
+   "Madalas kaming magkita."
+  ],
+  "word_huimang": [
+   "pag-asa",
+   "Huwag po kayong mawalan ng pag-asa."
+  ],
+  "word_hyeong": [
+   "kuya ng isang lalaki",
+   "Nilibre ako ng kuya ko ng pagkain.",
+   "Ang salitang ginagamit ng lalaki para sa nakatatandang kapatid na lalaki. Sasabihin ng babae na 오빠 para sa parehong tao. Tulad ng 오빠, umaabot ito sa isang malapit na nakatatandang lalaking hindi naman kadugo."
+  ],
+  "word_doro": [
+   "kalsada",
+   "Matrapik sa kalsada."
+  ],
+  "word_ttwida": [
+   "tumakbo",
+   "Tumatakbo ang bata."
+  ],
+  "word_mueot": [
+   "ano",
+   "Ano ito?"
+  ],
+  "word_oenjjok": [
+   "kaliwa",
+   "Kumaliwa po kayo."
+  ],
+  "word_chukgu": [
+   "soccer",
+   "Naglalaro ako ng soccer kasama ang kaibigan ko."
+  ],
+  "word_jayu": [
+   "kalayaan",
+   "Mahalaga ang kalayaan."
+  ],
+  "word_sungan": [
+   "sandali",
+   "Hindi ko malilimutan ang sandaling iyon."
+  ],
+  "word_sayonghada": [
+   "gamitin",
+   "Puwede ko po bang gamitin ang kuwartong ito?"
+  ],
+  "word_pada": [
+   "maghukay",
+   "Naghuhukay ako ng lupa."
+  ],
+  "word_nampyeon": [
+   "asawang lalaki",
+   "Nagluluto ang asawa kong lalaki."
+  ],
+  "word_silheomsil": [
+   "laboratoryo",
+   "Buong araw akong nagtrabaho sa laboratoryo."
+  ],
+  "word_dambae": [
+   "sigarilyo",
+   "Kumapit sa damit ang amoy ng sigarilyo."
+  ],
+  "word_banana": [
+   "saging",
+   "Kumakain ako ng saging sa umaga."
+  ],
+  "word_geum": [
+   "ginto",
+   "Ginto ang singsing na ito.",
+   "Ginto, ang metal. Ang parehong pantig ay nangangahulugan ding gasgas o guhit na linya — ang 금이 갔어요 ay pumitak — at binubuksan nito ang 금요일, Biyernes."
+  ],
+  "word_mandeulda": [
+   "gumawa",
+   "Gumagawa ako ng tinapay."
+  ],
+  "word_ibeon": [
+   "sa pagkakataong ito",
+   "Ako na ang gagawa sa pagkakataong ito."
+  ],
+  "word_gomawo": [
+   "salamat",
+   "Salamat sa tulong mo."
+  ],
+  "word_banchan": [
+   "ulam na kasabay ng kanin",
+   "Masarap ang mga ulam."
+  ],
+  "word_apeuda": [
+   "masaktan",
+   "Masakit ang tiyan ko."
+  ],
+  "word_doseogwan": [
+   "aklatan",
+   "Nanghiram ako ng libro sa aklatan."
+  ],
+  "word_ppyeo": [
+   "buto",
+   "May hawak na buto ang aso."
+  ],
+  "word_gamsa": [
+   "pasasalamat",
+   "Nagpasalamat ako."
+  ],
+  "word_geolda": [
+   "isabit",
+   "Isinasabit ko ang damit."
+  ],
+  "word_gim": [
+   "tuyong damong-dagat",
+   "Binabalot namin ng damong-dagat ang kanin bago kainin.",
+   "Ang manipis at pinatuyong damong-dagat na kinakain kasama ng kanin. Ang parehong pantig ay ang pinakakaraniwang apelyidong Koreano, at ito rin ang singaw na umaakyat mula sa mainit — 김이 나요, umuusok."
+  ],
+  "word_jalhada": [
+   "magaling gumawa ng isang bagay",
+   "Magaling kang kumanta."
+  ],
+  "word_saengmyeong": [
+   "buhay",
+   "Mahalaga ang buhay."
+  ],
+  "word_mureup": [
+   "tuhod",
+   "Masakit ang tuhod ko."
+  ],
+  "word_jjalda": [
+   "maikli",
+   "Maikli ang lapis."
+  ],
+  "word_chijeu": [
+   "keso",
+   "Gusto ko ang keso."
+  ],
+  "word_hanbeon": [
+   "isang beses",
+   "Subukan po ninyo minsan."
+  ],
+  "word_gohyang": [
+   "bayang sinilangan",
+   "Umuwi ako sa bayang sinilangan ko."
+  ],
+  "word_jihacheol": [
+   "subway",
+   "Sumasakay ako ng subway."
+  ],
+  "word_sal": [
+   "taong gulang",
+   "Dalawampung taong gulang ako."
+  ],
+  "word_anae": [
+   "asawang babae",
+   "Kasama ko ang asawa kong babae."
+  ],
+  "word_swida": [
+   "magpahinga",
+   "Magpahinga muna tayo sandali."
+  ],
+  "word_gimbap": [
+   "gimbap",
+   "Kumain ako ng gimbap sa tanghalian."
+  ],
+  "word_gayo": [
+   "Koreanong popular na musika",
+   "Gusto ko ang Koreanong popular na musika.",
+   "Ang popular na awiting Koreano bilang uri — ang K-pop ay 가요. Kaparehong-kapareho ang baybay nito ng 가요 «pumupunta», ang magalang na kasalukuyan ng 가다, kaya ang pangungusap sa paligid ang magpapasya kung alin ang binabasa mo."
+  ],
+  "word_swipda": [
+   "madali",
+   "Madali ang hangul."
+  ],
+  "word_pyojeong": [
+   "ekspresyon ng mukha",
+   "Maaliwalas ang ekspresyon ng mukha niya."
+  ],
+  "word_dareuda": [
+   "magkaiba",
+   "Magkaiba ang mga kulay."
+  ],
+  "word_geunyang": [
+   "basta na lang",
+   "Nasa bahay lang ako noong katapusan ng linggo."
+  ],
+  "word_majimak": [
+   "huli",
+   "Nasakyan ko ang huling bus."
+  ],
+  "word_bangbeop": [
+   "paraan",
+   "May magandang paraan."
+  ],
+  "word_huinsaek": [
+   "puting kulay",
+   "Malinis ang puting dingding."
+  ],
+  "word_jalmot": [
+   "pagkakamali",
+   "Kasalanan ko ito."
+  ],
+  "word_daehakgyo": [
+   "unibersidad",
+   "Nag-aaral ako sa unibersidad."
+  ],
+  "word_haengun": [
+   "suwerte",
+   "Suwerte sa pagsusulit."
+  ],
+  "word_harabeoji": [
+   "lolo",
+   "Nagbabasa ng diyaryo ang lolo."
+  ],
+  "word_bimil": [
+   "lihim",
+   "Pakitago po ang lihim."
+  ],
+  "word_sogogi": [
+   "karne ng baka",
+   "Inihaw namin ang karne ng baka saka kinain."
+  ],
+  "word_net": [
+   "apat",
+   "Kaming apat ay isang koponan."
+  ],
+  "word_sinda": [
+   "magsuot sa paa",
+   "Nagsusuot ako ng medyas."
+  ],
+  "word_dap": [
+   "sagot",
+   "Nahanap ko ang sagot."
+  ],
+  "word_yeonseup": [
+   "pagsasanay",
+   "Nagsasanay ako araw-araw."
+  ],
+  "word_gongchaek": [
+   "kuwaderno",
+   "Isinusulat ko ang pangalan sa kuwaderno."
+  ],
+  "word_ssada": [
+   "mura",
+   "Mura ang prutas na ito."
+  ],
+  "word_dowajuda": [
+   "tumulong",
+   "Tulungan mo naman ako."
+  ],
+  "word_maekju": [
+   "serbesa",
+   "Malamig ang serbesa."
+  ],
+  "word_jjada": [
+   "maalat",
+   "Maalat ang sabaw."
+  ],
+  "word_gyehoek": [
+   "plano",
+   "Gumawa ako ng plano."
+  ],
+  "word_pyeonghwa": [
+   "kapayapaan",
+   "Kapayapaan ang hinihiling namin."
+  ],
+  "word_yaksok": [
+   "pangako",
+   "Tinutupad ko ang pangako."
+  ],
+  "word_oreunjjok": [
+   "kanan",
+   "Kumanan po kayo."
+  ],
+  "word_gippeuda": [
+   "matuwa",
+   "Natuwa ako nang marinig ang balita."
+  ],
+  "word_baeuda": [
+   "matuto",
+   "Nag-aaral ako ng Koreano."
+  ],
+  "word_jebal": [
+   "pakiusap",
+   "Pakiusap, tulungan mo ako."
+  ],
+  "word_dopda": [
+   "tumulong",
+   "Tinutulungan ko ang kaibigan ko."
+  ],
+  "word_jaryo": [
+   "materyal para sa trabaho",
+   "Inihanda ko nang maaga ang materyales para sa miting."
+  ],
+  "word_hullyunghada": [
+   "napakahusay",
+   "Napakahusay na ideya iyan."
+  ],
+  "word_moseup": [
+   "anyo",
+   "Nagbago ang anyo nila."
+  ],
+  "word_undong": [
+   "ehersisyo",
+   "Nag-eehersisyo ako sa umaga."
+  ],
+  "word_geureonde": [
+   "siya nga pala, pero",
+   "Siya nga pala, ano ito?"
+  ],
+  "word_juseu": [
+   "juice",
+   "Umiinom ng juice ang bata."
+  ],
+  "word_jwi": [
+   "daga",
+   "May nakita akong daga sa kusina."
+  ],
+  "word_chwimi": [
+   "libangan",
+   "Ang libangan ko ay pagkuha ng litrato."
+  ],
+  "word_deung": [
+   "likod",
+   "Makati ang likod ko."
+  ],
+  "word_jeoldae": [
+   "kailanman",
+   "Huwag na huwag kang male-late."
+  ],
+  "word_dol": [
+   "bato",
+   "Maraming bato sa daan kaya nag-ingat kami."
+  ],
+  "word_bappeuda": [
+   "abala",
+   "Abala ako ngayong araw."
+  ],
+  "word_ireon": [
+   "ganito",
+   "Unang beses kong nakaranas ng ganito."
+  ],
+  "word_yeoseong": [
+   "babae",
+   "Maraming babae ang dumating."
+  ],
+  "word_paransaek": [
+   "asul na kulay",
+   "Bagay sa iyo ang asul na damit."
+  ],
+  "word_ireonada": [
+   "bumangon",
+   "Bumabangon ako nang alas-siyete."
+  ],
+  "word_gom": [
+   "oso",
+   "Sa bundok nakatira ang mga oso."
+  ],
+  "word_jam": [
+   "tulog",
+   "Hindi ako makatulog nang maayos kamakailan."
+  ],
+  "word_haebyeon": [
+   "dalampasigan",
+   "Pumunta kami sa dalampasigan noong tag-init."
+  ],
+  "word_hosu": [
+   "lawa",
+   "Tahimik ang lawa."
+  ],
+  "word_dakgogi": [
+   "karne ng manok",
+   "Mababa ang taba ng karne ng manok."
+  ],
+  "word_geunde": [
+   "siya nga pala",
+   "Siya nga pala, anong oras na?"
+  ],
+  "word_jaeneung": [
+   "talento",
+   "May talento siya sa pagguhit."
+  ],
+  "word_gyeolhon": [
+   "kasal",
+   "Maligayang bati sa inyong kasal."
+  ],
+  "word_binu": [
+   "sabon",
+   "Naghuhugas ako ng kamay gamit ang sabon."
+  ],
+  "word_saja": [
+   "leon",
+   "Malaki ang leon."
+  ],
+  "word_eoneu": [
+   "alin",
+   "Alin ang gusto mo?"
+  ],
+  "word_mureoboda": [
+   "magtanong",
+   "Nagtanong ako sa guro."
+  ],
+  "word_ucheguk": [
+   "post office",
+   "Nagpadala ako ng liham sa post office."
+  ],
+  "word_japji": [
+   "magasin",
+   "Nagbabasa ako ng magasin."
+  ],
+  "word_jean": [
+   "alok, mungkahi",
+   "Nakatanggap ako ng magandang alok mula sa kompanya."
+  ],
+  "word_yojeum": [
+   "kamakailan",
+   "Kumusta ka na kamakailan?"
+  ],
+  "word_ulda": [
+   "umiyak",
+   "Umiiyak ang sanggol."
+  ],
+  "word_namda": [
+   "matira",
+   "May natirang kaunting kanin."
+  ],
+  "word_miso": [
+   "ngiti",
+   "Napakagandang ngiti."
+  ],
+  "word_daehak": [
+   "kolehiyo",
+   "Nakapasa ako sa unibersidad."
+  ],
+  "word_uimi": [
+   "kahulugan",
+   "Ano ang kahulugan ng salitang ito?"
+  ],
+  "word_geim": [
+   "laro",
+   "Naglalaro ako ng game."
+  ],
+  "word_cham": [
+   "talaga",
+   "Talagang maganda ang panahon ngayon."
+  ],
+  "word_kong": [
+   "beans",
+   "Naglagay ako ng beans sa kanin."
+  ],
+  "word_saebyeok": [
+   "bukang-liwayway",
+   "Bumangon ako bago mag-bukang-liwayway."
+  ],
+  "word_utda": [
+   "tumawa",
+   "Malakas na tumatawa ang kaibigan ko."
+  ],
+  "word_imi": [
+   "tapos na",
+   "Tapos na ang lahat."
+  ],
+  "word_sutgarak": [
+   "kutsara",
+   "Kumakain ako ng sabaw gamit ang kutsara."
+  ],
+  "word_bureuda": [
+   "tumawag",
+   "Tumatawag ako ng taksi."
+  ],
+  "word_koteu": [
+   "coat",
+   "Isuot po ninyo ang coat."
+  ],
+  "word_meolda": [
+   "malayo",
+   "Malayo ang paaralan."
+  ],
+  "word_myeong": [
+   "pambilang para sa tao",
+   "May limang estudyante."
+  ],
+  "word_eonni": [
+   "ate ng isang babae",
+   "Estudyante sa unibersidad ang ate ko.",
+   "Ang salitang ginagamit ng babae para sa nakatatandang kapatid na babae; sasabihin ng lalaki na 누나 para sa parehong tao. Ganito rin tumatawag ang mga babae sa bahagyang nakatatandang babaeng malapit sa kanila, pati sa mga tindahan."
+  ],
+  "word_ihae": [
+   "pag-unawa",
+   "Naiintindihan ko itong mabuti."
+  ],
+  "word_samda": [
+   "pakuluan",
+   "Nagpapakulo ako ng itlog."
+  ],
+  "word_noransaek": [
+   "dilaw na kulay",
+   "Nagdala ako ng dilaw na payong."
+  ],
+  "word_mudeom": [
+   "libingan",
+   "May lumang libingan sa bundok."
+  ],
+  "word_gita": [
+   "gitara",
+   "Tumutugtog ako ng gitara."
+  ],
+  "word_itda_3": [
+   "makalimutan",
+   "Nakalimutan ko ang pangalan."
+  ],
+  "word_gongyeon": [
+   "palabas",
+   "Nagsisimula na ang palabas."
+  ],
+  "word_ilta": [
+   "mawala",
+   "Nawala ang susi ko."
+  ],
+  "word_baneung": [
+   "reaksiyon",
+   "Napakaganda ng reaksiyon ng mga tao."
+  ],
+  "word_gudu": [
+   "sapatos na katad",
+   "Komportable ang sapatos."
+  ],
+  "word_hyuga": [
+   "bakasyon mula sa trabaho",
+   "Nagbakasyon ako."
+  ],
+  "word_jeohui": [
+   "kami, mapagkumbaba",
+   "Kami po ang tutulong sa inyo."
+  ],
+  "word_geuttae": [
+   "noong panahong iyon",
+   "Umuulan noon."
+  ],
+  "word_sopa": [
+   "sopa",
+   "Maupo po kayo sa sopa at magpahinga."
+  ]
+ }
 }

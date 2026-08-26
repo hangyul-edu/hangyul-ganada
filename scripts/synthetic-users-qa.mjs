@@ -211,7 +211,10 @@ function runJourney(persona) {
     if (persona.levelTest === 'retaken' && day >= Math.ceil(persona.days / 2)) {
       measured = persona.retakenLevel;
     }
-    if (persona.levelTest === 'retaken-midday' && day > retakeDay) {
+    if (
+      (persona.levelTest === 'retaken-midday' || persona.levelTest === 'retaken-during-extra') &&
+      day > retakeDay
+    ) {
       measured = persona.retakenLevel;
     }
     const outgrown = levelFromProgress(
@@ -288,6 +291,11 @@ function runJourney(persona) {
     // the Vocabulary Level Test, comes out at a very different level, and
     // returns to the same day. §59's mandatory journey.
     let middayRetakePending = persona.levelTest === 'retaken-midday' && day === retakeDay;
+    // A `retaken-during-extra` persona finishes the goal, asks for five more
+    // words, and only then leaves for the Level Test — the retake must
+    // regenerate the *extension's* unresolved targets too.
+    let retakeAfterExtension =
+      persona.levelTest === 'retaken-during-extra' && day === retakeDay;
 
     while (queue.length > 0) {
       passes += 1;
@@ -337,9 +345,16 @@ function runJourney(persona) {
         if (isReview) outcome.reviewAsked += touches.length === 1 ? 1 : 0;
 
         const answered = { correct: [], wrong: [] };
+        // `retakeAfter` pins the answer given immediately before the retake,
+        // so the credit-then-retake and miss-then-retake seams are exercised
+        // deterministically rather than when the dice happen to fall that way.
+        const lastBeforeRetake =
+          middayRetakePending && persona.retakeAfter && question === ask[ask.length - 1];
         for (const id of touches) {
           const wasWrongBefore = missed.has(id);
-          const correct = rand() < persona.accuracy;
+          const correct = lastBeforeRetake
+            ? persona.retakeAfter === 'correct'
+            : rand() < persona.accuracy;
           (correct ? answered.correct : answered.wrong).push(id);
           const skill = question.exercise?.candidate.skill ?? 'meaning_recognition';
           memory = {
@@ -519,6 +534,10 @@ function runJourney(persona) {
         }
         void beforeTotal;
         queue = buildDailyQuestions(scheduleSteps(plan), meaningOf, label);
+        if (retakeAfterExtension) {
+          retakeAfterExtension = false;
+          middayRetakePending = true;
+        }
       }
     }
 
@@ -714,7 +733,7 @@ lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
 for (const r of results) {
   const p = r.persona;
   lines.push(
-    `| ${p.id} | ${p.locale} | ${p.level}${p.levelTest === 'retaken' || p.levelTest === 'retaken-midday' ? `→${p.retakenLevel}` : ''} | ${p.levelTest} | ${p.history} | ${p.goal} | ${p.days} | ${p.accuracy} | ${p.platform}/${p.device} | ${r.outcome.introduced} | ${r.outcome.mastered} | ${r.outcome.wrongOnce} | ${r.outcome.recovered} | ${r.outcome.savedCount} | ${r.pass ? 'PASS' : '**FAIL**'} |`,
+    `| ${p.id} | ${p.locale} | ${p.level}${p.levelTest === 'retaken' || p.levelTest === 'retaken-midday' || p.levelTest === 'retaken-during-extra' ? `→${p.retakenLevel}` : ''} | ${p.levelTest} | ${p.history} | ${p.goal} | ${p.days} | ${p.accuracy} | ${p.platform}/${p.device} | ${r.outcome.introduced} | ${r.outcome.mastered} | ${r.outcome.wrongOnce} | ${r.outcome.recovered} | ${r.outcome.savedCount} | ${r.pass ? 'PASS' : '**FAIL**'} |`,
   );
 }
 lines.push('');

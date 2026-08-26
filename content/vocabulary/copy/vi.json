@@ -935,7 +935,8 @@
   ],
   "word_dangsin": [
    "bạn (lịch sự)",
-   "Tôi đã đợi bạn."
+   "Tôi đã đợi bạn.",
+   "Sách giáo khoa ghi 당신 là «bạn» lịch sự, nhưng trong thực tế nó chủ yếu dùng giữa vợ chồng — nói với người lạ sẽ nghe như gây sự. Người Hàn thường tránh nói «bạn» mà gọi bằng tên hoặc chức danh (선생님, 사장님). Hãy dùng từ này thật cẩn thận."
   ],
   "word_sseuda": [
    "viết",
@@ -1572,7 +1573,7 @@
   ],
   "word_doro": [
    "đường lộ",
-   "Đường bị tắc rồi."
+   "Đường đang kẹt xe."
   ],
   "word_yeolda": [
    "mở",
@@ -3991,7 +3992,7 @@
   ],
   "word_silpae": [
    "thất bại",
-   "Thất bại cũng không sao."
+   "Tôi đã học được nhiều từ thất bại lần này."
   ],
   "word_bangmunhada": [
    "thăm",
@@ -4087,7 +4088,7 @@
   ],
   "word_pogi": [
    "sự từ bỏ",
-   "Bạn đừng bỏ cuộc nhé."
+   "Bây giờ bỏ cuộc thì còn quá sớm."
   ],
   "word_gakkai": [
    "gần",
@@ -4380,7 +4381,7 @@
   ],
   "word_juui": [
    "sự chú ý",
-   "Bạn nghe cho kỹ nhé."
+   "Trên cầu thang cần phải cẩn thận."
   ],
   "word_jigwon": [
    "nhân viên",
@@ -5071,7 +5072,7 @@
    "Bạn chọn cái mình thích nhé."
   ],
   "word_gaman": [
-   "yên",
+   "khoan đã (thán từ)",
    "Khoan đã, tiếng gì vậy?"
   ],
   "word_geujeo": [
@@ -5088,7 +5089,7 @@
   ],
   "word_eunggeup": [
    "cấp cứu",
-   "Tôi đã vào phòng cấp cứu."
+   "Đây là trường hợp cấp cứu."
   ],
   "word_geumji": [
    "sự cấm",
@@ -5228,7 +5229,7 @@
   ],
   "word_deopda_2": [
    "đậy, gấp lại",
-   "Bạn gấp sách lại nhé."
+   "Hãy đắp chăn vào nhé."
   ],
   "word_banjjagida": [
    "lấp lánh",
@@ -5264,7 +5265,7 @@
   ],
   "word_yeongu": [
    "nghiên cứu",
-   "Tôi nghiên cứu chữ Hangul."
+   "Nghiên cứu Hangul rất thú vị."
   ],
   "word_jaldoeda": [
    "suôn sẻ",
@@ -5471,7 +5472,7 @@
    "Họ đã thoát khỏi đám cháy."
   ],
   "word_jomangan": [
-   "sớm muộn gì",
+   "chẳng bao lâu nữa",
    "Sớm muộn gì mình cũng gặp lại nhé."
   ],
   "word_seungni": [
@@ -5776,7 +5777,7 @@
   ],
   "word_imsin": [
    "việc mang thai",
-   "Chị tôi đang mang thai."
+   "Chị gái tôi đang mang thai."
   ],
   "word_siseutem": [
    "hệ thống",
@@ -6225,7 +6226,7 @@
   ],
   "word_danji": [
    "chỉ",
-   "Cho tôi nước thôi ạ."
+   "Đó chỉ là một câu đùa thôi."
   ],
   "word_gadeuk": [
    "đầy ắp",
@@ -6785,7 +6786,7 @@
   ],
   "word_banghae": [
    "sự cản trở",
-   "Bạn đừng làm phiền tôi nhé."
+   "Nó làm phiền việc học của tôi."
   ],
   "word_eojji": [
    "làm sao",
@@ -6905,7 +6906,7 @@
   ],
   "word_jumok": [
    "sự chú ý",
-   "Xin mọi người chú ý."
+   "Diễn viên đó đã nhận được nhiều sự chú ý."
   ],
   "word_ttungttunghada": [
    "mập",
@@ -7058,10 +7059,6 @@
   "word_naemsaenada": [
    "bốc mùi",
    "Từ bếp có mùi bay ra."
-  ],
-  "word_aigu": [
-   "ối giời",
-   "Ối, vất vả quá."
   ],
   "word_jojik": [
    "tổ chức",
@@ -7836,7 +7833,7 @@
   ],
   "word_akchakgatda": [
    "kiên trì cật lực",
-   "Tôi đã dành dụm cật lực."
+   "Cầu thủ đó thật sự lì đòn."
   ],
   "word_jojonghada": [
    "điều khiển",
@@ -10081,7 +10078,7 @@
   ],
   "word_eunmilhada": [
    "bí mật",
-   "Đó là một cuộc gặp bí mật."
+   "Họ đã lập kế hoạch một cách bí mật."
   ],
   "word_gamdanghada": [
    "kham nổi",
@@ -10117,7 +10114,7 @@
   ],
   "word_seokbanghada": [
    "phóng thích",
-   "Họ đã thả người tù."
+   "Cảnh sát đã thả người đó."
   ],
   "word_burida": [
    "sai khiến",
@@ -10205,7 +10202,7 @@
   ],
   "word_sukda": [
    "cúi gục",
-   "Đầu anh ấy cúi gục xuống."
+   "Vì xấu hổ nên đầu tôi tự cúi xuống."
   ],
   "word_jeojireuda": [
    "gây ra (lỗi)",
@@ -10213,7 +10210,7 @@
   ],
   "word_kkankkanhada": [
    "khắt khe",
-   "Cuộc kiểm tra rất khắt khe."
+   "Tiêu chuẩn rất khắt khe."
   ],
   "word_gangyohada": [
    "ép buộc",
@@ -10637,7 +10634,7 @@
   ],
   "word_huhoe": [
    "sự hối tiếc",
-   "Hãy làm sao để không còn hối tiếc."
+   "Tôi không có gì phải hối tiếc."
   ],
   "word_byeongsil": [
    "phòng bệnh",
@@ -12703,7 +12700,7 @@
   ],
   "word_yuchanghada": [
    "lưu loát",
-   "Phát âm rất lưu loát."
+   "Vị ấy nói tiếng Hàn rất lưu loát."
   ],
   "word_neugeuthada": [
    "thong thả",
@@ -13096,6 +13093,325 @@
   "word_hoengseolsuseol": [
    "nói năng lộn xộn",
    "Tôi hồi hộp quá nên nói năng lộn xộn."
+  ],
+  "word_seonggwa": [
+   "thành quả",
+   "Chúng tôi đạt được thành quả lớn trong công việc lần này."
+  ],
+  "word_daean": [
+   "phương án thay thế",
+   "Tôi đang tìm phương án thay thế để giải quyết vấn đề."
+  ],
+  "word_yeogeon": [
+   "điều kiện sẵn có",
+   "Bây giờ điều kiện không được tốt."
+  ],
+  "word_bangchim": [
+   "phương châm",
+   "Phương châm mới của công ty đã được công bố."
+  ],
+  "word_myeongbun": [
+   "danh nghĩa chính đáng",
+   "Quyết định đó thiếu lý do chính đáng."
+  ],
+  "word_anmok": [
+   "con mắt tinh tường",
+   "Vị ấy có con mắt tinh tường về tranh."
+  ],
+  "word_yeokbujok": [
+   "quá sức mình",
+   "Một mình làm hết thì quá sức tôi."
+  ],
+  "word_chago_2": [
+   "sự nhầm lẫn",
+   "Giấy tờ đến muộn vì một sự nhầm lẫn."
+  ],
+  "word_chimhae": [
+   "sự xâm phạm",
+   "Xâm phạm đời tư là một vấn đề nghiêm trọng."
+  ],
+  "word_gyeolpip": [
+   "sự thiếu hụt",
+   "Thiếu hụt dinh dưỡng có hại cho sức khỏe."
+  ],
+  "word_pajang": [
+   "ảnh hưởng lan rộng",
+   "Phát ngôn đó đã gây ảnh hưởng lớn."
+  ],
+  "word_balsang": [
+   "cách nghĩ, ý tưởng",
+   "Đổi cách nghĩ thì câu trả lời sẽ hiện ra."
+  ],
+  "word_byeolgae": [
+   "chuyện riêng biệt",
+   "Hai vấn đề đó là hai chuyện riêng biệt."
+  ],
+  "word_giban": [
+   "nền tảng",
+   "Chúng tôi xây dựng mối quan hệ trên nền tảng tin cậy."
+  ],
+  "word_daechul": [
+   "khoản vay",
+   "Tôi đã vay tiền ở ngân hàng."
+  ],
+  "word_ija": [
+   "tiền lãi",
+   "Tiền lãi tăng nhiều hơn tôi nghĩ."
+  ],
+  "word_susuryo": [
+   "phí dịch vụ",
+   "Bị cộng thêm phí nên tôi trả nhiều hơn một chút."
+  ],
+  "word_halbu": [
+   "trả góp",
+   "Tôi mua tủ lạnh trả góp."
+  ],
+  "word_bojeunggeum": [
+   "tiền đặt cọc",
+   "Khi tìm nhà cần có tiền đặt cọc."
+  ],
+  "word_jeonse": [
+   "thuê nhà kiểu jeonse của Hàn Quốc",
+   "Tôi thuê được căn hộ theo kiểu jeonse.",
+   "Cách thuê nhà riêng có ở Hàn Quốc: không trả tiền thuê hằng tháng mà gửi chủ nhà một khoản tiền lớn một lần, khi dọn đi được nhận lại toàn bộ. Thuê trả tiền hằng tháng gọi là 월세; khi nói chuyện nhà cửa, hai từ này luôn đi cùng nhau."
+  ],
+  "word_matbeori": [
+   "vợ chồng cùng đi làm",
+   "Vợ chồng tôi đều đi làm."
+  ],
+  "word_yageun": [
+   "làm thêm buổi tối",
+   "Hôm qua tôi lại làm thêm buổi tối."
+  ],
+  "word_hoesik": [
+   "buổi liên hoan công ty",
+   "Tối nay có buổi liên hoan công ty.",
+   "Không phải bữa ăn bình thường mà là buổi liên hoan của cả nhóm ở công ty, thường do sếp tổ chức, và là một phần quan trọng của văn hóa công sở Hàn Quốc. Có thể kéo dài sang quán thứ hai, thứ ba (2차, 3차). Đi làm ở Hàn Quốc chắc chắn sẽ gặp từ này."
+  ],
+  "word_ijik": [
+   "chuyển việc",
+   "Dạo này tôi đang cân nhắc chuyển việc."
+  ],
+  "word_nohu": [
+   "tuổi già",
+   "Tôi đang tiết kiệm cho tuổi già."
+  ],
+  "word_yuga": [
+   "việc nuôi con nhỏ",
+   "Nuôi con vui nhưng vất vả."
+  ],
+  "word_gangwahada": [
+   "bỏ qua, xem nhẹ",
+   "Không được bỏ qua cả những lỗi nhỏ."
+  ],
+  "word_gamhaenghada": [
+   "mạnh dạn tiến hành",
+   "Dù bị phản đối, họ vẫn mạnh dạn tiến hành kế hoạch."
+  ],
+  "word_gyeonyanghada": [
+   "nhắm vào",
+   "Đây là quảng cáo nhắm vào khách hàng trẻ."
+  ],
+  "word_manhoehada": [
+   "gỡ gạc lại",
+   "Tôi có cơ hội gỡ gạc lại lỗi lầm."
+  ],
+  "word_mosaekada": [
+   "tìm kiếm hướng đi",
+   "Chúng tôi đang tìm hướng đi khác."
+  ],
+  "word_banyeonghada": [
+   "phản ánh vào",
+   "Chúng tôi sửa kế hoạch để phản ánh các ý kiến."
+  ],
+  "word_balhwihada": [
+   "phát huy",
+   "Đã đến lúc phát huy thực lực."
+  ],
+  "word_yagihada": [
+   "gây ra",
+   "Đó là lời nói có thể gây ra hiểu lầm."
+  ],
+  "word_jajehada": [
+   "kiềm chế",
+   "Xin hạn chế gọi điện lúc đêm khuya."
+  ],
+  "word_jingmyeonhada": [
+   "đối mặt với",
+   "Công ty đang đối mặt với khủng hoảng lớn."
+  ],
+  "word_molduhada": [
+   "mải mê, chuyên chú",
+   "Dạo này tôi đang mải mê nghiên cứu."
+  ],
+  "word_jeonnyeomhada": [
+   "dốc lòng vào một việc",
+   "Tôi quyết định dốc lòng chữa bệnh một thời gian."
+  ],
+  "word_jwajeolhada": [
+   "nản lòng vì thất bại",
+   "Dù thất bại cũng không cần nản lòng."
+  ],
+  "word_musandoeda": [
+   "đổ bể",
+   "Sự kiện bị đổ bể vì mưa."
+  ],
+  "word_seongsadoeda": [
+   "thành sự",
+   "Hợp đồng giữa hai công ty đã thành."
+  ],
+  "word_geupjeunghada": [
+   "tăng vọt",
+   "Mùa hè khách du lịch tăng vọt."
+  ],
+  "word_torohada": [
+   "giãi bày",
+   "Tôi giãi bày nỗi lo với bạn."
+  ],
+  "word_hosohada": [
+   "kêu gọi",
+   "Họ kêu gọi người dân giúp đỡ."
+  ],
+  "word_heungjeonghada": [
+   "mặc cả",
+   "Tôi mặc cả giá ở chợ."
+  ],
+  "word_eongnureuda": [
+   "kìm nén",
+   "Tôi kìm nén cơn giận và nói một cách bình tĩnh."
+  ],
+  "word_jeobeorida": [
+   "phụ lòng",
+   "Tôi không muốn phụ lòng tin của bạn mình."
+  ],
+  "word_pagodeulda": [
+   "đào sâu",
+   "Chúng tôi đào sâu vào nguyên nhân của vấn đề."
+  ],
+  "word_chegamhada": [
+   "cảm nhận rõ rệt",
+   "Tôi cảm nhận rõ bầu không khí đã thay đổi."
+  ],
+  "word_daecheohada": [
+   "ứng phó",
+   "Họ ứng phó tình huống khẩn cấp một cách bình tĩnh."
+  ],
+  "word_gakbyeolhada": [
+   "đặc biệt thân thiết",
+   "Hai người ấy thân thiết đặc biệt."
+  ],
+  "word_noryeonhada": [
+   "lão luyện",
+   "Cầu thủ lão luyện ít khi mắc lỗi."
+  ],
+  "word_daedamhada": [
+   "táo bạo",
+   "Thử nghiệm táo bạo đã thành công."
+  ],
+  "word_yeorakada": [
+   "tồi tàn, thiếu thốn",
+   "Dù trong môi trường tồi tàn, chúng tôi vẫn làm việc chăm chỉ."
+  ],
+  "word_wonmanhada": [
+   "hòa thuận, êm đẹp",
+   "Tôi sống hòa thuận với đồng nghiệp."
+  ],
+  "word_jeonggyohada": [
+   "tinh xảo",
+   "Bức chạm khắc đó thật tinh xảo."
+  ],
+  "word_heosulhada": [
+   "lỏng lẻo, sơ sài",
+   "Vì quản lý lỏng lẻo nên đã xảy ra vấn đề."
+  ],
+  "word_aemaehada": [
+   "mập mờ",
+   "Câu trả lời mập mờ nên tôi hỏi lại."
+  ],
+  "word_yuneunghada": [
+   "có năng lực",
+   "Chúng tôi muốn tuyển nhân viên có năng lực."
+  ],
+  "word_dondokada": [
+   "gắn bó khăng khít",
+   "Hai gia đình có tình bạn khăng khít."
+  ],
+  "word_muryeo": [
+   "những, tới mức",
+   "Có tới mười nghìn người đến xem buổi diễn."
+  ],
+  "word_jomcheoreom": [
+   "hiếm khi (đi với phủ định)",
+   "Cơ hội như thế hiếm khi đến.",
+   "Trạng từ chỉ dùng với phủ định: 좀처럼 오지 않아요 (hiếm khi đến) — phía sau bắt buộc phải có phủ định. Không thể nói 좀처럼 와요. Các từ 여간 và 도무지 cũng dùng theo cách này."
+  ],
+  "word_iljjigamchi": [
+   "từ sớm",
+   "Tôi đã đặt vé từ sớm."
+  ],
+  "word_goseuranhi": [
+   "nguyên vẹn",
+   "Ký ức tuổi thơ vẫn còn nguyên vẹn."
+  ],
+  "word_hayeomeobsi": [
+   "miên man, thẫn thờ",
+   "Tôi thẫn thờ nhìn mãi ra ngoài cửa sổ."
+  ],
+  "word_geuki": [
+   "cực kỳ",
+   "Chuyện như vậy cực kỳ hiếm."
+  ],
+  "word_yeokjisaji": [
+   "đặt mình vào vị trí người khác",
+   "Nếu đặt mình vào vị trí người khác thì sẽ hiểu được."
+  ],
+  "word_uyeogokjeol": [
+   "bao phen trắc trở",
+   "Sau bao phen trắc trở, tôi đã mở được cửa hàng."
+  ],
+  "word_sigisangjo": [
+   "còn quá sớm",
+   "Bây giờ quyết định thì còn quá sớm."
+  ],
+  "word_soksumuchaek": [
+   "bó tay không cách nào",
+   "Chúng tôi bó tay trước tai nạn bất ngờ."
+  ],
+  "word_solseonsubeom": [
+   "gương mẫu đi đầu",
+   "Trưởng phòng đã gương mẫu đi đầu."
+  ],
+  "word_jasuseongga": [
+   "tay trắng làm nên",
+   "Vị ấy tay trắng dựng nên công ty lớn."
+  ],
+  "word_gogunbuntu": [
+   "đơn thương độc mã",
+   "Tôi một mình chèo chống giữ lấy cửa hàng."
+  ],
+  "word_gusailsaeng": [
+   "thập tử nhất sinh",
+   "Tôi sống sót sau tai nạn trong gang tấc."
+  ],
+  "word_cheongcheonbyeongnyeok": [
+   "tin sét đánh ngang tai",
+   "Tin đó như sét đánh ngang tai."
+  ],
+  "word_haksugodae": [
+   "mong mỏi từng ngày",
+   "Tôi đang mong mỏi từng ngày tin thi đỗ."
+  ],
+  "word_insaninhae": [
+   "biển người",
+   "Ngày lễ hội, đường phố đông như biển người."
+  ],
+  "word_jungmagou": [
+   "bạn nối khố",
+   "Hai chúng tôi là bạn nối khố."
+  ],
+  "word_aigo": [
+   "ối giời",
+   "Ối, vất vả quá."
   ]
  }
 }

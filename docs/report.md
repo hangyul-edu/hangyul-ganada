@@ -3,9 +3,9 @@ title: Hangyul ganada
 title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
-version: 0.1.1
-date: 26 August 2026
-describes: A level-change truth pass. The previous edition carried a contradiction — one section said a measured level change takes effect at once, another that a mid-day retake leaves today's words unchanged — and the running product implemented the second the moment a day had any progress in it, so a learner who studied three Level-1 words, sat the test and came out at 30 was taught 엄마 for the rest of the day. The contradiction is removed in one direction: a measured level change now immediately regenerates the unresolved new-study targets while preserving every mastered word, and the rule is held by domain fixtures, 3,000 seeded sittings, twelve permanent mid-day-retake personas and negative tests that fail with the old behaviour restored. The correct-answer investigation was reopened rather than trusted: it found a stale plan snapshot that could erase a credit under out-of-order storage writes, a persist effect that could clobber a credit committed mid-derivation, a mid-day goal change that wiped the day, and extra study that ignored the learner's level. Thirty-six hand-written advanced words joined levels 28–30, and every figure below was recomputed from the tree this edition describes.
+version: 0.1.2
+date: 27 August 2026
+describes: A post-report adversarial pass. Nothing the previous edition called RESOLVED was trusted — the level-change journey, the crediting rules, the storage serialisation, the 9/10 invariant and the recommendation bands were all re-proven from the current tree, at larger scale (10,000 randomized sittings, 118 synthetic journeys, 30,000 recommendation events), and nine major gates were negative-tested by restoring known-bad implementations one at a time; every gate failed as it should. Seventy-eight hand-written advanced words joined the corpus — 69 of them at levels 28–30, which now hold 478 words — and a fresh six-reader pass over all 3,334 teaching rows found 50 defects the previous readings had not: dictionary-scraped English glosses (의자 as "chair, sofa"), six wrong parts of speech, seventeen examples rewritten, one nonstandard headword (아이구 → 아이고), and a mistranslation of 도로가 막혀요 in thirty languages. The recommendation gate gained a beginner-contamination detector that does not trust the zone function, and the polite-you trap of 당신 is now explained on its card in all thirty-two written languages.
 mark: report-assets/mark.png
 ---
 
@@ -26,15 +26,17 @@ is about that specifically, and it is still the first thing a reader should
 take from this report: a green gate answers the question it was written to
 ask, and nothing else.
 
-The previous pass applied that lesson by driving a hundred synthetic learners
-through the shipping code and fixing the two stuck-at-9/10 defects the
-journeys found. This pass applied it to **the report itself**: the last
-edition stated, in two different sections, two contradictory rules for what a
-mid-day Level Test retake does to today's words — and the running product
-implemented the wrong one. §20G is that account; the contradiction is removed
-in the direction the learner needs, and the journey that exposed it is now a
-permanent gate at four layers. Every figure in §2.2 was recomputed from the
-artefact that holds it rather than copied from the previous table.
+The previous pass applied that lesson to the report itself, removing a
+level-change contradiction the document had been carrying. This pass applied
+it to **the previous pass**: nothing the last edition called RESOLVED was
+trusted. The level-change journey, the crediting rules, the write
+serialisation, the 9/10 invariant and the recommendation bands were re-proven
+from the current tree at larger scale, and then each of the nine major safety
+gates was deliberately broken — the retired tomorrow-rule restored, the
+matching-grid credit removed, the serialisation bypassed, an upright pulled
+out of a letter — and shown to fail before being believed. §20H is that
+account. Every figure in §2.2 was recomputed from the artefact that holds it
+rather than copied from the previous table.
 
 ## How to read the claims
 
@@ -73,7 +75,7 @@ been read by a native speaker, including the two the product is about. §11 and
 produced a concrete demonstration of what that costs — see §11.
 
 **It will not present a content backlog as an engineering number.** The corpus
-is 3,256 taught words against a 10,000 target. §8 gives the honest distance in
+is 3,334 taught words against a 10,000 target. §8 gives the honest distance in
 the unit the work is actually done in, and §16 shows that the target is not only
 an authoring problem.
 
@@ -104,38 +106,38 @@ without trusting the row.
 
 | Metric | Value | Where it comes from |
 | --- | --- | --- |
-| Words shipping | 3,256 | `vocabulary.json` `words.length` |
+| Words shipping | 3,334 | `vocabulary.json` `words.length` |
 | Categories | 18 | `vocabulary.json` `categories` |
-| Study sets | 657 (five words each) | per category, ⌈words ÷ 5⌉ summed |
+| Study sets | 674 (five words each) | per category, ⌈words ÷ 5⌉ summed |
 | Characters taught | 73 | `characters.ts` `ALL_CHARACTERS` |
 | Hangul letters taught | 40 | `characters.ts` `ALL_LETTERS` |
 | Curriculum units | 12 | `characters.ts` `CURRICULUM_UNITS` |
 | Lessons | 15 | `characters.ts` `LETTER_LESSONS` |
-| Pronunciation notes | 765 | words carrying a `say` field in `vocabulary.json` |
-| Of those, shown as a note on a card | 603 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
+| Pronunciation notes | 786 | words carrying a `say` field in `vocabulary.json` |
+| Of those, shown as a note on a card | 619 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
 | Sound-change patterns taught | 6 | `vocabulary.json` `sound_patterns` |
 | Patterns a word card may note | 5 | `vocabulary.json` `noted_patterns` |
 | Dictionary headwords | 30,282 | `public/dictionary/manifest.json` |
 | Dictionary senses | 39,676 | same |
-| Dictionary examples | 3,721 | same — 101 sentences a reviewer refused this pass, and the hyphen-markup class, are gone |
+| Dictionary examples | 3,721 | same |
 | Interface languages | 32 | `src/locales/*/settings.json` |
 | Vocabulary packs complete | 10 | `locale:content:qa` |
 | Vocabulary packs at 600 words | 22 | `locale:content:qa` |
-| Unwritten vocabulary rows | 58,432 | 32 × 3,256 − rows written |
-| Long *More about it* definitions | 71 | third element in `vocabulary.en.json` |
-| Level-test items, English | 4,185 | `public/level-test/manifest.json` |
-| Level-test contextual items | 585 | the bank, `kind === "context"` |
-| Level-test reach, 22 partial languages | 1,035 items each | `manifest.json` `reach` |
-| Audio clips | 13,146 | distinct files in `public/audio/manifest.json` |
-| Audio voice slots | 13,250 | the same manifest, two voices per entry |
+| Unwritten vocabulary rows | 60,148 | 32 × 3,334 − rows written |
+| Long *More about it* definitions | 75 | third element in `vocabulary.en.json` |
+| Level-test items, English | 4,196 | `public/level-test/manifest.json` |
+| Level-test contextual items | 596 | the bank, `kind === "context"` |
+| Level-test reach, 22 partial languages | 1,049 items each | `manifest.json` `reach` |
+| Audio clips | 13,458 | distinct files in `public/audio/manifest.json` |
+| Audio voice slots | 13,562 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
-| Words at levels 28–30 | 417 | the corpus, by level |
+| Words at levels 28–30 | 478 | the corpus, by level |
 | Level anchors held | 162 | `level-anchors.json` |
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
-| Unobserved words with a written reason | 41 | `content/vocabulary/unobserved.json` |
+| Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
-| Issues tracked | 110 | `docs/issues.json` |
+| Issues tracked | 113 | `docs/issues.json` |
 | Signed APK | 79.6 MB | `result/build-info.json` |
 | Signed AAB | 77.9 MB | same |
 
@@ -143,15 +145,11 @@ without trusting the row.
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
 "Hangul letters taught" is the 40 a learner would name.
 
-**The pronunciation-note row is the one that had to be pinned down.** The
-previous report gave a single figure, 699, and there are two questions it could
-have been answering. 756 words carry a recorded spoken form because some rule
-changes them; 596 of those get a *note on the card*, because liaison applies to
-so many words that a note for it would stop meaning "look at this one" and is
-taught once in the sound-change lesson instead. Both numbers are now in the
-table with their definitions, and `docs:consistency:check` holds the first of
-them to the corpus — which is how the ambiguity was found, by the gate refusing
-a figure that had no source.
+**The pronunciation-note row keeps its two definitions.** 786 words carry a
+recorded spoken form because some rule changes them; 619 of those get a *note
+on the card*, because liaison applies to so many words that a note for it
+would stop meaning "look at this one" and is taught once in the sound-change
+lesson instead. `docs:consistency:check` holds the first figure to the corpus.
 
 Test counts are in §19; artefact hashes are in §18.
 
@@ -164,59 +162,82 @@ Test counts are in §19; artefact hashes are in §18.
 A paid, offline-first Korean foundation app for someone who cannot read Hangul
 yet. It teaches the 40 letters by sight, sound and hand — the learner writes
 each one with a finger and the app grades the strokes — then the syllable blocks
-they build, then 3,256 everyday words, each with a hand-written example
+they build, then 3,334 everyday words, each with a hand-written example
 sentence, a recording in two voices and a meaning in the learner's own language.
 There is no account, no server and no network request during a lesson.
 
 ## What this cycle did
 
-**It removed a contradiction this report itself was carrying.** The previous
-edition said, in one section, that *a level change takes effect at once,
-because a level is a measurement* — and, in another, that *retaking mid-day
-leaves today's words exactly as they were, because the new level is a fact
-about tomorrow*. Both sentences were quoted as resolved policy, and the
-running product implemented the second whenever the day had any progress in
-it: a learner who studied three Level-1 words, sat the Vocabulary Level Test,
-came out at 30 and returned the same day was taught 엄마 for the rest of the
-day. The canonical rule is now one sentence, implemented, gated and negative-
-tested: **a measured vocabulary-level change immediately invalidates the
-unresolved level-dependent portion of Today's Vocabulary; already mastered
-progress is preserved; remaining ordinary new-study targets are regenerated
-for the new level.** 3/10 at Level 1 becomes 3/10 with seven Level-30 words —
-never 0/10, and never seven more beginner words. §20G is the full account.
+**It re-proved the previous cycle instead of citing it.** The level-change
+journey, the crediting rules, the write serialisation, the 9/10 invariant and
+the recommendation bands were all run again from the current tree, at larger
+scale: 10,000 randomized sittings (8,000 plain, 2,000 with one to three
+mid-sitting Level Test retakes each), 118 synthetic journeys (six new
+adversarial personas — a retake pinned immediately after a correct answer,
+after a wrong one, during extra study, and combined with reloads), 30,000
+recommendation events, and the full unit and end-to-end suites. Everything
+held. Then, because a gate that has never failed has proven nothing, **nine
+major safety gates were deliberately broken one at a time** — the retired
+tomorrow-rule restored, the matching-grid credit removed, the write
+serialisation bypassed, the un-personalised corpus-prefix picker restored, a
+retry queue emptied at 9/10, English routed under a Thai interface, the
+honorific joint mis-formed, an upright pulled out of ㅙ, a verb glossed as a
+noun — and every one failed naming the defect before being restored. §20H is
+the full account.
 
-**It reopened the correct-answer investigation instead of trusting the
-previous RESOLVED.** The user was still seeing correct answers that did not
-count. The exercise layer held up — every scheduled exercise type reports
-through one per-word answer contract and one crediting rule — but four ways a
-*credited* answer could still be lost or a day corrupted were found and fixed:
-storage writes to the settings row (which carries the whole daily plan) could
-land out of order on the native driver and let a stale snapshot erase a
-credit; the plan-persist effect could clobber a credit committed between
-derivation and write; a mid-day goal change rebuilt the plan and wiped the
-day; and extra study ignored the learner's level entirely, handing a Level-30
-learner the easiest words in the product. I-108 through I-111.
+**Seventy-eight advanced words were written for the top of the scale.**
+Fourteen formal and academic nouns, twelve modern adult-life words (대출,
+전세, 야근, 회식, 맞벌이), twenty-four advanced verbs, ten adjectives, six
+adverbs and twelve common 사자성어 — all authored by hand with meanings in the
+eight pack languages plus Thai and Vietnamese, recordings in both voices, and
+every gate run. 69 of the 78 land at levels 28–30, which now hold 478 words
+(from 417) — about seven weeks of new material for a learner placed at 30.
+I-79 stays open, and it is again honestly smaller than it was. The
+conjugation-display ledger was re-read after the batch, exactly as its footer
+instructs, and ten of the new verbs had their mechanically-licensed command or
+request rows suppressed before any card could show 좌절하세요 (I-113).
 
-**The gates for both classes were made to fail first.** Restoring the old
-level rule fails 3 unit fixtures and 11 of the 112 synthetic journeys; breaking
-one exercise's credit mapping fails the crediting suite; removing the write
-serialisation fails an adversarial slow-store gate in which earlier writes
-deliberately land later. 3,000 seeded sittings — 1,000 of them with one to
-three mid-sitting retakes — assert the §20C invariants after every event, and
-twelve permanent mid-day-retake personas (both directions, partial locales
-included) joined the journey harness.
+**All 3,334 teaching rows were re-read by six parallel editorial readers, and
+the reading found 50 defects three previous full readings had not** (I-112,
+§20H.3): 22 English glosses that were dictionary scrapings rather than the
+taught sense (의자 "chair, sofa", 앉다 "to sit, to squat", 명 "a person" for
+the counter), six wrong parts of speech, seventeen shipped examples rewritten
+with new recordings and translations in every written language, one
+nonstandard headword corrected (아이구 → 아이고, its id retired in the
+ledger), and 도로가 막혀요 translated as "the road is blocked" in thirty
+languages when it means congested. Thirteen further findings were read and
+deliberately kept, each with a written reason.
 
-**Thirty-six advanced words were written for the starved top of the scale.**
-Five formal nouns, twelve advanced verbs, six adjectives and thirteen
-사자성어, all authored by hand with meanings in the eight pack languages plus
-Thai and Vietnamese, recordings in both voices, and every gate run. All 36
-land at level 30; levels 28–30 now hold 417 words (from 384), about six weeks
-of new material for a learner placed at 30. I-79 stays open — six weeks is
-supply, not abundance — and it is honestly smaller than it was.
+**The recommendation gate stopped trusting its own zone function.** It now
+counts obvious-too-easy and obvious-too-hard events from absolute word levels,
+and fails on any of the six named day-one words at learner level 10 or above —
+a detector that stays honest even if `teachingZone` regresses. Restoring the
+I-111 corpus-prefix bug produced 25,262 findings; the current selector
+produces zero across 30,000 events.
 
-## What the previous cycle did
+**당신 finally tells the learner the truth about itself.** The polite-you of
+the textbooks is spousal, literary or confrontational in real speech; the card
+now carries a *More about it* note saying so — in all thirty-two written
+languages, because the word is in the core band every language has written.
+Notes were also written for 전세, 회식 and 좀처럼: the lump-sum lease, the
+semi-obligatory team dinner, and a negative-polarity adverb (71 → 75, I-20).
 
-**It drove one hundred synthetic learners through the shipping code.** All 32
+## What the previous cycles did
+
+**The level-truth pass removed a contradiction this report itself was
+carrying.** One section said a measured level change takes effect at once;
+another said a mid-day retake leaves today's words unchanged; the product
+implemented the second the moment a day had progress in it. The canonical rule
+— *a measured vocabulary-level change immediately invalidates the unresolved
+level-dependent portion of Today's Vocabulary; mastered progress is preserved;
+remaining ordinary new-study targets are regenerated* — is implemented, gated
+at four layers and negative-tested (§20G). The same pass reopened the
+correct-answer investigation and fixed four ways a credited answer could be
+lost: out-of-order storage writes on the native driver, a persist-effect race,
+a goal-change wipe, and extra study that ignored the learner's level (I-108
+through I-111).
+
+**The hundred-journeys pass drove one hundred synthetic learners through the shipping code.** All 32
 locales, all 30 levels, journeys of one to thirty days — 1,157 simulated study
 days and 29,861 answered questions through the real plan builder, question
 builder, crediting rules, memory scheduler and streak arithmetic, with the
@@ -280,14 +301,12 @@ the whole inventory.
 
 ## What did not change
 
-The 10,000-word target is not met and is not close: 3,256 of 10,000. No locale
-has been reviewed by a native speaker, and this pass added thirty-six new
-entries' worth of strings — in ten languages each — to that unread surface
-rather than shrinking it. The twenty-two partial languages are still at the
-600-word band: this pass was a logic-correction pass, and expanding them
-six-hundred words at a time is exactly the kind of work it deliberately did
-not start mid-correction. The onward hand-off still has no destination, and
-none was invented.
+The 10,000-word target is not met and is not close: 3,334 of 10,000. No locale
+has been reviewed by a native speaker, and this pass added seventy-eight new
+entries' worth of strings — plus four usage notes, one of them in thirty-two
+languages — to that unread surface rather than shrinking it. The twenty-two
+partial languages are still at the 600-word band. The onward hand-off still
+has no destination, and none was invented.
 
 ## The verdict
 
@@ -303,7 +322,7 @@ it, which is why §7.2 is written the way it is.
 ## 4.1 What it is — **VERIFIED**
 
 A standalone paid application, web and Android from one codebase. Twelve
-curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,256
+curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,334
 words. Everything a learner needs is in the binary: the curriculum, the fonts,
 the stroke data and 13,006 pronunciation clips in two voices.
 
@@ -549,7 +568,7 @@ stroke-by-stroke critique, no praise.
 
 ## 8.1 Scale — **VERIFIED**
 
-3,256 taught words in 18 categories and 657 study sets of five. Every entry has
+3,334 taught words in 18 categories and 674 study sets of five. Every entry has
 one taught sense, a hand-written Korean example, a meaning in ten complete
 languages and an example translation in each; the twenty-two partial languages
 carry the first 600 of them.
@@ -583,7 +602,7 @@ paragraph in each of the twenty-two if it has one in English.
 
 ## 8.3 The 10,000-word target — **the delivery is built; the words are not written**
 
-3,256 of 10,000. The deficit is **6,744 entries, about 141,000 authored
+3,334 of 10,000. The deficit is **6,666 entries, about 140,000 authored
 strings**. That is the honest distance and it is not closable by generation
 without lowering the bar the gates enforce — `examples:qa` refused six of the
 263 entries authored two cycles ago, three of the 60 in the last one, and
@@ -594,7 +613,7 @@ negative Korean sentence, and a Japanese question under a Korean statement.
 
 `vocabulary:qa:target` fails on this tree and is meant to. It is the one gate
 whose job is to state the distance rather than to be satisfied, and it prints
-*3,256 headwords — 6,744 short of the 10,000 target*. It has not been disabled,
+*3,334 headwords — 6,666 short of the 10,000 target*. It has not been disabled,
 weakened or excluded from `verify:release`.
 
 Two further facts belong with the number, because "we just need to write more"
@@ -606,7 +625,7 @@ is not the whole picture:
   corpus grew 9% at the same time.
 * The precache does not fit at the target. It does fit today, at 1,454 kB
   against a 1,500 kB budget raised this cycle for the core-band work; the
-  projection at 10,000 words is 3,741 kB and that is a delivery-strategy finding
+  projection at 10,000 words is 3,779 kB and that is a delivery-strategy finding
   rather than a budget one. See §16 and I-92.
 
 ## 8.4 The dictionary layer — **VERIFIED, and it is not the corpus**
@@ -650,8 +669,8 @@ the previous edition of this table said.
 
 | Gate | Result |
 | --- | --- |
-| `examples:qa` | 3,256 examples, all PASS; 0 REVIEW, 0 REWRITE; 1,472 inflected target forms checked |
-| `vocabulary:qa` | passes except `--target`, which is meant to fail: *3,256 headwords — 6,744 short of the 10,000 target* |
+| `examples:qa` | 3,334 examples, all PASS; 0 REVIEW, 0 REWRITE; 1,506 inflected target forms checked |
+| `vocabulary:qa` | passes except `--target`, which is meant to fail: *3,334 headwords — 6,666 short of the 10,000 target* |
 | `vocabulary:sense:qa` | one taught sense per word in every complete language, and every written row in a partial one carries the long definition if English does |
 | `content:qa` | warnings only, all genuine loanwords — yoga, tofu, gimbap — plus one Portuguese gloss collision on *passar por* |
 | `worddetail:qa` | no card shows an example of a sense it does not teach |
@@ -718,10 +737,10 @@ I-90 and §19.4.
 
 ## 10.1 What it is — **VERIFIED**
 
-A 30-item adaptive placement test over 30 levels and a **4,185-item** bank, 585
+A 30-item adaptive placement test over 30 levels and a **4,196-item** bank, 596
 of them contextual, in three kinds: meaning shown / Korean chosen, meaning asked
 / Korean produced, and a word blanked out of a real sentence. Rebuilt this cycle
-against the current corpus — rebuilt again this pass at 3,256 words — and it had to be, because the bank was once
+against the current corpus — rebuilt again this pass at 3,334 words — and it had to be, because the bank was once
 holding a distractor the morphology module had stopped producing (I-90).
 
 ## 10.2 Calibration — **VERIFIED, re-run after the expansion**
@@ -738,11 +757,11 @@ kinds per sitting     context 12, meaning 9, produce 9
 
 | Languages | Askable items | Ceiling |
 | --- | --- | --- |
-| en | 4,185 | 30 |
-| de es fr ja ko pt-BR th vi zh-CN | 1,562 | 30 |
-| the other 22 | **1,035** | 30 |
+| en | 4,196 | 30 |
+| de es fr ja ko pt-BR th vi zh-CN | 1,581 | 30 |
+| the other 22 | **1,049** | 30 |
 
-**The 22 partial languages went from 645 items to 1,021 in the core-band cycle, and stand at 1,035 after this pass's batch**, which is the
+**The 22 partial languages went from 645 items to 1,021 in the core-band cycle, and stand at 1,049 after this pass's batch**, which is the
 core-band expansion arriving here. A language's bank is built from the words it
 has meanings for, so six times the meanings is roughly 1.6 times the bank — the
 ratio is not linear because a word yields a meaning item and a produce item
@@ -780,7 +799,7 @@ anybody.
 ## 10.4 Item quality — **and the gate that passed on a quarter of the bank**
 
 `leveltest:ambiguity` checks thirteen rules and six photographed regressions over
-all 4,166 items and passes — **after** the bank was rebuilt. On the shipped bank
+all 4,196 items and passes — **after** the bank was rebuilt. On the shipped bank
 it reported `wrong-conjugation` on 치닫아요, which is I-90: the module had been
 corrected two commits earlier and nothing had regenerated the artefact built
 from it. **It passed before this cycle too, on a bank in
@@ -828,7 +847,7 @@ the class is recorded rather than encoded.
 mnemonic. `i18n:check`, `copy:audit` (18,238 strings) and `locale:content:check`
 pass, and no language can produce a mixed-language question.
 
-**Word content**: 10 complete at 3,256 words; 22 at **600** words, which is 18%
+**Word content**: 10 complete at 3,334 words; 22 at **600** words, which is 18%
 of the corpus, up from 100 words and 3.4% at the start of this cycle. The row in
 the language picker says so before the learner chooses, which is what makes it a
 limitation rather than a misrepresentation.
@@ -919,16 +938,16 @@ repairing the content is a gate worth having.
 `locale:content:qa` used to end its explanation with "and that is what the
 simulation below checks", and there was no simulation below it — prose asserting
 a check that does not run, which is the same defect as §7.2 one layer down. It
-runs now: 12,800 four-option questions drawn from all 3,256 taught words, asked
+runs now: 12,800 four-option questions drawn from all 3,334 taught words, asked
 of every one of the 32 interface languages through the rule `strictMeaning`
 applies — the learner's own pack, or nothing.
 
 ```
 questions simulated: 12,800 across 32 languages —
-  5,694 askable, 7,106 refused for want of a meaning
+  5,672 askable, 7,128 refused for want of a meaning
 ```
 
-7,106 refusals is not a defect; it is the product decision working. A word with
+7,128 refusals is not a defect; it is the product decision working. A word with
 no meaning in the learner's language is not asked about rather than asked in
 English. The simulation also asserts the routing, which is where I-44 actually
 lived: point `contentLocale` at English for a language the corpus has, and it
@@ -1107,16 +1126,16 @@ warn ordinary users about a risk they cannot act on (I-12).
 
 # 14. Audio
 
-**13,146 distinct files over 13,250 voice slots, 64.2 MB**, two Korean neural
+**13,458 distinct files over 13,562 voice slots, 66.2 MB**, two Korean neural
 voices at 0.82× rate, recounted from `public/audio/manifest.json` this cycle.
 `audio:qa` decodes a 600-clip sample and checks the rest for existence, manifest
 agreement and duplication: 0 errors, 0 warnings, durations 240 ms to 2,880 ms,
 median 1,030 ms.
 
-Every one of the 3,256 taught words has a headword clip and an example clip in
-both voices — 3,256 of each in the manifest, which is the check that the 15
-examples rewritten this pass were re-recorded and the retired word's clips
-removed. The distinct-file count is lower
+Every one of the 3,334 taught words has a headword clip and an example clip in
+both voices — 3,334 of each in the manifest, which is the check that the 17
+examples rewritten this pass were re-recorded and the 38 recordings the
+rewrites orphaned were removed. The distinct-file count is lower
 than the slot count because two texts that are identical strings share a
 recording rather than being synthesised twice.
 
@@ -1160,15 +1179,15 @@ navigation style, theme and text scale — see §18 for why it was 42/48.
 
 # 16. Performance and delivery
 
-Every enforced budget is met at 3,256 words, and one of them was raised in the core-band
-cycle to get there:
+Every enforced budget is met at 3,334 words, and one of them was raised again
+this pass to get there:
 
 ```
-first load                       270.2 kB /  460.0 kB   59%
-corpus, first paint               52.9 kB /   64.0 kB   83%
-corpus, whole                    287.0 kB /  900.0 kB   32%
+first load                       273.4 kB /  460.0 kB   59%
+corpus, first paint               53.2 kB /   64.0 kB   83%
+corpus, whole                    299.6 kB /  900.0 kB   33%
 largest route chunk               12.2 kB /   24.0 kB   51%
-everything precached            1457.0 kB / 1500.0 kB   97%
+everything precached            1508.0 kB / 1600.0 kB   94%
 ```
 
 First load moved 236.5 → 270.2 kB this pass, and the cost is a correctness
@@ -1182,6 +1201,12 @@ costs the same at ten thousand headwords as at three thousand. That flat line is
 the architecture working, and it did not move this cycle even though band 1 now
 carries twenty-two more languages: first paint fetches the learner's band-1 pack
 and nobody else's.
+
+**The precache budget was raised from 1,500 kB to 1,600 kB this pass**, for
+the same reason it was raised from 1,400: the corpus row is where growth is
+meant to land, and batch 920's meanings, examples and level-test items took
+the measured total 1,457 → 1,508 kB with the JavaScript half unmoved. The
+previous raise is kept below because its arithmetic still explains the shape:
 
 **The precache budget was raised from 1,400 kB to 1,500 kB, and it is worth
 saying what bought the 54 kB.** Band 1 is the band the worker precaches *for
@@ -1200,12 +1225,12 @@ forecast for **one language** and lands at 891 kB against 900 kB, which reads
 comfortable. The service worker precaches `public/corpus` entire:
 
 ```
-everything precached at 10,000  3747.8 kB / 1500.0 kB  250%
+everything precached at 10,000  3778.7 kB / 1600.0 kB  236%
 ```
 
 Two and a half times the budget, and not a number a better gzip closes. It is a
 finding about the delivery strategy rather than about the budget: precaching
-every language is affordable at 3,256 headwords and is not affordable at 10,000,
+every language is affordable at 3,334 headwords and is not affordable at 10,000,
 and the answer then is to precache the learner's own language and fetch the rest
 in bands. Reported and not enforced, because what ships today fits.
 
@@ -1382,10 +1407,13 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 | Korean morphology (`vitest`) | **216** (2 files) |
 | End-to-end (`playwright`) | **350** (175 × 2 projects) |
 
-The web suite grew by 15 this pass — the level-change fixtures A–G, the
-mid-day-retake provider cases, the 1,000-sitting retake state machine and the
-adversarial slow-store pair — and the end-to-end suite by 4: the mid-day
-retake against the built dist, in both directions, on both projects.
+The previous pass grew the web suite by 15 — the level-change fixtures A–G,
+the mid-day-retake provider cases, the retake state machine and the
+adversarial slow-store pair. This pass made the two randomized suites
+env-scalable and ran them as a soak: `PROPERTY_SITTINGS=8000
+PROPERTY_RETAKE_SITTINGS=2000` executes 10,000 seeded sequences with every
+invariant asserted after every event — the defaults (2,000 + 1,000) remain
+the per-run gate, and the soak is the audit.
 
 Counted from this cycle's runs.
 
@@ -1435,10 +1463,10 @@ same reason, and read it from the shipped bundle instead.
 The suite was then run in full again from the final source:
 
 ```
-346 passed (18.1m)
+350 passed (19.9m)
 ```
 
-**346 of 346, no failures, no flakes, no retries** — and that run is the one
+**350 of 350, no failures, no flakes, no retries** — and that run is the one
 this report describes, taken after the last product edit rather than before
 it.
 
@@ -1451,7 +1479,7 @@ fail should know why.
 
 ```
 1 error(s):
-  3,256 headwords — 6,744 short of the 10,000 target
+  3,334 headwords — 6,666 short of the 10,000 target
 ```
 
 That gate exists to fail. It is the corpus target held open in the release
@@ -1670,6 +1698,14 @@ what it was written for. The release-notes preamble keeps its old figure — it 
 the sentence recording what a previous draft got wrong, and the gate reads only
 from the first customer heading down, so an audit trail does not have to be
 deleted to stay green.
+
+**And the adversarial pass found the same class one directory over (I-114).**
+The word-count rule ran over the release notes and not over the eight listing
+files, which had drifted to 2,844 — two thousand-boundary crossings behind the
+corpus — while the gate stayed green. The rule now reads every listing's
+customer copy; run against the stale files it reported all eight, which is the
+strongest form of a negative test, and the listings now state 3,334 in each
+language's own thousands separator.
 
 ---
 
@@ -2593,6 +2629,125 @@ phone:
   the same installed build. An emulator, not a phone — §18's limitation
   stands.
 
+# 20H. The post-report adversarial pass
+
+**Why this section exists.** The brief for this pass opened with the
+observation this repository has now proven several times: *report says
+RESOLVED, tests are green, running product is still wrong* can all be true at
+once. So nothing the previous edition called RESOLVED was carried forward.
+The claims were re-executed, the scales were raised, and then the gates
+themselves were attacked.
+
+## 20H.1 The re-executions, at larger scale
+
+| Claim re-proven | How, this pass |
+| --- | --- |
+| The mid-day level-change rule | fixtures A–G re-run against the 3,334-word corpus; provider tests; **10,000 randomized sittings** (8,000 plain + 2,000 with one to three mid-sitting retakes, up from 3,000) with every §20C invariant asserted after every event; **118 synthetic journeys** — the 112 plus six new adversarial personas |
+| Correct answers credit exactly once | the crediting suite, the per-exercise contract tests, and the property suite's credited-exactly-once assertion across all 10,000 sittings |
+| Stale writes cannot erase credit | the adversarial slow-store suite re-run; serialisation then bypassed on purpose — both suites fail (§20H.2) |
+| No session dead-ends below target | the 9/10 invariant asserted in all 10,000 sittings; retry queue then emptied on purpose — three tests fail naming the class |
+| Recommendations stay in level | 30,000 events re-run at 3,334 words: learner 30 observed range 29–30, median 30; **and the gate gained an independent beginner-contamination detector** that reads absolute word levels rather than `teachingZone`, so a regression in the zone function itself cannot silence it. Obvious-too-easy 0, obvious-too-hard 0, named beginner words 0 |
+
+The six new personas pin the seams the twelve existing retake journeys
+reached only by chance: a retake **immediately after a forced correct
+answer** (P113), **immediately after a forced wrong answer** (P114, P118 —
+the second with mid-pass reloads), the reverse direction at 30→1 after a
+correct (P115), and a retake **during the +5 extra-study extension** (P116,
+and P117 in a partial locale), which exercises the rebuild over an extended
+plan. All 118 journeys pass; 18 mid-day retakes are exercised per run.
+
+## 20H.2 Nine gates broken on purpose, nine failures
+
+A gate that has never failed has proven nothing, so each major safety gate
+had a known-bad implementation restored, was run, and was required to fail
+before being believed:
+
+| what was broken | what failed, and how |
+| --- | --- |
+| the un-personalised corpus-prefix picker (the I-111 class) restored | recommendation QA: **25,262 findings** — 21,000 beginner-contamination, 4,200 named-beginner-leak — exit 1 |
+| `teachingZone` thrown open to 1–30 | nothing — the selector stayed centred without the zone's help, which is the selector's own robustness, recorded as such |
+| the retired tomorrow-rule (`completed.length > 0`) restored in `planIsCurrent` | 3 fixtures fail: the started-day refusal, the mid-day retake, and the credit-committed-before-the-retake race |
+| the matching grid's credit mapping removed (the I-98 class) | 2 crediting fixtures fail, naming the 9/10 regression |
+| `RowWrites` serialisation bypassed | both adversarial slow-store cases fail — credit lost under write latency, retake loses earned words |
+| the retry queue emptied at goal−1 (the dead-9/10 class) | 3 property tests fail, including the named 9/10-has-a-next-action case |
+| `contentLocale` routed Thai to English (the I-44 class) | `locale:content:qa` exits 1 naming the language |
+| the honorific joint mis-formed (있세요-class) | `conjugation:qa` reports 9 disagreements; 14 morphology tests fail |
+| ㅙ's second upright pulled to 99.5 | `letters:face` fails: 3 ink islands where Pretendard draws 2 |
+| 먹다 glossed as "food" | `vocabulary:sense:qa` refuses: *a verb glossed as "food", which is not an action* |
+
+Every break was reverted and every gate re-run green. The one row that did
+not fail is kept in the table because it is a finding about the *selector*,
+not about the gate: the new contamination detector exists precisely so that a
+zone regression and a selector regression cannot cancel each other out.
+
+## 20H.3 The editorial re-read, and what four readings had missed
+
+Six parallel readers re-read all 3,334 rows — headword, part of speech,
+level, gloss, example and translation together, which is the combination the
+previous readings (each focused on one axis) had not held in one hand. 63 raw
+findings; each adjudicated against 표준국어대사전, the corpus conventions and
+the previous passes' decisions. What was fixed is I-112: 22 English glosses
+(dictionary scrapings — 의자 "chair, sofa", 앉다 "to sit, to squat", 명 "a
+person" for the counter, 싫어하다 "to detest"), six parts of speech (참,
+지치다, 설다, 이르다, 수천, 명 — with 지치다 and 설다 added to the
+volitionality tables before their new verb status could license a command
+row), seventeen shipped examples (석방하다's period-drama 죄인을 석방했어요,
+은밀하다's tabloid 은밀한 만남, ten noun cards that only ever demonstrated
+their own 하다 verb, 후회's stilted imperative), the nonstandard headword
+아이구 → 아이고, the thirty-language mistranslation of 도로가 막혀요
+("blocked" for congested), and five smaller translation repairs. Thirteen
+findings were read and kept, with reasons: 낡다 stays a verb because the
+standard dictionary says it is one, 밤새다 keeps the previous pass's
+deliberate adjudication, fused compounds follow the corpus convention, and
+band-1 noun cards showing their 하다 verb follow the convention the earlier
+readings set.
+
+Every rewritten example carries new recordings in both voices and new
+translations in every written language; the audio build dropped the 38
+recordings the rewrites orphaned. All 3,334 examples read PASS / 0 REVIEW /
+0 REWRITE after the pass — including the gate catching this pass's own work
+twice: one clause-join refusal and one invented French pronoun, both
+rewritten.
+
+## 20H.4 Batch 920, and the display rows it did not ship
+
+Seventy-eight entries for the starved top of the scale: fourteen formal and
+academic nouns (성과, 대안, 여건, 방침, 명분, 안목, 파장, 기반…), twelve
+modern adult-life words (대출, 이자, 수수료, 할부, 보증금, 전세, 맞벌이,
+야근, 회식, 이직, 노후, 육아), twenty-four advanced verbs, ten adjectives,
+six adverbs and twelve common 사자성어 (역지사지, 우여곡절, 시기상조,
+속수무책, 솔선수범, 자수성가, 고군분투, 구사일생, 청천벽력, 학수고대,
+인산인해, 죽마고우 — common ones, deliberately, not curiosities). 69 land at
+levels 28–30 by the level model's own scoring: 417 → **478** words, seven
+weeks of supply for a learner placed at 30. Five of the new words are
+unobserved in the frequency corpora; each was checked against both lists
+before its reason was written (구사일생 exists only as 구사일생이죠, a fused
+token the fold cannot strip — the same class as 저조하다).
+
+The conjugation-display ledger was re-read after the batch, exactly as its
+own footer instructs, and it showed why: 좌절하세요 (*please be crushed*),
+급증하세요 (*please surge*), 간과하세요 and seven more mechanically-licensed
+rows were waiting to ship. Six verbs joined the not-volitional table, four
+keep their command and lose the favour form (감행해 주세요 is not a request
+anybody makes), and 무산되다, 성사되다 and 저버리다 were already caught by
+the structural rules (I-113).
+
+Four *More about it* notes were written where a learner genuinely needs one
+(I-20, 71 → 75): **당신** — the textbook polite-you that is spousal, literary
+or confrontational in real speech, written in all thirty-two written
+languages because the word is in the core band every language carries;
+**전세**, the lump-sum lease no other housing market has; **회식**, the
+semi-obligatory team dinner with its 2차 and 3차; and **좀처럼**, a
+negative-polarity adverb that cannot stand before an affirmative.
+
+## 20H.5 What this pass verified on the shipping artefacts
+
+The rebuilt web bundle, the signed APK/AAB and the emulator runs are in §18,
+re-verified from this pass's final source. The budgets moved as content
+should move them: first load 270.2 → 273.4 kB (59% of budget), corpus band 1
+53.2 kB and flat by construction, the precache 1,457 → 1,508 kB against a
+ceiling raised 1,500 → 1,600 kB with the reason written beside it (§16).
+
 # 21. Issues
 
 `docs/issues.json` is the single place in this repository that states an issue's
@@ -2611,15 +2766,15 @@ document they predate.
 
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
-| **I-04** | Vocabulary | **P1** | 3,221 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
+| **I-04** | Vocabulary | **P1** | 3,334 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
 | **I-13** | Relations | **P2** | 252 of 3,221 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
-| **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 417 words between them, up from 384 (batch 910 added 36 hand-written advanced words — formal nouns, advanced verbs and adjectives, and thirteen 사자성어 — all landing at level 30). A learner placed at 30 is taught ten a day from that zone and has met all of them in about six weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | **OPEN** |
+| **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 478 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
 | **I-19** | Vocabulary | **P1** | Word meanings are complete in ten languages and six hundred words deep in twenty-two | A learner in one of the twenty-two has a fully translated interface and word meanings for the 600-word core band — the band the corpus splitter puts on the critical path, so it is the band they meet first. Past that the card shows the English gloss, marked as English, and the *quiz* shows nothing: the product forbids a mixed-language question, so a word with no meaning in the learner's language is not asked about rather than asked in English. | **PARTIAL** |
 | **I-39** | i18n copy | **P2** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | **PARTIAL** |
-| **I-20** | Vocabulary | **P3** | The hand-written *More about it* block is on 71 words of 3,221 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is on 71 of them — 2% of the corpus. | **PARTIAL** |
+| **I-20** | Vocabulary | **P3** | The hand-written More about it block is on 75 words of 3,334 | Word Detail is no longer a short page followed by nothing, but the paragraph written for the words where one line genuinely is not enough is on 75 of them — 2% of the corpus. | **PARTIAL** |
 | **I-01** | Release | **P0** | The shipped APK/AAB predate the current product code by one commit | Anyone installing the delivered binary today gets the previous stroke geometry and the retired video splash. The eight syllables re-measured in `e026697` — 구 오 밤 밥 옷 국 꽃 글 — render from the older table, and the launch screen is the MP4 clip the product has stopped shipping. | **RESOLVED** |
 | **I-02** | Repo | **P0** | A whole cycle's work was uncommitted when the artefacts were built | A fresh checkout does not contain what was shipped | **RESOLVED** |
 | **I-108** | Vocabulary session | **P0** | A mid-day Level Test retake left the rest of the day at the old level | Start Today's Vocabulary at the default Level 1, master three words, leave, sit the Vocabulary Level Test, come out at 30, and come back the same day: the remaining seven words were still 엄마-class beginner fillers, because the plan built before the measurement was kept for having been started. The learner had just been told they read Korean and the app went on teaching them 'mum'. | **RESOLVED** |
@@ -2639,6 +2794,7 @@ document they predate.
 | **I-107** | Korean content | **P1** | Fifteen teaching examples were wrong or borrowed another word’s sentence, and one taught word was not real usage | 화나다’s card taught 화나지 마세요 — an imperative of a non-volitional verb, which is not Korean (the prohibitive belongs to 화내다). 풍선이 폭발했어요 used a collocation no native uses; 방이 사람으로 찼어요 missed 가득; 아버지/어머니/선생님 sentences lacked the honorific -시- the corpus itself uses for elders; 스물’s example demonstrated (and misspaced) 스물하나; 위험, 특별, 긴장, 가득 duplicated the 하다-cards beside them; 따르다 borrowed 따라오다’s sentence. And 부딪다’s own conjugation 부딪었어요 is a form real Korean does not use. | **RESOLVED** |
 | **I-110** | Vocabulary session | **P1** | Changing the daily goal mid-day rebuilt the plan and wiped the day's progress | Three words into a ten-word day, nudge the goal in Settings, and the day restarts at 0 — the three mastered words charged back to the learner. The stated policy ('a goal change takes effect tomorrow') was contradicted by the plan check, which rebuilt on any goal mismatch. | **RESOLVED** |
 | **I-111** | Vocabulary session | **P1** | Extra study ('5 more') ignored the learner's level | A learner at Level 30 who finished 10/10 and asked for five more words was handed the easiest unmet words in the product — the same 남자-class leak I-78 was about, arriving through the extension instead of the plan. | **RESOLVED** |
+| **I-112** | Korean content | **P1** | A fresh adversarial re-read of all 3,334 examples found 50 defects the previous readings had not | 의자 was glossed 'chair, sofa' and 앉다 'to sit, to squat' — dictionary scrapings teaching wrong senses. 이야기's gloss said 'talk' over a story example; 빼다 said 'to take out' over a subtraction; 웃기다 said 'to be funny' over a causative; 명 was glossed 'a person' although it is the counter and cannot stand alone; 아이구 is the nonstandard spelling of 아이고; 참 was filed as a noun, 지치다 as an adjective, 이르다 (to be early) as a verb; 석방하다's example said 죄인을 석방했어요, which is period-drama Korean; 은밀한 만남이었어요 evoked a tabloid affair on a word card; and 도로가 막혀요 was translated 'The road is blocked' in 30 languages when it means congested. | **RESOLVED** |
 | **I-34** | Handwriting | **P1** | The ㄱ taught beside a vowel had a leg a third too short | A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check. | **RESOLVED** |
 | **I-35** | Handwriting | **P1** | Every jamo proportion was measured off a fallback face, not off Pretendard | ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface. | **RESOLVED** |
 | **I-37** | Product | **P1** | The adaptive Hangyul Vocabulary Level Test (1–30) is built | A learner can now find out roughly where they stand in 3–6 minutes, and somebody who already knows some Korean has a way into the product that is not "start at ㄱ". | **RESOLVED** |
@@ -2654,6 +2810,7 @@ document they predate.
 | **I-52** | Accessibility | **P1** | Four controls were under 44 px and two colour pairs failed AA | The streak chip on Home, the vocabulary search field, the nine daily-goal chips and the skip link — the first tab stop in the product — were all below the 44 px minimum. The search field was the worst of them: 25 px tall inside a 48 px row that plainly invites a tap. The dialog's quiet button was white on #ADB4BA at 2.10:1, and "Reset learning progress" — the one destructive action in the app — was the hardest sentence in it to read at 3.39:1. | **RESOLVED** |
 | **I-55** | Level Test | **P1** | Contextual level-test items shipped with two defensible answers | A learner who knows Korean well enough to see that 연필을 사고 있어요 is a perfectly good sentence marks the item wrong, and the test places them lower than they are. The strongest learners are the ones most likely to be penalised, which is the worst possible direction for a placement test to be wrong in. | **RESOLVED** |
 | **I-56** | Build | **P1** | The level-test ambiguity gate had been crashing on the first item it read | None directly, and it is the reason I-55 reached a customer. Meaning items started carrying ids instead of strings when the bank was localised; the gate read `item.options`, found `undefined`, and threw on item one. It printed a stack trace and no findings, which in a long build log reads like a step that had nothing to say. | **RESOLVED** |
+| **I-58** | Content | **P1** | 계셌어요 — the honorific verbs conjugated into strings that are not Korean | Two of them were in the level test as answer options. 계시다, 주무시다, 드시다, 잡수시다 and 돌아가시다 all produced a past tense no Korean speaker has written, and a request form to match: 계세 주세요. | **RESOLVED** |
 | **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **RESOLVED** |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | **RESOLVED** |
 | **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
@@ -2667,6 +2824,7 @@ document they predate.
 | **I-47** | Home | **P2** | The quotation slot held a hundred lines, eighty-eight of which the app had written itself | A learner reading the foot of Home could not tell a sentence Seneca wrote from a sentence a product manager wrote, because both were set the same way in the same slot. Twenty attributed quotations replace them. | **RESOLVED** |
 | **I-53** | Copy | **P2** | The Review hub called one list "Saved words" and the other "Wrong vocabulary" | Two chips ten pixels apart named the same kind of thing with two different nouns, so they read as two features that arrived separately rather than as a pair. | **RESOLVED** |
 | **I-54** | Build | **P2** | Two gates failed on every run once twenty-two languages went partial | None directly — but a suite that is red on every commit is a suite people route around, and this one was red on 44 findings that were the content backlog rather than a fault. | **RESOLVED** |
+| **I-57** | Level Test | **P2** | The test reported a level out of 30 without saying how far it could ask in that language | A learner in Hungarian is never asked a question above level 23, because the levels above are ranked from the dictionary and only English carries those glosses. They were then shown a number "of 30". A ceiling presented as a result reads as a verdict on the learner rather than a limit of the bank. | **RESOLVED** |
 | **I-15** | Audio | **P3** | 마디 was mispronounced in one voice | One word sounded wrong | **RESOLVED** |
 | **I-16** | Audio | **P3** | The recogniser screen reported 낳다 as 낫다 in both voices | None — the recordings are correct. The open question was the defect. | **RESOLVED** |
 | **I-18** | Content | **P3** | 103 glosses carried more than one sense in some language | A learner asked what 차 means had two right answers and one button: the card read 車、お茶 in Japanese and "coche, té" in Spanish over the sentence 차를 타요. | **RESOLVED** |
@@ -2678,7 +2836,6 @@ document they predate.
 | **I-31** | Handwriting | **P3** | Gaegu drew small letters, and the correction to its reading size was fitted to one axis | A learner who picks the handwriting typeface reads and traces letters drawn smaller than the same letters in the same app a moment earlier. The traced reference was fixed a cycle ago; the reading size was corrected to 127% and, rendered beside the other five faces, plainly read *larger* than them. | **RESOLVED** |
 | **I-32** | Performance | **P3** | Dictionary search scanned every row on every keystroke | None reached a customer — it was caught by its own budget at 9.0 ms before shipping — but the design had no headroom: another 15% of corpus growth and search results would have begun trailing the cursor on a mid-range phone. | **RESOLVED** |
 | **I-33** | Content | **P4** | Secondary categories were inherited from senses the card does not teach | 김치 was tagged *communication* as well as *food*; 눈, taught as the eye, was tagged *animals-nature* from the snow sense; 돈 was *time-numbers*. Secondary tags feed search and recommendations, so a wrong one sends a learner to a word that does not belong there. | **RESOLVED** |
-| **I-58** | Content | **P1** | 계셌어요 — the honorific verbs conjugated into strings that are not Korean | Two of them were in the level test as answer options. 계시다, 주무시다, 드시다, 잡수시다 and 돌아가시다 all produced a past tense no Korean speaker has written, and a request form to match: 계세 주세요. | **RESOLVED** |
 | **I-59** | i18n content | **P1** | Example translations invented a person the Korean does not have | Korean drops the subject, and 262 translations filled the gap. 발을 밟았어요 — a foot was stepped on, no owner named — read "I stepped on his foot", teaching a possessive that is not in the sentence. And the distribution is its own finding: of the 58 in English, fifty said *he* and eight said *she*, and the eight were the elegant, the graceful, the sweetly-spoken, the one who dressed up and the one who plays the piano. | **RESOLVED** |
 | **I-64** | Feedback | **P1** | The handwriting verdict panel was 41% of the width it sat in, and a different width when you got it right | The moment a learner has been working toward — the pen lifts, the app says whether the letter is right — was delivered on a card narrower than everything around it, floating in the middle of the column. And because "Correct." is a shorter word than "Incorrect.", the card physically changed shape according to the answer: 180 px when right, 143 px when wrong, in a 350 px column. The most emotionally loaded surface in the product looked unfinished, and looked unfinished in two different ways. | **RESOLVED** |
 | **I-65** | Persistence | **P1** | Adding a word to the corpus renamed a different word's id, and word ids key saved progress | A learner who updated would lose 젖다's history and find it credited to 젓다 — a word they had never seen, now treated as one they knew. Progress is device-local with no cloud copy, so there is nothing to restore it from. The storage layer's own opening comment says an update that silently resets progress is unacceptable for a paid app; this defeated that from the content side. | **RESOLVED** |
@@ -2696,7 +2853,8 @@ document they predate.
 | **I-102** | Vocabulary session | **P2** | A missed new word was retried with the identical question type | §27 promises a different exercise on the same taught sense, because the identical multiple-choice a minute later is answered from the shape of the screen. A new word owes exactly one check, and the retry pool was filtered to the word’s planned steps — so the promise was broken for the most common case in the product: a new word missed on its meaning question was shown its meaning question again. | **RESOLVED** |
 | **I-105** | Conjugation | **P2** | X주다 verbs requested themselves twice | 도와줘 주세요, 알려줘 주세요, 빌려줘 주세요 — “for me” said twice — were displayed as the request rows of eleven 주다 compounds, and 주다 itself showed 줘 주세요. | **RESOLVED** |
 | **I-106** | Dictionary UX | **P2** | A category showed 120 of its words and told the learner so | Six categories exceed the 120-render cap (largest 305). The learner read “200개 중 120개 표시” — an implementation fact — and the words past the cap were genuinely unreachable from the screen. | **RESOLVED** |
-| **I-57** | Level Test | **P2** | The test reported a level out of 30 without saying how far it could ask in that language | A learner in Hungarian is never asked a question above level 23, because the levels above are ranked from the dictionary and only English carries those glosses. They were then shown a number "of 30". A ceiling presented as a result reads as a verdict on the learner rather than a limit of the bank. | **RESOLVED** |
+| **I-113** | Conjugation | **P2** | Batch 920's verbs licensed unnatural command and request rows by default | 좌절하세요 (please be crushed), 급증하세요 (please surge), 야기하세요, 간과하세요, 직면하세요, 체감하세요 — mechanically impeccable rows a learner would have read under a label meaning 'Please do'. 감행해 주세요, 만회해 주세요, 몰두해 주세요 and 억눌러 주세요 are favours nobody asks. | **RESOLVED** |
+| **I-114** | Release engineering | **P2** | The store listings claimed 2,844 words over a corpus of 3,334, and store:check was blind to them | All eight store listings undersold the product by 490 words — two corpus generations stale. The release notes were gated for exactly this and the listings were not, so the gate that §19.6 records as widened stayed green while the copy one directory over drifted. | **RESOLVED** |
 | **I-60** | Copy | **P2** | The Korean interface called one thing two things, on screens a learner moves between | The home card read 오늘의 어휘 directly above a tab reading 단어; the saved list was 저장한 어휘, filled by a button reading 단어 저장, and its empty state read 어휘의 북마크를 누르면, which is not a thing anyone says. Unit 1 teaches that 낱자 combine into a 글자 and the product then called the letters tab 글자, counted 완료한 글자 in the activity page and 배운 낱자 in the settings. Six strings were in 합쇼체 in a product that speaks 해요체, one of them mixing both inside a single pair of sentences. | **RESOLVED** |
 | **I-61** | Copy | **P2** | Two screens said the same thing twice | "Today's words · 0/10 · A short set of 10 words." — three lines and two of them carry the ten. Home's letters card said 40 the same way. And eight of the twelve units are named after their first lesson, so a unit heading and the card beneath it said the same words forty vertical pixels apart. | **RESOLVED** |
 | **I-62** | Feedback | **P2** | Two review exercises kept their own idea of what being right is called | The shared verdict reached the writing box, the recognition step and the review session, and not the two components those sessions render. A learner answering a word question read "That's it." or "Not quite. Here it is." while the same learner, two taps earlier, had read "Correct." | **RESOLVED** |
@@ -2728,7 +2886,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 4 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 101**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 104**
 
 <!-- /issues:counts -->
 
@@ -2736,15 +2894,15 @@ document they predate.
 
 | ID | Evidence | Recommended fix |
 | --- | --- | --- |
-| **I-04** | 3,221 words ship today, counted from `apps/web/src/data/generated/vocabulary.json` rather than from any prose. The pass before this one took it from 2,581 to 2,948; this one added 273 more, every one authored by hand and passed through `content:build`, `examples:qa`, `vocabulary:sense:qa` and `conjugation:qa` before being counted.  The deficit is 6,779 entries. Measured against what one entry actually costs — a Korean headword, a sense, a hand-written example, a romanisation, and a meaning plus an example translation in each of the ten complete languages, roughly 21 authored strings — that is about 142,000 strings. The number moves by 6% a cycle; nothing about this pass makes the target reachable, and saying so is the point of leaving it open.  **Re-audited 26 August 2026 at 3,220 words.** The corpus moved by −1 this pass: 부딪다 was retired because its bare conjugation is not real usage (I-107), and this pass's priority was correctness rather than supply. The deficit is 6,780 entries. Every content gate is green on the rebuilt tree; the target gate still fails by design. | Either author them, or restate the target. The delivery machinery is built and proven at 3,221 — bands, audio, level assignment, 32 locales — so the constraint is authoring, not engineering. |
+| **I-04** | 3,221 words ship today, counted from `apps/web/src/data/generated/vocabulary.json` rather than from any prose. The pass before this one took it from 2,581 to 2,948; this one added 273 more, every one authored by hand and passed through `content:build`, `examples:qa`, `vocabulary:sense:qa` and `conjugation:qa` before being counted.  The deficit is 6,779 entries. Measured against what one entry actually costs — a Korean headword, a sense, a hand-written example, a romanisation, and a meaning plus an example translation in each of the ten complete languages, roughly 21 authored strings — that is about 142,000 strings. The number moves by 6% a cycle; nothing about this pass makes the target reachable, and saying so is the point of leaving it open.  **Re-audited 26 August 2026 at 3,220 words.** The corpus moved by −1 this pass: 부딪다 was retired because its bare conjugation is not real usage (I-107), and this pass's priority was correctness rather than supply. The deficit is 6,780 entries. Every content gate is green on the rebuilt tree; the target gate still fails by design.  **Re-audited 27 August 2026 at 3,334 words.** Batch 920 added 78 hand-written entries — formal and academic nouns, modern adult-life vocabulary (대출, 야근, 회식, 전세), advanced verbs and adjectives, six adverbs and twelve common 사자성어 — every one through preflight, examples:qa, sense QA and the conjugation-display reading before being counted. The deficit is 6,666 entries; the target gate still fails by design. | Either author them, or restate the target. The delivery machinery is built and proven at 3,221 — bands, audio, level assignment, 32 locales — so the constraint is authoring, not engineering. |
 | **I-12** | A consequence of having no account and device-local persistence. §13.3 of the current report.  **Re-audited 24 August 2026.** Unchanged.  **Re-audited 25 August 2026.** Unchanged; still closed by decision rather than by work.  **Re-audited 26 August 2026.** Unchanged; still closed by decision rather than by work. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
-| **I-13** | `vocabulary:relations:qa`.  **Re-audited 23 August 2026 at 2,844 words.** Rebuilt after the expansion: still 245 words and 274 relations, because the builder records only what two Wiktionary headwords state about the taught sense and the 263 new words brought no new evidence. Checked separately that the sparse graph is not letting an unrecorded opposite into the Level Test — no bank item offers 앞 against 뒤, 전 against 후 or 죽다 against 살다.  **Re-audited 24 August 2026 at 2,916 words.** 252 words and 282 relations, up from 245 and 274. Seven of the increase are batch-4 words the wiki happens to describe; four are a correction. Scoping a page to the part of speech this app teaches is what stops 쪼다 the verb inheriting 쪼다 the insult's 유의어 바보 — and it also dropped 밝다 ↔ 어둡다, because ko.wiktionary states that pair under 밝다's 동사 heading (*해가 떠올라 날이 새다*, to dawn) while this app teaches the adjective. Twenty-nine taught words have relations under another heading; twenty-five are genuine homographs and are still ignored. The four that are not are named in `content/vocabulary/relation-headings.json` with a reason each. Nothing else changed: a relation still has to be stated on the page, still has to be mutual, and still has to point at a word the app ships.  **Re-audited 24 August 2026 at 2,948 words.** Unchanged at 252 words and 282 relations: the thirty-two new entries are concrete nouns the wiki states nothing mutual about. The builder still records only what two headwords state about the taught sense.  **Re-audited 25 August 2026 at 3,221 words.** Unchanged at 252 words and 282 relations. The 273 words added this pass brought no new mutual evidence: the wiki states nothing about most of them, and the sixteen four-character idioms among them are exactly the kind of entry a synonym list would have to invent. Rebuilt, not assumed — `vocabulary:relations:check` passes.  **Re-audited 26 August 2026 at 3,220 words.** Rebuilt after the example rewrites: 252 words carry a relation (72 synonym pairs, 69 antonym pairs). The retirement of 부딪다 removed its source row; nothing else moved. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
-| **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled.  **Re-audited 23 August 2026 at 2,844 words.** Still true, and this pass produced a concrete demonstration of what goes unnoticed without it: the Portuguese pack had been written in European Portuguese in a pt-BR product for four batches — camisola, a nightgown in Brazil, taught as the meaning of 스웨터, and constipação, constipation, used for a head cold. No gate reads for the variety of a language. A native reader finds that in a minute.  **Re-audited 24 August 2026 at 2,916 words.** Unchanged, and now stated in a second place a reader will actually reach: `docs/LEVEL_TEST_KOREAN_REVIEW.md` records, dimension by dimension, what has been read and by whom — eleven rows by a program, three by an AI assistant, and one row, naturalness, by nobody. `npm run korean:education:qa` refuses to pass if that file claims a native reviewer, and prints THIS DOES NOT PROVE NATIVE NATURALNESS on every run.  **Re-audited 24 August 2026 at 2,948 words.** Unchanged. This pass added a Thai and a Vietnamese row for each new word, written by an AI assistant like every other row in those packs, so the surface needing native review grew by 64 strings.  **Re-audited 25 August 2026 at 3,221 words.** Unchanged in kind and larger in size. This pass wrote 22,638 strings in twenty-two languages nobody in this repository reads — 11,000 meanings, 11,000 example translations and 638 long definitions — so the surface needing native review grew by more this cycle than in all the previous ones together. Two of those strings were caught by a program rather than a reader, and only because they collided with an answer: the Kyrgyz and Uzbek category labels in I-89.  **Re-audited 26 August 2026.** Unchanged in kind. This pass rewrote 15 Korean examples with their translations in every written language and re-aligned seven senses across locales — all model-written, none read by a native speaker. The surface needing native review did not shrink. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
-| **I-79** | `npm run vocabulary:recommendation:qa`, 30,000 simulated events, 30 levels x 100 days x 10 words, 0 short days inside the simulated window. A learner at 30 now sees 383 distinct words before the zone is exhausted and one at 1 sees 102; the previous pass measured 221 and 93. The `fortnight` column — floor(distinct / 10) — reads 38 at level 30 where it read 22.  The 273 words added this pass were selected for this: 162 of them land in 28-30. The sample the simulation prints for a level-30 learner is 야무지다, 감언이설, 기울다, 씁쓸하다, 착잡하다, 감당하다, 복용하다, 애틋하다, 일사천리 and 저조하다 — advanced and ordinary rather than advanced and obscure, which is the harder half of the ask.  The shortfall is still reported rather than hidden. `planNewWords` returns a deficit and refuses to reach more than one level outside the teaching zone.  **Re-audited 26 August 2026.** Unchanged: levels 28–30 hold 383 words. The recommendation gate still reports 0 short days inside its window and the level-30 sample is still advanced-and-ordinary (야무지다, 감언이설, 씁쓸하다, 착잡하다, 복용하다, 일사천리). The supply, not the model, remains the limit. | Keep authoring at the top. Five weeks is not a fortnight and it is not a year; the zone needs roughly 700 words per level before the ceiling stops being a thing a learner can reach. |
+| **I-13** | `vocabulary:relations:qa`.  **Re-audited 23 August 2026 at 2,844 words.** Rebuilt after the expansion: still 245 words and 274 relations, because the builder records only what two Wiktionary headwords state about the taught sense and the 263 new words brought no new evidence. Checked separately that the sparse graph is not letting an unrecorded opposite into the Level Test — no bank item offers 앞 against 뒤, 전 against 후 or 죽다 against 살다.  **Re-audited 24 August 2026 at 2,916 words.** 252 words and 282 relations, up from 245 and 274. Seven of the increase are batch-4 words the wiki happens to describe; four are a correction. Scoping a page to the part of speech this app teaches is what stops 쪼다 the verb inheriting 쪼다 the insult's 유의어 바보 — and it also dropped 밝다 ↔ 어둡다, because ko.wiktionary states that pair under 밝다's 동사 heading (*해가 떠올라 날이 새다*, to dawn) while this app teaches the adjective. Twenty-nine taught words have relations under another heading; twenty-five are genuine homographs and are still ignored. The four that are not are named in `content/vocabulary/relation-headings.json` with a reason each. Nothing else changed: a relation still has to be stated on the page, still has to be mutual, and still has to point at a word the app ships.  **Re-audited 24 August 2026 at 2,948 words.** Unchanged at 252 words and 282 relations: the thirty-two new entries are concrete nouns the wiki states nothing mutual about. The builder still records only what two headwords state about the taught sense.  **Re-audited 25 August 2026 at 3,221 words.** Unchanged at 252 words and 282 relations. The 273 words added this pass brought no new mutual evidence: the wiki states nothing about most of them, and the sixteen four-character idioms among them are exactly the kind of entry a synonym list would have to invent. Rebuilt, not assumed — `vocabulary:relations:check` passes.  **Re-audited 26 August 2026 at 3,220 words.** Rebuilt after the example rewrites: 252 words carry a relation (72 synonym pairs, 69 antonym pairs). The retirement of 부딪다 removed its source row; nothing else moved.  **Re-audited 27 August 2026 at 3,334 words.** Rebuilt: 253 words carry a relation (73 synonym pairs, 69 antonym pairs). The 78 new words brought one new mutual pair; nothing was invented. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
+| **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled.  **Re-audited 23 August 2026 at 2,844 words.** Still true, and this pass produced a concrete demonstration of what goes unnoticed without it: the Portuguese pack had been written in European Portuguese in a pt-BR product for four batches — camisola, a nightgown in Brazil, taught as the meaning of 스웨터, and constipação, constipation, used for a head cold. No gate reads for the variety of a language. A native reader finds that in a minute.  **Re-audited 24 August 2026 at 2,916 words.** Unchanged, and now stated in a second place a reader will actually reach: `docs/LEVEL_TEST_KOREAN_REVIEW.md` records, dimension by dimension, what has been read and by whom — eleven rows by a program, three by an AI assistant, and one row, naturalness, by nobody. `npm run korean:education:qa` refuses to pass if that file claims a native reviewer, and prints THIS DOES NOT PROVE NATIVE NATURALNESS on every run.  **Re-audited 24 August 2026 at 2,948 words.** Unchanged. This pass added a Thai and a Vietnamese row for each new word, written by an AI assistant like every other row in those packs, so the surface needing native review grew by 64 strings.  **Re-audited 25 August 2026 at 3,221 words.** Unchanged in kind and larger in size. This pass wrote 22,638 strings in twenty-two languages nobody in this repository reads — 11,000 meanings, 11,000 example translations and 638 long definitions — so the surface needing native review grew by more this cycle than in all the previous ones together. Two of those strings were caught by a program rather than a reader, and only because they collided with an answer: the Kyrgyz and Uzbek category labels in I-89.  **Re-audited 26 August 2026.** Unchanged in kind. This pass rewrote 15 Korean examples with their translations in every written language and re-aligned seven senses across locales — all model-written, none read by a native speaker. The surface needing native review did not shrink.  **Re-audited 27 August 2026.** Unchanged in kind and larger in size: this pass wrote 78 new entries in ten languages, four More-about-it notes (one in 32 languages), and rewrote 17 shipped examples with their translations — all model-written, none read by a native speaker. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
+| **I-79** | `npm run vocabulary:recommendation:qa`, 30,000 simulated events, 30 levels x 100 days x 10 words, 0 short days inside the simulated window. A learner at 30 now sees 383 distinct words before the zone is exhausted and one at 1 sees 102; the previous pass measured 221 and 93. The `fortnight` column — floor(distinct / 10) — reads 38 at level 30 where it read 22.  The 273 words added this pass were selected for this: 162 of them land in 28-30. The sample the simulation prints for a level-30 learner is 야무지다, 감언이설, 기울다, 씁쓸하다, 착잡하다, 감당하다, 복용하다, 애틋하다, 일사천리 and 저조하다 — advanced and ordinary rather than advanced and obscure, which is the harder half of the ask.  The shortfall is still reported rather than hidden. `planNewWords` returns a deficit and refuses to reach more than one level outside the teaching zone.  **Re-audited 26 August 2026.** Unchanged: levels 28–30 hold 383 words. The recommendation gate still reports 0 short days inside its window and the level-30 sample is still advanced-and-ordinary (야무지다, 감언이설, 씁쓸하다, 착잡하다, 복용하다, 일사천리). The supply, not the model, remains the limit.  **Re-audited 27 August 2026 at 3,334 words.** Batch 920 took levels 28–30 from 417 to 478 words. The recommendation gate re-ran clean at 30,000 events — learner 30 observed range 29–30, median 30, distinct pool 478, `fortnight` 47 — and gained an independent beginner-contamination detector that does not consult teachingZone: obvious-too-easy 0, obvious-too-hard 0, named beginner leaks 0. Negative-tested by restoring the I-111 corpus-prefix path: 25,262 findings, exit 1. | Keep authoring at the top. Five weeks is not a fortnight and it is not a year; the zone needs roughly 700 words per level before the ceiling stops being a thing a learner can reach. |
 | **I-03** | `HANGYUL_URL` is null in a plain checkout; `NextStepCard` returns null; `routing:check` reports which way a build went. Searching both repositories on this machine finds the main product — the Expo app `Hangyul`, bundle `com.hangyul.app`, scheme `hangyul` — and its backend `api.talkhangyul.com`, and this app's own host `ganada.talkhangyul.com`. Neither repository declares a learner-facing web address for the main app. The one occurrence of `https://hangyul.app` is a fallback inside a `catch` in a billing modal, not a declared destination.  **Re-audited 24 August 2026.** Unchanged; the blocker is outside this repository.  **Re-audited 25 August 2026.** `VITE_HANGYUL_URL` is unset in the environment and declared nowhere in this repository; `HANGYUL_URL` is null and `NextStepCard` renders nothing. No destination was invented.  **Re-audited 26 August 2026.** `VITE_HANGYUL_URL` is unset and declared nowhere in this repository; the hand-off still renders nothing rather than a guess. Blocked outside this repository. | Whoever owns the product supplies the destination — a landing page, a store listing or a universal link — and it is set as `VITE_HANGYUL_URL` at build time. Documented in `.env.example`. |
-| **I-19** | `npm run locale:content:qa`: 10 complete at 3,221 of 3,221, and 22 partial at 600 of 3,221 — 19% each, where the previous pass measured 100 and 3%. 500 words x 22 languages = 11,000 hand-written meanings and 11,000 example translations added this cycle, plus 638 long definitions, because `vocabulary:sense:qa` requires that a word carrying the *More about it* paragraph in one language carries it in every language that has written that word.  The reachable Level Test grows with it: those 22 languages go from 645 items to 1,021.  **These are model-written and have not been read by a native speaker.** That is the reason this stays PARTIAL rather than closing: coverage is not review, and `i18n:check` reporting 32/32 for the interface is a different question from this one.  **Re-audited 26 August 2026.** Unchanged at 600 words per partial locale. This pass found what the asymmetry costs at the *scheduling* layer: a met word past the written band could be scheduled with nothing to ask, sticking the day at 9/10 (I-100, fixed structurally with a language-aware canPractise filter). | Continue the expansion band by band, and get a speaker of each language to read what is there. The second half is the one that cannot be done from this machine. |
-| **I-39** | `npm run locale:editorial` is new, and it reads for four things nothing else looked at:  * **Register.** Twenty-one of the shipping languages choose between a familiar and a polite second person, and the choice has to be the same on every screen. It counts the markers of each and fails the build on a language that uses both. It found **five languages mixing them** — de (12 strings), el (3), id (6), ro (2), and, once its own false positives were fixed, none in cs. All are now consistent with the register that language already used. * **One English sentence, two translations.** Where two keys hold the same English string their translations should match. Found the Level Test asking "What does this word mean?" in wording that differed from the reading exercise's in six languages; unified. * **Typography.** 71 straight apostrophes in languages whose English source writes the typographic one; all replaced. * **A label that became a paragraph.** A short English label translated several times longer, which is what breaks a layout at 200% text.  Writing it also found the writer out. Its first run reported seven mixed-register languages and three were its own fault: JavaScript's `\b` is defined against ASCII, so `\btes\b` matched inside *prêtes* and French "revisions ready" was reported as addressing the reader familiarly. Every pattern now goes through a Unicode-aware boundary, German and Italian are read with sentence-initial capitals lowered (so *Sie* meaning *she* is not counted), and the ambiguous markers — Spanish `su`, Czech `ty`, Dutch `u` as the abbreviation for hours — are named and excluded with the reason. **A linguistic check that cries wolf is worse than none**, because it is the kind people switch off.  **What is still not done, and this is the whole of the remaining item.** Nothing here reads a sentence for whether it is *good*. Register consistency is not naturalness, and an apostrophe is not a register. The 15 findings it still reports are deliberately left as warnings for a person: they are places where two screens word the same idea differently and only somebody who reads the language can say which is right, or whether both are.  Distinct from I-17, which is native-speaker review. This is the pass that should happen before one, and the mechanical half of it is now done and enforced in `verify:quick`.  **This cycle: Korean, read on the rendered screens.** Three classes of defect that no check looked for — one thing called two things (I-60), a register that slipped into 합쇼체 six times, and 262 example translations that invented a person the Korean does not have (I-59). All three are rules in `locale:editorial` or `examples:qa` now. What has still not happened is a native reading, in any of the thirty-two.  **Re-audited 24 August 2026.** The Korean interface was rewritten this pass to drop 낱자 and 낱말 (I-75), which is a mechanical editorial change and not a native reading. The row is unchanged: 31 of 32 languages have had a program read them and a person has not.  **Re-audited 25 August 2026.** Unchanged in substance. `qa:locales` renders 32 languages x 8 screens = 256 screens with no measurable problem, `locale:editorial` reports 0 errors and 38 warnings for a person to read, and neither of those is a native reading. Two category labels were renamed this cycle for a mechanical reason rather than an editorial one — Kyrgyz *Адамдар жана үй-бүлө* and Uzbek *O'qish va ish* each contained the answer to the question they were hinting at.  **Re-audited 26 August 2026.** Unchanged in substance: `locale:editorial` reports 0 errors and 38 warnings for a person to read; no native reading has happened in any of the 32. | A reading pass per locale, screen by screen, by somebody who speaks it. The 15 remaining warnings from `locale:editorial` are where to start. |
-| **I-20** | 71 words carry a third element in `vocabulary.en.json`, up from 35. They are the homographs and the usage traps: 배 is a stomach, a boat and a pear; 못 is the difference between will not and cannot; 아가씨 is a word to use about somebody and not to them. 38 of the 71 are inside the 600-word core band, and this pass wrote all 38 in each of the 22 partial languages — 638 paragraphs — because a note that exists in English and not in Tamil is an asymmetry a learner discovers by switching language.  **Re-audited 26 August 2026.** Unchanged: 71 words carry the block. | Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed. |
+| **I-19** | `npm run locale:content:qa`: 10 complete at 3,221 of 3,221, and 22 partial at 600 of 3,221 — 19% each, where the previous pass measured 100 and 3%. 500 words x 22 languages = 11,000 hand-written meanings and 11,000 example translations added this cycle, plus 638 long definitions, because `vocabulary:sense:qa` requires that a word carrying the *More about it* paragraph in one language carries it in every language that has written that word.  The reachable Level Test grows with it: those 22 languages go from 645 items to 1,021.  **These are model-written and have not been read by a native speaker.** That is the reason this stays PARTIAL rather than closing: coverage is not review, and `i18n:check` reporting 32/32 for the interface is a different question from this one.  **Re-audited 26 August 2026.** Unchanged at 600 words per partial locale. This pass found what the asymmetry costs at the *scheduling* layer: a met word past the written band could be scheduled with nothing to ask, sticking the day at 9/10 (I-100, fixed structurally with a language-aware canPractise filter).  **Re-audited 27 August 2026 at 3,334 words.** The core band is still 600 words, now 18% of a larger corpus. The 22 partial packs each gained two strings this pass (도로's corrected example translation, and 당신's usage note, which sense QA requires in every language that has written the word). | Continue the expansion band by band, and get a speaker of each language to read what is there. The second half is the one that cannot be done from this machine. |
+| **I-39** | `npm run locale:editorial` is new, and it reads for four things nothing else looked at:  * **Register.** Twenty-one of the shipping languages choose between a familiar and a polite second person, and the choice has to be the same on every screen. It counts the markers of each and fails the build on a language that uses both. It found **five languages mixing them** — de (12 strings), el (3), id (6), ro (2), and, once its own false positives were fixed, none in cs. All are now consistent with the register that language already used. * **One English sentence, two translations.** Where two keys hold the same English string their translations should match. Found the Level Test asking "What does this word mean?" in wording that differed from the reading exercise's in six languages; unified. * **Typography.** 71 straight apostrophes in languages whose English source writes the typographic one; all replaced. * **A label that became a paragraph.** A short English label translated several times longer, which is what breaks a layout at 200% text.  Writing it also found the writer out. Its first run reported seven mixed-register languages and three were its own fault: JavaScript's `\b` is defined against ASCII, so `\btes\b` matched inside *prêtes* and French "revisions ready" was reported as addressing the reader familiarly. Every pattern now goes through a Unicode-aware boundary, German and Italian are read with sentence-initial capitals lowered (so *Sie* meaning *she* is not counted), and the ambiguous markers — Spanish `su`, Czech `ty`, Dutch `u` as the abbreviation for hours — are named and excluded with the reason. **A linguistic check that cries wolf is worse than none**, because it is the kind people switch off.  **What is still not done, and this is the whole of the remaining item.** Nothing here reads a sentence for whether it is *good*. Register consistency is not naturalness, and an apostrophe is not a register. The 15 findings it still reports are deliberately left as warnings for a person: they are places where two screens word the same idea differently and only somebody who reads the language can say which is right, or whether both are.  Distinct from I-17, which is native-speaker review. This is the pass that should happen before one, and the mechanical half of it is now done and enforced in `verify:quick`.  **This cycle: Korean, read on the rendered screens.** Three classes of defect that no check looked for — one thing called two things (I-60), a register that slipped into 합쇼체 six times, and 262 example translations that invented a person the Korean does not have (I-59). All three are rules in `locale:editorial` or `examples:qa` now. What has still not happened is a native reading, in any of the thirty-two.  **Re-audited 24 August 2026.** The Korean interface was rewritten this pass to drop 낱자 and 낱말 (I-75), which is a mechanical editorial change and not a native reading. The row is unchanged: 31 of 32 languages have had a program read them and a person has not.  **Re-audited 25 August 2026.** Unchanged in substance. `qa:locales` renders 32 languages x 8 screens = 256 screens with no measurable problem, `locale:editorial` reports 0 errors and 38 warnings for a person to read, and neither of those is a native reading. Two category labels were renamed this cycle for a mechanical reason rather than an editorial one — Kyrgyz *Адамдар жана үй-бүлө* and Uzbek *O'qish va ish* each contained the answer to the question they were hinting at.  **Re-audited 26 August 2026.** Unchanged in substance: `locale:editorial` reports 0 errors and 38 warnings for a person to read; no native reading has happened in any of the 32.  **Re-audited 27 August 2026.** Unchanged in kind and larger in size: this pass wrote 78 new entries in ten languages, four More-about-it notes (one in 32 languages), and rewrote 17 shipped examples with their translations — all model-written, none read by a native speaker. | A reading pass per locale, screen by screen, by somebody who speaks it. The 15 remaining warnings from `locale:editorial` are where to start. |
+| **I-20** | 71 words carry a third element in `vocabulary.en.json`, up from 35. They are the homographs and the usage traps: 배 is a stomach, a boat and a pear; 못 is the difference between will not and cannot; 아가씨 is a word to use about somebody and not to them. 38 of the 71 are inside the 600-word core band, and this pass wrote all 38 in each of the 22 partial languages — 638 paragraphs — because a note that exists in English and not in Tamil is an asymmetry a learner discovers by switching language.  **Re-audited 26 August 2026.** Unchanged: 71 words carry the block.  **Re-audited 27 August 2026.** Four notes were added where a learner genuinely needs one: 당신 (the polite-you trap — spousal or confrontational in real speech; written in all 32 written languages because the word is in the core band), 전세 (the lump-sum lease no other country has), 회식 (the semi-obligatory team dinner), and 좀처럼 (a negative-polarity adverb). 71 → 75. | Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed. |
 | **I-01** | Rebuilt from HEAD (`a672dad`) with the working tree clean, and verified by unpacking the delivered APK rather than by trusting the build: `assets/public/brand/splash/` holds `splash-ko.png` and `splash-en.png` and no MP4; the curriculum chunk carries `국:{aspect:.9669,cut:"bar",parts:[[.1257,0,.8686,.3646],…]}`, the current measurement; the matching grid, the sound-free control, the Home nudge and the `noindex` metadata are all present; and all ten native launch bitmaps test wordless. Signed v2 + v3 with the production identity `157a2bb1…debc`, read out of the APK Signing Block. **And `npm run release:current` now exists**: it reads the commit out of `build-info.json`, diffs it against HEAD, and fails on any changed product file or any uncommitted one. It is in `verify:release`. | done |
 | **I-02** | Committed before the build, in that order, this cycle and the two before it. | done |
 | **I-108** | Two report sections stated contradictory policies — §I-78: 'a level change takes effect at once, because a level is a measurement'; §I-45's test: 'retaking mid-day leaves today's words exactly as they were, because the new level is a fact about tomorrow' — and the code implemented the second whenever `plan.completed` was non-empty. The contradiction is removed. The canonical rule now implemented, tested and documented: **a measured vocabulary-level change immediately invalidates the unresolved level-dependent portion of Today's Vocabulary; already mastered progress is preserved; remaining ordinary new-study targets are regenerated for the new level.**  `planIsCurrent` refuses a mismatched plan whatever its progress, and the new `rebuildPlanForLevel` (domain/vocabularyDay.ts) corrects a started day instead of replacing it: completed words keep their credit and their slots, unresolved consolidation (weak/review — evidence-based, level-independent) stays, and only unresolved ordinary new-study targets are regenerated via `pickNewWords` at the measured level. The goal — the denominator — never moves; 3/10 at Level 1 becomes 3/10 with seven Level-30 words, never 0/10 and never seven more beginner words. A word answered wrong before the retake is replaced like any other unresolved target; its history stays in the mistakes store, where Review owns it. A retake to the same level returns the identical plan object.  Gates: fixtures A–G in domain/vocabularyLevel.test.ts against the real corpus (0/10, 3/10, reverse 30→1 at 4/10, wrong-pending, 10/10 + extra study, 12/15, same-level identity); provider tests in store/placement.test.tsx including the credit-committed-just-before-the-retake race and the goal-change case; 1,000 seeded random sittings with one-to-three mid-sitting retakes each in vocabularySession.property.test.ts; twelve permanent `retaken-midday` personas (P101–P112, both directions, partial locales included) in the 112-persona synthetic journey gate. Every gate was negative-tested by restoring the old behaviour: 3 unit fixtures and 11 synthetic journeys fail with it in place. | Done. The corpus limit that decides what the regenerated targets are is I-79. |
@@ -2764,6 +2922,7 @@ document they predate.
 | **I-107** | Every one of the 3,221 teaching examples was re-read this pass by six parallel editorial readers; the 32 raw findings were adjudicated one by one and 15 rewritten at the source with new recordings in both voices, translations updated in every written language (including 31 languages for 건물, a core-band word). 부딪다 was retired — 부딪치다 is already taught — and its id stays in the ledger. Seven cards’ glosses were aligned to the sense their example actually demonstrates (지원하다 → apply, 아끼다 → use sparingly, 반대 → opposition, 무엇 → what, 계속 → continuously + adverb, 가까이 → near, 마저’s Korean gloss to the particle its example uses). Corpus 3,221 → 3,220; every content gate green on the rebuilt tree. | Done. The class — an example demonstrating a different word than its headword — is one no gate can decide; it stays a reading task. |
 | **I-110** | LearnerProvider's plan memo required `stored.goal === settings.daily_word_goal` before honouring the stored plan, so any mid-day goal change discarded `completed`. Now a goal change only rebuilds an *untouched* plan (which nobody is disturbed by — the learner gets their new goal today); a started day stands and the new goal applies tomorrow, exactly as documented. Pinned by 'a goal changed mid-day applies tomorrow and wipes nothing' in store/placement.test.tsx. | Done. |
 | **I-111** | `extendVocabularyDay` built its candidates without `level`, `seed`, `dayIndex` or `recentlyIntroduced`, which is the un-personalised corpus-prefix path. It now threads the same four fields the day's own build uses — including the *current* planning level, so extra study after a mid-day retake uses the retaken level. Fixture E in domain/vocabularyLevel.test.ts asserts the five added words sit in the Level-30 zone; the synthetic extra-study personas cover it end to end. | Done. |
+| **I-112** | Six parallel editorial readers re-read every one of the 3,334 teaching rows — headword, part of speech, gloss, example and translation together — and returned 63 raw findings. Each was adjudicated against the dictionary, the corpus conventions and the previous passes' decisions: 22 English glosses corrected (의자, 앉다, 모두, 이야기, 신다, 명, 아저씨, 아줌마, 월, 싫어하다, 빼다, 웃기다, 가만, 박사, 다물다, 통하다, 조만간, 골치, 통과하다, 수월하다, 자극하다, 당신), 6 parts of speech corrected (참→adverb, 지치다→verb, 설다→verb, 이르다→adjective, 수천→noun, 명→counter), 17 shipped examples rewritten with translations in every written language and new recordings in both voices (실패, 포기, 주의, 응급, 연구, 임신, 방해, 주목, 후회, 덮다, 단지, 악착같다, 유창하다, 석방하다, 숙다, 깐깐하다, 은밀하다), one headword corrected to the standard spelling (아이구→아이고, its id retired in the ledger), 도로's mistranslation corrected in all 30 written languages, and 5 more translations repaired (쥐다, 성격, 골고루, 조만간, 포기-fr). 13 findings were read and deliberately kept, each with a reason: 낡다 stays a verb because 표준국어대사전 says so, 밤새다 keeps the previous pass's adjudication, 쫓기다's chase metaphor is coherent in ja/es, fused compounds (흉내내다) follow the corpus convention, and band-1 noun cards showing their own 하다 verb follow the convention the earlier readings established. The POS corrections put 지치다 and 설다 into the volitionality tables before their new verb status could license a command row. | Done. The class that keeps yielding — a gloss carried from a dictionary rather than from the example — is decidable only by reading, which is why every pass re-reads. |
 | **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
 | **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
 | **I-37** | Built as its own feature, with its own bank, its own scale and its own simulation harness.  **The scale.** The Hangyul Vocabulary Level is 1–30, cumulative and non-linear: Lv1 ≈ 147 words, Lv10 ≈ 1,835, Lv20 ≈ 5,690, Lv30 ≈ 10,635+. It is **not** the teaching corpus cut into thirty equal bands — that would have made a "level" mean 86 words, which is not a proficiency scale, it is a progress bar. The 2,581 taught words are used as *calibrated anchors* inside it, together with quality-gated dictionary entries, all ranked by the same `frequency.measure` the corpus uses.  **The bank.** `scripts/content/build_level_test.py` selects the anchors and `build_level_test.mjs` generates 3,960 items across the 30 levels (min 121 each) to `public/level-test/`, content-hashed and lazily fetched — it is not in the bundle and not on any critical path. Items are Korean→meaning, meaning→Korean and context, and **context items use conjugated Korean** — 마셔요, not 마시다 — generated through `packages/korean-morphology`, which carries 99 unit tests and a named regression table across ten irregular classes and is checked against 1,306 corpus predicates by `npm run conjugation:qa`. `npm run leveltest:ambiguity` applied eight rules to the whole bank when this was written; it applies twelve now and reports **0 findings** — the four it gained are I-55. A 143-word blocklist keeps unsuitable subject matter out of both the anchors and the distractors; an anchor must be Hangul, 1–4 syllables, a noun/verb/adjective/adverb, and carry a gloss of 3–60 characters that is not a grammatical form page.  **The scoring.** A 3PL/Rasch model with a guessing floor of 1/4, EAP over a grid, Fisher-information item selection. **Exactly 30 items — 12 context, 9 Korean→meaning, 9 meaning→Korean — under one 8-minute clock**, replacing an adaptive stopping rule that ran 18–36 items until SE fell under 1.6 levels: a test whose length depends on how well you are doing tells you how well you are doing while you sit it. Difficulty still adapts; the count does not. On expiry the answers given are kept, the rest are recorded as *I don't know*, and the sitting is scored. "I don't know" is an answer and is weighted as cleaner evidence than a wrong guess, not as a skip. `npm run leveltest:qa` simulates 200 sittings at each of the 30 levels against the real bank: **MAE 1.34 levels, 95.3% within ±3, 99.7% within ±5, exactly 30 items, composition 12.0/9.0/9.0.** Fixing the length cost 0.07 levels of mean error.  **What it does not do.** No listening, no handwriting, no hints, no answer reveal, no running score. It writes `settings.level_test` and nothing else — an e2e test takes the whole assessment and asserts that every other IndexedDB store is byte-for-byte unchanged. The result screen names the scale as **the Hangyul Vocabulary Level** in all 32 languages, so what the learner is given is our own number rather than an implied TOPIK or CEFR grade. The four disclaimer sentences that used to open the intro — no hints, answers not shown, nothing here changes your lessons, not an official proficiency grade — were removed: four caveats to read before a beginner is allowed to find out how much Korean they know is a methodology page, not an invitation. The promises they made are still kept and are asserted against the DOM by `e2e/level-test.spec.ts`, which is stronger than a sentence claiming them. | Done. |
@@ -2779,6 +2938,7 @@ document they predate.
 | **I-52** | `screens:audit` renders seventeen screens at 320, 390 and 430 px, in dark, and at 200% root font size: 85 renders, measuring clipping, sideways scroll, tap targets, overlapping controls, dead space and contrast against WCAG 1.4.3's own two thresholds. The first run reported 355 findings and most were the measurement's fault — 121 collisions between a card and a tab in different scroll containers, 110 instances of the disclosed brand pair, 5 inline links WCAG 2.5.8 exempts. The rest were real and are fixed. The two colour failures are fixed in the palette rather than the component: `negativeText` and `positiveText` join `primaryText`, which existed for this reason. `positiveText` was not found by the sweep — a correct-answer label is a state no page load reaches — but #547CF1 measures 3.80:1 on white and is the same defect in the other accent. All 85 renders come back clean and `screens:audit:check` is in `verify:release`. | Done. |
 | **I-55** | All 390 contextual items were read, because the gate that checks them says out loud that nothing in it reads Korean — every rule is a proxy and the judgement is a person's. Four classes came back, and each is a rule now rather than four fixes.  **A verb that fits any object.** 연필을 ____ 있어요 offered 사고 beside 가지고; also 두 줄을 생각했어요, 동생을 학교에 보내요, 저를 친구로 불러요. The collocation guard was evidence-based — it rejects a distractor whose own example acts on the same noun — which catches the ones that share *a* noun and misses the ones that share every noun. 33 general verbs are listed in `scripts/lib/level-test-rules.mjs`, excluded as distractors and still perfectly good answers; 25 distractors swapped.  **Another thing you can simply do.** 친구와 ____를 해요 took 축구 and offered 낚시. Where the verb is 하다 and the blank is a noun, every noun with a 하다 form fits; 16 swapped.  **A recorded synonym or antonym**, from `relations.json`, which is only there because two Wiktionary headwords state the relation about the taught sense. 118 pairs sat close enough in level and part of speech to have been drawn together.  **The same sentence, built twice.** 불을 ____ 주세요 was made from 끄다 and from 켜다 and both shipped — six characters asking for opposite verbs. Also 소리를 ____ 주세요 (줄이다/낮추다), 둘에 셋을 ____ (더하다/곱하다) and eleven more. Each item is answerable alone; the bank is its own proof that the sentence does not pin the meaning down. All 30 removed.  360 contextual items, down from 390. `leveltest:ambiguity` carries all four, and is twelve rules now. | Done. |
 | **I-56** | `verify:quick` was recorded as passing while the log ended at `leveltest:ambiguity:check` with a `TypeError`. The exit status had not been read: the command was `npm run verify:quick > log; echo $?`, and `;` makes the echo's status the command's. The gate now reads `options ?? optionIds` and checks all 3,960 items; the aggregate scripts were left alone but every result in this cycle's report was taken from a run whose exit code is quoted. | Done. |
+| **I-58** | `SUPPLETIVE` pinned the whole stem to 계세, which is right for the polite present — 시 + 어 fuses to 세요, not 셔요 — and everything else was derived from it. The past is one operation on the 아/어 form, so 계세 became 계셌어요. The suffix is irregular in exactly two forms, not nine: 계세요 and the honorific are pinned, and the rest derives from the regular 계셔. 있으시다 and 자시다 joined the list. It survived because `conjugate.test.ts` had no honorific row — the table is written from the grammar, so a form nobody wrote a row for is a form nothing disagrees with. There are eight rows now, including 마시다 and 가시다, which end in the same syllable and are not honorific. | Done. |
 | **I-09** | `MatchExercise` — four Korean words, four meanings, tap-tap. It is a genuine group exercise rather than a screen: `ScheduledStep` gained `group` and `completes`, `scheduleSteps` holds words back until four are waiting so a grid is only ever made of words already met in that sitting, and the session credits every word a step finishes from one code path. Seven component tests cover the accounting, including that a grid reports one result per word, that both sides of a wrong attempt are marked, and that a double tap on the last pair cannot report twice. Four scheduler tests cover the invariants: every word finished exactly once, no word in two grids, and no grid before its words were introduced. | done |
 | **I-10** | The recommended fix is in: every entry carries a canonical `senseId` derived from its English gloss — 2,581 of 2,581, no collisions — and English is the arbiter because it was the one locale already single-sense throughout. 103 separator-split glosses were read against the sentence each card actually asks; 35 named a sense the sentence never demonstrates and were trimmed, ten cards moved sense outright, and three illustrations moved with them. The remaining 38 are classified in `REVIEWED_SPLIT` and `vocabulary:sense:qa:check` now fails on a split gloss that is not on that list, and on a listed one that has stopped being split. Both directions are negative-tested.  What is still unguarded: a gloss merged with a **comma** rather than a semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand — "coche, té" for 차 is now "coche" — but the rule cannot be widened to catch a new one. Measured over the corpus, "this locale has more comma-separated parts than the English" flags 228 glosses and is dominated by descriptive commas: 얼굴 is "눈, 코, 입이 있는 앞부분", one definition containing a list, not two senses.  **Closed this cycle by doing the reading pass the fix asked for.** The decidable half was already gated; what remained was comma-bearing glosses, which no separator rule can judge because "we, us" and "mum, mummy" are one sense written twice. The dictionary judges them instead: a comma gloss whose parts land on different dictionary senses is a shortlist, and it is 55 words long. All 55 were read across the ten complete languages side by side, and five were genuinely teaching two senses — 목 (every example said throat, eight glosses said neck), 밥 (English translated its own example "a meal"), 근데 (four glosses said "but", every example was the discourse marker), 그쪽 (the polite second person, not the direction) and 기술 (the Korean gloss is 솜씨). All five are fixed in every language that carries them. The other fifty are named in `REVIEWED_COMMA`, so a new comma gloss that splits senses fails `vocabulary:sense:qa` — proved by putting "a neck, a throat" back. Cross-language part-count drift was measured at the same time: one word of 2,581 differs by two or more parts across the ten, and it is 얼굴, whose Korean gloss is a descriptive phrase. | Done. The gate is `vocabulary:sense:qa`, in `verify:quick`. |
 | **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
@@ -2792,6 +2952,7 @@ document they predate.
 | **I-47** | Twelve of the hundred were quotations. The rest were encouragement written for this app — "Two words a day is seven hundred a year", "Progress is quiet" — labelled honestly in the data and not on the screen, which is the only place it counts.  The library is now **20 quotations, each by a named person, each from a work and a place in it a reader can check**: Confucius to Analects II.15 and XV.30, Seneca to letters 7 and 76, Aristotle to Nicomachean Ethics 1103a, and King Sejong to the preface of the Hunminjeongeum — which is the right quotation for this product to carry.  **Proverbs went with the app-authored lines.** A byline reading "Korean proverb" is a category where a name should be, and a proverb has no author to verify. 꿈을 크게 가져라 is withdrawn for the same reason: it used to ship deliberately unattributed because its three circulating attributions are all wrong, and under a policy requiring a person, a quotation nobody can be credited with is not one.  **A fresh line on every open**, never the same one twice running, nothing persisted. Pinning it to the calendar day had made decoration into stored state — a key, a date, a migration — for a sentence at the foot of a screen.  `quotes:qa:check` enforces the policy: 16–24 lines, no duplicate sentence in any locale, every byline a person and not a category, every source carrying a work and a date with no hedging words, all 640 renderings present, and nothing written to storage — proved by handing the module a `localStorage` and failing if anything lands in it. |  |
 | **I-53** | Thirty-one languages already used one noun for both — Uložená slova / Chybná slova, 保存した単語 / 間違えた単語, 저장한 어휘 / 틀린 어휘 — so English was the only string that changed, to "Wrong words". `copy:audit` now compares the pair in every language by shared token, falling back to a two-character run for the three languages that write without spaces. Not by last word (the head noun is last in German and first in Vietnamese) and not by longest shared run, which was the first attempt and passed "Gemerkte Wörter" against "Verpasste Vokabeln" on the "te " in the middle of two unrelated adjectives. Proved by breaking German, English and Chinese in turn. | Done. |
 | **I-54** | Every content locale used to be all-or-nothing, so any hole meant the build had gone wrong. §33 changed that: `strictMeaning` resolves in the learner's own language or not at all, so an unwritten row removes a word from that language's quiz pool, which is the designed behaviour. A measurement cannot tell an unfinished language from a broken one, so the promise is declared: `scripts/lib/locale-status.mjs` names the ten that must be perfect, and `vocabulary:qa` and `vocabulary:sense:qa` import it rather than keeping their own copy. A gap in one of the ten still fails, verified by blanking a row in the Japanese pack. The other twenty-two are reported as coverage.  The two browser gates had a related fragility: they assumed somebody had left `vite preview` running, and passed inside `verify:release` for exactly as long as that was true. `scripts/lib/preview.mjs` starts one if the port is silent and leaves an existing server alone. | Done. |
+| **I-57** | `reach` in the level-test manifest had said 30 for ten languages, from a manifest that had not been rebuilt. Rebuilt, it is 30 for English, 25 for the nine other complete packs and 23 for the twenty-two — see the matrix in §23. `levelTest:result.ceiling` is written in all 32 and shown only where the ceiling is below the scale, with an end-to-end test in Hungarian asserting it appears and one in English asserting it does not. | Done. |
 | **I-15** | Regenerated, fixtured, checked on-device. | done |
 | **I-16** | The two readings differ measurably: 낳다 is [나타], an aspirated ㅌ with a short closure and a weak breathy release; 낫다 and 낮다 are both [낟따], a long closure and a sharp tense release. Measured off the shipped clips, both voices: 낫다 250/190 ms closure and −4.1/−2.9 dB release, 낮다 250/190 ms and −4.1/−2.8 dB, 낳다 170/170 ms and −6.9/−5.8 dB. The two [낟따] words are near-identical to each other and 낳다 is apart from both, in the direction aspiration predicts. `check_contrasts` in `qa_pronunciation.py` asserts this on every run, and fails if the pair is asserted the other way round. | done — the recogniser is not a normative judge of a clip and no longer gates this word. |
 | **I-18** | All 103 were read against the sentence each card asks. 35 named a sense the sentence never demonstrates and were trimmed across ten languages; ten cards moved sense outright — 맡다 was glossed "to take charge of" over 냄새를 맡아 보세요, 시키다 was "to make someone do" over "I ordered pizza" — and three illustrations moved with them. The remaining 38 were read and kept: Japanese has no single verb for 있다 and must write ある、いる, which is one sense in the two renderings the language requires. `vocabulary:sense:qa:check` now fails on a split gloss that is not on the reviewed list, and on a listed one that has stopped being split; both directions are negative-tested. Comma-merged glosses remain outside the rule and are tracked under I-10. | Done. |
@@ -2803,7 +2964,6 @@ document they predate.
 | **I-31** | Fixed by the recommended route: a per-face `glyph_scale` in `data/fonts.ts`, calibrated against the robustness corpus for that face alone, threaded through `glyphSpecFor` and mirrored by `FACE_SCALE` in `render-fixtures.py` — `data.test.ts` asserts the two agree, so the fixtures cannot drift into measuring a geometry the product does not draw.  Gaegu 0.78 → 1.00. Mean ink extent 0.524 → 0.610; smallest glyph 0.27 → 0.35; glyphs below target 37/45 → 25/45. Grading improved rather than degrading: Gaegu's false rejection 1.04% → 0.63%, all-face 0.28% → 0.21%, false acceptance unchanged at 0.28%. A bigger reference is a bigger target for an honest hand, and Gaegu's was small enough that the pen's own width was a large fraction of it.  Why it stops there. The sweep is jagged — about 480 genuine attempts per face, so one crossing threshold moves the rate 0.21% — and there is a cliff just above: 1.02 reads 0.21% and 1.04 reads 3.33%. 1.00 sits on a plateau with 0.98, two steps clear of it; 1.02 is the minimum and is adjacent to the cliff, which would be fitting to which attempts happen to be in the corpus. Beyond about 1.04 the binding constraint is `MAX_FIT_SCALE`, whose own sweep already showed that raising it costs false rejection.  What remains is the typeface. Gaegu's mean extent is 0.610 against 0.653–0.697 for the other five, because it genuinely draws small letters inside its em, and closing that last gap means telling a learner they wrote it wrong more often.  **§51 asked for a rendered comparison rather than a closing argument, and it found a second half nobody had measured.** `scripts/face-size-qa.mjs` renders fifteen syllables in each of the six faces at one font size and measures the ink band as a fraction of the em: nanum-myeongjo 0.919, nanum-gothic 0.908, gowun-batang 0.905, gowun-dodum 0.882, pretendard 0.848, **gaegu 0.712** — 21.3% under the median. That is every letter on every screen, not the traced reference, and nothing grades it. It is fixed with a second `@font-face` at `size-adjust: 127%`, named in a new `text_family` and used by every reading surface through `textFamily()`; `font_family` keeps feeding `PracticeCanvasCard`, so the mask is untouched. Confirmed by looking — the picker's own previews — and by re-running the clipping sweep at 320 and 390 px with the face selected: the same 19 findings as the default face, none of them new. `face:size:check` is in `verify:release`.  **And the reading size, re-audited this cycle by looking.** §48 asks for a rendered comparison rather than the arithmetic, so the six practice faces were rendered side by side at one font size. Gaegu's line was the longest on the page by a clear margin. `face:size` measured the ink band in both directions and gated only the height, and 0.905 / 0.712 is the 127% that shipped; in width that put Gaegu 9.3% above the median, wider than any other face, where the five that were never in question span 0.785 to 0.881. Height wants 1.27 and width wants 1.16, and no single scalar gives both — 121% is the geometric mean, -4.7% in height and +4.1% in width, inside the 8% the five vary by among themselves. Both axes are gated now. | Done. |
 | **I-32** | Replaced with an index built when the corpus loads, at no download cost: an exact map from headword and gloss, a prefix map keyed on the first character for Hangul and the first two for Latin, and a bigram posting list for substring queries built the first time one is asked. A keystroke narrows through those three instead of touching 26,675 rows.  Benchmarked against the ranker the app runs, over a spread of real query shapes — growing prefixes, exact hits, romanisation, gloss words, mid-word substrings — with every figure multiplied by four for a phone:  ```   rows      index gz    build     p50       p95   26,675      336 kB    314 ms   0.03 ms   0.79 ms   50,000      631 kB    482 ms   0.05 ms   0.65 ms  100,000    1,274 kB   1001 ms   0.12 ms   1.50 ms   ------   shipping    449 kB    182 ms   0.02 ms   0.55 ms ```  Targets were p50 under 4 ms and p95 under 8 ms; both are met at every size with two orders of magnitude to spare. The synthetic rows were also fixed to have the real corpus's prefix spread — 1,210 distinct first characters, largest bucket 328 — because the previous ones all began with 가, which is the right hostility for a scan and measures an index as a scan.  What still grows with the corpus is the **one-time build**: 1,001 ms at 100,000 against a 1,000 ms budget. That is a once-per-session cost behind a visible loading line, and past that size it belongs in a worker or a prebuilt file rather than in the first search. | Done. |
 | **I-33** | Two kinds of evidence were being pooled and only one of them knows which sense is taught. The **gloss** is the taught sense — that is what `senseId` means — so a category matched against it belongs to the card. A Wiktionary **topic** is attached to a *page*, which describes every sense the word has: 김치's page carries `Photography`, because 김치 is what Koreans say instead of "cheese" for a photograph.  `classify` no longer pools them. A topic may name the category of a word the gloss could not classify at all — better than falling back to its part of speech — but it can never add a second category on top of a gloss match, which is where the wrong ones were getting in.  Measured over the corpus: **73 secondary tags removed across 70 words** (504 → 431), and **no primary category changed**, so nothing was made worse to achieve it. 김치, 교실 and 만두 now carry food, school-work and food with no secondary; 눈 is body-health; 돈 is money-shopping. Wrong metadata is worse than missing metadata, and this prefers missing. | Done. |
-| **I-58** | `SUPPLETIVE` pinned the whole stem to 계세, which is right for the polite present — 시 + 어 fuses to 세요, not 셔요 — and everything else was derived from it. The past is one operation on the 아/어 form, so 계세 became 계셌어요. The suffix is irregular in exactly two forms, not nine: 계세요 and the honorific are pinned, and the rest derives from the regular 계셔. 있으시다 and 자시다 joined the list. It survived because `conjugate.test.ts` had no honorific row — the table is written from the grammar, so a form nobody wrote a row for is a form nothing disagrees with. There are eight rows now, including 마시다 and 가시다, which end in the same syllable and are not honorific. | Done. |
 | **I-59** | Found by reading a spread of 25 taught entries, then counted across the pack. Rewritten where the language has somewhere to go: 58 English (singular *they*, or *someone* where an object needs naming), 67 Chinese, 59 Portuguese, 2 Spanish, and 30 German — the possessive that marks its owner's gender, the gendered object, and five 마세요 sentences that had answered in *du* inside a product that speaks *Sie*.  **What is left: 72 French and 51 German subject pronouns.** Neither language has a third-person singular that is not gendered and in both the masculine is the unmarked form, so "Il ronfle" does not assert what "He snores" asserts. French possessives agree with the thing possessed, so *sa voix* was never the problem; German's agree with the owner, which is why thirty of its could go. Recasting the remainder with *quelqu'un* and *jemand* is faithful and reads like a grammar exercise, and which is worse is a judgement for a speaker of each language. `examples:qa` gates the rule in the five languages where it is decidable.  **Re-audited 23 August 2026 at 2,844 words.** The rule held on new authoring: 15/invented-person fired once during batch 3, on a Portuguese translation that had grown an *Ela*, and refused the build. The 123 French and German cases the issue describes are unchanged and still need a native speaker.  **Re-audited 24 August 2026 at 2,916 words, and closed.** The 123 French and German cases are done: 125 translations rewritten, and the reasoning that had left them open turned out to be about the *pronoun* rather than about the *sentence*. It is true that neither language has an ungendered third-person singular. It is not true that a translator must therefore choose one, because both languages can decline to name a third person at all — by taking the Korean's own subject where it has one (목소리가 다정해요 is a sentence about a voice: *La voix est tendre*, *Die Stimme ist sanft*, where it had been *Sa voix* and *Ihre Stimme*), by `on` and `man` for a general statement, and by `cette personne` / `diese Person` for a specific person the Korean leaves unnamed, which is exactly as specific as 그분.  What that was worth is in the distribution. Before the rewrite the German translations of subjectless examples were masculine 49 times out of 49, and the four French feminines were the piano player, the one who dressed up, the one who walked with poise, and the pregnancy. The unmarked form is not neutral when the marked form is only ever used for that.  `examples:qa` now gates all six languages rather than four; the French rule carries an impersonal list so `Il pleut` is not read as a man, and both languages carry an antecedent guard so a pronoun bound to a noun already in the sentence is not a finding. Negative-tested by restoring *Ses gestes sont élégants* and *Er bewegt sich anmutig* to 우아하다, which fails the build. `npm run examples:stereotypes` counts what is left, in every language at once, and prints zero. | Nothing outstanding. The Korean side is a separate and smaller question, and it has been counted rather than left: of 66 examples that name a gendered person, ten were rebalanced away from a default that put the father in the hospital and the mother in the kitchen. The report of record is `npm run examples:stereotypes`, and reading it is the recurring task. |
 | **I-64** | Measured at 390 px on `/letters/lesson-vowels-core` before anything was changed. `FeedbackState` declared no width and `.after` was a flex column with `align-items: center`, which sizes children to their content. Nothing was clipped, nothing overlapped, every contrast ratio passed — which is why `screens:audit` had been green on this screen for its whole life. The existing checks only ever asked whether something had gone *outside* its box. | Done. |
 | **I-65** | Ids are `word_` plus the romanisation, and two Korean words can romanise the same — 젓다 (to stir) and 젖다 (to get wet) are both `word_jeotda`, so the second to ask gets `_2`. Which asked first was decided by `sorted(words, key=lambda w: (levels[w], scores[w], w))` in `build_vocabulary.py`: difficulty order, which every content change perturbs. Adding 젓다 in batch 3 renamed the already-shipped 젖다. `progressKey(kind, itemKey)` in `apps/web/src/storage/schema.ts` keys every progress row by that id. | Done. |
@@ -2821,7 +2981,8 @@ document they predate.
 | **I-102** | Caught by the randomized state-machine suite (2,000 seeded sittings). `retrySteps` now chooses from the full preference order, skipping the missed step, and `buildDailyQuestions` walks a complete fallback chain (planned → build → meaning → produce → context) so a word that was ever askable can never be silently dropped from a retry pass. | Done. |
 | **I-105** | A lemma ending in 주다 folds the favour into itself: its request row is denied and the command row (도와주세요) is the request. Gated by `conjugation:display:qa`, whose doubling rule reads the lemma rather than the surface so 두드려 주세요 is not a false positive. | Done. |
 | **I-106** | The list now grows seamlessly ahead of the scroll (an IntersectionObserver sentinel with a two-screen margin; environments without the API render everything). Every word is reachable, the batching is invisible, and the one number on the screen is the size of the category. The `browse.showing` string is deleted from all 32 locales. | Done. |
-| **I-57** | `reach` in the level-test manifest had said 30 for ten languages, from a manifest that had not been rebuilt. Rebuilt, it is 30 for English, 25 for the nine other complete packs and 23 for the twenty-two — see the matrix in §23. `levelTest:result.ceiling` is written in all 32 and shown only where the ceiling is below the scale, with an end-to-end test in Hungarian asserting it appears and one in English asserting it does not. | Done. |
+| **I-113** | The display ledger (.conjugation-display/display-forms.tsv) was re-read after the batch, exactly as its own footer instructs. Six verbs joined NOT_VOLITIONAL (좌절하다, 직면하다, 급증하다, 체감하다, 야기하다, 간과하다 — the last because Korean only uses its prohibitive) and four joined IMPERATIVE_WITHOUT_REQUEST (감행하다, 만회하다, 몰두하다, 억누르다). 무산되다, 성사되다 and 저버리다 were already suppressed by the structural rules. Command rows displayed 795 → 789 after the POS corrections; conjugation:display:qa passes with its five self-test inputs still refused. | Done. The ledger-read-after-every-batch rule worked as designed; keep it. |
+| **I-114** | check-store-listing.mjs ran its word-count rule over store/release-notes.md only; store/listing/*.md were checked for store limits and forbidden claims, not for the figure. Found by running store:check in this pass's final gate sweep and reading past the one flagged line. The rule now runs over every listing's customer copy; before the copy was corrected it reported all eight files (the strongest form of a negative test — fired on real shipped data), and after the correction the gate is green. Every listing now states 3,334 in its own thousands separator. | Done. The lesson is §19.6's one more time: a gate is only as wide as the files it reads. |
 | **I-60** | Found by rendering the Korean screens and reading them, not by grepping. Eleven strings moved from 어휘 to 단어 — 어휘 is a person's lexicon and stays in the level test — and twenty-eight from 글자 to 낱자, wherever the English says "letter"; 글자 stays wherever the thing is a block, which is fourteen more. `review.prompt.build` was a mistranslation rather than a slip: English says "Put the word together" over a tray of syllables and Korean said 글자를 순서대로 놓아 보세요.  All three are gates in `locale:editorial`, each negative-tested by putting the defect back. The register rule reads sentence endings rather than pronouns, which is where Korean marks it — the file had said Korean needed no rule because 해요체 "has no competing form in this product's copy", a claim about the copy the copy did not support. The 낱자 rule uses the English as the referent and exempts any Korean string using both words, because that is a sentence drawing the distinction on purpose. | Done. |
 | **I-61** | Not findable in a bundle: every string involved is correct on its own. `screens:audit` already renders 17 routes and 6 states across 7 profiles, and now reads the text it has in front of it for a sentence rendered twice and a number rendered twice inside one card. `LettersPage` had suppressed the heading case with a proxy — `lessons.length > 1` — which passed unit 11, a two-lesson unit still named after the first of them. The rules had to learn two exemptions: a licences list printing "· OFL 1.1" on six rows is a template, and the first version of the count rule passed the very card it was written for, because "0/10" sits in a `<strong>` inside the `<p>`. | Done. |
 | **I-62** | `BuildExercise` and `ChoiceExercise` now use `common:verdict.*`, so the wording is decided in one place and is already written in all 32 languages; `learning:review.right` and `.notQuite` are gone from every bundle. The answer stays on the screen below the verdict on purpose — a choice question cannot be retried where it stands, so "Incorrect." alone would be a review that teaches nothing. What is forbidden is the verdict and the answer fused into one breath, 맞아요, 고예요, and that is gone. `feedback.spec.ts` walks a vocabulary session to a real question and answers it, which is how the gap was found. | Done. |
@@ -2902,21 +3063,21 @@ pack's own recorded surface forms for the conjugations.
 
 **Why not NOT LAUNCH READY.** Nothing open causes a customer to lose data, see
 wrong Korean, or be unable to complete the product's core journey. The
-mid-day level-change defect and the four credit-loss mechanisms this pass
-found are fixed and pinned — by the domain fixtures, 3,000 randomized
-sittings, the adversarial slow-store gate, the 112 synthetic journeys, the
-built-dist Playwright journeys in both directions, and the on-device SQLite
-run — and every one of those gates has been shown to fail with the old
-behaviour restored. The suites run green in full: 1,137 unit cases across
-three packages — 825 web, 216 Korean morphology, 96 handwriting — 350
-end-to-end, 143 rendered screens, 256 locale screens, and the 112 journeys.
-The letters are checked against a face the app does not draw, and the
-conjugation panel against a reading of all 1,475 predicates.
+mid-day level-change rule, the crediting rules and the write serialisation
+were not merely retained this pass — they were re-proven from the current
+tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
+30,000 recommendation events) and then each of the nine major safety gates
+was deliberately broken and shown to fail before being believed (§20H.2).
+The suites run green in full: 1,137 unit cases across three packages — 825
+web, 216 Korean morphology, 96 handwriting — 350 end-to-end, 143 rendered
+screens, 256 locale screens, and the 118 journeys. The letters are checked
+against a face the app does not draw, and the conjugation panel against a
+reading of all 1,509 predicates.
 
 **Why not LAUNCH READY.** Four limitations are real, none is a defect, and a
 buyer is entitled to know each of them before release:
 
-1. **3,256 taught words against a stated target of 10,000.** The store copy
+1. **3,334 taught words against a stated target of 10,000.** The store copy
    states the shipping figure in all eight languages, so the product does not
    overstate itself — but anyone who was told 10,000 is coming should read
    §8.3 and §16 for what that actually costs, including the delivery line
@@ -2941,14 +3102,14 @@ the running product for one minute found what four green suites had not.
 
 | ID | What | Why it matters | Effort |
 | --- | --- | --- | --- |
-| **I-04** | 3,221 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
+| **I-04** | 3,334 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
 | **I-13** | 252 of 3,221 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
-| **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 417 words between them, up from 384 (batch 910 added 36 hand-written advanced words — formal nouns, advanced verbs and adjectives, and thirteen 사자성어 — all landing at level 30). A learner placed at 30 is taught ten a day from that zone and has met all of them in about six weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | HIGH (content) — the hard half: words that are advanced and ordinary |
+| **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 478 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | HIGH (content) — the hard half: words that are advanced and ordinary |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
 | **I-19** | Word meanings are complete in ten languages and six hundred words deep in twenty-two | A learner in one of the twenty-two has a fully translated interface and word meanings for the 600-word core band — the band the corpus splitter puts on the critical path, so it is the band they meet first. Past that the card shows the English gloss, marked as English, and the *quiz* shows nothing: the product forbids a mixed-language question, so a word with no meaning in the learner's language is not asked about rather than asked in English. | HIGH (content) — 22 locales × 2,621 words to finish, and a speaker for each |
 | **I-39** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | HIGH (people) — 32 languages × 10 surfaces |
-| **I-20** | The hand-written *More about it* block is on 71 words of 3,221 | Word Detail is no longer a short page followed by nothing, but the paragraph written by a person for the words where one line genuinely is not enough is on 71 of them — 2% of the corpus. | MEDIUM (content) — one paragraph per word, in ten languages |
+| **I-20** | The hand-written More about it block is on 75 words of 3,334 | Word Detail is no longer a short page followed by nothing, but the paragraph written for the words where one line genuinely is not enough is on 75 of them — 2% of the corpus. | MEDIUM (content) — one paragraph per word, in ten languages |
 
 <!-- /issues:next -->

@@ -1,2444 +1,2445 @@
 {
-  "_comment": "Vocabulary copy for Indonesian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
-  "locale": "id",
-  "words": {
-    "word_hada": [
-      "melakukan",
-      "Saya belajar.",
-      "Melakukan — sekaligus mesin pembentuk kosakata Korea. Tempelkan pada kata benda dan jadilah kata kerja: 공부 (studi) menjadi 공부하다 (belajar), 사랑 (cinta) menjadi 사랑하다. Ratusan kata kerja dibangun begini."
-    ],
-    "word_cha": [
-      "mobil",
-      "Saya naik mobil.",
-      "Mobil. Suku kata yang sama juga berarti teh, jadi 차를 마셔요 adalah saya minum teh dan 차를 타요 adalah saya naik mobil. Kata kerjanya yang menentukan."
-    ],
-    "word_yeoja": [
-      "perempuan",
-      "Perempuan itu seorang dokter."
-    ],
-    "word_na": [
-      "aku",
-      "Aku belajar bahasa Korea."
-    ],
-    "word_hae": [
-      "matahari",
-      "Mataharinya terang."
-    ],
-    "word_don": [
-      "uang",
-      "Ada uang di dompet."
-    ],
-    "word_uri": [
-      "kami",
-      "Kami berteman."
-    ],
-    "word_jip": [
-      "rumah",
-      "Saya pulang ke rumah."
-    ],
-    "word_itda": [
-      "berada",
-      "Saya di rumah.",
-      "Satu kata untuk dua hal: 있다 berarti berada di suatu tempat sekaligus punya. 책상에 책이 있어요 — bukunya ada di meja; 시간이 있어요 — saya punya waktu. Lawannya 없다."
-    ],
-    "word_ne": [
-      "ya",
-      "Ya, benar.",
-      "Ada tiga kata umum yang ditulis 네. Yang ini «ya». Dua lainnya «milikmu» (네 책, bukumu) dan bilangan asli Korea «empat» sebelum kata penggolong (네 개, empat buah). Konteks yang memisahkannya, bukan ejaan."
-    ],
-    "word_son": [
-      "tangan",
-      "Saya menulis dengan tangan."
-    ],
-    "word_sigan": [
-      "waktu",
-      "Saya tidak punya waktu.",
-      "Waktu secara umum, sekaligus kata penggolong untuk jam: 두 시간 berarti dua jam lamanya. Jangan tertukar dengan 시, yaitu jam pada arloji — 두 시 berarti pukul dua, hal yang sama sekali lain."
-    ],
-    "word_jeo": [
-      "saya (sopan)",
-      "Saya seorang pelajar."
-    ],
-    "word_gada": [
-      "pergi",
-      "Saya pergi ke sekolah."
-    ],
-    "word_gae": [
-      "anjing",
-      "Anjing itu berlari."
-    ],
-    "word_mun": [
-      "pintu",
-      "Saya membuka pintu."
-    ],
-    "word_sae": [
-      "burung",
-      "Seekor burung terbang."
-    ],
-    "word_mom": [
-      "tubuh",
-      "Saya mandi setiap hari."
-    ],
-    "word_bang": [
-      "kamar",
-      "Kamarnya bersih."
-    ],
-    "word_nun": [
-      "mata",
-      "Matamu indah.",
-      "Mata. Ditulis persis seperti kata untuk salju; dalam ucapan yang cermat keduanya dibedakan oleh panjang bunyi: 눈 salju dipanjangkan, 눈 mata pendek. Kebanyakan penutur mengandalkan konteks."
-    ],
-    "word_ot": [
-      "pakaian",
-      "Pakaiannya bagus."
-    ],
-    "word_neo": [
-      "kamu",
-      "Kamu di mana?"
-    ],
-    "word_eopda": [
-      "tidak punya",
-      "Saya tidak punya uang."
-    ],
-    "word_meori": [
-      "kepala",
-      "Kepala saya sakit."
-    ],
-    "word_ip": [
-      "mulut",
-      "Mulutnya kecil."
-    ],
-    "word_mul": [
-      "air",
-      "Saya minum air."
-    ],
-    "word_dari": [
-      "kaki",
-      "Kaki saya sakit.",
-      "Kaki — kaki Anda, kaki meja, kaki kursi. Kata yang sama juga berarti jembatan, karena itu 다리를 건너요 berarti «saya menyeberangi jembatan», bukan sesuatu yang anatomis."
-    ],
-    "word_bi": [
-      "hujan",
-      "Sedang hujan."
-    ],
-    "word_wae": [
-      "kenapa",
-      "Kenapa kamu terlambat?"
-    ],
-    "word_eolgul": [
-      "wajah",
-      "Saya mencuci wajah."
-    ],
-    "word_saram": [
-      "orang",
-      "Dia orang baik."
-    ],
-    "word_hakgyo": [
-      "sekolah",
-      "Sekolahnya besar."
-    ],
-    "word_yeogi": [
-      "di sini",
-      "Silakan duduk di sini."
-    ],
-    "word_pal": [
-      "lengan",
-      "Lenganmu panjang."
-    ],
-    "word_norae": [
-      "lagu",
-      "Saya menyanyikan lagu."
-    ],
-    "word_chaek": [
-      "buku",
-      "Saya membaca buku."
-    ],
-    "word_dal": [
-      "bulan",
-      "Bulannya terang."
-    ],
-    "word_jeonhwa": [
-      "telepon",
-      "Saya menjawab telepon."
-    ],
-    "word_namu": [
-      "pohon",
-      "Pohonnya tinggi."
-    ],
-    "word_dasi": [
-      "lagi",
-      "Tolong ulangi lagi."
-    ],
-    "word_nal": [
-      "hari",
-      "Hari ini bagus."
-    ],
-    "word_jigeum": [
-      "sekarang",
-      "Saya pergi sekarang."
-    ],
-    "word_haru": [
-      "sehari",
-      "Harinya panjang."
-    ],
-    "word_sesang": [
-      "dunia",
-      "Dunia itu luas."
-    ],
-    "word_bal": [
-      "telapak kaki",
-      "Kaki saya dingin."
-    ],
-    "word_neutda": [
-      "terlambat",
-      "Busnya terlambat."
-    ],
-    "word_modu": [
-      "semua",
-      "Semua sudah berkumpul."
-    ],
-    "word_sajin": [
-      "foto",
-      "Saya mengambil foto."
-    ],
-    "word_chimdae": [
-      "tempat tidur",
-      "Tempat tidurnya nyaman."
-    ],
-    "word_ko": [
-      "hidung",
-      "Hidung saya tersumbat."
-    ],
-    "word_san": [
-      "gunung",
-      "Saya pergi ke gunung."
-    ],
-    "word_hana": [
-      "satu",
-      "Satu apel, tolong."
-    ],
-    "word_byeongwon": [
-      "rumah sakit",
-      "Saya pergi ke rumah sakit."
-    ],
-    "word_jeongmal": [
-      "sungguh",
-      "Terima kasih banyak.",
-      "Sungguh, benar-benar — penguat di depan kata sifat, seperti pada 정말 좋아요. Berdiri sendiri dengan nada naik, 정말? menjadi pertanyaan satu kata: «masa?» — dan begitulah Anda akan paling sering mendengarnya."
-    ],
-    "word_seonmul": [
-      "hadiah",
-      "Saya suka hadiahnya."
-    ],
-    "word_boda": [
-      "melihat",
-      "Saya menonton film."
-    ],
-    "word_oneul": [
-      "hari ini",
-      "Cuacanya bagus hari ini."
-    ],
-    "word_gabang": [
-      "tas",
-      "Tasnya berat."
-    ],
-    "word_eumak": [
-      "musik",
-      "Musiknya bagus."
-    ],
-    "word_gage": [
-      "toko",
-      "Tokonya tutup."
-    ],
-    "word_gil": [
-      "jalan",
-      "Jalannya lebar."
-    ],
-    "word_ohu": [
-      "sore",
-      "Mari bertemu sore hari."
-    ],
-    "word_keopi": [
-      "kopi",
-      "Saya minum kopi."
-    ],
-    "word_bap": [
-      "nasi",
-      "Saya makan."
-    ],
-    "word_eomma": [
-      "ibu",
-      "Ibu sedang memasak."
-    ],
-    "word_gwi": [
-      "telinga",
-      "Telinga saya sakit."
-    ],
-    "word_beoseu": [
-      "bus",
-      "Busnya datang."
-    ],
-    "word_geurim": [
-      "gambar",
-      "Saya menggambar."
-    ],
-    "word_beon": [
-      "kali",
-      "Tolong lakukan sekali lagi."
-    ],
-    "word_sul": [
-      "minuman keras",
-      "Saya tidak minum alkohol."
-    ],
-    "word_yeonghwa": [
-      "film",
-      "Filmnya seru."
-    ],
-    "word_sada": [
-      "membeli",
-      "Saya membeli roti."
-    ],
-    "word_byeol": [
-      "bintang",
-      "Bintang-bintang bersinar."
-    ],
-    "word_bihaenggi": [
-      "pesawat",
-      "Saya naik pesawat."
-    ],
-    "word_bak": [
-      "luar",
-      "Di luar sedang hujan."
-    ],
-    "word_oda": [
-      "datang",
-      "Teman saya datang."
-    ],
-    "word_chingu": [
-      "teman",
-      "Saya bertemu teman."
-    ],
-    "word_appa": [
-      "ayah",
-      "Selamat malam, Ayah."
-    ],
-    "word_haneul": [
-      "langit",
-      "Langitnya biru."
-    ],
-    "word_bada": [
-      "laut",
-      "Lautnya luas."
-    ],
-    "word_sagwa": [
-      "apel",
-      "Apelnya manis."
-    ],
-    "word_mulgeon": [
-      "barang",
-      "Saya membeli barang."
-    ],
-    "word_moja": [
-      "topi",
-      "Saya memakai topi."
-    ],
-    "word_gogi": [
-      "daging",
-      "Saya memanggang daging."
-    ],
-    "word_jinjja": [
-      "sungguhan",
-      "Apakah ini sungguhan?"
-    ],
-    "word_sinbal": [
-      "sepatu",
-      "Saya memakai sepatu."
-    ],
-    "word_jamkkan": [
-      "sebentar",
-      "Tunggu sebentar, ya."
-    ],
-    "word_namja": [
-      "laki-laki",
-      "Laki-laki itu teman saya."
-    ],
-    "word_eumsik": [
-      "makanan",
-      "Makanan Korea enak."
-    ],
-    "word_saengil": [
-      "ulang tahun",
-      "Selamat ulang tahun."
-    ],
-    "word_daseot": [
-      "lima",
-      "Lima orang datang."
-    ],
-    "word_gihoe": [
-      "kesempatan",
-      "Ini kesempatan yang bagus."
-    ],
-    "word_dul": [
-      "dua",
-      "Ada dua kursi."
-    ],
-    "word_sijang": [
-      "pasar",
-      "Saya membeli sayur di pasar."
-    ],
-    "word_goyangi": [
-      "kucing",
-      "Kucingnya sedang tidur."
-    ],
-    "word_changmun": [
-      "jendela",
-      "Tolong tutup jendelanya."
-    ],
-    "word_yeoreum": [
-      "musim panas",
-      "Saya pergi ke laut saat musim panas."
-    ],
-    "word_dongmul": [
-      "hewan",
-      "Saya suka hewan."
-    ],
-    "word_yeohaeng": [
-      "perjalanan",
-      "Saya ingin bepergian."
-    ],
-    "word_bam": [
-      "malam",
-      "Banyak bintang di malam hari.",
-      "Malam. Ditulis sama dengan kata untuk buah berangan, camilan musim gugur yang lazim di Korea, sehingga 밤을 먹어요 dan 밤에 자요 membicarakan hal yang sangat berbeda."
-    ],
-    "word_geot": [
-      "benda, hal",
-      "Saya membeli barang yang saya perlukan.",
-      "Kata benda paling umum dalam bahasa Korea: ia menggantikan apa pun yang belum Anda sebut namanya. 제 것 berarti *milik saya*; 먹을 것 berarti *sesuatu untuk dimakan*. Dalam percakapan ia memendek menjadi 거 — 이거, 그거, 저거 — dan bentuk itulah yang pertama ditemui pemula."
-    ],
-    "word_mal": [
-      "perkataan, apa yang diucapkan",
-      "Berhati-hatilah dengan perkataanmu.",
-      "Ucapan — kata-kata, apa yang dikatakan seseorang. Suku kata yang sama juga berarti kuda, dan 말 menutup kata 한국말, bahasa Korea. Dalam tulisan tidak ada yang memisahkannya: 말을 하다 berarti berbicara, 말을 타다 berarti menunggang kuda."
-    ],
-    "word_bun": [
-      "menit",
-      "Tunggu sepuluh menit saja.",
-      "Dua kata lain juga ditulis 분. Satu adalah cara sopan menghitung orang — 세 분, tiga orang, untuk tamu atau orang yang lebih tua. Satunya lagi berarti amarah, seperti pada 분이 풀리다. Hanya kalimatnya yang membedakan."
-    ],
-    "word_dwi": [
-      "bagian belakang",
-      "Saya menulis nama saya di belakang buku catatan."
-    ],
-    "word_si": [
-      "pukul",
-      "Kelas selesai pukul dua.",
-      "Jam memakai bilangan asli Korea — 한 시, 두 시, 세 시 — sedangkan menit memakai bilangan Sino-Korea: 세 시 십 분, pukul tiga lewat sepuluh. Membalik keduanya adalah kesalahan klasik pemula, dan langsung terdengar."
-    ],
-    "word_deo": [
-      "lebih",
-      "Sedikit lagi, ya."
-    ],
-    "word_ap": [
-      "bagian depan",
-      "Mari bertemu di depan toko."
-    ],
-    "word_da": [
-      "semuanya",
-      "Saya makan semua nasinya."
-    ],
-    "word_jom": [
-      "sedikit, sekaligus pelembut permintaan",
-      "Minta air sedikit.",
-      "Singkatan dari 조금, *sedikit* — tetapi separuh tugasnya adalah memperhalus. Disisipkan ke dalam permintaan, ia menumpulkan ketajamannya: 도와주세요 berarti *tolong aku*, 좀 도와주세요 lebih mirip *bisakah Anda menolong saya*. Justru karena itu orang Korea memakainya terus-menerus."
-    ],
-    "word_jeon": [
-      "sebelum",
-      "Saya mencuci tangan sebelum makan.",
-      "Sebelum, dalam waktu. Beberapa kata lain juga ditulis 전: 전쟁 berarti perang dan dipendekkan menjadi 전, 전기 berarti listrik, dan 전 di daftar menu adalah sejenis panekuk gurih. Di depan kata kerja, inilah yang bermakna waktu — 먹기 전에, sebelum makan."
-    ],
-    "word_alda": [
-      "tahu",
-      "Saya tahu namanya."
-    ],
-    "word_yak": [
-      "obat",
-      "Minumlah obat setelah makan."
-    ],
-    "word_jota": [
-      "baik",
-      "Perasaan saya baik."
-    ],
-    "word_jal": [
-      "dengan baik",
-      "Apakah kamu tidur nyenyak?"
-    ],
-    "word_anida": [
-      "bukan",
-      "Saya bukan pelajar.",
-      "Lawan dari 이다. Ia memakai 이/가 pada hal yang disangkal, bukan 을/를: 학생이 아니에요, tidak pernah 학생을 아니에요. Yang menguasai satu pola ini bisa menyangkal kalimat nominal apa pun dalam bahasa Korea."
-    ],
-    "word_bul": [
-      "api",
-      "Kebakaran terjadi di gunung."
-    ],
-    "word_uyu": [
-      "susu",
-      "Susunya dingin."
-    ],
-    "word_meokda": [
-      "makan",
-      "Saya makan buah."
-    ],
-    "word_ppang": [
-      "roti",
-      "Saya makan roti."
-    ],
-    "word_ttae": [
-      "saat sesuatu terjadi",
-      "Waktu kecil saya tinggal di desa."
-    ],
-    "word_il": [
-      "pekerjaan",
-      "Hari ini banyak pekerjaan.",
-      "Pekerjaan, atau hal yang harus dilakukan. Suku kata yang sama adalah angka satu Sino-Korea — 일 번, nomor satu — dan ia adalah hari dalam 일요일, Minggu, serta dalam 삼 일, tiga hari."
-    ],
-    "word_baji": [
-      "celana",
-      "Celananya panjang."
-    ],
-    "word_sigye": [
-      "jam",
-      "Saya tidak punya jam."
-    ],
-    "word_siheom": [
-      "ujian",
-      "Besok saya ada ujian."
-    ],
-    "word_keompyuteo": [
-      "komputer",
-      "Saya menyalakan komputer."
-    ],
-    "word_nalssi": [
-      "cuaca",
-      "Cuacanya bagus."
-    ],
-    "word_jongi": [
-      "kertas",
-      "Saya menggambar di kertas."
-    ],
-    "word_dosi": [
-      "kota",
-      "Kotanya sangat besar."
-    ],
-    "word_munje": [
-      "masalah",
-      "Ada masalah."
-    ],
-    "word_wi": [
-      "bagian atas",
-      "Ada topi di atas tas."
-    ],
-    "word_bom": [
-      "musim semi",
-      "Bunga bermekaran di musim semi."
-    ],
-    "word_jeonyeok": [
-      "makan malam",
-      "Saya makan malam."
-    ],
-    "word_gyeoul": [
-      "musim dingin",
-      "Salju turun banyak di musim dingin."
-    ],
-    "word_abeoji": [
-      "ayah",
-      "Ayah saya pergi bekerja."
-    ],
-    "word_eoseo": [
-      "silakan, mari masuk",
-      "Selamat datang, silakan masuk."
-    ],
-    "word_mot": [
-      "tidak bisa meski ingin",
-      "Terlalu pedas sampai saya tidak bisa memakannya.",
-      "Bahasa Korea punya dua bentuk pengingkaran dan keduanya berbeda maksud. 안 berarti *saya tidak mau*; 못 berarti *saya tidak bisa*. 안 먹어요 berarti Anda memilih tidak makan; 못 먹어요 berarti ada yang menghalangi. Kata benda dengan ejaan sama, 못, berarti paku."
-    ],
-    "word_salda": [
-      "tinggal, hidup",
-      "Saya tinggal di Seoul."
-    ],
-    "word_ai": [
-      "anak",
-      "Anak itu tertawa."
-    ],
-    "word_jeomsim": [
-      "makan siang",
-      "Mari makan siang bersama."
-    ],
-    "word_nugu": [
-      "siapa",
-      "Siapa orang itu?"
-    ],
-    "word_eonje": [
-      "kapan",
-      "Kapan kamu datang?"
-    ],
-    "word_geori": [
-      "jalan",
-      "Banyak orang di jalan."
-    ],
-    "word_annyeong": [
-      "halo sekaligus selamat tinggal",
-      "Sampai jumpa lagi!"
-    ],
-    "word_gakkeum": [
-      "kadang-kadang",
-      "Kadang-kadang saya menonton film."
-    ],
-    "word_manta": [
-      "banyak",
-      "Orangnya banyak."
-    ],
-    "word_chima": [
-      "rok",
-      "Rok ini sangat cantik."
-    ],
-    "word_uija": [
-      "kursi",
-      "Saya duduk di kursi."
-    ],
-    "word_jeogi": [
-      "di sana",
-      "Di sana ada sekolah."
-    ],
-    "word_gongwon": [
-      "taman",
-      "Saya berjalan-jalan di taman."
-    ],
-    "word_ssal": [
-      "beras",
-      "Saya mencuci beras lalu menanaknya."
-    ],
-    "word_jigu": [
-      "Bumi",
-      "Bumi itu bulat."
-    ],
-    "word_eodi": [
-      "di mana",
-      "Di mana toiletnya?"
-    ],
-    "word_byeok": [
-      "dinding",
-      "Saya menggantung lukisan di dinding."
-    ],
-    "word_gyeran": [
-      "telur",
-      "Pagi ini saya merebus telur."
-    ],
-    "word_tada": [
-      "naik kendaraan",
-      "Saya naik bus.",
-      "Naik ke apa pun yang membawa Anda — bus, sepeda, lift. Dua kata kerja lain yang sangat umum memakai ejaan yang sama: 타다 juga berarti terbakar, dan melarutkan sesuatu ke dalam minuman."
-    ],
-    "word_segye": [
-      "dunia",
-      "Saya tahu banyak negara di dunia."
-    ],
-    "word_ireum": [
-      "nama",
-      "Siapa namamu?"
-    ],
-    "word_guk": [
-      "sup",
-      "Pagi hari saya makan sup."
-    ],
-    "word_malhada": [
-      "berbicara",
-      "Tolong bicara pelan-pelan."
-    ],
-    "word_geotda": [
-      "berjalan",
-      "Saya berjalan di taman."
-    ],
-    "word_gangaji": [
-      "anak anjing",
-      "Anak anjing itu kecil."
-    ],
-    "word_sori": [
-      "suara",
-      "Suaranya keras."
-    ],
-    "word_yeop": [
-      "sisi, samping",
-      "Silakan duduk di sebelah saya."
-    ],
-    "word_saenggak": [
-      "pikiran",
-      "Itu ide yang bagus."
-    ],
-    "word_geogi": [
-      "di situ",
-      "Apakah ada orang di situ?"
-    ],
-    "word_adeul": [
-      "anak laki-laki",
-      "Anak laki-laki saya bersekolah."
-    ],
-    "word_doeda": [
-      "menjadi",
-      "Saya ingin menjadi dokter.",
-      "Menjadi. Ia juga kata sehari-hari untuk sesuatu yang berfungsi atau diperbolehkan: 안 돼요 berarti itu tidak boleh, dan 다 됐어요 berarti sudah selesai. Keduanya jauh lebih sering Anda dengar daripada makna kamusnya."
-    ],
-    "word_maeul": [
-      "desa",
-      "Desanya tenang."
-    ],
-    "word_kape": [
-      "kafe",
-      "Saya bertemu teman di kafe."
-    ],
-    "word_gong": [
-      "bola",
-      "Saya menendang bola."
-    ],
-    "word_gajok": [
-      "keluarga",
-      "Keluarga saya besar."
-    ],
-    "word_ssi": [
-      "sebutan sopan setelah nama",
-      "Minsu, sebentar.",
-      "Dilekatkan pada nama depan, ia sopan dan akrab di antara sesama: 민수 씨. Dilekatkan pada nama keluarga saja — 김 씨 — terdengar berjarak bahkan ketus, jadi pakailah nama depan. Kepada atasan, pakai gelarnya: 부장님, 선생님."
-    ],
-    "word_achim": [
-      "pagi",
-      "Saya bangun pagi."
-    ],
-    "word_jeonhwahada": [
-      "menelepon",
-      "Saya akan meneleponmu nanti."
-    ],
-    "word_gaeul": [
-      "musim gugur",
-      "Angin sejuk di musim gugur."
-    ],
-    "word_kkot": [
-      "bunga",
-      "Bunganya cantik."
-    ],
-    "word_jido": [
-      "peta",
-      "Saya melihat peta."
-    ],
-    "word_saek": [
-      "warna",
-      "Warna ini bagus."
-    ],
-    "word_juda": [
-      "memberi",
-      "Saya memberi hadiah."
-    ],
-    "word_yachae": [
-      "sayur",
-      "Makanlah banyak sayur."
-    ],
-    "word_chaeksang": [
-      "meja belajar",
-      "Ada buku di atas meja."
-    ],
-    "word_cheoeum": [
-      "pertama kali",
-      "Senang berkenalan dengan Anda."
-    ],
-    "word_gwail": [
-      "buah",
-      "Saya suka buah."
-    ],
-    "word_uisa": [
-      "dokter",
-      "Dokter memeriksa saya."
-    ],
-    "word_ttal": [
-      "anak perempuan",
-      "Anak perempuan saya bersekolah."
-    ],
-    "word_yeoboseyo": [
-      "halo, di telepon",
-      "Halo, ini siapa?"
-    ],
-    "word_so": [
-      "sapi",
-      "Sapi itu makan rumput."
-    ],
-    "word_pyeonji": [
-      "surat",
-      "Saya menulis surat untuk ibu."
-    ],
-    "word_jogeum": [
-      "sedikit",
-      "Sedikit saja."
-    ],
-    "word_boida": [
-      "terlihat",
-      "Gunung itu terlihat."
-    ],
-    "word_jari": [
-      "tempat duduk",
-      "Tidak ada tempat duduk."
-    ],
-    "word_hu": [
-      "sesudah",
-      "Setelah kelas saya pergi ke perpustakaan."
-    ],
-    "word_kadeu": [
-      "kartu",
-      "Saya akan membayar dengan kartu."
-    ],
-    "word_naeil": [
-      "besok",
-      "Sampai jumpa besok."
-    ],
-    "word_jungyohada": [
-      "penting",
-      "Kesehatan adalah yang terpenting."
-    ],
-    "word_dalgyal": [
-      "telur",
-      "Pagi hari saya makan telur."
-    ],
-    "word_aju": [
-      "sangat",
-      "Ini sangat enak."
-    ],
-    "word_matda": [
-      "benar",
-      "Jawaban ini benar."
-    ],
-    "word_hanguk": [
-      "Korea",
-      "Saya suka masakan Korea."
-    ],
-    "word_gang": [
-      "sungai",
-      "Sungainya sangat lebar."
-    ],
-    "word_cho": [
-      "detik",
-      "Tinggal tiga puluh detik."
-    ],
-    "word_hoesa": [
-      "perusahaan, kantor",
-      "Saya pergi ke kantor."
-    ],
-    "word_sosik": [
-      "kabar dari seseorang",
-      "Saya punya kabar baik."
-    ],
-    "word_jakda": [
-      "kecil",
-      "Sepatunya kecil."
-    ],
-    "word_gimchi": [
-      "kimchi",
-      "Kimchinya pedas."
-    ],
-    "word_ikda": [
-      "membaca",
-      "Saya membaca koran."
-    ],
-    "word_geurigo": [
-      "dan, lalu",
-      "Saya membeli roti. Dan saya juga membeli susu."
-    ],
-    "word_keuda": [
-      "besar",
-      "Tas ini besar."
-    ],
-    "word_yeollak": [
-      "kontak, kabar",
-      "Tolong hubungi saya nanti."
-    ],
-    "word_gachi": [
-      "bersama",
-      "Mari makan bersama."
-    ],
-    "word_neomu": [
-      "terlalu",
-      "Baju ini terlalu besar."
-    ],
-    "word_yong": [
-      "naga",
-      "Ada naga besar di lukisan itu."
-    ],
-    "word_geureota": [
-      "begitu",
-      "Ya, begitulah."
-    ],
-    "word_hotel": [
-      "hotel",
-      "Saya menginap di hotel."
-    ],
-    "word_yeolsoe": [
-      "kunci",
-      "Saya tidak punya kunci."
-    ],
-    "word_yeppeuda": [
-      "cantik",
-      "Bunganya benar-benar cantik."
-    ],
-    "word_geugeot": [
-      "itu",
-      "Tolong berikan yang itu."
-    ],
-    "word_daeum": [
-      "berikutnya",
-      "Sampai jumpa lain kali."
-    ],
-    "word_maeum": [
-      "hati",
-      "Hatinya hangat."
-    ],
-    "word_jadongcha": [
-      "mobil",
-      "Mobilnya cepat."
-    ],
-    "word_jukda": [
-      "mati",
-      "Bunga di pot itu mati karena tidak disiram."
-    ],
-    "word_nalda": [
-      "terbang",
-      "Burung terbang di langit."
-    ],
-    "word_siksa": [
-      "makan, santapan",
-      "Makanannya sangat enak."
-    ],
-    "word_gigye": [
-      "mesin",
-      "Mesinnya rusak."
-    ],
-    "word_ttang": [
-      "tanah",
-      "Tanahnya basah."
-    ],
-    "word_jada": [
-      "tidur",
-      "Saya tidur lebih awal."
-    ],
-    "word_beorida": [
-      "membuang",
-      "Tolong buang ke tempat sampah."
-    ],
-    "word_juso": [
-      "alamat",
-      "Tolong beri tahu alamatnya."
-    ],
-    "word_gicha": [
-      "kereta api",
-      "Keretanya sudah berangkat."
-    ],
-    "word_chitsol": [
-      "sikat gigi",
-      "Saya membeli sikat gigi baru."
-    ],
-    "word_sarang": [
-      "cinta",
-      "Cinta itu indah."
-    ],
-    "word_gongbu": [
-      "belajar",
-      "Belajar itu menyenangkan."
-    ],
-    "word_saengseon": [
-      "ikan sebagai makanan",
-      "Saya menggoreng ikan untuk makan malam."
-    ],
-    "word_mok": [
-      "leher",
-      "Leher saya sakit."
-    ],
-    "word_sipda": [
-      "ingin",
-      "Saya ingin pergi ke Korea."
-    ],
-    "word_nyuseu": [
-      "berita",
-      "Saya menonton berita."
-    ],
-    "word_chatda": [
-      "mencari",
-      "Saya mencari kunci."
-    ],
-    "word_iljjik": [
-      "lebih awal",
-      "Besok saya bangun lebih awal."
-    ],
-    "word_geonmul": [
-      "gedung",
-      "Gedung itu sangat tinggi."
-    ],
-    "word_seonsaengnim": [
-      "guru",
-      "Guru sedang mengajar."
-    ],
-    "word_eomeoni": [
-      "ibu",
-      "Ibu saya ada di rumah."
-    ],
-    "word_gibun": [
-      "suasana hati",
-      "Bagaimana perasaanmu?"
-    ],
-    "word_honja": [
-      "sendirian",
-      "Saya bisa pergi sendiri."
-    ],
-    "word_ani": [
-      "tidak",
-      "Tidak, saya tidak pergi."
-    ],
-    "word_eoje": [
-      "kemarin",
-      "Kemarin hujan."
-    ],
-    "word_sseuda": [
-      "menulis",
-      "Saya menulis nama saya.",
-      "Menulis. Kata kerja yang sama juga berarti memakai sesuatu, mengenakan topi atau kacamata di kepala, dan — sebagai kata sifat — terasa pahit. Empat makna sehari-hari, satu ejaan."
-    ],
-    "word_masida": [
-      "minum",
-      "Saya minum susu."
-    ],
-    "word_syeocheu": [
-      "kemeja",
-      "Saya memakai kemeja putih."
-    ],
-    "word_junbi": [
-      "persiapan",
-      "Semuanya sudah siap."
-    ],
-    "word_mian": [
-      "maaf",
-      "Maaf, saya terlambat."
-    ],
-    "word_geokjeong": [
-      "kekhawatiran",
-      "Saya banyak khawatir."
-    ],
-    "word_hajiman": [
-      "tetapi",
-      "Hujan turun. Tetapi saya tetap pergi."
-    ],
-    "word_kamera": [
-      "kamera",
-      "Saya membeli kamera."
-    ],
-    "word_dongne": [
-      "lingkungan tempat tinggal",
-      "Lingkungan kami tenang."
-    ],
-    "word_naengjanggo": [
-      "kulkas",
-      "Saya menaruh susu di kulkas."
-    ],
-    "word_anda": [
-      "duduk",
-      "Saya sudah duduk di kursi."
-    ],
-    "word_ppalli": [
-      "cepat",
-      "Tolong datang cepat."
-    ],
-    "word_yaegi": [
-      "obrolan",
-      "Mari mengobrol sebentar."
-    ],
-    "word_got": [
-      "tempat",
-      "Saya menemukan tempat yang tenang."
-    ],
-    "word_nat": [
-      "siang hari",
-      "Siang hari terasa hangat."
-    ],
-    "word_sangja": [
-      "kotak",
-      "Saya membuka kotaknya."
-    ],
-    "word_wonhada": [
-      "menginginkan",
-      "Apa yang kamu inginkan?"
-    ],
-    "word_sikdang": [
-      "rumah makan",
-      "Di mana rumah makannya?"
-    ],
-    "word_geurida": [
-      "menggambar",
-      "Anak itu menggambar pohon."
-    ],
-    "word_yuri": [
-      "kaca",
-      "Kacanya pecah."
-    ],
-    "word_igeot": [
-      "ini",
-      "Tolong berikan yang ini."
-    ],
-    "word_geoul": [
-      "cermin",
-      "Saya bercermin."
-    ],
-    "word_gijeok": [
-      "keajaiban",
-      "Itu benar-benar seperti keajaiban."
-    ],
-    "word_kal": [
-      "pisau",
-      "Saya mengupas apel dengan pisau."
-    ],
-    "word_gatda": [
-      "sama",
-      "Tas kami sama."
-    ],
-    "word_pul": [
-      "rumput",
-      "Rumputnya hijau."
-    ],
-    "word_eolma": [
-      "berapa",
-      "Ini berapa harganya?"
-    ],
-    "word_saenggakada": [
-      "berpikir",
-      "Saya juga berpikir begitu."
-    ],
-    "word_jilmun": [
-      "pertanyaan",
-      "Saya punya pertanyaan."
-    ],
-    "word_geunyeo": [
-      "dia, perempuan",
-      "Dia bernyanyi dengan indah."
-    ],
-    "word_nota": [
-      "meletakkan",
-      "Saya meletakkan tas di lantai."
-    ],
-    "word_banggeum": [
-      "baru saja",
-      "Saya baru saja tiba."
-    ],
-    "word_bonaeda": [
-      "mengirim",
-      "Saya mengirim surat."
-    ],
-    "word_arae": [
-      "di bawah",
-      "Buku itu ada di bawah meja."
-    ],
-    "word_naoda": [
-      "keluar",
-      "Airnya keluar."
-    ],
-    "word_nai": [
-      "umur",
-      "Berapa umur Anda?"
-    ],
-    "word_eotteoke": [
-      "bagaimana",
-      "Bagaimana caranya ke sana?"
-    ],
-    "word_eunhaeng": [
-      "bank",
-      "Banknya sudah buka."
-    ],
-    "word_al": [
-      "telur hewan",
-      "Burung itu bertelur tiga butir."
-    ],
-    "word_moreuda": [
-      "tidak tahu",
-      "Saya tidak tahu."
-    ],
-    "word_badak": [
-      "lantai",
-      "Saya mengepel lantai."
-    ],
-    "word_hwajangsil": [
-      "toilet",
-      "Toiletnya bersih."
-    ],
-    "word_yeok": [
-      "stasiun",
-      "Mari bertemu di stasiun."
-    ],
-    "word_seoul": [
-      "Seoul",
-      "Seoul sangat besar."
-    ],
-    "word_gwiyeopda": [
-      "imut",
-      "Anak anjing itu imut."
-    ],
-    "word_areumdapda": [
-      "indah",
-      "Pemandangannya indah."
-    ],
-    "word_ajik": [
-      "masih, belum",
-      "Mereka belum datang."
-    ],
-    "word_gyedan": [
-      "tangga",
-      "Anak tangganya banyak."
-    ],
-    "word_maeil": [
-      "setiap hari",
-      "Saya menulis hangul setiap hari."
-    ],
-    "word_agi": [
-      "bayi",
-      "Bayi itu sedang tidur."
-    ],
-    "word_dwaeji": [
-      "babi",
-      "Babi itu sedang makan."
-    ],
-    "word_ju": [
-      "minggu",
-      "Mari bertemu minggu depan."
-    ],
-    "word_iyagi": [
-      "cerita",
-      "Itu cerita yang menarik."
-    ],
-    "word_tto": [
-      "lagi",
-      "Sampai jumpa lagi besok."
-    ],
-    "word_beolsseo": [
-      "sudah",
-      "Semuanya sudah selesai."
-    ],
-    "word_dangsin": [
-      "Anda",
-      "Saya menunggu Anda."
-    ],
-    "word_gap": [
-      "harga",
-      "Harganya mahal."
-    ],
-    "word_mianhada": [
-      "merasa menyesal",
-      "Maaf saya terlambat."
-    ],
-    "word_jeongnyujang": [
-      "halte",
-      "Saya menunggu bus di halte."
-    ],
-    "word_anta": [
-      "tidak melakukan",
-      "Saya tidak minum kopi."
-    ],
-    "word_taeksi": [
-      "taksi",
-      "Tolong panggilkan taksi."
-    ],
-    "word_haksaeng": [
-      "pelajar",
-      "Ada banyak pelajar di kelas."
-    ],
-    "word_bomul": [
-      "harta karun",
-      "Anak-anak mencari harta karun."
-    ],
-    "word_jumun": [
-      "pesanan",
-      "Apakah Anda mau memesan?"
-    ],
-    "word_sinmun": [
-      "koran",
-      "Silakan baca korannya."
-    ],
-    "word_dak": [
-      "ayam",
-      "Ayam itu bertelur."
-    ],
-    "word_keop": [
-      "cangkir",
-      "Saya menuang air ke cangkir."
-    ],
-    "word_set": [
-      "tiga",
-      "Tiga teman berkumpul."
-    ],
-    "word_hangugeo": [
-      "bahasa Korea",
-      "Bahasa Korea itu menarik."
-    ],
-    "word_geuraeseo": [
-      "jadi, karena itu",
-      "Hujan turun, jadi saya tidak pergi."
-    ],
-    "word_manhi": [
-      "banyak",
-      "Silakan makan yang banyak."
-    ],
-    "word_du": [
-      "dua, sebelum kata bantu bilangan",
-      "Dua kopi, ya.",
-      "Bilangan asli Korea berubah bentuk di depan kata bantu bilangan. 하나 둘 셋 넷 menjadi 한 두 세 네: 하나 berdiri sendiri, 한 개 untuk satu benda. 두 adalah bentuk itu dari 둘, dan tidak pernah berdiri sendiri."
-    ],
-    "word_pyeonuijeom": [
-      "minimarket",
-      "Ada minimarket di depan rumah saya."
-    ],
-    "word_miguk": [
-      "Amerika Serikat",
-      "Saya berasal dari Amerika."
-    ],
-    "word_gyesok": [
-      "terus-menerus",
-      "Hujan terus turun."
-    ],
-    "word_gagyeok": [
-      "harga",
-      "Harganya lebih mahal dari dugaan saya."
-    ],
-    "word_dongsaeng": [
-      "adik",
-      "Adik saya lucu.",
-      "Satu-satunya sebutan saudara yang tidak berubah menurut penuturnya: siapa pun yang lebih muda adalah 동생, siapa pun yang berbicara. Tambahkan satu suku kata bila jenis kelaminnya perlu — 남동생 adik laki-laki, 여동생 adik perempuan."
-    ],
-    "word_tokki": [
-      "kelinci",
-      "Kelinci itu melompat."
-    ],
-    "word_seoda": [
-      "berdiri",
-      "Saya berdiri di antrean."
-    ],
-    "word_eoreum": [
-      "es",
-      "Tolong tambahkan es."
-    ],
-    "word_jayeon": [
-      "alam",
-      "Alamnya indah."
-    ],
-    "word_jjikda": [
-      "membubuhkan cap",
-      "Saya membubuhkan cap.",
-      "Menekankan sesuatu ke permukaan: segel, cap, sidik jari. Kata kerja yang sama mencakup memotret — 사진을 찍다 — dan mencelupkan makanan ke dalam saus, ketiganya dari satu gagasan menekan."
-    ],
-    "word_yeol": [
-      "sepuluh",
-      "Tolong hitung sampai sepuluh.",
-      "Di sini 열 adalah sepuluh asli Korea, yang dipakai untuk menghitung benda — 열 개, sepuluh buah. 열 yang lain berarti demam, dan kata kerja 열다 berarti membuka. Dua huruf, tiga kata yang tak berkaitan."
-    ],
-    "word_sasil": [
-      "fakta",
-      "Itu adalah fakta."
-    ],
-    "word_unjeon": [
-      "mengemudi",
-      "Saya belajar mengemudi."
-    ],
-    "word_gamja": [
-      "kentang",
-      "Saya merebus kentang."
-    ],
-    "word_gureum": [
-      "awan",
-      "Awannya banyak."
-    ],
-    "word_iyu": [
-      "alasan",
-      "Tolong beri tahu alasannya."
-    ],
-    "word_dareun": [
-      "lain",
-      "Apakah ada warna lain?"
-    ],
-    "word_songarak": [
-      "jari",
-      "Jari saya sakit."
-    ],
-    "word_japda": [
-      "memegang",
-      "Saya memegang tanganmu."
-    ],
-    "word_bueok": [
-      "dapur",
-      "Saya memasak di dapur."
-    ],
-    "word_piryo": [
-      "kebutuhan",
-      "Saya tidak perlu bantuan."
-    ],
-    "word_pa": [
-      "daun bawang",
-      "Saya menambahkan sedikit daun bawang ke sup."
-    ],
-    "word_batda": [
-      "menerima",
-      "Saya menerima hadiah."
-    ],
-    "word_pida": [
-      "mekar",
-      "Bunganya mekar."
-    ],
-    "word_sayong": [
-      "penggunaan",
-      "Tolong jelaskan cara penggunaannya."
-    ],
-    "word_jeongbo": [
-      "informasi",
-      "Saya mencari informasi."
-    ],
-    "word_gonghang": [
-      "bandara",
-      "Saya tiba di bandara."
-    ],
-    "word_bumo": [
-      "orang tua",
-      "Anak membutuhkan orang tua."
-    ],
-    "word_saranghada": [
-      "mencintai",
-      "Saya mencintai keluarga saya."
-    ],
-    "word_ireoke": [
-      "seperti ini",
-      "Tolong tulis seperti ini."
-    ],
-    "word_ilhada": [
-      "bekerja",
-      "Ibu saya bekerja di rumah sakit."
-    ],
-    "word_suyeong": [
-      "renang",
-      "Saya belajar berenang."
-    ],
-    "word_piryohada": [
-      "membutuhkan",
-      "Saya membutuhkan uang."
-    ],
-    "word_bukjjok": [
-      "utara",
-      "Mereka pergi ke utara."
-    ],
-    "word_cheung": [
-      "lantai gedung",
-      "Kantornya ada di lantai dua."
-    ],
-    "word_hwanja": [
-      "pasien",
-      "Pasien sedang beristirahat."
-    ],
-    "word_halmeoni": [
-      "nenek",
-      "Nenek tersenyum."
-    ],
-    "word_palda": [
-      "menjual",
-      "Mereka menjual buah."
-    ],
-    "word_itda_2": [
-      "menyambung",
-      "Saya menyambung dua tali."
-    ],
-    "word_nara": [
-      "negara",
-      "Korea adalah negara yang indah."
-    ],
-    "word_apateu": [
-      "apartemen",
-      "Saya tinggal di apartemen."
-    ],
-    "word_hamkke": [
-      "bersama-sama",
-      "Mari pergi bersama."
-    ],
-    "word_modeun": [
-      "semua",
-      "Semua orang tertawa."
-    ],
-    "word_gwaenchanta": [
-      "tidak apa-apa",
-      "Saya tidak apa-apa."
-    ],
-    "word_johahada": [
-      "menyukai",
-      "Saya suka kopi."
-    ],
-    "word_jimseung": [
-      "binatang liar",
-      "Terdengar suara binatang di hutan."
-    ],
-    "word_dongan": [
-      "selama",
-      "Saya berwisata selama liburan."
-    ],
-    "word_ipgu": [
-      "pintu masuk",
-      "Mari bertemu di pintu masuk gedung."
-    ],
-    "word_silta": [
-      "tidak suka",
-      "Saya tidak suka hari yang dingin."
-    ],
-    "word_meonjeo": [
-      "lebih dulu",
-      "Saya mencuci tangan lebih dulu."
-    ],
-    "word_dubu": [
-      "tahu",
-      "Saya memasukkan tahu lalu memasak sup."
-    ],
-    "word_bumonim": [
-      "orang tua sendiri",
-      "Saya tinggal bersama orang tua saya."
-    ],
-    "word_gomapda": [
-      "berterima kasih",
-      "Terima kasih atas bantuannya."
-    ],
-    "word_gyesan": [
-      "perhitungan",
-      "Perhitungannya sedikit salah."
-    ],
-    "word_hyeo": [
-      "lidah",
-      "Lidah saya sakit sehingga saya tidak bisa makan."
-    ],
-    "word_sugeon": [
-      "handuk",
-      "Saya mengeringkan tangan dengan handuk."
-    ],
-    "word_saeropda": [
-      "baru",
-      "Perasaan saya terasa baru."
-    ],
-    "word_sup": [
-      "hutan",
-      "Terdengar suara burung di hutan."
-    ],
-    "word_chum": [
-      "tarian",
-      "Mereka menari di panggung."
-    ],
-    "word_sukje": [
-      "pekerjaan rumah",
-      "Saya sudah mengerjakan PR."
-    ],
-    "word_gaji": [
-      "jenis, macam",
-      "Saya hanya ingin bertanya satu hal.",
-      "Juga nama terung, dan cabang pohon. Sebagai kata bantu bilangan, ia dipakai untuk hal yang bisa didaftar: 두 가지 방법, dua cara; 세 가지 이유, tiga alasan."
-    ],
-    "word_mothada": [
-      "tidak bisa",
-      "Saya tidak bisa berenang."
-    ],
-    "word_nagada": [
-      "keluar",
-      "Saya keluar rumah."
-    ],
-    "word_meotjida": [
-      "keren",
-      "Kamu terlihat keren hari ini."
-    ],
-    "word_podo": [
-      "anggur",
-      "Anggurnya sangat manis."
-    ],
-    "word_jeopsi": [
-      "piring",
-      "Tolong keluarkan dua piring."
-    ],
-    "word_yori": [
-      "masakan",
-      "Masakannya enak."
-    ],
-    "word_sogeum": [
-      "garam",
-      "Saya menambahkan sedikit garam."
-    ],
-    "word_duda": [
-      "meletakkan",
-      "Saya meletakkan buku di meja."
-    ],
-    "word_gamsahada": [
-      "berterima kasih",
-      "Terima kasih atas bantuannya."
-    ],
-    "word_kkeut": [
-      "akhir",
-      "Silakan berdiri di ujung antrean."
-    ],
-    "word_yeolda": [
-      "membuka",
-      "Saya membuka jendela."
-    ],
-    "word_ibul": [
-      "selimut",
-      "Selimutnya hangat."
-    ],
-    "word_najung": [
-      "nanti",
-      "Saya akan menelepon lagi nanti."
-    ],
-    "word_manjida": [
-      "menyentuh",
-      "Tolong jangan disentuh."
-    ],
-    "word_gajang": [
-      "paling",
-      "Ini yang paling bagus."
-    ],
-    "word_namjjok": [
-      "selatan",
-      "Di selatan cuacanya hangat."
-    ],
-    "word_doum": [
-      "bantuan",
-      "Saya butuh bantuan."
-    ],
-    "word_jung": [
-      "sedang, di tengah",
-      "Saya sedang rapat."
-    ],
-    "word_sudo": [
-      "ibu kota",
-      "Ibu kota Korea adalah Seoul.",
-      "Ibu kota sebuah negara. 수도 yang lain berarti saluran air bersih — 수도꼭지 adalah keran, 수도 요금 adalah tagihan air. Keduanya hanya dibedakan oleh konteksnya."
-    ],
-    "word_gidarida": [
-      "menunggu",
-      "Tolong tunggu sebentar."
-    ],
-    "word_chaeso": [
-      "sayuran",
-      "Saya makan banyak sayuran."
-    ],
-    "word_kkeunnada": [
-      "selesai",
-      "Kelasnya sudah selesai."
-    ],
-    "word_butak": [
-      "permintaan tolong",
-      "Saya punya satu permintaan."
-    ],
-    "word_seom": [
-      "pulau",
-      "Kami pergi ke pulau dengan perahu."
-    ],
-    "word_teuki": [
-      "terutama",
-      "Saya terutama menyukai musim dingin."
-    ],
-    "word_jemok": [
-      "judul",
-      "Apa judul buku ini?"
-    ],
-    "word_insa": [
-      "salam",
-      "Saya memberi salam."
-    ],
-    "word_seoltang": [
-      "gula",
-      "Saya menambahkan sedikit gula."
-    ],
-    "word_jajeongeo": [
-      "sepeda",
-      "Saya naik sepeda."
-    ],
-    "word_inteonet": [
-      "internet",
-      "Internetnya lambat."
-    ],
-    "word_aniyo": [
-      "tidak",
-      "Tidak, saya baik-baik saja."
-    ],
-    "word_ama": [
-      "mungkin",
-      "Besok mungkin hujan."
-    ],
-    "word_jamsi": [
-      "sebentar",
-      "Mari istirahat sejenak."
-    ],
-    "word_beol": [
-      "lebah",
-      "Lebah hinggap di bunga.",
-      "Seekor lebah. Dua kata lain juga ditulis 벌: hukuman, dan kata bantu bilangan untuk satu setel pakaian — 옷 한 벌, satu setel."
-    ],
-    "word_won": [
-      "won",
-      "Dua ribu won."
-    ],
-    "word_ujuseon": [
-      "pesawat luar angkasa",
-      "Pesawat luar angkasa naik ke langit."
-    ],
-    "word_myeot": [
-      "berapa",
-      "Sekarang jam berapa?"
-    ],
-    "word_sueop": [
-      "pelajaran",
-      "Pelajarannya menarik."
-    ],
-    "word_sijak": [
-      "awal",
-      "Ini awal yang baik."
-    ],
-    "word_yeogwon": [
-      "paspor",
-      "Jangan lupa membawa paspor."
-    ],
-    "word_gyosil": [
-      "ruang kelas",
-      "Ruang kelasnya terang."
-    ],
-    "word_nyeon": [
-      "tahun",
-      "Saya belajar selama dua tahun."
-    ],
-    "word_bae": [
-      "perut",
-      "Perut saya sakit jadi saya ke rumah sakit.",
-      "Perut. Dua kata umum lain juga ditulis 배: perahu dan buah pir. 배가 아파요 berarti perut saya sakit, 배를 타요 berarti saya naik perahu, dan 배를 먹어요 berarti saya makan pir."
-    ],
-    "word_satang": [
-      "permen",
-      "Saya makan permen."
-    ],
-    "word_dalleo": [
-      "dolar",
-      "Ini seratus dolar."
-    ],
-    "word_usan": [
-      "payung",
-      "Hujan turun jadi saya membeli payung."
-    ],
-    "word_museun": [
-      "apa",
-      "Apa pekerjaan Anda?"
-    ],
-    "word_pari": [
-      "lalat",
-      "Ada lalat terbang berputar.",
-      "Serangganya. Bahasa Korea menulis kota Paris dengan cara yang sama, jadi 파리에 갔어요 berarti saya pergi ke Paris sedangkan 파리가 있어요 berarti ada lalat. Tidak ada yang memisahkannya selain kalimatnya."
-    ],
-    "word_ije": [
-      "sekarang",
-      "Mari mulai sekarang."
-    ],
-    "word_geollida": [
-      "memakan waktu",
-      "Ini memakan waktu satu jam."
-    ],
-    "word_choego": [
-      "terbaik",
-      "Rumah makan ini yang terbaik."
-    ],
-    "word_naeda": [
-      "membayar",
-      "Hari ini saya yang membayar."
-    ],
-    "word_daneo": [
-      "kata",
-      "Saya mempelajari kata baru."
-    ],
-    "word_jikjeop": [
-      "langsung, sendiri",
-      "Saya membuat kuenya sendiri."
-    ],
-    "word_yangmal": [
-      "kaus kaki",
-      "Kaus kakinya hangat."
-    ],
-    "word_nopda": [
-      "tinggi",
-      "Gedungnya tinggi."
-    ],
-    "word_haendeupon": [
-      "ponsel",
-      "Saya mengisi daya ponsel."
-    ],
-    "word_jigap": [
-      "dompet",
-      "Saya kehilangan dompet."
-    ],
-    "word_hyudaepon": [
-      "ponsel",
-      "Saya kehilangan ponsel."
-    ],
-    "word_agassi": [
-      "perempuan muda",
-      "Seorang perempuan muda menanyakan jalan.",
-      "Perempuan muda yang belum menikah — tetapi sebagai *sapaan* kepada orang asing, kata ini sudah berubah rasa, dan banyak perempuan menganggapnya kasar atau merendahkan. Pakailah untuk membicarakan seseorang, bukan menyapanya; untuk menarik perhatian orang asing katakan 저기요."
-    ],
-    "word_gieok": [
-      "ingatan",
-      "Saya tidak ingat."
-    ],
-    "word_geutda": [
-      "menarik garis",
-      "Saya menarik sebuah garis."
-    ],
-    "word_ipda": [
-      "memakai pakaian",
-      "Saya memakai baju."
-    ],
-    "word_sai": [
-      "jarak di antara",
-      "Ada pohon di antara dua rumah."
-    ],
-    "word_gireum": [
-      "minyak",
-      "Saya menggorengnya dengan minyak."
-    ],
-    "word_mulgogi": [
-      "ikan",
-      "Ikan itu berenang."
-    ],
-    "word_jang": [
-      "kata bantu bilangan untuk lembaran",
-      "Saya perlu tiga lembar kertas."
-    ],
-    "word_kkum": [
-      "mimpi",
-      "Tadi malam saya bermimpi aneh."
-    ],
-    "word_sijakada": [
-      "memulai",
-      "Pelajaran dimulai."
-    ],
-    "word_ajikdo": [
-      "masih saja",
-      "Saya masih menunggu."
-    ],
-    "word_teureok": [
-      "truk",
-      "Sebuah truk lewat."
-    ],
-    "word_eotteon": [
-      "yang mana, seperti apa",
-      "Warna apa yang kamu suka?"
-    ],
-    "word_geulssi": [
-      "tulisan tangan",
-      "Tulisan tanganmu bagus."
-    ],
-    "word_deutda": [
-      "mendengar",
-      "Saya mendengarkan musik."
-    ],
-    "word_subak": [
-      "semangka",
-      "Semangka enak di musim panas."
-    ],
-    "word_ttalgi": [
-      "stroberi",
-      "Saya mencuci stroberi lalu memakannya."
-    ],
-    "word_baram": [
-      "angin",
-      "Anginnya sejuk."
-    ],
-    "word_sigol": [
-      "desa, daerah",
-      "Udara di desa segar."
-    ],
-    "word_pulda": [
-      "memecahkan",
-      "Saya memecahkan soalnya."
-    ],
-    "word_angyeong": [
-      "kacamata",
-      "Saya memakai kacamata."
-    ],
-    "word_yeonpil": [
-      "pensil",
-      "Saya menggambar dengan pensil."
-    ],
-    "word_jumal": [
-      "akhir pekan",
-      "Saya beristirahat di akhir pekan."
-    ],
-    "word_jugida": [
-      "membunuh",
-      "Saya membunuh nyamuk yang masuk ke kamar."
-    ],
-    "word_him": [
-      "tenaga",
-      "Anak itu sangat kuat."
-    ],
-    "word_jeonbu": [
-      "semuanya",
-      "Semuanya berapa?"
-    ],
-    "word_gyeongchal": [
-      "polisi",
-      "Tolong panggil polisi."
-    ],
-    "word_geureut": [
-      "mangkuk",
-      "Saya menaruh nasi di mangkuk."
-    ],
-    "word_nappeuda": [
-      "buruk",
-      "Cuacanya buruk."
-    ],
-    "word_oppa": [
-      "kakak laki-laki bagi perempuan",
-      "Kakak laki-laki saya sedang menyetir.",
-      "Bahasa Korea memilih sebutan saudara berdasarkan jenis kelamin penuturnya: seorang perempuan memanggil kakak laki-lakinya 오빠, seorang laki-laki memanggilnya 형. Kata ini juga dipakai untuk laki-laki yang lebih tua yang dekat dengan seorang perempuan, itulah sebabnya ia terdengar jauh di luar lingkup keluarga."
-    ],
-    "word_mannada": [
-      "bertemu",
-      "Kami sering bertemu."
-    ],
-    "word_huimang": [
-      "harapan",
-      "Tolong jangan kehilangan harapan."
-    ],
-    "word_hyeong": [
-      "kakak laki-laki bagi laki-laki",
-      "Kakak saya mentraktir saya makan.",
-      "Sebutan yang dipakai laki-laki untuk kakak laki-lakinya. Untuk orang yang sama, perempuan akan berkata 오빠. Seperti 오빠, ia meluas ke laki-laki lebih tua yang akrab meski sama sekali bukan keluarga."
-    ],
-    "word_doro": [
-      "jalan raya",
-      "Jalannya ditutup."
-    ],
-    "word_ttwida": [
-      "berlari",
-      "Anak itu berlari."
-    ],
-    "word_mueot": [
-      "apa",
-      "Ini apa?"
-    ],
-    "word_oenjjok": [
-      "sebelah kiri",
-      "Tolong belok kiri."
-    ],
-    "word_chukgu": [
-      "sepak bola",
-      "Saya bermain sepak bola dengan teman."
-    ],
-    "word_jayu": [
-      "kebebasan",
-      "Kebebasan itu berharga."
-    ],
-    "word_sungan": [
-      "saat, momen",
-      "Saya tidak bisa melupakan saat itu."
-    ],
-    "word_sayonghada": [
-      "menggunakan",
-      "Boleh saya menggunakan ruangan ini?"
-    ],
-    "word_pada": [
-      "menggali",
-      "Saya menggali tanah."
-    ],
-    "word_nampyeon": [
-      "suami",
-      "Suami saya sedang memasak."
-    ],
-    "word_silheomsil": [
-      "laboratorium",
-      "Saya bekerja seharian di laboratorium."
-    ],
-    "word_dambae": [
-      "rokok",
-      "Bau rokok menempel di baju."
-    ],
-    "word_banana": [
-      "pisang",
-      "Pagi hari saya makan pisang."
-    ],
-    "word_geum": [
-      "emas",
-      "Cincin ini terbuat dari emas.",
-      "Emas, logamnya. Suku kata yang sama juga berarti garis yang tergores atau ditarik — 금이 갔어요 berarti retak — dan membuka kata 금요일, Jumat."
-    ],
-    "word_mandeulda": [
-      "membuat",
-      "Saya membuat roti."
-    ],
-    "word_ibeon": [
-      "kali ini",
-      "Kali ini saya yang akan melakukannya."
-    ],
-    "word_gomawo": [
-      "terima kasih",
-      "Makasih ya sudah bantu."
-    ],
-    "word_banchan": [
-      "lauk pendamping nasi",
-      "Lauknya enak."
-    ],
-    "word_apeuda": [
-      "sakit",
-      "Perut saya sakit."
-    ],
-    "word_doseogwan": [
-      "perpustakaan",
-      "Saya meminjam buku di perpustakaan."
-    ],
-    "word_ppyeo": [
-      "tulang",
-      "Anjing itu menggigit tulang."
-    ],
-    "word_gamsa": [
-      "terima kasih",
-      "Saya mengucapkan terima kasih."
-    ],
-    "word_geolda": [
-      "menggantung",
-      "Saya menggantung baju."
-    ],
-    "word_gim": [
-      "rumput laut kering",
-      "Kami membungkus nasi dengan rumput laut lalu memakannya.",
-      "Rumput laut kering tipis yang dimakan dengan nasi. Suku kata yang sama adalah nama keluarga Korea yang paling umum, dan ia juga uap yang naik dari sesuatu yang panas — 김이 나요, mengepul."
-    ],
-    "word_jalhada": [
-      "pandai melakukan sesuatu",
-      "Kamu pandai bernyanyi."
-    ],
-    "word_saengmyeong": [
-      "nyawa",
-      "Nyawa itu berharga."
-    ],
-    "word_mureup": [
-      "lutut",
-      "Lutut saya sakit."
-    ],
-    "word_jjalda": [
-      "pendek",
-      "Pensilnya pendek."
-    ],
-    "word_chijeu": [
-      "keju",
-      "Saya suka keju."
-    ],
-    "word_hanbeon": [
-      "sekali",
-      "Cobalah sekali."
-    ],
-    "word_gohyang": [
-      "kampung halaman",
-      "Saya pergi ke kampung halaman."
-    ],
-    "word_jihacheol": [
-      "kereta bawah tanah",
-      "Saya naik kereta bawah tanah."
-    ],
-    "word_sal": [
-      "tahun usia",
-      "Umur saya dua puluh tahun."
-    ],
-    "word_anae": [
-      "istri",
-      "Saya datang bersama istri saya."
-    ],
-    "word_swida": [
-      "beristirahat",
-      "Mari istirahat sebentar."
-    ],
-    "word_gimbap": [
-      "gimbap",
-      "Saya makan gimbap untuk makan siang."
-    ],
-    "word_gayo": [
-      "musik pop Korea",
-      "Saya suka musik pop Korea.",
-      "Lagu populer Korea sebagai kategori — K-pop adalah 가요. Ejaannya persis sama dengan 가요 «pergi», bentuk sopan kini dari 가다, jadi kalimat di sekitarnya yang menentukan mana yang Anda baca."
-    ],
-    "word_swipda": [
-      "mudah",
-      "Hangul itu mudah."
-    ],
-    "word_pyojeong": [
-      "ekspresi wajah",
-      "Ekspresi wajahnya cerah."
-    ],
-    "word_dareuda": [
-      "berbeda",
-      "Warnanya berbeda."
-    ],
-    "word_geunyang": [
-      "begitu saja",
-      "Akhir pekan saya hanya di rumah saja."
-    ],
-    "word_majimak": [
-      "terakhir",
-      "Saya naik bus terakhir."
-    ],
-    "word_bangbeop": [
-      "cara",
-      "Ada cara yang bagus."
-    ],
-    "word_huinsaek": [
-      "warna putih",
-      "Dinding putih itu bersih."
-    ],
-    "word_jalmot": [
-      "kesalahan",
-      "Ini salah saya."
-    ],
-    "word_daehakgyo": [
-      "universitas",
-      "Saya kuliah di universitas."
-    ],
-    "word_haengun": [
-      "keberuntungan",
-      "Semoga beruntung di ujian."
-    ],
-    "word_harabeoji": [
-      "kakek",
-      "Kakek membaca koran."
-    ],
-    "word_bimil": [
-      "rahasia",
-      "Tolong jaga rahasianya."
-    ],
-    "word_sogogi": [
-      "daging sapi",
-      "Kami memanggang daging sapi lalu memakannya."
-    ],
-    "word_net": [
-      "empat",
-      "Kami berempat satu tim."
-    ],
-    "word_sinda": [
-      "memakai alas kaki",
-      "Saya memakai kaus kaki."
-    ],
-    "word_dap": [
-      "jawaban",
-      "Saya menemukan jawabannya."
-    ],
-    "word_yeonseup": [
-      "latihan",
-      "Saya berlatih setiap hari."
-    ],
-    "word_gongchaek": [
-      "buku tulis",
-      "Saya menulis nama di buku tulis."
-    ],
-    "word_ssada": [
-      "murah",
-      "Buah ini murah."
-    ],
-    "word_dowajuda": [
-      "membantu",
-      "Tolong bantu saya sedikit."
-    ],
-    "word_maekju": [
-      "bir",
-      "Birnya dingin."
-    ],
-    "word_jjada": [
-      "asin",
-      "Supnya asin."
-    ],
-    "word_gyehoek": [
-      "rencana",
-      "Saya membuat rencana."
-    ],
-    "word_pyeonghwa": [
-      "perdamaian",
-      "Kami mengharapkan perdamaian."
-    ],
-    "word_yaksok": [
-      "janji",
-      "Saya menepati janji."
-    ],
-    "word_oreunjjok": [
-      "sebelah kanan",
-      "Silakan jalan ke kanan."
-    ],
-    "word_gippeuda": [
-      "senang",
-      "Saya senang mendengar kabar itu."
-    ],
-    "word_baeuda": [
-      "belajar",
-      "Saya belajar bahasa Korea."
-    ],
-    "word_jebal": [
-      "tolong, mohon",
-      "Tolong bantu saya."
-    ],
-    "word_dopda": [
-      "menolong",
-      "Saya menolong teman."
-    ],
-    "word_jaryo": [
-      "bahan, materi kerja",
-      "Saya menyiapkan materi rapat lebih dulu."
-    ],
-    "word_hullyunghada": [
-      "hebat",
-      "Itu ide yang hebat."
-    ],
-    "word_moseup": [
-      "penampilan, sosok",
-      "Penampilannya berubah."
-    ],
-    "word_undong": [
-      "olahraga",
-      "Saya berolahraga di pagi hari."
-    ],
-    "word_geureonde": [
-      "omong-omong, tetapi",
-      "Omong-omong, ini apa?"
-    ],
-    "word_juseu": [
-      "jus",
-      "Anak itu minum jus."
-    ],
-    "word_jwi": [
-      "tikus",
-      "Saya melihat tikus di dapur."
-    ],
-    "word_chwimi": [
-      "hobi",
-      "Hobi saya memotret."
-    ],
-    "word_deung": [
-      "punggung",
-      "Punggung saya gatal."
-    ],
-    "word_jeoldae": [
-      "sama sekali, jangan pernah",
-      "Jangan pernah terlambat."
-    ],
-    "word_dol": [
-      "batu",
-      "Banyak batu di jalan setapak jadi kami berhati-hati."
-    ],
-    "word_bappeuda": [
-      "sibuk",
-      "Hari ini saya sibuk."
-    ],
-    "word_ireon": [
-      "seperti ini",
-      "Hal seperti ini baru pertama kali."
-    ],
-    "word_yeoseong": [
-      "perempuan",
-      "Banyak perempuan yang datang."
-    ],
-    "word_paransaek": [
-      "warna biru",
-      "Baju biru cocok untukmu."
-    ],
-    "word_ireonada": [
-      "bangun",
-      "Saya bangun pukul tujuh."
-    ],
-    "word_gom": [
-      "beruang",
-      "Beruang hidup di gunung."
-    ],
-    "word_jam": [
-      "tidur",
-      "Akhir-akhir ini saya sulit tidur."
-    ],
-    "word_haebyeon": [
-      "pantai",
-      "Kami pergi ke pantai di musim panas."
-    ],
-    "word_hosu": [
-      "danau",
-      "Danaunya tenang."
-    ],
-    "word_dakgogi": [
-      "daging ayam",
-      "Daging ayam rendah lemak."
-    ],
-    "word_geunde": [
-      "omong-omong",
-      "Omong-omong, sekarang jam berapa?"
-    ],
-    "word_jaeneung": [
-      "bakat",
-      "Dia berbakat menggambar."
-    ],
-    "word_gyeolhon": [
-      "pernikahan",
-      "Selamat atas pernikahannya."
-    ],
-    "word_binu": [
-      "sabun",
-      "Saya mencuci tangan dengan sabun."
-    ],
-    "word_saja": [
-      "singa",
-      "Singa itu besar."
-    ],
-    "word_eoneu": [
-      "yang mana",
-      "Yang mana yang kamu suka?"
-    ],
-    "word_mureoboda": [
-      "bertanya",
-      "Saya bertanya kepada guru."
-    ],
-    "word_ucheguk": [
-      "kantor pos",
-      "Saya mengirim surat di kantor pos."
-    ],
-    "word_japji": [
-      "majalah",
-      "Saya membaca majalah."
-    ],
-    "word_jean": [
-      "usulan, tawaran",
-      "Saya menerima tawaran bagus dari perusahaan."
-    ],
-    "word_yojeum": [
-      "akhir-akhir ini",
-      "Bagaimana kabarmu akhir-akhir ini?"
-    ],
-    "word_ulda": [
-      "menangis",
-      "Bayi itu menangis."
-    ],
-    "word_namda": [
-      "tersisa",
-      "Nasinya tersisa sedikit."
-    ],
-    "word_miso": [
-      "senyum",
-      "Senyumnya indah."
-    ],
-    "word_daehak": [
-      "perguruan tinggi",
-      "Saya diterima di universitas."
-    ],
-    "word_uimi": [
-      "arti",
-      "Apa arti kata ini?"
-    ],
-    "word_geim": [
-      "permainan",
-      "Saya bermain gim."
-    ],
-    "word_cham": [
-      "sungguh",
-      "Cuaca hari ini sungguh bagus."
-    ],
-    "word_kong": [
-      "kacang",
-      "Saya memasukkan kacang ke nasi."
-    ],
-    "word_saebyeok": [
-      "dini hari",
-      "Saya bangun sebelum fajar."
-    ],
-    "word_utda": [
-      "tertawa",
-      "Teman saya tertawa keras."
-    ],
-    "word_imi": [
-      "sudah",
-      "Semuanya sudah berakhir."
-    ],
-    "word_sutgarak": [
-      "sendok",
-      "Saya makan sup dengan sendok."
-    ],
-    "word_bureuda": [
-      "memanggil",
-      "Saya memanggil taksi."
-    ],
-    "word_koteu": [
-      "mantel",
-      "Tolong pakai mantelmu."
-    ],
-    "word_meolda": [
-      "jauh",
-      "Sekolahnya jauh."
-    ],
-    "word_myeong": [
-      "orang, kata bantu bilangan",
-      "Ada lima pelajar."
-    ],
-    "word_eonni": [
-      "kakak perempuan bagi perempuan",
-      "Kakak perempuan saya mahasiswa.",
-      "Sebutan yang dipakai perempuan untuk kakak perempuannya; untuk orang yang sama, laki-laki berkata 누나. Begitu pula cara perempuan menyapa perempuan yang sedikit lebih tua yang akrab dengannya, termasuk di toko."
-    ],
-    "word_ihae": [
-      "pemahaman",
-      "Saya memahaminya dengan baik."
-    ],
-    "word_samda": [
-      "merebus",
-      "Saya merebus telur."
-    ],
-    "word_noransaek": [
-      "warna kuning",
-      "Saya membawa payung kuning."
-    ],
-    "word_mudeom": [
-      "makam",
-      "Ada makam tua di gunung."
-    ],
-    "word_gita": [
-      "gitar",
-      "Saya bermain gitar."
-    ],
-    "word_itda_3": [
-      "melupakan",
-      "Saya lupa namanya."
-    ],
-    "word_gongyeon": [
-      "pertunjukan",
-      "Pertunjukan dimulai."
-    ],
-    "word_ilta": [
-      "kehilangan",
-      "Saya kehilangan kunci."
-    ],
-    "word_baneung": [
-      "reaksi",
-      "Reaksi orang-orang sangat baik."
-    ],
-    "word_gudu": [
-      "sepatu kulit",
-      "Sepatunya nyaman."
-    ],
-    "word_hyuga": [
-      "cuti, liburan",
-      "Saya pergi berlibur."
-    ],
-    "word_jeohui": [
-      "kami, secara rendah hati",
-      "Kami akan membantu Anda."
-    ],
-    "word_geuttae": [
-      "saat itu",
-      "Saat itu sedang hujan."
-    ],
-    "word_sopa": [
-      "sofa",
-      "Duduklah di sofa dan istirahat."
-    ]
-  }
+ "_comment": "Vocabulary copy for Indonesian. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+ "locale": "id",
+ "words": {
+  "word_hada": [
+   "melakukan",
+   "Saya belajar.",
+   "Melakukan — sekaligus mesin pembentuk kosakata Korea. Tempelkan pada kata benda dan jadilah kata kerja: 공부 (studi) menjadi 공부하다 (belajar), 사랑 (cinta) menjadi 사랑하다. Ratusan kata kerja dibangun begini."
+  ],
+  "word_cha": [
+   "mobil",
+   "Saya naik mobil.",
+   "Mobil. Suku kata yang sama juga berarti teh, jadi 차를 마셔요 adalah saya minum teh dan 차를 타요 adalah saya naik mobil. Kata kerjanya yang menentukan."
+  ],
+  "word_yeoja": [
+   "perempuan",
+   "Perempuan itu seorang dokter."
+  ],
+  "word_na": [
+   "aku",
+   "Aku belajar bahasa Korea."
+  ],
+  "word_hae": [
+   "matahari",
+   "Mataharinya terang."
+  ],
+  "word_don": [
+   "uang",
+   "Ada uang di dompet."
+  ],
+  "word_uri": [
+   "kami",
+   "Kami berteman."
+  ],
+  "word_jip": [
+   "rumah",
+   "Saya pulang ke rumah."
+  ],
+  "word_itda": [
+   "berada",
+   "Saya di rumah.",
+   "Satu kata untuk dua hal: 있다 berarti berada di suatu tempat sekaligus punya. 책상에 책이 있어요 — bukunya ada di meja; 시간이 있어요 — saya punya waktu. Lawannya 없다."
+  ],
+  "word_ne": [
+   "ya",
+   "Ya, benar.",
+   "Ada tiga kata umum yang ditulis 네. Yang ini «ya». Dua lainnya «milikmu» (네 책, bukumu) dan bilangan asli Korea «empat» sebelum kata penggolong (네 개, empat buah). Konteks yang memisahkannya, bukan ejaan."
+  ],
+  "word_son": [
+   "tangan",
+   "Saya menulis dengan tangan."
+  ],
+  "word_sigan": [
+   "waktu",
+   "Saya tidak punya waktu.",
+   "Waktu secara umum, sekaligus kata penggolong untuk jam: 두 시간 berarti dua jam lamanya. Jangan tertukar dengan 시, yaitu jam pada arloji — 두 시 berarti pukul dua, hal yang sama sekali lain."
+  ],
+  "word_jeo": [
+   "saya (sopan)",
+   "Saya seorang pelajar."
+  ],
+  "word_gada": [
+   "pergi",
+   "Saya pergi ke sekolah."
+  ],
+  "word_gae": [
+   "anjing",
+   "Anjing itu berlari."
+  ],
+  "word_mun": [
+   "pintu",
+   "Saya membuka pintu."
+  ],
+  "word_sae": [
+   "burung",
+   "Seekor burung terbang."
+  ],
+  "word_mom": [
+   "tubuh",
+   "Saya mandi setiap hari."
+  ],
+  "word_bang": [
+   "kamar",
+   "Kamarnya bersih."
+  ],
+  "word_nun": [
+   "mata",
+   "Matamu indah.",
+   "Mata. Ditulis persis seperti kata untuk salju; dalam ucapan yang cermat keduanya dibedakan oleh panjang bunyi: 눈 salju dipanjangkan, 눈 mata pendek. Kebanyakan penutur mengandalkan konteks."
+  ],
+  "word_ot": [
+   "pakaian",
+   "Pakaiannya bagus."
+  ],
+  "word_neo": [
+   "kamu",
+   "Kamu di mana?"
+  ],
+  "word_eopda": [
+   "tidak punya",
+   "Saya tidak punya uang."
+  ],
+  "word_meori": [
+   "kepala",
+   "Kepala saya sakit."
+  ],
+  "word_ip": [
+   "mulut",
+   "Mulutnya kecil."
+  ],
+  "word_mul": [
+   "air",
+   "Saya minum air."
+  ],
+  "word_dari": [
+   "kaki",
+   "Kaki saya sakit.",
+   "Kaki — kaki Anda, kaki meja, kaki kursi. Kata yang sama juga berarti jembatan, karena itu 다리를 건너요 berarti «saya menyeberangi jembatan», bukan sesuatu yang anatomis."
+  ],
+  "word_bi": [
+   "hujan",
+   "Sedang hujan."
+  ],
+  "word_wae": [
+   "kenapa",
+   "Kenapa kamu terlambat?"
+  ],
+  "word_eolgul": [
+   "wajah",
+   "Saya mencuci wajah."
+  ],
+  "word_saram": [
+   "orang",
+   "Dia orang baik."
+  ],
+  "word_hakgyo": [
+   "sekolah",
+   "Sekolahnya besar."
+  ],
+  "word_yeogi": [
+   "di sini",
+   "Silakan duduk di sini."
+  ],
+  "word_pal": [
+   "lengan",
+   "Lenganmu panjang."
+  ],
+  "word_norae": [
+   "lagu",
+   "Saya menyanyikan lagu."
+  ],
+  "word_chaek": [
+   "buku",
+   "Saya membaca buku."
+  ],
+  "word_dal": [
+   "bulan",
+   "Bulannya terang."
+  ],
+  "word_jeonhwa": [
+   "telepon",
+   "Saya menjawab telepon."
+  ],
+  "word_namu": [
+   "pohon",
+   "Pohonnya tinggi."
+  ],
+  "word_dasi": [
+   "lagi",
+   "Tolong ulangi lagi."
+  ],
+  "word_nal": [
+   "hari",
+   "Hari ini bagus."
+  ],
+  "word_jigeum": [
+   "sekarang",
+   "Saya pergi sekarang."
+  ],
+  "word_haru": [
+   "sehari",
+   "Harinya panjang."
+  ],
+  "word_sesang": [
+   "dunia",
+   "Dunia itu luas."
+  ],
+  "word_bal": [
+   "telapak kaki",
+   "Kaki saya dingin."
+  ],
+  "word_neutda": [
+   "terlambat",
+   "Busnya terlambat."
+  ],
+  "word_modu": [
+   "semua",
+   "Semua sudah berkumpul."
+  ],
+  "word_sajin": [
+   "foto",
+   "Saya mengambil foto."
+  ],
+  "word_chimdae": [
+   "tempat tidur",
+   "Tempat tidurnya nyaman."
+  ],
+  "word_ko": [
+   "hidung",
+   "Hidung saya tersumbat."
+  ],
+  "word_san": [
+   "gunung",
+   "Saya pergi ke gunung."
+  ],
+  "word_hana": [
+   "satu",
+   "Satu apel, tolong."
+  ],
+  "word_byeongwon": [
+   "rumah sakit",
+   "Saya pergi ke rumah sakit."
+  ],
+  "word_jeongmal": [
+   "sungguh",
+   "Terima kasih banyak.",
+   "Sungguh, benar-benar — penguat di depan kata sifat, seperti pada 정말 좋아요. Berdiri sendiri dengan nada naik, 정말? menjadi pertanyaan satu kata: «masa?» — dan begitulah Anda akan paling sering mendengarnya."
+  ],
+  "word_seonmul": [
+   "hadiah",
+   "Saya suka hadiahnya."
+  ],
+  "word_boda": [
+   "melihat",
+   "Saya menonton film."
+  ],
+  "word_oneul": [
+   "hari ini",
+   "Cuacanya bagus hari ini."
+  ],
+  "word_gabang": [
+   "tas",
+   "Tasnya berat."
+  ],
+  "word_eumak": [
+   "musik",
+   "Musiknya bagus."
+  ],
+  "word_gage": [
+   "toko",
+   "Tokonya tutup."
+  ],
+  "word_gil": [
+   "jalan",
+   "Jalannya lebar."
+  ],
+  "word_ohu": [
+   "sore",
+   "Mari bertemu sore hari."
+  ],
+  "word_keopi": [
+   "kopi",
+   "Saya minum kopi."
+  ],
+  "word_bap": [
+   "nasi",
+   "Saya makan."
+  ],
+  "word_eomma": [
+   "ibu",
+   "Ibu sedang memasak."
+  ],
+  "word_gwi": [
+   "telinga",
+   "Telinga saya sakit."
+  ],
+  "word_beoseu": [
+   "bus",
+   "Busnya datang."
+  ],
+  "word_geurim": [
+   "gambar",
+   "Saya menggambar."
+  ],
+  "word_beon": [
+   "kali",
+   "Tolong lakukan sekali lagi."
+  ],
+  "word_sul": [
+   "minuman keras",
+   "Saya tidak minum alkohol."
+  ],
+  "word_yeonghwa": [
+   "film",
+   "Filmnya seru."
+  ],
+  "word_sada": [
+   "membeli",
+   "Saya membeli roti."
+  ],
+  "word_byeol": [
+   "bintang",
+   "Bintang-bintang bersinar."
+  ],
+  "word_bihaenggi": [
+   "pesawat",
+   "Saya naik pesawat."
+  ],
+  "word_bak": [
+   "luar",
+   "Di luar sedang hujan."
+  ],
+  "word_oda": [
+   "datang",
+   "Teman saya datang."
+  ],
+  "word_chingu": [
+   "teman",
+   "Saya bertemu teman."
+  ],
+  "word_appa": [
+   "ayah",
+   "Selamat malam, Ayah."
+  ],
+  "word_haneul": [
+   "langit",
+   "Langitnya biru."
+  ],
+  "word_bada": [
+   "laut",
+   "Lautnya luas."
+  ],
+  "word_sagwa": [
+   "apel",
+   "Apelnya manis."
+  ],
+  "word_mulgeon": [
+   "barang",
+   "Saya membeli barang."
+  ],
+  "word_moja": [
+   "topi",
+   "Saya memakai topi."
+  ],
+  "word_gogi": [
+   "daging",
+   "Saya memanggang daging."
+  ],
+  "word_jinjja": [
+   "sungguhan",
+   "Apakah ini sungguhan?"
+  ],
+  "word_sinbal": [
+   "sepatu",
+   "Saya memakai sepatu."
+  ],
+  "word_jamkkan": [
+   "sebentar",
+   "Tunggu sebentar, ya."
+  ],
+  "word_namja": [
+   "laki-laki",
+   "Laki-laki itu teman saya."
+  ],
+  "word_eumsik": [
+   "makanan",
+   "Makanan Korea enak."
+  ],
+  "word_saengil": [
+   "ulang tahun",
+   "Selamat ulang tahun."
+  ],
+  "word_daseot": [
+   "lima",
+   "Lima orang datang."
+  ],
+  "word_gihoe": [
+   "kesempatan",
+   "Ini kesempatan yang bagus."
+  ],
+  "word_dul": [
+   "dua",
+   "Ada dua kursi."
+  ],
+  "word_sijang": [
+   "pasar",
+   "Saya membeli sayur di pasar."
+  ],
+  "word_goyangi": [
+   "kucing",
+   "Kucingnya sedang tidur."
+  ],
+  "word_changmun": [
+   "jendela",
+   "Tolong tutup jendelanya."
+  ],
+  "word_yeoreum": [
+   "musim panas",
+   "Saya pergi ke laut saat musim panas."
+  ],
+  "word_dongmul": [
+   "hewan",
+   "Saya suka hewan."
+  ],
+  "word_yeohaeng": [
+   "perjalanan",
+   "Saya ingin bepergian."
+  ],
+  "word_bam": [
+   "malam",
+   "Banyak bintang di malam hari.",
+   "Malam. Ditulis sama dengan kata untuk buah berangan, camilan musim gugur yang lazim di Korea, sehingga 밤을 먹어요 dan 밤에 자요 membicarakan hal yang sangat berbeda."
+  ],
+  "word_geot": [
+   "benda, hal",
+   "Saya membeli barang yang saya perlukan.",
+   "Kata benda paling umum dalam bahasa Korea: ia menggantikan apa pun yang belum Anda sebut namanya. 제 것 berarti *milik saya*; 먹을 것 berarti *sesuatu untuk dimakan*. Dalam percakapan ia memendek menjadi 거 — 이거, 그거, 저거 — dan bentuk itulah yang pertama ditemui pemula."
+  ],
+  "word_mal": [
+   "perkataan, apa yang diucapkan",
+   "Berhati-hatilah dengan perkataanmu.",
+   "Ucapan — kata-kata, apa yang dikatakan seseorang. Suku kata yang sama juga berarti kuda, dan 말 menutup kata 한국말, bahasa Korea. Dalam tulisan tidak ada yang memisahkannya: 말을 하다 berarti berbicara, 말을 타다 berarti menunggang kuda."
+  ],
+  "word_bun": [
+   "menit",
+   "Tunggu sepuluh menit saja.",
+   "Dua kata lain juga ditulis 분. Satu adalah cara sopan menghitung orang — 세 분, tiga orang, untuk tamu atau orang yang lebih tua. Satunya lagi berarti amarah, seperti pada 분이 풀리다. Hanya kalimatnya yang membedakan."
+  ],
+  "word_dwi": [
+   "bagian belakang",
+   "Saya menulis nama saya di belakang buku catatan."
+  ],
+  "word_si": [
+   "pukul",
+   "Kelas selesai pukul dua.",
+   "Jam memakai bilangan asli Korea — 한 시, 두 시, 세 시 — sedangkan menit memakai bilangan Sino-Korea: 세 시 십 분, pukul tiga lewat sepuluh. Membalik keduanya adalah kesalahan klasik pemula, dan langsung terdengar."
+  ],
+  "word_deo": [
+   "lebih",
+   "Sedikit lagi, ya."
+  ],
+  "word_ap": [
+   "bagian depan",
+   "Mari bertemu di depan toko."
+  ],
+  "word_da": [
+   "semuanya",
+   "Saya makan semua nasinya."
+  ],
+  "word_jom": [
+   "sedikit, sekaligus pelembut permintaan",
+   "Minta air sedikit.",
+   "Singkatan dari 조금, *sedikit* — tetapi separuh tugasnya adalah memperhalus. Disisipkan ke dalam permintaan, ia menumpulkan ketajamannya: 도와주세요 berarti *tolong aku*, 좀 도와주세요 lebih mirip *bisakah Anda menolong saya*. Justru karena itu orang Korea memakainya terus-menerus."
+  ],
+  "word_jeon": [
+   "sebelum",
+   "Saya mencuci tangan sebelum makan.",
+   "Sebelum, dalam waktu. Beberapa kata lain juga ditulis 전: 전쟁 berarti perang dan dipendekkan menjadi 전, 전기 berarti listrik, dan 전 di daftar menu adalah sejenis panekuk gurih. Di depan kata kerja, inilah yang bermakna waktu — 먹기 전에, sebelum makan."
+  ],
+  "word_alda": [
+   "tahu",
+   "Saya tahu namanya."
+  ],
+  "word_yak": [
+   "obat",
+   "Minumlah obat setelah makan."
+  ],
+  "word_jota": [
+   "baik",
+   "Perasaan saya baik."
+  ],
+  "word_jal": [
+   "dengan baik",
+   "Apakah kamu tidur nyenyak?"
+  ],
+  "word_anida": [
+   "bukan",
+   "Saya bukan pelajar.",
+   "Lawan dari 이다. Ia memakai 이/가 pada hal yang disangkal, bukan 을/를: 학생이 아니에요, tidak pernah 학생을 아니에요. Yang menguasai satu pola ini bisa menyangkal kalimat nominal apa pun dalam bahasa Korea."
+  ],
+  "word_bul": [
+   "api",
+   "Kebakaran terjadi di gunung."
+  ],
+  "word_uyu": [
+   "susu",
+   "Susunya dingin."
+  ],
+  "word_meokda": [
+   "makan",
+   "Saya makan buah."
+  ],
+  "word_ppang": [
+   "roti",
+   "Saya makan roti."
+  ],
+  "word_ttae": [
+   "saat sesuatu terjadi",
+   "Waktu kecil saya tinggal di desa."
+  ],
+  "word_il": [
+   "pekerjaan",
+   "Hari ini banyak pekerjaan.",
+   "Pekerjaan, atau hal yang harus dilakukan. Suku kata yang sama adalah angka satu Sino-Korea — 일 번, nomor satu — dan ia adalah hari dalam 일요일, Minggu, serta dalam 삼 일, tiga hari."
+  ],
+  "word_baji": [
+   "celana",
+   "Celananya panjang."
+  ],
+  "word_sigye": [
+   "jam",
+   "Saya tidak punya jam."
+  ],
+  "word_siheom": [
+   "ujian",
+   "Besok saya ada ujian."
+  ],
+  "word_keompyuteo": [
+   "komputer",
+   "Saya menyalakan komputer."
+  ],
+  "word_nalssi": [
+   "cuaca",
+   "Cuacanya bagus."
+  ],
+  "word_jongi": [
+   "kertas",
+   "Saya menggambar di kertas."
+  ],
+  "word_dosi": [
+   "kota",
+   "Kotanya sangat besar."
+  ],
+  "word_munje": [
+   "masalah",
+   "Ada masalah."
+  ],
+  "word_wi": [
+   "bagian atas",
+   "Ada topi di atas tas."
+  ],
+  "word_bom": [
+   "musim semi",
+   "Bunga bermekaran di musim semi."
+  ],
+  "word_jeonyeok": [
+   "makan malam",
+   "Saya makan malam."
+  ],
+  "word_gyeoul": [
+   "musim dingin",
+   "Salju turun banyak di musim dingin."
+  ],
+  "word_abeoji": [
+   "ayah",
+   "Ayah saya pergi bekerja."
+  ],
+  "word_eoseo": [
+   "silakan, mari masuk",
+   "Selamat datang, silakan masuk."
+  ],
+  "word_mot": [
+   "tidak bisa meski ingin",
+   "Terlalu pedas sampai saya tidak bisa memakannya.",
+   "Bahasa Korea punya dua bentuk pengingkaran dan keduanya berbeda maksud. 안 berarti *saya tidak mau*; 못 berarti *saya tidak bisa*. 안 먹어요 berarti Anda memilih tidak makan; 못 먹어요 berarti ada yang menghalangi. Kata benda dengan ejaan sama, 못, berarti paku."
+  ],
+  "word_salda": [
+   "tinggal, hidup",
+   "Saya tinggal di Seoul."
+  ],
+  "word_ai": [
+   "anak",
+   "Anak itu tertawa."
+  ],
+  "word_jeomsim": [
+   "makan siang",
+   "Mari makan siang bersama."
+  ],
+  "word_nugu": [
+   "siapa",
+   "Siapa orang itu?"
+  ],
+  "word_eonje": [
+   "kapan",
+   "Kapan kamu datang?"
+  ],
+  "word_geori": [
+   "jalan",
+   "Banyak orang di jalan."
+  ],
+  "word_annyeong": [
+   "halo sekaligus selamat tinggal",
+   "Sampai jumpa lagi!"
+  ],
+  "word_gakkeum": [
+   "kadang-kadang",
+   "Kadang-kadang saya menonton film."
+  ],
+  "word_manta": [
+   "banyak",
+   "Orangnya banyak."
+  ],
+  "word_chima": [
+   "rok",
+   "Rok ini sangat cantik."
+  ],
+  "word_uija": [
+   "kursi",
+   "Saya duduk di kursi."
+  ],
+  "word_jeogi": [
+   "di sana",
+   "Di sana ada sekolah."
+  ],
+  "word_gongwon": [
+   "taman",
+   "Saya berjalan-jalan di taman."
+  ],
+  "word_ssal": [
+   "beras",
+   "Saya mencuci beras lalu menanaknya."
+  ],
+  "word_jigu": [
+   "Bumi",
+   "Bumi itu bulat."
+  ],
+  "word_eodi": [
+   "di mana",
+   "Di mana toiletnya?"
+  ],
+  "word_byeok": [
+   "dinding",
+   "Saya menggantung lukisan di dinding."
+  ],
+  "word_gyeran": [
+   "telur",
+   "Pagi ini saya merebus telur."
+  ],
+  "word_tada": [
+   "naik kendaraan",
+   "Saya naik bus.",
+   "Naik ke apa pun yang membawa Anda — bus, sepeda, lift. Dua kata kerja lain yang sangat umum memakai ejaan yang sama: 타다 juga berarti terbakar, dan melarutkan sesuatu ke dalam minuman."
+  ],
+  "word_segye": [
+   "dunia",
+   "Saya tahu banyak negara di dunia."
+  ],
+  "word_ireum": [
+   "nama",
+   "Siapa namamu?"
+  ],
+  "word_guk": [
+   "sup",
+   "Pagi hari saya makan sup."
+  ],
+  "word_malhada": [
+   "berbicara",
+   "Tolong bicara pelan-pelan."
+  ],
+  "word_geotda": [
+   "berjalan",
+   "Saya berjalan di taman."
+  ],
+  "word_gangaji": [
+   "anak anjing",
+   "Anak anjing itu kecil."
+  ],
+  "word_sori": [
+   "suara",
+   "Suaranya keras."
+  ],
+  "word_yeop": [
+   "sisi, samping",
+   "Silakan duduk di sebelah saya."
+  ],
+  "word_saenggak": [
+   "pikiran",
+   "Itu ide yang bagus."
+  ],
+  "word_geogi": [
+   "di situ",
+   "Apakah ada orang di situ?"
+  ],
+  "word_adeul": [
+   "anak laki-laki",
+   "Anak laki-laki saya bersekolah."
+  ],
+  "word_doeda": [
+   "menjadi",
+   "Saya ingin menjadi dokter.",
+   "Menjadi. Ia juga kata sehari-hari untuk sesuatu yang berfungsi atau diperbolehkan: 안 돼요 berarti itu tidak boleh, dan 다 됐어요 berarti sudah selesai. Keduanya jauh lebih sering Anda dengar daripada makna kamusnya."
+  ],
+  "word_maeul": [
+   "desa",
+   "Desanya tenang."
+  ],
+  "word_kape": [
+   "kafe",
+   "Saya bertemu teman di kafe."
+  ],
+  "word_gong": [
+   "bola",
+   "Saya menendang bola."
+  ],
+  "word_gajok": [
+   "keluarga",
+   "Keluarga saya besar."
+  ],
+  "word_ssi": [
+   "sebutan sopan setelah nama",
+   "Minsu, sebentar.",
+   "Dilekatkan pada nama depan, ia sopan dan akrab di antara sesama: 민수 씨. Dilekatkan pada nama keluarga saja — 김 씨 — terdengar berjarak bahkan ketus, jadi pakailah nama depan. Kepada atasan, pakai gelarnya: 부장님, 선생님."
+  ],
+  "word_achim": [
+   "pagi",
+   "Saya bangun pagi."
+  ],
+  "word_jeonhwahada": [
+   "menelepon",
+   "Saya akan meneleponmu nanti."
+  ],
+  "word_gaeul": [
+   "musim gugur",
+   "Angin sejuk di musim gugur."
+  ],
+  "word_kkot": [
+   "bunga",
+   "Bunganya cantik."
+  ],
+  "word_jido": [
+   "peta",
+   "Saya melihat peta."
+  ],
+  "word_saek": [
+   "warna",
+   "Warna ini bagus."
+  ],
+  "word_juda": [
+   "memberi",
+   "Saya memberi hadiah."
+  ],
+  "word_yachae": [
+   "sayur",
+   "Makanlah banyak sayur."
+  ],
+  "word_chaeksang": [
+   "meja belajar",
+   "Ada buku di atas meja."
+  ],
+  "word_cheoeum": [
+   "pertama kali",
+   "Senang berkenalan dengan Anda."
+  ],
+  "word_gwail": [
+   "buah",
+   "Saya suka buah."
+  ],
+  "word_uisa": [
+   "dokter",
+   "Dokter memeriksa saya."
+  ],
+  "word_ttal": [
+   "anak perempuan",
+   "Anak perempuan saya bersekolah."
+  ],
+  "word_yeoboseyo": [
+   "halo, di telepon",
+   "Halo, ini siapa?"
+  ],
+  "word_so": [
+   "sapi",
+   "Sapi itu makan rumput."
+  ],
+  "word_pyeonji": [
+   "surat",
+   "Saya menulis surat untuk ibu."
+  ],
+  "word_jogeum": [
+   "sedikit",
+   "Sedikit saja."
+  ],
+  "word_boida": [
+   "terlihat",
+   "Gunung itu terlihat."
+  ],
+  "word_jari": [
+   "tempat duduk",
+   "Tidak ada tempat duduk."
+  ],
+  "word_hu": [
+   "sesudah",
+   "Setelah kelas saya pergi ke perpustakaan."
+  ],
+  "word_kadeu": [
+   "kartu",
+   "Saya akan membayar dengan kartu."
+  ],
+  "word_naeil": [
+   "besok",
+   "Sampai jumpa besok."
+  ],
+  "word_jungyohada": [
+   "penting",
+   "Kesehatan adalah yang terpenting."
+  ],
+  "word_dalgyal": [
+   "telur",
+   "Pagi hari saya makan telur."
+  ],
+  "word_aju": [
+   "sangat",
+   "Ini sangat enak."
+  ],
+  "word_matda": [
+   "benar",
+   "Jawaban ini benar."
+  ],
+  "word_hanguk": [
+   "Korea",
+   "Saya suka masakan Korea."
+  ],
+  "word_gang": [
+   "sungai",
+   "Sungainya sangat lebar."
+  ],
+  "word_cho": [
+   "detik",
+   "Tinggal tiga puluh detik."
+  ],
+  "word_hoesa": [
+   "perusahaan, kantor",
+   "Saya pergi ke kantor."
+  ],
+  "word_sosik": [
+   "kabar dari seseorang",
+   "Saya punya kabar baik."
+  ],
+  "word_jakda": [
+   "kecil",
+   "Sepatunya kecil."
+  ],
+  "word_gimchi": [
+   "kimchi",
+   "Kimchinya pedas."
+  ],
+  "word_ikda": [
+   "membaca",
+   "Saya membaca koran."
+  ],
+  "word_geurigo": [
+   "dan, lalu",
+   "Saya membeli roti. Dan saya juga membeli susu."
+  ],
+  "word_keuda": [
+   "besar",
+   "Tas ini besar."
+  ],
+  "word_yeollak": [
+   "kontak, kabar",
+   "Tolong hubungi saya nanti."
+  ],
+  "word_gachi": [
+   "bersama",
+   "Mari makan bersama."
+  ],
+  "word_neomu": [
+   "terlalu",
+   "Baju ini terlalu besar."
+  ],
+  "word_yong": [
+   "naga",
+   "Ada naga besar di lukisan itu."
+  ],
+  "word_geureota": [
+   "begitu",
+   "Ya, begitulah."
+  ],
+  "word_hotel": [
+   "hotel",
+   "Saya menginap di hotel."
+  ],
+  "word_yeolsoe": [
+   "kunci",
+   "Saya tidak punya kunci."
+  ],
+  "word_yeppeuda": [
+   "cantik",
+   "Bunganya benar-benar cantik."
+  ],
+  "word_geugeot": [
+   "itu",
+   "Tolong berikan yang itu."
+  ],
+  "word_daeum": [
+   "berikutnya",
+   "Sampai jumpa lain kali."
+  ],
+  "word_maeum": [
+   "hati",
+   "Hatinya hangat."
+  ],
+  "word_jadongcha": [
+   "mobil",
+   "Mobilnya cepat."
+  ],
+  "word_jukda": [
+   "mati",
+   "Bunga di pot itu mati karena tidak disiram."
+  ],
+  "word_nalda": [
+   "terbang",
+   "Burung terbang di langit."
+  ],
+  "word_siksa": [
+   "makan, santapan",
+   "Makanannya sangat enak."
+  ],
+  "word_gigye": [
+   "mesin",
+   "Mesinnya rusak."
+  ],
+  "word_ttang": [
+   "tanah",
+   "Tanahnya basah."
+  ],
+  "word_jada": [
+   "tidur",
+   "Saya tidur lebih awal."
+  ],
+  "word_beorida": [
+   "membuang",
+   "Tolong buang ke tempat sampah."
+  ],
+  "word_juso": [
+   "alamat",
+   "Tolong beri tahu alamatnya."
+  ],
+  "word_gicha": [
+   "kereta api",
+   "Keretanya sudah berangkat."
+  ],
+  "word_chitsol": [
+   "sikat gigi",
+   "Saya membeli sikat gigi baru."
+  ],
+  "word_sarang": [
+   "cinta",
+   "Cinta itu indah."
+  ],
+  "word_gongbu": [
+   "belajar",
+   "Belajar itu menyenangkan."
+  ],
+  "word_saengseon": [
+   "ikan sebagai makanan",
+   "Saya menggoreng ikan untuk makan malam."
+  ],
+  "word_mok": [
+   "leher",
+   "Leher saya sakit."
+  ],
+  "word_sipda": [
+   "ingin",
+   "Saya ingin pergi ke Korea."
+  ],
+  "word_nyuseu": [
+   "berita",
+   "Saya menonton berita."
+  ],
+  "word_chatda": [
+   "mencari",
+   "Saya mencari kunci."
+  ],
+  "word_iljjik": [
+   "lebih awal",
+   "Besok saya bangun lebih awal."
+  ],
+  "word_geonmul": [
+   "gedung",
+   "Gedung itu sangat tinggi."
+  ],
+  "word_seonsaengnim": [
+   "guru",
+   "Guru sedang mengajar."
+  ],
+  "word_eomeoni": [
+   "ibu",
+   "Ibu saya ada di rumah."
+  ],
+  "word_gibun": [
+   "suasana hati",
+   "Bagaimana perasaanmu?"
+  ],
+  "word_honja": [
+   "sendirian",
+   "Saya bisa pergi sendiri."
+  ],
+  "word_ani": [
+   "tidak",
+   "Tidak, saya tidak pergi."
+  ],
+  "word_eoje": [
+   "kemarin",
+   "Kemarin hujan."
+  ],
+  "word_sseuda": [
+   "menulis",
+   "Saya menulis nama saya.",
+   "Menulis. Kata kerja yang sama juga berarti memakai sesuatu, mengenakan topi atau kacamata di kepala, dan — sebagai kata sifat — terasa pahit. Empat makna sehari-hari, satu ejaan."
+  ],
+  "word_masida": [
+   "minum",
+   "Saya minum susu."
+  ],
+  "word_syeocheu": [
+   "kemeja",
+   "Saya memakai kemeja putih."
+  ],
+  "word_junbi": [
+   "persiapan",
+   "Semuanya sudah siap."
+  ],
+  "word_mian": [
+   "maaf",
+   "Maaf, saya terlambat."
+  ],
+  "word_geokjeong": [
+   "kekhawatiran",
+   "Saya banyak khawatir."
+  ],
+  "word_hajiman": [
+   "tetapi",
+   "Hujan turun. Tetapi saya tetap pergi."
+  ],
+  "word_kamera": [
+   "kamera",
+   "Saya membeli kamera."
+  ],
+  "word_dongne": [
+   "lingkungan tempat tinggal",
+   "Lingkungan kami tenang."
+  ],
+  "word_naengjanggo": [
+   "kulkas",
+   "Saya menaruh susu di kulkas."
+  ],
+  "word_anda": [
+   "duduk",
+   "Saya sudah duduk di kursi."
+  ],
+  "word_ppalli": [
+   "cepat",
+   "Tolong datang cepat."
+  ],
+  "word_yaegi": [
+   "obrolan",
+   "Mari mengobrol sebentar."
+  ],
+  "word_got": [
+   "tempat",
+   "Saya menemukan tempat yang tenang."
+  ],
+  "word_nat": [
+   "siang hari",
+   "Siang hari terasa hangat."
+  ],
+  "word_sangja": [
+   "kotak",
+   "Saya membuka kotaknya."
+  ],
+  "word_wonhada": [
+   "menginginkan",
+   "Apa yang kamu inginkan?"
+  ],
+  "word_sikdang": [
+   "rumah makan",
+   "Di mana rumah makannya?"
+  ],
+  "word_geurida": [
+   "menggambar",
+   "Anak itu menggambar pohon."
+  ],
+  "word_yuri": [
+   "kaca",
+   "Kacanya pecah."
+  ],
+  "word_igeot": [
+   "ini",
+   "Tolong berikan yang ini."
+  ],
+  "word_geoul": [
+   "cermin",
+   "Saya bercermin."
+  ],
+  "word_gijeok": [
+   "keajaiban",
+   "Itu benar-benar seperti keajaiban."
+  ],
+  "word_kal": [
+   "pisau",
+   "Saya mengupas apel dengan pisau."
+  ],
+  "word_gatda": [
+   "sama",
+   "Tas kami sama."
+  ],
+  "word_pul": [
+   "rumput",
+   "Rumputnya hijau."
+  ],
+  "word_eolma": [
+   "berapa",
+   "Ini berapa harganya?"
+  ],
+  "word_saenggakada": [
+   "berpikir",
+   "Saya juga berpikir begitu."
+  ],
+  "word_jilmun": [
+   "pertanyaan",
+   "Saya punya pertanyaan."
+  ],
+  "word_geunyeo": [
+   "dia, perempuan",
+   "Dia bernyanyi dengan indah."
+  ],
+  "word_nota": [
+   "meletakkan",
+   "Saya meletakkan tas di lantai."
+  ],
+  "word_banggeum": [
+   "baru saja",
+   "Saya baru saja tiba."
+  ],
+  "word_bonaeda": [
+   "mengirim",
+   "Saya mengirim surat."
+  ],
+  "word_arae": [
+   "di bawah",
+   "Buku itu ada di bawah meja."
+  ],
+  "word_naoda": [
+   "keluar",
+   "Airnya keluar."
+  ],
+  "word_nai": [
+   "umur",
+   "Berapa umur Anda?"
+  ],
+  "word_eotteoke": [
+   "bagaimana",
+   "Bagaimana caranya ke sana?"
+  ],
+  "word_eunhaeng": [
+   "bank",
+   "Banknya sudah buka."
+  ],
+  "word_al": [
+   "telur hewan",
+   "Burung itu bertelur tiga butir."
+  ],
+  "word_moreuda": [
+   "tidak tahu",
+   "Saya tidak tahu."
+  ],
+  "word_badak": [
+   "lantai",
+   "Saya mengepel lantai."
+  ],
+  "word_hwajangsil": [
+   "toilet",
+   "Toiletnya bersih."
+  ],
+  "word_yeok": [
+   "stasiun",
+   "Mari bertemu di stasiun."
+  ],
+  "word_seoul": [
+   "Seoul",
+   "Seoul sangat besar."
+  ],
+  "word_gwiyeopda": [
+   "imut",
+   "Anak anjing itu imut."
+  ],
+  "word_areumdapda": [
+   "indah",
+   "Pemandangannya indah."
+  ],
+  "word_ajik": [
+   "masih, belum",
+   "Mereka belum datang."
+  ],
+  "word_gyedan": [
+   "tangga",
+   "Anak tangganya banyak."
+  ],
+  "word_maeil": [
+   "setiap hari",
+   "Saya menulis hangul setiap hari."
+  ],
+  "word_agi": [
+   "bayi",
+   "Bayi itu sedang tidur."
+  ],
+  "word_dwaeji": [
+   "babi",
+   "Babi itu sedang makan."
+  ],
+  "word_ju": [
+   "minggu",
+   "Mari bertemu minggu depan."
+  ],
+  "word_iyagi": [
+   "cerita",
+   "Itu cerita yang menarik."
+  ],
+  "word_tto": [
+   "lagi",
+   "Sampai jumpa lagi besok."
+  ],
+  "word_beolsseo": [
+   "sudah",
+   "Semuanya sudah selesai."
+  ],
+  "word_dangsin": [
+   "Anda",
+   "Saya menunggu Anda.",
+   "Buku pelajaran menyebut 당신 sebagai «Anda» yang sopan, tetapi dalam percakapan nyata kata ini terutama dipakai antara suami istri — kepada orang asing terdengar menantang. Orang Korea biasanya menghindari «kamu» dan memakai nama atau jabatan (선생님, 사장님). Gunakan dengan hati-hati."
+  ],
+  "word_gap": [
+   "harga",
+   "Harganya mahal."
+  ],
+  "word_mianhada": [
+   "merasa menyesal",
+   "Maaf saya terlambat."
+  ],
+  "word_jeongnyujang": [
+   "halte",
+   "Saya menunggu bus di halte."
+  ],
+  "word_anta": [
+   "tidak melakukan",
+   "Saya tidak minum kopi."
+  ],
+  "word_taeksi": [
+   "taksi",
+   "Tolong panggilkan taksi."
+  ],
+  "word_haksaeng": [
+   "pelajar",
+   "Ada banyak pelajar di kelas."
+  ],
+  "word_bomul": [
+   "harta karun",
+   "Anak-anak mencari harta karun."
+  ],
+  "word_jumun": [
+   "pesanan",
+   "Apakah Anda mau memesan?"
+  ],
+  "word_sinmun": [
+   "koran",
+   "Silakan baca korannya."
+  ],
+  "word_dak": [
+   "ayam",
+   "Ayam itu bertelur."
+  ],
+  "word_keop": [
+   "cangkir",
+   "Saya menuang air ke cangkir."
+  ],
+  "word_set": [
+   "tiga",
+   "Tiga teman berkumpul."
+  ],
+  "word_hangugeo": [
+   "bahasa Korea",
+   "Bahasa Korea itu menarik."
+  ],
+  "word_geuraeseo": [
+   "jadi, karena itu",
+   "Hujan turun, jadi saya tidak pergi."
+  ],
+  "word_manhi": [
+   "banyak",
+   "Silakan makan yang banyak."
+  ],
+  "word_du": [
+   "dua, sebelum kata bantu bilangan",
+   "Dua kopi, ya.",
+   "Bilangan asli Korea berubah bentuk di depan kata bantu bilangan. 하나 둘 셋 넷 menjadi 한 두 세 네: 하나 berdiri sendiri, 한 개 untuk satu benda. 두 adalah bentuk itu dari 둘, dan tidak pernah berdiri sendiri."
+  ],
+  "word_pyeonuijeom": [
+   "minimarket",
+   "Ada minimarket di depan rumah saya."
+  ],
+  "word_miguk": [
+   "Amerika Serikat",
+   "Saya berasal dari Amerika."
+  ],
+  "word_gyesok": [
+   "terus-menerus",
+   "Hujan terus turun."
+  ],
+  "word_gagyeok": [
+   "harga",
+   "Harganya lebih mahal dari dugaan saya."
+  ],
+  "word_dongsaeng": [
+   "adik",
+   "Adik saya lucu.",
+   "Satu-satunya sebutan saudara yang tidak berubah menurut penuturnya: siapa pun yang lebih muda adalah 동생, siapa pun yang berbicara. Tambahkan satu suku kata bila jenis kelaminnya perlu — 남동생 adik laki-laki, 여동생 adik perempuan."
+  ],
+  "word_tokki": [
+   "kelinci",
+   "Kelinci itu melompat."
+  ],
+  "word_seoda": [
+   "berdiri",
+   "Saya berdiri di antrean."
+  ],
+  "word_eoreum": [
+   "es",
+   "Tolong tambahkan es."
+  ],
+  "word_jayeon": [
+   "alam",
+   "Alamnya indah."
+  ],
+  "word_jjikda": [
+   "membubuhkan cap",
+   "Saya membubuhkan cap.",
+   "Menekankan sesuatu ke permukaan: segel, cap, sidik jari. Kata kerja yang sama mencakup memotret — 사진을 찍다 — dan mencelupkan makanan ke dalam saus, ketiganya dari satu gagasan menekan."
+  ],
+  "word_yeol": [
+   "sepuluh",
+   "Tolong hitung sampai sepuluh.",
+   "Di sini 열 adalah sepuluh asli Korea, yang dipakai untuk menghitung benda — 열 개, sepuluh buah. 열 yang lain berarti demam, dan kata kerja 열다 berarti membuka. Dua huruf, tiga kata yang tak berkaitan."
+  ],
+  "word_sasil": [
+   "fakta",
+   "Itu adalah fakta."
+  ],
+  "word_unjeon": [
+   "mengemudi",
+   "Saya belajar mengemudi."
+  ],
+  "word_gamja": [
+   "kentang",
+   "Saya merebus kentang."
+  ],
+  "word_gureum": [
+   "awan",
+   "Awannya banyak."
+  ],
+  "word_iyu": [
+   "alasan",
+   "Tolong beri tahu alasannya."
+  ],
+  "word_dareun": [
+   "lain",
+   "Apakah ada warna lain?"
+  ],
+  "word_songarak": [
+   "jari",
+   "Jari saya sakit."
+  ],
+  "word_japda": [
+   "memegang",
+   "Saya memegang tanganmu."
+  ],
+  "word_bueok": [
+   "dapur",
+   "Saya memasak di dapur."
+  ],
+  "word_piryo": [
+   "kebutuhan",
+   "Saya tidak perlu bantuan."
+  ],
+  "word_pa": [
+   "daun bawang",
+   "Saya menambahkan sedikit daun bawang ke sup."
+  ],
+  "word_batda": [
+   "menerima",
+   "Saya menerima hadiah."
+  ],
+  "word_pida": [
+   "mekar",
+   "Bunganya mekar."
+  ],
+  "word_sayong": [
+   "penggunaan",
+   "Tolong jelaskan cara penggunaannya."
+  ],
+  "word_jeongbo": [
+   "informasi",
+   "Saya mencari informasi."
+  ],
+  "word_gonghang": [
+   "bandara",
+   "Saya tiba di bandara."
+  ],
+  "word_bumo": [
+   "orang tua",
+   "Anak membutuhkan orang tua."
+  ],
+  "word_saranghada": [
+   "mencintai",
+   "Saya mencintai keluarga saya."
+  ],
+  "word_ireoke": [
+   "seperti ini",
+   "Tolong tulis seperti ini."
+  ],
+  "word_ilhada": [
+   "bekerja",
+   "Ibu saya bekerja di rumah sakit."
+  ],
+  "word_suyeong": [
+   "renang",
+   "Saya belajar berenang."
+  ],
+  "word_piryohada": [
+   "membutuhkan",
+   "Saya membutuhkan uang."
+  ],
+  "word_bukjjok": [
+   "utara",
+   "Mereka pergi ke utara."
+  ],
+  "word_cheung": [
+   "lantai gedung",
+   "Kantornya ada di lantai dua."
+  ],
+  "word_hwanja": [
+   "pasien",
+   "Pasien sedang beristirahat."
+  ],
+  "word_halmeoni": [
+   "nenek",
+   "Nenek tersenyum."
+  ],
+  "word_palda": [
+   "menjual",
+   "Mereka menjual buah."
+  ],
+  "word_itda_2": [
+   "menyambung",
+   "Saya menyambung dua tali."
+  ],
+  "word_nara": [
+   "negara",
+   "Korea adalah negara yang indah."
+  ],
+  "word_apateu": [
+   "apartemen",
+   "Saya tinggal di apartemen."
+  ],
+  "word_hamkke": [
+   "bersama-sama",
+   "Mari pergi bersama."
+  ],
+  "word_modeun": [
+   "semua",
+   "Semua orang tertawa."
+  ],
+  "word_gwaenchanta": [
+   "tidak apa-apa",
+   "Saya tidak apa-apa."
+  ],
+  "word_johahada": [
+   "menyukai",
+   "Saya suka kopi."
+  ],
+  "word_jimseung": [
+   "binatang liar",
+   "Terdengar suara binatang di hutan."
+  ],
+  "word_dongan": [
+   "selama",
+   "Saya berwisata selama liburan."
+  ],
+  "word_ipgu": [
+   "pintu masuk",
+   "Mari bertemu di pintu masuk gedung."
+  ],
+  "word_silta": [
+   "tidak suka",
+   "Saya tidak suka hari yang dingin."
+  ],
+  "word_meonjeo": [
+   "lebih dulu",
+   "Saya mencuci tangan lebih dulu."
+  ],
+  "word_dubu": [
+   "tahu",
+   "Saya memasukkan tahu lalu memasak sup."
+  ],
+  "word_bumonim": [
+   "orang tua sendiri",
+   "Saya tinggal bersama orang tua saya."
+  ],
+  "word_gomapda": [
+   "berterima kasih",
+   "Terima kasih atas bantuannya."
+  ],
+  "word_gyesan": [
+   "perhitungan",
+   "Perhitungannya sedikit salah."
+  ],
+  "word_hyeo": [
+   "lidah",
+   "Lidah saya sakit sehingga saya tidak bisa makan."
+  ],
+  "word_sugeon": [
+   "handuk",
+   "Saya mengeringkan tangan dengan handuk."
+  ],
+  "word_saeropda": [
+   "baru",
+   "Perasaan saya terasa baru."
+  ],
+  "word_sup": [
+   "hutan",
+   "Terdengar suara burung di hutan."
+  ],
+  "word_chum": [
+   "tarian",
+   "Mereka menari di panggung."
+  ],
+  "word_sukje": [
+   "pekerjaan rumah",
+   "Saya sudah mengerjakan PR."
+  ],
+  "word_gaji": [
+   "jenis, macam",
+   "Saya hanya ingin bertanya satu hal.",
+   "Juga nama terung, dan cabang pohon. Sebagai kata bantu bilangan, ia dipakai untuk hal yang bisa didaftar: 두 가지 방법, dua cara; 세 가지 이유, tiga alasan."
+  ],
+  "word_mothada": [
+   "tidak bisa",
+   "Saya tidak bisa berenang."
+  ],
+  "word_nagada": [
+   "keluar",
+   "Saya keluar rumah."
+  ],
+  "word_meotjida": [
+   "keren",
+   "Kamu terlihat keren hari ini."
+  ],
+  "word_podo": [
+   "anggur",
+   "Anggurnya sangat manis."
+  ],
+  "word_jeopsi": [
+   "piring",
+   "Tolong keluarkan dua piring."
+  ],
+  "word_yori": [
+   "masakan",
+   "Masakannya enak."
+  ],
+  "word_sogeum": [
+   "garam",
+   "Saya menambahkan sedikit garam."
+  ],
+  "word_duda": [
+   "meletakkan",
+   "Saya meletakkan buku di meja."
+  ],
+  "word_gamsahada": [
+   "berterima kasih",
+   "Terima kasih atas bantuannya."
+  ],
+  "word_kkeut": [
+   "akhir",
+   "Silakan berdiri di ujung antrean."
+  ],
+  "word_yeolda": [
+   "membuka",
+   "Saya membuka jendela."
+  ],
+  "word_ibul": [
+   "selimut",
+   "Selimutnya hangat."
+  ],
+  "word_najung": [
+   "nanti",
+   "Saya akan menelepon lagi nanti."
+  ],
+  "word_manjida": [
+   "menyentuh",
+   "Tolong jangan disentuh."
+  ],
+  "word_gajang": [
+   "paling",
+   "Ini yang paling bagus."
+  ],
+  "word_namjjok": [
+   "selatan",
+   "Di selatan cuacanya hangat."
+  ],
+  "word_doum": [
+   "bantuan",
+   "Saya butuh bantuan."
+  ],
+  "word_jung": [
+   "sedang, di tengah",
+   "Saya sedang rapat."
+  ],
+  "word_sudo": [
+   "ibu kota",
+   "Ibu kota Korea adalah Seoul.",
+   "Ibu kota sebuah negara. 수도 yang lain berarti saluran air bersih — 수도꼭지 adalah keran, 수도 요금 adalah tagihan air. Keduanya hanya dibedakan oleh konteksnya."
+  ],
+  "word_gidarida": [
+   "menunggu",
+   "Tolong tunggu sebentar."
+  ],
+  "word_chaeso": [
+   "sayuran",
+   "Saya makan banyak sayuran."
+  ],
+  "word_kkeunnada": [
+   "selesai",
+   "Kelasnya sudah selesai."
+  ],
+  "word_butak": [
+   "permintaan tolong",
+   "Saya punya satu permintaan."
+  ],
+  "word_seom": [
+   "pulau",
+   "Kami pergi ke pulau dengan perahu."
+  ],
+  "word_teuki": [
+   "terutama",
+   "Saya terutama menyukai musim dingin."
+  ],
+  "word_jemok": [
+   "judul",
+   "Apa judul buku ini?"
+  ],
+  "word_insa": [
+   "salam",
+   "Saya memberi salam."
+  ],
+  "word_seoltang": [
+   "gula",
+   "Saya menambahkan sedikit gula."
+  ],
+  "word_jajeongeo": [
+   "sepeda",
+   "Saya naik sepeda."
+  ],
+  "word_inteonet": [
+   "internet",
+   "Internetnya lambat."
+  ],
+  "word_aniyo": [
+   "tidak",
+   "Tidak, saya baik-baik saja."
+  ],
+  "word_ama": [
+   "mungkin",
+   "Besok mungkin hujan."
+  ],
+  "word_jamsi": [
+   "sebentar",
+   "Mari istirahat sejenak."
+  ],
+  "word_beol": [
+   "lebah",
+   "Lebah hinggap di bunga.",
+   "Seekor lebah. Dua kata lain juga ditulis 벌: hukuman, dan kata bantu bilangan untuk satu setel pakaian — 옷 한 벌, satu setel."
+  ],
+  "word_won": [
+   "won",
+   "Dua ribu won."
+  ],
+  "word_ujuseon": [
+   "pesawat luar angkasa",
+   "Pesawat luar angkasa naik ke langit."
+  ],
+  "word_myeot": [
+   "berapa",
+   "Sekarang jam berapa?"
+  ],
+  "word_sueop": [
+   "pelajaran",
+   "Pelajarannya menarik."
+  ],
+  "word_sijak": [
+   "awal",
+   "Ini awal yang baik."
+  ],
+  "word_yeogwon": [
+   "paspor",
+   "Jangan lupa membawa paspor."
+  ],
+  "word_gyosil": [
+   "ruang kelas",
+   "Ruang kelasnya terang."
+  ],
+  "word_nyeon": [
+   "tahun",
+   "Saya belajar selama dua tahun."
+  ],
+  "word_bae": [
+   "perut",
+   "Perut saya sakit jadi saya ke rumah sakit.",
+   "Perut. Dua kata umum lain juga ditulis 배: perahu dan buah pir. 배가 아파요 berarti perut saya sakit, 배를 타요 berarti saya naik perahu, dan 배를 먹어요 berarti saya makan pir."
+  ],
+  "word_satang": [
+   "permen",
+   "Saya makan permen."
+  ],
+  "word_dalleo": [
+   "dolar",
+   "Ini seratus dolar."
+  ],
+  "word_usan": [
+   "payung",
+   "Hujan turun jadi saya membeli payung."
+  ],
+  "word_museun": [
+   "apa",
+   "Apa pekerjaan Anda?"
+  ],
+  "word_pari": [
+   "lalat",
+   "Ada lalat terbang berputar.",
+   "Serangganya. Bahasa Korea menulis kota Paris dengan cara yang sama, jadi 파리에 갔어요 berarti saya pergi ke Paris sedangkan 파리가 있어요 berarti ada lalat. Tidak ada yang memisahkannya selain kalimatnya."
+  ],
+  "word_ije": [
+   "sekarang",
+   "Mari mulai sekarang."
+  ],
+  "word_geollida": [
+   "memakan waktu",
+   "Ini memakan waktu satu jam."
+  ],
+  "word_choego": [
+   "terbaik",
+   "Rumah makan ini yang terbaik."
+  ],
+  "word_naeda": [
+   "membayar",
+   "Hari ini saya yang membayar."
+  ],
+  "word_daneo": [
+   "kata",
+   "Saya mempelajari kata baru."
+  ],
+  "word_jikjeop": [
+   "langsung, sendiri",
+   "Saya membuat kuenya sendiri."
+  ],
+  "word_yangmal": [
+   "kaus kaki",
+   "Kaus kakinya hangat."
+  ],
+  "word_nopda": [
+   "tinggi",
+   "Gedungnya tinggi."
+  ],
+  "word_haendeupon": [
+   "ponsel",
+   "Saya mengisi daya ponsel."
+  ],
+  "word_jigap": [
+   "dompet",
+   "Saya kehilangan dompet."
+  ],
+  "word_hyudaepon": [
+   "ponsel",
+   "Saya kehilangan ponsel."
+  ],
+  "word_agassi": [
+   "perempuan muda",
+   "Seorang perempuan muda menanyakan jalan.",
+   "Perempuan muda yang belum menikah — tetapi sebagai *sapaan* kepada orang asing, kata ini sudah berubah rasa, dan banyak perempuan menganggapnya kasar atau merendahkan. Pakailah untuk membicarakan seseorang, bukan menyapanya; untuk menarik perhatian orang asing katakan 저기요."
+  ],
+  "word_gieok": [
+   "ingatan",
+   "Saya tidak ingat."
+  ],
+  "word_geutda": [
+   "menarik garis",
+   "Saya menarik sebuah garis."
+  ],
+  "word_ipda": [
+   "memakai pakaian",
+   "Saya memakai baju."
+  ],
+  "word_sai": [
+   "jarak di antara",
+   "Ada pohon di antara dua rumah."
+  ],
+  "word_gireum": [
+   "minyak",
+   "Saya menggorengnya dengan minyak."
+  ],
+  "word_mulgogi": [
+   "ikan",
+   "Ikan itu berenang."
+  ],
+  "word_jang": [
+   "kata bantu bilangan untuk lembaran",
+   "Saya perlu tiga lembar kertas."
+  ],
+  "word_kkum": [
+   "mimpi",
+   "Tadi malam saya bermimpi aneh."
+  ],
+  "word_sijakada": [
+   "memulai",
+   "Pelajaran dimulai."
+  ],
+  "word_ajikdo": [
+   "masih saja",
+   "Saya masih menunggu."
+  ],
+  "word_teureok": [
+   "truk",
+   "Sebuah truk lewat."
+  ],
+  "word_eotteon": [
+   "yang mana, seperti apa",
+   "Warna apa yang kamu suka?"
+  ],
+  "word_geulssi": [
+   "tulisan tangan",
+   "Tulisan tanganmu bagus."
+  ],
+  "word_deutda": [
+   "mendengar",
+   "Saya mendengarkan musik."
+  ],
+  "word_subak": [
+   "semangka",
+   "Semangka enak di musim panas."
+  ],
+  "word_ttalgi": [
+   "stroberi",
+   "Saya mencuci stroberi lalu memakannya."
+  ],
+  "word_baram": [
+   "angin",
+   "Anginnya sejuk."
+  ],
+  "word_sigol": [
+   "desa, daerah",
+   "Udara di desa segar."
+  ],
+  "word_pulda": [
+   "memecahkan",
+   "Saya memecahkan soalnya."
+  ],
+  "word_angyeong": [
+   "kacamata",
+   "Saya memakai kacamata."
+  ],
+  "word_yeonpil": [
+   "pensil",
+   "Saya menggambar dengan pensil."
+  ],
+  "word_jumal": [
+   "akhir pekan",
+   "Saya beristirahat di akhir pekan."
+  ],
+  "word_jugida": [
+   "membunuh",
+   "Saya membunuh nyamuk yang masuk ke kamar."
+  ],
+  "word_him": [
+   "tenaga",
+   "Anak itu sangat kuat."
+  ],
+  "word_jeonbu": [
+   "semuanya",
+   "Semuanya berapa?"
+  ],
+  "word_gyeongchal": [
+   "polisi",
+   "Tolong panggil polisi."
+  ],
+  "word_geureut": [
+   "mangkuk",
+   "Saya menaruh nasi di mangkuk."
+  ],
+  "word_nappeuda": [
+   "buruk",
+   "Cuacanya buruk."
+  ],
+  "word_oppa": [
+   "kakak laki-laki bagi perempuan",
+   "Kakak laki-laki saya sedang menyetir.",
+   "Bahasa Korea memilih sebutan saudara berdasarkan jenis kelamin penuturnya: seorang perempuan memanggil kakak laki-lakinya 오빠, seorang laki-laki memanggilnya 형. Kata ini juga dipakai untuk laki-laki yang lebih tua yang dekat dengan seorang perempuan, itulah sebabnya ia terdengar jauh di luar lingkup keluarga."
+  ],
+  "word_mannada": [
+   "bertemu",
+   "Kami sering bertemu."
+  ],
+  "word_huimang": [
+   "harapan",
+   "Tolong jangan kehilangan harapan."
+  ],
+  "word_hyeong": [
+   "kakak laki-laki bagi laki-laki",
+   "Kakak saya mentraktir saya makan.",
+   "Sebutan yang dipakai laki-laki untuk kakak laki-lakinya. Untuk orang yang sama, perempuan akan berkata 오빠. Seperti 오빠, ia meluas ke laki-laki lebih tua yang akrab meski sama sekali bukan keluarga."
+  ],
+  "word_doro": [
+   "jalan raya",
+   "Jalanan macet."
+  ],
+  "word_ttwida": [
+   "berlari",
+   "Anak itu berlari."
+  ],
+  "word_mueot": [
+   "apa",
+   "Ini apa?"
+  ],
+  "word_oenjjok": [
+   "sebelah kiri",
+   "Tolong belok kiri."
+  ],
+  "word_chukgu": [
+   "sepak bola",
+   "Saya bermain sepak bola dengan teman."
+  ],
+  "word_jayu": [
+   "kebebasan",
+   "Kebebasan itu berharga."
+  ],
+  "word_sungan": [
+   "saat, momen",
+   "Saya tidak bisa melupakan saat itu."
+  ],
+  "word_sayonghada": [
+   "menggunakan",
+   "Boleh saya menggunakan ruangan ini?"
+  ],
+  "word_pada": [
+   "menggali",
+   "Saya menggali tanah."
+  ],
+  "word_nampyeon": [
+   "suami",
+   "Suami saya sedang memasak."
+  ],
+  "word_silheomsil": [
+   "laboratorium",
+   "Saya bekerja seharian di laboratorium."
+  ],
+  "word_dambae": [
+   "rokok",
+   "Bau rokok menempel di baju."
+  ],
+  "word_banana": [
+   "pisang",
+   "Pagi hari saya makan pisang."
+  ],
+  "word_geum": [
+   "emas",
+   "Cincin ini terbuat dari emas.",
+   "Emas, logamnya. Suku kata yang sama juga berarti garis yang tergores atau ditarik — 금이 갔어요 berarti retak — dan membuka kata 금요일, Jumat."
+  ],
+  "word_mandeulda": [
+   "membuat",
+   "Saya membuat roti."
+  ],
+  "word_ibeon": [
+   "kali ini",
+   "Kali ini saya yang akan melakukannya."
+  ],
+  "word_gomawo": [
+   "terima kasih",
+   "Makasih ya sudah bantu."
+  ],
+  "word_banchan": [
+   "lauk pendamping nasi",
+   "Lauknya enak."
+  ],
+  "word_apeuda": [
+   "sakit",
+   "Perut saya sakit."
+  ],
+  "word_doseogwan": [
+   "perpustakaan",
+   "Saya meminjam buku di perpustakaan."
+  ],
+  "word_ppyeo": [
+   "tulang",
+   "Anjing itu menggigit tulang."
+  ],
+  "word_gamsa": [
+   "terima kasih",
+   "Saya mengucapkan terima kasih."
+  ],
+  "word_geolda": [
+   "menggantung",
+   "Saya menggantung baju."
+  ],
+  "word_gim": [
+   "rumput laut kering",
+   "Kami membungkus nasi dengan rumput laut lalu memakannya.",
+   "Rumput laut kering tipis yang dimakan dengan nasi. Suku kata yang sama adalah nama keluarga Korea yang paling umum, dan ia juga uap yang naik dari sesuatu yang panas — 김이 나요, mengepul."
+  ],
+  "word_jalhada": [
+   "pandai melakukan sesuatu",
+   "Kamu pandai bernyanyi."
+  ],
+  "word_saengmyeong": [
+   "nyawa",
+   "Nyawa itu berharga."
+  ],
+  "word_mureup": [
+   "lutut",
+   "Lutut saya sakit."
+  ],
+  "word_jjalda": [
+   "pendek",
+   "Pensilnya pendek."
+  ],
+  "word_chijeu": [
+   "keju",
+   "Saya suka keju."
+  ],
+  "word_hanbeon": [
+   "sekali",
+   "Cobalah sekali."
+  ],
+  "word_gohyang": [
+   "kampung halaman",
+   "Saya pergi ke kampung halaman."
+  ],
+  "word_jihacheol": [
+   "kereta bawah tanah",
+   "Saya naik kereta bawah tanah."
+  ],
+  "word_sal": [
+   "tahun usia",
+   "Umur saya dua puluh tahun."
+  ],
+  "word_anae": [
+   "istri",
+   "Saya datang bersama istri saya."
+  ],
+  "word_swida": [
+   "beristirahat",
+   "Mari istirahat sebentar."
+  ],
+  "word_gimbap": [
+   "gimbap",
+   "Saya makan gimbap untuk makan siang."
+  ],
+  "word_gayo": [
+   "musik pop Korea",
+   "Saya suka musik pop Korea.",
+   "Lagu populer Korea sebagai kategori — K-pop adalah 가요. Ejaannya persis sama dengan 가요 «pergi», bentuk sopan kini dari 가다, jadi kalimat di sekitarnya yang menentukan mana yang Anda baca."
+  ],
+  "word_swipda": [
+   "mudah",
+   "Hangul itu mudah."
+  ],
+  "word_pyojeong": [
+   "ekspresi wajah",
+   "Ekspresi wajahnya cerah."
+  ],
+  "word_dareuda": [
+   "berbeda",
+   "Warnanya berbeda."
+  ],
+  "word_geunyang": [
+   "begitu saja",
+   "Akhir pekan saya hanya di rumah saja."
+  ],
+  "word_majimak": [
+   "terakhir",
+   "Saya naik bus terakhir."
+  ],
+  "word_bangbeop": [
+   "cara",
+   "Ada cara yang bagus."
+  ],
+  "word_huinsaek": [
+   "warna putih",
+   "Dinding putih itu bersih."
+  ],
+  "word_jalmot": [
+   "kesalahan",
+   "Ini salah saya."
+  ],
+  "word_daehakgyo": [
+   "universitas",
+   "Saya kuliah di universitas."
+  ],
+  "word_haengun": [
+   "keberuntungan",
+   "Semoga beruntung di ujian."
+  ],
+  "word_harabeoji": [
+   "kakek",
+   "Kakek membaca koran."
+  ],
+  "word_bimil": [
+   "rahasia",
+   "Tolong jaga rahasianya."
+  ],
+  "word_sogogi": [
+   "daging sapi",
+   "Kami memanggang daging sapi lalu memakannya."
+  ],
+  "word_net": [
+   "empat",
+   "Kami berempat satu tim."
+  ],
+  "word_sinda": [
+   "memakai alas kaki",
+   "Saya memakai kaus kaki."
+  ],
+  "word_dap": [
+   "jawaban",
+   "Saya menemukan jawabannya."
+  ],
+  "word_yeonseup": [
+   "latihan",
+   "Saya berlatih setiap hari."
+  ],
+  "word_gongchaek": [
+   "buku tulis",
+   "Saya menulis nama di buku tulis."
+  ],
+  "word_ssada": [
+   "murah",
+   "Buah ini murah."
+  ],
+  "word_dowajuda": [
+   "membantu",
+   "Tolong bantu saya sedikit."
+  ],
+  "word_maekju": [
+   "bir",
+   "Birnya dingin."
+  ],
+  "word_jjada": [
+   "asin",
+   "Supnya asin."
+  ],
+  "word_gyehoek": [
+   "rencana",
+   "Saya membuat rencana."
+  ],
+  "word_pyeonghwa": [
+   "perdamaian",
+   "Kami mengharapkan perdamaian."
+  ],
+  "word_yaksok": [
+   "janji",
+   "Saya menepati janji."
+  ],
+  "word_oreunjjok": [
+   "sebelah kanan",
+   "Silakan jalan ke kanan."
+  ],
+  "word_gippeuda": [
+   "senang",
+   "Saya senang mendengar kabar itu."
+  ],
+  "word_baeuda": [
+   "belajar",
+   "Saya belajar bahasa Korea."
+  ],
+  "word_jebal": [
+   "tolong, mohon",
+   "Tolong bantu saya."
+  ],
+  "word_dopda": [
+   "menolong",
+   "Saya menolong teman."
+  ],
+  "word_jaryo": [
+   "bahan, materi kerja",
+   "Saya menyiapkan materi rapat lebih dulu."
+  ],
+  "word_hullyunghada": [
+   "hebat",
+   "Itu ide yang hebat."
+  ],
+  "word_moseup": [
+   "penampilan, sosok",
+   "Penampilannya berubah."
+  ],
+  "word_undong": [
+   "olahraga",
+   "Saya berolahraga di pagi hari."
+  ],
+  "word_geureonde": [
+   "omong-omong, tetapi",
+   "Omong-omong, ini apa?"
+  ],
+  "word_juseu": [
+   "jus",
+   "Anak itu minum jus."
+  ],
+  "word_jwi": [
+   "tikus",
+   "Saya melihat tikus di dapur."
+  ],
+  "word_chwimi": [
+   "hobi",
+   "Hobi saya memotret."
+  ],
+  "word_deung": [
+   "punggung",
+   "Punggung saya gatal."
+  ],
+  "word_jeoldae": [
+   "sama sekali, jangan pernah",
+   "Jangan pernah terlambat."
+  ],
+  "word_dol": [
+   "batu",
+   "Banyak batu di jalan setapak jadi kami berhati-hati."
+  ],
+  "word_bappeuda": [
+   "sibuk",
+   "Hari ini saya sibuk."
+  ],
+  "word_ireon": [
+   "seperti ini",
+   "Hal seperti ini baru pertama kali."
+  ],
+  "word_yeoseong": [
+   "perempuan",
+   "Banyak perempuan yang datang."
+  ],
+  "word_paransaek": [
+   "warna biru",
+   "Baju biru cocok untukmu."
+  ],
+  "word_ireonada": [
+   "bangun",
+   "Saya bangun pukul tujuh."
+  ],
+  "word_gom": [
+   "beruang",
+   "Beruang hidup di gunung."
+  ],
+  "word_jam": [
+   "tidur",
+   "Akhir-akhir ini saya sulit tidur."
+  ],
+  "word_haebyeon": [
+   "pantai",
+   "Kami pergi ke pantai di musim panas."
+  ],
+  "word_hosu": [
+   "danau",
+   "Danaunya tenang."
+  ],
+  "word_dakgogi": [
+   "daging ayam",
+   "Daging ayam rendah lemak."
+  ],
+  "word_geunde": [
+   "omong-omong",
+   "Omong-omong, sekarang jam berapa?"
+  ],
+  "word_jaeneung": [
+   "bakat",
+   "Dia berbakat menggambar."
+  ],
+  "word_gyeolhon": [
+   "pernikahan",
+   "Selamat atas pernikahannya."
+  ],
+  "word_binu": [
+   "sabun",
+   "Saya mencuci tangan dengan sabun."
+  ],
+  "word_saja": [
+   "singa",
+   "Singa itu besar."
+  ],
+  "word_eoneu": [
+   "yang mana",
+   "Yang mana yang kamu suka?"
+  ],
+  "word_mureoboda": [
+   "bertanya",
+   "Saya bertanya kepada guru."
+  ],
+  "word_ucheguk": [
+   "kantor pos",
+   "Saya mengirim surat di kantor pos."
+  ],
+  "word_japji": [
+   "majalah",
+   "Saya membaca majalah."
+  ],
+  "word_jean": [
+   "usulan, tawaran",
+   "Saya menerima tawaran bagus dari perusahaan."
+  ],
+  "word_yojeum": [
+   "akhir-akhir ini",
+   "Bagaimana kabarmu akhir-akhir ini?"
+  ],
+  "word_ulda": [
+   "menangis",
+   "Bayi itu menangis."
+  ],
+  "word_namda": [
+   "tersisa",
+   "Nasinya tersisa sedikit."
+  ],
+  "word_miso": [
+   "senyum",
+   "Senyumnya indah."
+  ],
+  "word_daehak": [
+   "perguruan tinggi",
+   "Saya diterima di universitas."
+  ],
+  "word_uimi": [
+   "arti",
+   "Apa arti kata ini?"
+  ],
+  "word_geim": [
+   "permainan",
+   "Saya bermain gim."
+  ],
+  "word_cham": [
+   "sungguh",
+   "Cuaca hari ini sungguh bagus."
+  ],
+  "word_kong": [
+   "kacang",
+   "Saya memasukkan kacang ke nasi."
+  ],
+  "word_saebyeok": [
+   "dini hari",
+   "Saya bangun sebelum fajar."
+  ],
+  "word_utda": [
+   "tertawa",
+   "Teman saya tertawa keras."
+  ],
+  "word_imi": [
+   "sudah",
+   "Semuanya sudah berakhir."
+  ],
+  "word_sutgarak": [
+   "sendok",
+   "Saya makan sup dengan sendok."
+  ],
+  "word_bureuda": [
+   "memanggil",
+   "Saya memanggil taksi."
+  ],
+  "word_koteu": [
+   "mantel",
+   "Tolong pakai mantelmu."
+  ],
+  "word_meolda": [
+   "jauh",
+   "Sekolahnya jauh."
+  ],
+  "word_myeong": [
+   "orang, kata bantu bilangan",
+   "Ada lima pelajar."
+  ],
+  "word_eonni": [
+   "kakak perempuan bagi perempuan",
+   "Kakak perempuan saya mahasiswa.",
+   "Sebutan yang dipakai perempuan untuk kakak perempuannya; untuk orang yang sama, laki-laki berkata 누나. Begitu pula cara perempuan menyapa perempuan yang sedikit lebih tua yang akrab dengannya, termasuk di toko."
+  ],
+  "word_ihae": [
+   "pemahaman",
+   "Saya memahaminya dengan baik."
+  ],
+  "word_samda": [
+   "merebus",
+   "Saya merebus telur."
+  ],
+  "word_noransaek": [
+   "warna kuning",
+   "Saya membawa payung kuning."
+  ],
+  "word_mudeom": [
+   "makam",
+   "Ada makam tua di gunung."
+  ],
+  "word_gita": [
+   "gitar",
+   "Saya bermain gitar."
+  ],
+  "word_itda_3": [
+   "melupakan",
+   "Saya lupa namanya."
+  ],
+  "word_gongyeon": [
+   "pertunjukan",
+   "Pertunjukan dimulai."
+  ],
+  "word_ilta": [
+   "kehilangan",
+   "Saya kehilangan kunci."
+  ],
+  "word_baneung": [
+   "reaksi",
+   "Reaksi orang-orang sangat baik."
+  ],
+  "word_gudu": [
+   "sepatu kulit",
+   "Sepatunya nyaman."
+  ],
+  "word_hyuga": [
+   "cuti, liburan",
+   "Saya pergi berlibur."
+  ],
+  "word_jeohui": [
+   "kami, secara rendah hati",
+   "Kami akan membantu Anda."
+  ],
+  "word_geuttae": [
+   "saat itu",
+   "Saat itu sedang hujan."
+  ],
+  "word_sopa": [
+   "sofa",
+   "Duduklah di sofa dan istirahat."
+  ]
+ }
 }

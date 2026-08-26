@@ -17,10 +17,10 @@
     "antonym"
   ],
   "counts": {
-    "words_with_relations": 252,
-    "synonym_pairs": 72,
+    "words_with_relations": 253,
+    "synonym_pairs": 73,
     "antonym_pairs": 69,
-    "corpus_words": 3256
+    "corpus_words": 3334
   },
   "pages": {
     "word_gage": "https://ko.wiktionary.org/wiki/%EA%B0%80%EA%B2%8C",
@@ -755,7 +755,6 @@
     "word_meonghada": "https://ko.wiktionary.org/wiki/%EB%A9%8D%ED%95%98%EB%8B%A4",
     "word_meda": "https://ko.wiktionary.org/wiki/%EB%A9%94%EB%8B%A4",
     "word_mesiji": "https://ko.wiktionary.org/wiki/%EB%A9%94%EC%8B%9C%EC%A7%80",
-    "word_myeong": "https://ko.wiktionary.org/wiki/%EB%AA%85",
     "word_myeongnyeong": "https://ko.wiktionary.org/wiki/%EB%AA%85%EB%A0%B9",
     "word_myeongnyeonghada": "https://ko.wiktionary.org/wiki/%EB%AA%85%EB%A0%B9%ED%95%98%EB%8B%A4",
     "word_myeongbaekada": "https://ko.wiktionary.org/wiki/%EB%AA%85%EB%B0%B1%ED%95%98%EB%8B%A4",
@@ -1173,6 +1172,7 @@
     "word_sujeong": "https://ko.wiktionary.org/wiki/%EC%88%98%EC%A0%95",
     "word_sujupda": "https://ko.wiktionary.org/wiki/%EC%88%98%EC%A4%8D%EB%8B%A4",
     "word_sujipada": "https://ko.wiktionary.org/wiki/%EC%88%98%EC%A7%91%ED%95%98%EB%8B%A4",
+    "word_sucheon": "https://ko.wiktionary.org/wiki/%EC%88%98%EC%B2%9C",
     "word_suhak": "https://ko.wiktionary.org/wiki/%EC%88%98%ED%95%99",
     "word_suhaenghada": "https://ko.wiktionary.org/wiki/%EC%88%98%ED%96%89%ED%95%98%EB%8B%A4",
     "word_sungnyeo": "https://ko.wiktionary.org/wiki/%EC%88%99%EB%85%80",
@@ -1305,7 +1305,6 @@
     "word_aye": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%98%88",
     "word_au": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%9A%B0",
     "word_ai": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%9D%B4",
-    "word_aigu": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%9D%B4%EA%B5%AC",
     "word_aju": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%A3%BC",
     "word_ajik": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%A7%81",
     "word_achim": "https://ko.wiktionary.org/wiki/%EC%95%84%EC%B9%A8",
@@ -1861,6 +1860,7 @@
     "word_jiwonhada": "https://ko.wiktionary.org/wiki/%EC%A7%80%EC%9B%90%ED%95%98%EB%8B%A4",
     "word_jiji": "https://ko.wiktionary.org/wiki/%EC%A7%80%EC%A7%80",
     "word_jijihada": "https://ko.wiktionary.org/wiki/%EC%A7%80%EC%A7%80%ED%95%98%EB%8B%A4",
+    "word_jichida": "https://ko.wiktionary.org/wiki/%EC%A7%80%EC%B9%98%EB%8B%A4",
     "word_jikyeoboda": "https://ko.wiktionary.org/wiki/%EC%A7%80%EC%BC%9C%EB%B3%B4%EB%8B%A4",
     "word_jikida": "https://ko.wiktionary.org/wiki/%EC%A7%80%ED%82%A4%EB%8B%A4",
     "word_jiha": "https://ko.wiktionary.org/wiki/%EC%A7%80%ED%95%98",
@@ -2982,6 +2982,12 @@
       ],
       "antonyms": []
     },
+    "word_ireuda": {
+      "synonyms": [
+        "word_ppareuda"
+      ],
+      "antonyms": []
+    },
     "word_itda": {
       "synonyms": [],
       "antonyms": [
@@ -3467,7 +3473,9 @@
       ]
     },
     "word_ppareuda": {
-      "synonyms": [],
+      "synonyms": [
+        "word_ireuda"
+      ],
       "antonyms": [
         "word_neurida"
       ]

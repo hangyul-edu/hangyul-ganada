@@ -177,6 +177,15 @@ const NOT_VOLITIONAL = new Set([
   // a scene evokes (자아내다), coverage tilts (치우치다) — none is an act a
   // person is told to perform, and 일컬으세요 is not said of naming either.
   '초래하다', '수반하다', '자아내다', '치우치다', '일컫다',
+  // Batch 920. A setback crushes you (좌절), a crisis confronts you (직면),
+  // a number surges (급증), a change is felt on the skin (체감), a remark
+  // gives rise to trouble (야기) — none is performed on request. 간과하다 is
+  // an act, but the only imperative Korean uses of it is the prohibitive
+  // 간과하지 마세요; the affirmative command teaches a sentence nobody says.
+  '좌절하다', '직면하다', '급증하다', '체감하다', '야기하다', '간과하다',
+  // POS corrections of this pass: exhaustion arrives and rice comes out
+  // underdone — neither is performed on request.
+  '지치다', '설다',
 ]);
 
 /**
@@ -188,6 +197,11 @@ const NOT_VOLITIONAL = new Set([
  */
 const IMPERATIVE_WITHOUT_REQUEST = new Set([
   '꾸다', '고생하다', '쐬다', '의심하다', '주장하다', '도달하다', '얻다', '드리다',
+  // Batch 920. 과감하게 감행하세요, 이번에 만회하세요, 연구에 몰두하세요 and
+  // 슬픔을 억누르세요 are advice Korean gives; the favour forms — 감행해
+  // 주세요, 만회해 주세요, 몰두해 주세요, 억눌러 주세요 — are not requests
+  // anybody makes of another person.
+  '감행하다', '만회하다', '몰두하다', '억누르다',
 ]);
 
 /**

@@ -85,10 +85,29 @@ const glossOf = new Map(builtWords.map((w, i) => [w.word, english[i]?.[0] ?? '']
 
 const percentile = (sorted, p) => sorted[Math.min(sorted.length - 1, Math.floor(p * sorted.length))];
 
+/**
+ * Beginner contamination, measured without consulting `teachingZone`.
+ *
+ * The outside-the-zone rule below asserts the selector against the zone
+ * function; if the zone function itself regressed, both would move together
+ * and the gate would stay green. This is the independent detector the brief
+ * asks for: for an advanced learner (>= 20) a recommended word from the
+ * product's own first levels is obvious-too-easy whatever the zone says, and
+ * the named day-one words are a hard fail at any level >= 10. The word list
+ * is a floor, not the rule — the principled rule is the level gap.
+ */
+const NAMED_BEGINNER_WORDS = new Set(['나', '너', '남자', '여자', '엄마', '아빠']);
+const obviousTooEasy = (learner, at) =>
+  (learner >= 20 && at <= 5) || (learner >= 10 && at <= 2);
+const obviousTooHard = (learner, at) => learner <= 5 && at >= 15;
+
 const rows = [];
 const wordsByLearner = new Map();
 let events = 0;
 let deficitEvents = 0;
+let tooEasy = 0;
+let tooHard = 0;
+let beginnerLeaks = 0;
 
 for (let level = 1; level <= LEVELS; level += 1) {
   const zone = teachingZone(level);
@@ -108,8 +127,24 @@ for (let level = 1; level <= LEVELS; level += 1) {
     for (const deficit of deficits) deficitEvents += deficit.short;
     for (const word of picked) {
       events += 1;
-      levels.push(wordLevel(word));
+      const at = wordLevel(word);
+      levels.push(at);
       words.add(word.word);
+      if (obviousTooEasy(level, at)) {
+        tooEasy += 1;
+        fail(
+          'beginner-contamination',
+          `learner ${level} was offered ${word.word} (level ${at}) as ordinary new study`,
+        );
+      }
+      if (obviousTooHard(level, at)) {
+        tooHard += 1;
+        fail('too-hard', `learner ${level} was offered ${word.word} (level ${at})`);
+      }
+      if (level >= 10 && NAMED_BEGINNER_WORDS.has(word.word)) {
+        beginnerLeaks += 1;
+        fail('named-beginner-leak', `learner ${level} was offered ${word.word}`);
+      }
     }
   }
   levels.sort((a, b) => a - b);
@@ -183,6 +218,7 @@ console.log('Recommendation QA — thirty thousand words, read rather than assum
 console.log(`  simulated             ${events.toLocaleString('en')} recommendation events`);
 console.log(`  learners              ${LEVELS} levels x ${DAYS} days x ${PER_DAY} words`);
 console.log(`  short days            ${deficitEvents} word(s) the zone could not supply`);
+console.log(`  obvious-too-easy      ${tooEasy} · obvious-too-hard ${tooHard} · named beginner leaks ${beginnerLeaks}`);
 console.log('');
 console.log('  learner  zone    min  P10  P50  P90  max   mean  distinct  fortnight');
 for (const row of rows) {

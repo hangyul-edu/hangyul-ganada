@@ -336,18 +336,27 @@ function runLevelChangeSitting(seed: number): DailyPlan {
   return plan;
 }
 
+/**
+ * Sitting counts are env-scalable so a release pass can soak far past the
+ * defaults (PROPERTY_SITTINGS=8000 PROPERTY_RETAKE_SITTINGS=2000 → 10,000
+ * sequences) without making every CI run pay for it. The defaults are the
+ * gate; the soak is the audit.
+ */
+const SITTINGS = Number(process.env.PROPERTY_SITTINGS) || 2_000;
+const RETAKE_SITTINGS = Number(process.env.PROPERTY_RETAKE_SITTINGS) || 1_000;
+
 describe('randomized sittings', () => {
-  it('holds every invariant across 2,000 random sittings', { timeout: 120_000 }, () => {
-    for (let seed = 1; seed <= 2_000; seed += 1) {
+  it(`holds every invariant across ${SITTINGS} random sittings`, { timeout: 600_000 }, () => {
+    for (let seed = 1; seed <= SITTINGS; seed += 1) {
       runSitting(seed);
     }
   });
 
   it(
-    'holds every invariant across 1,000 sittings with mid-day level retakes',
-    { timeout: 120_000 },
+    `holds every invariant across ${RETAKE_SITTINGS} sittings with mid-day level retakes`,
+    { timeout: 600_000 },
     () => {
-      for (let seed = 1; seed <= 1_000; seed += 1) {
+      for (let seed = 1; seed <= RETAKE_SITTINGS; seed += 1) {
         runLevelChangeSitting(seed);
       }
     },

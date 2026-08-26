@@ -247,8 +247,16 @@ const BUDGETS = {
    * words — and it is unchanged in kind: precaching every language stops being
    * affordable long before the target, and the answer is the learner's own
    * language plus on-demand, not a smaller pack.
+   *
+   * **Raised to 1,600 kB when batch 920 took the corpus to 3,334 words.** The
+   * measured total went 1,457 → 1,508 kB: 78 new words of meanings, examples
+   * and level-test items across the complete languages, in the row where
+   * corpus growth is meant to land. The JavaScript half still did not move.
+   * The projection at 10,000 (3,779 kB) is the delivery-strategy finding, and
+   * the corpus growing into this ceiling batch by batch is the schedule on
+   * which that strategy has to arrive.
    */
-  total: 1500 * 1024,
+  total: 1600 * 1024,
 };
 
 function gzipSize(path) {

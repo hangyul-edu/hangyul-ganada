@@ -1,2444 +1,2445 @@
 {
-  "_comment": "Vocabulary copy for Uzbek. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
-  "locale": "uz",
-  "words": {
-    "word_hada": [
-      "qilmoq",
-      "Men dars qilyapman.",
-      "Qilmoq — va koreys so’z yasashining dvigateli. Uni otga qo’shsangiz, fe’l hosil bo’ladi: 공부 (o’qish) → 공부하다 (o’qimoq), 사랑 (sevgi) → 사랑하다. Yuzlab fe’l shu tarzda tuzilgan."
-    ],
-    "word_cha": [
-      "mashina",
-      "Men mashinada boraman.",
-      "Mashina. Xuddi shu bo’g’in choy ma’nosini ham beradi: 차를 마셔요 — choy ichaman, 차를 타요 — mashinaga o’tiraman. Qaysi biri ekanini fe’l aytadi."
-    ],
-    "word_yeoja": [
-      "ayol",
-      "U ayol shifokor."
-    ],
-    "word_na": [
-      "men",
-      "Men koreys tilini o‘rganyapman."
-    ],
-    "word_hae": [
-      "Quyosh",
-      "Quyosh yorqin."
-    ],
-    "word_don": [
-      "pul",
-      "Hamyonda pul bor."
-    ],
-    "word_uri": [
-      "biz",
-      "Biz do‘stmiz."
-    ],
-    "word_jip": [
-      "uy",
-      "Men uyga ketyapman."
-    ],
-    "word_itda": [
-      "bir joyda bo‘lmoq",
-      "Men uydaman.",
-      "O’zbekchada ikki so’z kerak bo’lgan joyda koreyschada bitta: 있다 ham biror joyda bo’lmoq, ham ega bo’lmoq degani. 책상에 책이 있어요 — kitob stolda; 시간이 있어요 — vaqtim bor. Qarama-qarshisi — 없다."
-    ],
-    "word_ne": [
-      "ha",
-      "Ha, to‘g‘ri.",
-      "네 deb yoziladigan uchta keng tarqalgan so’z bor. Bu — «ha». Qolganlari «sening» (네 책, sening kitobing) va sanoq so’zidan oldin keladigan «to’rt» (네 개, to’rtta). Ularni imlo emas, kontekst ajratadi."
-    ],
-    "word_son": [
-      "qo‘l",
-      "Men qo‘lda yozaman."
-    ],
-    "word_sigan": [
-      "vaqt",
-      "Vaqtim yo‘q.",
-      "Umuman vaqt, shuningdek soatlarni sanash so’zi: 두 시간 — ikki soat. Uni 시 bilan aralashtirmang, u — soatdagi vaqt: 두 시 — soat ikkida, butunlay boshqa narsa."
-    ],
-    "word_jeo": [
-      "men (xushmuomala)",
-      "Men talabaman."
-    ],
-    "word_gada": [
-      "bormoq",
-      "Men maktabga boraman."
-    ],
-    "word_gae": [
-      "it",
-      "It yugurayapti."
-    ],
-    "word_mun": [
-      "eshik",
-      "Men eshikni ochaman."
-    ],
-    "word_sae": [
-      "qush",
-      "Bir qush uchyapti."
-    ],
-    "word_mom": [
-      "tana",
-      "Men har kuni tanamni yuvaman."
-    ],
-    "word_bang": [
-      "xona",
-      "Xona toza."
-    ],
-    "word_nun": [
-      "ko‘z",
-      "Ko‘zlaring chiroyli.",
-      "Ko’z. Qor so’zi bilan bir xil yoziladi; sinchkovlik bilan gapirilganda ularni cho’ziqlik ajratadi: qorning 눈-i cho’zib, ko’zning 눈-i qisqa aytiladi. Ko’pchilik kontekstga tayanadi."
-    ],
-    "word_ot": [
-      "kiyim",
-      "Kiyim chiroyli."
-    ],
-    "word_neo": [
-      "sen",
-      "Sen qayerdasan?"
-    ],
-    "word_eopda": [
-      "yo‘q bo‘lmoq",
-      "Mening pulim yo‘q."
-    ],
-    "word_meori": [
-      "bosh",
-      "Boshim og‘riyapti."
-    ],
-    "word_ip": [
-      "og‘iz",
-      "Og‘iz kichkina."
-    ],
-    "word_mul": [
-      "suv",
-      "Men suv ichaman."
-    ],
-    "word_dari": [
-      "oyoq",
-      "Oyog‘im og‘riyapti.",
-      "Oyoq — sizniki, stolniki, stulniki. Xuddi shu so’z «ko’prik» ma’nosini ham beradi, shuning uchun 다리를 건너요 — «ko’prikdan o’taman», tanaga aloqasi yo’q."
-    ],
-    "word_bi": [
-      "yomg‘ir",
-      "Yomg‘ir yog‘yapti."
-    ],
-    "word_wae": [
-      "nega",
-      "Nega kechikding?"
-    ],
-    "word_eolgul": [
-      "yuz",
-      "Men yuzimni yuvaman."
-    ],
-    "word_saram": [
-      "odam",
-      "U yaxshi odam."
-    ],
-    "word_hakgyo": [
-      "maktab",
-      "Maktab katta."
-    ],
-    "word_yeogi": [
-      "bu yerda",
-      "Marhamat, bu yerga o‘tiring."
-    ],
-    "word_pal": [
-      "qo‘l",
-      "Qo‘llaring uzun."
-    ],
-    "word_norae": [
-      "qo‘shiq",
-      "Men qo‘shiq aytaman."
-    ],
-    "word_chaek": [
-      "kitob",
-      "Men kitob o‘qiyman."
-    ],
-    "word_dal": [
-      "Oy",
-      "Oy yorqin."
-    ],
-    "word_jeonhwa": [
-      "telefon",
-      "Men telefonga javob beraman."
-    ],
-    "word_namu": [
-      "daraxt",
-      "Daraxt baland."
-    ],
-    "word_dasi": [
-      "yana",
-      "Iltimos, yana ayting."
-    ],
-    "word_nal": [
-      "kun",
-      "Bugun yaxshi kun."
-    ],
-    "word_jigeum": [
-      "hozir",
-      "Men hozir ketaman."
-    ],
-    "word_haru": [
-      "bir kun",
-      "Kun uzun."
-    ],
-    "word_sesang": [
-      "dunyo",
-      "Dunyo keng."
-    ],
-    "word_bal": [
-      "oyoq kafti",
-      "Oyoqlarim sovqotdi."
-    ],
-    "word_neutda": [
-      "kechikmoq",
-      "Avtobus kechikdi."
-    ],
-    "word_modu": [
-      "hamma",
-      "Hamma yig‘ildi."
-    ],
-    "word_sajin": [
-      "surat",
-      "Men surat olaman."
-    ],
-    "word_chimdae": [
-      "karavot",
-      "Karavot qulay."
-    ],
-    "word_ko": [
-      "burun",
-      "Burnim bitib qoldi."
-    ],
-    "word_san": [
-      "tog‘",
-      "Men toqqa boraman."
-    ],
-    "word_hana": [
-      "bir",
-      "Bitta olma bering."
-    ],
-    "word_byeongwon": [
-      "kasalxona",
-      "Men kasalxonaga boraman."
-    ],
-    "word_jeongmal": [
-      "rostdan",
-      "Katta rahmat.",
-      "Rostdan, haqiqatan — sifatdan oldin keladigan kuchaytiruvchi so’z: 정말 좋아요. Yolg’iz o’zi, oxirini ko’tarib aytilsa, 정말? bir so’zli savolga aylanadi: «rostdanmi?» — ko’pincha shunday eshitasiz."
-    ],
-    "word_seonmul": [
-      "sovg‘a",
-      "Menga sovg‘a yoqdi."
-    ],
-    "word_boda": [
-      "ko‘rmoq",
-      "Men kino ko‘raman."
-    ],
-    "word_oneul": [
-      "bugun",
-      "Bugun ob-havo yaxshi."
-    ],
-    "word_gabang": [
-      "sumka",
-      "Sumka og‘ir."
-    ],
-    "word_eumak": [
-      "musiqa",
-      "Musiqa chiroyli."
-    ],
-    "word_gage": [
-      "do‘kon",
-      "Do‘kon yopiq."
-    ],
-    "word_gil": [
-      "yo‘l",
-      "Yo‘l keng."
-    ],
-    "word_ohu": [
-      "tushdan keyin",
-      "Tushdan keyin uchrashaylik."
-    ],
-    "word_keopi": [
-      "qahva",
-      "Men qahva ichaman."
-    ],
-    "word_bap": [
-      "ovqat",
-      "Men ovqat yeyman."
-    ],
-    "word_eomma": [
-      "oyim",
-      "Oyim ovqat pishiryapti."
-    ],
-    "word_gwi": [
-      "quloq",
-      "Qulog‘im og‘riyapti."
-    ],
-    "word_beoseu": [
-      "avtobus",
-      "Avtobus kelyapti."
-    ],
-    "word_geurim": [
-      "rasm",
-      "Men rasm chizaman."
-    ],
-    "word_beon": [
-      "marta",
-      "Iltimos, yana bir marta qiling."
-    ],
-    "word_sul": [
-      "spirtli ichimlik",
-      "Men spirtli ichimlik ichmayman."
-    ],
-    "word_yeonghwa": [
-      "kino",
-      "Kino qiziqarli."
-    ],
-    "word_sada": [
-      "sotib olmoq",
-      "Men non sotib olaman."
-    ],
-    "word_byeol": [
-      "yulduz",
-      "Yulduzlar porlayapti."
-    ],
-    "word_bihaenggi": [
-      "samolyot",
-      "Men samolyotda uchaman."
-    ],
-    "word_bak": [
-      "tashqari",
-      "Tashqarida yomg‘ir yog‘yapti."
-    ],
-    "word_oda": [
-      "kelmoq",
-      "Do‘stim kelyapti."
-    ],
-    "word_chingu": [
-      "do‘st",
-      "Men do‘stim bilan uchrashaman."
-    ],
-    "word_appa": [
-      "dadam",
-      "Xayrli tun, dada."
-    ],
-    "word_haneul": [
-      "osmon",
-      "Osmon moviy."
-    ],
-    "word_bada": [
-      "dengiz",
-      "Dengiz keng."
-    ],
-    "word_sagwa": [
-      "olma",
-      "Olma shirin."
-    ],
-    "word_mulgeon": [
-      "narsa",
-      "Men narsalar sotib olaman."
-    ],
-    "word_moja": [
-      "shlyapa",
-      "Men shlyapa kiyaman."
-    ],
-    "word_gogi": [
-      "go‘sht",
-      "Men go‘sht qovuraman."
-    ],
-    "word_jinjja": [
-      "haqiqiy",
-      "Bu rostmi?"
-    ],
-    "word_sinbal": [
-      "oyoq kiyim",
-      "Men oyoq kiyim kiyaman."
-    ],
-    "word_jamkkan": [
-      "bir zum",
-      "Iltimos, bir zum kuting."
-    ],
-    "word_namja": [
-      "erkak",
-      "U erkak mening do‘stim."
-    ],
-    "word_eumsik": [
-      "ovqat",
-      "Koreys taomlari mazali."
-    ],
-    "word_saengil": [
-      "tug‘ilgan kun",
-      "Tug‘ilgan kuning bilan."
-    ],
-    "word_daseot": [
-      "besh",
-      "Besh kishi keldi."
-    ],
-    "word_gihoe": [
-      "imkoniyat",
-      "Bu yaxshi imkoniyat."
-    ],
-    "word_dul": [
-      "ikki",
-      "Ikkita stul bor."
-    ],
-    "word_sijang": [
-      "bozor",
-      "Men bozordan sabzavot olaman."
-    ],
-    "word_goyangi": [
-      "mushuk",
-      "Mushuk uxlayapti."
-    ],
-    "word_changmun": [
-      "deraza",
-      "Iltimos, derazani yoping."
-    ],
-    "word_yeoreum": [
-      "yoz",
-      "Yozda men dengizga boraman."
-    ],
-    "word_dongmul": [
-      "hayvon",
-      "Men hayvonlarni yaxshi ko‘raman."
-    ],
-    "word_yeohaeng": [
-      "sayohat",
-      "Men sayohat qilmoqchiman."
-    ],
-    "word_bam": [
-      "tun",
-      "Tunda yulduz ko‘p bo‘ladi.",
-      "Tun. «Kashtan» so’zi bilan bir xil yoziladi, kashtan esa Koreyada kuzning odatiy yengil taomi. Shuning uchun 밤을 먹어요 va 밤에 자요 butunlay boshqa narsa haqida."
-    ],
-    "word_geot": [
-      "narsa",
-      "Kerakli narsalarni sotib oldim.",
-      "Koreys tilining eng keng tarqalgan oti: siz nomlamagan narsaning o'rnida turadi. 제 것 — *meniki*; 먹을 것 — *yeydigan biror narsa*. Nutqda 거 bo'lib qisqaradi — 이거, 그거, 저거 — va yangi o'rganuvchilar avval shu shaklga duch keladi."
-    ],
-    "word_mal": [
-      "so'z, aytilgan gap",
-      "So'zingni o'ylab ayt.",
-      "So'z — kimningdir aytgani. Xuddi shu bo'g'in ot ma'nosini ham beradi, 말 esa koreys tili degan 한국말 so'zini yakunlaydi. Yozuvda ularni hech narsa ajratmaydi: 말을 하다 gapirmoq, 말을 타다 otga minmoq."
-    ],
-    "word_bun": [
-      "daqiqa",
-      "Atigi o'n daqiqa kuting.",
-      "Yana ikki so'z 분 deb yoziladi. Biri odamlarni hurmat bilan sanash usuli — 세 분, uch kishi, mehmonlar yoki kattalar haqida. Ikkinchisi g'azabni bildiradi, 분이 풀리다 dagidek. Ularni faqat gap ajratadi."
-    ],
-    "word_dwi": [
-      "orqa tomon",
-      "Daftarning orqasiga ismimni yozdim."
-    ],
-    "word_si": [
-      "soat",
-      "Dars soat ikkida tugaydi.",
-      "Soat o'z sanoq sonlarini oladi — 한 시, 두 시, 세 시 — daqiqa esa xitoy asosli sonlarni: 세 시 십 분, uchdan o'n daqiqa o'tdi. Ikkalasini almashtirib yuborish yangi o'rganuvchining klassik xatosi va darrov bilinadi."
-    ],
-    "word_deo": [
-      "yana, ko'proq",
-      "Yana ozgina bering."
-    ],
-    "word_ap": [
-      "old tomon",
-      "Do'kon oldida uchrashaylik."
-    ],
-    "word_da": [
-      "hammasi",
-      "Guruchni hammasini yeb qo'ydim."
-    ],
-    "word_jom": [
-      "ozgina, shuningdek iltimosni yumshatuvchi so'z",
-      "Ozgina suv bering.",
-      "조금 so'zining qisqasi, *ozgina* — ammo ishining yarmi yumshatish. Iltimosga qo'shilsa, o'tkirligini oladi: 도와주세요 — *yordam ber*, 좀 도와주세요 esa *yordam bera olasizmi* ga yaqin. Koreyslar uni aynan shu sababdan tinimsiz ishlatadi."
-    ],
-    "word_jeon": [
-      "oldin",
-      "Ovqatdan oldin qo'limni yuvaman.",
-      "Vaqt ma'nosida oldin. Yana bir necha so'z 전 deb yoziladi: 전쟁 — urush, qisqarganda 전; 전기 — elektr; menyudagi 전 esa sho'r quymoq. Fe'ldan oldin turganda bu vaqtga oidi — 먹기 전에, ovqatdan oldin."
-    ],
-    "word_alda": [
-      "bilmoq",
-      "Bu ismni bilaman."
-    ],
-    "word_yak": [
-      "dori",
-      "Ovqatdan keyin dori iching."
-    ],
-    "word_jota": [
-      "yaxshi bo'lmoq",
-      "Kayfiyatim yaxshi."
-    ],
-    "word_jal": [
-      "yaxshi",
-      "Yaxshi uxladingmi?"
-    ],
-    "word_anida": [
-      "biror narsa emaslik",
-      "Men talaba emasman.",
-      "이다 so'zining teskarisi. Inkor qilinayotgan narsaga 을/를 emas, 이/가 qo'shiladi: 학생이 아니에요, hech qachon 학생을 아니에요 emas. Shu bitta qolipni o'rgangan kishi koreys tilidagi har qanday otli gapni inkor qila oladi."
-    ],
-    "word_bul": [
-      "olov",
-      "Tog'da yong'in chiqdi."
-    ],
-    "word_uyu": [
-      "sut",
-      "Sut sovuq."
-    ],
-    "word_meokda": [
-      "yemoq",
-      "Men meva yeyman."
-    ],
-    "word_ppang": [
-      "non",
-      "Men non yeyman."
-    ],
-    "word_ttae": [
-      "biror narsa sodir bo'ladigan payt",
-      "Bolaligimda qishloqda yashaganman."
-    ],
-    "word_il": [
-      "ish",
-      "Bugun ish ko'p.",
-      "Ish yoki bajarilishi kerak bo'lgan narsa. Xuddi shu bo'g'in xitoy asosli bir — 일 번, birinchi raqam — va u 일요일 ya'ni yakshanbadagi kun, hamda 삼 일, uch kun."
-    ],
-    "word_baji": [
-      "shim",
-      "Shim uzun."
-    ],
-    "word_sigye": [
-      "soat",
-      "Menda soat yo'q."
-    ],
-    "word_siheom": [
-      "imtihon",
-      "Ertaga imtihonim bor."
-    ],
-    "word_keompyuteo": [
-      "kompyuter",
-      "Kompyuterni yoqaman."
-    ],
-    "word_nalssi": [
-      "ob-havo",
-      "Ob-havo yaxshi."
-    ],
-    "word_jongi": [
-      "qog'oz",
-      "Men qog'ozga rasm chizaman."
-    ],
-    "word_dosi": [
-      "shahar",
-      "Shahar juda katta."
-    ],
-    "word_munje": [
-      "muammo",
-      "Bitta muammo bor."
-    ],
-    "word_wi": [
-      "ust tomoni",
-      "Sumkaning ustida shapka bor."
-    ],
-    "word_bom": [
-      "bahor",
-      "Bahorda gullar ochiladi."
-    ],
-    "word_jeonyeok": [
-      "kechki ovqat",
-      "Men kechki ovqat yeyman."
-    ],
-    "word_gyeoul": [
-      "qish",
-      "Qishda qor ko'p yog'adi."
-    ],
-    "word_abeoji": [
-      "ota",
-      "Otam ishga boradi."
-    ],
-    "word_eoseo": [
-      "kiring, tezroq",
-      "Xush kelibsiz, kiring."
-    ],
-    "word_mot": [
-      "xohlasa ham qila olmaslik",
-      "Juda achchiq, shuning uchun yeya olmayman.",
-      "Koreys tilida ikki inkor bor va ular boshqa-boshqa narsa aytadi. 안 — *xohlamayman*; 못 — *qo'limdan kelmaydi*. 안 먹어요 yemaslikni tanlayotganingizni; 못 먹어요 esa nimadir to'sqinlik qilayotganini bildiradi. Xuddi shunday yoziladigan 못 oti mix degani."
-    ],
-    "word_salda": [
-      "yashamoq",
-      "Men Seulda yashayman."
-    ],
-    "word_ai": [
-      "bola",
-      "Bola kulmoqda."
-    ],
-    "word_jeomsim": [
-      "tushlik",
-      "Birga tushlik qilaylik."
-    ],
-    "word_nugu": [
-      "kim",
-      "U odam kim?"
-    ],
-    "word_eonje": [
-      "qachon",
-      "Sen qachon kelasan?"
-    ],
-    "word_geori": [
-      "ko'cha",
-      "Ko'chada odam ko'p."
-    ],
-    "word_annyeong": [
-      "salom va xayr ma'nosidagi so'z",
-      "Xayr, yana ko'rishaylik!"
-    ],
-    "word_gakkeum": [
-      "ba'zan",
-      "Ba'zan kino ko'raman."
-    ],
-    "word_manta": [
-      "ko'p bo'lmoq",
-      "Odam ko'p."
-    ],
-    "word_chima": [
-      "yubka",
-      "Bu yubka juda chiroyli."
-    ],
-    "word_uija": [
-      "stul",
-      "Men stulda o'tiribman."
-    ],
-    "word_jeogi": [
-      "u yerda",
-      "U yerda maktab bor."
-    ],
-    "word_gongwon": [
-      "bog'",
-      "Men bog'da sayr qilaman."
-    ],
-    "word_ssal": [
-      "guruch",
-      "Guruchni yuvib pishiraman."
-    ],
-    "word_jigu": [
-      "Yer",
-      "Yer yumaloq."
-    ],
-    "word_eodi": [
-      "qayerda",
-      "Hojatxona qayerda?"
-    ],
-    "word_byeok": [
-      "devor",
-      "Devorga rasm ilaman."
-    ],
-    "word_gyeran": [
-      "tuxum",
-      "Ertalab bitta tuxum qaynatdim."
-    ],
-    "word_tada": [
-      "minmoq",
-      "Men avtobusga minaman.",
-      "Sizni olib yuradigan har narsaga minmoq — avtobusga, velosipedga, liftga. Yana ikki juda keng tarqalgan fe'l shu yozuvni bo'lishadi: 타다 yonmoq ma'nosini ham, ichimlikka nimadir aralashtirmoq ma'nosini ham beradi."
-    ],
-    "word_segye": [
-      "dunyo",
-      "Dunyodagi ko'p mamlakatlarni bilaman."
-    ],
-    "word_ireum": [
-      "ism",
-      "Isming nima?"
-    ],
-    "word_guk": [
-      "sho'rva",
-      "Ertalab sho'rva ichaman."
-    ],
-    "word_malhada": [
-      "gapirmoq",
-      "Iltimos, sekinroq gapiring."
-    ],
-    "word_geotda": [
-      "piyoda yurmoq",
-      "Men bog'da yuraman."
-    ],
-    "word_gangaji": [
-      "kuchukcha",
-      "Kuchukcha kichkina."
-    ],
-    "word_sori": [
-      "ovoz",
-      "Ovoz baland."
-    ],
-    "word_yeop": [
-      "yon tomon",
-      "Iltimos, yonimga o'tiring."
-    ],
-    "word_saenggak": [
-      "fikr",
-      "Bu yaxshi fikr."
-    ],
-    "word_geogi": [
-      "u yerda",
-      "U yerda kimdir bormi?"
-    ],
-    "word_adeul": [
-      "o'g'il",
-      "O'g'lim maktabga boradi."
-    ],
-    "word_doeda": [
-      "bo'lmoq",
-      "Men shifokor bo'lmoqchiman.",
-      "Bo'lmoq. Bu shuningdek biror narsaning ishlashi yoki ruxsat etilganini bildiruvchi kundalik so'z: 안 돼요 — bunday bo'lmaydi, 다 됐어요 — tayyor. Ularni lug'atdagi ma'nosidan ancha ko'p eshitasiz."
-    ],
-    "word_maeul": [
-      "qishloq",
-      "Qishloq tinch."
-    ],
-    "word_kape": [
-      "kafe",
-      "Do'stim bilan kafeda uchrashaman."
-    ],
-    "word_gong": [
-      "to'p",
-      "Men to'pni tepaman."
-    ],
-    "word_gajok": [
-      "oila",
-      "Oilam katta."
-    ],
-    "word_ssi": [
-      "ismdan keyin qo'llanadigan hurmat so'zi",
-      "Minsu, bir daqiqa.",
-      "Ismga qo'shilsa, tengdoshlar orasida xushmuomala va samimiy: 민수 씨. Faqat familiyaga qo'shilsa — 김 씨 — uzoq, hatto qo'pol eshitiladi, shuning uchun ismini ishlating. Yuqori lavozimdagiga unvonini qo'shing: 부장님, 선생님."
-    ],
-    "word_achim": [
-      "ertalab",
-      "Men ertalab turaman."
-    ],
-    "word_jeonhwahada": [
-      "telefon qilmoq",
-      "Keyinroq senga qo'ng'iroq qilaman."
-    ],
-    "word_gaeul": [
-      "kuz",
-      "Kuzda shamol salqin bo'ladi."
-    ],
-    "word_kkot": [
-      "gul",
-      "Gul chiroyli."
-    ],
-    "word_jido": [
-      "xarita",
-      "Men xaritaga qarayman."
-    ],
-    "word_saek": [
-      "rang",
-      "Bu rang chiroyli."
-    ],
-    "word_juda": [
-      "bermoq",
-      "Men sovg'a beraman."
-    ],
-    "word_yachae": [
-      "sabzavot",
-      "Iltimos, ko'proq sabzavot yeng."
-    ],
-    "word_chaeksang": [
-      "yozuv stoli",
-      "Stol ustida kitob bor."
-    ],
-    "word_cheoeum": [
-      "birinchi marta",
-      "Tanishganimdan xursandman."
-    ],
-    "word_gwail": [
-      "meva",
-      "Men mevani yaxshi ko'raman."
-    ],
-    "word_uisa": [
-      "shifokor",
-      "Shifokor meni ko'rmoqda."
-    ],
-    "word_ttal": [
-      "qiz farzand",
-      "Qizim maktabga boradi."
-    ],
-    "word_yeoboseyo": [
-      "allo, telefonda",
-      "Allo, kim bu?"
-    ],
-    "word_so": [
-      "sigir",
-      "Sigir o't yemoqda."
-    ],
-    "word_pyeonji": [
-      "xat",
-      "Onamga xat yozaman."
-    ],
-    "word_jogeum": [
-      "ozgina",
-      "Faqat ozgina bering."
-    ],
-    "word_boida": [
-      "ko'rinmoq",
-      "Tog' ko'rinib turibdi."
-    ],
-    "word_jari": [
-      "o'tiradigan joy",
-      "Joy yo'q."
-    ],
-    "word_hu": [
-      "keyin",
-      "Darsdan keyin kutubxonaga boraman."
-    ],
-    "word_kadeu": [
-      "karta",
-      "Men karta bilan to'layman."
-    ],
-    "word_naeil": [
-      "ertaga",
-      "Ertaga ko'rishamiz."
-    ],
-    "word_jungyohada": [
-      "muhim bo'lmoq",
-      "Sog'liq eng muhim."
-    ],
-    "word_dalgyal": [
-      "tuxum",
-      "Ertalab tuxum yeyman."
-    ],
-    "word_aju": [
-      "juda",
-      "Bu juda mazali."
-    ],
-    "word_matda": [
-      "to'g'ri bo'lmoq",
-      "Bu javob to'g'ri."
-    ],
-    "word_hanguk": [
-      "Koreya",
-      "Men koreys taomlarini yaxshi ko'raman."
-    ],
-    "word_gang": [
-      "daryo",
-      "Daryo juda keng."
-    ],
-    "word_cho": [
-      "soniya",
-      "O'ttiz soniya qoldi."
-    ],
-    "word_hoesa": [
-      "kompaniya, ofis",
-      "Men ofisga boraman."
-    ],
-    "word_sosik": [
-      "kimdandir kelgan xabar",
-      "Menda yaxshi xabar bor."
-    ],
-    "word_jakda": [
-      "kichik bo'lmoq",
-      "Poyabzal kichik."
-    ],
-    "word_gimchi": [
-      "kimchi",
-      "Kimchi achchiq."
-    ],
-    "word_ikda": [
-      "o'qimoq",
-      "Men gazeta o'qiyman."
-    ],
-    "word_geurigo": [
-      "va, keyin",
-      "Non sotib oldim. Sut ham sotib oldim."
-    ],
-    "word_keuda": [
-      "katta bo'lmoq",
-      "Bu sumka katta."
-    ],
-    "word_yeollak": [
-      "aloqa",
-      "Iltimos, keyinroq bog'laning."
-    ],
-    "word_gachi": [
-      "birga",
-      "Birga ovqatlanaylik."
-    ],
-    "word_neomu": [
-      "juda ham",
-      "Bu kiyim juda katta."
-    ],
-    "word_yong": [
-      "ajdar",
-      "Rasmda katta ajdar bor."
-    ],
-    "word_geureota": [
-      "shunday bo'lmoq",
-      "Ha, shunday."
-    ],
-    "word_hotel": [
-      "mehmonxona",
-      "Men mehmonxonada tunadim."
-    ],
-    "word_yeolsoe": [
-      "kalit",
-      "Menda kalit yo'q."
-    ],
-    "word_yeppeuda": [
-      "chiroyli bo'lmoq",
-      "Gullar rostdan ham chiroyli."
-    ],
-    "word_geugeot": [
-      "u narsa",
-      "Iltimos, o'shani bering."
-    ],
-    "word_daeum": [
-      "keyingi",
-      "Keyingi safar ko'rishamiz."
-    ],
-    "word_maeum": [
-      "ko'ngil",
-      "Uning ko'ngli iliq."
-    ],
-    "word_jadongcha": [
-      "avtomobil",
-      "Mashina tez."
-    ],
-    "word_jukda": [
-      "o'lmoq",
-      "Tuvakdagi gul sug'orilmagani uchun quridi."
-    ],
-    "word_nalda": [
-      "uchmoq",
-      "Qush osmonda uchmoqda."
-    ],
-    "word_siksa": [
-      "ovqatlanish",
-      "Ovqat juda mazali edi."
-    ],
-    "word_gigye": [
-      "mashina, mexanizm",
-      "Mashina buzilib qoldi."
-    ],
-    "word_ttang": [
-      "yer",
-      "Yer nam."
-    ],
-    "word_jada": [
-      "uxlamoq",
-      "Men erta yotaman."
-    ],
-    "word_beorida": [
-      "tashlamoq",
-      "Iltimos, buni chiqindi qutisiga tashlang."
-    ],
-    "word_juso": [
-      "manzil",
-      "Iltimos, manzilni ayting."
-    ],
-    "word_gicha": [
-      "poyezd",
-      "Poyezd jo'nab ketdi."
-    ],
-    "word_chitsol": [
-      "tish cho'tkasi",
-      "Yangi tish cho'tkasi sotib oldim."
-    ],
-    "word_sarang": [
-      "sevgi",
-      "Sevgi go'zal."
-    ],
-    "word_gongbu": [
-      "o'qish",
-      "O'qish qiziqarli."
-    ],
-    "word_saengseon": [
-      "yeyiladigan baliq",
-      "Kechki ovqatga baliq qovurdim."
-    ],
-    "word_mok": [
-      "bo'yin",
-      "Bo'ynim og'riyapti."
-    ],
-    "word_sipda": [
-      "xohlamoq",
-      "Men Koreyaga bormoqchiman."
-    ],
-    "word_nyuseu": [
-      "yangiliklar",
-      "Men yangiliklarni ko'raman."
-    ],
-    "word_chatda": [
-      "izlamoq",
-      "Men kalitni qidiryapman."
-    ],
-    "word_iljjik": [
-      "erta",
-      "Ertaga erta turaman."
-    ],
-    "word_geonmul": [
-      "bino",
-      "Ana u bino juda baland."
-    ],
-    "word_seonsaengnim": [
-      "o'qituvchi",
-      "O'qituvchi dars bermoqda."
-    ],
-    "word_eomeoni": [
-      "ona",
-      "Onam uyda."
-    ],
-    "word_gibun": [
-      "kayfiyat",
-      "Kayfiyating qanday?"
-    ],
-    "word_honja": [
-      "yolg'iz",
-      "Men yolg'iz bora olaman."
-    ],
-    "word_ani": [
-      "yo'q",
-      "Yo'q, men bormadim."
-    ],
-    "word_eoje": [
-      "kecha",
-      "Kecha yomg'ir yog'di."
-    ],
-    "word_sseuda": [
-      "yozmoq",
-      "Men ismimni yozaman.",
-      "Yozmoq. Xuddi shu fe'l biror narsani ishlatmoq, boshga shlyapa yoki ko'zoynak taqmoq va — sifat sifatida — achchiq bo'lmoq ma'nosini ham beradi. To'rt kundalik ma'no, bitta yozuv."
-    ],
-    "word_masida": [
-      "ichmoq",
-      "Men sut ichaman."
-    ],
-    "word_syeocheu": [
-      "ko'ylak",
-      "Men oq ko'ylak kiyganman."
-    ],
-    "word_junbi": [
-      "tayyorgarlik",
-      "Hammasi tayyor."
-    ],
-    "word_mian": [
-      "kechir",
-      "Kechir, kechikdim."
-    ],
-    "word_geokjeong": [
-      "tashvish",
-      "Menda tashvish ko'p."
-    ],
-    "word_hajiman": [
-      "lekin",
-      "Yomg'ir yog'yapti. Lekin baribir boraman."
-    ],
-    "word_kamera": [
-      "kamera",
-      "Men kamera sotib oldim."
-    ],
-    "word_dongne": [
-      "mahalla",
-      "Bizning mahalla tinch."
-    ],
-    "word_naengjanggo": [
-      "muzlatgich",
-      "Sutni muzlatgichga qo'ydim."
-    ],
-    "word_anda": [
-      "o'tirmoq",
-      "Men stulga o'tirdim."
-    ],
-    "word_ppalli": [
-      "tez",
-      "Iltimos, tezroq keling."
-    ],
-    "word_yaegi": [
-      "suhbat",
-      "Ozgina suhbatlashaylik."
-    ],
-    "word_got": [
-      "joy",
-      "Men tinch joy topdim."
-    ],
-    "word_nat": [
-      "kunduz",
-      "Kunduzi issiq bo'ladi."
-    ],
-    "word_sangja": [
-      "quti",
-      "Men qutini ochaman."
-    ],
-    "word_wonhada": [
-      "xohlamoq",
-      "Nima xohlaysan?"
-    ],
-    "word_sikdang": [
-      "oshxona",
-      "Oshxona qayerda?"
-    ],
-    "word_geurida": [
-      "chizmoq",
-      "Bola daraxt chizmoqda."
-    ],
-    "word_yuri": [
-      "oyna",
-      "Oyna sinib ketdi."
-    ],
-    "word_igeot": [
-      "bu",
-      "Iltimos, buni bering."
-    ],
-    "word_geoul": [
-      "ko'zgu",
-      "Men ko'zguga qarayman."
-    ],
-    "word_gijeok": [
-      "mo'jiza",
-      "Bu rostdan ham mo'jizaga o'xshardi."
-    ],
-    "word_kal": [
-      "pichoq",
-      "Olmani pichoq bilan tozaladim."
-    ],
-    "word_gatda": [
-      "bir xil bo'lmoq",
-      "Sumkalarimiz bir xil."
-    ],
-    "word_pul": [
-      "o't",
-      "O't yashil."
-    ],
-    "word_eolma": [
-      "qancha",
-      "Bu qancha turadi?"
-    ],
-    "word_saenggakada": [
-      "o'ylamoq",
-      "Men ham shunday o'ylayman."
-    ],
-    "word_jilmun": [
-      "savol",
-      "Menda bitta savol bor."
-    ],
-    "word_geunyeo": [
-      "u, ayol haqida",
-      "U chiroyli qo'shiq aytadi."
-    ],
-    "word_nota": [
-      "qo'ymoq",
-      "Sumkani polga qo'ydim."
-    ],
-    "word_banggeum": [
-      "hozirgina",
-      "Men hozirgina keldim."
-    ],
-    "word_bonaeda": [
-      "yubormoq",
-      "Men xat yuboraman."
-    ],
-    "word_arae": [
-      "ostida",
-      "Kitob stol ostida."
-    ],
-    "word_naoda": [
-      "chiqmoq",
-      "Suv oqmoqda."
-    ],
-    "word_nai": [
-      "yosh",
-      "Yoshingiz nechada?"
-    ],
-    "word_eotteoke": [
-      "qanday",
-      "U yerga qanday borish mumkin?"
-    ],
-    "word_eunhaeng": [
-      "bank",
-      "Bank ochildi."
-    ],
-    "word_al": [
-      "tuxum",
-      "Qush uchta tuxum qo'ydi."
-    ],
-    "word_moreuda": [
-      "bilmaslik",
-      "Men bilmayman."
-    ],
-    "word_badak": [
-      "pol",
-      "Men polni artaman."
-    ],
-    "word_hwajangsil": [
-      "hojatxona",
-      "Hojatxona toza."
-    ],
-    "word_yeok": [
-      "bekat",
-      "Bekatda uchrashaylik."
-    ],
-    "word_seoul": [
-      "Seul",
-      "Seul juda katta."
-    ],
-    "word_gwiyeopda": [
-      "yoqimtoy bo'lmoq",
-      "Kuchukcha yoqimtoy."
-    ],
-    "word_areumdapda": [
-      "go'zal bo'lmoq",
-      "Manzara go'zal."
-    ],
-    "word_ajik": [
-      "hali",
-      "Ular hali kelishmadi."
-    ],
-    "word_gyedan": [
-      "zina",
-      "Bu yerda zina ko'p."
-    ],
-    "word_maeil": [
-      "har kuni",
-      "Men har kuni hangil yozaman."
-    ],
-    "word_agi": [
-      "chaqaloq",
-      "Chaqaloq uxlamoqda."
-    ],
-    "word_dwaeji": [
-      "cho'chqa",
-      "Cho'chqa yemoqda."
-    ],
-    "word_ju": [
-      "hafta",
-      "Keyingi haftada uchrashaylik."
-    ],
-    "word_iyagi": [
-      "hikoya",
-      "Bu qiziqarli hikoya."
-    ],
-    "word_tto": [
-      "yana",
-      "Ertaga yana ko'rishamiz."
-    ],
-    "word_beolsseo": [
-      "allaqachon",
-      "Hammasi allaqachon butunlay tugadi."
-    ],
-    "word_dangsin": [
-      "siz",
-      "Men sizni kutdim."
-    ],
-    "word_gap": [
-      "narx",
-      "Narx baland."
-    ],
-    "word_mianhada": [
-      "uzr so'ramoq",
-      "Kechikkanim uchun uzr."
-    ],
-    "word_jeongnyujang": [
-      "bekat",
-      "Men bekatda avtobus kutyapman."
-    ],
-    "word_anta": [
-      "qilmaslik",
-      "Men qahva ichmayman."
-    ],
-    "word_taeksi": [
-      "taksi",
-      "Iltimos, taksi chaqiring."
-    ],
-    "word_haksaeng": [
-      "o'quvchi",
-      "Sinfda o'quvchi ko'p."
-    ],
-    "word_bomul": [
-      "xazina",
-      "Bolalar xazina qidirmoqda."
-    ],
-    "word_jumun": [
-      "buyurtma",
-      "Buyurtma berasizmi?"
-    ],
-    "word_sinmun": [
-      "gazeta",
-      "Iltimos, gazeta o'qing."
-    ],
-    "word_dak": [
-      "tovuq",
-      "Tovuq tuxum qo'yadi."
-    ],
-    "word_keop": [
-      "piyola",
-      "Men piyolaga suv quyaman."
-    ],
-    "word_set": [
-      "uch",
-      "Uch do'st yig'ildi."
-    ],
-    "word_hangugeo": [
-      "koreys tili",
-      "Koreys tili qiziqarli."
-    ],
-    "word_geuraeseo": [
-      "shuning uchun",
-      "Yomg'ir yog'yapti, shuning uchun bormayman."
-    ],
-    "word_manhi": [
-      "ko'p",
-      "Iltimos, ko'proq yeng."
-    ],
-    "word_du": [
-      "ikki, sanoq so'zidan oldin",
-      "Ikkita qahva bering.",
-      "Koreysning o'z sanoq sonlari sanoq so'zidan oldin shaklini o'zgartiradi. 하나 둘 셋 넷 lar 한 두 세 네 bo'ladi: yolg'iz turganda 하나, bitta dona uchun 한 개. 두 — 둘 so'zining o'sha shakli va u hech qachon yolg'iz turmaydi."
-    ],
-    "word_pyeonuijeom": [
-      "kechayu kunduz ishlaydigan do'kon",
-      "Uyim oldida kechayu kunduz ishlaydigan do'kon bor."
-    ],
-    "word_miguk": [
-      "Amerika Qo'shma Shtatlari",
-      "Men Amerikadanman."
-    ],
-    "word_gyesok": [
-      "to'xtovsiz",
-      "Yomg'ir to'xtovsiz yog'yapti."
-    ],
-    "word_gagyeok": [
-      "narx",
-      "Narx o'ylaganimdan qimmat."
-    ],
-    "word_dongsaeng": [
-      "uka yoki singil",
-      "Ukam yoqimtoy.",
-      "So'zlovchiga qarab o'zgarmaydigan yagona qarindoshlik so'zi: kichigi kim bo'lsa 동생, kim gapirsa ham. Jinsi kerak bo'lsa bir bo'g'in qo'shing — 남동생 ukasi, 여동생 singlisi."
-    ],
-    "word_tokki": [
-      "quyon",
-      "Quyon sakramoqda."
-    ],
-    "word_seoda": [
-      "turmoq",
-      "Men navbatda turibman."
-    ],
-    "word_eoreum": [
-      "muz",
-      "Iltimos, muz qo'shing."
-    ],
-    "word_jayeon": [
-      "tabiat",
-      "Tabiat go'zal."
-    ],
-    "word_jjikda": [
-      "muhr bosmoq",
-      "Men muhr bosdim.",
-      "Biror narsani yuzaga bosmoq: muhr, tamg'a, barmoq izi. Xuddi shu fe'l suratga olishni — 사진을 찍다 — va ovqatni sousga botirishni ham qamrab oladi, uchalasi ham bitta bosish g'oyasidan."
-    ],
-    "word_yeol": [
-      "o'n",
-      "Iltimos, o'ngacha sanang.",
-      "Bu yerda 열 — narsalarni sanaydigan o'z koreys o'ni: 열 개, o'nta dona. Boshqa 열 isitmani bildiradi, 열다 fe'li esa ochmoqni. Ikki harf, bir-biriga aloqasiz uch so'z."
-    ],
-    "word_sasil": [
-      "haqiqat",
-      "Bu haqiqat."
-    ],
-    "word_unjeon": [
-      "haydash",
-      "Men mashina haydashni o'rganyapman."
-    ],
-    "word_gamja": [
-      "kartoshka",
-      "Men kartoshkani qaynataman."
-    ],
-    "word_gureum": [
-      "bulut",
-      "Bulut ko'p."
-    ],
-    "word_iyu": [
-      "sabab",
-      "Iltimos, sababini ayting."
-    ],
-    "word_dareun": [
-      "boshqa",
-      "Boshqa ranglar bormi?"
-    ],
-    "word_songarak": [
-      "barmoq",
-      "Barmog'im og'riyapti."
-    ],
-    "word_japda": [
-      "ushlamoq",
-      "Men qo'lingni ushlayman."
-    ],
-    "word_bueok": [
-      "oshxona xonasi",
-      "Men oshxonada ovqat pishiraman."
-    ],
-    "word_piryo": [
-      "ehtiyoj",
-      "Menga yordam kerak emas."
-    ],
-    "word_pa": [
-      "ko'k piyoz",
-      "Sho'rvaga ozgina ko'k piyoz qo'shdim."
-    ],
-    "word_batda": [
-      "olmoq",
-      "Men sovg'a oldim."
-    ],
-    "word_pida": [
-      "ochilmoq",
-      "Gullar ochildi."
-    ],
-    "word_sayong": [
-      "foydalanish",
-      "Iltimos, qanday foydalanishni ayting."
-    ],
-    "word_jeongbo": [
-      "ma'lumot",
-      "Men ma'lumot qidiryapman."
-    ],
-    "word_gonghang": [
-      "aeroport",
-      "Men aeroportga yetib keldim."
-    ],
-    "word_bumo": [
-      "ota-ona",
-      "Bolaga ota-ona kerak."
-    ],
-    "word_saranghada": [
-      "sevmoq",
-      "Men oilamni sevaman."
-    ],
-    "word_ireoke": [
-      "shunday qilib",
-      "Iltimos, shunday yozing."
-    ],
-    "word_ilhada": [
-      "ishlamoq",
-      "Onam kasalxonada ishlaydi."
-    ],
-    "word_suyeong": [
-      "suzish",
-      "Men suzishni o'rganyapman."
-    ],
-    "word_piryohada": [
-      "kerak bo'lmoq",
-      "Menga pul kerak."
-    ],
-    "word_bukjjok": [
-      "shimol",
-      "Ular shimolga ketishdi."
-    ],
-    "word_cheung": [
-      "qavat",
-      "Ofis ikkinchi qavatda."
-    ],
-    "word_hwanja": [
-      "bemor",
-      "Bemor dam olmoqda."
-    ],
-    "word_halmeoni": [
-      "buvi",
-      "Buvi tabassum qilmoqda."
-    ],
-    "word_palda": [
-      "sotmoq",
-      "Ular meva sotishadi."
-    ],
-    "word_itda_2": [
-      "ulamoq",
-      "Men ikki arqonni uladim."
-    ],
-    "word_nara": [
-      "mamlakat",
-      "Koreya go'zal mamlakat."
-    ],
-    "word_apateu": [
-      "kvartira",
-      "Men kvartirada yashayman."
-    ],
-    "word_hamkke": [
-      "birgalikda",
-      "Birgalikda boraylik."
-    ],
-    "word_modeun": [
-      "barcha",
-      "Hamma kuldi."
-    ],
-    "word_gwaenchanta": [
-      "yaxshi bo'lmoq",
-      "Men yaxshiman."
-    ],
-    "word_johahada": [
-      "yoqtirmoq",
-      "Men qahvani yoqtiraman."
-    ],
-    "word_jimseung": [
-      "yovvoyi hayvon",
-      "O'rmonda hayvon ovozi eshitildi."
-    ],
-    "word_dongan": [
-      "davomida",
-      "Men ta'til davomida sayohat qildim."
-    ],
-    "word_ipgu": [
-      "kirish joyi",
-      "Bino kirish joyida uchrashaylik."
-    ],
-    "word_silta": [
-      "yoqtirmaslik",
-      "Men sovuq kunlarni yoqtirmayman."
-    ],
-    "word_meonjeo": [
-      "avval",
-      "Men avval qo'limni yuvaman."
-    ],
-    "word_dubu": [
-      "tofu",
-      "Men tofu qo'shib sho'rva pishiraman."
-    ],
-    "word_bumonim": [
-      "o'z ota-onasi",
-      "Men ota-onam bilan yashayman."
-    ],
-    "word_gomapda": [
-      "minnatdor bo'lmoq",
-      "Yordamingiz uchun rahmat."
-    ],
-    "word_gyesan": [
-      "hisob",
-      "Hisob biroz noto'g'ri."
-    ],
-    "word_hyeo": [
-      "til, og'izdagi",
-      "Tilim og'rigani uchun ovqat yeya olmayman."
-    ],
-    "word_sugeon": [
-      "sochiq",
-      "Men sochiq bilan qo'limni artaman."
-    ],
-    "word_saeropda": [
-      "yangi bo'lmoq",
-      "Ko'nglim yangilangandek."
-    ],
-    "word_sup": [
-      "o'rmon",
-      "O'rmonda qush ovozi eshitiladi."
-    ],
-    "word_chum": [
-      "raqs",
-      "Ular sahnada raqsga tushdi."
-    ],
-    "word_sukje": [
-      "uy vazifasi",
-      "Men uy vazifamni bajardim."
-    ],
-    "word_gaji": [
-      "tur",
-      "Men faqat bitta narsani so'ramoqchiman.",
-      "Bu shuningdek baqlajonning nomi va daraxtning shoxi. Sanoq so'zi sifatida sanab o'tish mumkin bo'lgan narsalarga ishlatiladi: 두 가지 방법, ikki yo'l; 세 가지 이유, uch sabab."
-    ],
-    "word_mothada": [
-      "qila olmaslik",
-      "Men suza olmayman."
-    ],
-    "word_nagada": [
-      "tashqariga chiqmoq",
-      "Men tashqariga chiqaman."
-    ],
-    "word_meotjida": [
-      "ajoyib bo'lmoq",
-      "Bugun sen ajoyib ko'rinyapsan."
-    ],
-    "word_podo": [
-      "uzum",
-      "Uzum juda shirin."
-    ],
-    "word_jeopsi": [
-      "likop",
-      "Iltimos, ikkita likop oling."
-    ],
-    "word_yori": [
-      "taom",
-      "Taom mazali."
-    ],
-    "word_sogeum": [
-      "tuz",
-      "Men ozgina tuz qo'shaman."
-    ],
-    "word_duda": [
-      "qo'ymoq",
-      "Men kitobni stolga qo'ydim."
-    ],
-    "word_gamsahada": [
-      "minnatdorchilik bildirmoq",
-      "Yordamingiz uchun rahmat."
-    ],
-    "word_kkeut": [
-      "oxiri",
-      "Iltimos, navbatning oxirida turing."
-    ],
-    "word_yeolda": [
-      "ochmoq",
-      "Men derazani ochaman."
-    ],
-    "word_ibul": [
-      "ko'rpa",
-      "Ko'rpa issiq."
-    ],
-    "word_najung": [
-      "keyinroq",
-      "Men keyinroq yana qo'ng'iroq qilaman."
-    ],
-    "word_manjida": [
-      "tegmoq",
-      "Iltimos, tegmang."
-    ],
-    "word_gajang": [
-      "eng",
-      "Bu eng yaxshisi."
-    ],
-    "word_namjjok": [
-      "janub",
-      "Janubda issiq bo'ladi."
-    ],
-    "word_doum": [
-      "yordam",
-      "Menga yordam kerak."
-    ],
-    "word_jung": [
-      "o'rtasida, davomida",
-      "Men yig'ilishdaman."
-    ],
-    "word_sudo": [
-      "poytaxt",
-      "Koreyaning poytaxti Seul.",
-      "Mamlakatning poytaxti. Alohida 수도 suv ta'minotini bildiradi — 수도꼭지 jo'mrak, 수도 요금 suv to'lovi. Ularni faqat atrofdagi so'zlar ajratadi."
-    ],
-    "word_gidarida": [
-      "kutmoq",
-      "Iltimos, bir daqiqa kuting."
-    ],
-    "word_chaeso": [
-      "sabzavot",
-      "Men ko'p sabzavot yeyman."
-    ],
-    "word_kkeunnada": [
-      "tugamoq",
-      "Dars tugadi."
-    ],
-    "word_butak": [
-      "iltimos",
-      "Menda bitta iltimos bor."
-    ],
-    "word_seom": [
-      "orol",
-      "Biz qayiqda orolga bordik."
-    ],
-    "word_teuki": [
-      "ayniqsa",
-      "Men ayniqsa qishni yaxshi ko'raman."
-    ],
-    "word_jemok": [
-      "sarlavha",
-      "Bu kitobning sarlavhasi nima?"
-    ],
-    "word_insa": [
-      "salomlashish",
-      "Men salom berdim."
-    ],
-    "word_seoltang": [
-      "shakar",
-      "Men ozgina shakar qo'shaman."
-    ],
-    "word_jajeongeo": [
-      "velosiped",
-      "Men velosiped haydayman."
-    ],
-    "word_inteonet": [
-      "internet",
-      "Internet sekin."
-    ],
-    "word_aniyo": [
-      "yo'q",
-      "Yo'q, men yaxshiman."
-    ],
-    "word_ama": [
-      "ehtimol",
-      "Ertaga ehtimol yomg'ir yog'adi."
-    ],
-    "word_jamsi": [
-      "bir oz vaqt",
-      "Bir lahza dam olaylik."
-    ],
-    "word_beol": [
-      "asalari",
-      "Asalari gulga qo'ndi.",
-      "Asalari. Yana ikki so'z 벌 deb yoziladi: jazo, va bir dast kiyimni sanaydigan so'z — 옷 한 벌, bir dast."
-    ],
-    "word_won": [
-      "von",
-      "Bu ikki ming von."
-    ],
-    "word_ujuseon": [
-      "kosmik kema",
-      "Kosmik kema osmonga ko'tarildi."
-    ],
-    "word_myeot": [
-      "nechta",
-      "Hozir soat necha?"
-    ],
-    "word_sueop": [
-      "dars",
-      "Dars qiziqarli."
-    ],
-    "word_sijak": [
-      "boshlanish",
-      "Bu yaxshi boshlanish."
-    ],
-    "word_yeogwon": [
-      "pasport",
-      "Pasportni olishni unutma."
-    ],
-    "word_gyosil": [
-      "sinf xonasi",
-      "Sinf xonasi yorug'."
-    ],
-    "word_nyeon": [
-      "yil",
-      "Men ikki yil o'qidim."
-    ],
-    "word_bae": [
-      "qorin",
-      "Qornim og'rigani uchun kasalxonaga bordim.",
-      "Qorin. Yana ikki keng tarqalgan so'z 배 deb yoziladi: qayiq va nok. 배가 아파요 — qornim og'riyapti, 배를 타요 — qayiqqa chiqaman, 배를 먹어요 — nok yeyman."
-    ],
-    "word_satang": [
-      "konfet",
-      "Men konfet yeyman."
-    ],
-    "word_dalleo": [
-      "dollar",
-      "Bu yuz dollar."
-    ],
-    "word_usan": [
-      "soyabon",
-      "Yomg'ir yoqqani uchun soyabon sotib oldim."
-    ],
-    "word_museun": [
-      "qanaqa",
-      "Siz qanaqa ish qilasiz?"
-    ],
-    "word_pari": [
-      "pashsha",
-      "Bitta pashsha uchmoqda.",
-      "O'sha hasharot. Koreys tili Parij shahrini ham xuddi shunday yozadi, shuning uchun 파리에 갔어요 — Parijga bordim, 파리가 있어요 esa — bu yerda pashsha bor. Gapdan boshqa hech narsa ularni ajratmaydi."
-    ],
-    "word_ije": [
-      "endi",
-      "Endi boshlaylik."
-    ],
-    "word_geollida": [
-      "vaqt olmoq",
-      "Bu bir soat vaqt oladi."
-    ],
-    "word_choego": [
-      "eng zo'ri",
-      "Bu oshxona eng zo'ri."
-    ],
-    "word_naeda": [
-      "to'lamoq",
-      "Bugun men to'layman."
-    ],
-    "word_daneo": [
-      "so'z",
-      "Men yangi so'z o'rganaman."
-    ],
-    "word_jikjeop": [
-      "o'zi, bevosita",
-      "Tortni o'zim tayyorladim."
-    ],
-    "word_yangmal": [
-      "paypoq",
-      "Paypoq issiq."
-    ],
-    "word_nopda": [
-      "baland bo'lmoq",
-      "Bino baland."
-    ],
-    "word_haendeupon": [
-      "mobil telefon",
-      "Men telefonni quvvatlayman."
-    ],
-    "word_jigap": [
-      "hamyon",
-      "Men hamyonimni yo'qotdim."
-    ],
-    "word_hyudaepon": [
-      "mobil telefon",
-      "Men telefonimni yo'qotdim."
-    ],
-    "word_agassi": [
-      "yosh ayol",
-      "Bir yosh ayol yo'l so'rayapti.",
-      "Turmushga chiqmagan yosh ayol — ammo notanish odamga *murojaat* shakli sifatida ta'mi buzilgan, ko'p ayollar buni qo'pol yoki kamsituvchi deb biladi. Kimdir haqida gapirganda ishlating, kimgadir murojaat qilganda emas; notanish odamning e'tiborini tortish uchun 저기요 deng."
-    ],
-    "word_gieok": [
-      "xotira",
-      "Men eslay olmayapman."
-    ],
-    "word_geutda": [
-      "chiziq tortmoq",
-      "Men bitta chiziq tortdim."
-    ],
-    "word_ipda": [
-      "kiyinmoq",
-      "Men kiyim kiyaman."
-    ],
-    "word_sai": [
-      "ikkisining orasi",
-      "Ikki uy orasida daraxt bor."
-    ],
-    "word_gireum": [
-      "yog'",
-      "Men buni yog'da qovuraman."
-    ],
-    "word_mulgogi": [
-      "baliq",
-      "Baliq suzmoqda."
-    ],
-    "word_jang": [
-      "qog'oz sanaydigan so'z",
-      "Menga uchta varaq qog'oz kerak."
-    ],
-    "word_kkum": [
-      "tush",
-      "Kecha kechqurun g'alati tush ko'rdim."
-    ],
-    "word_sijakada": [
-      "boshlamoq",
-      "Dars boshlanadi."
-    ],
-    "word_ajikdo": [
-      "hanuz",
-      "Men hanuz kutyapman."
-    ],
-    "word_teureok": [
-      "yuk mashinasi",
-      "Bitta yuk mashinasi o'tmoqda."
-    ],
-    "word_eotteon": [
-      "qanaqa",
-      "Sen qanaqa rangni yoqtirasan?"
-    ],
-    "word_geulssi": [
-      "qo'l yozuvi",
-      "Qo'l yozuving chiroyli."
-    ],
-    "word_deutda": [
-      "eshitmoq",
-      "Men musiqa tinglayman."
-    ],
-    "word_subak": [
-      "tarvuz",
-      "Yozda tarvuz mazali bo'ladi."
-    ],
-    "word_ttalgi": [
-      "qulupnay",
-      "Men qulupnayni yuvib yeyman."
-    ],
-    "word_baram": [
-      "shamol",
-      "Shamol salqin."
-    ],
-    "word_sigol": [
-      "qishloq joy",
-      "Qishloq havosi yaxshi."
-    ],
-    "word_pulda": [
-      "yechmoq",
-      "Men masalani yechdim."
-    ],
-    "word_angyeong": [
-      "ko'zoynak",
-      "Men ko'zoynak taqaman."
-    ],
-    "word_yeonpil": [
-      "qalam",
-      "Men qalam bilan rasm chizaman."
-    ],
-    "word_jumal": [
-      "dam olish kunlari",
-      "Dam olish kunlarida men dam olaman."
-    ],
-    "word_jugida": [
-      "o'ldirmoq",
-      "Xonaga kirgan chivinni o'ldirdim."
-    ],
-    "word_him": [
-      "kuch",
-      "U bola juda kuchli."
-    ],
-    "word_jeonbu": [
-      "hammasi birga",
-      "Hammasi qancha bo'ldi?"
-    ],
-    "word_gyeongchal": [
-      "militsiya",
-      "Iltimos, militsiyani chaqiring."
-    ],
-    "word_geureut": [
-      "kosa",
-      "Men kosaga guruch solaman."
-    ],
-    "word_nappeuda": [
-      "yomon bo'lmoq",
-      "Ob-havo yomon."
-    ],
-    "word_oppa": [
-      "qizning akasi",
-      "Akam mashina haydamoqda.",
-      "Koreys tili qarindoshlik so'zini so'zlovchining jinsiga qarab tanlaydi: ayol akasini 오빠 deydi, erkak uni 형 deydi. U ayol yaqin yuradigan kattaroq erkakka ham ishlatiladi, shuning uchun oiladan ancha tashqarida ham eshitiladi."
-    ],
-    "word_mannada": [
-      "uchrashmoq",
-      "Biz tez-tez uchrashamiz."
-    ],
-    "word_huimang": [
-      "umid",
-      "Iltimos, umidingizni yo'qotmang."
-    ],
-    "word_hyeong": [
-      "o'g'ilning akasi",
-      "Akam menga ovqat oldirib berdi.",
-      "Erkak akasini ataydigan so'z. Xuddi shu odam haqida ayol 오빠 deydi. 오빠 kabi bu ham qarindosh bo'lmagan yaqin kattaroq erkakkacha yoyiladi."
-    ],
-    "word_doro": [
-      "yo'l",
-      "Yo'l yopiq."
-    ],
-    "word_ttwida": [
-      "yugurmoq",
-      "Bola yugurmoqda."
-    ],
-    "word_mueot": [
-      "nima",
-      "Bu nima?"
-    ],
-    "word_oenjjok": [
-      "chap tomon",
-      "Iltimos, chapga buriling."
-    ],
-    "word_chukgu": [
-      "futbol",
-      "Men do'stim bilan futbol o'ynayman."
-    ],
-    "word_jayu": [
-      "erkinlik",
-      "Erkinlik qadrli."
-    ],
-    "word_sungan": [
-      "lahza",
-      "Men o'sha lahzani unuta olmayman."
-    ],
-    "word_sayonghada": [
-      "foydalanmoq",
-      "Bu xonadan foydalansam bo'ladimi?"
-    ],
-    "word_pada": [
-      "qazimoq",
-      "Men yerni qaziyman."
-    ],
-    "word_nampyeon": [
-      "er, turmush o'rtog'i",
-      "Erim ovqat pishiradi."
-    ],
-    "word_silheomsil": [
-      "laboratoriya",
-      "Men kun bo'yi laboratoriyada ishladim."
-    ],
-    "word_dambae": [
-      "sigaret",
-      "Sigaret hidi kiyimga singib qoldi."
-    ],
-    "word_banana": [
-      "banan",
-      "Ertalab men banan yeyman."
-    ],
-    "word_geum": [
-      "oltin",
-      "Bu uzuk oltindan.",
-      "Oltin, o'sha metall. Xuddi shu bo'g'in tirnalgan yoki tortilgan chiziqni ham bildiradi — 금이 갔어요 yorilib ketdi degani — va 금요일, jumani ochadi."
-    ],
-    "word_mandeulda": [
-      "yasamoq",
-      "Men non yasayman."
-    ],
-    "word_ibeon": [
-      "bu safar",
-      "Bu safar men qilaman."
-    ],
-    "word_gomawo": [
-      "rahmat",
-      "Yordam berganing uchun rahmat."
-    ],
-    "word_banchan": [
-      "guruch bilan yeyiladigan garnir",
-      "Garnirlar mazali."
-    ],
-    "word_apeuda": [
-      "og'rimoq",
-      "Qornim og'riyapti."
-    ],
-    "word_doseogwan": [
-      "kutubxona",
-      "Men kutubxonadan kitob oldim."
-    ],
-    "word_ppyeo": [
-      "suyak",
-      "It og'zida suyak tutib turibdi."
-    ],
-    "word_gamsa": [
-      "minnatdorchilik",
-      "Men minnatdorchilik bildirdim."
-    ],
-    "word_geolda": [
-      "ilmoq",
-      "Men kiyimni ilaman."
-    ],
-    "word_gim": [
-      "quritilgan dengiz o'ti",
-      "Biz guruchni dengiz o'tiga o'rab yeymiz.",
-      "Guruch bilan yeyiladigan yupqa quritilgan dengiz o'ti. Xuddi shu bo'g'in eng keng tarqalgan koreys familiyasi, shuningdek issiq narsadan ko'tarilgan bug' — 김이 나요, bug'i chiqyapti."
-    ],
-    "word_jalhada": [
-      "biror ishni yaxshi qilmoq",
-      "Sen yaxshi qo'shiq aytasan."
-    ],
-    "word_saengmyeong": [
-      "hayot",
-      "Hayot qadrli."
-    ],
-    "word_mureup": [
-      "tizza",
-      "Tizzam og'riyapti."
-    ],
-    "word_jjalda": [
-      "qisqa bo'lmoq",
-      "Qalam qisqa."
-    ],
-    "word_chijeu": [
-      "pishloq",
-      "Men pishloqni yoqtiraman."
-    ],
-    "word_hanbeon": [
-      "bir marta",
-      "Iltimos, bir marta sinab ko'ring."
-    ],
-    "word_gohyang": [
-      "tug'ilgan yurt",
-      "Men tug'ilgan yurtimga bordim."
-    ],
-    "word_jihacheol": [
-      "metro",
-      "Men metroda yuraman."
-    ],
-    "word_sal": [
-      "yosh",
-      "Men yigirma yoshdaman."
-    ],
-    "word_anae": [
-      "xotin",
-      "Men xotinim bilan keldim."
-    ],
-    "word_swida": [
-      "dam olmoq",
-      "Bir oz dam olaylik."
-    ],
-    "word_gimbap": [
-      "kimbap",
-      "Tushlikda kimbap yedim."
-    ],
-    "word_gayo": [
-      "koreys estrada qo'shig'i",
-      "Men koreys estrada qo'shiqlarini yoqtiraman.",
-      "Toifa sifatida koreys estrada qo'shig'i — K-pop bu 가요. U 가다 fe'lining xushmuomala hozirgi zamoni bo'lgan 가요 «ketyapti» bilan aynan bir xil yoziladi, shuning uchun qaysi birini o'qiyotganingizni atrofdagi gap hal qiladi."
-    ],
-    "word_swipda": [
-      "oson bo'lmoq",
-      "Hangil oson."
-    ],
-    "word_pyojeong": [
-      "yuz ifodasi",
-      "Uning yuzi yorug'."
-    ],
-    "word_dareuda": [
-      "farq qilmoq",
-      "Ranglar boshqacha."
-    ],
-    "word_geunyang": [
-      "shunchaki",
-      "Dam olish kunida shunchaki uyda bo'ldim."
-    ],
-    "word_majimak": [
-      "oxirgi",
-      "Men oxirgi avtobusga chiqdim."
-    ],
-    "word_bangbeop": [
-      "usul",
-      "Bitta yaxshi usul bor."
-    ],
-    "word_huinsaek": [
-      "oq rang",
-      "Oq devor toza."
-    ],
-    "word_jalmot": [
-      "xato",
-      "Bu mening xatoim."
-    ],
-    "word_daehakgyo": [
-      "universitet",
-      "Men universitetda o'qiyman."
-    ],
-    "word_haengun": [
-      "omad",
-      "Imtihonda omad tilayman."
-    ],
-    "word_harabeoji": [
-      "bobo",
-      "Bobo gazeta o'qimoqda."
-    ],
-    "word_bimil": [
-      "sir",
-      "Iltimos, sirni saqlang."
-    ],
-    "word_sogogi": [
-      "mol go'shti",
-      "Biz mol go'shtini qovurib yedik."
-    ],
-    "word_net": [
-      "to'rt",
-      "Biz to'rtovlon bir jamoamiz."
-    ],
-    "word_sinda": [
-      "oyoqqa kiymoq",
-      "Men paypoq kiyaman."
-    ],
-    "word_dap": [
-      "javob",
-      "Men javobni topdim."
-    ],
-    "word_yeonseup": [
-      "mashq",
-      "Men har kuni mashq qilaman."
-    ],
-    "word_gongchaek": [
-      "daftar",
-      "Men daftarga ismimni yozaman."
-    ],
-    "word_ssada": [
-      "arzon bo'lmoq",
-      "Bu meva arzon."
-    ],
-    "word_dowajuda": [
-      "yordam bermoq",
-      "Iltimos, menga ozgina yordam bering."
-    ],
-    "word_maekju": [
-      "pivo",
-      "Pivo sovuq."
-    ],
-    "word_jjada": [
-      "sho'r bo'lmoq",
-      "Sho'rva sho'r."
-    ],
-    "word_gyehoek": [
-      "reja",
-      "Men reja tuzdim."
-    ],
-    "word_pyeonghwa": [
-      "tinchlik",
-      "Biz tinchlik tilaymiz."
-    ],
-    "word_yaksok": [
-      "va'da",
-      "Men va'damni bajaraman."
-    ],
-    "word_oreunjjok": [
-      "o'ng tomon",
-      "Iltimos, o'ngga yuring."
-    ],
-    "word_gippeuda": [
-      "xursand bo'lmoq",
-      "Xabarni eshitib xursand bo'ldim."
-    ],
-    "word_baeuda": [
-      "o'rganmoq",
-      "Men koreys tilini o'rganaman."
-    ],
-    "word_jebal": [
-      "iltimos",
-      "Iltimos, menga yordam ber."
-    ],
-    "word_dopda": [
-      "yordam bermoq",
-      "Men do'stimga yordam beraman."
-    ],
-    "word_jaryo": [
-      "ish uchun to'plangan material",
-      "Yig'ilish materiallarini oldindan tayyorladim."
-    ],
-    "word_hullyunghada": [
-      "ajoyib bo'lmoq",
-      "Bu ajoyib fikr."
-    ],
-    "word_moseup": [
-      "qiyofa",
-      "Uning qiyofasi o'zgargan."
-    ],
-    "word_undong": [
-      "jismoniy mashq",
-      "Men ertalab sport bilan shug'ullanaman."
-    ],
-    "word_geureonde": [
-      "aytmoqchi, lekin",
-      "Aytmoqchi, bu nima?"
-    ],
-    "word_juseu": [
-      "sharbat",
-      "Bola sharbat ichmoqda."
-    ],
-    "word_jwi": [
-      "sichqon",
-      "Men oshxonada sichqon ko'rdim."
-    ],
-    "word_chwimi": [
-      "sevimli mashg'ulot",
-      "Mening sevimli mashg'ulotim rasmga olish."
-    ],
-    "word_deung": [
-      "orqa, yelka bilan bel orasi",
-      "Orqam qichishyapti."
-    ],
-    "word_jeoldae": [
-      "hech qachon",
-      "Hech qachon kechikmang."
-    ],
-    "word_dol": [
-      "tosh",
-      "Yo'lda tosh ko'p edi, shuning uchun ehtiyot bo'lib yurdik."
-    ],
-    "word_bappeuda": [
-      "band bo'lmoq",
-      "Bugun men bandman."
-    ],
-    "word_ireon": [
-      "bunday",
-      "Bunday narsa menga birinchi marta bo'ldi."
-    ],
-    "word_yeoseong": [
-      "ayol",
-      "Ko'p ayol keldi."
-    ],
-    "word_paransaek": [
-      "ko'k rang",
-      "Ko'k kiyim senga yarashadi."
-    ],
-    "word_ireonada": [
-      "turmoq",
-      "Men yettida turaman."
-    ],
-    "word_gom": [
-      "ayiq",
-      "Ayiqlar tog'da yashaydi."
-    ],
-    "word_jam": [
-      "uyqu",
-      "So'nggi paytlarda uyqum yaxshi kelmayapti."
-    ],
-    "word_haebyeon": [
-      "dengiz sohili",
-      "Yozda biz dengiz sohiliga bordik."
-    ],
-    "word_hosu": [
-      "ko'l",
-      "Ko'l tinch."
-    ],
-    "word_dakgogi": [
-      "tovuq go'shti",
-      "Tovuq go'shtida yog' kam."
-    ],
-    "word_geunde": [
-      "aytmoqchi",
-      "Aytmoqchi, hozir soat necha?"
-    ],
-    "word_jaeneung": [
-      "iste'dod",
-      "Uning rasm chizishga iste'dodi bor."
-    ],
-    "word_gyeolhon": [
-      "nikoh",
-      "Nikohingiz bilan tabriklayman."
-    ],
-    "word_binu": [
-      "sovun",
-      "Men qo'limni sovun bilan yuvaman."
-    ],
-    "word_saja": [
-      "sher",
-      "Sher katta."
-    ],
-    "word_eoneu": [
-      "qaysi",
-      "Qaysi biri yoqdi?"
-    ],
-    "word_mureoboda": [
-      "so'ramoq",
-      "Men o'qituvchidan so'radim."
-    ],
-    "word_ucheguk": [
-      "pochta",
-      "Men pochtadan xat yubordim."
-    ],
-    "word_japji": [
-      "jurnal",
-      "Men jurnal o'qiyman."
-    ],
-    "word_jean": [
-      "taklif",
-      "Men kompaniyadan yaxshi taklif oldim."
-    ],
-    "word_yojeum": [
-      "shu kunlarda",
-      "Shu kunlarda qandaysan?"
-    ],
-    "word_ulda": [
-      "yig'lamoq",
-      "Chaqaloq yig'lamoqda."
-    ],
-    "word_namda": [
-      "qolmoq",
-      "Ozgina guruch qoldi."
-    ],
-    "word_miso": [
-      "tabassum",
-      "Juda chiroyli tabassum."
-    ],
-    "word_daehak": [
-      "oliy o'quv yurti",
-      "Meni universitetga qabul qilishdi."
-    ],
-    "word_uimi": [
-      "ma'no",
-      "Bu so'zning ma'nosi nima?"
-    ],
-    "word_geim": [
-      "o'yin",
-      "Men o'yin o'ynayman."
-    ],
-    "word_cham": [
-      "rostdan ham",
-      "Bugun ob-havo rostdan ham yaxshi."
-    ],
-    "word_kong": [
-      "loviya",
-      "Men guruchga loviya qo'shdim."
-    ],
-    "word_saebyeok": [
-      "tong oldidan",
-      "Men tong oldidan turdim."
-    ],
-    "word_utda": [
-      "kulmoq",
-      "Do'stim baland ovozda kuladi."
-    ],
-    "word_imi": [
-      "allaqachon",
-      "Hammasi allaqachon tugadi."
-    ],
-    "word_sutgarak": [
-      "qoshiq",
-      "Men sho'rvani qoshiq bilan ichaman."
-    ],
-    "word_bureuda": [
-      "chaqirmoq",
-      "Men taksi chaqiraman."
-    ],
-    "word_koteu": [
-      "palto",
-      "Iltimos, paltongizni kiying."
-    ],
-    "word_meolda": [
-      "uzoq bo'lmoq",
-      "Maktab uzoq."
-    ],
-    "word_myeong": [
-      "odam sanaydigan so'z",
-      "Bu yerda beshta o'quvchi bor."
-    ],
-    "word_eonni": [
-      "qizning opasi",
-      "Opam universitet talabasi.",
-      "Ayol opasini ataydigan so'z; xuddi shu odam haqida erkak 누나 deydi. Ayollar o'zidan sal kattaroq, yaqin yuradigan ayolga ham shunday murojaat qiladi, do'konlarda ham."
-    ],
-    "word_ihae": [
-      "tushunish",
-      "Men buni yaxshi tushunaman."
-    ],
-    "word_samda": [
-      "suvda qaynatmoq",
-      "Men tuxum qaynataman."
-    ],
-    "word_noransaek": [
-      "sariq rang",
-      "Men sariq soyabon oldim."
-    ],
-    "word_mudeom": [
-      "qabr",
-      "Tog'da eski qabr bor."
-    ],
-    "word_gita": [
-      "gitara",
-      "Men gitara chalaman."
-    ],
-    "word_itda_3": [
-      "unutmoq",
-      "Men ismni unutdim."
-    ],
-    "word_gongyeon": [
-      "tomosha",
-      "Tomosha boshlanadi."
-    ],
-    "word_ilta": [
-      "yo'qotmoq",
-      "Men kalitni yo'qotdim."
-    ],
-    "word_baneung": [
-      "munosabat",
-      "Odamlarning munosabati juda yaxshi bo'ldi."
-    ],
-    "word_gudu": [
-      "charm poyabzal",
-      "Poyabzal qulay."
-    ],
-    "word_hyuga": [
-      "mehnat ta'tili",
-      "Men ta'tilga chiqdim."
-    ],
-    "word_jeohui": [
-      "biz, kamtarona",
-      "Biz sizga yordam beramiz."
-    ],
-    "word_geuttae": [
-      "o'sha paytda",
-      "O'sha paytda yomg'ir yog'ayotgan edi."
-    ],
-    "word_sopa": [
-      "divan",
-      "Divanga o'tirib dam oling."
-    ]
-  }
+ "_comment": "Vocabulary copy for Uzbek. Keyed by word id, not by position: the corpus is re-ordered whenever difficulty is re-scored, and an index would silently attach every meaning to the wrong word. Each row is [meaning, example translation]. Translated from the canonical taught sense — the English gloss and the Korean example together — not from the Korean word alone, so a polysemous headword cannot drift to another sense in one language. Not reviewed by a native speaker; see docs/report.md.",
+ "locale": "uz",
+ "words": {
+  "word_hada": [
+   "qilmoq",
+   "Men dars qilyapman.",
+   "Qilmoq — va koreys so’z yasashining dvigateli. Uni otga qo’shsangiz, fe’l hosil bo’ladi: 공부 (o’qish) → 공부하다 (o’qimoq), 사랑 (sevgi) → 사랑하다. Yuzlab fe’l shu tarzda tuzilgan."
+  ],
+  "word_cha": [
+   "mashina",
+   "Men mashinada boraman.",
+   "Mashina. Xuddi shu bo’g’in choy ma’nosini ham beradi: 차를 마셔요 — choy ichaman, 차를 타요 — mashinaga o’tiraman. Qaysi biri ekanini fe’l aytadi."
+  ],
+  "word_yeoja": [
+   "ayol",
+   "U ayol shifokor."
+  ],
+  "word_na": [
+   "men",
+   "Men koreys tilini o‘rganyapman."
+  ],
+  "word_hae": [
+   "Quyosh",
+   "Quyosh yorqin."
+  ],
+  "word_don": [
+   "pul",
+   "Hamyonda pul bor."
+  ],
+  "word_uri": [
+   "biz",
+   "Biz do‘stmiz."
+  ],
+  "word_jip": [
+   "uy",
+   "Men uyga ketyapman."
+  ],
+  "word_itda": [
+   "bir joyda bo‘lmoq",
+   "Men uydaman.",
+   "O’zbekchada ikki so’z kerak bo’lgan joyda koreyschada bitta: 있다 ham biror joyda bo’lmoq, ham ega bo’lmoq degani. 책상에 책이 있어요 — kitob stolda; 시간이 있어요 — vaqtim bor. Qarama-qarshisi — 없다."
+  ],
+  "word_ne": [
+   "ha",
+   "Ha, to‘g‘ri.",
+   "네 deb yoziladigan uchta keng tarqalgan so’z bor. Bu — «ha». Qolganlari «sening» (네 책, sening kitobing) va sanoq so’zidan oldin keladigan «to’rt» (네 개, to’rtta). Ularni imlo emas, kontekst ajratadi."
+  ],
+  "word_son": [
+   "qo‘l",
+   "Men qo‘lda yozaman."
+  ],
+  "word_sigan": [
+   "vaqt",
+   "Vaqtim yo‘q.",
+   "Umuman vaqt, shuningdek soatlarni sanash so’zi: 두 시간 — ikki soat. Uni 시 bilan aralashtirmang, u — soatdagi vaqt: 두 시 — soat ikkida, butunlay boshqa narsa."
+  ],
+  "word_jeo": [
+   "men (xushmuomala)",
+   "Men talabaman."
+  ],
+  "word_gada": [
+   "bormoq",
+   "Men maktabga boraman."
+  ],
+  "word_gae": [
+   "it",
+   "It yugurayapti."
+  ],
+  "word_mun": [
+   "eshik",
+   "Men eshikni ochaman."
+  ],
+  "word_sae": [
+   "qush",
+   "Bir qush uchyapti."
+  ],
+  "word_mom": [
+   "tana",
+   "Men har kuni tanamni yuvaman."
+  ],
+  "word_bang": [
+   "xona",
+   "Xona toza."
+  ],
+  "word_nun": [
+   "ko‘z",
+   "Ko‘zlaring chiroyli.",
+   "Ko’z. Qor so’zi bilan bir xil yoziladi; sinchkovlik bilan gapirilganda ularni cho’ziqlik ajratadi: qorning 눈-i cho’zib, ko’zning 눈-i qisqa aytiladi. Ko’pchilik kontekstga tayanadi."
+  ],
+  "word_ot": [
+   "kiyim",
+   "Kiyim chiroyli."
+  ],
+  "word_neo": [
+   "sen",
+   "Sen qayerdasan?"
+  ],
+  "word_eopda": [
+   "yo‘q bo‘lmoq",
+   "Mening pulim yo‘q."
+  ],
+  "word_meori": [
+   "bosh",
+   "Boshim og‘riyapti."
+  ],
+  "word_ip": [
+   "og‘iz",
+   "Og‘iz kichkina."
+  ],
+  "word_mul": [
+   "suv",
+   "Men suv ichaman."
+  ],
+  "word_dari": [
+   "oyoq",
+   "Oyog‘im og‘riyapti.",
+   "Oyoq — sizniki, stolniki, stulniki. Xuddi shu so’z «ko’prik» ma’nosini ham beradi, shuning uchun 다리를 건너요 — «ko’prikdan o’taman», tanaga aloqasi yo’q."
+  ],
+  "word_bi": [
+   "yomg‘ir",
+   "Yomg‘ir yog‘yapti."
+  ],
+  "word_wae": [
+   "nega",
+   "Nega kechikding?"
+  ],
+  "word_eolgul": [
+   "yuz",
+   "Men yuzimni yuvaman."
+  ],
+  "word_saram": [
+   "odam",
+   "U yaxshi odam."
+  ],
+  "word_hakgyo": [
+   "maktab",
+   "Maktab katta."
+  ],
+  "word_yeogi": [
+   "bu yerda",
+   "Marhamat, bu yerga o‘tiring."
+  ],
+  "word_pal": [
+   "qo‘l",
+   "Qo‘llaring uzun."
+  ],
+  "word_norae": [
+   "qo‘shiq",
+   "Men qo‘shiq aytaman."
+  ],
+  "word_chaek": [
+   "kitob",
+   "Men kitob o‘qiyman."
+  ],
+  "word_dal": [
+   "Oy",
+   "Oy yorqin."
+  ],
+  "word_jeonhwa": [
+   "telefon",
+   "Men telefonga javob beraman."
+  ],
+  "word_namu": [
+   "daraxt",
+   "Daraxt baland."
+  ],
+  "word_dasi": [
+   "yana",
+   "Iltimos, yana ayting."
+  ],
+  "word_nal": [
+   "kun",
+   "Bugun yaxshi kun."
+  ],
+  "word_jigeum": [
+   "hozir",
+   "Men hozir ketaman."
+  ],
+  "word_haru": [
+   "bir kun",
+   "Kun uzun."
+  ],
+  "word_sesang": [
+   "dunyo",
+   "Dunyo keng."
+  ],
+  "word_bal": [
+   "oyoq kafti",
+   "Oyoqlarim sovqotdi."
+  ],
+  "word_neutda": [
+   "kechikmoq",
+   "Avtobus kechikdi."
+  ],
+  "word_modu": [
+   "hamma",
+   "Hamma yig‘ildi."
+  ],
+  "word_sajin": [
+   "surat",
+   "Men surat olaman."
+  ],
+  "word_chimdae": [
+   "karavot",
+   "Karavot qulay."
+  ],
+  "word_ko": [
+   "burun",
+   "Burnim bitib qoldi."
+  ],
+  "word_san": [
+   "tog‘",
+   "Men toqqa boraman."
+  ],
+  "word_hana": [
+   "bir",
+   "Bitta olma bering."
+  ],
+  "word_byeongwon": [
+   "kasalxona",
+   "Men kasalxonaga boraman."
+  ],
+  "word_jeongmal": [
+   "rostdan",
+   "Katta rahmat.",
+   "Rostdan, haqiqatan — sifatdan oldin keladigan kuchaytiruvchi so’z: 정말 좋아요. Yolg’iz o’zi, oxirini ko’tarib aytilsa, 정말? bir so’zli savolga aylanadi: «rostdanmi?» — ko’pincha shunday eshitasiz."
+  ],
+  "word_seonmul": [
+   "sovg‘a",
+   "Menga sovg‘a yoqdi."
+  ],
+  "word_boda": [
+   "ko‘rmoq",
+   "Men kino ko‘raman."
+  ],
+  "word_oneul": [
+   "bugun",
+   "Bugun ob-havo yaxshi."
+  ],
+  "word_gabang": [
+   "sumka",
+   "Sumka og‘ir."
+  ],
+  "word_eumak": [
+   "musiqa",
+   "Musiqa chiroyli."
+  ],
+  "word_gage": [
+   "do‘kon",
+   "Do‘kon yopiq."
+  ],
+  "word_gil": [
+   "yo‘l",
+   "Yo‘l keng."
+  ],
+  "word_ohu": [
+   "tushdan keyin",
+   "Tushdan keyin uchrashaylik."
+  ],
+  "word_keopi": [
+   "qahva",
+   "Men qahva ichaman."
+  ],
+  "word_bap": [
+   "ovqat",
+   "Men ovqat yeyman."
+  ],
+  "word_eomma": [
+   "oyim",
+   "Oyim ovqat pishiryapti."
+  ],
+  "word_gwi": [
+   "quloq",
+   "Qulog‘im og‘riyapti."
+  ],
+  "word_beoseu": [
+   "avtobus",
+   "Avtobus kelyapti."
+  ],
+  "word_geurim": [
+   "rasm",
+   "Men rasm chizaman."
+  ],
+  "word_beon": [
+   "marta",
+   "Iltimos, yana bir marta qiling."
+  ],
+  "word_sul": [
+   "spirtli ichimlik",
+   "Men spirtli ichimlik ichmayman."
+  ],
+  "word_yeonghwa": [
+   "kino",
+   "Kino qiziqarli."
+  ],
+  "word_sada": [
+   "sotib olmoq",
+   "Men non sotib olaman."
+  ],
+  "word_byeol": [
+   "yulduz",
+   "Yulduzlar porlayapti."
+  ],
+  "word_bihaenggi": [
+   "samolyot",
+   "Men samolyotda uchaman."
+  ],
+  "word_bak": [
+   "tashqari",
+   "Tashqarida yomg‘ir yog‘yapti."
+  ],
+  "word_oda": [
+   "kelmoq",
+   "Do‘stim kelyapti."
+  ],
+  "word_chingu": [
+   "do‘st",
+   "Men do‘stim bilan uchrashaman."
+  ],
+  "word_appa": [
+   "dadam",
+   "Xayrli tun, dada."
+  ],
+  "word_haneul": [
+   "osmon",
+   "Osmon moviy."
+  ],
+  "word_bada": [
+   "dengiz",
+   "Dengiz keng."
+  ],
+  "word_sagwa": [
+   "olma",
+   "Olma shirin."
+  ],
+  "word_mulgeon": [
+   "narsa",
+   "Men narsalar sotib olaman."
+  ],
+  "word_moja": [
+   "shlyapa",
+   "Men shlyapa kiyaman."
+  ],
+  "word_gogi": [
+   "go‘sht",
+   "Men go‘sht qovuraman."
+  ],
+  "word_jinjja": [
+   "haqiqiy",
+   "Bu rostmi?"
+  ],
+  "word_sinbal": [
+   "oyoq kiyim",
+   "Men oyoq kiyim kiyaman."
+  ],
+  "word_jamkkan": [
+   "bir zum",
+   "Iltimos, bir zum kuting."
+  ],
+  "word_namja": [
+   "erkak",
+   "U erkak mening do‘stim."
+  ],
+  "word_eumsik": [
+   "ovqat",
+   "Koreys taomlari mazali."
+  ],
+  "word_saengil": [
+   "tug‘ilgan kun",
+   "Tug‘ilgan kuning bilan."
+  ],
+  "word_daseot": [
+   "besh",
+   "Besh kishi keldi."
+  ],
+  "word_gihoe": [
+   "imkoniyat",
+   "Bu yaxshi imkoniyat."
+  ],
+  "word_dul": [
+   "ikki",
+   "Ikkita stul bor."
+  ],
+  "word_sijang": [
+   "bozor",
+   "Men bozordan sabzavot olaman."
+  ],
+  "word_goyangi": [
+   "mushuk",
+   "Mushuk uxlayapti."
+  ],
+  "word_changmun": [
+   "deraza",
+   "Iltimos, derazani yoping."
+  ],
+  "word_yeoreum": [
+   "yoz",
+   "Yozda men dengizga boraman."
+  ],
+  "word_dongmul": [
+   "hayvon",
+   "Men hayvonlarni yaxshi ko‘raman."
+  ],
+  "word_yeohaeng": [
+   "sayohat",
+   "Men sayohat qilmoqchiman."
+  ],
+  "word_bam": [
+   "tun",
+   "Tunda yulduz ko‘p bo‘ladi.",
+   "Tun. «Kashtan» so’zi bilan bir xil yoziladi, kashtan esa Koreyada kuzning odatiy yengil taomi. Shuning uchun 밤을 먹어요 va 밤에 자요 butunlay boshqa narsa haqida."
+  ],
+  "word_geot": [
+   "narsa",
+   "Kerakli narsalarni sotib oldim.",
+   "Koreys tilining eng keng tarqalgan oti: siz nomlamagan narsaning o'rnida turadi. 제 것 — *meniki*; 먹을 것 — *yeydigan biror narsa*. Nutqda 거 bo'lib qisqaradi — 이거, 그거, 저거 — va yangi o'rganuvchilar avval shu shaklga duch keladi."
+  ],
+  "word_mal": [
+   "so'z, aytilgan gap",
+   "So'zingni o'ylab ayt.",
+   "So'z — kimningdir aytgani. Xuddi shu bo'g'in ot ma'nosini ham beradi, 말 esa koreys tili degan 한국말 so'zini yakunlaydi. Yozuvda ularni hech narsa ajratmaydi: 말을 하다 gapirmoq, 말을 타다 otga minmoq."
+  ],
+  "word_bun": [
+   "daqiqa",
+   "Atigi o'n daqiqa kuting.",
+   "Yana ikki so'z 분 deb yoziladi. Biri odamlarni hurmat bilan sanash usuli — 세 분, uch kishi, mehmonlar yoki kattalar haqida. Ikkinchisi g'azabni bildiradi, 분이 풀리다 dagidek. Ularni faqat gap ajratadi."
+  ],
+  "word_dwi": [
+   "orqa tomon",
+   "Daftarning orqasiga ismimni yozdim."
+  ],
+  "word_si": [
+   "soat",
+   "Dars soat ikkida tugaydi.",
+   "Soat o'z sanoq sonlarini oladi — 한 시, 두 시, 세 시 — daqiqa esa xitoy asosli sonlarni: 세 시 십 분, uchdan o'n daqiqa o'tdi. Ikkalasini almashtirib yuborish yangi o'rganuvchining klassik xatosi va darrov bilinadi."
+  ],
+  "word_deo": [
+   "yana, ko'proq",
+   "Yana ozgina bering."
+  ],
+  "word_ap": [
+   "old tomon",
+   "Do'kon oldida uchrashaylik."
+  ],
+  "word_da": [
+   "hammasi",
+   "Guruchni hammasini yeb qo'ydim."
+  ],
+  "word_jom": [
+   "ozgina, shuningdek iltimosni yumshatuvchi so'z",
+   "Ozgina suv bering.",
+   "조금 so'zining qisqasi, *ozgina* — ammo ishining yarmi yumshatish. Iltimosga qo'shilsa, o'tkirligini oladi: 도와주세요 — *yordam ber*, 좀 도와주세요 esa *yordam bera olasizmi* ga yaqin. Koreyslar uni aynan shu sababdan tinimsiz ishlatadi."
+  ],
+  "word_jeon": [
+   "oldin",
+   "Ovqatdan oldin qo'limni yuvaman.",
+   "Vaqt ma'nosida oldin. Yana bir necha so'z 전 deb yoziladi: 전쟁 — urush, qisqarganda 전; 전기 — elektr; menyudagi 전 esa sho'r quymoq. Fe'ldan oldin turganda bu vaqtga oidi — 먹기 전에, ovqatdan oldin."
+  ],
+  "word_alda": [
+   "bilmoq",
+   "Bu ismni bilaman."
+  ],
+  "word_yak": [
+   "dori",
+   "Ovqatdan keyin dori iching."
+  ],
+  "word_jota": [
+   "yaxshi bo'lmoq",
+   "Kayfiyatim yaxshi."
+  ],
+  "word_jal": [
+   "yaxshi",
+   "Yaxshi uxladingmi?"
+  ],
+  "word_anida": [
+   "biror narsa emaslik",
+   "Men talaba emasman.",
+   "이다 so'zining teskarisi. Inkor qilinayotgan narsaga 을/를 emas, 이/가 qo'shiladi: 학생이 아니에요, hech qachon 학생을 아니에요 emas. Shu bitta qolipni o'rgangan kishi koreys tilidagi har qanday otli gapni inkor qila oladi."
+  ],
+  "word_bul": [
+   "olov",
+   "Tog'da yong'in chiqdi."
+  ],
+  "word_uyu": [
+   "sut",
+   "Sut sovuq."
+  ],
+  "word_meokda": [
+   "yemoq",
+   "Men meva yeyman."
+  ],
+  "word_ppang": [
+   "non",
+   "Men non yeyman."
+  ],
+  "word_ttae": [
+   "biror narsa sodir bo'ladigan payt",
+   "Bolaligimda qishloqda yashaganman."
+  ],
+  "word_il": [
+   "ish",
+   "Bugun ish ko'p.",
+   "Ish yoki bajarilishi kerak bo'lgan narsa. Xuddi shu bo'g'in xitoy asosli bir — 일 번, birinchi raqam — va u 일요일 ya'ni yakshanbadagi kun, hamda 삼 일, uch kun."
+  ],
+  "word_baji": [
+   "shim",
+   "Shim uzun."
+  ],
+  "word_sigye": [
+   "soat",
+   "Menda soat yo'q."
+  ],
+  "word_siheom": [
+   "imtihon",
+   "Ertaga imtihonim bor."
+  ],
+  "word_keompyuteo": [
+   "kompyuter",
+   "Kompyuterni yoqaman."
+  ],
+  "word_nalssi": [
+   "ob-havo",
+   "Ob-havo yaxshi."
+  ],
+  "word_jongi": [
+   "qog'oz",
+   "Men qog'ozga rasm chizaman."
+  ],
+  "word_dosi": [
+   "shahar",
+   "Shahar juda katta."
+  ],
+  "word_munje": [
+   "muammo",
+   "Bitta muammo bor."
+  ],
+  "word_wi": [
+   "ust tomoni",
+   "Sumkaning ustida shapka bor."
+  ],
+  "word_bom": [
+   "bahor",
+   "Bahorda gullar ochiladi."
+  ],
+  "word_jeonyeok": [
+   "kechki ovqat",
+   "Men kechki ovqat yeyman."
+  ],
+  "word_gyeoul": [
+   "qish",
+   "Qishda qor ko'p yog'adi."
+  ],
+  "word_abeoji": [
+   "ota",
+   "Otam ishga boradi."
+  ],
+  "word_eoseo": [
+   "kiring, tezroq",
+   "Xush kelibsiz, kiring."
+  ],
+  "word_mot": [
+   "xohlasa ham qila olmaslik",
+   "Juda achchiq, shuning uchun yeya olmayman.",
+   "Koreys tilida ikki inkor bor va ular boshqa-boshqa narsa aytadi. 안 — *xohlamayman*; 못 — *qo'limdan kelmaydi*. 안 먹어요 yemaslikni tanlayotganingizni; 못 먹어요 esa nimadir to'sqinlik qilayotganini bildiradi. Xuddi shunday yoziladigan 못 oti mix degani."
+  ],
+  "word_salda": [
+   "yashamoq",
+   "Men Seulda yashayman."
+  ],
+  "word_ai": [
+   "bola",
+   "Bola kulmoqda."
+  ],
+  "word_jeomsim": [
+   "tushlik",
+   "Birga tushlik qilaylik."
+  ],
+  "word_nugu": [
+   "kim",
+   "U odam kim?"
+  ],
+  "word_eonje": [
+   "qachon",
+   "Sen qachon kelasan?"
+  ],
+  "word_geori": [
+   "ko'cha",
+   "Ko'chada odam ko'p."
+  ],
+  "word_annyeong": [
+   "salom va xayr ma'nosidagi so'z",
+   "Xayr, yana ko'rishaylik!"
+  ],
+  "word_gakkeum": [
+   "ba'zan",
+   "Ba'zan kino ko'raman."
+  ],
+  "word_manta": [
+   "ko'p bo'lmoq",
+   "Odam ko'p."
+  ],
+  "word_chima": [
+   "yubka",
+   "Bu yubka juda chiroyli."
+  ],
+  "word_uija": [
+   "stul",
+   "Men stulda o'tiribman."
+  ],
+  "word_jeogi": [
+   "u yerda",
+   "U yerda maktab bor."
+  ],
+  "word_gongwon": [
+   "bog'",
+   "Men bog'da sayr qilaman."
+  ],
+  "word_ssal": [
+   "guruch",
+   "Guruchni yuvib pishiraman."
+  ],
+  "word_jigu": [
+   "Yer",
+   "Yer yumaloq."
+  ],
+  "word_eodi": [
+   "qayerda",
+   "Hojatxona qayerda?"
+  ],
+  "word_byeok": [
+   "devor",
+   "Devorga rasm ilaman."
+  ],
+  "word_gyeran": [
+   "tuxum",
+   "Ertalab bitta tuxum qaynatdim."
+  ],
+  "word_tada": [
+   "minmoq",
+   "Men avtobusga minaman.",
+   "Sizni olib yuradigan har narsaga minmoq — avtobusga, velosipedga, liftga. Yana ikki juda keng tarqalgan fe'l shu yozuvni bo'lishadi: 타다 yonmoq ma'nosini ham, ichimlikka nimadir aralashtirmoq ma'nosini ham beradi."
+  ],
+  "word_segye": [
+   "dunyo",
+   "Dunyodagi ko'p mamlakatlarni bilaman."
+  ],
+  "word_ireum": [
+   "ism",
+   "Isming nima?"
+  ],
+  "word_guk": [
+   "sho'rva",
+   "Ertalab sho'rva ichaman."
+  ],
+  "word_malhada": [
+   "gapirmoq",
+   "Iltimos, sekinroq gapiring."
+  ],
+  "word_geotda": [
+   "piyoda yurmoq",
+   "Men bog'da yuraman."
+  ],
+  "word_gangaji": [
+   "kuchukcha",
+   "Kuchukcha kichkina."
+  ],
+  "word_sori": [
+   "ovoz",
+   "Ovoz baland."
+  ],
+  "word_yeop": [
+   "yon tomon",
+   "Iltimos, yonimga o'tiring."
+  ],
+  "word_saenggak": [
+   "fikr",
+   "Bu yaxshi fikr."
+  ],
+  "word_geogi": [
+   "u yerda",
+   "U yerda kimdir bormi?"
+  ],
+  "word_adeul": [
+   "o'g'il",
+   "O'g'lim maktabga boradi."
+  ],
+  "word_doeda": [
+   "bo'lmoq",
+   "Men shifokor bo'lmoqchiman.",
+   "Bo'lmoq. Bu shuningdek biror narsaning ishlashi yoki ruxsat etilganini bildiruvchi kundalik so'z: 안 돼요 — bunday bo'lmaydi, 다 됐어요 — tayyor. Ularni lug'atdagi ma'nosidan ancha ko'p eshitasiz."
+  ],
+  "word_maeul": [
+   "qishloq",
+   "Qishloq tinch."
+  ],
+  "word_kape": [
+   "kafe",
+   "Do'stim bilan kafeda uchrashaman."
+  ],
+  "word_gong": [
+   "to'p",
+   "Men to'pni tepaman."
+  ],
+  "word_gajok": [
+   "oila",
+   "Oilam katta."
+  ],
+  "word_ssi": [
+   "ismdan keyin qo'llanadigan hurmat so'zi",
+   "Minsu, bir daqiqa.",
+   "Ismga qo'shilsa, tengdoshlar orasida xushmuomala va samimiy: 민수 씨. Faqat familiyaga qo'shilsa — 김 씨 — uzoq, hatto qo'pol eshitiladi, shuning uchun ismini ishlating. Yuqori lavozimdagiga unvonini qo'shing: 부장님, 선생님."
+  ],
+  "word_achim": [
+   "ertalab",
+   "Men ertalab turaman."
+  ],
+  "word_jeonhwahada": [
+   "telefon qilmoq",
+   "Keyinroq senga qo'ng'iroq qilaman."
+  ],
+  "word_gaeul": [
+   "kuz",
+   "Kuzda shamol salqin bo'ladi."
+  ],
+  "word_kkot": [
+   "gul",
+   "Gul chiroyli."
+  ],
+  "word_jido": [
+   "xarita",
+   "Men xaritaga qarayman."
+  ],
+  "word_saek": [
+   "rang",
+   "Bu rang chiroyli."
+  ],
+  "word_juda": [
+   "bermoq",
+   "Men sovg'a beraman."
+  ],
+  "word_yachae": [
+   "sabzavot",
+   "Iltimos, ko'proq sabzavot yeng."
+  ],
+  "word_chaeksang": [
+   "yozuv stoli",
+   "Stol ustida kitob bor."
+  ],
+  "word_cheoeum": [
+   "birinchi marta",
+   "Tanishganimdan xursandman."
+  ],
+  "word_gwail": [
+   "meva",
+   "Men mevani yaxshi ko'raman."
+  ],
+  "word_uisa": [
+   "shifokor",
+   "Shifokor meni ko'rmoqda."
+  ],
+  "word_ttal": [
+   "qiz farzand",
+   "Qizim maktabga boradi."
+  ],
+  "word_yeoboseyo": [
+   "allo, telefonda",
+   "Allo, kim bu?"
+  ],
+  "word_so": [
+   "sigir",
+   "Sigir o't yemoqda."
+  ],
+  "word_pyeonji": [
+   "xat",
+   "Onamga xat yozaman."
+  ],
+  "word_jogeum": [
+   "ozgina",
+   "Faqat ozgina bering."
+  ],
+  "word_boida": [
+   "ko'rinmoq",
+   "Tog' ko'rinib turibdi."
+  ],
+  "word_jari": [
+   "o'tiradigan joy",
+   "Joy yo'q."
+  ],
+  "word_hu": [
+   "keyin",
+   "Darsdan keyin kutubxonaga boraman."
+  ],
+  "word_kadeu": [
+   "karta",
+   "Men karta bilan to'layman."
+  ],
+  "word_naeil": [
+   "ertaga",
+   "Ertaga ko'rishamiz."
+  ],
+  "word_jungyohada": [
+   "muhim bo'lmoq",
+   "Sog'liq eng muhim."
+  ],
+  "word_dalgyal": [
+   "tuxum",
+   "Ertalab tuxum yeyman."
+  ],
+  "word_aju": [
+   "juda",
+   "Bu juda mazali."
+  ],
+  "word_matda": [
+   "to'g'ri bo'lmoq",
+   "Bu javob to'g'ri."
+  ],
+  "word_hanguk": [
+   "Koreya",
+   "Men koreys taomlarini yaxshi ko'raman."
+  ],
+  "word_gang": [
+   "daryo",
+   "Daryo juda keng."
+  ],
+  "word_cho": [
+   "soniya",
+   "O'ttiz soniya qoldi."
+  ],
+  "word_hoesa": [
+   "kompaniya, ofis",
+   "Men ofisga boraman."
+  ],
+  "word_sosik": [
+   "kimdandir kelgan xabar",
+   "Menda yaxshi xabar bor."
+  ],
+  "word_jakda": [
+   "kichik bo'lmoq",
+   "Poyabzal kichik."
+  ],
+  "word_gimchi": [
+   "kimchi",
+   "Kimchi achchiq."
+  ],
+  "word_ikda": [
+   "o'qimoq",
+   "Men gazeta o'qiyman."
+  ],
+  "word_geurigo": [
+   "va, keyin",
+   "Non sotib oldim. Sut ham sotib oldim."
+  ],
+  "word_keuda": [
+   "katta bo'lmoq",
+   "Bu sumka katta."
+  ],
+  "word_yeollak": [
+   "aloqa",
+   "Iltimos, keyinroq bog'laning."
+  ],
+  "word_gachi": [
+   "birga",
+   "Birga ovqatlanaylik."
+  ],
+  "word_neomu": [
+   "juda ham",
+   "Bu kiyim juda katta."
+  ],
+  "word_yong": [
+   "ajdar",
+   "Rasmda katta ajdar bor."
+  ],
+  "word_geureota": [
+   "shunday bo'lmoq",
+   "Ha, shunday."
+  ],
+  "word_hotel": [
+   "mehmonxona",
+   "Men mehmonxonada tunadim."
+  ],
+  "word_yeolsoe": [
+   "kalit",
+   "Menda kalit yo'q."
+  ],
+  "word_yeppeuda": [
+   "chiroyli bo'lmoq",
+   "Gullar rostdan ham chiroyli."
+  ],
+  "word_geugeot": [
+   "u narsa",
+   "Iltimos, o'shani bering."
+  ],
+  "word_daeum": [
+   "keyingi",
+   "Keyingi safar ko'rishamiz."
+  ],
+  "word_maeum": [
+   "ko'ngil",
+   "Uning ko'ngli iliq."
+  ],
+  "word_jadongcha": [
+   "avtomobil",
+   "Mashina tez."
+  ],
+  "word_jukda": [
+   "o'lmoq",
+   "Tuvakdagi gul sug'orilmagani uchun quridi."
+  ],
+  "word_nalda": [
+   "uchmoq",
+   "Qush osmonda uchmoqda."
+  ],
+  "word_siksa": [
+   "ovqatlanish",
+   "Ovqat juda mazali edi."
+  ],
+  "word_gigye": [
+   "mashina, mexanizm",
+   "Mashina buzilib qoldi."
+  ],
+  "word_ttang": [
+   "yer",
+   "Yer nam."
+  ],
+  "word_jada": [
+   "uxlamoq",
+   "Men erta yotaman."
+  ],
+  "word_beorida": [
+   "tashlamoq",
+   "Iltimos, buni chiqindi qutisiga tashlang."
+  ],
+  "word_juso": [
+   "manzil",
+   "Iltimos, manzilni ayting."
+  ],
+  "word_gicha": [
+   "poyezd",
+   "Poyezd jo'nab ketdi."
+  ],
+  "word_chitsol": [
+   "tish cho'tkasi",
+   "Yangi tish cho'tkasi sotib oldim."
+  ],
+  "word_sarang": [
+   "sevgi",
+   "Sevgi go'zal."
+  ],
+  "word_gongbu": [
+   "o'qish",
+   "O'qish qiziqarli."
+  ],
+  "word_saengseon": [
+   "yeyiladigan baliq",
+   "Kechki ovqatga baliq qovurdim."
+  ],
+  "word_mok": [
+   "bo'yin",
+   "Bo'ynim og'riyapti."
+  ],
+  "word_sipda": [
+   "xohlamoq",
+   "Men Koreyaga bormoqchiman."
+  ],
+  "word_nyuseu": [
+   "yangiliklar",
+   "Men yangiliklarni ko'raman."
+  ],
+  "word_chatda": [
+   "izlamoq",
+   "Men kalitni qidiryapman."
+  ],
+  "word_iljjik": [
+   "erta",
+   "Ertaga erta turaman."
+  ],
+  "word_geonmul": [
+   "bino",
+   "Ana u bino juda baland."
+  ],
+  "word_seonsaengnim": [
+   "o'qituvchi",
+   "O'qituvchi dars bermoqda."
+  ],
+  "word_eomeoni": [
+   "ona",
+   "Onam uyda."
+  ],
+  "word_gibun": [
+   "kayfiyat",
+   "Kayfiyating qanday?"
+  ],
+  "word_honja": [
+   "yolg'iz",
+   "Men yolg'iz bora olaman."
+  ],
+  "word_ani": [
+   "yo'q",
+   "Yo'q, men bormadim."
+  ],
+  "word_eoje": [
+   "kecha",
+   "Kecha yomg'ir yog'di."
+  ],
+  "word_sseuda": [
+   "yozmoq",
+   "Men ismimni yozaman.",
+   "Yozmoq. Xuddi shu fe'l biror narsani ishlatmoq, boshga shlyapa yoki ko'zoynak taqmoq va — sifat sifatida — achchiq bo'lmoq ma'nosini ham beradi. To'rt kundalik ma'no, bitta yozuv."
+  ],
+  "word_masida": [
+   "ichmoq",
+   "Men sut ichaman."
+  ],
+  "word_syeocheu": [
+   "ko'ylak",
+   "Men oq ko'ylak kiyganman."
+  ],
+  "word_junbi": [
+   "tayyorgarlik",
+   "Hammasi tayyor."
+  ],
+  "word_mian": [
+   "kechir",
+   "Kechir, kechikdim."
+  ],
+  "word_geokjeong": [
+   "tashvish",
+   "Menda tashvish ko'p."
+  ],
+  "word_hajiman": [
+   "lekin",
+   "Yomg'ir yog'yapti. Lekin baribir boraman."
+  ],
+  "word_kamera": [
+   "kamera",
+   "Men kamera sotib oldim."
+  ],
+  "word_dongne": [
+   "mahalla",
+   "Bizning mahalla tinch."
+  ],
+  "word_naengjanggo": [
+   "muzlatgich",
+   "Sutni muzlatgichga qo'ydim."
+  ],
+  "word_anda": [
+   "o'tirmoq",
+   "Men stulga o'tirdim."
+  ],
+  "word_ppalli": [
+   "tez",
+   "Iltimos, tezroq keling."
+  ],
+  "word_yaegi": [
+   "suhbat",
+   "Ozgina suhbatlashaylik."
+  ],
+  "word_got": [
+   "joy",
+   "Men tinch joy topdim."
+  ],
+  "word_nat": [
+   "kunduz",
+   "Kunduzi issiq bo'ladi."
+  ],
+  "word_sangja": [
+   "quti",
+   "Men qutini ochaman."
+  ],
+  "word_wonhada": [
+   "xohlamoq",
+   "Nima xohlaysan?"
+  ],
+  "word_sikdang": [
+   "oshxona",
+   "Oshxona qayerda?"
+  ],
+  "word_geurida": [
+   "chizmoq",
+   "Bola daraxt chizmoqda."
+  ],
+  "word_yuri": [
+   "oyna",
+   "Oyna sinib ketdi."
+  ],
+  "word_igeot": [
+   "bu",
+   "Iltimos, buni bering."
+  ],
+  "word_geoul": [
+   "ko'zgu",
+   "Men ko'zguga qarayman."
+  ],
+  "word_gijeok": [
+   "mo'jiza",
+   "Bu rostdan ham mo'jizaga o'xshardi."
+  ],
+  "word_kal": [
+   "pichoq",
+   "Olmani pichoq bilan tozaladim."
+  ],
+  "word_gatda": [
+   "bir xil bo'lmoq",
+   "Sumkalarimiz bir xil."
+  ],
+  "word_pul": [
+   "o't",
+   "O't yashil."
+  ],
+  "word_eolma": [
+   "qancha",
+   "Bu qancha turadi?"
+  ],
+  "word_saenggakada": [
+   "o'ylamoq",
+   "Men ham shunday o'ylayman."
+  ],
+  "word_jilmun": [
+   "savol",
+   "Menda bitta savol bor."
+  ],
+  "word_geunyeo": [
+   "u, ayol haqida",
+   "U chiroyli qo'shiq aytadi."
+  ],
+  "word_nota": [
+   "qo'ymoq",
+   "Sumkani polga qo'ydim."
+  ],
+  "word_banggeum": [
+   "hozirgina",
+   "Men hozirgina keldim."
+  ],
+  "word_bonaeda": [
+   "yubormoq",
+   "Men xat yuboraman."
+  ],
+  "word_arae": [
+   "ostida",
+   "Kitob stol ostida."
+  ],
+  "word_naoda": [
+   "chiqmoq",
+   "Suv oqmoqda."
+  ],
+  "word_nai": [
+   "yosh",
+   "Yoshingiz nechada?"
+  ],
+  "word_eotteoke": [
+   "qanday",
+   "U yerga qanday borish mumkin?"
+  ],
+  "word_eunhaeng": [
+   "bank",
+   "Bank ochildi."
+  ],
+  "word_al": [
+   "tuxum",
+   "Qush uchta tuxum qo'ydi."
+  ],
+  "word_moreuda": [
+   "bilmaslik",
+   "Men bilmayman."
+  ],
+  "word_badak": [
+   "pol",
+   "Men polni artaman."
+  ],
+  "word_hwajangsil": [
+   "hojatxona",
+   "Hojatxona toza."
+  ],
+  "word_yeok": [
+   "bekat",
+   "Bekatda uchrashaylik."
+  ],
+  "word_seoul": [
+   "Seul",
+   "Seul juda katta."
+  ],
+  "word_gwiyeopda": [
+   "yoqimtoy bo'lmoq",
+   "Kuchukcha yoqimtoy."
+  ],
+  "word_areumdapda": [
+   "go'zal bo'lmoq",
+   "Manzara go'zal."
+  ],
+  "word_ajik": [
+   "hali",
+   "Ular hali kelishmadi."
+  ],
+  "word_gyedan": [
+   "zina",
+   "Bu yerda zina ko'p."
+  ],
+  "word_maeil": [
+   "har kuni",
+   "Men har kuni hangil yozaman."
+  ],
+  "word_agi": [
+   "chaqaloq",
+   "Chaqaloq uxlamoqda."
+  ],
+  "word_dwaeji": [
+   "cho'chqa",
+   "Cho'chqa yemoqda."
+  ],
+  "word_ju": [
+   "hafta",
+   "Keyingi haftada uchrashaylik."
+  ],
+  "word_iyagi": [
+   "hikoya",
+   "Bu qiziqarli hikoya."
+  ],
+  "word_tto": [
+   "yana",
+   "Ertaga yana ko'rishamiz."
+  ],
+  "word_beolsseo": [
+   "allaqachon",
+   "Hammasi allaqachon butunlay tugadi."
+  ],
+  "word_dangsin": [
+   "siz",
+   "Men sizni kutdim.",
+   "Darsliklarda 당신 muloyim «siz» deb beriladi, lekin haqiqiy nutqda u asosan er-xotin orasida ishlatiladi — notanish odamga aytilsa, janjalga chorlagandek eshitiladi. Koreyslar odatda «sen/siz» demasdan, ism yoki lavozim (선생님, 사장님) bilan murojaat qilishadi. Ehtiyot bo'lib ishlating."
+  ],
+  "word_gap": [
+   "narx",
+   "Narx baland."
+  ],
+  "word_mianhada": [
+   "uzr so'ramoq",
+   "Kechikkanim uchun uzr."
+  ],
+  "word_jeongnyujang": [
+   "bekat",
+   "Men bekatda avtobus kutyapman."
+  ],
+  "word_anta": [
+   "qilmaslik",
+   "Men qahva ichmayman."
+  ],
+  "word_taeksi": [
+   "taksi",
+   "Iltimos, taksi chaqiring."
+  ],
+  "word_haksaeng": [
+   "o'quvchi",
+   "Sinfda o'quvchi ko'p."
+  ],
+  "word_bomul": [
+   "xazina",
+   "Bolalar xazina qidirmoqda."
+  ],
+  "word_jumun": [
+   "buyurtma",
+   "Buyurtma berasizmi?"
+  ],
+  "word_sinmun": [
+   "gazeta",
+   "Iltimos, gazeta o'qing."
+  ],
+  "word_dak": [
+   "tovuq",
+   "Tovuq tuxum qo'yadi."
+  ],
+  "word_keop": [
+   "piyola",
+   "Men piyolaga suv quyaman."
+  ],
+  "word_set": [
+   "uch",
+   "Uch do'st yig'ildi."
+  ],
+  "word_hangugeo": [
+   "koreys tili",
+   "Koreys tili qiziqarli."
+  ],
+  "word_geuraeseo": [
+   "shuning uchun",
+   "Yomg'ir yog'yapti, shuning uchun bormayman."
+  ],
+  "word_manhi": [
+   "ko'p",
+   "Iltimos, ko'proq yeng."
+  ],
+  "word_du": [
+   "ikki, sanoq so'zidan oldin",
+   "Ikkita qahva bering.",
+   "Koreysning o'z sanoq sonlari sanoq so'zidan oldin shaklini o'zgartiradi. 하나 둘 셋 넷 lar 한 두 세 네 bo'ladi: yolg'iz turganda 하나, bitta dona uchun 한 개. 두 — 둘 so'zining o'sha shakli va u hech qachon yolg'iz turmaydi."
+  ],
+  "word_pyeonuijeom": [
+   "kechayu kunduz ishlaydigan do'kon",
+   "Uyim oldida kechayu kunduz ishlaydigan do'kon bor."
+  ],
+  "word_miguk": [
+   "Amerika Qo'shma Shtatlari",
+   "Men Amerikadanman."
+  ],
+  "word_gyesok": [
+   "to'xtovsiz",
+   "Yomg'ir to'xtovsiz yog'yapti."
+  ],
+  "word_gagyeok": [
+   "narx",
+   "Narx o'ylaganimdan qimmat."
+  ],
+  "word_dongsaeng": [
+   "uka yoki singil",
+   "Ukam yoqimtoy.",
+   "So'zlovchiga qarab o'zgarmaydigan yagona qarindoshlik so'zi: kichigi kim bo'lsa 동생, kim gapirsa ham. Jinsi kerak bo'lsa bir bo'g'in qo'shing — 남동생 ukasi, 여동생 singlisi."
+  ],
+  "word_tokki": [
+   "quyon",
+   "Quyon sakramoqda."
+  ],
+  "word_seoda": [
+   "turmoq",
+   "Men navbatda turibman."
+  ],
+  "word_eoreum": [
+   "muz",
+   "Iltimos, muz qo'shing."
+  ],
+  "word_jayeon": [
+   "tabiat",
+   "Tabiat go'zal."
+  ],
+  "word_jjikda": [
+   "muhr bosmoq",
+   "Men muhr bosdim.",
+   "Biror narsani yuzaga bosmoq: muhr, tamg'a, barmoq izi. Xuddi shu fe'l suratga olishni — 사진을 찍다 — va ovqatni sousga botirishni ham qamrab oladi, uchalasi ham bitta bosish g'oyasidan."
+  ],
+  "word_yeol": [
+   "o'n",
+   "Iltimos, o'ngacha sanang.",
+   "Bu yerda 열 — narsalarni sanaydigan o'z koreys o'ni: 열 개, o'nta dona. Boshqa 열 isitmani bildiradi, 열다 fe'li esa ochmoqni. Ikki harf, bir-biriga aloqasiz uch so'z."
+  ],
+  "word_sasil": [
+   "haqiqat",
+   "Bu haqiqat."
+  ],
+  "word_unjeon": [
+   "haydash",
+   "Men mashina haydashni o'rganyapman."
+  ],
+  "word_gamja": [
+   "kartoshka",
+   "Men kartoshkani qaynataman."
+  ],
+  "word_gureum": [
+   "bulut",
+   "Bulut ko'p."
+  ],
+  "word_iyu": [
+   "sabab",
+   "Iltimos, sababini ayting."
+  ],
+  "word_dareun": [
+   "boshqa",
+   "Boshqa ranglar bormi?"
+  ],
+  "word_songarak": [
+   "barmoq",
+   "Barmog'im og'riyapti."
+  ],
+  "word_japda": [
+   "ushlamoq",
+   "Men qo'lingni ushlayman."
+  ],
+  "word_bueok": [
+   "oshxona xonasi",
+   "Men oshxonada ovqat pishiraman."
+  ],
+  "word_piryo": [
+   "ehtiyoj",
+   "Menga yordam kerak emas."
+  ],
+  "word_pa": [
+   "ko'k piyoz",
+   "Sho'rvaga ozgina ko'k piyoz qo'shdim."
+  ],
+  "word_batda": [
+   "olmoq",
+   "Men sovg'a oldim."
+  ],
+  "word_pida": [
+   "ochilmoq",
+   "Gullar ochildi."
+  ],
+  "word_sayong": [
+   "foydalanish",
+   "Iltimos, qanday foydalanishni ayting."
+  ],
+  "word_jeongbo": [
+   "ma'lumot",
+   "Men ma'lumot qidiryapman."
+  ],
+  "word_gonghang": [
+   "aeroport",
+   "Men aeroportga yetib keldim."
+  ],
+  "word_bumo": [
+   "ota-ona",
+   "Bolaga ota-ona kerak."
+  ],
+  "word_saranghada": [
+   "sevmoq",
+   "Men oilamni sevaman."
+  ],
+  "word_ireoke": [
+   "shunday qilib",
+   "Iltimos, shunday yozing."
+  ],
+  "word_ilhada": [
+   "ishlamoq",
+   "Onam kasalxonada ishlaydi."
+  ],
+  "word_suyeong": [
+   "suzish",
+   "Men suzishni o'rganyapman."
+  ],
+  "word_piryohada": [
+   "kerak bo'lmoq",
+   "Menga pul kerak."
+  ],
+  "word_bukjjok": [
+   "shimol",
+   "Ular shimolga ketishdi."
+  ],
+  "word_cheung": [
+   "qavat",
+   "Ofis ikkinchi qavatda."
+  ],
+  "word_hwanja": [
+   "bemor",
+   "Bemor dam olmoqda."
+  ],
+  "word_halmeoni": [
+   "buvi",
+   "Buvi tabassum qilmoqda."
+  ],
+  "word_palda": [
+   "sotmoq",
+   "Ular meva sotishadi."
+  ],
+  "word_itda_2": [
+   "ulamoq",
+   "Men ikki arqonni uladim."
+  ],
+  "word_nara": [
+   "mamlakat",
+   "Koreya go'zal mamlakat."
+  ],
+  "word_apateu": [
+   "kvartira",
+   "Men kvartirada yashayman."
+  ],
+  "word_hamkke": [
+   "birgalikda",
+   "Birgalikda boraylik."
+  ],
+  "word_modeun": [
+   "barcha",
+   "Hamma kuldi."
+  ],
+  "word_gwaenchanta": [
+   "yaxshi bo'lmoq",
+   "Men yaxshiman."
+  ],
+  "word_johahada": [
+   "yoqtirmoq",
+   "Men qahvani yoqtiraman."
+  ],
+  "word_jimseung": [
+   "yovvoyi hayvon",
+   "O'rmonda hayvon ovozi eshitildi."
+  ],
+  "word_dongan": [
+   "davomida",
+   "Men ta'til davomida sayohat qildim."
+  ],
+  "word_ipgu": [
+   "kirish joyi",
+   "Bino kirish joyida uchrashaylik."
+  ],
+  "word_silta": [
+   "yoqtirmaslik",
+   "Men sovuq kunlarni yoqtirmayman."
+  ],
+  "word_meonjeo": [
+   "avval",
+   "Men avval qo'limni yuvaman."
+  ],
+  "word_dubu": [
+   "tofu",
+   "Men tofu qo'shib sho'rva pishiraman."
+  ],
+  "word_bumonim": [
+   "o'z ota-onasi",
+   "Men ota-onam bilan yashayman."
+  ],
+  "word_gomapda": [
+   "minnatdor bo'lmoq",
+   "Yordamingiz uchun rahmat."
+  ],
+  "word_gyesan": [
+   "hisob",
+   "Hisob biroz noto'g'ri."
+  ],
+  "word_hyeo": [
+   "til, og'izdagi",
+   "Tilim og'rigani uchun ovqat yeya olmayman."
+  ],
+  "word_sugeon": [
+   "sochiq",
+   "Men sochiq bilan qo'limni artaman."
+  ],
+  "word_saeropda": [
+   "yangi bo'lmoq",
+   "Ko'nglim yangilangandek."
+  ],
+  "word_sup": [
+   "o'rmon",
+   "O'rmonda qush ovozi eshitiladi."
+  ],
+  "word_chum": [
+   "raqs",
+   "Ular sahnada raqsga tushdi."
+  ],
+  "word_sukje": [
+   "uy vazifasi",
+   "Men uy vazifamni bajardim."
+  ],
+  "word_gaji": [
+   "tur",
+   "Men faqat bitta narsani so'ramoqchiman.",
+   "Bu shuningdek baqlajonning nomi va daraxtning shoxi. Sanoq so'zi sifatida sanab o'tish mumkin bo'lgan narsalarga ishlatiladi: 두 가지 방법, ikki yo'l; 세 가지 이유, uch sabab."
+  ],
+  "word_mothada": [
+   "qila olmaslik",
+   "Men suza olmayman."
+  ],
+  "word_nagada": [
+   "tashqariga chiqmoq",
+   "Men tashqariga chiqaman."
+  ],
+  "word_meotjida": [
+   "ajoyib bo'lmoq",
+   "Bugun sen ajoyib ko'rinyapsan."
+  ],
+  "word_podo": [
+   "uzum",
+   "Uzum juda shirin."
+  ],
+  "word_jeopsi": [
+   "likop",
+   "Iltimos, ikkita likop oling."
+  ],
+  "word_yori": [
+   "taom",
+   "Taom mazali."
+  ],
+  "word_sogeum": [
+   "tuz",
+   "Men ozgina tuz qo'shaman."
+  ],
+  "word_duda": [
+   "qo'ymoq",
+   "Men kitobni stolga qo'ydim."
+  ],
+  "word_gamsahada": [
+   "minnatdorchilik bildirmoq",
+   "Yordamingiz uchun rahmat."
+  ],
+  "word_kkeut": [
+   "oxiri",
+   "Iltimos, navbatning oxirida turing."
+  ],
+  "word_yeolda": [
+   "ochmoq",
+   "Men derazani ochaman."
+  ],
+  "word_ibul": [
+   "ko'rpa",
+   "Ko'rpa issiq."
+  ],
+  "word_najung": [
+   "keyinroq",
+   "Men keyinroq yana qo'ng'iroq qilaman."
+  ],
+  "word_manjida": [
+   "tegmoq",
+   "Iltimos, tegmang."
+  ],
+  "word_gajang": [
+   "eng",
+   "Bu eng yaxshisi."
+  ],
+  "word_namjjok": [
+   "janub",
+   "Janubda issiq bo'ladi."
+  ],
+  "word_doum": [
+   "yordam",
+   "Menga yordam kerak."
+  ],
+  "word_jung": [
+   "o'rtasida, davomida",
+   "Men yig'ilishdaman."
+  ],
+  "word_sudo": [
+   "poytaxt",
+   "Koreyaning poytaxti Seul.",
+   "Mamlakatning poytaxti. Alohida 수도 suv ta'minotini bildiradi — 수도꼭지 jo'mrak, 수도 요금 suv to'lovi. Ularni faqat atrofdagi so'zlar ajratadi."
+  ],
+  "word_gidarida": [
+   "kutmoq",
+   "Iltimos, bir daqiqa kuting."
+  ],
+  "word_chaeso": [
+   "sabzavot",
+   "Men ko'p sabzavot yeyman."
+  ],
+  "word_kkeunnada": [
+   "tugamoq",
+   "Dars tugadi."
+  ],
+  "word_butak": [
+   "iltimos",
+   "Menda bitta iltimos bor."
+  ],
+  "word_seom": [
+   "orol",
+   "Biz qayiqda orolga bordik."
+  ],
+  "word_teuki": [
+   "ayniqsa",
+   "Men ayniqsa qishni yaxshi ko'raman."
+  ],
+  "word_jemok": [
+   "sarlavha",
+   "Bu kitobning sarlavhasi nima?"
+  ],
+  "word_insa": [
+   "salomlashish",
+   "Men salom berdim."
+  ],
+  "word_seoltang": [
+   "shakar",
+   "Men ozgina shakar qo'shaman."
+  ],
+  "word_jajeongeo": [
+   "velosiped",
+   "Men velosiped haydayman."
+  ],
+  "word_inteonet": [
+   "internet",
+   "Internet sekin."
+  ],
+  "word_aniyo": [
+   "yo'q",
+   "Yo'q, men yaxshiman."
+  ],
+  "word_ama": [
+   "ehtimol",
+   "Ertaga ehtimol yomg'ir yog'adi."
+  ],
+  "word_jamsi": [
+   "bir oz vaqt",
+   "Bir lahza dam olaylik."
+  ],
+  "word_beol": [
+   "asalari",
+   "Asalari gulga qo'ndi.",
+   "Asalari. Yana ikki so'z 벌 deb yoziladi: jazo, va bir dast kiyimni sanaydigan so'z — 옷 한 벌, bir dast."
+  ],
+  "word_won": [
+   "von",
+   "Bu ikki ming von."
+  ],
+  "word_ujuseon": [
+   "kosmik kema",
+   "Kosmik kema osmonga ko'tarildi."
+  ],
+  "word_myeot": [
+   "nechta",
+   "Hozir soat necha?"
+  ],
+  "word_sueop": [
+   "dars",
+   "Dars qiziqarli."
+  ],
+  "word_sijak": [
+   "boshlanish",
+   "Bu yaxshi boshlanish."
+  ],
+  "word_yeogwon": [
+   "pasport",
+   "Pasportni olishni unutma."
+  ],
+  "word_gyosil": [
+   "sinf xonasi",
+   "Sinf xonasi yorug'."
+  ],
+  "word_nyeon": [
+   "yil",
+   "Men ikki yil o'qidim."
+  ],
+  "word_bae": [
+   "qorin",
+   "Qornim og'rigani uchun kasalxonaga bordim.",
+   "Qorin. Yana ikki keng tarqalgan so'z 배 deb yoziladi: qayiq va nok. 배가 아파요 — qornim og'riyapti, 배를 타요 — qayiqqa chiqaman, 배를 먹어요 — nok yeyman."
+  ],
+  "word_satang": [
+   "konfet",
+   "Men konfet yeyman."
+  ],
+  "word_dalleo": [
+   "dollar",
+   "Bu yuz dollar."
+  ],
+  "word_usan": [
+   "soyabon",
+   "Yomg'ir yoqqani uchun soyabon sotib oldim."
+  ],
+  "word_museun": [
+   "qanaqa",
+   "Siz qanaqa ish qilasiz?"
+  ],
+  "word_pari": [
+   "pashsha",
+   "Bitta pashsha uchmoqda.",
+   "O'sha hasharot. Koreys tili Parij shahrini ham xuddi shunday yozadi, shuning uchun 파리에 갔어요 — Parijga bordim, 파리가 있어요 esa — bu yerda pashsha bor. Gapdan boshqa hech narsa ularni ajratmaydi."
+  ],
+  "word_ije": [
+   "endi",
+   "Endi boshlaylik."
+  ],
+  "word_geollida": [
+   "vaqt olmoq",
+   "Bu bir soat vaqt oladi."
+  ],
+  "word_choego": [
+   "eng zo'ri",
+   "Bu oshxona eng zo'ri."
+  ],
+  "word_naeda": [
+   "to'lamoq",
+   "Bugun men to'layman."
+  ],
+  "word_daneo": [
+   "so'z",
+   "Men yangi so'z o'rganaman."
+  ],
+  "word_jikjeop": [
+   "o'zi, bevosita",
+   "Tortni o'zim tayyorladim."
+  ],
+  "word_yangmal": [
+   "paypoq",
+   "Paypoq issiq."
+  ],
+  "word_nopda": [
+   "baland bo'lmoq",
+   "Bino baland."
+  ],
+  "word_haendeupon": [
+   "mobil telefon",
+   "Men telefonni quvvatlayman."
+  ],
+  "word_jigap": [
+   "hamyon",
+   "Men hamyonimni yo'qotdim."
+  ],
+  "word_hyudaepon": [
+   "mobil telefon",
+   "Men telefonimni yo'qotdim."
+  ],
+  "word_agassi": [
+   "yosh ayol",
+   "Bir yosh ayol yo'l so'rayapti.",
+   "Turmushga chiqmagan yosh ayol — ammo notanish odamga *murojaat* shakli sifatida ta'mi buzilgan, ko'p ayollar buni qo'pol yoki kamsituvchi deb biladi. Kimdir haqida gapirganda ishlating, kimgadir murojaat qilganda emas; notanish odamning e'tiborini tortish uchun 저기요 deng."
+  ],
+  "word_gieok": [
+   "xotira",
+   "Men eslay olmayapman."
+  ],
+  "word_geutda": [
+   "chiziq tortmoq",
+   "Men bitta chiziq tortdim."
+  ],
+  "word_ipda": [
+   "kiyinmoq",
+   "Men kiyim kiyaman."
+  ],
+  "word_sai": [
+   "ikkisining orasi",
+   "Ikki uy orasida daraxt bor."
+  ],
+  "word_gireum": [
+   "yog'",
+   "Men buni yog'da qovuraman."
+  ],
+  "word_mulgogi": [
+   "baliq",
+   "Baliq suzmoqda."
+  ],
+  "word_jang": [
+   "qog'oz sanaydigan so'z",
+   "Menga uchta varaq qog'oz kerak."
+  ],
+  "word_kkum": [
+   "tush",
+   "Kecha kechqurun g'alati tush ko'rdim."
+  ],
+  "word_sijakada": [
+   "boshlamoq",
+   "Dars boshlanadi."
+  ],
+  "word_ajikdo": [
+   "hanuz",
+   "Men hanuz kutyapman."
+  ],
+  "word_teureok": [
+   "yuk mashinasi",
+   "Bitta yuk mashinasi o'tmoqda."
+  ],
+  "word_eotteon": [
+   "qanaqa",
+   "Sen qanaqa rangni yoqtirasan?"
+  ],
+  "word_geulssi": [
+   "qo'l yozuvi",
+   "Qo'l yozuving chiroyli."
+  ],
+  "word_deutda": [
+   "eshitmoq",
+   "Men musiqa tinglayman."
+  ],
+  "word_subak": [
+   "tarvuz",
+   "Yozda tarvuz mazali bo'ladi."
+  ],
+  "word_ttalgi": [
+   "qulupnay",
+   "Men qulupnayni yuvib yeyman."
+  ],
+  "word_baram": [
+   "shamol",
+   "Shamol salqin."
+  ],
+  "word_sigol": [
+   "qishloq joy",
+   "Qishloq havosi yaxshi."
+  ],
+  "word_pulda": [
+   "yechmoq",
+   "Men masalani yechdim."
+  ],
+  "word_angyeong": [
+   "ko'zoynak",
+   "Men ko'zoynak taqaman."
+  ],
+  "word_yeonpil": [
+   "qalam",
+   "Men qalam bilan rasm chizaman."
+  ],
+  "word_jumal": [
+   "dam olish kunlari",
+   "Dam olish kunlarida men dam olaman."
+  ],
+  "word_jugida": [
+   "o'ldirmoq",
+   "Xonaga kirgan chivinni o'ldirdim."
+  ],
+  "word_him": [
+   "kuch",
+   "U bola juda kuchli."
+  ],
+  "word_jeonbu": [
+   "hammasi birga",
+   "Hammasi qancha bo'ldi?"
+  ],
+  "word_gyeongchal": [
+   "militsiya",
+   "Iltimos, militsiyani chaqiring."
+  ],
+  "word_geureut": [
+   "kosa",
+   "Men kosaga guruch solaman."
+  ],
+  "word_nappeuda": [
+   "yomon bo'lmoq",
+   "Ob-havo yomon."
+  ],
+  "word_oppa": [
+   "qizning akasi",
+   "Akam mashina haydamoqda.",
+   "Koreys tili qarindoshlik so'zini so'zlovchining jinsiga qarab tanlaydi: ayol akasini 오빠 deydi, erkak uni 형 deydi. U ayol yaqin yuradigan kattaroq erkakka ham ishlatiladi, shuning uchun oiladan ancha tashqarida ham eshitiladi."
+  ],
+  "word_mannada": [
+   "uchrashmoq",
+   "Biz tez-tez uchrashamiz."
+  ],
+  "word_huimang": [
+   "umid",
+   "Iltimos, umidingizni yo'qotmang."
+  ],
+  "word_hyeong": [
+   "o'g'ilning akasi",
+   "Akam menga ovqat oldirib berdi.",
+   "Erkak akasini ataydigan so'z. Xuddi shu odam haqida ayol 오빠 deydi. 오빠 kabi bu ham qarindosh bo'lmagan yaqin kattaroq erkakkacha yoyiladi."
+  ],
+  "word_doro": [
+   "yo'l",
+   "Yo'lda tirbandlik bor."
+  ],
+  "word_ttwida": [
+   "yugurmoq",
+   "Bola yugurmoqda."
+  ],
+  "word_mueot": [
+   "nima",
+   "Bu nima?"
+  ],
+  "word_oenjjok": [
+   "chap tomon",
+   "Iltimos, chapga buriling."
+  ],
+  "word_chukgu": [
+   "futbol",
+   "Men do'stim bilan futbol o'ynayman."
+  ],
+  "word_jayu": [
+   "erkinlik",
+   "Erkinlik qadrli."
+  ],
+  "word_sungan": [
+   "lahza",
+   "Men o'sha lahzani unuta olmayman."
+  ],
+  "word_sayonghada": [
+   "foydalanmoq",
+   "Bu xonadan foydalansam bo'ladimi?"
+  ],
+  "word_pada": [
+   "qazimoq",
+   "Men yerni qaziyman."
+  ],
+  "word_nampyeon": [
+   "er, turmush o'rtog'i",
+   "Erim ovqat pishiradi."
+  ],
+  "word_silheomsil": [
+   "laboratoriya",
+   "Men kun bo'yi laboratoriyada ishladim."
+  ],
+  "word_dambae": [
+   "sigaret",
+   "Sigaret hidi kiyimga singib qoldi."
+  ],
+  "word_banana": [
+   "banan",
+   "Ertalab men banan yeyman."
+  ],
+  "word_geum": [
+   "oltin",
+   "Bu uzuk oltindan.",
+   "Oltin, o'sha metall. Xuddi shu bo'g'in tirnalgan yoki tortilgan chiziqni ham bildiradi — 금이 갔어요 yorilib ketdi degani — va 금요일, jumani ochadi."
+  ],
+  "word_mandeulda": [
+   "yasamoq",
+   "Men non yasayman."
+  ],
+  "word_ibeon": [
+   "bu safar",
+   "Bu safar men qilaman."
+  ],
+  "word_gomawo": [
+   "rahmat",
+   "Yordam berganing uchun rahmat."
+  ],
+  "word_banchan": [
+   "guruch bilan yeyiladigan garnir",
+   "Garnirlar mazali."
+  ],
+  "word_apeuda": [
+   "og'rimoq",
+   "Qornim og'riyapti."
+  ],
+  "word_doseogwan": [
+   "kutubxona",
+   "Men kutubxonadan kitob oldim."
+  ],
+  "word_ppyeo": [
+   "suyak",
+   "It og'zida suyak tutib turibdi."
+  ],
+  "word_gamsa": [
+   "minnatdorchilik",
+   "Men minnatdorchilik bildirdim."
+  ],
+  "word_geolda": [
+   "ilmoq",
+   "Men kiyimni ilaman."
+  ],
+  "word_gim": [
+   "quritilgan dengiz o'ti",
+   "Biz guruchni dengiz o'tiga o'rab yeymiz.",
+   "Guruch bilan yeyiladigan yupqa quritilgan dengiz o'ti. Xuddi shu bo'g'in eng keng tarqalgan koreys familiyasi, shuningdek issiq narsadan ko'tarilgan bug' — 김이 나요, bug'i chiqyapti."
+  ],
+  "word_jalhada": [
+   "biror ishni yaxshi qilmoq",
+   "Sen yaxshi qo'shiq aytasan."
+  ],
+  "word_saengmyeong": [
+   "hayot",
+   "Hayot qadrli."
+  ],
+  "word_mureup": [
+   "tizza",
+   "Tizzam og'riyapti."
+  ],
+  "word_jjalda": [
+   "qisqa bo'lmoq",
+   "Qalam qisqa."
+  ],
+  "word_chijeu": [
+   "pishloq",
+   "Men pishloqni yoqtiraman."
+  ],
+  "word_hanbeon": [
+   "bir marta",
+   "Iltimos, bir marta sinab ko'ring."
+  ],
+  "word_gohyang": [
+   "tug'ilgan yurt",
+   "Men tug'ilgan yurtimga bordim."
+  ],
+  "word_jihacheol": [
+   "metro",
+   "Men metroda yuraman."
+  ],
+  "word_sal": [
+   "yosh",
+   "Men yigirma yoshdaman."
+  ],
+  "word_anae": [
+   "xotin",
+   "Men xotinim bilan keldim."
+  ],
+  "word_swida": [
+   "dam olmoq",
+   "Bir oz dam olaylik."
+  ],
+  "word_gimbap": [
+   "kimbap",
+   "Tushlikda kimbap yedim."
+  ],
+  "word_gayo": [
+   "koreys estrada qo'shig'i",
+   "Men koreys estrada qo'shiqlarini yoqtiraman.",
+   "Toifa sifatida koreys estrada qo'shig'i — K-pop bu 가요. U 가다 fe'lining xushmuomala hozirgi zamoni bo'lgan 가요 «ketyapti» bilan aynan bir xil yoziladi, shuning uchun qaysi birini o'qiyotganingizni atrofdagi gap hal qiladi."
+  ],
+  "word_swipda": [
+   "oson bo'lmoq",
+   "Hangil oson."
+  ],
+  "word_pyojeong": [
+   "yuz ifodasi",
+   "Uning yuzi yorug'."
+  ],
+  "word_dareuda": [
+   "farq qilmoq",
+   "Ranglar boshqacha."
+  ],
+  "word_geunyang": [
+   "shunchaki",
+   "Dam olish kunida shunchaki uyda bo'ldim."
+  ],
+  "word_majimak": [
+   "oxirgi",
+   "Men oxirgi avtobusga chiqdim."
+  ],
+  "word_bangbeop": [
+   "usul",
+   "Bitta yaxshi usul bor."
+  ],
+  "word_huinsaek": [
+   "oq rang",
+   "Oq devor toza."
+  ],
+  "word_jalmot": [
+   "xato",
+   "Bu mening xatoim."
+  ],
+  "word_daehakgyo": [
+   "universitet",
+   "Men universitetda o'qiyman."
+  ],
+  "word_haengun": [
+   "omad",
+   "Imtihonda omad tilayman."
+  ],
+  "word_harabeoji": [
+   "bobo",
+   "Bobo gazeta o'qimoqda."
+  ],
+  "word_bimil": [
+   "sir",
+   "Iltimos, sirni saqlang."
+  ],
+  "word_sogogi": [
+   "mol go'shti",
+   "Biz mol go'shtini qovurib yedik."
+  ],
+  "word_net": [
+   "to'rt",
+   "Biz to'rtovlon bir jamoamiz."
+  ],
+  "word_sinda": [
+   "oyoqqa kiymoq",
+   "Men paypoq kiyaman."
+  ],
+  "word_dap": [
+   "javob",
+   "Men javobni topdim."
+  ],
+  "word_yeonseup": [
+   "mashq",
+   "Men har kuni mashq qilaman."
+  ],
+  "word_gongchaek": [
+   "daftar",
+   "Men daftarga ismimni yozaman."
+  ],
+  "word_ssada": [
+   "arzon bo'lmoq",
+   "Bu meva arzon."
+  ],
+  "word_dowajuda": [
+   "yordam bermoq",
+   "Iltimos, menga ozgina yordam bering."
+  ],
+  "word_maekju": [
+   "pivo",
+   "Pivo sovuq."
+  ],
+  "word_jjada": [
+   "sho'r bo'lmoq",
+   "Sho'rva sho'r."
+  ],
+  "word_gyehoek": [
+   "reja",
+   "Men reja tuzdim."
+  ],
+  "word_pyeonghwa": [
+   "tinchlik",
+   "Biz tinchlik tilaymiz."
+  ],
+  "word_yaksok": [
+   "va'da",
+   "Men va'damni bajaraman."
+  ],
+  "word_oreunjjok": [
+   "o'ng tomon",
+   "Iltimos, o'ngga yuring."
+  ],
+  "word_gippeuda": [
+   "xursand bo'lmoq",
+   "Xabarni eshitib xursand bo'ldim."
+  ],
+  "word_baeuda": [
+   "o'rganmoq",
+   "Men koreys tilini o'rganaman."
+  ],
+  "word_jebal": [
+   "iltimos",
+   "Iltimos, menga yordam ber."
+  ],
+  "word_dopda": [
+   "yordam bermoq",
+   "Men do'stimga yordam beraman."
+  ],
+  "word_jaryo": [
+   "ish uchun to'plangan material",
+   "Yig'ilish materiallarini oldindan tayyorladim."
+  ],
+  "word_hullyunghada": [
+   "ajoyib bo'lmoq",
+   "Bu ajoyib fikr."
+  ],
+  "word_moseup": [
+   "qiyofa",
+   "Uning qiyofasi o'zgargan."
+  ],
+  "word_undong": [
+   "jismoniy mashq",
+   "Men ertalab sport bilan shug'ullanaman."
+  ],
+  "word_geureonde": [
+   "aytmoqchi, lekin",
+   "Aytmoqchi, bu nima?"
+  ],
+  "word_juseu": [
+   "sharbat",
+   "Bola sharbat ichmoqda."
+  ],
+  "word_jwi": [
+   "sichqon",
+   "Men oshxonada sichqon ko'rdim."
+  ],
+  "word_chwimi": [
+   "sevimli mashg'ulot",
+   "Mening sevimli mashg'ulotim rasmga olish."
+  ],
+  "word_deung": [
+   "orqa, yelka bilan bel orasi",
+   "Orqam qichishyapti."
+  ],
+  "word_jeoldae": [
+   "hech qachon",
+   "Hech qachon kechikmang."
+  ],
+  "word_dol": [
+   "tosh",
+   "Yo'lda tosh ko'p edi, shuning uchun ehtiyot bo'lib yurdik."
+  ],
+  "word_bappeuda": [
+   "band bo'lmoq",
+   "Bugun men bandman."
+  ],
+  "word_ireon": [
+   "bunday",
+   "Bunday narsa menga birinchi marta bo'ldi."
+  ],
+  "word_yeoseong": [
+   "ayol",
+   "Ko'p ayol keldi."
+  ],
+  "word_paransaek": [
+   "ko'k rang",
+   "Ko'k kiyim senga yarashadi."
+  ],
+  "word_ireonada": [
+   "turmoq",
+   "Men yettida turaman."
+  ],
+  "word_gom": [
+   "ayiq",
+   "Ayiqlar tog'da yashaydi."
+  ],
+  "word_jam": [
+   "uyqu",
+   "So'nggi paytlarda uyqum yaxshi kelmayapti."
+  ],
+  "word_haebyeon": [
+   "dengiz sohili",
+   "Yozda biz dengiz sohiliga bordik."
+  ],
+  "word_hosu": [
+   "ko'l",
+   "Ko'l tinch."
+  ],
+  "word_dakgogi": [
+   "tovuq go'shti",
+   "Tovuq go'shtida yog' kam."
+  ],
+  "word_geunde": [
+   "aytmoqchi",
+   "Aytmoqchi, hozir soat necha?"
+  ],
+  "word_jaeneung": [
+   "iste'dod",
+   "Uning rasm chizishga iste'dodi bor."
+  ],
+  "word_gyeolhon": [
+   "nikoh",
+   "Nikohingiz bilan tabriklayman."
+  ],
+  "word_binu": [
+   "sovun",
+   "Men qo'limni sovun bilan yuvaman."
+  ],
+  "word_saja": [
+   "sher",
+   "Sher katta."
+  ],
+  "word_eoneu": [
+   "qaysi",
+   "Qaysi biri yoqdi?"
+  ],
+  "word_mureoboda": [
+   "so'ramoq",
+   "Men o'qituvchidan so'radim."
+  ],
+  "word_ucheguk": [
+   "pochta",
+   "Men pochtadan xat yubordim."
+  ],
+  "word_japji": [
+   "jurnal",
+   "Men jurnal o'qiyman."
+  ],
+  "word_jean": [
+   "taklif",
+   "Men kompaniyadan yaxshi taklif oldim."
+  ],
+  "word_yojeum": [
+   "shu kunlarda",
+   "Shu kunlarda qandaysan?"
+  ],
+  "word_ulda": [
+   "yig'lamoq",
+   "Chaqaloq yig'lamoqda."
+  ],
+  "word_namda": [
+   "qolmoq",
+   "Ozgina guruch qoldi."
+  ],
+  "word_miso": [
+   "tabassum",
+   "Juda chiroyli tabassum."
+  ],
+  "word_daehak": [
+   "oliy o'quv yurti",
+   "Meni universitetga qabul qilishdi."
+  ],
+  "word_uimi": [
+   "ma'no",
+   "Bu so'zning ma'nosi nima?"
+  ],
+  "word_geim": [
+   "o'yin",
+   "Men o'yin o'ynayman."
+  ],
+  "word_cham": [
+   "rostdan ham",
+   "Bugun ob-havo rostdan ham yaxshi."
+  ],
+  "word_kong": [
+   "loviya",
+   "Men guruchga loviya qo'shdim."
+  ],
+  "word_saebyeok": [
+   "tong oldidan",
+   "Men tong oldidan turdim."
+  ],
+  "word_utda": [
+   "kulmoq",
+   "Do'stim baland ovozda kuladi."
+  ],
+  "word_imi": [
+   "allaqachon",
+   "Hammasi allaqachon tugadi."
+  ],
+  "word_sutgarak": [
+   "qoshiq",
+   "Men sho'rvani qoshiq bilan ichaman."
+  ],
+  "word_bureuda": [
+   "chaqirmoq",
+   "Men taksi chaqiraman."
+  ],
+  "word_koteu": [
+   "palto",
+   "Iltimos, paltongizni kiying."
+  ],
+  "word_meolda": [
+   "uzoq bo'lmoq",
+   "Maktab uzoq."
+  ],
+  "word_myeong": [
+   "odam sanaydigan so'z",
+   "Bu yerda beshta o'quvchi bor."
+  ],
+  "word_eonni": [
+   "qizning opasi",
+   "Opam universitet talabasi.",
+   "Ayol opasini ataydigan so'z; xuddi shu odam haqida erkak 누나 deydi. Ayollar o'zidan sal kattaroq, yaqin yuradigan ayolga ham shunday murojaat qiladi, do'konlarda ham."
+  ],
+  "word_ihae": [
+   "tushunish",
+   "Men buni yaxshi tushunaman."
+  ],
+  "word_samda": [
+   "suvda qaynatmoq",
+   "Men tuxum qaynataman."
+  ],
+  "word_noransaek": [
+   "sariq rang",
+   "Men sariq soyabon oldim."
+  ],
+  "word_mudeom": [
+   "qabr",
+   "Tog'da eski qabr bor."
+  ],
+  "word_gita": [
+   "gitara",
+   "Men gitara chalaman."
+  ],
+  "word_itda_3": [
+   "unutmoq",
+   "Men ismni unutdim."
+  ],
+  "word_gongyeon": [
+   "tomosha",
+   "Tomosha boshlanadi."
+  ],
+  "word_ilta": [
+   "yo'qotmoq",
+   "Men kalitni yo'qotdim."
+  ],
+  "word_baneung": [
+   "munosabat",
+   "Odamlarning munosabati juda yaxshi bo'ldi."
+  ],
+  "word_gudu": [
+   "charm poyabzal",
+   "Poyabzal qulay."
+  ],
+  "word_hyuga": [
+   "mehnat ta'tili",
+   "Men ta'tilga chiqdim."
+  ],
+  "word_jeohui": [
+   "biz, kamtarona",
+   "Biz sizga yordam beramiz."
+  ],
+  "word_geuttae": [
+   "o'sha paytda",
+   "O'sha paytda yomg'ir yog'ayotgan edi."
+  ],
+  "word_sopa": [
+   "divan",
+   "Divanga o'tirib dam oling."
+  ]
+ }
 }
