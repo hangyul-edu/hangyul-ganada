@@ -960,19 +960,93 @@ export function planIsCurrent(
   // A plan written before plans carried a level: kept, rather than discarding
   // a day's work the first time an upgraded app opens.
   if (level === undefined || plan.level === undefined) return true;
-  if (plan.level === level) return true;
   /*
-    The level changed under a plan built for a different one.
+    A level is a measurement, and a measurement takes effect immediately.
 
-    Whether that plan is still today's depends on whether the learner has
-    started it. Nobody is disturbed by replacing a plan they have not touched,
-    and that is the case the defect was in: open the app, get a plan at the
-    default level, sit the Vocabulary Level Test, come out at 30, and be taught
-    남자 by a plan written ten minutes earlier for a beginner.
-
-    A plan with work in it is a different matter. Rebuilding underneath somebody
-    four words into their day loses those four and replaces the six they were
-    promised, so their day stands and the new level starts tomorrow.
+    This used to keep a mismatched plan whenever the learner had started it —
+    "the day stands and the new level starts tomorrow" — which meant a learner
+    who began at the default level, studied three words, sat the Vocabulary
+    Level Test and came out at 30 went back to being taught 엄마 for the rest
+    of the day. The plan is stale the moment the level it was built for stops
+    being the learner's level; what happens to the work already in it is
+    `rebuildPlanForLevel`'s question, not this one's. A stale plan with earned
+    progress is *corrected* — mastered words kept, unresolved level-dependent
+    targets regenerated — never silently kept and never thrown away.
   */
-  return plan.completed.length > 0;
+  return plan.level === level;
+}
+
+/**
+ * Today's plan, corrected for a level measured after it was built.
+ *
+ * The canonical rule (§59, this pass): **a measured vocabulary-level change
+ * immediately invalidates the unresolved level-dependent portion of Today's
+ * Vocabulary. Already mastered progress is preserved. Remaining ordinary
+ * new-study targets are regenerated for the new level.**
+ *
+ * Concretely, for a plan at 3/10 built at Level 1 whose learner just measured
+ * 30: the three mastered words stay mastered and stay in the plan, the seven
+ * unresolved *new-study* words are replaced by seven chosen from the Level-30
+ * teaching zone, and the goal — the denominator the learner agreed to — does
+ * not move. Nothing resets to 0/10 and nothing goes on teaching 엄마.
+ *
+ * What is kept and what is replaced, by kind:
+ *
+ * - **Completed words** (any source): kept. They are earned mastery, and a
+ *   measurement about ability is not evidence against work already done.
+ * - **Unresolved consolidation** (`weak`, `review`, `familiar`): kept. These
+ *   were chosen from the learner's own memory evidence, which the level test
+ *   neither confirms nor refutes — review reaches any level by design.
+ * - **Unresolved ordinary new-study** (`new`): replaced. These are the only
+ *   level-dependent choices in the plan, and they are exactly what the old
+ *   level chose wrongly. A word among them the learner answered *wrong* is not
+ *   kept either — its wrong-answer history survives in the mistakes store and
+ *   Review owns its remediation; the ordinary plan follows measured ability.
+ *
+ * A retake that lands on the level the plan was already built for returns the
+ * plan untouched: nothing is rebuilt or reshuffled for being re-measured.
+ */
+export function rebuildPlanForLevel(plan: DailyPlan, request: DayRequest): DailyPlan {
+  if (request.level === undefined || plan.level === request.level) return plan;
+
+  const done = new Set(plan.completed);
+  const kept = plan.words.filter((word) => done.has(word.wordId) || word.source !== 'new');
+  const replaced = plan.words.length - kept.length;
+  if (replaced === 0) return { ...plan, level: request.level };
+
+  // Everything staying in the plan, and everything the learner has ever met,
+  // is off the table for the replacements: a regenerated slot must be genuinely
+  // new material at the new level, not a word from earlier today wearing a new
+  // source. `pickNewWords` needs the seed the day's own words were chosen with;
+  // without one (a caller that never personalised) the slots are simply not
+  // refilled, which is a short day rather than a wrong one.
+  const inPlan = new Set(plan.words.map((word) => word.wordId));
+  const met = new Set(
+    Object.values(request.progress)
+      .filter((row) => row.kind === 'word' && row.stage !== 'unseen')
+      .map((row) => row.item_key),
+  );
+  const recent = request.recentlyIntroduced ?? new Set<string>();
+  const picked =
+    request.seed === undefined
+      ? []
+      : pickNewWords({
+          corpus: request.corpus,
+          level: request.level,
+          seed: request.seed,
+          dayIndex: request.dayIndex ?? 0,
+          count: replaced,
+          isMet: (id) => met.has(id) || inPlan.has(id),
+          isRecent: (id) => recent.has(id),
+        });
+
+  // The check rotation continues from the new-study words that survive, so the
+  // regenerated sitting keeps the variety rule the original plan had.
+  const keptNew = kept.filter((word) => word.source === 'new').length;
+  const replacements: PlannedWord[] = picked.map((word, index) => ({
+    wordId: word.id,
+    source: 'new',
+    steps: stepsFor('new', keptNew + index, request.soundFree ?? false),
+  }));
+  return { ...plan, level: request.level, words: [...kept, ...replacements] };
 }

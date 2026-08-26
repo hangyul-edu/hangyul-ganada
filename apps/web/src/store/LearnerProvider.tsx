@@ -48,6 +48,7 @@ import {
   completeWord,
   dayProgress,
   planIsCurrent,
+  rebuildPlanForLevel,
   type DailyPlan,
 } from '../domain/vocabularyDay';
 import { vocabularyByPriority } from '../data/vocabulary';
@@ -919,27 +920,33 @@ export function LearnerProvider({
       Today's plan, if it is still today's plan *for this learner*.
 
       The level is part of that and the goal is not. A goal is a preference the
-      learner can change back, so changing it takes effect tomorrow rather than
-      resizing a session in progress. A level is a measurement: a learner who
+      learner can change back, so changing it under a *started* day takes
+      effect tomorrow rather than resizing a session in progress — and, just as
+      important, rather than rebuilding it and wiping the words already earned,
+      which is what the old goal check here did. An untouched plan is rebuilt
+      for the new goal, because nobody is disturbed by replacing a plan they
+      have not begun.
+
+      A level is a measurement, and it takes effect immediately: a learner who
       opens the app, gets a plan at the default level and then sits the
       Vocabulary Level Test has not changed their mind about anything — the app
       has found something out about them, and a plan built before it knew is a
       plan for somebody else. Measured at 30 and taught 남자 is what that looked
-      like.
+      like. `planIsCurrent` refuses the mismatched plan; what happens next
+      depends on whether the day was started — see below.
     */
-    if (
-      planIsCurrent(stored, now, planningLevel) &&
-      stored.goal === state.settings.daily_word_goal
-    ) {
+    const goalChangedBeforeStart =
+      stored !== null &&
+      stored.completed.length === 0 &&
+      stored.goal !== state.settings.daily_word_goal;
+    if (planIsCurrent(stored, now, planningLevel) && !goalChangedBeforeStart) {
       return stored;
     }
     // Before the store has answered, an empty plan for the goal the learner
     // has — so the card reads `0 / 10` for the moment it takes rather than
     // flashing `0 / 0` and then jumping.
     if (!ready) return stored ?? emptyPlan(state.settings.daily_word_goal);
-    // A stored plan from an earlier day, or from before the goal changed, is
-    // replaced rather than resized: see `planIsCurrent`.
-    const built = buildDailyPlan({
+    const request = {
       progress: state.progress,
       memory: state.memory,
       corpus: vocabularyByPriority(),
@@ -951,7 +958,33 @@ export function LearnerProvider({
       dayIndex: state.settings.active_days.length,
       recentlyIntroduced: recentlyIntroduced(state.progress, now),
       canPractise: canPractiseWord,
-    });
+    };
+    /*
+      A same-day plan built for another level, with work already in it, is
+      *corrected* rather than replaced: the mastered words and their credit
+      stand, the unresolved consolidation stands, and only the unresolved
+      ordinary new-study targets — the level-dependent part — are regenerated
+      for the level the learner has just been measured at. 3/10 at Level 1
+      becomes 3/10 with seven Level-30 words, never 0/10 and never seven more
+      beginner words. See `rebuildPlanForLevel`.
+    */
+    if (
+      stored !== null &&
+      planIsCurrent(stored, now) &&
+      !goalChangedBeforeStart &&
+      stored.completed.length > 0
+    ) {
+      const rebuilt = rebuildPlanForLevel(stored, request);
+      // The new level's words may live in a corpus band that has not arrived
+      // yet. A rebuild that came up short while the corpus is still loading
+      // waits — the stored plan stands for the moment it takes — rather than
+      // persisting a short day.
+      if (rebuilt.words.length < stored.words.length && !corpusReady()) return stored;
+      return rebuilt;
+    }
+    // A stored plan from an earlier day, an untouched plan whose goal or level
+    // changed, or no plan at all: built fresh. See `planIsCurrent`.
+    const built = buildDailyPlan(request);
     /*
      * A short plan means one of two things, and only one of them is worth
      * waiting for.
@@ -996,6 +1029,26 @@ export function LearnerProvider({
     if (state.settings.daily_plan === vocabularyDay) return;
     setState((prev) => {
       if (prev.settings.daily_plan === vocabularyDay) return prev;
+      /*
+       * A credit is never clobbered by a derivation that predates it.
+       *
+       * `vocabularyDay` was derived from the plan as it stood at render time.
+       * `completeDailyWord` writes straight to the stored plan, so a correct
+       * answer credited between that render and this write would be silently
+       * erased by persisting the older derivation over it — the "correct
+       * answer that did not count" class, arriving through a plan rebuild
+       * rather than through an exercise. If the stored plan has a completion
+       * this derivation has not seen, this write stands down; the next render
+       * re-derives from the newer plan and persists that instead.
+       */
+      const current = prev.settings.daily_plan;
+      if (
+        current &&
+        current.date === vocabularyDay.date &&
+        current.completed.some((id) => !vocabularyDay.completed.includes(id))
+      ) {
+        return prev;
+      }
       const settings = { ...prev.settings, daily_plan: vocabularyDay };
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
@@ -1032,6 +1085,7 @@ export function LearnerProvider({
    * twelve of a goal of ten reads twelve of ten, not twelve of fifteen.
    */
   const extendVocabularyDay = useCallback((extra: number) => {
+    const now = new Date();
     setState((prev) => {
       const plan = prev.settings.daily_plan;
       if (!plan) return prev;
@@ -1041,7 +1095,20 @@ export function LearnerProvider({
         corpus: vocabularyByPriority(),
         goal: prev.settings.daily_word_goal,
         soundFree: prev.settings.sound_free,
-        now: new Date(),
+        now,
+        /*
+          The learner's level, threaded exactly as the day's own build threads
+          it. Without these four fields the extension fell back to the corpus
+          prefix — the un-personalised path — so a learner at Level 30 who
+          finished ten advanced words and asked for five more was handed the
+          easiest unmet words in the product. Extra study is chosen the same
+          way the day's words were: at the level the learner is at *now*,
+          which after a mid-day retake is the retaken level.
+        */
+        level: planningLevel,
+        seed: prev.settings.content_seed,
+        dayIndex: prev.settings.active_days.length,
+        recentlyIntroduced: recentlyIntroduced(prev.progress, now),
         canPractise: canPractiseWord,
       });
       if (next === plan) return prev;
@@ -1049,7 +1116,7 @@ export function LearnerProvider({
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });
-  }, [canPractiseWord]);
+  }, [canPractiseWord, planningLevel]);
 
   // Counts words, so it is rebuilt when a band of the corpus arrives.
   const summary = useCorpusMemo<ProgressSummary>(() => {

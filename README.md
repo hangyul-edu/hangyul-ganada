@@ -20,7 +20,7 @@ see a letter ─▶ hear it ─▶ understand it ─▶ trace it ─▶ write it
 | --- | --- |
 | Hangul letters | 40, in 12 units |
 | Syllable blocks | 33, including 받침 |
-| Vocabulary | 3,221 words across 18 semantic categories, all open from the start |
+| Vocabulary | 3,256 words across 18 semantic categories, all open from the start |
 | Pronunciation | 5,275 utterances × 2 voices at 0.82×, 48.7 MB, bundled |
 | Practice typefaces | 6, all SIL OFL 1.1 |
 | Interface languages | 32; word meanings in 10 of them, English elsewhere and said so |
@@ -80,7 +80,7 @@ Open the app → no login → **Start now** → an explainer says what Hangul is
 meet ㅏ, hear it → **trace** it over the full shape → **copy** it over a ghost →
 **write** it with nothing on screen, and ask to see it again whenever you want →
 pick it out of ㅑ ㅓ ㅕ → progress moves → open the Words tab whenever you like,
-because every one of the 3,221 words is there from the first launch → hear the
+because every one of the 3,256 words is there from the first launch → hear the
 word, read its meaning, meet it in a Korean sentence, write each syllable →
 get it wrong and
 it appears in **Review**, which is a practice session rather than a list → tap
@@ -342,7 +342,7 @@ Content pipeline — see [`docs/VOCABULARY_DATA.md`](docs/VOCABULARY_DATA.md) an
 | `npm run content:vocabulary` | Build the dataset from the cache and the curation layer |
 | `npm run audio:plan` | List every utterance the app can play |
 | `npm run audio:build` | Generate it, both voices, normalised |
-| `npm run audio:qa` | Check all 13,106 voice slots over 13,002 files |
+| `npm run audio:qa` | Check all 13,250 voice slots over 13,146 files |
 | `npm run audio:pronunciation` | Check every clip is filed under the right item and its note is right |
 | `npm run audio:listen` | Listen to the clips with a recogniser and report disagreements |
 
@@ -443,7 +443,7 @@ scored worse than a wrong character at every tolerance tried, and **Nanum Pen
 Script** leaves 사 and 가 about 0.014 apart, inside the noise of real
 handwriting. `font-tolerance.test.ts` re-runs both measurements on every build.
 
-The bundled vocabulary is **3,221 words**, hand-reviewed, using English
+The bundled vocabulary is **3,256 words**, hand-reviewed, using English
 Wiktionary (CC BY-SA 4.0) for part of speech and the OpenSubtitles Korean
 frequency lists for how often each word is actually said. Every meaning,
 example sentence and translation was written for this app, and every sentence
@@ -488,7 +488,7 @@ does not reorder punctuation.
 | `packages/handwriting-core` | 69 tests: mask geometry, the evaluator, real-glyph calibration, six-typeface tolerance |
 | `apps/web` unit | 363 tests: curriculum content, mastery ladder, every progress calculation, the daily activity roll-ups and streaks, storage migrations, the pronunciation player and its entry-audio rule, scroll reset, Korean particle agreement, generated-question answer keys, locale resolution, quote attribution |
 | `apps/web` e2e | the fresh-install journey, the four-step writing progression and the hint, word learning, review, the learning record, the simplified settings screen, horizontal scrolling by wheel and drag, persistence across a restart, offline, no-monetisation, 10 languages — each run at a phone and a desktop viewport |
-| `npm run audio:qa` | All 13,106 voice slots over 13,002 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
+| `npm run audio:qa` | All 13,250 voice slots over 13,146 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
 | `npm run audio:pronunciation` | The chain from the word on screen to the file on disk: ids, plan, manifest, notes against the sound-change rules, example ownership, and the service worker's audio-cache stamp |
 | `npm run audio:listen` | A speech recogniser over the clips. A screen for a person to read, not a gate — see [`docs/AUDIO.md`](docs/AUDIO.md) |
 | `npm run fonts:audit:strict` | Six typefaces: licence allowlist, files on disk, all 846 practice glyphs present |
@@ -530,7 +530,7 @@ their reasons, and any new reference to the old name fails the build.
 ## Status
 
 The web app is complete and shippable in ten languages: a full Hangul
-curriculum, 3,221 words, bundled pronunciation in two voices, offline support
+curriculum, 3,256 words, bundled pronunciation in two voices, offline support
 and local-first storage with migrations. The Android application is built,
 signed, installed and exercised on a device each cycle; the iOS project is
 complete and has never been run, because this environment has no macOS.

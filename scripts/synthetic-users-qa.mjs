@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * One hundred synthetic learners, driven through the real product code.
+ * The synthetic learner journeys, driven through the real product code.
  *
  *   npm run synthetic:users:qa            run all journeys, write the report
  *   npm run synthetic:users:qa:check      fail the build on any journey FAIL
@@ -82,6 +82,7 @@ const {
   dayProgress,
   endsSession,
   extendDay,
+  rebuildPlanForLevel,
   retrySteps,
   scheduleSteps,
   sessionProgress,
@@ -172,6 +173,7 @@ function runJourney(persona) {
     questionsAnswered: 0,
     retries: 0,
     reopens: 0,
+    middayRetakes: 0,
     sessionsAbandoned: 0,
     daysStudied: 0,
   };
@@ -200,9 +202,16 @@ function runJourney(persona) {
       continue;
     }
 
-    // The measured level changes mid-journey for a retaken test.
+    // The measured level changes mid-journey for a retaken test. A
+    // `retaken-midday` persona retakes it *inside* a sitting instead — the
+    // same-day journey the immediate-level rule exists for — and from the day
+    // after, the retaken level is simply their level.
+    const retakeDay = Math.floor((persona.days - 1) / 2);
     let measured = measuredLevel();
     if (persona.levelTest === 'retaken' && day >= Math.ceil(persona.days / 2)) {
+      measured = persona.retakenLevel;
+    }
+    if (persona.levelTest === 'retaken-midday' && day > retakeDay) {
       measured = persona.retakenLevel;
     }
     const outgrown = levelFromProgress(
@@ -275,13 +284,22 @@ function runJourney(persona) {
       }
     }
 
+    // A `retaken-midday` persona studies part of the first pass, leaves for
+    // the Vocabulary Level Test, comes out at a very different level, and
+    // returns to the same day. §59's mandatory journey.
+    let middayRetakePending = persona.levelTest === 'retaken-midday' && day === retakeDay;
+
     while (queue.length > 0) {
       passes += 1;
       if (passes > 40) {
         flag('PROGRESS', `${persona.id} day ${day + 1}: sitting did not converge`);
         break;
       }
-      for (const question of queue) {
+      // On the retake pass only part of the sitting is answered before leaving.
+      const ask = middayRetakePending
+        ? queue.slice(0, Math.max(1, Math.floor(queue.length * (persona.retakePoint ?? 0.4))))
+        : queue;
+      for (const question of ask) {
         const touches = question.pairs
           ? question.pairs.map((p) => p.wordId)
           : [question.word.id];
@@ -385,6 +403,65 @@ function runJourney(persona) {
           flag('PROGRESS', `${persona.id} day ${day + 1}: progress exceeded the session`);
         }
         void expected;
+      }
+
+      // The mid-day Level Test retake: leave, be re-measured, return. The
+      // measured change takes effect immediately — mastered progress kept,
+      // unresolved ordinary new-study targets regenerated for the new level —
+      // and the sitting continues from the corrected plan (§59).
+      if (middayRetakePending) {
+        middayRetakePending = false;
+        outcome.middayRetakes += 1;
+        measured = persona.retakenLevel;
+        const newLevel = teachingLevel(
+          measured,
+          levelFromProgress(VOCABULARY, (wordId) => progress[`word:${wordId}`]?.stage === 'learned'),
+        );
+        const completedBefore = [...plan.completed];
+        const oldUnresolvedNew = plan.words
+          .filter((w) => w.source === 'new' && !plan.completed.includes(w.wordId))
+          .map((w) => w.wordId);
+        request.level = newLevel;
+        request.progress = progress;
+        plan = rebuildPlanForLevel(plan, request);
+
+        if (JSON.stringify(plan.completed) !== JSON.stringify(completedBefore)) {
+          flag('LEVEL', `${persona.id} day ${day + 1}: the mid-day retake touched earned progress`);
+        }
+        const done = new Set(plan.completed);
+        const newZone = teachingZone(newLevel);
+        for (const planned of plan.words) {
+          if (done.has(planned.wordId) || planned.source !== 'new') continue;
+          if (oldUnresolvedNew.includes(planned.wordId)) {
+            flag(
+              'LEVEL',
+              `${persona.id} day ${day + 1}: unresolved level-${persona.level} target ${planned.wordId} survived the retake to ${newLevel}`,
+            );
+          }
+          const word = VOCABULARY.find((w) => w.id === planned.wordId);
+          if (!word) continue;
+          const wl = wordLevel(word);
+          if (wl < newZone.min - 1 || wl > newZone.max + 1) {
+            outcome.zoneViolations += 1;
+            flag(
+              'LEVEL',
+              `${persona.id} day ${day + 1}: after retake to ${newLevel}, offered ${word.word} (level ${wl}, zone ${newZone.min}–${newZone.max})`,
+            );
+          }
+          if (newLevel >= 25 && wl <= 5) {
+            outcome.beginnerLeaks += 1;
+            flag(
+              'LEVEL',
+              `${persona.id} day ${day + 1}: after retake to ${newLevel}, offered beginner word ${word.word} (level ${wl})`,
+            );
+          }
+        }
+
+        // Returning re-freezes the queue from the stored plan; the sitting's
+        // own memory of *how* words were missed does not survive the exit.
+        missed.clear();
+        queue = buildDailyQuestions(scheduleSteps(plan), meaningOf, label);
+        continue;
       }
 
       // Mid-pass reload for the reload persona: everything re-derived from the
@@ -531,7 +608,7 @@ function runJourney(persona) {
 
 // --- Run all journeys --------------------------------------------------------
 
-console.log(`Synthetic 100-user journey QA — ${personas.length} personas\n`);
+console.log(`Synthetic user journey QA — ${personas.length} personas\n`);
 
 const results = [];
 for (const persona of personas) {
@@ -549,6 +626,7 @@ const totals = results.reduce(
     questions: sum.questions + r.outcome.questionsAnswered,
     retries: sum.retries + r.outcome.retries,
     reopens: sum.reopens + r.outcome.reopens,
+    middayRetakes: sum.middayRetakes + r.outcome.middayRetakes,
     introduced: sum.introduced + r.outcome.introduced,
     mastered: sum.mastered + r.outcome.mastered,
     wrong: sum.wrong + r.outcome.wrongOnce,
@@ -557,7 +635,7 @@ const totals = results.reduce(
     reviewCorrect: sum.reviewCorrect + r.outcome.reviewCorrect,
     repeat: sum.repeat + r.outcome.repeatExposure,
   }),
-  { days: 0, questions: 0, retries: 0, reopens: 0, introduced: 0, mastered: 0, wrong: 0, recovered: 0, reviewAsked: 0, reviewCorrect: 0, repeat: 0 },
+  { days: 0, questions: 0, retries: 0, reopens: 0, middayRetakes: 0, introduced: 0, mastered: 0, wrong: 0, recovered: 0, reviewAsked: 0, reviewCorrect: 0, repeat: 0 },
 );
 
 console.log(`  journeys           ${results.length} (${results.length - failed.length} PASS, ${failed.length} FAIL)`);
@@ -567,6 +645,7 @@ console.log(`  simulated days     ${totals.days.toLocaleString('en')}`);
 console.log(`  questions answered ${totals.questions.toLocaleString('en')}`);
 console.log(`  retry questions    ${totals.retries.toLocaleString('en')}`);
 console.log(`  mid-session reloads ${totals.reopens.toLocaleString('en')}`);
+console.log(`  mid-day level retakes ${totals.middayRetakes.toLocaleString('en')}`);
 console.log('');
 console.log('  synthetic educational outcome (not a claim about humans):');
 console.log(`    words introduced        ${totals.introduced.toLocaleString('en')}`);
@@ -587,9 +666,9 @@ if (allDefects.length > 0) {
 // --- The report --------------------------------------------------------------
 
 const lines = [];
-lines.push('# Synthetic 100-user journey QA');
+lines.push(`# Synthetic ${results.length}-user journey QA`);
 lines.push('');
-lines.push('**This is a simulation.** One hundred synthetic learners were driven through');
+lines.push(`**This is a simulation.** ${results.length} synthetic learners were driven through`);
 lines.push('the real product domain code — the same plan builder, question builder,');
 lines.push('crediting rules, memory scheduler and streak arithmetic the shipping app');
 lines.push('runs — by `scripts/synthetic-users-qa.mjs` from the fixtures in');
@@ -610,6 +689,7 @@ lines.push(`- total simulated study days: ${totals.days.toLocaleString('en')}`);
 lines.push(`- questions answered: ${totals.questions.toLocaleString('en')}`);
 lines.push(`- wrong-answer retries asked: ${totals.retries.toLocaleString('en')}`);
 lines.push(`- mid-session reloads exercised: ${totals.reopens.toLocaleString('en')}`);
+lines.push(`- mid-day level retakes exercised: ${totals.middayRetakes.toLocaleString('en')}`);
 lines.push('');
 lines.push('## Synthetic educational outcome');
 lines.push('');
@@ -634,7 +714,7 @@ lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
 for (const r of results) {
   const p = r.persona;
   lines.push(
-    `| ${p.id} | ${p.locale} | ${p.level}${p.levelTest === 'retaken' ? `→${p.retakenLevel}` : ''} | ${p.levelTest} | ${p.history} | ${p.goal} | ${p.days} | ${p.accuracy} | ${p.platform}/${p.device} | ${r.outcome.introduced} | ${r.outcome.mastered} | ${r.outcome.wrongOnce} | ${r.outcome.recovered} | ${r.outcome.savedCount} | ${r.pass ? 'PASS' : '**FAIL**'} |`,
+    `| ${p.id} | ${p.locale} | ${p.level}${p.levelTest === 'retaken' || p.levelTest === 'retaken-midday' ? `→${p.retakenLevel}` : ''} | ${p.levelTest} | ${p.history} | ${p.goal} | ${p.days} | ${p.accuracy} | ${p.platform}/${p.device} | ${r.outcome.introduced} | ${r.outcome.mastered} | ${r.outcome.wrongOnce} | ${r.outcome.recovered} | ${r.outcome.savedCount} | ${r.pass ? 'PASS' : '**FAIL**'} |`,
   );
 }
 lines.push('');

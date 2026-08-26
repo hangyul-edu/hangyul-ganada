@@ -2,7 +2,14 @@ import { describe, expect, it } from 'vitest';
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
 import raw from '../data/generated/vocabulary.json';
-import { buildDailyPlan, planIsCurrent } from './vocabularyDay';
+import {
+  buildDailyPlan,
+  extendDay,
+  planIsCurrent,
+  rebuildPlanForLevel,
+  type DailyPlan,
+  type DayRequest,
+} from './vocabularyDay';
 import { planNewWords, teachingZone, wordLevel } from './vocabularyLevel';
 
 /**
@@ -228,9 +235,209 @@ describe("the day a learner is given matches the level they were measured at", (
     expect(planIsCurrent(beginner, now, 30)).toBe(false);
   });
 
+  it('refuses a mismatched plan even when the day has been started', () => {
+    /*
+     * The negative test for the retired "new level tomorrow" rule. The old
+     * `planIsCurrent` kept a stale-level plan alive the moment it had any
+     * completed word in it — which is precisely the reported journey: study
+     * three beginner words, be measured at 30, and be taught 엄마 anyway.
+     * A measured level change invalidates the plan whatever its progress;
+     * preserving the progress is `rebuildPlanForLevel`'s job, not this one's.
+     */
+    const now = new Date('2026-08-24T09:00:00Z');
+    const beginner = planAt(1);
+    const started = { ...beginner, completed: [beginner.words[0]!.wordId] };
+    expect(planIsCurrent(started, now, 30)).toBe(false);
+  });
+
   it('keeps a plan written before plans carried a level', () => {
     const now = new Date('2026-08-24T09:00:00Z');
     const { level: _dropped, ...old } = planAt(12);
     expect(planIsCurrent(old, now, 30)).toBe(true);
+  });
+});
+
+/**
+ * The mid-day level change, end to end at the domain layer.
+ *
+ * The canonical rule this pass installed: **a measured vocabulary-level change
+ * immediately invalidates the unresolved level-dependent portion of Today's
+ * Vocabulary; already mastered progress is preserved; remaining ordinary
+ * new-study targets are regenerated for the new level.** The old rule — a
+ * retake mid-day leaves today's words as they were, the new level being "a
+ * fact about tomorrow" — is retired, and these fixtures are the ones that fail
+ * if it returns.
+ *
+ * Every fixture runs against the real corpus, because the defect it guards was
+ * only visible in real levels: a synthetic corpus with a word per level cannot
+ * tell 남자 from 새옹지마.
+ */
+describe('a mid-day level change replaces what is owed and keeps what is earned', () => {
+  const byId = new Map(CORPUS.map((word) => [word.id, word]));
+  const NOW = new Date('2026-08-24T09:00:00Z');
+
+  function request(level: number, progress: DayRequest['progress'] = {}): DayRequest {
+    return {
+      progress,
+      memory: {},
+      corpus: CORPUS,
+      goal: 10,
+      now: NOW,
+      level,
+      seed: 'learner',
+      dayIndex: 0,
+    };
+  }
+
+  function planAt(level: number, progress: DayRequest['progress'] = {}): DailyPlan {
+    return buildDailyPlan(request(level, progress));
+  }
+
+  /** The first `n` planned words marked complete, as a started day. */
+  function started(plan: DailyPlan, n: number): DailyPlan {
+    return { ...plan, completed: plan.words.slice(0, n).map((word) => word.wordId) };
+  }
+
+  const levelOf = (id: string) => wordLevel(byId.get(id)!);
+  const BEGINNER_FILLER = ['남자', '여자', '엄마', '아빠', '나', '너'];
+
+  it('A: an untouched Level-1 day retaken to 30 serves only the advanced zone', () => {
+    const rebuilt = rebuildPlanForLevel(planAt(1), request(30));
+    expect(rebuilt.level).toBe(30);
+    expect(rebuilt.words).toHaveLength(10);
+    const zone = teachingZone(30);
+    for (const word of rebuilt.words) {
+      expect(levelOf(word.wordId), byId.get(word.wordId)!.word).toBeGreaterThanOrEqual(
+        zone.min - 1,
+      );
+    }
+    const surfaces = rebuilt.words.map((word) => byId.get(word.wordId)!.word);
+    for (const filler of BEGINNER_FILLER) expect(surfaces).not.toContain(filler);
+  });
+
+  it('B: 3/10 at Level 1 retaken to 30 stays 3/10 with seven advanced targets', () => {
+    const day = started(planAt(1), 3);
+    const rebuilt = rebuildPlanForLevel(day, request(30));
+    // The earned three: still credited, still in the plan, untouched.
+    expect(rebuilt.completed).toEqual(day.completed);
+    for (const id of day.completed) {
+      expect(rebuilt.words.map((word) => word.wordId)).toContain(id);
+    }
+    // The denominator the learner agreed to does not move.
+    expect(rebuilt.goal).toBe(10);
+    expect(rebuilt.words).toHaveLength(10);
+    // The seven unresolved beginner words are replaced by Level-30-zone words.
+    const done = new Set(day.completed);
+    const regenerated = rebuilt.words.filter((word) => !done.has(word.wordId));
+    expect(regenerated).toHaveLength(7);
+    for (const word of regenerated) {
+      expect(levelOf(word.wordId), byId.get(word.wordId)!.word).toBeGreaterThanOrEqual(
+        teachingZone(30).min - 1,
+      );
+    }
+    const oldUnresolved = day.words.slice(3).map((word) => word.wordId);
+    for (const id of oldUnresolved) {
+      expect(rebuilt.words.map((word) => word.wordId)).not.toContain(id);
+    }
+  });
+
+  it('C: 4/10 at Level 30 retaken to 1 stays 4/10 with beginner-appropriate targets', () => {
+    const day = started(planAt(30), 4);
+    const rebuilt = rebuildPlanForLevel(day, request(1));
+    expect(rebuilt.completed).toEqual(day.completed);
+    expect(rebuilt.words).toHaveLength(10);
+    const done = new Set(day.completed);
+    const regenerated = rebuilt.words.filter((word) => !done.has(word.wordId));
+    expect(regenerated).toHaveLength(6);
+    for (const word of regenerated) {
+      expect(levelOf(word.wordId), byId.get(word.wordId)!.word).toBeLessThanOrEqual(
+        teachingZone(1).max + 1,
+      );
+    }
+  });
+
+  it('D: an unresolved wrong answer does not keep the old plan alive', () => {
+    /*
+     * A word answered wrongly stays unresolved — it is not in `completed` — and
+     * used to sit in the retry queue holding a place in the day. It is ordinary
+     * new-study, so the measured level owns it: after the retake it is replaced
+     * like any other unresolved target. Its wrong-answer history lives in the
+     * mistakes store, and Review is the feature entitled to bring it back.
+     */
+    const day = started(planAt(10), 9);
+    const pending = day.words[9]!.wordId; // answered wrong: unresolved, not completed
+    const rebuilt = rebuildPlanForLevel(day, request(25));
+    expect(rebuilt.words.map((word) => word.wordId)).not.toContain(pending);
+    expect(rebuilt.completed).toEqual(day.completed);
+    expect(rebuilt.words).toHaveLength(10);
+  });
+
+  it('E: extra study after a completed day and a retake is chosen at the new level', () => {
+    const finished = started(planAt(1), 10);
+    const rebuilt = rebuildPlanForLevel(finished, request(30));
+    // Nothing was owed, so nothing is replaced — only the level moves.
+    expect(rebuilt.words).toEqual(finished.words);
+    expect(rebuilt.completed).toEqual(finished.completed);
+    expect(rebuilt.level).toBe(30);
+    // The five extra words are picked around Level 30, not the finished plan's 1.
+    const extended = extendDay(rebuilt, 5, request(30));
+    const added = extended.words.slice(10);
+    expect(added).toHaveLength(5);
+    for (const word of added) {
+      expect(levelOf(word.wordId), byId.get(word.wordId)!.word).toBeGreaterThanOrEqual(
+        teachingZone(30).min - 1,
+      );
+    }
+  });
+
+  it('F: 12/15 keeps twelve credits and regenerates only the remaining three', () => {
+    const day = planAt(1);
+    const extended = extendDay(day, 5, request(1));
+    expect(extended.words).toHaveLength(15);
+    const twelve = started(extended, 12);
+    const rebuilt = rebuildPlanForLevel(twelve, request(30));
+    expect(rebuilt.completed).toHaveLength(12);
+    expect(rebuilt.completed).toEqual(twelve.completed);
+    // The denominator of the extended day stays 15.
+    expect(rebuilt.words).toHaveLength(15);
+    const done = new Set(twelve.completed);
+    const regenerated = rebuilt.words.filter((word) => !done.has(word.wordId));
+    expect(regenerated).toHaveLength(3);
+    for (const word of regenerated) {
+      expect(levelOf(word.wordId), byId.get(word.wordId)!.word).toBeGreaterThanOrEqual(
+        teachingZone(30).min - 1,
+      );
+    }
+  });
+
+  it('G: a retake to the same level returns the identical plan', () => {
+    const day = started(planAt(10), 4);
+    expect(rebuildPlanForLevel(day, request(10))).toBe(day);
+  });
+
+  it('never re-teaches a word from earlier today as one of the replacements', () => {
+    // The learner met the beginner words this morning — introduced, some wrong.
+    // None of them may come back wearing a new-word slot at the new level, and
+    // none of the replacements may duplicate a word already in the plan.
+    const day = started(planAt(1), 3);
+    const progress: DayRequest['progress'] = Object.fromEntries(
+      day.words.map((word) => [
+        `word:${word.wordId}`,
+        {
+          kind: 'word',
+          item_key: word.wordId,
+          stage: 'seen',
+          attempts: 1,
+          passes: 0,
+          first_seen_at: NOW.toISOString(),
+          last_seen_at: NOW.toISOString(),
+        } as unknown as DayRequest['progress'][string],
+      ]),
+    );
+    const rebuilt = rebuildPlanForLevel(day, { ...request(30), progress });
+    const ids = rebuilt.words.map((word) => word.wordId);
+    expect(new Set(ids).size).toBe(ids.length);
+    const oldUnresolved = day.words.slice(3).map((word) => word.wordId);
+    for (const id of oldUnresolved) expect(ids).not.toContain(id);
   });
 });

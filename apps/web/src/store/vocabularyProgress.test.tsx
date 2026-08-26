@@ -246,3 +246,97 @@ describe('studying past the goal', () => {
     expect(second.context.vocabularyDay.words.length).toBe(goal + 5);
   });
 });
+
+describe('a slow store', () => {
+  /**
+   * The shipped driver is IndexedDB, whose writes land whenever the browser
+   * lets them. Every write here is delayed and completes out of order — the
+   * worst honest schedule a device can produce — and the deal the provider
+   * makes must hold anyway: the screen is right immediately from memory, and
+   * once the writes settle, a reload agrees with what the learner saw.
+   */
+  function slowDriver(pending: Set<Promise<void>>): MemoryDriver {
+    const driver = durableDriver();
+    const original = driver.put.bind(driver);
+    // Adversarial on purpose: each write is *slower* the earlier it was
+    // issued, so any two writes in flight at once complete in reverse order.
+    // A repository that lets the driver decide the order loses every time,
+    // which is what makes this a deterministic gate rather than a coin flip.
+    let seq = 0;
+    const delayed = <T,>(store: Parameters<MemoryDriver['put']>[0], key: string, value: T) => {
+      const wait = Math.max(1, 45 - 8 * seq++);
+      const job: Promise<void> = new Promise((resolve) =>
+        setTimeout(() => {
+          void original(store, key, value).then(resolve);
+        }, wait),
+      );
+      pending.add(job);
+      void job.finally(() => pending.delete(job));
+      return job;
+    };
+    return new Proxy(driver, {
+      get: (target, prop) =>
+        prop === 'put' ? delayed : Reflect.get(target, prop, target),
+    }) as MemoryDriver;
+  }
+
+  /**
+   * Waits until no write is in flight and none arrives for a beat longer than
+   * the longest delay — the repositories chain writes per row, so a queued
+   * write only enters `pending` when its predecessor settles.
+   */
+  async function settled(pending: Set<Promise<void>>) {
+    for (;;) {
+      while (pending.size > 0) await Promise.all([...pending]);
+      await new Promise((resolve) => setTimeout(resolve, 60));
+      if (pending.size === 0) return;
+    }
+  }
+
+  it('credits every correct answer under write latency, and a reload agrees', { timeout: 30_000 }, async () => {
+    const pending = new Set<Promise<void>>();
+    const driver = slowDriver(pending);
+    const first = await open(driver);
+    const goal = first.context.state.settings.daily_word_goal;
+
+    // Answer fast — faster than any write can settle.
+    const studied = await study(first, 4);
+    // The screen is right from memory, before persistence has caught up.
+    await waitFor(() => expect(today()).toBe(`4/${goal}`));
+
+    // Let every queued write land, in whatever order the delays produced.
+    await settled(pending);
+    first.view.unmount();
+
+    const second = await open(driver);
+    await waitFor(() => expect(today()).toBe(`4/${goal}`));
+    expect(second.context.vocabularyDay.completed).toEqual(studied);
+  });
+
+  it('a mid-day retake under write latency still keeps the earned words', { timeout: 30_000 }, async () => {
+    const pending = new Set<Promise<void>>();
+    const driver = slowDriver(pending);
+    const first = await open(driver);
+    const studied = await study(first, 3);
+
+    await act(async () =>
+      first.context.saveLevelTestResult({
+        level: 14,
+        low: 12,
+        high: 16,
+        items: 30,
+        takenAt: '2026-03-01T09:00:00.000Z',
+        recentItems: [],
+      }),
+    );
+    await waitFor(() => expect(first.context.vocabularyDay.level).toBe(14));
+    expect(first.context.vocabularyDay.completed).toEqual(studied);
+
+    await settled(pending);
+    first.view.unmount();
+
+    const second = await open(driver);
+    await waitFor(() => expect(second.context.vocabularyDay.level).toBe(14));
+    expect(second.context.vocabularyDay.completed).toEqual(studied);
+  });
+});

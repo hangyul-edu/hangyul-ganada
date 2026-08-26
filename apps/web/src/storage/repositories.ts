@@ -36,6 +36,39 @@ import {
  * None of them know what engine is underneath.
  */
 
+/**
+ * Later writes to a row land after earlier ones, whatever the driver does.
+ *
+ * Every repository below overwrites whole rows, and the callers fire writes
+ * without awaiting them — deliberately, so the screen never waits for storage.
+ * That leaves ordering to the driver, and not every driver guarantees it:
+ * IndexedDB serialises same-store readwrite transactions, but the native
+ * SQLite driver sends each `put` as its own asynchronous plugin call, and two
+ * calls in flight at once may complete in either order. For an append-keyed
+ * log that is harmless; for a row that is rewritten on every event — the
+ * settings row carries the whole daily plan, `completed` included — it means a
+ * *stale* snapshot can land last and silently erase the credit for a correct
+ * answer the learner already watched count.
+ *
+ * So ordering is made a property of the repository rather than a hope about
+ * the engine: writes to the same key are chained, each starting only when the
+ * previous one has settled. A failed write does not wedge the chain — the next
+ * write proceeds, and the caller still sees its own rejection.
+ */
+class RowWrites {
+  private readonly tails = new Map<string, Promise<unknown>>();
+
+  run<T>(key: string, job: () => Promise<T>): Promise<T> {
+    const tail = this.tails.get(key) ?? Promise.resolve();
+    const next = tail.then(job, job);
+    this.tails.set(
+      key,
+      next.catch(() => undefined),
+    );
+    return next;
+  }
+}
+
 // --- Settings ---------------------------------------------------------------
 
 /**
@@ -69,6 +102,8 @@ function isReadablePlan(plan: unknown): plan is StoredSettings['daily_plan'] {
 export class SettingsRepository {
   static readonly MIRROR_KEY = 'hangyul_ganada:prefs';
 
+  private readonly writes = new RowWrites();
+
   constructor(private readonly driver: PersistenceDriver) {}
 
   async load(): Promise<StoredSettings> {
@@ -90,7 +125,10 @@ export class SettingsRepository {
   }
 
   async save(settings: StoredSettings): Promise<void> {
-    await this.driver.put('settings', SETTINGS_KEY, settings);
+    // Serialised per row: the settings row carries the daily plan, and a stale
+    // snapshot landing after a newer one erases a credited answer. See
+    // `RowWrites`.
+    await this.writes.run(SETTINGS_KEY, () => this.driver.put('settings', SETTINGS_KEY, settings));
     writeMirror({ locale: settings.locale, voice: settings.voice });
   }
 
@@ -126,6 +164,8 @@ function writeMirror(value: { locale: string | null; voice: string }): void {
 
 /** Per-item mastery. The largest collection, and the one worth protecting. */
 export class ProgressRepository {
+  private readonly writes = new RowWrites();
+
   constructor(private readonly driver: PersistenceDriver) {}
 
   /**
@@ -152,7 +192,8 @@ export class ProgressRepository {
   }
 
   async put(row: ItemProgress): Promise<void> {
-    await this.driver.put('progress', progressKey(row.kind, row.item_key), row);
+    const key = progressKey(row.kind, row.item_key);
+    await this.writes.run(key, () => this.driver.put('progress', key, row));
   }
 
   async putMany(rows: ItemProgress[]): Promise<void> {
@@ -237,6 +278,8 @@ function finite(value: unknown, fallback: number): number {
 export class LearningRepository {
   static readonly MAX_SESSIONS = 500;
 
+  private readonly writes = new RowWrites();
+
   constructor(private readonly driver: PersistenceDriver) {}
 
   async loadAll(): Promise<LearningSession[]> {
@@ -247,7 +290,7 @@ export class LearningRepository {
   }
 
   async put(session: LearningSession): Promise<void> {
-    await this.driver.put('sessions', session.id, session);
+    await this.writes.run(session.id, () => this.driver.put('sessions', session.id, session));
   }
 
   /** Drops the oldest rows past the cap. Returns how many were removed. */
@@ -279,6 +322,8 @@ export class LearningRepository {
 export class ActivityRepository {
   static readonly MAX_DAYS = 1_825;
 
+  private readonly writes = new RowWrites();
+
   constructor(private readonly driver: PersistenceDriver) {}
 
   async loadAll(): Promise<Record<string, DailyActivity>> {
@@ -292,7 +337,7 @@ export class ActivityRepository {
   }
 
   async put(row: DailyActivity): Promise<void> {
-    await this.driver.put('activity', row.date, row);
+    await this.writes.run(row.date, () => this.driver.put('activity', row.date, row));
   }
 
   /** Drops the oldest days past the cap. Returns how many were removed. */
@@ -354,6 +399,8 @@ export function normaliseActivity(candidate: unknown): DailyActivity | null {
  * the two facts to live in two rows that no single write touches at once.
  */
 export class MemoryRepository {
+  private readonly writes = new RowWrites();
+
   constructor(private readonly driver: PersistenceDriver) {}
 
   async loadAll(): Promise<MemoryMap> {
@@ -367,7 +414,8 @@ export class MemoryRepository {
   }
 
   async put(row: ItemMemory): Promise<void> {
-    await this.driver.put('memory', memoryKey(row.kind, row.item_key), row);
+    const key = memoryKey(row.kind, row.item_key);
+    await this.writes.run(key, () => this.driver.put('memory', key, row));
   }
 
   async clear(): Promise<void> {
@@ -416,6 +464,8 @@ export class MistakeRepository {
    */
   static readonly MAX_MISTAKES = 5_000;
 
+  private readonly writes = new RowWrites();
+
   constructor(private readonly driver: PersistenceDriver) {}
 
   async loadAll(): Promise<MistakeMap> {
@@ -429,11 +479,13 @@ export class MistakeRepository {
   }
 
   async put(row: Mistake): Promise<void> {
-    await this.driver.put('mistakes', row.id, row);
+    await this.writes.run(row.id, () => this.driver.put('mistakes', row.id, row));
   }
 
   async remove(id: string): Promise<void> {
-    await this.driver.remove('mistakes', id);
+    // In the same queue as `put`, so clearing a mistake cannot be undone by an
+    // earlier write for the same row landing late.
+    await this.writes.run(id, () => this.driver.remove('mistakes', id));
   }
 
   async prune(): Promise<void> {

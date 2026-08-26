@@ -173,6 +173,10 @@ const NOT_VOLITIONAL = new Set([
   '반항하다', '감내하다', '장담하다', '감당하다', '몰아넣다', '채다',
   '바치다', '겨누다', '박차다', '빼먹다', '아우르다', '돌이키다', '뒤틀다',
   '헤집다', '낳다',
+  // Batch 910 (levels 28–30). A result arrives (초래), a thing entails (수반),
+  // a scene evokes (자아내다), coverage tilts (치우치다) — none is an act a
+  // person is told to perform, and 일컬으세요 is not said of naming either.
+  '초래하다', '수반하다', '자아내다', '치우치다', '일컫다',
 ]);
 
 /**

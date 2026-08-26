@@ -149,27 +149,109 @@ describe('placement', () => {
     expect(app.context.placementStatus).not.toBe('untested');
   });
 
-  it('a retake does not disturb the day already in progress', async () => {
+  it('a mid-day retake keeps the progress earned and replaces the unresolved targets', async () => {
     /*
-     * Case E. Rebuilding the day underneath somebody who is four words into it
-     * would lose the four words and replace the six they were promised, so a
-     * plan with work in it stands and the new level starts tomorrow.
+     * Case E, rewritten to the canonical rule: **a measured level change takes
+     * effect immediately.** The old rule — "a plan with work in it stands and
+     * the new level starts tomorrow" — is exactly how a learner who studied
+     * three beginner words, sat the test and came out advanced went back to
+     * being taught 엄마 for the rest of the day. What is preserved is the work,
+     * never the stale targets: the completed word keeps its credit and stays
+     * in the plan; every unresolved ordinary new-study word is regenerated for
+     * the measured level; the goal the learner agreed to does not move.
      */
     const app = await open(durableDriver());
     const before = app.context.vocabularyDay;
     expect(before.words.length).toBeGreaterThan(0);
-    // Start the day. This is what makes it a day in progress rather than a
-    // plan nobody has looked at — see the next test.
-    await act(async () => app.context.completeDailyWord(before.words[0]!.wordId));
+    // Start the day, so this is a day in progress rather than an untouched plan.
+    const earned = before.words[0]!.wordId;
+    await act(async () => app.context.completeDailyWord(earned));
     await waitFor(() => expect(app.context.vocabularyDay.completed.length).toBe(1));
     const started = app.context.vocabularyDay;
+    const oldUnresolved = started.words
+      .filter((word) => word.source === 'new' && word.wordId !== earned)
+      .map((word) => word.wordId);
+    expect(oldUnresolved.length).toBeGreaterThan(0);
 
     await act(async () => app.context.saveLevelTestResult(assessedAt14));
     await waitFor(() => expect(app.context.vocabularyLevel).toBe(14));
 
-    const after = app.context.vocabularyDay;
+    const after = await waitFor(() => {
+      const plan = app.context.vocabularyDay;
+      expect(plan.level).toBe(14);
+      return plan;
+    });
+    // Same day, same goal, same size — and the earned word still credited.
     expect(after.date).toBe(started.date);
-    expect(after.words).toEqual(started.words);
+    expect(after.goal).toBe(started.goal);
+    expect(after.words.length).toBe(started.words.length);
+    expect(after.completed).toEqual(started.completed);
+    expect(after.words.map((word) => word.wordId)).toContain(earned);
+    // The unresolved beginner targets are gone, not carried.
+    const remaining = after.words.map((word) => word.wordId);
+    for (const id of oldUnresolved) expect(remaining).not.toContain(id);
+  });
+
+  it('a retake to the same level does not rebuild or reshuffle the day', async () => {
+    // Fixture G. Being re-measured at the level the plan was already built for
+    // is not a change; nothing about the day may move.
+    const app = await open(durableDriver());
+    await act(async () => app.context.saveLevelTestResult(assessedAt14));
+    await waitFor(() => expect(app.context.vocabularyDay.level).toBe(14));
+    const started = app.context.vocabularyDay;
+    await act(async () => app.context.completeDailyWord(started.words[0]!.wordId));
+    await waitFor(() => expect(app.context.vocabularyDay.completed.length).toBe(1));
+    const mid = app.context.vocabularyDay;
+
+    await act(async () =>
+      app.context.saveLevelTestResult({ ...assessedAt14, takenAt: '2026-03-01T10:00:00.000Z' }),
+    );
+    await waitFor(() => expect(app.context.placementStatus).toBe('assessed'));
+
+    const after = app.context.vocabularyDay;
+    expect(after.words).toEqual(mid.words);
+    expect(after.completed).toEqual(mid.completed);
+  });
+
+  it('a credit written just before the retake survives the rebuild', async () => {
+    /*
+     * The race the immediate-level rule creates: answer a word correctly,
+     * finish the Level Test moments later, return. The correct answer was
+     * committed by `completeDailyWord` before the plan was rebuilt, and the
+     * rebuild must carry it — a level change may replace what is owed, never
+     * what was earned.
+     */
+    const app = await open(durableDriver());
+    const before = app.context.vocabularyDay;
+    const earned = before.words[0]!.wordId;
+    await act(async () => {
+      app.context.completeDailyWord(earned);
+      app.context.saveLevelTestResult(assessedAt14);
+    });
+    await waitFor(() => expect(app.context.vocabularyDay.level).toBe(14));
+    const after = app.context.vocabularyDay;
+    expect(after.completed).toContain(earned);
+    expect(after.words.map((word) => word.wordId)).toContain(earned);
+  });
+
+  it('a goal changed mid-day applies tomorrow and wipes nothing', async () => {
+    /*
+     * The goal is a preference, and the stated rule has always been that a
+     * mid-day change takes effect tomorrow. The provider's plan check used to
+     * contradict it: any goal mismatch rebuilt the day from scratch, so a
+     * learner three words in who nudged their goal watched 3/10 become 0/15.
+     */
+    const app = await open(durableDriver());
+    const before = app.context.vocabularyDay;
+    const earned = before.words[0]!.wordId;
+    await act(async () => app.context.completeDailyWord(earned));
+    await waitFor(() => expect(app.context.vocabularyDay.completed.length).toBe(1));
+
+    await act(async () => app.context.setPreferences({ daily_word_goal: 20 }));
+    const after = app.context.vocabularyDay;
+    expect(after.completed).toContain(earned);
+    expect(after.goal).toBe(before.goal);
+    expect(after.words).toEqual(app.context.vocabularyDay.words);
   });
 
   it('a retake before the day is started rebuilds it for the new level', async () => {

@@ -746,6 +746,9 @@ _KOREAN_HAS_A_PERSON = re.compile(
     "그는|그가|그를|그의|그녀|아버지|아빠|형|오빠|남편|아들|삼촌|할아버지|어머니|엄마"
     "|언니|누나|아내|딸|할머니|소년|소녀|남자|여자|아저씨|아줌마|아주머니|아가씨"
     "|신사|숙녀|왕|여왕|장군"
+    # 남 as *other people* — 남의 실패, 남이 하는 말. Only with its particle, so
+    # this does not fire inside 남자, 남편 or 남산.
+    "|남의|남이|남을|남에게|남한테"
 )
 
 #: A noun already in the sentence that a pronoun or possessive can belong to.

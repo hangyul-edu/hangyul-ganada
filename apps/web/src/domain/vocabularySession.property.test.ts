@@ -29,6 +29,7 @@ import {
   dayProgress,
   endsSession,
   extendDay,
+  rebuildPlanForLevel,
   retrySteps,
   scheduleSteps,
   sessionProgress,
@@ -62,6 +63,10 @@ function mulberry32(seed: number): () => number {
 function assertInvariants(plan: DailyPlan, seed: number) {
   const planned = new Set(plan.words.map((w) => w.wordId));
   const completed = new Set(plan.completed);
+
+  // One canonical identity per target: a plan may never hold the same word in
+  // two slots, whatever built or rebuilt it — §41's identity rule.
+  expect(plan.words.length, `seed ${seed}: duplicate target in plan`).toBe(planned.size);
 
   // Progress is unique completed words — never entries, never questions.
   const day = dayProgress(plan);
@@ -203,12 +208,150 @@ function runSitting(seed: number): DailyPlan {
   return plan;
 }
 
+/**
+ * A corpus with real levels, twenty words per level, for the sittings where
+ * the learner's measured level changes underneath the day.
+ */
+function leveledCorpus(perLevel = 20, levels = 30): VocabularyWord[] {
+  const out: VocabularyWord[] = [];
+  for (let level = 1; level <= levels; level += 1) {
+    for (let i = 0; i < perLevel; i += 1) {
+      out.push({
+        id: `L${level}w${i}`,
+        word: `단어${level}-${i}`,
+        level,
+        difficulty_score: level * 100 + i,
+      } as unknown as VocabularyWord);
+    }
+  }
+  return out;
+}
+
+/**
+ * One sitting during which the Vocabulary Level Test is retaken mid-day —
+ * once, twice or three times, at arbitrary points between answers, to
+ * arbitrary levels in both directions.
+ *
+ * The §59 interleaving the fixed-level sittings could not reach: every
+ * rebuild must keep every credit already earned, keep the invariants, leave
+ * the queue with a next action while anything is owed, and let the sitting
+ * converge. A step whose word was replaced mid-pass credits nothing — its
+ * word is no longer a target — and the replacement is asked instead on the
+ * next pass.
+ */
+function runLevelChangeSitting(seed: number): DailyPlan {
+  const rand = mulberry32(seed);
+  const corpus = leveledCorpus();
+  const goal = [5, 10, 15][Math.floor(rand() * 3)]!;
+  const levelAt = () => 1 + Math.floor(rand() * 30);
+  const request = (level: number) => ({
+    progress: {},
+    memory: {},
+    corpus,
+    goal,
+    now: NOW,
+    level,
+    seed: `learner-${seed}`,
+    dayIndex: 0,
+  });
+
+  let level = levelAt();
+  let plan = buildDailyPlan(request(level));
+  assertInvariants(plan, seed);
+
+  const missed = new Map<string, WordStep>();
+  let retakes = 1 + Math.floor(rand() * 3);
+  let guard = 0;
+  let queue = scheduleSteps(plan).filter((step) => step.completes.length > 0);
+
+  while (queue.length > 0) {
+    if (++guard > 500) throw new Error(`seed ${seed}: level-change sitting did not converge`);
+
+    for (const step of queue) {
+      // A retake lands between any two answers.
+      if (retakes > 0 && rand() < 0.15) {
+        retakes -= 1;
+        const next = levelAt();
+        const doneBefore = new Set(plan.completed).size;
+        const completedBefore = [...plan.completed];
+        plan = rebuildPlanForLevel(plan, request(next));
+        // Mastered progress is preserved to the word, not merely to the count.
+        expect(plan.completed, `seed ${seed}: retake touched completed`).toEqual(completedBefore);
+        expect(new Set(plan.completed).size, `seed ${seed}: retake moved progress`).toBe(
+          doneBefore,
+        );
+        // Every replacement target sits inside the new level's teaching zone
+        // (the picker may look one level outside it, and no further).
+        if (next !== level) {
+          const done = new Set(plan.completed);
+          for (const planned of plan.words) {
+            if (done.has(planned.wordId) || planned.source !== 'new') continue;
+            const at = Number(planned.wordId.slice(1).split('w')[0]);
+            expect(Math.abs(at - next), `seed ${seed}: ${planned.wordId} out of zone for ${next}`)
+              .toBeLessThanOrEqual(3);
+          }
+        }
+        level = next;
+        assertInvariants(plan, seed);
+      }
+
+      const planned = new Set(plan.words.map((w) => w.wordId));
+      const correct = rand() < 0.7;
+      const doneBefore = new Set(plan.completed).size;
+      if (correct) {
+        // The frozen queue can hold a step for a word a retake has since
+        // replaced. Continuing it credits nothing — the word is not a target —
+        // and never throws, which is the UI's exact behaviour.
+        const expected = step.completes.filter(
+          (id) => planned.has(id) && !plan.completed.includes(id),
+        ).length;
+        for (const id of step.completes) {
+          plan = completeWord(plan, id);
+          plan = completeWord(plan, id);
+        }
+        expect(new Set(plan.completed).size, `seed ${seed}: correct answer credited wrongly`).toBe(
+          doneBefore + expected,
+        );
+      } else {
+        for (const id of step.completes) missed.set(id, step.step);
+        expect(new Set(plan.completed).size, `seed ${seed}: wrong answer moved progress`).toBe(
+          doneBefore,
+        );
+      }
+      assertInvariants(plan, seed);
+
+      if (rand() < 0.08) {
+        const before = dayProgress(plan);
+        const reloaded: DailyPlan = JSON.parse(JSON.stringify(plan));
+        expect(dayProgress(reloaded).done, `seed ${seed}: reload lost progress`).toBe(before.done);
+        plan = reloaded;
+      }
+    }
+    queue = retrySteps(plan, missed);
+  }
+
+  expect(retrySteps(plan).length).toBe(0);
+  const finished = sessionProgress(plan);
+  expect(finished.complete, `seed ${seed}: finished sitting not complete`).toBe(true);
+  return plan;
+}
+
 describe('randomized sittings', () => {
   it('holds every invariant across 2,000 random sittings', { timeout: 120_000 }, () => {
     for (let seed = 1; seed <= 2_000; seed += 1) {
       runSitting(seed);
     }
   });
+
+  it(
+    'holds every invariant across 1,000 sittings with mid-day level retakes',
+    { timeout: 120_000 },
+    () => {
+      for (let seed = 1; seed <= 1_000; seed += 1) {
+        runLevelChangeSitting(seed);
+      }
+    },
+  );
 
   it('a sitting of pure wrong answers never moves progress and never ends', () => {
     const plan = buildDailyPlan({ progress: {}, memory: {}, corpus: corpus(40), goal: 10, now: NOW });

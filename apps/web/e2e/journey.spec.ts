@@ -1020,7 +1020,13 @@ test('a wrong answer writes itself into the notebook', async ({ page }) => {
   await expect(page.getByText('Answer').first()).toBeVisible();
 
   // Filters, and a session built from the notebook.
-  await page.getByRole('button', { name: 'Words' }).click();
+  //
+  // `exact`, because a mistake row's accessible name is the word plus its
+  // gloss — and 말's gloss is "words, what someone says", so the loose match
+  // resolved to the filter chip *and* the row whenever the walk happened to
+  // miss 말. A selector that fails only when a specific word is missed is the
+  // same content-pinned-spec class as I-94.
+  await page.getByRole('button', { name: 'Words', exact: true }).click();
   await expect(page.getByText('Answer').first()).toBeVisible();
 
   await page.getByRole('button', { name: /Review ·/ }).click();
