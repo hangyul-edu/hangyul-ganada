@@ -236,6 +236,8 @@ const METRICS = {
     patterns: [
       /\|\s*Audio clips\s*\|\s*([\d,]+)\s*\|/g,
       /\|\s*Files\s*\|\s*([\d,]+), [\d.]+ MB/g,
+      /([\d,]+) pronunciation clips in two voices/g,
+      /\*\*([\d,]+) distinct files over [\d,]+ voice slots/g,
       /([\d,]+) distinct files/g,
       /over ([\d,]+) files/g,
     ],
@@ -261,6 +263,85 @@ const METRICS = {
       /\|\s*(?:Release|Signed) AAB[^|]*\|\s*\*{0,2}([\d.]+)\*{0,2}\s*MB/g,
     ],
   },
+  audioSlots: {
+    value: JSON.parse(read('apps/web/public/audio/manifest.json')).entries.length * 2,
+    what: 'audio voice slots (two per manifest entry)',
+    patterns: [
+      /\|\s*Audio voice slots\s*\|\s*([\d,]+)\s*\|/g,
+      /over \*{0,2}([\d,]+)\*{0,2} voice slots/g,
+      /([\d,]+) voice slots over [\d,]+ files/g,
+    ],
+  },
+  levelTestItems: {
+    value: JSON.parse(read('apps/web/public/level-test/manifest.json')).items,
+    what: 'level-test items in the English bank',
+    patterns: [
+      /\|\s*Level-test items, English\s*\|\s*([\d,]+)\s*\|/g,
+      /a \*\*([\d,]+)-item\*\* bank/g,
+      /\|\s*Level-test items\s*\|\s*([\d,]+) = [\d,]+\s*\|/g,
+      /over\s*\nall ([\d,]+) items and passes/g,
+    ],
+  },
+  unobservedWords: {
+    value: (() => {
+      const doc = JSON.parse(read('content/vocabulary/unobserved.json'));
+      return Object.keys(doc.words).length;
+    })(),
+    what: 'unobserved words carrying a written reason',
+    patterns: [
+      /\|\s*Unobserved words with a written reason\s*\|\s*([\d,]+)\s*\|/g,
+      /all ([\d,]+) unobserved words carry a written reason/g,
+    ],
+  },
+  moreAboutIt: {
+    value: (() => {
+      const en = JSON.parse(read('apps/web/src/data/generated/vocabulary.en.json'));
+      return en.words.filter((row) => row.length > 2 && row[2]).length;
+    })(),
+    what: 'words carrying the long More-about-it definition in English',
+    patterns: [
+      /\|\s*Long \*More about it\* definitions\s*\|\s*([\d,]+)\s*\|/g,
+      /block is on \*{0,2}([\d,]+)\*{0,2} words of [\d,]+/g,
+    ],
+  },
+  wordsAt28to30: {
+    value: vocabulary.words.filter((w) => w.level >= 28).length,
+    what: 'words at levels 28-30',
+    patterns: [
+      /\|\s*Words at levels 28–30\s*\|\s*([\d,]+)\s*\|/g,
+      /[Ll]evels 28–30(?: now)? hold \*{0,2}([\d,]+)\*{0,2} words/g,
+    ],
+  },
+  issuesTracked: {
+    value: JSON.parse(read('docs/issues.json')).issues.length,
+    what: 'issues tracked in the ledger',
+    patterns: [/\|\s*Issues tracked\s*\|\s*([\d,]+)\s*\|/g],
+  },
+  issuesOpen: {
+    value: JSON.parse(read('docs/issues.json')).issues.filter((i) => i.status === 'OPEN').length,
+    what: 'open issues',
+    patterns: [/citations on the ([\d,]+) open/g],
+  },
+  issuesPartial: {
+    value: JSON.parse(read('docs/issues.json')).issues.filter((i) => i.status === 'PARTIAL').length,
+    what: 'partial issues',
+    patterns: [/citations on the [\d,]+ open, ([\d,]+) partial/g],
+  },
+  issuesBlocked: {
+    value: JSON.parse(read('docs/issues.json')).issues.filter((i) => i.status === 'BLOCKED').length,
+    what: 'blocked issues',
+    patterns: [/citations on the [\d,]+ open, [\d,]+ partial and ([\d,]+) blocked/g],
+  },
+  dictionaryHeadwords: {
+    value: JSON.parse(read('apps/web/public/dictionary/manifest.json')).headwords,
+    what: 'dictionary headwords',
+    patterns: [/\|\s*Dictionary headwords\s*\|\s*([\d,]+)\s*\|/g],
+  },
+  relationsWords: {
+    value: JSON.parse(read('content/vocabulary/relations.json')).counts.words_with_relations,
+    what: 'taught words carrying a verified lexical relation',
+    patterns: [/([\d,]+) of [\d,]+ words carry any verified lexical relation/g],
+  },
 };
 
 // --- where they are written down --------------------------------------------
@@ -277,6 +358,40 @@ const DOCUMENTS = [
 
 const problems = [];
 let checked = 0;
+
+// --- the canonical metrics artifact (docs/report-metrics.json) ---------------
+//
+// One generated file that current-value report sections are derived from, so a
+// current figure always has a source a reader can regenerate. Historical prose
+// deliberately does not consume it.
+{
+  const { writeFileSync } = await import('node:fs');
+  const perLevel = {};
+  for (const w of vocabulary.words) perLevel[w.level] = (perLevel[w.level] ?? 0) + 1;
+  const issueDoc = JSON.parse(read('docs/issues.json')).issues;
+  const count = (status) => issueDoc.filter((i) => i.status === status).length;
+  const dict = JSON.parse(read('apps/web/public/dictionary/manifest.json'));
+  const artifact = {
+    generated_from: 'scripts/check-docs-consistency.mjs — regenerate with npm run docs:consistency',
+    taught_words: vocabulary.words.length,
+    words_per_level: perLevel,
+    categories: usedCategories.size,
+    dictionary_headwords: dict.headwords,
+    dictionary_senses: dict.senses,
+    dictionary_examples: dict.examples,
+    audio_files: METRICS.audioClips.value,
+    audio_slots: METRICS.audioSlots.value,
+    unobserved_words: METRICS.unobservedWords.value,
+    more_about_it: METRICS.moreAboutIt.value,
+    level_test_items: METRICS.levelTestItems.value,
+    words_at_28_to_30: METRICS.wordsAt28to30.value,
+    relations_words: METRICS.relationsWords.value,
+    issues: { open: count('OPEN'), partial: count('PARTIAL'), blocked: count('BLOCKED'), resolved: count('RESOLVED'), tracked: issueDoc.length },
+    apk_mb: METRICS.apkMegabytes.value,
+    aab_mb: METRICS.aabMegabytes.value,
+  };
+  writeFileSync(join(ROOT, 'docs/report-metrics.json'), JSON.stringify(artifact, null, 1) + '\n');
+}
 
 for (const [name, metric] of Object.entries(METRICS)) {
   if (metric.value === null) {
