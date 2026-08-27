@@ -88,7 +88,14 @@ const NEGATION = {
   ro: /\bnu\b|\bnicio/i, el: /(?:^|\P{L})(?:δεν|μην?|όχι|ποτέ|σπάνια|σταμάτ)/iu, hu: /\bnem\b|\bnincs|\bne\b|\bsoha/i,
   tr: /değil|yok|m[aeıi]yor|m[ae]d[ıi]|m[ae]z(?:\P{L}|$)|mey[ıi]n|may[ıi]n|mam(?:\P{L}|$)|mem(?:\P{L}|$)/iu,
   id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b|\bayaw|\bayok|\bbihira|\btigil/i,
-  hi: /नहीं|मत |बिना| न /, bn: /না|নেই|নয়|নি(?:\P{L}|$)/u, ta: /இல்லை|ில்லை|மாட்|வேண்டாம்|ாதே|ாது|ாமல்|வேண்டா|ாதீர்கள்|ாதீர்/, te: /లేదు|కాదు|వద్దు|కూడదు|కుండా|కండి|కు(?:\P{L}|$)|రు(?:\P{L}|$)|దు(?:\P{L}|$)|ను(?:\P{L}|$)/u,
+  /*
+   * `मत ` had a trailing space, and Hindi puts the prohibitive last:
+   * हिलिए मत। — the negative is the final word, followed by a danda, so the
+   * space never came. The boundary is now any non-letter or end of string,
+   * which still keeps मतलब and मतदान out. मुश्किल से is the rarity reading of
+   * 좀처럼, the same absorption as редко and σπάνια.
+   */
+  hi: /नहीं|मत(?:\P{L}|$)|बिना| न |मुश्किल से|शायद ही/u, bn: /না|নেই|নয়|নি(?:\P{L}|$)/u, ta: /இல்லை|ில்லை|மாட்|வேண்டாம்|ாதே|ாது|ாமல்|வேண்டா|ாதீர்கள்|ாதீர்/, te: /లేదు|కాదు|వద్దు|కూడదు|కుండా|కండి|కు(?:\P{L}|$)|రు(?:\P{L}|$)|దు(?:\P{L}|$)|ను(?:\P{L}|$)/u,
   th: /ไม่|อย่า|ห้าม|เลิก|หยุด/, vi: /(?:^|\P{L})(?:không|chưa|đừng|chẳng|chớ|hiếm khi|xin đừng)/iu,
   ar: /لا|ليس|لم|لن|غير|ما\s|كف|توقف|نادرا|نادرًا/, kk: /емес|жоқ|ма[ңйғс]|ме[ңйс]|ба[ңй]|бе[ңй]|па[ңй]|пе[ңй]|мау|меу|майды|мейді|лма|лме|рма|рме|збе|зба/iu,
   ky: /эмес|жок|элек|ба[йң]|бе[йң]|па[йң]|пе[йң]|бо[йң]|бө[йң]|мой|бол?бо|байт|бейт|лба|лбе|рба|рбе|збе|зба|түк/iu, mn: /гүй|биш|үгүй|болохгүй|бүү|битгий/iu,
