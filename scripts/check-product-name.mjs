@@ -143,9 +143,9 @@ const ALLOWED = [
   },
   {
     file: 'apps/web/src/i18n/i18n.test.ts',
-    count: 4,
+    count: 7,
     reason:
-      'One legacy language key, plus three assertions that the product metadata carries no trace of either retired name.',
+      'One legacy language key, three assertions that the product metadata carries no trace of either retired name, and three that the wordmark is the title-cased one.',
   },
   {
     file: 'scripts/check-product-name.mjs',
@@ -173,6 +173,37 @@ const ALLOWED = [
     count: 2,
     reason:
       'The canonical installed display name, plus the comment explaining why it is title-cased here and lowercase everywhere else.',
+  },
+  /*
+   * The wordmark, wherever it stands on its own.
+   *
+   * Same argument as the launcher label below, one surface further out. The
+   * browser tab, the link-preview card, the home screen's wordmark and the
+   * line under Settings are all places the name appears with no sentence
+   * around it, and there the lowercase second word reads as a typo. Prose is
+   * unchanged: the store listings, the README and every document still say
+   * "Hangyul ganada", and this guard still catches the title-cased spelling
+   * anywhere outside the files listed here.
+   *
+   * `apps/web/src/config/product.ts` is the single definition; `index.html`
+   * carries the copy a crawler reads before the app boots, and the two test
+   * files assert the pair agree.
+   */
+  {
+    file: 'apps/web/src/config/product.ts',
+    count: 2,
+    reason: 'The English wordmark, and its `en` entry in localizedName.',
+  },
+  {
+    file: 'apps/web/index.html',
+    count: 6,
+    reason:
+      'The pre-hydration <title>, og:site_name, og:title, twitter:title and the two share-image alt texts.',
+  },
+  {
+    file: 'apps/web/e2e/journey.spec.ts',
+    count: 2,
+    reason: 'Asserts the wordmark on the logo and on the home screen heading.',
   },
   {
     file: 'apps/mobile/android/app/src/main/res/values/strings.xml',

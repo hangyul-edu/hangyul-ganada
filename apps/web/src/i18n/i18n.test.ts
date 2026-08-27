@@ -371,16 +371,16 @@ describe('product identity', () => {
   it('uses the new slug and name', () => {
     expect(PRODUCT.slug).toBe('hangyul_ganada');
     expect(PRODUCT.kebabSlug).toBe('hangyul-ganada');
-    expect(PRODUCT.name).toBe('Hangyul ganada');
+    expect(PRODUCT.name).toBe('Hangyul Ganada');
   });
 
   it('keeps the Latin wordmark in every language but Korean', () => {
-    expect(productName('en')).toBe('Hangyul ganada');
+    expect(productName('en')).toBe('Hangyul Ganada');
     expect(productName('ko')).toBe('한귤 가나다');
     expect(productName('ko-KR')).toBe('한귤 가나다');
     // The brand is not translated into arbitrary local names.
     for (const code of ['ja', 'zh-CN', 'es', 'fr', 'de', 'pt-BR', 'he', 'sw']) {
-      expect(productName(code), code).toBe('Hangyul ganada');
+      expect(productName(code), code).toBe('Hangyul Ganada');
     }
   });
 
@@ -389,10 +389,11 @@ describe('product identity', () => {
     expect(serialized).not.toMatch(/Hangyul Start/i);
     expect(serialized).not.toMatch(/한귤 스타트/);
     expect(serialized).not.toMatch(/hangyul[_-]start/i);
-    // The camel-cased spelling, and the capital-G near-miss that reads as a
-    // different product.
+    // The camel-cased spelling. "Hangyul Ganada" is no longer a near-miss: it
+    // is the wordmark, asserted above, and it is checked here only for the one
+    // place it must not appear — the Korean name.
     expect(serialized).not.toMatch(/GaNaDa/);
-    expect(serialized).not.toMatch(/Hangyul Ganada/);
+    expect(PRODUCT.localizedName.ko).not.toMatch(/Hangyul/);
   });
 });
 

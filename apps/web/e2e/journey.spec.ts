@@ -86,7 +86,7 @@ test('home leads with the brand and then with the lesson', async ({ page }) => {
   await page.goto('/');
 
   // The real logo asset, not a text approximation of it.
-  const logo = page.getByRole('img', { name: /Hangyul ganada/ });
+  const logo = page.getByRole('img', { name: /Hangyul Ganada/ });
   await expect(logo).toBeVisible();
   await expect(logo).toHaveAttribute('src', /brand\/logo-lockup\.png$/);
 
@@ -124,7 +124,7 @@ test('home leads with the brand and then with the lesson', async ({ page }) => {
 
 test('a new customer can start learning with no account of any kind', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: /Hangyul ganada/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Hangyul Ganada/ })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start now' })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Main menu' })).toBeVisible();
 

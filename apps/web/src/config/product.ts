@@ -19,12 +19,23 @@ export const PRODUCT = {
   slug: 'hangyul_ganada',
   /** npm workspace scope and container/kebab-case identifier. */
   kebabSlug: 'hangyul-ganada',
-  /** English product name — also the default wordmark everywhere else. */
-  name: 'Hangyul ganada',
+  /**
+   * English product name — also the default wordmark everywhere else.
+   *
+   * Title-cased. The second word is 가나다, a word rather than three initials,
+   * and in running prose it stays lowercase — this file's comments, the store
+   * listings and the documents all read "Hangyul ganada". But every place this
+   * constant reaches is a place the name stands on its own with no sentence
+   * around it: the browser tab, the link-preview card, the home screen's
+   * wordmark, the line under Settings. There the lowercase second word reads as
+   * a typo, which is the same argument that already title-cases the launcher
+   * label in `apps/mobile/app.identity.json`.
+   */
+  name: 'Hangyul Ganada',
   /** Shown in Settings. Matches the root package version. */
   version: '1.0.0',
   localizedName: {
-    en: 'Hangyul ganada',
+    en: 'Hangyul Ganada',
     ko: '한귤 가나다',
   } satisfies Record<BrandLocale, string>,
   /**

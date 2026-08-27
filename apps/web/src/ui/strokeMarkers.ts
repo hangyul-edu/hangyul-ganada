@@ -78,6 +78,23 @@ const TURNS = [0, -30, 30, -60, 60, -90, 90, -120, 120, -150, 150, 180];
 const REACHES = [1.05, 1.6, 2.2, 2.9, 3.7];
 
 /**
+ * How much of the disc has to clear a stroke that is not its own, as a fraction
+ * of its radius.
+ *
+ * This was 0.8, which lets the disc's near edge sit a fifth of a radius *inside*
+ * another stroke's ink and still count as placed. On 안 that is the difference
+ * between a legible diagram and an unreadable one: the third stroke starts on
+ * the ㅏ's stem, every direction to its left is taken by the ㅇ, and the first
+ * rung out to the right that scored non-negative put the disc's edge a hair
+ * over the stem — a numbered circle sitting on the letter it is pointing at.
+ *
+ * At 1.0 the disc has to be wholly off foreign ink, and the search walks out
+ * another rung to find room. A disc may still touch the stroke it labels: that
+ * is the point of it.
+ */
+const FOREIGN_INK = 1;
+
+/**
  * The pen width the markers assume when deciding what counts as *on the ink*.
  *
  * The demonstration strokes at 9 units in a 100-unit box. It is a constant here
@@ -134,7 +151,7 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
          */
         for (const other of strokes) {
           if (other.order === stroke.order) continue;
-          const gap = distanceToStroke(other, label, PEN) - radius * 0.8;
+          const gap = distanceToStroke(other, label, PEN) - radius * FOREIGN_INK;
           if (gap < clearance) clearance = gap;
         }
         if (clearance >= 0) {

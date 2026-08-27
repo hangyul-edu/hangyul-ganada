@@ -160,25 +160,39 @@ function onCubic(
  * the stem and not the toe; both measure at almost exactly 0.5, which is where
  * the stem is. They are covered by the upright form, whose leg is straight.
  *
- * ## The curve
+ * ## The curve, and why it is nearly a straight line
  *
- * The leg is not a straight diagonal — it leaves the corner travelling down and
- * turns into the sweep, which is what the four samples above describe. The two
- * controls below were fitted to them by least squares over the three tall
- * blocks, to an RMS of 0.017 of the letter's width. `c1` is held on the
- * corner's own vertical so the corner stays a clean right angle rather than
- * becoming a chamfer.
+ * The controls used to be a least-squares fit to the four samples above, and
+ * that fit is faithful to Pretendard and wrong for a stroke diagram: it holds
+ * the pen almost on the corner's vertical for two-thirds of the drop and then
+ * lays it flat across the bottom, so the leg reads as a swoosh with a curled
+ * tail rather than as the clean diagonal a learner is being asked to copy.
  *
- * The fit is against the *rendered ink*, not against the bare curve. Those are
- * not the same thing and the difference is not small: the samples above are
- * taken at fractions of the letter's ink box, whose top edge is half a pen
- * above where the curve starts and whose bottom is half a pen below where it
- * ends, so a curve fitted to them directly comes out about 0.057 of the width
- * too far left through the middle. Fitted once, measured off the render,
- * refitted against the offset — which is why the numbers below are not the
- * ones a first pass produces.
+ * So the leg is now a straight diagonal with a square shoulder: `GIYEOK_HOLD`
+ * keeps `c1` on the corner's own vertical for the first fifth of the drop, and
+ * `c2` sits a fifth of the horizontal travel back from the chord, which is
+ * just enough bow to keep the shoulder from looking chamfered. The toe comes
+ * in slightly from the face's 0.115 for the same reason — at the face's lean
+ * the toe reaches the far edge of the letter and the leg has to flatten to get
+ * there.
  */
-export const GIYEOK_LEAN = 0.885;
+export const GIYEOK_LEAN = 0.8;
+
+/**
+ * How the leg is shaped between the corner and the toe.
+ *
+ * `HOLD` keeps the pen on the corner's own vertical for the first fraction of
+ * the drop, which is what makes the corner a right angle rather than a chamfer.
+ * `BOW` is how far the middle of the leg sits back from the straight line
+ * between corner and toe, as a fraction of the leg's horizontal travel — a
+ * small number, because the leg a learner is being asked to copy is a straight
+ * diagonal with a square shoulder, not a hook. It was 0.85 of the travel, which
+ * held the pen almost vertical for two-thirds of the drop and then swung it
+ * flat across the bottom; on screen that reads as a swoosh with a curled tail
+ * and not as ㄱ.
+ */
+const GIYEOK_HOLD = 0.22;
+const GIYEOK_BOW = 0.22;
 
 function giyeok(
   left: number,
@@ -199,58 +213,21 @@ function giyeok(
     ]);
   }
   return stroke(
-    // The polyline the demonstration reveals, sampled off the same curve: the
-    // corner, the two places the face's leg passes through on its way down, and
-    // the toe. Three segments rather than two, because at this lean two chords
-    // of the arc visibly cut the corner off it.
-    [
-      [left, top],
-      [right, top],
-      [legX(left, width, toe, 0.5), top + height * 0.5],
-      [legX(left, width, toe, 0.8), top + height * 0.8],
-      [toe, bottom],
-    ],
+    // Only the first point is kept — `stroke` samples the rest off the curve
+    // below, so the revealed polyline and the drawn ink cannot drift apart.
+    [[left, top]],
     [
       [left, top, right, top, right, top],
       [
         right,
-        top + height * 0.67,
-        left + width * 0.15,
-        top + height * 0.9,
+        top + height * GIYEOK_HOLD,
+        toe + (right - toe) * GIYEOK_BOW,
+        top + height * (1 - GIYEOK_HOLD * 1.55),
         toe,
         bottom,
       ],
     ],
   );
-}
-
-/**
- * A point on the leg, for the polyline that follows the curve above.
- *
- * Evaluated from the same cubic rather than estimated, so the revealed path and
- * the drawn one cannot drift apart — which is the whole reason the polyline
- * exists.
- */
-function legX(left: number, width: number, toe: number, v: number): number {
-  const p0 = 1;
-  const c1 = 1;
-  const c2 = 0.15;
-  const p3 = (toe - left) / width;
-  // Solve the cubic's y for the parameter, then read its x. y is
-  // 3(1-t)²t·0.3 + 3(1-t)t²·0.77 + t³, which is monotonic over [0, 1].
-  let lo = 0;
-  let hi = 1;
-  for (let i = 0; i < 40; i += 1) {
-    const t = (lo + hi) / 2;
-    const m = 1 - t;
-    const y = 3 * m * m * t * 0.67 + 3 * m * t * t * 0.9 + t * t * t;
-    if (y < v) lo = t;
-    else hi = t;
-  }
-  const t = (lo + hi) / 2;
-  const m = 1 - t;
-  const u = m * m * m * p0 + 3 * m * m * t * c1 + 3 * m * t * t * c2 + t * t * t * p3;
-  return left + width * u;
 }
 
 /** A ㄴ: down, then right. One stroke. */
@@ -312,6 +289,25 @@ function bieup(left: number, right: number): StrokeStep[] {
  * way down a ㅈ. The x follows from the y — the branch point has to sit on the
  * first stroke, and the first stroke is a straight line from the apex.
  */
+/**
+ * How much a leg of ㅅ flares, as controls on the chord from fork to foot.
+ *
+ * Both legs used to leave the fork nearly vertical and open out only in the
+ * last seventh of the drop, which puts a near-horizontal tail on the bottom of
+ * every ㅅ, ㅈ, ㅊ, ㅆ and ㅉ and on the 받침 of 옷 and 꽃. Flattened at the foot
+ * the letter stops being two falling strokes and becomes a pair of hooks, and
+ * because the left leg reaches its width earlier than the right one the whole
+ * mark reads as sitting to the left of where it is.
+ *
+ * The four numbers below put each control near the chord instead: the leg is a
+ * straight fall with a slight outward bow, and both legs are shaped alike, so
+ * the letter is symmetrical about its fork.
+ */
+const SIOT_NEAR = 0.12;
+const SIOT_NEAR_Y = 0.49;
+const SIOT_FAR = 0.33;
+const SIOT_FAR_Y = 0.81;
+
 function siot(apexX: number, left: number, right: number, top = 16): StrokeStep[] {
   const bottom = 84;
   const branch = 0.32;
@@ -322,10 +318,10 @@ function siot(apexX: number, left: number, right: number, top = 16): StrokeStep[
   // controls hold the stroke near-vertical for the first half and let it open
   // out into the last third.
   const leftLeg: Cubic = [
-    apexX - (apexX - left) * 0.08,
-    top + fall * 0.5,
-    left + (apexX - left) * 0.3,
-    bottom - fall * 0.14,
+    apexX - (apexX - left) * SIOT_NEAR,
+    top + fall * SIOT_NEAR_Y,
+    left + (apexX - left) * SIOT_FAR,
+    top + fall * SIOT_FAR_Y,
     left,
     bottom,
   ];
@@ -343,10 +339,10 @@ function siot(apexX: number, left: number, right: number, top = 16): StrokeStep[
       [[branchX, branchY]],
       [
         [
-          branchX + (right - branchX) * 0.1,
-          branchY + rightFall * 0.5,
-          right - (right - branchX) * 0.28,
-          bottom - rightFall * 0.14,
+          branchX + (right - branchX) * SIOT_NEAR,
+          branchY + rightFall * SIOT_NEAR_Y,
+          right - (right - branchX) * SIOT_FAR,
+          branchY + rightFall * SIOT_FAR_Y,
           right,
           bottom,
         ],
@@ -378,7 +374,10 @@ function jieut(left: number, right: number, lidY = 26): StrokeStep[] {
       [left, lidY],
       [right, lidY],
     ]),
-    ...siot(middle, left + 4, right - 2, lidY),
+    // Symmetrical insets. They were 4 and 2, which pulls the letter's ink box
+    // a unit to the right of the lid it hangs from and leaves the fork looking
+    // off-centre once `fit` centres the box in its slot.
+    ...siot(middle, left + 3, right - 3, lidY),
   ];
 }
 
@@ -605,13 +604,19 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
       the bottom right, which `letters:face` reads as the left edge of ㄹ
       carrying ink for half its height where the face carries it for all of it.
       So the bars that end in open paper are given that half pen. On the right
-      the face is not symmetrical about it: the waist stops flush with the leg's
-      ink and only the base runs past it, by about a fortieth of the letter, so
-      that is what these do — 79.3 for the waist and 80.8 for the base against
-      the leg's 76.
+      the face is not symmetrical about it: the leg's ink stops at 79.3 — its
+      centreline at 76 plus half a pen — and the two lower bars run about a
+      fortieth of the letter past that. Both of them do, which is the
+      correction. The waist used to stop flush with the leg and only the base
+      ran on, so the bottom bar alone stuck out past everything above it and
+      read as a spur off the corner of 말 and 글 rather than as the letter
+      being wider at the foot. Ending the waist and the base together keeps the
+      face's overhang and takes the step out of it — and it keeps the leg clear
+      of the letter's right edge, which is how `letters:face` tells the two
+      shapes apart.
     */
     stroke([[18.7, 16], [76, 16], [76, 44]]),
-    stroke([[18.7, 46], [79.3, 46]]),
+    stroke([[18.7, 46], [80.8, 46]]),
     stroke([[22, 48], [22, 82], [80.8, 82]]),
   ],
   ㅁ: [
