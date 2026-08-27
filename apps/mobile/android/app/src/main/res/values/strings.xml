@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Hangyul ganada</string>
-    <string name="title_activity_main">Hangyul ganada</string>
+    <string name="app_name">Hangyul Ganada</string>
+    <string name="title_activity_main">Hangyul Ganada</string>
     <string name="package_name">com.talkhangyul.ganada</string>
     <string name="custom_url_scheme">com.talkhangyul.ganada</string>
 </resources>

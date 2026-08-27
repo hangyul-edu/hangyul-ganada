@@ -1,0 +1,35 @@
+{
+  "_comment": "Task ledger for the interrupted final quality pass. One row per bounded unit of work: task, status, verification. Written so a session that dies mid-pass can be resumed without redoing finished work and without mistaking a killed agent for a completed one. Narrative belongs in docs/CONTENT_COMPLETION_STATE.md; this file stays a checklist.",
+  "pass": "interrupted-final-quality-pass-resume",
+  "started": "2026-08-27",
+  "frozenCorpus": 3333,
+  "translationSlices": {
+    "_comment": "Each partial locale is 2,733 rows in four slices of 684/684/684/681. status: DONE = merged into content/vocabulary/copy/<locale>.json and validated; GENERATED = rows written to scratchpad, not yet merged; PARTIAL = resumable append in progress; TODO = not started.",
+    "unit": "locale/slice",
+    "done": ["ar", "bn", "cs", "it", "ru"],
+    "inFlight": ["el", "fil", "hi", "hu", "id"],
+    "todo": ["kk", "ky", "mn", "nl", "pl", "ro", "sv", "ta", "te", "tr", "uk", "uz"]
+  },
+  "tasks": [
+    {
+      "task": "recover-interrupted-state",
+      "status": "DONE",
+      "verification": "15 partial slice files re-parsed: every line valid JSON, indexes strictly monotonic, no duplicates. No partial output discarded."
+    },
+    {
+      "task": "mobile-display-name-source",
+      "status": "DONE",
+      "verification": "npm run mobile:identity:check green; app.identity.json, strings.xml, AndroidManifest label refs, build.gradle, Info.plist (CFBundleDisplayName + CFBundleName), project.pbxproj Debug+Release, both synced capacitor.config.json all agree on 'Hangyul Ganada' / com.talkhangyul.ganada."
+    },
+    {
+      "task": "product-name-guard-covers-native",
+      "status": "DONE",
+      "verification": "check-product-name.mjs extension list widened to xml/plist/pbxproj — strings.xml and Info.plist were previously unscanned. npm run name:check green with four exact-count allowances."
+    },
+    {
+      "task": "mobile-display-name-artifact",
+      "status": "TODO",
+      "verification": "aapt dump badging on the final release APK must report application-label 'Hangyul Ganada' and package com.talkhangyul.ganada."
+    }
+  ]
+}

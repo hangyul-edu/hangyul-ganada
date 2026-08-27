@@ -105,7 +105,16 @@ const SKIP_PATHS = [
   'apps/mobile/ios/App/App/capacitor.config.json',
 ];
 
-const TEXT_EXTENSIONS = /\.(ts|tsx|js|jsx|mjs|cjs|py|json|toml|ini|cfg|md|css|html|yml|yaml|sh|mako)$/;
+/*
+ * `xml`, `plist` and `pbxproj` are here because the native projects are where a
+ * name is most visible and were the one place this guard could not see. Android's
+ * launcher label lives in `strings.xml` and iOS's in `Info.plist`; both were
+ * outside the extension list, so the retired camel-cased spelling could have sat
+ * under the app icon on every phone with `npm run verify` green. The two are
+ * allowed for exactly the occurrences listed below and no others.
+ */
+const TEXT_EXTENSIONS =
+  /\.(ts|tsx|js|jsx|mjs|cjs|py|json|toml|ini|cfg|md|css|html|yml|yaml|sh|mako|xml|plist|pbxproj)$/;
 
 /**
  * Deliberate survivors, each with the reason it has to stay.
@@ -142,6 +151,48 @@ const ALLOWED = [
     file: 'scripts/check-product-name.mjs',
     count: null,
     reason: 'This file is the guard; it necessarily contains the patterns it searches for.',
+  },
+  /*
+   * The launcher label, and only the launcher label.
+   *
+   * "Hangyul Ganada" is forbidden in prose for the reason at the top of this
+   * file — 가나다 is a word, and title-casing it names a different product. A
+   * home-screen label is not prose: it sits in a grid beside Photos, Maps and
+   * Settings with no sentence around it, and there the lowercase second word
+   * reads as a mistake rather than as a decision. So the installed name is
+   * title-cased and every other occurrence is not.
+   *
+   * The exemption is deliberately four files and exact counts. Widening it to
+   * a directory would let the spelling back into the web app's copy, which is
+   * the thing this guard was written to stop. `scripts/check-mobile-identity.mjs`
+   * owns the other half: that these four agree with each other and with
+   * `app.identity.json`.
+   */
+  {
+    file: 'apps/mobile/app.identity.json',
+    count: 2,
+    reason:
+      'The canonical installed display name, plus the comment explaining why it is title-cased here and lowercase everywhere else.',
+  },
+  {
+    file: 'apps/mobile/android/app/src/main/res/values/strings.xml',
+    count: 2,
+    reason: "Android's launcher label and activity title — the name under the icon.",
+  },
+  {
+    file: 'apps/mobile/ios/App/App/Info.plist',
+    count: 2,
+    reason: 'CFBundleDisplayName and CFBundleName — the name under the icon on iOS.',
+  },
+  {
+    file: 'scripts/check-mobile-identity.mjs',
+    count: null,
+    reason: 'The guard for the four native strings; it has to contain the value it enforces.',
+  },
+  {
+    file: 'docs/CONTENT_COMPLETION_STATE.md',
+    count: null,
+    reason: 'Records the rename and the split between launcher label and prose name.',
   },
   {
     file: 'README.md',
