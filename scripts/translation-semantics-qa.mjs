@@ -87,7 +87,7 @@ const NEGATION = {
   fr: /\bne\b|\bn['’]|\bpas\b|\bjamais|\bpersonne\b|\brarement|\barr[eê]te|\bfaute d/iu, 'pt-BR': /\bnão\b|\bnunca|\bnada\b|\bningu[eé]m|\bjamais\b|\braramente|\bnem\b|\bpare de|\bde forma alguma/iu,
   ro: /\bnu\b|\bnicio/i, el: /(?:^|\P{L})(?:δεν|μην?|όχι|ποτέ|σπάνια|σταμάτ)/iu, hu: /\bnem\b|\bnincs|\bne\b|\bsoha/i,
   tr: /değil|yok|m[aeıi]yor|m[ae]d[ıi]|m[ae]z(?:\P{L}|$)|mey[ıi]n|may[ıi]n|mam(?:\P{L}|$)|mem(?:\P{L}|$)/iu,
-  id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b/i,
+  id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b|\bayaw|\bayok|\bbihira|\btigil/i,
   hi: /नहीं|मत |बिना| न /, bn: /না|নেই|নয়|নি(?:\P{L}|$)/u, ta: /இல்லை|ில்லை|மாட்|வேண்டாம்|ாதே|ாது|ாமல்|வேண்டா|ாதீர்கள்|ாதீர்/, te: /లేదు|కాదు|వద్దు|కూడదు|కుండా|కండి|కు(?:\P{L}|$)|రు(?:\P{L}|$)|దు(?:\P{L}|$)|ను(?:\P{L}|$)/u,
   th: /ไม่|อย่า|ห้าม|เลิก|หยุด/, vi: /(?:^|\P{L})(?:không|chưa|đừng|chẳng|chớ|hiếm khi|xin đừng)/iu,
   ar: /لا|ليس|لم|لن|غير|ما\s|كف|توقف|نادرا|نادرًا/, kk: /емес|жоқ|ма[ңйғс]|ме[ңйс]|ба[ңй]|бе[ңй]|па[ңй]|пе[ңй]|мау|меу|майды|мейді|лма|лме|рма|рме|збе|зба/iu,
