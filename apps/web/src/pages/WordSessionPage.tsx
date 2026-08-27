@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ConfirmDialog } from '../ui/ConfirmDialog';
 
 import { usePronunciation } from '../audio/PronunciationContext';
+import { corpusReady } from '../data/corpus';
 import { strictMeaning, type wordCopy } from '../data/wordCopy';
 import { getFont, textFamily } from '../data/fonts';
 import { endsSession, retrySteps, scheduleSteps, sessionProgress, type WordStep } from '../domain/vocabularyDay';
@@ -444,6 +445,36 @@ export function WordSessionPage() {
   }
 
   if (steps === null) {
+    return (
+      <FocusScreen
+        resetKey="words-loading"
+        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+      >
+        <div />
+      </FocusScreen>
+    );
+  }
+
+  /*
+   * The day owes steps, and no question has been built for any of them yet.
+   *
+   * That is not a finished day, it is an unfinished fetch. `scheduleSteps`
+   * reads the *plan*, which comes out of the store; `buildDailyQuestions`
+   * needs the *corpus*, which arrives separately in priority bands. Between
+   * those two moments a learner with a full day ahead of them had `steps`
+   * and an empty `queue`, and the backstop below announced that there was
+   * nothing left for today.
+   *
+   * It recovers on its own once the band lands — the queue is a `useMemo` over
+   * the corpus-backed lookups — so this was never a permanent dead end. It was
+   * a sentence that is false at the moment it is read, which is the same defect
+   * as the freeze this file's header describes, one layer along: the header
+   * fixed *freezing* an empty queue, and this fixes *announcing* one.
+   *
+   * Bounded by `corpusReady()` rather than by hope: once the corpus is in,
+   * an empty queue really does mean nothing to ask, and the backstop is right.
+   */
+  if (!current && steps.length > 0 && !finished && !corpusReady()) {
     return (
       <FocusScreen
         resetKey="words-loading"
