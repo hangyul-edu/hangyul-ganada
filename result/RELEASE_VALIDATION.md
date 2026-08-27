@@ -47,8 +47,8 @@ artefacts, in the places a customer meets first:
 
 | | |
 | --- | --- |
-| `hangyul-ganada-release.apk` | 86,743,504 B (82.7 MB), sha256 `a09317ac1efe79da…` |
-| `hangyul-ganada-release.aab` | 84,861,821 B (80.9 MB), sha256 `034bac946b05bfaf…` |
+| `hangyul-ganada-release.apk` | 86,743,504 B (82.7 MB), sha256 `2083f76cfa5165c9…` |
+| `hangyul-ganada-release.aab` | 84,861,858 B (80.9 MB), sha256 `b52c982a2279ec7b…` |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24) |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated** |
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0, SDK 24–36 |
@@ -59,7 +59,7 @@ artefacts, in the places a customer meets first:
 
 | | |
 | --- | --- |
-| Web bundle | `assets/public/assets/index-CKP_7q9E.js`, sha256 `c3aa5b10…` — **byte-identical** to the `dist` the level-change Playwright journeys passed against |
+| Web bundle | `assets/public/assets/index-tuWK6T_H.js`, sha256 `800a402e…` — **byte-identical** to the `dist` the level-change Playwright journeys passed against |
 | Taught words in the corpus manifest | 3,333 = 3,333 |
 | Level-test items | 4,194 = 4,194 |
 | Audio build | `20260826-299bca46`, 6,779 entries — unchanged this pass; no recordings were added |
@@ -114,8 +114,8 @@ one.
 ## Checksums
 
 ```
-a09317ac1efe79dad8b8d88d7ee4d995c86835275fdce5b1204bc59fed8d960a  hangyul-ganada-release.apk
-034bac946b05bfaf4f7e047debc7bc5472eb414b9f765706a9f26b12dd1980f8  hangyul-ganada-release.aab
-82ec71c67e965ccaaa8806f7b2350463b3cb6cabc65dcc251ad90ffbbecffe64  docs/report.pdf
-43415af2df78ec1892736e0b27930f2ee50cb3124a2a1c8ddbfd4e32256a4eb5  build-info.json
+2083f76cfa5165c9ed3e01e2f5620941e3e7084bf2ee02736a36caec25a2e98f  hangyul-ganada-release.apk
+b52c982a2279ec7b5882743de663e8ccda908f7087fa0b0b1f8170371f1d20ca  hangyul-ganada-release.aab
+88c57ba08aea1f4db4096953ec3a1654cd40ab659cd6f1625e113fc6c8fa1ba8  docs/report.pdf
+8a8db54e53e651412bfb7d19c2412e3fde27c5fddbd2eba38e039eddc93d9b4b  build-info.json
 ```

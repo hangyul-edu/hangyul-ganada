@@ -91,7 +91,7 @@ exactly that.
 
 | | |
 | --- | --- |
-| Commit | `be66048f` — the product commit the artefacts were built from; the commits after it are the release directories and this document |
+| Commit | `957cbd90` — the product commit the artefacts were built from; the commits after it are the release directories and this document |
 | Working tree | clean outside `docs/` and the release directories |
 | Node | v24.19.0 |
 | Web | React 19, Vite 7, TypeScript |
@@ -1484,8 +1484,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **82.7 MB** (86,743,504 B), `a09317ac1efe79da…` |
-| Release AAB | **80.9 MB** (84,861,821 B), `034bac946b05bfaf…` |
+| Release APK | **82.7 MB** (86,743,504 B), `2083f76cfa5165c9…` |
+| Release AAB | **80.9 MB** (84,861,858 B), `b52c982a2279ec7b…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
