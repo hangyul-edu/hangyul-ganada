@@ -1288,6 +1288,92 @@ outlive an app update, verified on device as 0 workers and 0 caches.
 There is no physical Android device on this machine. Everything below was done
 on an emulated Pixel 7, Android 16, software-rendered.
 
+## 18.0 The name under the icon — **CHANGED THIS PASS**
+
+The installed application is now called **Hangyul Ganada** on both platforms.
+The identifiers are unchanged and are asserted rather than assumed:
+
+| | |
+| --- | --- |
+| Android package | `com.talkhangyul.ganada` |
+| Android display name | Hangyul Ganada |
+| iOS bundle identifier | `com.talkhangyul.ganada` |
+| iOS display name | Hangyul Ganada |
+
+### Why the launcher label is capitalised and the product name is not
+
+The product is **Hangyul ganada**. 가나다 is a word — the first three letters of
+the alphabet, said the way an English speaker says *ABC* — and not three
+initials, so title-casing it in a sentence names a different product.
+`check-product-name.mjs` has forbidden that spelling since the rename, and it
+still does.
+
+A launcher label is not a sentence. It sits in a grid beside Photos, Maps and
+Settings, with nothing around it to make the lowercase deliberate, and there a
+lowercased second word reads as a typo rather than as a decision. The two rules
+are therefore split rather than merged: four native strings are title-cased and
+every other occurrence in the product, the store listings and this report is
+not.
+
+### The rename could not have been made safely before this pass
+
+`apps/mobile/app.identity.json` is documented as the single place the native
+apps get their identity from, and for the application id it is: `build.gradle`
+reads `identity.appId`, and `capacitor.config.ts` reads `identity.appName`.
+
+For the *display name* it was not. `cap sync` writes `appName` into the two
+`capacitor.config.json` copies and touches neither Android's `strings.xml`,
+which was written once when the project was created, nor iOS's `Info.plist`. So
+the documented way to rename the app — edit the identity file and sync — renames
+nothing a learner can see, and the two files that decide what appears under the
+icon drift silently.
+
+`scripts/check-mobile-identity.mjs` closes that. It reads the value out of every
+file that carries it and fails if any one disagrees:
+
+* `app.identity.json` — the canonical value
+* `strings.xml` — `app_name` and `title_activity_main`
+* `AndroidManifest.xml` — that `android:label` still points at the resource
+  rather than carrying a literal, which is how one source set ends up right and
+  another wrong
+* `build.gradle` — that the application id still comes from the identity file
+* `Info.plist` — `CFBundleDisplayName` and `CFBundleName`
+* `project.pbxproj` — the bundle identifier in **both** build configurations
+* the two synced `capacitor.config.json` copies
+
+It runs third in `verify:quick`. Broken deliberately in two ways — the lowercase
+spelling restored to `strings.xml`, and one of the two Xcode configurations
+given a different bundle id — it failed on each and named the file.
+
+### A blind spot in the guard that has protected this name for three cycles
+
+`check-product-name.mjs` scans the repository for retired spellings. Its
+extension list was `ts|tsx|js|…|html|yml|yaml|sh|mako` — it had never included
+`.xml` or `.plist`, which is to say it had never once looked at the two files
+that decide the name under the app icon. The retired camel-cased spelling could
+have sat on every phone with `npm run verify` green from end to end.
+
+The list now covers `xml`, `plist` and `pbxproj`, with exact-count allowances
+for the four strings that are meant to be capitalised. Every other occurrence of
+the title-cased spelling anywhere in the tree still fails the build.
+
+### iOS — **PROJECT VERIFIED, BINARY NOT BUILT**
+
+There is no macOS and no Xcode on this machine, so no IPA was produced and none
+is claimed. What is verified is the project configuration, read from the files:
+`INFOPLIST_FILE = App/Info.plist` and `PRODUCT_BUNDLE_IDENTIFIER =
+com.talkhangyul.ganada` in both the Debug and the Release configuration, a
+literal `CFBundleDisplayName` and `CFBundleName` of `Hangyul Ganada` in that
+plist, and no `InfoPlist.strings` in any `.lproj` that could override either —
+`Base.lproj` is the only localisation directory in the iOS project.
+
+`CFBundleName` is a literal here rather than `$(PRODUCT_NAME)`, which resolved
+to the target name `App`. iOS shows it where the display name does not fit and
+truncates it at fifteen characters; *Hangyul Ganada* is fourteen, and the guard
+fails if a future name is longer rather than letting the system cut it.
+
+---
+
 ## 18.1 The delivered artefact, installed and walked — **VERIFIED**
 
 Not a debug build: the signed `result/hangyul-ganada-release.apk`, installed on

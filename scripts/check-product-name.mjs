@@ -195,6 +195,11 @@ const ALLOWED = [
     reason: 'Records the rename and the split between launcher label and prose name.',
   },
   {
+    file: 'docs/resume-manifest.json',
+    count: null,
+    reason: 'The pass checklist; it records the launcher label as the thing being verified.',
+  },
+  {
     file: 'README.md',
     count: null,
     reason: 'Documents the renames and the compatibility exceptions above.',
