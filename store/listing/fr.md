@@ -29,7 +29,7 @@ L'ORDRE DES TRAITS, POUR DE BON
 Le coréen s'écrit dans un ordre précis : de haut en bas, de gauche à droite. Chaque lettre montre cet ordre, numéroté et animé, et après chaque essai l'application vous dit en quoi vous vous en êtes écarté. Elle ne vous recale jamais pour cela.
 
 DE ㅏ À VOS PREMIERS MOTS
-Six voyelles, puis cinq consonnes, puis votre premier bloc syllabique : dès la troisième leçon, vous lisez le coréen. Ensuite 3 334 mots du quotidien. Écoutez le mot. Comprenez son sens. Voyez-le dans une phrase coréenne simple. Écoutez la phrase. Écrivez le coréen vous-même.
+Six voyelles, puis cinq consonnes, puis votre premier bloc syllabique : dès la troisième leçon, vous lisez le coréen. Ensuite 3 333 mots du quotidien. Écoutez le mot. Comprenez son sens. Voyez-le dans une phrase coréenne simple. Écoutez la phrase. Écrivez le coréen vous-même.
 
 CHERCHEZ PAR THÈME
 Animaux, Nourriture et boissons, Gens et famille, Corps et santé : dix-huit catégories, pour apprendre les mots dont vous avez envie. Ou cherchez directement, en coréen ou dans votre langue.
