@@ -364,7 +364,44 @@ function corpusSizes() {
     coreWords: manifest.bands[0]?.count ?? 0,
     core: tables + (words[0] ?? 0) + (copy[0] ?? 0),
     whole: tables + words.reduce((n, x) => n + x, 0) + copy.reduce((n, x) => n + x, 0),
-    // Every language, which is what the worker precaches.
+    /*
+     * What the worker actually stores on install, which is no longer the
+     * directory.
+     *
+     * It used to be: `precache()` walked every band and added every language's
+     * file, so this line could be `readdirSync` and be right. It is now band 1
+     * in every language plus every band's shared word file, and the later bands
+     * arrive per-learner, in their own language, on a `corpus-locale` message.
+     * Measuring the directory after that change would report a number the
+     * product never downloads and fail a budget on it.
+     *
+     * The two must be read together: if `sw.js` ever precaches differently,
+     * this is the line that has to move with it.
+     */
+    installed:
+      tables +
+      words.reduce((n, x) => n + x, 0) +
+      Object.values(manifest.bands[0]?.locales ?? {}).reduce(
+        (n, name) => n + gzipSize(join(CORPUS, name)),
+        0,
+      ),
+    /*
+     * The half of the install that grows with the corpus, kept separate from
+     * the half that does not.
+     *
+     * Band 1 in every language is a fixed 600 words however large the corpus
+     * becomes, so scaling the whole install linearly to the target forecasts
+     * growth that cannot happen and reports a breach that is arithmetic rather
+     * than product. What actually grows is the shared band files — the
+     * headwords themselves, one copy, no language attached.
+     */
+    installedGrowing: tables + words.reduce((n, x) => n + x, 0),
+    installedFlat: Object.values(manifest.bands[0]?.locales ?? {}).reduce(
+      (n, name) => n + gzipSize(join(CORPUS, name)),
+      0,
+    ),
+    // The whole directory: what a learner would hold after reading every band
+    // in every language, and what install used to cost.
     everyLanguage: readdirSync(CORPUS).reduce((n, name) => n + gzipSize(join(CORPUS, name)), 0),
   };
 }
@@ -403,7 +440,9 @@ const wholeProjected = corpus && headwords > 0 ? (corpus.whole / headwords) * TA
  */
 const precacheProjected =
   corpus && headwords > 0
-    ? sum(precached) + (corpus.everyLanguage / headwords) * TARGET_HEADWORDS
+    ? sum(precached) +
+      corpus.installedFlat +
+      (corpus.installedGrowing / headwords) * TARGET_HEADWORDS
     : 0;
 
 const results = [
@@ -462,16 +501,25 @@ const results = [
   },
   {
     label: 'everything precached',
-    detail: `${precached.length} of ${files.length} emitted files, plus public/corpus`,
-    actual: sum(precached) + (corpus?.everyLanguage ?? 0),
+    detail: `${precached.length} of ${files.length} emitted files, plus band 1 in every language`,
+    actual: sum(precached) + (corpus?.installed ?? 0),
     budget: BUDGETS.total,
   },
   {
     label: `everything precached at ${TARGET_HEADWORDS.toLocaleString('en')}`,
     detail: corpus
-      ? `the corpus is ${(corpus.everyLanguage / 1024).toFixed(0)} kB of the row above, in every complete language — not enforced`
+      ? `${(corpus.installedFlat / 1024).toFixed(0)} kB of band 1 in every language does not grow; the ${(corpus.installedGrowing / 1024).toFixed(0)} kB of shared band files does — not enforced`
       : 'cannot project — no corpus found',
     actual: precacheProjected,
+    budget: BUDGETS.total,
+    forecast: true,
+  },
+  {
+    label: 'held offline, every language',
+    detail: corpus
+      ? 'what a learner accumulates reading every band in every language — fetched on demand, never on install'
+      : 'cannot measure — no corpus found',
+    actual: sum(precached) + (corpus?.everyLanguage ?? 0),
     budget: BUDGETS.total,
     forecast: true,
   },

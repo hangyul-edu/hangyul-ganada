@@ -257,6 +257,30 @@ export function LocaleProvider({
     [locale, contentChoice, copyLoaded],
   );
 
+  /*
+    Tell the offline worker which language to finish downloading.
+
+    The worker precaches band 1 in every language and stops there; the rest of
+    the corpus follows whichever language meanings are actually read in, and it
+    is the only party that cannot work that out for itself — the choice lives in
+    app storage a worker cannot see, and it is not the interface language. See
+    `cacheLanguage` in `public/sw.js`.
+
+    Deliberately tolerant of every way this can be unavailable: no worker in the
+    browser, no controller yet on a first visit, a native shell that registers
+    none at all. Each of those means the learner fetches a band online the first
+    time they reach it, which is what happens today.
+  */
+  useEffect(() => {
+    navigator.serviceWorker?.ready
+      .then((registration) => {
+        registration.active?.postMessage({ type: 'corpus-locale', locale: activeContentLocale });
+      })
+      .catch(() => {
+        /* Offline completion is unavailable; the app is not. */
+      });
+  }, [activeContentLocale]);
+
   const setContentLocale = useCallback(
     (next: string | null) => {
       writeStoredContentLocale(next);

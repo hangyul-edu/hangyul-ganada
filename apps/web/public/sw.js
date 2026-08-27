@@ -104,6 +104,48 @@ self.addEventListener('install', (event) => {
 });
 
 /**
+ * The one thing the worker cannot work out for itself: which language the
+ * learner reads word meanings in.
+ *
+ * It lives in the app's own storage, which a service worker has no access to,
+ * and it is not the interface language — `i18n/contentLocale.ts` resolves it
+ * against what the corpus actually has. So the page tells the worker, once it
+ * knows and again whenever it changes, and the worker completes that language
+ * offline: bands 2 and up, which install no longer takes for every language.
+ *
+ * Best-effort by construction. A failure here costs a learner one online fetch
+ * of a band they had not read yet, and the app is unaffected either way, so
+ * nothing about this is awaited or reported.
+ */
+self.addEventListener('message', (event) => {
+  const message = event.data;
+  if (!message || message.type !== 'corpus-locale' || typeof message.locale !== 'string') return;
+  event.waitUntil(cacheLanguage(message.locale));
+});
+
+async function cacheLanguage(locale) {
+  try {
+    const corpus = await (await fetch(CORPUS_MANIFEST)).json();
+    const cache = await caches.open(CONTENT_CACHE);
+    await Promise.all(
+      (corpus.bands ?? [])
+        // Band 1 is already in the install for every language.
+        .filter((band) => band.band !== 1)
+        .map((band) => band.locales?.[locale])
+        .filter(Boolean)
+        .map((file) => {
+          const url = `/corpus/${file}`;
+          return cache
+            .match(url, { ignoreVary: true })
+            .then((hit) => (hit ? undefined : cache.add(url).catch(() => {})));
+        }),
+    );
+  } catch {
+    /* The learner's later bands stay online-only this launch. */
+  }
+}
+
+/**
  * Caches the shell, including the hashed bundle the HTML actually references.
  *
  * The script and stylesheet names carry a content hash, so they cannot be
@@ -154,10 +196,31 @@ async function precache() {
       const corpus = await (await fetch(CORPUS_MANIFEST, { cache: 'reload' })).json();
       for (const band of corpus.bands ?? []) {
         assets.add(`/corpus/${band.words}`);
-        // Only the languages the curriculum has copy for, and all of them: a
-        // learner who installs the app and changes language on a plane should
-        // still get their own meanings. Ten packs, ~180 kB gzipped in total.
-        for (const file of Object.values(band.locales ?? {})) assets.add(`/corpus/${file}`);
+        /*
+         * Every language, but only for the first band.
+         *
+         * This used to take every language's every band, on the reasoning that
+         * a learner who installs the app and switches language on a plane
+         * should still have their meanings. That reasoning is right and the
+         * implementation stopped being affordable: it was written when ten
+         * languages were complete and the comment here said "~180 kB gzipped",
+         * and each language finished since adds 2,733 more words to the
+         * install. Six were finished this pass, the precache went to 117% of
+         * its budget, and at thirty-two complete languages the same rule
+         * forecasts 4.8 MB — a first visit that downloads thirty-one
+         * translations a learner will never read.
+         *
+         * Band 1 is the 600 words the splitter puts on the critical path, so
+         * it is the band a learner meets first in whatever language they
+         * switch to, and it is what keeps the offline promise honest for a
+         * language change made in the air. The later bands follow the learner's
+         * actual language — see the `corpus-locale` message below — and any
+         * other language's later bands are cached the moment they are fetched,
+         * because `/corpus/` is IMMUTABLE and therefore cache-first already.
+         */
+        if (band.band === 1) {
+          for (const file of Object.values(band.locales ?? {})) assets.add(`/corpus/${file}`);
+        }
       }
       if (corpus.tables) assets.add(`/corpus/${corpus.tables}`);
     } catch {

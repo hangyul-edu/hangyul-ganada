@@ -10,11 +10,11 @@
       "ar",
       "bn",
       "cs",
+      "el",
       "it",
       "ru"
     ],
     "inFlight": [
-      "el",
       "fil",
       "hi",
       "hu",
@@ -75,6 +75,11 @@
       "task": "ru-two-sense-glosses",
       "status": "DONE",
       "verification": "보통, 갈수록, 냉정하다 trimmed to the taught sense; sense QA green."
+    },
+    {
+      "task": "example-translation-collisions",
+      "status": "PARTIAL",
+      "verification": "78 pairs separated across ar bn cs el it ru; vocabulary:translation:check green. Every further locale completed will raise its own set."
     }
   ]
 }
