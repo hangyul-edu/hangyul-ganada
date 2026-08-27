@@ -2870,6 +2870,118 @@ should move them: first load 270.2 → 273.4 kB (59% of budget), corpus band 1
 53.2 kB and flat by construction, the precache 1,457 → 1,508 kB against a
 ceiling raised 1,500 → 1,600 kB with the reason written beside it (§16).
 
+# 20I. The interrupted pass, resumed
+
+**Why this section exists.** The previous pass did not finish. It was
+translating twenty-two languages when the account's session limit killed
+eighteen agents mid-write, and the brief that followed asked for exactly the
+right thing: reconstruct where it stopped, do not treat a killed job as a
+completed one, and continue.
+
+## 20I.1 What was actually on disk
+
+Fifteen slice files were left partially written. Every one was re-parsed before
+anything was resumed: each line valid JSON, indexes strictly increasing, no
+duplicates, no truncated final row. Nothing was discarded and nothing was
+regenerated — the translator contract already had a resume rule that reads the
+last index and appends, so 6,283 rows already paid for were kept.
+
+One agent had reported success before the limit hit and one had not; the
+difference was checked against the files rather than against the notifications.
+
+## 20I.2 The stale artefact the interruption hid
+
+The interrupted pass had merged five languages to 3,333 rows and committed
+them. The app was shipping 600.
+
+`content/vocabulary/copy/*.json` is source; `apps/web/src/data/generated/` and
+`apps/web/public/corpus/` are build output. Nothing in `verify:quick` compared
+them, so every gate read the stale packs and agreed with every other gate about
+a number that was two commits old. `locale:content:check` read 10 complete and
+22 partial before the rebuild and 15/17 after it, with no source change in
+between — 1,620 vocabulary questions a learner in one of those five languages
+could already have been asked.
+
+Each content build already had a `--check` that rebuilds and compares. All four
+were in `verify:release` and none in `verify:quick`, which is the gate that runs
+between edits. They now run third in `verify:quick`, before the thirty gates
+that read their output.
+
+The same rebuild found the level-test anchor pool still ranking against the
+corpus from before 숙다 was retired and the thirty-one part-of-speech
+corrections landed.
+
+## 20I.3 What finishing a language actually costs
+
+Merging 2,733 rows does not finish a language. Crossing from partial to complete
+makes four gates start applying rules they had been skipping, and every one of
+them failed on the first language that got there:
+
+| debt | the gate that names it |
+| --- | --- |
+| **36 notes** — a word carrying the *More about it* paragraph in English owes it in any language claiming to be complete | `vocabulary:sense:qa` |
+| **12–17 collapsed sentence pairs** — two different Korean sentences arriving at one target sentence | `vocabulary:translation:check` |
+| **two-sense glosses** — «обычно; обычный» on a card that teaches one sense | `vocabulary:sense:qa` |
+| **polarity readings** — the language absorbs a Korean negative idiomatically | `translation:semantics` |
+
+The notes are hand-written per language, not generated: 누나 against 언니, 새끼
+as an insult, 전세 as a housing arrangement no other country has, the
+four-character idioms with the stories they come from, and 좀처럼 as a
+negative-polarity adverb that is ungrammatical without a negation.
+
+The collapsed pairs are the same near-synonyms every time — 잠깐/잠깐만,
+고장/고장나다, 멈추다/정지, 막다/차단하다, 요청하다/청하다, 마디/한마디,
+긴급/응급 — and each was separated on the distinction its own Korean makes:
+-어 주세요 asking a favour against -세요 instructing, plain-polite against
+formal, active against passive, kicked against struck. None were sent to the
+shared-translations ledger; that ledger is for languages that genuinely merge a
+distinction, and none of these do. Once the pattern was clear the list went into
+the translator's contract, so later languages stopped producing them.
+
+## 20I.4 Four polarity gates that were reading correct translations as flips
+
+Each of these was a marker table that did not know how its language says no:
+
+* **Hindi** puts the prohibitive last — हिलिए मत। — and the table was matching
+  `मत ` with a trailing space, which never comes before a danda.
+* **Hungarian** marks negation twice and the second mark is often the only one
+  present: 아무도 눈치채지 못했어요 is «Senki sem vette észre», where neither
+  word is `nem`.
+* **Filipino** carries it in `ayoko` and `bihira`, neither of which is `hindi`.
+* **Greek** absorbs it into `σπάνια`, as Russian does into `редко`.
+
+Four correct translations flagged in Hindi, six in Hungarian, three in Filipino,
+two in Greek. A gate that flags correct work teaches people to ignore it, which
+is worse than no gate.
+
+## 20I.5 Two defects the gates caught in shipping content
+
+**닥쳐 could be offered as a multiple-choice option.** 닥치다 is an ordinary
+verb about a deadline drawing near and the entry is unobjectionable; the
+infinitive slot asks for 닥쳐, and 닥쳐 standing alone is *shut up*. The
+level-test builder consulted `learner-safety.json`'s `notStandalone` list and
+had no idea `excluded` existed, so the only thing between the coarsest words in
+Korean and a quiz option was the safety QA noticing afterwards — which is how
+this was found, twice, on 아끼다 and 상상하다. The builder now checks the
+surface it is about to print, because an inflected form is a string the corpus
+never contains and no headword check can see it.
+
+**The merge gate called a correct gloss a script violation.** Hungarian's
+interjection for 아아 is the single letter «ó», and the Latin test was
+`[A-Za-z]`, which cannot see a string made only of accented letters. Every
+accented-only string in Czech, Polish, Romanian, Swedish, Turkish and Dutch is
+the same shape.
+
+## 20I.6 The installed app name
+
+The launcher label is now **Hangyul Ganada** on both platforms, with
+`com.talkhangyul.ganada` unchanged and asserted in both Xcode configurations.
+Chapter 18.0 has the reasoning, the guard, and the blind spot it closed —
+`check-product-name.mjs` had never scanned `.xml` or `.plist`, which is to say
+it had never looked at the two files that decide the name under the icon.
+
+---
+
 # 21. Issues
 
 `docs/issues.json` is the single place in this repository that states an issue's
