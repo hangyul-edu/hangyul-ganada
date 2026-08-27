@@ -228,22 +228,6 @@ const SLANTED_TERMINAL = new Map([
   ['ㅋ', "the added bar drops towards its free end; the guide draws it level"],
 ]);
 
-/**
- * Uprights whose position against the letter's edge is deliberately not the
- * face's, keyed by `letter:index`.
- *
- * Pretendard runs ㄹ's waist and base about a fortieth of the letter past the
- * leg above them, so its second upright stands clear of the right edge. The app
- * ends all three flush: copying the overhang put a visible step in the
- * right-hand side of 라, 말 and 글, and at the size the demonstration is drawn
- * the step reads as a spur rather than as the letter widening at the foot. The
- * upright's *position across the letter* is still compared — only the
- * clear-of-the-edge classification is waived, and only here.
- */
-const UPRIGHT_ANCHOR_EXEMPT = new Map([
-  ['ㄹ:2', 'the waist and base end flush with the leg, so the leg is on the right edge'],
-]);
-
 const STRUCTURE_EXEMPT = new Map([
   ['ㅅ', 'splayed legs: the face has no column the app can be compared against'],
   ['ㅆ', 'splayed legs'],
@@ -611,11 +595,6 @@ for (const item of measured) {
     } else {
       app.uprights.forEach((u, i) => {
         const theirs = face.uprights[i];
-        const waived = UPRIGHT_ANCHOR_EXEMPT.get(`${character}:${i + 1}`);
-        if (u.anchor !== theirs.anchor && waived) {
-          notes.push(`upright ${i + 1} sits against the ${u.anchor} — ${waived}`);
-          return;
-        }
         if (u.anchor !== theirs.anchor) {
           problems.push(
             `upright ${i + 1} is ${u.anchor === 'centre' ? 'clear of' : `against the ${u.anchor} of`} the letter where the face's is ${theirs.anchor === 'centre' ? 'clear of it' : `against its ${theirs.anchor}`}`,
