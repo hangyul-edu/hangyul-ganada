@@ -106,14 +106,14 @@ without trusting the row.
 
 | Metric | Value | Where it comes from |
 | --- | --- | --- |
-| Words shipping | 3,334 | `vocabulary.json` `words.length` |
+| Words shipping | 3,333 | `vocabulary.json` `words.length` |
 | Categories | 18 | `vocabulary.json` `categories` |
-| Study sets | 674 (five words each) | per category, ⌈words ÷ 5⌉ summed |
+| Study sets | 673 (five words each) | per category, ⌈words ÷ 5⌉ summed |
 | Characters taught | 73 | `characters.ts` `ALL_CHARACTERS` |
 | Hangul letters taught | 40 | `characters.ts` `ALL_LETTERS` |
 | Curriculum units | 12 | `characters.ts` `CURRICULUM_UNITS` |
 | Lessons | 15 | `characters.ts` `LETTER_LESSONS` |
-| Pronunciation notes | 786 | words carrying a `say` field in `vocabulary.json` |
+| Pronunciation notes | 785 | words carrying a `say` field in `vocabulary.json` |
 | Of those, shown as a note on a card | 619 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
 | Sound-change patterns taught | 6 | `vocabulary.json` `sound_patterns` |
 | Patterns a word card may note | 5 | `vocabulary.json` `noted_patterns` |
@@ -125,11 +125,11 @@ without trusting the row.
 | Vocabulary packs at 600 words | 22 | `locale:content:qa` |
 | Unwritten vocabulary rows | 60,148 | 32 × 3,334 − rows written |
 | Long *More about it* definitions | 75 | third element in `vocabulary.en.json` |
-| Level-test items, English | 4,196 | `public/level-test/manifest.json` |
+| Level-test items, English | 4,194 | `public/level-test/manifest.json` |
 | Level-test contextual items | 596 | the bank, `kind === "context"` |
 | Level-test reach, 22 partial languages | 1,049 items each | `manifest.json` `reach` |
-| Audio clips | 13,458 | distinct files in `public/audio/manifest.json` |
-| Audio voice slots | 13,562 | the same manifest, two voices per entry |
+| Audio clips | 13,454 | distinct files in `public/audio/manifest.json` |
+| Audio voice slots | 13,558 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
 | Words at levels 28–30 | 478 | the corpus, by level |
 | Level anchors held | 162 | `level-anchors.json` |
@@ -324,7 +324,7 @@ it, which is why §7.2 is written the way it is.
 A standalone paid application, web and Android from one codebase. Twelve
 curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,334
 words. Everything a learner needs is in the binary: the curriculum, the fonts,
-the stroke data and 13,458 pronunciation clips in two voices.
+the stroke data and 13,454 pronunciation clips in two voices.
 
 ## 4.2 The intended journey — **VERIFIED**
 
@@ -737,7 +737,7 @@ I-90 and §19.4.
 
 ## 10.1 What it is — **VERIFIED**
 
-A 30-item adaptive placement test over 30 levels and a **4,196-item** bank, 596
+A 30-item adaptive placement test over 30 levels and a **4,194-item** bank, 596
 of them contextual, in three kinds: meaning shown / Korean chosen, meaning asked
 / Korean produced, and a word blanked out of a real sentence. Rebuilt this cycle
 against the current corpus — rebuilt again this pass at 3,334 words — and it had to be, because the bank was once
@@ -799,7 +799,7 @@ anybody.
 ## 10.4 Item quality — **and the gate that passed on a quarter of the bank**
 
 `leveltest:ambiguity` checks thirteen rules and six photographed regressions over
-all 4,196 items and passes — **after** the bank was rebuilt. On the shipped bank
+all 4,194 items and passes — **after** the bank was rebuilt. On the shipped bank
 it reported `wrong-conjugation` on 치닫아요, which is I-90: the module had been
 corrected two commits earlier and nothing had regenerated the artefact built
 from it. **It passed before this cycle too, on a bank in
@@ -1126,7 +1126,7 @@ warn ordinary users about a risk they cannot act on (I-12).
 
 # 14. Audio
 
-**13,458 distinct files over 13,562 voice slots, 66.2 MB**, two Korean neural
+**13,454 distinct files over 13,558 voice slots, 66.2 MB**, two Korean neural
 voices at 0.82× rate, recounted from `public/audio/manifest.json` this cycle.
 `audio:qa` decodes a 600-clip sample and checks the rest for existence, manifest
 agreement and duplication: 0 errors, 0 warnings, durations 240 ms to 2,880 ms,
@@ -2772,7 +2772,7 @@ document they predate.
 | --- | --- | --- | --- | --- | --- |
 | **I-04** | Vocabulary | **P1** | 3,334 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
-| **I-13** | Relations | **P2** | 253 of 3,334 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
+| **I-13** | Relations | **P2** | 257 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
 | **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 478 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
@@ -3108,7 +3108,7 @@ the running product for one minute found what four green suites had not.
 | --- | --- | --- | --- |
 | **I-04** | 3,334 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
 | **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
-| **I-13** | 253 of 3,334 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
+| **I-13** | 257 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
 | **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 478 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | HIGH (content) — the hard half: words that are advanced and ordinary |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
