@@ -1601,7 +1601,7 @@ fail should know why.
 
 ```
 1 error(s):
-  3,334 headwords — 6,666 short of the 10,000 target
+  3,333 headwords — 6,667 short of the 10,000 target
 ```
 
 That gate exists to fail. It is the corpus target held open in the release
