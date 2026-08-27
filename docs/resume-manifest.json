@@ -14,12 +14,11 @@
       "fil",
       "hi",
       "hu",
+      "id",
       "it",
       "ru"
     ],
-    "inFlight": [
-      "id"
-    ],
+    "inFlight": [],
     "todo": [
       "kk",
       "ky",
@@ -53,8 +52,8 @@
     },
     {
       "task": "mobile-display-name-artifact",
-      "status": "TODO",
-      "verification": "aapt dump badging on the final release APK must report application-label 'Hangyul Ganada' and package com.talkhangyul.ganada."
+      "status": "DONE",
+      "verification": "aapt2 dump badging on the installed base.apk: application-label 'Hangyul Ganada', launchable-activity label 'Hangyul Ganada', package com.talkhangyul.ganada. apksigner: certificate SHA-256 157a2bb1…3323debc, unchanged."
     },
     {
       "task": "content-freshness-in-fast-gate",
@@ -85,6 +84,36 @@
       "task": "e2e-suite",
       "status": "DONE",
       "verification": "175 specs on the desktop project and 175 on mobile, 350 passed, 0 failed — run after the service-worker precache change and the LocaleProvider message."
+    },
+    {
+      "task": "interrupted-slices-closed",
+      "status": "DONE",
+      "verification": "el, fil, hi, hu, id all merged at 3,333 rows with notes and de-collisions; 20 of 32 locales complete, 12 still at 600. No partially generated slice remains on disk."
+    },
+    {
+      "task": "final-qa",
+      "status": "DONE",
+      "verification": "verify:quick exit 0 end to end (35 checks); 825 unit tests; 350 e2e across both projects; 118 synthetic journeys; screens audit 143 renders; audio 13,558 clips 0 errors; mobile:qa 14/14; safe-area 60/60."
+    },
+    {
+      "task": "android-release",
+      "status": "DONE",
+      "verification": "assembleRelease + bundleRelease with the existing keystore; APK 82.7 MB, AAB 80.9 MB; installed on the emulator, launched, navigated Home → Words; release:current 0 errors at HEAD."
+    },
+    {
+      "task": "ios-project",
+      "status": "DONE",
+      "verification": "Bundle id and display name verified in Debug and Release from Info.plist and project.pbxproj. No macOS or Xcode on this machine: no IPA was built and none is claimed."
+    },
+    {
+      "task": "report",
+      "status": "DONE",
+      "verification": "docs/report.md and docs/report.pdf regenerated; docs:consistency 0 mismatches over report.md, README.md and result/RELEASE_VALIDATION.md."
+    },
+    {
+      "task": "remaining-locales",
+      "status": "TODO",
+      "verification": "kk, ky, mn, nl, pl, ro, sv, ta, te, tr, uk, uz are still 600 of 3,333 — the standing I-19 content debt, not interrupted work. 36 notes are already drafted for each in the session scratchpad."
     }
   ]
 }

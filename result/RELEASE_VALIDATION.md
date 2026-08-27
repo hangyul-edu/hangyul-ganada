@@ -116,6 +116,6 @@ one.
 ```
 a09317ac1efe79dad8b8d88d7ee4d995c86835275fdce5b1204bc59fed8d960a  hangyul-ganada-release.apk
 034bac946b05bfaf4f7e047debc7bc5472eb414b9f765706a9f26b12dd1980f8  hangyul-ganada-release.aab
-25f25393c8e3283a617e1355deddb8803ebc6ef4eb939de5ddf9037bb2b5fdcb  docs/report.pdf
-b747e74ea78b661cf18c60ee527844ccdbeb82504847e75c52c2dcfc39b7ef8a  build-info.json
+82ec71c67e965ccaaa8806f7b2350463b3cb6cabc65dcc251ad90ffbbecffe64  docs/report.pdf
+43415af2df78ec1892736e0b27930f2ee50cb3124a2a1c8ddbfd4e32256a4eb5  build-info.json
 ```
