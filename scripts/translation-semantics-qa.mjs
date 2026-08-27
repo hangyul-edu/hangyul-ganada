@@ -94,7 +94,7 @@ const NEGATION = {
    */
   hu: /\bnem\b|\bnincs|\bne\b|\bsoha|\bsem\b|\bsenki|\bsemmi|\bseho|\bsehol|\baligha|\britkán|\bhagyd abba/i,
   tr: /değil|yok|m[aeıi]yor|m[ae]d[ıi]|m[ae]z(?:\P{L}|$)|mey[ıi]n|may[ıi]n|mam(?:\P{L}|$)|mem(?:\P{L}|$)/iu,
-  id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b|\bayaw|\bayok|\bbihira|\btigil/i,
+  id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti|\bdilarang|\bjarang|\bkurang\b|\btanpa\b/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b|\bayaw|\bayok|\bbihira|\btigil/i,
   /*
    * `मत ` had a trailing space, and Hindi puts the prohibitive last:
    * हिलिए मत। — the negative is the final word, followed by a danda, so the
