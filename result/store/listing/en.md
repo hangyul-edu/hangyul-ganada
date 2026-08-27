@@ -29,7 +29,7 @@ STROKE ORDER, PROPERLY
 Korean is written in a set order: top to bottom, left to right. Every letter shows you the order it is made in, numbered and animated, and after each attempt the app tells you what you did differently. It never fails you for it.
 
 FROM ㅏ TO YOUR FIRST WORDS
-Six vowels, then five consonants, then your first syllable block — you are reading Korean by the third lesson. Then 3,334 everyday words. Hear the word. Understand its meaning. See it in a simple Korean sentence. Hear the sentence. Write the Korean yourself.
+Six vowels, then five consonants, then your first syllable block — you are reading Korean by the third lesson. Then 3,333 everyday words. Hear the word. Understand its meaning. See it in a simple Korean sentence. Hear the sentence. Write the Korean yourself.
 
 BROWSE BY WHAT WORDS ARE ABOUT
 Animals, Food & Drink, People & Family, Body & Health — eighteen categories, so you can learn the words you actually want next. Or just search, in Korean or in your own language.

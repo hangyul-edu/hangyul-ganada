@@ -91,11 +91,15 @@ exactly that.
 
 | | |
 | --- | --- |
-| Commit | `37d2f82b` — the product commit the artefacts were built from; the commits after it are the release directories and this document |
+| Commit | `be66048f` — the product commit the artefacts were built from; the commits after it are the release directories and this document |
 | Working tree | clean outside `docs/` and the release directories |
 | Node | v24.19.0 |
 | Web | React 19, Vite 7, TypeScript |
 | Native | Capacitor 8, `com.talkhangyul.ganada` |
+| **Android package** | `com.talkhangyul.ganada` — read from the installed `base.apk` with `aapt2 dump badging` |
+| **Android display name** | **Hangyul Ganada** — the `application-label` and the `launchable-activity` label of the installed package |
+| **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
+| **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
 
 ## 2.2 Figures for the next report to diff against
@@ -138,8 +142,8 @@ without trusting the row.
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 6 | `level-overrides.json` |
 | Issues tracked | 113 | `docs/issues.json` |
-| Signed APK | 81.9 MB | `result/build-info.json` |
-| Signed AAB | 80.1 MB | same |
+| Signed APK | 82.7 MB | `result/build-info.json` |
+| Signed AAB | 80.9 MB | same |
 
 "Characters taught" counts every entry in the curriculum's character table — the
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
@@ -1480,11 +1484,16 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **81.9 MB** (85,854,550 B), `a5509016b73f3ee0…` |
-| Release AAB | **80.1 MB** (83,973,841 B), `dc16ee111f6ddd6e…` |
+| Release APK | **82.7 MB** (86,743,504 B), `a09317ac1efe79da…` |
+| Release AAB | **80.9 MB** (84,861,821 B), `034bac946b05bfaf…` |
 
-The APK grew from 79.6 MB to 81.9 MB this cycle, and the growth is the
-product: 78 new words' recordings in both voices (312 clips), their corpus
+The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
+product: nine languages' worth of word meanings and example translations for
+the whole corpus rather than its first band. No recordings were added — the
+audio set is unchanged at 13,558 slots — so the 0.8 MB is text.
+
+The paragraph the previous cycle wrote about its own growth is kept below,
+because the shape of the answer has not changed: the corpus
 rows in ten languages, their level-test items, and the re-recorded rewritten
 examples. Nothing was removed and nothing else moved — the earlier passes'
 savings (the `.woff` twins, the pruned web-only files) are still absent from

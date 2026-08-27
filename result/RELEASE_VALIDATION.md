@@ -47,8 +47,8 @@ artefacts, in the places a customer meets first:
 
 | | |
 | --- | --- |
-| `hangyul-ganada-release.apk` | 85,854,550 B (81.9 MB), sha256 `a5509016b73f3ee0…` |
-| `hangyul-ganada-release.aab` | 83,973,841 B (80.1 MB), sha256 `dc16ee111f6ddd6e…` |
+| `hangyul-ganada-release.apk` | 86,743,504 B (82.7 MB), sha256 `a09317ac1efe79da…` |
+| `hangyul-ganada-release.aab` | 84,861,821 B (80.9 MB), sha256 `034bac946b05bfaf…` |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24) |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated** |
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0, SDK 24–36 |
@@ -59,10 +59,10 @@ artefacts, in the places a customer meets first:
 
 | | |
 | --- | --- |
-| Web bundle | `assets/public/assets/index-C8ghHRkb.js`, sha256 `362006e8…` — **byte-identical** to the `dist` the level-change Playwright journeys passed against |
-| Taught words in the corpus manifest | 3,334 = 3,334 |
-| Level-test items | 4,196 = 4,196 |
-| Audio build | `20260826-9c60136d`, 6,625 entries — the build with the batch-910 recordings |
+| Web bundle | `assets/public/assets/index-CKP_7q9E.js`, sha256 `c3aa5b10…` — **byte-identical** to the `dist` the level-change Playwright journeys passed against |
+| Taught words in the corpus manifest | 3,333 = 3,333 |
+| Level-test items | 4,194 = 4,194 |
+| Audio build | `20260826-299bca46`, 6,779 entries — unchanged this pass; no recordings were added |
 | Dictionary | 30,282 headwords · 39,676 senses · 3,721 examples — the curated set |
 | `.woff` files | 0 — every face is woff2-only |
 | Social-preview image, `robots.txt`, `_redirects`, `sw.js` | 0 — pruned; the native runtime reads none of them |
@@ -71,25 +71,25 @@ artefacts, in the places a customer meets first:
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:quick` (32 checks) | ✓ — lint, typecheck, unit suites, build, budgets, routing, share metadata, and every content gate in the chain |
+| `npm run verify:quick` (35 checks) | ✓ — lint, typecheck, unit suites, build, budgets, routing, share metadata, and every content gate in the chain |
 | Web unit (`vitest`) | **825 passed** (53 files) |
 | Korean morphology | **216 passed** |
 | Handwriting core | **96 passed** |
 | End-to-end (`playwright`) | **350 passed (19.1 m)**, both projects, no retries — including the mid-day level-change journeys in both directions |
-| `npm run synthetic:users:qa` | **112 of 112 journeys PASS** — 32 locales, 30 levels, 1,203 simulated days, 12 mid-day Level Test retakes |
+| `npm run synthetic:users:qa` | **118 of 118 journeys PASS** — 32 locales, 30 levels, 18 mid-day Level Test retakes |
 | Randomized sittings | 2,000 seeded sittings + 1,000 with mid-sitting retakes, invariants after every event |
 | `npm run screens:audit:check` | 143 renders across 7 profiles, clean |
 | `npm run qa:locales` | 256 locale renders, clean |
-| `npm run conjugation:display:qa:check` | 0 findings on 1,475 predicates; 5-input self-test refused on every run |
+| `npm run conjugation:display:qa:check` | 0 findings on 1,507 predicates; 5-input self-test refused on every run |
 | `npm run dictionary:qa:check` | clean |
-| `npm run examples:qa` | 3,334 sentences, **PASS 3,334 / REVIEW 0 / REWRITE 0** |
+| `npm run examples:qa` | 3,333 sentences, **PASS 3,333 / REVIEW 0 / REWRITE 0** |
 | `npm run leveltest:qa` + `leveltest:ambiguity` | within ±3 levels, exactly 30 items; 0 ambiguity findings |
 | `npm run vocabulary:recommendation:qa` | 30,000 events, 0 zone violations, 0 short days; levels 1/10/20/30 samples read by hand |
-| `npm run audio:qa` | 13,562 voice slots over 13,458 files, **0 errors, 0 warnings** |
+| `npm run audio:qa` | 13,558 voice slots over 13,454 files, **0 errors, 0 warnings** |
 | `npm run audio:pronunciation:check` | 0 errors |
 | `npm run letters:face:check` | every letter has the face's parts, in the face's places |
-| `npm run store:check` | listings within limits; word counts updated to 3,334 in all eight languages (the gate now reads the listing files too — I-114) |
-| `npm run vocabulary:qa:target` | **FAILS** — 3,334 words against a stated 10,000. Left failing on purpose; see I-04. |
+| `npm run store:check` | listings within limits; word counts updated to 3,333 in all eight languages (the gate now reads the listing files too — I-114) |
+| `npm run vocabulary:qa:target` | **FAILS** — 3,333 words against a stated 10,000. Left failing on purpose; see I-04. |
 
 ## On the emulator — ANDROID EMULATOR VERIFIED / PHYSICAL DEVICE NOT VERIFIED
 
@@ -114,8 +114,8 @@ one.
 ## Checksums
 
 ```
-a5509016b73f3ee06c0087bea4f91d6b3b4f722cfb0d157a03bb1a84d9520e2d  hangyul-ganada-release.apk
-dc16ee111f6ddd6ea839142243955020a6b63e9c181bbafeb0b7df5f453c7f04  hangyul-ganada-release.aab
+a09317ac1efe79dad8b8d88d7ee4d995c86835275fdce5b1204bc59fed8d960a  hangyul-ganada-release.apk
+034bac946b05bfaf4f7e047debc7bc5472eb414b9f765706a9f26b12dd1980f8  hangyul-ganada-release.aab
 25f25393c8e3283a617e1355deddb8803ebc6ef4eb939de5ddf9037bb2b5fdcb  docs/report.pdf
-a969aa8b84cc584165cc1d9e18faacf1c72cc1a11d948327097dc393d3dba3f9  build-info.json
+b747e74ea78b661cf18c60ee527844ccdbeb82504847e75c52c2dcfc39b7ef8a  build-info.json
 ```
