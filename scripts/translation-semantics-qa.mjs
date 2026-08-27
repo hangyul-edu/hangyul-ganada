@@ -85,7 +85,7 @@ const NEGATION = {
   nl: /\bniet\b|\bgeen\b|\bnooit/i, sv: /\binte\b|\bingen|\binga|\baldrig/i,
   de: /\bnicht\b|\bkein|\bnie\b|\bniemand|\bniemals|\bnichts\b|\bkaum\b|\bh[öo]r(?:en)? .{0,14}auf\b|\bauf zu\b/iu, es: /\bno\b|\bnunca|\bnada\b|\bnadie\b|\bjam[aá]s|\brara vez|\bdej[ae] de/iu,
   fr: /\bne\b|\bn['’]|\bpas\b|\bjamais|\bpersonne\b|\brarement|\barr[eê]te|\bfaute d/iu, 'pt-BR': /\bnão\b|\bnunca|\bnada\b|\bningu[eé]m|\bjamais\b|\braramente|\bnem\b|\bpare de|\bde forma alguma/iu,
-  ro: /\bnu\b|\bnicio/i, el: /(?:^|\P{L})(?:δεν|μην?|όχι|ποτέ)/iu, hu: /\bnem\b|\bnincs|\bne\b|\bsoha/i,
+  ro: /\bnu\b|\bnicio/i, el: /(?:^|\P{L})(?:δεν|μην?|όχι|ποτέ|σπάνια|σταμάτ)/iu, hu: /\bnem\b|\bnincs|\bne\b|\bsoha/i,
   tr: /değil|yok|m[aeıi]yor|m[ae]d[ıi]|m[ae]z(?:\P{L}|$)|mey[ıi]n|may[ıi]n|mam(?:\P{L}|$)|mem(?:\P{L}|$)/iu,
   id: /\btidak\b|\bbukan\b|\bbelum\b|\bjangan\b|\btak\b|\bsulit\b|\bberhenti/i, fil: /\bhindi\b|\bwala|\bhuwag\b|\bdi\b|\bwag\b/i,
   hi: /नहीं|मत |बिना| न /, bn: /না|নেই|নয়|নি(?:\P{L}|$)/u, ta: /இல்லை|ில்லை|மாட்|வேண்டாம்|ாதே|ாது|ாமல்|வேண்டா|ாதீர்கள்|ாதீர்/, te: /లేదు|కాదు|వద్దు|కూడదు|కుండా|కండి|కు(?:\P{L}|$)|రు(?:\P{L}|$)|దు(?:\P{L}|$)|ను(?:\P{L}|$)/u,

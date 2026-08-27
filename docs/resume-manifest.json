@@ -6,9 +6,34 @@
   "translationSlices": {
     "_comment": "Each partial locale is 2,733 rows in four slices of 684/684/684/681. status: DONE = merged into content/vocabulary/copy/<locale>.json and validated; GENERATED = rows written to scratchpad, not yet merged; PARTIAL = resumable append in progress; TODO = not started.",
     "unit": "locale/slice",
-    "done": ["ar", "bn", "cs", "it", "ru"],
-    "inFlight": ["el", "fil", "hi", "hu", "id"],
-    "todo": ["kk", "ky", "mn", "nl", "pl", "ro", "sv", "ta", "te", "tr", "uk", "uz"]
+    "done": [
+      "ar",
+      "bn",
+      "cs",
+      "it",
+      "ru"
+    ],
+    "inFlight": [
+      "el",
+      "fil",
+      "hi",
+      "hu",
+      "id"
+    ],
+    "todo": [
+      "kk",
+      "ky",
+      "mn",
+      "nl",
+      "pl",
+      "ro",
+      "sv",
+      "ta",
+      "te",
+      "tr",
+      "uk",
+      "uz"
+    ]
   },
   "tasks": [
     {
@@ -30,6 +55,26 @@
       "task": "mobile-display-name-artifact",
       "status": "TODO",
       "verification": "aapt dump badging on the final release APK must report application-label 'Hangyul Ganada' and package com.talkhangyul.ganada."
+    },
+    {
+      "task": "content-freshness-in-fast-gate",
+      "status": "DONE",
+      "verification": "content:fresh:check added to verify:quick; rebuilt vocabulary packs, split corpus and level-test anchors, all four --check modes green."
+    },
+    {
+      "task": "level-test-excluded-option-leak",
+      "status": "DONE",
+      "verification": "build_level_test.mjs now rejects any option whose printed surface is in learner-safety excluded; content:safety:check 0 findings (was 2: 닥쳐 in word_akkida and word_sangsanghada)."
+    },
+    {
+      "task": "notes-for-complete-locales",
+      "status": "PARTIAL",
+      "verification": "36 notes written by hand in ar, bn, cs, it, ru; vocabulary:sense:qa and korean:education both green. Each further locale completed owes the same 36."
+    },
+    {
+      "task": "ru-two-sense-glosses",
+      "status": "DONE",
+      "verification": "보통, 갈수록, 냉정하다 trimmed to the taught sense; sense QA green."
     }
   ]
 }

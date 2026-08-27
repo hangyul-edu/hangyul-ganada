@@ -5,6 +5,7 @@
   "uk/word_jam/polarity": "Same as Russian: «погано сплю» absorbs the negation naturally.",
   "de/word_jam/polarity": "«schlafe schlecht ein» absorbs 안 와요 into schlecht; a literal negation (kein Schlaf kommt) is not German.",
   "vi/word_jam/polarity": "«khó ngủ» (hard to sleep) is the natural Vietnamese for 잠이 잘 안 와요; the negation lives in khó.",
-  "fr/word_jeonja/polarity": "보이지 않아요 → «invisible à l'œil»: the negation is the in- prefix, which is the natural French rendering."
+  "fr/word_jeonja/polarity": "보이지 않아요 → «invisible à l'œil»: the negation is the in- prefix, which is the natural French rendering.",
+  "el/word_handongan/polarity": "한동안 못 만났어요 → «Έχουμε καιρό να βρεθούμε»: Greek says the same thing by counting the time since, and the construction «έχουμε καιρό να» is itself negative in meaning — a literal «δεν έχουμε βρεθεί» is grammatical but reads as a report rather than as the remark the Korean makes."
  }
 }
