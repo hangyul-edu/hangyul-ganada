@@ -111,6 +111,26 @@ const NOT_STANDALONE = new Set(
     .filter(([name]) => name !== '_comment')
     .flatMap(([, terms]) => terms),
 );
+/**
+ * Terms that may not be put in front of a learner at all, in any slot.
+ *
+ * The builder had no idea this list existed. `notStandalone` was consulted and
+ * `excluded` was not, so the only thing standing between the coarsest words in
+ * Korean and a multiple-choice option was `content-safety-qa.mjs` noticing
+ * afterwards — which it did, twice, for 닥쳐.
+ *
+ * 닥쳐 is how the list gets in. 닥치다 is an ordinary verb meaning for a
+ * deadline to draw near, and nothing about the entry is unsafe; but the
+ * infinitive slot asks for 닥쳐, and 닥쳐 standing alone is not a conjugation, it
+ * is *shut up*. An inflected form can be a word the corpus never contains, so
+ * checking the headword — which is what every other guard here does — cannot
+ * see it. This checks the surface actually printed.
+ */
+const EXCLUDED = new Set(
+  Object.entries(SAFETY.excluded)
+    .filter(([name]) => name !== '_comment')
+    .flatMap(([, terms]) => terms),
+);
 /** Conjugated surfaces of every predicate a frame rule names. */
 const FRAME_RULES = SAFETY.frames.rules.map((rule) => ({
   forbid: rule.forbidObject,
@@ -558,6 +578,11 @@ for (const anchor of anchors) {
       surface = other.word;
     }
     if (surface === anchor.surface || choices.some((c) => c.surface === surface)) continue;
+    // Never, in any slot, inflected or not — see `EXCLUDED`.
+    if (EXCLUDED.has(surface)) {
+      rejected.excludedTerm = (rejected.excludedTerm ?? 0) + 1;
+      continue;
+    }
     // Agrees with the particle the sentence already carries — see above.
     if (!particleFits(surface)) {
       rejected.particleMismatch = (rejected.particleMismatch ?? 0) + 1;
