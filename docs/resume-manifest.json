@@ -12,11 +12,11 @@
       "cs",
       "el",
       "fil",
+      "hi",
       "it",
       "ru"
     ],
     "inFlight": [
-      "hi",
       "hu",
       "id"
     ],
@@ -69,7 +69,7 @@
     {
       "task": "notes-for-complete-locales",
       "status": "PARTIAL",
-      "verification": "36 notes written by hand in ar, bn, cs, it, ru; vocabulary:sense:qa and korean:education both green. Each further locale completed owes the same 36."
+      "verification": "36 notes hand-written for all 22 partial locales (ar, bn, cs, el, fil, hi, hu, id, it, kk, ky, mn, nl, pl, ro, ru, sv, ta, te, tr, uk, uz). Merged for the ones already complete; the rest wait in the session scratchpad as notes-<locale>.json and are applied at merge time."
     },
     {
       "task": "ru-two-sense-glosses",
@@ -80,6 +80,11 @@
       "task": "example-translation-collisions",
       "status": "PARTIAL",
       "verification": "78 pairs separated across ar bn cs el it ru; vocabulary:translation:check green. Every further locale completed will raise its own set."
+    },
+    {
+      "task": "e2e-suite",
+      "status": "DONE",
+      "verification": "175 specs on the desktop project and 175 on mobile, 350 passed, 0 failed — run after the service-worker precache change and the LocaleProvider message."
     }
   ]
 }
