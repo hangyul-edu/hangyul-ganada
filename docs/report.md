@@ -1179,60 +1179,91 @@ navigation style, theme and text scale — see §18 for why it was 42/48.
 
 # 16. Performance and delivery
 
-Every enforced budget is met at 3,334 words, and one of them was raised again
-this pass to get there:
+Every enforced budget is met at 3,333 words, and the row that used to be the
+finding is now the fix:
 
 ```
-first load                       273.4 kB /  460.0 kB   59%
-corpus, first paint               53.2 kB /   64.0 kB   83%
-corpus, whole                    299.6 kB /  900.0 kB   33%
+first load                       273.3 kB /  460.0 kB   59%
+corpus, first paint               53.1 kB /   64.0 kB   83%
+corpus, whole                    299.5 kB /  900.0 kB   33%
 largest route chunk               12.2 kB /   24.0 kB   51%
-everything precached            1508.0 kB / 1600.0 kB   94%
+everything precached            1008.2 kB / 1600.0 kB   63%
 ```
 
-First load moved 236.5 → 270.2 kB this pass, and the cost is a correctness
-trade made knowingly: the plan builder now refuses to schedule a word the
-session cannot ask in the learner's language (§20C), and answering that
+First load moved 236.5 → 270.2 kB in the previous pass, and the cost is a
+correctness trade made knowingly: the plan builder refuses to schedule a word
+the session cannot ask in the learner's language (§20C), and answering that
 question at launch needs the validated gap-fill data in the eager graph. The
 budget holds at 59%.
 
 First paint fetches the shared tables plus band 1 — a fixed 600 words — so it
 costs the same at ten thousand headwords as at three thousand. That flat line is
-the architecture working, and it did not move this cycle even though band 1 now
-carries twenty-two more languages: first paint fetches the learner's band-1 pack
-and nobody else's.
+the architecture working, and it has not moved through three cycles of corpus
+growth: first paint fetches the learner's band-1 pack and nobody else's.
 
-**The precache budget was raised from 1,500 kB to 1,600 kB this pass**, for
-the same reason it was raised from 1,400: the corpus row is where growth is
-meant to land, and batch 920's meanings, examples and level-test items took
-the measured total 1,457 → 1,508 kB with the JavaScript half unmoved. The
-previous raise is kept below because its arithmetic still explains the shape:
+## 16.1 The precache stopped scaling with the number of finished languages — **fixed this pass**
 
-**The precache budget was raised from 1,400 kB to 1,500 kB, and it is worth
-saying what bought the 54 kB.** Band 1 is the band the worker precaches *for
-every language*, so taking the twenty-two partial languages from 100 words to
-600 put 500 words × 22 languages of meanings, example translations and long
-definitions into this one row. The JavaScript half did not move — 367 kB before
-and after — against 1,087 kB of corpus.
+Three consecutive reports carried this paragraph as an open finding: the service
+worker precached `public/corpus` entire, which is every band in every language,
+and the forecast at the ten-thousand-word target was two and a half times the
+budget. Each report said the answer was to precache the learner's own language
+and fetch the rest in bands. This pass did it, because this pass is the one where
+the arithmetic stopped being a forecast.
 
-Raised rather than trimmed. Trimming means not precaching twenty-two languages a
-learner might actually be using, to save 54 kB, and working offline is the
-product. The budget's own note has said since the last raise that the corpus
-half is meant to grow and that this row is where it should show up.
-
-**The finding is still the line beneath it.** `corpus, whole at 10,000` is a
-forecast for **one language** and lands at 891 kB against 900 kB, which reads
-comfortable. The service worker precaches `public/corpus` entire:
+Six languages were finished here. Each adds 2,733 words of meanings and example
+translations, and every one of them was landing in the install:
 
 ```
-everything precached at 10,000  3778.7 kB / 1600.0 kB  236%
+everything precached            1870.5 kB / 1600.0 kB  117%   ← failing the build
 ```
 
-Two and a half times the budget, and not a number a better gzip closes. It is a
-finding about the delivery strategy rather than about the budget: precaching
-every language is affordable at 3,334 headwords and is not affordable at 10,000,
-and the answer then is to precache the learner's own language and fetch the rest
-in bands. Reported and not enforced, because what ships today fits.
+The rule was written when ten languages were complete, and the comment beside it
+put the cost at "~180 kB gzipped in total". At thirty-two complete languages the
+same rule forecast **4.8 MB** — a first visit that downloads thirty-one
+translations the learner will never read, before they have met a single letter.
+
+**What install takes now** is every band's shared word file plus **band 1 in
+every language**. Band 1 is the 600 words the corpus splitter puts on the
+critical path, so it is the band a learner meets first in whatever language they
+switch to, and keeping all thirty-two of them is what keeps the offline promise
+honest for a language changed in the air.
+
+**The later bands follow the learner.** Which language meanings are actually
+read in is the one thing the worker cannot work out for itself — it lives in app
+storage a service worker cannot see, and it is not the interface language;
+`i18n/contentLocale.ts` resolves it against what the corpus really has. So
+`LocaleProvider` posts it, and `cacheLanguage` completes that language offline.
+Any other language's later bands are cached the moment they are fetched, because
+`/corpus/` is immutable and therefore already cache-first.
+
+```
+                                 before      after     budget
+everything precached            1870.5 kB   1008.2 kB   63%
+the same at 10,000 headwords    4867.6 kB   1479.2 kB   92%
+```
+
+**The forecast changed shape as well as size, and that is the part worth
+keeping.** The flat half of the install is now measured apart from the growing
+half: band 1 is a fixed 600 words at any corpus size, so only the shared band
+files scale. A line that grew with something that cannot grow was forecasting a
+breach that was arithmetic rather than product.
+
+The budget script moved *with* the worker rather than after it — it no longer
+weighs `public/corpus` entire — and a new unenforced row reports what a learner
+accumulates by reading everything in every language, so the old number is still
+visible rather than quietly disappearing:
+
+```
+held offline, every language    1870.6 kB / 1600.0 kB  117%   fetched on demand, never on install
+```
+
+Broken deliberately by restoring the old measurement, the budget failed at 117%
+and named the row.
+
+**No budget was raised to get here.** The previous two passes each raised the
+precache ceiling — 1,400 → 1,500 → 1,600 kB — and each raise was defensible on
+its own terms and postponed the same decision. This pass spent none of it: the
+ceiling stays at 1,600 kB and the measured total came down by 862 kB.
 
 ---
 
