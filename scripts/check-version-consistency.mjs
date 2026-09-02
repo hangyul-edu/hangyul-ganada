@@ -170,10 +170,21 @@ const BUILD_INFO = 'result/build-info.json';
 if (existsSync(join(root, BUILD_INFO))) {
   const built = readJson(BUILD_INFO);
   const builtCode = built.android?.version_code;
-  if (Number.isInteger(builtCode) && builtCode >= BUILD && built.version !== VERSION) {
+  /*
+   * A spent versionCode is spent, whatever the marketing version was.
+   *
+   * This used to require `built.version !== VERSION` as well, which let a
+   * second 1.0.2 build reuse versionCode 3 — and Google Play rejects a reused
+   * versionCode outright. `versionName` is a string it does not care about;
+   * `versionCode` is the primary key of an upload. The condition made the check
+   * silent in precisely the case it is needed for, which is the one that
+   * happens: fixing something and shipping the same marketing version again.
+   */
+  if (Number.isInteger(builtCode) && builtCode >= BUILD) {
     fail(
       BUILD_INFO,
-      `buildNumber ${BUILD} is not ahead of the ${built.version} artefact's versionCode ${builtCode}`,
+      `buildNumber ${BUILD} is not ahead of the versionCode ${builtCode} already used by the ` +
+        `${built.version} artefact — Play refuses a reused code whatever the version name says`,
     );
   }
 }
