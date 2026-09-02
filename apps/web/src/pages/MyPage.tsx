@@ -718,8 +718,17 @@ function Group({
   title: string;
   children: React.ReactNode;
 }) {
+  /*
+   * `data-settings-group` is not styling and not a test hook for this screen.
+   *
+   * It is the marker `legal:isolation` reads on *other* screens: a settings
+   * group is the thing that must never appear on Privacy, Terms, About or
+   * Licences, and a gate needs something stable to look for. A CSS-module class
+   * is hashed at build time and a heading's text is in thirty-two languages;
+   * this is neither.
+   */
   return (
-    <div className={styles.group} role="group" aria-labelledby={id}>
+    <div className={styles.group} role="group" aria-labelledby={id} data-settings-group={id}>
       <h2 id={id} className={styles.groupTitle}>
         {title}
       </h2>
