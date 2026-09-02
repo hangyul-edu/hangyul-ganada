@@ -3974,6 +3974,35 @@ catch, and all six failed as they should: the marker placement, the legal
 isolation, the Numbers copy register, the tray guard, a self-answering gloss,
 and the reused versionCode.
 
+Two things went wrong in the running of that list and are recorded rather than
+tidied away.
+
+**The level-test bank had to be rebuilt and I did not notice until the release
+chain said so.** Its anchors are derived from the taught corpus, and this pass
+moved eighteen words between levels and added 108 translation rows.
+`content:leveltest` regenerated 29 files over 17,265 ranked words;
+`leveltest:ambiguity`, `leveltest:qa`, `content:safety`, `korean:education` and
+`answerability` were all re-run against the rebuilt bank and pass, and the
+placement simulation still lands a learner within ±3 levels in exactly 30
+items. The gate that caught it printed *run `npm run content:leveltest:anchors`*
+— a command that did not exist. It does now.
+
+**Two of the gates in the table above had no npm script until the last hour of
+the pass.** I had been staging `package.json` through a helper that rebuilt it
+from a snapshot taken at the start, so any script added afterwards was silently
+dropped while the staged diff still looked correct. `answerability` and
+`vocabulary:level:audit` existed as files, were described in this chapter, and
+could not be run by anybody reading it. Found by running the list rather than
+by reading it, which is the point of §7.2 and is exactly the failure mode this
+report keeps describing in other people's work.
+
+**Every page of every regenerated PDF was rendered and checked.** 176 pages of
+`docs/report.pdf` and 23 and 21 of the two disclosures, at 60 dpi, for a page
+with nothing on it, ink past the margin, and a page dense enough to suggest
+overlapping layout. One finding, and it is pagination rather than a defect: the
+Korean disclosure's contents list breaks so that its last line, *부록 — 도 1 ~
+도 13*, sits alone on page 3. Fourteen pages were then opened and read.
+
 ## 20L.11 The artefacts this pass built
 
 Rebuilt from a clean checkout of the commit that carries every change above,
