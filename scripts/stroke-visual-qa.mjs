@@ -36,6 +36,7 @@
  * | **Backwards** | Ink that shrinks as the fraction grows. |
  * | **Clipped** | Ink touching the edge of the box, which is a letter drawn off the paper. |
  * | **Detached** | A numbered marker whose anchor is not on its own stroke. |
+ * | **Obscured** | A numbered badge standing on the letter's ink, at any size the product draws at. |
  * | **Adrift** | A finished frame that is not the union of the strokes. |
  *
  * ## And the gallery, which is the part that has actually caught things
@@ -282,7 +283,85 @@ for (const character of shipping) {
     if (off > 0.01) fail(character, `marker ${marker.order} is not on its stroke's start`);
   }
 
-  gallery.push({ character, glyph, markers: layoutMarkers(glyph.strokes, radius), radius });
+  // --- obscured ----------------------------------------------------------
+  /*
+   * The rule the ㅏ of 안 broke: a badge may not stand on the letter.
+   *
+   * Measured at every size the demonstration is drawn at, because a clearance
+   * that survives in viewBox units can still vanish into a rounding at 96 px.
+   * Any ink at all inside a disc is a failure — there is no allowance, because
+   * the placement is free to move the badge and a leader line is free to cross
+   * the glyph, so there is nothing a badge needs the letter's space *for*.
+   */
+  const markers = layoutMarkers(glyph.strokes, radius);
+  for (const size of REVIEW_SIZES) {
+    for (const { order, covered } of await markerInk(glyph, markers, radius, size)) {
+      if (covered > 0) {
+        fail(character, `badge ${order} covers ${covered} px of the letter at ${size} px`);
+      }
+    }
+  }
+
+  gallery.push({ character, glyph, markers, radius });
+}
+
+/**
+ * How much of the finished letter each numbered badge is standing on, in pixels.
+ *
+ * ## Why this is rendered rather than computed
+ *
+ * `strokeMarkers.test.ts` already proves the badge clears the ink, in viewBox
+ * units, over every taught character. That is the right place for the rule and
+ * it is not the whole answer, because the learner is not looking at viewBox
+ * units. They are looking at a 96-pixel box on a phone, where a nine-unit pen
+ * is eight and a half pixels, the badge is four, and both are anti-aliased onto
+ * a grid that rounds. A clearance of a tenth of a unit is a tenth of a pixel,
+ * and a tenth of a pixel is a grey ring that reads as a touch.
+ *
+ * So this draws what ships — the same paths, the same pen, the same caps — at
+ * each size the product actually renders at, and counts the letter's own ink
+ * inside each disc. The leader line is deliberately not drawn: it is the one
+ * mark permitted to cross the glyph, so counting it would fail the design
+ * rather than test it.
+ */
+async function markerInk(glyph, markers, radius, size) {
+  return page.evaluate(
+    ({ strokes, pen, markers, radius, size }) => {
+      const canvas = new OffscreenCanvas(size, size);
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      const scale = size / 100;
+      ctx.clearRect(0, 0, size, size);
+      ctx.save();
+      ctx.scale(scale, scale);
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = pen;
+      ctx.lineCap = 'butt';
+      ctx.lineJoin = 'miter';
+      ctx.miterLimit = 3;
+      for (const stroke of strokes) ctx.stroke(new Path2D(stroke.d));
+      ctx.restore();
+      const alpha = ctx.getImageData(0, 0, size, size).data;
+
+      return markers.map((marker) => {
+        const cx = marker.label.x * scale;
+        const cy = marker.label.y * scale;
+        const r = radius * scale;
+        let covered = 0;
+        const lo = Math.max(0, Math.floor(cy - r));
+        const hi = Math.min(size - 1, Math.ceil(cy + r));
+        for (let y = lo; y <= hi; y += 1) {
+          for (let x = Math.max(0, Math.floor(cx - r)); x <= Math.min(size - 1, Math.ceil(cx + r)); x += 1) {
+            if ((x - cx) ** 2 + (y - cy) ** 2 > r * r) continue;
+            // Well past the anti-aliased fringe: a pixel this opaque is ink,
+            // not the soft edge of a stroke passing nearby.
+            if (alpha[(y * size + x) * 4 + 3] > 128) covered += 1;
+          }
+        }
+        return { order: marker.order, covered };
+      });
+    },
+    { strokes: glyph.strokes.map((s) => ({ d: s.d })), pen: glyph.pen, markers, radius, size },
+  );
 }
 
 // --- the gallery --------------------------------------------------------------

@@ -193,7 +193,8 @@
     "translation:semantics:check": "tsx scripts/translation-semantics-qa.mjs --check",
     "exercise:availability": "tsx scripts/exercise-availability.mjs",
     "translation:matrix": "tsx scripts/build-translation-quality-matrix.mjs",
-    "native:review:packs": "tsx scripts/build-native-review-packs.mjs"
+    "native:review:packs": "tsx scripts/build-native-review-packs.mjs",
+    "strokes:markers:evidence": "node scripts/build-marker-evidence.mjs"
   },
   "devDependencies": {
     "marked": "^18.0.9",

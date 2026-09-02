@@ -3,13 +3,32 @@ import type { VectorStroke } from '../data/strokeVectors';
 /**
  * Where each stroke's number goes.
  *
- * ## The number sits on the place the pen lands
+ * ## The number points at the place the pen lands; it does not sit on it
  *
  * A stroke-order diagram's numbers are not a legend. They are an instruction —
  * *put the pen here, and go that way* — so a number that drifts off its stroke
- * is not untidy, it is wrong. The disc is placed just behind the start, along
- * the stroke's own opening direction, so it touches the ink it labels without
- * covering it and points back the way the hand comes in.
+ * is wrong. For a long time the answer to that was to put the disc *on* the
+ * stroke, just behind its start, and the file said so: it touches the ink it
+ * labels, and touching is the point.
+ *
+ * Touching was never the point. **Pointing** was, and a disc eight units across
+ * dropped on a stroke twelve units long does not point at it, it replaces it.
+ * That is what a learner was shown for 안: a ㅇ, the ㅏ's stem, and an orange
+ * 3 where the ㅏ's branch should be — 62% of the stroke under the number that
+ * was supposed to be naming it, and the same again on 아, on 꽃, on 어, 오, 부
+ * and 우.
+ *
+ * So the disc has moved off the letter entirely and a hairline does the
+ * pointing:
+ *
+ * ```
+ * A badge clears all ink — the stroke it names as well as every other —
+ * and a leader line connects it back to the place the pen lands.
+ * ```
+ *
+ * The leader is the only thing allowed to cross the glyph, and it is allowed
+ * because a one-unit hairline over a nine-unit pen hides nothing. The anchor
+ * never moves.
  *
  * ## This used to be much harder than it is
  *
@@ -36,16 +55,22 @@ import type { VectorStroke } from '../data/strokeVectors';
  * sheet — draws the discs inside the same `<svg>` as the paths. There is no
  * second transform that could drift, and a marker cannot come unstuck at a
  * different screen size because neither it nor the path knows what size it is
- * being drawn at.
+ * being drawn at. Text scaling, dark mode and the phone's width move the `<svg>`
+ * and never the layout inside it.
  *
- * ## Why the bubble is allowed to move and the anchor is not
+ * ## Why the badge is allowed to move and the anchor is not
  *
- * Two strokes can start close together — 글's fourth and fifth begin about a
- * pen's width apart — and two discs that overlap read as one smudge. So the
- * disc may turn and step outwards until it finds room, and when it has moved
- * far enough to stop touching its stroke a hairline tethers it back. The
- * anchor never moves: whatever the disc had to do to be legible, the line still
- * points at the place the pen goes.
+ * Clearing the ink is a search, not a direction — on a dense block the room
+ * left over after seven strokes is narrow — and two strokes can start close
+ * together, 글's fourth and fifth about a pen's width apart, so two discs that
+ * both cleared the ink could still land on each other. The disc therefore turns
+ * and steps outwards until it finds room from the letter, from the discs
+ * already placed and from the edge of the box. Whatever it had to do to be
+ * legible, the leader still points at the place the pen goes.
+ *
+ * `strokeMarkers.test.ts` holds the invariant this file exists for, measured
+ * over every character the curriculum teaches; `npm run strokes:visual` draws
+ * the contact sheet a person looks at.
  */
 export interface StrokeMarker {
   order: number;
@@ -60,39 +85,49 @@ export interface StrokeMarker {
 /**
  * Turns away from the stroke's own direction, in the order they are tried.
  *
- * Nearest-to-the-stroke first, so a marker only moves as far as it has to and
- * the common case — nothing in the way — puts the number exactly where the pen
- * lands.
+ * Every ten degrees, nearest-to-the-opening-direction first, so a badge
+ * only turns as far as it has to and the common case — nothing in the way —
+ * puts the number behind the stroke, where the hand comes from.
+ *
+ * Twelve coarse turns were not enough once the badge had to clear its *own*
+ * ink as well as everybody else's: on a short stroke wedged between two others
+ * — 안's third, 꽃's third — the clear direction is a narrow window, and a
+ * thirty-degree sweep steps straight over it.
  */
-const TURNS = [0, -30, 30, -60, 60, -90, 90, -120, 120, -150, 150, 180];
+const TURNS = ((): number[] => {
+  const turns: number[] = [0];
+  for (let degrees = 10; degrees <= 180; degrees += 10) {
+    turns.push(-degrees, degrees);
+  }
+  return turns;
+})();
 
 /**
- * How far out to push, as multiples of the marker's radius.
+ * How far out to step past the first clear rung, as multiples of the radius.
  *
- * The first rung is one radius, so the disc's near edge lands on the start:
- * touching the stroke rather than hovering near it. The rest are escape routes
- * for a collision — five rather than three because 글's fourth and fifth
- * strokes begin a stroke's width apart, and with three rungs they ran out of
- * candidates and settled for overlapping anyway.
+ * The rungs are *relative* now. Where the badge sits is decided by how wide the
+ * pen is and how big the badge is — a disc has to be `pen / 2 + radius` from
+ * the centreline before it stops touching the ink at all — so the first rung is
+ * computed rather than written down, and these are the escape routes past it.
+ *
+ * Close together near the bottom, because the first rung that clears is almost
+ * always within half a radius of the last one that did not, and a coarse ladder
+ * throws away a good placement to land on a worse one further out. 꽃's seventh
+ * badge — the last of seven in one box, choosing from what the other six left —
+ * missed by 0.013 units on the coarse ladder and lands on the fine one.
  */
-const REACHES = [1.05, 1.6, 2.2, 2.9, 3.7];
+const REACH_STEPS = [0, 0.15, 0.3, 0.5, 0.65, 0.85, 1.05, 1.3, 1.5, 1.75, 2.05, 2.35, 2.7, 3.1];
 
 /**
- * How much of the disc has to clear a stroke that is not its own, as a fraction
- * of its radius.
+ * The breathing space a badge keeps from ink it is not allowed to sit on, as a
+ * fraction of its radius.
  *
- * This was 0.8, which lets the disc's near edge sit a fifth of a radius *inside*
- * another stroke's ink and still count as placed. On 안 that is the difference
- * between a legible diagram and an unreadable one: the third stroke starts on
- * the ㅏ's stem, every direction to its left is taken by the ㅇ, and the first
- * rung out to the right that scored non-negative put the disc's edge a hair
- * over the stem — a numbered circle sitting on the letter it is pointing at.
- *
- * At 1.0 the disc has to be wholly off foreign ink, and the search walks out
- * another rung to find room. A disc may still touch the stroke it labels: that
- * is the point of it.
+ * Not zero, because a disc drawn exactly tangent to a stroke reads as touching
+ * it: the badge has a border, the ink has an anti-aliased edge, and at a phone
+ * size the two merge. A tenth of a radius is under half a pixel at 160 px and
+ * is the difference between "beside" and "on".
  */
-const FOREIGN_INK = 1;
+const INK_MARGIN = 0.12;
 
 /**
  * The pen width the markers assume when deciding what counts as *on the ink*.
@@ -104,59 +139,103 @@ const FOREIGN_INK = 1;
  */
 const PEN = 9;
 
+/**
+ * How far a badge may be displaced before a hairline is drawn back to the
+ * anchor, as a multiple of the radius.
+ *
+ * Low, because under the clear-space rule below almost every badge *is*
+ * displaced — it has to be, to stop covering the stroke it names — and a badge
+ * sitting off the letter with no line back to it has stopped being an
+ * instruction about where the pen goes.
+ */
+const TETHER_AT = 1.2;
+
+/**
+ * Where every badge goes, for one glyph.
+ *
+ * ## The rule, and the one it replaced
+ *
+ * The badge used to be allowed to sit on the stroke it labelled — that was
+ * stated as the point of it, and for a long stroke it is harmless: a disc on
+ * the top of ㄹ's 111-unit route hides a tenth of it and the letter is still a
+ * ㄹ.
+ *
+ * It is not harmless on a short one, and the curriculum is full of short ones.
+ * `ㅏ`'s branch in 안 is **12.3 units** long and the badge is 8 across: placed
+ * one radius back along the stroke's own opening direction, disc 3 covered
+ * **62% of the stroke it was pointing at**. A learner reading that screen is
+ * shown a ㅇ, a stem, and an orange circle where the branch should be — which
+ * is to say they are shown the wrong letter, on the screen whose whole job is
+ * to show them the right one. 아 was the same, 꽃's third was at 49%, and 어,
+ * 오, 부 and 우 were all past 30%.
+ *
+ * So the rule is now the same for every piece of ink in the glyph:
+ *
+ * ```
+ * A badge clears all ink — the stroke it names as well as every other —
+ * and a hairline connects it back to the place the pen lands.
+ * ```
+ *
+ * The anchor still never moves. Whatever the disc had to do to be legible, the
+ * line still points at the start of the stroke, and the line is the only thing
+ * permitted to cross the letter.
+ *
+ * ## Why this is a search and not a formula
+ *
+ * "Outside the ink" is not a direction; it is whatever is left over after seven
+ * strokes have taken their space, and on a dense block — 꽃, 밤, 한 — the
+ * leftovers are narrow. So candidates are generated around the anchor, nearest
+ * first, and the first one that clears every stroke, every badge already
+ * placed, and the edge of the box wins. Nearest-first is what keeps the badge
+ * associated with its own stroke: it moves as little as it can get away with.
+ *
+ * Nothing here knows what size it will be drawn at. Every coordinate is in the
+ * glyph's own `0 0 100 100` box, shared with the paths, so the layout is
+ * identical on a 320 px phone, a tablet, the QA contact sheet and the grading
+ * mask — and cannot drift between them.
+ */
 export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMarker[] {
-  const edge = radius + 1.5;
+  /*
+   * How near the edge of the box a disc may be drawn: touching it, not inset
+   * from it.
+   *
+   * This was `radius + 1.5`, a tidiness margin from when the disc sat on the
+   * ink and never needed the room. Under the clear-space rule it costs
+   * placements: ㅞ is five strokes crowded against the right of the box, every
+   * clear position for its last badge is in that outer band, and clamping
+   * pushed the disc back onto the ink it had just escaped. Three units of
+   * whitespace is not worth a number drawn on a letter.
+   */
+  const edge = radius;
   const placed: StrokeMarker[] = [];
+  // The distance at which a disc's edge stops touching a stroke's edge. Below
+  // this the badge is on the ink whatever direction it went in, so there is no
+  // point offering the search a rung it can never accept.
+  const clear = (PEN / 2 + radius * (1 + INK_MARGIN)) / radius;
 
   for (const stroke of strokes) {
     const anchor = { x: stroke.start[0], y: stroke.start[1] };
-    // Back down the stroke's own opening direction: the disc sits where the
+    // Back down the stroke's own opening direction: the badge sits where the
     // hand comes from, not where it is going.
     const away = Math.atan2(-stroke.heading[1], -stroke.heading[0]);
 
     let best: { x: number; y: number } | null = null;
     let bestClearance = -Infinity;
+    let settled = false;
 
-    for (const reach of REACHES) {
+    for (const step of REACH_STEPS) {
+      const reach = clear + step;
       for (const turn of TURNS) {
         const angle = away + (turn * Math.PI) / 180;
         const label = {
           x: clamp(anchor.x + Math.cos(angle) * radius * reach, edge, 100 - edge),
           y: clamp(anchor.y + Math.sin(angle) * radius * reach, edge, 100 - edge),
         };
-        // How much room this leaves the markers already down. Two discs need
-        // their diameters apart plus a hair, or they read as one smudge.
-        let clearance = Infinity;
-        for (const other of placed) {
-          const gap =
-            Math.hypot(label.x - other.label.x, label.y - other.label.y) - (radius * 2 + 0.8);
-          if (gap < clearance) clearance = gap;
-        }
-        /*
-         * And how much room it leaves the *letter*.
-         *
-         * This used to consider only the other discs, and ㅊ is what that
-         * costs. Its third stroke starts where the ㅅ hangs from the lid, and
-         * the direction the pen comes from there points straight up — into the
-         * short tick above the bar. The disc landed on the tick, disc 1 landed
-         * on the top of it, and between them the stroke that makes a ㅈ into a
-         * ㅊ was invisible. Two orange circles and a bar: a learner reading
-         * that screen is being shown the wrong letter.
-         *
-         * A disc may still touch the stroke it labels — that is the whole
-         * point of it, and `REACHES` starts at one radius so it does. What it
-         * may not do is sit on a *different* stroke. The number is an
-         * instruction about where the pen goes; covering the ink it is pointing
-         * at makes it an obstacle instead.
-         */
-        for (const other of strokes) {
-          if (other.order === stroke.order) continue;
-          const gap = distanceToStroke(other, label, PEN) - radius * FOREIGN_INK;
-          if (gap < clearance) clearance = gap;
-        }
+        const clearance = clearanceAt(label, stroke, strokes, placed, radius);
         if (clearance >= 0) {
           best = label;
           bestClearance = clearance;
+          settled = true;
           break;
         }
         if (clearance > bestClearance) {
@@ -164,7 +243,7 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
           best = label;
         }
       }
-      if (bestClearance >= 0) break;
+      if (settled) break;
     }
 
     const label = best ?? { x: anchor.x, y: anchor.y };
@@ -172,11 +251,85 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
       order: stroke.order,
       anchor,
       label,
-      tethered: Math.hypot(label.x - anchor.x, label.y - anchor.y) > radius * 1.6,
+      tethered: Math.hypot(label.x - anchor.x, label.y - anchor.y) > radius * TETHER_AT,
     });
   }
 
   return placed;
+}
+
+/**
+ * How much room a candidate position leaves everything it must not touch.
+ *
+ * Negative is an overlap, and the worst offender is what is returned — a badge
+ * is only as well placed as its closest collision. Three things are measured
+ * against, and the first is the one that changed:
+ *
+ * * **Every stroke in the glyph, its own included.** See `layoutMarkers`.
+ * * **Every badge already placed.** Two discs need their diameters apart plus a
+ *   hair, or they read as one smudge — 글's fourth and fifth strokes begin a
+ *   pen's width apart and produced exactly that.
+ * * Nothing else. The edge of the box is handled by clamping the candidate
+ *   before it gets here, so a badge cannot be pushed off the paper.
+ */
+function clearanceAt(
+  label: { x: number; y: number },
+  own: VectorStroke,
+  strokes: VectorStroke[],
+  placed: StrokeMarker[],
+  radius: number,
+): number {
+  let clearance = Infinity;
+  for (const other of placed) {
+    const gap = Math.hypot(label.x - other.label.x, label.y - other.label.y) - (radius * 2 + 0.8);
+    if (gap < clearance) clearance = gap;
+  }
+  for (const stroke of strokes) {
+    // `own` is in this loop on purpose, and is the whole point of the rule.
+    void own;
+    const gap = inkDistance(stroke, label, PEN) - radius * (1 + INK_MARGIN);
+    if (gap < clearance) clearance = gap;
+  }
+  return clearance;
+}
+
+/**
+ * Distance from a point to a stroke's ink, with the caps rounded rather than cut.
+ *
+ * This is `distanceToStroke` without its butt-cap rule, and the difference is
+ * the last of the overlap. `distanceToStroke` answers *is this point on the
+ * ink*, and for that the flat cap matters: a point three quarters of a unit
+ * above ㅏ's stem is off the letter, and saying otherwise moved the anchor test
+ * onto paper. A **badge** is not a point. Its edge reaches a whole radius past
+ * its centre, so a disc whose centre sits just beyond the cap plane still lands
+ * on the last few units of the stroke — which is how ㅏ, ㅣ, ㅗ, ㅜ and fifteen
+ * more kept 6% of their stem under disc 1 after the clear-space rule went in,
+ * and how ㅎ kept 20% of its lid.
+ *
+ * Rounding the caps overstates the ink by half a pen at each end. That is the
+ * safe direction to be wrong in: the badge is pushed a fraction further out and
+ * nothing is covered. Being wrong the other way is a number drawn on a letter.
+ *
+ * Exported so the placement, the test and `strokes:visual` all ask the same
+ * question. A second copy of this in the gate would be a second opinion about
+ * where the ink is, and the day the two disagreed the gate would be certifying
+ * a rule the product does not follow.
+ */
+export function inkDistance(
+  stroke: VectorStroke,
+  point: { x: number; y: number },
+  pen: number,
+): number {
+  const points = flatten(stroke.d);
+  if (points.length === 1) {
+    return Math.hypot(point.x - points[0]!.x, point.y - points[0]!.y) - pen / 2;
+  }
+  let nearest = Infinity;
+  for (let i = 1; i < points.length; i += 1) {
+    const hit = nearestOnSegment(point, points[i - 1]!, points[i]!);
+    if (hit.distance < nearest) nearest = hit.distance;
+  }
+  return nearest - pen / 2;
 }
 
 function clamp(value: number, low: number, high: number): number {
