@@ -37,6 +37,7 @@
  * file's `buildNumber`, and separately that the number is ahead of whatever
  * the last recorded build actually used.
  */
+import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -171,22 +172,71 @@ if (existsSync(join(root, BUILD_INFO))) {
   const built = readJson(BUILD_INFO);
   const builtCode = built.android?.version_code;
   /*
-   * A spent versionCode is spent, whatever the marketing version was.
+   * A spent versionCode is spent — but the delivered artefact is not spending
+   * it, it *is* it.
    *
-   * This used to require `built.version !== VERSION` as well, which let a
-   * second 1.0.2 build reuse versionCode 3 — and Google Play rejects a reused
-   * versionCode outright. `versionName` is a string it does not care about;
-   * `versionCode` is the primary key of an upload. The condition made the check
-   * silent in precisely the case it is needed for, which is the one that
-   * happens: fixing something and shipping the same marketing version again.
+   * This has now been wrong in both directions. It first required
+   * `built.version !== VERSION` as well, which let a second 1.0.2 build reuse
+   * versionCode 3: Google Play refuses a reused code whatever the version name
+   * says, and `versionName` is a string it does not care about. Removing that
+   * condition then made the check fire against the artefact the current build
+   * number had just produced — identity 4, artefact 4 — which is not a reuse,
+   * it is agreement.
+   *
+   * The question is whether a *rebuild at this number would produce different
+   * bytes*, and that is a question about the source, not about the number:
+   *
+   *   artefact code > build number   the identity went backwards
+   *   equal, delivery is current     correct — this artefact is this number
+   *   equal, delivery is stale       a rebuild reuses the code for new bytes
+   *
+   * "Stale" is `release:current`'s subject and its definition is borrowed here
+   * rather than restated: a product file — anything outside `docs/` and the
+   * release directories — changed since the commit the artefact records.
    */
-  if (Number.isInteger(builtCode) && builtCode >= BUILD) {
-    fail(
-      BUILD_INFO,
-      `buildNumber ${BUILD} is not ahead of the versionCode ${builtCode} already used by the ` +
-        `${built.version} artefact — Play refuses a reused code whatever the version name says`,
-    );
+  if (Number.isInteger(builtCode)) {
+    if (builtCode > BUILD) {
+      fail(
+        BUILD_INFO,
+        `buildNumber ${BUILD} is behind the delivered artefact's versionCode ${builtCode}`,
+      );
+    } else if (builtCode === BUILD && deliveryIsStale(built.commit)) {
+      fail(
+        BUILD_INFO,
+        `buildNumber ${BUILD} is the versionCode the delivered artefact already used, and a ` +
+          `product file has changed since ${String(built.commit).slice(0, 8)} — a rebuild would ` +
+          `reuse the code for different bytes, which Play refuses`,
+      );
+    }
   }
+}
+
+/**
+ * Whether a product file changed since the commit the delivery was built from.
+ *
+ * Docs and the release directories do not count, for the reason
+ * `check-release-current.mjs` gives: they are written *by* the release, so a
+ * build necessarily dirties them and a check that read that as staleness could
+ * never be green. Anything else changing means the delivered bytes are no
+ * longer what this tree would produce.
+ */
+function deliveryIsStale(commit) {
+  if (typeof commit !== 'string' || commit.length < 7) return false;
+  const notProduct = [/^docs\//, /^result\//, /^app_result\//, /^README\.md$/, /^\.gitattributes$/, /^\.gitignore$/];
+  const isProduct = (path) => path && !notProduct.some((shape) => shape.test(path));
+  const run = (...args) => {
+    try {
+      return execFileSync('git', args, { cwd: root, encoding: 'utf8' });
+    } catch {
+      return '';
+    }
+  };
+  const since = run('diff', '--name-only', `${commit}..HEAD`).split('\n').filter(Boolean);
+  const uncommitted = run('status', '--porcelain')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => /^..\s+(?:.*? -> )?(.*)$/.exec(line)?.[1] ?? '');
+  return [...since, ...uncommitted].some(isProduct);
 }
 
 console.log('Release version — one number, every file that states one\n');
