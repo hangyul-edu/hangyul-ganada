@@ -51,5 +51,6 @@
     "body": "Una prueba breve nos permite sugerirte palabras de tu nivel. Si la omites, empiezas en el nivel 1.",
     "take": "Hacer la prueba",
     "start": "Empezar en el nivel 1"
-  }
+  },
+  "answerRecorded": "Respuesta {{current}} registrada. Siguiente pregunta."
 }

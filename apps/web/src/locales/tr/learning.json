@@ -172,7 +172,9 @@
       "inSentence": "Şöyle kullanılıyor: {{sentence}}"
     },
     "buildTray": "Heceler",
-    "buildRemove": "{{syllable}} hecesini geri al"
+    "buildRemove": "{{syllable}} hecesini geri al",
+    "markCorrect": "Doğru cevap",
+    "markWrong": "Senin cevabın, yanlış"
   },
   "sounds": {
     "title": "Sesler karşılaşınca",

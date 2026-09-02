@@ -64,35 +64,94 @@ import { hasVectorGlyph, vectorGlyph } from '../../data/strokeVectors';
  * against — improving on both: 1.04% / 0.55% to 0.42% / 0.00%. The full sweep
  * is in the note on `GAP_EROSION_RATIO`.
  *
- * The guide and the demonstration are still not pixel-identical, and they
- * should not be: one is a typeface and one is authored instructional geometry.
- * They are now the same size and in the same place, which is the part a learner
- * could see.
+ * The guide and the demonstration are now the same geometry as well as the
+ * same size and place — see `usesCanonicalGeometry` below for the defect that
+ * closed the last gap between them. The calibration above was measured while
+ * the guide was still set in the face; `npm run handwriting:robustness`
+ * re-measures it against the canonical reference, and the numbers it prints
+ * are the ones `docs/report.md` quotes.
  */
 /**
- * Letters the guide is drawn by hand rather than set in the face.
+ * Every taught character is guided, graded and demonstrated from one geometry.
  *
- * In a compound vowel Pretendard **slants** the ㅗ or ㅜ bar, tilting it down
- * towards the outside so the two halves do not collide at text sizes. It is an
- * optical adjustment belonging to the typeface: nobody writes a slanted ㅗ.
+ * ## What this replaced, and the defect that forced it
  *
- * For a while the demonstration drew the level form and the guide underneath it
- * drew the tilted one, and `glyphshape:qa` carried the six as stated
- * exceptions. That was the wrong resolution. A learner tracing a slanted bar
- * and then watching a level one is being taught two shapes, and "we wrote the
- * difference down" does not undo that.
+ * This used to be a set of six compound vowels — the only letters where the
+ * face and the taught hand were known to disagree — and everything else was
+ * *set in the practice typeface* for the guide and the grading mask while the
+ * demonstration was *stroked from `data/strokeVectors`*. Two sources, by
+ * design, held together by a tolerance in `glyphshape:qa`.
  *
- * The reference *typography* elsewhere in the product is still the face — a
- * word on a card is set, not drawn. What must agree is the pair a learner
- * copies: the guide under the pen and the stroke demonstration. So for these
- * six the guide is stroked from the same authored centrelines the animation
- * reveals, and the grading mask with it, because both come out of `drawGlyph`.
+ * A tolerance is not an invariant. Measured on this tree, before the change:
  *
- * Six, and no more. Every other letter agrees with the face to within the
- * tolerance `glyphshape:qa` measures, and setting a letter in the face is the
- * better default: it is what the learner will meet in the wild.
+ * | | face | canonical vector |
+ * | --- | --- | --- |
+ * | ㅆ | **one** island of ink | **two** — a clear ㅅ, then another |
+ * | ㅉ | **one** island of ink | **two** |
+ *
+ * So a learner tracing ㅆ was given a single merged mass to follow and then
+ * watched two separate ㅅ being written underneath it, and `letters:face`
+ * could not report it because ㅅ, ㅆ, ㅈ, ㅉ, ㅊ, ㅇ and ㅎ were all on its
+ * `STRUCTURE_EXEMPT` list — the letters the defect lived in were exactly the
+ * letters the structural check was switched off for. `glyphshape:qa` scored
+ * ㅅ at 92% and passed, because its 14-px tolerance on a 320-px raster is
+ * wider than the disagreement.
+ *
+ * The two-source design cannot be made safe by tightening either number. A
+ * typeface and a pedagogical skeleton are different objects: the face closes
+ * ㅆ's two halves because at text sizes they would otherwise fight, and the
+ * teaching form must keep them apart because *two ㅅ* is the thing being
+ * taught. Both are right for their own purpose, and neither can be the other's
+ * reference.
+ *
+ * ## The resolution
+ *
+ * The instructional surfaces — the guide under the pen, the mask the ink is
+ * graded against, the demonstration, the numbered still — are now one
+ * geometry: `data/strokeVectors`, the canonical centrelines. They agree by
+ * construction rather than by tolerance, so §4's invariant is structural.
+ *
+ * The face has not stopped mattering. It is still the *quality target* and,
+ * because the product does not control it, still the independent oracle: every
+ * canonical letter is measured against the font file itself by
+ * `npm run letters:face`. What has changed is that it is no longer a second
+ * thing on screen for the canonical form to disagree with.
+ *
+ * Reading Korean is untouched. A word on a card, a headword, a sentence — all
+ * still set in the learner's chosen face, because there the glyph is
+ * typography rather than instruction.
  */
-export const HANDWRITTEN_GUIDE = new Set(['ㅘ', 'ㅝ', 'ㅚ', 'ㅟ', 'ㅙ', 'ㅞ']);
+export function usesCanonicalGeometry(character: string): boolean {
+  return hasVectorGlyph(character);
+}
+
+/**
+ * The letters whose canonical form deliberately departs from the face.
+ *
+ * Kept as data, and each one carries its reason, because "the teaching form is
+ * not the typeface here" is a claim that has to be reviewable. Everything not
+ * on this list is expected to agree with the face within the tolerance
+ * `letters:face` measures.
+ */
+export const CANONICAL_DEVIATIONS = new Map<string, string>([
+  [
+    'ㅘ',
+    'Pretendard slants the ㅗ bar so the two halves clear each other at text size. Nobody writes a slanted ㅗ.',
+  ],
+  ['ㅝ', 'As ㅘ: the face tilts the ㅜ bar as an optical adjustment.'],
+  ['ㅚ', 'As ㅘ.'],
+  ['ㅟ', 'As ㅝ.'],
+  ['ㅙ', 'As ㅘ.'],
+  ['ㅞ', 'As ㅝ.'],
+  [
+    'ㅆ',
+    'The face closes the two ㅅ into one island of ink. The letter is two ㅅ and is written as two, so the canonical form keeps them separate.',
+  ],
+  [
+    'ㅉ',
+    'As ㅆ: the face merges the pair, the canonical form keeps two legible ㅈ.',
+  ],
+]);
 
 /** The browser's path object, for the letters drawn from centrelines. */
 export const pathFactory = (d: string) => new Path2D(d) as unknown as PathLike;
@@ -111,7 +170,7 @@ export function glyphSpecFor(
    */
   glyphScale?: number,
 ): GlyphSpec {
-  if (HANDWRITTEN_GUIDE.has(character) && hasVectorGlyph(character)) {
+  if (usesCanonicalGeometry(character)) {
     const glyph = vectorGlyph(character);
     return {
       character,

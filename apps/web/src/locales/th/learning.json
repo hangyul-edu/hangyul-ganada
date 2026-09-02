@@ -172,7 +172,9 @@
       "inSentence": "ใช้แบบนี้: {{sentence}}"
     },
     "buildTray": "พยางค์",
-    "buildRemove": "เอา {{syllable}} ออก"
+    "buildRemove": "เอา {{syllable}} ออก",
+    "markCorrect": "คำตอบที่ถูก",
+    "markWrong": "คำตอบของคุณ ผิด"
   },
   "sounds": {
     "title": "เมื่อเสียงมาเจอกัน",

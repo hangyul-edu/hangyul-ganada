@@ -51,5 +51,6 @@
     "body": "Krótki test poziomu pozwoli nam proponować słowa na twoim poziomie. Jeśli go pominiesz, zaczniesz od poziomu 1.",
     "take": "Zrób test poziomu",
     "start": "Zacznij od poziomu 1"
-  }
+  },
+  "answerRecorded": "Odpowiedź {{current}} zapisana. Następne pytanie."
 }

@@ -29,7 +29,7 @@ import styles from './LettersPage.module.css';
  */
 export function LettersPage() {
   const { state } = useLearner();
-  const { t } = useTranslation(['learning', 'common']);
+  const { t } = useTranslation(['learning', 'numbers', 'common']);
   const { locale } = useLocale();
   const format = useFormatters();
 
@@ -200,6 +200,27 @@ export function LettersPage() {
             <div className={styles.rowText}>
               <h2 className={styles.rowTitle}>{t('learning:sounds.title')}</h2>
               <p className={styles.soundsBlurb}>{t('learning:sounds.blurb')}</p>
+            </div>
+            <ChevronRightIcon size={20} />
+          </Card>
+        </Link>
+
+        {/*
+          Numbers, offered beside the sound changes rather than inside a unit.
+
+          Same argument as `/letters/sounds`: there are no letters to learn in
+          it and nothing to write, and it is not part of the alphabet's twelve
+          units — but it is the other thing standing between reading Hangul and
+          using Korean, and a learner who can read 스물 still cannot say their
+          own age without it. Reachable from the first evening, because a
+          learner who wants to count to ten before they can write ㄱ should be
+          able to.
+        */}
+        <Link to="/letters/numbers" className={styles.rowLink}>
+          <Card padding="md" className={styles.sounds}>
+            <div className={styles.rowText}>
+              <h2 className={styles.rowTitle}>{t('numbers:title')}</h2>
+              <p className={styles.soundsBlurb}>{t('numbers:subtitle')}</p>
             </div>
             <ChevronRightIcon size={20} />
           </Card>

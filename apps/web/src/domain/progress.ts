@@ -189,6 +189,56 @@ export function dateKey(date: Date): string {
 }
 
 /**
+ * Which calendar day this is, as a number the day's plan can be rotated by.
+ *
+ * ## The defect this exists for
+ *
+ * Today's Vocabulary chooses its new words by hashing
+ * `${seed}:${dayIndex}:${wordId}` — the learner's own seed makes two people at
+ * one level get different lists, and `dayIndex` is the only input that makes
+ * *tomorrow* different from today. It used to be
+ * `settings.active_days.length`: the number of days the learner had **actually
+ * practised on**.
+ *
+ * That number does not advance on a day the learner opens the app and does not
+ * finish anything. So a learner who looked at Today's Vocabulary and left was
+ * shown the identical ten words the next morning, and the morning after, for as
+ * long as they kept not finishing — which is exactly the complaint that
+ * "Today's Vocabulary shows the same words every day". Skipping a day did it
+ * too: `active_days` counts sittings, not dates, so two calendar days with no
+ * practice between them are one `dayIndex`.
+ *
+ * `scripts/daily-vocabulary-qa.mjs` could not see it. It simulated the days
+ * with `dayIndex: day` — a perfect loop counter — so it proved the *selector*
+ * varies with `dayIndex` while never touching the question of whether the app
+ * supplies a varying one. The gate and the defect were one level apart.
+ *
+ * ## What this is instead
+ *
+ * Days since a fixed local epoch. It advances once per calendar day whatever
+ * the learner does, which is the property the rotation actually needs:
+ *
+ * - **same day → same number → same plan.** Reopening, reloading, going
+ *   offline and coming back all reconstruct the identical list, which is what
+ *   `planIsCurrent` already promises and what makes a daily goal a goal.
+ * - **next day → next number → a different plan**, whether or not yesterday
+ *   was finished.
+ *
+ * Built from the *local* year, month and day — never `getTime()` — so it
+ * changes at the learner's midnight and nowhere else. A timezone change moves
+ * the learner to that zone's calendar day, and DST does not move it at all,
+ * because no arithmetic here is done in milliseconds.
+ */
+export function dayOrdinal(date: Date): number {
+  // Midnight-anchored UTC arithmetic over the *local* Y/M/D. Using the local
+  // fields to build a UTC instant removes the offset from the subtraction, so
+  // a day that is 23 or 25 hours long still counts as one.
+  const local = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const epoch = Date.UTC(2026, 0, 1);
+  return Math.round((local - epoch) / 86400000);
+}
+
+/**
  * Characters finished today.
  *
  * **Characters**, not items. Words have their own daily goal now — see

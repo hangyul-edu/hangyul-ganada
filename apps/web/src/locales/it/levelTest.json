@@ -51,5 +51,6 @@
     "body": "Un breve test ci permette di suggerirti parole adatte al tuo lessico. Se lo salti, inizi dal livello 1.",
     "take": "Fai il test",
     "start": "Inizia dal livello 1"
-  }
+  },
+  "answerRecorded": "Risposta {{current}} registrata. Prossima domanda."
 }

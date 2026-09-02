@@ -114,6 +114,44 @@ test.describe('the vocabulary level test', () => {
     await expect(page.getByText(/Level 1 · STARTER/i)).toBeVisible();
   });
 
+  test('registers a tap once, says so to assistive tech, and shows no verdict', async ({ page }) => {
+    /*
+      §10 of the v1.0.2 request, as a browser fact.
+
+      The test shows no correct/incorrect verdict by design — that would teach
+      the bank — so the confirmation that a tap landed is the next question
+      arriving, plus a live region for a screen-reader user. And a tap must be
+      scored exactly once: a double tap that scored twice would skip a question
+      and weigh one answer as two.
+    */
+    await page.goto('/me/level-test');
+    await waitForLaunch(page);
+    await page.getByTestId('level-start').click();
+    await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+
+    const first = page.getByTestId('level-option').first();
+    const firstText = await first.innerText();
+    // Two taps as fast as a finger can make them.
+    await first.dblclick();
+
+    // Assistive tech is told, once, that answer 1 was recorded.
+    await expect(page.getByTestId('level-announce')).toHaveText(/Answer 1 recorded/);
+    // No verdict anywhere on the screen, and the option list moved on.
+    const body = (await page.locator('body').innerText()).toLowerCase();
+    expect(body).not.toMatch(/correct|incorrect|wrong/);
+    void firstText;
+
+    // If the double tap had scored twice, 28 unknowns would finish the test.
+    let unknowns = 0;
+    for (let i = 0; i < 40; i += 1) {
+      if (await page.getByTestId('level-result').count()) break;
+      await page.getByTestId('level-unknown').click();
+      unknowns += 1;
+    }
+    expect(unknowns).toBe(29);
+    await expect(page.getByTestId('level-result')).toBeVisible();
+  });
+
   test('reports one level, and nothing about how it got there', async ({ page }) => {
     /*
      * §14–16, photographed. The result card printed three things a learner did

@@ -172,7 +172,9 @@
       "inSentence": "Χρησιμοποιείται έτσι: {{sentence}}"
     },
     "buildTray": "Συλλαβές",
-    "buildRemove": "Πάρε πίσω το {{syllable}}"
+    "buildRemove": "Πάρε πίσω το {{syllable}}",
+    "markCorrect": "Σωστή απάντηση",
+    "markWrong": "Η απάντησή σου, λανθασμένη"
   },
   "sounds": {
     "title": "Όταν συναντιούνται οι ήχοι",

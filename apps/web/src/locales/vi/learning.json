@@ -172,7 +172,9 @@
       "inSentence": "Người ta dùng thế này: {{sentence}}"
     },
     "buildTray": "Các chữ",
-    "buildRemove": "Lấy lại {{syllable}}"
+    "buildRemove": "Lấy lại {{syllable}}",
+    "markCorrect": "Đáp án đúng",
+    "markWrong": "Câu trả lời của bạn, sai"
   },
   "sounds": {
     "title": "Khi các âm gặp nhau",

@@ -51,5 +51,6 @@
     "body": "A short level test lets us suggest words at your vocabulary level. Skip it and you start at Level 1.",
     "take": "Take the level test",
     "start": "Start at Level 1"
-  }
+  },
+  "answerRecorded": "Answer {{current}} recorded. Next question."
 }

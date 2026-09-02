@@ -162,10 +162,60 @@ try {
   // one admitting it does not know.
 }
 
+/**
+ * The state of the source this was built from, when it is not exactly a commit.
+ *
+ * `commit` alone is not enough: a build from a dirty tree cannot be reproduced
+ * from that commit, and `release:current` fails it for that reason. Recording
+ * the fingerprint of the working tree — the tracked diff and every untracked,
+ * non-ignored file — means a reader can at least tell *which* uncommitted tree
+ * produced the artefact, and whether two builds came from the same one.
+ */
+function sourceState() {
+  try {
+    const changed = sh('git', ['diff', 'HEAD', '--name-only']).split('\n').filter(Boolean);
+    const untracked = sh('git', ['ls-files', '--others', '--exclude-standard']).split('\n').filter(Boolean);
+    if (changed.length === 0 && untracked.length === 0) {
+      return { dirty: false, fingerprint: null, changed_files: 0, untracked_files: 0 };
+    }
+    /*
+      Streamed through `git hash-object --stdin-paths` rather than hashing a
+      `git diff` string: the diff of a content regeneration runs to hundreds of
+      megabytes and overflows a child process's stdout buffer, which is how the
+      first version of this recorded `null` for a tree it had just built from.
+      A deleted file has no content to hash and is fingerprinted by name.
+    */
+    const files = [...new Set([...changed, ...untracked])].sort();
+    const present = files.filter((f) => existsSync(join(ROOT, f)));
+    const hashes = present.length
+      ? execFileSync('git', ['hash-object', '--stdin-paths'], {
+          cwd: ROOT,
+          input: `${present.join('\n')}\n`,
+          encoding: 'utf8',
+          maxBuffer: 256 * 1024 * 1024,
+        })
+          .trim()
+          .split('\n')
+      : [];
+    const hash = createHash('sha256');
+    present.forEach((f, i) => hash.update(`${f}\0${hashes[i]}\n`));
+    for (const f of files) if (!existsSync(join(ROOT, f))) hash.update(`${f}\0deleted\n`);
+    return { dirty: true, fingerprint: hash.digest('hex'), changed_files: changed.length, untracked_files: untracked.length };
+  } catch (error) {
+    console.warn(`  source state could not be fingerprinted: ${error instanceof Error ? error.message : error}`);
+    return { dirty: null, fingerprint: null, changed_files: null, untracked_files: null };
+  }
+}
+
 const buildInfo = {
   product: 'Hangyul ganada',
   version: identity.version,
   commit,
+  /*
+    `release:current` is pending until this tree is committed and the build
+    re-run against that commit; the fingerprint says which tree this was.
+  */
+  source_state: sourceState(),
   built_at: new Date().toISOString(),
   builder: `node ${process.version}`,
   android: {

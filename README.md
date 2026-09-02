@@ -83,7 +83,10 @@ pick it out of ㅑ ㅓ ㅕ → progress moves → open the Words tab whenever yo
 because every one of the 3,334 words is there from the first launch → hear the
 word, read its meaning, meet it in a Korean sentence, write each syllable →
 get it wrong and
-it appears in **Review**, which is a practice session rather than a list → tap
+it appears in **Review**, which is a practice session rather than a list → open
+**Numbers** from the Letters tab: six modules from 하나 둘 셋 to prices and dates,
+each lesson explained, heard, practised and passed by a mastery check before it
+is allowed to say *Completed* → tap
 your streak to see the days you actually practised → close the app, reopen it,
 everything is still there.
 
@@ -342,7 +345,7 @@ Content pipeline — see [`docs/VOCABULARY_DATA.md`](docs/VOCABULARY_DATA.md) an
 | `npm run content:vocabulary` | Build the dataset from the cache and the curation layer |
 | `npm run audio:plan` | List every utterance the app can play |
 | `npm run audio:build` | Generate it, both voices, normalised |
-| `npm run audio:qa` | Check all 13,558 voice slots over 13,454 files |
+| `npm run audio:qa` | Check all 13,738 voice slots over 13,618 files |
 | `npm run audio:pronunciation` | Check every clip is filed under the right item and its note is right |
 | `npm run audio:listen` | Listen to the clips with a recogniser and report disagreements |
 
@@ -488,7 +491,7 @@ does not reorder punctuation.
 | `packages/handwriting-core` | 69 tests: mask geometry, the evaluator, real-glyph calibration, six-typeface tolerance |
 | `apps/web` unit | 363 tests: curriculum content, mastery ladder, every progress calculation, the daily activity roll-ups and streaks, storage migrations, the pronunciation player and its entry-audio rule, scroll reset, Korean particle agreement, generated-question answer keys, locale resolution, quote attribution |
 | `apps/web` e2e | the fresh-install journey, the four-step writing progression and the hint, word learning, review, the learning record, the simplified settings screen, horizontal scrolling by wheel and drag, persistence across a restart, offline, no-monetisation, 10 languages — each run at a phone and a desktop viewport |
-| `npm run audio:qa` | All 13,558 voice slots over 13,454 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
+| `npm run audio:qa` | All 13,738 voice slots over 13,618 files: decode, duration, loudness, voice distinctness, manifest and rate agreement |
 | `npm run audio:pronunciation` | The chain from the word on screen to the file on disk: ids, plan, manifest, notes against the sound-change rules, example ownership, and the service worker's audio-cache stamp |
 | `npm run audio:listen` | A speech recogniser over the clips. A screen for a person to read, not a gate — see [`docs/AUDIO.md`](docs/AUDIO.md) |
 | `npm run fonts:audit:strict` | Six typefaces: licence allowlist, files on disk, all 846 practice glyphs present |

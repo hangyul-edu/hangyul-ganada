@@ -34,23 +34,23 @@
   "30": 301
  },
  "categories": 18,
- "dictionary_headwords": 30282,
- "dictionary_senses": 39676,
- "dictionary_examples": 3721,
- "audio_files": 13454,
- "audio_slots": 13558,
+ "dictionary_headwords": 30334,
+ "dictionary_senses": 39628,
+ "dictionary_examples": 3679,
+ "audio_files": 13618,
+ "audio_slots": 13738,
  "unobserved_words": 46,
  "more_about_it": 75,
  "level_test_items": 4194,
  "words_at_28_to_30": 478,
- "relations_words": 257,
+ "relations_words": 294,
  "issues": {
   "open": 5,
   "partial": 3,
   "blocked": 1,
-  "resolved": 104,
-  "tracked": 113
+  "resolved": 107,
+  "tracked": 116
  },
- "apk_mb": "82.7",
- "aab_mb": "80.9"
+ "apk_mb": "83.7",
+ "aab_mb": "81.8"
 }

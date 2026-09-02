@@ -61,3 +61,9 @@ content-cache/
 # The conjugation display ledger, rewritten by conjugation:display:qa on
 # every run. A reading surface, not a source of truth.
 .conjugation-display/
+
+*:Zone.Identifier
+
+# The technical disclosure package prepared for patent counsel. Marked
+# "Not for publication" and this remote is public — it stays on disk only.
+patent/

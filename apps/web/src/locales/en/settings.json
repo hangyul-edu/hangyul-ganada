@@ -21,8 +21,8 @@
     "meaningsBody": "Meanings and example translations are shown in {{language}}. You can read them in another language instead."
   },
   "font": {
-    "title": "Practice typeface",
-    "description": "The letter you trace is drawn in the typeface you pick."
+    "title": "Korean typeface",
+    "description": "Changes the Korean you read in the app. The letter you trace is always drawn the same way."
   },
   "dailyTarget": {
     "title": "Letters a day",

@@ -86,7 +86,9 @@
       "inSentence": "On l’emploie comme ceci : {{sentence}}"
     },
     "buildTray": "Syllabes",
-    "buildRemove": "Retirer {{syllable}}"
+    "buildRemove": "Retirer {{syllable}}",
+    "markCorrect": "Bonne réponse",
+    "markWrong": "Votre réponse, incorrecte"
   },
   "units": {
     "badge": "Unité {{index, number}}",

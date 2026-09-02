@@ -30,14 +30,27 @@ import { fileURLToPath } from 'node:url';
 
 import { chromium } from 'playwright';
 
-import { vectorGlyph } from '../../../apps/web/src/data/strokeVectors.ts';
+import { hasVectorGlyph, vectorGlyph } from '../../../apps/web/src/data/strokeVectors.ts';
+import { ALL_CHARACTERS } from '../../../apps/web/src/data/characters.ts';
 
 const ROOT = fileURLToPath(new URL('../../..', import.meta.url));
 const OUT = join(ROOT, 'packages/handwriting-core/src/__tests__/glyph-fixtures.json');
 const CHECK = process.argv.includes('--check');
 
-/** Kept in step with `HANDWRITTEN_GUIDE` in `features/writing/glyphSpec.ts`. */
-const HANDWRITTEN = ['ㅘ', 'ㅝ', 'ㅚ', 'ㅟ', 'ㅙ', 'ㅞ'];
+/**
+ * Every taught character, because the product now grades every one of them
+ * against the canonical geometry.
+ *
+ * This was a hard-coded six while only the compound vowels were stroked. When
+ * `usesCanonicalGeometry` became true for the whole curriculum, a literal list
+ * here would have left the other sixty-seven letters graded against a mask
+ * rendered from the *typeface* while the learner traced authored centrelines —
+ * the exact "one level away from what the customer sees" failure this file's
+ * header warns about, reintroduced by the change that was meant to end it.
+ *
+ * Derived from the same predicate the app uses, so it cannot drift again.
+ */
+const HANDWRITTEN = ALL_CHARACTERS.map((c) => c.character).filter(hasVectorGlyph);
 
 const fixtures = JSON.parse(readFileSync(OUT, 'utf8'));
 const { resolution: R, glyphScale: SCALE, inkExtent: EXTENT, maxFitScale: MAX_FIT } = fixtures;
@@ -130,9 +143,16 @@ for (const character of HANDWRITTEN) {
     if (before !== JSON.stringify(next)) changed += 1;
     /*
       The same mask for every practice face, and that is correct rather than
-      lazy: these six are no longer set in a typeface at all. The learner traces
-      authored centrelines whichever face they picked, so there is one shape to
-      grade against and the face only decides the letters around it.
+      lazy: a taught character is no longer set in a typeface at all. The
+      learner traces authored centrelines whichever face they picked, so there
+      is one shape to grade against.
+
+      This is a real consequence of unifying the geometry and it is worth
+      stating plainly: the practice-face preference no longer changes the
+      tracing guide or the grading mask. It still chooses the face for every
+      surface where reading Korean is the task — word rows, headwords,
+      sentences — which is where a decorative face belongs. Instruction gets
+      one canonical shape.
     */
     face.glyphs[character] = next;
   }
@@ -141,9 +161,9 @@ for (const character of HANDWRITTEN) {
 const rendered_json = `${JSON.stringify(fixtures)}\n`;
 const current = readFileSync(OUT, 'utf8');
 if (rendered_json === current) {
-  console.log(`hand-drawn fixtures up to date (${HANDWRITTEN.length} letters).`);
+  console.log(`canonical fixtures up to date (${HANDWRITTEN.length} letters).`);
 } else if (CHECK) {
-  console.error('hand-drawn fixtures are stale — run `npm run strokes:fixtures`.');
+  console.error('canonical fixtures are stale — run `npm run strokes:fixtures`.');
   process.exit(1);
 } else {
   writeFileSync(OUT, rendered_json);

@@ -172,7 +172,9 @@
       "inSentence": "இப்படிப் பயன்படுகிறது: {{sentence}}"
     },
     "buildTray": "அசைகள்",
-    "buildRemove": "{{syllable}} திரும்பப் பெறு"
+    "buildRemove": "{{syllable}} திரும்பப் பெறு",
+    "markCorrect": "சரியான விடை",
+    "markWrong": "உங்கள் விடை, தவறு"
   },
   "sounds": {
     "title": "ஒலிகள் சந்திக்கும்போது",

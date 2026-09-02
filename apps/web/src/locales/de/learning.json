@@ -84,7 +84,9 @@
       "inSentence": "So wird es benutzt: {{sentence}}"
     },
     "buildTray": "Silben",
-    "buildRemove": "{{syllable}} zurücknehmen"
+    "buildRemove": "{{syllable}} zurücknehmen",
+    "markCorrect": "Richtige Antwort",
+    "markWrong": "Deine Antwort, falsch"
   },
   "units": {
     "badge": "Einheit {{index, number}}",

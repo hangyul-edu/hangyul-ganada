@@ -203,6 +203,8 @@
 }
 
 .option {
+  /* The graded mark is positioned against this. See `.markRight`. */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -340,4 +342,35 @@
     transition: none;
     transform: none;
   }
+}
+
+/*
+ * The graded mark, beside the option rather than instead of it.
+ *
+ * A wash of colour is one channel and the wrong one to rely on: `positiveSubtle`
+ * and `negativeSubtle` are 8% tints, so they differ in hue and barely in
+ * lightness, and a red-green colour-blind learner sees two identical pale rows.
+ * The glyph is the second channel and `hg-sr-only` text is the third.
+ *
+ * Absolutely positioned so adding it does not reflow the option's own content —
+ * the label stays optically centred, which is what makes a column of four read
+ * as four equal choices.
+ */
+.markRight,
+.markWrong {
+  position: absolute;
+  inset-inline-start: var(--hg-space-3);
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+}
+
+.markRight {
+  color: var(--hg-positive-text);
+}
+
+.markWrong {
+  color: var(--hg-negative-text);
 }

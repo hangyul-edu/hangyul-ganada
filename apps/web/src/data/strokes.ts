@@ -315,6 +315,27 @@ function bieup(left: number, right: number): StrokeStep[] {
  * box units put the branch a third of the way down a ㅅ and nearly half of the
  * way down a ㅈ. The x follows from the y — the branch point has to sit on the
  * first stroke, and the first stroke is a straight line from the apex.
+ *
+ * ## The fraction was 0.32, and it was measured to 0.22
+ *
+ * A fork a third of the way down opens the legs early, and against the face
+ * that reads as the two strokes crossing rather than one splitting off the
+ * other — the "forked" ㅅ and ㅊ this was reported for. Swept the same way as
+ * `SIOT_FAR`:
+ *
+ * ```
+ * branch     ㅅ     ㅈ     ㅊ
+ * 0.16      93%   98%   99%
+ * 0.22      94%   97%   98%     <- chosen
+ * 0.32      92%   95%   96%     <- was here
+ * 0.42      88%   91%   93%
+ * ```
+ *
+ * Not 0.16, which measures a shade better and is the wrong shape for the
+ * reason the paragraph above this one exists: a branch that high is two
+ * strokes leaving the same point, and the trunk above it then belongs to
+ * whichever was written first. 0.22 keeps a visible trunk and a junction a
+ * hand would make.
  */
 /**
  * How much a leg of ㅅ flares, as controls on the chord from fork to foot.
@@ -329,15 +350,41 @@ function bieup(left: number, right: number): StrokeStep[] {
  * The four numbers below put each control near the chord instead: the leg is a
  * straight fall with a slight outward bow, and both legs are shaped alike, so
  * the letter is symmetrical about its fork.
+ *
+ * ## `SIOT_FAR` was 0.3, and it was measured to 0.55
+ *
+ * 0.3 holds the far control close to the foot, which keeps the leg vertical
+ * most of the way down and then turns it out sharply near the bottom. Against
+ * the face that reads as a leg that falls too straight and then hooks, and it
+ * is what put ㅅ eight points below every other letter in the curriculum.
+ *
+ * Swept against the reference face with `glyphshape:qa --only ㅅㅈㅊ`, which
+ * asks how much of each letter's ink the other explains within 14px of a 320px
+ * raster:
+ *
+ * ```
+ * SIOT_FAR    ㅅ     ㅈ     ㅊ
+ * 0.30       94%   97%   98%     <- was here
+ * 0.40       96%   99%   99%
+ * 0.50       98%  100%   99%
+ * 0.55       99%  100%   99%     <- chosen
+ * 0.60       99%  100%   99%
+ * ```
+ *
+ * 0.55 is where the curve stops paying: 0.60 measures the same and pushes the
+ * control past the point where the leg still reads as a bow rather than a
+ * straight line. The letters were rendered against the face and looked at at
+ * each step — the numbers chose between neighbouring candidates, they did not
+ * decide the shape.
  */
 const SIOT_NEAR = 0.08;
 const SIOT_NEAR_Y = 0.5;
-const SIOT_FAR = 0.3;
+const SIOT_FAR = 0.55;
 const SIOT_FAR_Y = 0.14;
 
 function siot(apexX: number, left: number, right: number, top = 16): StrokeStep[] {
   const bottom = 84;
-  const branch = 0.32;
+  const branch = 0.22;
   const fall = bottom - top;
 
   // Both legs leave the fork steeply and flare as they drop, which is what the

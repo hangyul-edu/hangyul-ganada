@@ -1,3 +1,4 @@
+import type { NumbersLessonProgress } from '@hangyul-ganada/shared-types';
 import type {
   AttemptScore,
   DailyActivity,
@@ -47,6 +48,8 @@ export interface LearnerState {
    * this learner finds genuinely hard. See `domain/mistakes.ts`.
    */
   mistakes: MistakeMap;
+  /** Numbers lesson records, by lesson id. See `domain/numbersProgress.ts`. */
+  numbers: Record<string, NumbersLessonProgress>;
 }
 
 export interface RecordAttemptInput {

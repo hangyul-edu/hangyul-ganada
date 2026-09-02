@@ -56,7 +56,7 @@ type StoredPlan = {
 
 async function readSettings(page: Page): Promise<{ daily_plan: StoredPlan | null } & Record<string, unknown>> {
   return page.evaluate(async () => {
-    const request = indexedDB.open('hangyul-ganada', 2);
+    const request = indexedDB.open('hangyul-ganada');
     const db: IDBDatabase = await new Promise((resolve, reject) => {
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
@@ -74,7 +74,7 @@ async function readSettings(page: Page): Promise<{ daily_plan: StoredPlan | null
 
 async function writeSettings(page: Page, settings: unknown): Promise<void> {
   await page.evaluate(async (row) => {
-    const request = indexedDB.open('hangyul-ganada', 2);
+    const request = indexedDB.open('hangyul-ganada');
     const db: IDBDatabase = await new Promise((resolve, reject) => {
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);

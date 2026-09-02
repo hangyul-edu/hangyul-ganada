@@ -21,8 +21,8 @@
     "meaningsBody": "뜻과 예문 번역을 {{language}}(으)로 보여드려요. 다른 언어로 바꿀 수 있어요."
   },
   "font": {
-    "title": "연습 글꼴",
-    "description": "따라 쓰는 글자가 고른 서체로 그려져요."
+    "title": "한국어 글꼴",
+    "description": "앱에서 읽는 한국어에 적용돼요. 따라 쓰는 글자는 언제나 같은 모양으로 그려져요."
   },
   "dailyTarget": {
     "title": "하루 글자 목표",

@@ -41,6 +41,19 @@ export const STORE_NAMES = [
    * what was picked instead*. See `domain/mistakes.ts`.
    */
   'mistakes',
+  /**
+   * Numbers lesson progress, one record per lesson. See
+   * `NumbersLessonProgress` in shared-types and `domain/numbersProgress.ts`.
+   *
+   * Its own store, and not rows in `progress`, because the first
+   * implementation put Numbers items in `progress` and three things followed:
+   * the rows hydrated as `character` rows (every normaliser coerced an unknown
+   * kind to `character`), their completions were counted as words learned, and
+   * a lesson was called complete when ten `learned` flags happened to line up.
+   * A separate store cannot be mistaken for a letter by anything that reads
+   * letters.
+   */
+  'numbers',
 ] as const;
 
 export type StoreName = (typeof STORE_NAMES)[number];

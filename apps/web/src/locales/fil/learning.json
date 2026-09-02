@@ -172,7 +172,9 @@
       "inSentence": "Ganito ito ginagamit: {{sentence}}"
     },
     "buildTray": "Mga pantig",
-    "buildRemove": "Bawiin ang {{syllable}}"
+    "buildRemove": "Bawiin ang {{syllable}}",
+    "markCorrect": "Tamang sagot",
+    "markWrong": "Ang sagot mo, mali"
   },
   "sounds": {
     "title": "Kapag nagtagpo ang mga tunog",

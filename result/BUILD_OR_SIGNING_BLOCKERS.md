@@ -6,10 +6,12 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked against the release refresh of 2026-08-19 (commit `a7cc604`). All
-four blockers below still stand, unchanged: none of them is a build problem and
-none can be cleared from this machine. The Android artefacts were rebuilt,
-signed, installed and tested this cycle — see `RELEASE_VALIDATION.md`.
+Re-checked on 2 September 2026 against the v1.0.2 rebuild from the working
+tree over commit `3833da71` (uncommitted; see the source fingerprint in
+`build-info.json`). Every item below still stands, unchanged: none of them is a
+build problem and none can be cleared from this machine. The Android artefacts
+were rebuilt and signed with the existing production identity this cycle — see
+`RELEASE_VALIDATION.md`.
 
 ---
 

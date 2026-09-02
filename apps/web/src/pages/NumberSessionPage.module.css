@@ -1,0 +1,354 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-4);
+  padding-bottom: calc(var(--hg-space-6) + var(--hg-safe-bottom));
+}
+
+.note {
+  margin: 0;
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  text-wrap: pretty;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-1);
+}
+
+/*
+ * The Korean is the subject, so it is the largest thing in the card.
+ *
+ * `hg-numeric` is deliberately not used: these are Hangul syllables, not
+ * digits, and the tabular figures that make a price column line up would be
+ * doing nothing here except selecting a different face.
+ */
+.korean {
+  margin: 0;
+  font-size: var(--hg-text-display);
+  font-weight: var(--hg-weight-semibold);
+  line-height: 1.2;
+}
+
+.reading,
+.example,
+.meaning {
+  margin: 0;
+  font-size: var(--hg-text-caption);
+  text-wrap: pretty;
+}
+
+.meaning {
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+}
+
+.reading,
+.example {
+  color: var(--hg-text-secondary);
+}
+
+.label {
+  color: var(--hg-text-secondary);
+  text-transform: none;
+}
+
+.exampleGloss {
+  display: block;
+  color: var(--hg-text-secondary);
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 132px;
+}
+
+.promptKorean {
+  margin: 0;
+  font-size: var(--hg-text-display);
+  font-weight: var(--hg-weight-semibold);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+/*
+ * One column, because a meaning is a phrase.
+ *
+ * Two columns make one option wrap to two lines and its neighbour stay on one,
+ * which reads as though the long one matters more. `position: relative` anchors
+ * the graded mark; see `.markRight`.
+ */
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hg-size-control-lg);
+  padding: var(--hg-space-3) var(--hg-space-6);
+  border: 2px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  text-align: center;
+  text-wrap: pretty;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .option:not(:disabled):hover {
+    border-color: var(--hg-primary);
+  }
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.right {
+  border-color: var(--hg-positive);
+  background: var(--hg-positive-subtle);
+}
+
+.wrong {
+  border-color: var(--hg-negative);
+  background: var(--hg-negative-subtle);
+}
+
+.dimmed {
+  color: var(--hg-text-secondary);
+}
+
+.markRight,
+.markWrong {
+  position: absolute;
+  inset-inline-start: var(--hg-space-3);
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+}
+
+.markRight {
+  color: var(--hg-positive-text);
+}
+
+.markWrong {
+  color: var(--hg-negative-text);
+}
+
+/* --- six-phase lesson (v1.0.2) --------------------------------------------- */
+
+.objective,
+.explain,
+.phaseHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.phaseLabel {
+  margin: 0;
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.phaseDetail {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+}
+
+.moduleGoal {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-wrap: pretty;
+}
+
+.statusLine {
+  margin: 0;
+}
+
+.statusWord {
+  display: inline-block;
+  padding: 2px var(--hg-space-2);
+  border-radius: 999px;
+  background: var(--hg-surface);
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+}
+
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itemChip {
+  display: inline-flex;
+  flex-direction: column;
+  padding: var(--hg-space-1) var(--hg-space-3);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-medium);
+}
+
+.itemChipMeaning {
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-regular);
+}
+
+.explainText {
+  margin: 0;
+  color: var(--hg-text);
+  font-size: var(--hg-text-title);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.itemHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+}
+
+.romanization {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  font-style: italic;
+}
+
+.exampleRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+.exampleKorean {
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+}
+
+.example {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--hg-space-2);
+  padding-top: var(--hg-space-2);
+  border-top: 1px solid var(--hg-border);
+}
+
+.promptHeading {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.prompt {
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.promptAudio {
+  display: flex;
+  justify-content: center;
+}
+
+.rationale {
+  margin: 0;
+  color: var(--hg-text);
+  font-size: var(--hg-text-caption);
+  text-wrap: pretty;
+}
+
+.missing {
+  margin: 0;
+  padding-inline-start: var(--hg-space-4);
+  color: var(--hg-text);
+  font-size: var(--hg-text-caption);
+}
+
+.orderWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.slots {
+  display: flex;
+  justify-content: center;
+  gap: var(--hg-space-2);
+}
+
+.slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  min-height: var(--hg-size-control-md, 44px);
+  padding: 0 var(--hg-space-3);
+  border: 2px dashed var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.slotFilled {
+  border-style: solid;
+  border-color: var(--hg-primary);
+  background: var(--hg-primary-subtle);
+}
+
+.parts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--hg-space-2);
+}
+
+.part {
+  flex: 0 0 auto;
+  min-width: 72px;
+  padding-inline: var(--hg-space-4);
+}

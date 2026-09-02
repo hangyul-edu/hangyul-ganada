@@ -172,7 +172,9 @@
       "inSentence": "Så här används det: {{sentence}}"
     },
     "buildTray": "Stavelser",
-    "buildRemove": "Ta tillbaka {{syllable}}"
+    "buildRemove": "Ta tillbaka {{syllable}}",
+    "markCorrect": "Rätt svar",
+    "markWrong": "Ditt svar, fel"
   },
   "sounds": {
     "title": "När ljud möts",

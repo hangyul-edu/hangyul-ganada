@@ -13,10 +13,20 @@ import type { ReviewSummary, TodaysPractice } from '../domain/review';
 import type { DailyPlan, DayProgress } from '../domain/vocabularyDay';
 import type { LevelTestResult } from '../domain/levelTestTypes';
 import type { PlacementStatus } from '../domain/placement';
+import type { NumbersEvent } from '@hangyul-ganada/shared-types';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
 export interface LearnerContextValue {
   state: LearnerState;
+  /**
+   * Records one Numbers lesson event. What it means for completion is decided
+   * by `domain/numbersProgress.ts`, never by the caller.
+   */
+  recordNumbersEvent: (lessonId: string, event: NumbersEvent) => void;
+  /** Clears Numbers progress and nothing else. */
+  resetNumbersProgress: () => Promise<void>;
+  /** Whether every listed Numbers lesson is complete, under the evidence rule. */
+  numbersLessonsComplete: (lessonIds: readonly string[]) => boolean;
   /** False until the stored profile has been read. */
   ready: boolean;
   summary: ProgressSummary;

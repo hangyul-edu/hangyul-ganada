@@ -21,8 +21,8 @@
     "meaningsBody": "Významy a překlady příkladů se zobrazují v jazyce {{language}}. Můžete zvolit jiný jazyk."
   },
   "font": {
-    "title": "Písmo na cvičení",
-    "description": "Litera, kterou obtahujete, se kreslí písmem, které si vyberete."
+    "title": "Korejské písmo",
+    "description": "Použije se na korejštinu, kterou v aplikaci čtete. Písmeno, které obtahujete, se vždy kreslí stejně."
   },
   "dailyTarget": {
     "title": "Liter denně",

@@ -51,5 +51,6 @@
     "body": "Ett kort nivåtest låter oss föreslå ord på din ordnivå. Hoppar du över det börjar du på nivå 1.",
     "take": "Gör nivåtestet",
     "start": "Börja på nivå 1"
-  }
+  },
+  "answerRecorded": "Svar {{current}} sparat. Nästa fråga."
 }

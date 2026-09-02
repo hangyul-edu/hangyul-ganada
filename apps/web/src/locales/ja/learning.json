@@ -84,7 +84,9 @@
       "inSentence": "こんなふうに使います: {{sentence}}"
     },
     "buildTray": "文字",
-    "buildRemove": "{{syllable}} を戻す"
+    "buildRemove": "{{syllable}} を戻す",
+    "markCorrect": "正解",
+    "markWrong": "あなたの答え、不正解"
   },
   "units": {
     "badge": "ユニット {{index, number}}",

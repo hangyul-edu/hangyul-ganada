@@ -51,5 +51,6 @@
     "body": "Kısa bir seviye testi, kelime seviyene uygun kelimeler önermemizi sağlar. Atlarsan 1. seviyeden başlarsın.",
     "take": "Seviye testini yap",
     "start": "1. seviyeden başla"
-  }
+  },
+  "answerRecorded": "{{current}}. yanıt kaydedildi. Sonraki soru."
 }

@@ -170,7 +170,9 @@
       "inSentence": "Dipakai begini: {{sentence}}"
     },
     "buildTray": "Suku kata",
-    "buildRemove": "Ambil kembali {{syllable}}"
+    "buildRemove": "Ambil kembali {{syllable}}",
+    "markCorrect": "Jawaban benar",
+    "markWrong": "Jawabanmu, salah"
   },
   "sounds": {
     "title": "Ketika bunyi bertemu",

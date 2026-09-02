@@ -21,8 +21,8 @@
     "meaningsBody": "Betekenissen en voorbeeldvertalingen staan in het {{language}}. Je kunt een andere taal kiezen."
   },
   "font": {
-    "title": "Oefenletter",
-    "description": "De letter die je natrekt wordt getekend in het lettertype dat je kiest."
+    "title": "Koreaans lettertype",
+    "description": "Geldt voor het Koreaans dat je in de app leest. De letter die je overtrekt wordt altijd hetzelfde getekend."
   },
   "dailyTarget": {
     "title": "Letters per dag",

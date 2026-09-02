@@ -21,8 +21,8 @@
     "meaningsBody": "释义和例句翻译以{{language}}显示。你可以改成其他语言。"
   },
   "font": {
-    "title": "练习字体",
-    "description": "你描的字会用所选字体来画。"
+    "title": "韩语字体",
+    "description": "应用于你在应用中阅读的韩语。描红的字始终以同一种形状显示。"
   },
   "dailyTarget": {
     "title": "每天几个字母",

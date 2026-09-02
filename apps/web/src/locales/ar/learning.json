@@ -180,7 +180,9 @@
       "inSentence": "تُستعمل هكذا: {{sentence}}"
     },
     "buildTray": "المقاطع",
-    "buildRemove": "أعِد {{syllable}}"
+    "buildRemove": "أعِد {{syllable}}",
+    "markCorrect": "الإجابة الصحيحة",
+    "markWrong": "إجابتك، غير صحيحة"
   },
   "sounds": {
     "title": "حين تلتقي الأصوات",

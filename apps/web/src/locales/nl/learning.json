@@ -172,7 +172,9 @@
       "inSentence": "Zo wordt het gebruikt: {{sentence}}"
     },
     "buildTray": "Lettergrepen",
-    "buildRemove": "Haal {{syllable}} terug"
+    "buildRemove": "Haal {{syllable}} terug",
+    "markCorrect": "Juist antwoord",
+    "markWrong": "Jouw antwoord, onjuist"
   },
   "sounds": {
     "title": "Als klanken elkaar raken",

@@ -172,7 +172,9 @@
       "inSentence": "इसका इस्तेमाल ऐसे होता है: {{sentence}}"
     },
     "buildTray": "अक्षर-खंड",
-    "buildRemove": "{{syllable}} वापस लीजिए"
+    "buildRemove": "{{syllable}} वापस लीजिए",
+    "markCorrect": "सही उत्तर",
+    "markWrong": "आपका उत्तर, गलत"
   },
   "sounds": {
     "title": "जब ध्वनियाँ मिलती हैं",

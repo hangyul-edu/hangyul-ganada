@@ -176,7 +176,9 @@
       "inSentence": "Používá se takhle: {{sentence}}"
     },
     "buildTray": "Slabiky",
-    "buildRemove": "Vrátit {{syllable}}"
+    "buildRemove": "Vrátit {{syllable}}",
+    "markCorrect": "Správná odpověď",
+    "markWrong": "Vaše odpověď, nesprávná"
   },
   "sounds": {
     "title": "Když se zvuky potkají",

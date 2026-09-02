@@ -1,0 +1,219 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-4);
+  padding: var(--hg-space-4);
+  padding-bottom: calc(var(--hg-space-6) + var(--hg-safe-bottom));
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-3);
+}
+
+.summaryText {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+}
+
+.summaryTitle {
+  margin: 0;
+  color: var(--hg-text);
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-medium);
+  text-wrap: pretty;
+}
+
+.summaryMeta {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  white-space: nowrap;
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+}
+
+.lessons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * A whole row is the target, not the title inside it.
+ *
+ * `min-height` rather than padding alone so a one-line lesson and a lesson with
+ * a prerequisite note are the same size to a thumb — the row that is easiest to
+ * mis-tap is the short one next to a tall one.
+ */
+.lesson {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+  min-height: var(--hg-size-control-lg);
+  padding: var(--hg-space-3) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-md);
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .lesson:hover {
+    border-color: var(--hg-primary);
+  }
+}
+
+.lessonIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  color: var(--hg-text-secondary);
+}
+
+.lessonText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.lessonTitle {
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-medium);
+  text-wrap: pretty;
+}
+
+.lessonSystem,
+.lessonLocked {
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-wrap: pretty;
+}
+
+.lessonCount {
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  white-space: nowrap;
+}
+
+/* --- modules and status words (v1.0.2) ------------------------------------- */
+
+.moduleHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--hg-space-3);
+  padding: 0 var(--hg-space-1);
+}
+
+.moduleText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.moduleTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+  margin: 0;
+  color: var(--hg-text);
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-semibold);
+  text-wrap: balance;
+}
+
+.moduleIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-size: var(--hg-text-caption);
+}
+
+.moduleGoal,
+.moduleCount {
+  margin: 0;
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  text-wrap: pretty;
+}
+
+.moduleCount {
+  padding-top: 3px;
+  white-space: nowrap;
+}
+
+.lessonMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+/*
+ * The status word is text first and colour second: the same word appears in
+ * the accessible name, and a colour-blind learner reads the word.
+ */
+.status {
+  display: inline-block;
+  padding: 2px var(--hg-space-2);
+  border-radius: 999px;
+  background: var(--hg-surface-sunken, var(--hg-border));
+  color: var(--hg-text-secondary);
+  font-size: var(--hg-text-caption);
+  white-space: nowrap;
+}
+
+.status_completed,
+.status_mastered {
+  background: var(--hg-positive-subtle);
+  color: var(--hg-positive-text);
+}
+
+.status_review_due {
+  background: var(--hg-warning-subtle, var(--hg-positive-subtle));
+  color: var(--hg-warning-text, var(--hg-text));
+}
+
+.status_in_progress {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+}
+
+.lessonLockedRow {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .lessonLockedRow:hover {
+    border-color: var(--hg-border);
+  }
+}

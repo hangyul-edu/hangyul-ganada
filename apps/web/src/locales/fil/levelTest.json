@@ -51,5 +51,6 @@
     "body": "Sa maikling level test, makakapagmungkahi kami ng mga salitang tugma sa antas mo. Kung laktawan mo, magsisimula ka sa Level 1.",
     "take": "Kunin ang level test",
     "start": "Magsimula sa Level 1"
-  }
+  },
+  "answerRecorded": "Naitala ang sagot {{current}}. Susunod na tanong."
 }

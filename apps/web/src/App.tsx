@@ -35,6 +35,14 @@ const LetterSessionPage = lazy(() =>
     default: m.LetterSessionPage,
   })),
 );
+const NumbersPage = lazy(() =>
+  import("./pages/NumbersPage").then((m) => ({ default: m.NumbersPage })),
+);
+const NumberSessionPage = lazy(() =>
+  import("./pages/NumberSessionPage").then((m) => ({
+    default: m.NumberSessionPage,
+  })),
+);
 const WordsPage = lazy(() =>
   import("./pages/WordsPage").then((m) => ({ default: m.WordsPage })),
 );
@@ -245,6 +253,7 @@ export function App() {
               <Route element={<TabLayout />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/letters" element={<LettersPage />} />
+                <Route path="/letters/numbers" element={<NumbersPage />} />
                 <Route path="/words" element={<WordsPage />} />
                 {/* Browsing one category. A tab-layout screen rather than a focus
                   one: it is a reference view the learner can wander in and out
@@ -279,6 +288,15 @@ export function App() {
 
               <Route element={<FocusLayout />}>
                 <Route path="/letters/sounds" element={<SoundChangesPage />} />
+                {/*
+                  Before the `/letters/:lessonId` catch-all, which would
+                  otherwise swallow `/letters/numbers/...` and try to open a
+                  letter lesson called "numbers".
+                */}
+                <Route
+                  path="/letters/numbers/:lessonId"
+                  element={<NumberSessionPage />}
+                />
                 <Route
                   path="/letters/:lessonId"
                   element={<LetterSessionPage />}

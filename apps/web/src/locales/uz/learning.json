@@ -172,7 +172,9 @@
       "inSentence": "Mana shunday ishlatiladi: {{sentence}}"
     },
     "buildTray": "Bo‘g‘inlar",
-    "buildRemove": "{{syllable}} ni qaytarib oling"
+    "buildRemove": "{{syllable}} ni qaytarib oling",
+    "markCorrect": "To‘g‘ri javob",
+    "markWrong": "Sizning javobingiz, noto‘g‘ri"
   },
   "sounds": {
     "title": "Tovushlar uchrashganda",

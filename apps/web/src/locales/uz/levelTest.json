@@ -51,5 +51,6 @@
     "body": "Qisqa daraja testi so‘z boyligingizga mos so‘zlarni tavsiya qilishga yordam beradi. O‘tkazib yuborsangiz, 1-darajadan boshlaysiz.",
     "take": "Daraja testini topshirish",
     "start": "1-darajadan boshlash"
-  }
+  },
+  "answerRecorded": "{{current}}-javob yozib olindi. Keyingi savol."
 }

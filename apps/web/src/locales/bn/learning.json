@@ -172,7 +172,9 @@
       "inSentence": "এভাবে ব্যবহার হয়: {{sentence}}"
     },
     "buildTray": "শব্দাংশ",
-    "buildRemove": "{{syllable}} ফিরিয়ে নিন"
+    "buildRemove": "{{syllable}} ফিরিয়ে নিন",
+    "markCorrect": "সঠিক উত্তর",
+    "markWrong": "আপনার উত্তর, ভুল"
   },
   "sounds": {
     "title": "শব্দে শব্দে যখন দেখা হয়",

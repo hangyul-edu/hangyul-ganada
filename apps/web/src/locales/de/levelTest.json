@@ -51,5 +51,6 @@
     "body": "Ein kurzer Test hilft uns, Wörter auf deinem Niveau vorzuschlagen. Ohne Test startest du auf Stufe 1.",
     "take": "Test machen",
     "start": "Auf Stufe 1 starten"
-  }
+  },
+  "answerRecorded": "Antwort {{current}} gespeichert. Nächste Frage."
 }

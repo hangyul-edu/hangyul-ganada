@@ -81,6 +81,8 @@ import styles from './LevelTestPage.module.css';
  */
 const WORD_COOLDOWN = 6;
 
+
+
 export function LevelTestPage() {
   const navigate = useNavigate();
   const { t } = useTranslation(['levelTest', 'common']);
@@ -256,10 +258,61 @@ export function LevelTestPage() {
     }
   }, [bank, started, current, done, advance]);
 
-  const answer = (response: AskedItem['response']) => {
+  /**
+   * Records one response and moves to the next question.
+   *
+   * ## Why there is no "you chose this" pause
+   *
+   * A 260 ms window that marked the tapped row before advancing was built and
+   * removed. It read well and it introduced a real dead zone: for a quarter of
+   * a second the screen accepted no input and showed no result, which is a
+   * state a double-tapping learner, an assistive technology and the e2e suite
+   * all land in — and any element marked inert in that window is an element
+   * something waits on and which is then removed when the next question
+   * renders.
+   *
+   * What a learner needs is confirmation that the tap landed, and on a screen
+   * that advances immediately the next question *is* the confirmation. The
+   * pressed and focus states below carry the rest. See the note in the
+   * stylesheet for why correctness is never shown here.
+   */
+  /*
+    One answer per question.
+
+    A tap is committed the instant it lands: the option list is replaced by the
+    next question, and `announce` tells a screen-reader user that the answer
+    was recorded, since nothing visible says so — the test deliberately shows
+    no correct/incorrect verdict (§10). The ref is the double-submission guard:
+    a second tap in the same frame, or a tap on a stale option while React is
+    still committing the next question, is dropped rather than scored against
+    the wrong item. It is reset when the question changes.
+  */
+  const committed = useRef<number | null>(null);
+  /*
+    The second half of the guard is about the *next* question. A double tap is
+    two taps in the same place within a few hundred milliseconds; React commits
+    the next question between them, so the second tap lands on whichever option
+    now sits under the finger and would be a legitimate — and unintended —
+    answer to a question the learner has not read. A tap on the same option
+    position within 250 ms of the previous answer is dropped. Nothing is
+    disabled and nothing waits, so there is no dead zone, and a tap in a
+    different place is accepted at once. "I don't know" is exempt: it is one
+    button in one place and tapping it twice quickly is two honest answers.
+  */
+  const lastTap = useRef<{ at: number; index: number } | null>(null);
+  const [announce, setAnnounce] = useState('');
+  const answer = (response: AskedItem['response'], index: number | null = null) => {
     if (!current) return;
+    if (committed.current === asked.length) return;
+    const now = performance.now();
+    if (index !== null && lastTap.current && lastTap.current.index === index && now - lastTap.current.at < 250) {
+      return;
+    }
+    committed.current = asked.length;
+    if (index !== null) lastTap.current = { at: now, index };
     const history = [...asked, { level: current.level, response }];
     setAsked(history);
+    setAnnounce(t('levelTest:answerRecorded', { current: history.length }));
     advance(history);
   };
 
@@ -452,8 +505,13 @@ export function LevelTestPage() {
           </p>
         </Card>
 
+        {/* Read by assistive tech only; the sighted cue is the next question arriving. */}
+        <p className="hg-sr-only" role="status" aria-live="polite" data-testid="level-announce">
+          {announce}
+        </p>
+
         <ul className={styles.options} role="group" aria-label={t('levelTest:optionsLabel')}>
-          {rendered.options.map((option) => (
+          {rendered.options.map((option, index) => (
             <li key={option.text}>
               <button
                 type="button"
@@ -473,7 +531,8 @@ export function LevelTestPage() {
                 style={
                   option.resolvedLocale === 'ko' ? { fontFamily: textFamily(font) } : undefined
                 }
-                onClick={() => answer(option.correct ? 'correct' : 'wrong')}
+                data-testid="level-option"
+                onClick={() => answer(option.correct ? 'correct' : 'wrong', index)}
               >
                 {option.text}
               </button>

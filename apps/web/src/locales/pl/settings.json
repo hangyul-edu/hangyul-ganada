@@ -21,8 +21,8 @@
     "meaningsBody": "Znaczenia i tłumaczenia przykładów są w języku {{language}}. Możesz wybrać inny język."
   },
   "font": {
-    "title": "Krój do ćwiczeń",
-    "description": "Litera, którą obrysowujesz, jest rysowana krojem, który wybierzesz."
+    "title": "Krój koreański",
+    "description": "Dotyczy koreańskiego, który czytasz w aplikacji. Litera, którą obrysowujesz, jest zawsze rysowana tak samo."
   },
   "dailyTarget": {
     "title": "Liter dziennie",

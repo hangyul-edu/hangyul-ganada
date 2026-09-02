@@ -138,6 +138,57 @@ The pass window — roughly ±5 px of placement and 0.88–1.15 of size — is w
 enough for a beginner tracing a visible guide and narrow enough that the wrong
 character never passes.
 
+## The reference is the canonical geometry, and what that cost
+
+Until v1.0.2 the guide a learner traced and the mask their ink was graded
+against were **set in the practice typeface**, while the *Watch it written*
+demonstration was stroked from the authored centrelines in
+`data/strokeVectors`. Two sources, held together by a tolerance rather than by
+an invariant, and the tolerance was wider than the disagreement: `letters:face`
+measured the face drawing ㅆ and ㅉ as **one** island of ink where the
+canonical form draws **two**, and could not report it because ㅅ, ㅆ, ㅈ, ㅉ,
+ㅊ, ㅇ and ㅎ were all on its `STRUCTURE_EXEMPT` list. A learner traced a merged
+mass and then watched two separate ㅅ being written under it.
+
+Since v1.0.2 every instructional surface — guide, mask, demonstration, numbered
+still — is the canonical geometry (`usesCanonicalGeometry` in
+`features/writing/glyphSpec.ts`). They agree by construction. The typeface is
+still the *quality target* and the independent oracle: `npm run letters:face`
+measures every canonical letter against the font file, and
+`npm run glyphshape:qa` scores the canonical form against the face with a 0.93
+floor and eight declared deviations.
+
+### Two consequences worth stating plainly
+
+**The practice-face preference no longer changes the tracing guide or the
+grading mask.** It still chooses the face everywhere reading Korean is the task
+— word rows, headwords, sentences, the dictionary. Instruction gets one
+canonical shape. `render-vector-fixtures.mjs` therefore writes the same mask
+into all six face entries, which is why the grading corpus stopped varying by
+face.
+
+**False rejection rose and false acceptance went to zero.** Measured by
+`npm run handwriting:robustness` over 2,880 genuine and 2,172 wrong attempts:
+
+| | FRR | FAR |
+| --- | --- | --- |
+| font reference (through v1.0.1) | 0.28% | 0.276% |
+| canonical reference (v1.0.2) | **0.94%** | **0.00%** |
+
+`GAP_EROSION_RATIO` was recalibrated from 0.75 to 0.68 as part of this, and the
+reason is in its note in `config.ts`: an erosion sized to forgive the rim a
+too-wide *font* stroke leaves is also wide enough to swallow a missing thin
+stroke, and at 0.75 against a canonical reference a 사 written with no right leg
+to its ㅅ — 14.6% of the glyph's ink — passed. 0.68 is the last value that still
+fails it.
+
+The remaining false rejections are concentrated in the `stopped short`,
+`written small` and `small and drifted` fixtures, where a uniform pen with butt
+caps has none of the slack a font's tapered terminals gave. **This is a
+deliberate trade, not a free win, and reducing it is open work** — the pen
+widths already match to within 0.003 of the box, so the next thing to measure is
+terminal treatment rather than stroke weight.
+
 ## Note on the demonstration
 
 The stroke *animation* is a separate subject from grading, and it is documented

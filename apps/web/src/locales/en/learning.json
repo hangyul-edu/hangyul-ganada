@@ -172,7 +172,9 @@
       "inSentence": "It’s used like this: {{sentence}}"
     },
     "buildTray": "Syllables",
-    "buildRemove": "Take {{syllable}} back"
+    "buildRemove": "Take {{syllable}} back",
+    "markCorrect": "Correct answer",
+    "markWrong": "Your answer, incorrect"
   },
   "sounds": {
     "title": "When sounds meet",

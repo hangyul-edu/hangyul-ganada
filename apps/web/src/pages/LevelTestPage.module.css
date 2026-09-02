@@ -247,3 +247,41 @@
 .resultCeiling {
   color: var(--hg-text-tertiary);
 }
+
+/*
+ * The states an option has, and the one it deliberately does not.
+ *
+ * This screen used to have two: default, and a barely-visible `:active`. QA
+ * reported, reasonably, that a tap did not obviously register. The pressed
+ * state below is now unmistakable, and the global `:focus-visible` ring in
+ * `global.css` covers the keyboard — one treatment for the whole app rather
+ * than a second one that drifts.
+ *
+ * ## Why correctness is never shown here
+ *
+ * This is an adaptive measurement, not a lesson. The next item is chosen from
+ * the answer to this one, and items are drawn from a bank the learner meets
+ * again later in the same sitting. Showing the answer teaches it, and a learner
+ * who has just been taught a word answers the next question about it from
+ * memory of the last three seconds rather than from what they knew when they
+ * walked in — which is the thing the test exists to find out. The estimate
+ * comes out high and the learner is handed vocabulary they cannot read.
+ *
+ * There is no "you chose this" pause either. One was built and removed: see the
+ * note on `answer` in LevelTestPage.tsx. The screen advances on the tap, so the
+ * next question is the confirmation.
+ *
+ * A vocabulary *session* is the opposite case and marks its answers fully:
+ * right, wrong, and which one was right, with a glyph and a screen-reader word
+ * as well as a colour. See `features/review/ChoiceExercise.module.css`.
+ */
+.option:active {
+  border-color: var(--hg-primary);
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-text);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.unknown:active {
+  background: var(--hg-bg-muted);
+}

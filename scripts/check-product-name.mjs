@@ -210,6 +210,34 @@ const ALLOWED = [
     count: 2,
     reason: "Android's launcher label and activity title — the name under the icon.",
   },
+  /*
+   * The same two strings, once per shipped language.
+   *
+   * `scripts/sync-native-locales.mjs` writes a `values-<qualifier>/strings.xml`
+   * for each of the thirty-two interface languages, because aapt2 only reports a
+   * locale as present if some resource exists for it — a `locales_config` naming
+   * a language the artefact carries nothing for is a declaration the binary does
+   * not back up. The label is deliberately the *same* title-cased wordmark in
+   * every one of them: it is a brand, `config/product.ts` refuses to translate
+   * it, and what differs between these files is that the language is declared,
+   * not what the app is called.
+   *
+   * A pattern rather than thirty-one entries, because listing them by hand is a
+   * list that goes stale the next time a language is added — and going stale
+   * here means the guard starts failing on generated output, which is how a
+   * guard gets switched off.
+   */
+  {
+    pattern: /^apps\/mobile\/android\/app\/src\/main\/res\/values-[\w+-]+\/strings\.xml$/,
+    count: 2,
+    reason:
+      'Generated per-locale launcher label. Same wordmark in every language; see scripts/sync-native-locales.mjs.',
+  },
+  {
+    file: 'scripts/sync-native-locales.mjs',
+    count: null,
+    reason: 'The generator of the above, and its comment explaining why the label is not translated.',
+  },
   {
     file: 'apps/mobile/ios/App/App/Info.plist',
     count: 2,
@@ -254,7 +282,15 @@ const ALLOWED = [
   },
 ];
 
-const allowedByFile = new Map(ALLOWED.map((entry) => [entry.file, entry]));
+const allowedByFile = new Map(
+  ALLOWED.filter((entry) => entry.file).map((entry) => [entry.file, entry]),
+);
+const allowedByPattern = ALLOWED.filter((entry) => entry.pattern);
+
+/** The allowance covering this path, by exact name first and then by pattern. */
+function allowanceFor(rel) {
+  return allowedByFile.get(rel) ?? allowedByPattern.find((entry) => entry.pattern.test(rel));
+}
 
 function walk(dir, files = []) {
   for (const entry of readdirSync(dir)) {
@@ -287,7 +323,7 @@ for (const file of walk(root)) {
   }
   if (hits.length === 0) continue;
 
-  const allowance = allowedByFile.get(rel);
+  const allowance = allowanceFor(rel);
   if (allowance) {
     accountedFor.set(rel, hits.length);
     if (allowance.count !== null && hits.length !== allowance.count) {

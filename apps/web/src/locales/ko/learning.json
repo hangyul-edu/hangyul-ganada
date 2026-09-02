@@ -84,7 +84,9 @@
       "inSentence": "이렇게 써요: {{sentence}}"
     },
     "buildTray": "음절",
-    "buildRemove": "{{syllable}} 빼기"
+    "buildRemove": "{{syllable}} 빼기",
+    "markCorrect": "정답",
+    "markWrong": "내가 고른 답, 오답"
   },
   "units": {
     "badge": "{{index, number}}단원",

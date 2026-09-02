@@ -176,7 +176,9 @@
       "inSentence": "Używa się tak: {{sentence}}"
     },
     "buildTray": "Sylaby",
-    "buildRemove": "Cofnij {{syllable}}"
+    "buildRemove": "Cofnij {{syllable}}",
+    "markCorrect": "Poprawna odpowiedź",
+    "markWrong": "Twoja odpowiedź, niepoprawna"
   },
   "sounds": {
     "title": "Kiedy dźwięki się spotykają",

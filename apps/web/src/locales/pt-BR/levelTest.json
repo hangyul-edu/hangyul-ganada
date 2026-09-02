@@ -51,5 +51,6 @@
     "body": "Um teste rápido nos permite sugerir palavras no seu nível de vocabulário. Se pular, você começa no nível 1.",
     "take": "Fazer o teste",
     "start": "Começar no nível 1"
-  }
+  },
+  "answerRecorded": "Resposta {{current}} registrada. Próxima pergunta."
 }

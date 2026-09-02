@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { exitApp } from '../native/platform';
+import { useHistoryDepth } from '../native/useHistoryDepth';
 import { useSystemBack } from '../native/useSystemBack';
 import { ConfirmDialog } from './ConfirmDialog';
 
@@ -13,15 +14,45 @@ const HOME = '/';
  * What the phone's Back button does when nothing else has claimed it.
  *
  * Overlays answer first — see `Modal` — so by the time a press reaches here
- * there is nothing open over the page. Then it is two rules: anywhere but Home
- * goes Home, and Home asks whether to leave.
+ * there is nothing open over the page.
  *
- * ## Home, replacing rather than pushing
+ * ## The rule, and the one it replaced
  *
- * The whole point is to stop the history walk, so sending the learner Home must
- * not leave a trail of its own. `replace` keeps the entry count where it is;
- * pushing would build up a stack of Homes for the *header's* back arrow to walk
- * back through, which is the same bug moved one button over.
+ * Back returns to **the screen before this one**, and at Home it offers to
+ * leave. That is the platform convention on both phones and it is what the
+ * header's own back arrow has always done.
+ *
+ * It used to be "anywhere but Home goes Home", which was deliberate — it was
+ * meant to stop a learner walking back through a long history — and which
+ * produced the behaviour QA reported: one press from anywhere landed on Home,
+ * a second press offered to exit, and changing a letter category and pressing
+ * Back jumped to Home rather than back to the category list. A learner three
+ * screens into a lesson had no way back to the screen they came from, so the
+ * button did not mean anything they could predict; the only reliable way back
+ * one step was the header arrow, and the two buttons disagreeing is worse than
+ * either rule on its own.
+ *
+ * ## Knowing whether there is anywhere to go
+ *
+ * `useHistoryDepth` counts what *this app* has pushed since it opened, which
+ * is the question `window.history.length` cannot answer — that counts the tab,
+ * including whatever the learner was looking at before they arrived. At depth
+ * zero the current screen is the first one this session put on the stack — a
+ * cold start, a deep link, or a refreshed page — and there is nothing of ours
+ * behind it. Then, and only then, Back falls back to Home, and from Home it
+ * offers to leave.
+ *
+ * So the three cases are:
+ *
+ * ```
+ * depth > 0            → navigate(-1)     the screen they came from
+ * depth 0, not Home    → Home, replacing  a deep link or a refresh
+ * Home                 → offer to leave
+ * ```
+ *
+ * The Home fallback still *replaces* rather than pushes: it is there to end a
+ * walk, and pushing would leave a stack of Homes for the header arrow to walk
+ * back through — the same bug moved one button over.
  *
  * ## Why the dialog is here and not in a page
  *
@@ -37,16 +68,21 @@ export function SystemBack() {
   const navigate = useNavigate();
   const location = useLocation();
   const [leaving, setLeaving] = useState(false);
+  const depth = useHistoryDepth();
 
   useSystemBack(
     useCallback(() => {
+      if (depth.current > 0) {
+        navigate(-1);
+        return true;
+      }
       if (location.pathname !== HOME) {
         navigate(HOME, { replace: true });
         return true;
       }
       setLeaving(true);
       return true;
-    }, [location.pathname, navigate]),
+    }, [depth, location.pathname, navigate]),
   );
 
   return (

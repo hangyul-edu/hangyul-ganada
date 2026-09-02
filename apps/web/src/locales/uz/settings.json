@@ -21,8 +21,8 @@
     "meaningsBody": "Ma’nolar va misol tarjimalari {{language}} tilida ko‘rsatiladi. Boshqa tilni tanlashingiz mumkin."
   },
   "font": {
-    "title": "Mashq shrifti",
-    "description": "Siz chizadigan harf o‘zingiz tanlagan shriftda chiziladi."
+    "title": "Koreys shrifti",
+    "description": "Ilovada o‘qiydigan koreys matniga qo‘llanadi. Siz chizib yozadigan harf har doim bir xil chiziladi."
   },
   "dailyTarget": {
     "title": "Kuniga harf",

@@ -469,6 +469,21 @@ network and checks it.
 Retrying a character until it passes must not push a session past its target.
 The store counts distinct items passed, not attempts.
 
+## Numbers completion is derived from evidence, in one place
+
+The Numbers course keeps one record per lesson in its own IndexedDB store
+(`numbers`), never in the letter and word progress table. The record holds
+evidence — steps read, examples viewed, every attempt, the mastery result — and
+`domain/numbersProgress.ts` derives the status from it. `completed_at` is written
+by the reducer alone, once, when the evidence qualifies, and is cleared on read
+if it ever stops qualifying. No screen decides that a lesson is complete.
+
+The first implementation set every item to `learned` when the last question was
+answered, whatever the answers were, and stored the rows under a doubled prefix
+so nothing read them back. Migration 13 snapshots and removes those rows and
+touches nothing else. The full account — model, events, statuses, migration
+fixtures, journeys — is `docs/NUMBERS_CURRICULUM.md`.
+
 ## Deliberately not built
 
 * **React Native** — web first, as scoped. The architecture avoids making it

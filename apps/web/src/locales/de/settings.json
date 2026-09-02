@@ -21,8 +21,8 @@
     "meaningsBody": "Bedeutungen und Beispielübersetzungen erscheinen auf {{language}}. Du kannst eine andere Sprache wählen."
   },
   "font": {
-    "title": "Übungsschrift",
-    "description": "Der Buchstabe, den du nachfährst, wird in der gewählten Schrift gezeichnet."
+    "title": "Koreanische Schrift",
+    "description": "Gilt für das Koreanisch, das du in der App liest. Der Buchstabe, den du nachfährst, wird immer gleich gezeichnet."
   },
   "dailyTarget": {
     "title": "Buchstaben pro Tag",

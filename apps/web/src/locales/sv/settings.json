@@ -21,8 +21,8 @@
     "meaningsBody": "Betydelser och exempelöversättningar visas på {{language}}. Du kan välja ett annat språk."
   },
   "font": {
-    "title": "Övningstypsnitt",
-    "description": "Bokstaven du drar ritas i det typsnitt du väljer."
+    "title": "Koreanskt typsnitt",
+    "description": "Gäller den koreanska du läser i appen. Bokstaven du spårar ritas alltid likadant."
   },
   "dailyTarget": {
     "title": "Bokstäver per dag",

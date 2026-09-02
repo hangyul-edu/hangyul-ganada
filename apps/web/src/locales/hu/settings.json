@@ -21,8 +21,8 @@
     "meaningsBody": "A jelentések és a példamondatok fordításai {{language}} nyelven jelennek meg. Választhat másik nyelvet."
   },
   "font": {
-    "title": "Gyakorló betűtípus",
-    "description": "A betű, amit áthúzol, az általad választott betűtípussal rajzolódik."
+    "title": "Koreai betűtípus",
+    "description": "Az alkalmazásban olvasott koreai szövegre vonatkozik. Az átrajzolt betű mindig ugyanúgy jelenik meg."
   },
   "dailyTarget": {
     "title": "Betű naponta",

@@ -51,5 +51,6 @@
     "body": "Tes level singkat membantu kami menyarankan kata sesuai tingkat kosakatamu. Kalau dilewati, kamu mulai dari Level 1.",
     "take": "Ikuti tes level",
     "start": "Mulai dari Level 1"
-  }
+  },
+  "answerRecorded": "Jawaban {{current}} tercatat. Pertanyaan berikutnya."
 }

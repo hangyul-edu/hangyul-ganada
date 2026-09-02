@@ -29,9 +29,10 @@ const OUT = join(OUT_DIR, 'speech-plan.json');
 // The corpus is fetched, not imported. See `scripts/lib/corpus.mjs`.
 await loadCorpusForNode();
 
-const [{ ALL_CHARACTERS }, vocabulary] = await Promise.all([
+const [{ ALL_CHARACTERS }, vocabulary, numbers] = await Promise.all([
   import(join(root, 'apps/web/src/data/characters.ts')),
   import(join(root, 'apps/web/src/data/vocabulary.ts')),
+  import(join(root, 'apps/web/src/data/numbers.ts')),
 ]);
 
 /** id → { text, kind }. A Map because two letters legitimately share a clip. */
@@ -78,7 +79,29 @@ for (const word of vocabulary.VOCABULARY) {
   if (word.audio?.example && word.example) add(word.audio.example, word.example, 'sentence');
 }
 
+/*
+ * The Numbers curriculum: every item's Korean, and every worked example.
+ *
+ * Ids follow the same codepoint rule as words and sentences, so 일 as a Sino
+ * numeral and 일 as a vocabulary entry are one recording, and a phrase such as
+ * 두 시 반 gets a clip of its own. A number lesson promises audio for what it
+ * shows; a speaker button with no clip behind it is a promise the app breaks
+ * silently, and `numbers:qa` fails on any item whose id is absent from the
+ * manifest.
+ */
+for (const item of numbers.NUMBER_ITEMS) {
+  // The spelling, not `reading`: the TTS engine applies 심뉵 and 여덜 itself, and
+  // 여덟 the numeral shares its clip with 여덟 the vocabulary word.
+  add(item.audio.word, item.korean, item.korean.includes(' ') ? 'sentence' : 'word');
+  if (item.example && item.audio.example) {
+    // Examples that show a right and a wrong form side by side are read as the
+    // right form only: the app never voices the mistake.
+    add(item.audio.example, numbers.spokenExample(item), 'sentence');
+  }
+}
+
 const entries = [...plan.values()].sort((a, b) => a.id.localeCompare(b.id));
+
 const counts = entries.reduce((acc, e) => ({ ...acc, [e.kind]: (acc[e.kind] ?? 0) + 1 }), {});
 
 mkdirSync(OUT_DIR, { recursive: true });

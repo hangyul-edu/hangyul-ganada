@@ -1,0 +1,350 @@
+{
+  "title": "Sayılar",
+  "subtitle": "Bir şeyleri say, saati söyle, fiyat oku, yaşını söyle",
+  "lessonsCompleted": "{{total}} dersten {{done}} tanesi tamamlandı",
+  "activitiesDone": "{{total}} etkinlikten {{done}} tanesi yapıldı",
+  "moduleLessons": "{{total}} dersten {{done}} tanesi",
+  "status": {
+    "locked": "Kilitli",
+    "available": "Açık",
+    "not_started": "Açıldı",
+    "in_progress": "Devam ediyor",
+    "completed": "Tamamlandı",
+    "mastered": "Pekişti",
+    "review_due": "Tekrar zamanı"
+  },
+  "lockedNote": "Önce bundan önceki dersleri bitir.",
+  "systemSino": "Çin kökenli Korece",
+  "systemNative": "Öz Korece",
+  "systemBoth": "Her iki sistem",
+  "system": {
+    "native": "Öz Korece — 하나, 둘, 셋",
+    "sino": "Çin kökenli Korece — 일, 이, 삼"
+  },
+  "phase": {
+    "objective": "Ne öğreneceksin",
+    "explain": "Açıklama",
+    "examples": "Örnekler",
+    "practice": "Alıştırma",
+    "mastery": "Ustalık testi",
+    "summary": "Özet"
+  },
+  "action": {
+    "start": "Derse başla",
+    "resume": "Derse devam et",
+    "next": "Sonraki",
+    "continue": "Devam et",
+    "beginPractice": "Alıştırmaya başla",
+    "beginMastery": "Ustalık testine başla",
+    "retryMastery": "Ustalık testini yeniden dene",
+    "backToCourse": "Sayılar'a dön",
+    "review": "Bu dersi tekrar et",
+    "clear": "Temizle"
+  },
+  "stepOf": "Adım {{current}} / {{total}}",
+  "questionOf": "Soru {{current}} / {{total}}",
+  "readingLabel": "Şöyle söylenir",
+  "exampleLabel": "Kullanımda",
+  "practiceIntro": "Burada hata yapmak sorun değil — her cevap açıklanıyor.",
+  "masteryIntro": "{{count}} soru. Yüzde {{pass}} doğru yapman ve her öğeyi en az bir kez doğru bilmen gerekiyor.",
+  "masteryPassed": "Ustalık testi geçildi — {{total}} sorudan {{correct}} doğru",
+  "masteryFailed": "Henüz değil — {{total}} sorudan {{correct}} doğru. Örnekleri gözden geçir ve yeniden dene.",
+  "masteryPerfect": "Kusursuz — her soru doğru",
+  "summaryComplete": "Ders tamamlandı",
+  "summaryIncomplete": "Henüz tamamlanmadı",
+  "summaryMissing": {
+    "explain": "Her açıklama adımını oku",
+    "examples": "Her örneğe bak",
+    "practice": "Alıştırmayı bitir",
+    "mastery": "Ustalık testini geç"
+  },
+  "feedback": {
+    "correct": "Doğru",
+    "incorrect": "Tam değil",
+    "answerWas": "Cevap şu"
+  },
+  "prompt": {
+    "listen": "Ne duydun?",
+    "read": "Bu ne anlama geliyor?",
+    "chooseSystem": "Burada hangi sayı sistemi kullanılıyor?",
+    "digitsToKorean": {
+      "sino": "Bu sayıyı Çin kökenli Korece ile söyle",
+      "native": "Bu sayıyı öz Korece ile söyle",
+      "both": "Bu sayıyı Korece söyle"
+    },
+    "koreanToDigits": "Bu hangi sayı?",
+    "counterForm": "{{value}} sayısı {{counter}} ile nasıl söylenir?",
+    "spotMistake": "Hangisi yanlış?",
+    "fill": "Boşluğu doldur",
+    "orderParts": "{{value}} sayısını kurmak için parçalara sırayla dokun"
+  },
+  "rationale": {
+    "readChoose": "Korecesini anlamıyla eşleştir. Sayma sözcükleri, sayılan şeyin türüne göre seçilir.",
+    "listen": "Sözcüğün tamamını dinle — komşu sayılar ve benzer sesler en sık kayılan yerdir.",
+    "nativeSystem": "Öz Korece sayılar, işaret edebildiğin şeyleri sayar; saatlerde ve yaşta da kullanılır.",
+    "sinoSystem": "Çin kökenli sayılar etiketler için kullanılır: para, tarih, dakika, telefon numarası, kat.",
+    "koreanToDigits": "Parçaları sırayla söyle. Çin kökenli sistemde 십 on, 삼십 otuzdur.",
+    "countingForm": "Bir sayma sözcüğünün önünde 하나 둘 셋 넷 스물, 한 두 세 네 스무 olur. 둘 개 Korece değildir; doğrusu 두 개.",
+    "counter": "Bir sayı tek başına asla bir ismin yanında durmaz. Aradaki sayma sözcüğü, sayılan şeye göre seçilir.",
+    "fill": "Cümlenin tamamını oku: boşluğun çevresindeki sözcükler hangi biçimin oraya ait olduğunu söyler.",
+    "nativeBuild": "Ondan sonraki öz Korece sayılar 열 artı birlik basamağıdır — 열하나, 열둘. Onlukların kendi sözcükleri vardır.",
+    "sinoBuild": "Çin kökenli sayılar soldan sağa, parça parça okunur: 삼십오, 삼 · 십 · 오 demektir.",
+    "irregular_month": "Haziran 유월, ekim 시월'dür. Kurallı biçimler olan 육월 ve 십월 yoktur.",
+    "plain_form": "Sayma sözcüğünün önünde sayma biçimi zorunludur: 한, 두, 세, 네, 스무 — asla 하나, 둘, 셋, 넷, 스물 değil.",
+    "spacing": "Sayma sözcüğü ayrı bir sözcüktür ve boşlukla yazılır: 한개 değil, 한 개.",
+    "system_swap": "İki sistem aynı değeri adlandırır ama birbirinin yerine kullanılamaz — bağlam karar verir.",
+    "sound_alike": "Aralarında tek bir ses farkı var. Son ünsüze kulak ver.",
+    "adjacent": "Komşu sayılar liste hâlinde öğrenildiği için birbirine karışır. Sıraya değil, değere bak.",
+    "wrong_counter": "Her sayma sözcüğü bir tür şeye aittir — insanlar için 명, hayvanlar için 마리, nesneler için 개."
+  },
+  "module": {
+    "systems": {
+      "title": "İki tür sayı",
+      "goal": "Her iki sistemi ona kadar, iki sıfırı ve hangi durumun hangi sistemi istediğini öğren."
+    },
+    "pastTen": {
+      "title": "Ondan sonrası",
+      "goal": "İki sistemde de herhangi bir sayıyı kur ve sayma sözcüğünün önünde değişen beş biçimi kullan."
+    },
+    "counting": {
+      "title": "Bir şeyleri saymak",
+      "goal": "İnsanları, nesneleri ve hayvanları doğru sayma sözcüğüyle say ve yaşını söyle."
+    },
+    "time": {
+      "title": "Saat ve tarih",
+      "goal": "Saati söyle, tarih söyle ve iki kuralsız ayın adını bil."
+    },
+    "money": {
+      "title": "Para ve okunan sayılar",
+      "goal": "Fiyat, telefon numarası, kat ve büyük birimler olan 만, 억, 조 oku."
+    },
+    "review": {
+      "title": "Herkesin yaptığı hatalar",
+      "goal": "Herkesin yaptığı beş hatayı yakala, sonra sistem seçiminin artık kendiliğinden geldiğini kanıtla."
+    }
+  },
+  "lesson": {
+    "sinoBasics": {
+      "title": "일 이 삼 — Çin kökenli Korece birden ona",
+      "objective": "Çin kökenli Korece sayıları birden ona tanı ve söyle.",
+      "step1": "Korecede iki sayı kümesi var. Bu küme Çinceden gelir ve sayma değil de etiket olan her şeyde kullanılır — para, tarih, dakika, telefon numarası, kat.",
+      "step2": "Birden ona: 일 이 삼 사 오 육 칠 팔 구 십. Her biri tek hecedir ve her biri, fiyatlarda ve saatlerde göreceğin bir rakamdır.",
+      "step3": "On, 십'tir. Ondan sonraki her şey bu on sözcükten kurulur; bu yüzden bunları iyi bilmek işin büyük kısmıdır."
+    },
+    "nativeBasics": {
+      "title": "하나 둘 셋 — öz Korece birden ona",
+      "objective": "Öz Korece sayıları birden ona tanı ve söyle.",
+      "step1": "Kore'nin kendi sayıları. İşaret edebildiğin şeyleri saymak için — insanlar, fincanlar, hayvanlar — ve saatler ile yaş için kullanılır.",
+      "step2": "Birden ona: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟'in 여덜 diye söylendiğine dikkat et: ㅂ okunmaz.",
+      "step3": "Bunlar doksan dokuz civarında kullanımdan çıkar. Yüzün üstünde, ne sayılıyor olsa da her sayı Çin kökenlidir."
+    },
+    "zero": {
+      "title": "Sıfırın iki sözcüğü var",
+      "objective": "Miktar olarak sıfır için 영, rakam olarak sıfır için 공 kullan.",
+      "step1": "영 miktar olarak sıfırdır — matematikte, skorda, sıfırın altındaki sıcaklıkta (영하).",
+      "step2": "공 ise 0 rakamıdır; telefon numarasında, oda numarasında, bir kodda sesli okunur. 010, 공일공'dur, asla 영일영 değil."
+    },
+    "choosing": {
+      "title": "Hangi sistem, ne zaman",
+      "objective": "Bir sayının öz Korece mi Çin kökenli mi olacağına bağlamdan karar ver.",
+      "step1": "Bir şeyleri saymak için, yaklaşık doksan dokuza kadar öz Korece: 세 명 üç kişi, 두 시 saat iki, 스무 살 yirmi yaşında.",
+      "step2": "Etiketler, para ve tarihler için Çin kökenli: 오천 원, 삼월 일 일, 삼십 분. Ve yüzün üstündeki her sayı için.",
+      "step3": "Bir saat ifadesi ikisini de kullanır: saat öz Korece (세 시), dakika Çin kökenli (삼십 분). Bu ikili, kuralın küçük bir özetidir."
+    },
+    "sinoBuild": {
+      "title": "Ondan sonrası, Çin kökenli Korece",
+      "objective": "Bine kadar Çin kökenli Korece sayıları kur ve oku.",
+      "step1": "Parçaları sırayla söyle. 십일 on-bir, yani on bir. 이십 iki-on, yani yirmi. 삼십오 üç-on-beş, yani otuz beş.",
+      "step2": "십육'a dikkat: 십육 yazılır ama 심뉵 söylenir. İki hecenin arasında ㄹ sesi ortaya çıkar.",
+      "step3": "백 yüz, 천 bindir. Önlerine 일 gelmez — 일백 원 değil, 백 원."
+    },
+    "nativeBuild": {
+      "title": "Ondan sonrası, öz Korece",
+      "objective": "Elliye kadar öz Korece sayıları kur ve oku.",
+      "step1": "열 artı birlik, on bir ile on dokuz arasını verir: 열하나, 열둘, 열셋. Tek sözcük gibi söylenir.",
+      "step2": "Onlukların kendi sözcükleri vardır — 스물 yirmi, 서른 otuz, 마흔 kırk, 쉰 elli. Bunlar 열'den kurulmaz.",
+      "step3": "열여섯, 열려섣 diye söylenir: 심뉵'taki ㄹ sesinin aynısı."
+    },
+    "forms": {
+      "title": "한, 두, 세, 네, 스무",
+      "objective": "Sayma sözcüğünün önünde 하나, 둘, 셋, 넷 ve 스물'un yerini alan beş sayma biçimini kullan.",
+      "step1": "Beş öz Korece sayı, sayma sözcüğünün önünde biçim değiştirir. 하나 → 한, 둘 → 두, 셋 → 세, 넷 → 네, 스물 → 스무 olur.",
+      "step2": "Bu bir söyleyiş kayması değildir. 둘 사람 aksanlı Korece değil, düpedüz yanlıştır. 두 사람 olmak zorundadır.",
+      "step3": "Diğer bütün öz Korece sayılar biçimini korur: 다섯 명, 여섯 개, 열 마리. Yalnızca bu beşi değişir."
+    },
+    "counters": {
+      "title": "İnsanlar, nesneler ve hayvanlar",
+      "objective": "İnsanları, nesneleri ve hayvanları 명, 사람, 개 ve 마리 ile say.",
+      "step1": "Korece bir ismi asla tek başına saymaz. Sayı ile şeyin arasında, şeyin türüne göre seçilen bir sayma sözcüğü bulunur.",
+      "step2": "명 insanları sayar (세 명), 개 nesneleri sayar (두 개), 마리 hayvanları sayar (고양이 두 마리). 사람 da insanları sayar, biraz daha az resmî biçimde.",
+      "step3": "Önce isim, sonra sayı ve sayma sözcüğü gelir: 두 마리 고양이 değil, 고양이 두 마리."
+    },
+    "countersEveryday": {
+      "title": "Şişeler, fincanlar, biletler ve kitaplar",
+      "objective": "Günlük şeyleri 병, 잔, 장 ve 권 ile sipariş et ve say.",
+      "step1": "병 şişedir (맥주 한 병), 잔 fincan ya da bardaktır (커피 두 잔), 장 bilet veya kâğıt gibi yassı bir şeydir (표 네 장), 권 kitaptır (책 세 권).",
+      "step2": "Dördü de öz Korece sayı ve sayma biçimi alır: 한 병, 두 잔, 세 권, 네 장."
+    },
+    "age": {
+      "title": "Kaç yaşında olduğunu söylemek",
+      "objective": "Yaşını 살 ile söyle, 세'yi tanı ve bir büyüğün yaşını 연세 ile kibarca sor.",
+      "step1": "살 öz Korece sayı alır ve günlük dilde kullanılan budur: 스무 살, 스물다섯 살. 몇 살이에요? bir arkadaşın yaşını sorar.",
+      "step2": "세 Çin kökenli sayı alır; formların ve haberlerin sözcüğüdür: 이십 세. Onu söylemekten çok okuyacaksın.",
+      "step3": "Yaşça büyük birine 살 fazla samimi kalır. 연세, yaş için saygı sözcüğüdür: 연세가 어떻게 되세요?"
+    },
+    "hours": {
+      "title": "Saati söylemek",
+      "objective": "Saati öz Korece sayı ve 시 ile söyle, buçuk için 반 kullan.",
+      "step1": "Saatler öz Korece sayı alır: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? saati sorar.",
+      "step2": "반 yarım demektir: 두 시 반, iki buçuktur. 삼십 분'un yerine geçer.",
+      "step3": "몇 시예요? saati sorar. Öz Korece sayı ve 시 ile cevap ver: 세 시예요. Dakikalarda sistem değiştirirsin — o da bir sonraki ders."
+    },
+    "minutes": {
+      "title": "Dakika ve saniye",
+      "objective": "Dakika ve saniyeyi Çin kökenli sayılarla söyle ve bunları öz Korece bir saatle birleştir.",
+      "step1": "Dakika ve saniye Çin kökenli sayı alır: 삼십 분, 십오 분, 십 초.",
+      "step2": "Bir saat ifadesi iki sistemi aynı anda kullanır: 세 시 삼십 분 — öz Korece saat, Çin kökenli dakika.",
+      "step3": "En sık yapılan hata ikisini de aynı sisteme koymaktır. 삼 시 서른 분 iki kez yanlıştır."
+    },
+    "dates": {
+      "title": "Yıl, ay ve gün",
+      "objective": "Tarihi 년, 월 ve 일 ile söyle ve iki kuralsız ayı kullan.",
+      "step1": "Yıl, ay ve gün hepsi Çin kökenlidir: 이천이십육 년 삼월 십오 일. En büyük birim başta.",
+      "step2": "İki ay kuralsızdır. Haziran 유월'dür, 육월 değil; ekim 시월'dür, 십월 değil.",
+      "step3": "Ayın günü olan 일, bir anlamındaki 일 ile aynı sözcüktür. 삼월 일 일, martın biridir."
+    },
+    "weekdays": {
+      "title": "Haftanın günleri",
+      "objective": "Haftanın günlerini say ve hangi gün olduğunu sor.",
+      "step1": "Günler 요일 ile biter: 월요일 pazartesi, 화요일, 수요일, 목요일, 금요일 cuma, 토요일, 일요일.",
+      "step2": "무슨 요일이에요? hangi gün olduğunu sorar. 주말 hafta sonudur."
+    },
+    "money": {
+      "title": "Fiyat okumak",
+      "objective": "Won cinsinden fiyatları, Korece usulü on binlik gruplarla oku.",
+      "step1": "Won Çin kökenli sayı alır: 천 원, 오천 원. 얼마예요? fiyatı sorar.",
+      "step2": "Korece binlik değil on binlik gruplar: 만 원 10.000'dir; 삼만 오천 원 35.000'dir.",
+      "step3": "만 오천 원 diye duyduğun fiyat 15.000'dir — bir on bin ve beş bin."
+    },
+    "digits": {
+      "title": "Telefon numaraları, katlar ve odalar",
+      "objective": "Tanımlayıcı sayıları rakam rakam oku; sıfır için 공, gruplar arasında 에 kullan.",
+      "step1": "Saymayan, tanımlayan bir sayı rakam rakam okunur: 010, 공일공'dur.",
+      "step2": "에, tirenin olduğu yere gelir: 공일공에 일이삼사에 오륙칠팔.",
+      "step3": "Katlar, odalar ve otobüs hatları Çin kökenli sayı alır: 삼 층 üçüncü kat, 오공이 호 502 numaralı oda, 이백육 번 206 numaralı otobüs."
+    },
+    "large": {
+      "title": "만, 억, 조 — ve ondalıklar",
+      "objective": "Büyük Korece birimleri, yüzdeleri ve ondalık noktayı oku.",
+      "step1": "Korece üçlü değil dörtlü basamak gruplarıyla sayar. 만 on bin, 억 yüz milyon, 조 trilyondur.",
+      "step2": "123.450.000, 1억 2345만 diye okunur — virgül Korece için yanlış yerdedir.",
+      "step3": "퍼센트 yüzde demektir (오십 퍼센트), 점 ise ondalık noktasıdır: 삼 점 오, 3,5'tir."
+    },
+    "pitfalls": {
+      "title": "Herkesin yaptığı beş hata",
+      "objective": "Acemiyi ele veren beş hatayı tanı ve düzelt.",
+      "step1": "Bunların her biri daha önce karşılaştığın bir kuraldır — unutulmasının en kolay olduğu yerde.",
+      "step2": "둘 살 değil 두 살. Yazıldığı gibi 십육 değil 심뉵. 육월 değil 유월. Öz Korece saat, Çin kökenli dakika. Sayma sözcüğünün önünde boşluk."
+    },
+    "mixed": {
+      "title": "Karma tekrar — hangi sistem, hangi biçim",
+      "objective": "Kursun herhangi bir yerinden bir ifadeyi duy ya da oku; hangi sistemi neden kullandığını bil.",
+      "step1": "Bu kurstaki her şey, hızla verilen tek bir karara iner: bu bir sayım mı, etiket mi? Sayımlar — insanlar, nesneler, saatler, yaşlar — öz Korece sayı alır; etiketler — para, dakika, tarih, telefon numarası — Çin kökenli sayı alır.",
+      "step2": "Bu tekrar ikisini karıştırır. Oku ya da dinle, karar ver ve duraksadığın her yerde açıklamaya bak. Alıştırmayla yok edilecek şey o duraksamadır."
+    }
+  },
+  "gloss": {
+    "zeroMath": "sıfır, miktar olarak",
+    "zeroDigit": "sıfır, rakam olarak",
+    "belowZero": "sıfırın altında",
+    "zeroScore": "sıfır puan",
+    "ctxPeople": "üç kişi",
+    "ctxMoney": "beş bin won",
+    "ctxHour": "saat iki",
+    "ctxMinute": "otuz dakika",
+    "ctxAge": "yirmi yaşında",
+    "ctxDate": "martın biri",
+    "formOne": "bir, sayma sözcüğünün önünde",
+    "formTwo": "iki, sayma sözcüğünün önünde",
+    "formThree": "üç, sayma sözcüğünün önünde",
+    "formFour": "dört, sayma sözcüğünün önünde",
+    "formTwenty": "yirmi, sayma sözcüğünün önünde",
+    "counterPeople": "kişi",
+    "counterPeoplePlain": "kişi — günlük dilde",
+    "counterThings": "şeyler — genel sayma sözcüğü",
+    "counterAnimals": "hayvanlar",
+    "counterBottles": "şişeler",
+    "counterCups": "fincanlar ve bardaklar",
+    "counterFlat": "yassı şeyler — biletler, kâğıtlar",
+    "counterBooks": "kitaplar",
+    "counterAge": "yaş",
+    "counterAgeFormal": "yaş — resmî",
+    "howOld": "Kaç yaşındasın?",
+    "ageHonorific": "yaş — saygı sözcüğü, yaşça büyük biri için",
+    "counterHour": "saat",
+    "half": "buçuk",
+    "whatTime": "Saat kaç?",
+    "tenOclock": "saat on",
+    "counterMinute": "dakika",
+    "counterSecond": "saniye",
+    "mixedTime": "bir saat ifadesi, iki sistem birden",
+    "quarterPast": "ikiyi çeyrek geçe",
+    "counterYear": "yıl",
+    "counterMonth": "ay",
+    "counterDay": "ayın günü",
+    "june": "haziran — kuralsız",
+    "october": "ekim — kuralsız",
+    "whatDay": "Bugün günlerden ne?",
+    "monday": "pazartesi",
+    "friday": "cuma",
+    "weekend": "hafta sonu",
+    "counterWon": "won",
+    "howMuch": "Ne kadar?",
+    "phonePrefix": "bir telefon ön eki, rakam rakam",
+    "phoneDash": "tirenin yazıldığı yerde söylenir",
+    "counterFloor": "bir binanın katı",
+    "counterRoom": "oda numarası",
+    "counterNumber": "numara — otobüsler, hatlar",
+    "groupsOfFour": "Korece rakamları dörtlü gruplar",
+    "percent": "yüzde",
+    "decimalPoint": "ondalık noktası",
+    "pitfallCountingForm": "Yalın sayıyı değil, sayma biçimini kullan",
+    "pitfallSimnyuk": "Yazılışı 십육, söylenişi 심뉵",
+    "pitfallJune": "Haziran 유월'dür, asla 육월 değil",
+    "pitfallHourMinute": "Öz Korece saat, Çin kökenli dakika",
+    "pitfallSpacing": "Sayma sözcüğü ayrı bir sözcüktür"
+  },
+  "example": {
+    "zeroMath": "eksi üç derece",
+    "zeroDigit": "010",
+    "belowZeroFive": "eksi beş derece",
+    "zeroScore": "Sıfır aldım.",
+    "ctxPeople": "insanlar öz Korece sayıyla sayılır",
+    "ctxMoney": "para Çin kökenli sayı alır",
+    "ctxHour": "saatler öz Korece sayı alır",
+    "ctxMinute": "dakikalar Çin kökenli sayı alır",
+    "ctxAge": "yaş öz Korece sayı alır",
+    "ctxDate": "tarihler Çin kökenli sayı alır",
+    "twentyFive": "Yirmi beş yaşındayım.",
+    "ageHonorific": "bir büyüğe yaşını sormak",
+    "halfPastTwo": "iki buçuk",
+    "threeOclock": "Saat üç.",
+    "halfPastThree": "Saat üç buçuk.",
+    "quarterPastTwo": "ikiyi çeyrek geçe",
+    "juneSixth": "altı haziran",
+    "octoberTenth": "on ekim",
+    "monday": "Bugün pazartesi.",
+    "weekend": "Hafta sonu görüşürüz.",
+    "fifteenThousand": "On beş bin won.",
+    "phoneNumber": "010-1234-5678",
+    "room502": "502 numaralı oda",
+    "bus206": "206 numaralı otobüs",
+    "grouping": "123.450.000 — 1억 2345만 diye okunur",
+    "threePointFive": "3,5",
+    "pitfallCountingForm": "두 살 doğru; 둘 살 değil",
+    "pitfallSimnyuk": "yazılışı 십육, okunuşu 심뉵",
+    "pitfallJune": "유월 doğru; 육월 değil",
+    "pitfallHourMinute": "세 시 삼십 분 doğru; 삼 시 서른 분 değil",
+    "pitfallSpacing": "한 개 doğru; 한개 değil"
+  }
+}

@@ -51,5 +51,6 @@
     "body": "Egy rövid szintfelmérő alapján a szókincséhez illő szavakat ajánlunk. Ha kihagyja, az 1. szinten kezd.",
     "take": "Szintfelmérő kitöltése",
     "start": "Kezdés az 1. szinten"
-  }
+  },
+  "answerRecorded": "A(z) {{current}}. válasz rögzítve. Következő kérdés."
 }

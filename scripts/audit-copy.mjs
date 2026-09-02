@@ -258,6 +258,14 @@ const FORBIDDEN = [
     pattern:
       /(?<![\p{L}\p{N}_])(Headline|headline|undefined|null|NaN|payload|scoreId|itemKey|senseId|localeCode|i18nKey|titlePlaceholder|feedbackHeadline)(?![\p{L}\p{N}_])/u,
     why: 'a word from inside the program reached a learner-facing string',
+    /*
+     * German writes the number zero as *null* — "unter null", "null Punkte" —
+     * and the Numbers course says it in seven strings. That is the language,
+     * not a leak, so for German the lower-case word is removed before the
+     * pattern runs. The capitalised programmer's `Null`, and every other word
+     * on the list, are still caught.
+     */
+    allow: { de: /(?<![\p{L}\p{N}_])null(?![\p{L}\p{N}_])/gu },
   },
   {
     id: 'answer-restated',
@@ -381,7 +389,10 @@ function walk(value, path, locale, namespace) {
       // Some rules are about one language's grammar or terminology and would be
       // nonsense applied to the other thirty-one.
       if (rule.locales && !rule.locales.includes(locale)) continue;
-      if (rule.pattern.test(value)) {
+      // A word that is internal in English and ordinary in one language — see
+      // `allow` on the implementation-word rule — is removed before the test.
+      const tested = rule.allow?.[locale] ? value.replace(rule.allow[locale], '') : value;
+      if (rule.pattern.test(tested)) {
         findings.errors.push({ locale, key, rule, value });
       }
     }

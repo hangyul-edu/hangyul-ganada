@@ -64,7 +64,7 @@ writeFileSync(
   join(OUT, 'README.md'),
   `# Hangyul ganada — the applications
 
-Built from commit \`${info.commit}\` at ${info.built_at}.
+Built from commit \`${info.commit}\` at ${info.built_at}.${info.source_state?.dirty ? ` **The working tree was not clean**: ${info.source_state.changed_files} changed and ${info.source_state.untracked_files} untracked files over that commit, source fingerprint \`${info.source_state.fingerprint}\`. \`release:current\` is pending until this tree is committed.` : ''}
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in \`result/\`.
 

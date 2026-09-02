@@ -174,7 +174,9 @@
       "inSentence": "Si usa così: {{sentence}}"
     },
     "buildTray": "Sillabe",
-    "buildRemove": "Rimetti a posto {{syllable}}"
+    "buildRemove": "Rimetti a posto {{syllable}}",
+    "markCorrect": "Risposta corretta",
+    "markWrong": "La tua risposta, errata"
   },
   "sounds": {
     "title": "Quando i suoni si incontrano",

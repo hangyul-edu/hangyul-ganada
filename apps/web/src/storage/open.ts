@@ -124,6 +124,8 @@ function keyOf(store: StoreName, row: Record<string, unknown>): string {
       return memoryKey(row.kind as ItemProgress['kind'], String(row.item_key));
     case 'mistakes':
       return String(row.id);
+    case 'numbers':
+      return `lesson:${String(row.lesson_id)}`;
     case 'sessions':
     case 'attempts':
       return String(row.id);

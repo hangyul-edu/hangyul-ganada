@@ -42,7 +42,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 12;
+export const SCHEMA_VERSION = 13;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -547,7 +547,7 @@ function normaliseForMigration(candidate: unknown): ItemProgress | null {
   if (!candidate || typeof candidate !== 'object') return null;
   const row = candidate as Partial<ItemProgress>;
   if (typeof row.item_key !== 'string' || !row.item_key) return null;
-  const kind: ItemProgress['kind'] = row.kind === 'word' ? 'word' : 'character';
+  const kind: ItemProgress['kind'] = row.kind === 'word' || row.kind === 'number' ? row.kind : 'character';
   return {
     ...blankProgress(kind, row.item_key, row.first_seen_at ?? new Date().toISOString()),
     ...row,
@@ -803,6 +803,87 @@ const placementDecision: Migration = {
   },
 };
 
+
+/**
+ * v12 → v13: the Numbers namespace, cleaned.
+ *
+ * ## What the first Numbers build left behind
+ *
+ * It recorded Numbers items as `ItemProgress` rows with `kind: 'number'` and an
+ * `item_key` that already carried the `number:` prefix, so the rows sat under
+ * `number:number:<id>`; hydration then read their kind as `character`. It wrote
+ * matching `memory` rows and could write `mistakes`. None of that is the
+ * Numbers progress model — that is the `numbers` store, introduced with
+ * structure version 3 — and all of it contaminates the letter counters.
+ *
+ * ## Whether any of it is legitimate learning evidence
+ *
+ * No. The Numbers curriculum first appears in the working tree for v1.0.2 and
+ * has never been in a shipped build: the committed release artefact is 1.0.0,
+ * built from `86d0babd`, which predates `data/numbers.ts`. So no device in the
+ * field can hold Numbers rows, and on a developer's device the rows are from a
+ * build whose completion criterion was one correct four-option tap. There is no
+ * evidence in them worth carrying forward, and carrying them into the new model
+ * would mean inventing activity records they never had.
+ *
+ * ## What this does, exactly
+ *
+ * 1. Every `progress`, `memory` and `mistakes` row whose kind is `number`, or
+ *    whose key or item key begins `number:` or `character:number:`, is removed.
+ * 2. Before removal, the rows are written whole into `meta` under
+ *    `numbers_v13_snapshot`, with a count and a timestamp, so the cleanup is
+ *    recoverable and inspectable rather than silent.
+ * 3. Letter and word rows are not read, written or touched.
+ * 4. The `numbers` store is not written: the new model starts empty, which is
+ *    the honest state — nothing has been completed under it.
+ *
+ * Running it twice finds nothing the second time and writes nothing, which is
+ * what makes an interrupted first run safe to retry.
+ */
+const numbersNamespaceCleanup: Migration = {
+  to: 13,
+  describe: 'Move Numbers out of the letter stores; snapshot and remove the contaminated rows',
+  async run({ driver, now }) {
+    const isNumbersRow = (row: Record<string, unknown> | null | undefined, key: string): boolean => {
+      if (key.startsWith('number:') || key.startsWith('character:number:')) return true;
+      if (!row) return false;
+      if (row.kind === 'number') return true;
+      const itemKey = typeof row.item_key === 'string' ? row.item_key : typeof row.itemKey === 'string' ? row.itemKey : '';
+      return itemKey.startsWith('number:') || itemKey.startsWith('num-');
+    };
+
+    const removed: Record<string, Array<{ key: string; row: unknown }>> = {};
+    for (const store of ['progress', 'memory', 'mistakes'] as const) {
+      const rows = await driver.getAll<Record<string, unknown>>(store);
+      for (const row of rows) {
+        const key =
+          store === 'mistakes'
+            ? String(row.id ?? '')
+            : `${String(row.kind ?? 'character')}:${String(row.item_key ?? '')}`;
+        if (!isNumbersRow(row, key)) continue;
+        (removed[store] ??= []).push({ key, row });
+      }
+    }
+
+    const total = Object.values(removed).reduce((n, list) => n + list.length, 0);
+    if (total === 0) return;
+
+    await driver.put('meta', 'numbers_v13_snapshot', {
+      taken_at: now().toISOString(),
+      removed: total,
+      stores: Object.fromEntries(Object.entries(removed).map(([k, v]) => [k, v.length])),
+      rows: removed,
+    });
+
+    for (const [store, list] of Object.entries(removed) as Array<[
+      'progress' | 'memory' | 'mistakes',
+      Array<{ key: string; row: unknown }>,
+    ]>) {
+      for (const { key } of list) await driver.remove(store, key);
+    }
+  },
+};
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
@@ -814,6 +895,7 @@ export const MIGRATIONS: Migration[] = [
   levelTestResult,
   learnerContentSeed,
   placementDecision,
+  numbersNamespaceCleanup,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

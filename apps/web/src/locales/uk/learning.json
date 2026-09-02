@@ -176,7 +176,9 @@
       "inSentence": "Уживається так: {{sentence}}"
     },
     "buildTray": "Склади",
-    "buildRemove": "Повернути {{syllable}}"
+    "buildRemove": "Повернути {{syllable}}",
+    "markCorrect": "Правильна відповідь",
+    "markWrong": "Ваша відповідь, неправильна"
   },
   "sounds": {
     "title": "Коли звуки зустрічаються",

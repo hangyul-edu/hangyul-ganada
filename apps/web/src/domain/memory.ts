@@ -91,6 +91,26 @@ export const WORD_SKILLS = [
  */
 export const DEPRECATED_SKILLS = ['listening_recognition'] as const;
 
+/**
+ * What the Numbers curriculum measures.
+ *
+ * A number is recognised in two directions and written in neither: the
+ * curriculum teaches a learner to *read* 스무 and to *produce* it when they
+ * mean twenty, and it never asks them to draw it — the strokes are the
+ * alphabet's job and 스무 is three syllables they can already write by the time
+ * they meet it.
+ *
+ * Deliberately not `WORD_SKILLS`. A number is not in the vocabulary corpus, so
+ * `sentence_comprehension` has no sentence to comprehend, and scheduling it
+ * would owe every number a question nothing can build.
+ */
+export const NUMBER_SKILLS = [
+  /** The Korean shown, the value or meaning chosen. */
+  'meaning_recognition',
+  /** The meaning shown, the Korean chosen. */
+  'reading_recognition',
+] as const;
+
 export const CHARACTER_SKILLS = [
   /** Sound played, letter chosen. */
   'sound_recognition',
@@ -107,7 +127,9 @@ export type Skill =
   | (typeof DEPRECATED_SKILLS)[number];
 
 export function skillsFor(kind: ItemProgress['kind']): readonly Skill[] {
-  return kind === 'word' ? WORD_SKILLS : CHARACTER_SKILLS;
+  if (kind === 'word') return WORD_SKILLS;
+  if (kind === 'number') return NUMBER_SKILLS;
+  return CHARACTER_SKILLS;
 }
 
 // --- The model ----------------------------------------------------------------

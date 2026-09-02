@@ -51,5 +51,6 @@
     "body": "Un test scurt ne ajută să-ți sugerăm cuvinte la nivelul tău de vocabular. Dacă îl sari, începi de la nivelul 1.",
     "take": "Fă testul de nivel",
     "start": "Începe de la nivelul 1"
-  }
+  },
+  "answerRecorded": "Răspunsul {{current}} a fost înregistrat. Următoarea întrebare."
 }

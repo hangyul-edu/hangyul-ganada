@@ -185,7 +185,44 @@ export const BLOT_REACH_MULTIPLIER = 1;
  * 0.75 is about 3.8 px, which still leaves a core on a pen-width stroke. That
  * is the constraint; the corpus picked the value inside it.
  */
-export const GAP_EROSION_RATIO = 0.75;
+/**
+ * ## Recalibrated when the reference became the canonical geometry
+ *
+ * This constant was measured while the guide and the grading mask were *set in
+ * the practice typeface*. Its whole job was to forgive the rim a too-wide font
+ * stroke leaves along a correctly traced one: a font stem can be half again the
+ * learner's fixed 0.062 pen, and the uncovered rim is connected and letter-long,
+ * so the structural-gap term read it as one enormous missing piece.
+ *
+ * Since `usesCanonicalGeometry` the reference is a constant-width pen of about
+ * 0.065 of the box — near enough the learner's own that the rim it was written
+ * for barely exists. What is left is the cost nobody had to weigh before: an
+ * erosion wide enough to eat a rim is also wide enough to eat a *missing thin
+ * stroke*, and at the inherited 0.75 it did. A 사 written with no right leg to
+ * its ㅅ — 14.6% of the glyph's ink, gone — passed.
+ *
+ * Swept against both signals at once, because either one alone picks a wrong
+ * answer:
+ *
+ * ```
+ * erosion   FRR     FAR    real-glyphs structural suite
+ * 0.45     6.08%   0.00%   14/14
+ * 0.60     2.43%   0.00%   14/14
+ * 0.65     1.84%   0.00%   14/14
+ * 0.68     0.94%   0.00%   14/14   <- chosen
+ * 0.71     0.94%   0.00%   13/14   accepts 사 with no right leg
+ * 0.75     0.94%   0.00%   13/14   the inherited value
+ * ```
+ *
+ * 0.68 is the last value that still fails a missing stroke. Against the
+ * configuration this replaced — 0.28% FRR, 0.276% FAR, measured against font
+ * references — false *acceptance* is now zero and false rejection is higher.
+ * That is a deliberate trade and not a free win: the rejections are
+ * concentrated in the "stopped short" and "written small" fixtures, where a
+ * uniform pen with butt caps has none of the slack a font's tapered terminals
+ * gave. Reducing it is live work; see `docs/HANDWRITING_EVALUATION.md`.
+ */
+export const GAP_EROSION_RATIO = 0.68;
 
 /** Edge length of the masks the comparison runs on. */
 export const COMPARISON_RESOLUTION = 128;

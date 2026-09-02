@@ -188,6 +188,49 @@ def slug(gloss: str) -> str:
 SHORT_GLOSS_MAX = 60
 
 
+def _first_clause(gloss: str) -> str:
+    """Up to the first clause break that is not inside a bracket.
+
+    A plain ``re.split(r"[;,]", …)`` cuts at the comma inside
+    "human body (generally, the trunk)" and returns "human body (generally",
+    which reaches a learner as an unclosed bracket. Ninety-nine glosses in the
+    shipped level-test bank read that way. A comma inside a parenthetical is
+    not a clause boundary, so depth is tracked and only a top-level break ends
+    the clause.
+    """
+    depth = 0
+    for index, char in enumerate(gloss):
+        if char in "([":
+            depth += 1
+        elif char in ")]":
+            depth = max(0, depth - 1)
+        elif char in ";," and depth == 0:
+            return gloss[:index]
+    return gloss
+
+
+def _close_or_drop(text: str) -> str:
+    """Removes a bracket the cut left open.
+
+    Belt and braces for the length cut below, which can land inside a
+    parenthetical that ``_first_clause`` was right to keep. A dangling
+    "(generally" teaches nothing and looks like a rendering fault; dropping the
+    parenthetical loses a qualifier and still reads as English.
+    """
+    depth = 0
+    opened_at = None
+    for index, char in enumerate(text):
+        if char in "([":
+            if depth == 0:
+                opened_at = index
+            depth += 1
+        elif char in ")]":
+            depth = max(0, depth - 1)
+    if depth > 0 and opened_at is not None:
+        text = text[:opened_at]
+    return text.rstrip(" ,;:-")
+
+
 def short_gloss(gloss: str) -> str:
     """The first clause of a definition, for a search result row.
 
@@ -200,15 +243,20 @@ def short_gloss(gloss: str) -> str:
     which is a paragraph in a row built for a phrase. So there is also a length,
     cut at a word boundary — mid-word truncation reads as a rendering fault
     rather than as a deliberate abbreviation.
+
+    And the split itself has to respect brackets: see ``_first_clause``. Cutting
+    at the comma in "human body (generally, the trunk)" put ninety-nine
+    unclosed brackets into the level-test bank, where they were read by
+    learners as answer options.
     """
-    first = re.split(r"[;,]", gloss)[0].strip() or gloss.strip()
+    first = _close_or_drop(_first_clause(gloss).strip()) or gloss.strip()
     if len(first) <= SHORT_GLOSS_MAX:
         return first
     cut = first[:SHORT_GLOSS_MAX].rstrip()
     space = cut.rfind(" ")
     if space > SHORT_GLOSS_MAX // 2:
         cut = cut[:space]
-    return cut.rstrip(" ,;:-") + "…"
+    return _close_or_drop(cut) + "…"
 
 
 def initial_of(word: str) -> str:

@@ -86,7 +86,9 @@
       "inSentence": "Se usa así: {{sentence}}"
     },
     "buildTray": "Sílabas",
-    "buildRemove": "Quitar {{syllable}}"
+    "buildRemove": "Quitar {{syllable}}",
+    "markCorrect": "Respuesta correcta",
+    "markWrong": "Tu respuesta, incorrecta"
   },
   "units": {
     "badge": "Unidad {{index, number}}",

@@ -51,5 +51,6 @@
     "body": "Một bài kiểm tra ngắn giúp chúng tôi gợi ý từ đúng trình độ của bạn. Bỏ qua thì bạn bắt đầu từ cấp 1.",
     "take": "Làm bài kiểm tra",
     "start": "Bắt đầu từ cấp 1"
-  }
+  },
+  "answerRecorded": "Đã ghi lại câu trả lời {{current}}. Câu hỏi tiếp theo."
 }

@@ -39,6 +39,7 @@ const { vocabularyByPriority } = await import('../apps/web/src/data/vocabulary.t
 const { buildDailyPlan } = await import('../apps/web/src/domain/vocabularyDay.ts');
 const { wordLevel, levelRange } = await import('../apps/web/src/domain/vocabularyLevel.ts');
 const { memoryKey, skillsFor } = await import('../apps/web/src/domain/memory.ts');
+const { dayOrdinal } = await import('../apps/web/src/domain/progress.ts');
 
 const CHECK = process.argv.includes('--check');
 const DAYS = 100;
@@ -69,7 +70,19 @@ function study({ level, seed, days }) {
       now,
       level,
       seed,
-      dayIndex: day,
+      /*
+        The app's own day source, not the loop counter.
+
+        This read `day` — a perfect increment — and that is why it could not
+        see the defect it was written for. The app used to derive `dayIndex`
+        from `settings.active_days.length`, the count of days the learner had
+        *practised* on, which does not move for somebody who opens Today's
+        Vocabulary and finishes nothing; they were shown the same ten words
+        every morning while this file reported the days as different. A gate
+        that feeds itself an ideal input is testing the selector, not the
+        product. See `dayOrdinal` and `daily-plan-freshness-qa.mjs`.
+      */
+      dayIndex: dayOrdinal(now),
       /*
        * Deliberately empty.
        *

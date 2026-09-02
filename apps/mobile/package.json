@@ -1,6 +1,6 @@
 {
   "name": "@hangyul-ganada/mobile",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": true,
   "description": "Native Android and iOS shells for Hangyul ganada.",
   "scripts": {

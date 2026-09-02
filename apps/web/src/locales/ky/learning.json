@@ -172,7 +172,9 @@
       "inSentence": "Мындайча колдонулат: {{sentence}}"
     },
     "buildTray": "Муундар",
-    "buildRemove": "{{syllable}} муунун кайра алуу"
+    "buildRemove": "{{syllable}} муунун кайра алуу",
+    "markCorrect": "Туура жооп",
+    "markWrong": "Сиздин жообуңуз, туура эмес"
   },
   "sounds": {
     "title": "Үндөр жолукканда",

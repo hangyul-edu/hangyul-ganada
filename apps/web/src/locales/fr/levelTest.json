@@ -51,5 +51,6 @@
     "body": "Un court test nous permet de proposer des mots adaptés à votre vocabulaire. Sans test, vous commencez au niveau 1.",
     "take": "Faire le test",
     "start": "Commencer au niveau 1"
-  }
+  },
+  "answerRecorded": "Réponse {{current}} enregistrée. Question suivante."
 }

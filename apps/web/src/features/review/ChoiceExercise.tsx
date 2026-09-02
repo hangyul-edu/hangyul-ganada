@@ -5,6 +5,7 @@ import { useEntryAudio } from '../../audio/useEntryAudio';
 import { getCharacter, getCharacterByGlyph } from '../../data/characters';
 import { getWord } from '../../data/vocabulary';
 import { Button } from '../../ui/Button';
+import { CheckIcon, CloseIcon } from '../../ui/icons';
 import { FeedbackState } from '../../ui/FeedbackState';
 import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
@@ -320,6 +321,24 @@ export function ChoiceExercise({
                 : isPicked
                   ? styles.wrong
                   : styles.dimmed;
+          /*
+            A mark, not only a wash.
+
+            The graded state used to be carried entirely by `border-color` and
+            `background`: green-ish for the answer, red-ish for a wrong pick.
+            That is one channel, and it is the channel a red-green colour-blind
+            learner does not have — the two tints are 8% washes of `positive`
+            and `negative`, which differ in hue and barely in lightness, so on
+            a deuteranopic display they are the same pale rectangle. A learner
+            who chose wrong could not tell which row was the answer.
+
+            So the state is said three ways: the wash, a glyph, and a word for
+            anyone listening. `hg-sr-only` keeps the word out of the layout
+            without keeping it from a screen reader, which would otherwise
+            announce four identically-named buttons after an answer.
+          */
+          const mark =
+            picked === null ? null : isAnswer ? 'correct' : isPicked ? 'incorrect' : null;
           return (
             <button
               key={option.id}
@@ -332,6 +351,19 @@ export function ChoiceExercise({
               disabled={picked !== null}
               lang={option.korean ? 'ko' : undefined}
             >
+              {mark && (
+                <span
+                  className={mark === 'correct' ? styles.markRight : styles.markWrong}
+                  aria-hidden="true"
+                >
+                  {mark === 'correct' ? <CheckIcon size={16} /> : <CloseIcon size={16} />}
+                </span>
+              )}
+              {mark && (
+                <span className="hg-sr-only">
+                  {t(mark === 'correct' ? 'learning:review.markCorrect' : 'learning:review.markWrong')}
+                </span>
+              )}
               {option.korean && (
                 <span className={styles.optionKorean} style={{ fontFamily }} dir="ltr">
                   {option.korean}

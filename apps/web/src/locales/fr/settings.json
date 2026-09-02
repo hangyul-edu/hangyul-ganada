@@ -21,8 +21,8 @@
     "meaningsBody": "Les sens et les traductions d’exemples s’affichent en {{language}}. Vous pouvez choisir une autre langue."
   },
   "font": {
-    "title": "Police d’entraînement",
-    "description": "La lettre que vous repassez est dessinée dans la police choisie."
+    "title": "Police coréenne",
+    "description": "S’applique au coréen que vous lisez dans l’application. La lettre que vous repassez est toujours dessinée de la même façon."
   },
   "dailyTarget": {
     "title": "Lettres par jour",

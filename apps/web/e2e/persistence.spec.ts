@@ -181,7 +181,7 @@ test.describe('what the learner did', () => {
     // `normaliseProgress` fills the rest in on the way back out, which is the
     // path a real stored row from an older release takes too.
     await page.evaluate(async () => {
-      const request = indexedDB.open('hangyul-ganada', 2);
+      const request = indexedDB.open('hangyul-ganada');
       const db: IDBDatabase = await new Promise((resolve, reject) => {
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
@@ -297,7 +297,7 @@ test.describe('the reported regression, end to end', () => {
     // in, which is the path a row written by an older release takes.
     const seeded = await page.evaluate(async () => {
       const db: IDBDatabase = await new Promise((resolve, reject) => {
-        const request = indexedDB.open('hangyul-ganada', 2);
+        const request = indexedDB.open('hangyul-ganada');
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
       });

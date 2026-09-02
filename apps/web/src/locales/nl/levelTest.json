@@ -51,5 +51,6 @@
     "body": "Met een korte niveautest kunnen we woorden op jouw niveau voorstellen. Sla je hem over, dan begin je op niveau 1.",
     "take": "Niveautest doen",
     "start": "Beginnen op niveau 1"
-  }
+  },
+  "answerRecorded": "Antwoord {{current}} opgeslagen. Volgende vraag."
 }

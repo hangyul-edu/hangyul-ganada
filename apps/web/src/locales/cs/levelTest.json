@@ -51,5 +51,6 @@
     "body": "Krátký test nám umožní doporučit slova na vaší úrovni. Když ho přeskočíte, začnete na úrovni 1.",
     "take": "Udělat test",
     "start": "Začít na úrovni 1"
-  }
+  },
+  "answerRecorded": "Odpověď {{current}} uložena. Další otázka."
 }

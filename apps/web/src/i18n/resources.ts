@@ -36,6 +36,7 @@ export const NAMESPACES = [
   'activity',
   'settings',
   'levelTest',
+  'numbers',
   'errors',
 ] as const;
 
@@ -66,6 +67,7 @@ import vocabularyEn from '../locales/en/vocabulary.json';
 import activityEn from '../locales/en/activity.json';
 import settingsEn from '../locales/en/settings.json';
 import levelTestEn from '../locales/en/levelTest.json';
+import numbersEn from '../locales/en/numbers.json';
 import errorsEn from '../locales/en/errors.json';
 
 /*
@@ -90,6 +92,7 @@ const ENGLISH: Record<Namespace, Bundle> = {
   activity: activityEn,
   settings: settingsEn,
   levelTest: levelTestEn,
+  numbers: numbersEn,
   errors: errorsEn,
 };
 

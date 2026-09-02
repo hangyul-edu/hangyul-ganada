@@ -176,7 +176,9 @@
       "inSentence": "Используется так: {{sentence}}"
     },
     "buildTray": "Слоги",
-    "buildRemove": "Вернуть {{syllable}}"
+    "buildRemove": "Вернуть {{syllable}}",
+    "markCorrect": "Правильный ответ",
+    "markWrong": "Ваш ответ, неверный"
   },
   "sounds": {
     "title": "Когда звуки встречаются",

@@ -21,8 +21,8 @@
     "meaningsBody": "Nghĩa và bản dịch ví dụ hiển thị bằng {{language}}. Bạn có thể chọn ngôn ngữ khác."
   },
   "font": {
-    "title": "Kiểu chữ để tập viết",
-    "description": "Chữ bạn tô sẽ được vẽ theo kiểu chữ bạn chọn."
+    "title": "Phông chữ tiếng Hàn",
+    "description": "Áp dụng cho tiếng Hàn bạn đọc trong ứng dụng. Chữ cái bạn tô luôn được vẽ theo cùng một cách."
   },
   "dailyTarget": {
     "title": "Số chữ mỗi ngày",

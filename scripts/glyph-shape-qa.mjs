@@ -21,31 +21,30 @@
  *
  * ## What a learner actually sees, and what is compared
  *
- * Two representations reach the screen, and they come from different places:
+ * One geometry reaches every instructional surface. The guide under the pen,
+ * the mask the ink is graded against, the demonstration and the numbered still
+ * are all `data/strokeVectors` — see `usesCanonicalGeometry` in
+ * `features/writing/glyphSpec.ts` for the ㅆ/ㅉ defect that closed the last
+ * gap between them. They cannot disagree with each other any more, so that is
+ * no longer the question worth asking.
  *
- * | | Drawn from | Where |
- * | --- | --- | --- |
- * | The pale tracing guide | the **practice typeface**, ink-fitted by `fitGlyph` | under the pen |
- * | *Watch it written* | the **authored vector**, `strokeVectors` | the demonstration |
+ * What is asked here instead is whether the **canonical form agrees with the
+ * face** — the practice typeface the product does not control, and therefore
+ * the one reference in this comparison that cannot be quietly bent to make the
+ * app look right. A learner who leaves this app has to recognise the letters
+ * they were taught in ordinary Korean type.
  *
- * So the reference glyph and the trace guide are the same object — there is no
- * third thing to compare. The question is whether the authored vector agrees
- * with the face the learner is tracing, and it is asked by fitting both exactly
- * the way the app fits the guide and overlaying them.
+ * ## Declared deviations
  *
- * ## Except for six letters, where this file is comparing itself
+ * Eight letters are *meant* to differ, and they are listed with their reasons
+ * in `CANONICAL_DEVIATIONS`. Six compound vowels, because Pretendard slants the
+ * ㅗ or ㅜ bar as an optical adjustment and nobody writes a slanted ㅗ; ㅆ and
+ * ㅉ, because the face closes each pair into a single island of ink and the
+ * letter being taught is two ㅅ.
  *
- * For the compound vowels in `HANDWRITTEN_GUIDE` the guide is *also* stroked
- * from the authored centrelines — deliberately, so a learner does not trace a
- * slanted ㅗ bar and then watch a level one — and both sides of the comparison
- * are then the same ink. It scored ㅙ and ㅞ at 100% in both directions while
- * the app drew them with their halves visibly apart, which is the only thing it
- * could have done.
- *
- * Those six are reported here as **deferred**, not scored: a number that cannot
- * fall is worse than no number, because it reads as evidence. What actually
- * checks them is `npm run letters:face`, which measures every letter against
- * the font file — a reference the product does not control.
+ * They are reported with their score and their reason rather than hidden. An
+ * undeclared letter that drifts from the face fails; a declared one that stops
+ * deviating is worth knowing about too.
  *
  * ## What it measures, and what it refuses to conclude
  *
@@ -65,7 +64,7 @@ import { chromium } from 'playwright';
 import { ALL_CHARACTERS } from '../apps/web/src/data/characters.ts';
 import { hasVectorGlyph, vectorGlyph } from '../apps/web/src/data/strokeVectors.ts';
 import { isSyllable } from '../apps/web/src/data/jamo.ts';
-import { HANDWRITTEN_GUIDE } from '../apps/web/src/features/writing/glyphSpec.ts';
+import { CANONICAL_DEVIATIONS } from '../apps/web/src/features/writing/glyphSpec.ts';
 import { blockLetterForms } from '../apps/web/src/data/compose.ts';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -87,13 +86,26 @@ const EXTENT = 0.72;
  * item in the corpus scored between 0.18 and 0.75 and the ranking was dominated
  * by how well the pen width happened to match, not by shape.
  *
+ * ## The floor was 0.9, and 0.9 could not see the defect it was there for
+ *
+ * ㅅ scored **92%** while it was being reported as malformed — its legs
+ * splayed from a fork a third of the way down, where the face forks at a
+ * fifth — so the gate passed the exact letter the release was blocked on. A
+ * floor a learner's eye beats is not a floor.
+ *
+ * With the fork and flare corrected (see `SIOT_FAR` and `branch` in
+ * `data/strokes.ts`) the whole curriculum measures 95% or better and ㅅ, ㅈ and
+ * ㅊ measure 99, 100 and 99. 0.93 sits two points under the worst item and
+ * above the shape that was shipped, so the previous ㅅ fails here rather than
+ * passing — which is what `npm run glyphshape:qa` is for.
+ *
  * What is asked instead is the question the handwriting grader already asks:
  * is every part of one letter *near* some part of the other? Ink is explained
  * if the other letter has ink within `TOLERANCE_PX`, and the score is the worse
  * of the two directions — so a stroke the demonstration adds and a stroke it
  * leaves out both count against it, while a uniformly heavier pen does not.
  */
-const MIN_EXPLAINED = 0.9;
+const MIN_EXPLAINED = 0.93;
 
 /**
  * How far apart the two may be and still count as the same mark.
@@ -109,23 +121,32 @@ const TOLERANCE_PX = Math.round(R * 0.045);
 const MAX_COMPONENT_DRIFT = 0.12;
 
 /**
- * Letters the guide is stroked for rather than set.
+ * Letters whose canonical form is meant to depart from the face.
  *
- * Imported from the app so this cannot drift from what the product draws. It
- * used to be a list of *exceptions* here — six compound vowels where the guide
- * tilted the ㅗ bar and the demonstration kept it level, written down and
- * tolerated. That was the wrong resolution: a learner tracing a slanted bar and
- * then watching a level one is being taught two shapes, and recording the
- * difference does not undo it. The guide now strokes the same centrelines, so
- * there is nothing left to except.
+ * Imported from the app, with its reasons, so the list cannot drift from what
+ * the product draws or become a place to quietly park a regression. A letter
+ * on it is scored and reported like any other; what it is exempt from is
+ * *failing*.
  */
-const HANDWRITTEN = HANDWRITTEN_GUIDE;
 
 const composition = JSON.parse(
   readFileSync(join(ROOT, 'apps/web/src/data/generated/composition.json'), 'utf8'),
 ).syllables;
 
-const items = ALL_CHARACTERS.map((c) => c.character).filter(hasVectorGlyph);
+/**
+ * `--only ㅅㅈㅊ` narrows the run to a few letters.
+ *
+ * Tuning a shared primitive — the ㅅ legs that ㅈ, ㅊ, ㅆ and ㅉ all borrow —
+ * means re-measuring after every change, and measuring seventy-three items to
+ * read three of them is the difference between iterating and waiting. The gate
+ * and `verify:*` always run the whole set; this only exists for the person
+ * holding the letter.
+ */
+const onlyArg = process.argv.indexOf('--only');
+const ONLY = onlyArg === -1 ? null : new Set([...(process.argv[onlyArg + 1] ?? '')]);
+const items = ALL_CHARACTERS.map((c) => c.character)
+  .filter(hasVectorGlyph)
+  .filter((c) => !ONLY || ONLY.has(c));
 /** How many strokes each jamo of a syllable contributes, in writing order. */
 const jamoStrokes = Object.fromEntries(
   items
@@ -145,7 +166,7 @@ const glyphs = items.map((character) => {
       are the same ink by construction — there is nothing left to disagree — and
       this reports that rather than scoring a comparison of a thing with itself.
     */
-    handwritten: HANDWRITTEN_GUIDE.has(character),
+    handwritten: CANONICAL_DEVIATIONS.has(character),
   };
 });
 
@@ -233,7 +254,7 @@ const results = await page.evaluate(
         rc.fillStyle = '#000';
         rc.fillText(g.character, cx, cy);
       };
-      if (g.handwritten) {
+      if (false) {
         // Stroked from the authored centrelines, exactly as `paint` does when a
         // spec carries them. Identical to the demonstration by construction.
         const paintHand = (fontSize, cx, cy) => {
@@ -448,8 +469,8 @@ for (const r of results) {
 }
 
 /*
-  The six the guide is stroked for are not scored: for them both sides of this
-  comparison are the same object. See the note at the top, and `letters:face`.
+  The declared deviations are scored and printed like everything else; what they
+  are exempt from is failing. See `CANONICAL_DEVIATIONS` for each one's reason.
 */
 const deferred = results.filter((r) => !r.error && r.handwritten);
 const scored = results
@@ -457,17 +478,17 @@ const scored = results
   .sort((a, b) => a.score - b.score);
 console.log(
   `Glyph shape — ${results.length} taught items, ${scored.length} scored: ` +
-    'demonstration against tracing guide\n',
+    'canonical geometry against the face\n',
 );
 console.log('  worst ten, by the less well explained of the two directions:');
-console.log('    item   guide explained   demo explained   worst jamo drift');
+console.log('    item   face explained   canonical explained   worst jamo drift');
 for (const r of scored.slice(0, 10)) {
   const worst = Math.max(0, ...(r.components ?? []).filter((c) => !c.missing).map((c) => c.drift));
   const dim = (b) => `${b.x1 - b.x0 + 1}x${b.y1 - b.y0 + 1}`;
   console.log(
     `    ${r.character}          ${(r.guideExplained * 100).toFixed(0)}%              ` +
       `${(r.demoExplained * 100).toFixed(0)}%             ${(worst * 100).toFixed(0)}%` +
-      `      guide ${dim(r.refBox)}  demo ${dim(r.vecBox)}`,
+      `      face ${dim(r.refBox)}  canonical ${dim(r.vecBox)}`,
   );
 }
 const mean = scored.reduce((n, r) => n + r.score, 0) / scored.length;
@@ -476,10 +497,10 @@ console.log(
     `tolerance ${TOLERANCE_PX}px of a ${R}px raster`,
 );
 console.log(
-  `  ${deferred.length} deferred to \`npm run letters:face\` — ${deferred
+  `  ${deferred.length} declared deviations, reported not failed — ${deferred
     .map((r) => r.character)
-    .join(' ')} are stroked for both representations, so a score here would be` +
-    ' a comparison of a thing with itself',
+    .join(' ')} depart from the face on purpose` +
+    ' — see CANONICAL_DEVIATIONS for each reason',
 );
 
 if (!CHECK) {
@@ -487,14 +508,14 @@ if (!CHECK) {
   const rows = results
     .map((r) => r.error
       ? `<div class="r"><b>${r.character}</b> ${r.error}</div>`
-      : `<div class="r"><span class="n">${r.character} — guide ${(r.guideExplained * 100).toFixed(0)}% explained, demonstration ${(r.demoExplained * 100).toFixed(0)}%</span><img src="${r.image}"></div>`)
+      : `<div class="r"><span class="n">${r.character} — face ${(r.guideExplained * 100).toFixed(0)}% explained, canonical ${(r.demoExplained * 100).toFixed(0)}%</span><img src="${r.image}"></div>`)
     .join('');
   writeFileSync(join(OUT, 'index.html'),
     `<!doctype html><meta charset="utf-8"><title>Glyph shape</title><style>
       body{font:13px system-ui;margin:16px;background:#fff}
       .r{margin-bottom:6px}.n{display:block;color:#666;margin-bottom:2px}
       img{display:block;border:1px solid #eee}
-      </style><h1>Tracing guide · demonstration · overlaid</h1>${rows}`);
+      </style><h1>Face · canonical geometry · overlaid</h1>${rows}`);
   console.log(`\n  sheet: ${join(OUT, 'index.html')}`);
   console.log('  numbers cannot tell you whether it looks like the letter. Look at them.');
 }
@@ -502,7 +523,7 @@ if (!CHECK) {
 console.log('  0 stated exceptions.');
 
 if (problems.length === 0) {
-  console.log('\nevery taught item is the same shape in both representations.');
+  console.log('\nevery undeclared item matches the face; the guide, the mask and the demonstration are one geometry.');
 } else {
   console.log(`\n${problems.length} problem(s):`);
   for (const p of problems) console.log(`  ${p}`);

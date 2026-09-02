@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useMemo, useRef, useState, type Rea
 import type {
   ActivityEvent,
   ItemProgress,
+  NumbersEvent,
   LearnerPreferences,
   LearningSession,
   ProgressSummary,
@@ -28,11 +29,14 @@ import {
 } from '../domain/mastery';
 import {
   dateKey,
+  dayOrdinal,
   knownLetters as computeKnownLetters,
   learnedToday,
 } from '../domain/progress';
 import { applyReview, memoryKey, type ItemMemory } from '../domain/memory';
 import type { PlacementStatus } from '../domain/placement';
+import { applyNumbersEvent, blankLessonProgress, isComplete as numbersLessonComplete } from '../domain/numbersProgress';
+import { getNumberLesson } from '../data/numbers';
 import { levelFromProgress, recentlyIntroduced, teachingLevel } from '../domain/vocabularyLevel';
 import { applyAnswer, listMistakes } from '../domain/mistakes';
 import { resolvePlan, type PracticePlan } from '../domain/plan';
@@ -62,6 +66,7 @@ import {
   LearningRepository,
   MemoryRepository,
   MistakeRepository,
+  NumbersRepository,
   ProgressRepository,
   SettingsRepository,
   clearEverything,
@@ -132,6 +137,7 @@ export function LearnerProvider({
   const memoryRepo = useRef<MemoryRepository | null>(null);
   const attemptRepo = useRef<AttemptRepository | null>(null);
   const mistakeRepo = useRef<MistakeRepository | null>(null);
+  const numbersRepo = useRef<NumbersRepository | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -162,6 +168,7 @@ export function LearnerProvider({
       memoryRepo.current = new MemoryRepository(driver);
       attemptRepo.current = new AttemptRepository(driver);
       mistakeRepo.current = new MistakeRepository(driver);
+      numbersRepo.current = new NumbersRepository(driver);
 
       await runMigrations({
         driver,
@@ -178,7 +185,7 @@ export function LearnerProvider({
        * It runs alongside the loads because it is a fourth trip to the same
        * store and there is no reason for the learner to wait for it in series.
        */
-      const [durable, settings, progress, sessions, activity, memory, attempts, mistakes] =
+      const [durable, settings, progress, sessions, activity, memory, attempts, mistakes, numbers] =
         await Promise.all([
           checkPersistence(driver),
           settingsRepo.current.load(),
@@ -188,6 +195,9 @@ export function LearnerProvider({
           memoryRepo.current.loadAll(),
           attemptRepo.current.loadAll(),
           mistakeRepo.current.loadAll(),
+          // Every record is repaired on read: a completion the evidence does
+          // not support is cleared here, before anything renders it.
+          numbersRepo.current.loadAll(getNumberLesson, new Date()),
         ]);
       if (cancelled) return;
 
@@ -213,6 +223,7 @@ export function LearnerProvider({
         memory,
         attempts,
         mistakes,
+        numbers: numbers.rows,
         schema_version: SCHEMA_VERSION,
         storage: { engine: driver.name, durable, checked: true },
         recovered: progress.dropped,
@@ -680,11 +691,55 @@ export function LearnerProvider({
       memory: {},
       attempts: [],
       mistakes: {},
+      numbers: {},
       schema_version: SCHEMA_VERSION,
       storage: prev.storage,
       recovered: 0,
     }));
   }, []);
+
+  /**
+   * Records one Numbers event against one lesson and persists the record.
+   *
+   * The reducer decides what the event means for completion; this only routes
+   * it. `trackActivity` is told when — and only when — the derived status
+   * first reaches `completed`, which is the one moment a lesson counts towards
+   * the day. Every write is serialised per lesson by the repository, so a
+   * stale snapshot cannot land on top of a mastery result recorded a moment
+   * earlier.
+   */
+  const recordNumbersEvent = useCallback((lessonId: string, event: NumbersEvent) => {
+    const lesson = getNumberLesson(lessonId);
+    if (!lesson) return;
+    const now = new Date();
+    setState((prev) => {
+      const before = prev.numbers[lessonId] ?? blankLessonProgress(lessonId, now);
+      const after = applyNumbersEvent(before, lesson, event, now);
+      if (after === before) return prev;
+      void numbersRepo.current?.put(after);
+      if (before.completed_at === null && after.completed_at !== null) {
+        trackActivity({ type: 'completed', kind: 'number' });
+      }
+      return { ...prev, numbers: { ...prev.numbers, [lessonId]: after } };
+    });
+  }, [trackActivity]);
+
+  /** Numbers only. Letters, words, streaks and settings are untouched. */
+  const resetNumbersProgress = useCallback(async () => {
+    await numbersRepo.current?.clear();
+    setState((prev) => ({ ...prev, numbers: {} }));
+  }, []);
+
+  /** Whether every lesson in the list is complete under the evidence rule. */
+  const numbersLessonsComplete = useCallback(
+    (lessonIds: readonly string[]) =>
+      lessonIds.every((id) => {
+        const lesson = getNumberLesson(id);
+        const record = state.numbers[id];
+        return Boolean(lesson && record && (record.completed_at !== null || numbersLessonComplete(record, lesson)));
+      }),
+    [state.numbers],
+  );
 
   // --- Derived --------------------------------------------------------------
 
@@ -955,7 +1010,7 @@ export function LearnerProvider({
       now,
       level: planningLevel,
       seed: state.settings.content_seed,
-      dayIndex: state.settings.active_days.length,
+      dayIndex: dayOrdinal(now),
       recentlyIntroduced: recentlyIntroduced(state.progress, now),
       canPractise: canPractiseWord,
     };
@@ -1009,7 +1064,6 @@ export function LearnerProvider({
     ready,
     planningLevel,
     state.settings.content_seed,
-    state.settings.active_days.length,
     state.settings.daily_plan,
     state.settings.daily_word_goal,
     state.settings.sound_free,
@@ -1107,7 +1161,7 @@ export function LearnerProvider({
         */
         level: planningLevel,
         seed: prev.settings.content_seed,
-        dayIndex: prev.settings.active_days.length,
+        dayIndex: dayOrdinal(now),
         recentlyIntroduced: recentlyIntroduced(prev.progress, now),
         canPractise: canPractiseWord,
       });
@@ -1188,6 +1242,9 @@ export function LearnerProvider({
       extendVocabularyDay,
       progressFor,
       reset,
+      recordNumbersEvent,
+      resetNumbersProgress,
+      numbersLessonsComplete,
     }),
     [
       state,
@@ -1224,6 +1281,9 @@ export function LearnerProvider({
       extendVocabularyDay,
       progressFor,
       reset,
+      recordNumbersEvent,
+      resetNumbersProgress,
+      numbersLessonsComplete,
     ],
   );
 
@@ -1240,6 +1300,7 @@ function initialState(driver?: PersistenceDriver): LearnerState {
     memory: {},
     attempts: [],
     mistakes: {},
+    numbers: {},
     schema_version: SCHEMA_VERSION,
     /*
      * `checked: false` — nothing is known yet, and in particular the `false`

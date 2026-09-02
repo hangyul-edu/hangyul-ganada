@@ -27,7 +27,13 @@ export const DB_NAME = 'hangyul-ganada';
  * of the new store are filled in by schema migration 6, which is a separate
  * concern and runs afterwards.
  */
-export const DB_STRUCTURE_VERSION = 2;
+/*
+ * 3 adds the `numbers` store. Same reasoning as 2: an object store that does
+ * not exist cannot be written to, so the structure bumps; the *data* migration
+ * that cleans the Numbers rows out of `progress` is schema migration 13 and is
+ * a separate concern.
+ */
+export const DB_STRUCTURE_VERSION = 3;
 
 export class IndexedDbDriver implements PersistenceDriver {
   readonly name = 'indexeddb';

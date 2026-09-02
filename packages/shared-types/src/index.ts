@@ -233,6 +233,156 @@ export interface LetterLessonTranslation {
   title: string;
 }
 
+/**
+ * One thing the Numbers curriculum teaches: a numeral, a counter, or a phrase.
+ *
+ * ## Why the Korean is data and the meaning is a key
+ *
+ * `korean` and `reading` are the subject being taught. They are identical in
+ * every interface language, exactly as a letter's `character` is, and putting
+ * them in translation bundles would be thirty-two copies of the same Korean
+ * waiting to disagree.
+ *
+ * `gloss` is a *key* into the `numbers` namespace rather than a string, because
+ * what a counter means — "people", "flat things", "years old" — is the part a
+ * learner needs in their own language, and it is the part that must never fall
+ * back to English inside an otherwise translated question. A key that is
+ * missing fails `i18n:check`; an English string sitting in a Thai bundle does
+ * not.
+ */
+/**
+ * Numbers progress — the derived status a lesson can be in.
+ *
+ * `available` is unlocked and never opened; `not_started` is opened and
+ * nothing done; the rest follow from the evidence in `NumbersLessonProgress`.
+ * Only `completed`, `mastered` and `review_due` may be drawn as finished.
+ */
+export type NumbersLessonStatus =
+  | 'locked'
+  | 'available'
+  | 'not_started'
+  | 'in_progress'
+  | 'completed'
+  | 'mastered'
+  | 'review_due';
+
+/** The events a Numbers lesson records. Distinct from progress: an event is a fact, a status is derived. */
+export type NumbersEvent =
+  | { type: 'lesson_opened' }
+  | { type: 'explanation_viewed'; step: string }
+  | { type: 'example_viewed'; item_id: string }
+  | {
+      type: 'exercise_attempted';
+      exercise_id: string;
+      item_id: string;
+      correct: boolean;
+      phase: 'practice' | 'mastery';
+    }
+  | { type: 'practice_completed' }
+  | { type: 'mastery_completed'; correct: number; total: number }
+  | { type: 'review_completed'; item_id: string; correct: boolean };
+
+export interface NumbersItemEvidence {
+  correct: number;
+  incorrect: number;
+  /** First correct answer in a mastery check. Required for lesson completion. */
+  mastered_at: string | null;
+}
+
+/**
+ * The stored evidence for one Numbers lesson. Lives in its own store
+ * (`numbers`), keyed `lesson:<lesson_id>`, never in the letter/word progress
+ * table. `completed_at` is derived from the rest by `domain/numbersProgress.ts`
+ * and is cleared on read when the evidence does not support it.
+ */
+export interface NumbersLessonProgress {
+  schema: 1;
+  lesson_id: string;
+  opened_at: string | null;
+  started_at: string | null;
+  explanation_steps_viewed: string[];
+  examples_viewed: string[];
+  practice_completed_at: string | null;
+  mastery: { taken_at: string; correct: number; total: number; passed: boolean } | null;
+  mastery_attempts: number;
+  /** When the lesson was last reviewed after completion; drives `review_due`. */
+  reviewed_at: string | null;
+  items: Record<string, NumbersItemEvidence>;
+  attempts: { total: number; correct: number; incorrect: number };
+  completed_at: string | null;
+  updated_at: string;
+}
+
+export interface NumberItem {
+  id: string;
+  /** The Korean, as it is written. */
+  korean: string;
+  /** How it is said, where that differs from the spelling — 십육 → 심뉵. */
+  reading: string | null;
+  /** Revised Romanization, a transliteration rather than a translation. */
+  romanization: string;
+  /** The arabic value, where the item has one. Counters and phrases have none. */
+  value: number | null;
+  /** Which numeral system this belongs to, where that is a fact about it. */
+  system: 'sino' | 'native' | null;
+  /**
+   * What kind of thing it is. Drives which exercises can be built from it and
+   * which misconception classes its distractors come from.
+   */
+  role: 'numeral' | 'counter' | 'phrase' | 'form';
+  /** For a counter: the numeral system it takes. */
+  counter_system?: 'sino' | 'native';
+  /** Key into the `numbers` namespace, or null where `value` says it all. */
+  gloss: string | null;
+  /** A worked example, Korean. Null where the item is its own example. */
+  example: string | null;
+  /** Key into the `numbers` namespace for what the example means. */
+  example_gloss: string | null;
+  /** The clip id for `korean`, and for `example` where there is one. */
+  audio: { word: string; example: string | null };
+}
+
+/** The exercise families the Numbers engine can build. */
+export type NumbersExerciseKind =
+  | 'listen_choose'
+  | 'read_choose'
+  | 'choose_system'
+  | 'digits_to_korean'
+  | 'korean_to_digits'
+  | 'counter_form'
+  | 'spot_mistake'
+  | 'fill_sentence'
+  | 'order_parts';
+
+export interface NumberLesson {
+  id: string;
+  /** The module this lesson belongs to; `unit` is kept as its index. */
+  module: string;
+  unit: number;
+  sequence: number;
+  system: 'sino' | 'native' | 'both';
+  item_ids: string[];
+  /** Lessons whose completion this one assumes. Ids, never positions. */
+  prerequisites: string[];
+  /** Keys into the `numbers` namespace. */
+  title: string;
+  objective: string;
+  /** Explanation steps, in order. Each is viewed separately and recorded. */
+  explanation: string[];
+  /** The exercise families guided practice and the mastery check draw from. */
+  exercise_kinds: NumbersExerciseKind[];
+  /** How many mastery questions to ask. */
+  mastery_count: number;
+}
+
+export interface NumberModule {
+  id: string;
+  index: number;
+  title: string;
+  goal: string;
+  lesson_ids: string[];
+}
+
 export interface LetterLesson {
   id: string;
   /**
@@ -716,8 +866,18 @@ export interface LearningSession {
 
 // --- Learning activity ------------------------------------------------------
 
-/** What a progress row is about. Shared by `ItemProgress` and the activity log. */
-export type ItemKind = 'character' | 'word';
+/**
+ * What a progress row is about. Shared by `ItemProgress` and the activity log.
+ *
+ * `number` joined `character` and `word` with the Numbers curriculum. It is a
+ * third kind rather than a flavour of `word` because the three are scheduled,
+ * counted and reviewed differently: the alphabet goal counts `character` rows
+ * and only those, Today's Vocabulary counts `word` rows and only those, and a
+ * number — 스물, 세 시, 만 원 — is neither a letter to write nor an entry in
+ * the vocabulary corpus. Folding numbers into `word` would have put them in the
+ * daily vocabulary plan, where `getWord()` cannot resolve them.
+ */
+export type ItemKind = 'character' | 'word' | 'number';
 
 /**
  * What a learner did, in one local calendar day.
@@ -764,6 +924,15 @@ export interface DailyActivity {
   /** Items that reached `learned` on this day. */
   characters_learned: number;
   words_learned: number;
+  /**
+   * Numbers lessons whose derived status first reached `completed` today.
+   *
+   * Its own counter, because the first implementation had none and its
+   * completions fell through `recordActivity`'s `else` branch into
+   * `words_learned` — a Numbers lesson was being counted as a vocabulary word.
+   * Optional so a day written before the field existed still reads.
+   */
+  numbers_lessons_completed?: number;
   /** Attempts made inside a review session. */
   reviews: number;
   /**

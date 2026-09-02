@@ -21,8 +21,8 @@
     "meaningsBody": "Sensurile și traducerile exemplelor apar în {{language}}. Poți alege altă limbă."
   },
   "font": {
-    "title": "Fontul de exercițiu",
-    "description": "Litera pe care o trasezi e desenată cu fontul pe care îl alegi."
+    "title": "Font coreean",
+    "description": "Se aplică textului coreean pe care îl citești în aplicație. Litera pe care o trasezi este desenată mereu la fel."
   },
   "dailyTarget": {
     "title": "Litere pe zi",

@@ -172,7 +172,9 @@
       "inSentence": "Былай қолданылады: {{sentence}}"
     },
     "buildTray": "Буындар",
-    "buildRemove": "{{syllable}} буынын қайтарып алу"
+    "buildRemove": "{{syllable}} буынын қайтарып алу",
+    "markCorrect": "Дұрыс жауап",
+    "markWrong": "Сіздің жауабыңыз, қате"
   },
   "sounds": {
     "title": "Дыбыстар кездескенде",

@@ -141,6 +141,11 @@ export function recordActivity(
     else if (Object.keys(next.items).length < MAX_ITEMS_PER_DAY) next.items[event.itemKey] = 1;
   } else if (event.kind === 'character') {
     next.characters_learned += 1;
+  } else if (event.kind === 'number') {
+    // Its own counter. The first Numbers build had no branch here, so a
+    // completed Numbers lesson fell through to `words_learned` and the
+    // Activity screen reported vocabulary the learner had never studied.
+    next.numbers_lessons_completed = (next.numbers_lessons_completed ?? 0) + 1;
   } else {
     next.words_learned += 1;
   }

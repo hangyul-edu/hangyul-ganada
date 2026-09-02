@@ -1,6 +1,9 @@
+import type { NumberLesson } from '@hangyul-ganada/shared-types';
+import { repairLessonProgress } from '../domain/numbersProgress';
 import type {
   DailyActivity,
   ItemProgress,
+  NumbersLessonProgress,
   LearnerPreferences,
   LearningSession,
 } from '@hangyul-ganada/shared-types';
@@ -219,7 +222,7 @@ export function normaliseProgress(candidate: unknown): ItemProgress | null {
   if (!candidate || typeof candidate !== 'object') return null;
   const row = candidate as Partial<ItemProgress>;
   if (typeof row.item_key !== 'string' || row.item_key.length === 0) return null;
-  const kind: ItemProgress['kind'] = row.kind === 'word' ? 'word' : 'character';
+  const kind: ItemProgress['kind'] = itemKind(row.kind);
   const base = blankProgress(kind, row.item_key, row.first_seen_at ?? new Date().toISOString());
   return {
     ...base,
@@ -319,6 +322,70 @@ export class LearningRepository {
  * years of daily practice is under two thousand rows of a few hundred bytes,
  * and pruning older days than that costs the learner nothing they can see.
  */
+/**
+ * A stored row's kind, read rather than assumed.
+ *
+ * This used to be `row.kind === 'word' ? 'word' : 'character'` in three
+ * places, which is fine while there are two kinds and silently wrong the day
+ * there are three: every `number` row read back from disk became a `character`
+ * row, keyed under `character:<id>`, and the Numbers screen looking under
+ * `number:<id>` found nothing while the alphabet's counters found extra
+ * letters. An unknown kind still falls back to `character` — a row from a
+ * build that has not been written yet has to land somewhere — but the three
+ * kinds that exist are all read as themselves.
+ */
+function itemKind(kind: unknown): ItemProgress['kind'] {
+  return kind === 'word' || kind === 'number' ? kind : 'character';
+}
+
+/**
+ * Numbers lesson progress. One record per lesson, keyed `lesson:<id>`.
+ *
+ * Every read goes through `repairLessonProgress`, which clears a
+ * `completed_at` the evidence does not support — so a false completion written
+ * by an earlier build is downgraded on the first read rather than displayed.
+ * Every write is serialised per key by `RowWrites`, for the same reason the
+ * settings row is: a stale snapshot landing late must not erase a mastery
+ * result that was recorded a moment ago.
+ */
+export class NumbersRepository {
+  private readonly writes = new RowWrites();
+
+  constructor(private readonly driver: PersistenceDriver) {}
+
+  async loadAll(
+    lessonOf: (id: string) => NumberLesson | undefined,
+    now: Date,
+  ): Promise<{ rows: Record<string, NumbersLessonProgress>; dropped: number; downgraded: number }> {
+    const all = await this.driver.getAll<unknown>('numbers');
+    const rows: Record<string, NumbersLessonProgress> = {};
+    let dropped = 0;
+    let downgraded = 0;
+    for (const candidate of all) {
+      const claimed =
+        candidate && typeof candidate === 'object' && (candidate as { completed_at?: unknown }).completed_at;
+      const row = repairLessonProgress(candidate, lessonOf((candidate as { lesson_id?: string })?.lesson_id ?? ''), now);
+      if (!row) {
+        dropped += 1;
+        continue;
+      }
+      if (claimed && row.completed_at === null) downgraded += 1;
+      rows[row.lesson_id] = row;
+    }
+    return { rows, dropped, downgraded };
+  }
+
+  async put(row: NumbersLessonProgress): Promise<void> {
+    const key = `lesson:${row.lesson_id}`;
+    await this.writes.run(key, () => this.driver.put('numbers', key, row));
+  }
+
+  /** Numbers only. Letters, words and everything else are untouched. */
+  async clear(): Promise<void> {
+    await this.driver.clearStore('numbers');
+  }
+}
+
 export class ActivityRepository {
   static readonly MAX_DAYS = 1_825;
 
@@ -375,6 +442,7 @@ export function normaliseActivity(candidate: unknown): DailyActivity | null {
     passes: finite(row.passes, 0),
     characters_learned: finite(row.characters_learned, 0),
     words_learned: finite(row.words_learned, 0),
+    numbers_lessons_completed: finite(row.numbers_lessons_completed, 0),
     reviews: finite(row.reviews, 0),
     items:
       row.items && typeof row.items === 'object'
@@ -428,7 +496,7 @@ export function normaliseMemory(candidate: unknown): ItemMemory | null {
   if (!candidate || typeof candidate !== 'object') return null;
   const row = candidate as Partial<ItemMemory>;
   if (typeof row.item_key !== 'string' || !row.item_key) return null;
-  const kind: ItemMemory['kind'] = row.kind === 'word' ? 'word' : 'character';
+  const kind: ItemMemory['kind'] = itemKind(row.kind);
   return {
     item_key: row.item_key,
     kind,
@@ -515,7 +583,7 @@ export function normaliseMistake(candidate: unknown): Mistake | null {
   const row = candidate as Partial<Mistake>;
   if (typeof row.itemKey !== 'string' || !row.itemKey) return null;
   if (typeof row.answer !== 'string' || !row.answer) return null;
-  const kind: Mistake['kind'] = row.kind === 'word' ? 'word' : 'character';
+  const kind: Mistake['kind'] = itemKind(row.kind);
   const at = typeof row.lastAt === 'string' ? row.lastAt : new Date(0).toISOString();
   return {
     id: typeof row.id === 'string' && row.id ? row.id : `${kind}:${row.itemKey}`,

@@ -432,12 +432,27 @@ test('an interrupted lesson resumes at the letter that is unfinished', async ({ 
   await expect(page.getByTestId('prompt-glyph')).toHaveText(first);
 });
 
-test('every practice typeface renders its own glyph, and grades against it', async ({ page }) => {
-  // Six faces, and the choice has to reach the writing lesson rather than
-  // relabelling a picker: each one must paint a *different* reference glyph,
-  // and a faithful trace of whichever is showing must still pass.
+test('every practice typeface traces the one canonical glyph, and grades against it', async ({
+  page,
+}) => {
+  /*
+    This test used to assert the opposite, and the change is deliberate.
+
+    Until v1.0.2 the tracing guide and the grading mask were *set in the
+    selected practice typeface*, so each face painted a different reference and
+    this test checked that they did. That design is what let the guide and the
+    stroke demonstration disagree — the typeface draws ㅆ as one connected island
+    of ink where the taught form is two separate ㅅ — so instruction now has a
+    single canonical geometry and the face no longer reaches it.
+
+    The invariant worth pinning is therefore the new one, and it is stronger:
+    whichever face is selected, the learner traces the *same* shape, and a
+    faithful trace of it passes. The face still chooses the typography
+    everywhere Korean is *read*; that is covered by `the chosen typeface
+    survives a restart` and by the reading-surface checks in `face:size`.
+  */
   const faces = ['Standard', 'Sans Serif', 'Myeongjo', 'Traditional', 'Handwriting', 'Rounded'];
-  const seen = new Set<string>();
+  const inkPerFace: number[] = [];
 
   for (const face of faces) {
     await page.goto('/me');
@@ -460,8 +475,7 @@ test('every practice typeface renders its own glyph, and grades against it', asy
         return count;
       });
     expect(ink, `${face} painted no reference glyph`).toBeGreaterThan(100);
-    expect(seen.has(String(ink)), `${face} painted the same glyph as another face`).toBe(false);
-    seen.add(String(ink));
+    inkPerFace.push(ink);
 
     await traceReferenceGlyph(page, firstBox(page));
     await page.getByRole('button', { name: 'Check' }).click();
@@ -470,6 +484,22 @@ test('every practice typeface renders its own glyph, and grades against it', asy
       'Correct.',
     );
   }
+
+  /*
+    One shape, six faces.
+
+    Compared as a ratio rather than for exact equality: the canvas is sized by
+    CSS and a sub-pixel difference in the backing store changes the count by a
+    handful of pixels without changing the letter. Anything above a couple of
+    per cent would be a different glyph, which is the thing that must not
+    happen.
+  */
+  const min = Math.min(...inkPerFace);
+  const max = Math.max(...inkPerFace);
+  expect(
+    max / min,
+    `the six faces painted different guides: ${inkPerFace.join(', ')}`,
+  ).toBeLessThan(1.02);
 });
 
 test('the chosen typeface survives a restart', async ({ page, context }) => {

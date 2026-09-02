@@ -1,6 +1,6 @@
 # Privacy policy
 
-**Hangyul ganada** · version 1.0.0 · last updated 18 August 2026
+**Hangyul ganada** · version 1.0.2 · last updated 18 August 2026
 
 ## The short version
 

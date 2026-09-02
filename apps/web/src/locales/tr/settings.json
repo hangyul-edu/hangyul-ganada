@@ -21,8 +21,8 @@
     "meaningsBody": "Anlamlar ve örnek çevirileri {{language}} dilinde gösterilir. Başka bir dil seçebilirsin."
   },
   "font": {
-    "title": "Alıştırma yazı tipi",
-    "description": "Üzerinden geçtiğin harf, seçtiğin yazı tipiyle çizilir."
+    "title": "Korece yazı tipi",
+    "description": "Uygulamada okuduğun Korece için geçerlidir. Üzerinden geçtiğin harf her zaman aynı şekilde çizilir."
   },
   "dailyTarget": {
     "title": "Günde harf",

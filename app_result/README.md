@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `86d0babdd7695bf08ce43f6a71b688628eb04542` at 2026-08-27T15:32:39.191Z.
+Built from commit `3833da7122e8ea9fdaa02267dbdcd3d40ed51483` at 2026-09-02T12:21:38.369Z. **The working tree was not clean**: 440 changed and 595 untracked files over that commit, source fingerprint `8795be02839813a17adc04b7ec53f83dcd8854a1b9c5510bd5910b5eba415268`. `release:current` is pending until this tree is committed.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
@@ -8,8 +8,8 @@ the legal pack and the full report — is in `result/`.
 
 | File | Size | What it is for |
 | --- | --- | --- |
-| `hangyul-ganada-release.apk` | 82.7 MB | sideloading, and testing on a device |
-| `hangyul-ganada-release.aab` | 80.9 MB | the upload to Google Play |
+| `hangyul-ganada-release.apk` | 83.7 MB | sideloading, and testing on a device |
+| `hangyul-ganada-release.aab` | 81.8 MB | the upload to Google Play |
 | `build-info.json` | — | what these two are, in full |
 | `checksums.sha256` | — | `sha256sum -c checksums.sha256` |
 
@@ -25,7 +25,7 @@ app — it is a different app that cannot replace it. The keystore is not in thi
 repository and no password, path or alias appears anywhere in this directory.
 
 Signature schemes: v2 + v3. Application id
-`com.talkhangyul.ganada`, version 1.0.0 (1), min SDK
+`com.talkhangyul.ganada`, version 1.0.2 (3), min SDK
 24, target SDK 36.
 
 To confirm it yourself:

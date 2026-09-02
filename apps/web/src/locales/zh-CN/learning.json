@@ -84,7 +84,9 @@
       "inSentence": "可以这样用：{{sentence}}"
     },
     "buildTray": "字",
-    "buildRemove": "把 {{syllable}} 拿回来"
+    "buildRemove": "把 {{syllable}} 拿回来",
+    "markCorrect": "正确答案",
+    "markWrong": "你的答案，错误"
   },
   "units": {
     "badge": "第 {{index, number}} 单元",

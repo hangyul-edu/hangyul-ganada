@@ -1,0 +1,350 @@
+{
+  "title": "Numbers",
+  "subtitle": "Count things, tell the time, read a price, say your age",
+  "lessonsCompleted": "{{done}} of {{total}} lessons completed",
+  "activitiesDone": "{{done}} of {{total}} activities done",
+  "moduleLessons": "{{done}} of {{total}} lessons",
+  "status": {
+    "locked": "Locked",
+    "available": "Available",
+    "not_started": "Opened",
+    "in_progress": "In progress",
+    "completed": "Completed",
+    "mastered": "Mastered",
+    "review_due": "Review due"
+  },
+  "lockedNote": "Complete the lessons before this one first.",
+  "systemSino": "Sino-Korean",
+  "systemNative": "Native Korean",
+  "systemBoth": "Both systems",
+  "system": {
+    "native": "Native Korean — 하나, 둘, 셋",
+    "sino": "Sino-Korean — 일, 이, 삼"
+  },
+  "phase": {
+    "objective": "What you will learn",
+    "explain": "Explanation",
+    "examples": "Examples",
+    "practice": "Practice",
+    "mastery": "Mastery check",
+    "summary": "Summary"
+  },
+  "action": {
+    "start": "Start lesson",
+    "resume": "Continue lesson",
+    "next": "Next",
+    "continue": "Continue",
+    "beginPractice": "Start practising",
+    "beginMastery": "Start the mastery check",
+    "retryMastery": "Try the mastery check again",
+    "backToCourse": "Back to Numbers",
+    "review": "Review this lesson",
+    "clear": "Clear"
+  },
+  "stepOf": "Step {{current}} of {{total}}",
+  "questionOf": "Question {{current}} of {{total}}",
+  "readingLabel": "Said as",
+  "exampleLabel": "In use",
+  "practiceIntro": "Mistakes are fine here — every answer is explained.",
+  "masteryIntro": "{{count}} questions. You need {{pass}}% right, and every item at least once.",
+  "masteryPassed": "Mastery check passed — {{correct}} of {{total}}",
+  "masteryFailed": "Not yet — {{correct}} of {{total}}. Review the examples and try again.",
+  "masteryPerfect": "Perfect — every question right",
+  "summaryComplete": "Lesson complete",
+  "summaryIncomplete": "Not complete yet",
+  "summaryMissing": {
+    "explain": "Read every explanation step",
+    "examples": "Look at every example",
+    "practice": "Finish the practice",
+    "mastery": "Pass the mastery check"
+  },
+  "feedback": {
+    "correct": "Correct",
+    "incorrect": "Not quite",
+    "answerWas": "The answer is"
+  },
+  "prompt": {
+    "listen": "What did you hear?",
+    "read": "What does this mean?",
+    "chooseSystem": "Which number system does this use?",
+    "digitsToKorean": {
+      "sino": "Say this number in Sino-Korean",
+      "native": "Say this number in native Korean",
+      "both": "Say this number in Korean"
+    },
+    "koreanToDigits": "Which number is this?",
+    "counterForm": "How do you say {{value}} with {{counter}}?",
+    "spotMistake": "Which one is wrong?",
+    "fill": "Fill the gap",
+    "orderParts": "Tap the parts in order to build {{value}}"
+  },
+  "rationale": {
+    "readChoose": "Match the Korean to its meaning. Counters are chosen by the kind of thing being counted.",
+    "listen": "Listen for the whole word — neighbouring numbers and sound-alikes are the usual slip.",
+    "nativeSystem": "Native Korean numbers count things you can point at, and they are used for hours and ages.",
+    "sinoSystem": "Sino-Korean numbers are used for labels: money, dates, minutes, phone numbers, floors.",
+    "koreanToDigits": "Say the parts in order. In Sino-Korean, 십 is ten and 삼십 is thirty.",
+    "countingForm": "In front of a counter, 하나 둘 셋 넷 스물 become 한 두 세 네 스무. 둘 개 is not Korean; 두 개 is.",
+    "counter": "A number never stands beside a noun on its own. The counter between them is chosen by what is being counted.",
+    "fill": "Read the whole sentence: the words around the gap tell you which form belongs in it.",
+    "nativeBuild": "Native numbers past ten are 열 plus the unit — 열하나, 열둘. The tens have their own words.",
+    "sinoBuild": "Sino numbers are read left to right, part by part: 삼십오 is 삼 · 십 · 오.",
+    "irregular_month": "June is 유월 and October is 시월. The regular forms 육월 and 십월 do not exist.",
+    "plain_form": "Before a counter the counting form is required: 한, 두, 세, 네, 스무 — never 하나, 둘, 셋, 넷, 스물.",
+    "spacing": "A counter is a separate word and takes a space: 한 개, not 한개.",
+    "system_swap": "The two systems name the same value but are not interchangeable — the context decides.",
+    "sound_alike": "One sound apart. Listen for the final consonant.",
+    "adjacent": "Neighbouring numbers are learned as a list, so they blur. Check the value, not the position.",
+    "wrong_counter": "Each counter belongs to a kind of thing — 명 for people, 마리 for animals, 개 for objects."
+  },
+  "module": {
+    "systems": {
+      "title": "Two kinds of number",
+      "goal": "Know both systems to ten, both zeroes, and which system a situation calls for."
+    },
+    "pastTen": {
+      "title": "Past ten",
+      "goal": "Build any number in either system, and use the five forms that change before a counter."
+    },
+    "counting": {
+      "title": "Counting things",
+      "goal": "Count people, objects and animals with the right counter, and say your age."
+    },
+    "time": {
+      "title": "Time and dates",
+      "goal": "Tell the time, say a date, and name the two irregular months."
+    },
+    "money": {
+      "title": "Money and numbers you read out",
+      "goal": "Read a price, a phone number, a floor, and the big units 만, 억, 조."
+    },
+    "review": {
+      "title": "The mistakes everyone makes",
+      "goal": "Catch the five mistakes everyone makes, then prove the system choice is automatic."
+    }
+  },
+  "lesson": {
+    "sinoBasics": {
+      "title": "일 이 삼 — Sino-Korean one to ten",
+      "objective": "Recognise and say the Sino-Korean numbers from one to ten.",
+      "step1": "Korean has two sets of numbers. This set came from Chinese and is used for anything that is a label rather than a count — money, dates, minutes, phone numbers, floors.",
+      "step2": "One to ten: 일 이 삼 사 오 육 칠 팔 구 십. Each is one syllable, and each is also a digit you will see on prices and clocks.",
+      "step3": "Ten is 십. Everything past ten is built from these ten words, so knowing them well is most of the work."
+    },
+    "nativeBasics": {
+      "title": "하나 둘 셋 — native Korean one to ten",
+      "objective": "Recognise and say the native Korean numbers from one to ten.",
+      "step1": "Korea's own numbers. They are used for counting things you can point at — people, cups, animals — and for hours and ages.",
+      "step2": "One to ten: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Notice 여덟 is said 여덜: the ㅂ is silent.",
+      "step3": "These stop being used around ninety-nine. Above a hundred, every number is Sino-Korean whatever it counts."
+    },
+    "zero": {
+      "title": "Zero is two words",
+      "objective": "Use 영 for zero as a quantity and 공 for the digit nought.",
+      "step1": "영 is zero as an amount — in maths, in a score, in a temperature below zero (영하).",
+      "step2": "공 is the digit 0, read aloud in a phone number, a room number, a code. 010 is 공일공, never 영일영."
+    },
+    "choosing": {
+      "title": "Which system, and when",
+      "objective": "Decide from context whether a number should be native or Sino-Korean.",
+      "step1": "Native for counting things, up to about ninety-nine: 세 명 three people, 두 시 two o'clock, 스무 살 twenty years old.",
+      "step2": "Sino for labels and for money and dates: 오천 원, 삼월 일 일, 삼십 분. And for every number above a hundred.",
+      "step3": "One clock time uses both: the hour is native (세 시), the minutes are Sino (삼십 분). That pair is the rule in miniature."
+    },
+    "sinoBuild": {
+      "title": "Sino-Korean past ten",
+      "objective": "Build and read Sino-Korean numbers up to a thousand.",
+      "step1": "Say the parts in order. 십일 is ten-one, eleven. 이십 is two-ten, twenty. 삼십오 is three-ten-five, thirty-five.",
+      "step2": "Watch 십육: it is written 십육 but said 심뉵. The ㄹ-sound appears between the two syllables.",
+      "step3": "백 is a hundred and 천 is a thousand. There is no 일 in front of them — 백 원, not 일백 원."
+    },
+    "nativeBuild": {
+      "title": "Native Korean past ten",
+      "objective": "Build and read native Korean numbers up to fifty.",
+      "step1": "열 plus the unit gives eleven to nineteen: 열하나, 열둘, 열셋. Said as one word.",
+      "step2": "The tens have their own words — 스물 twenty, 서른 thirty, 마흔 forty, 쉰 fifty. They are not built from 열.",
+      "step3": "열여섯 is said 열려섣: the same ㄹ-sound that appears in 심뉵."
+    },
+    "forms": {
+      "title": "한, 두, 세, 네, 스무",
+      "objective": "Use the five counting forms that replace 하나, 둘, 셋, 넷 and 스물 before a counter.",
+      "step1": "Five native numbers change shape in front of a counter. 하나 becomes 한, 둘 becomes 두, 셋 becomes 세, 넷 becomes 네, 스물 becomes 스무.",
+      "step2": "This is not a pronunciation slip. 둘 사람 is not accented Korean — it is wrong. It has to be 두 사람.",
+      "step3": "Every other native number keeps its shape: 다섯 명, 여섯 개, 열 마리. Only these five change."
+    },
+    "counters": {
+      "title": "People, things and animals",
+      "objective": "Count people, objects and animals with 명, 사람, 개 and 마리.",
+      "step1": "Korean never counts a noun on its own. Between the number and the thing there is a counter word, chosen by the kind of thing.",
+      "step2": "명 counts people (세 명), 개 counts objects (두 개), 마리 counts animals (고양이 두 마리). 사람 also counts people, a little less formally.",
+      "step3": "The noun comes first, then the number and counter: 고양이 두 마리, not 두 마리 고양이."
+    },
+    "countersEveryday": {
+      "title": "Bottles, cups, tickets and books",
+      "objective": "Order and count everyday things with 병, 잔, 장 and 권.",
+      "step1": "병 is a bottle (맥주 한 병), 잔 is a cup or glass (커피 두 잔), 장 is a flat thing such as a ticket or a sheet (표 네 장), 권 is a book (책 세 권).",
+      "step2": "All four take native numbers and the counting forms: 한 병, 두 잔, 세 권, 네 장."
+    },
+    "age": {
+      "title": "Saying how old you are",
+      "objective": "Give your age with 살, recognise 세, and ask an elder's age politely with 연세.",
+      "step1": "살 takes a native number and is what people say: 스무 살, 스물다섯 살. 몇 살이에요? asks a friend's age.",
+      "step2": "세 takes a Sino number and belongs on forms and in the news: 이십 세. You will read it more than say it.",
+      "step3": "To someone older, 살 is too casual. 연세 is the honorific word for age: 연세가 어떻게 되세요?"
+    },
+    "hours": {
+      "title": "Telling the hour",
+      "objective": "Say the hour with a native number and 시, and use 반 for half past.",
+      "step1": "Hours take native numbers: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? asks the time.",
+      "step2": "반 means half: 두 시 반 is half past two. It replaces 삼십 분.",
+      "step3": "몇 시예요? asks the hour. Answer with the native number and 시: 세 시예요. For the minutes you switch systems — that is the next lesson."
+    },
+    "minutes": {
+      "title": "Minutes and seconds",
+      "objective": "Say minutes and seconds with Sino numbers, and combine them with a native hour.",
+      "step1": "Minutes and seconds take Sino numbers: 삼십 분, 십오 분, 십 초.",
+      "step2": "One clock time uses both systems at once: 세 시 삼십 분 — a native hour, a Sino minute.",
+      "step3": "The most common mistake is putting both in the same system. 삼 시 서른 분 is wrong twice over."
+    },
+    "dates": {
+      "title": "Years, months and days",
+      "objective": "Say a date with 년, 월 and 일, and use the two irregular months.",
+      "step1": "Years, months and days are all Sino: 이천이십육 년 삼월 십오 일. Largest unit first.",
+      "step2": "Two months are irregular. June is 유월, not 육월; October is 시월, not 십월.",
+      "step3": "일 as a day of the month is the same word as 일 for one. 삼월 일 일 is the first of March."
+    },
+    "weekdays": {
+      "title": "Days of the week",
+      "objective": "Name the days of the week and ask what day it is.",
+      "step1": "The days end in 요일: 월요일 Monday, 화요일, 수요일, 목요일, 금요일 Friday, 토요일, 일요일.",
+      "step2": "무슨 요일이에요? asks what day it is. 주말 is the weekend."
+    },
+    "money": {
+      "title": "Reading a price",
+      "objective": "Read prices in won, grouped the Korean way by ten-thousands.",
+      "step1": "Won takes Sino numbers: 천 원, 오천 원. 얼마예요? asks the price.",
+      "step2": "Korean groups by ten thousand, not by thousand. 만 원 is 10,000; 삼만 오천 원 is 35,000.",
+      "step3": "A price you hear as 만 오천 원 is 15,000 — one ten-thousand and five thousands."
+    },
+    "digits": {
+      "title": "Phone numbers, floors and rooms",
+      "objective": "Read identifiers digit by digit, with 공 for zero and 에 between groups.",
+      "step1": "A number that identifies rather than counts is read digit by digit: 010 is 공일공.",
+      "step2": "에 goes where a dash goes: 공일공에 일이삼사에 오륙칠팔.",
+      "step3": "Floors, rooms and bus routes take Sino numbers: 삼 층 third floor, 오공이 호 room 502, 이백육 번 bus 206."
+    },
+    "large": {
+      "title": "만, 억, 조 — and decimals",
+      "objective": "Read the large Korean units, percentages and decimal points.",
+      "step1": "Korean counts in groups of four digits, not three. 만 is ten thousand, 억 is a hundred million, 조 is a trillion.",
+      "step2": "123,450,000 is read 1억 2345만 — the comma is in the wrong place for Korean.",
+      "step3": "퍼센트 is percent (오십 퍼센트), and 점 is the decimal point: 삼 점 오 is 3.5."
+    },
+    "pitfalls": {
+      "title": "The five mistakes everyone makes",
+      "objective": "Recognise and correct the five errors that mark a beginner.",
+      "step1": "Each of these is a rule you have already met, in the place where it is easiest to forget.",
+      "step2": "두 살 not 둘 살. 심뉵 not 십육 as written. 유월 not 육월. A native hour with a Sino minute. A space before the counter."
+    },
+    "mixed": {
+      "title": "Mixed review — which system, which form",
+      "objective": "Hear or read a phrase from anywhere in the course and know which system it uses and why.",
+      "step1": "Everything in this course comes down to one decision made quickly: is this a count or a label? Counts — people, things, hours, ages — take native numbers; labels — money, minutes, dates, phone numbers — take Sino-Korean.",
+      "step2": "This review mixes the two. Read or listen, decide, and check the explanation whenever you hesitate. Hesitation is the thing to practise away."
+    }
+  },
+  "gloss": {
+    "zeroMath": "zero, as a quantity",
+    "zeroDigit": "nought, as a digit",
+    "belowZero": "below zero",
+    "zeroScore": "a score of zero",
+    "ctxPeople": "three people",
+    "ctxMoney": "five thousand won",
+    "ctxHour": "two o'clock",
+    "ctxMinute": "thirty minutes",
+    "ctxAge": "twenty years old",
+    "ctxDate": "the first of March",
+    "formOne": "one, before a counter",
+    "formTwo": "two, before a counter",
+    "formThree": "three, before a counter",
+    "formFour": "four, before a counter",
+    "formTwenty": "twenty, before a counter",
+    "counterPeople": "people",
+    "counterPeoplePlain": "people — everyday",
+    "counterThings": "things — the general counter",
+    "counterAnimals": "animals",
+    "counterBottles": "bottles",
+    "counterCups": "cups and glasses",
+    "counterFlat": "flat things — tickets, sheets",
+    "counterBooks": "books",
+    "counterAge": "years old",
+    "counterAgeFormal": "years old — formal",
+    "howOld": "How old are you?",
+    "ageHonorific": "age — honorific, about someone older",
+    "counterHour": "o'clock",
+    "half": "half past",
+    "whatTime": "What time is it?",
+    "tenOclock": "ten o'clock",
+    "counterMinute": "minutes",
+    "counterSecond": "seconds",
+    "mixedTime": "a clock time, both systems",
+    "quarterPast": "quarter past two",
+    "counterYear": "year",
+    "counterMonth": "month",
+    "counterDay": "day of the month",
+    "june": "June — irregular",
+    "october": "October — irregular",
+    "whatDay": "What day is it?",
+    "monday": "Monday",
+    "friday": "Friday",
+    "weekend": "the weekend",
+    "counterWon": "won",
+    "howMuch": "How much is it?",
+    "phonePrefix": "a phone prefix, digit by digit",
+    "phoneDash": "said where a dash is written",
+    "counterFloor": "floor of a building",
+    "counterRoom": "room number",
+    "counterNumber": "number — buses, routes",
+    "groupsOfFour": "Korean groups digits in fours",
+    "percent": "percent",
+    "decimalPoint": "the decimal point",
+    "pitfallCountingForm": "Use the counting form, not the plain number",
+    "pitfallSimnyuk": "Written 십육, said 심뉵",
+    "pitfallJune": "June is 유월, never 육월",
+    "pitfallHourMinute": "Native hour, Sino minute",
+    "pitfallSpacing": "A counter is a separate word"
+  },
+  "example": {
+    "zeroMath": "minus three degrees",
+    "zeroDigit": "010",
+    "belowZeroFive": "minus five degrees",
+    "zeroScore": "I got zero.",
+    "ctxPeople": "people are counted with a native number",
+    "ctxMoney": "money takes Sino numbers",
+    "ctxHour": "hours take native numbers",
+    "ctxMinute": "minutes take Sino numbers",
+    "ctxAge": "age takes a native number",
+    "ctxDate": "dates take Sino numbers",
+    "twentyFive": "I am twenty-five.",
+    "ageHonorific": "asking an elder their age",
+    "halfPastTwo": "half past two",
+    "threeOclock": "It is three o'clock.",
+    "halfPastThree": "It is half past three.",
+    "quarterPastTwo": "quarter past two",
+    "juneSixth": "the sixth of June",
+    "octoberTenth": "the tenth of October",
+    "monday": "It is Monday.",
+    "weekend": "See you at the weekend.",
+    "fifteenThousand": "It is fifteen thousand won.",
+    "phoneNumber": "010-1234-5678",
+    "room502": "room 502",
+    "bus206": "the number 206 bus",
+    "grouping": "123,450,000 — read as 1억 2345만",
+    "threePointFive": "3.5",
+    "pitfallCountingForm": "두 살 is right; 둘 살 is not",
+    "pitfallSimnyuk": "spelled 십육, pronounced 심뉵",
+    "pitfallJune": "유월 is right; 육월 is not",
+    "pitfallHourMinute": "세 시 삼십 분 is right; 삼 시 서른 분 is not",
+    "pitfallSpacing": "한 개 is right; 한개 is not"
+  }
+}
