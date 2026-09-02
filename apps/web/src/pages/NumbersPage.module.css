@@ -217,3 +217,31 @@
     border-color: var(--hg-border);
   }
 }
+
+/*
+ * Continue, on the summary card.
+ *
+ * The one thing on this screen a learner can press without having to choose,
+ * now that nothing is locked: it goes to the first lesson that is not finished,
+ * in course order. A link rather than a button because it navigates, and the
+ * whole width because it is the card's action rather than one of several.
+ */
+.continue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hg-size-hit-target);
+  margin-top: var(--hg-space-3);
+  padding: var(--hg-space-3) var(--hg-space-5);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+  font-size: var(--hg-text-body);
+  font-weight: var(--hg-weight-bold);
+  text-align: center;
+  text-decoration: none;
+}
+
+.continue:active {
+  background: var(--hg-primary-pressed);
+}

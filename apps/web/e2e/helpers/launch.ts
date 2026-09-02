@@ -85,3 +85,57 @@ export async function openTodaysWords(page: Page, path = '/words/today'): Promis
   await skip.waitFor({ state: 'visible', timeout: 4000 }).catch(() => {});
   if (await skip.isVisible().catch(() => false)) await skip.click();
 }
+
+/**
+ * Waits until a Numbers lesson's record has actually reached IndexedDB.
+ *
+ * ## Why a reload needs this and a click does not
+ *
+ * `recordNumbersEvent` updates React's state and starts the write without
+ * awaiting it — `void numbersRepo.current?.put(after)`. That is the right
+ * trade for a tap: the screen must not wait on a disk to advance. It means the
+ * in-memory state and the stored row are briefly out of step, and a
+ * `page.reload()` fired in that window aborts the transaction and reloads a
+ * record that never got the event.
+ *
+ * A person cannot hit that window — tapping *Next* and killing the app inside
+ * one IndexedDB transaction is not a thing hands do — but Playwright hits it
+ * whenever the machine is busy, which is why `N-e2e-4` passed alone and failed
+ * inside the full spec. The wait is on the *storage*, so the test still proves
+ * what it was written to prove: that the resume comes from the record and not
+ * from anything the screen was holding.
+ */
+export async function waitForNumbersRecord(
+  page: Page,
+  lessonId: string,
+  holds: (record: { explanation_steps_viewed?: string[] }) => boolean,
+): Promise<void> {
+  await expect
+    .poll(
+      async () => {
+        const record = await page.evaluate(async (id) => {
+          const request = indexedDB.open('hangyul-ganada');
+          const db: IDBDatabase = await new Promise((resolve, reject) => {
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+          try {
+            return await new Promise<unknown>((resolve) => {
+              // `NumbersRepository.put` keys rows `lesson:<id>`, not by the
+              // bare id — see `storage/repositories.ts`.
+              const read = db.transaction('numbers', 'readonly').objectStore('numbers').get(`lesson:${id}`);
+              read.onsuccess = () => resolve(read.result ?? null);
+              read.onerror = () => resolve(null);
+            });
+          } finally {
+            db.close();
+          }
+        }, lessonId);
+        // A boolean rather than the row: `expect.poll` has `toBe` and no
+        // `toSatisfy`, and the predicate belongs to the caller either way.
+        return Boolean(record) && holds(record as { explanation_steps_viewed?: string[] });
+      },
+      { timeout: 10_000, message: `the stored record for ${lessonId} never satisfied the wait` },
+    )
+    .toBe(true);
+}

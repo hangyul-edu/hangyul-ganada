@@ -257,8 +257,23 @@ export interface LetterLessonTranslation {
  * nothing done; the rest follow from the evidence in `NumbersLessonProgress`.
  * Only `completed`, `mastered` and `review_due` may be drawn as finished.
  */
+/**
+ * What a Numbers lesson is, for the learner reading the list.
+ *
+ * There is no `locked`. There used to be, and it was wrong for this subject:
+ * the course teaches how to say numbers, and a learner who wants to know how to
+ * say their own age should be able to go and find out. The old rule made
+ * *hours* depend on *counting forms*, on the reasoning that 두 시 is
+ * unexplainable without them — which is a good reason to put counting forms
+ * first and a bad reason to bar the door. The order is still there, as a
+ * recommendation and a Continue button; it is no longer a gate.
+ *
+ * `available` and `not_started` are kept apart from `in_progress` deliberately.
+ * Unlocking a lesson must never be mistaken for having done any of it — see
+ * `domain/numbersProgress`, where completion is derived from evidence and from
+ * nothing else.
+ */
 export type NumbersLessonStatus =
-  | 'locked'
   | 'available'
   | 'not_started'
   | 'in_progress'

@@ -5,7 +5,6 @@
   "activitiesDone": "{{done}} z {{total}} aktywności zrobionych",
   "moduleLessons": "{{done}} z {{total}} lekcji",
   "status": {
-    "locked": "Zablokowana",
     "available": "Dostępna",
     "not_started": "Otwarta",
     "in_progress": "W toku",
@@ -13,13 +12,12 @@
     "mastered": "Opanowana",
     "review_due": "Do powtórki"
   },
-  "lockedNote": "Najpierw ukończ wcześniejsze lekcje.",
-  "systemSino": "Sinokoreańskie",
-  "systemNative": "Rdzennie koreańskie",
-  "systemBoth": "Oba systemy",
+  "systemSino": "일, 이, 삼",
+  "systemNative": "하나, 둘, 셋",
+  "systemBoth": "Oba zestawy",
   "system": {
-    "native": "Rdzennie koreańskie — 하나, 둘, 셋",
-    "sino": "Sinokoreańskie — 일, 이, 삼"
+    "native": "하나, 둘, 셋 — do liczenia rzeczy",
+    "sino": "일, 이, 삼 — do pieniędzy i dat"
   },
   "phase": {
     "objective": "Czego się nauczysz",
@@ -66,190 +64,190 @@
   "prompt": {
     "listen": "Co słyszysz?",
     "read": "Co to znaczy?",
-    "chooseSystem": "Którego systemu liczbowego tu użyto?",
+    "chooseSystem": "Który to zestaw liczb?",
     "digitsToKorean": {
-      "sino": "Powiedz tę liczbę po sinokoreańsku",
-      "native": "Powiedz tę liczbę liczebnikami rdzennymi",
+      "sino": "Powiedz tę liczbę na sposób 일, 이, 삼",
+      "native": "Powiedz tę liczbę na sposób 하나, 둘, 셋",
       "both": "Powiedz tę liczbę po koreańsku"
     },
     "koreanToDigits": "Jaka to liczba?",
     "counterForm": "Jak powiedzieć {{value}} z klasyfikatorem {{counter}}?",
-    "spotMistake": "Które jest błędne?",
+    "spotMistake": "Który wariant jest poprawny?",
     "fill": "Uzupełnij lukę",
     "orderParts": "Dotykaj części po kolei, aby zbudować {{value}}"
   },
   "rationale": {
-    "readChoose": "Dopasuj koreańskie słowo do znaczenia. Klasyfikator dobiera się do rodzaju liczonej rzeczy.",
+    "readChoose": "Połącz koreański z jego znaczeniem. Słowo do liczenia zależy od tego, co liczysz.",
     "listen": "Słuchaj całego słowa — sąsiednie liczby i podobnie brzmiące słowa to najczęstsza pomyłka.",
-    "nativeSystem": "Liczebniki rdzennie koreańskie liczą rzeczy, które można wskazać, a używa się ich też do godzin i wieku.",
-    "sinoSystem": "Liczebniki sinokoreańskie służą do oznaczeń: pieniędzy, dat, minut, numerów telefonów, pięter.",
-    "koreanToDigits": "Mów części po kolei. W systemie sinokoreańskim 십 to dziesięć, a 삼십 to trzydzieści.",
-    "countingForm": "Przed klasyfikatorem 하나 둘 셋 넷 스물 zmieniają się w 한 두 세 네 스무. 둘 개 to nie koreański; 두 개 tak.",
-    "counter": "Liczba nigdy nie stoi sama obok rzeczownika. Klasyfikator między nimi dobiera się do tego, co liczysz.",
+    "nativeSystem": "Liczby 하나, 둘, 셋 liczą to, co można wskazać, a także podają godzinę i wiek.",
+    "sinoSystem": "Liczby 일, 이, 삼 służą do etykiet: pieniądze, daty, minuty, numery telefonów, piętra.",
+    "koreanToDigits": "Czytaj części po kolei. W zestawie 일, 이, 삼 십 to dziesięć, a 삼십 to trzydzieści.",
+    "countingForm": "Przed słowem do liczenia 하나 둘 셋 넷 스물 zmieniają się w 한 두 세 네 스무. Mówi się 두 개.",
+    "counter": "Liczba nigdy nie stoi sama obok rzeczownika. Słowo do liczenia między nimi zależy od tego, co się liczy.",
     "fill": "Przeczytaj całe zdanie: słowa wokół luki mówią, która forma do niej pasuje.",
-    "nativeBuild": "Rdzenne liczebniki powyżej dziesięciu to 열 plus jedność — 열하나, 열둘. Dziesiątki mają własne słowa.",
-    "sinoBuild": "Liczebniki sinokoreańskie czyta się od lewej do prawej, część po części: 삼십오 to 삼 · 십 · 오.",
+    "nativeBuild": "Powyżej dziesięciu to 열 plus jedność — 열하나, 열둘. Dziesiątki mają własne słowa.",
+    "sinoBuild": "Liczby 일, 이, 삼 czyta się od lewej do prawej, część po części: 삼십오 to 삼 · 십 · 오.",
     "irregular_month": "Czerwiec to 유월, a październik to 시월. Regularne formy 육월 i 십월 nie istnieją.",
-    "plain_form": "Przed klasyfikatorem obowiązuje forma licząca: 한, 두, 세, 네, 스무 — nigdy 하나, 둘, 셋, 넷, 스물.",
-    "spacing": "Klasyfikator to osobne słowo i stawia się przed nim spację: 한 개, nie 한개.",
-    "system_swap": "Oba systemy nazywają tę samą wartość, ale nie są zamienne — decyduje kontekst.",
+    "plain_form": "Przed słowem do liczenia używa się 한, 두, 세, 네, 스무. 하나, 둘, 셋, 넷 i 스물 tam nie stoją.",
+    "spacing": "Słowo do liczenia to osobny wyraz i ma spację: 한 개, a nie 한개.",
+    "system_swap": "Oba zestawy nazywają tę samą wartość, ale nie są wymienne — decyduje sytuacja.",
     "sound_alike": "Różnica jednej głoski. Słuchaj spółgłoski na końcu.",
     "adjacent": "Sąsiednich liczb uczysz się jako ciągu, więc się zlewają. Sprawdzaj wartość, nie pozycję.",
-    "wrong_counter": "Każdy klasyfikator należy do jednego rodzaju rzeczy — 명 do ludzi, 마리 do zwierząt, 개 do przedmiotów."
+    "wrong_counter": "Każde słowo do liczenia ma swój rodzaj rzeczy — 명 do ludzi, 마리 do zwierząt, 개 do przedmiotów."
   },
   "module": {
     "systems": {
-      "title": "Dwa rodzaje liczb",
-      "goal": "Znać oba systemy do dziesięciu, oba zera i wiedzieć, którego systemu wymaga sytuacja."
+      "title": "Mówimy od jednego do dziesięciu",
+      "goal": "Policz do dziesięciu na dwa sposoby, przeczytaj zero i sprawdź, kiedy używa się którego."
     },
     "pastTen": {
-      "title": "Powyżej dziesięciu",
-      "goal": "Budować dowolną liczbę w obu systemach i używać pięciu form, które zmieniają się przed klasyfikatorem."
+      "title": "Liczby powyżej dziesięciu",
+      "goal": "Twórz i czytaj liczby powyżej dziesięciu i poznaj pięć słów, które zmieniają formę przy liczeniu."
     },
     "counting": {
-      "title": "Liczenie rzeczy",
-      "goal": "Liczyć ludzi, przedmioty i zwierzęta z właściwym klasyfikatorem i podawać swój wiek."
+      "title": "Liczymy rzeczy",
+      "goal": "Policz ludzi, rzeczy i zwierzęta i powiedz, ile masz lat."
     },
     "time": {
-      "title": "Czas i daty",
-      "goal": "Podawać godzinę, mówić datę i znać dwa nieregularne miesiące."
+      "title": "Która godzina? Który dzień?",
+      "goal": "Podaj godzinę, datę i dzień tygodnia."
     },
     "money": {
-      "title": "Pieniądze i liczby czytane na głos",
-      "goal": "Czytać cenę, numer telefonu, piętro i duże jednostki 만, 억, 조."
+      "title": "Ile kosztuje? Jaki numer?",
+      "goal": "Przeczytaj cenę, numer telefonu, piętro i naprawdę duże liczby."
     },
     "review": {
-      "title": "Błędy, które popełniają wszyscy",
-      "goal": "Wyłapać pięć błędów, które popełniają wszyscy, a potem pokazać, że wybór systemu jest automatyczny."
+      "title": "Błędy, które robią wszyscy",
+      "goal": "Przejrzyj pięć najczęstszych błędów i połącz wszystko w całość."
     }
   },
   "lesson": {
     "sinoBasics": {
-      "title": "일 이 삼 — sinokoreańskie od jednego do dziesięciu",
-      "objective": "Rozpoznawać i wymawiać liczebniki sinokoreańskie od jednego do dziesięciu.",
+      "title": "Powiedzieć 1, 2, 3 po koreańsku",
+      "objective": "Posłuchaj 일, 이, 삼 aż do 십 i powtórz na głos.",
       "step1": "Koreański ma dwa zestawy liczebników. Ten pochodzi z chińskiego i służy do wszystkiego, co jest oznaczeniem, a nie liczeniem — pieniędzy, dat, minut, numerów telefonów, pięter.",
       "step2": "Od jednego do dziesięciu: 일 이 삼 사 오 육 칠 팔 구 십. Każdy to jedna sylaba i każdy to zarazem cyfra, którą zobaczysz na cenach i zegarach.",
       "step3": "Dziesięć to 십. Wszystko powyżej dziesięciu buduje się z tych dziesięciu słów, więc gdy znasz je dobrze, większość pracy masz za sobą."
     },
     "nativeBasics": {
-      "title": "하나 둘 셋 — rdzennie koreańskie od jednego do dziesięciu",
-      "objective": "Rozpoznawać i wymawiać rdzenne liczebniki koreańskie od jednego do dziesięciu.",
+      "title": "Liczymy: 하나, 둘, 셋",
+      "objective": "Słuchaj i mów od 하나 do 열, licząc to, co masz przed sobą.",
       "step1": "Własne liczebniki Korei. Służą do liczenia rzeczy, które można wskazać — ludzi, filiżanek, zwierząt — oraz do godzin i wieku.",
       "step2": "Od jednego do dziesięciu: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Zwróć uwagę, że 여덟 wymawia się 여덜: ㅂ jest nieme.",
-      "step3": "Przestaje się ich używać około dziewięćdziesięciu dziewięciu. Powyżej stu każda liczba jest sinokoreańska, niezależnie od tego, co liczy."
+      "step3": "Przestają być używane koło dziewięćdziesięciu dziewięciu. Powyżej stu wszystko liczy się przez 일, 이, 삼."
     },
     "zero": {
-      "title": "Zero to dwa słowa",
-      "objective": "Używać 영 jako zera będącego ilością i 공 jako cyfry zero.",
+      "title": "0 to 영 albo 공",
+      "objective": "Mów 영 o ilości, a 공 wtedy, gdy czytasz numer na głos.",
       "step1": "영 to zero jako ilość — w matematyce, w wyniku, w temperaturze poniżej zera (영하).",
       "step2": "공 to cyfra 0, czytana na głos w numerze telefonu, numerze pokoju, kodzie. 010 to 공일공, nigdy 영일영."
     },
     "choosing": {
-      "title": "Który system i kiedy",
-      "objective": "Rozstrzygać z kontekstu, czy liczba ma być rdzenna, czy sinokoreańska.",
-      "step1": "Rdzenne do liczenia rzeczy, mniej więcej do dziewięćdziesięciu dziewięciu: 세 명 trzy osoby, 두 시 godzina druga, 스무 살 dwadzieścia lat.",
-      "step2": "Sinokoreańskie do oznaczeń oraz do pieniędzy i dat: 오천 원, 삼월 일 일, 삼십 분. I do każdej liczby powyżej stu.",
-      "step3": "Jedna godzina zegarowa używa obu: godzina jest rdzenna (세 시), minuty sinokoreańskie (삼십 분). Ta para to cała reguła w miniaturze."
+      "title": "Którego użyć?",
+      "objective": "Wybierz, które liczby służą do liczenia, a które do pieniędzy i dat.",
+      "step1": "Liczby 하나, 둘, 셋 liczą rzeczy, mniej więcej do dziewięćdziesięciu dziewięciu: 세 명, 두 시, 스무 살.",
+      "step2": "Liczby 일, 이, 삼 służą do liczb-etykiet, pieniędzy i dat: 오천 원, 삼월 일 일, 삼십 분. I do wszystkiego powyżej stu.",
+      "step3": "Jedna godzina korzysta z obu zestawów. Godzina to 세 시, minuty to 삼십 분. Ta para to cała reguła w miniaturze. (Podręczniki nazywają je liczebnikami rodzimymi i sinokoreańskimi. Warto wiedzieć, dziś nie trzeba się tego uczyć na pamięć.)"
     },
     "sinoBuild": {
-      "title": "Sinokoreańskie powyżej dziesięciu",
-      "objective": "Budować i czytać liczebniki sinokoreańskie do tysiąca.",
+      "title": "Liczymy do tysiąca",
+      "objective": "Twórz i czytaj liczby takie jak 십일, 이십 i 삼십오.",
       "step1": "Mów części po kolei. 십일 to dziesięć-jeden, jedenaście. 이십 to dwa-dziesięć, dwadzieścia. 삼십오 to trzy-dziesięć-pięć, trzydzieści pięć.",
       "step2": "Uważaj na 십육: pisze się 십육, ale mówi 심뉵. Między dwiema sylabami pojawia się głoska ㄹ.",
       "step3": "백 to sto, a 천 to tysiąc. Nie stawia się przed nimi 일 — 백 원, nie 일백 원."
     },
     "nativeBuild": {
-      "title": "Rdzennie koreańskie powyżej dziesięciu",
-      "objective": "Budować i czytać rdzenne liczebniki koreańskie do pięćdziesięciu.",
+      "title": "Mówimy 열하나, 스물, 서른",
+      "objective": "Podawaj liczby powyżej dziesięciu w sposób 하나, 둘, 셋.",
       "step1": "열 plus jedność daje liczby od jedenastu do dziewiętnastu: 열하나, 열둘, 열셋. Wymawia się je jako jedno słowo.",
       "step2": "Dziesiątki mają własne słowa — 스물 dwadzieścia, 서른 trzydzieści, 마흔 czterdzieści, 쉰 pięćdziesiąt. Nie buduje się ich z 열.",
       "step3": "열여섯 wymawia się 열려섣: ta sama głoska ㄹ, która pojawia się w 심뉵."
     },
     "forms": {
-      "title": "한, 두, 세, 네, 스무",
-      "objective": "Używać pięciu form liczących, które przed klasyfikatorem zastępują 하나, 둘, 셋, 넷 i 스물.",
-      "step1": "Pięć rdzennych liczebników zmienia formę przed klasyfikatorem. 하나 staje się 한, 둘 staje się 두, 셋 staje się 세, 넷 staje się 네, 스물 staje się 스무.",
-      "step2": "To nie jest potknięcie w wymowie. 둘 사람 to nie koreański z akcentem — to błąd. Musi być 두 사람.",
-      "step3": "Każdy inny rdzenny liczebnik zachowuje formę: 다섯 명, 여섯 개, 열 마리. Zmienia się tylko tych pięć."
+      "title": "한 개, 두 개 — forma się zmienia",
+      "objective": "Przy liczeniu 하나 zmienia się w 한, a 둘 w 두. Do zapamiętania jest tylko pięć.",
+      "step1": "Pięć słów zmienia formę przed słowem do liczenia: 하나 na 한, 둘 na 두, 셋 na 세, 넷 na 네, 스물 na 스무.",
+      "step2": "To nie jest drobna różnica w wymowie. Mówi się 두 사람, a nie 둘 사람.",
+      "step3": "Reszta zostaje bez zmian: 다섯 명, 여섯 개, 열 마리. Zmienia się tylko tych pięć."
     },
     "counters": {
-      "title": "Ludzie, rzeczy i zwierzęta",
-      "objective": "Liczyć ludzi, przedmioty i zwierzęta z 명, 사람, 개 i 마리.",
-      "step1": "Koreański nigdy nie liczy samego rzeczownika. Między liczbą a rzeczą stoi klasyfikator, dobrany do rodzaju rzeczy.",
+      "title": "명 do ludzi, 개 do rzeczy, 마리 do zwierząt",
+      "objective": "Licz tak: 세 명, 두 개, 고양이 두 마리.",
+      "step1": "Koreański nigdy nie liczy rzeczownika samą liczbą. Między liczbą a rzeczą stoi słowo do liczenia, dobrane do rodzaju rzeczy.",
       "step2": "명 liczy ludzi (세 명), 개 liczy przedmioty (두 개), 마리 liczy zwierzęta (고양이 두 마리). 사람 też liczy ludzi, trochę mniej oficjalnie.",
-      "step3": "Najpierw rzeczownik, potem liczba i klasyfikator: 고양이 두 마리, nie 두 마리 고양이."
+      "step3": "Najpierw rzeczownik, potem liczba i słowo do liczenia: 고양이 두 마리, a nie 두 마리 고양이."
     },
     "countersEveryday": {
-      "title": "Butelki, filiżanki, bilety i książki",
-      "objective": "Zamawiać i liczyć codzienne rzeczy z 병, 잔, 장 i 권.",
+      "title": "Poproszę dwie kawy",
+      "objective": "Zamawiaj i licz w sklepie z 병, 잔, 장 i 권.",
       "step1": "병 to butelka (맥주 한 병), 잔 to filiżanka lub szklanka (커피 두 잔), 장 to rzecz płaska, jak bilet lub kartka (표 네 장), 권 to książka (책 세 권).",
-      "step2": "Wszystkie cztery łączą się z liczebnikami rdzennymi i formami liczącymi: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Wszystkie cztery biorą liczby 하나, 둘, 셋 i ich formy do liczenia: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
-      "title": "Jak powiedzieć, ile masz lat",
-      "objective": "Podawać swój wiek z 살, rozpoznawać 세 i grzecznie pytać starszą osobę o wiek z 연세.",
-      "step1": "살 łączy się z liczebnikiem rdzennym i tak mówią ludzie: 스무 살, 스물다섯 살. 몇 살이에요? to pytanie o wiek do znajomego.",
-      "step2": "세 łączy się z liczebnikiem sinokoreańskim i należy do formularzy i wiadomości: 이십 세. Częściej to przeczytasz, niż powiesz.",
+      "title": "Ile masz lat?",
+      "objective": "Podaj wiek z 살, a starszą osobę zapytaj grzecznie przez 연세.",
+      "step1": "살 łączy się z liczbami 하나, 둘, 셋 i to właśnie mówi się na co dzień: 스무 살, 스물다섯 살. 몇 살이에요? pyta kolegę o wiek.",
+      "step2": "세 łączy się z liczbami 일, 이, 삼 i pojawia się w dokumentach i wiadomościach: 이십 세. Czyta się je częściej, niż wymawia.",
       "step3": "Wobec kogoś starszego 살 jest zbyt swobodne. 연세 to honoryfikatywne słowo na wiek: 연세가 어떻게 되세요?"
     },
     "hours": {
-      "title": "Jak podać godzinę",
-      "objective": "Podawać godzinę liczebnikiem rdzennym z 시 i używać 반 dla połowy godziny.",
-      "step1": "Godziny łączą się z liczebnikami rdzennymi: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? to pytanie o godzinę.",
+      "title": "Która jest godzina?",
+      "objective": "Podawaj godzinę jak 한 시 i 두 시, a wpół — słowem 반.",
+      "step1": "Godzina bierze liczby 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? pyta, która godzina.",
       "step2": "반 znaczy pół: 두 시 반 to wpół do trzeciej. Zastępuje 삼십 분.",
-      "step3": "몇 시예요? pyta o godzinę. Odpowiedz liczebnikiem rdzennym i 시: 세 시예요. Przy minutach zmieniasz system — to następna lekcja."
+      "step3": "몇 시예요? pyta o godzinę. Odpowiadaj jak 세 시예요. Minuty biorą drugi zestaw — to następna lekcja."
     },
     "minutes": {
-      "title": "Minuty i sekundy",
-      "objective": "Podawać minuty i sekundy liczebnikami sinokoreańskimi i łączyć je z godziną rdzenną.",
-      "step1": "Minuty i sekundy łączą się z liczebnikami sinokoreańskimi: 삼십 분, 십오 분, 십 초.",
-      "step2": "Jedna godzina zegarowa używa obu systemów naraz: 세 시 삼십 분 — godzina rdzenna, minuta sinokoreańska.",
-      "step3": "Najczęstszy błąd to podanie obu w tym samym systemie. 삼 시 서른 분 jest błędne podwójnie."
+      "title": "Jest 3:30",
+      "objective": "Podawaj minuty i sekundy i łącz je z godziną.",
+      "step1": "Minuty i sekundy biorą liczby 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step2": "Jedna godzina bierze oba zestawy naraz: 세 시 삼십 분 — godzina z 하나, 둘, 셋, minuty z 일, 이, 삼.",
+      "step3": "Tutaj łatwo wrzucić oba do jednego zestawu. Mów 세 시 삼십 분, a nie 삼 시 서른 분."
     },
     "dates": {
-      "title": "Lata, miesiące i dni",
-      "objective": "Podawać datę z 년, 월 i 일 oraz używać dwóch nieregularnych miesięcy.",
-      "step1": "Lata, miesiące i dni są sinokoreańskie: 이천이십육 년 삼월 십오 일. Największa jednostka pierwsza.",
+      "title": "Kiedy masz urodziny?",
+      "objective": "Podaj datę z 년, 월 i 일 — i uważaj na 유월 oraz 시월.",
+      "step1": "년, 월 i 일 biorą liczby 일, 이, 삼: 이천이십육 년 삼월 십오 일. Najpierw duża jednostka.",
       "step2": "Dwa miesiące są nieregularne. Czerwiec to 유월, nie 육월; październik to 시월, nie 십월.",
       "step3": "일 jako dzień miesiąca to to samo słowo co 일 dla jedynki. 삼월 일 일 to pierwszy marca."
     },
     "weekdays": {
-      "title": "Dni tygodnia",
-      "objective": "Nazywać dni tygodnia i pytać, jaki jest dzień.",
+      "title": "Jaki dziś dzień?",
+      "objective": "Powiedz od 월요일 do 일요일 i zapytaj, jaki jest dzień.",
       "step1": "Dni kończą się na 요일: 월요일 poniedziałek, 화요일, 수요일, 목요일, 금요일 piątek, 토요일, 일요일.",
       "step2": "무슨 요일이에요? to pytanie, jaki jest dzień. 주말 to weekend."
     },
     "money": {
-      "title": "Jak czytać cenę",
-      "objective": "Czytać ceny w wonach, grupowane po koreańsku dziesiątkami tysięcy.",
-      "step1": "Won łączy się z liczebnikami sinokoreańskimi: 천 원, 오천 원. 얼마예요? to pytanie o cenę.",
+      "title": "Ile to kosztuje?",
+      "objective": "Czytaj ceny takie jak 오천 원 i 만 오천 원.",
+      "step1": "원 bierze liczby 일, 이, 삼: 천 원, 오천 원. 얼마예요? pyta o cenę.",
       "step2": "Koreański grupuje po dziesięć tysięcy, nie po tysiąc. 만 원 to 10 000; 삼만 오천 원 to 35 000.",
       "step3": "Cena, którą słyszysz jako 만 오천 원, to 15 000 — jedna dziesiątka tysięcy i pięć tysięcy."
     },
     "digits": {
-      "title": "Telefony, piętra i pokoje",
-      "objective": "Czytać numery cyfra po cyfrze, z 공 zamiast zera i 에 między grupami.",
+      "title": "Czytamy numer telefonu",
+      "objective": "Czytaj numer cyfra po cyfrze, mówiąc 공 zamiast 0. Tak samo z piętrami i pokojami.",
       "step1": "Numer, który oznacza, a nie liczy, czyta się cyfra po cyfrze: 010 to 공일공.",
       "step2": "에 stoi tam, gdzie stoi myślnik: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Piętra, pokoje i linie autobusowe łączą się z liczebnikami sinokoreańskimi: 삼 층 trzecie piętro, 오공이 호 pokój 502, 이백육 번 autobus 206."
+      "step3": "Piętra, numery pokoi i autobusów biorą liczby 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억, 조 — i ułamki dziesiętne",
-      "objective": "Czytać duże jednostki koreańskie, procenty i ułamki dziesiętne.",
+      "title": "만, 억 — naprawdę duże liczby",
+      "objective": "Czytaj duże liczby grupami po dziesięć tysięcy, a także procenty i ułamki dziesiętne.",
       "step1": "Koreański liczy grupami po cztery cyfry, nie po trzy. 만 to dziesięć tysięcy, 억 to sto milionów, 조 to bilion.",
-      "step2": "123 450 000 czyta się 1억 2345만 — polski podział na grupy wypada w złym miejscu dla koreańskiego.",
+      "step2": "123 450 000 czyta się 1억 2345만. Koreański grupuje po dziesięć tysięcy, a nie po tysiącu.",
       "step3": "퍼센트 to procent (오십 퍼센트), a 점 to przecinek dziesiętny: 삼 점 오 to 3,5."
     },
     "pitfalls": {
-      "title": "Pięć błędów, które popełniają wszyscy",
-      "objective": "Rozpoznawać i poprawiać pięć błędów, po których poznaje się początkującego.",
+      "title": "Pięć bardzo częstych błędów",
+      "objective": "Znajdź i popraw pięć błędów, na których potykają się wszyscy.",
       "step1": "Każdy z nich to reguła, którą już znasz, w miejscu, w którym najłatwiej ją zapomnieć.",
-      "step2": "두 살, nie 둘 살. 심뉵, nie 십육 jak w pisowni. 유월, nie 육월. Godzina rdzenna z minutą sinokoreańską. Spacja przed klasyfikatorem."
+      "step2": "두 살, nie 둘 살. 십육 wymawia się 심뉵. 유월, nie 육월. 세 시 na godzinę i 삼십 분 na minuty. Spacja przed słowem do liczenia."
     },
     "mixed": {
-      "title": "Powtórka mieszana — który system, która forma",
-      "objective": "Usłyszeć lub przeczytać wyrażenie z dowolnego miejsca kursu i wiedzieć, którego systemu używa i dlaczego.",
-      "step1": "Cały ten kurs sprowadza się do jednej szybkiej decyzji: to liczenie czy oznaczenie? Liczenie — ludzie, rzeczy, godziny, wiek — bierze liczebniki rdzenne; oznaczenia — pieniądze, minuty, daty, numery telefonów — biorą sinokoreańskie.",
+      "title": "Wszystko na raz",
+      "objective": "Posłuchaj i przeczytaj wszystko, czego się nauczyłeś, naraz.",
+      "step1": "Cały kurs sprowadza się do jednej szybkiej decyzji: to liczenie czy etykieta? Liczenie — ludzie, rzeczy, godziny, wiek — bierze 하나, 둘, 셋; etykiety — pieniądze, minuty, daty, numery telefonów — biorą 일, 이, 삼.",
       "step2": "Ta powtórka miesza oba. Czytaj lub słuchaj, decyduj i zaglądaj do wyjaśnienia, gdy tylko się zawahasz. Wahanie to właśnie to, co masz wyćwiczyć."
     }
   },
@@ -264,14 +262,14 @@
     "ctxMinute": "trzydzieści minut",
     "ctxAge": "dwadzieścia lat",
     "ctxDate": "pierwszy marca",
-    "formOne": "jeden, przed klasyfikatorem",
-    "formTwo": "dwa, przed klasyfikatorem",
-    "formThree": "trzy, przed klasyfikatorem",
-    "formFour": "cztery, przed klasyfikatorem",
-    "formTwenty": "dwadzieścia, przed klasyfikatorem",
+    "formOne": "jeden, przy liczeniu",
+    "formTwo": "dwa, przy liczeniu",
+    "formThree": "trzy, przy liczeniu",
+    "formFour": "cztery, przy liczeniu",
+    "formTwenty": "dwadzieścia, przy liczeniu",
     "counterPeople": "osoby",
     "counterPeoplePlain": "osoby — potocznie",
-    "counterThings": "rzeczy — klasyfikator ogólny",
+    "counterThings": "rzeczy — najczęstsze słowo do liczenia",
     "counterAnimals": "zwierzęta",
     "counterBottles": "butelki",
     "counterCups": "filiżanki i szklanki",
@@ -287,7 +285,7 @@
     "tenOclock": "godzina dziesiąta",
     "counterMinute": "minuty",
     "counterSecond": "sekundy",
-    "mixedTime": "godzina zegarowa, oba systemy",
+    "mixedTime": "godzina, z obu zestawów naraz",
     "quarterPast": "kwadrans po drugiej",
     "counterYear": "rok",
     "counterMonth": "miesiąc",
@@ -312,19 +310,19 @@
     "pitfallSimnyuk": "Pisze się 십육, mówi 심뉵",
     "pitfallJune": "Czerwiec to 유월, nigdy 육월",
     "pitfallHourMinute": "Godzina rdzenna, minuta sinokoreańska",
-    "pitfallSpacing": "Klasyfikator to osobne słowo"
+    "pitfallSpacing": "Słowo do liczenia pisze się osobno"
   },
   "example": {
     "zeroMath": "minus trzy stopnie",
     "zeroDigit": "010",
     "belowZeroFive": "minus pięć stopni",
     "zeroScore": "Mam zero punktów.",
-    "ctxPeople": "ludzie: liczebnik rdzenny",
-    "ctxMoney": "pieniądze: liczebniki sinokoreańskie",
-    "ctxHour": "godziny: liczebniki rdzenne",
-    "ctxMinute": "minuty: liczebniki sinokoreańskie",
-    "ctxAge": "wiek: liczebnik rdzenny",
-    "ctxDate": "daty: liczebniki sinokoreańskie",
+    "ctxPeople": "ludzi liczy się przez 하나, 둘, 셋",
+    "ctxMoney": "pieniądze biorą 일, 이, 삼",
+    "ctxHour": "godziny biorą 하나, 둘, 셋",
+    "ctxMinute": "minuty biorą 일, 이, 삼",
+    "ctxAge": "wiek bierze 하나, 둘, 셋",
+    "ctxDate": "daty biorą 일, 이, 삼",
     "twentyFive": "Mam dwadzieścia pięć lat.",
     "ageHonorific": "zapytać starszą osobę o wiek",
     "halfPastTwo": "wpół do trzeciej",

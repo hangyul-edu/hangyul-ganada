@@ -76,13 +76,11 @@ export function NumberSessionPage() {
   const navigate = useNavigate();
   const { t } = useTranslation(['numbers', 'common', 'learning']);
   const { locale } = useLocale();
-  const { state, recordNumbersEvent, numbersLessonsComplete } = useLearner();
+  const { state, recordNumbersEvent } = useLearner();
 
   const lesson = lessonId ? getNumberLesson(lessonId) : undefined;
   const record: NumbersLessonProgress | undefined = lesson ? state.numbers[lesson.id] : undefined;
   const items = useMemo(() => (lesson ? numberLessonItems(lesson) : []), [lesson]);
-
-  const locked = lesson ? !numbersLessonsComplete(lesson.prerequisites) : true;
 
   /*
     The phase is decided once, from the evidence, when the lesson is entered —
@@ -116,10 +114,10 @@ export function NumberSessionPage() {
   // One `lesson_opened` per arrival. Opening records that fact and nothing else.
   const openedFor = useRef<string | null>(null);
   useEffect(() => {
-    if (!hydrated || !lesson || locked || openedFor.current === lesson.id) return;
+    if (!hydrated || !lesson || openedFor.current === lesson.id) return;
     openedFor.current = lesson.id;
     recordNumbersEvent(lesson.id, { type: 'lesson_opened' });
-  }, [hydrated, lesson, locked, recordNumbersEvent]);
+  }, [hydrated, lesson, recordNumbersEvent]);
 
   if (!lesson || phase === null) {
     // Unknown lesson, or the record has not loaded yet: the header and nothing
@@ -143,10 +141,7 @@ export function NumberSessionPage() {
   // --- objective -------------------------------------------------------------
   if (phase === 'objective') {
     const module = getNumberModule(lesson.module);
-    const status = lessonStatus(record, lesson, {
-      prerequisitesComplete: !locked,
-      reviewDue: isReviewDue(record, new Date()),
-    });
+    const status = lessonStatus(record, lesson, { reviewDue: isReviewDue(record, new Date()) });
     const resuming = record !== undefined && record.started_at !== null;
     return (
       <div className={styles.page}>
@@ -171,20 +166,20 @@ export function NumberSessionPage() {
             ))}
           </ul>
 
-          {locked ? (
-            <Card padding="md">
-              <p className={styles.note}>{t('numbers:lockedNote')}</p>
-            </Card>
-          ) : (
-            <Button
-              onClick={() => {
-                const next = resumePhase(record, lesson);
-                goto(next === 'objective' ? 'explain' : next);
-              }}
-            >
-              {t(resuming ? 'numbers:action.resume' : 'numbers:action.start')}
-            </Button>
-          )}
+          {/*
+            Always a way in. This used to be a fork — the lesson, or a card
+            explaining that other lessons had to be finished first — and the
+            second branch is gone with the rest of the locking. See
+            `pages/NumbersPage`.
+          */}
+          <Button
+            onClick={() => {
+              const next = resumePhase(record, lesson);
+              goto(next === 'objective' ? 'explain' : next);
+            }}
+          >
+            {t(resuming ? 'numbers:action.resume' : 'numbers:action.start')}
+          </Button>
         </div>
       </div>
     );

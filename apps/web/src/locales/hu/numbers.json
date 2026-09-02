@@ -5,7 +5,6 @@
   "activitiesDone": "{{total}} feladatból {{done}} kész",
   "moduleLessons": "{{total}} leckéből {{done}}",
   "status": {
-    "locked": "Zárolva",
     "available": "Elérhető",
     "not_started": "Megnyitva",
     "in_progress": "Folyamatban",
@@ -13,13 +12,12 @@
     "mastered": "Elsajátítva",
     "review_due": "Ismétlés esedékes"
   },
-  "lockedNote": "Előbb fejezd be az ezt megelőző leckéket.",
-  "systemSino": "Sino-koreai",
-  "systemNative": "Eredeti koreai",
-  "systemBoth": "Mindkét rendszer",
+  "systemSino": "일, 이, 삼",
+  "systemNative": "하나, 둘, 셋",
+  "systemBoth": "Mindkettő",
   "system": {
-    "native": "Eredeti koreai — 하나, 둘, 셋",
-    "sino": "Sino-koreai — 일, 이, 삼"
+    "native": "하나, 둘, 셋 — dolgok számolásához",
+    "sino": "일, 이, 삼 — pénzhez és dátumhoz"
   },
   "phase": {
     "objective": "Mit fogsz megtanulni",
@@ -66,190 +64,190 @@
   "prompt": {
     "listen": "Mit hallottál?",
     "read": "Mit jelent ez?",
-    "chooseSystem": "Melyik számrendszert használja ez?",
+    "chooseSystem": "Melyik számsor ez a kettő közül?",
     "digitsToKorean": {
-      "sino": "Mondd ki ezt a számot sino-koreaiul",
-      "native": "Mondd ki ezt a számot eredeti koreaiul",
+      "sino": "Mondd ki ezt a számot a 일, 이, 삼 módján",
+      "native": "Mondd ki ezt a számot a 하나, 둘, 셋 módján",
       "both": "Mondd ki ezt a számot koreaiul"
     },
     "koreanToDigits": "Melyik szám ez?",
     "counterForm": "Hogy mondod: {{value}} a(z) {{counter}} számlálószóval?",
-    "spotMistake": "Melyik a hibás?",
+    "spotMistake": "Melyik a helyes?",
     "fill": "Töltsd ki a hiányzó részt",
     "orderParts": "Koppints a részekre sorrendben, hogy kirakd: {{value}}"
   },
   "rationale": {
-    "readChoose": "Párosítsd a koreait a jelentésével. A számlálószót az határozza meg, milyen fajta dolgot számolunk.",
+    "readChoose": "Párosítsd a koreait a jelentésével. Hogy melyik számolószó kell, attól függ, mit számolsz.",
     "listen": "Az egész szóra figyelj — a szomszédos számok és a hasonló hangzásúak a leggyakoribb csapda.",
-    "nativeSystem": "Az eredeti koreai számokkal olyasmit számolunk, amire rá lehet mutatni, továbbá az órát és az életkort.",
-    "sinoSystem": "A sino-koreai számok megjelölésre valók: pénz, dátum, perc, telefonszám, emelet.",
-    "koreanToDigits": "Mondd ki a részeket sorrendben. Sino-koreaiul a 십 tíz, a 삼십 harminc.",
-    "countingForm": "Számlálószó előtt a 하나 둘 셋 넷 스물 alakja 한 두 세 네 스무 lesz. A 둘 개 nem koreai; a 두 개 az.",
-    "counter": "A szám soha nem áll önmagában a főnév mellett. A kettő közé számlálószó kerül, amelyet az választ ki, mit számolunk.",
+    "nativeSystem": "A 하나, 둘, 셋 számok azt számolják, amire rá lehet mutatni, és ezek adják az órát és az életkort.",
+    "sinoSystem": "A 일, 이, 삼 számok címkékhez valók: pénz, dátum, perc, telefonszám, emelet.",
+    "koreanToDigits": "Mondd a részeket sorban. A 일, 이, 삼 sorban a 십 tíz, a 삼십 pedig harminc.",
+    "countingForm": "Számolószó előtt a 하나 둘 셋 넷 스물 alakja 한 두 세 네 스무 lesz. Úgy mondjuk: 두 개.",
+    "counter": "A szám sosem áll magában a főnév mellett. A köztük lévő számolószót az dönti el, mit számolunk.",
     "fill": "Olvasd el az egész mondatot: a hiány körüli szavak megmondják, melyik alak illik oda.",
-    "nativeBuild": "Tíz felett az eredeti számok: 열 plusz az egyes — 열하나, 열둘. A tízeseknek saját szavuk van.",
-    "sinoBuild": "A sino számokat balról jobbra, részenként olvassuk: a 삼십오 az 삼 · 십 · 오.",
+    "nativeBuild": "Tíz fölött 열 plusz az egyes — 열하나, 열둘. A tízeseknek saját szavuk van.",
+    "sinoBuild": "A 일, 이, 삼 számokat balról jobbra, részenként olvassuk: a 삼십오 az 삼 · 십 · 오.",
     "irregular_month": "A június 유월, az október 시월. A szabályos 육월 és 십월 alak nem létezik.",
-    "plain_form": "Számlálószó előtt a számláló alak kötelező: 한, 두, 세, 네, 스무 — soha nem 하나, 둘, 셋, 넷, 스물.",
-    "spacing": "A számlálószó külön szó, szóköz áll előtte: 한 개, nem 한개.",
-    "system_swap": "A két rendszer ugyanazt az értéket nevezi meg, de nem cserélhető fel — a helyzet dönt.",
+    "plain_form": "Számolószó előtt 한, 두, 세, 네, 스무 áll. A 하나, 둘, 셋, 넷 és a 스물 oda nem való.",
+    "spacing": "A számolószó külön szó, szóköz áll előtte: 한 개, nem 한개.",
+    "system_swap": "A két számsor ugyanazt az értéket mondja, de nem cserélhető fel — a helyzet dönt.",
     "sound_alike": "Egyetlen hang a különbség. Figyelj a szóvégi mássalhangzóra.",
     "adjacent": "A szomszédos számokat listaként tanuljuk, ezért összemosódnak. Az értéket ellenőrizd, ne a helyet.",
-    "wrong_counter": "Minden számlálószó egy fajta dologhoz tartozik — 명 az embereknek, 마리 az állatoknak, 개 a tárgyaknak."
+    "wrong_counter": "Minden számolószó egy dologfajtához tartozik — 명 emberre, 마리 állatra, 개 tárgyra."
   },
   "module": {
     "systems": {
-      "title": "Kétféle szám",
-      "goal": "Ismerd mindkét rendszert tízig, mindkét nullát, és azt, hogy melyik helyzet melyik rendszert kéri."
+      "title": "Egytől tízig",
+      "goal": "Számolj el tízig kétféleképpen, olvasd ki a nullát, és tudd meg, mikor melyik kell."
     },
     "pastTen": {
-      "title": "Tíz felett",
-      "goal": "Rakj ki bármilyen számot mindkét rendszerben, és használd az öt alakot, amely számlálószó előtt megváltozik."
+      "title": "Tíznél nagyobb számok",
+      "goal": "Építs és olvass tíz feletti számokat, és tanuld meg az öt szót, amely számláláskor alakot vált."
     },
     "counting": {
-      "title": "Dolgok számolása",
-      "goal": "Számolj embereket, tárgyakat és állatokat a megfelelő számlálószóval, és mondd meg a korodat."
+      "title": "Dolgokat számolunk",
+      "goal": "Számolj embereket, tárgyakat és állatokat, és mondd meg, hány éves vagy."
     },
     "time": {
-      "title": "Idő és dátum",
-      "goal": "Mondd meg az időt, mondj egy dátumot, és nevezd meg a két rendhagyó hónapot."
+      "title": "Hány óra? Hányadika?",
+      "goal": "Mondd meg az időt, a dátumot és a hét napját."
     },
     "money": {
-      "title": "Pénz és felolvasott számok",
-      "goal": "Olvass le egy árat, egy telefonszámot, egy emeletet, és a nagy egységeket: 만, 억, 조."
+      "title": "Mennyibe kerül? Hányas szám?",
+      "goal": "Olvass árat, telefonszámot, emeletet és nagyon nagy számokat."
     },
     "review": {
-      "title": "A hibák, amelyeket mindenki elkövet",
-      "goal": "Kapd el az öt hibát, amelyet mindenki elkövet, majd bizonyítsd be, hogy a rendszerválasztás már automatikus."
+      "title": "Amit mindenki elront",
+      "goal": "Nézd át az öt leggyakoribb hibát, majd rakd össze az egészet."
     }
   },
   "lesson": {
     "sinoBasics": {
-      "title": "일 이 삼 — sino-koreai számok egytől tízig",
-      "objective": "Ismerd fel és mondd ki a sino-koreai számokat egytől tízig.",
+      "title": "1, 2, 3 koreaiul",
+      "objective": "Hallgasd meg 일, 이, 삼 egészen 십-ig, és mondd utána.",
       "step1": "A koreaiban két számsor van. Ez a sor a kínaiból jött, és mindenre használatos, ami megjelölés, nem pedig számlálás — pénz, dátum, perc, telefonszám, emelet.",
       "step2": "Egytől tízig: 일 이 삼 사 오 육 칠 팔 구 십. Mindegyik egy szótag, és mindegyik egy számjegy is, amelyet árakon és órákon fogsz látni.",
       "step3": "A tíz: 십. Minden, ami tíz felett van, ebből a tíz szóból épül fel, így ha ezeket jól tudod, a munka nagy része megvan."
     },
     "nativeBasics": {
-      "title": "하나 둘 셋 — eredeti koreai számok egytől tízig",
-      "objective": "Ismerd fel és mondd ki az eredeti koreai számokat egytől tízig.",
+      "title": "Számolás: 하나, 둘, 셋",
+      "objective": "Hallgasd és mondd 하나-tól 열-ig, közben számold, ami előtted van.",
       "step1": "Korea saját számai. Olyasmit számolunk velük, amire rá lehet mutatni — embereket, csészéket, állatokat —, valamint az órát és az életkort.",
       "step2": "Egytől tízig: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Figyeld meg: a 여덟 kiejtve 여덜, a ㅂ néma.",
-      "step3": "Ezeket kilencvenkilenc körül már nem használják. Száz felett minden szám sino-koreai, bármit is számol."
+      "step3": "Kilencvenkilenc körül kikopnak. Száz fölött mindent a 일, 이, 삼 számokkal számolunk."
     },
     "zero": {
-      "title": "A nulla két szó",
-      "objective": "Használd a 영-t a nullára mint mennyiségre, és a 공-t a nulla számjegyre.",
+      "title": "A 0 az 영 vagy 공",
+      "objective": "Mennyiségnél 영, szám felolvasásánál 공.",
       "step1": "A 영 a nulla mint mennyiség — a matematikában, egy eredményben, a fagypont alatti hőmérsékletben (영하).",
       "step2": "A 공 a 0 számjegy, ahogy telefonszámban, szobaszámban, kódban felolvassuk. A 010 az 공일공, soha nem 영일영."
     },
     "choosing": {
-      "title": "Melyik rendszer, és mikor",
-      "objective": "Döntsd el a helyzetből, hogy egy szám eredeti vagy sino-koreai legyen.",
-      "step1": "Eredeti a dolgok számolására, körülbelül kilencvenkilencig: 세 명 három ember, 두 시 két óra, 스무 살 húsz éves.",
-      "step2": "Sino a megjelölésekre, a pénzre és a dátumokra: 오천 원, 삼월 일 일, 삼십 분. És minden száz feletti számra.",
-      "step3": "Egy időpontban mindkettő szerepel: az óra eredeti (세 시), a perc sino (삼십 분). Ez a páros a szabály kicsiben."
+      "title": "Melyiket használjam?",
+      "objective": "Döntsd el, melyik számokkal számolunk, és melyekkel mondunk pénzt és dátumot.",
+      "step1": "A 하나, 둘, 셋 számok dolgokat számolnak, körülbelül kilencvenkilencig: 세 명, 두 시, 스무 살.",
+      "step2": "A 일, 이, 삼 számok címkeszerű számokhoz, pénzhez és dátumhoz valók: 오천 원, 삼월 일 일, 삼십 분. És mindenhez száz fölött.",
+      "step3": "Egyetlen óraidő mindkét számsort használja. Az óra 세 시, a perc 삼십 분. Ez a pár az egész szabály kicsiben. (A könyvek eredeti és sino-koreai számneveknek hívják őket. Jó tudni, ma nem kell bemagolni.)"
     },
     "sinoBuild": {
-      "title": "Sino-koreai számok tíz felett",
-      "objective": "Rakd ki és olvasd el a sino-koreai számokat ezerig.",
+      "title": "Számolás ezerig",
+      "objective": "Építs és olvass olyan számokat, mint 십일, 이십 és 삼십오.",
       "step1": "Mondd ki a részeket sorrendben. A 십일 tíz-egy, tizenegy. Az 이십 kettő-tíz, húsz. A 삼십오 három-tíz-öt, harmincöt.",
       "step2": "Figyelj a 십육-ra: írva 십육, kiejtve 심뉵. A két szótag között megjelenik egy ㄹ-hang.",
       "step3": "A 백 száz, a 천 ezer. Nem áll előttük 일 — 백 원, nem 일백 원."
     },
     "nativeBuild": {
-      "title": "Eredeti koreai számok tíz felett",
-      "objective": "Rakd ki és olvasd el az eredeti koreai számokat ötvenig.",
+      "title": "열하나, 스물, 서른",
+      "objective": "A tíz feletti számokat mondd a 하나, 둘, 셋 módján.",
       "step1": "A 열 plusz az egyes adja a tizenegytől tizenkilencig tartó számokat: 열하나, 열둘, 열셋. Egy szóként ejtjük.",
       "step2": "A tízeseknek saját szavuk van — 스물 húsz, 서른 harminc, 마흔 negyven, 쉰 ötven. Nem a 열-ből épülnek.",
       "step3": "A 열여섯 kiejtve 열려섣: ugyanaz a ㄹ-hang, amely a 심뉵-ban is megjelenik."
     },
     "forms": {
-      "title": "한, 두, 세, 네, 스무",
-      "objective": "Használd az öt számláló alakot, amely számlálószó előtt a 하나, 둘, 셋, 넷 és 스물 helyére lép.",
-      "step1": "Öt eredeti szám megváltoztatja az alakját számlálószó előtt. A 하나 → 한, a 둘 → 두, a 셋 → 세, a 넷 → 네, a 스물 → 스무.",
-      "step2": "Ez nem kiejtési apróság. A 둘 사람 nem tájszólás — hibás. Csak 두 사람 lehet.",
-      "step3": "Minden más eredeti szám megtartja az alakját: 다섯 명, 여섯 개, 열 마리. Csak ez az öt változik."
+      "title": "한 개, 두 개 — változik az alak",
+      "objective": "Számláláskor a 하나-ból 한, a 둘-ből 두 lesz. Csak öt ilyen van.",
+      "step1": "Öt szó alakot vált a számolószó előtt: 하나 helyett 한, 둘 helyett 두, 셋 helyett 세, 넷 helyett 네, 스물 helyett 스무.",
+      "step2": "Ez nem apró kiejtésbeli eltérés. Azt mondjuk: 두 사람, nem 둘 사람.",
+      "step3": "A többi marad: 다섯 명, 여섯 개, 열 마리. Csak ez az öt változik."
     },
     "counters": {
-      "title": "Emberek, dolgok és állatok",
-      "objective": "Számolj embereket, tárgyakat és állatokat a 명, 사람, 개 és 마리 számlálószóval.",
-      "step1": "A koreai soha nem számol főnevet önmagában. A szám és a dolog közé számlálószó kerül, amelyet a dolog fajtája határoz meg.",
+      "title": "명 emberre, 개 tárgyra, 마리 állatra",
+      "objective": "Számolj így: 세 명, 두 개, 고양이 두 마리.",
+      "step1": "A koreai sosem számol főnevet puszta számmal. A szám és a dolog közé számolószó kerül, a dolog fajtájához választva.",
       "step2": "A 명 embereket számol (세 명), a 개 tárgyakat (두 개), a 마리 állatokat (고양이 두 마리). A 사람 is embereket számol, valamivel kevésbé formálisan.",
-      "step3": "Elöl a főnév áll, utána a szám és a számlálószó: 고양이 두 마리, nem 두 마리 고양이."
+      "step3": "Előbb a főnév, aztán a szám és a számolószó: 고양이 두 마리, nem 두 마리 고양이."
     },
     "countersEveryday": {
-      "title": "Üvegek, csészék, jegyek és könyvek",
-      "objective": "Rendelj és számolj hétköznapi dolgokat a 병, 잔, 장 és 권 számlálószóval.",
+      "title": "Két kávét kérek",
+      "objective": "Rendelj és számolj a boltban 병, 잔, 장 és 권 használatával.",
       "step1": "A 병 üveg (맥주 한 병), a 잔 csésze vagy pohár (커피 두 잔), a 장 lapos dolog, például jegy vagy papírlap (표 네 장), a 권 könyv (책 세 권).",
-      "step2": "Mind a négy eredeti számot és számláló alakot kap: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Mind a négy a 하나, 둘, 셋 számokat és azok számolóalakját kéri: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
-      "title": "Hogy mondod meg, hány éves vagy",
-      "objective": "Mondd meg a korodat a 살-lal, ismerd fel a 세-t, és kérdezd meg udvariasan egy idősebb korát a 연세-vel.",
-      "step1": "A 살 eredeti számot kap, és ezt mondják az emberek: 스무 살, 스물다섯 살. A 몇 살이에요? egy barát korát kérdezi.",
-      "step2": "A 세 sino számot kap, és űrlapokon, hírekben él: 이십 세. Többször fogod olvasni, mint kimondani.",
+      "title": "Hány éves vagy?",
+      "objective": "Mondd meg a korod 살-lal, idősebbet pedig udvariasan kérdezz 연세-vel.",
+      "step1": "A 살 a 하나, 둘, 셋 számokkal jár, és ezt mondják valójában: 스무 살, 스물다섯 살. A 몇 살이에요? egy barát korát kérdezi.",
+      "step2": "A 세 a 일, 이, 삼 számokkal jár, és iratokban meg hírekben tűnik fel: 이십 세. Többször olvassuk, mint kimondjuk.",
       "step3": "Idősebb emberrel szemben a 살 túl közvetlen. A 연세 az életkor tiszteleti szava: 연세가 어떻게 되세요?"
     },
     "hours": {
-      "title": "Az óra megmondása",
-      "objective": "Mondd meg az órát eredeti számmal és 시-vel, és használd a 반-t a fél órára.",
-      "step1": "Az órák eredeti számot kapnak: 한 시, 두 시, 세 시, 네 시, 열 시. A 몇 시예요? az időt kérdezi.",
+      "title": "Hány óra van?",
+      "objective": "Az órát mondd így: 한 시, 두 시, a felet pedig 반-nal.",
+      "step1": "Az óra a 하나, 둘, 셋 számokat kéri: 한 시, 두 시, 세 시, 네 시, 열 시. A 몇 시예요? az időt kérdezi.",
       "step2": "A 반 felet jelent: a 두 시 반 fél három. A 삼십 분 helyett áll.",
-      "step3": "A 몇 시예요? az órát kérdezi. Eredeti számmal és 시-vel felelj: 세 시예요. A percekhez rendszert váltasz — az a következő lecke."
+      "step3": "A 몇 시예요? az órát kérdezi. Így válaszolj: 세 시예요. A perc a másik számsort kéri — az a következő lecke."
     },
     "minutes": {
-      "title": "Percek és másodpercek",
-      "objective": "Mondd meg a percet és a másodpercet sino számmal, és kapcsold össze eredeti órával.",
-      "step1": "A percek és a másodpercek sino számot kapnak: 삼십 분, 십오 분, 십 초.",
-      "step2": "Egy időpont mindkét rendszert egyszerre használja: 세 시 삼십 분 — eredeti óra, sino perc.",
-      "step3": "A leggyakoribb hiba, hogy mindkettő ugyanabba a rendszerbe kerül. A 삼 시 서른 분 kétszeresen is hibás."
+      "title": "Fél négy van",
+      "objective": "Mondd a percet és a másodpercet, és kösd az órához.",
+      "step1": "A perc és a másodperc a 일, 이, 삼 számokat kéri: 삼십 분, 십오 분, 십 초.",
+      "step2": "Egy óraidő egyszerre kéri mindkét számsort: 세 시 삼십 분 — az óra a 하나, 둘, 셋-ből, a perc a 일, 이, 삼-ból.",
+      "step3": "Itt könnyű mindkettőt ugyanabból a sorból venni. Mondd: 세 시 삼십 분, ne 삼 시 서른 분."
     },
     "dates": {
-      "title": "Évek, hónapok és napok",
-      "objective": "Mondj dátumot a 년, 월 és 일 szavakkal, és használd a két rendhagyó hónapot.",
-      "step1": "Az év, a hónap és a nap mind sino: 이천이십육 년 삼월 십오 일. A legnagyobb egység áll elöl.",
+      "title": "Mikor van a születésnapod?",
+      "objective": "Mondj dátumot 년, 월 és 일 használatával — és figyelj a 유월 és 시월 alakra.",
+      "step1": "A 년, 월 és 일 mind a 일, 이, 삼 számokat kéri: 이천이십육 년 삼월 십오 일. A nagy egység elöl.",
       "step2": "Két hónap rendhagyó. A június 유월, nem 육월; az október 시월, nem 십월.",
       "step3": "A 일 mint a hónap napja ugyanaz a szó, mint a 일 az egyes. A 삼월 일 일 március elseje."
     },
     "weekdays": {
-      "title": "A hét napjai",
-      "objective": "Nevezd meg a hét napjait, és kérdezd meg, milyen nap van.",
+      "title": "Milyen nap van ma?",
+      "objective": "Mondd 월요일-tól 일요일-ig, és kérdezd meg, milyen nap van.",
       "step1": "A napok 요일-ra végződnek: 월요일 hétfő, 화요일, 수요일, 목요일, 금요일 péntek, 토요일, 일요일.",
       "step2": "A 무슨 요일이에요? azt kérdezi, milyen nap van. A 주말 a hétvége."
     },
     "money": {
-      "title": "Egy ár leolvasása",
-      "objective": "Olvass le árakat vonban, koreai módra, tízezresekbe csoportosítva.",
-      "step1": "A von sino számot kap: 천 원, 오천 원. Az 얼마예요? az árat kérdezi.",
+      "title": "Mennyibe kerül?",
+      "objective": "Olvass árakat, például 오천 원 és 만 오천 원.",
+      "step1": "A 원 a 일, 이, 삼 számokat kéri: 천 원, 오천 원. A 얼마예요? az árat kérdezi.",
       "step2": "A koreai tízezresenként csoportosít, nem ezresenként. A 만 원 10 000; a 삼만 오천 원 35 000.",
       "step3": "Az az ár, amit 만 오천 원-ként hallasz, 15 000 — egy tízezres és öt ezres."
     },
     "digits": {
-      "title": "Telefonszámok, emeletek és szobák",
-      "objective": "Olvass fel azonosítókat számjegyenként, 공-val a nullára és 에-vel a csoportok között.",
+      "title": "Telefonszám olvasása",
+      "objective": "Olvasd a számot számjegyenként, a 0 helyett 공. Az emeletnél és a szobaszámnál ugyanígy.",
       "step1": "Az olyan számot, amely azonosít és nem számol, számjegyenként olvassuk: a 010 az 공일공.",
       "step2": "Az 에 oda kerül, ahová a kötőjel: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Az emeletek, szobák és buszjáratok sino számot kapnak: 삼 층 harmadik emelet, 오공이 호 502-es szoba, 이백육 번 206-os busz."
+      "step3": "Az emelet, a szobaszám és a buszszám a 일, 이, 삼 számokat kéri: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억, 조 — és a tizedesek",
-      "objective": "Olvasd el a nagy koreai egységeket, a százalékokat és a tizedesvesszőt.",
+      "title": "만, 억 — nagyon nagy számok",
+      "objective": "Olvass nagy számokat tízezres csoportokban, és olvass százalékot és tizedesjegyet is.",
       "step1": "A koreai négyjegyű csoportokban számol, nem háromjegyűekben. A 만 tízezer, az 억 százmillió, a 조 billió.",
-      "step2": "A 123 450 000 olvasata 1억 2345만 — a hármas tagolás a koreai számára rossz helyen áll.",
+      "step2": "A 123 450 000 így hangzik: 1억 2345만. A koreai tízezresével csoportosít, nem ezresével.",
       "step3": "A 퍼센트 a százalék (오십 퍼센트), a 점 pedig a tizedesvessző: a 삼 점 오 az 3,5."
     },
     "pitfalls": {
-      "title": "Az öt hiba, amelyet mindenki elkövet",
-      "objective": "Ismerd fel és javítsd ki az öt hibát, amelyről a kezdőt felismerni.",
+      "title": "Öt gyakori hiba",
+      "objective": "Találd meg és javítsd ki azt az ötöt, amin mindenki elcsúszik.",
       "step1": "Mindegyik olyan szabály, amellyel már találkoztál, ott, ahol a legkönnyebb elfelejteni.",
-      "step2": "두 살, nem 둘 살. 심뉵, nem 십육 az írás szerint. 유월, nem 육월. Eredeti óra sino perccel. Szóköz a számlálószó előtt."
+      "step2": "두 살, nem 둘 살. A 십육 kiejtése 심뉵. 유월, nem 육월. Az óra 세 시, a perc 삼십 분. A számolószó előtt szóköz."
     },
     "mixed": {
-      "title": "Vegyes ismétlés — melyik rendszer, melyik alak",
-      "objective": "Hallj vagy olvass egy kifejezést a kurzus bármely pontjáról, és tudd, melyik rendszert használja és miért.",
-      "step1": "Ebben a kurzusban minden egyetlen, gyorsan meghozott döntésre vezethető vissza: számlálás ez vagy megjelölés? A számlálás — emberek, dolgok, órák, életkor — eredeti számot kap; a megjelölés — pénz, perc, dátum, telefonszám — sino-koreait.",
+      "title": "Minden összekeverve",
+      "objective": "Hallgasd és olvasd egyben mindazt, amit tanultál.",
+      "step1": "Az egész tanfolyam egyetlen gyors döntésre fut ki: ez mennyiség vagy címke? A mennyiség — ember, tárgy, óra, életkor — a 하나, 둘, 셋 számokat kéri; a címke — pénz, perc, dátum, telefonszám — a 일, 이, 삼 számokat.",
       "step2": "Ez az ismétlés a kettőt keveri. Olvass vagy hallgass, dönts, és nézd meg a magyarázatot, amikor csak elbizonytalanodsz. A bizonytalanságot kell gyakorlással eltüntetni."
     }
   },
@@ -264,14 +262,14 @@
     "ctxMinute": "harminc perc",
     "ctxAge": "húsz éves",
     "ctxDate": "március elseje",
-    "formOne": "egy, számlálószó előtt",
-    "formTwo": "kettő, számlálószó előtt",
-    "formThree": "három, számlálószó előtt",
-    "formFour": "négy, számlálószó előtt",
-    "formTwenty": "húsz, számlálószó előtt",
+    "formOne": "egy, számláláskor",
+    "formTwo": "kettő, számláláskor",
+    "formThree": "három, számláláskor",
+    "formFour": "négy, számláláskor",
+    "formTwenty": "húsz, számláláskor",
     "counterPeople": "emberek",
     "counterPeoplePlain": "emberek — hétköznapi",
-    "counterThings": "dolgok — az általános számlálószó",
+    "counterThings": "dolgok — a leggyakoribb számolószó",
     "counterAnimals": "állatok",
     "counterBottles": "üvegek",
     "counterCups": "csészék és poharak",
@@ -287,7 +285,7 @@
     "tenOclock": "tíz óra",
     "counterMinute": "perc",
     "counterSecond": "másodperc",
-    "mixedTime": "időpont, mindkét rendszer",
+    "mixedTime": "óraidő, mindkét számsorral",
     "quarterPast": "negyed három",
     "counterYear": "év",
     "counterMonth": "hónap",
@@ -312,19 +310,19 @@
     "pitfallSimnyuk": "Írva 십육, kiejtve 심뉵",
     "pitfallJune": "A június 유월, soha nem 육월",
     "pitfallHourMinute": "Eredeti óra, sino perc",
-    "pitfallSpacing": "A számlálószó külön szó"
+    "pitfallSpacing": "A számolószó külön áll"
   },
   "example": {
     "zeroMath": "mínusz három fok",
     "zeroDigit": "010",
     "belowZeroFive": "mínusz öt fok",
     "zeroScore": "Nulla pontot kaptam.",
-    "ctxPeople": "az embereket eredeti számmal számoljuk",
-    "ctxMoney": "a pénz sino számot kap",
-    "ctxHour": "az órák eredeti számot kapnak",
-    "ctxMinute": "a percek sino számot kapnak",
-    "ctxAge": "az életkor eredeti számot kap",
-    "ctxDate": "a dátumok sino számot kapnak",
+    "ctxPeople": "embereket a 하나, 둘, 셋 számokkal számolunk",
+    "ctxMoney": "a pénz a 일, 이, 삼 számokat kéri",
+    "ctxHour": "az óra a 하나, 둘, 셋 számokat kéri",
+    "ctxMinute": "a perc a 일, 이, 삼 számokat kéri",
+    "ctxAge": "az életkor a 하나, 둘, 셋 számokat kéri",
+    "ctxDate": "a dátum a 일, 이, 삼 számokat kéri",
     "twentyFive": "Huszonöt éves vagyok.",
     "ageHonorific": "egy idősebb ember korát kérdezed",
     "halfPastTwo": "fél három",

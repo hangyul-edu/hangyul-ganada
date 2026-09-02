@@ -198,6 +198,8 @@
     "back:coverage:check": "node scripts/check-back-coverage.mjs --check",
     "legal:isolation": "node scripts/check-legal-isolation.mjs",
     "legal:isolation:check": "node scripts/check-legal-isolation.mjs --check",
+    "numbers:copy": "node scripts/check-numbers-copy.mjs",
+    "numbers:copy:check": "node scripts/check-numbers-copy.mjs --check",
     "strokes:markers:evidence": "node scripts/build-marker-evidence.mjs"
   },
   "devDependencies": {

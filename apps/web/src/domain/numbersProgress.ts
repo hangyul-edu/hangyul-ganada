@@ -202,14 +202,20 @@ export function lessonActivityProgress(
 /**
  * The derived status.
  *
- * `prerequisitesComplete` and `reviewDue` are inputs because they are facts
- * about *other* records — the lessons this one depends on, and the memory
- * scheduler — and this function should not have to know where those live.
+ * `reviewDue` is an input because it is a fact about the memory scheduler
+ * rather than about this record, and this function should not have to know
+ * where that lives.
+ *
+ * `prerequisitesComplete` used to be a second input and it returned `locked`.
+ * Both are gone. A learner opening the Numbers course can open any lesson in
+ * it — see `NumbersLessonStatus` for why — and what the recommended order
+ * survives as is the Continue button on the list, which is a suggestion a
+ * learner can ignore rather than a door they cannot open.
  */
 export function lessonStatus(
   record: NumbersLessonProgress | undefined,
   lesson: NumberLesson,
-  context: { prerequisitesComplete: boolean; reviewDue: boolean },
+  context: { reviewDue: boolean },
 ): NumbersLessonStatus {
   if (record && (record.completed_at !== null || isComplete(record, lesson))) {
     if (context.reviewDue) return 'review_due';
@@ -218,7 +224,6 @@ export function lessonStatus(
     }
     return 'completed';
   }
-  if (!context.prerequisitesComplete) return 'locked';
   if (!record || record.opened_at === null) return 'available';
   if (record.started_at === null) return 'not_started';
   return 'in_progress';

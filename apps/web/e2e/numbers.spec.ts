@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { NUMBER_LESSONS, getNumberLesson, numberLessonItems } from '../src/data/numbers';
 import { masteryExercises, practiceExercises, type NumbersExercise } from '../src/features/numbers/exercises';
 import { copy } from './helpers/copy';
-import { openApp } from './helpers/launch';
+import { openApp, waitForNumbersRecord } from './helpers/launch';
 
 /**
  * The Numbers course, as a learner meets it in a browser.
@@ -86,11 +86,20 @@ test.describe('the Numbers course', () => {
     for (const status of ['completed', 'mastered', 'review_due']) {
       await expect(page.locator(`[data-testid^="numbers-lesson-"][data-status="${status}"]`)).toHaveCount(0);
     }
-    // Exactly one lesson is available; the rest are locked and are not links.
-    await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="available"]')).toHaveCount(1);
-    const locked = page.locator('[data-testid^="numbers-lesson-"][data-status="locked"]');
-    await expect(locked).toHaveCount(NUMBER_LESSONS.length - 1);
-    await expect(locked.first().locator('a')).toHaveCount(0);
+    /*
+     * Every lesson is available, and every one of them is a link.
+     *
+     * This asserted the opposite until the course was unlocked: one available
+     * lesson, seventeen `locked` rows, and the first locked row deliberately
+     * *not* a link. The reasoning was that "hours" assumes "counting forms" —
+     * a good argument for the order and a bad one for a door. See
+     * `pages/NumbersPage`.
+     */
+    await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="available"]')).toHaveCount(
+      NUMBER_LESSONS.length,
+    );
+    await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="locked"]')).toHaveCount(0);
+    await expect(page.locator('[data-testid^="numbers-lesson-"] a')).toHaveCount(NUMBER_LESSONS.length);
 
     // Open the first lesson, read the objective, and go straight back.
     await page.getByTestId(`numbers-lesson-${FIRST.id}`).getByRole('link').click();
@@ -139,16 +148,36 @@ test.describe('the Numbers course', () => {
     await expect(row).toHaveAttribute('data-status', 'mastered');
     await expect(row).toContainText(en('status.mastered'));
     await expect(page.getByTestId('numbers-lessons-completed')).toContainText('1 of');
-    // The next lesson unlocked; nothing else did.
+
+    /*
+     * One lesson finished, seventeen untouched — and untouched is not the same
+     * word as unopened.
+     *
+     * This used to assert that finishing lesson one *unlocked* lessons two and
+     * three. There are no locks now, so the interesting property has moved:
+     * doing the work must mark exactly the lesson the work was done in. The
+     * eighteen rows were all `available` before this test started, so a bug
+     * that credited a neighbour would be invisible to a count of available
+     * rows — what catches it is that no other row is finished.
+     */
+    const finished = page.locator(
+      '[data-testid^="numbers-lesson-"][data-status="completed"], [data-testid^="numbers-lesson-"][data-status="mastered"]',
+    );
+    await expect(finished).toHaveCount(1);
     await expect(page.getByTestId('numbers-lesson-num-lesson-native-basics')).toHaveAttribute('data-status', 'available');
     await expect(page.getByTestId('numbers-lesson-num-lesson-zero')).toHaveAttribute('data-status', 'available');
-    await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="locked"]')).toHaveCount(NUMBER_LESSONS.length - 3);
+
+    // And Continue has moved on to the next unfinished lesson.
+    await expect(page.locator('[data-recommended="true"]')).toHaveCount(1);
   });
 
   test('N-e2e-4 · leaving mid-lesson and reloading resumes from the record', async ({ page }) => {
     await openApp(page, `/letters/numbers/${FIRST.id}`);
     await page.getByRole('button', { name: en('action.start') }).click();
     await page.getByRole('button', { name: en('action.next') }).click(); // one step read
+    // The record, not the screen, is what a reload comes back to — so wait for
+    // the write rather than for React. See `waitForNumbersRecord`.
+    await waitForNumbersRecord(page, FIRST.id, (r) => (r.explanation_steps_viewed ?? []).length === 1);
     await page.reload();
     // Straight back into the explanation, at the first step not yet read —
     // not the objective, not step one again, not the practice.
@@ -193,5 +222,56 @@ test.describe('the Numbers course', () => {
       const buttons = body.getByRole('group').getByRole('button');
       for (let i = 0; i < (await buttons.count()); i += 1) await expect(buttons.nth(i)).toBeDisabled();
     }
+  });
+
+  test('N-e2e-6 · a new learner can open any lesson in the course, in any order', async ({ page }) => {
+    /*
+     * The reported defect, from the far end of the course.
+     *
+     * Somebody who has just been asked their age in Korean wants "몇 살이에요?"
+     * today, not after four other lessons. So the last lesson of every module
+     * is opened directly on a profile that has done nothing at all — a deep
+     * link, which is also the harshest case for the record: there is no
+     * history behind it and no prerequisite satisfied.
+     */
+    const lastOfEachModule = ['num-lesson-choosing', 'num-lesson-forms', 'num-lesson-age', 'num-lesson-weekdays', 'num-lesson-large', 'num-lesson-mixed'];
+    for (const id of lastOfEachModule) {
+      const lesson = getNumberLesson(id)!;
+      await openApp(page, `/letters/numbers/${id}`);
+      await expect(page.getByTestId('numbers-phase-objective')).toBeVisible();
+      await expect(page.getByRole('button', { name: en('action.start') })).toBeVisible();
+      // Named, so a failure says which lesson rather than which index.
+      expect(lesson.prerequisites.length, `${id} still declares a recommended order`).toBeGreaterThan(0);
+    }
+
+    // And none of that opening counted as progress.
+    await page.goto('/letters/numbers');
+    await expect(page.getByTestId('numbers-lessons-completed')).toContainText('0 of');
+    await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="completed"]')).toHaveCount(0);
+  });
+
+  test('N-e2e-7 · Continue leads to the first unfinished lesson without forcing it', async ({ page }) => {
+    /*
+     * What is left of the prerequisite chain: a recommendation. It has to
+     * actually point somewhere, and it has to not be the only way in.
+     */
+    await openApp(page, '/letters/numbers');
+    const cta = page.getByTestId('numbers-continue');
+    await expect(cta).toBeVisible();
+    await cta.click();
+    await expect(page).toHaveURL(new RegExp(`/letters/numbers/${NUMBER_LESSONS[0]!.id}$`));
+    await expect(page.getByTestId('numbers-phase-objective')).toBeVisible();
+
+    // The row it points at says so, and the others do not.
+    await page.goto('/letters/numbers');
+    await expect(page.locator('[data-recommended="true"]')).toHaveCount(1);
+  });
+
+  test('N-e2e-8 · every lesson row and the course header carry a back control', async ({ page }) => {
+    // §10: every page, including the ones a learner deep-links into.
+    await openApp(page, '/letters/numbers/num-lesson-age');
+    await expect(page.getByTestId('app-back')).toHaveCount(1);
+    await openApp(page, '/letters/numbers');
+    await expect(page.getByTestId('app-back')).toHaveCount(1);
   });
 });

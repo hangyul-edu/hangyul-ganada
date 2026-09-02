@@ -88,19 +88,24 @@ const fullJourney = (lesson: NumberLesson, attempt = 0): NumbersEvent[] => [
   ...mastery(lesson, attempt, () => true),
 ];
 
-const status = (record: NumbersLessonProgress | undefined, lesson: NumberLesson, prerequisitesComplete = true) =>
-  lessonStatus(record, lesson, { prerequisitesComplete, reviewDue: isReviewDue(record, at(0)) });
+const status = (record: NumbersLessonProgress | undefined, lesson: NumberLesson) =>
+  lessonStatus(record, lesson, { reviewDue: isReviewDue(record, at(0)) });
 
 const sino = lessonOf('num-lesson-sino-basics');
 const native = lessonOf('num-lesson-native-basics');
 const counters = lessonOf('num-lesson-counters');
 
 describe('Numbers journeys', () => {
-  it('J01 · a fresh install has every lesson available or locked, none complete', () => {
+  it('J01 · a fresh install has every lesson available and none complete', () => {
+    /*
+     * Both halves matter and they are opposite failures. Every lesson open is
+     * the access rule — a new learner can go straight to prices or to age.
+     * None complete is the completion rule — being able to open eighteen
+     * lessons must not read as having done any of them.
+     */
     for (const lesson of NUMBER_LESSONS) {
-      const s = status(undefined, lesson, lesson.prerequisites.length === 0);
-      expect(['available', 'locked']).toContain(s);
-      expect(isComplete(blankLessonProgress(lesson.id, T0), lesson)).toBe(false);
+      expect(status(undefined, lesson), lesson.id).toBe('available');
+      expect(isComplete(blankLessonProgress(lesson.id, T0), lesson), lesson.id).toBe(false);
     }
   });
 
@@ -261,24 +266,47 @@ describe('Numbers journeys', () => {
     const later = new Date(Date.parse(done.completed_at!) + (REVIEW_INTERVAL_DAYS + 1) * 86_400_000);
     expect(isReviewDue(done, at(0))).toBe(false);
     expect(isReviewDue(done, later)).toBe(true);
-    expect(lessonStatus(done, sino, { prerequisitesComplete: true, reviewDue: true })).toBe('review_due');
+    expect(lessonStatus(done, sino, { reviewDue: true })).toBe('review_due');
     const reviewed = applyNumbersEvent(done, sino, { type: 'review_completed', item_id: sino.item_ids[0]!, correct: true }, later);
     expect(isReviewDue(reviewed, later)).toBe(false);
     expect(reviewed.completed_at).toBe(done.completed_at);
   });
 
-  it('J17 · a lesson stays locked until every prerequisite is complete, whatever its own record says', () => {
+  it('J17 · a lesson whose prerequisites are unfinished is open, not locked', () => {
+    /*
+     * This test used to assert the opposite, and the product used to do it: a
+     * lesson whose prerequisites were unfinished was `locked` and its row was
+     * not a link. The reasoning was real — 두 시 is unexplainable without the
+     * counting forms — and it is an argument about *order*, not about access.
+     * Somebody who has just been asked their age in Korean should be able to go
+     * and find out how to answer.
+     *
+     * So the rule is now that a lesson's status is a fact about its own record
+     * and nothing else. `native` still declares `sino` as a prerequisite — the
+     * recommended order is still in the data, and the Continue button on the
+     * list reads it — and a learner with no record at all can still open it.
+     */
     expect(native.prerequisites).toContain(sino.id);
+    expect(lessonStatus(undefined, native, { reviewDue: false })).toBe('available');
+    expect(lessonStatus(run(native, [open]), native, { reviewDue: false })).toBe('not_started');
+
+    // And a finished record still reads as finished, as it always did.
     const record = run(native, fullJourney(native));
-    // Its own record is finished; the lock is a fact about *other* lessons.
-    expect(['completed', 'mastered']).toContain(lessonStatus(record, native, { prerequisitesComplete: false, reviewDue: false }));
-    expect(lessonStatus(undefined, native, { prerequisitesComplete: false, reviewDue: false })).toBe('locked');
-    expect(lessonStatus(run(native, [open]), native, { prerequisitesComplete: false, reviewDue: false })).toBe('locked');
+    expect(['completed', 'mastered']).toContain(lessonStatus(record, native, { reviewDue: false }));
   });
 
-  it('J18 · unlocking a lesson makes it available, not started, not complete', () => {
-    expect(status(undefined, native, true)).toBe('available');
+  it('J18 · an open lesson is available, not started, and not complete', () => {
+    /*
+     * The property that matters most in a course with no locks: removing the
+     * gate must not be mistaken for granting the lesson. `available` is a
+     * statement about a door, not about a learner.
+     */
+    expect(status(undefined, native)).toBe('available');
     expect(unitComplete([native], {})).toBe(false);
+    // Opening it is still not starting it, and starting it is still not
+    // finishing it.
+    expect(status(run(native, [open]), native)).toBe('not_started');
+    expect(unitComplete([native], { [native.id]: run(native, [open]) })).toBe(false);
   });
 
   it('J19 · a module is complete only when every lesson in it is', () => {

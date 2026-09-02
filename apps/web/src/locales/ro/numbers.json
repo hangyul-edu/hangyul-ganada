@@ -5,7 +5,6 @@
   "activitiesDone": "{{done}} din {{total}} activități făcute",
   "moduleLessons": "{{done}} din {{total}} lecții",
   "status": {
-    "locked": "Blocată",
     "available": "Disponibilă",
     "not_started": "Deschisă",
     "in_progress": "În curs",
@@ -13,13 +12,12 @@
     "mastered": "Stăpânită",
     "review_due": "De recapitulat"
   },
-  "lockedNote": "Termină mai întâi lecțiile dinaintea acesteia.",
-  "systemSino": "Sino-coreene",
-  "systemNative": "Coreene native",
-  "systemBoth": "Ambele sisteme",
+  "systemSino": "일, 이, 삼",
+  "systemNative": "하나, 둘, 셋",
+  "systemBoth": "Amândouă",
   "system": {
-    "native": "Coreene native — 하나, 둘, 셋",
-    "sino": "Sino-coreene — 일, 이, 삼"
+    "native": "하나, 둘, 셋 — pentru numărat lucruri",
+    "sino": "일, 이, 삼 — pentru bani și date"
   },
   "phase": {
     "objective": "Ce vei învăța",
@@ -66,190 +64,190 @@
   "prompt": {
     "listen": "Ce ai auzit?",
     "read": "Ce înseamnă?",
-    "chooseSystem": "Ce sistem de numere folosește?",
+    "chooseSystem": "Care dintre cele două seturi este acesta?",
     "digitsToKorean": {
-      "sino": "Spune acest număr în sino-coreeană",
-      "native": "Spune acest număr în coreeana nativă",
+      "sino": "Spune acest număr în felul 일, 이, 삼",
+      "native": "Spune acest număr în felul 하나, 둘, 셋",
       "both": "Spune acest număr în coreeană"
     },
     "koreanToDigits": "Ce număr este acesta?",
     "counterForm": "Cum spui {{value}} cu {{counter}}?",
-    "spotMistake": "Care este greșit?",
+    "spotMistake": "Care este corectă?",
     "fill": "Completează spațiul liber",
     "orderParts": "Atinge părțile în ordine pentru a forma {{value}}"
   },
   "rationale": {
-    "readChoose": "Potrivește coreeana cu sensul ei. Cuvintele de numărare se aleg după felul lucrului numărat.",
+    "readChoose": "Potrivește coreeana cu înțelesul ei. Cuvântul de numărat depinde de ce anume numeri.",
     "listen": "Ascultă cuvântul întreg — numerele vecine și cele care sună asemănător sunt greșeala obișnuită.",
-    "nativeSystem": "Numerele coreene native numără lucruri pe care le poți arăta și se folosesc pentru ore și vârste.",
-    "sinoSystem": "Numerele sino-coreene se folosesc pentru etichete: bani, date, minute, numere de telefon, etaje.",
-    "koreanToDigits": "Spune părțile în ordine. În sino-coreeană, 십 este zece și 삼십 este treizeci.",
-    "countingForm": "În fața unui cuvânt de numărare, 하나 둘 셋 넷 스물 devin 한 두 세 네 스무. 둘 개 nu este coreeană; 두 개 este.",
-    "counter": "Un număr nu stă niciodată singur lângă un substantiv. Cuvântul de numărare dintre ele se alege după ce anume se numără.",
+    "nativeSystem": "Numerele 하나, 둘, 셋 numără ce poți arăta cu degetul și dau ora și vârsta cuiva.",
+    "sinoSystem": "Numerele 일, 이, 삼 sunt pentru etichete: bani, date, minute, numere de telefon, etaje.",
+    "koreanToDigits": "Spune părțile în ordine. În setul 일, 이, 삼, 십 este zece, iar 삼십 este treizeci.",
+    "countingForm": "Înaintea unui cuvânt de numărat, 하나 둘 셋 넷 스물 devin 한 두 세 네 스무. Se spune 두 개.",
+    "counter": "Un număr nu stă niciodată singur lângă un substantiv. Cuvântul de numărat dintre ele depinde de ce se numără.",
     "fill": "Citește toată propoziția: cuvintele din jurul spațiului liber îți spun ce formă se potrivește acolo.",
-    "nativeBuild": "Numerele native peste zece sunt 열 plus unitatea — 열하나, 열둘. Zecile au cuvintele lor proprii.",
-    "sinoBuild": "Numerele sino se citesc de la stânga la dreapta, parte cu parte: 삼십오 este 삼 · 십 · 오.",
+    "nativeBuild": "Peste zece este 열 plus unitatea — 열하나, 열둘. Zecile au cuvintele lor.",
+    "sinoBuild": "Numerele 일, 이, 삼 se citesc de la stânga la dreapta, bucată cu bucată: 삼십오 este 삼 · 십 · 오.",
     "irregular_month": "Iunie este 유월 și octombrie este 시월. Formele regulate 육월 și 십월 nu există.",
-    "plain_form": "În fața unui cuvânt de numărare, forma de numărare este obligatorie: 한, 두, 세, 네, 스무 — niciodată 하나, 둘, 셋, 넷, 스물.",
-    "spacing": "Cuvântul de numărare este un cuvânt separat și se scrie cu spațiu: 한 개, nu 한개.",
-    "system_swap": "Cele două sisteme numesc aceeași valoare, dar nu sunt interschimbabile — contextul decide.",
+    "plain_form": "Înaintea unui cuvânt de numărat se folosesc 한, 두, 세, 네, 스무. Acolo nu stau 하나, 둘, 셋, 넷 sau 스물.",
+    "spacing": "Cuvântul de numărat este un cuvânt separat și cere spațiu: 한 개, nu 한개.",
+    "system_swap": "Cele două seturi spun aceeași valoare, dar nu se schimbă între ele — decide situația.",
     "sound_alike": "Diferă printr-un singur sunet. Ascultă consoana finală.",
     "adjacent": "Numerele vecine se învață ca o listă, așa că se confundă. Verifică valoarea, nu poziția.",
-    "wrong_counter": "Fiecare cuvânt de numărare ține de un fel de lucru — 명 pentru oameni, 마리 pentru animale, 개 pentru obiecte."
+    "wrong_counter": "Fiecare cuvânt de numărat merge cu un fel de lucru — 명 pentru oameni, 마리 pentru animale, 개 pentru obiecte."
   },
   "module": {
     "systems": {
-      "title": "Două feluri de numere",
-      "goal": "Să știi ambele sisteme până la zece, ambele forme ale lui zero și ce sistem cere fiecare situație."
+      "title": "Spunem de la unu la zece",
+      "goal": "Numără până la zece în două feluri, citește zeroul și află când se folosește fiecare."
     },
     "pastTen": {
-      "title": "Peste zece",
-      "goal": "Să formezi orice număr în oricare sistem și să folosești cele cinci forme care se schimbă în fața unui cuvânt de numărare."
+      "title": "Numere mai mari decât zece",
+      "goal": "Formează și citește numere peste zece și învață cele cinci cuvinte care își schimbă forma la numărat."
     },
     "counting": {
       "title": "Numărăm lucruri",
-      "goal": "Să numeri oameni, obiecte și animale cu cuvântul de numărare potrivit și să-ți spui vârsta."
+      "goal": "Numără oameni, lucruri și animale și spune câți ani ai."
     },
     "time": {
-      "title": "Ora și datele",
-      "goal": "Să spui ora, să spui o dată și să numești cele două luni neregulate."
+      "title": "Cât e ceasul? În ce zi?",
+      "goal": "Spune ora, data și ziua săptămânii."
     },
     "money": {
-      "title": "Bani și numere citite cu voce tare",
-      "goal": "Să citești un preț, un număr de telefon, un etaj și unitățile mari 만, 억, 조."
+      "title": "Cât costă? Ce număr?",
+      "goal": "Citește un preț, un număr de telefon, un etaj și numere foarte mari."
     },
     "review": {
-      "title": "Greșelile pe care le face oricine",
-      "goal": "Să prinzi cele cinci greșeli pe care le face oricine, apoi să dovedești că alegerea sistemului îți vine automat."
+      "title": "Greșeli pe care le face toată lumea",
+      "goal": "Treci prin cele cinci greșeli cele mai frecvente și pune totul cap la cap."
     }
   },
   "lesson": {
     "sinoBasics": {
-      "title": "일 이 삼 — numerele sino-coreene de la unu la zece",
-      "objective": "Să recunoști și să spui numerele sino-coreene de la unu la zece.",
+      "title": "Să spui 1, 2, 3 în coreeană",
+      "objective": "Ascultă 일, 이, 삼 până la 십 și repetă cu voce tare.",
       "step1": "Coreeana are două seturi de numere. Acesta a venit din chineză și se folosește pentru tot ce este etichetă, nu numărătoare — bani, date, minute, numere de telefon, etaje.",
       "step2": "De la unu la zece: 일 이 삼 사 오 육 칠 팔 구 십. Fiecare are o singură silabă, și fiecare este și o cifră pe care o vei vedea pe prețuri și pe ceasuri.",
       "step3": "Zece este 십. Tot ce trece de zece se construiește din aceste zece cuvinte, așa că dacă le știi bine ai făcut cea mai mare parte din treabă."
     },
     "nativeBasics": {
-      "title": "하나 둘 셋 — numerele coreene native de la unu la zece",
-      "objective": "Să recunoști și să spui numerele coreene native de la unu la zece.",
+      "title": "Numărăm cu 하나, 둘, 셋",
+      "objective": "Ascultă și spune de la 하나 la 열, numărând ce ai în față.",
       "step1": "Numerele proprii ale Coreei. Se folosesc pentru a număra lucruri pe care le poți arăta — oameni, cești, animale — și pentru ore și vârste.",
       "step2": "De la unu la zece: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Observă că 여덟 se pronunță 여덜: ㅂ nu se aude.",
-      "step3": "Acestea nu se mai folosesc pe la nouăzeci și nouă. Peste o sută, orice număr este sino-coreean, indiferent ce numără."
+      "step3": "Nu se mai folosesc pe la nouăzeci și nouă. Peste o sută, totul se numără cu 일, 이, 삼."
     },
     "zero": {
-      "title": "Zero are două cuvinte",
-      "objective": "Să folosești 영 pentru zero ca mărime și 공 pentru cifra zero.",
+      "title": "0 este 영 sau 공",
+      "objective": "Spune 영 pentru o cantitate și 공 când citești un număr cu voce tare.",
       "step1": "영 este zero ca mărime — în matematică, într-un scor, într-o temperatură sub zero (영하).",
       "step2": "공 este cifra 0, citită cu voce tare într-un număr de telefon, un număr de cameră, un cod. 010 este 공일공, niciodată 영일영."
     },
     "choosing": {
-      "title": "Care sistem și când",
-      "objective": "Să hotărăști din context dacă un număr trebuie să fie nativ sau sino-coreean.",
-      "step1": "Native pentru a număra lucruri, până pe la nouăzeci și nouă: 세 명 trei oameni, 두 시 ora două, 스무 살 douăzeci de ani.",
-      "step2": "Sino pentru etichete și pentru bani și date: 오천 원, 삼월 일 일, 삼십 분. Și pentru orice număr peste o sută.",
-      "step3": "O oră de pe ceas le folosește pe amândouă: ora este nativă (세 시), minutele sunt sino (삼십 분). Perechea aceasta este regula în miniatură."
+      "title": "Pe care îl folosesc?",
+      "objective": "Alege ce numere folosim la numărat și care sunt pentru bani și date.",
+      "step1": "Numerele 하나, 둘, 셋 numără lucruri, până pe la nouăzeci și nouă: 세 명, 두 시, 스무 살.",
+      "step2": "Numerele 일, 이, 삼 sunt pentru numere-etichetă, bani și date: 오천 원, 삼월 일 일, 삼십 분. Și pentru tot ce trece de o sută.",
+      "step3": "O singură oră folosește amândouă seturile. Ora este 세 시, minutele sunt 삼십 분. Perechea aceea este toată regula în miniatură. (Cărțile le numesc numerale native și sino-coreene. Bine de știut, nu de învățat pe de rost azi.)"
     },
     "sinoBuild": {
-      "title": "Numere sino-coreene peste zece",
-      "objective": "Să formezi și să citești numere sino-coreene până la o mie.",
+      "title": "Numărăm până la o mie",
+      "objective": "Formează și citește numere ca 십일, 이십 și 삼십오.",
       "step1": "Spune părțile în ordine. 십일 este zece-unu, unsprezece. 이십 este doi-zece, douăzeci. 삼십오 este trei-zece-cinci, treizeci și cinci.",
       "step2": "Atenție la 십육: se scrie 십육, dar se pronunță 심뉵. Între cele două silabe apare un sunet ㄹ.",
       "step3": "백 este o sută și 천 este o mie. Nu se pune 일 în fața lor — 백 원, nu 일백 원."
     },
     "nativeBuild": {
-      "title": "Numere coreene native peste zece",
-      "objective": "Să formezi și să citești numere coreene native până la cincizeci.",
+      "title": "Spunem 열하나, 스물, 서른",
+      "objective": "Spune numerele peste zece în felul 하나, 둘, 셋.",
       "step1": "열 plus unitatea dă numerele de la unsprezece la nouăsprezece: 열하나, 열둘, 열셋. Se spun ca un singur cuvânt.",
       "step2": "Zecile au cuvintele lor proprii — 스물 douăzeci, 서른 treizeci, 마흔 patruzeci, 쉰 cincizeci. Nu se construiesc din 열.",
       "step3": "열여섯 se pronunță 열려섣: același sunet ㄹ care apare în 심뉵."
     },
     "forms": {
-      "title": "한, 두, 세, 네, 스무",
-      "objective": "Să folosești cele cinci forme de numărare care înlocuiesc 하나, 둘, 셋, 넷 și 스물 în fața unui cuvânt de numărare.",
-      "step1": "Cinci numere native își schimbă forma în fața unui cuvânt de numărare. 하나 devine 한, 둘 devine 두, 셋 devine 세, 넷 devine 네, 스물 devine 스무.",
-      "step2": "Nu este o scăpare de pronunție. 둘 사람 nu este coreeană cu accent — este greșit. Trebuie să fie 두 사람.",
-      "step3": "Toate celelalte numere native își păstrează forma: 다섯 명, 여섯 개, 열 마리. Doar aceste cinci se schimbă."
+      "title": "한 개, 두 개 — forma se schimbă",
+      "objective": "La numărat, 하나 devine 한, iar 둘 devine 두. Sunt doar cinci de reținut.",
+      "step1": "Cinci cuvinte își schimbă forma înaintea unui cuvânt de numărat: 하나 devine 한, 둘 devine 두, 셋 devine 세, 넷 devine 네, 스물 devine 스무.",
+      "step2": "Nu e o diferență mică de pronunție. Se spune 두 사람, nu 둘 사람.",
+      "step3": "Restul rămân la fel: 다섯 명, 여섯 개, 열 마리. Doar acelea cinci se schimbă."
     },
     "counters": {
-      "title": "Oameni, lucruri și animale",
-      "objective": "Să numeri oameni, obiecte și animale cu 명, 사람, 개 și 마리.",
-      "step1": "Coreeana nu numără niciodată un substantiv singur. Între număr și lucru stă un cuvânt de numărare, ales după felul lucrului.",
+      "title": "명 pentru oameni, 개 pentru lucruri, 마리 pentru animale",
+      "objective": "Numără așa: 세 명, 두 개, 고양이 두 마리.",
+      "step1": "Coreeana nu numără niciodată un substantiv doar cu un număr. Între număr și lucru stă un cuvânt de numărat, ales după felul lucrului.",
       "step2": "명 numără oameni (세 명), 개 numără obiecte (두 개), 마리 numără animale (고양이 두 마리). 사람 numără și el oameni, ceva mai puțin formal.",
-      "step3": "Întâi vine substantivul, apoi numărul și cuvântul de numărare: 고양이 두 마리, nu 두 마리 고양이."
+      "step3": "Întâi substantivul, apoi numărul și cuvântul de numărat: 고양이 두 마리, nu 두 마리 고양이."
     },
     "countersEveryday": {
-      "title": "Sticle, cești, bilete și cărți",
-      "objective": "Să comanzi și să numeri lucruri de zi cu zi cu 병, 잔, 장 și 권.",
+      "title": "Două cafele, vă rog",
+      "objective": "Comandă și numără la magazin cu 병, 잔, 장 și 권.",
       "step1": "병 este o sticlă (맥주 한 병), 잔 este o ceașcă sau un pahar (커피 두 잔), 장 este un lucru plat, cum ar fi un bilet sau o foaie (표 네 장), 권 este o carte (책 세 권).",
-      "step2": "Toate patru iau numere native și formele de numărare: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Toate patru cer numerele 하나, 둘, 셋 și formele lor de numărat: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
-      "title": "Cum spui câți ani ai",
-      "objective": "Să-ți spui vârsta cu 살, să recunoști 세 și să întrebi politicos vârsta unei persoane mai în vârstă cu 연세.",
-      "step1": "살 ia un număr nativ și este ceea ce spun oamenii: 스무 살, 스물다섯 살. 몇 살이에요? întreabă vârsta unui prieten.",
-      "step2": "세 ia un număr sino și își are locul în formulare și la știri: 이십 세. Îl vei citi mai des decât îl vei spune.",
+      "title": "Câți ani ai?",
+      "objective": "Spune-ți vârsta cu 살 și întreabă politicos o persoană mai în vârstă cu 연세.",
+      "step1": "살 merge cu numerele 하나, 둘, 셋 și este ce se spune de fapt: 스무 살, 스물다섯 살. 몇 살이에요? întreabă un prieten ce vârstă are.",
+      "step2": "세 merge cu numerele 일, 이, 삼 și apare în acte și la știri: 이십 세. Îl citești mai des decât îl spui.",
       "step3": "Față de cineva mai în vârstă, 살 este prea familiar. 연세 este cuvântul onorific pentru vârstă: 연세가 어떻게 되세요?"
     },
     "hours": {
-      "title": "Cum spui ora",
-      "objective": "Să spui ora cu un număr nativ și 시 și să folosești 반 pentru „și jumătate”.",
-      "step1": "Orele iau numere native: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? întreabă cât este ceasul.",
+      "title": "Cât e ceasul?",
+      "objective": "Spune ora ca 한 시 și 두 시, iar pentru jumătate folosește 반.",
+      "step1": "Ora cere numerele 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? întreabă cât e ceasul.",
       "step2": "반 înseamnă jumătate: 두 시 반 este două și jumătate. Înlocuiește 삼십 분.",
-      "step3": "몇 시예요? întreabă ora. Răspunde cu numărul nativ și 시: 세 시예요. Pentru minute schimbi sistemul — aceasta este lecția următoare."
+      "step3": "몇 시예요? întreabă ora. Răspunde ca 세 시예요. Minutele cer celălalt set — asta e lecția următoare."
     },
     "minutes": {
-      "title": "Minute și secunde",
-      "objective": "Să spui minutele și secundele cu numere sino și să le combini cu o oră nativă.",
-      "step1": "Minutele și secundele iau numere sino: 삼십 분, 십오 분, 십 초.",
-      "step2": "O oră de pe ceas folosește ambele sisteme deodată: 세 시 삼십 분 — oră nativă, minut sino.",
-      "step3": "Cea mai frecventă greșeală este să le pui pe amândouă în același sistem. 삼 시 서른 분 este greșit de două ori."
+      "title": "Este 3:30",
+      "objective": "Spune minutele și secundele și leagă-le de oră.",
+      "step1": "Minutele și secundele cer numerele 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step2": "O oră cere amândouă seturile deodată: 세 시 삼십 분 — ora din 하나, 둘, 셋 și minutele din 일, 이, 삼.",
+      "step3": "Aici e ușor să le pui pe amândouă în același set. Spune 세 시 삼십 분, nu 삼 시 서른 분."
     },
     "dates": {
-      "title": "Ani, luni și zile",
-      "objective": "Să spui o dată cu 년, 월 și 일 și să folosești cele două luni neregulate.",
-      "step1": "Anii, lunile și zilele sunt toate sino: 이천이십육 년 삼월 십오 일. Unitatea cea mai mare vine prima.",
+      "title": "Când e ziua ta?",
+      "objective": "Spune o dată cu 년, 월 și 일 — și atenție la 유월 și 시월.",
+      "step1": "년, 월 și 일 cer toate numerele 일, 이, 삼: 이천이십육 년 삼월 십오 일. Unitatea mare prima.",
       "step2": "Două luni sunt neregulate. Iunie este 유월, nu 육월; octombrie este 시월, nu 십월.",
       "step3": "일 ca zi a lunii este același cuvânt ca 일 pentru unu. 삼월 일 일 este întâi martie."
     },
     "weekdays": {
-      "title": "Zilele săptămânii",
-      "objective": "Să numești zilele săptămânii și să întrebi ce zi este.",
+      "title": "Ce zi e azi?",
+      "objective": "Spune de la 월요일 la 일요일 și întreabă ce zi este.",
       "step1": "Zilele se termină în 요일: 월요일 luni, 화요일, 수요일, 목요일, 금요일 vineri, 토요일, 일요일.",
       "step2": "무슨 요일이에요? întreabă ce zi este. 주말 este weekendul."
     },
     "money": {
-      "title": "Cum citești un preț",
-      "objective": "Să citești prețuri în woni, grupate în stil coreean, pe zeci de mii.",
-      "step1": "Wonul ia numere sino: 천 원, 오천 원. 얼마예요? întreabă prețul.",
+      "title": "Cât costă?",
+      "objective": "Citește prețuri ca 오천 원 și 만 오천 원.",
+      "step1": "원 cere numerele 일, 이, 삼: 천 원, 오천 원. 얼마예요? întreabă prețul.",
       "step2": "Coreeana grupează pe zeci de mii, nu pe mii. 만 원 este 10.000; 삼만 오천 원 este 35.000.",
       "step3": "Un preț pe care îl auzi ca 만 오천 원 este 15.000 — o zece-mie și cinci mii."
     },
     "digits": {
-      "title": "Numere de telefon, etaje și camere",
-      "objective": "Să citești identificatori cifră cu cifră, cu 공 pentru zero și 에 între grupuri.",
+      "title": "Citim un număr de telefon",
+      "objective": "Citește numărul cifră cu cifră, spunând 공 pentru 0. La fel pentru etaje și camere.",
       "step1": "Un număr care identifică, nu numără, se citește cifră cu cifră: 010 este 공일공.",
       "step2": "에 stă acolo unde ar sta o cratimă: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Etajele, camerele și liniile de autobuz iau numere sino: 삼 층 etajul trei, 오공이 호 camera 502, 이백육 번 autobuzul 206."
+      "step3": "Etajele, camerele și autobuzele cer numerele 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억, 조 — și decimalele",
-      "objective": "Să citești unitățile mari coreene, procentele și virgula decimală.",
+      "title": "만, 억 — numere foarte mari",
+      "objective": "Citește numere mari în grupe de zece mii, plus procente și zecimale.",
       "step1": "Coreeana numără în grupuri de patru cifre, nu de trei. 만 este zece mii, 억 este o sută de milioane, 조 este un bilion.",
-      "step2": "123.450.000 se citește 1억 2345만 — separatorul de mii cade în locul greșit pentru coreeană.",
+      "step2": "123.450.000 se citește 1억 2345만. Coreeana grupează din zece în zece mii, nu din mie în mie.",
       "step3": "퍼센트 este procentul (오십 퍼센트), iar 점 este virgula decimală: 삼 점 오 este 3,5."
     },
     "pitfalls": {
-      "title": "Cele cinci greșeli pe care le face oricine",
-      "objective": "Să recunoști și să corectezi cele cinci greșeli care dau de gol un începător.",
+      "title": "Cinci greșeli foarte frecvente",
+      "objective": "Găsește și corectează cele cinci care îi încurcă pe toți.",
       "step1": "Fiecare dintre ele este o regulă pe care ai întâlnit-o deja, exact acolo unde e cel mai ușor de uitat.",
-      "step2": "두 살, nu 둘 살. 심뉵, nu 십육 cum se scrie. 유월, nu 육월. Oră nativă cu minut sino. Spațiu înaintea cuvântului de numărare."
+      "step2": "두 살, nu 둘 살. 십육 se pronunță 심뉵. 유월, nu 육월. 세 시 pentru oră și 삼십 분 pentru minute. Un spațiu înaintea cuvântului de numărat."
     },
     "mixed": {
-      "title": "Recapitulare mixtă — care sistem, care formă",
-      "objective": "Să auzi sau să citești o expresie de oriunde din curs și să știi ce sistem folosește și de ce.",
-      "step1": "Tot cursul se reduce la o singură decizie luată repede: este numărătoare sau etichetă? Numărătorile — oameni, lucruri, ore, vârste — iau numere native; etichetele — bani, minute, date, numere de telefon — iau sino-coreene.",
+      "title": "Totul amestecat",
+      "objective": "Ascultă și citește tot ce ai învățat, dintr-o dată.",
+      "step1": "Tot cursul se reduce la o decizie luată repede: este o numărătoare sau o etichetă? Numărătorile — oameni, lucruri, ore, vârste — cer 하나, 둘, 셋; etichetele — bani, minute, date, telefoane — cer 일, 이, 삼.",
       "step2": "Această recapitulare le amestecă. Citește sau ascultă, hotărăște, și verifică explicația ori de câte ori șovăi. Șovăiala este ceea ce trebuie exersat până dispare."
     }
   },
@@ -264,14 +262,14 @@
     "ctxMinute": "treizeci de minute",
     "ctxAge": "douăzeci de ani",
     "ctxDate": "întâi martie",
-    "formOne": "unu, în fața unui cuvânt de numărare",
-    "formTwo": "doi, în fața unui cuvânt de numărare",
-    "formThree": "trei, în fața unui cuvânt de numărare",
-    "formFour": "patru, în fața unui cuvânt de numărare",
-    "formTwenty": "douăzeci, în fața unui cuvânt de numărare",
+    "formOne": "unu, la numărat",
+    "formTwo": "doi, la numărat",
+    "formThree": "trei, la numărat",
+    "formFour": "patru, la numărat",
+    "formTwenty": "douăzeci, la numărat",
     "counterPeople": "oameni",
     "counterPeoplePlain": "oameni — de zi cu zi",
-    "counterThings": "lucruri — cuvântul de numărare general",
+    "counterThings": "lucruri — cuvântul de numărat cel mai obișnuit",
     "counterAnimals": "animale",
     "counterBottles": "sticle",
     "counterCups": "cești și pahare",
@@ -287,7 +285,7 @@
     "tenOclock": "ora zece",
     "counterMinute": "minute",
     "counterSecond": "secunde",
-    "mixedTime": "o oră de pe ceas, ambele sisteme",
+    "mixedTime": "o oră, cu amândouă seturile",
     "quarterPast": "două și un sfert",
     "counterYear": "an",
     "counterMonth": "lună",
@@ -312,19 +310,19 @@
     "pitfallSimnyuk": "Se scrie 십육, se pronunță 심뉵",
     "pitfallJune": "Iunie este 유월, niciodată 육월",
     "pitfallHourMinute": "Oră nativă, minut sino",
-    "pitfallSpacing": "Cuvântul de numărare este un cuvânt separat"
+    "pitfallSpacing": "Cuvântul de numărat se scrie separat"
   },
   "example": {
     "zeroMath": "minus trei grade",
     "zeroDigit": "010",
     "belowZeroFive": "minus cinci grade",
     "zeroScore": "Am luat zero.",
-    "ctxPeople": "oamenii se numără cu un număr nativ",
-    "ctxMoney": "banii iau numere sino",
-    "ctxHour": "orele iau numere native",
-    "ctxMinute": "minutele iau numere sino",
-    "ctxAge": "vârsta ia un număr nativ",
-    "ctxDate": "datele iau numere sino",
+    "ctxPeople": "oamenii se numără cu 하나, 둘, 셋",
+    "ctxMoney": "banii cer 일, 이, 삼",
+    "ctxHour": "orele cer 하나, 둘, 셋",
+    "ctxMinute": "minutele cer 일, 이, 삼",
+    "ctxAge": "vârsta cere 하나, 둘, 셋",
+    "ctxDate": "datele cer 일, 이, 삼",
     "twentyFive": "Am douăzeci și cinci de ani.",
     "ageHonorific": "întrebi vârsta unei persoane mai în vârstă",
     "halfPastTwo": "două și jumătate",

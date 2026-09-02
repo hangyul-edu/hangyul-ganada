@@ -5,7 +5,6 @@
   "activitiesDone": "{{done}} van {{total}} activiteiten gedaan",
   "moduleLessons": "{{done}} van {{total}} lessen",
   "status": {
-    "locked": "Vergrendeld",
     "available": "Beschikbaar",
     "not_started": "Geopend",
     "in_progress": "Bezig",
@@ -13,13 +12,12 @@
     "mastered": "Beheerst",
     "review_due": "Herhaling nodig"
   },
-  "lockedNote": "Rond eerst de lessen hiervoor af.",
-  "systemSino": "Sino-Koreaans",
-  "systemNative": "Puur Koreaans",
-  "systemBoth": "Beide systemen",
+  "systemSino": "일, 이, 삼",
+  "systemNative": "하나, 둘, 셋",
+  "systemBoth": "Allebei",
   "system": {
-    "native": "Puur Koreaans — 하나, 둘, 셋",
-    "sino": "Sino-Koreaans — 일, 이, 삼"
+    "native": "하나, 둘, 셋 — om dingen te tellen",
+    "sino": "일, 이, 삼 — voor geld en datums"
   },
   "phase": {
     "objective": "Wat je gaat leren",
@@ -66,190 +64,190 @@
   "prompt": {
     "listen": "Wat hoorde je?",
     "read": "Wat betekent dit?",
-    "chooseSystem": "Welk getalsysteem wordt hier gebruikt?",
+    "chooseSystem": "Welke van de twee reeksen is dit?",
     "digitsToKorean": {
-      "sino": "Zeg dit getal in het Sino-Koreaans",
-      "native": "Zeg dit getal in het puur Koreaans",
+      "sino": "Zeg dit getal op de 일-이-삼-manier",
+      "native": "Zeg dit getal op de 하나-둘-셋-manier",
       "both": "Zeg dit getal in het Koreaans"
     },
     "koreanToDigits": "Welk getal is dit?",
     "counterForm": "Hoe zeg je {{value}} met {{counter}}?",
-    "spotMistake": "Welke is fout?",
+    "spotMistake": "Welke is goed?",
     "fill": "Vul de lege plek in",
     "orderParts": "Tik de delen in de juiste volgorde aan om {{value}} te bouwen"
   },
   "rationale": {
-    "readChoose": "Koppel het Koreaans aan de betekenis. Het telwoord hangt af van het soort ding dat je telt.",
+    "readChoose": "Verbind het Koreaans met de betekenis. Welk telwoord je nodig hebt, hangt af van wat je telt.",
     "listen": "Luister naar het hele woord — buurgetallen en klanken die op elkaar lijken zijn de gebruikelijke misser.",
-    "nativeSystem": "Puur Koreaanse getallen tellen dingen die je kunt aanwijzen, en je gebruikt ze voor uren en leeftijd.",
-    "sinoSystem": "Sino-Koreaanse getallen gebruik je voor aanduidingen: geld, data, minuten, telefoonnummers, verdiepingen.",
-    "koreanToDigits": "Zeg de delen op volgorde. In het Sino-Koreaans is 십 tien en 삼십 dertig.",
-    "countingForm": "Vóór een telwoord worden 하나 둘 셋 넷 스물 tot 한 두 세 네 스무. 둘 개 is geen Koreaans; 두 개 wel.",
-    "counter": "Een getal staat nooit zomaar naast een zelfstandig naamwoord. Het telwoord ertussen hangt af van wat je telt.",
+    "nativeSystem": "De getallen 하나, 둘, 셋 tellen wat je kunt aanwijzen, en ze geven het uur en iemands leeftijd.",
+    "sinoSystem": "De getallen 일, 이, 삼 zijn voor etiketten: geld, datums, minuten, telefoonnummers, verdiepingen.",
+    "koreanToDigits": "Zeg de delen op volgorde. In de reeks 일, 이, 삼 is 십 tien en 삼십 dertig.",
+    "countingForm": "Vóór een telwoord worden 하나 둘 셋 넷 스물 tot 한 두 세 네 스무. Je zegt 두 개.",
+    "counter": "Een getal staat nooit alleen naast een zelfstandig naamwoord. Het telwoord ertussen hangt af van wat er geteld wordt.",
     "fill": "Lees de hele zin: de woorden rond de lege plek vertellen je welke vorm erin hoort.",
-    "nativeBuild": "Puur Koreaanse getallen boven de tien zijn 열 plus de eenheid — 열하나, 열둘. De tientallen hebben eigen woorden.",
-    "sinoBuild": "Sino-getallen lees je van links naar rechts, deel voor deel: 삼십오 is 삼 · 십 · 오.",
+    "nativeBuild": "Boven de tien is het 열 plus de eenheid — 열하나, 열둘. De tientallen hebben eigen woorden.",
+    "sinoBuild": "De getallen 일, 이, 삼 lees je van links naar rechts, deel voor deel: 삼십오 is 삼 · 십 · 오.",
     "irregular_month": "Juni is 유월 en oktober is 시월. De regelmatige vormen 육월 en 십월 bestaan niet.",
-    "plain_form": "Vóór een telwoord is de telvorm verplicht: 한, 두, 세, 네, 스무 — nooit 하나, 둘, 셋, 넷, 스물.",
-    "spacing": "Een telwoord is een apart woord en krijgt een spatie: 한 개, niet 한개.",
-    "system_swap": "De twee systemen noemen dezelfde waarde, maar zijn niet uitwisselbaar — de context bepaalt.",
+    "plain_form": "Vóór een telwoord gebruik je 한, 두, 세, 네, 스무. 하나, 둘, 셋, 넷 en 스물 horen daar niet.",
+    "spacing": "Het telwoord is een apart woord en krijgt een spatie: 한 개, niet 한개.",
+    "system_swap": "De twee reeksen noemen dezelfde waarde maar zijn niet uitwisselbaar — de situatie beslist.",
     "sound_alike": "Eén klank verschil. Luister naar de slotmedeklinker.",
     "adjacent": "Buurgetallen leer je als een rijtje, dus lopen ze door elkaar. Controleer de waarde, niet de plek in de rij.",
     "wrong_counter": "Elk telwoord hoort bij een soort ding — 명 voor mensen, 마리 voor dieren, 개 voor voorwerpen."
   },
   "module": {
     "systems": {
-      "title": "Twee soorten getallen",
-      "goal": "Ken beide systemen tot tien, beide nullen, en weet welk systeem een situatie vraagt."
+      "title": "Eén tot tien zeggen",
+      "goal": "Tel op twee manieren tot tien, lees de nul en leer wanneer je welke gebruikt."
     },
     "pastTen": {
-      "title": "Boven de tien",
-      "goal": "Bouw elk getal in beide systemen en gebruik de vijf vormen die vóór een telwoord veranderen."
+      "title": "Getallen boven de tien",
+      "goal": "Bouw en lees getallen boven de tien en leer de vijf woorden die van vorm veranderen bij het tellen."
     },
     "counting": {
       "title": "Dingen tellen",
-      "goal": "Tel mensen, voorwerpen en dieren met het juiste telwoord, en zeg je leeftijd."
+      "goal": "Tel mensen, dingen en dieren, en zeg hoe oud je bent."
     },
     "time": {
-      "title": "Tijd en data",
-      "goal": "Zeg hoe laat het is, noem een datum en ken de twee onregelmatige maanden."
+      "title": "Hoe laat? Welke dag?",
+      "goal": "Zeg hoe laat het is, en noem de datum en de dag van de week."
     },
     "money": {
-      "title": "Geld en getallen die je voorleest",
-      "goal": "Lees een prijs, een telefoonnummer, een verdieping en de grote eenheden 만, 억, 조."
+      "title": "Hoeveel? Welk nummer?",
+      "goal": "Lees een prijs, een telefoonnummer, een verdieping en heel grote getallen."
     },
     "review": {
-      "title": "De fouten die iedereen maakt",
-      "goal": "Herken de vijf fouten die iedereen maakt, en laat dan zien dat je het systeem automatisch kiest."
+      "title": "Fouten die iedereen maakt",
+      "goal": "Bekijk de vijf meestgemaakte fouten en breng alles samen."
     }
   },
   "lesson": {
     "sinoBasics": {
-      "title": "일 이 삼 — Sino-Koreaans een tot tien",
-      "objective": "De Sino-Koreaanse getallen van een tot tien herkennen en zeggen.",
+      "title": "1, 2, 3 in het Koreaans",
+      "objective": "Luister naar 일, 이, 삼 tot 십 en zeg ze na.",
       "step1": "Het Koreaans heeft twee reeksen getallen. Deze reeks komt uit het Chinees en wordt gebruikt voor alles wat een aanduiding is in plaats van een telling — geld, data, minuten, telefoonnummers, verdiepingen.",
       "step2": "Een tot tien: 일 이 삼 사 오 육 칠 팔 구 십. Elk is één lettergreep, en elk is ook een cijfer dat je op prijskaartjes en klokken ziet.",
       "step3": "Tien is 십. Alles boven de tien wordt uit deze tien woorden gebouwd, dus als je die goed kent, heb je het meeste werk al gedaan."
     },
     "nativeBasics": {
-      "title": "하나 둘 셋 — puur Koreaans een tot tien",
-      "objective": "De puur Koreaanse getallen van een tot tien herkennen en zeggen.",
+      "title": "Tellen met 하나, 둘, 셋",
+      "objective": "Luister en zeg 하나 tot 열 terwijl je telt wat voor je ligt.",
       "step1": "Korea’s eigen getallen. Je gebruikt ze om dingen te tellen die je kunt aanwijzen — mensen, kopjes, dieren — en voor uren en leeftijd.",
       "step2": "Een tot tien: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Let op: 여덟 klinkt als 여덜, de ㅂ hoor je niet.",
-      "step3": "Rond negenennegentig houden ze op. Boven de honderd is elk getal Sino-Koreaans, wat het ook telt."
+      "step3": "Rond negenennegentig houden ze op. Boven de honderd tel je alles met 일, 이, 삼."
     },
     "zero": {
-      "title": "Nul zijn twee woorden",
-      "objective": "영 gebruiken voor nul als hoeveelheid en 공 voor het cijfer nul.",
+      "title": "De 0 is 영 of 공",
+      "objective": "Zeg 영 voor een hoeveelheid en 공 als je een nummer voorleest.",
       "step1": "영 is nul als hoeveelheid — in de wiskunde, in een score, in een temperatuur onder nul (영하).",
       "step2": "공 is het cijfer 0, zoals je het voorleest in een telefoonnummer, een kamernummer of een code. 010 is 공일공, nooit 영일영."
     },
     "choosing": {
-      "title": "Welk systeem, en wanneer",
-      "objective": "Uit de context bepalen of een getal puur Koreaans of Sino-Koreaans moet zijn.",
-      "step1": "Puur Koreaans om dingen te tellen, tot ongeveer negenennegentig: 세 명 drie mensen, 두 시 twee uur, 스무 살 twintig jaar oud.",
-      "step2": "Sino voor aanduidingen en voor geld en data: 오천 원, 삼월 일 일, 삼십 분. En voor elk getal boven de honderd.",
-      "step3": "Eén kloktijd gebruikt beide: het uur is puur Koreaans (세 시), de minuten zijn Sino (삼십 분). Dat paar is de hele regel in het klein."
+      "title": "Welke gebruik ik?",
+      "objective": "Kies welke getallen je gebruikt om te tellen en welke voor geld en datums.",
+      "step1": "De getallen 하나, 둘, 셋 tellen dingen, tot ongeveer negenennegentig: 세 명, 두 시, 스무 살.",
+      "step2": "De getallen 일, 이, 삼 zijn voor etiketgetallen, geld en datums: 오천 원, 삼월 일 일, 삼십 분. En voor alles boven de honderd.",
+      "step3": "Eén kloktijd gebruikt allebei de reeksen. Het uur is 세 시, de minuten zijn 삼십 분. Dat paar is de hele regel in het klein. (Boeken noemen ze inheemse en Sino-Koreaanse telwoorden. Goed om te weten, vandaag niet om uit je hoofd te leren.)"
     },
     "sinoBuild": {
-      "title": "Sino-Koreaans boven de tien",
-      "objective": "Sino-Koreaanse getallen tot duizend bouwen en lezen.",
+      "title": "Tellen tot duizend",
+      "objective": "Bouw en lees getallen zoals 십일, 이십 en 삼십오.",
       "step1": "Zeg de delen op volgorde. 십일 is tien-een, elf. 이십 is twee-tien, twintig. 삼십오 is drie-tien-vijf, vijfendertig.",
       "step2": "Let op 십육: het wordt geschreven als 십육, maar gezegd als 심뉵. Tussen de twee lettergrepen verschijnt een ㄹ-klank.",
       "step3": "백 is honderd en 천 is duizend. Er staat geen 일 voor — 백 원, niet 일백 원."
     },
     "nativeBuild": {
-      "title": "Puur Koreaans boven de tien",
-      "objective": "Puur Koreaanse getallen tot vijftig bouwen en lezen.",
+      "title": "열하나, 스물, 서른 zeggen",
+      "objective": "Zeg de getallen boven de tien op de 하나-둘-셋-manier.",
       "step1": "열 plus de eenheid geeft elf tot en met negentien: 열하나, 열둘, 열셋. Je zegt het als één woord.",
       "step2": "De tientallen hebben eigen woorden — 스물 twintig, 서른 dertig, 마흔 veertig, 쉰 vijftig. Ze worden niet uit 열 gebouwd.",
       "step3": "열여섯 wordt gezegd als 열려섣: dezelfde ㄹ-klank als in 심뉵."
     },
     "forms": {
-      "title": "한, 두, 세, 네, 스무",
-      "objective": "De vijf telvormen gebruiken die vóór een telwoord 하나, 둘, 셋, 넷 en 스물 vervangen.",
-      "step1": "Vijf puur Koreaanse getallen veranderen van vorm vóór een telwoord. 하나 wordt 한, 둘 wordt 두, 셋 wordt 세, 넷 wordt 네, 스물 wordt 스무.",
-      "step2": "Dit is geen uitspraakfoutje. 둘 사람 is geen Koreaans met een accent — het is fout. Het moet 두 사람 zijn.",
-      "step3": "Elk ander puur Koreaans getal houdt zijn vorm: 다섯 명, 여섯 개, 열 마리. Alleen deze vijf veranderen."
+      "title": "한 개, 두 개 — de vorm verandert",
+      "objective": "Bij het tellen wordt 하나 tot 한 en 둘 tot 두. Het zijn er maar vijf.",
+      "step1": "Vijf woorden veranderen van vorm vóór een telwoord: 하나 wordt 한, 둘 wordt 두, 셋 wordt 세, 넷 wordt 네, 스물 wordt 스무.",
+      "step2": "Dit is geen klein verschil in uitspraak. Je zegt 두 사람, niet 둘 사람.",
+      "step3": "De rest blijft hetzelfde: 다섯 명, 여섯 개, 열 마리. Alleen die vijf veranderen."
     },
     "counters": {
-      "title": "Mensen, dingen en dieren",
-      "objective": "Mensen, voorwerpen en dieren tellen met 명, 사람, 개 en 마리.",
-      "step1": "Het Koreaans telt een zelfstandig naamwoord nooit alleen. Tussen het getal en het ding staat een telwoord, gekozen naar het soort ding.",
+      "title": "명 voor mensen, 개 voor dingen, 마리 voor dieren",
+      "objective": "Tel zoals 세 명, 두 개 en 고양이 두 마리.",
+      "step1": "Het Koreaans telt een zelfstandig naamwoord nooit met alleen een getal. Tussen het getal en het ding staat een telwoord, gekozen naar het soort ding.",
       "step2": "명 telt mensen (세 명), 개 telt voorwerpen (두 개), 마리 telt dieren (고양이 두 마리). 사람 telt ook mensen, iets minder formeel.",
-      "step3": "Eerst komt het zelfstandig naamwoord, dan het getal en het telwoord: 고양이 두 마리, niet 두 마리 고양이."
+      "step3": "Eerst het zelfstandig naamwoord, dan het getal en het telwoord: 고양이 두 마리, niet 두 마리 고양이."
     },
     "countersEveryday": {
-      "title": "Flessen, kopjes, kaartjes en boeken",
-      "objective": "Alledaagse dingen bestellen en tellen met 병, 잔, 장 en 권.",
+      "title": "Twee koffie, alsjeblieft",
+      "objective": "Bestel en tel in de winkel met 병, 잔, 장 en 권.",
       "step1": "병 is een fles (맥주 한 병), 잔 is een kopje of glas (커피 두 잔), 장 is iets plats zoals een kaartje of een vel (표 네 장), 권 is een boek (책 세 권).",
-      "step2": "Alle vier krijgen puur Koreaanse getallen en de telvormen: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Alle vier nemen de getallen 하나, 둘, 셋 en hun telvormen: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
-      "title": "Zeggen hoe oud je bent",
-      "objective": "Je leeftijd geven met 살, 세 herkennen en iemand die ouder is beleefd naar zijn leeftijd vragen met 연세.",
-      "step1": "살 krijgt een puur Koreaans getal en is wat mensen echt zeggen: 스무 살, 스물다섯 살. 몇 살이에요? vraagt een vriend naar zijn leeftijd.",
-      "step2": "세 krijgt een Sino-getal en hoort op formulieren en in het nieuws: 이십 세. Je zult het vaker lezen dan zeggen.",
+      "title": "Hoe oud ben je?",
+      "objective": "Zeg je leeftijd met 살 en vraag het beleefd aan een oudere met 연세.",
+      "step1": "살 hoort bij de getallen 하나, 둘, 셋 en is wat mensen echt zeggen: 스무 살, 스물다섯 살. 몇 살이에요? vraagt een vriend naar zijn leeftijd.",
+      "step2": "세 hoort bij de getallen 일, 이, 삼 en staat in documenten en het nieuws: 이십 세. Je leest het vaker dan je het zegt.",
       "step3": "Tegen iemand die ouder is, is 살 te informeel. 연세 is het eerbiedige woord voor leeftijd: 연세가 어떻게 되세요?"
     },
     "hours": {
-      "title": "Het uur zeggen",
-      "objective": "Het uur zeggen met een puur Koreaans getal en 시, en 반 gebruiken voor half.",
-      "step1": "Uren krijgen puur Koreaanse getallen: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? vraagt hoe laat het is.",
+      "title": "Hoe laat is het?",
+      "objective": "Zeg het uur zoals 한 시 en 두 시, en gebruik 반 voor half.",
+      "step1": "Het uur neemt de getallen 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? vraagt hoe laat het is.",
       "step2": "반 betekent half: 두 시 반 is half drie. Het vervangt 삼십 분.",
-      "step3": "몇 시예요? vraagt naar het uur. Antwoord met het puur Koreaanse getal en 시: 세 시예요. Voor de minuten wissel je van systeem — dat is de volgende les."
+      "step3": "몇 시예요? vraagt het uur. Antwoord zoals 세 시예요. De minuten gebruiken de andere reeks — dat is de volgende les."
     },
     "minutes": {
-      "title": "Minuten en seconden",
-      "objective": "Minuten en seconden zeggen met Sino-getallen, en ze combineren met een puur Koreaans uur.",
-      "step1": "Minuten en seconden krijgen Sino-getallen: 삼십 분, 십오 분, 십 초.",
-      "step2": "Eén kloktijd gebruikt beide systemen tegelijk: 세 시 삼십 분 — een puur Koreaans uur, een Sino-minuut.",
-      "step3": "De meest gemaakte fout is allebei in hetzelfde systeem zetten. 삼 시 서른 분 is dubbel fout."
+      "title": "Het is 3:30",
+      "objective": "Zeg de minuten en seconden en plak ze aan het uur.",
+      "step1": "Minuten en seconden nemen de getallen 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step2": "Eén kloktijd gebruikt allebei de reeksen tegelijk: 세 시 삼십 분 — het uur uit 하나, 둘, 셋 en de minuten uit 일, 이, 삼.",
+      "step3": "Hier is het makkelijk om allebei in dezelfde reeks te zetten. Zeg 세 시 삼십 분 in plaats van 삼 시 서른 분."
     },
     "dates": {
-      "title": "Jaren, maanden en dagen",
-      "objective": "Een datum zeggen met 년, 월 en 일, en de twee onregelmatige maanden gebruiken.",
-      "step1": "Jaren, maanden en dagen zijn allemaal Sino: 이천이십육 년 삼월 십오 일. De grootste eenheid eerst.",
+      "title": "Wanneer ben je jarig?",
+      "objective": "Zeg een datum met 년, 월 en 일 — en let op 유월 en 시월.",
+      "step1": "년, 월 en 일 nemen alle drie de getallen 일, 이, 삼: 이천이십육 년 삼월 십오 일. De grote eenheid eerst.",
       "step2": "Twee maanden zijn onregelmatig. Juni is 유월, niet 육월; oktober is 시월, niet 십월.",
       "step3": "일 als dag van de maand is hetzelfde woord als 일 voor een. 삼월 일 일 is één maart."
     },
     "weekdays": {
-      "title": "Dagen van de week",
-      "objective": "De dagen van de week noemen en vragen welke dag het is.",
+      "title": "Welke dag is het vandaag?",
+      "objective": "Zeg 월요일 tot 일요일 en vraag welke dag het is.",
       "step1": "De dagen eindigen op 요일: 월요일 maandag, 화요일, 수요일, 목요일, 금요일 vrijdag, 토요일, 일요일.",
       "step2": "무슨 요일이에요? vraagt welke dag het is. 주말 is het weekend."
     },
     "money": {
-      "title": "Een prijs lezen",
-      "objective": "Prijzen in won lezen, op de Koreaanse manier gegroepeerd per tienduizend.",
-      "step1": "De won krijgt Sino-getallen: 천 원, 오천 원. 얼마예요? vraagt naar de prijs.",
+      "title": "Hoeveel kost het?",
+      "objective": "Lees prijzen zoals 오천 원 en 만 오천 원.",
+      "step1": "원 neemt de getallen 일, 이, 삼: 천 원, 오천 원. 얼마예요? vraagt de prijs.",
       "step2": "Het Koreaans groepeert per tienduizend, niet per duizend. 만 원 is 10.000; 삼만 오천 원 is 35.000.",
       "step3": "Een prijs die je hoort als 만 오천 원 is 15.000 — één tienduizend en vijf duizenden."
     },
     "digits": {
-      "title": "Telefoonnummers, verdiepingen en kamers",
-      "objective": "Nummers cijfer voor cijfer lezen, met 공 voor nul en 에 tussen de groepen.",
+      "title": "Een telefoonnummer lezen",
+      "objective": "Lees het nummer cijfer voor cijfer en zeg 공 voor de 0. Ook voor verdiepingen en kamers.",
       "step1": "Een nummer dat iets aanduidt in plaats van telt, lees je cijfer voor cijfer: 010 is 공일공.",
       "step2": "에 komt waar een streepje staat: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Verdiepingen, kamers en buslijnen krijgen Sino-getallen: 삼 층 derde verdieping, 오공이 호 kamer 502, 이백육 번 bus 206."
+      "step3": "Verdiepingen, kamers en buslijnen nemen de getallen 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억, 조 — en decimalen",
-      "objective": "De grote Koreaanse eenheden, percentages en decimale getallen lezen.",
+      "title": "만, 억 — heel grote getallen",
+      "objective": "Lees grote getallen in groepen van tienduizend, plus procenten en decimalen.",
       "step1": "Het Koreaans telt in groepen van vier cijfers, niet van drie. 만 is tienduizend, 억 is honderd miljoen, 조 is een biljoen.",
-      "step2": "123.450.000 lees je als 1억 2345만 — het scheidingsteken staat voor het Koreaans op de verkeerde plek.",
+      "step2": "123.450.000 lees je als 1억 2345만. Het Koreaans groepeert per tienduizend en niet per duizend.",
       "step3": "퍼센트 is procent (오십 퍼센트), en 점 is de komma in een decimaal getal: 삼 점 오 is 3,5."
     },
     "pitfalls": {
-      "title": "De vijf fouten die iedereen maakt",
-      "objective": "De vijf fouten herkennen en verbeteren waaraan je een beginner herkent.",
+      "title": "Vijf veelgemaakte fouten",
+      "objective": "Vind en verbeter de vijf waar iedereen over struikelt.",
       "step1": "Elk ervan is een regel die je al kent, op de plek waar je haar het snelst vergeet.",
-      "step2": "두 살, niet 둘 살. 심뉵, niet 십육 zoals het geschreven staat. 유월, niet 육월. Een puur Koreaans uur met een Sino-minuut. Een spatie vóór het telwoord."
+      "step2": "두 살, niet 둘 살. 십육 spreek je uit als 심뉵. 유월, niet 육월. 세 시 voor het uur en 삼십 분 voor de minuten. Een spatie vóór het telwoord."
     },
     "mixed": {
-      "title": "Gemengde herhaling — welk systeem, welke vorm",
-      "objective": "Een zin uit de hele cursus horen of lezen en weten welk systeem die gebruikt en waarom.",
-      "step1": "Alles in deze cursus komt neer op één snelle beslissing: is dit een telling of een aanduiding? Tellingen — mensen, dingen, uren, leeftijd — krijgen puur Koreaanse getallen; aanduidingen — geld, minuten, data, telefoonnummers — krijgen Sino-Koreaans.",
+      "title": "Alles door elkaar",
+      "objective": "Luister naar en lees alles wat je hebt geleerd, in één keer.",
+      "step1": "De hele cursus komt neer op één snelle beslissing: is dit een aantal of een etiket? Aantallen — mensen, dingen, uren, leeftijden — nemen 하나, 둘, 셋; etiketten — geld, minuten, datums, telefoonnummers — nemen 일, 이, 삼.",
       "step2": "Deze herhaling mengt de twee. Lees of luister, beslis, en bekijk de uitleg zodra je twijfelt. Die twijfel is precies wat je wegoefent."
     }
   },
@@ -264,14 +262,14 @@
     "ctxMinute": "dertig minuten",
     "ctxAge": "twintig jaar oud",
     "ctxDate": "één maart",
-    "formOne": "een, vóór een telwoord",
-    "formTwo": "twee, vóór een telwoord",
-    "formThree": "drie, vóór een telwoord",
-    "formFour": "vier, vóór een telwoord",
-    "formTwenty": "twintig, vóór een telwoord",
+    "formOne": "één, bij het tellen",
+    "formTwo": "twee, bij het tellen",
+    "formThree": "drie, bij het tellen",
+    "formFour": "vier, bij het tellen",
+    "formTwenty": "twintig, bij het tellen",
     "counterPeople": "mensen",
     "counterPeoplePlain": "mensen — alledaags",
-    "counterThings": "dingen — het algemene telwoord",
+    "counterThings": "dingen — het gewoonste telwoord",
     "counterAnimals": "dieren",
     "counterBottles": "flessen",
     "counterCups": "kopjes en glazen",
@@ -287,7 +285,7 @@
     "tenOclock": "tien uur",
     "counterMinute": "minuten",
     "counterSecond": "seconden",
-    "mixedTime": "een kloktijd, met beide systemen",
+    "mixedTime": "een kloktijd, met allebei de reeksen",
     "quarterPast": "kwart over twee",
     "counterYear": "jaar",
     "counterMonth": "maand",
@@ -312,19 +310,19 @@
     "pitfallSimnyuk": "Geschreven 십육, gezegd 심뉵",
     "pitfallJune": "Juni is 유월, nooit 육월",
     "pitfallHourMinute": "Uur puur Koreaans, minuut Sino",
-    "pitfallSpacing": "Het telwoord is een apart woord"
+    "pitfallSpacing": "Het telwoord staat los"
   },
   "example": {
     "zeroMath": "min drie graden",
     "zeroDigit": "010",
     "belowZeroFive": "min vijf graden",
     "zeroScore": "Ik had nul.",
-    "ctxPeople": "mensen tel je met een puur Koreaans getal",
-    "ctxMoney": "geld krijgt Sino-getallen",
-    "ctxHour": "uren krijgen puur Koreaanse getallen",
-    "ctxMinute": "minuten krijgen Sino-getallen",
-    "ctxAge": "leeftijd krijgt een puur Koreaans getal",
-    "ctxDate": "data krijgen Sino-getallen",
+    "ctxPeople": "mensen tel je met 하나, 둘, 셋",
+    "ctxMoney": "geld neemt 일, 이, 삼",
+    "ctxHour": "uren nemen 하나, 둘, 셋",
+    "ctxMinute": "minuten nemen 일, 이, 삼",
+    "ctxAge": "leeftijd neemt 하나, 둘, 셋",
+    "ctxDate": "datums nemen 일, 이, 삼",
     "twentyFive": "Ik ben vijfentwintig.",
     "ageHonorific": "een oudere naar zijn leeftijd vragen",
     "halfPastTwo": "half drie",

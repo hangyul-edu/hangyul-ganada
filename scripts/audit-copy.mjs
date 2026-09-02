@@ -326,6 +326,19 @@ const REVIEWED_TONE = new Set([
     is also why the two have to share a noun. See `one-name-per-concept`.
   */
   'learning:mistakes.wrongVocabulary',
+  /*
+    The Numbers course's last module, which is *about* the five mistakes
+    everybody makes: 둘 살 for 두 살, 육월 for 유월, a Sino hour beside a native
+    minute. "Five things people often get wrong" names the errors and says
+    "people", not "you" — and saying instead that they are merely tricky would
+    be softer and less true. A learner who has just made one of them is
+    reassured by finding it on a list called that.
+
+    The alternative was to rename the module to something that avoids the word,
+    which is how copy ends up vague. Read in context, kept, and listed here.
+  */
+  'numbers:module.review.goal',
+  'numbers:lesson.pitfalls.title',
 ]);
 
 /** Words that are usually a tone problem, always worth a human reading. */
