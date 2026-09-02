@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { optionRows } from '../../ui/optionRows';
 import { Button } from '../../ui/Button';
 import { FeedbackState } from '../../ui/FeedbackState';
 import { LocalizedText } from '../../ui/LocalizedText';
@@ -196,20 +197,32 @@ export function BuildExercise({
         })}
       </div>
 
+      {/*
+        Rows the layout chose, not rows the viewport fell into.
+
+        Five tiles are three and two. They used to be four and one, because the
+        tray was a wrapping flex box and four is what fits across a 390 px
+        phone — see `ui/optionRows` for why an orphan tile is a defect and not
+        an inelegance.
+      */}
       <div className={styles.tray} role="group" aria-label={t('learning:review.buildTray')}>
-        {tiles.map((tile) => (
-          <button
-            key={tile.id}
-            type="button"
-            className={styles.tile}
-            onClick={() => take(tile.id)}
-            disabled={settled !== null || picked.includes(tile.id)}
-            lang="ko"
-            dir="ltr"
-            style={{ fontFamily }}
-          >
-            {tile.syllable}
-          </button>
+        {optionRows(tiles).map((row) => (
+          <div className={styles.trayRow} key={row.map((tile) => tile.id).join('-')}>
+            {row.map((tile) => (
+              <button
+                key={tile.id}
+                type="button"
+                className={styles.tile}
+                onClick={() => take(tile.id)}
+                disabled={settled !== null || picked.includes(tile.id)}
+                lang="ko"
+                dir="ltr"
+                style={{ fontFamily }}
+              >
+                {tile.syllable}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
 

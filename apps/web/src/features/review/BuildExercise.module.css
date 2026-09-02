@@ -87,10 +87,25 @@
   background: color-mix(in srgb, var(--hg-negative) 8%, transparent);
 }
 
-/* The tray the syllables come from. Wraps; never scrolls. */
+/*
+ * The tray the syllables come from: balanced rows, each centred, never a
+ * scroller.
+ *
+ * `flex-wrap: wrap` used to do this and produced four tiles and an orphan for
+ * every five-syllable word. The rows are decided in `ui/optionRows` now and
+ * this only stacks and centres them, which is the part CSS is good at: the
+ * tiles keep their natural width, so a long syllable, a doubled reading size
+ * and a right-to-left interface all centre exactly without a number anywhere.
+ */
 .tray {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.trayRow {
+  display: flex;
   justify-content: center;
   gap: var(--hg-space-3);
 }

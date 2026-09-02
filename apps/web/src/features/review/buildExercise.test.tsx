@@ -164,6 +164,43 @@ describe('building a word from syllables', () => {
     expect(onAnswered.mock.calls[0]![0]).toMatchObject({ correct: true, chosen: word.word });
   });
 
+  it('lays five tiles out as three and two, in order', () => {
+    /*
+     * The reported defect, in the component rather than in the rule.
+     *
+     * `optionRows.test.ts` proves the arithmetic; this proves the tray uses it,
+     * because the tray was a wrapping flex box for a long time and a correct
+     * rule nothing calls is not a fix. Five is the count the screenshot showed:
+     * a two-syllable word and three decoys.
+     *
+     * The order is asserted as well as the shape. Splitting a list into rows is
+     * exactly the kind of change that can silently reorder it, and a tray whose
+     * visual order differs from its DOM order gives a keyboard and a screen
+     * reader a different question from the one on the screen.
+     */
+    const { candidate } = twoSyllableCandidate();
+    const exercise = buildExercise(candidate, meaningOf, 3)!;
+    expect(exercise.tiles).toHaveLength(5);
+
+    show(
+      <BuildExercise
+        exercise={exercise}
+        fontFamily="sans-serif"
+        onAnswered={() => {}}
+        onContinue={() => {}}
+        isLast={false}
+      />,
+    );
+
+    const tray = screen.getByRole('group', { name: /.*/ });
+    const rows = [...tray.children].map((row) => [...row.querySelectorAll('button')]);
+    expect(rows.map((row) => row.length)).toEqual([3, 2]);
+
+    expect(rows.flat().map((button) => button.textContent)).toEqual(
+      exercise.tiles!.map((tile) => tile.syllable),
+    );
+  });
+
   it('is not a canvas', () => {
     /*
      * §63: vocabulary is never handwritten. Tapping tiles is not writing, and
