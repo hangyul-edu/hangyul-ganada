@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 import { expect, test, type Page } from '@playwright/test';
 
-import { openApp } from './helpers/launch';
+import { openApp, waitForSavedWord } from './helpers/launch';
 
 /**
  * The Review hub, and the two lists the learner owns.
@@ -194,6 +194,14 @@ test('saving a word puts it on the saved list, and unsaving takes it off', async
   const bookmark = page.getByRole('button', { name: /save|bookmark/i }).first();
   await expect(bookmark).toBeVisible();
   await bookmark.click();
+
+  /*
+   * The next line is a cold load, and the save is written optimistically — see
+   * `waitForSavedWord`. Without this wait the navigation can abort the write's
+   * transaction and the saved list is honestly empty; that is what made this
+   * test fail once in a 368-test run and pass every time it was run alone.
+   */
+  await waitForSavedWord(page, ids[0]!);
 
   await openApp(page, '/words/saved');
   await expect(page.getByTestId('saved-list').getByRole('listitem')).toHaveCount(1);

@@ -87,55 +87,100 @@ export async function openTodaysWords(page: Page, path = '/words/today'): Promis
 }
 
 /**
- * Waits until a Numbers lesson's record has actually reached IndexedDB.
+ * Waits until a row has actually reached IndexedDB.
  *
  * ## Why a reload needs this and a click does not
  *
- * `recordNumbersEvent` updates React's state and starts the write without
- * awaiting it — `void numbersRepo.current?.put(after)`. That is the right
- * trade for a tap: the screen must not wait on a disk to advance. It means the
- * in-memory state and the stored row are briefly out of step, and a
- * `page.reload()` fired in that window aborts the transaction and reloads a
- * record that never got the event.
+ * The stores are written optimistically: React's state updates and the write is
+ * started without being awaited — `void repo.put(row)`. That is the right trade
+ * for a tap, because the screen must not wait on a disk to advance. It means
+ * the in-memory state and the stored row are briefly out of step, and a
+ * `page.goto` or a `page.reload()` fired inside that window aborts the
+ * transaction and reloads a record that never got the event.
  *
- * A person cannot hit that window — tapping *Next* and killing the app inside
- * one IndexedDB transaction is not a thing hands do — but Playwright hits it
- * whenever the machine is busy, which is why `N-e2e-4` passed alone and failed
- * inside the full spec. The wait is on the *storage*, so the test still proves
- * what it was written to prove: that the resume comes from the record and not
- * from anything the screen was holding.
+ * A person cannot hit that window — tapping and killing the app inside one
+ * IndexedDB transaction is not a thing hands do — but Playwright hits it
+ * whenever the machine is busy. That is why `N-e2e-4` passed alone and failed
+ * inside its own spec, and why the review hub's save test passed alone, passed
+ * in order, and failed once in a 368-test run.
+ *
+ * The wait is on the *storage*, so a test that uses it still proves what it was
+ * written to prove: that what comes back after a navigation came from the
+ * record and not from anything the previous screen was holding.
+ */
+export async function waitForStoredRow(
+  page: Page,
+  store: string,
+  key: string,
+  holds: (row: never) => boolean,
+  what = `${store}/${key}`,
+): Promise<void> {
+  await expect
+    .poll(
+      async () => {
+        const row = await page.evaluate(
+          async ({ store, key }) => {
+            const request = indexedDB.open('hangyul-ganada');
+            const db: IDBDatabase = await new Promise((resolve, reject) => {
+              request.onsuccess = () => resolve(request.result);
+              request.onerror = () => reject(request.error);
+            });
+            try {
+              return await new Promise<unknown>((resolve) => {
+                const read = db.transaction(store, 'readonly').objectStore(store).get(key);
+                read.onsuccess = () => resolve(read.result ?? null);
+                read.onerror = () => resolve(null);
+              });
+            } finally {
+              db.close();
+            }
+          },
+          { store, key },
+        );
+        // A boolean rather than the row: `expect.poll` has `toBe` and no
+        // `toSatisfy`, and the predicate belongs to the caller either way.
+        return Boolean(row) && holds(row as never);
+      },
+      { timeout: 10_000, message: `the stored row for ${what} never satisfied the wait` },
+    )
+    .toBe(true);
+}
+
+/**
+ * `waitForStoredRow` for a Numbers lesson.
+ *
+ * `NumbersRepository.put` keys rows `lesson:<id>`, not by the bare id — see
+ * `storage/repositories.ts`.
  */
 export async function waitForNumbersRecord(
   page: Page,
   lessonId: string,
   holds: (record: { explanation_steps_viewed?: string[] }) => boolean,
 ): Promise<void> {
-  await expect
-    .poll(
-      async () => {
-        const record = await page.evaluate(async (id) => {
-          const request = indexedDB.open('hangyul-ganada');
-          const db: IDBDatabase = await new Promise((resolve, reject) => {
-            request.onsuccess = () => resolve(request.result);
-            request.onerror = () => reject(request.error);
-          });
-          try {
-            return await new Promise<unknown>((resolve) => {
-              // `NumbersRepository.put` keys rows `lesson:<id>`, not by the
-              // bare id — see `storage/repositories.ts`.
-              const read = db.transaction('numbers', 'readonly').objectStore('numbers').get(`lesson:${id}`);
-              read.onsuccess = () => resolve(read.result ?? null);
-              read.onerror = () => resolve(null);
-            });
-          } finally {
-            db.close();
-          }
-        }, lessonId);
-        // A boolean rather than the row: `expect.poll` has `toBe` and no
-        // `toSatisfy`, and the predicate belongs to the caller either way.
-        return Boolean(record) && holds(record as { explanation_steps_viewed?: string[] });
-      },
-      { timeout: 10_000, message: `the stored record for ${lessonId} never satisfied the wait` },
-    )
-    .toBe(true);
+  await waitForStoredRow(
+    page,
+    'numbers',
+    `lesson:${lessonId}`,
+    holds as (row: never) => boolean,
+    `the ${lessonId} lesson`,
+  );
+}
+
+/**
+ * `waitForStoredRow` for a saved word.
+ *
+ * Saved words are not their own store: they are `saved_items` on the settings
+ * row, because the list is small and belongs to the profile rather than to the
+ * corpus. See `storage/schema.ts`.
+ */
+export async function waitForSavedWord(page: Page, wordId: string): Promise<void> {
+  await waitForStoredRow(
+    page,
+    'settings',
+    'preferences',
+    ((row: { saved_items?: string[] }) => (row.saved_items ?? []).includes(wordId)) as (
+      row: never,
+    ) => boolean,
+    `${wordId} on the saved list`,
+  );
 }
