@@ -68,13 +68,8 @@
     "nothingDue": "Nada para revisar agora.",
     "modesEmpty": "Hoje não há nada nestes modos.",
     "answerIs": "{{word}} significa “{{meaning}}”.",
-    "showMoreHint": "Mais uma dica",
     "showAnswer": "Ver a resposta",
     "hint": {
-      "kind": "É um {{pos}} de {{category}}.",
-      "kindOnly": "A palavra que falta é um {{pos}}.",
-      "startsWith": "Começa com {{start}}…",
-      "startsWithSound": "Começa com o som “{{sound}}”.",
       "replay": "Ouça de novo, quantas vezes quiser.",
       "letterFamily": "Esta aqui é {{family}}.",
       "letterExample": "É a primeira letra de {{word}}.",

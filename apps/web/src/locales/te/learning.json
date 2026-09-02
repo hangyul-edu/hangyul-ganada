@@ -154,13 +154,8 @@
     "nothingDue": "ఇప్పుడు మళ్లీ చూడాల్సినది ఏదీ లేదు.",
     "modesEmpty": "ఈ రోజు ఈ పద్ధతుల్లో ఏమీ లేదు.",
     "answerIs": "{{word}} అంటే “{{meaning}}”.",
-    "showMoreHint": "మరో సూచన",
     "showAnswer": "జవాబు చూపించు",
     "hint": {
-      "kind": "ఇది ఒక {{pos}} — {{category}}కి సంబంధించినది.",
-      "kindOnly": "తప్పిపోయిన పదం ఒక {{pos}}.",
-      "startsWith": "ఇది {{start}}తో మొదలవుతుంది…",
-      "startsWithSound": "ఇది “{{sound}}” శబ్దంతో మొదలవుతుంది.",
       "replay": "మళ్లీ వినిపించండి — ఎన్నిసార్లయినా.",
       "letterFamily": "ఇది {{family}}.",
       "letterExample": "ఇది {{word}} మొదటి అక్షరం.",

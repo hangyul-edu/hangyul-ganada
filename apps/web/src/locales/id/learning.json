@@ -152,13 +152,8 @@
     "nothingDue": "Tidak ada yang perlu diulang sekarang.",
     "modesEmpty": "Tidak ada apa-apa di mode ini hari ini.",
     "answerIs": "{{word}} artinya “{{meaning}}”.",
-    "showMoreHint": "Petunjuk lain",
     "showAnswer": "Tampilkan jawaban",
     "hint": {
-      "kind": "Ini {{pos}} — sesuatu dalam {{category}}.",
-      "kindOnly": "Kata yang hilang itu {{pos}}.",
-      "startsWith": "Diawali {{start}}…",
-      "startsWithSound": "Diawali bunyi “{{sound}}”.",
       "replay": "Putar lagi — sesering yang kamu mau.",
       "letterFamily": "Yang ini {{family}}.",
       "letterExample": "Ini huruf pertama dari {{word}}.",

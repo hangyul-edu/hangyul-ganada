@@ -66,13 +66,8 @@
     "nothingDue": "Gerade gibt es nichts zu wiederholen.",
     "modesEmpty": "Heute gibt es in diesen Modi nichts.",
     "answerIs": "{{word}} bedeutet „{{meaning}}“.",
-    "showMoreHint": "Noch ein Hinweis",
     "showAnswer": "Lösung zeigen",
     "hint": {
-      "kind": "Ein {{pos}} aus dem Bereich {{category}}.",
-      "kindOnly": "Gesucht ist ein {{pos}}.",
-      "startsWith": "Es fängt mit {{start}}… an.",
-      "startsWithSound": "Es fängt mit dem Laut „{{sound}}“ an.",
       "replay": "Hör es dir noch einmal an — so oft du magst.",
       "letterFamily": "Das hier ist {{family}}.",
       "letterExample": "Es ist der erste Buchstabe von {{word}}.",

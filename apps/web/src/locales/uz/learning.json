@@ -154,13 +154,8 @@
     "nothingDue": "Hozir takrorlaydigan narsa yo‘q.",
     "modesEmpty": "Bugun bu turlarda hech narsa yo‘q.",
     "answerIs": "{{word}} — “{{meaning}}” degani.",
-    "showMoreHint": "Yana bir ishora",
     "showAnswer": "Javobni ko‘rsatish",
     "hint": {
-      "kind": "Bu {{pos}} — {{category}} bilan bog‘liq narsa.",
-      "kindOnly": "Yetishmayotgan so‘z — {{pos}}.",
-      "startsWith": "{{start}} bilan boshlanadi…",
-      "startsWithSound": "“{{sound}}” tovushi bilan boshlanadi.",
       "replay": "Yana qo‘ying — xohlagancha.",
       "letterFamily": "Turkumi — {{family}}.",
       "letterExample": "Bu {{word}} so‘zining birinchi harfi.",

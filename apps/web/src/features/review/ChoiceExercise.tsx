@@ -417,9 +417,7 @@ export function ChoiceExercise({
                 {t(
                   hints[level]!.strength === 'answer'
                     ? 'learning:review.showAnswer'
-                    : level === 0
-                      ? 'learning:review.showHint'
-                      : 'learning:review.showMoreHint',
+                    : 'learning:review.showHint',
                 )}
               </button>
             )}

@@ -154,13 +154,8 @@
     "nothingDue": "Wala munang babalikan ngayon.",
     "modesEmpty": "Wala munang laman ang mga moda na ito ngayon.",
     "answerIs": "Ang ibig sabihin ng {{word}} ay “{{meaning}}”.",
-    "showMoreHint": "Isa pang pahiwatig",
     "showAnswer": "Ipakita ang sagot",
     "hint": {
-      "kind": "Isa itong {{pos}} — bagay na kabilang sa {{category}}.",
-      "kindOnly": "Ang nawawalang salita ay isang {{pos}}.",
-      "startsWith": "Nagsisimula ito sa {{start}}…",
-      "startsWithSound": "Nagsisimula ito sa tunog na “{{sound}}”.",
       "replay": "Ipatugtog ulit — kahit ilang beses.",
       "letterFamily": "{{family}} ito.",
       "letterExample": "Ito ang unang letra ng {{word}}.",

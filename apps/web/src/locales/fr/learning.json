@@ -68,13 +68,8 @@
     "nothingDue": "Rien à réviser pour le moment.",
     "modesEmpty": "Rien dans ces modes aujourd’hui.",
     "answerIs": "{{word}} signifie « {{meaning}} ».",
-    "showMoreHint": "Encore un indice",
     "showAnswer": "Voir la réponse",
     "hint": {
-      "kind": "C’est un {{pos}} du thème {{category}}.",
-      "kindOnly": "Le mot manquant est un {{pos}}.",
-      "startsWith": "Ça commence par {{start}}…",
-      "startsWithSound": "Ça commence par le son « {{sound}} ».",
       "replay": "Réécoutez-le, autant de fois que vous voulez.",
       "letterFamily": "Celle-ci est {{family}}.",
       "letterExample": "C’est la première lettre de {{word}}.",

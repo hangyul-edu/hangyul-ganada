@@ -156,13 +156,8 @@
     "nothingDue": "Adesso non c’è niente da ripassare.",
     "modesEmpty": "Oggi niente in queste modalità.",
     "answerIs": "{{word}} vuol dire «{{meaning}}».",
-    "showMoreHint": "Un altro indizio",
     "showAnswer": "Mostra la risposta",
     "hint": {
-      "kind": "È un {{pos}} — qualcosa in {{category}}.",
-      "kindOnly": "La parola che manca è un {{pos}}.",
-      "startsWith": "Comincia per {{start}}…",
-      "startsWithSound": "Comincia con il suono «{{sound}}».",
       "replay": "Riascolta pure — quante volte vuoi.",
       "letterFamily": "Questa è {{family}}.",
       "letterExample": "È la prima lettera di {{word}}.",

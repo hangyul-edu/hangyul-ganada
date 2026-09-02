@@ -158,13 +158,8 @@
     "nothingDue": "Teď není co opakovat.",
     "modesEmpty": "Dnes v těchhle režimech nic není.",
     "answerIs": "{{word}} znamená „{{meaning}}“.",
-    "showMoreHint": "Další nápovědu",
     "showAnswer": "Ukázat odpověď",
     "hint": {
-      "kind": "Je to {{pos}} — něco z kategorie {{category}}.",
-      "kindOnly": "Chybějící slovo je {{pos}}.",
-      "startsWith": "Začíná na {{start}}…",
-      "startsWithSound": "Začíná zvukem „{{sound}}“.",
       "replay": "Přehrajte znovu — kolikrát chcete.",
       "letterFamily": "Tahle litera je {{family}}.",
       "letterExample": "Je to první litera slova {{word}}.",

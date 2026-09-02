@@ -154,13 +154,8 @@
     "nothingDue": "Inget att repetera just nu.",
     "modesEmpty": "Inget i de här formerna i dag.",
     "answerIs": "{{word}} betyder ”{{meaning}}”.",
-    "showMoreHint": "En ledtråd till",
     "showAnswer": "Visa svaret",
     "hint": {
-      "kind": "Det är ett {{pos}} — något inom {{category}}.",
-      "kindOnly": "Ordet som fattas är ett {{pos}}.",
-      "startsWith": "Det börjar med {{start}}…",
-      "startsWithSound": "Det börjar med ljudet ”{{sound}}”.",
       "replay": "Spela igen — så många gånger du vill.",
       "letterFamily": "Den här är {{family}}.",
       "letterExample": "Det är första bokstaven i {{word}}.",

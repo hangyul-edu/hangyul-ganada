@@ -162,13 +162,8 @@
     "nothingDue": "لا شيء للمراجعة الآن.",
     "modesEmpty": "لا شيء في هذه الأنماط اليوم.",
     "answerIs": "{{word}} تعني «{{meaning}}».",
-    "showMoreHint": "تلميح آخر",
     "showAnswer": "أرِني الإجابة",
     "hint": {
-      "kind": "إنها {{pos}} — شيء من {{category}}.",
-      "kindOnly": "الكلمة الناقصة {{pos}}.",
-      "startsWith": "تبدأ بـ{{start}}…",
-      "startsWithSound": "تبدأ بصوت «{{sound}}».",
       "replay": "أعد الاستماع — بقدر ما تشاء.",
       "letterFamily": "هذا الحرف {{family}}.",
       "letterExample": "إنه أول حرف في {{word}}.",

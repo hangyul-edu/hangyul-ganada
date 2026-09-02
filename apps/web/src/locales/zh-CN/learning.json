@@ -66,13 +66,8 @@
     "nothingDue": "现在没有要复习的内容。",
     "modesEmpty": "今天这些方式暂时没有内容。",
     "answerIs": "{{word}} 的意思是“{{meaning}}”。",
-    "showMoreHint": "再给点提示",
     "showAnswer": "看答案",
     "hint": {
-      "kind": "这是{{category}}里的{{pos}}。",
-      "kindOnly": "空格里要填的是{{pos}}。",
-      "startsWith": "以 {{start}}… 开头。",
-      "startsWithSound": "以“{{sound}}”这个音开头。",
       "replay": "再听一遍吧，听几次都行。",
       "letterFamily": "这是{{family}}。",
       "letterExample": "它是 {{word}} 的第一个字母。",

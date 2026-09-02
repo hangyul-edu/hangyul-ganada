@@ -1,6 +1,6 @@
 import type { HangulCharacter, VocabularyWord } from '@hangyul-ganada/shared-types';
+import { FORMS, conjugate, stemOf } from '@hangyul-ganada/korean-morphology';
 
-import { toSyllables } from '../../data/jamo';
 import type { ExerciseMode } from '../../domain/review';
 
 /**
@@ -27,20 +27,35 @@ import type { ExerciseMode } from '../../domain/review';
  *
  * ## The ladder
  *
- * One control, three rungs, each stronger than the last:
+ * One control, two rungs:
  *
- * | rung     | what it gives                              | what it costs        |
- * | -------- | ------------------------------------------ | -------------------- |
- * | `light`  | the kind of thing it is — part of speech,   | almost nothing       |
- * |          | category, a replay, a sentence with the     |                      |
- * |          | target still blank                          |                      |
- * | `strong` | narrows it — the first syllable, the letter | some                  |
- * |          | a familiar word starts with                 |                      |
- * | `answer` | tells them                                  | the recall is gone   |
+ * | press | what it gives | what it costs |
+ * | --- | --- | --- |
+ * | **힌트 보기** | the word used in a real sentence | almost nothing |
+ * | **정답 보기** | the answer | the recall is gone |
  *
- * The learner presses the same button; it gets stronger. Four buttons for four
- * levels of help would put more chrome on the screen than the question has, and
- * a learner who is stuck is the last person to hand a menu to.
+ * ### Why the middle rung went
+ *
+ * There were three, and the first of them was a classification: *"사람과
+ * 가족에 나오는 명사예요"* — it's a noun, from People & Family. It is safe, it
+ * is accurate, and it is worthless, for a reason built into the questions
+ * themselves: good distractors share a category with the answer *on purpose*.
+ * Asked what 하다 means against *to go*, *to stay*, *to do* and *to be late*,
+ * being told it is a verb from Everyday Actions rules out nothing at all. The
+ * learner spent a press, read a sentence about grammar, and was exactly where
+ * they started — and then had to press again to get anywhere, which is what the
+ * *힌트 더 보기* stage existed for.
+ *
+ * So the ladder is the one rung that was doing the work, and then the answer.
+ * A sentence is how a person actually recovers a word they half know; it is the
+ * only help here that is neither empty nor the answer; and where the answer is
+ * the Korean word rather than its meaning, the word comes out of the sentence
+ * and the situation around it stays — see `exampleWithGap`.
+ *
+ * Category and part of speech have not been deleted from the product. They are
+ * on the word card, where a learner reading about a word wants them, and they
+ * are in the data that picks distractors. They are simply not offered as help
+ * to somebody who is stuck.
  *
  * ## Nothing here is scored as a failure
  *
@@ -60,6 +75,122 @@ import type { ExerciseMode } from '../../domain/review';
  * — "noun" + " · " + "Food & Drink" — reads like a database row in every one of
  * them. The component translates; this decides *what to say*.
  */
+
+/** What stands in for the word in an example the learner must not be handed. */
+export const GAP = '____';
+
+/**
+ * The word's own example sentence with the word taken out of it.
+ *
+ * ## Why a sentence with a hole in it is the right hint
+ *
+ * The hint ladder is one rung of help and then the answer, and for a word
+ * question the rung is the word used in a sentence — which is how a person
+ * actually recovers a word they half know. That works unaltered when the answer
+ * is the *meaning*: the sentence is Korean, the options are not, and reading
+ * 사과를 먹어요 cannot tell you which English word to pick.
+ *
+ * It is the answer itself when the question runs the other way. Asked which
+ * Korean word means *apple*, a learner shown 사과를 먹어요 has not been helped,
+ * they have been told. So on those questions the target comes out and the
+ * sentence around it — the particle, the verb, the situation — stays, which is
+ * exactly the part that carries the meaning.
+ *
+ * ## Why this is not a string replace
+ *
+ * The headword is a dictionary form and the sentence is not. 만들다 appears as
+ * 만들어요, 예쁘다 as 예뻐요, 돈 as 돈이 — so `example.replace(word, GAP)` finds
+ * nothing for most of the corpus and, where it does find something, leaves the
+ * ending behind: `____어요` still shows the stem.
+ *
+ * Korean is spaced between eojeol, and a word plus everything glued to it is
+ * exactly one eojeol. So the unit removed is the whole eojeol that *starts*
+ * with the word, one of its conjugated forms, its stem, or a prefix of its stem
+ * — longest first, so 만들어요 is matched by 만들 and not by 만. Requiring the
+ * eojeol to start with the needle is what stops a common syllable blanking an
+ * unrelated word in the middle of the sentence.
+ *
+ * Returns null when no eojeol matches, and the caller then has no sentence to
+ * show. Measured over the shipping corpus that is the right answer for a small
+ * number of entries whose example uses a compound or a synonym rather than the
+ * headword — and `hints.test.ts` pins the rate, so a change that quietly makes
+ * it common fails rather than degrading the ladder in silence.
+ */
+export function exampleWithGap(
+  example: string,
+  word: string,
+  /**
+   * The form the sentence actually writes, where the corpus recorded one.
+   *
+   * `surface_form` is authored data — 쉽다's sentence says 쉬워요, and the entry
+   * says so. Tried before anything derived, because a ㅂ-irregular cannot be
+   * recognised from its spelling: 입다 is regular and 쉽다 is not, and the
+   * conjugator is right to refuse to guess. Four adjectives in the corpus —
+   * 쉽다, 춥다, 덥다, 곱다 — are exactly that case.
+   */
+  surface?: string | null,
+): string | null {
+  const stem = stemOf(word) || word;
+
+  /*
+   * Longest needle first, and the conjugated forms before the trimmed stems.
+   *
+   * A regular verb's stem survives inflection — 만들다 is 만들어요 — so a prefix
+   * match finds it. An irregular one's does not: 듣다 becomes 들어요, 돕다
+   * becomes 도와요, 모르다 becomes 몰라요, 크다 becomes 커요. Sixty-four of the
+   * corpus's examples are exactly that, and no amount of prefix-trimming
+   * reaches them, because the syllable that changed is the one a prefix keeps.
+   *
+   * `conjugate` already knows all of it — it is what the word card's own
+   * conjugation table is drawn from — so the forms are asked for rather than
+   * guessed at. `infinitive` is in `FORMS` and matters most: it is the stem the
+   * polite ending attaches to, so it is the prefix of nearly every inflected
+   * shape a teaching sentence uses.
+   */
+  const needles = [...(surface ? [surface] : []), word, stem];
+  for (const form of FORMS) {
+    const inflected = conjugate(word, form);
+    if (inflected) needles.push(inflected);
+  }
+  for (let length = stem.length - 1; length >= Math.max(1, stem.length - 2); length -= 1) {
+    needles.push(stem.slice(0, length));
+  }
+  /*
+   * Longest first, except that the authored surface form keeps its place at the
+   * head of the queue: it is the only needle that is a *fact* about this
+   * sentence rather than a candidate spelling, so it wins even when something
+   * derived happens to be longer.
+   */
+  const [first, ...derived] = needles;
+  derived.sort((a, b) => b.length - a.length);
+  needles.length = 0;
+  needles.push(first!, ...derived);
+
+  const parts = example.split(/(\s+)/);
+  for (const needle of needles) {
+    if (!needle) continue;
+    const hits = parts
+      .map((part, index) => ({ part, index }))
+      .filter(({ part }) => !/^\s+$/.test(part) && part.startsWith(needle));
+    if (hits.length === 0) continue;
+    const out = [...parts];
+    /*
+     * Every occurrence, not the first.
+     *
+     * 자기's example is 자기 일은 자기가 해요 — the word twice — and blanking one
+     * of them leaves the other sitting in the sentence as the answer. There is
+     * no such thing as a partly removed target.
+     */
+    for (const { index } of hits) {
+      // Trailing punctuation stays. Blanking 사과를. as a whole would take the
+      // full stop with it and leave a sentence that does not end.
+      const tail = out[index]!.match(/[^\p{L}\p{N}]+$/u)?.[0] ?? '';
+      out[index] = GAP + tail;
+    }
+    return out.join('');
+  }
+  return null;
+}
 
 export type HintStrength = 'light' | 'strong' | 'answer';
 
@@ -91,14 +222,6 @@ export interface HintStep {
    * these grounds, because they narrow things a property table cannot describe.
    */
   about?: Record<string, string>;
-}
-
-/** The rung a level number maps to. 0 is unaided. */
-export function strengthAt(level: number): HintStrength | null {
-  if (level <= 0) return null;
-  if (level === 1) return 'light';
-  if (level === 2) return 'strong';
-  return 'answer';
 }
 
 /**
@@ -276,144 +399,84 @@ export type Label = (key: string) => string;
  * when the learner is choosing a *Korean word* and is the answer itself when
  * they are choosing a meaning — the old code used it for both.
  */
-export function wordHints(
-  word: VocabularyWord,
-  mode: ExerciseMode,
-  label: Label,
-  /**
-   * The meaning in the learner's language, where that is the answer.
-   *
-   * Passed in so the hint can check itself. A category name is written in the
-   * learner's language and a meaning is too, so the two can collide — and they
-   * do: 배우다 is *học* in Vietnamese and its category is *Học tập & Công việc*,
-   * so a Vietnamese learner asked what 배우다 means was being handed the answer
-   * by a hint that is perfectly safe in the other nine languages. Nothing about
-   * the word, the category or the English could have predicted it.
-   */
-  answer?: string,
-): HintStep[] {
-  const pos = label(`vocabulary:partOfSpeech.${word.part_of_speech}`);
-  const category = label(`vocabulary:categories.${word.category}`);
-  /*
-   * The category, unless naming it gives the meaning away in this language.
-   *
-   * Falls back to the part of speech alone, which is weaker help and is still
-   * help. The alternative — renaming the category — would be fixing a correct
-   * translation to work around a collision with one word out of 2,581.
-   */
-  const kind: HintStep =
-    answer && revealsAnswer(category, answer)
-      ? {
-          strength: 'light',
-          key: 'review.hint.kindOnly',
-          values: { pos },
-          about: { pos: word.part_of_speech },
-        }
-      : {
-          strength: 'light',
-          key: 'review.hint.kind',
-          values: { pos, category },
-          about: { pos: word.part_of_speech, category: word.category },
-        };
+/**
+ * The rungs for one word question.
+ *
+ * `mode` decides what may be said, because what gives the answer away depends
+ * entirely on which direction the question runs: the word's own sentence is
+ * safe help when the learner is choosing a *meaning* and is the answer itself
+ * when they are choosing the Korean word.
+ *
+ * There is no `answer` parameter any more. The old ladder needed one — its
+ * first rung named the word's category, and a category can *be* a meaning in
+ * some language: 배우다 is *học* in Vietnamese and its category renders as
+ * *Học tập & Công việc*. That rung is gone. The remaining safety check happens
+ * where it always ultimately did, on the finished sentence a learner would have
+ * read — see `usableHints`, which the components call with the answer in hand.
+ */
+export function wordHints(word: VocabularyWord, mode: ExerciseMode): HintStep[] {
+  const sentence = word.example;
 
   /*
-   * The first syllable, but only when there is a second one to withhold.
-   *
-   * 사과 → "사…" leaves real work: three of the four options start elsewhere,
-   * and the learner still has to know which fruit. 물 → "물…" *is* 물. A
-   * one-syllable word therefore gets the initial letter of its romanisation
-   * instead, which narrows without spelling it.
+   * The same sentence, with the word taken out, for the questions whose answer
+   * *is* the word. Computed once: it is a search over the sentence, and three
+   * of the six modes want it.
    */
-  const syllables = toSyllables(word.word);
-  const opening: HintStep =
-    syllables.length > 1
-      ? { strength: 'strong', key: 'review.hint.startsWith', values: { start: syllables[0]! } }
-      : {
-          strength: 'strong',
-          key: 'review.hint.startsWithSound',
-          values: { sound: word.romanization.slice(0, 1) },
-        };
-
-  const reveal: HintStep = { strength: 'answer', key: 'review.hint.reveal' };
+  const gapped = sentence ? exampleWithGap(sentence, word.word, word.surface_form) : null;
+  const inSentence = (text: string): HintStep => ({
+    strength: 'light',
+    key: 'review.hint.inSentence',
+    values: { sentence: text },
+  });
 
   switch (mode) {
     case 'read':
-    case 'listenMeaning':
+    case 'listenMeaning': {
       /*
-       * The answer is the meaning, so nothing here may be the meaning.
+       * The answer is the meaning, so the Korean sentence is safe whole.
        *
-       * The first rung says what kind of thing it is. That is genuinely weak,
-       * and deliberately so — but it is weaker than it looks, because good
-       * distractors share a category with the answer on purpose. Asked what
-       * 하다 means against *to go*, *to stay*, *to do* and *to be late*, being
-       * told it is a verb from Everyday Actions rules nothing out. That is not
-       * a bug in the hint; it is what a plausible distractor set costs, and it
-       * is why there is a second rung.
-       *
-       * The second rung is the word in a sentence. Context is how a person
-       * actually works out a word they half-know, it is the only help here that
-       * is not either useless or the answer, and it cannot leak: the sentence
-       * is Korean and the answer is not. On `read` the learner can already see
-       * the word, so the sentence adds only context; on `listenMeaning` it also
-       * shows the spelling, which is why it is the strong rung and not the
-       * light one.
+       * On `read` the learner can already see the word and the sentence adds
+       * context; on `listenMeaning` it also shows the spelling, which is more
+       * help and is still not the answer — the answer is in their own language
+       * and this is in Korean.
        */
-      return word.example
-        ? [kind, { strength: 'strong', key: 'review.hint.inSentence', values: { sentence: word.example } }, reveal]
-        : [kind, reveal];
+      const reveal: HintStep = { strength: 'answer', key: 'review.hint.reveal' };
+      return sentence ? [inSentence(sentence), reveal] : [reveal];
+    }
 
     case 'produce':
-      // The meaning is the prompt and the Korean is the answer, so the word's
-      // own opening is exactly the right narrowing hint.
-      return [kind, opening, reveal];
-
-    case 'listen':
-      /*
-       * The clip is the question. The honest first help is to hear it again —
-       * the learner is being asked to catch a sound, and more of the sound is
-       * more of the question, not less of it.
-       *
-       * `review.hint.replay` is a *told*, not a control: the speaker is already
-       * on screen and the point is to say that using it is allowed and costs
-       * nothing much. §36's accessibility fallback is the third rung, which
-       * shows the word and is marked as a reveal.
-       */
-      return [
-        { strength: 'light', key: 'review.hint.replay' },
-        opening,
-        { strength: 'answer', key: 'review.hint.revealWord' },
-      ];
-
     case 'context':
+    case 'build': {
       /*
-       * A gap-fill. The sentence's meaning is the help; the target's meaning is
-       * the answer, so the translation is shown with the gap still in it.
+       * The answer is the Korean word, so the sentence goes on the screen with
+       * the word missing from it.
        *
-       * That is the whole distinction §3.5 draws, and it is worth stating
-       * because the two are one field apart in the data: `example_translation`
-       * is safe, the word's own `meaning` is not.
+       * `context` is a gap-fill already, and this is a *second* sentence with a
+       * second gap — the word's own teaching example rather than the question's
+       * frame. Two contexts for one word is how the word gets recalled.
+       *
+       * `build` has the syllables on screen and nothing to narrow, so a
+       * sentence is the only honest help there is: it cannot say which order
+       * they go in, and it can remind the learner what the word is for.
        */
-      return [
-        {
-          strength: 'light',
-          key: 'review.hint.kindOnly',
-          values: { pos },
-          about: { pos: word.part_of_speech },
-        },
-        opening,
-        reveal,
-      ];
+      const reveal: HintStep = { strength: 'answer', key: 'review.hint.reveal' };
+      return gapped ? [inSentence(gapped), reveal] : [reveal];
+    }
 
-    case 'build':
+    case 'listen': {
       /*
-       * The tiles are already on screen, so there is nothing to narrow.
+       * The clip is the question and the word is the answer, so the sentence
+       * comes with the gap in it too.
        *
-       * A hint here can only be about *order* — and the only order hint that is
-       * not the answer is which syllable comes first, which for a two-syllable
-       * word is half the answer and for a three-syllable word is most of it. So
-       * the ladder is the kind of word, and then the reveal.
+       * Where there is no sentence to gap, the first rung is an invitation to
+       * hear it again — a *told* rather than a control, since the speaker is
+       * already on screen and the point is that using it costs nothing.
        */
-      return [kind, reveal];
+      const reveal: HintStep = { strength: 'answer', key: 'review.hint.revealWord' };
+      return gapped
+        ? [inSentence(gapped), reveal]
+        : [{ strength: 'light', key: 'review.hint.replay' }, reveal];
+    }
 
     case 'write':
     case 'distinguish':
@@ -421,58 +484,55 @@ export function wordHints(
   }
 }
 
-/** The rungs for one letter question. */
+/**
+ * The rungs for one letter question. Two, like the word ladder.
+ *
+ * The help is a word the learner has already met that begins with this letter —
+ * 가방 for ㄱ — which is the letter equivalent of a sentence: concrete, and it
+ * makes them do the recovering. Printing "g" instead does the work for them,
+ * which is what the very first version of this did on a question whose options
+ * were `g`, `n`, `d`, `m`.
+ *
+ * Where the letter has no honest example — a syllable's own sound example is
+ * itself, so 부's is 부 — the rung is what the question can still bear: its
+ * family on a reading question, an invitation to replay on a listening one.
+ * "It's a consonant" is weak, and on a question whose four options are all
+ * consonants `usableHints` drops it and the ladder is the reveal alone. That is
+ * the right outcome: a hint that rules nothing out is worse than no hint,
+ * because it costs a press to learn nothing.
+ */
 export function characterHints(
   meta: HangulCharacter,
   mode: ExerciseMode,
   label: Label,
 ): HintStep[] {
-  const family: HintStep = {
-    strength: 'light',
-    key: 'review.hint.letterFamily',
-    values: { family: label(`learning:letterGroup.${meta.group}`) },
-    // "It's a consonant" over four consonants is the letter version of the same
-    // empty hint. See `helps`.
-    about: { group: meta.group },
-  };
-
-  /*
-   * A word the learner has met that begins with this letter.
-   *
-   * The strong rung for every letter question, and the reason it is strong
-   * rather than an answer: 가방 contains ㄱ, so a learner who reads it can
-   * recover the sound — but recovering it is the exercise, and they have to do
-   * the recovering. Printing "g" does the work for them, which is what the old
-   * hint did on the very question whose options were `g`, `n`, `d`, `m`.
-   */
-  /*
-   * Absent where the example *is* the item.
-   *
-   * A syllable's own sound example is itself — 부's is 부 — so "it's the first
-   * letter of 부" on a question about 부 is a sentence that says nothing, on the
-   * screen where the learner has just admitted they are stuck. Where there is
-   * no honest example the ladder is one rung shorter, which is better than a
-   * rung that wastes a press.
-   */
   const example: HintStep | null =
     meta.sound_example && meta.sound_example !== meta.character
       ? {
-          strength: 'strong',
+          strength: 'light',
           key: 'review.hint.letterExample',
           values: { word: meta.sound_example },
         }
       : null;
 
+  const family: HintStep = {
+    strength: 'light',
+    key: 'review.hint.letterFamily',
+    values: { family: label(`learning:letterGroup.${meta.group}`) },
+    // "It's a consonant" over four consonants is the letter version of the
+    // category hint the word ladder just lost. See `helps`.
+    about: { group: meta.group },
+  };
+
   switch (mode) {
     case 'read':
       // The options are romanisations, so the romanisation is the answer.
-      return [family, ...(example ? [example] : []), { strength: 'answer', key: 'review.hint.reveal' }];
+      return [example ?? family, { strength: 'answer', key: 'review.hint.reveal' }];
 
     case 'listen':
     case 'distinguish':
       return [
-        { strength: 'light', key: 'review.hint.replay' },
-        ...(example ? [example] : []),
+        example ?? { strength: 'light', key: 'review.hint.replay' },
         { strength: 'answer', key: 'review.hint.revealLetter' },
       ];
 
@@ -480,9 +540,7 @@ export function characterHints(
       /*
        * The answer is a shape drawn on a canvas, and the romanisation is not
        * that shape. Telling a learner the sound of the letter they are being
-       * asked to write is the one place the old hint was doing its job, and it
-       * stays — as the light rung, because it genuinely does not give the
-       * stroke order away.
+       * asked to write is the one place the very first hint was doing its job.
        */
       return [
         { strength: 'light', key: 'review.hint.letterSound', values: { sound: meta.romanization } },

@@ -158,13 +158,8 @@
     "nothingDue": "Сейчас повторять нечего.",
     "modesEmpty": "Сегодня в этих режимах ничего нет.",
     "answerIs": "{{word}} значит «{{meaning}}».",
-    "showMoreHint": "Ещё подсказку",
     "showAnswer": "Показать ответ",
     "hint": {
-      "kind": "Это {{pos}} — что-то из категории «{{category}}».",
-      "kindOnly": "Пропущенное слово — {{pos}}.",
-      "startsWith": "Начинается на {{start}}…",
-      "startsWithSound": "Начинается со звука «{{sound}}».",
       "replay": "Проиграйте ещё раз — сколько угодно.",
       "letterFamily": "Эта буква — {{family}}.",
       "letterExample": "Это первая буква слова {{word}}.",

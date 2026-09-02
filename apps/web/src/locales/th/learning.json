@@ -154,13 +154,8 @@
     "nothingDue": "ตอนนี้ยังไม่มีอะไรให้ทบทวน",
     "modesEmpty": "วันนี้ไม่มีอะไรในหมวดเหล่านี้",
     "answerIs": "{{word}} แปลว่า “{{meaning}}”",
-    "showMoreHint": "ขอคำใบ้อีก",
     "showAnswer": "ดูคำตอบ",
     "hint": {
-      "kind": "เป็น{{pos}}ในหมวด{{category}}",
-      "kindOnly": "คำที่หายไปเป็น{{pos}}",
-      "startsWith": "ตัวแรกคือ {{start}}…",
-      "startsWithSound": "ขึ้นต้นด้วยเสียง “{{sound}}”",
       "replay": "ฟังอีกรอบสิ ฟังกี่ครั้งก็ได้",
       "letterFamily": "ตัวนี้เป็น{{family}}",
       "letterExample": "เป็นตัวแรกของคำว่า {{word}}",

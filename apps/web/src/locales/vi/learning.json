@@ -154,13 +154,8 @@
     "nothingDue": "Bây giờ chưa có gì để ôn.",
     "modesEmpty": "Hôm nay không có gì trong các phần này.",
     "answerIs": "{{word}} nghĩa là “{{meaning}}”.",
-    "showMoreHint": "Gợi ý nữa",
     "showAnswer": "Xem đáp án",
     "hint": {
-      "kind": "Đây là một {{pos}} thuộc chủ đề {{category}}.",
-      "kindOnly": "Từ còn thiếu là một {{pos}}.",
-      "startsWith": "Chữ đầu tiên là {{start}}…",
-      "startsWithSound": "Bắt đầu bằng âm “{{sound}}”.",
       "replay": "Nghe lại đi — nghe bao nhiêu lần cũng được.",
       "letterFamily": "Chữ này là {{family}}.",
       "letterExample": "Đây là chữ đầu của {{word}}.",

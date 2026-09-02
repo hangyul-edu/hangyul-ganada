@@ -154,13 +154,8 @@
     "nothingDue": "Şu an tekrar edilecek bir şey yok.",
     "modesEmpty": "Bugün bu kiplerde bir şey yok.",
     "answerIs": "{{word}} demek “{{meaning}}”.",
-    "showMoreHint": "Başka bir ipucu",
     "showAnswer": "Cevabı göster",
     "hint": {
-      "kind": "Bu bir {{pos}} — {{category}} ile ilgili bir şey.",
-      "kindOnly": "Eksik kelime bir {{pos}}.",
-      "startsWith": "{{start}} ile başlıyor…",
-      "startsWithSound": "“{{sound}}” sesiyle başlıyor.",
       "replay": "Yeniden çal — istediğin kadar.",
       "letterFamily": "Türü: {{family}}.",
       "letterExample": "{{word}} kelimesinin ilk harfi.",

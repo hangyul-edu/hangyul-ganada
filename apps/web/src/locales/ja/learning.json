@@ -66,13 +66,8 @@
     "nothingDue": "いまは復習するものがありません。",
     "modesEmpty": "今日はこの方法で見るものがありません。",
     "answerIs": "{{word}} は「{{meaning}}」です。",
-    "showMoreHint": "もう少しヒント",
     "showAnswer": "答えを見る",
     "hint": {
-      "kind": "{{category}}に出てくる{{pos}}です。",
-      "kindOnly": "入るのは{{pos}}です。",
-      "startsWith": "{{start}}…で始まります。",
-      "startsWithSound": "「{{sound}}」の音で始まります。",
       "replay": "もう一度聞いてみましょう。何度でもどうぞ。",
       "letterFamily": "これは{{family}}です。",
       "letterExample": "{{word}}の最初の文字です。",

@@ -154,13 +154,8 @@
     "nothingDue": "Одоо давтах юм алга.",
     "modesEmpty": "Өнөөдөр эдгээр хэлбэрт юу ч алга.",
     "answerIs": "{{word}} гэдэг нь «{{meaning}}».",
-    "showMoreHint": "Дахиад нэг сануулга",
     "showAnswer": "Хариултыг харуулах",
     "hint": {
-      "kind": "Энэ бол {{pos}} — {{category}}-д хамаарах зүйл.",
-      "kindOnly": "Дутуу байгаа үг бол {{pos}}.",
-      "startsWith": "{{start}} гэж эхэлдэг…",
-      "startsWithSound": "«{{sound}}» дуугаар эхэлдэг.",
       "replay": "Дахин тоглуул — хүссэнээрээ олон удаа.",
       "letterFamily": "Энэ бол {{family}}.",
       "letterExample": "Энэ бол {{word}} үгийн эхний үсэг.",

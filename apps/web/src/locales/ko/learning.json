@@ -66,13 +66,8 @@
     "nothingDue": "지금은 복습할 것이 없어요.",
     "modesEmpty": "오늘은 이 방식으로 볼 것이 없어요.",
     "answerIs": "{{word, eunneun}} “{{meaning}}”이에요.",
-    "showMoreHint": "힌트 더 보기",
     "showAnswer": "정답 보기",
     "hint": {
-      "kind": "{{category}}에 나오는 {{pos}}예요.",
-      "kindOnly": "빈칸에 들어갈 말은 {{pos}}예요.",
-      "startsWith": "첫 글자는 ‘{{start}}’…",
-      "startsWithSound": "첫소리는 ‘{{sound}}’예요.",
       "replay": "다시 들어 보세요. 몇 번이든 괜찮아요.",
       "letterFamily": "{{family}}이에요.",
       "letterExample": "{{word}}의 첫 글자예요.",

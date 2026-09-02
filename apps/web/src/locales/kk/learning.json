@@ -154,13 +154,8 @@
     "nothingDue": "Қазір қайталайтын ештеңе жоқ.",
     "modesEmpty": "Бүгін бұл түрлерде ештеңе жоқ.",
     "answerIs": "{{word}} — «{{meaning}}» дегені.",
-    "showMoreHint": "Тағы бір нұсқау",
     "showAnswer": "Жауапты көрсету",
     "hint": {
-      "kind": "Бұл — {{pos}}, {{category}} санатына қатысты нәрсе.",
-      "kindOnly": "Жетпей тұрған сөз — {{pos}}.",
-      "startsWith": "{{start}} деп басталады…",
-      "startsWithSound": "«{{sound}}» дыбысынан басталады.",
       "replay": "Қайта ойнатыңыз — қалағаныңызша.",
       "letterFamily": "Бұл — {{family}}.",
       "letterExample": "Бұл {{word}} сөзінің бірінші әрпі.",

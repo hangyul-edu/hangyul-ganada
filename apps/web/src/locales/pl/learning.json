@@ -158,13 +158,8 @@
     "nothingDue": "Teraz nie ma czego powtarzać.",
     "modesEmpty": "Dziś nic w tych trybach.",
     "answerIs": "{{word}} znaczy „{{meaning}}”.",
-    "showMoreHint": "Jeszcze jedna podpowiedź",
     "showAnswer": "Pokaż odpowiedź",
     "hint": {
-      "kind": "To {{pos}} — coś z kategorii {{category}}.",
-      "kindOnly": "Brakujące słowo to {{pos}}.",
-      "startsWith": "Zaczyna się od {{start}}…",
-      "startsWithSound": "Zaczyna się od dźwięku „{{sound}}”.",
       "replay": "Odtwórz jeszcze raz — ile razy chcesz.",
       "letterFamily": "Ta litera to {{family}}.",
       "letterExample": "To pierwsza litera słowa {{word}}.",

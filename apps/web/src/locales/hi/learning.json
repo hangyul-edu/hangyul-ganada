@@ -154,13 +154,8 @@
     "nothingDue": "अभी दोहराने को कुछ नहीं है।",
     "modesEmpty": "आज इन तरीकों में कुछ नहीं है।",
     "answerIs": "{{word}} का अर्थ है “{{meaning}}”।",
-    "showMoreHint": "एक और संकेत",
     "showAnswer": "उत्तर दिखाइए",
     "hint": {
-      "kind": "यह एक {{pos}} है — {{category}} से जुड़ी कोई चीज़।",
-      "kindOnly": "जो शब्द छूटा है वह {{pos}} है।",
-      "startsWith": "यह {{start}} से शुरू होता है…",
-      "startsWithSound": "यह “{{sound}}” ध्वनि से शुरू होता है।",
       "replay": "फिर चलाइए — जितनी बार चाहें।",
       "letterFamily": "यह {{family}} है।",
       "letterExample": "यह {{word}} का पहला अक्षर है।",

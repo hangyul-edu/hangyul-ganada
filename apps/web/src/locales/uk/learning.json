@@ -158,13 +158,8 @@
     "nothingDue": "Зараз повторювати нічого.",
     "modesEmpty": "Сьогодні в цих режимах нічого немає.",
     "answerIs": "{{word}} означає «{{meaning}}».",
-    "showMoreHint": "Ще підказку",
     "showAnswer": "Показати відповідь",
     "hint": {
-      "kind": "Це {{pos}} — щось із категорії «{{category}}».",
-      "kindOnly": "Пропущене слово — {{pos}}.",
-      "startsWith": "Починається на {{start}}…",
-      "startsWithSound": "Починається зі звука «{{sound}}».",
       "replay": "Програйте ще раз — скільки завгодно.",
       "letterFamily": "Ця літера — {{family}}.",
       "letterExample": "Це перша літера слова {{word}}.",

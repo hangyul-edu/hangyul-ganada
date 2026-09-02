@@ -154,13 +154,8 @@
     "nothingDue": "Τώρα δεν υπάρχει κάτι για επανάληψη.",
     "modesEmpty": "Σήμερα δεν υπάρχει κάτι σε αυτούς τους τρόπους.",
     "answerIs": "{{word}} σημαίνει «{{meaning}}».",
-    "showMoreHint": "Κι άλλη βοήθεια",
     "showAnswer": "Δείξε την απάντηση",
     "hint": {
-      "kind": "Είναι {{pos}} — κάτι από την κατηγορία {{category}}.",
-      "kindOnly": "Η λέξη που λείπει είναι {{pos}}.",
-      "startsWith": "Αρχίζει από {{start}}…",
-      "startsWithSound": "Αρχίζει με τον ήχο «{{sound}}».",
       "replay": "Ξαναπαίξ' το — όσες φορές θέλεις.",
       "letterFamily": "Αυτό είναι {{family}}.",
       "letterExample": "Είναι το πρώτο γράμμα του {{word}}.",

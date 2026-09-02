@@ -154,13 +154,8 @@
     "nothingDue": "Most nincs mit ismételni.",
     "modesEmpty": "Ma nincs semmi ezekben a módokban.",
     "answerIs": "{{word}} jelentése „{{meaning}}”.",
-    "showMoreHint": "Még egy tippet",
     "showAnswer": "Mutasd a választ",
     "hint": {
-      "kind": "Ez egy {{pos}} — valami ebből: {{category}}.",
-      "kindOnly": "A hiányzó szó egy {{pos}}.",
-      "startsWith": "Így kezdődik: {{start}}…",
-      "startsWithSound": "A(z) „{{sound}}” hanggal kezdődik.",
       "replay": "Játszd le újra — ahányszor csak akarod.",
       "letterFamily": "Ez itt {{family}}.",
       "letterExample": "Ez a(z) {{word}} első betűje.",

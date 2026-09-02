@@ -154,13 +154,8 @@
     "nothingDue": "Nothing to review right now.",
     "modesEmpty": "Nothing in these modes today.",
     "answerIs": "{{word}} means “{{meaning}}”.",
-    "showMoreHint": "Another hint",
     "showAnswer": "Show the answer",
     "hint": {
-      "kind": "It’s a {{pos}} — something in {{category}}.",
-      "kindOnly": "The missing word is a {{pos}}.",
-      "startsWith": "It starts with {{start}}…",
-      "startsWithSound": "It starts with the sound “{{sound}}”.",
       "replay": "Play it again — as many times as you like.",
       "letterFamily": "This one is {{family}}.",
       "letterExample": "It’s the first letter of {{word}}.",

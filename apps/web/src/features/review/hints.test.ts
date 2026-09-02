@@ -4,7 +4,15 @@ import { ALL_CHARACTERS } from '../../data/characters';
 import { VOCABULARY } from '../../data/vocabulary';
 import { AVAILABLE_LOCALES, RESOURCES } from '../../i18n/resources';
 import type { ExerciseMode } from '../../domain/review';
-import { characterHints, revealsAnswer, usableHints, wordHints, type HintStep } from './hints';
+import {
+  GAP,
+  characterHints,
+  exampleWithGap,
+  revealsAnswer,
+  usableHints,
+  wordHints,
+  type HintStep,
+} from './hints';
 
 /**
  * The hint must not be the answer.
@@ -147,7 +155,7 @@ describe('a hint is not the answer', () => {
           // The meaning is passed exactly as `wordExercise` passes it, so the
           // hint's own guard against a category that collides with the answer
           // is under test rather than bypassed.
-          const authored = wordHints(word, mode, label, meaning);
+          const authored = wordHints(word, mode);
           /*
            * Filtered with the component's own renderer, because that is what
            * the learner gets.
@@ -219,10 +227,9 @@ describe('a hint is not the answer', () => {
 describe('the ladder', () => {
   it('gets stronger, never weaker', () => {
     const order = { light: 0, strong: 1, answer: 2 };
-    const label = (key: string) => key;
     for (const word of SAMPLE.slice(0, 40)) {
       for (const mode of WORD_MODES) {
-        const rungs = wordHints(word, mode, label).map((step) => order[step.strength]);
+        const rungs = wordHints(word, mode).map((step) => order[step.strength]);
         expect(
           rungs.every((rung, index) => index === 0 || rung > rungs[index - 1]!),
           `${word.word} ${mode}: ${rungs.join(',')}`,
@@ -235,7 +242,7 @@ describe('the ladder', () => {
     const label = (key: string) => key;
     for (const word of SAMPLE.slice(0, 60)) {
       for (const mode of WORD_MODES) {
-        const [first] = wordHints(word, mode, label);
+        const [first] = wordHints(word, mode);
         if (!first) continue;
         expect(first.strength, `${word.word} ${mode}`).toBe('light');
       }
@@ -249,11 +256,79 @@ describe('the ladder', () => {
     }
   });
 
+  it('is exactly two rungs on a word question: a sentence, then the answer', () => {
+    /*
+     * The flow the product promises, asserted as a shape rather than as a
+     * screenshot: press once and read the word in a sentence, press again and
+     * be told. There is no third press, which is what removed the *힌트 더
+     * 보기* stage, and there is no rung that classifies the answer, which is
+     * what removed *"사람과 가족에 나오는 명사예요"*.
+     *
+     * `write` and `distinguish` are not word questions — a word is never
+     * handwritten and never a minimal pair — and offer no ladder at all.
+     */
+    for (const word of SAMPLE.slice(0, 120)) {
+      for (const mode of WORD_MODES) {
+        const rungs = wordHints(word, mode);
+        if (rungs.length === 0) continue;
+        expect(rungs.length, `${word.word} ${mode}`).toBeLessThanOrEqual(2);
+        expect(rungs[rungs.length - 1]!.strength, `${word.word} ${mode}`).toBe('answer');
+        for (const rung of rungs) {
+          expect(
+            rung.key,
+            `${word.word} ${mode} still classifies the answer`,
+          ).not.toMatch(/hint\.kind/);
+        }
+      }
+    }
+  });
+
+  it('takes the word out of the sentence wherever the word is the answer', () => {
+    /*
+     * The half of the rule that a length check cannot see.
+     *
+     * On `read` the answer is the meaning and the Korean sentence is safe
+     * whole. On `produce`, `build`, `context` and `listen` the answer *is* the
+     * Korean word, and showing its own example sentence would hand it over —
+     * so the sentence arrives with a gap in it. Asserted over the sample rather
+     * than on one word, because the gapping is a search and the corpus is full
+     * of irregular verbs it has to find.
+     */
+    const answersInKorean = ['produce', 'build', 'context', 'listen'] as const;
+    for (const word of SAMPLE.slice(0, 200)) {
+      for (const mode of answersInKorean) {
+        const [first] = wordHints(word, mode);
+        if (!first || first.key !== 'review.hint.inSentence') continue;
+        const sentence = first.values!.sentence!;
+        expect(sentence, `${word.word} ${mode}`).toContain(GAP);
+        expect(revealsAnswer(sentence, word.word), `${word.word} ${mode}`).toBe(false);
+      }
+    }
+  });
+
+  it('finds the word in nearly every example it is given', () => {
+    /*
+     * The gapping is what makes the first rung possible on four of the six
+     * modes, so its reach is a product property rather than an implementation
+     * detail: where it fails, the learner's only hint is the answer.
+     *
+     * It succeeds on all but a handful of the corpus. The ones it does not are
+     * bound morphemes — 월 appears as 삼월, 마저 as 동생마저 — which do not begin
+     * an eojeol and which the rule is right to leave alone. The floor is here
+     * so that a change which quietly breaks the search fails loudly instead of
+     * silently shortening every ladder in the product.
+     */
+    const withExamples = SAMPLE.filter((word) => word.example);
+    const gapped = withExamples.filter((word) =>
+      exampleWithGap(word.example!, word.word, word.surface_form),
+    );
+    expect(gapped.length / withExamples.length).toBeGreaterThan(0.99);
+  });
+
   it('ends in a reveal wherever it offers anything at all', () => {
-    const label = (key: string) => key;
     for (const word of SAMPLE.slice(0, 60)) {
       for (const mode of WORD_MODES) {
-        const rungs = wordHints(word, mode, label);
+        const rungs = wordHints(word, mode);
         if (rungs.length === 0) continue;
         expect(rungs[rungs.length - 1]!.strength, `${word.word} ${mode}`).toBe('answer');
       }

@@ -140,7 +140,7 @@ export function buildExercise(
   label: Label = (key) => key,
 ): Exercise | null {
   return candidate.kind === 'word'
-    ? wordExercise(candidate, meaningOf, seed, label)
+    ? wordExercise(candidate, meaningOf, seed)
     : characterExercise(candidate, seed, label);
 }
 
@@ -150,12 +150,11 @@ function wordExercise(
   candidate: ReviewCandidate,
   meaningOf: MeaningOf,
   seed: number,
-  label: Label,
 ): Exercise | null {
   const word = getWord(candidate.itemKey);
   if (!word) return null;
   const copy = meaningOf(word);
-  const hints = wordHints(word, candidate.mode, label, copy.value);
+  const hints = wordHints(word, candidate.mode);
 
   /**
    * Every meaning in this question, in one language, or no question.
@@ -231,7 +230,8 @@ function wordExercise(
         options,
         answerId: word.id,
         // The prompt is the meaning, so the meaning is not also help. What is:
-        // what kind of word it is, then how it starts. See `wordHints`.
+        // the word used in a sentence, with the word itself taken out of it.
+        // See `wordHints`.
         hints,
         meaning: copy.value,
         meaningLocale: copy.locale,

@@ -154,13 +154,8 @@
     "nothingDue": "Nu even niets te herhalen.",
     "modesEmpty": "Vandaag niets in deze vormen.",
     "answerIs": "{{word}} betekent “{{meaning}}”.",
-    "showMoreHint": "Nog een hint",
     "showAnswer": "Toon het antwoord",
     "hint": {
-      "kind": "Het is een {{pos}} — iets uit {{category}}.",
-      "kindOnly": "Het ontbrekende woord is een {{pos}}.",
-      "startsWith": "Het begint met {{start}}…",
-      "startsWithSound": "Het begint met de klank “{{sound}}”.",
       "replay": "Speel het nog eens af — zo vaak je wilt.",
       "letterFamily": "Dit is {{family}}.",
       "letterExample": "Het is de eerste letter van {{word}}.",

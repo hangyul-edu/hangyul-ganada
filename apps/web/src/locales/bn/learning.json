@@ -154,13 +154,8 @@
     "nothingDue": "এখন ঝালিয়ে নেওয়ার কিছু নেই।",
     "modesEmpty": "আজ এই ধরনগুলোতে কিছু নেই।",
     "answerIs": "{{word}} মানে “{{meaning}}”।",
-    "showMoreHint": "আরও একটা ইঙ্গিত",
     "showAnswer": "উত্তর দেখান",
     "hint": {
-      "kind": "এটি একটি {{pos}} — {{category}}-এর কিছু।",
-      "kindOnly": "যে শব্দটি নেই সেটি একটি {{pos}}।",
-      "startsWith": "এটি {{start}} দিয়ে শুরু…",
-      "startsWithSound": "এটি “{{sound}}” শব্দ দিয়ে শুরু।",
       "replay": "আবার চালান — যতবার খুশি।",
       "letterFamily": "এটি {{family}}।",
       "letterExample": "এটি {{word}}-এর প্রথম অক্ষর।",

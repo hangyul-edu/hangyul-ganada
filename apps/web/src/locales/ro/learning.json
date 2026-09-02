@@ -156,13 +156,8 @@
     "nothingDue": "Acum nu e nimic de recapitulat.",
     "modesEmpty": "Azi nu e nimic în modurile acestea.",
     "answerIs": "{{word}} înseamnă „{{meaning}}”.",
-    "showMoreHint": "Încă un indiciu",
     "showAnswer": "Arată răspunsul",
     "hint": {
-      "kind": "E un {{pos}} — ceva din {{category}}.",
-      "kindOnly": "Cuvântul care lipsește e un {{pos}}.",
-      "startsWith": "Începe cu {{start}}…",
-      "startsWithSound": "Începe cu sunetul „{{sound}}”.",
       "replay": "Ascultă din nou — de câte ori vrei.",
       "letterFamily": "Aceasta e {{family}}.",
       "letterExample": "E prima literă din {{word}}.",

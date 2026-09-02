@@ -154,13 +154,8 @@
     "nothingDue": "இப்போது மீள்பார்க்க எதுவும் இல்லை.",
     "modesEmpty": "இன்று இந்த வகைகளில் எதுவும் இல்லை.",
     "answerIs": "{{word}} என்றால் “{{meaning}}”.",
-    "showMoreHint": "இன்னொரு குறிப்பு",
     "showAnswer": "விடையைக் காட்டு",
     "hint": {
-      "kind": "இது ஒரு {{pos}} — {{category}} சார்ந்த ஒன்று.",
-      "kindOnly": "விடுபட்ட சொல் ஒரு {{pos}}.",
-      "startsWith": "இது {{start}} இல் தொடங்குகிறது…",
-      "startsWithSound": "இது “{{sound}}” ஒலியில் தொடங்குகிறது.",
       "replay": "மீண்டும் ஒலிக்கவும் — விரும்பியவரை.",
       "letterFamily": "இது {{family}}.",
       "letterExample": "இது {{word}} இன் முதல் எழுத்து.",

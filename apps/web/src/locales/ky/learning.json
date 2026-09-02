@@ -154,13 +154,8 @@
     "nothingDue": "Азыр кайталай турган эч нерсе жок.",
     "modesEmpty": "Бүгүн бул түрлөрдө эч нерсе жок.",
     "answerIs": "{{word}} — «{{meaning}}» дегени.",
-    "showMoreHint": "Дагы бир жышаан",
     "showAnswer": "Жоопту көрсөтүү",
     "hint": {
-      "kind": "Бул — {{pos}}, {{category}} категориясына тиешелүү нерсе.",
-      "kindOnly": "Жетишпеген сөз — {{pos}}.",
-      "startsWith": "{{start}} менен башталат…",
-      "startsWithSound": "«{{sound}}» үнү менен башталат.",
       "replay": "Кайра ойнотуңуз — каалагандай көп жолу.",
       "letterFamily": "Бул — {{family}}.",
       "letterExample": "Бул {{word}} сөзүнүн биринчи тамгасы.",
