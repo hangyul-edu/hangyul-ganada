@@ -2440,6 +2440,42 @@
   "word_sopa": [
    "divan",
    "Divanga o'tirib dam oling."
+  ],
+  "word_datda": [
+   "yopmoq",
+   "Men eshikni yopaman."
+  ],
+  "word_nolda": [
+   "o'ynamoq, vaqt o'tkazmoq",
+   "Bolalar o'ynashyapti."
+  ],
+  "word_gilda": [
+   "uzun bo‘lmoq",
+   "Sochingiz uzun."
+  ],
+  "word_ppareuda": [
+   "tez bo‘lmoq",
+   "Poyezd tez."
+  ],
+  "word_gakkapda": [
+   "yaqin bo‘lmoq",
+   "Maktab yaqin."
+  ],
+  "word_masitda": [
+   "mazali bo‘lmoq",
+   "Kimchi mazali."
+  ],
+  "word_gareuchida": [
+   "o‘rgatmoq",
+   "Men koreys tilini o‘rgataman."
+  ],
+  "word_eoryeopda": [
+   "qiyin bo‘lmoq",
+   "Bu savol qiyin."
+  ],
+  "word_chakada": [
+   "ko‘ngli yaxshi bo‘lmoq",
+   "Ukam juda ko‘ngli yaxshi."
   ]
  }
 }

@@ -11,7 +11,11 @@
     "`vocabulary:level:qa` skips its contamination checks for any word listed",
     "here, because a listed word has already been looked at. It does not skip the",
     "anchor check: an anchor is a stronger statement than an override and if the",
-    "two disagree the disagreement should be visible."
+    "two disagree the disagreement should be visible.",
+    "",
+    "September 2026: eighteen rows added at once, which is unusual and is why they are described together. All eighteen are words with editorial usefulness 1 — the highest — and a frequency rank inside the commonest 1,200, sitting at levels 7 to 14. They share one cause: `_concreteness` in scripts/content/level.py returns a fixed weight for any tag whose template is in ABSTRACT_TEMPLATES and never looks at the parts, so every `cmp:` antonym pair and every `seq:` before-and-after pair is scored unpicturable. 길다, 짧다, 멀다, 가깝다, 열다 and 닫다 are among the most picturable words in the language.",
+    "",
+    "They are moved here rather than by changing the weight, because changing it re-levels the whole corpus and would have to be re-anchored and re-read; that is the right fix and it is a piece of work, not a nudge. The model defect is recorded as an open issue so this is a decision on the record and not a workaround nobody can find."
   ],
   "words": {
     "그들": {
@@ -45,6 +49,78 @@
     "아이디어": {
       "level": 20,
       "why": "An English loanword whose meaning costs nothing once sounded out; the model's semantic-abstraction term prices it like an abstract Sino noun. A learner who can read Hangul owns this word immediately."
+    },
+    "모르다": {
+      "level": 1,
+      "why": "Frequency rank 46 — the 46th commonest word in the corpus — and the partner of 알다, which is level 1. A beginner says 몰라요 on their first day."
+    },
+    "열다": {
+      "level": 2,
+      "why": "Same cause as the `cmp:` words: its tag is a `seq:` before-and-after pair, which `_concreteness` weights 0.75 flat. A door opening is about as picturable as Korean gets, and this is first-month vocabulary."
+    },
+    "닫다": {
+      "level": 2,
+      "why": "Same cause as the `cmp:` words: its tag is a `seq:` before-and-after pair, which `_concreteness` weights 0.75 flat. A door opening is about as picturable as Korean gets, and this is first-month vocabulary."
+    },
+    "일어나다": {
+      "level": 3,
+      "why": "Same cause as the `cmp:` words: its tag is a `seq:` before-and-after pair, which `_concreteness` weights 0.75 flat. A door opening is about as picturable as Korean gets, and this is first-month vocabulary."
+    },
+    "서다": {
+      "level": 3,
+      "why": "Same cause as the `cmp:` words: its tag is a `seq:` before-and-after pair, which `_concreteness` weights 0.75 flat. A door opening is about as picturable as Korean gets, and this is first-month vocabulary."
+    },
+    "놀다": {
+      "level": 2,
+      "why": "Tagged `solo:game`, and *game* is not in the concrete-parts list, so it falls to the 0.35 default. This file's own comment already records 놀다 as the example of that mis-scoring and moved it from 19 to 11; 11 is still six levels above 친구 and 같이."
+    },
+    "길다": {
+      "level": 3,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "짧다": {
+      "level": 3,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "높다": {
+      "level": 4,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "빠르다": {
+      "level": 4,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "멀다": {
+      "level": 4,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "가깝다": {
+      "level": 4,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "나쁘다": {
+      "level": 3,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month. 좋다 is level 1."
+    },
+    "싸다": {
+      "level": 5,
+      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
+    },
+    "맛있다": {
+      "level": 3,
+      "why": "The build's own docstring names this word as the failure the difficulty split was written to fix — it was at level 10 under the single-number model and it is at level 10 again. 밥, 음식 and 먹다 are all level 3, and 맛있어요 is what a learner says about them."
+    },
+    "가르치다": {
+      "level": 4,
+      "why": "Rank 664, usefulness 1, and the partner of 배우다. 선생님 is level 4; the verb belongs beside it."
+    },
+    "어렵다": {
+      "level": 4,
+      "why": "Rank 514. The pair 쉽다/어렵다 is taught in the first month and 쉽다 is at level 6; a five-level gap between two halves of one pair is a gap a learner notices."
+    },
+    "착하다": {
+      "level": 6,
+      "why": "Rank 1076, usefulness 1. Not first-month, but 12 is where the model puts words a learner meets in their second year."
     }
   }
 }

@@ -59,12 +59,30 @@ export const MIX = { atLevel: 6, easier: 2, harder: 2 } as const;
  * The band a learner may be taught from, before any widening.
  *
  * §17 and §18. A learner at level L is taught from L−1 to L+1, and the ends of
- * the scale are asymmetric because they have to be: nothing exists below 1, and
- * a learner at 30 has nothing above them, so their band deepens downward
- * instead. **A learner placed at 30 is never offered ordinary new vocabulary
- * from level 1 to 27**, and that is the whole point of the exercise — the app
- * knowing they already read Korean is the difference between a level system and
- * a number beside `Lv.`
+ * the scale have to be handled: nothing exists below 1 and nothing above 30, so
+ * a band that would run off the end deepens the other way instead and keeps its
+ * three levels. **A learner placed at 30 is never offered ordinary new
+ * vocabulary from level 1 to 27**, and that is the whole point of the exercise
+ * — the app knowing they already read Korean is the difference between a level
+ * system and a number beside `Lv.`
+ *
+ * ## The bottom end was not actually doing that
+ *
+ * The top was widened and the bottom was not. A learner at 30 got 28–30, three
+ * levels; a learner at 1 got 1–2, two. Every other learner in the product got
+ * three, and the one who got two was the absolute beginner — the learner with
+ * the least Korean, the shortest patience for repetition, and the highest
+ * chance of leaving.
+ *
+ * Measured, that is what it cost: levels 1 and 2 hold 47 and 55 words, so a
+ * learner at level 1 had 102 words and, at ten new words a day, ten days before
+ * the plan began repeating. A learner at 2 had 160 and a learner at 30 had 478.
+ * Widening the bottom the way the top is already widened gives level 1 the same
+ * three levels as everybody else and 160 words — a fortnight and a half, which
+ * is the interval the review schedule is built around.
+ *
+ * It does not let a beginner meet harder words than a learner at level 2
+ * already meets: 1–3 is exactly that learner's band.
  *
  * Words they got *wrong*, words due for review and words they saved themselves
  * are a different question and are not selected here. Remediation is allowed to
@@ -72,8 +90,9 @@ export const MIX = { atLevel: 6, easier: 2, harder: 2 } as const;
  */
 export function teachingZone(level: number): { min: number; max: number } {
   const clamp = (value: number) => Math.min(LEVELS, Math.max(1, value));
-  if (level <= 2) return { min: 1, max: clamp(level + 1) };
-  if (level >= LEVELS - 1) return { min: clamp(LEVELS - 2), max: LEVELS };
+  const WIDTH = 3;
+  if (level <= 2) return { min: 1, max: clamp(WIDTH) };
+  if (level >= LEVELS - 1) return { min: clamp(LEVELS - (WIDTH - 1)), max: LEVELS };
   return { min: clamp(level - 1), max: clamp(level + 1) };
 }
 
