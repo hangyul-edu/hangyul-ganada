@@ -151,11 +151,11 @@ without trusting the row.
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
-| Levels set by hand | 6 | `level-overrides.json` |
+| Levels set by hand | 26 | `level-overrides.json` |
 | Issues tracked | 126 | `docs/issues.json` |
-| Signed APK | 83.7 MB | `result/build-info.json` |
+| Signed APK | 83.6 MB | `result/build-info.json` |
 | Signed AAB | 81.8 MB | same |
-| Tests | 1,202 across 65 files | `npm test` |
+| Tests | 1,247 across 67 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -1502,8 +1502,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.7 MB** (87,713,769 B), `0bde965597381c12…` |
-| Release AAB | **81.8 MB** (85,798,740 B), `be9318597d1c40af…` |
+| Release APK | **83.6 MB** (87,711,557 B), `ccfe86220a1c96ea…` |
+| Release AAB | **81.8 MB** (85,796,542 B), `bc7bdb4f1e01deda…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
