@@ -20,6 +20,7 @@ export interface HangyulStorePlugin {
   open(): Promise<{ path: string; bytes: number }>;
   get(options: { store: string; key: string }): Promise<{ value?: string }>;
   getAll(options: { store: string }): Promise<{ values: string[] }>;
+  entries(options: { store: string }): Promise<{ entries: Array<{ key: string; value: string }> }>;
   put(options: { store: string; key: string; value: string }): Promise<void>;
   putMany(options: {
     store: string;
@@ -77,6 +78,12 @@ export class NativeSqliteDriver implements PersistenceDriver {
   async getAll<T>(store: StoreName): Promise<T[]> {
     const { values } = await this.plugin.getAll({ store });
     return values.map((value) => JSON.parse(value) as T);
+  }
+
+  /** Keys and values, for `storage/backup.ts`. See the note on the interface. */
+  async entries<T>(store: StoreName): Promise<Array<readonly [string, T]>> {
+    const { entries } = await this.plugin.entries({ store });
+    return entries.map(({ key, value }) => [key, JSON.parse(value) as T] as const);
   }
 
   async put<T>(store: StoreName, key: string, value: T): Promise<void> {

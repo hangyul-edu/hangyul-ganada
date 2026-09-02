@@ -57,6 +57,24 @@
     "cancel": "Cancelar",
     "body": "Volver a empezar desde la primera letra."
   },
+  "backup": {
+    "body": "Guarda todo lo que has aprendido en un archivo de tu dispositivo y recupéralo en un teléfono nuevo. No se sube nada a internet.",
+    "save": "Guardar una copia",
+    "saved": "Tu aprendizaje se ha guardado.",
+    "saveFailed": "No se ha podido guardar la copia.",
+    "restore": "Restaurar una copia",
+    "restoreTitle": "¿Reemplazar tu aprendizaje?",
+    "restoreBody": "Todo lo que hay en este dispositivo se reemplazará por la copia que elijas. No se puede deshacer.",
+    "restoreConfirm": "Restaurar",
+    "restoreCancel": "Cancelar",
+    "restored": "Tu aprendizaje se ha restaurado.",
+    "problem": {
+      "not_json": "Ese archivo no es una copia de tu aprendizaje.",
+      "not_a_backup": "Ese archivo no es una copia de tu aprendizaje.",
+      "from_a_newer_app": "Esa copia se creó con una versión más reciente de la aplicación. Actualiza la aplicación y vuelve a intentarlo.",
+      "empty": "Esa copia no contiene nada."
+    }
+  },
   "voice": {
     "title": "Voz de pronunciación",
     "description": "Quién lee en voz alta las letras, sílabas y palabras.",
@@ -70,7 +88,8 @@
     "learning": "Aprendizaje",
     "appearance": "Apariencia",
     "app": "Aplicación",
-    "reset": "Restablecer"
+    "reset": "Restablecer",
+    "backup": "Copia de seguridad"
   },
   "activity": {
     "title": "Actividad de estudio",
@@ -98,7 +117,8 @@
       "title": "Tu aprendizaje se queda aquí",
       "points": [
         "Lo que has aprendido, y cuánto lo recuerdas, se guarda en este dispositivo. Nunca se sube a ningún sitio.",
-        "No hay cuenta: nada que registrar y ningún perfil tuyo en ninguna parte."
+        "No hay cuenta: nada que registrar y ningún perfil tuyo en ninguna parte.",
+        "Si guardas una copia de tu aprendizaje, ese archivo es tuyo: la aplicación no lo envía a ninguna parte."
       ]
     },
     "tracking": {

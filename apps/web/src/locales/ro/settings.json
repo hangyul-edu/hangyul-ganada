@@ -57,6 +57,24 @@
     "cancel": "Renunță",
     "body": "Ia-o de la capăt, de la prima literă."
   },
+  "backup": {
+    "body": "Păstrează tot ce ai învățat într-un fișier pe dispozitivul tău și adu-l înapoi pe un telefon nou. Nu se încarcă nimic online.",
+    "save": "Salvează o copie",
+    "saved": "Progresul tău a fost salvat.",
+    "saveFailed": "Copia nu a putut fi salvată.",
+    "restore": "Restaurează o copie",
+    "restoreTitle": "Înlocuiești progresul tău?",
+    "restoreBody": "Tot ce se află pe acest dispozitiv va fi înlocuit cu copia pe care o alegi. Nu se poate anula.",
+    "restoreConfirm": "Restaurează",
+    "restoreCancel": "Renunță",
+    "restored": "Progresul tău a fost restaurat.",
+    "problem": {
+      "not_json": "Acel fișier nu este o copie a progresului tău.",
+      "not_a_backup": "Acel fișier nu este o copie a progresului tău.",
+      "from_a_newer_app": "Acea copie a fost creată de o versiune mai nouă a aplicației. Actualizează aplicația, apoi încearcă din nou.",
+      "empty": "Acea copie nu conține nimic."
+    }
+  },
   "voice": {
     "title": "Vocea pronunției",
     "description": "Cine citește cu voce tare literele, silabele și cuvintele.",
@@ -70,7 +88,8 @@
     "practice": "Exercițiu",
     "appearance": "Aspect",
     "app": "Aplicație",
-    "reset": "Resetare"
+    "reset": "Resetare",
+    "backup": "Copie de rezervă"
   },
   "activity": {
     "title": "Activitatea de învățare",
@@ -98,7 +117,8 @@
       "title": "Ce înveți rămâne aici",
       "points": [
         "Ce ai învățat și cât de bine îți amintești sunt salvate pe dispozitivul acesta. Nu se încarcă nicăieri.",
-        "Nu există cont — nu ai la ce să te înscrii și nu există un profil despre tine nicăieri."
+        "Nu există cont — nu ai la ce să te înscrii și nu există un profil despre tine nicăieri.",
+        "Dacă salvezi o copie a progresului tău, acel fișier este al tău — aplicația nu îl trimite nicăieri."
       ]
     },
     "tracking": {

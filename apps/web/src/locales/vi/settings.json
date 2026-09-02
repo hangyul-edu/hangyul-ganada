@@ -55,6 +55,24 @@
     "cancel": "Hủy",
     "body": "Bắt đầu lại từ chữ cái đầu tiên."
   },
+  "backup": {
+    "body": "Giữ mọi thứ bạn đã học thành một tệp trên thiết bị, rồi đưa lại vào điện thoại mới. Không có gì được tải lên.",
+    "save": "Lưu một bản sao",
+    "saved": "Việc học của bạn đã được lưu.",
+    "saveFailed": "Không lưu được bản sao.",
+    "restore": "Khôi phục một bản sao",
+    "restoreTitle": "Thay thế việc học của bạn?",
+    "restoreBody": "Mọi thứ trên thiết bị này sẽ được thay bằng bản sao bạn chọn. Không thể hoàn tác.",
+    "restoreConfirm": "Khôi phục",
+    "restoreCancel": "Hủy",
+    "restored": "Việc học của bạn đã được khôi phục.",
+    "problem": {
+      "not_json": "Tệp đó không phải bản sao việc học của bạn.",
+      "not_a_backup": "Tệp đó không phải bản sao việc học của bạn.",
+      "from_a_newer_app": "Bản sao đó được tạo bởi phiên bản ứng dụng mới hơn. Hãy cập nhật ứng dụng rồi thử lại.",
+      "empty": "Bản sao đó không có gì bên trong."
+    }
+  },
   "voice": {
     "title": "Giọng đọc",
     "description": "Ai sẽ đọc to các chữ cái, âm tiết và từ.",
@@ -68,7 +86,8 @@
     "practice": "Luyện tập",
     "appearance": "Giao diện",
     "app": "Ứng dụng",
-    "reset": "Xóa dữ liệu"
+    "reset": "Xóa dữ liệu",
+    "backup": "Sao lưu"
   },
   "activity": {
     "title": "Nhật ký học tập",
@@ -96,7 +115,8 @@
       "title": "Dữ liệu học nằm lại ở đây",
       "points": [
         "Những gì bạn đã học và mức độ bạn nhớ được lưu trên máy này. Nó không bao giờ được tải lên đâu cả.",
-        "Không có tài khoản — không phải đăng ký, và không có hồ sơ nào về bạn ở bất kỳ đâu."
+        "Không có tài khoản — không phải đăng ký, và không có hồ sơ nào về bạn ở bất kỳ đâu.",
+        "Nếu bạn lưu một bản sao việc học của mình, tệp đó là của bạn — ứng dụng không gửi nó đi đâu cả."
       ]
     },
     "tracking": {

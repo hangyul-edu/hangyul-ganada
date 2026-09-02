@@ -55,6 +55,24 @@
     "cancel": "Avbryt",
     "body": "Börja om från allra första bokstaven."
   },
+  "backup": {
+    "body": "Spara allt du har lärt dig som en fil på din enhet och lägg tillbaka den i en ny telefon. Ingenting laddas upp.",
+    "save": "Spara en kopia",
+    "saved": "Ditt lärande har sparats.",
+    "saveFailed": "Kopian kunde inte sparas.",
+    "restore": "Återställ en kopia",
+    "restoreTitle": "Ersätta ditt lärande?",
+    "restoreBody": "Allt på den här enheten ersätts av kopian du väljer. Det går inte att ångra.",
+    "restoreConfirm": "Återställ",
+    "restoreCancel": "Avbryt",
+    "restored": "Ditt lärande har återställts.",
+    "problem": {
+      "not_json": "Den filen är ingen kopia av ditt lärande.",
+      "not_a_backup": "Den filen är ingen kopia av ditt lärande.",
+      "from_a_newer_app": "Den kopian gjordes av en nyare version av appen. Uppdatera appen och försök igen.",
+      "empty": "Den kopian innehåller ingenting."
+    }
+  },
   "voice": {
     "title": "Uttalsröst",
     "description": "Vem som läser upp bokstäver, stavelser och ord.",
@@ -68,7 +86,8 @@
     "practice": "Övning",
     "appearance": "Utseende",
     "app": "Appen",
-    "reset": "Nollställ"
+    "reset": "Nollställ",
+    "backup": "Säkerhetskopia"
   },
   "activity": {
     "title": "Läraktivitet",
@@ -96,7 +115,8 @@
       "title": "Ditt lärande stannar här",
       "points": [
         "Vad du har lärt dig, och hur väl du minns det, sparas på den här enheten. Det laddas aldrig upp.",
-        "Det finns inget konto — inget att registrera sig för, och ingen profil om dig någonstans."
+        "Det finns inget konto — inget att registrera sig för, och ingen profil om dig någonstans.",
+        "Om du sparar en kopia av ditt lärande är den filen din — appen skickar den ingenstans."
       ]
     },
     "tracking": {

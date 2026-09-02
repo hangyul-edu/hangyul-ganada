@@ -57,6 +57,24 @@
     "cancel": "Annuler",
     "body": "Tout reprendre depuis la toute première lettre."
   },
+  "backup": {
+    "body": "Conservez tout ce que vous avez appris dans un fichier sur votre appareil, et remettez-le sur un nouveau téléphone. Rien n’est envoyé en ligne.",
+    "save": "Enregistrer une copie",
+    "saved": "Votre progression a été enregistrée.",
+    "saveFailed": "La copie n’a pas pu être enregistrée.",
+    "restore": "Restaurer une copie",
+    "restoreTitle": "Remplacer votre progression ?",
+    "restoreBody": "Tout ce qui se trouve sur cet appareil sera remplacé par la copie que vous choisissez. C’est définitif.",
+    "restoreConfirm": "Restaurer",
+    "restoreCancel": "Annuler",
+    "restored": "Votre progression a été restaurée.",
+    "problem": {
+      "not_json": "Ce fichier n’est pas une copie de votre progression.",
+      "not_a_backup": "Ce fichier n’est pas une copie de votre progression.",
+      "from_a_newer_app": "Cette copie a été créée par une version plus récente de l’application. Mettez l’application à jour, puis réessayez.",
+      "empty": "Cette copie ne contient rien."
+    }
+  },
   "voice": {
     "title": "Voix de prononciation",
     "description": "Qui lit les lettres, les syllabes et les mots à voix haute.",
@@ -70,7 +88,8 @@
     "learning": "Apprentissage",
     "appearance": "Apparence",
     "app": "Application",
-    "reset": "Réinitialiser"
+    "reset": "Réinitialiser",
+    "backup": "Sauvegarde"
   },
   "activity": {
     "title": "Activité",
@@ -98,7 +117,8 @@
       "title": "Votre apprentissage reste ici",
       "points": [
         "Ce que vous avez appris, et ce dont vous vous souvenez, est enregistré sur cet appareil. Rien n’est envoyé ailleurs.",
-        "Il n’y a pas de compte : rien à créer, et aucun profil de vous nulle part."
+        "Il n’y a pas de compte : rien à créer, et aucun profil de vous nulle part.",
+        "Si vous enregistrez une copie de votre progression, ce fichier est le vôtre : l’application ne l’envoie nulle part."
       ]
     },
     "tracking": {

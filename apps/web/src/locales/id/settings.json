@@ -53,6 +53,24 @@
     "cancel": "Batal",
     "body": "Mulai lagi dari huruf paling awal."
   },
+  "backup": {
+    "body": "Simpan semua yang sudah kamu pelajari sebagai berkas di perangkatmu, lalu kembalikan di ponsel baru. Tidak ada yang diunggah.",
+    "save": "Simpan salinan",
+    "saved": "Pembelajaranmu sudah disimpan.",
+    "saveFailed": "Salinan tidak bisa disimpan.",
+    "restore": "Pulihkan salinan",
+    "restoreTitle": "Ganti pembelajaranmu?",
+    "restoreBody": "Semua yang ada di perangkat ini akan diganti dengan salinan yang kamu pilih. Ini tidak bisa dibatalkan.",
+    "restoreConfirm": "Pulihkan",
+    "restoreCancel": "Batal",
+    "restored": "Pembelajaranmu sudah dipulihkan.",
+    "problem": {
+      "not_json": "Berkas itu bukan salinan pembelajaranmu.",
+      "not_a_backup": "Berkas itu bukan salinan pembelajaranmu.",
+      "from_a_newer_app": "Salinan itu dibuat oleh versi aplikasi yang lebih baru. Perbarui aplikasinya, lalu coba lagi.",
+      "empty": "Salinan itu tidak berisi apa-apa."
+    }
+  },
   "voice": {
     "title": "Suara pelafalan",
     "description": "Siapa yang membacakan huruf, suku kata, dan kata.",
@@ -66,7 +84,8 @@
     "practice": "Latihan",
     "appearance": "Tampilan",
     "app": "Aplikasi",
-    "reset": "Hapus"
+    "reset": "Hapus",
+    "backup": "Cadangan"
   },
   "activity": {
     "title": "Aktivitas belajar",
@@ -94,7 +113,8 @@
       "title": "Data belajarmu tetap di sini",
       "points": [
         "Apa yang sudah kamu pelajari, dan seberapa baik kamu mengingatnya, disimpan di perangkat ini. Tidak pernah diunggah.",
-        "Tidak ada akun — tidak ada pendaftaran, dan tidak ada profil tentangmu di mana pun."
+        "Tidak ada akun — tidak ada pendaftaran, dan tidak ada profil tentangmu di mana pun.",
+        "Kalau kamu menyimpan salinan pembelajaranmu, berkas itu milikmu — aplikasi tidak mengirimkannya ke mana pun."
       ]
     },
     "tracking": {

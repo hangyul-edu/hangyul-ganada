@@ -16,7 +16,8 @@ import {
   memoryKey,
 } from '../domain/memory';
 import { isRecovered, type Mistake, type MistakeMap } from '../domain/mistakes';
-import type { PersistenceDriver, StoreName } from './driver';
+import { STORE_NAMES } from './driver';
+import type { PersistenceDriver } from './driver';
 import {
   META_KEY,
   SETTINGS_KEY,
@@ -693,15 +694,34 @@ export class MetaRepository {
   }
 }
 
-/** Wipes every store. Behind a confirmation in Settings, and nowhere else. */
+/**
+ * Wipes every store the learner fills. Behind a confirmation in Settings, and
+ * nowhere else.
+ *
+ * ## Enumerated, not listed
+ *
+ * This was a hand-written list of six stores, and the product has eight. The
+ * wrong-answer notebook and the whole Numbers course were left on disk:
+ * `reset()` emptied them in memory, so the screen went blank and looked right,
+ * and the next launch hydrated both back out of storage because that is where
+ * hydration reads them from. A learner who clears their data and watches it
+ * return has been told something untrue by the one screen whose subject is what
+ * happens to their data — and the Privacy screen says, in every one of the 32
+ * languages, that this button clears everything.
+ *
+ * Deriving the list from `STORE_NAMES` is the fix, because the defect was not
+ * that somebody forgot two stores; it was that forgetting was possible. A store
+ * added tomorrow is cleared tomorrow.
+ *
+ * `meta` is the deliberate exception and the only one: it holds the schema
+ * version and the migration snapshots, which are the app's record of itself
+ * rather than anything a learner made. Clearing it would make the next launch
+ * believe it is a fresh install of an old version and run every migration again
+ * over an empty database.
+ */
 export async function clearEverything(driver: PersistenceDriver): Promise<void> {
-  const stores: StoreName[] = [
-    'settings',
-    'progress',
-    'sessions',
-    'attempts',
-    'activity',
-    'memory',
-  ];
-  for (const store of stores) await driver.clearStore(store);
+  for (const store of STORE_NAMES) {
+    if (store === 'meta') continue;
+    await driver.clearStore(store);
+  }
 }

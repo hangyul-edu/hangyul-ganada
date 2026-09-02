@@ -61,6 +61,12 @@ import { learningStreak, recordActivity, recordStudyTime as recordStudyTime_ } f
 import { MemoryDriver, type PersistenceDriver } from '../storage/driver';
 import { openDriver } from '../storage/open';
 import {
+  backupFilename,
+  exportBackup,
+  restoreBackup,
+  type LearningBackup,
+} from '../storage/backup';
+import {
   ActivityRepository,
   AttemptRepository,
   LearningRepository,
@@ -117,6 +123,43 @@ function rulesFor(kind: ItemProgress['kind'], recognitionRequired: boolean) {
     demoRequired: isCharacter,
     writingRequired: isCharacter,
   };
+}
+
+/**
+ * Reads every store into the shape the provider holds in memory.
+ *
+ * Shared by the first hydration and by a restore, which is the point: a
+ * restored profile has to arrive through the *same* reads as a launched one, or
+ * the two diverge in exactly the places that are hardest to notice — a Numbers
+ * completion re-derived on launch but trusted after a restore, a progress row
+ * dropped on launch but rendered after a restore. Every one of these loaders
+ * repairs what it reads; calling them twice from one place is how that stays
+ * true of both paths.
+ */
+async function readEverything(repos: {
+  settings: SettingsRepository;
+  progress: ProgressRepository;
+  sessions: LearningRepository;
+  activity: ActivityRepository;
+  memory: MemoryRepository;
+  attempts: AttemptRepository;
+  mistakes: MistakeRepository;
+  numbers: NumbersRepository;
+}) {
+  const [settings, progress, sessions, activity, memory, attempts, mistakes, numbers] =
+    await Promise.all([
+      repos.settings.load(),
+      repos.progress.loadAll(),
+      repos.sessions.loadAll(),
+      repos.activity.loadAll(),
+      repos.memory.loadAll(),
+      repos.attempts.loadAll(),
+      repos.mistakes.loadAll(),
+      // Every record is repaired on read: a completion the evidence does not
+      // support is cleared here, before anything renders it.
+      repos.numbers.loadAll(getNumberLesson, new Date()),
+    ]);
+  return { settings, progress, sessions, activity, memory, attempts, mistakes, numbers };
 }
 
 export function LearnerProvider({
@@ -185,20 +228,20 @@ export function LearnerProvider({
        * It runs alongside the loads because it is a fourth trip to the same
        * store and there is no reason for the learner to wait for it in series.
        */
-      const [durable, settings, progress, sessions, activity, memory, attempts, mistakes, numbers] =
-        await Promise.all([
-          checkPersistence(driver),
-          settingsRepo.current.load(),
-          progressRepo.current.loadAll(),
-          sessionRepo.current.loadAll(),
-          activityRepo.current.loadAll(),
-          memoryRepo.current.loadAll(),
-          attemptRepo.current.loadAll(),
-          mistakeRepo.current.loadAll(),
-          // Every record is repaired on read: a completion the evidence does
-          // not support is cleared here, before anything renders it.
-          numbersRepo.current.loadAll(getNumberLesson, new Date()),
-        ]);
+      const [durable, loaded] = await Promise.all([
+        checkPersistence(driver),
+        readEverything({
+          settings: settingsRepo.current,
+          progress: progressRepo.current,
+          sessions: sessionRepo.current,
+          activity: activityRepo.current,
+          memory: memoryRepo.current,
+          attempts: attemptRepo.current,
+          mistakes: mistakeRepo.current,
+          numbers: numbersRepo.current,
+        }),
+      ]);
+      const { settings, progress, sessions, activity, memory, attempts, mistakes, numbers } = loaded;
       if (cancelled) return;
 
       /*
@@ -679,6 +722,64 @@ export function LearnerProvider({
     (kind: ItemProgress['kind'], itemKey: string) => state.progress[progressKey(kind, itemKey)],
     [state.progress],
   );
+
+  /**
+   * Writes the learner's whole database out as one file's worth of text.
+   *
+   * The file is built here rather than in the page because the driver is here,
+   * and because a backup taken through the repositories would be a backup of
+   * what this build knows how to read — a row a future version added and this
+   * one ignores has to survive the round trip, or upgrading the app and then
+   * restoring would quietly drop it.
+   */
+  const backUpLearning = useCallback(async () => {
+    const driver = driverRef.current;
+    if (!driver) return null;
+    const backup = await exportBackup(driver);
+    return { json: JSON.stringify(backup, null, 2), filename: backupFilename() };
+  }, []);
+
+  /**
+   * Replaces this device's learning with a backup's, then re-reads it.
+   *
+   * The re-read is not a formality. `restoreBackup` writes rows and runs the
+   * migrations; what the learner should then see is whatever those rows became
+   * once every loader had repaired them — which is what `readEverything`
+   * returns, and is not necessarily what was in the file.
+   */
+  const restoreLearning = useCallback(async (backup: LearningBackup) => {
+    const driver = driverRef.current;
+    if (!driver) return false;
+    await restoreBackup(driver, backup);
+    const repos = {
+      settings: settingsRepo.current,
+      progress: progressRepo.current,
+      sessions: sessionRepo.current,
+      activity: activityRepo.current,
+      memory: memoryRepo.current,
+      attempts: attemptRepo.current,
+      mistakes: mistakeRepo.current,
+      numbers: numbersRepo.current,
+    };
+    if (Object.values(repos).some((repo) => repo === null)) return false;
+    const loaded = await readEverything(
+      repos as Parameters<typeof readEverything>[0],
+    );
+    setState((prev) => ({
+      settings: loaded.settings,
+      progress: loaded.progress.rows,
+      sessions: loaded.sessions,
+      activity: loaded.activity,
+      memory: loaded.memory,
+      attempts: loaded.attempts,
+      mistakes: loaded.mistakes,
+      numbers: loaded.numbers.rows,
+      schema_version: SCHEMA_VERSION,
+      storage: prev.storage,
+      recovered: loaded.progress.dropped,
+    }));
+    return true;
+  }, []);
 
   const reset = useCallback(async () => {
     const driver = driverRef.current;
@@ -1242,6 +1343,8 @@ export function LearnerProvider({
       extendVocabularyDay,
       progressFor,
       reset,
+      backUpLearning,
+      restoreLearning,
       recordNumbersEvent,
       resetNumbersProgress,
       numbersLessonsComplete,
@@ -1281,6 +1384,8 @@ export function LearnerProvider({
       extendVocabularyDay,
       progressFor,
       reset,
+      backUpLearning,
+      restoreLearning,
       recordNumbersEvent,
       resetNumbersProgress,
       numbersLessonsComplete,

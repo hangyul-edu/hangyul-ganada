@@ -768,3 +768,23 @@
   font-weight: var(--hg-weight-bold);
   color: var(--hg-text);
 }
+
+/* --- backup --- */
+
+/*
+ * Two equal actions side by side. Neither is destructive on its own — the
+ * restore's consequence is behind a confirmation — so unlike Reset below them
+ * they are allowed to share a row.
+ */
+.backupActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hg-space-2);
+}
+
+.backupNotice {
+  margin: var(--hg-space-2) 0 0;
+  font-size: var(--hg-text-caption);
+  line-height: var(--hg-leading-relaxed);
+  color: var(--hg-text-secondary);
+}

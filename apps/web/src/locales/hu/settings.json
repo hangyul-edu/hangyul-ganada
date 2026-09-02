@@ -55,6 +55,24 @@
     "cancel": "Mégse",
     "body": "Kezdd elölről, a legelső betűtől."
   },
+  "backup": {
+    "body": "Őrizd meg mindazt, amit megtanultál, fájlként a készülékeden, és tedd vissza egy új telefonra. Semmi sem kerül fel az internetre.",
+    "save": "Másolat mentése",
+    "saved": "A tanulásod el lett mentve.",
+    "saveFailed": "A másolatot nem sikerült menteni.",
+    "restore": "Másolat visszaállítása",
+    "restoreTitle": "Lecseréled a tanulásodat?",
+    "restoreBody": "A készüléken lévő mindent lecserél a kiválasztott másolat. Ezt nem lehet visszavonni.",
+    "restoreConfirm": "Visszaállítás",
+    "restoreCancel": "Mégse",
+    "restored": "A tanulásod vissza lett állítva.",
+    "problem": {
+      "not_json": "Ez a fájl nem a tanulásod másolata.",
+      "not_a_backup": "Ez a fájl nem a tanulásod másolata.",
+      "from_a_newer_app": "Ezt a másolatot az alkalmazás újabb változata készítette. Frissítsd az alkalmazást, majd próbáld újra.",
+      "empty": "Ebben a másolatban nincs semmi."
+    }
+  },
   "voice": {
     "title": "Kiejtési hang",
     "description": "Ki olvassa fel a betűket, szótagokat és szavakat.",
@@ -68,7 +86,8 @@
     "practice": "Gyakorlás",
     "appearance": "Megjelenés",
     "app": "Alkalmazás",
-    "reset": "Nullázás"
+    "reset": "Nullázás",
+    "backup": "Biztonsági mentés"
   },
   "activity": {
     "title": "Tanulási tevékenység",
@@ -96,7 +115,8 @@
       "title": "A tanulásod itt marad",
       "points": [
         "Amit megtanultál, és hogy mennyire emlékszel rá, ezen a készüléken tárolódik. Sehova nem töltődik fel.",
-        "Nincs fiók — nincs mire regisztrálni, és sehol nincs profil rólad."
+        "Nincs fiók — nincs mire regisztrálni, és sehol nincs profil rólad.",
+        "Ha mentesz egy másolatot a tanulásodról, az a fájl a tiéd — az alkalmazás sehová nem küldi el."
       ]
     },
     "tracking": {

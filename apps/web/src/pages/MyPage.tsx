@@ -6,6 +6,8 @@ import type { VoiceGender } from '@hangyul-ganada/shared-types';
 import { usePronunciation } from '../audio/PronunciationContext';
 import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS, textFamily } from '../data/fonts';
 import { useCorpus } from '../data/useCorpus';
+import { readBackup, type LearningBackup } from '../storage/backup';
+import { openBackupFile, saveBackupFile } from '../storage/backupFile';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
 import { NextStepCard } from '../features/learning/NextStepCard';
 import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
@@ -37,9 +39,57 @@ const DAILY_TARGETS = [3, 5, 10, 15, 20];
 const VOICE_SAMPLE = { text: '안녕하세요', id: 'sample_greeting' } as const;
 
 export function MyPage() {
-  const { state, setPreferences, reset } = useLearner();
+  const { state, setPreferences, reset, backUpLearning, restoreLearning } = useLearner();
   const { provider } = usePronunciationProvider();
   const [confirmReset, setConfirmReset] = useState(false);
+  const [pending, setPending] = useState<LearningBackup | null>(null);
+  const [backupNotice, setBackupNotice] = useState<string | null>(null);
+
+  /*
+   * Save, pick, confirm — three handlers rather than two, because the pick and
+   * the restore have to be separated by the learner. Validating the file before
+   * the confirmation is what stops the app clearing a learner's progress and
+   * only then discovering the replacement was a photo.
+   */
+  const saveBackup = async () => {
+    setBackupNotice(null);
+    const made = await backUpLearning();
+    if (!made) {
+      setBackupNotice(t('settings:backup.saveFailed'));
+      return;
+    }
+    try {
+      await saveBackupFile(made.json, made.filename);
+      setBackupNotice(t('settings:backup.saved'));
+    } catch {
+      /*
+       * A dismissed share sheet rejects exactly like a failed write, and there
+       * is no way to tell them apart from here. The message says the copy was
+       * not saved, which is true either way, rather than naming a cause.
+       */
+      setBackupNotice(t('settings:backup.saveFailed'));
+    }
+  };
+
+  const pickBackup = async () => {
+    setBackupNotice(null);
+    const chosen = await openBackupFile();
+    if (!chosen) return; // Cancelled: a decision, not an error.
+    const read = readBackup(chosen.text);
+    if (!read.ok) {
+      setBackupNotice(t(`settings:backup.problem.${read.problem}`));
+      return;
+    }
+    setPending(read.backup);
+  };
+
+  const confirmRestore = async () => {
+    const backup = pending;
+    setPending(null);
+    if (!backup) return;
+    const restored = await restoreLearning(backup);
+    setBackupNotice(t(restored ? 'settings:backup.restored' : 'settings:backup.saveFailed'));
+  };
   const { t } = useTranslation(['settings', 'common', 'levelTest']);
   const { locale, descriptor } = useLocale();
   // The flag beside the Language row. See the note at the row itself.
@@ -610,6 +660,51 @@ export function MyPage() {
         </Group>
 
         {/*
+          The answer to *what happens to my learning when this phone dies*.
+
+          There is no account and no server, which is the product — and it means
+          the only honest answer is a file the learner holds. It sits directly
+          above Reset because the two are the same subject, and above rather
+          than below because a learner who came here to start again should have
+          read *save a copy first* on the way.
+        */}
+        <Group id="settings-backup" title={t('settings:groups.backup')}>
+          <Section description={t('settings:backup.body')}>
+            <div className={styles.backupActions}>
+              <Button
+                variant="secondary"
+                size="md"
+                pill
+                data-testid="backup-save"
+                onClick={() => void saveBackup()}
+              >
+                {t('settings:backup.save')}
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                pill
+                data-testid="backup-restore"
+                onClick={() => void pickBackup()}
+              >
+                {t('settings:backup.restore')}
+              </Button>
+            </div>
+            {/*
+              One line, and it is `role="status"` so it is announced rather than
+              only drawn — the result of *save a copy* on a phone is otherwise
+              invisible to a learner using a screen reader, and this is the one
+              feature where "did that work?" has real consequences.
+            */}
+            {backupNotice && (
+              <p className={styles.backupNotice} role="status" data-testid="backup-notice">
+                {backupNotice}
+              </p>
+            )}
+          </Section>
+        </Group>
+
+        {/*
           The one action on this screen that cannot be taken back, on its own at
           the end of it.
 
@@ -647,6 +742,23 @@ export function MyPage() {
         onCancel={() => setConfirmReset(false)}
         confirmTestId="reset-confirm"
         cancelTestId="reset-cancel"
+      />
+
+      {/*
+        A restore replaces, it does not merge — so it is confirmed like the
+        reset it resembles, and the copy says what will be replaced rather than
+        asking whether the learner is sure.
+      */}
+      <ConfirmDialog
+        open={pending !== null}
+        title={t('settings:backup.restoreTitle')}
+        body={t('settings:backup.restoreBody')}
+        confirmLabel={t('settings:backup.restoreConfirm')}
+        cancelLabel={t('settings:backup.restoreCancel')}
+        onConfirm={() => void confirmRestore()}
+        onCancel={() => setPending(null)}
+        confirmTestId="backup-restore-confirm"
+        cancelTestId="backup-restore-cancel"
       />
     </div>
   );

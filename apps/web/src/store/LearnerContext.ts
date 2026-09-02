@@ -14,6 +14,7 @@ import type { DailyPlan, DayProgress } from '../domain/vocabularyDay';
 import type { LevelTestResult } from '../domain/levelTestTypes';
 import type { PlacementStatus } from '../domain/placement';
 import type { NumbersEvent } from '@hangyul-ganada/shared-types';
+import type { LearningBackup } from '../storage/backup';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
 export interface LearnerContextValue {
@@ -156,6 +157,20 @@ export interface LearnerContextValue {
   /** Adds `extra` words to today without changing the goal or what is done. */
   extendVocabularyDay: (extra: number) => void;
   reset: () => Promise<void>;
+  /**
+   * Everything this learner has done, as a JSON file's worth of text.
+   *
+   * Returns `null` when there is no driver — a hydration that failed leaves the
+   * app working from memory, and a backup of an in-memory profile would be a
+   * file promising more than it holds.
+   */
+  backUpLearning: () => Promise<{ json: string; filename: string } | null>;
+  /**
+   * Replaces everything on this device with a validated backup, and re-reads
+   * the result through the ordinary load path so the screen shows what was
+   * actually stored rather than what the file claimed.
+   */
+  restoreLearning: (backup: LearningBackup) => Promise<boolean>;
 }
 
 /**

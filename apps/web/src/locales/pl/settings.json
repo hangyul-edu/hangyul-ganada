@@ -59,6 +59,24 @@
     "cancel": "Anuluj",
     "body": "Zacznij od nowa, od pierwszej litery."
   },
+  "backup": {
+    "body": "Zachowaj całą swoją naukę w pliku na urządzeniu i przywróć ją na nowym telefonie. Nic nie jest wysyłane do internetu.",
+    "save": "Zapisz kopię",
+    "saved": "Twoja nauka została zapisana.",
+    "saveFailed": "Nie udało się zapisać kopii.",
+    "restore": "Przywróć kopię",
+    "restoreTitle": "Zastąpić twoją naukę?",
+    "restoreBody": "Wszystko na tym urządzeniu zostanie zastąpione wybraną kopią. Tego nie da się cofnąć.",
+    "restoreConfirm": "Przywróć",
+    "restoreCancel": "Anuluj",
+    "restored": "Twoja nauka została przywrócona.",
+    "problem": {
+      "not_json": "Ten plik nie jest kopią twojej nauki.",
+      "not_a_backup": "Ten plik nie jest kopią twojej nauki.",
+      "from_a_newer_app": "Ta kopia powstała w nowszej wersji aplikacji. Zaktualizuj aplikację i spróbuj ponownie.",
+      "empty": "W tej kopii nic nie ma."
+    }
+  },
   "voice": {
     "title": "Głos wymowy",
     "description": "Kto czyta na głos litery, sylaby i słowa.",
@@ -72,7 +90,8 @@
     "practice": "Ćwiczenia",
     "appearance": "Wygląd",
     "app": "Aplikacja",
-    "reset": "Zerowanie"
+    "reset": "Zerowanie",
+    "backup": "Kopia zapasowa"
   },
   "activity": {
     "title": "Aktywność w nauce",
@@ -100,7 +119,8 @@
       "title": "Twoja nauka zostaje tutaj",
       "points": [
         "To, czego się nauczyłeś, i to, jak dobrze to pamiętasz, jest zapisane na tym urządzeniu. Nigdy nie trafia nigdzie indziej.",
-        "Nie ma konta — nie ma się do czego zapisywać ani żadnego profilu o tobie."
+        "Nie ma konta — nie ma się do czego zapisywać ani żadnego profilu o tobie.",
+        "Jeśli zapiszesz kopię swojej nauki, ten plik należy do ciebie — aplikacja nigdzie go nie wysyła."
       ]
     },
     "tracking": {

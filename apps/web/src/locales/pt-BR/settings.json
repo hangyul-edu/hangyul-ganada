@@ -57,6 +57,24 @@
     "cancel": "Cancelar",
     "body": "Começar de novo, da primeira letra."
   },
+  "backup": {
+    "body": "Guarde tudo o que você aprendeu em um arquivo no seu aparelho e traga de volta em um celular novo. Nada é enviado para a internet.",
+    "save": "Salvar uma cópia",
+    "saved": "Seu aprendizado foi salvo.",
+    "saveFailed": "Não foi possível salvar a cópia.",
+    "restore": "Restaurar uma cópia",
+    "restoreTitle": "Substituir seu aprendizado?",
+    "restoreBody": "Tudo o que está neste aparelho será substituído pela cópia que você escolher. Não dá para desfazer.",
+    "restoreConfirm": "Restaurar",
+    "restoreCancel": "Cancelar",
+    "restored": "Seu aprendizado foi restaurado.",
+    "problem": {
+      "not_json": "Esse arquivo não é uma cópia do seu aprendizado.",
+      "not_a_backup": "Esse arquivo não é uma cópia do seu aprendizado.",
+      "from_a_newer_app": "Essa cópia foi feita por uma versão mais nova do aplicativo. Atualize o aplicativo e tente de novo.",
+      "empty": "Essa cópia não tem nada dentro."
+    }
+  },
   "voice": {
     "title": "Voz da pronúncia",
     "description": "Quem lê em voz alta as letras, sílabas e palavras.",
@@ -70,7 +88,8 @@
     "learning": "Aprendizado",
     "appearance": "Aparência",
     "app": "Aplicativo",
-    "reset": "Redefinir"
+    "reset": "Redefinir",
+    "backup": "Backup"
   },
   "activity": {
     "title": "Atividade de estudo",
@@ -98,7 +117,8 @@
       "title": "Seu aprendizado fica aqui",
       "points": [
         "O que você aprendeu, e o quanto lembra, fica salvo neste aparelho. Nada é enviado para fora.",
-        "Não existe conta: nada para cadastrar e nenhum perfil seu em lugar nenhum."
+        "Não existe conta: nada para cadastrar e nenhum perfil seu em lugar nenhum.",
+        "Se você salvar uma cópia do seu aprendizado, esse arquivo é seu: o aplicativo não envia nada para lugar nenhum."
       ]
     },
     "tracking": {

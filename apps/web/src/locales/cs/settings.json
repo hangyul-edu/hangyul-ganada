@@ -59,6 +59,24 @@
     "cancel": "Zrušit",
     "body": "Začněte znovu, od úplně první litery."
   },
+  "backup": {
+    "body": "Uchovejte všechno, co jste se naučili, jako soubor ve svém zařízení a vraťte ho do nového telefonu. Nic se nikam neodesílá.",
+    "save": "Uložit kopii",
+    "saved": "Vaše učení bylo uloženo.",
+    "saveFailed": "Kopii se nepodařilo uložit.",
+    "restore": "Obnovit z kopie",
+    "restoreTitle": "Nahradit vaše učení?",
+    "restoreBody": "Všechno v tomto zařízení bude nahrazeno kopií, kterou vyberete. Nelze to vrátit zpět.",
+    "restoreConfirm": "Obnovit",
+    "restoreCancel": "Zrušit",
+    "restored": "Vaše učení bylo obnoveno.",
+    "problem": {
+      "not_json": "Tento soubor není kopie vašeho učení.",
+      "not_a_backup": "Tento soubor není kopie vašeho učení.",
+      "from_a_newer_app": "Tato kopie vznikla v novější verzi aplikace. Aktualizujte aplikaci a zkuste to znovu.",
+      "empty": "V této kopii nic není."
+    }
+  },
   "voice": {
     "title": "Hlas výslovnosti",
     "description": "Kdo předčítá litery, slabiky a slova.",
@@ -72,7 +90,8 @@
     "practice": "Cvičení",
     "appearance": "Vzhled",
     "app": "Aplikace",
-    "reset": "Vynulování"
+    "reset": "Vynulování",
+    "backup": "Záloha"
   },
   "activity": {
     "title": "Aktivita v učení",
@@ -100,7 +119,8 @@
       "title": "Vaše učení zůstává tady",
       "points": [
         "To, co jste se naučili, i to, jak dobře si to pamatujete, je uložené na tomhle zařízení. Nikam se nenahrává.",
-        "Žádný účet není — není se kam registrovat a nikde o vás není žádný profil."
+        "Žádný účet není — není se kam registrovat a nikde o vás není žádný profil.",
+        "Když si uložíte kopii svého učení, ten soubor je váš — aplikace ho nikam neposílá."
       ]
     },
     "tracking": {

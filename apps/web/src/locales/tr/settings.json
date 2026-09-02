@@ -55,6 +55,24 @@
     "cancel": "Vazgeç",
     "body": "En baştaki harften yeniden başla."
   },
+  "backup": {
+    "body": "Öğrendiğin her şeyi cihazında bir dosya olarak sakla, yeni telefonunda geri yükle. Hiçbir şey internete gönderilmez.",
+    "save": "Kopya kaydet",
+    "saved": "Öğrendiklerin kaydedildi.",
+    "saveFailed": "Kopya kaydedilemedi.",
+    "restore": "Kopyayı geri yükle",
+    "restoreTitle": "Öğrendiklerin değiştirilsin mi?",
+    "restoreBody": "Bu cihazdaki her şey, seçtiğin kopyayla değiştirilecek. Bu geri alınamaz.",
+    "restoreConfirm": "Geri yükle",
+    "restoreCancel": "Vazgeç",
+    "restored": "Öğrendiklerin geri yüklendi.",
+    "problem": {
+      "not_json": "Bu dosya, öğrendiklerinin bir kopyası değil.",
+      "not_a_backup": "Bu dosya, öğrendiklerinin bir kopyası değil.",
+      "from_a_newer_app": "Bu kopya, uygulamanın daha yeni bir sürümüyle oluşturulmuş. Uygulamayı güncelle, sonra tekrar dene.",
+      "empty": "Bu kopyanın içinde hiçbir şey yok."
+    }
+  },
   "voice": {
     "title": "Telaffuz sesi",
     "description": "Harfleri, heceleri ve kelimeleri kim seslendirsin.",
@@ -68,7 +86,8 @@
     "practice": "Alıştırma",
     "appearance": "Görünüm",
     "app": "Uygulama",
-    "reset": "Sıfırlama"
+    "reset": "Sıfırlama",
+    "backup": "Yedek"
   },
   "activity": {
     "title": "Öğrenme etkinliği",
@@ -96,7 +115,8 @@
       "title": "Öğrendiklerin burada kalır",
       "points": [
         "Ne öğrendiğin ve ne kadar iyi hatırladığın bu cihazda saklanır. Hiçbir zaman yüklenmez.",
-        "Hesap yok — kaydolacak bir şey yok, hiçbir yerde senin profilin yok."
+        "Hesap yok — kaydolacak bir şey yok, hiçbir yerde senin profilin yok.",
+        "Öğrendiklerinin bir kopyasını kaydedersen o dosya senindir; uygulama onu hiçbir yere göndermez."
       ]
     },
     "tracking": {

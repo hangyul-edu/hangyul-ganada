@@ -69,6 +69,17 @@ export interface PersistenceDriver {
   readonly durable: boolean;
   get<T>(store: StoreName, key: string): Promise<T | undefined>;
   getAll<T>(store: StoreName): Promise<T[]>;
+  /**
+   * Every row of a store, with its key.
+   *
+   * `getAll` is what the app reads with, because every row carries the fields
+   * it is keyed by and nothing in the learning flow needs the key itself. A
+   * *backup* does: it has to be able to put each row back where it came from,
+   * and deriving the key from the value would be a second copy of every key
+   * rule in the product — free to disagree with the first one the day either
+   * changes. See `storage/backup.ts`.
+   */
+  entries<T>(store: StoreName): Promise<Array<readonly [string, T]>>;
   put<T>(store: StoreName, key: string, value: T): Promise<void>;
   putMany<T>(store: StoreName, entries: Array<readonly [string, T]>): Promise<void>;
   remove(store: StoreName, key: string): Promise<void>;
@@ -106,6 +117,12 @@ export class MemoryDriver implements PersistenceDriver {
 
   async getAll<T>(store: StoreName): Promise<T[]> {
     return [...this.bucket(store).values()].map((v) => structuredCopy(v) as T);
+  }
+
+  async entries<T>(store: StoreName): Promise<Array<readonly [string, T]>> {
+    return [...this.bucket(store).entries()].map(
+      ([key, value]) => [key, structuredCopy(value) as T] as const,
+    );
   }
 
   async put<T>(store: StoreName, key: string, value: T): Promise<void> {

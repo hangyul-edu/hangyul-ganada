@@ -57,6 +57,24 @@
     "cancel": "Annulla",
     "body": "Ricomincia dalla primissima lettera."
   },
+  "backup": {
+    "body": "Conserva tutto quello che hai imparato in un file sul tuo dispositivo e rimettilo su un telefono nuovo. Non viene caricato niente.",
+    "save": "Salva una copia",
+    "saved": "I tuoi progressi sono stati salvati.",
+    "saveFailed": "Non è stato possibile salvare la copia.",
+    "restore": "Ripristina una copia",
+    "restoreTitle": "Sostituire i tuoi progressi?",
+    "restoreBody": "Tutto quello che si trova su questo dispositivo verrà sostituito dalla copia che scegli. Non si può annullare.",
+    "restoreConfirm": "Ripristina",
+    "restoreCancel": "Annulla",
+    "restored": "I tuoi progressi sono stati ripristinati.",
+    "problem": {
+      "not_json": "Quel file non è una copia dei tuoi progressi.",
+      "not_a_backup": "Quel file non è una copia dei tuoi progressi.",
+      "from_a_newer_app": "Quella copia è stata creata da una versione più recente dell’app. Aggiorna l’app e riprova.",
+      "empty": "Quella copia non contiene niente."
+    }
+  },
   "voice": {
     "title": "Voce della pronuncia",
     "description": "Chi legge lettere, sillabe e parole ad alta voce.",
@@ -70,7 +88,8 @@
     "practice": "Esercizio",
     "appearance": "Aspetto",
     "app": "App",
-    "reset": "Azzeramento"
+    "reset": "Azzeramento",
+    "backup": "Backup"
   },
   "activity": {
     "title": "Attività di studio",
@@ -98,7 +117,8 @@
       "title": "Quello che impari resta qui",
       "points": [
         "Quello che hai imparato, e quanto bene lo ricordi, è salvato su questo dispositivo. Non viene mai caricato altrove.",
-        "Non c’è nessun account — niente a cui iscriversi, e nessun profilo su di te da nessuna parte."
+        "Non c’è nessun account — niente a cui iscriversi, e nessun profilo su di te da nessuna parte.",
+        "Se salvi una copia dei tuoi progressi, quel file è tuo: l’app non lo manda da nessuna parte."
       ]
     },
     "tracking": {

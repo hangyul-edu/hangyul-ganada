@@ -55,6 +55,24 @@
     "cancel": "Cancel",
     "body": "Start again from the very first letter."
   },
+  "backup": {
+    "body": "Keep everything you have learned as a file on your device, and put it back on a new phone. Nothing is uploaded.",
+    "save": "Save a copy",
+    "saved": "Your learning was saved.",
+    "saveFailed": "The copy could not be saved.",
+    "restore": "Restore a copy",
+    "restoreTitle": "Replace your learning?",
+    "restoreBody": "Everything on this device will be replaced by the copy you choose. This cannot be undone.",
+    "restoreConfirm": "Restore",
+    "restoreCancel": "Cancel",
+    "restored": "Your learning has been restored.",
+    "problem": {
+      "not_json": "That file is not a copy of your learning.",
+      "not_a_backup": "That file is not a copy of your learning.",
+      "from_a_newer_app": "That copy was made by a newer version of the app. Update the app, then try again.",
+      "empty": "That copy has nothing in it."
+    }
+  },
   "voice": {
     "title": "Pronunciation voice",
     "description": "Who reads the letters, syllables and words aloud.",
@@ -68,7 +86,8 @@
     "practice": "Practice",
     "appearance": "Appearance",
     "app": "App",
-    "reset": "Reset"
+    "reset": "Reset",
+    "backup": "Backup"
   },
   "activity": {
     "title": "Learning activity",
@@ -96,7 +115,8 @@
       "title": "Your learning stays here",
       "points": [
         "What you have learned, and how well you remember it, is saved on this device. It is never uploaded.",
-        "There is no account — nothing to sign up for, and no profile of you anywhere."
+        "There is no account — nothing to sign up for, and no profile of you anywhere.",
+        "If you save a copy of your learning, that file is yours — the app never sends it anywhere."
       ]
     },
     "tracking": {

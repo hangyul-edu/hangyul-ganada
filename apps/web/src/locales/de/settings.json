@@ -55,6 +55,24 @@
     "cancel": "Abbrechen",
     "body": "Noch einmal von vorn, beim allerersten Buchstaben."
   },
+  "backup": {
+    "body": "Bewahre alles Gelernte als Datei auf deinem Gerät auf und hol es auf einem neuen Handy zurück. Nichts wird hochgeladen.",
+    "save": "Kopie speichern",
+    "saved": "Dein Lernstand wurde gespeichert.",
+    "saveFailed": "Die Kopie konnte nicht gespeichert werden.",
+    "restore": "Kopie zurückholen",
+    "restoreTitle": "Deinen Lernstand ersetzen?",
+    "restoreBody": "Alles auf diesem Gerät wird durch die gewählte Kopie ersetzt. Das lässt sich nicht rückgängig machen.",
+    "restoreConfirm": "Zurückholen",
+    "restoreCancel": "Abbrechen",
+    "restored": "Dein Lernstand wurde zurückgeholt.",
+    "problem": {
+      "not_json": "Diese Datei ist keine Kopie deines Lernstands.",
+      "not_a_backup": "Diese Datei ist keine Kopie deines Lernstands.",
+      "from_a_newer_app": "Diese Kopie stammt aus einer neueren Version der App. Aktualisiere die App und versuch es dann noch einmal.",
+      "empty": "In dieser Kopie ist nichts enthalten."
+    }
+  },
   "voice": {
     "title": "Aussprache-Stimme",
     "description": "Wer Buchstaben, Silben und Wörter vorliest.",
@@ -68,7 +86,8 @@
     "learning": "Lernen",
     "appearance": "Darstellung",
     "app": "App",
-    "reset": "Zurücksetzen"
+    "reset": "Zurücksetzen",
+    "backup": "Sicherung"
   },
   "activity": {
     "title": "Lernaktivität",
@@ -96,7 +115,8 @@
       "title": "Dein Lernfortschritt bleibt hier",
       "points": [
         "Was du gelernt hast und wie gut du es erinnerst, wird auf diesem Gerät gespeichert. Hochgeladen wird nichts.",
-        "Es gibt kein Konto: nichts zum Anmelden und nirgends ein Profil von dir."
+        "Es gibt kein Konto: nichts zum Anmelden und nirgends ein Profil von dir.",
+        "Wenn du eine Kopie deines Lernstands speicherst, gehört diese Datei dir — die App schickt sie nirgendwohin."
       ]
     },
     "tracking": {

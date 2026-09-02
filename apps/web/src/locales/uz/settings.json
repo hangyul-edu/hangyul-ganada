@@ -55,6 +55,24 @@
     "cancel": "Bekor qilish",
     "body": "Eng birinchi harfdan qaytadan boshlang."
   },
+  "backup": {
+    "body": "O‘rganganlaringizning barchasini qurilmangizdagi faylda saqlang va yangi telefonda qaytaring. Hech narsa internetga yuklanmaydi.",
+    "save": "Nusxani saqlash",
+    "saved": "O‘rganganlaringiz saqlandi.",
+    "saveFailed": "Nusxani saqlab bo‘lmadi.",
+    "restore": "Nusxadan tiklash",
+    "restoreTitle": "O‘rganganlaringiz almashtirilsinmi?",
+    "restoreBody": "Bu qurilmadagi hamma narsa siz tanlagan nusxa bilan almashtiriladi. Buni ortga qaytarib bo‘lmaydi.",
+    "restoreConfirm": "Tiklash",
+    "restoreCancel": "Bekor qilish",
+    "restored": "O‘rganganlaringiz tiklandi.",
+    "problem": {
+      "not_json": "Bu fayl — o‘rganganlaringizning nusxasi emas.",
+      "not_a_backup": "Bu fayl — o‘rganganlaringizning nusxasi emas.",
+      "from_a_newer_app": "Bu nusxa ilovaning yangiroq versiyasida yaratilgan. Ilovani yangilang va qayta urinib ko‘ring.",
+      "empty": "Bu nusxada hech narsa yo‘q."
+    }
+  },
   "voice": {
     "title": "Talaffuz ovozi",
     "description": "Harflar, bo‘g‘inlar va so‘zlarni kim o‘qib beradi.",
@@ -68,7 +86,8 @@
     "practice": "Mashq",
     "appearance": "Ko‘rinish",
     "app": "Ilova",
-    "reset": "Tozalash"
+    "reset": "Tozalash",
+    "backup": "Zaxira nusxa"
   },
   "activity": {
     "title": "O‘qish faoliyati",
@@ -96,7 +115,8 @@
       "title": "O‘qishingiz shu yerda qoladi",
       "points": [
         "Nimani o‘rganganingiz va qanchalik eslab qolganingiz shu qurilmada saqlanadi. Hech qachon yuklanmaydi.",
-        "Hisob yo‘q — ro‘yxatdan o‘tadigan joy ham, siz haqingizdagi profil ham yo‘q."
+        "Hisob yo‘q — ro‘yxatdan o‘tadigan joy ham, siz haqingizdagi profil ham yo‘q.",
+        "O‘rganganlaringizning nusxasini saqlasangiz, u fayl sizniki — ilova uni hech qayerga yubormaydi."
       ]
     },
     "tracking": {

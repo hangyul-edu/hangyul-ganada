@@ -55,6 +55,24 @@
     "cancel": "Annuleren",
     "body": "Begin opnieuw bij de allereerste letter."
   },
+  "backup": {
+    "body": "Bewaar alles wat je hebt geleerd als bestand op je apparaat en zet het terug op een nieuwe telefoon. Er wordt niets geüpload.",
+    "save": "Kopie opslaan",
+    "saved": "Je voortgang is opgeslagen.",
+    "saveFailed": "De kopie kon niet worden opgeslagen.",
+    "restore": "Kopie terugzetten",
+    "restoreTitle": "Je voortgang vervangen?",
+    "restoreBody": "Alles op dit apparaat wordt vervangen door de kopie die je kiest. Dit kun je niet ongedaan maken.",
+    "restoreConfirm": "Terugzetten",
+    "restoreCancel": "Annuleren",
+    "restored": "Je voortgang is teruggezet.",
+    "problem": {
+      "not_json": "Dat bestand is geen kopie van je voortgang.",
+      "not_a_backup": "Dat bestand is geen kopie van je voortgang.",
+      "from_a_newer_app": "Die kopie is gemaakt met een nieuwere versie van de app. Werk de app bij en probeer het opnieuw.",
+      "empty": "In die kopie zit niets."
+    }
+  },
   "voice": {
     "title": "Uitspraakstem",
     "description": "Wie de letters, lettergrepen en woorden voorleest.",
@@ -68,7 +86,8 @@
     "practice": "Oefenen",
     "appearance": "Weergave",
     "app": "App",
-    "reset": "Wissen"
+    "reset": "Wissen",
+    "backup": "Back-up"
   },
   "activity": {
     "title": "Leeractiviteit",
@@ -96,7 +115,8 @@
       "title": "Je leerwerk blijft hier",
       "points": [
         "Wat je hebt geleerd, en hoe goed je het onthoudt, wordt op dit apparaat bewaard. Het wordt nooit geüpload.",
-        "Er is geen account — niets om je voor aan te melden, en nergens een profiel van jou."
+        "Er is geen account — niets om je voor aan te melden, en nergens een profiel van jou.",
+        "Als je een kopie van je voortgang opslaat, is dat bestand van jou — de app stuurt het nergens heen."
       ]
     },
     "tracking": {

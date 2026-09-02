@@ -55,6 +55,24 @@
     "cancel": "Huwag na",
     "body": "Magsimula ulit sa kauna-unahang letra."
   },
+  "backup": {
+    "body": "Itago ang lahat ng natutunan mo bilang file sa device mo, at ibalik ito sa bagong telepono. Walang ini-upload.",
+    "save": "I-save ang kopya",
+    "saved": "Na-save na ang natutunan mo.",
+    "saveFailed": "Hindi na-save ang kopya.",
+    "restore": "Ibalik ang kopya",
+    "restoreTitle": "Papalitan ang natutunan mo?",
+    "restoreBody": "Papalitan ng kopyang pipiliin mo ang lahat ng nasa device na ito. Hindi ito maibabalik.",
+    "restoreConfirm": "Ibalik",
+    "restoreCancel": "Huwag na",
+    "restored": "Naibalik na ang natutunan mo.",
+    "problem": {
+      "not_json": "Hindi kopya ng natutunan mo ang file na iyon.",
+      "not_a_backup": "Hindi kopya ng natutunan mo ang file na iyon.",
+      "from_a_newer_app": "Ginawa ang kopyang iyon ng mas bagong bersyon ng app. I-update ang app, tapos subukan ulit.",
+      "empty": "Walang laman ang kopyang iyon."
+    }
+  },
   "voice": {
     "title": "Boses sa bigkas",
     "description": "Kung sino ang nagbabasa nang malakas ng mga letra, pantig, at salita.",
@@ -68,7 +86,8 @@
     "practice": "Ensayo",
     "appearance": "Anyo",
     "app": "App",
-    "reset": "Reset"
+    "reset": "Reset",
+    "backup": "Backup"
   },
   "activity": {
     "title": "Aktibidad sa pag-aaral",
@@ -96,7 +115,8 @@
       "title": "Dito lang nananatili ang pag-aaral mo",
       "points": [
         "Ang natutuhan mo, at kung gaano mo ito naaalala, ay nakatago sa device na ito. Hindi ito kailanman ina-upload.",
-        "Walang account — walang sasapian, at wala kang profile kahit saan."
+        "Walang account — walang sasapian, at wala kang profile kahit saan.",
+        "Kung magse-save ka ng kopya ng natutunan mo, sa iyo ang file na iyon — hindi ito ipinapadala ng app kahit saan."
       ]
     },
     "tracking": {

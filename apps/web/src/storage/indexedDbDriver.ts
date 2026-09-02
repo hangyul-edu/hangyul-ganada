@@ -110,6 +110,24 @@ export class IndexedDbDriver implements PersistenceDriver {
     return request<T[]>((await this.tx(store, 'readonly')).getAll());
   }
 
+  /**
+   * Keys and values from one transaction, not two.
+   *
+   * `getAllKeys` and `getAll` each return their side in the store's own key
+   * order, so zipping them is sound — but only if nothing writes between the
+   * two reads, which is exactly what a second transaction would allow. One
+   * `readonly` transaction issuing both requests gives IndexedDB's own
+   * consistency guarantee for free.
+   */
+  async entries<T>(store: StoreName): Promise<Array<readonly [string, T]>> {
+    const objectStore = await this.tx(store, 'readonly');
+    const [keys, values] = await Promise.all([
+      request<IDBValidKey[]>(objectStore.getAllKeys()),
+      request<T[]>(objectStore.getAll()),
+    ]);
+    return keys.map((key, index) => [String(key), values[index] as T] as const);
+  }
+
   async put<T>(store: StoreName, key: string, value: T): Promise<void> {
     await request((await this.tx(store, 'readwrite')).put(value, key));
   }
