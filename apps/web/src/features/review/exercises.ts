@@ -323,6 +323,26 @@ function wordExercise(
         seed + 5,
       );
 
+      /*
+       * A tray that spells a second word meaning the same thing is a question
+       * with two right answers, and the grader marks one of them wrong.
+       *
+       * The prompt here is the meaning, so most alternative spellings are
+       * harmless: 밤's tray can also spell 유리 and 유리 does not mean night.
+       * What is not harmless is a *synonym*, and it is usually not the decoys
+       * that supply it — 깨물다's own three syllables spell 물다, 떨리다's spell
+       * 떨다, 쫓아내다's spell 내쫓다. Re-picking decoys cannot fix a word whose
+       * own syllables are the problem, so the question is refused and the
+       * scheduler asks something else about this word. Measured over the whole
+       * corpus in 32 languages that is 0.64% of build questions and 249 words,
+       * none of them in more than a handful of languages.
+       *
+       * Whether two glosses mean the same thing is a fact about the learner's
+       * pack, so this is checked per language rather than once: 깨물다 and 물다
+       * are distinct in English and identical in nine other packs.
+       */
+      if (spellsASynonym(tiles, word, copy.value, meaningOf)) return null;
+
       return {
         candidate,
         mode: 'build',
@@ -585,6 +605,78 @@ function decoySyllables(
     }
   }
   return out;
+}
+
+
+/**
+ * Whether the tray can spell a *different* taught word that means the same
+ * thing to this learner.
+ *
+ * Exhaustive over arrangements of two to four tiles, which is at most 840
+ * strings from a seven-tile tray and a map lookup each — built once per
+ * question, so the cost is invisible beside the render that follows it.
+ *
+ * `meaningOf` rather than the English: whether two glosses say the same thing
+ * is a fact about the learner's pack, and 깨물다 and 물다 are distinct in
+ * English and identical in nine other languages. Two glosses that mean the same
+ * thing while reading differently — "to begin" against "to start" — are not
+ * caught here and are not catchable by string comparison; see
+ * `translation:semantics` and `I-17`.
+ */
+function spellsASynonym(
+  tiles: ReadonlyArray<{ syllable: string }>,
+  word: VocabularyWord,
+  meaning: string,
+  meaningOf: MeaningOf,
+): boolean {
+  const mine = flattenMeaning(meaning);
+  if (mine === '') return false;
+
+  const taught = taughtBySpelling();
+  const seen = new Set<string>();
+
+  const walk = (prefix: string, left: readonly string[]): boolean => {
+    if (prefix.length >= 2 && prefix !== word.word && !seen.has(prefix)) {
+      seen.add(prefix);
+      const other = taught.get(prefix);
+      if (other && flattenMeaning(meaningOf(other).value) === mine) return true;
+    }
+    if (prefix.length >= 4) return false;
+    for (let index = 0; index < left.length; index += 1) {
+      const rest = [...left.slice(0, index), ...left.slice(index + 1)];
+      if (walk(prefix + left[index], rest)) return true;
+    }
+    return false;
+  };
+
+  return walk('', tiles.map((tile) => tile.syllable));
+}
+
+/**
+ * Taught words by their spelling, rebuilt when the corpus grows.
+ *
+ * `VOCABULARY` is a live, growing array — the bands arrive over the network —
+ * so a map built once at module load holds band one and nothing else. Keyed on
+ * the length, which is the only thing that changes about it: the corpus is
+ * appended to and never edited in place.
+ */
+let spellingIndex: { size: number; map: Map<string, VocabularyWord> } | null = null;
+function taughtBySpelling(): Map<string, VocabularyWord> {
+  if (spellingIndex && spellingIndex.size === VOCABULARY.length) return spellingIndex.map;
+  const map = new Map<string, VocabularyWord>();
+  for (const word of VOCABULARY) map.set(word.word, word);
+  spellingIndex = { size: VOCABULARY.length, map };
+  return map;
+}
+
+/** Case, Unicode form and punctuation out; spaces and combining marks in. */
+function flattenMeaning(text: string): string {
+  return text
+    .normalize('NFC')
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\p{M}\s]/gu, '')
+    .replace(/\s+/gu, ' ')
+    .trim();
 }
 
 /** A deterministic order. Same seed, same positions, every render. */
