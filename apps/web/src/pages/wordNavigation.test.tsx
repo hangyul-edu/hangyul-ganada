@@ -99,16 +99,31 @@ describe('Save is its own action', () => {
     const user = userEvent.setup();
     browse(FAMILY);
 
-    const save = screen.getAllByRole('button')[0]!;
-    expect(save).toHaveAttribute('aria-pressed', 'false');
+    /*
+     * The first *toggle* on the screen, not the first button on it.
+     *
+     * This read `getAllByRole('button')[0]` and passed for as long as the save
+     * star happened to be the first button in the document. It stopped being
+     * one the day every screen gained a back chevron in its header, and what
+     * the test then asserted was that the *back button* reports `aria-pressed`
+     * — which it does not, so the failure named the right symptom and the
+     * wrong cause. An index into every button on a page is a claim about the
+     * page's whole layout smuggled into a test about one control.
+     *
+     * `aria-pressed` is what makes this control a toggle, so it is also the
+     * honest way to find it: no other control on this screen has one.
+     */
+    const save = () => screen.getAllByRole('button').find((button) => button.hasAttribute('aria-pressed'))!;
 
-    await user.click(save);
-    expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
-    expect(screen.getAllByRole('button')[0]!).toHaveAttribute('aria-pressed', 'true');
+    expect(save()).toHaveAttribute('aria-pressed', 'false');
 
-    await user.click(screen.getAllByRole('button')[0]!);
+    await user.click(save());
     expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
-    expect(screen.getAllByRole('button')[0]!).toHaveAttribute('aria-pressed', 'false');
+    expect(save()).toHaveAttribute('aria-pressed', 'true');
+
+    await user.click(save());
+    expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
+    expect(save()).toHaveAttribute('aria-pressed', 'false');
   });
 
   it('is not nested inside the link, so there is nothing to stop propagating', () => {

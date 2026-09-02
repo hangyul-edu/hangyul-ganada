@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { BackNavigationContext } from './backNavigation';
 import { exitApp } from '../native/platform';
 import { useHistoryDepth } from '../native/useHistoryDepth';
 import { useSystemBack } from '../native/useSystemBack';
@@ -54,6 +55,19 @@ const HOME = '/';
  * walk, and pushing would leave a stack of Homes for the header arrow to walk
  * back through — the same bug moved one button over.
  *
+ * ## The header's chevron presses the same button
+ *
+ * Every screen draws a back arrow in its top-left — see `AppHeader` — and that
+ * arrow does not have its own idea of where back is. It calls `goBack` from
+ * this component, through `BackNavigationContext`, so the two controls cannot
+ * drift apart. They have drifted twice: once when this rule was "anywhere but
+ * Home goes Home" and the header arrow was not, and once when the header arrow
+ * was missing from seven screens and this was the only way out of them.
+ *
+ * That is also why this component takes children. It has to be an ancestor of
+ * the routes to provide to them, and it has to be inside the router to read the
+ * location — so it wraps `<Routes>` rather than sitting beside it.
+ *
  * ## Why the dialog is here and not in a page
  *
  * It belongs to the button, not to Home: Home does not otherwise know or care
@@ -63,39 +77,54 @@ const HOME = '/';
  * newer than this one, so it takes the press and closes. There is one piece of
  * state and it cannot open twice.
  */
-export function SystemBack() {
+export function SystemBack({ children }: { children?: ReactNode }) {
   const { t } = useTranslation('common');
   const navigate = useNavigate();
   const location = useLocation();
   const [leaving, setLeaving] = useState(false);
   const depth = useHistoryDepth();
 
+  /*
+   * The rule, once, as a plain function.
+   *
+   * `useSystemBack` wants a handler that reports whether it consumed the press;
+   * the header wants one that just goes. Both are this.
+   */
+  const goBack = useCallback(() => {
+    if (depth.current > 0) {
+      navigate(-1);
+      return;
+    }
+    if (location.pathname !== HOME) {
+      navigate(HOME, { replace: true });
+      return;
+    }
+    setLeaving(true);
+  }, [depth, location.pathname, navigate]);
+
   useSystemBack(
     useCallback(() => {
-      if (depth.current > 0) {
-        navigate(-1);
-        return true;
-      }
-      if (location.pathname !== HOME) {
-        navigate(HOME, { replace: true });
-        return true;
-      }
-      setLeaving(true);
+      goBack();
       return true;
-    }, [depth, location.pathname, navigate]),
+    }, [goBack]),
   );
 
+  const value = useMemo(() => ({ goBack }), [goBack]);
+
   return (
-    <ConfirmDialog
-      open={leaving}
-      title={t('exit.title')}
-      body={t('exit.body')}
-      cancelLabel={t('exit.stay')}
-      confirmLabel={t('exit.leave')}
-      onCancel={() => setLeaving(false)}
-      onConfirm={() => void exitApp()}
-      cancelTestId="exit-stay"
-      confirmTestId="exit-confirm"
-    />
+    <BackNavigationContext.Provider value={value}>
+      {children}
+      <ConfirmDialog
+        open={leaving}
+        title={t('exit.title')}
+        body={t('exit.body')}
+        cancelLabel={t('exit.stay')}
+        confirmLabel={t('exit.leave')}
+        onCancel={() => setLeaving(false)}
+        onConfirm={() => void exitApp()}
+        cancelTestId="exit-stay"
+        confirmTestId="exit-confirm"
+      />
+    </BackNavigationContext.Provider>
   );
 }

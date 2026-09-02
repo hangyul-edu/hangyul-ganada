@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
+import { useBackNavigation } from './backNavigation';
 import { ChevronLeftIcon, CloseIcon } from './icons';
 import { useIsDarkAppearance } from './appearance';
 import styles from './AppHeader.module.css';
@@ -13,7 +13,24 @@ const LOGO_HEIGHT = 26;
 
 export interface AppHeaderProps {
   title?: string;
-  /** Shows a back chevron. `true` goes back in history. */
+  /**
+   * What the back chevron does, when this screen needs it to do something
+   * special — leave a sitting, confirm an unsaved answer, return to a parent
+   * the learner did not arrive from.
+   *
+   * **Omitting it does not remove the chevron.** There is no way to remove the
+   * chevron, which is the point: every screen has one, in the same corner, and
+   * a screen that omits this simply gets the app's own rule — see
+   * `useBackNavigation`. Seven screens used to have no back arrow at all
+   * because the prop was optional and opting in was easy to forget: Home,
+   * Letters, Numbers, Words, a word category, Review and My Learning. On a
+   * phone with gesture navigation and no visible system bar, those were
+   * screens with no visible way back.
+   *
+   * `true` is accepted and means the same as omitting it; it is kept because
+   * several screens say it explicitly and reading `onBack` as "the default" is
+   * clearer than reading its absence.
+   */
   onBack?: (() => void) | true;
   /** Shows a close cross on the right. */
   onClose?: () => void;
@@ -41,12 +58,32 @@ export function AppHeader({
   transparent = false,
 }: AppHeaderProps) {
   const dark = useIsDarkAppearance();
-  const navigate = useNavigate();
   const { t } = useTranslation('common');
+  const { goBack } = useBackNavigation();
   const handleBack = () => {
-    if (onBack === true) navigate(-1);
-    else onBack?.();
+    if (typeof onBack === 'function') onBack();
+    else goBack();
   };
+
+  /*
+   * The chevron itself, so the branded header and the titled one draw the same
+   * control rather than two that look alike.
+   *
+   * 44 by 44 and its own accessible name in all thirty-two languages; the
+   * padding and the hit area are in `.iconButton`, which is shared with the
+   * close cross opposite it.
+   */
+  const back = (
+    <button
+      type="button"
+      className={styles.iconButton}
+      onClick={handleBack}
+      aria-label={t('actions.back')}
+      data-testid="app-back"
+    >
+      <ChevronLeftIcon />
+    </button>
+  );
 
   /**
    * Brand first, then straight into the lesson.
@@ -64,6 +101,16 @@ export function AppHeader({
   if (variant === 'brand') {
     return (
       <header className={`${styles.header} ${styles.brand}`}>
+        {/*
+          Home has a back arrow too.
+
+          It looks redundant — Home is where Back goes — and it is not: a
+          learner can reach Home from a lesson, and the rule sends them to the
+          screen they came from before it offers to leave. A corner that is
+          empty on one screen and a control on every other is a corner people
+          stop looking at.
+        */}
+        <div className={styles.side}>{back}</div>
         <h1 className={styles.brandTitle}>
           <img
             className={styles.brandLogo}
@@ -91,13 +138,7 @@ export function AppHeader({
         transparent ? styles.transparent : ''
       }`}
     >
-      <div className={styles.side}>
-        {onBack ? (
-          <button type="button" className={styles.iconButton} onClick={handleBack} aria-label={t('actions.back')}>
-            <ChevronLeftIcon />
-          </button>
-        ) : null}
-      </div>
+      <div className={styles.side}>{back}</div>
 
       <h1 className={styles.title}>{title}</h1>
 

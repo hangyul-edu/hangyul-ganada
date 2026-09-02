@@ -129,18 +129,28 @@
 /* --- brand variant (home) --- */
 
 /*
- * Logo left, streak right, on one row.
+ * Back, logo, streak, on one row.
  *
  * `min-height` rather than `height`, at the same 56 px as every other app bar
  * in the product, so the home screen's top edge lines up with the screens a
- * learner navigates to from it. The horizontal padding matches the body's
- * (space-5), so the logo's left edge sits on the same rule as the cards below
- * it — the alignment that makes a header look drawn rather than dropped in.
+ * learner navigates to from it.
+ *
+ * Three tracks rather than two, since Home gained the back chevron every other
+ * screen has. The chevron takes the hit-target track the titled header gives
+ * it, so the arrow is in exactly the same place on Home as on the screen a
+ * learner came from — the thing that makes a corner learnable is that it does
+ * not move.
+ *
+ * The left padding drops to the header's own, because the chevron's box is
+ * wider than its glyph: at the body's `space-5` the *arrow* would sit further
+ * in than the cards below it, which is the mirror of the fault the padding was
+ * chosen to avoid. `.brandTitle` takes the difference back so the logo keeps
+ * the alignment it had.
  */
 .brand {
-  grid-template-columns: auto 1fr;
+  grid-template-columns: var(--hg-size-hit-target) auto 1fr;
   justify-content: space-between;
-  padding: var(--hg-space-3) var(--hg-space-5) var(--hg-space-2);
+  padding: var(--hg-space-3) var(--hg-space-5) var(--hg-space-2) var(--hg-space-2);
   background: transparent;
 }
 

@@ -245,10 +245,14 @@ export function App() {
         <CorpusGate>
           <BrowserRouter>
             <SkipLink />
-            {/* The phone's Back button, which means something different from the
-              header's back arrow — see `ui/SystemBack.tsx`. Inside the router
-              because the rule is about where the learner is. */}
-            <SystemBack />
+            {/*
+              One rule for going back, for the phone's Back button and for the
+              chevron every screen draws in its top-left — see `ui/SystemBack`.
+              It wraps the routes rather than sitting beside them because the
+              header asks it where back is, so it has to be their ancestor;
+              inside the router because the rule is about where the learner is.
+            */}
+            <SystemBack>
             <Routes>
               <Route element={<TabLayout />}>
                 <Route path="/" element={<HomePage />} />
@@ -326,6 +330,7 @@ export function App() {
                 }
               />
             </Routes>
+            </SystemBack>
           </BrowserRouter>
         </CorpusGate>
       </LearnerScopedProviders>

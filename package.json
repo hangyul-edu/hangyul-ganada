@@ -194,6 +194,8 @@
     "exercise:availability": "tsx scripts/exercise-availability.mjs",
     "translation:matrix": "tsx scripts/build-translation-quality-matrix.mjs",
     "native:review:packs": "tsx scripts/build-native-review-packs.mjs",
+    "back:coverage": "node scripts/check-back-coverage.mjs",
+    "back:coverage:check": "node scripts/check-back-coverage.mjs --check",
     "legal:isolation": "node scripts/check-legal-isolation.mjs",
     "legal:isolation:check": "node scripts/check-legal-isolation.mjs --check",
     "strokes:markers:evidence": "node scripts/build-marker-evidence.mjs"
