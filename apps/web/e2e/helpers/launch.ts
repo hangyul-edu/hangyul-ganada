@@ -171,16 +171,19 @@ export async function waitForNumbersRecord(
  *
  * Saved words are not their own store: they are `saved_items` on the settings
  * row, because the list is small and belongs to the profile rather than to the
- * corpus. See `storage/schema.ts`.
+ * corpus. And they are keyed the way the memory model keys everything —
+ * `memoryKey(kind, id)`, so `word:word_eomma` and not `word_eomma`, which is
+ * what makes one bookmark out of a word saved from its card and from the
+ * dictionary. My first version of this waited for the bare id, which is never
+ * there, and turned a rare flake into a certain failure on both projects.
  */
 export async function waitForSavedWord(page: Page, wordId: string): Promise<void> {
   await waitForStoredRow(
     page,
     'settings',
     'preferences',
-    ((row: { saved_items?: string[] }) => (row.saved_items ?? []).includes(wordId)) as (
-      row: never,
-    ) => boolean,
+    ((row: { saved_items?: string[] }) =>
+      (row.saved_items ?? []).includes(`word:${wordId}`)) as (row: never) => boolean,
     `${wordId} on the saved list`,
   );
 }
