@@ -52,12 +52,19 @@ are idempotent (viewing a step twice records it once); counts are not.
 `applyNumbersEvent` is the only writer of `completed_at`, and it writes it once,
 after applying an event, by asking `isComplete` of the new record.
 
-**Status** (`lessonStatus`) — `locked` (a prerequisite is not complete),
-`available` (unlocked, never opened), `not_started` (opened, nothing done),
-`in_progress`, `completed`, `mastered` (completed with a perfect mastery check),
-`review_due` (completed and seven days since completion or the last review,
-`REVIEW_INTERVAL_DAYS`). Only `completed`, `mastered` and `review_due` may be
-drawn as finished; the overview's check mark is drawn for those and nothing else.
+**Status** (`lessonStatus`) — `available` (never opened), `not_started`
+(opened, nothing done), `in_progress`, `completed`, `mastered` (completed with a
+perfect mastery check), `review_due` (completed and seven days since completion
+or the last review, `REVIEW_INTERVAL_DAYS`). Only `completed`, `mastered` and
+`review_due` may be drawn as finished; the overview's check mark is drawn for
+those and nothing else.
+
+There is no `locked`. There was, and it is gone from the type itself so it
+cannot return by accident — see the note under *Prerequisites* below. The three
+words before `completed` are kept apart deliberately: with nothing locked, the
+mistake available to a future implementation is reading "a learner may open
+this" as "a learner has done some of this", and `available`, `not_started` and
+`in_progress` are three different answers to three different questions.
 
 **Repair on read** — `repairLessonProgress` runs on every load and in the
 migration. Unknown lesson ids are dropped; evidence for items no longer in the
@@ -98,8 +105,22 @@ steps, items with reading (where spelling ≠ pronunciation: 십육 → 심뉵, 
 a worked example, recorded audio for the word and the example, guided practice
 from at least two exercise kinds per item, a mastery check that asks every item
 (`mastery_count` questions), a summary that lists what is still owed, and a review
-path. Prerequisites are ids and point backwards only; a locked lesson is shown,
-named and explained, and is not a link.
+path.
+
+**Prerequisites are a recommendation, not a gate.** They are ids, they point
+backwards only, and they decide the course order and which lesson **Continue**
+opens. They do not decide what a learner may open: every lesson is a link, from
+the first day, on a profile that has done nothing.
+
+They used to. A lesson whose prerequisites were unfinished was shown, named,
+explained and not openable, on the argument that "hours" assumes "counting
+forms" and a learner meeting 두 시 without them cannot know why it is not
+둘 시. That argument is right about the *order* and wrong about the door.
+Somebody who has just been asked their age in Korean wants 몇 살이에요? today,
+and a course that answers "finish four other lessons first" has sent them
+somewhere else to find out. Numbers are also the wrong subject for a gate: they
+are what a learner meets on the first day, out of order, on a price tag and a
+bus.
 
 **Exercise kinds** (`apps/web/src/features/numbers/exercises.ts`): `read_choose`,
 `listen_choose`, `digits_to_korean`, `korean_to_digits`, `choose_system`,
@@ -126,11 +147,11 @@ set, or a sentence identical to the English.
 
 | Suite | What it covers |
 | --- | --- |
-| `domain/numbersProgress.test.ts` | 21 journeys J01–J21 (fresh, opened, partial steps, all-wrong practice, failed mastery, threshold pass, item never right, mid-practice resume, interrupted mastery, better/worse retake, review due and cleared, locked/unlocked, module completion, every lesson completable, idempotence) and 6 negative tests N1–N6 (unlock ≠ completion, route mount ≠ completion, letter/word ids rejected, evidence-less flag cleared, wrong denominator, stale write) |
+| `domain/numbersProgress.test.ts` | 21 journeys J01–J21 (fresh, opened, partial steps, all-wrong practice, failed mastery, threshold pass, item never right, mid-practice resume, interrupted mastery, better/worse retake, review due and cleared, open-not-locked, module completion, every lesson completable, idempotence) and 6 negative tests N1–N6 (open ≠ completion, route mount ≠ completion, letter/word ids rejected, evidence-less flag cleared, wrong denominator, stale write) |
 | `storage/numbersMigration.test.ts` | fixtures F1–F12: fresh, letter-only, contaminated, idempotent, no completion from old flags; partial, corrupted flag, retired lesson, retired items, malformed rows, round trip, Numbers-only clear |
 | `features/numbers/exercises.test.ts` | ≥2 kinds per item, ≥3 options, answer not at a fixed index, seeded stability, misconception labels, mastery covers every item, `order_parts` rebuilds the word |
 | `data/numbers.test.ts` | structure, namespacing, prerequisite order, audio manifest agreement, counting-form rule, readings, Intl meanings |
-| `e2e/numbers.spec.ts` | N-e2e-1…5 in a real browser: fresh overview, all-wrong run not complete, diligent run completes and unlocks, reload resumes from the record, audio present and feedback names the mistake |
+| `e2e/numbers.spec.ts` | N-e2e-1…8 in a real browser: fresh overview with all eighteen rows available and every one a link, all-wrong run not complete, diligent run completes exactly the lesson the work was done in, reload resumes from the record, audio present and feedback names the mistake, a new learner opening the last lesson of every module directly, Continue leading without forcing, and the back control on a deep link |
 | `scripts/numbers-qa.mjs` | the release gate (§4) |
 
 ## 6. Level Test feedback policy (§10 of the v1.0.2 request)
