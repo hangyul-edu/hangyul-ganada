@@ -5,45 +5,61 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `3833da71` on branch `main` **plus the uncommitted v1.0.2
-pass** — the working tree was not clean at the moment of the build. The exact
-tree is recorded as `source_state.fingerprint` in `build-info.json` (a digest of
-the tracked diff and every untracked, non-ignored file), with the counts of
-changed and untracked files beside it. `npm run release:current` therefore
-**fails, by design, and was not weakened**: a build from an uncommitted tree
-cannot be reproduced from any commit. It becomes green when this tree is
-committed and the build is re-run against that commit.
+**Source:** commit `cdac06ad` on branch `main`, **with a clean working tree at
+the moment the packages were compiled**. This is the line that was wrong last
+time and is the reason `I-01` was reopened: the previous artefacts recorded
+`"dirty": true` beside their commit, with 440 changed and 595 untracked files,
+so no commit described what was inside them. `npm run release:current` is green
+on this refresh and was not weakened — it reports both delivery manifests as
+**at HEAD**, with the working tree dirty only in `docs/` and the release
+directories, which are what a release writes.
 
-**Built:** 2 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools 36.0.0,
-Node v24.19.0.
+The `source_state` block in `build-info.json` is recorded by the script that
+also writes `result/`, so it necessarily observes its own output; the files
+it counts are the delivery files themselves. What matters — that no
+*product* file differs from the commit — is what `release:current` checks and
+reports, and it is green.
 
-**This supersedes the v1.0.2 validation of earlier in the same pass.** Those
-artefacts were built before the Numbers course was rebuilt (below) and have been
-replaced.
+Rebuilt three times over this pass as later commits landed, and the digests
+below are the last of them. The level-test bank, `curriculum.json` and
+`relations.json` are all derived from the taught corpus and all three went
+stale when eighteen words were re-levelled; each was caught by a step of
+`verify:release` rather than by remembering, and each is regenerated here.
+
+**Built:** 3 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+36.0.0, Node v24.19.0.
+
+**This supersedes the earlier v1.0.2 validation.** Those artefacts carried
+versionCode 3 and were built from an uncommitted tree; both are corrected here.
 
 ---
 
 ## Why this rebuild happened
 
-A user found that **Numbers lessons showed as completed without having been
-studied** — a lesson opened and answered entirely wrong ended on "Lesson
-complete" — and that the course was a table of contents rather than a course.
-Reproduced on a fresh profile before anything was touched, then rebuilt:
+Six screenshots of the running product, with the instruction not to treat the
+previous report's *resolved* labels as proof. Five showed real defects that
+every gate in the repository had passed:
 
-- **Completion is derived from evidence, in one place.** One record per lesson
-  in its own store; a lesson is complete only when every explanation step and
-  example was viewed, practice finished, a mastery check passed at 80% or
-  better, and every item answered right at least once in a mastery check. A
-  stored completion the evidence does not support is cleared on read. Migration
-  13 snapshots and removes the old contaminated rows and touches no letter or
-  word data. Numbers had never shipped (the committed artefacts are v1.0.0).
-- **Six modules, nineteen lessons, 97 items**, recorded audio for every word
-  and example (96 new clips through the existing pipeline, none synthesised at
-  runtime), nine exercise kinds with misconception-class distractors and seeded
-  option order, 272 strings in all 32 languages, gated.
-- **Level Test feedback**: a live-region "Answer N recorded" for assistive
-  technology and a guard that drops a same-position tap within 250 ms, with no
-  element disabled. The vocabulary target gate is now explicitly informational.
+- a numbered stroke badge sitting on the branch of the ㅏ in 안, hiding **62%**
+  of the stroke it was pointing at;
+- seventeen of the eighteen Numbers lessons locked, and the course written in
+  grammatical terminology — 한자어 수, 단위 명사, 두 체계 — that a beginner has
+  not met;
+- seven screens with no visible back control;
+- five answer tiles laid out as four and one;
+- a first hint that named the word's category and part of speech, which over a
+  distractor set chosen to share that category rules nothing out.
+
+The sixth — the Pronunciation voice setting rendered under the Privacy screen —
+could not be reproduced in the current build, in the delivered APK's own bundle,
+at six device profiles, or along four different routes to the page. Two guards
+were added rather than a fix claimed. §20L of `docs/report.pdf` is the account
+of all six.
+
+The same pass audited all thirty vocabulary levels rather than the top, found
+the absolute beginner had the narrowest teaching band in the product, and
+generated every question the app can produce — 806,270 of them — to check that
+each has exactly one defensible answer.
 
 ## The artefacts
 
@@ -51,43 +67,57 @@ Reproduced on a fresh profile before anything was touched, then rebuilt:
 | --- | --- |
 | `hangyul-ganada-release.apk` | signed; size and sha256 in the Checksums block below and in `build-info.json` |
 | `hangyul-ganada-release.aab` | signed; same |
-| Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24) |
+| Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, versionCode 3, versionName 1.0.2, SDK 24–36 |
-| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 3, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
+| Package | `com.talkhangyul.ganada`, **versionCode 4**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
+| Why 4 | versionCode 3 was spent by the previous artefact. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version and no longer does |
+| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 4, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
 
 ## What was run against this tree, after the last product edit
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:release` | every step passes except the last — `release:current`, red on an uncommitted tree by design; `vocabulary:qa:target` reports the corpus deficit as **INFORMATIONAL** and exits 0 |
-| Web unit (`vitest`) | **890 passed** (58 files) — 57 of them new: 27 Numbers journeys and negative tests, 12 migration fixtures, 8 exercise-engine tests, 10 data tests |
+| `npm run verify:release` | **every step green.** The chain caught three generated artefacts that had gone stale under the corpus change — the level-test bank, `curriculum.json` and `relations.json` — and one end-to-end fixture I had written against an assumption rather than the code; each was fixed and the chain re-run from the top. `vocabulary:qa:target` reports the corpus deficit as **INFORMATIONAL** and exits 0, and `release:current` is green with both delivery manifests at HEAD |
+| Web unit (`vitest`) | **935 passed** (60 files) |
 | Korean morphology | **216 passed** |
 | Handwriting core | **96 passed** |
-| End-to-end (`playwright`) | **362 passed**, 181 × 2 projects — including 5 Numbers journeys and the Level Test single-scoring test |
-| `npm run numbers:qa:check` | 6 modules · 19 lessons · 97 items · 9 kinds · 0 problems; 148 clips present, 0 synthesised; 272 × 32 keys, 0 identical to English; correct-option index 28/28/22/36 over 114 four-option mastery questions |
-| `npm run audio:qa` | 13,738 voice slots over 13,618 files, 600 decoded, **0 errors, 0 warnings** |
-| `npm run content:fresh:check`, `leveltest:ambiguity:check` | pass — the `content-cache/` fetch (39,040 pages) is complete |
-| `npm run i18n:check`, `copy:audit:check`, `locale:editorial:check` | pass — 0 errors (4 and 45 warnings for a human to read) |
-| `npm run locale:content:check` | 20 languages complete at 3,333 words, 12 at the 600-word band |
-| `npm run store:check` | listings within limits; word count 3,333 in every listing |
-| `npm run docs:consistency:check`, `issues:check` | pass — 115 issues: 5 open, 3 partial, 1 blocked, 106 resolved |
+| End-to-end (`playwright`) | **368 passed**, 184 × 2 projects — including 8 Numbers journeys. Run twice end to end: 367 of 368 the first time and 368 of 368 the second, with the same code. The one failure was a flake — the review hub’s save test, which passes alone and in order — and it is hardened rather than re-run away: it now waits for the write to reach IndexedDB before a cold load, because the stores are written optimistically and a navigation inside that window aborts the transaction |
+| `npm run answerability:check` | **806,270 generated questions** across 32 languages, 6 exercise modes and 3 attempts, plus 73 characters and 19 Numbers lessons — 0 findings |
+| `npm run strokes:visual:check` | 73 items · 269 strokes · 1,345 frames; the new **Obscured** check finds no glyph ink under any badge at 200, 152 or 96 px |
+| `npm run handwriting:robustness` | FRR **0.94%**, FAR **0.00%** over 2,880 genuine and 2,172 wrong attempts |
+| `npm run back:coverage:check` | 22 shipped routes, one back control each, in the corner, 44 × 44, named in all 32 languages |
+| `npm run legal:isolation:check` | Privacy and Licences × 6 device profiles + the walk from My Learning — 16 renders, nothing leaked |
+| `npm run numbers:copy:check` | 7,200 learner-facing strings across 32 languages; no lesson names the two number sets by a linguistic label |
+| `npm run vocabulary:level:audit -- --check` | all 30 levels: every zone at or above a fortnight, every entry with an example, an English meaning and a recording |
+| `npm run numbers:qa:check` | 6 modules · 19 lessons · 97 items · 9 kinds · 0 problems; 148 clips present, 0 synthesised; 270 × 32 keys, 0 identical to English |
+| `npm run hints:qa:check` | 442,694 rendered rungs in 32 languages — 0 answer-leaking, 0 that rule nothing out |
+| `npm run audio:qa` | 13,738 voice slots over 13,618 files, **0 errors, 0 warnings** |
+| `npm run i18n:check`, `copy:audit:check`, `locale:editorial:check` | pass — **0 errors, 0 warnings** on the copy audit |
+| `npm run locale:content:check` | 20 languages complete at 3,333 words, 12 at the 609-word band; levels 1–3 complete in all 32 |
+| `npm run leveltest:locale:check` | 32 languages; no answer option in any language resolved from another |
+| `npm run docs:consistency:check`, `issues:check` | pass — 126 issues: 7 open, 3 partial, 1 blocked, 115 resolved |
 | `npm run vocabulary:qa:target` | **INFORMATIONAL** — 3,333 headwords, 6,667 short of the 10,000 target (I-04) |
+
+Six gates were negative-tested by restoring the behaviour they exist to catch,
+and all six failed as they should: the marker placement, the legal isolation,
+the Numbers copy register, the assembly-tray guard, a self-answering gloss, and
+the reused versionCode.
 
 ## On a device — NOT RUN THIS REFRESH
 
-The signed APK was not installed on the emulator in this refresh, and no
-physical device exists on this machine. The earlier v1.0.2 refresh in this pass
-installed and walked the signed build on an emulated Pixel 7; the Numbers
-course has been verified in the browser (5 Playwright journeys, 42 rendered
-screens across ar, th, bn, ja, ko and en) and not on Android. Nothing here is
-evidence about a real phone.
+The signed APK was not installed on an emulator or a handset in this refresh,
+and no physical device exists on this machine. Everything above ran in headless
+Chromium at phone viewports, or against the installed APK's own extracted
+bundle. **Nothing here is evidence about a real phone.** The matrix that would
+close it: a 320 px-class Android at 100% and 200% text, a 412 px Android, an
+iPhone SE and an iPhone Pro Max, each in light and dark, walking the alphabet
+lesson, a vocabulary sitting, the Numbers course and the Level Test.
 
 ## Checksums
 
 ```
-0bde965597381c12177045a82230cdf8d7884f34221b1be669b44e855344ee7d  hangyul-ganada-release.apk
-be9318597d1c40af82b3fc4fe8da6bc636dc16a8de81e2322c4c13bbe8e39f40  hangyul-ganada-release.aab
-29c0dc63a0f52af9a90959d0b2caf3c2f07888e6186d702593e89382a3ca9502  docs/report.pdf
-1e2db2fa6f5393017455fd48bf2b09934651f07037e3da5ba9ebb893fbee2d28  build-info.json
+87c8a1bfc62ba3681bbfbf6edf8c4fe9ebb3ec41f856ecbc2c89956ae129f3b2  hangyul-ganada-release.apk
+e9ae68d41e5f8a2e6899d43d56e2af4c624658e4b7753ac0a04e09f571dc4a66  hangyul-ganada-release.aab
+60ad2e48c8cf6543c6f280f93695681dff93c65fededb0be25197899ac17a5de  docs/report.pdf
+937b10a105451856d6c92618b041fdb18ee4d3a99c55db32cfa331b69224275e  build-info.json
 ```

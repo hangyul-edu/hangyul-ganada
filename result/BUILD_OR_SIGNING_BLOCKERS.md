@@ -6,11 +6,13 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 2 September 2026 against the v1.0.2 rebuild from the working
-tree over commit `3833da71` (uncommitted; see the source fingerprint in
-`build-info.json`). Every item below still stands, unchanged: none of them is a
-build problem and none can be cleared from this machine. The Android artefacts
-were rebuilt and signed with the existing production identity this cycle — see
+Re-checked on 3 September 2026 against the v1.0.2 build-4 rebuild, compiled
+from a **clean** checkout of commit `3cb56864` — the previous refresh built
+from an uncommitted tree with 440 changed and 595 untracked files, which is why
+`I-01` was reopened and is now closed by the state rather than by an intention.
+Every item below still stands, unchanged: none of them is a build problem and
+none can be cleared from this machine. The Android artefacts were rebuilt at
+versionCode 4 and signed with the existing production identity this cycle — see
 `RELEASE_VALIDATION.md`.
 
 ---
