@@ -3974,7 +3974,60 @@ catch, and all six failed as they should: the marker placement, the legal
 isolation, the Numbers copy register, the tray guard, a self-answering gloss,
 and the reused versionCode.
 
-## 20L.11 What this pass did not fix
+## 20L.11 The artefacts this pass built
+
+Rebuilt from a clean checkout of the commit that carries every change above,
+which is the state `I-01` was reopened for: the artefacts delivered before this
+pass recorded `"dirty": true` beside their commit, with 440 changed and 595
+untracked files, so no commit described what was in them.
+
+| | |
+| --- | --- |
+| `versionName` · `CFBundleShortVersionString` | **1.0.2**, unchanged |
+| Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **4** — 3 was spent by the previous artefact |
+| `applicationId` · bundle id | `com.talkhangyul.ganada` |
+| `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
+| APK | 87,711,557 bytes (83.6 MiB) |
+| APK sha256 | `ccfe86220a1c96ea8a7a3d8079e7bbca4750b7bd4cc652e238b7bd0c7e37b9e5` |
+| AAB | 85,796,542 bytes (81.8 MiB) |
+| AAB sha256 | `bc7bdb4f1e01dedaa52b546c723ee4c0ca3471fee6807ff3fcc5af9c00581f08` |
+| Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
+| Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
+| Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
+| Permissions | `INTERNET`, `VIBRATE`, and Capacitor's dynamic-receiver permission. No camera, microphone, location, contacts or storage |
+| iOS `.ipa` | **not built.** macOS and Xcode are unavailable here, and no path in this repository renames anything to `.ipa` |
+
+The version and the signature are read back out of the built package with
+`aapt2 dump badging` and `apksigner verify --print-certs` rather than taken from
+the build script's intention — `versionCode='4' versionName='1.0.2'`, v2 true,
+v3 true, v1 false.
+
+**The iOS position, stated exactly.** The Xcode project, both build
+configurations, the Info.plist, the asset catalogues and the synced web bundle
+are all present and current in `result/ios-project/`. What is missing is a
+machine that can compile them. On macOS with Xcode:
+
+```
+cd result/ios-project/App
+xcodebuild -workspace App.xcworkspace -scheme App \
+  -configuration Release -archivePath build/App.xcarchive archive
+xcodebuild -exportArchive -archivePath build/App.xcarchive \
+  -exportOptionsPlist ExportOptions.plist -exportPath build/ipa
+```
+
+No archive exists on this tree and none is claimed. `result/BUILD_OR_SIGNING_BLOCKERS.md`
+carries the same statement beside the artefacts themselves.
+
+**Physical devices remain unverified.** The Android checks in this pass ran in
+headless Chromium at phone viewports and against the installed APK's own bundle;
+no build was installed on a physical handset. Emulator and desktop-browser
+evidence is not device evidence and is not presented as any. The matrix that
+would close it: a 320 px-class Android (Galaxy A-series or similar) at 100% and
+200% text, a 412 px Android, an iPhone SE and an iPhone Pro Max, each in light
+and dark, walking the alphabet lesson, a vocabulary sitting, the Numbers course
+and the Level Test.
+
+## 20L.12 What this pass did not fix
 
 **`I-04` — 3,333 words of a stated 10,000.** No words were added. The audit that
 would have justified a batch found the opposite problem: the words a beginner
@@ -4365,10 +4418,12 @@ screens, 256 locale screens, and the 118 journeys. The letters are checked
 against a face the app does not draw, and the conjugation panel against a
 reading of all 1,509 predicates.
 
-**Why not releasable from this tree.** The tree is uncommitted, so the
-artefacts in `result/` are built from source that no commit names;
-`release:current` says so and was not weakened. And four limitations are real,
-none is a defect, and a buyer is entitled to know each of them before release:
+**Why not releasable from this tree.** The commit problem is fixed: this
+edition's artefacts were built from a clean checkout of a named commit, at
+versionCode 4 because 3 was spent, and `release:current` was not weakened to
+say so. What remains are five limitations. None is a defect, all five are
+things a buyer is entitled to know before release, and the fifth is new to this
+edition:
 
 1. **3,333 taught words against a stated target of 10,000.** The store copy
    states the shipping figure in all eight languages, so the product does not
@@ -4383,14 +4438,22 @@ none is a defect, and a buyer is entitled to know each of them before release:
    is the evidence that this matters and not a formality, and the strings this
    pass rewrote joined the unread surface rather than shrinking it.
 4. **No physical device has run this binary**, and no human has used the
-   product.
+   product. §20L.11 states the device matrix that would close it.
+5. **The difficulty model still mis-scores a class of word** (`I-126`).
+   Eighteen first-semester words that it had put at levels 7 to 14 were moved
+   by hand this pass; the weight that put them there is unchanged, so the next
+   batch of antonym pairs lands in the same place. It is open, not hidden, and
+   the eighteen overrides each name the cause.
 
-**What would change the verdict.** A commit of this tree and a rebuild so
-`release:current` is green; a native reading of Korean and of the twenty
-complete content locales; and one hour with the app on a real mid-range Android
-phone. Neither is available from this machine, and neither is an engineering
-task. The photograph that opened this cycle is the argument: a person looking at
-the running product for one minute found what four green suites had not.
+**What would change the verdict.** A native reading of Korean and of the twenty
+complete content locales; one hour with the app on a real mid-range Android
+phone; and the model correction behind `I-126`. The first two are not available
+from this machine and neither is an engineering task. The screenshots that
+opened this cycle are the argument, again and more sharply than last time: a
+person looking at the running product found a badge covering the letter it
+labelled, a course whose lessons would not open, and a hint that ruled nothing
+out — none of which any of the forty green gates could see, because none of them
+had been asked to look at what was on the screen.
 
 <!-- issues:next -->
 
