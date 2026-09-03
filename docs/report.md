@@ -253,7 +253,7 @@ Fourteen formal and academic nouns, twelve modern adult-life words (대출,
 전세, 야근, 회식, 맞벌이), twenty-four advanced verbs, ten adjectives, six
 adverbs and twelve common 사자성어 — all authored by hand with meanings in the
 eight pack languages plus Thai and Vietnamese, recordings in both voices, and
-every gate run. 69 of the 78 land at levels 28–30, which now hold 478 words
+every gate run. 69 of the 78 land at levels 28–30, which now hold 477 words
 (from 417) — about seven weeks of new material for a learner placed at 30.
 I-79 stays open, and it is again honestly smaller than it was. The
 conjugation-display ledger was re-read after the batch, exactly as its footer
@@ -3438,7 +3438,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,202 across 65 files** — handwriting-core 96, korean-morphology 216, web 890 (57 of them the Numbers journeys, negative tests, migration fixtures and exercise-engine tests of §20K) |
+| Unit and integration tests | **1,288 across 73 files** — handwriting-core 96, korean-morphology 216, web 976 (57 of them the Numbers journeys, negative tests, migration fixtures and exercise-engine tests of §20K) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -4861,9 +4861,10 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,202 unit cases across three packages — 890
-web, 216 Korean morphology, 96 handwriting — 362 end-to-end, 143 rendered
-screens, 256 locale screens, and the 118 journeys. The letters are checked
+The suites run green in full: 1,288 unit cases across three packages — 976
+web, 216 Korean morphology, 96 handwriting — 446 end-to-end, 143 rendered
+screens, 256 locale screens, 199 reachable-action measurements, and the 118
+journeys. The letters are checked
 against a face the app does not draw, and the conjugation panel against a
 reading of all 1,509 predicates.
 

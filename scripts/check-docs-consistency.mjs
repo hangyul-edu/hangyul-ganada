@@ -214,6 +214,24 @@ const METRICS = {
      */
     patterns: [/\|\s*Web unit \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g],
   },
+  /*
+   * The three packages added up, because the verdict states the total.
+   *
+   * It said 1,202 against an actual 1,288, and no per-package figure was wrong
+   * — the sum simply was not derived from anything. A figure a document reaches
+   * by arithmetic is exactly as capable of going stale as one it copies.
+   */
+  unitTestsAllPackages: {
+    value:
+      countVitest('apps/web') +
+      countVitest('packages/korean-morphology') +
+      countVitest('packages/handwriting-core'),
+    what: 'unit cases across all three packages',
+    patterns: [
+      /\|\s*Unit and integration tests\s*\|\s*\*{0,2}([\d,]+)\*{0,2} across \d+ files/g,
+      /suites run green in full: ([\d,]+) unit cases/g,
+    ],
+  },
   handwritingTests: {
     value: countVitest('packages/handwriting-core'),
     what: 'handwriting-core test cases',
@@ -329,6 +347,9 @@ const METRICS = {
     patterns: [
       /\|\s*Words at levels 28–30\s*\|\s*([\d,]+)\s*\|/g,
       /[Ll]evels 28–30(?: now)? hold \*{0,2}([\d,]+)\*{0,2} words/g,
+      // "levels 28–30, which now hold 477 words" — the clause the first pattern
+      // could not see, and the shape the executive summary happened to use.
+      /levels 28–30, which now hold \*{0,2}([\d,]+)\*{0,2} words/g,
     ],
   },
   issuesTracked: {
