@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `f731bd43` on branch `main`, **with a clean working tree at
+**Source:** commit `b74e1543` on branch `main`, **with a clean working tree at
 the moment the packages were compiled**. This is the line that was wrong last
 time and is the reason `I-01` was reopened: the previous artefacts recorded
 `"dirty": true` beside their commit, with 440 changed and 595 untracked files,
@@ -20,7 +20,7 @@ it counts are the delivery files themselves. What matters — that no
 *product* file differs from the commit — is what `release:current` checks and
 reports, and it is green.
 
-Rebuilt four times over this pass as later commits landed, and the digests
+Rebuilt five times over this pass as later commits landed, and the digests
 below are the last of them — the fourth because backup and restore landed after
 the third, which is exactly the case `version:check` now refuses to let past as
 a reused versionCode. The level-test bank, `curriculum.json` and
@@ -73,16 +73,16 @@ each has exactly one defensible answer.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, **versionCode 5**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
-| Why 5 | versionCode 4 was spent by the artefact this one replaces, and these are different bytes — the backup and restore feature landed after it. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
-| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 5, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
+| Package | `com.talkhangyul.ganada`, **versionCode 6**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
+| Why 6 | versionCodes 4 and 5 are spent, each by an artefact that was actually produced — 5 by the build that carried backup and restore, 6 by this one, which adds the two gates over it. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
+| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 6, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
 
 ## What was run against this tree, after the last product edit
 
 | Suite / gate | Result |
 | --- | --- |
 | `npm run verify:release` | **every step green.** The chain caught three generated artefacts that had gone stale under the corpus change — the level-test bank, `curriculum.json` and `relations.json` — and one end-to-end fixture I had written against an assumption rather than the code; each was fixed and the chain re-run from the top. `vocabulary:qa:target` reports the corpus deficit as **INFORMATIONAL** and exits 0, and `release:current` is green with both delivery manifests at HEAD |
-| Web unit (`vitest`) | **966 passed** (64 files) |
+| Web unit (`vitest`) | **976 passed** (64 files) |
 | Korean morphology | **216 passed** |
 | Handwriting core | **96 passed** |
 | End-to-end (`playwright`) | **368 passed**, 184 × 2 projects — including 8 Numbers journeys. Run twice end to end: 367 of 368 the first time and 368 of 368 the second, with the same code. The one failure was a flake — the review hub’s save test, which passes alone and in order — and it is hardened rather than re-run away: it now waits for the write to reach IndexedDB before a cold load, because the stores are written optimistically and a navigation inside that window aborts the transaction |
@@ -95,7 +95,7 @@ each has exactly one defensible answer.
 | `npm run vocabulary:level:audit -- --check` | all 30 levels: every zone at or above a fortnight, every entry with an example, an English meaning and a recording |
 | `npm run numbers:qa:check` | 6 modules · 19 lessons · 97 items · 9 kinds · 0 problems; 148 clips present, 0 synthesised; 270 × 32 keys, 0 identical to English |
 | `npm run hints:qa:check` | 442,694 rendered rungs in 32 languages — 0 answer-leaking, 0 that rule nothing out |
-| `npm run audio:qa` | 13,738 voice slots over 13,618 files, **0 errors, 0 warnings** |
+| `npm run audio:qa` | 13,728 voice slots over 13,608 files, **0 errors, 0 warnings** |
 | `npm run i18n:check`, `copy:audit:check`, `locale:editorial:check` | pass — **0 errors, 0 warnings** on the copy audit |
 | `npm run locale:content:check` | 20 languages complete at 3,333 words, 12 at the 609-word band; levels 1–3 complete in all 32 |
 | `npm run leveltest:locale:check` | 32 languages; no answer option in any language resolved from another |
@@ -122,8 +122,8 @@ lesson, a vocabulary sitting, the Numbers course and the Level Test.
 ## Checksums
 
 ```
-87843cc234bb915741ed464ae1c861dbd056e01beac63dc2e2e151c699530951  hangyul-ganada-release.apk
-9ac65faaee79980e085cc0ff0f951f06ebcdb3306b0c989d37a6e2a130d5cab9  hangyul-ganada-release.aab
+667018831cef024e9fa333f7fbae63ac9b8de60660b580386932909af44d1231  hangyul-ganada-release.apk
+87fd192f994bc1faf1f6295e6cfa4bfd8b20c3853d794429622c4b1f6782f71f  hangyul-ganada-release.aab
 5ce4cb8c3f8fd6ff9fcf72519214cb3c3439521926a7711fe02a921dbde91a99  docs/report.pdf
-73c110dc88c88cb258579d069590a6b76e0c2d15cecfb22140c58057a80fe946  build-info.json
+88e1c84f1500ed1578948e9cb007521aab0c744cfcf7fb477a59af0216822712  build-info.json
 ```

@@ -1320,7 +1320,7 @@
       "note": "Deterministic only. Two glosses that mean the same thing while reading differently — “to begin” against “to start” — are not catchable by string comparison; `translation:semantics`, `vocabulary:sense:qa` and the native review (I-17) are where that lives."
     },
     {
-      "id": "I-127",
+      "id": "I-128",
       "area": "Persistence",
       "severity": "P1",
       "status": "RESOLVED",

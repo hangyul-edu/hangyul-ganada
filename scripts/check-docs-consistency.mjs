@@ -39,6 +39,17 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const check = process.argv.includes('--check');
+/**
+ * Without `--check`, the documents are *rewritten* from the derived values.
+ *
+ * The brief that produced this asked for report figures to be generated from
+ * one source rather than typed and then reconciled by hand, and a gate that
+ * only reports a mismatch still leaves a person editing numbers in prose — the
+ * activity that produced every drift this file exists to catch. So the default
+ * run fixes what it finds and prints what it changed, and `--check` is the
+ * read-only form that belongs in `verify:release`.
+ */
+const WRITE = !check;
 /** Test counts cost a minute to establish honestly. `--no-tests` skips them. */
 const withTests = !process.argv.includes('--no-tests');
 
@@ -135,6 +146,14 @@ const megabytes = (extension) => {
 };
 
 const curriculum = JSON.parse(read('content/curriculum.json'));
+
+/*
+ * The Numbers course, from the module the app renders rather than from a
+ * generated copy of it — there is no generated copy. Imported through `tsx`,
+ * which is why this script is run with it; `numbers:qa` does the same for the
+ * same reason.
+ */
+const numbers = await import('../apps/web/src/data/numbers.ts');
 const playwright = countPlaywright();
 
 const METRICS = {
@@ -337,6 +356,23 @@ const METRICS = {
     what: 'dictionary headwords',
     patterns: [/\|\s*Dictionary headwords\s*\|\s*([\d,]+)\s*\|/g],
   },
+  numbersLessons: {
+    value: numbers.NUMBER_LESSONS.length,
+    what: 'Numbers lessons',
+    patterns: [
+      /\|\s*Numbers lessons\s*\|\s*([\d,]+)\s*\|/g,
+      /\*\*([\d,]+) lessons\*\* in the Numbers course/g,
+      /six modules, ([\d,]+) lessons/g,
+    ],
+  },
+  numbersItems: {
+    value: numbers.NUMBER_ITEMS.length,
+    what: 'Numbers items taught',
+    patterns: [
+      /\|\s*Numbers items\s*\|\s*([\d,]+)\s*\|/g,
+      /([\d,]+) items across the Numbers course/g,
+    ],
+  },
   relationsWords: {
     value: JSON.parse(read('content/vocabulary/relations.json')).counts.words_with_relations,
     what: 'taught words carrying a verified lexical relation',
@@ -357,6 +393,7 @@ const DOCUMENTS = [
 ];
 
 const problems = [];
+const updates = [];
 let checked = 0;
 
 // --- the canonical metrics artifact (docs/report-metrics.json) ---------------
@@ -393,6 +430,23 @@ let checked = 0;
   writeFileSync(join(ROOT, 'docs/report-metrics.json'), JSON.stringify(artifact, null, 1) + '\n');
 }
 
+/**
+ * Writes the derived value back into a claim, keeping the claim's own spelling.
+ *
+ * `13,608` and `13608` are the same figure written for two different readers —
+ * a table cell and a sentence — and rewriting one into the other would churn
+ * the document every run. So the replacement copies the grouping of the text it
+ * replaces.
+ */
+function asWritten(previous, value) {
+  const grouped = new Intl.NumberFormat('en-US').format(value);
+  return previous.includes(',') || (previous.includes('.') && !Number.isInteger(value))
+    ? grouped
+    : String(value);
+}
+
+const rewritten = new Map();
+
 for (const [name, metric] of Object.entries(METRICS)) {
   if (metric.value === null) {
     console.log(`· ${name.padEnd(14)} — not built yet, skipped`);
@@ -402,8 +456,16 @@ for (const [name, metric] of Object.entries(METRICS)) {
   const found = [];
   for (const document of DOCUMENTS) {
     if (!exists(document)) continue;
-    const text = read(document);
+    const text = rewritten.get(document) ?? read(document);
     const lines = text.split('\n');
+    /*
+     * Collected first, applied afterwards.
+     *
+     * A replacement shifts every later index in the string, so rewriting inside
+     * the `exec` loop would corrupt the second match of the same pattern. The
+     * edits are gathered with their positions and applied from the end.
+     */
+    const edits = [];
     for (const pattern of metric.patterns) {
       pattern.lastIndex = 0;
       let match;
@@ -413,12 +475,25 @@ for (const [name, metric] of Object.entries(METRICS)) {
         checked += 1;
         found.push({ document, line, claimed });
         if (claimed !== canonical) {
-          problems.push(
-            `${document}:${line} claims ${name} = ${match[1]}, source says ${canonical}\n` +
-              `    ${lines[line - 1]?.trim().slice(0, 120)}`,
-          );
+          if (WRITE) {
+            const at = match.index + match[0].indexOf(match[1]);
+            edits.push({ at, length: match[1].length, text: asWritten(match[1], metric.value) });
+          } else {
+            problems.push(
+              `${document}:${line} claims ${name} = ${match[1]}, source says ${canonical}\n` +
+                `    ${lines[line - 1]?.trim().slice(0, 120)}`,
+            );
+          }
         }
       }
+    }
+    if (edits.length) {
+      let updated = text;
+      for (const edit of edits.sort((a, b) => b.at - a.at)) {
+        updated = updated.slice(0, edit.at) + edit.text + updated.slice(edit.at + edit.length);
+      }
+      rewritten.set(document, updated);
+      updates.push(`${document}: ${edits.length} × ${name} → ${canonical}`);
     }
   }
   /*
@@ -449,6 +524,131 @@ for (const [name, metric] of Object.entries(METRICS)) {
   console.log(
     `${ok ? '✓' : '✗'} ${name.padEnd(14)} ${String(canonical).padStart(7)}  ${metric.what} — ${where}`,
   );
+}
+
+/*
+ * Four rules that are not "one figure, stated twice".
+ *
+ * Everything above compares a number in a document against the same number
+ * derived from source. These four compare *documents against artefacts* — the
+ * class of contradiction that produced an audit-metadata block reading
+ * versionCode 3 and an uncommitted tree while the verdict eight hundred lines
+ * later claimed a clean commit at versionCode 4. No pattern over prose can
+ * catch that, because neither statement is a figure the other repeats.
+ */
+{
+  const buildInfoPath = 'result/build-info.json';
+  if (exists(buildInfoPath)) {
+    const info = JSON.parse(read(buildInfoPath));
+
+    // 1 · the manifest against the binary it describes.
+    const sdk = process.env.ANDROID_HOME ?? join(process.env.HOME ?? '', 'android-sdk');
+    const aapt2 = join(sdk, 'build-tools/36.0.0/aapt2');
+    const apk = join(ROOT, 'result/hangyul-ganada-release.apk');
+    if (existsSync(aapt2) && existsSync(apk)) {
+      try {
+        const badging = execFileSync(aapt2, ['dump', 'badging', apk], { encoding: 'utf8', maxBuffer: 1 << 24 });
+        const code = /versionCode='(\d+)'/.exec(badging)?.[1];
+        const name = /versionName='([^']+)'/.exec(badging)?.[1];
+        if (code && Number(code) !== info.android.version_code) {
+          problems.push(
+            `${buildInfoPath} says versionCode ${info.android.version_code}, but the APK it describes is ${code}`,
+          );
+        }
+        if (name && name !== info.android.version_name) {
+          problems.push(
+            `${buildInfoPath} says versionName ${info.android.version_name}, but the APK it describes is ${name}`,
+          );
+        }
+      } catch {
+        // aapt2 present but unhappy: not this gate's failure to report.
+      }
+    }
+
+    // 2 · every commit a document names for the delivered build.
+    const shortBuilt = String(info.commit ?? '').slice(0, 8);
+    for (const document of ['docs/report.md', 'result/RELEASE_VALIDATION.md']) {
+      if (!exists(document)) continue;
+      const text = rewritten.get(document) ?? read(document);
+      for (const match of text.matchAll(/\*\*Source:\*\* commit `([0-9a-f]{7,40})`/g)) {
+        if (!match[1].startsWith(shortBuilt) && !shortBuilt.startsWith(match[1])) {
+          problems.push(
+            `${document} names commit ${match[1]} as the source of the delivered build; ` +
+              `${buildInfoPath} was built from ${shortBuilt}`,
+          );
+        }
+      }
+    }
+
+    // 3 · a document may not call the tree clean while a product file differs.
+    const claimsClean = ['docs/report.md', 'result/RELEASE_VALIDATION.md'].filter(
+      (document) =>
+        exists(document) && /clean working tree|working tree clean|from a clean checkout/i.test(rewritten.get(document) ?? read(document)),
+    );
+    if (claimsClean.length > 0) {
+      const notProduct = [/^docs\//, /^result\//, /^app_result\//, /^README\.md$/, /^\.gitattributes$/, /^\.gitignore$/];
+      let dirtyProduct = [];
+      try {
+        dirtyProduct = execFileSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' })
+          .split('\n')
+          .map((line) => /^..\s+(?:.*? -> )?(.*)$/.exec(line)?.[1] ?? '')
+          .filter(Boolean)
+          .filter((file) => !notProduct.some((pattern) => pattern.test(file)));
+      } catch {
+        dirtyProduct = [];
+      }
+      if (dirtyProduct.length > 0) {
+        problems.push(
+          `${claimsClean.join(' and ')} calls the tree clean, but ${dirtyProduct.length} product file(s) differ — ` +
+            `${dirtyProduct.slice(0, 4).join(', ')}`,
+        );
+      }
+    }
+  }
+
+  // 4 · no issue may hold two statuses at once.
+  const ledger = JSON.parse(read('docs/issues.json'));
+  const seen = new Map();
+  for (const issue of ledger.issues) {
+    if (seen.has(issue.id) && seen.get(issue.id) !== issue.status) {
+      problems.push(`docs/issues.json lists ${issue.id} as both ${seen.get(issue.id)} and ${issue.status}`);
+    } else if (seen.has(issue.id)) {
+      problems.push(`docs/issues.json lists ${issue.id} twice`);
+    }
+    seen.set(issue.id, issue.status);
+    if (!Object.keys(ledger.statuses).includes(issue.status)) {
+      problems.push(`docs/issues.json gives ${issue.id} the status ${issue.status}, which is not in the vocabulary`);
+    }
+  }
+  /*
+   * And the report's own tables, which are generated from that ledger and could
+   * still disagree with it if somebody edited one by hand — which is exactly
+   * what "an issue simultaneously open and resolved" would look like to a
+   * reader.
+   */
+  if (exists('docs/report.md')) {
+    const text = rewritten.get('docs/report.md') ?? read('docs/report.md');
+    for (const [, id, stated] of text.matchAll(/\|\s*\*\*(I-\d+)\*\*[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|\s*\*\*(OPEN|PARTIAL|RESOLVED|BLOCKED)\*\*\s*\|/g)) {
+      const actual = seen.get(id);
+      if (actual && actual !== stated) {
+        problems.push(`docs/report.md shows ${id} as ${stated}; docs/issues.json has it as ${actual}`);
+      }
+    }
+  }
+}
+
+/*
+ * The rewrites, flushed once at the end.
+ *
+ * Held in memory until here so a document mentioned by several metrics is
+ * written once rather than once per metric, and so a run that throws part-way
+ * leaves the documents untouched rather than half-updated.
+ */
+if (WRITE && rewritten.size > 0) {
+  const { writeFileSync: write } = await import('node:fs');
+  for (const [document, text] of rewritten) write(join(ROOT, document), text);
+  console.log(`\nRewrote ${rewritten.size} document(s) from source:`);
+  for (const update of updates) console.log(`  ${update}`);
 }
 
 console.log(`\n${checked} figure(s) checked across ${DOCUMENTS.filter(exists).length} document(s).`);
