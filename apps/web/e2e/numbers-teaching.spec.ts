@@ -96,47 +96,11 @@ test.describe('the explanation is shown, not narrated', () => {
   });
 });
 
-test.describe('a wrong answer is told it is wrong, once', () => {
-  /** Answers the current question deliberately wrongly, and returns the verdict. */
-  async function answerWrongly(page: Page) {
-    const options = page.getByRole('group').getByRole('button');
-    await expect(options.first()).toBeVisible();
-    const count = await options.count();
-    // Every option is a candidate; the wrong one is whichever is not marked
-    // correct afterwards, so tap and then read. Tapping the last option keeps
-    // this deterministic without needing to know the answer.
-    await options.nth(count - 1).click();
-  }
-
-  test('says 틀렸어요 and does not restate the answer', async ({ page }) => {
-    await openApp(page, SINO_BASICS);
-    await page.getByTestId('numbers-start').click();
-    // Straight through the teaching to the practice.
-    for (let i = 0; i < 12; i += 1) {
-      const next = page.getByRole('button', {
-        name: new RegExp(
-          `${copy('numbers', 'action.next')}|${copy('numbers', 'action.beginPractice')}|${copy('numbers', 'action.continue')}`,
-        ),
-      });
-      if (await page.getByRole('group').getByRole('button').first().isVisible().catch(() => false)) break;
-      await next.first().click();
-    }
-
-    await answerWrongly(page);
-
-    const feedback = page.locator('[data-testid=numbers-phase-practice]');
-    const text = (await feedback.innerText()) ?? '';
-    const verdict = copy('numbers', 'feedback.incorrect');
-
-    // Either the verdict is there, or the tap happened to be right — in which
-    // case the correct verdict is, and neither may restate the answer.
-    expect(
-      text.includes(verdict) || text.includes(copy('numbers', 'feedback.correct')),
-    ).toBe(true);
-
-    // The soft verdict is gone from the product entirely.
-    expect(text).not.toContain('조금 달라요');
-    // And so is the label that introduced the restatement.
-    expect(text).not.toContain('정답은');
-  });
-});
+/*
+ * The wrong-answer rules are asserted in `numbers.spec.ts`, against the
+ * lesson's own exercise data rather than by walking the phases blind:
+ * N-e2e-5 now asserts that the feedback does *not* restate the answer, and
+ * N-e2e-5c that 조금 달라요 is gone from the rendered product. A second,
+ * looser copy of those here was reaching for the option group before the
+ * practice phase had opened, which is a flaky test of nothing.
+ */

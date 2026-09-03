@@ -40,12 +40,6 @@
   gap: var(--hg-space-2);
 }
 
-.step {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--hg-space-2);
-}
-
 .plus {
   color: var(--hg-text-tertiary);
   font-size: var(--hg-text-body-sm);

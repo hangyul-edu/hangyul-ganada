@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { NumberItem } from '@hangyul-ganada/shared-types';
 
@@ -72,16 +73,25 @@ export function NumberBreakdown({ item }: { item: NumberItem }) {
 
       <div className={styles.parts} role="list" aria-label={t('numbers:breakdown.parts')}>
         {parts.map((part, at) => (
-          <span key={`${part.korean}-${at}`} className={styles.step} role="listitem">
+          <Fragment key={`${part.korean}-${at}`}>
+            {/*
+              The join sits *between* the chips, not inside one.
+
+              It was a child of the list item, which made the item's text
+              content "+일" — decorative to a sighted reader, part of the word
+              to anything reading the tree. `role="presentation"` and
+              `aria-hidden` together keep it out of the list and out of the
+              accessibility tree, so a list item is exactly one morpheme.
+            */}
             {at > 0 && (
-              <span className={styles.plus} aria-hidden="true">
+              <span className={styles.plus} role="presentation" aria-hidden="true">
                 +
               </span>
             )}
-            <span className={styles.chip} data-place={place(part.place)} lang="ko">
+            <span className={styles.chip} data-place={place(part.place)} role="listitem" lang="ko">
               {part.korean}
             </span>
-          </span>
+          </Fragment>
         ))}
       </div>
 

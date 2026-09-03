@@ -231,8 +231,22 @@ test.describe('the Numbers course', () => {
       await body.getByRole('group').getByRole('button', { name: optionText(first, wrongIndex), exact: true }).click();
       const status = body.getByRole('status');
       await expect(status).toContainText(en('feedback.incorrect'));
-      await expect(status).toContainText(en('feedback.answerWas'));
-      await expect(status).toContainText(optionText(first, first.answer));
+      /*
+        And nothing else about *which* answer was right.
+
+        This used to assert `feedback.answerWas` and the correct option's text,
+        pinning a line — `정답은 8` — that said for the third time what the
+        screen had already said twice: the tapped option carries a red cross,
+        the right one a blue tick, and both marks carry their own
+        screen-reader text on the option itself. On a bare numeral question,
+        where there is no rule to explain either, it was the only thing in the
+        feedback box.
+
+        The assertion is inverted rather than dropped, because "the screen does
+        not restate the answer" is the property that was wanted and the old
+        line is exactly what would come back.
+      */
+      await expect(status).not.toContainText(optionText(first, first.answer));
       /*
        * A wrong answer always gets a body, and it is the line written for the
        * mistake when the distractor carries one.
@@ -258,6 +272,19 @@ test.describe('the Numbers course', () => {
       const buttons = body.getByRole('group').getByRole('button');
       for (let i = 0; i < (await buttons.count()); i += 1) await expect(buttons.nth(i)).toBeDisabled();
     }
+  });
+
+  test('N-e2e-5c · the soft verdict is gone from the product', async ({ page }) => {
+    /*
+      조금 달라요 — "it's a little different" — softened a judgement the screen
+      had already delivered in red, leaving a learner to work out whether it
+      counted. Asserted against the shipped bundle rather than the source, so a
+      string reintroduced anywhere that renders is caught.
+    */
+    await openApp(page, `/letters/numbers/${FIRST.id}`);
+    const body = await page.locator('body').innerText();
+    expect(body).not.toContain('조금 달라요');
+    expect(en('feedback.incorrect')).not.toBe('조금 달라요');
   });
 
   test('N-e2e-5b · a correct answer says 맞았어요 and nothing a learner already knows', async ({ page }) => {
