@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `cdac06ad` on branch `main`, **with a clean working tree at
+**Source:** commit `f731bd43` on branch `main`, **with a clean working tree at
 the moment the packages were compiled**. This is the line that was wrong last
 time and is the reason `I-01` was reopened: the previous artefacts recorded
 `"dirty": true` beside their commit, with 440 changed and 595 untracked files,
@@ -20,8 +20,10 @@ it counts are the delivery files themselves. What matters — that no
 *product* file differs from the commit — is what `release:current` checks and
 reports, and it is green.
 
-Rebuilt three times over this pass as later commits landed, and the digests
-below are the last of them. The level-test bank, `curriculum.json` and
+Rebuilt four times over this pass as later commits landed, and the digests
+below are the last of them — the fourth because backup and restore landed after
+the third, which is exactly the case `version:check` now refuses to let past as
+a reused versionCode. The level-test bank, `curriculum.json` and
 `relations.json` are all derived from the taught corpus and all three went
 stale when eighteen words were re-levelled; each was caught by a step of
 `verify:release` rather than by remembering, and each is regenerated here.
@@ -29,8 +31,10 @@ stale when eighteen words were re-levelled; each was caught by a step of
 **Built:** 3 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, Node v24.19.0.
 
-**This supersedes the earlier v1.0.2 validation.** Those artefacts carried
-versionCode 3 and were built from an uncommitted tree; both are corrected here.
+**This supersedes the earlier v1.0.2 validations.** The first carried versionCode
+3 and was built from an uncommitted tree; the second carried versionCode 4 and
+predates the backup and restore feature. Both are superseded by versionCode 5,
+built from a committed tree.
 
 ---
 
@@ -69,16 +73,16 @@ each has exactly one defensible answer.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, **versionCode 4**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
-| Why 4 | versionCode 3 was spent by the previous artefact. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version and no longer does |
-| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 4, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
+| Package | `com.talkhangyul.ganada`, **versionCode 5**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
+| Why 5 | versionCode 4 was spent by the artefact this one replaces, and these are different bytes — the backup and restore feature landed after it. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
+| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 5, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
 
 ## What was run against this tree, after the last product edit
 
 | Suite / gate | Result |
 | --- | --- |
 | `npm run verify:release` | **every step green.** The chain caught three generated artefacts that had gone stale under the corpus change — the level-test bank, `curriculum.json` and `relations.json` — and one end-to-end fixture I had written against an assumption rather than the code; each was fixed and the chain re-run from the top. `vocabulary:qa:target` reports the corpus deficit as **INFORMATIONAL** and exits 0, and `release:current` is green with both delivery manifests at HEAD |
-| Web unit (`vitest`) | **935 passed** (60 files) |
+| Web unit (`vitest`) | **966 passed** (64 files) |
 | Korean morphology | **216 passed** |
 | Handwriting core | **96 passed** |
 | End-to-end (`playwright`) | **368 passed**, 184 × 2 projects — including 8 Numbers journeys. Run twice end to end: 367 of 368 the first time and 368 of 368 the second, with the same code. The one failure was a flake — the review hub’s save test, which passes alone and in order — and it is hardened rather than re-run away: it now waits for the write to reach IndexedDB before a cold load, because the stores are written optimistically and a navigation inside that window aborts the transaction |
@@ -95,13 +99,15 @@ each has exactly one defensible answer.
 | `npm run i18n:check`, `copy:audit:check`, `locale:editorial:check` | pass — **0 errors, 0 warnings** on the copy audit |
 | `npm run locale:content:check` | 20 languages complete at 3,333 words, 12 at the 609-word band; levels 1–3 complete in all 32 |
 | `npm run leveltest:locale:check` | 32 languages; no answer option in any language resolved from another |
-| `npm run docs:consistency:check`, `issues:check` | pass — 126 issues: 7 open, 3 partial, 1 blocked, 115 resolved |
+| `npm run docs:consistency:check`, `issues:check` | pass — 127 issues: 6 open, 3 partial, 1 blocked, 117 resolved |
 | `npm run vocabulary:qa:target` | **INFORMATIONAL** — 3,333 headwords, 6,667 short of the 10,000 target (I-04) |
 
-Six gates were negative-tested by restoring the behaviour they exist to catch,
-and all six failed as they should: the marker placement, the legal isolation,
-the Numbers copy register, the assembly-tray guard, a self-answering gloss, and
-the reused versionCode.
+Seven gates were negative-tested by restoring the behaviour they exist to catch,
+and all seven failed as they should: the marker placement, the legal isolation,
+the Numbers copy register, the assembly-tray guard, a self-answering gloss, the
+reused versionCode, and — added this round — the six-of-eight store list behind
+*Clear everything you have learned*, whose test names the store still holding
+rows when the old implementation is put back.
 
 ## On a device — NOT RUN THIS REFRESH
 
@@ -116,8 +122,8 @@ lesson, a vocabulary sitting, the Numbers course and the Level Test.
 ## Checksums
 
 ```
-87c8a1bfc62ba3681bbfbf6edf8c4fe9ebb3ec41f856ecbc2c89956ae129f3b2  hangyul-ganada-release.apk
-e9ae68d41e5f8a2e6899d43d56e2af4c624658e4b7753ac0a04e09f571dc4a66  hangyul-ganada-release.aab
-60ad2e48c8cf6543c6f280f93695681dff93c65fededb0be25197899ac17a5de  docs/report.pdf
-937b10a105451856d6c92618b041fdb18ee4d3a99c55db32cfa331b69224275e  build-info.json
+87843cc234bb915741ed464ae1c861dbd056e01beac63dc2e2e151c699530951  hangyul-ganada-release.apk
+9ac65faaee79980e085cc0ff0f951f06ebcdb3306b0c989d37a6e2a130d5cab9  hangyul-ganada-release.aab
+5ce4cb8c3f8fd6ff9fcf72519214cb3c3439521926a7711fe02a921dbde91a99  docs/report.pdf
+73c110dc88c88cb258579d069590a6b76e0c2d15cecfb22140c58057a80fe946  build-info.json
 ```

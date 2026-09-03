@@ -186,12 +186,12 @@
       "id": "I-12",
       "area": "Persistence",
       "severity": "P2",
-      "status": "OPEN",
-      "summary": "No export: clearing site data destroys the history irrecoverably",
+      "status": "RESOLVED",
+      "summary": "No export: clearing site data destroyed the history irrecoverably",
       "customerImpact": "A learner who clears browser data loses everything",
-      "evidence": "A consequence of having no account and device-local persistence. §13.3 of the current report.\n\n**Re-audited 24 August 2026.** Unchanged.  **Re-audited 25 August 2026.** Unchanged; still closed by decision rather than by work.\n\n**Re-audited 26 August 2026.** Unchanged; still closed by decision rather than by work.",
-      "recommendedFix": "None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it.",
-      "effort": "NONE — closed by decision"
+      "evidence": "A consequence of having no account and device-local persistence. §13.3 of the current report.\n\n**Re-audited 24 August 2026.** Unchanged.  **Re-audited 25 August 2026.** Unchanged; still closed by decision rather than by work.\n\n**Re-audited 26 August 2026.** Unchanged; still closed by decision rather than by work.\n\n**Resolved 3 September 2026.** Reopened: \"closed by decision\" was a decision about a *developer-style* JSON export, and the customer impact above was still true of the shipped app. My Learning now carries **Back up** and **Restore**, in all 32 languages, above the Reset it belongs with.\n\n`storage/backup.ts` writes one envelope holding all eight learner stores verbatim — not a curated summary — so a restored install has the same review schedule, wrong-answer notebook and Numbers course, not a reconstruction. `meta` is excluded on purpose: the restore stamps the *backup's* schema version and calls the ordinary `runMigrations`, so an old file is upgraded by the same migrations that upgrade a real old install, and row contents are repaired by the same loaders that repair a launch (`readEverything`, shared by hydration and restore).\n\n`storage/backupFile.ts` is the platform branch, and it is the half that would have shipped broken: Capacitor registers no `DownloadListener`, so an `<a download>` inside the Android WebView is dropped silently. Native saves through `@capacitor/filesystem` to the cache directory and hands the file to the share sheet (`@capacitor/share`); the FileProvider authority and `cache-path` the plugin needs were already in the manifest. Reading a file back needs no branch — Capacitor's `BridgeWebChromeClient` implements `onShowFileChooser`.\n\nThe envelope is validated **before** anything is cleared, so a mis-picked file cannot destroy a learner's progress: `not_json`, `not_a_backup`, `from_a_newer_app` and `empty` each have their own sentence in every language.\n\nEvidence: `apps/web/src/storage/backup.test.ts` (15), `backupFile.test.ts` (6, including the native branch and the missing-plugin fallback), `apps/web/src/pages/backupFlow.test.tsx` (8, the round trip through the screen), and `reset.test.ts` (2). 966 web unit tests pass.",
+      "recommendedFix": "Done. What remains is not a defect: a file the learner never saves cannot restore them, and there is deliberately no cloud copy — that is the product's privacy promise, and the Privacy screen now states in all 32 languages that a saved copy is a file they hold and the app sends it nowhere.",
+      "effort": "DONE"
     },
     {
       "id": "I-13",
@@ -1318,6 +1318,17 @@
       "evidence": "`answerability` generates every question the app can produce — 32 languages × 3,333 words × 6 modes × 3 attempts, plus 73 characters and 19 Numbers lessons, **806,270 questions** — by calling the same functions the app calls, and checks that exactly one option answers each. It found 2,000 trays that spell a synonym, 45 Korean prompts containing their own answer, and 0 of everything else. Fixed in the product: `buildExercise` refuses a tray that spells a taught word with the same meaning *in that learner’s language*, which costs 0.64% of build questions and 249 words in a handful of languages each; and 17 Korean glosses that reached for the word they define were rewritten. Negative-tested twice — remove the tray guard and it reports 2,000, restore one self-answering gloss and it reports that word — both exit 1.",
       "recommendedFix": "done",
       "note": "Deterministic only. Two glosses that mean the same thing while reading differently — “to begin” against “to start” — are not catchable by string comparison; `translation:semantics`, `vocabulary:sense:qa` and the native review (I-17) are where that lives."
+    },
+    {
+      "id": "I-127",
+      "area": "Persistence",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "“Clear everything you have learned” left the wrong-answer notebook and the Numbers course on disk",
+      "customerImpact": "A learner who cleared their data watched it come back on the next launch, on the one screen whose subject is what happens to their data",
+      "evidence": "Found on 3 September 2026 while reading `clearEverything` for the restore semantics of I-12.\n\n`clearEverything` held a hand-written list of six stores and the product has eight. `mistakes` and `numbers` were never cleared. `reset()` emptied both in memory, so the screen went blank and looked correct — and the next hydration read them straight back out of storage, because that is where hydration reads them from.\n\nThe Privacy screen says, in every one of the 32 languages, that this button clears everything.\n\nFixed by deriving the list from `STORE_NAMES` minus `meta`, because the defect was not that somebody forgot two stores — it was that forgetting was possible. `meta` is the one deliberate exception: it holds the schema version and migration bookkeeping, and clearing it would make the next launch run every migration again over an empty database.\n\nEvidence: `apps/web/src/storage/reset.test.ts` — the first test fails against the old implementation and names the store that still holds rows.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
     }
   ]
 }

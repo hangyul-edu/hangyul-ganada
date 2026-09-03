@@ -152,9 +152,9 @@ without trusting the row.
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
-| Issues tracked | 126 | `docs/issues.json` |
-| Signed APK | 83.6 MB | `result/build-info.json` |
-| Signed AAB | 81.8 MB | same |
+| Issues tracked | 127 | `docs/issues.json` |
+| Signed APK | 83.8 MB | `result/build-info.json` |
+| Signed AAB | 82.1 MB | same |
 | Tests | 1,247 across 67 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -185,6 +185,21 @@ sentence, a recording in two voices and a meaning in the learner's own language.
 There is no account, no server and no network request during a lesson.
 
 ## What this cycle did
+
+**A learner can now take their practice with them, and Reset finally clears
+everything.** The product has no account and no server — that is what people are
+paying for, and it also meant a new phone or a cleared browser ended three months
+of practice with nobody to appeal to. **Back up** and **Restore** sit on My
+Learning in all thirty-two languages, writing one file that holds every learner
+store verbatim; an old file is carried forward by the *ordinary* migrations
+rather than by a second path, and the file is validated before anything on the
+device is cleared. On a phone it goes through the share sheet, because a
+download started inside the Android WebView is dropped without an error and the
+browser implementation would have shipped as a button that does nothing.
+Reading that code turned up a **P1 that had shipped**: *Clear everything you have
+learned* was clearing six of eight stores, so the wrong-answer notebook and the
+whole Numbers course came back on the next launch, under a Privacy screen that
+promises otherwise in every language. §13.3 and §13.4; I-12 and I-127.
 
 **It re-proved the previous cycle instead of citing it.** The level-change
 journey, the crediting rules, the write serialisation, the 9/10 invariant and
@@ -1148,12 +1163,69 @@ restoring it flips them right. Across the whole 2,581 → 2,916 expansion exactl
 one word was affected before the fix and none after, and the rename never
 shipped.
 
-## 13.3 The remaining exposure — **stated, not solved**
+## 13.3 The exposure that was stated rather than solved — **now solved**
 
-A learner who clears site data loses everything, and there is no export. A
-developer-style JSON export was tried and rejected as customer-facing. What is
-done instead is to keep IndexedDB robust, request persistent storage, and not
-warn ordinary users about a risk they cannot act on (I-12).
+For three audits this section said that a learner who clears site data loses
+everything, that there is no export, and that a developer-style JSON export had
+been tried and rejected as customer-facing. All three sentences were true. The
+conclusion drawn from them was not: *rejected as customer-facing* is a verdict
+on one design, and it had been standing in for a verdict on the feature.
+
+The product has no account and no server, which is the thing people are paying
+for. It also means that a new phone, a reinstall, or a browser that clears site
+data ends three months of practice with nobody to appeal to. Everywhere else
+*your progress is in the cloud* is the unspoken answer; here the answer has to
+be a file, and now it is one.
+
+**Back up** and **Restore** sit on My Learning, directly above Reset, in all
+thirty-two languages. The file holds all eight learner stores verbatim rather
+than a curated summary, so a restored install has the same review schedule, the
+same wrong-answer notebook and the same Numbers course — not a plausible
+reconstruction of them. Three decisions are worth recording:
+
+- **Old backups are migrated by the ordinary migrations.** The restore writes
+  the rows, stamps the *backup's* schema version, and calls `runMigrations`. A
+  second migration path that only ever ran on restores would be a second path to
+  keep correct, and the one that runs on every launch is the one that is
+  actually exercised. Row contents are likewise repaired by the same loaders
+  that repair a launch — `readEverything` is shared by hydration and restore.
+- **The file is validated before anything is cleared.** A learner who picks a
+  photo, or a backup from a newer build, gets the sentence written for that case
+  and keeps their progress. Clearing first and discovering the replacement was
+  unreadable second is the one failure this feature must never have.
+- **The native path is not the web path.** Capacitor registers no
+  `DownloadListener`, so an `<a download>` inside the Android WebView is dropped
+  with no error — the learner taps *Back up*, nothing happens, and the app has
+  silently lied about the one thing standing between them and losing their
+  practice. On a phone the file is written and handed to the system share sheet
+  instead. Reading one back needs no branch: Capacitor's file chooser already
+  works.
+
+What remains is not a defect. A file the learner never saves cannot restore
+them, and there is deliberately no cloud copy — that is the privacy promise, and
+the Privacy screen now says in every language that a saved copy is a file they
+hold and that the app sends it nowhere (I-12).
+
+## 13.4 What reading that code turned up — **P1, and it had shipped**
+
+`clearEverything` held a hand-written list of six stores. The product has eight.
+`mistakes` and `numbers` — the wrong-answer notebook and the entire Numbers
+course — were never cleared. `reset()` emptied both *in memory*, so the screen
+went blank and looked exactly right, and the next launch hydrated both straight
+back out of storage, because that is where hydration reads them from.
+
+The Privacy screen says, in all thirty-two languages, that this button clears
+everything. A learner who cleared their data and watched it return had been told
+something untrue by the one screen in the app whose subject is what happens to
+their data.
+
+The list is now derived from `STORE_NAMES`, because the defect was not that
+somebody forgot two stores; it was that forgetting was possible. `meta` is the
+single deliberate exception — it holds the schema version and the migration
+bookkeeping, and clearing it would make the next launch believe it is a fresh
+install of an old version and run every migration again over an empty database.
+**Negative-tested**: the first test in `reset.test.ts` fails against the old
+implementation and names the store that still holds rows (I-127).
 
 ---
 
@@ -1502,8 +1574,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.6 MB** (87,712,997 B), `87c8a1bfc62ba368…` |
-| Release AAB | **81.8 MB** (85,797,982 B), `e9ae68d41e5f8a2e…` |
+| Release APK | **83.8 MB** (87,831,734 B), `87843cc234bb9157…` |
+| Release AAB | **82.1 MB** (86,039,703 B), `9ac65faaee79980e…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -1562,7 +1634,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **935** (60 files) |
+| Web unit (`vitest`) | **966** (64 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
 | End-to-end (`playwright`) | **368** (184 × 2 projects) |
@@ -3967,12 +4039,14 @@ naming the artefact that spent it.
 | `translation:semantics` · `locale:content` · `vocabulary:sense` · `vocabulary:translation` | green |
 | `content:vocabulary` · `content:corpus` · `content:coverage` | up to date and rebuilt |
 | `typecheck` · `lint` | clean across all workspaces |
-| `version:check` | 1.0.2, build 4, every file agreeing |
+| `version:check` | 1.0.2, build 5, every file agreeing |
 
-Six gates were negative-tested by restoring the behaviour they were written to
-catch, and all six failed as they should: the marker placement, the legal
+Seven gates were negative-tested by restoring the behaviour they were written to
+catch, and all seven failed as they should: the marker placement, the legal
 isolation, the Numbers copy register, the tray guard, a self-answering gloss,
-and the reused versionCode.
+the reused versionCode, and the six-of-eight store list behind *Clear everything
+you have learned* — the last of these written after the defect was found rather
+than before, which is the honest order to record it in (§13.4).
 
 Two things went wrong in the running of that list and are recorded rather than
 tidied away.
@@ -4094,7 +4168,7 @@ it.
 One reading note. The evidence written on a **resolved** issue is a record of
 what was found in the cycle that closed it, and where it cites a section number
 that number is the one the report carried at the time. The report has been
-rewritten since and renumbered; the citations on the 7 open, 3 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
+rewritten since and renumbered; the citations on the 6 open, 3 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
 were deliberately left as written rather than edited into agreement with a
 document they predate.
 
@@ -4104,7 +4178,6 @@ document they predate.
 | --- | --- | --- | --- | --- | --- |
 | **I-01** | Release | **P0** | The shipped APK/AAB were built from a dirty tree, not from any commit | The delivered binary is not a build of anything a reader can check out. `app_result/build-info.json` records the commit as `3833da71` and, in the same file, `source_state.dirty: true` with **440 changed and 595 untracked files** — so the APK contains some mixture of that commit and whatever was in the tree at 12:21 that morning. Nobody can say what shipped, including the person who built it. | **OPEN** |
 | **I-04** | Vocabulary | **P1** | 3,333 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
-| **I-12** | Persistence | **P2** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | **OPEN** |
 | **I-126** | Vocabulary levels | **P2** | The difficulty model calls a word abstract for having an opposite | Eighteen first-semester words sat at levels 7 to 14: 모르다 — the 46th commonest word in the corpus — at 7, 닫다 at 13, 싸다 at 14, 가깝다 멀다 길다 빠르다 at 12 or 13, 맛있다 at 10. Eighteen have been moved by hand; the model that put them there has not changed, so the next batch of antonym pairs will land in the same place. | **OPEN** |
 | **I-13** | Relations | **P2** | 294 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
@@ -4140,6 +4213,7 @@ document they predate.
 | **I-123** | Navigation | **P1** | Seven screens had no visible way back | Home, Letters, Numbers, Words, a word category, Review and My Learning drew no back control. On a phone using gesture navigation there is no system bar either, so those were screens a learner could enter and see no way out of. | **RESOLVED** |
 | **I-125** | Vocabulary levels | **P1** | The absolute beginner had the narrowest teaching band in the product | A learner at level 1 was taught from levels 1–2 — 102 words, ten days of new vocabulary at ten a day before the plan began repeating. A learner at level 30 was taught from 28–30, 478 words. The learner with the least Korean and the least patience for repetition had two thirds of everybody else’s band. | **RESOLVED** |
 | **I-127** | Vocabulary | **P1** | Some questions had two defensible answers | A learner assembling 깨물다 from tiles could spell 물다 instead, and in nine languages the two carry the same gloss — so the screen showed one meaning and two words that matched it, and the grader marked one of them wrong. Separately, a Korean-interface learner asked which word means 저녁에 먹는 밥 was being shown 저녁 in the question. | **RESOLVED** |
+| **I-127** | Persistence | **P1** | “Clear everything you have learned” left the wrong-answer notebook and the Numbers course on disk | A learner who cleared their data watched it come back on the next launch, on the one screen whose subject is what happens to their data | **RESOLVED** |
 | **I-34** | Handwriting | **P1** | The ㄱ taught beside a vowel had a leg a third too short | A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check. | **RESOLVED** |
 | **I-35** | Handwriting | **P1** | Every jamo proportion was measured off a fallback face, not off Pretendard | ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface. | **RESOLVED** |
 | **I-37** | Product | **P1** | The adaptive Hangyul Vocabulary Level Test (1–30) is built | A learner can now find out roughly where they stand in 3–6 minutes, and somebody who already knows some Korean has a way into the product that is not "start at ㄱ". | **RESOLVED** |
@@ -4179,6 +4253,7 @@ document they predate.
 | **I-113** | Conjugation | **P2** | Batch 920's verbs licensed unnatural command and request rows by default | 좌절하세요 (please be crushed), 급증하세요 (please surge), 야기하세요, 간과하세요, 직면하세요, 체감하세요 — mechanically impeccable rows a learner would have read under a label meaning 'Please do'. 감행해 주세요, 만회해 주세요, 몰두해 주세요 and 억눌러 주세요 are favours nobody asks. | **RESOLVED** |
 | **I-114** | Release engineering | **P2** | The store listings claimed 2,844 words over a corpus of 3,334, and store:check was blind to them | All eight store listings undersold the product by 490 words — two corpus generations stale. The release notes were gated for exactly this and the listings were not, so the gate that §19.6 records as widened stayed green while the copy one directory over drifted. | **RESOLVED** |
 | **I-117** | Documentation | **P2** | Every raster figure in report.pdf was a broken-image box, and wide tables stacked one character per line | None to a learner; it matters because the PDF is what a reader outside the repository is given. The compound-vowel photograph that §7.2 rests its argument on, the two device screenshots and the new Numbers locale montages were all absent from the rendered document, replaced by a broken-image icon and their alt text. The issue tables were unreadable: the column headed ID was one character wide with I-0-4 stacked vertically. | **RESOLVED** |
+| **I-12** | Persistence | **P2** | No export: clearing site data destroyed the history irrecoverably | A learner who clears browser data loses everything | **RESOLVED** |
 | **I-121** | Vocabulary UX | **P2** | Five answer tiles rendered as four and one | The orphan reads as a mistake: the eye takes the full row as the answer and the stray tile as something else, and a learner counting tiles to guess the word’s length is being told the wrong number. | **RESOLVED** |
 | **I-122** | Vocabulary UX | **P2** | The first hint named the word’s category and part of speech, which rules nothing out | Pressing 힌트 보기 printed “사람과 가족에 나오는 명사예요”. Good distractors share a category with the answer on purpose, so being told 하다 is a verb from Everyday Actions against *to go*, *to stay* and *to be late* rules out nothing — the learner spends a press, reads a sentence about grammar and is where they started. | **RESOLVED** |
 | **I-124** | Privacy | **P2** | Reported: the Pronunciation voice setting rendered under the Privacy screen | A legal page with somebody else’s settings pasted onto the bottom is the screen a store reviewer opens, and a learner reading it cannot tell which of the sentences on it are the commitment. | **RESOLVED** |
@@ -4233,9 +4308,9 @@ document they predate.
 
 <!-- issues:counts -->
 
-**Open — P0: 1 · P1: 1 · P2: 5 · P3: 0**
+**Open — P0: 1 · P1: 1 · P2: 4 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 3 · Resolved: 115**
+**Blocked outside this repository: 1 · Partial: 3 · Resolved: 117**
 
 <!-- /issues:counts -->
 
@@ -4245,7 +4320,6 @@ document they predate.
 | --- | --- | --- |
 | **I-01** | Read out of the delivered `app_result/build-info.json`: `"commit": "3833da71…"`, `"dirty": true`, `"changed_files": 440`, `"untracked_files": 595`, built at 2026-09-02T12:21:38Z. HEAD at the time of this pass was `8b489ebe`, one commit further on. `npm run release:current` exists to catch exactly this and reports it; it was not run before the artefacts were published. The row was closed in five consecutive reports on the strength of a rebuild each time, which is why it is now stated as a *state* — the binary matches a clean checkout of a named commit, or it does not. | Rebuild from a clean tree at the final commit of this pass and re-record the fingerprint, then keep `release:current` in front of every publish. The check is not the fix; running it is. |
 | **I-04** | 3,333 words ship today (re-counted 2 September 2026; the text below records the count at each earlier audit), counted from `apps/web/src/data/generated/vocabulary.json` rather than from any prose. The pass before this one took it from 2,581 to 2,948; this one added 273 more, every one authored by hand and passed through `content:build`, `examples:qa`, `vocabulary:sense:qa` and `conjugation:qa` before being counted.  The deficit is 6,779 entries. Measured against what one entry actually costs — a Korean headword, a sense, a hand-written example, a romanisation, and a meaning plus an example translation in each of the ten complete languages, roughly 21 authored strings — that is about 142,000 strings. The number moves by 6% a cycle; nothing about this pass makes the target reachable, and saying so is the point of leaving it open.  **Re-audited 26 August 2026 at 3,220 words.** The corpus moved by −1 this pass: 부딪다 was retired because its bare conjugation is not real usage (I-107), and this pass's priority was correctness rather than supply. The deficit is 6,780 entries. Every content gate is green on the rebuilt tree; the target gate still fails by design.  **Re-audited 27 August 2026 at 3,334 words.** Batch 920 added 78 hand-written entries — formal and academic nouns, modern adult-life vocabulary (대출, 야근, 회식, 전세), advanced verbs and adjectives, six adverbs and twelve common 사자성어 — every one through preflight, examples:qa, sense QA and the conjugation-display reading before being counted. The deficit is 6,666 entries; the target gate still fails by design.  **Re-counted 3 September 2026.** Still 3,333, and this pass deliberately added none. The audit that would have justified a batch found the opposite problem: the words a beginner needs were already in the corpus and buried at levels 7 to 14 (I-125, I-126). Eighteen were moved and nine translated into the twelve partial packs; the total is unchanged because re-levelling is not authoring. The deficit is 6,667 entries. | Either author them, or restate the target. The delivery machinery is built and proven at 3,333 — bands, audio, level assignment, 32 locales — so the constraint is authoring, not engineering. |
-| **I-12** | A consequence of having no account and device-local persistence. §13.3 of the current report.  **Re-audited 24 August 2026.** Unchanged.  **Re-audited 25 August 2026.** Unchanged; still closed by decision rather than by work.  **Re-audited 26 August 2026.** Unchanged; still closed by decision rather than by work. | None that is customer-facing — a developer-style JSON export was tried and rejected. Keep IndexedDB robust, keep persistent storage requested, and do not warn normal users about it. |
 | **I-126** | `_concreteness` in `scripts/content/level.py` returns a template’s fixed weight for any tag in `ABSTRACT_TEMPLATES` and never consults the parts, so every `cmp:` antonym pair scores 0.80 and every `seq:` before-and-after pair 0.75 — a word is called unpicturable for having an opposite. 길다, 짧다, 멀다, 가깝다, 열다 and 닫다 are among the most picturable words in the language. The file’s own comment already records this class for verbs — it is what put 놀다 at 19 and 덩다 at 20 — and the fix then was the same one: move the words, not the weight. | Let a concrete part refine an abstract template instead of being ignored, then re-level, re-anchor and re-read the affected levels. That is a content cycle rather than a nudge, which is why it was not done inside a release pass; the eighteen overrides are on the record in `level-overrides.json` with this cause named in each. |
 | **I-13** | `vocabulary:relations:qa`.  **Re-audited 23 August 2026 at 2,844 words.** Rebuilt after the expansion: still 245 words and 274 relations, because the builder records only what two Wiktionary headwords state about the taught sense and the 263 new words brought no new evidence. Checked separately that the sparse graph is not letting an unrecorded opposite into the Level Test — no bank item offers 앞 against 뒤, 전 against 후 or 죽다 against 살다.  **Re-audited 24 August 2026 at 2,916 words.** 252 words and 282 relations, up from 245 and 274. Seven of the increase are batch-4 words the wiki happens to describe; four are a correction. Scoping a page to the part of speech this app teaches is what stops 쪼다 the verb inheriting 쪼다 the insult's 유의어 바보 — and it also dropped 밝다 ↔ 어둡다, because ko.wiktionary states that pair under 밝다's 동사 heading (*해가 떠올라 날이 새다*, to dawn) while this app teaches the adjective. Twenty-nine taught words have relations under another heading; twenty-five are genuine homographs and are still ignored. The four that are not are named in `content/vocabulary/relation-headings.json` with a reason each. Nothing else changed: a relation still has to be stated on the page, still has to be mutual, and still has to point at a word the app ships.  **Re-audited 24 August 2026 at 2,948 words.** Unchanged at 252 words and 282 relations: the thirty-two new entries are concrete nouns the wiki states nothing mutual about. The builder still records only what two headwords state about the taught sense.  **Re-audited 25 August 2026 at 3,221 words.** Unchanged at 252 words and 282 relations. The 273 words added this pass brought no new mutual evidence: the wiki states nothing about most of them, and the sixteen four-character idioms among them are exactly the kind of entry a synonym list would have to invent. Rebuilt, not assumed — `vocabulary:relations:check` passes.  **Re-audited 26 August 2026 at 3,220 words.** Rebuilt after the example rewrites: 252 words carry a relation (72 synonym pairs, 69 antonym pairs). The retirement of 부딪다 removed its source row; nothing else moved.  **Re-audited 27 August 2026 at 3,334 words.** Rebuilt: 253 words carry a relation (73 synonym pairs, 69 antonym pairs). The 78 new words brought one new mutual pair; nothing was invented. | Nothing, unless a conservative source can be found. Sparse trustworthy data is not a defect and inventing similar words would be. |
 | **I-17** | `docs/LOCALIZATION_NATIVE_REVIEW.md` states it. The severity was raised when the surface tripled.  **Re-audited 23 August 2026 at 2,844 words.** Still true, and this pass produced a concrete demonstration of what goes unnoticed without it: the Portuguese pack had been written in European Portuguese in a pt-BR product for four batches — camisola, a nightgown in Brazil, taught as the meaning of 스웨터, and constipação, constipation, used for a head cold. No gate reads for the variety of a language. A native reader finds that in a minute.  **Re-audited 24 August 2026 at 2,916 words.** Unchanged, and now stated in a second place a reader will actually reach: `docs/LEVEL_TEST_KOREAN_REVIEW.md` records, dimension by dimension, what has been read and by whom — eleven rows by a program, three by an AI assistant, and one row, naturalness, by nobody. `npm run korean:education:qa` refuses to pass if that file claims a native reviewer, and prints THIS DOES NOT PROVE NATIVE NATURALNESS on every run.  **Re-audited 24 August 2026 at 2,948 words.** Unchanged. This pass added a Thai and a Vietnamese row for each new word, written by an AI assistant like every other row in those packs, so the surface needing native review grew by 64 strings.  **Re-audited 25 August 2026 at 3,221 words.** Unchanged in kind and larger in size. This pass wrote 22,638 strings in twenty-two languages nobody in this repository reads — 11,000 meanings, 11,000 example translations and 638 long definitions — so the surface needing native review grew by more this cycle than in all the previous ones together. Two of those strings were caught by a program rather than a reader, and only because they collided with an answer: the Kyrgyz and Uzbek category labels in I-89.  **Re-audited 26 August 2026.** Unchanged in kind. This pass rewrote 15 Korean examples with their translations in every written language and re-aligned seven senses across locales — all model-written, none read by a native speaker. The surface needing native review did not shrink.  **Re-audited 27 August 2026.** Unchanged in kind and larger in size: this pass wrote 78 new entries in ten languages, four More-about-it notes (one in 32 languages), and rewrote 17 shipped examples with their translations — all model-written, none read by a native speaker. | Native review. Nothing automated substitutes for it, and no document here may claim it has happened. |
@@ -4281,6 +4355,7 @@ document they predate.
 | **I-123** | `onBack` no longer decides whether the chevron exists — there is no way to remove it — and `SystemBack` publishes one `goBack` that both the hardware button and the header arrow call, so the two cannot disagree as they have twice before. `back:coverage` reads the route inventory out of `App.tsx` rather than listing it: static, every route’s screen renders `<AppHeader>`; rendered, all 22 shipped routes opened at 390 px with exactly one visible control, in the top-left, at least 44 × 44, not over the title, with an accessible name in all 32 packs. The developer stroke gallery is excused the rendered half and named as the reason. | done |
 | **I-125** | `teachingZone` widens the top of the scale so a learner at 30 keeps three levels, and the same widening was never applied at the bottom. Fixed symmetrically: level 1 is taught from 1–3, which is exactly the band a learner at level 2 already had. `vocabulary:level:audit` is new and reports all thirty levels rather than the interesting ones — words, zone, days, senses, topics, part-of-speech spread, examples, recordings, English, pack coverage and median frequency rank — and fails on a zone under a fortnight, a missing example, English or recording, or a level collapsed to one part of speech or topic. Every level now passes; the thinnest is 17 days. | done |
 | **I-127** | `answerability` generates every question the app can produce — 32 languages × 3,333 words × 6 modes × 3 attempts, plus 73 characters and 19 Numbers lessons, **806,270 questions** — by calling the same functions the app calls, and checks that exactly one option answers each. It found 2,000 trays that spell a synonym, 45 Korean prompts containing their own answer, and 0 of everything else. Fixed in the product: `buildExercise` refuses a tray that spells a taught word with the same meaning *in that learner’s language*, which costs 0.64% of build questions and 249 words in a handful of languages each; and 17 Korean glosses that reached for the word they define were rewritten. Negative-tested twice — remove the tray guard and it reports 2,000, restore one self-answering gloss and it reports that word — both exit 1. | done |
+| **I-127** | Found on 3 September 2026 while reading `clearEverything` for the restore semantics of I-12.  `clearEverything` held a hand-written list of six stores and the product has eight. `mistakes` and `numbers` were never cleared. `reset()` emptied both in memory, so the screen went blank and looked correct — and the next hydration read them straight back out of storage, because that is where hydration reads them from.  The Privacy screen says, in every one of the 32 languages, that this button clears everything.  Fixed by deriving the list from `STORE_NAMES` minus `meta`, because the defect was not that somebody forgot two stores — it was that forgetting was possible. `meta` is the one deliberate exception: it holds the schema version and migration bookkeeping, and clearing it would make the next launch run every migration again over an empty database.  Evidence: `apps/web/src/storage/reset.test.ts` — the first test fails against the old implementation and names the store that still holds rows. | Done. |
 | **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
 | **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
 | **I-37** | Built as its own feature, with its own bank, its own scale and its own simulation harness.  **The scale.** The Hangyul Vocabulary Level is 1–30, cumulative and non-linear: Lv1 ≈ 147 words, Lv10 ≈ 1,835, Lv20 ≈ 5,690, Lv30 ≈ 10,635+. It is **not** the teaching corpus cut into thirty equal bands — that would have made a "level" mean 86 words, which is not a proficiency scale, it is a progress bar. The 2,581 taught words are used as *calibrated anchors* inside it, together with quality-gated dictionary entries, all ranked by the same `frequency.measure` the corpus uses.  **The bank.** `scripts/content/build_level_test.py` selects the anchors and `build_level_test.mjs` generates 3,960 items across the 30 levels (min 121 each) to `public/level-test/`, content-hashed and lazily fetched — it is not in the bundle and not on any critical path. Items are Korean→meaning, meaning→Korean and context, and **context items use conjugated Korean** — 마셔요, not 마시다 — generated through `packages/korean-morphology`, which carries 99 unit tests and a named regression table across ten irregular classes and is checked against 1,306 corpus predicates by `npm run conjugation:qa`. `npm run leveltest:ambiguity` applied eight rules to the whole bank when this was written; it applies twelve now and reports **0 findings** — the four it gained are I-55. A 143-word blocklist keeps unsuitable subject matter out of both the anchors and the distractors; an anchor must be Hangul, 1–4 syllables, a noun/verb/adjective/adverb, and carry a gloss of 3–60 characters that is not a grammatical form page.  **The scoring.** A 3PL/Rasch model with a guessing floor of 1/4, EAP over a grid, Fisher-information item selection. **Exactly 30 items — 12 context, 9 Korean→meaning, 9 meaning→Korean — under one 8-minute clock**, replacing an adaptive stopping rule that ran 18–36 items until SE fell under 1.6 levels: a test whose length depends on how well you are doing tells you how well you are doing while you sit it. Difficulty still adapts; the count does not. On expiry the answers given are kept, the rest are recorded as *I don't know*, and the sitting is scored. "I don't know" is an answer and is weighted as cleaner evidence than a wrong guess, not as a skip. `npm run leveltest:qa` simulates 200 sittings at each of the 30 levels against the real bank: **MAE 1.34 levels, 95.3% within ±3, 99.7% within ±5, exactly 30 items, composition 12.0/9.0/9.0.** Fixing the length cost 0.07 levels of mean error.  **What it does not do.** No listening, no handwriting, no hints, no answer reveal, no running score. It writes `settings.level_test` and nothing else — an e2e test takes the whole assessment and asserts that every other IndexedDB store is byte-for-byte unchanged. The result screen names the scale as **the Hangyul Vocabulary Level** in all 32 languages, so what the learner is given is our own number rather than an implied TOPIK or CEFR grade. The four disclaimer sentences that used to open the intro — no hints, answers not shown, nothing here changes your lessons, not an official proficiency grade — were removed: four caveats to read before a beginner is allowed to find out how much Korean they know is a methodology page, not an invitation. The promises they made are still kept and are asserted against the DOM by `e2e/level-test.spec.ts`, which is stronger than a sentence claiming them. | Done. |
@@ -4320,6 +4395,7 @@ document they predate.
 | **I-113** | The display ledger (.conjugation-display/display-forms.tsv) was re-read after the batch, exactly as its own footer instructs. Six verbs joined NOT_VOLITIONAL (좌절하다, 직면하다, 급증하다, 체감하다, 야기하다, 간과하다 — the last because Korean only uses its prohibitive) and four joined IMPERATIVE_WITHOUT_REQUEST (감행하다, 만회하다, 몰두하다, 억누르다). 무산되다, 성사되다 and 저버리다 were already suppressed by the structural rules. Command rows displayed 795 → 789 after the POS corrections; conjugation:display:qa passes with its five self-test inputs still refused. | Done. The ledger-read-after-every-batch rule worked as designed; keep it. |
 | **I-114** | check-store-listing.mjs ran its word-count rule over store/release-notes.md only; store/listing/*.md were checked for store limits and forbidden claims, not for the figure. Found by running store:check in this pass's final gate sweep and reading past the one flagged line. The rule now runs over every listing's customer copy; before the copy was corrected it reported all eight files (the strongest form of a negative test — fired on real shipped data), and after the correction the gate is green. Every listing now states 3,334 in its own thousands separator. | Done. The lesson is §19.6's one more time: a gate is only as wide as the files it reads. |
 | **I-117** | Found by rendering pages of the regenerated PDF and looking at them, not by any gate. `scripts/build-pdf.mjs` inlined `.svg` figures as markup — with a comment explaining that an `<img>` with a relative path resolves against `about:blank` in a page built with `setContent` and silently renders nothing — and then left every `.png` as exactly such an `<img>`. Rasters are now inlined as base64 data URIs by the same rule. The table defect was `overflow-wrap: anywhere` on every cell: unlike `break-word` it also sets a column's minimum content width to one character, so the auto table layout collapsed the narrow columns; cells now use `break-word` and only `code` elements keep `anywhere` so a sha256 still wraps. Verified by reading pages 21, 100, 101 and 103 of the rebuilt `docs/report.pdf` and page 22 of `patent/technical_disclosure_en.pdf`. | Done. The lesson is the one §7.2 already states: a document that is generated is not a document that has been read. Every regenerated PDF in this pass was opened and looked at. |
+| **I-12** | A consequence of having no account and device-local persistence. §13.3 of the current report.  **Re-audited 24 August 2026.** Unchanged.  **Re-audited 25 August 2026.** Unchanged; still closed by decision rather than by work.  **Re-audited 26 August 2026.** Unchanged; still closed by decision rather than by work.  **Resolved 3 September 2026.** Reopened: "closed by decision" was a decision about a *developer-style* JSON export, and the customer impact above was still true of the shipped app. My Learning now carries **Back up** and **Restore**, in all 32 languages, above the Reset it belongs with.  `storage/backup.ts` writes one envelope holding all eight learner stores verbatim — not a curated summary — so a restored install has the same review schedule, wrong-answer notebook and Numbers course, not a reconstruction. `meta` is excluded on purpose: the restore stamps the *backup's* schema version and calls the ordinary `runMigrations`, so an old file is upgraded by the same migrations that upgrade a real old install, and row contents are repaired by the same loaders that repair a launch (`readEverything`, shared by hydration and restore).  `storage/backupFile.ts` is the platform branch, and it is the half that would have shipped broken: Capacitor registers no `DownloadListener`, so an `<a download>` inside the Android WebView is dropped silently. Native saves through `@capacitor/filesystem` to the cache directory and hands the file to the share sheet (`@capacitor/share`); the FileProvider authority and `cache-path` the plugin needs were already in the manifest. Reading a file back needs no branch — Capacitor's `BridgeWebChromeClient` implements `onShowFileChooser`.  The envelope is validated **before** anything is cleared, so a mis-picked file cannot destroy a learner's progress: `not_json`, `not_a_backup`, `from_a_newer_app` and `empty` each have their own sentence in every language.  Evidence: `apps/web/src/storage/backup.test.ts` (15), `backupFile.test.ts` (6, including the native branch and the missing-plugin fallback), `apps/web/src/pages/backupFlow.test.tsx` (8, the round trip through the screen), and `reset.test.ts` (2). 966 web unit tests pass. | Done. What remains is not a defect: a file the learner never saves cannot restore them, and there is deliberately no cloud copy — that is the product's privacy promise, and the Privacy screen now states in all 32 languages that a saved copy is a file they hold and the app sends it nowhere. |
 | **I-121** | The tray was `flex-wrap: wrap`, so the shape was a function of the viewport rather than of the question — the same five tiles were three and two on a narrower phone and five across on a tablet. `ui/optionRows` decides the rows now, balanced, fuller rows first, and the rows are real centred elements because a grid cannot centre a partial row without knowing the tile width, which varies with content, reading size and script. Asserted for every count from 1 to 24 and in the component, where the DOM order is checked against the tile order as well as the shape. | done |
 | **I-122** | The ladder is two rungs: the word used in a real sentence, then the answer. Where the answer *is* the Korean word the target comes out of the sentence — `exampleWithGap` removes the whole eojeol that starts with the word, one of its conjugated forms, its authored `surface_form` or a trimmed stem, every occurrence, keeping punctuation. That reaches 3,331 of 3,333 entries; the two it does not are bound morphemes that do not begin an eojeol. `hint.kind`, `kindOnly`, `startsWith`, `startsWithSound` and `showMoreHint` are gone from all 32 packs. `hints:qa` over 442,694 rendered rungs in 32 languages: 0 answer-leaking, 0 that rule nothing out. | done |
 | **I-124** | **Not reproduced, and this row says how far that was chased rather than asserting it never happened.** `/me/privacy` is a flat route with no shared layout under `/me`. It renders clean in jsdom; in the current production bundle at six device profiles (320–430 px, light and dark, 100% and 200% text); in the **delivered APK’s own bundle**, extracted and served; and along the four routes a learner actually arrives by — walked from a scrolled My Learning, browser back and forward, reloaded in place, and after switching the interface to Korean. Sixteen renders, nothing leaked. What is added is the guard: `pages/legalIsolation.test.tsx` for the structure and the voice heading in all 32 languages, and `legal:isolation` for the real bundle, the device matrix and the bottom margin — measured by walking the text nodes through a Range, because an element’s box includes the padding that keeps it clear. Negative-tested against `/me`, which really does carry settings: six findings, exit 1. | done |
@@ -4449,7 +4525,7 @@ reading of all 1,509 predicates.
 
 **Why not releasable from this tree.** The commit problem is fixed: this
 edition's artefacts were built from a clean checkout of a named commit, at
-versionCode 4 because 3 was spent, and `release:current` was not weakened to
+versionCode 5 because 3 and 4 were spent, and `release:current` was not weakened to
 say so. What remains are five limitations. None is a defect, all five are
 things a buyer is entitled to know before release, and the fifth is new to this
 edition:
@@ -4490,7 +4566,6 @@ had been asked to look at what was on the screen.
 | --- | --- | --- | --- |
 | **I-01** | The shipped APK/AAB were built from a dirty tree, not from any commit | The delivered binary is not a build of anything a reader can check out. `app_result/build-info.json` records the commit as `3833da71` and, in the same file, `source_state.dirty: true` with **440 changed and 595 untracked files** — so the APK contains some mixture of that commit and whatever was in the tree at 12:21 that morning. Nobody can say what shipped, including the person who built it. | — |
 | **I-04** | 3,333 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
-| **I-12** | No export: clearing site data destroys the history irrecoverably | A learner who clears browser data loses everything | NONE — closed by decision |
 | **I-126** | The difficulty model calls a word abstract for having an opposite | Eighteen first-semester words sat at levels 7 to 14: 모르다 — the 46th commonest word in the corpus — at 7, 닫다 at 13, 싸다 at 14, 가깝다 멀다 길다 빠르다 at 12 or 13, 맛있다 at 10. Eighteen have been moved by hand; the model that put them there has not changed, so the next batch of antonym pairs will land in the same place. | — |
 | **I-13** | 294 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |

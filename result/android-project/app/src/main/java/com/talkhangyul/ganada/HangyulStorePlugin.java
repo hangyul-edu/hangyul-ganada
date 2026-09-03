@@ -181,6 +181,46 @@ public class HangyulStorePlugin extends Plugin {
         call.resolve(result);
     }
 
+    /**
+     * Every row of a store as a key and a value.
+     *
+     * `getAll` returns values only, which is all the app needs to *read* a
+     * store — every row carries the fields it is keyed by. A backup needs the
+     * keys themselves: reconstructing them from the values would be a second
+     * copy of every key rule in the product, living here, free to disagree with
+     * the first one the day either changes.
+     */
+    @PluginMethod
+    public void entries(PluginCall call) {
+        String store = call.getString("store");
+        if (store == null) {
+            call.reject("store is required");
+            return;
+        }
+        JSArray rows = new JSArray();
+        try (
+            Cursor cursor = db().query(
+                TABLE,
+                new String[] { "key", "value" },
+                "store = ?",
+                new String[] { store },
+                null,
+                null,
+                "key ASC"
+            )
+        ) {
+            while (cursor.moveToNext()) {
+                JSObject row = new JSObject();
+                row.put("key", cursor.getString(0));
+                row.put("value", cursor.getString(1));
+                rows.put(row);
+            }
+        }
+        JSObject result = new JSObject();
+        result.put("entries", rows);
+        call.resolve(result);
+    }
+
     @PluginMethod
     public void put(PluginCall call) {
         String store = call.getString("store");
