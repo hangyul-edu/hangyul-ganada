@@ -12,7 +12,7 @@
   },
 
   "version": "1.0.2",
-  "buildNumber": 5,
+  "buildNumber": 6,
 
   "android": {
     "_comment": "targetSdk 36 because Google Play requires Android 16 for new apps and updates from 31 August 2026. minSdk 24 is Capacitor 8's floor and covers ~99% of active devices.",
