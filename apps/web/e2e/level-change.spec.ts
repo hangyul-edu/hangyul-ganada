@@ -155,9 +155,26 @@ test('a mid-day retake keeps the mastered words and serves the measured level', 
 
   // And the session actually serves the corrected day: the next new word met
   // in the sitting is one of the regenerated ids, not a beginner word.
-  await openApp(page, '/words/today');
+  /*
+    Through the helper written for this route, and with room for the fetch it
+    starts.
+
+    The corpus arrives in priority bands, and this learner's plan is now Level
+    28–30 — words that live in a *later* band than the one a cold load has when
+    the splash clears. So opening Today's Vocabulary here is a page load, a band
+    fetch and a question build before any word can be named, and the suite's
+    default 10 s expect timeout is a default rather than a measured bound for
+    that. It held on an idle machine and ran out inside `verify:release`, behind
+    a spec that had just spent five minutes of the same worker.
+
+    `openTodaysWords` also answers the placement prompt if it appears, which
+    `openApp` does not; it should not appear here — the test wrote a level_test
+    — and relying on that rather than handling it is a second way to fail for a
+    reason that is not the subject.
+  */
+  await openTodaysWords(page);
   const headword = page.getByTestId('word-headword');
-  await expect(headword).not.toBeEmpty();
+  await expect(headword).not.toBeEmpty({ timeout: 30_000 });
   const shown = (await headword.textContent())?.trim() ?? '';
   expect(BEGINNER_FILLER.has(shown)).toBe(false);
   const shownLevels = unresolved
