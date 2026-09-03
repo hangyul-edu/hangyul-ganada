@@ -173,8 +173,19 @@ test('a mid-day retake keeps the mastered words and serves the measured level', 
     reason that is not the subject.
   */
   await openTodaysWords(page);
+  /*
+    Wait for the band, not for a clock.
+
+    This learner's plan is Level 28–30, which lives in a later corpus band than
+    a cold load holds. The session draws a deliberately blank frame until it
+    arrives — correct product behaviour, and indistinguishable from a broken
+    screen from out here, which is why it carries a test id. A fixed thirty
+    seconds was a test of how loaded the machine was: it held alone and ran out
+    inside `verify:release`, in both projects on different runs.
+  */
+  await expect(page.getByTestId('words-loading')).toHaveCount(0, { timeout: 45_000 });
   const headword = page.getByTestId('word-headword');
-  await expect(headword).not.toBeEmpty({ timeout: 30_000 });
+  await expect(headword).not.toBeEmpty();
   const shown = (await headword.textContent())?.trim() ?? '';
   expect(BEGINNER_FILLER.has(shown)).toBe(false);
   const shownLevels = unresolved

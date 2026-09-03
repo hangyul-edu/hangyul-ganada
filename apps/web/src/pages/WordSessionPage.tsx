@@ -474,7 +474,18 @@ export function WordSessionPage() {
         resetKey="words-loading"
         header={<AppHeader title={t('vocabulary:today.title')} transparent />}
       >
-        <div />
+        {/*
+          Marked, so a test can wait for the band rather than for a clock.
+
+          A learner at the top of the scale opens a plan whose words live in a
+          later corpus band than a cold load holds, and this is the frame they
+          see while it arrives. It is deliberately blank — see the note above —
+          which makes it indistinguishable from a broken screen to anything
+          looking from outside. `level-change.spec` was waiting a fixed thirty
+          seconds for a word to appear and failing on a loaded machine, which is
+          a test measuring the machine.
+        */}
+        <div data-testid="words-loading" />
       </FocusScreen>
     );
   }
@@ -518,7 +529,18 @@ export function WordSessionPage() {
         resetKey="words-loading"
         header={<AppHeader title={t('vocabulary:today.title')} transparent />}
       >
-        <div />
+        {/*
+          Marked, so a test can wait for the band rather than for a clock.
+
+          A learner at the top of the scale opens a plan whose words live in a
+          later corpus band than a cold load holds, and this is the frame they
+          see while it arrives. It is deliberately blank — see the note above —
+          which makes it indistinguishable from a broken screen to anything
+          looking from outside. `level-change.spec` was waiting a fixed thirty
+          seconds for a word to appear and failing on a loaded machine, which is
+          a test measuring the machine.
+        */}
+        <div data-testid="words-loading" />
       </FocusScreen>
     );
   }
