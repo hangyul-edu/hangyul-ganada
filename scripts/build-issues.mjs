@@ -200,7 +200,15 @@ const STATUS_WORDS = new RegExp(`\\b(${Object.keys(SAID_AS).join('|')})\\b`, 'g'
 for (const issue of issues) {
   // Both ways round the id. "(I-16) is unresolved" and "stands unresolved
   // (I-16)" are the same claim, and the previous report used the second form.
-  const near = new RegExp(`[^.\\n]{0,90}${issue.id}[^.\\n]{0,90}`, 'g');
+  /*
+   * `I-12` must not match inside `I-126`.
+   *
+   * Without the boundary this reported *report.md says "I-12 … PARTIAL"* for a
+   * sentence that says nothing about I-12 at all — it says I-126 stays partial.
+   * Every id under 100 is a prefix of one over it, so the false positive was
+   * waiting for the ledger to grow past 99, which it has.
+   */
+  const near = new RegExp(`[^.\\n]{0,90}${issue.id}(?![0-9])[^.\\n]{0,90}`, 'g');
   for (const sentence of prose.match(near) ?? []) {
     for (const [word] of sentence.matchAll(STATUS_WORDS)) {
       if (SAID_AS[word] !== issue.status) {
