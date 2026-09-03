@@ -153,8 +153,8 @@ without trusting the row.
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Issues tracked | 127 | `docs/issues.json` |
-| Signed APK | 83.8 MB | `result/build-info.json` |
-| Signed AAB | 82.1 MB | same |
+| Signed APK | 83.7 MB | `result/build-info.json` |
+| Signed AAB | 82.0 MB | same |
 | Tests | 1,247 across 67 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -1604,8 +1604,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.8 MB** (87,831,734 B), `667018831cef024e…` |
-| Release AAB | **82.1 MB** (86,039,689 B), `87fd192f994bc1fa…` |
+| Release APK | **83.7 MB** (87,760,750 B), `882df08ef4a17e82…` |
+| Release AAB | **82.0 MB** (85,969,954 B), `26b0710833e82734…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -4069,7 +4069,7 @@ naming the artefact that spent it.
 | `translation:semantics` · `locale:content` · `vocabulary:sense` · `vocabulary:translation` | green |
 | `content:vocabulary` · `content:corpus` · `content:coverage` | up to date and rebuilt |
 | `typecheck` · `lint` | clean across all workspaces |
-| `version:check` | 1.0.2, build 6, every file agreeing |
+| `version:check` | 1.0.2, build 7, every file agreeing |
 
 Eight gates were negative-tested by restoring the behaviour they were written to
 catch, and all eight failed as they should: the marker placement, the legal
@@ -4121,13 +4121,13 @@ untracked files, so no commit described what was in them.
 | | |
 | --- | --- |
 | `versionName` · `CFBundleShortVersionString` | **1.0.2**, unchanged |
-| Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **6** — 3, 4 and 5 are spent, each by an artefact that was actually produced |
+| Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **7** — 3, 4, 5 and 6 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 87,831,734 bytes (83.8 MiB) |
-| APK sha256 | `667018831cef024e9fa333f7fbae63ac9b8de60660b580386932909af44d1231` |
-| AAB | 86,039,689 bytes (82.1 MiB) |
-| AAB sha256 | `87fd192f994bc1faf1f6295e6cfa4bfd8b20c3853d794429622c4b1f6782f71f` |
+| APK | 87,760,750 bytes (83.7 MiB) |
+| APK sha256 | `882df08ef4a17e827bc52a2216e70dd10a40c2062ddeee131ffbf98f51ca10fc` |
+| AAB | 85,969,954 bytes (82.0 MiB) |
+| AAB sha256 | `26b0710833e82734ab80740dcb7c1acbcc717d04b1e265da6ea1d06b4afd4941` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -4524,7 +4524,7 @@ document they predate.
 | **I-04** | Vocabulary | **P1** | 3,333 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
 | **I-13** | Relations | **P2** | 294 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
-| **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 478 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | **OPEN** |
+| **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 477 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | **OPEN** |
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
 | **I-19** | Vocabulary | **P1** | Word meanings are complete in twenty languages and six hundred words deep in twelve | A learner in one of the twelve has a fully translated interface and word meanings for the 600-word core band — the band the corpus splitter puts on the critical path, so it is the band they meet first. Past that the card shows the English gloss, marked as English, and the quiz shows nothing: the product forbids a mixed-language question, so a word with no meaning in the learner’s language is not asked about at all. | **PARTIAL** |
 | **I-126** | Vocabulary levels | **P2** | The difficulty model called a word abstract for having an opposite | Eighteen first-semester words sat at levels 7 to 14: 모르다 — the 46th commonest word in the corpus — at 7, 닫다 at 13, 싸다 at 14, 가깝다 멀다 길다 빠르다 at 12 or 13, 맛있다 at 10. Eighteen have been moved by hand; the model that put them there has not changed, so the next batch of antonym pairs will land in the same place. | **PARTIAL** |
@@ -4869,7 +4869,7 @@ reading of all 1,509 predicates.
 
 **Why not releasable from this tree.** The commit problem is fixed: this
 edition's artefacts were built from a clean checkout of a named commit, at
-versionCode 6 because 3, 4 and 5 were spent, and `release:current` was not weakened to
+versionCode 7 because 3, 4, 5 and 6 were spent, and `release:current` was not weakened to
 say so. What remains are five limitations. None is a defect, all five are
 things a buyer is entitled to know before release, and the fifth is new to this
 edition:
@@ -4912,7 +4912,7 @@ had been asked to look at what was on the screen.
 | **I-04** | 3,333 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
 | **I-13** | 294 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
-| **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 478 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | HIGH (content) — the hard half: words that are advanced and ordinary |
+| **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 477 words between them, up from 417 (batch 920 added 78 words, 69 of which land at 28–30). A learner placed at 30 is taught ten a day from a 478-word zone and exhausts it in about seven weeks, after which their days come up short. They are not being taught badly — the words they get are right — there are simply not enough of them yet. | HIGH (content) — the hard half: words that are advanced and ordinary |
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
 | **I-19** | Word meanings are complete in twenty languages and six hundred words deep in twelve | A learner in one of the twelve has a fully translated interface and word meanings for the 600-word core band — the band the corpus splitter puts on the critical path, so it is the band they meet first. Past that the card shows the English gloss, marked as English, and the quiz shows nothing: the product forbids a mixed-language question, so a word with no meaning in the learner’s language is not asked about at all. | HIGH (content) — 12 locales × 2,733 words to finish, and a speaker for each |
 | **I-126** | The difficulty model called a word abstract for having an opposite | Eighteen first-semester words sat at levels 7 to 14: 모르다 — the 46th commonest word in the corpus — at 7, 닫다 at 13, 싸다 at 14, 가깝다 멀다 길다 빠르다 at 12 or 13, 맛있다 at 10. Eighteen have been moved by hand; the model that put them there has not changed, so the next batch of antonym pairs will land in the same place. | DONE for the rule; the anchors need a spoken-frequency source |
