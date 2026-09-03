@@ -5,7 +5,7 @@
     "start": "Boshlash",
     "resume": "Davom etish",
     "resumeBlurb": "To‘xtagan joyingizdan davom eting.",
-    "doneBlurb": "Bugunga tamom. Barakalla.",
+    "doneBlurb": "Bugunga shu yetadi.",
     "completeTitle": "Bugungi so‘zlar tugadi.",
     "more": "Yana ozgina",
     "allDone": "Bugunga hech narsa qolmadi.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Hali saqlangan so‘z yo‘q",
     "emptyBody": "O‘qib turib istalgan so‘zdagi xatcho‘pni bosing — qaytib kelmoqchi bo‘lganingizda shu yerda turadi.",
     "emptyCta": "So‘zlarga o‘tish",
-    "notPractisable": "Bular qidirish uchun saqlangan. Savol tuzish uchun o‘quv kartasi kerak, u hali yo‘q."
+    "notPractisable": "Lug‘atdan saqlangan. Bu so‘zlar hozircha savol bo‘lib chiqmaydi."
   },
   "dictionary": {
     "title": "Lug‘at",

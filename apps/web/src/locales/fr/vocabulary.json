@@ -5,7 +5,7 @@
     "start": "Commencer",
     "resume": "Reprendre",
     "resumeBlurb": "Reprenez où vous en étiez.",
-    "doneBlurb": "Terminé pour aujourd’hui. Bravo.",
+    "doneBlurb": "C’est fini pour aujourd’hui.",
     "completeTitle": "Les mots du jour sont terminés.",
     "more": "Encore un peu",
     "allDone": "Plus rien pour aujourd’hui.",
@@ -131,7 +131,7 @@
     "emptyTitle": "Aucun mot enregistré",
     "emptyBody": "Touchez le signet sur un mot pendant que vous étudiez, et vous le retrouverez ici.",
     "emptyCta": "Voir les mots",
-    "notPractisable": "Ceux-ci sont enregistrés pour consultation. Un quiz demande une fiche d’apprentissage, qu’ils n’ont pas encore."
+    "notPractisable": "Enregistré depuis le dictionnaire. Ces mots ne sont pas encore posés en question."
   },
   "dictionary": {
     "title": "Dictionnaire",

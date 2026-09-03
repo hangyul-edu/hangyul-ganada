@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Ver seu histórico de aprendizado"
   },
-  "celebrate": "Meta de hoje cumprida. Belo trabalho.",
+  "celebrate": "A meta de hoje está feita.",
   "dailyGoal": "Letras de hoje",
   "dailyGoalAria": "Letras de hoje: {{done, number}} de {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Você já lê hangul",
     "body": "As {{count, number}} letras: vistas, escritas e lidas. Daqui em diante, palavras.",
     "goal": "Palavras de hoje",
-    "cta": "Palavras de hoje"
+    "cta": "Começar as palavras de hoje"
   },
   "quick": {
     "letters": "Letras",

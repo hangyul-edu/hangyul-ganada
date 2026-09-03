@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Zobrazit záznam o učení"
   },
-  "celebrate": "Dnešní cíl je splněný. Pěkná práce.",
+  "celebrate": "Dnešní cíl je splněn.",
   "dailyGoal": "Litery dnes",
   "dailyGoalAria": "Litery dnes: {{done, number}} ze {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Umíte číst hangul",
     "body": "Všech {{count, number}} liter: viděli jste je, napsali a přečetli zpátky. Odsud dál jdou slova.",
     "goal": "Slova dnes",
-    "cta": "Dnešní slova"
+    "cta": "Začít dnešní slova"
   },
   "quick": {
     "letters": "Litery",

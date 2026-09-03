@@ -5,7 +5,7 @@
     "start": "Începe",
     "resume": "Continuă",
     "resumeBlurb": "Reia de unde ai rămas.",
-    "doneBlurb": "Gata pe ziua de azi. Frumoasă treabă.",
+    "doneBlurb": "Gata pe ziua de azi.",
     "completeTitle": "Cuvintele de azi sunt gata.",
     "more": "Încă puțin",
     "allDone": "Pe azi nu mai e nimic.",
@@ -131,7 +131,7 @@
     "emptyTitle": "Încă niciun cuvânt salvat",
     "emptyBody": "Atinge semnul de carte de la orice cuvânt în timp ce înveți și îl găsești aici când vrei să revii.",
     "emptyCta": "Mergi la cuvinte",
-    "notPractisable": "Acestea sunt salvate pentru căutare. Un test are nevoie de o fișă de învățare, pe care încă nu o au."
+    "notPractisable": "Salvate din dicționar. Acestea nu apar încă drept întrebări."
   },
   "dictionary": {
     "title": "Dicționar",

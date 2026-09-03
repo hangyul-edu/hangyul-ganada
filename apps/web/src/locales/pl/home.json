@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Zobacz swoją historię nauki"
   },
-  "celebrate": "Dzisiejszy cel osiągnięty. Ładna robota.",
+  "celebrate": "Dzisiejszy cel osiągnięty.",
   "dailyGoal": "Litery na dziś",
   "dailyGoalAria": "Litery na dziś: {{done, number}} z {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Umiesz czytać hangeul",
     "body": "Wszystkie {{count, number}} liter: poznane, napisane i odczytane. Od tego miejsca zaczynają się słowa.",
     "goal": "Słowa na dziś",
-    "cta": "Dzisiejsze słowa"
+    "cta": "Zacznij dzisiejsze słowa"
   },
   "quick": {
     "letters": "Litery",

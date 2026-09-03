@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Ver tu registro de aprendizaje"
   },
-  "celebrate": "Objetivo de hoy cumplido. Precioso trabajo.",
+  "celebrate": "El objetivo de hoy está hecho.",
   "dailyGoal": "Letras de hoy",
   "dailyGoalAria": "Letras de hoy: {{done, number}} de {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Ya sabes leer hangul",
     "body": "Las {{count, number}} letras: vistas, escritas y leídas. A partir de aquí, palabras.",
     "goal": "Palabras de hoy",
-    "cta": "Palabras de hoy"
+    "cta": "Empezar las palabras de hoy"
   },
   "quick": {
     "letters": "Letras",

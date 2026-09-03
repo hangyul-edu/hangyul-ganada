@@ -5,7 +5,7 @@
     "start": "Simulan",
     "resume": "Ituloy",
     "resumeBlurb": "Ituloy kung saan ka tumigil.",
-    "doneBlurb": "Tapos na ngayong araw. Magaling.",
+    "doneBlurb": "Tapos na para ngayong araw.",
     "completeTitle": "Tapos na ang mga salita ngayong araw.",
     "more": "Kaunti pa",
     "allDone": "Wala nang natitira ngayong araw.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Wala pang naka-save na salita",
     "emptyBody": "Pindutin ang bookmark sa kahit anong salita habang nag-aaral, at naririto ito kapag gusto mong balikan.",
     "emptyCta": "Pumunta sa mga salita",
-    "notPractisable": "Nakaimbak ang mga ito para tingnan. Kailangan ng pagsusulit ng learning card, na wala pa sila."
+    "notPractisable": "Na-save mula sa diksiyonaryo. Hindi pa ito lumalabas bilang tanong."
   },
   "dictionary": {
     "title": "Diksyunaryo",

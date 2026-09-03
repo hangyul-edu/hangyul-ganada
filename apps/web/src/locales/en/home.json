@@ -2,7 +2,7 @@
   "streak": {
     "aria": "View your learning record"
   },
-  "celebrate": "That's today's goal done. Lovely work.",
+  "celebrate": "That's today's goal done.",
   "dailyGoal": "Letters today",
   "dailyGoalAria": "Letters today: {{done, number}} of {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "You can read Hangul",
     "body": "All {{count, number}} letters, met, written and read back. From here it is words.",
     "goal": "Words today",
-    "cta": "Today's words"
+    "cta": "Start today's words"
   },
   "quick": {
     "letters": "Letters",

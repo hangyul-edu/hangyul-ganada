@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Lihat catatan belajarmu"
   },
-  "celebrate": "Target hari ini selesai. Kerja bagus.",
+  "celebrate": "Target hari ini selesai.",
   "dailyGoal": "Huruf hari ini",
   "dailyGoalAria": "Huruf hari ini: {{done, number}} dari {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Kamu bisa membaca Hangul",
     "body": "Semua {{count, number}} huruf sudah dikenal, ditulis, dan dibaca ulang. Selanjutnya kata.",
     "goal": "Kata hari ini",
-    "cta": "Kata hari ini"
+    "cta": "Mulai kata hari ini"
   },
   "quick": {
     "letters": "Huruf",

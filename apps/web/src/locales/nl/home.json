@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Bekijk je leerverslag"
   },
-  "celebrate": "Doel van vandaag gehaald. Mooi werk.",
+  "celebrate": "Het doel van vandaag is gehaald.",
   "dailyGoal": "Letters vandaag",
   "dailyGoalAria": "Letters vandaag: {{done, number}} van {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Je kunt Hangul lezen",
     "body": "Alle {{count, number}} letters: gezien, geschreven en teruggelezen. Vanaf hier zijn het woorden.",
     "goal": "Woorden vandaag",
-    "cta": "Woorden van vandaag"
+    "cta": "Woorden van vandaag starten"
   },
   "quick": {
     "letters": "Letters",

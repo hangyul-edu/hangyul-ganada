@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Vezi-ți istoricul de învățare"
   },
-  "celebrate": "Obiectivul de azi e bifat. Frumoasă treabă.",
+  "celebrate": "Obiectivul de azi e atins.",
   "dailyGoal": "Litere azi",
   "dailyGoalAria": "Litere azi: {{done, number}} din {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Poți citi hangul",
     "body": "Toate cele {{count, number}} litere: văzute, scrise și citite înapoi. De aici încolo urmează cuvintele.",
     "goal": "Cuvinte azi",
-    "cta": "Cuvintele de azi"
+    "cta": "Începe cuvintele de azi"
   },
   "quick": {
     "letters": "Litere",

@@ -5,7 +5,7 @@
     "start": "Začít",
     "resume": "Pokračovat",
     "resumeBlurb": "Navažte tam, kde jste skončili.",
-    "doneBlurb": "Pro dnešek hotovo. Pěkná práce.",
+    "doneBlurb": "Pro dnešek hotovo.",
     "completeTitle": "Dnešní slova jsou hotová.",
     "more": "Ještě kousek",
     "allDone": "Na dnešek nic nezbývá.",
@@ -136,7 +136,7 @@
     "emptyTitle": "Zatím žádná uložená slova",
     "emptyBody": "Při učení klepněte u kteréhokoli slova na záložku a bude tu čekat, až se k němu budete chtít vrátit.",
     "emptyCta": "Na slova",
-    "notPractisable": "Tato jsou uložená k vyhledání. Kvíz potřebuje výukovou kartu, kterou zatím nemají."
+    "notPractisable": "Uloženo ze slovníku. Tato slova se zatím v otázkách neobjevují."
   },
   "dictionary": {
     "title": "Slovník",

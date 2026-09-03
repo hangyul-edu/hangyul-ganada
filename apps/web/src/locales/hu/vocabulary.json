@@ -5,7 +5,7 @@
     "start": "Kezdés",
     "resume": "Folytatás",
     "resumeBlurb": "Vedd fel a fonalat ott, ahol abbahagytad.",
-    "doneBlurb": "Mára kész. Szép munka.",
+    "doneBlurb": "Mára kész.",
     "completeTitle": "A mai szavak megvannak.",
     "more": "Még egy kicsit",
     "allDone": "Mára nem maradt semmi.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Még nincsenek mentett szavak",
     "emptyBody": "Tanulás közben koppints bármelyik szónál a könyvjelzőre, és itt vár majd, ha vissza akarsz térni hozzá.",
     "emptyCta": "Irány a szavak",
-    "notPractisable": "Ezeket kikeresésre mentette. A kvízhez tanulókártya kell, ami ezeknél még nincs."
+    "notPractisable": "A szótárból mentve. Ezek még nem kerülnek elő kérdésként."
   },
   "dictionary": {
     "title": "Szótár",

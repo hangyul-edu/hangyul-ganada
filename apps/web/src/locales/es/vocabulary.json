@@ -5,7 +5,7 @@
     "start": "Empezar",
     "resume": "Continuar",
     "resumeBlurb": "Sigue donde lo dejaste.",
-    "doneBlurb": "Hecho por hoy. Buen trabajo.",
+    "doneBlurb": "Listo por hoy.",
     "completeTitle": "Terminaste las palabras de hoy.",
     "more": "Un poco más",
     "allDone": "No queda nada por hoy.",
@@ -131,7 +131,7 @@
     "emptyTitle": "Aún no has guardado palabras",
     "emptyBody": "Toca el marcador en cualquier palabra mientras estudias y la encontrarás aquí.",
     "emptyCta": "Ir a las palabras",
-    "notPractisable": "Están guardadas para consultarlas. Un test necesita una ficha de estudio, y estas aún no la tienen."
+    "notPractisable": "Guardado desde el diccionario. Todavía no aparecen como preguntas."
   },
   "dictionary": {
     "title": "Diccionario",

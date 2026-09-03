@@ -2,7 +2,7 @@
   "streak": {
     "aria": "O‘qish yozuvingizni ko‘ring"
   },
-  "celebrate": "Bugungi maqsad bajarildi. Barakalla.",
+  "celebrate": "Bugungi maqsad bajarildi.",
   "dailyGoal": "Bugungi harflar",
   "dailyGoalAria": "Bugungi harflar: {{total, number}} tadan {{done, number}} ta",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Endi hangulni o‘qiy olasiz",
     "body": "Barcha {{count, number}} harf — ko‘rildi, yozildi va o‘qib tanildi. Bundan keyin so‘zlar.",
     "goal": "Bugungi so‘zlar",
-    "cta": "Bugungi so‘zlar"
+    "cta": "Bugungi so‘zlarni boshlash"
   },
   "quick": {
     "letters": "Harflar",

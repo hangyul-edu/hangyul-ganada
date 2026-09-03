@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Tingnan ang tala ng pag-aaral mo"
   },
-  "celebrate": "Tapos na ang target ngayong araw. Magaling.",
+  "celebrate": "Tapos na ang target ngayong araw.",
   "dailyGoal": "Mga letra ngayon",
   "dailyGoalAria": "Mga letra ngayon: {{done, number}} sa {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Nakakabasa ka na ng Hangul",
     "body": "Lahat ng {{count, number}} letra — nakita, naisulat, at nabasa mo pabalik. Mula rito, mga salita na.",
     "goal": "Mga salita ngayon",
-    "cta": "Mga salita ngayong araw"
+    "cta": "Simulan ang mga salita ngayong araw"
   },
   "quick": {
     "letters": "Mga letra",

@@ -5,7 +5,7 @@
     "start": "始める",
     "resume": "続きから",
     "resumeBlurb": "続きからどうぞ。",
-    "doneBlurb": "今日の分は終わりです。おつかれさま。",
+    "doneBlurb": "今日の分は終わりです。",
     "completeTitle": "今日の単語が終わりました。",
     "more": "もう少し",
     "allDone": "今日の分はもうありません。",
@@ -121,7 +121,7 @@
     "emptyTitle": "まだ保存した単語はありません",
     "emptyBody": "学習中に単語のブックマークを押すと、ここに集まります。",
     "emptyCta": "単語を見る",
-    "notPractisable": "調べるために保存した単語です。出題には学習カードが必要で、まだありません。"
+    "notPractisable": "辞書から保存した単語です。まだ問題には出てきません。"
   },
   "dictionary": {
     "title": "辞書",

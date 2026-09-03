@@ -5,7 +5,7 @@
     "start": "Mulai",
     "resume": "Lanjutkan",
     "resumeBlurb": "Lanjut dari tempat terakhir.",
-    "doneBlurb": "Selesai untuk hari ini. Kerja bagus.",
+    "doneBlurb": "Selesai untuk hari ini.",
     "completeTitle": "Kata hari ini sudah selesai.",
     "more": "Sedikit lagi",
     "allDone": "Tidak ada sisa untuk hari ini.",
@@ -121,7 +121,7 @@
     "emptyTitle": "Belum ada kata tersimpan",
     "emptyBody": "Ketuk penanda di kata mana pun saat belajar, nanti ia ada di sini untuk kamu buka lagi.",
     "emptyCta": "Ke daftar kata",
-    "notPractisable": "Ini disimpan untuk dicari. Kuis butuh kartu belajar, yang belum ada untuk kata ini."
+    "notPractisable": "Disimpan dari kamus. Kata-kata ini belum muncul sebagai soal."
   },
   "dictionary": {
     "title": "Kamus",

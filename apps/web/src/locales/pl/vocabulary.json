@@ -5,7 +5,7 @@
     "start": "Zacznij",
     "resume": "Kontynuuj",
     "resumeBlurb": "Zacznij tam, gdzie skończyłeś.",
-    "doneBlurb": "Na dziś gotowe. Ładna robota.",
+    "doneBlurb": "Na dziś gotowe.",
     "completeTitle": "Dzisiejsze słowa są zrobione.",
     "more": "Jeszcze trochę",
     "allDone": "Na dziś nic nie zostało.",
@@ -136,7 +136,7 @@
     "emptyTitle": "Nie masz jeszcze zapisanych słów",
     "emptyBody": "Dotknij zakładki przy dowolnym słowie podczas nauki, a znajdziesz je tutaj, kiedy zechcesz do niego wrócić.",
     "emptyCta": "Przejdź do słów",
-    "notPractisable": "Te są zapisane do sprawdzania. Quiz potrzebuje karty nauki, której jeszcze nie mają."
+    "notPractisable": "Zapisane ze słownika. Te słowa nie pojawiają się jeszcze w pytaniach."
   },
   "dictionary": {
     "title": "Słownik",

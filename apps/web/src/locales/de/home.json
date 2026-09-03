@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Lernverlauf ansehen"
   },
-  "celebrate": "Tagesziel geschafft. Schön gemacht.",
+  "celebrate": "Das Tagesziel ist geschafft.",
   "dailyGoal": "Buchstaben heute",
   "dailyGoalAria": "Buchstaben heute: {{done, number}} von {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Du kannst Hangeul lesen",
     "body": "Alle {{count, number}} Buchstaben – gesehen, geschrieben, wiedererkannt. Ab jetzt geht es um Wörter.",
     "goal": "Wörter heute",
-    "cta": "Wörter für heute"
+    "cta": "Wörter von heute starten"
   },
   "quick": {
     "letters": "Buchstaben",

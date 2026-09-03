@@ -2,7 +2,7 @@
   "streak": {
     "aria": "查看学习记录"
   },
-  "celebrate": "今天的目标完成了，很棒。",
+  "celebrate": "今天的目标完成了。",
   "dailyGoal": "今天的字母",
   "dailyGoalAria": "今天的字母：{{total, number}} 个中的 {{done, number}} 个",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "你已经能读韩文字母了",
     "body": "{{count, number}} 个字母全都学过、写过、认过了。接下来是单词。",
     "goal": "今天的单词",
-    "cta": "去学今天的单词"
+    "cta": "开始今天的单词"
   },
   "quick": {
     "letters": "字母",

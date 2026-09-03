@@ -5,7 +5,7 @@
     "start": "학습 시작",
     "resume": "이어 학습하기",
     "resumeBlurb": "하던 곳부터 이어서 해요.",
-    "doneBlurb": "오늘 몫은 끝났어요. 잘하셨어요.",
+    "doneBlurb": "오늘 몫은 끝났어요.",
     "completeTitle": "오늘 단어 목표를 완료했어요.",
     "more": "더 학습하기",
     "allDone": "오늘 할 것은 다 끝났어요.",
@@ -121,7 +121,7 @@
     "emptyTitle": "아직 저장한 단어가 없어요",
     "emptyBody": "공부하다가 단어를 저장하면 여기에 모여요.",
     "emptyCta": "단어 보러 가기",
-    "notPractisable": "찾아보려고 저장한 단어예요. 문제로 내려면 학습 카드가 있어야 하는데 아직 없어요."
+    "notPractisable": "사전에서 저장한 단어예요. 아직 문제로는 나오지 않아요."
   },
   "dictionary": {
     "title": "사전",

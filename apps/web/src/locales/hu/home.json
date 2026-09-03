@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Nézd meg a tanulási naplódat"
   },
-  "celebrate": "A mai cél megvan. Szép munka.",
+  "celebrate": "A mai cél megvan.",
   "dailyGoal": "Mai betűk",
   "dailyGoalAria": "Mai betűk: {{done, number}} / {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Már olvasod a hangult",
     "body": "Mind a(z) {{count, number}} betű: láttad, leírtad, visszaolvastad. Innentől a szavak jönnek.",
     "goal": "Mai szavak",
-    "cta": "A mai szavak"
+    "cta": "A mai szavak kezdése"
   },
   "quick": {
     "letters": "Betűk",

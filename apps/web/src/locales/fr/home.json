@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Voir votre historique d’apprentissage"
   },
-  "celebrate": "Objectif du jour atteint. Joli travail.",
+  "celebrate": "L’objectif du jour est atteint.",
   "dailyGoal": "Lettres du jour",
   "dailyGoalAria": "Lettres du jour : {{done, number}} sur {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Vous savez lire le hangeul",
     "body": "Les {{count, number}} lettres, vues, écrites et relues. La suite, ce sont les mots.",
     "goal": "Mots du jour",
-    "cta": "Les mots du jour"
+    "cta": "Commencer les mots du jour"
   },
   "quick": {
     "letters": "Lettres",

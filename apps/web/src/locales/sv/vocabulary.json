@@ -5,7 +5,7 @@
     "start": "Börja",
     "resume": "Fortsätt",
     "resumeBlurb": "Ta vid där du slutade.",
-    "doneBlurb": "Klart för i dag. Fint jobbat.",
+    "doneBlurb": "Klart för i dag.",
     "completeTitle": "Dagens ord är klara.",
     "more": "Lite till",
     "allDone": "Inget kvar för i dag.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Inga sparade ord än",
     "emptyBody": "Tryck på bokmärket vid ett ord medan du pluggar, så ligger det här när du vill tillbaka.",
     "emptyCta": "Till orden",
-    "notPractisable": "De här är sparade för uppslag. Ett quiz behöver ett inlärningskort, och det finns inte än."
+    "notPractisable": "Sparade från ordboken. De dyker inte upp som frågor än."
   },
   "dictionary": {
     "title": "Ordbok",

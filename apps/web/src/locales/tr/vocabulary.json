@@ -5,7 +5,7 @@
     "start": "Başla",
     "resume": "Devam et",
     "resumeBlurb": "Kaldığın yerden devam et.",
-    "doneBlurb": "Bugünlük tamam. Güzel iş.",
+    "doneBlurb": "Bugünlük tamam.",
     "completeTitle": "Bugünkü kelimeler bitti.",
     "more": "Biraz daha",
     "allDone": "Bugünlük bir şey kalmadı.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Henüz kaydedilmiş kelime yok",
     "emptyBody": "Çalışırken herhangi bir kelimedeki yer imine dokun, sonra dönmek için burada dursun.",
     "emptyCta": "Kelimelere git",
-    "notPractisable": "Bunlar bakmak için kaydedildi. Soru sormak için öğrenme kartı gerekir, henüz yok."
+    "notPractisable": "Sözlükten kaydedildi. Bunlar henüz soru olarak çıkmıyor."
   },
   "dictionary": {
     "title": "Sözlük",

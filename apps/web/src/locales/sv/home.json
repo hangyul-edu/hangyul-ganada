@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Se din lärlogg"
   },
-  "celebrate": "Dagens mål är klart. Fint jobbat.",
+  "celebrate": "Dagens mål är klart.",
   "dailyGoal": "Bokstäver i dag",
   "dailyGoalAria": "Bokstäver i dag: {{done, number}} av {{total, number}}",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Du kan läsa hangul",
     "body": "Alla {{count, number}} bokstäver — mötta, skrivna och lästa tillbaka. Härifrån handlar det om ord.",
     "goal": "Ord i dag",
-    "cta": "Dagens ord"
+    "cta": "Starta dagens ord"
   },
   "quick": {
     "letters": "Bokstäver",

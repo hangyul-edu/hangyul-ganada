@@ -5,7 +5,7 @@
     "start": "Bắt đầu",
     "resume": "Học tiếp",
     "resumeBlurb": "Học tiếp từ chỗ bạn dừng lại.",
-    "doneBlurb": "Hôm nay xong rồi. Tốt lắm!",
+    "doneBlurb": "Xong phần hôm nay.",
     "completeTitle": "Đã học xong từ của hôm nay.",
     "more": "Học thêm chút nữa",
     "allDone": "Hôm nay không còn gì nữa.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Chưa lưu từ nào",
     "emptyBody": "Khi học, chạm vào dấu đánh dấu ở bất kỳ từ nào, từ đó sẽ nằm ở đây để bạn quay lại.",
     "emptyCta": "Đến phần từ vựng",
-    "notPractisable": "Những từ này được lưu để tra cứu. Muốn ra đề thì cần thẻ học, mà chúng chưa có."
+    "notPractisable": "Lưu từ từ điển. Những từ này chưa xuất hiện trong câu hỏi."
   },
   "dictionary": {
     "title": "Từ điển",

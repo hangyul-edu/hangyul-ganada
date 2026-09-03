@@ -5,7 +5,7 @@
     "start": "开始",
     "resume": "继续学习",
     "resumeBlurb": "从上次的地方继续。",
-    "doneBlurb": "今天的部分完成了，做得好。",
+    "doneBlurb": "今天的部分完成了。",
     "completeTitle": "今天的词学完了。",
     "more": "再学一点",
     "allDone": "今天没有更多了。",
@@ -121,7 +121,7 @@
     "emptyTitle": "还没有收藏的词",
     "emptyBody": "学习时点一下单词旁的书签，就会收在这里。",
     "emptyCta": "去看单词",
-    "notPractisable": "这些是为查阅而保存的。出题需要学习卡片，它们暂时还没有。"
+    "notPractisable": "从词典里保存的词。还不会出现在题目里。"
   },
   "dictionary": {
     "title": "词典",

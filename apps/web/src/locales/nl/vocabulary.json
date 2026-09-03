@@ -5,7 +5,7 @@
     "start": "Beginnen",
     "resume": "Doorgaan",
     "resumeBlurb": "Ga verder waar je gebleven was.",
-    "doneBlurb": "Klaar voor vandaag. Mooi werk.",
+    "doneBlurb": "Klaar voor vandaag.",
     "completeTitle": "De woorden van vandaag zijn af.",
     "more": "Nog een beetje",
     "allDone": "Niets meer voor vandaag.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Nog geen bewaarde woorden",
     "emptyBody": "Tik tijdens het leren op de bladwijzer bij een woord, dan staat het hier om op terug te komen.",
     "emptyCta": "Naar de woorden",
-    "notPractisable": "Deze zijn opgeslagen om op te zoeken. Een quiz heeft een leerkaart nodig, en die is er nog niet."
+    "notPractisable": "Opgeslagen uit het woordenboek. Deze komen nog niet als vraag voorbij."
   },
   "dictionary": {
     "title": "Woordenboek",

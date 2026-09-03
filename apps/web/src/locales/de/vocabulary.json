@@ -5,7 +5,7 @@
     "start": "Starten",
     "resume": "Weitermachen",
     "resumeBlurb": "Mach da weiter, wo du aufgehört hast.",
-    "doneBlurb": "Für heute geschafft. Gut gemacht.",
+    "doneBlurb": "Für heute erledigt.",
     "completeTitle": "Die Wörter für heute sind geschafft.",
     "more": "Noch ein wenig",
     "allDone": "Für heute ist nichts mehr da.",
@@ -126,7 +126,7 @@
     "emptyTitle": "Noch nichts gemerkt",
     "emptyBody": "Tipp beim Lernen auf das Lesezeichen an einem Wort — dann findest du es hier wieder.",
     "emptyCta": "Zu den Wörtern",
-    "notPractisable": "Diese sind zum Nachschlagen gespeichert. Ein Quiz braucht eine Lernkarte, und die haben sie noch nicht."
+    "notPractisable": "Aus dem Wörterbuch gespeichert. Diese kommen noch nicht als Frage vor."
   },
   "dictionary": {
     "title": "Wörterbuch",

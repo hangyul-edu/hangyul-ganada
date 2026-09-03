@@ -2,7 +2,7 @@
   "streak": {
     "aria": "Öğrenme kaydını gör"
   },
-  "celebrate": "Bugünün hedefi tamam. Güzel iş.",
+  "celebrate": "Bugünkü hedef tamam.",
   "dailyGoal": "Bugünkü harfler",
   "dailyGoalAria": "Bugünkü harfler: {{total, number}} harften {{done, number}} tanesi",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "Artık Hangıl okuyorsun",
     "body": "{{count, number}} harfin hepsi: gördün, yazdın, geri okudun. Buradan sonrası kelimeler.",
     "goal": "Bugünkü kelimeler",
-    "cta": "Bugünkü kelimeler"
+    "cta": "Bugünün kelimelerine başla"
   },
   "quick": {
     "letters": "Harfler",

@@ -5,7 +5,7 @@
     "start": "Começar",
     "resume": "Continuar",
     "resumeBlurb": "Continue de onde parou.",
-    "doneBlurb": "Feito por hoje. Muito bem.",
+    "doneBlurb": "Por hoje está feito.",
     "completeTitle": "As palavras de hoje acabaram.",
     "more": "Um pouco mais",
     "allDone": "Nada mais por hoje.",
@@ -131,7 +131,7 @@
     "emptyTitle": "Nenhuma palavra salva ainda",
     "emptyBody": "Toque no marcador de qualquer palavra enquanto estuda e ela ficará aqui.",
     "emptyCta": "Ver palavras",
-    "notPractisable": "Estas ficam salvas para consulta. Um quiz precisa de uma ficha de estudo, que elas ainda não têm."
+    "notPractisable": "Salvo do dicionário. Ainda não aparecem como perguntas."
   },
   "dictionary": {
     "title": "Dicionário",

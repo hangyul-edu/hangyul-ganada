@@ -2,7 +2,7 @@
   "streak": {
     "aria": "学習の記録を見る"
   },
-  "celebrate": "今日の目標はここまで。おみごと。",
+  "celebrate": "今日の目標を終えました。",
   "dailyGoal": "今日の文字",
   "dailyGoalAria": "今日の文字: {{total, number}}個中 {{done, number}}個",
   "cta": {
@@ -14,7 +14,7 @@
     "title": "ハングルが読めるようになりました",
     "body": "{{count, number}}文字すべてを覚えて、書いて、読みました。次は単語です。",
     "goal": "今日の単語",
-    "cta": "今日の単語へ"
+    "cta": "今日の単語を始める"
   },
   "quick": {
     "letters": "文字",
