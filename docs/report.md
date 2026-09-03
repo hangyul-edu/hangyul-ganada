@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.2
 date: 4 September 2026
-describes: The v1.0.2 pass, in four rounds. Canonical glyph geometry with the typeface as an oracle; Today's Vocabulary rotating on the calendar day; 32 natively declared languages; a bilingual patent package. Then a user-observed P0 — Numbers lessons marked complete that nobody had studied — and the course rebuilt on an evidence-derived progress model. Then this round, from six reports and two photographs of malformed letters: the notch in ㅌ and the ㄷ/ㄹ family behind it, 꽃 bridged through the middle by its own vowel, a Level 30 learner taught 그래서, a correct answer credited to nothing, fifteen Back handlers replaced by one route table, and the Numbers explanation redrawn from a paragraph into a diagram. Every one of them was green when it was reported. Artefacts built from commit 7aca6cc7 at versionCode 10.
+describes: The v1.0.2 pass, in four rounds. Canonical glyph geometry with the typeface as an oracle; Today's Vocabulary rotating on the calendar day; 32 natively declared languages; a bilingual patent package. Then a user-observed P0 — Numbers lessons marked complete that nobody had studied — and the course rebuilt on an evidence-derived progress model. Then this round, from six reports and two photographs of malformed letters: the notch in ㅌ and the ㄷ/ㄹ family behind it, 꽃 bridged through the middle by its own vowel, a Level 30 learner taught 그래서, a correct answer credited to nothing, fifteen Back handlers replaced by one route table, and the Numbers explanation redrawn from a paragraph into a diagram. Every one of them was green when it was reported. Artefacts built from commit 07a4535a at versionCode 10.
 mark: report-assets/mark.png
 ---
 
@@ -152,7 +152,7 @@ without trusting the row.
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
-| Issues tracked | 141 | `docs/issues.json` |
+| Issues tracked | 142 | `docs/issues.json` |
 | Signed APK | 83.7 MB | `result/build-info.json` |
 | Signed AAB | 82.0 MB | same |
 | Tests | 1,330 across 73 files | `npm test` |
