@@ -1,7 +1,12 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { NUMBER_LESSONS, getNumberLesson, numberLessonItems } from '../src/data/numbers';
-import { masteryExercises, practiceExercises, type NumbersExercise } from '../src/features/numbers/exercises';
+import {
+  MISCONCEPTION_FEEDBACK,
+  masteryExercises,
+  practiceExercises,
+  type NumbersExercise,
+} from '../src/features/numbers/exercises';
 import { copy } from './helpers/copy';
 import { openApp, waitForNumbersRecord } from './helpers/launch';
 
@@ -229,28 +234,64 @@ test.describe('the Numbers course', () => {
       await expect(status).toContainText(en('feedback.answerWas'));
       await expect(status).toContainText(optionText(first, first.answer));
       /*
-       * The feedback line names *this* answer, so the assertion has to fill in
-       * the same blanks the page does.
+       * A wrong answer always gets a body, and it is the line written for the
+       * mistake when the distractor carries one.
        *
-       * It used to compare against the raw English string, which worked only
-       * while every rationale was a fixed sentence per exercise kind — the
-       * arrangement that gave every listen question in the course the same
-       * closing words. The sentence now interpolates the item's own word and
-       * value, so a comparison against the template would be asserting that the
-       * feature was never built.
+       * Two arrangements ago this compared against a fixed sentence per
+       * exercise kind. One ago it compared against a template interpolated with
+       * the item — which is what produced *사는 4예요* on the way *out* of a
+       * correct answer. The source of truth is now the exercise's own typed
+       * feedback, so the assertion reads it rather than reconstructing it.
        */
       const misconception = first.options[wrongIndex]!.misconception;
-      const key = `rationale.${misconception ?? first.rationale.replace('rationale.', '')}`;
+      const key = (misconception ? MISCONCEPTION_FEEDBACK[misconception] : null) ?? first.feedback.incorrect;
       const answered = numberLessonItems(FIRST).find((item) => item.id === first.item_id)!;
-      const filled = en(key)
+      // A plain numeral has no body: the answer line above is the correction.
+      const filled = key === null ? null : en(key)
         .replaceAll('{{korean}}', answered.korean)
+        .replaceAll('{{subject}}', answered.korean)
+        .replaceAll('{{object}}', answered.korean)
         .replaceAll('{{value}}', answered.value === null ? '' : String(answered.value))
         .replaceAll('{{example}}', answered.example ?? '');
-      await expect(status).toContainText(filled);
+      if (filled !== null) await expect(status).toContainText(filled);
       // Options are frozen after one tap: a second tap changes nothing.
       const buttons = body.getByRole('group').getByRole('button');
       for (let i = 0; i < (await buttons.count()); i += 1) await expect(buttons.nth(i)).toBeDisabled();
     }
+  });
+
+  test('N-e2e-5b · a correct answer says 맞았어요 and nothing a learner already knows', async ({ page }) => {
+    /*
+     * The photographed defect: 사 → 4, answered correctly, with *사는 4예요*
+     * underneath. The question's whole content was that 사 is 4.
+     *
+     * Asserted on the rendered screen rather than on the data, because the
+     * empty wrapper was as much of the fault as the sentence — a gap that
+     * appears under some verdicts and not others reads as something failing to
+     * load.
+     */
+    await openApp(page, `/letters/numbers/${FIRST.id}`);
+    await page.getByRole('button', { name: en('action.start') }).click();
+    for (let i = 0; i < FIRST.explanation.length; i += 1) await page.getByRole('button', { name: en('action.next') }).click();
+    for (let i = 0; i < numberLessonItems(FIRST).length; i += 1) await page.getByRole('button', { name: en('action.next') }).click();
+
+    const exercises = practiceExercises(FIRST, 0);
+    const first = exercises[0]!;
+    if (first.kind === 'order_parts') return;
+    await page.getByRole('button', { name: en('action.beginPractice') }).click();
+    const body = page.getByTestId('numbers-phase-practice');
+    await body.getByRole('group').getByRole('button', { name: optionText(first, first.answer), exact: true }).click();
+
+    const status = body.getByRole('status');
+    await expect(status).toContainText(en('feedback.correct'));
+    /*
+     * The item this lesson opens with carries no authored note, so there is no
+     * body at all — not an empty one. The verdict's own headline is a <p>, so
+     * the count that matters is one: the headline and nothing under it.
+     */
+    expect(first.feedback.correct).toBeNull();
+    await expect(status.locator('p')).toHaveCount(1);
+    await expect(status.locator('[class*="body"]')).toHaveCount(0);
   });
 
   test('N-e2e-6 · a new learner can open any lesson in the course, in any order', async ({ page }) => {

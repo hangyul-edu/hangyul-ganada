@@ -355,6 +355,24 @@ export interface NumberItem {
   example_gloss: string | null;
   /** The clip id for `korean`, and for `example` where there is one. */
   audio: { word: string; example: string | null };
+  /**
+   * One authored sentence worth reading *after* the answer, or null.
+   *
+   * The feedback line used to be generated: take the item, attach a particle,
+   * add a fixed ending. For 사 that produced *사는 4예요* under a question whose
+   * whole content was that 사 is 4 — a sentence telling a learner what they
+   * had just been told by the option they tapped and the verdict above it.
+   *
+   * So a note is written by hand or it does not exist. Most items do not have
+   * one, and that is the point: 일 is 1, and there is nothing else to say.
+   * 만 has one, because *10,000원은 만 원이라고 읽어요* is a fact about money a
+   * learner cannot deduce from the number; so do the two irregular months, the
+   * counting forms, 십육, and the zero that is read 공 in a phone number.
+   *
+   * A key into the `numbers` namespace, so every language writes its own rather
+   * than receiving a translated English one.
+   */
+  note?: string | null;
 }
 
 /** The exercise families the Numbers engine can build. */

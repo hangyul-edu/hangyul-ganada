@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { NUMBER_LESSONS, getNumberItem, numberLessonItems } from '../../data/numbers';
-import { exerciseCoverage, masteryExercises, practiceExercises } from './exercises';
+import { MISCONCEPTION_FEEDBACK, exerciseCoverage, masteryExercises, practiceExercises } from './exercises';
 
 /**
  * The exercise engine. The first build placed the correct option at a fixed
@@ -60,16 +60,47 @@ describe('Numbers exercises', () => {
     expect(same).toBeLessThan(a.length);
   });
 
-  it('labels every distractor with the misconception it embodies', () => {
+  it('labels a distractor with a misconception only where one is true of it', () => {
+    /*
+     * This asserted that *every* distractor carried a class, and the way that
+     * was satisfied was to label each sibling `wrong_counter` whatever the item
+     * was — so a question about the numeral 사 answered a wrong tap with *each
+     * counting word has its own things: 명 for people, 마리 for animals*. True,
+     * unrelated, and shown under a question that had nothing to do with
+     * counting words.
+     *
+     * The rule now is the honest one: a class may be absent, and where it is
+     * present it must be one the copy defines, so a learner can never be shown
+     * a key. `wrong_counter` in particular may only appear on a counter.
+     */
     for (const lesson of NUMBER_LESSONS) {
       for (const ex of practiceExercises(lesson, 0)) {
-        if (ex.kind === 'order_parts' || ex.kind === 'spot_mistake') continue;
+        if (ex.kind === 'order_parts') continue;
+        const item = getNumberItem(ex.item_id)!;
         ex.options.forEach((o, i) => {
-          if (i === ex.answer) return;
-          expect(o.misconception, `${ex.id} option "${o.text}" has no misconception class`).toBeDefined();
+          if (i === ex.answer || !o.misconception) return;
+          expect(
+            Object.keys(MISCONCEPTION_FEEDBACK),
+            `${ex.id} option "${o.text}" carries an undefined class`,
+          ).toContain(o.misconception);
+          if (o.misconception === 'wrong_counter') {
+            expect(item.role, `${ex.id}: the counting-word class on a ${item.role}`).toBe('counter');
+          }
         });
       }
     }
+  });
+
+  it('never offers a misconception the copy has no sentence for', () => {
+    // `wrong_system_context` was declared, attached, and never written; a
+    // learner who picked that option was shown the key itself.
+    const classes = new Set<string>();
+    for (const lesson of NUMBER_LESSONS) {
+      for (const ex of practiceExercises(lesson, 0)) {
+        for (const o of ex.options) if (o.misconception) classes.add(o.misconception);
+      }
+    }
+    for (const cls of classes) expect(MISCONCEPTION_FEEDBACK).toHaveProperty(cls);
   });
 
   it('asks about every item in the lesson during mastery', () => {

@@ -89,9 +89,7 @@
     "system_swap": "Pareho ang dami, iba ang lugar. Dito ay {{korean}} ang gamit.",
     "sound_alike": "Isang tunog lang ang pagkakaiba. Pakinggan ang dulo.",
     "adjacent": "Ang {{korean}} ay {{value}}.",
-    "wrong_counter": "May sariling bagay ang bawat salitang pambilang — 명 sa tao, 마리 sa hayop, 개 sa bagay.",
-    "value": "Ang {{korean}} ay {{value}}.",
-    "example": "Ganito sinasabi: {{example}}"
+    "wrong_counter": "May sariling bagay ang bawat salitang pambilang — 명 sa tao, 마리 sa hayop, 개 sa bagay."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "Tama ang 한 개; mali ang 한개",
     "tenThousandWon": "isang 10,000-won na papel",
     "threeHundredMillionWon": "Nagkakahalaga ang unit ng 삼억 원."
+  },
+  "note": {
+    "phoneZero": "Sa numero ng telepono, ang 0 ay karaniwang binabasang 공.",
+    "countingForm": "Bago ang salitang pambilang, ang 하나 ay nagiging 한 at ang 둘 ay 두.",
+    "tenThousandWon": "Ang 10,000원 ay binabasang 만 원.",
+    "simnyuk": "Ang 십육 ay binibigkas na 심뉵.",
+    "irregularMonths": "Ang 6월 ay binabasang 유월 at ang 10월 ay 시월.",
+    "clockTime": "Ang oras ay sinasabing 세 시 십 분.",
+    "price": "Ang presyo ay sinasabing 오천 원."
   }
 }

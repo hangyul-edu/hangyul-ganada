@@ -89,9 +89,7 @@
     "system_swap": "量は同じでも使う場所が違います。ここでは {{korean}} を使います。",
     "sound_alike": "音ひとつの違いです。終わりを聞いてみましょう。",
     "adjacent": "{{korean}} は {{value}} です。",
-    "wrong_counter": "数える言葉にはそれぞれ相手があります — 人は 명、動物は 마리、ものは 개。",
-    "value": "{{korean}} は {{value}} です。",
-    "example": "こう言います: {{example}}"
+    "wrong_counter": "数える言葉にはそれぞれ相手があります — 人は 명、動物は 마리、ものは 개。"
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 が正しく、한개 は誤り",
     "tenThousandWon": "1万ウォン札が1枚",
     "threeHundredMillionWon": "マンションの値段は 삼억 원 です。"
+  },
+  "note": {
+    "phoneZero": "電話番号の0はふつう 공 と読みます。",
+    "countingForm": "数える言葉の前では 하나 が 한、둘 が 두 になります。",
+    "tenThousandWon": "10,000원 は 만 원 と読みます。",
+    "simnyuk": "십육 は 심뉵 と発音します。",
+    "irregularMonths": "6월 は 유월、10월 は 시월 と読みます。",
+    "clockTime": "時刻は 세 시 십 분 のように言います。",
+    "price": "値段は 오천 원 のように言います。"
   }
 }

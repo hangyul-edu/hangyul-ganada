@@ -89,9 +89,7 @@
     "system_swap": "Samma mängd, annan plats. Här använder man {{korean}}.",
     "sound_alike": "Ett ljud skiljer. Lyssna på slutet.",
     "adjacent": "{{korean}} är {{value}}.",
-    "wrong_counter": "Varje räkneord har sina saker — 명 för människor, 마리 för djur, 개 för föremål.",
-    "value": "{{korean}} är {{value}}.",
-    "example": "Så här säger man det: {{example}}"
+    "wrong_counter": "Varje räkneord har sina saker — 명 för människor, 마리 för djur, 개 för föremål."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 är rätt; 한개 inte",
     "tenThousandWon": "en 10 000-wonsedel",
     "threeHundredMillionWon": "Lägenheten kostar 삼억 원."
+  },
+  "note": {
+    "phoneZero": "I ett telefonnummer läses 0 oftast som 공.",
+    "countingForm": "Framför ett räkneord blir 하나 till 한 och 둘 till 두.",
+    "tenThousandWon": "10 000원 läses 만 원.",
+    "simnyuk": "십육 uttalas 심뉵.",
+    "irregularMonths": "6월 läses 유월 och 10월 läses 시월.",
+    "clockTime": "En tid sägs som 세 시 십 분.",
+    "price": "Ett pris sägs som 오천 원."
   }
 }

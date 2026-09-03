@@ -89,9 +89,7 @@
     "system_swap": "Ta sama ilość, inne miejsce. Tutaj używasz {{korean}}.",
     "sound_alike": "Różnica jednego dźwięku. Posłuchaj końcówki.",
     "adjacent": "{{korean}} to {{value}}.",
-    "wrong_counter": "Każde słowo liczące ma swoje rzeczy — 명 do ludzi, 마리 do zwierząt, 개 do przedmiotów.",
-    "value": "{{korean}} to {{value}}.",
-    "example": "Mówi się tak: {{example}}"
+    "wrong_counter": "Każde słowo liczące ma swoje rzeczy — 명 do ludzi, 마리 do zwierząt, 개 do przedmiotów."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 jest poprawne; 한개 nie",
     "tenThousandWon": "banknot 10 000 wonów",
     "threeHundredMillionWon": "Mieszkanie kosztuje 삼억 원."
+  },
+  "note": {
+    "phoneZero": "W numerze telefonu 0 czyta się zwykle 공.",
+    "countingForm": "Przed słowem liczącym 하나 zmienia się w 한, a 둘 w 두.",
+    "tenThousandWon": "10 000원 czyta się 만 원.",
+    "simnyuk": "십육 wymawia się 심뉵.",
+    "irregularMonths": "6월 czyta się 유월, a 10월 — 시월.",
+    "clockTime": "Godzinę mówi się tak: 세 시 십 분.",
+    "price": "Cenę mówi się tak: 오천 원."
   }
 }

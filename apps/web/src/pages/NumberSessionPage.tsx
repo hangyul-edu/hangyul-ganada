@@ -13,7 +13,13 @@ import {
   lessonStatus,
   resumePhase,
 } from '../domain/numbersProgress';
-import { type ExerciseOption, type NumbersExercise, masteryExercises, practiceExercises } from '../features/numbers/exercises';
+import {
+  MISCONCEPTION_FEEDBACK,
+  type ExerciseOption,
+  type NumbersExercise,
+  masteryExercises,
+  practiceExercises,
+} from '../features/numbers/exercises';
 import { exampleMeaning, formatValue, numberMeaning } from '../features/numbers/meaning';
 import { useLocale } from '../i18n';
 import { withParticle } from '../i18n/josa';
@@ -525,19 +531,32 @@ function ExerciseRun({
       ? exercise.parts!.join(' ')
       : optionText(exercise.options[exercise.answer]!);
   const pickedOption = answer.picked !== null ? exercise.options[answer.picked] : undefined;
-  const rationaleKey =
-    !answer.correct && pickedOption?.misconception
-      ? `rationale.${pickedOption.misconception}`
-      : exercise.rationale;
   /*
-   * What the item is, handed to whichever sentence the locale wrote.
+   * The body under the verdict — and, for most correct answers, no body at all.
    *
-   * The feedback line used to be one fixed sentence per exercise kind, which is
-   * how every listen question in the course came to end with the same words
-   * regardless of what had been asked. A locale can now write *만은 10,000이에요*
-   * because the number, the word and its example are all here; `subject` and
-   * `object` carry the Korean particle already attached, since 만은 and 하나는
-   * are not a suffix a translation string can choose for itself.
+   * Three sources, in order of how much they know about what just happened:
+   *
+   * 1. the line written for the *specific* mistake, when the option the learner
+   *    tapped carries a misconception;
+   * 2. the item's own authored note, or the lesson's teaching line, from
+   *    `feedback.incorrect`;
+   * 3. after a correct answer, `feedback.correct` — which is `null` unless the
+   *    item has a note, because a learner who tapped *4* under 사 and read
+   *    맞았어요 has been told everything the question held.
+   */
+  const bodyKey = answer.correct
+    ? exercise.feedback.correct
+    : pickedOption?.misconception
+      ? MISCONCEPTION_FEEDBACK[pickedOption.misconception] ?? exercise.feedback.incorrect
+      : exercise.feedback.incorrect;
+  /*
+   * What the item is, for the sentences that name it.
+   *
+   * Only the misconception lines interpolate now — *‘사’는 4예요* is a
+   * correction when a learner picked something else, and was a tautology when
+   * it followed a right answer. `subject` and `object` carry the Korean
+   * particle already attached, since 만은 and 하나는 are not a suffix a
+   * translation string can choose for itself.
    */
   const rationaleValues = {
     korean: item.korean,
@@ -615,17 +634,34 @@ function ExerciseRun({
 
         {answered && (
           <>
+            {/*
+              The body is built first and passed only if it exists.
+              
+              `FeedbackState` already declines to draw its body wrapper when it
+              is given nothing — but a JSX fragment is truthy whatever is inside
+              it, so passing `<>{cond && …}{cond && …}</>` handed it an element
+              that rendered to nothing and it drew the wrapper anyway. On a
+              correct answer with no note that is an empty padded box under the
+              verdict, which is the *shape* of the same defect as the sentence
+              that used to fill it.
+            */}
             <FeedbackState
               status={answer.correct ? 'correct' : 'incorrect'}
               headline={t(answer.correct ? 'numbers:feedback.correct' : 'numbers:feedback.incorrect')}
             >
-              {!answer.correct && (
-                <p className={styles.note}>
-                  <span className={styles.label}>{t('numbers:feedback.answerWas')}</span>{' '}
-                  <strong lang="ko">{answerText}</strong>
-                </p>
+              {answer.correct && !bodyKey ? null : (
+                <>
+                  {!answer.correct && (
+                    <p className={styles.note}>
+                      <span className={styles.label}>{t('numbers:feedback.answerWas')}</span>{' '}
+                      <strong lang="ko">{answerText}</strong>
+                    </p>
+                  )}
+                  {bodyKey && (
+                    <p className={styles.rationale}>{t(`numbers:${bodyKey}`, rationaleValues)}</p>
+                  )}
+                </>
               )}
-              <p className={styles.rationale}>{t(`numbers:${rationaleKey}`, rationaleValues)}</p>
             </FeedbackState>
             <Button onClick={advance}>{t('numbers:action.continue')}</Button>
           </>

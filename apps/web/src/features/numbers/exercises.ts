@@ -51,8 +51,7 @@ export type MisconceptionClass =
   | 'sound_alike'
   | 'irregular_month'
   | 'wrong_counter'
-  | 'spacing'
-  | 'wrong_system_context';
+  | 'spacing';
 
 export interface ExerciseOption {
   /** What the button shows. Korean, digits, or a meaning key. */
@@ -74,8 +73,24 @@ export interface NumbersExercise {
   prompt: { text?: string; key?: string; value?: number; audio?: string; sentence?: string };
   options: ExerciseOption[];
   answer: number;
-  /** Why the right answer is right, and why the tempting one is not. A key. */
-  rationale: string;
+  /**
+   * What to say afterwards, per outcome. Keys into the `numbers` namespace.
+   *
+   * `correct` is **null** for most questions, and that is the design rather
+   * than an omission. A learner who has just tapped *4* under 사 and been told
+   * 맞았어요 has been told everything the question contained; a sentence saying
+   * *사는 4예요* underneath is the question read back to them. A body appears
+   * after a correct answer only when the item carries an authored note — a fact
+   * the question did not contain, like *10,000원은 만 원이라고 읽어요*.
+   *
+   * `incorrect` is null in one case and it is the same argument: a plain
+   * numeral. *정답은 오* is printed above the body whenever an answer is wrong,
+   * and for a question whose whole content is which digit 오 is, that line is
+   * the entire correction. Three wrong answers in a row were each earning the
+   * same sentence about prices and dates underneath it. A distractor carrying a
+   * misconception still overrides; see `NumberSessionPage`.
+   */
+  feedback: { correct: string | null; incorrect: string | null };
   /** For `order_parts`: the parts, in the order they must be tapped. */
   parts?: string[];
 }
@@ -173,10 +188,44 @@ const koreanOf = (item: NumberItem): ExerciseOption => ({ text: item.korean });
 const meaningOf = (item: NumberItem): ExerciseOption =>
   item.gloss ? { text: item.gloss, isKey: true } : { text: String(item.value), value: item.value ?? undefined };
 
+/**
+ * Which misconceptions have a sentence worth printing, and which do not.
+ *
+ * `adjacent` is `null` on purpose. A learner who picked 사 when the answer was
+ * 오 is already told *정답은 오* by the line above the body; adding *오는 5예요*
+ * says the same thing twice, and it is the same construction as the *사는
+ * 4예요* this pass removed from correct answers. The right correction was
+ * already on screen.
+ *
+ * `sound_alike` keeps its line because it says something the answer does not:
+ * *listen to the ending*. It is only ever attached from the `SOUND_ALIKE`
+ * table, so it is a claim about a specific pair rather than about learners.
+ */
+export const MISCONCEPTION_FEEDBACK: Record<MisconceptionClass, string | null> = {
+  system_swap: 'rationale.system_swap',
+  plain_form: 'rationale.plain_form',
+  adjacent: null,
+  sound_alike: 'rationale.sound_alike',
+  irregular_month: 'rationale.irregular_month',
+  wrong_counter: 'rationale.wrong_counter',
+  spacing: 'rationale.spacing',
+};
+
+/**
+ * A sibling of the same item, as a distractor.
+ *
+ * The class is decided by what the *item* is, not by which list the sibling
+ * came out of. Labelling every sibling `wrong_counter` gave a question about
+ * the numeral 사 the feedback *each counting word has its own things — 명 for
+ * people, 마리 for animals* , which is true, unrelated, and exactly the generic
+ * reuse this pass is removing. A numeral's sibling carries no class at all, so
+ * the exercise's own line answers instead.
+ */
 function siblingsDistinct(item: NumberItem, siblings: NumberItem[], by: (i: NumberItem) => ExerciseOption, cls: MisconceptionClass): ExerciseOption[] {
+  const applies = cls !== 'wrong_counter' || item.role === 'counter';
   return siblings
     .filter((s) => s.id !== item.id)
-    .map((s) => ({ ...by(s), misconception: cls }))
+    .map((s) => ({ ...by(s), ...(applies ? { misconception: cls } : {}) }))
     .filter((o) => (o.isKey ? o.text !== (item.gloss ?? '') : o.value !== undefined ? o.value !== item.value : o.text !== item.korean));
 }
 
@@ -184,23 +233,40 @@ function siblingsDistinct(item: NumberItem, siblings: NumberItem[], by: (i: Numb
  * The line under the feedback, chosen from what is actually known about the
  * item rather than from the kind of question.
  *
- * The previous rule attached one sentence per exercise kind, and every listen
- * question in the course therefore ended with *listen to the whole word;
- * neighbouring numbers are what people confuse most often*. It explained
- * nothing about the answer, and its second clause was a claim about learners
- * that this repository has no evidence for. A learner who has just heard 만 and
- * picked 억 needs one fact — 만 is 10,000 — and that fact is in the item.
+ * ## Two rules, and the second one is the fix
  *
- * So: the value if the item has one, then its example, and only then the
- * teaching line for the kind. Every rationale here is rendered with the item's
- * own `korean`, `value` and `example` available for interpolation, so a locale
- * writes the sentence its language wants rather than receiving a translated
- * English one.
+ * The first arrangement attached one sentence per exercise kind, so every
+ * listen question in the course ended with *listen to the whole word;
+ * neighbouring numbers are what people confuse most often* — nothing about the
+ * answer, and a claim about learners this repository cannot support.
+ *
+ * The second generated a sentence from the item: take the word, attach the
+ * subject particle, add *예요*. That is how a question whose entire content is
+ * that 사 means 4 came to answer itself, under the verdict, with **사는 4예요**.
+ * Correct answers are where the damage was: a learner who got it right has
+ * already been told the fact by the option they tapped.
+ *
+ * So a correct answer gets a body only when the item carries a sentence
+ * somebody wrote for it, and a wrong answer gets that sentence or the lesson's
+ * teaching line. Nothing is composed at runtime from a word and an ending.
  */
-function itemRationale(item: NumberItem, fallback: string): string {
-  if (item.value !== null) return 'rationale.value';
-  if (item.example) return 'rationale.example';
-  return fallback;
+function feedbackFor(item: NumberItem, teaches: string): NumbersExercise['feedback'] {
+  /*
+   * A numeral that is only a numeral has nothing left to say either way.
+   *
+   * 오 is 5. The screen already prints *정답은 오* when the learner missed it,
+   * and the option they tapped when they did not. A teaching line underneath
+   * about where the set is used is the lesson's point, not this question's, and
+   * printing it under every wrong answer in a ten-question run is the kind of
+   * repetition a learner stops reading — which costs them the lines that do say
+   * something.
+   */
+  const bare = item.role === 'numeral' && item.value !== null && !item.note;
+  return {
+    // Authored, or nothing. Never generated from the item and a fixed ending.
+    correct: item.note ?? null,
+    incorrect: item.note ?? (bare ? null : teaches),
+  };
 }
 
 /** Which set the item belongs to, as the sentence a learner can act on. */
@@ -215,7 +281,7 @@ function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, meaningOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('read_choose', item, ctx, { text: item.korean, audio: item.audio.word }, options, itemRationale(item, systemRationale(item)));
+  return finish('read_choose', item, ctx, { text: item.korean, audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
 }
 
 /** Clip played → Korean chosen. Distractors: sound-alikes, adjacent, system swap. */
@@ -229,7 +295,7 @@ function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('listen_choose', item, ctx, { audio: item.audio.word }, options, itemRationale(item, systemRationale(item)));
+  return finish('listen_choose', item, ctx, { audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
 }
 
 /** Numeral shown → Korean chosen, in the *lesson's* system. Distractor 1 is always the other system. */
@@ -243,7 +309,7 @@ function digitsToKorean(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('digits_to_korean', item, ctx, { value: item.value, key: `prompt.digitsToKorean.${item.system ?? 'both'}` }, options, item.system === 'native' ? 'rationale.nativeSystem' : 'rationale.sinoSystem');
+  return finish('digits_to_korean', item, ctx, { value: item.value, key: `prompt.digitsToKorean.${item.system ?? 'both'}` }, options, feedbackFor(item, systemRationale(item)));
 }
 
 /** Korean shown → numeral chosen. Distractors: adjacent values, sound-alike values. */
@@ -263,19 +329,34 @@ function koreanToDigits(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     ctx.siblings.filter((s) => s.value !== null && s.value !== v).map((s) => valueOpt(s.value!, 'adjacent')),
   ]);
   if (!options) return null;
-  return finish('korean_to_digits', item, ctx, { text: item.korean, audio: item.audio.word }, options, 'rationale.koreanToDigits');
+  return finish('korean_to_digits', item, ctx, { text: item.korean, audio: item.audio.word }, options, feedbackFor(item, 'rationale.koreanToDigits'));
 }
 
 /** Context phrase → which system does it use? Two options, both meaningful. */
 function chooseSystem(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   if (item.system === null) return null;
   const options: ExerciseOption[] = [
-    { text: 'system.native', isKey: true, ...(item.system !== 'native' ? { misconception: 'wrong_system_context' as const } : {}) },
-    { text: 'system.sino', isKey: true, ...(item.system !== 'sino' ? { misconception: 'wrong_system_context' as const } : {}) },
+    /*
+     * No misconception class on these two.
+     *
+     * `wrong_system_context` was declared, attached here, and never given a
+     * sentence in any of the thirty-two bundles — so a learner who picked the
+     * wrong set was shown the key `rationale.wrong_system_context`, which is
+     * what i18next returns when it cannot find one. `copy:generated` found it
+     * on its first run, 1,024 times.
+     *
+     * A dedicated line is not the fix, because the right correction already
+     * exists: this question asks which numbers a context takes, and the
+     * exercise's own `incorrect` is the item's system line — *가격과 날짜, 분,
+     * 전화번호, 층은 일, 이, 삼으로 말해요.* A second sentence saying the same
+     * thing more vaguely would be the filler this pass is removing.
+     */
+    { text: 'system.native', isKey: true },
+    { text: 'system.sino', isKey: true },
   ];
   const answerIndex = item.system === 'native' ? 0 : 1;
   const ordered = [options[answerIndex]!, options[1 - answerIndex]!];
-  return finish('choose_system', item, ctx, { text: item.korean, key: item.gloss ?? undefined, audio: item.audio.word }, ordered, item.system === 'native' ? 'rationale.nativeSystem' : 'rationale.sinoSystem');
+  return finish('choose_system', item, ctx, { text: item.korean, key: item.gloss ?? undefined, audio: item.audio.word }, ordered, feedbackFor(item, systemRationale(item)));
 }
 
 /** A counter with a number: pick the form that goes in front of it. */
@@ -301,7 +382,7 @@ function counterForm(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     [{ text: glued, misconception: 'spacing' }],
   ]);
   if (!options) return null;
-  return finish('counter_form', item, ctx, { key: 'prompt.counterForm', value: value ?? undefined, text: counter }, options, 'rationale.countingForm');
+  return finish('counter_form', item, ctx, { key: 'prompt.counterForm', value: value ?? undefined, text: counter }, options, feedbackFor(item, 'rationale.countingForm'));
 }
 
 /** Which of these is NOT Korean? The wrong forms are the answer's distractors made explicit. */
@@ -322,7 +403,7 @@ function spotMistake(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const fill = ctx.siblings.filter((s) => s.id !== item.id).map((s) => ({ text: s.example?.split('·')[0]?.replace(/\(✓\)/, '').trim() || s.korean }));
   const options = build(wrong[0]!, [right, fill]);
   if (!options) return null;
-  return finish('spot_mistake', item, ctx, { key: 'prompt.spotMistake' }, options, `rationale.${wrong[0]!.misconception}`);
+  return finish('spot_mistake', item, ctx, { key: 'prompt.spotMistake' }, options, feedbackFor(item, `rationale.${wrong[0]!.misconception}`));
 }
 
 /** A sentence with the target blanked; the options are the lesson's items. */
@@ -338,7 +419,7 @@ function fillSentence(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('fill_sentence', item, ctx, { sentence, audio: item.audio.example ?? undefined }, options, item.role === 'counter' ? 'rationale.counter' : 'rationale.fill');
+  return finish('fill_sentence', item, ctx, { sentence, audio: item.audio.example ?? undefined }, options, feedbackFor(item, item.role === 'counter' ? 'rationale.counter' : 'rationale.fill'));
 }
 
 /** Tap the parts of a compound numeral in order: 삼십오 → 삼 · 십 · 오. */
@@ -356,7 +437,7 @@ function orderParts(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     options: shuffled.map((text) => ({ text })),
     answer: -1,
     parts,
-    rationale: item.system === 'native' ? 'rationale.nativeBuild' : 'rationale.sinoBuild',
+    feedback: feedbackFor(item, item.system === 'native' ? 'rationale.nativeBuild' : 'rationale.sinoBuild'),
   };
 }
 
@@ -381,7 +462,7 @@ function finish(
   ctx: Ctx,
   prompt: NumbersExercise['prompt'],
   ordered: ExerciseOption[],
-  rationale: string,
+  feedback: NumbersExercise['feedback'],
 ): NumbersExercise {
   const seed = `${ctx.lesson.id}:${item.id}:${kind}:${ctx.phase}:${ctx.attempt}`;
   const options = shuffle(ordered, seed);
@@ -392,7 +473,7 @@ function finish(
     prompt,
     options,
     answer: options.findIndex((o) => o === ordered[0]),
-    rationale,
+    feedback,
   };
 }
 

@@ -89,9 +89,7 @@
     "system_swap": "Same amount, different place. Here you use {{korean}}.",
     "sound_alike": "One sound apart. Listen to the ending.",
     "adjacent": "{{korean}} is {{value}}.",
-    "wrong_counter": "Each counting word has its own things — 명 for people, 마리 for animals, 개 for objects.",
-    "value": "{{korean}} is {{value}}.",
-    "example": "You say it like this: {{example}}"
+    "wrong_counter": "Each counting word has its own things — 명 for people, 마리 for animals, 개 for objects."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 is right; 한개 is not",
     "tenThousandWon": "one 10,000-won note",
     "threeHundredMillionWon": "The flat costs 삼억 원."
+  },
+  "note": {
+    "phoneZero": "In a phone number, 0 is usually read 공.",
+    "countingForm": "Before a counting word, 하나 becomes 한 and 둘 becomes 두.",
+    "tenThousandWon": "10,000원 is read 만 원.",
+    "simnyuk": "십육 is said 심뉵.",
+    "irregularMonths": "6월 is read 유월 and 10월 is read 시월.",
+    "clockTime": "A time is said like 세 시 십 분.",
+    "price": "A price is said like 오천 원."
   }
 }

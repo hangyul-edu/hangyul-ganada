@@ -89,9 +89,7 @@
     "system_swap": "Gleiche Menge, anderer Platz. Hier nimmst du {{korean}}.",
     "sound_alike": "Ein Laut Unterschied. Achte auf das Ende.",
     "adjacent": "{{korean}} ist {{value}}.",
-    "wrong_counter": "Jedes Zählwort hat seine Dinge — 명 für Menschen, 마리 für Tiere, 개 für Sachen.",
-    "value": "{{korean}} ist {{value}}.",
-    "example": "So sagst du es: {{example}}"
+    "wrong_counter": "Jedes Zählwort hat seine Dinge — 명 für Menschen, 마리 für Tiere, 개 für Sachen."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 ist richtig, 한개 nicht",
     "tenThousandWon": "ein 10.000-Won-Schein",
     "threeHundredMillionWon": "Die Wohnung kostet 삼억 원."
+  },
+  "note": {
+    "phoneZero": "In einer Telefonnummer wird 0 meist 공 gelesen.",
+    "countingForm": "Vor einem Zählwort wird 하나 zu 한 und 둘 zu 두.",
+    "tenThousandWon": "10.000원 liest man 만 원.",
+    "simnyuk": "십육 wird 심뉵 gesprochen.",
+    "irregularMonths": "6월 heißt 유월 und 10월 heißt 시월.",
+    "clockTime": "Eine Uhrzeit sagt man wie 세 시 십 분.",
+    "price": "Einen Preis sagt man wie 오천 원."
   }
 }

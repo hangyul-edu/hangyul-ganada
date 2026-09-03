@@ -89,9 +89,7 @@
     "system_swap": "Ugyanaz a mennyiség, más a helye. Itt a {{korean}} kell.",
     "sound_alike": "Egyetlen hang a különbség. Figyelj a végére.",
     "adjacent": "A {{korean}} annyi, mint {{value}}.",
-    "wrong_counter": "Minden számlálószónak megvan a maga dolga — 명 emberre, 마리 állatra, 개 tárgyra.",
-    "value": "A {{korean}} annyi, mint {{value}}.",
-    "example": "Így mondod: {{example}}"
+    "wrong_counter": "Minden számlálószónak megvan a maga dolga — 명 emberre, 마리 állatra, 개 tárgyra."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "a 한 개 helyes; a 한개 nem",
     "tenThousandWon": "egy 10 000 vonos bankjegy",
     "threeHundredMillionWon": "A lakás ára 삼억 원."
+  },
+  "note": {
+    "phoneZero": "Telefonszámban a 0 általában 공.",
+    "countingForm": "Számlálószó előtt a 하나-ból 한, a 둘-ből 두 lesz.",
+    "tenThousandWon": "A 10 000원 kiolvasva 만 원.",
+    "simnyuk": "A 십육 kiejtve 심뉵.",
+    "irregularMonths": "A 6월 kiolvasva 유월, a 10월 pedig 시월.",
+    "clockTime": "Az időt így mondod: 세 시 십 분.",
+    "price": "Az árat így mondod: 오천 원."
   }
 }

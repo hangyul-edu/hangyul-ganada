@@ -72,6 +72,11 @@ type Extra = {
   example?: string;
   example_gloss?: string;
   counter_system?: 'sino' | 'native';
+  /**
+   * A key into the `numbers` namespace: one sentence worth reading after the
+   * answer. Most items have none — see `note` on `NumberItem`.
+   */
+  note?: string;
 };
 
 const n = (
@@ -95,6 +100,7 @@ const n = (
   gloss,
   example: extra.example ?? null,
   example_gloss: extra.example_gloss ?? null,
+  note: extra.note ?? null,
   audio: {
     // Single words share the vocabulary corpus's clips where the word is in it;
     // phrases and examples get their own. Same id rule, so a recording is made
@@ -138,6 +144,7 @@ const ZERO: NumberItem[] = [
     example_gloss: 'example.zeroMath',
   }),
   n('num-zero-gong', '공', 'gong', 0, 'sino', 'numeral', 'gloss.zeroDigit', {
+    note: 'note.phoneZero',
     example: '공일공',
     example_gloss: 'example.zeroDigit',
   }),
@@ -206,7 +213,9 @@ const NATIVE_BUILD: NumberItem[] = [
  */
 const COUNTING_FORMS: NumberItem[] = [
   n('num-form-1', '한', 'han', 1, 'native', 'form', 'gloss.formOne', { example: '한 명' }),
-  n('num-form-2', '두', 'du', 2, 'native', 'form', 'gloss.formTwo', { example: '두 개' }),
+  n('num-form-2', '두', 'du', 2, 'native', 'form', 'gloss.formTwo', {
+    example: '두 개', note: 'note.countingForm',
+  }),
   n('num-form-3', '세', 'se', 3, 'native', 'form', 'gloss.formThree', { example: '세 시' }),
   n('num-form-4', '네', 'ne', 4, 'native', 'form', 'gloss.formFour', { example: '네 잔' }),
   n('num-form-20', '스무', 'seumu', 20, 'native', 'form', 'gloss.formTwenty', { example: '스무 살' }),
@@ -286,6 +295,7 @@ const MINUTES: NumberItem[] = [
     example: '십 초', counter_system: 'sino',
   }),
   n('num-t-mixed', '세 시 삼십 분', 'se si samsip bun', null, null, 'phrase', 'gloss.mixedTime', {
+    note: 'note.clockTime',
     example: '세 시 삼십 분이에요.',
     example_gloss: 'example.halfPastThree',
   }),
@@ -338,6 +348,7 @@ const WEEKDAYS: NumberItem[] = [
 
 const MONEY: NumberItem[] = [
   n('num-m-won', '원', 'won', null, null, 'counter', 'gloss.counterWon', {
+    note: 'note.price',
     example: '천 원', counter_system: 'sino',
   }),
   n('num-m-5000', '오천 원', 'ocheon won', 5000, 'sino', 'phrase', null),
@@ -394,6 +405,7 @@ const DIGITS: NumberItem[] = [
  */
 const LARGE: NumberItem[] = [
   n('num-l-man', '만', 'man', 10000, 'sino', 'numeral', 'gloss.tenThousand', {
+    note: 'note.tenThousandWon',
     example: '만 원',
     example_gloss: 'example.tenThousandWon',
   }),
@@ -418,11 +430,13 @@ const PITFALLS: NumberItem[] = [
     example_gloss: 'example.pitfallCountingForm',
   }),
   n('num-x-simnyuk', '십육', 'simnyuk', 16, 'sino', 'phrase', 'gloss.pitfallSimnyuk', {
+    note: 'note.simnyuk',
     reading: '심뉵',
     example: '십육 (심뉵)',
     example_gloss: 'example.pitfallSimnyuk',
   }),
   n('num-x-june', '유월', 'yuwol', 6, 'sino', 'phrase', 'gloss.pitfallJune', {
+    note: 'note.irregularMonths',
     example: '유월 (✓)  ·  육월 (✗)',
     example_gloss: 'example.pitfallJune',
   }),

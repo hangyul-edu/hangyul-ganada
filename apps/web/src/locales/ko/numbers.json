@@ -89,9 +89,7 @@
     "system_swap": "값은 같아도 쓰는 자리가 달라요. 여기서는 {{object}} 써요.",
     "sound_alike": "소리 하나 차이예요. 끝소리를 들어 보세요.",
     "adjacent": "{{subject}} {{value}}예요.",
-    "wrong_counter": "세는 말마다 어울리는 대상이 있어요 — 사람은 명, 동물은 마리, 물건은 개.",
-    "value": "{{subject}} {{value}}예요.",
-    "example": "이렇게 써요: {{example}}"
+    "wrong_counter": "세는 말마다 어울리는 대상이 있어요 — 사람은 명, 동물은 마리, 물건은 개."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개가 맞고, 한개는 틀려요",
     "tenThousandWon": "만 원짜리 한 장",
     "threeHundredMillionWon": "집값이 삼억 원이에요."
+  },
+  "note": {
+    "phoneZero": "전화번호의 0은 보통 공이라고 읽어요.",
+    "countingForm": "세는 말 앞에서는 하나가 한, 둘이 두로 바뀌어요.",
+    "tenThousandWon": "10,000원은 만 원이라고 읽어요.",
+    "simnyuk": "십육은 심뉵으로 소리 나요.",
+    "irregularMonths": "6월은 유월, 10월은 시월이라고 읽어요.",
+    "clockTime": "시간은 세 시 십 분처럼 말해요.",
+    "price": "가격은 오천 원처럼 말해요."
   }
 }

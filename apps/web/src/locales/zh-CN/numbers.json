@@ -89,9 +89,7 @@
     "system_swap": "数量一样，用的地方不同。这里要用 {{korean}}。",
     "sound_alike": "只差一个音。听听结尾。",
     "adjacent": "{{korean}} 就是 {{value}}。",
-    "wrong_counter": "每个量词都有它数的东西 — 人用 명，动物用 마리，物品用 개。",
-    "value": "{{korean}} 就是 {{value}}。",
-    "example": "这样说: {{example}}"
+    "wrong_counter": "每个量词都有它数的东西 — 人用 명，动物用 마리，物品用 개。"
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 对，한개 错",
     "tenThousandWon": "一张一万韩元的纸币",
     "threeHundredMillionWon": "这套房子 삼억 원。"
+  },
+  "note": {
+    "phoneZero": "电话号码里的 0 通常读作 공。",
+    "countingForm": "在量词前面，하나 变成 한，둘 变成 두。",
+    "tenThousandWon": "10,000원 读作 만 원。",
+    "simnyuk": "십육 读作 심뉵。",
+    "irregularMonths": "6월 读作 유월，10월 读作 시월。",
+    "clockTime": "时间这样说：세 시 십 분。",
+    "price": "价格这样说：오천 원。"
   }
 }

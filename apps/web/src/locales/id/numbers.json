@@ -89,9 +89,7 @@
     "system_swap": "Jumlahnya sama, tempatnya beda. Di sini yang dipakai {{korean}}.",
     "sound_alike": "Bedanya satu bunyi. Dengarkan bagian akhirnya.",
     "adjacent": "{{korean}} itu {{value}}.",
-    "wrong_counter": "Tiap kata bantu bilangan punya bendanya sendiri — 명 untuk orang, 마리 untuk hewan, 개 untuk barang.",
-    "value": "{{korean}} itu {{value}}.",
-    "example": "Begini cara mengucapkannya: {{example}}"
+    "wrong_counter": "Tiap kata bantu bilangan punya bendanya sendiri — 명 untuk orang, 마리 untuk hewan, 개 untuk barang."
   },
   "module": {
     "systems": {
@@ -344,5 +342,14 @@
     "pitfallSpacing": "한 개 benar; 한개 salah",
     "tenThousandWon": "selembar uang 10.000 won",
     "threeHundredMillionWon": "Apartemennya 삼억 원."
+  },
+  "note": {
+    "phoneZero": "Dalam nomor telepon, 0 biasanya dibaca 공.",
+    "countingForm": "Sebelum kata bantu bilangan, 하나 jadi 한 dan 둘 jadi 두.",
+    "tenThousandWon": "10.000원 dibaca 만 원.",
+    "simnyuk": "십육 dilafalkan 심뉵.",
+    "irregularMonths": "6월 dibaca 유월 dan 10월 dibaca 시월.",
+    "clockTime": "Waktu diucapkan seperti 세 시 십 분.",
+    "price": "Harga diucapkan seperti 오천 원."
   }
 }
