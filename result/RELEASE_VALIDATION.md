@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `9c7637b4` on branch `main`, **with a clean working tree at
+**Source:** commit `3b4640b8` on branch `main`, **with a clean working tree at
 the moment the packages were compiled**. This is the line that was wrong last
 time and is the reason `I-01` was reopened: the previous artefacts recorded
 `"dirty": true` beside their commit, with 440 changed and 595 untracked files,
@@ -134,6 +134,6 @@ lesson, a vocabulary sitting, the Numbers course and the Level Test.
 ```
 4211cdd1eb417fd80c56621dc18cf8487b86c490f55aaa3c70158731efcdf8f2  hangyul-ganada-release.apk
 b9565543743fa9f0d9a78652cfc57d36c3947b18170d3599594350a8192ed500  hangyul-ganada-release.aab
-fa43618ef6050839efd18e3ec151c7265c3dc25b908e3ff751a06d25b78292a3  docs/report.pdf
-ba2806293c982e4ce90a7c2e37b76e0fcb284782e3c7a26b3928ebeecb0d06a0  build-info.json
+415fd900ea8e258d0859d5438a0db52fc2da24aaef1dc6a6723e8413118b73c2  docs/report.pdf
+0e6ed2656bf119a5c433d46ca06a3f24f5851f6a3b94cf5bc21b7a866e532570  build-info.json
 ```
