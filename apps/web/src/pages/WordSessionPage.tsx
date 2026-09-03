@@ -474,7 +474,21 @@ export function WordSessionPage() {
    * Bounded by `corpusReady()` rather than by hope: once the corpus is in,
    * an empty queue really does mean nothing to ask, and the backstop is right.
    */
-  if (!current && steps.length > 0 && !finished && !corpusReady()) {
+  /*
+   * `steps.length > 0` was the wrong half of the condition.
+   *
+   * When a band has not arrived, *none* of the day's words can be turned into a
+   * step — so `steps` is empty precisely because of the thing this guard exists
+   * to wait for, and requiring it to be non-empty made the guard fire only in
+   * the case where the corpus had already produced something. A learner opening
+   * a level-30 plan on a cold load saw *Nothing left for today* over a day that
+   * had not started.
+   *
+   * The question is the plan's, not the queue's: does today still owe this
+   * learner a word? If it does and the corpus is not in yet, wait.
+   */
+  const owedToday = vocabularyDay.words.length > vocabularyDay.completed.length;
+  if (!current && (steps.length > 0 || owedToday) && !finished && !corpusReady()) {
     return (
       <FocusScreen
         resetKey="words-loading"
