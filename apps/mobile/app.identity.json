@@ -1,26 +1,21 @@
 {
   "_comment": "The single place the native apps get their identity from. Read by capacitor.config.ts, by android/app/build.gradle, and by scripts/mobile-identity.mjs, so an identifier can never be right in one project and wrong in the other. NOT YET REGISTERED with either store — see `registered` below.",
-
   "_appName_comment": "The name that appears under the icon on a phone's home screen, and nowhere else. It is title-cased — Hangyul Ganada — because a launcher label sits beside Photos, Maps and Settings, and a lowercased second word reads there as a typo rather than as the deliberate lowercase of 가나다. The prose product name in the app, the store listing and every document stays `Hangyul ganada`; scripts/check-product-name.mjs enforces that split, and scripts/check-mobile-identity.mjs enforces that Android's strings.xml and iOS's Info.plist both carry exactly this value. Changing the name here and nowhere else is the supported way to rename the installed app.",
   "appName": "Hangyul Ganada",
   "appId": "com.talkhangyul.ganada",
-
   "registered": {
     "_comment": "Set each to true only once the identifier has actually been created in the corresponding console. Nothing in the build depends on these; they exist so the release checklist cannot be answered from memory.",
     "googlePlay": false,
     "appStoreConnect": false
   },
-
   "version": "1.0.2",
-  "buildNumber": 9,
-
+  "buildNumber": 10,
   "android": {
     "_comment": "targetSdk 36 because Google Play requires Android 16 for new apps and updates from 31 August 2026. minSdk 24 is Capacitor 8's floor and covers ~99% of active devices.",
     "targetSdk": 36,
     "compileSdk": 36,
     "minSdk": 24
   },
-
   "ios": {
     "_comment": "15.0 to match IPHONEOS_DEPLOYMENT_TARGET in the Xcode project — the two disagreeing is how a build succeeds and then crashes on a device the store said it supported. Capacitor 8's own floor is 14; 15 is chosen because it is what the project is configured for and covers every device Apple still updates. Apple requires builds made with the iOS 26 SDK from 28 April 2026; that is the SDK you build *with*, not the version you deploy *to*.",
     "deploymentTarget": "15.0"
