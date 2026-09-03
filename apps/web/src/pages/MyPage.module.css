@@ -276,6 +276,24 @@
 }
 
 .toggleLabel {
+  /*
+   * The containing block for the hidden checkbox below it.
+   *
+   * `.toggleInput` is `position: absolute` with no offsets — the ordinary way
+   * to keep a real checkbox focusable and in the accessibility tree while a
+   * styled track draws the control. With no positioned ancestor its containing
+   * block was `#root`, so the scrolling pane's `overflow: hidden` did not clip
+   * it: an absolutely positioned box is clipped by an ancestor only when that
+   * ancestor is in its containing-block chain.
+   *
+   * Two of these sit near the bottom of My Learning, at document y≈1908 and
+   * y≈1960 on a 390 × 844 screen. They stretched `#root`'s scrollHeight to
+   * 1,961 px against an 844 px viewport, which made the *document* scrollable —
+   * and the document scrolling carries the whole app up, bottom tab bar
+   * included, leaving blank ground beneath it. That is the reported defect, and
+   * this line is where it starts.
+   */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -576,9 +594,23 @@
   gap: var(--hg-space-3);
 }
 
+/*
+ * The group heading starts on the same axis as everything under it.
+ *
+ * It carried `padding-inline-start: var(--hg-space-1)`, so its *box* began at
+ * the section's rule and its first glyph began 4 px inside it — 초기화 sitting
+ * four pixels to the right of 맨 처음 글자부터 다시 시작해요, 백업 four pixels
+ * right of its own description, and the same on 화면 and 앱. Every automated
+ * measurement of the boxes agreed the column was straight, which is why it
+ * survived: the eye reads ink, and the padding moved the ink without moving the
+ * box.
+ *
+ * Nothing replaces it. The four pixels were an optical nudge for the uppercase
+ * tracking, and an optical nudge that only applies to one of the two things
+ * sharing a rule is a misalignment with a reason attached.
+ */
 .groupTitle {
   margin: 0;
-  padding-inline-start: var(--hg-space-1);
   font: var(--hg-text-caption);
   font-weight: var(--hg-weight-bold);
   letter-spacing: 0.06em;

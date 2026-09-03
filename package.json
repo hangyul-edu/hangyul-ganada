@@ -207,6 +207,8 @@
     "back:coverage:check": "node scripts/check-back-coverage.mjs --check",
     "scroll:audit": "node scripts/check-reachable-actions.mjs",
     "scroll:audit:check": "node scripts/check-reachable-actions.mjs --check",
+    "align:sections": "node scripts/check-section-alignment.mjs",
+    "align:sections:check": "node scripts/check-section-alignment.mjs --check",
     "legal:isolation": "node scripts/check-legal-isolation.mjs",
     "legal:isolation:check": "node scripts/check-legal-isolation.mjs --check",
     "numbers:copy": "node scripts/check-numbers-copy.mjs",

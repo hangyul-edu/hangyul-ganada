@@ -48,13 +48,33 @@
 }
 
 html {
-  /* The app is a fixed-height shell with its own scroll regions. */
+  /*
+   * The app is a fixed-height shell with its own scroll regions, and the
+   * document is not one of them.
+   *
+   * `height: 100%` said so and nothing enforced it. Anything that escaped a
+   * scroll pane — an absolutely positioned child whose containing block had
+   * walked up to `#root`, a portal, a future decoration — made the *document*
+   * taller than the window, and a scrollable document carries the entire app
+   * upward when it moves: the bottom tab bar with it, blank ground underneath.
+   * That is what the My Learning screenshot showed, and it was one hidden
+   * checkbox away at any time.
+   *
+   * `overflow: hidden` here makes the class of defect structurally impossible
+   * rather than fixing the instance. Everything a learner scrolls is inside the
+   * shell and says so — `AppShell`'s `<main>` on a tabbed screen,
+   * `FocusScreen`'s middle row on a learning one, both marked
+   * `data-scroll-region`.
+   */
   height: 100%;
+  overflow: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   height: 100%;
+  /* Same rule as `html` above, and for the same reason. */
+  overflow: hidden;
   margin: 0;
   font-family: var(--hg-font-ui);
   font-size: var(--hg-text-body);
