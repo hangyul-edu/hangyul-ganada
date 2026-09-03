@@ -1625,12 +1625,9 @@
    "decision": "kept"
   },
   "numbers:feedback.incorrect": {
-   "hash": "96625bca2857",
-   "decision": "kept"
-  },
-  "numbers:feedback.answerWas": {
-   "hash": "480d6c4ac1eb",
-   "decision": "kept"
+   "hash": "29fd74de233c",
+   "decision": "rewritten",
+   "why": "조금 달라요 — \"it is a little different\" — softened a verdict the screen had already delivered in red, leaving a learner to work out whether it counted. 틀렸어요 is the answer to the question they asked"
   },
   "numbers:prompt.listen": {
    "hash": "0edcf9d0a513",
@@ -1869,8 +1866,9 @@
    "decision": "kept"
   },
   "numbers:lesson.sinoBuild.step1": {
-   "hash": "72aaaa1478f9",
-   "decision": "kept"
+   "hash": "bf2a4ad978c5",
+   "decision": "rewritten",
+   "why": "carried three worked examples, three arabic numerals and three hyphenated pseudo-spellings — 십일은 십-일, 11 — in one paragraph. 십-일 is not how the word is written, spoken or spelled. The examples are drawn now and the sentence is a caption on them"
   },
   "numbers:lesson.sinoBuild.step2": {
    "hash": "5bbc29989bb5",
@@ -1889,8 +1887,9 @@
    "decision": "kept"
   },
   "numbers:lesson.nativeBuild.step1": {
-   "hash": "5221f759a7e3",
-   "decision": "kept"
+   "hash": "7339a558af56",
+   "decision": "rewritten",
+   "why": "the same paragraph shape, one lesson over: the worked examples moved into the drawing and the sentence keeps only the rule"
   },
   "numbers:lesson.nativeBuild.step2": {
    "hash": "f1a25e1013de",
@@ -3398,6 +3397,10 @@
   },
   "vocabulary:session.review": {
    "hash": "9553c0c79e3d",
+   "decision": "kept"
+  },
+  "numbers:breakdown.parts": {
+   "hash": "204cbadbdb5d",
    "decision": "kept"
   }
  }
