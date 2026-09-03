@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `2ce5bd20ac51fc587a8e44419d8d8d65f4367704` at 2026-09-03T07:11:15.788Z. **The working tree was not clean**: 13 changed and 0 untracked files over that commit, source fingerprint `32f635ac98244d954fb50ce67ca4cbf71d6bad87a4e409efa43061dac2b4ef76`. `release:current` is pending until this tree is committed.
+Built from commit `126e27ab766d918afec3ce7332c0af7a24c7ddaf` at 2026-09-03T08:24:47.573Z. **The working tree was not clean**: 2 changed and 0 untracked files over that commit, source fingerprint `ec49ded79c91807ca6f2015276419eda030153c8f5437831cde33d66f11e6fea`. `release:current` is pending until this tree is committed.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
