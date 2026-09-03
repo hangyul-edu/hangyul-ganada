@@ -1495,6 +1495,18 @@
    "recommendedFix": "Done. Both prose shapes are patterns, so the total and its parts come from one derivation. See §20O.11.",
    "note": "Found by reading the previous edition, 4 September 2026.",
    "effort": "S"
+  },
+  {
+   "id": "I-143",
+   "area": "Release engineering",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Four release builds in a row packaged a four-hour-old web bundle",
+   "customerImpact": "A release build that succeeds and delivers something older is the defect this product has shipped more times than any other. This is the same failure through a route `release:current` cannot see: the APK recorded the right commit, passed every gate, and contained the web app from whenever somebody last ran `cap sync`.",
+   "evidence": "Gradle packages `app/src/main/assets/public`, which Gradle does not build — `npx cap sync` copies it there, and the build has no opinion about how old it is. Measured on this pass: four release builds over four hours produced **byte-identical** APKs across a real source change, because `assets/public` was four hours old while `apps/web/dist` was current. The identical digests were the only clue and they read as reassuring.\n\nCaught by comparing the file timestamps of `assets/public/index.html` (02:37) and `apps/web/dist/index.html` (06:50) while wondering why a `data-testid` had not changed a hash. After a sync the APK digest moved from `4211cdd1…` to `b13c7f46…`, which is the proof that the earlier four were stale.",
+   "recommendedFix": "Done. `native:bundle:check` opens the delivered APK and compares every file of `apps/web/dist` against `assets/public/` inside it — the artefact a customer installs, not a directory a build step claims to have written. It runs in `verify:release` immediately before `release:current`, which is the other half of the same question. Negative-tested by rebuilding the web app without syncing: 35 files missing, `index.html` and `offline-assets.json` different.",
+   "note": "Found while investigating an APK hash that did not change when it should have.",
+   "effort": "S"
   }
  ]
 }
