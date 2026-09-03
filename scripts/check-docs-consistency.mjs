@@ -445,6 +445,12 @@ function asWritten(previous, value) {
     : String(value);
 }
 
+/** How far a `<!-- issues:x -->` region runs: to the next blank-line heading. */
+function regionLength(text, start) {
+  const next = text.indexOf('\n# ', start);
+  return (next === -1 ? text.length : next) - start;
+}
+
 const rewritten = new Map();
 
 for (const [name, metric] of Object.entries(METRICS)) {
@@ -458,6 +464,19 @@ for (const [name, metric] of Object.entries(METRICS)) {
     if (!exists(document)) continue;
     const text = rewritten.get(document) ?? read(document);
     const lines = text.split('\n');
+    /*
+     * The issue tables belong to another generator.
+     *
+     * `build-issues.mjs` writes the regions between `<!-- issues:* -->` markers
+     * from `docs/issues.json`, so a figure rewritten inside one of them is
+     * reverted the next time that generator runs — and the two gates then take
+     * turns failing, which is exactly what happened when the corpus re-levelling
+     * moved `wordsAt28to30`. A stale figure in an issue's evidence is fixed in
+     * the ledger, where the sentence lives.
+     */
+    const generated = [...text.matchAll(/<!-- issues:[a-z]+ -->/g)].map((m) => m.index);
+    const insideGenerated = (at) =>
+      generated.some((start) => at > start && at < start + regionLength(text, start));
     /*
      * Collected first, applied afterwards.
      *
@@ -475,7 +494,12 @@ for (const [name, metric] of Object.entries(METRICS)) {
         checked += 1;
         found.push({ document, line, claimed });
         if (claimed !== canonical) {
-          if (WRITE) {
+          if (insideGenerated(match.index)) {
+            problems.push(
+              `${document}:${line} claims ${name} = ${match[1]} inside a generated issue table; ` +
+                'fix the sentence in docs/issues.json and run npm run issues',
+            );
+          } else if (WRITE) {
             const at = match.index + match[0].indexOf(match[1]);
             edits.push({ at, length: match[1].length, text: asWritten(match[1], metric.value) });
           } else {
