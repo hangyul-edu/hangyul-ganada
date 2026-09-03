@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Volgend woord",
-    "finish": "Afronden"
+    "finish": "Afronden",
+    "newWord": "Nieuw woord",
+    "review": "Herhaling"
   },
   "blurb": "Alle woorden staan open. Kies een categorie en begin waar je wilt.",
   "categories": {

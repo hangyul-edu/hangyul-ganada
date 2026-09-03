@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Nästa ord",
-    "finish": "Avsluta"
+    "finish": "Avsluta",
+    "newWord": "Nytt ord",
+    "review": "Repetition"
   },
   "blurb": "Alla ord är öppna. Välj en kategori och börja var du vill.",
   "categories": {

@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Sonraki kelime",
-    "finish": "Bitir"
+    "finish": "Bitir",
+    "newWord": "Yeni kelime",
+    "review": "Tekrar"
   },
   "blurb": "Bütün kelimeler açık. Bir kategori seç ve istediğin yerden başla.",
   "categories": {

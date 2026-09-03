@@ -41,7 +41,9 @@
   },
   "session": {
     "next": "Próxima palavra",
-    "finish": "Concluir"
+    "finish": "Concluir",
+    "newWord": "Palavra nova",
+    "review": "Revisão"
   },
   "intro": {
     "example": "Exemplo",

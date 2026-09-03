@@ -39,7 +39,9 @@
   },
   "session": {
     "next": "다음 단어",
-    "finish": "마치기"
+    "finish": "마치기",
+    "newWord": "새 단어",
+    "review": "복습"
   },
   "intro": {
     "example": "예문",

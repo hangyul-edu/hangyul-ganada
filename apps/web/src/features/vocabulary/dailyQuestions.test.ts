@@ -30,6 +30,7 @@ const step = (wordId: string, mode: ScheduledStep['step']): ScheduledStep => ({
   wordId,
   step: mode,
   completesWord: true,
+  source: 'new',
   completes: [wordId],
 });
 

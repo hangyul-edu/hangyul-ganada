@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Keyingi so‘z",
-    "finish": "Tugatish"
+    "finish": "Tugatish",
+    "newWord": "Yangi so‘z",
+    "review": "Takrorlash"
   },
   "blurb": "Barcha so‘zlar ochiq. Turkum tanlang va xohlagan joyingizdan boshlang.",
   "categories": {

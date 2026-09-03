@@ -3,7 +3,7 @@ import type { ItemProgress, VocabularyWord } from '@hangyul-ganada/shared-types'
 import type { MemoryMap } from './memory';
 import { memoryKey, skillRecall } from './memory';
 import { dateKey } from './progress';
-import { pickNewWords } from './vocabularyLevel';
+import { pickNewWords, teachingZone } from './vocabularyLevel';
 
 /**
  * Today's vocabulary, as a small number the learner agreed to.
@@ -291,7 +291,16 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
     if (weak.length >= goal && due.length >= goal && (personalised || fresh.length >= goal)) break;
 
     const row = progress[`word:${word.id}`];
-    const met = row !== undefined && row.stage !== 'unseen';
+    /*
+     * Met *and answered*, which is not the same as having a progress row.
+     *
+     * `recordIntroduced` writes a row the moment a word appears on screen, so
+     * a row on its own only means the learner has seen it. Consolidation is
+     * about memory, and there is no memory to consolidate until something has
+     * been answered — see `weakestRecall` for the defect that treating those
+     * two states alike produced.
+     */
+    const met = row !== undefined && row.stage !== 'unseen' && hasBeenPractised(memory, word.id);
 
     if (!met) {
       // Collected below, out of the whole corpus rather than its prefix, so
@@ -312,7 +321,8 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
     // it would be owed with nothing to answer. See `DayRequest.canPractise`.
     if (request.canPractise && !request.canPractise(word.id)) continue;
 
-    const recall = weakestRecall(memory, word.id, now);
+    // Non-null: `met` is only true once something has been answered.
+    const recall = weakestRecall(memory, word.id, now) ?? 1;
     if (recall < WEAK_RECALL) {
       if (weak.length < goal) {
         weak.push({ wordId: word.id, source: 'weak', steps: stepsFor('weak', 0, soundFree) });
@@ -345,9 +355,29 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
     const reservedSlots = newWordAllowance(goal);
     const consolidationCount = Math.min(weak.length + due.length, Math.max(0, goal - reservedSlots));
     const wantNew = goal - consolidationCount;
+    /*
+     * What may not be offered as new — read the same way the scan above reads
+     * it, and for the same reason.
+     *
+     * A word shown and never answered is unfinished new material, not history.
+     * Excluding it here on the strength of its progress row alone is what left
+     * such a word with nowhere to go: barred from the new pool for having a
+     * row, and barred from consolidation for having no memory. It sat at the
+     * head of every plan as a phantom `weak` word instead.
+     *
+     * It does not come straight back the next morning either:
+     * `recentlyIntroduced` keeps a word met in the last fortnight out of the
+     * new pool unless its level has nothing else, so the ordinary path is that
+     * the learner meets it again once the fortnight is up — or never, if their
+     * level has moved past it, which is the correct answer for a Level 30
+     * learner and 그래서.
+     */
     const met = new Set(
       Object.values(progress)
-        .filter((row) => row.kind === 'word' && row.stage !== 'unseen')
+        .filter(
+          (row) =>
+            row.kind === 'word' && row.stage !== 'unseen' && hasBeenPractised(memory, row.item_key),
+        )
         .map((row) => row.item_key),
     );
     const recent = request.recentlyIntroduced ?? new Set<string>();
@@ -370,9 +400,66 @@ export function buildDailyPlan(request: DayRequest): DailyPlan {
   // review still gets a full session, and one with nothing new left does too.
   const reserved = Math.min(newWordAllowance(goal), fresh.length);
   const consolidation = [...weak, ...due].slice(0, Math.max(0, goal - reserved));
-  const words = [...consolidation, ...fresh.slice(0, goal - consolidation.length)];
+  const words = openInBand(
+    [...consolidation, ...fresh.slice(0, goal - consolidation.length)],
+    corpus,
+    request.level,
+  );
 
   return { date: dateKey(now), goal, level: request.level, words, completed: [] };
+}
+
+
+/**
+ * Makes sure the day *opens* on a word from the learner's own band.
+ *
+ * ## The complaint
+ *
+ * Consolidation is ordered ahead of new material, deliberately: something the
+ * learner is losing is worth more than something they have never seen. And
+ * consolidation reaches any level by design, because a word going is a word
+ * going whatever level it was assigned. Both of those are right.
+ *
+ * Together they produce a sentence nobody would defend: a learner measured at
+ * Level 30 opens Today's Vocabulary and the first thing on the screen is 것.
+ * It is a genuinely due word and the app is genuinely right to bring it back —
+ * but the *first* screen of the day is what tells a learner what this app
+ * thinks they are, and a beginner word there reads as the level having been
+ * ignored. QA reported it as exactly that.
+ *
+ * ## What is changed, and what is not
+ *
+ * Only which word is first. The plan still holds the same words, consolidation
+ * still outranks new material through the rest of the sitting, and nothing is
+ * dropped: if the head word is outside the teaching zone and the plan contains
+ * a word inside it, that word is moved to the front and the rest keep their
+ * order. A learner with nothing in band — every word due, none new — opens on
+ * what they have, because a short day is not improved by an empty one.
+ *
+ * The other half of the answer is not here: a review word is *labelled* as a
+ * review in the session, so even when it does come round it never wears the
+ * shape of today's new material. See `ScheduledStep.source`.
+ */
+function openInBand(
+  words: PlannedWord[],
+  corpus: readonly VocabularyWord[],
+  level: number | undefined,
+): PlannedWord[] {
+  if (level === undefined || words.length < 2) return words;
+  const zone = teachingZone(level);
+  const levelOf = new Map(corpus.map((word) => [word.id, word.level]));
+  const inBand = (word: PlannedWord) => {
+    const at = levelOf.get(word.wordId);
+    // A word the corpus in memory has not reached yet is not evidence of
+    // anything; leaving it where it is beats promoting it over a word whose
+    // level is known.
+    if (at === undefined) return false;
+    return at >= zone.min - 1 && at <= zone.max + 1;
+  };
+  if (inBand(words[0]!)) return words;
+  const at = words.findIndex(inBand);
+  if (at <= 0) return words;
+  return [words[at]!, ...words.slice(0, at), ...words.slice(at + 1)];
 }
 
 /** Answers in a row, across every skill, before the harder questions start. */
@@ -394,18 +481,62 @@ function isFamiliar(memory: MemoryMap, wordId: string): boolean {
 }
 
 /**
- * The weakest thing the learner remembers about this word, 0..1.
+ * The weakest thing the learner remembers about this word, 0..1 — or `null`
+ * when the app has never seen them answer anything about it.
  *
  * The weakest rather than the average, because a word that can be read and
  * cannot be heard is a word with a hole in it, and averaging hides the hole
  * behind the part that is fine.
+ *
+ * ## Why "no evidence" is not zero
+ *
+ * It returned `0` for a word with no memory row, and `0` is the *strongest*
+ * possible claim this function can make: below `WEAK_RECALL`, so the word was
+ * classified `weak`, and `weak` is scheduled ahead of everything else in the
+ * day. Nothing the learner had ever answered could outrank it.
+ *
+ * A word gets a progress row the moment the session **shows** it —
+ * `recordIntroduced` fires on display, before any question — and a memory row
+ * only when an answer is graded. So the words that took that path are exactly
+ * the ones a learner was shown and walked away from, and the app was treating
+ * "I have never had an answer out of you about this" as "you are forgetting
+ * this fast".
+ *
+ * Measured, that is the reported defect. A new learner opens the app, is shown
+ * three words at the default Level 1 — 여자, 아버지, 걷다 — leaves without
+ * answering, then sits the Vocabulary Level Test and comes out at 30. The plan
+ * for the new level is rebuilt correctly and the next day's plan opens with
+ * 여자, 아버지 and 걷다 again, ahead of every Level 28–30 word, because three
+ * progress rows with no memory behind them scored recall 0. 그래서 arrives the
+ * same way; so does any other word a learner has ever glanced at.
+ *
+ * `null` says the honest thing, and `buildDailyPlan` acts on it: a word met but
+ * never answered is not fading memory, it is an introduction that went nowhere,
+ * and it belongs back in the *new* pool where the learner's level governs
+ * whether it is offered at all.
  */
-function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number {
+function weakestRecall(memory: MemoryMap, wordId: string, now: Date): number | null {
   const item = memory[memoryKey('word', wordId)];
-  if (!item) return 0;
+  if (!item) return null;
   const states = Object.values(item.skills).filter((state) => state !== undefined);
-  if (states.length === 0) return 0;
+  if (states.length === 0) return null;
   return Math.min(...states.map((state) => skillRecall(state, now)));
+}
+
+/**
+ * Whether the learner has ever answered anything about this word.
+ *
+ * The line between "met" and "practised", and the reason it needs a name: a
+ * progress row is written when a word is *shown* and a memory row when it is
+ * *answered*, so a word can be met and unpractised, and the two states want
+ * opposite treatment. Practised material is consolidated on the schedule its
+ * answers earned; unpractised material is new material that has not happened
+ * yet.
+ */
+function hasBeenPractised(memory: MemoryMap, wordId: string): boolean {
+  const item = memory[memoryKey('word', wordId)];
+  if (!item) return false;
+  return Object.values(item.skills).some((state) => state !== undefined);
 }
 
 /**
@@ -549,6 +680,21 @@ export function stepsFor(source: WordSource, index = 0, _soundFree = false): Wor
 export interface ScheduledStep {
   wordId: string;
   step: WordStep;
+  /**
+   * Why this word is in today's plan, carried through to the screen.
+   *
+   * The session used to show nothing about it, and the omission had a cost QA
+   * named: a learner at Level 30 whose first screen was a genuinely due Level 2
+   * word had no way to tell it apart from the day's new material, so the app
+   * looked as though it had forgotten their level. A review *labelled* as a
+   * review is the app doing something explicable.
+   *
+   * For a `match` grid — four words at once — it is the source of the word the
+   * grid is filed under, and the grid is labelled as review only when every
+   * word in it is one. A grid of three reviews and one new word is a mixed
+   * question and is labelled as nothing.
+   */
+  source: WordSource | null;
   /** True when this is the last step this word owes. Completing it counts. */
   completesWord: boolean;
   /**
@@ -610,6 +756,7 @@ export const MIN_MATCH_SIZE = 3;
  */
 export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
   const done = new Set(plan.completed);
+  const sourceOf = new Map(plan.words.map((word) => [word.wordId, word.source]));
   const queues = plan.words
     .filter((word) => !done.has(word.wordId))
     .map((word) => ({ wordId: word.wordId, remaining: [...word.steps] }));
@@ -636,6 +783,9 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
         wordId: grid[0]!.wordId,
         step: 'match',
         completesWord: grid[0]!.last,
+        source: grid.every((entry) => sourceOf.get(entry.wordId) !== 'new')
+          ? (sourceOf.get(grid[0]!.wordId) ?? null)
+          : null,
         group: grid.map((entry) => entry.wordId),
         completes: grid.filter((entry) => entry.last).map((entry) => entry.wordId),
       });
@@ -667,6 +817,7 @@ export function scheduleSteps(plan: DailyPlan): ScheduledStep[] {
       wordId: picked.wordId,
       step,
       completesWord: last,
+      source: sourceOf.get(picked.wordId) ?? null,
       completes: last ? [picked.wordId] : [],
     });
     recent.push(picked.wordId);
@@ -768,6 +919,7 @@ export function retrySteps(
         wordId: word.wordId,
         step,
         completesWord: true,
+        source: word.source,
         completes: [word.wordId],
       };
     });

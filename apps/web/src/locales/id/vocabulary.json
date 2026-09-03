@@ -45,7 +45,9 @@
   },
   "session": {
     "next": "Kata berikutnya",
-    "finish": "Selesai"
+    "finish": "Selesai",
+    "newWord": "Kata baru",
+    "review": "Ulangan"
   },
   "blurb": "Semua kata terbuka. Pilih satu kategori dan mulai dari mana saja.",
   "categories": {

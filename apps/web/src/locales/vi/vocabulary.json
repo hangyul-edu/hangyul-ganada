@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Từ tiếp theo",
-    "finish": "Kết thúc"
+    "finish": "Kết thúc",
+    "newWord": "Từ mới",
+    "review": "Ôn tập"
   },
   "blurb": "Mọi từ đều mở sẵn. Chọn một chủ đề và bắt đầu từ đâu cũng được.",
   "categories": {

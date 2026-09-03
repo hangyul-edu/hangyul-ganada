@@ -47,7 +47,9 @@
   },
   "session": {
     "next": "Parola successiva",
-    "finish": "Concludi"
+    "finish": "Concludi",
+    "newWord": "Parola nuova",
+    "review": "Ripasso"
   },
   "blurb": "Tutte le parole sono aperte. Scegli una categoria e comincia dove vuoi.",
   "categories": {

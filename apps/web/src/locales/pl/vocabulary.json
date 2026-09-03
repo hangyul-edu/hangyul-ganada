@@ -48,7 +48,9 @@
   },
   "session": {
     "next": "Następne słowo",
-    "finish": "Zakończ"
+    "finish": "Zakończ",
+    "newWord": "Nowe słowo",
+    "review": "Powtórka"
   },
   "blurb": "Wszystkie słowa są otwarte. Wybierz kategorię i zacznij, gdzie chcesz.",
   "categories": {

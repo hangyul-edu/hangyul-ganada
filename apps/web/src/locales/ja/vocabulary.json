@@ -39,7 +39,9 @@
   },
   "session": {
     "next": "つぎの単語",
-    "finish": "おわり"
+    "finish": "おわり",
+    "newWord": "新しい単語",
+    "review": "復習"
   },
   "intro": {
     "example": "例文",

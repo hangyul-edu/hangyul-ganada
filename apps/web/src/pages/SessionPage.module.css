@@ -297,3 +297,20 @@
   line-height: 1.5;
   color: var(--hg-text-secondary);
 }
+
+/**
+ * Why the word in front of the learner is in today's plan.
+ *
+ * Deliberately quiet — the same weight as a caption, above the question rather
+ * than beside it — because it is context, not the thing being asked. It is
+ * there so a review never reads as today's new material; a learner who is not
+ * wondering about it should not have to read past it.
+ */
+.sourceLabel {
+  margin: 0 0 var(--hg-space-2);
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-caption);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}

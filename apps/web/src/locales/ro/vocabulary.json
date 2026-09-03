@@ -47,7 +47,9 @@
   },
   "session": {
     "next": "Cuvântul următor",
-    "finish": "Termină"
+    "finish": "Termină",
+    "newWord": "Cuvânt nou",
+    "review": "Recapitulare"
   },
   "blurb": "Toate cuvintele sunt deschise. Alege o categorie și începe de unde vrei.",
   "categories": {

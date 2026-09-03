@@ -591,6 +591,25 @@ export function WordSessionPage() {
       footer={footer}
     >
       <div className={styles.body}>
+        {/*
+          Why this word is here, in two words, above the question.
+
+          A learner measured at Level 30 whose day genuinely does contain a
+          fading Level 2 word had no way to tell it from today's new material,
+          and reported it as the app ignoring their level. The plan already knew
+          the answer — `PlannedWord.source` — and simply never said it.
+
+          Only the two states a learner can act on. `weak` and `familiar` are
+          gradations of *review* and are shown as review: a learner does not
+          need to be told the app thinks they are losing this word, and being
+          told would be a worse experience than the one being fixed. A mixed
+          matching grid carries no source and says nothing.
+        */}
+        {current.source && (
+          <p className={styles.sourceLabel} data-testid="word-source">
+            {t(current.source === 'new' ? 'vocabulary:session.newWord' : 'vocabulary:session.review')}
+          </p>
+        )}
         {current.step === 'match' && current.pairs ? (
           /*
            * The one screen that asks about four words at once.

@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Next word",
-    "finish": "Finish"
+    "finish": "Finish",
+    "newWord": "New word",
+    "review": "Review"
   },
   "blurb": "Every word is open. Pick a category and start wherever you like.",
   "categories": {

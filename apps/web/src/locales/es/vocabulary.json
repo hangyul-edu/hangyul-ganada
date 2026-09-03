@@ -41,7 +41,9 @@
   },
   "session": {
     "next": "Siguiente palabra",
-    "finish": "Terminar"
+    "finish": "Terminar",
+    "newWord": "Palabra nueva",
+    "review": "Repaso"
   },
   "intro": {
     "example": "Ejemplo",

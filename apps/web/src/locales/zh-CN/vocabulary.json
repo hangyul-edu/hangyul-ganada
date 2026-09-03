@@ -39,7 +39,9 @@
   },
   "session": {
     "next": "下一个单词",
-    "finish": "完成"
+    "finish": "完成",
+    "newWord": "新词",
+    "review": "复习"
   },
   "intro": {
     "example": "例句",

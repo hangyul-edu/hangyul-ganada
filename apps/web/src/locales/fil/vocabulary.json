@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Susunod na salita",
-    "finish": "Tapusin"
+    "finish": "Tapusin",
+    "newWord": "Bagong salita",
+    "review": "Balik-aral"
   },
   "blurb": "Bukas ang lahat ng salita. Pumili ng kategorya at magsimula kung saan mo gusto.",
   "categories": {

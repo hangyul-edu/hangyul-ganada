@@ -46,7 +46,9 @@
   },
   "session": {
     "next": "Következő szó",
-    "finish": "Befejezés"
+    "finish": "Befejezés",
+    "newWord": "Új szó",
+    "review": "Ismétlés"
   },
   "blurb": "Minden szó nyitva áll. Válassz kategóriát, és kezdd, ahol akarod.",
   "categories": {

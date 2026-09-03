@@ -40,7 +40,9 @@
   },
   "session": {
     "next": "Nächstes Wort",
-    "finish": "Fertig"
+    "finish": "Fertig",
+    "newWord": "Neues Wort",
+    "review": "Wiederholung"
   },
   "intro": {
     "example": "Beispiel",

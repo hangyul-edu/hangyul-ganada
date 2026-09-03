@@ -21,6 +21,7 @@ function question(overrides: Partial<DailyQuestion>): DailyQuestion {
     step: 'meaning',
     completesWord: true,
     completes: ['w1'],
+    source: 'new',
     exercise: null,
     ...overrides,
   };

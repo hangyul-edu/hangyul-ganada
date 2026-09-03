@@ -95,6 +95,13 @@ export interface DailyQuestion {
    * moving the day's counter by one — or by four.
    */
   completes: string[];
+  /**
+   * Why this word is in today's plan, so the screen can say so.
+   *
+   * `null` for a mixed matching grid, which is not one thing. See
+   * `ScheduledStep.source`.
+   */
+  source: ScheduledStep['source'];
   /** The pairs to lay out. Only for `match`. */
   pairs?: MatchPair[];
   /** Absent for `intro` and `match`, neither of which is a `buildExercise`. */
@@ -131,6 +138,7 @@ export function buildDailyQuestions(
         word,
         step: 'intro',
         completesWord: scheduled.completesWord,
+        source: scheduled.source,
         completes: scheduled.completes,
         exercise: null,
       });
@@ -178,6 +186,7 @@ export function buildDailyQuestions(
         word,
         step: 'match',
         completesWord: scheduled.completesWord,
+        source: scheduled.source,
         completes: scheduled.completes.filter((id) => pairs.some((pair) => pair.wordId === id)),
         pairs,
         exercise: null,
@@ -270,6 +279,7 @@ export function buildDailyQuestions(
       word,
       step: built.step,
       completesWord: scheduled.completesWord,
+      source: scheduled.source,
       completes: scheduled.completes,
       exercise: built.exercise,
     });

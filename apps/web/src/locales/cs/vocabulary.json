@@ -48,7 +48,9 @@
   },
   "session": {
     "next": "Další slovo",
-    "finish": "Dokončit"
+    "finish": "Dokončit",
+    "newWord": "Nové slovo",
+    "review": "Opakování"
   },
   "blurb": "Všechna slova jsou otevřená. Vyberte kategorii a začněte, kde chcete.",
   "categories": {
