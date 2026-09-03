@@ -4,8 +4,8 @@ title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
 version: 1.0.2
-date: 2 September 2026
-describes: The v1.0.2 pass, in three rounds. Canonical glyph geometry with the typeface as an oracle; Today's Vocabulary rotating on the calendar day and the plan rebuilt on a level change; Back navigation, Level Test feedback and 32 natively declared languages; a bilingual patent package. Then a user-observed P0 — Numbers lessons marked complete that nobody had studied — reproduced before it was touched, and the course rebuilt on an evidence-derived progress model: six modules, nineteen lessons, recorded audio for every word, misconception-driven exercises, 272 keys in 32 languages, 57 unit tests, 12 migration fixtures and 5 browser journeys. Artefacts rebuilt from this tree; release:current pending until it is committed.
+date: 4 September 2026
+describes: The v1.0.2 pass, in four rounds. Canonical glyph geometry with the typeface as an oracle; Today's Vocabulary rotating on the calendar day; 32 natively declared languages; a bilingual patent package. Then a user-observed P0 — Numbers lessons marked complete that nobody had studied — and the course rebuilt on an evidence-derived progress model. Then this round, from six reports and two photographs of malformed letters: the notch in ㅌ and the ㄷ/ㄹ family behind it, 꽃 bridged through the middle by its own vowel, a Level 30 learner taught 그래서, a correct answer credited to nothing, fifteen Back handlers replaced by one route table, and the Numbers explanation redrawn from a paragraph into a diagram. Every one of them was green when it was reported. Artefacts built from commit 34005886 at versionCode 10.
 mark: report-assets/mark.png
 ---
 
@@ -152,7 +152,7 @@ without trusting the row.
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
-| Issues tracked | 131 | `docs/issues.json` |
+| Issues tracked | 141 | `docs/issues.json` |
 | Signed APK | 83.7 MB | `result/build-info.json` |
 | Signed AAB | 82.0 MB | same |
 | Tests | 1,330 across 73 files | `npm test` |
@@ -4092,7 +4092,7 @@ naming the artefact that spent it.
 | `translation:semantics` · `locale:content` · `vocabulary:sense` · `vocabulary:translation` | green |
 | `content:vocabulary` · `content:corpus` · `content:coverage` | up to date and rebuilt |
 | `typecheck` · `lint` | clean across all workspaces |
-| `version:check` | 1.0.2, build 9, every file agreeing |
+| `version:check` | 1.0.2, build 10, every file agreeing |
 
 Eight gates were negative-tested by restoring the behaviour they were written to
 catch, and all eight failed as they should: the marker placement, the legal
@@ -5171,7 +5171,7 @@ it.
 One reading note. The evidence written on a **resolved** issue is a record of
 what was found in the cycle that closed it, and where it cites a section number
 that number is the one the report carried at the time. The report has been
-rewritten since and renumbered; the citations on the 4 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
+rewritten since and renumbered; the citations on the 5 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
 were deliberately left as written rather than edited into agreement with a
 document they predate.
 
@@ -5557,8 +5557,16 @@ reading of all 1,509 predicates.
 
 **Why not releasable from this tree.** The commit problem is fixed: this
 edition's artefacts were built from a clean checkout of a named commit, at
-versionCode 9 because 3 through 8 were spent, and `release:current` was not weakened to
-say so. What remains are five limitations. None is a defect, all five are
+versionCode 10 because 3 through 9 are spent, and `release:current` was not
+weakened to say so. It very nearly was not fixed. The first build of this
+refresh printed `BUILD SUCCESSFUL` having run nothing — `./gradlew` had no
+execute bit in the checkout, so the wrapper never started and the outputs
+already in `app/build/outputs` were the previous build's. That is `I-01`'s exact
+shape, a delivery that appears to have happened and hands over something older,
+and what caught it was the artefact timestamps rather than any gate. The mode
+bit is committed.
+
+What remains are five limitations. None is a defect, all five are
 things a buyer is entitled to know before release, and the fifth is new to this
 edition:
 

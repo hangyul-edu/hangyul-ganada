@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `22b048aa7e54665458ead94e913d5930725d92d9` at 2026-09-03T09:54:11.103Z. **The working tree was not clean**: 12 changed and 0 untracked files over that commit, source fingerprint `be1ecb7d71b0cd33d57667a5bf8d58a27525afbf91b6843aa5c0db5e323672d1`. `release:current` is pending until this tree is committed.
+Built from commit `340058860a204b42cdf258c0b0c1a678a87e7cb8` at 2026-09-03T17:51:03.441Z. **The working tree was not clean**: 6 changed and 0 untracked files over that commit, source fingerprint `58535fb4548c48fc5419ccf1dfdfb749e78b23cc83efc951a83371e2cb956f57`. `release:current` is pending until this tree is committed.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
@@ -25,7 +25,7 @@ app — it is a different app that cannot replace it. The keystore is not in thi
 repository and no password, path or alias appears anywhere in this directory.
 
 Signature schemes: v2 + v3. Application id
-`com.talkhangyul.ganada`, version 1.0.2 (9), min SDK
+`com.talkhangyul.ganada`, version 1.0.2 (10), min SDK
 24, target SDK 36.
 
 To confirm it yourself:

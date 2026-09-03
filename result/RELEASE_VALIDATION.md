@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `22b048aa` on branch `main`, **with a clean working tree at
+**Source:** commit `34005886` on branch `main`, **with a clean working tree at
 the moment the packages were compiled**. This is the line that was wrong last
 time and is the reason `I-01` was reopened: the previous artefacts recorded
 `"dirty": true` beside their commit, with 440 changed and 595 untracked files,
@@ -20,13 +20,13 @@ it counts are the delivery files themselves. What matters — that no
 *product* file differs from the commit — is what `release:current` checks and
 reports, and it is green.
 
-Rebuilt ten times over this pass as later commits landed, and the digests
-below are the last of them — the fourth because backup and restore landed after
-the third, which is exactly the case `version:check` now refuses to let past as
-a reused versionCode. The level-test bank, `curriculum.json` and
-`relations.json` are all derived from the taught corpus and all three went
-stale when eighteen words were re-levelled; each was caught by a step of
-`verify:release` rather than by remembering, and each is regenerated here.
+Rebuilt twice on this refresh. The first attempt reported `BUILD SUCCESSFUL`
+having run nothing: `./gradlew` had no execute bit in the checkout, the wrapper
+never started, and the outputs already sitting in `app/build/outputs` were the
+previous build's. The mode bit is committed and the build was run again from the
+clean tree — which is the same class of defect as `I-01`, a build that appears to
+have happened and delivers something older, caught this time by the artefact
+timestamps rather than by a customer.
 
 **Built:** 3 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, Node v24.19.0.
@@ -132,8 +132,8 @@ lesson, a vocabulary sitting, the Numbers course and the Level Test.
 ## Checksums
 
 ```
-7777b402acb2097313714215b747f1422556bee7af1812ccfbca8419f7914da0  hangyul-ganada-release.apk
-86b00c972940ab810d5f39bfe5c457e197f68a925e7ff7d7cfe5cfbe28bab619  hangyul-ganada-release.aab
+4211cdd1eb417fd80c56621dc18cf8487b86c490f55aaa3c70158731efcdf8f2  hangyul-ganada-release.apk
+b9565543743fa9f0d9a78652cfc57d36c3947b18170d3599594350a8192ed500  hangyul-ganada-release.aab
 3b4140ffc667828ed3a21238061d110f1d993fe30a11e3b654380cb4b798e46d  docs/report.pdf
-720204510022e8d5eca74836cc17d86afaef83551222e8704bc2fbc662b3474a  build-info.json
+d64935e802c067d9861e4c48e35f8345f2d2303fe56350c73322197345668da5  build-info.json
 ```

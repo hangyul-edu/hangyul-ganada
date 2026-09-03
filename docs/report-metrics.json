@@ -45,11 +45,11 @@
  "words_at_28_to_30": 477,
  "relations_words": 294,
  "issues": {
-  "open": 4,
+  "open": 5,
   "partial": 4,
   "blocked": 1,
-  "resolved": 122,
-  "tracked": 131
+  "resolved": 131,
+  "tracked": 141
  },
  "apk_mb": "83.7",
  "aab_mb": "82.0"
