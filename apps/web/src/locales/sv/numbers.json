@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Rätt",
-    "incorrect": "Inte riktigt",
-    "answerWas": "Svaret är"
+    "incorrect": "Fel"
   },
   "prompt": {
     "listen": "Vad hörde du?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Räkna till tusen",
       "objective": "Bygg och läs tal som 십일, 이십 och 삼십오.",
-      "step1": "Säg delarna i ordning. 십일 är tio-ett, elva. 이십 är två-tio, tjugo. 삼십오 är tre-tio-fem, trettiofem.",
+      "step1": "Läs delarna i ordning, från vänster till höger.",
       "step2": "Se upp med 십육: det skrivs 십육 men sägs 심뉵. Ett ㄹ-ljud dyker upp mellan de två stavelserna.",
       "step3": "백 är hundra och 천 är tusen. Det står inget 일 framför dem — 백 원, inte 일백 원."
     },
     "nativeBuild": {
       "title": "Säga 열하나, 스물, 서른",
       "objective": "Säg talen över tio på 하나-둘-셋-sättet.",
-      "step1": "열 plus entalet ger elva till nitton: 열하나, 열둘, 열셋. Sägs som ett ord.",
+      "step1": "Lägg entalen till 열, upp till 열아홉. Sägs som ett ord.",
       "step2": "Varje tiotal har ett eget ord — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 sägs 열려섣: samma ㄹ-ljud som dyker upp i 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 läses 유월 och 10월 läses 시월.",
     "clockTime": "En tid sägs som 세 시 십 분.",
     "price": "Ett pris sägs som 오천 원."
+  },
+  "breakdown": {
+    "parts": "Delar"
   }
 }

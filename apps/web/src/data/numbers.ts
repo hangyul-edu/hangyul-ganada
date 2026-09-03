@@ -1,11 +1,12 @@
 import type {
+  ExplainStep,
   NumberItem,
   NumberLesson,
   NumberModule,
   NumbersExerciseKind,
 } from '@hangyul-ganada/shared-types';
 
-export type { NumberItem, NumberLesson, NumberModule, NumbersExerciseKind };
+export type { ExplainStep, NumberItem, NumberLesson, NumberModule, NumbersExerciseKind };
 
 /**
  * Korean numbers, as the thing that actually defeats beginners.
@@ -464,6 +465,19 @@ const ids = (items: NumberItem[]) => items.map((item) => item.id);
 
 type Spec = Omit<NumberLesson, 'sequence' | 'unit'> & { unit?: never };
 
+/**
+ * Which explanation steps draw a broken-down number, and which numbers.
+ *
+ * Keyed `<lesson key>.step<n>`. Only the steps whose subject *is* the structure
+ * of a number are here: how 11, 20 and 35 are built, and how 열하나 is. A step
+ * about when to use a system has nothing to draw, and a diagram invented for it
+ * would be decoration. See `ExplainStep` for what this replaced.
+ */
+const SHOW: Record<string, string[]> = {
+  'sinoBuild.step1': ['num-sino-11', 'num-sino-20', 'num-sino-35'],
+  'nativeBuild.step1': ['num-nat-11'],
+};
+
 const L = (
   id: string,
   module: string,
@@ -482,7 +496,11 @@ const L = (
   prerequisites,
   title: `lesson.${key}.title`,
   objective: `lesson.${key}.objective`,
-  explanation: Array.from({ length: steps }, (_, i) => `lesson.${key}.step${i + 1}`),
+  explanation: Array.from({ length: steps }, (_, i) => {
+    const text = `lesson.${key}.step${i + 1}`;
+    const show = SHOW[`${key}.step${i + 1}`];
+    return show ? { text, show } : { text };
+  }),
   exercise_kinds,
   mastery_count,
 });

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { NumberItem, NumberLesson, NumbersLessonProgress } from '@hangyul-ganada/shared-types';
 
+import { NumberBreakdown } from '../features/numbers/NumberBreakdown';
 import { getNumberItem, getNumberLesson, getNumberModule, numberLessonItems, spokenExample } from '../data/numbers';
 import {
   type LessonPhase,
@@ -105,7 +106,9 @@ export function NumberSessionPage() {
     const next = resumePhase(record, lesson);
     // Resume at the first step or example the record has not seen.
     if (next === 'explain') {
-      const i = lesson.explanation.findIndex((s) => !(record?.explanation_steps_viewed ?? []).includes(s));
+      const i = lesson.explanation.findIndex(
+        (s) => !(record?.explanation_steps_viewed ?? []).includes(s.text),
+      );
       setStep(Math.max(0, i));
     } else if (next === 'examples') {
       const i = lesson.item_ids.findIndex((id) => !(record?.examples_viewed ?? []).includes(id));
@@ -208,7 +211,10 @@ export function NumberSessionPage() {
   // --- explanation -----------------------------------------------------------
   if (phase === 'explain') {
     const steps = lesson.explanation;
-    const key = steps[Math.min(step, steps.length - 1)]!;
+    const current = steps[Math.min(step, steps.length - 1)]!;
+    const shown = (current.show ?? [])
+      .map((id) => getNumberItem(id))
+      .filter((found): found is NumberItem => found !== undefined);
     return (
       <div className={styles.page}>
         <AppHeader title={title} />
@@ -218,12 +224,25 @@ export function NumberSessionPage() {
             detail={t('numbers:stepOf', { current: step + 1, total: steps.length })}
             value={step / steps.length}
           />
+          {/*
+            The drawing first, then the sentence.
+
+            A step whose subject is how a number is *built* leads with the
+            number: three cards for 11, 20 and 35, each one numeral, sound,
+            parts, whole. The sentence under them is a caption on what is
+            already visible rather than the whole of the teaching, which is what
+            it had to be when it was carrying three worked examples and three
+            hyphenated pseudo-spellings on its own. See `NumberBreakdown`.
+          */}
+          {shown.map((item) => (
+            <NumberBreakdown key={item.id} item={item} />
+          ))}
           <Card padding="lg" className={styles.explain}>
-            <p className={styles.explainText}>{t(`numbers:${key}`)}</p>
+            <p className={styles.explainText}>{t(`numbers:${current.text}`)}</p>
           </Card>
           <Button
             onClick={() => {
-              recordNumbersEvent(lesson.id, { type: 'explanation_viewed', step: key });
+              recordNumbersEvent(lesson.id, { type: 'explanation_viewed', step: current.text });
               if (step + 1 < steps.length) setStep(step + 1);
               else goto('examples');
             }}
@@ -281,7 +300,8 @@ export function NumberSessionPage() {
   const current = record ?? blankLessonProgress(lesson.id, new Date());
   const complete = isComplete(current, lesson);
   const missing: string[] = [];
-  if (lesson.explanation.some((s) => !current.explanation_steps_viewed.includes(s))) missing.push('explain');
+  if (lesson.explanation.some((s) => !current.explanation_steps_viewed.includes(s.text)))
+    missing.push('explain');
   if (lesson.item_ids.some((id) => !current.examples_viewed.includes(id))) missing.push('examples');
   if (current.practice_completed_at === null) missing.push('practice');
   if (!current.mastery?.passed || lesson.item_ids.some((id) => !current.items[id]?.mastered_at)) {
@@ -538,10 +558,6 @@ function ExerciseRun({
   const answered = answer.correct !== null;
   const optionText = (o: ExerciseOption) =>
     o.isKey ? t(`numbers:${o.text}`) : o.value !== undefined ? formatValue(o.value, locale) : o.text;
-  const answerText =
-    exercise.kind === 'order_parts'
-      ? exercise.parts!.join(' ')
-      : optionText(exercise.options[exercise.answer]!);
   const pickedOption = answer.picked !== null ? exercise.options[answer.picked] : undefined;
   /*
    * The body under the verdict — and, for most correct answers, no body at all.
@@ -647,33 +663,32 @@ function ExerciseRun({
         {answered && (
           <>
             {/*
-              The body is built first and passed only if it exists.
-              
-              `FeedbackState` already declines to draw its body wrapper when it
-              is given nothing — but a JSX fragment is truthy whatever is inside
-              it, so passing `<>{cond && …}{cond && …}</>` handed it an element
-              that rendered to nothing and it drew the wrapper anyway. On a
-              correct answer with no note that is an empty padded box under the
-              verdict, which is the *shape* of the same defect as the sentence
-              that used to fill it.
+              The verdict, and a body only when there is something to teach.
+
+              `정답은 8` used to sit here under every wrong answer, and it was
+              the third time the screen said the same thing: the option the
+              learner tapped is already marked in red with a cross, the right
+              one in blue with a tick, and both marks carry their own
+              screen-reader text on the option itself. Repeating it in a
+              sentence is the app filling space, and on a bare numeral question
+              — where there is no rule to explain either — it was the *only*
+              thing in the box.
+
+              So the restatement is gone and the body is the authored note or
+              nothing. `FeedbackState` declines to draw its wrapper when it is
+              given nothing, but a JSX fragment is truthy whatever is inside it,
+              so the body has to be passed as `null` rather than as a fragment
+              that renders to nothing — otherwise an empty padded box appears
+              under the verdict, which is the shape of the same defect as the
+              sentence that used to fill it.
             */}
             <FeedbackState
               status={answer.correct ? 'correct' : 'incorrect'}
               headline={t(answer.correct ? 'numbers:feedback.correct' : 'numbers:feedback.incorrect')}
             >
-              {answer.correct && !bodyKey ? null : (
-                <>
-                  {!answer.correct && (
-                    <p className={styles.note}>
-                      <span className={styles.label}>{t('numbers:feedback.answerWas')}</span>{' '}
-                      <strong lang="ko">{answerText}</strong>
-                    </p>
-                  )}
-                  {bodyKey && (
-                    <p className={styles.rationale}>{t(`numbers:${bodyKey}`, rationaleValues)}</p>
-                  )}
-                </>
-              )}
+              {bodyKey ? (
+                <p className={styles.rationale}>{t(`numbers:${bodyKey}`, rationaleValues)}</p>
+              ) : null}
             </FeedbackState>
             <Button onClick={advance}>{t('numbers:action.continue')}</Button>
           </>

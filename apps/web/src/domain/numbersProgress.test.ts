@@ -48,7 +48,7 @@ function run(lesson: NumberLesson, events: NumbersEvent[], start = blankLessonPr
 
 const open: NumbersEvent = { type: 'lesson_opened' };
 const readAll = (lesson: NumberLesson): NumbersEvent[] =>
-  lesson.explanation.map((step) => ({ type: 'explanation_viewed', step }));
+  lesson.explanation.map((step) => ({ type: 'explanation_viewed', step: step.text }));
 const viewAll = (lesson: NumberLesson): NumbersEvent[] =>
   lesson.item_ids.map((item_id) => ({ type: 'example_viewed', item_id }));
 
@@ -118,7 +118,7 @@ describe('Numbers journeys', () => {
   });
 
   it('J03 · reading one explanation step is "in progress" and resumes at the next step', () => {
-    const record = run(sino, [open, { type: 'explanation_viewed', step: sino.explanation[0]! }]);
+    const record = run(sino, [open, { type: 'explanation_viewed', step: sino.explanation[0]!.text }]);
     expect(status(record, sino)).toBe('in_progress');
     expect(resumePhase(record, sino)).toBe('explain');
     expect(lessonActivityProgress(record, sino)).toEqual({
@@ -373,7 +373,7 @@ describe('Numbers negative tests — the ways completion must not be earned', ()
       ...blankLessonProgress(sino.id, T0),
       opened_at: T0.toISOString(),
       started_at: T0.toISOString(),
-      explanation_steps_viewed: [...sino.explanation],
+      explanation_steps_viewed: sino.explanation.map((step) => step.text),
       examples_viewed: [...sino.item_ids],
       practice_completed_at: T0.toISOString(),
       mastery: { taken_at: T0.toISOString(), correct: 8, total: 8, passed: true },

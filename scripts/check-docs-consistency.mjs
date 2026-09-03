@@ -212,7 +212,23 @@ const METRICS = {
      * nothing, reported "not stated anywhere", and passed — while the cell it
      * could not see said 664 against an actual 671, for two cycles.
      */
-    patterns: [/\|\s*Web unit \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g],
+    patterns: [
+      /\|\s*Web unit \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g,
+      /*
+       * And the two places the *same* number is written as prose.
+       *
+       * This is the drift that produced the arithmetic a reader could check and
+       * the document could not: the breakdown said 976 + 216 + 96, which is
+       * 1,288, beside a stated total of 1,289. Every one of those figures was
+       * derived except the web one in these two sentences, which matched no
+       * pattern, was reported as "not stated anywhere", and passed.
+       *
+       * A gate whose patterns are narrower than the document's prose is a gate
+       * that certifies the half it can read.
+       */
+      /korean-morphology [\d,]+, web ([\d,]+)/g,
+      /unit cases across three packages — ([\d,]+)/g,
+    ],
   },
   /*
    * The three packages added up, because the verdict states the total.

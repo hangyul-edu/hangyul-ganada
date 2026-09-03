@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Goed",
-    "incorrect": "Niet helemaal",
-    "answerWas": "Het antwoord is"
+    "incorrect": "Fout"
   },
   "prompt": {
     "listen": "Wat hoorde je?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Tellen tot duizend",
       "objective": "Bouw en lees getallen zoals 십일, 이십 en 삼십오.",
-      "step1": "Zeg de delen op volgorde. 십일 is tien-een, elf. 이십 is twee-tien, twintig. 삼십오 is drie-tien-vijf, vijfendertig.",
+      "step1": "Lees de delen op volgorde, van links naar rechts.",
       "step2": "Let op 십육: het wordt geschreven als 십육, maar gezegd als 심뉵. Tussen de twee lettergrepen verschijnt een ㄹ-klank.",
       "step3": "백 is honderd en 천 is duizend. Er staat geen 일 voor — 백 원, niet 일백 원."
     },
     "nativeBuild": {
       "title": "열하나, 스물, 서른 zeggen",
       "objective": "Zeg de getallen boven de tien op de 하나-둘-셋-manier.",
-      "step1": "열 plus de eenheid geeft elf tot en met negentien: 열하나, 열둘, 열셋. Je zegt het als één woord.",
+      "step1": "Zet de eenheden achter 열, tot 열아홉. Wordt als één woord uitgesproken.",
       "step2": "Elk tiental heeft een eigen woord — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 wordt gezegd als 열려섣: dezelfde ㄹ-klank als in 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 lees je 유월 en 10월 lees je 시월.",
     "clockTime": "Een tijd zeg je als 세 시 십 분.",
     "price": "Een prijs zeg je als 오천 원."
+  },
+  "breakdown": {
+    "parts": "Delen"
   }
 }

@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Tama",
-    "incorrect": "Hindi pa tama",
-    "answerWas": "Ang sagot ay"
+    "incorrect": "Mali"
   },
   "prompt": {
     "listen": "Ano ang narinig mo?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Magbilang hanggang isang libo",
       "objective": "Bumuo at bumasa ng bilang tulad ng 십일, 이십 at 삼십오.",
-      "step1": "Sabihin ang mga bahagi nang magkakasunod. Ang 십일 ay sampu-isa, labing-isa. Ang 이십 ay dalawa-sampu, dalawampu. Ang 삼십오 ay tatlo-sampu-lima, tatlumpu't lima.",
+      "step1": "Basahin ang mga bahagi ayon sa pagkakasunod, mula kaliwa pakanan.",
       "step2": "Bantayan ang 십육: nakasulat na 십육 pero binibigkas na 심뉵. Lumilitaw ang tunog na ㄹ sa pagitan ng dalawang pantig.",
       "step3": "Ang 백 ay sandaan at ang 천 ay isang libo. Walang 일 sa unahan nila — 백 원, hindi 일백 원."
     },
     "nativeBuild": {
       "title": "Sabihin ang 열하나, 스물, 서른",
       "objective": "Sabihin ang mga bilang na lampas sampu sa paraang 하나, 둘, 셋.",
-      "step1": "Ang 열 at ang isahan ay nagbibigay ng labing-isa hanggang labinsiyam: 열하나, 열둘, 열셋. Binibigkas na iisang salita.",
+      "step1": "Idagdag ang mga isahan sa 열, hanggang 열아홉. Sinasabi bilang isang salita.",
       "step2": "May sariling salita ang bawat sampu — 스물, 서른, 마흔, 쉰.",
       "step3": "Ang 열여섯 ay binibigkas na 열려섣: ang parehong tunog na ㄹ na lumilitaw sa 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "Ang 6월 ay binabasang 유월 at ang 10월 ay 시월.",
     "clockTime": "Ang oras ay sinasabing 세 시 십 분.",
     "price": "Ang presyo ay sinasabing 오천 원."
+  },
+  "breakdown": {
+    "parts": "Mga bahagi"
   }
 }

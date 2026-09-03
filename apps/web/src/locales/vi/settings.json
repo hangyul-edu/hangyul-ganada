@@ -56,7 +56,7 @@
     "body": "Bắt đầu lại từ chữ cái đầu tiên."
   },
   "backup": {
-    "body": "Giữ mọi thứ bạn đã học thành một tệp trên thiết bị, rồi đưa lại vào điện thoại mới. Không có gì được tải lên.",
+    "body": "Lưu tiến độ học của bạn vào một tệp và khôi phục trên điện thoại khác.",
     "save": "Lưu một bản sao",
     "saved": "Việc học của bạn đã được lưu.",
     "saveFailed": "Không lưu được bản sao.",

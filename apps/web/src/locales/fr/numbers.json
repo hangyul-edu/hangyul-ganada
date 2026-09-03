@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Correct",
-    "incorrect": "Pas tout à fait",
-    "answerWas": "La réponse est"
+    "incorrect": "Incorrect"
   },
   "prompt": {
     "listen": "Qu’avez-vous entendu ?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Compter jusqu’à mille",
       "objective": "Formez et lisez des nombres comme 십일, 이십 et 삼십오.",
-      "step1": "Dites les parties dans l’ordre. 십일, c’est dix-un, onze. 이십, c’est deux-dix, vingt. 삼십오, c’est trois-dix-cinq, trente-cinq.",
+      "step1": "Lisez les parties dans l’ordre, de gauche à droite.",
       "step2": "Attention à 십육 : il s’écrit 십육 mais se prononce 심뉵. Un son ㄹ apparaît entre les deux syllabes.",
       "step3": "백 est cent et 천 est mille. Pas de 일 devant eux — 백 원, pas 일백 원."
     },
     "nativeBuild": {
       "title": "Dire 열하나, 스물, 서른",
       "objective": "Dites les nombres au-dessus de dix avec 하나, 둘, 셋.",
-      "step1": "열 plus l’unité donne onze à dix-neuf : 열하나, 열둘, 열셋. Ils se disent en un seul mot.",
+      "step1": "Ajoutez les unités à 열, jusqu’à 열아홉. Se dit en un seul mot.",
       "step2": "Chaque dizaine a son mot — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 se prononce 열려섣 : le même son ㄹ que dans 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 se lit 유월 et 10월 se lit 시월.",
     "clockTime": "On dit l’heure comme 세 시 십 분.",
     "price": "On dit un prix comme 오천 원."
+  },
+  "breakdown": {
+    "parts": "Parties"
   }
 }

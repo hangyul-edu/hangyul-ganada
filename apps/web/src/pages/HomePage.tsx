@@ -1,10 +1,8 @@
-import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { productName } from '../config/product';
 import { CURRICULUM_UNITS } from '../data/characters';
-import { weeklyReport } from '../domain/activity';
 import {
   alphabetProgress,
   dailyProgress,
@@ -12,7 +10,6 @@ import {
   nextLesson,
 } from '../domain/progress';
 import { resolveContent, useFormatters, useLocale } from '../i18n';
-import { formatDuration } from '../i18n/duration';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
@@ -79,17 +76,6 @@ export function HomePage() {
 
   /** The learner's level, if they have asked for one. Null until they do. */
   const level = state.settings.level_test;
-
-  /**
-   * This week, in one line.
-   *
-   * Home already answers "what do I do next"; this is the only thing on it that
-   * answers "am I actually doing it", and it is a line rather than a card
-   * because that question deserves an honest answer and not a third of the
-   * screen. The full comparison lives on the Activity screen, which is where
-   * this links.
-   */
-  const week = useMemo(() => weeklyReport(state.activity, new Date()), [state.activity]);
 
   /**
    * The lesson to continue, or `null` once the alphabet is finished.
@@ -313,23 +299,6 @@ export function HomePage() {
               {t('home:finished.cta')}
             </Button>
           </Card>
-        )}
-
-        {/* Only once there is a week to report. A learner on their first day is
-            not shown "0 days, 0 minutes", which is true and discouraging and
-            tells them nothing they did not know. */}
-        {week.thisWeek.daysStudied > 0 && (
-          <Link to="/me/activity" className={styles.weekRow}>
-            <span className={styles.weekLabel}>{t('activity:week.title')}</span>
-            <span className={styles.weekValue}>
-              {t('activity:week.daysValue', { count: week.thisWeek.daysStudied })}
-              <span className={styles.weekDot} aria-hidden="true">
-                ·
-              </span>
-              {formatDuration(week.thisWeek.minutes, t)}
-            </span>
-            <ChevronRightIcon size={16} />
-          </Link>
         )}
 
         <div className={styles.quickRow}>

@@ -60,7 +60,7 @@
     "body": "Zacznij od nowa, od pierwszej litery."
   },
   "backup": {
-    "body": "Zachowaj całą swoją naukę w pliku na urządzeniu i przywróć ją na nowym telefonie. Nic nie jest wysyłane do internetu.",
+    "body": "Zapisz swoje postępy do pliku i przywróć je na innym telefonie.",
     "save": "Zapisz kopię",
     "saved": "Twoja nauka została zapisana.",
     "saveFailed": "Nie udało się zapisać kopii.",

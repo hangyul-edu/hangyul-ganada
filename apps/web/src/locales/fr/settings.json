@@ -58,7 +58,7 @@
     "body": "Tout reprendre depuis la toute première lettre."
   },
   "backup": {
-    "body": "Conservez tout ce que vous avez appris dans un fichier sur votre appareil, et remettez-le sur un nouveau téléphone. Rien n’est envoyé en ligne.",
+    "body": "Enregistrez votre progression dans un fichier et restaurez-la sur un autre téléphone.",
     "save": "Enregistrer une copie",
     "saved": "Votre progression a été enregistrée.",
     "saveFailed": "La copie n’a pas pu être enregistrée.",

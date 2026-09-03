@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Správně",
-    "incorrect": "Ještě ne úplně",
-    "answerWas": "Správná odpověď je"
+    "incorrect": "Špatně"
   },
   "prompt": {
     "listen": "Co jste slyšeli?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Počítáme do tisíce",
       "objective": "Skládej a čti čísla jako 십일, 이십 a 삼십오.",
-      "step1": "Čtěte části po pořadě. 십일 je deset-jedna, jedenáct. 이십 je dva-deset, dvacet. 삼십오 je tři-deset-pět, třicet pět.",
+      "step1": "Části se čtou popořadě, zleva doprava.",
       "step2": "Pozor na 십육: píše se 십육, ale vyslovuje 심뉵. Mezi oběma slabikami se objeví hláska ㄹ.",
       "step3": "백 je sto a 천 je tisíc. Před nimi nestojí 일 — 백 원, ne 일백 원."
     },
     "nativeBuild": {
       "title": "Říkáme 열하나, 스물, 서른",
       "objective": "Čísla nad deset říkej způsobem 하나, 둘, 셋.",
-      "step1": "열 plus jednotka dává jedenáct až devatenáct: 열하나, 열둘, 열셋. Vyslovuje se jako jedno slovo.",
+      "step1": "K 열 přidáváš jednotky až po 열아홉. Vyslovuje se jako jedno slovo.",
       "step2": "Každá desítka má vlastní slovo — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 se vyslovuje 열려섣: stejná hláska ㄹ, která se objevuje v 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 se čte 유월 a 10월 se čte 시월.",
     "clockTime": "Čas se říká takto: 세 시 십 분.",
     "price": "Cena se říká takto: 오천 원."
+  },
+  "breakdown": {
+    "parts": "Části"
   }
 }

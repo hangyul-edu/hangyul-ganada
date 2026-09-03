@@ -60,7 +60,7 @@
     "body": "Začněte znovu, od úplně první litery."
   },
   "backup": {
-    "body": "Uchovejte všechno, co jste se naučili, jako soubor ve svém zařízení a vraťte ho do nového telefonu. Nic se nikam neodesílá.",
+    "body": "Ulož si postup do souboru a obnov ho na jiném telefonu.",
     "save": "Uložit kopii",
     "saved": "Vaše učení bylo uloženo.",
     "saveFailed": "Kopii se nepodařilo uložit.",

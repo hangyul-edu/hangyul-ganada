@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Doğru",
-    "incorrect": "Tam değil",
-    "answerWas": "Cevap şu"
+    "incorrect": "Yanlış"
   },
   "prompt": {
     "listen": "Ne duydun?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Bine kadar saymak",
       "objective": "십일, 이십 ve 삼십오 gibi sayıları kur ve oku.",
-      "step1": "Parçaları sırayla söyle. 십일 on-bir, yani on bir. 이십 iki-on, yani yirmi. 삼십오 üç-on-beş, yani otuz beş.",
+      "step1": "Parçaları sırayla, soldan sağa oku.",
       "step2": "십육'a dikkat: 십육 yazılır ama 심뉵 söylenir. İki hecenin arasında ㄹ sesi ortaya çıkar.",
       "step3": "백 yüz, 천 bindir. Önlerine 일 gelmez — 일백 원 değil, 백 원."
     },
     "nativeBuild": {
       "title": "열하나, 스물, 서른 demek",
       "objective": "Ondan büyük sayıları 하나, 둘, 셋 yoluyla söyle.",
-      "step1": "열 artı birlik, on bir ile on dokuz arasını verir: 열하나, 열둘, 열셋. Tek sözcük gibi söylenir.",
+      "step1": "열 sözcüğüne birleri ekle, 열아홉’a kadar. Tek kelime gibi söylenir.",
       "step2": "Her onluğun kendi kelimesi var — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯, 열려섣 diye söylenir: 심뉵'taki ㄹ sesinin aynısı."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월, 유월; 10월 ise 시월 okunur.",
     "clockTime": "Saat 세 시 십 분 gibi söylenir.",
     "price": "Fiyat 오천 원 gibi söylenir."
+  },
+  "breakdown": {
+    "parts": "Parçalar"
   }
 }

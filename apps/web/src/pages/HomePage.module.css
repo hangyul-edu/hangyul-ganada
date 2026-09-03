@@ -473,47 +473,6 @@
 }
 
 /*
- * This week, in one line.
- *
- * A row rather than a card. Home's cards are all things to *do*; this is the
- * only thing on the screen that is purely a report, and giving it a card would
- * make it look like a fifth action.
- */
-.weekRow {
-  display: flex;
-  align-items: center;
-  gap: var(--hg-space-2);
-  min-height: 44px;
-  padding: var(--hg-space-2) var(--hg-space-3);
-  border-radius: var(--hg-radius-md);
-  background: var(--hg-bg-warm);
-  color: var(--hg-text-secondary);
-  font: var(--hg-text-body-sm);
-  text-decoration: none;
-}
-
-.weekRow:hover {
-  background: var(--hg-primary-subtle);
-}
-
-.weekLabel {
-  font-weight: var(--hg-weight-semibold);
-  color: var(--hg-text-body);
-}
-
-.weekValue {
-  display: flex;
-  align-items: center;
-  gap: var(--hg-space-2);
-  margin-inline-start: auto;
-  font-variant-numeric: tabular-nums;
-}
-
-.weekDot {
-  color: var(--hg-text-tertiary);
-}
-
-/*
  * Today's practice.
  *
  * Above the lesson card, because it is the *plan* and the lesson card is one

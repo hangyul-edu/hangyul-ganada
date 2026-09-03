@@ -170,7 +170,7 @@ export function applyNumbersEvent(
 export function isComplete(record: NumbersLessonProgress, lesson: NumberLesson): boolean {
   if (record.completed_at !== null) return true;
   const steps = lesson.explanation;
-  if (steps.some((step) => !record.explanation_steps_viewed.includes(step))) return false;
+  if (steps.some((step) => !record.explanation_steps_viewed.includes(step.text))) return false;
   if (lesson.item_ids.some((id) => !record.examples_viewed.includes(id))) return false;
   if (record.practice_completed_at === null) return false;
   if (record.mastery === null || !record.mastery.passed) return false;
@@ -192,7 +192,7 @@ export function lessonActivityProgress(
 ): { done: number; total: number } {
   const total = lesson.explanation.length + lesson.item_ids.length + 2;
   if (!record) return { done: 0, total };
-  let done = lesson.explanation.filter((s) => record.explanation_steps_viewed.includes(s)).length;
+  let done = lesson.explanation.filter((s) => record.explanation_steps_viewed.includes(s.text)).length;
   done += lesson.item_ids.filter((id) => record.examples_viewed.includes(id)).length;
   if (record.practice_completed_at) done += 1;
   if (record.mastery?.passed) done += 1;
@@ -272,7 +272,7 @@ export function resumePhase(
 ): LessonPhase {
   if (!record || record.opened_at === null) return 'objective';
   if (record.completed_at !== null || isComplete(record, lesson)) return 'summary';
-  if (lesson.explanation.some((s) => !record.explanation_steps_viewed.includes(s))) return 'explain';
+  if (lesson.explanation.some((s) => !record.explanation_steps_viewed.includes(s.text))) return 'explain';
   if (lesson.item_ids.some((id) => !record.examples_viewed.includes(id))) return 'examples';
   if (record.practice_completed_at === null) return 'practice';
   return 'mastery';
@@ -332,7 +332,9 @@ export function repairLessonProgress(
     lesson_id: row.lesson_id,
     opened_at: str(row.opened_at),
     started_at: str(row.started_at),
-    explanation_steps_viewed: list(row.explanation_steps_viewed).filter((s) => lesson.explanation.includes(s)),
+    explanation_steps_viewed: list(row.explanation_steps_viewed).filter((s) =>
+      lesson.explanation.some((step) => step.text === s),
+    ),
     examples_viewed: list(row.examples_viewed).filter((id) => lesson.item_ids.includes(id)),
     practice_completed_at: str(row.practice_completed_at),
     mastery,

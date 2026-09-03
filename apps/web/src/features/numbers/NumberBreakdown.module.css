@@ -1,0 +1,106 @@
+/**
+ * A number taken apart, one card.
+ *
+ * Sized so the whole thing fits above the fold at 320x568 with the phase bar
+ * and the Next button, which is what "one idea per screen" costs in pixels.
+ * Everything wraps rather than scrolling sideways: at 200% text the chips fall
+ * onto a second line and the row still reads left to right.
+ */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-4);
+  margin: 0;
+  padding: var(--hg-space-5) var(--hg-space-4);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--hg-radius-lg);
+  background: var(--hg-surface);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.numeral {
+  font-size: var(--hg-text-display-lg);
+  font-weight: var(--hg-weight-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--hg-text);
+}
+
+.parts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hg-space-2);
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hg-space-2);
+}
+
+.plus {
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-body-sm);
+}
+
+/*
+ * The chips.
+ *
+ * Two fills, not seven: a piece that counts and a piece that is a place. The
+ * hue is a reinforcement — the order, the spacing and the words carry the
+ * lesson on their own, so a learner who cannot tell the two apart loses
+ * nothing. Both fills clear AA against their own text.
+ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 var(--hg-space-3);
+  border-radius: var(--hg-radius-md);
+  font-size: var(--hg-text-title);
+  font-weight: var(--hg-weight-semibold);
+  line-height: 1;
+}
+
+.chip[data-place='ones'] {
+  background: var(--hg-primary-subtle);
+  color: var(--hg-primary-strong);
+}
+
+.chip[data-place='place'] {
+  background: var(--hg-positive-subtle);
+  color: var(--hg-positive-text);
+}
+
+.chip[data-place='zero'] {
+  background: var(--hg-bg-warm);
+  color: var(--hg-text-secondary);
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: var(--hg-space-3);
+}
+
+.equals {
+  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-title);
+}
+
+.whole {
+  font-size: var(--hg-text-display);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1.1;
+  color: var(--hg-text);
+}

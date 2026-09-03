@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Đúng rồi",
-    "incorrect": "Chưa đúng",
-    "answerWas": "Đáp án là"
+    "incorrect": "Chưa đúng"
   },
   "prompt": {
     "listen": "Bạn nghe được gì?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Đếm đến một nghìn",
       "objective": "Ghép và đọc những số như 십일, 이십 và 삼십오.",
-      "step1": "Đọc các phần theo thứ tự. 십일 là mười-một, mười một. 이십 là hai-mười, hai mươi. 삼십오 là ba-mười-năm, ba mươi lăm.",
+      "step1": "Đọc các phần theo thứ tự, từ trái sang phải.",
       "step2": "Chú ý 십육: viết là 십육 nhưng đọc là 심뉵. Âm ㄹ xuất hiện giữa hai âm tiết.",
       "step3": "백 là một trăm và 천 là một nghìn. Không có 일 đứng trước — 백 원, không phải 일백 원."
     },
     "nativeBuild": {
       "title": "Nói 열하나, 스물, 서른",
       "objective": "Nói các số trên mười theo cách 하나, 둘, 셋.",
-      "step1": "열 cộng hàng đơn vị cho mười một đến mười chín: 열하나, 열둘, 열셋. Nói liền như một từ.",
+      "step1": "Thêm hàng đơn vị vào 열, đến 열아홉. Nói liền như một từ.",
       "step2": "Mỗi hàng chục có từ riêng — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 đọc là 열려섣: cùng âm ㄹ xuất hiện trong 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 đọc là 유월 và 10월 đọc là 시월.",
     "clockTime": "Giờ nói như 세 시 십 분.",
     "price": "Giá nói như 오천 원."
+  },
+  "breakdown": {
+    "parts": "Các phần"
   }
 }

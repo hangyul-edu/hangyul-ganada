@@ -138,7 +138,7 @@ describe('Numbers records on read', () => {
   });
 
   it('F6 · a partial record is kept as it is', async () => {
-    const record = applyNumbersEvent(blankLessonProgress(sino.id, NOW), sino, { type: 'explanation_viewed', step: sino.explanation[0]! }, NOW);
+    const record = applyNumbersEvent(blankLessonProgress(sino.id, NOW), sino, { type: 'explanation_viewed', step: sino.explanation[0]!.text }, NOW);
     await repo.put(record);
     const { rows, dropped, downgraded } = await repo.loadAll(getNumberLesson, NOW);
     expect(rows[sino.id]).toEqual(record);
@@ -164,13 +164,13 @@ describe('Numbers records on read', () => {
   it('F9 · evidence naming items no longer in the lesson is dropped, the rest kept', async () => {
     const record: NumbersLessonProgress = {
       ...blankLessonProgress(sino.id, NOW),
-      explanation_steps_viewed: [sino.explanation[0]!, 'lesson.retired.step9'],
+      explanation_steps_viewed: [sino.explanation[0]!.text, 'lesson.retired.step9'],
       examples_viewed: ['num-sino-1', 'num-retired-item'],
       items: { 'num-sino-1': { correct: 1, incorrect: 0, mastered_at: null }, 'num-retired': { correct: 5, incorrect: 0, mastered_at: NOW.toISOString() } },
     };
     await driver.put('numbers', `lesson:${sino.id}`, record);
     const { rows } = await repo.loadAll(getNumberLesson, NOW);
-    expect(rows[sino.id]!.explanation_steps_viewed).toEqual([sino.explanation[0]]);
+    expect(rows[sino.id]!.explanation_steps_viewed).toEqual([sino.explanation[0]!.text]);
     expect(rows[sino.id]!.examples_viewed).toEqual(['num-sino-1']);
     expect(Object.keys(rows[sino.id]!.items)).toEqual(['num-sino-1']);
   });

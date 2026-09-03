@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Correct",
-    "incorrect": "Not quite",
-    "answerWas": "The answer is"
+    "incorrect": "Not right"
   },
   "prompt": {
     "listen": "What did you hear?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Counting to a thousand",
       "objective": "Build and read numbers like 십일, 이십 and 삼십오.",
-      "step1": "Say the parts in order. 십일 is ten-one, eleven. 이십 is two-ten, twenty. 삼십오 is three-ten-five, thirty-five.",
+      "step1": "Read the parts in order, left to right.",
       "step2": "Watch 십육: it is written 십육 but said 심뉵. The ㄹ-sound appears between the two syllables.",
       "step3": "백 is a hundred and 천 is a thousand. There is no 일 in front of them — 백 원, not 일백 원."
     },
     "nativeBuild": {
       "title": "Saying 열하나, 스물, 서른",
       "objective": "Say numbers past ten the 하나, 둘, 셋 way.",
-      "step1": "열 plus the unit gives eleven to nineteen: 열하나, 열둘, 열셋. Said as one word.",
+      "step1": "Add the units to 열, up to 열아홉. Said as one word.",
       "step2": "Each ten has its own word — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 is said 열려섣: the same ㄹ-sound that appears in 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 is read 유월 and 10월 is read 시월.",
     "clockTime": "A time is said like 세 시 십 분.",
     "price": "A price is said like 오천 원."
+  },
+  "breakdown": {
+    "parts": "Parts"
   }
 }

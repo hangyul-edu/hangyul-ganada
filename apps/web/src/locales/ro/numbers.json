@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Corect",
-    "incorrect": "Nu chiar",
-    "answerWas": "Răspunsul este"
+    "incorrect": "Greșit"
   },
   "prompt": {
     "listen": "Ce ai auzit?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Numărăm până la o mie",
       "objective": "Formează și citește numere ca 십일, 이십 și 삼십오.",
-      "step1": "Spune părțile în ordine. 십일 este zece-unu, unsprezece. 이십 este doi-zece, douăzeci. 삼십오 este trei-zece-cinci, treizeci și cinci.",
+      "step1": "Citește părțile în ordine, de la stânga la dreapta.",
       "step2": "Atenție la 십육: se scrie 십육, dar se pronunță 심뉵. Între cele două silabe apare un sunet ㄹ.",
       "step3": "백 este o sută și 천 este o mie. Nu se pune 일 în fața lor — 백 원, nu 일백 원."
     },
     "nativeBuild": {
       "title": "Spunem 열하나, 스물, 서른",
       "objective": "Spune numerele peste zece în felul 하나, 둘, 셋.",
-      "step1": "열 plus unitatea dă numerele de la unsprezece la nouăsprezece: 열하나, 열둘, 열셋. Se spun ca un singur cuvânt.",
+      "step1": "Adaugă unitățile la 열, până la 열아홉. Se spune ca un singur cuvânt.",
       "step2": "Fiecare zece are cuvântul lui — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 se pronunță 열려섣: același sunet ㄹ care apare în 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 se citește 유월, iar 10월 se citește 시월.",
     "clockTime": "Ora se spune așa: 세 시 십 분.",
     "price": "Prețul se spune așa: 오천 원."
+  },
+  "breakdown": {
+    "parts": "Părți"
   }
 }

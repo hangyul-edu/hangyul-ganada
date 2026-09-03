@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "To‘g‘ri",
-    "incorrect": "Unchalik emas",
-    "answerWas": "Javobi"
+    "incorrect": "Noto‘g‘ri"
   },
   "prompt": {
     "listen": "Nimani eshitdingiz?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Minggacha sanash",
       "objective": "십일, 이십 va 삼십오 kabi sonlarni tuzing va o‘qing.",
-      "step1": "Bo‘laklarni tartib bilan ayting. 십일 — o‘n-bir, yani o‘n bir. 이십 — ikki-o‘n, yigirma. 삼십오 — uch-o‘n-besh, o‘ttiz besh.",
+      "step1": "Qismlarni tartib bilan, chapdan o‘ngga o‘qing.",
       "step2": "십육 ga e’tibor bering: 십육 deb yoziladi, lekin 심뉵 deb aytiladi. Ikki bo‘g‘in orasida ㄹ tovushi paydo bo‘ladi.",
       "step3": "백 — yuz, 천 — ming. Ular oldida 일 bo‘lmaydi — 일백 원 emas, 백 원."
     },
     "nativeBuild": {
       "title": "열하나, 스물, 서른 deyish",
       "objective": "O‘ndan yuqori sonlarni 하나, 둘, 셋 usulida ayting.",
-      "step1": "열 va birlik o‘n birdan o‘n to‘qqizgacha beradi: 열하나, 열둘, 열셋. Bir so‘z bo‘lib aytiladi.",
+      "step1": "열 ga birliklarni qo‘shing, 열아홉 gacha. Bitta so‘zdek aytiladi.",
       "step2": "Har o‘nlikning o‘z so‘zi bor — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 — 열려섣 deb aytiladi: 심뉵 dagi ㄹ tovushining o‘zi."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 — 유월, 10월 — 시월 deb o‘qiladi.",
     "clockTime": "Vaqt 세 시 십 분 kabi aytiladi.",
     "price": "Narx 오천 원 kabi aytiladi."
+  },
+  "breakdown": {
+    "parts": "Qismlar"
   }
 }

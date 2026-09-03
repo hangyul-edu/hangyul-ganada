@@ -260,7 +260,18 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
    * a stroke with plenty of room still has plenty after a crowded one has
    * taken its window.
    */
-  const order = [...strokes].sort((a, b) => room(a) - room(b));
+  /*
+   * Measured once per stroke, then sorted.
+   *
+   * `sort` calls its comparator O(n log n) times, and `room` is a few hundred
+   * clearance tests each of which walks every stroke — so computing it inside
+   * the comparator ran it a dozen times per stroke and made laying out one
+   * glyph take longer than the whole marker suite used to.
+   */
+  const crowding = new Map(strokes.map((stroke) => [stroke.order, room(stroke)]));
+  const order = [...strokes].sort(
+    (a, b) => crowding.get(a.order)! - crowding.get(b.order)!,
+  );
 
   for (const stroke of order) {
     const at = anchor(stroke);

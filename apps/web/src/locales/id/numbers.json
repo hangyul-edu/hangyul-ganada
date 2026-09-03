@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Benar",
-    "incorrect": "Belum tepat",
-    "answerWas": "Jawabannya adalah"
+    "incorrect": "Salah"
   },
   "prompt": {
     "listen": "Apa yang kamu dengar?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Berhitung sampai seribu",
       "objective": "Susun dan baca angka seperti 십일, 이십, dan 삼십오.",
-      "step1": "Baca bagian-bagiannya secara berurutan. 십일 adalah sepuluh-satu, sebelas. 이십 adalah dua-sepuluh, dua puluh. 삼십오 adalah tiga-sepuluh-lima, tiga puluh lima.",
+      "step1": "Baca bagian-bagiannya berurutan, dari kiri ke kanan.",
       "step2": "Hati-hati dengan 십육: ditulis 십육 tetapi diucapkan 심뉵. Bunyi ㄹ muncul di antara kedua suku katanya.",
       "step3": "백 adalah seratus dan 천 adalah seribu. Tidak ada 일 di depannya — 백 원, bukan 일백 원."
     },
     "nativeBuild": {
       "title": "Mengucapkan 열하나, 스물, 서른",
       "objective": "Ucapkan angka di atas sepuluh dengan cara 하나, 둘, 셋.",
-      "step1": "열 ditambah satuan menghasilkan sebelas sampai sembilan belas: 열하나, 열둘, 열셋. Diucapkan sebagai satu kata.",
+      "step1": "Tambahkan satuan ke 열, sampai 열아홉. Diucapkan sebagai satu kata.",
       "step2": "Tiap puluhan punya katanya sendiri — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 diucapkan 열려섣: bunyi ㄹ yang sama seperti yang muncul di 심뉵."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "6월 dibaca 유월 dan 10월 dibaca 시월.",
     "clockTime": "Waktu diucapkan seperti 세 시 십 분.",
     "price": "Harga diucapkan seperti 오천 원."
+  },
+  "breakdown": {
+    "parts": "Bagian"
   }
 }

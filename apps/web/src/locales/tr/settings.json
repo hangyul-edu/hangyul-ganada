@@ -56,7 +56,7 @@
     "body": "En baştaki harften yeniden başla."
   },
   "backup": {
-    "body": "Öğrendiğin her şeyi cihazında bir dosya olarak sakla, yeni telefonunda geri yükle. Hiçbir şey internete gönderilmez.",
+    "body": "Öğrenme ilerlemeni bir dosyaya kaydet, başka bir telefonda geri yükle.",
     "save": "Kopya kaydet",
     "saved": "Öğrendiklerin kaydedildi.",
     "saveFailed": "Kopya kaydedilemedi.",

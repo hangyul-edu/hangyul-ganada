@@ -56,7 +56,7 @@
     "body": "Börja om från allra första bokstaven."
   },
   "backup": {
-    "body": "Spara allt du har lärt dig som en fil på din enhet och lägg tillbaka den i en ny telefon. Ingenting laddas upp.",
+    "body": "Spara dina framsteg i en fil och återställ dem i en annan telefon.",
     "save": "Spara en kopia",
     "saved": "Ditt lärande har sparats.",
     "saveFailed": "Kopian kunde inte sparas.",

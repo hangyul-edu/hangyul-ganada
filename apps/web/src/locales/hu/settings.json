@@ -56,7 +56,7 @@
     "body": "Kezdd elölről, a legelső betűtől."
   },
   "backup": {
-    "body": "Őrizd meg mindazt, amit megtanultál, fájlként a készülékeden, és tedd vissza egy új telefonra. Semmi sem kerül fel az internetre.",
+    "body": "Mentsd fájlba a haladásodat, és állítsd vissza egy másik telefonon.",
     "save": "Másolat mentése",
     "saved": "A tanulásod el lett mentve.",
     "saveFailed": "A másolatot nem sikerült menteni.",

@@ -58,7 +58,7 @@
     "body": "Volver a empezar desde la primera letra."
   },
   "backup": {
-    "body": "Guarda todo lo que has aprendido en un archivo de tu dispositivo y recupéralo en un teléfono nuevo. No se sube nada a internet.",
+    "body": "Guarda tu progreso en un archivo y recupéralo en otro teléfono.",
     "save": "Guardar una copia",
     "saved": "Tu aprendizaje se ha guardado.",
     "saveFailed": "No se ha podido guardar la copia.",

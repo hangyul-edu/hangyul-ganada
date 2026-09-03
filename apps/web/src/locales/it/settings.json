@@ -58,7 +58,7 @@
     "body": "Ricomincia dalla primissima lettera."
   },
   "backup": {
-    "body": "Conserva tutto quello che hai imparato in un file sul tuo dispositivo e rimettilo su un telefono nuovo. Non viene caricato niente.",
+    "body": "Salva i tuoi progressi in un file e ripristinali su un altro telefono.",
     "save": "Salva una copia",
     "saved": "I tuoi progressi sono stati salvati.",
     "saveFailed": "Non è stato possibile salvare la copia.",

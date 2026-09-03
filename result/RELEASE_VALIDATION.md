@@ -82,7 +82,7 @@ each has exactly one defensible answer.
 | Suite / gate | Result |
 | --- | --- |
 | `npm run verify:release` | **every step green.** The chain caught three generated artefacts that had gone stale under the corpus change — the level-test bank, `curriculum.json` and `relations.json` — and one end-to-end fixture I had written against an assumption rather than the code; each was fixed and the chain re-run from the top. `vocabulary:qa:target` reports the corpus deficit as **INFORMATIONAL** and exits 0, and `release:current` is green with both delivery manifests at HEAD |
-| Web unit (`vitest`) | **977 passed** (64 files) |
+| Web unit (`vitest`) | **1018 passed** (64 files) |
 | Korean morphology | **216 passed** |
 | Handwriting core | **96 passed** |
 | End-to-end (`playwright`) | **446 passed**, 223 × 2 projects — including 8 Numbers course cases, 10 beginner Numbers journeys, 25 rendered Home-header cases and the two backup cases that run over the real IndexedDB driver and the browser’s own download. Run twice end to end: 367 of 368 the first time and 368 of 368 the second, with the same code. The one failure was a flake — the review hub’s save test, which passes alone and in order — and it is hardened rather than re-run away: it now waits for the write to reach IndexedDB before a cold load, because the stores are written optimistically and a navigation inside that window aborts the transaction |

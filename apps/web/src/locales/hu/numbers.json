@@ -56,8 +56,7 @@
   },
   "feedback": {
     "correct": "Helyes",
-    "incorrect": "Nem egészen",
-    "answerWas": "A válasz:"
+    "incorrect": "Nem jó"
   },
   "prompt": {
     "listen": "Mit hallottál?",
@@ -148,14 +147,14 @@
     "sinoBuild": {
       "title": "Számolás ezerig",
       "objective": "Építs és olvass olyan számokat, mint 십일, 이십 és 삼십오.",
-      "step1": "Mondd ki a részeket sorrendben. A 십일 tíz-egy, tizenegy. Az 이십 kettő-tíz, húsz. A 삼십오 három-tíz-öt, harmincöt.",
+      "step1": "Olvasd a részeket sorban, balról jobbra.",
       "step2": "Figyelj a 십육-ra: írva 십육, kiejtve 심뉵. A két szótag között megjelenik egy ㄹ-hang.",
       "step3": "A 백 száz, a 천 ezer. Nem áll előttük 일 — 백 원, nem 일백 원."
     },
     "nativeBuild": {
       "title": "열하나, 스물, 서른",
       "objective": "A tíz feletti számokat mondd a 하나, 둘, 셋 módján.",
-      "step1": "A 열 plusz az egyes adja a tizenegytől tizenkilencig tartó számokat: 열하나, 열둘, 열셋. Egy szóként ejtjük.",
+      "step1": "Add az egyeseket a 열 mellé, egészen 열아홉-ig. Egy szóként mondjuk.",
       "step2": "Minden tízesnek saját szava van — 스물, 서른, 마흔, 쉰.",
       "step3": "A 열여섯 kiejtve 열려섣: ugyanaz a ㄹ-hang, amely a 심뉵-ban is megjelenik."
     },
@@ -351,5 +350,8 @@
     "irregularMonths": "A 6월 kiolvasva 유월, a 10월 pedig 시월.",
     "clockTime": "Az időt így mondod: 세 시 십 분.",
     "price": "Az árat így mondod: 오천 원."
+  },
+  "breakdown": {
+    "parts": "Részek"
   }
 }

@@ -56,7 +56,7 @@
     "body": "Start again from the very first letter."
   },
   "backup": {
-    "body": "Keep everything you have learned as a file on your device, and put it back on a new phone. Nothing is uploaded.",
+    "body": "Save your learning progress to a file and restore it on another phone.",
     "save": "Save a copy",
     "saved": "Your learning was saved.",
     "saveFailed": "The copy could not be saved.",

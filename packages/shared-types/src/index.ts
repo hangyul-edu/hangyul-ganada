@@ -387,6 +387,35 @@ export type NumbersExerciseKind =
   | 'fill_sentence'
   | 'order_parts';
 
+/**
+ * One screen of a lesson's explanation.
+ *
+ * `text` is the sentence, and is a key into the `numbers` namespace as it
+ * always was. `show` is what turned the sentence from the whole teaching into
+ * a caption on it: the ids of the number items to *draw*, one broken-down card
+ * each, above the words.
+ *
+ * The lesson that teaches numbers past ten used to say
+ *
+ *   부분을 순서대로 읽어요. 십일은 십-일, 11. 이십은 이-십, 20. 삼십오는
+ *   삼-십-오, 35예요.
+ *
+ * which is three examples, three numerals and three hyphenated pseudo-spellings
+ * in one paragraph, for a reader who is still learning the alphabet. The same
+ * three examples are now three cards — numeral, sound, parts, whole — and the
+ * sentence is one line saying what to look at. See `NumberBreakdown`.
+ *
+ * `show` is optional and most steps do not have one: a step about *when* to use
+ * a system has nothing to draw, and a diagram invented for it would be
+ * decoration.
+ */
+export interface ExplainStep {
+  /** Key into the `numbers` namespace. */
+  text: string;
+  /** Number item ids to draw above the sentence, in order. */
+  show?: string[];
+}
+
 export interface NumberLesson {
   id: string;
   /** The module this lesson belongs to; `unit` is kept as its index. */
@@ -401,7 +430,7 @@ export interface NumberLesson {
   title: string;
   objective: string;
   /** Explanation steps, in order. Each is viewed separately and recorded. */
-  explanation: string[];
+  explanation: ExplainStep[];
   /** The exercise families guided practice and the mastery check draw from. */
   exercise_kinds: NumbersExerciseKind[];
   /** How many mastery questions to ask. */
