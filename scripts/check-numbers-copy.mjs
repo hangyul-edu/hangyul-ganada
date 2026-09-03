@@ -31,17 +31,20 @@
  * 하나, 둘, 셋 — which is what they are, is concrete, and needs no prior
  * teaching. A counter is a *counting word*.
  *
- * ## Where the technical terms are still allowed, and why the exception is one line
+ * ## The one exception was removed
  *
- * `lesson.choosing.step3`, and nowhere else. That lesson is where a learner has
- * just seen both sets in one clock time, which is the moment the names are
- * useful rather than intimidating, and they are given there in brackets with an
- * explicit note that today is not the day to memorise them. §4 of the brief
- * allows exactly this: technical labels introduced later as optional reference,
- * never required to understand a beginner lesson.
+ * `lesson.choosing.step3` used to be allowed to name the two sets — in brackets,
+ * with a note that today was not the day to memorise them — on the argument
+ * that a learner who has just seen both in one clock time is at the moment the
+ * names are useful rather than intimidating. The argument was wrong twice over.
+ * A beginner who has just been shown *세 시 삼십 분* does not need to know that
+ * a grammar book calls the halves 고유어 수 and 한자어 수; and a line that ends
+ * *worth knowing, not worth memorising today* is a line that admits it did not
+ * need to be there.
  *
- * Naming the exception as a path rather than allowing a count of them is
- * deliberate. A budget would let the terms creep back one string at a time.
+ * There is now no exception. No learner-facing string in this course names a
+ * set by a linguistic category, and none explains where either set came from —
+ * see the origin list below, which is the other half of the same rule.
  */
 import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -74,6 +77,44 @@ const BANNED = {
     'sino-korean',
     'Sino number',
     'sino number',
+    /*
+     * The metaphors that replaced the technical names, and were no better.
+     *
+     * *두 벌* — two sets — and *두 가지 숫자* were the second draft's way of
+     * saying 체계 without saying it, and a learner who reads *Korean has two
+     * sets of numbers* has been handed one more thing to hold before being
+     * told anything they can use. *쪽* — this side, that side — was the third,
+     * and it is the vague subject the copy rules forbid: a sentence whose
+     * subject is *the other side* names nothing.
+     *
+     * What replaced all of them is not another word for the sets. It is their
+     * own first three members, 일, 이, 삼 and 하나, 둘, 셋, which need no
+     * introduction because they are what the lesson is teaching anyway.
+     */
+    '두 벌',
+    '두 가지 숫자',
+    '두 가지 방법',
+    '어느 체계',
+    '만 단위',
+    'two sets',
+    'Two sets',
+    'two ways',
+    'number family',
+    /*
+     * And where either set is said to come from.
+     *
+     * The first lesson opened with *this set came from Chinese*. It is not
+     * false, and it is not the answer to any question a beginner has at the
+     * moment they meet 일, 이, 삼 — which is *when do I say this one?* Origin
+     * is also the one kind of claim in this course that is contested outside
+     * it, and a practical numbers lesson is not the place to take a position.
+     */
+    '중국에서',
+    '중국어에서',
+    'from Chinese',
+    'from China',
+    'Chinese origin',
+    'native Korean numbers',
   ],
   en: [
     'native Korean',
@@ -87,8 +128,8 @@ const BANNED = {
   ],
 };
 
-/** The one place the labels are allowed, and the reason is in the file header. */
-const REFERENCE = new Set(['lesson.choosing.step3']);
+/** No string is exempt. The header says why the one exemption was withdrawn. */
+const REFERENCE = new Set();
 
 /**
  * The copy a learner must understand in order to get through a lesson.
@@ -150,18 +191,6 @@ for (const locale of locales) {
   walk(pack, '');
 }
 
-/*
- * And that the exception is actually taken.
- *
- * A learner should meet the technical names once, in the lesson where they
- * finally mean something. If that line ever loses them, the course has gone
- * from too technical to silent about a thing every textbook says, and the fix
- * is a sentence rather than a rule.
- */
-const korean = JSON.parse(readFileSync(join(LOCALES, 'ko', 'numbers.json'), 'utf8'));
-if (!korean.lesson.choosing.step3.includes('한자어 수')) {
-  findings.push('ko lesson.choosing.step3 no longer introduces the technical names at all');
-}
 
 console.log(`Numbers copy — ${strings} learner-facing strings across ${locales.length} languages`);
 if (findings.length === 0) {

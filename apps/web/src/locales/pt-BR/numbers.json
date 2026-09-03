@@ -5,8 +5,6 @@
   "activitiesDone": "{{done}} de {{total}} atividades feitas",
   "moduleLessons": "{{done}} de {{total}} lições",
   "status": {
-    "available": "Disponível",
-    "not_started": "Aberta",
     "in_progress": "Em andamento",
     "completed": "Concluída",
     "mastered": "Dominada",
@@ -14,7 +12,7 @@
   },
   "systemSino": "일, 이, 삼",
   "systemNative": "하나, 둘, 셋",
-  "systemBoth": "Os dois",
+  "systemBoth": "일, 이, 삼 e 하나, 둘, 셋",
   "system": {
     "native": "하나, 둘, 셋 — para contar coisas",
     "sino": "일, 이, 삼 — para dinheiro e datas"
@@ -64,10 +62,10 @@
   "prompt": {
     "listen": "O que você ouviu?",
     "read": "O que isso significa?",
-    "chooseSystem": "Qual dos dois conjuntos é este?",
+    "chooseSystem": "Quais números entram aqui?",
     "digitsToKorean": {
-      "sino": "Diga este número do jeito 일, 이, 삼",
-      "native": "Diga este número do jeito 하나, 둘, 셋",
+      "sino": "Fale este número com 일, 이, 삼",
+      "native": "Conte com 하나, 둘, 셋",
       "both": "Diga este número em coreano"
     },
     "koreanToDigits": "Que número é este?",
@@ -77,28 +75,28 @@
     "orderParts": "Toque nas partes em ordem para formar {{value}}"
   },
   "rationale": {
-    "readChoose": "Ligue o coreano ao seu sentido. A palavra de contagem depende do que você está contando.",
-    "listen": "Ouça a palavra inteira — números vizinhos e sons parecidos são o tropeço mais comum.",
-    "nativeSystem": "Os números 하나, 둘, 셋 contam o que dá para apontar, e servem para a hora e a idade.",
-    "sinoSystem": "Os números 일, 이, 삼 servem para etiquetas: dinheiro, datas, minutos, telefones, andares.",
-    "koreanToDigits": "Diga as partes em ordem. No conjunto 일, 이, 삼, 십 é dez e 삼십 é trinta.",
-    "countingForm": "Antes de uma palavra de contagem, 하나 둘 셋 넷 스물 viram 한 두 세 네 스무. Fala-se 두 개.",
-    "counter": "Um número nunca fica sozinho ao lado de um substantivo. A palavra de contagem no meio depende do que se conta.",
-    "fill": "Leia a frase inteira: as palavras em volta da lacuna mostram qual forma cabe nela.",
-    "nativeBuild": "Acima de dez é 열 mais a unidade — 열하나, 열둘. As dezenas têm palavras próprias.",
-    "sinoBuild": "Os números 일, 이, 삼 são lidos da esquerda para a direita, parte por parte: 삼십오 é 삼 · 십 · 오.",
-    "irregular_month": "Junho é 유월 e outubro é 시월. As formas regulares 육월 e 십월 não existem.",
-    "plain_form": "Antes de uma palavra de contagem usam-se 한, 두, 세, 네, 스무. Ali não entram 하나, 둘, 셋, 넷 nem 스물.",
-    "spacing": "A palavra de contagem é uma palavra à parte e leva espaço: 한 개, não 한개.",
-    "system_swap": "Os dois conjuntos dizem o mesmo valor, mas não se trocam — quem decide é a situação.",
-    "sound_alike": "A diferença é um só som. Preste atenção na consoante final.",
-    "adjacent": "Números vizinhos são aprendidos em lista, por isso se confundem. Confira o valor, não a posição.",
-    "wrong_counter": "Cada palavra de contagem combina com um tipo de coisa — 명 para pessoas, 마리 para animais, 개 para objetos."
+    "nativeSystem": "Coisas, pessoas, horas e idade se contam com 하나, 둘, 셋.",
+    "sinoSystem": "Preços, datas, minutos, telefones e andares levam 일, 이, 삼.",
+    "koreanToDigits": "Leia do começo. 십 é 10 e 삼십 é 30.",
+    "countingForm": "Antes de uma palavra de contagem, 하나 vira 한 e 둘 vira 두: 두 개.",
+    "counter": "Entre o número e a coisa entra uma palavra de contagem, e ela depende do que você conta.",
+    "fill": "Leia a frase de novo — as palavras em volta da lacuna dizem o que falta.",
+    "nativeBuild": "Junte a unidade a 열 — 열하나, 열둘. 스물 e 서른 são palavras próprias.",
+    "sinoBuild": "Leia as partes na ordem: 삼십오 é 삼 · 십 · 오.",
+    "irregular_month": "6월 é 유월 e 10월 é 시월.",
+    "plain_form": "Antes de uma palavra de contagem usa-se 한, 두, 세, 네, 스무.",
+    "spacing": "A palavra de contagem leva espaço: 한 개.",
+    "system_swap": "Mesma quantidade, outro lugar. Aqui você usa {{korean}}.",
+    "sound_alike": "Um som de diferença. Escute o final.",
+    "adjacent": "{{korean}} é {{value}}.",
+    "wrong_counter": "Cada palavra de contagem tem o que ela conta — 명 para pessoas, 마리 para animais, 개 para objetos.",
+    "value": "{{korean}} é {{value}}.",
+    "example": "Fala assim: {{example}}"
   },
   "module": {
     "systems": {
       "title": "Dizer de um a dez",
-      "goal": "Conte até dez de dois jeitos, leia o zero e veja quando se usa cada um."
+      "goal": "Fale de 일 a 십 e de 하나 a 열, leia o zero e veja onde cada um entra."
     },
     "pastTen": {
       "title": "Números maiores que dez",
@@ -114,7 +112,7 @@
     },
     "money": {
       "title": "Quanto custa? Qual número?",
-      "goal": "Leia um preço, um telefone, um andar e números bem grandes."
+      "goal": "Leia um preço, um telefone e um andar, e leia 만 원 e 억."
     },
     "review": {
       "title": "Erros que todo mundo comete",
@@ -125,16 +123,16 @@
     "sinoBasics": {
       "title": "Dizer 1, 2, 3 em coreano",
       "objective": "Ouça 일, 이, 삼 até 십 e repita.",
-      "step1": "O coreano tem dois conjuntos de números. Este veio do chinês e é usado para tudo que é um rótulo, e não uma contagem — dinheiro, datas, minutos, números de telefone, andares.",
-      "step2": "De um a dez: 일 이 삼 사 오 육 칠 팔 구 십. Cada um tem uma sílaba só, e cada um é também um algarismo que você vai ver em preços e relógios.",
-      "step3": "Dez é 십. Tudo depois do dez é formado com essas dez palavras, então conhecê-las bem é a maior parte do trabalho."
+      "step1": "Comece por 일, 이, 삼. Esses números servem para preços, datas, minutos, telefones e andares.",
+      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Cada um tem uma sílaba só.",
+      "step3": "Fala assim: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Contar com 하나, 둘, 셋",
       "objective": "Ouça e diga de 하나 a 열 contando o que está na sua frente.",
-      "step1": "Os números próprios da Coreia. São usados para contar coisas que você pode apontar — pessoas, xícaras, animais — e para horas e idade.",
+      "step1": "하나, 둘, 셋 servem para contar o que está na sua frente — pessoas, xícaras, animais — e para idade e a hora cheia.",
       "step2": "De um a dez: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Repare que 여덟 se diz 여덜: o ㅂ é mudo.",
-      "step3": "Eles deixam de ser usados por volta de noventa e nove. Acima de cem, tudo se conta com 일, 이, 삼."
+      "step3": "De cem para cima, tudo é contado com 일, 이, 삼."
     },
     "zero": {
       "title": "O 0 é 영 ou 공",
@@ -143,11 +141,11 @@
       "step2": "공 é o algarismo 0, lido em voz alta num número de telefone, de quarto ou num código. 010 é 공일공, nunca 영일영."
     },
     "choosing": {
-      "title": "Qual eu uso?",
-      "objective": "Escolha quais números servem para contar e quais servem para dinheiro e datas.",
-      "step1": "Os números 하나, 둘, 셋 contam coisas, até uns noventa e nove: 세 명, 두 시, 스무 살.",
-      "step2": "Os números 일, 이, 삼 servem para números-etiqueta, dinheiro e datas: 오천 원, 삼월 일 일, 삼십 분. E para tudo acima de cem.",
-      "step3": "Um único horário usa os dois conjuntos. A hora é 세 시; os minutos, 삼십 분. Esse par é a regra inteira em miniatura. (Os livros chamam os dois de números nativos e sino-coreanos. Bom saber, não precisa decorar hoje.)"
+      "title": "Coisas com 하나, 둘 · preços com 일, 이",
+      "objective": "Escolha quais números servem para contar e quais para preços e datas.",
+      "step1": "O que você vê, conta com 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
+      "step2": "Para preços, datas, minutos, telefones e andares vão 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step3": "Uma hora leva os dois. 세 시 삼십 분 — a hora é 세, os minutos são 삼십."
     },
     "sinoBuild": {
       "title": "Contar até mil",
@@ -160,7 +158,7 @@
       "title": "Dizer 열하나, 스물, 서른",
       "objective": "Diga os números acima de dez do jeito 하나, 둘, 셋.",
       "step1": "열 mais a unidade dá de onze a dezenove: 열하나, 열둘, 열셋. Dito como uma palavra só.",
-      "step2": "As dezenas têm palavras próprias — 스물 vinte, 서른 trinta, 마흔 quarenta, 쉰 cinquenta. Elas não são formadas a partir de 열.",
+      "step2": "Cada dezena tem a sua palavra — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 se diz 열려섣: o mesmo som de ㄹ que aparece em 심뉵."
     },
     "forms": {
@@ -186,8 +184,8 @@
     "age": {
       "title": "Quantos anos você tem?",
       "objective": "Diga sua idade com 살 e pergunte com educação a alguém mais velho com 연세.",
-      "step1": "살 vai com os números 하나, 둘, 셋 e é o que as pessoas realmente falam: 스무 살, 스물다섯 살. 몇 살이에요? pergunta a idade de um amigo.",
-      "step2": "세 vai com os números 일, 이, 삼 e aparece em documentos e no jornal: 이십 세. Você lê mais do que fala.",
+      "step1": "살 vai com 하나, 둘, 셋: 스무 살, 스물다섯 살. 몇 살이에요? se pergunta entre amigos.",
+      "step2": "세 vai com 일, 이, 삼 e aparece em formulários e no jornal: 이십 세.",
       "step3": "Com alguém mais velho, 살 é informal demais. 연세 é a palavra honorífica para idade: 연세가 어떻게 되세요?"
     },
     "hours": {
@@ -195,14 +193,14 @@
       "objective": "Diga a hora como 한 시 e 두 시, e use 반 para a meia.",
       "step1": "A hora leva os números 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? pergunta que horas são.",
       "step2": "반 significa “meia”: 두 시 반 é duas e meia. Ele substitui 삼십 분.",
-      "step3": "몇 시예요? pergunta a hora. Responda como 세 시예요. Os minutos usam o outro conjunto — isso é a próxima lição."
+      "step3": "Pergunte 몇 시예요? e responda 세 시예요. Os minutos vêm na próxima aula."
     },
     "minutes": {
       "title": "São 3:30",
       "objective": "Diga os minutos e os segundos e junte-os à hora.",
       "step1": "Minutos e segundos levam os números 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
-      "step2": "Um horário usa os dois conjuntos ao mesmo tempo: 세 시 삼십 분 — a hora vem de 하나, 둘, 셋 e os minutos de 일, 이, 삼.",
-      "step3": "Aqui é fácil colocar os dois no mesmo conjunto. Diga 세 시 삼십 분 em vez de 삼 시 서른 분."
+      "step2": "세 시 삼십 분 — a hora é 세, os minutos são 삼십.",
+      "step3": "Não é 삼 시 서른 분. O certo é 세 시 삼십 분."
     },
     "dates": {
       "title": "Quando é seu aniversário?",
@@ -221,22 +219,22 @@
       "title": "Quanto custa?",
       "objective": "Leia preços como 오천 원 e 만 오천 원.",
       "step1": "원 leva os números 일, 이, 삼: 천 원, 오천 원. 얼마예요? pergunta o preço.",
-      "step2": "O coreano agrupa de dez mil em dez mil, não de mil em mil. 만 원 é 10.000; 삼만 오천 원 é 35.000.",
-      "step3": "Um preço que você ouve como 만 오천 원 é 15.000 — um dez-mil e cinco mil."
+      "step2": "만 원 são 10.000원. 삼만 오천 원 são 35.000원.",
+      "step3": "만 오천 원 são 15.000원 — um 만 e cinco 천."
     },
     "digits": {
       "title": "Ler um número de telefone",
       "objective": "Leia o número dígito a dígito, dizendo 공 para o 0. Andares e quartos também.",
-      "step1": "Um número que identifica, em vez de contar, é lido algarismo por algarismo: 010 é 공일공.",
+      "step1": "Um número é lido dígito por dígito. 010 é 공일공.",
       "step2": "에 entra onde entraria um hífen: 공일공에 일이삼사에 오륙칠팔.",
       "step3": "Andares, quartos e ônibus levam os números 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억 — números bem grandes",
-      "objective": "Leia números grandes em grupos de dez mil, além de porcentagens e casas decimais.",
-      "step1": "O coreano conta em grupos de quatro algarismos, não de três. 만 é dez mil, 억 é cem milhões, 조 é um trilhão.",
-      "step2": "123.450.000 se lê 1억 2345만. O coreano agrupa de dez em dez mil, e não de mil em mil.",
-      "step3": "퍼센트 é “por cento” (오십 퍼센트), e 점 é a vírgula decimal: 삼 점 오 é 3,5."
+      "title": "만 원, 억 — ler preços altos",
+      "objective": "Leia preços como 만 원 e 삼억 원, além de porcentagens e decimais.",
+      "step1": "만 é 10.000. 만 원 é a nota que está na sua carteira.",
+      "step2": "억 é 100.000.000. Aparece em preço de apartamento e salário: 삼억 원.",
+      "step3": "Porcentagem é 오십 퍼센트, e a vírgula é 점: 삼 점 오 é 3,5."
     },
     "pitfalls": {
       "title": "Cinco erros bem comuns",
@@ -247,8 +245,8 @@
     "mixed": {
       "title": "Tudo misturado",
       "objective": "Ouça e leia o que aprendeu, tudo de uma vez.",
-      "step1": "O curso todo se resume a uma decisão rápida: isto é uma contagem ou uma etiqueta? Contagens — pessoas, coisas, horas, idades — levam 하나, 둘, 셋; etiquetas — dinheiro, minutos, datas, telefones — levam 일, 이, 삼.",
-      "step2": "Esta revisão mistura os dois. Leia ou ouça, decida, e confira a explicação sempre que hesitar. A hesitação é justamente o que se pratica até sumir."
+      "step1": "Tudo junto. Coisas, horas e idade levam 하나, 둘, 셋; preços, minutos, datas e telefones levam 일, 이, 삼.",
+      "step2": "Leia ou escute e escolha. Voltar na explicação é tranquilo."
     }
   },
   "gloss": {
@@ -285,7 +283,7 @@
     "tenOclock": "dez horas",
     "counterMinute": "minutos",
     "counterSecond": "segundos",
-    "mixedTime": "um horário, com os dois conjuntos",
+    "mixedTime": "a hora e os minutos juntos",
     "quarterPast": "duas e quinze",
     "counterYear": "ano",
     "counterMonth": "mês",
@@ -303,26 +301,27 @@
     "counterFloor": "andar de um prédio",
     "counterRoom": "número do quarto",
     "counterNumber": "número — ônibus, linhas",
-    "groupsOfFour": "o coreano agrupa os algarismos de quatro em quatro",
     "percent": "por cento",
     "decimalPoint": "a vírgula decimal",
     "pitfallCountingForm": "Use a forma de contagem, não o número simples",
     "pitfallSimnyuk": "Escreve-se 십육, diz-se 심뉵",
     "pitfallJune": "Junho é 유월, nunca 육월",
-    "pitfallHourMinute": "Hora nativa, minuto sino",
-    "pitfallSpacing": "A palavra de contagem vai separada"
+    "pitfallHourMinute": "세 시 para a hora, 삼십 분 para os minutos",
+    "pitfallSpacing": "A palavra de contagem vai separada",
+    "tenThousand": "10.000",
+    "hundredMillion": "100.000.000"
   },
   "example": {
     "zeroMath": "três graus abaixo de zero",
     "zeroDigit": "010",
     "belowZeroFive": "cinco graus abaixo de zero",
     "zeroScore": "Tirei zero.",
-    "ctxPeople": "pessoas são contadas com 하나, 둘, 셋",
-    "ctxMoney": "dinheiro leva 일, 이, 삼",
-    "ctxHour": "horas levam 하나, 둘, 셋",
-    "ctxMinute": "minutos levam 일, 이, 삼",
-    "ctxAge": "a idade leva 하나, 둘, 셋",
-    "ctxDate": "datas levam 일, 이, 삼",
+    "ctxPeople": "Pessoas se contam com 하나, 둘, 셋",
+    "ctxMoney": "Preços levam 일, 이, 삼",
+    "ctxHour": "A hora leva 하나, 둘, 셋",
+    "ctxMinute": "Os minutos levam 일, 이, 삼",
+    "ctxAge": "A idade leva 하나, 둘, 셋",
+    "ctxDate": "As datas levam 일, 이, 삼",
     "twentyFive": "Tenho vinte e cinco anos.",
     "ageHonorific": "perguntando a idade de alguém mais velho",
     "halfPastTwo": "duas e meia",
@@ -337,12 +336,13 @@
     "phoneNumber": "010-1234-5678",
     "room502": "quarto 502",
     "bus206": "o ônibus 206",
-    "grouping": "123.450.000 — lido como 1억 2345만",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 está certo; 둘 살 não",
     "pitfallSimnyuk": "escreve-se 십육, pronuncia-se 심뉵",
     "pitfallJune": "유월 está certo; 육월 não",
     "pitfallHourMinute": "세 시 삼십 분 está certo; 삼 시 서른 분 não",
-    "pitfallSpacing": "한 개 está certo; 한개 não"
+    "pitfallSpacing": "한 개 está certo; 한개 não",
+    "tenThousandWon": "uma nota de 10.000 wons",
+    "threeHundredMillionWon": "O apartamento custa 삼억 원."
   }
 }

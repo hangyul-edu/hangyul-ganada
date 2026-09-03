@@ -83,8 +83,51 @@ for (const lesson of NUMBER_LESSONS) {
   const mastery = masteryExercises(lesson, 0);
   const asked = new Set(mastery.map((e) => e.item_id));
   for (const id of lesson.item_ids) if (!asked.has(id)) fail(`${lesson.id}: mastery never asks ${id}`);
-  if (mastery.length < lesson.mastery_count) notes.push(`${lesson.id}: mastery has ${mastery.length} question(s), wanted ${lesson.mastery_count}`);
-  for (const key of [lesson.title, lesson.objective, ...lesson.explanation]) usedKeys.add(key);
+
+  /*
+   * No option may be a label rather than an answer, and no two may mean the same.
+   *
+   * The screenshot that produced this rule: *what did you hear?* over 조 · 억 ·
+   * 만 단위 · 만. 만 and 만 단위 are not two answers a listener can choose
+   * between — one is the word, the other is the name of the idea the word
+   * illustrates, and nothing that could be played distinguishes them. The
+   * offending item is gone, but an item is one commit away from coming back.
+   *
+   * The rule is *not* containment. 만 원 beside 만 is a fair pair — a learner
+   * who hears 만 원 heard the 원 — and a gate that failed it would be forcing
+   * the course to stop teaching prices. What cannot be answered is an option
+   * that names a category (단위, 방법, 형태, 종류) rather than something a
+   * learner would say back, or two options that mean the same thing.
+   *
+   * Checked over the built exercises rather than over the item list, because
+   * the pairing is made by the distractor picker and not by the data.
+   */
+  for (const exercise of mastery) {
+    const seenText = new Map();
+    const seenValue = new Map();
+    for (const option of exercise.options) {
+      const label = option.isKey || option.value !== undefined ? null : option.text;
+      if (label && /(단위|방법|형태|종류)$/.test(label)) {
+        fail(
+          `${lesson.id}: "${label}" is an option for ${exercise.item_id}, but it names a ` +
+            'category rather than something a learner says',
+        );
+      }
+      const textKey = option.isKey ? `key:${option.text}` : option.value !== undefined ? null : `ko:${option.text}`;
+      if (textKey) {
+        if (seenText.has(textKey)) {
+          fail(`${lesson.id}: ${exercise.item_id} offers "${option.text}" twice`);
+        }
+        seenText.set(textKey, true);
+      }
+      if (option.value !== undefined) {
+        if (seenValue.has(option.value)) {
+          fail(`${lesson.id}: ${exercise.item_id} offers the value ${option.value} twice`);
+        }
+        seenValue.set(option.value, true);
+      }
+    }
+  }
 }
 for (const m of NUMBER_MODULES) for (const key of [m.title, m.goal]) usedKeys.add(key);
 
@@ -135,10 +178,20 @@ for (const locale of LOCALES) {
   if (missing.length) fail(`[${locale}] ${missing.length} key(s) missing: ${missing.slice(0, 4).join(', ')}`);
   if (blank.length) fail(`[${locale}] ${blank.length} blank key(s): ${blank.slice(0, 4).join(', ')}`);
   if (extra.length) notes.push(`[${locale}] ${extra.length} key(s) not in en: ${extra.slice(0, 3).join(', ')}`);
-  // placeholders must survive translation
+  /*
+   * Placeholders must survive translation — with one equivalence.
+   *
+   * `{{korean}}`, `{{subject}}` and `{{object}}` are the same word: the second
+   * and third arrive with a Korean particle already attached, because 만은 and
+   * 하나는 are not a suffix a translation string can pick for itself. English
+   * writes "{{korean}} is 10,000"; Korean writes "{{subject}} 10,000이에요".
+   * Requiring the English spelling would force every Korean feedback line into
+   * the 은(는) parenthesis this product removed on purpose.
+   */
+  const sameSlot = (name) => (name === '{{subject}}' || name === '{{object}}' ? '{{korean}}' : name);
   for (const [k, v] of enFlat) {
-    const ph = (String(v).match(/\{\{\w+\}\}/g) ?? []).sort();
-    const got = (String(flat.get(k) ?? '').match(/\{\{\w+\}\}/g) ?? []).sort();
+    const ph = (String(v).match(/\{\{\w+\}\}/g) ?? []).map(sameSlot).sort();
+    const got = (String(flat.get(k) ?? '').match(/\{\{\w+\}\}/g) ?? []).map(sameSlot).sort();
     if (ph.join() !== got.join()) fail(`[${locale}] ${k} placeholders ${got.join(',') || '∅'} ≠ ${ph.join(',')}`);
   }
   const same = enFlat.filter(([k, v]) => sentence(v) && flat.get(k) === v).map(([k]) => k);

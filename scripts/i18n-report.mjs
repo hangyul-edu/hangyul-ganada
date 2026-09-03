@@ -338,8 +338,20 @@ for (const code of locales.sort()) {
       ) {
         untranslated.push(key);
       }
-      const want = placeholders(source[key]);
-      const got = placeholders(value);
+      /*
+       * `{{korean}}`, `{{subject}}` and `{{object}}` are one slot.
+       *
+       * The Numbers feedback line hands the page the Korean word three ways:
+       * bare, and with the subject or object particle already attached, because
+       * 만은 and 하나는 are not a suffix a translation string can choose for
+       * itself. English writes "{{korean}} is 10,000"; Korean writes
+       * "{{subject}} 10,000이에요". Counting those as different slots would make
+       * every such line look like a dropped placeholder, and the only way to
+       * satisfy the gate would be the 은(는) parenthesis the copy rules forbid.
+       */
+      const sameSlot = (name) => (name === '{{subject}}' || name === '{{object}}' ? '{{korean}}' : name);
+      const want = placeholders(source[key]).map(sameSlot);
+      const got = placeholders(value).map(sameSlot);
       const lost = want.filter((p) => !got.includes(p));
       if (lost.length) droppedPlaceholders.push(`${key} (lost ${lost.join(' ')})`);
     }

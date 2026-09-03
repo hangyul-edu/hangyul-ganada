@@ -5,8 +5,6 @@
   "activitiesDone": "{{total}} mashg‘ulotdan {{done}} tasi bajarildi",
   "moduleLessons": "{{total}} darsdan {{done}} tasi",
   "status": {
-    "available": "Ochiq",
-    "not_started": "Ochildi",
     "in_progress": "Davom etmoqda",
     "completed": "Tugallandi",
     "mastered": "O‘zlashtirildi",
@@ -14,7 +12,7 @@
   },
   "systemSino": "일, 이, 삼",
   "systemNative": "하나, 둘, 셋",
-  "systemBoth": "Ikkalasi ham",
+  "systemBoth": "일, 이, 삼 va 하나, 둘, 셋",
   "system": {
     "native": "하나, 둘, 셋 — narsalarni sanash uchun",
     "sino": "일, 이, 삼 — pul va sana uchun"
@@ -64,10 +62,10 @@
   "prompt": {
     "listen": "Nimani eshitdingiz?",
     "read": "Bu nimani anglatadi?",
-    "chooseSystem": "Bu qaysi sonlar to‘plami?",
+    "chooseSystem": "Bu yerda qaysi sonlar keladi?",
     "digitsToKorean": {
-      "sino": "Bu sonni 일, 이, 삼 usulida ayting",
-      "native": "Bu sonni 하나, 둘, 셋 usulida ayting",
+      "sino": "Bu sonni 일, 이, 삼 bilan ayting",
+      "native": "Buni 하나, 둘, 셋 bilan sanang",
       "both": "Bu sonni koreyschada ayting"
     },
     "koreanToDigits": "Bu qaysi son?",
@@ -77,28 +75,28 @@
     "orderParts": "{{value}} sonini yig‘ish uchun bo‘laklarni tartib bilan bosing"
   },
   "rationale": {
-    "readChoose": "Koreyscha so‘zni ma’nosiga moslang. Qaysi sanash so‘zi kerakligi nimani sanayotganingizga bog‘liq.",
-    "listen": "So‘zni to‘liq eshiting — qo‘shni sonlar va o‘xshash tovushlar odatiy chalkashlik joyi.",
-    "nativeSystem": "하나, 둘, 셋 sonlari ko‘rsatish mumkin bo‘lgan narsalarni sanaydi, soat va yoshni ham aytadi.",
-    "sinoSystem": "일, 이, 삼 sonlari yorliqqa o‘xshash narsalar uchun: pul, sana, daqiqa, telefon raqami, qavat.",
-    "koreanToDigits": "Qismlarini tartib bilan ayting. 일, 이, 삼 to‘plamida 십 — o‘n, 삼십 — o‘ttiz.",
-    "countingForm": "Sanash so‘zidan oldin 하나 둘 셋 넷 스물 so‘zlari 한 두 세 네 스무 bo‘ladi. 두 개 deyiladi.",
-    "counter": "Son ot yonida hech qachon yolg‘iz turmaydi. Oradagi sanash so‘zi nima sanalayotganiga bog‘liq.",
-    "fill": "Gapni to‘liq o‘qing: bo‘sh joy atrofidagi so‘zlar unga qaysi shakl tushishini aytib beradi.",
-    "nativeBuild": "O‘ndan yuqorida 열 va birlik qo‘shiladi — 열하나, 열둘. O‘nliklarning o‘z so‘zlari bor.",
-    "sinoBuild": "일, 이, 삼 sonlari chapdan o‘ngga, qism-qism o‘qiladi: 삼십오 — bu 삼 · 십 · 오.",
-    "irregular_month": "Iyun — 유월, oktabr — 시월. Qoidaga muvofiq 육월 va 십월 shakllari mavjud emas.",
-    "plain_form": "Sanash so‘zidan oldin 한, 두, 세, 네, 스무 keladi. U yerga 하나, 둘, 셋, 넷 va 스물 kelmaydi.",
-    "spacing": "Sanash so‘zi alohida so‘z, oldida bo‘sh joy bo‘ladi: 한 개, 한개 emas.",
-    "system_swap": "Ikkala to‘plam bir xil qiymatni ataydi, lekin o‘rin almashmaydi — vaziyat hal qiladi.",
-    "sound_alike": "Faqat bir tovush farq qiladi. Oxirgi undoshga e’tibor bering.",
-    "adjacent": "Qo‘shni sonlar ro‘yxat sifatida o‘rganilgani uchun aralashib ketadi. O‘rniga emas, qiymatiga qarang.",
-    "wrong_counter": "Har bir sanash so‘zining o‘z narsasi bor — odamga 명, hayvonga 마리, buyumga 개."
+    "nativeSystem": "Narsalar, odamlar, soat va yosh 하나, 둘, 셋 bilan sanaladi.",
+    "sinoSystem": "Narx, sana, daqiqa, telefon raqami va qavat 일, 이, 삼 oladi.",
+    "koreanToDigits": "Boshidan o‘qing. 십 — 10, 삼십 — 30.",
+    "countingForm": "Sanoq so‘zidan oldin 하나 — 한, 둘 — 두 bo‘ladi: 두 개.",
+    "counter": "Son bilan narsa orasida sanoq so‘zi turadi va u nimani sanayotganingizga bog‘liq.",
+    "fill": "Gapni qayta o‘qing — bo‘sh joy atrofidagi so‘zlar nima kerakligini aytadi.",
+    "nativeBuild": "Birlikni 열 ga qo‘shing — 열하나, 열둘. 스물 va 서른 alohida so‘zlar.",
+    "sinoBuild": "Qismlarini tartib bilan o‘qing: 삼십오 — 삼 · 십 · 오.",
+    "irregular_month": "6월 — 유월, 10월 esa 시월.",
+    "plain_form": "Sanoq so‘zidan oldin 한, 두, 세, 네, 스무 turadi.",
+    "spacing": "Sanoq so‘zi ajratib yoziladi: 한 개.",
+    "system_swap": "Miqdori o‘sha, o‘rni boshqa. Bu yerda {{korean}} ishlatiladi.",
+    "sound_alike": "Farqi bitta tovush. Oxirini tinglang.",
+    "adjacent": "{{korean}} — bu {{value}}.",
+    "wrong_counter": "Har sanoq so‘zining o‘z narsasi bor — odamga 명, hayvonga 마리, buyumga 개.",
+    "value": "{{korean}} — bu {{value}}.",
+    "example": "Mana shunday aytiladi: {{example}}"
   },
   "module": {
     "systems": {
       "title": "Birdan o‘ngacha aytamiz",
-      "goal": "O‘ngacha ikki xil yo‘l bilan sanang, nolni o‘qing va qachon qaysi biri kerakligini biling."
+      "goal": "일 dan 십 gacha va 하나 dan 열 gacha ayting, nolni o‘qing va qaysi biri qayerda ishlatilishini biling."
     },
     "pastTen": {
       "title": "O‘ndan katta sonlar",
@@ -114,7 +112,7 @@
     },
     "money": {
       "title": "Qancha turadi? Qaysi raqam?",
-      "goal": "Narx, telefon raqami, qavat va juda katta sonlarni o‘qing."
+      "goal": "Narx, telefon raqami va qavatni o‘qing, shuningdek 만 원 va 억 ni o‘qing."
     },
     "review": {
       "title": "Hamma qiladigan xatolar",
@@ -125,16 +123,16 @@
     "sinoBasics": {
       "title": "Koreyscha 1, 2, 3 deyish",
       "objective": "일, 이, 삼 dan 십 gacha eshiting va takrorlang.",
-      "step1": "Koreys tilida ikki to‘plam son bor. Bu to‘plam xitoy tilidan kelgan va sanoq emas, yorliq bo‘lgan hamma narsa uchun ishlatiladi — pul, sana, daqiqa, telefon raqami, qavat.",
-      "step2": "Birdan o‘ngacha: 일 이 삼 사 오 육 칠 팔 구 십. Har biri bir bo‘g‘in, va har biri narxlar va soatlarda ko‘radigan raqam.",
-      "step3": "O‘n — 십. O‘ndan keyingi hamma son shu o‘nta so‘zdan yig‘iladi, shuning uchun ularni yaxshi bilish ishning katta qismi."
+      "step1": "일, 이, 삼 dan boshlaymiz. Bu sonlar narx, sana, daqiqa, telefon raqami va qavat uchun ishlatiladi.",
+      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Har biri bitta bo‘g‘in.",
+      "step3": "Mana shunday aytiladi: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "하나, 둘, 셋 bilan sanash",
       "objective": "하나 dan 열 gacha eshitib ayting, oldingizdagi narsalarni sanab.",
-      "step1": "Koreyaning o‘z sonlari. Ular ko‘rsatib bo‘ladigan narsalarni — odamlar, piyolalar, hayvonlarni — sanash uchun, shuningdek soat va yosh uchun ishlatiladi.",
+      "step1": "하나, 둘, 셋 — oldingizdagi narsani sanash uchun: odam, piyola, hayvon. Yosh va butun soatga ham shular ishlatiladi.",
       "step2": "Birdan o‘ngacha: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 — 여덜 deb aytilishiga e’tibor bering: ㅂ talaffuz qilinmaydi.",
-      "step3": "To‘qson to‘qqiz atrofida bular ishlatilmay qo‘yadi. Yuzdan oshgach nimani sanasangiz ham 일, 이, 삼."
+      "step3": "Yuzdan yuqorisi hammasi 일, 이, 삼 bilan sanaladi."
     },
     "zero": {
       "title": "0 — bu 영 yoki 공",
@@ -143,11 +141,11 @@
       "step2": "공 — 0 raqami; telefon raqami, xona raqami, kodda ovoz chiqarib o‘qiladi. 010 — 공일공, hech qachon 영일영 emas."
     },
     "choosing": {
-      "title": "Qaysi birini ishlataman?",
-      "objective": "Narsa sanashga qaysi sonlar, pul va sanaga qaysilari kerakligini tanlang.",
-      "step1": "하나, 둘, 셋 sonlari narsalarni sanaydi, taxminan to‘qson to‘qqizgacha: 세 명, 두 시, 스무 살.",
-      "step2": "일, 이, 삼 sonlari yorliqqa o‘xshash sonlar, pul va sana uchun: 오천 원, 삼월 일 일, 삼십 분. Yuzdan oshgan hamma narsa uchun ham.",
-      "step3": "Soatdagi bitta vaqt ikkala to‘plamni ham ishlatadi. Soati — 세 시, daqiqasi — 삼십 분. Shu juftlik butun qoidaning kichik ko‘rinishi. (Kitoblarda bularni sof koreys va xitoy-koreys sonlari deyishadi. Bilgan yaxshi, bugun yodlash shart emas.)"
+      "title": "Narsalar — 하나, 둘 · narx — 일, 이",
+      "objective": "Sanashga qaysi sonlar, narx va sanaga qaysilari kelishini tanlang.",
+      "step1": "Ko‘rinib turgan narsani 하나, 둘, 셋 bilan sanaysiz: 세 명, 두 시, 스무 살.",
+      "step2": "Narx, sana, daqiqa, telefon raqami va qavatga 일, 이, 삼 keladi: 오천 원, 삼월 일 일, 삼십 분.",
+      "step3": "Vaqtda ikkalasi birga uchraydi. 세 시 삼십 분 — soat 세, daqiqa 삼십."
     },
     "sinoBuild": {
       "title": "Minggacha sanash",
@@ -160,7 +158,7 @@
       "title": "열하나, 스물, 서른 deyish",
       "objective": "O‘ndan yuqori sonlarni 하나, 둘, 셋 usulida ayting.",
       "step1": "열 va birlik o‘n birdan o‘n to‘qqizgacha beradi: 열하나, 열둘, 열셋. Bir so‘z bo‘lib aytiladi.",
-      "step2": "O‘nliklarning o‘z so‘zlari bor — 스물 yigirma, 서른 o‘ttiz, 마흔 qirq, 쉰 ellik. Ular 열 dan yig‘ilmaydi.",
+      "step2": "Har o‘nlikning o‘z so‘zi bor — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 — 열려섣 deb aytiladi: 심뉵 dagi ㄹ tovushining o‘zi."
     },
     "forms": {
@@ -186,8 +184,8 @@
     "age": {
       "title": "Yoshingiz nechada?",
       "objective": "Yoshingizni 살 bilan ayting, kattalardan 연세 bilan xushmuomala so‘rang.",
-      "step1": "살 하나, 둘, 셋 sonlari bilan keladi va odamlar aslida shunday deyishadi: 스무 살, 스물다섯 살. 몇 살이에요? do‘stdan yoshini so‘raydi.",
-      "step2": "세 일, 이, 삼 sonlari bilan keladi va hujjatlarda, yangiliklarda uchraydi: 이십 세. Aytilishidan ko‘ra o‘qilishi ko‘proq.",
+      "step1": "살 하나, 둘, 셋 bilan keladi: 스무 살, 스물다섯 살. 몇 살이에요? do‘stlar orasida so‘raladi.",
+      "step2": "세 일, 이, 삼 bilan keladi va hujjatlar hamda yangiliklarda uchraydi: 이십 세.",
       "step3": "Yoshi kattaga 살 juda bemalol tuyuladi. 연세 — yosh uchun hurmat so‘zi: 연세가 어떻게 되세요?"
     },
     "hours": {
@@ -195,14 +193,14 @@
       "objective": "Soatni 한 시, 두 시 deb ayting, yarim soatga 반 ishlating.",
       "step1": "Soat 하나, 둘, 셋 sonlarini oladi: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? vaqtni so‘raydi.",
       "step2": "반 — yarim: 두 시 반 — ikki yarim. U 삼십 분 o‘rnini bosadi.",
-      "step3": "몇 시예요? soatni so‘raydi. 세 시예요 deb javob bering. Daqiqa boshqa to‘plamni oladi — bu keyingi dars."
+      "step3": "몇 시예요? deb so‘rang va 세 시예요 deb javob bering. Daqiqalar keyingi darsda."
     },
     "minutes": {
       "title": "Hozir 3:30",
       "objective": "Daqiqa va soniyani ayting, so‘ng soatga ulang.",
       "step1": "Daqiqa va soniya 일, 이, 삼 sonlarini oladi: 삼십 분, 십오 분, 십 초.",
-      "step2": "Soatdagi bitta vaqt ikkala to‘plamni birdaniga oladi: 세 시 삼십 분 — soati 하나, 둘, 셋 dan, daqiqasi 일, 이, 삼 dan.",
-      "step3": "Bu yerda ikkalasini bitta to‘plamga qo‘yib yuborish oson. 삼 시 서른 분 emas, 세 시 삼십 분 deng."
+      "step2": "세 시 삼십 분 — soat 세, daqiqa 삼십.",
+      "step3": "삼 시 서른 분 deyilmaydi. To‘g‘risi — 세 시 삼십 분."
     },
     "dates": {
       "title": "Tug‘ilgan kuningiz qachon?",
@@ -221,22 +219,22 @@
       "title": "Bu qancha turadi?",
       "objective": "오천 원 va 만 오천 원 kabi narxlarni o‘qing.",
       "step1": "원 일, 이, 삼 sonlarini oladi: 천 원, 오천 원. 얼마예요? narxni so‘raydi.",
-      "step2": "Koreys tili minglik emas, o‘n minglik bo‘lib guruhlaydi. 만 원 — 10 000; 삼만 오천 원 — 35 000.",
-      "step3": "만 오천 원 deb eshitgan narx — 15 000: bir o‘n ming va besh ming."
+      "step2": "만 원 — 10 000원. 삼만 오천 원 — 35 000원.",
+      "step3": "만 오천 원 — 15 000원: bitta 만 va beshta 천."
     },
     "digits": {
       "title": "Telefon raqamini o‘qish",
       "objective": "Raqamni xona-xona o‘qing, 0 o‘rniga 공 deng. Qavat va xona raqamida ham shunday.",
-      "step1": "Sanamaydigan, balki belgilaydigan son raqam-raqam o‘qiladi: 010 — 공일공.",
+      "step1": "Raqam bittalab o‘qiladi. 010 — 공일공.",
       "step2": "에 chiziqcha o‘rnida keladi: 공일공에 일이삼사에 오륙칠팔.",
       "step3": "Qavat, xona raqami va avtobus raqami 일, 이, 삼 sonlarini oladi: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억 — juda katta sonlar",
-      "objective": "Katta sonlarni o‘n minglik guruhlarga bo‘lib o‘qing, foiz va o‘nlik vergulni ham.",
-      "step1": "Koreys tili raqamlarni uchtadan emas, to‘rttadan guruhlaydi. 만 — o‘n ming, 억 — yuz million, 조 — trillion.",
-      "step2": "123 450 000 soni 1억 2345만 deb o‘qiladi. Koreys tili mingtalab emas, o‘n mingtalab guruhlaydi.",
-      "step3": "퍼센트 — foiz (오십 퍼센트), 점 — o‘nli nuqta: 삼 점 오 — 3,5."
+      "title": "만 원, 억 — katta narxlarni o‘qish",
+      "objective": "만 원, 삼억 원 kabi narxlarni, shuningdek foiz va o‘nli kasrni o‘qing.",
+      "step1": "만 — 10 000. 만 원 — hamyoningizdagi o‘sha banknot.",
+      "step2": "억 — 100 000 000. Uy narxi va maoshda eshitasiz: 삼억 원.",
+      "step3": "Foiz — 오십 퍼센트, vergul esa 점: 삼 점 오 degani 3,5."
     },
     "pitfalls": {
       "title": "Juda ko‘p uchraydigan beshta xato",
@@ -247,8 +245,8 @@
     "mixed": {
       "title": "Hammasi aralash",
       "objective": "O‘rganganingizning barchasini bir yo‘la eshiting va o‘qing.",
-      "step1": "Butun kurs tez qabul qilinadigan bitta qarorga kelib taqaladi: bu sanoqmi yoki yorliqmi? Sanoq — odam, narsa, soat, yosh — 하나, 둘, 셋 oladi; yorliq — pul, daqiqa, sana, telefon raqami — 일, 이, 삼 oladi.",
-      "step2": "Bu takrorlash ikkalasini aralashtiradi. O‘qing yoki tinglang, qaror qiling va ikkilangan har joyda tushuntirishga qarang. Mashq bilan yo‘qotish kerak bo‘lgan narsa — shu ikkilanish."
+      "step1": "Hammasi birga. Narsalar, soat va yosh 하나, 둘, 셋 oladi; narx, daqiqa, sana va telefon raqami 일, 이, 삼 oladi.",
+      "step2": "O‘qing yoki tinglang, keyin tanlang. Izohga qayta qarash mumkin."
     }
   },
   "gloss": {
@@ -285,7 +283,7 @@
     "tenOclock": "soat o‘n",
     "counterMinute": "daqiqa",
     "counterSecond": "soniya",
-    "mixedTime": "soatdagi vaqt, ikkala to‘plam bilan",
+    "mixedTime": "soat va daqiqa birga",
     "quarterPast": "ikkidan o‘n besh daqiqa o‘tdi",
     "counterYear": "yil",
     "counterMonth": "oy",
@@ -303,26 +301,27 @@
     "counterFloor": "binoning qavati",
     "counterRoom": "xona raqami",
     "counterNumber": "raqam — avtobuslar, yo‘nalishlar",
-    "groupsOfFour": "Koreys tili raqamlarni to‘rttadan guruhlaydi",
     "percent": "foiz",
     "decimalPoint": "o‘nli nuqta",
     "pitfallCountingForm": "Oddiy son emas, sanoq shaklini ishlating",
     "pitfallSimnyuk": "Yozilishi 십육, aytilishi 심뉵",
     "pitfallJune": "Iyun — 유월, hech qachon 육월 emas",
-    "pitfallHourMinute": "Sof koreyscha soat, xitoy-koreyscha daqiqa",
-    "pitfallSpacing": "Sanash so‘zi alohida yoziladi"
+    "pitfallHourMinute": "soatga 세 시, daqiqaga 삼십 분",
+    "pitfallSpacing": "Sanash so‘zi alohida yoziladi",
+    "tenThousand": "10 000",
+    "hundredMillion": "100 000 000"
   },
   "example": {
     "zeroMath": "minus uch daraja",
     "zeroDigit": "010",
     "belowZeroFive": "minus besh daraja",
     "zeroScore": "Nol oldim.",
-    "ctxPeople": "odamlar 하나, 둘, 셋 bilan sanaladi",
-    "ctxMoney": "pul 일, 이, 삼 oladi",
-    "ctxHour": "soat 하나, 둘, 셋 oladi",
-    "ctxMinute": "daqiqa 일, 이, 삼 oladi",
-    "ctxAge": "yosh 하나, 둘, 셋 oladi",
-    "ctxDate": "sana 일, 이, 삼 oladi",
+    "ctxPeople": "Odamlar 하나, 둘, 셋 bilan sanaladi",
+    "ctxMoney": "Narx 일, 이, 삼 oladi",
+    "ctxHour": "Soat 하나, 둘, 셋 oladi",
+    "ctxMinute": "Daqiqa 일, 이, 삼 oladi",
+    "ctxAge": "Yosh 하나, 둘, 셋 oladi",
+    "ctxDate": "Sana 일, 이, 삼 oladi",
     "twentyFive": "Men yigirma besh yoshdaman.",
     "ageHonorific": "kattadan yoshini so‘rash",
     "halfPastTwo": "ikki yarim",
@@ -337,12 +336,13 @@
     "phoneNumber": "010-1234-5678",
     "room502": "502-xona",
     "bus206": "206-avtobus",
-    "grouping": "123 450 000 — 1억 2345만 deb o‘qiladi",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 to‘g‘ri; 둘 살 noto‘g‘ri",
     "pitfallSimnyuk": "yozilishi 십육, talaffuzi 심뉵",
     "pitfallJune": "유월 to‘g‘ri; 육월 noto‘g‘ri",
     "pitfallHourMinute": "세 시 삼십 분 to‘g‘ri; 삼 시 서른 분 noto‘g‘ri",
-    "pitfallSpacing": "한 개 to‘g‘ri; 한개 noto‘g‘ri"
+    "pitfallSpacing": "한 개 to‘g‘ri; 한개 noto‘g‘ri",
+    "tenThousandWon": "10 000 vonlik bir banknot",
+    "threeHundredMillionWon": "Kvartira narxi 삼억 원."
   }
 }

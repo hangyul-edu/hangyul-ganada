@@ -368,13 +368,38 @@ const DIGITS: NumberItem[] = [
   }),
 ];
 
+/**
+ * Large numbers, taught on the prices a learner actually reads.
+ *
+ * ## Two items were removed here, and one of them was a bug
+ *
+ * `만 단위` was an item. It is not a word a learner says — it is the *name of
+ * a concept*, and making it an item put it in the option list beside 만, 억 and
+ * 조, where it produced the question a screenshot caught: *what did you hear?*
+ * with 조 · 억 · 만 단위 · 만 to choose from. 만 and 만 단위 are not two
+ * answers; one is the word and the other is a label for the thing the word is
+ * an example of, and no listener can pick between them because nothing was
+ * ever said that distinguishes them. The four-digit grouping is still taught —
+ * it is in the lesson's explanation, on 15,000원 and 123,450,000 — but it is
+ * explanation, not something to be heard and identified.
+ *
+ * `조` was removed for the ordinary reason: a beginner who can read a price,
+ * a phone number and a clock has no use for a trillion, and the course is
+ * ordered by what arrives first in a learner's life. 억 stays because Korean
+ * house prices and salaries are quoted in it, which is the everyday use case
+ * the rule asks for.
+ *
+ * Both survivors are anchored on money rather than on a bare power of ten:
+ * 만 is *만 원*, the note in a wallet, not 10⁴.
+ */
 const LARGE: NumberItem[] = [
-  n('num-l-man', '만', 'man', 10000, 'sino', 'numeral', null, { example: '십만' }),
-  n('num-l-eok', '억', 'eok', 100000000, 'sino', 'numeral', null, { example: '삼억' }),
-  n('num-l-jo', '조', 'jo', 1000000000000, 'sino', 'numeral', null, { example: '오 조' }),
-  n('num-l-group', '만 단위', 'man danwi', null, null, 'phrase', 'gloss.groupsOfFour', {
-    example: '1억 2345만',
-    example_gloss: 'example.grouping',
+  n('num-l-man', '만', 'man', 10000, 'sino', 'numeral', 'gloss.tenThousand', {
+    example: '만 원',
+    example_gloss: 'example.tenThousandWon',
+  }),
+  n('num-l-eok', '억', 'eok', 100000000, 'sino', 'numeral', 'gloss.hundredMillion', {
+    example: '삼억 원',
+    example_gloss: 'example.threeHundredMillionWon',
   }),
   n('num-l-percent', '퍼센트', 'peosenteu', null, null, 'counter', 'gloss.percent', {
     example: '오십 퍼센트', counter_system: 'sino',
@@ -497,7 +522,7 @@ const SPECS: Spec[] = [
   L('num-lesson-digits', 'mod-money', 'sino', DIGITS, ['num-lesson-zero', 'num-lesson-sino-build'], 'digits', 3,
     ['read_choose', 'fill_sentence', 'listen_choose', 'korean_to_digits'], 6),
   L('num-lesson-large', 'mod-money', 'sino', LARGE, ['num-lesson-money'], 'large', 3,
-    ['korean_to_digits', 'digits_to_korean', 'read_choose', 'listen_choose'], 6),
+    ['korean_to_digits', 'digits_to_korean', 'read_choose', 'listen_choose'], 4),
   // 6 · the mistakes
   L('num-lesson-pitfalls', 'mod-review', 'both', PITFALLS,
     ['num-lesson-minutes', 'num-lesson-dates', 'num-lesson-counters-everyday'], 'pitfalls', 2,

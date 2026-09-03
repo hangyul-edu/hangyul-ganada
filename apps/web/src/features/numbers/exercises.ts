@@ -180,6 +180,34 @@ function siblingsDistinct(item: NumberItem, siblings: NumberItem[], by: (i: Numb
     .filter((o) => (o.isKey ? o.text !== (item.gloss ?? '') : o.value !== undefined ? o.value !== item.value : o.text !== item.korean));
 }
 
+/**
+ * The line under the feedback, chosen from what is actually known about the
+ * item rather than from the kind of question.
+ *
+ * The previous rule attached one sentence per exercise kind, and every listen
+ * question in the course therefore ended with *listen to the whole word;
+ * neighbouring numbers are what people confuse most often*. It explained
+ * nothing about the answer, and its second clause was a claim about learners
+ * that this repository has no evidence for. A learner who has just heard 만 and
+ * picked 억 needs one fact — 만 is 10,000 — and that fact is in the item.
+ *
+ * So: the value if the item has one, then its example, and only then the
+ * teaching line for the kind. Every rationale here is rendered with the item's
+ * own `korean`, `value` and `example` available for interpolation, so a locale
+ * writes the sentence its language wants rather than receiving a translated
+ * English one.
+ */
+function itemRationale(item: NumberItem, fallback: string): string {
+  if (item.value !== null) return 'rationale.value';
+  if (item.example) return 'rationale.example';
+  return fallback;
+}
+
+/** Which set the item belongs to, as the sentence a learner can act on. */
+function systemRationale(item: NumberItem): string {
+  return item.system === 'native' ? 'rationale.nativeSystem' : 'rationale.sinoSystem';
+}
+
 /** Korean shown → meaning chosen. Distractors: the lesson's own siblings (same role), then system swap. */
 function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const options = build(meaningOf(item), [
@@ -187,7 +215,7 @@ function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, meaningOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('read_choose', item, ctx, { text: item.korean, audio: item.audio.word }, options, 'rationale.readChoose');
+  return finish('read_choose', item, ctx, { text: item.korean, audio: item.audio.word }, options, itemRationale(item, systemRationale(item)));
 }
 
 /** Clip played → Korean chosen. Distractors: sound-alikes, adjacent, system swap. */
@@ -201,7 +229,7 @@ function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('listen_choose', item, ctx, { audio: item.audio.word }, options, 'rationale.listen');
+  return finish('listen_choose', item, ctx, { audio: item.audio.word }, options, itemRationale(item, systemRationale(item)));
 }
 
 /** Numeral shown → Korean chosen, in the *lesson's* system. Distractor 1 is always the other system. */

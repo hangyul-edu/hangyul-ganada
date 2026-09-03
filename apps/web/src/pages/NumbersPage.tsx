@@ -18,12 +18,28 @@ import styles from './NumbersPage.module.css';
  *
  * ## What the screen may and may not claim
  *
- * Every row carries a *status word* — Available, Opened, In progress,
- * Completed, Mastered, Review due — and the word comes from one function,
- * `lessonStatus`, reading the evidence record. The check mark is drawn for
- * `completed` and `mastered` and for nothing else. The first build of this
- * screen drew it from a per-item flag that the session wrote on the way *in*,
- * which is how a lesson a learner had merely opened came to look finished.
+ * A row carries a *status word* only when it has something to say — In
+ * progress, Completed, Mastered, Review due — and the word comes from one
+ * function, `lessonStatus`, reading the evidence record. The check mark is
+ * drawn for `completed` and `mastered` and for nothing else. The first build of
+ * this screen drew it from a per-item flag that the session wrote on the way
+ * *in*, which is how a lesson a learner had merely opened came to look
+ * finished.
+ *
+ * ## A lesson nobody has opened carries no badge at all
+ *
+ * It used to say *학습 가능* — Available — on every untouched row, and *열림*,
+ * Opened, on every row a learner had merely looked at. Nineteen rows, nineteen
+ * badges, all saying the one thing that is true of every lesson in the course:
+ * you may do this. A label that is on everything distinguishes nothing, and
+ * repeating it down a list teaches a learner to read past the place where the
+ * real states — in progress, review due — appear.
+ *
+ * So `available` and `not_started` draw nothing, and their strings are gone
+ * from all thirty-two bundles rather than merely hidden. The row is still a
+ * link, its title still names the lesson, and the badge column is not reserved
+ * when it is empty — see `.lessonMeta`. Availability was never the same fact as
+ * completion, and the screen no longer states the one that is always true.
  *
  * ## Numbers are labelled
  *
@@ -51,10 +67,10 @@ import styles from './NumbersPage.module.css';
  * * **Continue** goes to the first one that is not finished;
  * * the status word says where the learner is in each.
  *
- * Unlocking a lesson is not the same as having done any of it. `available`,
- * `not_started` and `in_progress` are three different words on this screen for
- * that reason, and completion is derived from evidence in
- * `domain/numbersProgress` and from nothing this screen knows about.
+ * Unlocking a lesson is not the same as having done any of it, and the screen
+ * says so by saying nothing: an untouched lesson is a plain row. Completion is
+ * derived from evidence in `domain/numbersProgress` and from nothing this
+ * screen knows about.
  */
 export function NumbersPage() {
   const { state } = useLearner();
@@ -140,6 +156,13 @@ export function NumbersPage() {
                   const progress = lessonActivityProgress(state.numbers[lesson.id], lesson);
                   const finished = isDone(status);
                   const recommended = next?.id === lesson.id;
+                  /*
+                   * `available` and `not_started` both mean *you have not
+                   * started this*, which is true of most of the course and is
+                   * what the row already looks like.
+                   */
+                  const showStatus = status !== 'available' && status !== 'not_started';
+                  const showCount = !finished && progress.done > 0;
                   const inner = (
                     <>
                       <span className={styles.lessonIcon} aria-hidden="true">
@@ -157,19 +180,32 @@ export function NumbersPage() {
                           )}
                         </span>
                       </span>
-                      <span className={styles.lessonMeta}>
-                        <span
-                          className={`${styles.status} ${styles[`status_${status}`] ?? ''}`}
-                          data-status={status}
-                        >
-                          {t(`numbers:status.${status}`)}
+                      {/*
+                        No badge for a lesson nobody has opened: "Available" on
+                        every row is a word a learner learns to skip, and
+                        skipping it costs them "Review due" as well.
+
+                        The wrapper goes with it rather than being left empty —
+                        an empty flex child still takes the row's gap, which is
+                        the "unused layout space" a removed badge leaves behind.
+                      */}
+                      {(showStatus || showCount) && (
+                        <span className={styles.lessonMeta}>
+                          {showStatus && (
+                            <span
+                              className={`${styles.status} ${styles[`status_${status}`] ?? ''}`}
+                              data-status={status}
+                            >
+                              {t(`numbers:status.${status}`)}
+                            </span>
+                          )}
+                          {showCount && (
+                            <span className={styles.lessonCount}>
+                              {t('numbers:activitiesDone', progress)}
+                            </span>
+                          )}
                         </span>
-                        {!finished && progress.done > 0 && (
-                          <span className={styles.lessonCount}>
-                            {t('numbers:activitiesDone', progress)}
-                          </span>
-                        )}
-                      </span>
+                      )}
                       <ChevronRightIcon size={16} />
                     </>
                   );

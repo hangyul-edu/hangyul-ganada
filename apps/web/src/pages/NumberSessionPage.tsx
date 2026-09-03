@@ -16,6 +16,7 @@ import {
 import { type ExerciseOption, type NumbersExercise, masteryExercises, practiceExercises } from '../features/numbers/exercises';
 import { exampleMeaning, formatValue, numberMeaning } from '../features/numbers/meaning';
 import { useLocale } from '../i18n';
+import { withParticle } from '../i18n/josa';
 import { useEntryAudio } from '../audio/useEntryAudio';
 import { hapticPass, hapticRetry, hapticSelection } from '../native/haptics';
 import { useLearner } from '../store/LearnerContext';
@@ -151,11 +152,22 @@ export function NumberSessionPage() {
             <p className={styles.phaseLabel}>{t('numbers:phase.objective')}</p>
             <p className={styles.note}>{t(`numbers:${lesson.objective}`)}</p>
             {module && <p className={styles.moduleGoal}>{t(`numbers:${module.goal}`)}</p>}
-            <p className={styles.statusLine}>
-              <span className={styles.statusWord} data-status={status}>
-                {t(`numbers:status.${status}`)}
-              </span>
-            </p>
+            {/*
+              The status pill, only when it has something to say.
+
+              This screen used to open with *열림* — Opened — under the lesson's
+              own objective, which told a learner the one thing they could see
+              for themselves: they are looking at the lesson. It is drawn now
+              for the states that describe work actually done, and a lesson
+              nobody has started shows its objective and nothing else.
+            */}
+            {status !== 'available' && status !== 'not_started' && (
+              <p className={styles.statusLine}>
+                <span className={styles.statusWord} data-status={status}>
+                  {t(`numbers:status.${status}`)}
+                </span>
+              </p>
+            )}
           </Card>
 
           <ul className={styles.itemList} aria-label={t('numbers:phase.examples')}>
@@ -505,7 +517,6 @@ function ExerciseRun({
   }
 
   const answered = answer.correct !== null;
-  const tr = (k: string) => t(k);
   const optionText = (o: ExerciseOption) =>
     o.isKey ? t(`numbers:${o.text}`) : o.value !== undefined ? formatValue(o.value, locale) : o.text;
   const answerText =
@@ -517,6 +528,23 @@ function ExerciseRun({
     !answer.correct && pickedOption?.misconception
       ? `rationale.${pickedOption.misconception}`
       : exercise.rationale;
+  /*
+   * What the item is, handed to whichever sentence the locale wrote.
+   *
+   * The feedback line used to be one fixed sentence per exercise kind, which is
+   * how every listen question in the course came to end with the same words
+   * regardless of what had been asked. A locale can now write *만은 10,000이에요*
+   * because the number, the word and its example are all here; `subject` and
+   * `object` carry the Korean particle already attached, since 만은 and 하나는
+   * are not a suffix a translation string can choose for itself.
+   */
+  const rationaleValues = {
+    korean: item.korean,
+    subject: withParticle(item.korean, '은/는'),
+    object: withParticle(item.korean, '을/를'),
+    value: item.value !== null ? formatValue(item.value, locale) : '',
+    example: item.example ?? '',
+  };
 
   return (
     <div className={styles.page}>
@@ -596,7 +624,7 @@ function ExerciseRun({
                   <strong lang="ko">{answerText}</strong>
                 </p>
               )}
-              <p className={styles.rationale}>{tr(`numbers:${rationaleKey}`)}</p>
+              <p className={styles.rationale}>{t(`numbers:${rationaleKey}`, rationaleValues)}</p>
             </FeedbackState>
             <Button onClick={advance}>{t('numbers:action.continue')}</Button>
           </>

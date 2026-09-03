@@ -1,6 +1,6 @@
 {
- "version": "20260902-22fa12df",
- "generated_at": "2026-09-02T11:14:45+00:00",
+ "version": "20260903-d17c4360",
+ "generated_at": "2026-09-03T00:59:32+00:00",
  "provider": {
   "id": "microsoft-edge-tts",
   "female_voice": "ko-KR-SunHiNeural",
@@ -61,21 +61,6 @@
   ]
  },
  "entries": [
-  {
-   "id": "ex_31c5b52032333435b9cc",
-   "text": "1억 2345만",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_31c5b52032333435b9cc.mp3",
-    "duration_ms": 2184,
-    "bytes": 8973
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_31c5b52032333435b9cc.mp3",
-    "duration_ms": 2136,
-    "bytes": 8781
-   }
-  },
   {
    "id": "ex_ac00ac8c20c55ec5d0c11c20b9ccb098c6942e",
    "text": "가게 앞에서 만나요.",
@@ -13757,21 +13742,6 @@
    }
   },
   {
-   "id": "ex_b9cc20b2e8c704",
-   "text": "만 단위",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_b9cc20b2e8c704.mp3",
-    "duration_ms": 936,
-    "bytes": 3981
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_b9cc20b2e8c704.mp3",
-    "duration_ms": 792,
-    "bytes": 3405
-   }
-  },
-  {
    "id": "ex_b9cc20c624cc9c20c6d0c774c5d0c6942e",
    "text": "만 오천 원이에요.",
    "kind": "sentence",
@@ -21437,18 +21407,18 @@
    }
   },
   {
-   "id": "ex_c0bcc5b5",
-   "text": "삼억",
+   "id": "ex_c0bcc5b520c6d0",
+   "text": "삼억 원",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c0bcc5b5.mp3",
-    "duration_ms": 552,
-    "bytes": 2445
+    "src": "audio/sentences/female/ex_c0bcc5b520c6d0.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
    },
    "male": {
-    "src": "audio/sentences/male/ex_c0bcc5b5.mp3",
-    "duration_ms": 600,
-    "bytes": 2637
+    "src": "audio/sentences/male/ex_c0bcc5b520c6d0.mp3",
+    "duration_ms": 792,
+    "bytes": 3405
    }
   },
   {
@@ -26774,21 +26744,6 @@
     "src": "audio/sentences/male/ex_c2ed20d504b85cb9cc20b0a8c558c5b4c6942e.mp3",
     "duration_ms": 1608,
     "bytes": 6669
-   }
-  },
-  {
-   "id": "ex_c2edb9cc",
-   "text": "십만",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c2edb9cc.mp3",
-    "duration_ms": 888,
-    "bytes": 3789
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c2edb9cc.mp3",
-    "duration_ms": 672,
-    "bytes": 2925
    }
   },
   {
@@ -32129,21 +32084,6 @@
     "src": "audio/sentences/male/ex_c61bc77cc74420b5a0c62cb838c5b4c6942e.mp3",
     "duration_ms": 1536,
     "bytes": 6381
-   }
-  },
-  {
-   "id": "ex_c62420c870",
-   "text": "오 조",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c62420c870.mp3",
-    "duration_ms": 816,
-    "bytes": 3501
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c62420c870.mp3",
-    "duration_ms": 624,
-    "bytes": 2733
    }
   },
   {
@@ -92519,21 +92459,6 @@
     "src": "audio/vocabulary/male/word_c81cce58b2e4.mp3",
     "duration_ms": 816,
     "bytes": 3501
-   }
-  },
-  {
-   "id": "word_c870",
-   "text": "조",
-   "kind": "word",
-   "female": {
-    "src": "audio/vocabulary/female/word_c870.mp3",
-    "duration_ms": 504,
-    "bytes": 2253
-   },
-   "male": {
-    "src": "audio/vocabulary/male/word_c870.mp3",
-    "duration_ms": 360,
-    "bytes": 1677
    }
   },
   {

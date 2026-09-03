@@ -5,8 +5,6 @@
   "activitiesDone": "{{total}} etkinlikten {{done}} tanesi yapıldı",
   "moduleLessons": "{{total}} dersten {{done}} tanesi",
   "status": {
-    "available": "Açık",
-    "not_started": "Açıldı",
     "in_progress": "Devam ediyor",
     "completed": "Tamamlandı",
     "mastered": "Pekişti",
@@ -14,7 +12,7 @@
   },
   "systemSino": "일, 이, 삼",
   "systemNative": "하나, 둘, 셋",
-  "systemBoth": "İkisi de",
+  "systemBoth": "일, 이, 삼 ve 하나, 둘, 셋",
   "system": {
     "native": "하나, 둘, 셋 — nesne saymak için",
     "sino": "일, 이, 삼 — para ve tarih için"
@@ -64,10 +62,10 @@
   "prompt": {
     "listen": "Ne duydun?",
     "read": "Bu ne anlama geliyor?",
-    "chooseSystem": "Bu iki dizinin hangisi?",
+    "chooseSystem": "Buraya hangi sayılar gelir?",
     "digitsToKorean": {
-      "sino": "Bu sayıyı 일, 이, 삼 yoluyla söyle",
-      "native": "Bu sayıyı 하나, 둘, 셋 yoluyla söyle",
+      "sino": "Bu sayıyı 일, 이, 삼 ile söyle",
+      "native": "Bunu 하나, 둘, 셋 ile say",
       "both": "Bu sayıyı Korece söyle"
     },
     "koreanToDigits": "Bu hangi sayı?",
@@ -77,28 +75,28 @@
     "orderParts": "{{value}} sayısını kurmak için parçalara sırayla dokun"
   },
   "rationale": {
-    "readChoose": "Korece’yi anlamıyla eşleştir. Hangi sayma sözcüğünün geleceği, ne saydığına bağlıdır.",
-    "listen": "Sözcüğün tamamını dinle — komşu sayılar ve benzer sesler en sık kayılan yerdir.",
-    "nativeSystem": "하나, 둘, 셋 sayıları parmakla gösterebildiğin şeyleri sayar; saati ve yaşı da bunlar verir.",
-    "sinoSystem": "일, 이, 삼 sayıları etiket gibi olanlar içindir: para, tarih, dakika, telefon numarası, kat.",
-    "koreanToDigits": "Parçaları sırayla söyle. 일, 이, 삼 dizisinde 십 on, 삼십 ise otuzdur.",
-    "countingForm": "Sayma sözcüğünden önce 하나 둘 셋 넷 스물 sözcükleri 한 두 세 네 스무 olur. 두 개 denir.",
-    "counter": "Sayı, adın yanında tek başına durmaz. Aradaki sayma sözcüğü, sayılan şeye göre seçilir.",
-    "fill": "Cümlenin tamamını oku: boşluğun çevresindeki sözcükler hangi biçimin oraya ait olduğunu söyler.",
-    "nativeBuild": "Onun üstünde 열 artı birler basamağıdır — 열하나, 열둘. Onluklar kendi sözcüklerine sahiptir.",
-    "sinoBuild": "일, 이, 삼 sayıları soldan sağa, parça parça okunur: 삼십오, 삼 · 십 · 오 demektir.",
-    "irregular_month": "Haziran 유월, ekim 시월'dür. Kurallı biçimler olan 육월 ve 십월 yoktur.",
-    "plain_form": "Sayma sözcüğünden önce 한, 두, 세, 네, 스무 gelir. Oraya 하나, 둘, 셋, 넷 ve 스물 gelmez.",
-    "spacing": "Sayma sözcüğü ayrı bir sözcüktür, boşluk ister: 한개 değil 한 개.",
-    "system_swap": "İki dizi aynı değeri söyler ama yer değiştiremez — duruma göre belli olur.",
-    "sound_alike": "Aralarında tek bir ses farkı var. Son ünsüze kulak ver.",
-    "adjacent": "Komşu sayılar liste hâlinde öğrenildiği için birbirine karışır. Sıraya değil, değere bak.",
-    "wrong_counter": "Her sayma sözcüğünün bir nesne türü vardır — insana 명, hayvana 마리, eşyaya 개."
+    "nativeSystem": "Eşyalar, insanlar, saatler ve yaş 하나, 둘, 셋 ile sayılır.",
+    "sinoSystem": "Fiyat, tarih, dakika, telefon numarası ve kat 일, 이, 삼 alır.",
+    "koreanToDigits": "Baştan oku. 십 on, 삼십 otuz demek.",
+    "countingForm": "Sayma kelimesinden önce 하나, 한 olur; 둘, 두 olur: 두 개.",
+    "counter": "Sayı ile nesne arasına bir sayma kelimesi girer ve neyi saydığına göre değişir.",
+    "fill": "Cümleyi bir daha oku — boşluğun çevresindeki kelimeler ipucu verir.",
+    "nativeBuild": "Birler basamağını 열’a ekle — 열하나, 열둘. 스물 ve 서른 ayrı kelimeler.",
+    "sinoBuild": "Parçaları sırayla oku: 삼십오, 삼 · 십 · 오 demek.",
+    "irregular_month": "6월, 유월; 10월 ise 시월.",
+    "plain_form": "Sayma kelimesinden önce 한, 두, 세, 네, 스무 gelir.",
+    "spacing": "Sayma kelimesi ayrı yazılır: 한 개.",
+    "system_swap": "Miktar aynı, yeri farklı. Burada {{korean}} kullanılır.",
+    "sound_alike": "Tek ses farkı var. Sonuna kulak ver.",
+    "adjacent": "{{korean}} demek {{value}} demek.",
+    "wrong_counter": "Her sayma kelimesinin kendi nesnesi var — insana 명, hayvana 마리, eşyaya 개.",
+    "value": "{{korean}} demek {{value}} demek.",
+    "example": "Şöyle söylenir: {{example}}"
   },
   "module": {
     "systems": {
       "title": "Birden ona kadar söyleyelim",
-      "goal": "Ona kadar iki şekilde say, sıfırı oku ve hangisinin ne zaman kullanıldığını öğren."
+      "goal": "일’den 십’e, 하나’dan 열’e say, sıfırı oku ve hangisinin nerede kullanıldığını öğren."
     },
     "pastTen": {
       "title": "Ondan büyük sayılar",
@@ -114,7 +112,7 @@
     },
     "money": {
       "title": "Ne kadar? Hangi numara?",
-      "goal": "Fiyat, telefon numarası, kat ve çok büyük sayıları oku."
+      "goal": "Fiyat, telefon numarası ve kat oku; 만 원 ile 억’u da oku."
     },
     "review": {
       "title": "Herkesin yaptığı hatalar",
@@ -125,16 +123,16 @@
     "sinoBasics": {
       "title": "Korece 1, 2, 3 demek",
       "objective": "일, 이, 삼’dan 십’e kadar dinle ve tekrar et.",
-      "step1": "Korecede iki sayı kümesi var. Bu küme Çinceden gelir ve sayma değil de etiket olan her şeyde kullanılır — para, tarih, dakika, telefon numarası, kat.",
-      "step2": "Birden ona: 일 이 삼 사 오 육 칠 팔 구 십. Her biri tek hecedir ve her biri, fiyatlarda ve saatlerde göreceğin bir rakamdır.",
-      "step3": "On, 십'tir. Ondan sonraki her şey bu on sözcükten kurulur; bu yüzden bunları iyi bilmek işin büyük kısmıdır."
+      "step1": "일, 이, 삼 ile başlayalım. Bu sayıları fiyatta, tarihte, dakikada, telefon numarasında ve katta kullanırsın.",
+      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Hepsi tek hece.",
+      "step3": "Şöyle söylenir: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "하나, 둘, 셋 ile saymak",
       "objective": "하나’dan 열’e kadar dinle ve söyle, önündeki şeyleri sayarak.",
-      "step1": "Kore'nin kendi sayıları. İşaret edebildiğin şeyleri saymak için — insanlar, fincanlar, hayvanlar — ve saatler ile yaş için kullanılır.",
+      "step1": "하나, 둘, 셋 önündekini sayar — insanları, fincanları, hayvanları — ve yaşta, tam saatte kullanılır.",
       "step2": "Birden ona: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟'in 여덜 diye söylendiğine dikkat et: ㅂ okunmaz.",
-      "step3": "Doksan dokuz civarında kullanılmaz olur. Yüzün üstünde her şey 일, 이, 삼 ile sayılır."
+      "step3": "Yüzden sonrasında her şeyi 일, 이, 삼 ile sayarsın."
     },
     "zero": {
       "title": "0, 영 ya da 공’dur",
@@ -143,11 +141,11 @@
       "step2": "공 ise 0 rakamıdır; telefon numarasında, oda numarasında, bir kodda sesli okunur. 010, 공일공'dur, asla 영일영 değil."
     },
     "choosing": {
-      "title": "Hangisini kullanayım?",
-      "objective": "Sayarken hangi sayıların, para ve tarihte hangilerinin kullanıldığını seç.",
-      "step1": "하나, 둘, 셋 sayıları nesne sayar, aşağı yukarı doksan dokuza kadar: 세 명, 두 시, 스무 살.",
-      "step2": "일, 이, 삼 sayıları etiket gibi sayılar, para ve tarih içindir: 오천 원, 삼월 일 일, 삼십 분. Yüzün üstündeki her şey de böyle.",
-      "step3": "Tek bir saat ifadesi iki diziyi birden kullanır. Saat 세 시, dakika 삼십 분. Bu ikili, kuralın küçültülmüş hâlidir. (Kitaplar bunlara öz Korece ve Çince kökenli sayılar der. Bilmek iyidir, bugün ezberlemek gerekmez.)"
+      "title": "Eşyalar 하나, 둘 · fiyatlar 일, 이",
+      "objective": "Saymak için hangi sayıları, fiyat ve tarih için hangilerini kullandığını seç.",
+      "step1": "Gördüğünü 하나, 둘, 셋 ile sayarsın: 세 명, 두 시, 스무 살.",
+      "step2": "Fiyat, tarih, dakika, telefon numarası ve katta 일, 이, 삼 kullanılır: 오천 원, 삼월 일 일, 삼십 분.",
+      "step3": "Bir saatte ikisi birden geçer. 세 시 삼십 분 — saat 세, dakika 삼십."
     },
     "sinoBuild": {
       "title": "Bine kadar saymak",
@@ -160,7 +158,7 @@
       "title": "열하나, 스물, 서른 demek",
       "objective": "Ondan büyük sayıları 하나, 둘, 셋 yoluyla söyle.",
       "step1": "열 artı birlik, on bir ile on dokuz arasını verir: 열하나, 열둘, 열셋. Tek sözcük gibi söylenir.",
-      "step2": "Onlukların kendi sözcükleri vardır — 스물 yirmi, 서른 otuz, 마흔 kırk, 쉰 elli. Bunlar 열'den kurulmaz.",
+      "step2": "Her onluğun kendi kelimesi var — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯, 열려섣 diye söylenir: 심뉵'taki ㄹ sesinin aynısı."
     },
     "forms": {
@@ -186,8 +184,8 @@
     "age": {
       "title": "Kaç yaşındasın?",
       "objective": "Yaşını 살 ile söyle, büyüklere 연세 ile kibarca sor.",
-      "step1": "살, 하나, 둘, 셋 sayılarıyla gider ve gerçekte söylenen budur: 스무 살, 스물다섯 살. 몇 살이에요? bir arkadaşın yaşını sorar.",
-      "step2": "세, 일, 이, 삼 sayılarıyla gider ve belgelerde, haberlerde görünür: 이십 세. Söylemekten çok okursun.",
+      "step1": "살, 하나, 둘, 셋 ile gider: 스무 살, 스물다섯 살. 몇 살이에요? arkadaşlar arasında sorulur.",
+      "step2": "세, 일, 이, 삼 ile gider; formlarda ve haberlerde görürsün: 이십 세.",
       "step3": "Yaşça büyük birine 살 fazla samimi kalır. 연세, yaş için saygı sözcüğüdür: 연세가 어떻게 되세요?"
     },
     "hours": {
@@ -195,14 +193,14 @@
       "objective": "Saati 한 시 ve 두 시 gibi söyle, buçuk için 반 kullan.",
       "step1": "Saat 하나, 둘, 셋 sayılarını alır: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? saati sorar.",
       "step2": "반 yarım demektir: 두 시 반, iki buçuktur. 삼십 분'un yerine geçer.",
-      "step3": "몇 시예요? saati sorar. 세 시예요 gibi cevap ver. Dakika öbür diziyi alır — o da bir sonraki ders."
+      "step3": "몇 시예요? diye sor, 세 시예요 diye cevap ver. Dakikalar bir sonraki derste."
     },
     "minutes": {
       "title": "Saat 3:30",
       "objective": "Dakikayı ve saniyeyi söyle, sonra saate ekle.",
       "step1": "Dakika ve saniye 일, 이, 삼 sayılarını alır: 삼십 분, 십오 분, 십 초.",
-      "step2": "Tek bir saat ifadesi iki diziyi aynı anda alır: 세 시 삼십 분 — saat 하나, 둘, 셋’ten, dakika 일, 이, 삼’dan.",
-      "step3": "Burada ikisini aynı diziye koymak kolaydır. 삼 시 서른 분 değil, 세 시 삼십 분 de."
+      "step2": "세 시 삼십 분 — saat 세, dakika 삼십.",
+      "step3": "삼 시 서른 분 denmez. Doğrusu 세 시 삼십 분."
     },
     "dates": {
       "title": "Doğum günün ne zaman?",
@@ -221,22 +219,22 @@
       "title": "Bu kaç para?",
       "objective": "오천 원 ve 만 오천 원 gibi fiyatları oku.",
       "step1": "원, 일, 이, 삼 sayılarını alır: 천 원, 오천 원. 얼마예요? fiyatı sorar.",
-      "step2": "Korece binlik değil on binlik gruplar: 만 원 10.000'dir; 삼만 오천 원 35.000'dir.",
-      "step3": "만 오천 원 diye duyduğun fiyat 15.000'dir — bir on bin ve beş bin."
+      "step2": "만 원, 10.000원 demek. 삼만 오천 원 ise 35.000원.",
+      "step3": "만 오천 원, 15.000원 demek — bir 만 ve beş 천."
     },
     "digits": {
       "title": "Telefon numarası okumak",
       "objective": "Numarayı rakam rakam oku, 0 yerine 공 de. Kat ve oda numaralarında da aynı.",
-      "step1": "Saymayan, tanımlayan bir sayı rakam rakam okunur: 010, 공일공'dur.",
+      "step1": "Numara rakam rakam okunur. 010, 공일공’dur.",
       "step2": "에, tirenin olduğu yere gelir: 공일공에 일이삼사에 오륙칠팔.",
       "step3": "Kat, oda ve otobüs numaraları 일, 이, 삼 sayılarını alır: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
-      "title": "만, 억 — çok büyük sayılar",
-      "objective": "Büyük sayıları on binlik gruplar hâlinde oku; yüzde ve ondalık da oku.",
-      "step1": "Korece üçlü değil dörtlü basamak gruplarıyla sayar. 만 on bin, 억 yüz milyon, 조 trilyondur.",
-      "step2": "123.450.000 sayısı 1억 2345만 diye okunur. Korece bini değil, on bini esas alarak gruplar.",
-      "step3": "퍼센트 yüzde demektir (오십 퍼센트), 점 ise ondalık noktasıdır: 삼 점 오, 3,5'tir."
+      "title": "만 원, 억 — büyük fiyatları okumak",
+      "objective": "만 원 ve 삼억 원 gibi fiyatları, ayrıca yüzdeleri ve ondalıkları oku.",
+      "step1": "만, 10.000 demek. 만 원 cüzdanındaki banknot.",
+      "step2": "억, 100.000.000 demek. Ev fiyatlarında ve maaşlarda duyarsın: 삼억 원.",
+      "step3": "Yüzde 오십 퍼센트, ondalık ayırıcı ise 점: 삼 점 오, 3,5 demek."
     },
     "pitfalls": {
       "title": "Çok sık yapılan beş hata",
@@ -247,8 +245,8 @@
     "mixed": {
       "title": "Hepsi karışık",
       "objective": "Öğrendiklerini dinle ve oku, hepsini bir arada.",
-      "step1": "Bütün kurs hızlıca verilen tek bir karara iner: bu bir sayım mı, yoksa bir etiket mi? Sayımlar — insan, nesne, saat, yaş — 하나, 둘, 셋 alır; etiketler — para, dakika, tarih, telefon numarası — 일, 이, 삼 alır.",
-      "step2": "Bu tekrar ikisini karıştırır. Oku ya da dinle, karar ver ve duraksadığın her yerde açıklamaya bak. Alıştırmayla yok edilecek şey o duraksamadır."
+      "step1": "Hepsi bir arada. Eşya, saat ve yaş 하나, 둘, 셋 alır; fiyat, dakika, tarih ve telefon numarası 일, 이, 삼 alır.",
+      "step2": "Oku ya da dinle, sonra seç. Açıklamaya tekrar bakman sorun değil."
     }
   },
   "gloss": {
@@ -285,7 +283,7 @@
     "tenOclock": "saat on",
     "counterMinute": "dakika",
     "counterSecond": "saniye",
-    "mixedTime": "saat, iki diziyle birlikte",
+    "mixedTime": "saat ve dakika birlikte",
     "quarterPast": "ikiyi çeyrek geçe",
     "counterYear": "yıl",
     "counterMonth": "ay",
@@ -303,26 +301,27 @@
     "counterFloor": "bir binanın katı",
     "counterRoom": "oda numarası",
     "counterNumber": "numara — otobüsler, hatlar",
-    "groupsOfFour": "Korece rakamları dörtlü gruplar",
     "percent": "yüzde",
     "decimalPoint": "ondalık noktası",
     "pitfallCountingForm": "Yalın sayıyı değil, sayma biçimini kullan",
     "pitfallSimnyuk": "Yazılışı 십육, söylenişi 심뉵",
     "pitfallJune": "Haziran 유월'dür, asla 육월 değil",
-    "pitfallHourMinute": "Öz Korece saat, Çin kökenli dakika",
-    "pitfallSpacing": "Sayma sözcüğü ayrı yazılır"
+    "pitfallHourMinute": "saat için 세 시, dakika için 삼십 분",
+    "pitfallSpacing": "Sayma sözcüğü ayrı yazılır",
+    "tenThousand": "10.000",
+    "hundredMillion": "100.000.000"
   },
   "example": {
     "zeroMath": "eksi üç derece",
     "zeroDigit": "010",
     "belowZeroFive": "eksi beş derece",
     "zeroScore": "Sıfır aldım.",
-    "ctxPeople": "insanlar 하나, 둘, 셋 ile sayılır",
-    "ctxMoney": "para 일, 이, 삼 alır",
-    "ctxHour": "saatler 하나, 둘, 셋 alır",
-    "ctxMinute": "dakikalar 일, 이, 삼 alır",
-    "ctxAge": "yaş 하나, 둘, 셋 alır",
-    "ctxDate": "tarihler 일, 이, 삼 alır",
+    "ctxPeople": "İnsanlar 하나, 둘, 셋 ile sayılır",
+    "ctxMoney": "Fiyatlar 일, 이, 삼 alır",
+    "ctxHour": "Saat 하나, 둘, 셋 alır",
+    "ctxMinute": "Dakika 일, 이, 삼 alır",
+    "ctxAge": "Yaş 하나, 둘, 셋 alır",
+    "ctxDate": "Tarih 일, 이, 삼 alır",
     "twentyFive": "Yirmi beş yaşındayım.",
     "ageHonorific": "bir büyüğe yaşını sormak",
     "halfPastTwo": "iki buçuk",
@@ -337,12 +336,13 @@
     "phoneNumber": "010-1234-5678",
     "room502": "502 numaralı oda",
     "bus206": "206 numaralı otobüs",
-    "grouping": "123.450.000 — 1억 2345만 diye okunur",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 doğru; 둘 살 değil",
     "pitfallSimnyuk": "yazılışı 십육, okunuşu 심뉵",
     "pitfallJune": "유월 doğru; 육월 değil",
     "pitfallHourMinute": "세 시 삼십 분 doğru; 삼 시 서른 분 değil",
-    "pitfallSpacing": "한 개 doğru; 한개 değil"
+    "pitfallSpacing": "한 개 doğru; 한개 değil",
+    "tenThousandWon": "10.000 wonluk bir banknot",
+    "threeHundredMillionWon": "Daire 삼억 원."
   }
 }

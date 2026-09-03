@@ -98,6 +98,9 @@ test.describe('the Numbers course', () => {
     await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="available"]')).toHaveCount(
       NUMBER_LESSONS.length,
     );
+    // …and none of them says so. An availability badge on every row of a course
+    // where nothing is locked is a word a learner learns to skip.
+    await expect(page.locator('[data-testid^="numbers-lesson-"] [data-status]')).toHaveCount(0);
     await expect(page.locator('[data-testid^="numbers-lesson-"][data-status="locked"]')).toHaveCount(0);
     await expect(page.locator('[data-testid^="numbers-lesson-"] a')).toHaveCount(NUMBER_LESSONS.length);
 
@@ -107,7 +110,16 @@ test.describe('the Numbers course', () => {
     await page.goto('/letters/numbers');
     const row = page.getByTestId(`numbers-lesson-${FIRST.id}`);
     await expect(row).toHaveAttribute('data-status', 'not_started');
-    await expect(row).toContainText(en('status.not_started'));
+    /*
+     * Opened, and therefore still wearing no badge.
+     *
+     * The row used to say *Opened* here — and *Available* before it was touched
+     * at all — which is a word on every row of a course where every lesson is
+     * open. The state is still recorded, and the attribute above is how this
+     * test reads it; what changed is that the screen no longer prints a label
+     * whose only content is *you may do this*. See `pages/NumbersPage`.
+     */
+    await expect(row.locator('[data-status]')).toHaveCount(0);
     await expect(row.locator('svg')).toHaveCount(1); // the chevron only — no check mark
     await expect(page.getByTestId('numbers-lessons-completed')).toContainText('0 of');
   });
@@ -216,8 +228,25 @@ test.describe('the Numbers course', () => {
       await expect(status).toContainText(en('feedback.incorrect'));
       await expect(status).toContainText(en('feedback.answerWas'));
       await expect(status).toContainText(optionText(first, first.answer));
+      /*
+       * The feedback line names *this* answer, so the assertion has to fill in
+       * the same blanks the page does.
+       *
+       * It used to compare against the raw English string, which worked only
+       * while every rationale was a fixed sentence per exercise kind — the
+       * arrangement that gave every listen question in the course the same
+       * closing words. The sentence now interpolates the item's own word and
+       * value, so a comparison against the template would be asserting that the
+       * feature was never built.
+       */
       const misconception = first.options[wrongIndex]!.misconception;
-      await expect(status).toContainText(en(`rationale.${misconception ?? first.rationale.replace('rationale.', '')}`));
+      const key = `rationale.${misconception ?? first.rationale.replace('rationale.', '')}`;
+      const answered = numberLessonItems(FIRST).find((item) => item.id === first.item_id)!;
+      const filled = en(key)
+        .replaceAll('{{korean}}', answered.korean)
+        .replaceAll('{{value}}', answered.value === null ? '' : String(answered.value))
+        .replaceAll('{{example}}', answered.example ?? '');
+      await expect(status).toContainText(filled);
       // Options are frozen after one tap: a second tap changes nothing.
       const buttons = body.getByRole('group').getByRole('button');
       for (let i = 0; i < (await buttons.count()); i += 1) await expect(buttons.nth(i)).toBeDisabled();
