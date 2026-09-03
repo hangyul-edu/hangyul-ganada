@@ -424,9 +424,30 @@ describe('the goal counts words, not taps', () => {
     expect(dayProgress(twice).done).toBe(1);
   });
 
-  it("ignores a word that is not in today's plan", () => {
+  it("adopts a word the plan no longer lists rather than dropping the credit", () => {
+    /*
+      This used to assert the opposite — that an unlisted word was ignored —
+      and that assertion was the leak, written down. It reads as a safety rule
+      and behaves as one only if the plan a session is asking from and the plan
+      in storage can never disagree. They can, and do: the queue is frozen once
+      and the plan is a derivation that moves when the planning level does. The
+      learner then answers correctly and the counter stays where it was, which
+      is what QA reported. See `completeWord`.
+
+      The goal does not move, so a plan of five that adopts a sixth word reads
+      six of five — a learner who did six words being told they did six.
+    */
     const day = plan({ goal: 5 });
-    expect(completeWord(day, 'w199')).toBe(day);
+    const after = completeWord(day, 'w199');
+    expect(after).not.toBe(day);
+    expect(after.completed).toEqual(['w199']);
+    expect(after.goal).toBe(5);
+    expect(after.words.map((word) => word.wordId)).toContain('w199');
+    // Adopted as review: it has been met and answered, and must not be
+    // reintroduced if the sitting is rebuilt.
+    expect(after.words.find((word) => word.wordId === 'w199')?.source).toBe('review');
+    // Still exactly once.
+    expect(completeWord(after, 'w199')).toBe(after);
   });
 });
 

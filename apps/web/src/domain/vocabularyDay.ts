@@ -1081,10 +1081,52 @@ export function extendDay(plan: DailyPlan, extra: number, request: DayRequest): 
   return { ...plan, words: [...plan.words, ...added] };
 }
 
+/**
+ * Credits a word to today, exactly once — and never silently drops one.
+ *
+ * ## The defect
+ *
+ * "Sometimes you finish a word and the counter does not move." This function
+ * used to return the plan unchanged for a word it did not contain, which reads
+ * as a safety rule and behaves as a leak: the session had already moved on, so
+ * nothing retried and nothing reported.
+ *
+ * The plan a session is *asking from* and the plan in storage are allowed to
+ * disagree, and do. `WordSessionPage` freezes its queue once, deliberately, so
+ * that a plan changing underneath cannot shorten the sitting or run the bar
+ * backwards. Meanwhile the plan is a derivation, and one of its inputs is
+ * `levelFromProgress`, which moves as words are learned. A learner who finishes
+ * the word that takes them past two thirds of their level flips the planning
+ * level *mid-sitting*; the plan is rebuilt, its unresolved new words are
+ * replaced, and every question still in the frozen queue is about a word the
+ * stored plan has never heard of. They answer correctly, and nothing counts.
+ *
+ * ## The rule
+ *
+ * A word the learner answered correctly in a sitting this app posed is credited
+ * to today. If the plan no longer lists it, the plan **adopts** it rather than
+ * refusing the credit: the work happened, the goal does not move, and a day
+ * that reads 6/10 when the learner has finished six words is the only honest
+ * number. Adoption cannot inflate anything, because a sitting only ever asks
+ * about words some plan for today chose.
+ *
+ * Idempotent on `completed`, which is what makes a double tap, a re-render and
+ * a retry of an already-finished word all count once.
+ */
 export function completeWord(plan: DailyPlan, wordId: string): DailyPlan {
   if (plan.completed.includes(wordId)) return plan;
-  if (!plan.words.some((word) => word.wordId === wordId)) return plan;
-  return { ...plan, completed: [...plan.completed, wordId] };
+  const listed = plan.words.some((word) => word.wordId === wordId);
+  const words = listed
+    ? plan.words
+    : /*
+       * Adopted as `review`, not `new`.
+       *
+       * `new` is a claim about teaching — it drives `stepsFor`, and a word
+       * carrying it would be reintroduced if the sitting were rebuilt. This
+       * word has already been met and answered; `review` is what it is.
+       */
+      [...plan.words, { wordId, source: 'review' as const, steps: [] as WordStep[] }];
+  return { ...plan, words, completed: [...plan.completed, wordId] };
 }
 
 /**

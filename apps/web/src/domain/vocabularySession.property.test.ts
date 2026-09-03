@@ -295,16 +295,24 @@ function runLevelChangeSitting(seed: number): DailyPlan {
         assertInvariants(plan, seed);
       }
 
-      const planned = new Set(plan.words.map((w) => w.wordId));
       const correct = rand() < 0.7;
       const doneBefore = new Set(plan.completed).size;
       if (correct) {
-        // The frozen queue can hold a step for a word a retake has since
-        // replaced. Continuing it credits nothing — the word is not a target —
-        // and never throws, which is the UI's exact behaviour.
-        const expected = step.completes.filter(
-          (id) => planned.has(id) && !plan.completed.includes(id),
-        ).length;
+        /*
+          The frozen queue can hold a step for a word a retake has since
+          replaced, and a correct answer to it still counts.
+
+          This used to expect the opposite — that such a word credited nothing,
+          "because the word is not a target" — and that expectation was the
+          leak written down as an invariant. The learner answered correctly and
+          the counter did not move, which is what QA reported. The plan adopts
+          the word instead; see `completeWord`. What is still asserted, and is
+          the property that matters, is *exactly once*: every distinct id in
+          the step counts one, and a repeat counts none.
+        */
+        const expected = new Set(
+          step.completes.filter((id) => !plan.completed.includes(id)),
+        ).size;
         for (const id of step.completes) {
           plan = completeWord(plan, id);
           plan = completeWord(plan, id);

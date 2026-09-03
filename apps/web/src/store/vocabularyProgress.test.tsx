@@ -340,3 +340,74 @@ describe('a slow store', () => {
     expect(second.context.vocabularyDay.completed).toEqual(studied);
   });
 });
+
+describe('a credit the store had nowhere to put', () => {
+  /*
+   * The reported symptom: "sometimes you finish a word and the counter does not
+   * move."
+   *
+   * `completeDailyWord` used to write into whatever plan was in storage, and
+   * `completeWord` returns the plan unchanged for a word that is not in it. So
+   * a correct answer about a word the *stored* plan no longer held was dropped
+   * — silently, with no error and no retry, because the session had already
+   * moved on.
+   *
+   * The two are allowed to disagree, and do. `WordSessionPage` freezes its
+   * queue once, deliberately, so that a plan changing underneath cannot
+   * shorten the sitting or make the bar run backwards. Meanwhile the plan is a
+   * *derivation*, and one of its inputs is `levelFromProgress` — which moves as
+   * words are learned. A learner who finishes the word that takes them over
+   * two thirds of their level flips the planning level mid-sitting, the plan is
+   * rebuilt for the new level, the unresolved new words are replaced, and every
+   * remaining question in the frozen queue is now about a word the plan has
+   * never heard of. They answer correctly; nothing counts.
+   *
+   * A level test result is the same event with a bigger step, and is what this
+   * drives, because it is the one a test can trigger in a line.
+   */
+  it('credits a word the session asked about even after the plan was rebuilt', async () => {
+    const app = await open(durableDriver());
+    const asked = app.context.vocabularyDay.words.map((word) => word.wordId);
+
+    await act(async () => {
+      app.context.saveLevelTestResult({
+        level: 30,
+        takenAt: new Date().toISOString(),
+        asked: 24,
+        correct: 22,
+        ceiling: 30,
+        recentItems: [],
+      } as unknown as Parameters<LearnerContextValue['saveLevelTestResult']>[0]);
+    });
+    await waitFor(() => expect(app.context.vocabularyDay.level).toBe(30));
+
+    // A word the sitting is still holding a question about, which the rebuild
+    // took out of the plan.
+    const dropped = asked.find(
+      (id) => !app.context.vocabularyDay.words.some((word) => word.wordId === id),
+    );
+    expect(dropped, 'the rebuild replaced at least one unresolved word').toBeTruthy();
+
+    await act(async () => {
+      app.context.completeDailyWord(dropped!);
+      app.context.recordRecognition('word', dropped!, true);
+    });
+
+    await waitFor(() => expect(app.context.vocabularyProgressToday.done).toBe(1));
+    expect(app.context.vocabularyDay.completed).toContain(dropped);
+  });
+
+  it('counts a word once however many times the answer is reported', async () => {
+    const app = await open(durableDriver());
+    const first = app.context.vocabularyDay.words[0]!.wordId;
+
+    // A double tap, a re-render, and a retry of a word already finished.
+    await act(async () => {
+      app.context.completeDailyWord(first);
+      app.context.completeDailyWord(first);
+      app.context.completeDailyWord(first);
+    });
+
+    await waitFor(() => expect(app.context.vocabularyProgressToday.done).toBe(1));
+  });
+});
