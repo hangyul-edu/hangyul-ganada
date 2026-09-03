@@ -27,34 +27,39 @@ Narrative belongs in `docs/report.md`. This file stays a checklist.
 
 | Workstream | Commit | Verification |
 | --- | --- | --- |
-| Learning-history export and recovery (I-12); Reset clearing six of eight stores (I-127) | `f731bd43` | 966 web unit tests; `verify:release` green end to end at that tree |
-| Report §13.3/§13.4, issue ledger, versionCode 5 delivery | `e3b4aaee` | `docs:consistency`, `issues:check`, `release:current` green |
-| Backup gates: native key/value pairing, real-IndexedDB end-to-end spec | `b74e1543` | 12 native tests; 2 e2e × 2 projects; negative-tested by reversing the zip |
+| Learning-history export and recovery (I-12); Reset clearing six of eight stores (I-128) | `f731bd43` | 966 web unit tests; `verify:release` green at that tree |
+| Report §13.3/§13.4, issue ledger, versionCode 5 delivery | `e3b4aaee` | `docs:consistency`, `issues:check`, `release:current` |
+| Backup gates: native key/value pairing, real-IndexedDB end-to-end spec | `b74e1543` | 12 native tests; 2 e2e × 2 projects; negative-tested |
+| §3 Home draws no Back; the gate checks both directions | `75bd04d5` | `back:coverage` 22 routes; 25 rendered cases; negative-tested |
+| §5–§7, §11 Numbers: usage-first copy, badges removed, ambiguous item removed | `4b0745d6` | `numbers:qa` 0 problems; `numbers:copy` clean; 8 + 12 e2e |
+| §4 Reachable actions and the counted scroll lock | `bb0e9825` | `scroll:audit` 199 measurements; negative-tested; 4 lock tests |
+| §8 Result screens say what happened, once | `0d874efa` | 976 unit tests; 4 new dialog tests |
+| §2 Report figures generated; four cross-artefact rules | `eea2fcd2` | found a duplicated issue id on its first run |
+| §9 Every Korean string read; 14 rewritten; ledger gate | `84f1387b` | `copy:ledger` 834 strings; negative-tested |
+| §13 I-126 difficulty model; 45 words re-levelled | `7e9fd334` | level shape, 1–30 audit, recommendation, daily plan, 118 journeys |
 
 ## In progress
 
-Nothing is half-applied in the working tree. The uncommitted files are the
-versionCode 6 artefacts and the report figures that describe them.
+The release cycle: versionCode 7, artefacts, `verify:release`, the report PDF,
+and the push.
 
 ## Remaining requirements
 
-Numbered against the current brief.
-
-- [ ] §2 Canonical metrics manifest; report figures generated, not typed; consistency gate widened
-- [ ] §3 Home has no visible Back; every other production route has exactly one
-- [ ] §4 Global scrolling and reachable bottom actions, audited route by route
-- [ ] §5 Numbers availability badges removed
-- [ ] §6 Numbers rewritten around usage; ambiguous questions replaced
-- [ ] §7 Numbers lesson introduction rewritten
-- [ ] §8 Review-complete modal simplified; all result modals audited
-- [ ] §9 App-wide Korean editorial audit in rendered context
-- [ ] §10 Previous fixes reverified
-- [ ] §11 Ambiguity gate strengthened and negative-tested
-- [ ] §12 Rendered UI and scroll matrix
-- [ ] §13 I-126 difficulty model; levels 1–30 content
-- [ ] §14 Version, builds, artefacts
-- [ ] §15 Commits and push
-- [ ] §16 Report regenerated and inspected page by page
+- [x] §2 canonical metrics manifest and consistency gate
+- [x] §3 Home Back policy
+- [x] §4 scrolling and reachable actions
+- [x] §5 Numbers availability badges
+- [x] §6 Numbers pedagogy and ambiguous questions
+- [x] §7 Numbers lesson introduction
+- [x] §8 result modals
+- [x] §9 app-wide Korean editorial audit
+- [x] §11 ambiguity gate strengthened and negative-tested
+- [x] §12 rendered UI and scroll matrix
+- [x] §13 I-126 difficulty model
+- [ ] §10 previous fixes reverified — `verify:release` end to end
+- [ ] §14 version, builds, artefacts at versionCode 7
+- [ ] §15 push and remote SHA verified
+- [ ] §16 report regenerated and inspected page by page
 
 ## Known blockers (external, not fixable from this repository)
 

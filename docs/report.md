@@ -186,6 +186,36 @@ There is no account, no server and no network request during a lesson.
 
 ## What this cycle did
 
+**A second set of screenshots, and four of them were defects that had shipped.**
+A back arrow on the screen the app opens to, where there is nothing behind it. A
+Numbers question whose orange **Continue** was below the bottom of the display
+with nothing on the page that scrolled — not a missing padding, a page that
+never claimed the scrolling its layout expects it to own. *학습 가능* on
+nineteen rows of a course where every lesson is open. And a listening question
+offering 조 · 억 · 만 단위 · 만, two of which no recording can tell apart. Each
+one is fixed, each has a gate, and each gate was run against the defect before
+it was trusted — §20M.
+
+**The Numbers course stopped explaining Korean numbers and started teaching
+them.** The first thing a learner read was that Korean has two sets of numbers
+and that this set came from China. It now reads *일, 이, 삼부터 들어 볼게요* and
+then shows five things those numbers are: a date, a price, ten minutes, the
+second floor, a phone number. Two items were removed — one that was a label
+rather than a word, one that was a trillion — and the feedback line stopped
+telling every learner the same sentence about what people confuse.
+
+**Every learner-facing Korean string in the app was read**, one at a time,
+against the screen that draws it: 834 of them, fourteen rewritten, and a ledger
+that fails the build when a string changes without somebody reading it again. It
+is not a native review and §22 still says so.
+
+**The report stopped disagreeing with itself at the source.** Figures are
+generated from the derived values now rather than typed and reconciled, and four
+new rules compare documents against artefacts — the manifest against the binary,
+the stated commit against the built one, a clean-tree claim against the tree, an
+issue against its own status. The last found a duplicated issue id on its first
+run.
+
 **A learner can now take their practice with them, and Reset finally clears
 everything.** The product has no account and no server — that is what people are
 paying for, and it also meant a new phone or a cleared browser ended three months
@@ -4162,6 +4192,316 @@ against it: they were the ones a program can see.
 **`I-124`** stays a guard rather than a fix, because the screenshot could not be
 turned into a reproduction from this repository. If it is seen again, the two
 gates in §20L.4 are where the case goes.
+
+# 20M. The second screenshot pass
+
+Four more screenshots, and a brief that said the report itself had stopped
+agreeing with itself. Both were right. This chapter is what each screenshot
+showed, what was underneath it, and what fails now if it comes back — and then
+the two things that were wrong about the report rather than about the app.
+
+## 20M.1 A back arrow on the screen the app opens to — **P2, fixed**
+
+The Home screenshot has a back chevron beside the product's own logo.
+
+It was put there deliberately, one pass earlier, and the argument was
+consistency: seven screens had shipped with no visible way back, the fix made
+the control unconditional, and *a corner that is a control on every screen but
+one is a corner people stop looking at*. The screenshot answers the argument. On
+a first launch there is nothing behind Home; an arrow that leads nowhere is a
+control that lies, and it lies on the first screen a buyer sees.
+
+The rule is the ordinary one again — back exists where there is somewhere to go
+back to — and the layout drops the hit-target track rather than leaving it
+empty, so the logo starts on the same rule as the cards under it instead of one
+chevron-width further in.
+
+**Android's system back is untouched.** It still pops this session's stack,
+still falls back to Home for a deep link or a refresh, and still offers to leave
+at Home. Removing a painted control is not a reason to break the platform's
+gesture, and the two were never the same mechanism.
+
+`back:coverage` used to ask *is there at least one*. It asks both halves now,
+because "at least one" passes a Home with a chevron and "at most one" passes a
+Letters screen with none:
+
+| | expected | measured |
+| --- | --- | --- |
+| Home (`/`) | **0** | 0 |
+| every other production route | **exactly 1** | 21 of 21 |
+| developer-only (`/dev/stroke-gallery`) | static pass only | classified, not rendered |
+
+`e2e/home-header.spec.ts` is the other half and it is rendered, because the
+defect was: 25 cases over four phone widths, three text scales and both
+appearances, measuring that the logo starts on the page's rule, keeps its aspect
+ratio, leaves room for the streak, and pushes nothing sideways.
+
+**Negative-tested**: putting the chevron back fails the gate with
+`/: Home draws 1 back control(s); it must draw none`, and fails the rendered
+spec on its own message.
+
+## 20M.2 A button below the bottom of the screen — **P1, fixed**
+
+The Numbers question screenshot has its orange **Continue** cut off by the foot
+of the display.
+
+The cause was structural, not a missing padding. Learning screens sit under
+`FocusLayout`, which passes `scroll={false}` to the shell on purpose — a lesson
+owns its own scrolling so its footer can stay clear of the system bar — and
+`NumberSessionPage` never claimed it. The shell handed the page a fixed height
+with `overflow: hidden`, the content grew past it as a plain column, and the
+last row was clipped. **Nothing scrolled anywhere**, so no gesture on the device
+could recover the button. Measured at 320 × 568 before the fix: Continue ended
+at 792 px in a 568 px viewport, with `scrollHeight === clientHeight`.
+
+The page is two grid rows now — header, then a scrolling body — with
+`minmax(0, 1fr)` rather than `1fr`, because a track's automatic minimum is its
+content and a plain `1fr` grows the grid past the viewport again from the other
+side.
+
+### The audit, and why it does not use `click()`
+
+`npm run scroll:audit` opens 25 route/states at seven phone sizes including
+landscape, with the states most likely to overflow also at 150% and 200% text
+and in dark: **199 measurements**.
+
+Playwright scrolls an element into view before clicking it. That is usually a
+kindness and here it is the bug — a suite built on `locator.click()` passes on a
+page a finger cannot scroll, because the driver reaches what the learner cannot.
+So each state is measured where it lands, scrolled with a real `mouse.wheel`
+until the position stops changing, measured again, and only then pressed at its
+own measured centre. A page taller than its frame with nothing that scrolls is a
+finding on its own.
+
+| checked at each of 199 measurements | |
+| --- | --- |
+| the lowest actionable element | found in its own scroll container, not the document |
+| after a real wheel gesture | fully visible, or a finding |
+| against the bottom navigation | clear of it, or a finding |
+| against the safe-area inset | clear of it, or a finding |
+| horizontal overflow | none, or a finding |
+| the press | at the measured centre, no driver scrolling |
+
+**Negative-tested**: reverting the two CSS rules fails it in four of the seven
+sizes, naming the button and the pixel it ends at. Worth recording that the
+audit's *first* draft passed the broken build — its walk stopped on the practice
+intro, a short screen that fits any phone, because the label that opens practice
+was not in its list. A matrix that cannot reach the tall state proves nothing
+about it, and that is the second time in two passes a gate has needed to be
+tested against the defect before it was worth anything.
+
+### And the modal lock, which was wrong in two ways
+
+Found while auditing the same layer. `Modal` remembered
+`document.body.style.overflow`, set it to `hidden`, and put the value back.
+Nothing in this app scrolls the body — the shell's `<main>` and `FocusScreen`'s
+middle row do — so **the page scrolled behind an open dialog** regardless. And
+save-and-restore is only correct if dialogs close in the order they opened: open
+A, open B, close **A**, and B later restores `hidden` onto a page with no dialog
+on it, locking the app permanently with nothing on screen to explain it.
+
+`ui/scrollLock.ts` is a counted lock over every `[data-scroll-region]` and the
+body, capturing the previous inline values once at depth 0 and restoring them
+once at depth 0, with an idempotent release so a cleanup that runs twice cannot
+unlock a dialog somebody else is holding. Four tests, one per failure.
+
+## 20M.3 *학습 가능* on nineteen rows — **P3, fixed**
+
+Every lesson in the Numbers course is open, and every row said so. A label that
+is on everything distinguishes nothing, and teaching a learner to read past that
+column costs them *복습할 때* — review due — as well.
+
+`available` and `not_started` draw nothing now, and their strings are deleted
+from all thirty-two bundles rather than hidden. The empty wrapper goes with them,
+because an empty flex child still takes the row's gap. The lesson screen carried
+the same pill under its own objective — *열림*, Opened — and it is gone too.
+
+Real states remain: In progress, Completed, Mastered, Review due.
+
+## 20M.4 조 · 억 · 만 단위 · 만 — **P1, fixed**
+
+*무엇이라고 들렸나요?* over four options, two of which cannot be told apart by
+listening. `만 단위` was an **item** in the course. It is not a word anybody
+says; it is the name of the idea that 만 is an example of, and no recording
+distinguishes them.
+
+| item | before | after |
+| --- | --- | --- |
+| `num-l-group` — 만 단위 | an item, and a distractor for 만 | **removed.** The four-digit grouping is explanation, on 15,000원 and 123,450,000 |
+| `num-l-jo` — 조 | an item in the beginner path | **removed.** A learner who can read a price, a clock and a phone number has no use for a trillion |
+| `num-l-man` — 만 | `example: 십만` | anchored on **만 원**, the note in a wallet |
+| `num-l-eok` — 억 | `example: 삼억` | anchored on **삼억 원**, a flat price |
+
+`numbers:qa` now fails any option that names a category (단위/방법/형태/종류) and
+any duplicate meaning within one question. The rule is deliberately **not**
+containment: 만 원 beside 만 is a fair pair — a learner who hears 만 원 heard the
+원 — and a gate that failed it would stop the course teaching prices.
+
+**Negative-tested**: putting 만 단위 back fails it, naming the two questions it
+poisons.
+
+## 20M.5 *한국어에는 숫자가 두 벌 있어요* — **P2, rewritten**
+
+The first thing a learner reads in the Numbers course was that Korean has two
+sets of numbers, that this set came from China, and that it is used for things
+that are labels rather than counts.
+
+| | |
+| --- | --- |
+| **before** | 한국어에는 숫자가 두 벌 있어요. 이 벌은 중국에서 왔고, 개수가 아니라 이름표처럼 붙는 숫자에 써요 — 돈, 날짜, 분, 전화번호, 층. |
+| **after** | 일, 이, 삼부터 들어 볼게요. 이 숫자는 가격, 날짜, 분, 전화번호, 층을 말할 때 자주 써요. |
+| **then** | 일 이 삼 사 오 육 칠 팔 구 십. 모두 한 음절이에요. |
+| **then** | 이렇게 써요. 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공. |
+
+Three screens: what to call them, what they are, what they look like in use. No
+metaphor, no origin, nothing to hold before the first useful sentence.
+
+The metaphors went with it in all thirty-two languages — 두 벌, 두 가지 숫자,
+체계, 이름표, 열 너머, 만 단위, and 쪽, *this side and that side*, which had
+been introduced as the replacement for 체계 and is the vague subject the copy
+rules already forbade. **Nothing replaces them.** The two sets are named by
+their own first three members, 일, 이, 삼 and 하나, 둘, 셋, which the lesson is
+teaching anyway.
+
+Origin claims are gone and the gate forbids them: 중국에서, from Chinese, from
+China, Chinese origin, native Korean numbers. Where a set came from is not the
+answer to *when do I say this one?*, and it is the one claim in this course that
+is argued about outside it.
+
+### The feedback line
+
+Every listen question in the course ended with the same sentence: *단어 전체를
+들어 보세요. 이웃한 숫자와 비슷한 소리가 가장 자주 헷갈려요.* It explains
+nothing about the answer, and its second clause is a claim about learners this
+repository has no evidence for.
+
+Feedback is built from the item now — 만은 10,000이에요 — with the Korean word
+arriving with its particle already attached, so no locale has to write 은(는).
+The three gates that compare placeholders across languages were taught that
+`{{korean}}`, `{{subject}}` and `{{object}}` are one slot.
+
+### What the course is now
+
+| | before | after |
+| --- | --- | --- |
+| items | 97 | **95** — two removed, none added |
+| lessons | 19 | 19 |
+| modules | 6 | 6 |
+| explanation steps rewritten | — | 27 of 52, in 32 languages |
+| items re-anchored on a real price | — | 2 |
+
+`e2e/numbers-journeys.spec.ts` is new and is the acceptance the count cannot
+give: ten situations a first week in Korea produces — count three things, order
+two coffees, say an age, read a price, read a clock, read a date, hear a floor
+number, read a phone number digit by digit, know 영 from 공, understand 만 원 —
+each walked as a new learner through the lesson that answers it, ending in a
+correctly answered practice question.
+
+## 20M.6 *1개 연습 · 1개는 바로 떠올랐어요 · 1개는 곧 다시 나와요* — **P3, removed**
+
+The Review dialog after reviewing exactly one item. Three counts for one card:
+it reads as three items, and its second and third clauses contradict each other
+for anybody who does not know the scheduler is describing the same card twice.
+The badge above it already said 1/1.
+
+The same dialog serves three screens and the other two were doing versions of
+the same thing — Words said *10 words learned* over a badge reading 10/10;
+Letters named the lesson whose title is on the header behind the dialog. All
+three subtitles are gone. The prop stays optional rather than deleted, because a
+subtitle that says something the title and the count do not is still worth
+having, and a test covers that case so this is a rule about filler and not a ban.
+
+The title went with them: *Nice work!* was the only text left once the subtitle
+was removed, and generic praise is a poor thing to be the only text. It is
+*Session complete* now, in all thirty-two languages.
+
+## 20M.7 The app-wide Korean reading
+
+834 learner-facing Korean strings across eleven namespaces, read one at a time
+against the screens that draw them. **Fourteen did not survive the reading.**
+
+| fault | strings | scope |
+| --- | --- | --- |
+| generic praise appended to a fact | 2 | source — all 32 languages |
+| an unsupported claim about learners | 1 | source — all 32 languages |
+| internal terminology (*학습 카드*) | 1 | source — all 32 languages |
+| a button repeating the label above it | 1 | source — all 32 languages |
+| a question written with a full stop | 2 | Korean |
+| an honorific above the app's own register | 3 | Korean |
+| a vague subject (*어느 쪽*) | 1 | Korean |
+| a nominalisation among 해요체 | 1 | Korean |
+| an ambiguous form label | 1 | Korean |
+| a screen-reader label that read like a field dump | 1 | Korean |
+
+`docs/copy-audit-ko.json` records all 834 with a hash of the text that was read.
+`copy:ledger:check`, now in `verify:quick`, fails on a string that has changed
+since its reading, one that has never had a reading, and a row whose string no
+longer exists. **Negative-tested** by putting *정말 대단해요!* back on the home
+screen.
+
+The check is on the *reading*, not on the Korean. Every other copy gate here
+looks for a shape — a banned term, a register mismatch — and *숫자가 두 벌
+있어요* passed all of them for two releases. What cannot be automated is whether
+a sentence sounds like a person wrote it, so what is automated is the fact that
+somebody looked. **It is not a native review** and does not claim to be: the
+reader was the model that wrote the sentences, which is the same pair of eyes
+twice. §22 keeps that on the external list.
+
+## 20M.8 The report had stopped agreeing with itself
+
+The brief listed six internal contradictions. They were real, and the fix is not
+to edit six numbers.
+
+`docs:consistency` already derived every figure from source and *reported* a
+disagreement. Reporting one still leaves a person editing numbers in prose,
+which is the activity that produced every drift. It **writes** them now: the
+default run rewrites each claim from the derived value, keeping the claim's own
+spelling — `13,608` in a sentence stays grouped, `13608` in a cell stays plain —
+and `--check` is the read-only form `verify:release` runs. This pass it rewrote
+eleven figures across three documents. Two metrics were added because the report
+states them and nothing was guarding them: the Numbers lesson and item counts.
+
+Four rules were added that compare **documents against artefacts**, which is the
+class of contradiction no pattern over prose can catch because neither statement
+repeats the other:
+
+1. the manifest against the binary it describes — `aapt2 dump badging` on the
+   delivered APK against `build-info.json`;
+2. every commit a document names as the source of the delivered build, against
+   the commit the build actually came from;
+3. a document calling the tree clean while a product file differs;
+4. an issue holding two statuses at once — a duplicated id, a status outside the
+   vocabulary, or a report table disagreeing with the ledger it was generated
+   from.
+
+The fourth earned its place immediately: it found `I-127` used twice, because
+the ledger's ids are not dense and counting its rows is not the same as reading
+its highest id. The Reset defect is `I-128`.
+
+## 20M.9 The difficulty model, and 45 words that moved
+
+`_concreteness` returned an abstract template's weight and stopped, so a word
+was called unpicturable **for having an opposite**. The full account is in
+I-126; what belongs here is the shape of the correction, because it took three
+drafts and two of them would have shipped a worse corpus than the bug did.
+
+| draft | rule | words moved | verdict |
+| --- | --- | --- | --- |
+| 1 | any abstract template may be argued with by its parts | 414, all downward | **wrong.** 대출, 전세, 계약서, 수수료 fell out of the high twenties |
+| 2 | picturable poles count everywhere | 335 | **wrong.** 사망 `solo:cross`, 좀비 `solo:dark`, 스트레스 `solo:heavy` — a pole used as an icon hint |
+| 3 | `cmp:`/`seq:`, two parts, both drawable, adjective or plain verb | **45** | every one a picturable quality or bodily action |
+
+The habit worth keeping from that table: the first draft *looked* like a fix —
+it moved the words the issue named — and it moved nine times as many that nobody
+had asked about. A model change is only as good as the diff nobody reads, so the
+diff was read: all 45, by hand.
+
+I-126 stays **PARTIAL**. Ten of the twelve concreteness anchors still do work,
+because the model now puts 길다 at 9 and the editorial anchor says 3 — and that
+residual gap is the *frequency* term under-ranking first-semester adjectives,
+which is I-04's territory. `build_vocabulary` now reports any override the model
+has come to agree with, so an anchor that has stopped deciding anything can be
+retired rather than quietly outliving its reason.
 
 # 21. Issues
 
