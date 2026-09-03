@@ -266,14 +266,39 @@ function nieun(left: number, right: number, top = 16, bottom = 78): StrokeStep {
   ]);
 }
 
-/** The two strokes of a ㄷ: the lid, then the ㄴ under it. */
+/**
+ * The two strokes of a ㄷ: the lid, then the ㄴ under it.
+ *
+ * ## The corner has to be one point, not two near ones
+ *
+ * The ㄴ used to start at `[left, 22]` while the lid started at `[left, 20]`,
+ * two units below it, and that is a notch you can see. Both are stroked
+ * centrelines with butt caps: the lid's ink begins at x = `left` and runs
+ * right, while the ㄴ's ink is half a pen wide *either side* of `left`. Where
+ * the ㄴ has not started yet — the two units under the lid's own top edge —
+ * nothing covers its outer half, so the letter's top-left corner is bitten out
+ * in a square about half a pen wide and two units deep.
+ *
+ * `strokeVectors` does close a corner: an end that meets another stroke's end
+ * is extended by half a pen, and only the *later* stroke is extended, so a
+ * finished stroke never grows towards one not yet written. That is the right
+ * rule and it cannot help here, because the extension runs along the stroke's
+ * own tangent — it lengthens the ㄴ upwards and never moves the lid leftwards.
+ * A flush corner needs the two centrelines to *start at the same point*, which
+ * is how ㅁ and ㅂ were authored and why they have never had this defect.
+ *
+ * Measured, at 512 px over the 100-unit box: the junction square at the lid's
+ * start was 90% inked before this and is 100% after. The same two units cost
+ * ㄹ's waist junction 48% of its square, because there the notch is bounded on
+ * three sides.
+ */
 function digeut(left: number, right: number): StrokeStep[] {
   return [
     stroke([
       [left, 20],
       [right, 20],
     ]),
-    nieun(left, right, 22, 78),
+    nieun(left, right, 20, 78),
   ];
 }
 
@@ -677,7 +702,28 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
       upright below it and the letter stepped in at the top left and again at
       the bottom right, which `letters:face` reads as the left edge of ㄹ
       carrying ink for half its height where the face carries it for all of it.
-      So the bars that end in open paper are given that half pen. On the right
+      So the bar that ends in *open paper* is given that half pen — which is
+      the top bar, and only the top bar.
+
+      The waist does not end in open paper: the lower ㄴ starts there. It used to
+      be authored at 18.7 like the top bar, with the ㄴ's stem at 22 and its top
+      two units lower again, and those two small offsets were a notch — 52% of
+      its junction square was blank, the worst in the curriculum. So the waist
+      and the stem now begin at the *same point*, 22, and the corner is solid.
+      The waist loses nothing by starting 3.3 further right: 22 is the stem's
+      centreline and the stem's ink runs from 17.5, so the waist's square end is
+      under it either way and the letter's left edge is unchanged.
+
+      Moving the *stem* to 22 + half a pen instead was tried and was wrong, and
+      the reason is worth keeping: `shapeToFace` scales the authored letter and
+      **not the pen**, so a half-pen offset typed in authored units is not half
+      a pen once the letter has been fitted to the face's proportions. Measured,
+      the 4.5 became 6.09 and the top bar came out 1.6 units proud of the stem —
+      `letters:face` read it immediately as a left stem that no longer stands
+      against the letter's edge. A number that means "half a pen" cannot be
+      written down here; a coincident point can.
+
+      On the right
       the waist does not end in open paper at all: it runs into the foot of the
       leg above it, so it stops **on** that leg's centreline at 76 and
       `strokeVectors` closes the corner by extending it half a pen, which lands
@@ -690,8 +736,8 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
       clear of the letter's right edge.
     */
     stroke([[18.7, 16], [76, 16], [76, 44]]),
-    stroke([[18.7, 46], [76, 46]]),
-    stroke([[22, 48], [22, 82], [80.8, 82]]),
+    stroke([[22, 46], [76, 46]]),
+    stroke([[22, 46], [22, 82], [80.8, 82]]),
   ],
   ㅁ: [
     // Left upright, then top-and-right in one turn, then the base. Three
@@ -746,10 +792,15 @@ export const STROKE_ORDER: Record<string, StrokeStep[]> = {
   // bar's, and runs right to cross the leg. Set in from that edge it hung in
   // open paper with nothing on either end of it.
   ㅋ: [giyeok(20, 78, 18, 84), stroke([[20, 49], [74, 49]])],
+  // The upright starts *on* the top bar's own start, not two units under it:
+  // see `digeut` for the notch that opens at the upper-left corner otherwise.
+  // The middle bar starts at 26, inside the upright's ink rather than on its
+  // centreline, which is a `join` and needs no such alignment — its square end
+  // is under the upright either way.
   ㅌ: [
     stroke([[24, 18], [80, 18]]),
     stroke([[26, 48], [80, 48]]),
-    stroke([[24, 20], [24, 80], [80, 80]]),
+    stroke([[24, 18], [24, 80], [80, 80]]),
   ],
   // The two uprights stand at 0.28 and 0.72 across the ink, not 0.22 and 0.78:
   // Pretendard sets them a little inside where they were authored, and pushed

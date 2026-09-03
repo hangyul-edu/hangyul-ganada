@@ -194,6 +194,11 @@ const TETHER_AT = 1.2;
  * identical on a 320 px phone, a tablet, the QA contact sheet and the grading
  * mask — and cannot drift between them.
  */
+/** Where a stroke's badge points: the point the pen lands on. */
+function anchor(stroke: VectorStroke): { x: number; y: number } {
+  return { x: stroke.start[0], y: stroke.start[1] };
+}
+
 export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMarker[] {
   /*
    * How near the edge of the box a disc may be drawn: touching it, not inset
@@ -213,8 +218,52 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
   // point offering the search a rung it can never accept.
   const clear = (PEN / 2 + radius * (1 + INK_MARGIN)) / radius;
 
-  for (const stroke of strokes) {
-    const anchor = { x: stroke.start[0], y: stroke.start[1] };
+  /**
+   * How many places a stroke's badge could go if it were the only badge.
+   *
+   * Counted against the ink alone — the other discs are not placed yet — so it
+   * measures how boxed in an anchor is by the letter itself.
+   */
+  const room = (stroke: VectorStroke): number => {
+    const away = Math.atan2(-stroke.heading[1], -stroke.heading[0]);
+    let n = 0;
+    for (const step of REACH_STEPS) {
+      for (const turn of TURNS) {
+        const angle = away + (turn * Math.PI) / 180;
+        const label = {
+          x: clamp(anchor(stroke).x + Math.cos(angle) * radius * (clear + step), edge, 100 - edge),
+          y: clamp(anchor(stroke).y + Math.sin(angle) * radius * (clear + step), edge, 100 - edge),
+        };
+        if (clearanceAt(label, stroke, strokes, [], radius) >= 0) n += 1;
+      }
+    }
+    return n;
+  };
+
+  /*
+   * Crowded strokes choose first.
+   *
+   * The badges used to be placed in stroke order, which is the order they are
+   * *read* and has nothing to do with how much room each one has. A stroke with
+   * one narrow window then lost it to a stroke that had twenty, and ended up at
+   * the far end of the ladder with a long tether across the block.
+   *
+   * 꽃 is where it showed. Eight strokes in one box; when the ㅗ's stem moved to
+   * clear the ㄲ (see `separateColliding`), badge 3 took the pocket under the
+   * consonant and badge 5 — the ㅊ's tick, whose anchor is the most enclosed
+   * point in the whole curriculum — was pushed to 4.35 radii, past the fence
+   * `strokeMarkers.test.ts` holds at 4.25.
+   *
+   * So the *order of choosing* is separated from the order of reading: fewest
+   * options first, then sorted back into stroke order to be drawn. It is the
+   * standard answer to a packing problem and it costs nothing anywhere else —
+   * a stroke with plenty of room still has plenty after a crowded one has
+   * taken its window.
+   */
+  const order = [...strokes].sort((a, b) => room(a) - room(b));
+
+  for (const stroke of order) {
+    const at = anchor(stroke);
     // Back down the stroke's own opening direction: the badge sits where the
     // hand comes from, not where it is going.
     const away = Math.atan2(-stroke.heading[1], -stroke.heading[0]);
@@ -228,8 +277,8 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
       for (const turn of TURNS) {
         const angle = away + (turn * Math.PI) / 180;
         const label = {
-          x: clamp(anchor.x + Math.cos(angle) * radius * reach, edge, 100 - edge),
-          y: clamp(anchor.y + Math.sin(angle) * radius * reach, edge, 100 - edge),
+          x: clamp(at.x + Math.cos(angle) * radius * reach, edge, 100 - edge),
+          y: clamp(at.y + Math.sin(angle) * radius * reach, edge, 100 - edge),
         };
         const clearance = clearanceAt(label, stroke, strokes, placed, radius);
         if (clearance >= 0) {
@@ -246,16 +295,17 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
       if (settled) break;
     }
 
-    const label = best ?? { x: anchor.x, y: anchor.y };
+    const label = best ?? { x: at.x, y: at.y };
     placed.push({
       order: stroke.order,
-      anchor,
+      anchor: at,
       label,
-      tethered: Math.hypot(label.x - anchor.x, label.y - anchor.y) > radius * TETHER_AT,
+      tethered: Math.hypot(label.x - at.x, label.y - at.y) > radius * TETHER_AT,
     });
   }
 
-  return placed;
+  // Placed by crowding, returned in the order the learner reads them.
+  return placed.sort((a, b) => a.order - b.order);
 }
 
 /**

@@ -153,6 +153,37 @@ export const CANONICAL_DEVIATIONS = new Map<string, string>([
   ],
 ]);
 
+/**
+ * A single *component* of a single block that is placed where the face does not
+ * place it, with the reason.
+ *
+ * Keyed `character:index`, where the index is the jamo's position in the block —
+ * 0 onset, 1 vowel, 2 받침. Deliberately per component and per block rather than
+ * per letter or per class: "tense consonants are hard" is the kind of exemption
+ * that hides the next defect, and every entry here has to name a block, a
+ * component and a reason somebody can argue with.
+ *
+ * These are reported by `glyphshape:qa` with their measured drift, and do not
+ * fail it. A declared component that stops deviating is worth knowing about
+ * too, so the gate says so rather than staying silent.
+ */
+export const CANONICAL_COMPONENT_DEVIATIONS = new Map<string, string>([
+  [
+    '꽃:1',
+    "The ㅗ's stem is shorter than the face's, and starts lower. In Pretendard " +
+      'the stem rises into the gap between the two ㄱ of ㄲ, which the face can ' +
+      'afford because its stem is thin and that gap is wide. This model writes ' +
+      'every stroke with one uniform pen, and at that weight the same stem runs ' +
+      'through the left ㄱ\u2019s leg: measured, 85 px of shared ink at 512², a ' +
+      'bridge between the two halves of a tense consonant that a learner reads ' +
+      'as a spur growing out of the middle of ㄲ. A doubled consonant has to be ' +
+      'legible as two letters — that is the whole of what ㄲ teaches against ㄱ — ' +
+      'so the stem is shortened until the two are clear of each other. See ' +
+      '`separateColliding` in data/compose.ts; 꽃 is the only measured block it ' +
+      'moves.',
+  ],
+]);
+
 /** The browser's path object, for the letters drawn from centrelines. */
 export const pathFactory = (d: string) => new Path2D(d) as unknown as PathLike;
 

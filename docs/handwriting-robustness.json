@@ -13,7 +13,7 @@
  ],
  "genuine_attempts": 2880,
  "wrong_attempts": 2172,
- "false_rejection_rate": 0.00937,
+ "false_rejection_rate": 0.00972,
  "false_acceptance_rate": 0,
  "per_font": [
   {
@@ -66,7 +66,7 @@
   },
   {
    "font": "gaegu",
-   "frr": 0.01458,
+   "frr": 0.01667,
    "far": 0,
    "rejected": [
     "ㄱ/stopped short",
@@ -74,6 +74,7 @@
     "ㄷ/stopped short",
     "ㄹ/stopped short",
     "ㅋ/stopped short",
+    "ㄸ/small and drifted",
     "ㅉ/drifted −3%",
     "ㅉ/stopped short"
    ],

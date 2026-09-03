@@ -290,6 +290,14 @@ interface Measured {
 const MEASURED = COMPOSITION.syllables as unknown as Record<string, Measured>;
 
 /**
+ * How much clear paper two stacked letters keep between them, in block units.
+ *
+ * One pen, because two centrelines a full pen apart are two strokes whose ink
+ * just fails to touch. See `separateColliding`.
+ */
+const STACK_CLEARANCE = PEN;
+
+/**
  * The measured boxes for a syllable, as regions of the block.
  *
  * Two conversions. The glyph's ink is not square, so its coordinates are mapped
@@ -616,17 +624,18 @@ export function composeSyllableStrokes(syllable: string): StrokeStep[] {
     // and the reference character come out as the same letter in the same
     // proportions, and holding a letter back from its box could only make them
     // differ.
-    const out: StrokeStep[] = [
-      ...fit(written!.strokes, measured[0]!, { keepShape: false }),
-      ...fit(strokesOf(medial!), measured[1]!, {
-        keepShape: false,
-        anchorX: branchesLeft(medial!) ? 'end' : 'start',
-      }),
-    ];
-    if (final && measured[2]) {
-      out.push(...fit(writtenFinal!.strokes, measured[2], { keepShape: false }));
-    }
-    return setOnPaper(out);
+    const draw = (regions: Region[]): StrokeStep[][] => {
+      const parts = [
+        fit(written!.strokes, regions[0]!, { keepShape: false }),
+        fit(strokesOf(medial!), regions[1]!, {
+          keepShape: false,
+          anchorX: branchesLeft(medial!) ? 'end' : 'start',
+        }),
+      ];
+      if (final && regions[2]) parts.push(fit(writtenFinal!.strokes, regions[2], { keepShape: false }));
+      return parts;
+    };
+    return setOnPaper(separateColliding(measured, draw).flat());
   }
 
   const out: StrokeStep[] = [
@@ -668,4 +677,123 @@ export function composeSyllableStrokes(syllable: string): StrokeStep[] {
     out.push(...fit(writtenFinal!.strokes, layout.final, { keepShape: true }));
   }
   return setOnPaper(out);
+}
+
+/**
+ * Keeps two letters of a block from sharing ink, by measuring the ink.
+ *
+ * ## The block this exists for
+ *
+ * 꽃. The face's measured boxes put the onset at y 0…0.343 and the vowel at
+ * 0.227…0.486 — they *overlap*, by a ninth of the block. That is not a bad
+ * measurement: in Pretendard the ㅗ's stem really does rise between the two ㄱ
+ * of ㄲ, and a bounding box around a part is bound to include it. The face gets
+ * away with it because its stem is thin and the gap between the ㄱ is wide.
+ *
+ * This model draws every stroke with one uniform pen and lays the ㄲ out to its
+ * own measured width, so the same arrangement puts the stem's ink *through* the
+ * left ㄱ's leg — measured, 85 px of shared ink at 512², a bridge three units
+ * tall between the two halves of the tense consonant. On screen it reads as a
+ * spur growing out of the middle of ㄲ, which is what QA photographed.
+ *
+ * ## Why this is driven by ink and not by the boxes
+ *
+ * Separating the *boxes* was the first attempt and it was wrong on blocks that
+ * are perfectly fine. 고 is a ㄱ over a ㅗ, and the ㄱ's leg comes down beside
+ * the ㅗ's stem, so their boxes overlap by nearly half the block while their ink
+ * never touches — the two are interlocked, not colliding, and that interlock is
+ * what makes the block read as one character. Pushing the vowel's box clear of
+ * the consonant's took 고's ㅗ down to a bar with no stem at all, and the
+ * guide/demonstration gate correctly reported that the two were now teaching
+ * different shapes.
+ *
+ * So the question is asked of the strokes: do any two segments of two different
+ * letters come closer than a pen? Only 꽃, of the thirty-three measured blocks,
+ * answers yes.
+ *
+ * ## What is moved, and how far
+ *
+ * The lower letter's box is shortened from the top, a quarter of a pen at a
+ * time, and the block is redrawn and re-measured. Only the top edge moves, so
+ * the vowel's bar stays exactly where the face put it and only its stem
+ * shortens — which is the part of ㅗ that was in the wrong place. 꽃 settles
+ * after two steps.
+ *
+ * The letter is never shortened past a pen of its own height: a part that could
+ * only be freed by deleting it is a measurement problem, and this leaves the
+ * collision in place for `glyph:structure` to fail on rather than quietly
+ * shipping a block with a letter missing.
+ */
+const SEPARATION_STEPS = 12;
+
+function separateColliding(
+  regions: Region[],
+  draw: (regions: Region[]) => StrokeStep[][],
+): StrokeStep[][] {
+  const adjusted = regions.map((region) => ({ ...region }));
+  let parts = draw(adjusted);
+  for (let step = 0; step < SEPARATION_STEPS; step += 1) {
+    let moved = false;
+    for (let below = 1; below < parts.length; below += 1) {
+      for (let above = 0; above < below; above += 1) {
+        if (!partsCollide(parts[above]!, parts[below]!)) continue;
+        const box = adjusted[below]!;
+        const floor = box.y1 - PEN;
+        if (box.y0 >= floor) continue;
+        box.y0 = Math.min(box.y0 + PEN / 4, floor);
+        moved = true;
+      }
+    }
+    if (!moved) break;
+    parts = draw(adjusted);
+  }
+  return parts;
+}
+
+/** Whether any segment of one letter comes within a pen of any of the other. */
+function partsCollide(a: StrokeStep[], b: StrokeStep[]): boolean {
+  for (const one of a) {
+    for (let i = 1; i < one.points.length; i += 1) {
+      for (const other of b) {
+        for (let j = 1; j < other.points.length; j += 1) {
+          if (
+            segmentDistance(one.points[i - 1]!, one.points[i]!, other.points[j - 1]!, other.points[j]!) <
+            PEN - STACK_CLEARANCE / 8
+          ) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
+
+/** Shortest distance between two line segments. */
+function segmentDistance(
+  p1: { x: number; y: number },
+  p2: { x: number; y: number },
+  q1: { x: number; y: number },
+  q2: { x: number; y: number },
+): number {
+  return Math.min(
+    pointToSegment(p1, q1, q2),
+    pointToSegment(p2, q1, q2),
+    pointToSegment(q1, p1, p2),
+    pointToSegment(q2, p1, p2),
+  );
+}
+
+function pointToSegment(
+  p: { x: number; y: number },
+  a: { x: number; y: number },
+  b: { x: number; y: number },
+): number {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const len = dx * dx + dy * dy;
+  if (len === 0) return Math.hypot(p.x - a.x, p.y - a.y);
+  let t = ((p.x - a.x) * dx + (p.y - a.y) * dy) / len;
+  t = Math.max(0, Math.min(1, t));
+  return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
 }

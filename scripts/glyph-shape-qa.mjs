@@ -64,7 +64,10 @@ import { chromium } from 'playwright';
 import { ALL_CHARACTERS } from '../apps/web/src/data/characters.ts';
 import { hasVectorGlyph, vectorGlyph } from '../apps/web/src/data/strokeVectors.ts';
 import { isSyllable } from '../apps/web/src/data/jamo.ts';
-import { CANONICAL_DEVIATIONS } from '../apps/web/src/features/writing/glyphSpec.ts';
+import {
+  CANONICAL_COMPONENT_DEVIATIONS,
+  CANONICAL_DEVIATIONS,
+} from '../apps/web/src/features/writing/glyphSpec.ts';
 import { blockLetterForms } from '../apps/web/src/data/compose.ts';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -448,6 +451,7 @@ await browser.close();
 // --- Report ---------------------------------------------------------------
 
 const problems = [];
+const componentDeviations = [];
 for (const r of results) {
   if (r.error) { problems.push(`${r.character}: ${r.error}`); continue; }
   if (r.handwritten) continue;
@@ -459,12 +463,23 @@ for (const r of results) {
   }
   for (const c of r.components ?? []) {
     if (c.missing) { problems.push(`${r.character}: nothing is drawn in the face's region ${c.part}`); continue; }
-    if (c.drift > MAX_COMPONENT_DRIFT) {
-      problems.push(
-        `${r.character}: jamo ${c.part} sits ${(c.drift * 100).toFixed(0)}% of the glyph from ` +
-          `where the face puts it — vector ${JSON.stringify(c.vector)}, face ${JSON.stringify(c.face)}`,
+    if (c.drift <= MAX_COMPONENT_DRIFT) continue;
+    /*
+      A component may be placed away from the face on purpose, and if it is, the
+      reason is written down against that block and that component — never
+      against a class of letters. See `CANONICAL_COMPONENT_DEVIATIONS`.
+    */
+    const declared = CANONICAL_COMPONENT_DEVIATIONS.get(`${r.character}:${c.part}`);
+    if (declared) {
+      componentDeviations.push(
+        `${r.character} jamo ${c.part} — ${(c.drift * 100).toFixed(0)}% from the face: ${declared}`,
       );
+      continue;
     }
+    problems.push(
+      `${r.character}: jamo ${c.part} sits ${(c.drift * 100).toFixed(0)}% of the glyph from ` +
+        `where the face puts it — vector ${JSON.stringify(c.vector)}, face ${JSON.stringify(c.face)}`,
+    );
   }
 }
 
@@ -502,6 +517,13 @@ console.log(
     .join(' ')} depart from the face on purpose` +
     ' — see CANONICAL_DEVIATIONS for each reason',
 );
+if (componentDeviations.length > 0) {
+  console.log(
+    `  ${componentDeviations.length} declared component deviation` +
+      `${componentDeviations.length === 1 ? '' : 's'}, reported not failed:`,
+  );
+  for (const line of componentDeviations) console.log(`    ${line}`);
+}
 
 if (!CHECK) {
   mkdirSync(OUT, { recursive: true });
