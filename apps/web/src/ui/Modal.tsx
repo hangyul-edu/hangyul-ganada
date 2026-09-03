@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useSystemBack } from '../native/useSystemBack';
 import { CloseIcon } from './icons';
+import { lockScroll } from './scrollLock';
 import styles from './Modal.module.css';
 
 export interface ModalProps {
@@ -100,12 +101,19 @@ export function Modal({
     };
 
     document.addEventListener('keydown', onKeyDown, true);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    /*
+     * The counted lock, not this component's own save-and-restore.
+     *
+     * What was here locked `document.body`, which is not what scrolls in this
+     * app, and restored a remembered value — which is only correct while
+     * dialogs close in the order they opened. See `ui/scrollLock.ts` for the
+     * two ways that failed and the ordering that produced them.
+     */
+    const unlock = lockScroll();
 
     return () => {
       document.removeEventListener('keydown', onKeyDown, true);
-      document.body.style.overflow = previousOverflow;
+      unlock();
       returnFocusTo.current?.focus?.();
     };
   }, [open, onClose, dismissible]);

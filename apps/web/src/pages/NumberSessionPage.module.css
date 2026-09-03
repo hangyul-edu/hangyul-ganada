@@ -1,7 +1,28 @@
+/*
+ * Two rows: the header, and everything else — which scrolls.
+ *
+ * ## The defect this replaced
+ *
+ * A screenshot of a Numbers question with its orange **Continue** underneath
+ * the bottom of the screen and no way to reach it. The cause was structural
+ * rather than a missing padding: these screens sit under `FocusLayout`, which
+ * passes `scroll={false}` to `AppShell` because a learning screen is supposed
+ * to own its own scrolling — and this page then never claimed it. The shell
+ * handed it a fixed height with `overflow: hidden`, `.page` grew past it as a
+ * column, and the last row was clipped. Nothing scrolled anywhere, so no
+ * gesture could recover the button.
+ *
+ * `minmax(0, 1fr)` and not `1fr`: a grid track's automatic minimum is the size
+ * of its content, so a plain `1fr` row holding a long explanation refuses to
+ * shrink and the grid grows past the viewport again — the same failure reached
+ * from the other side. This is the rule `ui/FocusScreen` already states for the
+ * screens that use it; this page draws its own phases and now states it too.
+ */
 .page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
 }
 
 .body {
@@ -9,7 +30,19 @@
   flex-direction: column;
   gap: var(--hg-space-4);
   padding: var(--hg-space-4);
-  padding-bottom: calc(var(--hg-space-6) + var(--hg-safe-bottom));
+  /*
+   * The scroll owner, and the reservation for what sits under it.
+   *
+   * `space-8` rather than `space-6`: the last control on a question screen is
+   * the one a learner presses on every question, and it needs ordinary
+   * breathing room above the system's gesture bar rather than to end exactly at
+   * it. The safe-area inset is added on top, not instead.
+   */
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(var(--hg-space-8) + var(--hg-safe-bottom));
 }
 
 .note {

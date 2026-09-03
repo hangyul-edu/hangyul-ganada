@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 import { openApp } from './helpers/launch';
 
@@ -38,7 +38,7 @@ const SEED = {
   mistakes: [['character:ㅎ', { item_key: 'ㅎ', picked: 'ㅅ' }]],
 } as const;
 
-async function seed(page: import('@playwright/test').Page): Promise<void> {
+async function seed(page: Page): Promise<void> {
   await page.evaluate(async (rows) => {
     const open = indexedDB.open('hangyul-ganada');
     const db: IDBDatabase = await new Promise((resolve, reject) => {

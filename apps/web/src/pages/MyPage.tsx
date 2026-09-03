@@ -721,6 +721,7 @@ export function MyPage() {
               size="md"
               pill
               className={styles.dataReset}
+              data-testid="settings-reset-open"
               onClick={() => setConfirmReset(true)}
             >
               {t('settings:about.reset')}

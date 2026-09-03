@@ -2,7 +2,7 @@
   "name": "hangyul-ganada",
   "private": true,
   "version": "0.1.0",
-  "description": "Hangyul ganada \u2014 a Hangul letter-learning and handwriting practice app for Korean learners worldwide.",
+  "description": "Hangyul ganada — a Hangul letter-learning and handwriting practice app for Korean learners worldwide.",
   "workspaces": [
     "packages/*",
     "apps/web",
@@ -201,6 +201,8 @@
     "native:review:packs": "tsx scripts/build-native-review-packs.mjs",
     "back:coverage": "node scripts/check-back-coverage.mjs",
     "back:coverage:check": "node scripts/check-back-coverage.mjs --check",
+    "scroll:audit": "node scripts/check-reachable-actions.mjs",
+    "scroll:audit:check": "node scripts/check-reachable-actions.mjs --check",
     "legal:isolation": "node scripts/check-legal-isolation.mjs",
     "legal:isolation:check": "node scripts/check-legal-isolation.mjs --check",
     "numbers:copy": "node scripts/check-numbers-copy.mjs",

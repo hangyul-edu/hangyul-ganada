@@ -147,7 +147,7 @@ export function NumberSessionPage() {
     return (
       <div className={styles.page}>
         <AppHeader title={title} onBack={back} />
-        <div className={styles.body} data-testid="numbers-phase-objective">
+        <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-objective">
           <Card tone="warm" padding="md" className={styles.objective}>
             <p className={styles.phaseLabel}>{t('numbers:phase.objective')}</p>
             <p className={styles.note}>{t(`numbers:${lesson.objective}`)}</p>
@@ -185,6 +185,7 @@ export function NumberSessionPage() {
             `pages/NumbersPage`.
           */}
           <Button
+            data-testid="numbers-start"
             onClick={() => {
               const next = resumePhase(record, lesson);
               goto(next === 'objective' ? 'explain' : next);
@@ -204,7 +205,7 @@ export function NumberSessionPage() {
     return (
       <div className={styles.page}>
         <AppHeader title={title} onBack={back} />
-        <div className={styles.body} data-testid="numbers-phase-explain">
+        <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-explain">
           <PhaseProgress
             label={t('numbers:phase.explain')}
             detail={t('numbers:stepOf', { current: step + 1, total: steps.length })}
@@ -233,7 +234,7 @@ export function NumberSessionPage() {
     return (
       <div className={styles.page}>
         <AppHeader title={title} onBack={back} />
-        <div className={styles.body} data-testid="numbers-phase-examples">
+        <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-examples">
           <PhaseProgress
             label={t('numbers:phase.examples')}
             detail={t('numbers:stepOf', { current: step + 1, total: items.length })}
@@ -283,7 +284,7 @@ export function NumberSessionPage() {
   return (
     <div className={styles.page}>
       <AppHeader title={title} onBack={back} />
-      <div className={styles.body} data-testid="numbers-phase-summary" data-complete={complete}>
+      <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-summary" data-complete={complete}>
         <FeedbackState
           status={complete ? 'correct' : 'incorrect'}
           headline={t(complete ? 'numbers:summaryComplete' : 'numbers:summaryIncomplete')}
@@ -485,7 +486,7 @@ function ExerciseRun({
     return (
       <div className={styles.page}>
         <AppHeader title={title} onBack={onBack} />
-        <div className={styles.body}>
+        <div className={styles.body} data-scroll-region="numbers">
           <Button onClick={onDone}>{t('numbers:action.continue')}</Button>
         </div>
       </div>
@@ -496,7 +497,7 @@ function ExerciseRun({
     return (
       <div className={styles.page}>
         <AppHeader title={title} onBack={onBack} />
-        <div className={styles.body} data-testid={`numbers-phase-${phase}-intro`}>
+        <div className={styles.body} data-scroll-region="numbers" data-testid={`numbers-phase-${phase}-intro`}>
           <Card tone="warm" padding="md">
             <p className={styles.phaseLabel}>{t(`numbers:phase.${phase === 'review' ? 'practice' : phase}`)}</p>
             <p className={styles.note}>
@@ -549,7 +550,7 @@ function ExerciseRun({
   return (
     <div className={styles.page}>
       <AppHeader title={title} onBack={onBack} />
-      <div className={styles.body} data-testid={`numbers-phase-${phase}`} data-exercise-kind={exercise.kind}>
+      <div className={styles.body} data-scroll-region="numbers" data-testid={`numbers-phase-${phase}`} data-exercise-kind={exercise.kind}>
         <PhaseProgress
           label={t(`numbers:phase.${phase === 'review' ? 'practice' : phase}`)}
           detail={t('numbers:questionOf', { current: index + 1, total: exercises.length })}
