@@ -62,8 +62,25 @@ function chevron(page: Page) {
   return page.getByTestId('app-back');
 }
 
-async function at(page: Page): Promise<string> {
-  return page.evaluate(() => window.location.pathname);
+/**
+ * Where the learner is, once the browser has settled there.
+ *
+ * Polled, not sampled, and the difference is a real one. Two of the outcomes
+ * the policy can produce — `pop` and `replace` — go through the History API,
+ * and `history.go(-1)` is asynchronous by specification: it queues a traversal
+ * and returns, so the location a test reads on the very next line is the one it
+ * started from. Sampling passed on an idle machine and failed inside
+ * `verify:release`, where the same press lands on a browser with fifty gates'
+ * worth of work behind it, reporting `/me/activity` for a Back that had
+ * correctly been resolved as a pop.
+ *
+ * A press that does nothing still fails, because the poll runs out at the
+ * expect timeout with the wrong path.
+ */
+async function expectAt(page: Page, path: string): Promise<void> {
+  await expect
+    .poll(() => page.evaluate(() => window.location.pathname), { timeout: 5_000 })
+    .toBe(path);
 }
 
 test.describe('back from Home', () => {
@@ -82,7 +99,7 @@ test.describe('back from Home', () => {
 
     await page.getByTestId('exit-stay').click();
     await expect(dialog).toHaveCount(0);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
   });
 
   test('offers the exit after a walk through the tabs, not a walk back through them', async ({
@@ -97,10 +114,10 @@ test.describe('back from Home', () => {
     await tab(page, 'words').click();
     await tab(page, 'letters').click();
     await tab(page, 'review').click();
-    expect(await at(page)).toBe('/review');
+    await expectAt(page, '/review');
 
     await hardwareBack(page);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
 
     await hardwareBack(page);
     await expect(page.getByRole('dialog')).toBeVisible();
@@ -122,11 +139,11 @@ test.describe('back from a bottom-tab root', () => {
       await openApp(page, tab);
       await expect(chevron(page)).toHaveCount(1);
       await chevron(page).click();
-      expect(await at(page)).toBe('/');
+      await expectAt(page, '/');
 
       await openApp(page, tab);
       await hardwareBack(page);
-      expect(await at(page)).toBe('/');
+      await expectAt(page, '/');
     });
   }
 
@@ -134,7 +151,7 @@ test.describe('back from a bottom-tab root', () => {
     await openApp(page, '/');
     await tab(page, 'letters').click();
     await chevron(page).click();
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
 
     await hardwareBack(page);
     await expect(page.getByRole('dialog')).toBeVisible();
@@ -145,16 +162,16 @@ test.describe('back from a nested screen', () => {
   test('returns to the screen the learner came from', async ({ page }) => {
     await openApp(page, '/me');
     await page.getByRole('link', { name: copy('settings', 'privacy.title') }).click();
-    expect(await at(page)).toBe('/me/privacy');
+    await expectAt(page, '/me/privacy');
 
     await chevron(page).click();
-    expect(await at(page)).toBe('/me');
+    await expectAt(page, '/me');
   });
 
   test('uses the declared parent when deep-linked with no history of ours', async ({ page }) => {
     await openApp(page, '/me/privacy');
     await hardwareBack(page);
-    expect(await at(page)).toBe('/me');
+    await expectAt(page, '/me');
   });
 
   test('returns Learning activity to Home when that is where it was opened from', async ({
@@ -167,10 +184,10 @@ test.describe('back from a nested screen', () => {
     */
     await openApp(page, '/');
     await page.getByTestId('home-streak').click();
-    expect(await at(page)).toBe('/me/activity');
+    await expectAt(page, '/me/activity');
 
     await hardwareBack(page);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
   });
 });
 
@@ -179,10 +196,10 @@ test.describe('back from a sitting', () => {
     await openApp(page, '/words');
     await page.getByTestId('start-today').click();
     await page.getByTestId('placement-skip').click().catch(() => {});
-    expect(await at(page)).toBe('/words/today');
+    await expectAt(page, '/words/today');
 
     await hardwareBack(page);
-    expect(await at(page)).toBe('/words');
+    await expectAt(page, '/words');
   });
 
   test("Today's Vocabulary opened from a deep link still returns to Words", async ({ page }) => {
@@ -190,7 +207,7 @@ test.describe('back from a sitting', () => {
     await page.getByTestId('placement-skip').click().catch(() => {});
 
     await hardwareBack(page);
-    expect(await at(page)).toBe('/words');
+    await expectAt(page, '/words');
   });
 
   test('a Numbers lesson returns to the Numbers course, then Letters, then Home', async ({
@@ -198,13 +215,13 @@ test.describe('back from a sitting', () => {
   }) => {
     await openApp(page, '/letters/numbers/num-lesson-sino-basics');
     await hardwareBack(page);
-    expect(await at(page)).toBe('/letters/numbers');
+    await expectAt(page, '/letters/numbers');
 
     await hardwareBack(page);
-    expect(await at(page)).toBe('/letters');
+    await expectAt(page, '/letters');
 
     await hardwareBack(page);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
   });
 });
 
@@ -216,7 +233,7 @@ test.describe('a modal answers before the route does', () => {
 
     await hardwareBack(page);
     await expect(page.getByRole('dialog')).toHaveCount(0);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
   });
 });
 
@@ -234,11 +251,11 @@ test.describe('the browser’s own back and forward', () => {
     */
     await page.goBack();
     await waitForLaunch(page);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
 
     await page.goForward();
     await waitForLaunch(page);
-    expect(await at(page)).toBe('/review');
+    await expectAt(page, '/review');
   });
 
   test('the first tab tap does not replace Home, so Back stays inside the app', async ({ page }) => {
@@ -252,6 +269,6 @@ test.describe('the browser’s own back and forward', () => {
 
     await page.goBack();
     await waitForLaunch(page);
-    expect(await at(page)).toBe('/');
+    await expectAt(page, '/');
   });
 });
