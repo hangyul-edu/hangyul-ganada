@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `126e27ab` on branch `main`, **with a clean working tree at
+**Source:** commit `22b048aa` on branch `main`, **with a clean working tree at
 the moment the packages were compiled**. This is the line that was wrong last
 time and is the reason `I-01` was reopened: the previous artefacts recorded
 `"dirty": true` beside their commit, with 440 changed and 595 untracked files,
@@ -20,7 +20,7 @@ it counts are the delivery files themselves. What matters — that no
 *product* file differs from the commit — is what `release:current` checks and
 reports, and it is green.
 
-Rebuilt eight times over this pass as later commits landed, and the digests
+Rebuilt ten times over this pass as later commits landed, and the digests
 below are the last of them — the fourth because backup and restore landed after
 the third, which is exactly the case `version:check` now refuses to let past as
 a reused versionCode. The level-test bank, `curriculum.json` and
@@ -73,9 +73,9 @@ each has exactly one defensible answer.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, **versionCode 8**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
-| Why 8 | versionCodes 4, 5, 6 and 7 are spent, each by an artefact that was actually produced. 8 is this one: the Numbers feedback architecture, the scroll ownership fix, the section alignment and the PDF repair all landed after 7 was built. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
-| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 8, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
+| Package | `com.talkhangyul.ganada`, **versionCode 9**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
+| Why 9 | versionCodes 4 through 8 are spent, each by an artefact that was actually produced. 9 is this one: 8 was built before the corpus-loading guard that stopped a level-30 plan announcing itself finished on a cold load. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
+| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 9, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
 
 ## What was run against this tree, after the last product edit
 
@@ -132,8 +132,8 @@ lesson, a vocabulary sitting, the Numbers course and the Level Test.
 ## Checksums
 
 ```
-b953bcb86da997c271cb8c5c492ccb7e75aa71e8c64cfa7814ebf4d59a0d8e26  hangyul-ganada-release.apk
-6d0667f8486c196d9ad52c72d3821e528d5ca76782e330040c1ae21bf144629f  hangyul-ganada-release.aab
-6eaa037e85815ee6c493828aa9b9462ba933bc52f91d32fb70162c5069e22e4e  docs/report.pdf
-cd438d8fbc375886b3a784ac2dc4295ce3482dff9ca9fc9803fb4d3f69f223c1  build-info.json
+7777b402acb2097313714215b747f1422556bee7af1812ccfbca8419f7914da0  hangyul-ganada-release.apk
+86b00c972940ab810d5f39bfe5c457e197f68a925e7ff7d7cfe5cfbe28bab619  hangyul-ganada-release.aab
+3b4140ffc667828ed3a21238061d110f1d993fe30a11e3b654380cb4b798e46d  docs/report.pdf
+720204510022e8d5eca74836cc17d86afaef83551222e8704bc2fbc662b3474a  build-info.json
 ```

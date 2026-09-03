@@ -1627,8 +1627,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.7 MB** (87,763,918 B), `b953bcb86da997c2…` |
-| Release AAB | **82.0 MB** (85,973,151 B), `6d0667f8486c196d…` |
+| Release APK | **83.7 MB** (87,763,942 B), `7777b402acb20973…` |
+| Release AAB | **82.0 MB** (85,973,157 B), `86b00c972940ab81…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -4092,7 +4092,7 @@ naming the artefact that spent it.
 | `translation:semantics` · `locale:content` · `vocabulary:sense` · `vocabulary:translation` | green |
 | `content:vocabulary` · `content:corpus` · `content:coverage` | up to date and rebuilt |
 | `typecheck` · `lint` | clean across all workspaces |
-| `version:check` | 1.0.2, build 8, every file agreeing |
+| `version:check` | 1.0.2, build 9, every file agreeing |
 
 Eight gates were negative-tested by restoring the behaviour they were written to
 catch, and all eight failed as they should: the marker placement, the legal
@@ -4144,13 +4144,13 @@ untracked files, so no commit described what was in them.
 | | |
 | --- | --- |
 | `versionName` · `CFBundleShortVersionString` | **1.0.2**, unchanged |
-| Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **8** — 3 through 7 are spent, each by an artefact that was actually produced |
+| Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 87,763,918 bytes (83.7 MiB) |
-| APK sha256 | `b953bcb86da997c271cb8c5c492ccb7e75aa71e8c64cfa7814ebf4d59a0d8e26` |
-| AAB | 85,973,151 bytes (82.0 MiB) |
-| AAB sha256 | `6d0667f8486c196d9ad52c72d3821e528d5ca76782e330040c1ae21bf144629f` |
+| APK | 87,763,942 bytes (83.7 MiB) |
+| APK sha256 | `7777b402acb2097313714215b747f1422556bee7af1812ccfbca8419f7914da0` |
+| AAB | 85,973,157 bytes (82.0 MiB) |
+| AAB sha256 | `86b00c972940ab810d5f39bfe5c457e197f68a925e7ff7d7cfe5cfbe28bab619` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -5065,7 +5065,7 @@ reading of all 1,509 predicates.
 
 **Why not releasable from this tree.** The commit problem is fixed: this
 edition's artefacts were built from a clean checkout of a named commit, at
-versionCode 8 because 3 through 7 were spent, and `release:current` was not weakened to
+versionCode 9 because 3 through 8 were spent, and `release:current` was not weakened to
 say so. What remains are five limitations. None is a defect, all five are
 things a buyer is entitled to know before release, and the fifth is new to this
 edition:
