@@ -2,8 +2,8 @@
 
 A resumable ledger for the v1.0.2 final-launch pass. One section per workstream,
 with the commit that closed it. Written because this pass has already been
-interrupted twice: a session that dies mid-pass must be able to tell finished
-work from work that merely started, without redoing either.
+interrupted three times: a session that dies mid-pass must be able to tell
+finished work from work that merely started, without redoing either.
 
 Narrative belongs in `docs/report.md`. This file stays a checklist.
 
@@ -11,62 +11,54 @@ Narrative belongs in `docs/report.md`. This file stays a checklist.
 
 ---
 
-## State at resume (3 September 2026, third pass)
+## State at resume (4 September 2026, fourth pass)
 
 | | |
 | --- | --- |
 | Branch | `main`, upstream `origin/main` |
 | Remote | `git@github.com:hangyul-edu/hangyul-ganada.git` |
-| Task-owned processes at resume | none. The previous footer's *1 shell still running* was the harness's own shell; `ps` showed only `unattended-upgrade-shutdown`, a system process from before this task |
-| Highest versionCode used | 7 at resume, **9** now |
+| Resumed from | `306dde1a`, tree clean, no task-owned processes |
+| Highest versionCode used | 9 at resume |
+
+Two screenshots were named in the brief — a notched ㅌ and a malformed 꽃 — and
+neither the files nor the images were on this machine or attached to the
+session. Both were reproduced from their written descriptions, which turned out
+to be precise enough to find the geometry at fault in each case; the
+reproductions are recorded in §20O.1 and §20O.2 with the measurements that
+confirmed them. The same applies to `report(20260903-120755).pdf`: not present
+anywhere on this filesystem, and `docs/report.pdf` (later than that timestamp)
+was used as the newest report instead.
 
 ## Completed and committed, this pass
 
 | Workstream | Commit | Verification |
 | --- | --- | --- |
-| Numbers feedback architecture — 사는 4예요 removed | `29d84ad9` | `copy:generated` 43,744 strings; negative-tested (7,927 findings) |
-| Scroll ownership, tab bar, section alignment, Privacy stability | `4af4d928` | 31 + 108 + 240 rendered measurements; three negative tests |
-| Report contradictions and the PDF name tokens | `92b4a469` | `docs:consistency` 58 figures; four parsers silent |
-| versionCode 8 | `2ce5bd20` | `version:check` |
-| Build-8 delivery | `304ecc71` | `release:current` |
-| The 118-journey report follows its run | `ecbb18ae` | `synthetic:users:qa` |
-| The seven new Korean notes on the ledger | `7f0dbb1a` | `copy:ledger` 839 strings |
-| Blank ground measured against the app frame | `126e27ab` | both suites green on mobile and desktop |
-| Build-8 delivery rebuilt at the passing tests | `66c21b24` | `release:current` |
-| False completion on a slow band load | `034d67ff` | three consecutive level-change runs |
-| versionCode 9 | `22b048aa` | `version:check` |
-| Build-9 delivery | `890d0359` | `verify:release` green end to end |
+| Back navigation as one route table | `1a7d75fb` | `route:policy:check` 23/23, 17 e2e cases, 3 negative tests |
+| ㅌ and 꽃, and the structural gate | `9ded6810` | `glyph:structure` 73 items / 86 junctions / 0 exceptions, 5 negative tests, contact sheets reviewed |
+| Level-appropriate Today's Vocabulary | `a560b1d3` | `dailyplan:level` 4,500 plans, 0 outside the band, 2 negative tests |
+| Exactly-once crediting | `9fb5ee5f` | store case fails against the old rule by timing out on a counter that never reaches 1 |
+| Home row, backup copy, Numbers feedback and teaching | `c51370db` | `copy:generated` 29,248, `numbers:qa`, `numbers:copy`, `scroll:audit`, i18n |
 
-## The delivered build
+## Deliberately not landed, and why
 
-| | |
-| --- | --- |
-| Built from | `22b048aa` |
-| versionName · versionCode | 1.0.2 · **9** |
-| APK | 87,763,942 bytes · `7777b402acb2097313714215b747f1422556bee7af1812ccfbca8419f7914da0` |
-| AAB | 85,973,157 bytes · `86b00c972940ab810d5f39bfe5c457e197f68a925e7ff7d7cfe5cfbe28bab619` |
-| Signature schemes | v2 + v3 |
-| Certificate | `157a2bb133f6aa3d…` — the existing production identity |
-| iOS | **not built.** No macOS or Xcode here; the project is verified at build 9 |
-
-## Suites at the final tree
-
-| | |
-| --- | --- |
-| Unit, three packages | **1,289** — 977 web, 216 morphology, 96 handwriting |
-| End-to-end | **516**, 258 × 2 projects |
-| Generated feedback strings rendered and read | **43,744** across 32 languages |
-| Reachable-action measurements | **199** over 25 route/states × 7 sizes |
-| Tab-bar measurements | **31** cases |
-| Privacy entries | **108**, measured twice each |
-| Section-alignment lines, measured as ink | **240** over 60 groups |
-| Korean strings read | **839**, 14 rewritten |
-| Gates negative-tested | **17** |
+**I-133 — usefulness as a level ceiling.** Measured this pass: 85 words an
+editor marked maximally useful sit above level 6, including every day of the
+week at 9. The fix is written into the issue. It re-levels the corpus, which
+regenerates the level-test bank, the anchors and the editorial QA — not a change
+to make and verify in the hours before a release build. The measurement is
+recorded so the next pass starts from it rather than from another eighteen
+hand-written overrides. See §20O.12.
 
 ## Known blockers (external, not fixable from this repository)
 
-- No macOS or Xcode: no iOS archive. The project is verified, the binary is not built.
+- No macOS or Xcode: no iOS archive. The project is verified, the binary is not
+  built.
 - No physical Android device on this machine.
-- No native speaker has reviewed any locale.
-- No Korean teacher has reviewed the Numbers pedagogy.
+- No native speaker has reviewed any locale. Every locale row in the copy ledger
+  was read by the model that wrote it, which is the same pair of eyes twice, and
+  the ledger records that rather than upgrading it.
+- No Korean teacher has reviewed the Numbers pedagogy, including the visual
+  explanation model introduced this pass.
 - No learner usability study of the Numbers course.
+- I-03: the Hangyul hand-off has no destination. A business-owned value; not
+  guessed.
