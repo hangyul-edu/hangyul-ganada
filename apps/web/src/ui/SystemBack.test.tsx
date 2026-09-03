@@ -1,11 +1,12 @@
 import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { offerBackIntent, resetBackHandlers } from '../native/backIntent';
 import { Modal } from './Modal';
 import { SystemBack } from './SystemBack';
+import { useLeaveGuard } from './backNavigation';
 
 const exitApp = vi.hoisted(() => vi.fn(async () => {}));
 vi.mock('../native/platform', () => ({
@@ -18,7 +19,12 @@ vi.mock('../native/platform', () => ({
 }));
 
 /**
- * The phone's Back button, end to end through the component that owns the rule.
+ * The phone's Back button, end to end through the component that runs the rule.
+ *
+ * The *decision* is `resolveBack` and is covered route by route in
+ * `routePolicy.test.ts`. What is checked here is the wiring: that a press
+ * reaches the resolver at all, that `replace` really replaces, that the two
+ * dialogs open once and answer correctly, and that an overlay is asked first.
  *
  * `press()` is the button: `offerBackIntent` is exactly what the native shell
  * calls, so these exercise the real path rather than a component's internals.
@@ -38,6 +44,9 @@ function press() {
 afterEach(() => {
   resetBackHandlers();
   exitApp.mockClear();
+  // jsdom keeps one history across the file; a test that pushed would otherwise
+  // leave the next one believing it had somewhere to go back to.
+  window.history.replaceState(null, '', '/');
 });
 
 function Where() {
@@ -47,10 +56,10 @@ function Where() {
 /**
  * A control that navigates the way the app does.
  *
- * The seeded `initialEntries` below are *not* navigations this session made —
- * they are the tab's history, which is exactly what `useHistoryDepth` refuses
- * to walk back into. So a test about returning to the previous screen has to
- * actually go there first, and this is the button that does it.
+ * `app()` only *places* the test at a URL, which is a cold start — there is
+ * nothing of ours behind it, and that is exactly the state a deep link or a
+ * refresh is in. A test about returning to the previous screen has to actually
+ * go there first, and this is the button that does it.
  */
 function Go({ to, replace }: { to: string; replace?: boolean }) {
   const navigate = useNavigate();
@@ -67,16 +76,38 @@ function go(to: string) {
   });
 }
 
+/**
+ * The app, cold, at `at`.
+ *
+ * A real `BrowserRouter` over jsdom's history rather than a `MemoryRouter`,
+ * because the policy reads `history.state.idx` — the index React Router writes
+ * into the history entry itself. See `native/appHistory`. A memory router keeps
+ * that index in a closure the app cannot see, so these tests would have run
+ * against a permanently empty history and passed whatever the policy did.
+ *
+ * Placing the test at a URL is a *cold start*: nothing of ours is behind it,
+ * which is the state a deep link or a refresh is in. Use `go()` to build
+ * history.
+ */
 function app(at: string, extra?: React.ReactNode) {
+  window.history.replaceState(null, '', at);
   return render(
-    <MemoryRouter initialEntries={['/', '/letters', at]}>
-      <SystemBack />
-      <Where />
-      {extra}
-      <Routes>
-        <Route path="*" element={<span />} />
-      </Routes>
-    </MemoryRouter>,
+    <BrowserRouter>
+      {/*
+        Everything inside, because that is how the app mounts it: `SystemBack`
+        provides `BackNavigationContext`, and a screen that declares a leave
+        guard has to be a descendant to reach it. Rendered as a sibling — which
+        is what this helper used to do — `useLeaveGuard` silently took its
+        no-provider fallback and the guard tests passed against nothing.
+      */}
+      <SystemBack>
+        <Where />
+        {extra}
+        <Routes>
+          <Route path="*" element={<span />} />
+        </Routes>
+      </SystemBack>
+    </BrowserRouter>,
   );
 }
 
@@ -108,13 +139,47 @@ describe('the phone’s back button', () => {
     expect(screen.getByTestId('where')).toHaveTextContent('/');
   });
 
-  it('falls back to Home when nothing of ours is behind — a deep link or a refresh', () => {
+  it('returns a deep-linked lesson to its own lesson list, not to Home', () => {
+    /*
+      A sitting returns to the context that owns it. Before the route policy
+      this landed on Home, because the only thing the rule could see was that
+      this session had pushed nothing.
+    */
     app('/letters/lesson-vowels-core');
     expect(screen.getByTestId('where')).toHaveTextContent('/letters/lesson-vowels-core');
 
     press();
 
+    expect(screen.getByTestId('where')).toHaveTextContent('/letters');
+  });
+
+  it('goes straight Home from a tab root rather than walking the tab bar', () => {
+    /*
+      The reported defect: Words → Letters → Review, then Back, walked back
+      through Letters and Words. Every non-Home tab is one press from Home.
+    */
+    app('/', <><Go to="/words" /><Go to="/letters" /><Go to="/review" /></>);
+    go('/words');
+    go('/letters');
+    go('/review');
+
+    press();
     expect(screen.getByTestId('where')).toHaveTextContent('/');
+  });
+
+  it('offers the exit at Home even after a walk through the app', () => {
+    /*
+      Home is unconditional. The old depth rule popped instead, so a learner who
+      had been anywhere had to press Back several times to reach the offer.
+    */
+    app('/', <><Go to="/words" /><Go to="/review" /></>);
+    go('/words');
+    go('/review');
+    press();
+    expect(screen.getByTestId('where')).toHaveTextContent('/');
+
+    press();
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
   it('asks before leaving when the learner is already Home', () => {
@@ -180,6 +245,51 @@ describe('the phone’s back button', () => {
     expect(screen.getByTestId('where')).toHaveTextContent('/letters/lesson-vowels-core');
 
     press();
-    expect(screen.getByTestId('where')).toHaveTextContent('/');
+    expect(screen.getByTestId('where')).toHaveTextContent('/letters');
+  });
+
+  it('asks before abandoning a sitting that says it has work in it', () => {
+    function Guarded({ dirty }: { dirty: boolean }) {
+      useLeaveGuard(dirty);
+      return null;
+    }
+    app('/me/level-test', <Guarded dirty />);
+
+    press();
+    // Still on the test, with the question in front of the learner.
+    expect(screen.getByTestId('where')).toHaveTextContent('/me/level-test');
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.click(screen.getByTestId('leave-session-confirm'));
+    });
+    expect(screen.getByTestId('where')).toHaveTextContent('/me');
+  });
+
+  it('stays in the sitting when the learner says keep going', () => {
+    function Guarded() {
+      useLeaveGuard(true);
+      return null;
+    }
+    app('/me/level-test', <Guarded />);
+
+    press();
+    fireEvent.click(screen.getByTestId('leave-session-stay'));
+
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(screen.getByTestId('where')).toHaveTextContent('/me/level-test');
+  });
+
+  it('does not ask once the sitting has nothing left to lose', () => {
+    function Guarded() {
+      useLeaveGuard(false);
+      return null;
+    }
+    app('/me/level-test', <Guarded />);
+
+    press();
+
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(screen.getByTestId('where')).toHaveTextContent('/me');
   });
 });

@@ -60,6 +60,12 @@
     "stay": "Ficar",
     "leave": "Sair"
   },
+  "leaveSession": {
+    "title": "Parar esta sessão?",
+    "body": "O que você já acertou está salvo.",
+    "stay": "Continuar",
+    "leave": "Parar"
+  },
   "verdict": {
     "correct": "Correto.",
     "incorrect": "Incorreto."

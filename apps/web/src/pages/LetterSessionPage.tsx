@@ -328,7 +328,7 @@ export function LetterSessionPage() {
         <>
           <AppHeader
             title={lessonTitle}
-            onBack={() => navigate('/letters')}
+            
             action={
               <Badge tone="primary" filled numeric>
                 {t('learning:session.counter', { current: index + 1, total: characters.length })}

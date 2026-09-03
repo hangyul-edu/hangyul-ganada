@@ -270,7 +270,7 @@ export function ReviewSessionPage() {
         header={
           <AppHeader
             title={t('learning:review.sessionTitle')}
-            onBack={() => navigate('/review')}
+            
             transparent
           />
         }
@@ -315,7 +315,7 @@ export function ReviewSessionPage() {
         <>
           <AppHeader
             title={t('learning:review.sessionTitle')}
-            onBack={() => navigate('/review')}
+            
             action={
               <Badge tone="primary" filled numeric>
                 {t('learning:session.counter', { current: index + 1, total: queue.length })}

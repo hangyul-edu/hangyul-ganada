@@ -27,6 +27,7 @@ import { useEntryAudio } from '../audio/useEntryAudio';
 import { hapticPass, hapticRetry, hapticSelection } from '../native/haptics';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
+import { useLeaveGuard } from '../ui/backNavigation';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { FeedbackState } from '../ui/FeedbackState';
@@ -131,7 +132,7 @@ export function NumberSessionPage() {
     // else, so nothing is drawn that the record could contradict a moment later.
     return (
       <div className={styles.page}>
-        <AppHeader title={lesson ? t(`numbers:${lesson.title}`) : t('numbers:title')} onBack={() => navigate(LESSON_ROOT)} />
+        <AppHeader title={lesson ? t(`numbers:${lesson.title}`) : t('numbers:title')} />
       </div>
     );
   }
@@ -152,7 +153,7 @@ export function NumberSessionPage() {
     const resuming = record !== undefined && record.started_at !== null;
     return (
       <div className={styles.page}>
-        <AppHeader title={title} onBack={back} />
+        <AppHeader title={title} />
         <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-objective">
           <Card tone="warm" padding="md" className={styles.objective}>
             <p className={styles.phaseLabel}>{t('numbers:phase.objective')}</p>
@@ -210,7 +211,7 @@ export function NumberSessionPage() {
     const key = steps[Math.min(step, steps.length - 1)]!;
     return (
       <div className={styles.page}>
-        <AppHeader title={title} onBack={back} />
+        <AppHeader title={title} />
         <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-explain">
           <PhaseProgress
             label={t('numbers:phase.explain')}
@@ -239,7 +240,7 @@ export function NumberSessionPage() {
     const item = items[Math.min(step, items.length - 1)]!;
     return (
       <div className={styles.page}>
-        <AppHeader title={title} onBack={back} />
+        <AppHeader title={title} />
         <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-examples">
           <PhaseProgress
             label={t('numbers:phase.examples')}
@@ -270,7 +271,7 @@ export function NumberSessionPage() {
         record={record ?? blankLessonProgress(lesson.id, new Date())}
         phase={phase}
         title={title}
-        onBack={back}
+        
         onDone={() => goto(phase === 'practice' ? 'mastery' : 'summary')}
       />
     );
@@ -289,7 +290,7 @@ export function NumberSessionPage() {
   const mastery = current.mastery;
   return (
     <div className={styles.page}>
-      <AppHeader title={title} onBack={back} />
+      <AppHeader title={title} />
       <div className={styles.body} data-scroll-region="numbers" data-testid="numbers-phase-summary" data-complete={complete}>
         <FeedbackState
           status={complete ? 'correct' : 'incorrect'}
@@ -407,14 +408,12 @@ function ExerciseRun({
   record,
   phase,
   title,
-  onBack,
   onDone,
 }: {
   lesson: NumberLesson;
   record: NumbersLessonProgress;
   phase: 'practice' | 'mastery' | 'review';
   title: string;
-  onBack: () => void;
   onDone: () => void;
 }) {
   const { t } = useTranslation(['numbers', 'common', 'learning']);
@@ -440,6 +439,19 @@ function ExerciseRun({
   const [answer, setAnswer] = useState<Attempt>({ picked: null, sequence: [], correct: null });
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const submitted = useRef(false);
+
+  /*
+   * A mastery check abandoned part-way is a mastery check that did not happen.
+   *
+   * Every practice answer is written the moment it is graded, so leaving
+   * practice or a review loses nothing and asks nothing. Mastery is the one run
+   * whose *verdict* — `mastery_completed`, with the score that decides whether
+   * the lesson passes — is only written when the last question is answered.
+   * Walking out at question five of eight throws that away, so this is where
+   * the policy's leave confirmation earns its interruption. See
+   * `ui/routePolicy.ts`.
+   */
+  useLeaveGuard(phase === 'mastery' && score.total > 0);
 
   const exercise = exercises[index];
   const item = exercise ? getNumberItem(exercise.item_id) : undefined;
@@ -491,7 +503,7 @@ function ExerciseRun({
     // right fallback.
     return (
       <div className={styles.page}>
-        <AppHeader title={title} onBack={onBack} />
+        <AppHeader title={title} />
         <div className={styles.body} data-scroll-region="numbers">
           <Button onClick={onDone}>{t('numbers:action.continue')}</Button>
         </div>
@@ -502,7 +514,7 @@ function ExerciseRun({
   if (intro) {
     return (
       <div className={styles.page}>
-        <AppHeader title={title} onBack={onBack} />
+        <AppHeader title={title} />
         <div className={styles.body} data-scroll-region="numbers" data-testid={`numbers-phase-${phase}-intro`}>
           <Card tone="warm" padding="md">
             <p className={styles.phaseLabel}>{t(`numbers:phase.${phase === 'review' ? 'practice' : phase}`)}</p>
@@ -568,7 +580,7 @@ function ExerciseRun({
 
   return (
     <div className={styles.page}>
-      <AppHeader title={title} onBack={onBack} />
+      <AppHeader title={title} />
       <div className={styles.body} data-scroll-region="numbers" data-testid={`numbers-phase-${phase}`} data-exercise-kind={exercise.kind}>
         <PhaseProgress
           label={t(`numbers:phase.${phase === 'review' ? 'practice' : phase}`)}

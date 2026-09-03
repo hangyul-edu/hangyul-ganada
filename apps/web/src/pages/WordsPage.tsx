@@ -272,7 +272,12 @@ export function WordsPage() {
               )}
             </div>
           ) : (
-            <Button size="lg" fullWidth onClick={() => navigate('/words/today')}>
+            <Button
+              size="lg"
+              fullWidth
+              onClick={() => navigate('/words/today')}
+              data-testid="start-today"
+            >
               {day.done > 0 ? t('vocabulary:today.resume') : t('vocabulary:today.start')}
             </Button>
           )}

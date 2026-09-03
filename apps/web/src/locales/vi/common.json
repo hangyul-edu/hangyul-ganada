@@ -59,6 +59,12 @@
     "stay": "Ở lại",
     "leave": "Thoát"
   },
+  "leaveSession": {
+    "title": "Dừng buổi học này?",
+    "body": "Những từ bạn đã trả lời đúng đều được lưu.",
+    "stay": "Học tiếp",
+    "leave": "Dừng"
+  },
   "verdict": {
     "correct": "Đúng rồi.",
     "incorrect": "Chưa đúng."

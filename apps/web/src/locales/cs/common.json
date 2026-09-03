@@ -61,6 +61,12 @@
     "stay": "Zůstat",
     "leave": "Odejít"
   },
+  "leaveSession": {
+    "title": "Ukončit toto sezení?",
+    "body": "To, co jste zvládli správně, je uložené.",
+    "stay": "Pokračovat",
+    "leave": "Ukončit"
+  },
   "verdict": {
     "correct": "Správně.",
     "incorrect": "Špatně."

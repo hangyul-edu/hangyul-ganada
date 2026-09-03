@@ -59,6 +59,12 @@
     "stay": "Manatili",
     "leave": "Lumabas"
   },
+  "leaveSession": {
+    "title": "Ititigil na ang sesyong ito?",
+    "body": "Naka-save na ang mga nasagot mo nang tama.",
+    "stay": "Magpatuloy",
+    "leave": "Itigil"
+  },
   "verdict": {
     "correct": "Tama.",
     "incorrect": "Mali."

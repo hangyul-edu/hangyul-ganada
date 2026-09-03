@@ -59,6 +59,12 @@
     "stay": "Maradok",
     "leave": "Kilépés"
   },
+  "leaveSession": {
+    "title": "Abbahagyod ezt a gyakorlást?",
+    "body": "Amit már eltaláltál, az el van mentve.",
+    "stay": "Folytatom",
+    "leave": "Abbahagyom"
+  },
   "verdict": {
     "correct": "Helyes.",
     "incorrect": "Helytelen."

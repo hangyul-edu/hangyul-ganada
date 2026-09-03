@@ -167,7 +167,12 @@ export function HomePage() {
             can be proud of, not a trophy the app awards itself.
           */
           <div className={styles.status}>
-            <Link to="/me/activity" className={styles.streak} aria-label={t('home:streak.aria')}>
+            <Link
+              to="/me/activity"
+              className={styles.streak}
+              aria-label={t('home:streak.aria')}
+              data-testid="home-streak"
+            >
               <FireIcon size={15} />
               <span className="hg-numeric">
                 {t('common:units.day', { count: summary.streak_days })}

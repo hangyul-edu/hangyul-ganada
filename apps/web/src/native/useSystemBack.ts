@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { pushBackHandler } from './backIntent';
+import { pushBackHandler, type BackTier } from './backIntent';
 
 /**
  * Answers the phone's Back button while this component is mounted.
@@ -15,15 +15,19 @@ import { pushBackHandler } from './backIntent';
  *
  * The handler is read through a ref, so a closure over fresh props does not
  * re-register on every render and quietly change the order handlers are asked
- * in. Registration order is the priority order and it has to follow mounting,
- * not rendering.
+ * in. Registration order is the priority order within a tier, and it has to
+ * follow mounting, not rendering.
+ *
+ * `tier` says whether this is an overlay (the default — a modal, a sheet) or
+ * the app's single router-level handler, which is always asked last however
+ * early it mounted. See `backIntent.ts`.
  */
-export function useSystemBack(handler: () => boolean, active = true): void {
+export function useSystemBack(handler: () => boolean, active = true, tier: BackTier = 'overlay'): void {
   const latest = useRef(handler);
   latest.current = handler;
 
   useEffect(() => {
     if (!active) return undefined;
-    return pushBackHandler(() => latest.current());
-  }, [active]);
+    return pushBackHandler(() => latest.current(), tier);
+  }, [active, tier]);
 }

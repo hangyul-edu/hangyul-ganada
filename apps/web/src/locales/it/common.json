@@ -60,6 +60,12 @@
     "stay": "Resta",
     "leave": "Esci"
   },
+  "leaveSession": {
+    "title": "Interrompere questa sessione?",
+    "body": "Quello che hai già indovinato è salvato.",
+    "stay": "Continua",
+    "leave": "Interrompi"
+  },
   "verdict": {
     "correct": "Corretto.",
     "incorrect": "Non corretto."

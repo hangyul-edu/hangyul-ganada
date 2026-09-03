@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { getWord } from '../data/vocabulary';
 import {
@@ -47,7 +46,6 @@ import styles from './ActivityPage.module.css';
  * lie about their handwriting; showing nothing is the truth.
  */
 export function ActivityPage() {
-  const navigate = useNavigate();
   const { state } = useLearner();
   const { t } = useTranslation(['activity', 'common']);
   const { locale } = useLocale();
@@ -137,7 +135,7 @@ export function ActivityPage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('activity:title')} onBack={() => navigate('/')} />
+      <AppHeader title={t('activity:title')} />
 
       <div className={styles.body}>
         {!hasHistory ? (

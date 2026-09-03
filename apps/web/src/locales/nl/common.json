@@ -59,6 +59,12 @@
     "stay": "Blijven",
     "leave": "Verlaten"
   },
+  "leaveSession": {
+    "title": "Deze oefening stoppen?",
+    "body": "Wat je al goed had, is bewaard.",
+    "stay": "Doorgaan",
+    "leave": "Stoppen"
+  },
   "verdict": {
     "correct": "Goed.",
     "incorrect": "Fout."

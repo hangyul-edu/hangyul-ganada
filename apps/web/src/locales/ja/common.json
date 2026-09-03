@@ -58,6 +58,12 @@
     "stay": "つづける",
     "leave": "終了する"
   },
+  "leaveSession": {
+    "title": "この練習をやめますか？",
+    "body": "ここまで正解した分は保存されています。",
+    "stay": "つづける",
+    "leave": "やめる"
+  },
   "verdict": {
     "correct": "正解です。",
     "incorrect": "不正解です。"

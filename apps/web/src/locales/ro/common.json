@@ -60,6 +60,12 @@
     "stay": "Rămâi",
     "leave": "Ieși"
   },
+  "leaveSession": {
+    "title": "Oprești sesiunea?",
+    "body": "Ce ai nimerit deja e salvat.",
+    "stay": "Continuă",
+    "leave": "Oprește"
+  },
   "verdict": {
     "correct": "Corect.",
     "incorrect": "Incorect."

@@ -1,6 +1,5 @@
 import { useDeferredValue, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { WORD_COPY_LOCALES } from '../data/wordCopy';
 import { flagFor } from '../i18n/flags';
@@ -24,7 +23,6 @@ import styles from './LanguagePage.module.css';
  * land the learner back where they started.
  */
 export function LanguagePage() {
-  const navigate = useNavigate();
   const { locale, available, setLocale, contentLocale, contentIsBorrowed, contentLocales, setContentLocale } =
     useLocale();
   const { t } = useTranslation(['settings', 'common']);
@@ -45,7 +43,7 @@ export function LanguagePage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('settings:language.pickerTitle')} onBack={() => navigate('/me')} />
+      <AppHeader title={t('settings:language.pickerTitle')} />
 
       <div className={styles.body}>
         <p className={styles.intro}>{t('settings:language.pickerIntro')}</p>

@@ -59,6 +59,12 @@
     "stay": "Hierbleiben",
     "leave": "Schließen"
   },
+  "leaveSession": {
+    "title": "Diese Übung beenden?",
+    "body": "Was du schon richtig hattest, ist gespeichert.",
+    "stay": "Weitermachen",
+    "leave": "Beenden"
+  },
   "verdict": {
     "correct": "Richtig.",
     "incorrect": "Falsch."

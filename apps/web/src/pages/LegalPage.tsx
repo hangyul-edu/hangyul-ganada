@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { PRODUCT, productName } from '../config/product';
 import { PRACTICE_FONTS } from '../data/fonts';
@@ -56,7 +55,6 @@ import styles from './LegalPage.module.css';
  * itself is unchanged and still internal; see `docs/VOCABULARY_DATA.md`.
  */
 export function LegalPage() {
-  const navigate = useNavigate();
   const { t } = useTranslation(['settings']);
   const { locale } = useLocale();
 
@@ -86,7 +84,7 @@ export function LegalPage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('settings:legal.title')} onBack={() => navigate('/me')} />
+      <AppHeader title={t('settings:legal.title')} />
 
       <div className={styles.body}>
         <p className={styles.intro}>{t('settings:legal.intro')}</p>

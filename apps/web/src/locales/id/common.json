@@ -58,6 +58,12 @@
     "stay": "Tetap di sini",
     "leave": "Keluar"
   },
+  "leaveSession": {
+    "title": "Hentikan sesi ini?",
+    "body": "Yang sudah kamu jawab benar sudah tersimpan.",
+    "stay": "Lanjutkan",
+    "leave": "Hentikan"
+  },
   "verdict": {
     "correct": "Benar.",
     "incorrect": "Salah."

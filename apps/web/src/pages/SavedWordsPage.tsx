@@ -171,7 +171,7 @@ export function SavedWordsPage() {
   if (saved.length === 0) {
     return (
       <div className={styles.page}>
-        <AppHeader title={t('vocabulary:saved.title')} onBack={() => navigate('/words')} />
+        <AppHeader title={t('vocabulary:saved.title')} />
         <div className={`${styles.body} ${styles.bodyEmpty}`}>
           {/*
             §20: a friendly empty state that says how words get here, not a
@@ -193,7 +193,7 @@ export function SavedWordsPage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('vocabulary:saved.title')} onBack={() => navigate('/words')} />
+      <AppHeader title={t('vocabulary:saved.title')} />
 
       <div className={styles.body}>
         {/*

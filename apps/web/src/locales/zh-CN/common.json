@@ -58,6 +58,12 @@
     "stay": "继续学",
     "leave": "退出"
   },
+  "leaveSession": {
+    "title": "结束这次练习吗？",
+    "body": "已经答对的词都保存好了。",
+    "stay": "继续学",
+    "leave": "结束"
+  },
   "verdict": {
     "correct": "正确。",
     "incorrect": "不正确。"

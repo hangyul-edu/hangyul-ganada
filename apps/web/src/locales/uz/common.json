@@ -59,6 +59,12 @@
     "stay": "Qolaman",
     "leave": "Chiqish"
   },
+  "leaveSession": {
+    "title": "Bu mashg‘ulot to‘xtatilsinmi?",
+    "body": "To‘g‘ri javob bergan so‘zlaringiz saqlangan.",
+    "stay": "Davom etish",
+    "leave": "To‘xtatish"
+  },
   "verdict": {
     "correct": "To’g’ri.",
     "incorrect": "Noto’g’ri."

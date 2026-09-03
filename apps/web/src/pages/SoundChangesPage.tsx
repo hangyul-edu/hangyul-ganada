@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { SOUND_PATTERNS, VOCABULARY } from '../data/vocabulary';
 import { useCorpusMemo } from '../data/useCorpus';
@@ -38,7 +37,6 @@ import styles from './SoundChangesPage.module.css';
  * `pronunciation.py` puts it on this page automatically.
  */
 export function SoundChangesPage() {
-  const navigate = useNavigate();
   const { t } = useTranslation(['learning', 'vocabulary', 'common']);
   const { state } = useLearner();
   const font = getFont(state.settings.selected_font_id);
@@ -58,7 +56,7 @@ export function SoundChangesPage() {
 
   return (
     <FocusScreen
-      header={<AppHeader title={t('learning:sounds.title')} onBack={() => navigate('/letters')} />}
+      header={<AppHeader title={t('learning:sounds.title')} />}
     >
       <div className={styles.body}>
         <p className={styles.intro}>{t('learning:sounds.intro')}</p>

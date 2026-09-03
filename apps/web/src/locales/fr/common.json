@@ -60,6 +60,12 @@
     "stay": "Rester",
     "leave": "Quitter"
   },
+  "leaveSession": {
+    "title": "Arrêter cette séance ?",
+    "body": "Ce que vous avez déjà réussi est enregistré.",
+    "stay": "Continuer",
+    "leave": "Arrêter"
+  },
   "verdict": {
     "correct": "Correct.",
     "incorrect": "Incorrect."

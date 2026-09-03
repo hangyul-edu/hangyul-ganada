@@ -67,3 +67,4 @@ content-cache/
 # The technical disclosure package prepared for patent counsel. Marked
 # "Not for publication" and this remote is public — it stays on disk only.
 patent/
+scripts/scratch/

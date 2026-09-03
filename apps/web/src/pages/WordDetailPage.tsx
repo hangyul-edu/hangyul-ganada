@@ -82,7 +82,7 @@ function WordDetail({ word }: { word: VocabularyWord }) {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('vocabulary:detail.title')} onBack={() => navigate(-1)} />
+      <AppHeader title={t('vocabulary:detail.title')} />
 
       <div className={styles.body}>
         <Card tone="featured" padding="lg" className={styles.head}>

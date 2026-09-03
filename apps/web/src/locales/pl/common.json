@@ -61,6 +61,12 @@
     "stay": "Zostań",
     "leave": "Wyjdź"
   },
+  "leaveSession": {
+    "title": "Przerwać tę sesję?",
+    "body": "To, co już trafiłeś, jest zapisane.",
+    "stay": "Kontynuuj",
+    "leave": "Przerwij"
+  },
   "verdict": {
     "correct": "Poprawnie.",
     "incorrect": "Niepoprawnie."

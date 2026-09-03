@@ -59,6 +59,12 @@
     "stay": "Stay",
     "leave": "Leave"
   },
+  "leaveSession": {
+    "title": "Stop this session?",
+    "body": "The words you have already got right are saved.",
+    "stay": "Keep going",
+    "leave": "Stop"
+  },
   "verdict": {
     "correct": "Correct.",
     "incorrect": "Incorrect."

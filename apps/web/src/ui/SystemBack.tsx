@@ -1,124 +1,134 @@
-import { useCallback, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { BackNavigationContext } from './backNavigation';
 import { exitApp } from '../native/platform';
-import { useHistoryDepth } from '../native/useHistoryDepth';
+import { hasInAppHistory } from '../native/appHistory';
 import { useSystemBack } from '../native/useSystemBack';
 import { ConfirmDialog } from './ConfirmDialog';
-
-/** Home. The one screen Back does not leave. */
-const HOME = '/';
+import { resolveBack, type BackOutcome } from './routePolicy';
 
 /**
- * What the phone's Back button does when nothing else has claimed it.
+ * Executes the back policy, and owns the two dialogs it can ask for.
  *
- * Overlays answer first — see `Modal` — so by the time a press reaches here
- * there is nothing open over the page.
+ * The decision is not made here — it is `resolveBack` in `ui/routePolicy.ts`,
+ * a pure function over (pathname, history state, guard state) that the unit
+ * suite walks route by route. This component supplies the three inputs, runs
+ * the answer, and holds the two pieces of state a dialog needs.
  *
- * ## The rule, and the one it replaced
+ * ## What it replaced
  *
- * Back returns to **the screen before this one**, and at Home it offers to
- * leave. That is the platform convention on both phones and it is what the
- * header's own back arrow has always done.
- *
- * It used to be "anywhere but Home goes Home", which was deliberate — it was
- * meant to stop a learner walking back through a long history — and which
- * produced the behaviour QA reported: one press from anywhere landed on Home,
- * a second press offered to exit, and changing a letter category and pressing
- * Back jumped to Home rather than back to the category list. A learner three
- * screens into a lesson had no way back to the screen they came from, so the
- * button did not mean anything they could predict; the only reliable way back
- * one step was the header arrow, and the two buttons disagreeing is worse than
- * either rule on its own.
- *
- * ## Knowing whether there is anywhere to go
- *
- * `useHistoryDepth` counts what *this app* has pushed since it opened, which
- * is the question `window.history.length` cannot answer — that counts the tab,
- * including whatever the learner was looking at before they arrived. At depth
- * zero the current screen is the first one this session put on the stack — a
- * cold start, a deep link, or a refreshed page — and there is nothing of ours
- * behind it. Then, and only then, Back falls back to Home, and from Home it
- * offers to leave.
- *
- * So the three cases are:
- *
- * ```
- * depth > 0            → navigate(-1)     the screen they came from
- * depth 0, not Home    → Home, replacing  a deep link or a refresh
- * Home                 → offer to leave
- * ```
- *
- * The Home fallback still *replaces* rather than pushes: it is there to end a
- * walk, and pushing would leave a stack of Homes for the header arrow to walk
- * back through — the same bug moved one button over.
+ * A depth heuristic — `navigate(-1)` whenever this app had pushed anything,
+ * Home only when it had not — and fifteen hand-written `onBack` props. See the
+ * long note at the top of `routePolicy.ts` for why both had to go and what the
+ * table says instead.
  *
  * ## The header's chevron presses the same button
  *
  * Every screen a learner navigates *to* draws a back arrow in its top-left —
  * see `AppHeader` — and that arrow does not have its own idea of where back is.
- * It calls `goBack` from this component, through `BackNavigationContext`, so
- * the two controls cannot drift apart. They have drifted twice: once when this
- * rule was "anywhere but Home goes Home" and the header arrow was not, and once
- * when the header arrow was missing from seven screens and this was the only
- * way out of them.
+ * It calls `goBack` from here, through `BackNavigationContext`, so the two
+ * controls cannot drift apart. They have drifted twice.
  *
- * **Home draws no arrow**, and that is not a third drift. The rule below is
- * unchanged there — a press still pops the stack if this session pushed
- * anything, and still offers to leave when it did not. What Home no longer has
- * is a *painted* control saying so, because on the screen the app opens to
- * there is usually nothing behind it, and an arrow that leads nowhere on a
- * first launch is a control that lies. The system gesture keeps working; it is
- * the platform's, and removing a button is no reason to break it.
+ * **Home draws no arrow.** The policy still answers there — a press offers to
+ * leave — but on the screen the app opens to there is nothing behind, and a
+ * painted control saying otherwise is a control that lies. `drawsBackControl`
+ * is the same table's answer to that question, so the two cannot disagree.
  *
- * That is also why this component takes children. It has to be an ancestor of
- * the routes to provide to them, and it has to be inside the router to read the
- * location — so it wraps `<Routes>` rather than sitting beside it.
+ * ## Why the dialogs are here and not in a page
  *
- * ## Why the dialog is here and not in a page
+ * The exit dialog belongs to the button, not to Home: Home does not otherwise
+ * know or care that this app can be left. The leave dialog belongs to the
+ * button for the same reason — the session that owns the work only has to
+ * declare *that* it has some, through `useLeaveGuard`, not to build a second
+ * confirmation.
  *
- * It belongs to the button, not to Home: Home does not otherwise know or care
- * that this app can be left. Keeping the state next to the handler is also what
- * makes a second press while it is open impossible to get wrong — the dialog is
- * a `Modal`, `Modal` registers its own handler when open, and that handler is
- * newer than this one, so it takes the press and closes. There is one piece of
- * state and it cannot open twice.
+ * Keeping both next to the handler is also what makes a second press while one
+ * is open impossible to get wrong: each is a `Modal`, `Modal` registers an
+ * `overlay` back handler while it is open, and overlays are always asked before
+ * this component's `route` handler — see `native/backIntent.ts`. So the second
+ * press closes the dialog rather than reaching the policy again. There is one
+ * piece of state per dialog and neither can open twice: a rapid double press on
+ * Home opens one dialog and then dismisses it, never stacks two.
  */
 export function SystemBack({ children }: { children?: ReactNode }) {
   const { t } = useTranslation('common');
   const navigate = useNavigate();
   const location = useLocation();
   const [leaving, setLeaving] = useState(false);
-  const depth = useHistoryDepth();
+  const [abandoning, setAbandoning] = useState<BackOutcome | null>(null);
+  /*
+   * Whether the screen currently on top says it has work in it.
+   *
+   * A ref rather than state: nothing renders from it, and a screen that reports
+   * "dirty" on every answered question would otherwise re-render the whole
+   * router subtree once per answer to store a boolean only a Back press reads.
+   */
+  const dirty = useRef(false);
+  const setLeaveGuard = useCallback((value: boolean) => {
+    dirty.current = value;
+  }, []);
+
+  const run = useCallback(
+    (outcome: BackOutcome) => {
+      switch (outcome.action) {
+        case 'exit':
+          setLeaving(true);
+          return;
+        case 'pop':
+          navigate(-1);
+          return;
+        case 'replace':
+          /*
+           * Replacing rather than pushing, always.
+           *
+           * Pushing Home on top of a tab root leaves a stack of Homes for the
+           * next press to walk back through — the ping-pong this policy exists
+           * to end. The same applies to a session returning to its parent.
+           */
+          navigate(outcome.to, { replace: true });
+          return;
+        case 'confirmLeave':
+          setAbandoning(outcome.then);
+          return;
+      }
+    },
+    [navigate],
+  );
+
+  const goBack = useCallback(() => {
+    /*
+     * Both inputs are read at press time, not at render time.
+     *
+     * `hasInAppHistory` reads the history entry the browser is actually on —
+     * see `native/appHistory` for why a React-derived count was wrong under a
+     * deferred transition — and the guard is a ref the current screen writes.
+     */
+    run(
+      resolveBack(location.pathname, {
+        hasInAppHistory: hasInAppHistory(),
+        dirty: dirty.current,
+      }),
+    );
+  }, [location.pathname, run]);
 
   /*
-   * The rule, once, as a plain function.
-   *
-   * `useSystemBack` wants a handler that reports whether it consumed the press;
-   * the header wants one that just goes. Both are this.
+   * The route tier: asked only after every open overlay has declined, whatever
+   * order they mounted in. A screen deep-linked with a modal already open would
+   * otherwise lose the press to this handler, because React runs a child's
+   * effects before its parent's. See `native/backIntent.ts`.
    */
-  const goBack = useCallback(() => {
-    if (depth.current > 0) {
-      navigate(-1);
-      return;
-    }
-    if (location.pathname !== HOME) {
-      navigate(HOME, { replace: true });
-      return;
-    }
-    setLeaving(true);
-  }, [depth, location.pathname, navigate]);
-
   useSystemBack(
     useCallback(() => {
       goBack();
       return true;
     }, [goBack]),
+    true,
+    'route',
   );
 
-  const value = useMemo(() => ({ goBack }), [goBack]);
+  const value = useMemo(() => ({ goBack, setLeaveGuard }), [goBack, setLeaveGuard]);
 
   return (
     <BackNavigationContext.Provider value={value}>
@@ -133,6 +143,21 @@ export function SystemBack({ children }: { children?: ReactNode }) {
         onConfirm={() => void exitApp()}
         cancelTestId="exit-stay"
         confirmTestId="exit-confirm"
+      />
+      <ConfirmDialog
+        open={abandoning !== null}
+        title={t('leaveSession.title')}
+        body={t('leaveSession.body')}
+        cancelLabel={t('leaveSession.stay')}
+        confirmLabel={t('leaveSession.leave')}
+        onCancel={() => setAbandoning(null)}
+        onConfirm={() => {
+          const next = abandoning;
+          setAbandoning(null);
+          if (next) run(next);
+        }}
+        cancelTestId="leave-session-stay"
+        confirmTestId="leave-session-confirm"
       />
     </BackNavigationContext.Provider>
   );

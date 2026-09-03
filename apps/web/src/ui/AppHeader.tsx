@@ -14,27 +14,19 @@ const LOGO_HEIGHT = 26;
 export interface AppHeaderProps {
   title?: string;
   /**
-   * What the back chevron does, when this screen needs it to do something
-   * special — leave a sitting, confirm an unsaved answer, return to a parent
-   * the learner did not arrive from.
+   * There is no `onBack`, and that absence is the design.
    *
-   * **Omitting it does not remove the chevron.** On a titled header there is no
-   * way to remove the chevron, which is the point: every screen a learner
-   * navigates *to* has one, in the same corner, and a screen that omits this
-   * simply gets the app's own rule — see `useBackNavigation`. Six screens used
-   * to have no back arrow at all because the prop was optional and opting in
-   * was easy to forget: Letters, Numbers, Words, a word category, Review and My
-   * Learning. On a phone with gesture navigation and no visible system bar,
-   * those were screens with no visible way back.
+   * The chevron does not take a handler. Where back goes is a property of the
+   * *route*, written down once in `ui/routePolicy.ts` and executed once in
+   * `ui/SystemBack.tsx`, so the header chevron and the phone's own Back button
+   * are the same press. Fifteen screens used to pass their own — four headers
+   * in the level test alone said `navigate(-1)` while a fifth said
+   * `navigate('/me')` — and every one of them was a chance for the two
+   * controls to disagree, which QA reported twice.
    *
-   * The `brand` variant — Home, and only Home — draws no chevron at all, and
-   * this prop is meaningless there. See the comment at that branch.
-   *
-   * `true` is accepted and means the same as omitting it; it is kept because
-   * several screens say it explicitly and reading `onBack` as "the default" is
-   * clearer than reading its absence.
+   * The `brand` variant — Home, and only Home — draws no chevron at all. See
+   * the comment at that branch.
    */
-  onBack?: (() => void) | true;
   /** Shows a close cross on the right. */
   onClose?: () => void;
   /** Content rendered on the right, when there is no close button. */
@@ -54,7 +46,6 @@ export interface AppHeaderProps {
  */
 export function AppHeader({
   title,
-  onBack,
   onClose,
   action,
   variant = 'title',
@@ -63,10 +54,6 @@ export function AppHeader({
   const dark = useIsDarkAppearance();
   const { t } = useTranslation('common');
   const { goBack } = useBackNavigation();
-  const handleBack = () => {
-    if (typeof onBack === 'function') onBack();
-    else goBack();
-  };
 
   /*
    * The chevron itself, so the branded header and the titled one draw the same
@@ -80,7 +67,7 @@ export function AppHeader({
     <button
       type="button"
       className={styles.iconButton}
-      onClick={handleBack}
+      onClick={goBack}
       aria-label={t('actions.back')}
       data-testid="app-back"
     >

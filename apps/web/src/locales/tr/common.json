@@ -59,6 +59,12 @@
     "stay": "Kal",
     "leave": "Çık"
   },
+  "leaveSession": {
+    "title": "Bu çalışma bitirilsin mi?",
+    "body": "Doğru bildiklerin kayıtlı.",
+    "stay": "Devam et",
+    "leave": "Bitir"
+  },
   "verdict": {
     "correct": "Doğru.",
     "incorrect": "Yanlış."

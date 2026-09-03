@@ -66,7 +66,7 @@ export function DictionaryWordPage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('vocabulary:dictionary.title')} onBack={() => navigate(-1)} />
+      <AppHeader title={t('vocabulary:dictionary.title')} />
 
       <div className={styles.body}>
         {status === 'loading' && (

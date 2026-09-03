@@ -24,6 +24,7 @@ import type { LevelTestItem, RenderedItem } from '../domain/levelTestTypes';
 import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
 import { AppHeader } from '../ui/AppHeader';
+import { useLeaveGuard } from '../ui/backNavigation';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import styles from './LevelTestPage.module.css';
@@ -300,6 +301,17 @@ export function LevelTestPage() {
     button in one place and tapping it twice quickly is two honest answers.
   */
   const lastTap = useRef<{ at: number; index: number } | null>(null);
+  /*
+   * A sitting is worth nothing until it ends.
+   *
+   * `asked` is component state and the level is only written when the ladder
+   * settles, so a learner eleven questions into a test who presses Back loses
+   * all eleven and their level does not move. That is the clearest case in the
+   * product for asking first. Before the first answer, and after the result is
+   * on screen, there is nothing to lose and nothing is asked.
+   */
+  useLeaveGuard(started && !done && asked.length > 0);
+
   const [announce, setAnnounce] = useState('');
   const answer = (response: AskedItem['response'], index: number | null = null) => {
     if (!current) return;
@@ -342,7 +354,7 @@ export function LevelTestPage() {
   if (!started) {
     return (
       <div className={styles.page}>
-        <AppHeader title={t('levelTest:title')} onBack={() => navigate(-1)} />
+        <AppHeader title={t('levelTest:title')} />
         <div className={styles.body}>
           {/*
             Four lines and a button.
@@ -379,7 +391,7 @@ export function LevelTestPage() {
   if (failed) {
     return (
       <div className={styles.page}>
-        <AppHeader title={t('levelTest:title')} onBack={() => navigate(-1)} />
+        <AppHeader title={t('levelTest:title')} />
         <div className={styles.body}>
           <p className={styles.status} role="status">
             {t('levelTest:unavailable')}
@@ -392,7 +404,7 @@ export function LevelTestPage() {
   if (done) {
     return (
       <div className={styles.page}>
-        <AppHeader title={t('levelTest:title')} onBack={() => navigate('/me')} />
+        <AppHeader title={t('levelTest:title')} />
         <div className={styles.body}>
           <Card tone="featured" padding="lg" className={styles.result}>
             <p className={styles.resultLabel}>{t('levelTest:result.label')}</p>
@@ -447,7 +459,7 @@ export function LevelTestPage() {
   if (!bank || !current) {
     return (
       <div className={styles.page}>
-        <AppHeader title={t('levelTest:title')} onBack={() => navigate(-1)} />
+        <AppHeader title={t('levelTest:title')} />
         <div className={styles.body}>
           <p className={styles.status} role="status">
             {t('levelTest:loading')}
@@ -471,7 +483,7 @@ export function LevelTestPage() {
     <div className={styles.page}>
       <AppHeader
         title={t('levelTest:title')}
-        onBack={() => navigate(-1)}
+        
         /* How far through and how long is left. Never how well — see the note
            at the top of the file. */
         action={

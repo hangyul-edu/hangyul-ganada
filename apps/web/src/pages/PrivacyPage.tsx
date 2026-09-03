@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { PRODUCT, productName } from '../config/product';
 import { useLocale } from '../i18n';
@@ -40,7 +39,6 @@ import styles from './PrivacyPage.module.css';
  * see what they are bad at.
  */
 export function PrivacyPage() {
-  const navigate = useNavigate();
   const { t } = useTranslation(['settings']);
   const { locale } = useLocale();
 
@@ -60,7 +58,7 @@ export function PrivacyPage() {
 
   return (
     <div className={styles.page}>
-      <AppHeader title={t('settings:privacy.title')} onBack={() => navigate('/me')} />
+      <AppHeader title={t('settings:privacy.title')} />
 
       <div className={styles.body}>
         <p className={styles.lede}>{t('settings:privacy.lede')}</p>

@@ -59,6 +59,12 @@
     "stay": "Stanna",
     "leave": "Lämna"
   },
+  "leaveSession": {
+    "title": "Avsluta passet?",
+    "body": "Det du redan har svarat rätt på är sparat.",
+    "stay": "Fortsätt",
+    "leave": "Avsluta"
+  },
   "verdict": {
     "correct": "Rätt.",
     "incorrect": "Fel."

@@ -427,7 +427,7 @@ export function WordSessionPage() {
     return (
       <FocusScreen
         resetKey="words-placement"
-        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+        header={<AppHeader title={t('vocabulary:today.title')} transparent />}
       >
         <ConfirmDialog
           open
@@ -448,7 +448,7 @@ export function WordSessionPage() {
     return (
       <FocusScreen
         resetKey="words-loading"
-        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+        header={<AppHeader title={t('vocabulary:today.title')} transparent />}
       >
         <div />
       </FocusScreen>
@@ -492,7 +492,7 @@ export function WordSessionPage() {
     return (
       <FocusScreen
         resetKey="words-loading"
-        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+        header={<AppHeader title={t('vocabulary:today.title')} transparent />}
       >
         <div />
       </FocusScreen>
@@ -511,7 +511,7 @@ export function WordSessionPage() {
     return (
       <FocusScreen
         resetKey="words-empty"
-        header={<AppHeader title={t('vocabulary:today.title')} onBack={leave} transparent />}
+        header={<AppHeader title={t('vocabulary:today.title')} transparent />}
         footer={
           <Button size="lg" fullWidth onClick={leave}>
             {t('common:actions.done')}
@@ -545,7 +545,7 @@ export function WordSessionPage() {
         <>
           <AppHeader
             title={t('vocabulary:today.title')}
-            onBack={leave}
+            
             action={
               /*
                * Words finished, not questions asked, and not "the word you are

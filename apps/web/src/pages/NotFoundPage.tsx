@@ -17,7 +17,7 @@ export function NotFoundBody({ messageKey }: { messageKey: string }) {
   const { t } = useTranslation(['errors', 'common']);
   return (
     <div className={styles.page}>
-      <AppHeader title="" onBack />
+      <AppHeader title="" />
       <div className={styles.body}>
         <HangyulMascot mood="sad" size={88} />
         <p className={styles.title}>{t(`errors:${messageKey}`)}</p>

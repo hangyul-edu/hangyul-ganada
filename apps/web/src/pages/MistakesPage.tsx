@@ -87,7 +87,7 @@ export function MistakesPage() {
         {/* The name the learner tapped. See the note on the other header. */}
         <AppHeader
           title={t('learning:mistakes.wrongVocabulary')}
-          onBack={() => navigate('/review')}
+          
         />
         <div className={`${styles.body} ${styles.bodyEmpty}`}>
           <Card tone="warm" padding="lg" className={styles.empty}>
@@ -124,7 +124,7 @@ export function MistakesPage() {
       */}
       <AppHeader
         title={t('learning:mistakes.wrongVocabulary')}
-        onBack={() => navigate('/review')}
+        
       />
 
       <div className={styles.body}>
