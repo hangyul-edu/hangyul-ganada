@@ -77,6 +77,31 @@ function chevron(page: Page) {
  * A press that does nothing still fails, because the poll runs out at the
  * expect timeout with the wrong path.
  */
+/**
+ * Waits until the app has actually recorded a push.
+ *
+ * The policy asks `history.state.idx` — the index React Router writes into the
+ * history entry — and a press that arrives before the push has landed is
+ * answered as though the screen had been deep-linked, which sends the learner
+ * to the route's declared parent instead of back one. That is the correct
+ * behaviour for a deep link and the wrong answer here, so a test that presses
+ * without waiting is testing which of the two it raced.
+ *
+ * `<Link>` navigation is not synchronous with the click: React Router runs it
+ * inside a transition, and the entry is written when the navigation completes.
+ * On an idle machine that is the same tick; inside `verify:release`, behind a
+ * spec that has just spent five minutes of the same worker, it is not.
+ *
+ * A press that genuinely fails to register still fails, on the timeout.
+ */
+async function pushed(page: Page): Promise<void> {
+  await expect
+    .poll(() => page.evaluate(() => (window.history.state as { idx?: number } | null)?.idx ?? 0), {
+      timeout: 10_000,
+    })
+    .toBeGreaterThan(0);
+}
+
 async function expectAt(page: Page, path: string): Promise<void> {
   await expect
     .poll(() => page.evaluate(() => window.location.pathname), { timeout: 5_000 })
@@ -185,6 +210,7 @@ test.describe('back from a nested screen', () => {
     await openApp(page, '/');
     await page.getByTestId('home-streak').click();
     await expectAt(page, '/me/activity');
+    await pushed(page);
 
     await hardwareBack(page);
     await expectAt(page, '/');
