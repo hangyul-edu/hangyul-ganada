@@ -66,7 +66,12 @@ async function read(page: Page): Promise<Reading> {
       bodyOverflow: getComputedStyle(document.body).overflow,
       pane: pane ? { top: pane.scrollTop, height: pane.scrollHeight, client: pane.clientHeight } : null,
       nav: navRect ? { y: navRect.y, bottom: navRect.bottom } : null,
-      blankBelowNav: navRect ? window.innerHeight - navRect.bottom : null,
+      // Against the app frame, not the window: on a wide screen the app is a
+      // 430 px phone with warm ground around it, and that ground is not blank
+      // canvas inside the app.
+      blankBelowNav: navRect
+        ? (document.getElementById('root')?.getBoundingClientRect().bottom ?? window.innerHeight) - navRect.bottom
+        : null,
       lastTextBottom: last ? last.getBoundingClientRect().bottom : null,
       viewport: { width: window.innerWidth, height: window.innerHeight },
     };

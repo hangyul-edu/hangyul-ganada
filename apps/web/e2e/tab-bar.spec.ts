@@ -68,9 +68,19 @@ async function measure(page: Page): Promise<Reading> {
         ? { top: pane.scrollTop, height: pane.scrollHeight, client: pane.clientHeight }
         : null,
       viewport: { width: window.innerWidth, height: window.innerHeight },
-      // What is painted between the bar's bottom edge and the bottom of the
-      // window. Anything above zero is the blank canvas from the screenshot.
-      blankBelowNav: rect ? window.innerHeight - rect.bottom : null,
+      /*
+       * What is painted between the bar's bottom edge and the bottom of the
+       * *app frame* — not of the window.
+       *
+       * On a wide screen the app is a 430 px phone centred in the browser with
+       * warm ground around it, so measuring against `window.innerHeight` counts
+       * that surround as blank canvas and fails a layout that is correct. The
+       * claim is about the app: nothing unpainted between the tab bar and the
+       * bottom of the shell.
+       */
+      blankBelowNav: rect
+        ? (document.getElementById('root')?.getBoundingClientRect().bottom ?? window.innerHeight) - rect.bottom
+        : null,
     };
   });
 }
