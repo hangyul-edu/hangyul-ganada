@@ -26,7 +26,6 @@ import { openApp } from './helpers/launch';
  */
 
 const SINO_BUILD = '/letters/numbers/num-lesson-sino-build';
-const SINO_BASICS = '/letters/numbers/num-lesson-sino-basics';
 
 async function intoExplanation(page: Page, lesson: string) {
   await openApp(page, lesson);
