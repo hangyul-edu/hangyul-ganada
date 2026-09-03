@@ -434,6 +434,7 @@ def main() -> int:
     # rather than a position in this build's sort. See `scripts/content/level.py`.
     signals = leveller.load_signals()
     overrides = leveller.load_overrides()
+    redundant_overrides: list[str] = []
     # The browsing category, resolved before the emit loop because the level
     # model reads it: a word in essentials or food is one a learner needs early
     # whatever the frequency corpora say about it.
@@ -461,8 +462,20 @@ def main() -> int:
             signals=signals.get(word, {}),
         )
         level_components[word] = parts
-        word_levels[word] = overrides.get(word, leveller.level_of(parts.score))
+        modelled = leveller.level_of(parts.score)
+        word_levels[word] = overrides.get(word, modelled)
+        # An override the model now agrees with is a decision that has stopped
+        # deciding anything, and one nobody will think to remove. Reported so a
+        # content pass can retire it — see `level-overrides.json`.
+        if word in overrides and overrides[word] == modelled:
+            redundant_overrides.append(word)
 
+
+    if redundant_overrides:
+        print(
+            f"  {len(redundant_overrides)} override(s) the model now agrees with: "
+            + ", ".join(sorted(redundant_overrides))
+        )
 
     # The ledger first: every id it already hands out is spoken for, so a word
     # new to this build allocates around them rather than through them.

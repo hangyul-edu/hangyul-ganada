@@ -168,7 +168,9 @@ def frequency_cost(rank: int | None, per_million: float | None, observed_total: 
     return min(1.0, math.log(max(1, rank)) / top)
 
 
-def utility_cost(usefulness: int, semantics: str, category: str) -> float:
+def utility_cost(
+    usefulness: int, semantics: str, category: str, part_of_speech: str = "", word: str = ""
+) -> float:
     """How much a learner needs this word, and how easily they can picture it.
 
     `usefulness` is the editor's judgement, 1 to 5, and it is the part of this
@@ -184,7 +186,7 @@ def utility_cost(usefulness: int, semantics: str, category: str) -> float:
     """
     del category
     editorial = (usefulness - 1) / 4
-    return min(1.0, 0.65 * editorial + 0.35 * _concreteness(semantics))
+    return min(1.0, 0.65 * editorial + 0.35 * _concreteness(semantics, part_of_speech, word))
 
 
 #: Templates that name something abstract, and what each costs.
@@ -202,14 +204,108 @@ ABSTRACT_TEMPLATES = {
 }
 
 
-def _concreteness(semantics: str) -> float:
-    """0 when the word names something you can see or do, 1 when it does not."""
-    template, _, rest = semantics.partition(":")
-    if template in ABSTRACT_TEMPLATES:
-        return ABSTRACT_TEMPLATES[template]
+#: Poles you can draw, taken from the tags the corpus actually uses.
+#:
+#: `CONCRETE_PARTS` next door is a list of picturable *nouns* — apple, door,
+#: river. It cannot answer a `cmp:` or `seq:` tag, because those name the two
+#: ends of a contrast rather than a thing: `cmp:short|long`, `seq:sit|stand`,
+#: `seq:close|open`. Every one of those is as picturable as a noun — you can
+#: draw a long line beside a short one — and none of them was in any list, so
+#: the template's weight stood unchallenged and 길다 came out abstract.
+#:
+#: Grounded in the data rather than invented: every entry here appears in a
+#: `cmp:` or `seq:` tag in `content/vocabulary/entries/`. What is deliberately
+#: *not* here is the marginal half of that set — `time`, `scale-up`, `same`,
+#: `good`, `bad`, `rule`, `balance`, `more`, `win`, `hard`, `sad`, `heart`,
+#: `world`. Those really are abstractions, and a list that swept them in would
+#: trade one silent mis-scoring for another in the opposite direction.
+PICTURABLE_POLES = {
+    "adult", "child", "clean", "close", "cold", "cross", "dark", "deep", "dirty",
+    "elder", "empty", "far", "fast", "fill", "heavy", "high", "hot", "hurt",
+    "light", "long", "low", "narrow", "near", "one", "open", "round", "short",
+    "sick", "sit", "sleep", "slow", "smile", "stand", "sweet", "thin", "two",
+    "wide",
+}
+
+
+#: The word classes a two-ended contrast is allowed to make concrete.
+#:
+#: An adjective names a quality and a plain verb names something a body does;
+#: both can be drawn, and both are what the eighteen hand-moved words are. A
+#: noun or a `-하다`/`-되다`/`-지다` derivation names a *relation or a process*,
+#: and the picturable pair in its tag is an illustration of that relation
+#: rather than its meaning — 회복 is tagged `seq:hurt|smile` and is not a
+#: picture of a smile; 변화하다 is `seq:box|ball` and is not a picture of a
+#: ball; 비교하다 is `cmp:one|two` and is not a picture of two of anything.
+DRAWABLE_CLASSES = {"adjective", "verb"}
+
+#: Suffixes that turn an abstract noun into a **verb**. The verb is no more
+#: picturable than the noun it came from: 비교하다 is 비교 with a verb on the
+#: end, and comparison is not a picture.
+#:
+#: Applied to verbs only. Korean adjectives are overwhelmingly 하다 forms —
+#: 깨끗하다, 따뜻하다, 뚱뚱하다 — and excluding them takes the fix away from
+#: exactly the words it was written for. An adjective names a quality whatever
+#: its ending.
+DERIVED_VERB_ENDINGS = ("하다", "되다", "지다")
+
+
+def _concreteness(semantics: str, part_of_speech: str = "", word: str = "") -> float:
+    """0 when the word names something you can see or do, 1 when it does not.
+
+    ## Why an abstract template can be argued with, and only in one case
+
+    This used to return the template's weight and stop, so anything tagged
+    `cmp:` scored 0.80 and anything tagged `seq:` 0.75 *whatever the parts
+    said* — a word was called unpicturable for having an opposite. 길다, 짧다,
+    멀다, 가깝다, 열다 and 닫다 are among the most picturable words in the
+    language and sat at levels 12 to 14 because of it; eighteen were moved by
+    hand and the rule that put them there was left alone, so the next antonym
+    pair would have landed in the same place. That is I-126.
+
+    The exception is narrow on purpose, and it took two wrong drafts to get
+    there:
+
+    - Letting **every** abstract template be argued with by its parts moved 414
+      words, all downward, taking 대출, 전세, 계약서 and 수수료 out of the high
+      twenties into the teens. 예산 is `abs:money` and is an abstraction *about*
+      money; 반응 is `abs:news` and is not a picture of a newspaper.
+    - Letting a picturable pole count in the **non**-abstract branch moved 사망
+      (`solo:cross`), 좀비 (`solo:dark`) and 스트레스 (`solo:heavy`). Those tags
+      use a pole as an icon hint for the word's feel, not as its meaning.
+    - Letting any word class take the discount moved 회복 (`seq:hurt|smile`),
+      비교하다 (`cmp:one|two`) and 변화하다 (`seq:box|ball`). Those tags
+      *illustrate* a relation with a picturable pair; the word is the relation,
+      not the pair. Only an adjective or a plain verb takes the discount now —
+      see `DRAWABLE_CLASSES`.
+
+    So: a `cmp:` or `seq:` tag, with **two** parts, **both** picturable. That is
+    a contrast whose ends are the whole of it — short against long, sit against
+    stand, close against open — and it is exactly the shape the eighteen
+    hand-moved words share. A one-part `cmp:` (모양 is `cmp:cloud`, 차이 is
+    `cmp:picture`) is an icon hint again and keeps the template's weight.
+
+    The template stays the strong signal everywhere else, because reading the
+    parts first is the *older* failure — the one that put 놀다 at level 19.
+    """
     from difficulty import CONCRETE_PARTS  # the same list, one definition
 
+    template, _, rest = semantics.partition(":")
     names = [n for n in rest.split("|") if n]
+
+    if template in ABSTRACT_TEMPLATES:
+        drawable = (
+            len(names) == 2
+            and all(name in PICTURABLE_POLES or name in CONCRETE_PARTS for name in names)
+            and part_of_speech in DRAWABLE_CLASSES
+            and not (part_of_speech == "verb" and word.endswith(DERIVED_VERB_ENDINGS))
+        )
+        if template in ("cmp", "seq") and drawable:
+            # A shade above the 0.10 a named physical object gets: a contrast
+            # still asks the learner to hold two things at once.
+            return 0.15
+        return ABSTRACT_TEMPLATES[template]
+
     if not names:
         return 0.35
     # A physical thing named in the tag settles it; otherwise the template has
@@ -292,7 +388,7 @@ def components(
 ) -> Components:
     return Components(
         frequency=frequency_cost(rank, per_million, observed_total),
-        utility=utility_cost(usefulness, semantics, category),
+        utility=utility_cost(usefulness, semantics, category, part_of_speech, word),
         linguistic=linguistic_cost(
             word=word, part_of_speech=part_of_speech, spelling=spelling,
             irregular=irregular, signals=signals,
