@@ -92,13 +92,54 @@ const withRasters = withFigures.replace(
 
 const body = marked.parse(withRasters, { async: false });
 
-/** Headings become anchors so a table of contents can link to them. */
-const slug = (text) =>
-  text
+/**
+ * Headings become anchors so a table of contents can link to them.
+ *
+ * ## Why the id is capped, and capped in *bytes*
+ *
+ * Chromium turns each `id` into a PDF named destination, and PDF escapes every
+ * byte outside a small ASCII set as `#xx`. A Korean syllable is three UTF-8
+ * bytes and therefore nine characters in the name — so a heading like
+ * *20M.6 1개 연습 · 1개는 바로 떠올랐어요 · 1개는 곧 다시 나와요* produced a name
+ * token of several hundred bytes, and every reader that checks the
+ * specification's 127-byte limit said so:
+ *
+ *     Syntax Error: Warning: name token is longer than what the specification
+ *     says it can be
+ *
+ * The document rendered correctly either way — the warning is a warning — but a
+ * report that makes a parser complain is a report somebody has to decide to
+ * ignore, and the ones that go to a store submission should not need that.
+ *
+ * So the slug keeps its readable form when it fits and falls back to a short
+ * stable hash of the full text when it does not. The hash is deterministic, so
+ * a heading's anchor does not change between builds, and the contents list
+ * still shows the heading's real words — only the `href` is shortened.
+ */
+const encodedLength = (name) =>
+  [...Buffer.from(name, 'utf8')].reduce((total, byte) => total + (byte < 0x21 || byte > 0x7e || byte === 0x23 ? 3 : 1), 0);
+
+const shortHash = (text) => {
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i += 1) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0).toString(36);
+};
+
+const slug = (text) => {
+  const readable = text
     .toLowerCase()
     .replace(/<[^>]+>/g, '')
     .replace(/[^\p{L}\p{N}]+/gu, '-')
     .replace(/^-|-$/g, '');
+  // 96 bytes leaves room for the reader's own overhead inside the 127 the
+  // specification allows.
+  if (encodedLength(readable) <= 96) return readable;
+  const ascii = readable.replace(/[^\x21-\x7e]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+  return `${ascii || 'h'}-${shortHash(readable)}`;
+};
 
 const headings = [];
 const anchored = body.replace(/<h([12])>(.*?)<\/h\1>/g, (whole, level, text) => {

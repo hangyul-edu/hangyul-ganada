@@ -230,6 +230,9 @@ const METRICS = {
     patterns: [
       /\|\s*Unit and integration tests\s*\|\s*\*{0,2}([\d,]+)\*{0,2} across \d+ files/g,
       /suites run green in full: ([\d,]+) unit cases/g,
+      // The audit-metadata table, whose row is just "Tests". It said 1,247
+      // against an actual 1,288 and nothing was looking at it.
+      /\|\s*Tests\s*\|\s*([\d,]+) across \d+ files\s*\|/g,
     ],
   },
   handwritingTests: {
@@ -392,6 +395,11 @@ const METRICS = {
     patterns: [
       /\|\s*Numbers items\s*\|\s*([\d,]+)\s*\|/g,
       /([\d,]+) items across the Numbers course/g,
+      // The three shapes the prose actually uses for it.
+      /nineteen lessons, ([\d,]+) items/g,
+      /19 lessons, ([\d,]+) items, 0 problems/g,
+      /Its ([\d,]+) items, 52 explanation steps/g,
+      /— ([\d,]+) of the 95 items —/g,
     ],
   },
   relationsWords: {

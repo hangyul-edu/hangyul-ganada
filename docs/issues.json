@@ -17,12 +17,13 @@
       "id": "I-01",
       "area": "Release",
       "severity": "P0",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "summary": "The shipped APK/AAB were built from a dirty tree, not from any commit",
       "customerImpact": "The delivered binary is not a build of anything a reader can check out. `app_result/build-info.json` records the commit as `3833da71` and, in the same file, `source_state.dirty: true` with **440 changed and 595 untracked files** — so the APK contains some mixture of that commit and whatever was in the tree at 12:21 that morning. Nobody can say what shipped, including the person who built it.",
-      "evidence": "Read out of the delivered `app_result/build-info.json`: `\"commit\": \"3833da71…\"`, `\"dirty\": true`, `\"changed_files\": 440`, `\"untracked_files\": 595`, built at 2026-09-02T12:21:38Z. HEAD at the time of this pass was `8b489ebe`, one commit further on. `npm run release:current` exists to catch exactly this and reports it; it was not run before the artefacts were published. The row was closed in five consecutive reports on the strength of a rebuild each time, which is why it is now stated as a *state* — the binary matches a clean checkout of a named commit, or it does not.",
-      "recommendedFix": "Rebuild from a clean tree at the final commit of this pass and re-record the fingerprint, then keep `release:current` in front of every publish. The check is not the fix; running it is.",
-      "note": "Written in four consecutive reports and closed in four, because closing it was never the fix — the fix was a check. There now is one, and it is what should keep this row closed rather than the row itself."
+      "evidence": "Read out of the delivered `app_result/build-info.json`: `\"commit\": \"3833da71…\"`, `\"dirty\": true`, `\"changed_files\": 440`, `\"untracked_files\": 595`, built at 2026-09-02T12:21:38Z. HEAD at the time of this pass was `8b489ebe`, one commit further on. `npm run release:current` exists to catch exactly this and reports it; it was not run before the artefacts were published. The row was closed in five consecutive reports on the strength of a rebuild each time, which is why it is now stated as a *state* — the binary matches a clean checkout of a named commit, or it does not.\n\n**Resolved 3 September 2026.** The delivered artefacts are built from a named commit and `release:current` runs in `verify:release` in front of every publish, which is the part that was missing rather than the check. Four consecutive builds this pass — versionCodes 4 through 7 — each recorded a commit that is in the repository, with `release:current` reporting both delivery manifests at HEAD and the working tree dirty only in `docs/` and the two release directories, which is what a release writes.\n\n`source_state.dirty` is still `true` in `build-info.json` and that is not the defect: the script that writes the manifest necessarily observes its own output, so it counts the delivery files it is in the middle of writing. What matters is that no *product* file differs from the commit, which is what `release:current` checks and reports. `docs:consistency` gained a rule this pass that fails when any document calls the tree clean while a product file differs, so the claim and the state cannot drift apart again.",
+      "recommendedFix": "Done. `release:current` is in `verify:release`, and a document may no longer claim a clean tree while a product file differs.",
+      "note": "Written in four consecutive reports and closed in four, because closing it was never the fix — the fix was a check. There now is one, and it is what should keep this row closed rather than the row itself.",
+      "effort": "DONE"
     },
     {
       "id": "I-02",
@@ -1328,6 +1329,50 @@
       "summary": "“Clear everything you have learned” left the wrong-answer notebook and the Numbers course on disk",
       "customerImpact": "A learner who cleared their data watched it come back on the next launch, on the one screen whose subject is what happens to their data",
       "evidence": "Found on 3 September 2026 while reading `clearEverything` for the restore semantics of I-12.\n\n`clearEverything` held a hand-written list of six stores and the product has eight. `mistakes` and `numbers` were never cleared. `reset()` emptied both in memory, so the screen went blank and looked correct — and the next hydration read them straight back out of storage, because that is where hydration reads them from.\n\nThe Privacy screen says, in every one of the 32 languages, that this button clears everything.\n\nFixed by deriving the list from `STORE_NAMES` minus `meta`, because the defect was not that somebody forgot two stores — it was that forgetting was possible. `meta` is the one deliberate exception: it holds the schema version and migration bookkeeping, and clearing it would make the next launch run every migration again over an empty database.\n\nEvidence: `apps/web/src/storage/reset.test.ts` — the first test fails against the old implementation and names the store that still holds rows.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-129",
+      "area": "Numbers",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Correct answers were answered by a sentence that repeated the question",
+      "customerImpact": "A learner who tapped 4 under 사 and read 맞았어요 was then told 사는 4예요. Every numeral in the course did it, in all 32 languages.",
+      "evidence": "The feedback line was generated: `{{subject}} {{value}}예요` with the item and its particle put in at runtime. On a *correct* answer such a sentence can only repeat what the learner just tapped.\n\nFixed by making feedback typed and authored per outcome — `correct` is null unless the item carries a hand-written note, `incorrect` is null for a plain numeral because *정답은 오* is already printed above the body, and a misconception overrides with the line written for that mistake. Seven items carry notes: 만 원, the phone-number zero, the clock, the price, 십육, the irregular months, the counting forms.\n\nThe empty wrapper went with it: `FeedbackState` declines to draw its body when given nothing, but a JSX fragment is truthy whatever is inside it.\n\n`copy:generated` renders every question the engine can build — 95 items, 19 lessons, practice, a retry and mastery, every outcome and distractor path, 32 languages — and fails on a tautology after a correct answer, an empty render, a raw key, placeholder residue, English leaking, a category label, a claim about learners, a repeated verdict, and the counting-word line on a non-counter. **Negative-tested**: restoring the template produces 7,927 findings.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-130",
+      "area": "Numbers",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "A misconception class was shown to learners as a raw key",
+      "customerImpact": "A learner who chose the wrong number set in the *which numbers go here?* question saw the string `rationale.wrong_system_context`.",
+      "evidence": "`wrong_system_context` was declared as a misconception, attached to two options in `choose_system`, and never given a sentence in any of the 32 bundles, so i18next returned the key itself. 1,024 occurrences, found by `copy:generated` on its first run.\n\nThe class is removed rather than given a sentence: the exercise's own line is already the correction. A unit test now fails on any misconception a distractor carries that the copy has no entry for.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-131",
+      "area": "App shell",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The document could scroll, carrying the bottom tab bar off its anchor",
+      "customerImpact": "On My Learning the page kept moving past its content, the tab bar rode up with it, and a band of blank ground appeared underneath. The same offset carried into Privacy, which is why that page was reported as intermittently corrupted near the bottom.",
+      "evidence": "`.toggleInput` is `position: absolute` with no offsets, and its label was not positioned, so its containing block walked up to `#root`. An absolutely positioned box is clipped by an ancestor only when that ancestor is in its containing-block chain, so the scroll pane's `overflow: hidden` did not clip it: two of them sat at document y≈1908 and y≈1960 and stretched the document to 1,961 px against an 844 px window.\n\nA scrollable document carries the whole app when it moves. Its offset also survives a route change, so a non-zero one carried from My Learning into a shorter page rendered that page shifted with its bottom clipped — the intermittency depended on whether a gesture had reached the document.\n\nFixed in two layers: `html, body { overflow: hidden }` so the shell owns the viewport and the class of defect is structurally impossible, and `.toggleLabel { position: relative }` so the leak cannot start. **Negative-tested**: with the shell guard reverted, `tab-bar.spec.ts` fails with `Expected: <= 845, Received: 1961`.\n\n`e2e/tab-bar.spec.ts` measures the bar's rectangle before and after a real wheel gesture at seven sizes, three text scales and both appearances — 31 cases. `e2e/privacy-stability.spec.ts` enters Privacy 108 times over six state-carrying paths at three sizes and measures on arrival and at the bottom.",
+      "recommendedFix": "Done.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-132",
+      "area": "My Learning",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "Section headings started four pixels right of their own descriptions",
+      "customerImpact": "초기화, 백업, 앱 and 화면 each sat four pixels right of the text beneath them. Every box measurement said the column was straight.",
+      "evidence": "`.groupTitle` carried `padding-inline-start: var(--hg-space-1)`, which moves the first glyph without moving the element — an optical nudge for the uppercase tracking, applied to one of the two things sharing a rule.\n\n`align:sections` measures a `Range` over each element's first text node rather than the element, on My Learning, Privacy and Legal, at five widths, 100/150/200% text, in Korean, German and Arabic — where the axis is mirrored rather than skipped. 60 groups, 240 lines. **Negative-tested**: restoring the padding produces 180 findings.",
       "recommendedFix": "Done.",
       "effort": "DONE"
     }
