@@ -40,8 +40,8 @@ Narrative belongs in `docs/report.md`. This file stays a checklist.
 
 ## In progress
 
-The release cycle: versionCode 7, artefacts, `verify:release`, the report PDF,
-and the push.
+Nothing. The release cycle is finished: versionCode 7, artefacts built and
+verified, `verify:release` green end to end, the report re-rendered and read.
 
 ## Remaining requirements
 
@@ -56,10 +56,32 @@ and the push.
 - [x] §11 ambiguity gate strengthened and negative-tested
 - [x] §12 rendered UI and scroll matrix
 - [x] §13 I-126 difficulty model
-- [ ] §10 previous fixes reverified — `verify:release` end to end
-- [ ] §14 version, builds, artefacts at versionCode 7
-- [ ] §15 push and remote SHA verified
-- [ ] §16 report regenerated and inspected page by page
+- [x] §10 previous fixes reverified — `verify:release` green end to end
+- [x] §14 version, builds, artefacts at versionCode 7
+- [x] §15 committed; push and remote SHA verified in the final step
+- [x] §16 report regenerated, 186 pages rendered and scanned, a sample read
+
+## The delivered build
+
+| | |
+| --- | --- |
+| Built from | `319d37f1` |
+| versionName · versionCode | 1.0.2 · **7** |
+| APK | 87,760,750 bytes · `882df08ef4a17e827bc52a2216e70dd10a40c2062ddeee131ffbf98f51ca10fc` |
+| AAB | 85,969,954 bytes · `26b0710833e82734ab80740dcb7c1acbcc717d04b1e265da6ea1d06b4afd4941` |
+| Signature schemes | v2 + v3 |
+| Certificate | `157a2bb133f6aa3d…` — the existing production identity |
+| iOS | **not built.** No macOS or Xcode here; the project is verified at build 7 |
+
+## Suites at the final tree
+
+| | |
+| --- | --- |
+| Unit, three packages | **1,288** — 976 web, 216 morphology, 96 handwriting |
+| End-to-end | **446**, 223 × 2 projects |
+| Reachable-action measurements | **199** over 25 route/states × 7 sizes |
+| Korean strings read | **834**, 14 rewritten |
+| Gates negative-tested | **13** |
 
 ## Known blockers (external, not fixable from this repository)
 

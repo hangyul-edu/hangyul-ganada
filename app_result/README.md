@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `f731bd431959262b91c01d04914779b546db3724` at 2026-09-03T00:08:12.719Z. **The working tree was not clean**: 18 changed and 0 untracked files over that commit, source fingerprint `6584d332828fafebb8e35bc8366514793f42657dc8d67a8a98f760a2b6f1aa41`. `release:current` is pending until this tree is committed.
+Built from commit `319d37f16c6993dde653a537b9dc5ada78ab04dd` at 2026-09-03T05:14:04.407Z. **The working tree was not clean**: 12 changed and 0 untracked files over that commit, source fingerprint `ccc9724d3722d02e9fee2e174939bc67d2d4946b91f0788492ae91194071e513`. `release:current` is pending until this tree is committed.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
@@ -8,8 +8,8 @@ the legal pack and the full report — is in `result/`.
 
 | File | Size | What it is for |
 | --- | --- | --- |
-| `hangyul-ganada-release.apk` | 83.8 MB | sideloading, and testing on a device |
-| `hangyul-ganada-release.aab` | 82.1 MB | the upload to Google Play |
+| `hangyul-ganada-release.apk` | 83.7 MB | sideloading, and testing on a device |
+| `hangyul-ganada-release.aab` | 82.0 MB | the upload to Google Play |
 | `build-info.json` | — | what these two are, in full |
 | `checksums.sha256` | — | `sha256sum -c checksums.sha256` |
 
@@ -25,7 +25,7 @@ app — it is a different app that cannot replace it. The keystore is not in thi
 repository and no password, path or alias appears anywhere in this directory.
 
 Signature schemes: v2 + v3. Application id
-`com.talkhangyul.ganada`, version 1.0.2 (5), min SDK
+`com.talkhangyul.ganada`, version 1.0.2 (7), min SDK
 24, target SDK 36.
 
 To confirm it yourself:
