@@ -57,12 +57,21 @@ const HOME = '/';
  *
  * ## The header's chevron presses the same button
  *
- * Every screen draws a back arrow in its top-left — see `AppHeader` — and that
- * arrow does not have its own idea of where back is. It calls `goBack` from
- * this component, through `BackNavigationContext`, so the two controls cannot
- * drift apart. They have drifted twice: once when this rule was "anywhere but
- * Home goes Home" and the header arrow was not, and once when the header arrow
- * was missing from seven screens and this was the only way out of them.
+ * Every screen a learner navigates *to* draws a back arrow in its top-left —
+ * see `AppHeader` — and that arrow does not have its own idea of where back is.
+ * It calls `goBack` from this component, through `BackNavigationContext`, so
+ * the two controls cannot drift apart. They have drifted twice: once when this
+ * rule was "anywhere but Home goes Home" and the header arrow was not, and once
+ * when the header arrow was missing from seven screens and this was the only
+ * way out of them.
+ *
+ * **Home draws no arrow**, and that is not a third drift. The rule below is
+ * unchanged there — a press still pops the stack if this session pushed
+ * anything, and still offers to leave when it did not. What Home no longer has
+ * is a *painted* control saying so, because on the screen the app opens to
+ * there is usually nothing behind it, and an arrow that leads nowhere on a
+ * first launch is a control that lies. The system gesture keeps working; it is
+ * the platform's, and removing a button is no reason to break it.
  *
  * That is also why this component takes children. It has to be an ancestor of
  * the routes to provide to them, and it has to be inside the router to read the

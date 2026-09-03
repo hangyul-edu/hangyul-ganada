@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Every route draws a back control, in the same corner, that actually works.
+ * Every route a learner navigates *to* draws one back control, in the same
+ * corner, that actually works — and Home draws none.
  *
  *   npm run back:coverage            render every route and report
  *   npm run back:coverage -- --check the same; exit non-zero on a finding
@@ -13,6 +14,21 @@
  * optional and opting in was easy to forget. On a phone using gesture
  * navigation — no visible system bar — those were screens a learner could enter
  * and see no way out of.
+ *
+ * ## And then the fix went one screen too far
+ *
+ * Making the control unconditional put a back chevron on Home, beside the
+ * product's own logo, on the screen the app opens to. It was defended as
+ * consistency and a screenshot ended the argument: on a first launch there is
+ * nothing behind Home to go back to, and an arrow that says otherwise is a
+ * control that lies. So the expectation here is now *two* rules rather than
+ * one, and the second is as load-bearing as the first:
+ *
+ * - Home: **zero** visible back controls.
+ * - Every other production route: **exactly one**.
+ *
+ * Both directions are checked, because "at least one" would pass a Home with a
+ * chevron on it and "at most one" would pass a Letters screen with none.
  *
  * A component default fixes today's seven. It does not stop the eighth, which
  * is a *new screen that does not use the header at all*, and that is what this
@@ -56,6 +72,9 @@ const baseUrl = process.argv.find((arg) => arg.startsWith('http')) ?? 'http://12
 
 const findings = [];
 const fail = (what) => findings.push(what);
+
+/** The one route with no back control. Everything else has exactly one. */
+const HOME = '/';
 
 // --- the route inventory, read out of the router -----------------------------
 
@@ -225,6 +244,23 @@ for (const { path, dev } of routes) {
   });
 
   measured += 1;
+
+  /*
+   * Home is the exception, and it is checked rather than skipped: a screen
+   * excused from a gate is a screen the gate cannot report on, and the whole
+   * reason this rule exists is that a chevron appeared on Home without anybody
+   * deciding it should.
+   */
+  if (path === HOME) {
+    if (seen.count > 0) {
+      fail(
+        `${path}: Home draws ${seen.count} back control(s); it must draw none — ` +
+          'there is nothing behind the screen the app opens to',
+      );
+    }
+    continue;
+  }
+
   if (seen.count === 0) {
     fail(`${path}: no visible back control`);
     continue;
@@ -253,12 +289,19 @@ await stop();
 // --- report ------------------------------------------------------------------
 
 const shipped = routes.filter((route) => !route.dev).length;
+const dev = routes.filter((route) => route.dev);
 console.log(
   `Back control — ${routes.length} routes in the router (${shipped} in a release build), ${measured} opened in a browser`,
 );
+console.log(`  Home (${HOME}) expects none; the other ${shipped - 1} production routes expect exactly one`);
+console.log(
+  dev.length === 0
+    ? '  no developer-only routes'
+    : `  developer-only, static pass only: ${dev.map((route) => route.path).join(', ')}`,
+);
 console.log(`  ${locales.length} locales carry an accessible name for it`);
 if (findings.length === 0) {
-  console.log('  every route draws one back control, in the corner, at 44 px, with a name.');
+  console.log('  Home draws none; every other route draws one, in the corner, at 44 px, with a name.');
 } else {
   console.log(`\n  ${findings.length} problem(s):`);
   for (const finding of findings) console.log(`    ${finding}`);

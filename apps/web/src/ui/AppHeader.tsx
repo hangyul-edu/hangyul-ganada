@@ -18,14 +18,17 @@ export interface AppHeaderProps {
    * special — leave a sitting, confirm an unsaved answer, return to a parent
    * the learner did not arrive from.
    *
-   * **Omitting it does not remove the chevron.** There is no way to remove the
-   * chevron, which is the point: every screen has one, in the same corner, and
-   * a screen that omits this simply gets the app's own rule — see
-   * `useBackNavigation`. Seven screens used to have no back arrow at all
-   * because the prop was optional and opting in was easy to forget: Home,
-   * Letters, Numbers, Words, a word category, Review and My Learning. On a
-   * phone with gesture navigation and no visible system bar, those were
-   * screens with no visible way back.
+   * **Omitting it does not remove the chevron.** On a titled header there is no
+   * way to remove the chevron, which is the point: every screen a learner
+   * navigates *to* has one, in the same corner, and a screen that omits this
+   * simply gets the app's own rule — see `useBackNavigation`. Six screens used
+   * to have no back arrow at all because the prop was optional and opting in
+   * was easy to forget: Letters, Numbers, Words, a word category, Review and My
+   * Learning. On a phone with gesture navigation and no visible system bar,
+   * those were screens with no visible way back.
+   *
+   * The `brand` variant — Home, and only Home — draws no chevron at all, and
+   * this prop is meaningless there. See the comment at that branch.
    *
    * `true` is accepted and means the same as omitting it; it is kept because
    * several screens say it explicitly and reading `onBack` as "the default" is
@@ -102,15 +105,21 @@ export function AppHeader({
     return (
       <header className={`${styles.header} ${styles.brand}`}>
         {/*
-          Home has a back arrow too.
+          Home draws no back control, and it is the only screen that does not.
 
-          It looks redundant — Home is where Back goes — and it is not: a
-          learner can reach Home from a lesson, and the rule sends them to the
-          screen they came from before it offers to leave. A corner that is
-          empty on one screen and a control on every other is a corner people
-          stop looking at.
+          It had one for exactly one release. The argument was consistency — a
+          corner that is a control on every screen but one is a corner people
+          stop looking at — and a screenshot of it beside the product's own
+          logo answered the argument: on the screen the app opens to, a back
+          arrow reads as *go back from the beginning*, and on a first launch
+          there is nothing behind it to go back to.
+
+          Nothing replaces it and no space is held for it: the logo starts on
+          the same rule as the cards below. Android's system back still works
+          here and offers to leave the app — see `SystemBack` — because that is
+          the platform's own gesture and removing a painted control is not a
+          reason to break it.
         */}
-        <div className={styles.side}>{back}</div>
         <h1 className={styles.brandTitle}>
           <img
             className={styles.brandLogo}

@@ -129,28 +129,28 @@
 /* --- brand variant (home) --- */
 
 /*
- * Back, logo, streak, on one row.
+ * Logo and streak, on one row. No back control.
  *
  * `min-height` rather than `height`, at the same 56 px as every other app bar
  * in the product, so the home screen's top edge lines up with the screens a
  * learner navigates to from it.
  *
- * Three tracks rather than two, since Home gained the back chevron every other
- * screen has. The chevron takes the hit-target track the titled header gives
- * it, so the arrow is in exactly the same place on Home as on the screen a
- * learner came from — the thing that makes a corner learnable is that it does
- * not move.
+ * **Two tracks, and Home is the one screen with no chevron.** It briefly had
+ * one, on the argument that a corner which is a control on every screen but
+ * one is a corner people stop looking at. The screenshot settled it: a back
+ * arrow beside the product's own logo, on the screen the app opens to, reads
+ * as *go back from the beginning* — and on a first launch there is nothing
+ * behind it. The rule is the ordinary one instead: back exists where there is
+ * somewhere to go back to. Android's system back still works here, and offers
+ * to leave the app; that is the platform's gesture, not a painted control.
  *
- * The left padding drops to the header's own, because the chevron's box is
- * wider than its glyph: at the body's `space-5` the *arrow* would sit further
- * in than the cards below it, which is the mirror of the fault the padding was
- * chosen to avoid. `.brandTitle` takes the difference back so the logo keeps
- * the alignment it had.
+ * The left padding is therefore the body's own `space-5` again, so the logo
+ * starts on the same rule as the cards under it.
  */
 .brand {
-  grid-template-columns: var(--hg-size-hit-target) auto 1fr;
+  grid-template-columns: auto 1fr;
   justify-content: space-between;
-  padding: var(--hg-space-3) var(--hg-space-5) var(--hg-space-2) var(--hg-space-2);
+  padding: var(--hg-space-3) var(--hg-space-5) var(--hg-space-2);
   background: transparent;
 }
 
