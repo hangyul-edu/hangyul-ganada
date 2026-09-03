@@ -107,11 +107,7 @@
     "continue": "Dál"
   },
   "complete": {
-    "title": "Pěkná práce!",
-    "letters_few": "Dokončili jste {{count, number}} litery v části {{lesson}}.",
-    "letters_many": "Dokončili jste {{count, number}} litery v části {{lesson}}.",
-    "letters_one": "Dokončili jste {{count, number}} literu v části {{lesson}}.",
-    "letters_other": "Dokončili jste {{count, number}} liter v části {{lesson}}."
+    "title": "Cvičení dokončeno"
   },
   "review": {
     "title": "Opakování",
@@ -129,7 +125,6 @@
     "sessionLength_one": "{{count, number}} krátké cvičení",
     "sessionLength_other": "{{count, number}} krátkých cvičení",
     "chooseMode": "Nebo si vyberte, co procvičit",
-    "outcome": "{{practised, number}} procvičeno · {{firstTry, number}} se vybavilo hned · {{comingBack, number}} se brzy vrátí",
     "blank": "mezera",
     "optionsLabel": "Odpovědi",
     "cannotUseAudio": "Nejde použít zvuk?",

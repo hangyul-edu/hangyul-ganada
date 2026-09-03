@@ -107,9 +107,7 @@
     "continue": "తర్వాత"
   },
   "complete": {
-    "title": "బాగా చేశారు!",
-    "letters_one": "{{lesson}}లో {{count, number}} అక్షరం పూర్తి చేశారు.",
-    "letters_other": "{{lesson}}లో {{count, number}} అక్షరాలు పూర్తి చేశారు."
+    "title": "సెషన్ పూర్తయింది"
   },
   "review": {
     "title": "పునశ్చరణ",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} చిన్న అభ్యాసం",
     "sessionLength_other": "{{count, number}} చిన్న అభ్యాసాలు",
     "chooseMode": "లేదా ఏం సాధన చేయాలో మీరే ఎంచుకోండి",
-    "outcome": "{{practised, number}} సాధన · {{firstTry, number}} మొదటి ప్రయత్నంలోనే గుర్తొచ్చాయి · {{comingBack, number}} త్వరలో తిరిగి వస్తాయి",
     "blank": "ఖాళీ",
     "optionsLabel": "జవాబులు",
     "cannotUseAudio": "ఆడియో వాడలేకపోతున్నారా?",

@@ -107,10 +107,7 @@
     "continue": "Mai departe"
   },
   "complete": {
-    "title": "Frumoasă treabă!",
-    "letters_few": "Ai terminat {{count, number}} litere în {{lesson}}.",
-    "letters_one": "Ai terminat {{count, number}} literă în {{lesson}}.",
-    "letters_other": "Ai terminat {{count, number}} de litere în {{lesson}}."
+    "title": "Sesiune încheiată"
   },
   "review": {
     "title": "Recapitulare",
@@ -127,7 +124,6 @@
     "sessionLength_one": "{{count, number}} exercițiu scurt",
     "sessionLength_other": "{{count, number}} de exerciții scurte",
     "chooseMode": "Sau alege tu ce exersezi",
-    "outcome": "{{practised, number}} exersate · {{firstTry, number}} ți-au venit din prima · {{comingBack, number}} se întorc în curând",
     "blank": "spațiu",
     "optionsLabel": "Răspunsuri",
     "cannotUseAudio": "Nu poți folosi sunetul?",

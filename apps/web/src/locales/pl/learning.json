@@ -107,11 +107,7 @@
     "continue": "Dalej"
   },
   "complete": {
-    "title": "Ładna robota!",
-    "letters_few": "Ukończyłeś {{count, number}} litery w {{lesson}}.",
-    "letters_many": "Ukończyłeś {{count, number}} liter w {{lesson}}.",
-    "letters_one": "Ukończyłeś {{count, number}} literę w {{lesson}}.",
-    "letters_other": "Ukończyłeś {{count, number}} litery w {{lesson}}."
+    "title": "Sesja zakończona"
   },
   "review": {
     "title": "Powtórka",
@@ -129,7 +125,6 @@
     "sessionLength_one": "{{count, number}} krótkie ćwiczenie",
     "sessionLength_other": "{{count, number}} krótkiego ćwiczenia",
     "chooseMode": "Albo wybierz, co poćwiczyć",
-    "outcome": "{{practised, number}} przećwiczone · {{firstTry, number}} od razu wróciło · {{comingBack, number}} wróci niedługo",
     "blank": "luka",
     "optionsLabel": "Odpowiedzi",
     "cannotUseAudio": "Nie możesz użyć dźwięku?",

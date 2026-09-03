@@ -107,8 +107,7 @@
     "continue": "Lanjut"
   },
   "complete": {
-    "title": "Bagus sekali!",
-    "letters_other": "Kamu menyelesaikan {{count, number}} huruf di {{lesson}}."
+    "title": "Sesi selesai"
   },
   "review": {
     "title": "Ulasan",
@@ -123,7 +122,6 @@
     "forYou": "Ulasan untukmu",
     "sessionLength_other": "{{count, number}} latihan singkat",
     "chooseMode": "Atau pilih apa yang mau dilatih",
-    "outcome": "{{practised, number}} dilatih · {{firstTry, number}} langsung teringat · {{comingBack, number}} akan kembali lagi",
     "blank": "kosong",
     "optionsLabel": "Jawaban",
     "cannotUseAudio": "Tidak bisa memakai audio?",

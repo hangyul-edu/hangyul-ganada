@@ -7,8 +7,6 @@
     "resumeBlurb": "Học tiếp từ chỗ bạn dừng lại.",
     "doneBlurb": "Hôm nay xong rồi. Tốt lắm!",
     "completeTitle": "Đã học xong từ của hôm nay.",
-    "completeDetail_one": "Học được một từ.",
-    "completeDetail_other": "Học được {{count}} từ.",
     "more": "Học thêm chút nữa",
     "allDone": "Hôm nay không còn gì nữa.",
     "progressAria": "Tiến độ từ vựng hôm nay",

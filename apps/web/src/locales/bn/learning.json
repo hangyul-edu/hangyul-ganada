@@ -107,9 +107,7 @@
     "continue": "পরেরটা"
   },
   "complete": {
-    "title": "চমৎকার!",
-    "letters_one": "{{lesson}}-এ আপনি {{count, number}}টি অক্ষর শেষ করেছেন।",
-    "letters_other": "{{lesson}}-এ আপনি {{count, number}}টি অক্ষর শেষ করেছেন।"
+    "title": "সেশন শেষ"
   },
   "review": {
     "title": "পুনরালোচনা",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}}টি ছোট অনুশীলন",
     "sessionLength_other": "{{count, number}}টি ছোট অনুশীলন",
     "chooseMode": "অথবা নিজেই বেছে নিন কী অনুশীলন করবেন",
-    "outcome": "{{practised, number}}টি অনুশীলন হয়েছে · {{firstTry, number}}টি প্রথমেই মনে এসেছে · {{comingBack, number}}টি শিগগির ফিরে আসবে",
     "blank": "ফাঁকা",
     "optionsLabel": "উত্তর",
     "cannotUseAudio": "শব্দ ব্যবহার করতে পারছেন না?",

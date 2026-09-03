@@ -107,9 +107,7 @@
     "continue": "आगे"
   },
   "complete": {
-    "title": "बढ़िया काम!",
-    "letters_one": "आपने {{lesson}} में {{count, number}} अक्षर पूरा किया।",
-    "letters_other": "आपने {{lesson}} में {{count, number}} अक्षर पूरे किए।"
+    "title": "सत्र पूरा हुआ"
   },
   "review": {
     "title": "दोहराव",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} छोटा अभ्यास",
     "sessionLength_other": "{{count, number}} छोटे अभ्यास",
     "chooseMode": "या खुद चुनिए कि क्या अभ्यास करना है",
-    "outcome": "{{practised, number}} अभ्यास हुए · {{firstTry, number}} पहली बार में याद आए · {{comingBack, number}} जल्दी लौटेंगे",
     "blank": "रिक्त स्थान",
     "optionsLabel": "उत्तर",
     "cannotUseAudio": "ऑडियो नहीं सुन सकते?",

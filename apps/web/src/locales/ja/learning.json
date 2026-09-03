@@ -19,9 +19,7 @@
     "continue": "次へ"
   },
   "complete": {
-    "title": "よくできました！",
-    "letters_other": "{{lesson}}で {{count, number}} 文字おぼえました。",
-    "letters_one": "{{lesson}}で {{count, number}} 文字おぼえました。"
+    "title": "学習を終えました"
   },
   "review": {
     "title": "復習",
@@ -37,7 +35,6 @@
     "sessionLength_one": "短い問題が1つ",
     "sessionLength_other": "短い問題が{{count, number}}つ",
     "chooseMode": "練習したいものを選ぶ",
-    "outcome": "{{practised, number}}問 練習 · {{firstTry, number}}問はすぐに思い出せました · {{comingBack, number}}問はまた出てきます",
     "blank": "空欄",
     "optionsLabel": "選択肢",
     "cannotUseAudio": "音が使えませんか？",

@@ -107,9 +107,7 @@
     "continue": "Παρακάτω"
   },
   "complete": {
-    "title": "Ωραία δουλειά!",
-    "letters_one": "Ολοκλήρωσες {{count, number}} γράμμα στο {{lesson}}.",
-    "letters_other": "Ολοκλήρωσες {{count, number}} γράμματα στο {{lesson}}."
+    "title": "Η συνεδρία τελείωσε"
   },
   "review": {
     "title": "Επανάληψη",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} σύντομη άσκηση",
     "sessionLength_other": "{{count, number}} σύντομες ασκήσεις",
     "chooseMode": "Ή διάλεξε τι θα εξασκήσεις",
-    "outcome": "{{practised, number}} εξασκήθηκαν · {{firstTry, number}} ήρθαν αμέσως · {{comingBack, number}} θα ξαναγυρίσουν σύντομα",
     "blank": "κενό",
     "optionsLabel": "Απαντήσεις",
     "cannotUseAudio": "Δεν μπορείτε να ακούσετε;",

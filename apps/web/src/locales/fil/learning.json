@@ -107,9 +107,7 @@
     "continue": "Susunod"
   },
   "complete": {
-    "title": "Magaling!",
-    "letters_one": "Natapos mo ang {{count, number}} letra sa {{lesson}}.",
-    "letters_other": "Natapos mo ang {{count, number}} na letra sa {{lesson}}."
+    "title": "Tapos na ang session"
   },
   "review": {
     "title": "Balik-aral",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} maikling ensayo",
     "sessionLength_other": "{{count, number}} maiikling ensayo",
     "chooseMode": "O pumili kung ano ang ieensayo",
-    "outcome": "{{practised, number}} naensayo · {{firstTry, number}} agad naalala · {{comingBack, number}} babalik pa",
     "blank": "puwang",
     "optionsLabel": "Mga sagot",
     "cannotUseAudio": "Hindi magamit ang audio?",

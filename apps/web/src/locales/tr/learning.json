@@ -107,9 +107,7 @@
     "continue": "Sonraki"
   },
   "complete": {
-    "title": "Güzel iş!",
-    "letters_one": "{{lesson}} dersinde {{count, number}} harf bitirdin.",
-    "letters_other": "{{lesson}} dersinde {{count, number}} harf bitirdin."
+    "title": "Çalışma bitti"
   },
   "review": {
     "title": "Tekrar",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} kısa alıştırma",
     "sessionLength_other": "{{count, number}} kısa alıştırma",
     "chooseMode": "Ya da neye çalışacağını seç",
-    "outcome": "{{practised, number}} çalışıldı · {{firstTry, number}} ilk denemede geldi · {{comingBack, number}} yakında geri dönecek",
     "blank": "boşluk",
     "optionsLabel": "Cevaplar",
     "cannotUseAudio": "Sesi kullanamıyor musun?",

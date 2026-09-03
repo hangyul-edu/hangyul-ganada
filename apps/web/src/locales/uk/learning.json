@@ -107,11 +107,7 @@
     "continue": "Далі"
   },
   "complete": {
-    "title": "Гарна робота!",
-    "letters_few": "Ви пройшли {{count, number}} літери в розділі {{lesson}}.",
-    "letters_many": "Ви пройшли {{count, number}} літер у розділі {{lesson}}.",
-    "letters_one": "Ви пройшли {{count, number}} літеру в розділі {{lesson}}.",
-    "letters_other": "Ви пройшли {{count, number}} літери в розділі {{lesson}}."
+    "title": "Заняття завершено"
   },
   "review": {
     "title": "Повторення",
@@ -129,7 +125,6 @@
     "sessionLength_one": "{{count, number}} коротка вправа",
     "sessionLength_other": "{{count, number}} короткої вправи",
     "chooseMode": "Або виберіть, що повправляти",
-    "outcome": "{{practised, number}} опрацьовано · {{firstTry, number}} згадали одразу · {{comingBack, number}} повернуться згодом",
     "blank": "пропуск",
     "optionsLabel": "Відповіді",
     "cannotUseAudio": "Не можете скористатися звуком?",

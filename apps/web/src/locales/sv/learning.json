@@ -107,9 +107,7 @@
     "continue": "Nästa"
   },
   "complete": {
-    "title": "Fint jobbat!",
-    "letters_one": "Du klarade {{count, number}} bokstav i {{lesson}}.",
-    "letters_other": "Du klarade {{count, number}} bokstäver i {{lesson}}."
+    "title": "Passet är klart"
   },
   "review": {
     "title": "Repetera",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} kort övning",
     "sessionLength_other": "{{count, number}} korta övningar",
     "chooseMode": "Eller välj vad du vill öva på",
-    "outcome": "{{practised, number}} övade · {{firstTry, number}} kom direkt · {{comingBack, number}} kommer snart tillbaka",
     "blank": "lucka",
     "optionsLabel": "Svar",
     "cannotUseAudio": "Kan du inte använda ljud?",

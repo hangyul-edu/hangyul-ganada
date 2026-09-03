@@ -693,7 +693,8 @@ export function WordSessionPage() {
             ? t('vocabulary:today.completeTitle')
             : t('learning:complete.title')
         }
-        detail={t('vocabulary:today.completeDetail', { count: wordsDone })}
+        // No subtitle: *10 words learned* over a badge reading 10/10 is the
+        // same number twice. The badge is the honest one.
         /*
          * Words, and the day's goal — the same fraction as the badge above and
          * the card on the Words screen.

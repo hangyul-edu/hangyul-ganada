@@ -107,9 +107,7 @@
     "continue": "Next"
   },
   "complete": {
-    "title": "Nice work!",
-    "letters_one": "You finished {{count, number}} letter in {{lesson}}.",
-    "letters_other": "You finished {{count, number}} letters in {{lesson}}."
+    "title": "Session complete"
   },
   "review": {
     "title": "Review",
@@ -125,7 +123,6 @@
     "sessionLength_one": "One short exercise",
     "sessionLength_other": "{{count, number}} short exercises",
     "chooseMode": "Or pick what to practise",
-    "outcome": "{{practised, number}} practised · {{firstTry, number}} came straight back to you · {{comingBack, number}} will return soon",
     "blank": "blank",
     "optionsLabel": "Answers",
     "cannotUseAudio": "Can't use audio?",

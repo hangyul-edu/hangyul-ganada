@@ -452,15 +452,13 @@ export function ReviewSessionPage() {
         onContinue={() => navigate('/review')}
         title={t('learning:review.completeTitle')}
         /*
-          What improved and what will return — both read off the scheduler's
-          real state rather than counted from the session, so the screen cannot
-          promise a return that will not happen.
+          No subtitle. It read *1 practised · 1 came straight back to you ·
+          1 will return soon* — three counts describing one item, which looks
+          like three items, and whose last two clauses contradict each other for
+          a learner who does not know the scheduler is talking about the same
+          card. The honest result is the fraction below: how many came back on
+          the first try, out of how many were practised.
         */
-        detail={t('learning:review.outcome', {
-          practised: outcome.practised,
-          firstTry: outcome.firstTry,
-          comingBack: outcome.comingBack,
-        })}
         passed={outcome.firstTry}
         total={outcome.practised}
       />

@@ -107,9 +107,7 @@
     "continue": "Keyingisi"
   },
   "complete": {
-    "title": "Barakalla!",
-    "letters_one": "{{lesson}} bo‘limida {{count, number}} harfni tugatdingiz.",
-    "letters_other": "{{lesson}} bo‘limida {{count, number}} harfni tugatdingiz."
+    "title": "Mashg‘ulot tugadi"
   },
   "review": {
     "title": "Takrorlash",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} ta qisqa mashq",
     "sessionLength_other": "{{count, number}} ta qisqa mashq",
     "chooseMode": "Yoki nimani mashq qilishni o‘zingiz tanlang",
-    "outcome": "{{practised, number}} ta mashq qilindi · {{firstTry, number}} tasi darrov esga tushdi · {{comingBack, number}} tasi yaqinda qaytadi",
     "blank": "bo‘sh joy",
     "optionsLabel": "Javoblar",
     "cannotUseAudio": "Ovozdan foydalana olmayapsizmi?",

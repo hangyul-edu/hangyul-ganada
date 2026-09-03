@@ -19,9 +19,7 @@
     "continue": "다음"
   },
   "complete": {
-    "title": "잘했어요!",
-    "letters_other": "{{lesson}}에서 글자 {{count, number}}개를 끝냈어요.",
-    "letters_one": "{{lesson}}에서 글자 {{count, number}}개를 끝냈어요."
+    "title": "학습을 마쳤어요"
   },
   "review": {
     "title": "복습",
@@ -37,7 +35,6 @@
     "sessionLength_one": "짧은 문제 하나",
     "sessionLength_other": "짧은 문제 {{count, number}}개",
     "chooseMode": "원하는 연습 고르기",
-    "outcome": "{{practised, number}}개 연습 · {{firstTry, number}}개는 바로 떠올랐어요 · {{comingBack, number}}개는 곧 다시 나와요",
     "blank": "빈칸",
     "optionsLabel": "보기",
     "cannotUseAudio": "소리를 들을 수 없나요?",

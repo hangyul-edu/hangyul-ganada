@@ -107,9 +107,7 @@
     "continue": "அடுத்து"
   },
   "complete": {
-    "title": "அருமை!",
-    "letters_one": "{{lesson}} இல் {{count, number}} எழுத்தை முடித்தீர்கள்.",
-    "letters_other": "{{lesson}} இல் {{count, number}} எழுத்துகளை முடித்தீர்கள்."
+    "title": "அமர்வு முடிந்தது"
   },
   "review": {
     "title": "மீள்பார்வை",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} சிறு பயிற்சி",
     "sessionLength_other": "{{count, number}} சிறு பயிற்சிகள்",
     "chooseMode": "அல்லது எதைப் பயில்வது என்பதை நீங்களே தேர்ந்தெடுங்கள்",
-    "outcome": "{{practised, number}} பயிற்சி · {{firstTry, number}} முதல் முயற்சியிலேயே நினைவுக்கு வந்தன · {{comingBack, number}} விரைவில் திரும்பும்",
     "blank": "இடைவெளி",
     "optionsLabel": "விடைகள்",
     "cannotUseAudio": "ஒலியைப் பயன்படுத்த முடியவில்லையா?",

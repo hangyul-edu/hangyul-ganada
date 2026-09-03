@@ -107,9 +107,7 @@
     "continue": "Volgende"
   },
   "complete": {
-    "title": "Mooi werk!",
-    "letters_one": "Je hebt {{count, number}} letter afgerond in {{lesson}}.",
-    "letters_other": "Je hebt {{count, number}} letters afgerond in {{lesson}}."
+    "title": "Sessie klaar"
   },
   "review": {
     "title": "Herhalen",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} korte oefening",
     "sessionLength_other": "{{count, number}} korte oefeningen",
     "chooseMode": "Of kies zelf wat je oefent",
-    "outcome": "{{practised, number}} geoefend · {{firstTry, number}} meteen goed · {{comingBack, number}} komen binnenkort terug",
     "blank": "leeg",
     "optionsLabel": "Antwoorden",
     "cannotUseAudio": "Geluid niet mogelijk?",

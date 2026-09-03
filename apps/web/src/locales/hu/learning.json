@@ -107,9 +107,7 @@
     "continue": "Tovább"
   },
   "complete": {
-    "title": "Szép munka!",
-    "letters_one": "Befejeztél {{count, number}} betűt itt: {{lesson}}.",
-    "letters_other": "Befejeztél {{count, number}} betűt itt: {{lesson}}."
+    "title": "Kész a gyakorlás"
   },
   "review": {
     "title": "Ismétlés",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} rövid gyakorlat",
     "sessionLength_other": "{{count, number}} rövid gyakorlat",
     "chooseMode": "Vagy válaszd ki, mit gyakorolsz",
-    "outcome": "{{practised, number}} gyakorolva · {{firstTry, number}} elsőre megvolt · {{comingBack, number}} hamarosan visszatér",
     "blank": "üres hely",
     "optionsLabel": "Válaszok",
     "cannotUseAudio": "Nem tudod meghallgatni?",

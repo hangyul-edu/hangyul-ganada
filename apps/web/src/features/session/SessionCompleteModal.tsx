@@ -11,7 +11,20 @@ export interface SessionCompleteModalProps {
   onClose: () => void;
   onContinue: () => void;
   title: string;
-  detail: string;
+  /**
+   * A second line, only where there is a second thing to say.
+   *
+   * Optional because on three of the four screens that use this dialog there
+   * was not one, and each of them said something anyway. Review said
+   * *1 practised · 1 came straight back to you · 1 will return soon* — three
+   * counts for one item, which reads as three items and contradicts itself
+   * besides. Words said *10 words learned* above a badge already reading 10/10.
+   * Letters named a lesson the header behind the dialog was already naming.
+   *
+   * The rule this leaves: a subtitle earns its place by saying something the
+   * title and the badge do not.
+   */
+  detail?: string;
   /** Items passed in this session. */
   passed: number;
   total: number;
@@ -20,9 +33,14 @@ export interface SessionCompleteModalProps {
 }
 
 /**
- * The celebration dialog, following `docs/design-refs/p243`: illustration inside
- * a dashed orange ring, a count badge, orange headline, grey subline, and a
- * single full-width confirm.
+ * The completion dialog, following `docs/design-refs/p243`: illustration inside
+ * a dashed orange ring, a count badge, a headline, and a single full-width
+ * confirm.
+ *
+ * The grey subline the reference sheet drew is now optional and, on every
+ * screen in the product today, absent — see `detail`. What is left is the
+ * shape a result screen needs and nothing else: what finished, how much of it,
+ * one way on.
  */
 export function SessionCompleteModal({
   open,

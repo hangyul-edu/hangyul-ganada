@@ -7,8 +7,6 @@
     "resumeBlurb": "যেখানে ছেড়েছিলেন সেখান থেকে ধরুন।",
     "doneBlurb": "আজকের মতো শেষ। চমৎকার।",
     "completeTitle": "আজকের শব্দ শেষ।",
-    "completeDetail_one": "{{count}}টি শব্দ শেখা হয়েছে।",
-    "completeDetail_other": "{{count}}টি শব্দ শেখা হয়েছে।",
     "more": "আর একটু",
     "allDone": "আজকের জন্য আর কিছু নেই।",
     "progressAria": "আজকের শব্দে অগ্রগতি",

@@ -107,9 +107,7 @@
     "continue": "Цааш"
   },
   "complete": {
-    "title": "Сайн байна!",
-    "letters_one": "{{lesson}} хэсэгт {{count, number}} үсэг дуусгалаа.",
-    "letters_other": "{{lesson}} хэсэгт {{count, number}} үсэг дуусгалаа."
+    "title": "Хичээл дууслаа"
   },
   "review": {
     "title": "Давталт",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} богино дасгал",
     "sessionLength_other": "{{count, number}} богино дасгал",
     "chooseMode": "Эсвэл юуг дасгалжуулахаа өөрөө сонго",
-    "outcome": "{{practised, number}} дасгалжлаа · {{firstTry, number}} шууд санагдлаа · {{comingBack, number}} удахгүй эргэж ирнэ",
     "blank": "хоосон зай",
     "optionsLabel": "Хариултууд",
     "cannotUseAudio": "Дуу ашиглаж чадахгүй байна уу?",

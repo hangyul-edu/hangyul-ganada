@@ -107,13 +107,7 @@
     "continue": "التالي"
   },
   "complete": {
-    "title": "أحسنت!",
-    "letters_few": "أنهيت {{count, number}} حروف في {{lesson}}.",
-    "letters_many": "أنهيت {{count, number}} حرفًا في {{lesson}}.",
-    "letters_one": "أنهيت حرفًا واحدًا في {{lesson}}.",
-    "letters_other": "أنهيت {{count, number}} حرف في {{lesson}}.",
-    "letters_two": "أنهيت حرفين في {{lesson}}.",
-    "letters_zero": "لم تُنهِ أي حرف في {{lesson}}."
+    "title": "انتهت الجلسة"
   },
   "review": {
     "title": "المراجعة",
@@ -133,7 +127,6 @@
     "sessionLength_two": "تمرينان قصيران",
     "sessionLength_zero": "لا تمارين",
     "chooseMode": "أو اختر ما تريد التمرّن عليه",
-    "outcome": "{{practised, number}} تمرّنت عليها · {{firstTry, number}} تذكّرتها من أول مرة · {{comingBack, number}} ستعود قريبًا",
     "blank": "فراغ",
     "optionsLabel": "الإجابات",
     "cannotUseAudio": "لا يمكنك استخدام الصوت؟",

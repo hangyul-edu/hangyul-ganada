@@ -107,10 +107,7 @@
     "continue": "Avanti"
   },
   "complete": {
-    "title": "Bel lavoro!",
-    "letters_many": "Hai completato {{count, number}} lettere in {{lesson}}.",
-    "letters_one": "Hai completato {{count, number}} lettera in {{lesson}}.",
-    "letters_other": "Hai completato {{count, number}} lettere in {{lesson}}."
+    "title": "Sessione terminata"
   },
   "review": {
     "title": "Ripasso",
@@ -127,7 +124,6 @@
     "sessionLength_one": "{{count, number}} esercizio breve",
     "sessionLength_other": "{{count, number}} esercizi brevi",
     "chooseMode": "Oppure scegli tu che cosa esercitare",
-    "outcome": "{{practised, number}} esercitate · {{firstTry, number}} venute subito · {{comingBack, number}} torneranno presto",
     "blank": "spazio",
     "optionsLabel": "Risposte",
     "cannotUseAudio": "Non puoi usare l’audio?",

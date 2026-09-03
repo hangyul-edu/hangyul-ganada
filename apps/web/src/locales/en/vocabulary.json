@@ -7,8 +7,6 @@
     "resumeBlurb": "Pick up where you left off.",
     "doneBlurb": "Done for today. Nice work.",
     "completeTitle": "Today's words are done.",
-    "completeDetail_one": "One word learned.",
-    "completeDetail_other": "{{count}} words learned.",
     "more": "A little more",
     "allDone": "Nothing left for today.",
     "progressAria": "Progress through today's words",

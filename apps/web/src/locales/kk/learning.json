@@ -107,9 +107,7 @@
     "continue": "Әрі қарай"
   },
   "complete": {
-    "title": "Жарайсыз!",
-    "letters_one": "{{lesson}} бөлімінде {{count, number}} әріпті аяқтадыңыз.",
-    "letters_other": "{{lesson}} бөлімінде {{count, number}} әріпті аяқтадыңыз."
+    "title": "Сабақ аяқталды"
   },
   "review": {
     "title": "Қайталау",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} қысқа жаттығу",
     "sessionLength_other": "{{count, number}} қысқа жаттығу",
     "chooseMode": "Немесе нені жаттығатыныңызды өзіңіз таңдаңыз",
-    "outcome": "{{practised, number}} жаттықты · {{firstTry, number}} бірден есіңізге түсті · {{comingBack, number}} жақында қайта оралады",
     "blank": "бос орын",
     "optionsLabel": "Жауаптар",
     "cannotUseAudio": "Дыбысты қолдана алмайсыз ба?",

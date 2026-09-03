@@ -107,11 +107,7 @@
     "continue": "Дальше"
   },
   "complete": {
-    "title": "Отличная работа!",
-    "letters_few": "Вы прошли {{count, number}} буквы в разделе {{lesson}}.",
-    "letters_many": "Вы прошли {{count, number}} букв в разделе {{lesson}}.",
-    "letters_one": "Вы прошли {{count, number}} букву в разделе {{lesson}}.",
-    "letters_other": "Вы прошли {{count, number}} буквы в разделе {{lesson}}."
+    "title": "Занятие завершено"
   },
   "review": {
     "title": "Повторение",
@@ -129,7 +125,6 @@
     "sessionLength_one": "{{count, number}} короткое упражнение",
     "sessionLength_other": "{{count, number}} короткого упражнения",
     "chooseMode": "Или выберите, что потренировать",
-    "outcome": "{{practised, number}} отработано · {{firstTry, number}} вспомнили сразу · {{comingBack, number}} вернутся позже",
     "blank": "пропуск",
     "optionsLabel": "Ответы",
     "cannotUseAudio": "Не получается со звуком?",

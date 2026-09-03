@@ -7,8 +7,6 @@
     "resumeBlurb": "Ta vid där du slutade.",
     "doneBlurb": "Klart för i dag. Fint jobbat.",
     "completeTitle": "Dagens ord är klara.",
-    "completeDetail_one": "{{count}} ord inlärt.",
-    "completeDetail_other": "{{count}} ord inlärda.",
     "more": "Lite till",
     "allDone": "Inget kvar för i dag.",
     "progressAria": "Framsteg i dagens ord",

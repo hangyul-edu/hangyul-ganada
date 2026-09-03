@@ -19,9 +19,7 @@
     "continue": "Weiter"
   },
   "complete": {
-    "title": "Gut gemacht!",
-    "letters_one": "Du hast {{count, number}} Buchstaben in {{lesson}} geschafft.",
-    "letters_other": "Du hast {{count, number}} Buchstaben in {{lesson}} geschafft."
+    "title": "Sitzung beendet"
   },
   "review": {
     "title": "Wiederholen",
@@ -37,7 +35,6 @@
     "sessionLength_one": "Eine kurze Übung",
     "sessionLength_other": "{{count, number}} kurze Übungen",
     "chooseMode": "Oder wähle, was du üben willst",
-    "outcome": "{{practised, number}} geübt · {{firstTry, number}} kamen dir sofort wieder · {{comingBack, number}} kommen bald zurück",
     "blank": "Lücke",
     "optionsLabel": "Antworten",
     "cannotUseAudio": "Kein Ton möglich?",

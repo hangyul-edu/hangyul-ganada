@@ -107,9 +107,7 @@
     "continue": "Tiếp"
   },
   "complete": {
-    "title": "Giỏi lắm!",
-    "letters_one": "Bạn đã học xong {{count, number}} chữ trong {{lesson}}.",
-    "letters_other": "Bạn đã học xong {{count, number}} chữ trong {{lesson}}."
+    "title": "Hoàn thành buổi học"
   },
   "review": {
     "title": "Ôn tập",
@@ -125,7 +123,6 @@
     "sessionLength_one": "Một bài tập ngắn",
     "sessionLength_other": "{{count, number}} bài tập ngắn",
     "chooseMode": "Hoặc chọn phần muốn luyện",
-    "outcome": "Đã luyện {{practised, number}} · nhớ ngay {{firstTry, number}} · {{comingBack, number}} sẽ quay lại sớm",
     "blank": "chỗ trống",
     "optionsLabel": "Các đáp án",
     "cannotUseAudio": "Không dùng được âm thanh?",

@@ -7,8 +7,6 @@
     "resumeBlurb": "เรียนต่อจากที่ค้างไว้",
     "doneBlurb": "วันนี้เสร็จแล้ว เก่งมาก",
     "completeTitle": "เรียนคำของวันนี้ครบแล้ว",
-    "completeDetail_one": "จำได้หนึ่งคำ",
-    "completeDetail_other": "จำได้ {{count}} คำ",
     "more": "เรียนเพิ่มอีกนิด",
     "allDone": "วันนี้ไม่เหลืออะไรแล้ว",
     "progressAria": "ความคืบหน้าของคำศัพท์วันนี้",

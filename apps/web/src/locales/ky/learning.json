@@ -107,9 +107,7 @@
     "continue": "Ары карай"
   },
   "complete": {
-    "title": "Азаматсыз!",
-    "letters_one": "{{lesson}} бөлүмүндө {{count, number}} тамганы аяктадыңыз.",
-    "letters_other": "{{lesson}} бөлүмүндө {{count, number}} тамганы аяктадыңыз."
+    "title": "Сабак аяктады"
   },
   "review": {
     "title": "Кайталоо",
@@ -125,7 +123,6 @@
     "sessionLength_one": "{{count, number}} кыска көнүгүү",
     "sessionLength_other": "{{count, number}} кыска көнүгүү",
     "chooseMode": "Же эмнени машыктырууну өзүңүз тандаңыз",
-    "outcome": "{{practised, number}} машыкты · {{firstTry, number}} дароо эсиңизге түштү · {{comingBack, number}} жакында кайра келет",
     "blank": "бош орун",
     "optionsLabel": "Жооптор",
     "cannotUseAudio": "Үндү колдоно албайсызбы?",

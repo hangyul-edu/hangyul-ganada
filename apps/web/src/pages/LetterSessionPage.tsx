@@ -560,7 +560,8 @@ export function LetterSessionPage() {
         onClose={() => navigate('/letters')}
         onContinue={() => navigate('/letters')}
         title={t('learning:complete.title')}
-        detail={t('learning:complete.letters', { count: completed.size, lesson: lessonTitle })}
+        // No subtitle: it named the lesson the header behind this dialog is
+        // already naming, and repeated the badge's numerator.
         passed={completed.size}
         total={characters.length}
       />

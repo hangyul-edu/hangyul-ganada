@@ -19,9 +19,7 @@
     "continue": "下一个"
   },
   "complete": {
-    "title": "写得好！",
-    "letters_other": "你在{{lesson}}学完了 {{count, number}} 个字。",
-    "letters_one": "你在{{lesson}}学完了 {{count, number}} 个字。"
+    "title": "学习完成"
   },
   "review": {
     "title": "复习",
@@ -37,7 +35,6 @@
     "sessionLength_one": "一道小题",
     "sessionLength_other": "{{count, number}} 道小题",
     "chooseMode": "或者自己选练什么",
-    "outcome": "练了 {{practised, number}} 题 · {{firstTry, number}} 题立刻想起来了 · {{comingBack, number}} 题会再出现",
     "blank": "空格",
     "optionsLabel": "选项",
     "cannotUseAudio": "无法使用声音？",

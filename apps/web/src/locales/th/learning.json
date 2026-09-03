@@ -107,9 +107,7 @@
     "continue": "ต่อไป"
   },
   "complete": {
-    "title": "เก่งมาก",
-    "letters_one": "คุณเรียนจบ {{count, number}} ตัวใน{{lesson}}แล้ว",
-    "letters_other": "คุณเรียนจบ {{count, number}} ตัวใน{{lesson}}แล้ว"
+    "title": "จบรอบการเรียนแล้ว"
   },
   "review": {
     "title": "ทบทวน",
@@ -125,7 +123,6 @@
     "sessionLength_one": "แบบฝึกสั้น ๆ หนึ่งข้อ",
     "sessionLength_other": "แบบฝึกสั้น ๆ {{count, number}} ข้อ",
     "chooseMode": "หรือเลือกสิ่งที่อยากฝึก",
-    "outcome": "ฝึกไป {{practised, number}} · จำได้ทันที {{firstTry, number}} · อีก {{comingBack, number}} จะกลับมาเร็ว ๆ นี้",
     "blank": "ช่องว่าง",
     "optionsLabel": "ตัวเลือกคำตอบ",
     "cannotUseAudio": "ใช้เสียงไม่ได้ใช่ไหม",

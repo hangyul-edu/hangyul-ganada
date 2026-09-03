@@ -19,10 +19,7 @@
     "continue": "Siguiente"
   },
   "complete": {
-    "title": "¡Muy bien!",
-    "letters_one": "Has terminado {{count, number}} letra en {{lesson}}.",
-    "letters_other": "Has terminado {{count, number}} letras en {{lesson}}.",
-    "letters_many": "Has terminado {{count, number}} de letras en {{lesson}}."
+    "title": "Sesión terminada"
   },
   "review": {
     "title": "Repaso",
@@ -38,7 +35,6 @@
     "sessionLength_one": "Un ejercicio corto",
     "sessionLength_other": "{{count, number}} ejercicios cortos",
     "chooseMode": "O elige qué practicar",
-    "outcome": "{{practised, number}} practicadas · {{firstTry, number}} te vinieron enseguida · {{comingBack, number}} volverán pronto",
     "blank": "hueco",
     "optionsLabel": "Respuestas",
     "cannotUseAudio": "¿No puedes usar el audio?",
