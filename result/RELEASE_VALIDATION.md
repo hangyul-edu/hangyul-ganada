@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `319d37f1` on branch `main`, **with a clean working tree at
+**Source:** commit `2ce5bd20` on branch `main`, **with a clean working tree at
 the moment the packages were compiled**. This is the line that was wrong last
 time and is the reason `I-01` was reopened: the previous artefacts recorded
 `"dirty": true` beside their commit, with 440 changed and 595 untracked files,
@@ -20,7 +20,7 @@ it counts are the delivery files themselves. What matters — that no
 *product* file differs from the commit — is what `release:current` checks and
 reports, and it is green.
 
-Rebuilt seven times over this pass as later commits landed, and the digests
+Rebuilt eight times over this pass as later commits landed, and the digests
 below are the last of them — the fourth because backup and restore landed after
 the third, which is exactly the case `version:check` now refuses to let past as
 a reused versionCode. The level-test bank, `curriculum.json` and
@@ -73,16 +73,16 @@ each has exactly one defensible answer.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` |
 | Certificate | `157a2bb133f6aa3d…3323debc` — the existing production identity; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, **versionCode 7**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
-| Why 7 | versionCodes 4, 5 and 6 are spent, each by an artefact that was actually produced. 7 is this one: the Home back-control policy, the scrolling fix, the Numbers rewrite, the result modals, the Korean reading and the difficulty model all landed after 6 was built. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
-| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 7, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
+| Package | `com.talkhangyul.ganada`, **versionCode 8**, versionName 1.0.2, SDK 24–36 — read back with `aapt2 dump badging` |
+| Why 8 | versionCodes 4, 5, 6 and 7 are spent, each by an artefact that was actually produced. 8 is this one: the Numbers feedback architecture, the scroll ownership fix, the section alignment and the PDF repair all landed after 7 was built. Google Play refuses a reused code whatever the version name says; `version:check` used to allow the reuse within one marketing version, and now refuses it whenever a product file has changed since the delivered build |
+| iOS | **not built** — macOS and Xcode are unavailable here; source is complete (version 1.0.2, build 8, 32 `.lproj`, `CFBundleLocalizations`). The remaining step is `xcodebuild -project apps/mobile/ios/App/App.xcodeproj -scheme App -configuration Release archive` (the project resolves Capacitor through Swift Package Manager; there is no workspace) with the distribution certificate |
 
 ## What was run against this tree, after the last product edit
 
 | Suite / gate | Result |
 | --- | --- |
 | `npm run verify:release` | **every step green.** The chain caught three generated artefacts that had gone stale under the corpus change — the level-test bank, `curriculum.json` and `relations.json` — and one end-to-end fixture I had written against an assumption rather than the code; each was fixed and the chain re-run from the top. `vocabulary:qa:target` reports the corpus deficit as **INFORMATIONAL** and exits 0, and `release:current` is green with both delivery manifests at HEAD |
-| Web unit (`vitest`) | **976 passed** (64 files) |
+| Web unit (`vitest`) | **977 passed** (64 files) |
 | Korean morphology | **216 passed** |
 | Handwriting core | **96 passed** |
 | End-to-end (`playwright`) | **446 passed**, 223 × 2 projects — including 8 Numbers course cases, 10 beginner Numbers journeys, 25 rendered Home-header cases and the two backup cases that run over the real IndexedDB driver and the browser’s own download. Run twice end to end: 367 of 368 the first time and 368 of 368 the second, with the same code. The one failure was a flake — the review hub’s save test, which passes alone and in order — and it is hardened rather than re-run away: it now waits for the write to reach IndexedDB before a cold load, because the stores are written optimistically and a navigation inside that window aborts the transaction |
@@ -132,8 +132,8 @@ lesson, a vocabulary sitting, the Numbers course and the Level Test.
 ## Checksums
 
 ```
-882df08ef4a17e827bc52a2216e70dd10a40c2062ddeee131ffbf98f51ca10fc  hangyul-ganada-release.apk
-26b0710833e82734ab80740dcb7c1acbcc717d04b1e265da6ea1d06b4afd4941  hangyul-ganada-release.aab
-ecba5070cbce97cdfe7762393d549a507447199c4ed4e083bd5961ed686ef5c5  docs/report.pdf
-9b51f7c4c351038c6a55e9dae8a6757f845d6c93100160aeb3c71cf829f2c43b  build-info.json
+b953bcb86da997c271cb8c5c492ccb7e75aa71e8c64cfa7814ebf4d59a0d8e26  hangyul-ganada-release.apk
+6d0667f8486c196d9ad52c72d3821e528d5ca76782e330040c1ae21bf144629f  hangyul-ganada-release.aab
+83101236c50f3c09e38c85822126a392a93b325afc4ac8e3f2269f9297681e14  docs/report.pdf
+e4cdea765774c5ba5697f970ef06747d2875daa99129b915791a0dcf1b17751b  build-info.json
 ```
