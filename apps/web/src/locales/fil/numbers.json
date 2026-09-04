@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Ano ang narinig mo?",
     "chooseMeaning": "Ano ang ibig sabihin nito?",
+    "chooseByMeaning": "Alin sa mga ito ang may ganitong kahulugan?",
     "chooseCorrectExplanation": "Piliin ang tamang paliwanag.",
     "findIncorrectExpression": "Piliin ang maling pahayag.",
     "chooseSystem": "Aling mga numero ang napupunta rito?",

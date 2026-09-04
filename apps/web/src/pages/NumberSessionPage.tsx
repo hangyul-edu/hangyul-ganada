@@ -93,6 +93,16 @@ import styles from './NumberSessionPage.module.css';
  * The decision is taken once, when the run mounts, and held for the run: a
  * manifest that finishes loading half-way through a mastery check must not
  * change the questions under the learner or the count printed on the way in.
+ *
+ * That is the accommodation for a learner the app *knows* about. The second one
+ * is for the learner who meets a listening question anyway — because the
+ * setting is unreachable in the interface, or because the phone is somewhere
+ * quiet, or because the clip simply did not play. Under the prompt there is a
+ * **Can't use audio?**, and pressing it swaps the clip for an equivalent visual
+ * question: same item, same options, same answer, same scoring. The letter side
+ * did this first and its note is the argument — a *setting* is remembered, and
+ * the cost of a remembered setting is that nobody who has not already found it
+ * can turn it on. See `soundFreeFor` in `features/numbers/exercises.ts`.
  */
 
 const LESSON_ROOT = '/letters/numbers';
@@ -503,6 +513,15 @@ function ExerciseRun({
 
   const [index, setIndex] = useState(0);
   const [intro, setIntro] = useState(true);
+  /*
+    Per question, and reset with it — a choice about the question in front of
+    the learner rather than a mode they have to remember they are in. One way
+    only: once pressed the question stays visual for as long as it is on screen,
+    because a way back would make it a toggle, and a toggle on a question is one
+    more thing to decide about before answering.
+  */
+  const [askedVisually, setAskedVisually] = useState(false);
+  useEffect(() => setAskedVisually(false), [index]);
   const [answer, setAnswer] = useState<Attempt>({ picked: null, sequence: [], correct: null });
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const submitted = useRef(false);
@@ -525,7 +544,10 @@ function ExerciseRun({
 
   // Listening questions speak on arrival; the speaker button is replay.
   const listening = exercise?.kind === 'listen_choose';
-  useEntryAudio(exercise && !intro ? exercise.id : null, exercise?.prompt.audio, { enabled: listening });
+  const visual = listening && askedVisually && exercise?.soundFree !== undefined;
+  useEntryAudio(exercise && !intro ? exercise.id : null, exercise?.prompt.audio, {
+    enabled: listening && !visual,
+  });
 
   const grade = useCallback(
     (correct: boolean, picked: number | null, sequence: string[]) => {
@@ -651,7 +673,25 @@ function ExerciseRun({
           value={(index + (answered ? 1 : 0)) / exercises.length}
         />
 
-        <Prompt exercise={exercise} item={item} locale={locale} t={t} />
+        <Prompt exercise={exercise} item={item} locale={locale} t={t} visual={visual} />
+
+        {/*
+          The way out of a question whose whole prompt is a sound.
+
+          Offered only while the question is unanswered and only where an honest
+          substitution exists — `soundFreeFor` returns nothing rather than
+          inventing a worse question, and the button then is not drawn.
+        */}
+        {listening && !visual && !answered && exercise.soundFree && (
+          <button
+            type="button"
+            className={styles.soundFreeSwitch}
+            data-testid="numbers-sound-free"
+            onClick={() => setAskedVisually(true)}
+          >
+            {t('learning:review.cannotUseAudio')}
+          </button>
+        )}
 
         {exercise.kind === 'order_parts' ? (
           <OrderParts
@@ -745,10 +785,47 @@ function ExerciseRun({
   );
 }
 
-function Prompt({ exercise, item, locale, t }: { exercise: NumbersExercise; item: NumberItem; locale: string; t: T }) {
+function Prompt({
+  exercise,
+  item,
+  locale,
+  t,
+  visual = false,
+}: {
+  exercise: NumbersExercise;
+  item: NumberItem;
+  locale: string;
+  t: T;
+  /** Draw the listening question's visual substitute instead of its clip. */
+  visual?: boolean;
+}) {
   const p = exercise.prompt;
   let heading: string;
   let body: { text: string; lang?: string } | null = null;
+
+  /*
+   * The substitution, before the switch rather than inside it.
+   *
+   * A `listenAndChoose` that is being asked visually is not a different
+   * question type — the options, the answer, the grading and the evidence are
+   * identical — so it does not get a branch in the table below, which is the
+   * table that decides *what is being asked*. It gets a different stimulus.
+   */
+  if (visual && exercise.soundFree) {
+    const variant = exercise.soundFree;
+    return (
+      <Card padding="lg" className={styles.prompt}>
+        <p className={styles.promptHeading} data-testid="numbers-prompt">
+          {t(`numbers:${variant.promptKey}`)}
+        </p>
+        <p className={styles.promptKorean} data-testid="numbers-prompt-visual">
+          {variant.value !== undefined
+            ? formatValue(variant.value, locale)
+            : t(`numbers:${variant.glossKey}`)}
+        </p>
+      </Card>
+    );
+  }
   /*
    * The instruction comes from what the question *asks*, never from how it was
    * built and never from what the options happen to say.

@@ -743,6 +743,78 @@ for (const lesson of NUMBER_LESSONS) {
   if (shapes.size < 2) quietThin.push(`${lesson.id} (${[...shapes].join(', ')})`);
 }
 
+/**
+ * And the second accommodation: the way out of a listening question you meet
+ * anyway.
+ *
+ * The run-level rule above is for a learner the app knows about. This is the
+ * **Can't use audio?** under the prompt, which swaps the clip for an equivalent
+ * visual question — same item, same options, same answer. What has to hold is
+ * that the substitute still has *one* answer, and the two substitutions fail
+ * that in different ways if they are chosen carelessly:
+ *
+ * * a numeral's digits alone do not identify it, because its distractors
+ *   include the other system's word for the same value — 하나 offered against
+ *   일, and both of those are 1. The instruction has to name the set, which is
+ *   why the substitute is `prompt.digitsToKorean.<system>` and not a bare
+ *   numeral;
+ * * a gloss identifies exactly one option only because `siblingsDistinct` drops
+ *   a sibling that names what the answer names. That is a *declaration*
+ *   (`gloss_group`), so this recomputes the answer rather than reading it back.
+ */
+let variants = 0;
+const noEscape = new Set();
+for (const lesson of NUMBER_LESSONS) {
+  for (const attempt of ATTEMPTS) {
+    for (const exercise of [...practiceExercises(lesson, attempt), ...masteryExercises(lesson, attempt)]) {
+      if (exercise.kind !== 'listen_choose') continue;
+      const item = NUMBER_ITEMS.find((i) => i.id === exercise.item_id);
+      if (!exercise.soundFree) {
+        // Legitimate, and reported rather than failed: 만 원 and 만 are both
+        // 10,000 in the same set and 만 원 has no gloss, so nothing on the
+        // screen would tell the two apart. A worse question is not the answer.
+        noEscape.add(exercise.item_id);
+        continue;
+      }
+      variants += 1;
+      const { promptKey, value, glossKey } = exercise.soundFree;
+      for (const locale of LOCALES) {
+        const text = lookup(bundles[locale], promptKey);
+        if (typeof text !== 'string' || text.trim() === '') {
+          fail(`[${locale}] ${promptKey} is missing, and a listening question needs it`);
+        }
+      }
+      // Resolved by the id the option was built with. Two items can share a
+      // string — 오천 원 is a price and a context phrase, 세 시 삼십 분 is a
+      // clock time and a pitfall — so matching on text answers with whichever
+      // comes first in the file.
+      const sourceOf = (option) => (option.itemId ? itemById.get(option.itemId) : undefined);
+      const answer = exercise.options[exercise.answer];
+      if (value !== undefined) {
+        if (value !== item.value) fail(`${lesson.id}: ${item.id}'s visual prompt shows ${value}, not ${item.value}`);
+        if (promptKey !== `prompt.digitsToKorean.${item.system}`) {
+          fail(`${lesson.id}: ${item.id}'s visual prompt does not name the set, so its twin in the other system is also an answer`);
+        }
+        const fits = exercise.options.filter((option) => {
+          const source = sourceOf(option);
+          return source && source.value === value && source.system === item.system;
+        });
+        if (fits.length !== 1 || fits[0] !== answer) {
+          fail(`${lesson.id}: ${fits.length} of ${item.id}'s options are ${value} in the ${item.system} set`);
+        }
+      } else if (glossKey !== undefined) {
+        if (glossKey !== item.gloss) fail(`${lesson.id}: ${item.id}'s visual prompt shows another item's gloss`);
+        const fits = exercise.options.filter((option) => sourceOf(option)?.gloss === glossKey);
+        if (fits.length !== 1 || fits[0] !== answer) {
+          fail(`${lesson.id}: ${fits.length} of ${item.id}'s options gloss as ${glossKey}`);
+        }
+      } else {
+        fail(`${lesson.id}: ${item.id}'s visual prompt shows nothing`);
+      }
+    }
+  }
+}
+
 // --- 12 nothing is tested before it is taught ----------------------------------
 /**
  * A question is *about* one item, and that item is the lesson's own.
@@ -975,7 +1047,14 @@ console.log(`  translated cells       ${translatedCells} translated, ${fallbackC
 console.log(`  answer positions       ${[0, 1, 2, 3].map((i) => positions.filter((p) => p === i).length).join(' / ')} over ${positions.length} four-option mastery questions`);
 console.log(`  questions audited      ${audited} distinct, over ${typesSeen.size} question types, ${everyExercise.length} built`);
 console.log(`  sound-free            ${quietRuns} lesson(s) complete without a heard-only question`);
+console.log(`  audio escapes         ${variants} listening question(s) answerable without the clip`);
 console.log(`  forward distractors   ${forwardDistractors}, every one a declared misconception`);
+if (noEscape.size) {
+  notes.push(
+    `no visual substitute for the listening question about ${[...noEscape].join(', ')} — ` +
+      'nothing on the screen tells its options apart without the clip',
+  );
+}
 if (quietThin.length) {
   notes.push(
     `sound-free, ${quietThin.length} lesson(s) fall to one question shape: ${quietThin.join('; ')}`,

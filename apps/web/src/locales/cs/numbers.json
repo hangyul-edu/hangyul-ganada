@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Co jste slyšeli?",
     "chooseMeaning": "Co to znamená?",
+    "chooseByMeaning": "Které z nich má tento význam?",
     "chooseCorrectExplanation": "Vyberte správné vysvětlení.",
     "findIncorrectExpression": "Vyberte nesprávný výraz.",
     "chooseSystem": "Jaká čísla sem patří?",

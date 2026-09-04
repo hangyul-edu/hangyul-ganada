@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "என்ன கேட்டீர்கள்?",
     "chooseMeaning": "இதன் பொருள் என்ன?",
+    "chooseByMeaning": "இவற்றில் இந்தப் பொருள் உள்ளது எது?",
     "chooseCorrectExplanation": "சரியான விளக்கத்தைத் தேர்ந்தெடுக்கவும்.",
     "findIncorrectExpression": "தவறான சொற்றொடரைத் தேர்ந்தெடுக்கவும்.",
     "chooseSystem": "இங்கே எந்த எண்கள் வரும்?",

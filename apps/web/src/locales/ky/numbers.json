@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Эмнени уктуңуз?",
     "chooseMeaning": "Бул эмнени билдирет?",
+    "chooseByMeaning": "Булардын кайсынысы ушул маанини билдирет?",
     "chooseCorrectExplanation": "Туура түшүндүрмөнү тандаңыз.",
     "findIncorrectExpression": "Туура эмес сөз айкашын тандаңыз.",
     "chooseSystem": "Бул жерде кандай сандар келет?",

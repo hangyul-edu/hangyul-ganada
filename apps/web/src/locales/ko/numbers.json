@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "무엇이라고 들렸나요?",
     "chooseMeaning": "무슨 뜻일까요?",
+    "chooseByMeaning": "어느 말이 이 뜻일까요?",
     "chooseCorrectExplanation": "다음 중 올바른 설명을 고르세요.",
     "findIncorrectExpression": "다음 중 틀린 표현을 고르세요.",
     "chooseSystem": "여기에는 어떤 숫자를 쓸까요?",

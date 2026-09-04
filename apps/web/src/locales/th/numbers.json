@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "คุณได้ยินคำว่าอะไร",
     "chooseMeaning": "คำนี้หมายความว่าอะไร",
+    "chooseByMeaning": "คำไหนมีความหมายนี้",
     "chooseCorrectExplanation": "เลือกคำอธิบายที่ถูกต้อง",
     "findIncorrectExpression": "เลือกสำนวนที่ผิด",
     "chooseSystem": "ตรงนี้ใช้ตัวเลขชุดไหน",

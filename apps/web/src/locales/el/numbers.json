@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Τι άκουσες;",
     "chooseMeaning": "Τι σημαίνει αυτό;",
+    "chooseByMeaning": "Ποιο από αυτά σημαίνει αυτό;",
     "chooseCorrectExplanation": "Διάλεξε τη σωστή εξήγηση.",
     "findIncorrectExpression": "Διάλεξε τη λάθος έκφραση.",
     "chooseSystem": "Ποια νούμερα μπαίνουν εδώ;",

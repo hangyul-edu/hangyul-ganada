@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "ماذا سمعت؟",
     "chooseMeaning": "ما معنى هذا؟",
+    "chooseByMeaning": "أيٌّ من هذه يحمل هذا المعنى؟",
     "chooseCorrectExplanation": "اختر الشرح الصحيح.",
     "findIncorrectExpression": "اختر التعبير الخطأ.",
     "chooseSystem": "أي الأرقام تأتي هنا؟",

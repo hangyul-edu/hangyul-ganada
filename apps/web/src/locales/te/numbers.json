@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "ఏం విన్నారు?",
     "chooseMeaning": "దీని అర్థం ఏమిటి?",
+    "chooseByMeaning": "వీటిలో ఈ అర్థం ఉన్నది ఏది?",
     "chooseCorrectExplanation": "సరైన వివరణను ఎంచుకోండి.",
     "findIncorrectExpression": "తప్పు వ్యక్తీకరణను ఎంచుకోండి.",
     "chooseSystem": "ఇక్కడ ఏ సంఖ్యలు వస్తాయి?",

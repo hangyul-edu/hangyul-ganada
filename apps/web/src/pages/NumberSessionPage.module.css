@@ -385,3 +385,34 @@
   min-width: 72px;
   padding-inline: var(--hg-space-4);
 }
+
+/*
+ * The way out of a listening question.
+ *
+ * Deliberately quiet and deliberately a full touch target: a learner who needs
+ * it has to be able to find and press it, and a learner who does not should not
+ * have to read past a button as loud as the answers. The same shape the letter
+ * side uses — see `.soundFreeSwitch` in `features/review/ChoiceExercise.module.css`.
+ */
+.soundFreeSwitch {
+  align-self: center;
+  margin: 0 auto;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  min-height: 44px;
+  border: 0;
+  border-radius: var(--hg-radius-pill);
+  background: none;
+  font: inherit;
+  font-size: var(--hg-text-caption);
+  color: var(--hg-text-tertiary, var(--hg-text-secondary));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .soundFreeSwitch:hover {
+    color: var(--hg-text-secondary);
+    background: var(--hg-surface-hover, var(--hg-primary-subtle));
+  }
+}

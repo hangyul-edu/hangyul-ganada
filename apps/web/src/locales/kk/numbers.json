@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Не естідіңіз?",
     "chooseMeaning": "Бұл не мағына береді?",
+    "chooseByMeaning": "Осылардың қайсысы осы мағынаны береді?",
     "chooseCorrectExplanation": "Дұрыс түсіндірмені таңдаңыз.",
     "findIncorrectExpression": "Қате тіркесті таңдаңыз.",
     "chooseSystem": "Мұнда қандай сандар келеді?",

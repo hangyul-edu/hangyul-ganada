@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "何と聞こえましたか？",
     "chooseMeaning": "これはどんな意味ですか？",
+    "chooseByMeaning": "この意味になるのはどれですか？",
     "chooseCorrectExplanation": "正しい説明を選びましょう。",
     "findIncorrectExpression": "まちがっている言い方を選びましょう。",
     "chooseSystem": "ここではどの数字を使いますか？",

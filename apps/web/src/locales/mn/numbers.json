@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Юу сонссон бэ?",
     "chooseMeaning": "Энэ юу гэсэн үг вэ?",
+    "chooseByMeaning": "Аль нь энэ утгатай вэ?",
     "chooseCorrectExplanation": "Зөв тайлбарыг сонгоно уу.",
     "findIncorrectExpression": "Буруу хэллэгийг сонгоно уу.",
     "chooseSystem": "Энд ямар тоо орох вэ?",

@@ -61,6 +61,17 @@ export type MisconceptionClass =
 export interface ExerciseOption {
   /** What the button shows. Korean, digits, or a meaning key. */
   text: string;
+  /**
+   * The curriculum item this option was made from, where there is one.
+   *
+   * Carried rather than looked up by text, because two items can share a
+   * string: 오천 원 is both the money lesson's price and the *which system?*
+   * lesson's context phrase, and 세 시 삼십 분 is both a clock time and a
+   * pitfall — so `NUMBER_ITEMS.find(i => i.korean === text)` answers with
+   * whichever comes first in the file. Absent on the options that are not
+   * items: a sound-alike, a glued form, a misspelt month.
+   */
+  itemId?: string;
   /** Set when `text` is a key into the `numbers` namespace rather than Korean. */
   isKey?: boolean;
   /** Set when `text` is a numeral to format with `Intl`. */
@@ -107,6 +118,47 @@ export interface NumbersExercise {
   feedback: { correct: string | null; incorrect: string | null };
   /** For `order_parts`: the parts, in the order they must be tapped. */
   parts?: string[];
+  /**
+   * The same question, asked without the recording.
+   *
+   * Present only on `listen_choose`, whose entire prompt is a clip — the prompt
+   * carries an audio id and deliberately no text, because printing the word
+   * would print the answer. A learner who cannot use the clip has nothing to
+   * answer with.
+   *
+   * The letter side solved this first and the note in `features/review/
+   * exercises.ts` is the argument: a *setting* is remembered, and the cost of a
+   * remembered setting is that nobody who has not already found it can turn it
+   * on. So this is per question — a small **Can't use audio?** under the prompt
+   * that swaps the clip for an equivalent visual one. Same item, same options,
+   * same answer, same scoring: the learner is not skipping the question, they
+   * are being asked it another way, so there is nothing to penalise.
+   *
+   * It is the *second* accommodation and not the only one. `RunOptions.soundFree`
+   * builds a whole run without heard-only questions, for a learner whose profile
+   * says so or a build with no audio in it; this is for the learner who meets
+   * one anyway.
+   *
+   * Absent where no honest substitution exists, and the button is then not
+   * offered. See `soundFreeFor`.
+   */
+  soundFree?: NumbersSoundFreeVariant;
+}
+
+/**
+ * A patch applied over a listening question when the learner asks for it.
+ *
+ * A patch rather than a second exercise, for the reason `SoundFreeVariant` gives
+ * on the letter side: the item, the options, the answer and the scoring are all
+ * the same question, and two objects would be two things to keep in step.
+ */
+export interface NumbersSoundFreeVariant {
+  /** The instruction, in place of *what did you hear?* */
+  promptKey: string;
+  /** Shown instead of the clip: a numeral, formatted by `Intl`. */
+  value?: number;
+  /** Shown instead of the clip: a gloss key in the `numbers` namespace. */
+  glossKey?: string;
 }
 
 // --- hashing and shuffling -------------------------------------------------
@@ -231,9 +283,11 @@ function kindsFor(lesson: NumberLesson, options: RunOptions | undefined): Number
   return lesson.exercise_kinds.filter((kind) => kind !== 'listen_choose');
 }
 
-const koreanOf = (item: NumberItem): ExerciseOption => ({ text: item.korean });
+const koreanOf = (item: NumberItem): ExerciseOption => ({ text: item.korean, itemId: item.id });
 const meaningOf = (item: NumberItem): ExerciseOption =>
-  item.gloss ? { text: item.gloss, isKey: true } : { text: String(item.value), value: item.value ?? undefined };
+  item.gloss
+    ? { text: item.gloss, isKey: true, itemId: item.id }
+    : { text: String(item.value), value: item.value ?? undefined, itemId: item.id };
 
 /**
  * Which misconceptions have a sentence worth printing, and which do not.
@@ -382,6 +436,73 @@ function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   return finish('read_choose', question, item, ctx, { text: shown, audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
 }
 
+/**
+ * The same listening question, with something to look at instead of the clip.
+ *
+ * Two substitutions, and which one applies is decided by what actually
+ * identifies the item among *these* options.
+ *
+ * **A numeral gets its digits and its set.** Not the digits alone: the
+ * distractors for a numeral include `system_swap` — 하나 offered against 일 —
+ * and both of those *are* 1, so "which of these is 1?" has two answers. The
+ * instruction that already exists for this is `prompt.digitsToKorean.<system>`
+ * — *say this number with 일, 이, 삼* — which names the set as well as the
+ * value, and is exactly the question `digits_to_korean` asks with exactly these
+ * options. Nothing is given away: the options are Korean words and the mapping
+ * from a numeral to one of them is the skill being tested.
+ *
+ * Naming the set is still not always enough. 시월 is 10 in the sino set and so
+ * is 십; 만 원 is 10,000 and so is 만. Where the option list holds both, this
+ * falls through.
+ *
+ * **Anything else gets its gloss.** 마리 is *animals* and no other option in
+ * its list is, because `siblingsDistinct` already drops a sibling that names
+ * what the answer names (`gloss_group`) — the same guarantee `chooseMeaning`
+ * relies on, read from the other end.
+ *
+ * Null where neither identifies exactly one of *these* options, and the button
+ * is then not offered rather than a worse question being invented.
+ */
+function soundFreeFor(
+  item: NumberItem,
+  options: ExerciseOption[],
+  answer: ExerciseOption,
+): NumbersSoundFreeVariant | undefined {
+  /*
+   * Both substitutions are *checked against these options*, not assumed.
+   *
+   * The first version of this reasoned from the item alone and was wrong twice
+   * over, which is what the gate caught. 시월 is 10 in the sino set and so is
+   * 십, and they can be offered together — so naming the set is not enough on
+   * its own. 만 원 and 만 are both 10,000. And two different items can share a
+   * string, so "which option is this item" has to be answered by the id the
+   * option was built with rather than by matching text.
+   */
+  const identifies = (fits: ExerciseOption[]) => fits.length === 1 && fits[0] === answer;
+
+  if (item.value !== null && item.system !== null) {
+    const sameNumber = options.filter((option) => {
+      const source = option.itemId ? getNumberItem(option.itemId) : undefined;
+      return source?.value === item.value && source?.system === item.system;
+    });
+    if (identifies(sameNumber)) {
+      return { promptKey: `prompt.digitsToKorean.${item.system}`, value: item.value };
+    }
+  }
+
+  if (item.gloss) {
+    const sameGloss = options.filter((option) => {
+      const source = option.itemId ? getNumberItem(option.itemId) : undefined;
+      return source?.gloss === item.gloss;
+    });
+    if (identifies(sameGloss)) {
+      return { promptKey: 'prompt.chooseByMeaning', glossKey: item.gloss };
+    }
+  }
+
+  return undefined;
+}
+
 /** Clip played → Korean chosen. Distractors: sound-alikes, adjacent, system swap. */
 function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const sound = (SOUND_ALIKE[item.korean] ?? []).map((t) => ({ text: t, misconception: 'sound_alike' as const }));
@@ -393,7 +514,9 @@ function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('listen_choose', 'listenAndChoose', item, ctx, { audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
+  const exercise = finish('listen_choose', 'listenAndChoose', item, ctx, { audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
+  const variant = soundFreeFor(item, exercise.options, exercise.options[exercise.answer]!);
+  return variant ? { ...exercise, soundFree: variant } : exercise;
 }
 
 /** Numeral shown → Korean chosen, in the *lesson's* system. Distractor 1 is always the other system. */

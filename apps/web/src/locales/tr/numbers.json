@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Ne duydun?",
     "chooseMeaning": "Bu ne anlama geliyor?",
+    "chooseByMeaning": "Bunlardan hangisi bu anlama geliyor?",
     "chooseCorrectExplanation": "Doğru açıklamayı seç.",
     "findIncorrectExpression": "Yanlış ifadeyi seç.",
     "chooseSystem": "Buraya hangi sayılar gelir?",

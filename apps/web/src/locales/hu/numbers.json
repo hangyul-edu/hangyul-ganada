@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Mit hallottál?",
     "chooseMeaning": "Mit jelent ez?",
+    "chooseByMeaning": "Melyik jelenti ezt?",
     "chooseCorrectExplanation": "Válaszd ki a helyes magyarázatot.",
     "findIncorrectExpression": "Válaszd ki a helytelen kifejezést.",
     "chooseSystem": "Melyik számok jönnek ide?",

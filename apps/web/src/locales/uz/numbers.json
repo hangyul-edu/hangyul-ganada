@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Nimani eshitdingiz?",
     "chooseMeaning": "Bu nimani anglatadi?",
+    "chooseByMeaning": "Bulardan qaysi biri shu ma’noni bildiradi?",
     "chooseCorrectExplanation": "To‘g‘ri izohni tanlang.",
     "findIncorrectExpression": "Noto‘g‘ri iborani tanlang.",
     "chooseSystem": "Bu yerda qaysi sonlar keladi?",

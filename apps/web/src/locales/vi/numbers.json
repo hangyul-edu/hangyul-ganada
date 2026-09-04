@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Bạn nghe được gì?",
     "chooseMeaning": "Câu này nghĩa là gì?",
+    "chooseByMeaning": "Từ nào có nghĩa này?",
     "chooseCorrectExplanation": "Chọn lời giải thích đúng.",
     "findIncorrectExpression": "Chọn cách nói sai.",
     "chooseSystem": "Ở đây dùng số nào?",

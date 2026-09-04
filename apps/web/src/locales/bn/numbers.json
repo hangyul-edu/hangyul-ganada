@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "কী শুনলেন?",
     "chooseMeaning": "এর মানে কী?",
+    "chooseByMeaning": "এই মানে কোনটির?",
     "chooseCorrectExplanation": "সঠিক ব্যাখ্যাটি বেছে নিন।",
     "findIncorrectExpression": "ভুল প্রকাশটি বেছে নিন।",
     "chooseSystem": "এখানে কোন সংখ্যা আসবে?",

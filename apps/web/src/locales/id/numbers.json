@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Apa yang kamu dengar?",
     "chooseMeaning": "Apa artinya?",
+    "chooseByMeaning": "Yang mana artinya ini?",
     "chooseCorrectExplanation": "Pilih penjelasan yang benar.",
     "findIncorrectExpression": "Pilih ungkapan yang salah.",
     "chooseSystem": "Angka mana yang dipakai di sini?",

@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "你听到了什么？",
     "chooseMeaning": "这是什么意思？",
+    "chooseByMeaning": "哪一个是这个意思？",
     "chooseCorrectExplanation": "选出正确的说明。",
     "findIncorrectExpression": "选出错误的说法。",
     "chooseSystem": "这里该用哪种数字？",

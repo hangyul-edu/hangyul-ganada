@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Что вы услышали?",
     "chooseMeaning": "Что это значит?",
+    "chooseByMeaning": "Какое из них это значит?",
     "chooseCorrectExplanation": "Выберите правильное объяснение.",
     "findIncorrectExpression": "Выберите неправильное выражение.",
     "chooseSystem": "Какие числа здесь нужны?",

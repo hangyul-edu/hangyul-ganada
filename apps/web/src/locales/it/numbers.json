@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Che cosa hai sentito?",
     "chooseMeaning": "Che cosa significa?",
+    "chooseByMeaning": "Quale di questi significa questo?",
     "chooseCorrectExplanation": "Scegli la spiegazione giusta.",
     "findIncorrectExpression": "Scegli l’espressione sbagliata.",
     "chooseSystem": "Quali numeri vanno qui?",

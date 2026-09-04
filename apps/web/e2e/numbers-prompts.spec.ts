@@ -92,6 +92,54 @@ async function reach(
   return null;
 }
 
+test.describe('a listening question can be answered without the clip', () => {
+  /*
+   * The accommodation, on the page rather than in the data.
+   *
+   * `numbers:qa` §11 proves that every substitute identifies exactly one option
+   * and that the run-level `soundFree` route leaves a completable course. What
+   * it cannot see is the page: that the button is drawn under a listening
+   * question and nowhere else, that pressing it replaces the prompt rather than
+   * adding to it, and — the part that makes it an accommodation instead of a
+   * skip — that the same answer is still accepted and still recorded.
+   */
+  test('Can’t use audio? swaps the clip for a question with the same answer', async ({ page }) => {
+    const exercises = await intoPractice(page, SINO, 'num-lesson-sino-basics');
+    const exercise = await reach(page, exercises, 'listenAndChoose');
+    expect(exercise, 'the first lesson builds no listening question').not.toBeNull();
+    expect(exercise!.soundFree, 'that listening question has no visual substitute').toBeTruthy();
+
+    const body = page.getByTestId('numbers-phase-practice');
+    const escape = page.getByTestId('numbers-sound-free');
+    await expect(escape).toBeVisible();
+    // Before it is pressed the prompt is the clip and nothing else.
+    await expect(page.getByTestId('numbers-prompt-visual')).toHaveCount(0);
+
+    await escape.click();
+
+    // The instruction changed, the substitute is on screen, and the way out is
+    // gone — it is one-way on purpose, so it is not a toggle to decide about.
+    await expect(page.getByTestId('numbers-prompt')).toContainText(
+      en(exercise!.soundFree!.promptKey),
+    );
+    await expect(page.getByTestId('numbers-prompt')).not.toContainText(en('prompt.listenAndChoose'));
+    await expect(page.getByTestId('numbers-prompt-visual')).toBeVisible();
+    await expect(escape).toHaveCount(0);
+
+    // Same options, same answer, same scoring.
+    const answer = optionLabel(exercise!, exercise!.answer);
+    await body.getByRole('group').getByRole('button', { name: answer, exact: true }).click();
+    await expect(body.getByRole('status')).toContainText(en('feedback.correct'));
+  });
+
+  test('the button is not offered on a question that is not a clip', async ({ page }) => {
+    const exercises = await intoPractice(page, SINO, 'num-lesson-sino-basics');
+    const exercise = await reach(page, exercises, 'writeTheDigits');
+    expect(exercise, 'the first lesson builds no write-the-digits question').not.toBeNull();
+    await expect(page.getByTestId('numbers-sound-free')).toHaveCount(0);
+  });
+});
+
 test.describe('the instruction matches the question', () => {
   test('a find-the-mistake question says so, and its answer is the wrong expression', async ({ page }) => {
     const exercises = await intoPractice(page, FORMS, 'num-lesson-forms');

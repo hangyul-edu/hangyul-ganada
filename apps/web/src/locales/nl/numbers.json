@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Wat hoorde je?",
     "chooseMeaning": "Wat betekent dit?",
+    "chooseByMeaning": "Welke betekent dit?",
     "chooseCorrectExplanation": "Kies de juiste uitleg.",
     "findIncorrectExpression": "Kies de foute uitdrukking.",
     "chooseSystem": "Welke getallen horen hier?",

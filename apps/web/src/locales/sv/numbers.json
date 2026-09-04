@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Vad hörde du?",
     "chooseMeaning": "Vad betyder det här?",
+    "chooseByMeaning": "Vilket av dem betyder det här?",
     "chooseCorrectExplanation": "Välj den rätta förklaringen.",
     "findIncorrectExpression": "Välj det felaktiga uttrycket.",
     "chooseSystem": "Vilka siffror hör hemma här?",

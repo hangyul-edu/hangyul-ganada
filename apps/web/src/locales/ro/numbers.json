@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "Ce ai auzit?",
     "chooseMeaning": "Ce înseamnă?",
+    "chooseByMeaning": "Care dintre acestea înseamnă asta?",
     "chooseCorrectExplanation": "Alege explicația corectă.",
     "findIncorrectExpression": "Alege expresia greșită.",
     "chooseSystem": "Ce numere merg aici?",

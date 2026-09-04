@@ -65,6 +65,7 @@
   "prompt": {
     "listenAndChoose": "आपने क्या सुना?",
     "chooseMeaning": "इसका क्या अर्थ है?",
+    "chooseByMeaning": "इनमें से किसका यही अर्थ है?",
     "chooseCorrectExplanation": "सही व्याख्या चुनें।",
     "findIncorrectExpression": "ग़लत अभिव्यक्ति चुनें।",
     "chooseSystem": "यहाँ कौन-सी संख्याएँ आएँगी?",
