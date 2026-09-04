@@ -1,6 +1,6 @@
 {
- "version": "20260903-d17c4360",
- "generated_at": "2026-09-03T00:59:32+00:00",
+ "version": "20260904-baa8ae5c",
+ "generated_at": "2026-09-04T05:28:03+00:00",
  "provider": {
   "id": "microsoft-edge-tts",
   "female_voice": "ko-KR-SunHiNeural",
@@ -21437,18 +21437,18 @@
    }
   },
   {
-   "id": "ex_c0bcc6d420c77c20c77c",
-   "text": "삼월 일 일",
+   "id": "ex_c0bcc6d420c77cc77c",
+   "text": "삼월 일일",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c0bcc6d420c77c20c77c.mp3",
-    "duration_ms": 1344,
-    "bytes": 5613
+    "src": "audio/sentences/female/ex_c0bcc6d420c77cc77c.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
    },
    "male": {
-    "src": "audio/sentences/male/ex_c0bcc6d420c77c20c77c.mp3",
-    "duration_ms": 1176,
-    "bytes": 4941
+    "src": "audio/sentences/male/ex_c0bcc6d420c77cc77c.mp3",
+    "duration_ms": 984,
+    "bytes": 4173
    }
   },
   {
@@ -25712,18 +25712,18 @@
    }
   },
   {
-   "id": "ex_c2dcc6d420c2ed20c77c",
-   "text": "시월 십 일",
+   "id": "ex_c2dcc6d420c2edc77c",
+   "text": "시월 십일",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c2dcc6d420c2ed20c77c.mp3",
-    "duration_ms": 1200,
-    "bytes": 5037
+    "src": "audio/sentences/female/ex_c2dcc6d420c2edc77c.mp3",
+    "duration_ms": 1152,
+    "bytes": 4845
    },
    "male": {
-    "src": "audio/sentences/male/ex_c2dcc6d420c2ed20c77c.mp3",
-    "duration_ms": 1128,
-    "bytes": 4749
+    "src": "audio/sentences/male/ex_c2dcc6d420c2edc77c.mp3",
+    "duration_ms": 1056,
+    "bytes": 4461
    }
   },
   {
@@ -26747,18 +26747,18 @@
    }
   },
   {
-   "id": "ex_c2edc62420c77c",
-   "text": "십오 일",
+   "id": "ex_c2edc624c77c",
+   "text": "십오일",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c2edc62420c77c.mp3",
-    "duration_ms": 960,
-    "bytes": 4077
+    "src": "audio/sentences/female/ex_c2edc624c77c.mp3",
+    "duration_ms": 888,
+    "bytes": 3789
    },
    "male": {
-    "src": "audio/sentences/male/ex_c2edc62420c77c.mp3",
-    "duration_ms": 936,
-    "bytes": 3981
+    "src": "audio/sentences/male/ex_c2edc624c77c.mp3",
+    "duration_ms": 792,
+    "bytes": 3405
    }
   },
   {
@@ -34682,18 +34682,18 @@
    }
   },
   {
-   "id": "ex_c720c6d420c72120c77c",
-   "text": "유월 육 일",
+   "id": "ex_c720c6d420c721c77c",
+   "text": "유월 육일",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c720c6d420c72120c77c.mp3",
-    "duration_ms": 1344,
-    "bytes": 5613
+    "src": "audio/sentences/female/ex_c720c6d420c721c77c.mp3",
+    "duration_ms": 1200,
+    "bytes": 5037
    },
    "male": {
-    "src": "audio/sentences/male/ex_c720c6d420c72120c77c.mp3",
-    "duration_ms": 1128,
-    "bytes": 4749
+    "src": "audio/sentences/male/ex_c720c6d420c721c77c.mp3",
+    "duration_ms": 984,
+    "bytes": 4173
    }
   },
   {
@@ -37292,18 +37292,18 @@
    }
   },
   {
-   "id": "ex_c774cc9cc774c2edc72120b144",
-   "text": "이천이십육 년",
+   "id": "ex_c774cc9cc774c2edc721b144",
+   "text": "이천이십육년",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_c774cc9cc774c2edc72120b144.mp3",
-    "duration_ms": 1560,
-    "bytes": 6477
+    "src": "audio/sentences/female/ex_c774cc9cc774c2edc721b144.mp3",
+    "duration_ms": 1488,
+    "bytes": 6189
    },
    "male": {
-    "src": "audio/sentences/male/ex_c774cc9cc774c2edc72120b144.mp3",
-    "duration_ms": 1392,
-    "bytes": 5805
+    "src": "audio/sentences/male/ex_c774cc9cc774c2edc721b144.mp3",
+    "duration_ms": 1344,
+    "bytes": 5613
    }
   },
   {
