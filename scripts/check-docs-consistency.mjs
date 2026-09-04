@@ -423,6 +423,50 @@ const METRICS = {
     what: 'taught words carrying a verified lexical relation',
     patterns: [/([\d,]+) of [\d,]+ words carry any verified lexical relation/g],
   },
+  /*
+   * The ledger's own size, which the report states in its metadata table.
+   *
+   * It said 142 while `docs/issues.json` held 142, and would have gone on
+   * saying 142 for as long as nobody added an issue — which is the shape of
+   * every figure in this file. `issues:check` regenerates the *tables* from the
+   * ledger and had no opinion about a count written in prose two thousand lines
+   * earlier.
+   */
+  issuesTracked: {
+    value: JSON.parse(read('docs/issues.json')).issues.length,
+    what: 'issues in the ledger',
+    patterns: [/\|\s*Issues tracked\s*\|\s*([\d,]+)\s*\|/g],
+  },
+  numbersTranslatedKeys: {
+    value: (() => {
+      const walk = (node) =>
+        typeof node === 'object' && node !== null
+          ? Object.values(node).reduce((n, v) => n + walk(v), 0)
+          : 1;
+      return walk(JSON.parse(read('apps/web/src/locales/en/numbers.json')));
+    })(),
+    what: 'translated keys in the Numbers namespace',
+    patterns: [/\|\s*Numbers translated keys\s*\|\s*([\d,]+) × \d+\s*\|/g],
+  },
+  /*
+   * The version the delivered binary actually carries.
+   *
+   * §2.1 said **1.0.2, versionCode 3** through two releases that shipped 1.0.3
+   * at versionCode 11 — a metadata table describing a build nobody could
+   * install, in the document a reviewer is handed as the description of the
+   * product. Nothing was looking: the commit rule below compares two *files* in
+   * `result/`, and the report's own summary of them was outside it.
+   */
+  androidVersionCode: {
+    value: exists('result/build-info.json')
+      ? JSON.parse(read('result/build-info.json')).android?.version_code ?? null
+      : null,
+    what: "the delivered APK's versionCode",
+    patterns: [
+      /Android versionCode \*{0,2}([\d]+)\*{0,2}/g,
+      /\|\s*versionCode\s*\|\s*\*{0,2}([\d]+)\*{0,2}\s*\|/g,
+    ],
+  },
 };
 
 // --- where they are written down --------------------------------------------
@@ -645,6 +689,29 @@ for (const [name, metric] of Object.entries(METRICS)) {
             `${document} names commit ${match[1]} as the source of the delivered build; ` +
               `${buildInfoPath} was built from ${shortBuilt}`,
           );
+        }
+      }
+    }
+
+    // 2b · and the marketing version it names for that build.
+    /*
+     * `androidVersionCode` above holds the number; this holds the string, which
+     * no numeric pattern can. §2.1's Version row read **1.0.2** while the
+     * delivered `build-info.json` said 1.0.3, and a reader trusting the table
+     * would have gone looking for a build that does not exist.
+     */
+    const builtVersion = String(info.version ?? '');
+    if (builtVersion) {
+      for (const document of ['docs/report.md', 'result/RELEASE_VALIDATION.md']) {
+        if (!exists(document)) continue;
+        const text = rewritten.get(document) ?? read(document);
+        for (const match of text.matchAll(/\*\*Version\*\*\s*\|\s*\*\*([0-9]+\.[0-9]+\.[0-9]+)\*\*/g)) {
+          if (match[1] !== builtVersion) {
+            problems.push(
+              `${document} states version ${match[1]} in its metadata table; ` +
+                `${buildInfoPath} delivered ${builtVersion}`,
+            );
+          }
         }
       }
     }

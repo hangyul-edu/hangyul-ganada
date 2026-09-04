@@ -415,7 +415,7 @@
    "summary": "The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages",
    "customerImpact": "Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known.",
    "evidence": "`npm run locale:editorial` is new, and it reads for four things nothing else looked at:\n\n* **Register.** Twenty-one of the shipping languages choose between a familiar and a polite second person, and the choice has to be the same on every screen. It counts the markers of each and fails the build on a language that uses both. It found **five languages mixing them** — de (12 strings), el (3), id (6), ro (2), and, once its own false positives were fixed, none in cs. All are now consistent with the register that language already used.\n* **One English sentence, two translations.** Where two keys hold the same English string their translations should match. Found the Level Test asking \"What does this word mean?\" in wording that differed from the reading exercise's in six languages; unified.\n* **Typography.** 71 straight apostrophes in languages whose English source writes the typographic one; all replaced.\n* **A label that became a paragraph.** A short English label translated several times longer, which is what breaks a layout at 200% text.\n\nWriting it also found the writer out. Its first run reported seven mixed-register languages and three were its own fault: JavaScript's `\\b` is defined against ASCII, so `\\btes\\b` matched inside *prêtes* and French \"revisions ready\" was reported as addressing the reader familiarly. Every pattern now goes through a Unicode-aware boundary, German and Italian are read with sentence-initial capitals lowered (so *Sie* meaning *she* is not counted), and the ambiguous markers — Spanish `su`, Czech `ty`, Dutch `u` as the abbreviation for hours — are named and excluded with the reason. **A linguistic check that cries wolf is worse than none**, because it is the kind people switch off.\n\n**What is still not done, and this is the whole of the remaining item.** Nothing here reads a sentence for whether it is *good*. Register consistency is not naturalness, and an apostrophe is not a register. The 15 findings it still reports are deliberately left as warnings for a person: they are places where two screens word the same idea differently and only somebody who reads the language can say which is right, or whether both are.\n\nDistinct from I-17, which is native-speaker review. This is the pass that should happen before one, and the mechanical half of it is now done and enforced in `verify:quick`.\n\n**This cycle: Korean, read on the rendered screens.** Three classes of defect that no check looked for — one thing called two things (I-60), a register that slipped into 합쇼체 six times, and 262 example translations that invented a person the Korean does not have (I-59). All three are rules in `locale:editorial` or `examples:qa` now. What has still not happened is a native reading, in any of the thirty-two.\n\n**Re-audited 24 August 2026.** The Korean interface was rewritten this pass to drop 낱자 and 낱말 (I-75), which is a mechanical editorial change and not a native reading. The row is unchanged: 31 of 32 languages have had a program read them and a person has not.\n\n**Re-audited 25 August 2026.** Unchanged in substance. `qa:locales` renders 32 languages x 8 screens = 256 screens with no measurable problem, `locale:editorial` reports 0 errors and 38 warnings for a person to read, and neither of those is a native reading. Two category labels were renamed this cycle for a mechanical reason rather than an editorial one — Kyrgyz *Адамдар жана үй-бүлө* and Uzbek *O'qish va ish* each contained the answer to the question they were hinting at.\n\n**Re-audited 26 August 2026.** Unchanged in substance: `locale:editorial` reports 0 errors and 38 warnings for a person to read; no native reading has happened in any of the 32.  **Re-audited 27 August 2026.** Unchanged in kind and larger in size: this pass wrote 78 new entries in ten languages, four More-about-it notes (one in 32 languages), and rewrote 17 shipped examples with their translations — all model-written, none read by a native speaker.",
-   "recommendedFix": "A reading pass per locale, screen by screen, by somebody who speaks it. The 15 remaining warnings from `locale:editorial` are where to start.",
+   "recommendedFix": "A reading pass per locale, screen by screen, by somebody who speaks it. The 70 remaining warnings from `locale:editorial` are where to start — all of them split-translation judgements, since the straight-apostrophe class was closed by I-153.",
    "effort": "HIGH (people) — 32 languages × 10 surfaces"
   },
   {
@@ -1506,6 +1506,138 @@
    "evidence": "Gradle packages `app/src/main/assets/public`, which Gradle does not build — `npx cap sync` copies it there, and the build has no opinion about how old it is. Measured on this pass: four release builds over four hours produced **byte-identical** APKs across a real source change, because `assets/public` was four hours old while `apps/web/dist` was current. The identical digests were the only clue and they read as reassuring.\n\nCaught by comparing the file timestamps of `assets/public/index.html` (02:37) and `apps/web/dist/index.html` (06:50) while wondering why a `data-testid` had not changed a hash. After a sync the APK digest moved from `4211cdd1…` to `b13c7f46…`, which is the proof that the earlier four were stale.",
    "recommendedFix": "Done. `native:bundle:check` opens the delivered APK and compares every file of `apps/web/dist` against `assets/public/` inside it — the artefact a customer installs, not a directory a build step claims to have written. It runs in `verify:release` immediately before `release:current`, which is the other half of the same question. Negative-tested by rebuilding the web app without syncing: 35 files missing, `index.html` and `offline-assets.json` different.",
    "note": "Found while investigating an APK hash that did not change when it should have.",
+   "effort": "S"
+  },
+  {
+   "id": "I-144",
+   "area": "Handwriting",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Twenty-one numbered stroke badges were drawn with a slice missing",
+   "customerImpact": "On the screen whose whole job is to show a learner where the pen goes, ㅌ's third number was cut off flat down its left-hand side and ㄷ's second lost ring on two sides at once. Nineteen more badges over eighteen other characters were in the same state — every basic vowel with a stem, ㅊ, ㅋ, ㅌ, ㅎ, and five of the compound vowels.",
+   "evidence": "A `<circle>` with `r = radius` and `stroke-width: 0.9` paints out to `radius + 0.45`, because an SVG ring straddles the circumference. `layoutMarkers` clamped the *centre* to `[radius, 100 - radius]`, so a badge against an edge painted 0.45 units past the box, and an outermost `<svg>` clips at its viewport. `.paper` also carried `border-radius: 20px`, which clips at the curve on an element whose overflow is hidden — and whose size in viewBox units nothing in the layout could name, since 20 px is 13.3 units at the gallery's 150 and 10 at the introduction card's 200.\n\nThree checks passed throughout. `strokes:qa` asked whether badges overlapped each other; `strokeMarkers.test.ts` asserted `label.x >= radius`; `strokes:visual` asked whether a badge stood on the ink. All three were measuring the disc's *fill*.",
+   "recommendedFix": "Done, in the placement rather than on ㅌ. `MARKER_RING` and `paintedRadius` are what every bound is now written against, and `ontoPaper` — one function shared by the layout, the unit test and the gate — bounds a badge to the sheet including its rounded corners. The paper is a `<rect rx>` drawn inside the SVG, so it is in the same coordinate system as the ink and `.paper` clips nothing at all. Badge-to-badge clearance moved to the painted radius too; 글's third and fifth rings were a tenth of a unit from touching. No per-glyph override was added: a hand-placed ㅌ would have fixed ㅌ and left the other twenty. `strokes:markers` measures all 269 badges over 73 characters for clipping, ink overlap, ring collision, leader integrity, badge order and legibility at the smallest size the product draws, and reads the stylesheet back so a clip cannot grow again. See §20Q.1.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "M"
+  },
+  {
+   "id": "I-145",
+   "area": "Numbers",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Every Numbers lesson row reserved 32 px for an icon most rows do not draw",
+   "customerImpact": "A lesson title started 49 px from the edge of the phone while the module heading above it started at 20 and the summary card above that at 32 — three left edges on one screen, and the one the eye follows was the furthest in. On a 320 px phone the row had 256 px inside its padding, the empty column and the chevron took 48 of them, and a three-word title wrapped to three lines beside a quarter-row of nothing. The status pill would not shrink either, so on a narrow phone it took its width out of the title rather than moving.",
+   "evidence": "`.lessonIcon` was a 20 px `<span>` holding a tick when the lesson was finished and nothing at all otherwise — which is most of the course, most of the time — plus the row's 12 px gap. `.moduleHead` was padded `var(--hg-space-1)` against the cards' `var(--hg-space-4)`. `.lessonLocked`, `.lessonLockedRow` and its hover rule had been dead since the prerequisite gate was removed in v1.0.2. Every box measurement on that screen was correct: an empty box is perfectly aligned.",
+   "recommendedFix": "Done. There is no leading column; the tick moved inside the **Completed** pill, which is the same fact said once instead of twice. One `--numbers-rail` puts the module number, the module goal, the summary and every lesson title on one rule, with the chevrons and lesson counts on one rule at the other end, and the card's inline padding is a pixel short of the rail because it draws a border and the heading above it does not — it is the ink that lines up. The row is one flex line and the title block is `flex: 1 1 9rem`, so a badge that will not fit beside the title wraps below it rather than squeezing it. `numbers:layout` measures the ink at seven sizes including landscape, at 100/150/200% text, in both appearances and in all 32 languages, with four lessons seeded to real evidence so the badges are on screen. Restoring the icon column fails it 2,565 times. See §20Q.2.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "M"
+  },
+  {
+   "id": "I-146",
+   "area": "Accessibility",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "A learner who cannot hear could not finish a single Numbers lesson",
+   "customerImpact": "Not a harder route through the Numbers course — none. Passing a mastery check is what completes a lesson, a mastery check asks every item, and a listening question's whole stimulus is a clip: the prompt carries an audio id and deliberately no text, because printing the word would print the answer.",
+   "evidence": "All nineteen lessons list `listen_choose` in `exercise_kinds`. `settings.sound_free` has existed since §36 and `domain/review.ts` has always honoured it; `features/numbers/exercises.ts` never asked. Neither did the course ask the player, so a build with no clips in it or a manifest that failed to load produced the same dead end from the other direction.",
+   "recommendedFix": "Done. `practiceExercises`, `masteryExercises` and `exerciseCoverage` take a `soundFree` option and drop the heard-only kind; `NumberSessionPage` reads `settings.sound_free` and the player's own `ready && !available`, once, when a run mounts, so a manifest that finishes loading mid-check cannot change the questions or the count printed on the way in. Dropping the kind is enough: `numbers:qa` §11 measures that every lesson still asks every item in both phases. Two lessons — minutes and weekdays — fall to one question shape, which the gate reports rather than hides. The residual is stated: `MyPage` removed the switch that turns `sound_free` on, so a learner arriving today cannot set it; that is I-39's neighbour and is written up in §15 rather than fixed quietly here.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "M"
+  },
+  {
+   "id": "I-147",
+   "area": "i18n copy",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "224 translated strings that no screen in the product can draw",
+   "customerImpact": "Seven keys times thirty-two languages, written, reviewed, shipped and unreachable — and one of them, *2시 15분*, repeated the gloss printed directly above it. A thirty-third string, `rationale.adjacent`, was in every bundle for a feedback path deliberately set to `null`.",
+   "evidence": "`ItemCard` draws `example_gloss` inside `{item.example && …}`, so on an item with no `example` it cannot appear. All six items of the *which system?* lesson and one time item were in that state; `example.ctxPeople` read *사람은 하나, 둘, 셋으로 세요*, which is the sentence `lesson.choosing.step1` already prints two screens earlier with the same three examples in it. `MISCONCEPTION_FEEDBACK.adjacent` is `null` on purpose — *정답은 오* is already on the screen — so nothing could ask for `rationale.adjacent`.",
+   "recommendedFix": "Done. The declarations and all thirty-three keys are gone from every bundle. `numbers:qa` §15 fails an `example_gloss` on an item with no example, and any `rationale.*` key that `exercises.ts` cannot ask for.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-148",
+   "area": "Korean",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "금요일 was glossed as 한 주의 다섯째 날, and it is the correct answer",
+   "customerImpact": "Friday is the fifth day counting from Monday and the sixth counting from Sunday, which is how a Korean calendar prints the week. A learner who counted found the *right* answer wrong. 월요일 carried the same fault one place along, glossed 한 주의 첫날.",
+   "recommendedFix": "Done. Both glosses are relational and true under either convention: 한 주가 시작되는 날 and 주말 바로 앞의 날. Korean only — the other thirty-one bundles gloss the words as *Monday* and *Friday*, which needs no ordinal. Recorded as a rewrite with its reason in `docs/copy-audit-ko.json`.",
+   "evidence": "Found by reading the Korean bundle against the questions it answers. No automated rule could have found it: the string is present, translated, unique, and grammatical.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-149",
+   "area": "Korean",
+   "severity": "P3",
+   "status": "RESOLVED",
+   "summary": "One prompt still wrote its particle out as 을(를)",
+   "customerImpact": "*순서대로 눌러서 {{value}}을(를) 만들어 보세요* — the register of an interface that could not decide, in a product that built `i18n/josa.ts` specifically so it would not have to.",
+   "evidence": "The one occurrence in all 32 bundles across every namespace. The formatter could not have rescued it either: the placeholder renders a digit, and 35 is 삼십오 (를) while 20 is 이십 (을), so `endsInConsonant` returns null and falls back to the parenthesis it was written to remove.",
+   "recommendedFix": "Done. The sentence puts the number first — *{{value}} — 순서대로 눌러서 만들어 보세요* — and needs no particle. `numbers:qa` §16 fails any bundle that writes 은(는), 이(가), 을(를), 과(와) or 으로(로) longhand.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-150",
+   "area": "Numbers",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The lesson list drew a completion tick beside Review due",
+   "customerImpact": "*Review due* is the one status on that screen asking the learner to act, and it was the only one with a tick next to it saying the opposite.",
+   "evidence": "The tick was drawn from `isDone`, which includes `review_due`. The rule at the top of `NumbersPage.tsx` has always said *completed and mastered and nothing else*; the code did not follow the comment above it.",
+   "recommendedFix": "Done. The tick follows the documented rule, and now lives inside the status pill rather than in a column of its own — see I-145.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-151",
+   "area": "Numbers",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "A lesson's status read the visit rather than the evidence",
+   "customerImpact": "A learner who had read two explanation steps and been interrupted could come back to a row with no badge on it, reading *you have not started this*.",
+   "evidence": "`lessonStatus` asked `record.opened_at === null → 'available'` before it asked about any work. The page fires `lesson_opened` first in every ordinary sitting, so it is right almost always — and the stores are written optimistically, so `lesson_opened` can be the write that loses a race with a reload while the work that followed it was saved.",
+   "recommendedFix": "Done. `started_at` — set by the first step read, the first example seen and the first answer given — is asked first, so the status can only be wrong in the safe direction. `numbers:qa` §17 walks the state machine per lesson, including the transitions that must *not* complete a lesson.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-152",
+   "area": "Release engineering",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The delivery's own paperwork disagreed about which commit built it",
+   "customerImpact": "`result/` is what a buyer is handed. Two files inside it named two different commits as the source of the same binary, and one of them recorded that the tree was dirty when the build ran — so neither answered the question the folder exists to answer.",
+   "evidence": "`result/RELEASE_VALIDATION.md` named `2f282d9b`; `result/build-info.json` recorded `33291f0c` with `\"dirty\": true, \"changed_files\": 3`. `docs:consistency` reported the mismatch on the tree as delivered and had been reporting it since the artefacts were built. HEAD had moved two commits further on again, so the delivered APK was three commits behind the tree the report described.",
+   "recommendedFix": "Done. The artefacts are rebuilt from a clean checkout of HEAD, and `docs:consistency`'s existing rule — the one that found this — is what keeps the two files agreeing. See §20Q.5.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-153",
+   "area": "i18n copy",
+   "severity": "P3",
+   "status": "RESOLVED",
+   "summary": "Nine straight apostrophes, and a warning count that was stale by 64",
+   "customerImpact": "Filipino, French, Italian and Turkish wrote the ASCII apostrophe on pages whose other sentences use the typographic one — the last of the class the previous cycle started on. Separately, I-39 told a reader there were fifteen editorial warnings left to work through; there were seventy-nine.",
+   "evidence": "`locale:editorial` reported 79 warnings on this tree: 9 straight-apostrophe and 70 split-translation. The nine are mechanical and were fixed; the seventy are judgements about whether two contexts should share a sentence, which is a native reader's question and is why I-39 stays open.",
+   "recommendedFix": "Done for the nine. I-39's recommended fix now names the real number.",
+   "note": "Found by reading and by measurement, 4 September 2026.",
+   "effort": "S"
+  },
+  {
+   "id": "I-154",
+   "area": "Release engineering",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The report's own metadata table described a build that does not exist",
+   "customerImpact": "§2.1 — the first table a reviewer reads — said **1.0.2, Android versionCode 3, iOS CURRENT_PROJECT_VERSION 3**, through two releases that shipped 1.0.3 at versionCode 11. It also named commit `3833da71` and called the working tree *not clean*. A reader trusting the table would have gone looking for an artefact nobody built.",
+   "evidence": "`docs:consistency` derives 57 figures and none of them was the version, the versionCode, the size of the issue ledger or the number of translated Numbers keys. Its commit rule compares two files inside `result/` and had no opinion about the report's summary of them. Measured on this tree before the fix: version 1.0.2 against a delivered 1.0.3, versionCode 3 against 11, 142 issues against 152, 272 Numbers keys against 269.",
+   "recommendedFix": "Done. `androidVersionCode`, `issuesTracked` and `numbersTranslatedKeys` are derived metrics now — so the default `docs:consistency` run rewrites them rather than reporting them — and a new rule compares the marketing version a document states against the one `build-info.json` delivered, which no numeric pattern could do. §2.1's prose rows were rewritten by hand.",
+   "note": "Found by reading the report against the tree, 4 September 2026.",
    "effort": "S"
   }
  ]
