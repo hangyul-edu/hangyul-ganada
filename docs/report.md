@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.3
 date: 5 September 2026
-describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit 80724fd0 at versionCode 13.
+describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit 04aa4268 at versionCode 13.
 mark: report-assets/mark.png
 ---
 
@@ -1701,7 +1701,7 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `80724fd0`, working tree clean |
+| Built from | `04aa4268`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 13, versionName 1.0.3 |
 | SDK | min 24, target 36 |
