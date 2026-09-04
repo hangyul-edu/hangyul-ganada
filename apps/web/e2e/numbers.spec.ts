@@ -2,7 +2,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { NUMBER_LESSONS, getNumberLesson, numberLessonItems } from '../src/data/numbers';
 import {
-  MISCONCEPTION_FEEDBACK,
   masteryExercises,
   practiceExercises,
   type NumbersExercise,
@@ -248,26 +247,22 @@ test.describe('the Numbers course', () => {
       */
       await expect(status).not.toContainText(optionText(first, first.answer));
       /*
-       * A wrong answer always gets a body, and it is the line written for the
-       * mistake when the distractor carries one.
+       * And no body at all, right or wrong.
        *
-       * Two arrangements ago this compared against a fixed sentence per
-       * exercise kind. One ago it compared against a template interpolated with
-       * the item — which is what produced *사는 4예요* on the way *out* of a
-       * correct answer. The source of truth is now the exercise's own typed
-       * feedback, so the assertion reads it rather than reconstructing it.
+       * Three arrangements ago this compared against a fixed sentence per
+       * exercise kind. Two ago, against a template interpolated with the item —
+       * which is what produced *사는 4예요*. One ago, against the exercise's own
+       * typed feedback. Each pass removed the worst of the sentences and left
+       * the rest; there are none now, so the assertion is that the box holds
+       * the verdict and nothing under it.
+       *
+       * Counted on the rendered screen rather than on the data, because an
+       * empty wrapper is as much of the fault as a sentence would be: a gap
+       * that appears under some verdicts and not others reads as something
+       * failing to load.
        */
-      const misconception = first.options[wrongIndex]!.misconception;
-      const key = (misconception ? MISCONCEPTION_FEEDBACK[misconception] : null) ?? first.feedback.incorrect;
-      const answered = numberLessonItems(FIRST).find((item) => item.id === first.item_id)!;
-      // A plain numeral has no body: the answer line above is the correction.
-      const filled = key === null ? null : en(key)
-        .replaceAll('{{korean}}', answered.korean)
-        .replaceAll('{{subject}}', answered.korean)
-        .replaceAll('{{object}}', answered.korean)
-        .replaceAll('{{value}}', answered.value === null ? '' : String(answered.value))
-        .replaceAll('{{example}}', answered.example ?? '');
-      if (filled !== null) await expect(status).toContainText(filled);
+      await expect(status.locator('p')).toHaveCount(1);
+      await expect(status.locator('[class*="body"]')).toHaveCount(0);
       // Options are frozen after one tap: a second tap changes nothing.
       const buttons = body.getByRole('group').getByRole('button');
       for (let i = 0; i < (await buttons.count()); i += 1) await expect(buttons.nth(i)).toBeDisabled();
@@ -312,11 +307,10 @@ test.describe('the Numbers course', () => {
     const status = body.getByRole('status');
     await expect(status).toContainText(en('feedback.correct'));
     /*
-     * The item this lesson opens with carries no authored note, so there is no
-     * body at all — not an empty one. The verdict's own headline is a <p>, so
-     * the count that matters is one: the headline and nothing under it.
+     * No body at all — not an empty one. The verdict's own headline is a <p>,
+     * so the count that matters is one: the headline and nothing under it.
      */
-    expect(first.feedback.correct).toBeNull();
+    expect(first).not.toHaveProperty('feedback');
     await expect(status.locator('p')).toHaveCount(1);
     await expect(status.locator('[class*="body"]')).toHaveCount(0);
   });

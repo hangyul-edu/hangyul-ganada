@@ -22,6 +22,7 @@
  * | **Every level is valid** | an integer in 1–30, on every taught word |
  * | **Every level is populated** | enough words to build a day from, not one |
  * | **Difficulty rises** | the median score of level N+1 is above level N's |
+ * | **The editorial ceiling holds** | a word marked *needed first* is not above the starter band |
  * | **The anchors hold** | 162 words a person placed, still where they were put |
  * | **No contamination** | no beginner word at the top, no idiom at the bottom |
  *
@@ -106,9 +107,24 @@ for (let level = 1; level <= LEVELS; level += 1) {
 // Median, not mean, and adjacent pairs rather than a global correlation: a
 // single inverted pair is the thing worth knowing about, and a correlation of
 // 0.98 hides it comfortably.
+//
+// Grouped by the **modelled** level, which is the one this check is about. The
+// question is whether the four costs form a scale — whether level N+1 really is
+// harder than level N — and that is a property of the model. Where the
+// editorial ceiling has moved a word down (I-133), the payload carries `lvm`
+// and the word is counted at the level the model gave it. 덥다 and 비싸다 are
+// taught at 5 because a beginner needs them, and they are still hard words;
+// reading them as level-5 difficulty would report the fix as an inversion.
+const modelLevel = (w) => w.lvm ?? w.level;
+const byModelLevel = new Map();
+for (const word of built.words) {
+  const level = modelLevel(word);
+  if (!byModelLevel.has(level)) byModelLevel.set(level, []);
+  byModelLevel.get(level).push(word);
+}
 const medians = [];
 for (let level = 1; level <= LEVELS; level += 1) {
-  const scores = (byLevel.get(level) ?? []).map(scoreOf).sort((a, b) => a - b);
+  const scores = (byModelLevel.get(level) ?? []).map(scoreOf).sort((a, b) => a - b);
   medians[level] = scores.length ? scores[Math.floor(scores.length / 2)] : null;
 }
 for (let level = 1; level < LEVELS; level += 1) {
@@ -117,6 +133,51 @@ for (let level = 1; level < LEVELS; level += 1) {
   if (here === null || next === null) continue;
   if (next < here) {
     fail('inversion', `level ${level + 1} median ${next.toFixed(3)} is below level ${level}'s ${here.toFixed(3)}`);
+  }
+}
+
+// --- 3b. The editorial ceiling holds -----------------------------------------
+/**
+ * A word an editor marked *needed first* may not be taught last.
+ *
+ * `usefulness` is 1 to 5, and 1 is the highest. The bands are the product's
+ * own — `levelBand` in `domain/vocabularyLevel.ts` — so a 1 belongs inside
+ * *starter*, a 2 inside *everyday* and a 3 inside *confident*. 4 and 5 have no
+ * ceiling.
+ *
+ * Before this held, 107 words marked 1 were above level 5: the five weekday
+ * names and 요일 itself at 9, 한국 at 10, 덥다 at 12, 비싸다 at 15. Each one had
+ * been carried there by an irregular stem or a polysemous gloss outweighing the
+ * one term that answers *how soon does a learner need this*.
+ *
+ * Checked in both directions. A ceiling that promoted a word would be a
+ * different defect — a rarely-needed word made hard by an editor's mark — so
+ * every word carrying `lvm` has to ship *below* the level the model gave it.
+ *
+ * A word in `level-overrides.json` is exempt from that half, and only that
+ * half. An override is a person's decision and it moves words up as well as
+ * down, with the reason written beside it: 그녀 and 그들 are written Korean the
+ * frequency corpora rank high because the corpora are subtitles, and 잇다 and
+ * 잘다 are stems the matcher folds unrelated tokens onto. Those four ship above
+ * their modelled level on purpose, and the ceiling had nothing to do with it.
+ */
+const CEILING = { 1: 5, 2: 13, 3: 21 };
+let ceilinged = 0;
+for (const word of built.words) {
+  const cap = CEILING[word.usefulness];
+  if (cap !== undefined && word.level > cap && !reviewed.has(word.word)) {
+    fail(
+      'above-its-editorial-band',
+      `${word.word} is usefulness ${word.usefulness} and is at level ${word.level}, above the ${cap} its band allows`,
+    );
+  }
+  if (word.lvm === undefined) continue;
+  ceilinged += 1;
+  if (word.lvm <= word.level && !reviewed.has(word.word)) {
+    fail(
+      'ceiling-promoted-a-word',
+      `${word.word} carries a modelled level of ${word.lvm} and ships at ${word.level} — the ceiling may only move a word down`,
+    );
   }
 }
 
@@ -192,8 +253,13 @@ for (let level = 1; level <= LEVELS; level += 1) {
 
 const byRule = new Map();
 for (const finding of findings) byRule.set(finding.rule, (byRule.get(finding.rule) ?? 0) + 1);
+console.log(
+  `\n  ${ceilinged} word(s) are taught below the level the model gave them, held there by the`,
+);
+console.log('  editorial usefulness ceiling. The medians above are the model\u2019s, not theirs.');
 if (findings.length === 0) {
-  console.log('\n  every level is valid, populated and harder than the one below it.');
+  console.log('\n  every level is valid, populated and harder than the one below it,');
+  console.log('  and no word an editor marked needed-first is above the band that mark allows.');
 } else {
   console.log(`\n${findings.length} finding(s):`);
   for (const [rule, count] of [...byRule].sort((a, b) => b[1] - a[1])) console.log(`  ${count} ${rule}`);

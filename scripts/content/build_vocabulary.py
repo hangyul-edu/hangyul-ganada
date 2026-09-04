@@ -446,6 +446,8 @@ def main() -> int:
     }
     level_components: dict[str, leveller.Components] = {}
     word_levels: dict[str, int] = {}
+    modelled_levels: dict[str, int] = {}
+    ceilinged_words: list[tuple[str, int, int]] = []
     for word in words:
         reading = readings[word]
         parts = leveller.components(
@@ -462,15 +464,31 @@ def main() -> int:
             signals=signals.get(word, {}),
         )
         level_components[word] = parts
+        # The model's own answer, and then the editor's bound on it. Both are
+        # kept: `modelled` is what the four costs say, `ceilinged` is what the
+        # word ships at, and the payload carries the first only where the second
+        # moved it — see `USEFULNESS_CEILING` in level.py, and I-133.
         modelled = leveller.level_of(parts.score)
-        word_levels[word] = overrides.get(word, modelled)
+        ceilinged = leveller.apply_ceiling(modelled, kept[word].usefulness)
+        modelled_levels[word] = modelled
+        if ceilinged != modelled:
+            ceilinged_words.append((word, modelled, ceilinged))
+        word_levels[word] = overrides.get(word, ceilinged)
         # An override the model now agrees with is a decision that has stopped
         # deciding anything, and one nobody will think to remove. Reported so a
         # content pass can retire it — see `level-overrides.json`.
-        if word in overrides and overrides[word] == modelled:
+        if word in overrides and overrides[word] == ceilinged:
             redundant_overrides.append(word)
 
 
+    if ceilinged_words:
+        by_band: dict[int, int] = {}
+        for _, _, to in ceilinged_words:
+            by_band[to] = by_band.get(to, 0) + 1
+        print(
+            f"  {len(ceilinged_words)} word(s) held to their editorial band: "
+            + ", ".join(f"{n} at level {lvl}" for lvl, n in sorted(by_band.items()))
+        )
     if redundant_overrides:
         print(
             f"  {len(redundant_overrides)} override(s) the model now agrees with: "
@@ -594,6 +612,21 @@ def main() -> int:
                     round(level_components[word].linguistic, 3),
                     round(level_components[word].semantic, 3),
                 ],
+                # The level the four costs on their own would have given, and
+                # only where the editorial ceiling moved the word off it. Absent
+                # on the 3,117 words the model already placed inside their band.
+                #
+                # Carried because `vocabulary:level:qa` measures the *scale's*
+                # shape — does difficulty rise from one level to the next — and
+                # that is a question about the model, not about where a word is
+                # taught. Without this the gate would read a level-5 band
+                # holding 덥다 and 비싸다 as an inversion, and the honest answer
+                # is that those two are hard words a beginner needs anyway.
+                **(
+                    {"lvm": modelled_levels[word]}
+                    if modelled_levels[word] != word_levels[word]
+                    else {}
+                ),
                 # An index into `difficulty_reasons`, not the string.
                 "r": list(difficulty.REASONS).index(
                     difficulty.dominant(feature_sets[word], mean)

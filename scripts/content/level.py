@@ -422,6 +422,54 @@ def level_of(score: float) -> int:
     return LEVELS
 
 
+#: How far up the scale a word's editorial usefulness lets it be carried.
+#:
+#: ## Why this is a ceiling and not a fifth weight
+#:
+#: `usefulness` is the one term in this file that directly answers *how soon
+#: does a learner need this word*. It was one of four weighted costs, at 0.26 of
+#: `utility`, which is 0.26 of a term that is itself half concreteness — so an
+#: editor's judgement that a word is needed in the first week could be
+#: outweighed by an irregular stem and a polysemous gloss, and repeatedly was.
+#:
+#: Measured on the shipping corpus: 363 words carry usefulness 1, the highest,
+#: and **107 of them were above level 5**. 월요일, 화요일, 수요일, 목요일 and
+#: 일요일 were at 9, 요일 itself at 9, 한국 at 10, 덥다 at 12, 심심하다 and
+#: 시원하다 at 13, 비싸다 at 15. A beginner course that does not teach the days
+#: of the week until level 9 is not teaching them when they are needed. 61
+#: usefulness-2 words were above 13 and 48 usefulness-3 words above 21.
+#:
+#: That is what `content/vocabulary/level-overrides.json` had been asserting one
+#: word at a time, which is why the list kept growing. A ceiling states it once,
+#: reads a judgement already in the corpus, and applies to the next batch as
+#: well as to this one.
+#:
+#: ## The bands are the product's own
+#:
+#: 5, 13 and 21 are the tops of `starter`, `everyday` and `confident` in
+#: `domain/vocabularyLevel.ts`. A word an editor marked *needed first* belongs
+#: in the band the product calls *starter*; one marked 2 in *everyday*, and so
+#: on. Usefulness 4 and 5 have no ceiling: the scale's top is where they belong.
+#:
+#: ## It only ever moves a word down
+#:
+#: A clamp, not a rescale. A word the model already places inside its band is
+#: untouched, and nothing is promoted — a rarely-needed word is not made hard by
+#: this, it simply keeps the level the model gave it. `vocabulary:level:qa`
+#: asserts both halves.
+USEFULNESS_CEILING = {1: 5, 2: 13, 3: 21}
+
+
+def ceiling_for(usefulness: int) -> int:
+    """The highest level an editor's usefulness mark allows."""
+    return USEFULNESS_CEILING.get(usefulness, LEVELS)
+
+
+def apply_ceiling(modelled: int, usefulness: int) -> int:
+    """The level a word ships at, once its usefulness is treated as a bound."""
+    return min(modelled, ceiling_for(usefulness))
+
+
 def load_signals() -> dict[str, dict]:
     return json.loads(SIGNALS.read_text(encoding="utf-8"))["words"]
 
