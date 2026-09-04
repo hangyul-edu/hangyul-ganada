@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.3
 date: 5 September 2026
-describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit {COMMIT} at versionCode {VERSIONCODE}.
+describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit 80724fd0 at versionCode 13.
 mark: report-assets/mark.png
 ---
 
@@ -1701,13 +1701,13 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `37d2f82b`, working tree clean |
+| Built from | `80724fd0`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
+| Package | `com.talkhangyul.ganada`, versionCode 13, versionName 1.0.3 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.9 MB** (88,025,258 B), `3894b163b0156c13…` |
-| Release AAB | **82.2 MB** (86,233,677 B), `8a271a8dc9004c85…` |
+| Release APK | **83.9 MB** (88,019,042 B), `a2a0b1bbad25ad62…` |
+| Release AAB | **82.2 MB** (86,227,458 B), `d230b86460a8b458…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -1839,7 +1839,8 @@ it.
 This has to be said plainly, because a reader who runs one command should know
 what each result means.
 
-`verify:release` is 36 steps. `vocabulary:qa:target` used to be a step that
+`verify:release` is 45 steps, of which the first is `verify:quick`'s own 49.
+`vocabulary:qa:target` used to be a step that
 existed to fail — the 10,000-word target held red in the release chain. In the
 v1.0.2 pass it was made **explicitly informational**: it prints
 
@@ -1853,15 +1854,23 @@ never pass no longer hides a gate that could fail. `release:current` is the
 step that *is* red on this tree: it fails on an uncommitted working tree by
 design, and it was not weakened to pass (§20K.9).
 
-The other 34 steps were run against this tree and all pass:
-`verify:quick` (32 checks — this cycle added the conjugation-display gate), the store listing, the curriculum export, the fonts,
-the three jamo and face measurements, the status group, the modals, the 143
-rendered screens, the app icons, the relations, the four content builds, the
-four dictionary gates, the dictionary performance budget, the content and
-example QA, **the learner-safety gate and the composite Korean-education gate**,
-Word Detail, the audio and pronunciation gates, the coverage report, the issue
-tables, the documentation figures, the stroke measurements, the end-to-end suite
-and the release currency check.
+The other 43 steps were run against this tree and all pass:
+`verify:quick` (49 checks — this cycle added the stroke-corner gate, the Numbers
+copy gate and the Numbers question ledger), the store listing, the curriculum
+export, the fonts, the three jamo and face measurements, the status group, the
+modals, the 143 rendered screens, the app icons, the relations, the four content
+builds, the four dictionary gates, the dictionary performance budget, the content
+and example QA, **the learner-safety gate and the composite Korean-education
+gate**, Word Detail, the audio and pronunciation gates, the coverage report, the
+issue tables, the documentation figures, the stroke measurements, the end-to-end
+suite and the release currency check.
+
+**Eight of those steps are new to the chain and were not new gates.**
+`answerability` — the 806,252-question one-valid-answer check — the 118 synthetic
+journeys, the per-level vocabulary audit, back coverage, reachable actions,
+section alignment and legal isolation were each a script somebody wrote, ran once
+and left out of `verify:release`. A gate that is not in the chain is a gate that
+is green because nobody asked it.
 
 ## 19.3 What the release gate enforces — **VERIFIED**
 
