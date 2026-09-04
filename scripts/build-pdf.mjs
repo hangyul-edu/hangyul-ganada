@@ -41,6 +41,20 @@ if (!inPath || !outPath || !title) {
 const source = readFileSync(inPath, 'utf8');
 
 /**
+ * The version on the cover, from the one file that decides it.
+ *
+ * It was the string `v1.0.2`, written here, on the cover of the document a
+ * reviewer opens first — through two releases that shipped 1.0.3. The subtitle
+ * passed on the command line said it a second time and the report's own front
+ * matter a third. `app.identity.json` is where the Gradle build, the Capacitor
+ * config and `version:check` all read it from, so it is where this reads it
+ * from too.
+ */
+const VERSION = JSON.parse(
+  readFileSync(join(ROOT, 'apps/mobile/app.identity.json'), 'utf8'),
+).version;
+
+/**
  * The variable Pretendard, embedded.
  *
  * The same file the app loads, so the PDF and the product agree about what a
@@ -206,7 +220,7 @@ strong{font-weight:600}
 <div class="cover">
   <h1>${title}</h1>
   <p class="sub">${subtitle}</p>
-  <div class="meta">Hangyul ganada · 한귤 가나다 — v1.0.2 · ${today}</div>
+  <div class="meta">Hangyul ganada · 한귤 가나다 — v${VERSION} · ${today}</div>
   <div class="conf">CONFIDENTIAL · 대외비</div>
 </div>
 ${toc}

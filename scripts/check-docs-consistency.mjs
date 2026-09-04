@@ -705,7 +705,20 @@ for (const [name, metric] of Object.entries(METRICS)) {
       for (const document of ['docs/report.md', 'result/RELEASE_VALIDATION.md']) {
         if (!exists(document)) continue;
         const text = rewritten.get(document) ?? read(document);
-        for (const match of text.matchAll(/\*\*Version\*\*\s*\|\s*\*\*([0-9]+\.[0-9]+\.[0-9]+)\*\*/g)) {
+        const stated = [
+          // The metadata table.
+          ...text.matchAll(/\*\*Version\*\*\s*\|\s*\*\*([0-9]+\.[0-9]+\.[0-9]+)\*\*/g),
+          /*
+           * And the front matter, which is what the PDF's cover prints.
+           *
+           * It read `version: 1.0.2` while the delivered binary was 1.0.3 and
+           * the body of the same document said so — the cover of the file a
+           * reviewer opens first, stating a version that had shipped twice
+           * before. Nothing was looking at the front matter at all.
+           */
+          ...text.matchAll(/^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$/gm),
+        ];
+        for (const match of stated) {
           if (match[1] !== builtVersion) {
             problems.push(
               `${document} states version ${match[1]} in its metadata table; ` +
