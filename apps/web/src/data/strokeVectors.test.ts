@@ -117,11 +117,16 @@ describe('the four letters the customer reported', () => {
     // The crossbars land on the uprights and are cut square there, with no
     // terminal to stand proud of the letter.
     expect(waist.ends).toEqual({ start: 'join', end: 'join' });
-    // The base closes the box with the uprights' own ends, so it is the *later*
-    // stroke that extends — never the finished one reaching towards it.
+    // The base closes the box with the uprights' own ends, and so do they: a
+    // corner belongs to both strokes that arrive at it, so the uprights reach
+    // the foot of the letter while they are still the only ink on the paper.
+    // See `classify`, and `npm run strokes:corners`.
     expect(base.ends).toEqual({ start: 'corner', end: 'corner' });
-    expect(left.ends.end).not.toBe('corner');
-    expect(right.ends.end).not.toBe('corner');
+    expect(left.ends.end).toBe('corner');
+    expect(right.ends.end).toBe('corner');
+    // …and the tops, which meet nothing, are still cut square.
+    expect(left.ends.start).toBe('free');
+    expect(right.ends.start).toBe('free');
   });
 
   it('ㅅ — the second stroke starts on the first, and the first does not reach for it', () => {
@@ -218,14 +223,18 @@ describe('every taught character', () => {
     }
   });
 
-  it('never lets a finished stroke reach towards one not yet written', () => {
+  it('extends a terminal only into a corner it actually shares', () => {
     /*
-     * `corner` is the only end that extends, and it may only belong to the
-     * *later* of the two strokes whose ends meet. That asymmetry is the whole
-     * of §10's rule — at any frame of the animation, the black on the paper is a
-     * state a hand could have left it in — and it is checkable without rendering
-     * anything: an extended end must have another stroke's end under it, and
-     * that stroke must come earlier.
+     * `corner` is the only end that extends, and it is symmetric: both strokes
+     * that arrive at a joint reach it, whichever is written first. What must
+     * never happen is an extension into open paper — half a pen of ink outside
+     * the letter, on an end that has nothing to close a corner against.
+     *
+     * This test used to assert the opposite: that the partner had to come
+     * *earlier*, which is what left ㄷ's lid beginning half a pen inside the
+     * letter for as long as it was the only ink on the paper. See `classify`,
+     * and `npm run strokes:corners`, which asks the same question of every
+     * frame rather than of the finished glyph.
      */
     for (const character of taught) {
       const { strokes, pen } = vectorGlyph(character);
@@ -238,8 +247,8 @@ describe('every taught character', () => {
         for (const [side, point] of ends) {
           const kind = side === 'start' ? stroke.ends.start : stroke.ends.end;
           if (kind !== 'corner') continue;
-          const earlier = strokes.filter((other) => other.order < stroke.order);
-          const meets = earlier.some((other) =>
+          const others = strokes.filter((other) => other.order !== stroke.order);
+          const meets = others.some((other) =>
             [other.start, other.finish].some(
               (theirs) => Math.hypot(theirs[0] - point[0], theirs[1] - point[1]) <= tolerance,
             ),
@@ -247,6 +256,42 @@ describe('every taught character', () => {
           expect(meets, `${character} stroke ${stroke.order} ${side} extends into nothing`).toBe(
             true,
           );
+        }
+      }
+    }
+  });
+
+  it('draws every shared corner from both of the strokes that meet at it', () => {
+    /*
+     * The ㄸ defect, as a unit test. An end that arrives at another stroke's end
+     * and is not a `join` has to be a `corner` — so it is drawn out to the
+     * letter's own corner from the moment the pen leaves it, and not only once
+     * the partner stroke arrives to fill the gap.
+     */
+    for (const character of taught) {
+      const { strokes, pen } = vectorGlyph(character);
+      const tolerance = pen * 0.5;
+      for (const stroke of strokes) {
+        if (stroke.closed) continue;
+        const ends: Array<['start' | 'end', [number, number]]> = [
+          ['start', stroke.start],
+          ['end', stroke.finish],
+        ];
+        for (const [side, point] of ends) {
+          if (stroke.ends[side] === 'join') continue;
+          const shares = strokes.some(
+            (other) =>
+              !other.closed &&
+              other.order !== stroke.order &&
+              [other.start, other.finish].some(
+                (theirs) => Math.hypot(theirs[0] - point[0], theirs[1] - point[1]) <= tolerance,
+              ),
+          );
+          if (!shares) continue;
+          expect(
+            stroke.ends[side],
+            `${character} stroke ${stroke.order} ${side} shares a joint and stops short of it`,
+          ).toBe('corner');
         }
       }
     }

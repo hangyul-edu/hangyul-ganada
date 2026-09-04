@@ -194,9 +194,46 @@ async function measure(glyph, frames) {
         const { bits } = shoot((c) => c.stroke(stroke));
         for (let i = 0; i < union.length; i += 1) if (bits[i]) union[i] = 1;
       }
+      /*
+        Where the two renders disagree, and whether the disagreement is a seam
+        or a displacement.
+
+        Compositing eight paths onto one canvas adds their coverage before the
+        alpha threshold; painting each onto a cleared canvas and OR-ing the
+        thresholded results rounds every edge on its own. Where two strokes meet
+        flush — which, since corner terminals became symmetric, is both sides of
+        every corner in the curriculum — each contributes about half a pixel of
+        coverage to the boundary, and the composited pixel clears the threshold
+        while neither of the separate ones does. Measured on this tree: ㅃ's
+        alphas along those edges are 101 and 136 against a threshold of 96.
+
+        That is a fact about antialiasing and not about the letter, so it is
+        counted separately from the thing this check exists to catch. A frame
+        that has genuinely drifted is displaced or missing ink, and displaced ink
+        is not adjacent to the ink it should have been: `stray` is drift with no
+        inked neighbour in either render, and one pixel of it is a failure.
+      */
       let drift = 0;
-      for (let i = 0; i < union.length; i += 1) if (union[i] !== whole.bits[i]) drift += 1;
-      out.whole = { count: whole.count, box: whole.box, drift };
+      let stray = 0;
+      const inked = (bits, x, y) => x >= 0 && y >= 0 && x < R && y < R && bits[y * R + x] === 1;
+      for (let i = 0; i < union.length; i += 1) {
+        if (union[i] === whole.bits[i]) continue;
+        drift += 1;
+        const x = i % R;
+        const y = (i - x) / R;
+        let touching = false;
+        for (let dy = -1; dy <= 1 && !touching; dy += 1) {
+          for (let dx = -1; dx <= 1; dx += 1) {
+            if (dx === 0 && dy === 0) continue;
+            if (inked(union, x + dx, y + dy) && inked(whole.bits, x + dx, y + dy)) {
+              touching = true;
+              break;
+            }
+          }
+        }
+        if (!touching) stray += 1;
+      }
+      out.whole = { count: whole.count, box: whole.box, drift, stray };
 
       return out;
     },
@@ -231,19 +268,29 @@ for (const character of shipping) {
    *
    * The last frame has to be the character, not an approximation of it.
    *
-   * The allowance is per stroke rather than flat, because the two sides of this
-   * comparison antialias differently and only along seams: painting eight paths
-   * in one pass blends their overlapping edges once, while painting them
-   * separately and OR-ing the thresholded results rounds each edge on its own.
-   * ㅃ, with eight strokes and the most shared edges in the curriculum, differs
-   * by twenty-four pixels of a ten-thousand-pixel letter that way — three per
-   * stroke, all of them on a boundary. A flat bound either fires on that or is
-   * too loose to catch a single-stroke glyph that has genuinely moved.
+   * Asked in two parts, because the comparison has a known artefact and a real
+   * question inside it and a single tuned number cannot separate them. See the
+   * note in `measure`: every drift pixel must lie against ink both renders
+   * agree on — a seam — and none of it may be displaced. A tuned per-stroke
+   * allowance was here before and it was the wrong instrument: it was set at
+   * four pixels a stroke against ㅃ's measured twenty-four, and when corner
+   * terminals became symmetric and put a flush edge on both sides of every
+   * corner, the same artefact grew to a hundred and thirty-six and the gate
+   * reported four broken letters that had not changed shape at all.
+   *
+   * The proportion is still bounded, because a letter whose every edge
+   * disagreed would be one worth looking at even if all of it were seam.
    */
-  if (result.whole.drift > 4 * glyph.strokes.length) {
+  if (result.whole.stray > 0) {
     fail(
       character,
-      `the finished frame differs from the union of its strokes by ${result.whole.drift} pixels`,
+      `the finished frame has ${result.whole.stray} pixels of ink away from where the strokes drew it`,
+    );
+  }
+  if (result.whole.drift > result.whole.count * 0.03) {
+    fail(
+      character,
+      `the finished frame differs from the union of its strokes along ${result.whole.drift} pixels — ${((result.whole.drift / result.whole.count) * 100).toFixed(1)}% of its ink`,
     );
   }
 

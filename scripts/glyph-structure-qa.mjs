@@ -50,12 +50,13 @@
  * corner *is*: the two strokes between them fill their shared corner, and any
  * hole in it is a notch, a chip or a seam.
  *
- * It is measured at both ends of the junction, and that matters. `strokeVectors`
- * classifies only the *later* stroke's end as a `corner` — deliberately, since
- * only the later stroke may be extended — so probing the classification alone
- * looks at the one end that is always covered by its own extension. ㅌ passed
- * that way. The junction is a place, not a property of one stroke, so both ends
- * that arrive at it are probed.
+ * It is measured at both ends of the junction, and that matters. When this was
+ * written `strokeVectors` classified only the *later* stroke's end as a
+ * `corner`, so probing the classification alone looked at the one end that is
+ * always covered by its own extension. ㅌ passed that way. The junction is a
+ * place, not a property of one stroke, so both ends that arrive at it are
+ * probed — and that is still true now the extension is symmetric, because a
+ * junction can be broken by geometry that is nothing to do with terminals.
  *
  * The square is inset by one and a half pixels. At a correct corner the ink
  * boundary lies exactly on the square's edge, and half-covered edge pixels fall

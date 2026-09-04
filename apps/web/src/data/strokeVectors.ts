@@ -86,13 +86,15 @@ import { STROKE_ORDER, STROKE_ORDER_UPRIGHT } from './strokes';
  * | | |
  * | --- | --- |
  * | `join` | It lands *inside* another stroke. Cut square, no extension: the terminal would be under that stroke's ink anyway, and extending it is how ink appears where the pen has not been. |
- * | `corner` | It meets another stroke's own end, and this stroke is the later one. Extended by half a pen so the two close a flush corner — ㅂ's base under its uprights, ㅁ's box. |
+ * | `corner` | It meets another stroke's own end. Extended by half a pen so the two close a flush corner — ㅂ's base under its uprights, ㅁ's box. |
  * | `free` | Neither. Cut square where the pen stopped. |
  *
- * The order rule in `corner` is what keeps §10: only the *later* stroke extends,
- * so a completed stroke never grows a millimetre towards one not yet written.
- * At every moment of the animation, the black on the paper is a state a hand
- * could have left it in.
+ * The extension is symmetric — both ends of a shared corner get it — because
+ * it is the nib's own footprint at the point the pen landed on, not a reach
+ * towards a stroke that has not been written yet. It stays inside the finished
+ * letter (see `classify`), so at every moment of the animation the black on the
+ * paper is a state a hand could have left it in, and every stroke reaches the
+ * corner it is drawn from. `strokes:corners` is the gate.
  *
  * ## One geometry for instruction
  *
@@ -519,11 +521,45 @@ function build(
 /**
  * What the end at `point` is doing, given every other stroke in the character.
  *
- * `corner` is deliberately asymmetric: of two strokes whose ends meet, only the
- * later one is extended to close the corner. Extending both would work too, but
- * extending the earlier one puts ink beyond where the pen has been *while the
- * later stroke is still grey* — a completed stroke reaching towards one not yet
- * written, which is the whole class of defect this model exists to remove.
+ * ## `corner` is symmetric, and it was not
+ *
+ * Of two strokes whose ends meet, **both** are extended by half a pen along
+ * their own tangent, so each one reaches the corner the letter actually has.
+ *
+ * It used to extend only the *later* of the two, on the reasoning that
+ * extending the earlier one puts ink beyond where the pen has been while the
+ * later stroke is still grey. That reasoning is wrong twice over, and a
+ * photograph of the running app is what settled it.
+ *
+ * **It is not ink beyond where the pen has been.** A pen has a width. Set down
+ * on the corner point of a ㄷ and drawn to the right, its nib covers the corner
+ * — that is what `stroke-linecap: round` or `square` would draw, and the butt
+ * cap this model uses is the *simplification*, not the truth. The half-pen
+ * extension along the stroke's own tangent is exactly the nib's footprint at
+ * the point where the pen landed.
+ *
+ * **And it is not beyond the letter.** At a shared end the two strokes are
+ * perpendicular, so one stroke's extension lies inside the other's ink band:
+ * the tip is at most half a pen from the partner's centreline, measured
+ * perpendicular to it, which is where the partner's ink already reaches. The
+ * finished glyph is byte-for-byte the shape it was — `glyph:structure`,
+ * `glyphshape:qa` and `letters:face` all measure the completed letter and none
+ * of them moves.
+ *
+ * What moves is every frame before the last one. Under the asymmetric rule the
+ * *first* stroke of a corner was drawn half a pen short of the letter's own
+ * corner and stayed short for as long as it was the only stroke on the paper:
+ * ㄷ's lid began four and a half units to the right of where ㄷ begins, and a
+ * learner watching ㄸ saw both lids start inside the letter and only become
+ * flush when the ㄴ under each of them was written. Forty-five stroke ends over
+ * twenty-seven characters were drawn that way. `strokes:corners` is the gate
+ * that now refuses it, and it asks the question order-independently — *does
+ * this end reach the joint it shares?* — because that is the question a frame
+ * asks.
+ *
+ * `join` still wins over `corner` and is still never extended: an end that
+ * lands in the *body* of another stroke has that stroke's ink over it already,
+ * and extending it is how a nub appears on the outside of a letter.
  */
 function classify(
   point: Point,
@@ -548,7 +584,7 @@ function classify(
     // Landing in the body of another stroke settles it: cut square, and let
     // their ink cover the cut. Nothing later can promote it to a corner.
     if (!atTheirEnd) return 'join';
-    if (other < index) corner = 'corner';
+    corner = 'corner';
   }
 
   return corner ?? 'free';

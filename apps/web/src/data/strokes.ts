@@ -280,12 +280,13 @@ function nieun(left: number, right: number, top = 16, bottom = 78): StrokeStep {
  * in a square about half a pen wide and two units deep.
  *
  * `strokeVectors` does close a corner: an end that meets another stroke's end
- * is extended by half a pen, and only the *later* stroke is extended, so a
- * finished stroke never grows towards one not yet written. That is the right
- * rule and it cannot help here, because the extension runs along the stroke's
- * own tangent — it lengthens the ㄴ upwards and never moves the lid leftwards.
- * A flush corner needs the two centrelines to *start at the same point*, which
- * is how ㅁ and ㅂ were authored and why they have never had this defect.
+ * is extended by half a pen. That cannot help here, because the extension runs
+ * along the stroke's own tangent — it lengthens the ㄴ upwards and never moves
+ * the lid leftwards. A flush corner needs the two centrelines to *start at the
+ * same point*, which is how ㅁ and ㅂ were authored and why they have never had
+ * this defect. (The extension is symmetric now, so the lid reaches the corner
+ * too; that closes the animation's version of the same defect and not this one,
+ * which is about where the centrelines are authored.)
  *
  * Measured, at 512 px over the 100-unit box: the junction square at the lid's
  * start was 90% inked before this and is 100% after. The same two units cost
