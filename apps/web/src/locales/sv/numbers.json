@@ -40,8 +40,12 @@
   "stepOf": "Steg {{current}} av {{total}}",
   "questionOf": "Fråga {{current}} av {{total}}",
   "readingLabel": "Uttalas",
-  "exampleLabel": "I bruk",
-  "practiceIntro": "Här får du göra fel — varje svar förklaras.",
+  "exampleLabel": {
+    "writing": "Så skrivs det",
+    "pronunciation": "Så uttalas det",
+    "example": "I bruk"
+  },
+  "practiceIntro": "Det är okej att göra fel här — en förklaring kommer där den hjälper.",
   "masteryIntro": "{{count}} frågor. Du behöver {{pass}} % rätt, och varje ord minst en gång.",
   "masteryPassed": "Slutprovet klarat — {{correct}} av {{total}}",
   "masteryFailed": "Inte än — {{correct}} av {{total}}. Gå igenom exemplen och försök igen.",
@@ -59,8 +63,10 @@
     "incorrect": "Fel"
   },
   "prompt": {
-    "listen": "Vad hörde du?",
-    "read": "Vad betyder det här?",
+    "listenAndChoose": "Vad hörde du?",
+    "chooseMeaning": "Vad betyder det här?",
+    "chooseCorrectExplanation": "Välj den rätta förklaringen.",
+    "findIncorrectExpression": "Välj det felaktiga uttrycket.",
     "chooseSystem": "Vilka siffror hör hemma här?",
     "digitsToKorean": {
       "sino": "Säg det här talet med 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Vilket tal är det här?",
     "counterForm": "Hur säger du {{value}} med {{counter}}?",
-    "spotMistake": "Vilken är rätt?",
     "fill": "Fyll i luckan",
     "orderParts": "Tryck på delarna i rätt ordning för att bygga {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Lyssna på 일, 이, 삼 upp till 십 och säg efter.",
       "step1": "Börja med 일, 이, 삼. Dem använder du för priser, datum, minuter, telefonnummer och våningar.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Var och en är en enda stavelse.",
-      "step3": "Så här säger man dem: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Så här säger man dem: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Räkna med 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Saker med 하나, 둘 · priser med 일, 이",
       "objective": "Välj vilka siffror du räknar med och vilka som hör till priser och datum.",
       "step1": "Det du ser räknar du med 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Till priser, datum, minuter, telefonnummer och våningar hör 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Till priser, datum, minuter, telefonnummer och våningar hör 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "En klockslag tar båda. 세 시 삼십 분 — timmen är 세, minuterna är 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "När fyller du år?",
       "objective": "Säg ett datum med 년, 월 och 일 — och se upp med 유월 och 시월.",
-      "step1": "년, 월 och 일 tar alla talen 일, 이, 삼: 이천이십육 년 삼월 십오 일. Den stora enheten först.",
+      "step1": "년, 월 och 일 tar alla talen 일, 이, 삼: 이천이십육년 삼월 십오일. Den stora enheten först.",
       "step2": "Två månader är oregelbundna. Juni är 유월, inte 육월; oktober är 시월, inte 십월.",
-      "step3": "일 som dag i månaden är samma ord som 일 för ett. 삼월 일 일 är första mars."
+      "step3": "일 som dag i månaden är samma ord som 일 för ett. 삼월 일일 är första mars."
     },
     "weekdays": {
       "title": "Vilken dag är det i dag?",
@@ -270,8 +275,8 @@
     "counterCups": "koppar och glas",
     "counterFlat": "platta saker — biljetter, papper",
     "counterBooks": "böcker",
-    "counterAge": "år gammal",
-    "counterAgeFormal": "år gammal — formellt",
+    "counterAge": "ålder — med 하나, 둘, 셋",
+    "counterAgeFormal": "ålder — i dokument och nyheter, med 일, 이, 삼",
     "howOld": "Hur gammal är du?",
     "ageHonorific": "ålder — vördnadsfullt, om någon äldre",
     "counterHour": "klockan",
@@ -335,7 +340,6 @@
     "bus206": "buss 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 är rätt; 둘 살 inte",
-    "pitfallSimnyuk": "skrivs 십육, uttalas 심뉵",
     "pitfallJune": "유월 är rätt; 육월 inte",
     "pitfallHourMinute": "세 시 삼십 분 är rätt; 삼 시 서른 분 inte",
     "pitfallSpacing": "한 개 är rätt; 한개 inte",

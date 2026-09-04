@@ -349,8 +349,76 @@ export interface NumberItem {
   counter_system?: 'sino' | 'native';
   /** Key into the `numbers` namespace, or null where `value` says it all. */
   gloss: string | null;
+  /**
+   * What kind of thing `gloss` is, declared rather than guessed.
+   *
+   * `meaning` — the gloss names what the word *is*: 사람, 30분, 10,000. An
+   * exercise whose options are these is asking what an expression means, and
+   * the instruction is *what does this mean?*
+   *
+   * `explanation` — the gloss is a whole statement about a rule: *세는 말은
+   * 띄어 써요*, *6월은 유월, 육월은 없어요*. An exercise whose options are these
+   * is asking which statement is true, and *what does this mean?* is the wrong
+   * question over them — a learner shown 한 개 and four sentences is not being
+   * asked for a translation.
+   *
+   * The distinction used to be invisible: both were `gloss`, both rendered
+   * under *이건 무슨 뜻일까요?*, and the pitfalls lesson asked five meaning
+   * questions whose answers were rules. It is declared here so the UI reads it
+   * rather than sniffing the string, which would break the moment a meaning
+   * gloss grew a verb ending.
+   */
+  gloss_kind?: 'meaning' | 'explanation';
+  /**
+   * Items whose glosses name the *same thing*, and so may never be offered
+   * against each other as meanings.
+   *
+   * 명 glosses as *사람* and 사람 as *사람 — 일상적인 말*. Asked what 명 means
+   * with both on screen, there is no answer a learner can defend: the two
+   * options say the same word with a note about register attached to one of
+   * them. A distractor has to be wrong for a reason the learner can state, and
+   * "it is the slightly more casual one" is not available to somebody meeting
+   * both in the same lesson.
+   *
+   * Declared rather than detected — a string-similarity test would have to
+   * decide how close *사람* and *사람 — 일상적인 말* are in thirty-two
+   * languages, and would be wrong in one of them.
+   */
+  gloss_group?: string;
   /** A worked example, Korean. Null where the item is its own example. */
   example: string | null;
+  /**
+   * What the example is demonstrating, which decides the heading above it.
+   *
+   * `pronunciation` — the point is the *sound*: 유월 육일, 시월 십일, 십육
+   * (심뉵), the phone number that runs 오륙칠팔 together. Headed *이렇게
+   * 발음해요*.
+   * `writing` — the point is the *spelling*, and spacing is spelling: 한 개
+   * against 한개. Headed *이렇게 써요*.
+   * `example` — the default. An ordinary use of the word, demonstrating
+   * neither. Headed *이렇게 말해요*.
+   *
+   * Everything was headed *이렇게 써요* before, which in Korean reads both as
+   * *this is how you write it* and *this is how you use it*. On 유월 육일 the
+   * first reading is what a learner takes away, and it teaches the opposite of
+   * the lesson: the point of that card is that 육월 is not said, not that a
+   * space is in the wrong place.
+   */
+  example_kind?: 'writing' | 'pronunciation' | 'example';
+  /**
+   * Items that are *interchangeable in the same sentence slot*, and so may
+   * never be offered against each other in a fill-the-blank question.
+   *
+   * `____에 만나요.` takes 주말, and it takes 금요일, and it takes 월요일. All
+   * three are correct Korean in that hole, so a question with all three on
+   * screen has three right answers whatever the grader thinks. Same for 맥주 한
+   * 병 beside 맥주 한 잔, and 책 세 권 beside 책 세 장.
+   *
+   * Distinct from `gloss_group`: 월요일 and 주말 do **not** mean the same thing,
+   * so they are fair distractors for each other in a meaning question. What
+   * they share is a slot.
+   */
+  slot_group?: string;
   /** Key into the `numbers` namespace for what the example means. */
   example_gloss: string | null;
   /** The clip id for `korean`, and for `example` where there is one. */
@@ -374,6 +442,48 @@ export interface NumberItem {
    */
   note?: string | null;
 }
+
+/**
+ * What a question is *asking*, as opposed to how it is built.
+ *
+ * `NumbersExerciseKind` names the machinery — which builder made the options,
+ * which misconception pool the distractors came from. It is not the same
+ * question as *what instruction does the learner need above it*, and treating
+ * it as if it were is how `spot_mistake` came to be headed *어느 쪽이
+ * 맞을까요?* — which side is right? — over an option list whose answer is the
+ * side that is **wrong**. A learner who read the instruction and answered it
+ * correctly was marked incorrect.
+ *
+ * Two kinds also map to two different instructions depending on the *content*:
+ * `read_choose` over meaning glosses asks what an expression means, and over
+ * explanation glosses asks which statement is true. So the type is carried on
+ * the exercise, resolved once where the exercise is built, from declared
+ * content metadata (`NumberItem.gloss_kind`) rather than from the shape of the
+ * option strings.
+ *
+ * The UI renders the instruction from this and from nothing else.
+ */
+export type NumbersQuestionType =
+  /** The answer is the expression that is **not** Korean. */
+  | 'findIncorrectExpression'
+  /** The options are statements about a rule; the answer is the true one. */
+  | 'chooseCorrectExplanation'
+  /** A clip plays; the answer is what was said. */
+  | 'listenAndChoose'
+  /** The options are meanings; the answer is what the expression means. */
+  | 'chooseMeaning'
+  /** Which of the two number sets a context takes. */
+  | 'chooseSystem'
+  /** A numeral is shown; the answer is how it is said. */
+  | 'sayTheNumber'
+  /** Korean is shown; the answer is the numeral. */
+  | 'writeTheDigits'
+  /** Which form goes in front of a counting word. */
+  | 'chooseCounterForm'
+  /** A sentence with a hole in it. */
+  | 'fillTheBlank'
+  /** Tap the parts of a compound numeral in order. */
+  | 'orderTheParts';
 
 /** The exercise families the Numbers engine can build. */
 export type NumbersExerciseKind =

@@ -89,7 +89,8 @@ in-memory driver that implements the same interface.
 
 ## 4. The curriculum
 
-`apps/web/src/data/numbers.ts` — 6 modules, 19 lessons, 97 items, 9 exercise kinds.
+`apps/web/src/data/numbers.ts` — 6 modules, 19 lessons, 95 items, 9 exercise
+kinds, 10 question types.
 
 | # | Module | Lessons |
 | --- | --- | --- |
@@ -126,11 +127,93 @@ bus.
 `listen_choose`, `digits_to_korean`, `korean_to_digits`, `choose_system`,
 `counter_form`, `spot_mistake`, `fill_sentence`, `order_parts`. Distractors are
 built from misconception classes — `system_swap`, `plain_form`, `adjacent`,
-`sound_alike`, `irregular_month`, `wrong_counter`, `spacing`,
-`wrong_system_context` — and the feedback shown after a wrong answer names the
-class of the option that was chosen. Option order is a Fisher–Yates shuffle
-seeded by `(lesson, item, kind, phase, attempt)`: stable within an attempt,
-different on a retake, and never a function of the question index alone.
+`sound_alike`, `irregular_month`, `wrong_counter`, `spacing` — and the feedback
+shown after a wrong answer names the class of the option that was chosen.
+
+**Question types are separate from exercise kinds, and they are what the screen
+reads.** A kind says how the options were assembled; a *question type* says what
+the learner is being asked to do, and the two are not the same fact. Choosing
+the instruction from the kind produced this, in every language:
+
+> 어느 쪽이 맞을까요? — *which one is right?*
+> 세 시 · 두 개 · 한 명 · **셋 시**
+
+Three of those four are right. The answer is 셋 시, the one that is wrong,
+because the question was built by `spot_mistake`. A learner who read the
+instruction and obeyed it was marked incorrect. The same mechanism put *이건
+무슨 뜻일까요?* over 한 개 with four whole grammar rules to choose between — 한
+개 does not *mean* that counting words take a space.
+
+`NumbersQuestionType` is carried on the exercise, resolved once where it is
+built, and `NumberSessionPage` switches on it and on nothing else:
+
+| type | instruction | built by |
+| --- | --- | --- |
+| `findIncorrectExpression` | 다음 중 틀린 표현을 고르세요. | `spot_mistake` |
+| `chooseCorrectExplanation` | 다음 중 올바른 설명을 고르세요. | `read_choose` over an `explanation` gloss |
+| `listenAndChoose` | 무엇이라고 들렸나요? | `listen_choose` |
+| `chooseMeaning` | 무슨 뜻일까요? | `read_choose` over a `meaning` gloss |
+| `chooseSystem` · `sayTheNumber` · `writeTheDigits` · `chooseCounterForm` · `fillTheBlank` · `orderTheParts` | their own | the remaining kinds |
+
+Which of the two `read_choose` types applies is **declared content**, not
+sniffed from the option strings: `NumberItem.gloss_kind` is `meaning` or
+`explanation`, and the five items of the review lesson are the `explanation`
+ones. An explanation question is also shown the item's *contrast pair* rather
+than its bare word — `한 개 (✓) · 한개 (✗)` — because 한 개 alone is explained by
+two of the five rules at once and the pair by exactly one.
+
+**Exactly one answer, and it is gated over every question the engine can
+build.** `numbers:qa` §8 generates practice *and* mastery for all nineteen
+lessons over three attempts, deduplicates, and checks each of the 284 distinct
+questions against its type: the find-the-mistake options must contain exactly
+one expression the curriculum classifies as not Korean and no option it cannot
+classify at all; a meaning question's options must be one gloss kind and must
+not contain two glosses that name the same thing; a fill-the-blank's sentence
+must contain a word that decides the answer. Three defects it found and that are
+fixed in the data rather than in the gate:
+
+* `두 ____` with 개 · 명 · 마리 · 사람 to choose from. All four are Korean. A
+  blank after a bare numeral is not a question, so `fill_sentence` now requires
+  a context word — 고양이 두 ____, 책 세 ____ — and drops the rest.
+* 명 asked with both *사람* and *사람 — 일상적인 말* on screen. `gloss_group`
+  declares the pair and they are never offered against each other.
+* 맥주 한 ____ with 잔 among the distractors, and `____에 만나요.` with 금요일
+  and 월요일. `slot_group` declares words that fit the same hole.
+
+Option order is a Fisher–Yates shuffle seeded by
+`(lesson, item, kind, phase, attempt)`: stable within an attempt, different on a
+retake, and never a function of the question index alone. A mastery check then
+*assigns* the columns — a hashed permutation of 0–3, each question's options
+rotated (not reshuffled) until its answer lands on the column it was given —
+because independent per-question shuffles are exactly what allowed the zero
+lesson to put all four answers at index 2, where tapping the third button four
+times passed the check.
+
+**Spacing: a counted quantity is open, an ordinal is closed.** 한글 맞춤법 §43
+spaces a unit noun from its numeral and its 다만 clause closes the same noun
+when the number is an order. A date is an order:
+
+| | |
+| --- | --- |
+| quantity, open | 한 개 · 세 명 · 두 잔 · 스무 살 · 세 시 · 삼십 분 · 오천 원 |
+| ordinal, closed | 삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년 |
+
+The course shipped *삼월 일 일*, *삼월 이 일*, *유월 육 일*, *시월 십 일*,
+*십오 일* and *이천이십육 년*. Every one is the 원칙 form and none is written by
+anybody; *일 일* in particular reads as two ones, on the screen of the lesson
+explaining that 일 is both. `numbers:qa` §9 fails on the old forms and on their
+absence, over the item data, all thirty-two bundles and the audio manifest — and
+the five clips that said the old sentences were deleted, so a cached id cannot
+keep playing 삼월 일 일.
+
+**An example says whether it is about writing or about sound.** *이렇게 써요* is
+two sentences in Korean — *this is how you write it* and *this is how you use
+it* — and it headed every example card. On 유월 육일 a learner takes the first
+reading, and the card exists to teach the second. `NumberItem.example_kind` is
+`pronunciation` (유월 육일, 시월 십일, 십육 (심뉵), 공일공에 일이삼사에 오륙칠팔,
+유월 · 육월), `writing` (the three cards that show a written contrast) or
+`example`, and the heading is `exampleLabel.{writing,pronunciation,example}` —
+*이렇게 발음해요* / *이렇게 써요* / *이렇게 말해요*.
 
 **Audio** — clip ids are the codepoint rule shared with the vocabulary corpus
 (`word_<hex>`/`ex_<hex>`), so 일 the numeral and 일 the word are one recording.
@@ -139,9 +222,20 @@ records only what is missing; there is no runtime synthesis. `numbers:qa` fails
 on any item whose clip is absent from the manifest or whose manifest text differs
 from the Korean shown.
 
-**Localisation** — 272 keys × 32 languages in `locales/<code>/numbers.json`.
+**Localisation** — 277 keys × 32 languages in `locales/<code>/numbers.json`.
 `numbers:qa` fails on a missing key, a blank value, a broken `{{placeholder}}`
-set, or a sentence identical to the English.
+set, or a sentence identical to the English. It also fails on a bundle that has
+lost one of the ten question-type prompts or one of the three example headings,
+and on a bundle still carrying `prompt.spotMistake`, `prompt.read` or
+`prompt.listen` — the three keys that were chosen by exercise kind. The Korean
+bundle's four question instructions are checked literally, because *find the
+wrong one* and *choose the right explanation* are opposite instructions and a
+bundle that swaps them is a broken lesson rather than a translation problem.
+
+No native-speaker review of the thirty-one non-Korean bundles has been carried
+out for these strings. They were written for this pass and are consistent,
+short and unreversed by construction and by gate; they have not been read by a
+speaker of each language, and that is an outstanding item rather than a claim.
 
 ## 5. What proves it
 
@@ -152,7 +246,10 @@ set, or a sentence identical to the English.
 | `features/numbers/exercises.test.ts` | ≥2 kinds per item, ≥3 options, answer not at a fixed index, seeded stability, misconception labels, mastery covers every item, `order_parts` rebuilds the word |
 | `data/numbers.test.ts` | structure, namespacing, prerequisite order, audio manifest agreement, counting-form rule, readings, Intl meanings |
 | `e2e/numbers.spec.ts` | N-e2e-1…8 in a real browser: fresh overview with all eighteen rows available and every one a link, all-wrong run not complete, diligent run completes exactly the lesson the work was done in, reload resumes from the record, audio present and feedback names the mistake, a new learner opening the last lesson of every module directly, Continue leading without forcing, and the back control on a deep link |
-| `scripts/numbers-qa.mjs` | the release gate (§4) |
+| `features/numbers/questionTypes.test.ts` | 14 cases: which type each builder produces, the four Korean instructions verbatim, the contrast-pair stimulus, ten prompts and three headings present in all 32 bundles, the three retired keys absent, the pronunciation and writing headings on the right items, the closed date forms in the data, the bundles and the manifest, and the deleted stale clips |
+| `e2e/numbers-prompts.spec.ts` | the instruction on the real page: the find-the-mistake question named and its answer accepted, the explanation question over its pair, listening and meaning keeping their own, the pronunciation heading on the dates cards, and prompt + options + feedback + Continue reachable at 320×568 and 375×667 and at 22px root text |
+| `scripts/numbers-qa.mjs` | the release gate (§4) — structure, meaning, audio, localisation, Korean, answer positions, question types, one-answer over 284 distinct questions, date spacing, example headings |
+| `scripts/numbers-qa-negative.sh` | ten sabotage runs, each restoring one defect and asserting the gate fires: the old prompt, an undeclared explanation gloss, 삼월 일 일 in the data and in a bundle, a pronunciation card labelled a spelling rule, the context-free blank, the two same-meaning options, a locale missing a prompt, a slot-mate as a distractor — then restores and confirms green |
 
 ## 6. Level Test feedback policy (§10 of the v1.0.2 request)
 

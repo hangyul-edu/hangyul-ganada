@@ -401,7 +401,17 @@ function ItemCard({ item, locale, t, entryKey }: { item: NumberItem; locale: str
       <p className={styles.meaning}>{numberMeaning(item, locale, (k) => t(k))}</p>
       {item.example && (
         <div className={styles.example}>
-          <span className={styles.label}>{t('numbers:exampleLabel')}</span>
+          {/*
+            *이렇게 써요* is two sentences in Korean — this is how you write it,
+            and this is how you use it. On 유월 육일 a learner reads the first,
+            and the card exists to teach the second: that June is *said* 유월 and
+            never 육월. The heading is chosen from the item's declared
+            `example_kind` so a pronunciation card cannot be labelled a spelling
+            rule, and `numbers:qa` fails an item whose kind and content disagree.
+          */}
+          <span className={styles.label}>
+            {t(`numbers:exampleLabel.${item.example_kind ?? 'example'}`)}
+          </span>
           <span className={styles.exampleRow}>
             <span lang="ko" className={styles.exampleKorean}>
               {item.example}
@@ -597,7 +607,7 @@ function ExerciseRun({
   return (
     <div className={styles.page}>
       <AppHeader title={title} />
-      <div className={styles.body} data-scroll-region="numbers" data-testid={`numbers-phase-${phase}`} data-exercise-kind={exercise.kind}>
+      <div className={styles.body} data-scroll-region="numbers" data-testid={`numbers-phase-${phase}`} data-exercise-kind={exercise.kind} data-question-type={exercise.question_type}>
         <PhaseProgress
           label={t(`numbers:phase.${phase === 'review' ? 'practice' : phase}`)}
           detail={t('numbers:questionOf', { current: index + 1, total: exercises.length })}
@@ -702,48 +712,69 @@ function Prompt({ exercise, item, locale, t }: { exercise: NumbersExercise; item
   const p = exercise.prompt;
   let heading: string;
   let body: { text: string; lang?: string } | null = null;
-  switch (exercise.kind) {
-    case 'listen_choose':
-      heading = t('numbers:prompt.listen');
+  /*
+   * The instruction comes from what the question *asks*, never from how it was
+   * built and never from what the options happen to say.
+   *
+   * `spot_mistake` used to be headed *어느 쪽이 맞을까요?* — which one is right?
+   * — over an option list whose answer is the one that is wrong, so the
+   * instruction and the grader disagreed and the learner lost. `read_choose`
+   * used to be headed *이건 무슨 뜻일까요?* whether its options were meanings or
+   * whole grammar rules, so the pitfalls lesson asked what 한 개 *meant* and
+   * offered four sentences about spacing.
+   *
+   * Switching on `question_type` is what makes both impossible: the type is
+   * resolved once, in the builder, from declared content metadata, and there is
+   * no branch here that can be reached by a question of a different kind.
+   */
+  switch (exercise.question_type) {
+    case 'listenAndChoose':
+      heading = t('numbers:prompt.listenAndChoose');
       break;
-    case 'read_choose':
-      heading = t('numbers:prompt.read');
+    case 'chooseMeaning':
+      heading = t('numbers:prompt.chooseMeaning');
       body = { text: p.text ?? item.korean, lang: 'ko' };
       break;
-    case 'choose_system':
+    case 'chooseCorrectExplanation':
+      heading = t('numbers:prompt.chooseCorrectExplanation');
+      body = { text: p.text ?? item.korean, lang: 'ko' };
+      break;
+    case 'chooseSystem':
       heading = t('numbers:prompt.chooseSystem');
       body = { text: p.text ?? item.korean, lang: 'ko' };
       break;
-    case 'digits_to_korean':
+    case 'sayTheNumber':
       heading = t(`numbers:${p.key ?? 'prompt.digitsToKorean.both'}`);
       body = { text: formatValue(p.value ?? 0, locale) };
       break;
-    case 'korean_to_digits':
+    case 'writeTheDigits':
       heading = t('numbers:prompt.koreanToDigits');
       body = { text: p.text ?? item.korean, lang: 'ko' };
       break;
-    case 'counter_form':
+    case 'chooseCounterForm':
       heading = t('numbers:prompt.counterForm', {
         value: p.value !== undefined ? formatValue(p.value, locale) : '',
         counter: p.text ?? '',
       });
       body = { text: p.text ?? '', lang: 'ko' };
       break;
-    case 'spot_mistake':
-      heading = t('numbers:prompt.spotMistake');
+    case 'findIncorrectExpression':
+      heading = t('numbers:prompt.findIncorrectExpression');
       break;
-    case 'fill_sentence':
+    case 'fillTheBlank':
       heading = t('numbers:prompt.fill');
       body = { text: p.sentence ?? '', lang: 'ko' };
       break;
-    case 'order_parts':
+    case 'orderTheParts':
       heading = t('numbers:prompt.orderParts', { value: formatValue(p.value ?? 0, locale) });
       body = { text: formatValue(p.value ?? 0, locale) };
       break;
   }
   return (
     <Card padding="lg" className={styles.prompt}>
-      <p className={styles.promptHeading}>{heading}</p>
+      <p className={styles.promptHeading} data-testid="numbers-prompt">
+        {heading}
+      </p>
       {body && (
         <p className={styles.promptKorean} lang={body.lang}>
           {body.text}

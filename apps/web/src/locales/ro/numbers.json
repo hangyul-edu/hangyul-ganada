@@ -40,8 +40,12 @@
   "stepOf": "Pasul {{current}} din {{total}}",
   "questionOf": "Întrebarea {{current}} din {{total}}",
   "readingLabel": "Se pronunță",
-  "exampleLabel": "În uz",
-  "practiceIntro": "Aici greșelile nu contează — fiecare răspuns este explicat.",
+  "exampleLabel": {
+    "writing": "Se scrie așa",
+    "pronunciation": "Se pronunță așa",
+    "example": "În uz"
+  },
+  "practiceIntro": "Aici e în regulă să greșești — explicația apare unde ajută.",
   "masteryIntro": "{{count}} întrebări. Ai nevoie de {{pass}}% răspunsuri corecte, și fiecare element cel puțin o dată.",
   "masteryPassed": "Ai trecut testul de stăpânire — {{correct}} din {{total}}",
   "masteryFailed": "Nu încă — {{correct}} din {{total}}. Revezi exemplele și încearcă din nou.",
@@ -59,8 +63,10 @@
     "incorrect": "Greșit"
   },
   "prompt": {
-    "listen": "Ce ai auzit?",
-    "read": "Ce înseamnă?",
+    "listenAndChoose": "Ce ai auzit?",
+    "chooseMeaning": "Ce înseamnă?",
+    "chooseCorrectExplanation": "Alege explicația corectă.",
+    "findIncorrectExpression": "Alege expresia greșită.",
     "chooseSystem": "Ce numere merg aici?",
     "digitsToKorean": {
       "sino": "Spune numărul cu 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Ce număr este acesta?",
     "counterForm": "Cum spui {{value}} cu {{counter}}?",
-    "spotMistake": "Care este corectă?",
     "fill": "Completează spațiul liber",
     "orderParts": "Atinge părțile în ordine pentru a forma {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Ascultă 일, 이, 삼 până la 십 și repetă cu voce tare.",
       "step1": "Începe cu 일, 이, 삼. Aceste numere se folosesc pentru prețuri, date, minute, numere de telefon și etaje.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Fiecare are o singură silabă.",
-      "step3": "Se spun așa: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Se spun așa: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Numărăm cu 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Lucrurile cu 하나, 둘 · prețurile cu 일, 이",
       "objective": "Alege ce numere folosești la numărat și care merg la prețuri și date.",
       "step1": "Ce vezi numeri cu 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "La prețuri, date, minute, numere de telefon și etaje merg 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "La prețuri, date, minute, numere de telefon și etaje merg 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "O oră le ia pe amândouă. 세 시 삼십 분 — ora este 세, minutele sunt 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Când e ziua ta?",
       "objective": "Spune o dată cu 년, 월 și 일 — și atenție la 유월 și 시월.",
-      "step1": "년, 월 și 일 cer toate numerele 일, 이, 삼: 이천이십육 년 삼월 십오 일. Unitatea mare prima.",
+      "step1": "년, 월 și 일 cer toate numerele 일, 이, 삼: 이천이십육년 삼월 십오일. Unitatea mare prima.",
       "step2": "Două luni sunt neregulate. Iunie este 유월, nu 육월; octombrie este 시월, nu 십월.",
-      "step3": "일 ca zi a lunii este același cuvânt ca 일 pentru unu. 삼월 일 일 este întâi martie."
+      "step3": "일 ca zi a lunii este același cuvânt ca 일 pentru unu. 삼월 일일 este întâi martie."
     },
     "weekdays": {
       "title": "Ce zi e azi?",
@@ -270,8 +275,8 @@
     "counterCups": "cești și pahare",
     "counterFlat": "lucruri plate — bilete, foi",
     "counterBooks": "cărți",
-    "counterAge": "ani (vârstă)",
-    "counterAgeFormal": "ani (vârstă) — formal",
+    "counterAge": "vârstă — cu 하나, 둘, 셋",
+    "counterAgeFormal": "vârstă — în documente și la știri, cu 일, 이, 삼",
     "howOld": "Câți ani ai?",
     "ageHonorific": "vârstă — onorific, despre cineva mai în vârstă",
     "counterHour": "ora (fixă)",
@@ -335,7 +340,6 @@
     "bus206": "autobuzul 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 este corect; 둘 살 nu",
-    "pitfallSimnyuk": "se scrie 십육, se pronunță 심뉵",
     "pitfallJune": "유월 este corect; 육월 nu",
     "pitfallHourMinute": "세 시 삼십 분 este corect; 삼 시 서른 분 nu",
     "pitfallSpacing": "한 개 este corect; 한개 nu",

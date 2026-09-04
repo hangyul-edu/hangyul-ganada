@@ -40,8 +40,12 @@
   "stepOf": "ステップ {{current}} / {{total}}",
   "questionOf": "問題 {{current}} / {{total}}",
   "readingLabel": "読み方",
-  "exampleLabel": "使い方",
-  "practiceIntro": "ここでは間違えても大丈夫です。すべての答えに説明がつきます。",
+  "exampleLabel": {
+    "writing": "こう書きます",
+    "pronunciation": "こう発音します",
+    "example": "使うとき"
+  },
+  "practiceIntro": "ここでは間違えても大丈夫。必要なところには説明がつきます。",
   "masteryIntro": "全{{count}}問。{{pass}}%以上の正解と、すべての項目を少なくとも1回正解する必要があります。",
   "masteryPassed": "習得チェック合格 — {{total}}問中{{correct}}問正解",
   "masteryFailed": "まだです — {{total}}問中{{correct}}問正解。例を見直してもう一度挑戦しましょう。",
@@ -59,8 +63,10 @@
     "incorrect": "不正解"
   },
   "prompt": {
-    "listen": "何と聞こえましたか？",
-    "read": "これはどんな意味ですか？",
+    "listenAndChoose": "何と聞こえましたか？",
+    "chooseMeaning": "これはどんな意味ですか？",
+    "chooseCorrectExplanation": "正しい説明を選びましょう。",
+    "findIncorrectExpression": "まちがっている言い方を選びましょう。",
     "chooseSystem": "ここではどの数字を使いますか？",
     "digitsToKorean": {
       "sino": "この数字を 일, 이, 삼 で言ってみましょう",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "これはどの数ですか？",
     "counterForm": "{{counter}}で{{value}}を数えるとき、どう言いますか？",
-    "spotMistake": "どちらが正しいでしょう？",
     "fill": "空欄を埋めましょう",
     "orderParts": "順番にタップして{{value}}を作りましょう"
   },
@@ -122,7 +127,7 @@
       "objective": "일, 이, 삼…십まで聞いて、声に出して言ってみましょう。",
       "step1": "일, 이, 삼 から始めましょう。この数字は値段、日付、分、電話番号、階を言うときに使います。",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십。どれも一音節です。",
-      "step3": "こう言います: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공。"
+      "step3": "こう言います: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공。"
     },
     "nativeBasics": {
       "title": "하나, 둘, 셋でものを数える",
@@ -141,7 +146,7 @@
       "title": "ものは 하나, 둘 · 値段は 일, 이",
       "objective": "ものを数えるとき、値段や日付を言うとき、どの数字を使うか選びます。",
       "step1": "目に見えるものは 하나, 둘, 셋 で数えます: 세 명, 두 시, 스무 살。",
-      "step2": "値段、日付、分、電話番号、階には 일, 이, 삼 を使います: 오천 원, 삼월 일 일, 삼십 분。",
+      "step2": "値段、日付、分、電話番号、階には 일, 이, 삼 を使います: 오천 원, 삼월 일일, 삼십 분。",
       "step3": "時刻には両方が入ります。세 시 삼십 분 — 時は 세、分は 삼십 です。"
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "誕生日はいつですか？",
       "objective": "년, 월, 일で日付を言い、유월と시월に気をつけましょう。",
-      "step1": "년, 월, 일はすべて일, 이, 삼のほうです。이천이십육 년 삼월 십오 일。大きい単位から言います。",
+      "step1": "년, 월, 일はすべて일, 이, 삼のほうです。이천이십육년 삼월 십오일。大きい単位から言います。",
       "step2": "二つの月は不規則です。6月は 육월 ではなく 유월、10月は 십월 ではなく 시월 です。",
-      "step3": "日付の 일 は、1を表す 일 と同じ言葉です。삼월 일 일 は3月1日です。"
+      "step3": "日付の 일 は、1を表す 일 と同じ言葉です。삼월 일일 は3月1日です。"
     },
     "weekdays": {
       "title": "今日は何曜日ですか？",
@@ -270,8 +275,8 @@
     "counterCups": "カップ、グラス",
     "counterFlat": "平たい物 — チケット、紙",
     "counterBooks": "本",
-    "counterAge": "歳",
-    "counterAgeFormal": "歳 — 改まった言い方",
+    "counterAge": "年齢 — 하나, 둘, 셋 と一緒に",
+    "counterAgeFormal": "年齢 — 書類やニュースで、일, 이, 삼 と一緒に",
     "howOld": "何歳ですか？",
     "ageHonorific": "年齢 — 年上の人への尊敬語",
     "counterHour": "〜時",
@@ -335,7 +340,6 @@
     "bus206": "206番のバス",
     "threePointFive": "3.5",
     "pitfallCountingForm": "두 살 が正しく、둘 살 は誤り",
-    "pitfallSimnyuk": "表記は 십육、発音は 심뉵",
     "pitfallJune": "유월 が正しく、육월 は誤り",
     "pitfallHourMinute": "세 시 삼십 분 が正しく、삼 시 서른 분 は誤り",
     "pitfallSpacing": "한 개 が正しく、한개 は誤り",

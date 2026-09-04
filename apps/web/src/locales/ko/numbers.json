@@ -40,8 +40,12 @@
   "stepOf": "{{total}}단계 중 {{current}}단계",
   "questionOf": "{{total}}문제 중 {{current}}번",
   "readingLabel": "이렇게 읽어요",
-  "exampleLabel": "이렇게 써요",
-  "practiceIntro": "틀려도 괜찮아요. 모든 답에 설명이 따라와요.",
+  "exampleLabel": {
+    "writing": "이렇게 써요",
+    "pronunciation": "이렇게 발음해요",
+    "example": "이렇게 말해요"
+  },
+  "practiceIntro": "틀려도 괜찮아요. 필요한 곳에는 설명이 따라와요.",
   "masteryIntro": "{{count}}문제예요. {{pass}}% 이상 맞히고, 모든 항목을 한 번 이상 맞혀야 해요.",
   "masteryPassed": "마무리 확인 통과 — {{total}}문제 중 {{correct}}개",
   "masteryFailed": "아직이에요 — {{total}}문제 중 {{correct}}개. 예문을 다시 보고 도전해 보세요.",
@@ -59,8 +63,10 @@
     "incorrect": "틀렸어요"
   },
   "prompt": {
-    "listen": "무엇이라고 들렸나요?",
-    "read": "이건 무슨 뜻일까요?",
+    "listenAndChoose": "무엇이라고 들렸나요?",
+    "chooseMeaning": "무슨 뜻일까요?",
+    "chooseCorrectExplanation": "다음 중 올바른 설명을 고르세요.",
+    "findIncorrectExpression": "다음 중 틀린 표현을 고르세요.",
     "chooseSystem": "여기에는 어떤 숫자를 쓸까요?",
     "digitsToKorean": {
       "sino": "이 숫자를 일, 이, 삼으로 말해 보세요",
@@ -68,8 +74,7 @@
       "both": "이 숫자를 한국어로 말해 보세요"
     },
     "koreanToDigits": "어떤 숫자일까요?",
-    "counterForm": "{{counter}}로 {{value}}을(를) 셀 때 어떻게 말할까요?",
-    "spotMistake": "어느 쪽이 맞을까요?",
+    "counterForm": "{{value}} — {{counter}} 앞에서는 어떻게 말할까요?",
     "fill": "빈칸을 채워 보세요",
     "orderParts": "순서대로 눌러서 {{value}}을(를) 만들어 보세요"
   },
@@ -122,7 +127,7 @@
       "objective": "일, 이, 삼… 십까지 듣고 따라 말해 봐요.",
       "step1": "일, 이, 삼부터 들어 볼게요. 이 숫자는 가격, 날짜, 분, 전화번호, 층을 말할 때 자주 써요.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. 모두 한 음절이에요.",
-      "step3": "이렇게 써요. 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "이렇게 말해요. 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "하나, 둘, 셋으로 물건을 세어요",
@@ -141,7 +146,7 @@
       "title": "물건은 하나, 둘 · 가격은 일, 이",
       "objective": "물건을 셀 때와 가격이나 날짜를 말할 때, 어떤 숫자를 쓰는지 골라 봐요.",
       "step1": "눈에 보이는 것을 셀 때는 하나, 둘, 셋을 써요: 세 명, 두 시, 스무 살.",
-      "step2": "가격과 날짜, 분, 전화번호, 층에는 일, 이, 삼을 써요: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "가격과 날짜, 분, 전화번호, 층에는 일, 이, 삼을 써요: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "시각에는 둘이 같이 들어가요. 세 시 삼십 분 — 시는 세, 분은 삼십이에요."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "생일이 언제예요?",
       "objective": "년, 월, 일로 날짜를 말하고, 유월과 시월을 조심해요.",
-      "step1": "년, 월, 일은 모두 일, 이, 삼 쪽이에요: 이천이십육 년 삼월 십오 일. 큰 단위부터 말해요.",
+      "step1": "년, 월, 일은 모두 일, 이, 삼 쪽이에요: 이천이십육년 삼월 십오일. 큰 단위부터 말해요.",
       "step2": "두 달은 불규칙해요. 6월은 육월이 아니라 유월, 10월은 십월이 아니라 시월이에요.",
-      "step3": "날짜의 일은 숫자 1의 일과 같은 말이에요. 삼월 일 일은 3월 1일이에요."
+      "step3": "날짜의 일은 숫자 1의 일과 같은 말이에요. 삼월 일일은 3월 1일이에요."
     },
     "weekdays": {
       "title": "오늘 무슨 요일이에요?",
@@ -270,8 +275,8 @@
     "counterCups": "컵과 유리잔",
     "counterFlat": "얇고 평평한 것 — 표, 종이",
     "counterBooks": "책",
-    "counterAge": "나이",
-    "counterAgeFormal": "나이 — 격식체",
+    "counterAge": "나이 — 하나, 둘, 셋과 함께 써요",
+    "counterAgeFormal": "나이 — 서류와 뉴스에서, 일, 이, 삼과 함께 써요",
     "howOld": "나이를 묻는 말",
     "ageHonorific": "나이 — 어른께 쓰는 높임말",
     "counterHour": "시각의 시",
@@ -335,7 +340,6 @@
     "bus206": "206번 버스",
     "threePointFive": "3.5",
     "pitfallCountingForm": "두 살이 맞고, 둘 살은 틀려요",
-    "pitfallSimnyuk": "글자는 십육, 소리는 심뉵",
     "pitfallJune": "유월이 맞고, 육월은 틀려요",
     "pitfallHourMinute": "세 시 삼십 분이 맞고, 삼 시 서른 분은 틀려요",
     "pitfallSpacing": "한 개가 맞고, 한개는 틀려요",

@@ -51,6 +51,25 @@ export type { ExplainStep, NumberItem, NumberLesson, NumberModule, NumbersExerci
  * number pronunciation is where sound change is most visible to a beginner,
  * and a curriculum that prints only the spelling teaches them to say it wrong.
  * Where `reading` is non-null it is what the audio says.
+ *
+ * ## Spacing: a counted quantity is spaced, an ordinal is not
+ *
+ * 한글 맞춤법 §43 spaces a unit noun from its numeral — 한 개, 세 명, 스무 살,
+ * 삼십 분 — and its 다만 clause attaches the same noun when the number is an
+ * *order* rather than a count. A date is an order. So:
+ *
+ * ```
+ *  quantity   한 개 · 세 명 · 두 잔 · 스무 살 · 세 시 · 삼십 분 · 오천 원
+ *  order      삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년
+ * ```
+ *
+ * This file shipped *삼월 일 일*, *유월 육 일*, *시월 십 일* and *십오 일*. All
+ * four are the 원칙 form and none of them is written by anybody: *일 일* in
+ * particular reads as two ones rather than as the first of the month, which is
+ * the opposite of what the lesson teaching that 일 is both is trying to show.
+ * The counted forms are left spaced, because the course teaches that spacing as
+ * a rule — 한 개, never 한개 — and `numbers:qa` enforces both halves so the two
+ * cannot drift into each other.
  */
 
 /** Stable ASCII clip ids from codepoints — the rule `characters.ts` and `vocabulary.ts` use. */
@@ -73,6 +92,23 @@ type Extra = {
   example?: string;
   example_gloss?: string;
   counter_system?: 'sino' | 'native';
+  /**
+   * What the gloss is. Omitted means `meaning`; `explanation` marks the glosses
+   * that are whole statements about a rule rather than what a word means.
+   * See `NumberItem.gloss_kind` — this is what stops the pitfalls lesson asking
+   * *what does this mean?* over four sentences of grammar.
+   */
+  gloss_kind?: NumberItem['gloss_kind'];
+  /** Items whose glosses name the same thing. See `NumberItem.gloss_group`. */
+  gloss_group?: string;
+  /** Items interchangeable in one sentence slot. See `NumberItem.slot_group`. */
+  slot_group?: string;
+  /**
+   * What the example demonstrates. Omitted means `example` — an ordinary use.
+   * `pronunciation` where the card exists because of how the words *sound*,
+   * `writing` where it exists because of how they are *written*.
+   */
+  example_kind?: NumberItem['example_kind'];
   /**
    * A key into the `numbers` namespace: one sentence worth reading after the
    * answer. Most items have none — see `note` on `NumberItem`.
@@ -99,7 +135,11 @@ const n = (
   role,
   ...(extra.counter_system ? { counter_system: extra.counter_system } : {}),
   gloss,
+  gloss_kind: extra.gloss_kind ?? 'meaning',
+  ...(extra.gloss_group ? { gloss_group: extra.gloss_group } : {}),
+  ...(extra.slot_group ? { slot_group: extra.slot_group } : {}),
   example: extra.example ?? null,
+  example_kind: extra.example ? (extra.example_kind ?? 'example') : undefined,
   example_gloss: extra.example_gloss ?? null,
   note: extra.note ?? null,
   audio: {
@@ -141,6 +181,7 @@ const NATIVE_1_10: NumberItem[] = [
 
 const ZERO: NumberItem[] = [
   n('num-zero-yeong', '영', 'yeong', 0, 'sino', 'numeral', 'gloss.zeroMath', {
+    slot_group: 'zero-score',
     example: '영하 삼 도',
     example_gloss: 'example.zeroMath',
   }),
@@ -154,6 +195,7 @@ const ZERO: NumberItem[] = [
     example_gloss: 'example.belowZeroFive',
   }),
   n('num-zero-point', '영 점', 'yeong jeom', null, 'sino', 'phrase', 'gloss.zeroScore', {
+    slot_group: 'zero-score',
     example: '영 점을 받았어요.',
     example_gloss: 'example.zeroScore',
   }),
@@ -179,7 +221,7 @@ const CHOOSING: NumberItem[] = [
   n('num-ch-age', '스무 살', 'seumu sal', null, 'native', 'phrase', 'gloss.ctxAge', {
     example_gloss: 'example.ctxAge',
   }),
-  n('num-ch-date', '삼월 일 일', 'samwol il il', null, 'sino', 'phrase', 'gloss.ctxDate', {
+  n('num-ch-date', '삼월 일일', 'samwol iril', null, 'sino', 'phrase', 'gloss.ctxDate', {
     example_gloss: 'example.ctxDate',
   }),
 ];
@@ -225,7 +267,12 @@ const COUNTING_FORMS: NumberItem[] = [
 // --- Module 3 · counting things ---------------------------------------------
 
 const COUNTERS_CORE: NumberItem[] = [
+  /*
+   * 명 and 사람 count the same thing and their glosses say so. Grouped, so a
+   * meaning question about one never offers the other — see `gloss_group`.
+   */
   n('num-c-myeong', '명', 'myeong', null, null, 'counter', 'gloss.counterPeople', {
+    gloss_group: 'people',
     example: '세 명', counter_system: 'native',
   }),
   n('num-c-gae', '개', 'gae', null, null, 'counter', 'gloss.counterThings', {
@@ -235,21 +282,26 @@ const COUNTERS_CORE: NumberItem[] = [
     example: '고양이 두 마리', counter_system: 'native',
   }),
   n('num-c-saram', '사람', 'saram', null, null, 'counter', 'gloss.counterPeoplePlain', {
+    gloss_group: 'people',
     example: '네 사람', counter_system: 'native',
   }),
 ];
 
 const COUNTERS_EVERYDAY: NumberItem[] = [
   n('num-c-byeong', '병', 'byeong', null, null, 'counter', 'gloss.counterBottles', {
+    slot_group: 'vessel',
     example: '맥주 한 병', counter_system: 'native',
   }),
   n('num-c-jan', '잔', 'jan', null, null, 'counter', 'gloss.counterCups', {
+    slot_group: 'vessel',
     example: '커피 두 잔', counter_system: 'native',
   }),
   n('num-c-jang', '장', 'jang', null, null, 'counter', 'gloss.counterFlat', {
+    slot_group: 'sheet-or-volume',
     example: '표 네 장', counter_system: 'native',
   }),
   n('num-c-gwon', '권', 'gwon', null, null, 'counter', 'gloss.counterBooks', {
+    slot_group: 'sheet-or-volume',
     example: '책 세 권', counter_system: 'native',
   }),
 ];
@@ -307,13 +359,13 @@ const MINUTES: NumberItem[] = [
 
 const DATES: NumberItem[] = [
   n('num-d-nyeon', '년', 'nyeon', null, null, 'counter', 'gloss.counterYear', {
-    example: '이천이십육 년', counter_system: 'sino',
+    example: '이천이십육년', counter_system: 'sino',
   }),
   n('num-d-wol', '월', 'wol', null, null, 'counter', 'gloss.counterMonth', {
     example: '삼월', counter_system: 'sino',
   }),
   n('num-d-il', '일', 'il', null, null, 'counter', 'gloss.counterDay', {
-    example: '십오 일', counter_system: 'sino',
+    example: '십오일', counter_system: 'sino',
   }),
   /*
    * The two months that are not what the rule predicts.
@@ -323,11 +375,13 @@ const DATES: NumberItem[] = [
    * told it will say 육월 confidently for years.
    */
   n('num-d-june', '유월', 'yuwol', 6, 'sino', 'phrase', 'gloss.june', {
-    example: '유월 육 일',
+    example: '유월 육일',
+    example_kind: 'pronunciation',
     example_gloss: 'example.juneSixth',
   }),
   n('num-d-october', '시월', 'siwol', 10, 'sino', 'phrase', 'gloss.october', {
-    example: '시월 십 일',
+    example: '시월 십일',
+    example_kind: 'pronunciation',
     example_gloss: 'example.octoberTenth',
   }),
 ];
@@ -337,9 +391,14 @@ const WEEKDAYS: NumberItem[] = [
     example: '월요일이에요.',
     example_gloss: 'example.monday',
   }),
-  n('num-w-mon', '월요일', 'woryoil', null, null, 'phrase', 'gloss.monday'),
-  n('num-w-fri', '금요일', 'geumyoil', null, null, 'phrase', 'gloss.friday'),
+  n('num-w-mon', '월요일', 'woryoil', null, null, 'phrase', 'gloss.monday', {
+    slot_group: 'when',
+  }),
+  n('num-w-fri', '금요일', 'geumyoil', null, null, 'phrase', 'gloss.friday', {
+    slot_group: 'when',
+  }),
   n('num-w-weekend', '주말', 'jumal', null, null, 'phrase', 'gloss.weekend', {
+    slot_group: 'when',
     example: '주말에 만나요.',
     example_gloss: 'example.weekend',
   }),
@@ -363,7 +422,16 @@ const MONEY: NumberItem[] = [
 
 const DIGITS: NumberItem[] = [
   n('num-p-phone', '공일공', 'gong-il-gong', null, 'sino', 'phrase', 'gloss.phonePrefix', {
+    /*
+     * A pronunciation card, not a spelling one.
+     *
+     * 오륙칠팔 is four separate digits — 오 · 육 · 칠 · 팔 — said as one run,
+     * and what a learner has to hear is that 육 becomes 륙 after 오. Headed
+     * *이렇게 써요* it read as an instruction to write the four digits glued
+     * together, which is not what a phone number looks like written down.
+     */
     example: '공일공에 일이삼사에 오륙칠팔',
+    example_kind: 'pronunciation',
     example_gloss: 'example.phoneNumber',
   }),
   n('num-p-e', '에', 'e', null, null, 'phrase', 'gloss.phoneDash'),
@@ -425,28 +493,52 @@ const LARGE: NumberItem[] = [
 
 // --- Module 6 · the mistakes ------------------------------------------------
 
+/*
+ * Every gloss in this lesson is a *rule*, not a meaning, and that is declared.
+ *
+ * `gloss.pitfallSpacing` is *세는 말은 띄어 써요*. Asked under the meaning
+ * instruction — 이건 무슨 뜻일까요? — over 한 개, it is not a question anybody
+ * can answer: 한 개 does not *mean* "counting words are spaced". `gloss_kind:
+ * 'explanation'` is what routes this lesson to *다음 중 올바른 설명을
+ * 고르세요.* instead, and `numbers:qa` fails a lesson that mixes the two kinds
+ * into one option list.
+ */
 const PITFALLS: NumberItem[] = [
   n('num-x-dulsal', '두 살', 'du sal', null, 'native', 'phrase', 'gloss.pitfallCountingForm', {
+    gloss_kind: 'explanation',
     example: '두 살 (✓)  ·  둘 살 (✗)',
+    example_kind: 'writing',
     example_gloss: 'example.pitfallCountingForm',
   }),
   n('num-x-simnyuk', '십육', 'simnyuk', 16, 'sino', 'phrase', 'gloss.pitfallSimnyuk', {
+    gloss_kind: 'explanation',
     note: 'note.simnyuk',
     reading: '심뉵',
+    /*
+     * No `example_gloss`. It said *글자는 십육, 소리는 심뉵* — the gloss above
+     * it, word for word, on the same card. One of the two had to go and the
+     * gloss is the one the explanation questions draw their options from.
+     */
     example: '십육 (심뉵)',
-    example_gloss: 'example.pitfallSimnyuk',
+    example_kind: 'pronunciation',
   }),
   n('num-x-june', '유월', 'yuwol', 6, 'sino', 'phrase', 'gloss.pitfallJune', {
+    gloss_kind: 'explanation',
     note: 'note.irregularMonths',
     example: '유월 (✓)  ·  육월 (✗)',
+    example_kind: 'pronunciation',
     example_gloss: 'example.pitfallJune',
   }),
   n('num-x-hourmin', '세 시 삼십 분', 'se si samsip bun', null, null, 'phrase', 'gloss.pitfallHourMinute', {
+    gloss_kind: 'explanation',
     example: '세 시 삼십 분 (✓)  ·  삼 시 서른 분 (✗)',
+    example_kind: 'writing',
     example_gloss: 'example.pitfallHourMinute',
   }),
   n('num-x-spacing', '한 개', 'han gae', null, 'native', 'phrase', 'gloss.pitfallSpacing', {
+    gloss_kind: 'explanation',
     example: '한 개 (✓)  ·  한개 (✗)',
+    example_kind: 'writing',
     example_gloss: 'example.pitfallSpacing',
   }),
 ];

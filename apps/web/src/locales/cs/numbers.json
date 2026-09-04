@@ -40,8 +40,12 @@
   "stepOf": "Krok {{current}} z {{total}}",
   "questionOf": "Otázka {{current}} z {{total}}",
   "readingLabel": "Vyslovuje se",
-  "exampleLabel": "V praxi",
-  "practiceIntro": "Chyby tu nevadí — každá odpověď je vysvětlená.",
+  "exampleLabel": {
+    "writing": "Píše se takto",
+    "pronunciation": "Vyslovuje se takto",
+    "example": "V praxi"
+  },
+  "practiceIntro": "Chyby tu nevadí — vysvětlení přijde tam, kde pomůže.",
   "masteryIntro": "{{count}} otázek. Potřebujete {{pass}} % správně a každou položku alespoň jednou.",
   "masteryPassed": "Ověření zvládnutí splněno — {{correct}} z {{total}}",
   "masteryFailed": "Ještě ne — {{correct}} z {{total}}. Projděte si příklady a zkuste to znovu.",
@@ -59,8 +63,10 @@
     "incorrect": "Špatně"
   },
   "prompt": {
-    "listen": "Co jste slyšeli?",
-    "read": "Co to znamená?",
+    "listenAndChoose": "Co jste slyšeli?",
+    "chooseMeaning": "Co to znamená?",
+    "chooseCorrectExplanation": "Vyberte správné vysvětlení.",
+    "findIncorrectExpression": "Vyberte nesprávný výraz.",
     "chooseSystem": "Jaká čísla sem patří?",
     "digitsToKorean": {
       "sino": "Řekněte toto číslo pomocí 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Které číslo to je?",
     "counterForm": "Jak se řekne {{value}} s numerativem {{counter}}?",
-    "spotMistake": "Která je správně?",
     "fill": "Doplňte mezeru",
     "orderParts": "Klepejte na části ve správném pořadí a sestavte {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Poslechni si 일, 이, 삼 až po 십 a opakuj nahlas.",
       "step1": "Začneme s 일, 이, 삼. Tato čísla se používají pro ceny, data, minuty, telefonní čísla a patra.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Každé je jedna slabika.",
-      "step3": "Říká se to takto: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Říká se to takto: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Počítáme s 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Věci přes 하나, 둘 · ceny přes 일, 이",
       "objective": "Vyberte, kterými čísly se počítá a kterými se říkají ceny a data.",
       "step1": "Co vidíte, počítáte pomocí 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Pro ceny, data, minuty, čísla a patra slouží 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Pro ceny, data, minuty, čísla a patra slouží 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "V hodině jsou obě. 세 시 삼십 분 — hodina je 세, minuty jsou 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Kdy máš narozeniny?",
       "objective": "Řekni datum s 년, 월 a 일 — a pozor na 유월 a 시월.",
-      "step1": "년, 월 i 일 berou čísla 일, 이, 삼: 이천이십육 년 삼월 십오 일. Nejdřív velká jednotka.",
+      "step1": "년, 월 i 일 berou čísla 일, 이, 삼: 이천이십육년 삼월 십오일. Nejdřív velká jednotka.",
       "step2": "Dva měsíce jsou nepravidelné. Červen je 유월, ne 육월; říjen je 시월, ne 십월.",
-      "step3": "일 jako den v měsíci je totéž slovo jako 일 pro jedničku. 삼월 일 일 je prvního března."
+      "step3": "일 jako den v měsíci je totéž slovo jako 일 pro jedničku. 삼월 일일 je prvního března."
     },
     "weekdays": {
       "title": "Jaký je dnes den?",
@@ -270,8 +275,8 @@
     "counterCups": "hrnky a sklenice",
     "counterFlat": "ploché věci — lístky, listy",
     "counterBooks": "knihy",
-    "counterAge": "let (věk)",
-    "counterAgeFormal": "let (věk) — formálně",
+    "counterAge": "věk — s 하나, 둘, 셋",
+    "counterAgeFormal": "věk — v dokumentech a ve zprávách, s 일, 이, 삼",
     "howOld": "Kolik je vám let?",
     "ageHonorific": "věk — honorifikačně, o starší osobě",
     "counterHour": "hodin (čas)",
@@ -335,7 +340,6 @@
     "bus206": "autobus číslo 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 je správně; 둘 살 ne",
-    "pitfallSimnyuk": "píše se 십육, vyslovuje 심뉵",
     "pitfallJune": "유월 je správně; 육월 ne",
     "pitfallHourMinute": "세 시 삼십 분 je správně; 삼 시 서른 분 ne",
     "pitfallSpacing": "한 개 je správně; 한개 ne",

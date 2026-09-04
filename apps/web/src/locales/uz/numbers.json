@@ -40,8 +40,12 @@
   "stepOf": "{{current}}-qadam / {{total}}",
   "questionOf": "{{current}}-savol / {{total}}",
   "readingLabel": "Shunday aytiladi",
-  "exampleLabel": "Qo‘llanishda",
-  "practiceIntro": "Bu yerda xato qilish mumkin — har bir javob tushuntiriladi.",
+  "exampleLabel": {
+    "writing": "Shunday yoziladi",
+    "pronunciation": "Shunday talaffuz qilinadi",
+    "example": "Qo‘llanishda"
+  },
+  "practiceIntro": "Bu yerda xato qilsangiz ham bo‘ladi — kerak joyda izoh chiqadi.",
   "masteryIntro": "{{count}} savol. {{pass}}% to‘g‘ri javob berishingiz va har bir elementni kamida bir marta to‘g‘ri topishingiz kerak.",
   "masteryPassed": "Mahorat sinovi topshirildi — {{total}} savoldan {{correct}} tasi to‘g‘ri",
   "masteryFailed": "Hali emas — {{total}} savoldan {{correct}} tasi to‘g‘ri. Misollarni qayta ko‘rib chiqing va yana urinib ko‘ring.",
@@ -59,8 +63,10 @@
     "incorrect": "Noto‘g‘ri"
   },
   "prompt": {
-    "listen": "Nimani eshitdingiz?",
-    "read": "Bu nimani anglatadi?",
+    "listenAndChoose": "Nimani eshitdingiz?",
+    "chooseMeaning": "Bu nimani anglatadi?",
+    "chooseCorrectExplanation": "To‘g‘ri izohni tanlang.",
+    "findIncorrectExpression": "Noto‘g‘ri iborani tanlang.",
     "chooseSystem": "Bu yerda qaysi sonlar keladi?",
     "digitsToKorean": {
       "sino": "Bu sonni 일, 이, 삼 bilan ayting",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Bu qaysi son?",
     "counterForm": "{{value}} sonini {{counter}} bilan qanday aytasiz?",
-    "spotMistake": "Qaysi biri to‘g‘ri?",
     "fill": "Bo‘sh joyni to‘ldiring",
     "orderParts": "{{value}} sonini yig‘ish uchun bo‘laklarni tartib bilan bosing"
   },
@@ -122,7 +127,7 @@
       "objective": "일, 이, 삼 dan 십 gacha eshiting va takrorlang.",
       "step1": "일, 이, 삼 dan boshlaymiz. Bu sonlar narx, sana, daqiqa, telefon raqami va qavat uchun ishlatiladi.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Har biri bitta bo‘g‘in.",
-      "step3": "Mana shunday aytiladi: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Mana shunday aytiladi: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "하나, 둘, 셋 bilan sanash",
@@ -141,7 +146,7 @@
       "title": "Narsalar — 하나, 둘 · narx — 일, 이",
       "objective": "Sanashga qaysi sonlar, narx va sanaga qaysilari kelishini tanlang.",
       "step1": "Ko‘rinib turgan narsani 하나, 둘, 셋 bilan sanaysiz: 세 명, 두 시, 스무 살.",
-      "step2": "Narx, sana, daqiqa, telefon raqami va qavatga 일, 이, 삼 keladi: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Narx, sana, daqiqa, telefon raqami va qavatga 일, 이, 삼 keladi: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Vaqtda ikkalasi birga uchraydi. 세 시 삼십 분 — soat 세, daqiqa 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Tug‘ilgan kuningiz qachon?",
       "objective": "Sanani 년, 월 va 일 bilan ayting — 유월 va 시월 ni esdan chiqarmang.",
-      "step1": "년, 월 va 일 hammasi 일, 이, 삼 sonlarini oladi: 이천이십육 년 삼월 십오 일. Avval katta birlik.",
+      "step1": "년, 월 va 일 hammasi 일, 이, 삼 sonlarini oladi: 이천이십육년 삼월 십오일. Avval katta birlik.",
       "step2": "Ikki oy istisno. Iyun — 유월, 육월 emas; oktabr — 시월, 십월 emas.",
-      "step3": "Oy kuni sifatidagi 일 — bir ma’nosidagi 일 bilan bir xil so‘z. 삼월 일 일 — birinchi mart."
+      "step3": "Oy kuni sifatidagi 일 — bir ma’nosidagi 일 bilan bir xil so‘z. 삼월 일일 — birinchi mart."
     },
     "weekdays": {
       "title": "Bugun qaysi kun?",
@@ -270,8 +275,8 @@
     "counterCups": "piyola va stakanlar",
     "counterFlat": "yassi narsalar — chiptalar, varaqlar",
     "counterBooks": "kitoblar",
-    "counterAge": "yosh",
-    "counterAgeFormal": "yosh — rasmiy",
+    "counterAge": "yosh — 하나, 둘, 셋 bilan",
+    "counterAgeFormal": "yosh — hujjat va yangiliklarda, 일, 이, 삼 bilan",
     "howOld": "Yoshingiz nechada?",
     "ageHonorific": "yosh — hurmat so‘zi, yoshi katta odam haqida",
     "counterHour": "soat",
@@ -335,7 +340,6 @@
     "bus206": "206-avtobus",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 to‘g‘ri; 둘 살 noto‘g‘ri",
-    "pitfallSimnyuk": "yozilishi 십육, talaffuzi 심뉵",
     "pitfallJune": "유월 to‘g‘ri; 육월 noto‘g‘ri",
     "pitfallHourMinute": "세 시 삼십 분 to‘g‘ri; 삼 시 서른 분 noto‘g‘ri",
     "pitfallSpacing": "한 개 to‘g‘ri; 한개 noto‘g‘ri",

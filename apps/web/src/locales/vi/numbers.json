@@ -40,8 +40,12 @@
   "stepOf": "Bước {{current}}/{{total}}",
   "questionOf": "Câu {{current}}/{{total}}",
   "readingLabel": "Đọc là",
-  "exampleLabel": "Cách dùng",
-  "practiceIntro": "Ở đây sai cũng không sao — mọi câu trả lời đều có giải thích.",
+  "exampleLabel": {
+    "writing": "Viết như thế này",
+    "pronunciation": "Phát âm như thế này",
+    "example": "Khi dùng"
+  },
+  "practiceIntro": "Sai ở đây không sao — có giải thích ở chỗ cần thiết.",
   "masteryIntro": "{{count}} câu hỏi. Bạn cần đúng {{pass}}%, và mỗi mục đúng ít nhất một lần.",
   "masteryPassed": "Đã vượt qua bài kiểm tra thành thạo — {{correct}}/{{total}}",
   "masteryFailed": "Chưa đạt — {{correct}}/{{total}}. Xem lại ví dụ rồi thử lại nhé.",
@@ -59,8 +63,10 @@
     "incorrect": "Chưa đúng"
   },
   "prompt": {
-    "listen": "Bạn nghe được gì?",
-    "read": "Câu này nghĩa là gì?",
+    "listenAndChoose": "Bạn nghe được gì?",
+    "chooseMeaning": "Câu này nghĩa là gì?",
+    "chooseCorrectExplanation": "Chọn lời giải thích đúng.",
+    "findIncorrectExpression": "Chọn cách nói sai.",
     "chooseSystem": "Ở đây dùng số nào?",
     "digitsToKorean": {
       "sino": "Đọc số này bằng 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Đây là số nào?",
     "counterForm": "Nói {{value}} với {{counter}} như thế nào?",
-    "spotMistake": "Câu nào đúng?",
     "fill": "Điền vào chỗ trống",
     "orderParts": "Chạm các phần theo thứ tự để ghép thành {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Nghe 일, 이, 삼 cho đến 십 rồi nói theo.",
       "step1": "Bắt đầu với 일, 이, 삼. Những số này dùng cho giá tiền, ngày tháng, phút, số điện thoại và số tầng.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Mỗi số chỉ một âm tiết.",
-      "step3": "Nói như thế này: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Nói như thế này: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Đếm bằng 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Đồ vật dùng 하나, 둘 · giá tiền dùng 일, 이",
       "objective": "Chọn số nào để đếm, và số nào để nói giá tiền và ngày tháng.",
       "step1": "Thứ bạn nhìn thấy thì đếm bằng 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Giá tiền, ngày tháng, phút, số điện thoại và số tầng dùng 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Giá tiền, ngày tháng, phút, số điện thoại và số tầng dùng 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Một giờ đồng hồ dùng cả hai. 세 시 삼십 분 — giờ là 세, phút là 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Sinh nhật bạn khi nào?",
       "objective": "Nói ngày tháng bằng 년, 월 và 일 — và chú ý 유월 với 시월.",
-      "step1": "년, 월 và 일 đều dùng các số 일, 이, 삼: 이천이십육 년 삼월 십오 일. Đơn vị lớn nói trước.",
+      "step1": "년, 월 và 일 đều dùng các số 일, 이, 삼: 이천이십육년 삼월 십오일. Đơn vị lớn nói trước.",
       "step2": "Hai tháng bất quy tắc. Tháng Sáu là 유월, không phải 육월; tháng Mười là 시월, không phải 십월.",
-      "step3": "일 chỉ ngày trong tháng chính là từ 일 chỉ số một. 삼월 일 일 là ngày mùng một tháng Ba."
+      "step3": "일 chỉ ngày trong tháng chính là từ 일 chỉ số một. 삼월 일일 là ngày mùng một tháng Ba."
     },
     "weekdays": {
       "title": "Hôm nay thứ mấy?",
@@ -270,8 +275,8 @@
     "counterCups": "cốc và ly",
     "counterFlat": "vật dẹt — vé, tờ giấy",
     "counterBooks": "sách",
-    "counterAge": "tuổi",
-    "counterAgeFormal": "tuổi — trang trọng",
+    "counterAge": "tuổi — dùng với 하나, 둘, 셋",
+    "counterAgeFormal": "tuổi — trong giấy tờ và bản tin, dùng với 일, 이, 삼",
     "howOld": "Bạn bao nhiêu tuổi?",
     "ageHonorific": "tuổi — kính ngữ, với người lớn hơn",
     "counterHour": "giờ",
@@ -335,7 +340,6 @@
     "bus206": "xe buýt số 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 đúng; 둘 살 sai",
-    "pitfallSimnyuk": "viết 십육, đọc 심뉵",
     "pitfallJune": "유월 đúng; 육월 sai",
     "pitfallHourMinute": "세 시 삼십 분 đúng; 삼 시 서른 분 sai",
     "pitfallSpacing": "한 개 đúng; 한개 sai",

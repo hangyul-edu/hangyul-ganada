@@ -40,8 +40,12 @@
   "stepOf": "Hakbang {{current}} sa {{total}}",
   "questionOf": "Tanong {{current}} sa {{total}}",
   "readingLabel": "Binibigkas na",
-  "exampleLabel": "Sa paggamit",
-  "practiceIntro": "Okay lang magkamali dito — may paliwanag ang bawat sagot.",
+  "exampleLabel": {
+    "writing": "Ganito isinusulat",
+    "pronunciation": "Ganito binibigkas",
+    "example": "Sa paggamit"
+  },
+  "practiceIntro": "Okay lang magkamali dito — may paliwanag kapag kailangan.",
   "masteryIntro": "{{count}} tanong. Kailangan mong makakuha ng {{pass}}% na tama, at lumabas nang kahit isang beses ang bawat aytem.",
   "masteryPassed": "Pasado sa pagsusulit sa kahusayan — {{correct}} sa {{total}}",
   "masteryFailed": "Hindi pa — {{correct}} sa {{total}}. Balikan ang mga halimbawa at subukan ulit.",
@@ -59,8 +63,10 @@
     "incorrect": "Mali"
   },
   "prompt": {
-    "listen": "Ano ang narinig mo?",
-    "read": "Ano ang ibig sabihin nito?",
+    "listenAndChoose": "Ano ang narinig mo?",
+    "chooseMeaning": "Ano ang ibig sabihin nito?",
+    "chooseCorrectExplanation": "Piliin ang tamang paliwanag.",
+    "findIncorrectExpression": "Piliin ang maling pahayag.",
     "chooseSystem": "Aling mga numero ang napupunta rito?",
     "digitsToKorean": {
       "sino": "Sabihin ang numerong ito gamit ang 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Aling bilang ito?",
     "counterForm": "Paano sinasabi ang {{value}} kasama ang {{counter}}?",
-    "spotMistake": "Alin ang tama?",
     "fill": "Punan ang patlang",
     "orderParts": "I-tap ang mga bahagi nang magkakasunod para mabuo ang {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Pakinggan ang 일, 이, 삼 hanggang 십, tapos ulitin nang malakas.",
       "step1": "Magsimula sa 일, 이, 삼. Ginagamit ang mga ito sa presyo, petsa, minuto, numero ng telepono at palapag.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Isang pantig lang ang bawat isa.",
-      "step3": "Ganito sinasabi: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Ganito sinasabi: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Magbilang gamit ang 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Bagay sa 하나, 둘 · presyo sa 일, 이",
       "objective": "Piliin kung aling mga numero ang pambilang, at alin ang para sa presyo at petsa.",
       "step1": "Ang nakikita mo ay binibilang sa 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Sa presyo, petsa, minuto, numero ng telepono at palapag ay 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Sa presyo, petsa, minuto, numero ng telepono at palapag ay 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Sa oras, pareho ang lumalabas. 세 시 삼십 분 — ang oras ay 세, ang minuto ay 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Kailan ang kaarawan mo?",
       "objective": "Sabihin ang petsa gamit ang 년, 월 at 일 — at mag-ingat sa 유월 at 시월.",
-      "step1": "Ang 년, 월 at 일 ay pawang kumukuha ng mga bilang na 일, 이, 삼: 이천이십육 년 삼월 십오 일. Malaking yunit muna.",
+      "step1": "Ang 년, 월 at 일 ay pawang kumukuha ng mga bilang na 일, 이, 삼: 이천이십육년 삼월 십오일. Malaking yunit muna.",
       "step2": "Iregular ang dalawang buwan. Ang Hunyo ay 유월, hindi 육월; ang Oktubre ay 시월, hindi 십월.",
-      "step3": "Ang 일 bilang araw ng buwan ay kapareho ng salitang 일 para sa isa. Ang 삼월 일 일 ay unang araw ng Marso."
+      "step3": "Ang 일 bilang araw ng buwan ay kapareho ng salitang 일 para sa isa. Ang 삼월 일일 ay unang araw ng Marso."
     },
     "weekdays": {
       "title": "Anong araw ngayon?",
@@ -270,8 +275,8 @@
     "counterCups": "tasa at baso",
     "counterFlat": "patag na bagay — tiket, papel",
     "counterBooks": "libro",
-    "counterAge": "taong gulang",
-    "counterAgeFormal": "taong gulang — pormal",
+    "counterAge": "edad — kasama ang 하나, 둘, 셋",
+    "counterAgeFormal": "edad — sa dokumento at balita, kasama ang 일, 이, 삼",
     "howOld": "Ilang taon ka na?",
     "ageHonorific": "edad — magalang, tungkol sa nakatatanda",
     "counterHour": "oras (alas-)",
@@ -335,7 +340,6 @@
     "bus206": "ang bus na numero 206",
     "threePointFive": "3.5",
     "pitfallCountingForm": "Tama ang 두 살; mali ang 둘 살",
-    "pitfallSimnyuk": "binabaybay na 십육, binibigkas na 심뉵",
     "pitfallJune": "Tama ang 유월; mali ang 육월",
     "pitfallHourMinute": "Tama ang 세 시 삼십 분; mali ang 삼 시 서른 분",
     "pitfallSpacing": "Tama ang 한 개; mali ang 한개",

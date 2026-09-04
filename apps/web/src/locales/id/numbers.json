@@ -40,8 +40,12 @@
   "stepOf": "Langkah {{current}} dari {{total}}",
   "questionOf": "Soal {{current}} dari {{total}}",
   "readingLabel": "Diucapkan",
-  "exampleLabel": "Dalam kalimat",
-  "practiceIntro": "Salah di sini tidak apa-apa — setiap jawaban ada penjelasannya.",
+  "exampleLabel": {
+    "writing": "Ditulis begini",
+    "pronunciation": "Dilafalkan begini",
+    "example": "Dalam pemakaian"
+  },
+  "practiceIntro": "Salah di sini tidak apa-apa — penjelasan muncul saat diperlukan.",
   "masteryIntro": "{{count}} soal. Kamu perlu {{pass}}% benar, dan setiap butir muncul minimal sekali.",
   "masteryPassed": "Uji penguasaan lulus — {{correct}} dari {{total}}",
   "masteryFailed": "Belum — {{correct}} dari {{total}}. Ulas contohnya lalu coba lagi.",
@@ -59,8 +63,10 @@
     "incorrect": "Salah"
   },
   "prompt": {
-    "listen": "Apa yang kamu dengar?",
-    "read": "Apa artinya?",
+    "listenAndChoose": "Apa yang kamu dengar?",
+    "chooseMeaning": "Apa artinya?",
+    "chooseCorrectExplanation": "Pilih penjelasan yang benar.",
+    "findIncorrectExpression": "Pilih ungkapan yang salah.",
     "chooseSystem": "Angka mana yang dipakai di sini?",
     "digitsToKorean": {
       "sino": "Ucapkan angka ini dengan 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Angka berapa ini?",
     "counterForm": "Bagaimana mengatakan {{value}} dengan {{counter}}?",
-    "spotMistake": "Yang mana yang benar?",
     "fill": "Isi bagian yang kosong",
     "orderParts": "Ketuk bagian-bagiannya secara berurutan untuk menyusun {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Dengarkan 일, 이, 삼 sampai 십, lalu ucapkan kembali.",
       "step1": "Mulai dari 일, 이, 삼. Angka ini dipakai untuk harga, tanggal, menit, nomor telepon, dan lantai.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Semuanya satu suku kata.",
-      "step3": "Begini cara mengucapkannya: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Begini cara mengucapkannya: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Menghitung dengan 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Benda pakai 하나, 둘 · harga pakai 일, 이",
       "objective": "Pilih angka mana untuk menghitung, dan mana untuk harga serta tanggal.",
       "step1": "Yang terlihat kamu hitung dengan 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Untuk harga, tanggal, menit, nomor telepon, dan lantai dipakai 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Untuk harga, tanggal, menit, nomor telepon, dan lantai dipakai 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Satu waktu memakai keduanya. 세 시 삼십 분 — jamnya 세, menitnya 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Ulang tahunmu kapan?",
       "objective": "Sebutkan tanggal dengan 년, 월, dan 일 — hati-hati dengan 유월 dan 시월.",
-      "step1": "년, 월, dan 일 semuanya memakai angka 일, 이, 삼: 이천이십육 년 삼월 십오 일. Satuan besar disebut lebih dulu.",
+      "step1": "년, 월, dan 일 semuanya memakai angka 일, 이, 삼: 이천이십육년 삼월 십오일. Satuan besar disebut lebih dulu.",
       "step2": "Dua bulan tidak teratur. Juni adalah 유월, bukan 육월; Oktober adalah 시월, bukan 십월.",
-      "step3": "일 sebagai tanggal adalah kata yang sama dengan 일 untuk satu. 삼월 일 일 adalah tanggal satu Maret."
+      "step3": "일 sebagai tanggal adalah kata yang sama dengan 일 untuk satu. 삼월 일일 adalah tanggal satu Maret."
     },
     "weekdays": {
       "title": "Hari ini hari apa?",
@@ -270,8 +275,8 @@
     "counterCups": "cangkir dan gelas",
     "counterFlat": "benda pipih — tiket, lembaran",
     "counterBooks": "buku",
-    "counterAge": "tahun (umur)",
-    "counterAgeFormal": "tahun (umur) — formal",
+    "counterAge": "usia — dengan 하나, 둘, 셋",
+    "counterAgeFormal": "usia — di dokumen dan berita, dengan 일, 이, 삼",
     "howOld": "Berapa umurmu?",
     "ageHonorific": "umur — bentuk hormat, untuk orang yang lebih tua",
     "counterHour": "jam (pukul)",
@@ -335,7 +340,6 @@
     "bus206": "bus nomor 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 benar; 둘 살 salah",
-    "pitfallSimnyuk": "ditulis 십육, diucapkan 심뉵",
     "pitfallJune": "유월 benar; 육월 salah",
     "pitfallHourMinute": "세 시 삼십 분 benar; 삼 시 서른 분 salah",
     "pitfallSpacing": "한 개 benar; 한개 salah",

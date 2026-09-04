@@ -40,8 +40,12 @@
   "stepOf": "{{total}}. lépésből a {{current}}.",
   "questionOf": "{{total}} kérdésből a {{current}}.",
   "readingLabel": "Kiejtve",
-  "exampleLabel": "Használatban",
-  "practiceIntro": "Itt nem baj, ha hibázol — minden választ megmagyarázunk.",
+  "exampleLabel": {
+    "writing": "Így írjuk",
+    "pronunciation": "Így ejtjük",
+    "example": "Használatban"
+  },
+  "practiceIntro": "Itt nyugodtan hibázhatsz — magyarázat jön, ahol segít.",
   "masteryIntro": "{{count}} kérdés. {{pass}}% helyes válasz kell, és minden tétel legalább egyszer.",
   "masteryPassed": "Tudáspróba sikerült — {{total}}-ból {{correct}}",
   "masteryFailed": "Még nem — {{total}}-ból {{correct}}. Nézd át a példákat, és próbáld újra.",
@@ -59,8 +63,10 @@
     "incorrect": "Nem jó"
   },
   "prompt": {
-    "listen": "Mit hallottál?",
-    "read": "Mit jelent ez?",
+    "listenAndChoose": "Mit hallottál?",
+    "chooseMeaning": "Mit jelent ez?",
+    "chooseCorrectExplanation": "Válaszd ki a helyes magyarázatot.",
+    "findIncorrectExpression": "Válaszd ki a helytelen kifejezést.",
     "chooseSystem": "Melyik számok jönnek ide?",
     "digitsToKorean": {
       "sino": "Mondd ki ezt a számot 일, 이, 삼-mal",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Melyik szám ez?",
     "counterForm": "Hogy mondod: {{value}} a(z) {{counter}} számlálószóval?",
-    "spotMistake": "Melyik a helyes?",
     "fill": "Töltsd ki a hiányzó részt",
     "orderParts": "Koppints a részekre sorrendben, hogy kirakd: {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Hallgasd meg 일, 이, 삼 egészen 십-ig, és mondd utána.",
       "step1": "Kezdjük a 일, 이, 삼-mal. Ezeket árakhoz, dátumokhoz, percekhez, telefonszámokhoz és emeletekhez használod.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Mindegyik egyetlen szótag.",
-      "step3": "Így mondod őket: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Így mondod őket: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Számolás: 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "A dolgok 하나, 둘 · az árak 일, 이",
       "objective": "Válaszd ki, melyik számokkal számolsz, és melyekkel mondasz árat és dátumot.",
       "step1": "Amit látsz, azt 하나, 둘, 셋-tel számolod: 세 명, 두 시, 스무 살.",
-      "step2": "Árhoz, dátumhoz, perchez, telefonszámhoz és emelethez 일, 이, 삼 jár: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Árhoz, dátumhoz, perchez, telefonszámhoz és emelethez 일, 이, 삼 jár: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Egy időpontban mindkettő szerepel. 세 시 삼십 분 — az óra 세, a perc 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Mikor van a születésnapod?",
       "objective": "Mondj dátumot 년, 월 és 일 használatával — és figyelj a 유월 és 시월 alakra.",
-      "step1": "A 년, 월 és 일 mind a 일, 이, 삼 számokat kéri: 이천이십육 년 삼월 십오 일. A nagy egység elöl.",
+      "step1": "A 년, 월 és 일 mind a 일, 이, 삼 számokat kéri: 이천이십육년 삼월 십오일. A nagy egység elöl.",
       "step2": "Két hónap rendhagyó. A június 유월, nem 육월; az október 시월, nem 십월.",
-      "step3": "A 일 mint a hónap napja ugyanaz a szó, mint a 일 az egyes. A 삼월 일 일 március elseje."
+      "step3": "A 일 mint a hónap napja ugyanaz a szó, mint a 일 az egyes. A 삼월 일일 március elseje."
     },
     "weekdays": {
       "title": "Milyen nap van ma?",
@@ -270,8 +275,8 @@
     "counterCups": "csészék és poharak",
     "counterFlat": "lapos dolgok — jegyek, lapok",
     "counterBooks": "könyvek",
-    "counterAge": "éves",
-    "counterAgeFormal": "éves — hivatalos",
+    "counterAge": "életkor — 하나, 둘, 셋 mellett",
+    "counterAgeFormal": "életkor — iratokban és hírekben, 일, 이, 삼 mellett",
     "howOld": "Hány éves vagy?",
     "ageHonorific": "életkor — tiszteleti, idősebbről",
     "counterHour": "óra (időpont)",
@@ -335,7 +340,6 @@
     "bus206": "a 206-os busz",
     "threePointFive": "3,5",
     "pitfallCountingForm": "a 두 살 helyes; a 둘 살 nem",
-    "pitfallSimnyuk": "írva 십육, kiejtve 심뉵",
     "pitfallJune": "a 유월 helyes; a 육월 nem",
     "pitfallHourMinute": "a 세 시 삼십 분 helyes; a 삼 시 서른 분 nem",
     "pitfallSpacing": "a 한 개 helyes; a 한개 nem",

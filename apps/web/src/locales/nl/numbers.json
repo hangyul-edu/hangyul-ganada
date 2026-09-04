@@ -40,8 +40,12 @@
   "stepOf": "Stap {{current}} van {{total}}",
   "questionOf": "Vraag {{current}} van {{total}}",
   "readingLabel": "Wordt gezegd als",
-  "exampleLabel": "In gebruik",
-  "practiceIntro": "Fouten maken mag hier — elk antwoord wordt uitgelegd.",
+  "exampleLabel": {
+    "writing": "Zo schrijf je het",
+    "pronunciation": "Zo spreek je het uit",
+    "example": "In gebruik"
+  },
+  "practiceIntro": "Fouten maken mag hier — uitleg volgt waar het helpt.",
   "masteryIntro": "{{count}} vragen. Je hebt {{pass}}% goed nodig, en elk item minstens één keer.",
   "masteryPassed": "Eindtoets gehaald — {{correct}} van {{total}}",
   "masteryFailed": "Nog niet — {{correct}} van {{total}}. Bekijk de voorbeelden nog eens en probeer het opnieuw.",
@@ -59,8 +63,10 @@
     "incorrect": "Fout"
   },
   "prompt": {
-    "listen": "Wat hoorde je?",
-    "read": "Wat betekent dit?",
+    "listenAndChoose": "Wat hoorde je?",
+    "chooseMeaning": "Wat betekent dit?",
+    "chooseCorrectExplanation": "Kies de juiste uitleg.",
+    "findIncorrectExpression": "Kies de foute uitdrukking.",
     "chooseSystem": "Welke getallen horen hier?",
     "digitsToKorean": {
       "sino": "Zeg dit getal met 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Welk getal is dit?",
     "counterForm": "Hoe zeg je {{value}} met {{counter}}?",
-    "spotMistake": "Welke is goed?",
     "fill": "Vul de lege plek in",
     "orderParts": "Tik de delen in de juiste volgorde aan om {{value}} te bouwen"
   },
@@ -122,7 +127,7 @@
       "objective": "Luister naar 일, 이, 삼 tot 십 en zeg ze na.",
       "step1": "Begin met 일, 이, 삼. Deze getallen gebruik je voor prijzen, data, minuten, telefoonnummers en verdiepingen.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Elk is één lettergreep.",
-      "step3": "Zo zeg je ze: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Zo zeg je ze: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Tellen met 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Dingen met 하나, 둘 · prijzen met 일, 이",
       "objective": "Kies welke getallen je gebruikt om te tellen en welke voor prijzen en data.",
       "step1": "Wat je ziet, tel je met 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Voor prijzen, data, minuten, telefoonnummers en verdiepingen gebruik je 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Voor prijzen, data, minuten, telefoonnummers en verdiepingen gebruik je 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Een tijdstip gebruikt allebei. 세 시 삼십 분 — het uur is 세, de minuten zijn 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Wanneer ben je jarig?",
       "objective": "Zeg een datum met 년, 월 en 일 — en let op 유월 en 시월.",
-      "step1": "년, 월 en 일 nemen alle drie de getallen 일, 이, 삼: 이천이십육 년 삼월 십오 일. De grote eenheid eerst.",
+      "step1": "년, 월 en 일 nemen alle drie de getallen 일, 이, 삼: 이천이십육년 삼월 십오일. De grote eenheid eerst.",
       "step2": "Twee maanden zijn onregelmatig. Juni is 유월, niet 육월; oktober is 시월, niet 십월.",
-      "step3": "일 als dag van de maand is hetzelfde woord als 일 voor een. 삼월 일 일 is één maart."
+      "step3": "일 als dag van de maand is hetzelfde woord als 일 voor een. 삼월 일일 is één maart."
     },
     "weekdays": {
       "title": "Welke dag is het vandaag?",
@@ -270,8 +275,8 @@
     "counterCups": "kopjes en glazen",
     "counterFlat": "platte dingen — kaartjes, vellen",
     "counterBooks": "boeken",
-    "counterAge": "jaar oud",
-    "counterAgeFormal": "jaar oud — formeel",
+    "counterAge": "leeftijd — met 하나, 둘, 셋",
+    "counterAgeFormal": "leeftijd — in documenten en het nieuws, met 일, 이, 삼",
     "howOld": "Hoe oud ben je?",
     "ageHonorific": "leeftijd — eerbiedig, over iemand ouder",
     "counterHour": "uur",
@@ -335,7 +340,6 @@
     "bus206": "bus 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 klopt; 둘 살 niet",
-    "pitfallSimnyuk": "geschreven 십육, uitgesproken 심뉵",
     "pitfallJune": "유월 klopt; 육월 niet",
     "pitfallHourMinute": "세 시 삼십 분 klopt; 삼 시 서른 분 niet",
     "pitfallSpacing": "한 개 klopt; 한개 niet",

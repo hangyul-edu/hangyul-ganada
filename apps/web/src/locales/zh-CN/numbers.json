@@ -40,8 +40,12 @@
   "stepOf": "第 {{current}} 步，共 {{total}} 步",
   "questionOf": "第 {{current}} 题，共 {{total}} 题",
   "readingLabel": "读作",
-  "exampleLabel": "用法",
-  "practiceIntro": "在这里出错没关系，每个答案都有讲解。",
+  "exampleLabel": {
+    "writing": "这样写",
+    "pronunciation": "这样读",
+    "example": "实际用法"
+  },
+  "practiceIntro": "这里答错没关系，需要的地方会有说明。",
   "masteryIntro": "共 {{count}} 题。需要答对 {{pass}}% 以上，并且每个知识点至少答对一次。",
   "masteryPassed": "掌握测验通过 — 答对 {{correct}}/{{total}}",
   "masteryFailed": "还差一点 — 答对 {{correct}}/{{total}}。再看看例子，然后重试。",
@@ -59,8 +63,10 @@
     "incorrect": "答错了"
   },
   "prompt": {
-    "listen": "你听到了什么？",
-    "read": "这是什么意思？",
+    "listenAndChoose": "你听到了什么？",
+    "chooseMeaning": "这是什么意思？",
+    "chooseCorrectExplanation": "选出正确的说明。",
+    "findIncorrectExpression": "选出错误的说法。",
     "chooseSystem": "这里该用哪种数字？",
     "digitsToKorean": {
       "sino": "用 일, 이, 삼 说出这个数",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "这是哪个数？",
     "counterForm": "用{{counter}}数 {{value}} 时怎么说？",
-    "spotMistake": "哪一个是对的？",
     "fill": "填空",
     "orderParts": "按顺序点击各部分，拼出 {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "听 일、이、삼 一直到 십，然后跟着说。",
       "step1": "先从 일, 이, 삼 开始。这些数字用在价格、日期、分钟、电话号码和楼层上。",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십。每个都只有一个音节。",
-      "step3": "这样说: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공。"
+      "step3": "这样说: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공。"
     },
     "nativeBasics": {
       "title": "用 하나、둘、셋 数东西",
@@ -141,7 +146,7 @@
       "title": "东西用 하나, 둘 · 价格用 일, 이",
       "objective": "选出数东西时用哪些数字，说价格和日期时又用哪些。",
       "step1": "看得见的东西用 하나, 둘, 셋 来数: 세 명、두 시、스무 살。",
-      "step2": "价格、日期、分钟、电话号码和楼层用 일, 이, 삼: 오천 원、삼월 일 일、삼십 분。",
+      "step2": "价格、日期、分钟、电话号码和楼层用 일, 이, 삼: 오천 원、삼월 일일、삼십 분。",
       "step3": "一个时刻里两种都有。세 시 삼십 분 — 小时是 세，分钟是 삼십。"
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "你的生日是什么时候？",
       "objective": "用 년、월、일 说日期，注意 유월 和 시월。",
-      "step1": "년、월、일 都用 일, 이, 삼 这一套：이천이십육 년 삼월 십오 일。先说大的单位。",
+      "step1": "년、월、일 都用 일, 이, 삼 这一套：이천이십육년 삼월 십오일。先说大的单位。",
       "step2": "有两个月不规则。六月是 유월，不是 육월；十月是 시월，不是 십월。",
-      "step3": "表示日期的 일 和表示一的 일 是同一个词。삼월 일 일 就是三月一日。"
+      "step3": "表示日期的 일 和表示一的 일 是同一个词。삼월 일일 就是三月一日。"
     },
     "weekdays": {
       "title": "今天星期几？",
@@ -270,8 +275,8 @@
     "counterCups": "杯",
     "counterFlat": "平的东西 — 票、纸",
     "counterBooks": "书",
-    "counterAge": "岁",
-    "counterAgeFormal": "岁 — 正式",
+    "counterAge": "年龄 — 和 하나, 둘, 셋 一起用",
+    "counterAgeFormal": "年龄 — 用于文件和新闻，和 일, 이, 삼 一起用",
     "howOld": "你多大了？",
     "ageHonorific": "年龄 — 敬语，用于长辈",
     "counterHour": "点（钟）",
@@ -335,7 +340,6 @@
     "bus206": "206 路公交车",
     "threePointFive": "3.5",
     "pitfallCountingForm": "두 살 对，둘 살 错",
-    "pitfallSimnyuk": "写作 십육，读作 심뉵",
     "pitfallJune": "유월 对，육월 错",
     "pitfallHourMinute": "세 시 삼십 분 对，삼 시 서른 분 错",
     "pitfallSpacing": "한 개 对，한개 错",

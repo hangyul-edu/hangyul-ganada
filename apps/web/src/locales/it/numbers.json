@@ -40,8 +40,12 @@
   "stepOf": "Passo {{current}} di {{total}}",
   "questionOf": "Domanda {{current}} di {{total}}",
   "readingLabel": "Si pronuncia",
-  "exampleLabel": "In uso",
-  "practiceIntro": "Qui sbagliare va bene — ogni risposta viene spiegata.",
+  "exampleLabel": {
+    "writing": "Si scrive così",
+    "pronunciation": "Si pronuncia così",
+    "example": "In uso"
+  },
+  "practiceIntro": "Sbagliare qui va bene: la spiegazione arriva quando serve.",
   "masteryIntro": "{{count}} domande. Ti serve il {{pass}}% di risposte giuste, e ogni voce almeno una volta.",
   "masteryPassed": "Verifica di padronanza superata — {{correct}} su {{total}}",
   "masteryFailed": "Non ancora — {{correct}} su {{total}}. Rivedi gli esempi e riprova.",
@@ -59,8 +63,10 @@
     "incorrect": "Sbagliato"
   },
   "prompt": {
-    "listen": "Che cosa hai sentito?",
-    "read": "Che cosa significa?",
+    "listenAndChoose": "Che cosa hai sentito?",
+    "chooseMeaning": "Che cosa significa?",
+    "chooseCorrectExplanation": "Scegli la spiegazione giusta.",
+    "findIncorrectExpression": "Scegli l’espressione sbagliata.",
     "chooseSystem": "Quali numeri vanno qui?",
     "digitsToKorean": {
       "sino": "Di’ questo numero con 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Che numero è questo?",
     "counterForm": "Come si dice {{value}} con {{counter}}?",
-    "spotMistake": "Quale è giusta?",
     "fill": "Completa lo spazio vuoto",
     "orderParts": "Tocca le parti in ordine per formare {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Ascolta 일, 이, 삼 fino a 십 e ripetili.",
       "step1": "Parti da 일, 이, 삼. Questi numeri servono per prezzi, date, minuti, numeri di telefono e piani.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Ognuno è una sola sillaba.",
-      "step3": "Si dicono così: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Si dicono così: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Contare con 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Le cose con 하나, 둘 · i prezzi con 일, 이",
       "objective": "Scegli quali numeri servono per contare e quali per prezzi e date.",
       "step1": "Quello che vedi lo conti con 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Per prezzi, date, minuti, numeri di telefono e piani si usano 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Per prezzi, date, minuti, numeri di telefono e piani si usano 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Un orario prende entrambi. 세 시 삼십 분 — l’ora è 세, i minuti sono 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Quando è il tuo compleanno?",
       "objective": "Di’ una data con 년, 월 e 일 — e attenzione a 유월 e 시월.",
-      "step1": "년, 월 e 일 prendono tutti i numeri 일, 이, 삼: 이천이십육 년 삼월 십오 일. Prima l’unità grande.",
+      "step1": "년, 월 e 일 prendono tutti i numeri 일, 이, 삼: 이천이십육년 삼월 십오일. Prima l’unità grande.",
       "step2": "Due mesi sono irregolari. Giugno è 유월, non 육월; ottobre è 시월, non 십월.",
-      "step3": "Il 일 del giorno del mese è la stessa parola del 일 di uno. 삼월 일 일 è il primo marzo."
+      "step3": "Il 일 del giorno del mese è la stessa parola del 일 di uno. 삼월 일일 è il primo marzo."
     },
     "weekdays": {
       "title": "Che giorno è oggi?",
@@ -270,8 +275,8 @@
     "counterCups": "tazze e bicchieri",
     "counterFlat": "cose piatte — biglietti, fogli",
     "counterBooks": "libri",
-    "counterAge": "anni (di età)",
-    "counterAgeFormal": "anni (di età) — formale",
+    "counterAge": "età — con 하나, 둘, 셋",
+    "counterAgeFormal": "età — nei documenti e nei notiziari, con 일, 이, 삼",
     "howOld": "Quanti anni hai?",
     "ageHonorific": "età — onorifico, per una persona anziana",
     "counterHour": "ora (dell’orologio)",
@@ -335,7 +340,6 @@
     "bus206": "l’autobus 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 è giusto; 둘 살 no",
-    "pitfallSimnyuk": "si scrive 십육, si pronuncia 심뉵",
     "pitfallJune": "유월 è giusto; 육월 no",
     "pitfallHourMinute": "세 시 삼십 분 è giusto; 삼 시 서른 분 no",
     "pitfallSpacing": "한 개 è giusto; 한개 no",

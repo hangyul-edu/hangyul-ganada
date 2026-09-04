@@ -40,8 +40,12 @@
   "stepOf": "Step {{current}} of {{total}}",
   "questionOf": "Question {{current}} of {{total}}",
   "readingLabel": "Said as",
-  "exampleLabel": "In use",
-  "practiceIntro": "Mistakes are fine here — every answer is explained.",
+  "exampleLabel": {
+    "writing": "Written like this",
+    "pronunciation": "Pronounced like this",
+    "example": "In use"
+  },
+  "practiceIntro": "Mistakes are fine here — an explanation follows where it helps.",
   "masteryIntro": "{{count}} questions. You need {{pass}}% right, and every item at least once.",
   "masteryPassed": "Mastery check passed — {{correct}} of {{total}}",
   "masteryFailed": "Not yet — {{correct}} of {{total}}. Review the examples and try again.",
@@ -59,8 +63,10 @@
     "incorrect": "Not right"
   },
   "prompt": {
-    "listen": "What did you hear?",
-    "read": "What does this mean?",
+    "listenAndChoose": "What did you hear?",
+    "chooseMeaning": "What does this mean?",
+    "chooseCorrectExplanation": "Choose the correct explanation.",
+    "findIncorrectExpression": "Choose the expression that is wrong.",
     "chooseSystem": "Which numbers go here?",
     "digitsToKorean": {
       "sino": "Say this number with 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Which number is this?",
     "counterForm": "How do you say {{value}} with {{counter}}?",
-    "spotMistake": "Which one is right?",
     "fill": "Fill the gap",
     "orderParts": "Tap the parts in order to build {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Listen to 일, 이, 삼 up to 십, and say them after.",
       "step1": "Start with 일, 이, 삼. You use these for prices, dates, minutes, phone numbers and floors.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Each one is a single syllable.",
-      "step3": "You say them like this: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "You say them like this: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Counting things: 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Things take 하나, 둘 · prices take 일, 이",
       "objective": "Choose which numbers to use for counting things, and which for prices and dates.",
       "step1": "To count what you can see, use 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "For prices, dates, minutes, phone numbers and floors, use 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "For prices, dates, minutes, phone numbers and floors, use 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "A clock time uses both. 세 시 삼십 분 — the hour is 세, the minutes are 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "When is your birthday?",
       "objective": "Say a date with 년, 월 and 일 — and watch out for 유월 and 시월.",
-      "step1": "년, 월 and 일 all take the 일, 이, 삼 numbers: 이천이십육 년 삼월 십오 일. Say the big unit first.",
+      "step1": "년, 월 and 일 all take the 일, 이, 삼 numbers: 이천이십육년 삼월 십오일. Say the big unit first.",
       "step2": "Two months are irregular. June is 유월, not 육월; October is 시월, not 십월.",
-      "step3": "일 as a day of the month is the same word as 일 for one. 삼월 일 일 is the first of March."
+      "step3": "일 as a day of the month is the same word as 일 for one. 삼월 일일 is the first of March."
     },
     "weekdays": {
       "title": "What day is it today?",
@@ -270,8 +275,8 @@
     "counterCups": "cups and glasses",
     "counterFlat": "flat things — tickets, sheets",
     "counterBooks": "books",
-    "counterAge": "years old",
-    "counterAgeFormal": "years old — formal",
+    "counterAge": "age — with 하나, 둘, 셋",
+    "counterAgeFormal": "age — in documents and the news, with 일, 이, 삼",
     "howOld": "How old are you?",
     "ageHonorific": "age — honorific, about someone older",
     "counterHour": "o'clock",
@@ -335,7 +340,6 @@
     "bus206": "the number 206 bus",
     "threePointFive": "3.5",
     "pitfallCountingForm": "두 살 is right; 둘 살 is not",
-    "pitfallSimnyuk": "spelled 십육, pronounced 심뉵",
     "pitfallJune": "유월 is right; 육월 is not",
     "pitfallHourMinute": "세 시 삼십 분 is right; 삼 시 서른 분 is not",
     "pitfallSpacing": "한 개 is right; 한개 is not",

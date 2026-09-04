@@ -1,4 +1,9 @@
-import type { NumberItem, NumberLesson, NumbersExerciseKind } from '@hangyul-ganada/shared-types';
+import type {
+  NumberItem,
+  NumberLesson,
+  NumbersExerciseKind,
+  NumbersQuestionType,
+} from '@hangyul-ganada/shared-types';
 
 import { NUMBER_ITEMS, getNumberItem, numberLessonItems } from '../../data/numbers';
 
@@ -67,6 +72,15 @@ export interface ExerciseOption {
 export interface NumbersExercise {
   id: string;
   kind: NumbersExerciseKind;
+  /**
+   * What the question asks, which is what the instruction above it says.
+   *
+   * Resolved here, once, from the builder and from the item's declared
+   * `gloss_kind` — never re-derived in the UI from the option strings. See
+   * `NumbersQuestionType` for what went wrong when the instruction was chosen
+   * from `kind` alone.
+   */
+  question_type: NumbersQuestionType;
   /** The item this exercise is about, for evidence. */
   item_id: string;
   /** The prompt. For `listen_choose` it is the clip id; otherwise text or a key. */
@@ -225,6 +239,9 @@ function siblingsDistinct(item: NumberItem, siblings: NumberItem[], by: (i: Numb
   const applies = cls !== 'wrong_counter' || item.role === 'counter';
   return siblings
     .filter((s) => s.id !== item.id)
+    // A sibling whose gloss names the same thing is not a wrong answer. See
+    // `NumberItem.gloss_group`: 명 and 사람 both gloss as 사람.
+    .filter((s) => !(item.gloss_group && s.gloss_group === item.gloss_group))
     .map((s) => ({ ...by(s), ...(applies ? { misconception: cls } : {}) }))
     .filter((o) => (o.isKey ? o.text !== (item.gloss ?? '') : o.value !== undefined ? o.value !== item.value : o.text !== item.korean));
 }
@@ -274,14 +291,62 @@ function systemRationale(item: NumberItem): string {
   return item.system === 'native' ? 'rationale.nativeSystem' : 'rationale.sinoSystem';
 }
 
+/**
+ * Which instruction a gloss question needs, read off the content model.
+ *
+ * A `read_choose` over 마리 · 명 · 개 · 사람 is asking what a word means. A
+ * `read_choose` over *세는 말은 띄어 써요* and three other rules is asking which
+ * statement is true, and the meaning instruction over it is unanswerable — 한 개
+ * does not *mean* that counting words are spaced.
+ *
+ * The answer's own `gloss_kind` decides, not the distractors': the distractors
+ * are the lesson's siblings and `numbers:qa` fails a lesson whose items disagree
+ * about their kind, so within one option list the two are never mixed.
+ */
+function glossQuestion(item: NumberItem): NumbersQuestionType {
+  return item.gloss_kind === 'explanation' ? 'chooseCorrectExplanation' : 'chooseMeaning';
+}
+
 /** Korean shown → meaning chosen. Distractors: the lesson's own siblings (same role), then system swap. */
 function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
-  const options = build(meaningOf(item), [
-    siblingsDistinct(item, ctx.siblings.filter((s) => s.role === item.role), meaningOf, 'wrong_counter'),
-    siblingsDistinct(item, ctx.siblings, meaningOf, 'wrong_counter'),
-  ]);
+  /*
+   * One option per `gloss_group`, distractors included.
+   *
+   * Excluding a sibling that names what the *answer* names is what makes the
+   * question answerable at all. Excluding the second of two siblings that name
+   * each other is a smaller thing and still worth doing: 개 offered against 명,
+   * 마리 **and** 사람 is a four-button question with three real choices, and the
+   * learner who notices that 사람 and 사람 - 일상적인 말 are the same answer has
+   * been handed the elimination this file's distractor design exists to remove.
+   */
+  const byGroup = new Set<string>();
+  if (item.gloss_group) byGroup.add(item.gloss_group);
+  const pool = [
+    ...siblingsDistinct(item, ctx.siblings.filter((s) => s.role === item.role), meaningOf, 'wrong_counter'),
+    ...siblingsDistinct(item, ctx.siblings, meaningOf, 'wrong_counter'),
+  ].filter((option) => {
+    const group = NUMBER_ITEMS.find((i) => i.gloss === option.text)?.gloss_group;
+    if (!group) return true;
+    if (byGroup.has(group)) return false;
+    byGroup.add(group);
+    return true;
+  });
+  const options = build(meaningOf(item), [pool]);
   if (!options) return null;
-  return finish('read_choose', item, ctx, { text: item.korean, audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
+  const question = glossQuestion(item);
+  /*
+   * An explanation question is shown the *pair*, not the bare word.
+   *
+   * Over 한 개 alone, two of the pitfalls lesson's five rules are true at once
+   * — the counting form is used **and** the counting word is spaced — so two
+   * options are defensible and the question has no answer. Over `한 개 (✓) ·
+   * 한개 (✗)` exactly one rule explains the difference between the two halves,
+   * and the other four are plainly about something else. The stimulus is what
+   * makes the question well-posed, so it changes with the question type rather
+   * than with the item.
+   */
+  const shown = question === 'chooseCorrectExplanation' ? (item.example ?? item.korean) : item.korean;
+  return finish('read_choose', question, item, ctx, { text: shown, audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
 }
 
 /** Clip played → Korean chosen. Distractors: sound-alikes, adjacent, system swap. */
@@ -295,7 +360,7 @@ function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('listen_choose', item, ctx, { audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
+  return finish('listen_choose', 'listenAndChoose', item, ctx, { audio: item.audio.word }, options, feedbackFor(item, systemRationale(item)));
 }
 
 /** Numeral shown → Korean chosen, in the *lesson's* system. Distractor 1 is always the other system. */
@@ -309,7 +374,7 @@ function digitsToKorean(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('digits_to_korean', item, ctx, { value: item.value, key: `prompt.digitsToKorean.${item.system ?? 'both'}` }, options, feedbackFor(item, systemRationale(item)));
+  return finish('digits_to_korean', 'sayTheNumber', item, ctx, { value: item.value, key: `prompt.digitsToKorean.${item.system ?? 'both'}` }, options, feedbackFor(item, systemRationale(item)));
 }
 
 /** Korean shown → numeral chosen. Distractors: adjacent values, sound-alike values. */
@@ -329,7 +394,7 @@ function koreanToDigits(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     ctx.siblings.filter((s) => s.value !== null && s.value !== v).map((s) => valueOpt(s.value!, 'adjacent')),
   ]);
   if (!options) return null;
-  return finish('korean_to_digits', item, ctx, { text: item.korean, audio: item.audio.word }, options, feedbackFor(item, 'rationale.koreanToDigits'));
+  return finish('korean_to_digits', 'writeTheDigits', item, ctx, { text: item.korean, audio: item.audio.word }, options, feedbackFor(item, 'rationale.koreanToDigits'));
 }
 
 /** Context phrase → which system does it use? Two options, both meaningful. */
@@ -356,7 +421,7 @@ function chooseSystem(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   ];
   const answerIndex = item.system === 'native' ? 0 : 1;
   const ordered = [options[answerIndex]!, options[1 - answerIndex]!];
-  return finish('choose_system', item, ctx, { text: item.korean, key: item.gloss ?? undefined, audio: item.audio.word }, ordered, feedbackFor(item, systemRationale(item)));
+  return finish('choose_system', 'chooseSystem', item, ctx, { text: item.korean, key: item.gloss ?? undefined, audio: item.audio.word }, ordered, feedbackFor(item, systemRationale(item)));
 }
 
 /** A counter with a number: pick the form that goes in front of it. */
@@ -382,10 +447,35 @@ function counterForm(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     [{ text: glued, misconception: 'spacing' }],
   ]);
   if (!options) return null;
-  return finish('counter_form', item, ctx, { key: 'prompt.counterForm', value: value ?? undefined, text: counter }, options, feedbackFor(item, 'rationale.countingForm'));
+  return finish('counter_form', 'chooseCounterForm', item, ctx, { value: value ?? undefined, text: counter }, options, feedbackFor(item, 'rationale.countingForm'));
 }
 
-/** Which of these is NOT Korean? The wrong forms are the answer's distractors made explicit. */
+/**
+ * The correct half of an item's example, as an option a learner can weigh.
+ *
+ * `십육 (심뉵)` is an example with its reading in brackets, and it was landing
+ * in a right/wrong list beside 두 살 and 유월 as `십육 (심뉵)` — an annotation
+ * among expressions, which tells a learner that this is the option somebody
+ * forgot to tidy rather than one of the four to choose between. The bracket is
+ * the card's business, not the question's.
+ */
+function correctSide(item: NumberItem): string {
+  const half = item.example?.split('·')[0]?.replace(/\(✓\)/, '') ?? '';
+  const plain = half.replace(/\s*\([^)]*\)/g, '').trim();
+  return plain || item.korean;
+}
+
+/**
+ * *다음 중 틀린 표현을 고르세요* — the answer is the option that is **not**
+ * Korean, and the instruction now says so.
+ *
+ * This builder always did that; what it was headed with was *어느 쪽이
+ * 맞을까요?* — which one is right? — so the instruction asked for the opposite
+ * of what the grader accepted. A learner reading it and picking 세 시 over 셋
+ * 시 was marked wrong for answering the question printed above the options.
+ * The heading is chosen from `question_type` now, and this builder is the only
+ * source of `findIncorrectExpression`.
+ */
 function spotMistake(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const wrong: ExerciseOption[] = [];
   if (IRREGULAR_MONTH[item.korean]) wrong.push({ text: IRREGULAR_MONTH[item.korean]!, misconception: 'irregular_month' });
@@ -399,11 +489,82 @@ function spotMistake(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   }
   if (wrong.length === 0) return null;
   // The *answer* here is the wrong form; the correct forms are the other options.
-  const right = [{ text: item.example?.split('·')[0]?.replace(/\(✓\)/, '').trim() || item.korean }];
-  const fill = ctx.siblings.filter((s) => s.id !== item.id).map((s) => ({ text: s.example?.split('·')[0]?.replace(/\(✓\)/, '').trim() || s.korean }));
+  const right = [{ text: correctSide(item) }];
+  const fill = ctx.siblings.filter((s) => s.id !== item.id).map((s) => ({ text: correctSide(s) }));
   const options = build(wrong[0]!, [right, fill]);
   if (!options) return null;
-  return finish('spot_mistake', item, ctx, { key: 'prompt.spotMistake' }, options, feedbackFor(item, `rationale.${wrong[0]!.misconception}`));
+  return finish('spot_mistake', 'findIncorrectExpression', item, ctx, {}, options, feedbackFor(item, `rationale.${wrong[0]!.misconception}`));
+}
+
+/**
+ * Every syllable this course uses as a number or a unit.
+ *
+ * Built from the curriculum rather than typed out, so a numeral added to
+ * `NUMBER_ITEMS` is a numeral here too and cannot be mistaken for the context
+ * word that makes a blank answerable.
+ */
+const NUMBER_SYLLABLES = new Set(
+  NUMBER_ITEMS.filter((i) => i.role === 'numeral' || i.role === 'form')
+    .flatMap((i) => [...i.korean]),
+);
+const UNIT_WORDS = new Set(NUMBER_ITEMS.filter((i) => i.role === 'counter').map((i) => i.korean));
+
+/**
+ * Particles and copula endings, which attach to whatever fills the blank and
+ * therefore say nothing about what belongs there.
+ *
+ * A short, explicit list rather than a morphological analyser: this is the
+ * closed set that actually appears in this course's twenty-six examples, and a
+ * new one arriving is a gate failure rather than a silent pass — an example
+ * whose only remaining word is an ending simply stops building a fill question.
+ *
+ * `도` is on the list although in this course it is always the temperature
+ * unit rather than the particle, and that is the conservative reading on
+ * purpose: it makes `____ 오 도` build no question, and `____ 오 도` has two
+ * answers — 영하 오 도 is five below, and 영 점 오 도 is half a degree above.
+ */
+const GRAMMATICAL = new Set(['이에요', '예요', '에', '을', '를', '이', '가', '은', '는', '의', '도', '와', '과']);
+
+/**
+ * Does the blanked sentence say what belongs in the hole?
+ *
+ * ## The questions this removed
+ *
+ * `fill_sentence` blanked the target out of *any* example, and the lesson's own
+ * siblings were the distractors — which is to say, the distractors were exactly
+ * the set of words that also fit. The results were not hard questions, they
+ * were questions with several right answers:
+ *
+ * ```
+ *  두 ____        개 · 명 · 마리 · 사람   all four are Korean
+ *  세 ____        개 · 사람 · 명 · 마리   all four
+ *  삼십 ____      분 · 초                삼십 분 and 삼십 초 both exist
+ *  삼____         월 · 년 · 일           삼월, 삼년, 삼일 all exist
+ *  삼 ____        층 · 호                삼 층 and 삼 호 both exist
+ * ```
+ *
+ * A blank after a bare numeral is not a question. What makes one answerable is
+ * a word in the sentence that is *not* part of the number phrase — 고양이 두
+ * ____ has one answer because a cat is counted 마리 and by nothing else; 책 세
+ * ____ and 맥주 한 ____ and 연세가 어떻게 되세요? the same. So the rule is the
+ * one a teacher would state: the sentence has to name what is being counted, or
+ * be a sentence rather than a phrase.
+ *
+ * Where two words still fit that anchor — 맥주 한 병 beside 맥주 한 잔 — the
+ * pair is declared in `slot_group` and they are kept out of each other's option
+ * lists.
+ */
+function hasContextAnchor(blanked: string): boolean {
+  return blanked
+    .replace('____', ' ')
+    .split(/[\s.,?!·()]+/)
+    .filter(Boolean)
+    .some(
+      (run) =>
+        !GRAMMATICAL.has(run) &&
+        !UNIT_WORDS.has(run) &&
+        ![...run].every((ch) => NUMBER_SYLLABLES.has(ch)),
+    );
 }
 
 /** A sentence with the target blanked; the options are the lesson's items. */
@@ -412,14 +573,21 @@ function fillSentence(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const target = item.korean;
   if (!item.example.includes(target)) return null;
   const sentence = item.example.replace(target, '____');
+  if (!hasContextAnchor(sentence)) return null;
   const swap = systemSwap(item);
   const options = build(koreanOf(item), [
     swap ? [{ ...koreanOf(swap), misconception: 'system_swap' }] : [],
     PLAIN_TO_FORM[target] ? [{ text: PLAIN_TO_FORM[target]!, misconception: 'plain_form' }] : [],
-    siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
+    // A sibling that fits the same slot is not a distractor — see `slot_group`.
+    siblingsDistinct(
+      item,
+      ctx.siblings.filter((s) => !(item.slot_group && s.slot_group === item.slot_group)),
+      koreanOf,
+      'wrong_counter',
+    ),
   ]);
   if (!options) return null;
-  return finish('fill_sentence', item, ctx, { sentence, audio: item.audio.example ?? undefined }, options, feedbackFor(item, item.role === 'counter' ? 'rationale.counter' : 'rationale.fill'));
+  return finish('fill_sentence', 'fillTheBlank', item, ctx, { sentence, audio: item.audio.example ?? undefined }, options, feedbackFor(item, item.role === 'counter' ? 'rationale.counter' : 'rationale.fill'));
 }
 
 /** Tap the parts of a compound numeral in order: 삼십오 → 삼 · 십 · 오. */
@@ -432,6 +600,7 @@ function orderParts(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   return {
     id: `${ctx.lesson.id}:${item.id}:order_parts:${ctx.attempt}`,
     kind: 'order_parts',
+    question_type: 'orderTheParts',
     item_id: item.id,
     prompt: { value: item.value, key: 'prompt.orderParts' },
     options: shuffled.map((text) => ({ text })),
@@ -458,6 +627,7 @@ function decompose(korean: string, system: NumberItem['system']): string[] | nul
 
 function finish(
   kind: NumbersExerciseKind,
+  questionType: NumbersQuestionType,
   item: NumberItem,
   ctx: Ctx,
   prompt: NumbersExercise['prompt'],
@@ -469,6 +639,7 @@ function finish(
   return {
     id: seed,
     kind,
+    question_type: questionType,
     item_id: item.id,
     prompt,
     options,
@@ -515,7 +686,38 @@ export function masteryExercises(lesson: NumberLesson, attempt: number): Numbers
     if (chosen.length >= lesson.mastery_count) break;
     if (!used.has(ex.id)) { chosen.push(ex); used.add(ex.id); }
   }
-  return shuffle(chosen, `${lesson.id}:mastery:${attempt}`);
+  return spreadAnswers(shuffle(chosen, `${lesson.id}:mastery:${attempt}`), `${lesson.id}:columns:${attempt}`);
+}
+
+/**
+ * The answer walks the columns across a mastery check.
+ *
+ * Each question's options are shuffled on their own seed, which makes the
+ * position of any one answer unpredictable and says nothing about the *set*.
+ * The zero lesson drew four four-option questions whose seeds independently put
+ * the answer at index 2 — a 1-in-64 coincidence, and a learner who tapped the
+ * third button four times passed the check without reading a word. Independence
+ * is the property that allows that, not a bug in the shuffle.
+ *
+ * So the last step of building a check assigns the columns rather than hoping
+ * for them: a hashed permutation of `0..3`, walked in order, and each question's
+ * options **rotated** — not re-shuffled — until its answer lands on the column
+ * it was given. Rotating keeps the distractor order the per-question seed chose,
+ * so leaving the check and coming back still finds the options where they were,
+ * and the starting permutation changes with the lesson and the attempt so a
+ * retake is not the same walk.
+ */
+function spreadAnswers(list: NumbersExercise[], seed: string): NumbersExercise[] {
+  const columns = shuffle([0, 1, 2, 3], seed);
+  let step = 0;
+  return list.map((exercise) => {
+    if (exercise.kind === 'order_parts' || exercise.options.length < 2) return exercise;
+    const want = columns[step++ % columns.length]! % exercise.options.length;
+    const by = (exercise.answer - want + exercise.options.length) % exercise.options.length;
+    if (by === 0) return exercise;
+    const options = [...exercise.options.slice(by), ...exercise.options.slice(0, by)];
+    return { ...exercise, options, answer: want };
+  });
 }
 
 function generate(lesson: NumberLesson, attempt: number, phase: string, perItem: number): NumbersExercise[] {

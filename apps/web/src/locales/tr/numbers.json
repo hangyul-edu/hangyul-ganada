@@ -40,8 +40,12 @@
   "stepOf": "Adım {{current}} / {{total}}",
   "questionOf": "Soru {{current}} / {{total}}",
   "readingLabel": "Şöyle söylenir",
-  "exampleLabel": "Kullanımda",
-  "practiceIntro": "Burada hata yapmak sorun değil — her cevap açıklanıyor.",
+  "exampleLabel": {
+    "writing": "Böyle yazılır",
+    "pronunciation": "Böyle okunur",
+    "example": "Kullanımda"
+  },
+  "practiceIntro": "Burada hata yapmak sorun değil — gerektiği yerde açıklama gelir.",
   "masteryIntro": "{{count}} soru. Yüzde {{pass}} doğru yapman ve her öğeyi en az bir kez doğru bilmen gerekiyor.",
   "masteryPassed": "Ustalık testi geçildi — {{total}} sorudan {{correct}} doğru",
   "masteryFailed": "Henüz değil — {{total}} sorudan {{correct}} doğru. Örnekleri gözden geçir ve yeniden dene.",
@@ -59,8 +63,10 @@
     "incorrect": "Yanlış"
   },
   "prompt": {
-    "listen": "Ne duydun?",
-    "read": "Bu ne anlama geliyor?",
+    "listenAndChoose": "Ne duydun?",
+    "chooseMeaning": "Bu ne anlama geliyor?",
+    "chooseCorrectExplanation": "Doğru açıklamayı seç.",
+    "findIncorrectExpression": "Yanlış ifadeyi seç.",
     "chooseSystem": "Buraya hangi sayılar gelir?",
     "digitsToKorean": {
       "sino": "Bu sayıyı 일, 이, 삼 ile söyle",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Bu hangi sayı?",
     "counterForm": "{{value}} sayısı {{counter}} ile nasıl söylenir?",
-    "spotMistake": "Hangisi doğru?",
     "fill": "Boşluğu doldur",
     "orderParts": "{{value}} sayısını kurmak için parçalara sırayla dokun"
   },
@@ -122,7 +127,7 @@
       "objective": "일, 이, 삼’dan 십’e kadar dinle ve tekrar et.",
       "step1": "일, 이, 삼 ile başlayalım. Bu sayıları fiyatta, tarihte, dakikada, telefon numarasında ve katta kullanırsın.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Hepsi tek hece.",
-      "step3": "Şöyle söylenir: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Şöyle söylenir: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "하나, 둘, 셋 ile saymak",
@@ -141,7 +146,7 @@
       "title": "Eşyalar 하나, 둘 · fiyatlar 일, 이",
       "objective": "Saymak için hangi sayıları, fiyat ve tarih için hangilerini kullandığını seç.",
       "step1": "Gördüğünü 하나, 둘, 셋 ile sayarsın: 세 명, 두 시, 스무 살.",
-      "step2": "Fiyat, tarih, dakika, telefon numarası ve katta 일, 이, 삼 kullanılır: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Fiyat, tarih, dakika, telefon numarası ve katta 일, 이, 삼 kullanılır: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Bir saatte ikisi birden geçer. 세 시 삼십 분 — saat 세, dakika 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Doğum günün ne zaman?",
       "objective": "Tarihi 년, 월 ve 일 ile söyle — 유월 ve 시월’e dikkat et.",
-      "step1": "년, 월 ve 일 hepsi 일, 이, 삼 sayılarını alır: 이천이십육 년 삼월 십오 일. Önce büyük birim.",
+      "step1": "년, 월 ve 일 hepsi 일, 이, 삼 sayılarını alır: 이천이십육년 삼월 십오일. Önce büyük birim.",
       "step2": "İki ay kuralsızdır. Haziran 유월'dür, 육월 değil; ekim 시월'dür, 십월 değil.",
-      "step3": "Ayın günü olan 일, bir anlamındaki 일 ile aynı sözcüktür. 삼월 일 일, martın biridir."
+      "step3": "Ayın günü olan 일, bir anlamındaki 일 ile aynı sözcüktür. 삼월 일일, martın biridir."
     },
     "weekdays": {
       "title": "Bugün günlerden ne?",
@@ -270,8 +275,8 @@
     "counterCups": "fincanlar ve bardaklar",
     "counterFlat": "yassı şeyler — biletler, kâğıtlar",
     "counterBooks": "kitaplar",
-    "counterAge": "yaş",
-    "counterAgeFormal": "yaş — resmî",
+    "counterAge": "yaş — 하나, 둘, 셋 ile",
+    "counterAgeFormal": "yaş — belgelerde ve haberlerde, 일, 이, 삼 ile",
     "howOld": "Kaç yaşındasın?",
     "ageHonorific": "yaş — saygı sözcüğü, yaşça büyük biri için",
     "counterHour": "saat",
@@ -335,7 +340,6 @@
     "bus206": "206 numaralı otobüs",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 doğru; 둘 살 değil",
-    "pitfallSimnyuk": "yazılışı 십육, okunuşu 심뉵",
     "pitfallJune": "유월 doğru; 육월 değil",
     "pitfallHourMinute": "세 시 삼십 분 doğru; 삼 시 서른 분 değil",
     "pitfallSpacing": "한 개 doğru; 한개 değil",

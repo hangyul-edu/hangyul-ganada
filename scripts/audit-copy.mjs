@@ -339,6 +339,18 @@ const REVIEWED_TONE = new Set([
   */
   'numbers:module.review.goal',
   'numbers:lesson.pitfalls.title',
+  /*
+    The instruction over a spot-the-mistake question, and the one place in the
+    app where "wrong" is the whole point of the sentence.
+
+    It reads *Choose the expression that is wrong* - about an expression on the
+    screen, before the learner has done anything, and it is the fix for a
+    question that used to be headed *Which one is right?* over an option list
+    whose answer is the wrong one. Softening it back towards "which one is not
+    quite right" would reintroduce exactly the ambiguity that cost learners the
+    question. Read in context, kept, and listed here.
+  */
+  'numbers:prompt.findIncorrectExpression',
 ]);
 
 /** Words that are usually a tone problem, always worth a human reading. */

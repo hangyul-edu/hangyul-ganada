@@ -40,8 +40,12 @@
   "stepOf": "Passo {{current}} de {{total}}",
   "questionOf": "Pergunta {{current}} de {{total}}",
   "readingLabel": "Pronuncia-se",
-  "exampleLabel": "Em uso",
-  "practiceIntro": "Aqui pode errar à vontade — toda resposta vem explicada.",
+  "exampleLabel": {
+    "writing": "Escreve-se assim",
+    "pronunciation": "Pronuncia-se assim",
+    "example": "Em uso"
+  },
+  "practiceIntro": "Errar aqui tudo bem — a explicação vem quando ajuda.",
   "masteryIntro": "{{count}} perguntas. Você precisa acertar {{pass}}%, e cada item pelo menos uma vez.",
   "masteryPassed": "Teste de domínio aprovado — {{correct}} de {{total}}",
   "masteryFailed": "Ainda não — {{correct}} de {{total}}. Revise os exemplos e tente de novo.",
@@ -59,8 +63,10 @@
     "incorrect": "Errado"
   },
   "prompt": {
-    "listen": "O que você ouviu?",
-    "read": "O que isso significa?",
+    "listenAndChoose": "O que você ouviu?",
+    "chooseMeaning": "O que isso significa?",
+    "chooseCorrectExplanation": "Escolha a explicação correta.",
+    "findIncorrectExpression": "Escolha a expressão errada.",
     "chooseSystem": "Quais números entram aqui?",
     "digitsToKorean": {
       "sino": "Fale este número com 일, 이, 삼",
@@ -69,7 +75,6 @@
     },
     "koreanToDigits": "Que número é este?",
     "counterForm": "Como se diz {{value}} com {{counter}}?",
-    "spotMistake": "Qual está certa?",
     "fill": "Complete a lacuna",
     "orderParts": "Toque nas partes em ordem para formar {{value}}"
   },
@@ -122,7 +127,7 @@
       "objective": "Ouça 일, 이, 삼 até 십 e repita.",
       "step1": "Comece por 일, 이, 삼. Esses números servem para preços, datas, minutos, telefones e andares.",
       "step2": "일 이 삼 사 오 육 칠 팔 구 십. Cada um tem uma sílaba só.",
-      "step3": "Fala assim: 삼월 이 일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step3": "Fala assim: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
       "title": "Contar com 하나, 둘, 셋",
@@ -141,7 +146,7 @@
       "title": "Coisas com 하나, 둘 · preços com 일, 이",
       "objective": "Escolha quais números servem para contar e quais para preços e datas.",
       "step1": "O que você vê, conta com 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Para preços, datas, minutos, telefones e andares vão 일, 이, 삼: 오천 원, 삼월 일 일, 삼십 분.",
+      "step2": "Para preços, datas, minutos, telefones e andares vão 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
       "step3": "Uma hora leva os dois. 세 시 삼십 분 — a hora é 세, os minutos são 삼십."
     },
     "sinoBuild": {
@@ -202,9 +207,9 @@
     "dates": {
       "title": "Quando é seu aniversário?",
       "objective": "Diga uma data com 년, 월 e 일 — e cuidado com 유월 e 시월.",
-      "step1": "년, 월 e 일 levam os números 일, 이, 삼: 이천이십육 년 삼월 십오 일. A unidade grande primeiro.",
+      "step1": "년, 월 e 일 levam os números 일, 이, 삼: 이천이십육년 삼월 십오일. A unidade grande primeiro.",
       "step2": "Dois meses são irregulares. Junho é 유월, não 육월; outubro é 시월, não 십월.",
-      "step3": "O 일 de dia do mês é a mesma palavra que o 일 de um. 삼월 일 일 é primeiro de março."
+      "step3": "O 일 de dia do mês é a mesma palavra que o 일 de um. 삼월 일일 é primeiro de março."
     },
     "weekdays": {
       "title": "Que dia é hoje?",
@@ -270,8 +275,8 @@
     "counterCups": "xícaras e copos",
     "counterFlat": "coisas planas — ingressos, folhas",
     "counterBooks": "livros",
-    "counterAge": "anos de idade",
-    "counterAgeFormal": "anos de idade — formal",
+    "counterAge": "idade — com 하나, 둘, 셋",
+    "counterAgeFormal": "idade — em documentos e no noticiário, com 일, 이, 삼",
     "howOld": "Quantos anos você tem?",
     "ageHonorific": "idade — honorífico, de alguém mais velho",
     "counterHour": "hora (do relógio)",
@@ -335,7 +340,6 @@
     "bus206": "o ônibus 206",
     "threePointFive": "3,5",
     "pitfallCountingForm": "두 살 está certo; 둘 살 não",
-    "pitfallSimnyuk": "escreve-se 십육, pronuncia-se 심뉵",
     "pitfallJune": "유월 está certo; 육월 não",
     "pitfallHourMinute": "세 시 삼십 분 está certo; 삼 시 서른 분 não",
     "pitfallSpacing": "한 개 está certo; 한개 não",
