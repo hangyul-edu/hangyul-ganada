@@ -153,9 +153,9 @@ without trusting the row.
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Issues tracked | 142 | `docs/issues.json` |
-| Signed APK | 83.7 MB | `result/build-info.json` |
-| Signed AAB | 82.0 MB | same |
-| Tests | 1,330 across 73 files | `npm test` |
+| Signed APK | 83.9 MB | `result/build-info.json` |
+| Signed AAB | 82.2 MB | same |
+| Tests | 1,344 across 74 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -1627,8 +1627,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 1, versionName 1.0.0 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.7 MB** (87,763,942 B), `7777b402acb20973…` |
-| Release AAB | **82.0 MB** (85,973,157 B), `86b00c972940ab81…` |
+| Release APK | **83.9 MB** (88,025,258 B), `3894b163b0156c13…` |
+| Release AAB | **82.2 MB** (86,233,677 B), `8a271a8dc9004c85…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -1687,10 +1687,10 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1018** (64 files) |
+| Web unit (`vitest`) | **1032** (65 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
-| End-to-end (`playwright`) | **560** (280 × 2 projects) |
+| End-to-end (`playwright`) | **574** (287 × 2 projects) |
 
 The previous pass grew the web suite by 15 — the level-change fixtures A–G,
 the mid-day-retake provider cases, the retake state machine and the
@@ -3461,7 +3461,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,330 across 73 files** — handwriting-core 96, korean-morphology 216, web 1018 (57 of them the Numbers journeys, negative tests, migration fixtures and exercise-engine tests of §20K) |
+| Unit and integration tests | **1,344 across 74 files** — handwriting-core 96, korean-morphology 216, web 1032 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -5162,6 +5162,222 @@ editorial QA, and that is not a change to make and verify in the hours before a
 release build. It is recorded so the next pass starts from the measurement
 rather than from another eighteen overrides.
 
+# 20P. The fifth screenshot pass — the question that asked the opposite
+
+Two screenshots of the Numbers course, and a version number that had gone
+backwards.
+
+## 20P.1 The instruction and the grader disagreed — **P1, fixed**
+
+    어느 쪽이 맞을까요?          which one is right?
+
+    세 시     두 개     한 명     셋 시
+
+Three of those four are right. The answer the grader wanted was **셋 시**, the
+one that is wrong. A learner who read the instruction and obeyed it was marked
+incorrect, and the same question shape appears in three lessons and in all
+thirty-two languages.
+
+Nothing was broken in the sense a test looks for. The exercise was built by
+`spot_mistake`, whose whole job is to ask a learner to find the mistake; the
+distractors were correct expressions, deliberately; the answer index pointed at
+the wrong form, deliberately. What was wrong is that the *heading* was chosen
+from the exercise **kind** — a fact about which function assembled the options —
+and the kind and the question are not the same thing.
+
+The second screenshot is the same cause with the other symptom. 한 개, under
+**이건 무슨 뜻일까요?**, with four whole grammar rules to choose between —
+*숫자 그대로가 아니라 세는 형태를 써요*, *글자는 십육, 소리는 심뉵*, *세는
+말은 띄어 써요*, *6월은 유월, 육월은 없어요*. 한 개 does not mean any of them.
+That question is *which of these statements is true*, and it was wearing the
+meaning question's instruction because both are built by `read_choose`.
+
+**The fix is a type on the data, not a string swap.** `NumbersQuestionType` is
+carried on the exercise, resolved once in the builder, and `NumberSessionPage`
+switches on it and on nothing else. Which of the two `read_choose` types applies
+is declared content — `NumberItem.gloss_kind` is `meaning` or `explanation` —
+rather than sniffed from the option strings, which would break the first time a
+meaning gloss grew a verb ending.
+
+| type | instruction | built by |
+| --- | --- | --- |
+| `findIncorrectExpression` | 다음 중 틀린 표현을 고르세요. | `spot_mistake` |
+| `chooseCorrectExplanation` | 다음 중 올바른 설명을 고르세요. | `read_choose` over an explanation gloss |
+| `listenAndChoose` | 무엇이라고 들렸나요? | `listen_choose` |
+| `chooseMeaning` | 무슨 뜻일까요? | `read_choose` over a meaning gloss |
+
+An explanation question is also shown the item's *contrast pair* rather than its
+bare word. 한 개 alone is explained by two of the five rules at once — the
+counting form is used **and** the counting word is spaced — so two options are
+defensible and the question has no answer. `한 개 (✓) · 한개 (✗)` is explained
+by exactly one of them.
+
+## 20P.2 Twenty-six more questions with more than one answer — **P1, fixed**
+
+The screenshots were two instances. Auditing every question the engine can
+build — practice and mastery, nineteen lessons, three attempts, 972 built and
+284 distinct — found twenty-six question shapes a learner could not answer.
+
+Thirteen were fill-the-blanks whose sentence decided nothing:
+
+```
+  두 ____       개 · 명 · 마리 · 사람      all four are Korean
+  세 ____       개 · 사람 · 명 · 마리       all four
+  삼십 ____     분 · 초                    삼십 분 and 삼십 초 both exist
+  삼____        월 · 년 · 일               삼월, 삼년, 삼일 all exist
+  삼 ____       층 · 호                    삼 층 and 삼 호 both exist
+  ____에 만나요. 주말 · 금요일 · 월요일      all three
+  맥주 한 ____   병 · 잔                    both
+```
+
+The cause is structural: the blank's distractors were the lesson's own
+siblings, which is to say the set of words that also fit. A blank after a bare
+numeral is not a question. `fill_sentence` now requires a **context anchor** — a
+word in the sentence that is not part of the number phrase — so 고양이 두 ____
+builds and 두 ____ does not, and where two words still fit the anchor
+(맥주 한 병 beside 맥주 한 잔, 책 세 권 beside 책 세 장, the three weekday
+phrases) the pair is declared in `slot_group`.
+
+Five were meaning questions offering two glosses that named the same thing: 명
+glossed as *사람* against 사람 as *사람 — 일상적인 말*, and the three age
+counters that all read *나이* with a note. `gloss_group` declares the first pair;
+the age glosses were rewritten to name what actually separates them — which
+numbers they take, and who they are used to.
+
+Five were the explanation questions of §20P.1. Three offered two distractors
+that meant the same thing, which is not unanswerable but is elimination the
+distractor design exists to remove.
+
+**The audit is now the gate.** `numbers:qa` §8 builds every question,
+deduplicates, and checks each against its type: exactly one defensible option,
+every other one wrong for a reason the file can name, and an option it cannot
+classify at all is itself a failure — nobody can defend marking wrong an
+expression nothing in the repository says is wrong.
+
+## 20P.3 일 일 — **P2, fixed**
+
+The course wrote 삼월 일 일, 삼월 이 일, 유월 육 일, 시월 십 일, 십오 일 and
+이천이십육 년. Every one is the 원칙 form under 한글 맞춤법 §43 and none of them
+is written by anybody: the same section's 다만 clause closes a unit noun when
+the number is an *order*, and a date is an order.
+
+*일 일* is the worst of them. It reads as two ones — on the screen of the lesson
+whose subject is that 일 is both the number and the day.
+
+```
+  quantity, open   한 개 · 세 명 · 두 잔 · 스무 살 · 세 시 · 삼십 분 · 오천 원
+  ordinal, closed  삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년
+```
+
+Both directions are gated, over the item data, all thirty-two bundles and the
+audio manifest — fixing one by hand is how a codebase ends up with 한개 as well.
+
+**The recordings were regenerated and the old ones deleted.** A clip id is
+derived from its text, so correcting the text produces a new id and orphans the
+old file, which stays on disk, stays in the manifest and stays playable by
+anything holding the old id. Ten files were removed with their manifest rows;
+a learner with a warm cache cannot go on hearing 삼월 일 일 from a lesson that
+has stopped printing it.
+
+## 20P.4 이렇게 써요 over a card about sound — **P2, fixed**
+
+Every example card in the course was headed *이렇게 써요*, which in Korean is two
+sentences: *this is how you write it* and *this is how you use it*. On most
+cards the second reading is the right one and no harm is done. On 유월 육일 a
+learner takes the first, and the card exists to teach the second — that June is
+*said* 유월 and never 육월.
+
+`NumberItem.example_kind` is `writing`, `pronunciation` or `example`, and the
+heading follows it: *이렇게 써요* only on the three cards that show a written
+contrast, *이렇게 발음해요* on the five whose subject is a sound change
+(유월 육일, 시월 십일, 십육 (심뉵), 유월 · 육월, and the phone number that runs
+오륙칠팔 together), *이렇게 말해요* everywhere else.
+
+## 20P.5 The version number went backwards — **P1, fixed**
+
+`f177884e`, resolving a stash conflict, took `buildNumber` from 10 to 4 to match
+what the Xcode project happened to carry. Left alone, the next Android build
+would have been versionCode 4 after 10 had already been produced and delivered,
+and Google Play refuses a code it has seen — at upload, hours after the build.
+
+This release is **1.0.3, versionCode 11**. Ten is spent: both delivered
+artefacts report it under `aapt2 dump badging` and `bundletool dump manifest`,
+`build-info.json` recorded it, and the commit that produced them is titled
+`versionCode 10`. Nothing has been uploaded to Play, so 11 is the next valid
+code rather than the next unused one.
+
+**iOS stays at 1.0.2 build 4, deliberately.** Those are Xcode build settings in
+`project.pbxproj`, a file that also carries `DEVELOPMENT_TEAM`,
+`CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`, `IPHONEOS_DEPLOYMENT_TARGET` and
+the thirty `knownRegions` that decide which languages the App Store lists the
+app in. A text substitution from Linux is how a project file loses a setting
+nobody was looking at. `app.identity.json` declares what the project carries
+under `ios.xcode`; `version:check` asserts the file still carries exactly that
+and prints the pending action rather than failing, because failing would mean no
+Android release could be cut without a Mac in the room.
+
+`scripts/check-ios-project.mjs` is the lock: the SHA-256, the Git blob id, every
+protected setting by name and the region list, against a recorded state. It is
+green before and after `cap sync`, and it was negative-tested by editing
+`MARKETING_VERSION`.
+
+## 20P.6 The launcher artwork — **delivered**
+
+Two sources, and they stay two: `app_logo_android.png` for Android and the web
+install, `app_logo_iphone.png` for iOS and App Store Connect.
+
+Both arrive as finished opaque squares carrying their own cream ground, which
+changes what the icon pipeline should do with them. The legacy and store icons
+are a straight resample, edge to edge — the previous pipeline's 0.76 inset on a
+second ground was right for a transparent mark and would put a cream border
+round a cream tile here.
+
+The artwork bleeds off all four edges, which a launcher mask will cut, so the
+three shapes are treated differently: `ic_launcher.png` as delivered,
+`ic_launcher_round.png` with the ink inside a full circle, and the adaptive
+foreground with the ink inside the 66/108 circle over a flat background in the
+artwork's own `#FFF6DC`. 0.48 is where the first ink pixel crosses the adaptive
+circle, measured rather than guessed; the fraction is set one step under and the
+build asserts the clipping rather than trusting the arithmetic.
+
+The monochrome layer needed real work. Every pixel of this artwork is opaque, so
+its alpha channel is one filled blob with no face. It punches the dark features
+out — the eyes and the open mouth become holes the wallpaper shows through —
+with one exception a luminance test alone gets wrong: the leaf is a dark green
+and the green ㄷ darker than the orange letters, so a plain threshold hollows
+both. They are kept by being green-dominant.
+
+## 20P.7 What proves it
+
+| | |
+| --- | --- |
+| `numbers:qa` | 284 distinct questions across 10 types, 972 built; 0 problems. Four new sections: the instruction per type, one answer per question, the date spacing, and the example headings |
+| `scripts/numbers-qa-negative.sh` | ten defects restored one at a time, all ten caught, then restored and green |
+| `features/numbers/questionTypes.test.ts` | 14 cases on the data side |
+| `e2e/numbers-prompts.spec.ts` | 7 cases on the page, at 320×568, 375×667 and 22 px root text |
+| `mobile:icons:check` | 59 files, and now a failure on an obsolete or missing resource, both negative-tested |
+| `ios:project:check` | the project file byte-for-byte, negative-tested |
+
+Three of the one-answer rules protect a *declaration* — the context anchor,
+`gloss_group`, `slot_group` — and are deliberately not written in terms of it. A
+gate that read the declaration back would go green the moment somebody deleted
+it, which is the shape of a check that proves nothing. The anchor is recomputed
+in the gate, and the two lists of things that name the same thing are stated
+there by hand, short enough that a new entry gets read.
+
+## 20P.8 Not claimed
+
+No native speaker has read the thirty-one non-Korean bundles for the strings
+this pass added. They are gated for presence, for placeholder integrity, for not
+being the English, and for not being Korean in a language that is not Korean;
+whether the Vietnamese reads like Vietnamese is not known. Korean has a reading
+recorded in `docs/copy-audit-ko.json` — 847 strings, ten of them rewritten
+because of it — and that ledger says plainly that the reading was done by the
+model that wrote the sentence.
+
+No `.ipa` was produced and no device was used. `result/RELEASE_VALIDATION.md`
+carries both statements in full.
+
 # 21. Issues
 
 `docs/issues.json` is the single place in this repository that states an issue's
@@ -5550,8 +5766,8 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,330 unit cases across three packages — 1018
-web, 216 Korean morphology, 96 handwriting — 446 end-to-end, 143 rendered
+The suites run green in full: 1,344 unit cases across three packages — 1032
+web, 216 Korean morphology, 96 handwriting — 574 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
 against a face the app does not draw, and the conjugation panel against a

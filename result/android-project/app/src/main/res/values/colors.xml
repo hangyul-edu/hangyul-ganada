@@ -38,8 +38,15 @@
     <color name="splashBackground">#FFF1E1</color>
 
     <!--
-      warm.50: the ground the app icon is composed on, so the launcher tile and
-      the icon are the same colour.
+      The ground `apps/common_assets/logo/app_logo_android.png` is drawn on, so
+      the launcher tile and the icon are the same colour.
+
+      The adaptive icon is this flat colour with the artwork's ink on top of it,
+      the ink having been cut out of that same cream. Any other value here and
+      the launcher draws the character's soft shadow fading into one cream on a
+      tile painted another - a faint square inside a round icon.
+      `scripts/content/build_app_icons.py` reads the artwork and fails the build
+      if this line stops matching it.
     -->
-    <color name="ic_launcher_background">#FFF8F1</color>
+    <color name="ic_launcher_background">#FFF6DC</color>
 </resources>

@@ -6,14 +6,13 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 3 September 2026 against the v1.0.2 build-4 rebuild, compiled
-from a **clean** checkout of commit `3cb56864` — the previous refresh built
-from an uncommitted tree with 440 changed and 595 untracked files, which is why
-`I-01` was reopened and is now closed by the state rather than by an intention.
-Every item below still stands, unchanged: none of them is a build problem and
-none can be cleared from this machine. The Android artefacts were rebuilt at
-versionCode 4 and signed with the existing production identity this cycle — see
-`RELEASE_VALIDATION.md`.
+Re-checked on 4 September 2026 against **v1.0.3, versionCode 11**, compiled
+from a clean checkout of commit `2f282d9b`. Every item below still stands,
+unchanged: none of them is a build problem and none can be cleared from this
+machine. The Android artefacts were rebuilt at versionCode 11 and signed with
+the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
+
+Two items are **new this cycle** — §9 and §10.
 
 ---
 
@@ -212,6 +211,62 @@ first-run walkthrough, and from automated checks — not from watching someone.
 `docs/BEGINNER_TEST_PROTOCOL.md` is the study that should be run, written so
 that somebody else can run it. It has not been run, and nothing in the report or
 the store material claims otherwise.
+
+---
+
+## 9. iOS is still at 1.0.2 build 4 · **REQUIRES A MAC**
+
+**What is missing:** the release version in the Xcode project.
+
+Android ships this release as 1.0.3, versionCode 11. iOS does not, and its
+`MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.2` and `4`.
+
+This is deliberate rather than an oversight. Those two are Xcode build settings
+living in `App.xcodeproj/project.pbxproj`, a file that also carries
+`DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`,
+`IPHONEOS_DEPLOYMENT_TARGET` and the thirty `knownRegions` that decide which
+languages the App Store lists the app in. Editing it with a text substitution
+from Linux is how a project file loses a setting nobody was looking at, and the
+loss is discovered in App Store Connect weeks later. Nothing in this repository
+writes to it; `npm run ios:project:check` asserts its SHA-256, its Git blob id
+and every one of those settings against a lock file, and it is green.
+
+**To unblock**, on a Mac with Xcode, in one commit:
+
+1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
+   **Version** to `1.0.3` and **Build** to `11` for both Debug and Release.
+2. Update `ios.xcode.marketingVersion` to `"1.0.3"` and
+   `ios.xcode.currentProjectVersion` to `11` in `apps/mobile/app.identity.json`.
+3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
+
+`npm run version:check` prints this as a pending action on every run until it is
+done. It is reported rather than failed, because failing would mean no Android
+release could be cut without a Mac in the room.
+
+---
+
+## 10. The thirty-one non-Korean bundles have not had a native reading · **EXTERNAL REVIEW REQUIRED**
+
+**What is missing:** a speaker of each language reading the strings this cycle
+added.
+
+Seven strings per language changed or arrived — the two new question
+instructions, the three example headings, the practice intro, and the two age
+glosses — across thirty-two bundles. They are gated: every key is present in
+every bundle, no sentence is identical to the English, no instruction is Korean
+in a bundle that is not Korean, and the pair that matters most (*choose the
+wrong expression* against *choose the correct explanation*) is checked in Korean
+verbatim so the two cannot be swapped.
+
+What no gate can see is whether the Vietnamese reads like Vietnamese. Korean is
+covered — `docs/copy-audit-ko.json` records a reading of all 847 learner-facing
+Korean strings, ten of them rewritten because of one — and that ledger says
+plainly that the reading was done by the model that wrote the sentence, which is
+the same pair of eyes twice. The other thirty-one languages have had no reading
+at all.
+
+**To unblock:** one reviewer per language, reading `numbers.json` in the
+rendered screen. Nothing in this report claims a native review happened.
 
 ---
 
