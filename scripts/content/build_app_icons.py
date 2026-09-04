@@ -63,9 +63,31 @@ WEB_PUBLIC = ROOT / "apps" / "web" / "public"
 ANDROID_RES = ROOT / "apps" / "mobile" / "android" / "app" / "src" / "main" / "res"
 IOS_ASSETS = ROOT / "apps" / "mobile" / "ios" / "App" / "App" / "Assets.xcassets"
 
-#: The application icon artwork, transparent behind it. Every launcher, store
-#: and installable icon is built from this and from nothing else.
-APP_ICON_SOURCE = BRAND / "app-icon.png"
+#: The application icon, per platform, delivered as a finished square.
+#:
+#: ## Two files, and they are not interchangeable
+#:
+#: `app_logo_android.png` is what an Android launcher and the Play listing show;
+#: `app_logo_iphone.png` is what an iPhone home screen and App Store Connect
+#: show. They are close but not identical - the iPhone art is drawn at 1024 for
+#: a mask that rounds harder, the Android art at 512 for a launcher that may
+#: crop to a circle - and the two stores are the two audiences, so consolidating
+#: them into one source would mean one of the platforms shipping art drawn for
+#: the other. Nothing below reads across: the Android outputs read the Android
+#: file, the iOS outputs read the iPhone file, and `--check` fails if that stops
+#: being true.
+#:
+#: ## They arrive composed, and are used composed
+#:
+#: Both are opaque, square, and carry their own ground - the cream the character
+#: sits on is part of the drawing, not something this script adds. So the legacy
+#: and store icons are a straight resample, edge to edge: no re-inset on a
+#: different ground, no second rounded mask over artwork that was already
+#: composed for one. The only place the artwork is taken apart is the adaptive
+#: and round layers, where a launcher's own mask would cut the arms off, and
+#: there it is the *ink* that is repositioned rather than the picture stretched.
+ANDROID_APP_ICON_SOURCE = ROOT / "apps" / "common_assets" / "logo" / "app_logo_android.png"
+IOS_APP_ICON_SOURCE = ROOT / "apps" / "common_assets" / "logo" / "app_logo_iphone.png"
 
 #: The brand mark on its own. The browser favicon is built from this — see the
 #: note above on why it is not the app icon.
@@ -128,6 +150,32 @@ SHARE_OUTPUT_NAME = "og-hangyul-ganada.png"
 #: the tokens move: the icons are regenerated, not patched.
 GROUND = (255, 248, 241, 255)
 
+#: The ground the delivered app-icon artwork is drawn on, read out of the file
+#: rather than typed here - see `_ground_of`. It is what the adaptive icon's
+#: flat background layer has to be, because the foreground is the same picture
+#: with that colour keyed out: any other value and the launcher paints a cream
+#: character on a differently-cream tile, with the seam showing wherever the
+#: artwork's own soft shadow ends. `ic_launcher_background` in `colors.xml`
+#: carries the same value and `--check` fails when the two disagree.
+ANDROID_BACKGROUND_COLOR = ROOT / "apps" / "mobile" / "android" / "app" / "src" / "main" / "res" / "values" / "colors.xml"
+
+#: How much of the *round* launcher icon the ink occupies.
+#:
+#: `ic_launcher_round.png` is used by launchers that crop to a circle on API
+#: levels below 26, where there is no adaptive icon to fall back to. Shipping
+#: the full-bleed square there is what takes the character's arms off: the
+#: artwork runs to all four edges by design. 0.80 is the largest fraction at
+#: which no ink pixel leaves the circle, measured rather than guessed, and this
+#: sits under it.
+ROUND_ICON_FRACTION = 0.76
+
+#: The same measurement for Android's adaptive foreground, whose worst case is
+#: the 66/108 circle rather than the whole canvas. 0.48 is where the first ink
+#: pixel crosses; this is one step under so a redraw of the artwork does not
+#: immediately fail the build. `_assert_inside_safe_zone` measures the clipping
+#: either way - the number is the starting point, not the guarantee.
+ANDROID_ADAPTIVE_FRACTION = 0.46
+
 #: How much of a legacy icon the artwork occupies, measured against its longer
 #: edge. Enough to read at 48 px, with room for the launcher's corner rounding.
 LEGACY_FRACTION = 0.76
@@ -145,13 +193,16 @@ ADAPTIVE_SAFE_FRACTION = 0.52
 #: The same idea for the web's maskable icons, whose safe zone is a circle of
 #: 80% of the icon's width rather than 66/108 of it. Roomier than Android's, so
 #: an installed PWA is not left with a smaller icon than the store build.
-MASKABLE_SAFE_FRACTION = 0.64
+MASKABLE_SAFE_FRACTION = 0.62
 
-#: Luminance above which a pixel is treated as highlight rather than ink when
-#: the monochrome layer is flattened. Chosen by looking at the result: below it
-#: the pale hand disappears, above it the 가나다 face fills in and the icon
-#: becomes a black blob. See `_monochrome`.
-MONOCHROME_INK_MAX = 215
+#: Luminance below which a pixel is a *feature* rather than the body, when the
+#: monochrome layer is flattened.
+#:
+#: The mandarin's eyes are black and its open mouth is a dark red (L≈26); the
+#: body is orange (L≈164) and the cheeks a deeper orange (L≈125). Anything under
+#: this is punched out of the silhouette so it reads as a hole. See
+#: `_monochrome` for why a plain silhouette does not work.
+MONOCHROME_FEATURE_MAX = 110
 
 #: The ground of the splash artwork, sampled from its corner.
 #:
@@ -227,6 +278,63 @@ def _artwork(source: Path) -> Image.Image:
     return image.crop(box) if box else image
 
 
+def _ground_of(image: Image.Image) -> tuple[int, int, int, int]:
+    """The colour the artwork is composed on, sampled from its top-left pixel.
+
+    Read rather than declared. The delivered icon arrives as a finished square
+    and its ground is a fact about the file; a constant here would be a second
+    copy of that fact, and the first thing to go stale when the artwork is
+    redrawn a shade warmer.
+    """
+    red, green, blue = image.convert("RGB").getpixel((0, 0))
+    return (red, green, blue, 255)
+
+
+#: How far a pixel has to be from the ground before it counts as ink, and how
+#: far before it counts fully. A ramp rather than a threshold: the artwork's
+#: drop shadows fade into the cream over several units, and a hard cut leaves a
+#: visible outline of the shadow where the key stopped.
+_INK_SOFT = (10, 34)
+
+
+def _ink(image: Image.Image) -> Image.Image:
+    """`image` with its own ground keyed out, trimmed to what is left.
+
+    Used only where a launcher mask would cut the composed square - the adaptive
+    foreground, the round icon, the maskable web icon. Everywhere else the
+    artwork is used as delivered.
+
+    The keyed-out area is filled by the flat background layer, which is that
+    same ground colour, so nothing a person sees is removed: what the key buys
+    is a *measurable* ink boundary, which is what `_assert_inside_safe_zone`
+    needs in order to say whether the leaf and the arms survive the crop.
+    """
+    pixels = numpy.asarray(image.convert("RGBA")).astype(numpy.float64)
+    ground = numpy.asarray(_ground_of(image)[:3], dtype=numpy.float64)
+    distance = numpy.abs(pixels[:, :, :3] - ground).max(axis=2)
+    low, high = _INK_SOFT
+    keyed = numpy.clip((distance - low) / (high - low), 0.0, 1.0) * (pixels[:, :, 3] / 255.0)
+    pixels[:, :, 3] = keyed * 255.0
+    out = Image.fromarray(pixels.astype(numpy.uint8), "RGBA")
+    box = out.getchannel("A").point(lambda value: 255 if value > 8 else 0).getbbox()
+    return out.crop(box) if box else out
+
+
+def _full_bleed(art: Image.Image, size: int) -> Image.Image:
+    """`art` at `size`x`size`, edge to edge, with nothing added over it.
+
+    The delivered artwork is square, so this is a resample and never a stretch;
+    a source that stops being square is a build failure rather than a squashed
+    mandarin.
+    """
+    if art.width != art.height:
+        raise SystemExit(
+            f"app icon artwork is {art.width}x{art.height}; it must be square, because "
+            "resizing it to a launcher's square would otherwise distort the drawing"
+        )
+    return art.resize((size, size), Image.LANCZOS)
+
+
 def _monochrome(mark: Image.Image) -> Image.Image:
     """The artwork as a single-colour silhouette, for Android's themed icons.
 
@@ -234,18 +342,35 @@ def _monochrome(mark: Image.Image) -> Image.Image:
     does that by taking the `monochrome` layer and using *only its alpha* — the
     colours in it are thrown away — so what has to be right here is the shape.
 
-    A straight alpha silhouette of this artwork is a black blob: the face, the
-    leaf and the hand all have full alpha, so they merge into the orange. What
-    makes it read is knocking the highlights back out, which leaves the outline
-    of the fruit and the hand with the 가나다 face and the smile punched through
-    it. That is the icon someone recognises at 48 px, in one colour.
+    ## Why a plain silhouette is not it
+
+    Every pixel of this artwork is opaque, so its alpha channel is one blob: a
+    mandarin, its leaf, its two arms and three letters, all merged into a single
+    filled shape with no face. At 48 px that is not the app's icon, it is a
+    smudge with 가나다 over it.
+
+    What makes it read is punching the *features* out — the eyes and the open
+    mouth become holes rather than more ink — so the face is drawn by the
+    wallpaper showing through, which is exactly how a themed icon is meant to
+    work.
+
+    ## Dark, but not green
+
+    The features are found by luminance, with one exception that a luminance
+    test alone gets wrong: the leaf is a dark green (L≈58) and the green letter
+    darker than the orange ones (L≈102), so a plain threshold punches a
+    leaf-shaped hole in the top of the fruit and hollows out the ㄷ. Both are
+    green-dominant and neither of the real features is, so that is the test —
+    stated as a fact about this artwork rather than as a general rule.
     """
-    ink = ImageChops.multiply(
-        mark.getchannel("A"),
-        mark.convert("L").point(lambda value: 0 if value > MONOCHROME_INK_MAX else 255),
-    )
+    pixels = numpy.asarray(mark.convert("RGBA")).astype(numpy.int16)
+    red, green, blue = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
+    luminance = 0.299 * red + 0.587 * green + 0.114 * blue
+    feature = (luminance < MONOCHROME_FEATURE_MAX) & ~((green > red) & (green > blue))
+    alpha = pixels[:, :, 3].copy()
+    alpha[feature] = 0
     silhouette = Image.new("RGBA", mark.size, (0, 0, 0, 255))
-    silhouette.putalpha(ink)
+    silhouette.putalpha(Image.fromarray(alpha.astype(numpy.uint8), "L"))
     return silhouette
 
 
@@ -455,20 +580,50 @@ def _assert_inside_safe_zone(foreground: Image.Image, fraction: float, what: str
 
 def build() -> dict[Path, bytes]:
     """Every generated file, as path -> bytes. Nothing is written here."""
-    icon = _artwork(APP_ICON_SOURCE)
-    mono = _monochrome(icon)
+    android_art = Image.open(ANDROID_APP_ICON_SOURCE).convert("RGBA")
+    ios_art = Image.open(IOS_APP_ICON_SOURCE).convert("RGBA")
+    android_ground = _ground_of(android_art)
+    android_ink = _ink(android_art)
+    mono = _monochrome(android_ink)
     mark = _artwork(MARK_SOURCE)
     files: dict[Path, bytes] = {}
 
+    _assert_background_colour_matches(android_ground)
+
     # --- Android launcher icons ---------------------------------------------
+    #
+    # Three shapes, three treatments, and the difference between them is what a
+    # launcher does to the file it is given.
+    #
+    # `ic_launcher.png` is drawn as delivered: the artwork is composed on its
+    # own ground, edge to edge, and a launcher that wants rounded corners rounds
+    # them itself. Insetting it on a second ground - which is what this script
+    # did while the source was a transparent mark - would put a cream border
+    # round a cream tile and shrink the character for no reason.
+    #
+    # `ic_launcher_round.png` is the same picture with the ink moved inside a
+    # full circle, because a launcher that asks for the round variant is going
+    # to cut a circle out of it, and this artwork runs to all four edges: the
+    # arms and the bottom of the character are the first things to go.
+    #
+    # The adaptive pair is the API-26-and-up path and has the tightest crop of
+    # the three - 66 of 108 dp guaranteed - so it gets the smallest ink and a
+    # flat background in the artwork's own colour.
     for density, size in ANDROID_DENSITIES.items():
-        square = _png(_centred(icon, (size, size), LEGACY_FRACTION, GROUND))
-        files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher.png"] = square
-        files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_round.png"] = square
+        files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher.png"] = _png(
+            _full_bleed(android_art, size)
+        )
+        round_icon = _centred(android_ink, (size, size), ROUND_ICON_FRACTION, android_ground)
+        _assert_inside_safe_zone(
+            _centred(android_ink, (size, size), ROUND_ICON_FRACTION, None),
+            1.0,
+            "round launcher icon",
+        )
+        files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_round.png"] = _png(round_icon)
         # The adaptive foreground is drawn on a canvas 108/48 the nominal size,
         # transparent, with the artwork inside the safe zone.
         canvas = round(size * 108 / 48)
-        foreground = _centred(icon, (canvas, canvas), ADAPTIVE_SAFE_FRACTION, None)
+        foreground = _centred(android_ink, (canvas, canvas), ANDROID_ADAPTIVE_FRACTION, None)
         _assert_inside_safe_zone(foreground, 66 / 108, "adaptive icon foreground")
         files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_foreground.png"] = _png(
             foreground
@@ -476,7 +631,7 @@ def build() -> dict[Path, bytes]:
         # The themed-icon layer shares the foreground's geometry exactly: the
         # launcher swaps one drawable for the other and any difference in size
         # would show as the icon jumping when themed icons are turned on.
-        themed = _centred(mono, (canvas, canvas), ADAPTIVE_SAFE_FRACTION, None)
+        themed = _centred(mono, (canvas, canvas), ANDROID_ADAPTIVE_FRACTION, None)
         _assert_inside_safe_zone(themed, 66 / 108, "monochrome icon layer")
         files[ANDROID_RES / f"mipmap-{density}" / "ic_launcher_monochrome.png"] = _png(themed)
 
@@ -541,11 +696,23 @@ def build() -> dict[Path, bytes]:
     splash_art = _wordless(Image.open(SPLASH_SOURCE))
 
     # --- iOS -----------------------------------------------------------------
-    # One 1024 icon: Xcode 14 and newer generate the rest, so there is no set of
-    # sizes to fall out of step. It must be fully opaque — App Store Connect
-    # rejects an icon with an alpha channel, and `convert("RGB")` is what
-    # guarantees that rather than a promise in a comment.
-    ios_icon = _centred(icon, (1024, 1024), LEGACY_FRACTION, GROUND).convert("RGB")
+    #
+    # From `app_logo_iphone.png` and from nothing else. The Android file is a
+    # different drawing at a different size and this is the line that keeps the
+    # two apart.
+    #
+    # One 1024 icon, because that is what the asset catalogue asks for: a single
+    # `universal` entry at 1024x1024, which Xcode 14 and newer downsample to
+    # every slot a device needs. `Contents.json` is left exactly as it is - the
+    # per-idiom iPhone and iPad entries an older project would list are not in
+    # it, and adding them would be editing the Xcode-managed catalogue rather
+    # than replacing the image inside it.
+    #
+    # Full bleed, and opaque. The artwork is composed for a home screen already,
+    # so insetting it on a second ground would shrink it inside iOS's own
+    # rounding; and App Store Connect rejects an icon with an alpha channel,
+    # which `convert("RGB")` guarantees rather than promises.
+    ios_icon = _full_bleed(ios_art, 1024).convert("RGB")
     buffer = io.BytesIO()
     ios_icon.save(buffer, "PNG", optimize=True)
     files[IOS_ASSETS / "AppIcon.appiconset" / "AppIcon-512@2x.png"] = buffer.getvalue()
@@ -564,13 +731,16 @@ def build() -> dict[Path, bytes]:
     # ever uses one of them: `any` is drawn exactly as given, `maskable` is
     # cropped to whatever shape the platform prefers and so is drawn smaller,
     # inside the 80% safe circle.
+    #
+    # Built from the Android artwork, which is the drawing for every platform
+    # that is not Apple's. An installed web app sitting on the same home screen
+    # as the Play build with a different mandarin on it is the inconsistency
+    # this avoids.
     for size in PWA_ICON_SIZES:
-        files[BRAND / f"app-icon-{size}.png"] = _png(
-            _centred(icon, (size, size), LEGACY_FRACTION, GROUND)
-        )
-        maskable = _centred(icon, (size, size), MASKABLE_SAFE_FRACTION, GROUND)
+        files[BRAND / f"app-icon-{size}.png"] = _png(_full_bleed(android_art, size))
+        maskable = _centred(android_ink, (size, size), MASKABLE_SAFE_FRACTION, android_ground)
         _assert_inside_safe_zone(
-            _centred(icon, (size, size), MASKABLE_SAFE_FRACTION, None),
+            _centred(android_ink, (size, size), MASKABLE_SAFE_FRACTION, None),
             0.8,
             f"maskable {size}px icon",
         )
@@ -606,12 +776,37 @@ def build() -> dict[Path, bytes]:
     # Google Play takes a 512 PNG and allows an alpha channel. App Store Connect
     # takes 1024 and rejects one, which is why this is the flattened copy that
     # was already built for the iOS bundle rather than a second render of it.
-    files[STORE / "google-play" / "app-icon-512.png"] = _png(
-        _centred(icon, (512, 512), LEGACY_FRACTION, GROUND)
-    )
+    files[STORE / "google-play" / "app-icon-512.png"] = _png(_full_bleed(android_art, 512))
     files[STORE / "app-store" / "app-icon-1024.png"] = buffer_png(ios_icon)
 
     return files
+
+
+def _assert_background_colour_matches(ground: tuple[int, int, int, int]) -> None:
+    """`ic_launcher_background` is the artwork's own ground, or the build stops.
+
+    The adaptive icon is a flat colour with a keyed-out picture on top of it. If
+    the colour resource and the picture's ground drift apart, the launcher draws
+    the character on one cream and its shadow fading into another, and the seam
+    is a faint square inside a round icon - the kind of defect that survives
+    review because nobody can say what is wrong with it.
+    """
+    expected = "#{:02X}{:02X}{:02X}".format(*ground[:3])
+    text = ANDROID_BACKGROUND_COLOR.read_text(encoding="utf-8")
+    found = None
+    for line in text.splitlines():
+        if 'name="ic_launcher_background"' in line:
+            found = line.split(">", 1)[1].split("<", 1)[0].strip().upper()
+    if found is None:
+        raise SystemExit(
+            f"{ANDROID_BACKGROUND_COLOR.relative_to(ROOT)} no longer defines "
+            "ic_launcher_background, which the adaptive icon draws behind its foreground"
+        )
+    if found != expected:
+        raise SystemExit(
+            f"ic_launcher_background is {found} but the app icon artwork is composed on "
+            f"{expected}. Set the colour resource to {expected} and rebuild the icons."
+        )
 
 
 def buffer_png(image: Image.Image) -> bytes:
@@ -619,6 +814,33 @@ def buffer_png(image: Image.Image) -> bytes:
     buffer = io.BytesIO()
     image.save(buffer, "PNG", optimize=True)
     return buffer.getvalue()
+
+
+#: Directories whose whole PNG contents this script owns.
+#:
+#: A launcher icon that stops being generated does not stop being *packaged* —
+#: `aapt` ships whatever is in `mipmap-*`, so a density left behind after a
+#: rename is an old mandarin shipped at one screen size and the new one at every
+#: other. The asset catalogue is the same story with the store's copy of the
+#: icon. Listing the directories rather than the files means a new one appearing
+#: is caught too.
+OWNED_ICON_DIRS = [
+    *(ANDROID_RES / f"mipmap-{density}" for density in ANDROID_DENSITIES),
+    IOS_ASSETS / "AppIcon.appiconset",
+]
+
+
+def _obsolete(files: dict[Path, bytes]) -> list[Path]:
+    """PNGs sitting in an owned directory that this run did not produce."""
+    generated = set(files)
+    found: list[Path] = []
+    for directory in OWNED_ICON_DIRS:
+        if not directory.is_dir():
+            continue
+        for path in directory.iterdir():
+            if path.suffix.lower() == ".png" and path not in generated:
+                found.append(path)
+    return found
 
 
 def main() -> int:
@@ -630,7 +852,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    for source in (APP_ICON_SOURCE, MARK_SOURCE, SPLASH_SOURCE):
+    for source in (ANDROID_APP_ICON_SOURCE, IOS_APP_ICON_SOURCE, MARK_SOURCE, SPLASH_SOURCE):
         if not source.exists():
             print(f"source artwork missing: {source}", file=sys.stderr)
             return 1
@@ -638,28 +860,40 @@ def main() -> int:
     files = build()
 
     if args.check:
+        missing = [path for path in files if not path.exists()]
         stale = [
             path for path, data in files.items()
-            if not path.exists() or path.read_bytes() != data
+            if path.exists() and path.read_bytes() != data
         ]
-        if stale:
-            print("app icons are out of date with the source artwork:", file=sys.stderr)
-            for path in sorted(stale):
-                print(f"  {path.relative_to(ROOT)}", file=sys.stderr)
-            print(
-                "\nrun: npm run mobile:icons",
-                file=sys.stderr,
-            )
+        obsolete = _obsolete(files)
+        if missing or stale or obsolete:
+            if missing:
+                print("required icon resources are missing:", file=sys.stderr)
+                for path in sorted(missing):
+                    print(f"  {path.relative_to(ROOT)}", file=sys.stderr)
+            if stale:
+                print("app icons are out of date with the source artwork:", file=sys.stderr)
+                for path in sorted(stale):
+                    print(f"  {path.relative_to(ROOT)}", file=sys.stderr)
+            if obsolete:
+                print("icon resources nothing generates any more:", file=sys.stderr)
+                for path in sorted(obsolete):
+                    print(f"  {path.relative_to(ROOT)}", file=sys.stderr)
+            print("\nrun: npm run mobile:icons", file=sys.stderr)
             return 1
-        print(f"app icons up to date ({len(files)} files)")
+        print(
+            f"app icons up to date ({len(files)} files) — Android from "
+            f"{ANDROID_APP_ICON_SOURCE.name}, iOS from {IOS_APP_ICON_SOURCE.name}"
+        )
         return 0
 
     for path, data in files.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
     print(
-        f"wrote {len(files)} icon, splash and favicon files "
-        f"from {APP_ICON_SOURCE.name}, {MARK_SOURCE.name} and {SPLASH_SOURCE.name}"
+        f"wrote {len(files)} icon, splash and favicon files from "
+        f"{ANDROID_APP_ICON_SOURCE.name} (Android, web), {IOS_APP_ICON_SOURCE.name} (iOS), "
+        f"{MARK_SOURCE.name} and {SPLASH_SOURCE.name}"
     )
     return 0
 
