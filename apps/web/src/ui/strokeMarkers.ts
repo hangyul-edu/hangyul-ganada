@@ -151,6 +151,107 @@ const PEN = 9;
 const TETHER_AT = 1.2;
 
 /**
+ * The ring drawn around a badge, in viewBox units.
+ *
+ * **This is not decoration as far as the layout is concerned.** A `<circle>`
+ * with `r = radius` and a `stroke-width` of 0.9 paints out to `radius + 0.45`:
+ * the ring straddles the circumference, half of it outside. Every bound in this
+ * file used to be written against `radius` alone, so a badge clamped hard
+ * against the edge of the box painted 0.45 units of ring past it — and the
+ * outermost `<svg>` clips at its viewport, so that 0.45 was simply gone.
+ *
+ * Twenty-one badges across twenty characters were in that state, `ㅌ`'s third
+ * among them: clamped to `x = 5.6` with the box starting at 0, so the left of
+ * its ring was cut off flat. `ㄷ`'s second was at `(5.6, 5.6)` — the corner —
+ * and lost ring on two sides at once.
+ *
+ * It is a constant here and a literal in `StrokeOrder.module.css`, which is one
+ * fact in two places; `strokeMarkers.test.ts` reads the stylesheet and asserts
+ * they agree, so the day somebody thickens the ring the layout is told.
+ */
+export const MARKER_RING = 0.9;
+
+/**
+ * The corner radius of the sheet the demonstration is drawn on, in viewBox units.
+ *
+ * The paper is a rounded rectangle. A badge pushed into the square corner of the
+ * viewBox is therefore off the paper even when it is inside the box — which is
+ * how `ㄷ`'s second badge came to sit in white space outside the sheet's own
+ * curve. `StrokeOrder` draws the sheet as a `<rect rx="12">` *inside* the SVG
+ * for exactly this reason: one geometry, in viewBox units, that the placement
+ * can read.
+ *
+ * It used to be a CSS `border-radius` on the `<svg>` element, in pixels, which
+ * could not be reconciled with anything here — 20 px is 13.3 units at the size
+ * the gallery draws and 10 units at the size the introduction card draws, so
+ * there was no single number this file could have used.
+ */
+export const PAPER_CORNER = 12;
+
+/**
+ * Clear space between a badge's outer edge and the edge of the paper.
+ *
+ * Half a unit, which is a third of a pixel at the smallest size the product
+ * draws at. Not zero: a disc tangent to the sheet's edge reads as hanging off
+ * it, and the anti-aliased boundary of the sheet and the anti-aliased outside
+ * of the ring merge into one grey smear.
+ */
+const EDGE_MARGIN = 0.5;
+
+/**
+ * How far a badge's *painted* edge reaches from its centre.
+ *
+ * The number every bound in this file is written against, replacing the bare
+ * `radius` that produced the clipping above.
+ */
+export function paintedRadius(radius: number): number {
+  return radius + MARKER_RING / 2;
+}
+
+/**
+ * The nearest legal position to `point` for a badge of the given radius.
+ *
+ * The paper is a rounded rectangle, so this is two clamps rather than one: the
+ * straight sides, and then the four arcs. A candidate that lands in a corner
+ * beyond its arc is pulled back *along the radius of that arc*, which is the
+ * shortest move onto the sheet and keeps the badge as near as it can be to the
+ * direction its stroke sent it.
+ *
+ * Exported so the placement, the unit test and `strokes:markers` all ask one
+ * question about where the paper is. A second copy of this arithmetic in the
+ * gate is a second opinion, and the day the two disagreed the gate would be
+ * certifying a rule the product does not follow.
+ */
+export function ontoPaper(
+  point: { x: number; y: number },
+  radius: number,
+): { x: number; y: number } {
+  const outer = paintedRadius(radius) + EDGE_MARGIN;
+  const low = outer;
+  const high = 100 - outer;
+  let x = clamp(point.x, low, high);
+  let y = clamp(point.y, low, high);
+
+  const reach = PAPER_CORNER - outer;
+  for (const cx of [PAPER_CORNER, 100 - PAPER_CORNER]) {
+    for (const cy of [PAPER_CORNER, 100 - PAPER_CORNER]) {
+      // Only the quadrant outside the arc's centre is curved; the rest of the
+      // side is straight and already handled by the clamp above.
+      const outX = cx < 50 ? x < cx : x > cx;
+      const outY = cy < 50 ? y < cy : y > cy;
+      if (!outX || !outY) continue;
+      const dx = x - cx;
+      const dy = y - cy;
+      const distance = Math.hypot(dx, dy);
+      if (distance <= reach || distance === 0) continue;
+      x = cx + (dx / distance) * reach;
+      y = cy + (dy / distance) * reach;
+    }
+  }
+  return { x, y };
+}
+
+/**
  * Where every badge goes, for one glyph.
  *
  * ## The rule, and the one it replaced
@@ -201,17 +302,19 @@ function anchor(stroke: VectorStroke): { x: number; y: number } {
 
 export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMarker[] {
   /*
-   * How near the edge of the box a disc may be drawn: touching it, not inset
-   * from it.
+   * How near the edge of the paper a disc may be drawn.
    *
-   * This was `radius + 1.5`, a tidiness margin from when the disc sat on the
-   * ink and never needed the room. Under the clear-space rule it costs
-   * placements: ㅞ is five strokes crowded against the right of the box, every
-   * clear position for its last badge is in that outer band, and clamping
-   * pushed the disc back onto the ink it had just escaped. Three units of
-   * whitespace is not worth a number drawn on a letter.
+   * This was `radius` — the disc's *fill*, touching the edge of the box — on the
+   * reasoning that three units of whitespace was not worth a number drawn on a
+   * letter. The reasoning still holds and the number was still wrong, because a
+   * badge is not its fill: it carries a 0.9-unit ring that straddles the
+   * circumference, and the `<svg>` clips at its viewport. So `ㅌ`'s third badge,
+   * clamped to exactly `x = radius`, was drawn with the left of its ring cut off
+   * flat, and twenty more were in the same state.
+   *
+   * `ontoPaper` is the whole bound now — painted radius, breathing space, and
+   * the sheet's rounded corners — and it is one function shared with the gate.
    */
-  const edge = radius;
   const placed: StrokeMarker[] = [];
   // The distance at which a disc's edge stops touching a stroke's edge. Below
   // this the badge is on the ink whatever direction it went in, so there is no
@@ -230,10 +333,13 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
     for (const step of REACH_STEPS) {
       for (const turn of TURNS) {
         const angle = away + (turn * Math.PI) / 180;
-        const label = {
-          x: clamp(anchor(stroke).x + Math.cos(angle) * radius * (clear + step), edge, 100 - edge),
-          y: clamp(anchor(stroke).y + Math.sin(angle) * radius * (clear + step), edge, 100 - edge),
-        };
+        const label = ontoPaper(
+          {
+            x: anchor(stroke).x + Math.cos(angle) * radius * (clear + step),
+            y: anchor(stroke).y + Math.sin(angle) * radius * (clear + step),
+          },
+          radius,
+        );
         if (clearanceAt(label, stroke, strokes, [], radius) >= 0) n += 1;
       }
     }
@@ -287,10 +393,10 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
       const reach = clear + step;
       for (const turn of TURNS) {
         const angle = away + (turn * Math.PI) / 180;
-        const label = {
-          x: clamp(at.x + Math.cos(angle) * radius * reach, edge, 100 - edge),
-          y: clamp(at.y + Math.sin(angle) * radius * reach, edge, 100 - edge),
-        };
+        const label = ontoPaper(
+          { x: at.x + Math.cos(angle) * radius * reach, y: at.y + Math.sin(angle) * radius * reach },
+          radius,
+        );
         const clearance = clearanceAt(label, stroke, strokes, placed, radius);
         if (clearance >= 0) {
           best = label;
@@ -306,7 +412,7 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
       if (settled) break;
     }
 
-    const label = best ?? { x: at.x, y: at.y };
+    const label = best ?? ontoPaper({ x: at.x, y: at.y }, radius);
     placed.push({
       order: stroke.order,
       anchor: at,
@@ -327,9 +433,12 @@ export function layoutMarkers(strokes: VectorStroke[], radius: number): StrokeMa
  * against, and the first is the one that changed:
  *
  * * **Every stroke in the glyph, its own included.** See `layoutMarkers`.
- * * **Every badge already placed.** Two discs need their diameters apart plus a
- *   hair, or they read as one smudge — 글's fourth and fifth strokes begin a
- *   pen's width apart and produced exactly that.
+ * * **Every badge already placed.** Two discs need their *painted* diameters
+ *   apart plus a hair, or they read as one smudge — 글's fourth and fifth
+ *   strokes begin a pen's width apart and produced exactly that. Painted, not
+ *   filled: at `radius * 2 + 0.8` 글's third and fifth rings came within a
+ *   tenth of a unit of touching, which at 152 px is two rings sharing an
+ *   anti-aliased pixel.
  * * Nothing else. The edge of the box is handled by clamping the candidate
  *   before it gets here, so a badge cannot be pushed off the paper.
  */
@@ -342,7 +451,9 @@ function clearanceAt(
 ): number {
   let clearance = Infinity;
   for (const other of placed) {
-    const gap = Math.hypot(label.x - other.label.x, label.y - other.label.y) - (radius * 2 + 0.8);
+    const gap =
+      Math.hypot(label.x - other.label.x, label.y - other.label.y) -
+      (paintedRadius(radius) * 2 + 0.8);
     if (gap < clearance) clearance = gap;
   }
   for (const stroke of strokes) {

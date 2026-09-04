@@ -19,11 +19,39 @@
   align-self: center;
 }
 
+/*
+ * The box the demonstration is drawn in — and, deliberately, nothing that clips.
+ *
+ * `background`, `border` and `border-radius` used to live here. All three cut
+ * numbered badges: an outermost `<svg>` clips at its viewport, and a
+ * `border-radius` on it clips at the curve, so a badge against an edge lost the
+ * outer half of its 0.9-unit ring and a badge in a corner lost more. Twenty-one
+ * badges over twenty characters were in that state — `ㅌ`'s third and `ㄷ`'s
+ * second among them.
+ *
+ * The paper is a `<rect>` inside the SVG now (see `.sheet`), so it is in the
+ * same coordinate system as the ink and the badges, and `overflow: visible`
+ * means the viewport cannot cut anything. Nothing is drawn outside the box in
+ * any case: `strokeMarkers` bounds every badge to the sheet, `strokes:visual`
+ * checks the ink, and `strokes:markers` checks both.
+ */
 .paper {
   display: block;
-  border-radius: var(--hg-radius-xl);
-  background: var(--hg-canvas-paper);
-  border: 1px solid var(--hg-border);
+  overflow: visible;
+}
+
+/*
+ * The paper itself. Warm white in both appearances — see the note at the top of
+ * this file — with a hairline that stays one device pixel at every size the
+ * demonstration is drawn at, which is what `non-scaling-stroke` is for. Without
+ * it a 1-unit border is 1.5 px on the gallery card and 2 px on the introduction
+ * card, from one rule.
+ */
+.sheet {
+  fill: var(--hg-canvas-paper);
+  stroke: var(--hg-border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 /*
@@ -101,6 +129,14 @@
   stroke: var(--hg-primary);
 }
 
+/*
+ * The ring, in viewBox units.
+ *
+ * `MARKER_RING` in `strokeMarkers.ts` is this number, and the layout is written
+ * against `radius + MARKER_RING / 2` — the badge's *painted* edge — rather than
+ * against `radius`. That distinction is the whole of the clipping defect, so
+ * the two are asserted equal by `strokeMarkers.test.ts`, which reads this file.
+ */
 .marker circle,
 .markerDone circle {
   stroke-width: 0.9;

@@ -1,9 +1,21 @@
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { describe, expect, it } from 'vitest';
 
 import { ALL_CHARACTERS } from '../data/characters';
 import { isSyllable } from '../data/jamo';
 import { vectorGlyph } from '../data/strokeVectors';
-import { distanceToStroke, inkDistance, layoutMarkers } from './strokeMarkers';
+import {
+  MARKER_RING,
+  PAPER_CORNER,
+  distanceToStroke,
+  inkDistance,
+  layoutMarkers,
+  ontoPaper,
+  paintedRadius,
+} from './strokeMarkers';
 
 /**
  * The numbered markers, on every character the curriculum teaches.
@@ -283,16 +295,103 @@ describe('stroke markers', () => {
     expect(covered, 'a disc is drawn over the tick of ㅊ').toBe(0);
   });
 
-  it('keeps every disc on the paper', () => {
+  it('keeps every disc on the paper — ring included, corners included', () => {
+    /*
+     * The reported defect, as a property.
+     *
+     * This test used to measure `marker.label.x >= radius`, and it passed on
+     * every build in which the badges were visibly cut. `radius` is the disc's
+     * *fill*; the ring is 0.9 units wide and straddles the circumference, so a
+     * badge sitting at exactly `x = radius` painted 0.45 units to the left of
+     * the box — and the outermost `<svg>` clips at its viewport, so 0.45 units
+     * of ring simply were not drawn. Twenty-one badges over twenty characters
+     * were in that state. `ㅌ`'s third, at (5.6, 5.73), is the one that was
+     * reported; `ㄷ`'s second was at (5.6, 5.6) and lost ring on two sides.
+     *
+     * The corner is the second half of it. The paper is a rounded rectangle —
+     * a `<rect rx>` inside the SVG now, so it is in the same coordinate system
+     * as everything else — and a badge in the square corner of the viewBox is
+     * off the sheet even when it is inside the box.
+     *
+     * So the bound measured here is the badge's *painted* extent against the
+     * *sheet*, which is what a reader sees.
+     */
+    for (const character of ALL_CHARACTERS) {
+      const radius = radiusFor(character.character);
+      const outer = paintedRadius(radius);
+      for (const marker of layoutMarkers(vectorGlyph(character.character).strokes, radius)) {
+        const where = `${character.character} ${marker.order}`;
+        const { x, y } = marker.label;
+        expect(x, where).toBeGreaterThanOrEqual(outer);
+        expect(y, where).toBeGreaterThanOrEqual(outer);
+        expect(x, where).toBeLessThanOrEqual(100 - outer);
+        expect(y, where).toBeLessThanOrEqual(100 - outer);
+
+        for (const cx of [PAPER_CORNER, 100 - PAPER_CORNER]) {
+          for (const cy of [PAPER_CORNER, 100 - PAPER_CORNER]) {
+            const outX = cx < 50 ? x < cx : x > cx;
+            const outY = cy < 50 ? y < cy : y > cy;
+            if (!outX || !outY) continue;
+            expect(
+              Math.hypot(x - cx, y - cy),
+              `${where} is inside the sheet's rounded corner at (${cx}, ${cy})`,
+            ).toBeLessThanOrEqual(PAPER_CORNER - outer + 1e-9);
+          }
+        }
+      }
+    }
+  });
+
+  it('measures the badge against the ring the stylesheet actually draws', () => {
+    /*
+     * One fact in two places, so it is asserted rather than hoped for.
+     *
+     * `MARKER_RING` is what the layout reserves; `.marker circle`'s
+     * `stroke-width` is what the browser paints. The clipping defect *was* the
+     * gap between those two numbers, so the day somebody thickens the ring the
+     * layout has to be told — and this is what tells them.
+     */
+    const here = dirname(fileURLToPath(import.meta.url));
+    const css = readFileSync(join(here, 'StrokeOrder.module.css'), 'utf8');
+    const rule = css.match(/\.marker circle,\s*\.markerDone circle \{[^}]*stroke-width:\s*([\d.]+)/);
+    expect(rule, 'the ring rule is still in StrokeOrder.module.css').not.toBeNull();
+    expect(Number(rule![1]), 'MARKER_RING matches the stylesheet').toBe(MARKER_RING);
+  });
+
+  it('places nothing the paper bound would have to move', () => {
+    // `ontoPaper` is the bound. A position it would change is a position that
+    // was outside the sheet, so a layout that returns one has escaped its own
+    // rule — which is how the clamp-at-`radius` version shipped.
     for (const character of ALL_CHARACTERS) {
       const radius = radiusFor(character.character);
       for (const marker of layoutMarkers(vectorGlyph(character.character).strokes, radius)) {
-        const where = `${character.character} ${marker.order}`;
-        expect(marker.label.x, where).toBeGreaterThanOrEqual(radius);
-        expect(marker.label.y, where).toBeGreaterThanOrEqual(radius);
-        expect(marker.label.x, where).toBeLessThanOrEqual(100 - radius);
-        expect(marker.label.y, where).toBeLessThanOrEqual(100 - radius);
+        const safe = ontoPaper(marker.label, radius);
+        expect(
+          Math.hypot(safe.x - marker.label.x, safe.y - marker.label.y),
+          `${character.character} ${marker.order}`,
+        ).toBeLessThan(1e-9);
       }
+    }
+  });
+
+  it('numbers the badges in the order the strokes are animated', () => {
+    /*
+     * `StrokeOrder` decides which badges are "done" by index — `markers.map((m,
+     * index) => index < complete)` — while the ink it counts is
+     * `strokes.slice(0, complete)`. The two lists therefore have to be in the
+     * same order, and the placement deliberately sorts by *crowding* before it
+     * sorts back. If that final sort were ever dropped, badge 5 would light up
+     * while stroke 2 was being drawn.
+     */
+    for (const character of ALL_CHARACTERS) {
+      const glyph = vectorGlyph(character.character);
+      const markers = layoutMarkers(glyph.strokes, radiusFor(character.character));
+      expect(markers.map((m) => m.order), character.character).toEqual(
+        glyph.strokes.map((s) => s.order),
+      );
+      expect(markers.map((m) => m.order), character.character).toEqual(
+        markers.map((_, index) => index + 1),
+      );
     }
   });
 

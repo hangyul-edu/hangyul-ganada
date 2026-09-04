@@ -4,6 +4,7 @@ import { ALL_CHARACTERS } from '../data/characters';
 import { hasVectorGlyph, vectorGlyph, type VectorGlyph } from '../data/strokeVectors';
 import { ReferenceGlyph } from '../ui/ReferenceGlyph';
 import { StrokeOrder } from '../ui/StrokeOrder';
+import { isSyllable } from '../data/jamo';
 import { layoutMarkers } from '../ui/strokeMarkers';
 import styles from './StrokeGalleryPage.module.css';
 
@@ -105,7 +106,15 @@ const PHONE_SIZE = 96;
 
 function Card({ character, live }: { character: string; live: boolean }) {
   const glyph = vectorGlyph(character);
-  const radius = glyph.strokes.length > 4 ? 4 : 5.6;
+  /*
+   * The radius the product draws at, and not a rule of this page's own.
+   *
+   * This read `glyph.strokes.length > 4 ? 4 : 5.6`, which is not what
+   * `StrokeOrder` does — it asks `isSyllable`. So the gallery drew ㅃ and ㅞ
+   * with syllable-sized badges no learner ever sees, and this is the page whose
+   * whole job is to show what ships.
+   */
+  const radius = isSyllable(character) ? 4 : 5.6;
   const markers = layoutMarkers(glyph.strokes, radius);
 
   return (

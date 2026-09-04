@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { vectorGlyph } from '../data/strokeVectors';
 import { isSyllable } from '../data/jamo';
-import { layoutMarkers } from './strokeMarkers';
+import { PAPER_CORNER, layoutMarkers } from './strokeMarkers';
 import styles from './StrokeOrder.module.css';
 
 /**
@@ -209,6 +209,32 @@ export function StrokeOrder({
         role="img"
         aria-label={t('strokeOrder.diagramLabel', { character, count })}
       >
+        {/*
+          The paper, drawn *inside* the box rather than under it.
+
+          It was a `background` and a `border-radius` on the `<svg>` element
+          itself, and that is what cut the numbered badges. An outermost `<svg>`
+          clips at its viewport, and a `border-radius` on an element whose
+          overflow is hidden clips at the curve — so a badge near an edge lost
+          the outer half of its ring, and a badge in a corner (`ㄷ`'s second,
+          at 5.6, 5.6) was cut on two sides by an arc whose radius nothing in
+          `strokeMarkers` could even read: 20 px is 13.3 viewBox units at the
+          size the gallery draws and 10 at the size the introduction card does.
+
+          As a `<rect>` it is one geometry in one coordinate system, the same
+          one the placement measures against — `PAPER_CORNER` is its `rx` — and
+          the `<svg>` no longer needs to clip anything at all. Inset half a unit
+          so the hairline sits inside the box rather than astride its edge.
+        */}
+        <rect
+          className={styles.sheet}
+          x={0.5}
+          y={0.5}
+          width={99}
+          height={99}
+          rx={PAPER_CORNER}
+        />
+
         {/* The same guides the practice canvas draws, so the demonstration and
             the box underneath it agree about where the middle is. */}
         <path d="M50 4 V96 M4 50 H96" className={styles.guide} />
