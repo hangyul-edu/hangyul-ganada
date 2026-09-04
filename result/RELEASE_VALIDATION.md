@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `f5697244` on branch `main`. `build-info.json` →
+**Source:** commit `a14f9102` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -95,7 +95,7 @@ only option of its **shape**.
 | `npm run locale:editorial:check` | **0 errors, 0 warnings** — the 70 split-translation warnings the previous edition carried are closed |
 | `npm run test:e2e` | **578 cases** over the mobile and desktop projects, 0 failed, 0 flaky, 38.4 min |
 | Unit suites | web **1044**, Korean morphology **216**, handwriting core **96** — **1,356**, all passing |
-| `npm run docs:consistency:check` | 61 figures across **6 documents** — `BUILD_OR_SIGNING_BLOCKERS.md` is inside the set now, and was saying versionCode 11 while `build-info.json` beside it said 13 (report §20R.11c) |
+| `npm run docs:consistency:check` | **65 figures** across **6 documents** — `BUILD_OR_SIGNING_BLOCKERS.md` is inside the set now, and was saying versionCode 11 while `build-info.json` beside it said 13 (report §20R.11c) |
 | `npm run native:bundle:check` | **14,152 files** compared inside the APK — 0 missing, 0 different, and the 4 web-only files pruned, which it now checks rather than skips (report §20R.11b) |
 | `npm run release:current` | both delivery manifests at HEAD |
 
@@ -150,8 +150,8 @@ Level Test.
 ## Checksums
 
 ```
-e76ab90aec2399eb18920e57775437546bb5bec7fc015ce85d5e84e678808651  hangyul-ganada-release.apk
+b5f7e79093f27dd4c779c9134a95812b5013878d0596afa14da1aa6b51949095  hangyul-ganada-release.apk
 d230b86460a8b458d64fd273eb9e1dc491ff06d0cd9c30b92bbaaa65ca6ff6ac  hangyul-ganada-release.aab
-85e6b7941a8d12257252c352867821465a41f3dee11bedbe6d822f6bf3a27f2c  docs/report.pdf
-e6bca3eacaab84a99c4dd8795a0d30f266444f80dc5a3546ec1bf9ee62ce06ad  build-info.json
+33bc023eea37d39b1e770e5929cd34b0377a6ebf755304a37d0e0a91341906cd  docs/report.pdf
+51a55817fd512cd256d21b3cb771ff5d28f68afd09e7d0bfe9a28c3efabb0011  build-info.json
 ```

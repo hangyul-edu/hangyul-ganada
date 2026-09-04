@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.3
 date: 5 September 2026
-describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit f5697244 at versionCode 13.
+describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit a14f9102 at versionCode 13.
 mark: report-assets/mark.png
 ---
 
@@ -1701,12 +1701,12 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `f5697244`, working tree clean |
+| Built from | `a14f9102`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 13, versionName 1.0.3 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.9 MB** (88,019,042 B), `e76ab90aec2399eb…` |
+| Release APK | **83.9 MB** (88,019,042 B), `b5f7e79093f27dd4…` |
 | Release AAB | **82.2 MB** (86,227,458 B), `d230b86460a8b458…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
@@ -6145,7 +6145,7 @@ still in it. Three other placeholder assertions in the same spec already
 interpolate; this one now does too.
 
 Both are test-side changes, committed separately from the code they check, in
-`9b368cde`. The delivered artefacts are built from `f5697244`, the head of this
+`9b368cde`. The delivered artefacts are built from `a14f9102`, the head of this
 cycle, so that `build-info.json` names the tree the final verification ran on.
 
 ## 20R.11b Two things the green run did not say
@@ -6155,7 +6155,8 @@ I-133 row said *240 of 3,333 words moved* above a line reading *125 to level 5,
 62 to level 13, 48 to level 21*, which is 235. The gate has said 235 in every
 run; the prose was written before the last rebuild of the corpus and was not
 re-read against it. `docs:consistency` compares a defined set of figures across
-five documents and this was not one of them, so nothing objected. Corrected to
+the documents it is pointed at and this was not one of them, so nothing
+objected. Corrected to
 235 in both places, and in `result/RELEASE_VALIDATION.md`.
 
 **A gate was skipping the only four files that were wrong.** Rebuilding the
