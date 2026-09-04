@@ -57,6 +57,16 @@ const fail = (what) => findings.push(what);
  * `prune-native-assets.mjs` deliberately removes web-only files from the native
  * bundles — a service worker, `robots.txt`, the Open Graph image — so their
  * absence inside the APK is correct and is not compared. Everything else is.
+ *
+ * Skipping them is not the same as checking them, and the difference cost a
+ * build. `apps/mobile`'s own `sync` script runs `cap sync` and stops; the root
+ * `mobile:sync` runs the prune afterwards. Building through the first produced
+ * an APK 209 kB larger carrying `sw.js`, `robots.txt`, `_redirects` and the
+ * Open Graph image — a service worker inside an app that deliberately registers
+ * none — and this gate said *0 missing, 0 different*, because the only four
+ * files that were wrong were the four it had been told to look away from. So
+ * they are checked in the opposite direction below: present in the package is
+ * a finding.
  */
 const PRUNED = new Set(['sw.js', 'robots.txt', '_redirects', 'brand/og-hangyul-ganada.png']);
 
@@ -89,6 +99,8 @@ if (findings.length === 0) {
     try {
       return execFileSync('unzip', ['-p', APK, `assets/public/${path}`], {
         maxBuffer: 64 * 1024 * 1024,
+        // A name that is not in the archive is an answer here, not a warning.
+        stdio: ['ignore', 'pipe', 'ignore'],
       });
     } catch {
       return null;
@@ -127,6 +139,17 @@ if (findings.length === 0) {
   if (missing.length > 10) fail(`…and ${missing.length - 10} more missing`);
   if (differ.length > 10) fail(`…and ${differ.length - 10} more that differ`);
   if (compared === 0) fail('nothing was compared — is the bundle under assets/public?');
+
+  /* The four the prune exists to remove: absent from the package, or a finding. */
+  const notPruned = [...PRUNED].filter((path) => inApk(path) !== null);
+  console.log(`  web-only files pruned    ${PRUNED.size - notPruned.length} of ${PRUNED.size}`);
+  for (const path of notPruned) {
+    fail(
+      `${path} is inside the APK and should have been pruned — the build ran \`cap sync\` ` +
+        'without `scripts/prune-native-assets.mjs`. Run `npm run mobile:sync`, not the ' +
+        '`sync` script in apps/mobile, and build again.',
+    );
+  }
 }
 
 if (findings.length === 0) {
