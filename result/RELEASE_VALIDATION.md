@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `04aa4268` on branch `main`. `build-info.json` →
+**Source:** commit `f5697244` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -54,9 +54,10 @@ only option of its **shape**.
 | Answer result | The verdict and nothing under it. `feedback` is off the exercise, `rationale` is out of all 32 bundles, and *필요한 곳에는 설명이 따라와요* has gone with the sentence it promised. `copy:generated` builds all 530 exercises and fails if one carries a body |
 | Final check | `passMark(total)` is one function and both screens call it: *10문제 중 8문제 이상 맞히면 통과해요* before, and the score with the mark after. The summary drops the line the score already covers, and *every item answered once* is its own row |
 | Question bank | `readChoose` refuses a question whose answer is the only option of its shape; `numbers:qa` asserts it from outside the builder, and compares the lesson header against the option list in all 32 languages. `docs/numbers-question-ledger.md` records all 276 distinct questions read one at a time |
-| Vocabulary levels | I-133 closed: editorial usefulness is a ceiling rather than a term, so a word marked *needed first* cannot ship above the starter band. 240 words moved; levels 1–4 unchanged, so the twelve partial packs and the 32-language completeness of levels 1–3 are untouched |
+| Vocabulary levels | I-133 closed: editorial usefulness is a ceiling rather than a term, so a word marked *needed first* cannot ship above the starter band. 235 words moved; levels 1–4 unchanged, so the twelve partial packs and the 32-language completeness of levels 1–3 are untouched |
 | Editorial | The 70 `locale:editorial` warnings were all one class — two keys holding the same English sentence, translated two ways — and all 70 are closed |
 | Gates | `answerability`, the 118 synthetic journeys, the level audit, back coverage, reachable actions, section alignment and legal isolation were defined and never run; they are in `verify:release` now |
+| End-to-end suite | Two Numbers cases were still asserting the two sentences this cycle removed — `summaryMissing.mastery` under a score line that already carries the fact, and `masteryPerfect` with `{{total}}` uninterpolated. The screens were correct in all four failing runs; the assertions now read the score line at its real numbers and require the retired row to be **absent**. Restoring the unfiltered list fails them again |
 | Version | Android 1.0.3 / **13**. iOS deliberately left at 1.0.2 / 4 — see `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
 
 ## The artefacts
@@ -75,29 +76,29 @@ only option of its **shape**.
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` |
+| `npm run verify:release` | run twice. The first run failed at its last step — four Playwright cases pinning copy this cycle removed, described above and in report §20R.11a; nothing in the app was wrong. The second run, on the delivered tree, is recorded below |
 | `npm run strokes:corners:check` | 73 taught characters, **510 stroke ends**, 86 joints, 82 corner terminals, 5 doubled letters over 12 corresponding stroke pairs — 0 findings |
 | `npm run glyph:structure:check` | 86 junctions probed, weakest **100.0%**; islands drawn = predicted 73/73 |
 | `npm run glyphshape:qa:check` | mean **99.6%** explained against the reference face, floor 93% |
 | `npm run strokes:visual:check` | 73 items, 269 strokes, **1,345 frames** rendered at 256 px — no measurable problem in any frame |
 | `npm run strokes:markers:check` | 73 characters, **269 badges**, 0 problems |
 | `npm run numbers:qa:check` | 6 modules · 19 lessons · 95 items · 9 exercise kinds · **0 problems**; 144 clips present, 0 synthesised; 260 keys × 32 languages, 0 identical to English; **282 distinct questions audited across 10 question types, 972 built**; **2,208 lesson header / answer pairs compared** across 32 languages; 19 lessons complete sound-free |
-| `npm run numbers:copy:check` | 6,848 learner-facing strings across 32 languages; 192 set labels checked in that language's own words; 10 retired sentences and 1 retired key block checked in every bundle — 0 findings |
+| `npm run numbers:copy:check` | 6,944 learner-facing strings across 32 languages; 192 set labels checked in that language's own words; 10 retired sentences and 1 retired key block checked in every bundle — 0 findings |
 | `npm run numbers:ledger:check` | **276 distinct questions**, every one read at its current wording; 9 corrected and 2 noted with the reason recorded |
 | `npm run copy:generated:check` | 530 exercises built, **16,960 rendered prompts** across 32 languages; **0** compose a sentence under the answer result |
 | `npm run answerability:check` | **806,252 generated questions** — every one has exactly one option that answers it |
-| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; **240 words** held to their editorial band; 162 anchors in place |
+| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; **235 words** held to their editorial band; 162 anchors in place |
 | `npm run numbers:layout:check` | **45 cases, 3,465 elements**, 0 problems |
 | `npm run scroll:audit:check` | 25 route/states, **199 measurements** at seven sizes — every screen's last action reachable |
 | `npm run synthetic:users:qa:check` | **118 journeys**, 7,902 words introduced, all pass |
 | `npm run copy:ledger:check` | **830** Korean strings, every one read at its current wording; 78 rewritten with the reason recorded |
 | `npm run locale:editorial:check` | **0 errors, 0 warnings** — the 70 split-translation warnings the previous edition carried are closed |
-| `npm run test:e2e` | see the run recorded below |
+| `npm run test:e2e` | **578 cases** over the mobile and desktop projects, 0 failed, 0 flaky, 38.4 min |
 | Unit suites | web **1044**, Korean morphology **216**, handwriting core **96** — **1,356**, all passing |
-| `npm run native:bundle:check` | every file in `apps/web/dist` compared inside the APK — 0 missing and 0 different |
+| `npm run native:bundle:check` | **14,152 files** compared inside the APK — 0 missing, 0 different, and the 4 web-only files pruned, which it now checks rather than skips (report §20R.11b) |
 | `npm run release:current` | both delivery manifests at HEAD |
 
-Ten gates were negative-tested this refresh by restoring the behaviour they
+Twelve gates were negative-tested this refresh by restoring the behaviour they
 exist to catch:
 
 ```
@@ -111,6 +112,8 @@ English copied into the Tamil pack                    2 findings   exit 1
 the prompt table and the page's switch disagreeing    1 finding    exit 1
 the usefulness ceiling emptied                      215 findings   exit 1
 the money gloss restored to the lesson's own title    1 finding    exit 1
+the summary's retired *Take the final check* row back  1 e2e case   exit 1
+sw.js copied back into the native bundle               1 finding    exit 1
 ```
 
 ## On a device — NOT RUN THIS REFRESH
@@ -145,8 +148,8 @@ Level Test.
 ## Checksums
 
 ```
-a2a0b1bbad25ad6285fb09cf459056324c46b4748fb7d4a48752ea261a2a0dfe  hangyul-ganada-release.apk
+e76ab90aec2399eb18920e57775437546bb5bec7fc015ce85d5e84e678808651  hangyul-ganada-release.apk
 d230b86460a8b458d64fd273eb9e1dc491ff06d0cd9c30b92bbaaa65ca6ff6ac  hangyul-ganada-release.aab
-94e11e455b00d66a4f6f51a65420eb62c94b11da0f7ef479de0b5dd169c57814  docs/report.pdf
-4ad1d5e1c6d749c33464c66a80de0259aeb60ed1735788791890b731b943d8a1  build-info.json
+85e6b7941a8d12257252c352867821465a41f3dee11bedbe6d822f6bf3a27f2c  docs/report.pdf
+e6bca3eacaab84a99c4dd8795a0d30f266444f80dc5a3546ec1bf9ee62ce06ad  build-info.json
 ```
