@@ -8,10 +8,10 @@
     "googlePlay": false,
     "appStoreConnect": false
   },
-  "_version_comment": "1.0.3. The Numbers course's question types, the corrected date spacing and the new launcher artwork are what it carries.",
+  "_version_comment": "1.0.3, unchanged. Build 13 carries the symmetric stroke corners, the Numbers course's named number sets and rewritten completion copy, and the editorial usefulness ceiling that re-levelled 240 words. None of that is a new feature set, so the version name stays where it is and only the build number moves.",
   "version": "1.0.3",
-  "_buildNumber_comment": "12, because 11 is spent. The delivered AAB and APK in result/ and app_result/ both report versionCode 11 (aapt2 badging, bundletool dump manifest) and build-info.json records 11, and product files have changed since the commit that produced them — so a rebuild at 11 would put different bytes under a code Play has already seen a set of bytes for, which it refuses. `npm run version:check` is what said so, before the build rather than after. Nothing has been uploaded to Play (see `registered.googlePlay`), so 12 is the next valid code rather than the next unused one. This number is set by a person deciding to ship, never incremented by a script or a tool run.",
-  "buildNumber": 12,
+  "_buildNumber_comment": "13, because 12 is spent. The delivered AAB and APK in result/ and app_result/ both report versionCode 12 and build-info.json records 12, and product files have changed since the commit that produced them — the stroke geometry, the Numbers curriculum and its copy in all 32 languages, and 240 re-levelled words — so a rebuild at 12 would put different bytes under a code a set of bytes already exists for. `npm run version:check` is what said so, before the build rather than after. Nothing has been uploaded to Play (see `registered.googlePlay`), so 13 is the next valid code rather than the next unused one. This number is set by a person deciding to ship, never incremented by a script or a tool run.",
+  "buildNumber": 13,
   "android": {
     "_comment": "targetSdk 36 because Google Play requires Android 16 for new apps and updates from 31 August 2026. minSdk 24 is Capacitor 8's floor and covers ~99% of active devices.",
     "targetSdk": 36,
