@@ -92,7 +92,8 @@ change.
 | `npm run numbers:copy:check` | 7,200 learner-facing strings across 32 languages; no lesson names the two number sets by a linguistic label |
 | `npm run copy:audit:check`, `i18n:check`, `locale:content:check`, `locale:editorial:check` | pass — 0 errors and 0 warnings on the copy audit |
 | `npm run audio:qa`, `audio:pronunciation:check` | pass over the regenerated corpus |
-| `npm run test:e2e` | **573 passed, 1 failed** over 287 cases × 2 projects, 40.7 minutes. The failure is `level-change.spec.ts` — *a mid-day retake keeps the mastered words and serves the measured level* — timing out waiting for the corpus to load a headword, in a suite that had already been running for forty minutes. Re-run alone it passes, twice, along with the other case in its file. It is a flake under load and it is recorded as one rather than re-run away; nothing in this pass touches the vocabulary level machinery |
+| `npm run test:e2e` | **574 passed** over 287 cases × 2 projects, 39.3 minutes, on the final run. An earlier run of the same suite reported 573 passed and 1 failed — `level-change.spec.ts`, *a mid-day retake keeps the mastered words and serves the measured level*, timing out waiting for the corpus to load a headword after forty minutes of suite. It passed alone, twice, and it passed in the final full run. It is recorded here as the flake it is rather than deleted from the history; nothing in this pass touches the vocabulary level machinery |
+| Unit suites | web **1032** (70 files), Korean morphology **216**, handwriting core **96** — **1,344**, all passing |
 | `npm run native:bundle:check` | 14,152 files in `apps/web/dist`, 14,152 compared inside the APK, **0 missing and 0 different** — the app inside the package is the app that was built |
 | `npm run release:current` | both delivery manifests at HEAD; the working tree dirty only in `docs/` and the release directories |
 
@@ -133,5 +134,5 @@ screen.
 3894b163b0156c1370ec36db7b9ec15c1981e8d04501ebbd7c03a5dc6ff8ad88  hangyul-ganada-release.apk
 8a271a8dc9004c8585cdc262283727f8eb8eff4fe58d862f2ef722b66434b5a6  hangyul-ganada-release.aab
 914652ed8b1b6723262bc6ba0940e0da89c0e6e5a711c629a37c1a0b4f39dfa2  docs/report.pdf
-65e74cbf5d76950d42f96ee32266d18c5d040c961a846b2c00b5a2f929f7d01b  build-info.json
+51193fb5df2d7f55e6b667d74d5841881d76e9fa2bb80dacfefe9f7cbbce27c3  build-info.json
 ```

@@ -1,14 +1,14 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.3",
-  "commit": "2f282d9bb97137b9c89080a92b1a65f85234acca",
+  "commit": "33291f0c4ff6a0e8fc91141b32c7264e364a84ca",
   "source_state": {
     "dirty": true,
-    "fingerprint": "ca3584ab7b0c87d28c93db322f9ddc933c4ce85a4860053ea0dc1f0aad47698e",
-    "changed_files": 41,
-    "untracked_files": 1
+    "fingerprint": "8f6084627803c0771d461383295a80a88ffdabd6f2e01615b2980ac5891d0de4",
+    "changed_files": 3,
+    "untracked_files": 0
   },
-  "built_at": "2026-09-04T07:42:23.951Z",
+  "built_at": "2026-09-04T08:44:09.554Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
