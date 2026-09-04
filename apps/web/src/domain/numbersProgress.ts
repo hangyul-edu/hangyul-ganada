@@ -224,7 +224,22 @@ export function lessonStatus(
     }
     return 'completed';
   }
-  if (!record || record.opened_at === null) return 'available';
+  /*
+   * Evidence outranks the visit.
+   *
+   * This read `record.opened_at === null → 'available'`, which is right in
+   * every ordinary sitting — the page fires `lesson_opened` before anything
+   * else — and wrong in the one case worth guarding: a record that carries work
+   * and no opening. The stores are written optimistically, so a `lesson_opened`
+   * can be the write that loses a race with a reload, and a learner who had
+   * read two explanation steps would come back to a row with no badge on it,
+   * reading *you have not started this*.
+   *
+   * `started_at` is set by the first step read, the first example looked at and
+   * the first answer given, so it is the evidence that a lesson is under way.
+   * Asking it first means the status can only be wrong in the safe direction.
+   */
+  if (!record || (record.opened_at === null && record.started_at === null)) return 'available';
   if (record.started_at === null) return 'not_started';
   return 'in_progress';
 }

@@ -24,6 +24,7 @@ import {
 import { exampleMeaning, formatValue, numberMeaning } from '../features/numbers/meaning';
 import { useLocale } from '../i18n';
 import { withParticle } from '../i18n/josa';
+import { usePronunciation } from '../audio/PronunciationContext';
 import { useEntryAudio } from '../audio/useEntryAudio';
 import { hapticPass, hapticRetry, hapticSelection } from '../native/haptics';
 import { useLearner } from '../store/LearnerContext';
@@ -74,6 +75,24 @@ import styles from './NumberSessionPage.module.css';
  * Options are disabled the moment one is chosen, and the handler also checks a
  * ref, so a second tap in the same frame — a double tap, a tap during a
  * re-render — cannot record a second attempt or flip the shown result.
+ *
+ * ## A learner who cannot hear can finish the course
+ *
+ * A `listen_choose` question's whole stimulus is a clip — the prompt has an
+ * audio id and deliberately no text, because printing the word would be
+ * printing the answer. Every one of the nineteen lessons lists that kind, and
+ * a mastery check is what completes a lesson, so a learner who could not hear
+ * had no route through the Numbers course: not a harder route, none.
+ *
+ * `settings.sound_free` has existed since §36 and has always been honoured by
+ * the review scheduler. This screen asks it now, and asks the player as well —
+ * a build with no clips in it, or a manifest that failed to load, is the same
+ * situation arriving from the other side — and builds the run without the
+ * heard-only kind. Every lesson still asks every item; see `numbers:qa` §11.
+ *
+ * The decision is taken once, when the run mounts, and held for the run: a
+ * manifest that finishes loading half-way through a mastery check must not
+ * change the questions under the learner or the count printed on the way in.
  */
 
 const LESSON_ROOT = '/letters/numbers';
@@ -448,7 +467,8 @@ function ExerciseRun({
 }) {
   const { t } = useTranslation(['numbers', 'common', 'learning']);
   const { locale } = useLocale();
-  const { recordNumbersEvent } = useLearner();
+  const { state, recordNumbersEvent } = useLearner();
+  const settings = state.settings;
 
   /*
     The attempt number seeds the question order, and it is read once, when the
@@ -459,9 +479,26 @@ function ExerciseRun({
     by how many mastery checks have been taken.
   */
   const [attempt] = useState(() => (phase === 'mastery' ? record.mastery_attempts : record.attempts.total));
+
+  /*
+    Heard-only questions, or not — decided once, on the same terms and for the
+    same reason as the attempt number above.
+
+    `ready && !available` rather than `!available`: before the manifest has been
+    read the player reports nothing, and treating "not answered yet" as "no
+    audio" would quietly drop the listening questions from a run that was about
+    to have sound. A learner who has `sound_free` set never waits for that.
+  */
+  const audio = usePronunciation();
+  const [soundFree] = useState(
+    () => settings.sound_free || (audio.ready && !audio.available),
+  );
   const exercises = useMemo(
-    () => (phase === 'mastery' ? masteryExercises(lesson, attempt) : practiceExercises(lesson, attempt)),
-    [lesson, phase, attempt],
+    () =>
+      phase === 'mastery'
+        ? masteryExercises(lesson, attempt, { soundFree })
+        : practiceExercises(lesson, attempt, { soundFree }),
+    [lesson, phase, attempt, soundFree],
   );
 
   const [index, setIndex] = useState(0);

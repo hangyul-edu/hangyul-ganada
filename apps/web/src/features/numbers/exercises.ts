@@ -198,6 +198,39 @@ function build(
 
 type Ctx = { lesson: NumberLesson; siblings: NumberItem[]; attempt: number; phase: string };
 
+/**
+ * How a run may be built.
+ *
+ * ## `soundFree`, and why the Numbers course needed it
+ *
+ * A `listen_choose` question's entire stimulus is a clip: the prompt carries an
+ * audio id and no text, because showing the word is showing the answer. That is
+ * the right design for a listening question and the wrong thing to be unable to
+ * skip, and **every one of the nineteen lessons lists `listen_choose`** — so a
+ * learner who cannot hear met one in every mastery check, and a mastery check
+ * is what completes a lesson. There was no route through the Numbers course for
+ * them at all.
+ *
+ * `settings.sound_free` already existed and was already honoured by the review
+ * scheduler (§36, `domain/review.ts`); this course simply never asked. It asks
+ * now, and it also asks the player: a build with no audio in it, or a manifest
+ * that failed to load, is the same situation arriving from the other direction.
+ *
+ * Dropping the kind is enough — it is not a degraded course. Every lesson still
+ * covers every item through at least one other kind, and `numbers:qa` §11
+ * measures that rather than assuming it.
+ */
+export interface RunOptions {
+  /** Build without questions whose only stimulus is a sound. */
+  soundFree?: boolean;
+}
+
+/** The kinds a run may draw on, given how it is being built. */
+function kindsFor(lesson: NumberLesson, options: RunOptions | undefined): NumbersExerciseKind[] {
+  if (!options?.soundFree) return [...lesson.exercise_kinds];
+  return lesson.exercise_kinds.filter((kind) => kind !== 'listen_choose');
+}
+
 const koreanOf = (item: NumberItem): ExerciseOption => ({ text: item.korean });
 const meaningOf = (item: NumberItem): ExerciseOption =>
   item.gloss ? { text: item.gloss, isKey: true } : { text: String(item.value), value: item.value ?? undefined };
@@ -664,16 +697,24 @@ const BUILDERS: Record<NumbersExerciseKind, (item: NumberItem, ctx: Ctx) => Numb
  * Guided practice: every item, through at least two different exercise kinds
  * where the item supports them, in a seeded interleaved order.
  */
-export function practiceExercises(lesson: NumberLesson, attempt: number): NumbersExercise[] {
-  return generate(lesson, attempt, 'practice', 2);
+export function practiceExercises(
+  lesson: NumberLesson,
+  attempt: number,
+  options?: RunOptions,
+): NumbersExercise[] {
+  return generate(lesson, attempt, 'practice', 2, options);
 }
 
 /**
  * The mastery check: `lesson.mastery_count` questions covering every item at
  * least once, kinds rotated so no two consecutive questions share one.
  */
-export function masteryExercises(lesson: NumberLesson, attempt: number): NumbersExercise[] {
-  const all = generate(lesson, attempt, 'mastery', 3);
+export function masteryExercises(
+  lesson: NumberLesson,
+  attempt: number,
+  options?: RunOptions,
+): NumbersExercise[] {
+  const all = generate(lesson, attempt, 'mastery', 3, options);
   const items = numberLessonItems(lesson);
   const chosen: NumbersExercise[] = [];
   const used = new Set<string>();
@@ -720,12 +761,19 @@ function spreadAnswers(list: NumbersExercise[], seed: string): NumbersExercise[]
   });
 }
 
-function generate(lesson: NumberLesson, attempt: number, phase: string, perItem: number): NumbersExercise[] {
+function generate(
+  lesson: NumberLesson,
+  attempt: number,
+  phase: string,
+  perItem: number,
+  options?: RunOptions,
+): NumbersExercise[] {
   const siblings = numberLessonItems(lesson);
+  const available = kindsFor(lesson, options);
   const out: NumbersExercise[] = [];
   for (const item of siblings) {
     let made = 0;
-    const kinds = shuffle(lesson.exercise_kinds, `${lesson.id}:${item.id}:kinds:${attempt}`);
+    const kinds = shuffle(available, `${lesson.id}:${item.id}:kinds:${attempt}`);
     for (const kind of kinds) {
       if (made >= perItem) break;
       const ex = BUILDERS[kind](item, { lesson, siblings, attempt, phase });
@@ -740,14 +788,17 @@ function generate(lesson: NumberLesson, attempt: number, phase: string, perItem:
  * How many exercises a lesson can actually build, and how many items got fewer
  * than two kinds. `numbers:qa` reads this.
  */
-export function exerciseCoverage(lesson: NumberLesson): { exercises: number; thinItems: string[]; kinds: Set<NumbersExerciseKind> } {
+export function exerciseCoverage(
+  lesson: NumberLesson,
+  options?: RunOptions,
+): { exercises: number; thinItems: string[]; kinds: Set<NumbersExerciseKind> } {
   const items = numberLessonItems(lesson);
   const kinds = new Set<NumbersExerciseKind>();
   const thin: string[] = [];
   let total = 0;
   for (const item of items) {
     let n = 0;
-    for (const kind of lesson.exercise_kinds) {
+    for (const kind of kindsFor(lesson, options)) {
       const ex = BUILDERS[kind](item, { lesson, siblings: items, attempt: 0, phase: 'practice' });
       if (ex) { n += 1; kinds.add(kind); }
     }
