@@ -131,9 +131,18 @@ if (manifest.versionName !== identity.version) {
 if (manifest.versionCode !== identity.buildNumber) {
   manifestProblems.push(`the APK says versionCode ${manifest.versionCode}; app.identity.json says ${identity.buildNumber}`);
 }
-if (Number.isInteger(previous) && manifest.versionCode <= previous) {
+/*
+ * Behind, not equal.
+ *
+ * Equal is the ordinary case of re-running this script over the same build,
+ * and failing on it would mean a delivery directory could never be rebuilt.
+ * Whether a code that has been *spent* is about to be reused for different
+ * bytes is `check-version-consistency`'s question and it answers it against
+ * the source rather than against the number.
+ */
+if (Number.isInteger(previous) && manifest.versionCode < previous) {
   manifestProblems.push(
-    `versionCode ${manifest.versionCode} is not ahead of ${previous}, which the last delivery already used`,
+    `versionCode ${manifest.versionCode} is behind ${previous}, which the last delivery already used`,
   );
 }
 if (manifestProblems.length) {
@@ -301,10 +310,22 @@ const buildInfo = {
     native_libraries: 0,
     registered_with_play: identity.registered.googlePlay,
   },
+  /*
+   * iOS reports what the *Xcode project* carries, not what Android is at.
+   *
+   * These two numbers used to be `identity.version` and `identity.buildNumber`,
+   * which is the release Android is cutting. On a release where the iOS half
+   * cannot be built from this machine — every release so far — that made the
+   * delivery's own metadata claim an iOS version that exists nowhere: not in
+   * `project.pbxproj`, not in App Store Connect, not in any archive. The
+   * honest answer is the project file's, and `pending` says what is owed.
+   */
   ios: {
     bundle_id: identity.appId,
-    version: identity.version,
-    build: identity.buildNumber,
+    version: identity.ios.xcode.marketingVersion,
+    build: identity.ios.xcode.currentProjectVersion,
+    pending_version: identity.ios.xcode.marketingVersion === identity.version ? null : identity.version,
+    pending_build: identity.ios.xcode.currentProjectVersion === identity.buildNumber ? null : identity.buildNumber,
     deployment_target: identity.ios.deploymentTarget,
     sdk: null,
     ipa_bytes: null,
