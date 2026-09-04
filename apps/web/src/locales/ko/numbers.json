@@ -76,7 +76,7 @@
     "koreanToDigits": "어떤 숫자일까요?",
     "counterForm": "{{value}} — {{counter}} 앞에서는 어떻게 말할까요?",
     "fill": "빈칸을 채워 보세요",
-    "orderParts": "순서대로 눌러서 {{value}}을(를) 만들어 보세요"
+    "orderParts": "{{value}} — 순서대로 눌러서 만들어 보세요"
   },
   "rationale": {
     "nativeSystem": "물건과 사람, 시, 나이는 하나, 둘, 셋으로 세요.",
@@ -92,7 +92,6 @@
     "spacing": "세는 말은 띄어 써요: 한 개.",
     "system_swap": "값은 같아도 쓰는 자리가 달라요. 여기서는 {{object}} 써요.",
     "sound_alike": "소리 하나 차이예요. 끝소리를 들어 보세요.",
-    "adjacent": "{{subject}} {{value}}예요.",
     "wrong_counter": "세는 말마다 어울리는 대상이 있어요 — 사람은 명, 동물은 마리, 물건은 개."
   },
   "module": {
@@ -293,8 +292,8 @@
     "june": "6월 — 불규칙",
     "october": "10월 — 불규칙",
     "whatDay": "요일을 묻는 말",
-    "monday": "한 주의 첫날",
-    "friday": "한 주의 다섯째 날",
+    "monday": "한 주가 시작되는 날",
+    "friday": "주말 바로 앞의 날",
     "weekend": "토요일과 일요일",
     "counterWon": "한국 돈의 단위",
     "howMuch": "가격을 묻는 말",
@@ -318,18 +317,11 @@
     "zeroDigit": "010",
     "belowZeroFive": "0도보다 5도 낮은 온도",
     "zeroScore": "점수가 0점이었어요.",
-    "ctxPeople": "사람은 하나, 둘, 셋으로 세요",
-    "ctxMoney": "가격은 일, 이, 삼으로 말해요",
-    "ctxHour": "시는 하나, 둘, 셋으로 말해요",
-    "ctxMinute": "분은 일, 이, 삼으로 말해요",
-    "ctxAge": "나이는 하나, 둘, 셋으로 말해요",
-    "ctxDate": "날짜는 일, 이, 삼으로 말해요",
     "twentyFive": "나이가 25살이에요.",
     "ageHonorific": "어른께 나이를 여쭙는 말",
     "halfPastTwo": "2시 30분",
     "threeOclock": "지금 3시예요.",
     "halfPastThree": "지금 3시 30분이에요.",
-    "quarterPastTwo": "2시 15분",
     "juneSixth": "6월 6일",
     "octoberTenth": "10월 10일",
     "monday": "오늘은 월요일이에요.",

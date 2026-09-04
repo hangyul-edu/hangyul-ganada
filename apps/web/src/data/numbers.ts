@@ -20,7 +20,7 @@ export type { ExplainStep, NumberItem, NumberLesson, NumberModule, NumbersExerci
  * answered by knowing **which list, with which counter, in which shape**, and
  * that is a rule with exceptions rather than a table to memorise.
  *
- * ## Six modules, eighteen lessons, in the order the decisions arrive
+ * ## Six modules, nineteen lessons, in the order the decisions arrive
  *
  * ```
  *  1  두 가지 수      the two systems: Sino, native, the two zeroes, which one when
@@ -205,25 +205,28 @@ const ZERO: NumberItem[] = [
  * The rule lesson has phrases rather than numerals: a context, and which
  * system it takes. These are what `choose_system` asks about.
  */
+/*
+ * None of these carries an `example_gloss` any more, and that is a removal
+ * rather than an omission.
+ *
+ * `example_gloss` is the line under a worked example, and `ItemCard` draws it
+ * inside `{item.example && …}` — so on an item with no `example` it could not
+ * be drawn at all. All six of these had one. `example.ctxPeople` read *사람은
+ * 하나, 둘, 셋으로 세요*, in thirty-two languages, on no screen; and it is the
+ * sentence `lesson.choosing.step1` already prints two screens earlier, with the
+ * same three examples in it.
+ *
+ * The keys are gone from all thirty-two bundles with the declarations, and
+ * `numbers:qa` now fails an `example_gloss` on an item with no example, so the
+ * next one cannot be quiet.
+ */
 const CHOOSING: NumberItem[] = [
-  n('num-ch-people', '세 명', 'se myeong', null, 'native', 'phrase', 'gloss.ctxPeople', {
-    example_gloss: 'example.ctxPeople',
-  }),
-  n('num-ch-money', '오천 원', 'ocheon won', null, 'sino', 'phrase', 'gloss.ctxMoney', {
-    example_gloss: 'example.ctxMoney',
-  }),
-  n('num-ch-hour', '두 시', 'du si', null, 'native', 'phrase', 'gloss.ctxHour', {
-    example_gloss: 'example.ctxHour',
-  }),
-  n('num-ch-minute', '삼십 분', 'samsip bun', null, 'sino', 'phrase', 'gloss.ctxMinute', {
-    example_gloss: 'example.ctxMinute',
-  }),
-  n('num-ch-age', '스무 살', 'seumu sal', null, 'native', 'phrase', 'gloss.ctxAge', {
-    example_gloss: 'example.ctxAge',
-  }),
-  n('num-ch-date', '삼월 일일', 'samwol iril', null, 'sino', 'phrase', 'gloss.ctxDate', {
-    example_gloss: 'example.ctxDate',
-  }),
+  n('num-ch-people', '세 명', 'se myeong', null, 'native', 'phrase', 'gloss.ctxPeople'),
+  n('num-ch-money', '오천 원', 'ocheon won', null, 'sino', 'phrase', 'gloss.ctxMoney'),
+  n('num-ch-hour', '두 시', 'du si', null, 'native', 'phrase', 'gloss.ctxHour'),
+  n('num-ch-minute', '삼십 분', 'samsip bun', null, 'sino', 'phrase', 'gloss.ctxMinute'),
+  n('num-ch-age', '스무 살', 'seumu sal', null, 'native', 'phrase', 'gloss.ctxAge'),
+  n('num-ch-date', '삼월 일일', 'samwol iril', null, 'sino', 'phrase', 'gloss.ctxDate'),
 ];
 
 // --- Module 2 · past ten ----------------------------------------------------
@@ -352,9 +355,9 @@ const MINUTES: NumberItem[] = [
     example: '세 시 삼십 분이에요.',
     example_gloss: 'example.halfPastThree',
   }),
-  n('num-t-quarter', '두 시 십오 분', 'du si sibo bun', null, null, 'phrase', 'gloss.quarterPast', {
-    example_gloss: 'example.quarterPastTwo',
-  }),
+  // No `example_gloss`: it read *2시 15분*, which is `gloss.quarterPast` word
+  // for word, and it had no example to be drawn under in any case.
+  n('num-t-quarter', '두 시 십오 분', 'du si sibo bun', null, null, 'phrase', 'gloss.quarterPast'),
 ];
 
 const DATES: NumberItem[] = [

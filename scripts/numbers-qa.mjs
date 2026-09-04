@@ -34,6 +34,24 @@
  *    bundles, and the audio manifest.
  * 10. **Writing is not pronunciation.** An example headed *이렇게 발음해요* is
  *    an example about sound, and one headed *이렇게 써요* is about spelling.
+ * 11. **A learner who cannot hear can finish.** Built sound-free, every lesson
+ *    still asks every item, in guided practice and in the mastery check.
+ * 12. **Nothing is tested before it is taught.** No question is *about* an item
+ *    a later lesson introduces, and any option that comes from a later lesson
+ *    is a declared misconception rather than a stray.
+ * 13. **No question is asked twice in one sitting.** Within one phase of one
+ *    run, no two questions are the same question.
+ * 14. **A listening question plays its own answer.** The clip's text is the
+ *    option the grader accepts, exactly.
+ * 15. **Nothing is written that nothing can show.** Every `rationale.*` key is
+ *    reachable from `exercises.ts`, and an `example_gloss` belongs to an item
+ *    that has an example — `ItemCard` draws it inside `{item.example && …}`.
+ * 16. **Korean picks its particles.** No bundle writes 은(는) or 을(를): the
+ *    app has a formatter for that, and the parenthesis is the register this
+ *    product removed on purpose.
+ * 17. **Completion is evidence.** The state machine in `domain/numbersProgress`
+ *    is walked over the sequences that matter, including the ones that used to
+ *    complete a lesson and must not.
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -48,6 +66,13 @@ const { NUMBER_ITEMS, NUMBER_LESSONS, NUMBER_MODULES, numberLessonItems, spokenE
 const { exerciseCoverage, masteryExercises, practiceExercises } = await import(
   '../apps/web/src/features/numbers/exercises.ts'
 );
+const {
+  applyNumbersEvent,
+  blankLessonProgress,
+  isComplete,
+  lessonStatus,
+  repairLessonProgress,
+} = await import('../apps/web/src/domain/numbersProgress.ts');
 
 const LOCALES = readdirSync(join(ROOT, 'apps/web/src/locales'), { withFileTypes: true })
   .filter((e) => e.isDirectory())
@@ -681,6 +706,264 @@ for (const item of NUMBER_ITEMS) {
   }
 }
 
+// --- 11 a learner who cannot hear can finish -----------------------------------
+/**
+ * The whole course, built without the questions whose only stimulus is a sound.
+ *
+ * A `listen_choose` prompt carries an audio id and deliberately no text —
+ * printing the word would print the answer — and **every one of the nineteen
+ * lessons lists that kind**. A mastery check is what completes a lesson, and a
+ * mastery check asks every item, so a learner who could not hear had no route
+ * through this course at all: not a longer one, none.
+ *
+ * `settings.sound_free` has existed since §36 and the review scheduler has
+ * always honoured it. What is measured here is that honouring it in Numbers
+ * leaves a course rather than a remnant: every item still asked, in both
+ * phases, in every lesson.
+ *
+ * Two lessons fall to one question shape when the listening is taken out —
+ * minutes and weekdays — and that is reported rather than failed. A shorter
+ * lesson a learner can finish beats a richer one they cannot.
+ */
+let quietRuns = 0;
+const quietThin = [];
+for (const lesson of NUMBER_LESSONS) {
+  const practice = practiceExercises(lesson, 0, { soundFree: true });
+  const mastery = masteryExercises(lesson, 0, { soundFree: true });
+  quietRuns += 1;
+  if (practice.some((e) => e.kind === 'listen_choose') || mastery.some((e) => e.kind === 'listen_choose')) {
+    fail(`${lesson.id}: a sound-free run still contains a listening question`);
+  }
+  for (const id of lesson.item_ids) {
+    if (!practice.some((e) => e.item_id === id)) fail(`${lesson.id}: sound-free practice never asks ${id}`);
+    if (!mastery.some((e) => e.item_id === id)) fail(`${lesson.id}: sound-free mastery never asks ${id}`);
+  }
+  if (mastery.length === 0) fail(`${lesson.id}: no sound-free mastery check can be built`);
+  const shapes = new Set([...practice, ...mastery].map((e) => e.question_type));
+  if (shapes.size < 2) quietThin.push(`${lesson.id} (${[...shapes].join(', ')})`);
+}
+
+// --- 12 nothing is tested before it is taught ----------------------------------
+/**
+ * A question is *about* one item, and that item is the lesson's own.
+ *
+ * The distractors are a separate question, and the answer to it is not "only
+ * things already taught". `system_swap` — 하나 offered against 일 — is the
+ * central misconception of the whole course and it necessarily reaches into the
+ * set the learner has not met yet; that is what makes it the distractor. What
+ * may not happen is a *stray*: an option lifted from a later lesson with no
+ * declared reason for being there, which a learner cannot eliminate and the
+ * feedback cannot explain.
+ */
+const firstLesson = new Map();
+NUMBER_LESSONS.forEach((lesson, index) => {
+  for (const id of lesson.item_ids) if (!firstLesson.has(id)) firstLesson.set(id, index);
+});
+const itemByKorean = new Map();
+const itemByGloss = new Map();
+for (const item of NUMBER_ITEMS) {
+  if (!itemByKorean.has(item.korean)) itemByKorean.set(item.korean, item);
+  if (item.gloss && !itemByGloss.has(item.gloss)) itemByGloss.set(item.gloss, item);
+}
+let forwardDistractors = 0;
+
+// --- 13/14 one sitting, and the clip says the answer ---------------------------
+NUMBER_LESSONS.forEach((lesson, index) => {
+  for (const attempt of ATTEMPTS) {
+    for (const [phase, run] of [
+      ['practice', practiceExercises(lesson, attempt)],
+      ['mastery', masteryExercises(lesson, attempt)],
+    ]) {
+      const asked = new Set();
+      for (const exercise of run) {
+        // 12 — the subject of the question
+        const owner = firstLesson.get(exercise.item_id);
+        if (owner === undefined) fail(`${lesson.id}: asks about ${exercise.item_id}, which no lesson teaches`);
+        else if (owner > index) {
+          fail(`${lesson.id}: asks about ${exercise.item_id}, first taught in ${NUMBER_LESSONS[owner].id}`);
+        }
+        exercise.options.forEach((option, at) => {
+          if (at === exercise.answer) return;
+          const source = option.isKey
+            ? itemByGloss.get(option.text)
+            : option.value !== undefined
+              ? null
+              : itemByKorean.get(option.text);
+          if (!source) return;
+          const from = firstLesson.get(source.id);
+          if (from === undefined || from <= index) return;
+          forwardDistractors += 1;
+          if (!option.misconception) {
+            fail(
+              `${lesson.id}: "${option.text}" is a distractor from ${NUMBER_LESSONS[from].id} with no misconception behind it`,
+            );
+          }
+        });
+
+        // 13 — the same question twice in one sitting
+        const fingerprint = `${exercise.question_type}|${exercise.item_id}|${JSON.stringify(exercise.prompt)}`;
+        if (asked.has(fingerprint)) {
+          fail(`${lesson.id} attempt ${attempt} ${phase}: ${exercise.item_id} is asked as ${exercise.question_type} twice`);
+        }
+        asked.add(fingerprint);
+
+        // 14 — the clip says the answer
+        if (exercise.question_type === 'listenAndChoose') {
+          const said = clipText.get(exercise.prompt.audio);
+          const wanted = exercise.options[exercise.answer]?.text;
+          if (said !== wanted) {
+            fail(`${lesson.id}: a listening question plays "${said}" and accepts "${wanted}"`);
+          }
+        }
+      }
+    }
+  }
+});
+
+// --- 15 nothing is written that nothing can show -------------------------------
+/**
+ * Two shapes of dead copy, both of which had shipped.
+ *
+ * `rationale.adjacent` was in all thirty-two bundles and unreachable:
+ * `MISCONCEPTION_FEEDBACK.adjacent` is `null` on purpose — *정답은 오* is
+ * already on the screen — so no code path could ever ask for it.
+ *
+ * `example_gloss` is drawn by `ItemCard` inside `{item.example && …}`, so on an
+ * item with no example it cannot be drawn. Seven keys were in that state,
+ * including one — *2시 15분* — that repeated the gloss printed above it.
+ */
+const exercisesSource = readFileSync(join(ROOT, 'apps/web/src/features/numbers/exercises.ts'), 'utf8');
+for (const [key] of enFlat) {
+  if (!key.startsWith('rationale.')) continue;
+  const name = key.slice('rationale.'.length);
+  if (!exercisesSource.includes(`rationale.${name}`) && !exercisesSource.includes(`rationale.\${'$'}{`)) {
+    fail(`[en] ${key} is in every bundle and nothing in exercises.ts can ask for it`);
+  }
+}
+for (const item of NUMBER_ITEMS) {
+  if (item.example_gloss && !item.example) {
+    fail(`${item.id} has an example_gloss and no example, so nothing can draw it`);
+  }
+}
+
+// --- 16 Korean picks its particles ---------------------------------------------
+/**
+ * 은(는) is the register of an interface that could not decide.
+ *
+ * `i18n/josa.ts` exists so a Korean string does not have to: it writes
+ * `{{word, eunneun}}` and gets 마디는 and 사람은, each spelled the way a person
+ * would. A bundle that writes the pair out longhand has opted out of that, and
+ * `prompt.orderParts` — *순서대로 눌러서 {{value}}을(를) 만들어 보세요* — was
+ * the one place in the product still doing it.
+ */
+const PARTICLE_PAIR = /(은\(는\)|는\(은\)|이\(가\)|가\(이\)|을\(를\)|를\(을\)|과\(와\)|와\(과\)|으로\(로\)|로\(으로\))/;
+for (const locale of LOCALES) {
+  for (const [key, value] of flatten(bundles[locale])) {
+    const hit = String(value).match(PARTICLE_PAIR);
+    if (hit) fail(`[${locale}] ${key} writes the particle pair "${hit[1]}" out longhand`);
+  }
+}
+
+// --- 17 completion is evidence --------------------------------------------------
+/**
+ * The state machine, walked over the sequences that decide a lesson.
+ *
+ * `numbersProgress.test.ts` owns the unit-level proof. What is here is the
+ * handful of transitions a *content* change can break from a distance — a
+ * lesson that grew an explanation step, an item added to `item_ids` — and the
+ * one the first build got wrong: reaching the last screen completed the lesson
+ * whatever the answers were.
+ */
+const NOW = new Date('2026-09-04T00:00:00Z');
+for (const lesson of NUMBER_LESSONS) {
+  const blank = blankLessonProgress(lesson.id, NOW);
+  if (isComplete(blank, lesson)) fail(`${lesson.id}: an untouched record is complete`);
+  if (lessonStatus(blank, lesson, { reviewDue: false }) !== 'available') {
+    fail(`${lesson.id}: an untouched record is not "available"`);
+  }
+
+  // A completion nobody earned is taken back off the record on the way in.
+  const forged = repairLessonProgress(
+    { ...blank, completed_at: NOW.toISOString() },
+    lesson,
+    NOW,
+  );
+  if (forged === null || forged.completed_at !== null) {
+    fail(`${lesson.id}: a completed_at with no evidence behind it survives repair`);
+  }
+
+  // Everything read, everything practised, and mastery answered entirely wrong.
+  let record = blank;
+  for (const step of lesson.explanation) {
+    record = applyNumbersEvent(record, lesson, { type: 'explanation_viewed', step: step.text }, NOW);
+    // Idempotent: reading a step twice is one step read.
+    record = applyNumbersEvent(record, lesson, { type: 'explanation_viewed', step: step.text }, NOW);
+  }
+  if (record.explanation_steps_viewed.length !== lesson.explanation.length) {
+    fail(`${lesson.id}: reading a step twice counted twice`);
+  }
+  for (const id of lesson.item_ids) {
+    record = applyNumbersEvent(record, lesson, { type: 'example_viewed', item_id: id }, NOW);
+  }
+  record = applyNumbersEvent(record, lesson, { type: 'practice_completed' }, NOW);
+  for (const id of lesson.item_ids) {
+    record = applyNumbersEvent(
+      record,
+      lesson,
+      { type: 'exercise_attempted', exercise_id: `x:${id}`, item_id: id, correct: false, phase: 'mastery' },
+      NOW,
+    );
+  }
+  record = applyNumbersEvent(
+    record,
+    lesson,
+    { type: 'mastery_completed', correct: 0, total: lesson.item_ids.length },
+    NOW,
+  );
+  if (isComplete(record, lesson)) fail(`${lesson.id}: reaching the end with every answer wrong completes it`);
+  if (lessonStatus(record, lesson, { reviewDue: false }) !== 'in_progress') {
+    fail(`${lesson.id}: a lesson worked through and failed is not "in progress"`);
+  }
+
+  // A review does not complete a lesson that was not complete.
+  const reviewed = applyNumbersEvent(
+    record,
+    lesson,
+    { type: 'review_completed', item_id: lesson.item_ids[0], correct: true },
+    NOW,
+  );
+  if (isComplete(reviewed, lesson)) fail(`${lesson.id}: a review completed an unfinished lesson`);
+
+  // Now earn it.
+  for (const id of lesson.item_ids) {
+    record = applyNumbersEvent(
+      record,
+      lesson,
+      { type: 'exercise_attempted', exercise_id: `y:${id}`, item_id: id, correct: true, phase: 'mastery' },
+      NOW,
+    );
+  }
+  record = applyNumbersEvent(
+    record,
+    lesson,
+    { type: 'mastery_completed', correct: lesson.item_ids.length, total: lesson.item_ids.length },
+    NOW,
+  );
+  if (!isComplete(record, lesson)) fail(`${lesson.id}: a lesson fully earned is not complete`);
+  const stamped = record.completed_at;
+  // A later worse attempt cannot take it away.
+  const after = applyNumbersEvent(
+    record,
+    lesson,
+    { type: 'mastery_completed', correct: 0, total: lesson.item_ids.length },
+    NOW,
+  );
+  if (after.completed_at !== stamped) fail(`${lesson.id}: a later failed check moved completed_at`);
+  if (lessonStatus(after, lesson, { reviewDue: true }) !== 'review_due') {
+    fail(`${lesson.id}: a completed lesson that is due does not say so`);
+  }
+}
+
 // --- report -------------------------------------------------------------------
 const kinds = new Set(NUMBER_LESSONS.flatMap((l) => l.exercise_kinds));
 console.log(
@@ -691,6 +974,13 @@ console.log(`  translated keys        ${enKeys.length} × ${LOCALES.length} lang
 console.log(`  translated cells       ${translatedCells} translated, ${fallbackCells} identical to English`);
 console.log(`  answer positions       ${[0, 1, 2, 3].map((i) => positions.filter((p) => p === i).length).join(' / ')} over ${positions.length} four-option mastery questions`);
 console.log(`  questions audited      ${audited} distinct, over ${typesSeen.size} question types, ${everyExercise.length} built`);
+console.log(`  sound-free            ${quietRuns} lesson(s) complete without a heard-only question`);
+console.log(`  forward distractors   ${forwardDistractors}, every one a declared misconception`);
+if (quietThin.length) {
+  notes.push(
+    `sound-free, ${quietThin.length} lesson(s) fall to one question shape: ${quietThin.join('; ')}`,
+  );
+}
 if (notes.length) {
   console.log('\n  notes:');
   for (const n of notes) console.log(`    ${n}`);

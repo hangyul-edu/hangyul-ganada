@@ -131,7 +131,7 @@
     "permissions": {
       "title": "Permessi",
       "points": [
-        "L'app non chiede alcun permesso.",
+        "L’app non chiede alcun permesso.",
         "Mai la fotocamera, il microfono, le foto, i contatti o la posizione."
       ]
     },

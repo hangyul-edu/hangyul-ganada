@@ -92,7 +92,6 @@
     "spacing": "Un mot compteur prend une espace : 한 개.",
     "system_swap": "Même quantité, autre place. Ici, on emploie {{korean}}.",
     "sound_alike": "Un seul son de différence. Écoutez la fin.",
-    "adjacent": "{{korean}}, c’est {{value}}.",
     "wrong_counter": "Chaque mot compteur a ses objets — 명 pour les personnes, 마리 pour les animaux, 개 pour les choses."
   },
   "module": {
@@ -318,18 +317,11 @@
     "zeroDigit": "010",
     "belowZeroFive": "moins cinq degrés",
     "zeroScore": "J’ai eu zéro.",
-    "ctxPeople": "Les personnes se comptent avec 하나, 둘, 셋",
-    "ctxMoney": "Les prix prennent 일, 이, 삼",
-    "ctxHour": "L’heure prend 하나, 둘, 셋",
-    "ctxMinute": "Les minutes prennent 일, 이, 삼",
-    "ctxAge": "L’âge prend 하나, 둘, 셋",
-    "ctxDate": "Les dates prennent 일, 이, 삼",
     "twentyFive": "J’ai vingt-cinq ans.",
     "ageHonorific": "demander son âge à une personne plus âgée",
     "halfPastTwo": "deux heures et demie",
     "threeOclock": "Il est trois heures.",
     "halfPastThree": "Il est trois heures et demie.",
-    "quarterPastTwo": "deux heures et quart",
     "juneSixth": "le six juin",
     "octoberTenth": "le dix octobre",
     "monday": "On est lundi.",
@@ -344,7 +336,7 @@
     "pitfallHourMinute": "세 시 삼십 분 est juste ; 삼 시 서른 분 ne l’est pas",
     "pitfallSpacing": "한 개 est juste ; 한개 ne l’est pas",
     "tenThousandWon": "un billet de 10 000 wons",
-    "threeHundredMillionWon": "L'appartement coûte 삼억 원."
+    "threeHundredMillionWon": "L’appartement coûte 삼억 원."
   },
   "note": {
     "phoneZero": "Dans un numéro de téléphone, 0 se lit généralement 공.",

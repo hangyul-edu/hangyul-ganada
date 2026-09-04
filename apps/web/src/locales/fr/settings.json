@@ -131,7 +131,7 @@
     "permissions": {
       "title": "Autorisations",
       "points": [
-        "L'application ne demande aucune autorisation.",
+        "L’application ne demande aucune autorisation.",
         "Jamais l’appareil photo, le micro, les photos, les contacts ou la position."
       ]
     },
