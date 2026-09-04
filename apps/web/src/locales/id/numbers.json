@@ -10,12 +10,12 @@
     "mastered": "Dikuasai",
     "review_due": "Saatnya ulasan"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 dan 하나, 둘, 셋",
+  "systemSino": "Sino-Korea (일, 이, 삼)",
+  "systemNative": "Asli Korea (하나, 둘, 셋)",
+  "systemBoth": "Sino-Korea dan asli Korea",
   "system": {
-    "native": "하나, 둘, 셋 — untuk menghitung benda",
-    "sino": "일, 이, 삼 — untuk uang dan tanggal"
+    "native": "Asli Korea — untuk menghitung benda",
+    "sino": "Sino-Korea — untuk uang dan tanggal"
   },
   "phase": {
     "objective": "Yang akan kamu pelajari",
@@ -31,9 +31,9 @@
     "next": "Berikutnya",
     "continue": "Lanjut",
     "beginPractice": "Mulai latihan",
-    "beginMastery": "Mulai uji penguasaan",
-    "retryMastery": "Coba lagi uji penguasaan",
-    "backToCourse": "Kembali ke Angka",
+    "beginMastery": "Mulai pemeriksaan akhir",
+    "retryMastery": "Coba lagi",
+    "backToCourse": "Kembali ke pelajaran angka",
     "review": "Ulas pelajaran ini",
     "clear": "Hapus"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Dilafalkan begini",
     "example": "Dalam pemakaian"
   },
-  "practiceIntro": "Salah di sini tidak apa-apa — penjelasan muncul saat diperlukan.",
-  "masteryIntro": "{{count}} soal. Kamu perlu {{pass}}% benar, dan setiap butir muncul minimal sekali.",
-  "masteryPassed": "Uji penguasaan lulus — {{correct}} dari {{total}}",
-  "masteryFailed": "Belum — {{correct}} dari {{total}}. Ulas contohnya lalu coba lagi.",
-  "masteryPerfect": "Sempurna — semua soal benar",
+  "practiceIntro": "Salah di sini tidak apa-apa.",
+  "masteryIntro": "Benar {{pass}} dari {{count}} soal berarti lulus.",
+  "masteryPassed": "Kamu lulus pemeriksaan akhir. Benar {{correct}} dari {{total}}.",
+  "masteryFailed": "Kali ini kamu benar {{correct}} dari {{total}}. Dengan {{pass}} jawaban benar kamu bisa lanjut ke pelajaran berikutnya.",
+  "masteryPerfect": "Kamu lulus pemeriksaan akhir. Semua {{total}} benar.",
   "summaryComplete": "Pelajaran selesai",
-  "summaryIncomplete": "Belum selesai",
+  "summaryIncomplete": "Masih ada yang tersisa",
   "summaryMissing": {
     "explain": "Baca setiap langkah penjelasan",
     "examples": "Lihat setiap contoh",
     "practice": "Selesaikan latihannya",
-    "mastery": "Lulus uji penguasaan"
+    "mastery": "Mengerjakan pemeriksaan akhir",
+    "everyItem": "Menjawab setiap ungkapan dengan benar minimal sekali"
   },
   "feedback": {
     "correct": "Benar",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Yang mana artinya ini?",
     "chooseCorrectExplanation": "Pilih penjelasan yang benar.",
     "findIncorrectExpression": "Pilih ungkapan yang salah.",
-    "chooseSystem": "Angka mana yang dipakai di sini?",
+    "chooseSystem": "Sino-Korea atau asli Korea di sini?",
     "digitsToKorean": {
-      "sino": "Ucapkan angka ini dengan 일, 이, 삼",
-      "native": "Hitung ini dengan 하나, 둘, 셋",
-      "both": "Sebutkan angka ini dalam bahasa Korea"
+      "sino": "Bagaimana membacanya dengan angka Sino-Korea?",
+      "native": "Bagaimana menghitungnya dengan angka asli Korea?",
+      "both": "Bagaimana mengucapkan angka ini dalam bahasa Korea?"
     },
     "koreanToDigits": "Angka berapa ini?",
     "counterForm": "Bagaimana mengatakan {{value}} dengan {{counter}}?",
     "fill": "Isi bagian yang kosong",
     "orderParts": "Ketuk bagian-bagiannya secara berurutan untuk menyusun {{value}}"
   },
-  "rationale": {
-    "nativeSystem": "Benda, orang, jam, dan usia dihitung dengan 하나, 둘, 셋.",
-    "sinoSystem": "Harga, tanggal, menit, nomor telepon, dan lantai memakai 일, 이, 삼.",
-    "koreanToDigits": "Baca dari depan. 십 itu 10, 삼십 itu 30.",
-    "countingForm": "Sebelum kata bantu bilangan, 하나 jadi 한 dan 둘 jadi 두: 두 개.",
-    "counter": "Di antara angka dan bendanya ada kata bantu bilangan, dan itu tergantung apa yang kamu hitung.",
-    "fill": "Baca lagi kalimatnya — kata di sekitar rumpang memberi petunjuk.",
-    "nativeBuild": "Tambahkan satuannya ke 열 — 열하나, 열둘. 스물 dan 서른 kata tersendiri.",
-    "sinoBuild": "Baca bagiannya berurutan: 삼십오 itu 삼 · 십 · 오.",
-    "irregular_month": "6월 dibaca 유월 dan 10월 dibaca 시월.",
-    "plain_form": "Sebelum kata bantu bilangan dipakai 한, 두, 세, 네, 스무.",
-    "spacing": "Kata bantu bilangan ditulis terpisah: 한 개.",
-    "system_swap": "Jumlahnya sama, tempatnya beda. Di sini yang dipakai {{korean}}.",
-    "sound_alike": "Bedanya satu bunyi. Dengarkan bagian akhirnya.",
-    "wrong_counter": "Tiap kata bantu bilangan punya bendanya sendiri — 명 untuk orang, 마리 untuk hewan, 개 untuk barang."
-  },
   "module": {
     "systems": {
-      "title": "Mengucapkan satu sampai sepuluh",
-      "goal": "Ucapkan 일 sampai 십 dan 하나 sampai 열, baca nolnya, dan kenali di mana masing-masing dipakai."
+      "title": "Angka Sino-Korea dan angka asli Korea",
+      "goal": "Ucapkan 일 sampai 십 dengan angka Sino-Korea dan 하나 sampai 열 dengan angka asli Korea. Baca 0 sebagai 영 dan 공, lalu pelajari di mana masing-masing dipakai."
     },
     "pastTen": {
       "title": "Angka di atas sepuluh",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Mengucapkan 1, 2, 3 dalam bahasa Korea",
-      "objective": "Dengarkan 일, 이, 삼 sampai 십, lalu ucapkan kembali.",
-      "step1": "Mulai dari 일, 이, 삼. Angka ini dipakai untuk harga, tanggal, menit, nomor telepon, dan lantai.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Semuanya satu suku kata.",
-      "step3": "Begini cara mengucapkannya: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "title": "Angka Sino-Korea: 일 sampai 십",
+      "objective": "Dengarkan 일, 이, 삼 sampai 십, lalu ucapkan.",
+      "step1": "Angka yang dibaca 일, 이, 삼 adalah angka Sino-Korea. Dipakai untuk tanggal dan bulan, menit, harga, dan nomor telepon.",
+      "step2": "Lantai, alamat, ukuran seperti panjang dan berat, serta setiap angka di atas seratus juga memakai angka Sino-Korea.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Masing-masing satu suku kata: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "Menghitung dengan 하나, 둘, 셋",
-      "objective": "Dengarkan dan ucapkan 하나 sampai 열 sambil menghitung benda di depanmu.",
-      "step1": "하나, 둘, 셋 dipakai untuk menghitung yang ada di depanmu — orang, cangkir, hewan — juga untuk usia dan jam bulat.",
-      "step2": "Satu sampai sepuluh: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Perhatikan 여덟 diucapkan 여덜: ㅂ-nya tidak dibunyikan.",
-      "step3": "Dari seratus ke atas, semuanya dihitung dengan 일, 이, 삼."
+      "title": "Angka asli Korea: 하나 sampai 열",
+      "objective": "Dengarkan 하나 sampai 열, ucapkan, dan hitung benda di depanmu.",
+      "step1": "Angka yang dipakai menghitung 하나, 둘, 셋 adalah angka asli Korea. Dipakai untuk menghitung benda dan orang, menyebut umur, dan menyebut jam bulat.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 dilafalkan 여덜. Dari seratus ke atas, semua dihitung dengan angka Sino-Korea.",
+      "step3": "Di depan kata penghitung bentuknya berubah: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "Angka 0 adalah 영 atau 공",
@@ -143,11 +128,11 @@
       "step2": "공 adalah angka 0 yang dibaca satu per satu dalam nomor telepon, nomor kamar, atau kode. 010 adalah 공일공, tidak pernah 영일영."
     },
     "choosing": {
-      "title": "Benda pakai 하나, 둘 · harga pakai 일, 이",
-      "objective": "Pilih angka mana untuk menghitung, dan mana untuk harga serta tanggal.",
-      "step1": "Yang terlihat kamu hitung dengan 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Untuk harga, tanggal, menit, nomor telepon, dan lantai dipakai 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "Satu waktu memakai keduanya. 세 시 삼십 분 — jamnya 세, menitnya 삼십."
+      "title": "Benda memakai 하나, 둘 · harga memakai 일, 이",
+      "objective": "Pilih deret mana yang diminta oleh setiap situasi.",
+      "step1": "Yang kelihatan dihitung dengan angka asli Korea: 세 명, 두 시, 스무 살.",
+      "step2": "Harga, tanggal, menit, nomor telepon, dan lantai memakai angka Sino-Korea: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Jam memakai keduanya. 세 시 삼십 분 — jamnya 세 yang asli Korea, menitnya 삼십 yang Sino-Korea."
     },
     "sinoBuild": {
       "title": "Berhitung sampai seribu",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "Mengucapkan 열하나, 스물, 서른",
-      "objective": "Ucapkan angka di atas sepuluh dengan cara 하나, 둘, 셋.",
+      "objective": "Ucapkan angka di atas sepuluh dengan angka asli Korea.",
       "step1": "Tambahkan satuan ke 열, sampai 열아홉. Diucapkan sebagai satu kata.",
       "step2": "Tiap puluhan punya katanya sendiri — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 diucapkan 열려섣: bunyi ㄹ yang sama seperti yang muncul di 심뉵."
@@ -181,33 +166,33 @@
       "title": "Dua kopi, ya",
       "objective": "Memesan dan menghitung di toko dengan 병, 잔, 장, dan 권.",
       "step1": "병 untuk botol (맥주 한 병), 잔 untuk cangkir atau gelas (커피 두 잔), 장 untuk benda pipih seperti tiket atau lembaran (표 네 장), 권 untuk buku (책 세 권).",
-      "step2": "Keempatnya memakai angka 하나, 둘, 셋 dan bentuk hitungnya: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Keempatnya memakai bentuk hitung asli Korea: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Umurmu berapa?",
       "objective": "Sebutkan umurmu dengan 살, dan tanyakan pada yang lebih tua dengan sopan memakai 연세.",
-      "step1": "살 dipakai bersama 하나, 둘, 셋: 스무 살, 스물다섯 살. 몇 살이에요? ditanyakan ke teman.",
-      "step2": "세 dipakai bersama 일, 이, 삼 dan muncul di formulir dan berita: 이십 세.",
+      "step1": "살 dipakai dengan angka asli Korea: 스무 살, 스물다섯 살. 몇 살이에요? ditanyakan ke teman.",
+      "step2": "세 dipakai dengan angka Sino-Korea dan muncul di formulir dan berita: 이십 세.",
       "step3": "Kepada orang yang lebih tua, 살 terlalu santai. 연세 adalah kata hormat untuk umur: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Sekarang jam berapa?",
       "objective": "Sebutkan jam seperti 한 시 dan 두 시, dan pakai 반 untuk setengah.",
-      "step1": "Jam memakai angka 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? menanyakan waktu.",
+      "step1": "시 memakai angka asli Korea: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? menanyakan jam.",
       "step2": "반 berarti setengah: 두 시 반 adalah jam setengah tiga. Ini menggantikan 삼십 분.",
       "step3": "Tanya 몇 시예요? dan jawab 세 시예요. Menit dibahas di pelajaran berikutnya."
     },
     "minutes": {
       "title": "Sekarang pukul 3:30",
       "objective": "Sebutkan menit dan detik, lalu sambungkan dengan jamnya.",
-      "step1": "Menit dan detik memakai angka 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step1": "분 dan 초 memakai angka Sino-Korea: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — jamnya 세, menitnya 삼십.",
       "step3": "Bukan 삼 시 서른 분. Yang benar 세 시 삼십 분."
     },
     "dates": {
       "title": "Ulang tahunmu kapan?",
       "objective": "Sebutkan tanggal dengan 년, 월, dan 일 — hati-hati dengan 유월 dan 시월.",
-      "step1": "년, 월, dan 일 semuanya memakai angka 일, 이, 삼: 이천이십육년 삼월 십오일. Satuan besar disebut lebih dulu.",
+      "step1": "년, 월, dan 일 semuanya Sino-Korea: 이천이십육년 삼월 십오일. Satuan terbesar disebut lebih dulu.",
       "step2": "Dua bulan tidak teratur. Juni adalah 유월, bukan 육월; Oktober adalah 시월, bukan 십월.",
       "step3": "일 sebagai tanggal adalah kata yang sama dengan 일 untuk satu. 삼월 일일 adalah tanggal satu Maret."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Ini berapa?",
       "objective": "Baca harga seperti 오천 원 dan 만 오천 원.",
-      "step1": "원 memakai angka 일, 이, 삼: 천 원, 오천 원. 얼마예요? menanyakan harga.",
+      "step1": "원 memakai angka Sino-Korea: 천 원, 오천 원. 얼마예요? menanyakan harga.",
       "step2": "만 원 itu 10.000원. 삼만 오천 원 itu 35.000원.",
       "step3": "만 오천 원 itu 15.000원 — satu 만 dan lima 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Baca nomor satu per satu, dan ucapkan 공 untuk 0. Begitu juga untuk lantai dan nomor kamar.",
       "step1": "Nomor dibaca satu angka satu angka. 010 itu 공일공.",
       "step2": "에 diletakkan di tempat tanda hubung: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Lantai, nomor kamar, dan nomor bus memakai angka 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Lantai, nomor kamar, dan nomor bus memakai angka Sino-Korea: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — membaca harga besar",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Semuanya dicampur",
       "objective": "Dengarkan dan baca semua yang sudah dipelajari sekaligus.",
-      "step1": "Semuanya sekaligus. Benda, jam, dan usia memakai 하나, 둘, 셋; harga, menit, tanggal, dan nomor telepon memakai 일, 이, 삼.",
+      "step1": "Semua yang sudah dipelajari sekaligus. Benda, jam, dan umur memakai angka asli Korea; harga, menit, tanggal, dan nomor telepon memakai angka Sino-Korea.",
       "step2": "Baca atau dengarkan, lalu pilih. Melihat penjelasannya lagi tidak masalah."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "cangkir dan gelas",
     "counterFlat": "benda pipih — tiket, lembaran",
     "counterBooks": "buku",
-    "counterAge": "usia — dengan 하나, 둘, 셋",
-    "counterAgeFormal": "usia — di dokumen dan berita, dengan 일, 이, 삼",
-    "howOld": "Berapa umurmu?",
+    "counterAge": "Umur — dengan angka asli Korea",
+    "counterAgeFormal": "Umur — di formulir dan berita, dengan angka Sino-Korea",
+    "howOld": "Kalimat untuk menanyakan umur",
     "ageHonorific": "umur — bentuk hormat, untuk orang yang lebih tua",
     "counterHour": "jam (pukul)",
     "half": "setengah (lewat tiga puluh menit)",
-    "whatTime": "Jam berapa sekarang?",
+    "whatTime": "Kalimat untuk menanyakan waktu",
     "tenOclock": "jam sepuluh",
     "counterMinute": "menit",
     "counterSecond": "detik",
@@ -292,12 +277,12 @@
     "counterDay": "tanggal",
     "june": "Juni — tidak teratur",
     "october": "Oktober — tidak teratur",
-    "whatDay": "Hari apa sekarang?",
+    "whatDay": "Kalimat untuk menanyakan hari",
     "monday": "Senin",
     "friday": "Jumat",
     "weekend": "akhir pekan",
     "counterWon": "won",
-    "howMuch": "Berapa harganya?",
+    "howMuch": "Kalimat untuk menanyakan harga",
     "phonePrefix": "awalan nomor telepon, angka demi angka",
     "phoneDash": "diucapkan di tempat tanda hubung ditulis",
     "counterFloor": "lantai gedung",

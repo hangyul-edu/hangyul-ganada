@@ -41,7 +41,7 @@
     "title": "Úroveň slovní zásoby",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Zjistěte svou úroveň a dostávejte slova na míru.",
-    "cta": "Spustit test",
+    "cta": "Udělat test",
     "retake": "Test znovu",
     "short": "Úr.",
     "aria": "Úroveň slovní zásoby {{level}}"

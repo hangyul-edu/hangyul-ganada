@@ -1,39 +1,57 @@
 #!/usr/bin/env node
 /**
- * Every sentence the app *composes*, rendered and read.
+ * Every sentence the app *composes*, rendered and read — and the proof that an
+ * answer result composes none.
  *
  *   npm run copy:generated              render every question and report
  *   npm run copy:generated:check        the same; exit non-zero on a finding
  *
  * ## Why the string ledger was not enough
  *
- * `copy:ledger` reads the 834 Korean strings in the locale bundles. Not one of
- * them said *사는 4예요*. That sentence has no entry anywhere: it is
+ * `copy:ledger` reads the Korean strings in the locale bundles. Not one of them
+ * said *사는 4예요*. That sentence had no entry anywhere: it was
  * `rationale.value` — `{{subject}} {{value}}예요` — with an item and a particle
  * put into it at runtime, under a question whose whole content was that 사 is
  * 4. A template can be perfectly good and still compose a sentence that says
  * nothing, and a gate that reads templates cannot see it.
  *
- * So this one builds the exercises the engine would build, resolves the same
- * keys the page would resolve, with the same interpolation, and reads the
- * result — for every item, every exercise kind, both outcomes, every distractor
- * path, and all thirty-two languages.
+ * ## The result body is gone, and this is what says so
  *
- * ## What it fails on
+ * Four passes were spent making those sentences say something — the generated
+ * *사는 4예요*, then *정답은 8*, then the counting-word line under questions
+ * about numerals, then `rationale.adjacent` — and each pass removed the worst of
+ * them and left the rest. The answer result now shows the verdict and nothing
+ * else: the option the learner tapped is marked with a cross, the right one with
+ * a tick, and both marks carry their own screen-reader text. The teaching is in
+ * the explanation steps, which are read before the exercise.
  *
- * - **A tautology after a correct answer.** The body repeats the prompt and the
- *   answer and adds nothing: *사는 4예요* under *사 → 4*.
- * - **An empty body.** A key that resolves to whitespace, or a wrapper rendered
- *   with nothing in it.
- * - **A raw key or placeholder residue.** `rationale.value`, `{{value}}`,
- *   `undefined`, `null`, `NaN`.
- * - **English leaking into another language.** A body identical to the English
- *   one in a language that is not English.
+ * So the first half of this gate is a **structural** claim, checked over every
+ * exercise the engine can build in every lesson and every phase:
+ *
+ * ```
+ * No exercise carries a result body, and no bundle carries a key for one.
+ * ```
+ *
+ * That is what stops the block coming back through another component, a review
+ * mode or one untended translation — which is exactly how `rationale` survived:
+ * `wrong_system_context` was attached to options for four passes with no
+ * sentence in any of the thirty-two bundles, and a learner who tapped that
+ * option was shown the key.
+ *
+ * ## The second half: what is still composed
+ *
+ * Prompts are. `prompt.counterForm` is *{{value}} — {{counter}} 앞에서는 어떻게
+ * 말할까요?* and only exists as a sentence once an item and a counting word are
+ * in it, and `prompt.orderParts` the same. Those are rendered here for every
+ * item, in all thirty-two languages, and read for:
+ *
+ * - **An empty prompt.** A key that resolves to whitespace.
+ * - **A raw key or placeholder residue.** `{{value}}`, `undefined`, `null`, `NaN`.
+ * - **English leaking into another language.**
  * - **A category label.** 만 단위 and its kin, which name a concept rather than
  *   something a learner says.
- * - **A claim about learners.** *자주 틀려요*, *most learners confuse*, and the
- *   rest of the unsupported set.
- * - **The verdict, twice.** A body that repeats 맞았어요 / 틀렸어요.
+ * - **A claim about learners.** *자주 틀려요*, *most learners confuse*.
+ * - **The verdict.** A prompt that pre-empts 맞았어요 / 틀렸어요.
  */
 import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -45,7 +63,7 @@ const CHECK = process.argv.includes('--check');
 const LOCALES = join(root, 'apps/web/src/locales');
 
 const { NUMBER_LESSONS, NUMBER_ITEMS, getNumberItem } = await import('../apps/web/src/data/numbers.ts');
-const { masteryExercises, practiceExercises, MISCONCEPTION_FEEDBACK } = await import('../apps/web/src/features/numbers/exercises.ts');
+const { masteryExercises, practiceExercises } = await import('../apps/web/src/features/numbers/exercises.ts');
 const { withParticle } = await import('../apps/web/src/i18n/josa.ts');
 
 const findings = [];
@@ -115,8 +133,41 @@ function isTautology(body, { korean, answer }) {
   });
 }
 
+/**
+ * Which string heads each question type.
+ *
+ * A copy of `NumberSessionPage`'s switch, and the only sound place for one: this
+ * gate has to resolve the key the page resolves, and importing a React page into
+ * a node script pulls in the whole app. `numbers:qa` asserts the two tables list
+ * the same question types, so a new type cannot be added to one of them alone.
+ */
+const PROMPT_KEY = {
+  listenAndChoose: 'prompt.listenAndChoose',
+  chooseMeaning: 'prompt.chooseMeaning',
+  chooseCorrectExplanation: 'prompt.chooseCorrectExplanation',
+  chooseSystem: 'prompt.chooseSystem',
+  sayTheNumber: 'prompt.digitsToKorean.both',
+  writeTheDigits: 'prompt.koreanToDigits',
+  chooseCounterForm: 'prompt.counterForm',
+  findIncorrectExpression: 'prompt.findIncorrectExpression',
+  fillTheBlank: 'prompt.fill',
+  orderTheParts: 'prompt.orderParts',
+};
+
+/**
+ * A key on an exercise that would carry a sentence for the answer result.
+ *
+ * Named rather than inferred, because the point is to fail on the *shape*
+ * coming back under any name somebody reaches for next.
+ */
+const BODY_FIELDS = ['feedback', 'rationale', 'explanation', 'note', 'why'];
+
+/** The prompt keys that are only a sentence once values are put into them. */
+const COMPOSED_PROMPTS = new Set(['prompt.counterForm', 'prompt.orderParts']);
+
 let rendered = 0;
-const bodies = new Map();
+let exercises = 0;
+let bodies = 0;
 
 for (const lesson of NUMBER_LESSONS) {
   const runs = [
@@ -124,78 +175,71 @@ for (const lesson of NUMBER_LESSONS) {
     ['practice-retry', practiceExercises(lesson, 1)],
     ['mastery', masteryExercises(lesson, 0)],
   ];
-  for (const [phase, exercises] of runs) {
-    for (const exercise of exercises) {
+  for (const [phase, built] of runs) {
+    for (const exercise of built) {
+      exercises += 1;
       const item = getNumberItem(exercise.item_id);
       if (!item) { fail(`${lesson.id}: exercise names a missing item ${exercise.item_id}`); continue; }
-      const answerOption = exercise.options[exercise.answer];
-      const answerText = exercise.kind === 'order_parts'
-        ? (exercise.parts ?? []).join(' ')
-        : answerOption?.value !== undefined ? String(answerOption.value) : String(answerOption?.text ?? '');
 
-      /*
-       * Every path a learner can take out of this question: right, wrong with
-       * a misconception the distractor carries, and wrong without one.
-       */
-      const paths = [{ outcome: 'correct', key: exercise.feedback.correct }];
-      paths.push({ outcome: 'incorrect', key: exercise.feedback.incorrect });
-      for (const option of exercise.options) {
-        if (!option.misconception) continue;
-        const key = MISCONCEPTION_FEEDBACK[option.misconception] ?? exercise.feedback.incorrect;
-        paths.push({ outcome: `incorrect:${option.misconception}`, key });
+      // --- the result composes nothing ------------------------------------
+      for (const field of BODY_FIELDS) {
+        if (field in exercise) {
+          bodies += 1;
+          fail(`${lesson.id}/${phase} ${exercise.kind} ${item.korean}: carries a result body in "${field}"`);
+        }
       }
 
-      for (const { outcome, key } of paths) {
-        if (key === null) continue; // a correct answer with nothing to add
-        for (const [locale, bundle] of bundles) {
-          const template = lookup(bundle, key);
-          const where = `${locale} ${lesson.id}/${phase} ${exercise.kind} ${item.korean} [${outcome}]`;
-          if (template === undefined) { fail(`${where}: ${key} is missing`); continue; }
-          const body = render(template, {
-            korean: item.korean,
-            subject: withParticle(item.korean, '은/는'),
-            object: withParticle(item.korean, '을/를'),
-            value: item.value === null ? '' : String(item.value),
-            example: item.example ?? '',
-          }).trim();
-          rendered += 1;
-          bodies.set(`${where}`, body);
+      // --- the prompts, which are composed --------------------------------
+      const key = exercise.prompt.key ?? PROMPT_KEY[exercise.question_type];
+      if (!key) continue;
+      for (const [locale, bundle] of bundles) {
+        const template = lookup(bundle, key);
+        const where = `${locale} ${lesson.id}/${phase} ${exercise.kind} ${item.korean}`;
+        if (template === undefined) { fail(`${where}: ${key} is missing`); continue; }
+        const body = render(template, {
+          korean: item.korean,
+          value: item.value === null ? '' : String(item.value),
+          counter: exercise.prompt.text ?? '',
+          count: '10',
+          total: '10',
+          correct: '8',
+          pass: '8',
+        }).trim();
+        rendered += 1;
 
-          if (body === '') { fail(`${where}: renders empty`); continue; }
+        if (body === '') { fail(`${where}: ${key} renders empty`); continue; }
+        if (COMPOSED_PROMPTS.has(key)) {
           for (const pattern of RESIDUE) {
             if (pattern.test(body)) fail(`${where}: unresolved output — ${body.slice(0, 60)}`);
           }
-          for (const claim of LEARNER_CLAIMS) {
-            if (body.includes(claim)) fail(`${where}: claims something about learners — ${body.slice(0, 60)}`);
-          }
-          for (const label of CATEGORY_LABELS) {
-            if (body.includes(label)) fail(`${where}: names a category — ${body.slice(0, 60)}`);
-          }
+        }
+        for (const claim of LEARNER_CLAIMS) {
+          if (body.includes(claim)) fail(`${where}: claims something about learners — ${body.slice(0, 60)}`);
+        }
+        for (const label of CATEGORY_LABELS) {
+          if (body.includes(label)) fail(`${where}: names a category — ${body.slice(0, 60)}`);
+        }
+        /*
+          A composed prompt may not pre-empt the verdict.
+
+          Only the composed ones. `prompt.findIncorrectExpression` is *다음 중
+          틀린 표현을 고르세요* — pick the one that is wrong — and in a dozen
+          languages the word for *wrong* in that instruction is the same word as
+          `feedback.incorrect`. Reading the fixed prompts for it reported 226
+          correct questions, which is the shape of gate this project keeps
+          having to unpick: a rule that was right about the result body applied
+          to a string that is a question.
+        */
+        if (COMPOSED_PROMPTS.has(key)) {
           const verdicts = [lookup(bundle, 'feedback.correct'), lookup(bundle, 'feedback.incorrect')].filter(Boolean);
           for (const verdict of verdicts) {
-            if (body.includes(verdict)) fail(`${where}: repeats the verdict "${verdict}"`);
+            if (body.includes(verdict)) fail(`${where}: the prompt already says "${verdict}"`);
           }
-          if (locale !== 'en') {
-            const english = lookup(bundles.get('en'), key);
-            if (english && body === render(english, { korean: item.korean, value: String(item.value ?? ''), example: item.example ?? '', subject: item.korean, object: item.korean }).trim()) {
-              fail(`${where}: identical to English`);
-            }
-          }
-          /*
-           * The counting-word line, under a question that is not about one.
-           *
-           * *each counting word has its own things — 명 for people, 마리 for
-           * animals* is true, and it was being shown under 사 → 4 because every
-           * sibling distractor was labelled `wrong_counter` whatever the item
-           * was. Checked by key rather than by prose: the counting-form lesson
-           * legitimately ends its line with 두 개, and a rule that read the
-           * words rather than the identity failed 434 correct sentences.
-           */
-          if (key === 'rationale.wrong_counter' && item.role !== 'counter') {
-            fail(`${where}: the counting-word line under a question about a ${item.role}`);
-          }
-          if (outcome === 'correct' && isTautology(body, { korean: item.korean, answer: answerText })) {
-            fail(`${where}: says only what the question said — "${body}"`);
+        }
+        if (locale !== 'en' && COMPOSED_PROMPTS.has(key)) {
+          const english = lookup(bundles.get('en'), key);
+          if (english && body === render(english, { korean: item.korean, value: String(item.value ?? ''), counter: exercise.prompt.text ?? '' }).trim()) {
+            fail(`${where}: identical to English`);
           }
         }
       }
@@ -203,12 +247,32 @@ for (const lesson of NUMBER_LESSONS) {
   }
 }
 
-console.log(`Generated copy — ${rendered} rendered feedback strings across ${bundles.size} languages`);
-console.log(`  ${NUMBER_ITEMS.length} items · ${NUMBER_LESSONS.length} lessons · practice, a retry and mastery · every outcome and misconception path`);
-const withBody = [...bodies.values()].filter(Boolean).length;
-console.log(`  ${withBody} of them draw a body; a correct answer with nothing to add draws none`);
+/*
+ * The retired block, checked in the bundles as well as on the exercises.
+ *
+ * An exercise cannot carry a key the builder does not set, so the structural
+ * check above is about the code. This one is about the content: a translated
+ * pack that still holds the sentences is a pack somebody will wire back up.
+ */
+const RETIRED_BLOCKS = ['rationale', 'explanation', 'why'];
+for (const [locale, bundle] of bundles) {
+  /*
+    `feedback` stays: it is 맞았어요 / 틀렸어요, the verdict itself, and the
+    verdict is the whole of what the result state draws. `note` stays: it is an
+    authored line on an item card, read before the exercise. What may not come
+    back is the block that held the sentence *under* a verdict.
+  */
+  for (const field of RETIRED_BLOCKS) {
+    if (field in bundle) fail(`${locale}: the retired "${field}" block is back in numbers.json`);
+  }
+}
+
+console.log(`Generated copy — ${exercises} exercises built, ${rendered} rendered prompts across ${bundles.size} languages`);
+console.log(`  ${NUMBER_ITEMS.length} items · ${NUMBER_LESSONS.length} lessons · practice, a retry and mastery`);
+console.log(`  ${bodies} of them compose a sentence under the answer result — the number that may ever be printed here is 0`);
 if (findings.length === 0) {
-  console.log('  nothing composed at runtime repeats the question, resolves empty, or claims what it cannot support.');
+  console.log('  no answer result composes an explanation, and no prompt resolves empty,');
+  console.log('  leaks English, names a category or claims what this repository cannot support.');
 } else {
   console.log(`\n  ${findings.length} problem(s):`);
   for (const finding of findings.slice(0, 25)) console.log(`    ${finding}`);

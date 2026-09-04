@@ -41,7 +41,7 @@
     "title": "Niveau de vocabulaire",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Situez votre niveau et recevez des mots adaptés.",
-    "cta": "Passer le test",
+    "cta": "Faire le test",
     "retake": "Refaire le test",
     "short": "Niv.",
     "aria": "Niveau de vocabulaire {{level}}"

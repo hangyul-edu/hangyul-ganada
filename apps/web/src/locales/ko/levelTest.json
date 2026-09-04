@@ -41,7 +41,7 @@
     "title": "어휘 레벨",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "내 수준을 확인하고 맞는 단어를 받아 보세요.",
-    "cta": "레벨 테스트",
+    "cta": "레벨 테스트 하기",
     "retake": "다시 테스트",
     "short": "Lv.",
     "aria": "어휘 레벨 {{level}}"

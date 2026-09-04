@@ -904,19 +904,66 @@ NUMBER_LESSONS.forEach((lesson, index) => {
  * item with no example it cannot be drawn. Seven keys were in that state,
  * including one — *2시 15분* — that repeated the gloss printed above it.
  */
-const exercisesSource = readFileSync(join(ROOT, 'apps/web/src/features/numbers/exercises.ts'), 'utf8');
-for (const [key] of enFlat) {
-  if (!key.startsWith('rationale.')) continue;
-  const name = key.slice('rationale.'.length);
-  if (!exercisesSource.includes(`rationale.${name}`) && !exercisesSource.includes(`rationale.\${'$'}{`)) {
-    fail(`[en] ${key} is in every bundle and nothing in exercises.ts can ask for it`);
-  }
-}
 for (const item of NUMBER_ITEMS) {
   if (item.example_gloss && !item.example) {
     fail(`${item.id} has an example_gloss and no example, so nothing can draw it`);
   }
 }
+
+// --- 15b the header may not hold the answer -------------------------------------
+/**
+ * A lesson whose title is one of its own answers.
+ *
+ * `얼마예요?` is the money lesson's title in Korean and 얼마예요? is one of its
+ * items; the item's Korean gloss is *가격을 묻는 말*, a description, so the two
+ * never coincide. In **thirty-one other languages** the gloss was a translation
+ * of the phrase — *How much is it?*, *¿Cuánto cuesta?*, *いくらですか？* — and
+ * the lesson title was the same sentence, in the header, directly above a
+ * *what does this mean?* question whose correct option was that sentence.
+ *
+ * Three lessons were in that state (money, hours, age) and a fourth was one
+ * question away (weekdays). No gate could see it: `answerability` proves one
+ * option answers the question and says nothing about what else is on the
+ * screen, and `hints:qa` reads hints. This one reads the **header** against the
+ * **option list**, in every language, which is the comparison the defect lives
+ * in and the reason a Korean-only reading missed it four passes running.
+ *
+ * Compared after normalising case and trimming punctuation, because *How much
+ * is it?* and *How much is it* are the same leak.
+ */
+const bare = (text) =>
+  String(text)
+    .toLocaleLowerCase()
+    .replace(/[.,·—?!¿¡'‘’"“”()]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+let headerChecks = 0;
+for (const lesson of NUMBER_LESSONS) {
+  const module = NUMBER_MODULES.find((m) => m.id === lesson.module);
+  for (const locale of LOCALES) {
+    const header = [
+      lookup(bundles[locale], lesson.title),
+      module ? lookup(bundles[locale], module.title) : undefined,
+    ]
+      .filter(Boolean)
+      .map(bare);
+    if (!header.length) continue;
+    for (const id of lesson.item_ids) {
+      const item = NUMBER_ITEMS.find((i) => i.id === id);
+      if (!item?.gloss) continue;
+      const gloss = lookup(bundles[locale], item.gloss);
+      if (typeof gloss !== 'string') continue;
+      headerChecks += 1;
+      if (header.includes(bare(gloss))) {
+        fail(
+          `[${locale}] ${lesson.id}: the header says "${gloss}", which is the answer to a meaning question about ${item.korean}`,
+        );
+      }
+    }
+  }
+}
+notes.push(`${headerChecks} lesson header / answer pairs compared across ${LOCALES.length} languages`);
 
 // --- 16 Korean picks its particles ---------------------------------------------
 /**

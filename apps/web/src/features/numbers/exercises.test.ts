@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { NUMBER_LESSONS, getNumberItem, numberLessonItems } from '../../data/numbers';
-import { MISCONCEPTION_FEEDBACK, exerciseCoverage, masteryExercises, practiceExercises } from './exercises';
+import { MISCONCEPTION_CLASSES, exerciseCoverage, masteryExercises, practiceExercises } from './exercises';
 
 /**
  * The exercise engine. The first build placed the correct option at a fixed
@@ -80,7 +80,7 @@ describe('Numbers exercises', () => {
         ex.options.forEach((o, i) => {
           if (i === ex.answer || !o.misconception) return;
           expect(
-            Object.keys(MISCONCEPTION_FEEDBACK),
+            MISCONCEPTION_CLASSES as readonly string[],
             `${ex.id} option "${o.text}" carries an undefined class`,
           ).toContain(o.misconception);
           if (o.misconception === 'wrong_counter') {
@@ -91,16 +91,31 @@ describe('Numbers exercises', () => {
     }
   });
 
-  it('never offers a misconception the copy has no sentence for', () => {
-    // `wrong_system_context` was declared, attached, and never written; a
-    // learner who picked that option was shown the key itself.
+  it('never offers a misconception the model does not declare', () => {
+    // `wrong_system_context` was declared in one file, attached in another, and
+    // written down in neither; a learner who picked that option was shown the
+    // key itself. One exported list now, and this reads it.
     const classes = new Set<string>();
     for (const lesson of NUMBER_LESSONS) {
       for (const ex of practiceExercises(lesson, 0)) {
         for (const o of ex.options) if (o.misconception) classes.add(o.misconception);
       }
     }
-    for (const cls of classes) expect(MISCONCEPTION_FEEDBACK).toHaveProperty(cls);
+    for (const cls of classes) expect(MISCONCEPTION_CLASSES as readonly string[]).toContain(cls);
+  });
+
+  it('shows no explanation under an answer result', () => {
+    /*
+     * The result state is the verdict and the marked options. Nothing composes
+     * a sentence under it any more, in any lesson, in any phase — so there is
+     * no field on the exercise for one to come out of.
+     */
+    for (const lesson of NUMBER_LESSONS) {
+      for (const ex of [...practiceExercises(lesson, 0), ...masteryExercises(lesson, 0)]) {
+        expect(ex, `${ex.id} carries a result body`).not.toHaveProperty('feedback');
+        expect(ex, `${ex.id} carries a rationale`).not.toHaveProperty('rationale');
+      }
+    }
   });
 
   it('asks about every item in the lesson during mastery', () => {

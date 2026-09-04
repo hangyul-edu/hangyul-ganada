@@ -41,7 +41,7 @@
     "title": "Antas ng bokabularyo",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Alamin ang antas mo at makakuha ng bagay na salita.",
-    "cta": "Subukan ang pagsusulit",
+    "cta": "Kunin ang level test",
     "retake": "Ulitin",
     "short": "Lvl",
     "aria": "Antas ng bokabularyo {{level}}"

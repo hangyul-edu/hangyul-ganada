@@ -162,7 +162,7 @@
     "read": "认读"
   },
   "recognition": {
-    "question": "哪个字发这个音？",
+    "question": "这个音是哪一个？",
     "optionsAria": "选出你听到的字",
     "optionAria": "选择 {{character}}",
     "hearAgain": "再听一次",

@@ -10,12 +10,12 @@
     "mastered": "Bihasa na",
     "review_due": "Oras ng balik-aral"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 at 하나, 둘, 셋",
+  "systemSino": "Sino-Koreano (일, 이, 삼)",
+  "systemNative": "Katutubong Koreano (하나, 둘, 셋)",
+  "systemBoth": "Sino-Koreano at katutubong Koreano",
   "system": {
-    "native": "하나, 둘, 셋 — pambilang ng mga bagay",
-    "sino": "일, 이, 삼 — para sa pera at petsa"
+    "native": "Katutubong Koreano — para sa pagbibilang ng bagay",
+    "sino": "Sino-Koreano — para sa pera at petsa"
   },
   "phase": {
     "objective": "Ano ang matututuhan mo",
@@ -31,9 +31,9 @@
     "next": "Susunod",
     "continue": "Magpatuloy",
     "beginPractice": "Simulan ang ensayo",
-    "beginMastery": "Simulan ang pagsusulit sa kahusayan",
-    "retryMastery": "Ulitin ang pagsusulit sa kahusayan",
-    "backToCourse": "Balik sa Mga Bilang",
+    "beginMastery": "Simulan ang huling pagsusuri",
+    "retryMastery": "Subukan ulit",
+    "backToCourse": "Balik sa mga aralin tungkol sa bilang",
     "review": "Balik-aralan ang araling ito",
     "clear": "Burahin"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Ganito binibigkas",
     "example": "Sa paggamit"
   },
-  "practiceIntro": "Okay lang magkamali dito — may paliwanag kapag kailangan.",
-  "masteryIntro": "{{count}} tanong. Kailangan mong makakuha ng {{pass}}% na tama, at lumabas nang kahit isang beses ang bawat aytem.",
-  "masteryPassed": "Pasado sa pagsusulit sa kahusayan — {{correct}} sa {{total}}",
-  "masteryFailed": "Hindi pa — {{correct}} sa {{total}}. Balikan ang mga halimbawa at subukan ulit.",
-  "masteryPerfect": "Perpekto — tama ang lahat ng tanong",
+  "practiceIntro": "Okey lang magkamali dito.",
+  "masteryIntro": "Kailangan mong tamaan ang {{pass}} sa {{count}} para makapasa.",
+  "masteryPassed": "Naipasa mo ang huling pagsusuri. {{correct}} sa {{total}} ang tama.",
+  "masteryFailed": "Ngayon ay {{correct}} sa {{total}} ang tama mo. Kapag {{pass}} o higit pa ang tama, makakatuloy ka sa susunod na aralin.",
+  "masteryPerfect": "Naipasa mo ang huling pagsusuri. Tama lahat ng {{total}}.",
   "summaryComplete": "Tapos na ang aralin",
-  "summaryIncomplete": "Hindi pa tapos",
+  "summaryIncomplete": "May natitira pa",
   "summaryMissing": {
     "explain": "Basahin ang bawat hakbang ng paliwanag",
     "examples": "Tingnan ang bawat halimbawa",
     "practice": "Tapusin ang ensayo",
-    "mastery": "Pumasa sa pagsusulit sa kahusayan"
+    "mastery": "Gawin ang huling pagsusuri",
+    "everyItem": "Tamaan ang bawat pahayag nang isang beses man lang"
   },
   "feedback": {
     "correct": "Tama",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Alin sa mga ito ang may ganitong kahulugan?",
     "chooseCorrectExplanation": "Piliin ang tamang paliwanag.",
     "findIncorrectExpression": "Piliin ang maling pahayag.",
-    "chooseSystem": "Aling mga numero ang napupunta rito?",
+    "chooseSystem": "Sino-Koreano ba o katutubong Koreano dito?",
     "digitsToKorean": {
-      "sino": "Sabihin ang numerong ito gamit ang 일, 이, 삼",
-      "native": "Bilangin ito gamit ang 하나, 둘, 셋",
-      "both": "Sabihin ang bilang na ito sa Korean"
+      "sino": "Paano ito binabasa sa Sino-Koreano?",
+      "native": "Paano ito binibilang sa katutubong Koreano?",
+      "both": "Paano sabihin ang bilang na ito sa Koreano?"
     },
     "koreanToDigits": "Aling bilang ito?",
     "counterForm": "Paano sinasabi ang {{value}} kasama ang {{counter}}?",
     "fill": "Punan ang patlang",
     "orderParts": "I-tap ang mga bahagi nang magkakasunod para mabuo ang {{value}}"
   },
-  "rationale": {
-    "nativeSystem": "Ang bagay, tao, oras at edad ay binibilang sa 하나, 둘, 셋.",
-    "sinoSystem": "Ang presyo, petsa, minuto, numero ng telepono at palapag ay 일, 이, 삼.",
-    "koreanToDigits": "Basahin mula sa umpisa. Ang 십 ay 10 at ang 삼십 ay 30.",
-    "countingForm": "Bago ang salitang pambilang, nagiging 한 ang 하나 at 두 ang 둘: 두 개.",
-    "counter": "May salitang pambilang sa pagitan ng numero at ng bagay, at nakadepende ito sa binibilang mo.",
-    "fill": "Basahin muli ang pangungusap — ang mga salita sa paligid ng patlang ang nagsasabi kung ano ang kulang.",
-    "nativeBuild": "Idagdag ang isahan sa 열 — 열하나, 열둘. Sariling salita ang 스물 at 서른.",
-    "sinoBuild": "Basahin ang bahagi nang sunod-sunod: ang 삼십오 ay 삼 · 십 · 오.",
-    "irregular_month": "Ang 6월 ay 유월 at ang 10월 ay 시월.",
-    "plain_form": "Bago ang salitang pambilang ay 한, 두, 세, 네, 스무.",
-    "spacing": "May puwang ang salitang pambilang: 한 개.",
-    "system_swap": "Pareho ang dami, iba ang lugar. Dito ay {{korean}} ang gamit.",
-    "sound_alike": "Isang tunog lang ang pagkakaiba. Pakinggan ang dulo.",
-    "wrong_counter": "May sariling bagay ang bawat salitang pambilang — 명 sa tao, 마리 sa hayop, 개 sa bagay."
-  },
   "module": {
     "systems": {
-      "title": "Pagbilang mula isa hanggang sampu",
-      "goal": "Sabihin ang 일 hanggang 십 at 하나 hanggang 열, basahin ang sero, at alamin kung saan ginagamit ang bawat isa."
+      "title": "Mga bilang na Sino-Koreano at katutubong Koreano",
+      "goal": "Sabihin ang 일 hanggang 십 sa Sino-Koreano at 하나 hanggang 열 sa katutubong Koreano. Basahin ang 0 bilang 영 at bilang 공, at alamin kung saan ginagamit ang bawat isa."
     },
     "pastTen": {
       "title": "Mga bilang na lampas sampu",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Sabihin ang 1, 2, 3 sa Korean",
-      "objective": "Pakinggan ang 일, 이, 삼 hanggang 십, tapos ulitin nang malakas.",
-      "step1": "Magsimula sa 일, 이, 삼. Ginagamit ang mga ito sa presyo, petsa, minuto, numero ng telepono at palapag.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Isang pantig lang ang bawat isa.",
-      "step3": "Ganito sinasabi: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "title": "Mga bilang na Sino-Koreano: 일 hanggang 십",
+      "objective": "Pakinggan ang 일, 이, 삼 hanggang 십, at ulitin.",
+      "step1": "Ang mga bilang na binabasang 일, 이, 삼 ay ang Sino-Koreano. Ginagamit ito sa petsa at buwan, minuto, presyo, at numero ng telepono.",
+      "step2": "Ang palapag, tirahan, sukat gaya ng haba at bigat, at anumang bilang na lampas sandaan ay Sino-Koreano din.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Isang pantig ang bawat isa: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "Magbilang gamit ang 하나, 둘, 셋",
-      "objective": "Pakinggan at sabihin ang 하나 hanggang 열 habang binibilang ang nasa harap mo.",
-      "step1": "Ginagamit ang 하나, 둘, 셋 sa pagbilang ng nasa harap mo — tao, tasa, hayop — at sa edad at buong oras.",
-      "step2": "Isa hanggang sampu: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Pansinin na ang 여덟 ay binibigkas na 여덜: hindi binibigkas ang ㅂ.",
-      "step3": "Mula sandaan pataas, lahat ay binibilang gamit ang 일, 이, 삼."
+      "title": "Mga katutubong bilang na Koreano: 하나 hanggang 열",
+      "objective": "Pakinggan ang 하나 hanggang 열, sabihin, at bilangin ang nasa harap mo.",
+      "step1": "Ang mga bilang na ibinibilang na 하나, 둘, 셋 ay ang katutubong Koreano. Ginagamit ito sa pagbibilang ng bagay at tao, sa edad, at sa oras na buo.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Ang 여덟 ay binibigkas na 여덜. Mula sandaan pataas, lahat ay binibilang sa Sino-Koreano.",
+      "step3": "Bago ang salitang pambilang, nagbabago ang anyo: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "Ang 0 ay 영 o 공",
@@ -143,11 +128,11 @@
       "step2": "Ang 공 ay ang digit na 0, na binabasa sa numero ng telepono, numero ng kuwarto, o code. Ang 010 ay 공일공, hindi kailanman 영일영."
     },
     "choosing": {
-      "title": "Bagay sa 하나, 둘 · presyo sa 일, 이",
-      "objective": "Piliin kung aling mga numero ang pambilang, at alin ang para sa presyo at petsa.",
-      "step1": "Ang nakikita mo ay binibilang sa 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Sa presyo, petsa, minuto, numero ng telepono at palapag ay 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "Sa oras, pareho ang lumalabas. 세 시 삼십 분 — ang oras ay 세, ang minuto ay 삼십."
+      "title": "Mga bagay ay 하나, 둘 · presyo ay 일, 이",
+      "objective": "Piliin kung alin sa dalawa ang hinihingi ng bawat sitwasyon.",
+      "step1": "Ang nakikita mo ay binibilang sa katutubong Koreano: 세 명, 두 시, 스무 살.",
+      "step2": "Ang presyo, petsa, minuto, numero ng telepono, at palapag ay Sino-Koreano: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Ang oras sa relo ay gumagamit ng dalawa. 세 시 삼십 분 — ang oras ay katutubong 세, ang minuto ay Sino-Koreano na 삼십."
     },
     "sinoBuild": {
       "title": "Magbilang hanggang isang libo",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "Sabihin ang 열하나, 스물, 서른",
-      "objective": "Sabihin ang mga bilang na lampas sampu sa paraang 하나, 둘, 셋.",
+      "objective": "Sabihin ang mga bilang na lampas sampu sa katutubong Koreano.",
       "step1": "Idagdag ang mga isahan sa 열, hanggang 열아홉. Sinasabi bilang isang salita.",
       "step2": "May sariling salita ang bawat sampu — 스물, 서른, 마흔, 쉰.",
       "step3": "Ang 열여섯 ay binibigkas na 열려섣: ang parehong tunog na ㄹ na lumilitaw sa 심뉵."
@@ -181,33 +166,33 @@
       "title": "Dalawang kape nga po",
       "objective": "Umorder at magbilang sa tindahan gamit ang 병, 잔, 장 at 권.",
       "step1": "Ang 병 ay bote (맥주 한 병), 잔 ay tasa o baso (커피 두 잔), 장 ay patag na bagay gaya ng tiket o papel (표 네 장), 권 ay libro (책 세 권).",
-      "step2": "Lahat ng apat ay kumukuha ng mga bilang na 하나, 둘, 셋 at ng kanilang anyong pambilang: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Ang apat ay gumagamit ng katutubong anyo ng pagbibilang: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Ilang taon ka na?",
       "objective": "Sabihin ang edad mo gamit ang 살, at magalang na magtanong sa nakatatanda gamit ang 연세.",
-      "step1": "Kasama ng 살 ang 하나, 둘, 셋: 스무 살, 스물다섯 살. Ang 몇 살이에요? ay itinatanong sa magkakaibigan.",
-      "step2": "Kasama ng 세 ang 일, 이, 삼 at lumalabas sa mga form at balita: 이십 세.",
+      "step1": "Ang 살 ay kasama ng katutubong bilang: 스무 살, 스물다섯 살. Ang 몇 살이에요? ay itinatanong sa kaibigan.",
+      "step2": "Ang 세 ay kasama ng Sino-Koreano at makikita sa mga porma at balita: 이십 세.",
       "step3": "Sa nakatatanda, masyadong kaswal ang 살. Ang 연세 ang magalang na salita para sa edad: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Anong oras na?",
       "objective": "Sabihin ang oras tulad ng 한 시 at 두 시, at gamitin ang 반 para sa kalahati.",
-      "step1": "Ang oras ay kumukuha ng mga bilang na 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. Ang 몇 시예요? ay pantanong ng oras.",
+      "step1": "Ang 시 ay gumagamit ng katutubong bilang: 한 시, 두 시, 세 시, 네 시, 열 시. Ang 몇 시예요? ay nagtatanong ng oras.",
       "step2": "Ang 반 ay kalahati: 두 시 반 ay alas-dos y medya. Pumapalit ito sa 삼십 분.",
       "step3": "Itanong ang 몇 시예요? at sagutin ng 세 시예요. Ang minuto ay sa susunod na aralin."
     },
     "minutes": {
       "title": "Alas-tres y medya",
       "objective": "Sabihin ang minuto at segundo, at idugtong sa oras.",
-      "step1": "Ang minuto at segundo ay kumukuha ng mga bilang na 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step1": "Ang 분 at 초 ay gumagamit ng Sino-Koreano: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — ang oras ay 세, ang minuto ay 삼십.",
       "step3": "Hindi 삼 시 서른 분. Tama ang 세 시 삼십 분."
     },
     "dates": {
       "title": "Kailan ang kaarawan mo?",
       "objective": "Sabihin ang petsa gamit ang 년, 월 at 일 — at mag-ingat sa 유월 at 시월.",
-      "step1": "Ang 년, 월 at 일 ay pawang kumukuha ng mga bilang na 일, 이, 삼: 이천이십육년 삼월 십오일. Malaking yunit muna.",
+      "step1": "Ang 년, 월, at 일 ay pawang Sino-Koreano: 이천이십육년 삼월 십오일. Unahin ang pinakamalaking yunit.",
       "step2": "Iregular ang dalawang buwan. Ang Hunyo ay 유월, hindi 육월; ang Oktubre ay 시월, hindi 십월.",
       "step3": "Ang 일 bilang araw ng buwan ay kapareho ng salitang 일 para sa isa. Ang 삼월 일일 ay unang araw ng Marso."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Magkano ito?",
       "objective": "Basahin ang presyo tulad ng 오천 원 at 만 오천 원.",
-      "step1": "Ang 원 ay kumukuha ng mga bilang na 일, 이, 삼: 천 원, 오천 원. Ang 얼마예요? ay pantanong ng presyo.",
+      "step1": "Ang 원 ay gumagamit ng Sino-Koreano: 천 원, 오천 원. Ang 얼마예요? ay nagtatanong ng presyo.",
       "step2": "Ang 만 원 ay 10,000원. Ang 삼만 오천 원 ay 35,000원.",
       "step3": "Ang 만 오천 원 ay 15,000원 — isang 만 at limang 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Basahin ang numero isa-isa, at sabihin ang 공 para sa 0. Ganoon din sa palapag at kuwarto.",
       "step1": "Binabasa ang numero nang isa-isang digit. Ang 010 ay 공일공.",
       "step2": "Ang 에 ay inilalagay kung saan ang gitling: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Ang palapag, numero ng kuwarto at ng bus ay kumukuha ng mga bilang na 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Ang palapag, numero ng kuwarto, at numero ng bus ay Sino-Koreano: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — pagbasa ng malalaking presyo",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Lahat, pinaghalo",
       "objective": "Pakinggan at basahin ang lahat ng natutuhan mo, nang sabay-sabay.",
-      "step1": "Lahat nang sabay. Bagay, oras at edad ay 하나, 둘, 셋; presyo, minuto, petsa at numero ng telepono ay 일, 이, 삼.",
+      "step1": "Lahat ng natutuhan, sabay-sabay. Ang mga bagay, oras, at edad ay katutubong Koreano; ang presyo, minuto, petsa, at numero ng telepono ay Sino-Koreano.",
       "step2": "Basahin o pakinggan, tapos pumili. Ayos lang balikan ang paliwanag."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "tasa at baso",
     "counterFlat": "patag na bagay — tiket, papel",
     "counterBooks": "libro",
-    "counterAge": "edad — kasama ang 하나, 둘, 셋",
-    "counterAgeFormal": "edad — sa dokumento at balita, kasama ang 일, 이, 삼",
-    "howOld": "Ilang taon ka na?",
+    "counterAge": "Edad — kasama ng katutubong bilang",
+    "counterAgeFormal": "Edad — sa mga porma at balita, kasama ng Sino-Koreano",
+    "howOld": "Ang pahayag na itinatanong sa edad",
     "ageHonorific": "edad — magalang, tungkol sa nakatatanda",
     "counterHour": "oras (alas-)",
     "half": "y medya",
-    "whatTime": "Anong oras na?",
+    "whatTime": "Ang pahayag na itinatanong sa oras",
     "tenOclock": "alas-diyes",
     "counterMinute": "minuto",
     "counterSecond": "segundo",
@@ -292,12 +277,12 @@
     "counterDay": "araw ng buwan",
     "june": "Hunyo — iregular",
     "october": "Oktubre — iregular",
-    "whatDay": "Anong araw ngayon?",
+    "whatDay": "Ang pahayag na itinatanong sa araw ng linggo",
     "monday": "Lunes",
     "friday": "Biyernes",
     "weekend": "ang weekend",
     "counterWon": "won",
-    "howMuch": "Magkano ito?",
+    "howMuch": "Ang pahayag na itinatanong sa presyo",
     "phonePrefix": "unlapi ng numero ng telepono, digit-digit",
     "phoneDash": "sinasabi kung saan nakasulat ang gitling",
     "counterFloor": "palapag ng gusali",

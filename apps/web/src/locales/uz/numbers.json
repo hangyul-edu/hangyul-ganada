@@ -10,12 +10,12 @@
     "mastered": "O‘zlashtirildi",
     "review_due": "Takrorlash vaqti"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 va 하나, 둘, 셋",
+  "systemSino": "Sino-koreys (일, 이, 삼)",
+  "systemNative": "Asl koreys (하나, 둘, 셋)",
+  "systemBoth": "Sino-koreys va asl koreys",
   "system": {
-    "native": "하나, 둘, 셋 — narsalarni sanash uchun",
-    "sino": "일, 이, 삼 — pul va sana uchun"
+    "native": "Asl koreys — narsalarni sanash uchun",
+    "sino": "Sino-koreys — pul va sana uchun"
   },
   "phase": {
     "objective": "Nimani o‘rganasiz",
@@ -31,9 +31,9 @@
     "next": "Keyingisi",
     "continue": "Davom etish",
     "beginPractice": "Mashqni boshlash",
-    "beginMastery": "Mahorat sinovini boshlash",
-    "retryMastery": "Mahorat sinovini qayta topshirish",
-    "backToCourse": "Sonlarga qaytish",
+    "beginMastery": "Yakuniy tekshiruvni boshlash",
+    "retryMastery": "Yana urinib ko‘rish",
+    "backToCourse": "Sonlar darslariga qaytish",
     "review": "Bu darsni takrorlash",
     "clear": "Tozalash"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Shunday talaffuz qilinadi",
     "example": "Qo‘llanishda"
   },
-  "practiceIntro": "Bu yerda xato qilsangiz ham bo‘ladi — kerak joyda izoh chiqadi.",
-  "masteryIntro": "{{count}} savol. {{pass}}% to‘g‘ri javob berishingiz va har bir elementni kamida bir marta to‘g‘ri topishingiz kerak.",
-  "masteryPassed": "Mahorat sinovi topshirildi — {{total}} savoldan {{correct}} tasi to‘g‘ri",
-  "masteryFailed": "Hali emas — {{total}} savoldan {{correct}} tasi to‘g‘ri. Misollarni qayta ko‘rib chiqing va yana urinib ko‘ring.",
-  "masteryPerfect": "A’lo — hamma savol to‘g‘ri",
-  "summaryComplete": "Dars tugallandi",
-  "summaryIncomplete": "Hali tugallanmagan",
+  "practiceIntro": "Bu yerda xato qilsangiz ham bo‘ladi.",
+  "masteryIntro": "O‘tish uchun {{count}} savoldan {{pass}} tasi to‘g‘ri bo‘lishi kerak.",
+  "masteryPassed": "Yakuniy tekshiruvdan o‘tdingiz. {{total}} savoldan {{correct}} tasi to‘g‘ri.",
+  "masteryFailed": "Bu safar {{total}} savoldan {{correct}} tasi to‘g‘ri bo‘ldi. {{pass}} ta to‘g‘ri javob bilan keyingi darsga o‘tasiz.",
+  "masteryPerfect": "Yakuniy tekshiruvdan o‘tdingiz. {{total}} savolning hammasi to‘g‘ri.",
+  "summaryComplete": "Dars tugadi",
+  "summaryIncomplete": "Hali qolgani bor",
   "summaryMissing": {
     "explain": "Har bir tushuntirish qadamini o‘qing",
     "examples": "Har bir misolni ko‘ring",
     "practice": "Mashqni tugating",
-    "mastery": "Mahorat sinovidan o‘ting"
+    "mastery": "Yakuniy tekshiruvni topshirish",
+    "everyItem": "Har bir iborani kamida bir marta to‘g‘ri topish"
   },
   "feedback": {
     "correct": "To‘g‘ri",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Bulardan qaysi biri shu ma’noni bildiradi?",
     "chooseCorrectExplanation": "To‘g‘ri izohni tanlang.",
     "findIncorrectExpression": "Noto‘g‘ri iborani tanlang.",
-    "chooseSystem": "Bu yerda qaysi sonlar keladi?",
+    "chooseSystem": "Bu yerda sino-koreysmi yoki asl koreysmi?",
     "digitsToKorean": {
-      "sino": "Bu sonni 일, 이, 삼 bilan ayting",
-      "native": "Buni 하나, 둘, 셋 bilan sanang",
-      "both": "Bu sonni koreyschada ayting"
+      "sino": "Sino-koreys usulida qanday o‘qiladi?",
+      "native": "Asl koreys usulida qanday sanaladi?",
+      "both": "Bu sonni koreyscha qanday aytiladi?"
     },
     "koreanToDigits": "Bu qaysi son?",
     "counterForm": "{{value}} sonini {{counter}} bilan qanday aytasiz?",
     "fill": "Bo‘sh joyni to‘ldiring",
     "orderParts": "{{value}} sonini yig‘ish uchun bo‘laklarni tartib bilan bosing"
   },
-  "rationale": {
-    "nativeSystem": "Narsalar, odamlar, soat va yosh 하나, 둘, 셋 bilan sanaladi.",
-    "sinoSystem": "Narx, sana, daqiqa, telefon raqami va qavat 일, 이, 삼 oladi.",
-    "koreanToDigits": "Boshidan o‘qing. 십 — 10, 삼십 — 30.",
-    "countingForm": "Sanoq so‘zidan oldin 하나 — 한, 둘 — 두 bo‘ladi: 두 개.",
-    "counter": "Son bilan narsa orasida sanoq so‘zi turadi va u nimani sanayotganingizga bog‘liq.",
-    "fill": "Gapni qayta o‘qing — bo‘sh joy atrofidagi so‘zlar nima kerakligini aytadi.",
-    "nativeBuild": "Birlikni 열 ga qo‘shing — 열하나, 열둘. 스물 va 서른 alohida so‘zlar.",
-    "sinoBuild": "Qismlarini tartib bilan o‘qing: 삼십오 — 삼 · 십 · 오.",
-    "irregular_month": "6월 — 유월, 10월 esa 시월.",
-    "plain_form": "Sanoq so‘zidan oldin 한, 두, 세, 네, 스무 turadi.",
-    "spacing": "Sanoq so‘zi ajratib yoziladi: 한 개.",
-    "system_swap": "Miqdori o‘sha, o‘rni boshqa. Bu yerda {{korean}} ishlatiladi.",
-    "sound_alike": "Farqi bitta tovush. Oxirini tinglang.",
-    "wrong_counter": "Har sanoq so‘zining o‘z narsasi bor — odamga 명, hayvonga 마리, buyumga 개."
-  },
   "module": {
     "systems": {
-      "title": "Birdan o‘ngacha aytamiz",
-      "goal": "일 dan 십 gacha va 하나 dan 열 gacha ayting, nolni o‘qing va qaysi biri qayerda ishlatilishini biling."
+      "title": "Sino-koreys va asl koreys sonlari",
+      "goal": "일 dan 십 gacha sino-koreyscha, 하나 dan 열 gacha asl koreyscha ayting. 0 ni 영 va 공 deb o‘qing, qaysi biri qayerda ishlatilishini o‘rganing."
     },
     "pastTen": {
       "title": "O‘ndan katta sonlar",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Koreyscha 1, 2, 3 deyish",
-      "objective": "일, 이, 삼 dan 십 gacha eshiting va takrorlang.",
-      "step1": "일, 이, 삼 dan boshlaymiz. Bu sonlar narx, sana, daqiqa, telefon raqami va qavat uchun ishlatiladi.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Har biri bitta bo‘g‘in.",
-      "step3": "Mana shunday aytiladi: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "title": "Sino-koreys sonlari: 일 dan 십 gacha",
+      "objective": "일, 이, 삼 dan 십 gacha tinglang va takrorlang.",
+      "step1": "일, 이, 삼 deb o‘qiladigan sonlar — sino-koreys sonlari. Sana va oy, daqiqa, narx va telefon raqamida ishlatiladi.",
+      "step2": "Qavat, manzil, uzunlik va og‘irlik kabi o‘lchovlar hamda yuzdan katta har qanday son ham sino-koreys qatorini oladi.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Har biri bitta bo‘g‘in: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "하나, 둘, 셋 bilan sanash",
-      "objective": "하나 dan 열 gacha eshitib ayting, oldingizdagi narsalarni sanab.",
-      "step1": "하나, 둘, 셋 — oldingizdagi narsani sanash uchun: odam, piyola, hayvon. Yosh va butun soatga ham shular ishlatiladi.",
-      "step2": "Birdan o‘ngacha: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 — 여덜 deb aytilishiga e’tibor bering: ㅂ talaffuz qilinmaydi.",
-      "step3": "Yuzdan yuqorisi hammasi 일, 이, 삼 bilan sanaladi."
+      "title": "Asl koreys sonlari: 하나 dan 열 gacha",
+      "objective": "하나 dan 열 gacha tinglang, ayting va oldingizdagini sanang.",
+      "step1": "하나, 둘, 셋 deb sanaladigan sonlar — asl koreys sonlari. Ular bilan narsa va odam sanaladi, yosh va butun soat aytiladi.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 so‘zi 여덜 deb talaffuz qilinadi. Yuzdan yuqorisida hamma narsa sino-koreyscha sanaladi.",
+      "step3": "Sanoq so‘zidan oldin shakli o‘zgaradi: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "0 — bu 영 yoki 공",
@@ -143,11 +128,11 @@
       "step2": "공 — 0 raqami; telefon raqami, xona raqami, kodda ovoz chiqarib o‘qiladi. 010 — 공일공, hech qachon 영일영 emas."
     },
     "choosing": {
-      "title": "Narsalar — 하나, 둘 · narx — 일, 이",
-      "objective": "Sanashga qaysi sonlar, narx va sanaga qaysilari kelishini tanlang.",
-      "step1": "Ko‘rinib turgan narsani 하나, 둘, 셋 bilan sanaysiz: 세 명, 두 시, 스무 살.",
-      "step2": "Narx, sana, daqiqa, telefon raqami va qavatga 일, 이, 삼 keladi: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "Vaqtda ikkalasi birga uchraydi. 세 시 삼십 분 — soat 세, daqiqa 삼십."
+      "title": "Narsalar 하나, 둘 · narxlar 일, 이 oladi",
+      "objective": "Qaysi holatda qaysi qator kerakligini tanlang.",
+      "step1": "Ko‘zga ko‘ringanni asl koreyscha sanaysiz: 세 명, 두 시, 스무 살.",
+      "step2": "Narx, sana, daqiqa, telefon raqami va qavat sino-koreys qatorini oladi: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Soatdagi vaqt ikkalasini ham oladi. 세 시 삼십 분 — soat asl 세, daqiqa sino-koreys 삼십."
     },
     "sinoBuild": {
       "title": "Minggacha sanash",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "열하나, 스물, 서른 deyish",
-      "objective": "O‘ndan yuqori sonlarni 하나, 둘, 셋 usulida ayting.",
+      "objective": "O‘ndan yuqori sonlarni asl koreyscha ayting.",
       "step1": "열 ga birliklarni qo‘shing, 열아홉 gacha. Bitta so‘zdek aytiladi.",
       "step2": "Har o‘nlikning o‘z so‘zi bor — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 — 열려섣 deb aytiladi: 심뉵 dagi ㄹ tovushining o‘zi."
@@ -181,33 +166,33 @@
       "title": "Ikkita qahva bering",
       "objective": "Do‘konda 병, 잔, 장 va 권 bilan buyurtma bering va sanang.",
       "step1": "병 — shisha (맥주 한 병), 잔 — piyola yoki stakan (커피 두 잔), 장 — chipta yoki varaq kabi yassi narsa (표 네 장), 권 — kitob (책 세 권).",
-      "step2": "To‘rttasi ham 하나, 둘, 셋 sonlarini va ularning sanash shaklini oladi: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "To‘rttasi ham asl koreys sanoq shakllarini oladi: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Yoshingiz nechada?",
       "objective": "Yoshingizni 살 bilan ayting, kattalardan 연세 bilan xushmuomala so‘rang.",
-      "step1": "살 하나, 둘, 셋 bilan keladi: 스무 살, 스물다섯 살. 몇 살이에요? do‘stlar orasida so‘raladi.",
-      "step2": "세 일, 이, 삼 bilan keladi va hujjatlar hamda yangiliklarda uchraydi: 이십 세.",
+      "step1": "살 asl koreys sonlari bilan keladi: 스무 살, 스물다섯 살. 몇 살이에요? do‘stdan so‘raladi.",
+      "step2": "세 sino-koreys sonlari bilan keladi, uni blankalar va yangiliklarda ko‘rasiz: 이십 세.",
       "step3": "Yoshi kattaga 살 juda bemalol tuyuladi. 연세 — yosh uchun hurmat so‘zi: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Soat necha bo‘ldi?",
       "objective": "Soatni 한 시, 두 시 deb ayting, yarim soatga 반 ishlating.",
-      "step1": "Soat 하나, 둘, 셋 sonlarini oladi: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? vaqtni so‘raydi.",
+      "step1": "시 asl koreys sonlarini oladi: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? vaqtni so‘raydi.",
       "step2": "반 — yarim: 두 시 반 — ikki yarim. U 삼십 분 o‘rnini bosadi.",
       "step3": "몇 시예요? deb so‘rang va 세 시예요 deb javob bering. Daqiqalar keyingi darsda."
     },
     "minutes": {
       "title": "Hozir 3:30",
       "objective": "Daqiqa va soniyani ayting, so‘ng soatga ulang.",
-      "step1": "Daqiqa va soniya 일, 이, 삼 sonlarini oladi: 삼십 분, 십오 분, 십 초.",
+      "step1": "분 va 초 sino-koreys sonlarini oladi: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — soat 세, daqiqa 삼십.",
       "step3": "삼 시 서른 분 deyilmaydi. To‘g‘risi — 세 시 삼십 분."
     },
     "dates": {
       "title": "Tug‘ilgan kuningiz qachon?",
       "objective": "Sanani 년, 월 va 일 bilan ayting — 유월 va 시월 ni esdan chiqarmang.",
-      "step1": "년, 월 va 일 hammasi 일, 이, 삼 sonlarini oladi: 이천이십육년 삼월 십오일. Avval katta birlik.",
+      "step1": "년, 월 va 일 — hammasi sino-koreys: 이천이십육년 삼월 십오일. Eng katta birlik oldin aytiladi.",
       "step2": "Ikki oy istisno. Iyun — 유월, 육월 emas; oktabr — 시월, 십월 emas.",
       "step3": "Oy kuni sifatidagi 일 — bir ma’nosidagi 일 bilan bir xil so‘z. 삼월 일일 — birinchi mart."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Bu qancha turadi?",
       "objective": "오천 원 va 만 오천 원 kabi narxlarni o‘qing.",
-      "step1": "원 일, 이, 삼 sonlarini oladi: 천 원, 오천 원. 얼마예요? narxni so‘raydi.",
+      "step1": "원 sino-koreys sonlarini oladi: 천 원, 오천 원. 얼마예요? narxni so‘raydi.",
       "step2": "만 원 — 10 000원. 삼만 오천 원 — 35 000원.",
       "step3": "만 오천 원 — 15 000원: bitta 만 va beshta 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Raqamni xona-xona o‘qing, 0 o‘rniga 공 deng. Qavat va xona raqamida ham shunday.",
       "step1": "Raqam bittalab o‘qiladi. 010 — 공일공.",
       "step2": "에 chiziqcha o‘rnida keladi: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Qavat, xona raqami va avtobus raqami 일, 이, 삼 sonlarini oladi: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Qavat, xona raqami va avtobus raqami sino-koreys sonlarini oladi: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — katta narxlarni o‘qish",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Hammasi aralash",
       "objective": "O‘rganganingizning barchasini bir yo‘la eshiting va o‘qing.",
-      "step1": "Hammasi birga. Narsalar, soat va yosh 하나, 둘, 셋 oladi; narx, daqiqa, sana va telefon raqami 일, 이, 삼 oladi.",
+      "step1": "Shu paytgacha o‘rganilganning hammasi birdan. Narsa, soat va yosh — asl koreyscha; narx, daqiqa, sana va telefon raqami — sino-koreyscha.",
       "step2": "O‘qing yoki tinglang, keyin tanlang. Izohga qayta qarash mumkin."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "piyola va stakanlar",
     "counterFlat": "yassi narsalar — chiptalar, varaqlar",
     "counterBooks": "kitoblar",
-    "counterAge": "yosh — 하나, 둘, 셋 bilan",
-    "counterAgeFormal": "yosh — hujjat va yangiliklarda, 일, 이, 삼 bilan",
-    "howOld": "Yoshingiz nechada?",
+    "counterAge": "Yosh — asl koreys sonlari bilan",
+    "counterAgeFormal": "Yosh — blankalar va yangiliklarda, sino-koreys sonlari bilan",
+    "howOld": "Yoshni so‘raydigan gap",
     "ageHonorific": "yosh — hurmat so‘zi, yoshi katta odam haqida",
     "counterHour": "soat",
     "half": "yarim",
-    "whatTime": "Soat nechchi?",
+    "whatTime": "Vaqtni so‘raydigan gap",
     "tenOclock": "soat o‘n",
     "counterMinute": "daqiqa",
     "counterSecond": "soniya",
@@ -292,12 +277,12 @@
     "counterDay": "oy kuni",
     "june": "iyun — istisno",
     "october": "oktabr — istisno",
-    "whatDay": "Bugun qanday kun?",
+    "whatDay": "Hafta kunini so‘raydigan gap",
     "monday": "dushanba",
     "friday": "juma",
     "weekend": "dam olish kunlari",
     "counterWon": "von",
-    "howMuch": "Necha pul?",
+    "howMuch": "Narxni so‘raydigan gap",
     "phonePrefix": "telefon prefiksi, raqam-raqam",
     "phoneDash": "chiziqcha yozilgan joyda aytiladi",
     "counterFloor": "binoning qavati",

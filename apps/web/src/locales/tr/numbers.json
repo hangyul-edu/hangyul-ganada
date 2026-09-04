@@ -10,12 +10,12 @@
     "mastered": "Pekişti",
     "review_due": "Tekrar zamanı"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 ve 하나, 둘, 셋",
+  "systemSino": "Sino-Korece (일, 이, 삼)",
+  "systemNative": "Öz Korece (하나, 둘, 셋)",
+  "systemBoth": "Sino-Korece ve öz Korece",
   "system": {
-    "native": "하나, 둘, 셋 — nesne saymak için",
-    "sino": "일, 이, 삼 — para ve tarih için"
+    "native": "Öz Korece — nesneleri saymak için",
+    "sino": "Sino-Korece — para ve tarih için"
   },
   "phase": {
     "objective": "Ne öğreneceksin",
@@ -31,9 +31,9 @@
     "next": "Sonraki",
     "continue": "Devam et",
     "beginPractice": "Alıştırmaya başla",
-    "beginMastery": "Ustalık testine başla",
-    "retryMastery": "Ustalık testini yeniden dene",
-    "backToCourse": "Sayılar’a dön",
+    "beginMastery": "Bitirme kontrolünü başlat",
+    "retryMastery": "Tekrar dene",
+    "backToCourse": "Sayılar derslerine dön",
     "review": "Bu dersi tekrar et",
     "clear": "Temizle"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Böyle okunur",
     "example": "Kullanımda"
   },
-  "practiceIntro": "Burada hata yapmak sorun değil — gerektiği yerde açıklama gelir.",
-  "masteryIntro": "{{count}} soru. Yüzde {{pass}} doğru yapman ve her öğeyi en az bir kez doğru bilmen gerekiyor.",
-  "masteryPassed": "Ustalık testi geçildi — {{total}} sorudan {{correct}} doğru",
-  "masteryFailed": "Henüz değil — {{total}} sorudan {{correct}} doğru. Örnekleri gözden geçir ve yeniden dene.",
-  "masteryPerfect": "Kusursuz — her soru doğru",
-  "summaryComplete": "Ders tamamlandı",
-  "summaryIncomplete": "Henüz tamamlanmadı",
+  "practiceIntro": "Burada yanlış yapmak serbest.",
+  "masteryIntro": "Geçmek için {{count}} sorudan {{pass}} tanesi doğru olmalı.",
+  "masteryPassed": "Bitirme kontrolünü geçtin. {{total}} sorudan {{correct}} doğru.",
+  "masteryFailed": "Bu sefer {{total}} sorudan {{correct}} doğru yaptın. {{pass}} doğruyla sonraki derse geçebilirsin.",
+  "masteryPerfect": "Bitirme kontrolünü geçtin. {{total}} sorunun hepsi doğru.",
+  "summaryComplete": "Ders bitti",
+  "summaryIncomplete": "Hâlâ eksik var",
   "summaryMissing": {
     "explain": "Her açıklama adımını oku",
     "examples": "Her örneğe bak",
     "practice": "Alıştırmayı bitir",
-    "mastery": "Ustalık testini geç"
+    "mastery": "Bitirme kontrolünü yapmak",
+    "everyItem": "Her ifadeyi en az bir kez doğru bilmek"
   },
   "feedback": {
     "correct": "Doğru",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Bunlardan hangisi bu anlama geliyor?",
     "chooseCorrectExplanation": "Doğru açıklamayı seç.",
     "findIncorrectExpression": "Yanlış ifadeyi seç.",
-    "chooseSystem": "Buraya hangi sayılar gelir?",
+    "chooseSystem": "Burada Sino-Korece mi, öz Korece mi?",
     "digitsToKorean": {
-      "sino": "Bu sayıyı 일, 이, 삼 ile söyle",
-      "native": "Bunu 하나, 둘, 셋 ile say",
-      "both": "Bu sayıyı Korece söyle"
+      "sino": "Sino-Korece nasıl okunur?",
+      "native": "Öz Korece nasıl sayılır?",
+      "both": "Bu sayı Korece nasıl söylenir?"
     },
     "koreanToDigits": "Bu hangi sayı?",
     "counterForm": "{{value}} sayısı {{counter}} ile nasıl söylenir?",
     "fill": "Boşluğu doldur",
     "orderParts": "{{value}} sayısını kurmak için parçalara sırayla dokun"
   },
-  "rationale": {
-    "nativeSystem": "Eşyalar, insanlar, saatler ve yaş 하나, 둘, 셋 ile sayılır.",
-    "sinoSystem": "Fiyat, tarih, dakika, telefon numarası ve kat 일, 이, 삼 alır.",
-    "koreanToDigits": "Baştan oku. 십 on, 삼십 otuz demek.",
-    "countingForm": "Sayma kelimesinden önce 하나, 한 olur; 둘, 두 olur: 두 개.",
-    "counter": "Sayı ile nesne arasına bir sayma kelimesi girer ve neyi saydığına göre değişir.",
-    "fill": "Cümleyi bir daha oku — boşluğun çevresindeki kelimeler ipucu verir.",
-    "nativeBuild": "Birler basamağını 열’a ekle — 열하나, 열둘. 스물 ve 서른 ayrı kelimeler.",
-    "sinoBuild": "Parçaları sırayla oku: 삼십오, 삼 · 십 · 오 demek.",
-    "irregular_month": "6월, 유월; 10월 ise 시월.",
-    "plain_form": "Sayma kelimesinden önce 한, 두, 세, 네, 스무 gelir.",
-    "spacing": "Sayma kelimesi ayrı yazılır: 한 개.",
-    "system_swap": "Miktar aynı, yeri farklı. Burada {{korean}} kullanılır.",
-    "sound_alike": "Tek ses farkı var. Sonuna kulak ver.",
-    "wrong_counter": "Her sayma kelimesinin kendi nesnesi var — insana 명, hayvana 마리, eşyaya 개."
-  },
   "module": {
     "systems": {
-      "title": "Birden ona kadar söyleyelim",
-      "goal": "일’den 십’e, 하나’dan 열’e say, sıfırı oku ve hangisinin nerede kullanıldığını öğren."
+      "title": "Sino-Korece ve öz Korece sayılar",
+      "goal": "일’den 십’e Sino-Korece, 하나’dan 열’e öz Korece say. 0’ı 영 ve 공 olarak oku, her dizinin nerede kullanıldığını öğren."
     },
     "pastTen": {
       "title": "Ondan büyük sayılar",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Korece 1, 2, 3 demek",
+      "title": "Sino-Korece sayılar: 일’den 십’e",
       "objective": "일, 이, 삼’dan 십’e kadar dinle ve tekrar et.",
-      "step1": "일, 이, 삼 ile başlayalım. Bu sayıları fiyatta, tarihte, dakikada, telefon numarasında ve katta kullanırsın.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Hepsi tek hece.",
-      "step3": "Şöyle söylenir: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step1": "일, 이, 삼 diye okunan sayılar Sino-Korece olanlardır. Tarih ve ay, dakika, fiyat ve telefon numarasında kullanılır.",
+      "step2": "Katlar, adresler, uzunluk ve ağırlık gibi ölçüler ve yüzün üstündeki her sayı da Sino-Korece diziyi alır.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Her biri tek hece: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "하나, 둘, 셋 ile saymak",
-      "objective": "하나’dan 열’e kadar dinle ve söyle, önündeki şeyleri sayarak.",
-      "step1": "하나, 둘, 셋 önündekini sayar — insanları, fincanları, hayvanları — ve yaşta, tam saatte kullanılır.",
-      "step2": "Birden ona: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟'in 여덜 diye söylendiğine dikkat et: ㅂ okunmaz.",
-      "step3": "Yüzden sonrasında her şeyi 일, 이, 삼 ile sayarsın."
+      "title": "Öz Korece sayılar: 하나’dan 열’e",
+      "objective": "하나’dan 열’e dinle, söyle ve önündekileri say.",
+      "step1": "하나, 둘, 셋 diye sayılan sayılar öz Korece olanlardır. Nesne ve insan sayarken, yaş söylerken ve tam saatte kullanılır.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟, 여덜 diye okunur. Yüzden yukarısında her şey Sino-Korece sayılır.",
+      "step3": "Sayma sözcüğünden önce biçim değişir: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "0, 영 ya da 공’dur",
@@ -143,11 +128,11 @@
       "step2": "공 ise 0 rakamıdır; telefon numarasında, oda numarasında, bir kodda sesli okunur. 010, 공일공'dur, asla 영일영 değil."
     },
     "choosing": {
-      "title": "Eşyalar 하나, 둘 · fiyatlar 일, 이",
-      "objective": "Saymak için hangi sayıları, fiyat ve tarih için hangilerini kullandığını seç.",
-      "step1": "Gördüğünü 하나, 둘, 셋 ile sayarsın: 세 명, 두 시, 스무 살.",
-      "step2": "Fiyat, tarih, dakika, telefon numarası ve katta 일, 이, 삼 kullanılır: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "Bir saatte ikisi birden geçer. 세 시 삼십 분 — saat 세, dakika 삼십."
+      "title": "Nesneler 하나, 둘 · fiyatlar 일, 이 alır",
+      "objective": "Hangi durumun iki diziden hangisini istediğini seç.",
+      "step1": "Gördüğün şeyleri öz Korece sayarsın: 세 명, 두 시, 스무 살.",
+      "step2": "Fiyat, tarih, dakika, telefon ve kat Sino-Korece diziyi ister: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Saat ikisini birden kullanır. 세 시 삼십 분 — saat öz Korece 세, dakika Sino-Korece 삼십."
     },
     "sinoBuild": {
       "title": "Bine kadar saymak",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "열하나, 스물, 서른 demek",
-      "objective": "Ondan büyük sayıları 하나, 둘, 셋 yoluyla söyle.",
+      "objective": "Ondan büyük sayıları öz Korece söyle.",
       "step1": "열 sözcüğüne birleri ekle, 열아홉’a kadar. Tek kelime gibi söylenir.",
       "step2": "Her onluğun kendi kelimesi var — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯, 열려섣 diye söylenir: 심뉵'taki ㄹ sesinin aynısı."
@@ -181,33 +166,33 @@
       "title": "İki kahve, lütfen",
       "objective": "Dükkânda 병, 잔, 장 ve 권 ile sipariş ver ve say.",
       "step1": "병 şişedir (맥주 한 병), 잔 fincan ya da bardaktır (커피 두 잔), 장 bilet veya kâğıt gibi yassı bir şeydir (표 네 장), 권 kitaptır (책 세 권).",
-      "step2": "Dördü de 하나, 둘, 셋 sayılarını ve sayma biçimlerini alır: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Dördü de öz Korece sayma biçimlerini alır: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Kaç yaşındasın?",
       "objective": "Yaşını 살 ile söyle, büyüklere 연세 ile kibarca sor.",
-      "step1": "살, 하나, 둘, 셋 ile gider: 스무 살, 스물다섯 살. 몇 살이에요? arkadaşlar arasında sorulur.",
-      "step2": "세, 일, 이, 삼 ile gider; formlarda ve haberlerde görürsün: 이십 세.",
+      "step1": "살 öz Korece sayılarla gider: 스무 살, 스물다섯 살. 몇 살이에요? arkadaşa sorulur.",
+      "step2": "세 Sino-Korece sayılarla gider, formlarda ve haberlerde görürsün: 이십 세.",
       "step3": "Yaşça büyük birine 살 fazla samimi kalır. 연세, yaş için saygı sözcüğüdür: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Saat kaç?",
       "objective": "Saati 한 시 ve 두 시 gibi söyle, buçuk için 반 kullan.",
-      "step1": "Saat 하나, 둘, 셋 sayılarını alır: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? saati sorar.",
+      "step1": "시 öz Korece sayıları alır: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? saati sorar.",
       "step2": "반 yarım demektir: 두 시 반, iki buçuktur. 삼십 분'un yerine geçer.",
       "step3": "몇 시예요? diye sor, 세 시예요 diye cevap ver. Dakikalar bir sonraki derste."
     },
     "minutes": {
       "title": "Saat 3:30",
       "objective": "Dakikayı ve saniyeyi söyle, sonra saate ekle.",
-      "step1": "Dakika ve saniye 일, 이, 삼 sayılarını alır: 삼십 분, 십오 분, 십 초.",
+      "step1": "분 ve 초 Sino-Korece sayıları alır: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — saat 세, dakika 삼십.",
       "step3": "삼 시 서른 분 denmez. Doğrusu 세 시 삼십 분."
     },
     "dates": {
       "title": "Doğum günün ne zaman?",
       "objective": "Tarihi 년, 월 ve 일 ile söyle — 유월 ve 시월’e dikkat et.",
-      "step1": "년, 월 ve 일 hepsi 일, 이, 삼 sayılarını alır: 이천이십육년 삼월 십오일. Önce büyük birim.",
+      "step1": "년, 월 ve 일 hepsi Sino-Korece: 이천이십육년 삼월 십오일. Önce en büyük birim söylenir.",
       "step2": "İki ay kuralsızdır. Haziran 유월'dür, 육월 değil; ekim 시월'dür, 십월 değil.",
       "step3": "Ayın günü olan 일, bir anlamındaki 일 ile aynı sözcüktür. 삼월 일일, martın biridir."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Bu kaç para?",
       "objective": "오천 원 ve 만 오천 원 gibi fiyatları oku.",
-      "step1": "원, 일, 이, 삼 sayılarını alır: 천 원, 오천 원. 얼마예요? fiyatı sorar.",
+      "step1": "원 Sino-Korece sayıları alır: 천 원, 오천 원. 얼마예요? fiyatı sorar.",
       "step2": "만 원, 10.000원 demek. 삼만 오천 원 ise 35.000원.",
       "step3": "만 오천 원, 15.000원 demek — bir 만 ve beş 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Numarayı rakam rakam oku, 0 yerine 공 de. Kat ve oda numaralarında da aynı.",
       "step1": "Numara rakam rakam okunur. 010, 공일공’dur.",
       "step2": "에, tirenin olduğu yere gelir: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Kat, oda ve otobüs numaraları 일, 이, 삼 sayılarını alır: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Kat, oda ve otobüs numaraları Sino-Korece sayıları alır: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — büyük fiyatları okumak",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Hepsi karışık",
       "objective": "Öğrendiklerini dinle ve oku, hepsini bir arada.",
-      "step1": "Hepsi bir arada. Eşya, saat ve yaş 하나, 둘, 셋 alır; fiyat, dakika, tarih ve telefon numarası 일, 이, 삼 alır.",
+      "step1": "Şimdiye kadarki her şey bir arada. Nesneler, saatler ve yaş öz Korece; fiyat, dakika, tarih ve telefon Sino-Korece.",
       "step2": "Oku ya da dinle, sonra seç. Açıklamaya tekrar bakman sorun değil."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "fincanlar ve bardaklar",
     "counterFlat": "yassı şeyler — biletler, kâğıtlar",
     "counterBooks": "kitaplar",
-    "counterAge": "yaş — 하나, 둘, 셋 ile",
-    "counterAgeFormal": "yaş — belgelerde ve haberlerde, 일, 이, 삼 ile",
-    "howOld": "Kaç yaşındasın?",
+    "counterAge": "Yaş — öz Korece sayılarla",
+    "counterAgeFormal": "Yaş — formlarda ve haberlerde, Sino-Korece sayılarla",
+    "howOld": "Yaşı soran cümle",
     "ageHonorific": "yaş — saygı sözcüğü, yaşça büyük biri için",
     "counterHour": "saat",
     "half": "buçuk",
-    "whatTime": "Saat kaç?",
+    "whatTime": "Saati soran cümle",
     "tenOclock": "saat on",
     "counterMinute": "dakika",
     "counterSecond": "saniye",
@@ -292,12 +277,12 @@
     "counterDay": "ayın günü",
     "june": "haziran — kuralsız",
     "october": "ekim — kuralsız",
-    "whatDay": "Bugün günlerden ne?",
+    "whatDay": "Haftanın gününü soran cümle",
     "monday": "pazartesi",
     "friday": "cuma",
     "weekend": "hafta sonu",
     "counterWon": "won",
-    "howMuch": "Ne kadar?",
+    "howMuch": "Fiyatı soran cümle",
     "phonePrefix": "bir telefon ön eki, rakam rakam",
     "phoneDash": "tirenin yazıldığı yerde söylenir",
     "counterFloor": "bir binanın katı",

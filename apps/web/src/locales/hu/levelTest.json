@@ -41,7 +41,7 @@
     "title": "Szókincsszint",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Nézze meg a szintjét, és kapjon hozzá illő szavakat.",
-    "cta": "Teszt indítása",
+    "cta": "Szintfelmérő kitöltése",
     "retake": "Újra",
     "short": "Szint",
     "aria": "Szókincsszint {{level}}"

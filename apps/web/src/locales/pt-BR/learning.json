@@ -163,7 +163,7 @@
     "read": "Ler"
   },
   "recognition": {
-    "question": "Qual faz este som?",
+    "question": "Qual delas faz este som?",
     "optionsAria": "Escolha a letra que você ouviu",
     "optionAria": "Escolher {{character}}",
     "hearAgain": "Ouvir de novo",

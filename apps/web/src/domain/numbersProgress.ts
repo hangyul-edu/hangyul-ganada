@@ -44,6 +44,24 @@ import type {
 export const MASTERY_PASS = 0.8;
 
 /**
+ * How many of `total` questions a learner has to get right, as a **count**.
+ *
+ * The final check used to be introduced as *{{count}}문제예요. {{pass}}% 이상
+ * 맞히고…* — a learner was handed a ratio and left to work out what it meant
+ * over ten questions, and then told afterwards *마무리 확인 통과 — 10문제 중
+ * 8개*, which is a different unit again. Both screens say eight now, and they
+ * say it because they both call this.
+ *
+ * Ceiling, because the number printed has to be a number that passes: 80% of
+ * six is 4.8 and five is what a learner needs. The epsilon is for the float —
+ * `Math.ceil(0.8 * 10)` is 8 in IEEE 754 today and this does not depend on
+ * that staying true.
+ */
+export function passMark(total: number): number {
+  return Math.ceil(total * MASTERY_PASS - 1e-9);
+}
+
+/**
  * Days after completion (or after the last review) before a lesson is
  * `review_due`. A week: long enough that the review is a memory test and not a
  * repeat, short enough that a course finished in a fortnight has its first

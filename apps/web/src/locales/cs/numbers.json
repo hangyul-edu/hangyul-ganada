@@ -10,12 +10,12 @@
     "mastered": "Zvládnuto",
     "review_due": "Čeká opakování"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 a 하나, 둘, 셋",
+  "systemSino": "Sinokorejské (일, 이, 삼)",
+  "systemNative": "Původní korejské (하나, 둘, 셋)",
+  "systemBoth": "Sinokorejské a původní korejské",
   "system": {
-    "native": "하나, 둘, 셋 — na počítání věcí",
-    "sino": "일, 이, 삼 — na peníze a data"
+    "native": "Původní korejské — na počítání věcí",
+    "sino": "Sinokorejské — na peníze a data"
   },
   "phase": {
     "objective": "Co se naučíte",
@@ -31,9 +31,9 @@
     "next": "Dál",
     "continue": "Pokračovat",
     "beginPractice": "Začít cvičit",
-    "beginMastery": "Spustit ověření zvládnutí",
-    "retryMastery": "Zkusit ověření zvládnutí znovu",
-    "backToCourse": "Zpět na Čísla",
+    "beginMastery": "Spustit závěrečnou kontrolu",
+    "retryMastery": "Zkusit znovu",
+    "backToCourse": "Zpět k lekcím o číslech",
     "review": "Zopakovat tuto lekci",
     "clear": "Vymazat"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Vyslovuje se takto",
     "example": "V praxi"
   },
-  "practiceIntro": "Chyby tu nevadí — vysvětlení přijde tam, kde pomůže.",
-  "masteryIntro": "{{count}} otázek. Potřebujete {{pass}} % správně a každou položku alespoň jednou.",
-  "masteryPassed": "Ověření zvládnutí splněno — {{correct}} z {{total}}",
-  "masteryFailed": "Ještě ne — {{correct}} z {{total}}. Projděte si příklady a zkuste to znovu.",
-  "masteryPerfect": "Bez chyby — všechny otázky správně",
-  "summaryComplete": "Lekce dokončena",
-  "summaryIncomplete": "Ještě není dokončeno",
+  "practiceIntro": "Tady se chybovat smí.",
+  "masteryIntro": "Na projití potřebuješ {{pass}} z {{count}}.",
+  "masteryPassed": "Závěrečnou kontrolu máš za sebou. Správně {{correct}} z {{total}}.",
+  "masteryFailed": "Tentokrát máš {{correct}} z {{total}}. Při {{pass}} správných odpovědích jdeš na další lekci.",
+  "masteryPerfect": "Závěrečnou kontrolu máš za sebou. Všech {{total}} správně.",
+  "summaryComplete": "Lekce hotová",
+  "summaryIncomplete": "Ještě něco zbývá",
   "summaryMissing": {
     "explain": "Přečtěte si každý krok vysvětlení",
     "examples": "Prohlédněte si všechny příklady",
     "practice": "Dokončete cvičení",
-    "mastery": "Splňte ověření zvládnutí"
+    "mastery": "Projít závěrečnou kontrolou",
+    "everyItem": "Trefit každý výraz aspoň jednou"
   },
   "feedback": {
     "correct": "Správně",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Které z nich má tento význam?",
     "chooseCorrectExplanation": "Vyberte správné vysvětlení.",
     "findIncorrectExpression": "Vyberte nesprávný výraz.",
-    "chooseSystem": "Jaká čísla sem patří?",
+    "chooseSystem": "Sinokorejské, nebo původní korejské?",
     "digitsToKorean": {
-      "sino": "Řekněte toto číslo pomocí 일, 이, 삼",
-      "native": "Spočítejte to pomocí 하나, 둘, 셋",
-      "both": "Řekněte toto číslo korejsky"
+      "sino": "Jak se to čte sinokorejsky?",
+      "native": "Jak se to počítá původními korejskými?",
+      "both": "Jak se to číslo řekne korejsky?"
     },
     "koreanToDigits": "Které číslo to je?",
     "counterForm": "Jak se řekne {{value}} s numerativem {{counter}}?",
     "fill": "Doplňte mezeru",
     "orderParts": "Klepejte na části ve správném pořadí a sestavte {{value}}"
   },
-  "rationale": {
-    "nativeSystem": "Věci, lidi, hodiny a věk se počítají pomocí 하나, 둘, 셋.",
-    "sinoSystem": "Ceny, data, minuty, telefonní čísla a patra berou 일, 이, 삼.",
-    "koreanToDigits": "Čtěte od začátku. 십 je 10 a 삼십 je 30.",
-    "countingForm": "Před počítacím slovem se 하나 mění na 한 a 둘 na 두: 두 개.",
-    "counter": "Mezi číslem a věcí stojí počítací slovo a závisí na tom, co počítáte.",
-    "fill": "Přečtěte si větu znovu — slova kolem mezery napoví, co tam patří.",
-    "nativeBuild": "Přidejte jednotku k 열 — 열하나, 열둘. 스물 a 서른 jsou samostatná slova.",
-    "sinoBuild": "Čtěte části popořadě: 삼십오 je 삼 · 십 · 오.",
-    "irregular_month": "6월 je 유월 a 10월 je 시월.",
-    "plain_form": "Před počítacím slovem se používá 한, 두, 세, 네, 스무.",
-    "spacing": "Počítací slovo se píše s mezerou: 한 개.",
-    "system_swap": "Stejné množství, jiné místo. Tady se používá {{korean}}.",
-    "sound_alike": "Rozdíl je v jedné hlásce. Poslechněte si konec.",
-    "wrong_counter": "Každé počítací slovo má své věci — 명 pro lidi, 마리 pro zvířata, 개 pro předměty."
-  },
   "module": {
     "systems": {
-      "title": "Říkáme jedna až deset",
-      "goal": "Řekněte 일 až 십 a 하나 až 열, přečtěte nulu a zjistěte, kde se co používá."
+      "title": "Sinokorejské a původní korejské číslovky",
+      "goal": "Řekni 일 až 십 sinokorejsky a 하나 až 열 původními korejskými. Přečti 0 jako 영 a jako 공 a nauč se, kam která řada patří."
     },
     "pastTen": {
       "title": "Čísla nad deset",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Říct 1, 2, 3 korejsky",
-      "objective": "Poslechni si 일, 이, 삼 až po 십 a opakuj nahlas.",
-      "step1": "Začneme s 일, 이, 삼. Tato čísla se používají pro ceny, data, minuty, telefonní čísla a patra.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Každé je jedna slabika.",
-      "step3": "Říká se to takto: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "title": "Sinokorejské číslovky: od 일 do 십",
+      "objective": "Poslechni si 일, 이, 삼 až po 십 a opakuj.",
+      "step1": "Čísla čtená 일, 이, 삼 jsou sinokorejská. Používají se na data a měsíce, minuty, ceny a telefonní čísla.",
+      "step2": "Patra, adresy, míry jako délka a váha a každé číslo nad sto berou také sinokorejskou řadu.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Každé má jednu slabiku: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "Počítáme s 하나, 둘, 셋",
-      "objective": "Poslouchej a říkej 하나 až 열 a počítej při tom, co máš před sebou.",
-      "step1": "하나, 둘, 셋 počítají to, co máte před sebou — lidi, šálky, zvířata — a používají se u věku a celé hodiny.",
-      "step2": "Jedna až deset: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Všimněte si, že 여덟 se vyslovuje 여덜: ㅂ je němé.",
-      "step3": "Od sta výš se všechno počítá pomocí 일, 이, 삼."
+      "title": "Původní korejské číslovky: od 하나 do 열",
+      "objective": "Poslechni si 하나 až po 열, řekni je a spočítej, co máš před sebou.",
+      "step1": "Čísla, kterými se počítá 하나, 둘, 셋, jsou původní korejská. Počítají se jimi věci a lidé, říká se jimi věk a celá hodina.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 se vyslovuje 여덜. Od sta výš se všechno počítá sinokorejsky.",
+      "step3": "Před počítacím slovem se tvar mění: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "0 je 영 nebo 공",
@@ -143,11 +128,11 @@
       "step2": "공 je číslice 0, čtená nahlas v telefonním čísle, čísle pokoje nebo kódu. 010 je 공일공, nikdy 영일영."
     },
     "choosing": {
-      "title": "Věci přes 하나, 둘 · ceny přes 일, 이",
-      "objective": "Vyberte, kterými čísly se počítá a kterými se říkají ceny a data.",
-      "step1": "Co vidíte, počítáte pomocí 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Pro ceny, data, minuty, čísla a patra slouží 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "V hodině jsou obě. 세 시 삼십 분 — hodina je 세, minuty jsou 삼십."
+      "title": "Věci berou 하나, 둘 · ceny berou 일, 이",
+      "objective": "Vyber, kterou z obou řad situace vyžaduje.",
+      "step1": "Co vidíš, počítáš původními korejskými: 세 명, 두 시, 스무 살.",
+      "step2": "Ceny, data, minuty, telefonní čísla a patra berou sinokorejskou řadu: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Hodina na hodinách bere obě. 세 시 삼십 분 — hodina je původní 세, minuty sinokorejské 삼십."
     },
     "sinoBuild": {
       "title": "Počítáme do tisíce",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "Říkáme 열하나, 스물, 서른",
-      "objective": "Čísla nad deset říkej způsobem 하나, 둘, 셋.",
+      "objective": "Čísla nad deset říkej původními korejskými.",
       "step1": "K 열 přidáváš jednotky až po 열아홉. Vyslovuje se jako jedno slovo.",
       "step2": "Každá desítka má vlastní slovo — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 se vyslovuje 열려섣: stejná hláska ㄹ, která se objevuje v 심뉵."
@@ -181,33 +166,33 @@
       "title": "Dvě kávy, prosím",
       "objective": "Objednávej a počítej v obchodě s 병, 잔, 장 a 권.",
       "step1": "병 je lahev (맥주 한 병), 잔 je hrnek nebo sklenice (커피 두 잔), 장 je plochá věc, třeba lístek nebo list papíru (표 네 장), 권 je kniha (책 세 권).",
-      "step2": "Všechna čtyři berou čísla 하나, 둘, 셋 a jejich počítací tvary: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Všechny čtyři berou původní korejské počítací tvary: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Kolik ti je let?",
       "objective": "Řekni věk s 살 a staršího se zeptej zdvořile pomocí 연세.",
-      "step1": "살 jde s 하나, 둘, 셋: 스무 살, 스물다섯 살. 몇 살이에요? se ptáte mezi přáteli.",
-      "step2": "세 jde s 일, 이, 삼 a objevuje se ve formulářích a ve zprávách: 이십 세.",
+      "step1": "살 jde s původními korejskými: 스무 살, 스물다섯 살. 몇 살이에요? se ptáš kamaráda.",
+      "step2": "세 jde se sinokorejskými a vídáš ho ve formulářích a ve zprávách: 이십 세.",
       "step3": "Vůči starší osobě je 살 příliš neformální. 연세 je honorifikační slovo pro věk: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Kolik je hodin?",
       "objective": "Říkej hodinu jako 한 시 a 두 시 a půl vyjádři slovem 반.",
-      "step1": "Hodina bere čísla 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? se ptá, kolik je hodin.",
+      "step1": "시 bere původní korejské: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? se ptá na čas.",
       "step2": "반 znamená půl: 두 시 반 je půl třetí. Nahrazuje 삼십 분.",
       "step3": "Zeptejte se 몇 시예요? a odpovězte 세 시예요. Minuty přijdou v další lekci."
     },
     "minutes": {
       "title": "Je 3:30",
       "objective": "Říkej minuty a sekundy a připoj je k hodině.",
-      "step1": "Minuty a sekundy berou čísla 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step1": "분 a 초 berou sinokorejské: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — hodina je 세, minuty jsou 삼십.",
       "step3": "Ne 삼 시 서른 분. Správně je 세 시 삼십 분."
     },
     "dates": {
       "title": "Kdy máš narozeniny?",
       "objective": "Řekni datum s 년, 월 a 일 — a pozor na 유월 a 시월.",
-      "step1": "년, 월 i 일 berou čísla 일, 이, 삼: 이천이십육년 삼월 십오일. Nejdřív velká jednotka.",
+      "step1": "년, 월 i 일 jsou sinokorejské: 이천이십육년 삼월 십오일. Největší jednotka jde první.",
       "step2": "Dva měsíce jsou nepravidelné. Červen je 유월, ne 육월; říjen je 시월, ne 십월.",
       "step3": "일 jako den v měsíci je totéž slovo jako 일 pro jedničku. 삼월 일일 je prvního března."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Kolik to stojí?",
       "objective": "Čti ceny jako 오천 원 a 만 오천 원.",
-      "step1": "원 bere čísla 일, 이, 삼: 천 원, 오천 원. 얼마예요? se ptá na cenu.",
+      "step1": "원 bere sinokorejské: 천 원, 오천 원. 얼마예요? se ptá na cenu.",
       "step2": "만 원 je 10 000원. 삼만 오천 원 je 35 000원.",
       "step3": "만 오천 원 je 15 000원 — jedno 만 a pět 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Čti číslo po číslicích a místo 0 říkej 공. Stejně u pater a pokojů.",
       "step1": "Číslo se čte po jedné číslici. 010 je 공일공.",
       "step2": "에 stojí tam, kde je pomlčka: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Patra, čísla pokojů a autobusů berou čísla 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Patra, čísla pokojů a autobusů berou sinokorejské: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — čtení vysokých cen",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Všechno dohromady",
       "objective": "Poslechni si a přečti všechno naučené najednou.",
-      "step1": "Všechno najednou. Věci, hodiny a věk berou 하나, 둘, 셋; ceny, minuty, data a telefonní čísla berou 일, 이, 삼.",
+      "step1": "Všechno dosud najednou. Věci, hodiny a věk jdou původními korejskými; ceny, minuty, data a telefonní čísla sinokorejskými.",
       "step2": "Přečtěte si to nebo poslouchejte a vyberte. Podívat se znovu do výkladu je v pořádku."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "hrnky a sklenice",
     "counterFlat": "ploché věci — lístky, listy",
     "counterBooks": "knihy",
-    "counterAge": "věk — s 하나, 둘, 셋",
-    "counterAgeFormal": "věk — v dokumentech a ve zprávách, s 일, 이, 삼",
-    "howOld": "Kolik je vám let?",
+    "counterAge": "Věk — s původními korejskými",
+    "counterAgeFormal": "Věk — ve formulářích a ve zprávách, se sinokorejskými",
+    "howOld": "Věta, kterou se ptáš na věk",
     "ageHonorific": "věk — honorifikačně, o starší osobě",
     "counterHour": "hodin (čas)",
     "half": "půl — třicet minut po celé",
-    "whatTime": "Kolik je hodin?",
+    "whatTime": "Věta, kterou se ptáš na čas",
     "tenOclock": "deset hodin",
     "counterMinute": "minut",
     "counterSecond": "sekund",
@@ -292,12 +277,12 @@
     "counterDay": "den v měsíci",
     "june": "červen — nepravidelný",
     "october": "říjen — nepravidelný",
-    "whatDay": "Který je dnes den?",
+    "whatDay": "Věta, kterou se ptáš na den v týdnu",
     "monday": "pondělí",
     "friday": "pátek",
     "weekend": "víkend",
     "counterWon": "won",
-    "howMuch": "Kolik to stojí?",
+    "howMuch": "Věta, kterou se ptáš na cenu",
     "phonePrefix": "telefonní předvolba, číslici po číslici",
     "phoneDash": "říká se tam, kde je psaná pomlčka",
     "counterFloor": "patro budovy",

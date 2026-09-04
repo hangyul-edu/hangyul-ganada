@@ -6,6 +6,7 @@ import { masteryExercises, practiceExercises } from '../features/numbers/exercis
 import {
   MASTERY_PASS,
   REVIEW_INTERVAL_DAYS,
+  passMark,
   applyNumbersEvent,
   blankLessonProgress,
   isComplete,
@@ -337,6 +338,115 @@ describe('Numbers journeys', () => {
 });
 
 describe('Numbers negative tests — the ways completion must not be earned', () => {
+  /*
+   * The pass mark, as a count.
+   *
+   * Both screens print `passMark(total)`: the sentence before the check —
+   * *10문제 중 8문제 이상 맞히면 통과해요* — and the one after a failure. The
+   * number they print has to be the number the reducer actually accepts, or the
+   * app tells a learner one threshold and applies another. That is what these
+   * cover; the combinations the ledger names are each a row.
+   */
+  describe('the final check\u2019s threshold, at every score around it', () => {
+    const TEN = 10;
+
+    it('T1 · the printed mark is a score that passes, and one below it is not', () => {
+      for (const total of [4, 6, 8, 10, 12]) {
+        const mark = passMark(total);
+        expect(mark / total, `${mark}/${total} must pass`).toBeGreaterThanOrEqual(MASTERY_PASS);
+        expect((mark - 1) / total, `${mark - 1}/${total} must not pass`).toBeLessThan(MASTERY_PASS);
+      }
+    });
+
+    it('T2 · 8, 9 and 10 out of 10 pass; 7 and below do not', () => {
+      expect(passMark(TEN)).toBe(8);
+      for (const correct of [8, 9, 10]) {
+        expect(correct / TEN >= MASTERY_PASS, `${correct}/10`).toBe(true);
+      }
+      for (const correct of [0, 5, 7]) {
+        expect(correct / TEN >= MASTERY_PASS, `${correct}/10`).toBe(false);
+      }
+    });
+
+    it('T3 · a check answered at exactly the mark completes the lesson', () => {
+      const exercises = masteryExercises(counters, 0);
+      const mark = passMark(exercises.length);
+      // Right on the first `mark` questions and wrong after; every item is
+      // still asked, so any item missed here is one the lesson owes.
+      const record = run(counters, [
+        open,
+        ...readAll(counters),
+        ...viewAll(counters),
+        ...practice(counters, 0, () => true),
+        ...mastery(counters, 0, (i) => i < mark),
+      ]);
+      expect(record.mastery?.passed).toBe(true);
+      expect(record.mastery?.correct).toBe(mark);
+    });
+
+    it('T4 · one below the mark does not pass, and the score is kept for the screen', () => {
+      const exercises = masteryExercises(counters, 0);
+      const mark = passMark(exercises.length);
+      const record = run(counters, [
+        open,
+        ...readAll(counters),
+        ...viewAll(counters),
+        ...practice(counters, 0, () => true),
+        ...mastery(counters, 0, (i) => i < mark - 1),
+      ]);
+      expect(record.mastery?.passed).toBe(false);
+      expect(record.mastery?.correct).toBe(mark - 1);
+      expect(record.mastery?.total).toBe(exercises.length);
+      expect(isComplete(record, counters)).toBe(false);
+    });
+
+    it('T5 · retrying after a failure and passing completes the lesson', () => {
+      const mark = passMark(masteryExercises(counters, 0).length);
+      const failed = run(counters, [
+        open,
+        ...readAll(counters),
+        ...viewAll(counters),
+        ...practice(counters, 0, () => true),
+        ...mastery(counters, 0, (i) => i < mark - 1),
+      ]);
+      expect(isComplete(failed, counters)).toBe(false);
+      const retried = run(counters, mastery(counters, 1, () => true), failed);
+      expect(retried.mastery?.passed).toBe(true);
+      expect(isComplete(retried, counters)).toBe(true);
+    });
+
+    it('T6 · leaving after a failed check and coming back resumes at the check, not past it', () => {
+      const mark = passMark(masteryExercises(counters, 0).length);
+      const record = run(counters, [
+        open,
+        ...readAll(counters),
+        ...viewAll(counters),
+        ...practice(counters, 0, () => true),
+        ...mastery(counters, 0, (i) => i < mark - 1),
+      ]);
+      expect(resumePhase(record, counters)).toBe('mastery');
+      // And re-opening the lesson changes nothing about the verdict.
+      const reopened = run(counters, [open], record);
+      expect(reopened.mastery?.passed).toBe(false);
+      expect(isComplete(reopened, counters)).toBe(false);
+    });
+
+    it('T7 · no score short of the mark completes any lesson in the course', () => {
+      for (const lesson of NUMBER_LESSONS) {
+        const exercises = masteryExercises(lesson, 0);
+        const mark = passMark(exercises.length);
+        const record = run(lesson, [
+          open,
+          ...readAll(lesson),
+          ...viewAll(lesson),
+          ...practice(lesson, 0, () => true),
+          ...mastery(lesson, 0, (i) => i < mark - 1),
+        ]);
+        expect(isComplete(record, lesson), `${lesson.id} completed below the mark`).toBe(false);
+      }
+    });
+  });
+
   it('N1 · unlock is not completion: an available lesson contributes nothing to a module', () => {
     const module = NUMBER_LESSONS.filter((l) => l.module === 'mod-systems');
     expect(unitComplete(module, {})).toBe(false);

@@ -41,7 +41,7 @@
     "title": "Kelime seviyesi",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Seviyeni öğren, sana uygun kelimeler al.",
-    "cta": "Testi çöz",
+    "cta": "Seviye testini yap",
     "retake": "Tekrar çöz",
     "short": "Sv.",
     "aria": "Kelime seviyesi {{level}}"

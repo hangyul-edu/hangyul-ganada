@@ -162,7 +162,7 @@
     "read": "읽기"
   },
   "recognition": {
-    "question": "이 소리를 내는 글자는?",
+    "question": "이 소리를 내는 글자는 어느 것일까요?",
     "optionsAria": "들은 글자 고르기",
     "optionAria": "{{character}} 고르기",
     "hearAgain": "다시 듣기",

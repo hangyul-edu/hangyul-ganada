@@ -10,12 +10,12 @@
     "mastered": "Bemästrad",
     "review_due": "Dags att repetera"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 och 하나, 둘, 셋",
+  "systemSino": "Sinokoreanska (일, 이, 삼)",
+  "systemNative": "Inhemskt koreanska (하나, 둘, 셋)",
+  "systemBoth": "Sinokoreanska och inhemskt koreanska",
   "system": {
-    "native": "하나, 둘, 셋 — för att räkna saker",
-    "sino": "일, 이, 삼 — för pengar och datum"
+    "native": "Inhemskt koreanska — för att räkna saker",
+    "sino": "Sinokoreanska — för pengar och datum"
   },
   "phase": {
     "objective": "Vad du kommer att lära dig",
@@ -31,9 +31,9 @@
     "next": "Nästa",
     "continue": "Fortsätt",
     "beginPractice": "Börja öva",
-    "beginMastery": "Börja slutprovet",
-    "retryMastery": "Försök slutprovet igen",
-    "backToCourse": "Tillbaka till Tal",
+    "beginMastery": "Starta slutkontrollen",
+    "retryMastery": "Försök igen",
+    "backToCourse": "Tillbaka till lektionerna om tal",
     "review": "Repetera lektionen",
     "clear": "Rensa"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Så uttalas det",
     "example": "I bruk"
   },
-  "practiceIntro": "Det är okej att göra fel här — en förklaring kommer där den hjälper.",
-  "masteryIntro": "{{count}} frågor. Du behöver {{pass}} % rätt, och varje ord minst en gång.",
-  "masteryPassed": "Slutprovet klarat — {{correct}} av {{total}}",
-  "masteryFailed": "Inte än — {{correct}} av {{total}}. Gå igenom exemplen och försök igen.",
-  "masteryPerfect": "Perfekt — alla frågor rätt",
-  "summaryComplete": "Lektionen klar",
-  "summaryIncomplete": "Inte klar än",
+  "practiceIntro": "Det gör inget om du svarar fel här.",
+  "masteryIntro": "{{pass}} rätt av {{count}} och du klarar den.",
+  "masteryPassed": "Du klarade slutkontrollen. {{correct}} rätt av {{total}}.",
+  "masteryFailed": "Den här gången fick du {{correct}} av {{total}}. Med {{pass}} rätt går du vidare till nästa lektion.",
+  "masteryPerfect": "Du klarade slutkontrollen. Alla {{total}} rätt.",
+  "summaryComplete": "Lektionen är klar",
+  "summaryIncomplete": "Något återstår",
   "summaryMissing": {
     "explain": "Läs varje förklaringssteg",
     "examples": "Titta på varje exempel",
     "practice": "Gör klart övningen",
-    "mastery": "Klara slutprovet"
+    "mastery": "Gör slutkontrollen",
+    "everyItem": "Få varje uttryck rätt minst en gång"
   },
   "feedback": {
     "correct": "Rätt",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Vilket av dem betyder det här?",
     "chooseCorrectExplanation": "Välj den rätta förklaringen.",
     "findIncorrectExpression": "Välj det felaktiga uttrycket.",
-    "chooseSystem": "Vilka siffror hör hemma här?",
+    "chooseSystem": "Sinokoreanska eller inhemskt koreanska här?",
     "digitsToKorean": {
-      "sino": "Säg det här talet med 일, 이, 삼",
-      "native": "Räkna det med 하나, 둘, 셋",
-      "both": "Säg det här talet på koreanska"
+      "sino": "Hur läser man det sinokoreanskt?",
+      "native": "Hur räknar man det inhemskt koreanskt?",
+      "both": "Hur säger man talet på koreanska?"
     },
     "koreanToDigits": "Vilket tal är det här?",
     "counterForm": "Hur säger du {{value}} med {{counter}}?",
     "fill": "Fyll i luckan",
     "orderParts": "Tryck på delarna i rätt ordning för att bygga {{value}}"
   },
-  "rationale": {
-    "nativeSystem": "Saker, människor, timmar och ålder räknas med 하나, 둘, 셋.",
-    "sinoSystem": "Priser, datum, minuter, telefonnummer och våningar tar 일, 이, 삼.",
-    "koreanToDigits": "Läs från början. 십 är 10 och 삼십 är 30.",
-    "countingForm": "Framför ett räkneord blir 하나 till 한 och 둘 till 두: 두 개.",
-    "counter": "Mellan talet och saken står ett räkneord, och det beror på vad du räknar.",
-    "fill": "Läs meningen igen — orden runt luckan säger vad som saknas.",
-    "nativeBuild": "Lägg entalet till 열 — 열하나, 열둘. 스물 och 서른 är egna ord.",
-    "sinoBuild": "Läs delarna i ordning: 삼십오 är 삼 · 십 · 오.",
-    "irregular_month": "6월 heter 유월 och 10월 heter 시월.",
-    "plain_form": "Framför ett räkneord används 한, 두, 세, 네, 스무.",
-    "spacing": "Räkneordet skrivs med mellanslag: 한 개.",
-    "system_swap": "Samma mängd, annan plats. Här använder man {{korean}}.",
-    "sound_alike": "Ett ljud skiljer. Lyssna på slutet.",
-    "wrong_counter": "Varje räkneord har sina saker — 명 för människor, 마리 för djur, 개 för föremål."
-  },
   "module": {
     "systems": {
-      "title": "Säga ett till tio",
-      "goal": "Säg 일 till 십 och 하나 till 열, läs nollan, och lär dig var respektive används."
+      "title": "Sinokoreanska och inhemskt koreanska räkneord",
+      "goal": "Säg 일 till 십 sinokoreanskt och 하나 till 열 inhemskt koreanskt. Läs 0 som 영 och som 공, och lär dig var varje uppsättning hör hemma."
     },
     "pastTen": {
       "title": "Tal över tio",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Säga 1, 2, 3 på koreanska",
+      "title": "Sinokoreanska räkneord: 일 till 십",
       "objective": "Lyssna på 일, 이, 삼 upp till 십 och säg efter.",
-      "step1": "Börja med 일, 이, 삼. Dem använder du för priser, datum, minuter, telefonnummer och våningar.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Var och en är en enda stavelse.",
-      "step3": "Så här säger man dem: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step1": "Tal som läses 일, 이, 삼 är de sinokoreanska. Du använder dem för datum och månader, minuter, priser och telefonnummer.",
+      "step2": "Även våningar, adresser, mått som längd och vikt och alla tal över hundra tar de sinokoreanska.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Vart och ett är en enda stavelse: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "Räkna med 하나, 둘, 셋",
-      "objective": "Lyssna och säg 하나 till 열 medan du räknar det du har framför dig.",
-      "step1": "하나, 둘, 셋 räknar det du har framför dig — människor, koppar, djur — och används för ålder och hel timme.",
-      "step2": "Ett till tio: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Lägg märke till att 여덟 sägs 여덜: ㅂ är stumt.",
-      "step3": "Från hundra och uppåt räknas allt med 일, 이, 삼."
+      "title": "Inhemskt koreanska räkneord: 하나 till 열",
+      "objective": "Lyssna på 하나 upp till 열, säg dem och räkna det du har framför dig.",
+      "step1": "Tal som räknas 하나, 둘, 셋 är de inhemskt koreanska. Du räknar saker och personer med dem, säger ålder och hel timme.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 uttalas 여덜. Från hundra och uppåt räknar du allt sinokoreanskt.",
+      "step3": "Framför ett räkneord ändras formen: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "0 är 영 eller 공",
@@ -143,11 +128,11 @@
       "step2": "공 är siffran 0, som den läses upp i ett telefonnummer, ett rumsnummer, en kod. 010 är 공일공, aldrig 영일영."
     },
     "choosing": {
-      "title": "Saker med 하나, 둘 · priser med 일, 이",
-      "objective": "Välj vilka siffror du räknar med och vilka som hör till priser och datum.",
-      "step1": "Det du ser räknar du med 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Till priser, datum, minuter, telefonnummer och våningar hör 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "En klockslag tar båda. 세 시 삼십 분 — timmen är 세, minuterna är 삼십."
+      "title": "Saker tar 하나, 둘 · priser tar 일, 이",
+      "objective": "Välj vilken av de två uppsättningarna situationen kräver.",
+      "step1": "Det du kan se räknar du inhemskt koreanskt: 세 명, 두 시, 스무 살.",
+      "step2": "Priser, datum, minuter, telefonnummer och våningar tar de sinokoreanska: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Klockslag tar båda. 세 시 삼십 분 — timmen är det inhemska 세, minuterna det sinokoreanska 삼십."
     },
     "sinoBuild": {
       "title": "Räkna till tusen",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "Säga 열하나, 스물, 서른",
-      "objective": "Säg talen över tio på 하나-둘-셋-sättet.",
+      "objective": "Säg talen över tio inhemskt koreanskt.",
       "step1": "Lägg entalen till 열, upp till 열아홉. Sägs som ett ord.",
       "step2": "Varje tiotal har ett eget ord — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 sägs 열려섣: samma ㄹ-ljud som dyker upp i 심뉵."
@@ -181,33 +166,33 @@
       "title": "Två kaffe, tack",
       "objective": "Beställ och räkna i butiken med 병, 잔, 장 och 권.",
       "step1": "병 är en flaska (맥주 한 병), 잔 är en kopp eller ett glas (커피 두 잔), 장 är något platt som en biljett eller ett papper (표 네 장), 권 är en bok (책 세 권).",
-      "step2": "Alla fyra tar talen 하나, 둘, 셋 och deras räkneformer: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Alla fyra tar de inhemskt koreanska räkneformerna: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Hur gammal är du?",
       "objective": "Säg din ålder med 살 och fråga en äldre artigt med 연세.",
-      "step1": "살 går med 하나, 둘, 셋: 스무 살, 스물다섯 살. 몇 살이에요? frågar man kompisar.",
-      "step2": "세 går med 일, 이, 삼 och dyker upp i blanketter och nyheter: 이십 세.",
+      "step1": "살 hör ihop med de inhemskt koreanska talen: 스무 살, 스물다섯 살. 몇 살이에요? frågar du en kompis.",
+      "step2": "세 hör ihop med de sinokoreanska talen och syns i blanketter och nyheter: 이십 세.",
       "step3": "Till någon äldre är 살 för vardagligt. 연세 är det vördnadsfulla ordet för ålder: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Vad är klockan?",
       "objective": "Säg timmen som 한 시 och 두 시, och använd 반 för halv.",
-      "step1": "Timmen tar talen 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? frågar vad klockan är.",
+      "step1": "시 tar de inhemskt koreanska talen: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? frågar vad klockan är.",
       "step2": "반 betyder halv: 두 시 반 är halv tre. Det ersätter 삼십 분.",
       "step3": "Fråga 몇 시예요? och svara 세 시예요. Minuterna kommer i nästa lektion."
     },
     "minutes": {
       "title": "Klockan är 3:30",
       "objective": "Säg minuter och sekunder och sätt ihop dem med timmen.",
-      "step1": "Minuter och sekunder tar talen 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step1": "분 och 초 tar de sinokoreanska talen: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — timmen är 세, minuterna är 삼십.",
       "step3": "Inte 삼 시 서른 분. Rätt är 세 시 삼십 분."
     },
     "dates": {
       "title": "När fyller du år?",
       "objective": "Säg ett datum med 년, 월 och 일 — och se upp med 유월 och 시월.",
-      "step1": "년, 월 och 일 tar alla talen 일, 이, 삼: 이천이십육년 삼월 십오일. Den stora enheten först.",
+      "step1": "년, 월 och 일 är alla sinokoreanska: 이천이십육년 삼월 십오일. Största enheten först.",
       "step2": "Två månader är oregelbundna. Juni är 유월, inte 육월; oktober är 시월, inte 십월.",
       "step3": "일 som dag i månaden är samma ord som 일 för ett. 삼월 일일 är första mars."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Vad kostar det?",
       "objective": "Läs priser som 오천 원 och 만 오천 원.",
-      "step1": "원 tar talen 일, 이, 삼: 천 원, 오천 원. 얼마예요? frågar vad det kostar.",
+      "step1": "원 tar de sinokoreanska talen: 천 원, 오천 원. 얼마예요? frågar priset.",
       "step2": "만 원 är 10 000원. 삼만 오천 원 är 35 000원.",
       "step3": "만 오천 원 är 15 000원 — ett 만 och fem 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Läs numret siffra för siffra och säg 공 för 0. Samma sak för våningar och rum.",
       "step1": "Ett nummer läses siffra för siffra. 010 är 공일공.",
       "step2": "에 står där bindestrecket står: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Våningar, rumsnummer och busslinjer tar talen 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Våningar, rumsnummer och busslinjer tar de sinokoreanska talen: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — läsa stora priser",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Allt om vartannat",
       "objective": "Lyssna på och läs allt du har lärt dig, på en gång.",
-      "step1": "Allt på en gång. Saker, timmar och ålder tar 하나, 둘, 셋; priser, minuter, datum och telefonnummer tar 일, 이, 삼.",
+      "step1": "Allt hittills på en gång. Saker, timmar och ålder går inhemskt koreanskt; priser, minuter, datum och telefonnummer sinokoreanskt.",
       "step2": "Läs eller lyssna och välj sedan. Att titta på förklaringen igen är helt okej."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "koppar och glas",
     "counterFlat": "platta saker — biljetter, papper",
     "counterBooks": "böcker",
-    "counterAge": "ålder — med 하나, 둘, 셋",
-    "counterAgeFormal": "ålder — i dokument och nyheter, med 일, 이, 삼",
-    "howOld": "Hur gammal är du?",
+    "counterAge": "Ålder — med de inhemskt koreanska talen",
+    "counterAgeFormal": "Ålder — i blanketter och nyheter, med de sinokoreanska talen",
+    "howOld": "Frasen för att fråga om åldern",
     "ageHonorific": "ålder — vördnadsfullt, om någon äldre",
     "counterHour": "klockan",
     "half": "halv — en halvtimme över",
-    "whatTime": "Vad är klockan?",
+    "whatTime": "Frasen för att fråga vad klockan är",
     "tenOclock": "klockan tio",
     "counterMinute": "minuter",
     "counterSecond": "sekunder",
@@ -292,12 +277,12 @@
     "counterDay": "dag i månaden",
     "june": "juni — oregelbunden",
     "october": "oktober — oregelbunden",
-    "whatDay": "Vilken dag är det?",
+    "whatDay": "Frasen för att fråga vilken veckodag det är",
     "monday": "måndag",
     "friday": "fredag",
     "weekend": "helgen",
     "counterWon": "won",
-    "howMuch": "Vad kostar det?",
+    "howMuch": "Frasen för att fråga om priset",
     "phonePrefix": "ett riktnummer, siffra för siffra",
     "phoneDash": "sägs där bindestrecket står",
     "counterFloor": "våning",

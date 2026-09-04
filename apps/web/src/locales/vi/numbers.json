@@ -10,12 +10,12 @@
     "mastered": "Thành thạo",
     "review_due": "Đến hạn ôn"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 và 하나, 둘, 셋",
+  "systemSino": "Hán-Hàn (일, 이, 삼)",
+  "systemNative": "Thuần Hàn (하나, 둘, 셋)",
+  "systemBoth": "Hán-Hàn và thuần Hàn",
   "system": {
-    "native": "하나, 둘, 셋 — dùng để đếm đồ vật",
-    "sino": "일, 이, 삼 — dùng cho tiền và ngày tháng"
+    "native": "Thuần Hàn — để đếm đồ vật",
+    "sino": "Hán-Hàn — cho tiền và ngày tháng"
   },
   "phase": {
     "objective": "Bạn sẽ học gì",
@@ -31,9 +31,9 @@
     "next": "Tiếp",
     "continue": "Tiếp tục",
     "beginPractice": "Bắt đầu luyện tập",
-    "beginMastery": "Bắt đầu kiểm tra thành thạo",
-    "retryMastery": "Làm lại bài kiểm tra thành thạo",
-    "backToCourse": "Quay về Số đếm",
+    "beginMastery": "Bắt đầu kiểm tra cuối",
+    "retryMastery": "Làm lại",
+    "backToCourse": "Quay lại các bài về số",
     "review": "Ôn lại bài này",
     "clear": "Xóa"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Phát âm như thế này",
     "example": "Khi dùng"
   },
-  "practiceIntro": "Sai ở đây không sao — có giải thích ở chỗ cần thiết.",
-  "masteryIntro": "{{count}} câu hỏi. Bạn cần đúng {{pass}}%, và mỗi mục đúng ít nhất một lần.",
-  "masteryPassed": "Đã vượt qua bài kiểm tra thành thạo — {{correct}}/{{total}}",
-  "masteryFailed": "Chưa đạt — {{correct}}/{{total}}. Xem lại ví dụ rồi thử lại nhé.",
-  "masteryPerfect": "Hoàn hảo — đúng tất cả các câu",
-  "summaryComplete": "Đã hoàn thành bài học",
-  "summaryIncomplete": "Chưa hoàn thành",
+  "practiceIntro": "Ở đây sai cũng không sao.",
+  "masteryIntro": "Đúng {{pass}} trên {{count}} câu là đạt.",
+  "masteryPassed": "Bạn đã qua phần kiểm tra cuối. Đúng {{correct}} trên {{total}} câu.",
+  "masteryFailed": "Lần này bạn đúng {{correct}} trên {{total}} câu. Đúng {{pass}} câu trở lên là sang được bài tiếp theo.",
+  "masteryPerfect": "Bạn đã qua phần kiểm tra cuối. Đúng cả {{total}} câu.",
+  "summaryComplete": "Đã học xong bài",
+  "summaryIncomplete": "Vẫn còn phần chưa xong",
   "summaryMissing": {
     "explain": "Đọc hết các bước giải thích",
     "examples": "Xem hết các ví dụ",
     "practice": "Hoàn thành phần luyện tập",
-    "mastery": "Vượt qua bài kiểm tra thành thạo"
+    "mastery": "Làm phần kiểm tra cuối",
+    "everyItem": "Trả lời đúng mỗi cách nói ít nhất một lần"
   },
   "feedback": {
     "correct": "Đúng rồi",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Từ nào có nghĩa này?",
     "chooseCorrectExplanation": "Chọn lời giải thích đúng.",
     "findIncorrectExpression": "Chọn cách nói sai.",
-    "chooseSystem": "Ở đây dùng số nào?",
+    "chooseSystem": "Ở đây dùng số Hán-Hàn hay số thuần Hàn?",
     "digitsToKorean": {
-      "sino": "Đọc số này bằng 일, 이, 삼",
-      "native": "Đếm cái này bằng 하나, 둘, 셋",
-      "both": "Nói số này bằng tiếng Hàn"
+      "sino": "Đọc theo số Hán-Hàn thì là gì?",
+      "native": "Đếm theo số thuần Hàn thì là gì?",
+      "both": "Số này nói bằng tiếng Hàn thế nào?"
     },
     "koreanToDigits": "Đây là số nào?",
     "counterForm": "Nói {{value}} với {{counter}} như thế nào?",
     "fill": "Điền vào chỗ trống",
     "orderParts": "Chạm các phần theo thứ tự để ghép thành {{value}}"
   },
-  "rationale": {
-    "nativeSystem": "Đồ vật, người, giờ và tuổi được đếm bằng 하나, 둘, 셋.",
-    "sinoSystem": "Giá tiền, ngày tháng, phút, số điện thoại và số tầng dùng 일, 이, 삼.",
-    "koreanToDigits": "Đọc từ đầu. 십 là 10, 삼십 là 30.",
-    "countingForm": "Trước từ đếm, 하나 thành 한 và 둘 thành 두: 두 개.",
-    "counter": "Giữa số và vật có một từ đếm, và nó tuỳ vào bạn đang đếm cái gì.",
-    "fill": "Đọc lại câu — những từ quanh chỗ trống cho biết cần điền gì.",
-    "nativeBuild": "Ghép hàng đơn vị vào 열 — 열하나, 열둘. 스물 và 서른 là từ riêng.",
-    "sinoBuild": "Đọc từng phần theo thứ tự: 삼십오 là 삼 · 십 · 오.",
-    "irregular_month": "6월 đọc là 유월 và 10월 đọc là 시월.",
-    "plain_form": "Trước từ đếm thì dùng 한, 두, 세, 네, 스무.",
-    "spacing": "Từ đếm viết tách ra: 한 개.",
-    "system_swap": "Cùng số lượng, khác chỗ dùng. Ở đây dùng {{korean}}.",
-    "sound_alike": "Chỉ khác một âm. Hãy nghe kỹ phần cuối.",
-    "wrong_counter": "Mỗi từ đếm có nhóm riêng — 명 cho người, 마리 cho con vật, 개 cho đồ vật."
-  },
   "module": {
     "systems": {
-      "title": "Nói từ một đến mười",
-      "goal": "Nói từ 일 đến 십 và từ 하나 đến 열, đọc số không, và biết chỗ nào dùng loại nào."
+      "title": "Số Hán-Hàn và số thuần Hàn",
+      "goal": "Nói 일 đến 십 theo Hán-Hàn và 하나 đến 열 theo thuần Hàn. Đọc 0 là 영 và là 공, và biết mỗi loại dùng ở đâu."
     },
     "pastTen": {
       "title": "Số lớn hơn mười",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Nói 1, 2, 3 bằng tiếng Hàn",
-      "objective": "Nghe 일, 이, 삼 cho đến 십 rồi nói theo.",
-      "step1": "Bắt đầu với 일, 이, 삼. Những số này dùng cho giá tiền, ngày tháng, phút, số điện thoại và số tầng.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Mỗi số chỉ một âm tiết.",
-      "step3": "Nói như thế này: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "title": "Số Hán-Hàn: từ 일 đến 십",
+      "objective": "Nghe 일, 이, 삼 đến 십 rồi nói theo.",
+      "step1": "Những số đọc là 일, 이, 삼 là số Hán-Hàn. Dùng cho ngày và tháng, phút, giá tiền và số điện thoại.",
+      "step2": "Tầng, địa chỉ, các đơn vị đo như chiều dài và cân nặng, và mọi số trên một trăm cũng dùng số Hán-Hàn.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Mỗi số một âm tiết: 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "Đếm bằng 하나, 둘, 셋",
-      "objective": "Nghe và nói từ 하나 đến 열, vừa nói vừa đếm đồ trước mặt.",
-      "step1": "하나, 둘, 셋 dùng để đếm thứ ngay trước mặt — người, cốc, con vật — và dùng cho tuổi và giờ chẵn.",
-      "step2": "Từ một đến mười: 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Lưu ý 여덟 đọc là 여덜: ㅂ không phát âm.",
-      "step3": "Từ một trăm trở lên, mọi thứ đều đếm bằng 일, 이, 삼."
+      "title": "Số thuần Hàn: từ 하나 đến 열",
+      "objective": "Nghe 하나 đến 열, nói theo và đếm đồ vật trước mặt.",
+      "step1": "Những số đếm là 하나, 둘, 셋 là số thuần Hàn. Dùng để đếm đồ vật và người, nói tuổi và nói giờ chẵn.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 đọc là 여덜. Từ một trăm trở lên thì đếm gì cũng dùng số Hán-Hàn.",
+      "step3": "Trước từ đếm thì hình thức đổi: 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "Số 0 là 영 hoặc 공",
@@ -144,10 +129,10 @@
     },
     "choosing": {
       "title": "Đồ vật dùng 하나, 둘 · giá tiền dùng 일, 이",
-      "objective": "Chọn số nào để đếm, và số nào để nói giá tiền và ngày tháng.",
-      "step1": "Thứ bạn nhìn thấy thì đếm bằng 하나, 둘, 셋: 세 명, 두 시, 스무 살.",
-      "step2": "Giá tiền, ngày tháng, phút, số điện thoại và số tầng dùng 일, 이, 삼: 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "Một giờ đồng hồ dùng cả hai. 세 시 삼십 분 — giờ là 세, phút là 삼십."
+      "objective": "Chọn xem mỗi trường hợp cần loại số nào.",
+      "step1": "Cái nhìn thấy được thì đếm bằng số thuần Hàn: 세 명, 두 시, 스무 살.",
+      "step2": "Giá tiền, ngày tháng, phút, số điện thoại và tầng thì dùng số Hán-Hàn: 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "Giờ đồng hồ dùng cả hai. 세 시 삼십 분 — giờ là 세 thuần Hàn, phút là 삼십 Hán-Hàn."
     },
     "sinoBuild": {
       "title": "Đếm đến một nghìn",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "Nói 열하나, 스물, 서른",
-      "objective": "Nói các số trên mười theo cách 하나, 둘, 셋.",
+      "objective": "Nói các số trên mười bằng số thuần Hàn.",
       "step1": "Thêm hàng đơn vị vào 열, đến 열아홉. Nói liền như một từ.",
       "step2": "Mỗi hàng chục có từ riêng — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 đọc là 열려섣: cùng âm ㄹ xuất hiện trong 심뉵."
@@ -181,33 +166,33 @@
       "title": "Cho tôi hai ly cà phê",
       "objective": "Gọi món và đếm trong cửa hàng với 병, 잔, 장 và 권.",
       "step1": "병 là chai (맥주 한 병), 잔 là cốc hay ly (커피 두 잔), 장 là vật dẹt như vé hay tờ giấy (표 네 장), 권 là sách (책 세 권).",
-      "step2": "Cả bốn đều dùng các số 하나, 둘, 셋 và dạng đếm của chúng: 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Cả bốn đều dùng dạng đếm thuần Hàn: 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Bạn bao nhiêu tuổi?",
       "objective": "Nói tuổi bằng 살, và hỏi người lớn tuổi một cách lịch sự bằng 연세.",
-      "step1": "살 đi với 하나, 둘, 셋: 스무 살, 스물다섯 살. 몇 살이에요? là câu hỏi giữa bạn bè.",
-      "step2": "세 đi với 일, 이, 삼 và xuất hiện trên giấy tờ, bản tin: 이십 세.",
+      "step1": "살 đi với số thuần Hàn: 스무 살, 스물다섯 살. 몇 살이에요? là câu hỏi dành cho bạn bè.",
+      "step2": "세 đi với số Hán-Hàn, thấy trên giấy tờ và bản tin: 이십 세.",
       "step3": "Với người lớn tuổi hơn, 살 quá thân mật. 연세 là từ kính ngữ cho tuổi: 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Mấy giờ rồi?",
       "objective": "Nói giờ như 한 시 và 두 시, và dùng 반 cho ba mươi phút.",
-      "step1": "Giờ dùng các số 하나, 둘, 셋: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? là câu hỏi giờ.",
+      "step1": "시 dùng số thuần Hàn: 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? là câu hỏi giờ.",
       "step2": "반 nghĩa là nửa: 두 시 반 là hai giờ rưỡi. Nó thay cho 삼십 분.",
       "step3": "Hỏi 몇 시예요? và trả lời 세 시예요. Phút sẽ học ở bài sau."
     },
     "minutes": {
       "title": "Bây giờ là 3:30",
       "objective": "Nói phút và giây, rồi nối vào giờ.",
-      "step1": "Phút và giây dùng các số 일, 이, 삼: 삼십 분, 십오 분, 십 초.",
+      "step1": "분 và 초 dùng số Hán-Hàn: 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — giờ là 세, phút là 삼십.",
       "step3": "Không nói 삼 시 서른 분. Đúng là 세 시 삼십 분."
     },
     "dates": {
       "title": "Sinh nhật bạn khi nào?",
       "objective": "Nói ngày tháng bằng 년, 월 và 일 — và chú ý 유월 với 시월.",
-      "step1": "년, 월 và 일 đều dùng các số 일, 이, 삼: 이천이십육년 삼월 십오일. Đơn vị lớn nói trước.",
+      "step1": "년, 월 và 일 đều là Hán-Hàn: 이천이십육년 삼월 십오일. Nói đơn vị lớn trước.",
       "step2": "Hai tháng bất quy tắc. Tháng Sáu là 유월, không phải 육월; tháng Mười là 시월, không phải 십월.",
       "step3": "일 chỉ ngày trong tháng chính là từ 일 chỉ số một. 삼월 일일 là ngày mùng một tháng Ba."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Cái này bao nhiêu tiền?",
       "objective": "Đọc giá như 오천 원 và 만 오천 원.",
-      "step1": "원 dùng các số 일, 이, 삼: 천 원, 오천 원. 얼마예요? là câu hỏi giá.",
+      "step1": "원 dùng số Hán-Hàn: 천 원, 오천 원. 얼마예요? là câu hỏi giá.",
       "step2": "만 원 là 10.000원. 삼만 오천 원 là 35.000원.",
       "step3": "만 오천 원 là 15.000원 — một 만 và năm 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Đọc từng chữ số một, số 0 nói là 공. Tầng và số phòng cũng vậy.",
       "step1": "Số được đọc từng chữ số một. 010 là 공일공.",
       "step2": "에 đặt ở chỗ có dấu gạch ngang: 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Tầng, số phòng và số xe buýt dùng các số 일, 이, 삼: 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Tầng, số phòng và số xe buýt dùng số Hán-Hàn: 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — đọc giá lớn",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Trộn tất cả lại",
       "objective": "Nghe và đọc lại tất cả những gì đã học, một lượt.",
-      "step1": "Tất cả cùng lúc. Đồ vật, giờ và tuổi dùng 하나, 둘, 셋; giá tiền, phút, ngày tháng và số điện thoại dùng 일, 이, 삼.",
+      "step1": "Xem lại tất cả cùng một lúc. Đồ vật, giờ và tuổi dùng số thuần Hàn; giá tiền, phút, ngày tháng và số điện thoại dùng số Hán-Hàn.",
       "step2": "Đọc hoặc nghe rồi chọn. Xem lại phần giải thích cũng không sao."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "cốc và ly",
     "counterFlat": "vật dẹt — vé, tờ giấy",
     "counterBooks": "sách",
-    "counterAge": "tuổi — dùng với 하나, 둘, 셋",
-    "counterAgeFormal": "tuổi — trong giấy tờ và bản tin, dùng với 일, 이, 삼",
-    "howOld": "Bạn bao nhiêu tuổi?",
+    "counterAge": "Tuổi — đi với số thuần Hàn",
+    "counterAgeFormal": "Tuổi — trên giấy tờ và bản tin, đi với số Hán-Hàn",
+    "howOld": "Câu dùng để hỏi tuổi",
     "ageHonorific": "tuổi — kính ngữ, với người lớn hơn",
     "counterHour": "giờ",
     "half": "rưỡi",
-    "whatTime": "Mấy giờ rồi?",
+    "whatTime": "Câu dùng để hỏi giờ",
     "tenOclock": "mười giờ",
     "counterMinute": "phút",
     "counterSecond": "giây",
@@ -292,12 +277,12 @@
     "counterDay": "ngày trong tháng",
     "june": "tháng Sáu — bất quy tắc",
     "october": "tháng Mười — bất quy tắc",
-    "whatDay": "Hôm nay thứ mấy?",
+    "whatDay": "Câu dùng để hỏi thứ mấy",
     "monday": "thứ Hai",
     "friday": "thứ Sáu",
     "weekend": "cuối tuần",
     "counterWon": "won",
-    "howMuch": "Bao nhiêu tiền?",
+    "howMuch": "Câu dùng để hỏi giá",
     "phonePrefix": "đầu số điện thoại, đọc từng chữ số",
     "phoneDash": "đọc ở chỗ viết dấu gạch ngang",
     "counterFloor": "tầng của tòa nhà",

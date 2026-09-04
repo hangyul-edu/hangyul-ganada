@@ -41,7 +41,7 @@
     "title": "Wortschatzstufe",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Finde dein Niveau und bekomm passende Wörter.",
-    "cta": "Test starten",
+    "cta": "Test machen",
     "retake": "Erneut testen",
     "short": "Stufe",
     "aria": "Wortschatzstufe {{level}}"

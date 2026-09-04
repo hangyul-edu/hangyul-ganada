@@ -41,7 +41,7 @@
     "title": "Lug‘at darajasi",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Darajangizni bilib, mos so‘zlarni oling.",
-    "cta": "Testni boshlash",
+    "cta": "Daraja testini topshirish",
     "retake": "Qayta topshirish",
     "short": "Dar.",
     "aria": "So‘z boyligi darajasi {{level}}"

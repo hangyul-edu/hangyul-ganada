@@ -41,7 +41,7 @@
     "title": "词汇等级",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "测一测你的水平，获得合适的单词。",
-    "cta": "开始测试",
+    "cta": "做水平测试",
     "retake": "重新测试",
     "short": "Lv.",
     "aria": "词汇等级 {{level}}"

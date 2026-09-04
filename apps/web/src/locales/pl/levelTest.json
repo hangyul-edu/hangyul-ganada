@@ -41,7 +41,7 @@
     "title": "Poziom słownictwa",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Sprawdź swój poziom i dostawaj dopasowane słowa.",
-    "cta": "Zrób test",
+    "cta": "Zrób test poziomu",
     "retake": "Powtórz test",
     "short": "Poz.",
     "aria": "Poziom słownictwa {{level}}"

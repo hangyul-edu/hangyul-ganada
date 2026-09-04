@@ -41,7 +41,7 @@
     "title": "Level kosakata",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Cari tahu levelmu dan dapatkan kata yang pas.",
-    "cta": "Ikuti tes",
+    "cta": "Ikuti tes level",
     "retake": "Tes lagi",
     "short": "Lvl",
     "aria": "Level kosakata {{level}}"

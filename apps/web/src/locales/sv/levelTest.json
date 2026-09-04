@@ -41,7 +41,7 @@
     "title": "Ordförrådsnivå",
     "value": "Lv. {{level}} / {{levels}}",
     "invite": "Ta reda på din nivå och få ord som passar.",
-    "cta": "Gör testet",
+    "cta": "Gör nivåtestet",
     "retake": "Testa igen",
     "short": "Nivå",
     "aria": "Ordförrådsnivå {{level}}"

@@ -10,12 +10,12 @@
     "mastered": "Maîtrisée",
     "review_due": "À réviser"
   },
-  "systemSino": "일, 이, 삼",
-  "systemNative": "하나, 둘, 셋",
-  "systemBoth": "일, 이, 삼 et 하나, 둘, 셋",
+  "systemSino": "Sino-coréens (일, 이, 삼)",
+  "systemNative": "Coréens natifs (하나, 둘, 셋)",
+  "systemBoth": "Sino-coréens et coréens natifs",
   "system": {
-    "native": "하나, 둘, 셋 — pour compter",
-    "sino": "일, 이, 삼 — pour l’argent et les dates"
+    "native": "Coréens natifs — pour compter des choses",
+    "sino": "Sino-coréens — pour l’argent et les dates"
   },
   "phase": {
     "objective": "Ce que vous allez apprendre",
@@ -31,9 +31,9 @@
     "next": "Suivant",
     "continue": "Continuer",
     "beginPractice": "Commencer l’entraînement",
-    "beginMastery": "Commencer le test de maîtrise",
-    "retryMastery": "Refaire le test de maîtrise",
-    "backToCourse": "Retour aux Nombres",
+    "beginMastery": "Commencer la vérification finale",
+    "retryMastery": "Recommencer",
+    "backToCourse": "Retour aux leçons de nombres",
     "review": "Réviser cette leçon",
     "clear": "Effacer"
   },
@@ -45,18 +45,19 @@
     "pronunciation": "Ça se prononce comme ça",
     "example": "À l’usage"
   },
-  "practiceIntro": "Se tromper ici, ce n’est pas grave : une explication arrive quand elle sert.",
-  "masteryIntro": "{{count}} questions. Il vous faut {{pass}} % de bonnes réponses, et chaque élément au moins une fois.",
-  "masteryPassed": "Test de maîtrise réussi — {{correct}} sur {{total}}",
-  "masteryFailed": "Pas encore — {{correct}} sur {{total}}. Revoyez les exemples et réessayez.",
-  "masteryPerfect": "Parfait — toutes les réponses sont justes",
+  "practiceIntro": "Ici, se tromper n’a pas d’importance.",
+  "masteryIntro": "Il faut {{pass}} bonnes réponses sur {{count}} pour réussir.",
+  "masteryPassed": "Vous avez réussi la vérification finale. {{correct}} bonnes réponses sur {{total}}.",
+  "masteryFailed": "Cette fois, {{correct}} bonnes réponses sur {{total}}. Il en faut {{pass}} pour passer à la leçon suivante.",
+  "masteryPerfect": "Vous avez réussi la vérification finale. Les {{total}} réponses sont justes.",
   "summaryComplete": "Leçon terminée",
-  "summaryIncomplete": "Pas encore terminée",
+  "summaryIncomplete": "Il reste quelque chose",
   "summaryMissing": {
     "explain": "Lisez chaque étape de l’explication",
     "examples": "Regardez chaque exemple",
     "practice": "Terminez l’entraînement",
-    "mastery": "Réussissez le test de maîtrise"
+    "mastery": "Faire la vérification finale",
+    "everyItem": "Réussir chaque expression au moins une fois"
   },
   "feedback": {
     "correct": "Correct",
@@ -68,37 +69,21 @@
     "chooseByMeaning": "Lequel a ce sens ?",
     "chooseCorrectExplanation": "Choisis la bonne explication.",
     "findIncorrectExpression": "Choisis l’expression incorrecte.",
-    "chooseSystem": "Quels chiffres met-on ici ?",
+    "chooseSystem": "Sino-coréens ou coréens natifs ici ?",
     "digitsToKorean": {
-      "sino": "Dites ce nombre avec 일, 이, 삼",
-      "native": "Comptez-le avec 하나, 둘, 셋",
-      "both": "Dites ce nombre en coréen"
+      "sino": "Comment le lit-on avec les nombres sino-coréens ?",
+      "native": "Comment le compte-t-on avec les nombres coréens natifs ?",
+      "both": "Comment dit-on ce nombre en coréen ?"
     },
     "koreanToDigits": "Quel nombre est-ce ?",
     "counterForm": "Comment dit-on {{value}} avec {{counter}} ?",
     "fill": "Complétez le trou",
     "orderParts": "Touchez les parties dans l’ordre pour former {{value}}"
   },
-  "rationale": {
-    "nativeSystem": "Les objets, les gens, les heures et l’âge se comptent avec 하나, 둘, 셋.",
-    "sinoSystem": "Les prix, les dates, les minutes, les numéros et les étages prennent 일, 이, 삼.",
-    "koreanToDigits": "Lisez depuis le début. 십, c’est 10 ; 삼십, c’est 30.",
-    "countingForm": "Devant un mot compteur, 하나 devient 한 et 둘 devient 두 : 두 개.",
-    "counter": "Un mot compteur se place entre le nombre et la chose, et il dépend de ce que vous comptez.",
-    "fill": "Relisez la phrase — les mots autour du blanc disent ce qui manque.",
-    "nativeBuild": "Ajoutez l’unité à 열 — 열하나, 열둘. 스물 et 서른 sont des mots à part.",
-    "sinoBuild": "Lisez les morceaux dans l’ordre : 삼십오, c’est 삼 · 십 · 오.",
-    "irregular_month": "6월 se dit 유월 et 10월 se dit 시월.",
-    "plain_form": "Devant un mot compteur, on emploie 한, 두, 세, 네, 스무.",
-    "spacing": "Un mot compteur prend une espace : 한 개.",
-    "system_swap": "Même quantité, autre place. Ici, on emploie {{korean}}.",
-    "sound_alike": "Un seul son de différence. Écoutez la fin.",
-    "wrong_counter": "Chaque mot compteur a ses objets — 명 pour les personnes, 마리 pour les animaux, 개 pour les choses."
-  },
   "module": {
     "systems": {
-      "title": "Dire de un à dix",
-      "goal": "Dites 일 à 십 et 하나 à 열, lisez le zéro, et voyez où chacun s’emploie."
+      "title": "Nombres sino-coréens et coréens natifs",
+      "goal": "Dites 일 à 십 avec les sino-coréens et 하나 à 열 avec les coréens natifs. Lisez 0 en 영 et en 공, et apprenez où chaque série s’emploie."
     },
     "pastTen": {
       "title": "Les nombres au-dessus de dix",
@@ -123,18 +108,18 @@
   },
   "lesson": {
     "sinoBasics": {
-      "title": "Dire 1, 2, 3 en coréen",
+      "title": "Nombres sino-coréens : de 일 à 십",
       "objective": "Écoutez 일, 이, 삼 jusqu’à 십, puis répétez.",
-      "step1": "Commencez par 일, 이, 삼. Ces chiffres servent pour les prix, les dates, les minutes, les numéros de téléphone et les étages.",
-      "step2": "일 이 삼 사 오 육 칠 팔 구 십. Chacun tient en une syllabe.",
-      "step3": "On les dit ainsi : 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
+      "step1": "Les nombres qui se lisent 일, 이, 삼 sont les sino-coréens. Ils servent aux dates et aux mois, aux minutes, aux prix et aux numéros de téléphone.",
+      "step2": "Les étages, les adresses, les mesures comme la longueur ou le poids, et tout nombre au-delà de cent prennent aussi les sino-coréens.",
+      "step3": "일 이 삼 사 오 육 칠 팔 구 십. Chacun tient en une syllabe : 삼월 이일 · 오천 원 · 십 분 · 이 층 · 공일공."
     },
     "nativeBasics": {
-      "title": "Compter avec 하나, 둘, 셋",
-      "objective": "Écoutez et dites de 하나 à 열 en comptant ce que vous avez sous les yeux.",
-      "step1": "하나, 둘, 셋 servent à compter ce que vous avez devant vous — des gens, des tasses, des animaux — et pour l’âge et l’heure pleine.",
-      "step2": "De un à dix : 하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. Remarquez que 여덟 se prononce 여덜 : le ㅂ est muet.",
-      "step3": "À partir de cent, tout se compte avec 일, 이, 삼."
+      "title": "Nombres coréens natifs : de 하나 à 열",
+      "objective": "Écoutez 하나 jusqu’à 열, dites-les et comptez ce que vous avez devant vous.",
+      "step1": "Les nombres qui se comptent 하나, 둘, 셋 sont les coréens natifs. Ils servent à compter des choses et des personnes, à dire un âge et à donner l’heure.",
+      "step2": "하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열. 여덟 se prononce 여덜. À partir de cent, on compte tout avec les sino-coréens.",
+      "step3": "Devant un mot compteur, la forme change : 하나 → 한 개, 둘 → 두 개, 셋 → 세 개, 넷 → 네 개, 스물 → 스무 개."
     },
     "zero": {
       "title": "Le 0 se dit 영 ou 공",
@@ -143,11 +128,11 @@
       "step2": "공 est le chiffre 0, celui qu’on lit à voix haute dans un numéro de téléphone, un numéro de chambre, un code. 010 se dit 공일공, jamais 영일영."
     },
     "choosing": {
-      "title": "Les objets en 하나, 둘 · les prix en 일, 이",
-      "objective": "Choisissez quels chiffres servent à compter, et lesquels pour les prix et les dates.",
-      "step1": "Ce que vous voyez, vous le comptez avec 하나, 둘, 셋 : 세 명, 두 시, 스무 살.",
-      "step2": "Pour les prix, les dates, les minutes, les numéros et les étages, ce sont 일, 이, 삼 : 오천 원, 삼월 일일, 삼십 분.",
-      "step3": "Une heure prend les deux. 세 시 삼십 분 — l’heure est 세, les minutes sont 삼십."
+      "title": "Les choses prennent 하나, 둘 · les prix 일, 이",
+      "objective": "Choisissez laquelle des deux séries convient à chaque situation.",
+      "step1": "Pour compter ce que vous voyez, prenez les coréens natifs : 세 명, 두 시, 스무 살.",
+      "step2": "Pour les prix, les dates, les minutes, les téléphones et les étages, prenez les sino-coréens : 오천 원, 삼월 일일, 삼십 분.",
+      "step3": "L’heure utilise les deux. 세 시 삼십 분 — l’heure est le natif 세, les minutes le sino-coréen 삼십."
     },
     "sinoBuild": {
       "title": "Compter jusqu’à mille",
@@ -158,7 +143,7 @@
     },
     "nativeBuild": {
       "title": "Dire 열하나, 스물, 서른",
-      "objective": "Dites les nombres au-dessus de dix avec 하나, 둘, 셋.",
+      "objective": "Dites les nombres au-dessus de dix avec les coréens natifs.",
       "step1": "Ajoutez les unités à 열, jusqu’à 열아홉. Se dit en un seul mot.",
       "step2": "Chaque dizaine a son mot — 스물, 서른, 마흔, 쉰.",
       "step3": "열여섯 se prononce 열려섣 : le même son ㄹ que dans 심뉵."
@@ -181,33 +166,33 @@
       "title": "Deux cafés, s’il vous plaît",
       "objective": "Commandez et comptez en boutique avec 병, 잔, 장 et 권.",
       "step1": "병, c’est une bouteille (맥주 한 병), 잔 une tasse ou un verre (커피 두 잔), 장 une chose plate comme un billet ou une feuille (표 네 장), 권 un livre (책 세 권).",
-      "step2": "Les quatre prennent les nombres 하나, 둘, 셋 et leurs formes de comptage : 한 병, 두 잔, 세 권, 네 장."
+      "step2": "Les quatre prennent les formes de comptage coréennes natives : 한 병, 두 잔, 세 권, 네 장."
     },
     "age": {
       "title": "Vous avez quel âge ?",
       "objective": "Dites votre âge avec 살, et demandez poliment à un aîné avec 연세.",
-      "step1": "살 va avec 하나, 둘, 셋 : 스무 살, 스물다섯 살. 몇 살이에요? se demande entre amis.",
-      "step2": "세 va avec 일, 이, 삼 et se lit sur les formulaires et dans les journaux : 이십 세.",
+      "step1": "살 va avec les coréens natifs : 스무 살, 스물다섯 살. 몇 살이에요? se dit à un ami.",
+      "step2": "세 va avec les sino-coréens et se voit sur les formulaires et aux informations : 이십 세.",
       "step3": "Envers une personne plus âgée, 살 est trop familier. 연세 est le mot honorifique pour l’âge : 연세가 어떻게 되세요?"
     },
     "hours": {
       "title": "Quelle heure est-il ?",
       "objective": "Dites l’heure comme 한 시 et 두 시, et employez 반 pour la demie.",
-      "step1": "L’heure prend les nombres 하나, 둘, 셋 : 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? demande l’heure.",
+      "step1": "시 prend les coréens natifs : 한 시, 두 시, 세 시, 네 시, 열 시. 몇 시예요? demande l’heure.",
       "step2": "반 veut dire « demi » : 두 시 반, c’est deux heures et demie. Il remplace 삼십 분.",
       "step3": "Demandez 몇 시예요? et répondez 세 시예요. Les minutes viennent à la leçon suivante."
     },
     "minutes": {
       "title": "Il est 3 h 30",
       "objective": "Dites les minutes et les secondes, et reliez-les à l’heure.",
-      "step1": "Les minutes et les secondes prennent les nombres 일, 이, 삼 : 삼십 분, 십오 분, 십 초.",
+      "step1": "분 et 초 prennent les sino-coréens : 삼십 분, 십오 분, 십 초.",
       "step2": "세 시 삼십 분 — l’heure est 세, les minutes sont 삼십.",
       "step3": "Pas 삼 시 서른 분. On dit 세 시 삼십 분."
     },
     "dates": {
       "title": "C’est quand, votre anniversaire ?",
       "objective": "Dites une date avec 년, 월 et 일 — attention à 유월 et 시월.",
-      "step1": "년, 월 et 일 prennent tous les nombres 일, 이, 삼 : 이천이십육년 삼월 십오일. La grande unité en premier.",
+      "step1": "년, 월 et 일 sont tous sino-coréens : 이천이십육년 삼월 십오일. On dit d’abord la plus grande unité.",
       "step2": "Deux mois sont irréguliers. Juin est 유월, pas 육월 ; octobre est 시월, pas 십월.",
       "step3": "Le 일 du jour du mois est le même mot que le 일 de un. 삼월 일일, c’est le premier mars."
     },
@@ -220,7 +205,7 @@
     "money": {
       "title": "Ça coûte combien ?",
       "objective": "Lisez des prix comme 오천 원 et 만 오천 원.",
-      "step1": "원 prend les nombres 일, 이, 삼 : 천 원, 오천 원. 얼마예요? demande le prix.",
+      "step1": "원 prend les sino-coréens : 천 원, 오천 원. 얼마예요? demande le prix.",
       "step2": "만 원, c’est 10 000원. 삼만 오천 원, c’est 35 000원.",
       "step3": "만 오천 원, c’est 15 000원 — un 만 et cinq 천."
     },
@@ -229,7 +214,7 @@
       "objective": "Lisez le numéro chiffre par chiffre, avec 공 pour le 0. Pareil pour les étages et les chambres.",
       "step1": "Un numéro se lit chiffre par chiffre. 010 se dit 공일공.",
       "step2": "에 se place là où l’on écrirait un tiret : 공일공에 일이삼사에 오륙칠팔.",
-      "step3": "Les étages, les chambres et les bus prennent les nombres 일, 이, 삼 : 삼 층, 오공이 호, 이백육 번 버스."
+      "step3": "Les étages, les numéros de chambre et de bus prennent les sino-coréens : 삼 층, 오공이 호, 이백육 번 버스."
     },
     "large": {
       "title": "만 원, 억 — lire les grands prix",
@@ -247,7 +232,7 @@
     "mixed": {
       "title": "Tout mélangé",
       "objective": "Écoutez et lisez ce que vous avez appris, d’un seul coup.",
-      "step1": "Tout à la fois. Les objets, les heures et l’âge prennent 하나, 둘, 셋 ; les prix, les minutes, les dates et les numéros prennent 일, 이, 삼.",
+      "step1": "Tout ce qui précède, d’un coup. Les choses, les heures et l’âge prennent les coréens natifs ; les prix, les minutes, les dates et les téléphones, les sino-coréens.",
       "step2": "Lisez ou écoutez, puis choisissez. Revoir l’explication ne pose aucun problème."
     }
   },
@@ -275,13 +260,13 @@
     "counterCups": "tasses et verres",
     "counterFlat": "choses plates — billets, feuilles",
     "counterBooks": "livres",
-    "counterAge": "âge — avec 하나, 둘, 셋",
-    "counterAgeFormal": "âge — dans les documents et les infos, avec 일, 이, 삼",
-    "howOld": "Quel âge avez-vous ?",
+    "counterAge": "Âge — avec les coréens natifs",
+    "counterAgeFormal": "Âge — sur les formulaires et aux informations, avec les sino-coréens",
+    "howOld": "La phrase pour demander l’âge",
     "ageHonorific": "âge — honorifique, pour une personne plus âgée",
     "counterHour": "heure (de l’horloge)",
     "half": "et demie",
-    "whatTime": "Quelle heure est-il ?",
+    "whatTime": "La phrase pour demander l’heure",
     "tenOclock": "dix heures",
     "counterMinute": "minutes",
     "counterSecond": "secondes",
@@ -292,12 +277,12 @@
     "counterDay": "jour du mois",
     "june": "juin — irrégulier",
     "october": "octobre — irrégulier",
-    "whatDay": "Quel jour sommes-nous ?",
+    "whatDay": "La phrase pour demander le jour de la semaine",
     "monday": "lundi",
     "friday": "vendredi",
     "weekend": "le week-end",
     "counterWon": "wons",
-    "howMuch": "C’est combien ?",
+    "howMuch": "La phrase pour demander le prix",
     "phonePrefix": "un préfixe téléphonique, chiffre par chiffre",
     "phoneDash": "se dit là où l’on écrit un tiret",
     "counterFloor": "étage d’un bâtiment",

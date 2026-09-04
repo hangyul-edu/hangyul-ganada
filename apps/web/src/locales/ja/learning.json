@@ -162,7 +162,7 @@
     "read": "読む"
   },
   "recognition": {
-    "question": "この音を出す文字はどれ？",
+    "question": "この音はどちらですか？",
     "optionsAria": "聞こえた文字を選ぶ",
     "optionAria": "{{character}} を選ぶ",
     "hearAgain": "もう一度聞く",

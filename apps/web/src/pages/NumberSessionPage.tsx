@@ -7,7 +7,7 @@ import { NumberBreakdown } from '../features/numbers/NumberBreakdown';
 import { getNumberItem, getNumberLesson, getNumberModule, numberLessonItems, spokenExample } from '../data/numbers';
 import {
   type LessonPhase,
-  MASTERY_PASS,
+  passMark,
   blankLessonProgress,
   isComplete,
   isReviewDue,
@@ -15,7 +15,6 @@ import {
   resumePhase,
 } from '../domain/numbersProgress';
 import {
-  MISCONCEPTION_FEEDBACK,
   type ExerciseOption,
   type NumbersExercise,
   masteryExercises,
@@ -23,7 +22,6 @@ import {
 } from '../features/numbers/exercises';
 import { exampleMeaning, formatValue, numberMeaning } from '../features/numbers/meaning';
 import { useLocale } from '../i18n';
-import { withParticle } from '../i18n/josa';
 import { usePronunciation } from '../audio/PronunciationContext';
 import { useEntryAudio } from '../audio/useEntryAudio';
 import { hapticPass, hapticRetry, hapticSelection } from '../native/haptics';
@@ -328,15 +326,31 @@ export function NumberSessionPage() {
   // --- summary ---------------------------------------------------------------
   const current = record ?? blankLessonProgress(lesson.id, new Date());
   const complete = isComplete(current, lesson);
+  const mastery = current.mastery;
+  /*
+   * What is left, named by what it actually is.
+   *
+   * The final check and *every item answered at least once* used to be one
+   * line, `summaryMissing.mastery`, reading 마무리 확인 통과하기. A learner who
+   * had just been told 마무리 확인 통과 — 10문제 중 9개 then read *pass the
+   * final check* underneath it, and the two sentences were about different
+   * conditions with no way to tell them apart. They are two entries now.
+   */
   const missing: string[] = [];
   if (lesson.explanation.some((s) => !current.explanation_steps_viewed.includes(s.text)))
     missing.push('explain');
   if (lesson.item_ids.some((id) => !current.examples_viewed.includes(id))) missing.push('examples');
   if (current.practice_completed_at === null) missing.push('practice');
-  if (!current.mastery?.passed || lesson.item_ids.some((id) => !current.items[id]?.mastered_at)) {
-    missing.push('mastery');
-  }
-  const mastery = current.mastery;
+  if (!mastery?.passed) missing.push('mastery');
+  else if (lesson.item_ids.some((id) => !current.items[id]?.mastered_at)) missing.push('everyItem');
+  /*
+   * And the one line that is not drawn: *마무리 확인 풀기* under a score that
+   * already says the check was taken and missed. `masteryFailed` carries the
+   * score and the mark needed, which is the whole of what a learner has to
+   * know, so the list entry would be the third sentence about one fact.
+   */
+  const listed = missing.filter((what) => !(what === 'mastery' && mastery));
+  const retryable = missing[0] === 'mastery' || missing[0] === 'everyItem';
   return (
     <div className={styles.page}>
       <AppHeader title={title} />
@@ -353,13 +367,17 @@ export function NumberSessionPage() {
                     ? 'numbers:masteryPerfect'
                     : 'numbers:masteryPassed'
                   : 'numbers:masteryFailed',
-                { correct: mastery.correct, total: mastery.total },
+                {
+                  correct: mastery.correct,
+                  total: mastery.total,
+                  pass: passMark(mastery.total),
+                },
               )}
             </p>
           )}
-          {!complete && (
+          {!complete && listed.length > 0 && (
             <ul className={styles.missing}>
-              {missing.map((m) => (
+              {listed.map((m) => (
                 <li key={m}>{t(`numbers:summaryMissing.${m}`)}</li>
               ))}
             </ul>
@@ -375,10 +393,10 @@ export function NumberSessionPage() {
           ))}
         </ul>
 
-        {!complete && missing[0] === 'mastery' && (
+        {!complete && retryable && (
           <Button onClick={() => goto('mastery')}>{t('numbers:action.retryMastery')}</Button>
         )}
-        {!complete && missing[0] !== 'mastery' && (
+        {!complete && !retryable && (
           <Button onClick={() => goto(missing[0] as LessonPhase)}>{t('numbers:action.resume')}</Button>
         )}
         {complete && (
@@ -611,7 +629,7 @@ function ExerciseRun({
               {phase === 'mastery'
                 ? t('numbers:masteryIntro', {
                     count: exercises.length,
-                    pass: Math.round(MASTERY_PASS * 100),
+                    pass: passMark(exercises.length),
                   })
                 : t('numbers:practiceIntro')}
             </p>
@@ -627,42 +645,6 @@ function ExerciseRun({
   const answered = answer.correct !== null;
   const optionText = (o: ExerciseOption) =>
     o.isKey ? t(`numbers:${o.text}`) : o.value !== undefined ? formatValue(o.value, locale) : o.text;
-  const pickedOption = answer.picked !== null ? exercise.options[answer.picked] : undefined;
-  /*
-   * The body under the verdict — and, for most correct answers, no body at all.
-   *
-   * Three sources, in order of how much they know about what just happened:
-   *
-   * 1. the line written for the *specific* mistake, when the option the learner
-   *    tapped carries a misconception;
-   * 2. the item's own authored note, or the lesson's teaching line, from
-   *    `feedback.incorrect`;
-   * 3. after a correct answer, `feedback.correct` — which is `null` unless the
-   *    item has a note, because a learner who tapped *4* under 사 and read
-   *    맞았어요 has been told everything the question held.
-   */
-  const bodyKey = answer.correct
-    ? exercise.feedback.correct
-    : pickedOption?.misconception
-      ? MISCONCEPTION_FEEDBACK[pickedOption.misconception] ?? exercise.feedback.incorrect
-      : exercise.feedback.incorrect;
-  /*
-   * What the item is, for the sentences that name it.
-   *
-   * Only the misconception lines interpolate now — *‘사’는 4예요* is a
-   * correction when a learner picked something else, and was a tautology when
-   * it followed a right answer. `subject` and `object` carry the Korean
-   * particle already attached, since 만은 and 하나는 are not a suffix a
-   * translation string can choose for itself.
-   */
-  const rationaleValues = {
-    korean: item.korean,
-    subject: withParticle(item.korean, '은/는'),
-    object: withParticle(item.korean, '을/를'),
-    value: item.value !== null ? formatValue(item.value, locale) : '',
-    example: item.example ?? '',
-  };
-
   return (
     <div className={styles.page}>
       <AppHeader title={title} />
@@ -750,33 +732,32 @@ function ExerciseRun({
         {answered && (
           <>
             {/*
-              The verdict, and a body only when there is something to teach.
+              The verdict, and nothing under it.
 
-              `정답은 8` used to sit here under every wrong answer, and it was
-              the third time the screen said the same thing: the option the
-              learner tapped is already marked in red with a cross, the right
-              one in blue with a tick, and both marks carry their own
-              screen-reader text on the option itself. Repeating it in a
-              sentence is the app filling space, and on a bare numeral question
-              — where there is no rule to explain either — it was the *only*
-              thing in the box.
+              This box used to carry a sentence: the item's authored note, the
+              lesson's teaching line, or one written for the misconception the
+              tapped distractor carried. Four passes were spent trimming those
+              — the generated *사는 4예요*, then *정답은 8*, then the
+              counting-word line under questions about numerals — and each pass
+              removed the worst of them and left the rest.
 
-              So the restatement is gone and the body is the authored note or
-              nothing. `FeedbackState` declines to draw its wrapper when it is
-              given nothing, but a JSX fragment is truthy whatever is inside it,
-              so the body has to be passed as `null` rather than as a fragment
-              that renders to nothing — otherwise an empty padded box appears
-              under the verdict, which is the shape of the same defect as the
-              sentence that used to fill it.
+              None of them is here now, because the screen has already said what
+              a learner needs: the option they tapped is marked with a cross,
+              the right one with a tick, and both marks carry their own
+              screen-reader text on the option itself. The teaching is in the
+              explanation steps, which are read before the exercise and are
+              recorded as evidence towards completing the lesson.
+
+              `FeedbackState` draws no wrapper when it is given nothing, and it
+              is given nothing here rather than an empty fragment — a JSX
+              fragment is truthy whatever is inside it, and an empty padded box
+              under the verdict is the shape of the same defect as the sentence
+              that used to fill it.
             */}
             <FeedbackState
               status={answer.correct ? 'correct' : 'incorrect'}
               headline={t(answer.correct ? 'numbers:feedback.correct' : 'numbers:feedback.incorrect')}
-            >
-              {bodyKey ? (
-                <p className={styles.rationale}>{t(`numbers:${bodyKey}`, rationaleValues)}</p>
-              ) : null}
-            </FeedbackState>
+            />
             <Button onClick={advance}>{t('numbers:action.continue')}</Button>
           </>
         )}
