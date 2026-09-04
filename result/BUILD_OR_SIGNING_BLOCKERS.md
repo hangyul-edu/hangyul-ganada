@@ -6,10 +6,10 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 4 September 2026 against **v1.0.3, versionCode 11**, compiled
-from a clean checkout of commit `2f282d9b`. Every item below still stands,
+Re-checked on 5 September 2026 against **v1.0.3, versionCode 13**, compiled
+from a clean checkout of commit `f5697244`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 11 and signed with
+machine. The Android artefacts were rebuilt at versionCode 13 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
 
 Two items are **new this cycle** — §9 and §10.
@@ -218,7 +218,7 @@ the store material claims otherwise.
 
 **What is missing:** the release version in the Xcode project.
 
-Android ships this release as 1.0.3, versionCode 11. iOS does not, and its
+Android ships this release as 1.0.3, versionCode 13. iOS does not, and its
 `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.2` and `4`.
 
 This is deliberate rather than an oversight. Those two are Xcode build settings
@@ -234,9 +234,9 @@ and every one of those settings against a lock file, and it is green.
 **To unblock**, on a Mac with Xcode, in one commit:
 
 1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.3` and **Build** to `11` for both Debug and Release.
+   **Version** to `1.0.3` and **Build** to `13` for both Debug and Release.
 2. Update `ios.xcode.marketingVersion` to `"1.0.3"` and
-   `ios.xcode.currentProjectVersion` to `11` in `apps/mobile/app.identity.json`.
+   `ios.xcode.currentProjectVersion` to `13` in `apps/mobile/app.identity.json`.
 3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
 
 `npm run version:check` prints this as a pending action on every run until it is

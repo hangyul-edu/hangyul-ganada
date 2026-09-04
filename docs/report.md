@@ -6177,6 +6177,40 @@ That APK was never delivered: it was found by reading the two archives against
 each other before `result/` was assembled, and the delivered bytes are from the
 pruned build.
 
+## 20R.11c The delivered blockers document had been saying versionCode 11
+
+`result/BUILD_OR_SIGNING_BLOCKERS.md` is the delivered answer to *what could not
+be built here, and why*. In five places it said **versionCode 11** — in its own
+header, in the sentence describing what was rebuilt, in §9's statement of what
+Android ships, and twice in §9's instructions to the person with the Mac, who
+was being told to set the iOS build to 11. `build-info.json`, in the same
+directory, said 13. The document had not been re-read since the versionCode 11
+cycle, two releases ago.
+
+Every gate was green throughout, because `docs:consistency` reads a list of
+seven documents and this was not one of them. The `androidVersionCode` figure
+exists — it was added after §2.1 of this report claimed versionCode 3 through
+two releases that shipped 11 — and it was pointed at the report, the README, the
+two store listings and `RELEASE_VALIDATION.md`. The blockers file sat next to
+them, in the same delivery, unread.
+
+It is in `DOCUMENTS` now. The four patterns added for it are its own sentences —
+*against **v1.0.3, versionCode N***, *ships this release as 1.0.3, versionCode
+N*, *rebuilt at versionCode N and signed*, *`**Build**` to `N`* — rather than a
+general `versionCode \d+`, which would flag *supersedes the versionCode 12
+validation* in `RELEASE_VALIDATION.md`: a correct sentence about a past release.
+
+Adding it to the list *is* the negative test, and it ran in that order: the gate
+was extended first and reported 4 findings at exit 1, naming file, line, claimed
+value and source value; the document was then corrected to 13 and the date and
+commit brought up to this cycle; the gate is green.
+
+This is the third finding of the same shape in one cycle — §20R.11a's e2e cases
+pinned copy that had been removed, §20R.11b's bundle gate skipped the only four
+files that were wrong, and here a document was outside the list of documents.
+None of the three is a defect in the app. All three are a check whose scope had
+stopped matching what it was for.
+
 ## 20R.12 Not claimed
 
 No native speaker has read anything this pass changed. 1,646 strings were

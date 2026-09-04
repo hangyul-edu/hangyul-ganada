@@ -95,10 +95,11 @@ only option of its **shape**.
 | `npm run locale:editorial:check` | **0 errors, 0 warnings** — the 70 split-translation warnings the previous edition carried are closed |
 | `npm run test:e2e` | **578 cases** over the mobile and desktop projects, 0 failed, 0 flaky, 38.4 min |
 | Unit suites | web **1044**, Korean morphology **216**, handwriting core **96** — **1,356**, all passing |
+| `npm run docs:consistency:check` | 61 figures across **6 documents** — `BUILD_OR_SIGNING_BLOCKERS.md` is inside the set now, and was saying versionCode 11 while `build-info.json` beside it said 13 (report §20R.11c) |
 | `npm run native:bundle:check` | **14,152 files** compared inside the APK — 0 missing, 0 different, and the 4 web-only files pruned, which it now checks rather than skips (report §20R.11b) |
 | `npm run release:current` | both delivery manifests at HEAD |
 
-Twelve gates were negative-tested this refresh by restoring the behaviour they
+Thirteen gates were negative-tested this refresh by restoring the behaviour they
 exist to catch:
 
 ```
@@ -114,6 +115,7 @@ the usefulness ceiling emptied                      215 findings   exit 1
 the money gloss restored to the lesson's own title    1 finding    exit 1
 the summary's retired *Take the final check* row back  1 e2e case   exit 1
 sw.js copied back into the native bundle               1 finding    exit 1
+the blockers doc added to the consistency set           4 findings   exit 1
 ```
 
 ## On a device — NOT RUN THIS REFRESH

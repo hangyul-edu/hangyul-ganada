@@ -456,6 +456,15 @@ const METRICS = {
    * install, in the document a reviewer is handed as the description of the
    * product. Nothing was looking: the commit rule below compares two *files* in
    * `result/`, and the report's own summary of them was outside it.
+   *
+   * The same thing then happened one document further out. `BUILD_OR_SIGNING_-
+   * BLOCKERS.md` — the delivered answer to *what could not be built and why* —
+   * said versionCode 11 in four places for two cycles, and told the person with
+   * the Mac to set the iOS build to 11, while `build-info.json` beside it
+   * recorded 13. It was not in `DOCUMENTS`, so nothing read it. The four
+   * patterns below are its own sentences rather than a loosened general one: a
+   * bare `versionCode \d+` would match *supersedes the versionCode 12
+   * validation*, which is a correct sentence about a past release.
    */
   androidVersionCode: {
     value: exists('result/build-info.json')
@@ -465,6 +474,11 @@ const METRICS = {
     patterns: [
       /Android versionCode \*{0,2}([\d]+)\*{0,2}/g,
       /\|\s*versionCode\s*\|\s*\*{0,2}([\d]+)\*{0,2}\s*\|/g,
+      // BUILD_OR_SIGNING_BLOCKERS.md, in its own words.
+      /against \*\*v[\d.]+, versionCode ([\d]+)\*\*/g,
+      /ships this release as [\d.]+, versionCode ([\d]+)/g,
+      /rebuilt at versionCode ([\d]+) and signed/g,
+      /\*\*Build\*\* to `([\d]+)`/g,
     ],
   },
 };
@@ -479,6 +493,7 @@ const DOCUMENTS = [
   'store/google-play/listing.md',
   'store/app-store/listing.md',
   'result/RELEASE_VALIDATION.md',
+  'result/BUILD_OR_SIGNING_BLOCKERS.md',
 ];
 
 const problems = [];
