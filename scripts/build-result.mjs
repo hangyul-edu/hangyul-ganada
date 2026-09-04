@@ -243,10 +243,34 @@ try {
  * non-ignored file — means a reader can at least tell *which* uncommitted tree
  * produced the artefact, and whether two builds came from the same one.
  */
+/**
+ * Paths whose contents cannot change what the app does.
+ *
+ * The same list `check-release-current.mjs` keeps, and here for a reason that
+ * only shows up in this file: `sourceState()` runs *after* the artefacts have
+ * been copied into `result/`, so without this it hashes its own output and every
+ * build reports `"dirty": true`. It did — the previous delivery recorded a dirty
+ * tree that was in fact clean of product changes, which made the one field that
+ * answers "can this build be reproduced from a commit" mean nothing at all.
+ *
+ * `docs/` is on the list because the report is written after the build it
+ * describes, which is the correct order of work.
+ */
+const NOT_THE_PRODUCT = [
+  /^docs\//,
+  /^result\//,
+  /^app_result\//,
+  /^README\.md$/,
+  /^\.gitattributes$/,
+  /^\.gitignore$/,
+];
+
+const isProduct = (file) => !NOT_THE_PRODUCT.some((pattern) => pattern.test(file));
+
 function sourceState() {
   try {
-    const changed = sh('git', ['diff', 'HEAD', '--name-only']).split('\n').filter(Boolean);
-    const untracked = sh('git', ['ls-files', '--others', '--exclude-standard']).split('\n').filter(Boolean);
+    const changed = sh('git', ['diff', 'HEAD', '--name-only']).split('\n').filter(Boolean).filter(isProduct);
+    const untracked = sh('git', ['ls-files', '--others', '--exclude-standard']).split('\n').filter(Boolean).filter(isProduct);
     if (changed.length === 0 && untracked.length === 0) {
       return { dirty: false, fingerprint: null, changed_files: 0, untracked_files: 0 };
     }
