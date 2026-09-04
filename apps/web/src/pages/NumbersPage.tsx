@@ -71,6 +71,50 @@ import styles from './NumbersPage.module.css';
  * says so by saying nothing: an untouched lesson is a plain row. Completion is
  * derived from evidence in `domain/numbersProgress` and from nothing this
  * screen knows about.
+ *
+ * ## One rail, and nothing reserved beside it
+ *
+ * Every row used to begin with a 20-pixel `<span>` holding a tick when the
+ * lesson was finished and **nothing at all** the rest of the time — which is
+ * most of the course, most of the time. With the row's own 12-pixel gap that is
+ * 32 px of blank paper down the left of eighteen cards, so a lesson title
+ * started 49 px from the edge of the phone while the module heading above it
+ * started at 20 and the summary card above that at 32. Three left edges on one
+ * screen, and the one the eye actually follows — the titles — was the furthest
+ * in.
+ *
+ * It cost the titles their width as well, which is the part a learner feels:
+ * on a 320 px phone the row had 256 px inside its padding, the empty column and
+ * the chevron took 48 of them, and a three-word lesson title wrapped to three
+ * lines beside a quarter-row of nothing.
+ *
+ * There is no leading column now. The tick moved inside the **Completed** pill
+ * — the same fact said once instead of twice — and everything on the screen
+ * starts on one rail:
+ *
+ * ```
+ * ├─ 16 ─┼─ 16 ─┤
+ *        ①  Module title              2 of 3   ← padded to the rail
+ *        Module goal
+ *        ┌────────────────────────────────────┐
+ *        │ Lesson title            [pill]  ›  │ ← the card's padding, less its
+ *        │ Sino-Korean                        │   1px border, lands on it too
+ * ```
+ *
+ * The things that must sit on it carry `data-rail="numbers"`, and the things
+ * that end on the right-hand rule carry `data-rail-end="numbers"`.
+ * `npm run numbers:layout:check` measures the *ink* of each at six phone
+ * widths, landscape, two text scales, both appearances and the longest locales.
+ * Boxes were never the problem: an empty box is perfectly aligned.
+ *
+ * ## The title has the flexible width, and keeps it
+ *
+ * The row is one flex line — the title block, the status and count, the chevron
+ * — and the title block is `flex: 1 1 9rem`. When 9rem of title cannot fit
+ * beside the badge, the *badge* wraps to a second line rather than the title
+ * being squeezed into a column. A `rem` basis rather than a pixel one because
+ * it has to give way at 200% text too, where 9rem is most of a 320 px screen
+ * and everything belongs on its own line anyway.
  */
 export function NumbersPage() {
   const { state } = useLearner();
@@ -98,9 +142,15 @@ export function NumbersPage() {
       <div className={styles.body}>
         <Card tone="warm" padding="md" className={styles.summary}>
           <div className={styles.summaryText}>
-            <p className={styles.summaryTitle}>{t('numbers:subtitle')}</p>
+            <p className={styles.summaryTitle} data-rail="numbers">
+              {t('numbers:subtitle')}
+            </p>
           </div>
-          <p className={styles.summaryMeta} data-testid="numbers-lessons-completed">
+          <p
+            className={styles.summaryMeta}
+            data-rail="numbers"
+            data-testid="numbers-lessons-completed"
+          >
             {t('numbers:lessonsCompleted', { done: completedLessons, total: NUMBER_LESSONS.length })}
           </p>
           <ProgressBar
@@ -139,14 +189,29 @@ export function NumbersPage() {
               <div className={styles.moduleHead}>
                 <div className={styles.moduleText}>
                   <h2 id={`num-module-${module.id}`} className={styles.moduleTitle}>
-                    <span className={`${styles.moduleIndex} hg-numeric`} aria-hidden="true">
+                    <span
+                      className={`${styles.moduleIndex} hg-numeric`}
+                      data-rail="numbers"
+                      /*
+                        Measured as a box, not as ink. The number is centred
+                        inside a 24 px disc, so its *glyph* starts eight or
+                        nine pixels in from the disc's edge — and it is the
+                        disc that sits on the rail. Everything else on this
+                        screen is text, where the ink is what a reader lines
+                        up against.
+                      */
+                      data-rail-measure="box"
+                      aria-hidden="true"
+                    >
                       {format.number(module.index)}
                     </span>
                     {t(`numbers:${module.title}`)}
                   </h2>
-                  <p className={styles.moduleGoal}>{t(`numbers:${module.goal}`)}</p>
+                  <p className={styles.moduleGoal} data-rail="numbers">
+                    {t(`numbers:${module.goal}`)}
+                  </p>
                 </div>
-                <span className={styles.moduleCount}>
+                <span className={styles.moduleCount} data-rail-end="numbers">
                   {t('numbers:moduleLessons', { done, total: lessons.length })}
                 </span>
               </div>
@@ -163,50 +228,75 @@ export function NumbersPage() {
                    */
                   const showStatus = status !== 'available' && status !== 'not_started';
                   const showCount = !finished && progress.done > 0;
+                  /*
+                   * The tick, on the two statuses that mean the work is done.
+                   *
+                   * It used to be drawn from `finished`, which also covers
+                   * `review_due` — a lesson that has *come back round*, and is
+                   * the one state on this screen asking the learner to act. A
+                   * tick beside it says the opposite of what the word beside it
+                   * says. The doc comment at the top of this file has always
+                   * described the rule below; the code did not follow it.
+                   */
+                  const ticked = status === 'completed' || status === 'mastered';
                   const inner = (
                     <>
-                      <span className={styles.lessonIcon} aria-hidden="true">
-                        {finished ? <CheckIcon size={14} /> : null}
-                      </span>
-                      <span className={styles.lessonText}>
-                        <span className={styles.lessonTitle}>{t(`numbers:${lesson.title}`)}</span>
-                        <span className={styles.lessonSystem}>
-                          {t(
-                            lesson.system === 'sino'
-                              ? 'numbers:systemSino'
-                              : lesson.system === 'native'
-                                ? 'numbers:systemNative'
-                                : 'numbers:systemBoth',
-                          )}
-                        </span>
-                      </span>
                       {/*
-                        No badge for a lesson nobody has opened: "Available" on
-                        every row is a word a learner learns to skip, and
-                        skipping it costs them "Review due" as well.
-
-                        The wrapper goes with it rather than being left empty —
-                        an empty flex child still takes the row's gap, which is
-                        the "unused layout space" a removed badge leaves behind.
+                        The title, the badges and the count, on one line while
+                        there is room for them and on two when there is not.
+                        There is no leading column: an icon slot that is empty
+                        on most rows most of the time is 32 px of the title's
+                        width spent on nothing.
                       */}
-                      {(showStatus || showCount) && (
-                        <span className={styles.lessonMeta}>
-                          {showStatus && (
-                            <span
-                              className={`${styles.status} ${styles[`status_${status}`] ?? ''}`}
-                              data-status={status}
-                            >
-                              {t(`numbers:status.${status}`)}
-                            </span>
-                          )}
-                          {showCount && (
-                            <span className={styles.lessonCount}>
-                              {t('numbers:activitiesDone', progress)}
-                            </span>
-                          )}
+                      <span className={styles.lessonBody}>
+                        <span className={styles.lessonText}>
+                          <span className={styles.lessonTitle} data-rail="numbers">
+                            {t(`numbers:${lesson.title}`)}
+                          </span>
+                          <span className={styles.lessonSystem}>
+                            {t(
+                              lesson.system === 'sino'
+                                ? 'numbers:systemSino'
+                                : lesson.system === 'native'
+                                  ? 'numbers:systemNative'
+                                  : 'numbers:systemBoth',
+                            )}
+                          </span>
                         </span>
-                      )}
-                      <ChevronRightIcon size={16} />
+                        {/*
+                          No badge for a lesson nobody has opened: "Available"
+                          on every row is a word a learner learns to skip, and
+                          skipping it costs them "Review due" as well.
+
+                          The wrapper goes with it rather than being left empty
+                          — an empty flex child still takes the row's gap,
+                          which is the "unused layout space" a removed badge
+                          leaves behind.
+                        */}
+                        {(showStatus || showCount) && (
+                          <span className={styles.lessonMeta}>
+                            {showStatus && (
+                              <span
+                                className={`${styles.status} ${styles[`status_${status}`] ?? ''}`}
+                                data-status={status}
+                              >
+                                {ticked && <CheckIcon size={12} aria-hidden="true" />}
+                                {t(`numbers:status.${status}`)}
+                              </span>
+                            )}
+                            {showCount && (
+                              <span className={styles.lessonCount}>
+                                {t('numbers:activitiesDone', progress)}
+                              </span>
+                            )}
+                          </span>
+                        )}
+                      </span>
+                      <ChevronRightIcon
+                        size={16}
+                        className={styles.chevron}
+                        data-rail-end="numbers"
+                      />
                     </>
                   );
                   return (

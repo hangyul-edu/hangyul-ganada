@@ -4,12 +4,28 @@
   min-height: 100%;
 }
 
+/*
+ * The page's own column, and the rail everything on it starts from.
+ *
+ * `--numbers-rail` is the inline padding: one number, read by the module
+ * headings and by the lesson cards, so the two cannot drift apart. They did —
+ * the headings were padded `var(--hg-space-1)` and the cards `var(--hg-space-4)`
+ * plus an empty icon column, which put three different left edges on one screen.
+ *
+ * The bottom padding is breathing room under the last card and nothing else.
+ * It used to add `var(--hg-safe-bottom)` as well, which reserves the phone's
+ * gesture bar a second time: `BottomNavigation` is a *sibling* of the scroll
+ * area rather than an overlay on it and already pads the inset itself, so the
+ * page was ending in a band of dead ground. The same mistake, and the same fix,
+ * as the note at the top of `HomePage.module.css`.
+ */
 .body {
+  --numbers-rail: var(--hg-space-4);
   display: flex;
   flex-direction: column;
   gap: var(--hg-space-4);
   padding: var(--hg-space-4);
-  padding-bottom: calc(var(--hg-space-6) + var(--hg-safe-bottom));
+  padding-bottom: var(--hg-space-6);
 }
 
 .summary {
@@ -59,15 +75,28 @@
  * A whole row is the target, not the title inside it.
  *
  * `min-height` rather than padding alone so a one-line lesson and a lesson with
- * a prerequisite note are the same size to a thumb — the row that is easiest to
+ * a two-line title are the same size to a thumb — the row that is easiest to
  * mis-tap is the short one next to a tall one.
+ *
+ * ## The inline padding is one pixel short on purpose
+ *
+ * The card draws a 1 px border and the module heading above it does not, so a
+ * card padded to the rail puts its text one pixel further in than the heading.
+ * `calc(var(--numbers-rail) - 1px)` is the border's width given back, and it is
+ * what makes the *ink* line up rather than the boxes. `align:sections` exists
+ * because that distinction was got wrong once already, four pixels at a time.
+ *
+ * ## And there is no leading column
+ *
+ * There was: a 20 px icon slot plus the row's 12 px gap, empty on every lesson
+ * a learner had not finished. See the note in `NumbersPage.tsx`.
  */
 .lesson {
   display: flex;
   align-items: center;
   gap: var(--hg-space-3);
   min-height: var(--hg-size-control-lg);
-  padding: var(--hg-space-3) var(--hg-space-4);
+  padding: var(--hg-space-3) calc(var(--numbers-rail) - 1px);
   border: 1px solid var(--hg-border);
   border-radius: var(--hg-radius-md);
   background: var(--hg-surface);
@@ -81,17 +110,40 @@
   }
 }
 
-.lessonIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  color: var(--hg-text-secondary);
-}
-
-.lessonText {
+/*
+ * The row's content: the title block, then whatever the row has to say about
+ * progress. One line while both fit, two when they do not.
+ *
+ * `flex-wrap` rather than a media query, because what decides this is not how
+ * wide the phone is — it is how wide *this row's* title and badge are, at this
+ * text scale, in this language. A 320 px screen in English fits 시간 읽기 and a
+ * **Review due** pill on one line; a 430 px screen in German at 150% text does
+ * not fit Gemischte Zahlwörter beside one. A breakpoint would have to guess
+ * both, and would be wrong for thirty of the thirty-two languages.
+ */
+.lessonBody {
   display: flex;
   flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 0;
+  column-gap: var(--hg-space-3);
+  row-gap: var(--hg-space-1);
+}
+
+/*
+ * The title takes the flexible width, and the badge gives way rather than the
+ * title being squeezed.
+ *
+ * `flex: 1 1 9rem` — a *basis*, not a `min-width`. Flex decides where to break a
+ * line from the basis, so 9rem is "the title wants at least this much beside a
+ * badge"; once it is on its own line `min-width: 0` lets it use everything and
+ * shrink below 9rem if the screen is narrower than that. A `min-width` instead
+ * would overflow the row at 200% text, where 9rem is wider than a 320 px phone.
+ */
+.lessonText {
+  display: flex;
+  flex: 1 1 9rem;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
@@ -103,8 +155,7 @@
   text-wrap: pretty;
 }
 
-.lessonSystem,
-.lessonLocked {
+.lessonSystem {
   color: var(--hg-text-secondary);
   font-size: var(--hg-text-caption);
   text-wrap: pretty;
@@ -116,14 +167,35 @@
   white-space: nowrap;
 }
 
+/*
+ * The chevron holds the right-hand rule.
+ *
+ * `flex: none` so it is never the thing that shrinks, and `align-self: center`
+ * so it stays on the row's optical centre when the status wraps below the title
+ * and the row grows a second line.
+ */
+.chevron {
+  flex: none;
+  align-self: center;
+  color: var(--hg-text-tertiary, var(--hg-text-secondary));
+}
+
 /* --- modules and status words (v1.0.2) ------------------------------------- */
 
+/*
+ * The module heading, on the same rail as the cards under it.
+ *
+ * This was `padding: 0 var(--hg-space-1)` — 4 px — against the cards' 16, so
+ * the heading, its goal and its lesson count all started 12 px to the left of
+ * every lesson title and ended 12 px to the right of every chevron. Two rules
+ * down one screen.
+ */
 .moduleHead {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--hg-space-3);
-  padding: 0 var(--hg-space-1);
+  padding: 0 var(--numbers-rail);
 }
 
 .moduleText {
@@ -134,9 +206,15 @@
   min-width: 0;
 }
 
+/*
+ * The number sits *on* the rail and the words sit after it, which is the
+ * hierarchy — a module is numbered, a lesson is not. `align-items: flex-start`
+ * rather than `center` so a title that wraps to two lines keeps its number
+ * beside the first of them instead of floating to the middle of the block.
+ */
 .moduleTitle {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--hg-space-2);
   margin: 0;
   color: var(--hg-text);
@@ -147,6 +225,7 @@
 
 .moduleIndex {
   display: inline-flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   width: 24px;
@@ -170,11 +249,23 @@
   white-space: nowrap;
 }
 
+/*
+ * What the row has to say about progress: a status word, a count, or neither.
+ *
+ * A row rather than a column now. When it shares a line with the title it is
+ * the same height as it; when it does not, it is a line of its own under the
+ * title and reads left-to-right like everything else on the screen — a
+ * right-aligned stack on its own line points at nothing.
+ *
+ * It is never rendered empty. An empty flex child still takes the row's gap,
+ * which is the reserved space this screen was full of.
+ */
 .lessonMeta {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--hg-space-2);
 }
 
 /*
@@ -182,13 +273,26 @@
  * the accessible name, and a colour-blind learner reads the word.
  */
 .status {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   padding: 2px var(--hg-space-2);
   border-radius: 999px;
   background: var(--hg-surface-sunken, var(--hg-border));
   color: var(--hg-text-secondary);
   font-size: var(--hg-text-caption);
   white-space: nowrap;
+}
+
+/*
+ * The tick lives inside the word now.
+ *
+ * It used to be a separate 20 px column at the head of every row — drawn on the
+ * finished lessons and *reserved* on all the others. Beside the word it is
+ * already next to, it costs nothing on the rows that do not have it.
+ */
+.status svg {
+  flex: none;
 }
 
 .status_completed,
@@ -207,16 +311,14 @@
   color: var(--hg-primary-text);
 }
 
-.lessonLockedRow {
-  opacity: 0.72;
-  cursor: not-allowed;
-}
-
-@media (hover: hover) {
-  .lessonLockedRow:hover {
-    border-color: var(--hg-border);
-  }
-}
+/*
+ * Nothing here is locked, and nothing reserves room for a lock.
+ *
+ * `.lessonLocked`, `.lessonLockedRow` and its hover rule were still in this
+ * file after the prerequisite gate was removed — dead rules for an element the
+ * screen has not rendered since v1.0.2, which is exactly the kind of leftover
+ * that grows a placeholder back. See the note on locking in `NumbersPage.tsx`.
+ */
 
 /*
  * Continue, on the summary card.
