@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { NUMBER_LESSONS, getNumberLesson, numberLessonItems } from '../src/data/numbers';
+import { passMark } from '../src/domain/numbersProgress';
 import {
   masteryExercises,
   practiceExercises,
@@ -139,7 +140,20 @@ test.describe('the Numbers course', () => {
     const summary = page.getByTestId('numbers-phase-summary');
     await expect(summary).toHaveAttribute('data-complete', 'false');
     await expect(summary).toContainText(en('summaryIncomplete'));
-    await expect(summary).toContainText(en('summaryMissing.mastery'));
+    /*
+     * The score, and not a second sentence about it. `masteryFailed` already
+     * says the check was taken, what it scored and what it needed; the summary
+     * deliberately drops `summaryMissing.mastery` once a check has been sat, so
+     * that line being absent is the property, not an omission.
+     */
+    const sat = masteryExercises(FIRST, 0).length;
+    await expect(summary).toContainText(
+      en('masteryFailed')
+        .replace('{{correct}}', '0')
+        .replace('{{total}}', String(sat))
+        .replace('{{pass}}', String(passMark(sat))),
+    );
+    await expect(summary).not.toContainText(en('summaryMissing.mastery'));
 
     await page.goto('/letters/numbers');
     const row = page.getByTestId(`numbers-lesson-${FIRST.id}`);
@@ -157,7 +171,9 @@ test.describe('the Numbers course', () => {
     const summary = page.getByTestId('numbers-phase-summary');
     await expect(summary).toHaveAttribute('data-complete', 'true');
     await expect(summary).toContainText(en('summaryComplete'));
-    await expect(summary).toContainText(en('masteryPerfect'));
+    await expect(summary).toContainText(
+      en('masteryPerfect').replace('{{total}}', String(masteryExercises(FIRST, 0).length)),
+    );
 
     await page.goto('/letters/numbers');
     const row = page.getByTestId(`numbers-lesson-${FIRST.id}`);
