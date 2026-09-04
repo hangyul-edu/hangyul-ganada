@@ -296,7 +296,10 @@
     "pitfallHourMinute": "గంటకు 세 시, నిమిషానికి 삼십 분",
     "pitfallSpacing": "లెక్కింపు పదం విడిగా రాస్తారు",
     "tenThousand": "10,000",
-    "hundredMillion": "10,00,00,000"
+    "hundredMillion": "10,00,00,000",
+    "price5000": "5,000 వాన్",
+    "price10000": "10,000 వాన్",
+    "price35000": "35,000 వాన్"
   },
   "example": {
     "zeroMath": "సున్నా కింద మూడు డిగ్రీలు",

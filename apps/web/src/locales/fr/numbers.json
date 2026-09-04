@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 pour l’heure, 삼십 분 pour les minutes",
     "pitfallSpacing": "Le mot de comptage s’écrit à part",
     "tenThousand": "10 000",
-    "hundredMillion": "100 000 000"
+    "hundredMillion": "100 000 000",
+    "price5000": "5 000 wons",
+    "price10000": "10 000 wons",
+    "price35000": "35 000 wons"
   },
   "example": {
     "zeroMath": "moins trois degrés",

@@ -414,9 +414,20 @@ const MONEY: NumberItem[] = [
     note: 'note.price',
     example: '천 원', counter_system: 'sino',
   }),
-  n('num-m-5000', '오천 원', 'ocheon won', 5000, 'sino', 'phrase', null),
-  n('num-m-10000', '만 원', 'man won', 10000, 'sino', 'phrase', null),
-  n('num-m-35000', '삼만 오천 원', 'samman ocheon won', 35000, 'sino', 'phrase', null),
+  /*
+   * The three prices carry a gloss, and it is not decoration.
+   *
+   * Without one, `meaningOf` renders them as bare numerals, and the money
+   * lesson's meaning questions came out with one prose option among three
+   * numbers: *what does 원 mean?* over **won**, 5,000, 10,000 and 35,000. The
+   * answer is identifiable by shape, and a learner who answers by shape has not
+   * been asked anything. `readChoose` now refuses a question whose answer is
+   * the only option of its kind, and these three glosses are what keeps the
+   * lesson able to ask about 원 and 얼마예요? at all.
+   */
+  n('num-m-5000', '오천 원', 'ocheon won', 5000, 'sino', 'phrase', 'gloss.price5000'),
+  n('num-m-10000', '만 원', 'man won', 10000, 'sino', 'phrase', 'gloss.price10000'),
+  n('num-m-35000', '삼만 오천 원', 'samman ocheon won', 35000, 'sino', 'phrase', 'gloss.price35000'),
   n('num-m-howmuch', '얼마예요?', 'eolmayeyo', null, null, 'phrase', 'gloss.howMuch', {
     example: '만 오천 원이에요.',
     example_gloss: 'example.fifteenThousand',

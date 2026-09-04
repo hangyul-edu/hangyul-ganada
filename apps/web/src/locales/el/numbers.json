@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 για την ώρα, 삼십 분 για τα λεπτά",
     "pitfallSpacing": "Η λέξη μέτρησης γράφεται χωριστά",
     "tenThousand": "10.000",
-    "hundredMillion": "100.000.000"
+    "hundredMillion": "100.000.000",
+    "price5000": "5.000 γουόν",
+    "price10000": "10.000 γουόν",
+    "price35000": "35.000 γουόν"
   },
   "example": {
     "zeroMath": "μείον τρεις βαθμοί",

@@ -296,7 +296,10 @@
     "pitfallHourMinute": "小时用 세 시，分钟用 삼십 분",
     "pitfallSpacing": "量词要分开写",
     "tenThousand": "10,000",
-    "hundredMillion": "100,000,000"
+    "hundredMillion": "100,000,000",
+    "price5000": "5,000韩元",
+    "price10000": "10,000韩元",
+    "price35000": "35,000韩元"
   },
   "example": {
     "zeroMath": "零下三度",

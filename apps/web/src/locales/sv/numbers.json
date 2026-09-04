@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 för timmen, 삼십 분 för minuterna",
     "pitfallSpacing": "Räkneordet skrivs för sig",
     "tenThousand": "10 000",
-    "hundredMillion": "100 000 000"
+    "hundredMillion": "100 000 000",
+    "price5000": "5 000 won",
+    "price10000": "10 000 won",
+    "price35000": "35 000 won"
   },
   "example": {
     "zeroMath": "minus tre grader",

@@ -296,7 +296,10 @@
     "pitfallHourMinute": "घंटे के लिए 세 시, मिनट के लिए 삼십 분",
     "pitfallSpacing": "गिनती वाला शब्द अलग लिखा जाता है",
     "tenThousand": "10,000",
-    "hundredMillion": "100,000,000"
+    "hundredMillion": "100,000,000",
+    "price5000": "5,000 वॉन",
+    "price10000": "10,000 वॉन",
+    "price35000": "35,000 वॉन"
   },
   "example": {
     "zeroMath": "शून्य से तीन डिग्री नीचे",

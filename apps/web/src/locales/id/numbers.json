@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 untuk jam, 삼십 분 untuk menit",
     "pitfallSpacing": "Kata hitung ditulis terpisah",
     "tenThousand": "10.000",
-    "hundredMillion": "100.000.000"
+    "hundredMillion": "100.000.000",
+    "price5000": "5.000 won",
+    "price10000": "10.000 won",
+    "price35000": "35.000 won"
   },
   "example": {
     "zeroMath": "minus tiga derajat",

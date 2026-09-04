@@ -296,7 +296,10 @@
     "pitfallHourMinute": "ঘণ্টায় 세 시, মিনিটে 삼십 분",
     "pitfallSpacing": "গোনার শব্দ আলাদা করে লেখা হয়",
     "tenThousand": "১০,০০০",
-    "hundredMillion": "১০,০০,০০,০০০"
+    "hundredMillion": "১০,০০,০০,০০০",
+    "price5000": "5,000 ওয়ন",
+    "price10000": "10,000 ওয়ন",
+    "price35000": "35,000 ওয়ন"
   },
   "example": {
     "zeroMath": "শূন্যের নিচে তিন ডিগ্রি",

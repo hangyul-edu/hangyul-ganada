@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 pentru oră, 삼십 분 pentru minute",
     "pitfallSpacing": "Cuvântul de numărat se scrie separat",
     "tenThousand": "10.000",
-    "hundredMillion": "100.000.000"
+    "hundredMillion": "100.000.000",
+    "price5000": "5.000 woni",
+    "price10000": "10.000 woni",
+    "price35000": "35.000 woni"
   },
   "example": {
     "zeroMath": "minus trei grade",

@@ -263,7 +263,7 @@
     "counterAge": "Age — goes with the native Korean set",
     "counterAgeFormal": "Age — on forms and in the news, with the Sino-Korean set",
     "howOld": "The phrase for asking someone's age",
-    "ageHonorific": "age — honorific, about someone older",
+    "ageHonorific": "Age — the honorific word, used about someone older",
     "counterHour": "o'clock",
     "half": "half past",
     "whatTime": "The phrase for asking the time",
@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 for the hour, 삼십 분 for the minutes",
     "pitfallSpacing": "A counting word takes a space",
     "tenThousand": "10,000",
-    "hundredMillion": "100,000,000"
+    "hundredMillion": "100,000,000",
+    "price5000": "5,000 won",
+    "price10000": "10,000 won",
+    "price35000": "35,000 won"
   },
   "example": {
     "zeroMath": "minus three degrees",

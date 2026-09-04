@@ -63,7 +63,7 @@ const CHECK = process.argv.includes('--check');
 const { NUMBER_ITEMS, NUMBER_LESSONS, NUMBER_MODULES, numberLessonItems, spokenExample } = await import(
   '../apps/web/src/data/numbers.ts'
 );
-const { exerciseCoverage, masteryExercises, practiceExercises } = await import(
+const { PROMPT_KEY_FOR_TYPE, exerciseCoverage, masteryExercises, practiceExercises } = await import(
   '../apps/web/src/features/numbers/exercises.ts'
 );
 const {
@@ -273,21 +273,51 @@ if (distinct.size < 4) fail(`the correct option only ever sits at index ${[...di
  * heading came from the exercise *kind*, which is a fact about how the options
  * were assembled, and the kind and the question are not the same thing.
  *
- * So the type is data now, and this table is the contract: the page's switch
- * has one branch per row and nothing else may reach a heading.
+ * So the type is data now, and the table is the contract: the page's switch has
+ * one branch per row and nothing else may reach a heading. It lives beside the
+ * builder as `PROMPT_KEY_FOR_TYPE` and is read here rather than copied — three
+ * gates kept a copy of it and one of the three had drifted.
  */
-const PROMPT_FOR = {
-  findIncorrectExpression: 'prompt.findIncorrectExpression',
-  chooseCorrectExplanation: 'prompt.chooseCorrectExplanation',
-  listenAndChoose: 'prompt.listenAndChoose',
-  chooseMeaning: 'prompt.chooseMeaning',
-  chooseSystem: 'prompt.chooseSystem',
-  sayTheNumber: 'prompt.digitsToKorean.sino',
-  writeTheDigits: 'prompt.koreanToDigits',
-  chooseCounterForm: 'prompt.counterForm',
-  fillTheBlank: 'prompt.fill',
-  orderTheParts: 'prompt.orderParts',
-};
+const PROMPT_FOR = PROMPT_KEY_FOR_TYPE;
+
+/*
+ * And the table has to be the page's own switch.
+ *
+ * Reading `PROMPT_KEY_FOR_TYPE` and then checking questions against it is a
+ * tautology on its own: change the table and both sides move together. What
+ * makes it a contract is that the *page* is compared against it — the switch in
+ * `NumberSessionPage` is what a learner actually reads, and the table is what
+ * four gates reason about.
+ *
+ * Parsed rather than imported, because importing a React page into a node
+ * script pulls in the whole app. The shape it reads is the shape the switch has
+ * had since the type became data: `case '<type>':` followed by
+ * `heading = t('numbers:<key>')`. A switch written some other way fails here
+ * with "no heading found", which is the right answer — a heading this cannot
+ * see is a heading no gate is checking.
+ */
+const pageSource = readFileSync(join(ROOT, 'apps/web/src/pages/NumberSessionPage.tsx'), 'utf8');
+let switchCases = 0;
+for (const match of pageSource.matchAll(/case '(\w+)':\s*\n\s*heading = t\(\s*`?'?numbers:([\w.${}?' ]+?)'?`?[,)]/g)) {
+  const [, type, key] = match;
+  switchCases += 1;
+  const declared = PROMPT_FOR[type];
+  if (!declared) {
+    fail(`the page heads "${type}" and PROMPT_KEY_FOR_TYPE does not declare it`);
+    continue;
+  }
+  // `sayTheNumber` is the one type the page resolves through the exercise's own
+  // `prompt.key`; the table's entry is the fallback that key defaults to.
+  const resolved = key.includes('${') ? PROMPT_FOR.sayTheNumber : key;
+  if (resolved !== declared) {
+    fail(`the page heads "${type}" with ${resolved} and PROMPT_KEY_FOR_TYPE says ${declared}`);
+  }
+}
+if (switchCases !== Object.keys(PROMPT_FOR).length) {
+  fail(
+    `the page's switch has ${switchCases} headings and PROMPT_KEY_FOR_TYPE declares ${Object.keys(PROMPT_FOR).length}`,
+  );
+}
 
 /**
  * The four instructions the product promises, in the language they were
@@ -489,6 +519,31 @@ for (const exercise of everyExercise) {
 
   if (!PROMPT_FOR[exercise.question_type]) {
     fail(`${where}: no prompt key is declared for this question type`);
+  }
+
+  /*
+   * The answer may not be the only option of its shape.
+   *
+   * An option is either a numeral or prose. Where exactly one of a list is of
+   * a kind, it is identifiable without being read: *what does 열여섯 mean?* over
+   * **16**, *three people*, *five thousand won* and *two o'clock*, and *what
+   * does 원 mean?* over *won*, **5,000**, **10,000** and **35,000**. Both were
+   * shipping, both are answerable by shape, and `answerability` passed on both
+   * because each does have exactly one option that answers it.
+   *
+   * `readChoose` refuses to build one. This asserts it from outside the
+   * builder, over every question of every kind, so a second builder cannot
+   * reintroduce the shape.
+   */
+  if (exercise.question_type !== 'orderTheParts' && exercise.options.length > 2) {
+    const numeric = exercise.options.filter((o) => o.value !== undefined).length;
+    const odd = numeric === 1 ? 'numeral' : numeric === exercise.options.length - 1 ? 'prose' : null;
+    if (odd) {
+      const answerIsNumeric = exercise.options[exercise.answer].value !== undefined;
+      if ((odd === 'numeral') === answerIsNumeric) {
+        fail(`${where}: the answer is the only ${odd} in its option list — it can be picked without reading it`);
+      }
+    }
   }
 
   // Distinct options, whatever they are made of. A repeated option is either

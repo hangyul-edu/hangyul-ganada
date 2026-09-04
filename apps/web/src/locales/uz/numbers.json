@@ -296,7 +296,10 @@
     "pitfallHourMinute": "soatga 세 시, daqiqaga 삼십 분",
     "pitfallSpacing": "Sanash so‘zi alohida yoziladi",
     "tenThousand": "10 000",
-    "hundredMillion": "100 000 000"
+    "hundredMillion": "100 000 000",
+    "price5000": "5 000 von",
+    "price10000": "10 000 von",
+    "price35000": "35 000 von"
   },
   "example": {
     "zeroMath": "minus uch daraja",

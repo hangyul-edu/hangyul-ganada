@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 للساعة و삼십 분 للدقائق",
     "pitfallSpacing": "كلمة العدّ تُكتب منفصلة",
     "tenThousand": "١٠٬٠٠٠",
-    "hundredMillion": "١٠٠٬٠٠٠٬٠٠٠"
+    "hundredMillion": "١٠٠٬٠٠٠٬٠٠٠",
+    "price5000": "5,000 وون",
+    "price10000": "10,000 وون",
+    "price35000": "35,000 وون"
   },
   "example": {
     "zeroMath": "ثلاث درجات تحت الصفر",

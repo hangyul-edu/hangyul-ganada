@@ -75,6 +75,38 @@ export const MISCONCEPTION_CLASSES = [
 
 export type MisconceptionClass = (typeof MISCONCEPTION_CLASSES)[number];
 
+/**
+ * The heading each question type resolves, as `NumberSessionPage`'s switch
+ * resolves it.
+ *
+ * The defect this exists for: `spot_mistake` was headed *어느 쪽이 맞을까요?* —
+ * *which one is right?* — over an option list whose answer is the one that is
+ * **wrong**. A learner who read the instruction and obeyed it was marked
+ * incorrect, in all thirty-two languages. The heading came from the exercise
+ * *kind*, which is a fact about how the options were assembled; the kind and
+ * the question are not the same thing.
+ *
+ * Exported so the gates read the table rather than each keeping a copy of it.
+ * Three of them did, and one of the three resolved `prompt.key` — which only
+ * selects a heading on `sayTheNumber` — and reported a `chooseSystem`
+ * question's *gloss* as its instruction.
+ *
+ * `sayTheNumber` is the one type with three headings; `prompt.key` on the
+ * exercise picks between them, and the entry here is the fallback.
+ */
+export const PROMPT_KEY_FOR_TYPE: Record<NumbersQuestionType, string> = {
+  listenAndChoose: 'prompt.listenAndChoose',
+  chooseMeaning: 'prompt.chooseMeaning',
+  chooseCorrectExplanation: 'prompt.chooseCorrectExplanation',
+  chooseSystem: 'prompt.chooseSystem',
+  sayTheNumber: 'prompt.digitsToKorean.both',
+  writeTheDigits: 'prompt.koreanToDigits',
+  chooseCounterForm: 'prompt.counterForm',
+  findIncorrectExpression: 'prompt.findIncorrectExpression',
+  fillTheBlank: 'prompt.fill',
+  orderTheParts: 'prompt.orderParts',
+};
+
 export interface ExerciseOption {
   /** What the button shows. Korean, digits, or a meaning key. */
   text: string;
@@ -372,6 +404,28 @@ function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   });
   const options = build(meaningOf(item), [pool]);
   if (!options) return null;
+  /*
+   * The answer may not be the only option of its shape.
+   *
+   * `meaningOf` returns a numeral for an item with a value and no gloss and a
+   * key for one with a gloss, so an option list can end up mixing the two.
+   * Where exactly one option is of a kind, that option is identifiable without
+   * reading it: the mixed lesson asked *what does 열여섯 mean?* over **16**,
+   * *three people*, *five thousand won* and *two o'clock*, and the money lesson
+   * asked what 원 means over *won*, **5,000**, **10,000** and **35,000**. Both
+   * are answerable by shape, and a learner who answers by shape has not been
+   * asked anything.
+   *
+   * The question is dropped rather than patched, because the alternative is a
+   * distractor invented to balance the shapes. Every item this drops is still
+   * asked about by another exercise kind in the same lesson — `numbers:qa`
+   * fails a lesson that loses its only question about an item.
+   */
+  const numeric = options.filter((option) => option.value !== undefined).length;
+  if (numeric === 1 || numeric === options.length - 1) {
+    const answerIsNumeric = options[0]!.value !== undefined;
+    if ((numeric === 1) === answerIsNumeric) return null;
+  }
   const question = glossQuestion(item);
   /*
    * An explanation question is shown the *pair*, not the bare word.

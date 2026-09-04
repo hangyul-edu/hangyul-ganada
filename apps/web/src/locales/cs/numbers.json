@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 pro hodinu, 삼십 분 pro minuty",
     "pitfallSpacing": "Počítací slovo se píše zvlášť",
     "tenThousand": "10 000",
-    "hundredMillion": "100 000 000"
+    "hundredMillion": "100 000 000",
+    "price5000": "5 000 wonů",
+    "price10000": "10 000 wonů",
+    "price35000": "35 000 wonů"
   },
   "example": {
     "zeroMath": "minus tři stupně",

@@ -296,7 +296,10 @@
     "pitfallHourMinute": "시는 세 시, 분은 삼십 분",
     "pitfallSpacing": "세는 말은 띄어 써요",
     "tenThousand": "10,000",
-    "hundredMillion": "100,000,000"
+    "hundredMillion": "100,000,000",
+    "price5000": "5,000원",
+    "price10000": "10,000원",
+    "price35000": "35,000원"
   },
   "example": {
     "zeroMath": "0도보다 3도 낮은 온도",

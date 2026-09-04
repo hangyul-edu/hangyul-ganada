@@ -296,7 +296,10 @@
     "pitfallHourMinute": "時は 세 시、分は 삼십 분",
     "pitfallSpacing": "数え方の言葉は分けて書きます",
     "tenThousand": "10,000",
-    "hundredMillion": "100,000,000"
+    "hundredMillion": "100,000,000",
+    "price5000": "5,000ウォン",
+    "price10000": "10,000ウォン",
+    "price35000": "35,000ウォン"
   },
   "example": {
     "zeroMath": "マイナス3度",

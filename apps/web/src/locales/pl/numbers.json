@@ -296,7 +296,10 @@
     "pitfallHourMinute": "세 시 na godzinę, 삼십 분 na minuty",
     "pitfallSpacing": "Słowo do liczenia pisze się osobno",
     "tenThousand": "10 000",
-    "hundredMillion": "100 000 000"
+    "hundredMillion": "100 000 000",
+    "price5000": "5 000 wonów",
+    "price10000": "10 000 wonów",
+    "price35000": "35 000 wonów"
   },
   "example": {
     "zeroMath": "minus trzy stopnie",

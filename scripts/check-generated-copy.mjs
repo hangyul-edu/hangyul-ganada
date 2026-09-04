@@ -63,7 +63,7 @@ const CHECK = process.argv.includes('--check');
 const LOCALES = join(root, 'apps/web/src/locales');
 
 const { NUMBER_LESSONS, NUMBER_ITEMS, getNumberItem } = await import('../apps/web/src/data/numbers.ts');
-const { masteryExercises, practiceExercises } = await import('../apps/web/src/features/numbers/exercises.ts');
+const { PROMPT_KEY_FOR_TYPE, masteryExercises, practiceExercises } = await import('../apps/web/src/features/numbers/exercises.ts');
 const { withParticle } = await import('../apps/web/src/i18n/josa.ts');
 
 const findings = [];
@@ -136,23 +136,12 @@ function isTautology(body, { korean, answer }) {
 /**
  * Which string heads each question type.
  *
- * A copy of `NumberSessionPage`'s switch, and the only sound place for one: this
- * gate has to resolve the key the page resolves, and importing a React page into
- * a node script pulls in the whole app. `numbers:qa` asserts the two tables list
- * the same question types, so a new type cannot be added to one of them alone.
+ * Read from the builder rather than copied. This file kept its own copy for one
+ * pass and it drifted: it resolved `prompt.key` on every type, and on
+ * `chooseSystem` that key is the item's gloss for the sound-free substitute,
+ * not the heading — so the gate read a gloss and called it an instruction.
  */
-const PROMPT_KEY = {
-  listenAndChoose: 'prompt.listenAndChoose',
-  chooseMeaning: 'prompt.chooseMeaning',
-  chooseCorrectExplanation: 'prompt.chooseCorrectExplanation',
-  chooseSystem: 'prompt.chooseSystem',
-  sayTheNumber: 'prompt.digitsToKorean.both',
-  writeTheDigits: 'prompt.koreanToDigits',
-  chooseCounterForm: 'prompt.counterForm',
-  findIncorrectExpression: 'prompt.findIncorrectExpression',
-  fillTheBlank: 'prompt.fill',
-  orderTheParts: 'prompt.orderParts',
-};
+const PROMPT_KEY = PROMPT_KEY_FOR_TYPE;
 
 /**
  * A key on an exercise that would carry a sentence for the answer result.
@@ -190,7 +179,12 @@ for (const lesson of NUMBER_LESSONS) {
       }
 
       // --- the prompts, which are composed --------------------------------
-      const key = exercise.prompt.key ?? PROMPT_KEY[exercise.question_type];
+      // `prompt.key` only selects a heading on `sayTheNumber`. On `chooseSystem`
+      // it carries the item's gloss for the sound-free substitute.
+      const key =
+        exercise.question_type === 'sayTheNumber'
+          ? (exercise.prompt.key ?? PROMPT_KEY.sayTheNumber)
+          : PROMPT_KEY[exercise.question_type];
       if (!key) continue;
       for (const [locale, bundle] of bundles) {
         const template = lookup(bundle, key);
