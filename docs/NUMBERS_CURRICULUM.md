@@ -1,7 +1,10 @@
 # The Numbers course — content, progress model, migration, and how it is proven
 
-Status, 2 September 2026: rebuilt in the v1.0.2 pass after a P0 — lessons showed
-as completed without having been studied. Numbers had never shipped (the
+Status, 4 September 2026: rebuilt in the v1.0.2 pass after a P0 — lessons showed
+as completed without having been studied — and read end to end again in the
+sixth screenshot pass, which found the list screen reserving a column for an
+icon most rows do not draw, 224 translated strings no screen could show, and no
+route through the course at all for a learner who cannot hear (§4a). Numbers had never shipped (the
 committed artefacts are v1.0.0 at `86d0babd`, without the feature), so the
 migration below is a namespace cleanup rather than a data conversion.
 
@@ -52,12 +55,28 @@ are idempotent (viewing a step twice records it once); counts are not.
 `applyNumbersEvent` is the only writer of `completed_at`, and it writes it once,
 after applying an event, by asking `isComplete` of the new record.
 
-**Status** (`lessonStatus`) — `available` (never opened), `not_started`
+**Status** (`lessonStatus`) — `available` (no evidence at all), `not_started`
 (opened, nothing done), `in_progress`, `completed`, `mastered` (completed with a
 perfect mastery check), `review_due` (completed and seven days since completion
-or the last review, `REVIEW_INTERVAL_DAYS`). Only `completed`, `mastered` and
-`review_due` may be drawn as finished; the overview's check mark is drawn for
-those and nothing else.
+or the last review, `REVIEW_INTERVAL_DAYS`).
+
+Three of those count as *finished* for the overview's progress arithmetic —
+`completed`, `mastered` and `review_due`, since a lesson that has come round
+again was completed once. **The check mark is a narrower claim and is drawn for
+`completed` and `mastered` only.** It was drawn for all three, and a tick beside
+*Review due* — the one status on that screen asking the learner to act — says
+the opposite of the word next to it. The mark now sits inside the status pill
+rather than in a column of its own; see §20Q.2 of the report and I-150.
+
+`available` asks the **evidence** before it asks about the visit. It read
+`opened_at === null → available`, which is right in every ordinary sitting — the
+page fires `lesson_opened` first — and wrong in the one case worth guarding: the
+stores are written optimistically, so `lesson_opened` can be the write that
+loses a race with a reload while the work that followed it was saved. A learner
+who had read two explanation steps would come back to a row reading *you have
+not started this*. `started_at` is set by the first step read, the first example
+seen and the first answer given, so asking it first means the status can only be
+wrong in the safe direction (I-151).
 
 There is no `locked`. There was, and it is gone from the type itself so it
 cannot return by accident — see the note under *Prerequisites* below. The three
@@ -237,6 +256,64 @@ out for these strings. They were written for this pass and are consistent,
 short and unreversed by construction and by gate; they have not been read by a
 speaker of each language, and that is an outstanding item rather than a claim.
 
+## 4a. A learner who cannot hear
+
+A `listen_choose` question's whole stimulus is a clip: `prompt` carries an audio
+id and deliberately no text, because printing the word would print the answer.
+That is right for a listening question, and it was the whole route through the
+course for a learner who could not use it — **all nineteen lessons list that
+kind**, a mastery check asks every item, and passing a mastery check is what
+completes a lesson. There was no slower path; there was none.
+
+`settings.sound_free` has existed since §36 of the brief and `domain/review.ts`
+has always honoured it. This course never asked it, and never asked the player
+either, so a build with no clips in it or a manifest that failed to load
+produced the same dead end from the other direction.
+
+`practiceExercises`, `masteryExercises` and `exerciseCoverage` take
+`{ soundFree }` and drop the heard-only kind. `NumberSessionPage` decides from
+`settings.sound_free || (audio.ready && !audio.available)` — `ready &&
+!available`, so *the manifest has not answered yet* is never mistaken for *there
+is no audio* — and it decides **once, when a run mounts**, so a manifest that
+finishes loading mid-check cannot change the questions under the learner or the
+count printed on the way in.
+
+Dropping the kind is enough rather than a degradation, and `numbers:qa` §11
+measures it rather than assuming it: every lesson still asks every item, in
+guided practice and in the mastery check. Two lessons — `minutes` and
+`weekdays` — fall to one question shape, which the gate reports as a note. A
+shorter lesson somebody can finish beats a richer one they cannot.
+
+**And the second accommodation, because the first is unreachable.** `MyPage`
+removed the switch that turns `sound_free` on, because the *word* questions it
+existed to avoid no longer exist — so a learner arriving today cannot set it and
+only a migrated profile carries it. Honouring a preference nobody can express is
+not an accommodation.
+
+The letter side had already solved that, and the note in
+`features/review/ChoiceExercise.tsx` is the argument: a setting is remembered,
+and the cost of a remembered setting is that nobody who has not already found it
+can turn it on. Its answer is a small **Can't use audio?** under the prompt, per
+question, which swaps the clip for an equivalent visual one. This course does
+the same, on the same string (`learning:review.cannotUseAudio`), reset with the
+question and one-way while it is on screen.
+
+`soundFreeFor` decides the substitute **from the options**, not from the item:
+
+* a numeral gets *Say this number with 일, 이, 삼* over its digits. Not the
+  digits alone — a numeral's distractors include the other system's word for the
+  same value, and 하나 and 일 are both 1;
+* anything else gets its gloss under *Which of these means this?*;
+* and where neither identifies exactly one of the options actually on screen —
+  시월 beside 십, 만 원 beside 만 — it returns nothing and the button is not
+  drawn.
+
+349 of the 352 listening questions the engine can build carry one. `numbers:qa`
+§11 recomputes the uniqueness rather than reading a declaration back, and
+resolves each option through the id it was built with: 오천 원 is both a price
+and a context phrase, and 세 시 삼십 분 is both a clock time and a pitfall, so
+matching on text answers with whichever comes first in the file.
+
 ## 5. What proves it
 
 | Suite | What it covers |
@@ -248,8 +325,10 @@ speaker of each language, and that is an outstanding item rather than a claim.
 | `e2e/numbers.spec.ts` | N-e2e-1…8 in a real browser: fresh overview with all eighteen rows available and every one a link, all-wrong run not complete, diligent run completes exactly the lesson the work was done in, reload resumes from the record, audio present and feedback names the mistake, a new learner opening the last lesson of every module directly, Continue leading without forcing, and the back control on a deep link |
 | `features/numbers/questionTypes.test.ts` | 14 cases: which type each builder produces, the four Korean instructions verbatim, the contrast-pair stimulus, ten prompts and three headings present in all 32 bundles, the three retired keys absent, the pronunciation and writing headings on the right items, the closed date forms in the data, the bundles and the manifest, and the deleted stale clips |
 | `e2e/numbers-prompts.spec.ts` | the instruction on the real page: the find-the-mistake question named and its answer accepted, the explanation question over its pair, listening and meaning keeping their own, the pronunciation heading on the dates cards, and prompt + options + feedback + Continue reachable at 320×568 and 375×667 and at 22px root text |
-| `scripts/numbers-qa.mjs` | the release gate (§4) — structure, meaning, audio, localisation, Korean, answer positions, question types, one-answer over 284 distinct questions, date spacing, example headings |
+| `scripts/numbers-qa.mjs` | the release gate (§4), in seventeen sections — structure, meaning, audio, localisation, Korean, answer positions, question types, one-answer over 284 distinct questions, date spacing, example headings, and then: every lesson completable sound-free; nothing asked about before it is taught, with every forward distractor a declared misconception; no question twice in one sitting; a listening clip that says the answer it accepts; no key nothing can show; no particle pair written longhand; and the completion state machine walked per lesson |
+| `scripts/numbers-layout-qa.mjs` | the list screen, measured as **ink**: one rail for the module number, module goal, summary and every lesson title; one rule for the chevrons and lesson counts; no reserved column and no unused width beside a title; nothing overlapping, nothing clipped, no sideways scroll, every row a link at least a thumb tall, and the last lesson reachable after a real scroll. 45 cases — seven sizes including landscape, 100/150/200% text, light and dark, and all 32 languages at 320 px — with four lessons seeded to real evidence so the badges are on screen |
 | `scripts/numbers-qa-negative.sh` | ten sabotage runs, each restoring one defect and asserting the gate fires: the old prompt, an undeclared explanation gloss, 삼월 일 일 in the data and in a bundle, a pronunciation card labelled a spelling rule, the context-free blank, the two same-meaning options, a locale missing a prompt, a slot-mate as a distractor — then restores and confirms green |
+| `scripts/regression-gates-negative.sh` | five more, for the gates added after the sixth screenshot pass: the empty icon column at the head of every row, a badge bounded by its fill rather than by its ring, a blank whose option list holds two words that fit it, 둘 개, and a `completed_at` with no evidence behind it |
 
 ## 6. Level Test feedback policy (§10 of the v1.0.2 request)
 

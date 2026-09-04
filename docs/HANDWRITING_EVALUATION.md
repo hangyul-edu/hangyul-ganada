@@ -158,6 +158,37 @@ measures every canonical letter against the font file, and
 `npm run glyphshape:qa` scores the canonical form against the face with a 0.93
 floor and eight declared deviations.
 
+### The numbered still, and what bounds a badge
+
+The badges on the numbered diagram are laid out by `ui/strokeMarkers.ts`, in the
+glyph's own `0 0 100 100` box, so the demonstration, the writing screen's helper
+and the developer gallery cannot disagree about where a number goes. Their rule
+is that a disc clears **all** the ink — its own stroke included — and a hairline
+leader points back at the place the pen lands.
+
+What that rule is measured *against* changed in the sixth screenshot pass, and
+the distinction is worth stating because three checks missed it. A badge is a
+`<circle r="5.6">` with a `stroke-width` of 0.9, and an SVG ring straddles the
+circumference: half of it lies outside the radius, so the disc paints to 6.05.
+Every bound was written against 5.6, so twenty-one badges over twenty characters
+— `ㅌ` #3 and `ㄷ` #2 among them — were drawn with the outer half of their ring
+cut off by the SVG viewport, and by a `border-radius` on the same element whose
+size in viewBox units nothing in the layout could name.
+
+* `MARKER_RING` is the ring, and the stylesheet is read back in the unit test so
+  the two numbers cannot drift.
+* `paintedRadius` is what every bound is written against.
+* `ontoPaper` is the whole bound — the straight sides and the four corner arcs —
+  and the layout, the unit test and `npm run strokes:markers` all call it, so
+  there is no second opinion about where the paper is.
+* The paper is a `<rect rx>` **inside** the SVG. `.paper` clips nothing.
+
+`npm run strokes:markers` measures all 269 badges over 73 characters: clipping,
+ink overlap, ring-to-ring collision, leaders that end off their own stroke or
+run under another badge, badge order against the animation, and legibility at
+the smallest size the product draws. It also asserts there are **no per-glyph
+overrides** — a hand-placed `ㅌ` would have fixed `ㅌ` and left the other twenty.
+
 ### Two consequences worth stating plainly
 
 **The practice-face preference no longer changes the tracing guide or the
