@@ -32,10 +32,31 @@
  *
  * `version` is a marketing string and has to be *equal* everywhere. The build
  * number is an integer both stores require to increase, and never to repeat —
- * a build number that has been uploaded is spent, whatever happened to it.
- * So this checks that iOS's `CURRENT_PROJECT_VERSION` equals the identity
- * file's `buildNumber`, and separately that the number is ahead of whatever
- * the last recorded build actually used.
+ * a build number that has been uploaded is spent, whatever happened to it. So
+ * this checks that the number is ahead of whatever the last recorded build
+ * actually used.
+ *
+ * ## iOS is checked against what it *says it is*, not against Android
+ *
+ * The Xcode project's `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are
+ * build settings Xcode owns. They are edited on a Mac, in the UI, by the person
+ * who is going to archive the build; a text substitution performed from Linux
+ * is how a project file silently loses a setting nobody was looking at, and it
+ * is the single most expensive file in this repository to get wrong — signing,
+ * the team id, the bundle identifier and the localisation regions all live in
+ * it.
+ *
+ * So this gate stopped demanding that iOS equal Android. `app.identity.json`
+ * declares, under `ios.xcode`, exactly what the project file carries, and this
+ * asserts that the project file still carries it. That keeps the protection —
+ * any *unexpected* change to those two settings fails — while allowing an
+ * Android release to ship at 1.0.3 while iOS is still at 1.0.2, which is the
+ * actual state of a project whose iOS half cannot be built from here.
+ *
+ * While the declared iOS values are behind `version` and `buildNumber`, the
+ * report prints the pending action. It is a line for a person to act on, not a
+ * failure: failing would mean no Android release could ever be cut without a
+ * Mac in the room.
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
@@ -83,13 +104,6 @@ const VERSION_SITES = [
     pattern: /version:\s*'([^']+)'/,
   },
   {
-    rel: 'apps/mobile/ios/App/App.xcodeproj/project.pbxproj',
-    what: 'iOS MARKETING_VERSION',
-    pattern: /MARKETING_VERSION = ([^;]+);/g,
-    all: true,
-    expect: 2,
-  },
-  {
     rel: 'docs/legal/support.md',
     what: 'the support document header',
     pattern: /\*\*Hangyul ganada\*\* · version ([0-9.]+)/,
@@ -127,23 +141,53 @@ for (const site of VERSION_SITES) {
 }
 
 /*
- * iOS's build number, which is an integer rather than the marketing string.
+ * The Xcode project, against what the identity file says it contains.
+ *
+ * Both settings, both configurations. A value that is not the declared one is a
+ * finding whichever direction it moved: somebody editing the project file from
+ * a script fails here, and so does somebody updating it in Xcode and not saying
+ * so in `app.identity.json`.
  */
+const XCODE = identity.ios?.xcode;
 const pbx = read('apps/mobile/ios/App/App.xcodeproj/project.pbxproj');
-const projectVersions = [...pbx.matchAll(/CURRENT_PROJECT_VERSION = ([^;]+);/g)].map((m) =>
-  m[1].trim(),
-);
-if (projectVersions.length !== 2) {
-  fail(
-    'project.pbxproj',
-    `${projectVersions.length} CURRENT_PROJECT_VERSION where Debug and Release were expected`,
-  );
-}
-for (const value of projectVersions) {
-  if (value !== String(BUILD)) {
-    fail('project.pbxproj', `CURRENT_PROJECT_VERSION is "${value}", not "${BUILD}"`);
+if (!XCODE || typeof XCODE.marketingVersion !== 'string' || !Number.isInteger(XCODE.currentProjectVersion)) {
+  fail('app.identity.json', 'ios.xcode must declare marketingVersion and currentProjectVersion');
+} else {
+  const settings = [
+    ['MARKETING_VERSION', String(XCODE.marketingVersion)],
+    ['CURRENT_PROJECT_VERSION', String(XCODE.currentProjectVersion)],
+  ];
+  for (const [setting, declared] of settings) {
+    const found = [...pbx.matchAll(new RegExp(`${setting} = ([^;]+);`, 'g'))].map((m) => m[1].trim());
+    if (found.length !== 2) {
+      fail('project.pbxproj', `${found.length} ${setting} where Debug and Release were expected`);
+      continue;
+    }
+    for (const value of found) {
+      if (value !== declared) {
+        fail(
+          'project.pbxproj',
+          `${setting} is "${value}"; app.identity.json declares "${declared}". The Xcode ` +
+            'project is edited in Xcode — update the declaration in the same commit.',
+        );
+      }
+    }
   }
 }
+
+/**
+ * The pending iOS release, if there is one.
+ *
+ * Reported rather than failed. See the header: the Android half of a release
+ * can be cut from this machine and the iOS half cannot, so a lag is a state the
+ * project is allowed to be in — as long as it is written down, which is what
+ * `ios.xcode` is for.
+ */
+const iosPending =
+  XCODE && (XCODE.marketingVersion !== VERSION || XCODE.currentProjectVersion !== BUILD)
+    ? `iOS is at ${XCODE.marketingVersion} build ${XCODE.currentProjectVersion}; this release is ` +
+      `${VERSION} build ${BUILD}. ${XCODE.pending ?? ''}`.trim()
+    : null;
 
 /*
  * Android does not carry a copy — it reads the identity file at build time —
@@ -247,6 +291,10 @@ console.log(
     '                        project.pbxproj (×2 configurations) · build.gradle ·\n' +
     '                        support.md · licences.md · privacy-policy.md',
 );
+if (XCODE) {
+  console.log(`  iOS (Xcode-managed)   ${XCODE.marketingVersion} build ${XCODE.currentProjectVersion}`);
+}
+if (iosPending) console.log(`\n  pending, for a person with Xcode:\n    ${iosPending}`);
 
 if (findings.length === 0) {
   console.log('\n  every file agrees; the number in Settings is the number in both stores.');

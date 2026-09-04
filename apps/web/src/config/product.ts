@@ -33,7 +33,7 @@ export const PRODUCT = {
    */
   name: 'Hangyul Ganada',
   /** Shown in Settings. Matches the root package version. */
-  version: '1.0.2',
+  version: '1.0.3',
   localizedName: {
     en: 'Hangyul Ganada',
     ko: '한귤 가나다',

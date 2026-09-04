@@ -1,0 +1,65 @@
+{
+  "_comment": "The expected state of App.xcodeproj/project.pbxproj. Written by `node scripts/check-ios-project.mjs --adopt`, and only ever after the project was changed deliberately, in Xcode, on a Mac. See the header of that script.",
+  "sha256": "707c5e61807a169fe2243e7cc94c1857f84e62440faf6d240aa16882ece983aa",
+  "blob": "9bdfb0f3b9c089e12483ba70a164b2346d1f67e5",
+  "settings": {
+    "DEVELOPMENT_TEAM": [
+      "A6776XC6JH",
+      "A6776XC6JH"
+    ],
+    "CODE_SIGN_STYLE": [
+      "Automatic",
+      "Automatic"
+    ],
+    "PRODUCT_BUNDLE_IDENTIFIER": [
+      "com.talkhangyul.ganada",
+      "com.talkhangyul.ganada"
+    ],
+    "IPHONEOS_DEPLOYMENT_TARGET": [
+      "15.0",
+      "15.0",
+      "15.0",
+      "15.0"
+    ],
+    "MARKETING_VERSION": [
+      "1.0.2",
+      "1.0.2"
+    ],
+    "CURRENT_PROJECT_VERSION": [
+      "4",
+      "4"
+    ]
+  },
+  "knownRegions": [
+    "en",
+    "Base",
+    "ko",
+    "ja",
+    "zh-Hans",
+    "vi",
+    "th",
+    "id",
+    "fr",
+    "de",
+    "es-419",
+    "pt-BR",
+    "ru",
+    "it",
+    "nl",
+    "pl",
+    "sv",
+    "cs",
+    "hu",
+    "ro",
+    "uk",
+    "tr",
+    "ar",
+    "hi",
+    "bn",
+    "ta",
+    "te",
+    "kk",
+    "el",
+    "uz"
+  ]
+}

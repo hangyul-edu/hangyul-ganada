@@ -103,6 +103,70 @@ const manifest = {
   permissions: [...badging.matchAll(/uses-permission: name='([^']+)'/g)].map((m) => m[1]),
 };
 
+/*
+ * The manifest says what the release says it is.
+ *
+ * `versionName` and `versionCode` are read out of `app.identity.json` by
+ * `build.gradle`, so in principle they cannot disagree — and in practice a
+ * Gradle build that reused a cached `processReleaseManifest` after the identity
+ * file changed is exactly the shape of "we shipped the old version number".
+ * This is three lines that read the number back out of the binary that is about
+ * to be delivered, which is the only reading that counts.
+ *
+ * The code must also be *ahead of the last one that was built*. A store refuses
+ * a code it has already seen, and it refuses it at upload — hours after the
+ * build, on somebody else's afternoon.
+ */
+const identity = JSON.parse(readFileSync(join(ROOT, 'apps/mobile/app.identity.json'), 'utf8'));
+const previous = existsSync(join(ROOT, 'result/build-info.json'))
+  ? JSON.parse(readFileSync(join(ROOT, 'result/build-info.json'), 'utf8')).android?.version_code
+  : undefined;
+const manifestProblems = [];
+if (manifest.applicationId !== identity.appId) {
+  manifestProblems.push(`the APK says ${manifest.applicationId}; app.identity.json says ${identity.appId}`);
+}
+if (manifest.versionName !== identity.version) {
+  manifestProblems.push(`the APK says versionName ${manifest.versionName}; app.identity.json says ${identity.version}`);
+}
+if (manifest.versionCode !== identity.buildNumber) {
+  manifestProblems.push(`the APK says versionCode ${manifest.versionCode}; app.identity.json says ${identity.buildNumber}`);
+}
+if (Number.isInteger(previous) && manifest.versionCode <= previous) {
+  manifestProblems.push(
+    `versionCode ${manifest.versionCode} is not ahead of ${previous}, which the last delivery already used`,
+  );
+}
+if (manifestProblems.length) {
+  console.error('the built manifest does not match the release this tree describes:');
+  for (const problem of manifestProblems) console.error(`  ${problem}`);
+  console.error('\nRun: npm run mobile:sync && (cd apps/mobile/android && ./gradlew clean assembleRelease bundleRelease)');
+  process.exit(1);
+}
+
+/**
+ * The certificate that signed every release of this app, by its own fingerprint.
+ *
+ * A Play listing is bound to a signing key forever: an artefact signed with a
+ * different one cannot be uploaded as an update to the same app, and there is
+ * no support path that changes that. The failure it guards against is not
+ * malice, it is a build that fell back to the debug key because
+ * `ANDROID_KEYSTORE_PATH` was not exported in that shell — which produces a
+ * perfectly valid, perfectly installable APK that is not the release.
+ *
+ * The value is a public fingerprint, not key material.
+ */
+const PRODUCTION_CERTIFICATE = '157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc';
+if (fingerprint !== PRODUCTION_CERTIFICATE) {
+  console.error(
+    'the APK is signed with a different certificate than every previous release:\n' +
+      `  built with  ${fingerprint}\n` +
+      `  expected    ${PRODUCTION_CERTIFICATE}\n` +
+      '\nThis is usually the debug key, from a shell where the release keystore\n' +
+      'environment was not exported. Refusing to deliver it as a release.',
+  );
+  process.exit(1);
+}
+
 // --- Assemble ----------------------------------------------------------------
 
 /*
@@ -150,7 +214,6 @@ const vocabulary = JSON.parse(
 const examplesQa = JSON.parse(
   readFileSync(join(ROOT, 'content/vocabulary/examples-qa.json'), 'utf8'),
 );
-const identity = JSON.parse(readFileSync(join(ROOT, 'apps/mobile/app.identity.json'), 'utf8'));
 const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
 
 let commit = null;
