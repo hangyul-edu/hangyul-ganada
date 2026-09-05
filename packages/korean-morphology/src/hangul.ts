@@ -23,8 +23,28 @@ export interface Syllable {
   final: number;
 }
 
+/**
+ * The precomposed form of one character.
+ *
+ * Hangul reaches this package in two shapes. A Korean IME, a JSON file written
+ * on Linux and every string in the content packs produce U+AC00..U+D7A3 — one
+ * code point per syllable. macOS and iOS file names, some clipboards and any
+ * text that has been through an NFD pass produce the *conjoining* jamo
+ * U+1100..U+11FF instead: 먹 as three code points that a font draws as one
+ * block and `codePointAt` reads as ㅁ.
+ *
+ * Everything below is syllable arithmetic on the precomposed range, so a
+ * decomposed string used to fall straight through `decompose` as "not Hangul"
+ * and every comparison built on it returned *different* for two strings a
+ * reader cannot tell apart. Composing here rather than at each call site is
+ * what makes that impossible to forget.
+ */
+function precompose(char: string): string {
+  return char.normalize('NFC');
+}
+
 export function decompose(char: string): Syllable | null {
-  const code = (char.codePointAt(0) ?? 0) - BASE;
+  const code = (precompose(char).codePointAt(0) ?? 0) - BASE;
   if (code < 0 || code > LAST - BASE) return null;
   return {
     initial: Math.floor(code / (MEDIALS * FINALS_COUNT)),

@@ -338,14 +338,17 @@ function pastStem(infinitive: string): string {
  * string. A caller that renders null renders nothing, which is correct.
  */
 export function conjugate(lemma: string, form: Form, shape: WordShape = {}): string | null {
-  const stem = stemOf(lemma);
+  // Composed once here so that `case 'dictionary'` returns the same shape every
+  // other branch builds; `stemOf` composes for its own sake as well.
+  const composed = lemma.normalize('NFC');
+  const stem = stemOf(composed);
   if (!stem) return null;
-  const cls = classify(lemma, shape);
+  const cls = classify(composed, shape);
   const infinitive = infinitiveStem(stem, cls);
 
   switch (form) {
     case 'dictionary':
-      return lemma;
+      return composed;
     case 'infinitive':
       return infinitive;
     case 'presentPolite':
@@ -378,13 +381,13 @@ export function conjugate(lemma: string, form: Form, shape: WordShape = {}): str
       // The row is labelled as a command in every language, so semantics gate
       // it exactly as they gate `request`: 죽으세요 and 틀리세요 are perfectly
       // formed and must never be printed under "Please do".
-      if (!licensesImperative(lemma, stem)) return null;
+      if (!licensesImperative(composed, stem)) return null;
       return HONORIFIC_SUFFIXED.has(stem) ? honorificPolite(stem) : `${euStem(stem, cls)}세요`;
     case 'request':
       // Morphology is not the whole question here: see `licensesRequest`, which
       // decides whether asking somebody to do this is a favour or an insult.
       if (!takesImperative(shape)) return null;
-      return licensesRequest(lemma, stem) ? `${infinitive} 주세요` : null;
+      return licensesRequest(composed, stem) ? `${infinitive} 주세요` : null;
     case 'adnominal': {
       /*
        * 있다 and 없다 are adjectives that take the *verb* adnominal: 있는 사람,

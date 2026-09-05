@@ -207,10 +207,20 @@ export interface ClassifyOptions {
   override?: ConjugationClass;
 }
 
-/** The stem of a dictionary form: 먹다 → 먹. Null if it is not one. */
+/**
+ * The stem of a dictionary form: 먹다 → 먹. Null if it is not one.
+ *
+ * The lemma is composed first. `endsWith('다')` and `slice(0, -1)` are
+ * one-syllable operations and a decomposed lemma has three code points per
+ * syllable, so a caller who passes NFD text — a typed query, a clipboard, an
+ * iOS text field — would be told 먹다 is not a dictionary form. This is the one
+ * gateway every lemma in the package goes through, `classify` and `conjugate`
+ * included, so composing here composes for all of them.
+ */
 export function stemOf(lemma: string): string | null {
-  if (lemma.length < 2 || !lemma.endsWith('다')) return null;
-  const stem = lemma.slice(0, -1);
+  const composed = lemma.normalize('NFC');
+  if (composed.length < 2 || !composed.endsWith('다')) return null;
+  const stem = composed.slice(0, -1);
   return [...stem].every(isHangulSyllable) ? stem : null;
 }
 

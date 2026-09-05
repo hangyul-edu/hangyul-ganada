@@ -477,7 +477,9 @@ export function searchWords(
   meaningOf: (word: VocabularyWord) => string,
   limit: number,
 ): Array<{ word: VocabularyWord; lessonId: string }> {
-  const needle = query.trim().toLowerCase();
+  // NFC first — the corpus is precomposed and a pasted decomposed query
+  // matches nothing at all. See `typedQuery` in `data/dictionary.ts`.
+  const needle = query.normalize('NFC').trim().toLowerCase();
   if (!needle) return [];
 
   const scored: Array<{ word: VocabularyWord; rank: number }> = [];

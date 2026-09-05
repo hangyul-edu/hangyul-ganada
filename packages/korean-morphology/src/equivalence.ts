@@ -63,9 +63,27 @@ export interface Equivalence {
  */
 const SAME_ANSWER: ReadonlySet<string> = new Set(['identical', 'spacing', 'particle']);
 
-/** Trimmed, inner whitespace collapsed, terminal punctuation removed. */
+/**
+ * Trimmed, inner whitespace collapsed, terminal punctuation removed — and
+ * composed, which is the step that has to come first.
+ *
+ * Every rule below this line is written against precomposed Hangul: a syllable
+ * is one code point, `endsWith('를')` is a one-character test and `slice(0, -1)`
+ * removes one syllable. Hand the same rules a decomposed string — the shape a
+ * macOS or iOS text field, a clipboard round trip, or any NFD pass produces —
+ * and 학교를 is six code points whose last one is ㄹ. `endsWith` fails, the
+ * particle rule never fires, the conjugation tables never match, and `compare`
+ * answers *different* for two strings that render identically.
+ *
+ * NFC is applied to the whole string rather than per syllable because the
+ * failures are string-shaped, not character-shaped. It is idempotent and it is
+ * a no-op on the content packs, which are already composed; what it buys is
+ * that any *typed* or pasted Korean reaching this module is compared as the
+ * reader sees it. See `hangul.ts` → `precompose`.
+ */
 export function normalise(text: string): string {
   return text
+    .normalize('NFC')
     .trim()
     .replace(/\s+/g, ' ')
     .replace(/[.!?。！？…]+$/u, '')

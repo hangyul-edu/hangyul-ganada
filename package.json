@@ -61,6 +61,8 @@
     "i18n:check": "node scripts/i18n-report.mjs --check",
     "locale:content:qa": "tsx scripts/locale-content-qa.mjs",
     "locale:content:check": "tsx scripts/locale-content-qa.mjs --check",
+    "locale:practice:qa": "tsx scripts/locale-practice-qa.mjs",
+    "locale:practice:check": "tsx scripts/locale-practice-qa.mjs --check",
     "name:check": "node scripts/check-product-name.mjs --check",
     "mobile:identity": "node scripts/check-mobile-identity.mjs",
     "mobile:identity:check": "node scripts/check-mobile-identity.mjs --check",

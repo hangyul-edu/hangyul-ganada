@@ -166,7 +166,9 @@ export function analyse(
   isHeadword: (lemma: string) => boolean,
   options: { forms?: readonly Form[] } = {},
 ): Analysis[] {
-  const typed = surface.trim();
+  // NFC first: the guard below is a precomposed-syllable range, so a decomposed
+  // string would be rejected as "not Korean" before any analysis ran.
+  const typed = surface.normalize('NFC').trim();
   if (typed.length < 2 || !/^[가-힣\s]+$/.test(typed)) return [];
   // Already a dictionary form: nothing to analyse, and 먹다 must not be reported
   // as an inflection of itself.

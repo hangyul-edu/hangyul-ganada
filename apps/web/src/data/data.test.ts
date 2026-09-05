@@ -263,6 +263,16 @@ describe('vocabulary', () => {
     }
   });
 
+  it('finds a word pasted in decomposed Hangul', () => {
+    // The corpus is precomposed; a share sheet, a clipboard round trip or an
+    // iOS text field can hand back the same word as conjoining jamo, which
+    // equals no headword, no meaning and no romanisation.
+    const meaningOf = (word: (typeof VOCABULARY)[number]) => wordCopy(word, 'en').value.meaning;
+    const decomposed = '사과'.normalize('NFD');
+    expect(decomposed).not.toBe('사과');
+    expect(searchWords(decomposed, meaningOf, 10)[0]?.word.word).toBe('사과');
+  });
+
   it('has no duplicate ids or words', () => {
     expect(new Set(VOCABULARY.map((w) => w.id)).size).toBe(VOCABULARY.length);
     expect(new Set(VOCABULARY.map((w) => w.word)).size).toBe(VOCABULARY.length);

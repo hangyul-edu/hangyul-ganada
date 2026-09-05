@@ -230,6 +230,23 @@ export function loadEntry(headword: string, chunk: string): Promise<DictionaryEn
 }
 
 /**
+ * What the learner actually typed, in the shape the index is built in.
+ *
+ * Every key in the index — headword, gloss, romanization — comes from content
+ * files that are precomposed Hangul, and every Korean test below is written
+ * against the precomposed syllable range. A query is the one string here that
+ * did not come from a content file: it comes from a text field, a clipboard or
+ * a share sheet, and on iOS and macOS those can hand back decomposed Hangul.
+ * 학교 as six conjoining jamo matches no headword, fails `/^[가-힣]+$/`, and
+ * returns nothing at all from a dictionary that contains the word.
+ *
+ * One composition, at the one place user text enters the search.
+ */
+function typedQuery(query: string): string {
+  return query.normalize('NFC').trim();
+}
+
+/**
  * Rank a query against the index.
  *
  * The same ladder `searchWords` uses on the taught corpus — exact, prefix,
@@ -244,7 +261,7 @@ export function rankDictionary(
   query: string,
   limit: number,
 ): DictionaryHit[] {
-  const needle = query.trim().toLowerCase();
+  const needle = typedQuery(query).toLowerCase();
   if (!needle) return [];
 
   const { hits, gloss, romanization } = index;
@@ -340,7 +357,7 @@ export function stripParticle(
   index: DictionaryIndex,
   query: string,
 ): Array<{ lemma: string; particle: string; hit: DictionaryHit }> {
-  const typed = query.trim();
+  const typed = typedQuery(query);
   if (typed.length < 2 || !/^[가-힣]+$/.test(typed)) return [];
   const out: Array<{ lemma: string; particle: string; hit: DictionaryHit }> = [];
   const seen = new Set<string>();
@@ -374,7 +391,7 @@ export function analyseInflection(
   query: string,
 ): Array<{ lemma: string; form: string; hit: DictionaryHit }> {
   const out: Array<{ lemma: string; form: string; hit: DictionaryHit }> = [];
-  for (const analysis of analyse(query.trim(), (lemma) => hasHeadword(index, lemma))) {
+  for (const analysis of analyse(typedQuery(query), (lemma) => hasHeadword(index, lemma))) {
     const row = (index.exact.get(analysis.lemma.toLowerCase()) ?? []).find(
       (i) => index.hits[i]!.headword === analysis.lemma,
     );

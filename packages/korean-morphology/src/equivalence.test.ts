@@ -69,6 +69,28 @@ describe('answer equivalence', () => {
     }
   });
 
+  it('compares decomposed Korean as the reader sees it', () => {
+    /*
+     * A text field on iOS or macOS, a clipboard round trip and any NFD pass
+     * hand back 학교를 as six conjoining jamo. Every rule in this module is
+     * written against precomposed syllables — `endsWith('를')` is a
+     * one-character test — so without the composition in `normalise` the
+     * particle rule never fires and two identical-looking strings come back
+     * `different`.
+     */
+    const decomposed = (text: string) => text.normalize('NFD');
+    expect(decomposed('학교를')).not.toBe('학교를');
+    expect(compare(decomposed('학교를'), '학교를').difference).toBe('identical');
+    expect(compare(decomposed('학교를'), '학교을').difference).toBe('particle');
+    expect(compare(decomposed('한 개'), '한개').difference).toBe('spacing');
+    expect(compare(decomposed('가요'), '갑니다', '가다').difference).toBe('politeness');
+    expect(compare('가요', decomposed('갑니다'), decomposed('가다')).difference).toBe('politeness');
+    expect(sameLemma(decomposed('들어요'), '듣습니다', '듣다')).toBe(true);
+    // And it stays a decision about the strings: composition does not make two
+    // different words the same one.
+    expect(compare(decomposed('개'), '마리').difference).toBe('different');
+  });
+
   it('relates nothing it cannot account for', () => {
     expect(compare('개', '마리').difference).toBe('different');
     expect(compare('개', '마리').same).toBe(false);

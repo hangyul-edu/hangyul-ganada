@@ -5,8 +5,10 @@ import {
   type DictionaryHit,
   loadChunk,
   loadEntry,
+  analyseInflection,
   loadIndex,
   rankDictionary,
+  stripParticle,
   resetDictionaryCache,
 } from './dictionary';
 
@@ -155,5 +157,38 @@ describe('ranking', () => {
 
   it('answers an empty query with nothing rather than with everything', () => {
     expect(rankDictionary(index, '   ', 5)).toEqual([]);
+  });
+
+  it('finds a word typed or pasted in decomposed Hangul', () => {
+    /*
+     * The index is built from content files, which are precomposed: 나가다 is
+     * three code points. A text field on iOS or macOS, a clipboard round trip
+     * and any NFD pass hand back the same word as nine conjoining jamo, which
+     * is equal to no headword, no gloss and no romanisation — the search box
+     * would answer "nothing matches" over a dictionary that contains the word.
+     */
+    const decomposed = '나가다'.normalize('NFD');
+    expect(decomposed).not.toBe('나가다');
+    expect(rankDictionary(index, decomposed, 5).map((hit) => hit.headword)).toEqual(['나가다']);
+    expect(rankDictionary(index, '나'.normalize('NFD'), 5).map((hit) => hit.headword)).toEqual([
+      '나',
+      '나가다',
+    ]);
+  });
+
+  it('resolves an inflected form typed in decomposed Hangul', () => {
+    // The morphological fallback is guarded by /^[가-힣\s]+$/, a precomposed
+    // range: without composition the guard rejects the query before any
+    // analysis runs and 나가요 resolves to nothing.
+    const composed = analyseInflection(index, '나가요');
+    expect(composed.map((row) => row.lemma)).toEqual(['나가다']);
+    expect(analyseInflection(index, '나가요'.normalize('NFD')).map((row) => row.lemma)).toEqual([
+      '나가다',
+    ]);
+  });
+
+  it('strips a particle from a decomposed query', () => {
+    expect(stripParticle(index, '나는').map((row) => row.lemma)).toEqual(['나']);
+    expect(stripParticle(index, '나는'.normalize('NFD')).map((row) => row.lemma)).toEqual(['나']);
   });
 });
