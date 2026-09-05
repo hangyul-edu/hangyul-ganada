@@ -53,6 +53,13 @@ const WRITE = !check;
 /** Test counts cost a minute to establish honestly. `--no-tests` skips them. */
 const withTests = !process.argv.includes('--no-tests');
 
+/*
+ * Declared here rather than beside `updates` below, because `countVitest` runs
+ * while the figures are being gathered — long before the checking starts — and
+ * a suite it cannot count is a finding it has to be able to record.
+ */
+const problems = [];
+
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const exists = (path) => existsSync(join(ROOT, path));
 
@@ -93,12 +100,38 @@ function countVitest(workspace) {
   // stdout with anything the suite logs, and a single stray line makes the
   // parse fail in a way that looks like the suite failing.
   const out = join(tmpdir(), `hangyul-vitest-${workspace.replace(/\W+/g, '-')}.json`);
-  execFileSync('npx', ['vitest', 'run', '--reporter=json', `--outputFile=${out}`, '--silent'], {
-    cwd: join(ROOT, workspace),
-    encoding: 'utf8',
-    maxBuffer: 64 * 1024 * 1024,
-    stdio: 'ignore',
-  });
+  /*
+   * `stdio: 'ignore'` threw away the one thing a reader needs.
+   *
+   * When the runner exits non-zero this used to throw Node's raw
+   * `Command failed:` error with `stdout: null` and `stderr: null`, from inside
+   * a helper called `countVitest` — so a suite failure, a machine out of memory
+   * and a missing binary all produced the same page of stack trace naming
+   * neither the workspace nor the reason. It cost two debugging passes in one
+   * session, both of which ended with the same command run by hand, passing.
+   *
+   * The output is captured now and the failure is reported as a finding with
+   * the tail of it attached. A run that cannot count is a finding, not a crash.
+   */
+  try {
+    execFileSync('npx', ['vitest', 'run', '--reporter=json', `--outputFile=${out}`, '--silent'], {
+      cwd: join(ROOT, workspace),
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  } catch (error) {
+    const tail = String(error.stderr || error.stdout || '')
+      .split('\n')
+      .filter(Boolean)
+      .slice(-4)
+      .join(' / ');
+    problems.push(
+      `could not count the ${workspace} suite: vitest exited ${error.status ?? '?'}` +
+        (tail ? ` — ${tail}` : ' with no output'),
+    );
+    return null;
+  }
   return JSON.parse(readFileSync(out, 'utf8')).numTotalTests;
 }
 
@@ -496,7 +529,6 @@ const DOCUMENTS = [
   'result/BUILD_OR_SIGNING_BLOCKERS.md',
 ];
 
-const problems = [];
 const updates = [];
 let checked = 0;
 

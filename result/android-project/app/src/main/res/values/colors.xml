@@ -48,5 +48,5 @@
       `scripts/content/build_app_icons.py` reads the artwork and fails the build
       if this line stops matching it.
     -->
-    <color name="ic_launcher_background">#FFF6DC</color>
+    <color name="ic_launcher_background">#FDF3DD</color>
 </resources>

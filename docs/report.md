@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.3
 date: 5 September 2026
-describes: The seventh screenshot pass. Two photographs of the running app — ㄸ being written with both of its lids starting a visible distance inside the letter, and a Numbers course whose every question pointed at a set of numbers it had never given a name to — and in both cases a green gate was watching. The corner gates all measure the finished letter, where the second stroke has arrived and filled the hole; 41 stroke ends over 16 characters were drawn short of their corner for as long as they were the only ink on the paper. The Numbers copy had been rewritten once to remove the linguistic labels and had replaced them with demonstratives, because a set with no name has to be pointed at every time it comes up. Also: the answer result now draws the verdict and nothing under it, the final check states its threshold in the unit a learner counts in, a lesson header that was one of its own answers in thirty-one languages, two questions answerable by the shape of their options, and I-133 — the days of the week at level 9 — closed by making editorial usefulness a ceiling rather than a term. Artefacts built from commit 44ad0536 at versionCode 13.
+describes: The eighth pass. New platform application logos, and three screenshots of the Numbers course whose option lists could not be compared with each other: a definition among three prices, two complete clock times among two bare unit words, and a price among a time, a head-count and a duration. All three had exactly one correct answer, passed every gate, and could be answered without reading any Korean, because what makes two options comparable had never been written down. It is written down now — an answer domain declared on all 102 items, one filter at the single point every generator passes through, and a verifier that re-reads the rendered strings in 32 languages because it does not trust the declaration. Seven items were written for gaps the rule made visible and ten clips recorded for them. Also: the icon gate could not tell the two platform sources apart, the audio tool's --only flag replaced the manifest the app loads, and the patent disclosure described a capability the product does not have. Artefacts built from commit f5436474 at versionCode 14.
 mark: report-assets/mark.png
 ---
 
@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.3**, Android versionCode **13** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.3**, Android versionCode **14** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -130,11 +130,11 @@ without trusting the row.
 | Interface languages declared natively | 32 | `locales:native:check`, and the APK's own `locales:` line |
 | Numbers modules | 6 | `data/numbers.ts` `NUMBER_MODULES` |
 | Numbers lessons | 19 | `data/numbers.ts` `NUMBER_LESSONS` |
-| Numbers items | 95 | `data/numbers.ts` `NUMBER_ITEMS` |
+| Numbers items | 102 | `data/numbers.ts` `NUMBER_ITEMS` |
 | Numbers explanation steps | 52 | `NUMBER_LESSONS[].explanation` summed |
 | Numbers exercise kinds | 9 | `NumbersExerciseKind` |
 | Numbers meanings rendered by `Intl` | 35 | items carrying a `value` and no gloss |
-| Numbers translated keys | 260 × 32 | `numbers:qa` |
+| Numbers translated keys | 272 × 32 | `numbers:qa` |
 | Numbers audio clips | 45 words + 51 examples, all recorded | `numbers:qa`, `public/audio/manifest.json` |
 | Vocabulary packs complete | 20 | `locale:content:qa` |
 | Vocabulary packs at 600 words | 12 | `locale:content:qa` |
@@ -143,8 +143,8 @@ without trusting the row.
 | Level-test items, English | 4,194 | `public/level-test/manifest.json` |
 | Level-test contextual items | 594 | the bank, `kind === "context"` |
 | Level-test reach, 12 partial languages | 1,014 items each | `manifest.json` `reach` |
-| Audio clips | 13,608 | distinct files in `public/audio/manifest.json` |
-| Audio voice slots | 13,728 | the same manifest, two voices per entry |
+| Audio clips | 13,620 | distinct files in `public/audio/manifest.json` |
+| Audio voice slots | 13,740 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
 | Words at levels 28–30 | 477 | the corpus, by level |
 | Level anchors held | 162 | `level-anchors.json` |
@@ -153,10 +153,10 @@ without trusting the row.
 | Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 153 | `docs/issues.json` |
-| Signed APK | 83.9 MB | `result/build-info.json` |
-| Signed AAB | 82.2 MB | same |
-| Tests | 1,356 across 77 files | `npm test` |
+| Issues tracked | 156 | `docs/issues.json` |
+| Signed APK | 84.2 MB | `result/build-info.json` |
+| Signed AAB | 82.4 MB | same |
+| Tests | 1,365 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -484,7 +484,7 @@ that no build can.
 A standalone paid application, web and Android from one codebase. Twelve
 curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,333
 words. Everything a learner needs is in the binary: the curriculum, the fonts,
-the stroke data and 13,608 pronunciation clips in two voices.
+the stroke data and 13,620 pronunciation clips in two voices.
 
 ## 4.2 The intended journey — **VERIFIED**
 
@@ -1356,7 +1356,7 @@ implementation and names the store that still holds rows (I-128).
 
 # 14. Audio
 
-**13,608 distinct files over 13,728 voice slots, 66.7 MB**, two Korean neural
+**13,620 distinct files over 13,740 voice slots, 66.7 MB**, two Korean neural
 voices at 0.82× rate, recounted from `public/audio/manifest.json` this cycle.
 `audio:qa` decodes a 600-clip sample and checks the rest for existence, manifest
 agreement and duplication: 0 errors, 0 warnings, durations 240 ms to 2,880 ms,
@@ -1719,13 +1719,13 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `44ad0536`, working tree clean |
+| Built from | `f5436474`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 13, versionName 1.0.3 |
+| Package | `com.talkhangyul.ganada`, versionCode 14, versionName 1.0.3 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **83.9 MB** (88,019,042 B), `15b9ead897c118fd…` |
-| Release AAB | **82.2 MB** (86,227,458 B), `d230b86460a8b458…` |
+| Release APK | **84.2 MB** (88,242,570 B), `bcb94e2a3002e65c…` |
+| Release AAB | **82.4 MB** (86,451,898 B), `ca6fb668ee76e257…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -3434,7 +3434,8 @@ found that its lessons showed as completed without having been studied, and
 that the course was a table of contents rather than a course. It was rebuilt in
 the same pass; §20K is the account. What this section still records is the one
 idea that survived: a numeral's meaning is rendered by `Intl.NumberFormat` from
-its `value` — 95 of the 95 items — rather than by a translated string, so 십
+its `value` — every one of the 102 items with one — rather than by a translated
+string, so 십
 needs the reader's own digits and grouping and not the word "ten" in 32
 languages. A key is used only for what Intl cannot say.
 
@@ -3567,7 +3568,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,356 across 77 files** — handwriting-core 96, korean-morphology 216, web 1044 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **1,365 across 77 files** — handwriting-core 96, korean-morphology 216, web 1044 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -3707,7 +3708,7 @@ the same interface. Structure version 2 → 3 for the new store; schema 12 → 1
 
 ## 20K.7 The curriculum, rebuilt — **IMPLEMENTED**
 
-Six modules, nineteen lessons, 95 items, 52 explanation steps, nine exercise
+Six modules, nineteen lessons, 102 items, 52 explanation steps, nine exercise
 kinds. The two systems and the two zeroes and which system when; past ten in
 both systems and the five counting forms; people and things, everyday counters,
 age; hours, minutes, dates with the irregular months, weekdays; prices,
@@ -4189,7 +4190,7 @@ naming the artefact that spent it.
 | `numbers:copy` (new) | 7,200 learner-facing strings across 32 languages |
 | `vocabulary:level:audit` (new) | 30 levels, every one at or above a fortnight |
 | `hints:qa` | 442,694 rungs, 0 leaking, 0 useless |
-| `numbers:qa` | 6 modules, 19 lessons, 95 items, 0 problems |
+| `numbers:qa` | 6 modules, 19 lessons, 102 items, 0 problems |
 | `leveltest:ambiguity` · `content:safety` · `korean:education` | green |
 | `copy:audit` · `locale:editorial` · `i18n:check` | **0 errors**, 0 warnings |
 | `vocabulary:level:qa` · `vocabulary:recommendation` · `dailyvocab:qa` · `dailyplan:fresh` | green |
@@ -6506,7 +6507,7 @@ document they predate.
 | **I-144** | A `<circle>` with `r = radius` and `stroke-width: 0.9` paints out to `radius + 0.45`, because an SVG ring straddles the circumference. `layoutMarkers` clamped the *centre* to `[radius, 100 - radius]`, so a badge against an edge painted 0.45 units past the box, and an outermost `<svg>` clips at its viewport. `.paper` also carried `border-radius: 20px`, which clips at the curve on an element whose overflow is hidden — and whose size in viewBox units nothing in the layout could name, since 20 px is 13.3 units at the gallery's 150 and 10 at the introduction card's 200.  Three checks passed throughout. `strokes:qa` asked whether badges overlapped each other; `strokeMarkers.test.ts` asserted `label.x >= radius`; `strokes:visual` asked whether a badge stood on the ink. All three were measuring the disc's *fill*. | Done, in the placement rather than on ㅌ. `MARKER_RING` and `paintedRadius` are what every bound is now written against, and `ontoPaper` — one function shared by the layout, the unit test and the gate — bounds a badge to the sheet including its rounded corners. The paper is a `<rect rx>` drawn inside the SVG, so it is in the same coordinate system as the ink and `.paper` clips nothing at all. Badge-to-badge clearance moved to the painted radius too; 글's third and fifth rings were a tenth of a unit from touching. No per-glyph override was added: a hand-placed ㅌ would have fixed ㅌ and left the other twenty. `strokes:markers` measures all 269 badges over 73 characters for clipping, ink overlap, ring collision, leader integrity, badge order and legibility at the smallest size the product draws, and reads the stylesheet back so a clip cannot grow again. See §20Q.1. |
 | **I-145** | `.lessonIcon` was a 20 px `<span>` holding a tick when the lesson was finished and nothing at all otherwise — which is most of the course, most of the time — plus the row's 12 px gap. `.moduleHead` was padded `var(--hg-space-1)` against the cards' `var(--hg-space-4)`. `.lessonLocked`, `.lessonLockedRow` and its hover rule had been dead since the prerequisite gate was removed in v1.0.2. Every box measurement on that screen was correct: an empty box is perfectly aligned. | Done. There is no leading column; the tick moved inside the **Completed** pill, which is the same fact said once instead of twice. One `--numbers-rail` puts the module number, the module goal, the summary and every lesson title on one rule, with the chevrons and lesson counts on one rule at the other end, and the card's inline padding is a pixel short of the rail because it draws a border and the heading above it does not — it is the ink that lines up. The row is one flex line and the title block is `flex: 1 1 9rem`, so a badge that will not fit beside the title wraps below it rather than squeezing it. `numbers:layout` measures the ink at seven sizes including landscape, at 100/150/200% text, in both appearances and in all 32 languages, with four lessons seeded to real evidence so the badges are on screen. Restoring the icon column fails it 2,565 times. See §20Q.2. |
 | **I-146** | All nineteen lessons list `listen_choose` in `exercise_kinds`. `settings.sound_free` has existed since §36 and `domain/review.ts` has always honoured it; `features/numbers/exercises.ts` never asked. Neither did the course ask the player, so a build with no clips in it or a manifest that failed to load produced the same dead end from the other direction. | Done, in two places. `practiceExercises`, `masteryExercises` and `exerciseCoverage` take a `soundFree` option and drop the heard-only kind; `NumberSessionPage` reads `settings.sound_free` and the player's own `ready && !available`, once, when a run mounts, so a manifest that finishes loading mid-check cannot change the questions or the count printed on the way in. `numbers:qa` §11 measures that every lesson still asks every item in both phases.  The setting is unreachable in the interface — `MyPage` removed the switch when the *word* questions it existed for went away — so honouring it alone would have accommodated nobody who had not already turned it on. The second half is the letter side's own answer, on the same string: a **Can't use audio?** under any prompt whose whole stimulus is a clip, per question, which swaps it for an equivalent visual question with the same options, the same answer and the same scoring. `soundFreeFor` picks the substitute from the *options* — a numeral gets its digits **and its set**, since 하나 and 일 are both 1; anything else gets its gloss; and where neither identifies exactly one option on screen (만 원 beside 만) the button is not drawn rather than a worse question invented. 349 of the 352 listening questions the engine can build carry one. See §20Q.3. |
-| **I-158** | Three screenshots of the shipped course, each passing `answerability` and `numbers:qa`:  ```   원        무슨 뜻일까요?      한국 돈의 단위 · 5,000원 · 10,000원 · 35,000원   🔊        무엇이라고 들렸나요?   두 시 십오 분 · 분 · 세 시 삼십 분 · 초   오천 원    무슨 뜻일까요?      2시 · 사람 세 명 · 돈 5,000원 · 30분 ```  A definition among three amounts; two complete times among two bare unit words; a price among a time, a head-count and a duration. **Root cause:** options were drawn from whatever the lesson happened to contain, and what makes two options comparable had never been written down. A pass two editions ago made the *shapes* uniform — every option prose rather than one prose among three numerals — which is why the money question still looked plausible while still being unanswerable on its merits, and why no gate objected.  **Why earlier gates missed it.** `answerability` asks whether exactly one option is correct, which all three satisfied. `numbers:qa` asks whether the instruction matches the question type, which all three satisfied. Neither had a name for *these two options are not the same kind of thing*.  **Fixed 5 September 2026.** `AnswerDomain` is declared on all 101 items and on every option; `build()` drops any option outside the answer's domain at the one place every builder passes through. Two shape rules beyond it: a clock time with minutes stands only against clock times with minutes, and a whole question only against other whole questions. `numbers:domain` gates it — 1,767 questions, 6,626 options, 2,496 strings across 32 languages — and two of its eleven rules do not trust the declarations, re-reading option lists per language for two options that say the same thing and for an answer that is the only one naming a quantity. Negative-tested five ways, each restoring a defect from the screenshots, 30 findings and exit 1 each. Seven items were written for gaps the rule made visible, and ten clips generated for them. | Done. |
+| **I-158** | Three screenshots of the shipped course, each passing `answerability` and `numbers:qa`:  ```   원        무슨 뜻일까요?      한국 돈의 단위 · 5,000원 · 10,000원 · 35,000원   🔊        무엇이라고 들렸나요?   두 시 십오 분 · 분 · 세 시 삼십 분 · 초   오천 원    무슨 뜻일까요?      2시 · 사람 세 명 · 돈 5,000원 · 30분 ```  A definition among three amounts; two complete times among two bare unit words; a price among a time, a head-count and a duration. **Root cause:** options were drawn from whatever the lesson happened to contain, and what makes two options comparable had never been written down. A pass two editions ago made the *shapes* uniform — every option prose rather than one prose among three numerals — which is why the money question still looked plausible while still being unanswerable on its merits, and why no gate objected.  **Why earlier gates missed it.** `answerability` asks whether exactly one option is correct, which all three satisfied. `numbers:qa` asks whether the instruction matches the question type, which all three satisfied. Neither had a name for *these two options are not the same kind of thing*.  **Fixed 5 September 2026.** `AnswerDomain` is declared on all 102 items and on every option; `build()` drops any option outside the answer's domain at the one place every builder passes through. Two shape rules beyond it: a clock time with minutes stands only against clock times with minutes, and a whole question only against other whole questions. `numbers:domain` gates it — 1,767 questions, 6,626 options, 2,496 strings across 32 languages — and two of its eleven rules do not trust the declarations, re-reading option lists per language for two options that say the same thing and for an answer that is the only one naming a quantity. Negative-tested five ways, each restoring a defect from the screenshots, 30 findings and exit 1 each. Seven items were written for gaps the rule made visible, and ten clips generated for them. | Done. |
 | **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
 | **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
 | **I-37** | Built as its own feature, with its own bank, its own scale and its own simulation harness.  **The scale.** The Hangyul Vocabulary Level is 1–30, cumulative and non-linear: Lv1 ≈ 147 words, Lv10 ≈ 1,835, Lv20 ≈ 5,690, Lv30 ≈ 10,635+. It is **not** the teaching corpus cut into thirty equal bands — that would have made a "level" mean 86 words, which is not a proficiency scale, it is a progress bar. The 2,581 taught words are used as *calibrated anchors* inside it, together with quality-gated dictionary entries, all ranked by the same `frequency.measure` the corpus uses.  **The bank.** `scripts/content/build_level_test.py` selects the anchors and `build_level_test.mjs` generates 3,960 items across the 30 levels (min 121 each) to `public/level-test/`, content-hashed and lazily fetched — it is not in the bundle and not on any critical path. Items are Korean→meaning, meaning→Korean and context, and **context items use conjugated Korean** — 마셔요, not 마시다 — generated through `packages/korean-morphology`, which carries 99 unit tests and a named regression table across ten irregular classes and is checked against 1,306 corpus predicates by `npm run conjugation:qa`. `npm run leveltest:ambiguity` applied eight rules to the whole bank when this was written; it applies twelve now and reports **0 findings** — the four it gained are I-55. A 143-word blocklist keeps unsuitable subject matter out of both the anchors and the distractors; an anchor must be Hangul, 1–4 syllables, a noun/verb/adjective/adverb, and carry a gloss of 3–60 characters that is not a grammatical form page.  **The scoring.** A 3PL/Rasch model with a guessing floor of 1/4, EAP over a grid, Fisher-information item selection. **Exactly 30 items — 12 context, 9 Korean→meaning, 9 meaning→Korean — under one 8-minute clock**, replacing an adaptive stopping rule that ran 18–36 items until SE fell under 1.6 levels: a test whose length depends on how well you are doing tells you how well you are doing while you sit it. Difficulty still adapts; the count does not. On expiry the answers given are kept, the rest are recorded as *I don't know*, and the sitting is scored. "I don't know" is an answer and is weighted as cleaner evidence than a wrong guess, not as a skip. `npm run leveltest:qa` simulates 200 sittings at each of the 30 levels against the real bank: **MAE 1.34 levels, 95.3% within ±3, 99.7% within ±5, exactly 30 items, composition 12.0/9.0/9.0.** Fixing the length cost 0.07 levels of mean error.  **What it does not do.** No listening, no handwriting, no hints, no answer reveal, no running score. It writes `settings.level_test` and nothing else — an e2e test takes the whole assessment and asserts that every other IndexedDB store is byte-for-byte unchanged. The result screen names the scale as **the Hangyul Vocabulary Level** in all 32 languages, so what the learner is given is our own number rather than an implied TOPIK or CEFR grade. The four disclaimer sentences that used to open the intro — no hints, answers not shown, nothing here changes your lessons, not an official proficiency grade — were removed: four caveats to read before a beginner is allowed to find out how much Korean they know is a methodology page, not an invitation. The promises they made are still kept and are asserted against the DOM by `e2e/level-test.spec.ts`, which is stronger than a sentence claiming them. | Done. |
@@ -6637,7 +6638,7 @@ no physical Android device has run the binary.
   midrange Android the target customer is most likely holding.
 * **The onward destination** for the Hangyul hand-off, which is a business fact
   somebody outside this repository owns (I-03).
-* **Whether the Numbers course teaches.** Its 95 items, 52 explanation steps
+* **Whether the Numbers course teaches.** Its 102 items, 52 explanation steps
   and 272 strings in 32 languages were written and translated in this pass by
   the same automated process that wrote this report. What §20K proves is that
   the course is *honest* — nothing is marked complete without evidence, the
@@ -6688,7 +6689,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,356 unit cases across three packages — 1044
+The suites run green in full: 1,365 unit cases across three packages — 1044
 web, 216 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
@@ -6697,7 +6698,7 @@ reading of all 1,509 predicates.
 
 **Why a candidate and not a release.** The commit problem stayed fixed and then
 found a second way to be wrong. This edition's artefacts are built from a clean
-checkout of a named commit, at versionCode 13 — one past the 12 the previous
+checkout of a named commit, at versionCode 14 — one past the 13 the previous
 delivery used, because product files have changed and Play refuses a code reused
 for different bytes; `version:check` is what said so, and it said so before the
 build rather than after. What the previous edition shipped was worse than a
@@ -6732,6 +6733,212 @@ edition:
    by hand this pass; the weight that put them there is unchanged, so the next
    batch of antonym pairs lands in the same place. It is open, not hidden, and
    the eighteen overrides each name the cause.
+
+# 20S. The eighth pass — the logos, and three questions that were not questions
+
+## 20S.1 Two application logos, and a gate that can tell them apart
+
+`application_logo_android.png` (512) and `application_logo_iphone.png` (1024)
+replace the previous pair. The pipeline already read one source per platform, so
+the work was not the wiring — it was that three numbers tuned for the *previous*
+drawing were carried forward as if they were properties of the pipeline:
+
+```
+  ic_launcher_background     #FFF6DC → #FDF3DD   the ground this artwork is on
+  ROUND_ICON_FRACTION        0.76 → 0.84
+  ANDROID_ADAPTIVE_FRACTION  0.46 → 0.51
+  MASKABLE_SAFE_FRACTION     0.62 → 0.69
+```
+
+Each is one step under the largest fraction at which no ink pixel leaves the
+safe circle at **every** density shipped — 48 px mdpi is the binding one, where a
+pixel of rounding costs more than it does at 192. Left at the old artwork's
+limits the launcher icon would have shipped about 15% smaller than it needs to
+be, inside a tile of empty cream, and nothing would have said so.
+
+59 files regenerated: five densities × legacy, round, adaptive foreground and
+monochrome; the iOS 1024 universal slot; the web manifest's four; both store
+icons. Verified by rendering under circle, squircle and rounded-square masks at
+192, 48 and 32 px on light and dark launcher grounds.
+
+`ADAPTIVE_SAFE_FRACTION` and `LEGACY_FRACTION` are deleted: nothing read them,
+and the module docstring named the first as the number the adaptive foreground is
+drawn at, which it was not. `apps/web/public/brand/app-icon.png` is deleted too —
+a third, platform-neutral copy nothing had read since the two platform sources
+arrived, still carrying the previous artwork through a logo change.
+
+**The gate could not tell the two platforms apart.** `--check` compared every
+generated file against a fresh render and reported missing, stale and obsolete —
+but swapping the two source constants moves both sides together, so it stayed
+green on an Android launcher icon drawn from the iPhone artwork. It now
+re-renders each platform's delivered icon *from the other platform's source* and
+fails if the bytes match. Not a picture comparison: at 64 px the two sources
+differ by 0.48 of a level, so any perceptual threshold would be tuned to noise.
+Provenance is compared, not artwork. **I-160.**
+
+## 20S.2 Three screenshots, one defect
+
+```
+  원        무슨 뜻일까요?      한국 돈의 단위 · 5,000원 · 10,000원 · 35,000원
+  [clip]    무엇이라고 들렸나요?   두 시 십오 분 · 분 · 세 시 삼십 분 · 초
+  오천 원    무슨 뜻일까요?      2시 · 사람 세 명 · 돈 5,000원 · 30분
+```
+
+Each has exactly one correct option. Each passed `answerability`, which verifies
+that. Each passed `numbers:qa`, which verifies the instruction matches the
+question type. And each can be answered without reading any Korean: the first
+answer is the only option that is not a number, the second is one of only two
+that are complete expressions, the third is the only one about money.
+
+**Root cause.** Options were drawn from whatever the lesson happened to contain,
+and *what makes two options comparable* had never been written down. Because it
+was never written down, no verifier could ask for it.
+
+**Why the previous pass did not fix it.** It did address the money question — by
+giving the three prices glosses, so that all four options were prose rather than
+one prose among three numerals. That made the *shapes* uniform and left the
+*domains* mixed, which is why the question still looked plausible and was still
+unanswerable on its merits. Fixing the symptom one level below the cause is the
+recurring shape of this report.
+
+**The fix.** `AnswerDomain` — sixteen categories — is declared on all 102 items,
+in the source, and is deliberately never derived from the display string. Option
+assembly passes through one function, and an option outside the answer's domain
+is dropped there; a question that cannot reach three options inside its own
+domain is not asked. Two further shape rules, both about questions answerable
+without the content: a clock time with minutes stands only against clock times
+with minutes, and a whole question (얼마예요?) only against other whole questions.
+
+Every generated question now declares itself — `NumbersQuestionSchema` carries
+the objective, prompt type, target type, answer domain, correct answer,
+distractor strategy, difficulty, prerequisites and audio target, filled in from
+what was actually built. **I-158.**
+
+**The instruction stopped being one sentence.** *무슨 뜻일까요?* is the right
+question over a definition and the wrong one over four prices; it is retired, and
+`prompt.meaning.{definition,moneyAmount,clockTime,month,weekday}` replace it in
+all 32 languages, chosen by the answer's own domain.
+
+## 20S.3 Seven items, because the rule made the curriculum's gaps visible
+
+The domain rule did not merely filter — it showed where the course had been
+asking a question only because it was willing to mix categories.
+
+| | Why |
+|:---|:---|
+| 천 원 | A fourth banknote. Three amounts is one short of a four-option question, and 천 원 was already the money lesson's own example for 원, so it needed no recording |
+| 두 시 사십 분 · 아홉 시 오 분 | Two more complete times. With only 세 시 삼십 분 and 두 시 십오 분, the minutes lesson had no third option of the same shape and would have had **no listening question at all**. 9:05 is the single-digit minute a beginner pads |
+| 일곱 시 | A second o'clock, for the same reason: an o'clock is only offered against o'clocks |
+| 오월 | The regular month. The lesson taught two irregular months with no regular one in it — a learner met the exceptions before the pattern |
+| 나이가 어떻게 되세요? · 연세가 어떻게 되세요? | The age lesson taught 몇 살이에요? and the honorific *word* 연세, and never showed how to ask politely. Two registers were missing between them, and a whole question needs other whole questions to stand against |
+
+Ten clips generated for them in both voices. The audio tool needed fixing first:
+`--only`, documented as the pronunciation check you run *before* the full run,
+wrote a complete and valid **three-entry** manifest over the real one while 6,861
+recordings sat on disk unreferenced. Nothing errored. It merges now. **I-159.**
+
+## 20S.4 A verifier that does not trust the declaration
+
+A checker comparing declared fields against each other cannot catch a
+mis-declaration. Declare 원 a `moneyAmount` and every rule above is satisfied
+while the money lesson goes back to offering a definition against three prices —
+this was measured, not reasoned: the mutation produced zero findings until two
+more rules were added.
+
+Those two read the **rendered strings**, per language:
+
+* **Quantity shape.** Within one option list, either every option names a
+  quantity or none does. *한국 돈의 단위* has no number in it and its three
+  neighbours are numbers, and that is visible whatever the content claims.
+* **Rendered duplication.** Two option *keys* are always distinct; two
+  translations of them need not be.
+
+On its first run this found three content defects that no declaration and no
+screenshot showed:
+
+```
+  gloss.mixedTime     an hour and minutes together — a description of a *form*
+                      standing among actual times. Now 3시 30분.
+  gloss.ctxMoney      five thousand won beside 5,000 won, 10,000 won and
+                      35,000 won: one amount written two ways, and the answer
+                      was the only one spelled out. Retired.
+  mn gloss.may        5 сар where June and October are written out
+  vi gloss.zeroDigit  số 0 where the other three zeroes are written out
+```
+
+## 20S.5 An answer-equivalence module
+
+Three places in the engine had to decide whether two Korean strings are the same
+answer, and each had a different answer. The Numbers option builder deduplicated
+on the raw string, so 한 개 and 한개 were two buttons for one thing. The
+level-test ambiguity gate had its own rules in a QA script. Nothing decided
+whether 학교에 가요 and 학교에 갑니다 are one answer or two.
+
+`korean-morphology/equivalence` decides once, deterministically, and returns
+*why*: `identical`, `spacing`, `particle`, `countingForm`, `politeness`,
+`inflection`, `different` — the first three the same answer and the rest not.
+Returning the reason is the mechanism: a spacing difference is a duplicate in a
+listening question and the entire content of a spacing question, and only the
+caller knows which. It decides morphology and not meaning; irregular stems go
+through the conjugation tables, so 듣다 relates 들어요 to 듣습니다.
+
+## 20S.6 Two gates corrected rather than satisfied
+
+`numbers:qa` exempted the pitfalls lesson's marked-wrong halves from the spacing
+rule **by lesson**. The exemption is about the (✗) marking: 삼월 일 일 beside
+삼월 일일 (✓) is how the closed-date rule is taught, and `spokenText` already
+made the same cut so no recording says the wrong half. And its prompt-table
+contract now understands a heading resolved from the answer's domain rather than
+named directly.
+
+## 20S.7 The negative runs
+
+```
+원 declared a moneyAmount                            30 findings   exit 1
+the granularity and length filters removed           30 findings   exit 1
+the domain filter removed from build()               30 findings   exit 1
+개 and 마리 given the same English gloss              30 findings   exit 1
+the answer index no longer following the shuffle     30 findings   exit 1
+the two icon sources crossed                          2 findings   exit 1
+a 256 px Android icon source                          1 finding    exit 1
+one launcher icon left stale                          1 finding    exit 1
+```
+
+## 20S.8 What the ledger says now
+
+270 distinct questions, every one read at its current wording — and the ledger's
+hash now covers the answer domain, so a re-labelled item has to be read again
+rather than inheriting its old verdict. The sheet carries module, target type and
+answer domain per row, so a mismatch is visible without reading the prose: the
+answer is a `definition` and the distractors are `moneyAmount`.
+
+## 20S.9 The patent package
+
+Rewritten rather than extended. The disclosure is 17 sections in each language —
+23 pages in English, 20 in Korean, against 40,745 and 43,744 characters before —
+and every factual claim carries one of five status labels. The correction that
+mattered: an earlier edition described *automatic validation of multiple
+acceptable Korean answers* as a capability of the product. The product presents
+multiple-choice questions only and has no free-text answer path, so the module
+decides **option admissibility** and grading typed Korean is PLANNED. The label
+was corrected rather than the sentence softened.
+
+`claim_element_matrix.md` and `prior_art_differentiation.md` are new; the two
+per-language prior-art comparisons are gone, having said the same thing twice
+and begun to disagree about the numbering. Four claim elements are marked as not
+built, and the matrix says why each one is not.
+
+Three defects were found by looking at the rendered PDF: the YAML front matter
+was being typeset as a heading — in this document too, which is why
+`build-pdf.mjs` was fixed rather than the disclosure; four figures carried
+`[object Object]` where a label should be, from ten `box()` calls that passed
+their options object into the label parameter; and embedding a figure inside a
+bulleted list broke the bullet after it.
+
+**`patent/` is not committed.** It is in `.gitignore` and this repository's remote
+is public. A disclosure pushed to a public remote is a publication, and a
+publication before filing is the one mistake in this process that cannot be
+undone.
 
 ## 23.1 Issue ageing
 

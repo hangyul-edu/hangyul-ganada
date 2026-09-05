@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `44ad0536` on branch `main`. `build-info.json` →
+**Source:** commit `f5436474` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -14,51 +14,53 @@ middle of writing.
 **Built:** 5 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 12 validation.** Codes 3 through 12 are spent,
-each by an artefact that was actually produced. This is 13.
+**This supersedes the versionCode 13 validation.** Codes 3 through 13 are spent,
+each by an artefact that was actually produced. This is 14.
 
 ---
 
 ## Why this release happened
 
-Two screenshots, and neither of them was a rendering bug.
+Two new application logos, and three screenshots of the Numbers course.
 
-**ㄸ being written.** Both of its lids began a visible distance to the right of
-where the letter begins, and became flush only once the ㄴ under each of them was
-drawn. `strokeVectors.classify` extended only the *later* of two stroke ends that
-meet, so the first stroke of every corner was drawn half a pen short of the
-letter's own corner and stayed short for as long as it was the only ink on the
-paper — 41 stroke ends over 16 characters. Every glyph gate measures the
-**finished** letter, where the second stroke has arrived and filled the hole.
+**The logos.** `application_logo_android.png` and `application_logo_iphone.png`
+replace the previous pair. The pipeline already read one source per platform, so
+the work was the three numbers tuned for the *previous* drawing and carried
+forward as if they belonged to the pipeline — the adaptive, round and maskable
+safe fractions, and the ground colour the adaptive background paints. Left where
+they were, the launcher icon would have shipped about 15% smaller than it needs
+to be, inside a tile of empty cream. And the gate could not tell the two sources
+apart: swapping the two constants moves both sides of its comparison together.
 
-**The Numbers course.** *이 숫자를 일, 이, 삼으로 말해 보세요.* *0을 읽고, 어디에
-어떤 말을 쓰는지도 익혀요.* *마무리 확인 통과 — 10문제 중 8개* under a heading
-reading *아직 끝나지 않았어요*, with *마무리 확인 통과하기* listed below as the
-thing still to do. A pass two editions ago had banned the linguistic names for
-the two number sets and replaced them with the sets' own first three words; a set
-with no name has to be pointed at every time it comes up, and pointing at it is
-what produced a course full of demonstratives.
+**The questions.**
 
-Reading the course end to end after that found two things neither screenshot
-could show: a **lesson header that was one of its own answers** in thirty-one
-languages — 얼마예요? is the money lesson's title, and every language but Korean
-glossed the item with the same sentence — and two questions whose answer was the
-only option of its **shape**.
+```
+  원        무슨 뜻일까요?      한국 돈의 단위 · 5,000원 · 10,000원 · 35,000원
+  [clip]    무엇이라고 들렸나요?   두 시 십오 분 · 분 · 세 시 삼십 분 · 초
+  오천 원    무슨 뜻일까요?      2시 · 사람 세 명 · 돈 5,000원 · 30분
+```
+
+Each has exactly one correct option, passed `answerability` and `numbers:qa`, and
+can be answered without reading any Korean. Options were drawn from whatever the
+lesson happened to contain, and *what makes two options comparable* had never
+been written down — so no verifier could ask for it. A pass two editions ago
+addressed the first of these by making the option shapes uniform, which is why it
+still looked plausible and was still unanswerable on its merits.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Stroke geometry | The `corner` extension is symmetric: both ends of a shared joint reach it, so a stroke is drawn to the letter's corner from the moment the pen leaves it. The finished glyph does not move — junctions 100%, shape 99.6% mean explained against the face. `strokes:corners` is the new gate and asks the question order-independently; it also holds ㄲ ㄸ ㅃ ㅆ ㅉ to being one component written twice |
-| Numbers terminology | The two sets are named — 한자어식 and 고유어식, and each language's own equivalent — and module 1 teaches both before anything asks about them. Nine later lessons stopped saying *일, 이, 삼 쪽*. `numbers:copy` enforces the opposite rule to the one it used to: a demonstrative standing in for a name is a finding, and six strings must say which set they are about |
-| Answer result | The verdict and nothing under it. `feedback` is off the exercise, `rationale` is out of all 32 bundles, and *필요한 곳에는 설명이 따라와요* has gone with the sentence it promised. `copy:generated` builds all 530 exercises and fails if one carries a body |
-| Final check | `passMark(total)` is one function and both screens call it: *10문제 중 8문제 이상 맞히면 통과해요* before, and the score with the mark after. The summary drops the line the score already covers, and *every item answered once* is its own row |
-| Question bank | `readChoose` refuses a question whose answer is the only option of its shape; `numbers:qa` asserts it from outside the builder, and compares the lesson header against the option list in all 32 languages. `docs/numbers-question-ledger.md` records all 276 distinct questions read one at a time |
-| Vocabulary levels | I-133 closed: editorial usefulness is a ceiling rather than a term, so a word marked *needed first* cannot ship above the starter band. 235 words moved; levels 1–4 unchanged, so the twelve partial packs and the 32-language completeness of levels 1–3 are untouched |
-| Editorial | The 70 `locale:editorial` warnings were all one class — two keys holding the same English sentence, translated two ways — and all 70 are closed |
-| Gates | `answerability`, the 118 synthetic journeys, the level audit, back coverage, reachable actions, section alignment and legal isolation were defined and never run; they are in `verify:release` now |
-| End-to-end suite | Two Numbers cases were still asserting the two sentences this cycle removed — `summaryMissing.mastery` under a score line that already carries the fact, and `masteryPerfect` with `{{total}}` uninterpolated. The screens were correct in all four failing runs; the assertions now read the score line at its real numbers and require the retired row to be **absent**. Restoring the unfiltered list fails them again |
-| Version | Android 1.0.3 / **13**. iOS deliberately left at 1.0.2 / 4 — see `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
+| Application logos | Both platform sources replaced; 59 icon, splash and favicon files regenerated. `ROUND_ICON_FRACTION` 0.76→0.84, `ANDROID_ADAPTIVE_FRACTION` 0.46→0.51, `MASKABLE_SAFE_FRACTION` 0.62→0.69, `ic_launcher_background` #FFF6DC→#FDF3DD — each re-measured against *this* artwork at every density, 48 px mdpi being the binding one. Two constants nothing read are deleted, and so is a third platform-neutral copy of the icon still carrying the previous drawing |
+| Icon gate | Each platform's delivered icon is re-rendered from the *other* platform's source; byte-identical means it was built from the wrong file. Sources must also exist, be square and be their declared size |
+| Answer domains | `AnswerDomain` declared on all 102 Numbers items and on every option. One filter at the single point every generator passes through; a question that cannot reach three same-domain options is not asked. A clock time with minutes stands only against clock times with minutes, and a whole question only against whole questions |
+| Question schema | Every generated question carries `learningObjective`, `promptType`, `targetType`, `answerDomain`, `correctAnswer`, `distractorStrategy`, `difficulty`, `prerequisites` and `audioTarget`, filled in from what was built rather than what was intended |
+| Instructions | *무슨 뜻일까요?* retired. Five instructions, one per domain a meaning question can ask about, in all 32 languages |
+| New content | Seven items the domain rule showed were missing — 천 원, 두 시 사십 분, 아홉 시 오 분, 일곱 시, 오월, 나이가 어떻게 되세요?, 연세가 어떻게 되세요? — and ten clips for them in both voices |
+| Answer equivalence | `korean-morphology/equivalence` decides whether two Korean strings are the same answer and returns which of spacing, particle allomorph, counting form, politeness or inflection made them differ. Used by the option builder, not only by gates |
+| Audio tool | `--only` merges into the manifest instead of replacing it. It had written a valid three-entry manifest over the real one while 6,861 recordings sat on disk unreferenced |
+| PDF builder | YAML front matter is removed before the document is read as prose. It was being typeset as a heading in every document that has front matter, this report included |
+| Version | Android 1.0.3 / **14**. iOS deliberately left at 1.0.2 / 4 — see `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
 
 ## The artefacts
 
@@ -68,56 +70,57 @@ only option of its **shape**.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **13**, versionName **1.0.3**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 13 | 12 is spent. Both previously delivered artefacts report a code of 12 under `aapt2 dump badging`, the previous `build-info.json` recorded 12, and product files have changed since the commit that produced them — so a rebuild at 12 would put different bytes under a code a set of bytes already exists for, which Play refuses. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 13 is the next valid code rather than the next unused one. |
+| Package | `com.talkhangyul.ganada`, version code **14**, versionName **1.0.3**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 14 | 13 is spent. Both previously delivered artefacts report a code of 13, the previous `build-info.json` recorded 13, and product files have changed since the commit that produced them — every launcher and store icon, the Numbers question model with seven new items, and the equivalence module. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 14 is the next valid code rather than the next unused one. |
 | iOS | **not built** — macOS and Xcode are unavailable here. The project is complete and ships in `result/ios-project/`, at version 1.0.2 build 4, which is what `build-info.json` reports for it; `pending_version` and `pending_build` name what is owed. |
 
 ## What was run against this tree
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:release` | run twice. The first run failed at its last step — four Playwright cases pinning copy this cycle removed, described above and in report §20R.11a; nothing in the app was wrong. The second run, on the delivered tree, is recorded below |
-| `npm run strokes:corners:check` | 73 taught characters, **510 stroke ends**, 86 joints, 82 corner terminals, 5 doubled letters over 12 corresponding stroke pairs — 0 findings |
-| `npm run glyph:structure:check` | 86 junctions probed, weakest **100.0%**; islands drawn = predicted 73/73 |
-| `npm run glyphshape:qa:check` | mean **99.6%** explained against the reference face, floor 93% |
-| `npm run strokes:visual:check` | 73 items, 269 strokes, **1,345 frames** rendered at 256 px — no measurable problem in any frame |
-| `npm run strokes:markers:check` | 73 characters, **269 badges**, 0 problems |
-| `npm run numbers:qa:check` | 6 modules · 19 lessons · 95 items · 9 exercise kinds · **0 problems**; 144 clips present, 0 synthesised; 260 keys × 32 languages, 0 identical to English; **282 distinct questions audited across 10 question types, 972 built**; **2,208 lesson header / answer pairs compared** across 32 languages; 19 lessons complete sound-free |
-| `npm run numbers:copy:check` | 6,944 learner-facing strings across 32 languages; 192 set labels checked in that language's own words; 10 retired sentences and 1 retired key block checked in every bundle — 0 findings |
-| `npm run numbers:ledger:check` | **276 distinct questions**, every one read at its current wording; 9 corrected and 2 noted with the reason recorded |
-| `npm run copy:generated:check` | 530 exercises built, **16,960 rendered prompts** across 32 languages; **0** compose a sentence under the answer result |
+| `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` |
+| `npm run mobile:icons:check` | 59 files, Android from `application_logo_android.png` at 512px, iOS from `application_logo_iphone.png` at 1024px, **neither drawn from the other's artwork** |
+| `npm run numbers:domain:check` | **1,767 questions, 6,626 options**, 2,496 strings across 32 languages, 0 findings |
+| `npm run numbers:qa:check` | 6 modules · 19 lessons · **102 items** · 9 exercise kinds · 0 problems |
+| `npm run numbers:copy:check` | 6,944 learner-facing strings across 32 languages — 0 findings |
+| `npm run numbers:ledger:check` | **270 distinct questions**, every one read at its current wording; the hash covers the answer domain, so a re-labelled item must be read again |
+| `npm run copy:generated:check` | 530 exercises built, 16,960 rendered prompts across 32 languages; **0** compose a sentence under the answer result |
 | `npm run answerability:check` | **806,252 generated questions** — every one has exactly one option that answers it |
-| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; **235 words** held to their editorial band; 162 anchors in place |
-| `npm run numbers:layout:check` | **45 cases, 3,465 elements**, 0 problems |
-| `npm run scroll:audit:check` | 25 route/states, **199 measurements** at seven sizes — every screen's last action reachable |
-| `npm run synthetic:users:qa:check` | **118 journeys**, 7,902 words introduced, all pass |
-| `npm run copy:ledger:check` | **830** Korean strings, every one read at its current wording; 78 rewritten with the reason recorded |
-| `npm run locale:editorial:check` | **0 errors, 0 warnings** — the 70 split-translation warnings the previous edition carried are closed |
-| `npm run test:e2e` | **578 cases** over the mobile and desktop projects, 0 failed, 0 flaky, 38.4 min |
-| Unit suites | web **1044**, Korean morphology **216**, handwriting core **96** — **1,356**, all passing |
-| `npm run docs:consistency:check` | **65 figures** across **6 documents** — `BUILD_OR_SIGNING_BLOCKERS.md` is inside the set now, and was saying versionCode 11 while `build-info.json` beside it said 13 (report §20R.11c) |
-| `npm run native:bundle:check` | **14,152 files** compared inside the APK — 0 missing, 0 different, and the 4 web-only files pruned, which it now checks rather than skips (report §20R.11b) |
+| `npm run strokes:corners:check` | 73 taught characters, 510 stroke ends, 86 joints, 82 corner terminals — 0 findings |
+| `npm run glyph:structure:check` | 86 junctions probed, weakest **100.0%** |
+| `npm run glyphshape:qa:check` | mean **99.6%** explained against the reference face, floor 93% |
+| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; 235 words held to their editorial band |
+| `npm run docs:consistency:check` | 65 figures across 6 documents |
+| `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
+| `npm run locale:editorial:check` | 0 errors, 0 warnings |
+| `npm run test:e2e` | see the run recorded below |
+| Unit suites | web **1,044**, Korean morphology **225**, handwriting core **96** — **1,365**, all passing |
+| `npm run native:bundle:check` | 14,152 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
 | `npm run release:current` | both delivery manifests at HEAD |
 
-Fourteen gates were negative-tested this refresh by restoring the behaviour they
+Eight gates were negative-tested this refresh by restoring the behaviour they
 exist to catch:
 
 ```
-the asymmetric corner rule restored                  41 findings   exit 1
-필요한 곳에는 설명이 따라와요 put back                    2 findings   exit 1
-the rationale block put back in one bundle            (same run)   exit 1
-two glosses made identical — a second right answer   14 findings   exit 1
-the pass mark rounded instead of ceilinged            1 test        exit 1
-MASTERY_PASS moved to 0.5                             1 test        exit 1
-English copied into the Tamil pack                    2 findings   exit 1
-the prompt table and the page's switch disagreeing    1 finding    exit 1
-the usefulness ceiling emptied                      215 findings   exit 1
-the money gloss restored to the lesson's own title    1 finding    exit 1
-the summary's retired *Take the final check* row back  1 e2e case   exit 1
-sw.js copied back into the native bundle               1 finding    exit 1
-the blockers doc added to the consistency set           4 findings   exit 1
-the release notes' heading set back to 1.0.0            1 finding    exit 1
+원 declared a moneyAmount                            30 findings   exit 1
+the granularity and length filters removed           30 findings   exit 1
+the domain filter removed from build()               30 findings   exit 1
+개 and 마리 given the same English gloss              30 findings   exit 1
+the answer index no longer following the shuffle     30 findings   exit 1
+the two application-icon sources crossed              2 findings   exit 1
+a 256 px Android icon source                          1 finding    exit 1
+one launcher icon left stale                          1 finding    exit 1
 ```
+
+## The icons, looked at
+
+Rendered under circle, squircle and rounded-square masks at 192, 48 and 32 px, on
+light and dark launcher grounds, for the legacy icon, the round icon, the
+adaptive foreground composited over its background, and the monochrome layer.
+Nothing clipped, nothing stretched, 가나다 still readable at 32 px. The iOS
+catalogue's one universal slot is 1024×1024 RGB with no alpha, which is what App
+Store Connect requires; `Contents.json` is unchanged, as are every Xcode-managed
+signing, team, bundle-identifier and provisioning value.
 
 ## On a device — NOT RUN THIS REFRESH
 
@@ -132,27 +135,21 @@ Level Test.
 ## Not claimed
 
 * **No native-speaker review** of the thirty-one non-Korean bundles, or of
-  Korean. 1,646 strings were written across 32 languages this pass and the
-  ledger records that the reading was done by the model that wrote them. See
-  `BUILD_OR_SIGNING_BLOCKERS.md` §10.
-* **No review by anybody who needs the accessibility route.** The sound-free
-  run and the per-question escape exist, are gated, and were walked in a
-  browser. Whether they are the route a deaf or hard-of-hearing learner would
-  choose is not something this repository can establish about itself.
+  Korean. The strings this pass wrote — five instructions and eleven glosses in
+  each of 32 languages — joined the unread surface rather than shrinking it. See
+  `BUILD_OR_SIGNING_BLOCKERS.md` §10 and issue I-17.
+* **No review by anybody who needs the accessibility route.** The sound-free run
+  and the per-question escape exist, are gated, and were walked in a browser.
 * **No iOS build.** No `.ipa` exists and none was approximated.
 * **iOS is not at 1.0.3.** Its version is set in Xcode, on a Mac, by the person
   who archives the build; §9 of the blockers document says exactly how.
-* **The stroke work was reviewed as a render, not on a handset.** The 1,345
-  animation frames and the contact sheets in `.stroke-qa/` are headless Chromium
-  at the sizes the product draws.
-* **No emulator run this refresh.** The previous edition's device walk is not
-  re-claimed for these bytes.
+* **The icons were reviewed as renders, not on a home screen.** The masks above
+  are drawn by a script, not by a launcher.
+* **No emulator run this refresh.**
 
 ## Checksums
 
 ```
-15b9ead897c118fd21db77cd9371c8e0f5f483ddc68aaa370ad6e60f6a94a14f  hangyul-ganada-release.apk
-d230b86460a8b458d64fd273eb9e1dc491ff06d0cd9c30b92bbaaa65ca6ff6ac  hangyul-ganada-release.aab
-70da037c1a7b477840fdb0bdaf37298bf6359f0419f4aa6702cf060df5905113  docs/report.pdf
-5a38954c522648d37ecdfabd66aec9bc5a47ef9a24231728a7f7e1c95c75811f  build-info.json
+bcb94e2a3002e65cbbf31d79c23a5bcf81f4da4a2fb89a8258029a4ff99c8bca  hangyul-ganada-release.apk
+ca6fb668ee76e2579e4cf22be301256e5f983815b28a9419c4480e1c45490bda  hangyul-ganada-release.aab
 ```
