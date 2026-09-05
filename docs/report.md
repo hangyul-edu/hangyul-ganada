@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.3
 date: 5 September 2026
-describes: The eighth pass. New platform application logos, and three screenshots of the Numbers course whose option lists could not be compared with each other: a definition among three prices, two complete clock times among two bare unit words, and a price among a time, a head-count and a duration. All three had exactly one correct answer, passed every gate, and could be answered without reading any Korean, because what makes two options comparable had never been written down. It is written down now — an answer domain declared on all 102 items, one filter at the single point every generator passes through, and a verifier that re-reads the rendered strings in 32 languages because it does not trust the declaration. Seven items were written for gaps the rule made visible and ten clips recorded for them. Also: the icon gate could not tell the two platform sources apart, the audio tool's --only flag replaced the manifest the app loads, and the patent disclosure described a capability the product does not have. Artefacts built from commit b4bbaf85 at versionCode 14.
+describes: The eighth pass. New platform application logos, and three screenshots of the Numbers course whose option lists could not be compared with each other: a definition among three prices, two complete clock times among two bare unit words, and a price among a time, a head-count and a duration. All three had exactly one correct answer, passed every gate, and could be answered without reading any Korean, because what makes two options comparable had never been written down. It is written down now — an answer domain declared on all 102 items, one filter at the single point every generator passes through, and a verifier that re-reads the rendered strings in 32 languages because it does not trust the declaration. Seven items were written for gaps the rule made visible and ten clips recorded for them. Also: the icon gate could not tell the two platform sources apart, the audio tool's --only flag replaced the manifest the app loads, and the patent disclosure described a capability the product does not have. Artefacts built from commit bc3bec14 at versionCode 14.
 mark: report-assets/mark.png
 ---
 
@@ -1719,7 +1719,7 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `b4bbaf85`, working tree clean |
+| Built from | `bc3bec14`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 14, versionName 1.0.3 |
 | SDK | min 24, target 36 |

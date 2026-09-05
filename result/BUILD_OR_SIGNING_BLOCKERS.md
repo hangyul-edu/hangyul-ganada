@@ -7,7 +7,7 @@ credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
 Re-checked on 5 September 2026 against **v1.0.3, versionCode 14**, compiled
-from a clean checkout of commit `b4bbaf85`. Every item below still stands,
+from a clean checkout of commit `bc3bec14`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
 machine. The Android artefacts were rebuilt at versionCode 14 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
