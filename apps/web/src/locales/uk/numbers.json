@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Що ви почули?",
-    "chooseMeaning": "Що це означає?",
+    "meaning": {
+      "definition": "Що позначає це слово?",
+      "moneyAmount": "Скільки це коштує?",
+      "clockTime": "Котра година?",
+      "month": "Який це місяць?",
+      "weekday": "Який це день тижня?"
+    },
     "chooseByMeaning": "Яке з них це означає?",
     "chooseCorrectExplanation": "Виберіть правильне пояснення.",
     "findIncorrectExpression": "Виберіть неправильний вислів.",
@@ -242,7 +248,6 @@
     "belowZero": "нижче нуля",
     "zeroScore": "рахунок нуль",
     "ctxPeople": "три особи",
-    "ctxMoney": "п'ять тисяч вон",
     "ctxHour": "друга година",
     "ctxMinute": "тридцять хвилин",
     "ctxAge": "двадцять років",
@@ -270,7 +275,7 @@
     "tenOclock": "десята година",
     "counterMinute": "хвилини",
     "counterSecond": "секунди",
-    "mixedTime": "година й хвилини разом",
+    "mixedTime": "третя година тридцять хвилин",
     "quarterPast": "друга година п'ятнадцять хвилин",
     "counterYear": "рік",
     "counterMonth": "місяць",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 вон",
     "price10000": "10 000 вон",
-    "price35000": "35 000 вон"
+    "price35000": "35 000 вон",
+    "price1000": "1 000 вон",
+    "twoForty": "друга година сорок хвилин",
+    "nineOhFive": "дев'ята година п'ять хвилин",
+    "howOldPolite": "Ввічливий спосіб запитати вік старшої людини",
+    "sevenOclock": "сьома година",
+    "may": "травень — за правилом",
+    "howOldNeutral": "Звичайний ввічливий спосіб запитати вік дорослого"
   },
   "example": {
     "zeroMath": "мінус три градуси",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 правильно; 삼 시 서른 분 — ні",
     "pitfallSpacing": "한 개 правильно; 한개 — ні",
     "tenThousandWon": "купюра на 10 000 вон",
-    "threeHundredMillionWon": "Квартира коштує 삼억 원."
+    "threeHundredMillionWon": "Квартира коштує 삼억 원.",
+    "nineOhFive": "Зараз дев'ята година п'ять хвилин.",
+    "mayFifth": "п'яте травня"
   },
   "note": {
     "phoneZero": "У номері телефону 0 зазвичай читають як 공.",

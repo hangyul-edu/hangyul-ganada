@@ -17,6 +17,7 @@ import {
 import {
   type ExerciseOption,
   type NumbersExercise,
+  MEANING_PROMPT_KEY,
   masteryExercises,
   practiceExercises,
 } from '../features/numbers/exercises';
@@ -827,7 +828,12 @@ function Prompt({
       heading = t('numbers:prompt.listenAndChoose');
       break;
     case 'chooseMeaning':
-      heading = t('numbers:prompt.chooseMeaning');
+      /*
+       * The instruction names what is being asked for. *무슨 뜻일까요?* over
+       * four prices told the learner the question was about definitions; the
+       * key comes from the answer's own domain now. See `MEANING_PROMPT_KEY`.
+       */
+      heading = t(`numbers:${MEANING_PROMPT_KEY[exercise.schema.answerDomain] ?? 'prompt.meaning.definition'}`);
       body = { text: p.text ?? item.korean, lang: 'ko' };
       break;
     case 'chooseCorrectExplanation':

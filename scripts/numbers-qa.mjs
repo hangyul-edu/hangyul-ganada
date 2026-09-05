@@ -63,7 +63,7 @@ const CHECK = process.argv.includes('--check');
 const { NUMBER_ITEMS, NUMBER_LESSONS, NUMBER_MODULES, numberLessonItems, spokenExample } = await import(
   '../apps/web/src/data/numbers.ts'
 );
-const { PROMPT_KEY_FOR_TYPE, exerciseCoverage, masteryExercises, practiceExercises } = await import(
+const { MEANING_PROMPT_KEY, PROMPT_KEY_FOR_TYPE, exerciseCoverage, masteryExercises, practiceExercises } = await import(
   '../apps/web/src/features/numbers/exercises.ts'
 );
 const {
@@ -298,7 +298,9 @@ const PROMPT_FOR = PROMPT_KEY_FOR_TYPE;
  */
 const pageSource = readFileSync(join(ROOT, 'apps/web/src/pages/NumberSessionPage.tsx'), 'utf8');
 let switchCases = 0;
-for (const match of pageSource.matchAll(/case '(\w+)':\s*\n\s*heading = t\(\s*`?'?numbers:([\w.${}?' ]+?)'?`?[,)]/g)) {
+for (const match of pageSource.matchAll(
+  /case '(\w+)':\s*\n(?:\s*(?:\/\*[\s\S]*?\*\/|\/\/[^\n]*)\s*\n)*\s*heading = t\(\s*`?'?numbers:([\w.${}?'[\] ]+?)'?`?[,)]/g,
+)) {
   const [, type, key] = match;
   switchCases += 1;
   const declared = PROMPT_FOR[type];
@@ -306,8 +308,23 @@ for (const match of pageSource.matchAll(/case '(\w+)':\s*\n\s*heading = t\(\s*`?
     fail(`the page heads "${type}" and PROMPT_KEY_FOR_TYPE does not declare it`);
     continue;
   }
-  // `sayTheNumber` is the one type the page resolves through the exercise's own
-  // `prompt.key`; the table's entry is the fallback that key defaults to.
+  /*
+   * Two types resolve their heading rather than naming it.
+   *
+   * `sayTheNumber` reads the exercise's own `prompt.key` — three instructions,
+   * one per numeral system — and the table's entry is the fallback that key
+   * defaults to. `chooseMeaning` reads `MEANING_PROMPT_KEY`, keyed on the
+   * answer's domain, because *무슨 뜻일까요?* is the right instruction over a
+   * definition and the wrong one over four prices. Both are checked as a
+   * *set* below rather than as one string here: what matters is that the page
+   * reaches the same table the builder does.
+   */
+  if (key.includes('MEANING_PROMPT_KEY')) {
+    if (!Object.values(MEANING_PROMPT_KEY).includes(declared)) {
+      fail(`the page heads "${type}" from MEANING_PROMPT_KEY, which does not contain ${declared}`);
+    }
+    continue;
+  }
   const resolved = key.includes('${') ? PROMPT_FOR.sayTheNumber : key;
   if (resolved !== declared) {
     fail(`the page heads "${type}" with ${resolved} and PROMPT_KEY_FOR_TYPE says ${declared}`);
@@ -330,7 +347,20 @@ const KO_PROMPTS = {
   'prompt.findIncorrectExpression': '다음 중 틀린 표현을 고르세요.',
   'prompt.chooseCorrectExplanation': '다음 중 올바른 설명을 고르세요.',
   'prompt.listenAndChoose': '무엇이라고 들렸나요?',
-  'prompt.chooseMeaning': '무슨 뜻일까요?',
+  /*
+   * Five meaning instructions, not one.
+   *
+   * *무슨 뜻일까요?* is retired: it was printed over four prices and over four
+   * clock times, and it told the learner the question was about definitions in
+   * both cases. Each domain names what it is asking for, and Korean is checked
+   * literally here for the same reason as the four above — these sentences are
+   * the specification of what the question is.
+   */
+  'prompt.meaning.definition': '이 말은 무엇을 나타낼까요?',
+  'prompt.meaning.moneyAmount': '얼마를 뜻할까요?',
+  'prompt.meaning.clockTime': '몇 시일까요?',
+  'prompt.meaning.month': '몇 월일까요?',
+  'prompt.meaning.weekday': '무슨 요일일까요?',
 };
 for (const [key, expected] of Object.entries(KO_PROMPTS)) {
   const actual = lookup(bundles.ko, key);
@@ -343,10 +373,10 @@ for (const [key, expected] of Object.entries(KO_PROMPTS)) {
  * still carrying one is a bundle the page is no longer reading.
  */
 for (const locale of LOCALES) {
-  for (const dead of ['prompt.spotMistake', 'prompt.read', 'prompt.listen']) {
+  for (const dead of ['prompt.spotMistake', 'prompt.read', 'prompt.listen', 'prompt.chooseMeaning']) {
     if (lookup(bundles[locale], dead) !== undefined) fail(`[${locale}] ${dead} is retired but still present`);
   }
-  for (const key of Object.values(PROMPT_FOR)) {
+  for (const key of [...Object.values(PROMPT_FOR), ...Object.values(MEANING_PROMPT_KEY)]) {
     const value = lookup(bundles[locale], key);
     if (typeof value !== 'string' || value.trim() === '') fail(`[${locale}] ${key} is missing`);
   }
@@ -698,10 +728,23 @@ const BANNED_SPACING = ['삼월 일 일', '삼월 이 일', '유월 육 일', '�
 const REQUIRED_SPACING = ['삼월 일일', '유월 육일', '시월 십일'];
 const ORDINAL_OPEN = /(일|이|삼|사|오|육|칠|팔|구|십|백|천|만)\s+(일|년)(?![가-힣])/;
 
+/**
+ * An example with the wrong half removed.
+ *
+ * `한 개 (✓) · 한개 (✗)` exists to show a learner the form the course is telling
+ * them not to write, and the rules below are about what the course *writes*. A
+ * scan that read the whole string would forbid the counter-example, which is
+ * the opposite of the rule: 삼월 일 일 marked ✗ is the product saying **not
+ * this**, and it is how the closed-date rule is taught at all. `spokenText`
+ * makes the same cut for the recording, so no clip ever says the wrong half.
+ */
+const asWritten = (example) =>
+  example.includes('(✗)') ? example.split('·')[0].replace(/\(✓\)/, '').trim() : example;
+
 const koreanStrings = [];
 for (const item of NUMBER_ITEMS) {
   koreanStrings.push([`item ${item.id}`, item.korean]);
-  if (item.example) koreanStrings.push([`item ${item.id} example`, item.example]);
+  if (item.example) koreanStrings.push([`item ${item.id} example`, asWritten(item.example)]);
 }
 for (const locale of LOCALES) {
   for (const [key, value] of flatten(bundles[locale])) koreanStrings.push([`${locale} ${key}`, String(value)]);
@@ -719,7 +762,7 @@ for (const form of REQUIRED_SPACING) {
   if (!manifest.entries.some((e) => e.text.includes(form))) fail(`no clip says "${form}"`);
 }
 for (const item of NUMBER_ITEMS) {
-  for (const text of [item.korean, item.example ?? '']) {
+  for (const text of [item.korean, asWritten(item.example ?? '')]) {
     // 삼십 분 and 오천 원 are quantities and stay open; only 일 and 년 as the day
     // and the year of a date are closed.
     if (ORDINAL_OPEN.test(text) && !/분|초|시/.test(text)) {

@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Was hast du gehört?",
-    "chooseMeaning": "Was bedeutet das?",
+    "meaning": {
+      "definition": "Wofür steht dieses Wort?",
+      "moneyAmount": "Wie viel ist das?",
+      "clockTime": "Wie spät ist es hier?",
+      "month": "Welcher Monat ist das?",
+      "weekday": "Welcher Wochentag ist das?"
+    },
     "chooseByMeaning": "Welches davon bedeutet das?",
     "chooseCorrectExplanation": "Wähle die richtige Erklärung.",
     "findIncorrectExpression": "Wähle den falschen Ausdruck.",
@@ -242,7 +248,6 @@
     "belowZero": "unter null",
     "zeroScore": "null Punkte",
     "ctxPeople": "drei Personen",
-    "ctxMoney": "fünftausend Won",
     "ctxHour": "zwei Uhr",
     "ctxMinute": "dreißig Minuten",
     "ctxAge": "zwanzig Jahre alt",
@@ -270,7 +275,7 @@
     "tenOclock": "zehn Uhr",
     "counterMinute": "Minuten",
     "counterSecond": "Sekunden",
-    "mixedTime": "Stunde und Minuten zusammen",
+    "mixedTime": "halb vier",
     "quarterPast": "Viertel nach zwei",
     "counterYear": "Jahr",
     "counterMonth": "Monat",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 Won",
     "price10000": "10.000 Won",
-    "price35000": "35.000 Won"
+    "price35000": "35.000 Won",
+    "price1000": "1.000 Won",
+    "twoForty": "zwei Uhr vierzig",
+    "nineOhFive": "neun Uhr fünf",
+    "howOldPolite": "Die höfliche Frage nach dem Alter einer älteren Person",
+    "sevenOclock": "sieben Uhr",
+    "may": "Mai — regelmäßig",
+    "howOldNeutral": "Die alltägliche höfliche Frage nach dem Alter eines Erwachsenen"
   },
   "example": {
     "zeroMath": "minus drei Grad",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 ist richtig, 삼 시 서른 분 nicht",
     "pitfallSpacing": "한 개 ist richtig, 한개 nicht",
     "tenThousandWon": "ein 10.000-Won-Schein",
-    "threeHundredMillionWon": "Die Wohnung kostet 삼억 원."
+    "threeHundredMillionWon": "Die Wohnung kostet 삼억 원.",
+    "nineOhFive": "Es ist neun Uhr fünf.",
+    "mayFifth": "der fünfte Mai"
   },
   "note": {
     "phoneZero": "In einer Telefonnummer wird 0 meist 공 gelesen.",

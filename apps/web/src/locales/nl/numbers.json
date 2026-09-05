@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Wat hoorde je?",
-    "chooseMeaning": "Wat betekent dit?",
+    "meaning": {
+      "definition": "Wat duidt dit woord aan?",
+      "moneyAmount": "Hoeveel is dit?",
+      "clockTime": "Hoe laat is het?",
+      "month": "Welke maand is dit?",
+      "weekday": "Welke dag van de week is dit?"
+    },
     "chooseByMeaning": "Welke betekent dit?",
     "chooseCorrectExplanation": "Kies de juiste uitleg.",
     "findIncorrectExpression": "Kies de foute uitdrukking.",
@@ -242,7 +248,6 @@
     "belowZero": "onder nul",
     "zeroScore": "een score van nul",
     "ctxPeople": "drie mensen",
-    "ctxMoney": "vijfduizend won",
     "ctxHour": "twee uur",
     "ctxMinute": "dertig minuten",
     "ctxAge": "twintig jaar oud",
@@ -270,7 +275,7 @@
     "tenOclock": "tien uur",
     "counterMinute": "minuten",
     "counterSecond": "seconden",
-    "mixedTime": "uur en minuten samen",
+    "mixedTime": "half vier",
     "quarterPast": "kwart over twee",
     "counterYear": "jaar",
     "counterMonth": "maand",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 won",
     "price10000": "10.000 won",
-    "price35000": "35.000 won"
+    "price35000": "35.000 won",
+    "price1000": "1.000 won",
+    "twoForty": "twee uur veertig",
+    "nineOhFive": "vijf over negen",
+    "howOldPolite": "De beleefde manier om een oudere naar zijn leeftijd te vragen",
+    "sevenOclock": "zeven uur",
+    "may": "mei — regelmatig",
+    "howOldNeutral": "De gewone beleefde manier om een volwassene naar zijn leeftijd te vragen"
   },
   "example": {
     "zeroMath": "min drie graden",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 klopt; 삼 시 서른 분 niet",
     "pitfallSpacing": "한 개 klopt; 한개 niet",
     "tenThousandWon": "een biljet van 10.000 won",
-    "threeHundredMillionWon": "Het appartement kost 삼억 원."
+    "threeHundredMillionWon": "Het appartement kost 삼억 원.",
+    "nineOhFive": "Het is vijf over negen.",
+    "mayFifth": "vijf mei"
   },
   "note": {
     "phoneZero": "In een telefoonnummer wordt 0 meestal 공 gelezen.",

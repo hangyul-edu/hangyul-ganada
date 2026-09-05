@@ -105,6 +105,8 @@
     "dailyplan:level:check": "tsx scripts/daily-plan-level-qa.mjs --check",
     "numbers:qa": "tsx scripts/numbers-qa.mjs",
     "numbers:qa:check": "tsx scripts/numbers-qa.mjs --check",
+    "numbers:domain": "node scripts/numbers-domain-qa.mjs",
+    "numbers:domain:check": "node scripts/numbers-domain-qa.mjs --check",
     "dailyvocab:qa:check": "tsx scripts/daily-vocabulary-qa.mjs --check",
     "dictionary:qa": "node scripts/dictionary-qa.mjs",
     "dictionary:qa:check": "node scripts/dictionary-qa.mjs --check",

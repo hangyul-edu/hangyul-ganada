@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Ce ai auzit?",
-    "chooseMeaning": "Ce înseamnă?",
+    "meaning": {
+      "definition": "Ce indică acest cuvânt?",
+      "moneyAmount": "Cât face?",
+      "clockTime": "Cât e ceasul?",
+      "month": "Ce lună este?",
+      "weekday": "Ce zi a săptămânii este?"
+    },
     "chooseByMeaning": "Care dintre acestea înseamnă asta?",
     "chooseCorrectExplanation": "Alege explicația corectă.",
     "findIncorrectExpression": "Alege expresia greșită.",
@@ -242,7 +248,6 @@
     "belowZero": "sub zero",
     "zeroScore": "un scor de zero",
     "ctxPeople": "trei oameni",
-    "ctxMoney": "cinci mii de woni",
     "ctxHour": "ora două",
     "ctxMinute": "treizeci de minute",
     "ctxAge": "douăzeci de ani",
@@ -270,7 +275,7 @@
     "tenOclock": "ora zece",
     "counterMinute": "minute",
     "counterSecond": "secunde",
-    "mixedTime": "ora și minutele împreună",
+    "mixedTime": "trei și jumătate",
     "quarterPast": "două și un sfert",
     "counterYear": "an",
     "counterMonth": "lună",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 woni",
     "price10000": "10.000 woni",
-    "price35000": "35.000 woni"
+    "price35000": "35.000 woni",
+    "price1000": "1.000 woni",
+    "twoForty": "două și patruzeci",
+    "nineOhFive": "nouă și cinci",
+    "howOldPolite": "Modul politicos de a întreba vârsta unei persoane mai în vârstă",
+    "sevenOclock": "ora șapte",
+    "may": "mai — regulat",
+    "howOldNeutral": "Modul politicos obișnuit de a întreba vârsta unui adult"
   },
   "example": {
     "zeroMath": "minus trei grade",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 este corect; 삼 시 서른 분 nu",
     "pitfallSpacing": "한 개 este corect; 한개 nu",
     "tenThousandWon": "o bancnotă de 10.000 de woni",
-    "threeHundredMillionWon": "Apartamentul costă 삼억 원."
+    "threeHundredMillionWon": "Apartamentul costă 삼억 원.",
+    "nineOhFive": "Este nouă și cinci.",
+    "mayFifth": "cinci mai"
   },
   "note": {
     "phoneZero": "Într-un număr de telefon, 0 se citește de obicei 공.",

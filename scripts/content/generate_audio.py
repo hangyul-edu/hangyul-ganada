@@ -355,6 +355,31 @@ def main() -> int:
 
     manifest_path = audio_root() / "manifest.json"
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
+
+    """A partial run adds to the manifest; it does not become the manifest.
+
+    ``--only`` is documented as the pronunciation check you run *before* the
+    full run, and ``--limit`` as a smoke run. Both narrow ``entries``, and the
+    manifest was written from ``entries`` — so either one replaced the file the
+    app loads with a manifest naming three clips, while 6,861 recordings sat on
+    disk unreferenced. Nothing failed at the time: the write succeeded, the run
+    reported what it had done truthfully, and the app would have started with an
+    empty audio set.
+
+    The clips written by a partial run are real and belong in the manifest, so
+    the entries are merged over what is already there rather than discarded.
+    ``version`` is rebuilt from the merged set, because it is a digest of every
+    file the manifest names and a stale one would leave clients on a cached
+    index that does not mention the new recordings.
+    """
+    if (args.only or args.limit) and manifest_path.exists():
+        previous = json.loads(manifest_path.read_text(encoding="utf-8"))
+        merged = {entry["id"]: entry for entry in previous.get("entries", [])}
+        merged.update({entry["id"]: entry for entry in manifest["entries"]})
+        manifest["entries"] = [merged[key] for key in sorted(merged)]
+        kept = len(merged) - len(assets)
+        print(f"  merged into the existing manifest — {kept:,} entries kept")
+
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     # After the manifest, never before: a crash mid-run must not delete clips

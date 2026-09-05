@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "কী শুনলেন?",
-    "chooseMeaning": "এর মানে কী?",
+    "meaning": {
+      "definition": "এই শব্দটি কী বোঝায়?",
+      "moneyAmount": "এটি কত টাকা?",
+      "clockTime": "এটি কয়টা বাজে?",
+      "month": "এটি কোন মাস?",
+      "weekday": "এটি সপ্তাহের কোন দিন?"
+    },
     "chooseByMeaning": "এই মানে কোনটির?",
     "chooseCorrectExplanation": "সঠিক ব্যাখ্যাটি বেছে নিন।",
     "findIncorrectExpression": "ভুল প্রকাশটি বেছে নিন।",
@@ -242,7 +248,6 @@
     "belowZero": "শূন্যের নিচে",
     "zeroScore": "শূন্য স্কোর",
     "ctxPeople": "তিনজন মানুষ",
-    "ctxMoney": "পাঁচ হাজার ওন",
     "ctxHour": "দুটো (সময়)",
     "ctxMinute": "ত্রিশ মিনিট",
     "ctxAge": "কুড়ি বছর বয়স",
@@ -270,7 +275,7 @@
     "tenOclock": "দশটা",
     "counterMinute": "মিনিট",
     "counterSecond": "সেকেন্ড",
-    "mixedTime": "ঘণ্টা আর মিনিট একসঙ্গে",
+    "mixedTime": "সাড়ে তিনটা",
     "quarterPast": "সোয়া দুটো",
     "counterYear": "বছর",
     "counterMonth": "মাস",
@@ -299,7 +304,14 @@
     "hundredMillion": "১০,০০,০০,০০০",
     "price5000": "5,000 ওয়ন",
     "price10000": "10,000 ওয়ন",
-    "price35000": "35,000 ওয়ন"
+    "price35000": "35,000 ওয়ন",
+    "price1000": "1,000 ওয়ন",
+    "twoForty": "দুইটা চল্লিশ",
+    "nineOhFive": "নয়টা পাঁচ",
+    "howOldPolite": "বয়োজ্যেষ্ঠের বয়স জিজ্ঞাসার ভদ্র উপায়",
+    "sevenOclock": "সাতটা",
+    "may": "মে — নিয়মিত",
+    "howOldNeutral": "প্রাপ্তবয়স্কের বয়স জিজ্ঞাসার প্রচলিত ভদ্র উপায়"
   },
   "example": {
     "zeroMath": "শূন্যের নিচে তিন ডিগ্রি",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 ঠিক; 삼 시 서른 분 নয়",
     "pitfallSpacing": "한 개 ঠিক; 한개 নয়",
     "tenThousandWon": "১০,০০০ ওনের একটি নোট",
-    "threeHundredMillionWon": "ফ্ল্যাটের দাম 삼억 원।"
+    "threeHundredMillionWon": "ফ্ল্যাটের দাম 삼억 원।",
+    "nineOhFive": "এখন নয়টা পাঁচ।",
+    "mayFifth": "৫ মে"
   },
   "note": {
     "phoneZero": "ফোন নম্বরে 0 সাধারণত 공 পড়া হয়।",

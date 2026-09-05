@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "What did you hear?",
-    "chooseMeaning": "What does this mean?",
+    "meaning": {
+      "definition": "What does this word stand for?",
+      "moneyAmount": "How much is this?",
+      "clockTime": "What time is this?",
+      "month": "Which month is this?",
+      "weekday": "Which day of the week is this?"
+    },
     "chooseByMeaning": "Which of these means this?",
     "chooseCorrectExplanation": "Choose the correct explanation.",
     "findIncorrectExpression": "Choose the expression that is wrong.",
@@ -242,7 +248,6 @@
     "belowZero": "below zero",
     "zeroScore": "a score of zero",
     "ctxPeople": "three people",
-    "ctxMoney": "five thousand won",
     "ctxHour": "two o'clock",
     "ctxMinute": "thirty minutes",
     "ctxAge": "twenty years old",
@@ -270,7 +275,7 @@
     "tenOclock": "ten o'clock",
     "counterMinute": "minutes",
     "counterSecond": "seconds",
-    "mixedTime": "an hour and minutes together",
+    "mixedTime": "three thirty",
     "quarterPast": "quarter past two",
     "counterYear": "year",
     "counterMonth": "month",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000 won",
     "price10000": "10,000 won",
-    "price35000": "35,000 won"
+    "price35000": "35,000 won",
+    "price1000": "1,000 won",
+    "twoForty": "two forty",
+    "nineOhFive": "nine oh five",
+    "howOldPolite": "The polite way to ask an older person's age",
+    "sevenOclock": "seven o'clock",
+    "may": "May — regular",
+    "howOldNeutral": "The everyday polite way to ask an adult's age"
   },
   "example": {
     "zeroMath": "minus three degrees",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 is right; 삼 시 서른 분 is not",
     "pitfallSpacing": "한 개 is right; 한개 is not",
     "tenThousandWon": "one 10,000-won note",
-    "threeHundredMillionWon": "The flat costs 삼억 원."
+    "threeHundredMillionWon": "The flat costs 삼억 원.",
+    "nineOhFive": "It's nine oh five.",
+    "mayFifth": "the fifth of May"
   },
   "note": {
     "phoneZero": "In a phone number, 0 is usually read 공.",

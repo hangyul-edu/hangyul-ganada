@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Qu’avez-vous entendu ?",
-    "chooseMeaning": "Que veut dire ceci ?",
+    "meaning": {
+      "definition": "Que désigne ce mot ?",
+      "moneyAmount": "Combien cela fait-il ?",
+      "clockTime": "Quelle heure est-il ?",
+      "month": "De quel mois s'agit-il ?",
+      "weekday": "De quel jour de la semaine s'agit-il ?"
+    },
     "chooseByMeaning": "Lequel a ce sens ?",
     "chooseCorrectExplanation": "Choisis la bonne explication.",
     "findIncorrectExpression": "Choisis l’expression incorrecte.",
@@ -242,7 +248,6 @@
     "belowZero": "en dessous de zéro",
     "zeroScore": "un score de zéro",
     "ctxPeople": "trois personnes",
-    "ctxMoney": "cinq mille wons",
     "ctxHour": "deux heures",
     "ctxMinute": "trente minutes",
     "ctxAge": "vingt ans",
@@ -270,7 +275,7 @@
     "tenOclock": "dix heures",
     "counterMinute": "minutes",
     "counterSecond": "secondes",
-    "mixedTime": "l’heure et les minutes ensemble",
+    "mixedTime": "trois heures et demie",
     "quarterPast": "deux heures et quart",
     "counterYear": "année",
     "counterMonth": "mois",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 wons",
     "price10000": "10 000 wons",
-    "price35000": "35 000 wons"
+    "price35000": "35 000 wons",
+    "price1000": "1 000 wons",
+    "twoForty": "deux heures quarante",
+    "nineOhFive": "neuf heures cinq",
+    "howOldPolite": "La façon polie de demander son âge à une personne plus âgée",
+    "sevenOclock": "sept heures",
+    "may": "mai — régulier",
+    "howOldNeutral": "La façon polie courante de demander son âge à un adulte"
   },
   "example": {
     "zeroMath": "moins trois degrés",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 est juste ; 삼 시 서른 분 ne l’est pas",
     "pitfallSpacing": "한 개 est juste ; 한개 ne l’est pas",
     "tenThousandWon": "un billet de 10 000 wons",
-    "threeHundredMillionWon": "L’appartement coûte 삼억 원."
+    "threeHundredMillionWon": "L’appartement coûte 삼억 원.",
+    "nineOhFive": "Il est neuf heures cinq.",
+    "mayFifth": "le cinq mai"
   },
   "note": {
     "phoneZero": "Dans un numéro de téléphone, 0 se lit généralement 공.",

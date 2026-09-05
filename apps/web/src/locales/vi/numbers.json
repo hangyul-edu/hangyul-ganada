@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Bạn nghe được gì?",
-    "chooseMeaning": "Câu này nghĩa là gì?",
+    "meaning": {
+      "definition": "Từ này chỉ điều gì?",
+      "moneyAmount": "Cái này bao nhiêu tiền?",
+      "clockTime": "Mấy giờ rồi?",
+      "month": "Đây là tháng mấy?",
+      "weekday": "Đây là thứ mấy?"
+    },
     "chooseByMeaning": "Từ nào có nghĩa này?",
     "chooseCorrectExplanation": "Chọn lời giải thích đúng.",
     "findIncorrectExpression": "Chọn cách nói sai.",
@@ -238,11 +244,10 @@
   },
   "gloss": {
     "zeroMath": "số không, như một số lượng",
-    "zeroDigit": "số 0, như một chữ số",
+    "zeroDigit": "số không, như một chữ số",
     "belowZero": "dưới không độ",
     "zeroScore": "điểm không",
     "ctxPeople": "ba người",
-    "ctxMoney": "năm nghìn won",
     "ctxHour": "hai giờ",
     "ctxMinute": "ba mươi phút",
     "ctxAge": "hai mươi tuổi",
@@ -270,7 +275,7 @@
     "tenOclock": "mười giờ",
     "counterMinute": "phút",
     "counterSecond": "giây",
-    "mixedTime": "giờ và phút đi cùng nhau",
+    "mixedTime": "ba giờ ba mươi",
     "quarterPast": "hai giờ mười lăm",
     "counterYear": "năm",
     "counterMonth": "tháng",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 won",
     "price10000": "10.000 won",
-    "price35000": "35.000 won"
+    "price35000": "35.000 won",
+    "price1000": "1.000 won",
+    "twoForty": "hai giờ bốn mươi",
+    "nineOhFive": "chín giờ năm",
+    "howOldPolite": "Cách hỏi tuổi người lớn tuổi một cách lịch sự",
+    "sevenOclock": "bảy giờ",
+    "may": "tháng Năm — đúng quy tắc",
+    "howOldNeutral": "Cách lịch sự thông thường để hỏi tuổi người lớn"
   },
   "example": {
     "zeroMath": "âm ba độ",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 đúng; 삼 시 서른 분 sai",
     "pitfallSpacing": "한 개 đúng; 한개 sai",
     "tenThousandWon": "một tờ 10.000 won",
-    "threeHundredMillionWon": "Căn hộ giá 삼억 원."
+    "threeHundredMillionWon": "Căn hộ giá 삼억 원.",
+    "nineOhFive": "Bây giờ là chín giờ năm.",
+    "mayFifth": "ngày 5 tháng 5"
   },
   "note": {
     "phoneZero": "Trong số điện thoại, 0 thường đọc là 공.",

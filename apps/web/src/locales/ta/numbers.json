@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "என்ன கேட்டீர்கள்?",
-    "chooseMeaning": "இதன் பொருள் என்ன?",
+    "meaning": {
+      "definition": "இந்தச் சொல் எதைக் குறிக்கிறது?",
+      "moneyAmount": "இது எவ்வளவு?",
+      "clockTime": "இது மணி என்ன?",
+      "month": "இது எந்த மாதம்?",
+      "weekday": "இது வாரத்தின் எந்த நாள்?"
+    },
     "chooseByMeaning": "இவற்றில் இந்தப் பொருள் உள்ளது எது?",
     "chooseCorrectExplanation": "சரியான விளக்கத்தைத் தேர்ந்தெடுக்கவும்.",
     "findIncorrectExpression": "தவறான சொற்றொடரைத் தேர்ந்தெடுக்கவும்.",
@@ -242,7 +248,6 @@
     "belowZero": "பூச்சியத்துக்குக் கீழே",
     "zeroScore": "பூச்சிய மதிப்பெண்",
     "ctxPeople": "மூன்று பேர்",
-    "ctxMoney": "ஐயாயிரம் வொன்",
     "ctxHour": "இரண்டு மணி",
     "ctxMinute": "முப்பது நிமிடம்",
     "ctxAge": "இருபது வயது",
@@ -270,7 +275,7 @@
     "tenOclock": "பத்து மணி",
     "counterMinute": "நிமிடம்",
     "counterSecond": "விநாடி",
-    "mixedTime": "மணியும் நிமிடமும் சேர்ந்து",
+    "mixedTime": "மூன்றரை",
     "quarterPast": "இரண்டே கால்",
     "counterYear": "ஆண்டு",
     "counterMonth": "மாதம்",
@@ -299,7 +304,14 @@
     "hundredMillion": "10,00,00,000",
     "price5000": "5,000 வொன்",
     "price10000": "10,000 வொன்",
-    "price35000": "35,000 வொன்"
+    "price35000": "35,000 வொன்",
+    "price1000": "1,000 வொன்",
+    "twoForty": "இரண்டு நாற்பது",
+    "nineOhFive": "ஒன்பது ஐந்து",
+    "howOldPolite": "மூத்தவரிடம் வயதைக் கேட்கும் மரியாதையான வழி",
+    "sevenOclock": "ஏழு மணி",
+    "may": "மே — வழக்கமானது",
+    "howOldNeutral": "பெரியவரிடம் வயதைக் கேட்கும் வழக்கமான மரியாதையான வழி"
   },
   "example": {
     "zeroMath": "பூச்சியத்துக்குக் கீழ் மூன்று டிகிரி",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 சரி; 삼 시 서른 분 தவறு",
     "pitfallSpacing": "한 개 சரி; 한개 தவறு",
     "tenThousandWon": "10,000 வொன் தாள் ஒன்று",
-    "threeHundredMillionWon": "வீட்டின் விலை 삼억 원."
+    "threeHundredMillionWon": "வீட்டின் விலை 삼억 원.",
+    "nineOhFive": "இப்போது ஒன்பது ஐந்து.",
+    "mayFifth": "மே ஐந்து"
   },
   "note": {
     "phoneZero": "தொலைபேசி எண்ணில் 0 பொதுவாக 공 என்று படிக்கப்படும்.",

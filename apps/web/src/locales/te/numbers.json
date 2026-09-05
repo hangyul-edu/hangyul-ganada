@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "ఏం విన్నారు?",
-    "chooseMeaning": "దీని అర్థం ఏమిటి?",
+    "meaning": {
+      "definition": "ఈ పదం దేన్ని సూచిస్తుంది?",
+      "moneyAmount": "ఇది ఎంత?",
+      "clockTime": "ఇది ఎన్ని గంటలు?",
+      "month": "ఇది ఏ నెల?",
+      "weekday": "ఇది వారంలో ఏ రోజు?"
+    },
     "chooseByMeaning": "వీటిలో ఈ అర్థం ఉన్నది ఏది?",
     "chooseCorrectExplanation": "సరైన వివరణను ఎంచుకోండి.",
     "findIncorrectExpression": "తప్పు వ్యక్తీకరణను ఎంచుకోండి.",
@@ -242,7 +248,6 @@
     "belowZero": "సున్నా కింద",
     "zeroScore": "సున్నా స్కోరు",
     "ctxPeople": "ముగ్గురు మనుషులు",
-    "ctxMoney": "ఐదు వేల వాన్",
     "ctxHour": "రెండు గంటలు",
     "ctxMinute": "ముప్పై నిమిషాలు",
     "ctxAge": "ఇరవై ఏళ్లు",
@@ -270,7 +275,7 @@
     "tenOclock": "పది గంటలు",
     "counterMinute": "నిమిషాలు",
     "counterSecond": "సెకన్లు",
-    "mixedTime": "గంటా నిమిషమూ కలిసి",
+    "mixedTime": "మూడున్నర",
     "quarterPast": "రెండుంపావు",
     "counterYear": "సంవత్సరం",
     "counterMonth": "నెల",
@@ -299,7 +304,14 @@
     "hundredMillion": "10,00,00,000",
     "price5000": "5,000 వాన్",
     "price10000": "10,000 వాన్",
-    "price35000": "35,000 వాన్"
+    "price35000": "35,000 వాన్",
+    "price1000": "1,000 వాన్",
+    "twoForty": "రెండు నలభై",
+    "nineOhFive": "తొమ్మిది ఐదు",
+    "howOldPolite": "పెద్దవారి వయసును మర్యాదగా అడిగే విధానం",
+    "sevenOclock": "ఏడు గంటలు",
+    "may": "మే — క్రమమైనది",
+    "howOldNeutral": "పెద్దవారి వయసును అడిగే సాధారణ మర్యాదపూర్వక విధానం"
   },
   "example": {
     "zeroMath": "సున్నా కింద మూడు డిగ్రీలు",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 సరైనది; 삼 시 서른 분 కాదు",
     "pitfallSpacing": "한 개 సరైనది; 한개 కాదు",
     "tenThousandWon": "10,000 వాన్ నోటు ఒకటి",
-    "threeHundredMillionWon": "ఫ్లాట్ ధర 삼억 원."
+    "threeHundredMillionWon": "ఫ్లాట్ ధర 삼억 원.",
+    "nineOhFive": "ఇప్పుడు తొమ్మిది ఐదు.",
+    "mayFifth": "మే ఐదు"
   },
   "note": {
     "phoneZero": "ఫోన్ నంబర్‌లో 0 సాధారణంగా 공 అని చదువుతారు.",

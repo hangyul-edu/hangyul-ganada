@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "你听到了什么？",
-    "chooseMeaning": "这是什么意思？",
+    "meaning": {
+      "definition": "这个词表示什么？",
+      "moneyAmount": "这是多少钱？",
+      "clockTime": "这是几点？",
+      "month": "这是几月？",
+      "weekday": "这是星期几？"
+    },
     "chooseByMeaning": "哪一个是这个意思？",
     "chooseCorrectExplanation": "选出正确的说明。",
     "findIncorrectExpression": "选出错误的说法。",
@@ -183,7 +189,7 @@
       "step3": "问 몇 시예요?，答 세 시예요。分钟在下一课。"
     },
     "minutes": {
-      "title": "三点三十分",
+      "title": "现在是三点三十分",
       "objective": "说分和秒，并和小时连起来说。",
       "step1": "분 和 초 用汉字词数字：삼십 분, 십오 분, 십 초。",
       "step2": "세 시 삼십 분 — 小时是 세，分钟是 삼십。",
@@ -242,7 +248,6 @@
     "belowZero": "零下",
     "zeroScore": "零分",
     "ctxPeople": "三个人",
-    "ctxMoney": "五千韩元",
     "ctxHour": "两点",
     "ctxMinute": "三十分",
     "ctxAge": "二十岁",
@@ -270,7 +275,7 @@
     "tenOclock": "十点",
     "counterMinute": "分",
     "counterSecond": "秒",
-    "mixedTime": "小时和分钟一起出现的时刻",
+    "mixedTime": "三点三十分",
     "quarterPast": "两点十五分",
     "counterYear": "年",
     "counterMonth": "月",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000韩元",
     "price10000": "10,000韩元",
-    "price35000": "35,000韩元"
+    "price35000": "35,000韩元",
+    "price1000": "1,000韩元",
+    "twoForty": "两点四十分",
+    "nineOhFive": "九点零五分",
+    "howOldPolite": "向长辈询问年龄的礼貌说法",
+    "sevenOclock": "七点",
+    "may": "五月 — 规则的",
+    "howOldNeutral": "询问成年人年龄的日常礼貌说法"
   },
   "example": {
     "zeroMath": "零下三度",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 对，삼 시 서른 분 错",
     "pitfallSpacing": "한 개 对，한개 错",
     "tenThousandWon": "一张一万韩元的纸币",
-    "threeHundredMillionWon": "这套房子 삼억 원。"
+    "threeHundredMillionWon": "这套房子 삼억 원。",
+    "nineOhFive": "现在是九点零五分。",
+    "mayFifth": "五月五日"
   },
   "note": {
     "phoneZero": "电话号码里的 0 通常读作 공。",

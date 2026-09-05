@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { NUMBER_ITEMS, NUMBER_LESSONS } from '../../data/numbers';
-import { masteryExercises, practiceExercises } from './exercises';
+import { MEANING_PROMPT_KEY, masteryExercises, practiceExercises } from './exercises';
 
 /**
  * What a Numbers question asks, and what it prints above the options.
@@ -56,7 +56,9 @@ const PROMPT_KEY = {
   findIncorrectExpression: 'prompt.findIncorrectExpression',
   chooseCorrectExplanation: 'prompt.chooseCorrectExplanation',
   listenAndChoose: 'prompt.listenAndChoose',
-  chooseMeaning: 'prompt.chooseMeaning',
+  // Five, one per domain a meaning question can be asked about — see
+  // `MEANING_PROMPT_KEY`. The definition case is the table's representative.
+  chooseMeaning: 'prompt.meaning.definition',
   chooseSystem: 'prompt.chooseSystem',
   sayTheNumber: 'prompt.digitsToKorean.sino',
   writeTheDigits: 'prompt.koreanToDigits',
@@ -102,8 +104,23 @@ describe('Numbers question types', () => {
   });
 
   it('keeps the meaning and listening instructions on their own questions', () => {
-    expect(at(bundle('ko'), PROMPT_KEY.chooseMeaning)).toBe('무슨 뜻일까요?');
+    /*
+     * *무슨 뜻일까요?* is retired. It was the instruction over four prices and
+     * over four clock times as well as over four definitions, and in two of
+     * those three it told the learner the question was about something it was
+     * not. Each domain names what it is asking for.
+     */
+    expect(at(bundle('ko'), 'prompt.meaning.definition')).toBe('이 말은 무엇을 나타낼까요?');
+    expect(at(bundle('ko'), 'prompt.meaning.moneyAmount')).toBe('얼마를 뜻할까요?');
+    expect(at(bundle('ko'), 'prompt.meaning.clockTime')).toBe('몇 시일까요?');
+    expect(at(bundle('ko'), 'prompt.chooseMeaning')).toBeUndefined();
     expect(at(bundle('ko'), PROMPT_KEY.listenAndChoose)).toBe('무엇이라고 들렸나요?');
+    for (const exercise of everyExercise) {
+      if (exercise.question_type !== 'chooseMeaning') continue;
+      // The instruction is chosen by the answer's domain, and every domain a
+      // meaning question is built for has one.
+      expect(MEANING_PROMPT_KEY[exercise.schema.answerDomain], exercise.id).toBeTruthy();
+    }
     for (const exercise of everyExercise) {
       if (exercise.kind === 'listen_choose') expect(exercise.question_type).toBe('listenAndChoose');
       if (exercise.question_type === 'chooseMeaning') {
@@ -131,14 +148,14 @@ describe('Numbers question types', () => {
     expect(localeNames.length).toBe(32);
     for (const locale of localeNames) {
       const pack = bundle(locale);
-      for (const key of Object.values(PROMPT_KEY)) {
+      for (const key of [...Object.values(PROMPT_KEY), ...Object.values(MEANING_PROMPT_KEY)]) {
         const value = at(pack, key);
         expect(typeof value, `${locale} ${key}`).toBe('string');
         expect(String(value).trim(), `${locale} ${key}`).not.toBe('');
       }
       // The keys that were chosen by exercise kind, and the one that asked the
       // opposite question, are gone rather than merely unused.
-      for (const dead of ['prompt.spotMistake', 'prompt.read', 'prompt.listen']) {
+      for (const dead of ['prompt.spotMistake', 'prompt.read', 'prompt.listen', 'prompt.chooseMeaning']) {
         expect(at(pack, dead), `${locale} ${dead}`).toBeUndefined();
       }
     }
@@ -197,8 +214,16 @@ describe('Korean number spacing', () => {
   const BANNED = ['삼월 일 일', '삼월 이 일', '유월 육 일', '시월 십 일', '십오 일', '이천이십육 년'];
 
   it('writes an ordinal date closed everywhere it appears', () => {
+    /*
+     * The half marked (✗) is the course naming the mistake, not making it.
+     * 삼월 일 일 appears once, beside 삼월 일일 (✓), because that contrast is
+     * how the closed-date rule is taught; `spokenText` cuts the same half, so
+     * no recording ever says it.
+     */
+    const written = (example: string) =>
+      example.includes('(✗)') ? example.split('·')[0]!.replace(/\(✓\)/, '').trim() : example;
     const strings = [
-      ...NUMBER_ITEMS.flatMap((i) => [i.korean, i.example ?? '']),
+      ...NUMBER_ITEMS.flatMap((i) => [i.korean, written(i.example ?? '')]),
       ...localeNames.flatMap((locale) => [JSON.stringify(bundle(locale))]),
     ];
     for (const text of strings) {

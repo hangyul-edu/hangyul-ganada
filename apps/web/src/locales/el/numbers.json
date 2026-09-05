@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Τι άκουσες;",
-    "chooseMeaning": "Τι σημαίνει αυτό;",
+    "meaning": {
+      "definition": "Τι δηλώνει αυτή η λέξη;",
+      "moneyAmount": "Πόσο κάνει αυτό;",
+      "clockTime": "Τι ώρα είναι;",
+      "month": "Ποιος μήνας είναι;",
+      "weekday": "Ποια μέρα της εβδομάδας είναι;"
+    },
     "chooseByMeaning": "Ποιο από αυτά σημαίνει αυτό;",
     "chooseCorrectExplanation": "Διάλεξε τη σωστή εξήγηση.",
     "findIncorrectExpression": "Διάλεξε τη λάθος έκφραση.",
@@ -242,7 +248,6 @@
     "belowZero": "κάτω από το μηδέν",
     "zeroScore": "σκορ μηδέν",
     "ctxPeople": "τρία άτομα",
-    "ctxMoney": "πέντε χιλιάδες γουόν",
     "ctxHour": "δύο η ώρα",
     "ctxMinute": "τριάντα λεπτά",
     "ctxAge": "είκοσι χρονών",
@@ -270,7 +275,7 @@
     "tenOclock": "δέκα η ώρα",
     "counterMinute": "λεπτά",
     "counterSecond": "δευτερόλεπτα",
-    "mixedTime": "ώρα και λεπτά μαζί",
+    "mixedTime": "τρεις και μισή",
     "quarterPast": "δύο και τέταρτο",
     "counterYear": "έτος",
     "counterMonth": "μήνας",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 γουόν",
     "price10000": "10.000 γουόν",
-    "price35000": "35.000 γουόν"
+    "price35000": "35.000 γουόν",
+    "price1000": "1.000 γουόν",
+    "twoForty": "δύο και σαράντα",
+    "nineOhFive": "εννέα και πέντε",
+    "howOldPolite": "Ο ευγενικός τρόπος να ρωτήσεις την ηλικία μεγαλύτερου",
+    "sevenOclock": "επτά η ώρα",
+    "may": "Μάιος — κανονικός",
+    "howOldNeutral": "Ο συνηθισμένος ευγενικός τρόπος να ρωτήσεις την ηλικία ενήλικα"
   },
   "example": {
     "zeroMath": "μείον τρεις βαθμοί",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "το 세 시 삼십 분 είναι σωστό· το 삼 시 서른 분 όχι",
     "pitfallSpacing": "το 한 개 είναι σωστό· το 한개 όχι",
     "tenThousandWon": "ένα χαρτονόμισμα των 10.000 γουόν",
-    "threeHundredMillionWon": "Το διαμέρισμα κάνει 삼억 원."
+    "threeHundredMillionWon": "Το διαμέρισμα κάνει 삼억 원.",
+    "nineOhFive": "Είναι εννέα και πέντε.",
+    "mayFifth": "5 Μαΐου"
   },
   "note": {
     "phoneZero": "Σε έναν αριθμό τηλεφώνου το 0 διαβάζεται συνήθως 공.",

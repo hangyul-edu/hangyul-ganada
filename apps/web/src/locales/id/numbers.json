@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Apa yang kamu dengar?",
-    "chooseMeaning": "Apa artinya?",
+    "meaning": {
+      "definition": "Kata ini menunjukkan apa?",
+      "moneyAmount": "Ini berapa?",
+      "clockTime": "Ini jam berapa?",
+      "month": "Ini bulan apa?",
+      "weekday": "Ini hari apa?"
+    },
     "chooseByMeaning": "Yang mana artinya ini?",
     "chooseCorrectExplanation": "Pilih penjelasan yang benar.",
     "findIncorrectExpression": "Pilih ungkapan yang salah.",
@@ -242,7 +248,6 @@
     "belowZero": "di bawah nol",
     "zeroScore": "skor nol",
     "ctxPeople": "tiga orang",
-    "ctxMoney": "lima ribu won",
     "ctxHour": "jam dua",
     "ctxMinute": "tiga puluh menit",
     "ctxAge": "dua puluh tahun",
@@ -270,7 +275,7 @@
     "tenOclock": "jam sepuluh",
     "counterMinute": "menit",
     "counterSecond": "detik",
-    "mixedTime": "jam dan menit bersama",
+    "mixedTime": "setengah empat",
     "quarterPast": "jam dua lewat seperempat",
     "counterYear": "tahun",
     "counterMonth": "bulan",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 won",
     "price10000": "10.000 won",
-    "price35000": "35.000 won"
+    "price35000": "35.000 won",
+    "price1000": "1.000 won",
+    "twoForty": "jam dua lewat empat puluh",
+    "nineOhFive": "jam sembilan lewat lima",
+    "howOldPolite": "Cara sopan menanyakan usia orang yang lebih tua",
+    "sevenOclock": "jam tujuh",
+    "may": "Mei — beraturan",
+    "howOldNeutral": "Cara sopan sehari-hari menanyakan usia orang dewasa"
   },
   "example": {
     "zeroMath": "minus tiga derajat",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 benar; 삼 시 서른 분 salah",
     "pitfallSpacing": "한 개 benar; 한개 salah",
     "tenThousandWon": "selembar uang 10.000 won",
-    "threeHundredMillionWon": "Apartemennya 삼억 원."
+    "threeHundredMillionWon": "Apartemennya 삼억 원.",
+    "nineOhFive": "Sekarang jam sembilan lewat lima.",
+    "mayFifth": "5 Mei"
   },
   "note": {
     "phoneZero": "Dalam nomor telepon, 0 biasanya dibaca 공.",

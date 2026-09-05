@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Che cosa hai sentito?",
-    "chooseMeaning": "Che cosa significa?",
+    "meaning": {
+      "definition": "Che cosa indica questa parola?",
+      "moneyAmount": "Quanto fa?",
+      "clockTime": "Che ora è?",
+      "month": "Che mese è?",
+      "weekday": "Che giorno della settimana è?"
+    },
     "chooseByMeaning": "Quale di questi significa questo?",
     "chooseCorrectExplanation": "Scegli la spiegazione giusta.",
     "findIncorrectExpression": "Scegli l’espressione sbagliata.",
@@ -242,7 +248,6 @@
     "belowZero": "sotto zero",
     "zeroScore": "un punteggio di zero",
     "ctxPeople": "tre persone",
-    "ctxMoney": "cinquemila won",
     "ctxHour": "le due",
     "ctxMinute": "trenta minuti",
     "ctxAge": "vent’anni",
@@ -270,7 +275,7 @@
     "tenOclock": "le dieci",
     "counterMinute": "minuti",
     "counterSecond": "secondi",
-    "mixedTime": "ora e minuti insieme",
+    "mixedTime": "le tre e mezza",
     "quarterPast": "le due e un quarto",
     "counterYear": "anno",
     "counterMonth": "mese",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 won",
     "price10000": "10.000 won",
-    "price35000": "35.000 won"
+    "price35000": "35.000 won",
+    "price1000": "1.000 won",
+    "twoForty": "le due e quaranta",
+    "nineOhFive": "le nove e cinque",
+    "howOldPolite": "Il modo cortese di chiedere l'età a una persona più grande",
+    "sevenOclock": "le sette",
+    "may": "maggio — regolare",
+    "howOldNeutral": "Il modo cortese abituale di chiedere l'età a un adulto"
   },
   "example": {
     "zeroMath": "tre gradi sotto zero",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 è giusto; 삼 시 서른 분 no",
     "pitfallSpacing": "한 개 è giusto; 한개 no",
     "tenThousandWon": "una banconota da 10.000 won",
-    "threeHundredMillionWon": "L’appartamento costa 삼억 원."
+    "threeHundredMillionWon": "L’appartamento costa 삼억 원.",
+    "nineOhFive": "Sono le nove e cinque.",
+    "mayFifth": "il cinque maggio"
   },
   "note": {
     "phoneZero": "In un numero di telefono lo 0 si legge di solito 공.",

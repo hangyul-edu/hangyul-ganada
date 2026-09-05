@@ -54,7 +54,7 @@ const LEDGER = join(ROOT, 'docs/numbers-question-ledger.json');
 const SHEET = join(ROOT, 'docs/numbers-question-ledger.md');
 
 const { NUMBER_LESSONS, getNumberItem } = await import('../apps/web/src/data/numbers.ts');
-const { PROMPT_KEY_FOR_TYPE, masteryExercises, practiceExercises } = await import(
+const { MEANING_PROMPT_KEY, PROMPT_KEY_FOR_TYPE, masteryExercises, practiceExercises } = await import(
   '../apps/web/src/features/numbers/exercises.ts'
 );
 
@@ -87,12 +87,28 @@ for (const lesson of NUMBER_LESSONS) {
     const promptKey =
       exercise.question_type === 'sayTheNumber'
         ? (exercise.prompt.key ?? PROMPT_KEY.sayTheNumber)
-        : PROMPT_KEY[exercise.question_type];
+        : exercise.question_type === 'chooseMeaning'
+          ? // Five instructions, one per domain a meaning question can ask about.
+            (MEANING_PROMPT_KEY[exercise.schema.answerDomain] ?? PROMPT_KEY.chooseMeaning)
+          : PROMPT_KEY[exercise.question_type];
     rows.set(id, {
       id,
       lesson: lesson.id,
+      module: lesson.module,
       type: exercise.question_type,
       kind: exercise.kind,
+      /*
+       * The three fields that make a row auditable rather than merely listed.
+       *
+       * A reader looking at *원 · 무슨 뜻일까요? · 한국 돈의 단위 · 5,000원,
+       * 10,000원, 35,000원* has to work out for themselves that three of those
+       * are amounts and one is a definition. With the domain written down the
+       * mismatch is the row: the answer is a `definition` and the distractors
+       * are `moneyAmount`, and no reading is needed to see it.
+       */
+      target: exercise.schema.targetType,
+      domain: exercise.schema.answerDomain,
+      strategy: exercise.schema.distractorStrategy.join(', '),
       korean: item.korean,
       prompt: lookup(promptKey) ?? promptKey,
       answer:
@@ -109,7 +125,7 @@ for (const lesson of NUMBER_LESSONS) {
 const ordered = [...rows.values()].sort((a, b) => a.id.localeCompare(b.id));
 const hashOf = (row) =>
   createHash('sha256')
-    .update(JSON.stringify([row.type, row.prompt, row.answer, [...row.distractors].sort()]))
+    .update(JSON.stringify([row.type, row.domain, row.prompt, row.answer, [...row.distractors].sort()]))
     .digest('hex')
     .slice(0, 12);
 
@@ -179,13 +195,13 @@ if (!CHECK) {
     'The decisions live in `docs/numbers-question-ledger.json`; this sheet is what',
     'they were read from.',
     '',
-    '| Content ID | Lesson | Type | Korean | Prompt | Correct answer | Distractors | Result | Correction |',
-    '| --- | --- | --- | --- | --- | --- | --- | --- | --- |',
+    '| Content ID | Module | Lesson | Type | Target | Answer domain | Korean | Prompt | Correct answer | Distractors | Result | Correction |',
+    '| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |',
   ];
   for (const row of ordered) {
     const r = reviewed[row.id];
     lines.push(
-      `| \`${row.id}\` | ${row.lesson.replace('num-lesson-', '')} | ${row.type} | ${row.korean} | ${row.prompt.replace(/\|/g, '\\|')} | ${String(row.answer).replace(/\|/g, '\\|')} | ${row.distractors.join(' · ').replace(/\|/g, '\\|')} | ${r.result} | ${r.why ?? '—'} |`,
+      `| \`${row.id}\` | ${row.module.replace('mod-', '')} | ${row.lesson.replace('num-lesson-', '')} | ${row.type} | ${row.target} | ${row.domain} | ${row.korean} | ${row.prompt.replace(/\|/g, '\\|')} | ${String(row.answer).replace(/\|/g, '\\|')} | ${row.distractors.join(' · ').replace(/\|/g, '\\|')} | ${r.result} | ${r.why ?? '—'} |`,
     );
   }
   writeFileSync(SHEET, `${lines.join('\n')}\n`, 'utf8');

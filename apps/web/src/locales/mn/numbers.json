@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Юу сонссон бэ?",
-    "chooseMeaning": "Энэ юу гэсэн үг вэ?",
+    "meaning": {
+      "definition": "Энэ үг юуг заадаг вэ?",
+      "moneyAmount": "Энэ хэд вэ?",
+      "clockTime": "Хэдэн цаг вэ?",
+      "month": "Энэ ямар сар вэ?",
+      "weekday": "Энэ гарагийн аль өдөр вэ?"
+    },
     "chooseByMeaning": "Аль нь энэ утгатай вэ?",
     "chooseCorrectExplanation": "Зөв тайлбарыг сонгоно уу.",
     "findIncorrectExpression": "Буруу хэллэгийг сонгоно уу.",
@@ -242,7 +248,6 @@
     "belowZero": "тэгээс доош",
     "zeroScore": "тэг оноо",
     "ctxPeople": "гурван хүн",
-    "ctxMoney": "таван мянган вон",
     "ctxHour": "хоёр цаг",
     "ctxMinute": "гучин минут",
     "ctxAge": "хорин настай",
@@ -270,7 +275,7 @@
     "tenOclock": "арван цаг",
     "counterMinute": "минут",
     "counterSecond": "секунд",
-    "mixedTime": "цаг ба минут хамт",
+    "mixedTime": "гурван цаг гучин минут",
     "quarterPast": "хоёр цаг арван таван минут",
     "counterYear": "он",
     "counterMonth": "сар",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 вон",
     "price10000": "10 000 вон",
-    "price35000": "35 000 вон"
+    "price35000": "35 000 вон",
+    "price1000": "1 000 вон",
+    "twoForty": "хоёр цаг дөчин минут",
+    "nineOhFive": "есөн цаг таван минут",
+    "howOldPolite": "Ахмад хүнээс насыг эелдгээр асуух хэлбэр",
+    "sevenOclock": "долоон цаг",
+    "may": "тавдугаар сар — журмаар",
+    "howOldNeutral": "Насанд хүрсэн хүнээс насыг эелдгээр асуух түгээмэл хэлбэр"
   },
   "example": {
     "zeroMath": "хасах гурван хэм",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 зөв; 삼 시 서른 분 буруу",
     "pitfallSpacing": "한 개 зөв; 한개 буруу",
     "tenThousandWon": "10 000 воны нэг дэвсгэрт",
-    "threeHundredMillionWon": "Байрны үнэ 삼억 원."
+    "threeHundredMillionWon": "Байрны үнэ 삼억 원.",
+    "nineOhFive": "Одоо есөн цаг таван минут болж байна.",
+    "mayFifth": "5 сарын 5"
   },
   "note": {
     "phoneZero": "Утасны дугаарт 0-ийг ихэвчлэн 공 гэж уншдаг.",

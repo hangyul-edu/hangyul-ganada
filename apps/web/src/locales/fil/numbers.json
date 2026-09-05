@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Ano ang narinig mo?",
-    "chooseMeaning": "Ano ang ibig sabihin nito?",
+    "meaning": {
+      "definition": "Ano ang tinutukoy ng salitang ito?",
+      "moneyAmount": "Magkano ito?",
+      "clockTime": "Anong oras ito?",
+      "month": "Anong buwan ito?",
+      "weekday": "Anong araw ng linggo ito?"
+    },
     "chooseByMeaning": "Alin sa mga ito ang may ganitong kahulugan?",
     "chooseCorrectExplanation": "Piliin ang tamang paliwanag.",
     "findIncorrectExpression": "Piliin ang maling pahayag.",
@@ -242,7 +248,6 @@
     "belowZero": "mas mababa sa zero",
     "zeroScore": "iskor na zero",
     "ctxPeople": "tatlong tao",
-    "ctxMoney": "limang libong won",
     "ctxHour": "alas-dos",
     "ctxMinute": "tatlumpung minuto",
     "ctxAge": "dalawampung taong gulang",
@@ -270,7 +275,7 @@
     "tenOclock": "alas-diyes",
     "counterMinute": "minuto",
     "counterSecond": "segundo",
-    "mixedTime": "oras at minuto nang magkasama",
+    "mixedTime": "alas-tres y media",
     "quarterPast": "alas-dos kinse",
     "counterYear": "taon",
     "counterMonth": "buwan",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000 na won",
     "price10000": "10,000 na won",
-    "price35000": "35,000 na won"
+    "price35000": "35,000 na won",
+    "price1000": "1,000 na won",
+    "twoForty": "alas-dos kwarenta",
+    "nineOhFive": "alas-nuwebe singko",
+    "howOldPolite": "Ang magalang na paraan ng pagtatanong ng edad sa nakatatanda",
+    "sevenOclock": "alas-siyete",
+    "may": "Mayo — regular",
+    "howOldNeutral": "Ang karaniwang magalang na pagtatanong ng edad sa may edad na"
   },
   "example": {
     "zeroMath": "minus tatlong digri",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "Tama ang 세 시 삼십 분; mali ang 삼 시 서른 분",
     "pitfallSpacing": "Tama ang 한 개; mali ang 한개",
     "tenThousandWon": "isang 10,000-won na papel",
-    "threeHundredMillionWon": "Nagkakahalaga ang unit ng 삼억 원."
+    "threeHundredMillionWon": "Nagkakahalaga ang unit ng 삼억 원.",
+    "nineOhFive": "Alas-nuwebe singko na.",
+    "mayFifth": "ikalima ng Mayo"
   },
   "note": {
     "phoneZero": "Sa numero ng telepono, ang 0 ay karaniwang binabasang 공.",

@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Ne duydun?",
-    "chooseMeaning": "Bu ne anlama geliyor?",
+    "meaning": {
+      "definition": "Bu kelime neyi belirtir?",
+      "moneyAmount": "Bu ne kadar?",
+      "clockTime": "Saat kaç?",
+      "month": "Bu hangi ay?",
+      "weekday": "Bu haftanın hangi günü?"
+    },
     "chooseByMeaning": "Bunlardan hangisi bu anlama geliyor?",
     "chooseCorrectExplanation": "Doğru açıklamayı seç.",
     "findIncorrectExpression": "Yanlış ifadeyi seç.",
@@ -242,7 +248,6 @@
     "belowZero": "sıfırın altında",
     "zeroScore": "sıfır puan",
     "ctxPeople": "üç kişi",
-    "ctxMoney": "beş bin won",
     "ctxHour": "saat iki",
     "ctxMinute": "otuz dakika",
     "ctxAge": "yirmi yaşında",
@@ -270,7 +275,7 @@
     "tenOclock": "saat on",
     "counterMinute": "dakika",
     "counterSecond": "saniye",
-    "mixedTime": "saat ve dakika birlikte",
+    "mixedTime": "üç buçuk",
     "quarterPast": "ikiyi çeyrek geçe",
     "counterYear": "yıl",
     "counterMonth": "ay",
@@ -299,7 +304,14 @@
     "hundredMillion": "100.000.000",
     "price5000": "5.000 won",
     "price10000": "10.000 won",
-    "price35000": "35.000 won"
+    "price35000": "35.000 won",
+    "price1000": "1.000 won",
+    "twoForty": "iki kırk",
+    "nineOhFive": "dokuzu beş geçe",
+    "howOldPolite": "Yaşça büyük birine yaşını sormanın kibar yolu",
+    "sevenOclock": "saat yedi",
+    "may": "mayıs — kurallı",
+    "howOldNeutral": "Bir yetişkine yaşını sormanın günlük kibar yolu"
   },
   "example": {
     "zeroMath": "eksi üç derece",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 doğru; 삼 시 서른 분 değil",
     "pitfallSpacing": "한 개 doğru; 한개 değil",
     "tenThousandWon": "10.000 wonluk bir banknot",
-    "threeHundredMillionWon": "Daire 삼억 원."
+    "threeHundredMillionWon": "Daire 삼억 원.",
+    "nineOhFive": "Saat dokuzu beş geçiyor.",
+    "mayFifth": "5 Mayıs"
   },
   "note": {
     "phoneZero": "Telefon numarasında 0 genelde 공 okunur.",

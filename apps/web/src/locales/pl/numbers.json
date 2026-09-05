@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Co słyszysz?",
-    "chooseMeaning": "Co to znaczy?",
+    "meaning": {
+      "definition": "Co oznacza to słowo?",
+      "moneyAmount": "Ile to jest?",
+      "clockTime": "Która to godzina?",
+      "month": "Który to miesiąc?",
+      "weekday": "Który to dzień tygodnia?"
+    },
     "chooseByMeaning": "Które z nich to znaczy?",
     "chooseCorrectExplanation": "Wybierz poprawne wyjaśnienie.",
     "findIncorrectExpression": "Wybierz błędne wyrażenie.",
@@ -242,7 +248,6 @@
     "belowZero": "poniżej zera",
     "zeroScore": "wynik zero",
     "ctxPeople": "trzy osoby",
-    "ctxMoney": "pięć tysięcy wonów",
     "ctxHour": "godzina druga",
     "ctxMinute": "trzydzieści minut",
     "ctxAge": "dwadzieścia lat",
@@ -270,7 +275,7 @@
     "tenOclock": "godzina dziesiąta",
     "counterMinute": "minuty",
     "counterSecond": "sekundy",
-    "mixedTime": "godzina i minuty razem",
+    "mixedTime": "wpół do czwartej",
     "quarterPast": "kwadrans po drugiej",
     "counterYear": "rok",
     "counterMonth": "miesiąc",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 wonów",
     "price10000": "10 000 wonów",
-    "price35000": "35 000 wonów"
+    "price35000": "35 000 wonów",
+    "price1000": "1 000 wonów",
+    "twoForty": "druga czterdzieści",
+    "nineOhFive": "dziewiąta pięć",
+    "howOldPolite": "Grzeczny sposób zapytania starszej osoby o wiek",
+    "sevenOclock": "siódma",
+    "may": "maj — regularny",
+    "howOldNeutral": "Zwykły grzeczny sposób zapytania dorosłego o wiek"
   },
   "example": {
     "zeroMath": "minus trzy stopnie",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 jest poprawne; 삼 시 서른 분 nie",
     "pitfallSpacing": "한 개 jest poprawne; 한개 nie",
     "tenThousandWon": "banknot 10 000 wonów",
-    "threeHundredMillionWon": "Mieszkanie kosztuje 삼억 원."
+    "threeHundredMillionWon": "Mieszkanie kosztuje 삼억 원.",
+    "nineOhFive": "Jest dziewiąta pięć.",
+    "mayFifth": "piąty maja"
   },
   "note": {
     "phoneZero": "W numerze telefonu 0 czyta się zwykle 공.",

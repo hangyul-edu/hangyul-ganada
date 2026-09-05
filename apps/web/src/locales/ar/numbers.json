@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "ماذا سمعت؟",
-    "chooseMeaning": "ما معنى هذا؟",
+    "meaning": {
+      "definition": "على ماذا تدل هذه الكلمة؟",
+      "moneyAmount": "كم يساوي هذا المبلغ؟",
+      "clockTime": "كم الساعة هنا؟",
+      "month": "أي شهر هذا؟",
+      "weekday": "أي يوم من الأسبوع هذا؟"
+    },
     "chooseByMeaning": "أيٌّ من هذه يحمل هذا المعنى؟",
     "chooseCorrectExplanation": "اختر الشرح الصحيح.",
     "findIncorrectExpression": "اختر التعبير الخطأ.",
@@ -242,7 +248,6 @@
     "belowZero": "تحت الصفر",
     "zeroScore": "نتيجة صفر",
     "ctxPeople": "ثلاثة أشخاص",
-    "ctxMoney": "خمسة آلاف وون",
     "ctxHour": "الساعة الثانية",
     "ctxMinute": "ثلاثون دقيقة",
     "ctxAge": "عشرون عامًا",
@@ -270,7 +275,7 @@
     "tenOclock": "الساعة العاشرة",
     "counterMinute": "دقائق",
     "counterSecond": "ثوانٍ",
-    "mixedTime": "الساعة والدقائق معًا",
+    "mixedTime": "الثالثة والنصف",
     "quarterPast": "الثانية والربع",
     "counterYear": "سنة",
     "counterMonth": "شهر",
@@ -299,7 +304,14 @@
     "hundredMillion": "١٠٠٬٠٠٠٬٠٠٠",
     "price5000": "5,000 وون",
     "price10000": "10,000 وون",
-    "price35000": "35,000 وون"
+    "price35000": "35,000 وون",
+    "price1000": "1,000 وون",
+    "twoForty": "الثانية وأربعون دقيقة",
+    "nineOhFive": "التاسعة وخمس دقائق",
+    "howOldPolite": "الطريقة المهذبة للسؤال عن عمر شخص أكبر سنًا",
+    "sevenOclock": "الساعة السابعة",
+    "may": "مايو — منتظم",
+    "howOldNeutral": "الطريقة المهذبة المعتادة للسؤال عن عمر شخص بالغ"
   },
   "example": {
     "zeroMath": "ثلاث درجات تحت الصفر",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 صحيحة؛ 삼 시 서른 분 خطأ",
     "pitfallSpacing": "한 개 صحيحة؛ 한개 خطأ",
     "tenThousandWon": "ورقة من فئة ١٠٬٠٠٠ وون",
-    "threeHundredMillionWon": "ثمن الشقة 삼억 원."
+    "threeHundredMillionWon": "ثمن الشقة 삼억 원.",
+    "nineOhFive": "إنها التاسعة وخمس دقائق.",
+    "mayFifth": "الخامس من مايو"
   },
   "note": {
     "phoneZero": "في رقم الهاتف يُقرأ 0 عادةً 공.",

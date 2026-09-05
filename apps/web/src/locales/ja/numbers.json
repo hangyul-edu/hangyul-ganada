@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "何と聞こえましたか？",
-    "chooseMeaning": "これはどんな意味ですか？",
+    "meaning": {
+      "definition": "この言葉は何を表しますか？",
+      "moneyAmount": "いくらでしょう？",
+      "clockTime": "何時でしょう？",
+      "month": "何月でしょう？",
+      "weekday": "何曜日でしょう？"
+    },
     "chooseByMeaning": "この意味になるのはどれですか？",
     "chooseCorrectExplanation": "正しい説明を選びましょう。",
     "findIncorrectExpression": "まちがっている言い方を選びましょう。",
@@ -242,7 +248,6 @@
     "belowZero": "氷点下",
     "zeroScore": "0点",
     "ctxPeople": "3人",
-    "ctxMoney": "5千ウォン",
     "ctxHour": "2時",
     "ctxMinute": "30分",
     "ctxAge": "20歳",
@@ -270,7 +275,7 @@
     "tenOclock": "10時",
     "counterMinute": "分",
     "counterSecond": "秒",
-    "mixedTime": "時と分が一緒に入った時刻",
+    "mixedTime": "3時30分",
     "quarterPast": "2時15分",
     "counterYear": "年",
     "counterMonth": "月",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000ウォン",
     "price10000": "10,000ウォン",
-    "price35000": "35,000ウォン"
+    "price35000": "35,000ウォン",
+    "price1000": "1,000ウォン",
+    "twoForty": "2時40分",
+    "nineOhFive": "9時5分",
+    "howOldPolite": "目上の人に年齢を尋ねる丁寧な言い方",
+    "sevenOclock": "7時",
+    "may": "5月 — 規則どおり",
+    "howOldNeutral": "大人に年齢を尋ねる一般的な丁寧な言い方"
   },
   "example": {
     "zeroMath": "マイナス3度",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 が正しく、삼 시 서른 분 は誤り",
     "pitfallSpacing": "한 개 が正しく、한개 は誤り",
     "tenThousandWon": "1万ウォン札が1枚",
-    "threeHundredMillionWon": "マンションの値段は 삼억 원 です。"
+    "threeHundredMillionWon": "マンションの値段は 삼억 원 です。",
+    "nineOhFive": "9時5分です。",
+    "mayFifth": "5月5日"
   },
   "note": {
     "phoneZero": "電話番号の0はふつう 공 と読みます。",

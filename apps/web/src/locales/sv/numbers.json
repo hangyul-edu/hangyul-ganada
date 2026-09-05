@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Vad hörde du?",
-    "chooseMeaning": "Vad betyder det här?",
+    "meaning": {
+      "definition": "Vad betecknar det här ordet?",
+      "moneyAmount": "Hur mycket är det?",
+      "clockTime": "Vad är klockan?",
+      "month": "Vilken månad är det?",
+      "weekday": "Vilken veckodag är det?"
+    },
     "chooseByMeaning": "Vilket av dem betyder det här?",
     "chooseCorrectExplanation": "Välj den rätta förklaringen.",
     "findIncorrectExpression": "Välj det felaktiga uttrycket.",
@@ -242,7 +248,6 @@
     "belowZero": "under noll",
     "zeroScore": "noll poäng",
     "ctxPeople": "tre personer",
-    "ctxMoney": "femtusen won",
     "ctxHour": "klockan två",
     "ctxMinute": "trettio minuter",
     "ctxAge": "tjugo år",
@@ -270,7 +275,7 @@
     "tenOclock": "klockan tio",
     "counterMinute": "minuter",
     "counterSecond": "sekunder",
-    "mixedTime": "timme och minuter ihop",
+    "mixedTime": "halv fyra",
     "quarterPast": "kvart över två",
     "counterYear": "år",
     "counterMonth": "månad",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 won",
     "price10000": "10 000 won",
-    "price35000": "35 000 won"
+    "price35000": "35 000 won",
+    "price1000": "1 000 won",
+    "twoForty": "två och fyrtio",
+    "nineOhFive": "fem över nio",
+    "howOldPolite": "Det artiga sättet att fråga en äldre person om åldern",
+    "sevenOclock": "klockan sju",
+    "may": "maj — regelbunden",
+    "howOldNeutral": "Det vanliga artiga sättet att fråga en vuxen om åldern"
   },
   "example": {
     "zeroMath": "minus tre grader",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 är rätt; 삼 시 서른 분 inte",
     "pitfallSpacing": "한 개 är rätt; 한개 inte",
     "tenThousandWon": "en 10 000-wonsedel",
-    "threeHundredMillionWon": "Lägenheten kostar 삼억 원."
+    "threeHundredMillionWon": "Lägenheten kostar 삼억 원.",
+    "nineOhFive": "Klockan är fem över nio.",
+    "mayFifth": "femte maj"
   },
   "note": {
     "phoneZero": "I ett telefonnummer läses 0 oftast som 공.",

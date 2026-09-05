@@ -347,6 +347,24 @@ export interface NumberItem {
   role: 'numeral' | 'counter' | 'phrase' | 'form';
   /** For a counter: the numeral system it takes. */
   counter_system?: 'sino' | 'native';
+  /**
+   * The semantic category this item's answer belongs to. See `AnswerDomain`.
+   *
+   * Required, and required to be right: it is what decides which other items
+   * may stand beside this one in an option list. An item whose domain is wrong
+   * does not fail loudly at runtime — it produces a question that looks fine
+   * and cannot be answered on its merits, which is the whole class of defect
+   * this field exists to end.
+   */
+  domain: AnswerDomain;
+  /**
+   * The time a `clockTime` item names, so a question can render it and vary it.
+   *
+   * 세 시 삼십 분 is `{hour: 3, minute: 30}`. Written down rather than parsed
+   * out of the Korean: the parser would have to know 반 is thirty and 열두 is
+   * twelve, and it would be a parser inside a content file.
+   */
+  clock?: { hour: number; minute: number };
   /** Key into the `numbers` namespace, or null where `value` says it all. */
   gloss: string | null;
   /**
@@ -463,6 +481,138 @@ export interface NumberItem {
  *
  * The UI renders the instruction from this and from nothing else.
  */
+/**
+ * The semantic category an answer belongs to.
+ *
+ * ## Why this is content and not a runtime guess
+ *
+ * The money lesson asked *원 — 무슨 뜻일까요?* over four buttons reading
+ * **한국 돈의 단위**, **5,000원**, **10,000원** and **35,000원**. Three of those
+ * are amounts of money and one is the definition of a unit; they are not four
+ * answers to one question, they are two questions' worth of options in one
+ * list. The listening lesson played a complete time and offered **두 시 십오 분**,
+ * **분**, **세 시 삼십 분** and **초** — two complete times and two bare unit
+ * words. And *오천 원* was asked against **2시**, **사람 세 명**, **돈 5,000원**
+ * and **30분**, where the answer is findable without reading any Korean at all,
+ * because only one of the four is about money.
+ *
+ * All three come from one cause: options were drawn from whatever the lesson
+ * happened to contain, and what made two strings comparable was never written
+ * down. A previous pass made the *shapes* uniform — every option prose rather
+ * than one prose among three numerals — which is why the money question still
+ * looked plausible while still being unanswerable on its merits.
+ *
+ * So the category is declared on the item, in the source, and the option pool
+ * is filtered by it. It is deliberately not derived from the gloss string: a
+ * string test would have to decide whether *5,000 won* is an amount or a
+ * definition in thirty-two languages, and would be wrong in at least one.
+ */
+export type AnswerDomain =
+  /** A short definition of what a word or phrase *is*: 원, 명, 몇 시예요?. */
+  | 'definition'
+  /** A bare number: 일 is 1, 스물 is 20. */
+  | 'numericValue'
+  /** An amount of money: 오천 원 is 5,000원. */
+  | 'moneyAmount'
+  /** A point on a clock: 두 시 십오 분 is 2:15. */
+  | 'clockTime'
+  /** A length of time: 삼십 분 is thirty minutes. */
+  | 'duration'
+  /** A day of a month: 삼월 일일. */
+  | 'calendarDate'
+  /** A month of the year: 유월, 시월. */
+  | 'month'
+  /** A day of the week, and the weekend. */
+  | 'weekday'
+  /** An age in years: 스무 살. */
+  | 'age'
+  /** A number of people: 세 명. */
+  | 'personCount'
+  /** A number of things: 두 잔, 세 권. */
+  | 'objectCount'
+  /** A floor of a building: 삼 층. */
+  | 'floor'
+  /** Digits read one at a time: 공일공. */
+  | 'phoneNumber'
+  /** How something is said, where that differs from how it is written. */
+  | 'pronunciation'
+  /** How something is written, spacing included. */
+  | 'writtenForm'
+  /** A statement about when or how an expression is used. */
+  | 'usageContext';
+
+/**
+ * Where a question's wrong answers come from.
+ *
+ * Named on the question rather than left implicit in the builder, because it is
+ * the difference between a distractor a learner can be wrong about and one that
+ * is merely a different topic. `unrelated_domain` is not in this list on
+ * purpose: it is the defect the domain filter exists to prevent, and there is no
+ * question type it is the right answer for.
+ */
+export type DistractorStrategy =
+  /** Other items in the same lesson, of the same answer domain. */
+  | 'lesson_siblings'
+  /** Items of the same domain from this lesson and the ones before it. */
+  | 'taught_siblings'
+  /** The same amount or count, moved by a power of ten. */
+  | 'value_scale'
+  /** The same clock time with one component changed. */
+  | 'clock_shift'
+  /** The same number in the other numeral system. */
+  | 'system_swap'
+  /** A reading that sounds close enough to be confused. */
+  | 'sound_alike'
+  /** The plain numeral where the counting form is required, or the reverse. */
+  | 'form_confusion'
+  /** The month a beginner predicts instead of the irregular one. */
+  | 'month_irregular'
+  /** The parts of a compound numeral, in the wrong order. */
+  | 'part_order';
+
+/**
+ * What a Numbers question declares about itself.
+ *
+ * Every field is either read from the content or fixed by the builder that made
+ * the question; none is inferred from the rendered strings. `numbers:domain` is
+ * the gate that reads it, and it fails a question whose options do not all sit
+ * in `answerDomain`, whose `promptType` is not one this domain can be asked
+ * with, or whose prerequisites are not taught before the lesson it appears in.
+ */
+export interface NumbersQuestionSchema {
+  /** The lesson objective this question serves. A key in the `numbers` namespace. */
+  learningObjective: string;
+  /** The instruction the learner reads. */
+  promptType: NumbersQuestionType;
+  /** What the question shows or plays. */
+  targetType: NumbersTargetType;
+  /** The category every option belongs to. */
+  answerDomain: AnswerDomain;
+  /** The correct option's text, as stored — a key, a numeral or Korean. */
+  correctAnswer: string;
+  /** Where the wrong answers came from. */
+  distractorStrategy: DistractorStrategy[];
+  /** 1 recognition, 2 production, 3 discrimination under interference. */
+  difficulty: 1 | 2 | 3;
+  /** Lesson ids whose content this question assumes. */
+  prerequisites: string[];
+  /** The clip the question plays, or null where it plays nothing. */
+  audioTarget: string | null;
+}
+
+/** What a question puts in front of the learner. */
+export type NumbersTargetType =
+  /** Korean text. */
+  | 'korean'
+  /** An arabic numeral. */
+  | 'numeral'
+  /** A recording, with no text. */
+  | 'audio'
+  /** A sentence with a hole in it. */
+  | 'sentence'
+  /** A pair of expressions, one of which is wrong. */
+  | 'contrast';
+
 export type NumbersQuestionType =
   /** The answer is the expression that is **not** Korean. */
   | 'findIncorrectExpression'

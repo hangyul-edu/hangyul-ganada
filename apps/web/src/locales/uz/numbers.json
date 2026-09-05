@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Nimani eshitdingiz?",
-    "chooseMeaning": "Bu nimani anglatadi?",
+    "meaning": {
+      "definition": "Bu so‘z nimani bildiradi?",
+      "moneyAmount": "Bu qancha turadi?",
+      "clockTime": "Soat necha?",
+      "month": "Bu qaysi oy?",
+      "weekday": "Bu haftaning qaysi kuni?"
+    },
     "chooseByMeaning": "Bulardan qaysi biri shu ma’noni bildiradi?",
     "chooseCorrectExplanation": "To‘g‘ri izohni tanlang.",
     "findIncorrectExpression": "Noto‘g‘ri iborani tanlang.",
@@ -242,7 +248,6 @@
     "belowZero": "noldan past",
     "zeroScore": "nol ball",
     "ctxPeople": "uch kishi",
-    "ctxMoney": "besh ming von",
     "ctxHour": "soat ikki",
     "ctxMinute": "o‘ttiz daqiqa",
     "ctxAge": "yigirma yosh",
@@ -270,7 +275,7 @@
     "tenOclock": "soat o‘n",
     "counterMinute": "daqiqa",
     "counterSecond": "soniya",
-    "mixedTime": "soat va daqiqa birga",
+    "mixedTime": "uch soat o‘ttiz daqiqa",
     "quarterPast": "ikkidan o‘n besh daqiqa o‘tdi",
     "counterYear": "yil",
     "counterMonth": "oy",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 von",
     "price10000": "10 000 von",
-    "price35000": "35 000 von"
+    "price35000": "35 000 von",
+    "price1000": "1 000 von",
+    "twoForty": "ikki soat qirq daqiqa",
+    "nineOhFive": "to‘qqiz soat besh daqiqa",
+    "howOldPolite": "Kattaroq odamdan yoshini so‘rashning xushmuomala shakli",
+    "sevenOclock": "soat yetti",
+    "may": "may — qoidaga muvofiq",
+    "howOldNeutral": "Kattalarning yoshini so‘rashning odatdagi xushmuomala shakli"
   },
   "example": {
     "zeroMath": "minus uch daraja",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 to‘g‘ri; 삼 시 서른 분 noto‘g‘ri",
     "pitfallSpacing": "한 개 to‘g‘ri; 한개 noto‘g‘ri",
     "tenThousandWon": "10 000 vonlik bir banknot",
-    "threeHundredMillionWon": "Kvartira narxi 삼억 원."
+    "threeHundredMillionWon": "Kvartira narxi 삼억 원.",
+    "nineOhFive": "Hozir to‘qqiz soat besh daqiqa.",
+    "mayFifth": "5-may"
   },
   "note": {
     "phoneZero": "Telefon raqamida 0 odatda 공 deb o‘qiladi.",

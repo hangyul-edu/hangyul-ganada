@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "आपने क्या सुना?",
-    "chooseMeaning": "इसका क्या अर्थ है?",
+    "meaning": {
+      "definition": "यह शब्द किसे दर्शाता है?",
+      "moneyAmount": "यह कितने का है?",
+      "clockTime": "यह कितने बजे हैं?",
+      "month": "यह कौन-सा महीना है?",
+      "weekday": "यह सप्ताह का कौन-सा दिन है?"
+    },
     "chooseByMeaning": "इनमें से किसका यही अर्थ है?",
     "chooseCorrectExplanation": "सही व्याख्या चुनें।",
     "findIncorrectExpression": "ग़लत अभिव्यक्ति चुनें।",
@@ -242,7 +248,6 @@
     "belowZero": "शून्य से नीचे",
     "zeroScore": "शून्य अंक",
     "ctxPeople": "तीन लोग",
-    "ctxMoney": "पाँच हज़ार वॉन",
     "ctxHour": "दो बजे",
     "ctxMinute": "तीस मिनट",
     "ctxAge": "बीस साल की उम्र",
@@ -270,7 +275,7 @@
     "tenOclock": "दस बजे",
     "counterMinute": "मिनट",
     "counterSecond": "सेकंड",
-    "mixedTime": "घंटा और मिनट साथ में",
+    "mixedTime": "साढ़े तीन",
     "quarterPast": "सवा दो",
     "counterYear": "साल",
     "counterMonth": "महीना",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000 वॉन",
     "price10000": "10,000 वॉन",
-    "price35000": "35,000 वॉन"
+    "price35000": "35,000 वॉन",
+    "price1000": "1,000 वॉन",
+    "twoForty": "दो बजकर चालीस मिनट",
+    "nineOhFive": "नौ बजकर पाँच मिनट",
+    "howOldPolite": "बड़ों से उम्र पूछने का आदरसूचक तरीका",
+    "sevenOclock": "सात बजे",
+    "may": "मई — नियमित",
+    "howOldNeutral": "किसी वयस्क से उम्र पूछने का सामान्य विनम्र तरीका"
   },
   "example": {
     "zeroMath": "शून्य से तीन डिग्री नीचे",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 सही है; 삼 시 서른 분 नहीं",
     "pitfallSpacing": "한 개 सही है; 한개 नहीं",
     "tenThousandWon": "10,000 वॉन का एक नोट",
-    "threeHundredMillionWon": "फ़्लैट की कीमत 삼억 원 है।"
+    "threeHundredMillionWon": "फ़्लैट की कीमत 삼억 원 है।",
+    "nineOhFive": "नौ बजकर पाँच मिनट हुए हैं।",
+    "mayFifth": "पाँच मई"
   },
   "note": {
     "phoneZero": "फ़ोन नंबर में 0 को आमतौर पर 공 पढ़ते हैं।",

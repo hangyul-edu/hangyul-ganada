@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Mit hallottál?",
-    "chooseMeaning": "Mit jelent ez?",
+    "meaning": {
+      "definition": "Mit jelöl ez a szó?",
+      "moneyAmount": "Mennyi ez?",
+      "clockTime": "Hány óra ez?",
+      "month": "Melyik hónap ez?",
+      "weekday": "A hét melyik napja ez?"
+    },
     "chooseByMeaning": "Melyik jelenti ezt?",
     "chooseCorrectExplanation": "Válaszd ki a helyes magyarázatot.",
     "findIncorrectExpression": "Válaszd ki a helytelen kifejezést.",
@@ -242,7 +248,6 @@
     "belowZero": "fagypont alatt",
     "zeroScore": "nulla pont",
     "ctxPeople": "három ember",
-    "ctxMoney": "ötezer von",
     "ctxHour": "két óra",
     "ctxMinute": "harminc perc",
     "ctxAge": "húsz éves",
@@ -270,7 +275,7 @@
     "tenOclock": "tíz óra",
     "counterMinute": "perc",
     "counterSecond": "másodperc",
-    "mixedTime": "óra és perc együtt",
+    "mixedTime": "fél négy",
     "quarterPast": "negyed három",
     "counterYear": "év",
     "counterMonth": "hónap",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 von",
     "price10000": "10 000 von",
-    "price35000": "35 000 von"
+    "price35000": "35 000 von",
+    "price1000": "1 000 von",
+    "twoForty": "két óra negyven",
+    "nineOhFive": "kilenc óra öt",
+    "howOldPolite": "Az idősebb ember korára rákérdező udvarias forma",
+    "sevenOclock": "hét óra",
+    "may": "május — szabályos",
+    "howOldNeutral": "A felnőtt korára rákérdező szokásos udvarias forma"
   },
   "example": {
     "zeroMath": "mínusz három fok",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "a 세 시 삼십 분 helyes; a 삼 시 서른 분 nem",
     "pitfallSpacing": "a 한 개 helyes; a 한개 nem",
     "tenThousandWon": "egy 10 000 vonos bankjegy",
-    "threeHundredMillionWon": "A lakás ára 삼억 원."
+    "threeHundredMillionWon": "A lakás ára 삼억 원.",
+    "nineOhFive": "Kilenc óra öt perc van.",
+    "mayFifth": "május ötödike"
   },
   "note": {
     "phoneZero": "Telefonszámban a 0 általában 공.",

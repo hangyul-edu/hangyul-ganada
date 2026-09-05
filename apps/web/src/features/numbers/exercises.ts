@@ -1,11 +1,15 @@
 import type {
+  AnswerDomain,
+  DistractorStrategy,
   NumberItem,
   NumberLesson,
   NumbersExerciseKind,
+  NumbersQuestionSchema,
   NumbersQuestionType,
+  NumbersTargetType,
 } from '@hangyul-ganada/shared-types';
 
-import { NUMBER_ITEMS, getNumberItem, numberLessonItems } from '../../data/numbers';
+import { NUMBER_ITEMS, NUMBER_LESSONS, getNumberItem, numberLessonItems } from '../../data/numbers';
 
 /**
  * Numbers exercises: built from the lesson, with distractors that mean something.
@@ -96,7 +100,7 @@ export type MisconceptionClass = (typeof MISCONCEPTION_CLASSES)[number];
  */
 export const PROMPT_KEY_FOR_TYPE: Record<NumbersQuestionType, string> = {
   listenAndChoose: 'prompt.listenAndChoose',
-  chooseMeaning: 'prompt.chooseMeaning',
+  chooseMeaning: 'prompt.meaning.definition',
   chooseCorrectExplanation: 'prompt.chooseCorrectExplanation',
   chooseSystem: 'prompt.chooseSystem',
   sayTheNumber: 'prompt.digitsToKorean.both',
@@ -105,6 +109,27 @@ export const PROMPT_KEY_FOR_TYPE: Record<NumbersQuestionType, string> = {
   findIncorrectExpression: 'prompt.findIncorrectExpression',
   fillTheBlank: 'prompt.fill',
   orderTheParts: 'prompt.orderParts',
+};
+
+/**
+ * The instruction a meaning question carries, chosen by what it is asking for.
+ *
+ * *무슨 뜻일까요?* — *what does this mean?* — is the right question over 원 and
+ * the wrong one over 오천 원, where the answer is an amount, and over 두 시 십오
+ * 분, where it is a time. A learner who reads *what does this mean* and is
+ * offered four prices has been told the question is about definitions and then
+ * marked on arithmetic.
+ *
+ * One key per domain a meaning question can be built for, and no fallback: a
+ * domain missing from this table is a question that cannot be phrased, which is
+ * a content error rather than something to paper over with a generic sentence.
+ */
+export const MEANING_PROMPT_KEY: Partial<Record<AnswerDomain, string>> = {
+  definition: 'prompt.meaning.definition',
+  moneyAmount: 'prompt.meaning.moneyAmount',
+  clockTime: 'prompt.meaning.clockTime',
+  month: 'prompt.meaning.month',
+  weekday: 'prompt.meaning.weekday',
 };
 
 export interface ExerciseOption {
@@ -127,6 +152,20 @@ export interface ExerciseOption {
   value?: number;
   /** The misconception this option embodies, if it is a distractor. */
   misconception?: MisconceptionClass;
+  /**
+   * The semantic category this option belongs to. Required.
+   *
+   * Every option in a list must share one, and `build` drops any that does not
+   * match the answer's. That single filter is what ends the three defects this
+   * pass is here for: a definition standing against three prices, two bare unit
+   * words standing against two complete clock times, and a price standing
+   * against a time, a head-count and a duration.
+   *
+   * It comes from the item (`NumberItem.domain`) or, for the options that are
+   * not items, from the builder that invented them. It is never read off
+   * `text`.
+   */
+  domain: AnswerDomain;
 }
 
 export interface NumbersExercise {
@@ -168,6 +207,14 @@ export interface NumbersExercise {
    * exercise the engine can build and fails if one carries a result body at
    * all, in any of the thirty-two languages.
    */
+  /**
+   * What this question declares about itself. See `NumbersQuestionSchema`.
+   *
+   * Filled in by `finish` from the builder's own arguments, so it describes the
+   * question that was actually built rather than the one that was intended.
+   * `numbers:domain` reads it.
+   */
+  schema: NumbersQuestionSchema;
   /** For `order_parts`: the parts, in the order they must be tapped. */
   parts?: string[];
   /**
@@ -270,6 +317,14 @@ const IRREGULAR_MONTH: Record<string, string> = { 유월: '육월', 시월: '십
 const SOUND_ALIKE: Record<string, string[]> = {
   삼: ['사'], 사: ['삼'], 이: ['일'], 일: ['이'], 육: ['칠'], 칠: ['육'],
   셋: ['넷'], 넷: ['셋'], 여섯: ['여덟'], 여덟: ['여섯'],
+  /*
+   * 십육 is said 심뉵, which is the pitfalls lesson's whole point about it, and
+   * the two numbers it is then heard as are its neighbours. Listening is the
+   * only way to practise a pronunciation rule, and without these the lesson
+   * could only ever *show* the rule: every other option in that lesson is a
+   * different length, and an option list of one is not a question.
+   */
+  십육: ['십칠', '십오'],
 };
 
 const uniqueByText = (opts: ExerciseOption[]): ExerciseOption[] => {
@@ -283,6 +338,17 @@ const uniqueByText = (opts: ExerciseOption[]): ExerciseOption[] => {
 };
 
 /** Fills up to `want` options, answer first, from the given distractor pools in order. */
+/**
+ * The answer plus distractors, drawn from `pools` in order until there are
+ * enough — and never from outside the answer's own semantic domain.
+ *
+ * The domain filter is here, at the one place every builder passes through,
+ * rather than in each builder. Nine builders each remembering to filter is nine
+ * places for the next one to forget, and forgetting is not visible: the
+ * question renders, the answer is still correct, and the learner is handed four
+ * buttons of which only one is on the subject. A question that cannot reach
+ * three options in its own domain returns null and is not asked.
+ */
 function build(
   answer: ExerciseOption,
   pools: Array<ExerciseOption[]>,
@@ -292,6 +358,7 @@ function build(
   for (const pool of pools) {
     for (const opt of pool) {
       if (options.length >= want) break;
+      if (opt.domain !== answer.domain) continue;
       options = uniqueByText([...options, opt]);
     }
   }
@@ -335,11 +402,76 @@ function kindsFor(lesson: NumberLesson, options: RunOptions | undefined): Number
   return lesson.exercise_kinds.filter((kind) => kind !== 'listen_choose');
 }
 
-const koreanOf = (item: NumberItem): ExerciseOption => ({ text: item.korean, itemId: item.id });
+const koreanOf = (item: NumberItem): ExerciseOption => ({
+  text: item.korean,
+  itemId: item.id,
+  domain: item.domain,
+});
 const meaningOf = (item: NumberItem): ExerciseOption =>
   item.gloss
-    ? { text: item.gloss, isKey: true, itemId: item.id }
-    : { text: String(item.value), value: item.value ?? undefined, itemId: item.id };
+    ? { text: item.gloss, isKey: true, itemId: item.id, domain: item.domain }
+    : { text: String(item.value), value: item.value ?? undefined, itemId: item.id, domain: item.domain };
+
+/**
+ * Whether two items may stand in the same option list.
+ *
+ * The domain is the whole of the rule for most items, and for clock times it is
+ * not quite enough. A recording of *두 시 십오 분* offered against *열 시* is two
+ * complete times and still an unfair question: the answer is the only one with
+ * minutes in it, so it is findable by counting words rather than by listening.
+ * So a time with minutes is only ever offered against times with minutes, and
+ * an o'clock only against o'clocks — one controlled feature, which for a clock
+ * is its granularity.
+ *
+ * Read off `NumberItem.clock`, which the content declares, and not out of the
+ * Korean: parsing 반 as thirty is a parser, and a parser in a distractor filter
+ * is where the next silent mismatch lives.
+ */
+function sameShape(item: NumberItem, other: NumberItem): boolean {
+  if (other.domain !== item.domain) return false;
+  /*
+   * A whole question stands only against other whole questions.
+   *
+   * 얼마예요? offered against 원, 공 and 영 is four definitions and still an
+   * unfair question: three of them are one syllable and the answer is a
+   * sentence, so a learner who hears the clip and counts syllables is right
+   * without knowing the word. The course has four of these — 얼마예요?,
+   * 몇 살이에요?, 몇 시예요?, 무슨 요일이에요? — and asked against each other they
+   * make the discrimination the lesson actually wants: which question do you
+   * ask to get a price rather than a time.
+   */
+  const asks = (which: NumberItem) => which.korean.endsWith('?');
+  if (asks(item) !== asks(other)) return false;
+  if (item.domain === 'clockTime') {
+    const hasMinutes = (which: NumberItem) => (which.clock?.minute ?? 0) > 0;
+    return hasMinutes(item) === hasMinutes(other);
+  }
+  return true;
+}
+
+/**
+ * Everything taught by the end of this lesson, as a distractor pool.
+ *
+ * The money lesson holds one definition — 원 — and three prices, so *what does
+ * 원 mean?* had no second definition to offer and reached for the prices. The
+ * answer is not to invent a definition but to use one the learner already has:
+ * 시, 살, 개 are units too, they were taught in earlier lessons, and being
+ * asked to tell a unit of money from a unit of time is the discrimination the
+ * question was trying to make in the first place.
+ *
+ * Bounded by *taught*, not by the whole corpus. A distractor from a lesson the
+ * learner has not reached tests nothing and can only be eliminated by not
+ * recognising it, which is the wrong reason to be right.
+ */
+function taughtItems(ctx: Ctx): NumberItem[] {
+  const upto = NUMBER_LESSONS.findIndex((l) => l.id === ctx.lesson.id);
+  if (upto < 0) return [];
+  const ids = new Set<string>();
+  for (const lesson of NUMBER_LESSONS.slice(0, upto + 1)) {
+    for (const id of lesson.item_ids) ids.add(id);
+  }
+  return [...ids].map((id) => getNumberItem(id)).filter((i): i is NumberItem => Boolean(i));
+}
 
 /**
  * A sibling of the same item, as a distractor.
@@ -355,6 +487,8 @@ function siblingsDistinct(item: NumberItem, siblings: NumberItem[], by: (i: Numb
   const applies = cls !== 'wrong_counter' || item.role === 'counter';
   return siblings
     .filter((s) => s.id !== item.id)
+    // Same answer domain, same granularity. See `sameShape`.
+    .filter((s) => sameShape(item, s))
     // A sibling whose gloss names the same thing is not a wrong answer. See
     // `NumberItem.gloss_group`: 명 and 사람 both gloss as 사람.
     .filter((s) => !(item.gloss_group && s.gloss_group === item.gloss_group))
@@ -381,6 +515,16 @@ function glossQuestion(item: NumberItem): NumbersQuestionType {
 /** Korean shown → meaning chosen. Distractors: the lesson's own siblings (same role), then system swap. */
 function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   /*
+   * A numeral's meaning is its value, and asking for it is `korean_to_digits`.
+   *
+   * `meaningOf` renders an item with no gloss as its number, so a `read_choose`
+   * over 십육 produced *16 · 1 · 2 · 3* under *무슨 뜻일까요?* — the same
+   * question `korean_to_digits` asks over the same options under *어떤
+   * 숫자일까요?*. Two spellings of one question is one of them too many, and
+   * the vaguer instruction is the one to lose.
+   */
+  if (item.domain === 'numericValue') return null;
+  /*
    * One option per `gloss_group`, distractors included.
    *
    * Excluding a sibling that names what the *answer* names is what makes the
@@ -392,9 +536,31 @@ function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
    */
   const byGroup = new Set<string>();
   if (item.gloss_group) byGroup.add(item.gloss_group);
+  /*
+   * The lesson first, then everything taught before it.
+   *
+   * The money lesson is why the second pool exists. It holds one definition —
+   * 원 — beside three prices, so *what does 원 mean?* could not find a second
+   * definition among its siblings and took the prices instead: **한국 돈의
+   * 단위** against **5,000원**, **10,000원** and **35,000원**. Three of those
+   * are amounts and one is a definition, so the answer is the odd shape out and
+   * the question asks nothing.
+   *
+   * The domain filter alone would have left it with no question at all. What it
+   * needs is other definitions, and the learner already has them: 시 from the
+   * hours lesson, 살 from the age lesson, 개 from the counters lesson. Telling a
+   * unit of money from a unit of time is a real discrimination, and it is the
+   * one the lesson is for.
+   */
+  const strategy: DistractorStrategy[] = ['lesson_siblings', 'taught_siblings'];
   const pool = [
     ...siblingsDistinct(item, ctx.siblings.filter((s) => s.role === item.role), meaningOf, 'wrong_counter'),
     ...siblingsDistinct(item, ctx.siblings, meaningOf, 'wrong_counter'),
+    // Same role first: asked what 분 means, a learner should be weighing it
+    // against 초 and 살 and 개 — other counting words — before it is weighed
+    // against *zero, as a digit*, which is a definition but not of a unit.
+    ...siblingsDistinct(item, taughtItems(ctx).filter((s) => s.role === item.role), meaningOf, 'wrong_counter'),
+    ...siblingsDistinct(item, taughtItems(ctx), meaningOf, 'wrong_counter'),
   ].filter((option) => {
     const group = NUMBER_ITEMS.find((i) => i.gloss === option.text)?.gloss_group;
     if (!group) return true;
@@ -439,7 +605,7 @@ function readChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
    * than with the item.
    */
   const shown = question === 'chooseCorrectExplanation' ? (item.example ?? item.korean) : item.korean;
-  return finish('read_choose', question, item, ctx, { text: shown, audio: item.audio.word }, options);
+  return finish('read_choose', question, item, ctx, { text: shown, audio: item.audio.word }, options, strategy);
 }
 
 /**
@@ -511,16 +677,48 @@ function soundFreeFor(
 
 /** Clip played → Korean chosen. Distractors: sound-alikes, adjacent, system swap. */
 function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
-  const sound = (SOUND_ALIKE[item.korean] ?? []).map((t) => ({ text: t, misconception: 'sound_alike' as const }));
+  // A sound-alike is a wrong *reading* of this very expression, so it belongs to
+  // the item's own domain: 십육 misheard as 십칠 is still a number.
+  const sound = (SOUND_ALIKE[item.korean] ?? []).map((t) => ({ text: t, misconception: 'sound_alike' as const, domain: item.domain }));
   const adj = adjacent(item).map((i) => ({ ...koreanOf(i), misconception: 'adjacent' as const }));
   const swap = systemSwap(item);
+  /*
+   * Every option the same length of expression as the answer.
+   *
+   * 몇 시예요? played against 시 and 반 is a question a learner passes by
+   * noticing that one option is a sentence and the others are single syllables
+   * — the same defect as a complete clock time offered against 분 and 초, one
+   * step up. Where the lesson has no other expression of the same length, the
+   * question is not asked: the item is still taught, and still checked, by the
+   * kinds that show it rather than play it.
+   */
+  const phrase = (text: string) => text.trim().split(/\s+/).length > 1;
+  /*
+   * Two whole questions are the same shape however many words they are.
+   *
+   * 얼마예요? is one word and 나이가 어떻게 되세요? is three, and a learner
+   * hearing either hears a complete utterance with an ending on it — the count
+   * discriminates nothing. What the word count is for is 두 시 십오 분 against
+   * 분, where one option is an expression and the other is a piece of one.
+   * `sameShape` has already required both sides to be questions or neither.
+   */
+  const asksQuestion = (text: string) => text.trim().endsWith('?');
+  const sameLength = (options: ExerciseOption[]) =>
+    options.filter(
+      (option) =>
+        (asksQuestion(option.text) && asksQuestion(item.korean)) ||
+        phrase(option.text) === phrase(item.korean),
+    );
   const options = build(koreanOf(item), [
-    sound, adj,
-    swap ? [{ ...koreanOf(swap), misconception: 'system_swap' }] : [],
-    siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
+    sameLength(sound), sameLength(adj),
+    swap && phrase(swap.korean) === phrase(item.korean)
+      ? [{ ...koreanOf(swap), misconception: 'system_swap' as const }]
+      : [],
+    sameLength(siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter')),
+    sameLength(siblingsDistinct(item, taughtItems(ctx), koreanOf, 'wrong_counter')),
   ]);
   if (!options) return null;
-  const exercise = finish('listen_choose', 'listenAndChoose', item, ctx, { audio: item.audio.word }, options);
+  const exercise = finish('listen_choose', 'listenAndChoose', item, ctx, { audio: item.audio.word }, options, ['sound_alike', 'system_swap', 'lesson_siblings']);
   const variant = soundFreeFor(item, exercise.options, exercise.options[exercise.answer]!);
   return variant ? { ...exercise, soundFree: variant } : exercise;
 }
@@ -532,17 +730,17 @@ function digitsToKorean(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const options = build(koreanOf(item), [
     swap ? [{ ...koreanOf(swap), misconception: 'system_swap' }] : [],
     adjacent(item).map((i) => ({ ...koreanOf(i), misconception: 'adjacent' as const })),
-    (SOUND_ALIKE[item.korean] ?? []).map((t) => ({ text: t, misconception: 'sound_alike' as const })),
+    (SOUND_ALIKE[item.korean] ?? []).map((t) => ({ text: t, misconception: 'sound_alike' as const, domain: item.domain })),
     siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter'),
   ]);
   if (!options) return null;
-  return finish('digits_to_korean', 'sayTheNumber', item, ctx, { value: item.value, key: `prompt.digitsToKorean.${item.system ?? 'both'}` }, options);
+  return finish('digits_to_korean', 'sayTheNumber', item, ctx, { value: item.value, key: `prompt.digitsToKorean.${item.system ?? 'both'}` }, options, ['system_swap', 'sound_alike', 'lesson_siblings']);
 }
 
 /** Korean shown → numeral chosen. Distractors: adjacent values, sound-alike values. */
 function koreanToDigits(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   if (item.value === null) return null;
-  const valueOpt = (v: number, cls: MisconceptionClass): ExerciseOption => ({ text: String(v), value: v, misconception: cls });
+  const valueOpt = (v: number, cls: MisconceptionClass): ExerciseOption => ({ text: String(v), value: v, misconception: cls, domain: item.domain });
   const near: number[] = [];
   const v = item.value;
   if (v >= 100) near.push(v * 10, v / 10, v + (v >= 10000 ? 10000 : 100));
@@ -550,13 +748,13 @@ function koreanToDigits(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const soundVals = (SOUND_ALIKE[item.korean] ?? [])
     .map((t) => NUMBER_ITEMS.find((i) => i.korean === t && i.value !== null)?.value)
     .filter((x): x is number => typeof x === 'number');
-  const options = build({ text: String(v), value: v }, [
+  const options = build({ text: String(v), value: v, domain: item.domain }, [
     soundVals.map((x) => valueOpt(x, 'sound_alike')),
     near.filter((x) => x > 0 && Number.isInteger(x) && x !== v).map((x) => valueOpt(x, 'adjacent')),
     ctx.siblings.filter((s) => s.value !== null && s.value !== v).map((s) => valueOpt(s.value!, 'adjacent')),
   ]);
   if (!options) return null;
-  return finish('korean_to_digits', 'writeTheDigits', item, ctx, { text: item.korean, audio: item.audio.word }, options);
+  return finish('korean_to_digits', 'writeTheDigits', item, ctx, { text: item.korean, audio: item.audio.word }, options, ['sound_alike', 'value_scale', 'lesson_siblings']);
 }
 
 /** Context phrase → which system does it use? Two options, both meaningful. */
@@ -576,12 +774,14 @@ function chooseSystem(item: NumberItem, ctx: Ctx): NumbersExercise | null {
      * the two marked options, which is what tells a learner they chose 고유어식
      * where the phrase takes 한자어식.
      */
-    { text: 'system.native', isKey: true },
-    { text: 'system.sino', isKey: true },
+    // Both options name a *set*, so the domain is the rule being asked about
+    // rather than anything either set contains.
+    { text: 'system.native', isKey: true, domain: 'usageContext' as const },
+    { text: 'system.sino', isKey: true, domain: 'usageContext' as const },
   ];
   const answerIndex = item.system === 'native' ? 0 : 1;
   const ordered = [options[answerIndex]!, options[1 - answerIndex]!];
-  return finish('choose_system', 'chooseSystem', item, ctx, { text: item.korean, key: item.gloss ?? undefined, audio: item.audio.word }, ordered);
+  return finish('choose_system', 'chooseSystem', item, ctx, { text: item.korean, key: item.gloss ?? undefined, audio: item.audio.word }, ordered, ['system_swap']);
 }
 
 /** A counter with a number: pick the form that goes in front of it. */
@@ -601,13 +801,19 @@ function counterForm(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const value = NUMBER_ITEMS.find((i) => i.korean === form && i.role === 'form')?.value ?? null;
   const sino = value !== null ? numerals('sino').find((i) => i.value === value) : undefined;
   const glued = `${form}${counter}`;
-  const options = build({ text: `${form} ${counter}` }, [
-    plain ? [{ text: `${plain} ${counter}`, misconception: 'plain_form' }] : [],
-    sino ? [{ text: `${sino.korean} ${counter}`, misconception: 'system_swap' }] : [],
-    [{ text: glued, misconception: 'spacing' }],
+  /*
+   * Four ways of writing one quantity, one of them right. The domain is
+   * `writtenForm` for all four — the question is about the shape of the
+   * expression, not about what it means, and every option means the same thing.
+   */
+  const written = 'writtenForm' as const;
+  const options = build({ text: `${form} ${counter}`, domain: written }, [
+    plain ? [{ text: `${plain} ${counter}`, misconception: 'plain_form', domain: written }] : [],
+    sino ? [{ text: `${sino.korean} ${counter}`, misconception: 'system_swap', domain: written }] : [],
+    [{ text: glued, misconception: 'spacing', domain: written }],
   ]);
   if (!options) return null;
-  return finish('counter_form', 'chooseCounterForm', item, ctx, { value: value ?? undefined, text: counter }, options);
+  return finish('counter_form', 'chooseCounterForm', item, ctx, { value: value ?? undefined, text: counter }, options, ['form_confusion', 'system_swap']);
 }
 
 /**
@@ -637,23 +843,25 @@ function correctSide(item: NumberItem): string {
  * source of `findIncorrectExpression`.
  */
 function spotMistake(item: NumberItem, ctx: Ctx): NumbersExercise | null {
+  // Every option is an expression judged as written Korean, right or wrong.
+  const written = 'writtenForm' as const;
   const wrong: ExerciseOption[] = [];
-  if (IRREGULAR_MONTH[item.korean]) wrong.push({ text: IRREGULAR_MONTH[item.korean]!, misconception: 'irregular_month' });
+  if (IRREGULAR_MONTH[item.korean]) wrong.push({ text: IRREGULAR_MONTH[item.korean]!, misconception: 'irregular_month', domain: written });
   if (item.role === 'form' && item.example) {
     const [form, counter] = item.example.split(' ');
-    if (form && counter && FORM_TO_PLAIN[form]) wrong.push({ text: `${FORM_TO_PLAIN[form]} ${counter}`, misconception: 'plain_form' });
+    if (form && counter && FORM_TO_PLAIN[form]) wrong.push({ text: `${FORM_TO_PLAIN[form]} ${counter}`, misconception: 'plain_form', domain: written });
   }
   if (item.example && item.example.includes('(✗)')) {
     const bad = item.example.split('·')[1]?.replace(/\(✗\)/, '').trim();
-    if (bad) wrong.push({ text: bad, misconception: item.korean.includes(' ') && bad.replace(/\s/g, '') === item.korean.replace(/\s/g, '') ? 'spacing' : 'plain_form' });
+    if (bad) wrong.push({ text: bad, misconception: item.korean.includes(' ') && bad.replace(/\s/g, '') === item.korean.replace(/\s/g, '') ? 'spacing' : 'plain_form', domain: written });
   }
   if (wrong.length === 0) return null;
   // The *answer* here is the wrong form; the correct forms are the other options.
-  const right = [{ text: correctSide(item) }];
-  const fill = ctx.siblings.filter((s) => s.id !== item.id).map((s) => ({ text: correctSide(s) }));
+  const right = [{ text: correctSide(item), domain: written }];
+  const fill = ctx.siblings.filter((s) => s.id !== item.id).map((s) => ({ text: correctSide(s), domain: written }));
   const options = build(wrong[0]!, [right, fill]);
   if (!options) return null;
-  return finish('spot_mistake', 'findIncorrectExpression', item, ctx, {}, options);
+  return finish('spot_mistake', 'findIncorrectExpression', item, ctx, {}, options, ['month_irregular', 'form_confusion']);
 }
 
 /**
@@ -735,9 +943,21 @@ function fillSentence(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   const sentence = item.example.replace(target, '____');
   if (!hasContextAnchor(sentence)) return null;
   const swap = systemSwap(item);
+  /*
+   * No length rule here, and that is deliberate.
+   *
+   * `listenChoose` requires every option to be the same length of expression as
+   * the answer, because a learner who hears a whole sentence and sees one long
+   * option among three short ones has been told which button to press. A blank
+   * hides its own length — `시험이 ____이에요.` says nothing about how many
+   * words are missing — so the same filter here would only shrink the option
+   * pool, and it did: it left 영 점 with no fill-the-blank at all.
+   */
   const options = build(koreanOf(item), [
-    swap ? [{ ...koreanOf(swap), misconception: 'system_swap' }] : [],
-    PLAIN_TO_FORM[target] ? [{ text: PLAIN_TO_FORM[target]!, misconception: 'plain_form' }] : [],
+    swap ? [{ ...koreanOf(swap), misconception: 'system_swap' as const }] : [],
+    PLAIN_TO_FORM[target]
+      ? [{ text: PLAIN_TO_FORM[target]!, misconception: 'plain_form' as const, domain: item.domain }]
+      : [],
     // A sibling that fits the same slot is not a distractor — see `slot_group`.
     siblingsDistinct(
       item,
@@ -745,9 +965,15 @@ function fillSentence(item: NumberItem, ctx: Ctx): NumbersExercise | null {
       koreanOf,
       'wrong_counter',
     ),
+    siblingsDistinct(
+      item,
+      taughtItems(ctx).filter((s) => !(item.slot_group && s.slot_group === item.slot_group)),
+      koreanOf,
+      'wrong_counter',
+    ),
   ]);
   if (!options) return null;
-  return finish('fill_sentence', 'fillTheBlank', item, ctx, { sentence, audio: item.audio.example ?? undefined }, options);
+  return finish('fill_sentence', 'fillTheBlank', item, ctx, { sentence, audio: item.audio.example ?? undefined }, options, ['system_swap', 'form_confusion', 'lesson_siblings']);
 }
 
 /** Tap the parts of a compound numeral in order: 삼십오 → 삼 · 십 · 오. */
@@ -763,9 +989,21 @@ function orderParts(item: NumberItem, ctx: Ctx): NumbersExercise | null {
     question_type: 'orderTheParts',
     item_id: item.id,
     prompt: { value: item.value, key: 'prompt.orderParts' },
-    options: shuffled.map((text) => ({ text })),
+    // The parts of a numeral are numerals: 삼 · 십 · 오 assembled into 35.
+    options: shuffled.map((text) => ({ text, domain: 'numericValue' as const })),
     answer: -1,
     parts,
+    schema: {
+      learningObjective: ctx.lesson.objective,
+      promptType: 'orderTheParts',
+      targetType: 'numeral',
+      answerDomain: 'numericValue',
+      correctAnswer: parts.join(' '),
+      distractorStrategy: ['part_order'],
+      difficulty: 2,
+      prerequisites: ctx.lesson.prerequisites,
+      audioTarget: null,
+    },
   };
 }
 
@@ -784,6 +1022,26 @@ function decompose(korean: string, system: NumberItem['system']): string[] | nul
   return parts;
 }
 
+/**
+ * What each exercise family shows the learner, and how hard it is.
+ *
+ * Both are properties of the *family*, not of the item, so they are written
+ * down once here rather than passed through nine call sites. Difficulty is the
+ * course's own three-step scale: 1 recognise, 2 produce, 3 tell apart under
+ * interference.
+ */
+const KIND_SHAPE: Record<NumbersExerciseKind, { target: NumbersTargetType; difficulty: 1 | 2 | 3 }> = {
+  read_choose: { target: 'korean', difficulty: 1 },
+  listen_choose: { target: 'audio', difficulty: 2 },
+  choose_system: { target: 'korean', difficulty: 2 },
+  digits_to_korean: { target: 'numeral', difficulty: 2 },
+  korean_to_digits: { target: 'korean', difficulty: 1 },
+  counter_form: { target: 'numeral', difficulty: 3 },
+  spot_mistake: { target: 'contrast', difficulty: 3 },
+  fill_sentence: { target: 'sentence', difficulty: 3 },
+  order_parts: { target: 'numeral', difficulty: 2 },
+};
+
 function finish(
   kind: NumbersExerciseKind,
   questionType: NumbersQuestionType,
@@ -791,9 +1049,12 @@ function finish(
   ctx: Ctx,
   prompt: NumbersExercise['prompt'],
   ordered: ExerciseOption[],
+  distractorStrategy: DistractorStrategy[],
 ): NumbersExercise {
   const seed = `${ctx.lesson.id}:${item.id}:${kind}:${ctx.phase}:${ctx.attempt}`;
   const options = shuffle(ordered, seed);
+  const answer = ordered[0]!;
+  const shape = KIND_SHAPE[kind];
   return {
     id: seed,
     kind,
@@ -801,7 +1062,25 @@ function finish(
     item_id: item.id,
     prompt,
     options,
-    answer: options.findIndex((o) => o === ordered[0]),
+    answer: options.findIndex((o) => o === answer),
+    /*
+     * Declared from what was actually built. `answerDomain` is read off the
+     * answer option and not off the item, because the two differ wherever a
+     * builder asks about a property of the expression rather than about the
+     * expression itself — `counter_form` and `spot_mistake` both ask about
+     * `writtenForm` over items whose own domain is a definition or a date.
+     */
+    schema: {
+      learningObjective: ctx.lesson.objective,
+      promptType: questionType,
+      targetType: shape.target,
+      answerDomain: answer.domain,
+      correctAnswer: answer.text,
+      distractorStrategy,
+      difficulty: shape.difficulty,
+      prerequisites: ctx.lesson.prerequisites,
+      audioTarget: prompt.audio ?? null,
+    },
   };
 }
 

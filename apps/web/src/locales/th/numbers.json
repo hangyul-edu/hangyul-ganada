@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "คุณได้ยินคำว่าอะไร",
-    "chooseMeaning": "คำนี้หมายความว่าอะไร",
+    "meaning": {
+      "definition": "คำนี้หมายถึงอะไร",
+      "moneyAmount": "ราคาเท่าไร",
+      "clockTime": "กี่โมง",
+      "month": "เดือนอะไร",
+      "weekday": "วันอะไรของสัปดาห์"
+    },
     "chooseByMeaning": "คำไหนมีความหมายนี้",
     "chooseCorrectExplanation": "เลือกคำอธิบายที่ถูกต้อง",
     "findIncorrectExpression": "เลือกสำนวนที่ผิด",
@@ -242,7 +248,6 @@
     "belowZero": "ต่ำกว่าศูนย์",
     "zeroScore": "คะแนนศูนย์",
     "ctxPeople": "สามคน",
-    "ctxMoney": "ห้าพันวอน",
     "ctxHour": "สองนาฬิกา",
     "ctxMinute": "สามสิบนาที",
     "ctxAge": "อายุยี่สิบปี",
@@ -270,7 +275,7 @@
     "tenOclock": "สิบนาฬิกา",
     "counterMinute": "นาที",
     "counterSecond": "วินาที",
-    "mixedTime": "ชั่วโมงกับนาทีมาด้วยกัน",
+    "mixedTime": "สามนาฬิกาสามสิบนาที",
     "quarterPast": "สองนาฬิกาสิบห้านาที",
     "counterYear": "ปี",
     "counterMonth": "เดือน",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000 วอน",
     "price10000": "10,000 วอน",
-    "price35000": "35,000 วอน"
+    "price35000": "35,000 วอน",
+    "price1000": "1,000 วอน",
+    "twoForty": "สองนาฬิกาสี่สิบนาที",
+    "nineOhFive": "เก้านาฬิกาห้านาที",
+    "howOldPolite": "วิธีถามอายุผู้ใหญ่อย่างสุภาพ",
+    "sevenOclock": "เจ็ดนาฬิกา",
+    "may": "พฤษภาคม — ปกติ",
+    "howOldNeutral": "วิธีถามอายุผู้ใหญ่อย่างสุภาพทั่วไป"
   },
   "example": {
     "zeroMath": "ลบสามองศา",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 ถูก 삼 시 서른 분 ผิด",
     "pitfallSpacing": "한 개 ถูก 한개 ผิด",
     "tenThousandWon": "ธนบัตร 10,000 วอนหนึ่งใบ",
-    "threeHundredMillionWon": "ห้องชุดราคา 삼억 원"
+    "threeHundredMillionWon": "ห้องชุดราคา 삼억 원",
+    "nineOhFive": "ตอนนี้เก้านาฬิกาห้านาที",
+    "mayFifth": "5 พฤษภาคม"
   },
   "note": {
     "phoneZero": "ในเบอร์โทร 0 มักอ่านว่า 공",

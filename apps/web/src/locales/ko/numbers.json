@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "무엇이라고 들렸나요?",
-    "chooseMeaning": "무슨 뜻일까요?",
+    "meaning": {
+      "definition": "이 말은 무엇을 나타낼까요?",
+      "moneyAmount": "얼마를 뜻할까요?",
+      "clockTime": "몇 시일까요?",
+      "month": "몇 월일까요?",
+      "weekday": "무슨 요일일까요?"
+    },
     "chooseByMeaning": "어느 말이 이 뜻일까요?",
     "chooseCorrectExplanation": "다음 중 올바른 설명을 고르세요.",
     "findIncorrectExpression": "다음 중 틀린 표현을 고르세요.",
@@ -242,7 +248,6 @@
     "belowZero": "0도 아래",
     "zeroScore": "0점",
     "ctxPeople": "사람 세 명",
-    "ctxMoney": "돈 5,000원",
     "ctxHour": "2시",
     "ctxMinute": "30분",
     "ctxAge": "20살",
@@ -270,7 +275,7 @@
     "tenOclock": "10시",
     "counterMinute": "분",
     "counterSecond": "초",
-    "mixedTime": "시와 분이 같이 있는 시각",
+    "mixedTime": "3시 30분",
     "quarterPast": "2시 15분",
     "counterYear": "해",
     "counterMonth": "달",
@@ -299,7 +304,14 @@
     "hundredMillion": "100,000,000",
     "price5000": "5,000원",
     "price10000": "10,000원",
-    "price35000": "35,000원"
+    "price35000": "35,000원",
+    "price1000": "1,000원",
+    "twoForty": "2시 40분",
+    "nineOhFive": "9시 5분",
+    "howOldPolite": "나이를 높여 묻는 말",
+    "sevenOclock": "7시",
+    "may": "5월 — 규칙대로예요",
+    "howOldNeutral": "나이를 정중하게 묻는 말"
   },
   "example": {
     "zeroMath": "0도보다 3도 낮은 온도",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분이 맞고, 삼 시 서른 분은 틀려요",
     "pitfallSpacing": "한 개가 맞고, 한개는 틀려요",
     "tenThousandWon": "만 원짜리 한 장",
-    "threeHundredMillionWon": "집값이 삼억 원이에요."
+    "threeHundredMillionWon": "집값이 삼억 원이에요.",
+    "nineOhFive": "9시 5분이에요.",
+    "mayFifth": "5월 5일"
   },
   "note": {
     "phoneZero": "전화번호의 0은 보통 공이라고 읽어요.",

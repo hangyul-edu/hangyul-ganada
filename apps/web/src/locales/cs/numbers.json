@@ -65,7 +65,13 @@
   },
   "prompt": {
     "listenAndChoose": "Co jste slyšeli?",
-    "chooseMeaning": "Co to znamená?",
+    "meaning": {
+      "definition": "Co toto slovo označuje?",
+      "moneyAmount": "Kolik to je?",
+      "clockTime": "Kolik je hodin?",
+      "month": "Který je to měsíc?",
+      "weekday": "Který je to den v týdnu?"
+    },
     "chooseByMeaning": "Které z nich má tento význam?",
     "chooseCorrectExplanation": "Vyberte správné vysvětlení.",
     "findIncorrectExpression": "Vyberte nesprávný výraz.",
@@ -242,7 +248,6 @@
     "belowZero": "pod nulou",
     "zeroScore": "skóre nula",
     "ctxPeople": "tři lidé",
-    "ctxMoney": "pět tisíc wonů",
     "ctxHour": "dvě hodiny",
     "ctxMinute": "třicet minut",
     "ctxAge": "dvacet let",
@@ -270,7 +275,7 @@
     "tenOclock": "deset hodin",
     "counterMinute": "minut",
     "counterSecond": "sekund",
-    "mixedTime": "hodina a minuty dohromady",
+    "mixedTime": "půl čtvrté",
     "quarterPast": "čtvrt na tři",
     "counterYear": "rok",
     "counterMonth": "měsíc",
@@ -299,7 +304,14 @@
     "hundredMillion": "100 000 000",
     "price5000": "5 000 wonů",
     "price10000": "10 000 wonů",
-    "price35000": "35 000 wonů"
+    "price35000": "35 000 wonů",
+    "price1000": "1 000 wonů",
+    "twoForty": "dvě čtyřicet",
+    "nineOhFive": "devět nula pět",
+    "howOldPolite": "Zdvořilý způsob, jak se zeptat staršího člověka na věk",
+    "sevenOclock": "sedm hodin",
+    "may": "květen — pravidelný",
+    "howOldNeutral": "Běžný zdvořilý způsob, jak se zeptat dospělého na věk"
   },
   "example": {
     "zeroMath": "minus tři stupně",
@@ -325,7 +337,9 @@
     "pitfallHourMinute": "세 시 삼십 분 je správně; 삼 시 서른 분 ne",
     "pitfallSpacing": "한 개 je správně; 한개 ne",
     "tenThousandWon": "bankovka na 10 000 wonů",
-    "threeHundredMillionWon": "Byt stojí 삼억 원."
+    "threeHundredMillionWon": "Byt stojí 삼억 원.",
+    "nineOhFive": "Je devět nula pět.",
+    "mayFifth": "pátého května"
   },
   "note": {
     "phoneZero": "V telefonním čísle se 0 obvykle čte 공.",
