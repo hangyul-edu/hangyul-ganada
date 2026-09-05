@@ -6212,6 +6212,34 @@ files that were wrong, and here a document was outside the list of documents.
 None of the three is a defect in the app. All three are a check whose scope had
 stopped matching what it was for.
 
+## 20R.11d The notes both stores show a customer said 1.0.0
+
+Auditing the rest of the delivery for §20R.11c's shape — a file carrying a claim
+no gate reads — found one more, and it is the customer-facing one.
+`store/release-notes.md` is headed *Release notes — 1.0.0*. It has been headed
+that through 1.0.1, 1.0.2 and 1.0.3: the notes were written at 1.0.0 and the
+heading was never part of a version bump.
+
+The marketing-version cross-check exists — §2.1's Version row read 1.0.2 while
+the delivered binary was 1.0.3, and the check was written then — but it compares
+`build-info.json` against `docs/report.md` and `result/RELEASE_VALIDATION.md`,
+two internal documents. The one file in the repository that states a version
+*to a customer* was outside it.
+
+The body is accurate and stays: nothing has been published under any earlier
+number, so *First release* is true, and 3,333 words with an example sentence and
+two voices is what `build-info.json` reports. Only the number was wrong, and the
+number is the part a store prints next to the download button.
+
+`store/release-notes.md` is in the version cross-check now, with the heading as
+a third pattern beside the metadata table and the front matter. Negative-tested
+by setting the heading back to 1.0.0: 1 finding, exit 1, naming the file, the
+version it states and the version delivered.
+
+Four checks in one cycle whose scope had stopped matching their subject: the two
+e2e cases, the bundle gate's pruned list, the blockers document, and this. Each
+was found by reading the artefact rather than by running the check.
+
 ## 20R.12 Not claimed
 
 No native speaker has read anything this pass changed. 1,646 strings were

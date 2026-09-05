@@ -717,7 +717,17 @@ for (const [name, metric] of Object.entries(METRICS)) {
      */
     const builtVersion = String(info.version ?? '');
     if (builtVersion) {
-      for (const document of ['docs/report.md', 'result/RELEASE_VALIDATION.md']) {
+      for (const document of [
+        'docs/report.md',
+        'result/RELEASE_VALIDATION.md',
+        /*
+         * And the notes both stores show a customer, which named 1.0.0 through
+         * three version bumps. It is the only customer-facing file that states
+         * a version, and it was outside every list until a delivery audit read
+         * it by hand.
+         */
+        'store/release-notes.md',
+      ]) {
         if (!exists(document)) continue;
         const text = rewritten.get(document) ?? read(document);
         const stated = [
@@ -732,11 +742,13 @@ for (const [name, metric] of Object.entries(METRICS)) {
            * before. Nothing was looking at the front matter at all.
            */
           ...text.matchAll(/^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$/gm),
+          // And the release notes' own heading.
+          ...text.matchAll(/^#\s*Release notes\s*—\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$/gm),
         ];
         for (const match of stated) {
           if (match[1] !== builtVersion) {
             problems.push(
-              `${document} states version ${match[1]} in its metadata table; ` +
+              `${document} states version ${match[1]}; ` +
                 `${buildInfoPath} delivered ${builtVersion}`,
             );
           }

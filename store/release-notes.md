@@ -1,7 +1,12 @@
-# Release notes — 1.0.0
+# Release notes — 1.0.3
 
 Both stores show this to customers. It is the first release, so it says what the
-app is rather than what changed.
+app is rather than what changed — nothing has been published under any earlier
+number, and the version customers will install is the one in the heading. That
+heading said 1.0.0 for three version bumps: the notes were written at 1.0.0 and
+`docs:consistency` compared the delivered marketing version against the report
+and `RELEASE_VALIDATION.md` only, so the one customer-facing file naming a
+version was the one nothing read.
 
 Two things in the previous draft of this file were not true of the product and
 were corrected in the final pass: it offered **2,504** words where the corpus

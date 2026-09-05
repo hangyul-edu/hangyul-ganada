@@ -99,7 +99,7 @@ only option of its **shape**.
 | `npm run native:bundle:check` | **14,152 files** compared inside the APK — 0 missing, 0 different, and the 4 web-only files pruned, which it now checks rather than skips (report §20R.11b) |
 | `npm run release:current` | both delivery manifests at HEAD |
 
-Thirteen gates were negative-tested this refresh by restoring the behaviour they
+Fourteen gates were negative-tested this refresh by restoring the behaviour they
 exist to catch:
 
 ```
@@ -116,6 +116,7 @@ the money gloss restored to the lesson's own title    1 finding    exit 1
 the summary's retired *Take the final check* row back  1 e2e case   exit 1
 sw.js copied back into the native bundle               1 finding    exit 1
 the blockers doc added to the consistency set           4 findings   exit 1
+the release notes' heading set back to 1.0.0            1 finding    exit 1
 ```
 
 ## On a device — NOT RUN THIS REFRESH
