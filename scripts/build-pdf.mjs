@@ -73,7 +73,25 @@ const FONT = readFileSync(
  * page built with `setContent` and silently renders nothing. Inlining also
  * keeps the vector crisp at print resolution.
  */
-const withFigures = source.replace(
+/**
+ * The YAML front matter, removed before anything reads the document as prose.
+ *
+ * Markdown has no front matter. A block that opens with `---`, carries
+ * `key: value` lines and closes with `---` is, to a parser, a thematic break
+ * followed by a paragraph followed by a *setext underline* — which turns the
+ * metadata into a second-level heading and prints it. The patent disclosure's
+ * cover was followed by a page reading `title: Technical disclosure — Hangyul
+ * ganada version: 1.0.3`, and it had been doing that for as long as the
+ * document has had front matter.
+ *
+ * The metadata is not lost by removing it: the cover takes its title and
+ * subtitle from the command line and its version from `app.identity.json`,
+ * which is the point of §the version note above. This only stops the block
+ * being read twice, once as data and once as prose.
+ */
+const withoutFrontMatter = source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+
+const withFigures = withoutFrontMatter.replace(
   /!\[([^\]]*)\]\(([^)]+\.svg)\)/g,
   (whole, alt, src) => {
     const abs = resolve(dirname(inPath), src);
