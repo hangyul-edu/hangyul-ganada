@@ -1,7 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { NUMBER_LESSONS, getNumberItem } from '../src/data/numbers';
-import { practiceExercises, type NumbersExercise } from '../src/features/numbers/exercises';
+import {
+  MEANING_PROMPT_KEY,
+  practiceExercises,
+  type NumbersExercise,
+} from '../src/features/numbers/exercises';
 import { copy } from './helpers/copy';
 import { openApp } from './helpers/launch';
 
@@ -170,7 +174,13 @@ test.describe('the instruction matches the question', () => {
 
     const prompt = page.getByTestId('numbers-phase-practice');
     await expect(prompt).toContainText(en('prompt.chooseCorrectExplanation'));
-    await expect(prompt).not.toContainText(en('prompt.chooseMeaning'));
+    /*
+     * And not a *meaning* instruction. `prompt.chooseMeaning` is retired — there
+     * are five now, one per domain a meaning question can ask about — so the
+     * one to keep off this screen is the one an explanation question would
+     * otherwise be confused with: 이 말은 무엇을 나타낼까요?
+     */
+    await expect(prompt).not.toContainText(en('prompt.meaning.definition'));
 
     // The stimulus is the ✓/✗ pair, which is what makes exactly one rule apply.
     const item = getNumberItem(exercise!.item_id)!;
@@ -189,13 +199,25 @@ test.describe('the instruction matches the question', () => {
 
   test('a listening question and a meaning question keep their own instructions', async ({ page }) => {
     const exercises = await intoPractice(page, SINO, 'num-lesson-sino-basics');
-    const wanted: NumbersExercise['question_type'][] = ['listenAndChoose', 'chooseMeaning'];
+    /*
+     * `chooseMeaning` is not on this list any more, and its absence is the
+     * point: a numeral's meaning *is* its value, so asking for it is
+     * `writeTheDigits`. The sino-basics lesson builds no meaning question at
+     * all, and a test that waited for one here would wait for ever.
+     */
+    const wanted: NumbersExercise['question_type'][] = ['listenAndChoose', 'writeTheDigits'];
     const body = page.getByTestId('numbers-phase-practice');
     const seen = new Set<string>();
     for (const exercise of exercises) {
       await expect(body).toHaveAttribute('data-question-type', exercise.question_type);
       if (wanted.includes(exercise.question_type)) {
-        const key = exercise.question_type === 'listenAndChoose' ? 'prompt.listenAndChoose' : 'prompt.chooseMeaning';
+        const key =
+          exercise.question_type === 'listenAndChoose'
+            ? 'prompt.listenAndChoose'
+            : exercise.question_type === 'chooseMeaning'
+              ? // Five instructions, chosen by what the answer is.
+                MEANING_PROMPT_KEY[exercise.schema.answerDomain]!
+              : 'prompt.koreanToDigits';
         await expect(page.getByTestId('numbers-prompt')).toContainText(en(key));
         seen.add(exercise.question_type);
       }
