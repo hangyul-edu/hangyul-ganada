@@ -5411,8 +5411,8 @@ green before and after `cap sync`, and it was negative-tested by editing
 
 ## 20P.6 The launcher artwork — **delivered**
 
-Two sources, and they stay two: `app_logo_android.png` for Android and the web
-install, `app_logo_iphone.png` for iOS and App Store Connect.
+Two sources, and they stay two: `application_logo_android.png` for Android and the web
+install, `application_logo_iphone.png` for iOS and App Store Connect.
 
 Both arrive as finished opaque squares carrying their own cream ground, which
 changes what the icon pipeline should do with them. The legacy and store icons

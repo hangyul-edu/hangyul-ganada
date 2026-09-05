@@ -10,11 +10,16 @@ how a store submission is rejected for an icon with an alpha channel.
 
 ## Two sources, because an app icon and a brand mark are different jobs
 
-`brand/app-icon.png` — the orange held in a hand — is the **application icon**.
-It is what a phone shows on its home screen, what a store shows on its product
-page, and what a browser installs to a desktop. It is a composition designed to
-be read at 48 px inside a rounded mask, and it is the only thing the launcher,
-the App Store and the PWA manifest are given.
+`apps/common_assets/logo/application_logo_<platform>.png` — the mascot with
+가나다 above it — is the **application icon**, one file per platform. It is what
+a phone shows on its home screen, what a store shows on its product page, and
+what a browser installs to a desktop. It is a composition designed to be read at
+48 px inside a rounded mask, and it is the only thing the launcher, the App Store
+and the PWA manifest are given.
+
+`brand/app-icon.png` used to hold a third, platform-neutral copy of it. Nothing
+read it once the two platform sources arrived, so it sat carrying the previous
+artwork through a logo change; it is deleted rather than regenerated.
 
 `brand/logo-symbol.png` — the orange on its own — is the **brand mark**. It is
 the app talking about itself *inside* itself: the splash screen the app draws
@@ -32,7 +37,8 @@ composed edge to edge. The launcher rounds the corners itself.
 because the launcher crops them to whatever mask it likes: a circle on one
 phone, a squircle on another, a teardrop on a third. Only the middle 66% of the
 canvas is guaranteed to survive that crop, so the foreground layer is drawn with
-the mark inside `ADAPTIVE_SAFE_FRACTION`. Draw it any larger and some launcher
+the mark inside `ANDROID_ADAPTIVE_FRACTION`, measured rather than trusted by
+`_assert_inside_safe_zone`. Draw it any larger and some launcher
 somewhere slices the leaf off the orange.
 
 **favicon.ico** wants several small sizes in one file. A browser tab renders at
@@ -67,8 +73,8 @@ IOS_ASSETS = ROOT / "apps" / "mobile" / "ios" / "App" / "App" / "Assets.xcassets
 #:
 #: ## Two files, and they are not interchangeable
 #:
-#: `app_logo_android.png` is what an Android launcher and the Play listing show;
-#: `app_logo_iphone.png` is what an iPhone home screen and App Store Connect
+#: `application_logo_android.png` is what an Android launcher and the Play listing show;
+#: `application_logo_iphone.png` is what an iPhone home screen and App Store Connect
 #: show. They are close but not identical - the iPhone art is drawn at 1024 for
 #: a mask that rounds harder, the Android art at 512 for a launcher that may
 #: crop to a circle - and the two stores are the two audiences, so consolidating
@@ -86,8 +92,8 @@ IOS_ASSETS = ROOT / "apps" / "mobile" / "ios" / "App" / "App" / "Assets.xcassets
 #: composed for one. The only place the artwork is taken apart is the adaptive
 #: and round layers, where a launcher's own mask would cut the arms off, and
 #: there it is the *ink* that is repositioned rather than the picture stretched.
-ANDROID_APP_ICON_SOURCE = ROOT / "apps" / "common_assets" / "logo" / "app_logo_android.png"
-IOS_APP_ICON_SOURCE = ROOT / "apps" / "common_assets" / "logo" / "app_logo_iphone.png"
+ANDROID_APP_ICON_SOURCE = ROOT / "apps" / "common_assets" / "logo" / "application_logo_android.png"
+IOS_APP_ICON_SOURCE = ROOT / "apps" / "common_assets" / "logo" / "application_logo_iphone.png"
 
 #: The brand mark on its own. The browser favicon is built from this — see the
 #: note above on why it is not the app icon.
@@ -164,36 +170,36 @@ ANDROID_BACKGROUND_COLOR = ROOT / "apps" / "mobile" / "android" / "app" / "src" 
 #: `ic_launcher_round.png` is used by launchers that crop to a circle on API
 #: levels below 26, where there is no adaptive icon to fall back to. Shipping
 #: the full-bleed square there is what takes the character's arms off: the
-#: artwork runs to all four edges by design. 0.80 is the largest fraction at
-#: which no ink pixel leaves the circle, measured rather than guessed, and this
-#: sits under it.
-ROUND_ICON_FRACTION = 0.76
+#: artwork runs to all four edges by design. 0.85 is the largest fraction at
+#: which no ink pixel leaves the circle at **every** density this ships — the
+#: 48 px mdpi canvas is the binding one, where a pixel of rounding costs more
+#: than it does at 192 — measured by `_assert_inside_safe_zone` rather than
+#: guessed, and this sits one step under it. It was 0.76 for the previous drawing, whose hand reached further into the
+#: corners; re-measuring is part of changing the art, because a number left at
+#: the old artwork's limit ships a needlessly small icon.
+ROUND_ICON_FRACTION = 0.84
 
 #: The same measurement for Android's adaptive foreground, whose worst case is
-#: the 66/108 circle rather than the whole canvas. 0.48 is where the first ink
-#: pixel crosses; this is one step under so a redraw of the artwork does not
-#: immediately fail the build. `_assert_inside_safe_zone` measures the clipping
-#: either way - the number is the starting point, not the guarantee.
-ANDROID_ADAPTIVE_FRACTION = 0.46
-
-#: How much of a legacy icon the artwork occupies, measured against its longer
-#: edge. Enough to read at 48 px, with room for the launcher's corner rounding.
-LEGACY_FRACTION = 0.76
-
-#: Android's adaptive-icon safe zone. The 108dp canvas is masked down to a 66dp
-#: circle in the worst case, so every pixel of ink has to sit inside 66/108 of
-#: the canvas. The artwork is taller than it is wide, so the limit is set by the
-#: leaf tip and the heel of the hand, not by the width: 0.53 is the largest
-#: value at which nothing at all is clipped, and this sits one step under it so
-#: that a future tweak to the artwork does not immediately fail the build.
-#: `_assert_inside_safe_zone` measures the clipping rather than trusting the
-#: arithmetic.
-ADAPTIVE_SAFE_FRACTION = 0.52
+#: the 66/108 circle rather than the whole canvas. 0.52 is where the first ink
+#: pixel crosses for the current artwork - the same limit for the monochrome
+#: layer, which is the same silhouette - and this is one step under so a redraw
+#: does not immediately fail the build. `_assert_inside_safe_zone` measures the
+#: clipping either way: the number is the starting point, not the guarantee.
+ANDROID_ADAPTIVE_FRACTION = 0.51
 
 #: The same idea for the web's maskable icons, whose safe zone is a circle of
 #: 80% of the icon's width rather than 66/108 of it. Roomier than Android's, so
-#: an installed PWA is not left with a smaller icon than the store build.
-MASKABLE_SAFE_FRACTION = 0.62
+#: an installed PWA is not left with a smaller icon than the store build. 0.70
+#: is the measured limit for the current artwork; this sits one step under.
+MASKABLE_SAFE_FRACTION = 0.69
+
+#: How much of the Android 12+ system splash canvas `logo-symbol.png` occupies.
+#:
+#: This is the *mark*, not the app icon — see the module docstring on why the
+#: splash keeps the mark — so it is measured against its own silhouette. The
+#: mark is wider than the icon artwork and overflows the 66/108 circle at the
+#: launcher's fraction, which `_assert_inside_safe_zone` catches.
+SPLASH_ICON_FRACTION = 0.49
 
 #: Luminance below which a pixel is a *feature* rather than the body, when the
 #: monochrome layer is flattened.
@@ -578,6 +584,100 @@ def _assert_inside_safe_zone(foreground: Image.Image, fraction: float, what: str
         )
 
 
+#: What each platform's application-icon source has to be.
+#:
+#: The size is not decoration. The Android artwork is delivered at 512 because
+#: that is the Play listing's icon and the largest launcher density it feeds;
+#: the iPhone artwork at 1024 because App Store Connect asks for exactly that
+#: and every device slot is downsampled from it. A source arriving at the other
+#: platform's size is the first symptom of the two files having been swapped
+#: upstream, and it is cheaper to say so here than to find it in review.
+APP_ICON_SOURCE_SIZES = {
+    ANDROID_APP_ICON_SOURCE: 512,
+    IOS_APP_ICON_SOURCE: 1024,
+}
+
+
+def _source_findings() -> list[str]:
+    """Whether each platform source is present, square and its declared size."""
+    findings = []
+    for source, expected in APP_ICON_SOURCE_SIZES.items():
+        if not source.exists():
+            findings.append(f"{source.relative_to(ROOT)} is missing")
+            continue
+        with Image.open(source) as art:
+            width, height = art.size
+        if width != height:
+            findings.append(
+                f"{source.relative_to(ROOT)} is {width}x{height}, not square — "
+                "every output from it would be a stretch or a crop"
+            )
+        elif width != expected:
+            findings.append(
+                f"{source.relative_to(ROOT)} is {width}x{width}, expected "
+                f"{expected}x{expected}"
+            )
+    return findings
+
+
+def _swap_findings(files: dict[Path, bytes]) -> list[str]:
+    """Whether either platform's icon was in fact built from the other's source.
+
+    ## Why this is not a picture comparison
+
+    The two sources are the same drawing at two resolutions: at 64 px their
+    per-channel RMS difference is 0.48 of a level, which is to say they look
+    identical. Any threshold that separated them would be a threshold tuned to
+    JPEG-scale noise, and it would go green the day someone re-exported one of
+    them.
+
+    So the question is asked exactly instead. Each platform's delivered icon is
+    re-rendered from the *other* platform's source through the same code path.
+    If the delivered bytes equal that, the file was built from the wrong source
+    — the artwork is not being compared, the provenance is. `--check` already
+    proves the delivered bytes equal the render from the right source; this is
+    the other half, and both halves are needed: without this one, swapping the
+    two constants and re-running the builder produces a green tree.
+
+    The sources being indistinguishable *after* rendering is itself a finding.
+    It would mean the two-source rule is costing a file and buying nothing, and
+    that a real swap could never be detected.
+    """
+    findings = []
+    android_other = Image.open(IOS_APP_ICON_SOURCE).convert("RGBA")
+    ios_other = Image.open(ANDROID_APP_ICON_SOURCE).convert("RGBA")
+
+    legacy = ANDROID_RES / f"mipmap-{max(ANDROID_DENSITIES, key=ANDROID_DENSITIES.get)}" / "ic_launcher.png"
+    wrong_android = _png(_full_bleed(android_other, ANDROID_DENSITIES[legacy.parent.name.split("-", 1)[1]]))
+    if files.get(legacy) == wrong_android:
+        findings.append(
+            f"{legacy.relative_to(ROOT)} is byte-identical to the same icon built from "
+            f"{IOS_APP_ICON_SOURCE.name} — the Android launcher icon is being drawn from "
+            "the iPhone artwork"
+        )
+
+    ios_icon = IOS_ASSETS / "AppIcon.appiconset" / "AppIcon-512@2x.png"
+    buffer = io.BytesIO()
+    _full_bleed(ios_other, 1024).convert("RGB").save(buffer, "PNG", optimize=True)
+    if files.get(ios_icon) == buffer.getvalue():
+        findings.append(
+            f"{ios_icon.relative_to(ROOT)} is byte-identical to the same icon built from "
+            f"{ANDROID_APP_ICON_SOURCE.name} — the iOS app icon is being drawn from the "
+            "Android artwork"
+        )
+
+    if files.get(legacy) is not None and files.get(ios_icon) is not None:
+        own_android = _png(_full_bleed(Image.open(ANDROID_APP_ICON_SOURCE).convert("RGBA"),
+                                       ANDROID_DENSITIES[legacy.parent.name.split("-", 1)[1]]))
+        if own_android == wrong_android:
+            findings.append(
+                "the two application-icon sources render identically, so a swap between "
+                "them could not be detected — either they are the same file, or one "
+                "platform's artwork was copied over the other's"
+            )
+    return findings
+
+
 def build() -> dict[Path, bytes]:
     """Every generated file, as path -> bytes. Nothing is written here."""
     android_art = Image.open(ANDROID_APP_ICON_SOURCE).convert("RGBA")
@@ -651,10 +751,11 @@ def build() -> dict[Path, bytes]:
     # Drawn on the adaptive-icon canvas because the system masks and scales this
     # the same way it does a launcher icon: 108/48 of the nominal size, artwork
     # inside the safe circle, transparent outside it.
-    # A shade smaller than the launcher's fraction: the mark is wider than the
-    # app icon's artwork and overflowed the safe circle by two pixels at the
-    # same setting, which the assertion below caught.
-    SPLASH_ICON_FRACTION = ADAPTIVE_SAFE_FRACTION * 0.94
+    # `SPLASH_ICON_FRACTION` is its own number rather than a multiple of the
+    # launcher's: this draws `logo-symbol.png`, which is a different shape from
+    # the app icon, so its limit moves when the mark changes and not when the
+    # app icon does. It used to be `ADAPTIVE_SAFE_FRACTION * 0.94`, which tied
+    # the splash to a constant about other artwork.
     for density, size in ANDROID_DENSITIES.items():
         canvas = round(size * 108 / 48)
         splash_icon = _centred(mark, (canvas, canvas), SPLASH_ICON_FRACTION, None)
@@ -697,7 +798,7 @@ def build() -> dict[Path, bytes]:
 
     # --- iOS -----------------------------------------------------------------
     #
-    # From `app_logo_iphone.png` and from nothing else. The Android file is a
+    # From `application_logo_iphone.png` and from nothing else. The Android file is a
     # different drawing at a different size and this is the line that keeps the
     # two apart.
     #
@@ -852,12 +953,28 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    for source in (ANDROID_APP_ICON_SOURCE, IOS_APP_ICON_SOURCE, MARK_SOURCE, SPLASH_SOURCE):
+    for source in (MARK_SOURCE, SPLASH_SOURCE):
         if not source.exists():
             print(f"source artwork missing: {source}", file=sys.stderr)
             return 1
 
+    # The two application-icon sources are checked harder than the rest: they
+    # are the pair a platform swap would live in.
+    source_problems = _source_findings()
+    if source_problems:
+        print("application-icon sources:", file=sys.stderr)
+        for problem in source_problems:
+            print(f"  {problem}", file=sys.stderr)
+        return 1
+
     files = build()
+
+    swapped = _swap_findings(files)
+    if swapped:
+        print("application icons are crossed between platforms:", file=sys.stderr)
+        for problem in swapped:
+            print(f"  {problem}", file=sys.stderr)
+        return 1
 
     if args.check:
         missing = [path for path in files if not path.exists()]
@@ -883,7 +1000,11 @@ def main() -> int:
             return 1
         print(
             f"app icons up to date ({len(files)} files) — Android from "
-            f"{ANDROID_APP_ICON_SOURCE.name}, iOS from {IOS_APP_ICON_SOURCE.name}"
+            f"{ANDROID_APP_ICON_SOURCE.name} at "
+            f"{APP_ICON_SOURCE_SIZES[ANDROID_APP_ICON_SOURCE]}px, iOS from "
+            f"{IOS_APP_ICON_SOURCE.name} at "
+            f"{APP_ICON_SOURCE_SIZES[IOS_APP_ICON_SOURCE]}px, neither drawn from the "
+            "other's artwork"
         )
         return 0
 
