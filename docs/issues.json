@@ -1639,6 +1639,42 @@
       "recommendedFix": "Done. `androidVersionCode`, `issuesTracked` and `numbersTranslatedKeys` are derived metrics now — so the default `docs:consistency` run rewrites them rather than reporting them — and a new rule compares the marketing version a document states, in its table **or in its front matter**, against the one `build-info.json` delivered; a version is not a number, so no numeric pattern could do it. The cover reads its version from `app.identity.json`, which is where the Gradle build and `version:check` read it from, and the subtitle no longer carries one. §2.1's prose rows were rewritten by hand.",
       "note": "Found by reading the report against the tree, 4 September 2026.",
       "effort": "S"
+    },
+    {
+      "id": "I-158",
+      "area": "Numbers",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Three questions whose options could not be compared with each other",
+      "customerImpact": "A learner could answer three of the course's questions correctly without reading any Korean: the option lists gave the answer away by shape.",
+      "evidence": "Three screenshots of the shipped course, each passing `answerability` and `numbers:qa`:\n\n```\n  원        무슨 뜻일까요?      한국 돈의 단위 · 5,000원 · 10,000원 · 35,000원\n  🔊        무엇이라고 들렸나요?   두 시 십오 분 · 분 · 세 시 삼십 분 · 초\n  오천 원    무슨 뜻일까요?      2시 · 사람 세 명 · 돈 5,000원 · 30분\n```\n\nA definition among three amounts; two complete times among two bare unit words; a price among a time, a head-count and a duration. **Root cause:** options were drawn from whatever the lesson happened to contain, and what makes two options comparable had never been written down. A pass two editions ago made the *shapes* uniform — every option prose rather than one prose among three numerals — which is why the money question still looked plausible while still being unanswerable on its merits, and why no gate objected.\n\n**Why earlier gates missed it.** `answerability` asks whether exactly one option is correct, which all three satisfied. `numbers:qa` asks whether the instruction matches the question type, which all three satisfied. Neither had a name for *these two options are not the same kind of thing*.\n\n**Fixed 5 September 2026.** `AnswerDomain` is declared on all 101 items and on every option; `build()` drops any option outside the answer's domain at the one place every builder passes through. Two shape rules beyond it: a clock time with minutes stands only against clock times with minutes, and a whole question only against other whole questions. `numbers:domain` gates it — 1,767 questions, 6,626 options, 2,496 strings across 32 languages — and two of its eleven rules do not trust the declarations, re-reading option lists per language for two options that say the same thing and for an answer that is the only one naming a quantity. Negative-tested five ways, each restoring a defect from the screenshots, 30 findings and exit 1 each. Seven items were written for gaps the rule made visible, and ten clips generated for them.",
+      "recommendedFix": "Done.",
+      "note": "The independent rule found three content defects no screenshot showed: `gloss.mixedTime` was a description of a form standing among actual times, `gloss.ctxMoney` spelled out an amount its three neighbours wrote in figures, and the Mongolian and Vietnamese packs wrote a figure where their neighbours wrote a word.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-159",
+      "area": "Release tooling",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "`generate_audio.py --only` replaced the manifest the app loads",
+      "customerImpact": "None shipped. A build made straight after a pronunciation check would have started with three recordings in its index and 6,861 on disk unreferenced — an app with almost no audio, and nothing failing to say so.",
+      "evidence": "`--only` is documented as the check you run *before* the full run. It narrows `entries`, and the manifest was written from `entries`, so it wrote a complete, valid, three-entry manifest over the real one. The run reported what it had done truthfully; nothing errored. Found by running it.\n\n**Fixed 5 September 2026.** A partial run (`--only` or `--limit`) merges its entries into the existing manifest and rebuilds `version` from the merged set, rather than replacing the file. The prune step already refused to run for partial runs, for the same reason — half the guard was there.",
+      "recommendedFix": "Done.",
+      "note": "The corrupted manifest was restored from the commit it was generated in; no artefact was built from it.",
+      "effort": "DONE"
+    },
+    {
+      "id": "I-160",
+      "area": "Release tooling",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The app-icon gate could not tell the two platform sources apart",
+      "customerImpact": "None shipped. Android and iOS could have swapped artwork with every gate green.",
+      "evidence": "`mobile:icons --check` compared every generated file against a fresh render and reported missing, stale and obsolete. Swapping the two source constants and re-running the builder moved both sides together, so the check stayed green on an Android launcher icon drawn from the iPhone artwork.\n\n**Fixed 5 September 2026.** Each platform's delivered icon is re-rendered from the *other* platform's source and compared: byte-identical means it was built from the wrong file. Not a picture comparison — at 64 px the two sources differ by 0.48 of a level, so any perceptual threshold would be tuned to noise; provenance is compared, not artwork. The sources are also required to exist, be square and be their declared size. Negative-tested: a crossed pair gives 2 findings, a 256 px Android source gives 1, both exit 1.",
+      "recommendedFix": "Done.",
+      "note": "The safe-zone fractions were re-measured for the new artwork at the same time — left at the old drawing's limits the launcher icon would have shipped about 15% smaller than it needs to be.",
+      "effort": "DONE"
     }
   ]
 }

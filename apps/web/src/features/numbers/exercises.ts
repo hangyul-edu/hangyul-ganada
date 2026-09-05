@@ -9,6 +9,8 @@ import type {
   NumbersTargetType,
 } from '@hangyul-ganada/shared-types';
 
+import { compare } from '@hangyul-ganada/korean-morphology';
+
 import { NUMBER_ITEMS, NUMBER_LESSONS, getNumberItem, numberLessonItems } from '../../data/numbers';
 
 /**
@@ -327,14 +329,38 @@ const SOUND_ALIKE: Record<string, string[]> = {
   십육: ['십칠', '십오'],
 };
 
+/**
+ * One option per answer, where *the same answer* is a question about Korean.
+ *
+ * Comparing the raw strings is right for a key and for a number and wrong for
+ * Korean text: 한 개 and 한개 are one answer differently spaced, and offering
+ * both is offering the learner two buttons for one thing. `compare` from
+ * `korean-morphology` decides, deterministically, and says which of spacing,
+ * particle choice or counting form made the two differ.
+ *
+ * Except where the difference *is* the question. A `writtenForm` list is four
+ * spellings of one quantity with one of them right, so collapsing them would
+ * delete `counter_form` and `spot_mistake` entirely. The caller's domain says
+ * which case this is — the same distinction `Equivalence.difference` exists to
+ * let a caller make.
+ */
 const uniqueByText = (opts: ExerciseOption[]): ExerciseOption[] => {
+  const kept: ExerciseOption[] = [];
   const seen = new Set<string>();
-  return opts.filter((o) => {
+  for (const o of opts) {
     const k = o.isKey ? `k:${o.text}` : o.value !== undefined ? `v:${o.value}` : `t:${o.text}`;
-    if (seen.has(k)) return false;
+    if (seen.has(k)) continue;
+    if (!o.isKey && o.value === undefined && o.domain !== 'writtenForm') {
+      const duplicate = kept.some(
+        (other) =>
+          !other.isKey && other.value === undefined && compare(o.text, other.text).same,
+      );
+      if (duplicate) continue;
+    }
     seen.add(k);
-    return true;
-  });
+    kept.push(o);
+  }
+  return kept;
 };
 
 /** Fills up to `want` options, answer first, from the given distractor pools in order. */
