@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { expect, test, type Page } from '@playwright/test';
 
 import { NUMBER_LESSONS, getNumberItem } from '../src/data/numbers';
@@ -288,6 +291,85 @@ test.describe('the ordinal lesson, in a browser', () => {
     const domain = exercise!.schema.answerDomain;
     expect(['ordinalPosition', 'ordinalRank']).toContain(domain);
     await expect(page.getByTestId('numbers-prompt')).toHaveText(en(MEANING_PROMPT_KEY[domain]!));
+  });
+
+  /**
+   * Arabic, which is the one language whose layout direction the page has to
+   * change for.
+   *
+   * The Korean being taught stays left-to-right inside a right-to-left page —
+   * 첫 번째 read backwards is not a milder version of the lesson, it is a
+   * different string — so what is asserted is that the document flipped, that
+   * the Korean options did not, and that four of them still fit a 320-wide
+   * phone with nothing hanging off either edge.
+   */
+  test('renders right-to-left in Arabic without turning the Korean around', async ({ page }) => {
+    /*
+     * Driven by the Arabic strings rather than the English ones, because the
+     * point of the test is the language: `intoPractice` presses buttons by
+     * their accessible name, and in Arabic that name is Arabic.
+     */
+    const ar = JSON.parse(
+      readFileSync(join(process.cwd(), 'src/locales/ar/numbers.json'), 'utf8'),
+    ) as { action: Record<string, string> };
+    const lesson = NUMBER_LESSONS.find((l) => l.id === 'num-lesson-ordinals')!;
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.addInitScript(() => {
+      window.localStorage.setItem('hangyul_ganada:locale', 'ar');
+    });
+    await openApp(page, ORDINALS);
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+    await page.getByRole('button', { name: ar.action.start }).click();
+    for (let i = 0; i < lesson.explanation.length; i += 1) {
+      await page.getByRole('button', { name: ar.action.next }).click();
+    }
+    /*
+     * The example cards, which are where the defect was.
+     *
+     * `첫 번째 (✓)  ·  한 번째 (✗)` ends in a neutral character, and a trailing
+     * neutral takes the paragraph's direction — so inside an Arabic page the
+     * (✗) rendered at the left of the pair it belongs to, before the ✓ half.
+     * The fix pins the run's direction; this reads it back at the element.
+     */
+    for (let i = 0; i < lesson.item_ids.length; i += 1) {
+      const card = page.getByTestId('numbers-example-card');
+      await expect(card).toBeVisible();
+      for (const korean of await card.locator('[lang="ko"]').all()) {
+        expect(await korean.evaluate((el) => getComputedStyle(el).direction)).toBe('ltr');
+      }
+      await page.getByRole('button', { name: ar.action.next }).click();
+    }
+    await page.getByTestId('numbers-phase-practice-intro').waitFor();
+    await page.getByRole('button', { name: ar.action.beginPractice }).click();
+
+    const body = page.getByTestId('numbers-phase-practice');
+    const exercise = practiceExercises(lesson, 0)[0]!;
+    const options = body.getByRole('group').getByRole('button');
+    await expect(options).toHaveCount(exercise.options.length);
+    for (let i = 0; i < exercise.options.length; i += 1) {
+      const shape = await options.nth(i).boundingBox();
+      expect(shape!.x, `option ${i} starts off the left edge`).toBeGreaterThanOrEqual(-1);
+      expect(shape!.x + shape!.width, `option ${i} runs off the right edge`).toBeLessThanOrEqual(321);
+    }
+    /*
+     * The Korean being taught stays left-to-right inside a right-to-left page.
+     * 첫 번째 read backwards is not a milder version of the lesson, it is a
+     * different string — `global.css` carries the rule and this is what reads
+     * it back through the browser.
+     */
+    const korean = body.locator('button[lang="ko"]');
+    if (await korean.count()) {
+      expect(await korean.first().evaluate((el) => getComputedStyle(el).direction)).toBe('ltr');
+    }
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow, 'the page scrolls sideways in Arabic').toBeLessThanOrEqual(1);
+
+    // And the way on is still there, on the side the language reads from.
+    await options.nth(exercise.answer).click();
+    await expect(body.getByRole('status')).toBeVisible();
+    await expect(page.getByRole('button', { name: ar.action.continue })).toBeEnabled();
   });
 
   test('keeps the four ordinal options on one 320-wide screen, at 200% text', async ({ page }) => {

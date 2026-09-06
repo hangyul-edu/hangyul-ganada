@@ -94,6 +94,18 @@ const ROUTES = [
     address: '/letters/numbers/num-lesson-large',
     steps: [{ testId: 'numbers-start' }, { repeat: 'next', times: 12 }, { answerFirstOption: true }],
   },
+  /*
+   * The ordinals lesson, measured in the same state, because it is the tallest
+   * question the course draws: four two-word Korean options rather than four
+   * numerals, four explanation steps rather than three, and ten item cards to
+   * walk past before practice starts. `repeat` stops when the button it is
+   * looking for is not there, so the count only has to be an upper bound.
+   */
+  {
+    path: '/letters/numbers/:lessonId (an ordinal question, answered)',
+    address: '/letters/numbers/num-lesson-ordinals',
+    steps: [{ testId: 'numbers-start' }, { repeat: 'next', times: 20 }, { answerFirstOption: true }],
+  },
   { path: '/letters/:lessonId', address: '/letters/lesson-vowels-core' },
   { path: '/words', address: '/words' },
   { path: '/words/category/:category', address: '/words/category/people' },
@@ -117,6 +129,7 @@ const ROUTES = [
 /** The routes most likely to overflow, crossed with text scale and appearance. */
 const STRESSED = new Set([
   '/letters/numbers/:lessonId (a question, answered)',
+  '/letters/numbers/:lessonId (an ordinal question, answered)',
   '/me',
   '/me/privacy',
   '/me/legal',

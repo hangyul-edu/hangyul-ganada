@@ -98,3 +98,21 @@
   line-height: 1.1;
   color: var(--hg-text);
 }
+
+/**
+ * Korean never mirrors, whatever direction the interface reads in.
+ *
+ * `global.css` isolates a `[lang='ko']` run inside an RTL page so the bidi
+ * algorithm cannot drag Arabic punctuation across it, and leaves the run's own
+ * direction inherited. That is right for a bare word and wrong for the contrast
+ * cards this course draws: `첫 번째 (✓)  ·  한 번째 (✗)` ends in a neutral
+ * character, a trailing neutral takes the paragraph's direction, and the (✗)
+ * rendered at the *left* of the pair it belongs to. Found by opening the
+ * ordinals lesson in Arabic.
+ *
+ * Only `direction` — where a Korean element sits on the line is its own
+ * business, and this is about the order of what is inside it.
+ */
+:global([dir='rtl']) [lang='ko'] {
+  direction: ltr;
+}
