@@ -129,12 +129,12 @@ without trusting the row.
 | Interface languages | 32 | `src/locales/*/settings.json` |
 | Interface languages declared natively | 32 | `locales:native:check`, and the APK's own `locales:` line |
 | Numbers modules | 6 | `data/numbers.ts` `NUMBER_MODULES` |
-| Numbers lessons | 19 | `data/numbers.ts` `NUMBER_LESSONS` |
-| Numbers items | 102 | `data/numbers.ts` `NUMBER_ITEMS` |
+| Numbers lessons | 20 | `data/numbers.ts` `NUMBER_LESSONS` |
+| Numbers items | 112 | `data/numbers.ts` `NUMBER_ITEMS` |
 | Numbers explanation steps | 52 | `NUMBER_LESSONS[].explanation` summed |
 | Numbers exercise kinds | 9 | `NumbersExerciseKind` |
 | Numbers meanings rendered by `Intl` | 35 | items carrying a `value` and no gloss |
-| Numbers translated keys | 272 × 32 | `numbers:qa` |
+| Numbers translated keys | 297 × 32 | `numbers:qa` |
 | Numbers audio clips | 45 words + 51 examples, all recorded | `numbers:qa`, `public/audio/manifest.json` |
 | Vocabulary packs complete | 20 | `locale:content:qa` |
 | Vocabulary packs at 600 words | 12 | `locale:content:qa` |
@@ -143,8 +143,8 @@ without trusting the row.
 | Level-test items, English | 4,199 | `public/level-test/manifest.json` |
 | Level-test contextual items | 594 | the bank, `kind === "context"` |
 | Level-test reach, 12 partial languages | 1,014 items each | `manifest.json` `reach` |
-| Audio clips | 13,860 | distinct files in `public/audio/manifest.json` |
-| Audio voice slots | 13,980 | the same manifest, two voices per entry |
+| Audio clips | 13,876 | distinct files in `public/audio/manifest.json` |
+| Audio voice slots | 13,996 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
 | Words at levels 28–30 | 524 | the corpus, by level |
 | Level anchors held | 162 | `level-anchors.json` |
@@ -156,7 +156,7 @@ without trusting the row.
 | Issues tracked | 156 | `docs/issues.json` |
 | Signed APK | 86.7 MB | `result/build-info.json` |
 | Signed AAB | 84.9 MB | same |
-| Tests | 1,381 across 77 files | `npm test` |
+| Tests | 1,399 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -554,7 +554,7 @@ that no build can.
 A standalone paid application, web and Android from one codebase. Twelve
 curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,393
 words. Everything a learner needs is in the binary: the curriculum, the fonts,
-the stroke data and 13,860 pronunciation clips in two voices.
+the stroke data and 13,876 pronunciation clips in two voices.
 
 ## 4.2 The intended journey — **VERIFIED**
 
@@ -1430,7 +1430,7 @@ implementation and names the store that still holds rows (I-128).
 
 # 14. Audio
 
-**13,860 distinct files over 13,980 voice slots, 66.7 MB**, two Korean neural
+**13,876 distinct files over 13,996 voice slots, 66.7 MB**, two Korean neural
 voices at 0.82× rate, recounted from `public/audio/manifest.json` this cycle.
 `audio:qa` decodes a 600-clip sample and checks the rest for existence, manifest
 agreement and duplication: 0 errors, 0 warnings, durations 240 ms to 2,880 ms,
@@ -1858,10 +1858,10 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1048** (70 files) |
+| Web unit (`vitest`) | **1066** (70 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
-| End-to-end (`playwright`) | **578** (289 × 2 projects) |
+| End-to-end (`playwright`) | **586** (293 × 2 projects) |
 
 The previous pass grew the web suite by 15 — the level-change fixtures A–G,
 the mid-day-retake provider cases, the retake state machine and the
@@ -3642,7 +3642,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,381 across 77 files** — handwriting-core 96, korean-morphology 216, web 1048 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **1,399 across 77 files** — handwriting-core 96, korean-morphology 216, web 1066 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -3782,7 +3782,7 @@ the same interface. Structure version 2 → 3 for the new store; schema 12 → 1
 
 ## 20K.7 The curriculum, rebuilt — **IMPLEMENTED**
 
-Six modules, nineteen lessons, 102 items, 52 explanation steps, nine exercise
+Six modules, nineteen lessons, 112 items, 52 explanation steps, nine exercise
 kinds. The two systems and the two zeroes and which system when; past ten in
 both systems and the five counting forms; people and things, everyday counters,
 age; hours, minutes, dates with the irregular months, weekdays; prices,
@@ -4264,7 +4264,7 @@ naming the artefact that spent it.
 | `numbers:copy` (new) | 7,200 learner-facing strings across 32 languages |
 | `vocabulary:level:audit` (new) | 30 levels, every one at or above a fortnight |
 | `hints:qa` | 442,694 rungs, 0 leaking, 0 useless |
-| `numbers:qa` | 6 modules, 19 lessons, 102 items, 0 problems |
+| `numbers:qa` | 6 modules, 19 lessons, 112 items, 0 problems |
 | `leveltest:ambiguity` · `content:safety` · `korean:education` | green |
 | `copy:audit` · `locale:editorial` · `i18n:check` | **0 errors**, 0 warnings |
 | `vocabulary:level:qa` · `vocabulary:recommendation` · `dailyvocab:qa` · `dailyplan:fresh` | green |
@@ -6712,7 +6712,7 @@ no physical Android device has run the binary.
   midrange Android the target customer is most likely holding.
 * **The onward destination** for the Hangyul hand-off, which is a business fact
   somebody outside this repository owns (I-03).
-* **Whether the Numbers course teaches.** Its 102 items, 52 explanation steps
+* **Whether the Numbers course teaches.** Its 112 items, 52 explanation steps
   and 272 strings in 32 languages were written and translated in this pass by
   the same automated process that wrote this report. What §20K proves is that
   the course is *honest* — nothing is marked complete without evidence, the
@@ -6763,7 +6763,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,381 unit cases across three packages — 1,048
+The suites run green in full: 1,399 unit cases across three packages — 1,066
 web, 237 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked

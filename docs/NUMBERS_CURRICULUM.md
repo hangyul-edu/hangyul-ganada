@@ -1,6 +1,14 @@
 # The Numbers course — content, progress model, migration, and how it is proven
 
-Status, 4 September 2026: rebuilt in the v1.0.2 pass after a P0 — lessons showed
+Status, 6 September 2026: the ordinals lesson added (§4b) and the course re-read
+end to end for the third time. What that reading found is in §4b: an
+explanation that named the wrong consonant for the sound change in 십육 and
+열여섯, three ways of asking an age whose glosses overlapped (and in two
+languages read as the same sentence), a listening pool that drew *zero* into
+questions about counting words, and a spacing rule this document itself stated
+backwards. Earlier —
+
+Rebuilt in the v1.0.2 pass after a P0 — lessons showed
 as completed without having been studied — and read end to end again in the
 sixth screenshot pass, which found the list screen reserving a column for an
 icon most rows do not draw, 224 translated strings no screen could show, and no
@@ -108,14 +116,14 @@ in-memory driver that implements the same interface.
 
 ## 4. The curriculum
 
-`apps/web/src/data/numbers.ts` — 6 modules, 19 lessons, 95 items, 9 exercise
+`apps/web/src/data/numbers.ts` — 6 modules, 20 lessons, 112 items, 9 exercise
 kinds, 10 question types.
 
 | # | Module | Lessons |
 | --- | --- | --- |
 | 1 | Two kinds of number | Sino 1–10 · native 1–10 · the two zeroes · which system when |
 | 2 | Past ten | Sino building · native building · the five counting forms |
-| 3 | Counting things | people and things · everyday counters · age |
+| 3 | Counting things | people and things · everyday counters · age · order |
 | 4 | Time and dates | hours · minutes · dates and the irregular months · weekdays |
 | 5 | Money and identifiers | prices · digit-by-digit · 만 억 조 |
 | 6 | Review | the five mistakes · mixed review |
@@ -182,8 +190,8 @@ than its bare word — `한 개 (✓) · 한개 (✗)` — because 한 개 alone
 two of the five rules at once and the pair by exactly one.
 
 **Exactly one answer, and it is gated over every question the engine can
-build.** `numbers:qa` §8 generates practice *and* mastery for all nineteen
-lessons over three attempts, deduplicates, and checks each of the 284 distinct
+build.** `numbers:qa` §8 generates practice *and* mastery for all twenty
+lessons over three attempts, deduplicates, and checks each of the 311 distinct
 questions against its type: the find-the-mistake options must contain exactly
 one expression the curriculum classifies as not Korean and no option it cannot
 classify at all; a meaning question's options must be one gloss kind and must
@@ -208,14 +216,20 @@ because independent per-question shuffles are exactly what allowed the zero
 lesson to put all four answers at index 2, where tapping the third button four
 times passed the check.
 
-**Spacing: a counted quantity is open, an ordinal is closed.** 한글 맞춤법 §43
-spaces a unit noun from its numeral and its 다만 clause closes the same noun
-when the number is an order. A date is an order:
+**Spacing: a unit noun is open, and a date closes.** 한글 맞춤법 §43 spaces a
+unit noun from its numeral and its 다만 clause **permits** closing the same noun
+where the number is an order or is written in figures. Permits, not requires —
+and this document and the file it describes both said *an ordinal is closed* for
+three passes, which is true of 삼월 일일 and false of 첫 번째. 번째 is a
+dependent noun and stays apart; 째 is a suffix and attaches. The course takes the
+permission where a Korean reader expects it and nowhere else:
 
 | | |
 | --- | --- |
 | quantity, open | 한 개 · 세 명 · 두 잔 · 스무 살 · 세 시 · 삼십 분 · 오천 원 |
-| ordinal, closed | 삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년 |
+| ordinal with 번째, open | 첫 번째 · 두 번째 · 세 번째 · 네 번째 |
+| ordinal with 째, closed | 첫째 · 둘째 · 셋째 · 넷째 · 다섯째 |
+| a date, closed | 삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년 |
 
 The course shipped *삼월 일 일*, *삼월 이 일*, *유월 육 일*, *시월 십 일*,
 *십오 일* and *이천이십육 년*. Every one is the 원칙 form and none is written by
@@ -261,7 +275,7 @@ speaker of each language, and that is an outstanding item rather than a claim.
 A `listen_choose` question's whole stimulus is a clip: `prompt` carries an audio
 id and deliberately no text, because printing the word would print the answer.
 That is right for a listening question, and it was the whole route through the
-course for a learner who could not use it — **all nineteen lessons list that
+course for a learner who could not use it — **all twenty lessons list that
 kind**, a mastery check asks every item, and passing a mastery check is what
 completes a lesson. There was no slower path; there was none.
 
@@ -314,6 +328,134 @@ resolves each option through the id it was built with: 오천 원 is both a pric
 and a context phrase, and 세 시 삼십 분 is both a clock time and a pitfall, so
 matching on text answers with whichever comes first in the file.
 
+## 4b. Order — the ordinals lesson, and what re-reading the course found
+
+`num-lesson-ordinals`, tenth in the course and fourth in module 3, after
+`num-lesson-age`. Ten items, four explanation steps, a mastery check of ten,
+prerequisites `num-lesson-forms` and `num-lesson-counters` — the counting forms,
+because 번째 takes them, and the counters, because 번째 is one.
+
+### The two families, and why they are two answer domains
+
+```
+ 첫 번째 · 두 번째 · 세 번째 · 네 번째    where something stands in a line
+ 첫째 · 둘째 · 셋째 · 넷째 · 다섯째      counting off: 첫째, 값이 싸요.
+                                        둘째, 가까워요. — and birth order
+```
+
+They overlap in ordinary speech and the beginner-safe rule does not, so the
+course teaches the rule: 번째 for a position, 째 for listing points and for which
+child. `AnswerDomain` grew `ordinalPosition` and `ordinalRank` for them, and the
+reason is not tidiness. Both families name position one; under one instruction
+*which position is this?* both 첫 번째 and 첫째 would be defensible and the
+question would have two answers. Two domains make that unbuildable, and
+`gloss_group: 'ordinal-1'` states the relationship the domains only imply — so
+`numbers:qa` can hold it independently (its `SAME_MEANING` list names the four
+pairs, which is the *finding*; the declaration is the fix).
+
+**No `value`, deliberately.** 첫 번째 is *first*, not 1. An item carrying
+`value: 1` would build `digits_to_korean` — the numeral **1** over 첫 번째, 두
+번째, 세 번째 under *say this number* — and a sound-free substitute showing the
+digit 1. Both are the cardinal question wearing the ordinal lesson's options.
+`system: 'native'` is kept, because *which set goes in front of 번째* is the
+lesson's central rule and `choose_system` is the question that asks it.
+
+### The five forms a beginner writes, and the one place each is allowed
+
+| written | why it is not Korean | class |
+| --- | --- | --- |
+| 한 번째 | 한 is the counting form, right before 개 and wrong here | `ordinal_form` |
+| 일 번째 · 이 번째 | the Sino-Korean set never stands before 번째 | `system_swap` |
+| 첫번째 · 세번째 | 번째 is a dependent noun; §43 spaces it | `spacing` |
+| 넷 번째 | the plain numeral where the counting form belongs | `plain_form` |
+| 첫 째 | 째 is a suffix and attaches | — |
+
+`ordinal_form` is a new misconception class and it is new because none of the
+seven that existed described 한 번째: the *plain* numeral is 하나, and nobody
+writes 하나 번째, so calling it `plain_form` would have been a label rather than
+a reading of the mistake. `wrongHalfClass` in `exercises.ts` chooses between the
+four, in that order, from the two halves of the item's own contrast example.
+
+**`numbers:qa` §18 rejects all of them — and knows where each is taught.** A
+substring ban would forbid the teaching along with the mistake, which is the
+failure mode §9 already had to solve once. So a hit is *licensed* or it is a
+finding, and the licence is structural wherever it can be: the ✗ half of an
+item's own contrast example, the caption generated from that half
+(`example_gloss`), the answer of a `findIncorrectExpression` question, and any
+option carrying a declared `misconception`. One key is declared rather than
+derived — `lesson.ordinals.step2`, which says in thirty-two languages that 한
+번째 and 일 번째 do not exist — and even there the correct counterpart has to be
+in the same sentence. N15 of the negative suite proves the structural half by
+changing an item's ✗ half and watching the caption that was licensed by it stop
+being licensed.
+
+### What the questions are
+
+Five question types over ten items: `chooseMeaning` in both new domains
+(*몇 번째일까요?* and *몇째일까요?*), `listenAndChoose`, `chooseCounterForm`
+(두 번째 against 두번째 · 이 번째 · 둘 번째 — the three mistakes on one screen),
+`findIncorrectExpression` (one per wrong form), and `chooseSystem`.
+`fill_sentence` is deliberately absent: every ordinal in the lesson fits every
+ordinal's hole, so a blank would have four answers — the `slot_group` case one
+step further, where the whole option pool is the slot.
+
+The nine `chooseSystem` questions all have the same answer, because every Korean
+ordinal is native. That is recorded in the question ledger as `noted` rather than
+left to be discovered: it is the rule the lesson exists to teach, it is the
+second question shape a learner who cannot hear has, and the discrimination it
+looks thin on is made where it bites — 이 번째 is on the screen in
+`counter_form` and is the answer in `spot_mistake`.
+
+### What re-reading the rest of the course found
+
+| Where | Finding |
+| --- | --- |
+| `lesson.sinoBuild.step2`, `lesson.nativeBuild.step3` | Both said the sound inserted in 십육 → 심뉵 is **ㄹ**. It is ㄴ: ㄴ-첨가 puts a ㄴ in front of 육 and 십 assimilates to 심. In 열여섯 → 열려섣 the inserted ㄴ *becomes* ㄹ after ㄹ, which is why the two look alike and are one rule. Corrected in all 32 bundles, and the two steps now say the rule rather than naming a letter that is not in the word. |
+| `gloss.howOld`, `howOldNeutral`, `howOldPolite` | Three ways of asking an age, glossed *the phrase for asking someone's age*, *the everyday polite way to ask an adult's age* and *the polite way to ask an older person's age*. The first is true of all three; the other two both say *polite*. In Thai and Telugu two of them read as the same sentence. Each now names who you say it to — a friend, an adult you have just met, someone much older — which is what `lesson.age.step3` teaches, and that step now teaches all three registers rather than skipping the middle one. |
+| `listenChoose` | A clip of 번째 offered against 영, 공 and 영하 — three ways of saying zero, in the lesson about counting words. The pool now prefers taught items of the same **role** before the rest, which is the two-stage pool `readChoose` already used. Twelve questions changed and each is re-read in the ledger. |
+| §9 of this document, and the header of `numbers.ts` | Both said **an ordinal is closed**. §43's 다만 clause *permits* closing, and a date takes the permission; 첫 번째 does not. The rule as written would have had the ordinals lesson writing 첫번째. |
+| `gloss.zeroDigit` [en] | *nought, as a digit* — a British word a beginner will not have met, and it broke the contrast the lesson is making, which is quantity against digit rather than zero against nought. Now *zero, as a digit*. |
+| `example.weekend` [ko] | The caption under 주말에 만나요. was 주말에 만나요. — the same sentence twice on one card. Now 토요일이나 일요일에 만나요., which says what 주말 is. |
+| `lesson.weekdays.step1` [ko] | *요일은 요일로 끝나요* — *the weekday ends in 요일*, which is circular. Now 요일 이름은 모두 요일로 끝나요. |
+| `lesson.digits.step2` [ko] | Began *에는 줄표(-) 자리에…*, where 에는 reads as the particle 에 + 는 rather than as the item 에 followed by a topic marker. Rewritten so the sentence starts with the slot rather than the word. |
+| `prompt.meaning.ordinalPosition` [vi] | Written *Đây là thứ mấy?*, which is Vietnamese for both *which weekday* and *which position* — and was already the weekday prompt. Now *Đây là vị trí thứ mấy?*. |
+
+### Three gates that did not exist
+
+**§19, romanisation.** 112 hand-typed transliterations, none of them checked:
+`romanization:qa` reads the vocabulary corpus and has never looked at this
+course. Each is now recomputed by `scripts/content/hangul.py` — the
+transliterator the vocabulary pipeline and the dictionary already use — from the
+item's `reading` where it has one, because 십육 is spelled *sibyuk* and said
+*simnyuk* and the second is what a learner sounding it out needs. All 112 were
+already right; the point is that nothing had said so.
+
+**§20, the shape of the course.** Every lesson has all six stages; every lesson
+id that has ever shipped is still there (a rename is a wipe — `lesson:<id>` is
+the row, and `repairLessonProgress` drops a row whose lesson no longer exists,
+correctly and silently); the modules partition the lesson list exactly once; and
+the activity denominator a card prints is the one `lessonActivityProgress`
+derives.
+
+**§8, a blank option.** A builder that splits on a separator it did not find
+returns an empty string, which renders as a button with nothing on it —
+tappable, gradeable, impossible to choose on purpose, and passing every other
+rule in the section.
+
+### Migration
+
+The lesson id is new, every existing id is unchanged, and a record is one row per
+lesson keyed `lesson:<id>` — so a profile written before this pass arrives with
+the ordinals row simply *absent*, and absent is `available`. J-series M1–M9 in
+`domain/numbersProgress.test.ts` walk it: the counting module's three lessons
+stay complete, the module stops being complete and says so rather than either
+granting the new lesson or taking the old ones back, the course denominator grows
+by one while the learner's numerator does not, one activity counts once however
+often the lesson is reopened, and a backup taken before the lesson existed
+restores without granting it. F13 in `storage/numbersMigration.test.ts` is the
+same thing through the store, and asserts `dropped === 0` — a drop is what a
+*renamed* id would look like, and the two must not be confused.
+
 ## 5. What proves it
 
 | Suite | What it covers |
@@ -325,9 +467,13 @@ matching on text answers with whichever comes first in the file.
 | `e2e/numbers.spec.ts` | N-e2e-1…8 in a real browser: fresh overview with all eighteen rows available and every one a link, all-wrong run not complete, diligent run completes exactly the lesson the work was done in, reload resumes from the record, audio present and feedback names the mistake, a new learner opening the last lesson of every module directly, Continue leading without forcing, and the back control on a deep link |
 | `features/numbers/questionTypes.test.ts` | 14 cases: which type each builder produces, the four Korean instructions verbatim, the contrast-pair stimulus, ten prompts and three headings present in all 32 bundles, the three retired keys absent, the pronunciation and writing headings on the right items, the closed date forms in the data, the bundles and the manifest, and the deleted stale clips |
 | `e2e/numbers-prompts.spec.ts` | the instruction on the real page: the find-the-mistake question named and its answer accepted, the explanation question over its pair, listening and meaning keeping their own, the pronunciation heading on the dates cards, and prompt + options + feedback + Continue reachable at 320×568 and 375×667 and at 22px root text |
-| `scripts/numbers-qa.mjs` | the release gate (§4), in seventeen sections — structure, meaning, audio, localisation, Korean, answer positions, question types, one-answer over 284 distinct questions, date spacing, example headings, and then: every lesson completable sound-free; nothing asked about before it is taught, with every forward distractor a declared misconception; no question twice in one sitting; a listening clip that says the answer it accepts; no key nothing can show; no particle pair written longhand; and the completion state machine walked per lesson |
+| `scripts/numbers-qa.mjs` | the release gate (§4), in twenty sections — structure, meaning, audio, localisation, Korean, answer positions, question types, one-answer over 311 distinct questions, date spacing, example headings, and then: every lesson completable sound-free; nothing asked about before it is taught, with every forward distractor a declared misconception; no question twice in one sitting; a listening clip that says the answer it accepts; no key nothing can show; no particle pair written longhand; the completion state machine walked per lesson; the five non-Korean ordinal forms rejected everywhere except the one place each is taught against; every romanisation recomputed by the transliterator the vocabulary pipeline uses; and the six stages, the twenty shipped lesson ids and the three printed denominators |
 | `scripts/numbers-layout-qa.mjs` | the list screen, measured as **ink**: one rail for the module number, module goal, summary and every lesson title; one rule for the chevrons and lesson counts; no reserved column and no unused width beside a title; nothing overlapping, nothing clipped, no sideways scroll, every row a link at least a thumb tall, and the last lesson reachable after a real scroll. 45 cases — seven sizes including landscape, 100/150/200% text, light and dark, and all 32 languages at 320 px — with four lessons seeded to real evidence so the badges are on screen |
-| `scripts/numbers-qa-negative.sh` | ten sabotage runs, each restoring one defect and asserting the gate fires: the old prompt, an undeclared explanation gloss, 삼월 일 일 in the data and in a bundle, a pronunciation card labelled a spelling rule, the context-free blank, the two same-meaning options, a locale missing a prompt, a slot-mate as a distractor — then restores and confirms green |
+| `scripts/numbers-qa-negative.sh` | fifteen sabotage runs, each restoring one defect and asserting the gate fires: the old prompt, an undeclared explanation gloss, 삼월 일 일 in the data and in a bundle, a pronunciation card labelled a spelling rule, the context-free blank, the two same-meaning options, a locale missing a prompt, a slot-mate as a distractor — and then 세번째 as an item, 일 번째 in a gloss, a romanisation that stops being the reading, a shipped lesson id renamed, and a contrast pair changed under the caption that was licensed by it — then restores and confirms green |
+| `domain/numbersProgress.test.ts` (M1–M9) | the curriculum growing under a learner who is part-way through it: the lessons they finished stay finished, the new one is available and not started, a module they had completed is no longer complete and says so, the course denominator grows while their numerator does not, a new learner can open the ordinals lesson first, one activity counts once however often it is reopened, leaving part-way is `in_progress`, the final check's pass mark is enforced at the mark and one below it, and a backup taken before the lesson existed restores without granting it |
+| `storage/numbersMigration.test.ts` (F13) | the same through the store: a profile saved before the lesson was added keeps every row, reports no drop, is granted nothing, and takes a row for the new lesson afterwards without touching the others |
+| `features/numbers/questionTypes.test.ts` (the ordinal lesson) | both families in separate domains and grouped across them, no `value` on either so the cardinal builders cannot fire, the four contrast pairs, no wrong ordinal ever accepted or voiced, the four mistakes each asked with the class that names it, 이 번째 offered before 번째 as a swap of sets, both new meaning instructions in all 32 bundles and distinct from each other and from the weekday prompt, and a wrong form in a bundle only at a key that is teaching against it |
+| `e2e/numbers-prompts.spec.ts` (the ordinal lesson) | in a browser: the find-the-mistake question named and 한 번째 accepted as its answer, the position question headed *몇 번째일까요?* and not the counting instruction, and four two-word ordinal options on a 320-wide screen at 32px root text with no sideways scroll and Continue reachable |
 | `scripts/regression-gates-negative.sh` | five more, for the gates added after the sixth screenshot pass: the empty icon column at the head of every row, a badge bounded by its fill rather than by its ring, a blank whose option list holds two words that fit it, 둘 개, and a `completed_at` with no evidence behind it |
 
 ## 6. Level Test feedback policy (§10 of the v1.0.2 request)
