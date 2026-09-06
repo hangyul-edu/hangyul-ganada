@@ -70,7 +70,9 @@
       "moneyAmount": "Hur mycket är det?",
       "clockTime": "Vad är klockan?",
       "month": "Vilken månad är det?",
-      "weekday": "Vilken veckodag är det?"
+      "weekday": "Vilken veckodag är det?",
+      "ordinalPosition": "Vilken i ordningen är det här?",
+      "ordinalRank": "När man räknar upp: vilken är det här?"
     },
     "chooseByMeaning": "Vilket av dem betyder det här?",
     "chooseCorrectExplanation": "Välj den rätta förklaringen.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Räkna saker",
-      "goal": "Räkna människor, saker och djur, och säg hur gammal du är."
+      "goal": "Räkna människor, saker och djur, säg hur gammal du är och säg ordningen."
     },
     "time": {
       "title": "Vad är klockan? Vilken dag?",
@@ -144,7 +146,7 @@
       "title": "Räkna till tusen",
       "objective": "Bygg och läs tal som 십일, 이십 och 삼십오.",
       "step1": "Läs delarna i ordning, från vänster till höger.",
-      "step2": "Se upp med 십육: det skrivs 십육 men sägs 심뉵. Ett ㄹ-ljud dyker upp mellan de två stavelserna.",
+      "step2": "Se upp med 십육: det skrivs 십육 men sägs 심뉵. Framför 육 dyker ett ㄴ-ljud upp, och därför blir 십 till 심.",
       "step3": "백 är hundra och 천 är tusen. Det står inget 일 framför dem — 백 원, inte 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Säg talen över tio inhemskt koreanskt.",
       "step1": "Lägg entalen till 열, upp till 열아홉. Sägs som ett ord.",
       "step2": "Varje tiotal har ett eget ord — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 sägs 열려섣: samma ㄹ-ljud som dyker upp i 심뉵."
+      "step3": "열여섯 sägs 열려섣. Samma regel som i 심뉵: framför 여섯 dyker ett ㄴ-ljud upp, och efter ㄹ blir det ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — formen ändras",
@@ -179,7 +181,15 @@
       "objective": "Säg din ålder med 살 och fråga en äldre artigt med 연세.",
       "step1": "살 hör ihop med de inhemskt koreanska talen: 스무 살, 스물다섯 살. 몇 살이에요? frågar du en kompis.",
       "step2": "세 hör ihop med de sinokoreanska talen och syns i blanketter och nyheter: 이십 세.",
-      "step3": "Till någon äldre är 살 för vardagligt. 연세 är det vördnadsfulla ordet för ålder: 연세가 어떻게 되세요?"
+      "step3": "Till någon äldre är 살 för vardagligt. En vuxen du just träffat frågar du 나이가 어떻게 되세요?, och någon som är mycket äldre 연세가 어떻게 되세요?. 연세 är det vördnadsfulla ordet för ålder."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — säga ordningen",
+      "objective": "Säg med 번째 vilken i ordningen något är, och räkna upp dina punkter med 첫째.",
+      "step1": "Hur många det är och vilken i ordningen är två frågor. 사과 두 개 är två äpplen; 두 번째 사과 är det andra äpplet i raden.",
+      "step2": "Före 번째 använder du 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. Det finns inget 한 번째 och inget 일 번째.",
+      "step3": "첫째, 둘째 och 셋째 skrivs som ett ord, utan mellanslag. Du räknar upp punkter med dem: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "För en plats i en rad säger du 첫 번째, 두 번째. Spara 첫째, 둘째 till uppräkningar och till syskonens ordning: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Vad är klockan?",
@@ -267,7 +277,7 @@
     "counterBooks": "böcker",
     "counterAge": "Ålder — med de inhemskt koreanska talen",
     "counterAgeFormal": "Ålder — i blanketter och nyheter, med de sinokoreanska talen",
-    "howOld": "Frasen för att fråga om åldern",
+    "howOld": "Så frågar du en vän om åldern",
     "ageHonorific": "ålder — vördnadsfullt, om någon äldre",
     "counterHour": "klockan",
     "half": "halv — en halvtimme över",
@@ -308,10 +318,20 @@
     "price1000": "1 000 won",
     "twoForty": "två och fyrtio",
     "nineOhFive": "fem över nio",
-    "howOldPolite": "Det artiga sättet att fråga en äldre person om åldern",
+    "howOldPolite": "Så frågar du någon som är mycket äldre",
     "sevenOclock": "klockan sju",
     "may": "maj — regelbunden",
-    "howOldNeutral": "Det vanliga artiga sättet att fråga en vuxen om åldern"
+    "howOldNeutral": "Så frågar du en vuxen du just träffat",
+    "counterOrdinal": "plats i en ordning",
+    "ordinal1": "1:a",
+    "ordinal2": "2:a",
+    "ordinal3": "3:e",
+    "ordinal4": "4:e",
+    "ordinalPoint1": "1:a när man räknar upp",
+    "ordinalPoint2": "2:a när man räknar upp",
+    "ordinalPoint3": "3:e när man räknar upp",
+    "ordinalPoint4": "4:e när man räknar upp",
+    "ordinalPoint5": "5:e när man räknar upp"
   },
   "example": {
     "zeroMath": "minus tre grader",
@@ -339,7 +359,11 @@
     "tenThousandWon": "en 10 000-wonsedel",
     "threeHundredMillionWon": "Lägenheten kostar 삼억 원.",
     "nineOhFive": "Klockan är fem över nio.",
-    "mayFifth": "femte maj"
+    "mayFifth": "femte maj",
+    "ordinal1": "첫 번째 är rätt; 한 번째 inte",
+    "ordinal2": "두 번째 är rätt; 이 번째 inte",
+    "ordinal3": "세 번째 är rätt; 세번째 inte",
+    "ordinal4": "네 번째 är rätt; 넷 번째 inte"
   },
   "note": {
     "phoneZero": "I ett telefonnummer läses 0 oftast som 공.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 uttalas 심뉵.",
     "irregularMonths": "6월 läses 유월 och 10월 läses 시월.",
     "clockTime": "En tid sägs som 세 시 십 분.",
-    "price": "Ett pris sägs som 오천 원."
+    "price": "Ett pris sägs som 오천 원.",
+    "ordinalCounting": "Före 번째 är talet 첫, 두, 세 eller 네.",
+    "firstOrdinal": "첫 är det egna ordet för den första: inte 하나 och inte 한.",
+    "ordinalPoint": "첫째 och 둘째 inleder de punkter du räknar upp, en efter en."
   },
   "breakdown": {
     "parts": "Delar"

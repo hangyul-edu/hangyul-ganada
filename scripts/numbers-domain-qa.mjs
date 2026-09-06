@@ -111,9 +111,9 @@ const normalise = (text, domain) =>
 // --- 1 · 2 · 3 · 4 — the option set ----------------------------------------
 
 const PROMPT_FOR_DOMAIN = {
-  chooseMeaning: ['definition', 'moneyAmount', 'clockTime', 'month', 'weekday'],
+  chooseMeaning: ['definition', 'moneyAmount', 'clockTime', 'month', 'weekday', 'ordinalPosition', 'ordinalRank'],
   chooseCorrectExplanation: ['usageContext'],
-  listenAndChoose: ['definition', 'numericValue', 'moneyAmount', 'clockTime', 'month', 'weekday', 'usageContext', 'age', 'duration', 'personCount', 'calendarDate', 'phoneNumber'],
+  listenAndChoose: ['definition', 'numericValue', 'moneyAmount', 'clockTime', 'month', 'weekday', 'usageContext', 'age', 'duration', 'personCount', 'calendarDate', 'phoneNumber', 'ordinalPosition', 'ordinalRank'],
   chooseSystem: ['usageContext'],
   sayTheNumber: ['numericValue', 'moneyAmount', 'clockTime', 'month'],
   /*
@@ -127,7 +127,7 @@ const PROMPT_FOR_DOMAIN = {
   writeTheDigits: ['numericValue', 'moneyAmount', 'month', 'clockTime', 'personCount', 'duration', 'age'],
   chooseCounterForm: ['writtenForm'],
   findIncorrectExpression: ['writtenForm'],
-  fillTheBlank: ['definition', 'numericValue', 'moneyAmount', 'clockTime', 'month', 'weekday', 'usageContext', 'age', 'duration', 'personCount', 'calendarDate', 'phoneNumber'],
+  fillTheBlank: ['definition', 'numericValue', 'moneyAmount', 'clockTime', 'month', 'weekday', 'usageContext', 'age', 'duration', 'personCount', 'calendarDate', 'phoneNumber', 'ordinalPosition', 'ordinalRank'],
   orderTheParts: ['numericValue'],
 };
 

@@ -70,7 +70,9 @@
       "moneyAmount": "Mennyi ez?",
       "clockTime": "Hány óra ez?",
       "month": "Melyik hónap ez?",
-      "weekday": "A hét melyik napja ez?"
+      "weekday": "A hét melyik napja ez?",
+      "ordinalPosition": "Hányadik ez?",
+      "ordinalRank": "Felsoroláskor hányadik ez?"
     },
     "chooseByMeaning": "Melyik jelenti ezt?",
     "chooseCorrectExplanation": "Válaszd ki a helyes magyarázatot.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Dolgokat számolunk",
-      "goal": "Számolj embereket, tárgyakat és állatokat, és mondd meg, hány éves vagy."
+      "goal": "Számolj embereket, tárgyakat és állatokat, mondd meg, hány éves vagy, és mondd meg a sorrendet."
     },
     "time": {
       "title": "Hány óra? Hányadika?",
@@ -144,7 +146,7 @@
       "title": "Számolás ezerig",
       "objective": "Építs és olvass olyan számokat, mint 십일, 이십 és 삼십오.",
       "step1": "Olvasd a részeket sorban, balról jobbra.",
-      "step2": "Figyelj a 십육-ra: írva 십육, kiejtve 심뉵. A két szótag között megjelenik egy ㄹ-hang.",
+      "step2": "Figyelj a 십육-ra: írva 십육, kiejtve 심뉵. A 육 elé egy ㄴ-hang kerül, és ettől lesz a 십-ből 심.",
       "step3": "A 백 száz, a 천 ezer. Nem áll előttük 일 — 백 원, nem 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "A tíz feletti számokat mondd eredeti koreaiul.",
       "step1": "Add az egyeseket a 열 mellé, egészen 열아홉-ig. Egy szóként mondjuk.",
       "step2": "Minden tízesnek saját szava van — 스물, 서른, 마흔, 쉰.",
-      "step3": "A 열여섯 kiejtve 열려섣: ugyanaz a ㄹ-hang, amely a 심뉵-ban is megjelenik."
+      "step3": "A 열여섯 kiejtve 열려섣. Ugyanaz a szabály, mint a 심뉵-nál: a 여섯 elé egy ㄴ-hang kerül, ㄹ után pedig ㄹ lesz belőle."
     },
     "forms": {
       "title": "한 개, 두 개 — változik az alak",
@@ -179,7 +181,15 @@
       "objective": "Mondd meg a korod 살-lal, idősebbet pedig udvariasan kérdezz 연세-vel.",
       "step1": "A 살 az eredeti koreai számokkal jár: 스무 살, 스물다섯 살. A 몇 살이에요? barátnak szól.",
       "step2": "A 세 a sino-koreai számokkal jár, űrlapon és hírekben látod: 이십 세.",
-      "step3": "Idősebb emberrel szemben a 살 túl közvetlen. A 연세 az életkor tiszteleti szava: 연세가 어떻게 되세요?"
+      "step3": "Idősebb emberrel szemben a 살 túl közvetlen. Egy most megismert felnőttet így kérdezel: 나이가 어떻게 되세요?, egy sokkal idősebbet pedig így: 연세가 어떻게 되세요?. A 연세 az életkor tiszteleti szava."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — a sorrend kimondása",
+      "objective": "Mondd meg a 번째 szóval, hányadik valami, és sorold fel a pontjaidat a 첫째 szóval.",
+      "step1": "Hány van belőle és hányadik: két különböző kérdés. A 사과 두 개 két alma; a 두 번째 사과 a sorban a második alma.",
+      "step2": "A 번째 elé 첫, 두, 세, 네 kerül: 첫 번째, 두 번째, 세 번째, 네 번째. 한 번째 és 일 번째 nincs.",
+      "step3": "A 첫째, 둘째 és 셋째 egy szó, szóköz nélkül. Pontok felsorolására valók: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "A sorbeli helyre 첫 번째, 두 번째 való. A 첫째, 둘째 marad a felsorolásra és a testvérek sorrendjére: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Hány óra van?",
@@ -267,7 +277,7 @@
     "counterBooks": "könyvek",
     "counterAge": "Életkor — az eredeti koreai számokkal",
     "counterAgeFormal": "Életkor — űrlapon és hírekben, a sino-koreai számokkal",
-    "howOld": "A mondat, amivel a kort kérdezed",
+    "howOld": "Így kérdezed egy barátod korát",
     "ageHonorific": "életkor — tiszteleti, idősebbről",
     "counterHour": "óra (időpont)",
     "half": "fél (óra)",
@@ -308,10 +318,20 @@
     "price1000": "1 000 von",
     "twoForty": "két óra negyven",
     "nineOhFive": "kilenc óra öt",
-    "howOldPolite": "Az idősebb ember korára rákérdező udvarias forma",
+    "howOldPolite": "Így kérdezel egy nálad sokkal idősebbet",
     "sevenOclock": "hét óra",
     "may": "május — szabályos",
-    "howOldNeutral": "A felnőtt korára rákérdező szokásos udvarias forma"
+    "howOldNeutral": "Így kérdezed egy most megismert felnőttet",
+    "counterOrdinal": "hely a sorrendben",
+    "ordinal1": "1.",
+    "ordinal2": "2.",
+    "ordinal3": "3.",
+    "ordinal4": "4.",
+    "ordinalPoint1": "1. felsoroláskor",
+    "ordinalPoint2": "2. felsoroláskor",
+    "ordinalPoint3": "3. felsoroláskor",
+    "ordinalPoint4": "4. felsoroláskor",
+    "ordinalPoint5": "5. felsoroláskor"
   },
   "example": {
     "zeroMath": "mínusz három fok",
@@ -339,7 +359,11 @@
     "tenThousandWon": "egy 10 000 vonos bankjegy",
     "threeHundredMillionWon": "A lakás ára 삼억 원.",
     "nineOhFive": "Kilenc óra öt perc van.",
-    "mayFifth": "május ötödike"
+    "mayFifth": "május ötödike",
+    "ordinal1": "a 첫 번째 helyes; a 한 번째 nem",
+    "ordinal2": "a 두 번째 helyes; a 이 번째 nem",
+    "ordinal3": "a 세 번째 helyes; a 세번째 nem",
+    "ordinal4": "a 네 번째 helyes; a 넷 번째 nem"
   },
   "note": {
     "phoneZero": "Telefonszámban a 0 általában 공.",
@@ -348,7 +372,10 @@
     "simnyuk": "A 십육 kiejtve 심뉵.",
     "irregularMonths": "A 6월 kiolvasva 유월, a 10월 pedig 시월.",
     "clockTime": "Az időt így mondod: 세 시 십 분.",
-    "price": "Az árat így mondod: 오천 원."
+    "price": "Az árat így mondod: 오천 원.",
+    "ordinalCounting": "A 번째 előtt a szám 첫, 두, 세 vagy 네.",
+    "firstOrdinal": "A 첫 az első saját szava: nem 하나 és nem 한.",
+    "ordinalPoint": "A 첫째 és a 둘째 nyitja a pontokat, amelyeket egymás után mondasz."
   },
   "breakdown": {
     "parts": "Részek"

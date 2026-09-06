@@ -70,7 +70,9 @@
       "moneyAmount": "Cái này bao nhiêu tiền?",
       "clockTime": "Mấy giờ rồi?",
       "month": "Đây là tháng mấy?",
-      "weekday": "Đây là thứ mấy?"
+      "weekday": "Đây là thứ mấy?",
+      "ordinalPosition": "Đây là vị trí thứ mấy?",
+      "ordinalRank": "Khi kể ra, đây là thứ mấy?"
     },
     "chooseByMeaning": "Từ nào có nghĩa này?",
     "chooseCorrectExplanation": "Chọn lời giải thích đúng.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Đếm đồ vật",
-      "goal": "Đếm người, đồ vật và con vật, và nói bạn bao nhiêu tuổi."
+      "goal": "Đếm người, đồ vật và con vật, nói bạn bao nhiêu tuổi và nói thứ tự."
     },
     "time": {
       "title": "Mấy giờ? Ngày mấy?",
@@ -144,7 +146,7 @@
       "title": "Đếm đến một nghìn",
       "objective": "Ghép và đọc những số như 십일, 이십 và 삼십오.",
       "step1": "Đọc các phần theo thứ tự, từ trái sang phải.",
-      "step2": "Chú ý 십육: viết là 십육 nhưng đọc là 심뉵. Âm ㄹ xuất hiện giữa hai âm tiết.",
+      "step2": "Chú ý 십육: viết là 십육 nhưng đọc là 심뉵. Trước 육 xuất hiện một âm ㄴ, và vì thế 십 chuyển thành 심.",
       "step3": "백 là một trăm và 천 là một nghìn. Không có 일 đứng trước — 백 원, không phải 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Nói các số trên mười bằng số thuần Hàn.",
       "step1": "Thêm hàng đơn vị vào 열, đến 열아홉. Nói liền như một từ.",
       "step2": "Mỗi hàng chục có từ riêng — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 đọc là 열려섣: cùng âm ㄹ xuất hiện trong 심뉵."
+      "step3": "열여섯 đọc là 열려섣. Cùng quy tắc với 심뉵: trước 여섯 xuất hiện một âm ㄴ, và sau ㄹ thì âm đó thành ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — dạng thay đổi",
@@ -179,7 +181,15 @@
       "objective": "Nói tuổi bằng 살, và hỏi người lớn tuổi một cách lịch sự bằng 연세.",
       "step1": "살 đi với số thuần Hàn: 스무 살, 스물다섯 살. 몇 살이에요? là câu hỏi dành cho bạn bè.",
       "step2": "세 đi với số Hán-Hàn, thấy trên giấy tờ và bản tin: 이십 세.",
-      "step3": "Với người lớn tuổi hơn, 살 quá thân mật. 연세 là từ kính ngữ cho tuổi: 연세가 어떻게 되세요?"
+      "step3": "Với người lớn tuổi hơn, 살 quá thân mật. Với người lớn vừa mới quen thì hỏi 나이가 어떻게 되세요?, với người lớn tuổi hơn nhiều thì hỏi 연세가 어떻게 되세요?. 연세 là từ kính ngữ cho tuổi."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — nói thứ tự",
+      "objective": "Dùng 번째 để nói thứ mấy trong hàng, và dùng 첫째 để kể ra từng ý.",
+      "step1": "Có bao nhiêu và thứ mấy là hai câu hỏi khác nhau. 사과 두 개 là hai quả táo; 두 번째 사과 là quả táo thứ hai trong hàng.",
+      "step2": "Trước 번째 dùng 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. Không có 한 번째 và cũng không có 일 번째.",
+      "step3": "첫째, 둘째 và 셋째 viết liền thành một từ, không có dấu cách. Dùng để kể ra từng ý: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Nói vị trí trong hàng thì dùng 첫 번째, 두 번째. Để dành 첫째, 둘째 cho việc kể ý và cho thứ tự anh chị em: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Mấy giờ rồi?",
@@ -267,7 +277,7 @@
     "counterBooks": "sách",
     "counterAge": "Tuổi — đi với số thuần Hàn",
     "counterAgeFormal": "Tuổi — trên giấy tờ và bản tin, đi với số Hán-Hàn",
-    "howOld": "Câu dùng để hỏi tuổi",
+    "howOld": "Cách hỏi tuổi một người bạn",
     "ageHonorific": "tuổi — kính ngữ, với người lớn hơn",
     "counterHour": "giờ",
     "half": "rưỡi",
@@ -308,10 +318,20 @@
     "price1000": "1.000 won",
     "twoForty": "hai giờ bốn mươi",
     "nineOhFive": "chín giờ năm",
-    "howOldPolite": "Cách hỏi tuổi người lớn tuổi một cách lịch sự",
+    "howOldPolite": "Cách hỏi một người lớn tuổi hơn nhiều",
     "sevenOclock": "bảy giờ",
     "may": "tháng Năm — đúng quy tắc",
-    "howOldNeutral": "Cách lịch sự thông thường để hỏi tuổi người lớn"
+    "howOldNeutral": "Cách hỏi một người lớn vừa mới quen",
+    "counterOrdinal": "vị trí trong thứ tự",
+    "ordinal1": "thứ 1",
+    "ordinal2": "thứ 2",
+    "ordinal3": "thứ 3",
+    "ordinal4": "thứ 4",
+    "ordinalPoint1": "thứ 1 khi kể ra",
+    "ordinalPoint2": "thứ 2 khi kể ra",
+    "ordinalPoint3": "thứ 3 khi kể ra",
+    "ordinalPoint4": "thứ 4 khi kể ra",
+    "ordinalPoint5": "thứ 5 khi kể ra"
   },
   "example": {
     "zeroMath": "âm ba độ",
@@ -339,7 +359,11 @@
     "tenThousandWon": "một tờ 10.000 won",
     "threeHundredMillionWon": "Căn hộ giá 삼억 원.",
     "nineOhFive": "Bây giờ là chín giờ năm.",
-    "mayFifth": "ngày 5 tháng 5"
+    "mayFifth": "ngày 5 tháng 5",
+    "ordinal1": "첫 번째 đúng; 한 번째 sai",
+    "ordinal2": "두 번째 đúng; 이 번째 sai",
+    "ordinal3": "세 번째 đúng; 세번째 sai",
+    "ordinal4": "네 번째 đúng; 넷 번째 sai"
   },
   "note": {
     "phoneZero": "Trong số điện thoại, 0 thường đọc là 공.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 phát âm là 심뉵.",
     "irregularMonths": "6월 đọc là 유월 và 10월 đọc là 시월.",
     "clockTime": "Giờ nói như 세 시 십 분.",
-    "price": "Giá nói như 오천 원."
+    "price": "Giá nói như 오천 원.",
+    "ordinalCounting": "Trước 번째, số là 첫, 두, 세 hoặc 네.",
+    "firstOrdinal": "첫 là từ riêng cho cái đầu tiên: không phải 하나 cũng không phải 한.",
+    "ordinalPoint": "첫째 và 둘째 mở ra từng ý mà bạn nói, cái này rồi cái kia."
   },
   "breakdown": {
     "parts": "Các phần"

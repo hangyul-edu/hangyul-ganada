@@ -70,7 +70,9 @@
       "moneyAmount": "Magkano ito?",
       "clockTime": "Anong oras ito?",
       "month": "Anong buwan ito?",
-      "weekday": "Anong araw ng linggo ito?"
+      "weekday": "Anong araw ng linggo ito?",
+      "ordinalPosition": "Pang-ilan ito?",
+      "ordinalRank": "Sa pagtatala, pang-ilan ito?"
     },
     "chooseByMeaning": "Alin sa mga ito ang may ganitong kahulugan?",
     "chooseCorrectExplanation": "Piliin ang tamang paliwanag.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Pagbilang ng mga bagay",
-      "goal": "Magbilang ng tao, bagay at hayop, at sabihin kung ilang taon ka na."
+      "goal": "Magbilang ng tao, bagay at hayop, sabihin kung ilang taon ka na, at sabihin ang pagkakasunod."
     },
     "time": {
       "title": "Anong oras? Anong petsa?",
@@ -144,7 +146,7 @@
       "title": "Magbilang hanggang isang libo",
       "objective": "Bumuo at bumasa ng bilang tulad ng 십일, 이십 at 삼십오.",
       "step1": "Basahin ang mga bahagi ayon sa pagkakasunod, mula kaliwa pakanan.",
-      "step2": "Bantayan ang 십육: nakasulat na 십육 pero binibigkas na 심뉵. Lumilitaw ang tunog na ㄹ sa pagitan ng dalawang pantig.",
+      "step2": "Bantayan ang 십육: nakasulat na 십육 pero binibigkas na 심뉵. May tunog na ㄴ na lumilitaw bago ang 육, kaya nagiging 심 ang 십.",
       "step3": "Ang 백 ay sandaan at ang 천 ay isang libo. Walang 일 sa unahan nila — 백 원, hindi 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Sabihin ang mga bilang na lampas sampu sa katutubong Koreano.",
       "step1": "Idagdag ang mga isahan sa 열, hanggang 열아홉. Sinasabi bilang isang salita.",
       "step2": "May sariling salita ang bawat sampu — 스물, 서른, 마흔, 쉰.",
-      "step3": "Ang 열여섯 ay binibigkas na 열려섣: ang parehong tunog na ㄹ na lumilitaw sa 심뉵."
+      "step3": "Ang 열여섯 ay binibigkas na 열려섣. Ganoon din ang tuntunin sa 심뉵: may tunog na ㄴ bago ang 여섯, at pagkatapos ng ㄹ ito ay nagiging ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — nagbabago ang anyo",
@@ -179,7 +181,15 @@
       "objective": "Sabihin ang edad mo gamit ang 살, at magalang na magtanong sa nakatatanda gamit ang 연세.",
       "step1": "Ang 살 ay kasama ng katutubong bilang: 스무 살, 스물다섯 살. Ang 몇 살이에요? ay itinatanong sa kaibigan.",
       "step2": "Ang 세 ay kasama ng Sino-Koreano at makikita sa mga porma at balita: 이십 세.",
-      "step3": "Sa nakatatanda, masyadong kaswal ang 살. Ang 연세 ang magalang na salita para sa edad: 연세가 어떻게 되세요?"
+      "step3": "Sa nakatatanda, masyadong kaswal ang 살. Sa isang matandang kakakilala mo lang, itanong ang 나이가 어떻게 되세요?, at sa isang mas nakatatanda ang 연세가 어떻게 되세요?. Ang 연세 ang magalang na salita para sa edad."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — pagsasabi ng pagkakasunod",
+      "objective": "Sabihin gamit ang 번째 kung pang-ilan ang isang bagay, at itala ang iyong mga punto gamit ang 첫째.",
+      "step1": "Iba ang ilan at iba ang pang-ilan. Ang 사과 두 개 ay dalawang mansanas; ang 두 번째 사과 ay ang pangalawang mansanas sa hanay.",
+      "step2": "Bago ang 번째 ginagamit ang 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. Walang 한 번째 at walang 일 번째.",
+      "step3": "Ang 첫째, 둘째 at 셋째 ay isang salita, walang espasyo. Ginagamit ang mga ito sa pagtatala ng punto: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Para sa pwesto sa hanay, sabihin ang 첫 번째, 두 번째. Itabi ang 첫째, 둘째 para sa pagtatala at para sa pagkakasunod ng magkakapatid: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Anong oras na?",
@@ -267,7 +277,7 @@
     "counterBooks": "libro",
     "counterAge": "Edad — kasama ng katutubong bilang",
     "counterAgeFormal": "Edad — sa mga porma at balita, kasama ng Sino-Koreano",
-    "howOld": "Ang pahayag na itinatanong sa edad",
+    "howOld": "Ganito itanong ang edad sa isang kaibigan",
     "ageHonorific": "edad — magalang, tungkol sa nakatatanda",
     "counterHour": "oras (alas-)",
     "half": "y medya",
@@ -308,10 +318,20 @@
     "price1000": "1,000 na won",
     "twoForty": "alas-dos kwarenta",
     "nineOhFive": "alas-nuwebe singko",
-    "howOldPolite": "Ang magalang na paraan ng pagtatanong ng edad sa nakatatanda",
+    "howOldPolite": "Ganito itanong sa isang mas nakatatanda",
     "sevenOclock": "alas-siyete",
     "may": "Mayo — regular",
-    "howOldNeutral": "Ang karaniwang magalang na pagtatanong ng edad sa may edad na"
+    "howOldNeutral": "Ganito itanong sa isang matandang kakakilala mo lang",
+    "counterOrdinal": "pwesto sa pagkakasunod",
+    "ordinal1": "ika-1",
+    "ordinal2": "ika-2",
+    "ordinal3": "ika-3",
+    "ordinal4": "ika-4",
+    "ordinalPoint1": "ika-1 sa pagtatala",
+    "ordinalPoint2": "ika-2 sa pagtatala",
+    "ordinalPoint3": "ika-3 sa pagtatala",
+    "ordinalPoint4": "ika-4 sa pagtatala",
+    "ordinalPoint5": "ika-5 sa pagtatala"
   },
   "example": {
     "zeroMath": "minus tatlong digri",
@@ -339,7 +359,11 @@
     "tenThousandWon": "isang 10,000-won na papel",
     "threeHundredMillionWon": "Nagkakahalaga ang unit ng 삼억 원.",
     "nineOhFive": "Alas-nuwebe singko na.",
-    "mayFifth": "ikalima ng Mayo"
+    "mayFifth": "ikalima ng Mayo",
+    "ordinal1": "Tama ang 첫 번째; mali ang 한 번째",
+    "ordinal2": "Tama ang 두 번째; mali ang 이 번째",
+    "ordinal3": "Tama ang 세 번째; mali ang 세번째",
+    "ordinal4": "Tama ang 네 번째; mali ang 넷 번째"
   },
   "note": {
     "phoneZero": "Sa numero ng telepono, ang 0 ay karaniwang binabasang 공.",
@@ -348,7 +372,10 @@
     "simnyuk": "Ang 십육 ay binibigkas na 심뉵.",
     "irregularMonths": "Ang 6월 ay binabasang 유월 at ang 10월 ay 시월.",
     "clockTime": "Ang oras ay sinasabing 세 시 십 분.",
-    "price": "Ang presyo ay sinasabing 오천 원."
+    "price": "Ang presyo ay sinasabing 오천 원.",
+    "ordinalCounting": "Bago ang 번째, ang bilang ay 첫, 두, 세 o 네.",
+    "firstOrdinal": "Ang 첫 ay sariling salita para sa una: hindi 하나 at hindi 한.",
+    "ordinalPoint": "Binubuksan ng 첫째 at 둘째 ang mga puntong sinasabi mo nang sunod-sunod."
   },
   "breakdown": {
     "parts": "Mga bahagi"

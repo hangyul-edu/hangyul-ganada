@@ -528,6 +528,25 @@ export type AnswerDomain =
   | 'age'
   /** A number of people: 세 명. */
   | 'personCount'
+  /**
+   * A place in a sequence, said with 번째: 첫 번째, 두 번째.
+   *
+   * Separate from `numericValue` because 첫 번째 is not the number one — a
+   * question that offered it against 하나 and 일 would be asking two things at
+   * once — and separate from `ordinalRank` because 첫 번째 and 첫째 are not
+   * interchangeable and must never be two buttons under one instruction.
+   */
+  | 'ordinalPosition'
+  /**
+   * A place in an order said with 째: 첫째, 둘째, 셋째.
+   *
+   * The forms a speaker counts *off* with — the points of an argument, the
+   * children of a family — as against the 번째 forms, which say where something
+   * stands in a line. Two domains rather than one because the course teaches
+   * the difference, and an option list that mixes them teaches that there is
+   * none.
+   */
+  | 'ordinalRank'
   /** A number of things: 두 잔, 세 권. */
   | 'objectCount'
   /** A floor of a building: 삼 층. */

@@ -70,7 +70,9 @@
       "moneyAmount": "Bu ne kadar?",
       "clockTime": "Saat kaç?",
       "month": "Bu hangi ay?",
-      "weekday": "Bu haftanın hangi günü?"
+      "weekday": "Bu haftanın hangi günü?",
+      "ordinalPosition": "Bu kaçıncı?",
+      "ordinalRank": "Sıralarken bu kaçıncı?"
     },
     "chooseByMeaning": "Bunlardan hangisi bu anlama geliyor?",
     "chooseCorrectExplanation": "Doğru açıklamayı seç.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Nesneleri sayalım",
-      "goal": "İnsanları, eşyaları ve hayvanları say ve kaç yaşında olduğunu söyle."
+      "goal": "İnsanları, eşyaları ve hayvanları say, kaç yaşında olduğunu ve sırayı söyle."
     },
     "time": {
       "title": "Saat kaç? Ayın kaçı?",
@@ -144,7 +146,7 @@
       "title": "Bine kadar saymak",
       "objective": "십일, 이십 ve 삼십오 gibi sayıları kur ve oku.",
       "step1": "Parçaları sırayla, soldan sağa oku.",
-      "step2": "십육'a dikkat: 십육 yazılır ama 심뉵 söylenir. İki hecenin arasında ㄹ sesi ortaya çıkar.",
+      "step2": "십육'a dikkat: 십육 yazılır ama 심뉵 söylenir. 육 önünde bir ㄴ sesi belirir ve bu yüzden 십, 심 olur.",
       "step3": "백 yüz, 천 bindir. Önlerine 일 gelmez — 일백 원 değil, 백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Ondan büyük sayıları öz Korece söyle.",
       "step1": "열 sözcüğüne birleri ekle, 열아홉’a kadar. Tek kelime gibi söylenir.",
       "step2": "Her onluğun kendi kelimesi var — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯, 열려섣 diye söylenir: 심뉵'taki ㄹ sesinin aynısı."
+      "step3": "열여섯, 열려섣 diye söylenir. 심뉵 ile aynı kural: 여섯 önünde bir ㄴ sesi belirir, ㄹ'den sonra da ㄹ olur."
     },
     "forms": {
       "title": "한 개, 두 개 — biçim değişir",
@@ -179,7 +181,15 @@
       "objective": "Yaşını 살 ile söyle, büyüklere 연세 ile kibarca sor.",
       "step1": "살 öz Korece sayılarla gider: 스무 살, 스물다섯 살. 몇 살이에요? arkadaşa sorulur.",
       "step2": "세 Sino-Korece sayılarla gider, formlarda ve haberlerde görürsün: 이십 세.",
-      "step3": "Yaşça büyük birine 살 fazla samimi kalır. 연세, yaş için saygı sözcüğüdür: 연세가 어떻게 되세요?"
+      "step3": "Yaşça büyük birine 살 fazla samimi kalır. Yeni tanıştığın bir yetişkine 나이가 어떻게 되세요?, çok daha yaşlı birine 연세가 어떻게 되세요? diye sorarsın. 연세, yaş için saygı sözcüğüdür."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — sırayı söylemek",
+      "objective": "번째 ile bir şeyin kaçıncı olduğunu söyle, 첫째 ile söyleyeceklerini sırayla say.",
+      "step1": "Kaç tane olduğu ile kaçıncı olduğu iki ayrı sorudur. 사과 두 개 iki elma demek; 두 번째 사과 ise sıradaki ikinci elma.",
+      "step2": "번째 önünde 첫, 두, 세, 네 gelir: 첫 번째, 두 번째, 세 번째, 네 번째. 한 번째 de 일 번째 de yoktur.",
+      "step3": "첫째, 둘째 ve 셋째 boşluksuz tek kelime yazılır. Söyleyeceklerini sırayla saymak için kullanılır: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Sıradaki yer için 첫 번째, 두 번째 dersin. 첫째, 둘째 ise sıralama yaparken ve kardeş sırası için kalır: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Saat kaç?",
@@ -267,7 +277,7 @@
     "counterBooks": "kitaplar",
     "counterAge": "Yaş — öz Korece sayılarla",
     "counterAgeFormal": "Yaş — formlarda ve haberlerde, Sino-Korece sayılarla",
-    "howOld": "Yaşı soran cümle",
+    "howOld": "Bir arkadaşa yaşını böyle sorarsın",
     "ageHonorific": "yaş — saygı sözcüğü, yaşça büyük biri için",
     "counterHour": "saat",
     "half": "buçuk",
@@ -308,10 +318,20 @@
     "price1000": "1.000 won",
     "twoForty": "iki kırk",
     "nineOhFive": "dokuzu beş geçe",
-    "howOldPolite": "Yaşça büyük birine yaşını sormanın kibar yolu",
+    "howOldPolite": "Çok daha yaşlı birine böyle sorarsın",
     "sevenOclock": "saat yedi",
     "may": "mayıs — kurallı",
-    "howOldNeutral": "Bir yetişkine yaşını sormanın günlük kibar yolu"
+    "howOldNeutral": "Yeni tanıştığın bir yetişkine böyle sorarsın",
+    "counterOrdinal": "sıradaki yer",
+    "ordinal1": "1.",
+    "ordinal2": "2.",
+    "ordinal3": "3.",
+    "ordinal4": "4.",
+    "ordinalPoint1": "1., sıralarken",
+    "ordinalPoint2": "2., sıralarken",
+    "ordinalPoint3": "3., sıralarken",
+    "ordinalPoint4": "4., sıralarken",
+    "ordinalPoint5": "5., sıralarken"
   },
   "example": {
     "zeroMath": "eksi üç derece",
@@ -339,7 +359,11 @@
     "tenThousandWon": "10.000 wonluk bir banknot",
     "threeHundredMillionWon": "Daire 삼억 원.",
     "nineOhFive": "Saat dokuzu beş geçiyor.",
-    "mayFifth": "5 Mayıs"
+    "mayFifth": "5 Mayıs",
+    "ordinal1": "첫 번째 doğru; 한 번째 değil",
+    "ordinal2": "두 번째 doğru; 이 번째 değil",
+    "ordinal3": "세 번째 doğru; 세번째 değil",
+    "ordinal4": "네 번째 doğru; 넷 번째 değil"
   },
   "note": {
     "phoneZero": "Telefon numarasında 0 genelde 공 okunur.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육, 심뉵 diye söylenir.",
     "irregularMonths": "6월, 유월; 10월 ise 시월 okunur.",
     "clockTime": "Saat 세 시 십 분 gibi söylenir.",
-    "price": "Fiyat 오천 원 gibi söylenir."
+    "price": "Fiyat 오천 원 gibi söylenir.",
+    "ordinalCounting": "번째 önünde sayı 첫, 두, 세 ya da 네 olur.",
+    "firstOrdinal": "첫, birincinin kendi kelimesidir: ne 하나 ne de 한.",
+    "ordinalPoint": "첫째 ve 둘째, söyleyeceklerini birbiri ardına açar."
   },
   "breakdown": {
     "parts": "Parçalar"

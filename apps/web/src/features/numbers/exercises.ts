@@ -77,6 +77,17 @@ export const MISCONCEPTION_CLASSES = [
   'irregular_month',
   'wrong_counter',
   'spacing',
+  /*
+   * A number in front of 번째 that is not the ordinal one.
+   *
+   * 한 번째 and 이 번째 are both wrong and wrong differently from anything
+   * above: 한 is the counting form, which is right in front of 개 and 명 and
+   * wrong here, and 이 is the Sino numeral, which never stands before 번째 at
+   * all. Neither is `plain_form` — the plain numeral is 하나, and nobody writes
+   * 하나 번째 — so calling them that would have been a label rather than a
+   * reading of the mistake.
+   */
+  'ordinal_form',
 ] as const;
 
 export type MisconceptionClass = (typeof MISCONCEPTION_CLASSES)[number];
@@ -132,6 +143,8 @@ export const MEANING_PROMPT_KEY: Partial<Record<AnswerDomain, string>> = {
   clockTime: 'prompt.meaning.clockTime',
   month: 'prompt.meaning.month',
   weekday: 'prompt.meaning.weekday',
+  ordinalPosition: 'prompt.meaning.ordinalPosition',
+  ordinalRank: 'prompt.meaning.ordinalRank',
 };
 
 export interface ExerciseOption {
@@ -314,6 +327,34 @@ const PLAIN_TO_FORM: Record<string, string> = Object.fromEntries(
 );
 
 const IRREGULAR_MONTH: Record<string, string> = { 유월: '육월', 시월: '십월' };
+
+/** The Sino-Korean ones and tens, as the head of a phrase that should not have one. */
+const SINO_HEADS = new Set(['일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십']);
+
+/**
+ * Which named mistake the marked-wrong half of an example embodies.
+ *
+ * Written down here rather than inline in `spotMistake`, because the answer is
+ * not always one of the two the first version could choose between. 한 번째 is
+ * neither a spacing slip nor the plain numeral: 한 is a *counting form*, right
+ * in front of 개 and wrong in front of 번째, and the plain numeral 하나 never
+ * appears there at all. 이 번째 is the Sino-Korean numeral reaching into a slot
+ * that only takes the native ordinals.
+ *
+ * The order matters. Spacing first, because 세번째 and 한개 differ from the
+ * right form by nothing else; then the Sino head, which is the same mistake in
+ * 삼 시 서른 분 and 이 번째; then the plain numeral where a counting form
+ * belongs; and `ordinal_form` for what is left, which is exactly the case where
+ * the right form is an ordinal and the wrong one reached for a cardinal.
+ */
+function wrongHalfClass(right: string, wrong: string): MisconceptionClass {
+  if (right.includes(' ') && wrong.replace(/\s/g, '') === right.replace(/\s/g, '')) return 'spacing';
+  const head = wrong.split(' ')[0] ?? '';
+  if (SINO_HEADS.has(head)) return 'system_swap';
+  if (PLAIN_TO_FORM[head]) return 'plain_form';
+  if (FORM_TO_PLAIN[head]) return 'ordinal_form';
+  return 'plain_form';
+}
 
 /** Sound-alike pairs a beginner actually confuses. */
 const SOUND_ALIKE: Record<string, string[]> = {
@@ -741,6 +782,19 @@ function listenChoose(item: NumberItem, ctx: Ctx): NumbersExercise | null {
       ? [{ ...koreanOf(swap), misconception: 'system_swap' as const }]
       : [],
     sameLength(siblingsDistinct(item, ctx.siblings, koreanOf, 'wrong_counter')),
+    /*
+     * Taught words of the same *role* before the rest, which is the two-stage
+     * pool `readChoose` already draws from and for the same reason.
+     *
+     * A clip of 번째 was offered against 영, 공 and 영하 — three ways of saying
+     * zero and one counting word, in the lesson about counting words. Every
+     * option is a `definition` and every one is a single word, so nothing above
+     * had anything to say about it; what makes it a poor question is that a
+     * learner who did not hear the clip can still reason about which button the
+     * lesson is likely to want. Weighed against 명, 마리 and 개 there is no such
+     * reasoning left, and those are words the learner has already met.
+     */
+    sameLength(siblingsDistinct(item, taughtItems(ctx).filter((s) => s.role === item.role), koreanOf, 'wrong_counter')),
     sameLength(siblingsDistinct(item, taughtItems(ctx), koreanOf, 'wrong_counter')),
   ]);
   if (!options) return null;
@@ -879,7 +933,10 @@ function spotMistake(item: NumberItem, ctx: Ctx): NumbersExercise | null {
   }
   if (item.example && item.example.includes('(✗)')) {
     const bad = item.example.split('·')[1]?.replace(/\(✗\)/, '').trim();
-    if (bad) wrong.push({ text: bad, misconception: item.korean.includes(' ') && bad.replace(/\s/g, '') === item.korean.replace(/\s/g, '') ? 'spacing' : 'plain_form', domain: written });
+    // Against the *right half*, not against `item.korean`: on 첫 번째 the two
+    // are the same string, and on 세 번째 the example is what the contrast is
+    // written in. See `wrongHalfClass`.
+    if (bad) wrong.push({ text: bad, misconception: wrongHalfClass(correctSide(item), bad), domain: written });
   }
   if (wrong.length === 0) return null;
   // The *answer* here is the wrong form; the correct forms are the other options.

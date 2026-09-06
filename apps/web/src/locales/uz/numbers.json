@@ -70,7 +70,9 @@
       "moneyAmount": "Bu qancha turadi?",
       "clockTime": "Soat necha?",
       "month": "Bu qaysi oy?",
-      "weekday": "Bu haftaning qaysi kuni?"
+      "weekday": "Bu haftaning qaysi kuni?",
+      "ordinalPosition": "Bu nechanchi?",
+      "ordinalRank": "Sanab aytganda bu nechanchi?"
     },
     "chooseByMeaning": "Bulardan qaysi biri shu ma’noni bildiradi?",
     "chooseCorrectExplanation": "To‘g‘ri izohni tanlang.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Narsalarni sanaymiz",
-      "goal": "Odamlarni, narsalarni va hayvonlarni sanang, yoshingizni ayting."
+      "goal": "Odamlarni, narsalarni va hayvonlarni sanang, yoshingizni va tartibni ayting."
     },
     "time": {
       "title": "Soat necha? Nechanchi sana?",
@@ -144,7 +146,7 @@
       "title": "Minggacha sanash",
       "objective": "십일, 이십 va 삼십오 kabi sonlarni tuzing va o‘qing.",
       "step1": "Qismlarni tartib bilan, chapdan o‘ngga o‘qing.",
-      "step2": "십육 ga e’tibor bering: 십육 deb yoziladi, lekin 심뉵 deb aytiladi. Ikki bo‘g‘in orasida ㄹ tovushi paydo bo‘ladi.",
+      "step2": "십육 ga e’tibor bering: 십육 deb yoziladi, lekin 심뉵 deb aytiladi. 육 oldida ㄴ tovushi paydo bo‘ladi va shuning uchun 십 tovushi 심 ga aylanadi.",
       "step3": "백 — yuz, 천 — ming. Ular oldida 일 bo‘lmaydi — 일백 원 emas, 백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "O‘ndan yuqori sonlarni asl koreyscha ayting.",
       "step1": "열 ga birliklarni qo‘shing, 열아홉 gacha. Bitta so‘zdek aytiladi.",
       "step2": "Har o‘nlikning o‘z so‘zi bor — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 — 열려섣 deb aytiladi: 심뉵 dagi ㄹ tovushining o‘zi."
+      "step3": "열여섯 — 열려섣 deb aytiladi. 심뉵 dagi qoidaning o‘zi: 여섯 oldida ㄴ tovushi paydo bo‘ladi, ㄹ dan keyin esa u ㄹ ga aylanadi."
     },
     "forms": {
       "title": "한 개, 두 개 — shakli o‘zgaradi",
@@ -179,7 +181,15 @@
       "objective": "Yoshingizni 살 bilan ayting, kattalardan 연세 bilan xushmuomala so‘rang.",
       "step1": "살 asl koreys sonlari bilan keladi: 스무 살, 스물다섯 살. 몇 살이에요? do‘stdan so‘raladi.",
       "step2": "세 sino-koreys sonlari bilan keladi, uni blankalar va yangiliklarda ko‘rasiz: 이십 세.",
-      "step3": "Yoshi kattaga 살 juda bemalol tuyuladi. 연세 — yosh uchun hurmat so‘zi: 연세가 어떻게 되세요?"
+      "step3": "Yoshi kattaga 살 juda bemalol tuyuladi. Endi tanishgan kattadan 나이가 어떻게 되세요? deb, ancha kattaroq odamdan 연세가 어떻게 되세요? deb so‘raysiz. 연세 — yosh uchun hurmat so‘zi."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — tartibni aytish",
+      "objective": "번째 bilan nechanchi ekanini ayting, 첫째 bilan aytmoqchi bo‘lgan fikrlaringizni sanab chiqing.",
+      "step1": "Nechta ekani bilan nechanchi ekani — ikki xil savol. 사과 두 개 — ikkita olma; 두 번째 사과 — qatordagi ikkinchi olma.",
+      "step2": "번째 oldida 첫, 두, 세, 네 turadi: 첫 번째, 두 번째, 세 번째, 네 번째. 한 번째 ham, 일 번째 ham yo‘q.",
+      "step3": "첫째, 둘째, 셋째 bo‘shliqsiz bir so‘z bo‘lib yoziladi. Ular bilan fikrlar sanab chiqiladi: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Qatordagi o‘rinni 첫 번째, 두 번째 deb aytasiz. 첫째, 둘째 sanab chiqishga va aka-ukalarning tartibiga qoladi: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Soat necha bo‘ldi?",
@@ -267,7 +277,7 @@
     "counterBooks": "kitoblar",
     "counterAge": "Yosh — asl koreys sonlari bilan",
     "counterAgeFormal": "Yosh — blankalar va yangiliklarda, sino-koreys sonlari bilan",
-    "howOld": "Yoshni so‘raydigan gap",
+    "howOld": "Do‘stingizdan yoshini shunday so‘raysiz",
     "ageHonorific": "yosh — hurmat so‘zi, yoshi katta odam haqida",
     "counterHour": "soat",
     "half": "yarim",
@@ -308,10 +318,20 @@
     "price1000": "1 000 von",
     "twoForty": "ikki soat qirq daqiqa",
     "nineOhFive": "to‘qqiz soat besh daqiqa",
-    "howOldPolite": "Kattaroq odamdan yoshini so‘rashning xushmuomala shakli",
+    "howOldPolite": "Ancha kattaroq odamdan shunday so‘raysiz",
     "sevenOclock": "soat yetti",
     "may": "may — qoidaga muvofiq",
-    "howOldNeutral": "Kattalarning yoshini so‘rashning odatdagi xushmuomala shakli"
+    "howOldNeutral": "Endi tanishgan kattadan shunday so‘raysiz",
+    "counterOrdinal": "tartibdagi o‘rin",
+    "ordinal1": "1-chi",
+    "ordinal2": "2-chi",
+    "ordinal3": "3-chi",
+    "ordinal4": "4-chi",
+    "ordinalPoint1": "1-chi, sanab aytganda",
+    "ordinalPoint2": "2-chi, sanab aytganda",
+    "ordinalPoint3": "3-chi, sanab aytganda",
+    "ordinalPoint4": "4-chi, sanab aytganda",
+    "ordinalPoint5": "5-chi, sanab aytganda"
   },
   "example": {
     "zeroMath": "minus uch daraja",
@@ -339,7 +359,11 @@
     "tenThousandWon": "10 000 vonlik bir banknot",
     "threeHundredMillionWon": "Kvartira narxi 삼억 원.",
     "nineOhFive": "Hozir to‘qqiz soat besh daqiqa.",
-    "mayFifth": "5-may"
+    "mayFifth": "5-may",
+    "ordinal1": "첫 번째 to‘g‘ri; 한 번째 noto‘g‘ri",
+    "ordinal2": "두 번째 to‘g‘ri; 이 번째 noto‘g‘ri",
+    "ordinal3": "세 번째 to‘g‘ri; 세번째 noto‘g‘ri",
+    "ordinal4": "네 번째 to‘g‘ri; 넷 번째 noto‘g‘ri"
   },
   "note": {
     "phoneZero": "Telefon raqamida 0 odatda 공 deb o‘qiladi.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 — 심뉵 deb talaffuz qilinadi.",
     "irregularMonths": "6월 — 유월, 10월 — 시월 deb o‘qiladi.",
     "clockTime": "Vaqt 세 시 십 분 kabi aytiladi.",
-    "price": "Narx 오천 원 kabi aytiladi."
+    "price": "Narx 오천 원 kabi aytiladi.",
+    "ordinalCounting": "번째 oldida son 첫, 두, 세 yoki 네 bo‘ladi.",
+    "firstOrdinal": "첫 — birinchining o‘z so‘zi: 하나 ham, 한 ham emas.",
+    "ordinalPoint": "첫째 va 둘째 aytadigan fikrlaringizni birin-ketin ochadi."
   },
   "breakdown": {
     "parts": "Qismlar"

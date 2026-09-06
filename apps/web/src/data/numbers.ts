@@ -20,12 +20,12 @@ export type { ExplainStep, NumberItem, NumberLesson, NumberModule, NumbersExerci
  * answered by knowing **which list, with which counter, in which shape**, and
  * that is a rule with exceptions rather than a table to memorise.
  *
- * ## Six modules, nineteen lessons, in the order the decisions arrive
+ * ## Six modules, twenty lessons, in the order the decisions arrive
  *
  * ```
  *  1  두 가지 수      the two systems: Sino, native, the two zeroes, which one when
  *  2  십 너머        past ten in both systems, and the five forms that change shape
- *  3  세는 말        counters: people and things, everyday counters, age
+ *  3  세는 말        counters: people and things, everyday counters, age, order
  *  4  시간과 날짜     hours, minutes, dates, the two irregular months, weekdays
  *  5  돈과 번호      prices, identifiers read digit by digit, 만 · 억 · 조
  *  6  복습          the five mistakes everyone makes, as a capstone
@@ -52,15 +52,30 @@ export type { ExplainStep, NumberItem, NumberLesson, NumberModule, NumbersExerci
  * and a curriculum that prints only the spelling teaches them to say it wrong.
  * Where `reading` is non-null it is what the audio says.
  *
- * ## Spacing: a counted quantity is spaced, an ordinal is not
+ * ## Order is a different question from quantity
+ *
+ * 번째 and 째 were the gap a beginner falls into first: a learner who has just
+ * been taught 한 개 writes 한 번째, which is not Korean, and the two ordinal
+ * families are not interchangeable with each other either. `ORDINALS` and its
+ * lesson are the answer, and `AnswerDomain` grew `ordinalPosition` and
+ * `ordinalRank` so that 첫 번째 and 첫째 can never be two buttons under one
+ * instruction.
+ *
+ * ## Spacing: a unit noun is spaced, and a date closes
  *
  * 한글 맞춤법 §43 spaces a unit noun from its numeral — 한 개, 세 명, 스무 살,
- * 삼십 분 — and its 다만 clause attaches the same noun when the number is an
- * *order* rather than a count. A date is an order. So:
+ * 삼십 분 — and its 다만 clause *permits* closing the same noun where the number
+ * is an order or is written in figures. Permits, not requires, and this file
+ * said *requires* for three passes: **an ordinal is closed** was written at the
+ * head of it, which is true of 삼월 일일 and false of 첫 번째, and the ordinal
+ * lesson would have been written wrong by anybody who believed it. The course
+ * takes the permission where a Korean reader expects it and nowhere else:
  *
  * ```
  *  quantity   한 개 · 세 명 · 두 잔 · 스무 살 · 세 시 · 삼십 분 · 오천 원
- *  order      삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년
+ *  order      첫 번째 · 두 번째 · 세 번째        번째 is a dependent noun; spaced
+ *  a date     삼월 일일 · 유월 육일 · 시월 십일 · 십오일 · 이천이십육년   closed
+ *  a suffix   첫째 · 둘째 · 셋째                 째 attaches; never 첫 째
  * ```
  *
  * This file shipped *삼월 일 일*, *유월 육 일*, *시월 십 일* and *십오 일*. All
@@ -418,6 +433,121 @@ const AGE: NumberItem[] = [
   }),
 ];
 
+/**
+ * Order, which is not the same question as how many.
+ *
+ * ## Two families, and they are not interchangeable
+ *
+ * A learner who has just met 한 개 and 두 개 reaches for 한 번째 the first time
+ * they need *the first one*, and it is not Korean. Korean has two ordinal
+ * families and each has its own job:
+ *
+ * ```
+ *  첫 번째 · 두 번째 · 세 번째 · 네 번째    where something stands: the first
+ *                                          door, the second time, the third row
+ *  첫째 · 둘째 · 셋째 · 넷째 · 다섯째      counting off: 첫째, 값이 싸요.
+ *                                          둘째, 가까워요. — and birth order
+ * ```
+ *
+ * They overlap in ordinary speech and the beginner-safe rule does not: say
+ * 번째 for a position, and 째 when you are listing points or naming which child.
+ * Teaching them as synonyms would be shorter and would leave a learner writing
+ * *첫째 문* for the first door.
+ *
+ * ## Why the two are separate answer domains
+ *
+ * `ordinalPosition` and `ordinalRank` (`AnswerDomain`) exist so the option
+ * filter cannot put 첫 번째 and 첫째 in one list. Both name position one; under
+ * *which position is this?* both would be defensible, and the question would
+ * have two answers. Grouped as well — `gloss_group: 'ordinal-1'` — so the
+ * relationship is declared rather than left to the domains to imply.
+ *
+ * ## Spacing is the content, not a detail
+ *
+ * 번째 is a counting word and 한글 맞춤법 §43 spaces it from its numeral:
+ * **첫 번째**, never 첫번째. 째 is a suffix and closes: **첫째**, never 첫 째.
+ * Both halves are written into the items' contrast examples so the course can
+ * ask about them, and `numbers:qa` §18 fails any of 한 번째, 일 번째, 이 번째,
+ * 첫번째 or 첫 째 written as if it were Korean.
+ *
+ * ## No `value`, on purpose
+ *
+ * 첫 번째 is *first*, not 1, and an item carrying `value: 1` would build
+ * `digits_to_korean` — a numeral 1 over 첫 번째, 두 번째, 세 번째 under *say
+ * this number* — and a sound-free substitute that showed the digit 1. Both are
+ * the cardinal question wearing the ordinal lesson's options. `system` is kept,
+ * because *which set goes in front of 번째* is the whole point of the lesson
+ * and `choose_system` is the question that asks it.
+ */
+const ORDINALS: NumberItem[] = [
+  n('num-o-beonjjae', '번째', 'beonjjae', null, null, 'counter', 'gloss.counterOrdinal', {
+    domain: 'definition',
+    note: 'note.ordinalCounting',
+    example: '두 번째', counter_system: 'native',
+  }),
+  n('num-o-1st', '첫 번째', 'cheot beonjjae', null, 'native', 'phrase', 'gloss.ordinal1', {
+    domain: 'ordinalPosition',
+    gloss_group: 'ordinal-1',
+    note: 'note.firstOrdinal',
+    example: '첫 번째 (✓)  ·  한 번째 (✗)',
+    example_kind: 'writing',
+    example_gloss: 'example.ordinal1',
+  }),
+  n('num-o-2nd', '두 번째', 'du beonjjae', null, 'native', 'phrase', 'gloss.ordinal2', {
+    domain: 'ordinalPosition',
+    gloss_group: 'ordinal-2',
+    example: '두 번째 (✓)  ·  이 번째 (✗)',
+    example_kind: 'writing',
+    example_gloss: 'example.ordinal2',
+  }),
+  n('num-o-3rd', '세 번째', 'se beonjjae', null, 'native', 'phrase', 'gloss.ordinal3', {
+    domain: 'ordinalPosition',
+    gloss_group: 'ordinal-3',
+    example: '세 번째 (✓)  ·  세번째 (✗)',
+    example_kind: 'writing',
+    example_gloss: 'example.ordinal3',
+  }),
+  n('num-o-4th', '네 번째', 'ne beonjjae', null, 'native', 'phrase', 'gloss.ordinal4', {
+    domain: 'ordinalPosition',
+    gloss_group: 'ordinal-4',
+    example: '네 번째 (✓)  ·  넷 번째 (✗)',
+    example_kind: 'writing',
+    example_gloss: 'example.ordinal4',
+  }),
+  /*
+   * The 째 forms carry no example card, and that is the reading rather than an
+   * omission.
+   *
+   * What a card would have to show is a whole sentence — 첫째, 값이 싸요 — and
+   * a sentence is what `spot_mistake` then draws into a right-and-wrong option
+   * list beside 첫 번째 and 두 번째, where one option is a clause and the rest
+   * are two-word phrases. The sentences are in the lesson's own explanation
+   * steps, which is where a learner meets them in context and where no
+   * generator can pick them up as an option.
+   */
+  n('num-o-cheotjjae', '첫째', 'cheotjjae', null, 'native', 'phrase', 'gloss.ordinalPoint1', {
+    domain: 'ordinalRank',
+    gloss_group: 'ordinal-1',
+    note: 'note.ordinalPoint',
+  }),
+  n('num-o-duljjae', '둘째', 'duljjae', null, 'native', 'phrase', 'gloss.ordinalPoint2', {
+    domain: 'ordinalRank',
+    gloss_group: 'ordinal-2',
+  }),
+  n('num-o-setjjae', '셋째', 'setjjae', null, 'native', 'phrase', 'gloss.ordinalPoint3', {
+    domain: 'ordinalRank',
+    gloss_group: 'ordinal-3',
+  }),
+  n('num-o-netjjae', '넷째', 'netjjae', null, 'native', 'phrase', 'gloss.ordinalPoint4', {
+    domain: 'ordinalRank',
+    gloss_group: 'ordinal-4',
+  }),
+  n('num-o-daseotjjae', '다섯째', 'daseotjjae', null, 'native', 'phrase', 'gloss.ordinalPoint5', {
+    domain: 'ordinalRank',
+    gloss_group: 'ordinal-5',
+  }),
+];
+
 // --- Module 4 · time and dates ----------------------------------------------
 
 const HOURS: NumberItem[] = [
@@ -746,7 +876,7 @@ const PITFALLS: NumberItem[] = [
 export const NUMBER_ITEMS: NumberItem[] = [
   ...SINO_1_10, ...NATIVE_1_10, ...ZERO, ...CHOOSING,
   ...SINO_BUILD, ...NATIVE_BUILD, ...COUNTING_FORMS,
-  ...COUNTERS_CORE, ...COUNTERS_EVERYDAY, ...AGE,
+  ...COUNTERS_CORE, ...COUNTERS_EVERYDAY, ...AGE, ...ORDINALS,
   ...HOURS, ...MINUTES, ...DATES, ...WEEKDAYS,
   ...MONEY, ...DIGITS, ...LARGE,
   ...PITFALLS,
@@ -838,6 +968,24 @@ const SPECS: Spec[] = [
     ['read_choose', 'fill_sentence', 'counter_form', 'listen_choose'], 6),
   L('num-lesson-age', 'mod-counting', 'both', AGE, ['num-lesson-counters'], 'age', 3,
     ['read_choose', 'choose_system', 'fill_sentence', 'listen_choose'], 6),
+  /*
+   * The kinds this lesson does *not* list are the argument for the ones it does.
+   *
+   * `digits_to_korean` and `korean_to_digits` are the two questions a numeral
+   * answers — *say this number*, *which number is this* — and neither is a
+   * question about 첫 번째, which is a position rather than a quantity. Both
+   * are refused by the data (`value: null`) as well as absent from this list,
+   * so a later edit that gave an ordinal a value would still not build one.
+   *
+   * `fill_sentence` is left out for the opposite reason: every ordinal in the
+   * lesson fits every ordinal's hole. 줄에서 ____ 사람 takes 첫 번째 and 두
+   * 번째 and 세 번째, so the blank would have four answers however the grader
+   * is configured — the `slot_group` case, one step further, where the whole
+   * option pool is the slot.
+   */
+  L('num-lesson-ordinals', 'mod-counting', 'native', ORDINALS,
+    ['num-lesson-forms', 'num-lesson-counters'], 'ordinals', 4,
+    ['read_choose', 'listen_choose', 'choose_system', 'counter_form', 'spot_mistake'], 10),
   // 4 · time and dates
   L('num-lesson-hours', 'mod-time', 'native', HOURS, ['num-lesson-forms'], 'hours', 3,
     ['read_choose', 'fill_sentence', 'choose_system', 'listen_choose'], 6),

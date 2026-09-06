@@ -70,7 +70,9 @@
       "moneyAmount": "Ini berapa?",
       "clockTime": "Ini jam berapa?",
       "month": "Ini bulan apa?",
-      "weekday": "Ini hari apa?"
+      "weekday": "Ini hari apa?",
+      "ordinalPosition": "Ini urutan ke berapa?",
+      "ordinalRank": "Saat merinci, ini yang ke berapa?"
     },
     "chooseByMeaning": "Yang mana artinya ini?",
     "chooseCorrectExplanation": "Pilih penjelasan yang benar.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Menghitung benda",
-      "goal": "Menghitung orang, benda, dan hewan, serta menyebutkan umurmu."
+      "goal": "Menghitung orang, benda, dan hewan, menyebutkan umurmu, dan menyebutkan urutan."
     },
     "time": {
       "title": "Jam berapa? Tanggal berapa?",
@@ -144,7 +146,7 @@
       "title": "Berhitung sampai seribu",
       "objective": "Susun dan baca angka seperti 십일, 이십, dan 삼십오.",
       "step1": "Baca bagian-bagiannya berurutan, dari kiri ke kanan.",
-      "step2": "Hati-hati dengan 십육: ditulis 십육 tetapi diucapkan 심뉵. Bunyi ㄹ muncul di antara kedua suku katanya.",
+      "step2": "Hati-hati dengan 십육: ditulis 십육 tetapi diucapkan 심뉵. Bunyi ㄴ muncul di depan 육, dan karena itu 십 berubah menjadi 심.",
       "step3": "백 adalah seratus dan 천 adalah seribu. Tidak ada 일 di depannya — 백 원, bukan 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Ucapkan angka di atas sepuluh dengan angka asli Korea.",
       "step1": "Tambahkan satuan ke 열, sampai 열아홉. Diucapkan sebagai satu kata.",
       "step2": "Tiap puluhan punya katanya sendiri — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 diucapkan 열려섣: bunyi ㄹ yang sama seperti yang muncul di 심뉵."
+      "step3": "열여섯 diucapkan 열려섣. Aturan yang sama seperti 심뉵: bunyi ㄴ muncul di depan 여섯, dan sesudah ㄹ bunyi itu menjadi ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — bentuknya berubah",
@@ -179,7 +181,15 @@
       "objective": "Sebutkan umurmu dengan 살, dan tanyakan pada yang lebih tua dengan sopan memakai 연세.",
       "step1": "살 dipakai dengan angka asli Korea: 스무 살, 스물다섯 살. 몇 살이에요? ditanyakan ke teman.",
       "step2": "세 dipakai dengan angka Sino-Korea dan muncul di formulir dan berita: 이십 세.",
-      "step3": "Kepada orang yang lebih tua, 살 terlalu santai. 연세 adalah kata hormat untuk umur: 연세가 어떻게 되세요?"
+      "step3": "Kepada orang yang lebih tua, 살 terlalu santai. Kepada orang dewasa yang baru dikenal tanyakan 나이가 어떻게 되세요?, dan kepada orang yang jauh lebih tua 연세가 어떻게 되세요?. 연세 adalah kata hormat untuk umur."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — menyebut urutan",
+      "objective": "Sebutkan dengan 번째 urutan ke berapa sesuatu, dan rinci poin-poinmu dengan 첫째.",
+      "step1": "Berapa banyak dan yang ke berapa adalah dua pertanyaan berbeda. 사과 두 개 berarti dua apel; 두 번째 사과 adalah apel kedua dalam barisan.",
+      "step2": "Sebelum 번째 dipakai 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. Tidak ada 한 번째 dan tidak ada 일 번째.",
+      "step3": "첫째, 둘째, dan 셋째 ditulis satu kata, tanpa spasi. Dipakai untuk merinci poin: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Untuk posisi dalam barisan, ucapkan 첫 번째, 두 번째. Simpan 첫째, 둘째 untuk merinci poin dan untuk urutan anak dalam keluarga: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Sekarang jam berapa?",
@@ -267,7 +277,7 @@
     "counterBooks": "buku",
     "counterAge": "Umur — dengan angka asli Korea",
     "counterAgeFormal": "Umur — di formulir dan berita, dengan angka Sino-Korea",
-    "howOld": "Kalimat untuk menanyakan umur",
+    "howOld": "Cara menanyakan umur kepada teman",
     "ageHonorific": "umur — bentuk hormat, untuk orang yang lebih tua",
     "counterHour": "jam (pukul)",
     "half": "setengah (lewat tiga puluh menit)",
@@ -308,10 +318,20 @@
     "price1000": "1.000 won",
     "twoForty": "jam dua lewat empat puluh",
     "nineOhFive": "jam sembilan lewat lima",
-    "howOldPolite": "Cara sopan menanyakan usia orang yang lebih tua",
+    "howOldPolite": "Cara menanyakan kepada orang yang jauh lebih tua",
     "sevenOclock": "jam tujuh",
     "may": "Mei — beraturan",
-    "howOldNeutral": "Cara sopan sehari-hari menanyakan usia orang dewasa"
+    "howOldNeutral": "Cara menanyakan kepada orang dewasa yang baru dikenal",
+    "counterOrdinal": "posisi dalam urutan",
+    "ordinal1": "ke-1",
+    "ordinal2": "ke-2",
+    "ordinal3": "ke-3",
+    "ordinal4": "ke-4",
+    "ordinalPoint1": "ke-1 saat merinci",
+    "ordinalPoint2": "ke-2 saat merinci",
+    "ordinalPoint3": "ke-3 saat merinci",
+    "ordinalPoint4": "ke-4 saat merinci",
+    "ordinalPoint5": "ke-5 saat merinci"
   },
   "example": {
     "zeroMath": "minus tiga derajat",
@@ -339,7 +359,11 @@
     "tenThousandWon": "selembar uang 10.000 won",
     "threeHundredMillionWon": "Apartemennya 삼억 원.",
     "nineOhFive": "Sekarang jam sembilan lewat lima.",
-    "mayFifth": "5 Mei"
+    "mayFifth": "5 Mei",
+    "ordinal1": "첫 번째 benar; 한 번째 salah",
+    "ordinal2": "두 번째 benar; 이 번째 salah",
+    "ordinal3": "세 번째 benar; 세번째 salah",
+    "ordinal4": "네 번째 benar; 넷 번째 salah"
   },
   "note": {
     "phoneZero": "Dalam nomor telepon, 0 biasanya dibaca 공.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 dilafalkan 심뉵.",
     "irregularMonths": "6월 dibaca 유월 dan 10월 dibaca 시월.",
     "clockTime": "Waktu diucapkan seperti 세 시 십 분.",
-    "price": "Harga diucapkan seperti 오천 원."
+    "price": "Harga diucapkan seperti 오천 원.",
+    "ordinalCounting": "Sebelum 번째, bilangannya 첫, 두, 세, atau 네.",
+    "firstOrdinal": "첫 adalah kata tersendiri untuk yang pertama: bukan 하나 dan bukan 한.",
+    "ordinalPoint": "첫째 dan 둘째 membuka poin-poin yang kamu sebutkan satu per satu."
   },
   "breakdown": {
     "parts": "Bagian"

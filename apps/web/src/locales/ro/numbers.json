@@ -70,7 +70,9 @@
       "moneyAmount": "Cât face?",
       "clockTime": "Cât e ceasul?",
       "month": "Ce lună este?",
-      "weekday": "Ce zi a săptămânii este?"
+      "weekday": "Ce zi a săptămânii este?",
+      "ordinalPosition": "Al câtelea este acesta?",
+      "ordinalRank": "La enumerare, al câtelea este?"
     },
     "chooseByMeaning": "Care dintre acestea înseamnă asta?",
     "chooseCorrectExplanation": "Alege explicația corectă.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Numărăm lucruri",
-      "goal": "Numără oameni, lucruri și animale și spune câți ani ai."
+      "goal": "Numără oameni, lucruri și animale, spune câți ani ai și spune ordinea."
     },
     "time": {
       "title": "Cât e ceasul? În ce zi?",
@@ -144,7 +146,7 @@
       "title": "Numărăm până la o mie",
       "objective": "Formează și citește numere ca 십일, 이십 și 삼십오.",
       "step1": "Citește părțile în ordine, de la stânga la dreapta.",
-      "step2": "Atenție la 십육: se scrie 십육, dar se pronunță 심뉵. Între cele două silabe apare un sunet ㄹ.",
+      "step2": "Atenție la 십육: se scrie 십육, dar se pronunță 심뉵. Înainte de 육 apare un sunet ㄴ și de aceea 십 devine 심.",
       "step3": "백 este o sută și 천 este o mie. Nu se pune 일 în fața lor — 백 원, nu 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Spune numerele peste zece cu cele coreene native.",
       "step1": "Adaugă unitățile la 열, până la 열아홉. Se spune ca un singur cuvânt.",
       "step2": "Fiecare zece are cuvântul lui — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 se pronunță 열려섣: același sunet ㄹ care apare în 심뉵."
+      "step3": "열여섯 se pronunță 열려섣. Aceeași regulă ca la 심뉵: înainte de 여섯 apare un sunet ㄴ, iar după ㄹ devine ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — forma se schimbă",
@@ -179,7 +181,15 @@
       "objective": "Spune-ți vârsta cu 살 și întreabă politicos o persoană mai în vârstă cu 연세.",
       "step1": "살 merge cu numeralele coreene native: 스무 살, 스물다섯 살. 몇 살이에요? îl întrebi pe un prieten.",
       "step2": "세 merge cu cele sino-coreene și apare în formulare și la știri: 이십 세.",
-      "step3": "Față de cineva mai în vârstă, 살 este prea familiar. 연세 este cuvântul onorific pentru vârstă: 연세가 어떻게 되세요?"
+      "step3": "Față de cineva mai în vârstă, 살 este prea familiar. Un adult pe care tocmai l-ai cunoscut îl întrebi 나이가 어떻게 되세요?, iar pe cineva mult mai în vârstă 연세가 어떻게 되세요?. 연세 este cuvântul onorific pentru vârstă."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — a spune ordinea",
+      "objective": "Spune cu 번째 al câtelea este ceva și enumeră punctele cu 첫째.",
+      "step1": "Câte sunt și al câtelea este sunt două întrebări. 사과 두 개 înseamnă două mere; 두 번째 사과 este al doilea măr din rând.",
+      "step2": "Înainte de 번째 se folosesc 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. Nu există 한 번째 și nici 일 번째.",
+      "step3": "첫째, 둘째 și 셋째 se scriu într-un singur cuvânt, fără spațiu. Cu ele enumeri puncte: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Pentru locul într-un rând spui 첫 번째, 두 번째. Păstrează 첫째, 둘째 pentru enumerări și pentru ordinea fraților: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Cât e ceasul?",
@@ -267,7 +277,7 @@
     "counterBooks": "cărți",
     "counterAge": "Vârsta — cu numeralele coreene native",
     "counterAgeFormal": "Vârsta — în formulare și la știri, cu cele sino-coreene",
-    "howOld": "Fraza cu care întrebi vârsta",
+    "howOld": "Așa întrebi un prieten ce vârstă are",
     "ageHonorific": "vârstă — onorific, despre cineva mai în vârstă",
     "counterHour": "ora (fixă)",
     "half": "și jumătate",
@@ -308,10 +318,20 @@
     "price1000": "1.000 woni",
     "twoForty": "două și patruzeci",
     "nineOhFive": "nouă și cinci",
-    "howOldPolite": "Modul politicos de a întreba vârsta unei persoane mai în vârstă",
+    "howOldPolite": "Așa întrebi pe cineva mult mai în vârstă",
     "sevenOclock": "ora șapte",
     "may": "mai — regulat",
-    "howOldNeutral": "Modul politicos obișnuit de a întreba vârsta unui adult"
+    "howOldNeutral": "Așa întrebi un adult pe care tocmai l-ai cunoscut",
+    "counterOrdinal": "locul într-o ordine",
+    "ordinal1": "al 1-lea",
+    "ordinal2": "al 2-lea",
+    "ordinal3": "al 3-lea",
+    "ordinal4": "al 4-lea",
+    "ordinalPoint1": "al 1-lea, la enumerare",
+    "ordinalPoint2": "al 2-lea, la enumerare",
+    "ordinalPoint3": "al 3-lea, la enumerare",
+    "ordinalPoint4": "al 4-lea, la enumerare",
+    "ordinalPoint5": "al 5-lea, la enumerare"
   },
   "example": {
     "zeroMath": "minus trei grade",
@@ -339,7 +359,11 @@
     "tenThousandWon": "o bancnotă de 10.000 de woni",
     "threeHundredMillionWon": "Apartamentul costă 삼억 원.",
     "nineOhFive": "Este nouă și cinci.",
-    "mayFifth": "cinci mai"
+    "mayFifth": "cinci mai",
+    "ordinal1": "첫 번째 este corect; 한 번째 nu",
+    "ordinal2": "두 번째 este corect; 이 번째 nu",
+    "ordinal3": "세 번째 este corect; 세번째 nu",
+    "ordinal4": "네 번째 este corect; 넷 번째 nu"
   },
   "note": {
     "phoneZero": "Într-un număr de telefon, 0 se citește de obicei 공.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 se pronunță 심뉵.",
     "irregularMonths": "6월 se citește 유월, iar 10월 se citește 시월.",
     "clockTime": "Ora se spune așa: 세 시 십 분.",
-    "price": "Prețul se spune așa: 오천 원."
+    "price": "Prețul se spune așa: 오천 원.",
+    "ordinalCounting": "Înainte de 번째 numărul este 첫, 두, 세 sau 네.",
+    "firstOrdinal": "첫 este cuvântul propriu pentru primul: nu este 하나 și nici 한.",
+    "ordinalPoint": "첫째 și 둘째 deschid punctele pe care le spui unul după altul."
   },
   "breakdown": {
     "parts": "Părți"

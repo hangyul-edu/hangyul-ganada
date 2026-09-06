@@ -70,7 +70,9 @@
       "moneyAmount": "Hoeveel is dit?",
       "clockTime": "Hoe laat is het?",
       "month": "Welke maand is dit?",
-      "weekday": "Welke dag van de week is dit?"
+      "weekday": "Welke dag van de week is dit?",
+      "ordinalPosition": "De hoeveelste is dit?",
+      "ordinalRank": "Bij het opsommen: de hoeveelste is dit?"
     },
     "chooseByMeaning": "Welke betekent dit?",
     "chooseCorrectExplanation": "Kies de juiste uitleg.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Dingen tellen",
-      "goal": "Tel mensen, dingen en dieren, en zeg hoe oud je bent."
+      "goal": "Tel mensen, dingen en dieren, zeg hoe oud je bent en zeg de volgorde."
     },
     "time": {
       "title": "Hoe laat? Welke dag?",
@@ -144,7 +146,7 @@
       "title": "Tellen tot duizend",
       "objective": "Bouw en lees getallen zoals 십일, 이십 en 삼십오.",
       "step1": "Lees de delen op volgorde, van links naar rechts.",
-      "step2": "Let op 십육: het wordt geschreven als 십육, maar gezegd als 심뉵. Tussen de twee lettergrepen verschijnt een ㄹ-klank.",
+      "step2": "Let op 십육: het wordt geschreven als 십육, maar gezegd als 심뉵. Voor 육 verschijnt een ㄴ-klank, en daardoor wordt 십 tot 심.",
       "step3": "백 is honderd en 천 is duizend. Er staat geen 일 voor — 백 원, niet 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Zeg de getallen boven de tien oorspronkelijk Koreaans.",
       "step1": "Zet de eenheden achter 열, tot 열아홉. Wordt als één woord uitgesproken.",
       "step2": "Elk tiental heeft een eigen woord — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 wordt gezegd als 열려섣: dezelfde ㄹ-klank als in 심뉵."
+      "step3": "열여섯 wordt gezegd als 열려섣. Dezelfde regel als bij 심뉵: voor 여섯 verschijnt een ㄴ-klank, en na ㄹ wordt die ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — de vorm verandert",
@@ -179,7 +181,15 @@
       "objective": "Zeg je leeftijd met 살 en vraag het beleefd aan een oudere met 연세.",
       "step1": "살 hoort bij de oorspronkelijk Koreaanse getallen: 스무 살, 스물다섯 살. 몇 살이에요? vraag je aan een vriend.",
       "step2": "세 hoort bij de Sino-Koreaanse getallen en zie je op formulieren en in het nieuws: 이십 세.",
-      "step3": "Tegen iemand die ouder is, is 살 te informeel. 연세 is het eerbiedige woord voor leeftijd: 연세가 어떻게 되세요?"
+      "step3": "Tegen iemand die ouder is, is 살 te informeel. Een pas ontmoete volwassene vraag je 나이가 어떻게 되세요?, en iemand die veel ouder is 연세가 어떻게 되세요?. 연세 is het eerbiedige woord voor leeftijd."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — de volgorde zeggen",
+      "objective": "Zeg met 번째 de hoeveelste iets is, en som je punten op met 첫째.",
+      "step1": "Hoeveel het er zijn en de hoeveelste het is, zijn twee vragen. 사과 두 개 zijn twee appels; 두 번째 사과 is de tweede appel in de rij.",
+      "step2": "Voor 번째 gebruik je 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. 한 번째 en 일 번째 bestaan niet.",
+      "step3": "첫째, 둘째 en 셋째 schrijf je als één woord, zonder spatie. Je somt er punten mee op: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Voor een plaats in een rij zeg je 첫 번째, 두 번째. Houd 첫째, 둘째 voor opsommingen en voor de volgorde van kinderen: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Hoe laat is het?",
@@ -267,7 +277,7 @@
     "counterBooks": "boeken",
     "counterAge": "Leeftijd — bij de oorspronkelijk Koreaanse getallen",
     "counterAgeFormal": "Leeftijd — op formulieren en in het nieuws, bij de Sino-Koreaanse getallen",
-    "howOld": "De zin om naar de leeftijd te vragen",
+    "howOld": "Hoe je een vriend naar zijn leeftijd vraagt",
     "ageHonorific": "leeftijd — eerbiedig, over iemand ouder",
     "counterHour": "uur",
     "half": "half — een half uur later",
@@ -308,10 +318,20 @@
     "price1000": "1.000 won",
     "twoForty": "twee uur veertig",
     "nineOhFive": "vijf over negen",
-    "howOldPolite": "De beleefde manier om een oudere naar zijn leeftijd te vragen",
+    "howOldPolite": "Hoe je het iemand vraagt die veel ouder is",
     "sevenOclock": "zeven uur",
     "may": "mei — regelmatig",
-    "howOldNeutral": "De gewone beleefde manier om een volwassene naar zijn leeftijd te vragen"
+    "howOldNeutral": "Hoe je het een pas ontmoete volwassene vraagt",
+    "counterOrdinal": "plaats in een volgorde",
+    "ordinal1": "1e",
+    "ordinal2": "2e",
+    "ordinal3": "3e",
+    "ordinal4": "4e",
+    "ordinalPoint1": "1e bij het opsommen",
+    "ordinalPoint2": "2e bij het opsommen",
+    "ordinalPoint3": "3e bij het opsommen",
+    "ordinalPoint4": "4e bij het opsommen",
+    "ordinalPoint5": "5e bij het opsommen"
   },
   "example": {
     "zeroMath": "min drie graden",
@@ -339,7 +359,11 @@
     "tenThousandWon": "een biljet van 10.000 won",
     "threeHundredMillionWon": "Het appartement kost 삼억 원.",
     "nineOhFive": "Het is vijf over negen.",
-    "mayFifth": "vijf mei"
+    "mayFifth": "vijf mei",
+    "ordinal1": "첫 번째 klopt; 한 번째 niet",
+    "ordinal2": "두 번째 klopt; 이 번째 niet",
+    "ordinal3": "세 번째 klopt; 세번째 niet",
+    "ordinal4": "네 번째 klopt; 넷 번째 niet"
   },
   "note": {
     "phoneZero": "In een telefoonnummer wordt 0 meestal 공 gelezen.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 klinkt als 심뉵.",
     "irregularMonths": "6월 lees je 유월 en 10월 lees je 시월.",
     "clockTime": "Een tijd zeg je als 세 시 십 분.",
-    "price": "Een prijs zeg je als 오천 원."
+    "price": "Een prijs zeg je als 오천 원.",
+    "ordinalCounting": "Voor 번째 is het getal 첫, 두, 세 of 네.",
+    "firstOrdinal": "첫 is het eigen woord voor de eerste: niet 하나 en niet 한.",
+    "ordinalPoint": "첫째 en 둘째 openen de punten die je na elkaar noemt."
   },
   "breakdown": {
     "parts": "Delen"

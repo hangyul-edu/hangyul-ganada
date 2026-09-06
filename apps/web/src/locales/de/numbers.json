@@ -70,7 +70,9 @@
       "moneyAmount": "Wie viel ist das?",
       "clockTime": "Wie spät ist es hier?",
       "month": "Welcher Monat ist das?",
-      "weekday": "Welcher Wochentag ist das?"
+      "weekday": "Welcher Wochentag ist das?",
+      "ordinalPosition": "Der wievielte ist das?",
+      "ordinalRank": "Beim Aufzählen: der wievielte ist das?"
     },
     "chooseByMeaning": "Welches davon bedeutet das?",
     "chooseCorrectExplanation": "Wähle die richtige Erklärung.",
@@ -97,7 +99,7 @@
     },
     "counting": {
       "title": "Dinge zählen",
-      "goal": "Zähl Menschen, Dinge und Tiere und sag, wie alt du bist."
+      "goal": "Zähl Menschen, Dinge und Tiere, sag, wie alt du bist, und sag die Reihenfolge."
     },
     "time": {
       "title": "Wie spät? Welcher Tag?",
@@ -144,7 +146,7 @@
       "title": "Bis tausend zählen",
       "objective": "Bilde und lies Zahlen wie 십일, 이십 und 삼십오.",
       "step1": "Die Teile werden der Reihe nach gelesen, von links nach rechts.",
-      "step2": "Achte auf 십육: Es wird 십육 geschrieben, aber 심뉵 gesprochen. Zwischen den beiden Silben taucht ein ㄹ-Laut auf.",
+      "step2": "Achte auf 십육: Es wird 십육 geschrieben, aber 심뉵 gesprochen. Vor 육 taucht ein ㄴ-Laut auf, und dadurch wird 십 zu 심.",
       "step3": "백 ist hundert und 천 ist tausend. Davor steht kein 일 — 백 원, nicht 일백 원."
     },
     "nativeBuild": {
@@ -152,7 +154,7 @@
       "objective": "Sag die Zahlen über zehn rein koreanisch.",
       "step1": "An 열 hängst du die Einer bis 열아홉. Wird als ein Wort gesprochen.",
       "step2": "Jeder Zehner hat sein eigenes Wort — 스물, 서른, 마흔, 쉰.",
-      "step3": "열여섯 wird 열려섣 gesprochen: derselbe ㄹ-Laut wie in 심뉵."
+      "step3": "열여섯 wird 열려섣 gesprochen. Dieselbe Regel wie bei 심뉵: Vor 여섯 taucht ein ㄴ-Laut auf, und nach ㄹ wird er zu ㄹ."
     },
     "forms": {
       "title": "한 개, 두 개 — die Form ändert sich",
@@ -179,7 +181,15 @@
       "objective": "Sag dein Alter mit 살 und frag Ältere höflich mit 연세.",
       "step1": "살 steht bei den rein koreanischen Zahlen: 스무 살, 스물다섯 살. 몇 살이에요? fragst du eine Freundin oder einen Freund.",
       "step2": "세 steht bei den sinokoreanischen Zahlen und begegnet dir in Formularen und Nachrichten: 이십 세.",
-      "step3": "Gegenüber Älteren ist 살 zu salopp. 연세 ist das ehrerbietige Wort für Alter: 연세가 어떻게 되세요?"
+      "step3": "Gegenüber Älteren ist 살 zu salopp. Eine erwachsene Person, die du gerade kennengelernt hast, fragst du 나이가 어떻게 되세요?, eine viel ältere 연세가 어떻게 되세요?. 연세 ist das ehrerbietige Wort für Alter."
+    },
+    "ordinals": {
+      "title": "첫 번째, 두 번째 — die Reihenfolge sagen",
+      "objective": "Sag mit 번째, an welcher Stelle etwas steht, und zähl mit 첫째 deine Punkte auf.",
+      "step1": "Wie viele es sind und welches es ist, sind zwei Fragen. 사과 두 개 sind zwei Äpfel; 두 번째 사과 ist der zweite Apfel in der Reihe.",
+      "step2": "Vor 번째 stehen 첫, 두, 세, 네: 첫 번째, 두 번째, 세 번째, 네 번째. 한 번째 und 일 번째 gibt es nicht.",
+      "step3": "첫째, 둘째 und 셋째 schreibt man in einem Wort, ohne Leerzeichen. Damit zählt man Punkte auf: 첫째, 값이 싸요. 둘째, 가까워요.",
+      "step4": "Für den Platz in einer Reihe sagst du 첫 번째, 두 번째. 첫째, 둘째 bleiben für Aufzählungen und für die Reihenfolge der Geschwister: 우리 집 둘째예요."
     },
     "hours": {
       "title": "Wie spät ist es?",
@@ -267,7 +277,7 @@
     "counterBooks": "Bücher",
     "counterAge": "Alter — mit den rein koreanischen Zahlen",
     "counterAgeFormal": "Alter — in Formularen und Nachrichten, mit den sinokoreanischen Zahlen",
-    "howOld": "Der Satz, mit dem man nach dem Alter fragt",
+    "howOld": "Die Frage nach dem Alter an eine Freundin oder einen Freund",
     "ageHonorific": "Alter — ehrerbietig, bei älteren Menschen",
     "counterHour": "Uhr",
     "half": "halb — eine halbe Stunde nach",
@@ -308,10 +318,20 @@
     "price1000": "1.000 Won",
     "twoForty": "zwei Uhr vierzig",
     "nineOhFive": "neun Uhr fünf",
-    "howOldPolite": "Die höfliche Frage nach dem Alter einer älteren Person",
+    "howOldPolite": "Die Frage an eine viel ältere Person",
     "sevenOclock": "sieben Uhr",
     "may": "Mai — regelmäßig",
-    "howOldNeutral": "Die alltägliche höfliche Frage nach dem Alter eines Erwachsenen"
+    "howOldNeutral": "Die Frage an eine erwachsene Person, die man gerade kennengelernt hat",
+    "counterOrdinal": "Platz in einer Reihenfolge",
+    "ordinal1": "1.",
+    "ordinal2": "2.",
+    "ordinal3": "3.",
+    "ordinal4": "4.",
+    "ordinalPoint1": "1. beim Aufzählen",
+    "ordinalPoint2": "2. beim Aufzählen",
+    "ordinalPoint3": "3. beim Aufzählen",
+    "ordinalPoint4": "4. beim Aufzählen",
+    "ordinalPoint5": "5. beim Aufzählen"
   },
   "example": {
     "zeroMath": "minus drei Grad",
@@ -339,7 +359,11 @@
     "tenThousandWon": "ein 10.000-Won-Schein",
     "threeHundredMillionWon": "Die Wohnung kostet 삼억 원.",
     "nineOhFive": "Es ist neun Uhr fünf.",
-    "mayFifth": "der fünfte Mai"
+    "mayFifth": "der fünfte Mai",
+    "ordinal1": "첫 번째 ist richtig, 한 번째 nicht",
+    "ordinal2": "두 번째 ist richtig, 이 번째 nicht",
+    "ordinal3": "세 번째 ist richtig, 세번째 nicht",
+    "ordinal4": "네 번째 ist richtig, 넷 번째 nicht"
   },
   "note": {
     "phoneZero": "In einer Telefonnummer wird 0 meist 공 gelesen.",
@@ -348,7 +372,10 @@
     "simnyuk": "십육 wird 심뉵 gesprochen.",
     "irregularMonths": "6월 heißt 유월 und 10월 heißt 시월.",
     "clockTime": "Eine Uhrzeit sagt man wie 세 시 십 분.",
-    "price": "Einen Preis sagt man wie 오천 원."
+    "price": "Einen Preis sagt man wie 오천 원.",
+    "ordinalCounting": "Vor 번째 heißt die Zahl 첫, 두, 세 oder 네.",
+    "firstOrdinal": "첫 ist das eigene Wort für das erste — nicht 하나 und nicht 한.",
+    "ordinalPoint": "첫째 und 둘째 eröffnen die Punkte, die du nacheinander nennst."
   },
   "breakdown": {
     "parts": "Teile"
