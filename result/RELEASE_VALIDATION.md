@@ -90,6 +90,13 @@ says which of the two it is.
 | Suite / gate | Result |
 | --- | --- |
 | `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` |
+| `npm run locale:content:check` | **32 complete · 0 partial · 0 with no vocabulary content yet**; 12,800 simulated questions across 32 languages, all askable, 0 refused for want of a meaning |
+| `npm run locale:practice:check` | 32 locales × 7 levels × 14 days through the real planner and question builder — **0 findings**, from 217 before this cycle. New this refresh and in `verify:release` |
+| `npm run vocabulary:translation:check` | 30 languages compared; every pair that shares a sentence is one English shares too, or is in the ledger with a reason |
+| `npm run translation:semantics:check` | 103,323 rows across 31 locales — **0 findings** |
+| `npm run romanization:qa:check` | 3,393 headwords, 41 rule fixtures, 3,424 word recordings matched to headwords in both voices |
+| `npm run audio:qa` | 13,980 clips, 68.4 MB, 600 decoded — 0 errors, 0 warnings |
+| `npm run content:coverage:check` | every applicable row at 100%, and every one of the 55 unobserved words carries a written reason |
 | `npm run mobile:icons:check` | 59 files, Android from `application_logo_android.png` at 512px, iOS from `application_logo_iphone.png` at 1024px, **neither drawn from the other's artwork** |
 | `npm run numbers:domain:check` | **1,767 questions, 6,626 options**, 2,496 strings across 32 languages, 0 findings |
 | `npm run numbers:qa:check` | 6 modules · 19 lessons · **102 items** · 9 exercise kinds · 0 problems |
@@ -105,23 +112,36 @@ says which of the two it is.
 | `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
 | `npm run locale:editorial:check` | 0 errors, 0 warnings |
 | `npm run test:e2e` | see the run recorded below |
-| Unit suites | web **1,044**, Korean morphology **225**, handwriting core **96** — **1,365**, all passing |
+| Unit suites | web, Korean morphology **237**, handwriting core **96** — all passing |
 | `npm run native:bundle:check` | 14,152 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
 | `npm run release:current` | both delivery manifests at HEAD |
 
-Eight gates were negative-tested this refresh by restoring the behaviour they
-exist to catch:
+Five gates were negative-tested this refresh by restoring the behaviour they
+exist to catch. Every restoration is undone by regenerating from source, never
+by editing the generated file back:
 
 ```
-원 declared a moneyAmount                            30 findings   exit 1
-the granularity and length filters removed           30 findings   exit 1
-the domain filter removed from build()               30 findings   exit 1
-개 and 마리 given the same English gloss              30 findings   exit 1
-the answer index no longer following the shuffle     30 findings   exit 1
-the two application-icon sources crossed              2 findings   exit 1
-a 256 px Android icon source                          1 finding    exit 1
-one launcher icon left stale                          1 finding    exit 1
+tr truncated to 609 words, corpus re-split      19 findings   exit 1
+  locale:practice — no meaning question at L15/20/25/30, no matching
+  grid, 90% of the session one exercise kind, 140 of 140 words taught
+  with no Turkish meaning to read
+the Kyrgyz negative class returned to two vowels  3 findings   exit 1
+the NFC composition removed from decompose/normalise
+                                                  2 tests fail  exit 1
+the particle/word separation removed from validate()
+                                                  1 test fails  exit 1
+kk 산책하다 given 공원's sentence                    1 pair       exit 1
 ```
+
+**The first one failed to fail, at first, and that is the finding worth
+recording.** Truncating the Turkish pack and rebuilding only
+`content:vocabulary` produced *zero* findings, because `locale-practice-qa`
+loads word copy the way the app does — through `loadWordCopy`, which fetches the
+**bands** under `public/corpus/` — and those still held the full pack. It is the
+same sequencing trap that cost sixty word recordings this cycle: source →
+`content:vocabulary` → `content:corpus`, and a gate that reads the app's own
+loader reads the second, not the first. Re-split, the same truncation produces
+the nineteen findings above.
 
 ## The icons, looked at — carried forward from build 14
 

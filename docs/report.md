@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.3**, Android versionCode **14** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.3**, Android versionCode **15** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -150,12 +150,12 @@ without trusting the row.
 | Level anchors held | 162 | `level-anchors.json` |
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
-| Unobserved words with a written reason | 46 | `content/vocabulary/unobserved.json` |
+| Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
 | Issues tracked | 156 | `docs/issues.json` |
-| Signed APK | 84.2 MB | `result/build-info.json` |
-| Signed AAB | 82.4 MB | same |
+| Signed APK | 86.7 MB | `result/build-info.json` |
+| Signed AAB | 84.9 MB | same |
 | Tests | 1,381 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -911,7 +911,7 @@ the previous edition of this table said.
 | `worddetail:qa` | no card shows an example of a sense it does not teach |
 | `conjugation:qa` | 1,458 predicates, 1,454 checked against the editorial pack's own surface form; clean — and `conjugation:display:qa` now separately holds what the panel *shows* to the taught sense (§20D) |
 | `dailyvocab:qa` | clean |
-| `content:coverage` | every applicable row at 100%, and all 46 unobserved words carry a written reason |
+| `content:coverage` | every applicable row at 100%, and all 55 unobserved words carry a written reason |
 | `korean:education:qa` | all 11 composed gates pass, and it prints THIS DOES NOT PROVE NATIVE NATURALNESS before the summary |
 
 ## 9.2 Reading, which is the part that found things
@@ -1798,8 +1798,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 14, versionName 1.0.3 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **84.2 MB** (88,242,570 B), `bcb94e2a3002e65c…` |
-| Release AAB | **82.4 MB** (86,451,898 B), `ca6fb668ee76e257…` |
+| Release APK | **86.7 MB** (88,242,570 B), `bcb94e2a3002e65c…` |
+| Release AAB | **84.9 MB** (86,451,898 B), `ca6fb668ee76e257…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -6897,8 +6897,8 @@ where the course runs out first.
 Forty-eight of sixty measured into levels 28–30 and eleven more into 27. Level is
 computed from frequency, usefulness, concreteness, length and irregularity — not
 declared — so that is a measurement rather than a choice. The top band goes from
-477 to 524 and I-79 moves from OPEN to PARTIAL: about eleven weeks of new words
-at the top instead of about nine.
+477 to 524 and I-79 is no longer wholly open — it is PARTIAL: about eleven weeks
+of new words at the top instead of about nine.
 
 The unit cost is the number worth carrying forward. One entry is now a Korean
 headword and example, an English gloss, meanings in seven inline locales,
@@ -6951,6 +6951,66 @@ syllable tiles, and `journey.spec.ts` asserts no word screen carries a drawing
 surface. So it is TESTED as a library and PROTOTYPE as a product feature, and the
 disclosure says which of the two rather than describing the capability without
 saying.
+
+## 20T.6 Five negative tests, and the one that failed to fail
+
+A gate believed without being broken is a gate nobody has read. Each of these
+restores the defect the check exists to catch and is undone by regenerating from
+source, never by editing the generated file back:
+
+| restored | result |
+| --- | --- |
+| tr truncated to 609 words, corpus re-split | 19 findings, exit 1 |
+| the Kyrgyz negative class returned to two vowels | 3 findings, exit 1 |
+| the NFC composition removed from `decompose` and `normalise` | 2 tests fail |
+| the particle/word separation removed from `validate()` | 1 test fails |
+| kk 산책하다 given 공원's sentence | 1 pair, exit 1 |
+
+**The first one produced zero findings on its first attempt**, and the reason is
+worth more than the test. `locale-practice-qa` loads word copy the way the app
+does — through `loadWordCopy`, which fetches the **bands** under
+`public/corpus/` — so truncating the source pack and rebuilding only
+`content:vocabulary` left the gate reading the corpus it had before. It is the
+same sequencing trap that cost sixty word recordings earlier in this cycle
+(§20T.3): the generated pack and the fetched bands are two artefacts, and a gate
+that reads the app's own loader reads the second.
+
+Re-split, the same truncation gives:
+
+```
+tr L15: no meaning question in 14 days, where en builds 56
+tr L15: no matching grid in 14 days, where en builds 14
+tr L20: 91% of the session is one exercise (build), over the 75% ceiling
+tr L30: 140 of 140 words are taught with no tr meaning to read
+```
+
+which is the defect this cycle existed to fix, reproduced on demand.
+
+## 20T.7 A wait that had already returned
+
+`level-change.spec.ts` failed once inside `verify:release` and passed in nine
+seconds when run alone, which is the shape of a flake and was not one.
+
+The test waits for the corpus band a Level 28–30 plan needs:
+
+```js
+await expect(page.getByTestId('words-loading')).toHaveCount(0, { timeout: 45_000 });
+const headword = page.getByTestId('word-headword');
+await expect(headword).not.toBeEmpty();
+```
+
+`toHaveCount(0)` is satisfied by a page that has not rendered the session yet —
+an **absent** element counts zero. So on a loaded machine the first line returns
+immediately, before anything has mounted, and hands the second line the suite's
+default ten seconds to cover a band fetch and a question build. The failure was
+not a slow assertion; it was a wait that had already returned.
+
+The fix waits for the headword to *exist* on the same forty-five seconds, which
+is the same fetch being waited on. Every assertion after it — not empty, not
+beginner filler, and at one of the measured levels — is unchanged. This is the
+third time this file has been widened for the same underlying cause and the
+first time the cause has been the wait rather than the clock, so the comment in
+the file says which.
 
 # 20S. The eighth pass — the logos, and three questions that were not questions
 

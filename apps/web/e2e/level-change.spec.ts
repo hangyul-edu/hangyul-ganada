@@ -185,6 +185,19 @@ test('a mid-day retake keeps the mastered words and serves the measured level', 
   */
   await expect(page.getByTestId('words-loading')).toHaveCount(0, { timeout: 45_000 });
   const headword = page.getByTestId('word-headword');
+  /*
+    Wait for the headword to *exist*, on the same measured bound.
+
+    `toHaveCount(0)` is satisfied by a page that has not rendered the session
+    yet — an absent element counts zero — so the wait above can pass at t=0 and
+    hand the next assertion the suite's default ten seconds for a band fetch and
+    a question build. That is what failed inside `verify:release` while passing
+    in nine seconds alone: not a slow assertion, a wait that had already
+    returned. The assertions below are unchanged; only the time allowed to
+    observe them is, and it is the same forty-five seconds the band wait uses
+    because it is the same fetch being waited on.
+  */
+  await expect(headword).toBeVisible({ timeout: 45_000 });
   await expect(headword).not.toBeEmpty();
   const shown = (await headword.textContent())?.trim() ?? '';
   expect(BEGINNER_FILLER.has(shown)).toBe(false);

@@ -221,7 +221,7 @@ the store material claims otherwise.
 
 **What is missing:** the release version in the Xcode project.
 
-Android ships this release as 1.0.3, versionCode 14. iOS does not, and its
+Android ships this release as 1.0.3, versionCode 15. iOS does not, and its
 `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.2` and `4`.
 
 This is deliberate rather than an oversight. Those two are Xcode build settings
@@ -237,7 +237,7 @@ and every one of those settings against a lock file, and it is green.
 **To unblock**, on a Mac with Xcode, in one commit:
 
 1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.3` and **Build** to `14` for both Debug and Release.
+   **Version** to `1.0.3` and **Build** to `15` for both Debug and Release.
 2. Update `ios.xcode.marketingVersion` to `"1.0.3"` and
    `ios.xcode.currentProjectVersion` to `14` in `apps/mobile/app.identity.json`.
 3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
