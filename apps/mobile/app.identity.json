@@ -8,10 +8,10 @@
     "googlePlay": false,
     "appStoreConnect": false
   },
-  "_version_comment": "1.0.3, unchanged. Build 14 replaces the two platform application logos, declares an answer domain on every Numbers item so an option list can only hold one kind of thing, and adds the deterministic answer-equivalence module. None of that is a new feature set, so the version name stays where it is and only the build number moves.",
+  "_version_comment": "1.0.3, unchanged. Build 15 finishes the twelve content packs that were 18% written, so every one of the 32 shipping languages now teaches all 3,333 words rather than dropping intermediate learners to intro cards in English, and normalises Unicode at each point user text enters the app. Neither is a new feature set, so the version name stays where it is and only the build number moves.",
   "version": "1.0.3",
-  "_buildNumber_comment": "14, because 13 is spent. The delivered AAB and APK in result/ and app_result/ both report versionCode 13 and build-info.json records 13, and product files have changed since the commit that produced them — every launcher and app-store icon, the Numbers question model and seven new items with their recordings, and the korean-morphology equivalence module. A rebuild at 13 would put different bytes under a code a set of bytes already exists for. `npm run version:check` is what said so, before the build rather than after. Nothing has been uploaded to Play (see `registered.googlePlay`), so 14 is the next valid code rather than the next unused one. This number is set by a person deciding to ship, never incremented by a script or a tool run.",
-  "buildNumber": 14,
+  "_buildNumber_comment": "15, because 14 is spent. The delivered AAB and APK in result/ and app_result/ both report versionCode 14 and build-info.json records 14, and product files have changed since the commit that produced them \u2014 the twelve remaining content packs went from 609 of 3,333 words to all 3,333, which rewrites every generated vocabulary pack and every corpus band, and Unicode normalisation now runs at each point user text enters the app. A rebuild at 14 would put different bytes under a code a set of bytes already exists for. `npm run version:check` is what said so, before the build rather than after. Nothing has been uploaded to Play (see `registered.googlePlay`), so 15 is the next valid code rather than the next unused one. This number is set by a person deciding to ship, never incremented by a script or a tool run.",
+  "buildNumber": 15,
   "android": {
     "_comment": "targetSdk 36 because Google Play requires Android 16 for new apps and updates from 31 August 2026. minSdk 24 is Capacitor 8's floor and covers ~99% of active devices.",
     "targetSdk": 36,
@@ -20,10 +20,10 @@
   },
   "ios": {
     "xcode": {
-      "_comment": "What `App.xcodeproj/project.pbxproj` currently carries, written down here so that a check can tell a *deliberate lag* from a *drift*. The Xcode project is maintained on a Mac, by hand, through the Xcode UI: MARKETING_VERSION and CURRENT_PROJECT_VERSION are build settings Xcode owns, and editing them from Linux with a text substitution is how a project file loses a setting it was never asked about. So this release moves Android to 1.0.3 build 11 and leaves iOS where its maintainer left it. `scripts/check-version-consistency.mjs` asserts the project file matches these two values exactly — any other change to it fails — and prints the pending action while they are behind `version` and `buildNumber`.",
+      "_comment": "What `App.xcodeproj/project.pbxproj` currently carries, written down here so that a check can tell a *deliberate lag* from a *drift*. The Xcode project is maintained on a Mac, by hand, through the Xcode UI: MARKETING_VERSION and CURRENT_PROJECT_VERSION are build settings Xcode owns, and editing them from Linux with a text substitution is how a project file loses a setting it was never asked about. So this release moves Android to 1.0.3 build 15 and leaves iOS where its maintainer left it. `scripts/check-version-consistency.mjs` asserts the project file matches these two values exactly — any other change to it fails — and prints the pending action while they are behind `version` and `buildNumber`.",
       "marketingVersion": "1.0.2",
       "currentProjectVersion": 4,
-      "pending": "iOS is behind: set MARKETING_VERSION to 1.0.3 and CURRENT_PROJECT_VERSION to 12 in Xcode (App target, both configurations), then update the two values above in the same commit."
+      "pending": "iOS is behind: set MARKETING_VERSION to 1.0.3 and CURRENT_PROJECT_VERSION to 15 in Xcode (App target, both configurations), then update the two values above in the same commit."
     },
     "_comment": "15.0 to match IPHONEOS_DEPLOYMENT_TARGET in the Xcode project — the two disagreeing is how a build succeeds and then crashes on a device the store said it supported. Capacitor 8's own floor is 14; 15 is chosen because it is what the project is configured for and covers every device Apple still updates. Apple requires builds made with the iOS 26 SDK from 28 April 2026; that is the SDK you build *with*, not the version you deploy *to*.",
     "deploymentTarget": "15.0"
