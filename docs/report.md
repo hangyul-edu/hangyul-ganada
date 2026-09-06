@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.3**, Android versionCode **15** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.3**, Android versionCode **16** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -155,7 +155,7 @@ without trusting the row.
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
 | Issues tracked | 156 | `docs/issues.json` |
 | Signed APK | 86.7 MB | `result/build-info.json` |
-| Signed AAB | 84.9 MB | same |
+| Signed AAB | 85.0 MB | same |
 | Tests | 1,399 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -1799,7 +1799,7 @@ new APK    157a2bb133f6aa3d…3323debc
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
 | Release APK | **86.7 MB** (88,242,570 B), `bcb94e2a3002e65c…` |
-| Release AAB | **84.9 MB** (86,451,898 B), `ca6fb668ee76e257…` |
+| Release AAB | **85.0 MB** (86,451,898 B), `ca6fb668ee76e257…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -1861,7 +1861,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 | Web unit (`vitest`) | **1066** (70 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
-| End-to-end (`playwright`) | **586** (293 × 2 projects) |
+| End-to-end (`playwright`) | **588** (294 × 2 projects) |
 
 The previous pass grew the web suite by 15 — the level-change fixtures A–G,
 the mid-day-retake provider cases, the retake state machine and the
