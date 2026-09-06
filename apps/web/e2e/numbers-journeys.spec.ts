@@ -39,6 +39,7 @@ const JOURNEYS = [
   { name: 'count three objects', lesson: 'num-lesson-native-basics', korean: ['하나', '둘', '셋'] },
   { name: 'ask for one or two of something', lesson: 'num-lesson-forms', korean: ['한', '두'] },
   { name: 'say a basic age', lesson: 'num-lesson-age', korean: ['살'] },
+  { name: 'say which one comes first', lesson: 'num-lesson-ordinals', korean: ['첫 번째', '첫째'] },
   { name: 'read a simple price', lesson: 'num-lesson-money', korean: ['원'] },
   { name: 'read a clock time in hours and minutes', lesson: 'num-lesson-minutes', korean: ['분'] },
   { name: 'read a date', lesson: 'num-lesson-dates', korean: ['월', '일'] },

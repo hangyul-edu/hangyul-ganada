@@ -256,3 +256,144 @@ describe('Korean number spacing', () => {
     }
   });
 });
+
+/**
+ * The ordinals, from both ends: what the data says and what a bundle prints.
+ *
+ * The rule a beginner needs is short and the ways of getting it wrong are
+ * specific — 한 번째 reaches for the counting form, 일 번째 and 이 번째 for the
+ * Sino-Korean set, 첫번째 loses the space §43 requires and 첫 째 gains one the
+ * suffix does not take. Each is written into the course *once*, as the marked
+ * half of a contrast, and nowhere else; these hold both halves of that.
+ */
+describe('the ordinal lesson', () => {
+  const ORDINALS = NUMBER_LESSONS.find((l) => l.id === 'num-lesson-ordinals')!;
+  const items = ORDINALS.item_ids.map((id) => NUMBER_ITEMS.find((i) => i.id === id)!);
+  /** Anchored left, so 스물한 번째 does not read as 한 번째. */
+  const wrongForms = ['한 번째', '일 번째', '이 번째', '삼 번째', '첫번째', '두번째', '세번째', '첫 째', '둘 째', '셋 째'];
+  const contains = (text: string, form: string) => new RegExp(`(^|[^가-힣])${form}`, 'u').test(text);
+
+  it('teaches both families and keeps them in separate answer domains', () => {
+    const positions = items.filter((i) => i.domain === 'ordinalPosition').map((i) => i.korean);
+    const ranks = items.filter((i) => i.domain === 'ordinalRank').map((i) => i.korean);
+    expect(positions).toEqual(['첫 번째', '두 번째', '세 번째', '네 번째']);
+    expect(ranks).toEqual(['첫째', '둘째', '셋째', '넷째', '다섯째']);
+    // 첫 번째 and 첫째 are the same position and not the same expression, so
+    // they are grouped as well as separated: neither may be the other's
+    // distractor under any instruction.
+    for (const [a, b] of [['첫 번째', '첫째'], ['두 번째', '둘째'], ['세 번째', '셋째'], ['네 번째', '넷째']]) {
+      const left = items.find((i) => i.korean === a)!;
+      const right = items.find((i) => i.korean === b)!;
+      expect(left.gloss_group, `${a} is not grouped`).toBeTruthy();
+      expect(left.gloss_group).toBe(right.gloss_group);
+      expect(left.domain).not.toBe(right.domain);
+    }
+  });
+
+  it('is not a cardinal question in disguise', () => {
+    // No `value`, so `digits_to_korean` and `korean_to_digits` cannot build:
+    // 첫 번째 is *first*, not 1, and a numeral over these options would be
+    // asking a different question with the ordinal lesson's buttons.
+    for (const item of items.filter((i) => i.domain !== 'definition')) {
+      expect(item.value, `${item.id} carries a value`).toBeNull();
+      expect(item.system, `${item.id} does not say which set it takes`).toBe('native');
+    }
+    for (const exercise of everyExercise.filter((e) => e.item_id.startsWith('num-o-'))) {
+      expect(exercise.kind, exercise.id).not.toBe('digits_to_korean');
+      expect(exercise.kind, exercise.id).not.toBe('korean_to_digits');
+    }
+  });
+
+  it('shows each wrong form exactly once, against the form it is wrong for', () => {
+    const pairs = items
+      .filter((i) => i.example?.includes('(✗)'))
+      .map((i) => [i.korean, i.example!.split('·')[1]!.replace(/\(✗\)/, '').trim()]);
+    expect(pairs).toEqual([
+      ['첫 번째', '한 번째'],
+      ['두 번째', '이 번째'],
+      ['세 번째', '세번째'],
+      ['네 번째', '넷 번째'],
+    ]);
+  });
+
+  it('never accepts a wrong ordinal as the answer, and never voices one', () => {
+    const manifest = JSON.parse(
+      readFileSync(join(__dirname, '../../../public/audio/manifest.json'), 'utf8'),
+    ) as { entries: { id: string; text: string }[] };
+    for (const entry of manifest.entries) {
+      for (const form of wrongForms) expect(contains(entry.text, form), `${entry.id} says ${form}`).toBe(false);
+    }
+    for (const exercise of everyExercise) {
+      const answer = exercise.options[exercise.answer];
+      if (!answer || answer.isKey || answer.value !== undefined) continue;
+      if (exercise.question_type === 'findIncorrectExpression') continue;
+      for (const form of wrongForms) {
+        expect(contains(answer.text, form), `${exercise.id} accepts ${answer.text}`).toBe(false);
+      }
+    }
+  });
+
+  it('asks a learner to find each of the four mistakes, and names which mistake it is', () => {
+    const found = new Map<string, string | undefined>();
+    for (const exercise of everyExercise.filter((e) => e.question_type === 'findIncorrectExpression')) {
+      if (!exercise.item_id.startsWith('num-o-')) continue;
+      const answer = exercise.options[exercise.answer]!;
+      found.set(answer.text, answer.misconception);
+    }
+    expect([...found.entries()].sort()).toEqual([
+      ['넷 번째', 'plain_form'],
+      ['세번째', 'spacing'],
+      ['이 번째', 'system_swap'],
+      ['한 번째', 'ordinal_form'],
+    ]);
+  });
+
+  it('offers 이 번째 as a distractor before 번째, and calls it a swap of sets', () => {
+    const forms = everyExercise.filter((e) => e.question_type === 'chooseCounterForm' && e.item_id === 'num-o-beonjjae');
+    expect(forms.length).toBeGreaterThan(0);
+    for (const exercise of forms) {
+      const texts = exercise.options.map((o) => o.text).sort();
+      expect(texts).toEqual(['두 번째', '두번째', '둘 번째', '이 번째'].sort());
+      expect(exercise.options[exercise.answer]!.text).toBe('두 번째');
+      expect(exercise.options.find((o) => o.text === '이 번째')!.misconception).toBe('system_swap');
+    }
+  });
+
+  it('carries both new meaning instructions in all thirty-two bundles, and neither is the English', () => {
+    expect(MEANING_PROMPT_KEY.ordinalPosition).toBe('prompt.meaning.ordinalPosition');
+    expect(MEANING_PROMPT_KEY.ordinalRank).toBe('prompt.meaning.ordinalRank');
+    const english = bundle('en');
+    for (const locale of localeNames) {
+      const pack = bundle(locale);
+      for (const key of ['prompt.meaning.ordinalPosition', 'prompt.meaning.ordinalRank']) {
+        const value = at(pack, key);
+        expect(typeof value, `[${locale}] ${key}`).toBe('string');
+        expect(String(value).trim(), `[${locale}] ${key}`).not.toBe('');
+        if (locale !== 'en') expect(value, `[${locale}] ${key} is the English`).not.toBe(at(english, key));
+      }
+      // …and the two are not the same sentence in this language, which is how
+      // Vietnamese first wrote them: *thứ mấy* is both a weekday and a position.
+      expect(at(pack, 'prompt.meaning.ordinalPosition'), locale).not.toBe(at(pack, 'prompt.meaning.ordinalRank'));
+      expect(at(pack, 'prompt.meaning.ordinalPosition'), locale).not.toBe(at(pack, 'prompt.meaning.weekday'));
+    }
+  });
+
+  it('names a wrong form in a bundle only where it is teaching that it is wrong', () => {
+    const licensed = new Set([
+      'lesson.ordinals.step2',
+      'example.ordinal1', 'example.ordinal2', 'example.ordinal3', 'example.ordinal4',
+    ]);
+    const flatten = (node: unknown, prefix = ''): [string, string][] =>
+      typeof node === 'object' && node !== null
+        ? Object.entries(node as Record<string, unknown>).flatMap(([k, v]) => flatten(v, `${prefix}${k}.`))
+        : [[prefix.slice(0, -1), String(node)]];
+    for (const locale of localeNames) {
+      for (const [key, value] of flatten(bundle(locale))) {
+        for (const form of wrongForms) {
+          if (!contains(value, form)) continue;
+          expect(licensed.has(key), `[${locale}] ${key} writes ${form} as if it were Korean`).toBe(true);
+        }
+      }
+    }
+  });
+});

@@ -199,6 +199,41 @@ describe('Numbers records on read', () => {
     expect(Object.keys(rows).sort()).toEqual(NUMBER_LESSONS.map((l) => l.id).sort());
   });
 
+  /**
+   * F13 — a profile written before the ordinals lesson existed.
+   *
+   * A store holds one row per lesson and nothing that enumerates the
+   * curriculum, so a lesson added to `numbers.ts` arrives as an *absent* row
+   * rather than as a mismatch. What has to hold is that absent means available:
+   * the rows that are there survive with their evidence, no row is invented for
+   * the new lesson, and `loadAll` does not report a drop — a drop is how a
+   * renamed lesson id would look, and the two must not be confused.
+   */
+  it('F13 · a profile saved before a lesson was added keeps its rows and is granted nothing', async () => {
+    const before = NUMBER_LESSONS.filter((l) => l.id !== 'num-lesson-ordinals');
+    for (const lesson of before) {
+      let record = blankLessonProgress(lesson.id, NOW);
+      for (const step of lesson.explanation) {
+        record = applyNumbersEvent(record, lesson, { type: 'explanation_viewed', step: step.text }, NOW);
+      }
+      await repo.put(record);
+    }
+    const { rows, dropped } = await repo.loadAll(getNumberLesson, NOW);
+    expect(dropped).toBe(0);
+    expect(Object.keys(rows).sort()).toEqual(before.map((l) => l.id).sort());
+    expect(rows['num-lesson-ordinals']).toBeUndefined();
+    for (const lesson of before) {
+      expect(rows[lesson.id]!.explanation_steps_viewed).toEqual(lesson.explanation.map((s) => s.text));
+      expect(rows[lesson.id]!.completed_at).toBeNull();
+    }
+    // And a row saved for the new lesson afterwards joins them without touching
+    // the others — an app restart is this same read.
+    await repo.put(blankLessonProgress('num-lesson-ordinals', NOW));
+    const after = await repo.loadAll(getNumberLesson, NOW);
+    expect(Object.keys(after.rows).length).toBe(NUMBER_LESSONS.length);
+    expect(isComplete(after.rows['num-lesson-ordinals']!, getNumberLesson('num-lesson-ordinals')!)).toBe(false);
+  });
+
   it('F12 · clearing Numbers leaves letters and words alone', async () => {
     await driver.put('progress', progressKey('character', 'ㄱ'), letterRow());
     await repo.put(blankLessonProgress(sino.id, NOW));

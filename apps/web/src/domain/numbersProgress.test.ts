@@ -516,3 +516,146 @@ describe('Numbers negative tests — the ways completion must not be earned', ()
     expect(applied.completed_at).toBeNull();
   });
 });
+
+/**
+ * A curriculum that grew, and the learner who was already half-way through it.
+ *
+ * Adding a lesson changes three denominators — the course header, the module
+ * header and the module's own completion — and a record that was written before
+ * the lesson existed has to survive all three untouched. The failure this
+ * covers is not hypothetical: a course that recomputed completion from
+ * "everything in this module" would either mark the new lesson finished for
+ * everybody who had finished the old ones, or take a finished module back off
+ * somebody who had earned it and tell them nothing.
+ *
+ * `PREVIOUS_CURRICULUM` is the module as it shipped, written down rather than
+ * derived, because deriving it from the current file is how a test comes to
+ * assert that today equals today.
+ */
+describe('Numbers migration — a lesson added to a course people are part-way through', () => {
+  const ORDINALS = lessonOf('num-lesson-ordinals');
+  const MODULE = 'mod-counting';
+  /** The counting module's lessons before the ordinals lesson was written. */
+  const PREVIOUS_CURRICULUM = ['num-lesson-counters', 'num-lesson-counters-everyday', 'num-lesson-age'];
+
+  /** A learner who finished the counting module as it stood. */
+  const beforeTheChange = () => {
+    const records: Record<string, NumbersLessonProgress> = {};
+    for (const id of PREVIOUS_CURRICULUM) {
+      const lesson = lessonOf(id);
+      records[id] = run(lesson, fullJourney(lesson));
+    }
+    return records;
+  };
+
+  it('M1 · the lessons they finished are still finished, and none of them moved', () => {
+    const records = beforeTheChange();
+    for (const id of PREVIOUS_CURRICULUM) {
+      const lesson = lessonOf(id);
+      const repaired = repairLessonProgress(records[id]!, lesson, at(500))!;
+      expect(repaired, `${id} was dropped`).not.toBeNull();
+      expect(repaired.completed_at, `${id} lost its completion`).toBe(records[id]!.completed_at);
+      expect(isComplete(repaired, lesson)).toBe(true);
+    }
+  });
+
+  it('M2 · the new lesson is available, not complete, and not started', () => {
+    const records = beforeTheChange();
+    expect(records[ORDINALS.id]).toBeUndefined();
+    expect(status(undefined, ORDINALS)).toBe('available');
+    expect(isComplete(blankLessonProgress(ORDINALS.id, T0), ORDINALS)).toBe(false);
+    expect(lessonActivityProgress(undefined, ORDINALS).done).toBe(0);
+  });
+
+  it('M3 · a module they had finished is no longer complete, and says so rather than lying', () => {
+    const records = beforeTheChange();
+    const nowInModule = NUMBER_LESSONS.filter((l) => l.module === MODULE);
+    // Every lesson they did is still complete…
+    expect(nowInModule.filter((l) => records[l.id]).length).toBe(PREVIOUS_CURRICULUM.length);
+    // …and the module is not, because it has a lesson in it they have not seen.
+    expect(unitComplete(nowInModule, records)).toBe(false);
+    // Doing the new one finishes it, and nothing else had to change.
+    records[ORDINALS.id] = run(ORDINALS, fullJourney(ORDINALS));
+    expect(unitComplete(nowInModule, records)).toBe(true);
+  });
+
+  it('M4 · the course denominator grew by one and their numerator did not', () => {
+    const records = beforeTheChange();
+    const finished = NUMBER_LESSONS.filter((l) => {
+      const record = records[l.id];
+      return record !== undefined && isComplete(record, l);
+    });
+    expect(finished.map((l) => l.id)).toEqual(PREVIOUS_CURRICULUM);
+    expect(NUMBER_LESSONS.filter((l) => l.module === MODULE).length).toBe(PREVIOUS_CURRICULUM.length + 1);
+  });
+
+  it('M5 · a new learner can open the ordinals lesson first, on a profile with nothing on it', () => {
+    // No locking anywhere in this course; the prerequisites decide the order
+    // Continue suggests and nothing else. See `NumbersLessonStatus`.
+    expect(status(undefined, ORDINALS)).toBe('available');
+    const opened = run(ORDINALS, [open]);
+    expect(status(opened, ORDINALS)).toBe('not_started');
+    expect(resumePhase(opened, ORDINALS)).toBe('explain');
+  });
+
+  it('M6 · one ordinal activity counts once, and reopening it does not count again', () => {
+    const step = ORDINALS.explanation[0]!.text;
+    const once = run(ORDINALS, [open, { type: 'explanation_viewed', step }]);
+    const again = run(ORDINALS, [
+      open,
+      { type: 'explanation_viewed', step },
+      open,
+      { type: 'explanation_viewed', step },
+      { type: 'explanation_viewed', step },
+    ]);
+    expect(lessonActivityProgress(once, ORDINALS).done).toBe(1);
+    expect(lessonActivityProgress(again, ORDINALS).done).toBe(1);
+    expect(again.explanation_steps_viewed).toEqual([step]);
+  });
+
+  it('M7 · leaving part-way through is in progress, and never complete', () => {
+    const record = run(ORDINALS, [open, ...readAll(ORDINALS), ...viewAll(ORDINALS)]);
+    expect(isComplete(record, ORDINALS)).toBe(false);
+    expect(status(record, ORDINALS)).toBe('in_progress');
+    expect(resumePhase(record, ORDINALS)).toBe('practice');
+    expect(repairLessonProgress(record, ORDINALS, at(999))!.completed_at).toBeNull();
+  });
+
+  it('M8 · the ordinals final check states its pass mark and enforces it', () => {
+    const total = masteryExercises(ORDINALS, 0).length;
+    const mark = passMark(total);
+    const upTo = (correct: number) =>
+      run(ORDINALS, [
+        open,
+        ...readAll(ORDINALS),
+        ...viewAll(ORDINALS),
+        { type: 'practice_completed' },
+        ...ORDINALS.item_ids.map((item_id, i) => ({
+          type: 'exercise_attempted' as const,
+          exercise_id: `m:${item_id}`,
+          item_id,
+          correct: i < correct,
+          phase: 'mastery' as const,
+        })),
+        { type: 'mastery_completed', correct, total },
+      ]);
+    expect(upTo(mark - 1).mastery!.passed).toBe(false);
+    expect(isComplete(upTo(mark - 1), ORDINALS)).toBe(false);
+    expect(upTo(total).mastery!.passed).toBe(true);
+    expect(isComplete(upTo(total), ORDINALS)).toBe(true);
+  });
+
+  it('M9 · a backup taken before the lesson existed restores without granting it', () => {
+    // A restore is a write of every row that was in the backup. The row for the
+    // new lesson simply is not in it, and repair does not invent one.
+    const backup = beforeTheChange();
+    const restored: Record<string, NumbersLessonProgress> = {};
+    for (const [id, record] of Object.entries(backup)) {
+      const repaired = repairLessonProgress(record, getNumberLesson(id), at(1000));
+      if (repaired) restored[id] = repaired;
+    }
+    expect(Object.keys(restored).sort()).toEqual([...PREVIOUS_CURRICULUM].sort());
+    expect(restored[ORDINALS.id]).toBeUndefined();
+    expect(status(restored[ORDINALS.id], ORDINALS)).toBe('available');
+  });
+});

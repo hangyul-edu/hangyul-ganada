@@ -38,6 +38,7 @@ import { openApp } from './helpers/launch';
 const PITFALLS = '/letters/numbers/num-lesson-pitfalls';
 const FORMS = '/letters/numbers/num-lesson-forms';
 const SINO = '/letters/numbers/num-lesson-sino-basics';
+const ORDINALS = '/letters/numbers/num-lesson-ordinals';
 
 const en = (path: string) => copy('numbers', path);
 
@@ -254,6 +255,66 @@ test.describe('an example says whether it is about writing or about sound', () =
       }
       await page.getByRole('button', { name: en('action.next') }).click();
     }
+  });
+});
+
+test.describe('the ordinal lesson, in a browser', () => {
+  /**
+   * The one question in the course whose answer is a form the product spends
+   * four sections of `numbers:qa` keeping out of everything else.
+   *
+   * `한 번째` may not be an item, a clip, a gloss or an accepted answer — and it
+   * has to be on this screen, as the option a learner is asked to identify,
+   * under an instruction that says *find the wrong one*. A gate can say the
+   * data is right; only the page can say the learner is being asked for the
+   * thing the grader accepts.
+   */
+  test('asks for the wrong ordinal by name, and marks 한 번째 correct', async ({ page }) => {
+    const exercises = await intoPractice(page, ORDINALS, 'num-lesson-ordinals');
+    const exercise = await reach(page, exercises, 'findIncorrectExpression');
+    expect(exercise, 'the ordinal lesson built no find-the-mistake question').not.toBeNull();
+    const body = page.getByTestId('numbers-phase-practice');
+    await expect(page.getByTestId('numbers-prompt')).toHaveText(en('prompt.findIncorrectExpression'));
+    const answer = exercise!.options[exercise!.answer]!.text;
+    expect(['한 번째', '이 번째', '세번째', '넷 번째']).toContain(answer);
+    await body.getByRole('group').getByRole('button', { name: answer, exact: true }).click();
+    await expect(body.getByRole('status')).toContainText(en('feedback.correct'));
+  });
+
+  test('heads the position question with 몇 번째 rather than the counting one', async ({ page }) => {
+    const exercises = await intoPractice(page, ORDINALS, 'num-lesson-ordinals');
+    const exercise = await reach(page, exercises, 'chooseMeaning');
+    expect(exercise, 'the ordinal lesson built no meaning question').not.toBeNull();
+    const domain = exercise!.schema.answerDomain;
+    expect(['ordinalPosition', 'ordinalRank']).toContain(domain);
+    await expect(page.getByTestId('numbers-prompt')).toHaveText(en(MEANING_PROMPT_KEY[domain]!));
+  });
+
+  test('keeps the four ordinal options on one 320-wide screen, at 200% text', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.addInitScript(() => {
+      document.documentElement.style.fontSize = '32px';
+    });
+    const exercises = await intoPractice(page, ORDINALS, 'num-lesson-ordinals');
+    const body = page.getByTestId('numbers-phase-practice');
+    const exercise = exercises[0]!;
+    const options = body.getByRole('group').getByRole('button');
+    await expect(options).toHaveCount(exercise.options.length);
+    for (let i = 0; i < exercise.options.length; i += 1) {
+      await options.nth(i).scrollIntoViewIfNeeded();
+      const shape = await options.nth(i).boundingBox();
+      expect(shape!.width, `option ${i} overflows 320px`).toBeLessThanOrEqual(320);
+    }
+    // Nothing scrolls sideways, whatever the text size.
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow, 'the page scrolls sideways').toBeLessThanOrEqual(1);
+    await options.nth(exercise.answer).scrollIntoViewIfNeeded();
+    await options.nth(exercise.answer).click();
+    const next = page.getByRole('button', { name: en('action.continue') });
+    await next.scrollIntoViewIfNeeded();
+    await expect(next).toBeEnabled();
+    await next.click();
+    await expect(body).toBeVisible();
   });
 });
 
