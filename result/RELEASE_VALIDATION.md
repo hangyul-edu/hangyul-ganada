@@ -5,62 +5,73 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `bc3bec14` on branch `main`. `build-info.json` →
+**Source:** commit `8b0e3578` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 5 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 6 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 13 validation.** Codes 3 through 13 are spent,
-each by an artefact that was actually produced. This is 14.
+**This supersedes the versionCode 14 validation.** Codes 3 through 14 are spent,
+each by an artefact that was actually produced. This is 15.
 
 ---
 
 ## Why this release happened
 
-Two new application logos, and three screenshots of the Numbers course.
-
-**The logos.** `application_logo_android.png` and `application_logo_iphone.png`
-replace the previous pair. The pipeline already read one source per platform, so
-the work was the three numbers tuned for the *previous* drawing and carried
-forward as if they belonged to the pipeline — the adaptive, round and maskable
-safe fractions, and the ground colour the adaptive background paints. Left where
-they were, the launcher icon would have shipped about 15% smaller than it needs
-to be, inside a tile of empty cream. And the gate could not tell the two sources
-apart: swapping the two constants moves both sides of its comparison together.
-
-**The questions.**
+**Twelve languages that taught six hundred words now teach all of them.** The
+content packs for kk, ky, mn, nl, pl, ro, sv, ta, te, tr, uk and uz carried
+meanings for 609 of the corpus's 3,333 words. A gate written this cycle,
+`locale:practice:qa`, drives the real planner and question builder for every
+shipping language at levels 1, 5, 10, 15, 20, 25 and 30 over fourteen days, and
+measured what that costs a learner past the core band:
 
 ```
-  원        무슨 뜻일까요?      한국 돈의 단위 · 5,000원 · 10,000원 · 35,000원
-  [clip]    무엇이라고 들렸나요?   두 시 십오 분 · 분 · 세 시 삼십 분 · 초
-  오천 원    무슨 뜻일까요?      2시 · 사람 세 명 · 돈 5,000원 · 30분
+en   140 intro   57 meaning   14 match   30 build   11 context
+tr   140 intro    0 meaning    0 match   86 build   11 context
 ```
 
-Each has exactly one correct option, passed `answerability` and `numbers:qa`, and
-can be answered without reading any Korean. Options were drawn from whatever the
-lesson happened to contain, and *what makes two options comparable* had never
-been written down — so no verifier could ask for it. A pass two editions ago
-addressed the first of these by making the option shapes uniform, which is why it
-still looked plausible and was still unanswerable on its merits.
+No meaning question and no matching grid, because neither can be built without a
+meaning in the learner's language — and the intro card fell back to the English
+gloss. Somebody had paid for a Korean course in Turkish and was being taught in
+English. 217 findings, all in those twelve languages. 65,376 strings were written
+to close it, and the gate now reads 0 and sits in `verify:release`.
+
+**Then the corpus freeze lifted and sixty words went in at the top of the
+scale.** `docs/CONTENT_COMPLETION_STATE.md` had held *no new word until 32/32
+complete*, because a corpus growing under twelve half-written packs makes the gap
+permanent. With the gap closed, sixty entries were authored against the place the
+course runs out first: 48 measured into levels 28–30 and 11 more into 27, taking
+the top band from 477 to 524 and the corpus to 3,393. That is issue I-79, moved
+rather than closed.
+
+**Korean text is now compared as it is read, not as it happens to be encoded.**
+Nothing normalised Unicode. Every rule in the morphology package is written
+against precomposed syllables, and a macOS or iOS text field hands back 학교를 as
+six conjoining jamo, so dictionary search, corpus search, morphological analysis
+and answer equivalence all returned *nothing* or *different* for two strings a
+reader cannot tell apart.
+
+**And a typed Korean answer can now be graded, with the reason as data.**
+`validate()` returns typed fields — the two forms, the two particles, the stem
+and its 받침 — never a sentence, because the interface has to say it in thirty-two
+languages. The library is tested; no screen reaches it yet, and the disclosure
+says which of the two it is.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Application logos | Both platform sources replaced; 59 icon, splash and favicon files regenerated. `ROUND_ICON_FRACTION` 0.76→0.84, `ANDROID_ADAPTIVE_FRACTION` 0.46→0.51, `MASKABLE_SAFE_FRACTION` 0.62→0.69, `ic_launcher_background` #FFF6DC→#FDF3DD — each re-measured against *this* artwork at every density, 48 px mdpi being the binding one. Two constants nothing read are deleted, and so is a third platform-neutral copy of the icon still carrying the previous drawing |
-| Icon gate | Each platform's delivered icon is re-rendered from the *other* platform's source; byte-identical means it was built from the wrong file. Sources must also exist, be square and be their declared size |
-| Answer domains | `AnswerDomain` declared on all 102 Numbers items and on every option. One filter at the single point every generator passes through; a question that cannot reach three same-domain options is not asked. A clock time with minutes stands only against clock times with minutes, and a whole question only against whole questions |
-| Question schema | Every generated question carries `learningObjective`, `promptType`, `targetType`, `answerDomain`, `correctAnswer`, `distractorStrategy`, `difficulty`, `prerequisites` and `audioTarget`, filled in from what was built rather than what was intended |
-| Instructions | *무슨 뜻일까요?* retired. Five instructions, one per domain a meaning question can ask about, in all 32 languages |
-| New content | Seven items the domain rule showed were missing — 천 원, 두 시 사십 분, 아홉 시 오 분, 일곱 시, 오월, 나이가 어떻게 되세요?, 연세가 어떻게 되세요? — and ten clips for them in both voices |
-| Answer equivalence | `korean-morphology/equivalence` decides whether two Korean strings are the same answer and returns which of spacing, particle allomorph, counting form, politeness or inflection made them differ. Used by the option builder, not only by gates |
-| Audio tool | `--only` merges into the manifest instead of replacing it. It had written a valid three-entry manifest over the real one while 6,861 recordings sat on disk unreferenced |
-| PDF builder | YAML front matter is removed before the document is read as prose. It was being typeset as a heading in every document that has front matter, this report included |
-| Version | Android 1.0.3 / **14**. iOS deliberately left at 1.0.2 / 4 — see `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
+| Content packs | kk, ky, mn, nl, pl, ro, sv, ta, te, tr, uk and uz each went from 609 of 3,333 words to all 3,393. 2,724 meanings and 2,724 example translations per language, with the *More about it* note on the 36 words that carry one |
+| Practice parity | `locale:practice:qa` is new: it drives the real planner and question builder for 32 languages × 7 levels × 14 days and fails if any language cannot build a meaning question, a matching grid, or a word whose meaning it holds. 217 findings → 0, and it is in `verify:release` |
+| Example-translation collisions | 192 pairs where two Korean sentences arrived at one target sentence in a language whose English pack separates them. All 192 given distinct sentences; none moved to `shared-translations.json` |
+| Translation semantics | 43 polarity and question findings. Forty rewritten, one a real defect — 어쩌다 이렇게 됐어요? had become a Turkish statement. Three were the gate's: Kyrgyz harmonises its negative suffix across four vowels and the marker list enumerated two, so the marker class was completed rather than the Kyrgyz bent |
+| Corpus | +60 words, 3,333 → **3,393**. 48 measure into levels 28–30 and 11 into 27; the top band goes 477 → 524. 240 new recordings in two voices |
+| Unicode | `normalise` composes to NFC first, and the composition sits inside `decompose` so it cannot be forgotten at a call site. Dictionary search over 30,334 headwords, corpus search, `analyse` and `compare` all handle decomposed input |
+| Typed-answer grading | `korean-morphology/validate.ts` grades a typed Korean answer against an expected one and returns the correction as structured fields, never as prose. Separates a wrong particle from a wrong word where the stems agree |
+| Version | Android 1.0.3 / **15**. iOS deliberately left at 1.0.2 / 4 — see `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
 
 ## The artefacts
 
@@ -70,9 +81,9 @@ still looked plausible and was still unanswerable on its merits.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **14**, versionName **1.0.3**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 14 | 13 is spent. Both previously delivered artefacts report a code of 13, the previous `build-info.json` recorded 13, and product files have changed since the commit that produced them — every launcher and store icon, the Numbers question model with seven new items, and the equivalence module. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 14 is the next valid code rather than the next unused one. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete and ships in `result/ios-project/`, at version 1.0.2 build 4, which is what `build-info.json` reports for it; `pending_version` and `pending_build` name what is owed. |
+| Package | `com.talkhangyul.ganada`, version code **15**, versionName **1.0.3**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 15 | 14 is spent. Both previously delivered artefacts report a code of 14, the previous `build-info.json` recorded 14, and product files have changed since the commit that produced them — twelve content packs went from 609 words to all 3,393, which rewrites every generated pack and every corpus band, sixty new words landed with 240 recordings, and Unicode normalisation now runs where user text enters. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 15 is the next valid code rather than the next unused one. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.2 build 4, which is what `build-info.json` reports for it; `pending_version` 1.0.3 and `pending_build` 15 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
 
 ## What was run against this tree
 
@@ -112,7 +123,11 @@ a 256 px Android icon source                          1 finding    exit 1
 one launcher icon left stale                          1 finding    exit 1
 ```
 
-## The icons, looked at
+## The icons, looked at — carried forward from build 14
+
+The icon sources did not change in this build and neither did the generated
+files; `mobile:icons:check` re-ran and passed. What follows is the reading from
+build 14, kept because it still describes the artefacts in this delivery.
 
 Rendered under circle, squircle and rounded-square masks at 192, 48 and 32 px, on
 light and dark launcher grounds, for the legacy icon, the round icon, the
@@ -135,9 +150,13 @@ Level Test.
 ## Not claimed
 
 * **No native-speaker review** of the thirty-one non-Korean bundles, or of
-  Korean. The strings this pass wrote — five instructions and eleven glosses in
-  each of 32 languages — joined the unread surface rather than shrinking it. See
-  `BUILD_OR_SIGNING_BLOCKERS.md` §10 and issue I-17.
+  Korean. This is the claim this release is most likely to be misread about, so
+  it is stated at full size: **69,156 strings were written into twelve languages
+  and thirty-two packs this cycle, and not one of them has been read by a
+  speaker of the language it is in.** Coverage went from a real gap to none;
+  review went further out of reach in the same movement, because there is more
+  unread text than there was before. See `BUILD_OR_SIGNING_BLOCKERS.md` §10 and
+  issue I-17.
 * **No review by anybody who needs the accessibility route.** The sound-free run
   and the per-question escape exist, are gated, and were walked in a browser.
 * **No iOS build.** No `.ipa` exists and none was approximated.
@@ -150,8 +169,8 @@ Level Test.
 ## Checksums
 
 ```
-bcb94e2a3002e65cbbf31d79c23a5bcf81f4da4a2fb89a8258029a4ff99c8bca  hangyul-ganada-release.apk
-ca6fb668ee76e2579e4cf22be301256e5f983815b28a9419c4480e1c45490bda  hangyul-ganada-release.aab
-95f5b9005026e1bfae047fea82194466fa7392698c47646b3349e23cd997e190  docs/report.pdf
-902874bd7fddd0866ab76eb5321d1af4baba8928cc9c022682b11f0efa4d47ab  build-info.json
+ff2a49b2acb38e10c28d309fd95b6e186231d6180b9719ccc91f8dd988506b02  hangyul-ganada-release.apk
+4dc538877ec39dd4117aad07c268f438c94696d227316f634260cf1c7c8d7dee  hangyul-ganada-release.aab
+bf2599a2b5d5a31ede7622f1d5742467076080f4c742de0ce7ca7365fa1a70ae  docs/report.pdf
+4b19dc656abc5c2d5c55d42c9e4ddbebd19481eaeed088aff9deb31f4efb366e  build-info.json
 ```

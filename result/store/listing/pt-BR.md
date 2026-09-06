@@ -29,7 +29,7 @@ ORDEM DOS TRAÇOS, DE VERDADE
 O coreano se escreve numa ordem fixa: de cima para baixo, da esquerda para a direita. Cada letra mostra essa ordem, numerada e animada, e depois de cada tentativa o aplicativo diz no que você se afastou dela. Nunca reprova por isso.
 
 DE ㅏ ÀS PRIMEIRAS PALAVRAS
-Seis vogais, depois cinco consoantes, depois o seu primeiro bloco silábico — na terceira lição você já lê coreano. Em seguida, 3.333 palavras do dia a dia. Ouça a palavra. Entenda o que ela significa. Veja-a numa frase coreana simples. Ouça a frase. Escreva o coreano você mesmo.
+Seis vogais, depois cinco consoantes, depois o seu primeiro bloco silábico — na terceira lição você já lê coreano. Em seguida, 3.393 palavras do dia a dia. Ouça a palavra. Entenda o que ela significa. Veja-a numa frase coreana simples. Ouça a frase. Escreva o coreano você mesmo.
 
 PROCURE POR TEMA
 Animais, Comida e bebida, Pessoas e família, Corpo e saúde — dezoito categorias, para aprender as palavras que você realmente quer. Ou busque direto, em coreano ou no seu idioma.

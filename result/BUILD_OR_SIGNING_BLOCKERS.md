@@ -6,13 +6,16 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 5 September 2026 against **v1.0.3, versionCode 14**, compiled
-from a clean checkout of commit `bc3bec14`. Every item below still stands,
+Re-checked on 6 September 2026 against **v1.0.3, versionCode 15**, compiled
+from a clean checkout of commit `8b0e3578`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 14 and signed with
+machine. The Android artefacts were rebuilt at versionCode 15 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
 
-Two items are **new this cycle** — §9 and §10.
+**§10 got worse, not better, and it is the one to read.** The twelve partial
+content packs were finished this cycle, which means 69,156 more strings exist
+that no native speaker has read. Coverage is complete; review is further away
+than it was.
 
 ---
 
@@ -250,13 +253,18 @@ release could be cut without a Mac in the room.
 **What is missing:** a speaker of each language reading the strings this cycle
 added.
 
-Seven strings per language changed or arrived — the two new question
-instructions, the three example headings, the practice intro, and the two age
-glosses — across thirty-two bundles. They are gated: every key is present in
-every bundle, no sentence is identical to the English, no instruction is Korean
-in a bundle that is not Korean, and the pair that matters most (*choose the
-wrong expression* against *choose the correct explanation*) is checked in Korean
-verbatim so the two cannot be swapped.
+**This cycle made it larger by an order of magnitude.** Twelve content packs
+went from 609 of 3,333 words to all 3,393, and sixty new words were written into
+all thirty-two: **69,156 strings**, every one of them a meaning or an example
+sentence a learner reads on a card, and every one of them unread by a speaker of
+the language it is in. Before this cycle the unread surface in those twelve
+languages was 609 words deep; it is now the whole corpus.
+
+They are gated, and the gates found real defects — 192 pairs of Korean words
+that had arrived at one sentence in a language whose English keeps them apart,
+43 sentences where a Korean negation did not survive, twelve glosses that were
+outright mistranslations. What no gate can see is whether the Turkish reads like
+Turkish.
 
 What no gate can see is whether the Vietnamese reads like Vietnamese. Korean is
 covered — `docs/copy-audit-ko.json` records a reading of all 847 learner-facing
@@ -265,8 +273,10 @@ plainly that the reading was done by the model that wrote the sentence, which is
 the same pair of eyes twice. The other thirty-one languages have had no reading
 at all.
 
-**To unblock:** one reviewer per language, reading `numbers.json` in the
-rendered screen. Nothing in this report claims a native review happened.
+**To unblock:** one reviewer per language. The unit is no longer a screen of
+interface strings — it is 3,393 word cards, and the honest estimate of the work
+is a reviewer-month per language rather than a reviewer-afternoon. Nothing in
+this report claims a native review happened.
 
 ---
 
