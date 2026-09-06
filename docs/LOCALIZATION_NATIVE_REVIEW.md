@@ -13,6 +13,14 @@ speaker for this release** — not one of the thirty-two, including the two the
 product is about. That sentence is the point of the document and no table below
 softens it.
 
+**And the surface it applies to grew by 69,156 strings this cycle.** The twelve
+content packs that were 609 words deep are now complete at 3,393, and sixty new
+words were written into all thirty-two. Coverage is a claim this document is now
+allowed to make in full; review is a claim it is further from making than it was
+before, because there is more unread text than there was. Those two sentences
+belong in the same paragraph, and a version of this file that carried only the
+first would be the kind of document its own opening paragraph warns about.
+
 ---
 
 ## 1. What "supported" means, exactly

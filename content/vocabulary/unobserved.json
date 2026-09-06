@@ -70,6 +70,15 @@
   "역지사지": "a four-character idiom; neither list contains it in any form",
   "열악하다": "the corpora hold only 열악한, 열악했어, 열악하기 and 열악하고요 — fused and derived forms the fold does not reach, the same class as 저조하다 and 지긋하다",
   "청천벽력": "a four-character idiom; both lists hold only 청천벽력같은 — the idiom with 같은 fused on as one token, never the bare noun",
-  "체감하다": "the corpora hold only noun uses — 체감의, 체감온도, 체감상으로(는) and the unrelated 일체감 — never a verb form of 체감하다"
+  "체감하다": "the corpora hold only noun uses — 체감의, 체감온도, 체감상으로(는) and the unrelated 일체감 — never a verb form of 체감하다",
+  "대두되다": "formal 되다 compound; the two OpenSubtitles corpora are film and television dialogue, where an issue \"emerges\" in the conversational 나오다/생기다 rather than in this newspaper verb",
+  "소외되다": "formal 되다 compound; the corpora hold 왕따 and 따돌리다 for the everyday sense and never the passive administrative one",
+  "저해하다": "formal 하다 verb of policy prose; dialogue says 방해하다, which the corpora do hold",
+  "절충": "a bare Sino-Korean noun; the corpora hold 타협 and the verb 절충하다 in inflected phrases, never this citation form",
+  "정립하다": "formal 하다 verb of academic and policy prose, absent from spoken dialogue by register rather than by rarity",
+  "지양하다": "formal 하다 verb almost exclusive to written policy; its everyday counterpart 피하다 is common in the corpora",
+  "타개하다": "formal 하다 verb of newspaper and business prose; dialogue says 해결하다",
+  "퇴색하다": "formal 하다 verb; the corpora hold the concrete 바래다 for a faded colour and never this figurative one",
+  "확충하다": "formal 하다 verb of budget and infrastructure prose; dialogue says 늘리다"
  }
 }

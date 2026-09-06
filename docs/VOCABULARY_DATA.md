@@ -2,8 +2,9 @@
 
 ## What ships today
 
-**3,221 words**, every one of them reviewed by hand, with per-field provenance
-on every row.
+**3,393 words**, every one of them reviewed by hand, with per-field provenance
+on every row, and a meaning and an example translation in **all thirty-two**
+interface languages — 108,576 hand-written rows.
 
 ### …and where it is going
 
@@ -233,7 +234,8 @@ npm run content:fetch        # downloads the corpus and the dictionary pages
 npm run content:vocabulary   # builds the dataset from the pack
 npm run content:qa           # translation and pack quality
 npm run examples:qa          # example-sentence teaching quality
-npm run audio:plan           # lists everything that needs saying
+npm run content:corpus       # splits the pack into the bands the app fetches
+npm run audio:plan           # lists everything that needs saying — reads the *bands*, so it must run after content:corpus
 npm run audio:build          # generates it, both voices
 npm run audio:qa             # checks what came back
 npm run content:coverage     # the completeness matrix
