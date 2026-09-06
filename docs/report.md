@@ -6772,7 +6772,7 @@ reading of all 1,509 predicates.
 
 **Why a candidate and not a release.** The commit problem stayed fixed and then
 found a second way to be wrong. This edition's artefacts are built from a clean
-checkout of a named commit, at versionCode 14 — one past the 13 the previous
+checkout of a named commit, at versionCode 15 — one past the 14 the previous
 delivery used, because product files have changed and Play refuses a code reused
 for different bytes; `version:check` is what said so, and it said so before the
 build rather than after. What the previous edition shipped was worse than a
@@ -6785,21 +6785,27 @@ on it; the version and the versionCode were outside every rule it had. They are
 derived now (§20Q.6, I-152, I-154).
 
 What remains are five limitations. None is a defect, all five are
-things a buyer is entitled to know before release, and the fifth is new to this
-edition:
+things a buyer is entitled to know before release, and the second is the one that
+changed this edition — it closed, and closing it made the third one larger:
 
-1. **3,333 taught words against a stated target of 10,000.** The store copy
+1. **3,393 taught words against a stated target of 10,000.** The store copy
    states the shipping figure in all eight languages, so the product does not
    overstate itself — but anyone who was told 10,000 is coming should read
    §8.3 and §16 for what that actually costs, including the delivery line
-   that does not fit at the target.
-2. **Twelve of the 32 interface languages have word meanings 600 words
-   deep** — 18% of the corpus; twenty are complete. The interface is complete
-   in all 32; the *content* is not, and the picker says so before the learner
-   chooses.
-3. **No locale has been read by a native speaker**, including Korean. §11.2
-   is the evidence that this matters and not a formality, and the strings this
-   pass rewrote joined the unread surface rather than shrinking it.
+   that does not fit at the target. The unit is worse than it was: with every
+   pack complete, one new entry now costs 63 authored strings rather than 21.
+2. **Word content is complete in all 32 languages** — this limitation is gone,
+   and it is listed here only so a reader diffing against the previous edition
+   can see where it went. `locale:content:check` reads 32 complete · 0 partial,
+   and `locale:practice:check` proves it at the level a learner meets it: every
+   language builds a meaning question, a matching grid and a word whose meaning
+   it holds, at every level, for fourteen simulated days.
+3. **No locale has been read by a native speaker**, including Korean, **and this
+   pass made that worse rather than better.** 69,156 strings were written into
+   thirty-two packs and not one has been read by a speaker of the language it is
+   in. Coverage went from a real gap to none; review went further out of reach in
+   the same movement. §11.2 is the evidence that this matters and is not a
+   formality.
 4. **No physical device has run this binary**, and no human has used the
    product. §20L.11 states the device matrix that would close it.
 5. **The difficulty model still mis-scores a class of word** (`I-126`).
@@ -6807,6 +6813,144 @@ edition:
    by hand this pass; the weight that put them there is unchanged, so the next
    batch of antonym pairs lands in the same place. It is open, not hidden, and
    the eighteen overrides each name the cause.
+
+# 20T. The ninth pass — the twelve languages, and what closing them cost
+
+## 20T.1 The gate that had to be written before the defect could be seen
+
+Nothing in the suite could see this one, and the reason is worth more than the
+defect. Every locale gate asked a question about *strings*: is the key present,
+is it in the right script, is it not a copy of the English, does its placeholder
+survive. All of them passed on a pack holding 609 of 3,333 words, because 609
+correct strings are 609 correct strings.
+
+The question nobody had asked was what a *learner* meets. `locale-practice-qa`
+asks it by running the shipping code: `buildDailyPlan`, `scheduleSteps`,
+`buildDailyQuestions` and `canPractise`, for all 32 languages at levels 1, 5, 10,
+15, 20, 25 and 30, over fourteen simulated days, and comparing what each language
+can build against what English builds for the same words. At level 21:
+
+```
+en   140 intro   57 meaning   14 match   30 build   11 context
+tr   140 intro    0 meaning    0 match   86 build   11 context
+```
+
+Zero meaning questions. Zero matching grids. `canPractise` cannot build either
+without a meaning in the learner's language, so the scheduler filled the day with
+the two kinds that need only the Korean — and the intro card, which shows the
+meaning, fell back to the English gloss. A Turkish learner past the core band was
+being taught in English by a product they had paid for in Turkish. 217 findings,
+every one of them in those twelve languages.
+
+Three existing gates were blind to it by construction, and each blindness is a
+lesson: `vocabulary-recommendation-qa` has no locale awareness at all;
+`daily-plan-level-qa` hardcodes `locale_askable: true`; and `synthetic-users-qa`
+checks that the questions which *were* built are in the learner's language,
+never that the ones which were not should have been.
+
+## 20T.2 The four debts that fall due when a language crosses to complete
+
+65,376 strings closed the coverage. The gates then found what coverage alone does
+not buy:
+
+**192 example-translation collisions.** `vocabulary:translation:qa` refuses two
+words that share a sentence in a language where the English pack separates them.
+공원 *I walk in the park* and 산책하다 *I take a walk in the park* had become one
+Kazakh sentence; 미안하다 and 죄송하다 one Romanian one; 마디 and 한마디 one
+sentence in eight languages. All 192 were given distinct sentences on the
+distinction the Korean itself makes. **None was added to
+`shared-translations.json`**, which is where a legitimate merge goes — a
+language that genuinely has one word for two is a real thing, and none of these
+192 was one.
+
+**43 polarity and question findings.** `translation:semantics:qa` reads whether a
+grammatically negated Korean sentence still carries a negation marker in the
+target. Forty were content and were rewritten: «Lütfen arkadaşına ihanet etme»
+became «etmeyin», which is both the politer register 지 마세요 asks for and a form
+the gate can see. One was a real defect — 어쩌다 이렇게 됐어요? is a question and
+had become a Turkish statement.
+
+**Three were the gate's fault, and were fixed there.** Kyrgyz harmonises its
+negative suffix across four vowels — -ба/-бе/-бо/-бө and -па/-пе/-по/-пө — and
+the marker list enumerated two of them for п. So 겁내지 마세요 → «Коркпоңуз» and
+생각나지 않아요 → «эсиме түшпөй жатат» were reported as having lost a negation they
+plainly carry. The harmony class is completed rather than the Kyrgyz bent to fit
+an incomplete regex, and the reason is written into the file: rewriting correct
+content to satisfy a wrong check is how a gate starts shaping the product instead
+of measuring it.
+
+**Twelve gloss collisions that were mistranslations**, not honest merges: 아저씨
+as *amca* (uncle) in Turkish, 탐정 as *тыңшы* (spy) in Kazakh, 알아채다 as
+*கவனித்துக்கொள்* (to look after) in Tamil, 영상 as *бичлэг* (a recording) in
+Mongolian. Found by a check that only flags a shared gloss where the English pack
+separates the two words — the same doctrine as the sentence rule, because Tamil
+having one word for 매다 and 묶다 is not a defect and Turkish calling a stranger
+an uncle is.
+
+## 20T.3 Sixty words, and what one word costs now
+
+The corpus freeze in `docs/CONTENT_COMPLETION_STATE.md` said *no new word until
+32/32 complete*, and it was right: a corpus growing under twelve half-written
+packs makes the gap permanent. It lifted here, and the first batch after it went
+where the course runs out first.
+
+Forty-eight of sixty measured into levels 28–30 and eleven more into 27. Level is
+computed from frequency, usefulness, concreteness, length and irregularity — not
+declared — so that is a measurement rather than a choice. The top band goes from
+477 to 524 and I-79 moves from OPEN to PARTIAL: about eleven weeks of new words
+at the top instead of about nine.
+
+The unit cost is the number worth carrying forward. One entry is now a Korean
+headword and example, an English gloss, meanings in seven inline locales,
+sentence translations in seven, and a meaning plus an example translation in each
+of twenty-four copy locales: **63 authored strings**, plus two recordings. The
+6,607 entries between here and the stated target are therefore about 416,000
+strings, and §8.3 says so in that unit rather than rounding it into a plan.
+
+One sequencing bug is recorded because it cost a full audio pass and would cost
+the next one too: `audio:plan` reads the corpus *bands* under `public/corpus/`,
+not the generated pack, so running it before `content:corpus` plans the previous
+corpus. Sixty word clips were silently absent, and `romanization:qa` layer D
+caught it — *60 words have no recording*. The order is vocabulary → corpus →
+plan → speak.
+
+## 20T.4 Korean compared as it is read
+
+Nothing in the product normalised Unicode, and every rule in the morphology
+package is written against precomposed syllables: `endsWith('를')` is a
+one-character test, `slice(0, -1)` removes one syllable. Hand those rules a
+decomposed string — what a macOS or iOS text field, a clipboard round trip or any
+NFD pass produces — and 학교를 is six code points whose last one is ㄹ. Dictionary
+search over 30,334 headwords returned nothing; `compare` returned `different` for
+two strings that render identically.
+
+The composition went into `decompose` itself rather than into each call site,
+which is what makes it impossible to forget, and `normalise` composes before it
+trims. Six negative tests assert the old behaviour is gone.
+
+## 20T.5 Grading a typed answer, and why the reason is data
+
+`compare(a, b)` is symmetric and has no opinion about which string is the
+learner's. Grading is the asymmetric use of that, and `validate(typed, expected,
+options)` is it: spacing and particle-alternant slips accepted, counting form,
+politeness and inflection rejected, and — where `compare` says `different` but
+the stems agree — a wrong *particle* separated from a wrong *word*, because 학교에
+for 학교를 is one keystroke and a taught rule while 마리 for 개 is a different
+lesson.
+
+The correction comes back as `facts`: the two conjugated forms, the two
+particles, the stem and whether it ends in a 받침, the numeral and its counting
+form. Never a sentence. A module that returned English prose would either ship
+English into thirty-one of the thirty-two interfaces or own a translation table
+it has no business owning, and this product treats a missing translation as a
+build failure.
+
+**It stops at the library.** No screen lets a learner type Korean; every
+vocabulary question is a choice among finished answers or an assembly from
+syllable tiles, and `journey.spec.ts` asserts no word screen carries a drawing
+surface. So it is TESTED as a library and PROTOTYPE as a product feature, and the
+disclosure says which of the two rather than describing the capability without
+saying.
 
 # 20S. The eighth pass — the logos, and three questions that were not questions
 
