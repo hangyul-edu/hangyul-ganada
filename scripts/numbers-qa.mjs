@@ -29,9 +29,10 @@
  * 8. **One answer.** Over every question this engine can build — practice and
  *    mastery, three attempts, nineteen lessons — exactly one option is
  *    defensible, and every other one is wrong for a reason this file can name.
- * 9. **Spacing.** Ordinal dates are written closed (삼월 일일) and counted
- *    quantities open (한 개), everywhere: items, examples, all thirty-two
- *    bundles, and the audio manifest.
+ * 9. **Spacing.** Dates are written closed (삼월 일일) and counted quantities
+ *    open (한 개), everywhere: items, examples, all thirty-two bundles, and the
+ *    audio manifest. Not *ordinals* closed — §43's 다만 clause permits it for a
+ *    date and 번째 is a dependent noun that stays apart; see §18.
  * 10. **Writing is not pronunciation.** An example headed *이렇게 발음해요* is
  *    an example about sound, and one headed *이렇게 써요* is about spelling.
  * 11. **A learner who cannot hear can finish.** Built sound-free, every lesson
@@ -52,7 +53,20 @@
  * 17. **Completion is evidence.** The state machine in `domain/numbersProgress`
  *    is walked over the sequences that matter, including the ones that used to
  *    complete a lesson and must not.
+ * 18. **Ordinals.** 한 번째, 일 번째, 이 번째, 첫번째 and 첫 째 are not Korean.
+ *    None of them may be an item, the right half of an example, a clip, an
+ *    accepted answer, or a string in any of the thirty-two bundles — *except*
+ *    where the course is showing the learner what not to write, which is a
+ *    thing this gate can tell apart rather than guess at.
+ * 19. **Romanisation is the reading.** Every item's `romanization` is the
+ *    Revised Romanisation of what the clip says, computed by the transliterator
+ *    the vocabulary pipeline uses.
+ * 20. **The shape of the course.** Every lesson has all six stages, every
+ *    lesson id that has ever shipped is still there, every module partitions
+ *    the lesson list exactly once, and the activity denominator a card prints
+ *    is the one the progress model counts.
  */
+import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -70,6 +84,7 @@ const {
   applyNumbersEvent,
   blankLessonProgress,
   isComplete,
+  lessonActivityProgress,
   lessonStatus,
   repairLessonProgress,
 } = await import('../apps/web/src/domain/numbersProgress.ts');
@@ -483,7 +498,20 @@ const classify = (text) => (NOT_KOREAN.has(text) ? 'wrong' : ATTESTED.has(text) 
  * A pair joins this list when a reader finds two options that cannot be told
  * apart. It is not generated, and it is not supposed to be long.
  */
-const SAME_MEANING = [['gloss.counterPeople', 'gloss.counterPeoplePlain']];
+const SAME_MEANING = [
+  ['gloss.counterPeople', 'gloss.counterPeoplePlain'],
+  /*
+   * 첫 번째 and 첫째 are both *the first one*, and the course teaches that they
+   * are not used in the same places rather than that they mean different
+   * things. Under one instruction they would be two defensible buttons. The
+   * fix is `gloss_group` on the items and two answer domains; this is the
+   * finding, stated where deleting the fix cannot delete it too.
+   */
+  ['gloss.ordinal1', 'gloss.ordinalPoint1'],
+  ['gloss.ordinal2', 'gloss.ordinalPoint2'],
+  ['gloss.ordinal3', 'gloss.ordinalPoint3'],
+  ['gloss.ordinal4', 'gloss.ordinalPoint4'],
+];
 
 /**
  * Expressions that are both Korean in the same hole, stated the same way and
@@ -579,6 +607,21 @@ for (const exercise of everyExercise) {
   // Distinct options, whatever they are made of. A repeated option is either
   // two right answers or a button that does nothing.
   if (new Set(shown).size !== shown.length) fail(`${where}: repeats an option - ${shown.join(' / ')}`);
+  /*
+   * And no option is blank.
+   *
+   * A builder that splits an example on a separator it did not find returns an
+   * empty string, and an empty string renders as a button with nothing on it —
+   * tappable, gradeable, and impossible to choose on purpose. Every other rule
+   * here passes on it: it is distinct, it is in the right domain, and it is not
+   * the answer.
+   */
+  for (const option of exercise.options) {
+    const label = option.isKey || option.value !== undefined ? String(option.text) : option.text;
+    if (typeof label !== 'string' || label.trim() === '') {
+      fail(`${where}: one option is blank - ${shown.map((s) => `"${s}"`).join(' / ')}`);
+    }
+  }
   if (exercise.question_type !== 'orderTheParts') {
     // `chooseSystem` is two options because there are two sets; everything else
     // that drops to two has lost a distractor rather than found a binary.
@@ -713,13 +756,17 @@ for (const type of Object.keys(PROMPT_FOR)) {
 
 // --- 9 date spacing ------------------------------------------------------------
 /**
- * A counted quantity is spaced; an ordinal is closed.
+ * A counted quantity is spaced; a date closes.
  *
- * Korean orthography spaces a unit noun from its numeral, and closes the same
- * noun when the number is an *order*. A date is an order, and the course
- * shipped 삼월 일 일, 유월 육 일, 시월 십 일 and 십오 일 - each the principle
- * form, none of them written by anybody. The first reads as two ones, on the
- * screen of the lesson explaining that 일 is both.
+ * Korean orthography spaces a unit noun from its numeral, and §43's 다만 clause
+ * *permits* closing the same noun where the number is an order. A date takes
+ * that permission and the course shipped 삼월 일 일, 유월 육 일, 시월 십 일 and
+ * 십오 일 - each the 원칙 form, none of them written by anybody. The first reads
+ * as two ones, on the screen of the lesson explaining that 일 is both.
+ *
+ * *Ordinals* do not take it: 번째 is a dependent noun and stays apart — 첫 번째,
+ * never 첫번째 — which is §18's business and the reason this section's heading
+ * no longer says "an ordinal is closed".
  *
  * Both directions are gated, because fixing one by hand is how a codebase ends
  * up with 한개 as well.
@@ -1181,6 +1228,337 @@ for (const lesson of NUMBER_LESSONS) {
   }
 }
 
+// --- 18 ordinals ---------------------------------------------------------------
+/**
+ * The five ways a learner writes a Korean ordinal wrongly, and the one place
+ * each of them is allowed to appear.
+ *
+ * ## What is wrong with them
+ *
+ * 번째 is a counting word and takes the native *ordinal* forms — 첫, 두, 세,
+ * 네. 한 번째 reaches for the counting form that is right in front of 개 and
+ * 명; 일 번째 and 이 번째 reach for the Sino-Korean set, which never stands
+ * there. 첫번째 has lost the space 한글 맞춤법 §43 requires between a numeral
+ * and its unit noun, and 첫 째 has gained one that the suffix 째 does not take.
+ * All five are things a beginner writes in their first week and none is Korean.
+ *
+ * ## Why this is not a substring ban
+ *
+ * The course *teaches* four of them, on purpose: `첫 번째 (✓) · 한 번째 (✗)` is
+ * how a learner is shown the mistake, and `lesson.ordinals.step2` says in
+ * thirty-two languages that 한 번째 and 일 번째 do not exist. A gate that
+ * forbade the string would forbid the teaching, which is the failure mode the
+ * date-spacing rule already had to solve once (§9, `asWritten`).
+ *
+ * So a hit is *licensed* or it is a finding, and a licence is structural
+ * wherever it can be:
+ *
+ * * the ✗ half of an item's own contrast example, and the caption under it
+ *   (`example_gloss`), which is generated from that half;
+ * * the answer of a `findIncorrectExpression` question, which is the option the
+ *   learner is asked to identify as wrong, and any option carrying a declared
+ *   `misconception` — a distractor exists to be wrong;
+ * * one declared key per bundle, `lesson.ordinals.step2`, and only when the
+ *   correct counterpart is written in the same sentence. A counter-example with
+ *   nothing to compare it against is not a lesson.
+ *
+ * Everything else — an item's Korean, the ✓ half of an example, a gloss, a
+ * clip in the manifest, the accepted answer of any other question type — is the
+ * course saying *this is Korean*, and there it is a failure.
+ */
+const BAD_ORDINALS = {
+  '한 번째': '첫 번째',
+  '일 번째': '첫 번째',
+  '이 번째': '두 번째',
+  '삼 번째': '세 번째',
+  '사 번째': '네 번째',
+  '하나 번째': '첫 번째',
+  '둘 번째': '두 번째',
+  '셋 번째': '세 번째',
+  '넷 번째': '네 번째',
+  '첫번째': '첫 번째',
+  '두번째': '두 번째',
+  '세번째': '세 번째',
+  '네번째': '네 번째',
+  '첫 째': '첫째',
+  '둘 째': '둘째',
+  '셋 째': '셋째',
+};
+/*
+ * Anchored on the left so a longer legitimate ordinal cannot trip it: 스물한
+ * 번째 is Korean and contains none of these as a *word*, but a bare `includes`
+ * would find 한 번째 inside it.
+ */
+const badOrdinalsIn = (text) =>
+  Object.keys(BAD_ORDINALS).filter((form) =>
+    new RegExp(`(^|[^가-힣])${form}`, 'u').test(String(text)),
+  );
+
+/** The one key per bundle that is allowed to name a wrong form, and teach it. */
+const ORDINAL_COUNTEREXAMPLE_KEYS = new Set(['lesson.ordinals.step2']);
+
+/** The ✗ halves the curriculum itself declares, and the captions written from them. */
+const declaredWrongOrdinals = new Set();
+const ordinalCaptionKeys = new Map();
+for (const item of NUMBER_ITEMS) {
+  if (!item.example) continue;
+  const bad = item.example.split('·')[1]?.replace(/\(✗\)/, '').trim();
+  if (!bad || !(bad in BAD_ORDINALS)) continue;
+  declaredWrongOrdinals.add(bad);
+  if (item.example_gloss) ordinalCaptionKeys.set(item.example_gloss, bad);
+}
+
+// The course must still teach the forms that *are* Korean, or the rule above is
+// satisfied by a lesson that says nothing.
+for (const form of ['첫 번째', '두 번째', '세 번째', '네 번째', '첫째', '둘째', '셋째']) {
+  if (!NUMBER_ITEMS.some((i) => i.korean === form)) fail(`no item teaches "${form}"`);
+  if (!manifest.entries.some((e) => e.text === form)) fail(`no clip says "${form}"`);
+}
+
+// Items, and the halves of their examples the course writes rather than warns
+// against.
+for (const item of NUMBER_ITEMS) {
+  for (const [what, text] of [
+    ['korean', item.korean],
+    ['example', asWritten(item.example ?? '')],
+    ['romanization', item.romanization],
+  ]) {
+    for (const form of badOrdinalsIn(text)) {
+      fail(`${item.id} writes "${form}" as its ${what}, and "${form}" is not Korean`);
+    }
+  }
+  /*
+   * A ✗ half has to be one of the forms this gate knows, or it is a wrong form
+   * nothing is checking. Only ordinal items are asked: the other contrast pairs
+   * are about spacing and months and have their own sections.
+   */
+  if (item.example?.includes('(✗)') && /번째|째/.test(item.korean)) {
+    const bad = item.example.split('·')[1]?.replace(/\(✗\)/, '').trim();
+    if (!(bad in BAD_ORDINALS)) fail(`${item.id} marks "${bad}" wrong, and this gate cannot say why it is`);
+    else if (BAD_ORDINALS[bad] !== item.korean) {
+      fail(`${item.id} shows "${bad}" against ${item.korean}, but "${bad}" is the wrong form of ${BAD_ORDINALS[bad]}`);
+    }
+  }
+}
+
+// The recordings. Nothing the app can play may say one of these.
+for (const entry of manifest.entries) {
+  for (const form of badOrdinalsIn(entry.text)) {
+    fail(`clip ${entry.id} says "${entry.text}", which contains the non-Korean "${form}"`);
+  }
+}
+
+// Every question the engine builds: an accepted answer is the course saying
+// this is Korean, unless the question is the one that asks for the mistake.
+for (const exercise of everyExercise) {
+  const answer = exercise.options[exercise.answer];
+  if (!answer || answer.isKey || answer.value !== undefined) continue;
+  const forms = badOrdinalsIn(answer.text);
+  if (!forms.length) continue;
+  if (exercise.question_type === 'findIncorrectExpression') continue;
+  fail(`${exercise.question_type} - ${exercise.item_id}: accepts "${answer.text}" as correct Korean`);
+}
+for (const exercise of everyExercise) {
+  exercise.options.forEach((option, at) => {
+    if (option.isKey || option.value !== undefined) return;
+    const forms = badOrdinalsIn(option.text);
+    if (!forms.length) return;
+    // A wrong form on a button is a distractor, and a distractor says why it is
+    // there. The one exception is `findIncorrectExpression`, where the wrong
+    // form is the answer and §8 has already required exactly one of them.
+    if (at === exercise.answer && exercise.question_type === 'findIncorrectExpression') return;
+    if (!option.misconception) {
+      fail(
+        `${exercise.question_type} - ${exercise.item_id}: offers "${option.text}" with no misconception ` +
+          'saying why a learner would write it',
+      );
+    }
+  });
+}
+
+// The bundles, in all thirty-two languages.
+let ordinalCounterexamples = 0;
+for (const locale of LOCALES) {
+  for (const [key, value] of flatten(bundles[locale])) {
+    const forms = badOrdinalsIn(value);
+    if (!forms.length) continue;
+    if (ordinalCaptionKeys.has(key)) {
+      // A caption under a contrast card. It may name the form its own card
+      // marks wrong, and it has to show the right one beside it.
+      const declared = ordinalCaptionKeys.get(key);
+      for (const form of forms) {
+        if (form !== declared) fail(`[${locale}] ${key} names "${form}", which is not the form its card marks wrong`);
+      }
+      if (!String(value).includes(BAD_ORDINALS[declared])) {
+        fail(`[${locale}] ${key} writes "${declared}" without "${BAD_ORDINALS[declared]}" beside it`);
+      }
+      ordinalCounterexamples += 1;
+      continue;
+    }
+    if (ORDINAL_COUNTEREXAMPLE_KEYS.has(key)) {
+      for (const form of forms) {
+        if (!String(value).includes(BAD_ORDINALS[form])) {
+          fail(`[${locale}] ${key} says "${form}" is wrong without writing "${BAD_ORDINALS[form]}" beside it`);
+        }
+      }
+      ordinalCounterexamples += 1;
+      continue;
+    }
+    fail(`[${locale}] ${key} writes "${forms.join('", "')}" as if it were Korean: "${String(value).slice(0, 60)}"`);
+  }
+}
+
+// --- 19 romanisation is the reading ---------------------------------------------
+/**
+ * The Revised Romanisation of what the clip says, not of what is written.
+ *
+ * 십육 is spelled *sibyuk* letter for letter and said *simnyuk*, and the second
+ * is what a learner sounding it out needs — so where an item declares a
+ * `reading`, the romanisation is of the reading. Nothing was checking it: the
+ * romanisation gate that exists reads the vocabulary corpus and has never
+ * looked at this course, so 112 hand-typed transliterations were unverified.
+ *
+ * Computed by `scripts/content/hangul.py`, which is the transliterator the
+ * vocabulary pipeline and the dictionary already use. A second implementation
+ * in JavaScript would be a second thing to keep right; the cost of the cross-
+ * language call is one process for the whole course.
+ *
+ * Compared on letters only. `공일공` is written *gong-il-gong* with hyphens
+ * because it is three digits read one at a time, and `몇 살이에요?` keeps its
+ * question mark in the Korean and not in the transliteration; neither is a
+ * disagreement about the sound.
+ */
+const romanised = JSON.parse(
+  execFileSync(
+    'python3',
+    ['-c', [
+      'import sys, json',
+      'sys.path.insert(0, "scripts/content")',
+      'from hangul import romanize',
+      'print(json.dumps([romanize(w) for w in json.load(sys.stdin)]))',
+    ].join('\n')],
+    {
+      cwd: ROOT,
+      encoding: 'utf8',
+      input: JSON.stringify(NUMBER_ITEMS.map((i) => i.reading ?? i.korean)),
+    },
+  ),
+);
+const letters = (text) => String(text).toLowerCase().replace(/[^a-z]/g, '');
+let romanisations = 0;
+NUMBER_ITEMS.forEach((item, index) => {
+  romanisations += 1;
+  if (letters(romanised[index]) !== letters(item.romanization)) {
+    fail(
+      `${item.id}: romanisation "${item.romanization}" is not the Revised Romanisation of ` +
+        `"${item.reading ?? item.korean}", which is "${romanised[index]}"`,
+    );
+  }
+});
+
+// --- 20 the shape of the course -------------------------------------------------
+/**
+ * Every lesson has all six stages a learner walks through.
+ *
+ * `phase` names them — objective, explanation, examples, practice, mastery,
+ * summary — and four of the six are data rather than screens: a lesson with no
+ * objective key, no explanation steps, no item with an example, or a mastery
+ * check shorter than its item list is a lesson one of those screens has nothing
+ * to draw. The old §1 checked the first two and counted items; this states the
+ * whole walk, because a stage that is missing is not a rendering bug, it is a
+ * lesson a learner cannot finish.
+ */
+for (const lesson of NUMBER_LESSONS) {
+  const items = numberLessonItems(lesson);
+  if (typeof lookup(en, lesson.objective) !== 'string') fail(`${lesson.id}: no objective`);
+  if (typeof lookup(en, lesson.title) !== 'string') fail(`${lesson.id}: no title`);
+  for (const step of lesson.explanation) {
+    if (typeof lookup(en, step.text) !== 'string') fail(`${lesson.id}: explanation step ${step.text} has no text`);
+    for (const id of step.show ?? []) {
+      if (!itemById.has(id)) fail(`${lesson.id}: step ${step.text} draws ${id}, which is not an item`);
+    }
+  }
+  /*
+   * The examples stage draws an `ItemCard` per item, so what it needs is items
+   * rather than examples — a numeral is its own example and the ten-numeral
+   * lessons carry none. What it may not have is an item the card cannot
+   * describe: no value to print and no gloss to print either.
+   */
+  for (const item of items) {
+    if (item.value === null && !item.gloss) fail(`${lesson.id}: ${item.id} has nothing for its card to say`);
+  }
+  /*
+   * `mastery_count` is a floor rather than a cap — `masteryExercises` takes one
+   * question per item first and only then fills up to it — so the number to
+   * check is what the builder actually returns.
+   */
+  const built = masteryExercises(lesson, 0);
+  if (built.length < Math.max(lesson.mastery_count, items.length)) {
+    fail(`${lesson.id}: a mastery check of ${built.length} question(s) for ${items.length} item(s)`);
+  }
+  if (practiceExercises(lesson, 0).length === 0) fail(`${lesson.id}: no guided practice can be built`);
+}
+
+/**
+ * Lesson ids are the key progress is stored under, so a rename is a wipe.
+ *
+ * `lesson:<id>` is the row in the `numbers` store and `repairLessonProgress`
+ * drops a row whose lesson no longer exists — correctly, and silently. Renaming
+ * `num-lesson-forms` would therefore delete the evidence of everybody who had
+ * finished it, and nothing else in this file would have anything to say. The
+ * list is written down so that adding a lesson is a line in a diff and losing
+ * one is a failure.
+ */
+const SHIPPED_LESSON_IDS = [
+  'num-lesson-sino-basics', 'num-lesson-native-basics', 'num-lesson-zero', 'num-lesson-choosing',
+  'num-lesson-sino-build', 'num-lesson-native-build', 'num-lesson-forms',
+  'num-lesson-counters', 'num-lesson-counters-everyday', 'num-lesson-age', 'num-lesson-ordinals',
+  'num-lesson-hours', 'num-lesson-minutes', 'num-lesson-dates', 'num-lesson-weekdays',
+  'num-lesson-money', 'num-lesson-digits', 'num-lesson-large',
+  'num-lesson-pitfalls', 'num-lesson-mixed',
+];
+const liveLessons = new Set(NUMBER_LESSONS.map((l) => l.id));
+for (const id of SHIPPED_LESSON_IDS) {
+  if (!liveLessons.has(id)) fail(`${id} has shipped and is gone — every learner's progress on it is dropped on read`);
+}
+for (const id of liveLessons) {
+  if (!SHIPPED_LESSON_IDS.includes(id)) fail(`${id} is a lesson this gate has never been told about`);
+}
+
+/**
+ * The totals a learner reads, against the ones the model counts.
+ *
+ * Three denominators are printed — the course header's *of N lessons*, a
+ * module's *of N lessons*, and a card's *of N activities* — and each is
+ * computed somewhere else. What has to hold is that the modules partition the
+ * lesson list exactly once (a lesson in two modules is counted twice in the
+ * header and once in each module) and that the activity total is the one
+ * `lessonActivityProgress` derives.
+ */
+const seenInModule = new Map();
+for (const module of NUMBER_MODULES) {
+  for (const id of module.lesson_ids) {
+    if (!liveLessons.has(id)) fail(`${module.id} lists ${id}, which is not a lesson`);
+    if (seenInModule.has(id)) fail(`${id} is in both ${seenInModule.get(id)} and ${module.id}`);
+    seenInModule.set(id, module.id);
+  }
+}
+for (const lesson of NUMBER_LESSONS) {
+  if (!seenInModule.has(lesson.id)) fail(`${lesson.id} is in no module, so no module counts it`);
+  const activities = lessonActivityProgress(undefined, lesson);
+  const expected = lesson.explanation.length + lesson.item_ids.length + 2;
+  if (activities.total !== expected) {
+    fail(`${lesson.id}: the card says ${activities.total} activities and the lesson has ${expected}`);
+  }
+  if (activities.done !== 0) fail(`${lesson.id}: a learner with no record is ${activities.done} activities in`);
+  const earned = lessonActivityProgress(undefined, lesson);
+  if (earned.done > earned.total) fail(`${lesson.id}: more activities done than there are`);
+}
+const moduleLessons = NUMBER_MODULES.reduce((n, m) => n + m.lesson_ids.length, 0);
+if (moduleLessons !== NUMBER_LESSONS.length) {
+  fail(`the modules hold ${moduleLessons} lessons and the course has ${NUMBER_LESSONS.length}`);
+}
+
 // --- report -------------------------------------------------------------------
 const kinds = new Set(NUMBER_LESSONS.flatMap((l) => l.exercise_kinds));
 console.log(
@@ -1194,6 +1572,9 @@ console.log(`  questions audited      ${audited} distinct, over ${typesSeen.size
 console.log(`  sound-free            ${quietRuns} lesson(s) complete without a heard-only question`);
 console.log(`  audio escapes         ${variants} listening question(s) answerable without the clip`);
 console.log(`  forward distractors   ${forwardDistractors}, every one a declared misconception`);
+console.log(`  romanisations         ${romanisations} checked against the shared transliterator`);
+console.log(`  ordinal forms         ${Object.keys(BAD_ORDINALS).length} rejected as Korean, ${ordinalCounterexamples} licensed counter-examples`);
+console.log(`  lesson ids            ${SHIPPED_LESSON_IDS.length} shipped, all present`);
 if (noEscape.size) {
   notes.push(
     `no visual substitute for the listening question about ${[...noEscape].join(', ')} — ` +

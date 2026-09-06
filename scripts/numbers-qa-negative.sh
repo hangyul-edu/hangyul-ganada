@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Ten sabotage runs against `numbers:qa`.
+# Fifteen sabotage runs against `numbers:qa`.
 #
 #   bash scripts/numbers-qa-negative.sh
 #
@@ -110,6 +110,29 @@ expect_fail 9; restore "$NUMBERS"
 echo "N10 a locale keeps a retired prompt key"
 sabotage "$VI" '"listenAndChoose"' '"listen"'
 expect_fail 10; restore "$VI"
+
+echo "N11 an ordinal loses its space in the curriculum data"
+sabotage "$NUMBERS" "n('num-o-3rd', '세 번째', 'se beonjjae'" "n('num-o-3rd', '세번째', 'se beonjjae'"
+expect_fail 11; restore "$NUMBERS"
+
+echo "N12 일 번째 is written as Korean at a key that is not teaching against it"
+sabotage "$KO" '"ordinal1": "1번째"' '"ordinal1": "일 번째"'
+expect_fail 12; restore "$KO"
+
+echo "N13 a romanisation stops being the reading"
+sabotage "$NUMBERS" "'첫 번째', 'cheot beonjjae'" "'첫 번째', 'cheot bonjae'"
+expect_fail 13; restore "$NUMBERS"
+
+echo "N14 a lesson id that has shipped is renamed"
+sabotage "$NUMBERS" "L('num-lesson-ordinals'" "L('num-lesson-ordinal'"
+expect_fail 14; restore "$NUMBERS"
+
+# The licence §18 grants a caption is derived from the item's own marked-wrong
+# half, not from a list of keys. Change the half and the caption that names the
+# old one stops being licensed — which is what proves the licence is structural.
+echo "N15 the contrast a caption is licensed by is changed under it"
+sabotage "$NUMBERS" "    example: '첫 번째 (✓)  ·  한 번째 (✗)'," "    example: '첫 번째 (✓)  ·  둘째 (✗)',"
+expect_fail 15; restore "$NUMBERS"
 
 echo
 if gate >"$WORK/out" 2>&1; then
