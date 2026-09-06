@@ -39,7 +39,7 @@
  "dictionary_examples": 3679,
  "audio_files": 13860,
  "audio_slots": 13980,
- "unobserved_words": 46,
+ "unobserved_words": 55,
  "more_about_it": 75,
  "level_test_items": 4199,
  "words_at_28_to_30": 524,
@@ -51,6 +51,6 @@
   "resolved": 148,
   "tracked": 156
  },
- "apk_mb": "84.2",
- "aab_mb": "82.4"
+ "apk_mb": "86.7",
+ "aab_mb": "84.9"
 }
