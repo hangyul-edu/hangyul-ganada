@@ -13408,6 +13408,246 @@
     "word_hayeomeobsi": [
       "durmadan",
       "Pencereden dışarıya durmadan baktım."
+    ],
+    "word_apchukada": [
+      "sıkıştırmak",
+      "Uzun raporu iki sayfaya sıkıştırdık."
+    ],
+    "word_baejehada": [
+      "elemek",
+      "O olasılığı eledik."
+    ],
+    "word_balchwe": [
+      "alıntı",
+      "Raporun bir alıntısını okuduk."
+    ],
+    "word_beonbokada": [
+      "geri almak",
+      "Dün alınan kararı geri aldık."
+    ],
+    "word_bowanhada": [
+      "tamamlamak",
+      "Eksik belgeleri tamamladık."
+    ],
+    "word_bugakdoeda": [
+      "öne çıkmak",
+      "Güvenlik sorunları yeniden öne çıktı."
+    ],
+    "word_buhapada": [
+      "uygun düşmek",
+      "Bu plan hedefe uygun düşüyor."
+    ],
+    "word_byeonghaenghada": [
+      "birlikte yürütmek",
+      "İşi ve öğrenimi birlikte yürütüyoruz."
+    ],
+    "word_chaksuhada": [
+      "girişmek",
+      "Yeni bir işe giriştik."
+    ],
+    "word_chamsinhada": [
+      "yenilikçi olmak",
+      "Fikir çok yenilikçi."
+    ],
+    "word_chokguhada": [
+      "çağrıda bulunmak",
+      "Hızlı önlemler için çağrıda bulunduk."
+    ],
+    "word_daedudoeda": [
+      "gündeme gelmek",
+      "Çevre sorunları büyük ölçüde gündeme geldi."
+    ],
+    "word_danjeol": [
+      "kopukluk",
+      "İki kuşak arasındaki kopukluk büyük."
+    ],
+    "word_dochulhada": [
+      "ulaşmak",
+      "Uzun bir toplantının sonunda bir sonuca ulaştık."
+    ],
+    "word_dongwonhada": [
+      "seferber etmek",
+      "Bütün donanımı seferber ettik."
+    ],
+    "word_eogap": [
+      "baskı",
+      "Uzun bir baskıdan kurtuldular."
+    ],
+    "word_eunpyehada": [
+      "örtbas etmek",
+      "Kazanın nedeni örtbas edildi."
+    ],
+    "word_gaeseonhada": [
+      "iyileştirmek",
+      "Çalışma ortamını iyileştirdik."
+    ],
+    "word_gangjohada": [
+      "vurgulamak",
+      "Özellikle güvenliği vurguladık."
+    ],
+    "word_giyeohada": [
+      "katkıda bulunmak",
+      "Bu araştırma tedaviye katkıda bulundu."
+    ],
+    "word_gochal": [
+      "derinlemesine inceleme",
+      "Bu sorun daha derinlemesine bir inceleme istiyor."
+    ],
+    "word_gongheonhada": [
+      "hizmet etmek",
+      "Bölgenin gelişimine büyük hizmet ettik."
+    ],
+    "word_guchukada": [
+      "kurmak",
+      "Yeni bir yönetim sistemi kurduk."
+    ],
+    "word_gyeongnyeohada": [
+      "yüreklendirmek",
+      "Sporcuları yüksek sesle yüreklendirdik."
+    ],
+    "word_gyujehada": [
+      "düzenlemeye tabi tutmak",
+      "Reklam yasayla düzenlemeye tabi tutulur."
+    ],
+    "word_haesohada": [
+      "gidermek",
+      "Bütün yanlış anlamaları giderdik."
+    ],
+    "word_hwakchunghada": [
+      "genişletmek",
+      "Sağlık tesislerini genişlettik."
+    ],
+    "word_ilgwandoeda": [
+      "tutarlı olmak",
+      "Açıklama en baştan tutarlı."
+    ],
+    "word_imbakada": [
+      "yaklaşmak",
+      "Son tarih iyice yaklaştı."
+    ],
+    "word_injeopada": [
+      "bitişik olmak",
+      "İki ülke birbirine bitişik."
+    ],
+    "word_iryejeok": [
+      "alışılmışın dışında",
+      "Alışılmışın dışında bir sıcak sürdü."
+    ],
+    "word_jaepyeonhada": [
+      "yeniden yapılandırmak",
+      "Birimleri büyük ölçüde yeniden yapılandırdık."
+    ],
+    "word_jeohaehada": [
+      "engel olmak",
+      "Gürültü odaklanmaya engel oluyor."
+    ],
+    "word_jeolchung": [
+      "uzlaşma",
+      "İki görüş arasında bir uzlaşma gerekiyor."
+    ],
+    "word_jeongnipada": [
+      "sağlam temele oturtmak",
+      "Yeni ölçütü sağlam bir temele oturttuk."
+    ],
+    "word_jincheok": [
+      "ilerleme",
+      "İnşaatın ilerlemesi hızlı."
+    ],
+    "word_jiyanghada": [
+      "kaçınmak",
+      "Aşırı rekabetten kaçınıyoruz."
+    ],
+    "word_joyulhada": [
+      "uyumlandırmak",
+      "Takvimleri önceden uyumlandırdık."
+    ],
+    "word_junsuhada": [
+      "uymak",
+      "Lütfen güvenlik kurallarına uyun."
+    ],
+    "word_juryeokada": [
+      "ağırlık vermek",
+      "Bu yıl ihracata ağırlık veriyoruz."
+    ],
+    "word_mobeom": [
+      "örnek kişi",
+      "Kendisinden sonrakilere örnek kişi oldu."
+    ],
+    "word_myeongsihada": [
+      "açıkça belirtmek",
+      "Sözleşmede süreyi açıkça belirttik."
+    ],
+    "word_nakgwanjeok": [
+      "iyimser",
+      "Görünüm iyimser."
+    ],
+    "word_nujeokdoeda": [
+      "birikmek",
+      "Yorgunluk birikti."
+    ],
+    "word_piryeonjeok": [
+      "kaçınılmaz",
+      "Ücret artışı kaçınılmaz."
+    ],
+    "word_sanchulhada": [
+      "hesaplayıp çıkarmak",
+      "Maliyeti tam olarak hesaplayıp çıkardık."
+    ],
+    "word_sarye": [
+      "somut örnek",
+      "Benzer birkaç somut örnek var."
+    ],
+    "word_seonbyeolhada": [
+      "eleyerek seçmek",
+      "Başvuranları evrakla eleyerek seçtik."
+    ],
+    "word_simhwadoeda": [
+      "derinleşmek",
+      "Bölgeler arasındaki uçurum derinleşti."
+    ],
+    "word_sisahada": [
+      "işaret etmek",
+      "Bu sonuç büyük bir değişime işaret ediyor."
+    ],
+    "word_sooedoeda": [
+      "dışlanmak",
+      "Küçük köyler kalkınmadan dışlandı."
+    ],
+    "word_tagaehada": [
+      "aşmak",
+      "Zor bir aşamayı aştık."
+    ],
+    "word_toesaekada": [
+      "solmak",
+      "O sözün anlamı soldu."
+    ],
+    "word_tongyongdoeda": [
+      "yaygın olarak kullanılmak",
+      "Bu ifade hâlâ yaygın olarak kullanılıyor."
+    ],
+    "word_uhoehada": [
+      "etrafından dolaşmak",
+      "Yol çalışmasının etrafından dolaştık."
+    ],
+    "word_waegokada": [
+      "çarpıtmak",
+      "Gerçekleri çarpıtmak olmaz."
+    ],
+    "word_wonhwalhada": [
+      "sorunsuz işlemek",
+      "İletişim çok sorunsuz işliyor."
+    ],
+    "word_yeokseolhada": [
+      "ısrarla savunmak",
+      "Eğitimin önemini ısrarla savunduk."
+    ],
+    "word_yeongyehada": [
+      "ilişkilendirmek",
+      "Dersleri ve uygulamayı ilişkilendirdik."
+    ],
+    "word_yubohada": [
+      "askıya almak",
+      "Kararımızı bir süre askıya aldık."
     ]
   }
 }

@@ -13408,6 +13408,246 @@
     "word_hayeomeobsi": [
       "tinimsiz",
       "Derazadan tashqariga tinimsiz tikildim."
+    ],
+    "word_apchukada": [
+      "siqib joylashtirmoq",
+      "Uzun hisobotni ikki betga siqib joylashtirdik."
+    ],
+    "word_baejehada": [
+      "istisno qilmoq",
+      "O'sha ehtimolni istisno qildik."
+    ],
+    "word_balchwe": [
+      "parcha",
+      "Hisobotdan bir parchani o'qidik."
+    ],
+    "word_beonbokada": [
+      "bekor qilmoq",
+      "Kechagi qarorni bekor qildik."
+    ],
+    "word_bowanhada": [
+      "to'ldirmoq",
+      "Yetishmagan materiallarni to'ldirdik."
+    ],
+    "word_bugakdoeda": [
+      "birinchi o'ringa chiqmoq",
+      "Xavfsizlik masalalari yana birinchi o'ringa chiqdi."
+    ],
+    "word_buhapada": [
+      "mos kelmoq",
+      "Bu reja maqsadga mos keladi."
+    ],
+    "word_byeonghaenghada": [
+      "yonma-yon olib bormoq",
+      "Ish va o'qishni yonma-yon olib boramiz."
+    ],
+    "word_chaksuhada": [
+      "kirishmoq",
+      "Yangi loyihaga kirishdik."
+    ],
+    "word_chamsinhada": [
+      "yangicha bo'lmoq",
+      "Fikr juda yangicha."
+    ],
+    "word_chokguhada": [
+      "qat'iy chorlamoq",
+      "Tez chora ko'rishga qat'iy chorladik."
+    ],
+    "word_daedudoeda": [
+      "masala sifatida ko'tarilmoq",
+      "Ekologiya masalalari keng ko'tarildi."
+    ],
+    "word_danjeol": [
+      "uzilish",
+      "Ikki avlod orasidagi uzilish katta."
+    ],
+    "word_dochulhada": [
+      "xulosaga kelmoq",
+      "Uzoq yig'ilishdan so'ng xulosaga keldik."
+    ],
+    "word_dongwonhada": [
+      "safarbar qilmoq",
+      "Barcha jihozni safarbar qildik."
+    ],
+    "word_eogap": [
+      "zulm",
+      "Uzoq zulmdan qutulishdi."
+    ],
+    "word_eunpyehada": [
+      "yashirib qo'ymoq",
+      "Halokat sababi yashirib qo'yildi."
+    ],
+    "word_gaeseonhada": [
+      "yaxshilamoq",
+      "Ish sharoitini yaxshiladik."
+    ],
+    "word_gangjohada": [
+      "alohida ta'kidlamoq",
+      "Ayniqsa xavfsizlikni alohida ta'kidladik."
+    ],
+    "word_giyeohada": [
+      "hissa qo'shmoq",
+      "Bu tadqiqot davolashga hissa qo'shdi."
+    ],
+    "word_gochal": [
+      "chuqur mushohada",
+      "Bu masala chuqurroq mushohadani talab qiladi."
+    ],
+    "word_gongheonhada": [
+      "xizmat qilmoq",
+      "Hudud rivojiga katta xizmat qildik."
+    ],
+    "word_guchukada": [
+      "tizim barpo qilmoq",
+      "Yangi boshqaruv tizimini barpo qildik."
+    ],
+    "word_gyeongnyeohada": [
+      "dalda bermoq",
+      "Sportchilarga baland ovoz bilan dalda berdik."
+    ],
+    "word_gyujehada": [
+      "tartibga solmoq",
+      "Reklamani qonun tartibga soladi."
+    ],
+    "word_haesohada": [
+      "bartaraf etmoq",
+      "Barcha tushunmovchilikni bartaraf etdik."
+    ],
+    "word_hwakchunghada": [
+      "kengaytirib to'ldirmoq",
+      "Tibbiyot muassasalarini kengaytirib to'ldirdik."
+    ],
+    "word_ilgwandoeda": [
+      "izchil bo'lmoq",
+      "Tushuntirish boshidan izchil."
+    ],
+    "word_imbakada": [
+      "yaqinlashib qolmoq",
+      "Muddat yaqinlashib qoldi."
+    ],
+    "word_injeopada": [
+      "tutashmoq",
+      "Ikki mamlakat bir-biri bilan tutashadi."
+    ],
+    "word_iryejeok": [
+      "odatdan tashqari",
+      "Odatdan tashqari issiq davom etdi."
+    ],
+    "word_jaepyeonhada": [
+      "qayta tuzmoq",
+      "Bo'limlarni tubdan qayta tuzdik."
+    ],
+    "word_jeohaehada": [
+      "to'sqinlik qilmoq",
+      "Shovqin diqqatni jamlashga to'sqinlik qiladi."
+    ],
+    "word_jeolchung": [
+      "o'rtacha yechim",
+      "Ikki fikr orasidagi o'rtacha yechim kerak."
+    ],
+    "word_jeongnipada": [
+      "mustahkam o'rnatmoq",
+      "Yangi mezonni mustahkam o'rnatdik."
+    ],
+    "word_jincheok": [
+      "ishning siljishi",
+      "Qurilish ishining siljishi tez."
+    ],
+    "word_jiyanghada": [
+      "ataylab qochmoq",
+      "Haddan ortiq raqobatdan ataylab qochamiz."
+    ],
+    "word_joyulhada": [
+      "kelishib olmoq",
+      "Jadvallarni oldindan kelishib oldik."
+    ],
+    "word_junsuhada": [
+      "qat'iy rioya qilmoq",
+      "Xavfsizlik qoidalariga qat'iy rioya qiling."
+    ],
+    "word_juryeokada": [
+      "asosiy kuchni yo'naltirmoq",
+      "Bu yil asosiy kuchni eksportga yo'naltiramiz."
+    ],
+    "word_mobeom": [
+      "o'rnak",
+      "Kichiklarga o'rnak bo'ldi."
+    ],
+    "word_myeongsihada": [
+      "aniq yozib qo'ymoq",
+      "Shartnomada muddatni aniq yozib qo'ydik."
+    ],
+    "word_nakgwanjeok": [
+      "umidbaxsh",
+      "Istiqbol umidbaxsh."
+    ],
+    "word_nujeokdoeda": [
+      "to'planib qolmoq",
+      "Charchoq to'planib qoldi."
+    ],
+    "word_piryeonjeok": [
+      "bo'lmay qolmaydigan",
+      "Tarif oshishi bo'lmay qolmaydi."
+    ],
+    "word_sanchulhada": [
+      "hisoblab chiqarmoq",
+      "Xarajatni aniq hisoblab chiqardik."
+    ],
+    "word_sarye": [
+      "aniq holat",
+      "Shunga o'xshash bir necha aniq holat bor."
+    ],
+    "word_seonbyeolhada": [
+      "saralab olmoq",
+      "Nomzodlarni hujjat bo'yicha saralab oldik."
+    ],
+    "word_simhwadoeda": [
+      "chuqurlashmoq",
+      "Hududlar orasidagi tafovut chuqurlashdi."
+    ],
+    "word_sisahada": [
+      "dalolat bermoq",
+      "Bu natija katta o'zgarishdan dalolat beradi."
+    ],
+    "word_sooedoeda": [
+      "e'tibordan chetda qolmoq",
+      "Kichik qishloqlar rivojlanishda e'tibordan chetda qoldi."
+    ],
+    "word_tagaehada": [
+      "yechim topmoq",
+      "Og'ir bosqichga yechim topdik."
+    ],
+    "word_toesaekada": [
+      "rangi o'chib xiralashmoq",
+      "O'sha so'zning ma'nosi rangi o'chib xiralashdi."
+    ],
+    "word_tongyongdoeda": [
+      "ommaviy qo'llanmoq",
+      "Bu ibora hanuz ommaviy qo'llanadi."
+    ],
+    "word_uhoehada": [
+      "aylanib o'tmoq",
+      "Yo'l ta'miri uchastkasini aylanib o'tdik."
+    ],
+    "word_waegokada": [
+      "buzib ko'rsatmoq",
+      "Faktlarni buzib ko'rsatib bo'lmaydi."
+    ],
+    "word_wonhwalhada": [
+      "to'siqsiz kechmoq",
+      "Muloqot juda to'siqsiz kechadi."
+    ],
+    "word_yeokseolhada": [
+      "qat'iyat bilan isbotlamoq",
+      "Ta'limning ahamiyatini qat'iyat bilan isbotladik."
+    ],
+    "word_yeongyehada": [
+      "bog'lab olib bormoq",
+      "Darslar bilan amaliyotni bog'lab olib bordik."
+    ],
+    "word_yubohada": [
+      "qarorni keyinga surmoq",
+      "Qarorimizni bir muddat keyinga surdik."
     ]
   }
 }

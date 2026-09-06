@@ -13408,6 +13408,246 @@
     "word_hayeomeobsi": [
       "walang humpay at malalim ang iniisip",
       "Walang humpay akong nakatanaw sa labas ng bintana."
+    ],
+    "word_apchukada": [
+      "paikliin",
+      "Pinaikli namin ang mahabang ulat sa dalawang pahina."
+    ],
+    "word_baejehada": [
+      "alisin sa pagpipilian",
+      "Inalis namin sa pagpipilian ang posibilidad na iyon."
+    ],
+    "word_balchwe": [
+      "sipi",
+      "Nagbasa kami ng sipi mula sa ulat."
+    ],
+    "word_beonbokada": [
+      "bawiin ang pasya",
+      "Binawi namin ang pasya kahapon."
+    ],
+    "word_bowanhada": [
+      "punan ang kulang",
+      "Pinunan namin ang kulang na dokumento."
+    ],
+    "word_bugakdoeda": [
+      "mapabalikwas sa unahan",
+      "Muling napabalikwas sa unahan ang usapin ng kaligtasan."
+    ],
+    "word_buhapada": [
+      "naaayon sa",
+      "Naaayon sa layunin ang planong ito."
+    ],
+    "word_byeonghaenghada": [
+      "sabay na isagawa",
+      "Sabay naming isinasagawa ang trabaho at pag-aaral."
+    ],
+    "word_chaksuhada": [
+      "simulan ang gawain",
+      "Sinimulan namin ang gawain sa bagong proyekto."
+    ],
+    "word_chamsinhada": [
+      "sariwa at bago",
+      "Napakasariwa at bago ng ideya."
+    ],
+    "word_chokguhada": [
+      "mariing hilingin",
+      "Mariin naming hiniling ang mabilis na hakbang."
+    ],
+    "word_daedudoeda": [
+      "lumitaw bilang isyu",
+      "Malakas na lumitaw ang mga isyu sa kapaligiran."
+    ],
+    "word_danjeol": [
+      "pagkaputol ng ugnayan",
+      "Malaki ang pagkaputol ng ugnayan sa dalawang henerasyon."
+    ],
+    "word_dochulhada": [
+      "makarating sa konklusyon",
+      "Pagkatapos ng mahabang pulong ay nakarating kami sa konklusyon."
+    ],
+    "word_dongwonhada": [
+      "ipakilos",
+      "Ipinakilos namin ang lahat ng kagamitan."
+    ],
+    "word_eogap": [
+      "pang-aapi",
+      "Nakaahon sila sa mahabang pang-aapi."
+    ],
+    "word_eunpyehada": [
+      "itago ang katotohanan",
+      "Itinago ang sanhi ng aksidente."
+    ],
+    "word_gaeseonhada": [
+      "pabutihin",
+      "Pinabuti namin ang kalagayan sa trabaho."
+    ],
+    "word_gangjohada": [
+      "bigyang-diin",
+      "Lalo naming binigyang-diin ang kaligtasan."
+    ],
+    "word_giyeohada": [
+      "mag-ambag",
+      "Nag-ambag ang pananaliksik na ito sa panggagamot."
+    ],
+    "word_gochal": [
+      "malalim na pagsusuri",
+      "Nangangailangan ng mas malalim na pagsusuri ang suliraning ito."
+    ],
+    "word_gongheonhada": [
+      "makapaglingkod",
+      "Malaki ang naipaglingkod namin sa pag-unlad ng lugar."
+    ],
+    "word_guchukada": [
+      "magtayo ng sistema",
+      "Nagtayo kami ng bagong sistema ng pamamahala."
+    ],
+    "word_gyeongnyeohada": [
+      "buhayin ang loob",
+      "Malakas naming binuhayan ng loob ang mga manlalaro."
+    ],
+    "word_gyujehada": [
+      "saklawin ng patakaran",
+      "Saklaw ng batas ang patalastas."
+    ],
+    "word_haesohada": [
+      "pawiin",
+      "Pinawi namin ang lahat ng hindi pagkakaunawaan."
+    ],
+    "word_hwakchunghada": [
+      "palawakin at punan",
+      "Pinalawak at pinunan namin ang mga pasilidad medikal."
+    ],
+    "word_ilgwandoeda": [
+      "magkatugma mula simula",
+      "Magkatugma ang paliwanag mula pa sa simula."
+    ],
+    "word_imbakada": [
+      "nakaamba na",
+      "Nakaamba na ang huling araw."
+    ],
+    "word_injeopada": [
+      "magkatabi ang hangganan",
+      "Magkatabi ang hangganan ng dalawang bansa."
+    ],
+    "word_iryejeok": [
+      "labas sa karaniwan",
+      "Nagpatuloy ang init na labas sa karaniwan."
+    ],
+    "word_jaepyeonhada": [
+      "muling ayusin ang balangkas",
+      "Malawakan naming muling inayos ang balangkas ng mga tanggapan."
+    ],
+    "word_jeohaehada": [
+      "makasagabal",
+      "Nakasasagabal sa konsentrasyon ang ingay."
+    ],
+    "word_jeolchung": [
+      "gitnang landas",
+      "Kailangan ng gitnang landas sa dalawang opinyon."
+    ],
+    "word_jeongnipada": [
+      "matibay na itatag",
+      "Matibay naming itinatag ang bagong pamantayan."
+    ],
+    "word_jincheok": [
+      "takbo ng gawain",
+      "Mabilis ang takbo ng gawaing pagtatayo."
+    ],
+    "word_jiyanghada": [
+      "sinasadyang iwasan",
+      "Sinasadya naming iwasan ang labis na kompetisyon."
+    ],
+    "word_joyulhada": [
+      "pag-ayusin ang tugma",
+      "Maaga naming pinag-ayos ang tugma ng iskedyul."
+    ],
+    "word_junsuhada": [
+      "mahigpit na sundin",
+      "Mahigpit na sundin ang mga tuntunin sa kaligtasan."
+    ],
+    "word_juryeokada": [
+      "ituon ang pangunahing lakas",
+      "Ngayong taon ay itinutuon namin ang pangunahing lakas sa pagluluwas."
+    ],
+    "word_mobeom": [
+      "huwaran",
+      "Naging huwaran para sa mga nakababata."
+    ],
+    "word_myeongsihada": [
+      "tahasang isaad",
+      "Tahasan naming isinaad ang taning sa kontrata."
+    ],
+    "word_nakgwanjeok": [
+      "maasahin sa magandang kahihinatnan",
+      "Maasahin sa magandang kahihinatnan ang pananaw."
+    ],
+    "word_nujeokdoeda": [
+      "maipon nang paunti-unti",
+      "Naipon nang paunti-unti ang pagod."
+    ],
+    "word_piryeonjeok": [
+      "tiyak na mangyayari",
+      "Tiyak na mangyayari ang pagtaas ng bayad."
+    ],
+    "word_sanchulhada": [
+      "tuusin ang bilang",
+      "Tinuos namin nang wasto ang bilang ng gastos."
+    ],
+    "word_sarye": [
+      "totoong pangyayari",
+      "May ilang magkakatulad na totoong pangyayari."
+    ],
+    "word_seonbyeolhada": [
+      "salain at piliin",
+      "Sinala at pinili namin ang mga aplikante sa papeles."
+    ],
+    "word_simhwadoeda": [
+      "lumalim pa",
+      "Lumalim pa ang agwat sa pagitan ng mga rehiyon."
+    ],
+    "word_sisahada": [
+      "maghudyat ng",
+      "Naghuhudyat ng malaking pagbabago ang resultang ito."
+    ],
+    "word_sooedoeda": [
+      "maiwan sa gilid",
+      "Naiwan sa gilid ng pag-unlad ang maliliit na nayon."
+    ],
+    "word_tagaehada": [
+      "lampasan ang barado",
+      "Nalampasan namin ang baradong yugto."
+    ],
+    "word_toesaekada": [
+      "kumupas ang halaga",
+      "Kumupas ang halaga ng salitang iyon."
+    ],
+    "word_tongyongdoeda": [
+      "laganap na gamitin",
+      "Laganap pa ring ginagamit ang pananalitang ito."
+    ],
+    "word_uhoehada": [
+      "lumiko palayo",
+      "Lumiko kami palayo sa bahaging inaayos."
+    ],
+    "word_waegokada": [
+      "pilipitin ang katotohanan",
+      "Hindi dapat pilipitin ang katotohanan."
+    ],
+    "word_wonhwalhada": [
+      "tumakbong maayos",
+      "Napakaayos ng takbo ng komunikasyon."
+    ],
+    "word_yeokseolhada": [
+      "mariing ipaglaban",
+      "Mariin naming ipinaglaban ang halaga ng edukasyon."
+    ],
+    "word_yeongyehada": [
+      "iugnay",
+      "Iniugnay namin ang mga aralin at ang praktikum."
+    ],
+    "word_yubohada": [
+      "ipagpaliban ang pasya",
+      "Sandali naming ipinagpaliban ang pasya."
     ]
   }
 }
