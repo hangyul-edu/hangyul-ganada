@@ -6763,8 +6763,8 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,381 unit cases across three packages — 1048
-web, 216 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
+The suites run green in full: 1,381 unit cases across three packages — 1,048
+web, 237 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
 against a face the app does not draw, and the conjugation panel against a

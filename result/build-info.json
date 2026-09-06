@@ -1,14 +1,14 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.3",
-  "commit": "3e367ee1d8783a10b26c395ca09e82e3ed7fbeb3",
+  "commit": "0e3cf2aef48e90c90cb4dbc3bdc9bde248df131a",
   "source_state": {
     "dirty": false,
     "fingerprint": null,
     "changed_files": 0,
     "untracked_files": 0
   },
-  "built_at": "2026-09-06T10:17:46.606Z",
+  "built_at": "2026-09-06T11:36:42.354Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",

@@ -111,8 +111,8 @@ says which of the two it is.
 | `npm run docs:consistency:check` | 65 figures across 6 documents |
 | `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
 | `npm run locale:editorial:check` | 0 errors, 0 warnings |
-| `npm run test:e2e` | see the run recorded below |
-| Unit suites | web, Korean morphology **237**, handwriting core **96** — all passing |
+| `npm run test:e2e` | **578 passed** in 38.7 min across the mobile and desktop projects |
+| Unit suites | web **1,048**, Korean morphology **237**, handwriting core **96** — **1,381**, all passing |
 | `npm run native:bundle:check` | 14,152 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
 | `npm run release:current` | both delivery manifests at HEAD |
 
@@ -191,6 +191,6 @@ Level Test.
 ```
 95752af19c29b3365fdc58cfe10d0422acb772408cc1dd0eefe3840d7073aad0  hangyul-ganada-release.apk
 4dc538877ec39dd4117aad07c268f438c94696d227316f634260cf1c7c8d7dee  hangyul-ganada-release.aab
-c2ce7f671b6181d23d919ae7e81c742ccef211807e99eac38409e13a84ed9476  docs/report.pdf
-0c38ffe96b6cd52cb255d313485671746aca04d155b447a21599bfdff287df38  build-info.json
+e314326ad816040652a0bc41f5e224c5a36ace73e631b45fee7dc9447b0c1c25  docs/report.pdf
+3318d472418fbb9b0f2f0bfee76b7bd42f0bfa3d8e7b14897e476578a810bcf8  build-info.json
 ```
