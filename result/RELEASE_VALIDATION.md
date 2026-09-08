@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `c9282645` on branch `main`. `build-info.json` →
+**Source:** commit `753cf076` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -14,79 +14,64 @@ middle of writing.
 **Built:** 8 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 16 validation.** Codes 3 through 16 are spent,
-each by an artefact that was actually produced. This is 17.
+**This supersedes the versionCode 17 validation.** Codes 3 through 17 are spent,
+each by an artefact that was actually produced. This is 18.
 
 ---
 
 ## Why this release happened
 
-**A customer sentence beat every gate in the repository: the level test is too
-hard.** It was, and for two reasons that have nothing to do with each other.
+**The previous release fixed a level test that opened too hard and made it too
+slow to recover.** Bounding the difficulty step at three levels — the right fix
+for a test whose first question was at level 14 of 30 — rate-limited the walk to
+the speed of the posterior, which moves at the speed of accumulated evidence
+rather than of the last answer. A learner whose true level is 30 and who answered
+*I don't know* to the first six questions was reported at **level 2**; at true 25,
+6; at true 20, 7. With no early stumble the same engine reported 30, 25 and 20
+exactly.
 
-**The sequence.** The estimator was sound and was being asked the wrong
-question. With nothing asked the posterior is the prior, the prior is
-uninformative and therefore centred, so the most informative item sits in the
-middle of the scale — and that was question one for every learner in the
-product, including one who had finished the alphabet an hour earlier. Selection
-was unconstrained thereafter. Measured over 6,000 simulated sittings: the
-opening item at **level 14 of 30** for everybody, the largest step between two
-questions **six levels**, the longest run at one level **twenty-five**, and
-**42.8%** of a level-2 learner's opening five questions more than six levels
-above them.
+Two causes. Selection followed the posterior, so the walk crept upward one level
+at a time and ran out of questions. And the response model had no term for a
+learner declining a word they know — `P(unknown)` was `1 − known`, so at θ=30 a
+decline on a level-1 word had probability 0.0002 and six of them cost 10²³.
 
-Four rules now sit on top of the information criterion — a warm-up ladder, a
-step bounded at three levels, no level three times running, and a confirmation
-group at the settled estimate. Opening level 2, largest step 3, longest run 2,
-opening figure **1.0%**. Accuracy did not move: MAE 1.31 against 1.29.
+Selection now steers by an explicit bracket and hands back to the posterior once
+it closes to two levels; the presented step stays bounded at three, so the
+internal target may jump while the learner still sees a walk. The model gains a
+decline term of 0.03. A true level-30 sitting with six opening declines now
+reports 30.
 
-**The bank, which is the worse half.** Dictionary headwords are levelled by the
-frequency rank of their *spelling*, and Korean writes many different words the
-same way. 누가 ranks 107th because it means *who*; the bank asked it at level 1
-with **"nougat"** keyed as the correct answer. 내 ranks 3rd because it means
-*my* and was keyed to "smell"; 위해 ranks 131st because it means *for the sake
-of* and was keyed to "harm". Sixty-nine such items sat at levels 1 to 5. A
-learner who knew the word was marked wrong for knowing it.
+**The number that hid it.** Accuracy was watched against a simulated learner who
+never fumbles, and against that learner the *previous* engine is better — 95.3%
+of sittings within ±3 levels against this one's 91.1%. Against a learner who
+slips 5% and declines 3% the order reverses: 86.1% against 90.5%. The gate now
+simulates fumbling and prints, in its own output, that its figures are not
+comparable with the ones earlier editions printed.
 
-Levels 1–10 are now entirely curated corpus words. Above the floor, forty
-headwords whose rank belongs to an inflected form of another word were dropped
-(부탁해요 glossed "please", 팔고 glossed "eight Duḥkhas"), along with
-one-syllable headwords, truncated grammar-page glosses, and six grammatical
-forms found by reading a rendered sample — 다가 was asked at level 15 to mean
-"multivalent".
+**Three smaller things found while proving it.** The warm-up ladder ran 2, 4, 6
+even for a learner who had just declined the level-2 word. Difficulty above the
+beginner floor was still frequency alone, so 시기 sat at level 11 glossed
+"opportunity" on a rank shared with five other senses; a dictionary rank is now
+discounted by the square root of its sense count. And the cross-locale
+duplicate-answer check had silently skipped every dictionary headword, which
+`데모` demonstrated by shipping *demo · personality · feedback · a personality*.
 
-**Fifteen questions had two right answers, in languages nothing read them in.**
-Distractors were rejected on their *English* gloss. 확실히 and 정확히 are
-*definitely* and *exactly* in English and one word — *aniq* — in Uzbek.
-
-**And *I don't know* was worth nothing.** Under a model where both it and a
-wrong answer can only happen when the learner does not know, the two likelihoods
-differ by a constant that cancels; ten of each gave identical estimates to twelve
-decimal places. A slip term separates them.
-
-**A sitting now survives the app closing.** Schema 14, and the first new
-persisted field since 13.
-
-**Two things had to be fixed before this pass could verify itself.** The
-previous release bumped the Xcode project in Xcode without adopting its lock
-file, so `verify:release` could not pass on a clean checkout of `main`. And
-three of the checks added *in this pass* could not fail, because each read the
-constant it was guarding — restoring the old unbounded selection produced 174
-passing tests and a green gate.
+**And a screen nobody had measured.** The route audit renders the Level Test's
+*intro* at five widths; the question screen is behind a tap and had never been
+measured at any. It is now, at six viewports across five languages including the
+same phone at 150% and 200% text: no overflow, no clipped option, no overlap, no
+control under 44px.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Level Test selection | A warm-up ladder, a step bounded at three levels, a two-in-a-row repeat limit and a confirmation group, on top of the existing information criterion. A sitting is 20–30 items rather than a flat 30, ending early only when the posterior has settled |
-| Level Test scoring | A slip term, so a declared *I don't know* is strictly stronger evidence of not knowing than a wrong answer. Swept: it costs nothing against learners who never mis-tap and is worth a quarter of a level against those who do |
-| Level Test bank | 4,199 → 4,121 items, 2,246 distinct words. No dictionary headword below level 11; 40 rank-borrowing headwords, the one-syllable headwords, the truncated glosses, the plurals and six grammatical forms removed; distractor collision now tested in every language a meaning exists in. Every non-English language's askable bank rose from 1,014 items to 2,061 |
-| Persistence | Schema 14 adds `level_test_sitting` — the ids presented, the response to each, a seed, the deadline and the locale. Every later item is recomputed from the seed, so a resumed sitting shows the same question and keeps adapting |
-| Localisation | One string in each of 32 bundles: the intro promises a range rather than a fixed thirty. Only the numerals changed |
-| New gates | `leveltest:bank` reads the shipped bank for mis-levelling, unanswerability and two-answer items in all 32 languages; `patent:evidence` fails on a citation in the disclosure package that does not resolve; `upgradeCompatibility.test.ts` walks a complete learner from every one of the twelve supported schema versions |
-| Gates repaired | Four checks that read the constant they guarded now hold their own literals and assert the code agrees. Each was re-broken and watched to fail |
-| Release engineering | `docs:consistency` tracks the four artefact figures, so the report cannot carry a stale copy. The iOS project lock is adopted for the version bump the previous release made in Xcode |
-| Version | Android **1.0.4 / 17**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Level Test selection | An explicit bracket — highest level answered correctly, lowest missed — steers while it is wide and hands back to the posterior once it closes to two levels. Presented difficulty stays bounded at three levels independently of the internal target |
+| Level Test scoring | A decline term, so a learner who knows a word may still press *I don't know*. Without it an early decline bounds the reachable estimate for the rest of the sitting |
+| Safeguards | A bound reopens only on two contradicting answers in a row; the sitting stops only when the bracket has closed *and* the posterior has settled; the warm-up ladder ends on the first miss |
+| Level Test bank | Dictionary ranks discounted by sense count — 시기 moves from 11 to 18, 화상 from 11 to 19; the cross-locale collision check now covers dictionary glosses |
+| New gate | `leveltest:viewport` measures the question screen at 320–390 and at 150% and 200% text in five languages |
+| Version | Android **1.0.5 / 18**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -96,10 +81,10 @@ passing tests and a green gate.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **17**, versionName **1.0.4**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 17 | 16 is spent. Both previously delivered artefacts report a code of 16, the previous `build-info.json` recorded 16, and product files have changed since the commit that produced them — the level-test engine, its item bank in all thirty-two languages, the persisted schema, and one string in each of the thirty-two interface bundles. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 17 is the next valid code rather than the next unused one. |
-| Why 1.0.4 and not 1.0.3 | The previous release was content — a lesson and a set of corrections — and its version name rightly stayed still. This one changes how the Level Test chooses its questions, what its bank contains, what the intro screen promises in thirty-two languages, and the persisted schema. A learner who updates will meet a different test on their first sitting after it, which is what a version name is for. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.4 and `pending_build` 17 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
+| Package | `com.talkhangyul.ganada`, version code **18**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 18 | 17 is spent. Both delivered artefacts report a code of 17 and the previous `build-info.json` recorded 17, and product files have changed since — the level-test engine, its item bank, and the vitest worker cap. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 18 is the next valid code rather than the next unused one. |
+| Why 1.0.5 and not 1.0.4 | The previous release changed how the test *chooses* questions. This one changes how it *recovers* when a learner opens badly, which is a different behaviour and one a learner meets on their first retake after updating: a sitting that would have reported level 2 now reports 30. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 18 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
 
 ## What was run against this tree
 
@@ -237,8 +222,8 @@ viewports.
 ## Checksums
 
 ```
-d6f87ea3e1f93c873759183c918b40d4b6d5bcbd73fcece3261dc543b1b7e9ee  hangyul-ganada-release.apk
-378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357  hangyul-ganada-release.aab
-7a652ff55e82d210bb3eccd6019acfbcc6d4126ae129aed58f8eccf174685ba7  docs/report.pdf
-512ff50e90ccec1a00985d318ec49476a9ef61e30ec82e8b90633059f7a597af  build-info.json
+0596bc8e07c782fed2f80e4562ec642b1ff7a7f4fec5fe24b1d253d5fdf91c3f  hangyul-ganada-release.apk
+934f40685e4ca0415756e130130480314edd19cbb08b9ef76560840bf9c416c3  hangyul-ganada-release.aab
+8dbfe8c63089f9da2258c6971b5f8dc7042b2f7335d0cbf8825cac318fb7506d  docs/report.pdf
+1c30072b5f09d28da67914dafb0f10a93e8dc6613454db6f3cd5fb6a41aefc38  build-info.json
 ```

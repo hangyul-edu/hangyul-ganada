@@ -1,6 +1,6 @@
 # Hangyul ganada — the applications
 
-Built from commit `c92826450ec6697567e371d8682209619901b83d` at 2026-09-08T04:05:06.164Z.
+Built from commit `753cf076520c4f163df4d4671cae7841831beb03` at 2026-09-08T07:07:46.920Z.
 Everything else about this release — both native projects, the store listings,
 the legal pack and the full report — is in `result/`.
 
@@ -25,7 +25,7 @@ app — it is a different app that cannot replace it. The keystore is not in thi
 repository and no password, path or alias appears anywhere in this directory.
 
 Signature schemes: v2 + v3. Application id
-`com.talkhangyul.ganada`, version 1.0.4 (17), min SDK
+`com.talkhangyul.ganada`, version 1.0.5 (18), min SDK
 24, target SDK 36.
 
 To confirm it yourself:

@@ -156,9 +156,9 @@ without trusting the row.
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
 | Issues tracked | 172 | `docs/issues.json` |
-| Signed APK | 90,938,082 bytes (86.7 MiB) | `result/build-info.json` |
-| Signed AAB | 89,097,009 bytes (85.0 MiB) | same |
-| Tests | 1,648 across 77 files | `npm test` |
+| Signed APK | 90,938,998 bytes (86.7 MiB) | `result/build-info.json` |
+| Signed AAB | 89,097,857 bytes (85.0 MiB) | same |
+| Tests | 1,697 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -2259,8 +2259,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 17, versionName 1.0.4 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 90,938,082 bytes (86.7 MiB) — sha256 in §21 |
-| Release AAB | 89,097,009 bytes (85.0 MiB) — sha256 in §21 |
+| Release APK | 90,938,998 bytes (86.7 MiB) — sha256 in §21 |
+| Release AAB | 89,097,857 bytes (85.0 MiB) — sha256 in §21 |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -2319,7 +2319,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1315** (70 files) |
+| Web unit (`vitest`) | **1364** (70 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
 | End-to-end (`playwright`) | **594** (297 × 2 projects) |
@@ -4153,7 +4153,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,648 across 77 files** — handwriting-core 96, korean-morphology 216, web 1315 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **1,697 across 77 files** — handwriting-core 96, korean-morphology 216, web 1364 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -4843,10 +4843,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 90,938,082 bytes (86.7 MiB) |
-| APK sha256 | `d6f87ea3e1f93c873759183c918b40d4b6d5bcbd73fcece3261dc543b1b7e9ee` |
-| AAB | 89,097,009 bytes (85.0 MiB) |
-| AAB sha256 | `378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357` |
+| APK | 90,938,998 bytes (86.7 MiB) |
+| APK sha256 | `0596bc8e07c782fed2f80e4562ec642b1ff7a7f4fec5fe24b1d253d5fdf91c3f` |
+| AAB | 89,097,857 bytes (85.0 MiB) |
+| AAB sha256 | `934f40685e4ca0415756e130130480314edd19cbb08b9ef76560840bf9c416c3` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -6871,7 +6871,7 @@ it.
 One reading note. The evidence written on a **resolved** issue is a record of
 what was found in the cycle that closed it, and where it cites a section number
 that number is the one the report carried at the time. The report has been
-rewritten since and renumbered; the citations on the 3 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
+rewritten since and renumbered; the citations on the 4 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
 were deliberately left as written rather than edited into agreement with a
 document they predate.
 
@@ -7331,7 +7331,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,648 unit cases across three packages — 1,315
+The suites run green in full: 1,697 unit cases across three packages — 1,364
 web, 237 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
