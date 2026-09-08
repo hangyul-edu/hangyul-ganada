@@ -3,9 +3,9 @@ title: Hangyul ganada
 title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
-version: 1.0.4
+version: 1.0.5
 date: 8 September 2026
-describes: The ninth pass, and the first that began from a customer sentence rather than from a gate. The Vocabulary Level Test was reported as excessively difficult. It was, for two reasons that had nothing to do with each other. The estimator was sound and was being asked the wrong question: with nothing asked the posterior is the prior, so the most informative item is in the middle of the scale, and the first question every learner ever saw was at level 14 of 30 — 42.8% of a beginner's opening five were more than six levels above them, and a learner who got everything wrong was asked level 1 twenty-five times running. The item bank was worse: dictionary headwords are levelled by the frequency of their spelling, so 누가 sat at level 1 — rank 107, because it means *who* — with "nougat" keyed as the correct answer, and 내 at level 3 with "smell", and 위해 at level 1 with "harm". Sixty-nine such items were in the beginner band and no gate in the repository could have seen one. Fifteen more offered the same answer twice in some language: *aniq* against *aniq* in Uzbek, *schwer sein* against *schwer sein* in German. And the *I don't know* button, which the product and this report and the patent disclosure all described as cleaner evidence than a wrong guess, was worth exactly the same to the estimator — provably, to twelve decimal places. All four are fixed and each carries the measurement that shows it. A sitting now also survives the app being closed. Artefacts rebuilt from this pass at versionCode 17.
+describes: The tenth pass, and it is about the ninth. The previous pass fixed a level test that opened too hard — the first question was at level 14 of 30 for everybody — and introduced a worse defect in doing it. Bounding the step at three levels rate-limited the walk to the speed of the posterior, so a learner whose true level is 30 and who answered *I don't know* to the first six questions was reported at **level 2**; at true 25 it reported 6, at 20 it reported 7. With no early stumble the same engine reported 30, 25 and 20 exactly, so neither the bank nor the arithmetic was at fault. Two causes: selection followed the posterior, which moves at the speed of accumulated evidence rather than of the last answer; and the response model had no term for a learner declining a word they know, so six early blanks cost 10²³ and could not be climbed out of. Selection now steers by an explicit bracket and hands back to the posterior once it closes; the model gains a decline term. Against a learner who fumbles like a person this engine places 90.5% of sittings within ±3 levels where the previous one placed 86.1% — and against a simulated learner who never fumbles it is worse, 91.1% against 95.3%, which is the population the old gate measured and the reason neither defect was visible in the number being watched. Also: the warm-up ladder ran 2, 4, 6 even for a learner who had just said they did not know; difficulty above the floor was still frequency alone, so 시기 sat at level 11 glossed "opportunity" with six senses; the cross-locale duplicate-answer check had silently skipped every dictionary headword; and the question screen a learner spends eight minutes on had never been measured on a phone, only the intro. Artefacts rebuilt at versionCode 18.
 mark: report-assets/mark.png
 ---
 
@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.4**, Android versionCode **17** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.5**, Android versionCode **18** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -155,7 +155,7 @@ without trusting the row.
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 167 | `docs/issues.json` |
+| Issues tracked | 172 | `docs/issues.json` |
 | Signed APK | 90,938,082 bytes (86.7 MiB) | `result/build-info.json` |
 | Signed AAB | 89,097,009 bytes (85.0 MiB) | same |
 | Tests | 1,648 across 77 files | `npm test` |
@@ -208,8 +208,14 @@ Four rules now sit on top of the information criterion — a warm-up ladder, a
 step bounded at three levels, no level three times running, and a confirmation
 group at the settled estimate. The opening figure is now **1.0%**, the largest
 step 3, the longest run 2. Accuracy moved by less than a tenth of a level:
-MAE 1.37 against 1.29, ±3 95.2% against 95.9% — see §10.2 for what that
-cost is and what it buys.
+MAE 1.37 against 1.29, ±3 95.2% against 95.9%.
+
+**And that is where the ninth pass stopped, which was too early.** Bounding the
+step fixed what a learner saw and rate-limited what the sitting could learn: the
+walk now moved at the speed of the *posterior*, and the posterior moves at the
+speed of accumulated evidence. A learner who opened badly could not climb back
+inside thirty questions. §10.2a is that defect and its repair, and it is the
+headline of this pass.
 
 Those last two numbers are why this survived nine passes of this report. **Every
 accuracy figure was already true of the engine that opened at level 14.** An
@@ -1105,9 +1111,15 @@ Measured on the shipped build, over 200 simulated sittings at each of 30 levels:
 | Largest step between two questions | **6** | **3** | `MAX_STEP`; gated on the global maximum |
 | Longest run at one level | **25** | **2** | `REPEAT_LIMIT`; gated |
 | Of a level-2 learner's first five questions, share more than six levels above them | **42.8%** | **1.0%** | gated at 15% |
-| Mean absolute error | 1.29 | 1.37 | see below |
-| Within ±3 levels | 95.9% | 95.2% | see below |
-| Within ±5 levels | 99.7% | 99.4% | see below |
+| Mean absolute error | 1.29 | 1.37 | superseded — see §10.2a |
+| Within ±3 levels | 95.9% | 95.2% | superseded — see §10.2a |
+| Within ±5 levels | 99.7% | 99.4% | superseded — see §10.2a |
+
+*The three accuracy rows above were measured against a simulated learner who
+never fumbles, which is the measurement §10.2a shows was hiding the defect that
+pass introduced. They are kept because they are what was true of that engine
+against that learner, and marked because neither half of that sentence is the
+current claim.*
 
 **The accuracy rows moved, and the honest account of it is two sentences.** Most
 of the 0.08 is the slip term of §10.5, which is an A/B this simulation is on the
@@ -1149,6 +1161,87 @@ else. A simulated learner retaking with the *inverse* of their true level (a
 level-2 learner carrying a stored 29) is placed at MAE 1.39 against 1.36 for a
 first sitting: 0.03 levels, where a prior-based use of the same number would move
 them a long way. That gap is gated.
+
+## 10.2a And then it was too slow: a true level-30 sitting reported 2 — **the headline defect of this pass, fixed**
+
+The previous pass bounded the step at three levels and, in doing so,
+rate-limited the walk to the speed of the posterior. The posterior moves at the
+speed of *accumulated* evidence. So a learner who opened badly could not climb
+back inside the sitting:
+
+| true level | opened with six *I don't know* | reported |
+| --- | --- | --- |
+| 20 | yes | **7** |
+| 25 | yes | **6** |
+| 30 | yes | **2** |
+| 20 / 25 / 30 | no | 20 / 25 / 30, exactly |
+
+Nothing was wrong with the bank and nothing was wrong with the arithmetic. Six
+declines is not an exotic opening: nerves, an unfamiliar screen in the first
+seconds, or three warm-up words a learner happens not to know.
+
+**Two causes, and the second is the one that mattered.**
+
+**Selection asked the estimator to do a job it is not for.** A sitting does two
+things — *find* the learner's level, and *estimate* it precisely — and those want
+opposite speeds. `nextLevel` now keeps an explicit bracket: `lowerBound`, the
+highest level answered correctly; `upperBound`, the lowest missed or declined. It
+targets the midpoint while the bracket is wide and hands back to the posterior
+once it closes to two levels. The bracket moves at the speed of the last answer,
+so the internal target can jump twenty levels — while `MAX_STEP` keeps what the
+learner *sees* to three. Separating those two was the whole fix.
+
+**And the model had no way to explain a decline.** `P(unknown)` was `1 − known`,
+which asserts that a learner who knows a word never presses *I don't know*. At
+θ=30 a decline on a level-1 word then has probability 0.0002; six of them cost
+10²³, and the estimator preferred the theory that a level-2 learner guessed right
+twenty-three times running. The pass before had added a slip term so a *wrong*
+answer no longer proved ignorance, and left the other branch absolute — it fixed
+one half of the same mistake. A decline term of 0.03 closes it:
+
+| decline | MAE, learner never fumbles | MAE, learner fumbles | true-30, six opening declines |
+| --- | --- | --- | --- |
+| 0 | 1.50 | 1.77 | **2** |
+| 0.01 | 1.48 | 1.67 | 28 |
+| **0.03** | 1.53 | **1.63** | 28 |
+| 0.05 | 1.55 | 1.68 | 29 |
+
+After both: a true level-30 learner with six opening declines reports 30; at
+15, 20 and 25 the recovery is exact or within one.
+
+**The number that hid both defects.** Accuracy was being watched against a
+simulated learner who never mis-taps and never declines a word they know — and
+against that learner the *old* engine is better than this one:
+
+| population | old engine | new engine |
+| --- | --- | --- |
+| never fumbles | **1.33 MAE, 95.3% within ±3** | 1.55, 91.1% |
+| slips 5% | 1.50, 92.7% | 1.56, 91.7% |
+| slips 5% and declines 3% | 1.90, 86.1% | **1.61, 90.5%** |
+| six opening declines | 11.77, 18.6% | **5.64, 44.4%** |
+
+The crossover is the fumbling assumption, and it is the reason a metric that
+looked healthy through two passes was hiding a twenty-three-level under-placement.
+`leveltest:qa:check` now simulates a learner who fumbles and prints, in its own
+output, that its numbers are not comparable with the ones earlier editions
+printed.
+
+**Safeguards, each measured.** A bound reopens only on two contradicting answers
+in a row — one correct answer above the ceiling is a 25% coin, and reopening on
+it placed every simulated learner between levels 9 and 18 **2.2 levels too
+high**. The sitting stops only when the bracket has closed *and* the posterior
+has settled; a twenty-answer history is pinned in the tests where the posterior
+is confident (standard error 1.47) about a region whose bounds are seventeen
+apart. And the warm-up ladder now ends on the first miss: it ran 2, 4, 6
+regardless, so the gentlest opening in the product was the one place a struggling
+learner could not escape.
+
+**Negative tests.** Restoring the old likelihood, the old warm-up, the old
+steering, the old stopping rule or single-answer reopening each makes the suite
+fail — 4, 1, 4, 1 and 1 tests respectively. The stopping-rule case needed a
+history *found* by searching two hundred thousand random ones for a case where
+the two rules disagree; it is pinned as a literal rather than generated, because
+a generator that stopped producing it would silently retire the test.
 
 ## 10.3 Why it felt too hard, part two: the bank asked 누가 to mean "nougat" — **P1, fixed**
 
