@@ -269,6 +269,10 @@ _NOT_STANDALONE = {
     for term in terms
 }
 
+#: Surfaces that are a grammatical form rather than a word. See the reviewed
+#: file's own note for why this is a list and not a rule.
+_GRAMMATICAL_FORM = set(_SAFETY["notStandalone"].get("grammaticalForm", []))
+
 
 def unsuitable(headword: str, gloss: str) -> bool:
     """Whether a word is one the test must not show. See `_UNSUITABLE`."""
@@ -346,6 +350,8 @@ def usable_dictionary_anchor(headword: str, gloss: str, pos: str) -> bool:
     if not usable_anchor(headword, gloss, pos):
         return False
     if len(headword) < 2:
+        return False
+    if headword in _GRAMMATICAL_FORM:
         return False
     return True
 
@@ -452,6 +458,22 @@ def build() -> dict:
     therefore no level, and they are dropped: a question whose level is a guess
     measures nothing.
     """
+    # The plural rule `usable_dictionary_anchor` documents, applied where it can
+    # be: it needs the *whole* candidate set to know whether the singular is
+    # already an anchor, and that set does not exist until the corpus and the
+    # dictionary have been put together. 새들 is 새 with the plural marker, and
+    # asking about it is asking about 새 twice, once with a suffix.
+    known_words = {row["word"] for row in rows}
+    rows = [
+        row
+        for row in rows
+        if not (
+            row["source"] == "dictionary"
+            and row["word"].endswith("들")
+            and row["word"][:-1] in known_words
+        )
+    ]
+
     inflecting = frozenset(row["word"] for row in rows if row["pos"] in {"verb", "adjective"})
     readings = frequency.measure([row["word"] for row in rows], inflecting)
 

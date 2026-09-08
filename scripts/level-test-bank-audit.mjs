@@ -70,12 +70,17 @@ const byWordId = new Map(anchors.map((anchor) => [anchor.id, anchor]));
 const LEMMAS = new Set(anchors.map((anchor) => anchor.word));
 
 /**
- * The floor, read from the builder rather than repeated.
+ * The floor, written here and asserted against the builder.
  *
- * A constant copied into a gate is a gate that keeps passing after somebody
- * lowers the thing it guards.
+ * The first version of this read the constant out of `build_level_test.py`,
+ * with a comment claiming that copying it into the gate would let the gate keep
+ * passing after somebody lowered it. The comment had it exactly backwards:
+ * *reading* it means lowering the builder's floor lowers the gate with it, and
+ * the guard evaporates silently. The literal is the guard; the builder is
+ * required to agree with it.
  */
-const FLOOR = Number(
+const FLOOR = 11;
+const DECLARED_FLOOR = Number(
   /^DICTIONARY_LEVEL_FLOOR = (\d+)$/m.exec(
     readFileSync(join(ROOT, 'scripts', 'content', 'build_level_test.py'), 'utf8'),
   )?.[1] ?? '0',
@@ -85,11 +90,51 @@ const FLOOR = Number(
 const MIN_ITEMS_PER_LEVEL = 60;
 const MIN_WORDS_PER_LEVEL = 30;
 
+/**
+ * The surfaces that are a grammatical form rather than a word.
+ *
+ * Written out here, and the reviewed content file is required to contain them.
+ *
+ * The first version of this read the list out of `learner-safety.json`, with a
+ * comment arguing that a reviewed list — unlike a threshold — cannot be weakened
+ * by being read, because adding a term makes the gate stricter. That argument is
+ * wrong in the one direction that matters: **emptying** the list empties the
+ * builder's filter and this gate together, and the negative test that emptied it
+ * passed. It is the same fault as reading `MAX_STEP` from the module under test,
+ * in a costume that made it look like a virtue.
+ *
+ * So the gate carries the terms and the content file is checked against them.
+ * The file stays the place the *reasons* live, and stays where a term is added;
+ * a term can only be removed by editing both.
+ */
+const GRAMMATICAL_FORM = ['다가', '듯이', '먹기', '하이다', '내야', '쓸데'];
+const REVIEWED_FORMS = new Set(
+  JSON.parse(readFileSync(join(ROOT, 'content', 'vocabulary', 'learner-safety.json'), 'utf8'))
+    .notStandalone.grammaticalForm ?? [],
+);
+
 const BROKEN_GLOSS =
   /…|\.\.\.|\b(tense|participle|conjugation|declension|stem|ending|particle|suffix|prefix|infix) of\b|\bformed from\b|\bplain style\b/i;
 
 const findings = [];
 const note = (rule, detail) => findings.push({ rule, detail });
+
+for (const term of GRAMMATICAL_FORM) {
+  if (!REVIEWED_FORMS.has(term)) {
+    note(
+      'a reviewed exclusion has been removed from the content file',
+      `${term} is excluded by this gate and is no longer in learner-safety.json — ` +
+        'the builder would ship it again',
+    );
+  }
+}
+
+if (DECLARED_FLOOR !== FLOOR) {
+  note(
+    'the builder and this gate disagree about the floor',
+    `build_level_test.py declares ${DECLARED_FLOOR}; this gate is written against ${FLOOR}`,
+  );
+}
 
 // --- the anchor a question is about ------------------------------------------
 
@@ -120,6 +165,12 @@ for (const { anchor } of asked.values()) {
   if (anchor.word.length < 2) {
     note('one-syllable dictionary word', `${anchor.word} at level ${anchor.level} — "${anchor.gloss}"`);
   }
+  if (GRAMMATICAL_FORM.includes(anchor.word)) {
+    note(
+      'a grammatical form asked as a word',
+      `${anchor.word} at level ${anchor.level} — "${anchor.gloss}"`,
+    );
+  }
   const [reading] = analyse(anchor.word, (lemma) => LEMMAS.has(lemma));
   if (reading) {
     note(
@@ -129,7 +180,20 @@ for (const { anchor } of asked.values()) {
   }
 }
 
+/*
+  A plural is not a second word. 새들 is 새 with the plural marker and both were
+  in the bank; asking about the plural is asking about the singular twice, once
+  with a suffix.
+*/
+const askedWords = new Set([...asked.values()].map(({ anchor }) => anchor.word));
 for (const { anchor } of asked.values()) {
+  if (
+    anchor.source === 'dictionary' &&
+    anchor.word.endsWith('들') &&
+    askedWords.has(anchor.word.slice(0, -1))
+  ) {
+    note('a plural of a word already asked about', `${anchor.word} at level ${anchor.level}`);
+  }
   if (BROKEN_GLOSS.test(anchor.gloss)) {
     note('truncated or grammatical gloss', `${anchor.word} (L${anchor.level}) — "${anchor.gloss}"`);
   }

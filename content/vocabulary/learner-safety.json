@@ -192,6 +192,7 @@
       "코카인",
       "헤로인",
       "대마초",
+      "마리화나",
       "뽕"
     ],
     "graphic": [
@@ -216,7 +217,25 @@
       "The rest are bound nouns — 명, 살, 원 never appear without a number in front",
       "of them, so as a standalone answer choice they are not words a learner has",
       "ever met.",
-      "질, 사정 and 기생 were on the excluded list and are off it: each is an everyday word — quality, circumstances, a parasite — and an exact-match exclusion would have taken the everyday sense with the other one. 벌, 개, 잔, 번 and 원 came off the bound-noun list for the same reason: the curriculum teaches them as a bee, a dog, a drinking glass, a time and the won, and they are perfectly good answer choices."
+      "질, 사정 and 기생 were on the excluded list and are off it: each is an everyday word — quality, circumstances, a parasite — and an exact-match exclusion would have taken the everyday sense with the other one. 벌, 개, 잔, 번 and 원 came off the bound-noun list for the same reason: the curriculum teaches them as a bee, a dog, a drinking glass, a time and the won, and they are perfectly good answer choices.",
+      "",
+      "`grammaticalForm` is a third kind and is only read by the Level Test builder.",
+      "These are not words with a difficult meaning; they are not words. Each is a",
+      "grammatical form or a bound element that Wiktionary happens to carry as a",
+      "headword with a rare Sino-Korean gloss attached, and each therefore takes its",
+      "frequency rank from the ending rather than from the noun. 다가 is the",
+      "connective in 가다가 멈췄어요 and was asked as a level-15 vocabulary item",
+      "meaning \"multivalent\". 먹기 is 먹다 nominalised. 듯이 is the ending in",
+      "비가 올 듯이. 하이다 is a causative of 하다 that no dictionary a learner uses",
+      "lists. 내야 is 내다 plus -어야, glossed as the baseball infield. 쓸데 only",
+      "exists inside 쓸데없다.",
+      "",
+      "They are listed rather than detected because no structural rule separates them",
+      "from the words they look like: 반면, 전면, 정의, 대가, 벌이 and 적의 all",
+      "decompose the same way and are all ordinary vocabulary. A rule that removed",
+      "다가 would remove those too, and a bank without 정의 is a worse bank than one",
+      "with 다가. The list is short, each entry carries its reason above, and it is",
+      "reviewed rather than derived — which is the honest description of what it is."
     ],
     "insultHomograph": [
       "년",
@@ -235,6 +254,14 @@
       "켤레",
       "대",
       "채"
+    ],
+    "grammaticalForm": [
+      "다가",
+      "듯이",
+      "먹기",
+      "하이다",
+      "내야",
+      "쓸데"
     ]
   }
 }

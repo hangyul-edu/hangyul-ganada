@@ -82,6 +82,22 @@ for (const item of bank.items) {
 const levelsAvailable = [...byLevel.keys()].sort((a, b) => a - b);
 const KINDS = planKinds();
 
+/**
+ * The bounds, written out here rather than read from the module.
+ *
+ * This gate asserted `shape.step <= MAX_STEP` with `MAX_STEP` imported from the
+ * code it is checking. That passes when somebody sets `MAX_STEP` to 30, which is
+ * the behaviour the bound exists to prevent — the check moved with the thing it
+ * was checking and reported nothing. `levelTest.test.ts` had the same fault and
+ * both were found by restoring the old unbounded selection and watching every
+ * test pass.
+ *
+ * So the numbers are here, and the module is asserted to agree with them below.
+ * A bound is a promise about how a test feels; changing one should take two
+ * deliberate edits.
+ */
+const BOUNDS = { step: 3, repeat: 2, warmupTop: 6, min: 20, max: 30, tooHardShare: 0.15 };
+
 /** One sitting, for a learner whose true level is `truth`. */
 function sit(truth, random, kindsAsked = new Map(), previousLevel = null) {
   const asked = [];
@@ -312,7 +328,7 @@ console.log(
     `   (bound: the warm-up ladder, ${WARMUP_ITEMS} items)`,
 );
 console.log(`    largest step between questions      ${shape.step}   (bound ${MAX_STEP})`);
-console.log(`    longest run at one level            ${shape.longestRun}   (bound ${REPEAT_LIMIT})`);
+console.log(`    longest run at one level            ${shape.longestRun}   (bound ${BOUNDS.repeat})`);
 console.log(
   `    of the first 5 questions, share more than 6 levels above the learner  ` +
     `${((shape.tooHardOpenings / shape.openings5) * 100).toFixed(1)}%`,
@@ -352,11 +368,25 @@ for (const row of bandRows) {
     problems.push(`${row.label} are placed ${row.bias.toFixed(2)} levels from the truth on average`);
   }
 }
-if (minItems < MIN_ITEM_COUNT || maxItems > MAX_ITEM_COUNT) {
+if (minItems < BOUNDS.min || maxItems > BOUNDS.max) {
   problems.push(
     `sittings asked ${minItems}–${maxItems} items; every one must ask between ` +
-      `${MIN_ITEM_COUNT} and ${MAX_ITEM_COUNT}`,
+      `${BOUNDS.min} and ${BOUNDS.max}`,
   );
+}
+/*
+  And the constants themselves, so that pinning the literals above does not mean
+  a moved constant goes unnamed — it would otherwise show up only as every other
+  check failing at once.
+*/
+for (const [name, actual, wanted] of [
+  ['MAX_STEP', MAX_STEP, BOUNDS.step],
+  ['REPEAT_LIMIT', REPEAT_LIMIT, BOUNDS.repeat],
+  ['MIN_ITEM_COUNT', MIN_ITEM_COUNT, BOUNDS.min],
+  ['MAX_ITEM_COUNT', MAX_ITEM_COUNT, BOUNDS.max],
+  ['WARMUP_ITEMS', WARMUP_ITEMS, 3],
+]) {
+  if (actual !== wanted) problems.push(`${name} is ${actual}; this gate is written against ${wanted}`);
 }
 /*
  * The gradualness rules, as gates rather than as prose.
@@ -366,17 +396,19 @@ if (minItems < MIN_ITEM_COUNT || maxItems > MAX_ITEM_COUNT) {
  * questions at level 1, and 42.8% of a beginner's opening spent on words they
  * could not know.
  */
-if (shape.step > MAX_STEP) {
-  problems.push(`the difficulty stepped ${shape.step} levels between two questions; the bound is ${MAX_STEP}`);
+if (shape.step > BOUNDS.step) {
+  problems.push(`the difficulty stepped ${shape.step} levels between two questions; the bound is ${BOUNDS.step}`);
 }
-if (shape.longestRun > REPEAT_LIMIT) {
-  problems.push(`one level was asked ${shape.longestRun} times running; the bound is ${REPEAT_LIMIT}`);
+if (shape.longestRun > BOUNDS.repeat) {
+  problems.push(`one level was asked ${shape.longestRun} times running; the bound is ${BOUNDS.repeat}`);
 }
 for (const opening of shape.openings) {
-  if (opening > 6) problems.push(`a sitting opened at level ${opening}; the warm-up ladder tops out at 6`);
+  if (opening > BOUNDS.warmupTop) {
+    problems.push(`a sitting opened at level ${opening}; the warm-up ladder tops out at ${BOUNDS.warmupTop}`);
+  }
 }
 const tooHard = shape.tooHardOpenings / shape.openings5;
-if (tooHard > 0.15) {
+if (tooHard > BOUNDS.tooHardShare) {
   problems.push(
     `${(tooHard * 100).toFixed(1)}% of opening questions are more than six levels above the learner`,
   );
@@ -418,8 +450,8 @@ if (contextShare < COMPOSITION.context * 0.8) {
 
 if (problems.length === 0) {
   console.log(
-    `\nthe test places a simulated learner within ±3 levels, in ${MIN_ITEM_COUNT}–${MAX_ITEM_COUNT} ` +
-      `items, opening on the warm-up ladder and never stepping more than ${MAX_STEP} levels.`,
+    `\nthe test places a simulated learner within ±3 levels, in ${BOUNDS.min}–${BOUNDS.max} ` +
+      `items, opening on the warm-up ladder and never stepping more than ${BOUNDS.step} levels.`,
   );
 } else {
   console.log(`\n${problems.length} problem(s):`);

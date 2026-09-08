@@ -40,6 +40,37 @@ import {
 const ALL_LEVELS = Array.from({ length: LEVELS }, (_, i) => i + 1);
 
 /**
+ * The bounds, written out as numbers rather than read from the module.
+ *
+ * ## Why this matters more than it looks
+ *
+ * The first version of this file asserted `Math.abs(step) <= MAX_STEP` — the
+ * constant imported from the code under test. It passed. It also passed when
+ * `MAX_STEP` was set to 30, which is the whole defect this file exists to
+ * prevent: raising the bound raised the assertion with it, so the test measured
+ * the constant's agreement with itself and reported nothing about the engine.
+ * Restoring the old unbounded selection produced 174 passing tests.
+ *
+ * So the numbers live here, and `the bounds are what they say they are` below
+ * asserts the module still agrees with them. Changing a bound is then a
+ * deliberate edit in two places — which is the point, because a bound is a
+ * promise to a learner about how a test feels, not an implementation detail.
+ */
+const BOUNDS = {
+  /** The most the difficulty may move between two consecutive questions. */
+  step: 3,
+  /** How many questions in a row may share a level. */
+  repeat: 2,
+  /** How many opening items come off the warm-up ladder. */
+  warmup: 3,
+  /** The shortest and longest a sitting may be. */
+  min: 20,
+  max: 30,
+  /** The top of the warm-up ladder for a learner with no history. */
+  opening: 2,
+} as const;
+
+/**
  * Runs a whole sitting against a responder, and returns the item levels in order.
  *
  * The responder is a function so a test can be a learner: `() => 'correct'` is
@@ -73,7 +104,7 @@ describe('where a sitting opens', () => {
       prior is centred at 15, and the most informative item is therefore level
       14 — which is what every learner in the product saw as question one.
     */
-    expect(nextLevel([], ALL_LEVELS, { previousLevel: null })).toBe(2);
+    expect(nextLevel([], ALL_LEVELS, { previousLevel: null })).toBe(BOUNDS.opening);
   });
 
   it('climbs the warm-up gently rather than jumping', () => {
@@ -99,7 +130,7 @@ describe('where a sitting opens', () => {
 
   it('spends the first questions on the ladder and not on the estimator', () => {
     const { levels } = walk(ability(30));
-    expect(levels.slice(0, WARMUP_ITEMS)).toEqual([2, 4, 6]);
+    expect(levels.slice(0, BOUNDS.warmup)).toEqual([2, 4, 6]);
     expect(phaseOf(0)).toBe('warmup');
     expect(phaseOf(WARMUP_ITEMS)).toBe('adaptive');
     expect(phaseOf(CONFIRM_FROM)).toBe('confirm');
@@ -128,26 +159,26 @@ describe('the difficulty moves gradually', () => {
   it.each(patterns)('never steps more than %s levels — %s', () => {});
 
   for (const [name, respond] of patterns) {
-    it(`never steps more than ${MAX_STEP} levels: ${name}`, () => {
+    it(`never steps more than ${BOUNDS.step} levels: ${name}`, () => {
       const { levels } = walk(respond);
       for (let i = 1; i < levels.length; i += 1) {
-        expect(Math.abs(levels[i]! - levels[i - 1]!)).toBeLessThanOrEqual(MAX_STEP);
+        expect(Math.abs(levels[i]! - levels[i - 1]!)).toBeLessThanOrEqual(BOUNDS.step);
       }
     });
 
-    it(`never asks one level ${REPEAT_LIMIT + 1} times running: ${name}`, () => {
+    it(`never asks one level ${BOUNDS.repeat + 1} times running: ${name}`, () => {
       const { levels } = walk(respond);
       let run = 1;
       for (let i = 1; i < levels.length; i += 1) {
         run = levels[i] === levels[i - 1] ? run + 1 : 1;
-        expect(run).toBeLessThanOrEqual(REPEAT_LIMIT);
+        expect(run).toBeLessThanOrEqual(BOUNDS.repeat);
       }
     });
 
-    it(`asks between ${MIN_ITEM_COUNT} and ${MAX_ITEM_COUNT} questions: ${name}`, () => {
+    it(`asks between ${BOUNDS.min} and ${BOUNDS.max} questions: ${name}`, () => {
       const { levels } = walk(respond);
-      expect(levels.length).toBeGreaterThanOrEqual(MIN_ITEM_COUNT);
-      expect(levels.length).toBeLessThanOrEqual(MAX_ITEM_COUNT);
+      expect(levels.length).toBeGreaterThanOrEqual(BOUNDS.min);
+      expect(levels.length).toBeLessThanOrEqual(BOUNDS.max);
     });
   }
 
@@ -183,7 +214,7 @@ describe('a beginner is not asked impossible questions', () => {
 
   it('lets a beginner stop after the floor rather than sitting the ceiling', () => {
     const { levels } = walk(() => 'unknown');
-    expect(levels.length).toBe(MIN_ITEM_COUNT);
+    expect(levels.length).toBe(BOUNDS.min);
   });
 
   it('reaches advanced items for an advanced learner', () => {
@@ -194,7 +225,7 @@ describe('a beginner is not asked impossible questions', () => {
 
 describe('the stopping rule', () => {
   it('never stops before the floor, whatever the answers', () => {
-    for (let n = 0; n < MIN_ITEM_COUNT; n += 1) {
+    for (let n = 0; n < BOUNDS.min; n += 1) {
       const asked: AskedItem[] = Array.from({ length: n }, () => ({
         level: 15,
         response: 'correct' as const,
@@ -204,7 +235,7 @@ describe('the stopping rule', () => {
   });
 
   it('always stops at the ceiling', () => {
-    const asked: AskedItem[] = Array.from({ length: MAX_ITEM_COUNT }, (_, i) => ({
+    const asked: AskedItem[] = Array.from({ length: BOUNDS.max }, (_, i) => ({
       level: (i % LEVELS) + 1,
       response: 'correct' as const,
     }));
@@ -212,7 +243,7 @@ describe('the stopping rule', () => {
   });
 
   it('stops between the two only when the estimate has settled', () => {
-    const settled: AskedItem[] = Array.from({ length: MIN_ITEM_COUNT }, () => ({
+    const settled: AskedItem[] = Array.from({ length: BOUNDS.min }, () => ({
       level: 1,
       response: 'unknown' as const,
     }));
@@ -229,7 +260,7 @@ describe('one question does not decide the result', () => {
       flipped, and the reported level is required not to jump.
     */
     const { asked } = walk(ability(14));
-    for (let i = MIN_ITEM_COUNT - 1; i < asked.length; i += 1) {
+    for (let i = BOUNDS.min - 1; i < asked.length; i += 1) {
       const history = asked.slice(0, i + 1);
       const flipped = [...history];
       const last = flipped[i]!;
@@ -356,9 +387,26 @@ describe('a sitting can be resumed without changing', () => {
   });
 });
 
+describe('the bounds are what they say they are', () => {
+  /*
+    The other half of `BOUNDS`. Without this, pinning the literals would mean the
+    suite no longer noticed a constant moving at all — it would simply start
+    disagreeing with the engine and failing everywhere, which is a worse signal
+    than one test naming the number that changed.
+  */
+  it('matches the constants the engine selects with', () => {
+    expect(MAX_STEP).toBe(BOUNDS.step);
+    expect(REPEAT_LIMIT).toBe(BOUNDS.repeat);
+    expect(WARMUP_ITEMS).toBe(BOUNDS.warmup);
+    expect(MIN_ITEM_COUNT).toBe(BOUNDS.min);
+    expect(MAX_ITEM_COUNT).toBe(BOUNDS.max);
+    expect(CONFIRM_FROM).toBe(BOUNDS.min - 4);
+  });
+});
+
 describe('the shape of a sitting', () => {
   it('plans one kind for every question the ceiling allows', () => {
-    expect(planKinds()).toHaveLength(MAX_ITEM_COUNT);
+    expect(planKinds()).toHaveLength(BOUNDS.max);
   });
 
   it('opens on the gentlest kind', () => {

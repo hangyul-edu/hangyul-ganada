@@ -1676,6 +1676,125 @@
    "recommendedFix": "Done.",
    "note": "The safe-zone fractions were re-measured for the new artwork at the same time — left at the old drawing's limits the launcher icon would have shipped about 15% smaller than it needs to be.",
    "effort": "DONE"
+  },
+  {
+   "id": "I-161",
+   "area": "Vocabulary Level Test",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "The first question of every learner's first test was at level 14 of 30",
+   "customerImpact": "A beginner opened a placement test and was asked a word from the middle of the scale, then another six levels away from it. Learners reported the test as excessively difficult, and the measurement of *why* was worse than the report: 42.8% of the first five questions put to a simulated level-2 learner were more than six levels above them, and a learner who answered everything wrongly was asked level 1 twenty-five times running.",
+   "evidence": "Not a bug in the estimator. With nothing asked the posterior is the prior, the prior is uninformative and therefore centred at 15, and the most informative item is therefore at level 14 — the correct answer to the wrong question. `nextLevel` chose by information alone, over the whole scale, from the first item: measured on the shipped build, opening level 14 for every learner, largest step between consecutive questions 6, longest run at one level 25.\n\n**Fixed 8 September 2026.** Four rules on top of the information criterion, each documented at its constant against the behaviour it replaces: a three-item warm-up ladder (2, 4, 6 for a new learner; four levels below a returning one's stored result), a step bounded at `MAX_STEP` = 3, `REPEAT_LIMIT` = 2 on consecutive items at one level, and a confirmation group drawn at the settled estimate. Selection inside those bounds is still by information, so the adaptation is intact.\n\nMeasured after, over the same 6,000 simulated sittings: opening level 2, largest step 3, longest run 2, opening questions more than six levels above the learner **1.0%**. Accuracy did not move — MAE 1.31 against 1.29, ±3 95.8% against 95.9%. `levelTest.test.ts` asserts each rule over every response pattern and all thirty abilities; `leveltest:qa:check` gates the global maxima.",
+   "recommendedFix": "Done.",
+   "note": "The accuracy figures were all true of the old engine too. That is the point: an average over sittings cannot see a bad *sequence*, and only the sequence is what a learner experiences.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-162",
+   "area": "Vocabulary Level Test",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "A level-1 question asked what 누가 means and marked \"nougat\" correct",
+   "customerImpact": "A beginner who correctly knew that 누가 means *who* was told they were wrong, on an early question of the test that decides what they are taught. Sixty-nine such items sat at levels 1–5.",
+   "evidence": "Dictionary anchors are levelled by the frequency rank of their spelling, and Korean writes many different words the same way, so the rank and the sense came apart. 누가 ranks 107th because it is *who*; the entry glossed it \"nougat\". 내 ranks 3rd because it is *my*; the answer was \"smell\". 위해 ranks 131st because it is *for the sake of*; the answer was \"harm\". 거야 — a sentence ending — was at level 1 glossed \"last night\", and 일다 at level 1 with rank 1, which belongs to 일.\n\nNo gate could have caught it. `leveltest:ambiguity` reads contextual items and these are `meaning` and `produce`; `leveltest:locale` asks whether a string resolved from the right language, and \"nougat\" is impeccable English.\n\n**Fixed 8 September 2026.** `DICTIONARY_LEVEL_FLOOR` = 11: levels 1–10 are the first 1,835 words of Korean, precisely the band the curated 3,393-word corpus exists to cover, so an unvetted dictionary headword adds no coverage there and carries all of the risk. Above it the corpus thins to twenty words a level and dictionary anchors are what makes the top of the scale exist, so they stay and are filtered instead: 40 whose rank belongs to an inflected form of another word (`analyse` round-trips the surface — 부탁해요 glossed \"please\", 팔고 glossed \"eight Duḥkhas\"), one-syllable headwords, and truncated grammar-page glosses.\n\n`leveltest:bank:check` is a new gate that re-reads the shipped bank and fails on any of these, plus the per-level item and distinct-word floors.",
+   "recommendedFix": "Done.",
+   "note": "Levels 1–10 now hold 45 to 80 distinct curated words each, against the twenty a sitting can ask about. The floor cost the bank nothing it needed.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-163",
+   "area": "Vocabulary Level Test",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Fifteen questions offered the same answer twice, in languages nothing read them in",
+   "customerImpact": "An Uzbek learner asked what 정확히 means was offered *aniq* twice — the correct answer and a distractor, identical on screen. A Turkish learner asked about 좋다 was offered *iyi olmak* twice. The question had no defensible answer and no way to pass it.",
+   "evidence": "Distractors were rejected when their **English** gloss matched the answer's or shared a content word with it. That is the right rule read in one language and thirty-one learners are reading a different one: 확실히 and 정확히 are *definitely* and *exactly* in English and one word in Uzbek; 어렵다 and 무겁다 are *difficult* and *heavy* in English and both *schwer sein* in German; 마을 and 시골 are both *село* in Ukrainian.\n\n**Fixed 8 September 2026.** `collideInAnyLocale` folds each candidate meaning — case, Unicode form, punctuation, a leading article or infinitive marker — and compares it against every other option in **every language the two words both have a meaning in**. A distractor that collides anywhere is not used anywhere, which is deliberately stricter than it has to be and is the right trade: the bank is one artefact that all thirty-two languages share. The same rule now applies to `produce` items, where a distractor colliding with the *prompt* is a second right answer.\n\n`leveltest:bank:check` re-reads the shipped bank for the same property and reports zero.",
+   "recommendedFix": "Done.",
+   "note": "`answerability:check` had covered this class for the runtime-generated banks — 806,252 questions across 32 languages — and could not see the Level Test, because the Level Test's bank is a file rather than something generated per learner. That asymmetry is what left it open.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-164",
+   "area": "Vocabulary Level Test",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "\"I don't know\" was described everywhere as better evidence than a wrong guess, and was worth exactly the same",
+   "customerImpact": "None visible, and the product was telling learners something false about what their honesty bought them. The screen offers the button on every question and the documentation said the model weighed it as cleaner evidence.",
+   "evidence": "It could not. Under a model in which both a wrong answer and a declared blank can only happen when the learner does not know, `P(wrong) = (1 − c)·(1 − known)` and `P(unknown) = 1 − known` differ by a constant factor, and a constant factor cancels when the posterior is normalised. Ten declared blanks and ten wrong answers at the same level produced identical estimates **to twelve decimal places**, and a sitting answered entirely *I don't know* asked exactly the same thirty questions as one answered entirely wrongly.\n\n**Fixed 8 September 2026.** The two separate only if knowing can also produce a wrong answer, so the response model carries a slip term: `P(correct) = known·(1 − s) + (1 − known)·c`, `P(wrong) = known·s + (1 − known)·(1 − c)`, `P(unknown) = 1 − known`. A wrong answer is now compatible with knowing the word and mis-tapping; a declared blank is not.\n\n`s` = 0.05 was swept against two simulated populations rather than chosen. Against learners who never mis-tap the whole sweep sits inside 0.04 levels of MAE — it costs nothing. Against learners who mis-tap 5% of what they know it moves MAE from 1.70 to 1.46.",
+   "recommendedFix": "Done.",
+   "note": "Setting `SLIP` to zero recovers the previous model exactly, which is how the comparison was made and how a regression in it is caught: `levelTest.test.ts` fails the separation case at zero.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-165",
+   "area": "Persistence",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "An interrupted level test lost every answer, and the screen warned about it instead of fixing it",
+   "customerImpact": "Eleven questions into an eight-minute assessment, a phone call cost eleven questions. The screen carried a leave guard whose whole job was to warn the learner that leaving would throw the sitting away.",
+   "evidence": "The sitting was component state — an answer list, the current item, a used-id set and a deadline, none of which survived the screen unmounting. On a phone the leave is often not a decision: a call arrives, or the OS reclaims the tab.\n\n**Fixed 8 September 2026.** Schema 14 adds `level_test_sitting`: the ordered ids already presented, the response to each, a per-sitting seed, the deadline and the interface language. Nothing about the *future* of the test is stored, because a stored list of remaining items would keep the questions stable and freeze the adaptation. Every later item is instead recomputed as a pure function of the seed and the question's index (`pickIndex`, FNV-1a), so a resumed sitting presents the same question, scores the same answers, and keeps adapting.\n\nThe deadline is stored with it, so force-quitting cannot buy more time, and the locale is, so a sitting is never resumed into a test re-rendered from a different language pack. A finished sitting is cleared in the same write that stores its result, so there is no instant at which the device holds both. The leave guard has gone with the thing it warned about.\n\n`level-test.spec.ts` drives it through the built product across a full document reload; `upgradeCompatibility.test.ts` plants a complete learner at all twelve supported schema versions and proves the field arrives as `null` and nothing else moves.",
+   "recommendedFix": "Done.",
+   "note": "`isReadableSitting` in the settings repository refuses a sitting whose two parallel arrays disagree about what was asked, on the same principle as `isReadablePlan`: an unfinished sitting has never written a level, so discarding it costs nothing and resuming a damaged one would cost the promise.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-166",
+   "area": "Release tooling",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "`verify:release` could not pass at the commit the previous release was cut from",
+   "customerImpact": "None shipped. It means the previous release's own claim to have passed its verification could not have been re-derived from the tree it names.",
+   "evidence": "`ce60516a chore(ios): bump version to 1.0.3 build 5` edited `App.xcodeproj/project.pbxproj` in Xcode and did not adopt `project-file.lock.json` with it, so `ios:project:check` — the fifth step of `verify:quick` — reported four findings on a clean checkout of `main`: the file's sha256 and blob id, and MARKETING_VERSION and CURRENT_PROJECT_VERSION reading 1.0.3 / 5 against an expected 1.0.2 / 4.\n\nThe gate was right and its instruction was the fix: the change was deliberate and made in Xcode, so `node scripts/check-ios-project.mjs --adopt` records the new state. The protected settings it also guards — development team, signing style, bundle identifier, deployment target and known regions — are byte-for-byte unchanged; nothing in the project file was edited from here.\n\n**Fixed 8 September 2026.**",
+   "recommendedFix": "Done. The lock file is committed with this pass.",
+   "note": "Worth stating plainly because this pass's own verification claims rest on the same command: the first full run of `verify:release` in this pass failed on a defect that predated it.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-167",
+   "area": "Patent package",
+   "severity": "P3",
+   "status": "RESOLVED",
+   "summary": "The disclosure package sent counsel to two files it had itself deleted",
+   "customerImpact": "None — the package is internal and `patent/` is gitignored. It is here because the failure is the same one the whole package exists to prevent: a citation nobody can follow.",
+   "evidence": "`patent/README.md` carried two file indexes. The first said the prior-art comparison documents had been replaced; the second, further down the same file, still listed them, and so did both attorney briefs — which is where a reader is told what to open first. The English disclosure also stated the shipped recording count as 6,870 in two voices; the correct figure is 6,938 utterances per voice, 13,876 recordings.\n\n**Fixed 8 September 2026.** References corrected, the count re-derived from `apps/web/public/audio`, and `patent:evidence:check` added: it fails on any repository path, `npm run` command or figure the package cites that does not resolve, on an evidence-map row claiming verification with no reproduction command, and on a source path cited in one disclosure and not the other. It skips, and says so, when `patent/` is not in the checkout.",
+   "recommendedFix": "Done.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-168",
+   "area": "Report",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The report carried three disagreeing sets of artefact figures, and none was the delivered one",
+   "customerImpact": "None shipped. It is a defect in the document that exists to be trusted about what shipped, which is the one place a contradiction costs the most.",
+   "evidence": "Three tables stated the APK and AAB sizes and hashes and no two agreed, and the delivered `result/build-info.json` agreed with none of them:\n\n| | §2.2 and §18 | §21's artefact table | `build-info.json` |\n| --- | --- | --- | --- |\n| APK | 86.7 MB (88,242,570 B), `bcb94e2a…` | 87,763,942 B (83.7 MiB), `7777b402…` | 90,946,162 B (86.7 MiB), `96490914…` |\n| AAB | 85.0 MB (86,451,898 B), `ca6fb668…` | 85,973,157 B (82.0 MiB), `86b00c97…` | 89,105,065 B (85.0 MiB), `5bf70c5c…` |\n\nOne cell was internally inconsistent on its own: **86.7 MB (88,242,570 B)** pairs a size from the current build with a byte count from an older one, because the MB figure had been refreshed and the bytes in the same parenthesis had not. A fourth pair appeared in the prose beneath it — *the APK grew from 81.9 MB to 82.7 MB this cycle*.\n\nThe front matter had the same shape of fault: it said *artefacts built from commit bc3bec14 at versionCode 14* while `build-info.json` recorded a8e04b79 at versionCode 16.\n\n**Fixed 8 September 2026.** Every artefact figure in the report is now taken from `result/build-info.json` for the build this document describes, and the shipped `docs/report.pdf` was itself stale — it predated the section it was supposed to contain.",
+   "recommendedFix": "Done. Regenerated after the rebuild, from one source.",
+   "note": "The rule this pass adds for the next one: an artefact number belongs in exactly one place — `build-info.json` — and everywhere else quotes it. Three hand-maintained copies is three chances to refresh two of them.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-169",
+   "area": "Vocabulary Level Test",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "Six grammatical forms were still asked as vocabulary above the floor, and 마리화나 was on no list",
+   "customerImpact": "A learner at level 15 was asked what 다가 means and the correct answer was \"multivalent\". 다가 is the connective in 가다가 멈췄어요 — it is not a word with a meaning to choose.",
+   "evidence": "Found by *reading* a rendered sample at eight levels rather than by any gate — the same method §7.2 exists to argue for. The floor at level 11 (I-162) cleared the beginner band; above it, six surfaces remained that are a grammatical form or a bound element carrying a rare Sino-Korean gloss, and therefore take their frequency rank from the ending rather than from the noun: 다가 (multivalent), 듯이 (as if), 먹기 (eating — 먹다 nominalised), 하이다 (a causative of 하다), 내야 (infield — 내다 plus -어야), 쓸데 (only exists inside 쓸데없다).\n\nReading also found two smaller things. `usable_dictionary_anchor` **documented** a rule refusing a plural whose singular is already an anchor and never applied it, so 새들 was in the bank alongside 새. And the reviewed drug exclusions named 대마초 and not 마리화나, which is the same substance under the loanword.\n\n**Fixed 8 September 2026.** The six are a reviewed list in `learner-safety.json` under `notStandalone.grammaticalForm`, each with its reason written above it. They are listed rather than detected because no structural rule separates them from the words they resemble: 반면, 전면, 정의, 대가, 벌이 and 적의 decompose identically and are all ordinary vocabulary. A rule that removed 다가 would remove those, and a bank without 정의 is worse than one with 다가. The plural rule is now written as well as documented, and 마리화나 is on the list.",
+   "recommendedFix": "Done.",
+   "note": "291 dictionary anchors at levels 11–18 were read to find these six. That ratio is the argument for the floor rather than against it: below level 11 the same reading found the defect in the first row.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-170",
+   "area": "Release tooling",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Three checks added this pass could not fail, because each read the constant it was guarding",
+   "customerImpact": "None shipped, and it is the most serious finding in this pass about the *method* rather than the product. A check that cannot fail reports success.",
+   "evidence": "Found by negative-testing, which is the only way it can be found.\n\n`levelTest.test.ts` asserted `Math.abs(step) <= MAX_STEP` with `MAX_STEP` imported from the module under test, and `leveltest:qa:check` did the same. Setting `MAX_STEP` to 30 — restoring the unbounded selection that this pass exists to remove — produced **174 passing tests and a green gate**. `REPEAT_LIMIT` behaved identically.\n\n`leveltest:bank:check` had the same fault dressed as a virtue: it parsed `DICTIONARY_LEVEL_FLOOR` out of the builder, with a comment claiming that copying the number into the gate would let the gate keep passing after somebody lowered it. Reading it is what does that.\n\nAnd then a third time, after both were fixed: the same gate read the reviewed `grammaticalForm` exclusion list from the content file, with a comment arguing that a reviewed list cannot be weakened by being read because adding a term makes the gate stricter. **Emptying** it empties the builder's filter and the gate together, and the negative test that emptied it passed.\n\n**Fixed 8 September 2026.** All four now hold their own literals and separately assert that the code or content still agrees with them, so a moved bound is *named* rather than tolerated and changing one takes two deliberate edits. Each was then re-broken: `MAX_STEP` 30 gives 33 failing tests and *the difficulty stepped 11 levels between two questions*; `REPEAT_LIMIT` 99 gives 21 and *one level was asked 13 times running*; `WARMUP_ITEMS` 0 gives 124; the floor at 1 and the emptied list each give a named finding and exit 1.",
+   "recommendedFix": "Done.",
+   "note": "The general rule this pass adds: a check must not import the number it is checking. It is the same class as §7.2 — a comparison against something generated by the code under test is decorative — and it took three instances in one pass to see it, which is itself the evidence for negative-testing every new gate rather than the interesting ones.",
+   "effort": "DONE"
   }
  ]
 }
