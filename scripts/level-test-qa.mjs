@@ -37,6 +37,7 @@ import {
   LEVELS,
   MAX_ITEM_COUNT,
   MAX_STEP,
+  MAX_STEP_UP,
   MIN_ITEM_COUNT,
   REPEAT_LIMIT,
   WARMUP_ITEMS,
@@ -99,7 +100,38 @@ const KINDS = planKinds();
  * A bound is a promise about how a test feels; changing one should take two
  * deliberate edits.
  */
-const BOUNDS = { step: 3, repeat: 2, warmupTop: 6, min: 20, max: 30, tooHardShare: 0.15 };
+const BOUNDS = {
+  step: 3,
+  stepUp: 2,
+  repeat: 2,
+  warmupTop: 6,
+  min: 20,
+  max: 30,
+  tooHardShare: 0.15,
+  /*
+   * Where the sitting looks, relative to what it currently believes.
+   *
+   * The brief's calibration target, and the measurement that showed why it was
+   * needed: before the easy cadence existed, 23.7% of adaptive questions were
+   * asked *above* the running estimate and 32.3% below it. A test that asks
+   * something harder than its own guess about the learner a quarter of the time
+   * is a test that feels hard, which is what it was reported as. Nothing was
+   * wrong with the estimator — an item at the estimate is the most informative
+   * one, so an unconstrained selector sits there and drifts up whenever the
+   * bracket midpoint is above the mean.
+   */
+  askedBelow: [0.35, 0.45],
+  askedAt: [0.4, 0.5],
+  askedAbove: [0, 0.2],
+};
+
+/**
+ * Where each adaptive question sat relative to the estimate at the time.
+ *
+ * Accumulated across every sitting the accuracy sweep runs, so it is measured
+ * over the same population the error figures are. See `BOUNDS.askedBelow`.
+ */
+const asks = { below: 0, at: 0, above: 0 };
 
 /** One sitting, for a learner whose true level is `truth`. */
 function sit(truth, random, kindsAsked = new Map(), previousLevel = null) {
@@ -113,6 +145,17 @@ function sit(truth, random, kindsAsked = new Map(), previousLevel = null) {
     const level = nextLevel(asked, open, { previousLevel });
     if (level === null) break;
     sequence.push(level);
+    /*
+      Classified before the answer, against what the sitting believed when it
+      chose the question — which is the thing a learner experiences as "this is
+      harder than what it has been giving me".
+    */
+    if (asked.length >= WARMUP_ITEMS) {
+      const believed = estimate(asked).reported;
+      if (level < believed - 0.5) asks.below += 1;
+      else if (level > believed + 0.5) asks.above += 1;
+      else asks.at += 1;
+    }
     /*
      * The same fallback the screen uses, because a simulation that draws from
      * the whole level is measuring a test nobody sits. Twelve of the thirty
@@ -438,6 +481,7 @@ if (minItems < BOUNDS.min || maxItems > BOUNDS.max) {
 */
 for (const [name, actual, wanted] of [
   ['MAX_STEP', MAX_STEP, BOUNDS.step],
+  ['MAX_STEP_UP', MAX_STEP_UP, BOUNDS.stepUp],
   ['REPEAT_LIMIT', REPEAT_LIMIT, BOUNDS.repeat],
   ['MIN_ITEM_COUNT', MIN_ITEM_COUNT, BOUNDS.min],
   ['MAX_ITEM_COUNT', MAX_ITEM_COUNT, BOUNDS.max],
@@ -453,6 +497,31 @@ for (const [name, actual, wanted] of [
  * questions at level 1, and 42.8% of a beginner's opening spent on words they
  * could not know.
  */
+const askTotal = asks.below + asks.at + asks.above;
+const share = { below: asks.below / askTotal, at: asks.at / askTotal, above: asks.above / askTotal };
+console.log('\n  where the adaptive questions sat, against the estimate at the time:');
+console.log(
+  `    below it   ${(share.below * 100).toFixed(1)}%   (target ${BOUNDS.askedBelow[0] * 100}-${BOUNDS.askedBelow[1] * 100}%)`,
+);
+console.log(
+  `    at it      ${(share.at * 100).toFixed(1)}%   (target ${BOUNDS.askedAt[0] * 100}-${BOUNDS.askedAt[1] * 100}%)`,
+);
+console.log(
+  `    above it   ${(share.above * 100).toFixed(1)}%   (target at most ${BOUNDS.askedAbove[1] * 100}%)`,
+);
+for (const [name, value, [lo, hi]] of [
+  ['below the estimate', share.below, BOUNDS.askedBelow],
+  ['at the estimate', share.at, BOUNDS.askedAt],
+  ['above the estimate', share.above, BOUNDS.askedAbove],
+]) {
+  if (value < lo || value > hi) {
+    problems.push(
+      `${(value * 100).toFixed(1)}% of adaptive questions were asked ${name}; ` +
+        `the band is ${(lo * 100).toFixed(0)}-${(hi * 100).toFixed(0)}%`,
+    );
+  }
+}
+
 if (shape.step > BOUNDS.step) {
   problems.push(`the difficulty stepped ${shape.step} levels between two questions; the bound is ${BOUNDS.step}`);
 }

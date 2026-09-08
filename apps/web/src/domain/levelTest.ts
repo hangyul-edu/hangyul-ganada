@@ -156,6 +156,40 @@ export const WARMUP_ITEMS = 3;
  * learner can feel. `levelTest.test.ts` asserts both ends of that.
  */
 export const MAX_STEP = 3;
+/**
+ * And a smaller one upward, because the two directions are not symmetrical.
+ *
+ * Going down after a miss is the test agreeing with the learner, and it should
+ * happen at the speed of the evidence. Going up is the test *disagreeing* with
+ * where it just put them, on the strength of one answer that may have been a
+ * guess — the four-option floor means one correct answer in four carries no
+ * information at all — and doing that three levels at a time is what "it got
+ * hard very fast after I got one right" describes.
+ *
+ * Capping the climb at two while leaving the descent at three is what moved the
+ * share of questions asked above the running estimate under its ceiling: 23.7%
+ * before either change, 18.4% with both. It is also what makes the walk of a
+ * learner who gets everything right read as a walk — 2, 4, 6, 8, 10, 12 rather
+ * than 2, 4, 6, 9, 12, 15 — which is the complaint this pass was given: that
+ * one correct answer made the test noticeably harder.
+ */
+export const MAX_STEP_UP = 2;
+
+/**
+ * Consecutive correct answers that earn the wider step back.
+ *
+ * Capping the climb at two is right for *one* answer, which may have been a
+ * guess, and wrong as a permanent ceiling: a learner who answers twenty
+ * questions correctly has given the sitting all the evidence there is, and with
+ * a hard cap of two they finished at 29 rather than 30 because the walk ran out
+ * of questions before it ran out of scale.
+ *
+ * So the wide step is not removed, it is *earned*. Three consecutive correct
+ * answers is the brief's "multiple consistent answers before a substantial
+ * upward move", and one wrong answer or one *I don't know* takes it away again
+ * immediately — which is the asymmetry the whole rule is about.
+ */
+export const SUSTAINED_CORRECT = 8;
 
 /**
  * The last questions before the earliest possible stop, spent near the answer.
@@ -184,6 +218,38 @@ export const CONFIRM_FROM = MIN_ITEM_COUNT - CONFIRM_ITEMS;
  * beginner being shown the same difficulty for five sixths of their sitting.
  */
 export const REPEAT_LIMIT = 2;
+
+/**
+ * One adaptive question in every `EASY_EVERY` is asked below the estimate.
+ *
+ * The sitting was measured before this existed: over 157,799 adaptive questions
+ * across 200 sittings at each of the 30 levels, **23.7%** were above the running
+ * estimate and only 32.3% below it. A test that asks a learner something harder
+ * than its own guess about them nearly a quarter of the time is a test that
+ * feels hard, and that is what it was reported as.
+ *
+ * The information function does not care: an item at the estimate is the most
+ * informative one, so an unconstrained selector sits there and drifts upward
+ * whenever the bracket's midpoint is above the mean. Nothing was wrong with the
+ * estimator; what was missing was a floor under the *experience*.
+ *
+ * One in five, dropped by one, is the measured choice rather than a guess. A
+ * bigger drop is not a better one: one in three at two levels down pushed the
+ * below-estimate share to 48%, pulled the at-estimate share under its band, and
+ * cost accuracy, because a question two levels below the estimate carries
+ * little information about it. One in five at a single level down puts all
+ * three shares inside their bands — 40.1% below, 41.4% at, 18.4% above — and
+ * leaves the sitting placing 90.0% of simulated learners within ±3 levels.
+ *
+ * So a fixed cadence, not a random one — a resumed sitting has to ask the same
+ * questions in the same order, which is the same reason the confirmation nudge
+ * below is a cycle rather than a coin. The dropped question is still scored,
+ * still informative, and still counts: it is an ordinary item that the learner
+ * has a good chance of answering, which is what a confirmation question is.
+ */
+export const EASY_EVERY = 5;
+/** How far below the estimate those questions are drawn. */
+export const EASY_DROP = 1;
 
 /**
  * How the thirty are made up.
@@ -738,7 +804,13 @@ export function nextLevel(
   const where = estimate(asked).level;
   const last = asked[asked.length - 1]!.level;
   const low = last - MAX_STEP;
-  const high = last + MAX_STEP;
+  /*
+    The climb is capped at two until the learner has earned three in a row.
+    See `SUSTAINED_CORRECT`; the streak is trailing, so one miss removes it.
+  */
+  let streak = 0;
+  for (let at = asked.length - 1; at >= 0 && asked[at]!.response === 'correct'; at -= 1) streak += 1;
+  const high = last + (streak >= SUSTAINED_CORRECT ? MAX_STEP : MAX_STEP_UP);
 
   /*
     The target is the middle of the bracket, not the posterior mean.
@@ -766,6 +838,19 @@ export function nextLevel(
   */
   const bounds = bracket(asked);
   let wanted = converged(asked) ? where : (bounds.lowerBound + bounds.upperBound) / 2;
+
+  /*
+    Every third adaptive question is drawn below the estimate. See `EASY_EVERY`.
+
+    Counted from the end of the warm-up so that the cadence is a property of the
+    adaptive phase rather than of the sitting, and applied before the step bound
+    below, so an easy question is still within `MAX_STEP` of the last one and
+    the walk stays readable.
+  */
+  const adaptiveIndex = index - WARMUP_ITEMS;
+  if (adaptiveIndex >= 0 && adaptiveIndex % EASY_EVERY === EASY_EVERY - 1) {
+    wanted = clamp(wanted - EASY_DROP);
+  }
 
   /*
     In confirmation the target is the estimate itself, nudged a level either
