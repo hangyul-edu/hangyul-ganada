@@ -35,6 +35,11 @@ import {
   COMPOSITION,
   ITEM_COUNT,
   LEVELS,
+  MAX_ITEM_COUNT,
+  MAX_STEP,
+  MIN_ITEM_COUNT,
+  REPEAT_LIMIT,
+  WARMUP_ITEMS,
   estimate,
   nextLevel,
   planKinds,
@@ -78,15 +83,17 @@ const levelsAvailable = [...byLevel.keys()].sort((a, b) => a - b);
 const KINDS = planKinds();
 
 /** One sitting, for a learner whose true level is `truth`. */
-function sit(truth, random, kindsAsked = new Map()) {
+function sit(truth, random, kindsAsked = new Map(), previousLevel = null) {
   const asked = [];
   const used = new Set();
+  const sequence = [];
   while (!shouldStop(asked)) {
     const open = levelsAvailable.filter((level) =>
       (byLevel.get(level) ?? []).some((item) => !used.has(item.id)),
     );
-    const level = nextLevel(asked, open);
+    const level = nextLevel(asked, open, { previousLevel });
     if (level === null) break;
+    sequence.push(level);
     /*
      * The same fallback the screen uses, because a simulation that draws from
      * the whole level is measuring a test nobody sits. Twelve of the thirty
@@ -118,7 +125,27 @@ function sit(truth, random, kindsAsked = new Map()) {
 
     asked.push({ level, response });
   }
-  return { asked, result: estimate(asked) };
+  return { asked, sequence, result: estimate(asked) };
+}
+
+/**
+ * The rules a *sequence* has to obey, checked on every simulated sitting.
+ *
+ * The accuracy figures below were all true of the engine this replaced, which
+ * opened every sitting at level 14 and swung six levels between consecutive
+ * questions. An average cannot see that, so these are asserted per sitting and
+ * the worst case over all of them is what gets reported.
+ */
+function shapeOf(sequence) {
+  let step = 0;
+  let run = 1;
+  let longestRun = 1;
+  for (let i = 1; i < sequence.length; i += 1) {
+    step = Math.max(step, Math.abs(sequence[i] - sequence[i - 1]));
+    run = sequence[i] === sequence[i - 1] ? run + 1 : 1;
+    longestRun = Math.max(longestRun, run);
+  }
+  return { step, longestRun, opening: sequence[0], distinct: new Set(sequence).size };
 }
 
 const RUNS = 200;
@@ -126,19 +153,89 @@ const errors = [];
 const lengths = [];
 const perLevel = [];
 const kindTotals = new Map();
+const shape = { step: 0, longestRun: 1, openings: new Set(), tooHardOpenings: 0, openings5: 0 };
 
 for (let truth = 1; truth <= LEVELS; truth += 1) {
   const random = rng(1000 + truth);
   const mine = [];
   for (let run = 0; run < RUNS; run += 1) {
-    const { asked, result } = sit(truth, random, kindTotals);
+    const { asked, sequence, result } = sit(truth, random, kindTotals);
     mine.push(result.reported - truth);
     errors.push(Math.abs(result.reported - truth));
     lengths.push(asked.length);
+    const seen = shapeOf(sequence);
+    shape.step = Math.max(shape.step, seen.step);
+    shape.longestRun = Math.max(shape.longestRun, seen.longestRun);
+    shape.openings.add(seen.opening);
+    /*
+      The learner-facing number this whole change exists for: how much of the
+      opening of a sitting is spent on words the learner has no way to know.
+      Six levels above the truth is roughly a one-in-eight chance of knowing the
+      word, which is a question that measures discouragement rather than
+      vocabulary.
+    */
+    for (const level of sequence.slice(0, 5)) {
+      shape.openings5 += 1;
+      if (level > truth + 6) shape.tooHardOpenings += 1;
+    }
   }
   const bias = mine.reduce((a, b) => a + b, 0) / mine.length;
   const mae = mine.reduce((a, b) => a + Math.abs(b), 0) / mine.length;
   perLevel.push({ truth, bias, mae, deltas: mine });
+}
+
+/**
+ * The named response patterns §3 asks for, each run once and printed.
+ *
+ * These are not sampled from a population — they *are* the population, and each
+ * is a learner somebody has actually been. A degenerate pattern is where an
+ * adaptive test's rules show, so this is the table to read when a rule changes.
+ */
+const PATTERNS = [
+  ['every answer correct', () => 'correct'],
+  ['every answer wrong', () => 'wrong'],
+  ["every answer I don't know", () => 'unknown'],
+  ['alternating correct and wrong', (_level, i) => (i % 2 === 0 ? 'correct' : 'wrong')],
+  ['struggles, then improves', (level, i) => (i < 10 ? 'unknown' : level <= 18 ? 'correct' : 'wrong')],
+  ['succeeds, then hits a limit', (level, i) => (i < 8 ? 'correct' : level <= 8 ? 'correct' : 'unknown')],
+];
+const patternRows = [];
+for (const [label, respond] of PATTERNS) {
+  const asked = [];
+  const sequence = [];
+  const used = new Set();
+  while (!shouldStop(asked)) {
+    const open = levelsAvailable.filter((level) =>
+      (byLevel.get(level) ?? []).some((item) => !used.has(item.id)),
+    );
+    const level = nextLevel(asked, open, { previousLevel: null });
+    if (level === null) break;
+    sequence.push(level);
+    asked.push({ level, response: respond(level, asked.length) });
+  }
+  const seen = shapeOf(sequence);
+  shape.step = Math.max(shape.step, seen.step);
+  shape.longestRun = Math.max(shape.longestRun, seen.longestRun);
+  patternRows.push({ label, sequence, seen, items: asked.length, reported: estimate(asked).reported });
+}
+
+/**
+ * The same learners, sitting the test a second time.
+ *
+ * A stored level steers the opening ladder and nothing else, so the interesting
+ * case is the one where it is most wrong. Each simulated learner retakes with a
+ * stored level that is the *inverse* of their real one — somebody at level 2
+ * carrying a stored 29 — and the question is whether they are still measured
+ * where they are.
+ */
+const retakeErrors = [];
+for (let truth = 1; truth <= LEVELS; truth += 1) {
+  const random = rng(7000 + truth);
+  const stale = Math.max(1, Math.min(LEVELS, LEVELS + 1 - truth));
+  for (let run = 0; run < 40; run += 1) {
+    const { result } = sit(truth, random, new Map(), stale);
+    retakeErrors.push(Math.abs(result.reported - truth));
+  }
 }
 
 const mae = errors.reduce((a, b) => a + b, 0) / errors.length;
@@ -156,6 +253,10 @@ console.log(`  mean absolute error   ${mae.toFixed(2)} levels`);
 console.log(`  within ±3 levels      ${(within3 * 100).toFixed(1)}%`);
 console.log(`  within ±5 levels      ${(within5 * 100).toFixed(1)}%`);
 console.log(`  items asked           ${minItems}–${maxItems}, median ${medianItems}`);
+console.log(
+  `  retake with the worst possible stored level  MAE ` +
+    `${(retakeErrors.reduce((a, b) => a + b, 0) / retakeErrors.length).toFixed(2)} levels`,
+);
 console.log(`  bank per level        min ${Math.min(...byLevel.values().map?.((v) => v.length) ?? [0])}`);
 
 /*
@@ -198,6 +299,38 @@ for (const band of BANDS) {
   );
 }
 
+/*
+ * What the sitting *felt* like, which is the half that was never measured.
+ *
+ * Every number above was already true of the engine that opened every learner
+ * at level 14 and stepped six levels at a time. These are the ones that were
+ * not.
+ */
+console.log('\n  the shape of a sitting:');
+console.log(
+  `    opening level(s)                    ${[...shape.openings].sort((a, b) => a - b).join(', ')}` +
+    `   (bound: the warm-up ladder, ${WARMUP_ITEMS} items)`,
+);
+console.log(`    largest step between questions      ${shape.step}   (bound ${MAX_STEP})`);
+console.log(`    longest run at one level            ${shape.longestRun}   (bound ${REPEAT_LIMIT})`);
+console.log(
+  `    of the first 5 questions, share more than 6 levels above the learner  ` +
+    `${((shape.tooHardOpenings / shape.openings5) * 100).toFixed(1)}%`,
+);
+
+console.log('\n  named response patterns:');
+console.log('    pattern                        items  level  step  run  distinct');
+for (const row of patternRows) {
+  console.log(
+    `    ${row.label.padEnd(29)}  ${String(row.items).padStart(5)}  ${String(row.reported).padStart(5)}  ` +
+      `${String(row.seen.step).padStart(4)}  ${String(row.seen.longestRun).padStart(3)}  ` +
+      `${String(row.seen.distinct).padStart(8)}`,
+  );
+}
+for (const row of patternRows) {
+  console.log(`      ${row.label}: ${row.sequence.join(', ')}`);
+}
+
 const worst = [...perLevel].sort((a, b) => b.mae - a.mae).slice(0, 5);
 console.log('\n  hardest levels to place:');
 for (const row of worst) {
@@ -219,8 +352,46 @@ for (const row of bandRows) {
     problems.push(`${row.label} are placed ${row.bias.toFixed(2)} levels from the truth on average`);
   }
 }
-if (maxItems !== ITEM_COUNT || minItems !== ITEM_COUNT) {
-  problems.push(`sittings asked ${minItems}–${maxItems} items; every one must ask exactly ${ITEM_COUNT}`);
+if (minItems < MIN_ITEM_COUNT || maxItems > MAX_ITEM_COUNT) {
+  problems.push(
+    `sittings asked ${minItems}–${maxItems} items; every one must ask between ` +
+      `${MIN_ITEM_COUNT} and ${MAX_ITEM_COUNT}`,
+  );
+}
+/*
+ * The gradualness rules, as gates rather than as prose.
+ *
+ * Each replaces a measured behaviour of the previous engine: a first question
+ * at level 14 for everybody, a six-level step, twenty-five consecutive
+ * questions at level 1, and 42.8% of a beginner's opening spent on words they
+ * could not know.
+ */
+if (shape.step > MAX_STEP) {
+  problems.push(`the difficulty stepped ${shape.step} levels between two questions; the bound is ${MAX_STEP}`);
+}
+if (shape.longestRun > REPEAT_LIMIT) {
+  problems.push(`one level was asked ${shape.longestRun} times running; the bound is ${REPEAT_LIMIT}`);
+}
+for (const opening of shape.openings) {
+  if (opening > 6) problems.push(`a sitting opened at level ${opening}; the warm-up ladder tops out at 6`);
+}
+const tooHard = shape.tooHardOpenings / shape.openings5;
+if (tooHard > 0.15) {
+  problems.push(
+    `${(tooHard * 100).toFixed(1)}% of opening questions are more than six levels above the learner`,
+  );
+}
+for (const row of patternRows) {
+  if (row.seen.distinct < 3) {
+    problems.push(`"${row.label}" was asked only ${row.seen.distinct} distinct level(s)`);
+  }
+}
+const retakeMae = retakeErrors.reduce((a, b) => a + b, 0) / retakeErrors.length;
+if (retakeMae > mae + 0.5) {
+  problems.push(
+    `a retake carrying the worst possible stored level errs by ${retakeMae.toFixed(2)} against ` +
+      `${mae.toFixed(2)} for a first sitting — the stored level is acting as a result, not an estimate`,
+  );
 }
 
 /*
@@ -246,7 +417,10 @@ if (contextShare < COMPOSITION.context * 0.8) {
 }
 
 if (problems.length === 0) {
-  console.log(`\nthe test places a simulated learner within ±3 levels, in exactly ${ITEM_COUNT} items.`);
+  console.log(
+    `\nthe test places a simulated learner within ±3 levels, in ${MIN_ITEM_COUNT}–${MAX_ITEM_COUNT} ` +
+      `items, opening on the warm-up ladder and never stepping more than ${MAX_STEP} levels.`,
+  );
 } else {
   console.log(`\n${problems.length} problem(s):`);
   for (const problem of problems) console.log(`  ${problem}`);

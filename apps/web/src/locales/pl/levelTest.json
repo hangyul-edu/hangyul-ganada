@@ -7,7 +7,7 @@
   "intro": {
     "title": "Sprawdź swój poziom słownictwa",
     "body": "Od słów, które znasz, po nieco trudniejsze — zobacz, gdzie jest teraz twoje koreańskie słownictwo.",
-    "shape": "{{questions, number}} pytań · {{minutes, number}} minut",
+    "shape": "{{min, number}}–{{max, number}} pytań · {{minutes, number}} minut",
     "unsure": "Nie wiesz? Spokojnie naciśnij „Nie wiem”.",
     "usedFor": "Wynik ustawia trudność twoich codziennych słów.",
     "start": "Zacznij test",

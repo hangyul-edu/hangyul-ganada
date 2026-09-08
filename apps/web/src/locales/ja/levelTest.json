@@ -7,7 +7,7 @@
   "intro": {
     "title": "語彙レベルを確認する",
     "body": "よく知っている単語から少し難しい単語まで解いて、今の語彙力を確かめましょう。",
-    "shape": "{{questions, number}}問 · {{minutes, number}}分",
+    "shape": "{{min, number}}~{{max, number}}問 · {{minutes, number}}分",
     "unsure": "わからない問題は「わかりません」を押して大丈夫です。",
     "usedFor": "結果に合わせて毎日の単語の難しさを選びます。",
     "start": "はじめる",

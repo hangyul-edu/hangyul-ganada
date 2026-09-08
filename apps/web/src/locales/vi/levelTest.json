@@ -7,7 +7,7 @@
   "intro": {
     "title": "Kiểm tra vốn từ của bạn",
     "body": "Từ những từ quen thuộc đến từ khó hơn một chút — xem vốn từ tiếng Hàn của bạn đang ở đâu.",
-    "shape": "{{questions, number}} câu · {{minutes, number}} phút",
+    "shape": "{{min, number}}–{{max, number}} câu · {{minutes, number}} phút",
     "unsure": "Không chắc? Cứ bấm “Tôi không biết”.",
     "usedFor": "Kết quả quyết định độ khó của từ mỗi ngày.",
     "start": "Bắt đầu",

@@ -7,7 +7,7 @@
   "intro": {
     "title": "Ověřte si slovní zásobu",
     "body": "Od slov, která znáte, po trochu těžší — uvidíte, kde vaše korejská slovní zásoba teď je.",
-    "shape": "{{questions, number}} otázek · {{minutes, number}} minut",
+    "shape": "{{min, number}}–{{max, number}} otázek · {{minutes, number}} minut",
     "unsure": "Nevíte? Klidně ťukněte na „Nevím“.",
     "usedFor": "Výsledek určí, jak těžká budou vaše každodenní slova.",
     "start": "Spustit test",

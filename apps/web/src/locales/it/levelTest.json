@@ -7,7 +7,7 @@
   "intro": {
     "title": "Controlla il tuo vocabolario",
     "body": "Da parole che conosci ad altre un po’ più difficili: scopri a che punto è il tuo coreano.",
-    "shape": "{{questions, number}} domande · {{minutes, number}} minuti",
+    "shape": "{{min, number}}–{{max, number}} domande · {{minutes, number}} minuti",
     "unsure": "Non lo sai? Puoi toccare «Non lo so».",
     "usedFor": "Il risultato decide la difficoltà delle tue parole di ogni giorno.",
     "start": "Inizia il test",

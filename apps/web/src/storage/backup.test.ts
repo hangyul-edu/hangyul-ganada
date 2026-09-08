@@ -137,7 +137,7 @@ describe('an older backup', () => {
     const fresh = new MemoryDriver();
     const outcome = await restoreBackup(fresh, backup);
 
-    expect(outcome.migrated).toEqual([13]);
+    expect(outcome.migrated).toEqual([13, 14]);
     const meta = await fresh.get<SchemaMeta>('meta', META_KEY);
     expect(meta?.schema_version).toBe(SCHEMA_VERSION);
   });

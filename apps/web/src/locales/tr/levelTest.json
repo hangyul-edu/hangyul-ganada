@@ -7,7 +7,7 @@
   "intro": {
     "title": "Kelime seviyeni ölç",
     "body": "Bildiğin kelimelerden biraz zorlarına kadar — Korece kelime dağarcığın şu an nerede, gör.",
-    "shape": "{{questions, number}} soru · {{minutes, number}} dakika",
+    "shape": "{{min, number}}–{{max, number}} soru · {{minutes, number}} dakika",
     "unsure": "Emin değil misin? “Bilmiyorum”a dokunman yeterli.",
     "usedFor": "Sonucun, her günkü kelimelerinin zorluğunu belirler.",
     "start": "Teste başla",

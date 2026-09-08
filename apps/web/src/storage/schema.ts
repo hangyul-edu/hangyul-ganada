@@ -6,7 +6,7 @@ import type {
 
 import { DEFAULT_FONT_ID } from '../data/fonts';
 import { type ItemMemory, memoryKey, migrateMemory } from '../domain/memory';
-import type { LevelTestResult } from '../domain/levelTestTypes';
+import type { LevelTestResult, LevelTestSitting } from '../domain/levelTestTypes';
 import type { DailyPlan } from '../domain/vocabularyDay';
 import type { PersistenceDriver } from './driver';
 
@@ -31,6 +31,7 @@ import type { PersistenceDriver } from './driver';
  * | 6 | `memory` store — per-item, per-skill adaptive review state; saved words |
  * | 7 | one writing rung, not two; no vocabulary handwriting; daily word goal |
  * | 8 | `mistakes` store — the wrong-answer notebook |
+ * | 14 | `level_test_sitting` — a Level Test that was started and not finished |
  *
  * Versions 1 and 2 are read from `localStorage` and imported once. Nothing is
  * deleted from `localStorage` until the imported copy has been written and read
@@ -42,7 +43,7 @@ import type { PersistenceDriver } from './driver';
  * rather than starting from an empty chart.
  */
 
-export const SCHEMA_VERSION = 13;
+export const SCHEMA_VERSION = 14;
 
 /** Keys the pre-IndexedDB builds wrote to. Read once, on first launch. */
 export const LEGACY_BLOB_KEYS = ['hangyul_ganada:learner', 'hangyul-start:learner'] as const;
@@ -105,6 +106,24 @@ export interface StoredSettings extends LearnerPreferences {
    * should not have to sit the test again to see their own result.
    */
   level_test: LevelTestResult | null;
+  /**
+   * A Vocabulary Level Test that has been started and not finished.
+   *
+   * `null` almost always — it exists for the minutes a sitting is open, and is
+   * cleared the moment one ends. It is on the settings row rather than in a
+   * store of its own for the same reason `daily_plan` is: one small object that
+   * one screen writes and reads back.
+   *
+   * **It is not a result and nothing may read it as one.** `level_test` is what
+   * was measured; this is a measurement in progress, and a sitting abandoned at
+   * question four says nothing about anybody. The only code allowed to read it
+   * is the Level Test screen, deciding whether to offer a resume.
+   *
+   * Written after every answer, which is what makes an interrupted sitting
+   * resumable — see `LevelTestSitting` for the two rules that make the resume
+   * honest rather than merely possible.
+   */
+  level_test_sitting: LevelTestSitting | null;
   /**
    * When the learner said "start me at Level 1" instead of sitting the test.
    *
@@ -173,6 +192,7 @@ export function defaultSettings(): StoredSettings {
     saved_items: [],
     daily_plan: null,
     level_test: null,
+    level_test_sitting: null,
     placement_skipped_at: null,
     content_seed: '',
   };
@@ -884,6 +904,40 @@ const numbersNamespaceCleanup: Migration = {
   },
 };
 
+/**
+ * v13 → v14. A Level Test sitting can now be resumed.
+ *
+ * Adds one field, empty. There is nothing to back-fill and nothing to convert:
+ * before this release an interrupted sitting was lost the moment the screen
+ * unmounted, so no learner has an unfinished sitting for this to recover.
+ *
+ * Written explicitly rather than left to the spread in `defaultSettings` for
+ * the reason `levelTestResult` gives at v10: a key read back as `undefined` and
+ * a key read back as `null` are different facts, and the screen that decides
+ * whether to offer a resume must not have to tell them apart.
+ *
+ * **Idempotent, and provably so.** It returns without writing when the key is
+ * already present, so running it twice writes once; `storage.test.ts` runs
+ * `runMigrations` twice over the same driver and asserts the settings row is
+ * byte-identical. Nothing outside this one key is read or written, so no
+ * progress, memory, mistake, activity or session row can be touched by it —
+ * which is the property that matters for a paid app whose only copy of a
+ * learner's history is the device in their hand.
+ */
+const levelTestResume: Migration = {
+  to: 14,
+  describe: 'Add the resumable Level Test sitting, empty',
+  async run({ driver }) {
+    const settings = await driver.get<Partial<StoredSettings>>('settings', SETTINGS_KEY);
+    if (!settings || settings.level_test_sitting !== undefined) return;
+    await driver.put('settings', SETTINGS_KEY, {
+      ...defaultSettings(),
+      ...settings,
+      level_test_sitting: null,
+    });
+  },
+};
+
 export const MIGRATIONS: Migration[] = [
   migrateLegacyBlobToStores,
   backfillDailyActivity,
@@ -896,6 +950,7 @@ export const MIGRATIONS: Migration[] = [
   learnerContentSeed,
   placementDecision,
   numbersNamespaceCleanup,
+  levelTestResume,
 ];
 
 /** Local calendar day. Duplicated from `domain/progress` to keep storage leaf-level. */

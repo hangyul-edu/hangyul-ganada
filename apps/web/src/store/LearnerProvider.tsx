@@ -89,7 +89,7 @@ import {
   runMigrations,
 } from '../storage/schema';
 import { checkPersistence } from '../storage/capability';
-import type { LevelTestResult } from '../domain/levelTestTypes';
+import type { LevelTestResult, LevelTestSitting } from '../domain/levelTestTypes';
 import { LearnerContext, type LearnerContextValue } from './LearnerContext';
 import type { LearnerState, RecordAttemptInput, RecordReviewInput } from './types';
 
@@ -450,7 +450,41 @@ export function LearnerProvider({
       const settings = {
         ...prev.settings,
         level_test: { ...result, recentItems: result.recentItems.slice(0, 120) },
+        /*
+          The finished sitting is cleared in the same write that stores its
+          result.
+
+          One write, so there is no instant at which the device holds both a
+          result and the unfinished sitting that produced it — a state in which
+          reopening the screen would offer to resume a test that has already
+          been scored. The settings row is written whole and per-row serialised
+          (`RowWrites`), so this is atomic from the learner's point of view.
+        */
+        level_test_sitting: null,
       };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, settings };
+    });
+  }, []);
+
+  /**
+   * Records the sitting in progress, after every answer.
+   *
+   * ## Why this is allowed to touch the settings row and nothing else
+   *
+   * It writes one field, and that field is not evidence. §16's rule is that a
+   * level does not schedule anything; the corollary for a sitting *in progress*
+   * is stronger — it is not even a level yet. Nothing in `domain/review.ts`,
+   * `domain/vocabularyDay.ts` or the progress stores reads it, and a learner who
+   * abandons a sitting at question four has changed nothing about what the app
+   * will teach them.
+   *
+   * `null` clears it, which is what abandoning a sitting does.
+   */
+  const saveLevelTestSitting = useCallback((sitting: LevelTestSitting | null) => {
+    setState((prev) => {
+      if (prev.settings.level_test_sitting === sitting) return prev;
+      const settings = { ...prev.settings, level_test_sitting: sitting };
       void settingsRepo.current?.save(settings);
       return { ...prev, settings };
     });
@@ -1315,6 +1349,7 @@ export function LearnerProvider({
       knownLetters,
       setPreferences,
       saveLevelTestResult,
+      saveLevelTestSitting,
       placementStatus,
       skipPlacement,
       vocabularyLevel,
@@ -1356,6 +1391,7 @@ export function LearnerProvider({
       knownLetters,
       setPreferences,
       saveLevelTestResult,
+      saveLevelTestSitting,
       placementStatus,
       skipPlacement,
       vocabularyLevel,

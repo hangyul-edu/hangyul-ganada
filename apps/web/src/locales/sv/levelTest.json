@@ -7,7 +7,7 @@
   "intro": {
     "title": "Kolla din ordförrådsnivå",
     "body": "Från ord du känner igen till lite svårare — se var ditt koreanska ordförråd ligger just nu.",
-    "shape": "{{questions, number}} frågor · {{minutes, number}} minuter",
+    "shape": "{{min, number}}–{{max, number}} frågor · {{minutes, number}} minuter",
     "unsure": "Osäker? Tryck gärna på ”Vet inte”.",
     "usedFor": "Resultatet avgör hur svåra dina ord blir varje dag.",
     "start": "Starta testet",

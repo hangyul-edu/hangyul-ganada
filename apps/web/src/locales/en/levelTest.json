@@ -7,7 +7,7 @@
   "intro": {
     "title": "Check your vocabulary level",
     "body": "Work through words from familiar to a little harder, and see where your Korean vocabulary is now.",
-    "shape": "{{questions, number}} questions · {{minutes, number}} minutes",
+    "shape": "{{min, number}}–{{max, number}} questions · {{minutes, number}} minutes",
     "unsure": "Not sure? Tapping “I don't know” is fine.",
     "usedFor": "Your result sets the difficulty of your words each day.",
     "start": "Start the test",

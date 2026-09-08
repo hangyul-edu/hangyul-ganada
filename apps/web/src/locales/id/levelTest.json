@@ -7,7 +7,7 @@
   "intro": {
     "title": "Cek level kosakatamu",
     "body": "Dari kata yang sudah kamu kenal sampai yang sedikit lebih sulit — lihat di mana kosakata Koreamu sekarang.",
-    "shape": "{{questions, number}} soal · {{minutes, number}} menit",
+    "shape": "{{min, number}}–{{max, number}} soal · {{minutes, number}} menit",
     "unsure": "Tidak yakin? Tekan “Tidak tahu” saja.",
     "usedFor": "Hasilnya menentukan tingkat kesulitan kata harianmu.",
     "start": "Mulai tes",

@@ -27,8 +27,8 @@ import { waitForLaunch } from './helpers/launch';
 /**
  * Answers "I don't know" until the result appears, and returns the count.
  *
- * The limit is a runaway guard, not an expectation: the test is exactly 30
- * questions now, and a loop that never reached the result would otherwise hang
+ * The limit is a runaway guard, not an expectation: a sitting is 20 to 30
+ * questions, and a loop that never reached the result would otherwise hang
  * until Playwright's timeout with nothing to say about why.
  */
 async function takeIt(page: Page, limit = 40) {
@@ -62,7 +62,7 @@ test.describe('the vocabulary level test', () => {
       DOM, which is stronger than a sentence claiming it.
     */
     await expect(page.getByText(/Check your vocabulary level/i)).toBeVisible();
-    await expect(page.getByText(/30 questions · 8 minutes/i)).toBeVisible();
+    await expect(page.getByText(/20–30 questions · 8 minutes/i)).toBeVisible();
     await expect(page.getByText(/Tapping “I don't know” is fine/i)).toBeVisible();
     await expect(page.getByText(/Your result sets the difficulty of your words/i)).toBeVisible();
 
@@ -90,14 +90,18 @@ test.describe('the vocabulary level test', () => {
 
     const asked = await takeIt(page);
     /*
-      Exactly thirty, every time.
+      Twenty, for this learner, and never fewer or more than the promised range.
 
-      This used to assert a range of 18 to 36, because the test stopped when the
-      estimator's standard error fell below a threshold. A length that depends
-      on how you are doing tells you how you are doing while you sit it, and is
-      not a thing a learner can plan around. The difficulty still adapts.
+      A learner who answers *I don't know* thirty times has told us everything
+      they are going to by about the twentieth, and the estimator agrees: the
+      posterior stops moving, `shouldStop` releases at the floor, and the sitting
+      ends. Ten further questions would have been attrition rather than
+      measurement — which is exactly the learner this pass was about.
+
+      Asserted as the floor rather than as a range because this response pattern
+      is deterministic: an all-unknown sitting settles, so it must stop at 20.
     */
-    expect(asked).toBe(30);
+    expect(asked).toBe(20);
 
     await expect(page.getByTestId('level-result')).toBeVisible();
     await expect(page.getByTestId('level-result')).toHaveText(/^1of 30$/);
@@ -148,8 +152,90 @@ test.describe('the vocabulary level test', () => {
       await page.getByTestId('level-unknown').click();
       unknowns += 1;
     }
-    expect(unknowns).toBe(29);
+    expect(unknowns).toBe(19);
     await expect(page.getByTestId('level-result')).toBeVisible();
+  });
+
+  test('comes back to the same question after the app is closed', async ({ page }) => {
+    /*
+      §3 of the brief, as a browser fact: an interrupted sitting resumes
+      deterministically, without changing the questions already presented or the
+      answers already given.
+
+      A sitting used to live entirely in component state. Eleven questions in,
+      a reload threw away eleven questions, and the screen carried a leave guard
+      whose whole job was to warn about that. On a phone the leave is often not a
+      decision — a call arrives, the OS reclaims the tab — so an assessment that
+      cannot survive one is an assessment a learner will not risk starting.
+
+      Reloading is the strongest available stand-in for that: it tears down the
+      whole document and rebuilds it from IndexedDB, which is exactly what
+      reopening a killed app does.
+    */
+    await page.goto('/me/level-test');
+    await waitForLaunch(page);
+    await page.getByTestId('level-start').click();
+    await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+
+    // Four answers in, and the fifth question on the screen.
+    for (let i = 0; i < 4; i += 1) await page.getByTestId('level-unknown').click();
+    await expect(page.getByTestId('level-announce')).toHaveText(/Answer 4 recorded/);
+    /*
+      The stimulus and the four options, not the whole screen. Two things on it
+      legitimately differ across a reload and neither is the question: the clock
+      has kept running — the deadline is stored, so force-quitting cannot buy
+      more time — and the assistive-tech live region is empty until the next
+      answer.
+    */
+    const stimulus = await page.locator('main p').nth(1).innerText();
+    const optionsBefore = await page.getByTestId('level-option').allInnerTexts();
+    const progressBefore = await page.locator('main').innerText();
+    expect(progressBefore).toContain('5 / 30');
+
+    await page.reload();
+    await waitForLaunch(page);
+
+    /*
+      Straight back into the sitting — no intro screen, because there is a
+      sitting in progress and offering to start a new one would discard it.
+    */
+    await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+    expect(await page.locator('main p').nth(1).innerText()).toBe(stimulus);
+    expect(await page.getByTestId('level-option').allInnerTexts()).toEqual(optionsBefore);
+    // Still the fifth question: the four answers were not replayed as new ones.
+    expect(await page.locator('main').innerText()).toContain('5 / 30');
+    // The clock did not reset. A sitting cannot be extended by force-quitting.
+    expect(await page.locator('main').innerText()).not.toContain('8:00');
+
+    /*
+      And the four answers still count: sixteen more finish the sitting at the
+      floor of twenty, not twenty more.
+    */
+    let more = 0;
+    for (let i = 0; i < 40; i += 1) {
+      if (await page.getByTestId('level-result').count()) break;
+      await page.getByTestId('level-unknown').click();
+      more += 1;
+    }
+    expect(more).toBe(16);
+    await expect(page.getByTestId('level-result')).toBeVisible();
+  });
+
+  test('starts a fresh sitting once the last one has been scored', async ({ page }) => {
+    // The mirror of the resume: a *finished* sitting is cleared in the same
+    // write that stores its result, so reopening the screen offers the intro
+    // rather than a test that has already been answered.
+    await page.goto('/me/level-test');
+    await waitForLaunch(page);
+    await page.getByTestId('level-start').click();
+    await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+    await takeIt(page);
+    await expect(page.getByTestId('level-result')).toBeVisible();
+
+    await page.reload();
+    await waitForLaunch(page);
+    await expect(page.getByTestId('level-start')).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByText(/Last time you came out at Level 1\./i)).toBeVisible();
   });
 
   test('reports one level, and nothing about how it got there', async ({ page }) => {

@@ -44,7 +44,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFile
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { conjugate, FORMS, finalOf, hasFinal, stemOf } from '../../packages/korean-morphology/src/index.ts';
+import { analyse, conjugate, FORMS, finalOf, hasFinal, stemOf } from '../../packages/korean-morphology/src/index.ts';
 import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from '../lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -166,6 +166,39 @@ const anchors = anchorFile.anchors;
 /** Every lemma the ranking knows, so `축구하다` can be looked up from `축구`. */
 const LEMMAS = new Set(anchors.map((anchor) => anchor.word));
 
+/**
+ * Dictionary anchors whose *rank* belongs to a different word.
+ *
+ * Every anchor is levelled by the frequency of its own spelling. For a
+ * dictionary headword that is the only evidence there is, and it silently
+ * becomes the wrong evidence whenever the spelling is also an inflected form of
+ * something else — because the frequency measure folds verbs and adjectives to
+ * their stems, so every occurrence of 위하다 in the corpus counts toward the
+ * *noun* 위해 that Wiktionary glosses as "harm".
+ *
+ * That is what put 위해 at level 1 with "harm" as the correct answer, 그래 at
+ * level 1 with "like this", 좋아요 at level 2 with "like" and 보고 at level 2
+ * with "report". Each is a real dictionary entry; none of them earned its rank.
+ *
+ * `analyse` settles it exactly rather than by pattern. It guesses a dictionary
+ * form from the shape of the surface and then **conjugates the guess back**,
+ * keeping only guesses that round-trip — so a surface it reports on genuinely
+ * is a form of a lemma this bank knows, and the rank is genuinely contaminated.
+ * There is one conjugator in this repository and this uses it; a second
+ * implementation of Korean morphology would be a second answer to the question.
+ *
+ * Only dictionary anchors are tested. A taught word carries the level the
+ * curriculum gave it, so a collision cannot mislevel it — and 자다 is a taught
+ * word whose surface is also a suffix, which a rule applied to both halves would
+ * have thrown away.
+ */
+const isKnownLemma = (lemma) => LEMMAS.has(lemma);
+function borrowsItsRank(anchor) {
+  if (anchor.source !== 'dictionary') return null;
+  const [reading] = analyse(anchor.word, isKnownLemma);
+  return reading ? `${reading.lemma}/${reading.form}` : null;
+}
+
 /*
  * The verified relation graph, used here to keep a word away from its own
  * synonym and its own antonym.
@@ -264,14 +297,91 @@ function formOfSurface(anchor) {
   return null;
 }
 
+/**
+ * Every taught word's meaning, in every language, before a single item is built.
+ *
+ * ## The defect this exists for
+ *
+ * A distractor was rejected when its **English** gloss was the answer's, or
+ * shared a content word with it. That is the right rule read in one language,
+ * and thirty-one learners are reading a different one. Fifteen items shipped
+ * with two options that render as the *same string* somewhere:
+ *
+ * | item | language | what the learner saw |
+ * | --- | --- | --- |
+ * | 좋다 | Turkish | *iyi olmak* · kısa olmak · **iyi olmak** · istemek |
+ * | 정확히 | Uzbek | ehtimol · qachondir · **aniq** · **aniq** |
+ * | 귀엽다 | German | **schwer sein** · süß sein · **schwer sein** · billig sein |
+ * | 택시 | Ukrainian | **село** · **село** · мить · таксі |
+ *
+ * The last two are the shape that matters: 확실히 and 정확히 are *definitely*
+ * and *exactly* in English and one word in Uzbek, so an Uzbek learner met a
+ * question with two identical correct answers and no way to pass it. Nothing
+ * caught this, because everything that read the options read them in English.
+ *
+ * So the collision test runs over every language a meaning exists in, and a
+ * distractor that collides anywhere is not used anywhere. That is deliberately
+ * stricter than it has to be — the item would have been fine in the other
+ * thirty-one — and it is the right trade: the alternative is a per-language
+ * bank, and the bank is one artefact that every language shares.
+ */
+const MEANINGS_BY_LOCALE = (() => {
+  const generated = join(ROOT, 'apps', 'web', 'src', 'data', 'generated');
+  const vocabulary = JSON.parse(readFileSync(join(generated, 'vocabulary.json'), 'utf8'));
+  const ids = vocabulary.words.map((word) => word.id);
+  const out = new Map();
+  for (const locale of vocabulary.locales) {
+    const rows = JSON.parse(
+      readFileSync(join(generated, `vocabulary.${locale}.json`), 'utf8'),
+    ).words;
+    const table = new Map();
+    rows.forEach((row, index) => {
+      const meaning = row?.[0]?.trim();
+      if (meaning) table.set(ids[index], meaning);
+    });
+    out.set(locale, table);
+  }
+  return out;
+})();
+
+/**
+ * Meanings folded to what a learner would read as the same answer.
+ *
+ * Case, surrounding punctuation and a leading article or infinitive marker are
+ * removed, because "a boat" against "boat" is not a distinction a vocabulary
+ * question is measuring — it is two right answers with different typography.
+ */
+function foldMeaning(text) {
+  return text
+    .toLocaleLowerCase()
+    .normalize('NFKC')
+    .replace(/^(to|a|an|the)\s+/u, '')
+    .replace(/[\p{P}\p{S}]/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim();
+}
+
+/** Whether two anchors read as the same meaning in any language that has both. */
+function collideInAnyLocale(a, b) {
+  for (const table of MEANINGS_BY_LOCALE.values()) {
+    const left = table.get(a);
+    const right = table.get(b);
+    if (!left || !right) continue;
+    if (foldMeaning(left) === foldMeaning(right)) return true;
+  }
+  return false;
+}
+
 const random = rng(20260822);
 const items = [];
 /** Validated gap-fills for taught words, for the rest of the product. */
 const cloze = {};
 const rejected = {
+  borrowedRank: 0,
   weakContext: 0,
   noForm: 0,
   noDistractors: 0,
+  collidingMeaning: 0,
   sharedArgument: 0,
   generalVerb: 0,
   activityNoun: 0,
@@ -284,7 +394,14 @@ function isRelated(a, b) {
   return Boolean(RELATED.get(a)?.has(b) || RELATED.get(b)?.has(a));
 }
 
+const borrowed = [];
 for (const anchor of anchors) {
+  const lender = borrowsItsRank(anchor);
+  if (lender) {
+    rejected.borrowedRank += 1;
+    borrowed.push(`${anchor.word} (L${anchor.level}, ${lender}) "${anchor.gloss}"`);
+    continue;
+  }
   const level = anchor.level;
   const others = pool(level).filter((other) => other.id !== anchor.id && other.pos === anchor.pos);
 
@@ -297,6 +414,12 @@ for (const anchor of anchors) {
     // Two glosses that the dictionary says mean the same thing are two right
     // answers however differently they are worded. See `RELATED`.
     if (isRelated(anchor.id, other.id)) continue;
+    // …and two that are different in English and identical in Uzbek are two
+    // right answers for a learner reading Uzbek. See `collideInAnyLocale`.
+    if ([anchor, ...chosen].some((option) => collideInAnyLocale(option.id, other.id))) {
+      rejected.collidingMeaning += 1;
+      continue;
+    }
     chosen.push(other);
   }
   if (chosen.length === OPTIONS - 1) {
@@ -330,6 +453,17 @@ for (const anchor of anchors) {
     if (other.word === anchor.word || koreans.includes(other.word)) continue;
     if (sharesMeaning(other.gloss, anchor.gloss)) continue;
     if (isRelated(anchor.id, other.id)) continue;
+    /*
+      The same rule, and it bites harder here. A produce item shows one meaning
+      and asks for the Korean, so a distractor that means the same thing as the
+      *prompt* in some language is a second correct answer to the question as
+      that learner reads it — 좋다 offered against 괜찮다 under the Turkish
+      prompt *iyi olmak*.
+    */
+    if (collideInAnyLocale(anchor.id, other.id)) {
+      rejected.collidingMeaning += 1;
+      continue;
+    }
     koreans.push(other.word);
   }
   if (koreans.length === OPTIONS - 1) {
@@ -902,9 +1036,21 @@ console.log(
 );
 console.log(`  size        ${(rendered.length / 1024).toFixed(0)} kB raw`);
 console.log('\n  context sentences rejected:');
+console.log(
+  `    ${rejected.borrowedRank.toLocaleString('en')}  a dictionary headword whose rank belongs to an inflected form of another word`,
+);
+if (borrowed.length > 0) {
+  // Printed rather than counted, because each is a question that would have
+  // been keyed to a sense the rank never measured. See `borrowsItsRank`.
+  for (const line of borrowed.slice(0, 12)) console.log(`      ${line}`);
+  if (borrowed.length > 12) console.log(`      … and ${borrowed.length - 12} more`);
+}
 console.log(`    ${rejected.weakContext.toLocaleString('en')}  nothing in the sentence pins the meaning down`);
 console.log(`    ${rejected.noForm.toLocaleString('en')}  the sentence uses an ending the conjugator does not generate`);
 console.log(`    ${rejected.noDistractors.toLocaleString('en')}  fewer than three usable distractors`);
+console.log(
+  `    ${rejected.collidingMeaning.toLocaleString('en')}  a distractor reads as the same meaning as another option, in some language`,
+);
 console.log(`    ${rejected.sharedArgument.toLocaleString('en')}  a distractor acts on the same noun, so it would fit too`);
 console.log(`    ${rejected.related.toLocaleString('en')}  a distractor is the answer's recorded synonym or antonym`);
 console.log(`    ${rejected.generalVerb.toLocaleString('en')}  a distractor is a verb that fits any object`);

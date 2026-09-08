@@ -265,3 +265,159 @@ test('a retake in the other direction is beginner-appropriate the same day', asy
     expect(level, `${SURFACE_OF.get(word.wordId)} after the retake down`).toBeLessThanOrEqual(3);
   }
 });
+
+test('a real retake, through the test itself, replans and survives a restart', async ({ page }) => {
+  /**
+   * The whole journey the brief asks for, with nothing written by hand:
+   *
+   *     existing learner state
+   *       → a Level Test retake sat in the real UI
+   *       → the new result
+   *       → the recommendation rebuilt from it
+   *       → the next vocabulary session
+   *       → a restart
+   *       → the same valid state
+   *
+   * The two tests above write the level-test row directly, which is the right
+   * trade for pinning the *rebuild* — they can assert an exact level without the
+   * browser having to grade its own answers. What they cannot show is that the
+   * screen which produces that row produces this one, and that the app is still
+   * consistent after being closed and reopened on the far side of it.
+   *
+   * So this one answers *I don't know* to every question. That is a real answer
+   * the model weighs, it needs no knowledge of the bank, and it lands at Level 1
+   * — a known endpoint. The learner starts at Level 30 with mastery, so the
+   * retake moves them the length of the scale in the direction that is hardest
+   * to get right: **down**, where every rule about not re-teaching what is
+   * already mastered has to hold at once.
+   */
+  await openTodaysWords(page);
+  await expect
+    .poll(async () => (await readSettings(page))?.daily_plan?.words?.length ?? 0, {
+      timeout: 10_000,
+    })
+    .toBeGreaterThan(0);
+
+  const seeded = await readSettings(page);
+  const plan = seeded.daily_plan!;
+  const mastered = plan.words.slice(0, 2).map((word) => word.wordId);
+
+  /*
+    An established learner: measured at 30, two words mastered today, three
+    saved, a streak, and a fortnight of study time behind them. Everything below
+    has to still be here at the end.
+  */
+  await writeSettings(page, {
+    ...seeded,
+    daily_plan: { ...plan, completed: mastered },
+    saved_items: ['word:word_sagwa', 'word:word_hakgyo', 'word:word_chaek'],
+    active_days: ['2026-09-05', '2026-09-06', '2026-09-07'],
+    level_test: {
+      level: 30,
+      low: 28,
+      high: 30,
+      items: 30,
+      takenAt: '2026-09-07T10:00:00.000Z',
+      recentItems: [],
+    },
+  });
+  await openApp(page, '/words');
+  await expect
+    .poll(async () => (await readSettings(page))?.daily_plan?.level, { timeout: 10_000 })
+    .toBe(30);
+  const advanced = (await readSettings(page)).daily_plan!;
+  const advancedWords = advanced.words.map((word) => word.wordId);
+
+  // --- the retake, sat for real ----------------------------------------------
+
+  await openApp(page, '/me/level-test');
+  // A returning learner is told what they came out at last time, and the button
+  // says "again" rather than "start".
+  await expect(page.getByText(/Last time you came out at Level 30\./i)).toBeVisible();
+  await page.getByTestId('level-start').click();
+  await expect(page.getByTestId('level-unknown')).toBeVisible({ timeout: 20_000 });
+
+  let asked = 0;
+  for (let i = 0; i < 40; i += 1) {
+    if (await page.getByTestId('level-result').count()) break;
+    await page.getByTestId('level-unknown').click();
+    asked += 1;
+  }
+  /*
+    Twenty, not thirty. The learner said *I don't know* to everything, the
+    posterior settled, and the sitting ended at the floor rather than asking ten
+    more questions of somebody who had already answered them all the same way.
+  */
+  expect(asked).toBe(20);
+  await expect(page.getByTestId('level-result')).toHaveText(/^1of 30$/);
+
+  // --- the recommendation, rebuilt --------------------------------------------
+
+  // The result screen leads to the words it just changed.
+  await page.getByRole('button', { name: /Learn words at my level/i }).click();
+  await expect(page).toHaveURL(/\/words\/today$/);
+
+  await expect
+    .poll(async () => (await readSettings(page))?.daily_plan?.level, { timeout: 10_000 })
+    .toBe(1);
+  const replanned = (await readSettings(page)).daily_plan!;
+
+  // Nothing the learner earned was spent to get here.
+  expect(replanned.completed).toEqual(mastered);
+  expect(replanned.date).toBe(plan.date);
+  expect(replanned.goal).toBe(plan.goal);
+
+  const after = await readSettings(page);
+  expect(after.saved_items).toEqual(['word:word_sagwa', 'word:word_hakgyo', 'word:word_chaek']);
+  expect(after.active_days).toEqual(['2026-09-05', '2026-09-06', '2026-09-07']);
+  // The new result replaced the old one, and the finished sitting was cleared
+  // with it — there is no half-finished test left on the device.
+  expect((after.level_test as { level: number }).level).toBe(1);
+  expect(after.level_test_sitting).toBeNull();
+
+  /*
+    The plan is genuinely different, and genuinely at the new level: the
+    unresolved Level-30 targets are gone, and no word the learner already
+    completed has been handed back as new material.
+  */
+  const replannedWords = replanned.words.map((word) => word.wordId);
+  expect(replannedWords).not.toEqual(advancedWords);
+  /*
+    A mastered word may still be in the plan — it is where the 2/10 comes from —
+    but it must be *resolved*. What "do not re-teach a mastered word as new
+    content" means concretely is that it never becomes an outstanding
+    obligation again, which is a statement about `completed` rather than about
+    the `source` label the entry was created with. The label is history: an
+    entry chosen as `new` this morning and finished this morning is still the
+    entry that was chosen as new.
+  */
+  for (const wordId of mastered) {
+    const row = replanned.words.find((word) => word.wordId === wordId);
+    if (row) expect(replanned.completed).toContain(wordId);
+  }
+  const unresolved = replanned.words.filter((word) => !replanned.completed.includes(word.wordId));
+  for (const wordId of mastered) {
+    expect(unresolved.map((word) => word.wordId)).not.toContain(wordId);
+  }
+  const newTargets = unresolved.filter((word) => word.source === 'new');
+  expect(newTargets.length).toBeGreaterThan(0);
+  for (const word of newTargets) {
+    // A learner measured at Level 1 is not handed Level-20 vocabulary.
+    expect(LEVEL_OF.get(word.wordId) ?? 99).toBeLessThanOrEqual(4);
+  }
+  // No word appears twice: a rebuild must not create a duplicate obligation.
+  expect(new Set(replannedWords).size).toBe(replannedWords.length);
+
+  // --- and it survives being closed --------------------------------------------
+
+  await openApp(page, '/words');
+  const restarted = await readSettings(page);
+  expect(restarted.daily_plan?.level).toBe(1);
+  expect(restarted.daily_plan?.completed).toEqual(mastered);
+  expect(restarted.daily_plan?.words.map((word) => word.wordId)).toEqual(replannedWords);
+  expect(restarted.saved_items).toEqual(['word:word_sagwa', 'word:word_hakgyo', 'word:word_chaek']);
+  expect((restarted.level_test as { level: number }).level).toBe(1);
+  await expect(page.getByTestId('today-card')).toContainText(
+    new RegExp(`${mastered.length}\\s*/\\s*${plan.goal}`),
+  );
+});

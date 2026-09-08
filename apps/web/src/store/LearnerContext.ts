@@ -11,7 +11,7 @@ import type { Mistake } from '../domain/mistakes';
 import type { ExerciseMode } from '../domain/review';
 import type { ReviewSummary, TodaysPractice } from '../domain/review';
 import type { DailyPlan, DayProgress } from '../domain/vocabularyDay';
-import type { LevelTestResult } from '../domain/levelTestTypes';
+import type { LevelTestResult, LevelTestSitting } from '../domain/levelTestTypes';
 import type { PlacementStatus } from '../domain/placement';
 import type { NumbersEvent } from '@hangyul-ganada/shared-types';
 import type { LearningBackup } from '../storage/backup';
@@ -44,6 +44,13 @@ export interface LearnerContextValue {
    * about what the app will teach them next.
    */
   saveLevelTestResult: (result: LevelTestResult) => void;
+  /**
+   * Writes, or clears, the Level Test sitting in progress.
+   *
+   * Called after every answer so an interrupted sitting survives the app being
+   * closed. Passing `null` abandons it. See `LevelTestSitting`.
+   */
+  saveLevelTestSitting: (sitting: LevelTestSitting | null) => void;
   /**
    * Whether the level in use was measured, defaulted after an explicit skip, or
    * never asked about.

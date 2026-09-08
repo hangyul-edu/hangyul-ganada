@@ -7,7 +7,7 @@
   "intro": {
     "title": "Comprueba tu nivel de vocabulario",
     "body": "Repasa palabras que ya conoces y otras algo más difíciles para ver dónde está ahora tu vocabulario coreano.",
-    "shape": "{{questions, number}} preguntas · {{minutes, number}} minutos",
+    "shape": "{{min, number}}–{{max, number}} preguntas · {{minutes, number}} minutos",
     "unsure": "¿No lo sabes? Puedes pulsar «No lo sé».",
     "usedFor": "Tu resultado marca la dificultad de tus palabras de cada día.",
     "start": "Empezar la prueba",

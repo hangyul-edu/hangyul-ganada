@@ -20,7 +20,24 @@
  * beginner spends twenty items failing and the advanced reader spends twenty
  * items answering things they knew at a glance. Choosing each question from the
  * current estimate spends every item where it discriminates, which is what
- * makes 18–36 items enough for a ±3 answer in three to six minutes.
+ * makes twenty to thirty items enough for a ±3 answer.
+ *
+ * ## Adaptive is not the same as abrupt
+ *
+ * Being adaptive is necessary and it is not sufficient, and this file used to
+ * prove it. The estimator was sound; the *selector* asked whatever item carried
+ * the most information about the current posterior, from anywhere on the scale,
+ * from the first question onward. With nothing asked yet the posterior is the
+ * prior and the prior sits at the middle of the scale, so **the first question
+ * every learner ever saw was at level 14** — and the second could be at level 8.
+ *
+ * That is a defensible estimator and an indefensible assessment. What a learner
+ * meets is a sequence, and a sequence that opens above their head and then swings
+ * six levels reads as a test that is not listening. So the selector now has three
+ * rules on top of the information criterion — a warm-up, a bounded step, and a
+ * limit on repeating a level — and a confirmation phase at the end. Each is
+ * documented at its constant with the behaviour it replaced, and each is
+ * asserted in `levelTest.test.ts` and simulated in `scripts/level-test-qa.mjs`.
  *
  * ## The model
  *
@@ -58,21 +75,115 @@ const LOGITS_PER_LEVEL = 0.3;
 const GUESS = 1 / 4;
 
 /**
- * Thirty questions. Not "18 to 36", and the difference is the product.
+ * How long a sitting is: at least twenty questions, never more than thirty.
  *
- * The test used to stop as soon as the estimate was sure enough, which is what
- * an adaptive test is for and is why the intro screen had to say *18 to 36
- * questions, 3 to 6 minutes*. Four numbers, none of which a learner can plan
- * around. Somebody deciding whether to start a test wants to know what they are
- * agreeing to, and "somewhere between three and six minutes" is not an answer.
+ * The count used to be a flat thirty, and before that it stopped as soon as the
+ * estimate was sure enough — "18 to 36 questions, 3 to 6 minutes", four numbers
+ * a learner cannot plan around. Both were answers to the same question and both
+ * were wrong at one end.
  *
- * So the count is fixed and the *difficulty* adapts, which is where the
- * adaptation was always doing the work: the early-stopping rule saved four
- * questions on average and cost the learner the ability to know when it would
- * end. Measured against the same simulation, a fixed thirty is at least as
- * accurate as the old variable run — see `scripts/level-test-qa.mjs`.
+ * A flat thirty is predictable and, for the two learners at the ends of the
+ * scale, unkind: somebody who has said *I don't know* twenty times running has
+ * told us everything they are going to, and asking ten more is not measurement,
+ * it is attrition. So the floor is what the intro promises and the ceiling is
+ * what it caps: **20 to 30 questions**. The estimate has to be settled — see
+ * `STOP_SE` — before the floor releases, so a sitting only ends early when
+ * ending early costs nothing.
  */
-export const ITEM_COUNT = 30;
+export const MIN_ITEM_COUNT = 20;
+export const MAX_ITEM_COUNT = 30;
+
+/**
+ * The ceiling, under the name the rest of the app has always used for it.
+ *
+ * The progress counter, the clock budget and `planKinds` are all about the
+ * longest a sitting can be, so they keep reading this.
+ */
+export const ITEM_COUNT = MAX_ITEM_COUNT;
+
+/**
+ * Posterior standard deviation at or below which the estimate is settled.
+ *
+ * Chosen from the simulation rather than from taste, and deliberately strict.
+ *
+ * Stopping early is not free: measured over 6,000 simulated sittings, the mean
+ * absolute error after twenty questions is **1.66 levels** and after thirty it
+ * is **1.31**. Ten more questions buy a third of a level, so a threshold loose
+ * enough to end most sittings at the floor would be selling accuracy for time.
+ *
+ * At 1.5 it ends only the sittings that have genuinely finished — about one in
+ * twelve at the floor, and the degenerate runs (everything right, everything
+ * wrong, everything *I don't know*) always, because those posteriors stop moving
+ * long before the ceiling. Overall accuracy is 1.31 either way, to two decimal
+ * places: the sittings it ends are the ones the remaining questions would not
+ * have changed. That is the whole case for the rule, and it is why the mean
+ * sitting is still 28.7 questions rather than 20.
+ *
+ * `scripts/level-test-qa.mjs` prints the sweep this was read off.
+ */
+export const STOP_SE = 1.5;
+
+/**
+ * The opening questions, which are chosen rather than computed.
+ *
+ * This is the fix for the thing learners actually reported. The estimator's
+ * prior sits at the middle of the scale, so with nothing asked yet the
+ * most-informative item is at **level 14** — and that was the first question
+ * every learner saw, including somebody who had just finished the alphabet.
+ * Measured over two hundred simulated sittings, 42.8% of the first five
+ * questions put to a true level-2 learner were above level 8: words they had no
+ * way to know, in the part of the test that decides whether they keep going.
+ *
+ * An assessment is allowed to spend a few items being gentle. Three warm-up
+ * questions on a rising ladder cost about a tenth of the sitting and buy the
+ * learner a start they can answer. `warmupLadder` says where the ladder sits.
+ */
+export const WARMUP_ITEMS = 3;
+
+/**
+ * The most the difficulty may move between two consecutive questions.
+ *
+ * Unbounded selection is what made the test feel arbitrary: the second question
+ * of a sitting jumped from level 14 to level 8, and a learner reading six
+ * levels of swing between two questions is being told the test has no idea who
+ * they are. It is also, from the estimator's point of view, unnecessary — the
+ * information function is flat enough near its peak that a three-level step
+ * loses very little per item and converges within the length of the sitting.
+ *
+ * Three, not one: a bound of one cannot cross the scale inside thirty questions
+ * — a returning learner measured at 20 who is really at 3 would run out of
+ * questions before reaching their level — and a bound of five is not a bound a
+ * learner can feel. `levelTest.test.ts` asserts both ends of that.
+ */
+export const MAX_STEP = 3;
+
+/**
+ * The last questions before the earliest possible stop, spent near the answer.
+ *
+ * An adaptive test that walks toward an estimate and then stops has never
+ * actually asked the question it is about to answer. These four are asked at
+ * the estimate and a level either side of it, so the reported level rests on
+ * items chosen for it rather than on extrapolation from the walk.
+ *
+ * Everything after the floor is confirmation too, by construction: once the
+ * sitting is long enough to end, the estimate is where the walk has arrived and
+ * every further item sits on it.
+ */
+export const CONFIRM_ITEMS = 4;
+
+/** The first item index that belongs to the confirmation phase. */
+export const CONFIRM_FROM = MIN_ITEM_COUNT - CONFIRM_ITEMS;
+
+/**
+ * How many questions in a row may share a level.
+ *
+ * The old selector had no such rule and it showed at both ends of the scale: a
+ * learner who got everything right was asked level 29 twelve times running, and
+ * one who got everything wrong was asked **level 1 twenty-five times running**.
+ * Neither is measurement — the posterior stops moving — and the second is a
+ * beginner being shown the same difficulty for five sixths of their sitting.
+ */
+export const REPEAT_LIMIT = 2;
 
 /**
  * How the thirty are made up.
@@ -142,7 +253,13 @@ const GRID_STEP = 0.1;
 const PRIOR_MEAN = 15;
 const PRIOR_SD = 20;
 
-export type Response = 'correct' | 'wrong' | 'unknown';
+/*
+  One definition of a response, in the file that also defines the stored sitting
+  it is written into. Two would drift, and the drift would be silent: a stored
+  `'skipped'` that the estimator does not know about scores as nothing.
+*/
+export type { Response } from './levelTestTypes';
+import type { Response } from './levelTestTypes';
 
 export interface AskedItem {
   /** The item's level, 1–30. */
@@ -175,20 +292,75 @@ function pCorrect(abilityLevel: number, itemLevel: number): number {
 }
 
 /**
+ * Chance that somebody who knows a word still answers it wrongly.
+ *
+ * ## Why this parameter had to exist
+ *
+ * The file used to claim, and the screen used to repeat, that *I don't know* was
+ * "slightly stronger evidence of not knowing than a wrong guess is". It was not.
+ * Under a three-parameter model with no slip the two are **identical** evidence,
+ * and not approximately — exactly:
+ *
+ *     P(wrong)   = (1 − c)·(1 − known)
+ *     P(unknown) =           1 − known
+ *
+ * They differ by the constant factor (1 − c), and a constant factor cancels when
+ * the posterior is normalised. Ten declared blanks and ten wrong answers at the
+ * same level produced the same estimate to twelve decimal places, and a sitting
+ * answered entirely *I don't know* asked exactly the same thirty questions as
+ * one answered entirely wrongly. The button was real, the honesty it asked for
+ * was real, and the model threw it away.
+ *
+ * That is structural rather than a coding error, and it stays true of any model
+ * in which both responses can only happen when the learner does not know. The
+ * two separate only if **knowing can also produce a wrong answer**:
+ *
+ *     P(correct) = known·(1 − s) + (1 − known)·c
+ *     P(wrong)   = known·s       + (1 − known)·(1 − c)
+ *     P(unknown) =                 1 − known
+ *
+ * A wrong answer is now compatible with knowing the word and mis-tapping; a
+ * declared blank is not. So the blank is strictly the stronger evidence, which
+ * is what the product had been saying all along.
+ *
+ * ## Why 0.05
+ *
+ * Swept, against two simulated populations — one that never mis-taps and one
+ * that mis-taps 5% of the words it knows. Mean absolute error, 3,600 sittings
+ * each:
+ *
+ * | slip | unknown-vs-wrong separation | MAE, learner never slips | MAE, learner slips |
+ * | --- | --- | --- | --- |
+ * | 0.00 | **−0.000 levels** | 1.31 | 1.70 |
+ * | 0.02 | 0.05 | 1.30 | 1.55 |
+ * | 0.05 | 0.13 | 1.33 | **1.46** |
+ * | 0.08 | 0.21 | 1.34 | 1.48 |
+ *
+ * The first row is the defect, measured: at slip 0 the separation is not small,
+ * it is zero to three decimal places, because it is algebraically zero.
+ *
+ * The rest is why 0.05 rather than the smallest value that merely makes the
+ * claim true. Against a population that never makes a careless mistake the
+ * column is flat — the whole sweep sits inside 0.04 levels, which is noise —
+ * so the choice costs nothing there. Against a population that does, it is
+ * worth a quarter of a level, and it is worth most at 0.05. Real learners are
+ * the second population.
+ *
+ * Setting it to zero recovers the previous model exactly, which is how the
+ * comparison above was made and how a regression in it would be caught.
+ */
+const SLIP = 0.05;
+
+/**
  * The likelihood of one response at one ability.
  *
- * *I don't know* is not the same evidence as a wrong answer, and treating it as
- * one throws away the most honest thing a learner does in an assessment. A wrong
- * answer might be a guess that missed; a declared blank cannot be. So it is
- * scored against the model with the guessing floor removed — the learner has
- * told us they were not in the quarter who would have got it by luck — which
- * makes it slightly stronger evidence of not knowing than a wrong guess is.
+ * See `SLIP` for why there are three branches rather than two and a negation.
  */
 function likelihood(abilityLevel: number, item: AskedItem): number {
   const known = logistic((abilityLevel - item.level) * LOGITS_PER_LEVEL);
-  if (item.response === 'correct') return GUESS + (1 - GUESS) * known;
+  if (item.response === 'correct') return known * (1 - SLIP) + (1 - known) * GUESS;
   if (item.response === 'unknown') return 1 - known;
-  return 1 - (GUESS + (1 - GUESS) * known);
+  return known * SLIP + (1 - known) * (1 - GUESS);
 }
 
 /** The posterior over the grid, given everything asked so far. */
@@ -235,25 +407,190 @@ export function information(abilityLevel: number, itemLevel: number): number {
   return (LOGITS_PER_LEVEL ** 2 * numerator * q) / (p * (1 - GUESS) ** 2);
 }
 
-/** The level to ask next, given where the learner seems to be. */
-export function nextLevel(asked: readonly AskedItem[], available: readonly number[]): number | null {
-  if (available.length === 0) return null;
-  const where = asked.length === 0 ? PRIOR_MEAN : estimate(asked).level;
-  let best = available[0]!;
-  let bestInformation = -1;
+/**
+ * The opening ladder: three questions the learner has a fair chance at.
+ *
+ * A first-time learner starts at level 2 and climbs by two. A returning one
+ * starts four levels below the result they already have and climbs by two to
+ * meet it — so somebody previously measured at 20 opens on 14, 16, 18 rather
+ * than on 14, which is where the prior alone would have put every learner in
+ * the product.
+ *
+ * ## Why the previous result moves the ladder and not the posterior
+ *
+ * A stored level is evidence about a person on the day it was taken and it is
+ * the only thing we have about who is sitting down now, so it is worth using —
+ * but a retake exists precisely because the old number may be wrong. Folding it
+ * into the prior would drag every retake back toward the old answer, and the
+ * learner would have to out-argue their own history to move.
+ *
+ * So it steers **where we look first** and nothing else. The posterior is built
+ * from this sitting's answers alone, against the same uninformative prior every
+ * learner gets. A returning learner who has forgotten everything walks down; one
+ * who has doubled their vocabulary walks up; neither is held anywhere.
+ */
+export function warmupLadder(previousLevel: number | null): number[] {
+  const clamp = (level: number) => Math.min(LEVELS, Math.max(1, level));
+  const base = previousLevel === null ? 4 : Math.max(1, Math.round(previousLevel) - 4);
+  const start = Math.max(1, base - 2);
+  return [start, start + 2, start + 4].map(clamp);
+}
+
+/** Which phase of the sitting item number `index` belongs to. */
+export type Phase = 'warmup' | 'adaptive' | 'confirm';
+
+export function phaseOf(index: number): Phase {
+  if (index < WARMUP_ITEMS) return 'warmup';
+  if (index >= CONFIRM_FROM) return 'confirm';
+  return 'adaptive';
+}
+
+/** The nearest level in `available` to `wanted`, preferring the lower on a tie. */
+function snap(wanted: number, available: readonly number[]): number | null {
+  let best: number | null = null;
+  let bestDistance = Infinity;
   for (const level of available) {
-    const value = information(where, level);
-    if (value > bestInformation) {
-      bestInformation = value;
+    const distance = Math.abs(level - wanted);
+    if (distance < bestDistance || (distance === bestDistance && best !== null && level < best)) {
       best = level;
+      bestDistance = distance;
     }
   }
   return best;
 }
 
-/** Whether the sitting is over. Thirty questions, or the clock. */
+/** The levels asked in the last `REPEAT_LIMIT` questions. */
+function recentLevels(asked: readonly AskedItem[]): number[] {
+  return asked.slice(-REPEAT_LIMIT).map((item) => item.level);
+}
+
+/** Whether asking `level` now would make it `REPEAT_LIMIT + 1` in a row. */
+function wouldRepeat(level: number, asked: readonly AskedItem[]): boolean {
+  const recent = recentLevels(asked);
+  return recent.length >= REPEAT_LIMIT && recent.every((seen) => seen === level);
+}
+
+export interface NextLevelOptions {
+  /**
+   * The level a previous sitting reported, if there is one.
+   *
+   * Read only by the warm-up. See `warmupLadder` for why it never reaches the
+   * posterior.
+   */
+  previousLevel?: number | null;
+}
+
+/**
+ * The level to ask next.
+ *
+ * Three rules run in order, and each of them exists because a learner met the
+ * behaviour it prevents:
+ *
+ * 1. **Warm-up.** The first `WARMUP_ITEMS` come off `warmupLadder`, not off the
+ *    estimator, so nobody opens an assessment on a word from the middle of the
+ *    scale.
+ * 2. **A bounded step.** Whatever the estimator wants, the next level is within
+ *    `MAX_STEP` of the last one. The walk is therefore always readable as a walk.
+ * 3. **No level three times running.** The information function is flat at the
+ *    ends of the scale, so an unbounded argmax parks there; `REPEAT_LIMIT` moves
+ *    it off and keeps the sitting varied without moving it far.
+ *
+ * Within those, the choice is still the most informative item available — the
+ * adaptive part is intact, it is only prevented from being abrupt.
+ */
+export function nextLevel(
+  asked: readonly AskedItem[],
+  available: readonly number[],
+  options: NextLevelOptions = {},
+): number | null {
+  if (available.length === 0) return null;
+  const clamp = (level: number) => Math.min(LEVELS, Math.max(1, level));
+  const index = asked.length;
+  const phase = phaseOf(index);
+
+  if (phase === 'warmup') {
+    const ladder = warmupLadder(options.previousLevel ?? null);
+    return snap(ladder[index] ?? ladder[ladder.length - 1]!, available);
+  }
+
+  const where = estimate(asked).level;
+  const last = asked[asked.length - 1]!.level;
+  const low = last - MAX_STEP;
+  const high = last + MAX_STEP;
+
+  /*
+    In confirmation the target is the estimate itself, nudged a level either
+    side on a fixed cycle. The nudge is what stops the last four questions being
+    four copies of the same item level, and it is fixed rather than random so
+    that a resumed sitting asks the same things in the same order.
+  */
+  let wanted = where;
+  if (phase === 'confirm') {
+    const offsets = [0, 1, -1, 0];
+    wanted = clamp(Math.round(where) + offsets[(index - CONFIRM_FROM) % offsets.length]!);
+  }
+
+  const inStep = available.filter((level) => level >= low && level <= high);
+  const candidates = inStep.length > 0 ? inStep : available;
+
+  /*
+    Rank by information about the *current* estimate, not about the nudged
+    target: the nudge says where to look, the information says which of the
+    levels we may look at is worth the question. In the adaptive phase the two
+    agree; in confirmation the nudge deliberately spends a little information to
+    buy a spread of evidence around the answer.
+  */
+  const score = (level: number) =>
+    phase === 'confirm' ? -Math.abs(level - wanted) : information(where, level);
+
+  const ordered = [...candidates].sort((a, b) => {
+    const difference = score(b) - score(a);
+    if (Math.abs(difference) > 1e-12) return difference;
+    // Deterministic tie-break, so two sittings with the same answers agree.
+    return Math.abs(a - wanted) - Math.abs(b - wanted) || a - b;
+  });
+
+  const fresh = ordered.find((level) => !wouldRepeat(level, asked));
+  return fresh ?? ordered[0] ?? null;
+}
+
+/**
+ * Whether the sitting is over.
+ *
+ * The ceiling always ends it. Between the floor and the ceiling it ends when the
+ * posterior has stopped moving — `STOP_SE` — which is the only thing left the
+ * remaining questions could change. Below the floor nothing ends it, so a lucky
+ * opening run cannot cut an assessment short.
+ */
 export function shouldStop(asked: readonly AskedItem[]): boolean {
-  return asked.length >= ITEM_COUNT;
+  if (asked.length >= MAX_ITEM_COUNT) return true;
+  if (asked.length < MIN_ITEM_COUNT) return false;
+  return estimate(asked).se <= STOP_SE;
+}
+
+/**
+ * Which item to take from a pool, without a random number generator.
+ *
+ * A sitting has to be reproducible: it is written to the device after every
+ * answer so that closing the app does not throw it away, and a resumed sitting
+ * that re-rolled its choices would show the learner different questions than the
+ * ones it had already scored them on. So the choice is a pure function of the
+ * sitting's seed and the question's index — `Math.random()` cannot be resumed,
+ * and a stored list of every future question would be a second source of truth.
+ *
+ * FNV-1a, which is not a cryptographic hash and does not need to be. What it
+ * needs is to be the same on every device and in the test suite, and to spread a
+ * short seed over a pool of a few dozen.
+ */
+export function pickIndex(seed: string, index: number, size: number): number {
+  if (size <= 0) return 0;
+  let hash = 0x811c9dc5;
+  const material = `${seed}#${index}`;
+  for (let i = 0; i < material.length; i += 1) {
+    hash ^= material.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash % size;
 }
 
 /**

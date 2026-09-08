@@ -7,7 +7,7 @@
   "intro": {
     "title": "Prüf deinen Wortschatz",
     "body": "Von vertrauten Wörtern bis zu etwas schwereren — so siehst du, wo dein koreanischer Wortschatz gerade steht.",
-    "shape": "{{questions, number}} Fragen · {{minutes, number}} Minuten",
+    "shape": "{{min, number}}–{{max, number}} Fragen · {{minutes, number}} Minuten",
     "unsure": "Unsicher? Dann tippe einfach auf „Weiß ich nicht“.",
     "usedFor": "Dein Ergebnis bestimmt, wie schwer deine täglichen Wörter sind.",
     "start": "Test starten",

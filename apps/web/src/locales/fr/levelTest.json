@@ -7,7 +7,7 @@
   "intro": {
     "title": "Évaluez votre vocabulaire",
     "body": "Des mots familiers à d’autres un peu plus difficiles : voyez où en est votre vocabulaire coréen.",
-    "shape": "{{questions, number}} questions · {{minutes, number}} minutes",
+    "shape": "{{min, number}}–{{max, number}} questions · {{minutes, number}} minutes",
     "unsure": "Un doute ? Appuyez sur « Je ne sais pas ».",
     "usedFor": "Votre résultat règle la difficulté de vos mots quotidiens.",
     "start": "Commencer le test",

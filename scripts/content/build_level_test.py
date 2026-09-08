@@ -109,6 +109,55 @@ DISTRACTOR_SPREAD = 2
 #: words.
 PER_LEVEL = 150
 
+#: The lowest level a *dictionary* anchor may be asked at.
+#:
+#: ## The defect this exists for
+#:
+#: Every anchor is levelled by the frequency rank of its surface string, and for
+#: a taught word that is safe because the curriculum supplies the level instead.
+#: For a dictionary headword it is the only evidence there is — and it is
+#: evidence about the *string*, not about the sense the question asks. Korean
+#: writes a great many different words the same way, so the two came apart, and
+#: they came apart worst exactly where a beginner meets them:
+#:
+#: | shipped at | word | rank says | the question's answer was |
+#: | --- | --- | --- | --- |
+#: | level 1 | 누가 | 107 — because 누가 is *who* | "nougat" |
+#: | level 1 | 내 | 3 — because 내 is *my* | "smell" |
+#: | level 1 | 위해 | 131 — because 위해 is *for the sake of* | "harm" |
+#: | level 1 | 거야 | 19 — a sentence ending | "last night" |
+#: | level 1 | 일다 | 1 — because 일 is the commonest noun in Korean | "to rise" |
+#: | level 2 | 나랑 | 361 — because 나랑 is *with me* | "country" |
+#:
+#: A learner who correctly knows that 누가 means *who* was marked wrong for it,
+#: on question one of an assessment, and told their vocabulary was smaller than
+#: it is. Sixty-nine such items sat at levels 1–5.
+#:
+#: ## Why a floor rather than a filter
+#:
+#: Filters were written too — a surface that analyses as an inflection is not a
+#: word, a one-syllable dictionary headword is not attributable, a truncated
+#: gloss is not a meaning — and they are in `usable_anchor` and in
+#: `build_level_test.mjs`. They catch about two thirds of the class and they
+#: cannot catch the rest, because 과장 really is both *exaggeration* and *section
+#: manager* and no structural rule tells you which one rank 643 belongs to.
+#:
+#: The floor closes it completely at the end where it matters, and it does so on
+#: an argument rather than on a threshold. Levels 1–10 are the first 1,835 words
+#: of Korean — precisely the band the 3,393-word taught corpus was curated to
+#: cover, and precisely where a beginner is placed. Below level 11 the
+#: curriculum has a vetted word, with a vetted sense and a vetted level, for
+#: every slot the test needs: the bank keeps 37 to 75 distinct taught words at
+#: every one of those levels, against the thirty questions a sitting asks. An
+#: unvetted dictionary headword adds no coverage there and carries all of the
+#: risk above.
+#:
+#: Above it the position reverses — the corpus thins to nineteen words at level
+#: 26 — so dictionary anchors are what makes the top of the scale exist at all,
+#: and a rare word *is* the right thing to ask a learner at level 26. That
+#: asymmetry is the whole content of this constant.
+DICTIONARY_LEVEL_FLOOR = 11
+
 
 def level_of(rank: int) -> int:
     """The Hangyul Vocabulary Level a frequency rank falls in."""
@@ -133,6 +182,22 @@ def shares_a_word(a: str, b: str) -> bool:
 _FORM_PAGE = re.compile(
     r"\b(form|forms|spelling|romanization|hanja|alternative|obsolete|archaic|"
     r"honorific form|contraction) of\b",
+    re.IGNORECASE,
+)
+
+#: A gloss that describes grammar, or that stops mid-sentence.
+#:
+#: `_FORM_PAGE` catches "informal polite present indicative form of 하다" and let
+#: through "Past tense of in the plain style. Formed from the…", which shipped as
+#: the correct answer to a level-2 question about 없었다. Two faults in one
+#: string: it is a grammar note, and it is *truncated* — the source entry was
+#: cut at sixty characters, so the choice a learner had to pick was half a
+#: sentence ending in an ellipsis. §9 asks specifically that a truncated gloss
+#: must not be able to decide an answer; the safe reading of that is that it must
+#: not be an answer.
+_BROKEN_GLOSS = re.compile(
+    r"…|\.\.\.|\b(tense|participle|conjugation|declension|stem|ending|particle|"
+    r"suffix|prefix|infix) of\b|\bformed from\b|\bplain style\b|\bused to (?:form|make)\b",
     re.IGNORECASE,
 )
 
@@ -245,15 +310,42 @@ def usable_anchor(headword: str, gloss: str, pos: str) -> bool:
         return False
     if not 1 <= len(headword) <= 4:
         return False
+    if _FORM_PAGE.search(gloss) or _BROKEN_GLOSS.search(gloss):
+        return False
     if pos not in _ASKABLE:
         return False
     if not gloss or not 3 <= len(gloss) <= 60:
         return False
-    if _FORM_PAGE.search(gloss):
-        return False
     if any(is_syllable(c) for c in gloss):
         return False
     if unsuitable(headword, gloss):
+        return False
+    return True
+
+
+def usable_dictionary_anchor(headword: str, gloss: str, pos: str) -> bool:
+    """Everything `usable_anchor` asks, and two things only a dictionary entry
+    can fail.
+
+    A taught word arrives with a curated sense, a curated example and a level the
+    curriculum chose. A dictionary headword arrives with none of those and is
+    levelled by the frequency of its own spelling, so it has to clear a higher
+    bar before it is allowed to carry a question.
+
+    * **One syllable is not attributable.** 수, 자, 줄, 가, 신, 데, 본, 볼 and
+      fifty more shipped as level 1–13 questions. Each is a real headword with a
+      real gloss and each takes its rank from a completely different word written
+      the same way — 자 is a *ruler* in the dictionary and a verbal suffix in the
+      corpus that ranked it 96th. There is no rule that recovers which sense
+      earned the rank, so a one-syllable dictionary headword is not asked.
+
+    * **A plural is not a word to test.** 사람들 and 아이들 are 사람 and 아이 with
+      the plural marker, and both anchors already exist. Asking about the plural
+      is asking about the same word twice, once with a suffix.
+    """
+    if not usable_anchor(headword, gloss, pos):
+        return False
+    if len(headword) < 2:
         return False
     return True
 
@@ -287,7 +379,7 @@ def dictionary_anchors(taught: set[str]) -> list[dict]:
         pos = part_of_speech.get(headword, "")
         if headword in taught or headword in seen:
             continue
-        if not usable_anchor(headword, gloss, pos):
+        if not usable_dictionary_anchor(headword, gloss, pos):
             continue
         seen.add(headword)
         out.append(
@@ -382,6 +474,10 @@ def build() -> dict:
         # seam and it is where the top of the scale comes from; it is recorded
         # in the report rather than hidden behind an average.
         row["level"] = taught_levels.get(row["word"]) or level_of(rank)
+        # A dictionary anchor may not carry a beginner question. See
+        # `DICTIONARY_LEVEL_FLOOR` for the six shipped items that argue for it.
+        if row["source"] == "dictionary" and row["level"] < DICTIONARY_LEVEL_FLOOR:
+            continue
         rows.append(row)
 
     return {

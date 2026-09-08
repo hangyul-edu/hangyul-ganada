@@ -7,7 +7,7 @@
   "intro": {
     "title": "测测你的词汇水平",
     "body": "从熟悉的词到稍难的词，做一遍就知道现在的词汇量在哪里。",
-    "shape": "{{questions, number}} 题 · {{minutes, number}} 分钟",
+    "shape": "{{min, number}}~{{max, number}} 题 · {{minutes, number}} 分钟",
     "unsure": "不会的题点“不知道”就好。",
     "usedFor": "结果会决定你每天单词的难度。",
     "start": "开始测试",

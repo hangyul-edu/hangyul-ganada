@@ -7,7 +7,7 @@
   "intro": {
     "title": "Nézze meg a szókincsszintjét",
     "body": "Ismerős szavaktól a kicsit nehezebbekig — így kiderül, hol tart most a koreai szókincse.",
-    "shape": "{{questions, number}} kérdés · {{minutes, number}} perc",
+    "shape": "{{min, number}}–{{max, number}} kérdés · {{minutes, number}} perc",
     "unsure": "Nem tudja? Nyugodtan koppintson a „Nem tudom” gombra.",
     "usedFor": "Az eredmény szabja meg a napi szavai nehézségét.",
     "start": "Teszt indítása",

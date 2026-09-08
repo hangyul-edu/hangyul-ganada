@@ -85,6 +85,39 @@ class RowWrites {
  * a synchronous read of a tiny scalar. IndexedDB remains the source of truth;
  * the mirror is a cache that is rewritten on every save.
  */
+/**
+ * Whether a stored Level Test sitting is one this build can honestly resume.
+ *
+ * The bar is higher than "parses". A resume promises the learner that the
+ * questions already presented do not change and the answers already given still
+ * count, so a sitting that cannot keep both promises must be discarded rather
+ * than repaired — and discarding costs nothing, because an unfinished sitting
+ * has never written a level.
+ *
+ * The two arrays therefore have to be the same length. `responses` may end in
+ * nulls (the question on screen when the app closed), but a `presented` longer
+ * or shorter than `responses` means the two disagree about what was asked, and
+ * a sitting whose own record of itself disagrees is not evidence.
+ */
+function isReadableSitting(sitting: unknown): sitting is StoredSettings['level_test_sitting'] {
+  if (sitting === null || sitting === undefined) return false;
+  if (typeof sitting !== 'object') return false;
+  const row = sitting as Record<string, unknown>;
+  if (typeof row.seed !== 'string' || !row.seed) return false;
+  if (typeof row.locale !== 'string' || !row.locale) return false;
+  if (typeof row.deadline !== 'number' || !Number.isFinite(row.deadline)) return false;
+  if (typeof row.startedAt !== 'string') return false;
+  if (row.seededFrom !== null && typeof row.seededFrom !== 'number') return false;
+  const presented = row.presented;
+  const responses = row.responses;
+  if (!Array.isArray(presented) || !Array.isArray(responses)) return false;
+  if (presented.length !== responses.length) return false;
+  if (!presented.every((id) => typeof id === 'string' && id.length > 0)) return false;
+  return responses.every(
+    (value) => value === null || value === 'correct' || value === 'wrong' || value === 'unknown',
+  );
+}
+
 /** Whether a stored vocabulary plan is one this build knows how to run. */
 function isReadablePlan(plan: unknown): plan is StoredSettings['daily_plan'] {
   if (plan === null || plan === undefined) return false;
@@ -125,6 +158,11 @@ export class SettingsRepository {
       // questions. `planIsCurrent` throws it away tomorrow anyway; this throws
       // away anything that is not the shape we expect, today.
       daily_plan: isReadablePlan(stored.daily_plan) ? stored.daily_plan : null,
+      // Same rule, and the same reason: a sitting this build cannot replay
+      // exactly is not resumed. See `isReadableSitting`.
+      level_test_sitting: isReadableSitting(stored.level_test_sitting)
+        ? stored.level_test_sitting
+        : null,
     };
   }
 

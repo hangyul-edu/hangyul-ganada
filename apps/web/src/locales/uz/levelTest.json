@@ -7,7 +7,7 @@
   "intro": {
     "title": "Lug‘at darajangizni tekshiring",
     "body": "Tanish so‘zlardan biroz qiyinroqlarigacha — koreys lug‘atingiz hozir qayerda ekanini ko‘ring.",
-    "shape": "{{questions, number}} savol · {{minutes, number}} daqiqa",
+    "shape": "{{min, number}}–{{max, number}} savol · {{minutes, number}} daqiqa",
     "unsure": "Ishonchingiz komil emasmi? “Bilmayman”ni bosavering.",
     "usedFor": "Natijangiz kunlik so‘zlaringiz qiyinligini belgilaydi.",
     "start": "Testni boshlash",

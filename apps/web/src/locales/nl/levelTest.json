@@ -7,7 +7,7 @@
   "intro": {
     "title": "Bekijk je woordenschatniveau",
     "body": "Van bekende woorden tot iets moeilijkere: zie waar je Koreaanse woordenschat nu staat.",
-    "shape": "{{questions, number}} vragen · {{minutes, number}} minuten",
+    "shape": "{{min, number}}–{{max, number}} vragen · {{minutes, number}} minuten",
     "unsure": "Weet je het niet? Tik gerust op ‘Weet ik niet’.",
     "usedFor": "Je resultaat bepaalt hoe moeilijk je woorden elke dag zijn.",
     "start": "Start de test",

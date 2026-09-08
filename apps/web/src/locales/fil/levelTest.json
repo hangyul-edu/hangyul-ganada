@@ -7,7 +7,7 @@
   "intro": {
     "title": "Tingnan ang antas ng bokabularyo mo",
     "body": "Mula sa pamilyar na salita hanggang sa medyo mahirap — tingnan kung nasaan na ang Koreano mong bokabularyo.",
-    "shape": "{{questions, number}} tanong · {{minutes, number}} minuto",
+    "shape": "{{min, number}}–{{max, number}} tanong · {{minutes, number}} minuto",
     "unsure": "Hindi sigurado? Pindutin lang ang “Hindi ko alam”.",
     "usedFor": "Ang resulta ang magtatakda ng hirap ng mga salita mo araw-araw.",
     "start": "Simulan ang pagsusulit",

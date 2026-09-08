@@ -83,3 +83,77 @@ export interface LevelTestResult {
    */
   recentItems: string[];
 }
+
+/**
+ * A sitting in progress, written to the device after every answer.
+ *
+ * ## Why this is stored at all
+ *
+ * A sitting used to live entirely in component state. Closing the app eleven
+ * questions in threw away eleven questions, and the screen had a leave-guard
+ * whose whole job was to warn the learner about that. On a phone the leave is
+ * often not a decision — a call arrives, the OS reclaims the tab — and an
+ * assessment that cannot survive a phone call is one a learner will not risk
+ * starting twice.
+ *
+ * ## What makes the resume honest
+ *
+ * Two rules, and the shape below exists to enforce them.
+ *
+ * **The questions already presented do not change.** `presented` holds the item
+ * id of every question in the order it was shown, so a resumed sitting replays
+ * them rather than re-choosing them. Anything still unanswered is re-shown as
+ * itself.
+ *
+ * **The scoring does not change.** `responses` is parallel to `presented`, and a
+ * resumed sitting rebuilds the posterior from it before choosing anything new.
+ * There is no second scoring path.
+ *
+ * Everything a future question depends on is either in this row or is a pure
+ * function of it: `seed` fixes which item is drawn from a level's pool, so the
+ * next question after a resume is the same one it would have been.
+ */
+export interface LevelTestSitting {
+  /**
+   * Fixes item choice within a level, so the sitting is reproducible.
+   *
+   * Made once when the sitting starts. See `pickIndex` in `domain/levelTest.ts`
+   * for why a seed rather than a stored list of future questions: a list would
+   * be a second source of truth about a sitting that is still adapting.
+   */
+  seed: string;
+  /** ISO, so an abandoned sitting can be aged out rather than resumed forever. */
+  startedAt: string;
+  /** Epoch ms. The one clock over the whole sitting, kept across a restart. */
+  deadline: number;
+  /**
+   * The interface language the sitting is being taken in.
+   *
+   * A sitting is not resumed into a different language. The bank resolves its
+   * meanings per locale, so the questions already presented might not exist in
+   * the new one — and a learner who switched language mid-assessment has asked
+   * for a different test. Discarding is safe: an unfinished sitting has never
+   * written a level.
+   */
+  locale: string;
+  /**
+   * The level a previous sitting reported, frozen when this one started.
+   *
+   * Frozen rather than read live so that the warm-up ladder of a resumed
+   * sitting is the ladder it actually used, even if something else has since
+   * written a new result.
+   */
+  seededFrom: number | null;
+  /** Item ids, in the order they were shown. */
+  presented: string[];
+  /**
+   * What the learner said, parallel to `presented`.
+   *
+   * `null` at the tail means "shown, not yet answered" — the state a sitting is
+   * in at the moment the app is closed.
+   */
+  responses: (Response | null)[];
+}
+
+/** The three things a learner can say about a question. */
+export type Response = 'correct' | 'wrong' | 'unknown';

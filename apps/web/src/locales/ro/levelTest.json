@@ -7,7 +7,7 @@
   "intro": {
     "title": "Verifică-ți nivelul de vocabular",
     "body": "De la cuvinte cunoscute la altele puțin mai grele — vezi unde e acum vocabularul tău de coreeană.",
-    "shape": "{{questions, number}} întrebări · {{minutes, number}} minute",
+    "shape": "{{min, number}}–{{max, number}} întrebări · {{minutes, number}} minute",
     "unsure": "Nu știi? Poți apăsa „Nu știu”.",
     "usedFor": "Rezultatul stabilește dificultatea cuvintelor tale zilnice.",
     "start": "Începe testul",
