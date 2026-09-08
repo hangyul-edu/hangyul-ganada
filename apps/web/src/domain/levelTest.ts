@@ -325,29 +325,30 @@ function pCorrect(abilityLevel: number, itemLevel: number): number {
  *
  * ## Why 0.05
  *
- * Swept, against two simulated populations — one that never mis-taps and one
- * that mis-taps 5% of the words it knows. Mean absolute error, 3,600 sittings
- * each:
+ * An A/B against this engine and the shipped bank, 6,000 sittings a cell. Two
+ * simulated populations: one that never mis-taps, and one that answers 5% of the
+ * words it knows wrongly. Only `SLIP` changes between rows.
  *
- * | slip | unknown-vs-wrong separation | MAE, learner never slips | MAE, learner slips |
- * | --- | --- | --- | --- |
- * | 0.00 | **−0.000 levels** | 1.31 | 1.70 |
- * | 0.02 | 0.05 | 1.30 | 1.55 |
- * | 0.05 | 0.13 | 1.33 | **1.46** |
- * | 0.08 | 0.21 | 1.34 | 1.48 |
+ * | slip | MAE, learner never mis-taps | MAE, learner mis-taps 5% |
+ * | --- | --- | --- |
+ * | 0.00 | 1.314 | 1.747 |
+ * | 0.05 | 1.331 | **1.501** |
  *
- * The first row is the defect, measured: at slip 0 the separation is not small,
- * it is zero to three decimal places, because it is algebraically zero.
+ * **+0.017 levels against a population that does not exist, −0.246 against the
+ * one that does.** Nobody answers a four-option question on a phone for eight
+ * minutes without ever hitting the wrong row.
  *
- * The rest is why 0.05 rather than the smallest value that merely makes the
- * claim true. Against a population that never makes a careless mistake the
- * column is flat — the whole sweep sits inside 0.04 levels, which is noise —
- * so the choice costs nothing there. Against a population that does, it is
- * worth a quarter of a level, and it is worth most at 0.05. Real learners are
- * the second population.
+ * The separation the parameter was added for is the other half: at 0.00 it is
+ * not merely small, it is **zero to twelve decimal places**, because it is
+ * algebraically zero. Setting `SLIP` to zero recovers the previous model
+ * exactly, which is how the table above was produced and how a regression in it
+ * is caught — `levelTest.test.ts` fails the separation case at zero.
  *
- * Setting it to zero recovers the previous model exactly, which is how the
- * comparison above was made and how a regression in it would be caught.
+ * These are differences between two runs of the same harness, not the headline
+ * accuracy figure: `scripts/level-test-qa.mjs` models the kind plan and pool
+ * exhaustion that this A/B does not, and reports a slightly higher absolute
+ * error for both. What transfers is the *difference*, which is what the
+ * parameter is chosen on.
  */
 const SLIP = 0.05;
 
