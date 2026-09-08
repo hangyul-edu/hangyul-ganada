@@ -255,6 +255,39 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
+    /*
+      Four workers, not one per core.
+
+      Vitest defaults to one worker per CPU, which is eight here, and each one
+      carries its own jsdom. `docs/CLAUDE_ENVIRONMENT_STABILITY.md` is explicit
+      that this VM is capped at 6 GB on purpose — raising it toward the 8 GB
+      default is what used to tear the machine down from the Windows side — so
+      eight jsdom environments plus whatever else a release run is holding is
+      exactly the pressure that document exists to avoid.
+
+      The symptom was not a crash and not a failing test. It was this, at the end
+      of a green run:
+
+          Test Files  72 passed (72)
+               Tests  1315 passed (1315)
+              Errors  1 error
+          Error: [vitest-worker]: Timeout calling "onTaskUpdate"
+
+      A worker could not deliver a progress update to a starved main thread
+      inside the RPC deadline, the error was counted, and `vitest run` exited 1
+      with every assertion passed. `verify:release` failed on it twice, both
+      times after `npm test` reported everything green, and it never reproduced
+      when the suite was run on an otherwise idle machine.
+
+      That is the worst shape a build failure can take — a red gate that is not
+      about the code — so the fix is to stop starving the main thread rather than
+      to raise the deadline and let the next slower machine hit it. Four is half
+      the cores and leaves the reporter room to keep up; the suite takes about
+      ten seconds longer, which is a trade worth making for an exit code that
+      means what it says.
+    */
+    pool: 'threads',
+    poolOptions: { threads: { maxThreads: 4, minThreads: 1 } },
     // Playwright specs live under e2e/ and must not be collected by Vitest.
     //
     // `scripts/lib` is collected too, and only because of one file: the IPA
