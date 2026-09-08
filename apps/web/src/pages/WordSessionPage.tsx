@@ -269,29 +269,27 @@ export function WordSessionPage() {
 
   const current = queue[index];
 
-  /**
-   * Where this screen is *within its word*, when the word takes more than one.
+  /*
+   * There is no per-word step counter here, and that is deliberate.
    *
-   * The day's counter measures words finished, which is the right thing for it
-   * to measure and is why a new word's introduction moves nothing: the learner
-   * presses *Got it*, the number stays at 3 / 10, and the honest reading of that
-   * screen is "the app ignored me". It did not — the word owes a second step —
-   * but nothing on the page said so.
+   * The screen used to read 새 단어 · 1 / 2 — the source label, then this
+   * screen's position *within its word*. It was added so that a new word's
+   * introduction did not look like a press the app had ignored: the day's
+   * counter measures words finished, so it correctly stays at 3 / 10 while a
+   * two-step word is still being met.
    *
-   * Counted out of the frozen queue rather than out of the plan, so it is the
-   * sitting's own view and cannot disagree with the screens the learner is
-   * being shown. `null` for a word with one step, where "1 of 1" would be
-   * noise, and for a matching grid, which is four words at once and not a
-   * position in any of them.
+   * It fixed that and caused something worse. `x / y` already means one thing
+   * in this product — the day's progress, at the top of the same screen — and a
+   * second `x / y` a few pixels below it, measuring a different unit, is read as
+   * the unit the learner already knows. 새 단어 · 1 / 2 was reported as "the app
+   * says there are two new words today", by someone who then met a third. Two
+   * counters in one view have to measure the same thing or one of them has to
+   * go, and the day's counter is the one a learner needs.
+   *
+   * The label itself stays: *새 단어* against *복습* is what tells a learner the
+   * app has noticed their level, and removing it would put back a defect this
+   * product has already fixed once.
    */
-  const wordStep = useMemo(() => {
-    if (!current || current.step === 'match') return null;
-    const mine = queue.filter(
-      (question) => question.step !== 'match' && question.word.id === current.word.id,
-    );
-    if (mine.length < 2) return null;
-    return { at: mine.indexOf(current) + 1, of: mine.length };
-  }, [current, queue]);
 
   /*
    * Whether pressing on ends the session — asked of the obligations, not of the
@@ -679,14 +677,6 @@ export function WordSessionPage() {
         {current.source && (
           <p className={styles.sourceLabel} data-testid="word-source">
             {t(current.source === 'new' ? 'vocabulary:session.newWord' : 'vocabulary:session.review')}
-            {wordStep && (
-              <>
-                {' · '}
-                <span data-testid="word-step">
-                  {t('learning:session.counter', { current: wordStep.at, total: wordStep.of })}
-                </span>
-              </>
-            )}
           </p>
         )}
         {current.step === 'match' && current.pairs ? (
