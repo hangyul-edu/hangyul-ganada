@@ -1949,6 +1949,18 @@
       "recommendedFix": "Fixed. `apps/web/src/storage/upgradeCompatibility.test.ts`.",
       "note": "No schema change was needed for 1.0.4: nothing in this pass alters stored shapes, so the migration ladder is unchanged at SCHEMA_VERSION 14.",
       "effort": "S"
+    },
+    {
+      "id": "I-184",
+      "area": "Release engineering",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "An end-to-end assertion read the answer options and reported a vocabulary gloss as feedback",
+      "customerImpact": "None. The screen was right; the test was wrong, and would have blocked a correct release.",
+      "evidence": "`level-test.spec.ts` asserts that nothing on the question screen tells a learner how they are doing, and did it by scanning the whole page body for /correct|incorrect|wrong|score/. The body includes the four answer options, which are English glosses of Korean words.\n\nIt passed for as long as it did by luck. When item selection changed in this pass, question one became 열다 and its options included *to be right, correct* — an ordinary gloss of 옳다 — so the gate reported that the app was telling the learner they were correct.\n\nThe scan is now taken over everything outside the answers group. Feedback would never be drawn inside that group, so the assertion still catches what it exists for while letting the vocabulary be vocabulary.",
+      "recommendedFix": "Fixed. `apps/web/e2e/level-test.spec.ts`.",
+      "note": "The third instance this cycle of a check whose proxy could not tell its subject from its surroundings — with the ledger's whitespace normaliser (§20U.2) and the stale sabotage in G4 (I-181). A gate that has only been seen passing is a gate nobody has evidence about.",
+      "effort": "S"
     }
   ]
 }

@@ -74,9 +74,25 @@ test.describe('the vocabulary level test', () => {
     const options = page.getByRole('group', { name: /Answers/i }).getByRole('button');
     await expect(options).toHaveCount(4);
 
-    // Nothing on the question screen tells the learner how they are doing.
+    /*
+      Nothing on the question screen tells the learner how they are doing —
+      asserted everywhere *except* the answers themselves.
+
+      The first version read the whole body, and the whole body includes the
+      four options, which are English glosses of Korean words. It passed for as
+      long as it did by luck: the moment item selection changed, question one
+      became 열다 and its options included *to be right, correct* — a perfectly
+      ordinary gloss of 옳다 — and the test reported that the app was telling the
+      learner they were correct. The screen was right and the proxy was wrong.
+
+      Feedback, if it were ever drawn here, would not be inside the answers
+      group; scoping the scan to everything outside it keeps the assertion able
+      to catch what it is for while letting the vocabulary be vocabulary.
+    */
+    const answers = await page.getByRole('group', { name: /Answers/i }).innerText();
     const body = (await page.locator('body').innerText()).toLowerCase();
-    expect(body).not.toMatch(/correct|incorrect|wrong|score|\d+\s*\/\s*\d+\s*right/);
+    const outsideAnswers = body.split(answers.toLowerCase()).join(' ');
+    expect(outsideAnswers).not.toMatch(/correct|incorrect|wrong|score|\d+\s*\/\s*\d+\s*right/);
 
     /*
       One clock for the whole test, not one per question.
