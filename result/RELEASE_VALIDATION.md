@@ -8,7 +8,7 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `9caccc66` on branch `main`. `build-info.json` →
+**Source:** commit `91ebed24` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -17,8 +17,8 @@ middle of writing.
 **Built:** 8 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 18 validation.** Codes 3 through 18 are spent,
-each by an artefact that was actually produced. This is 19.
+**This supersedes the versionCode 19 validation.** Codes 3 through 19 are spent,
+each by an artefact that was actually produced. This is 20.
 
 ---
 
@@ -74,7 +74,7 @@ control under 44px.
 | Safeguards | A bound reopens only on two contradicting answers in a row; the sitting stops only when the bracket has closed *and* the posterior has settled; the warm-up ladder ends on the first miss |
 | Level Test bank | Dictionary ranks discounted by sense count — 시기 moves from 11 to 18, 화상 from 11 to 19; the cross-locale collision check now covers dictionary glosses |
 | New gate | `leveltest:viewport` measures the question screen at 320–390 and at 150% and 200% text in five languages |
-| Version | Android **1.0.5 / 19**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Version | Android **1.0.4 / 20**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -84,10 +84,10 @@ control under 44px.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **19**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Package | `com.talkhangyul.ganada`, version code **20**, versionName **1.0.4**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
 | Why 18 | 17 is spent. Both delivered artefacts report a code of 17 and the previous `build-info.json` recorded 17, and product files have changed since — the level-test engine, its item bank, and the vitest worker cap. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 18 is the next valid code rather than the next unused one. |
-| Why 1.0.5 and not 1.0.4 | The previous release changed how the test *chooses* questions. This one changes how it *recovers* when a learner opens badly, which is a different behaviour and one a learner meets on their first retake after updating: a sitting that would have reported level 2 now reports 30. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 19 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
+| Why 1.0.4, below the 1.0.5 this tree carried | The release this work belongs to is 1.0.4, and the tree is being brought to it rather than carried past it. It is safe to do so: `registered` records that nothing has been uploaded to either console, so no customer has seen 1.0.5 and no listing has to be explained. The build number is not reused — versionCode 19 is spent by an artefact that exists on disk, so this is 20. The two numbers are independent and Play orders updates by the code alone. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.4 and `pending_build` 20 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
 
 ## What was run against this tree
 
@@ -244,8 +244,8 @@ viewports.
 ## Checksums
 
 ```
-3cb89e142e3786782ee878caadc4e0cdae69d7131022519808b7cc283b4c5c88  hangyul-ganada-release.apk
-2edc2273b3c38f4cf70a5e883e60ad5ef8f8a6606bbba7980aefa3ef6d191e72  hangyul-ganada-release.aab
-9118b7ce21c65ecb7f529c5c67e7ebf11e9d06cef8a5c74877ae0362ce9c75ac  docs/report.pdf
-c65e69d8c03dce811d561c1881a0d9f2e61a93e49f57141e9064c17e4f0fd013  build-info.json
+2da14a7f7e321e65c7439510afecfbbc0aff7cfd9d99ccfc241daca75cb5b8b4  hangyul-ganada-release.apk
+aa62ba7e15d169a888270ad4e28796695440b81878c92814cc644460a9078bb6  hangyul-ganada-release.aab
+28fe26e1b3c31da308a5f5471b1291002d09d2cba641e90cbbc804457cf2e917  docs/report.pdf
+43305c5d86ec9d12b7f1f39ff71f5b2c4b059f7efb232951b1f436a627248ca0  build-info.json
 ```

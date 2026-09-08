@@ -1877,6 +1877,78 @@
       "recommendedFix": "Fixed. `apps/web/src/pages/WordSessionPage.tsx` builds the first pass with `useCorpusMemo`.",
       "note": "The same class as the two failures already recorded against this screen — a frozen empty queue, then an announced empty queue — one fetch further along, and the third time a fixed wait in a test turned out to be measuring the machine rather than the product. The residue is bounded and self-correcting: a sitting whose steps all need meanings can still show the backstop for the one round trip between a band's words and that band's locale pack, and now recovers on its own when the pack lands.",
       "effort": "S"
+    },
+    {
+      "id": "I-178",
+      "area": "Vocabulary Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "밥을 먹고 ____을 드세요 accepted two of its four options",
+      "customerImpact": "A learner at level 4 met a question with two right answers and was marked wrong for choosing one of them. 물 and 약 are both ordinary completions — you drink water after a meal and you take medicine after a meal — and the item is invalid whatever the answer key says. It was found by a reader looking at the screen, not by any gate.",
+      "evidence": "Two guards should have caught it. The category guard compares browse categories, which are topical: 약 is filed under body-health with 의사, 물 under food, so they differ and the pair passed. The noun-class guard would have caught it and is conditioned on *both* words being classified — 약 carried no class at all. Measuring the shipped bank, 76% of noun-slot context items have an unclassified answer, so that guard was inert for three quarters of them (I-182).\n\nFixed at the builder, not the answer key. `isConsumptionObjectFrame` reads the sentence for a consumption verb governing an object-marked blank, and `consumableWords` rejects any candidate that can be swallowed — judged from the candidate alone, so it holds when the answer is unclassified. Narrow by design: the comitative frame ____와 점심을 먹어요, which wants a person, is not caught.\n\n  before  다음 · 물 · 산 · 약   keyed 약, and 물 is also right\n  after   다음 · 산 · 약 · 하늘  keyed 약, and nothing else fits\n\nThe bank and `cloze.json` are regenerated from the same builder, so the identical question in Today's Vocabulary and Review is fixed by the same change. Negative case G6 restores 물 to the shipped bank and the gate fires.",
+      "recommendedFix": "Fixed. `scripts/lib/level-test-rules.mjs`, applied by the builder and by `leveltest:ambiguity`.",
+      "note": "Scanning every noun-slot consumption frame in the bank found exactly one other candidate, ____와 점심을 먹어요, and it is a false positive: the blank is comitative and wants a person. That is why the rule requires the object particle.",
+      "effort": "S"
+    },
+    {
+      "id": "I-179",
+      "area": "Today's Vocabulary",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "A second x/y counter on the session screen was read as the day's progress",
+      "customerImpact": "The screen carried two `x / y` counters a few pixels apart measuring different things: the header counts words finished today, and the line under the word counted the screen's position within its word — 새 단어 · 1 / 2. It was reported as \"the app says there are two new words today\" by a learner who then met a third.",
+      "evidence": "Nothing was miscounted. `sessionProgress` counts distinct completed words against max(goal, plan.words.length) and the progress bar reads the same value, so there is one unit and one source; the plan really did hold three new words. The defect is that the smaller counter used a different unit in the same shape as the larger one.\n\nThe element is removed from the markup, from the accessibility tree and with its `wordStep` computation. No localisation key became unused — `learning:session.counter` still carries the day counter and the letter and review sessions. The 새 단어 / 복습 label stays: it is what tells a learner the app has noticed their level, and removing it would put back a defect already fixed once.\n\n`wordSessionCounts.test.tsx` pins the unit across every shape a day takes — none, one, two, three or more, review-only, mixed, and a plan longer than the goal — that a word credited twice counts once, and that a reopened plan reads identically.",
+      "recommendedFix": "Fixed. `apps/web/src/pages/WordSessionPage.tsx`.",
+      "note": "The absence is asserted against the source rather than a rendered screen: a DOM assertion would keep passing if the counter came back under a different test id.",
+      "effort": "S"
+    },
+    {
+      "id": "I-180",
+      "area": "Vocabulary Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Nearly a quarter of the questions were harder than the test's own estimate of the learner",
+      "customerImpact": "The test was reported as too hard, and as jumping to a much higher level after a single correct answer. Both are measurable rather than impressions.",
+      "evidence": "Instrumenting the selector over 157,799 adaptive questions — 200 simulated sittings at each of 30 levels — showed 23.7% of items asked *above* the running estimate and 32.3% below. Information theory explains it: the most informative item sits at the estimate, so an unconstrained selector sits there and drifts up whenever the bracket midpoint is above the posterior mean. The estimator was not wrong; there was no floor under the experience.\n\nTwo bounds fix it. One adaptive item in five is drawn a level below the estimate, on a cadence fixed by ordinal position so a resumed sitting reproduces the order. And the step is made asymmetric — three levels down, two up — because going down after a miss is the test agreeing with the learner while going up is it disagreeing on the strength of one answer that carries no information one time in four.\n\n  before  32.3% below · 44.0% at · 23.7% above   climb 2, 4, 6, 9, 12, 15, 18\n  after   40.1% below · 41.4% at · 18.4% above   climb 2, 4, 6, 8, 10, 12, 14\n\nAccuracy is unchanged: ±3 at 90.2%, mean absolute error 1.64 levels, opening level 2, 20-30 items. The three shares are now measured inside `leveltest:qa` and bounded there.",
+      "recommendedFix": "Fixed. `EASY_EVERY`, `EASY_DROP`, `MAX_STEP_UP` and `SUSTAINED_CORRECT` in `apps/web/src/domain/levelTest.ts`.",
+      "note": "A hard upward cap of two had one cost: a learner who answers everything correctly reaches the ceiling later, spends fewer questions there, and was reported at 29 rather than 30. The wide step is therefore earned rather than removed — eight consecutive correct answers restore it, one miss withdraws it — and the top-of-scale test now asserts the top band with the trade written beside it.",
+      "effort": "M"
+    },
+    {
+      "id": "I-181",
+      "area": "Release engineering",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "A negative test had silently stopped applying its own sabotage",
+      "customerImpact": "None directly. It is a gate about gates: G4 in the negative suite asserts that `numbers:qa` catches 둘 개, the plain numeral in front of a counter. Its sabotage quoted a whole `n(...)` call, a `domain:` field was later added to that call, and the quoted text stopped matching — so the case had been asserting nothing.",
+      "evidence": "Running the suite prints `AssertionError: the sabotage no longer applies` and reports G4 as a problem, which is the harness being loud rather than the defect being caught. Re-anchored on the single line it actually needs, G4 catches again: `numbers:qa — 6 problem(s)`. The suite now reports 8 ok, 0 problems, including the new G6.",
+      "recommendedFix": "Fixed. `scripts/regression-gates-negative.sh`.",
+      "note": "A negative case pinned to more source than it needs has an expiry date. The same class as I-170.",
+      "effort": "S"
+    },
+    {
+      "id": "I-182",
+      "area": "Content QA",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A pairwise option guard was conditioned on both words being classified, so an unclassified answer disabled it",
+      "customerImpact": "Indirect but wide: it is the reason I-178 shipped. The rule reads `if (answerClasses && otherClasses && classesCompete(...))`, so a noun with no entry in `noun-classes.json` silently turned the guard off for every question built on it.",
+      "evidence": "Measured over the shipped bank: 205 of 268 noun-slot context items — 76% — have an answer with no noun class. The guard was doing nothing for three quarters of the items it exists to protect.\n\nTwo changes. `약` and `약물` gain a `consumable` class and a `food`/`consumable` conflict group, which closes the pair that shipped. More importantly the new frame rule is *one-sided*: it reads the class the sentence's predicate selects and judges the candidate alone, so it cannot be switched off by a gap in the answer's data. `questions:ledger` re-checks all 5,165 objective questions across the three sources that generate them.",
+      "recommendedFix": "Fixed for the consumption frame. The general fail-open shape of `classesCompete` remains for other frames — see the note.",
+      "note": "Only the consumption frame is closed one-sidedly. Other frames still rely on the pairwise guard and so still fail open on an unclassified answer; the honest statement is that the class data is 234 nouns against a 2,246-word bank. Widening either the data or the one-sided treatment is the next step and is not claimed as done.",
+      "effort": "M"
+    },
+    {
+      "id": "I-183",
+      "area": "Persistence",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The upgrade fixture did not assert Numbers-course progress",
+      "customerImpact": "A learner who had finished Numbers lessons had no test standing between them and a migration that dropped those rows.",
+      "evidence": "The fixture walks a learner from every stored schema version to the current one and asserts letters, words, sessions, attempts, the streak, the review queue, saved vocabulary, the daily plan's credited words, the level-test result and the content seed — but never read the `numbers` store. That matters because the v13 migration deliberately deletes Numbers rows: the first Numbers build wrote items into the *letter* stores under `number:` keys, and those are snapshotted to `meta` and removed. Nothing held the migration to leaving the real model alone.\n\nA completed lesson is now planted for every version that has the store and has to arrive with its completion time and attempt counts intact. Removing the planted row fails two cases, so the assertion is doing work.",
+      "recommendedFix": "Fixed. `apps/web/src/storage/upgradeCompatibility.test.ts`.",
+      "note": "No schema change was needed for 1.0.4: nothing in this pass alters stored shapes, so the migration ladder is unchanged at SCHEMA_VERSION 14.",
+      "effort": "S"
     }
   ]
 }
