@@ -341,6 +341,25 @@ const MEANINGS_BY_LOCALE = (() => {
     });
     out.set(locale, table);
   }
+  /*
+    English also carries the dictionary anchors, and it has to.
+
+    `collideInAnyLocale` compares meanings, and it silently passed every pair in
+    which either side was a dictionary headword — because this map was built
+    from the taught corpus and dictionary glosses are not in it, so the lookup
+    missed and the check returned "no collision". The audit that reads the
+    finished bank found what that let through: `데모` shipped offering *demo ·
+    personality · feedback · a personality*, two of which are the same answer.
+
+    Dictionary glosses exist in English only, which is why this is one language
+    rather than thirty-two — and one language is where the gap was.
+  */
+  const english = out.get('en');
+  if (english) {
+    for (const anchor of anchors) {
+      if (anchor.source === 'dictionary' && anchor.gloss) english.set(anchor.id, anchor.gloss);
+    }
+  }
   return out;
 })();
 

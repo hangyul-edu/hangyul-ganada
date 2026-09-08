@@ -67,6 +67,9 @@ function rng(seed) {
 
 const LOGITS_PER_LEVEL = 0.3;
 const GUESS = 0.25;
+/** What the estimator assumes about fumbling, so the simulated learner does it too. */
+const SLIP = 0.05;
+const DECLINE = 0.03;
 
 const byLevel = new Map();
 const byLevelKind = new Map();
@@ -131,12 +134,27 @@ function sit(truth, random, kindsAsked = new Map(), previousLevel = null) {
     used.add(item.id);
     kindsAsked.set(item.kind, (kindsAsked.get(item.kind) ?? 0) + 1);
 
-    // How a learner of this ability answers: they either know the word, or they
-    // guess and land it a quarter of the time, or they say so.
+    /*
+      How a learner of this ability answers.
+
+      Two things happen to a word they know: they answer it, or they do not.
+      `SLIP` is a mis-tap and `DECLINE` is pressing *I don't know* about a word
+      they could have named — misread, second-guessed, or the wrong control on a
+      phone in the first seconds of an unfamiliar screen. Both are small and
+      neither is optional: a simulation in which a learner never fumbles is a
+      simulation of nobody, and the estimator that was tuned against one placed a
+      true level-30 learner who opened with six blanks at **level 2**.
+
+      A word they do not know is guessed at the four-option rate or declined,
+      which is the same split the estimator assumes and the same one this file
+      has always used.
+    */
     const knows = 1 / (1 + Math.exp(-(truth - level) * LOGITS_PER_LEVEL));
     let response;
-    if (random() < knows) response = 'correct';
-    else if (random() < GUESS) response = 'correct';
+    if (random() < knows) {
+      const fumble = random();
+      response = fumble < SLIP ? 'wrong' : fumble < SLIP + DECLINE ? 'unknown' : 'correct';
+    } else if (random() < GUESS) response = 'correct';
     else response = random() < 0.5 ? 'unknown' : 'wrong';
 
     asked.push({ level, response });
@@ -236,6 +254,32 @@ for (const [label, respond] of PATTERNS) {
 }
 
 /**
+ * A learner who opens badly and then settles down.
+ *
+ * The defect of the previous build, as a gate. Six declines on the opening
+ * questions — nerves, an unfamiliar screen, or three warm-up words they happen
+ * not to know — followed by answering to their true ability. The shipped engine
+ * reported **2** for a learner whose true level was 30, because a decline was
+ * treated as proof of not knowing and six of them could not be climbed out of.
+ */
+const recoveryRows = [];
+for (const truth of [10, 15, 20, 25, 30]) {
+  const asked = [];
+  const used = new Set();
+  while (!shouldStop(asked)) {
+    const open = levelsAvailable.filter((level) =>
+      (byLevel.get(level) ?? []).some((item) => !used.has(item.id)),
+    );
+    const level = nextLevel(asked, open, { previousLevel: null });
+    if (level === null) break;
+    const response =
+      asked.length < 6 ? 'unknown' : level <= truth ? 'correct' : 'wrong';
+    asked.push({ level, response });
+  }
+  recoveryRows.push({ truth, reported: estimate(asked).reported, items: asked.length });
+}
+
+/**
  * The same learners, sitting the test a second time.
  *
  * A stored level steers the opening ladder and nothing else, so the interesting
@@ -264,6 +308,11 @@ const maxItems = Math.max(...lengths);
 console.log(
   `Vocabulary Level Test — ${bank.items.length.toLocaleString('en')} items, ` +
     `${LEVELS} levels, ${RUNS} simulated sittings per level\n`,
+);
+console.log(
+  '  the simulated learner mis-taps 5% of the words it knows and declines 3% of\n' +
+    '  them; earlier editions of this file simulated one that never fumbled, and\n' +
+    '  the numbers below are not comparable with the ones they printed.\n',
 );
 console.log(`  mean absolute error   ${mae.toFixed(2)} levels`);
 console.log(`  within ±3 levels      ${(within3 * 100).toFixed(1)}%`);
@@ -333,6 +382,14 @@ console.log(
   `    of the first 5 questions, share more than 6 levels above the learner  ` +
     `${((shape.tooHardOpenings / shape.openings5) * 100).toFixed(1)}%`,
 );
+
+console.log('\n  a learner who opens with six blanks and then answers to their level:');
+console.log('    true level   reported   items');
+for (const row of recoveryRows) {
+  console.log(
+    `    ${String(row.truth).padStart(10)}   ${String(row.reported).padStart(8)}   ${String(row.items).padStart(5)}`,
+  );
+}
 
 console.log('\n  named response patterns:');
 console.log('    pattern                        items  level  step  run  distinct');
@@ -418,6 +475,15 @@ for (const row of patternRows) {
     problems.push(`"${row.label}" was asked only ${row.seen.distinct} distinct level(s)`);
   }
 }
+for (const row of recoveryRows) {
+  if (Math.abs(row.reported - row.truth) > 4) {
+    problems.push(
+      `a learner at level ${row.truth} who opened with six blanks was reported at ` +
+        `${row.reported} — an early stumble must not decide the result`,
+    );
+  }
+}
+
 const retakeMae = retakeErrors.reduce((a, b) => a + b, 0) / retakeErrors.length;
 if (retakeMae > mae + 0.5) {
   problems.push(

@@ -353,15 +353,73 @@ function pCorrect(abilityLevel: number, itemLevel: number): number {
 const SLIP = 0.05;
 
 /**
+ * Chance that somebody who knows a word declines it anyway.
+ *
+ * ## The half of the model that was missing
+ *
+ * The previous pass added `SLIP` so that a *wrong* answer no longer proved the
+ * learner did not know the word — they might have mis-tapped. It left the other
+ * branch absolute: `P(unknown) = 1 − known`, which says that a learner who knows
+ * a word **never** presses *I don't know*.
+ *
+ * That is false about people and it was catastrophic in one specific case. Six
+ * declines on level-1 and level-2 words, from a learner who then answered
+ * twenty-three consecutive questions correctly at levels 28 to 30, produced a
+ * reported level of **2**. The model was not confused; it was following its own
+ * assumption to the only conclusion available. At θ=30 a decline on a level-1
+ * word had probability 0.0002, so six of them cost 10²³ — a hole no amount of
+ * later evidence could climb out of. It preferred the theory that a level-2
+ * learner guessed right twenty-three times in a row.
+ *
+ * Real learners decline words they know: they misread the item, second-guess a
+ * meaning they half-remember, or hit the wrong control on a phone in the first
+ * seconds of an unfamiliar screen. Without a term for that, the first two
+ * minutes of a sitting can bound the result for good.
+ *
+ * ## Why 0.03 and not `SLIP`
+ *
+ * Declining a word you know is rarer than fat-fingering one, and the gap has to
+ * be real: at `DECLINE` = `SLIP` the two responses become equally strong
+ * evidence at the top of the ability range, which is the degeneracy the slip
+ * term was added to remove. 0.03 keeps *I don't know* strictly the stronger
+ * signal of non-mastery at every ability, and still leaves an early blank
+ * recoverable. `scripts/level-test-qa.mjs` sweeps it.
+ */
+const DECLINE = 0.03;
+
+/**
+ * Chance that a learner who does *not* know a word declines it.
+ *
+ * 0.375, and the number is forced rather than chosen. A learner who does not
+ * know the word either guesses or declines, and the guessing branch is pinned by
+ * the format: four options, so a quarter of guesses land. That leaves 0.75 to
+ * split between wrong and declined, and the product offers *I don't know* at the
+ * same weight as an answer, so it splits evenly.
+ *
+ * Getting this wrong is not cosmetic. A first attempt made the decline rate 0.5
+ * *of the not-known mass*, which quietly dropped the chance of a lucky correct
+ * answer from 0.25 to 0.125 — and a model that thinks correct answers are twice
+ * as hard to fake reads them as twice the evidence. Every simulated learner
+ * between levels 9 and 18 was placed **2.2 levels too high**. The guessing floor
+ * has to stay where the format puts it.
+ */
+const UNSURE_DECLINES = 0.375;
+
+/**
  * The likelihood of one response at one ability.
  *
- * See `SLIP` for why there are three branches rather than two and a negation.
+ * A proper conditional distribution over the three responses: a learner who
+ * knows the word answers it, slips, or declines; one who does not know it
+ * declines or guesses. The three branches sum to one at every ability, which
+ * matters — an improper set makes the relative weight of *wrong* against
+ * *unknown* drift with ability for no reason anybody chose.
  */
 function likelihood(abilityLevel: number, item: AskedItem): number {
   const known = logistic((abilityLevel - item.level) * LOGITS_PER_LEVEL);
-  if (item.response === 'correct') return known * (1 - SLIP) + (1 - known) * GUESS;
-  if (item.response === 'unknown') return 1 - known;
-  return known * SLIP + (1 - known) * (1 - GUESS);
+  const unsure = 1 - known;
+  if (item.response === 'correct') return known * (1 - SLIP - DECLINE) + unsure * GUESS;
+  if (item.response === 'unknown') return known * DECLINE + unsure * UNSURE_DECLINES;
+  return known * SLIP + unsure * (1 - GUESS - UNSURE_DECLINES);
 }
 
 /** The posterior over the grid, given everything asked so far. */
@@ -437,12 +495,37 @@ export function warmupLadder(previousLevel: number | null): number[] {
   return [start, start + 2, start + 4].map(clamp);
 }
 
-/** Which phase of the sitting item number `index` belongs to. */
+/** Which phase of the sitting the next question belongs to. */
 export type Phase = 'warmup' | 'adaptive' | 'confirm';
 
-export function phaseOf(index: number): Phase {
-  if (index < WARMUP_ITEMS) return 'warmup';
-  if (index >= CONFIRM_FROM) return 'confirm';
+/**
+ * How narrow the bracket must be before the sitting stops searching.
+ *
+ * Two levels. Confirmation is for testing the number that will be reported, and
+ * a bracket wider than that is not yet a number — it is a region. Swept against
+ * the simulated learner: 3 gives 90.5% of sittings within ±3 levels and 2 gives
+ * 90.7%, for two tenths of a question. Requiring 22 items instead of 20 buys
+ * another half a point and was not taken — the floor only binds on learners the
+ * sitting has already finished with, so those two questions are spent on
+ * somebody who has nothing left to tell us. The
+ * shipped build entered confirmation at a fixed question index instead, which
+ * meant a learner still climbing at question sixteen was cut off mid-climb and
+ * scored where the walk happened to be: a true level-30 learner who opened with
+ * six blanks reported **2**, having been switched back to a posterior that the
+ * remaining questions were then chosen to confirm.
+ */
+export const CONFIRM_WIDTH = 2;
+
+/** Whether the sitting has found the region the learner is in. */
+export function converged(asked: readonly AskedItem[]): boolean {
+  const bounds = bracket(asked);
+  return bounds.bracketed && bounds.upperBound - bounds.lowerBound <= CONFIRM_WIDTH;
+}
+
+export function phaseOf(asked: readonly AskedItem[]): Phase {
+  const index = asked.length;
+  if (index < WARMUP_ITEMS && !asked.some((item) => item.response !== 'correct')) return 'warmup';
+  if (index >= CONFIRM_FROM && converged(asked)) return 'confirm';
   return 'adaptive';
 }
 
@@ -469,6 +552,135 @@ function recentLevels(asked: readonly AskedItem[]): number[] {
 function wouldRepeat(level: number, asked: readonly AskedItem[]): boolean {
   const recent = recentLevels(asked);
   return recent.length >= REPEAT_LIMIT && recent.every((seen) => seen === level);
+}
+
+/**
+ * Where the learner's level plausibly sits, from the answers so far.
+ *
+ * ## Why the posterior alone could not choose the next question
+ *
+ * The estimator is the right thing to *score* with and the wrong thing to
+ * *steer* with, and the previous pass found that out the expensive way. Bounding
+ * the step at three levels fixed a test that swung six levels between questions,
+ * and it rate-limited the walk to however fast the posterior mean moves — which,
+ * under a deliberately weak prior, is slowly. Measured on the shipped build:
+ *
+ * | true level | first six answered *I don't know* | reported |
+ * | --- | --- | --- |
+ * | 20 | yes | **7** |
+ * | 25 | yes | **7** |
+ * | 30 | yes | **7** |
+ *
+ * With no early misses the same walk reported 20, 25 and 29 exactly. So nothing
+ * was wrong with the scoring and nothing was wrong with the bank: a learner who
+ * was nervous, or who simply did not know the three warm-up words, could not
+ * climb back within thirty questions. That is a worse defect than the one the
+ * previous pass fixed, because it under-places the strongest learners by up to
+ * twenty-three levels and looks like a plausible result on the way out.
+ *
+ * ## The bracket
+ *
+ * Two numbers, both derived from the response history rather than stored:
+ *
+ * * `lowerBound` — the highest level the learner has answered correctly at.
+ * * `upperBound` — the lowest level they have missed or declined.
+ *
+ * Selection targets the middle of that bracket, so the *internal* target moves
+ * as fast as the evidence does. The presented difficulty is still bounded by
+ * `MAX_STEP`, so what the learner sees is still a walk. Those are two different
+ * questions and separating them is the whole fix.
+ *
+ * ## Contradictions reopen the other side
+ *
+ * A learner is not a monotone function. Answering correctly *above* the upper
+ * bound means the evidence that set it has been contradicted, so the bound is
+ * reopened rather than nudged — and symmetrically at the bottom. Without that,
+ * six early blanks pin `upperBound` at 1 and no amount of later success can lift
+ * it: the recovery case above is exactly a learner trapped under a bound that
+ * their own answers had already disproved.
+ *
+ * Reopening cannot let one lucky guess decide anything, because the bracket
+ * never scores. It chooses what to ask; `estimate` decides what it meant, with
+ * the guessing floor and the slip term intact.
+ */
+export interface Bracket {
+  /** Highest level answered correctly, or 1 when there is none yet. */
+  lowerBound: number;
+  /** Lowest level missed or declined, or `LEVELS` when there is none yet. */
+  upperBound: number;
+  /** The posterior mean, rounded — what the sitting would report right now. */
+  currentEstimate: number;
+  /** True once both ends have been pinned by real evidence. */
+  bracketed: boolean;
+}
+
+/**
+ * How much contradicting evidence reopens a bound.
+ *
+ * Two answers, consecutively. One is not enough and the arithmetic says why: a
+ * four-option question is answered correctly by luck a quarter of the time, so
+ * a single correct answer above the upper bound is a coin the learner had a 25%
+ * chance of flipping. Reopening on it biased every simulated learner upward by
+ * about two levels, because the walk kept being sent above them by guesses and
+ * the posterior followed.
+ *
+ * Two in a row is 6%, and the run resets on any miss. That is also the concrete
+ * form of the rule that no single answer may decide anything: one answer cannot
+ * move a bound outward, and bounds are the only thing that steers.
+ */
+const CONTRADICTIONS_TO_REOPEN = 2;
+
+export function bracket(asked: readonly AskedItem[]): Bracket {
+  let lower = 0;
+  let upper = LEVELS + 1;
+  let above = 0;
+  let below = 0;
+  for (const item of asked) {
+    if (item.response === 'correct') {
+      below = 0;
+      if (item.level >= upper) {
+        above += 1;
+        if (above >= CONTRADICTIONS_TO_REOPEN) {
+          upper = LEVELS + 1;
+          above = 0;
+        }
+      } else {
+        above = 0;
+      }
+      lower = Math.max(lower, Math.min(item.level, upper - 1));
+    } else {
+      above = 0;
+      if (item.level <= lower) {
+        below += 1;
+        if (below >= CONTRADICTIONS_TO_REOPEN) {
+          lower = 0;
+          below = 0;
+        }
+      } else {
+        below = 0;
+      }
+      upper = Math.min(upper, Math.max(item.level, lower + 1));
+    }
+  }
+  const settled = estimate(asked);
+  const lowerBound = Math.max(1, Math.min(lower, LEVELS));
+  const upperBound = Math.min(LEVELS, Math.max(upper, 1));
+  /*
+    An end is closed by evidence *or* by the scale.
+
+    A learner who declines everything down to level 1 has produced no correct
+    answer, so `lower` never moves — and yet the interval is closed, because
+    there is nothing below level 1 to search. The same holds at the ceiling for a
+    learner who answers everything correctly at level 30. Requiring evidence on
+    both sides left exactly those two learners — the ones the sitting can be
+    most certain about — running to the full thirty questions.
+  */
+  return {
+    lowerBound,
+    upperBound,
+    currentEstimate: settled.reported,
+    bracketed: (lower > 0 || upperBound <= 1) && (upper <= LEVELS || lowerBound >= LEVELS),
+  };
 }
 
 export interface NextLevelOptions {
@@ -507,8 +719,17 @@ export function nextLevel(
   if (available.length === 0) return null;
   const clamp = (level: number) => Math.min(LEVELS, Math.max(1, level));
   const index = asked.length;
-  const phase = phaseOf(index);
+  const phase = phaseOf(asked);
 
+  /*
+    The ladder is an offer, not a schedule.
+
+    It climbs 2, 4, 6 for a learner who is getting them right, and it stops the
+    moment one is missed — because a learner who has just said *I don't know*
+    to a level-2 word must not be shown level 4 next. The shipped build did
+    exactly that: the first three questions were fixed, so the gentlest opening
+    in the product was also the one place a struggling learner could not escape.
+  */
   if (phase === 'warmup') {
     const ladder = warmupLadder(options.previousLevel ?? null);
     return snap(ladder[index] ?? ladder[ladder.length - 1]!, available);
@@ -520,12 +741,42 @@ export function nextLevel(
   const high = last + MAX_STEP;
 
   /*
+    The target is the middle of the bracket, not the posterior mean.
+
+    See `Bracket` for why. The short version: the mean is what the sitting
+    *concludes*, and it moves at the speed of accumulated evidence; the bracket
+    is what the sitting still needs to find out, and it moves at the speed of
+    the last answer. Steering by the second and scoring by the first is what
+    lets a learner who opens badly climb twenty levels inside a sitting while
+    never seeing a jump of more than three.
+  */
+  /*
+    Search, then refine.
+
+    While the bracket is wide the sitting does not yet know where the learner is,
+    and the fastest way to find out is to halve the interval — so the target is
+    its midpoint. Once the bracket has closed to `CONFIRM_WIDTH` the question
+    changes from *where are they* to *exactly where in here*, and the posterior
+    mean is the better target for that: it is where an item carries the most
+    information about the number that will be reported.
+
+    Using the midpoint for both cost 0.3 levels of mean absolute error, because
+    a bracket that has already found the region keeps asking its middle rather
+    than the estimate inside it.
+  */
+  const bounds = bracket(asked);
+  let wanted = converged(asked) ? where : (bounds.lowerBound + bounds.upperBound) / 2;
+
+  /*
     In confirmation the target is the estimate itself, nudged a level either
     side on a fixed cycle. The nudge is what stops the last four questions being
     four copies of the same item level, and it is fixed rather than random so
     that a resumed sitting asks the same things in the same order.
+
+    Confirmation deliberately returns to the posterior: by then the bracket has
+    done its job of finding the region, and what the last questions are for is
+    testing the number that will actually be reported.
   */
-  let wanted = where;
   if (phase === 'confirm') {
     const offsets = [0, 1, -1, 0];
     wanted = clamp(Math.round(where) + offsets[(index - CONFIRM_FROM) % offsets.length]!);
@@ -541,8 +792,15 @@ export function nextLevel(
     agree; in confirmation the nudge deliberately spends a little information to
     buy a spread of evidence around the answer.
   */
-  const score = (level: number) =>
-    phase === 'confirm' ? -Math.abs(level - wanted) : information(where, level);
+  /*
+    Ranked by distance to the target rather than by information about the
+    posterior. Fisher information peaks near the *mean*, which is the thing the
+    bracket exists to stop steering by; ranking by information would put the
+    mean back in charge through the side door. Information still decides the
+    scoring model and still explains why an item near the learner's level is
+    worth asking — it is simply no longer the thing that picks the level.
+  */
+  const score = (level: number) => -Math.abs(level - wanted);
 
   const ordered = [...candidates].sort((a, b) => {
     const difference = score(b) - score(a);
@@ -566,7 +824,12 @@ export function nextLevel(
 export function shouldStop(asked: readonly AskedItem[]): boolean {
   if (asked.length >= MAX_ITEM_COUNT) return true;
   if (asked.length < MIN_ITEM_COUNT) return false;
-  return estimate(asked).se <= STOP_SE;
+  /*
+    Both, not either. The posterior can be confident about a learner the walk
+    has not finished finding — that is exactly what happened to the level-30
+    learner who opened with six blanks — so the bracket has to have closed too.
+  */
+  return converged(asked) && estimate(asked).se <= STOP_SE;
 }
 
 /**

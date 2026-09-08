@@ -18,6 +18,9 @@ import { describe, expect, it } from 'vitest';
 
 import {
   CONFIRM_FROM,
+  CONFIRM_WIDTH,
+  bracket,
+  converged,
   LEVELS,
   MAX_ITEM_COUNT,
   MAX_STEP,
@@ -131,9 +134,22 @@ describe('where a sitting opens', () => {
   it('spends the first questions on the ladder and not on the estimator', () => {
     const { levels } = walk(ability(30));
     expect(levels.slice(0, BOUNDS.warmup)).toEqual([2, 4, 6]);
-    expect(phaseOf(0)).toBe('warmup');
-    expect(phaseOf(WARMUP_ITEMS)).toBe('adaptive');
-    expect(phaseOf(CONFIRM_FROM)).toBe('confirm');
+    expect(phaseOf([])).toBe('warmup');
+  });
+
+  it('abandons the ladder the moment a learner says they do not know', () => {
+    /*
+      The ladder is an offer, not a schedule. The shipped build ran 2, 4, 6
+      regardless, so a learner who declined the level-2 word was shown level 4
+      next — the gentlest opening in the product was the one place a struggling
+      learner could not escape.
+    */
+    const declined: AskedItem[] = [{ level: 2, response: 'unknown' }];
+    expect(phaseOf(declined)).toBe('adaptive');
+    expect(nextLevel(declined, ALL_LEVELS, { previousLevel: null })).toBeLessThanOrEqual(2);
+
+    const missed: AskedItem[] = [{ level: 2, response: 'wrong' }];
+    expect(nextLevel(missed, ALL_LEVELS, { previousLevel: null })).toBeLessThanOrEqual(2);
   });
 });
 
@@ -411,5 +427,188 @@ describe('the shape of a sitting', () => {
 
   it('opens on the gentlest kind', () => {
     expect(planKinds()[0]).toBe('meaning');
+  });
+});
+
+describe('the bracket, which is what steers', () => {
+  it('opens wide and closes onto the evidence', () => {
+    expect(bracket([])).toMatchObject({ lowerBound: 1, upperBound: LEVELS, bracketed: false });
+    const some: AskedItem[] = [
+      { level: 10, response: 'correct' },
+      { level: 20, response: 'unknown' },
+    ];
+    expect(bracket(some)).toMatchObject({ lowerBound: 10, upperBound: 20, bracketed: true });
+  });
+
+  it('does not reopen a bound on one answer', () => {
+    /*
+      A four-option question is answered correctly by luck a quarter of the time,
+      so one correct answer above the ceiling is a coin flip. Reopening on it
+      placed every simulated learner between levels 9 and 18 about two levels too
+      high, because the walk kept being sent above them by guesses.
+    */
+    const lucky: AskedItem[] = [
+      { level: 5, response: 'unknown' },
+      { level: 8, response: 'correct' },
+    ];
+    expect(bracket(lucky).upperBound).toBe(5);
+  });
+
+  it('reopens on two in a row, which is how a learner climbs back', () => {
+    const twice: AskedItem[] = [
+      { level: 5, response: 'unknown' },
+      { level: 8, response: 'correct' },
+      { level: 8, response: 'correct' },
+    ];
+    expect(bracket(twice).upperBound).toBe(LEVELS);
+  });
+
+  it('reopens the floor symmetrically', () => {
+    const slipped: AskedItem[] = [
+      { level: 20, response: 'correct' },
+      { level: 18, response: 'wrong' },
+      { level: 18, response: 'wrong' },
+    ];
+    expect(bracket(slipped).lowerBound).toBe(1);
+  });
+
+  it('is a pure function of the responses, so a resumed sitting agrees', () => {
+    const history: AskedItem[] = ALL_LEVELS.slice(0, 12).map((level, i) => ({
+      level,
+      response: i % 3 === 0 ? ('unknown' as const) : ('correct' as const),
+    }));
+    expect(bracket(history)).toEqual(bracket([...history]));
+  });
+});
+
+describe('a learner who starts badly is not written off', () => {
+  /*
+    The defect this replaces, measured on the shipped build: a learner whose true
+    level is 30 and who answered *I don't know* to the first six questions was
+    reported at level **2**. The selection was not at fault — it climbed to level
+    30 and asked twenty-three questions there, all answered correctly. The model
+    was: `P(unknown)` was `1 − known`, so a decline on a level-1 word had
+    probability 0.0002 at θ=30 and six of them cost 10²³. It preferred the theory
+    that a level-2 learner guessed right twenty-three times running.
+  */
+  const shakyStart = (truth: number, blanks: number) =>
+    walk((level, i) => (i < blanks ? 'unknown' : level <= truth ? 'correct' : 'wrong'));
+
+  it.each([
+    [10, 6],
+    [15, 6],
+    [20, 6],
+    [25, 6],
+    [30, 6],
+  ])('recovers a true level-%i learner who opens with %i blanks', (truth, blanks) => {
+    const { asked } = shakyStart(truth, blanks);
+    expect(Math.abs(estimate(asked).reported - truth)).toBeLessThanOrEqual(3);
+  });
+
+  it('still reaches the top of the scale after a bad opening', () => {
+    const { levels } = shakyStart(30, 6);
+    expect(Math.max(...levels)).toBeGreaterThanOrEqual(LEVELS - 1);
+  });
+});
+
+describe('level 30 is earned, not stumbled into', () => {
+  it('is not reached on a couple of lucky answers', () => {
+    const { asked } = walk((_level, i) => (i < 2 ? 'correct' : 'unknown'));
+    expect(estimate(asked).reported).toBeLessThanOrEqual(5);
+  });
+
+  it('does not put advanced words in front of a beginner', () => {
+    const { levels } = walk(ability(3));
+    expect(levels.filter((level) => level >= 27)).toHaveLength(0);
+  });
+
+  it('is reached by a learner who sustains it', () => {
+    const { asked, levels } = walk(() => 'correct');
+    expect(estimate(asked).reported).toBe(LEVELS);
+    expect(levels.filter((level) => level >= 27).length).toBeGreaterThan(5);
+  });
+});
+
+describe('the sitting stops when it knows, not when it is tired', () => {
+  it('does not stop while the bracket is still wide, however sure the posterior is', () => {
+    /*
+      The floor alone was not enough, and this history is why. Twenty answers
+      from an erratic learner leave the posterior *confident* — standard error
+      1.47, inside `STOP_SE` — about a level the bracket has not found: the
+      bounds are still 17 apart and the top end was never pinned at all.
+
+      Under the previous rule (`se <= STOP_SE` alone) the sitting would stop here
+      and report 2, on a learner who has answered correctly at levels 22, 24 and
+      28. That is the shape of the failure that reported a true level-30 learner
+      as 2, isolated: posterior confidence about a region nobody searched.
+
+      Kept as a literal history rather than generated, because it was *found* by
+      searching two hundred thousand random ones for a case where the two rules
+      disagree, and a generator that stopped producing it would silently retire
+      the test.
+    */
+    const erratic: AskedItem[] = [
+      { level: 26, response: 'unknown' },
+      { level: 10, response: 'unknown' },
+      { level: 24, response: 'correct' },
+      { level: 18, response: 'correct' },
+      { level: 20, response: 'unknown' },
+      { level: 9, response: 'unknown' },
+      { level: 4, response: 'unknown' },
+      { level: 6, response: 'unknown' },
+      { level: 29, response: 'unknown' },
+      { level: 25, response: 'unknown' },
+      { level: 28, response: 'correct' },
+      { level: 13, response: 'unknown' },
+      { level: 4, response: 'wrong' },
+      { level: 28, response: 'wrong' },
+      { level: 1, response: 'unknown' },
+      { level: 3, response: 'wrong' },
+      { level: 12, response: 'unknown' },
+      { level: 22, response: 'correct' },
+      { level: 17, response: 'correct' },
+      { level: 13, response: 'correct' },
+    ];
+    expect(erratic).toHaveLength(MIN_ITEM_COUNT);
+    // The posterior is sure enough on its own — this is the trap.
+    expect(estimate(erratic).se).toBeLessThanOrEqual(STOP_SE);
+    // The bracket is not, so the sitting keeps asking.
+    expect(converged(erratic)).toBe(false);
+    expect(shouldStop(erratic)).toBe(false);
+  });
+
+  it('does not stop a learner who is still climbing', () => {
+    const climbing: AskedItem[] = Array.from({ length: MIN_ITEM_COUNT }, (_, i) => ({
+      level: Math.min(LEVELS, 1 + i),
+      response: 'correct' as const,
+    }));
+    expect(converged(climbing)).toBe(false);
+    expect(shouldStop(climbing)).toBe(false);
+  });
+
+  it('stops once the bracket has closed and the posterior has settled', () => {
+    const settled: AskedItem[] = Array.from({ length: MIN_ITEM_COUNT }, () => ({
+      level: 1,
+      response: 'unknown' as const,
+    }));
+    expect(converged(settled)).toBe(true);
+    expect(shouldStop(settled)).toBe(true);
+  });
+
+  it('narrows the bracket to within the confirmation width before finishing', () => {
+    for (const truth of [3, 8, 14, 22, 28]) {
+      const { asked } = walk(ability(truth));
+      const bounds = bracket(asked);
+      if (asked.length < MAX_ITEM_COUNT) {
+        expect(bounds.upperBound - bounds.lowerBound).toBeLessThanOrEqual(CONFIRM_WIDTH);
+      }
+    }
+  });
+});
+
+describe('every level from 1 to 30 is placed', () => {
+  it.each(ALL_LEVELS)('places a clean level-%i learner within three levels', (truth) => {
+    const { asked } = walk(ability(truth));
+    expect(Math.abs(estimate(asked).reported - truth)).toBeLessThanOrEqual(3);
   });
 });

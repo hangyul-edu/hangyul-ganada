@@ -356,6 +356,69 @@ def usable_dictionary_anchor(headword: str, gloss: str, pos: str) -> bool:
     return True
 
 
+def sense_counts() -> dict[str, int]:
+    """How many senses the dictionary records for each headword.
+
+    Read for one purpose: a frequency rank is a fact about a *spelling*, and a
+    question is about a *sense*. Where a headword carries several, the rank is
+    shared between them and the one being asked about is rarer than the rank
+    says. See `_dilute` for what is done about it.
+    """
+    manifest_path = DICTIONARY / "manifest.json"
+    if not manifest_path.exists():
+        return {}
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    counts: dict[str, int] = {}
+    for chunk in manifest["chunks"].values():
+        for entry in json.loads(
+            (DICTIONARY / chunk["file"]).read_text(encoding="utf-8")
+        )["entries"]:
+            counts[entry["headword"]] = len(entry.get("senses") or [])
+    return counts
+
+
+def _dilute(rank: int, senses: int) -> int:
+    """A dictionary anchor's rank, discounted for the senses it is shared with.
+
+    ## Why frequency alone is not a difficulty model
+
+    The taught corpus is levelled by four weighted factors — frequency,
+    usefulness and concreteness, linguistic complexity, semantic load — in
+    `scripts/content/level.py`. Dictionary anchors had one: rank. That is the
+    same single-signal levelling that put 누가 at level 1 glossed "nougat",
+    because the rank belonged to a different word written the same way. Sense
+    ambiguity is the milder, commoner form of exactly that fault, and it was
+    still shipping:
+
+    | shipped at | word | senses | glossed |
+    | --- | --- | --- | --- |
+    | level 11 | 시기 | 6 | "opportunity" — the everyday sense is *a period of time* |
+    | level 11 | 화상 | 6 | "portrait" — the everyday senses are *a burn* and *video* |
+    | level 11 | 전력 | 5 | "electricity" — also full power, military strength, a past record |
+    | level 12 | 각하 | 3 | "(Mr/Madame) President" — an honorific a learner will not meet |
+
+    Each is a real entry with a real gloss, sitting three levels above the
+    beginner floor on a rank that four or five other meanings helped earn.
+
+    ## The discount, and why it is a square root
+
+    If a headword's occurrences were split evenly between `n` senses, the sense
+    being asked about would be `n` times rarer than the rank suggests. They are
+    not split evenly — one sense usually dominates — so multiplying by `n` would
+    over-correct and push ordinary polysemous words off the top of the scale.
+    The square root is the conservative middle: it moves 시기 from level 11 to
+    19 and 경계 from 11 to 15, and leaves a two-sense word almost where it was.
+
+    This is a heuristic and is labelled as one. What would settle it is
+    per-sense frequency, which no corpus available here provides; what makes it
+    defensible is that it can only move a word *up*, and the failure it guards
+    against is a rare sense asked too early.
+    """
+    if senses <= 1:
+        return rank
+    return int(round(rank * (senses ** 0.5)))
+
+
 def dictionary_anchors(taught: set[str]) -> list[dict]:
     """Entries from the dictionary layer that can carry a question.
 
@@ -379,6 +442,7 @@ def dictionary_anchors(taught: set[str]) -> list[dict]:
             senses = entry.get("senses") or []
             if senses:
                 part_of_speech[entry["headword"]] = senses[0]["partOfSpeech"]
+    senses = sense_counts()
     out: list[dict] = []
     seen: set[str] = set()
     for headword, _romanization, gloss, _chunk, _freq in index["rows"]:
@@ -399,6 +463,7 @@ def dictionary_anchors(taught: set[str]) -> list[dict]:
                 "senseId": f"dict_{headword}",
                 "category": "",
                 "source": "dictionary",
+                "senses": senses.get(headword, 1),
             }
         )
     return out
@@ -495,7 +560,12 @@ def build() -> dict:
         # and rank is the only evidence there is about them. That is a real
         # seam and it is where the top of the scale comes from; it is recorded
         # in the report rather than hidden behind an average.
-        row["level"] = taught_levels.get(row["word"]) or level_of(rank)
+        # A taught word carries the curriculum's four-factor level. A dictionary
+        # anchor is levelled by rank, discounted for the senses that rank is
+        # shared with — see `_dilute`.
+        row["level"] = taught_levels.get(row["word"]) or level_of(
+            _dilute(rank, row.get("senses", 1))
+        )
         # A dictionary anchor may not carry a beginner question. See
         # `DICTIONARY_LEVEL_FLOOR` for the six shipped items that argue for it.
         if row["source"] == "dictionary" and row["level"] < DICTIONARY_LEVEL_FLOOR:
