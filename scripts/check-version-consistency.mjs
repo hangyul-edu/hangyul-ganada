@@ -266,7 +266,9 @@ if (existsSync(join(root, BUILD_INFO))) {
  */
 function deliveryIsStale(commit) {
   if (typeof commit !== 'string' || commit.length < 7) return false;
-  const notProduct = [/^docs\//, /^result\//, /^app_result\//, /^README\.md$/, /^\.gitattributes$/, /^\.gitignore$/];
+  // `store/` alongside `docs/`: listing copy is delivered beside the artefact,
+  // never inside it. See `NOT_THE_PRODUCT` in check-release-current.mjs.
+  const notProduct = [/^docs\//, /^result\//, /^app_result\//, /^store\//, /^README\.md$/, /^\.gitattributes$/, /^\.gitignore$/];
   const isProduct = (path) => path && !notProduct.some((shape) => shape.test(path));
   const run = (...args) => {
     try {

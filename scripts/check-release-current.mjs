@@ -50,11 +50,21 @@ const root = join(here, '..');
  * `docs/` because the report is written *after* the build it describes, which
  * is the correct order. The two release directories because they hold the
  * artefacts themselves and their own metadata.
+ *
+ * `store/` for the same reason as `docs/`, and it was found the hard way: the
+ * release notes name the version, so they are edited in the same pass that sets
+ * it, and editing them after the build made `version:check` demand a fresh
+ * versionCode for a file that cannot reach the artefact. Store collateral is
+ * *delivered beside* the APK — `result:build` copies it, exactly as it copies
+ * `docs/legal` — and never inside it. Verified rather than assumed: no path
+ * under `store/` appears in the built APK, and `native:bundle:check` is what
+ * actually holds the package's contents to the web app that was built.
  */
 const NOT_THE_PRODUCT = [
   /^docs\//,
   /^result\//,
   /^app_result\//,
+  /^store\//,
   /^README\.md$/,
   /^\.gitattributes$/,
   /^\.gitignore$/,

@@ -867,7 +867,9 @@ for (const [name, metric] of Object.entries(METRICS)) {
         exists(document) && /clean working tree|working tree clean|from a clean checkout/i.test(rewritten.get(document) ?? read(document)),
     );
     if (claimsClean.length > 0) {
-      const notProduct = [/^docs\//, /^result\//, /^app_result\//, /^README\.md$/, /^\.gitattributes$/, /^\.gitignore$/];
+      // `store/` alongside `docs/`: listing copy is delivered beside the artefact,
+      // never inside it. See `NOT_THE_PRODUCT` in check-release-current.mjs.
+      const notProduct = [/^docs\//, /^result\//, /^app_result\//, /^store\//, /^README\.md$/, /^\.gitattributes$/, /^\.gitignore$/];
       let dirtyProduct = [];
       try {
         dirtyProduct = execFileSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' })
