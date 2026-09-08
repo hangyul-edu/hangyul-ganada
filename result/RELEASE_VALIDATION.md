@@ -5,74 +5,88 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `a8e04b79` on branch `main`. `build-info.json` →
+**Source:** commit `37849b61` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 7 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 8 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 15 validation.** Codes 3 through 15 are spent,
-each by an artefact that was actually produced. This is 16.
+**This supersedes the versionCode 16 validation.** Codes 3 through 16 are spent,
+each by an artefact that was actually produced. This is 17.
 
 ---
 
 ## Why this release happened
 
-**The Numbers course could not say which one comes first.** It taught 하나 and
-일 and 한 개 and 세 시 and had nothing at all about order, so a learner who had
-just been taught 한 개 reached for 한 번째 the first time they needed *the first
-one* — and 한 번째 is not Korean. `num-lesson-ordinals` is the twentieth lesson,
-fourth in the counting module: ten items, four explanation steps, a check of
-ten, and five question shapes.
+**A customer sentence beat every gate in the repository: the level test is too
+hard.** It was, and for two reasons that have nothing to do with each other.
 
-Korean has two ordinal families and they are not interchangeable. 번째 says
-where something stands in a line; 째 counts off the points of what you are
-saying, and names which child in a family. The lesson teaches the difference
-rather than presenting them as synonyms, and the content model makes the
-alternative unbuildable: `ordinalPosition` and `ordinalRank` are two answer
-domains, so 첫 번째 and 첫째 can never be two buttons under one instruction —
-both name position one, and under *which position is this?* both would be
-defensible.
+**The sequence.** The estimator was sound and was being asked the wrong
+question. With nothing asked the posterior is the prior, the prior is
+uninformative and therefore centred, so the most informative item sits in the
+middle of the scale — and that was question one for every learner in the
+product, including one who had finished the alphabet an hour earlier. Selection
+was unconstrained thereafter. Measured over 6,000 simulated sittings: the
+opening item at **level 14 of 30** for everybody, the largest step between two
+questions **six levels**, the longest run at one level **twenty-five**, and
+**42.8%** of a level-2 learner's opening five questions more than six levels
+above them.
 
-**Then the rest of the course was read again, and it was not clean.** Two
-explanation steps said the sound inserted in 십육 → 심뉵 is **ㄹ**. It is ㄴ:
-ㄴ 첨가 puts a ㄴ in front of 육 and 십 assimilates to 심. In 열여섯 → 열려섣
-that same inserted ㄴ becomes ㄹ after ㄹ, which is why the two look alike and
-are one rule — and the second step called it "the same ㄹ sound as in 심뉵",
-which is wrong twice over. Both said it in all 32 languages.
+Four rules now sit on top of the information criterion — a warm-up ladder, a
+step bounded at three levels, no level three times running, and a confirmation
+group at the settled estimate. Opening level 2, largest step 3, longest run 2,
+opening figure **1.0%**. Accuracy did not move: MAE 1.31 against 1.29.
 
-The three ways of asking somebody's age were glossed *the phrase for asking
-someone's age*, *the everyday polite way to ask an adult's age* and *the polite
-way to ask an older person's age*. The first is true of all three and the other
-two both say *polite*; in Thai and Telugu two of them read as the same sentence.
-A listening pool was drawing 영, 공 and 영하 — three ways of saying zero — into
-questions about counting words. And this document's own §9 said *an ordinal is
-closed*, which is true of 삼월 일일 and false of 첫 번째; the rule as written
-would have had the new lesson writing 첫번째.
+**The bank, which is the worse half.** Dictionary headwords are levelled by the
+frequency rank of their *spelling*, and Korean writes many different words the
+same way. 누가 ranks 107th because it means *who*; the bank asked it at level 1
+with **"nougat"** keyed as the correct answer. 내 ranks 3rd because it means
+*my* and was keyed to "smell"; 위해 ranks 131st because it means *for the sake
+of* and was keyed to "harm". Sixty-nine such items sat at levels 1 to 5. A
+learner who knew the word was marked wrong for knowing it.
 
-**And opening the lesson in Arabic found a defect that is not the lesson's.**
-`global.css` isolates a Korean run inside a right-to-left page and leaves its
-direction inherited, so a contrast card — `첫 번째 (✓)  ·  한 번째 (✗)` — ended
-in a neutral character, the trailing neutral took the paragraph's direction, and
-the (✗) rendered at the **left** of the pair it belongs to. The pitfalls lesson
-has been drawing four of those since it was written.
+Levels 1–10 are now entirely curated corpus words. Above the floor, forty
+headwords whose rank belongs to an inflected form of another word were dropped
+(부탁해요 glossed "please", 팔고 glossed "eight Duḥkhas"), along with
+one-syllable headwords, truncated grammar-page glosses, and six grammatical
+forms found by reading a rendered sample — 다가 was asked at level 15 to mean
+"multivalent".
+
+**Fifteen questions had two right answers, in languages nothing read them in.**
+Distractors were rejected on their *English* gloss. 확실히 and 정확히 are
+*definitely* and *exactly* in English and one word — *aniq* — in Uzbek.
+
+**And *I don't know* was worth nothing.** Under a model where both it and a
+wrong answer can only happen when the learner does not know, the two likelihoods
+differ by a constant that cancels; ten of each gave identical estimates to twelve
+decimal places. A slip term separates them.
+
+**A sitting now survives the app closing.** Schema 14, and the first new
+persisted field since 13.
+
+**Two things had to be fixed before this pass could verify itself.** The
+previous release bumped the Xcode project in Xcode without adopting its lock
+file, so `verify:release` could not pass on a clean checkout of `main`. And
+three of the checks added *in this pass* could not fail, because each read the
+constant it was guarding — restoring the old unbounded selection produced 174
+passing tests and a green gate.
 
 ## What changed
 
 | | |
 | --- | --- |
-| New lesson | `num-lesson-ordinals`, twentieth in the course, fourth in module 3. Ten items — 번째, 첫 번째, 두 번째, 세 번째, 네 번째, 첫째, 둘째, 셋째, 넷째, 다섯째 — four explanation steps, a mastery check of ten, five question types |
-| Content model | `AnswerDomain` gains `ordinalPosition` and `ordinalRank`, so the two ordinal families can never appear in one option list; `gloss_group` states the relationship the domains only imply. `ordinal_form` is a new misconception class, because 한 번째 is neither a spacing slip nor the plain numeral |
-| Korean corrections | `lesson.sinoBuild.step2` and `lesson.nativeBuild.step3` named the wrong consonant for the ㄴ-첨가 rule; the three age-asking glosses overlapped and in two languages collided; four Korean sentences were circular, self-repeating or ambiguously particled. 32 languages each |
-| Distractors | `listenChoose` now prefers taught words of the same role before the rest, which is the pool `readChoose` already used. Twelve questions changed and each was re-read in the ledger |
-| Right-to-left | The two Numbers modules pin `direction: ltr` on their own Korean. `.hg-target-content` existed in `global.css` for exactly this and had no users anywhere in the app |
-| New gates | `numbers:qa` §18 rejects five non-Korean ordinal forms everywhere except the one place each is taught against, and knows the difference structurally; §19 recomputes all 112 romanisations through the transliterator the vocabulary pipeline uses; §20 holds the six stages, the twenty shipped lesson ids and the three printed denominators. §8 gains a blank option |
-| Audio | Twelve clips in two voices — 번째, the four 번째 phrases, 셋째, 넷째, 다섯째. 첫째 and 둘째 were already in the corpus. 13,876 → 13,876 distinct files, 13,996 voice slots |
-| Localisation | 25 new keys × 32 languages, and nine existing strings corrected in each. 272 → 297 keys |
-| Version | Android 1.0.3 / **16**. iOS deliberately left at 1.0.2 / 4 — see `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
+| Level Test selection | A warm-up ladder, a step bounded at three levels, a two-in-a-row repeat limit and a confirmation group, on top of the existing information criterion. A sitting is 20–30 items rather than a flat 30, ending early only when the posterior has settled |
+| Level Test scoring | A slip term, so a declared *I don't know* is strictly stronger evidence of not knowing than a wrong answer. Swept: it costs nothing against learners who never mis-tap and is worth a quarter of a level against those who do |
+| Level Test bank | 4,199 → 4,121 items, 2,246 distinct words. No dictionary headword below level 11; 40 rank-borrowing headwords, the one-syllable headwords, the truncated glosses, the plurals and six grammatical forms removed; distractor collision now tested in every language a meaning exists in. Every non-English language's askable bank rose from 1,014 items to 2,061 |
+| Persistence | Schema 14 adds `level_test_sitting` — the ids presented, the response to each, a seed, the deadline and the locale. Every later item is recomputed from the seed, so a resumed sitting shows the same question and keeps adapting |
+| Localisation | One string in each of 32 bundles: the intro promises a range rather than a fixed thirty. Only the numerals changed |
+| New gates | `leveltest:bank` reads the shipped bank for mis-levelling, unanswerability and two-answer items in all 32 languages; `patent:evidence` fails on a citation in the disclosure package that does not resolve; `upgradeCompatibility.test.ts` walks a complete learner from every one of the twelve supported schema versions |
+| Gates repaired | Four checks that read the constant they guarded now hold their own literals and assert the code agrees. Each was re-broken and watched to fail |
+| Release engineering | `docs:consistency` tracks the four artefact figures, so the report cannot carry a stale copy. The iOS project lock is adopted for the version bump the previous release made in Xcode |
+| Version | Android **1.0.4 / 17**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -82,9 +96,10 @@ has been drawing four of those since it was written.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **16**, versionName **1.0.3**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 16 | 15 is spent. Both previously delivered artefacts report a code of 15, the previous `build-info.json` recorded 15, and 60 product files have changed since the commit that produced them — a lesson with ten items, twelve recordings, 25 keys in each of 32 bundles and corrections to nine existing strings. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 16 is the next valid code rather than the next unused one. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.2 build 4, which is what `build-info.json` reports for it; `pending_version` 1.0.3 and `pending_build` 16 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
+| Package | `com.talkhangyul.ganada`, version code **17**, versionName **1.0.4**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 17 | 16 is spent. Both previously delivered artefacts report a code of 16, the previous `build-info.json` recorded 16, and product files have changed since the commit that produced them — the level-test engine, its item bank in all thirty-two languages, the persisted schema, and one string in each of the thirty-two interface bundles. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 17 is the next valid code rather than the next unused one. |
+| Why 1.0.4 and not 1.0.3 | The previous release was content — a lesson and a set of corrections — and its version name rightly stayed still. This one changes how the Level Test chooses its questions, what its bank contains, what the intro screen promises in thirty-two languages, and the persisted schema. A learner who updates will meet a different test on their first sitting after it, which is what a version name is for. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.4 and `pending_build` 17 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
 
 ## What was run against this tree
 
@@ -222,8 +237,8 @@ viewports.
 ## Checksums
 
 ```
-96490914cb213bb9c908450144f0877ae98ef5b9e8a89104cc8c39c33be47e0c  hangyul-ganada-release.apk
-5bf70c5c649a166cffd8bcd50d7b499d7f020e822459dee0b6ae429e3fb329c7  hangyul-ganada-release.aab
-e314326ad816040652a0bc41f5e224c5a36ace73e631b45fee7dc9447b0c1c25  docs/report.pdf
-dc6ac940a94f11a58234d6761d5efe3a90df93b78838e49c8c1184151053f90c  build-info.json
+8344ecc7c49a092dd9cb51ba8e8064f1462b2c86d17223de0fbfd0f2af6a868f  hangyul-ganada-release.apk
+378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357  hangyul-ganada-release.aab
+f562e60c6278a929049c915fa5955f17936c027dbf9c547b7458b43f28c74a71  docs/report.pdf
+bc2e488924c51637a315bfad5eaa246c417b16bf4a19e466b9617b881e4ac25f  build-info.json
 ```

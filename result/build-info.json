@@ -1,31 +1,31 @@
 {
   "product": "Hangyul ganada",
-  "version": "1.0.3",
-  "commit": "a8e04b790f6522a8947bd03bb9c22a7c6b8aada3",
+  "version": "1.0.4",
+  "commit": "37849b61d53d7d0872de4eed367cd257be33ae38",
   "source_state": {
     "dirty": false,
     "fingerprint": null,
     "changed_files": 0,
     "untracked_files": 0
   },
-  "built_at": "2026-09-06T14:59:27.607Z",
+  "built_at": "2026-09-08T03:11:41.692Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
-    "version_code": 16,
-    "version_name": "1.0.3",
+    "version_code": 17,
+    "version_name": "1.0.4",
     "target_sdk": 36,
     "min_sdk": 24,
-    "apk_bytes": 90946162,
-    "apk_sha256": "96490914cb213bb9c908450144f0877ae98ef5b9e8a89104cc8c39c33be47e0c",
+    "apk_bytes": 90938082,
+    "apk_sha256": "8344ecc7c49a092dd9cb51ba8e8064f1462b2c86d17223de0fbfd0f2af6a868f",
     "apk_signature_schemes": [
       "v2",
       "v3"
     ],
     "apk_certificate_sha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
     "apk_certificate_subject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
-    "aab_bytes": 89105065,
-    "aab_sha256": "5bf70c5c649a166cffd8bcd50d7b499d7f020e822459dee0b6ae429e3fb329c7",
+    "aab_bytes": 89097009,
+    "aab_sha256": "378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357",
     "aab_signed": true,
     "permissions": [
       "android.permission.INTERNET",
@@ -37,10 +37,10 @@
   },
   "ios": {
     "bundle_id": "com.talkhangyul.ganada",
-    "version": "1.0.2",
-    "build": 4,
-    "pending_version": "1.0.3",
-    "pending_build": 16,
+    "version": "1.0.3",
+    "build": 5,
+    "pending_version": "1.0.4",
+    "pending_build": 17,
     "deployment_target": "15.0",
     "sdk": null,
     "ipa_bytes": null,
@@ -122,7 +122,7 @@
     "example_qa_pass": 3393,
     "example_qa_total": 3393,
     "review_algorithm_version": 1,
-    "schema_version": 13
+    "schema_version": 14
   },
   "toolchain": {
     "workspace_version": "0.1.0",
