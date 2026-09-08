@@ -252,6 +252,34 @@ async function plant(driver: MemoryDriver, from: number) {
   if (from >= 9) delete settings.practice_style;
   else settings.practice_style = 'full';
 
+  /*
+   * Numbers-course progress, for the versions that have a `numbers` store.
+   *
+   * The v13 migration clears the *contaminated* Numbers rows — the ones the
+   * first build wrote into the letter stores under `number:` keys — and it must
+   * not touch this one, which is the real model. A learner who has finished a
+   * Numbers lesson keeps that lesson finished across the upgrade, and the
+   * evidence behind it keeps its counts.
+   */
+  if (from >= 13) {
+    await driver.put('numbers', 'num-lesson-sino-basics', {
+      schema: 1,
+      lesson_id: 'num-lesson-sino-basics',
+      opened_at: '2026-09-01T09:00:00.000Z',
+      started_at: '2026-09-01T09:01:00.000Z',
+      explanation_steps_viewed: ['s1', 's2'],
+      examples_viewed: ['num-sino-1'],
+      practice_completed_at: '2026-09-01T09:05:00.000Z',
+      mastery: { taken_at: '2026-09-01T09:08:00.000Z', correct: 9, total: 10, passed: true },
+      mastery_attempts: 1,
+      reviewed_at: null,
+      items: {},
+      attempts: { total: 12, correct: 9, incorrect: 3 },
+      completed_at: '2026-09-01T09:08:00.000Z',
+      updated_at: '2026-09-01T09:08:00.000Z',
+    });
+  }
+
   await driver.put('settings', SETTINGS_KEY, settings);
   await driver.put<SchemaMeta>('meta', META_KEY, {
     schema_version: from,
@@ -287,6 +315,9 @@ async function readBack(driver: MemoryDriver) {
     ),
     memory: await driver.getAll<ItemMemory>('memory'),
     mistakes: await driver.getAll<{ id: string }>('mistakes'),
+    numbers: await driver.getAll<{ lesson_id: string; completed_at: string | null; attempts: { total: number } }>(
+      'numbers',
+    ),
   };
 }
 
@@ -371,6 +402,18 @@ describe.each(VERSIONS)('a learner stored at schema version %i', (from) => {
     if (from >= 11) {
       // The learner's own word order, which decides what they are taught next.
       expect(after.settings.content_seed).toBe('seed-fixture');
+    }
+    if (from >= 13) {
+      /*
+       * Numbers-course progress. The v13 migration removes the Numbers rows the
+       * first build wrote into the *letter* stores; the `numbers` store is the
+       * real model and is not its business. A finished lesson stays finished,
+       * and the attempt counts behind it are not rounded off.
+       */
+      expect(after.numbers).toHaveLength(1);
+      expect(after.numbers[0]?.lesson_id).toBe('num-lesson-sino-basics');
+      expect(after.numbers[0]?.completed_at).toBe('2026-09-01T09:08:00.000Z');
+      expect(after.numbers[0]?.attempts.total).toBe(12);
     }
   });
 
