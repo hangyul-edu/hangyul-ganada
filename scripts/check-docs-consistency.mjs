@@ -513,6 +513,15 @@ const METRICS = {
       /against \*\*v[\d.]+, versionCode ([\d]+)\*\*/g,
       /ships this release as [\d.]+, versionCode ([\d]+)/g,
       /rebuilt at versionCode ([\d]+) and signed/g,
+      /*
+       * Two more phrasings of the same number, found stale in a delivered
+       * report: §11's prose and §21's package table both stated versionCode 17
+       * while the delivery carried 19, because no pattern here reached them.
+       * The figure was managed and these two sentences were not, which is the
+       * failure this file exists to make impossible.
+       */
+      /rebuilt from a committed tree at versionCode ([\d]+)/g,
+      /versionCode ([\d]+), versionName [\d.]+/g,
       /\*\*Build\*\* to `([\d]+)`/g,
     ],
   },
@@ -835,6 +844,11 @@ for (const [name, metric] of Object.entries(METRICS)) {
           ...text.matchAll(/^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$/gm),
           // And the release notes' own heading.
           ...text.matchAll(/^#\s*Release notes\s*—\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$/gm),
+          /*
+           * And the package table, which names the version the way `aapt2`
+           * prints it. It read `versionName 1.0.4` under a delivered 1.0.5.
+           */
+          ...text.matchAll(/versionCode [\d]+, versionName ([0-9]+\.[0-9]+\.[0-9]+)/g),
         ];
         for (const match of stated) {
           if (match[1] !== builtVersion) {

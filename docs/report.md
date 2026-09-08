@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.5**, Android versionCode **18** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.5**, Android versionCode **19** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -155,10 +155,10 @@ without trusting the row.
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 172 | `docs/issues.json` |
-| Signed APK | 90,938,998 bytes (86.7 MiB) | `result/build-info.json` |
-| Signed AAB | 89,097,857 bytes (85.0 MiB) | same |
-| Tests | 1,697 across 77 files | `npm test` |
+| Issues tracked | 173 | `docs/issues.json` |
+| Signed APK | 90,938,906 bytes (86.7 MiB) | `result/build-info.json` |
+| Signed AAB | 89,097,793 bytes (85.0 MiB) | same |
+| Tests | 1,700 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -628,7 +628,7 @@ a wrong guess. Every gate over the Level Test was green throughout, and none of
 them was wrong to be: each answered the question it was written to ask.
 
 With those fixed: every engineering gate that can run here runs green, the
-artefacts are rebuilt from a committed tree at versionCode 17, and
+artefacts are rebuilt from a committed tree at versionCode 19, and
 `release:current` reports both delivery manifests at HEAD. Of the eight issues
 not marked resolved, none is a defect in this code or content: three are content
 authoring at a scale this pass could not reach (I-04, I-20, I-79), two need a
@@ -2256,11 +2256,11 @@ new APK    157a2bb133f6aa3d…3323debc
 | --- | --- |
 | Built from | `bc3bec14`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 17, versionName 1.0.4 |
+| Package | `com.talkhangyul.ganada`, versionCode 19, versionName 1.0.5 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 90,938,998 bytes (86.7 MiB) — sha256 in §21 |
-| Release AAB | 89,097,857 bytes (85.0 MiB) — sha256 in §21 |
+| Release APK | 90,938,906 bytes (86.7 MiB) — sha256 in §21 |
+| Release AAB | 89,097,793 bytes (85.0 MiB) — sha256 in §21 |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -2319,7 +2319,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1364** (70 files) |
+| Web unit (`vitest`) | **1367** (70 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
 | End-to-end (`playwright`) | **594** (297 × 2 projects) |
@@ -4153,7 +4153,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,697 across 77 files** — handwriting-core 96, korean-morphology 216, web 1364 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **1,700 across 77 files** — handwriting-core 96, korean-morphology 216, web 1367 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -4843,10 +4843,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 90,938,998 bytes (86.7 MiB) |
-| APK sha256 | `0596bc8e07c782fed2f80e4562ec642b1ff7a7f4fec5fe24b1d253d5fdf91c3f` |
-| AAB | 89,097,857 bytes (85.0 MiB) |
-| AAB sha256 | `934f40685e4ca0415756e130130480314edd19cbb08b9ef76560840bf9c416c3` |
+| APK | 90,938,906 bytes (86.7 MiB) |
+| APK sha256 | `3cb89e142e3786782ee878caadc4e0cdae69d7131022519808b7cc283b4c5c88` |
+| AAB | 89,097,793 bytes (85.0 MiB) |
+| AAB sha256 | `2edc2273b3c38f4cf70a5e883e60ad5ef8f8a6606bbba7980aefa3ef6d191e72` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -6933,6 +6933,7 @@ document they predate.
 | **I-170** | Release tooling | **P1** | Three checks added this pass could not fail, because each read the constant it was guarding | None shipped, and it is the most serious finding in this pass about the *method* rather than the product. A check that cannot fail reports success. | **RESOLVED** |
 | **I-171** | Release tooling | **P1** | `verify:release` failed twice on a green test suite | None shipped, and it is the worst shape a build failure can take: a red gate that is not about the code. A team that sees one learns to re-run rather than to read. | **RESOLVED** |
 | **I-172** | Vocabulary Level Test | **P1** | A learner who opened badly could not climb back: a true level-30 sitting reported 2 | The strongest learners, under-placed by up to twenty-three levels, and shown a plausible-looking number on the way out. Six declines on the opening questions — nerves, an unfamiliar screen, or three warm-up words they happen not to know — were enough. | **RESOLVED** |
+| **I-177** | Today's Vocabulary | **P1** | A learner whose plan is made of late-band words was told "Nothing left for today" over a full day, permanently | A learner measured near the top of the scale opened Today's Vocabulary on a cold start and met *Nothing left for today* over ten words they had not seen. It did not correct itself while the screen stayed open: leaving and coming back was the only recovery, and a learner who believed the sentence had no reason to try. It is worst for exactly the learners this pass was about — a plan built for Level 28-30 is made entirely of words from the last corpus band, so they met it on every cold start, while a beginner never did. | **RESOLVED** |
 | **I-19** | Vocabulary | **P1** | Word meanings are complete in twenty languages and six hundred words deep in twelve | A learner in one of the twelve has a fully translated interface and word meanings for the 600-word core band — the band the corpus splitter puts on the critical path, so it is the band they meet first. Past that the card shows the English gloss, marked as English, and the quiz shows nothing: the product forbids a mixed-language question, so a word with no meaning in the learner’s language is not asked about at all. | **RESOLVED** |
 | **I-34** | Handwriting | **P1** | The ㄱ taught beside a vowel had a leg a third too short | A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check. | **RESOLVED** |
 | **I-35** | Handwriting | **P1** | Every jamo proportion was measured off a fallback face, not off Pretendard | ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface. | **RESOLVED** |
@@ -7058,7 +7059,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 2 · P3: 1**
 
-**Blocked outside this repository: 1 · Partial: 4 · Resolved: 163**
+**Blocked outside this repository: 1 · Partial: 4 · Resolved: 164**
 
 <!-- /issues:counts -->
 
@@ -7120,6 +7121,7 @@ document they predate.
 | **I-170** | Found by negative-testing, which is the only way it can be found.  `levelTest.test.ts` asserted `Math.abs(step) <= MAX_STEP` with `MAX_STEP` imported from the module under test, and `leveltest:qa:check` did the same. Setting `MAX_STEP` to 30 — restoring the unbounded selection that this pass exists to remove — produced **174 passing tests and a green gate**. `REPEAT_LIMIT` behaved identically.  `leveltest:bank:check` had the same fault dressed as a virtue: it parsed `DICTIONARY_LEVEL_FLOOR` out of the builder, with a comment claiming that copying the number into the gate would let the gate keep passing after somebody lowered it. Reading it is what does that.  And then a third time, after both were fixed: the same gate read the reviewed `grammaticalForm` exclusion list from the content file, with a comment arguing that a reviewed list cannot be weakened by being read because adding a term makes the gate stricter. **Emptying** it empties the builder's filter and the gate together, and the negative test that emptied it passed.  **Fixed 8 September 2026.** All four now hold their own literals and separately assert that the code or content still agrees with them, so a moved bound is *named* rather than tolerated and changing one takes two deliberate edits. Each was then re-broken: `MAX_STEP` 30 gives 33 failing tests and *the difficulty stepped 11 levels between two questions*; `REPEAT_LIMIT` 99 gives 21 and *one level was asked 13 times running*; `WARMUP_ITEMS` 0 gives 124; the floor at 1 and the emptied list each give a named finding and exit 1. | Done. |
 | **I-171** | Both runs ended like this:  ``` Test Files  72 passed (72)      Tests  1315 passed (1315)     Errors  1 error Error: [vitest-worker]: Timeout calling "onTaskUpdate" ```  Every assertion passed and `vitest run` exited 1, so `npm test` failed and took `verify:release` with it. It never reproduced when the suite was run on an otherwise idle machine, which is the tell: a worker could not deliver a progress update to a starved main thread inside the RPC deadline.  Vitest defaults to one worker per CPU — eight here — and each carries its own jsdom. `docs/CLAUDE_ENVIRONMENT_STABILITY.md` is explicit that this VM is capped at 6 GB deliberately, and that concurrent heavy pipelines are what used to tear it down from the Windows side. Eight jsdom environments inside a release run is exactly the pressure that document exists to avoid.  **Fixed 8 September 2026.** `poolOptions.threads.maxThreads` is 4 — half the cores, leaving the reporter room to keep up. The suite takes about ten seconds longer and the exit code means what it says. Raising the RPC deadline instead was rejected: it moves the failure to the next slower machine rather than removing it. | Done. |
 | **I-172** | Measured on the shipped build: true level 30 with six opening declines reported **2**; true 25 reported 6; true 20 reported 7. With no early stumble the same walk reported 30, 25 and 20 exactly, so neither the bank nor the arithmetic was at fault.  Two causes. **The model had no way to explain a decline**: `P(unknown)` was `1 − known`, so at θ=30 a decline on a level-1 word had probability 0.0002 and six of them cost 10²³. The estimator preferred the theory that a level-2 learner guessed right twenty-three times running. The pass before had added `SLIP` so a *wrong* answer no longer proved ignorance and left the other branch absolute. **And selection followed the posterior**, which moves at the speed of accumulated evidence, so the walk crept upward one level at a time and ran out of questions.  **Fixed 8 September 2026.** `DECLINE` = 0.03, swept against two populations; and `nextLevel` steers by an explicit bracket — highest level answered correctly, lowest missed — handing back to the posterior once it closes to two levels. Bounds reopen only on two contradicting answers in a row, because one is a 25% coin and reopening on it placed every simulated learner between levels 9 and 18 two levels too high.  Against a learner who fumbles like a person the new engine is better than the old — 90.5% of sittings within ±3 levels against 86.1%, MAE 1.61 against 1.90. Against a simulated learner who never mis-taps it is worse, 91.1% against 95.3%, and that is the population the old gate measured; the gate now simulates fumbling and says so in its output. | Done. |
+| **I-177** | `buildDailyQuestions` reads the corpus — `getWord` per scheduled step — and the corpus arrives in priority bands, so a plan of late-band words legitimately builds an empty queue on the first render. The queue was a `useMemo` over the steps, the language and the label; a band landing changes none of those, so the cached empty queue was handed back on every later render, including the ones the band itself caused. The loading guard asks `corpusReady()` and let go at that same moment, so the empty-day backstop was reached and then kept.  Found by `verify:release`, not by a person: `[desktop] level-change.spec.ts:92` failed on the 45-second wait for a headword with the day's own screen showing "Nothing left for today", after passing in 9.1s in the mobile project of the same run and in 23.8s alone. The difference is machine load, which is what decides whether the last band arrives before or after the session is mounted — a real learner's connection decides the same thing.  Fixed by giving the queue the corpus version as a dependency (`useCorpusMemo`), so it is rebuilt when the words land. Pinned by `pages/wordSessionBandArrival.test.tsx`, which stages the sequence directly — a plan whose words have not arrived, then the band, then the announcement the loader makes — and asserts both halves: the empty day is never announced, and the words appear without the learner asking again. Two of its three cases fail against the previous implementation. | Fixed. `apps/web/src/pages/WordSessionPage.tsx` builds the first pass with `useCorpusMemo`. |
 | **I-19** | `npm run locale:content:check` reads **32 complete · 0 partial · 0 with no vocabulary content yet**, and 12,800 simulated questions across 32 languages are all askable with 0 refused for want of a meaning. 2,724 meanings and 2,724 example translations were written by hand in each of kk, ky, mn, nl, pl, ro, sv, ta, te, tr, uk and uz — 65,376 strings — with the More-about-it note on the 36 words that carry one. `npm run locale:practice:check` went from 217 findings to 0 and is now in `verify:release`. | done |
 | **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
 | **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
@@ -7331,7 +7333,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,697 unit cases across three packages — 1,364
+The suites run green in full: 1,700 unit cases across three packages — 1,367
 web, 237 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked

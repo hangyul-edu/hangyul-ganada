@@ -6,6 +6,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog';
 
 import { usePronunciation } from '../audio/PronunciationContext';
 import { corpusReady } from '../data/corpus';
+import { useCorpusMemo } from '../data/useCorpus';
 import { strictMeaning, type wordCopy } from '../data/wordCopy';
 import { getFont, textFamily } from '../data/fonts';
 import { endsSession, retrySteps, scheduleSteps, sessionProgress, type WordStep } from '../domain/vocabularyDay';
@@ -192,7 +193,31 @@ export function WordSessionPage() {
   const [retries, setRetries] = useState<ReturnType<typeof buildDailyQuestions>>([]);
   /** Words finished *in this sitting*, for the closing card. Not the day's total. */
   const [wordsDone, setWordsDone] = useState(0);
-  const firstPass = useMemo(
+  /*
+    Rebuilt when the corpus arrives, not only when the queue's own inputs change.
+
+    `buildDailyQuestions` reads the corpus: `getWord` for every scheduled step,
+    and the meanings after that. The corpus is fetched in priority bands, so a
+    learner whose plan is made of late-band words opens this screen before any
+    of its content exists and the queue is legitimately empty on the first
+    render.
+
+    Nothing was ever going to fill it. The dependency list is the steps, the
+    language and the label — a band landing changes none of them, so this memo
+    handed back its cached empty queue on every subsequent render, including
+    the ones caused by the band itself. The loading guard below asks
+    `corpusReady()` and let go at that same moment, so the learner was told
+    *Nothing left for today* over a full day of words and it never corrected
+    itself. A learner measured at Level 30 met it on every cold start; on a
+    fast machine the whole corpus is in before the session is opened, which is
+    why it survived so long and failed first under load.
+
+    `useCorpusMemo` adds the corpus version to the dependencies, so the queue is
+    rebuilt when the words and their glosses land. It cannot shorten under the
+    learner: the rebuild reads the frozen `steps`, so it produces the same
+    questions in the same order once the content is in.
+  */
+  const firstPass = useCorpusMemo(
     () => (steps === null ? [] : buildDailyQuestions(steps, meaningOf, label)),
     [steps, meaningOf, label],
   );
