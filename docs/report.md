@@ -4751,7 +4751,7 @@ untracked files, so no commit described what was in them.
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
 | APK | 90,938,082 bytes (86.7 MiB) |
-| APK sha256 | `3c3bfaa80e8f4430f49c2300d2adcb1add0544c93d55f759b440eab0ebfba0f7` |
+| APK sha256 | `d6f87ea3e1f93c873759183c918b40d4b6d5bcbd73fcece3261dc543b1b7e9ee` |
 | AAB | 89,097,009 bytes (85.0 MiB) |
 | AAB sha256 | `378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
