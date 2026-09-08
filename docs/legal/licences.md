@@ -1,6 +1,6 @@
 # Content sources and licences
 
-**Hangyul ganada** · version 1.0.5
+**Hangyul ganada** · version 1.0.4
 
 Everything in this app was either written for it or comes from a source named
 below. This page exists because some of those licences require attribution, and

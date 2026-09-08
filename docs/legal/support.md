@@ -1,6 +1,6 @@
 # Support
 
-**Hangyul ganada** · version 1.0.5
+**Hangyul ganada** · version 1.0.4
 
 ## Before you write
 
