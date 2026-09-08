@@ -21,8 +21,8 @@
   "ios": {
     "xcode": {
       "_comment": "What `App.xcodeproj/project.pbxproj` currently carries, written down here so that a check can tell a *deliberate lag* from a *drift*. The Xcode project is maintained on a Mac, by hand, through the Xcode UI: MARKETING_VERSION and CURRENT_PROJECT_VERSION are build settings Xcode owns, and editing them from Linux with a text substitution is how a project file loses a setting it was never asked about. So this release moves Android to 1.0.3 build 16 and leaves iOS where its maintainer left it. `scripts/check-version-consistency.mjs` asserts the project file matches these two values exactly — any other change to it fails — and prints the pending action while they are behind `version` and `buildNumber`.",
-      "marketingVersion": "1.0.2",
-      "currentProjectVersion": 4,
+      "marketingVersion": "1.0.3",
+      "currentProjectVersion": 5,
       "pending": "iOS is behind: set MARKETING_VERSION to 1.0.3 and CURRENT_PROJECT_VERSION to 16 in Xcode (App target, both configurations), then update the two values above in the same commit."
     },
     "_comment": "15.0 to match IPHONEOS_DEPLOYMENT_TARGET in the Xcode project — the two disagreeing is how a build succeeds and then crashes on a device the store said it supported. Capacitor 8's own floor is 14; 15 is chosen because it is what the project is configured for and covers every device Apple still updates. Apple requires builds made with the iOS 26 SDK from 28 April 2026; that is the SDK you build *with*, not the version you deploy *to*.",
