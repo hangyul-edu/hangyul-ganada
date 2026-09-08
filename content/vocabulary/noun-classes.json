@@ -15,7 +15,8 @@
     "",
     "Derived from the English meanings and then read by hand — the derivation put",
     "우유 among the animals, 마음 among the body parts and 별 among the people.",
-    "The person list was widened after reading the second and third batches of noun items: 경관이 떡을 나눠 줬어요, 상사가 책을 썼어요, 경비가 질문을 해요, 그림에 숙녀가 있어요 and 영화에 물고기가 나와요 were all offered against a person, and all are ordinary Korean. Ghosts, angels, robots and zombies are in it too — a frame that wants somebody to appear in a story accepts any of them."
+    "The person list was widened after reading the second and third batches of noun items: 경관이 떡을 나눠 줬어요, 상사가 책을 썼어요, 경비가 질문을 해요, 그림에 숙녀가 있어요 and 영화에 물고기가 나와요 were all offered against a person, and all are ordinary Korean. Ghosts, angels, robots and zombies are in it too — a frame that wants somebody to appear in a story accepts any of them.",
+    "A `consumable` class was added for what is swallowed but not eaten: 약 and 약물. The Level Test asked 밥을 먹고 ____을 드세요 with 물 and 약 among the four options, and both are ordinary Korean — you drink water after a meal and you take medicine after a meal. The category could not see it, because 약 is filed under body-health beside 의사; the class guard could not either, because it only fires when *both* words are classified and 약 was not. `conflicts.groups` now pairs food with consumable, and `isConsumptionObjectFrame` in scripts/lib/level-test-rules.mjs catches the frame without needing the answer classified."
   ],
   "classes": {
     "가슴": [
@@ -722,6 +723,12 @@
     ],
     "환자": [
       "person"
+    ],
+    "약": [
+      "consumable"
+    ],
+    "약물": [
+      "consumable"
     ]
   },
   "conflicts": {
@@ -742,6 +749,10 @@
         "person",
         "animal",
         "bodypart"
+      ],
+      [
+        "food",
+        "consumable"
       ]
     ]
   }

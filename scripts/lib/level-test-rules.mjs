@@ -44,3 +44,53 @@ export function isActivityNoun(word, lemmas) {
 export function isHadaFrame(sentence) {
   return /(^|\s)(해요|했어요|하세요|합니다|하고|해|할까요)([.?!]|\s|$)/.test(sentence);
 }
+
+/**
+ * A blank that is the **object of a verb of consuming**.
+ *
+ * 밥을 먹고 ____을 드세요 shipped with 물 and 약 among its four options, and
+ * both are ordinary Korean: you drink water after a meal and you take medicine
+ * after a meal. It was the level-test question a reader photographed, and it is
+ * the same shape as `isHadaFrame` one verb along — 하다 accepts anything you can
+ * *do*, and 먹다/마시다/들다 accept anything you can *ingest*. A sentence built
+ * around one of them constrains the verb, not the object, so nothing in the
+ * sentence rules the other consumables out.
+ *
+ * Deliberately narrow. It requires the blank to carry the object particle, so
+ * the comitative frame — ____와 점심을 먹어요, which wants a person — is not
+ * caught by it; that one is already handled by the person class, and treating
+ * it as a consumption slot rejected 소고기 against 동료 for no reason.
+ */
+export function isConsumptionObjectFrame(sentence) {
+  const at = sentence.indexOf('____');
+  if (at < 0) return false;
+  const after = sentence.slice(at + 4);
+  if (!after.startsWith('을') && !after.startsWith('를')) return false;
+  return /(먹|드시|드세|마시|마셔|잡수)/.test(after);
+}
+
+/**
+ * Every word that can be the object of one of those verbs.
+ *
+ * The browse category carries most of it — `food` is the shelf a learner looks
+ * on for 물, 밥, 커피 and 술 — and the category is exactly what it misses:
+ * categories are topical, so 약 is filed under body-health with 의사 and 배,
+ * and no rule comparing categories can see that 물 and 약 compete. Reading the
+ * corpus for ingestible glosses outside `food` returns four words and only two
+ * of them are swallowed: 의학 is the discipline and 담배 is smoked.
+ *
+ * Passed in rather than read here so the builder and the gate derive it from
+ * one function over their own copies of the data — see this file's header.
+ */
+export function consumableWords(anchors, nounClasses = {}) {
+  const words = new Set();
+  for (const anchor of anchors) {
+    if (anchor.pos !== 'noun') continue;
+    const tags = anchor.category_tags ?? [];
+    if (anchor.category === 'food' || tags.includes('food')) words.add(anchor.word);
+  }
+  for (const [word, classes] of Object.entries(nounClasses)) {
+    if (Array.isArray(classes) && classes.includes('consumable')) words.add(word);
+  }
+  return words;
+}

@@ -45,7 +45,13 @@ import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { analyse, conjugate, FORMS, finalOf, hasFinal, stemOf } from '../../packages/korean-morphology/src/index.ts';
-import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from '../lib/level-test-rules.mjs';
+import {
+  GENERAL_VERBS,
+  consumableWords,
+  isActivityNoun,
+  isConsumptionObjectFrame,
+  isHadaFrame,
+} from '../lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const ANCHORS = join(ROOT, 'content-cache', 'level-test-anchors.json');
@@ -165,6 +171,14 @@ const LEVELS = anchorFile.levels;
 const anchors = anchorFile.anchors;
 /** Every lemma the ranking knows, so `축구하다` can be looked up from `축구`. */
 const LEMMAS = new Set(anchors.map((anchor) => anchor.word));
+/**
+ * Everything that can be swallowed, for the rule in `isConsumptionObjectFrame`.
+ *
+ * The `food` category is most of it; the class file supplies what the category
+ * files elsewhere — 약 sits under body-health because that is the shelf a
+ * learner looks on for it.
+ */
+const CONSUMABLES = consumableWords(anchors, NOUN_CLASSES);
 
 /**
  * Dictionary anchors whose *rank* belongs to a different word.
@@ -645,6 +659,8 @@ for (const anchor of anchors) {
   }
 
   const mine = arguments_(anchor.example);
+  /* 밥을 먹고 ____을 드세요 — the blank is swallowed. See `isConsumptionObjectFrame`. */
+  const eatingFrame = isConsumptionObjectFrame(anchor.example);
   /* 친구와 ____를 해요 — the blank is the object of 하다. */
   const hadaFrame = isHadaFrame(blanked);
   const choices = [];
@@ -720,6 +736,18 @@ for (const anchor of anchors) {
      */
     if (!inflects && hadaFrame && isActivityNoun(other.word, LEMMAS)) {
       rejected.activityNoun += 1;
+      continue;
+    }
+    /*
+     * 밥을 먹고 ____을 드세요 offered 물 beside the keyed 약, and both are
+     * ordinary Korean. 드시다 constrains the *manner* of the object and not the
+     * object, so every consumable fits the sentence equally — the same shape as
+     * the 하다 rule above. This one does not consult the answer's class, which
+     * is the point: 약 carried no class at all, and the class guard above only
+     * fires when both words have one, so it let 물 straight through.
+     */
+    if (!inflects && eatingFrame && CONSUMABLES.has(other.word)) {
+      rejected.consumable = (rejected.consumable ?? 0) + 1;
       continue;
     }
     let surface;

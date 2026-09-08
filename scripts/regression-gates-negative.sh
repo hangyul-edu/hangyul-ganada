@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# Five sabotage runs against the gates added for this cycle.
+# Six sabotage runs against the gates added for this cycle.
 #
-#   bash scripts/regression-gates-negative.sh            all five
+#   bash scripts/regression-gates-negative.sh            all six
 #   bash scripts/regression-gates-negative.sh --fast     skip the two that rebuild
 #
 # ## Why a gate needs this
@@ -21,6 +21,7 @@
 # | **G3** | A blank whose option list holds two words that fit it. |
 # | **G4** | 둘 개 — the plain numeral in front of a counter. |
 # | **G5** | A `completed_at` with no evidence behind it, kept rather than cleared. |
+# | **G6** | 밥을 먹고 ____을 드세요, with 물 back among its four options. |
 #
 # G1 rebuilds the web bundle twice and drives a browser over 45 cases, so it is
 # the slow one; `--fast` leaves it out for a quick pass and the full run is what
@@ -62,7 +63,7 @@ expect_fail() {
     echo "$name: GATE DID NOT FIRE   <<<< PROBLEM"
     fail=$((fail + 1))
   else
-    echo "$name: caught — $(grep -m1 -E '✗|problem|reserves|paints|outside' "$WORK/out" | sed 's/^ *//' | cut -c1-130)"
+    echo "$name: caught — $(grep -m1 -E '✗|problem|reserves|paints|outside|two right answers|swallowed' "$WORK/out" | sed 's/^ *//' | cut -c1-130)"
     pass=$((pass + 1))
   fi
 }
@@ -82,6 +83,7 @@ expect_pass() {
 layout_gate() { npm run --silent build >/dev/null 2>&1 && npx tsx scripts/numbers-layout-qa.mjs --check; }
 marker_gate() { npx tsx scripts/marker-placement-qa.mjs --check; }
 numbers_gate() { npx tsx scripts/numbers-qa.mjs --check; }
+ambiguity_gate() { npx tsx scripts/level-test-ambiguity-qa.mjs --check; }
 
 if [ "$FAST" -eq 0 ]; then
   echo "G1  the empty icon column at the head of every lesson row"
@@ -120,10 +122,13 @@ expect_fail G3 numbers_gate
 restore "$EXERCISES"
 
 echo "G4  둘 개 — the plain numeral in front of a counter"
-sabotage "$NUMBERS" "  n('num-form-2', '두', 'du', 2, 'native', 'form', 'gloss.formTwo', {
-    example: '두 개', note: 'note.countingForm'," \
-"  n('num-form-2', '두', 'du', 2, 'native', 'form', 'gloss.formTwo', {
-    example: '둘 개', note: 'note.countingForm',"
+# Anchored on the example line alone. The original sabotage quoted the whole
+# `n(...)` call and stopped matching the moment a `domain:` field was added to
+# it, so G4 spent that time asserting nothing and reporting itself as a problem
+# only because the assertion in `sabotage` is loud. A negative case pinned to
+# more source than it needs is a negative case with an expiry date.
+sabotage "$NUMBERS" "    example: '두 개', note: 'note.countingForm'," \
+"    example: '둘 개', note: 'note.countingForm',"
 expect_fail G4 numbers_gate
 restore "$NUMBERS"
 
@@ -137,7 +142,33 @@ sabotage "$PROGRESS" '  // The claim must be backed by the evidence, or the clai
 expect_fail G5 numbers_gate
 restore "$PROGRESS"
 
+# The question a reader photographed. 물 and 약 are both ordinary answers to
+# "take ___ after eating", and the item shipped with both — the class guard only
+# fires when *both* words are classified and 약 carried no class at all. The
+# sabotage is the shipped artefact rather than the source, because the bank is
+# what a learner is served and what the gate reads.
+echo "G6  밥을 먹고 ____을 드세요, with 물 back among its options"
+BANK="apps/web/public/level-test/$(python3 -c "
+import json;print(json.load(open('apps/web/public/level-test/manifest.json',encoding='utf-8'))['bank'])")"
+backup "$BANK"
+python3 -c "
+import json,sys
+p=sys.argv[1]
+d=json.load(open(p,encoding='utf-8'))
+for item in d['items']:
+    if item['id']=='word_yak:context':
+        item['options']=sorted(['다음','물','산','약'])
+        item['distractorIds']=['word_daeum','word_mul','word_san']
+        break
+else:
+    raise SystemExit('word_yak:context is not in the bank')
+json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
+" "$BANK"
+expect_fail G6 ambiguity_gate
+restore "$BANK"
+
 echo
+expect_pass "restored: level-test ambiguity" ambiguity_gate
 expect_pass "restored: strokes:markers" marker_gate
 expect_pass "restored: numbers:qa" numbers_gate
 if [ "$FAST" -eq 0 ]; then

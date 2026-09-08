@@ -45,7 +45,13 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { conjugate, decompose, FINALS, finalOf, hasFinal, stemOf } from '../packages/korean-morphology/src/index.ts';
-import { GENERAL_VERBS, isActivityNoun, isHadaFrame } from './lib/level-test-rules.mjs';
+import {
+  GENERAL_VERBS,
+  consumableWords,
+  isActivityNoun,
+  isConsumptionObjectFrame,
+  isHadaFrame,
+} from './lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BANK_DIR = join(ROOT, 'apps', 'web', 'public', 'level-test');
@@ -65,6 +71,11 @@ const related = new Map(
   ).map(([id, entry]) => [id, new Set([...(entry.synonyms ?? []), ...(entry.antonyms ?? [])])]),
 );
 const isRelated = (a, b) => Boolean(related.get(a)?.has(b) || related.get(b)?.has(a));
+const NOUN_CLASSES = JSON.parse(
+  readFileSync(join(ROOT, 'content', 'vocabulary', 'noun-classes.json'), 'utf8'),
+).classes;
+/** See `consumableWords`. Derived here from the same function the builder uses. */
+const CONSUMABLES = consumableWords(anchorList, NOUN_CLASSES);
 
 const findings = [];
 function fail(item, rule, detail) {
@@ -206,6 +217,15 @@ for (const item of bank.items) {
     }
     if (!inflects && isHadaFrame(item.prompt) && isActivityNoun(other.word, lemmas)) {
       fail(item, 'activity-noun', `${other.word}하다 is a thing you can do, and the verb here is 하다`);
+    }
+    /*
+     * 밥을 먹고 ____을 드세요, keyed 약, offered 물. See
+     * `isConsumptionObjectFrame` — this is the 하다 rule one verb along, and it
+     * reads the *option* rather than the answer's class, because the answer had
+     * no class and that is how the item shipped.
+     */
+    if (!inflects && isConsumptionObjectFrame(item.prompt) && CONSUMABLES.has(other.word)) {
+      fail(item, 'consumable-option', `${other.word} can be swallowed too, and the verb here is 드시다`);
     }
     if (inflects) {
       const expected = conjugate(other.word, item.form, { partOfSpeech: other.pos });
