@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.3**, Android versionCode **16** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.4**, Android versionCode **17** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.2 / `CURRENT_PROJECT_VERSION` 4, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -156,8 +156,8 @@ without trusting the row.
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
 | Issues tracked | 166 | `docs/issues.json` |
-| Signed APK | 86.7 MB | `result/build-info.json` |
-| Signed AAB | 85.0 MB | same |
+| Signed APK | 90,938,082 bytes (86.7 MiB) | `result/build-info.json` |
+| Signed AAB | 89,097,009 bytes (85.0 MiB) | same |
 | Tests | 1,648 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -2146,11 +2146,11 @@ new APK    157a2bb133f6aa3d…3323debc
 | --- | --- |
 | Built from | `bc3bec14`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 14, versionName 1.0.3 |
+| Package | `com.talkhangyul.ganada`, versionCode 17, versionName 1.0.4 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | **86.7 MB** (88,242,570 B), `bcb94e2a3002e65c…` |
-| Release AAB | **85.0 MB** (86,451,898 B), `ca6fb668ee76e257…` |
+| Release APK | 90,938,082 bytes (86.7 MiB), `8344ecc7c49a092d…` |
+| Release AAB | 89,097,009 bytes (85.0 MiB), `378103caea4f941d…` |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -3255,6 +3255,9 @@ dictionary entry, no offline capability, and no audio was re-encoded. The
 full inventory and each decision's reasoning is
 `docs/PACKAGE_SIZE_ANALYSIS.md`.
 
+*Historical: the sizes either side of that pass's reduction. Neither column is
+the current artefact.*
+
 | Component | Before | After | Saved |
 | --- | --- | --- | --- |
 | APK (signed) | 87,413,933 B (83.4 MB) | 82,316,042 B (78.5 MB) | 5,097,891 B — 5.8% |
@@ -4052,6 +4055,10 @@ which is the only method that would have.
 
 ### The artefacts
 
+*Historical: these are the binaries **that pass** produced, kept as its record.
+The artefacts a reader can download today are in §21, and there is exactly one
+current set — see I-168 for what happens when there is more than one.*
+
 | | |
 | --- | --- |
 | APK | `result/hangyul-ganada-release.apk` — 83.7 MB (87,713,769 B), `0bde965597381c12177045a82230cdf8d7884f34221b1be669b44e855344ee7d` |
@@ -4726,10 +4733,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 87,763,942 bytes (83.7 MiB) |
-| APK sha256 | `7777b402acb2097313714215b747f1422556bee7af1812ccfbca8419f7914da0` |
-| AAB | 85,973,157 bytes (82.0 MiB) |
-| AAB sha256 | `86b00c972940ab810d5f39bfe5c457e197f68a925e7ff7d7cfe5cfbe28bab619` |
+| APK | 90,938,082 bytes (86.7 MiB) |
+| APK sha256 | `8344ecc7c49a092dd9cb51ba8e8064f1462b2c86d17223de0fbfd0f2af6a868f` |
+| AAB | 89,097,009 bytes (85.0 MiB) |
+| AAB sha256 | `378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |

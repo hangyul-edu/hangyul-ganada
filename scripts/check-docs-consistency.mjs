@@ -341,7 +341,8 @@ const METRICS = {
      */
     patterns: [
       /`(?:app|hangyul-ganada)-release\.apk` \(([\d.]+) MB\)/g,
-      /\|\s*(?:Release|Signed) APK[^|]*\|\s*\*{0,2}([\d.]+)\*{0,2}\s*MB/g,
+      /\|\s*(?:Release|Signed) APK[^|]*\|[^|]*?\(([\d.]+) MiB\)/g,
+      /\| APK \| [\d,]+ bytes \(([\d.]+) MiB\)/g,
     ],
   },
   aabMegabytes: {
@@ -349,7 +350,8 @@ const METRICS = {
     what: 'release AAB, MB',
     patterns: [
       /`(?:app|hangyul-ganada)-release\.aab` \(([\d.]+) MB\)/g,
-      /\|\s*(?:Release|Signed) AAB[^|]*\|\s*\*{0,2}([\d.]+)\*{0,2}\s*MB/g,
+      /\|\s*(?:Release|Signed) AAB[^|]*\|[^|]*?\(([\d.]+) MiB\)/g,
+      /\| AAB \| [\d,]+ bytes \(([\d.]+) MiB\)/g,
     ],
   },
   audioSlots: {
@@ -513,6 +515,63 @@ const METRICS = {
       /rebuilt at versionCode ([\d]+) and signed/g,
       /\*\*Build\*\* to `([\d]+)`/g,
     ],
+  },
+
+  /**
+   * The delivered artefacts' sizes and hashes.
+   *
+   * ## Why these are figures and not prose
+   *
+   * The report carried **three** sets of APK and AAB numbers and no two agreed,
+   * and none of them matched `build-info.json`. One cell managed to disagree
+   * with itself — *86.7 MB (88,242,570 B)* pairs a size from the current build
+   * with a byte count from an older one, because a person refreshed the megabytes
+   * and not the parenthesis beside them. A fourth pair sat in the prose
+   * underneath.
+   *
+   * That is what a hand-maintained copy of a generated number does, and it is
+   * exactly the shape the rest of this file exists to prevent. The artefact
+   * figures belong in one place — `result/build-info.json`, written by the script
+   * that copies the binaries — and everywhere else quotes it. See I-168.
+   *
+   * The byte counts are the value and the MiB figures are derived from them in
+   * the same pattern, so the two halves of a cell cannot come apart again.
+   */
+  apkBytes: {
+    value: exists('result/build-info.json')
+      ? JSON.parse(read('result/build-info.json')).android?.apk_bytes ?? null
+      : null,
+    what: 'the delivered APK, in bytes',
+    patterns: [
+      /\| APK \| ([\d,]+) bytes/g,
+      /\| Signed APK \| ([\d,]+) bytes/g,
+      /\| Release APK \| ([\d,]+) bytes/g,
+    ],
+  },
+  aabBytes: {
+    value: exists('result/build-info.json')
+      ? JSON.parse(read('result/build-info.json')).android?.aab_bytes ?? null
+      : null,
+    what: 'the delivered AAB, in bytes',
+    patterns: [
+      /\| AAB \| ([\d,]+) bytes/g,
+      /\| Signed AAB \| ([\d,]+) bytes/g,
+      /\| Release AAB \| ([\d,]+) bytes/g,
+    ],
+  },
+  apkSha256: {
+    value: exists('result/build-info.json')
+      ? JSON.parse(read('result/build-info.json')).android?.apk_sha256 ?? null
+      : null,
+    what: "the delivered APK's sha256",
+    patterns: [/\| APK sha256 \| `([0-9a-f]{64})`/g],
+  },
+  aabSha256: {
+    value: exists('result/build-info.json')
+      ? JSON.parse(read('result/build-info.json')).android?.aab_sha256 ?? null
+      : null,
+    what: "the delivered AAB's sha256",
+    patterns: [/\| AAB sha256 \| `([0-9a-f]{64})`/g],
   },
 };
 
