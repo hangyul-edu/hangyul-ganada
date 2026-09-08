@@ -1807,6 +1807,64 @@
    "recommendedFix": "Done.",
    "note": "Worth stating because this pass's own verification claims rest on this command, and because the failure is invisible in the summary line every reader looks at first — the tests are green in the same output that exits 1.",
    "effort": "DONE"
+  },
+  {
+   "id": "I-172",
+   "area": "Vocabulary Level Test",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "A learner who opened badly could not climb back: a true level-30 sitting reported 2",
+   "customerImpact": "The strongest learners, under-placed by up to twenty-three levels, and shown a plausible-looking number on the way out. Six declines on the opening questions — nerves, an unfamiliar screen, or three warm-up words they happen not to know — were enough.",
+   "evidence": "Measured on the shipped build: true level 30 with six opening declines reported **2**; true 25 reported 6; true 20 reported 7. With no early stumble the same walk reported 30, 25 and 20 exactly, so neither the bank nor the arithmetic was at fault.\n\nTwo causes. **The model had no way to explain a decline**: `P(unknown)` was `1 − known`, so at θ=30 a decline on a level-1 word had probability 0.0002 and six of them cost 10²³. The estimator preferred the theory that a level-2 learner guessed right twenty-three times running. The pass before had added `SLIP` so a *wrong* answer no longer proved ignorance and left the other branch absolute. **And selection followed the posterior**, which moves at the speed of accumulated evidence, so the walk crept upward one level at a time and ran out of questions.\n\n**Fixed 8 September 2026.** `DECLINE` = 0.03, swept against two populations; and `nextLevel` steers by an explicit bracket — highest level answered correctly, lowest missed — handing back to the posterior once it closes to two levels. Bounds reopen only on two contradicting answers in a row, because one is a 25% coin and reopening on it placed every simulated learner between levels 9 and 18 two levels too high.\n\nAgainst a learner who fumbles like a person the new engine is better than the old — 90.5% of sittings within ±3 levels against 86.1%, MAE 1.61 against 1.90. Against a simulated learner who never mis-taps it is worse, 91.1% against 95.3%, and that is the population the old gate measured; the gate now simulates fumbling and says so in its output.",
+   "recommendedFix": "Done.",
+   "note": "The previous pass fixed a test that opened too hard and introduced this in doing it. Both defects were invisible to the accuracy figure that was being watched, for the same reason: it was measured against a learner who never fumbles.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-173",
+   "area": "Vocabulary Level Test",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The warm-up ladder ran 2, 4, 6 even for a learner who had just said they did not know",
+   "customerImpact": "A learner who declined the level-2 word was shown level 4 next, then level 6. The gentlest opening in the product was the one place a struggling learner could not escape.",
+   "evidence": "`phaseOf` returned `warmup` for the first three questions unconditionally, so the ladder was a schedule rather than an offer. **Fixed 8 September 2026**: the ladder holds only while the learner is answering correctly and ends on the first miss or decline, after which the bracket takes over and the next question is at or below the one just missed. Asserted directly, and negative-tested by restoring the unconditional branch.",
+   "recommendedFix": "Done.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-174",
+   "area": "Vocabulary Level Test",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "Above the beginner floor, difficulty was still frequency alone — and rank is shared between senses",
+   "customerImpact": "시기 sat at level 11 glossed \"opportunity\" though its everyday sense is *a period of time*; 화상 at 11 as \"portrait\" though its everyday senses are *a burn* and *video*; 전력 at 11 as \"electricity\"; 각하 at 12 as an honorific a learner will not meet.",
+   "evidence": "The taught corpus is levelled by four weighted factors in `scripts/content/level.py`. Dictionary anchors had one: the frequency rank of their spelling. That is the same single-signal levelling that put 누가 at level 1 glossed \"nougat\", in its milder and commoner form — 67 anchors in the bank (7.7%) carry three or more senses and the rank is shared between all of them.\n\n**Fixed 8 September 2026.** A dictionary anchor's rank is discounted by the square root of its sense count: 시기 moves to 18, 화상 to 19, 전력 to 17, 경계 to 15. The square root rather than the count itself because senses are not evenly used — one usually dominates — so multiplying would push ordinary polysemous words off the top of the scale. It is a heuristic and is labelled as one; what would settle it is per-sense frequency, which no corpus available here provides. It can only move a word up, and the failure it guards against is a rare sense asked too early.",
+   "recommendedFix": "Done.",
+   "note": "Specialist and archaic vocabulary was checked at the same time and is *not* a live problem: 10 of 875 dictionary anchors carry a technical, taxonomic or archaic marker, and all sit at level 17 or above. Recorded so the next pass does not re-investigate it.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-175",
+   "area": "Vocabulary Level Test",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The cross-locale duplicate-answer check skipped every dictionary headword",
+   "customerImpact": "`데모` shipped offering *demo · personality · feedback · a personality* — two options that are the same answer.",
+   "evidence": "`collideInAnyLocale` compares meanings through a map built from the taught corpus. Dictionary glosses are not in it, so any pair involving a dictionary headword missed the lookup and the check returned \"no collision\" — silently, for 875 of the anchors in the bank. Found by `leveltest:bank:check`, which reads the finished artefact rather than trusting the builder, immediately after the sense-count re-levelling moved new anchors into range.\n\n**Fixed 8 September 2026.** English carries the dictionary glosses in the same map. One language rather than thirty-two, because that is where the glosses exist — and where the gap was.",
+   "recommendedFix": "Done.",
+   "effort": "DONE"
+  },
+  {
+   "id": "I-176",
+   "area": "Accessibility",
+   "severity": "P3",
+   "status": "OPEN",
+   "summary": "At 200% text the five-tab navigation bar falls below the 44px touch minimum",
+   "customerImpact": "A learner who has turned text up to 200% gets navigation tabs 39px wide. The Level Test's own controls are unaffected — options and *I don't know* clear 44px at every viewport tested — so this is app chrome rather than the assessment.",
+   "evidence": "`leveltest:viewport` measures the question screen at 320×568, 360×640, 375×667, 390×844 and the same phone at 150% and 200% text, in English, German, Russian, Tamil and Telugu. No overflow, no clipped option, no overlap, and no control under 44px inside the screen itself. The navigation bar is under it on the five 200% combinations: a 390px phone at 200% lays out as 195 CSS pixels and five tabs cannot each be 44px wide in 195.\n\nReported by the gate rather than failed on, because it is arithmetic rather than a defect the gate can drive out, and because failing on it would make the gate unsatisfiable.",
+   "recommendedFix": "A product decision, not a fix with an obvious shape: fewer tabs, a scrolling tab strip, or a documented floor below which the bar collapses to a menu. Recorded rather than guessed at.",
+   "note": "*I don't know* also falls below the fold on the six enlarged-text combinations and is reached by scrolling. That is the right trade — the alternative is shrinking the Korean, which is the one thing on the screen a learner has to read — and `scroll:audit` owns whether it is reachable.",
+   "effort": "M"
   }
  ]
 }
