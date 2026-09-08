@@ -1,11 +1,14 @@
 # Release validation
 
-What was built, what was tested, and what was observed. Every line below was run
-on this machine during this refresh; nothing is carried over from an earlier
-cycle. Where something could not be verified it says so rather than being left
-blank or implied.
+What was built, what was tested, and what was observed. Every gate reported here
+was run on this machine for this build. Two sections are explicitly *carried
+forward* from an earlier cycle and say so in their own headings — the icon
+reading from build 14 and the device walk from build 16 — because re-running
+them would have produced nothing new in the first case and could not be done on
+this machine in the second. Nothing else is inherited. Where something could not
+be verified it says so rather than being left blank or implied.
 
-**Source:** commit `753cf076` on branch `main`. `build-info.json` →
+**Source:** commit `9caccc66` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -14,8 +17,8 @@ middle of writing.
 **Built:** 8 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 17 validation.** Codes 3 through 17 are spent,
-each by an artefact that was actually produced. This is 18.
+**This supersedes the versionCode 18 validation.** Codes 3 through 18 are spent,
+each by an artefact that was actually produced. This is 19.
 
 ---
 
@@ -71,7 +74,7 @@ control under 44px.
 | Safeguards | A bound reopens only on two contradicting answers in a row; the sitting stops only when the bracket has closed *and* the posterior has settled; the warm-up ladder ends on the first miss |
 | Level Test bank | Dictionary ranks discounted by sense count — 시기 moves from 11 to 18, 화상 from 11 to 19; the cross-locale collision check now covers dictionary glosses |
 | New gate | `leveltest:viewport` measures the question screen at 320–390 and at 150% and 200% text in five languages |
-| Version | Android **1.0.5 / 18**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Version | Android **1.0.5 / 19**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -81,10 +84,10 @@ control under 44px.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **18**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Package | `com.talkhangyul.ganada`, version code **19**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
 | Why 18 | 17 is spent. Both delivered artefacts report a code of 17 and the previous `build-info.json` recorded 17, and product files have changed since — the level-test engine, its item bank, and the vitest worker cap. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 18 is the next valid code rather than the next unused one. |
 | Why 1.0.5 and not 1.0.4 | The previous release changed how the test *chooses* questions. This one changes how it *recovers* when a learner opens badly, which is a different behaviour and one a learner meets on their first retake after updating: a sitting that would have reported level 2 now reports 30. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 18 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 19 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
 
 ## What was run against this tree
 
@@ -161,11 +164,30 @@ catalogue's one universal slot is 1024×1024 RGB with no alpha, which is what Ap
 Store Connect requires; `Contents.json` is unchanged, as are every Xcode-managed
 signing, team, bundle-identifier and provisioning value.
 
-## On a device
+## On a device — carried forward from build 16, not re-run for 19
+
+**Read the version line below before the rest of this section.** The walk
+recorded here was driven against **versionCode 16 / 1.0.3**, which is what its
+own `dumpsys` output says, and it has not been repeated for 19. It is kept
+because every screen it describes is still in this delivery and none of them
+changed; it is *not* evidence about the bytes in this build.
+
+It was not re-run because the emulator could not be given enough memory to boot
+on this machine while the rest of the release verification still had to run.
+`hangyul-pixel7` was started for this build, reached `offline`, and took the VM
+to 693 MB of free memory — the condition that has ended sessions here before, and
+which `docs/CLAUDE_ENVIRONMENT_STABILITY.md` exists to prevent. It was shut down
+rather than fought. **The next person with a device or a machine that can hold an
+emulator should walk build 19 before it goes to a store**, and Today's Vocabulary
+is the screen to walk: the one behaviour that changed in this build is that a
+plan whose words arrive late now fills in when they land instead of reporting an
+empty day, and only a real cold start over a real network exercises it.
+
+What follows is the build-16 reading, unedited.
 
 The signed release APK was installed on an Android 16 emulator (`hangyul-pixel7`,
-1080×2400) from `result/hangyul-ganada-release.apk` — the delivered file, not a
-rebuild — and driven by hand.
+1080×2400) from `result/hangyul-ganada-release.apk` — the delivered file at that
+time, not a rebuild — and driven by hand.
 
 ```
 adb install -r result/hangyul-ganada-release.apk        Success
@@ -222,8 +244,8 @@ viewports.
 ## Checksums
 
 ```
-0596bc8e07c782fed2f80e4562ec642b1ff7a7f4fec5fe24b1d253d5fdf91c3f  hangyul-ganada-release.apk
-934f40685e4ca0415756e130130480314edd19cbb08b9ef76560840bf9c416c3  hangyul-ganada-release.aab
-8dbfe8c63089f9da2258c6971b5f8dc7042b2f7335d0cbf8825cac318fb7506d  docs/report.pdf
-1c30072b5f09d28da67914dafb0f10a93e8dc6613454db6f3cd5fb6a41aefc38  build-info.json
+3cb89e142e3786782ee878caadc4e0cdae69d7131022519808b7cc283b4c5c88  hangyul-ganada-release.apk
+2edc2273b3c38f4cf70a5e883e60ad5ef8f8a6606bbba7980aefa3ef6d191e72  hangyul-ganada-release.aab
+9118b7ce21c65ecb7f529c5c67e7ebf11e9d06cef8a5c74877ae0362ce9c75ac  docs/report.pdf
+c65e69d8c03dce811d561c1881a0d9f2e61a93e49f57141e9064c17e4f0fd013  build-info.json
 ```
