@@ -5,7 +5,7 @@ on this machine during this refresh; nothing is carried over from an earlier
 cycle. Where something could not be verified it says so rather than being left
 blank or implied.
 
-**Source:** commit `37849b61` on branch `main`. `build-info.json` →
+**Source:** commit `b7f23584` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -237,8 +237,8 @@ viewports.
 ## Checksums
 
 ```
-8344ecc7c49a092dd9cb51ba8e8064f1462b2c86d17223de0fbfd0f2af6a868f  hangyul-ganada-release.apk
+3c3bfaa80e8f4430f49c2300d2adcb1add0544c93d55f759b440eab0ebfba0f7  hangyul-ganada-release.apk
 378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357  hangyul-ganada-release.aab
-f562e60c6278a929049c915fa5955f17936c027dbf9c547b7458b43f28c74a71  docs/report.pdf
-bc2e488924c51637a315bfad5eaa246c417b16bf4a19e466b9617b881e4ac25f  build-info.json
+1ca14112c0df78d095402585889b1da8372f0c3f4fa579f8e5c0a9c3cb088cd4  docs/report.pdf
+98d9e4ad4f11a9e926a67dc9203a64e219a09a781576013d0f2c3b5cee407c18  build-info.json
 ```

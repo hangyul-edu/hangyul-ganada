@@ -1,14 +1,14 @@
 {
   "product": "Hangyul ganada",
   "version": "1.0.4",
-  "commit": "37849b61d53d7d0872de4eed367cd257be33ae38",
+  "commit": "b7f2358413c7e767aec1cb141131d11cf62d1b9d",
   "source_state": {
     "dirty": false,
     "fingerprint": null,
     "changed_files": 0,
     "untracked_files": 0
   },
-  "built_at": "2026-09-08T03:11:41.692Z",
+  "built_at": "2026-09-08T03:34:46.259Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
@@ -17,7 +17,7 @@
     "target_sdk": 36,
     "min_sdk": 24,
     "apk_bytes": 90938082,
-    "apk_sha256": "8344ecc7c49a092dd9cb51ba8e8064f1462b2c86d17223de0fbfd0f2af6a868f",
+    "apk_sha256": "3c3bfaa80e8f4430f49c2300d2adcb1add0544c93d55f759b440eab0ebfba0f7",
     "apk_signature_schemes": [
       "v2",
       "v3"

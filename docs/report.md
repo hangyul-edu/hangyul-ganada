@@ -2166,8 +2166,8 @@ new APK    157a2bb133f6aa3d…3323debc
 | Package | `com.talkhangyul.ganada`, versionCode 17, versionName 1.0.4 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 90,938,082 bytes (86.7 MiB), `8344ecc7c49a092d…` |
-| Release AAB | 89,097,009 bytes (85.0 MiB), `378103caea4f941d…` |
+| Release APK | 90,938,082 bytes (86.7 MiB) — sha256 in §21 |
+| Release AAB | 89,097,009 bytes (85.0 MiB) — sha256 in §21 |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -4751,7 +4751,7 @@ untracked files, so no commit described what was in them.
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
 | APK | 90,938,082 bytes (86.7 MiB) |
-| APK sha256 | `8344ecc7c49a092dd9cb51ba8e8064f1462b2c86d17223de0fbfd0f2af6a868f` |
+| APK sha256 | `3c3bfaa80e8f4430f49c2300d2adcb1add0544c93d55f759b440eab0ebfba0f7` |
 | AAB | 89,097,009 bytes (85.0 MiB) |
 | AAB sha256 | `378103caea4f941d7439c361d0e023b60f918839325ae0fcd08f52f7df1d7357` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
