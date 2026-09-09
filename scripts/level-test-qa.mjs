@@ -275,6 +275,18 @@ const PATTERNS = [
   ['alternating correct and wrong', (_level, i) => (i % 2 === 0 ? 'correct' : 'wrong')],
   ['struggles, then improves', (level, i) => (i < 10 ? 'unknown' : level <= 18 ? 'correct' : 'wrong')],
   ['succeeds, then hits a limit', (level, i) => (i < 8 ? 'correct' : level <= 8 ? 'correct' : 'unknown')],
+  /*
+    A learner who is where they are and answers unreliably about it.
+    Level 15, answering to their ability but wrong about one question in six in
+    both directions — the ordinary case, and the one an adaptive test has to be
+    stable under. Deterministic: the noise comes from the question index, not
+    from a generator, so this row is the same on every run.
+  */
+  ['noisy but stable at 15', (level, i) => {
+    const noisy = i % 6 === 5;
+    const knows = level <= 15;
+    return (knows !== noisy) ? 'correct' : 'wrong';
+  }],
 ];
 const patternRows = [];
 for (const [label, respond] of PATTERNS) {
@@ -341,6 +353,60 @@ for (let truth = 1; truth <= LEVELS; truth += 1) {
   }
 }
 
+/**
+ * The app closing in the middle of a sitting.
+ *
+ * `LevelTestPage` writes the sitting after every answer and rebuilds it from
+ * the stored responses on the way back in; `pickIndex` is a pure function of
+ * the seed and the question index, so a resumed sitting must ask the same
+ * questions in the same order and report the same level. The unit suite asserts
+ * that of `nextLevel` and `pickIndex`; this asserts it of a whole sitting, and
+ * at every point a learner could plausibly close the app.
+ *
+ * Replayed rather than mocked: the second half is generated from the responses
+ * of the first, which is exactly what the screen does.
+ */
+const resumeRows = [];
+const resumeProblems = [];
+for (const truth of [2, 8, 15, 22, 30]) {
+  const respond = (level, index) => (index % 7 === 6 ? 'unknown' : level <= truth ? 'correct' : 'wrong');
+  const run = (stopAfter) => {
+    const asked = [];
+    const sequence = [];
+    while (!shouldStop(asked)) {
+      if (stopAfter !== null && asked.length >= stopAfter) break;
+      const level = nextLevel(asked, levelsAvailable, { previousLevel: null });
+      if (level === null) break;
+      sequence.push(level);
+      asked.push({ level, response: respond(level, asked.length) });
+    }
+    return { asked, sequence };
+  };
+  const whole = run(null);
+  let agreed = true;
+  for (const at of [1, 3, 7, 12, 18]) {
+    if (at >= whole.asked.length) continue;
+    // Close the app after `at` answers, reopen, and carry on from what was stored.
+    const resumed = { asked: whole.asked.slice(0, at), sequence: whole.sequence.slice(0, at) };
+    while (!shouldStop(resumed.asked)) {
+      const level = nextLevel(resumed.asked, levelsAvailable, { previousLevel: null });
+      if (level === null) break;
+      resumed.sequence.push(level);
+      resumed.asked.push({ level, response: respond(level, resumed.asked.length) });
+    }
+    if (
+      resumed.sequence.join(',') !== whole.sequence.join(',') ||
+      estimate(resumed.asked).reported !== estimate(whole.asked).reported
+    ) {
+      agreed = false;
+      resumeProblems.push(
+        `a level-${truth} sitting interrupted after ${at} answers resumed differently`,
+      );
+    }
+  }
+  resumeRows.push({ truth, items: whole.asked.length, reported: estimate(whole.asked).reported, agreed });
+}
+
 const mae = errors.reduce((a, b) => a + b, 0) / errors.length;
 const within3 = errors.filter((e) => e <= 3).length / errors.length;
 const within5 = errors.filter((e) => e <= 5).length / errors.length;
@@ -348,16 +414,22 @@ const medianItems = [...lengths].sort((a, b) => a - b)[Math.floor(lengths.length
 const minItems = Math.min(...lengths);
 const maxItems = Math.max(...lengths);
 
+const resumeReport = resumeRows
+  .map((row) => `    true level ${String(row.truth).padStart(2)}   ${String(row.items).padStart(2)} items   reported ${String(row.reported).padStart(2)}   ${row.agreed ? 'identical after every interruption' : 'DIFFERED'}`)
+  .join('\n');
+
 console.log(
   `Vocabulary Level Test — ${bank.items.length.toLocaleString('en')} items, ` +
     `${LEVELS} levels, ${RUNS} simulated sittings per level\n`,
 );
+console.log(`  interrupted and resumed, at 1, 3, 7, 12 and 18 answers:\n${resumeReport}\n`);
 console.log(
   '  the simulated learner mis-taps 5% of the words it knows and declines 3% of\n' +
     '  them; earlier editions of this file simulated one that never fumbled, and\n' +
     '  the numbers below are not comparable with the ones they printed.\n',
 );
 console.log(`  mean absolute error   ${mae.toFixed(2)} levels`);
+
 console.log(`  within ±3 levels      ${(within3 * 100).toFixed(1)}%`);
 console.log(`  within ±5 levels      ${(within5 * 100).toFixed(1)}%`);
 console.log(`  items asked           ${minItems}–${maxItems}, median ${medianItems}`);
@@ -453,7 +525,7 @@ for (const row of worst) {
   console.log(`    level ${String(row.truth).padStart(2)}  error ${row.mae.toFixed(2)}  bias ${row.bias >= 0 ? '+' : ''}${row.bias.toFixed(2)}`);
 }
 
-const problems = [];
+const problems = [...resumeProblems];
 if (within3 < 0.9) problems.push(`only ${(within3 * 100).toFixed(1)}% of sittings land within ±3 levels`);
 if (mae > 2) problems.push(`mean absolute error is ${mae.toFixed(2)} levels`);
 /*

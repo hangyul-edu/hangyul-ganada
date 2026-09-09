@@ -22,6 +22,8 @@
 # | **G4** | 둘 개 — the plain numeral in front of a counter. |
 # | **G5** | A `completed_at` with no evidence behind it, kept rather than cleared. |
 # | **G6** | 밥을 먹고 ____을 드세요, with 물 back among its four options. |
+# | **G7** | 일곱 시에 ____ — the photographed item, put straight back in the bank. |
+# | **G8** | ____이 문을 열었어요 with 학생 and 형 back among its options. |
 #
 # G1 rebuilds the web bundle twice and drives a browser over 45 cases, so it is
 # the slow one; `--fast` leaves it out for a quick pass and the full run is what
@@ -63,7 +65,7 @@ expect_fail() {
     echo "$name: GATE DID NOT FIRE   <<<< PROBLEM"
     fail=$((fail + 1))
   else
-    echo "$name: caught — $(grep -m1 -E '✗|problem|reserves|paints|outside|two right answers|swallowed' "$WORK/out" | sed 's/^ *//' | cut -c1-130)"
+    echo "$name: caught — $(grep -m1 -E '✗|problem|reserves|paints|outside|two right answers|swallowed|only when|are both people' "$WORK/out" | sed 's/^ *//' | cut -c1-130)"
     pass=$((pass + 1))
   fi
 }
@@ -165,6 +167,46 @@ else:
 json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
 " "$BANK"
 expect_fail G6 ambiguity_gate
+restore "$BANK"
+
+# G7 and G8 edit the built bank rather than the editorial pack, for the same
+# reason G6 does: rebuilding from the pack redraws every distractor in the file
+# and the run would then be asserting against a bank nobody has read. What is
+# put back is exactly the item a reader photographed.
+echo "G7  일곱 시에 ____ — a sentence that says only when"
+backup "$BANK"
+python3 -c "
+import json,sys
+p=sys.argv[1]
+d=json.load(open(p,encoding='utf-8'))
+for item in d['items']:
+    if item['id']=='word_ireonada:context':
+        item['prompt']='일곱 시에 ____.'
+        item['options']=['도와요','연습해요','일어나요','잘해요']
+        item['answer']='일어나요'
+        item['form']='presentPolite'
+        break
+else:
+    raise SystemExit('word_ireonada:context is not in the bank')
+json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
+" "$BANK"
+expect_fail G7 ambiguity_gate
+restore "$BANK"
+
+echo "G8  ____이 문을 열었어요, with two people among its options"
+python3 -c "
+import json,sys
+p=sys.argv[1]
+d=json.load(open(p,encoding='utf-8'))
+for item in d['items']:
+    if item['id']=='word_eunhaeng:context':
+        item['options']=sorted(['얼음','은행','학생','형'])
+        break
+else:
+    raise SystemExit('word_eunhaeng:context is not in the bank')
+json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
+" "$BANK"
+expect_fail G8 ambiguity_gate
 restore "$BANK"
 
 echo

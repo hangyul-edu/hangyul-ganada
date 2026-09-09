@@ -31,6 +31,10 @@
  * | the same sentence built for two different words | 둘에 셋을 더해요 / 곱해요 |
  * | an answer that appears elsewhere in its own sentence | the sentence answers itself |
  * | a duplicated option | three choices wearing four labels |
+ * | a sentence that says only *when* | 일곱 시에 ____ — every predicate fits |
+ * | a predicate that rules out no noun | ____이 마음에 들어요 — every noun fits |
+ * | two people offered for one agent slot | ____이 문을 열었어요 took 학생 and 형 |
+ * | a reviewed conflicting pair | see `content/vocabulary/answer-conflicts.json` |
  *
  * ## What it cannot look for
  *
@@ -49,8 +53,12 @@ import {
   GENERAL_VERBS,
   consumableWords,
   isActivityNoun,
+  isAgentSubjectFrame,
   isConsumptionObjectFrame,
   isHadaFrame,
+  isOpenEvaluativeFrame,
+  isUnconstrainedPredicateFrame,
+  personNouns,
 } from './lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -76,9 +84,34 @@ const NOUN_CLASSES = JSON.parse(
 ).classes;
 /** See `consumableWords`. Derived here from the same function the builder uses. */
 const CONSUMABLES = consumableWords(anchorList, NOUN_CLASSES);
+/**
+ * People, read from the same file the builder classifies by.
+ *
+ * Listed rather than hard-coded so that adding 남자 or 아이 to the classes
+ * cannot reopen the hole that closing 학생 and 형 shut.
+ */
+const PERSON_NOUNS = personNouns(NOUN_CLASSES);
+
+/**
+ * Every rule this file applies, named.
+ *
+ * Written down because the closing line used to say "the thirteen rules" as a
+ * literal, and four rules were added to the file without it changing — a gate
+ * reporting a count it no longer measures. `fail` refuses a rule that is not
+ * on this list, so the two cannot drift again.
+ */
+const RULES = [
+  'duplicate-id', 'shapeless', 'option-count', 'duplicate-option', 'answer-missing',
+  'no-blank', 'two-blanks', 'weak-context', 'short-context', 'self-answering',
+  'dictionary-form', 'mixed-endings', 'mixed-parts-of-speech', 'same-category',
+  'same-sense', 'related-option', 'general-verb', 'activity-noun', 'consumable-option',
+  'wrong-conjugation', 'particle-mismatch', 'shared-prompt', 'photographed-regression',
+  'time-only-frame', 'open-frame', 'person-agent', 'reviewed-conflict',
+];
 
 const findings = [];
 function fail(item, rule, detail) {
+  if (!RULES.includes(rule)) throw new Error(`unnamed rule: ${rule}`);
   findings.push({
     id: item.id,
     level: item.level,
@@ -168,6 +201,23 @@ for (const item of bank.items) {
   const rest = item.prompt.replace('____', ' ');
   if (!ARGUMENT_PARTICLE.test(rest)) {
     fail(item, 'weak-context', 'nothing in the sentence constrains the blank');
+  }
+  /*
+   * And the case a particle hid. `일곱 시에 ____.` passes the test above —
+   * 시에 is a particle — and says only *when*, so every predicate fits it. See
+   * `isUnconstrainedPredicateFrame`.
+   */
+  if (item.form && item.form !== 'noun' && isUnconstrainedPredicateFrame(item.prompt)) {
+    fail(item, 'time-only-frame', 'the sentence says only when, so any predicate answers it');
+  }
+  if (item.form === 'noun' && isOpenEvaluativeFrame(item.prompt)) {
+    fail(item, 'open-frame', 'the predicate rules out no noun, so every option answers it');
+  }
+  if (item.form === 'noun' && isAgentSubjectFrame(item.prompt)) {
+    const people = item.options.filter((option) => PERSON_NOUNS.has(option));
+    if (people.length > 1) {
+      fail(item, 'person-agent', `${people.join(' and ')} are both people, and any person opens a door`);
+    }
   }
   if (item.prompt.trim().split(/\s+/).filter(Boolean).length < 3) {
     fail(item, 'short-context', 'fewer than three eojeol');
@@ -318,16 +368,34 @@ for (const [, group] of byPrompt) {
  * or an option that must never be offered at all.
  */
 /**
- * Person nouns, from the file the builder classifies by.
+ * The reviewed pairs, checked against what shipped.
  *
- * Read rather than listed, so that adding 남자 or 아이 to the classes cannot
- * reopen the hole that closing 여자 shut. See `content/vocabulary/noun-classes.json`.
+ * The builder refuses to draw them; this proves none survived. Keyed by lemma,
+ * so it reads the item's `distractorIds` through the anchor list rather than
+ * comparing conjugated surfaces.
  */
-const PERSON_NOUNS = new Set(
-  Object.entries(JSON.parse(readFileSync(join(ROOT, 'content/vocabulary/noun-classes.json'), 'utf8')).classes)
-    .filter(([, classes]) => classes.includes('person'))
-    .map(([word]) => word),
-);
+const CONFLICT_PAIRS = (() => {
+  const file = JSON.parse(
+    readFileSync(join(ROOT, 'content', 'vocabulary', 'answer-conflicts.json'), 'utf8'),
+  );
+  const set = new Set();
+  for (const pair of file.pairs) {
+    set.add(`${pair.a}\u0000${pair.b}`);
+    set.add(`${pair.b}\u0000${pair.a}`);
+  }
+  return set;
+})();
+for (const item of contexts) {
+  const anchor = anchors.get(item.id.replace(/:context$/, ''));
+  if (!anchor) continue;
+  for (const id of item.distractorIds ?? []) {
+    const other = anchors.get(id);
+    if (!other) continue;
+    if (CONFLICT_PAIRS.has(`${anchor.word}\u0000${other.word}`)) {
+      fail(item, 'reviewed-conflict', `${other.word} is a reviewed conflict with ${anchor.word}`);
+    }
+  }
+}
 
 const REGRESSIONS = [
   {
@@ -395,6 +463,47 @@ for (const regression of REGRESSIONS) {
   }
 }
 
+/*
+ * The photographed item, and the sentence that replaced it.
+ *
+ * `일곱 시에 ____.` was reported from a screenshot: keyed 일어나요, offered
+ * 연습해요 beside it, and both sentences are ordinary Korean. The bank is
+ * regenerated with a different distractor draw every build, so pinning those
+ * four options would pin nothing; what is pinned is the *rule*, in both
+ * directions — the frame that could not have one answer is still rejected, and
+ * the frame that replaced it is still accepted. A rule that stops rejecting the
+ * first, or starts rejecting the second, fails here rather than in a bank.
+ */
+const FRAME_FIXTURES = [
+  { sentence: '일곱 시에 ____.', predicate: true, rejected: true,
+    why: 'the reported item: a time and nothing else' },
+  { sentence: '수업 시간에 ____.', predicate: true, rejected: true,
+    why: 'the same shape, four levels up' },
+  { sentence: '발표 전에 ____.', predicate: true, rejected: true, why: 'and again' },
+  { sentence: '알람 소리를 듣고 침대에서 ____.', predicate: true, rejected: false,
+    why: 'the corrected stem: a cause and a place, and only one predicate follows from them' },
+  { sentence: '이 일에 ____.', predicate: true, rejected: false,
+    why: '에 the verb selects, not a time — this must survive the rule' },
+  { sentence: '밤에 혼자 가면 ____.', predicate: true, rejected: false,
+    why: 'a clause is content even when a time stands beside it' },
+  { sentence: '____이 마음에 들어요.', predicate: false, rejected: true,
+    why: 'a road, a present, a bus stop — every noun answers it' },
+  { sentence: '생일에 받은 ____을 열어 봤어요.', predicate: false, rejected: false,
+    why: 'the corrected stem: only a thing you unwrap fits' },
+];
+const fixtureFailures = [];
+for (const fixture of FRAME_FIXTURES) {
+  const got = fixture.predicate
+    ? isUnconstrainedPredicateFrame(fixture.sentence)
+    : isOpenEvaluativeFrame(fixture.sentence);
+  if (got !== fixture.rejected) {
+    fixtureFailures.push(
+      `${fixture.sentence} — expected ${fixture.rejected ? 'rejected' : 'accepted'}, ` +
+        `got ${got ? 'rejected' : 'accepted'} (${fixture.why})`,
+    );
+  }
+}
+
 console.log(
   `Level test items — ${bank.items.length.toLocaleString('en')} in the bank, ` +
     `${contexts.length.toLocaleString('en')} of them contextual\n`,
@@ -403,7 +512,7 @@ console.log(
 const byRule = new Map();
 for (const finding of findings) byRule.set(finding.rule, (byRule.get(finding.rule) ?? 0) + 1);
 if (byRule.size === 0) {
-  console.log('  no item breaks any of the thirteen rules.');
+  console.log(`  no item breaks any of the ${RULES.length} rules.`);
 } else {
   for (const [rule, count] of [...byRule].sort((a, b) => b[1] - a[1])) {
     console.log(`  ${String(count).padStart(5)}  ${rule}`);
@@ -432,8 +541,12 @@ for (let i = 0; i < contexts.length && i / step < 10; i += step) {
   console.log(`         ${item.options.join(' · ')}   → ${item.answer}`);
 }
 
-if (findings.length > 0) {
-  console.error(`\n${findings.length} finding(s).`);
+if (fixtureFailures.length > 0) {
+  console.error(`\n${fixtureFailures.length} frame fixture(s) no longer behave as recorded:`);
+  for (const line of fixtureFailures) console.error(`  ${line}`);
+}
+if (findings.length > 0 || fixtureFailures.length > 0) {
+  if (findings.length > 0) console.error(`\n${findings.length} finding(s).`);
   process.exit(CHECK ? 1 : 0);
 }
 console.log('\nevery contextual item has one conjugated answer and three that are not it.');

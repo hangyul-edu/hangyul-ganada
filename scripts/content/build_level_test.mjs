@@ -49,8 +49,12 @@ import {
   GENERAL_VERBS,
   consumableWords,
   isActivityNoun,
+  isAgentSubjectFrame,
   isConsumptionObjectFrame,
   isHadaFrame,
+  isOpenEvaluativeFrame,
+  isUnconstrainedPredicateFrame,
+  personNouns,
 } from '../lib/level-test-rules.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -104,6 +108,28 @@ const NOUN_CLASS_FILE = JSON.parse(
   readFileSync(join(ROOT, 'content', 'vocabulary', 'noun-classes.json'), 'utf8'),
 );
 const NOUN_CLASSES = NOUN_CLASS_FILE.classes;
+/** People, for the agent-subject frame rule. See `isAgentSubjectFrame`. */
+const PERSON_NOUNS = personNouns(NOUN_CLASSES);
+/**
+ * Reviewed pairs that may not meet, however the draw falls.
+ *
+ * `content/vocabulary/answer-conflicts.json` — sixteen pairs found by reading
+ * the shipped bank rather than by a rule, because what they share is a
+ * selectional class the pack does not record. Symmetric, so it is stored as a
+ * set of both orderings and looked up once.
+ */
+const ANSWER_CONFLICTS = (() => {
+  const file = JSON.parse(
+    readFileSync(join(ROOT, 'content', 'vocabulary', 'answer-conflicts.json'), 'utf8'),
+  );
+  const set = new Set();
+  for (const pair of file.pairs) {
+    set.add(`${pair.a}\u0000${pair.b}`);
+    set.add(`${pair.b}\u0000${pair.a}`);
+  }
+  return set;
+})();
+const conflicts = (a, b) => ANSWER_CONFLICTS.has(`${a}\u0000${b}`);
 /** Classes that compete with each other as well as with themselves. */
 const CLASS_CONFLICTS = NOUN_CLASS_FILE.conflicts.groups;
 function classesCompete(a, b) {
@@ -648,6 +674,27 @@ for (const anchor of anchors) {
   }
 
   const inflects = anchor.pos === 'verb' || anchor.pos === 'adjective';
+  /*
+   * A particle is not a constraint.
+   *
+   * `일곱 시에 ____.` carries 에 and so satisfied the test above, and says only
+   * *when*: 일곱 시에 연습해요 is as ordinary a sentence as 일곱 시에 일어나요,
+   * and a reader photographed the item with both among its four options. Four
+   * more of the same shape shipped beside it. See
+   * `isUnconstrainedPredicateFrame`.
+   */
+  if (inflects && isUnconstrainedPredicateFrame(anchor.example)) {
+    rejected.timeOnlyFrame = (rejected.timeOnlyFrame ?? 0) + 1;
+    continue;
+  }
+  /*
+   * And a predicate that rules out no noun. `____이 마음에 들어요.` — a road, a
+   * present, a bus stop. See `isOpenEvaluativeFrame`.
+   */
+  if (!inflects && isOpenEvaluativeFrame(blanked)) {
+    rejected.openFrame = (rejected.openFrame ?? 0) + 1;
+    continue;
+  }
   let surfaces = null;
   if (inflects) {
     const form = formOfSurface(anchor);
@@ -663,6 +710,8 @@ for (const anchor of anchors) {
   const eatingFrame = isConsumptionObjectFrame(anchor.example);
   /* 친구와 ____를 해요 — the blank is the object of 하다. */
   const hadaFrame = isHadaFrame(blanked);
+  /* ____이 문을 열었어요 — the blank is a human agent. */
+  const agentSubjectFrame = isAgentSubjectFrame(blanked);
   const choices = [];
   /*
    * Curated words first.
@@ -727,6 +776,25 @@ for (const anchor of anchors) {
     }
     if (inflects && GENERAL_VERBS.has(other.word)) {
       rejected.generalVerb += 1;
+      continue;
+    }
+    /*
+     * A reviewed pair that produces two right answers wherever it meets.
+     * See `content/vocabulary/answer-conflicts.json`.
+     */
+    if (conflicts(anchor.word, other.word)) {
+      rejected.reviewedConflict = (rejected.reviewedConflict ?? 0) + 1;
+      continue;
+    }
+    /*
+     * `____이 문을 열었어요.` shipped keyed 은행 with 학생 and 형 beside it, and
+     * a student opening a door is not a wrong answer. An action with an object
+     * accepts any human agent, whatever the keyed answer happens to be — which
+     * is why this reads the *frame* and not the answer's class, exactly as the
+     * consumable rule does. See `isAgentSubjectFrame`.
+     */
+    if (!inflects && agentSubjectFrame && PERSON_NOUNS.has(other.word)) {
+      rejected.personAgent = (rejected.personAgent ?? 0) + 1;
       continue;
     }
     /*

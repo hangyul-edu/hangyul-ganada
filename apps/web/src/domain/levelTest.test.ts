@@ -545,6 +545,33 @@ describe('the difficulty moves gently, and asymmetrically', () => {
    * permanent cap of two left them finishing below the top of the scale because
    * the walk ran out of questions before it ran out of scale.
    */
+  /**
+   * Both sides of the threshold, so the constant cannot drift from the prose.
+   *
+   * The file's own comment said "three consecutive correct answers" for two
+   * cycles while `SUSTAINED_CORRECT` said eight. Nothing failed, because
+   * nothing asserted the boundary — only that the wide step existed somewhere.
+   * This pins it: one short of the threshold the climb is still capped, and at
+   * the threshold it is not.
+   */
+  it('does not unlock the wide step one answer short of the threshold', () => {
+    const { levels, asked } = walk(() => 'correct');
+    for (let at = 1; at < levels.length; at += 1) {
+      let streak = 0;
+      for (let back = at - 1; back >= 0 && asked[back]!.response === 'correct'; back -= 1) streak += 1;
+      if (streak === SUSTAINED_CORRECT - 1) {
+        expect(levels[at]! - levels[at - 1]!).toBeLessThanOrEqual(MAX_STEP_UP);
+      }
+    }
+    // And the threshold itself is reachable in a sitting, or the rule is dead code.
+    const streaks = asked.map((_item, at) => {
+      let streak = 0;
+      for (let back = at - 1; back >= 0 && asked[back]!.response === 'correct'; back -= 1) streak += 1;
+      return streak;
+    });
+    expect(Math.max(...streaks)).toBeGreaterThanOrEqual(SUSTAINED_CORRECT);
+  });
+
   it('earns the wider step back after a sustained run, and loses it on one miss', () => {
     const { levels, asked } = walk(() => 'correct');
     const climbs = levels.slice(1).map((level, at) => level - levels[at]!);

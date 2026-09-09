@@ -1,0 +1,259 @@
+{
+  "_comment": "The manual half of the question audit. Every contextual item in the shipped bank and every gap-fill in cloze.json was read; this records the ones where a second option was defensible, what was done, and how it is held closed. The automated half is scripts/level-test-ambiguity-qa.mjs and scripts/question-ledger.mjs — see docs/AMBIGUITY_LEDGER.md.",
+  "reviewed": {
+    "levelTestContextItems": 629,
+    "clozeGapFills": 672,
+    "numbersQuestions": 368,
+    "levelTestMeaningAndProduce": 3552,
+    "reviewMethod": "every contextual stem composed with all four of its options and read; meaning/produce items read as a spread and covered by collideInAnyLocale",
+    "note": "Read twice: once on the bank as shipped at d7a85767, and again on the regenerated bank after the rules and the rewritten examples changed every distractor draw. The second reading found seven more, recorded as A-16 to A-22."
+  },
+  "findings": [
+    {
+      "id": "A-01",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "일곱 시에 ____.",
+      "keyed": "일어나요",
+      "rival": "연습해요",
+      "why": "the stem says only when; every predicate fits",
+      "verdict": "REPLACED",
+      "now": "알람 소리에 침대에서 ____.",
+      "heldBy": "time-only-frame rule + G7 negative case"
+    },
+    {
+      "id": "A-02",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "수업 시간에 ____.",
+      "keyed": "졸았어요",
+      "rival": "후회했어요",
+      "why": "time-only stem",
+      "verdict": "REPLACED",
+      "now": "잠이 부족해서 수업 시간에 ____.",
+      "heldBy": "time-only-frame rule"
+    },
+    {
+      "id": "A-03",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "아침에 일찍 ____.",
+      "keyed": "깼어요",
+      "rival": "계획했어요",
+      "why": "time-only stem",
+      "verdict": "REPLACED",
+      "now": "시끄러운 소리에 잠이 ____.",
+      "heldBy": "time-only-frame rule"
+    },
+    {
+      "id": "A-04",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "발표 전에 ____.",
+      "keyed": "긴장했어요",
+      "rival": "취했어요",
+      "why": "time-only stem",
+      "verdict": "REPLACED",
+      "now": "저는 사람들 앞에 서면 ____.",
+      "heldBy": "time-only-frame rule"
+    },
+    {
+      "id": "A-05",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "다음 달에 ____.",
+      "keyed": "이사해요",
+      "rival": "any predicate",
+      "why": "time-only stem",
+      "verdict": "REPLACED",
+      "now": "다음 달에 새 집으로 ____.",
+      "heldBy": "time-only-frame rule"
+    },
+    {
+      "id": "A-06",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "____이 문을 열었어요.",
+      "keyed": "은행",
+      "rival": "학생, 형",
+      "why": "an action with an object accepts any human agent; the class guard only compared each distractor to the answer, and 은행 is not a person",
+      "verdict": "DISTRACTORS RESTRICTED",
+      "now": "겨울 · 숲 · 얼음 · 은행",
+      "heldBy": "person-agent rule + G8 negative case"
+    },
+    {
+      "id": "A-07",
+      "surface": "Level Test + Today's Vocabulary",
+      "stem": "____이 마음에 들어요.",
+      "keyed": "선물",
+      "rival": "길, 정류장",
+      "why": "the predicate rules out no noun",
+      "verdict": "REPLACED",
+      "now": "생일에 받은 ____을 열어 봤어요.",
+      "heldBy": "open-frame rule"
+    },
+    {
+      "id": "A-08",
+      "surface": "Today's Vocabulary",
+      "stem": "불을 ____ 주세요.",
+      "keyed": "꺼 in one item, 켜 in another",
+      "rival": "each other",
+      "why": "one stem, two keys — an antonym pair on the same sentence",
+      "verdict": "SECOND STEM REPLACED",
+      "now": "어두워서 불을 ____.",
+      "heldBy": "shared-stem invariant in the question ledger"
+    },
+    {
+      "id": "A-09",
+      "surface": "Today's Vocabulary",
+      "stem": "소리를 ____ 주세요.",
+      "keyed": "줄여 / 낮춰",
+      "rival": "each other",
+      "why": "one stem, two keys — near synonyms",
+      "verdict": "SECOND STEM REPLACED",
+      "now": "의자를 조금 ____ 주세요.",
+      "heldBy": "shared-stem invariant"
+    },
+    {
+      "id": "A-10",
+      "surface": "Today's Vocabulary",
+      "stem": "둘에 셋을 ____.",
+      "keyed": "더해요 / 곱해요",
+      "rival": "each other",
+      "why": "one arithmetic stem, two operations",
+      "verdict": "SECOND STEM REPLACED",
+      "now": "셋에 넷을 ____.",
+      "heldBy": "shared-stem invariant + reviewed pair 더하다/곱하다"
+    },
+    {
+      "id": "A-11",
+      "surface": "Today's Vocabulary",
+      "stem": "13 further shared stems",
+      "keyed": "아들/딸, 넣다/집어넣다, 괴물/외계인, 기쁘다/안심하다/기뻐하다, 지옥/요정/거인, 누나/밴드, 대답하다/외치다, 감사/작별, 소/염소, 모임/회식, 못되다/잔인하다, 달걀/국, 갈색/빨간색",
+      "rival": "each other",
+      "why": "the Level Test bank has had a shared-prompt rule since 2026-08; cloze.json never had one",
+      "verdict": "STEMS REPLACED",
+      "now": "16 stems, 34 items, all distinct",
+      "heldBy": "shared-stem invariant"
+    },
+    {
+      "id": "A-12",
+      "surface": "Level Test",
+      "stem": "저는 공부를 ____.",
+      "keyed": "해요",
+      "rival": "사랑해요",
+      "why": "공부를 사랑해요 is ordinary",
+      "verdict": "PAIR BANNED",
+      "now": "서요 · 있어요 · 타요 · 해요",
+      "heldBy": "answer-conflicts.json 하다/사랑하다"
+    },
+    {
+      "id": "A-13",
+      "surface": "Level Test",
+      "stem": "좋은 결과를 ____.",
+      "keyed": "얻었어요",
+      "rival": "날렸어요",
+      "why": "결과를 날리다 is idiomatic and opposite",
+      "verdict": "PAIR BANNED",
+      "now": "건넜어요 · 날아갔어요 · 어울렸어요 · 얻었어요",
+      "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-14",
+      "surface": "Level Test",
+      "stem": "13 further object-frame pairs",
+      "keyed": "돌아보다, 지지하다, 선호하다, 늘리다, 주시하다, 담당하다, 미행하다, 석방하다, 연구하다, 싫어하다, 개선하다, 일깨우다",
+      "rival": "조사하다, 자랑하다, 분석하다, 품다, 고려하다, 선별하다, 기록하다, 넘어서다, 이끌다, 비난하다, 고용하다, 치우다, 가늠하다, 겨냥하다",
+      "why": "each shares a selectional class the pack does not record",
+      "verdict": "PAIRS BANNED",
+      "now": "18 reviewed pairs",
+      "heldBy": "answer-conflicts.json + reviewed-conflict rule"
+    },
+    {
+      "id": "A-15",
+      "surface": "Numbers course",
+      "stem": "all 368 questions",
+      "keyed": "n/a",
+      "rival": "none found",
+      "why": "read end to end; every stem is a number, a counter or a system choice, and each is pinned by the lesson it belongs to",
+      "verdict": "NO CHANGE",
+      "now": "unchanged",
+      "heldBy": "numbers:qa, numbers:domain, answerability, question ledger"
+    },
+    {
+      "id": "A-16",
+      "surface": "Level Test",
+      "stem": "이 ____이 마음에 들어요.",
+      "keyed": "작품",
+      "rival": "부인",
+      "why": "a determiner in front of the blank does not constrain it; every noun still fits",
+      "verdict": "REPLACED",
+      "now": "미술관에서 유명한 ____을 봤어요.",
+      "heldBy": "open-frame rule, widened to allow one determiner"
+    },
+    {
+      "id": "A-17",
+      "surface": "Level Test",
+      "stem": "저는 그 생각을 ____.",
+      "keyed": "지지해요",
+      "rival": "선호해요",
+      "why": "생각을 선호하다 is ordinary",
+      "verdict": "PAIR BANNED",
+      "now": "둘러싸요 · 사망해요 · 지지해요 · 털어요",
+      "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-18",
+      "surface": "Level Test",
+      "stem": "경찰이 그를 ____.",
+      "keyed": "미행했어요",
+      "rival": "협박했어요",
+      "why": "경찰이 그를 협박했어요 fits the frame exactly",
+      "verdict": "PAIR BANNED",
+      "now": "뒤엎었어요 · 미행했어요 · 부인했어요 · 챘어요",
+      "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-19",
+      "surface": "Level Test",
+      "stem": "____ 이야기를 들었어요.",
+      "keyed": "유령",
+      "rival": "역사",
+      "why": "역사 이야기 is as ordinary a compound as 유령 이야기",
+      "verdict": "PAIR BANNED",
+      "now": "유령 · 의료 · 입원 · 프로",
+      "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-20",
+      "surface": "Level Test",
+      "stem": "____ 소식을 들었어요.",
+      "keyed": "이혼",
+      "rival": "탄생",
+      "why": "탄생 소식 is a fixed collocation",
+      "verdict": "PAIR BANNED",
+      "now": "범죄자 · 양심 · 이혼 · 초기",
+      "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-21",
+      "surface": "Level Test",
+      "stem": "____ 연습을 해요.",
+      "keyed": "사격",
+      "rival": "마무리",
+      "why": "마무리 연습 is a real compound",
+      "verdict": "PAIR BANNED",
+      "now": "보스 · 부동산 · 사격 · 파트너",
+      "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-22",
+      "surface": "Level Test",
+      "stem": "____ 정보를 지켜요.",
+      "keyed": "개인",
+      "rival": "거래",
+      "why": "거래 정보 is an ordinary compound",
+      "verdict": "PAIR BANNED",
+      "now": "개인 · 분위기 · 사회 · 혈압",
+      "heldBy": "answer-conflicts.json"
+    }
+  ],
+  "notFound": {
+    "levelTestMeaningItems": "1,761 meaning items and 1,761 produce items carry one gloss per taught sense; a distractor sharing the answer's meaning in any of the 32 locales is rejected by collideInAnyLocale at build time. Read as a spread rather than exhaustively — see the limit recorded in docs/AMBIGUITY_LEDGER.md.",
+    "compoundModifierFrames": "A blank that is a bare noun in front of another noun — ____ 이야기를, ____ 소식을, ____ 연습을 — is the weakest frame class that survives. Whether two nouns both form a compound with the head is a fact about Korean that nothing in the pack records, so four of them are held by reviewed pairs rather than by a rule. A regenerated bank can produce a new one; the ledger is the place it would be recorded."
+  }
+}

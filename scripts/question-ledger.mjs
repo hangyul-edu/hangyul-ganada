@@ -30,6 +30,7 @@
  * | at least two options | a question with one button is a statement |
  * | one consumable in a consumption frame | 밥을 먹고 ____을 드세요 took 물 and 약 |
  * | one activity noun in a 하다 frame | 친구와 ____를 해요 took 축구 and 낚시 |
+ * | one stem, one question | 불을 ____ 주세요 was asked for both 켜 and 꺼 |
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -167,7 +168,29 @@ for (const lesson of NUMBER_LESSONS) {
   ]) {
     for (const exercise of built) {
       const options = (exercise.options ?? []).map((o) => String(o.text ?? o.value ?? ''));
-      const answerOption = (exercise.options ?? []).find((o) => o.isKey);
+      /*
+       * `answer` is an index into `options`, and it is the field the running
+       * app grades against — see `NumberSessionPage`.
+       *
+       * This read `options.find((o) => o.isKey)` for four cycles, and `isKey`
+       * does not mean *this is the answer*: it means *this option's text is a
+       * translation key, render it through t()*. Both buttons of every
+       * 오천 원 · 한자어식/고유어식 question carry it, because both labels are
+       * keys. So the ledger recorded the first option as the answer of 128
+       * questions and `null` for the other 240 — and its own answer invariants
+       * skip a null. Measured against the index: **336 of 368 Numbers questions
+       * were recorded with an answer the app does not accept, or with none at
+       * all**, and the ledger reported them green because it then checked that
+       * its own wrong answer appeared exactly once among the options.
+       */
+      const answerOption = (exercise.options ?? [])[exercise.answer];
+      if (!answerOption) {
+        problems.push({
+          id: `numbers:${lesson.id}:${kind}:${exercise.item_id}:${exercise.kind}`,
+          rule: 'answer-index',
+          detail: `answer ${exercise.answer} is not an index into ${options.length} option(s)`,
+        });
+      }
       record({
         id: `numbers:${lesson.id}:${kind}:${exercise.item_id}:${exercise.kind}`,
         source: 'apps/web/src/data/numbers.ts',
@@ -181,6 +204,50 @@ for (const lesson of NUMBER_LESSONS) {
         rationale: 'options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group)',
       });
     }
+  }
+}
+
+/*
+ * One stem, one question — across surfaces as well as within them.
+ *
+ * The Level Test bank has had a `shared-prompt` rule since the pass that found
+ * 둘에 셋을 더해요 beside 둘에 셋을 곱해요. `cloze.json` never had one, and it
+ * had sixteen: 불을 ____ 주세요 keyed 켜 in one item and 꺼 in another, 소리를
+ * ____ 주세요 keyed 줄여 and 낮춰, 이야기에 ____이 나와요 keyed three different
+ * nouns. Each item is answerable alone — the competing word is not among its
+ * own four options — and the pair is still the file's own proof that the
+ * sentence does not pin its answer down. Today's Vocabulary can serve both on
+ * the same morning.
+ *
+ * Checked here rather than in either gate because this is the only program that
+ * reads every surface, and the defect is a *pair*: neither half of it is
+ * visible from inside one file.
+ */
+const byStem = new Map();
+for (const question of questions) {
+  if (!question.prompt?.includes('____')) continue;
+  const stem = normalise(question.prompt);
+  if (!byStem.has(stem)) byStem.set(stem, []);
+  byStem.get(stem).push(question);
+}
+for (const [, group] of byStem) {
+  if (group.length < 2) continue;
+  /*
+    The same stem with the *same* answer is not the defect: the Level Test and
+    Today's Vocabulary are built from one source, so every contextual word
+    legitimately appears on both surfaces with one sentence and one key. What
+    must never happen is one sentence with two different keys.
+  */
+  for (const question of group) {
+    const rivals = group.filter(
+      (other) => other !== question && normalise(other.answer ?? '') !== normalise(question.answer ?? ''),
+    );
+    if (rivals.length === 0) continue;
+    note(
+      question,
+      'shared-stem',
+      `the same sentence is also keyed ${rivals.map((other) => `${other.answer} (${other.id})`).join(', ')}`,
+    );
   }
 }
 

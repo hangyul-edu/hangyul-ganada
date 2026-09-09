@@ -184,10 +184,24 @@ export const MAX_STEP_UP = 2;
  * a hard cap of two they finished at 29 rather than 30 because the walk ran out
  * of questions before it ran out of scale.
  *
- * So the wide step is not removed, it is *earned*. Three consecutive correct
- * answers is the brief's "multiple consistent answers before a substantial
- * upward move", and one wrong answer or one *I don't know* takes it away again
+ * So the wide step is not removed, it is *earned*. **Eight** consecutive correct
+ * answers, and one wrong answer or one *I don't know* takes it away again
  * immediately — which is the asymmetry the whole rule is about.
+ *
+ * Eight rather than three, and the difference matters enough to say why. Three
+ * is reachable by luck: a four-option question is guessed correctly a quarter of
+ * the time, so three in a row happens to a learner who knows none of them about
+ * once in sixty-four sittings, and the reward for it is the *widest* move the
+ * test can make. Eight is once in sixty-five thousand. The cost is confined to
+ * the one learner it was added for — somebody answering everything correctly
+ * still reaches level 30 inside thirty questions, because the climb only needs
+ * the wide step at the very top of the scale — and `levelTest.test.ts` asserts
+ * both ends: that eight correct answers unlock it and that seven do not.
+ *
+ * This paragraph said "three" for two cycles while the constant said eight. The
+ * code was right and the prose was stale, which is worse than either being
+ * wrong on its own: `levelTest.test.ts` now reads the constant rather than a
+ * literal, so a change to one cannot leave the other behind, and it asserts the boundary in both directions.
  */
 export const SUSTAINED_CORRECT = 8;
 
@@ -805,8 +819,8 @@ export function nextLevel(
   const last = asked[asked.length - 1]!.level;
   const low = last - MAX_STEP;
   /*
-    The climb is capped at two until the learner has earned three in a row.
-    See `SUSTAINED_CORRECT`; the streak is trailing, so one miss removes it.
+    The climb is capped at `MAX_STEP_UP` until the learner has earned
+    `SUSTAINED_CORRECT` in a row. The streak is trailing, so one miss removes it.
   */
   let streak = 0;
   for (let at = asked.length - 1; at >= 0 && asked[at]!.response === 'correct'; at -= 1) streak += 1;
@@ -840,7 +854,9 @@ export function nextLevel(
   let wanted = converged(asked) ? where : (bounds.lowerBound + bounds.upperBound) / 2;
 
   /*
-    Every third adaptive question is drawn below the estimate. See `EASY_EVERY`.
+    One adaptive question in every `EASY_EVERY` is drawn below the estimate —
+    the cadence is one in five, and this comment said "every third" while the
+    constant said five.
 
     Counted from the end of the warm-up so that the cadence is a property of the
     adaptive phase rather than of the sitting, and applied before the step bound

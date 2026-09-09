@@ -1,0 +1,151 @@
+{
+  "_comment": "Pairs of lemmas that must never be offered against each other in a contextual item. Read rather than derived: each pair below was found by reading the shipped bank, and each is a case where the frame the pack builds around one of them accepts the other just as naturally. Consulted by scripts/content/build_level_test.mjs when it draws distractors, and by scripts/level-test-ambiguity-qa.mjs when it reads the bank back. Symmetric — the order in a pair carries no meaning.",
+  "_why": "The builder's other guards are evidence: a shared gloss word, a shared category, a recorded synonym, a shared argument in the two examples' own sentences. These pairs pass every one of those and still produce two right answers, because what they share is a selectional class that nothing in the pack records — 결과 accepts both 얻다 and 날리다, 생각 accepts 지지하다 and 분석하다 and 품다. Generality is a fact about the language, not about the pack, so this is the judgement written down, in the same spirit as GENERAL_VERBS.",
+  "_review": "Every pair was confirmed by composing both sentences and reading them. docs/AMBIGUITY_LEDGER.md carries the sentence, the two readings, and the verdict.",
+  "pairs": [
+    {
+      "a": "하다",
+      "b": "사랑하다",
+      "frame": "저는 공부를 ____.",
+      "why": "공부를 해요 and 공부를 사랑해요 are both ordinary"
+    },
+    {
+      "a": "얻다",
+      "b": "날리다",
+      "frame": "좋은 결과를 ____.",
+      "why": "결과를 얻다 and 결과를 날리다 are both idiomatic, and opposite"
+    },
+    {
+      "a": "돌아보다",
+      "b": "조사하다",
+      "frame": "지난 일을 ____.",
+      "why": "지난 일을 조사하다 is as ordinary as 돌아보다"
+    },
+    {
+      "a": "돌아보다",
+      "b": "자랑하다",
+      "frame": "지난 일을 ____.",
+      "why": "지난 일을 자랑하다 fits the same frame"
+    },
+    {
+      "a": "지지하다",
+      "b": "분석하다",
+      "frame": "저는 그 생각을 ____.",
+      "why": "생각을 분석하다 is at least as common"
+    },
+    {
+      "a": "지지하다",
+      "b": "품다",
+      "frame": "저는 그 생각을 ____.",
+      "why": "생각을 품다 is a fixed collocation"
+    },
+    {
+      "a": "선호하다",
+      "b": "고려하다",
+      "frame": "밝은 색을 ____.",
+      "why": "색을 고려하다 is ordinary"
+    },
+    {
+      "a": "선호하다",
+      "b": "선별하다",
+      "frame": "밝은 색을 ____.",
+      "why": "색을 선별하다 is ordinary"
+    },
+    {
+      "a": "늘리다",
+      "b": "기록하다",
+      "frame": "연습 시간을 ____.",
+      "why": "시간을 기록하다 fits the same object"
+    },
+    {
+      "a": "주시하다",
+      "b": "넘어서다",
+      "frame": "상황을 ____ 있어요.",
+      "why": "상황을 넘어서고 있어요 is ordinary"
+    },
+    {
+      "a": "담당하다",
+      "b": "이끌다",
+      "frame": "제가 이 일을 ____.",
+      "why": "일을 이끌다 and 일을 담당하다 are near-interchangeable here"
+    },
+    {
+      "a": "미행하다",
+      "b": "비난하다",
+      "frame": "경찰이 그를 ____.",
+      "why": "경찰이 그를 비난했어요 is an ordinary sentence"
+    },
+    {
+      "a": "석방하다",
+      "b": "고용하다",
+      "frame": "경찰이 그 사람을 ____.",
+      "why": "경찰이 그 사람을 고용했어요 fits the frame"
+    },
+    {
+      "a": "연구하다",
+      "b": "자랑하다",
+      "frame": "새로운 방법을 ____.",
+      "why": "방법을 자랑하다 fits the same object"
+    },
+    {
+      "a": "싫어하다",
+      "b": "치우다",
+      "frame": "저는 매운 음식을 ____.",
+      "why": "음식을 치우다 is ordinary and unrelated in meaning"
+    },
+    {
+      "a": "개선하다",
+      "b": "가늠하다",
+      "frame": "근무 환경을 ____.",
+      "why": "환경을 가늠하다 fits the frame"
+    },
+    {
+      "a": "더하다",
+      "b": "곱하다",
+      "frame": "둘에 셋을 ____.",
+      "why": "an arithmetic frame accepts either operation"
+    },
+    {
+      "a": "일깨우다",
+      "b": "겨냥하다",
+      "frame": "그 말이 저를 ____.",
+      "why": "그 말이 저를 겨냥했어요 is as ordinary as 일깨웠어요"
+    },
+    {
+      "a": "지지하다",
+      "b": "선호하다",
+      "frame": "저는 그 생각을 ____.",
+      "why": "생각을 선호하다 is as ordinary as 지지하다"
+    },
+    {
+      "a": "미행하다",
+      "b": "협박하다",
+      "frame": "경찰이 그를 ____.",
+      "why": "경찰이 그를 협박했어요 fits the frame exactly"
+    },
+    {
+      "a": "유령",
+      "b": "역사",
+      "frame": "____ 이야기를 들었어요.",
+      "why": "역사 이야기 is as ordinary a compound as 유령 이야기"
+    },
+    {
+      "a": "이혼",
+      "b": "탄생",
+      "frame": "____ 소식을 들었어요.",
+      "why": "탄생 소식 is a fixed collocation"
+    },
+    {
+      "a": "사격",
+      "b": "마무리",
+      "frame": "____ 연습을 해요.",
+      "why": "마무리 연습 is a real compound"
+    },
+    {
+      "a": "개인",
+      "b": "거래",
+      "frame": "____ 정보를 지켜요.",
+      "why": "거래 정보 is an ordinary compound"
+    }
+  ]
+}
