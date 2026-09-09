@@ -7603,7 +7603,7 @@ way to 15 and a decline only slowed it.
 
 **Six bands, and a ceiling that has to be earned.**
 
-| Band | Levels | |
+| Band | Levels | Name |
 |---:|:---|:---|
 | 1 | 1–3 | foundation |
 | 2 | 4–7 | elementary |
@@ -7656,6 +7656,20 @@ Driven through the real app at 390×844, answering *I don't know* to everything:
 | Q4 | **그 사람 이름을 아직 ____.** (level 8) | 요일 — which word means "work"? |
 | Q5 | 언제나 (level 10) | 사진 — what does this mean? |
 | Q6 | *(produce, level 10)* | **아침에 ____가 떠요.** (level 3) |
+
+The *after* column is the same walk photographed. The figure is taken by
+`npm run docs:shots` from the built app at the viewport the complaint came from,
+so it is retaken whenever the interface or the bank moves and cannot quietly go
+stale; the sitting behind it is a different draw from the table's, which is why
+question six is a different level-3 sentence.
+
+![Six consecutive questions of a level test at 390×844, answered *I don't know* throughout: five word questions, then the first sentence](report-assets/level-test-opening.png)
+
+The two panels worth reading together are questions four and six. Question four
+was a level-8 sentence; it is a four-option word question. The first sentence a
+learner meets is a level-3 one — one clause, three eojeol or fewer, every
+supporting word inside the first few hundred by frequency — and it arrives after
+five word questions rather than at the second.
 
 ## 20W.5 Sixteen learners, written down
 

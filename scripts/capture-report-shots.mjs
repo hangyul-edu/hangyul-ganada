@@ -397,6 +397,86 @@ async function optional(name, run) {
   await context.close();
 }
 
+/*
+ * The first six questions of a level test, as one figure — §20W.
+ *
+ * The defect this documents was found by a person looking at a phone: question
+ * four was a two-clause sentence with a negation, a causal connective and a
+ * level-28 noun, shown to a learner who had just finished learning Hangul. The
+ * claim that it is now a word question is the kind of claim a table can make
+ * and a picture can settle, so the picture is taken from the running app at the
+ * viewport the complaint came from.
+ *
+ * Answered with *I don't know* throughout, which is the weakest evidence a
+ * learner can give and therefore the strictest test of the ceiling: nothing
+ * here was earned.
+ */
+{
+  const { context, page } = await freshPage();
+  await page.goto(`${baseUrl}/me/level-test`, { waitUntil: 'networkidle' });
+  await settle(page, 1800);
+  await page.getByTestId('level-start').click();
+  await page.getByTestId('level-unknown').waitFor({ state: 'visible', timeout: 20_000 });
+
+  /*
+   * `main`, not the whole phone. Six full screenshots side by side on an A4
+   * page give each one about 150pt of width, and at that scale the four options
+   * are grey smudges — a figure whose whole job is to let a reader see what the
+   * question says. The header and the tab bar are the same in all six and carry
+   * none of the claim, so they are cropped and the question gets the width.
+   */
+  const panels = [];
+  for (let i = 0; i < 6; i += 1) {
+    await settle(page, 700);
+    /*
+     * The question, clipped to itself.
+     *
+     * `docs:report` caps a figure at 110mm tall, so a portrait grid is scaled
+     * down until it fits and ends up using about 60% of the text width. The
+     * screen is mostly empty above and below the question — that emptiness is
+     * what was setting the scale. Clipping to the run from the prompt line to
+     * the *I don't know* link takes about half the height out of every panel,
+     * and the figure gets three quarters of the column instead of three fifths.
+     * The question number is in the caption, which is where the header's
+     * `1 / 30` was doing its work.
+     */
+    const frame = await page.locator('main').boundingBox();
+    const head = await page.locator('main p').first().boundingBox();
+    const foot = await page.getByTestId('level-unknown').boundingBox();
+    const clip = {
+      x: frame.x,
+      y: head.y - 12,
+      width: frame.width,
+      height: foot.y + foot.height + 12 - (head.y - 12),
+    };
+    panels.push((await page.screenshot({ clip })).toString('base64'));
+    await page.getByTestId('level-unknown').click();
+  }
+
+  const sheet = await context.newPage();
+  await sheet.setViewportSize({ width: PHONE.width * 3, height: PHONE.height });
+  await sheet.setContent(
+    `<html><body style="margin:0;background:#fff;display:grid;gap:8px;padding:8px;` +
+      `grid-template-columns:repeat(3,${PHONE.width}px);align-items:start">` +
+      panels
+        .map(
+          (data, at) =>
+            `<figure style="margin:0">` +
+            `<figcaption style="font:600 13px/1.6 system-ui,sans-serif;color:#57534e;` +
+            `padding:0 0 4px 2px">Question ${at + 1}</figcaption>` +
+            `<img src="data:image/png;base64,${data}" ` +
+            `style="width:${PHONE.width}px;display:block;border:1px solid #e7e5e4;` +
+            `border-radius:8px"></figure>`,
+        )
+        .join('') +
+      '</body></html>',
+  );
+  await sheet.waitForTimeout(600);
+  await sheet.screenshot({ path: join(OUT, 'level-test-opening.png'), fullPage: true });
+  shots.push('level-test-opening');
+  await context.close();
+}
+
 /* Dark mode, on the screen with the most surfaces on it. */
 {
   const context = await browser.newContext({
