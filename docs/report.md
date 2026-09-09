@@ -158,7 +158,7 @@ without trusting the row.
 | Issues tracked | 191 | `docs/issues.json` |
 | Signed APK | 90,939,006 bytes (86.7 MiB) | `result/build-info.json` |
 | Signed AAB | 89,097,897 bytes (85.0 MiB) | same |
-| Tests | 1,719 across 77 files | `npm test` |
+| Tests | 1,722 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -1523,6 +1523,19 @@ pass, and no language can produce a mixed-language question.
 content yet*, and the 12,800 questions it simulates across the thirty-two are
 all askable with none refused for want of a meaning.
 
+**And a third thing, which those two do not measure: whether a pack still
+translates the Korean it sits under.** Rewriting twenty-five example sentences
+this pass moved the seven translations that live inside the editorial entry and
+not the twenty-four that live in `content/vocabulary/copy/`, and five gates read
+those files without noticing — they check key parity, gloss agreement and
+placeholder shape (§20V.6, I-190). 576 rows were retranslated and `copy:fresh`
+now records the Korean sentence each pack was written against.
+
+`docs/LOCALE_LEDGER.md` is the table this section had been describing in prose:
+one row per language joining all four layers a learner reads, with every one of
+the 382 strings identical to their English source listed rather than counted, and
+a last column that says the same thing §11.3 says.
+
 The previous edition of this chapter read *20 complete at 3,333; 12 still at
 600*, and the edition before that *10 complete and 22 partial*. The last twelve
 — kk, ky, mn, nl, pl, ro, sv, ta, te, tr, uk and uz — were finished this cycle
@@ -2352,7 +2365,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1386** (70 files) |
+| Web unit (`vitest`) | **1389** (70 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **216** (2 files) |
 | End-to-end (`playwright`) | **594** (297 × 2 projects) |
@@ -4186,7 +4199,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,719 across 77 files** — handwriting-core 96, korean-morphology 216, web 1386 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **1,722 across 77 files** — handwriting-core 96, korean-morphology 216, web 1389 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -7897,6 +7910,17 @@ claim §10 supports is that the test now asks a sensible sequence of answerable
 questions and reports a stable number. It does not support the claim that level
 20 means anything about a person.**
 
+**A seventh, added this pass, about what reading a bank can and cannot buy.**
+Every one of the 629 contextual items and 672 daily gap-fills that ship was read
+this cycle, twice: once as shipped, and again after the new rules and the
+rewritten sentences changed every distractor draw. That reading found seven
+defects the first reading did not, which is the argument for doing it — and it is
+also the argument for not trusting it, because **the next build draws different
+distractors from the same stems**. What carries forward is the twenty-seven
+rules, the twenty-four reviewed pairs and the frame classification; the reading
+does not. A regenerated bank has not been read by anyone, and the honest form of
+the claim is: *the rules hold on every build, and one build has been read.*
+
 **A sixth: no qualified reviewer has read any of the corrections this pass made.**
 The 176 items removed from the beginner band, the 40 whose rank was borrowed, the
 15 with colliding options — all were identified structurally and removed
@@ -7953,7 +7977,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,719 unit cases across three packages — 1,386
+The suites run green in full: 1,722 unit cases across three packages — 1,389
 web, 237 Korean morphology, 96 handwriting — 578 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
