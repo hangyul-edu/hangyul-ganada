@@ -330,14 +330,19 @@ test('My Learning has no practice-style choice to make', async ({ page }) => {
    * in a store and renders nowhere is a different, smaller problem.
    */
   await page.goto('/me');
+  /*
+   * The group itself stays — it is where the voice lives — and the voice is
+   * what should lead it. Asserted *first*, because everything below is a count
+   * of zero and a count of zero is satisfied by a document that has not
+   * rendered: the first poll succeeds and the matcher never retries. Anchoring
+   * on something that must be there is what makes the absences mean anything.
+   */
+  await expect(page.getByRole('button', { name: /Female voice/i })).toBeVisible();
+
   await expect(page.getByRole('button', { name: /^Guided/ })).toHaveCount(0);
   await expect(page.getByRole('button', { name: /^Focused/ })).toHaveCount(0);
   await expect(page.getByText(/Practice style/i)).toHaveCount(0);
   await expect(page.getByText(/lighter guide/i)).toHaveCount(0);
-
-  // The group itself stays — it is where the voice lives — and the voice is
-  // what should lead it.
-  await expect(page.getByRole('button', { name: /Female voice/i })).toBeVisible();
 });
 
 
@@ -776,8 +781,11 @@ test('a learner is never told where a word came from', async ({ page }) => {
   // Provenance is kept for the build, the licence audit and content QA — and
   // taken out of the learning experience. A dictionary credit on a word card
   // reads as an admission that nobody wrote it.
+  // The anchor before the absence: an assertion that the screen drew. A count
+  // of zero passes on an empty document without ever retrying.
   for (const route of ['/words', '/']) {
     await page.goto(route);
+    await expect(page.getByRole('navigation')).toBeVisible();
     await expect(page.getByText(/wiktionary|corpus|OpenSubtitles|dataset/i)).toHaveCount(0);
   }
 });
@@ -846,14 +854,40 @@ test('the whole app is reachable by keyboard', async ({ page }) => {
  * someone looking for them will find them, and they are not what a settings
  * screen is for.
  */
-test('settings no longer asks a learner to manage files, or explains the architecture', async ({
+/*
+ * Two things this case has to get right, and it got the second one wrong for a
+ * week.
+ *
+ * **It waits for the screen.** Every assertion below is `toHaveCount(0)`, and a
+ * count of zero is satisfied by a page that has not rendered yet — the first
+ * poll succeeds and the matcher returns without retrying. So it passed on a
+ * quiet machine by beating hydration, and failed on a loaded one where the
+ * first poll landed after the settings screen had drawn. A gate that reports
+ * green because it ran too early is worse than no gate. The `Reset` control is
+ * near the bottom of the screen and is asserted visible first; nothing after it
+ * can run against an empty document.
+ *
+ * **Backup is not on this list any more.** It was, and it was right to be: this
+ * screen used to hand a learner a file to look after and explain the storage
+ * engine to them. `f731bd43` put *Save a copy* and *Restore a copy* back
+ * deliberately — the product has no account and no server, so a file the
+ * learner holds is the only honest answer to *what happens when this phone
+ * dies*. Forbidding it here while the screen shipped it is what the race was
+ * hiding. What stays forbidden is the vocabulary: **import**, **export** and
+ * the names of the machinery.
+ */
+test('settings explains itself in a learner\'s words, not the architecture\'s', async ({
   page,
 }) => {
   await page.goto('/me');
+  await expect(page.getByTestId('backup-save')).toBeVisible();
+  await expect(page.getByTestId('backup-restore')).toBeVisible();
 
-  for (const gone of [/Save a copy/i, /Restore a copy/i, /Back ?up/i, /\bimport\b/i, /\bexport\b/i]) {
+  for (const gone of [/\bimport\b/i, /\bexport\b/i]) {
     await expect(page.getByText(gone), `settings still mentions ${gone}`).toHaveCount(0);
   }
+  // The restore picker builds its input when it is used and removes it again;
+  // at rest the screen holds no file control.
   await expect(page.locator('input[type="file"]')).toHaveCount(0);
 
   for (const jargon of [/IndexedDB/i, /SQLite/i, /\bJSON\b/i, /\bdatabase\b/i, /\bserver\b/i, /no account/i]) {

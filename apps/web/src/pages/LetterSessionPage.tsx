@@ -97,6 +97,7 @@ export function LetterSessionPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
   const {
+    ready,
     state,
     recordAttempt,
     recordHeard,
@@ -128,17 +129,35 @@ export function LetterSessionPage() {
    * than landing on four.
    *
    * `?from=start` overrides it, which is the secondary "start from the
-   * beginning" route — see the Letters screen. Read once, as the initial state,
-   * because after the first render the learner's position is theirs and not
-   * the store's: finishing a letter must not move the cursor twice.
+   * beginning" route — see the Letters screen.
+   *
+   * ## Why an effect, and not the initial state
+   *
+   * `ready` is false until the stored profile has been read, and **the route
+   * mounts before that**: `CorpusGate` lets the app through as soon as the
+   * corpus is available, and the launch splash covers the screen rather than
+   * holding the router. Computed as initial state, this asked `progressFor`
+   * about a profile that was not there yet, found nothing learned, and answered
+   * 0 — the returning learner was put back on a letter they had finished, which
+   * is the whole of §48 undone. It only happened when the profile lost that
+   * race, so it passed on a quiet machine and failed on a loaded one: `1 of 1`
+   * alone, `6 of 8` under four-way parallelism.
+   *
+   * Placed **once**, on the first render where the profile can be read.
+   * `placed` keeps the promise the original made — after the cursor is set the
+   * learner's position is theirs and not the store's, so finishing a letter
+   * must not move it a second time.
    */
-  const [index, setIndex] = useState(() => {
-    if (restart) return 0;
+  const [index, setIndex] = useState(0);
+  const placed = useRef(restart);
+  useEffect(() => {
+    if (placed.current || !ready) return;
+    placed.current = true;
     const at = characters.findIndex(
       (character) => progressFor('character', character.character)?.stage !== 'learned',
     );
-    return at < 0 ? 0 : at;
-  });
+    setIndex(at < 0 ? 0 : at);
+  }, [ready, characters, progressFor]);
   const [phase, setPhase] = useState<'unit' | 'intro' | 'practice'>(() =>
     unit?.has_intro && unit.lesson_ids[0] === lessonId ? 'unit' : 'intro',
   );
@@ -178,9 +197,19 @@ export function LetterSessionPage() {
     );
   }, [preload, characters, index]);
 
+  /*
+   * Not before the profile is readable.
+   *
+   * `applyIntroduced` only promotes a row that is `unseen`, and a row it cannot
+   * see is a row it invents: called against an un-hydrated profile it writes a
+   * blank `introduced` row for whichever letter the un-placed cursor is
+   * pointing at. That row is a stale snapshot of an item the learner may have
+   * finished, and `RowWrites` will happily chain it after the real one.
+   */
   useEffect(() => {
-    if (current) recordIntroduced('character', current.character);
-  }, [current, recordIntroduced]);
+    if (!ready || !current) return;
+    recordIntroduced('character', current.character);
+  }, [ready, current, recordIntroduced]);
 
   const steps = useMemo<Step[]>(() => {
     const list: Step[] = ['write'];

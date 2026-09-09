@@ -2165,6 +2165,42 @@
       "recommendedFix": "Fixed. A contextual item may sit above its anchor and never below. The exposure metric compares against `min(estimate, reachCeiling)`: a question at the ceiling is the hardest one available and is *at* the estimate in every sense a learner would recognise.",
       "note": "",
       "effort": "S"
+    },
+    {
+      "id": "I-202",
+      "area": "Verification",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "A release e2e case passed by beating hydration, and had been asserting nothing for a week",
+      "customerImpact": "None directly. The cost is that a gate in `npm run test:e2e` reported green while asserting nothing, and the property it was written to protect — that the settings screen speaks a learner's language and not the storage engine's — was unguarded.",
+      "evidence": "`settings no longer asks a learner to manage files, or explains the architecture` (journey.spec.ts) is a run of `toHaveCount(0)` assertions immediately after `page.goto('/me')`. A count of zero is satisfied by a document that has not rendered: the first poll succeeds and the matcher returns without retrying. On a quiet machine it beat hydration and passed in 2.4s; while another project on the same VM was compiling, the first poll landed after the screen had drawn and it failed in 11.8s and again in 12.2s.\n\nWhat it then found was real: `f731bd43` (3 September) deliberately put *Save a copy* and *Restore a copy* back on that screen, and the case — written in the initial commit — still forbade `/Back ?up/i`. The product is right and the test was stale; the race is why nobody was told.\n\nTwo more cases in the same file had the same shape: the practice-style absence at journey.spec.ts:332 and the provenance absence at :780.",
+      "recommendedFix": "Fixed. All three now assert something that must be present before asserting what must not — the backup buttons, the voice control, the navigation — so the absences are measured against a screen that has drawn. The backup patterns are gone from the forbidden list and the reason is written in the file; **import**, **export** and the names of the machinery stay forbidden.",
+      "note": "Found by taking a failure seriously rather than re-running it until it passed. The suite's own timing was the evidence: 2.4s green, 11.8s red, same code.",
+      "effort": "S"
+    },
+    {
+      "id": "I-203",
+      "area": "Letters",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A returning learner was put back on a letter they had finished, whenever the profile lost a race with the router",
+      "customerImpact": "Reopening a lesson resumes at the first unfinished letter — the whole point of §48. On a machine slow enough that the stored profile had not been read by the time the route rendered, it resumed at letter one instead, and the learner was asked to redo work they had already done. The progress itself was never lost: the record said `learned` throughout. What was wrong was the screen's reading of it.",
+      "evidence": "`LetterSessionPage` computed its resume index in a `useState` initialiser, from `progressFor('character', …)`. `ready` is false until the stored profile has been read, and the route mounts before that: `CorpusGate` lets the app through as soon as the corpus is available, and `LaunchSplash` covers the screen rather than holding the router. So the initialiser asked about a profile that was not there, found nothing learned and answered 0.\n\nFound by an end-to-end case that had been dismissed as a flake four times — `an interrupted lesson resumes at the letter that is unfinished`, 9.5s green alone and 18-25s red in the suite. Under `--repeat-each=8 --workers=4` it failed **6 of 8**, and a 500 ms delay before the navigation changed nothing, which ruled out the write racing. Dumping the object store through the failure showed `character:ㅏ=learned` both before and after the navigation: the data was right and the read was early.",
+      "recommendedFix": "Fixed. The cursor is placed once, by an effect, on the first render where the profile can be read; a `placed` ref keeps the original invariant that finishing a letter never moves the cursor a second time. `recordIntroduced` is gated on the same flag — `applyIntroduced` only promotes an `unseen` row, and a row it cannot see is a row it invents, so against an un-hydrated profile it wrote a blank `introduced` row for whichever letter the un-placed cursor pointed at. 8 of 8 under the parallelism that produced 6 of 8 failures.",
+      "note": "The lesson is about how the failure was read. Four sessions had recorded this as a timing flake because it passed in isolation; passing in isolation was the symptom, not the exoneration. See [[I-202]] for the case in the same run that was failing for the opposite reason — an assertion that ran too early to see anything.",
+      "effort": "S"
+    },
+    {
+      "id": "I-204",
+      "area": "Numbers",
+      "severity": "P3",
+      "status": "OPEN",
+      "summary": "The Numbers question order is seeded from a blank record if the profile has not been read yet",
+      "customerImpact": "A learner who opens a Numbers run on a slow launch may get the question order of a first attempt when it is not their first attempt — the same questions in the same order they saw last time. Nothing is lost or miscounted; the seeded shuffle simply seeds from the wrong number.",
+      "evidence": "`NumberSessionPage` reads `record ?? blankLessonProgress(...)` and takes `attempt` from it in a `useState` initialiser. Before hydration the record is the blank, so `attempts.total` is 0. Same root cause as I-203 — a screen reading learner state before `ready` — and the same shape, `useState(() => …store…)`.\n\nUnlike I-203 the consequence is cosmetic: the run is seeded differently, no progress row is written from the blank, and completion is derived from evidence in its own store rather than from this value.",
+      "recommendedFix": "Gate the run's mount on `ready`, or place `attempt` by an effect the way I-203 now places the cursor. Left open deliberately rather than changed in the same pass: the Numbers suites — `numbers:qa`, `numbers:domain`, `numbers:ledger`, the fifteen-sabotage negative run and the Numbers e2e — are what would have to be re-run to believe the change, and the defect does not lose or miscount anything.",
+      "note": "Found by sweeping for the pattern that caused I-203 rather than by a failure. `ActivityPage` and `LevelTestPage` use the same form and are clean — they seed from the clock, not from the store.",
+      "effort": "S"
     }
   ]
 }
