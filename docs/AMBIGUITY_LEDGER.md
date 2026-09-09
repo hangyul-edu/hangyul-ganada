@@ -45,7 +45,7 @@ above is a proxy for a judgement, which is why section 3 exists.
 
 ## 3. What a person read, and what they found
 
-Read in full: 599 contextual Level Test items, 672 gap-fills in the daily vocabulary queue, and 368 Numbers questions — each stem composed with all four of its options and read as a sentence.
+Read in full: 629 contextual Level Test items, 672 gap-fills in the daily vocabulary queue, and 368 Numbers questions — each stem composed with all four of its options and read as a sentence.
 
 | | Stem | Keyed | Also defensible | Verdict | Now | Held by |
 |:---|:---|:---|:---|:---|:---|:---|
@@ -64,6 +64,13 @@ Read in full: 599 contextual Level Test items, 672 gap-fills in the daily vocabu
 | A-13 | 좋은 결과를 ____. | 얻었어요 | 날렸어요 | **PAIR BANNED** | 건넜어요 · 날아갔어요 · 어울렸어요 · 얻었어요 | answer-conflicts.json |
 | A-14 | 13 further object-frame pairs | 돌아보다, 지지하다, 선호하다, 늘리다, 주시하다, 담당하다, 미행하다, 석방하다, 연구하다, 싫어하다, 개선하다, 일깨우다 | 조사하다, 자랑하다, 분석하다, 품다, 고려하다, 선별하다, 기록하다, 넘어서다, 이끌다, 비난하다, 고용하다, 치우다, 가늠하다, 겨냥하다 | **PAIRS BANNED** | 18 reviewed pairs | answer-conflicts.json + reviewed-conflict rule |
 | A-15 | all 368 questions | n/a | none found | **NO CHANGE** | unchanged | numbers:qa, numbers:domain, answerability, question ledger |
+| A-16 | 이 ____이 마음에 들어요. | 작품 | 부인 | **REPLACED** | 미술관에서 유명한 ____을 봤어요. | open-frame rule, widened to allow one determiner |
+| A-17 | 저는 그 생각을 ____. | 지지해요 | 선호해요 | **PAIR BANNED** | 둘러싸요 · 사망해요 · 지지해요 · 털어요 | answer-conflicts.json |
+| A-18 | 경찰이 그를 ____. | 미행했어요 | 협박했어요 | **PAIR BANNED** | 뒤엎었어요 · 미행했어요 · 부인했어요 · 챘어요 | answer-conflicts.json |
+| A-19 | ____ 이야기를 들었어요. | 유령 | 역사 | **PAIR BANNED** | 유령 · 의료 · 입원 · 프로 | answer-conflicts.json |
+| A-20 | ____ 소식을 들었어요. | 이혼 | 탄생 | **PAIR BANNED** | 범죄자 · 양심 · 이혼 · 초기 | answer-conflicts.json |
+| A-21 | ____ 연습을 해요. | 사격 | 마무리 | **PAIR BANNED** | 보스 · 부동산 · 사격 · 파트너 | answer-conflicts.json |
+| A-22 | ____ 정보를 지켜요. | 개인 | 거래 | **PAIR BANNED** | 개인 · 분위기 · 사회 · 혈압 | answer-conflicts.json |
 
 ### Why each one was defensible
 
@@ -82,10 +89,17 @@ Read in full: 599 contextual Level Test items, 672 gap-fills in the daily vocabu
 * **A-13** — 결과를 날리다 is idiomatic and opposite.
 * **A-14** — each shares a selectional class the pack does not record.
 * **A-15** — read end to end; every stem is a number, a counter or a system choice, and each is pinned by the lesson it belongs to.
+* **A-16** — a determiner in front of the blank does not constrain it; every noun still fits.
+* **A-17** — 생각을 선호하다 is ordinary.
+* **A-18** — 경찰이 그를 협박했어요 fits the frame exactly.
+* **A-19** — 역사 이야기 is as ordinary a compound as 유령 이야기.
+* **A-20** — 탄생 소식 is a fixed collocation.
+* **A-21** — 마무리 연습 is a real compound.
+* **A-22** — 거래 정보 is an ordinary compound.
 
 ## 4. The reviewed pairs
 
-18 pairs of lemmas that may never be offered against each other. They pass every automatic guard the builder has — no shared gloss word, no shared category, no recorded synonym, no shared argument in their own example sentences — and still produce two right answers, because what they share is a selectional class nothing in the pack records.
+24 pairs of lemmas that may never be offered against each other. They pass every automatic guard the builder has — no shared gloss word, no shared category, no recorded synonym, no shared argument in their own example sentences — and still produce two right answers, because what they share is a selectional class nothing in the pack records.
 
 | | | Frame it was found in | Why both fit |
 |:---|:---|:---|:---|
@@ -107,6 +121,12 @@ Read in full: 599 contextual Level Test items, 672 gap-fills in the daily vocabu
 | 개선하다 | 가늠하다 | 근무 환경을 ____. | 환경을 가늠하다 fits the frame |
 | 더하다 | 곱하다 | 둘에 셋을 ____. | an arithmetic frame accepts either operation |
 | 일깨우다 | 겨냥하다 | 그 말이 저를 ____. | 그 말이 저를 겨냥했어요 is as ordinary as 일깨웠어요 |
+| 지지하다 | 선호하다 | 저는 그 생각을 ____. | 생각을 선호하다 is as ordinary as 지지하다 |
+| 미행하다 | 협박하다 | 경찰이 그를 ____. | 경찰이 그를 협박했어요 fits the frame exactly |
+| 유령 | 역사 | ____ 이야기를 들었어요. | 역사 이야기 is as ordinary a compound as 유령 이야기 |
+| 이혼 | 탄생 | ____ 소식을 들었어요. | 탄생 소식 is a fixed collocation |
+| 사격 | 마무리 | ____ 연습을 해요. | 마무리 연습 is a real compound |
+| 개인 | 거래 | ____ 정보를 지켜요. | 거래 정보 is an ordinary compound |
 
 ## 5. What this ledger does not cover
 

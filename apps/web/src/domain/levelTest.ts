@@ -959,6 +959,38 @@ export function pickIndex(seed: string, index: number, size: number): number {
 }
 
 /**
+ * Whether this build can still serve every question a stored sitting asked.
+ *
+ * A resume makes two promises: the questions already presented do not change,
+ * and the answers already given still count. Both of them depend on the bank
+ * this build ships, and the bank is regenerated whenever the corpus moves.
+ *
+ * The failure is quiet, which is why it is worth a function. Replaying a
+ * sitting looks an item up by id and skips one it cannot find, so an answered
+ * question whose item has left the bank is *dropped from the evidence* — the
+ * learner answered twelve and is scored on eleven, with nothing on screen
+ * saying so. If the missing one is the question that was on screen when the app
+ * closed, there is no current item to draw at all.
+ *
+ * So it is checked rather than survived. A sitting whose items this build
+ * cannot supply is not resumable, and the learner starts a fresh one — which
+ * costs nothing, because an unfinished sitting has never written a level. That
+ * is the same bar `isReadableSitting` sets in the repository, one layer out:
+ * discard rather than repair.
+ *
+ * This release removed no item ids — the bank went from 4,121 to 4,151 by
+ * addition — so nothing in flight is affected by it. The guard is for the next
+ * content change that does remove one.
+ */
+export function sittingIsServable(
+  presented: readonly string[],
+  known: ReadonlySet<string> | ReadonlyMap<string, unknown>,
+): boolean {
+  const has = (id: string) => ('has' in known ? known.has(id) : false);
+  return presented.every((id) => has(id));
+}
+
+/**
  * Which kind of question each of the thirty is, in order.
  *
  * Interleaved rather than blocked, so a sitting does not feel like three

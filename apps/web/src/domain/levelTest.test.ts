@@ -38,6 +38,7 @@ import {
   pickIndex,
   planKinds,
   shouldStop,
+  sittingIsServable,
   warmupLadder,
 } from './levelTest';
 
@@ -510,6 +511,37 @@ describe('a learner who starts badly is not written off', () => {
   it('still reaches the top of the scale after a bad opening', () => {
     const { levels } = shakyStart(30, 6);
     expect(Math.max(...levels)).toBeGreaterThanOrEqual(LEVELS - 1);
+  });
+});
+
+describe('a sitting is only resumed when this build can still serve it', () => {
+  /**
+   * The quiet failure this guards.
+   *
+   * Replaying a stored sitting looks each presented item up by id and skips one
+   * it cannot find, so an answered question whose item has left the bank is
+   * dropped from the evidence: twelve answers scored as eleven, with nothing on
+   * screen saying so. An update regenerates the bank, so this is not
+   * hypothetical — it is one content change away at any time.
+   */
+  it('serves a sitting whose every item is still in the bank', () => {
+    const bank = new Map([
+      ['a', 1],
+      ['b', 2],
+      ['c', 3],
+    ]);
+    expect(sittingIsServable(['a', 'b'], bank)).toBe(true);
+    expect(sittingIsServable([], bank)).toBe(true);
+  });
+
+  it('refuses one whose answered item has left the bank', () => {
+    const bank = new Map([['a', 1]]);
+    expect(sittingIsServable(['a', 'gone'], bank)).toBe(false);
+  });
+
+  it('refuses one whose question on screen has left the bank', () => {
+    const bank = new Set(['a', 'b']);
+    expect(sittingIsServable(['a', 'b', 'gone'], bank)).toBe(false);
   });
 });
 

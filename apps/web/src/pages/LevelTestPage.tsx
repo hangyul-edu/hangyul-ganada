@@ -22,6 +22,7 @@ import {
   pickIndex,
   planKinds,
   shouldStop,
+  sittingIsServable,
 } from '../domain/levelTest';
 import type {
   LevelTestItem,
@@ -182,6 +183,11 @@ export function LevelTestPage() {
    *   and offering to resume it would be offering a test with no time on it.
    * * **Unreadable.** `isReadableSitting` in the repository has already rejected
    *   anything whose own two records of itself disagree.
+   * * **Unservable.** An update can regenerate the bank, and a sitting whose
+   *   items this build no longer has cannot keep either promise a resume makes:
+   *   the replay silently drops an answered question it cannot find, and the
+   *   question that was on screen may have no item to draw. See
+   *   `sittingIsServable`.
    */
   const stored = state.settings.level_test_sitting;
   const resumable = useMemo(() => {
@@ -189,8 +195,10 @@ export function LevelTestPage() {
     if (stored.locale !== locale) return null;
     if (stored.deadline <= Date.now()) return null;
     if (stored.presented.length === 0) return null;
+    // Only once the bank has arrived; until then there is nothing to check against.
+    if (byId && !sittingIsServable(stored.presented, byId)) return null;
     return stored;
-  }, [stored, locale]);
+  }, [stored, locale, byId]);
 
   /**
    * A sitting in progress opens itself.

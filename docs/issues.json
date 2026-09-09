@@ -1961,6 +1961,138 @@
       "recommendedFix": "Fixed. `apps/web/e2e/level-test.spec.ts`.",
       "note": "The third instance this cycle of a check whose proxy could not tell its subject from its surroundings — with the ledger's whitespace normaliser (§20U.2) and the stale sabotage in G4 (I-181). A gate that has only been seen passing is a gate nobody has evidence about.",
       "effort": "S"
+    },
+    {
+      "id": "I-185",
+      "area": "Educational content",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A gap-fill whose sentence said only *when* — 일곱 시에 ____ took both 일어나요 and 연습해요",
+      "customerImpact": "A learner reading Korean correctly is marked wrong. The item was reachable in the Vocabulary Level Test at level 3 and in Today's Vocabulary, so it was on the path of every learner who has just finished the alphabet.",
+      "evidence": "`word_ireonada:context` shipped as `일곱 시에 ____.` keyed 일어나요, offering 도와요 · 연습해요 · 잘해요. *일곱 시에 연습해요* — *I practise at seven* — is as ordinary as *일곱 시에 일어나요*.\n\n`leveltest:ambiguity:check` passed the bank containing it, with zero findings, and was right to by its own rules. Its weak-context rule asks whether the sentence carries an argument particle; 시에 is an argument particle. **A particle is not a constraint.** A time says when, and every predicate a learner knows can happen at seven o'clock.\n\nFour more items of the same shape shipped beside it: 수업 시간에 ____, 아침에 일찍 ____, 발표 전에 ____, 다음 달에 ____.",
+      "recommendedFix": "Fixed at the source. `isUnconstrainedPredicateFrame()` in `scripts/lib/level-test-rules.mjs` classifies each non-blank eojeol as temporal, free adverb, subject pronoun or contentful, and the builder refuses a predicate blank with no contentful eojeol; the gate refuses one in the shipped bank. All five example sentences were rewritten in the editorial pack with their translations in 31 languages and new recordings. Negative case **G7** restores the photographed item and the gate exits 1.",
+      "note": "The counted-noun test is what keeps `이 일에 ____.` — *I am used to this work* — out of the rule: 일 is a time noun only when something counts it, and the 이 in front of it is the demonstrative.",
+      "effort": "M"
+    },
+    {
+      "id": "I-186",
+      "area": "Educational content",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "____이 문을 열었어요 offered two person nouns beside 은행, so three of four options were correct",
+      "customerImpact": "Same as I-185, at level 7.",
+      "evidence": "The item shipped with 얼음 · 은행 · 학생 · 형. A student opening a door and an older brother opening a door are both ordinary Korean.\n\nThe noun-class guard exists for exactly this and never fired. It compares each distractor against the **answer's** class, and 은행 is not a person, so nothing rejected 학생 or 형. The defect is not that the guard is wrong but that it is pairwise: the constraint here belongs to the frame, not to the pair.",
+      "recommendedFix": "Fixed. `isAgentSubjectFrame()` — a blank that is the subject of an action carrying an object admits any human agent, so no person-class candidate may be offered, whatever the answer's class is. Evaluated on the candidate and the sentence alone, which is the case a pairwise guard cannot cover. Negative case **G8**.",
+      "note": "The same shape as the consumable rule (I-118) one argument along, and for the same reason.",
+      "effort": "S"
+    },
+    {
+      "id": "I-187",
+      "area": "Educational content",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "____이 마음에 들어요 — a frame that excludes no noun",
+      "customerImpact": "Two items, at levels 3 and 14. A road, a present, a bus stop: a learner can like any of them.",
+      "evidence": "`____이 마음에 들어요.` keyed 선물 against 길 · 전 · 정류장, and `이 ____이 마음에 들어요.` keyed 작품 against 부인 · 태양 · 행운. The second shows that a demonstrative in front of the blank does not constrain it.",
+      "recommendedFix": "Fixed. `isOpenEvaluativeFrame()` refuses the family, allowing one leading determiner. Both words were given constraining example sentences instead of losing their contextual item.",
+      "note": "The generalisation of the `____가 있어요` fixture that had been pinned one prompt at a time.",
+      "effort": "S"
+    },
+    {
+      "id": "I-188",
+      "area": "Educational content",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Sixteen sentences in the daily queue were keyed two different ways",
+      "customerImpact": "`불을 ____ 주세요` asked for 켜 in one item and 꺼 in another; `소리를 ____ 주세요` for 줄여 and 낮춰; `둘에 셋을 ____` for 더해요 and 곱해요. Today's Vocabulary can serve both on one morning, and a learner who has met one is being taught the opposite by the other.",
+      "evidence": "34 items over 16 stems. The Level Test bank has had a `shared-prompt` rule since the pass that found 더해요/곱해요 in it; `cloze.json` never had one, and both surfaces are built by the same generator from the same authored sentences. Each item is answerable alone — the rival word is not among its own four options — and the pair is the generator's own proof that the sentence does not pin its answer down.",
+      "recommendedFix": "Fixed. A `shared-stem` invariant in `scripts/question-ledger.mjs`, which is the only program that reads every surface — neither half of the defect is visible from inside one of them. Eighteen example sentences rewritten so that every stem is distinct, with translations in 31 languages and new recordings.",
+      "note": "Same key on the same stem across surfaces is *not* the defect and is not reported: one authored sentence legitimately appears on both.",
+      "effort": "L"
+    },
+    {
+      "id": "I-189",
+      "area": "Release engineering",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The question ledger validated 336 of 368 Numbers questions against the wrong answer",
+      "customerImpact": "None to a learner — the content was right. The gate that certifies it was not measuring it, and the report cited that gate.",
+      "evidence": "`question-ledger.mjs` found the answer with `options.find(o => o.isKey)`. In this codebase `isKey` means *this option's text is a translation key, render it through i18n* — not *this is the correct option*. Both buttons of every 한자어식/고유어식 question carry it, and 240 exercises carry it on no option at all, which the ledger recorded as `answer: null` and then skipped every answer invariant for.\n\nMeasured against `exercise.answer`, the index the running screen grades on: **336 of 368** questions were recorded with an answer the application does not accept, or with none. The ledger then checked that its own wrong answer appeared exactly once among the options and printed *every question has one answer*.",
+      "recommendedFix": "Fixed. The ledger reads `exercise.answer` and reports an `answer-index` problem when it is not an index. All 368 pass against the right field.",
+      "note": "A checker that reads the wrong field is indistinguishable from a passing checker. The fourth instance of that class this year.",
+      "effort": "S"
+    },
+    {
+      "id": "I-190",
+      "area": "Localization",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Twenty-four locale packs went on translating example sentences that had been replaced",
+      "customerImpact": "A learner reading Hungarian would have seen *I get up at seven* under a Korean sentence about an alarm and a bed.",
+      "evidence": "The seven translations carried inside an editorial entry move with the sentence, because they are in the same row. The other 24 languages live in `content/vocabulary/copy/<locale>.json` keyed by word id and do not.\n\nFive gates read those files — `vocabulary:translation`, `translation:semantics`, `locale:content`, `locale:editorial`, `copy:generated` — and all five passed. None of them compares a translated example to the Korean example; they check key parity, gloss agreement and placeholder shape, which is one level away from the thing that was wrong.",
+      "recommendedFix": "Fixed. All 576 affected rows retranslated. `copy:fresh` records the Korean sentence each pack's translations were written against and fails when the corpus moves and the packs do not; it is in `verify:quick`.",
+      "note": "The gate closes the silent case and not the careless one: rewriting the record is one command. That limit is written in the file's own header.",
+      "effort": "L"
+    },
+    {
+      "id": "I-191",
+      "area": "Localization",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "i18n:check passed a key that was present and empty",
+      "customerImpact": "i18next renders an empty string rather than falling back, so the screen shows a blank button and no gate says so.",
+      "evidence": "The gate blocked on four things: a key missing from the source locale, an incomplete plural set, a dropped placeholder, and a key the source does not have. Setting `common:actions.confirm` to \"\" in German and running `--check` exited 0.",
+      "recommendedFix": "Fixed. Two rules — *present but empty*, and *lost every word* for a value that is nothing but its placeholders where English said something. Both sweep the locale's own keys, because the source loop short-circuits on a plural base and a blank `_one` would have gone through the first shape of the fix as well.",
+      "note": "The *lost every word* rule is written about anything visible rather than about letters: a first draft asked for letters and reported nineteen good translations, because `of {{levels}}` is `/ {{levels}}` in eight languages and `1st` is `1.` in three.",
+      "effort": "S"
+    },
+    {
+      "id": "I-192",
+      "area": "Vocabulary Level Test",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "The adaptive policy's prose had drifted from its own constants",
+      "customerImpact": "None. The code was right in both places; a reader of the file was told something false about the product.",
+      "evidence": "`SUSTAINED_CORRECT` is 8 and the paragraph beside it said \"three consecutive correct answers\". `EASY_EVERY` is 5 and the comment in `nextLevel` said \"every third adaptive question\". The simulated walk of a learner who answers everything correctly is 2, 4, 6, 8, 10, 12, 14, 16, 19 — eight two-level steps before the wide one is earned, which is the constant and not the prose.",
+      "recommendedFix": "Fixed, and pinned: a new case asserts that the climb is still capped one answer short of the threshold and released at it, reading the constant rather than a literal.",
+      "note": "The patent disclosure had both constants right. The source comments were the stale copy.",
+      "effort": "S"
+    },
+    {
+      "id": "I-193",
+      "area": "Release engineering",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The technical disclosure's evidence table contradicted its own mechanism section",
+      "customerImpact": "None to a learner. The document is prepared for counsel and two of its numbers disagreed by four points.",
+      "evidence": "§6.8 stated placement accuracy of 90.2% within ±3 and mean absolute error 1.64 against a simulated learner that fumbles; §12's table still carried 95.2% and 1.37 from the population that never fumbles. Eleven further measured figures were stale — question counts, option counts, bank size, the gate count in the architecture diagram, and the assertion count of the level-test suite.",
+      "recommendedFix": "Fixed. Every figure re-measured on this tree and both disclosures updated, English and Korean. `patent:evidence:check` continues to require that each cite the same paths.",
+      "note": "`patent/` is not committed — the remote is public — so this issue records work that exists on disk only.",
+      "effort": "M"
+    },
+    {
+      "id": "I-194",
+      "area": "Release engineering",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "The ambiguity gate reported a rule count it no longer measured",
+      "customerImpact": "None.",
+      "evidence": "Its closing line said *no item breaks any of the thirteen rules* as a literal string while the file applied more than thirteen, and four were added this pass without it changing.",
+      "recommendedFix": "Fixed. The rules are a named list, the count is derived from it, and `fail()` throws on a rule not on the list, so the two cannot drift again.",
+      "note": "",
+      "effort": "S"
+    },
+    {
+      "id": "I-195",
+      "area": "Persistence",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "A resumed sitting silently dropped an answered question whose item had left the bank",
+      "customerImpact": "None from this release — it removed no item ids, the bank grew from 4,121 to 4,151 by addition. The defect is one content change away at any time, and when it fires the learner answers twelve questions and is scored on eleven with nothing on screen saying so.",
+      "evidence": "`LevelTestPage` replays a stored sitting by looking each presented id up in the bank and **skipping one it cannot find**. An update regenerates the bank whenever the corpus moves. Two consequences: an answered item that has left the bank is dropped from the evidence the estimate is built from, and if the missing one is the question that was on screen when the app closed, `current` resolves to null and there is nothing to draw.\n\nThe three existing disqualifications — a changed language, an expired clock, a sitting whose own two records of itself disagree — are all about the *stored row*. None of them is about the bank this build ships.",
+      "recommendedFix": "Fixed. `sittingIsServable()` in `domain/levelTest.ts`; a sitting whose items this build cannot supply is not offered for resume and the learner starts a fresh one. That costs nothing — an unfinished sitting has never written a level — and it is the bar `isReadableSitting` already sets one layer out: discard rather than repair.",
+      "note": "Three unit cases: every item present, an answered item gone, the on-screen item gone.",
+      "effort": "S"
     }
   ]
 }

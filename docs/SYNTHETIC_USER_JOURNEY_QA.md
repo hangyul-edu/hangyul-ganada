@@ -32,7 +32,7 @@ record the persona definition; they do not alter a domain simulation.
 | Words missed at least once | 2,733 |
 | Retry recovery | 100% |
 | Later-review retention | 73% |
-| Words met on two or more days | 3,464 |
+| Words met on two or more days | 3,465 |
 | Words marked learned without a correct answer | 0 |
 | Teaching-zone violations | 0 |
 | Beginner words offered to level ≥ 25 learners | 0 |
