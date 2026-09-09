@@ -307,6 +307,33 @@ for (const code of locales.sort()) {
   const untranslated = [];
   const missingPlurals = [];
   const droppedPlaceholders = [];
+  /*
+    A key that is present and says nothing.
+
+    This gate checked for keys that were *absent*, for incomplete plural sets,
+    for dropped placeholders and for keys the source does not have. A key
+    present with an empty string passed all four, and i18next renders an empty
+    string rather than falling back — so the screen shows a blank button and
+    nothing anywhere says so. Setting `common:actions.confirm` to "" in German
+    and running `--check` exited 0.
+  */
+  const blank = [];
+  /*
+    And a translation that is nothing but its placeholders.
+
+    `{{count, number}}` where English said `{{count, number}} min` is neither
+    empty nor missing; it is a unit that has fallen off.
+
+    The test is deliberately about *anything visible* rather than about letters.
+    A first draft asked whether the value still had letters and reported
+    nineteen perfectly good translations: `of {{levels, number}}` is `/
+    {{levels, number}}` in Korean, Japanese, Hungarian and five more, and `1st`
+    is `1.` in German, Czech and Hungarian. Both are the right thing to write
+    and neither contains a letter. What is wrong is a value that says nothing at
+    all once the interpolation is removed — where English said something.
+  */
+  const wordless = [];
+  const bare = (value) => String(value ?? '').replace(/\{\{[^}]*\}\}/g, '').trim();
 
   const seenPluralBases = new Set();
 
@@ -373,10 +400,40 @@ for (const code of locales.sort()) {
     untranslated,
     missingPlurals,
     droppedPlaceholders,
+    blank,
+    wordless,
     pluralCategories: categories,
   };
 
+  /*
+    Both of these sweep the locale's *own* keys rather than the source's.
+
+    The loop above short-circuits on a plural base — it has one job there, which
+    is to check that the whole set is present — so a key reached through that
+    branch never sees any other test. A blank `activity:units.minute_one` would
+    therefore have passed, which is the exact shape of the defect these two were
+    written for. Iterating the bundle covers every key including the plural ones.
+  */
+  for (const [key, value] of Object.entries(bundle)) {
+    if (typeof value !== 'string') continue;
+    if (value.trim() === '') {
+      blank.push(key);
+      continue;
+    }
+    if (!isSource && key in source && bare(source[key]) !== '' && bare(value) === '') {
+      wordless.push(key);
+    }
+  }
+
   // Blocking rules.
+  if (blank.length) {
+    report.errors.push(`${code}: ${blank.length} key(s) present but empty — ${blank.slice(0, 5).join(', ')}`);
+  }
+  if (wordless.length) {
+    report.errors.push(
+      `${code}: ${wordless.length} translation(s) lost every word — ${wordless.slice(0, 5).join(', ')}`,
+    );
+  }
   if (isSource && missing.length) {
     report.errors.push(`${code}: ${missing.length} missing key(s) in the source locale`);
   }
