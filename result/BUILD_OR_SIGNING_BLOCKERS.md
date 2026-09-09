@@ -6,10 +6,10 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 8 September 2026 against **v1.0.5, versionCode 20**, compiled
-from a clean checkout of commit `a8e04b79`. Every item below still stands,
+Re-checked on 9 September 2026 against **v1.0.5, versionCode 21**, compiled
+from a clean checkout of commit `e5436cc2`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 20 and signed with
+machine. The Android artefacts were rebuilt at versionCode 21 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
 
 **§10 is still the one to read**, and this cycle added to it: 25 keys in each of
@@ -218,12 +218,12 @@ the store material claims otherwise.
 
 ---
 
-## 9. iOS is still at 1.0.2 build 4 · **REQUIRES A MAC**
+## 9. iOS is still at 1.0.3 build 5 · **REQUIRES A MAC**
 
 **What is missing:** the release version in the Xcode project.
 
-Android ships this release as 1.0.5, versionCode 20. iOS does not, and its
-`MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.2` and `4`.
+Android ships this release as 1.0.5, versionCode 21. iOS does not, and its
+`MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.3` and `5`.
 
 This is deliberate rather than an oversight. Those two are Xcode build settings
 living in `App.xcodeproj/project.pbxproj`, a file that also carries
@@ -238,9 +238,9 @@ and every one of those settings against a lock file, and it is green.
 **To unblock**, on a Mac with Xcode, in one commit:
 
 1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.5` and **Build** to `20` for both Debug and Release.
+   **Version** to `1.0.5` and **Build** to `21` for both Debug and Release.
 2. Update `ios.xcode.marketingVersion` to `"1.0.5"` and
-   `ios.xcode.currentProjectVersion` to `16` in `apps/mobile/app.identity.json`.
+   `ios.xcode.currentProjectVersion` to `21` in `apps/mobile/app.identity.json`.
 3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
 
 `npm run version:check` prints this as a pending action on every run until it is

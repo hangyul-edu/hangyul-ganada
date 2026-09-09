@@ -8,17 +8,17 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `5ad05002` on branch `main`. `build-info.json` →
+**Source:** commit `e5436cc2` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 8 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 9 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 19 validation.** Codes 3 through 19 are spent,
-each by an artefact that was actually produced. This is 20.
+**This supersedes the versionCode 20 validation.** Codes 3 through 20 are spent,
+each by an artefact that was actually produced. This is 21.
 
 ---
 
@@ -69,12 +69,16 @@ control under 44px.
 
 | | |
 | --- | --- |
-| Level Test selection | An explicit bracket — highest level answered correctly, lowest missed — steers while it is wide and hands back to the posterior once it closes to two levels. Presented difficulty stays bounded at three levels independently of the internal target |
-| Level Test scoring | A decline term, so a learner who knows a word may still press *I don't know*. Without it an early decline bounds the reachable estimate for the rest of the sitting |
-| Safeguards | A bound reopens only on two contradicting answers in a row; the sitting stops only when the bracket has closed *and* the posterior has settled; the warm-up ladder ends on the first miss |
-| Level Test bank | Dictionary ranks discounted by sense count — 시기 moves from 11 to 18, 화상 from 11 to 19; the cross-locale collision check now covers dictionary glosses |
-| New gate | `leveltest:viewport` measures the question screen at 320–390 and at 150% and 200% text in five languages |
-| Version | Android **1.0.4 / 20**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Question generation | A generated gap-fill is now refused on four properties of the **stem** rather than of the candidate/answer pair: a predicate blank whose sentence gives only a time (`일곱 시에 ____`, which took both 일어나요 and 연습해요), a subject slot in front of an action with an object (which admits any human agent, whatever the keyed answer is), a blank before an evaluative predicate, and a stem that keys two different answers across the two surfaces the generator feeds |
+| Reviewed pairs | 24 lemma pairs that pass every automatic guard and still make two right answers — 얻다/날리다, 지지하다/분석하다, 유령/역사 — held in `content/vocabulary/answer-conflicts.json` and consulted by both the builder and the verifier |
+| Content | 25 example sentences rewritten in the editorial pack, with their 7 in-entry translations, their 576 locale-pack translations and 26 new recordings. No word id, `senseId` or level moved |
+| Question ledger | It found the answer with `options.find(o => o.isKey)`, and `isKey` means *render this through i18n*. **336 of 368** Numbers questions were being validated against an answer the app does not accept, or none. It now reads the index the screen grades on |
+| Localization | 24 locale packs were still translating replaced example sentences past five gates that read those files. `copy:fresh` records the Korean each pack was written against and fails on drift |
+| Interface strings | `i18n:check` passed a key present with an empty string. Two rules added — *present but empty* and *lost every word* — both sweeping the locale's own keys, because the source loop short-circuits on plural bases |
+| Resume | A stored Level Test sitting whose items this build can no longer supply is no longer offered for resume; the replay used to skip an item it could not find and score the learner on fewer answers than they gave |
+| New gates | `ambiguity:ledger`, `locale:ledger`, `copy:fresh` — all three in `verify:quick` |
+| New documents | `docs/AMBIGUITY_LEDGER.md` (5,191 questions by family, 22 reviewed findings, 24 pairs) and `docs/LOCALE_LEDGER.md` (32 languages × four layers) |
+| Version | Android **1.0.5 / 21**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -84,10 +88,10 @@ control under 44px.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **20**, versionName **1.0.4**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 18 | 17 is spent. Both delivered artefacts report a code of 17 and the previous `build-info.json` recorded 17, and product files have changed since — the level-test engine, its item bank, and the vitest worker cap. `npm run version:check` said so before the build rather than after. Nothing has been uploaded to Play, so 18 is the next valid code rather than the next unused one. |
-| Why 1.0.4, below the 1.0.5 this tree carried | The release this work belongs to is 1.0.4, and the tree is being brought to it rather than carried past it. It is safe to do so: `registered` records that nothing has been uploaded to either console, so no customer has seen 1.0.5 and no listing has to be explained. The build number is not reused — versionCode 19 is spent by an artefact that exists on disk, so this is 20. The two numbers are independent and Play orders updates by the code alone. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.4 and `pending_build` 20 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
+| Package | `com.talkhangyul.ganada`, version code **21**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 21 | 20 is spent. Both previously delivered artefacts report a code of 20 and the previous `build-info.json` recorded 20, and product files have changed since — the vocabulary pack, the level-test bank, the daily gap-fills, the audio manifest and the question rules. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 21 is the next valid code rather than the next unused one. |
+| Why 1.0.5 | The versionName moves because what a learner reads has changed: twenty-five example sentences, their translations in thirty-one languages and twenty-six recordings, and a regenerated question bank. A versionName is what tells a customer the content is different, and it is. `registered` records that nothing has been uploaded to either console, so no listing has to be explained. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 21 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
 
 ## What was run against this tree
 
@@ -244,8 +248,8 @@ viewports.
 ## Checksums
 
 ```
-71e8b4d4b0288aea51f68858d53aae17e02b39c336962c2bf12f5743ccdf19c5  hangyul-ganada-release.apk
-aa62ba7e15d169a888270ad4e28796695440b81878c92814cc644460a9078bb6  hangyul-ganada-release.aab
-e912cfbad8e5e25e0c3ab5fd6c998d7702788685d4f046a6d54da6219e70d937  docs/report.pdf
-8b8c4b00715c13fe9b08f4eb50232e023888315fed486d195fa0bda56a783562  build-info.json
+54aac8388b82fd722f6ba82942b3cac58767a80642d671e83bd4d91a21709b8b  hangyul-ganada-release.apk
+71d25b4f1f52ade58a2ff05db9807583147259fefeeeab3988ff1083d42a4300  hangyul-ganada-release.aab
+87467b27875a2f7c91209d1d1e93cd66302d6a68536932052fd9c30b1c5c9a7c  docs/report.pdf
+675d94f58939af9bf42334045d3fb5f03ffc562ce35d34cc0b839ab817e9722b  build-info.json
 ```
