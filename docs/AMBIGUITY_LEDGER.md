@@ -11,7 +11,7 @@ a person had to read.
 
 ## 1. Every question family
 
-5,191 objective questions, from three sources.
+5,187 objective questions, from three sources.
 
 | Surface | Family | Questions | What is meant to pin the answer |
 |:---|:---|---:|:---|
@@ -27,8 +27,8 @@ a person had to read.
 | Today’s Vocabulary and Review | `cloze` | 672 | built by the same builder as the Level Test bank, so one set of rules decides both |
 | Vocabulary Level Test | `meaning` | 1,761 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
 | Vocabulary Level Test | `produce` | 1,761 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
-| Vocabulary Level Test | `context` | 629 | distractors are filtered by category, noun class, particle agreement, frame safety and the frame rules in scripts/lib/level-test-rules.mjs |
-| **Total** | | **5,191** | |
+| Vocabulary Level Test | `context` | 625 | distractors are filtered by category, noun class, particle agreement, frame safety and the frame rules in scripts/lib/level-test-rules.mjs |
+| **Total** | | **5,187** | |
 
 ## 2. What the gates decide
 
@@ -45,7 +45,7 @@ above is a proxy for a judgement, which is why section 3 exists.
 
 ## 3. What a person read, and what they found
 
-Read in full: 629 contextual Level Test items, 672 gap-fills in the daily vocabulary queue, and 368 Numbers questions — each stem composed with all four of its options and read as a sentence.
+Read in full: 625 contextual Level Test items, 672 gap-fills in the daily vocabulary queue, and 368 Numbers questions — each stem composed with all four of its options and read as a sentence.
 
 | | Stem | Keyed | Also defensible | Verdict | Now | Held by |
 |:---|:---|:---|:---|:---|:---|:---|
@@ -71,6 +71,7 @@ Read in full: 629 contextual Level Test items, 672 gap-fills in the daily vocabu
 | A-20 | ____ 소식을 들었어요. | 이혼 | 탄생 | **PAIR BANNED** | 범죄자 · 양심 · 이혼 · 초기 | answer-conflicts.json |
 | A-21 | ____ 연습을 해요. | 사격 | 마무리 | **PAIR BANNED** | 보스 · 부동산 · 사격 · 파트너 | answer-conflicts.json |
 | A-22 | ____ 정보를 지켜요. | 개인 | 거래 | **PAIR BANNED** | 개인 · 분위기 · 사회 · 혈압 | answer-conflicts.json |
+| A-23 | ____ 한글을 써요. | 매일 | 조금 | **PAIR BANNED** | 가방 · 매일 · 방법 · 생선 | answer-conflicts.json 매일/조금 |
 
 ### Why each one was defensible
 
@@ -96,10 +97,11 @@ Read in full: 629 contextual Level Test items, 672 gap-fills in the daily vocabu
 * **A-20** — 탄생 소식 is a fixed collocation.
 * **A-21** — 마무리 연습 is a real compound.
 * **A-22** — 거래 정보 is an ordinary compound.
+* **A-23** — both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary.
 
 ## 4. The reviewed pairs
 
-24 pairs of lemmas that may never be offered against each other. They pass every automatic guard the builder has — no shared gloss word, no shared category, no recorded synonym, no shared argument in their own example sentences — and still produce two right answers, because what they share is a selectional class nothing in the pack records.
+25 pairs of lemmas that may never be offered against each other. They pass every automatic guard the builder has — no shared gloss word, no shared category, no recorded synonym, no shared argument in their own example sentences — and still produce two right answers, because what they share is a selectional class nothing in the pack records.
 
 | | | Frame it was found in | Why both fit |
 |:---|:---|:---|:---|
@@ -127,6 +129,7 @@ Read in full: 629 contextual Level Test items, 672 gap-fills in the daily vocabu
 | 이혼 | 탄생 | ____ 소식을 들었어요. | 탄생 소식 is a fixed collocation |
 | 사격 | 마무리 | ____ 연습을 해요. | 마무리 연습 is a real compound |
 | 개인 | 거래 | ____ 정보를 지켜요. | 거래 정보 is an ordinary compound |
+| 매일 | 조금 | ____ 한글을 써요. | both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary |
 
 ## 5. What this ledger does not cover
 

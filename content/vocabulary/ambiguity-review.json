@@ -1,12 +1,12 @@
 {
   "_comment": "The manual half of the question audit. Every contextual item in the shipped bank and every gap-fill in cloze.json was read; this records the ones where a second option was defensible, what was done, and how it is held closed. The automated half is scripts/level-test-ambiguity-qa.mjs and scripts/question-ledger.mjs — see docs/AMBIGUITY_LEDGER.md.",
   "reviewed": {
-    "levelTestContextItems": 629,
+    "levelTestContextItems": 625,
     "clozeGapFills": 672,
     "numbersQuestions": 368,
     "levelTestMeaningAndProduce": 3552,
     "reviewMethod": "every contextual stem composed with all four of its options and read; meaning/produce items read as a spread and covered by collideInAnyLocale",
-    "note": "Read twice: once on the bank as shipped at d7a85767, and again on the regenerated bank after the rules and the rewritten examples changed every distractor draw. The second reading found seven more, recorded as A-16 to A-22."
+    "note": "Read twice: once on the bank as shipped at d7a85767, and again on the regenerated bank after the rules and the rewritten examples changed every distractor draw. The second reading found seven more, recorded as A-16 to A-22. Read a third time after the bank was re-levelled by sentence demand (700c78db → this cycle), which changed 68 item levels and therefore every distractor draw. The third reading found one more, A-23."
   },
   "findings": [
     {
@@ -250,6 +250,17 @@
       "verdict": "PAIR BANNED",
       "now": "개인 · 분위기 · 사회 · 혈압",
       "heldBy": "answer-conflicts.json"
+    },
+    {
+      "id": "A-23",
+      "surface": "Level Test",
+      "stem": "____ 한글을 써요.",
+      "keyed": "매일",
+      "rival": "조금",
+      "why": "both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary",
+      "verdict": "PAIR BANNED",
+      "now": "가방 · 매일 · 방법 · 생선",
+      "heldBy": "answer-conflicts.json 매일/조금"
     }
   ],
   "notFound": {
