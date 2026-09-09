@@ -15,12 +15,14 @@ import {
   MAX_ITEM_COUNT,
   MIN_ITEM_COUNT,
   TIME_LIMIT_MS,
+  type AskedDetail,
   type AskedItem,
   type ItemKind,
   estimate,
   nextLevel,
   pickIndex,
   planKinds,
+  reachCeiling,
   shouldStop,
   sittingIsServable,
 } from '../domain/levelTest';
@@ -222,14 +224,17 @@ export function LevelTestPage() {
     response and is not evidence yet, so it is dropped here — which is also what
     makes a resumed sitting score identically to one that was never interrupted.
   */
-  const asked = useMemo<AskedItem[]>(() => {
+  const asked = useMemo<AskedDetail[]>(() => {
     if (!sitting || !byId) return [];
-    const out: AskedItem[] = [];
+    const out: AskedDetail[] = [];
     sitting.presented.forEach((id, index) => {
       const response = sitting.responses[index];
       if (!response) return;
       const item = byId.get(id);
-      if (item) out.push({ level: item.level, response });
+      // The kind travels with the answer: `reach` requires evidence spread
+      // across question kinds before it opens a band, so a history of levels
+      // alone would let three word questions unlock the sentence band.
+      if (item) out.push({ level: item.level, response, kind: item.kind });
     });
     return out;
   }, [sitting, byId]);
@@ -268,11 +273,11 @@ export function LevelTestPage() {
   const chooseNext = useCallback(
     (from: LevelTestSitting, loaded: LevelTestBank): LevelTestSitting | 'over' => {
       const items = new Map(loaded.items.map((item) => [item.id, item]));
-      const history: AskedItem[] = [];
+      const history: AskedDetail[] = [];
       from.presented.forEach((id, index) => {
         const response = from.responses[index];
         const item = items.get(id);
-        if (response && item) history.push({ level: item.level, response });
+        if (response && item) history.push({ level: item.level, response, kind: item.kind });
       });
       if (shouldStop(history)) return 'over';
 
@@ -305,9 +310,22 @@ export function LevelTestPage() {
       const level = nextLevel(history, open, { previousLevel: from.seededFrom });
       if (level === null) return 'over';
 
+      /*
+        The neighbour search may not cross the ceiling the evidence gate set.
+
+        Band 1 holds three contextual items, so `levelKind(3, 'context')` is
+        often empty and the fallback used to reach level 5 — a band-2 sentence
+        served to a learner who has proved nothing beyond band 1. Searching
+        downward first and never above `ceiling` keeps the fallback inside what
+        was earned; when nothing is left it drops the *kind* rather than the
+        ceiling, which is the right trade: a word question at the right level
+        measures something, a sentence at the wrong one does not.
+      */
+      const ceiling = reachCeiling(history);
       let pool = unused(loaded.byLevelKind.get(levelKind(level, wanted)));
       if (pool.length === 0) {
         for (const nearby of [level - 1, level + 1, level - 2, level + 2]) {
+          if (nearby < 1 || nearby > ceiling) continue;
           pool = unused(loaded.byLevelKind.get(levelKind(nearby, wanted)));
           if (pool.length > 0) break;
         }

@@ -575,6 +575,271 @@ export function warmupLadder(previousLevel: number | null): number[] {
   return [start, start + 2, start + 4].map(clamp);
 }
 
+/* ========================================================================== *
+ * The evidence gate
+ *
+ * Everything above this point decides *where the learner probably is*. This
+ * decides *what the sitting is allowed to ask them*, and the two are not the
+ * same question.
+ *
+ * ## Why a second mechanism was needed
+ *
+ * The estimator is sound and the bounded walk is sound, and together they still
+ * produced this, from a tester's screen:
+ *
+ *     Q1  L2   meaning   다시                       correct
+ *     Q2  L4   context   밥 먹기 ____에 손을 씻어요.    correct
+ *     Q3  L6   produce   …                          correct
+ *     Q4  L8   context   그 사람 이름을 아직 ____.      ← four questions in
+ *
+ * Three word-recognition answers and the fourth question is a level-8 sentence.
+ * Worse, for a learner who then said *I don't know*, the next question was
+ * level 10, because the posterior after two answers is still near its prior of
+ * 15 and `MAX_STEP_UP` was the only thing holding the walk down — so the
+ * sequence climbed +2, +2, +2 regardless of what the learner said.
+ *
+ * The missing idea is that **difficulty should be earned, not merely walked
+ * toward**. A bound on the step size limits how fast the sitting climbs; it
+ * says nothing about whether the learner has given any reason to climb.
+ *
+ * ## What this adds
+ *
+ * A hard ceiling, recomputed from the response history before every question:
+ * the sitting may not ask above `reach(asked)`. The ceiling starts at the top
+ * of the foundation band and rises one band at a time, and only on evidence
+ * that has been repeated and spread across question kinds.
+ * ========================================================================== */
+
+/**
+ * The six bands, as `[floor, top]` on the 1–30 scale.
+ *
+ * A band is the unit difficulty moves in. The boundaries follow the vocabulary
+ * scale's own shape — the bands widen as they climb, because the frequency
+ * bands they are cut from do — and each one is a description a person can hold:
+ *
+ * | | | |
+ * |:---|:---|:---|
+ * | 1 | 1–3 | foundation — the first few hundred words, one-clause sentences |
+ * | 2 | 4–7 | elementary — everyday nouns and verbs, present and past polite |
+ * | 3 | 8–12 | lower intermediate — connectives, negation, longer frames |
+ * | 4 | 13–18 | intermediate — relative clauses, nominalisers |
+ * | 5 | 19–24 | upper intermediate — formal registers, abstract vocabulary |
+ * | 6 | 25–30 | advanced — low-frequency words, 사자성어 |
+ */
+export const BANDS: readonly (readonly [number, number])[] = [
+  [1, 3],
+  [4, 7],
+  [8, 12],
+  [13, 18],
+  [19, 24],
+  [25, 30],
+] as const;
+
+/** The band a level belongs to, 0-based. */
+export function bandOf(level: number): number {
+  for (let at = 0; at < BANDS.length; at += 1) {
+    if (level <= BANDS[at]![1]) return at;
+  }
+  return BANDS.length - 1;
+}
+
+/** The highest level a band may ask. */
+export function bandTop(band: number): number {
+  return BANDS[Math.max(0, Math.min(BANDS.length - 1, band))]![1];
+}
+
+/** The lowest level a band may ask. */
+export function bandFloor(band: number): number {
+  return BANDS[Math.max(0, Math.min(BANDS.length - 1, band))]![0];
+}
+
+/**
+ * Correct answers inside a band before the band above it opens.
+ *
+ * Three, and one is not a typo for two. A four-option question is answered
+ * correctly by luck a quarter of the time, so one correct answer is a coin and
+ * two in a row is one in sixteen — still ordinary. Three is one in
+ * sixty-four, and combined with `PROMOTE_KINDS` below it cannot be reached by
+ * luck on a single skill.
+ */
+export const PROMOTE_CORRECT = 3;
+
+/**
+ * And two, above the bands where a beginner can be hurt.
+ *
+ * The gate exists to protect the opening: a learner who is still decoding
+ * Hangul must not be handed a two-clause sentence because they recognised three
+ * words. That risk lives entirely in the first two promotions — band 1→2 opens
+ * elementary sentences, band 2→3 opens connectives and negation. A learner who
+ * has read those correctly has demonstrated they are not the learner the gate
+ * protects, and holding them to the same evidence for four more bands buys
+ * nothing and costs accuracy: at a flat three, the top band under-reported
+ * strong learners by 1.75 levels because it opened too late in a
+ * thirty-question sitting to gather evidence there.
+ */
+export const PROMOTE_CORRECT_ABOVE = 2;
+
+/** The band index from which the lighter requirement applies. */
+export const STRICT_BANDS = 2;
+
+/** Correct answers needed to open the band above `band`. */
+export function promoteCorrect(band: number): number {
+  return band < STRICT_BANDS ? PROMOTE_CORRECT : PROMOTE_CORRECT_ABOVE;
+}
+
+/** Distinct question kinds those answers must span, to open the band above. */
+export function promoteKinds(band: number): number {
+  return band < STRICT_BANDS ? PROMOTE_KINDS : 1;
+}
+
+/**
+ * And they must not all be the same kind of question.
+ *
+ * A learner who can pick the English meaning of three Korean words has
+ * demonstrated recognition. That is not evidence that they can read a sentence,
+ * and the band above is where sentences start to carry connectives. So the
+ * evidence has to span at least two of `meaning`, `produce` and `context`.
+ *
+ * This is the rule that stops the reported sequence: three correct word
+ * questions no longer open the sentence band on their own.
+ */
+export const PROMOTE_KINDS = 2;
+
+/**
+ * A miss inside a band closes the band above until it is answered.
+ *
+ * Not forever — a learner who mis-taps once should not be capped for the rest
+ * of the sitting — but the next `CONFIRM_AFTER_MISS` questions are confirmation
+ * questions, and promotion is suspended until they are answered correctly.
+ */
+export const CONFIRM_AFTER_MISS = 2;
+
+/**
+ * How far below the missed level a confirmation question is drawn.
+ *
+ * One level, not one band. The point is to get an answerable question in front
+ * of somebody who has just failed one, and dropping a whole band after a single
+ * miss is the oscillation the brief asks to avoid — a learner bouncing between
+ * level 12 and level 3 is not being measured either.
+ */
+export const CONFIRM_DROP = 1;
+
+/** What the reach is, and what evidence produced it. */
+export interface Reach {
+  /** The highest band the sitting may ask from, 0-based. */
+  band: number;
+  /** The highest level it may ask. */
+  level: number;
+  /** Correct answers counted in the band that is currently being proved. */
+  correct: number;
+  /** How many distinct kinds those correct answers span. */
+  kinds: number;
+  /** True while the learner is answering confirmation questions after a miss. */
+  confirming: boolean;
+  /** The level a confirmation question must not exceed, when confirming. */
+  confirmCeiling: number;
+}
+
+/** An answer, with the kind of question it was, for the evidence gate. */
+export interface AskedDetail extends AskedItem {
+  kind?: ItemKind;
+}
+
+/**
+ * The highest band this learner has earned, and whether they are confirming.
+ *
+ * Walks the history once. A band opens when `PROMOTE_CORRECT` correct answers
+ * at or above its floor have been given across `PROMOTE_KINDS` distinct kinds;
+ * a miss opens a confirmation window that suspends promotion until it closes.
+ *
+ * Pure, like everything else the selector uses, so a resumed sitting recomputes
+ * the same ceiling from the same answers.
+ */
+export function reach(asked: readonly AskedDetail[]): Reach {
+  let band = 0;
+  let correct = 0;
+  const kinds = new Set<ItemKind>();
+  let sinceMiss = Infinity;
+  let missLevel = LEVELS;
+
+  for (const item of asked) {
+    const counts = item.level >= bandFloor(band);
+    if (item.response === 'correct') {
+      if (sinceMiss < CONFIRM_AFTER_MISS) sinceMiss += 1;
+      // Only answers at or above the band being proved are evidence for it.
+      if (counts) {
+        correct += 1;
+        if (item.kind) kinds.add(item.kind);
+      }
+      const spread = item.kind ? kinds.size : correct;
+      if (
+        sinceMiss >= CONFIRM_AFTER_MISS &&
+        correct >= promoteCorrect(band) &&
+        spread >= promoteKinds(band) &&
+        band < BANDS.length - 1
+      ) {
+        band += 1;
+        correct = 0;
+        kinds.clear();
+      }
+    } else {
+      /*
+        A miss costs one unit of evidence and opens a confirmation window. It
+        does **not** take the band away, and it does not wipe the evidence
+        either.
+
+        Both of those were tried. Taking the band away produces the oscillation
+        this mechanism exists to prevent — a learner bouncing between band 4 and
+        band 1 is not being measured. Wiping the evidence looks stricter and is
+        worse in a different way: a real learner at level 20 answers about one
+        question in six wrongly, so every partial climb was erased before it
+        completed and the sitting never reached them. Measured over 6,000
+        simulated sittings, wiping cost **13 points of ±3 accuracy**; counting
+        down by one costs none of it and still requires three net correct
+        answers to open a band.
+      */
+      if (counts) correct = Math.max(0, correct - 1);
+      sinceMiss = 0;
+      missLevel = item.level;
+    }
+  }
+
+  const confirming = sinceMiss < CONFIRM_AFTER_MISS;
+  return {
+    band,
+    level: bandTop(band),
+    correct,
+    kinds: kinds.size,
+    confirming,
+    /*
+      Never below the top of the foundation band.
+
+      A learner who misses a level-1 question has nowhere easier to be sent, and
+      a ceiling of 1 leaves the sitting one level wide — which pinned an
+      all-wrong sitting to level 1 for nineteen consecutive questions, past the
+      `REPEAT_LIMIT` that exists to stop exactly that. Band 1 is three levels of
+      equally foundational material, so confirmation inside it has somewhere to
+      go.
+    */
+    confirmCeiling: Math.max(bandTop(0), missLevel - CONFIRM_DROP),
+  };
+}
+
+/**
+ * The highest level anything in this sitting may ask, right now.
+ *
+ * `nextLevel` applies this to the level it chooses. The screen needs it too:
+ * having been given a level, it looks for the wanted *kind* at that level and
+ * falls back to neighbouring levels when the kind is thin — and a fallback that
+ * reaches two levels up can cross a band boundary the evidence gate has not
+ * opened. Band 1 holds three contextual items, so the fallback fired on the
+ * first sentence of every beginner sitting and served a band-2 one.
+ */
+export function reachCeiling(asked: readonly AskedDetail[]): number {
+  const earned = reach(asked);
+  return earned.confirming ? Math.min(earned.level, earned.confirmCeiling) : earned.level;
+}
+
 /** Which phase of the sitting the next question belongs to. */
 export type Phase = 'warmup' | 'adaptive' | 'confirm';
 
@@ -792,12 +1057,29 @@ export interface NextLevelOptions {
  * adaptive part is intact, it is only prevented from being abrupt.
  */
 export function nextLevel(
-  asked: readonly AskedItem[],
+  asked: readonly AskedDetail[],
   available: readonly number[],
   options: NextLevelOptions = {},
 ): number | null {
   if (available.length === 0) return null;
-  const clamp = (level: number) => Math.min(LEVELS, Math.max(1, level));
+  /*
+    The ceiling, before anything else.
+
+    `earned.level` is the top of the highest band the learner has proved. No
+    step of the walk below may exceed it, and while they are answering
+    confirmation questions after a miss the ceiling drops further still. This is
+    what makes difficulty *earned* rather than merely approached slowly: the
+    bounded step decides how fast the sitting may climb, this decides whether it
+    may climb at all.
+  */
+  const earned = reach(asked);
+  const ceiling = earned.confirming
+    ? Math.min(earned.level, earned.confirmCeiling)
+    : earned.level;
+  const reachable = available.filter((level) => level <= ceiling);
+  const pool = reachable.length > 0 ? reachable : [Math.min(...available)];
+
+  const clamp = (level: number) => Math.min(ceiling, Math.max(1, level));
   const index = asked.length;
   const phase = phaseOf(asked);
 
@@ -812,7 +1094,7 @@ export function nextLevel(
   */
   if (phase === 'warmup') {
     const ladder = warmupLadder(options.previousLevel ?? null);
-    return snap(ladder[index] ?? ladder[ladder.length - 1]!, available);
+    return snap(Math.min(ceiling, ladder[index] ?? ladder[ladder.length - 1]!), pool);
   }
 
   const where = estimate(asked).level;
@@ -851,7 +1133,16 @@ export function nextLevel(
     than the estimate inside it.
   */
   const bounds = bracket(asked);
-  let wanted = converged(asked) ? where : (bounds.lowerBound + bounds.upperBound) / 2;
+  /*
+    The bracket's upper bound is `LEVELS` until something is missed, so its
+    midpoint after three correct answers is 18 — which is what the walk was
+    climbing toward two levels at a time. Clamping the *target* to the earned
+    ceiling means the walk aims at somewhere the learner has been shown to be,
+    rather than being restrained on its way somewhere they have not.
+  */
+  let wanted = clamp(
+    converged(asked) ? where : (bounds.lowerBound + Math.min(bounds.upperBound, ceiling)) / 2,
+  );
 
   /*
     One adaptive question in every `EASY_EVERY` is drawn below the estimate —
@@ -883,8 +1174,8 @@ export function nextLevel(
     wanted = clamp(Math.round(where) + offsets[(index - CONFIRM_FROM) % offsets.length]!);
   }
 
-  const inStep = available.filter((level) => level >= low && level <= high);
-  const candidates = inStep.length > 0 ? inStep : available;
+  const inStep = pool.filter((level) => level >= low && level <= high);
+  const candidates = inStep.length > 0 ? inStep : pool;
 
   /*
     Rank by information about the *current* estimate, not about the nudged
@@ -1001,10 +1292,37 @@ export function sittingIsServable(
  * three, and the first question of an assessment sets what somebody expects
  * from the rest of it.
  */
+export const OPENING_ITEMS = 5;
+
+/**
+ * The opening, which is words.
+ *
+ * The kind plan used to be one repeating cycle — meaning, context, produce,
+ * context — so **the second question of every sitting was a sentence**, before
+ * anything was known about whether the learner could read one. A tester who had
+ * recently learnt Hangul met `밥 먹기 ____에 손을 씻어요` as question two and a
+ * causal two-clause sentence as question four.
+ *
+ * A gap-fill is a reading task before it is a vocabulary task, so the first five
+ * questions are now word questions: *what does this mean* and *which word is
+ * this*. They measure the thing the rest of the test is built on, they are the
+ * gentlest of the three, and they give the evidence gate two distinct kinds to
+ * count before a sentence is ever offered. The first sentence is question six.
+ *
+ * The composition over the whole sitting is unchanged — twelve contextual, nine
+ * of each other kind — so nothing is lost; it is reordered.
+ */
+const OPENING = ['meaning', 'produce', 'meaning', 'produce', 'meaning'] as const;
+
 export function planKinds(): ItemKind[] {
   const remaining: Record<ItemKind, number> = { ...COMPOSITION };
   const out: ItemKind[] = [];
-  const cycle = ['meaning', 'context', 'produce', 'context', 'meaning', 'produce'] as const;
+  for (const kind of OPENING) {
+    if (remaining[kind] <= 0) break;
+    remaining[kind] -= 1;
+    out.push(kind);
+  }
+  const cycle = ['context', 'meaning', 'context', 'produce', 'context', 'meaning', 'produce'] as const;
   for (let i = 0; out.length < ITEM_COUNT; i += 1) {
     const kind = cycle[i % cycle.length]!;
     if (remaining[kind] > 0) {

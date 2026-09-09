@@ -19,6 +19,8 @@ import { describe, expect, it } from 'vitest';
 import {
   CONFIRM_FROM,
   CONFIRM_WIDTH,
+  OPENING_ITEMS,
+  bandTop,
   bracket,
   converged,
   LEVELS,
@@ -30,6 +32,7 @@ import {
   STOP_SE,
   SUSTAINED_CORRECT,
   WARMUP_ITEMS,
+  type AskedDetail,
   type AskedItem,
   type Response,
   estimate,
@@ -37,6 +40,8 @@ import {
   phaseOf,
   pickIndex,
   planKinds,
+  reach,
+  reachCeiling,
   shouldStop,
   sittingIsServable,
   warmupLadder,
@@ -134,10 +139,49 @@ describe('where a sitting opens', () => {
     }
   });
 
-  it('spends the first questions on the ladder and not on the estimator', () => {
+  /**
+   * The ladder now stops at the foundation band, and that is the point.
+   *
+   * It used to run 2, 4, 6 for every learner who got them right, so the third
+   * question of a sitting was already level 6 on the strength of two correct
+   * word answers. The evidence gate caps the ladder at the top of band 1 until
+   * a band has been *earned*, so it runs 2, 3, 3 — three foundation questions,
+   * which is what a warm-up is for.
+   */
+  it('spends the first questions on the ladder, inside the foundation band', () => {
     const { levels } = walk(ability(30));
-    expect(levels.slice(0, BOUNDS.warmup)).toEqual([2, 4, 6]);
+    expect(levels.slice(0, BOUNDS.warmup)).toEqual([2, 3, 3]);
+    expect(levels.slice(0, BOUNDS.warmup).every((level) => level <= bandTop(0))).toBe(true);
     expect(phaseOf([])).toBe('warmup');
+  });
+
+  it('will not leave the foundation band on three correct answers of one kind', () => {
+    /*
+      The reported defect, as an assertion. Three correct `meaning` answers is
+      recognition of three words; the band above holds sentences, and reading a
+      sentence is a different skill. `PROMOTE_KINDS` is what says so.
+    */
+    const oneKind: AskedDetail[] = [1, 2, 3].map((level) => ({
+      level,
+      response: 'correct' as const,
+      kind: 'meaning' as const,
+    }));
+    expect(reach(oneKind).band).toBe(0);
+    expect(reachCeiling(oneKind)).toBe(bandTop(0));
+
+    // The same three answers across two kinds do open it.
+    const twoKinds: AskedDetail[] = [
+      { level: 1, response: 'correct', kind: 'meaning' },
+      { level: 2, response: 'correct', kind: 'produce' },
+      { level: 3, response: 'correct', kind: 'meaning' },
+    ];
+    expect(reach(twoKinds).band).toBe(1);
+  });
+
+  it('asks no sentence until the opening word questions are done', () => {
+    const plan = planKinds();
+    expect(plan.slice(0, OPENING_ITEMS).every((kind) => kind !== 'context')).toBe(true);
+    expect(plan[OPENING_ITEMS]).toBe('context');
   });
 
   it('abandons the ladder the moment a learner says they do not know', () => {
@@ -565,10 +609,59 @@ describe('the difficulty moves gently, and asymmetrically', () => {
   });
 
   it('still allows the full step downward, so a miss is believed at once', () => {
-    const { levels } = walk((_level, index) => (index < 3 ? 'correct' : 'wrong'));
+    /*
+      Driven from high up rather than from the opening. A sitting can no longer
+      reach level 6 in three questions — the ceiling holds it in band 1 — so a
+      learner who succeeds and then fails has to climb first before there is
+      three levels of room to fall.
+    */
+    const { levels } = walk((_level, index) => (index < 16 ? 'correct' : 'wrong'));
     const drops = levels.slice(1).map((level, at) => levels[at]! - level);
     expect(Math.max(...drops)).toBeGreaterThan(MAX_STEP_UP);
     expect(Math.max(...drops)).toBeLessThanOrEqual(MAX_STEP);
+  });
+
+  it('sends a learner who misses somewhere easier, and keeps them there to confirm', () => {
+    /*
+      The other half of the reported defect: after a miss the sequence used to
+      keep climbing, because the posterior still sat near its prior of 15 and
+      the step bound was the only thing holding it. Now a miss caps the next
+      `CONFIRM_AFTER_MISS` questions at a level below the one that was missed.
+    */
+    const missed: AskedDetail[] = [
+      { level: 1, response: 'correct', kind: 'meaning' },
+      { level: 2, response: 'correct', kind: 'produce' },
+      { level: 3, response: 'correct', kind: 'meaning' },
+      { level: 5, response: 'correct', kind: 'produce' },
+      { level: 6, response: 'correct', kind: 'meaning' },
+      { level: 7, response: 'correct', kind: 'context' },
+      { level: 9, response: 'wrong', kind: 'context' },
+    ];
+    const after = reach(missed);
+    expect(after.confirming).toBe(true);
+    expect(reachCeiling(missed)).toBeLessThan(9);
+    expect(nextLevel(missed, ALL_LEVELS, { previousLevel: null })!).toBeLessThan(9);
+
+    // And the window closes once the confirmation questions are answered.
+    const recovered: AskedDetail[] = [
+      ...missed,
+      { level: 7, response: 'correct', kind: 'meaning' },
+      { level: 7, response: 'correct', kind: 'produce' },
+    ];
+    expect(reach(recovered).confirming).toBe(false);
+  });
+
+  it('never asks above the band the learner has earned', () => {
+    for (const respond of [
+      () => 'wrong' as const,
+      () => 'unknown' as const,
+      (_l: number, i: number) => (i % 2 === 0 ? ('correct' as const) : ('wrong' as const)),
+    ]) {
+      const { levels, asked } = walk(respond);
+      for (let at = 0; at < levels.length; at += 1) {
+        expect(levels[at]!).toBeLessThanOrEqual(reachCeiling(asked.slice(0, at)));
+      }
+    }
   });
 
   /**
