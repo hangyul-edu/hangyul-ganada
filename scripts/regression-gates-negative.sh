@@ -24,6 +24,8 @@
 # | **G6** | 밥을 먹고 ____을 드세요, with 물 back among its four options. |
 # | **G7** | 일곱 시에 ____ — the photographed item, put straight back in the bank. |
 # | **G8** | ____이 문을 열었어요 with 학생 and 형 back among its options. |
+# | **G9** | 물을 안 줘서 화분의 꽃이 ____ back at level 7, where a tester met it. |
+# | **G10** | A two-clause sentence dropped into the foundation band. |
 #
 # G1 rebuilds the web bundle twice and drives a browser over 45 cases, so it is
 # the slow one; `--fast` leaves it out for a quick pass and the full run is what
@@ -65,7 +67,7 @@ expect_fail() {
     echo "$name: GATE DID NOT FIRE   <<<< PROBLEM"
     fail=$((fail + 1))
   else
-    echo "$name: caught — $(grep -m1 -E '✗|problem|reserves|paints|outside|two right answers|swallowed|only when|are both people' "$WORK/out" | sed 's/^ *//' | cut -c1-130)"
+    echo "$name: caught — $(grep -m1 -E '✗|problem|reserves|paints|outside|two right answers|swallowed|only when|are both people|demands|foundation band' "$WORK/out" | sed 's/^ *//' | cut -c1-130)"
     pass=$((pass + 1))
   fi
 }
@@ -209,7 +211,44 @@ json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
 expect_fail G8 ambiguity_gate
 restore "$BANK"
 
+policy_gate() { npx tsx scripts/level-test-policy-qa.mjs --check; }
+
+echo "G9  물을 안 줘서 화분의 꽃이 ____ back at level 7"
+python3 -c "
+import json,sys
+p=sys.argv[1]
+d=json.load(open(p,encoding='utf-8'))
+for item in d['items']:
+    if item.get('prompt','').startswith('물을 안 줘서'):
+        item['level']=7
+        break
+else:
+    raise SystemExit('the reported item is not in the bank')
+json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
+" "$BANK"
+expect_fail G9 policy_gate
+restore "$BANK"
+
+echo "G10 a two-clause sentence in the foundation band"
+python3 -c "
+import json,sys
+p=sys.argv[1]
+d=json.load(open(p,encoding='utf-8'))
+for item in d['items']:
+    if item.get('kind')=='context' and item.get('demand',{}).get('grammar'):
+        item['level']=2
+        item['demand']['noun']=1
+        item['demand']['eojeol']=3
+        break
+else:
+    raise SystemExit('no contextual item carries grammar demand')
+json.dump(d,open(p,'w',encoding='utf-8'),ensure_ascii=False)
+" "$BANK"
+expect_fail G10 policy_gate
+restore "$BANK"
+
 echo
+expect_pass "restored: level-test policy" policy_gate
 expect_pass "restored: level-test ambiguity" ambiguity_gate
 expect_pass "restored: strokes:markers" marker_gate
 expect_pass "restored: numbers:qa" numbers_gate
