@@ -2093,6 +2093,78 @@
       "recommendedFix": "Fixed. `sittingIsServable()` in `domain/levelTest.ts`; a sitting whose items this build cannot supply is not offered for resume and the learner starts a fresh one. That costs nothing — an unfinished sitting has never written a level — and it is the bar `isReadableSitting` already sets one layer out: discard rather than repair.",
       "note": "Three unit cases: every item present, an answered item gone, the on-screen item gone.",
       "effort": "S"
+    },
+    {
+      "id": "I-196",
+      "area": "Vocabulary Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A gap-fill's difficulty was the word taken out of it, and nothing else — 629 of 629 items",
+      "customerImpact": "A learner who had recently finished the alphabet was shown `물을 안 줘서 화분의 꽃이 ____.` as **question four**: two clauses, a negation, a causal connective, an inference, and 화분 — a level-28 word. The item was level 7. Reported by a tester.",
+      "evidence": "Every contextual item took `anchor.level`, the frequency rank of the answer. Measured on the bank at 700c78db: 629 of 629. `지갑에 ____이 있어요` was a level-1 question containing 지갑, a level-9 word; 61 items (10%) contained a word ranked above their own level, the worst by 21.\n\nThe answer's rank is a fact about the answer. A gap-fill is a reading task before it is a vocabulary task, and nothing measured the frame.",
+      "recommendedFix": "Fixed at the source. `scripts/content/sentence_demand.py` computes a demand level from three floors — the hardest ordinary word in the frame, twelve grammar constructions each with the level a learner can be expected to have met it, and the eojeol count — and the item takes the higher of that and the answer's own level. 68 of 625 items moved, all upward. `docs/LEVEL_TEST_DIFFICULTY_AUDIT.md` records every floor and why.",
+      "note": "Grammar is read from the whole sentence and vocabulary from the frame: the learner sees all four options, so the construction the answer completes is one they must read, while the answer's own difficulty is already counted.",
+      "effort": "L"
+    },
+    {
+      "id": "I-197",
+      "area": "Vocabulary Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Difficulty climbed two levels a question whatever the learner answered",
+      "customerImpact": "A learner who answered *I don't know* to a level-4 word was shown level 6 next. A learner who answered the three opening questions correctly met a level-8 sentence at question four.",
+      "evidence": "Neither the estimator nor the step bound was wrong. The bracket's upper bound is 30 until something is missed, so its midpoint after three correct answers is 18; the posterior's prior is centred at 15 and deliberately weak, so for the first several questions it believes something near 15 about everybody. `MAX_STEP_UP` was the only thing holding the walk down.\n\nA bound on step size limits how fast a sitting climbs. It says nothing about whether the learner has given any reason to climb.",
+      "recommendedFix": "Fixed. Six bands and an earned ceiling: `reach()` opens a band on three correct answers inside it across two distinct question kinds, and `reachCeiling` clamps the selector's target, the bounded step, the warm-up ladder and the screen's pool fallback. A miss costs one unit of evidence and opens a two-question confirmation window capped below the level missed. `docs/LEVEL_TEST_ADAPTIVE_POLICY.md` states the whole policy.",
+      "note": "Costs 3.3 points of ±3 accuracy (90.2% → 86.9%), spent deliberately and recorded at the gate's threshold. A test that measures an advanced learner half a level better by asking a beginner questions they cannot read is not the better test.",
+      "effort": "L"
+    },
+    {
+      "id": "I-198",
+      "area": "Vocabulary Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The second question of every sitting was a sentence",
+      "customerImpact": "A learner still becoming comfortable reading Hangul met `밥 먹기 ____에 손을 씻어요` — a nominaliser and four eojeol — as question two, before anything was known about whether they could read a sentence at all.",
+      "evidence": "`planKinds` cycled `meaning, context, produce, context`, so index 1 was always contextual.",
+      "recommendedFix": "Fixed. The first `OPENING_ITEMS` = 5 are word questions; the first sentence is question six. The composition over the whole sitting is unchanged — twelve contextual, nine of each other kind — so nothing is lost, it is reordered. Measured across all sixteen simulated profiles: first sentence at Q6 in every one.",
+      "note": "It also gives the evidence gate two distinct kinds to count before a sentence is offered, which is what stops three word answers opening the sentence band.",
+      "effort": "S"
+    },
+    {
+      "id": "I-199",
+      "area": "Release engineering",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The gate for a too-hard opening used a threshold six levels wide",
+      "customerImpact": "None directly. It is why the reported defect shipped: the gate over it was green and correct by its own rule.",
+      "evidence": "`leveltest:qa` measured *of a level-2 learner's first five questions, the share more than six levels above them* and reported 1.0% against a bound of 15%. A level-7 question put to a level-2 learner is five levels above them and was not counted. A level-8 sentence at question four was inside the threshold.",
+      "recommendedFix": "Fixed by replacing the measure rather than tightening it. `leveltest:policy` replays six beginner profiles across eight seeds through the real selection path and asserts that **nothing above the earned band is ever presented** — a property, not a share. The six-level metric is kept because it is comparable with earlier editions.",
+      "note": "The third instance this year of a check whose proxy could not distinguish its subject.",
+      "effort": "M"
+    },
+    {
+      "id": "I-200",
+      "area": "Vocabulary Level Test",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The screen's pool fallback could cross a band the learner had not earned",
+      "customerImpact": "Band 1 holds three contextual items, so the fallback fired on the first sentence of nearly every beginner sitting and served a band-2 one.",
+      "evidence": "Given a level, `LevelTestPage` looks for the wanted kind at that level and falls back to level ±1 and ±2. Nothing bounded that search.",
+      "recommendedFix": "Fixed. The neighbour search is bounded by `reachCeiling`, and when nothing is left inside it the *kind* is dropped rather than the ceiling — a word question at the right level measures something, a sentence at the wrong one does not.",
+      "note": "",
+      "effort": "S"
+    },
+    {
+      "id": "I-201",
+      "area": "Release engineering",
+      "severity": "P3",
+      "status": "RESOLVED",
+      "summary": "Two gates asserted the assumption that was the defect",
+      "customerImpact": "None. Both would have blocked the fix.",
+      "evidence": "`leveltest:bank` asserted that an item's level equals its anchor's, which is exactly the rule I-196 removes. And `leveltest:qa` classified each question against the posterior — which the evidence gate does not let the sitting act on — reporting 77% of a sitting as *below the estimate*, a number about the prior rather than about the learner.",
+      "recommendedFix": "Fixed. A contextual item may sit above its anchor and never below. The exposure metric compares against `min(estimate, reachCeiling)`: a question at the ceiling is the hardest one available and is *at* the estimate in every sense a learner would recognise.",
+      "note": "",
+      "effort": "S"
     }
   ]
 }
