@@ -146,6 +146,12 @@
       "b": "거래",
       "frame": "____ 정보를 지켜요.",
       "why": "거래 정보 is an ordinary compound"
+    },
+    {
+      "a": "매일",
+      "b": "조금",
+      "frame": "____ 한글을 써요.",
+      "why": "both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary"
     }
   ]
 }

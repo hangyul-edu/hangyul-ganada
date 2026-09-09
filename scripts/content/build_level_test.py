@@ -68,6 +68,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 import frequency  # noqa: E402
 from hangul import is_syllable  # noqa: E402
+from sentence_demand import context_level  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 CORPUS = ROOT / "apps" / "web" / "src" / "data" / "generated" / "vocabulary.json"
@@ -571,6 +572,48 @@ def build() -> dict:
         if row["source"] == "dictionary" and row["level"] < DICTIONARY_LEVEL_FLOOR:
             continue
         rows.append(row)
+
+    """A contextual question is levelled by its *sentence*, not by its answer.
+
+    Every one of the 629 contextual items in the shipped bank took its level
+    from the word removed from it and from nothing else, so `지갑에 ____이
+    있어요` was a level-1 question containing a level-9 word, and `물을 안 줘서
+    화분의 꽃이 ____` was a level-7 question containing a level-28 word, a
+    negation, a causal connective and an inference. A tester met the second as
+    question four.
+
+    `sentence_demand` reads the frame and returns what it asks for; the item
+    takes the higher of that and the answer's own level. It can only raise. See
+    `docs/LEVEL_TEST_DIFFICULTY_AUDIT.md`.
+
+    Done here rather than in the JS builder because the word→level table is
+    complete only at this point, and the demand of a frame is a fact about the
+    frame — it should not depend on which of the two programs is asking.
+    """
+    levels = {}
+    for row in rows:
+        word = row["word"]
+        if word not in levels or row["level"] < levels[word]:
+            levels[word] = row["level"]
+    for row in rows:
+        if not row["example"] or not row["context_ok"]:
+            continue
+        blanked = row["example"].replace(row["surface"], "____", 1)
+        if "____" not in blanked:
+            continue
+        level, demand = context_level(
+            blanked, row["level"], levels, sentence=row["example"]
+        )
+        row["context_level"] = level
+        # Kept on the anchor so the bank can carry it, the gate can read it back
+        # and a person can see *why* an item sits where it does.
+        row["context_demand"] = {
+            "eojeol": demand.eojeol,
+            "noun": demand.noun_demand,
+            "hardest": demand.hardest_word,
+            "grammar": list(demand.names),
+            "clauses": demand.clauses,
+        }
 
     return {
         "_comment": (

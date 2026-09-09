@@ -146,8 +146,26 @@ for (const item of items) {
     note('unknown anchor', `${item.id} — no anchor with id ${wordId}`);
     continue;
   }
-  if (anchor.level !== item.level) {
-    note('level disagrees', `${item.id} is at level ${item.level}; its anchor says ${anchor.level}`);
+  /*
+    A contextual item may sit **above** its anchor, and only above.
+
+    Its level is the level of the *sentence*, which is the higher of the
+    answer's own level and what the frame demands — see `sentence_demand`. So
+    `지갑에 ____이 있어요` is a level-9 question about a level-1 word, because
+    the frame contains 지갑. What must never happen is the other direction: an
+    item easier than the word it is asking about would be a question nobody can
+    answer at the level it claims.
+
+    Every other kind asks about the word alone and must match exactly.
+  */
+  const wrongLevel =
+    item.kind === 'context' ? item.level < anchor.level : anchor.level !== item.level;
+  if (wrongLevel) {
+    note(
+      'level disagrees',
+      `${item.id} is at level ${item.level}; its anchor says ${anchor.level}` +
+        (item.kind === 'context' ? ' — a contextual item may only sit above its anchor' : ''),
+    );
   }
   const seen = asked.get(wordId) ?? { anchor, items: [] };
   seen.items.push(item);

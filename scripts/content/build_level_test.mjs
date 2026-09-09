@@ -898,10 +898,26 @@ for (const anchor of anchors) {
     };
   }
 
+  /*
+   * A contextual item is levelled by its *sentence*, not by its answer.
+   *
+   * `level` above is the anchor's — the frequency rank of the word that was
+   * removed. It says nothing about the frame the learner has to read to reach
+   * it, and for 629 of 629 items it was the only thing that decided difficulty:
+   * `지갑에 ____이 있어요` was level 1 with a level-9 word in it, and `물을 안
+   * 줘서 화분의 꽃이 ____` was level 7 with a level-28 word, a negation and a
+   * causal connective. `scripts/content/sentence_demand.py` computes the
+   * frame's demand when the anchors are built, because that is where the
+   * word→level table is complete; here it is read off and used.
+   */
+  const contextLevel = anchor.context_level ?? level;
+
   items.push({
     id: `${anchor.id}:context`,
     kind: 'context',
-    level,
+    level: contextLevel,
+    /* What made it that level, so the gate and a reader can both see why. */
+    demand: anchor.context_demand ?? null,
     prompt: blanked,
     answer: anchor.surface,
     options: [anchor.surface, ...choices.map((c) => c.surface)].sort(),
