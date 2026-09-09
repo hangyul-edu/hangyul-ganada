@@ -8,77 +8,100 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `e5436cc2` on branch `main`. `build-info.json` →
+**Source:** commit `b76b0805` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 9 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 10 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 20 validation.** Codes 3 through 20 are spent,
-each by an artefact that was actually produced. This is 21.
+**This supersedes the versionCode 21 validation.** Codes 3 through 21 are spent,
+each by an artefact that was actually produced. This is 22.
 
 ---
 
 ## Why this release happened
 
-**The previous release fixed a level test that opened too hard and made it too
-slow to recover.** Bounding the difficulty step at three levels — the right fix
-for a test whose first question was at level 14 of 30 — rate-limited the walk to
-the speed of the posterior, which moves at the speed of accumulated evidence
-rather than of the last answer. A learner whose true level is 30 and who answered
-*I don't know* to the first six questions was reported at **level 2**; at true 25,
-6; at true 20, 7. With no early stumble the same engine reported 30, 25 and 20
-exactly.
+**The level test asked a beginner questions they could not read.** Three
+separate testers reported it. One, who had recently finished learning Hangul,
+was shown this as **question four**:
 
-Two causes. Selection followed the posterior, so the walk crept upward one level
-at a time and ran out of questions. And the response model had no term for a
-learner declining a word they know — `P(unknown)` was `1 − known`, so at θ=30 a
-decline on a level-1 word had probability 0.0002 and six of them cost 10²³.
+```
+  물을 안 줘서 화분의 꽃이 ____.        도왔어요 · 떠났어요 · 배웠어요 · 죽었어요
+```
 
-Selection now steers by an explicit bracket and hands back to the posterior once
-it closes to two levels; the presented step stays bounded at three, so the
-internal target may jump while the learner still sees a walk. The model gains a
-decline term of 0.03. A true level-30 sitting with six opening declines now
-reports 30.
+Two clauses, a negation, a causal connective, an inference about plants, and
+화분 — a level-28 word. The item was recorded as level 7. A second tester, who
+answered three word questions correctly, met a level-8 sentence at question
+four. A third, who *declined* a level-4 word, was shown level 6 next.
 
-**The number that hid it.** Accuracy was watched against a simulated learner who
-never fumbles, and against that learner the *previous* engine is better — 95.3%
-of sittings within ±3 levels against this one's 91.1%. Against a learner who
-slips 5% and declines 3% the order reverses: 86.1% against 90.5%. The gate now
-simulates fumbling and prints, in its own output, that its figures are not
-comparable with the ones earlier editions printed.
+Three independent causes, and none of them is in the estimator.
 
-**Three smaller things found while proving it.** The warm-up ladder ran 2, 4, 6
-even for a learner who had just declined the level-2 word. Difficulty above the
-beginner floor was still frequency alone, so 시기 sat at level 11 glossed
-"opportunity" on a rank shared with five other senses; a dictionary rank is now
-discounted by the square root of its sense count. And the cross-locale
-duplicate-answer check had silently skipped every dictionary headword, which
-`데모` demonstrated by shipping *demo · personality · feedback · a personality*.
+**Difficulty was a fact about the answer.** A contextual item took its level from
+the word removed from it and from nothing else — 629 of 629 in the shipped bank.
+`지갑에 ____이 있어요` was level 1 because 돈 is a level-1 word; 지갑 is a level-9
+word and the frame was never measured. 61 items, 10% of the contextual bank,
+contained a word ranked above the item's own level; the worst gap was 21 levels.
+`scripts/content/sentence_demand.py` now reads the frame and returns what it
+asks for — the hardest ordinary word in it, twelve grammatical constructions
+each with the level a learner can be expected to have met it at, and the eojeol
+count — and the item takes the highest of those and the answer's own level, so
+the model can only raise. **68 items moved, every one upward.** The foundation
+band now holds three sentences instead of the reach of the whole bank.
 
-**And a screen nobody had measured.** The route audit renders the Level Test's
-*intro* at five widths; the question screen is behind a tap and had never been
-measured at any. It is now, at six viewports across five languages including the
-same phone at 150% and 200% text: no overflow, no clipped option, no overlap, no
-control under 44px.
+**Nothing bounded where the sitting aimed.** The bracket's upper bound is 30
+until something is missed, so after three correct answers its midpoint is 18;
+the posterior's prior is centred at 15 and deliberately weak, so for the first
+several questions it believes roughly 15 about everybody. `MAX_STEP_UP` was the
+only restraint, and a step bound limits how fast a sitting climbs without
+saying whether the learner gave any reason to climb. Difficulty now moves in
+**bands**, and a band opens on three correct answers inside it across two
+distinct question kinds — three correct `meaning` answers is recognition of
+three words, and the band above holds sentences. A miss costs one unit of that
+evidence rather than all of it, opens a two-question confirmation window capped
+a level below what was missed, and never takes the band away.
+
+**The second question was always a sentence.** `planKinds` cycled `meaning,
+context, produce, context`, so index 1 was contextual for every learner who ever
+sat the test — a reading task before anything was known about whether the
+learner could read one. The first five questions are now word questions and the
+first sentence is question six, in all sixteen simulated profiles and in the
+running app.
+
+**What it cost, stated rather than hidden.** Within ±3 levels over 6,000
+simulated sittings: **90.2% → 86.9%**; mean absolute error 1.64 → 1.80. A
+sitting now spends its first ten to twelve questions climbing through bands a
+strong learner would previously have skipped in four, and a thirty-question
+ceiling leaves less evidence at the top. The gate's accuracy floor moved from
+90% to 85% with the reasoning written at the constant. A test that measures an
+advanced learner half a level better by asking a beginner questions they cannot
+read is not the better test.
+
+**And a fourth leak, found by replaying the policy rather than reasoning about
+it.** The ceiling was applied to the selector's target, the bounded step and the
+warm-up ladder — and not to the screen's own pool fallback, which searches
+neighbouring levels when a kind is thin. Band 1 holds three contextual items, so
+the fallback fired on the first sentence of nearly every beginner sitting and
+served a band-2 one. `leveltest:policy` now replays six beginner profiles across
+eight seeds through the real selector, the real fallback and the real draw.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Question generation | A generated gap-fill is now refused on four properties of the **stem** rather than of the candidate/answer pair: a predicate blank whose sentence gives only a time (`일곱 시에 ____`, which took both 일어나요 and 연습해요), a subject slot in front of an action with an object (which admits any human agent, whatever the keyed answer is), a blank before an evaluative predicate, and a stem that keys two different answers across the two surfaces the generator feeds |
-| Reviewed pairs | 24 lemma pairs that pass every automatic guard and still make two right answers — 얻다/날리다, 지지하다/분석하다, 유령/역사 — held in `content/vocabulary/answer-conflicts.json` and consulted by both the builder and the verifier |
-| Content | 25 example sentences rewritten in the editorial pack, with their 7 in-entry translations, their 576 locale-pack translations and 26 new recordings. No word id, `senseId` or level moved |
-| Question ledger | It found the answer with `options.find(o => o.isKey)`, and `isKey` means *render this through i18n*. **336 of 368** Numbers questions were being validated against an answer the app does not accept, or none. It now reads the index the screen grades on |
-| Localization | 24 locale packs were still translating replaced example sentences past five gates that read those files. `copy:fresh` records the Korean each pack was written against and fails on drift |
-| Interface strings | `i18n:check` passed a key present with an empty string. Two rules added — *present but empty* and *lost every word* — both sweeping the locale's own keys, because the source loop short-circuits on plural bases |
-| Resume | A stored Level Test sitting whose items this build can no longer supply is no longer offered for resume; the replay used to skip an item it could not find and score the learner on fewer answers than they gave |
-| New gates | `ambiguity:ledger`, `locale:ledger`, `copy:fresh` — all three in `verify:quick` |
-| New documents | `docs/AMBIGUITY_LEDGER.md` (5,191 questions by family, 22 reviewed findings, 24 pairs) and `docs/LOCALE_LEDGER.md` (32 languages × four layers) |
-| Version | Android **1.0.5 / 21**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Item difficulty | A contextual item's level is now `max(answer level, hardest word in the frame, grammar floor, eojeol floor)` — `scripts/content/sentence_demand.py`, recorded on every item as `demand` so a reader of the bank can see why it sits where it does. 68 of 625 items moved, all upward; largest move +21 |
+| Foundation band | Three sentences at levels 1–3, all one clause, present or past polite, three eojeol or fewer. `leveltest:policy` fails the build on a connective, negation, nominaliser, relative clause, honorific or formal ending anywhere in band 1, or on a frame longer than four eojeol |
+| Selection | Six bands with an earned ceiling. A band opens on `PROMOTE_CORRECT` correct answers inside it across `PROMOTE_KINDS` distinct kinds; a miss costs one unit of evidence, opens a two-question confirmation window capped `CONFIRM_DROP` below the missed level, and does not take the band away. `reachCeiling` is applied in four places, including the screen's pool fallback |
+| Opening | The first `OPENING_ITEMS` = 5 questions are word questions; the warm-up ladder is clamped by the same ceiling and ends at the first miss. The composition over the whole sitting is unchanged — twelve contextual, nine of each other kind — reordered, not reduced |
+| Exposure metric | `leveltest:qa` classified each question against a posterior the evidence gate does not let the sitting act on, and reported 77% of a sitting as *below the estimate*. It now compares against `min(estimate, reachCeiling)` |
+| New gate | `leveltest:policy` — re-derives every contextual level from the item's own recorded demand, forbids six constructions in the foundation band, and replays 6 beginner profiles × 8 seeds through the real selector asserting nothing above the ceiling and no sentence in the opening |
+| Negative tests | Two more, 13 in all: G9 restores `물을 안 줘서 화분의 꽃이 ____.` to level 7, G10 drops a two-clause sentence into band 1. Both are caught |
+| New documents | `docs/LEVEL_TEST_DIFFICULTY_AUDIT.md`, `docs/LEVEL_TEST_ADAPTIVE_POLICY.md`, `docs/LEVEL_TEST_CONTENT_REVIEW.md` and `docs/LEVEL_TEST_SIMULATION_RESULTS.md` — the last three generated, with `:check` forms in `verify:quick` |
+| Ambiguity | One more reviewed pair, 25 in all: `____ 한글을 써요` took both 매일 and 조금 |
+| Report | §20W, and a figure taken from the built app at 390×844 showing the six questions that open a sitting |
+| Version | Android **1.0.5 / 22**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -88,10 +111,10 @@ control under 44px.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **21**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 21 | 20 is spent. Both previously delivered artefacts report a code of 20 and the previous `build-info.json` recorded 20, and product files have changed since — the vocabulary pack, the level-test bank, the daily gap-fills, the audio manifest and the question rules. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 21 is the next valid code rather than the next unused one. |
-| Why 1.0.5 | The versionName moves because what a learner reads has changed: twenty-five example sentences, their translations in thirty-one languages and twenty-six recordings, and a regenerated question bank. A versionName is what tells a customer the content is different, and it is. `registered` records that nothing has been uploaded to either console, so no listing has to be explained. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build, and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 21 name what is owed. No `.ipa` was approximated and nothing was renamed to one. |
+| Package | `com.talkhangyul.ganada`, version code **22**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 22 | 21 is spent. Both previously delivered artefacts report a code of 21 and the previous `build-info.json` recorded 21, and product files have changed since — the level-test bank was re-levelled by its sentences and the selector gained an evidence gate. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 22 is the next valid code rather than the next unused one. |
+| Why still 1.0.5 | The versionName does not move. This release changes how the level test chooses questions and which level each sentence sits at; it teaches the same 3,393 words, with the same sentences and the same recordings, so there is nothing a customer reading the listing would need told. The number is set by a person deciding to ship, never incremented by a script. `registered` records that nothing has been uploaded to either console. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 22 name what is owed. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team or bundle identifier was touched. |
 
 ## What was run against this tree
 
@@ -120,10 +143,15 @@ control under 44px.
 | `npm run glyphshape:qa:check` | mean **99.6%** explained against the reference face, floor 93% |
 | `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; 235 words held to their editorial band |
 | `npm run docs:consistency:check` | 65 figures across 6 documents |
+| `npm run leveltest:qa:check` | 6,000 simulated sittings — **86.9%** within ±3 levels, MAE **1.80**, floor 85%; 0 questions above the earned ceiling |
+| `npm run leveltest:policy:check` | every contextual level re-derived from the item's own demand; band 1 free of six constructions; 6 beginner profiles × 8 seeds replayed through the real selector — 0 ceiling breaches, 0 sentences in the opening |
+| `npm run leveltest:bank:check` | 625 contextual items, none below its anchor |
+| `npm run leveltest:simulations:check` / `leveltest:content:check` | both generated documents current against the shipped bank |
 | `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
 | `npm run locale:editorial:check` | 0 errors, 0 warnings |
-| `npm run test:e2e` | **578 passed** in 38.7 min across the mobile and desktop projects |
-| Unit suites | web **1,048**, Korean morphology **237**, handwriting core **96** — **1,381**, all passing |
+| `npm run test:e2e` | **594 passed, 0 failed**, exit 0, in 46.6 min across the mobile and desktop projects. Three cases in `journey.spec.ts` were corrected first — see below |
+| Unit suites | web **1,393**, Korean morphology **237**, handwriting core **96** — **1,726**, all passing |
+| `bash scripts/regression-gates-negative.sh` | **fifteen** sabotage runs, two written this cycle — G9 puts the reported level-7 item back, G10 drops a two-clause sentence into the foundation band. 15 ok, 0 problems, every restoration green |
 | `npm run native:bundle:check` | 14,152 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
 | `npm run release:current` | both delivery manifests at HEAD |
 
@@ -154,6 +182,46 @@ same sequencing trap that cost sixty word recordings this cycle: source →
 loader reads the second, not the first. Re-split, the same truncation produces
 the nineteen findings above.
 
+## Two cases in the release suite were wrong, in opposite directions
+
+The e2e run is reported above as 594 passed. It did not start there, and what it
+took to get there is the part worth recording.
+
+**One case had been failing in the release run and passing alone for four
+sessions**, written off as a flake each time — `an interrupted lesson resumes at
+the letter that is unfinished`, 9.5s green alone and 18–25s red in the suite.
+Driven at `--repeat-each=8 --workers=4` it failed **6 of 8**. A 500 ms pause
+before the navigation changed nothing, so it was not the progress write racing
+the page teardown; dumping the object store through the failure returned
+`character:ㅏ=learned` both before and after it, so the data was right and the
+**read** was early. `LetterSessionPage` computed its resume point in a `useState`
+initialiser, and the route mounts before the stored profile has been read — so a
+returning learner was put back on a letter they had finished, on exactly the slow
+phone that behaviour exists for. Fixed, and 8 of 8 under the same parallelism.
+**I-203.**
+
+**Three more were passing for the opposite reason.** They are runs of
+`toHaveCount(0)` immediately after `page.goto`, and a count of zero is satisfied
+by a document that has not rendered: the first poll succeeds and the matcher
+returns without retrying. One of them, once a loaded machine made it run late
+enough to look, found that the settings screen has shipped *Save a copy* and
+*Restore a copy* since `f731bd43` while the case still forbade them — the
+product was right and the gate was a week stale, and the race is why nobody was
+told. All three now assert something present before asserting what is absent.
+**I-202.**
+
+Sweeping for the same shape found it once more, seeding the Numbers question
+order. Recorded as **I-204** and left open: it seeds a shuffle from the wrong
+number rather than losing or miscounting anything, and believing a change there
+means re-running five Numbers suites.
+
+Sixty further failures were seen in one run and are **not** in this list, because
+they were this machine: another project on the same VM was running its own
+Playwright suite, the preview server was killed under the load, and 59 of the 60
+were `ERR_CONNECTION_REFUSED` with the sixtieth an IndexedDB open falling back to
+memory. Each was reproduced green in isolation, and the run reported above was
+taken on a quiet machine from a cold boot.
+
 ## The icons, looked at — carried forward from build 14
 
 The icon sources did not change in this build and neither did the generated
@@ -168,7 +236,7 @@ catalogue's one universal slot is 1024×1024 RGB with no alpha, which is what Ap
 Store Connect requires; `Contents.json` is unchanged, as are every Xcode-managed
 signing, team, bundle-identifier and provisioning value.
 
-## On a device — carried forward from build 16, not re-run for 19
+## On a device — carried forward from build 16, not re-run for 22
 
 **Read the version line below before the rest of this section.** The walk
 recorded here was driven against **versionCode 16 / 1.0.3**, which is what its
@@ -225,13 +293,22 @@ viewports.
 ## Not claimed
 
 * **No native-speaker review** of the thirty-one non-Korean bundles, or of
-  Korean. This is the claim this release is most likely to be misread about, so
-  it is stated at full size: **69,156 strings were written into twelve languages
-  and thirty-two packs this cycle, and not one of them has been read by a
-  speaker of the language it is in.** Coverage went from a real gap to none;
-  review went further out of reach in the same movement, because there is more
-  unread text than there was before. See `BUILD_OR_SIGNING_BLOCKERS.md` §10 and
-  issue I-17.
+  Korean. This cycle wrote no new locale strings, so the unread text is the same
+  unread text it was — which is not an improvement, only an absence of a new
+  debt. Every rule in `sentence_demand.py` and in `leveltest:policy` is
+  structural, and structural is a proxy for a judgement no gate here makes:
+  **nothing in this repository reads Korean.** See
+  `BUILD_OR_SIGNING_BLOCKERS.md` §10 and issue I-17.
+* **The difficulty scale has never been calibrated against a learner**, and it
+  cannot be from here — the application opens no network connection at runtime
+  and collects nothing. The floors in the demand model are reasoned, not
+  measured, and every accuracy figure above is against a simulated learner
+  answering the way the model says someone of that ability would. A simulation
+  reports excellent behaviour for a badly calibrated bank for exactly as long as
+  the bank is wrong in the same way the simulation is.
+* **The bank is regenerated with a different distractor draw whenever the corpus
+  moves.** The rules and the 25 reviewed pairs carry forward; the reading of
+  this build's items recorded in `docs/LEVEL_TEST_CONTENT_REVIEW.md` does not.
 * **No review by anybody who needs the accessibility route.** The sound-free run
   and the per-question escape exist, are gated, and were walked in a browser.
 * **No iOS build.** No `.ipa` exists and none was approximated.

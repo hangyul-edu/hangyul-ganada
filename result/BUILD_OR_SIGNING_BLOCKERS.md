@@ -6,17 +6,18 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 9 September 2026 against **v1.0.5, versionCode 21**, compiled
-from a clean checkout of commit `e5436cc2`. Every item below still stands,
+Re-checked on 10 September 2026 against **v1.0.5, versionCode 22**, compiled
+from a clean checkout of commit `b76b0805`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 21 and signed with
+machine. The Android artefacts were rebuilt at versionCode 22 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
 
-**§10 is still the one to read**, and this cycle added to it: 25 keys in each of
-32 bundles and corrections to nine existing strings, none read by a speaker of
-the language it is in. What did change is §1's other half — the signed APK was
-installed on an emulator and walked this time, which is recorded in
-`RELEASE_VALIDATION.md` rather than claimed here.
+**§10 is still the one to read.** This cycle wrote no new locale strings — the
+change is which Korean sentence a learner is asked at which point, not what any
+pack says — so the unread text is the same unread text it was, and §10 is
+unchanged rather than improved. The device walk was **not** re-run for this
+build: `RELEASE_VALIDATION.md` carries the one from build 16 under a heading
+that says so.
 
 ---
 
@@ -222,7 +223,7 @@ the store material claims otherwise.
 
 **What is missing:** the release version in the Xcode project.
 
-Android ships this release as 1.0.5, versionCode 21. iOS does not, and its
+Android ships this release as 1.0.5, versionCode 22. iOS does not, and its
 `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.3` and `5`.
 
 This is deliberate rather than an oversight. Those two are Xcode build settings
@@ -238,9 +239,9 @@ and every one of those settings against a lock file, and it is green.
 **To unblock**, on a Mac with Xcode, in one commit:
 
 1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.5` and **Build** to `21` for both Debug and Release.
+   **Version** to `1.0.5` and **Build** to `22` for both Debug and Release.
 2. Update `ios.xcode.marketingVersion` to `"1.0.5"` and
-   `ios.xcode.currentProjectVersion` to `21` in `apps/mobile/app.identity.json`.
+   `ios.xcode.currentProjectVersion` to `22` in `apps/mobile/app.identity.json`.
 3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
 
 `npm run version:check` prints this as a pending action on every run until it is
