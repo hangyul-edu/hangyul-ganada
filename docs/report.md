@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.5**, Android versionCode **21** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.5**, Android versionCode **22** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -155,9 +155,9 @@ without trusting the row.
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 197 | `docs/issues.json` |
-| Signed APK | 91,072,486 bytes (86.9 MiB) | `result/build-info.json` |
-| Signed AAB | 89,228,869 bytes (85.1 MiB) | same |
+| Issues tracked | 200 | `docs/issues.json` |
+| Signed APK | 91,079,074 bytes (86.9 MiB) | `result/build-info.json` |
+| Signed AAB | 89,235,454 bytes (85.1 MiB) | same |
 | Tests | 1,726 across 77 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -698,7 +698,7 @@ a wrong guess. Every gate over the Level Test was green throughout, and none of
 them was wrong to be: each answered the question it was written to ask.
 
 With those fixed: every engineering gate that can run here runs green, the
-artefacts are rebuilt from a committed tree at versionCode 21, and
+artefacts are rebuilt from a committed tree at versionCode 22, and
 `release:current` reports both delivery manifests at HEAD. Of the eight issues
 not marked resolved, none is a defect in this code or content: three are content
 authoring at a scale this pass could not reach (I-04, I-20, I-79), two need a
@@ -2339,11 +2339,11 @@ new APK    157a2bb133f6aa3d…3323debc
 | --- | --- |
 | Built from | `bc3bec14`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 21, versionName 1.0.5 |
+| Package | `com.talkhangyul.ganada`, versionCode 22, versionName 1.0.5 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 91,072,486 bytes (86.9 MiB) — sha256 in §21 |
-| Release AAB | 89,228,869 bytes (85.1 MiB) — sha256 in §21 |
+| Release APK | 91,079,074 bytes (86.9 MiB) — sha256 in §21 |
+| Release AAB | 89,235,454 bytes (85.1 MiB) — sha256 in §21 |
 
 The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
 product: nine languages' worth of word meanings and example translations for
@@ -4926,10 +4926,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 91,072,486 bytes (86.9 MiB) |
-| APK sha256 | `54aac8388b82fd722f6ba82942b3cac58767a80642d671e83bd4d91a21709b8b` |
-| AAB | 89,228,869 bytes (85.1 MiB) |
-| AAB sha256 | `71d25b4f1f52ade58a2ff05db9807583147259fefeeeab3988ff1083d42a4300` |
+| APK | 91,079,074 bytes (86.9 MiB) |
+| APK sha256 | `81392d093b1b99cbb2c9fd1ad73032163271dacec6c0a39d9b4f9366c8142fd0` |
+| AAB | 89,235,454 bytes (85.1 MiB) |
+| AAB sha256 | `758278841e6062294a3fbae8fb28a680306d24efb0e6604b47bb27926263ca8f` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -7876,7 +7876,7 @@ it.
 One reading note. The evidence written on a **resolved** issue is a record of
 what was found in the cycle that closed it, and where it cites a section number
 that number is the one the report carried at the time. The report has been
-rewritten since and renumbered; the citations on the 4 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
+rewritten since and renumbered; the citations on the 5 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
 were deliberately left as written rather than edited into agreement with a
 document they predate.
 
