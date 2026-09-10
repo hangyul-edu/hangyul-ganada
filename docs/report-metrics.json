@@ -41,16 +41,16 @@
  "audio_slots": 13996,
  "unobserved_words": 55,
  "more_about_it": 75,
- "level_test_items": 3973,
+ "level_test_items": 3995,
  "words_at_28_to_30": 524,
  "relations_words": 294,
  "issues": {
   "open": 5,
   "partial": 4,
   "blocked": 1,
-  "resolved": 190,
-  "tracked": 200
+  "resolved": 195,
+  "tracked": 205
  },
- "apk_mb": "86.9",
+ "apk_mb": "86.8",
  "aab_mb": "85.1"
 }

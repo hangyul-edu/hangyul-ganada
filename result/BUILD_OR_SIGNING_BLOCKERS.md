@@ -6,10 +6,10 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 10 September 2026 against **v1.0.5, versionCode 22**, compiled
-from a clean checkout of commit `ed44ed06`. Every item below still stands,
+Re-checked on 10 September 2026 against **v1.0.5, versionCode 23**, compiled
+from a clean checkout of commit `fe2aa05a`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 22 and signed with
+machine. The Android artefacts were rebuilt at versionCode 23 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
 
 **§10 is still the one to read.** This cycle wrote no new locale strings — the
@@ -223,7 +223,7 @@ the store material claims otherwise.
 
 **What is missing:** the release version in the Xcode project.
 
-Android ships this release as 1.0.5, versionCode 22. iOS does not, and its
+Android ships this release as 1.0.5, versionCode 23. iOS does not, and its
 `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.3` and `5`.
 
 This is deliberate rather than an oversight. Those two are Xcode build settings
@@ -239,7 +239,7 @@ and every one of those settings against a lock file, and it is green.
 **To unblock**, on a Mac with Xcode, in one commit:
 
 1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.5` and **Build** to `22` for both Debug and Release.
+   **Version** to `1.0.5` and **Build** to `23` for both Debug and Release.
 2. Update `ios.xcode.marketingVersion` to `"1.0.5"` and
    `ios.xcode.currentProjectVersion` to `22` in `apps/mobile/app.identity.json`.
 3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.

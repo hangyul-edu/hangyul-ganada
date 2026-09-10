@@ -4,8 +4,8 @@ title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
 version: 1.0.5
-date: 9 September 2026
-describes: The fourteenth pass, and it began with a photograph of one question: 창문으로 아침 ____이 들어와요, keyed 빛 and offering 목적, 비빔밥 and 환경. Every gate over that bank was green and every gate was right to be: the item has exactly one defensible answer, which is the only thing any of them asked. A purpose, a bibimbap and an environment do not come in through a window, so the item is answerable by elimination without knowing 빛 — and it was not a bad draw. The builder forbade a distractor from the answer's own subject area, written to stop two right answers, so the further apart two words were the more certainly they qualified: **all 625 contextual items in the shipped bank had every distractor from a different category than the answer**. The rule was selecting for absurdity at the scale of the whole bank. Pulling that thread found the categories themselves were wrong — 292 words filed by a regex that matched inside a longer word, so 화가 was under Body & Health and 창문 under Animals & Nature — and two frame guards that had never executed, one of them the fix §20V.1 records for I-185. The rule is inverted for nouns, five frame classes are refused outright, 48 items were read and refused by hand, three example sentences were rewritten with their recordings, `OVERRIDES` went from 552 to 1,085 entries, and a gate for the half of question quality nothing was measuring is now release-blocking and negative-tested at 747 findings. Artefacts rebuilt at 1.0.5, versionCode 23.
+date: 10 September 2026
+describes: The fourteenth pass, and it began with a photograph of one question: 창문으로 아침 ____이 들어와요, keyed 빛 and offering 목적, 비빔밥 and 환경. Every gate over that bank was green and every gate was right to be: the item has exactly one defensible answer, which is the only thing any of them asked. A purpose, a bibimbap and an environment do not come in through a window, so the item is answerable by elimination without knowing 빛 — and it was not a bad draw. The builder forbade a distractor from the answer's own subject area, written to stop two right answers, so the further apart two words were the more certainly they qualified: all 625 contextual items in the shipped bank had every distractor from a different category than the answer. The rule was selecting for absurdity at the scale of the whole bank. Pulling that thread found the categories themselves were wrong — 292 words filed by a regex that matched inside a longer word, so 화가 was under Body & Health and 창문 under Animals & Nature — and two frame guards that had never executed, one of them the fix §20V.1 records for I-185. The rule is inverted for nouns, five frame classes are refused outright, 48 items were read and refused by hand, three example sentences were rewritten with their recordings, OVERRIDES went from 552 to 1,085 entries, and a gate for the half of question quality nothing was measuring is now release-blocking and negative-tested at 747 findings. Artefacts rebuilt at 1.0.5, versionCode 23.
 mark: report-assets/mark.png
 ---
 
@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.5**, Android versionCode **22** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.5**, Android versionCode **23** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -156,8 +156,8 @@ without trusting the row.
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 237 | `lvm` in `vocabulary.json`; see I-133 |
 | Issues tracked | 205 | `docs/issues.json` |
-| Signed APK | 91,079,074 bytes (86.9 MiB) | `result/build-info.json` |
-| Signed AAB | 89,235,454 bytes (85.1 MiB) | same |
+| Signed APK | 91,051,318 bytes (86.8 MiB) | `result/build-info.json` |
+| Signed AAB | 89,208,020 bytes (85.1 MiB) | same |
 | Tests | 1,731 across 78 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -698,7 +698,7 @@ a wrong guess. Every gate over the Level Test was green throughout, and none of
 them was wrong to be: each answered the question it was written to ask.
 
 With those fixed: every engineering gate that can run here runs green, the
-artefacts are rebuilt from a committed tree at versionCode 22, and
+artefacts are rebuilt from a committed tree at versionCode 23, and
 `release:current` reports both delivery manifests at HEAD. Of the eight issues
 not marked resolved, none is a defect in this code or content: three are content
 authoring at a scale this pass could not reach (I-04, I-20, I-79), two need a
@@ -2342,13 +2342,13 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `__FINAL_COMMIT__`, working tree clean |
+| Built from | `fe2aa05a`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 22, versionName 1.0.5 |
+| Package | `com.talkhangyul.ganada`, versionCode 23, versionName 1.0.5 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 91,079,074 bytes (86.9 MiB) — sha256 in §21 |
-| Release AAB | 89,235,454 bytes (85.1 MiB) — sha256 in §21 |
+| Release APK | 91,051,318 bytes (86.8 MiB) — sha256 in §21 |
+| Release AAB | 89,208,020 bytes (85.1 MiB) — sha256 in §21 |
 
 The APK is 91,079,074 bytes — 86.9 MiB — and the growth over the cycle before it is the
 product: nine languages' worth of word meanings and example translations for
@@ -2407,7 +2407,7 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1393** (70 files) |
+| Web unit (`vitest`) | **1398** (70 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **237** (2 files) |
 | End-to-end (`playwright`) | **594** (297 × 2 projects) |
@@ -4931,10 +4931,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 91,079,074 bytes (86.9 MiB) |
-| APK sha256 | `81392d093b1b99cbb2c9fd1ad73032163271dacec6c0a39d9b4f9366c8142fd0` |
-| AAB | 89,235,454 bytes (85.1 MiB) |
-| AAB sha256 | `758278841e6062294a3fbae8fb28a680306d24efb0e6604b47bb27926263ca8f` |
+| APK | 91,051,318 bytes (86.8 MiB) |
+| APK sha256 | `90021cd58c0755fd7df770115dc033051aa9676d68cd43de3d053d30089e8394` |
+| AAB | 89,208,020 bytes (85.1 MiB) |
+| AAB sha256 | `be049ad7395c7043b1d6d65cbfcd77ba189d8d8a9d75e717381e8409dd4b628b` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -7938,6 +7938,41 @@ The photograph a reader sent was not the only place it was visible. `§2.2`'s ow
 level-test figure — `docs/report-assets/level-test-opening.png`, taken by
 `docs:shots` from the running app and embedded in every edition since — shows it
 at Question 6:
+
+```
+____가 문을 닫았어요.
+가게 · 비행기 · 영화 · 해
+```
+
+A plane, a film and the sun do not close a door. The picture was in the document
+the whole time, printed at the size of a phone screen, and no reader of this
+report — including the ones who wrote it — read the four options as a question.
+That item is not in the new bank at all.
+
+### What a learner sees now
+
+The same six-question opening, taken by `docs:shots` from the running app before
+and after this pass. Question 6 is the contextual item in both.
+
+**Before** — `____가 문을 닫았어요.` against 가게 · 비행기 · 영화 · 해:
+
+![The level test's opening six questions before this pass. Question 6 asks which word fits `____가 문을 닫았어요` and offers a shop, a plane, a film and the sun.](report-assets/level-test-opening-before.png)
+
+**After** — `계단에서 ____를 다쳐서 걷기 힘들어요.` against 귀 · 다리 · 머리 · 코:
+
+![The same opening after this pass. Question 6 asks which word fits `계단에서 ____를 다쳐서 걷기 힘들어요` and offers an ear, a leg, a head and a nose.](report-assets/level-test-opening.png)
+
+Four body parts, all of which can be hurt on a staircase, and one of which
+stops you walking. A learner who does not know 다리 cannot answer it, and one
+who does learns that they know it. That is the difference the whole pass is
+about, and it is one screen.
+
+### The same defect, in this report's own screenshot
+
+The photograph a reader sent was not the only place it was visible. §2.2's own
+level-test figure — `docs/report-assets/level-test-opening.png`, taken by
+`docs:shots` from the running app and embedded in every edition since — showed
+it at Question 6:
 
 ```
 ____가 문을 닫았어요.

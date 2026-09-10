@@ -8,7 +8,7 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `ed44ed06` on branch `main`. `build-info.json` →
+**Source:** commit `fe2aa05a` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -17,12 +17,40 @@ middle of writing.
 **Built:** 10 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 21 validation.** Codes 3 through 21 are spent,
-each by an artefact that was actually produced. This is 22.
+**This supersedes the versionCode 22 validation.** Codes 3 through 22 are spent,
+each by an artefact that was actually produced. This is 23.
 
 ---
 
 ## Why this release happened
+
+**A reader photographed a question whose three wrong answers were nonsense.**
+
+```
+창문으로 아침 ____이 들어와요.
+목적 · 비빔밥 · 빛 · 환경
+```
+
+A purpose, a bibimbap and an environment do not come in through a window, so
+the item is answerable by elimination without knowing 빛. Every gate over that
+bank was green and every gate was right to be: the item has exactly one
+defensible answer, which is the only thing any of them asked. A four-option
+question fails in two directions and only one of them had a gate.
+
+It was not a bad draw. The builder forbade a distractor from the answer's own
+subject area — which made *unrelated to the sentence* the qualifying condition.
+All 625 contextual items in the shipped bank had every distractor from a
+different category than the answer. The rule was inverted for nouns, five frame
+classes are now refused outright, 48 items were read and refused by hand, and
+22 beginner items are written by hand and validated against the same rules. The
+categories the new rule depends on were themselves corrected: 292 words had
+taken theirs from a regex match inside a longer word. `docs/report.pdf` §20X is
+the full account.
+
+The previous release's reason is kept below, because the artefact it describes
+is the one this supersedes.
+
+### From the versionCode 22 release
 
 **The level test asked a beginner questions they could not read.** Three
 separate testers reported it. One, who had recently finished learning Hangul,
@@ -111,10 +139,10 @@ eight seeds through the real selector, the real fallback and the real draw.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **22**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 22 | 21 is spent. Both previously delivered artefacts report a code of 21 and the previous `build-info.json` recorded 21, and product files have changed since — the level-test bank was re-levelled by its sentences and the selector gained an evidence gate. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 22 is the next valid code rather than the next unused one. |
-| Why still 1.0.5 | The versionName does not move. This release changes how the level test chooses questions and which level each sentence sits at; it teaches the same 3,393 words, with the same sentences and the same recordings, so there is nothing a customer reading the listing would need told. The number is set by a person deciding to ship, never incremented by a script. `registered` records that nothing has been uploaded to either console. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 22 name what is owed. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team or bundle identifier was touched. |
+| Package | `com.talkhangyul.ganada`, version code **23**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 23 | 22 is spent. Both previously delivered artefacts report a code of 22 and the previous `build-info.json` recorded 22, and product files have changed since — the Level Test's distractor rule was inverted for nouns, the vocabulary classifier's category rules were corrected, two frame guards that had never executed were repaired, and three example sentences were rewritten with their recordings. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 23 is the next valid code rather than the next unused one. |
+| Why still 1.0.5 | The versionName does not move. This release changes which wrong answers the Level Test offers and corrects the drawer 134 words are filed under; it teaches the same 3,393 words, and three of their sentences changed. There is nothing a customer reading the listing would need told beyond "the questions are better". The number is set by a person deciding to ship, never incremented by a script. `registered` records that nothing has been uploaded to either console. |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 23 name what is owed. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team or bundle identifier was touched. |
 
 ## What was run against this tree
 
@@ -325,8 +353,8 @@ viewports.
 ## Checksums
 
 ```
-81392d093b1b99cbb2c9fd1ad73032163271dacec6c0a39d9b4f9366c8142fd0  hangyul-ganada-release.apk
-758278841e6062294a3fbae8fb28a680306d24efb0e6604b47bb27926263ca8f  hangyul-ganada-release.aab
-db45895ba63e1ff46330fedc15a6743e26a4c87bc7347e336d5172f7fb339caa  docs/report.pdf
-95eb00a52e39f352425386a06d74d117ce7ead9716293db857eada10553bd8cc  build-info.json
+90021cd58c0755fd7df770115dc033051aa9676d68cd43de3d053d30089e8394  hangyul-ganada-release.apk
+be049ad7395c7043b1d6d65cbfcd77ba189d8d8a9d75e717381e8409dd4b628b  hangyul-ganada-release.aab
+d839130e18fe2a026d1e4682fdacc10e267b7ba13b4d0822c461d90217bca13f  docs/report.pdf
+9b5a479ce26db7f977438972dca02965c9e1b2a37bbb19eb14ce86fdf2940f02  build-info.json
 ```
