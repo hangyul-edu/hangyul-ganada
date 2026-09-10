@@ -11,7 +11,7 @@ a person had to read.
 
 ## 1. Every question family
 
-5,187 objective questions, from three sources.
+4,876 objective questions, from three sources.
 
 | Surface | Family | Questions | What is meant to pin the answer |
 |:---|:---|---:|:---|
@@ -24,11 +24,11 @@ a person had to read.
 | Numbers course | `numbers-chooseCounterForm` | 13 | options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group) |
 | Numbers course | `numbers-fillTheBlank` | 8 | options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group) |
 | Numbers course | `numbers-chooseCorrectExplanation` | 8 | options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group) |
-| Today’s Vocabulary and Review | `cloze` | 672 | built by the same builder as the Level Test bank, so one set of rules decides both |
+| Today’s Vocabulary and Review | `cloze` | 513 | built by the same builder as the Level Test bank, so one set of rules decides both |
 | Vocabulary Level Test | `meaning` | 1,761 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
 | Vocabulary Level Test | `produce` | 1,761 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
-| Vocabulary Level Test | `context` | 625 | distractors are filtered by category, noun class, particle agreement, frame safety and the frame rules in scripts/lib/level-test-rules.mjs |
-| **Total** | | **5,187** | |
+| Vocabulary Level Test | `context` | 473 | distractors are filtered by category, noun class, particle agreement, frame safety and the frame rules in scripts/lib/level-test-rules.mjs |
+| **Total** | | **4,876** | |
 
 ## 2. What the gates decide
 

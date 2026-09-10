@@ -5,7 +5,7 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.5
 date: 9 September 2026
-describes: The twelfth pass, and it began with a photograph of one question: 일곱 시에 ____, keyed 일어나요 and offering 연습해요, and both are ordinary Korean. Every gate over that bank was green and every gate was right to be — the rule written for a sentence that constrains nothing tests for an argument particle, and 시에 is one. A particle is not a constraint. Pulling that thread found four more items of the same shape and three more classes of the same kind: a subject slot that admits any person, a predicate that excludes no noun, and sixteen sentences the daily queue asked with two different answers. It also found two checkers that had not been measuring what they reported — the question ledger validated 336 of 368 Numbers questions against a field that means *render this through i18n*, not *this is the answer*, and twenty-four locale packs went on translating example sentences that had been replaced, past five gates that all read those files. The fixes are in the generator and the verifier rather than in the artefact: four rules about the stem rather than about the pair, a cross-surface invariant, a reviewed list of twenty-four word pairs that no rule decides, three new release-blocking gates, and 5,191 questions enumerated, read and written down. Twenty-five example sentences were rewritten with their translations in thirty-one languages and twenty-six new recordings. Artefacts rebuilt at 1.0.5, versionCode 21.
+describes: The fourteenth pass, and it began with a photograph of one question: 창문으로 아침 ____이 들어와요, keyed 빛 and offering 목적, 비빔밥 and 환경. Every gate over that bank was green and every gate was right to be: the item has exactly one defensible answer, which is the only thing any of them asked. A purpose, a bibimbap and an environment do not come in through a window, so the item is answerable by elimination without knowing 빛 — and it was not a bad draw. The builder forbade a distractor from the answer's own subject area, written to stop two right answers, so the further apart two words were the more certainly they qualified: **all 625 contextual items in the shipped bank had every distractor from a different category than the answer**. The rule was selecting for absurdity at the scale of the whole bank. Pulling that thread found the categories themselves were wrong — 292 words filed by a regex that matched inside a longer word, so 화가 was under Body & Health and 창문 under Animals & Nature — and two frame guards that had never executed, one of them the fix §20V.1 records for I-185. The rule is inverted for nouns, five frame classes are refused outright, 48 items were read and refused by hand, three example sentences were rewritten with their recordings, `OVERRIDES` went from 552 to 1,085 entries, and a gate for the half of question quality nothing was measuring is now release-blocking and negative-tested at 747 findings. Artefacts rebuilt at 1.0.5, versionCode 23.
 mark: report-assets/mark.png
 ---
 
@@ -114,13 +114,13 @@ without trusting the row.
 | --- | --- | --- |
 | Words shipping | 3,393 | `vocabulary.json` `words.length` |
 | Categories | 18 | `vocabulary.json` `categories` |
-| Study sets | 684 (five words each) | per category, ⌈words ÷ 5⌉ summed |
+| Study sets | 687 (five words each) | per category, ⌈words ÷ 5⌉ summed |
 | Characters taught | 73 | `characters.ts` `ALL_CHARACTERS` |
 | Hangul letters taught | 40 | `characters.ts` `ALL_LETTERS` |
 | Curriculum units | 12 | `characters.ts` `CURRICULUM_UNITS` |
 | Lessons | 15 | `characters.ts` `LETTER_LESSONS` |
 | Pronunciation notes | 804 | words carrying a `say` field in `vocabulary.json` |
-| Of those, shown as a note on a card | 619 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
+| Of those, shown as a note on a card | 635 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
 | Sound-change patterns taught | 6 | `vocabulary.json` `sound_patterns` |
 | Patterns a word card may note | 5 | `vocabulary.json` `noted_patterns` |
 | Dictionary headwords | 30,334 | `public/dictionary/manifest.json` |
@@ -140,10 +140,10 @@ without trusting the row.
 | Vocabulary packs at 600 words | 12 | `locale:content:qa` |
 | Unwritten vocabulary rows | 0 | every one of the 32 content packs holds all 3,393 |
 | Long *More about it* definitions | 75 | third element in `vocabulary.en.json` |
-| Level-test items, English | 4,147 | `public/level-test/manifest.json` |
-| Level-test contextual items | 625 | the bank, `kind === "context"` |
-| Level-test reach, every non-English language | 2,061 items each | `manifest.json` `reach` |
-| Level-test distinct words asked about | 2,273 | `leveltest:bank:check` |
+| Level-test items, English | 3,995 | `public/level-test/manifest.json` |
+| Level-test contextual items | 473 | the bank, `kind === "context"`; 625 before this pass, of which 22 are now hand-written — see §20X |
+| Level-test reach, every non-English language | 1,972 items each | `manifest.json` `reach` |
+| Level-test distinct words asked about | 2,166 | `leveltest:bank:check` |
 | Level-test items at levels 1–10, from the curated corpus | 100% | `leveltest:bank:check`; see I-162 |
 | Audio clips | 13,876 | distinct files in `public/audio/manifest.json` |
 | Audio voice slots | 13,996 | the same manifest, two voices per entry |
@@ -154,11 +154,11 @@ without trusting the row.
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
-| Levels held to an editorial band | 240 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 200 | `docs/issues.json` |
+| Levels held to an editorial band | 237 | `lvm` in `vocabulary.json`; see I-133 |
+| Issues tracked | 205 | `docs/issues.json` |
 | Signed APK | 91,079,074 bytes (86.9 MiB) | `result/build-info.json` |
 | Signed AAB | 89,235,454 bytes (85.1 MiB) | same |
-| Tests | 1,726 across 77 files | `npm test` |
+| Tests | 1,731 across 78 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -166,8 +166,8 @@ without trusting the row.
 40 letters plus the syllable blocks and 받침 forms the lessons introduce — where
 "Hangul letters taught" is the 40 a learner would name.
 
-**The pronunciation-note row keeps its two definitions.** 786 words carry a
-recorded spoken form because some rule changes them; 619 of those get a *note
+**The pronunciation-note row keeps its two definitions.** 804 words carry a
+recorded spoken form because some rule changes them; 635 of those get a *note
 on the card*, because liaison applies to so many words that a note for it
 would stop meaning "look at this one" and is taught once in the sound-change
 lesson instead. `docs:consistency:check` holds the first figure to the corpus.
@@ -311,7 +311,7 @@ right thing to ask, dictionary anchors stay and are filtered: 40 whose rank
 belongs to an inflected form of another word, plus one-syllable headwords and
 truncated grammar-page glosses. **The side effect is the best evidence the change
 was right**: removing 176 English-only anchors from the beginner band raised every
-other language's askable bank from 1,014 items to 2,061, because a taught word has
+other language's askable bank from 1,014 items to 1,972, because a taught word has
 a meaning in all thirty-two packs and a dictionary anchor has one only in English.
 
 **Fifteen questions offered the same answer twice, in languages nothing read them
@@ -1156,7 +1156,7 @@ it was green, its calibration figures were good, and the sentence was right.
 
 ## 10.1 What it is — **VERIFIED**
 
-An adaptive placement test over 30 levels and a **4,147-item** bank, 625 of them
+An adaptive placement test over 30 levels and a **3,995-item** bank, 473 of them
 contextual, in three kinds: Korean shown / meaning chosen, meaning shown / Korean
 chosen, and a word blanked out of a real sentence. A sitting is **20 to 30
 questions** in a single eight-minute budget, and the sitting is now written to
@@ -1506,7 +1506,7 @@ Korean included — has been read by a qualified native speaker. See §11.3 and 
 ## 10.8 Per-language reach — **every language reaches the top, and with twice the density**
 
 Every ceiling is 30, and that was already true. What changed is density, which is
-what the adaptive walk spends: every non-English language now has **2,061**
+what the adaptive walk spends: every non-English language now has **1,972**
 askable items where it had 1,014. The cause is the floor in §10.3 — the beginner
 band is now entirely taught-corpus words, and a taught word has a meaning in every
 one of the thirty-two packs, where a dictionary anchor has one only in English.
@@ -1518,7 +1518,7 @@ and it is the clearest evidence that the change was right.
 ## 10.9 Item quality above the floor — **VERIFIED, with the same caveat**
 
 `leveltest:ambiguity` checks twenty-seven rules, nine photographed regressions and
-eight frame fixtures over all 4,151 items and passes. It passed before this cycle
+eight frame fixtures over all 3,995 items and passes. It passed before this cycle
 too, on a bank in which a quarter of the contextual items had more than one right
 answer, and what closed that was not another rule of the same kind — the builder now conjugates every
 option into the answer's own form, checks the particle the frame carries, and
@@ -1539,11 +1539,16 @@ All three were a bare frame whose only verb fits anything. The fix went into the
 content rather than the builder, because each sentence was weak as a *teaching
 example* for the same reason.
 
-**No new gate for that class, deliberately.** The tempting generalisation — a noun
-blank whose sentence ends in a general verb — fires on 54 of the 164 noun items,
-and reading them shows the constraint usually comes from the sentence's other
-argument: `____에서 채소를 사요` is pinned by 채소 no matter that 사다 is general. A
-rule that deleted 54 items to fix three would be a worse bank.
+**No new gate for that class, deliberately** — *and that was reversed in the
+following pass; see §20X.4.* The reasoning here was that the tempting
+generalisation, a noun blank whose sentence ends in a general verb, fires on 54
+of the 164 noun items, and that the constraint usually comes from the sentence's
+other argument: `____에서 채소를 사요` is pinned by 채소 no matter that 사다 is
+general. That is still true, and it is why the rule as finally written requires
+the blank to be the sentence's **only** argument — which narrows it to the cases
+this paragraph was worried about deleting, and leaves `____에서 채소를 사요`
+alone. What the paragraph got wrong was treating "a rule that deletes 54 items"
+as the only available shape of rule.
 
 ---
 
@@ -2337,7 +2342,7 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `bc3bec14`, working tree clean |
+| Built from | `__FINAL_COMMIT__`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 22, versionName 1.0.5 |
 | SDK | min 24, target 36 |
@@ -2345,10 +2350,10 @@ new APK    157a2bb133f6aa3d…3323debc
 | Release APK | 91,079,074 bytes (86.9 MiB) — sha256 in §21 |
 | Release AAB | 89,235,454 bytes (85.1 MiB) — sha256 in §21 |
 
-The APK grew from 81.9 MB to 82.7 MB this cycle, and the growth is the
+The APK is 91,079,074 bytes — 86.9 MiB — and the growth over the cycle before it is the
 product: nine languages' worth of word meanings and example translations for
 the whole corpus rather than its first band. No recordings were added — the
-audio set is at 13,738 slots after the Numbers clips — so the 0.8 MB is text.
+audio set is at 13,996 slots after the Numbers clips — so the growth is text.
 
 The paragraph the previous cycle wrote about its own growth is kept below,
 because the shape of the answer has not changed: the corpus
@@ -4236,7 +4241,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,726 across 77 files** — handwriting-core 96, korean-morphology 216, web 1393 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **1,731 across 78 files** — handwriting-core 96, korean-morphology 237, web 1398 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -7134,7 +7139,16 @@ one of them is wrong.
 What makes it worth a section rather than a line in the ledger is that **every
 gate passed it, and every gate was right to.**
 
-## 20V.1 The gate that could not see it — **I-185, P1, fixed**
+## 20V.1 The gate that could not see it — **I-185, P1, fixed twice**
+
+> **Corrected 10 September 2026.** The rule this section describes was written
+> and it never ran: `isUnconstrainedPredicateFrame` was called with
+> `anchor.example` — the sentence with the answer still in it — and its first
+> line is `if (!sentence.includes('____')) return false`. This document recorded
+> the fix on the strength of the item leaving the bank, and the item left for an
+> unrelated reason. See §20X.3 and I-207. Everything below is what was intended
+> and is now what happens.
+
 
 `leveltest:ambiguity` reads the shipped bank and applies a rule for exactly this
 class: *nothing in the sentence constrains the blank*. It is the rule that
@@ -7473,7 +7487,7 @@ paragraph. The reviewed-pair list is described and explicitly **not claimed**.
 | `regression-gates-negative.sh` | 10 sabotages, 10 caught, 3 restored-green assertions |
 | `npm test` | 1,722 cases, green |
 | `patent:evidence:check` | 91 paths, 22 commands, English and Korean citing the same set |
-| Version | 1.0.5, versionCode 21, signed with the existing production certificate |
+| Version | 1.0.5, versionCode 21, signed with the existing production certificate — superseded by build 23, see §20X |
 | `native:bundle:check` | 14,419 files in `apps/web/dist`, 14,419 compared inside the APK, 0 missing, 0 different |
 | `release:current` | both `build-info.json` files at HEAD |
 
@@ -7867,6 +7881,339 @@ see anything and passed; this one ran late enough to see the truth and failed.
 
 ---
 
+# 20X. The fourteenth pass — the other half of a four-option question
+
+A reader photographed the Vocabulary Level Test at level 15:
+
+```
+창문으로 아침 ____이 들어와요.
+목적 · 비빔밥 · 빛 · 환경
+```
+
+Every gate over that bank was green and every gate was right to be. The item has
+exactly one defensible answer, and that is the only thing any of them asked.
+
+## 20X.1 A question fails in two directions and only one had a gate — **I-205, P1, fixed**
+
+| | |
+|:---|:---|
+| a distractor that is **also right** | the item has two answers — twenty-seven rules, nine regressions, eight fixtures |
+| a distractor that is **obviously wrong** | the item has no wrong answers worth reading — **nothing** |
+
+A purpose, a bibimbap and an environment do not come in through a window. A
+learner who has never met 빛 answers correctly by elimination; a learner who
+knows 빛 learns nothing from being right.
+
+**It was not a bad draw.** The builder's rule said a distractor may not come
+from the answer's own browse category — written to stop the *first* failure —
+so the further apart two words were, the more certainly they satisfied it.
+Measured on the shipped bank:
+
+```
+context items with at least one same-category distractor:   0
+context items with every distractor from another category:  625
+```
+
+All of them. The rule was selecting for absurdity at the scale of the whole
+bank, and no gate could see it because every gate was a spelling of the first
+question.
+
+**The fix is the inversion, for nouns only.** A noun distractor must now
+*share* the answer's category or one of its tags. `____에서 채소를 사요` offers
+시장 against 도서관, 은행 and 약국 — four places, one of which sells vegetables.
+Predicates keep the old rule: 내밀다 and 뻗다 are both actions of the hand and
+both make `손을 ____` true, so there a same-area verb genuinely is a second right
+answer. The two gates now own opposite halves and each names the other, because
+two gates asserting the same thing about one artefact is how §19.4a's pair of
+self-checking gates happened.
+
+**The new gate.** `leveltest:distractors`, in `verify:quick`: nine checks read
+off the shipped bank, eight negative fixtures that must fail, one corrected form
+that must pass. **Negative-tested** by restoring the pre-fix rule and rebuilding:
+**747 findings, exit 1**.
+
+### The same defect, in this report's own screenshot
+
+The photograph a reader sent was not the only place it was visible. `§2.2`'s own
+level-test figure — `docs/report-assets/level-test-opening.png`, taken by
+`docs:shots` from the running app and embedded in every edition since — shows it
+at Question 6:
+
+```
+____가 문을 닫았어요.
+가게 · 비행기 · 영화 · 해
+```
+
+A plane, a film and the sun do not close a door. The picture was in the document
+the whole time, printed at the size of a phone screen, and no reader of this
+report — including the ones who wrote it — read the four options as a question.
+That item is not in the new bank at all.
+
+## 20X.2 The categories the new rule depends on were wrong — **I-206, P1, fixed**
+
+A plausibility rule reading wrong metadata is worse than no rule, so the first
+thing the inversion did was expose the classifier.
+
+`scripts/content/categories.py` writes its rules as alternations
+`\b(head|face|…|pain|hurt|…)` — a word boundary in front and **nothing behind**,
+so every alternative was also a prefix rule:
+
+| word | gloss | matched | filed under |
+|:---|:---|:---|:---|
+| 화가 | a painter, an artist | `pain` | Body & Health |
+| 그리다 | to draw, to paint | `pain` | Body & Health |
+| 창문 | window | `wind` | Animals & Nature |
+| 샌드위치 | a sandwich | `sand` | Animals & Nature |
+| 생일 | a birthday | `birth` | Body & Health |
+| 달러 | dollar | `doll` | Home |
+| 베개 | a pillow | `pill` | Body & Health |
+| 창고 | a warehouse | `war` | Society |
+| 비밀번호 | a password | `pass` | Actions |
+| 시작 | a start | `star` | Animals & Nature |
+
+**292 of 3,393 words took their category from a match that landed inside a
+longer word.** It is a customer-facing defect on its own — the category is the
+drawer the browse screen files a word in, so a learner opening Body & Health met
+a painter, a birthday and a pillow.
+
+The fix is a *no word character follows* lookahead on every rule. Closing the
+accidental matches cost 196 real ones — `shoe` stopped matching *shoes*,
+`inform` stopped matching *information* — so the matcher is now given the lemma:
+every alphabetic token in the gloss is reduced by an inflection and derivation
+table and the reductions are appended to the text the rules search. Two entries
+in that table are worth naming because each was a live miscategorisation on the
+first run:
+
+* **`-ter` is not a suffix here.** It would give *laughter* → laugh, which is
+  wanted, and *painter* → pain, which is the fault being removed.
+* **`-y` and `-ly` need a four-letter stem.** Otherwise *many* → man (많다 to
+  People), *busy* → bus (바쁘다 to Places & Travel), *early* → ear (일찍 to
+  Body & Health).
+
+Then all eighteen finished category listings were read word by word and the
+residue written down: **`OVERRIDES` grew from 552 to 1,085 entries**, 134 words
+changed category, and the drawers that were dumping grounds shrank to something
+a learner can browse — Home 328 → 186, Body & Health 240 → 198, Time & Numbers
+307 → 228.
+
+## 20X.3 Two frame guards had never executed — **I-207, P1, fixed**
+
+```js
+if (inflects && isUnconstrainedPredicateFrame(anchor.example)) { … }
+const eatingFrame = isConsumptionObjectFrame(anchor.example);
+```
+
+Both functions begin `if (!sentence.includes('____')) return false`. Both were
+handed the sentence with the answer still in it:
+
+```
+isUnconstrainedPredicateFrame('일곱 시에 일어나요.')  → false
+isUnconstrainedPredicateFrame('일곱 시에 ____.')      → true
+```
+
+**The first of the two is the fix §20V.1 records for I-185** — the photographed
+`일곱 시에 ____`, keyed 일어나요 and offering 연습해요. The rule was written, this
+document recorded it as fixed, and it has never once fired for any item ever
+built.
+
+Nothing could see it. `leveltest:ambiguity` re-derives the frames from the
+*shipped bank*, where the prompt does carry `____`, so it computed them
+correctly and found nothing — because the distractor rule of the day was keeping
+the offending options out for an unrelated reason. Inverting that rule removed
+the accidental cover and four `consumable-option` findings came straight through,
+which is how this was found.
+
+**§20V.1's status is corrected from RESOLVED to RESOLVED (second attempt).** The
+lesson is §7.2's, one level down: a green gate answers the question it was
+written to ask, and passing does not prove that the code it was written about
+ran.
+
+## 20X.4 Five frame classes with no rule — **I-207, P1, fixed** (with §20X.3)
+
+Found by reading all 625 contextual items. Each accepts the answer's whole kind,
+so once the distractors are plausible every option is right:
+
+| Class | Example |
+|:---|:---|
+| a bare noun modifying the noun behind it | `____ 가방을 샀어요.` — 녹색 and 흰색 too |
+| a time noun in a 에 slot | `____에 바다에 가요.` — 월요일 too |
+| a place in a 에 slot under a verb of going | `일요일에 ____에 가요.` — anywhere |
+| a subject under 있다 / 생기다 / 나오다 | `오늘 저녁에 ____이 있어요.` — anything |
+| a general verb whose only argument is the blank | `____을 새로 샀어요.` — everything |
+
+The bare-modifier class fails in *both* directions at once, which is why it has
+no distractor set: where the options are the same kind of word it has several
+right answers, and where they are not it is decided by which option can stand in
+front of a noun at all — 살인 공항 is not a phrase, so 국제 wins without any
+Korean being known.
+
+The general-verb rule needed one further correction before it worked. Its "is
+there another argument?" test read 으로/로 as well as 을/를/에/에서, and 새로 —
+an adverb — parses as 새 + 로, so `____을 새로 샀어요` reported an argument it
+does not have and the rule stayed silent. 서로, 따로 and 함부로 have the same
+shape.
+
+## 20X.5 Forty-eight items read and refused
+
+Where no rule decides, a person read the rendered item and wrote the verdict
+down in the entry itself — `ctx: 0` with a `ctxWhy` carrying the rendered item
+and the reason, which is the flag the builder already consulted for six words
+recorded by earlier passes. A first draft of this pass added a second file for
+the same decision and it was the fault this repository keeps finding: two
+records of one thing, free to disagree. Forty-eight new entries, fifty-four in
+total.
+
+| Reason | Items | Example |
+|:---|---:|:---|
+| `twoAnswers` | 23 | `____에서 채소를 사요.` — 편의점에서 채소를 사요 is true of Korean convenience stores |
+| `absurdOptions` | 24 | `____가 물에서 놀아요.` — a wing and fog do not play |
+| `collocation` | 1 | the photographed item |
+
+An entry there is the **last** resort. Every one was checked first against "is
+there a rule here?", and the four classes in §20X.4 became rules instead of
+forty more entries.
+
+## 20X.6 The Korean itself
+
+`창문으로 아침 빛이 들어와요` is grammatical and it is not the phrase. Korean says
+아침 햇살 or 아침 햇빛; 빛 takes no 아침 modifier. The card now reads
+**창문으로 빛이 들어와요** — the modifier dropped rather than the noun swapped,
+because the card teaches 빛.
+
+The contextual item for 빛 is refused rather than rebuilt, and the reason is
+written into the blocklist: everything that comes in through a window — 바람,
+소리, 공기, 냄새 — is a second right answer, and everything that does not is
+scenery. There is no defensible gap-fill for that word at that level and the
+honest outcome is not to build one.
+
+All 3,393 taught example sentences were then scanned for the same shape of
+fault — a bare noun directly modifying another noun, 496 pairs — and every pair
+read. Two more:
+
+| Word | Was | Now | Why |
+|:---|:---|:---|:---|
+| 핑크 | 핑크 색이 예뻐요. | 핑크색이 예뻐요. | 핑크색 is one word. A spacing error in a model sentence, in an app that teaches spacing. |
+| 금발 | 금발 머리가 눈에 띄어요. | 금발이 눈에 띄어요. | 금발 already means blond *hair*. |
+
+Both translations already read "pink" and "blond hair", so none of the
+thirty-one per-sentence translations changed; the Korean and two recordings did.
+The other 493 pairs are ordinary Korean — 두 사람, 다음 주, 수업 시간, 회의 자료.
+
+## 20X.7 What the bank costs, stated plainly
+
+| | before | after |
+|:---|---:|---:|
+| Bank items, English | 4,147 | 3,995 |
+| Contextual items | 625 | 473 |
+| Non-English reach | 2,122 | 1,972 |
+| Distinct words asked about | 2,273 | 2,166 |
+
+**174 items were removed and 22 were written by hand.** 126 went to the five new
+frame rules, 48 to the editorial reading.
+
+The removals fell almost entirely on the **beginner band**, and that is the one
+consequence of this pass that a learner would have felt. A contextual item needs
+a sentence with an argument in it and a predicate that rules something out, and
+a level-2 card sentence is three words long — so after the rules ran, only 15 of
+the taught words below level 6 kept a gap-fill, down from 50, and Today's
+Vocabulary and Review stopped offering the `context` exercise to new learners
+almost entirely. Two unit tests failed on exactly that and were right to.
+
+A generator cannot write those sentences, so twenty-two are written by hand in
+`content/vocabulary/context-items.json` — `친구와 ____을 잡았어요` against 눈, 입
+and 몸; `____으로 그림을 봐요` against 손, 입 and 몸 — and every one is validated
+against the *same* rules the generated items pass, including particle agreement
+across all four options so the particle never gives the answer away. A curated
+item that fails is a build failure, not an exception. The first draft of the
+file had eleven such failures and the build printed all of them.
+
+They carry **no sentence audio**, deliberately: the clip the renderer plays under
+a gap-fill is the *card's* example recording, and a curated item is a different
+sentence, so playing it would be a recording of something other than what is on
+the screen. Recording them needs the speech plan to learn about a second source
+of Korean sentences, which this pass did not do.
+
+| | before | after |
+|:---|---:|---:|
+| Gap-fills at levels 1–5 | 50 | 36 |
+| Gap-fills at levels 6–10 | 56 | 19 |
+
+Levels 1, 2 and 4 still carry no contextual item. Those levels are carried by
+`meaning` and `produce` items, which is what carried them before.
+
+A smaller bank of items that test Korean is worth more than a larger one whose
+items can be answered by elimination. That is a judgement, and it is this
+document's, so it is stated as one.
+
+## 20X.8 The audit, and what is generated rather than written
+
+`npm run content:audit` writes `docs/content-quality-audit.json` and
+`docs/CONTENT_QUALITY_AUDIT.md` from the tree in one pass — **8,254 rows**, one
+per reachable Korean item, each with its grammar, naturalness, collocation,
+unique-answer, distractor, difficulty and translation status. `--check` is in
+`verify:quick`, so a content change that is not re-audited fails the build
+rather than quietly ageing.
+
+Four documents were added: `CONTENT_QUALITY_STANDARD.md`,
+`CONTENT_QUALITY_AUDIT.md`, `CONTENT_REMEDIATION_LEDGER.md` and
+`CONTENT_GENERATION_AND_REVIEW_PIPELINE.md`.
+
+**And a compatibility suite, because none of this may cost a learner their
+progress.** `contentCompatibility.test.ts` asserts that every shipped word
+carries an id from the permanent ledger, that every id the ledger has issued
+still resolves, that a word stays reachable when its browse category moves, that
+no gap-fill has lost its own answer from its options, and that a curated
+sentence never carries the card's recording. Measured on this tree: **no word id
+was removed, none was added, no `senseId` moved and no word changed level** —
+the 134 category moves are display metadata and the 174 removed questions are
+Level Test items, which are never scheduled and never counted as progress. A
+resumed sitting that referenced a removed item is refused rather than
+mis-scored; that is I-195's guard, and it is the one this pass could have
+tripped.
+
+## 20X.9 This document was contradicting itself again
+
+I-168 was closed on 8 September with *every artefact figure in the report is now
+taken from `result/build-info.json`*. Reading all 308 pages against the tree
+found the same class back, and one of the same sentences:
+
+| Said | Is | Where |
+|:---|:---|:---|
+| the APK grew from 81.9 MB to 82.7 MB | 91,079,074 bytes, 86.9 MiB | §18.5 prose, *the sentence I-168 names* |
+| built from `bc3bec14` | `ed44ed06` in `build-info.json` | §18.5 table |
+| versionCode 21 | 22 in the delivered artefact | the cover, and §20V.12 |
+| the audio set is at 13,738 slots | 13,996 | §18.5 |
+| 2,061 items per non-English language | 2,122 | §2.2, §3, §10.8 |
+| 619 words get a note on a card | 635 | §2.2, twice |
+| 786 words carry a recorded spoken form | 804 — *the row above it in the same table* | §2.2 |
+| 240 levels held to an editorial band | 237 | §2.2 |
+| a 4,147-item bank | 4,147 was right; 625 contextual was right | §10.1 |
+
+`docs:consistency:check` was green throughout and was right to be: it tracks 75
+named metrics and none of these nine is one of them, and **it does not read the
+front matter at all**, which is where versionCode 21 was printed on the cover.
+Nine figures were corrected and the eight that are re-derivable were added to the
+consistency gate.
+
+## 20X.10 Not claimed
+
+* **No native speaker has read any of this.** The naturalness and collocation
+  verdicts in the audit are a model's, and every row says so. They are written
+  down at the level of the individual line so that a native reader can disagree
+  with a sentence rather than with a claim.
+* **A plausible distractor is closer to being a second right answer than an
+  absurd one.** The frame rules, the relation graph, the reviewed conflict
+  pairs, the shared-argument rule and the new shared-predicate rule remove the
+  classes a program can see; the residue is 48 hand-read refusals. There will be
+  more, and they will be found by reading rather than by a gate.
+* **The 134 category moves were reviewed by reading the gloss, not the corpus.**
+  A word whose taught sense differs from its most common sense can still be in
+  the wrong drawer.
+* **Levels 1, 2 and 4 have no contextual item.** Stated in §20X.7 rather than
+  buried.
+
+---
+
 # 21. Issues
 
 `docs/issues.json` is the single place in this repository that states an issue's
@@ -7901,10 +8248,15 @@ document they predate.
 | **I-115** | Numbers | **P0** | Numbers lessons showed as completed after being opened or answered entirely wrong | A learner who opened a Numbers lesson and tapped through it — or answered every question wrong — reached a screen that said Lesson complete, and the lesson's items were written to the letter progress table as learned. The overview never reflected it because the rows were stored under a doubled `number:number:` prefix, so the same learner saw an empty course on one screen and a completed lesson on the other. Nothing they had learned was recorded; something they had not learned was. | **RESOLVED** |
 | **I-116** | Numbers | **P0** | The Numbers curriculum was a table of contents: twelve units of mostly one lesson, one exercise type, fixed answer positions | Fifteen thin lessons, each a list of items and a four-option meaning quiz whose correct answer sat in the same position, with distractors drawn by list order rather than by what a beginner actually confuses. A learner could pass every lesson by position and learn nothing about which system a counter takes. | **RESOLVED** |
 | **I-23** | Strokes | **P0** | The stroke demonstration showed ownership wedges at junctions and a polygonal ㅇ | ㅂ's uprights grew triangular spurs into crossbars that had not been written yet; ㅅ's first stroke grew a chunk of the second one's shoulder; ㅈ chipped into its own fork; ㅇ read as a lumpy ring rather than a circle. A learner watching stroke one of ㅂ could see a piece of stroke three already on the paper. | **RESOLVED** — supersedes I-14 |
+| **I-78** | Vocabulary session | **P0** | A learner measured at level 30 was taught 남자 | Sit the Vocabulary Level Test, come out at 30, open Today's Vocabulary, and be taught 남자 — a level-1 noun. The number beside Lv. was measured correctly and then ignored, which is worse than not having it: the learner has just spent eight minutes being assessed and the app teaches them *man*. | **RESOLVED** |
+| **I-85** | Hangul | **P0** | The compound vowels rendered as two and three separate letters | ㅙ and ㅞ are single vowels. On the screen the learner was shown ㅗ, then ㅏ, then ㅣ, spaced far enough apart that the right-hand upright floated away from the rest — three marks in a row rather than one letter. A learner copying that learns the wrong shape, and the previous report had recorded the defect as fixed. | **RESOLVED** |
+| **I-98** | Vocabulary session | **P0** | A correctly answered matching grid credited nothing — the photographed 9/10 | A learner whose tenth word ended on a matching grid answered it cleanly and watched the counter hold at 9/10 (90%), then met the same words again as retries. The screenshotted “stops at 9 questions” session is this defect: correct answers that did not count. | **RESOLVED** |
+| **I-99** | Vocabulary session | **P0** | A word whose whole obligation was its introduction could never complete | In a partial locale, a new word with no askable question completes at its introduction by design — but the crediting path only credited on a correct answer, which an introduction never produces. The day stuck one short of its goal with nothing left to answer, permanently. | **RESOLVED** |
 | **I-05** | Performance | **P1** | The taught corpus at 10,000 words no longer has to fit in the bundle | The delivery architecture can carry the stated plan. The first load halved to 219 kB and the part of it that is corpus — 45.7 kB — does not grow with the corpus at all. | **RESOLVED** |
 | **I-06** | Word Detail | **P1** | Longer explanations were English-only dictionary scrapings | Non-English learners never saw the block; English learners read "phylum" under 문 | **RESOLVED** |
 | **I-07** | Vocabulary | **P1** | Vietnamese and Thai vocabulary covered 500 of 2,581 words | Past word 500 a vi/th learner read marked English | **RESOLVED** |
 | **I-08** | Content | **P1** | Entries whose gloss contradicted their own example | 열 read "fever" above a sentence about counting to ten | **RESOLVED** |
+| **I-100** | Vocabulary session | **P1** | An unaskable review word was scheduled anyway and held the day at 9/10 forever | A partial-locale learner whose plan pulled in a review word with no meaning in their pack, no valid gap-fill and no buildable assembly (one syllable, or five) owed a word nothing could ask. Every retry pass returned it; every day ended one short. Found on day 4–30 of five synthetic journeys — a learner in this state saw a stuck 9/10 every single day. | **RESOLVED** |
 | **I-103** | Conjugation | **P1** | The -(으)세요 row was shown for every verb under a label meaning “Please do” | 죽으세요 (please die), 죽이세요 (please kill), 다치세요 (please get hurt), 꺼지세요 (the polite form of a vulgar dismissal), 틀리세요 and 172 more were on word cards under a label meaning “Please do”. 맞다 — taught as “to be right” — showed 맞으세요 and 맞아 주세요, which for that sense is not Korean anybody says. The request row had volitionality licensing since an earlier pass; the command row never did. | **RESOLVED** |
 | **I-104** | Conjugation | **P1** | 그러다, 이러다 and 어쩌다 conjugated to non-words | The cards showed 그러요 and 그렀어요 as the present and past of 그러다 — neither is a Korean word; the real forms are 그래요 and 그랬어요. Likewise 이러요 and 어쨌요. And 비다/삐다/기다/쪼다 contracted to 벼요/뼜어요/겨요/쫘요-class forms the written language does not use. | **RESOLVED** |
 | **I-107** | Korean content | **P1** | Fifteen teaching examples were wrong or borrowed another word’s sentence, and one taught word was not real usage | 화나다’s card taught 화나지 마세요 — an imperative of a non-volitional verb, which is not Korean (the prohibitive belongs to 화내다). 풍선이 폭발했어요 used a collocation no native uses; 방이 사람으로 찼어요 missed 가득; 아버지/어머니/선생님 sentences lacked the honorific -시- the corpus itself uses for elders; 스물’s example demonstrated (and misspaced) 스물하나; 위험, 특별, 긴장, 가득 duplicated the 하다-cards beside them; 따르다 borrowed 따라오다’s sentence. And 부딪다’s own conjugation 부딪었어요 is a form real Korean does not use. | **RESOLVED** |
@@ -7948,6 +8300,10 @@ document they predate.
 | **I-197** | Vocabulary Level Test | **P1** | Difficulty climbed two levels a question whatever the learner answered | A learner who answered *I don't know* to a level-4 word was shown level 6 next. A learner who answered the three opening questions correctly met a level-8 sentence at question four. | **RESOLVED** |
 | **I-198** | Vocabulary Level Test | **P1** | The second question of every sitting was a sentence | A learner still becoming comfortable reading Hangul met `밥 먹기 ____에 손을 씻어요` — a nominaliser and four eojeol — as question two, before anything was known about whether they could read a sentence at all. | **RESOLVED** |
 | **I-203** | Letters | **P1** | A returning learner was put back on a letter they had finished, whenever the profile lost a race with the router | Reopening a lesson resumes at the first unfinished letter — the whole point of §48. On a machine slow enough that the stored profile had not been read by the time the route rendered, it resumed at letter one instead, and the learner was asked to redo work they had already done. The progress itself was never lost: the record said `learned` throughout. What was wrong was the screen's reading of it. | **RESOLVED** |
+| **I-205** | Level Test | **P1** | A distractor rule that forbade the answer's own subject area was selecting for absurdity | A reader photographed `창문으로 아침 ____이 들어와요` keyed 빛 and offering 목적, 비빔밥 and 환경. A purpose, a bibimbap and an environment do not come in through a window: the item is answerable by elimination without knowing 빛, and a learner who does know it learns nothing from being right. Measured across the shipped bank, all 625 contextual items had every distractor from a different category than the answer, so this was the whole bank rather than one row. | **RESOLVED** |
+| **I-206** | Vocabulary | **P1** | 292 words took their browse category from a regex match inside a longer word | The category is the drawer the browse screen files a word in. A learner opening Body & Health met 화가 (a painter), 생일 (a birthday) and 베개 (a pillow); Animals & Nature held 창문 (window) and 샌드위치 (a sandwich). | **RESOLVED** |
+| **I-207** | Level Test | **P1** | Two frame guards had never executed, one of them the fix recorded for I-185 | None directly — the items they were written to stop were being kept out by an unrelated rule. The impact is on this document: §20V.1 recorded a fix that had never run. | **RESOLVED** |
+| **I-208** | Review | **P1** | The new frame rules took the beginner band's gap-fill exercise with them | Of the top thirty words by teaching priority, one still had a gap-fill. Today's Vocabulary and Review stopped offering the `context` exercise to new learners almost entirely — the people who need varied practice most. | **RESOLVED** |
 | **I-34** | Handwriting | **P1** | The ㄱ taught beside a vowel had a leg a third too short | A learner tracing 가 or 거 saw one letter under the pen and a different one in *Watch it written*: the demonstration's ㄱ stopped short and read as top-heavy. Reported from a screenshot, not by any check. | **RESOLVED** |
 | **I-35** | Handwriting | **P1** | Every jamo proportion was measured off a fallback face, not off Pretendard | ㅗ was demonstrated with a stem two fifths shorter than the letter the learner traces, and ㅛ the same. 30 of the 40 letters were built to proportions taken from the wrong typeface. | **RESOLVED** |
 | **I-37** | Product | **P1** | The adaptive Hangyul Vocabulary Level Test (1–30) is built | A learner can now find out roughly where they stand in 3–6 minutes, and somebody who already knows some Korean has a way into the product that is not "start at ㄱ". | **RESOLVED** |
@@ -7960,10 +8316,9 @@ document they predate.
 | **I-49** | Vocabulary | **P1** | The daily progress bar counted cards seen, not words learned | Reading ten introduction cards filled the bar. A wrong answer filled it. A session could finish 10/10 having missed two words — a number that means nothing, and a learner who notices stops trusting it. | **RESOLVED** |
 | **I-50** | Dictionary | **P1** | The dictionary showed wikitext, empty parentheses and duplicate meanings | A learner looking a word up read markup instead of a definition. 핵 said "core of planets or other [[celestial body". 252 entries — trees, fish, mosses — showed "()" and nothing else. 340 adjectives carried Wiktionary's "(to be) " marker, which tells an English reader something the part-of-speech line beside it already says. 내일 offered "tomorrow" twice, the second time under "1 other meaning". Example sentences carried `&mdash;` and the transliteration caret. | **RESOLVED** |
 | **I-51** | Localization | **P1** | 3,211 dictionary senses showed an English part of speech in every language | A Tamil, Arabic or Korean reader opening a proper noun, an ideophone, a counter, a phrase or a contraction saw the label in English — 2,310 pages for "proper noun" alone — on an interface that was otherwise fully translated. | **RESOLVED** |
+| **I-52** | Accessibility | **P1** | Four controls were under 44 px and two colour pairs failed AA | The streak chip on Home, the vocabulary search field, the nine daily-goal chips and the skip link — the first tab stop in the product — were all below the 44 px minimum. The search field was the worst of them: 25 px tall inside a 48 px row that plainly invites a tap. The dialog's quiet button was white on #ADB4BA at 2.10:1, and "Reset learning progress" — the one destructive action in the app — was the hardest sentence in it to read at 3.39:1. | **RESOLVED** |
 | **I-09** | Vocabulary UX | **P2** | No matching exercise; production is tiles, not a keyboard | Vocabulary still feels mostly like recognition on cards | **RESOLVED** |
 | **I-10** | Content | **P2** | Korean and English glosses describe different senses for some polysemous words | The meaning changes when the interface language changes. 차 read "a car" in English and 車、お茶 — a car, or the tea you drink — in Japanese, on a card whose sentence is 차를 타요 and whose four options have one right answer. | **RESOLVED** |
-| **I-102** | Vocabulary session | **P2** | A missed new word was retried with the identical question type | §27 promises a different exercise on the same taught sense, because the identical multiple-choice a minute later is answered from the shape of the screen. A new word owes exactly one check, and the retry pool was filtered to the word’s planned steps — so the promise was broken for the most common case in the product: a new word missed on its meaning question was shown its meaning question again. | **RESOLVED** |
-| **I-105** | Conjugation | **P2** | X주다 verbs requested themselves twice | 도와줘 주세요, 알려줘 주세요, 빌려줘 주세요 — “for me” said twice — were displayed as the request rows of eleven 주다 compounds, and 주다 itself showed 줘 주세요. | **RESOLVED** |
 | **I-106** | Dictionary UX | **P2** | A category showed 120 of its words and told the learner so | Six categories exceed the 120-render cap (largest 305). The learner read “200개 중 120개 표시” — an implementation fact — and the words past the cap were genuinely unreachable from the screen. | **RESOLVED** |
 | **I-11** | Accessibility | **P2** | Vocabulary listening questions relied on the hint ladder for a text alternative | Usable, but scored as a reveal rather than as an accommodation | **RESOLVED** |
 | **I-113** | Conjugation | **P2** | Batch 920's verbs licensed unnatural command and request rows by default | 좌절하세요 (please be crushed), 급증하세요 (please surge), 야기하세요, 간과하세요, 직면하세요, 체감하세요 — mechanically impeccable rows a learner would have read under a label meaning 'Please do'. 감행해 주세요, 만회해 주세요, 몰두해 주세요 and 억눌러 주세요 are favours nobody asks. | **RESOLVED** |
@@ -8006,6 +8361,7 @@ document they predate.
 | **I-199** | Release engineering | **P2** | The gate for a too-hard opening used a threshold six levels wide | None directly. It is why the reported defect shipped: the gate over it was green and correct by its own rule. | **RESOLVED** |
 | **I-200** | Vocabulary Level Test | **P2** | The screen's pool fallback could cross a band the learner had not earned | Band 1 holds three contextual items, so the fallback fired on the first sentence of nearly every beginner sitting and served a band-2 one. | **RESOLVED** |
 | **I-202** | Verification | **P2** | A release e2e case passed by beating hydration, and had been asserting nothing for a week | None directly. The cost is that a gate in `npm run test:e2e` reported green while asserting nothing, and the property it was written to protect — that the settings screen speaks a learner's language and not the storage engine's — was unguarded. | **RESOLVED** |
+| **I-209** | Report | **P2** | Nine figures in this document disagreed with the tree, including the sentence I-168 was closed on | None to a learner. The document is handed to a reviewer as the authoritative description of the product, and a reviewer who checks one figure and finds it wrong is right to disbelieve the rest. | **RESOLVED** |
 | **I-21** | Accessibility | **P2** | `sound_recognition` and `distinguish` letter exercises are heard-only, and the toggle that skipped them is gone | A deaf learner arriving today meets letter questions they cannot answer. Anyone who had already turned the setting on keeps it — the stored `sound_free` flag is still honoured. | **RESOLVED** |
 | **I-24** | Handwriting | **P2** | The traced guide is smaller than the demonstration for a single letter | On a letter lesson the grey glyph a learner traces fills about two-thirds of the writing square while the demonstration below it fills 0.84 of its own, and it does not sit on the crosshair drawn under it. Same letter, two sizes, one screen. It also costs accuracy: on Pretendard, the default face, 1.04% of correct attempts are rejected — five times the overall average — and every one of those rejections is a letter written *small and drifted*, which is what tracing a small off-centre guide produces. | **RESOLVED** |
 | **I-25** | Build | **P2** | `strokes:measure:check` is not on the release gate | None directly. The table is now reproducible and the check exists, but nothing runs it automatically, so a face upgrade could move the measurements without anyone being told. | **RESOLVED** |
@@ -8014,6 +8370,7 @@ document they predate.
 | **I-45** | Onboarding | **P2** | Nothing ever asked a new learner what level they were, and the level they had was buried | A learner could use the app for weeks, be taught from Level 1 throughout, and never discover that a two-minute test would give them words that fit. The Vocabulary Level itself sat on a card two thirds of the way down Home, which is where a number goes when nobody is meant to look at it. | **RESOLVED** |
 | **I-46** | Handwriting | **P2** | Five vowels were drawn visibly off centre, and every attempt ended in a panel of praise | Two things a learner meets on every letter. The reference character sat to one side of the square they were being asked to copy it into, and each attempt — right or wrong — was answered with a headline, a compliment, a stroke-order note and a details toggle. | **RESOLVED** |
 | **I-47** | Home | **P2** | The quotation slot held a hundred lines, eighty-eight of which the app had written itself | A learner reading the foot of Home could not tell a sentence Seneca wrote from a sentence a product manager wrote, because both were set the same way in the same slot. Twenty attributed quotations replace them. | **RESOLVED** |
+| **I-53** | Copy | **P2** | The Review hub called one list "Saved words" and the other "Wrong vocabulary" | Two chips ten pixels apart named the same kind of thing with two different nouns, so they read as two features that arrived separately rather than as a pair. | **RESOLVED** |
 | **I-132** | My Learning | **P3** | Section headings started four pixels right of their own descriptions | 초기화, 백업, 앱 and 화면 each sat four pixels right of the text beneath them. Every box measurement said the column was straight. | **RESOLVED** |
 | **I-139** | Copy | **P3** | Home repeated the streak in a row underneath it, and Backup made a privacy claim | A row reading 이번 주 · 7일 중 1일 · 0분 sat under Home’s cards, saying what the streak pill above it says and linking where it links. The Backup description ended 어디에도 올라가지 않아요 — an implementation detail phrased as a promise, on a screen a customer reaches when changing phones. | **RESOLVED** |
 | **I-142** | Release engineering | **P3** | The report stated a test total its own breakdown contradicted | The document said 1,289 unit cases and, elsewhere, 976 + 216 + 96 — which is 1,288. A reader can check that in three seconds; a report that fails its own arithmetic is one nobody can use as a source. | **RESOLVED** |
@@ -8034,12 +8391,6 @@ document they predate.
 | **I-31** | Handwriting | **P3** | Gaegu drew small letters, and the correction to its reading size was fitted to one axis | A learner who picks the handwriting typeface reads and traces letters drawn smaller than the same letters in the same app a moment earlier. The traced reference was fixed a cycle ago; the reading size was corrected to 127% and, rendered beside the other five faces, plainly read *larger* than them. | **RESOLVED** |
 | **I-32** | Performance | **P3** | Dictionary search scanned every row on every keystroke | None reached a customer — it was caught by its own budget at 9.0 ms before shipping — but the design had no headroom: another 15% of corpus growth and search results would have begun trailing the cursor on a mid-range phone. | **RESOLVED** |
 | **I-33** | Content | **P4** | Secondary categories were inherited from senses the card does not teach | 김치 was tagged *communication* as well as *food*; 눈, taught as the eye, was tagged *animals-nature* from the snow sense; 돈 was *time-numbers*. Secondary tags feed search and recommendations, so a wrong one sends a learner to a word that does not belong there. | **RESOLVED** |
-| **I-78** | Vocabulary session | **P0** | A learner measured at level 30 was taught 남자 | Sit the Vocabulary Level Test, come out at 30, open Today's Vocabulary, and be taught 남자 — a level-1 noun. The number beside Lv. was measured correctly and then ignored, which is worse than not having it: the learner has just spent eight minutes being assessed and the app teaches them *man*. | **RESOLVED** |
-| **I-85** | Hangul | **P0** | The compound vowels rendered as two and three separate letters | ㅙ and ㅞ are single vowels. On the screen the learner was shown ㅗ, then ㅏ, then ㅣ, spaced far enough apart that the right-hand upright floated away from the rest — three marks in a row rather than one letter. A learner copying that learns the wrong shape, and the previous report had recorded the defect as fixed. | **RESOLVED** |
-| **I-98** | Vocabulary session | **P0** | A correctly answered matching grid credited nothing — the photographed 9/10 | A learner whose tenth word ended on a matching grid answered it cleanly and watched the counter hold at 9/10 (90%), then met the same words again as retries. The screenshotted “stops at 9 questions” session is this defect: correct answers that did not count. | **RESOLVED** |
-| **I-99** | Vocabulary session | **P0** | A word whose whole obligation was its introduction could never complete | In a partial locale, a new word with no askable question completes at its introduction by design — but the crediting path only credited on a correct answer, which an introduction never produces. The day stuck one short of its goal with nothing left to answer, permanently. | **RESOLVED** |
-| **I-100** | Vocabulary session | **P1** | An unaskable review word was scheduled anyway and held the day at 9/10 forever | A partial-locale learner whose plan pulled in a review word with no meaning in their pack, no valid gap-fill and no buildable assembly (one syllable, or five) owed a word nothing could ask. Every retry pass returned it; every day ended one short. Found on day 4–30 of five synthetic journeys — a learner in this state saw a stuck 9/10 every single day. | **RESOLVED** |
-| **I-52** | Accessibility | **P1** | Four controls were under 44 px and two colour pairs failed AA | The streak chip on Home, the vocabulary search field, the nine daily-goal chips and the skip link — the first tab stop in the product — were all below the 44 px minimum. The search field was the worst of them: 25 px tall inside a 48 px row that plainly invites a tap. The dialog's quiet button was white on #ADB4BA at 2.10:1, and "Reset learning progress" — the one destructive action in the app — was the hardest sentence in it to read at 3.39:1. | **RESOLVED** |
 | **I-55** | Level Test | **P1** | Contextual level-test items shipped with two defensible answers | A learner who knows Korean well enough to see that 연필을 사고 있어요 is a perfectly good sentence marks the item wrong, and the test places them lower than they are. The strongest learners are the ones most likely to be penalised, which is the worst possible direction for a placement test to be wrong in. | **RESOLVED** |
 | **I-56** | Build | **P1** | The level-test ambiguity gate had been crashing on the first item it read | None directly, and it is the reason I-55 reached a customer. Meaning items started carrying ids instead of strings when the bank was localised; the gate read `item.options`, found `undefined`, and threw on item one. It printed a stack trace and no findings, which in a long build log reads like a step that had nothing to say. | **RESOLVED** |
 | **I-58** | Content | **P1** | 계셌어요 — the honorific verbs conjugated into strings that are not Korean | Two of them were in the level test as answer options. 계시다, 주무시다, 드시다, 잡수시다 and 돌아가시다 all produced a past tense no Korean speaker has written, and a request form to match: 계세 주세요. | **RESOLVED** |
@@ -8057,7 +8408,8 @@ document they predate.
 | **I-86** | Release engineering | **P1** | The glyph-shape gate compared six letters with themselves | None directly. It is why I-85 was reported fixed while it was not: the gate that certified the compound vowels was comparing the tracing guide with the demonstration, and both are generated from the same authored centrelines. Two drawings of the same wrong shape agree perfectly. | **RESOLVED** |
 | **I-97** | State consistency | **P1** | Home and Learning Activity computed the streak from different day stores | A day with recorded study time but no completed attempt advanced the Activity screen’s streak and not Home’s. A learner read “4 days” on Home under “7 days in a row” one tap away — the same history, two answers, and no way to tell which to trust. | **RESOLVED** |
 | **I-101** | Vocabulary session | **P2** | A fast double tap ran the advance path twice | Two taps on Continue inside one frame credited again (harmless — the store ignores repeats), inflated the closing card’s count, appended the retry pass twice, and stepped the index by two — skipping a question the learner never saw. | **RESOLVED** |
-| **I-53** | Copy | **P2** | The Review hub called one list "Saved words" and the other "Wrong vocabulary" | Two chips ten pixels apart named the same kind of thing with two different nouns, so they read as two features that arrived separately rather than as a pair. | **RESOLVED** |
+| **I-102** | Vocabulary session | **P2** | A missed new word was retried with the identical question type | §27 promises a different exercise on the same taught sense, because the identical multiple-choice a minute later is answered from the shape of the screen. A new word owes exactly one check, and the retry pool was filtered to the word’s planned steps — so the promise was broken for the most common case in the product: a new word missed on its meaning question was shown its meaning question again. | **RESOLVED** |
+| **I-105** | Conjugation | **P2** | X주다 verbs requested themselves twice | 도와줘 주세요, 알려줘 주세요, 빌려줘 주세요 — “for me” said twice — were displayed as the request rows of eleven 주다 compounds, and 주다 itself showed 줘 주세요. | **RESOLVED** |
 | **I-54** | Build | **P2** | Two gates failed on every run once twenty-two languages went partial | None directly — but a suite that is red on every commit is a suite people route around, and this one was red on 44 findings that were the content backlog rather than a fault. | **RESOLVED** |
 | **I-57** | Level Test | **P2** | The test reported a level out of 30 without saying how far it could ask in that language | A learner in Hungarian is never asked a question above level 23, because the levels above are ranked from the dictionary and only English carries those glosses. They were then shown a number "of 30". A ceiling presented as a result reads as a verdict on the learner rather than a limit of the bank. | **RESOLVED** |
 | **I-60** | Copy | **P2** | The Korean interface called one thing two things, on screens a learner moves between | The home card read 오늘의 어휘 directly above a tab reading 단어; the saved list was 저장한 어휘, filled by a button reading 단어 저장, and its empty state read 어휘의 북마크를 누르면, which is not a thing anyone says. Unit 1 teaches that 낱자 combine into a 글자 and the product then called the letters tab 글자, counted 완료한 글자 in the activity page and 배운 낱자 in the settings. Six strings were in 합쇼체 in a product that speaks 해요체, one of them mixing both inside a single pair of sentences. | **RESOLVED** |
@@ -8091,7 +8443,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 2 · P3: 2**
 
-**Blocked outside this repository: 1 · Partial: 4 · Resolved: 190**
+**Blocked outside this repository: 1 · Partial: 4 · Resolved: 195**
 
 <!-- /issues:counts -->
 
@@ -8116,10 +8468,15 @@ document they predate.
 | **I-115** | Reproduced in this pass on a fresh profile before any fix (scratch script, evidence table in the working notes): an all-wrong run of `num-lesson-native-basics` (7 of 10 incorrect) ended on “Lesson complete”; the correct option sat at index 1 in 10 of 10 questions of the sino lesson and cycled 0,3,2,1 in the counters lesson; stored keys were `number:number:num-*`; the completion was counted as a word learned. Root causes: the session page wrote `learned` for every item on the last question regardless of the answers; the item key was prefixed by the caller and again by the store; hydration coerced an unknown kind to `character`. Fixed by a separate `numbers` store, an evidence record per lesson (`NumbersLessonProgress`, schema 1) and a pure reducer in `domain/numbersProgress.ts` that is the only writer of `completed_at`, which requires every explanation step viewed, every example viewed, practice finished, a mastery check at or above 80% and every item answered correctly at least once in a mastery check. Records are repaired on every read: a `completed_at` the evidence does not support is cleared and counted as downgraded. Migration 13 snapshots and removes the contaminated rows from the letter stores and touches nothing else. Proven by 27 journey and negative tests (`numbersProgress.test.ts`), 12 migration fixtures (`numbersMigration.test.ts`), 8 exercise-engine tests, 10 data tests, 5 browser journeys (`e2e/numbers.spec.ts`) and the `numbers:qa` gate. Numbers had never shipped: the committed artefacts are v1.0.0 (`86d0babd`) without the feature. | Done. The rule to keep: completion is derived from stored evidence by one domain function, never set by a screen; every progress store is namespaced by kind exactly once; every record is repaired on read. |
 | **I-116** | Rebuilt as 6 modules and 19 lessons over 97 items (`data/numbers.ts`): the two systems, past ten, counting things, time and dates, money and identifiers, review. Every lesson has an objective, two or three explanation steps, examples with recorded audio for every word and every example phrase (no runtime synthesis; `audio:plan`/`audio:build`), guided practice from at least two of nine exercise families, a mastery check that asks every item, feedback that names the misconception behind the chosen wrong answer, a summary that lists what is still owed, and a review path that becomes due after seven days. Distractors are built from misconception classes — system swap, plain form before a counter, adjacent value, sound-alike, irregular month, wrong counter, spacing — and option order is a seeded shuffle of (lesson, item, kind, phase, attempt): stable within an attempt, different on a retake; over the mastery checks the answer lands at every index (`numbers:qa` reports the distribution). 272 keys × 32 languages, gated for missing, blank, placeholder-broken and English-identical strings. | Done. |
 | **I-23** | Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at. | done |
+| **I-78** | Not the level model and not `planNewWords`, both of which are correct — the search window for a learner at 30 is levels 27–30 and 남자 cannot come out of it. It was the plan cache. A `DailyPlan` was identified by its date and its goal, so the plan built when the app first opened, at the default level, was still "current" after the test. Every new learner meets this, because sitting the test is something you do just after opening the app for the first time, which is exactly when a default-level plan has been written.  `DailyPlan` now records the level it was built for and `planIsCurrent` compares it. A goal change still takes effect tomorrow — a goal is a preference — and a level change takes effect at once, because a level is a measurement. A plan stored before the field existed is kept rather than discarding somebody's day on upgrade.  `domain/vocabularyLevel.test.ts` holds four fixtures against the real corpus: a level-30 plan contains nothing below 27 and does not contain 남자, a level-1 plan contains nothing above 3, a plan built at 1 is refused for a learner at 30, and a plan with no level is kept. Negative-tested.  Read rather than counted afterwards, 30 days at seven levels: level 1 gets 차, 당신, 가다, 엄마, 오늘; level 30 gets 기울다, 물리치다, 웅크리다, 일석이조, 새옹지마. Zero words below 28 in 300 recommendations at level 30.  REOPENED AND RE-CLOSED in the level-truth pass (2026-08-26). The fix above was incomplete: `planIsCurrent` kept a mismatched plan whenever the learner had started it — one completed word was enough — so the reported journey (study three Level-1 words, retake, measure 30, return the same day) still ran the rest of the day at Level 1. The class is I-108; the rule this issue recorded ("a plan with work in it stands and the new level starts tomorrow") is retired there. | Superseded by I-108: a measured level change now takes effect immediately for started days too, preserving earned progress. The corpus limit behind it is I-79. |
+| **I-85** | Photographed on the running product after the previous pass reported PASS. Reproduced from the shipped `dist` on a local preview, so the contradiction was in the artefact and not in the photograph.  Three simultaneous defects, only one of which the previous pass had touched:  1. **The two uprights' x-positions** — corrected last pass, by a one-dimensional metric. 2. **The bars were authored too short**, so the left half of ㅙ did not reach the right half. 3. **`shapeToFace` assumed the pen widens the ink box on all four sides.** It does not: with butt caps a stroke is widened only perpendicular to its direction. Every one of the 40 jamo therefore had the wrong proportion — ㅐ and ㅒ by 12% — and the compound vowels, which are the widest, were worst.  Fixed by re-authoring the whole vowel table in face ink-box fractions and replacing `shapeToFace` with an iterative solve over a `drawnInkBox` that pads each segment by the pen only perpendicular to it. Verified against Pretendard rather than against the app's own other drawing: `docs/report-assets/compound-vowels-before.png` and `compound-vowels-after.png` are the same eleven letters overlaid on the face, before and after. | Done. The gate that would have caught it is I-86. |
+| **I-98** | `MatchExercise` reported per-word results and the crediting path read a boolean (`answeredCorrectly`) that no grid code ever set — null read as failure, so every word a grid completed was requeued. The answer state is now per-word (`{correct[], wrong[]}`), set by every exercise including the grid, and `creditsFor()` in `dailyQuestions.ts` is the one crediting rule shared by `advance` and the finish-button prediction. Pinned by eight fixtures in `wordSessionCredits.test.ts` including the exact grid-of-four case. | Done. |
+| **I-99** | `repairCompletion` already made the intro such a word’s completing screen; `advance` ignored it. `creditsFor()` now credits an intro exactly what `repairCompletion` gave it: nothing for a word with a question ahead (§26 — viewing is not learning), the word itself when the intro is its whole obligation. | Done. |
 | **I-05** | Fixed by the band architecture in **I-38**; this is the budget half of the same work and is closed by it. `bundle:budget` no longer forecasts the corpus into the first load, because the corpus is not in the first load: it is fetched from `public/corpus/` a band at a time.  ```   corpus, first paint              45.7 kB /  64.0 kB   enforced   corpus, first paint at 10,000    45.7 kB /  64.0 kB   enforced, and flat by construction   corpus, whole at 10,000         776.8 kB / 900.0 kB   forecast, background, precached ```  The forecast that used to read 302% of budget was measuring a *first-load* cost. What replaced it is two rows: an enforced first-paint budget that a growing corpus cannot break, and a background figure whose ceiling was re-derived for what a background download may fairly cost. See I-38 for why the second number is 900 kB rather than the old 220, and why that is a retirement rather than a raise. | Done. |
 | **I-06** | 25 written words in ten languages; §15.2. | done |
 | **I-07** | 2,581 non-null rows in both. | done |
 | **I-08** | Eleven found, all authored and pinned; `vocabulary:sense:qa:check` passes. | done |
+| **I-100** | Found by the 100-user synthetic journey harness on its first run. The review side’s `canAsk` deliberately ignores language (structural answerability), which is right for Review counts and wrong for scheduling: `strictMeaning` refuses meaning questions in partial locales. Fixed structurally with `DayRequest.canPractise` — a language-aware probe built from the very question builder the session uses — threaded from `LearnerProvider` into `buildDailyPlan`, so a met word the session cannot ask in this language is not scheduled. New words are exempt: their introduction is worth scheduling and credits them when it is their whole obligation. All 100 journeys now pass. | Done. |
 | **I-103** | All 1,458 taught predicates’ command and request rows were read one at a time against their taught sense. The -(으)세요 row now passes the same volitionality gate the request row does (`licensesImperative` in `packages/korean-morphology/src/request.ts`), 150 lemmas joined a NOT_VOLITIONAL table, 좋아하다 keeps its request and loses its command, 꾸다/쐬다-class keep the command and lose the request, and three natural favours the family rules wrongly denied are back (다져 주세요, 매만져 주세요, 헤아려 주세요). `displayConjugations()` is the one display policy shared by the panel and the new `conjugation:display:qa` gate, which self-tests against five broken inputs on every run and writes a re-readable ledger of every displayed command and request row. Command rows shown fell 1,101 → 768; requests 924 → 752. | Done. Re-read the ledger when the corpus grows — a new verb is licensed by default. |
 | **I-104** | The contracted demonstratives (그리하다-family) front like 하다 and are now suppletive stems: 그래, 이래, 저래, 어째. The four monosyllabic stems join an UNCONTRACTED set — 비어요, 삐었어요, 기어요, 쪼아요 — because the permitted contraction is not the written usage. 36 new fixtures in `conjugate.test.ts`; the level-test bank and cloze artefacts were rebuilt from the corrected module the same commit. | Done. |
 | **I-107** | Every one of the 3,221 teaching examples was re-read this pass by six parallel editorial readers; the 32 raw findings were adjudicated one by one and 15 rewritten at the source with new recordings in both voices, translations updated in every written language (including 31 languages for 건물, a core-band word). 부딪다 was retired — 부딪치다 is already taught — and its id stays in the ledger. Seven cards’ glosses were aligned to the sense their example actually demonstrates (지원하다 → apply, 아끼다 → use sparingly, 반대 → opposition, 무엇 → what, 계속 → continuously + adverb, 가까이 → near, 마저’s Korean gloss to the particle its example uses). Corpus 3,221 → 3,220; every content gate green on the rebuilt tree. | Done. The class — an example demonstrating a different word than its headword — is one no gate can decide; it stays a reading task. |
@@ -8163,6 +8520,10 @@ document they predate.
 | **I-197** | Neither the estimator nor the step bound was wrong. The bracket's upper bound is 30 until something is missed, so its midpoint after three correct answers is 18; the posterior's prior is centred at 15 and deliberately weak, so for the first several questions it believes something near 15 about everybody. `MAX_STEP_UP` was the only thing holding the walk down.  A bound on step size limits how fast a sitting climbs. It says nothing about whether the learner has given any reason to climb. | Fixed. Six bands and an earned ceiling: `reach()` opens a band on three correct answers inside it across two distinct question kinds, and `reachCeiling` clamps the selector's target, the bounded step, the warm-up ladder and the screen's pool fallback. A miss costs one unit of evidence and opens a two-question confirmation window capped below the level missed. `docs/LEVEL_TEST_ADAPTIVE_POLICY.md` states the whole policy. |
 | **I-198** | `planKinds` cycled `meaning, context, produce, context`, so index 1 was always contextual. | Fixed. The first `OPENING_ITEMS` = 5 are word questions; the first sentence is question six. The composition over the whole sitting is unchanged — twelve contextual, nine of each other kind — so nothing is lost, it is reordered. Measured across all sixteen simulated profiles: first sentence at Q6 in every one. |
 | **I-203** | `LetterSessionPage` computed its resume index in a `useState` initialiser, from `progressFor('character', …)`. `ready` is false until the stored profile has been read, and the route mounts before that: `CorpusGate` lets the app through as soon as the corpus is available, and `LaunchSplash` covers the screen rather than holding the router. So the initialiser asked about a profile that was not there, found nothing learned and answered 0.  Found by an end-to-end case that had been dismissed as a flake four times — `an interrupted lesson resumes at the letter that is unfinished`, 9.5s green alone and 18-25s red in the suite. Under `--repeat-each=8 --workers=4` it failed **6 of 8**, and a 500 ms delay before the navigation changed nothing, which ruled out the write racing. Dumping the object store through the failure showed `character:ㅏ=learned` both before and after the navigation: the data was right and the read was early. | Fixed. The cursor is placed once, by an effect, on the first render where the profile can be read; a `placed` ref keeps the original invariant that finishing a letter never moves the cursor a second time. `recordIntroduced` is gated on the same flag — `applyIntroduced` only promotes an `unseen` row, and a row it cannot see is a row it invents, so against an un-hydrated profile it wrote a blank `introduced` row for whichever letter the un-placed cursor pointed at. 8 of 8 under the parallelism that produced 6 of 8 failures. |
+| **I-205** | `build_level_test.mjs` refused a distractor sharing the answer's browse category — written to stop two right answers, which made 'unrelated to the sentence' the qualifying condition. `leveltest:ambiguity` asserted the same rule and `answerable.test.ts` asserted it a third time. Every gate was green and every gate was right to be: the item has exactly one defensible answer, which is all any of them asked. | Inverted for nouns: a distractor must share the answer's category or one of its tags. Predicates keep the old rule, where a same-area verb genuinely is a second right answer. Frames where a same-area noun would also be right are refused outright (I-207) rather than filled with a distant option. New gate `leveltest:distractors`, in `verify:quick`, negative-tested at 747 findings against the pre-fix builder. |
+| **I-206** | `categories.py` writes its rules as `\b(head\|face\|…\|pain\|hurt\|…)` — a word boundary in front and nothing behind, so every alternative was also a prefix rule. `pain` matched painter, `sand` matched sandwich, `wind` matched window, `birth` matched birthday, `doll` matched dollar, `war` matched warehouse, `exam` matched example, `pass` matched password. | A `(?!\w)` lookahead on every rule, plus an English inflection and derivation table so that closing the accidental matches does not cost the 196 real ones it would otherwise. `-ter` is excluded (it gives painter → pain) and `-y`/`-ly` need a four-letter stem (many → man, busy → bus, early → ear). Then all eighteen category listings were read word by word: `OVERRIDES` 552 → 1,085, and 134 words moved. |
+| **I-207** | `isUnconstrainedPredicateFrame(anchor.example)` and `isConsumptionObjectFrame(anchor.example)`. Both functions begin `if (!sentence.includes('____')) return false` and both were handed the sentence with the answer still in it. `isUnconstrainedPredicateFrame('일곱 시에 일어나요.')` is false; the blanked form is true. `leveltest:ambiguity` re-derives the frames from the shipped bank, where the prompt does carry the blank, so it computed them correctly and found nothing. | Pass `blanked`. Found only because inverting the distractor rule (I-205) removed the accidental cover and four `consumable-option` findings appeared at once. |
+| **I-208** | Gap-fills at levels 1–5 fell 50 → 15 and at 6–10 fell 56 → 18. Two unit tests failed on it: `reviewLists.test.tsx > asks about a wrong word in more than one way` returned one mode where two were required, and `honours the size the learner picked` returned a plan of 2 where more than 5 was required. | Twenty-two hand-written items in `content/vocabulary/context-items.json`, validated by the builder against every rule it applies to its own output — particle agreement across all four options, category sharing, level spread, the safety lists and all the frame tests. A curated item that fails is a build failure. Levels 1–5 recover to 36. |
 | **I-34** | The leg's toe, as a fraction of the letter's width, measured off Pretendard with the ㄱ's region taken from the measured composition: 0.120 in 가, 0.116 in 거, 0.113 in 기. It was authored at a lean of 0.28, putting the toe at 0.72.  The rule was already right — a leaning form beside a vowel, an upright one above or alone — and only the magnitude was wrong, so the fix is one constant and a refitted curve, not a per-syllable exception. `GIYEOK_LEAN` is 0.885, the leg's two controls least-squares fitted to the face's own profile at 25/50/75/98% of its height, and the corner held square. Fitted twice: the first fit was against the bare curve, and the samples are of rendered ink whose box is half a pen larger at each end — worth 0.057 of the width through the middle.  Now 0.166 / 0.175 / 0.167 against the face's 0.120 / 0.116 / 0.113, inside the face's own variation between the three. All 14 taught items containing ㄱ, ㅋ or ㄲ were re-rendered against the face and read by eye. Stroke integrity is unchanged: `strokes:qa`, `strokes:visual` and `strokes:measure:check` clean on 73 items and 1,345 frames. Pinned by `giyeokShape.test.ts` without a browser and by `glyphshape:qa` with one. | Done. |
 | **I-35** | `measure-jamo.mjs` set a page whose only content was a `<canvas>`, awaited `document.fonts.ready` — which resolves immediately when nothing on the page uses the family — and then drew with a font that had never loaded. The canvas substituted a system Korean face and drew perfectly good, wrong letters. Nothing errored and the check said the file was up to date, because it faithfully reproduced its own mistake.  ㅗ was recorded at an aspect of 2.894 where Pretendard draws it at 1.826; ㅛ 2.894 against 1.746; ㅊ, ㅈ, ㅑ, ㅏ, ㅐ, ㅎ and 23 others moved by more than 5%. The generator now loads the face for the letters it is about to measure and refuses to run if it did not — checking for a family only its own `@font-face` can supply, because the fallback is another Korean face and passes a weaker test.  Found by following the ㄱ report rather than by any gate. The first attempt to measure it independently had the identical bug and produced eight confident, wrong findings about compound vowels before the numbers were checked against the font file itself. | Done. |
 | **I-37** | Built as its own feature, with its own bank, its own scale and its own simulation harness.  **The scale.** The Hangyul Vocabulary Level is 1–30, cumulative and non-linear: Lv1 ≈ 147 words, Lv10 ≈ 1,835, Lv20 ≈ 5,690, Lv30 ≈ 10,635+. It is **not** the teaching corpus cut into thirty equal bands — that would have made a "level" mean 86 words, which is not a proficiency scale, it is a progress bar. The 2,581 taught words are used as *calibrated anchors* inside it, together with quality-gated dictionary entries, all ranked by the same `frequency.measure` the corpus uses.  **The bank.** `scripts/content/build_level_test.py` selects the anchors and `build_level_test.mjs` generates 3,960 items across the 30 levels (min 121 each) to `public/level-test/`, content-hashed and lazily fetched — it is not in the bundle and not on any critical path. Items are Korean→meaning, meaning→Korean and context, and **context items use conjugated Korean** — 마셔요, not 마시다 — generated through `packages/korean-morphology`, which carries 99 unit tests and a named regression table across ten irregular classes and is checked against 1,306 corpus predicates by `npm run conjugation:qa`. `npm run leveltest:ambiguity` applied eight rules to the whole bank when this was written; it applies twelve now and reports **0 findings** — the four it gained are I-55. A 143-word blocklist keeps unsuitable subject matter out of both the anchors and the distractors; an anchor must be Hangul, 1–4 syllables, a noun/verb/adjective/adverb, and carry a gloss of 3–60 characters that is not a grammatical form page.  **The scoring.** A 3PL/Rasch model with a guessing floor of 1/4, EAP over a grid, Fisher-information item selection. **Exactly 30 items — 12 context, 9 Korean→meaning, 9 meaning→Korean — under one 8-minute clock**, replacing an adaptive stopping rule that ran 18–36 items until SE fell under 1.6 levels: a test whose length depends on how well you are doing tells you how well you are doing while you sit it. Difficulty still adapts; the count does not. On expiry the answers given are kept, the rest are recorded as *I don't know*, and the sitting is scored. "I don't know" is an answer and is weighted as cleaner evidence than a wrong guess, not as a skip. `npm run leveltest:qa` simulates 200 sittings at each of the 30 levels against the real bank: **MAE 1.34 levels, 95.3% within ±3, 99.7% within ±5, exactly 30 items, composition 12.0/9.0/9.0.** Fixing the length cost 0.07 levels of mean error.  **What it does not do.** No listening, no handwriting, no hints, no answer reveal, no running score. It writes `settings.level_test` and nothing else — an e2e test takes the whole assessment and asserts that every other IndexedDB store is byte-for-byte unchanged. The result screen names the scale as **the Hangyul Vocabulary Level** in all 32 languages, so what the learner is given is our own number rather than an implied TOPIK or CEFR grade. The four disclaimer sentences that used to open the intro — no hints, answers not shown, nothing here changes your lessons, not an official proficiency grade — were removed: four caveats to read before a beginner is allowed to find out how much Korean they know is a methodology page, not an invitation. The promises they made are still kept and are asserted against the DOM by `e2e/level-test.spec.ts`, which is stronger than a sentence claiming them. | Done. |
@@ -8175,10 +8536,9 @@ document they predate.
 | **I-49** | The rule is now one line: **ten words means ten words answered correctly.**  * An introduction credits nothing. A learner who reads all ten cards and answers nothing reads 0/10. * Only a correct answer completes a word. `advance` used to credit unconditionally; it reads the recorded outcome now. * A missed word comes back — at the end of the pass, as a *different* exercise on the same taught sense, because asked the identical multiple-choice a minute later a learner answers from the shape of the screen rather than the word. The session does not end at 8/10 having dropped two.  **The retry queue is not stored anywhere, and that is the design.** What is owed is derived from the plan — the words not in `completed` — and the plan already persists. A reload cannot lose a pending retry without also losing the progress bar, so the two can never disagree.  `dayProgress` also stopped counting the length of the completed list and started counting distinct words in it. Nothing was wrong today, because `completeDailyWord` ignores repeats; counting a log to answer "how many words are finished" is the kind of thing that goes wrong later, quietly, in the learner's favour.  `dailyProgress.test.ts` holds the seven cases: ten intros and no answers is 0/10; five correct is 5/10; four right and one wrong is 4/5 with the wrong one requeued as a different question; the retry finishing the day; the same word wrong twice staying one incomplete word; a reload keeping both the progress and what is owed; and fifteen against a goal of ten reading 150% with the bar full rather than overflowing. |  |
 | **I-50** | §16 asked for the whole dictionary rather than the one word in the screenshot, so all 30,059 entries were swept and five defect classes came back, each with one cause in the ingestion and each fixed there:  * `_template_args` split a template body on every `\|`, including the one inside `[[celestial body\|celestial bodies]]`. It now splits at brace depth zero, using the helper the file already had. 84 glosses. * `{{vern\|…}}` and `{{taxlink\|…}}` were unknown templates, deleted as unrecognised, and "()" was what remained of 너도밤나무's second sense. Species and vernacular names now render, and a gloss with fewer than two letters is refused. 252 glosses, and 184 headwords came back with them. * The "(to be) " marker is stripped. 340 glosses. * A repeated gloss under one headword is folded into the first, which absorbs the later one's examples. 212 headwords. * HTML entities are decoded and the transliteration caret removed — from glosses only where it is bound to what follows, because the gloss of 캐럿 is "caret (^)".  Two smaller causes fell out of the same sweep: a definition wrapping another template was deleted before it could be read (어쭈 began with a full stop), and a piped link whose display text contained a `]` stayed as wikitext. `dictionary:qa` now fails on any of it, because the source gets refetched and the cleaner will meet templates it has not met before.  Net: 30,243 headwords, 39,647 senses, and the usable-example yield on a taught card rose from 34% to 38%.  **And swept again.** Fixing five classes is not evidence that there is no sixth. A second pass over the whole corpus against a wider net found six more — a citation left in a definition, a MediaWiki interwiki prefix, an unbalanced bracket, a reference whose target had already been dropped, a replacement character, and glosses long enough to be an encyclopaedia entry. All six are rules in `dictionary:qa`, each negative-tested. 30,243 → **30,229 headwords, 39,610 senses**: the fourteen lost had a dangling reference as their only sense, and an entry that trails off mid-phrase is worse than no entry. Twenty-seven long glosses are kept on purpose and the *count* is the gate — truncating manufactures the defect the sweep exists to remove. | Done, in `scripts/content/wiktionary.py` and gated by `dictionary:qa`. |
 | **I-51** | The label is `t('partOfSpeech.<value>')` with the raw value as its default, so an untranslated part of speech does not fail: it prints the English word and looks deliberate. Five of the fourteen the dictionary uses were in that state. All five are now named in all 32 languages, and `dictionary:qa` fails when a part of speech the dictionary uses has no name in one of them — the default is what made it silent, so the silence is broken outside the component. | Done. |
+| **I-52** | `screens:audit` renders seventeen screens at 320, 390 and 430 px, in dark, and at 200% root font size: 85 renders, measuring clipping, sideways scroll, tap targets, overlapping controls, dead space and contrast against WCAG 1.4.3's own two thresholds. The first run reported 355 findings and most were the measurement's fault — 121 collisions between a card and a tab in different scroll containers, 110 instances of the disclosed brand pair, 5 inline links WCAG 2.5.8 exempts. The rest were real and are fixed. The two colour failures are fixed in the palette rather than the component: `negativeText` and `positiveText` join `primaryText`, which existed for this reason. `positiveText` was not found by the sweep — a correct-answer label is a state no page load reaches — but #547CF1 measures 3.80:1 on white and is the same defect in the other accent. All 85 renders come back clean and `screens:audit:check` is in `verify:release`. | Done. |
 | **I-09** | `MatchExercise` — four Korean words, four meanings, tap-tap. It is a genuine group exercise rather than a screen: `ScheduledStep` gained `group` and `completes`, `scheduleSteps` holds words back until four are waiting so a grid is only ever made of words already met in that sitting, and the session credits every word a step finishes from one code path. Seven component tests cover the accounting, including that a grid reports one result per word, that both sides of a wrong attempt are marked, and that a double tap on the last pair cannot report twice. Four scheduler tests cover the invariants: every word finished exactly once, no word in two grids, and no grid before its words were introduced. | done |
 | **I-10** | The recommended fix is in: every entry carries a canonical `senseId` derived from its English gloss — 2,581 of 2,581, no collisions — and English is the arbiter because it was the one locale already single-sense throughout. 103 separator-split glosses were read against the sentence each card actually asks; 35 named a sense the sentence never demonstrates and were trimmed, ten cards moved sense outright, and three illustrations moved with them. The remaining 38 are classified in `REVIEWED_SPLIT` and `vocabulary:sense:qa:check` now fails on a split gloss that is not on that list, and on a listed one that has stopped being split. Both directions are negative-tested.  What is still unguarded: a gloss merged with a **comma** rather than a semicolon, 또는 or 、. The comma cases among those 103 words were fixed by hand — "coche, té" for 차 is now "coche" — but the rule cannot be widened to catch a new one. Measured over the corpus, "this locale has more comma-separated parts than the English" flags 228 glosses and is dominated by descriptive commas: 얼굴 is "눈, 코, 입이 있는 앞부분", one definition containing a list, not two senses.  **Closed this cycle by doing the reading pass the fix asked for.** The decidable half was already gated; what remained was comma-bearing glosses, which no separator rule can judge because "we, us" and "mum, mummy" are one sense written twice. The dictionary judges them instead: a comma gloss whose parts land on different dictionary senses is a shortlist, and it is 55 words long. All 55 were read across the ten complete languages side by side, and five were genuinely teaching two senses — 목 (every example said throat, eight glosses said neck), 밥 (English translated its own example "a meal"), 근데 (four glosses said "but", every example was the discourse marker), 그쪽 (the polite second person, not the direction) and 기술 (the Korean gloss is 솜씨). All five are fixed in every language that carries them. The other fifty are named in `REVIEWED_COMMA`, so a new comma gloss that splits senses fails `vocabulary:sense:qa` — proved by putting "a neck, a throat" back. Cross-language part-count drift was measured at the same time: one word of 2,581 differs by two or more parts across the ten, and it is 얼굴, whose Korean gloss is a descriptive phrase. | Done. The gate is `vocabulary:sense:qa`, in `verify:quick`. |
-| **I-102** | Caught by the randomized state-machine suite (2,000 seeded sittings). `retrySteps` now chooses from the full preference order, skipping the missed step, and `buildDailyQuestions` walks a complete fallback chain (planned → build → meaning → produce → context) so a word that was ever askable can never be silently dropped from a retry pass. | Done. |
-| **I-105** | A lemma ending in 주다 folds the favour into itself: its request row is denied and the command row (도와주세요) is the request. Gated by `conjugation:display:qa`, whose doubling rule reads the lemma rather than the surface so 두드려 주세요 is not a false positive. | Done. |
 | **I-106** | The list now grows seamlessly ahead of the scroll (an IntersectionObserver sentinel with a two-screen margin; environments without the API render everything). Every word is reachable, the batching is invisible, and the one number on the screen is the size of the category. The `browse.showing` string is deleted from all 32 locales. | Done. |
 | **I-11** | There is no vocabulary listening question left to accommodate; §16.5. The letter exercises are I-21. | done |
 | **I-113** | The display ledger (.conjugation-display/display-forms.tsv) was re-read after the batch, exactly as its own footer instructs. Six verbs joined NOT_VOLITIONAL (좌절하다, 직면하다, 급증하다, 체감하다, 야기하다, 간과하다 — the last because Korean only uses its prohibitive) and four joined IMPERATIVE_WITHOUT_REQUEST (감행하다, 만회하다, 몰두하다, 억누르다). 무산되다, 성사되다 and 저버리다 were already suppressed by the structural rules. Command rows displayed 795 → 789 after the POS corrections; conjugation:display:qa passes with its five self-test inputs still refused. | Done. The ledger-read-after-every-batch rule worked as designed; keep it. |
@@ -8221,6 +8581,7 @@ document they predate.
 | **I-199** | `leveltest:qa` measured *of a level-2 learner's first five questions, the share more than six levels above them* and reported 1.0% against a bound of 15%. A level-7 question put to a level-2 learner is five levels above them and was not counted. A level-8 sentence at question four was inside the threshold. | Fixed by replacing the measure rather than tightening it. `leveltest:policy` replays six beginner profiles across eight seeds through the real selection path and asserts that **nothing above the earned band is ever presented** — a property, not a share. The six-level metric is kept because it is comparable with earlier editions. |
 | **I-200** | Given a level, `LevelTestPage` looks for the wanted kind at that level and falls back to level ±1 and ±2. Nothing bounded that search. | Fixed. The neighbour search is bounded by `reachCeiling`, and when nothing is left inside it the *kind* is dropped rather than the ceiling — a word question at the right level measures something, a sentence at the wrong one does not. |
 | **I-202** | `settings no longer asks a learner to manage files, or explains the architecture` (journey.spec.ts) is a run of `toHaveCount(0)` assertions immediately after `page.goto('/me')`. A count of zero is satisfied by a document that has not rendered: the first poll succeeds and the matcher returns without retrying. On a quiet machine it beat hydration and passed in 2.4s; while another project on the same VM was compiling, the first poll landed after the screen had drawn and it failed in 11.8s and again in 12.2s.  What it then found was real: `f731bd43` (3 September) deliberately put *Save a copy* and *Restore a copy* back on that screen, and the case — written in the initial commit — still forbade `/Back ?up/i`. The product is right and the test was stale; the race is why nobody was told.  Two more cases in the same file had the same shape: the practice-style absence at journey.spec.ts:332 and the provenance absence at :780. | Fixed. All three now assert something that must be present before asserting what must not — the backup buttons, the voice control, the navigation — so the absences are measured against a screen that has drawn. The backup patterns are gone from the forbidden list and the reason is written in the file; **import**, **export** and the names of the machinery stay forbidden. |
+| **I-209** | The cover said versionCode 21 against a delivered 22; §18.5 said built from bc3bec14 against ed44ed06, the APK grew from 81.9 MB to 82.7 MB against 86.9 MiB — the exact sentence I-168 names — and 13,738 audio slots against 13,996; §2.2 said 2,061 items per non-English language against 2,122, 619 note-carrying cards against 635, 786 recorded spoken forms in the paragraph under a table row saying 804, and 240 editorial bands against 237. | Nine figures corrected and four of them added to `docs:consistency` as derived metrics, along with two more phrasings of versionCode so the front matter's prose is read. The gate was green throughout and was right to be: it tracks 75 named metrics, none of these was one, and it did not read the front matter's describes line at all. |
 | **I-21** | A per-question *Can't use audio?* on the two heard-only letter exercises, in all 32 languages. `listen` swaps the clip for the written romanisation and keeps the same four letters; `distinguish` turns the question round and asks which of two sounds the letter makes, because printing the romanisation there would hand over the answer its options already carry as labels. Same item, same skill, same scoring, no penalty and no setting. `accessibility.spec.ts` drives the Listen practice entry, asserts the control is a real button reachable and operable by keyboard, and runs axe over the substituted question. | done |
 | **I-24** | `fitGlyph` measures the drawn ink and solves for the size and origin that centre it, rather than sizing the em. Measured on the running app: ㅏ went from 0.228 × 0.672 centred at (0.556, 0.460) to **0.243 × 0.718 at (0.499, 0.499)**, and the worst centring error across all 270 glyph-and-face pairs is 1.2% of the box. The grading half — the reason the previous attempt was reverted at 21% false rejections — is `GAP_EROSION_RATIO`, which erases the rim a too-wide reference stroke leaves before the structural term counts it, mirroring what the blot term already did. Swept jointly against the corpus: **0.28% false reject / 0.28% false accept**, against 0.21% / 0.78% before, with Pretendard — the default face — improving on both from 1.04% / 0.55% to 0.42% / 0.00%. The fixtures were regenerated because they had been rendering their own layout and so measuring a geometry the product does not use. | done |
 | **I-25** | `measure-composition.mjs` starts its own `vite preview` when nothing is listening on :4477 and reuses one when something is, so it runs unattended. `strokes:measure:check` is in `verify:release`. | done |
@@ -8229,6 +8590,7 @@ document they predate.
 | **I-45** | **Asked once, before the first vocabulary session.** A learner who has never been placed is offered the test with two answers: take it, or start at Level 1. It is not a gate — declining begins the session immediately — and it is never asked again, because a prompt that returns tomorrow is a toll rather than a recommendation. An assessed learner never sees it.  **`placement_skipped_at` is a new field and deliberately not part of `level_test`.** Those are different facts: one is what was measured, the other is what was decided about measuring. Collapsed into one, a learner who declined becomes indistinguishable from one assessed at Level 1, and the app loses the difference between *we know* and *we have not asked*. Schema 12, migrated to null for everybody including existing learners with a result — who never declined anything.  The prompt waits for the profile to load. Without that, every learner looks untested for as long as IndexedDB takes to answer, and somebody assessed months ago opens today's words and is asked whether they would like to be assessed.  **The level now sits beside the streak**, in the status corner every learner passes on every launch — outlined rather than filled, "Lv." small and the number bold. A measurement, not a medal: no badge, no gradient, no crown. And the test's result screen now ends on *Learn words at my level* rather than *Done*, which used to return the learner to the settings screen they came from after thirty questions about what to teach them next.  **What the level does and does not do is stated rather than implied.** For a learner who has never been assessed it rises with what they have learned; for one who has, it is the measurement and holds until they retake. No progress bar was added toward the next level, because for an assessed learner ordinary study does not move it and a bar would say otherwise.  `store/placement.test.tsx` covers §59 A–E, including the case easiest to get wrong — which this pass rewrote (I-108): a mid-day retake now keeps the words already mastered and immediately regenerates the unresolved new-study targets for the measured level. The old expectation, that today's words stand and the new level is a fact about tomorrow, is retired. |  |
 | **I-46** | **The centring was a font-metrics bug, and it was measured.** `text-align: center` centres a glyph's advance width and a line box centres its ascent-to-descent band; neither is the ink. Compatibility jamo are drawn to read in isolation rather than to fill their em, so off Pretendard at weight 600: ㅜ and ㅠ sit 7.8% and 7.5% of an em too low, ㅏ 6.8% too far right, ㅑ 4.0%, ㅗ 3.8%. About seven pixels at lesson size, and worse in context — the guide square *is* centred, so the model and the target disagreed about where the letter belongs.  `measure-jamo.mjs` already renders each letter in the real face to measure its proportions; it now also records how far the ink falls from the centre of the box centring gives it, and `CenteredGlyph` subtracts that. Nobody types the numbers, which is the difference between this and a per-letter margin.  **Three of the four surfaces were already correct.** The handwriting guide, the stroke-order animation and the *Watch it written* preview are drawn from `strokeVectors.ts`, which fits authored strokes to the ink bounds of the measured box and centres those — ink-centred by construction. Only the reference character is rendered as text. Composed syllables measure within 2.5% and need nothing, because a syllable block is designed to fill its em. `jamo:centering:check` gates the **residual** — the face's offset less the shipped correction — so a font update that moves a glyph without a re-measure fails the build.  **The feedback card is gone.** A headline, a line of praise, a stroke-order note, a Show details toggle and a numeric breakdown, under a two-stroke letter, every attempt. A learner writing ㄱ for the fourth time does not read "That's it!" — they have read it three times, and repeated praise stops carrying information the moment it becomes certain. Correct is now one button; wrong is one actionable sentence and Retry. The grade is unchanged and still recorded; what went is the ceremony around reporting it. The percentages and stroke-order notes were deleted rather than moved behind a toggle — a mismatch percentage is the grader talking about itself. `i18n:check` caught the three strings the panel owned and they are gone from all 32 locales. |  |
 | **I-47** | Twelve of the hundred were quotations. The rest were encouragement written for this app — "Two words a day is seven hundred a year", "Progress is quiet" — labelled honestly in the data and not on the screen, which is the only place it counts.  The library is now **20 quotations, each by a named person, each from a work and a place in it a reader can check**: Confucius to Analects II.15 and XV.30, Seneca to letters 7 and 76, Aristotle to Nicomachean Ethics 1103a, and King Sejong to the preface of the Hunminjeongeum — which is the right quotation for this product to carry.  **Proverbs went with the app-authored lines.** A byline reading "Korean proverb" is a category where a name should be, and a proverb has no author to verify. 꿈을 크게 가져라 is withdrawn for the same reason: it used to ship deliberately unattributed because its three circulating attributions are all wrong, and under a policy requiring a person, a quotation nobody can be credited with is not one.  **A fresh line on every open**, never the same one twice running, nothing persisted. Pinning it to the calendar day had made decoration into stored state — a key, a date, a migration — for a sentence at the foot of a screen.  `quotes:qa:check` enforces the policy: 16–24 lines, no duplicate sentence in any locale, every byline a person and not a category, every source carrying a work and a date with no hedging words, all 640 renderings present, and nothing written to storage — proved by handing the module a `localStorage` and failing if anything lands in it. |  |
+| **I-53** | Thirty-one languages already used one noun for both — Uložená slova / Chybná slova, 保存した単語 / 間違えた単語, 저장한 어휘 / 틀린 어휘 — so English was the only string that changed, to "Wrong words". `copy:audit` now compares the pair in every language by shared token, falling back to a two-character run for the three languages that write without spaces. Not by last word (the head noun is last in German and first in Vietnamese) and not by longest shared run, which was the first attempt and passed "Gemerkte Wörter" against "Verpasste Vokabeln" on the "te " in the middle of two unrelated adjectives. Proved by breaking German, English and Chinese in turn. | Done. |
 | **I-132** | `.groupTitle` carried `padding-inline-start: var(--hg-space-1)`, which moves the first glyph without moving the element — an optical nudge for the uppercase tracking, applied to one of the two things sharing a rule.  `align:sections` measures a `Range` over each element's first text node rather than the element, on My Learning, Privacy and Legal, at five widths, 100/150/200% text, in Korean, German and Arabic — where the axis is mirrored rather than skipped. 60 groups, 240 lines. **Negative-tested**: restoring the padding produces 180 findings. | Done. |
 | **I-139** | Both photographed by QA. The row, its stylesheet, its click target and the `weeklyReport` query that existed only for it are removed rather than hidden. The Backup sentence is rewritten in 32 locales to say what the button does; the upload claim stays on the Privacy screen, where it is the subject and can be supported. | Done. See §20O.9. |
 | **I-142** | `docs:consistency` derives the web count and matches it in the suite table. The same number written as prose in two sentences matched no pattern, so the gate reported it as "not stated anywhere" and passed. A gate whose patterns are narrower than the document’s prose certifies the half it can read. | Done. Both prose shapes are patterns, so the total and its parts come from one derivation. See §20O.11. |
@@ -8249,12 +8611,6 @@ document they predate.
 | **I-31** | Fixed by the recommended route: a per-face `glyph_scale` in `data/fonts.ts`, calibrated against the robustness corpus for that face alone, threaded through `glyphSpecFor` and mirrored by `FACE_SCALE` in `render-fixtures.py` — `data.test.ts` asserts the two agree, so the fixtures cannot drift into measuring a geometry the product does not draw.  Gaegu 0.78 → 1.00. Mean ink extent 0.524 → 0.610; smallest glyph 0.27 → 0.35; glyphs below target 37/45 → 25/45. Grading improved rather than degrading: Gaegu's false rejection 1.04% → 0.63%, all-face 0.28% → 0.21%, false acceptance unchanged at 0.28%. A bigger reference is a bigger target for an honest hand, and Gaegu's was small enough that the pen's own width was a large fraction of it.  Why it stops there. The sweep is jagged — about 480 genuine attempts per face, so one crossing threshold moves the rate 0.21% — and there is a cliff just above: 1.02 reads 0.21% and 1.04 reads 3.33%. 1.00 sits on a plateau with 0.98, two steps clear of it; 1.02 is the minimum and is adjacent to the cliff, which would be fitting to which attempts happen to be in the corpus. Beyond about 1.04 the binding constraint is `MAX_FIT_SCALE`, whose own sweep already showed that raising it costs false rejection.  What remains is the typeface. Gaegu's mean extent is 0.610 against 0.653–0.697 for the other five, because it genuinely draws small letters inside its em, and closing that last gap means telling a learner they wrote it wrong more often.  **§51 asked for a rendered comparison rather than a closing argument, and it found a second half nobody had measured.** `scripts/face-size-qa.mjs` renders fifteen syllables in each of the six faces at one font size and measures the ink band as a fraction of the em: nanum-myeongjo 0.919, nanum-gothic 0.908, gowun-batang 0.905, gowun-dodum 0.882, pretendard 0.848, **gaegu 0.712** — 21.3% under the median. That is every letter on every screen, not the traced reference, and nothing grades it. It is fixed with a second `@font-face` at `size-adjust: 127%`, named in a new `text_family` and used by every reading surface through `textFamily()`; `font_family` keeps feeding `PracticeCanvasCard`, so the mask is untouched. Confirmed by looking — the picker's own previews — and by re-running the clipping sweep at 320 and 390 px with the face selected: the same 19 findings as the default face, none of them new. `face:size:check` is in `verify:release`.  **And the reading size, re-audited this cycle by looking.** §48 asks for a rendered comparison rather than the arithmetic, so the six practice faces were rendered side by side at one font size. Gaegu's line was the longest on the page by a clear margin. `face:size` measured the ink band in both directions and gated only the height, and 0.905 / 0.712 is the 127% that shipped; in width that put Gaegu 9.3% above the median, wider than any other face, where the five that were never in question span 0.785 to 0.881. Height wants 1.27 and width wants 1.16, and no single scalar gives both — 121% is the geometric mean, -4.7% in height and +4.1% in width, inside the 8% the five vary by among themselves. Both axes are gated now. | Done. |
 | **I-32** | Replaced with an index built when the corpus loads, at no download cost: an exact map from headword and gloss, a prefix map keyed on the first character for Hangul and the first two for Latin, and a bigram posting list for substring queries built the first time one is asked. A keystroke narrows through those three instead of touching 26,675 rows.  Benchmarked against the ranker the app runs, over a spread of real query shapes — growing prefixes, exact hits, romanisation, gloss words, mid-word substrings — with every figure multiplied by four for a phone:  ```   rows      index gz    build     p50       p95   26,675      336 kB    314 ms   0.03 ms   0.79 ms   50,000      631 kB    482 ms   0.05 ms   0.65 ms  100,000    1,274 kB   1001 ms   0.12 ms   1.50 ms   ------   shipping    449 kB    182 ms   0.02 ms   0.55 ms ```  Targets were p50 under 4 ms and p95 under 8 ms; both are met at every size with two orders of magnitude to spare. The synthetic rows were also fixed to have the real corpus's prefix spread — 1,210 distinct first characters, largest bucket 328 — because the previous ones all began with 가, which is the right hostility for a scan and measures an index as a scan.  What still grows with the corpus is the **one-time build**: 1,001 ms at 100,000 against a 1,000 ms budget. That is a once-per-session cost behind a visible loading line, and past that size it belongs in a worker or a prebuilt file rather than in the first search. | Done. |
 | **I-33** | Two kinds of evidence were being pooled and only one of them knows which sense is taught. The **gloss** is the taught sense — that is what `senseId` means — so a category matched against it belongs to the card. A Wiktionary **topic** is attached to a *page*, which describes every sense the word has: 김치's page carries `Photography`, because 김치 is what Koreans say instead of "cheese" for a photograph.  `classify` no longer pools them. A topic may name the category of a word the gloss could not classify at all — better than falling back to its part of speech — but it can never add a second category on top of a gloss match, which is where the wrong ones were getting in.  Measured over the corpus: **73 secondary tags removed across 70 words** (504 → 431), and **no primary category changed**, so nothing was made worse to achieve it. 김치, 교실 and 만두 now carry food, school-work and food with no secondary; 눈 is body-health; 돈 is money-shopping. Wrong metadata is worse than missing metadata, and this prefers missing. | Done. |
-| **I-78** | Not the level model and not `planNewWords`, both of which are correct — the search window for a learner at 30 is levels 27–30 and 남자 cannot come out of it. It was the plan cache. A `DailyPlan` was identified by its date and its goal, so the plan built when the app first opened, at the default level, was still "current" after the test. Every new learner meets this, because sitting the test is something you do just after opening the app for the first time, which is exactly when a default-level plan has been written.  `DailyPlan` now records the level it was built for and `planIsCurrent` compares it. A goal change still takes effect tomorrow — a goal is a preference — and a level change takes effect at once, because a level is a measurement. A plan stored before the field existed is kept rather than discarding somebody's day on upgrade.  `domain/vocabularyLevel.test.ts` holds four fixtures against the real corpus: a level-30 plan contains nothing below 27 and does not contain 남자, a level-1 plan contains nothing above 3, a plan built at 1 is refused for a learner at 30, and a plan with no level is kept. Negative-tested.  Read rather than counted afterwards, 30 days at seven levels: level 1 gets 차, 당신, 가다, 엄마, 오늘; level 30 gets 기울다, 물리치다, 웅크리다, 일석이조, 새옹지마. Zero words below 28 in 300 recommendations at level 30.  REOPENED AND RE-CLOSED in the level-truth pass (2026-08-26). The fix above was incomplete: `planIsCurrent` kept a mismatched plan whenever the learner had started it — one completed word was enough — so the reported journey (study three Level-1 words, retake, measure 30, return the same day) still ran the rest of the day at Level 1. The class is I-108; the rule this issue recorded ("a plan with work in it stands and the new level starts tomorrow") is retired there. | Superseded by I-108: a measured level change now takes effect immediately for started days too, preserving earned progress. The corpus limit behind it is I-79. |
-| **I-85** | Photographed on the running product after the previous pass reported PASS. Reproduced from the shipped `dist` on a local preview, so the contradiction was in the artefact and not in the photograph.  Three simultaneous defects, only one of which the previous pass had touched:  1. **The two uprights' x-positions** — corrected last pass, by a one-dimensional metric. 2. **The bars were authored too short**, so the left half of ㅙ did not reach the right half. 3. **`shapeToFace` assumed the pen widens the ink box on all four sides.** It does not: with butt caps a stroke is widened only perpendicular to its direction. Every one of the 40 jamo therefore had the wrong proportion — ㅐ and ㅒ by 12% — and the compound vowels, which are the widest, were worst.  Fixed by re-authoring the whole vowel table in face ink-box fractions and replacing `shapeToFace` with an iterative solve over a `drawnInkBox` that pads each segment by the pen only perpendicular to it. Verified against Pretendard rather than against the app's own other drawing: `docs/report-assets/compound-vowels-before.png` and `compound-vowels-after.png` are the same eleven letters overlaid on the face, before and after. | Done. The gate that would have caught it is I-86. |
-| **I-98** | `MatchExercise` reported per-word results and the crediting path read a boolean (`answeredCorrectly`) that no grid code ever set — null read as failure, so every word a grid completed was requeued. The answer state is now per-word (`{correct[], wrong[]}`), set by every exercise including the grid, and `creditsFor()` in `dailyQuestions.ts` is the one crediting rule shared by `advance` and the finish-button prediction. Pinned by eight fixtures in `wordSessionCredits.test.ts` including the exact grid-of-four case. | Done. |
-| **I-99** | `repairCompletion` already made the intro such a word’s completing screen; `advance` ignored it. `creditsFor()` now credits an intro exactly what `repairCompletion` gave it: nothing for a word with a question ahead (§26 — viewing is not learning), the word itself when the intro is its whole obligation. | Done. |
-| **I-100** | Found by the 100-user synthetic journey harness on its first run. The review side’s `canAsk` deliberately ignores language (structural answerability), which is right for Review counts and wrong for scheduling: `strictMeaning` refuses meaning questions in partial locales. Fixed structurally with `DayRequest.canPractise` — a language-aware probe built from the very question builder the session uses — threaded from `LearnerProvider` into `buildDailyPlan`, so a met word the session cannot ask in this language is not scheduled. New words are exempt: their introduction is worth scheduling and credits them when it is their whole obligation. All 100 journeys now pass. | Done. |
-| **I-52** | `screens:audit` renders seventeen screens at 320, 390 and 430 px, in dark, and at 200% root font size: 85 renders, measuring clipping, sideways scroll, tap targets, overlapping controls, dead space and contrast against WCAG 1.4.3's own two thresholds. The first run reported 355 findings and most were the measurement's fault — 121 collisions between a card and a tab in different scroll containers, 110 instances of the disclosed brand pair, 5 inline links WCAG 2.5.8 exempts. The rest were real and are fixed. The two colour failures are fixed in the palette rather than the component: `negativeText` and `positiveText` join `primaryText`, which existed for this reason. `positiveText` was not found by the sweep — a correct-answer label is a state no page load reaches — but #547CF1 measures 3.80:1 on white and is the same defect in the other accent. All 85 renders come back clean and `screens:audit:check` is in `verify:release`. | Done. |
 | **I-55** | All 390 contextual items were read, because the gate that checks them says out loud that nothing in it reads Korean — every rule is a proxy and the judgement is a person's. Four classes came back, and each is a rule now rather than four fixes.  **A verb that fits any object.** 연필을 ____ 있어요 offered 사고 beside 가지고; also 두 줄을 생각했어요, 동생을 학교에 보내요, 저를 친구로 불러요. The collocation guard was evidence-based — it rejects a distractor whose own example acts on the same noun — which catches the ones that share *a* noun and misses the ones that share every noun. 33 general verbs are listed in `scripts/lib/level-test-rules.mjs`, excluded as distractors and still perfectly good answers; 25 distractors swapped.  **Another thing you can simply do.** 친구와 ____를 해요 took 축구 and offered 낚시. Where the verb is 하다 and the blank is a noun, every noun with a 하다 form fits; 16 swapped.  **A recorded synonym or antonym**, from `relations.json`, which is only there because two Wiktionary headwords state the relation about the taught sense. 118 pairs sat close enough in level and part of speech to have been drawn together.  **The same sentence, built twice.** 불을 ____ 주세요 was made from 끄다 and from 켜다 and both shipped — six characters asking for opposite verbs. Also 소리를 ____ 주세요 (줄이다/낮추다), 둘에 셋을 ____ (더하다/곱하다) and eleven more. Each item is answerable alone; the bank is its own proof that the sentence does not pin the meaning down. All 30 removed.  360 contextual items, down from 390. `leveltest:ambiguity` carries all four, and is twelve rules now. | Done. |
 | **I-56** | `verify:quick` was recorded as passing while the log ended at `leveltest:ambiguity:check` with a `TypeError`. The exit status had not been read: the command was `npm run verify:quick > log; echo $?`, and `;` makes the echo's status the command's. The gate now reads `options ?? optionIds` and checks all 3,960 items; the aggregate scripts were left alone but every result in this cycle's report was taken from a run whose exit code is quoted. | Done. |
 | **I-58** | `SUPPLETIVE` pinned the whole stem to 계세, which is right for the polite present — 시 + 어 fuses to 세요, not 셔요 — and everything else was derived from it. The past is one operation on the 아/어 form, so 계세 became 계셌어요. The suffix is irregular in exactly two forms, not nine: 계세요 and the honorific are pinned, and the rest derives from the regular 계셔. 있으시다 and 자시다 joined the list. It survived because `conjugate.test.ts` had no honorific row — the table is written from the grammar, so a form nobody wrote a row for is a form nothing disagrees with. There are eight rows now, including 마시다 and 가시다, which end in the same syllable and are not honorific. | Done. |
@@ -8272,7 +8628,8 @@ document they predate.
 | **I-86** | `glyphshape:qa` scored the six `HANDWRITTEN_GUIDE` letters — ㅙ ㅞ among them — against geometry with the same origin. It now defers them, and `scripts/letter-face-qa.mjs` is the gate that reads them, rasterising each letter and the same letter set in Pretendard at 1024 px and comparing aspect, ink-island count, twenty-band horizontal and vertical profiles, and anchor-aware upright positions. Negative-tested by pulling one upright 4% out of place and by shortening one crossbar: both reported. | Done. `npm run letters:face:check` is in `verify:quick`. |
 | **I-97** | Home read `streakDays(settings.active_days)` — a store written only by practice events — while the Activity screen read `streakSummary(Object.keys(activity))`, a store the study clock also writes. Opening a session and reading the introduction cards for twenty seconds writes study time and no attempt, so the day existed in one store and not the other. Fixed with `learningStreak()` in `domain/activity.ts`: a streak day is any day with recorded study activity, taken as the union of both stores, and both screens read this one function. The duplicate `streakDays` implementation was deleted so a second truth cannot resurface. Thirteen fixtures in `streak.test.ts` cover first day, seven days, missed yesterday, midnight boundaries, next-morning reopen, several practices in one day, kind-agnostic days, and the photographed 4-vs-7 split itself. | Done. |
 | **I-101** | `advance` is now guarded by the index it last acted on: one run per screen, whatever the input device does. | Done. |
-| **I-53** | Thirty-one languages already used one noun for both — Uložená slova / Chybná slova, 保存した単語 / 間違えた単語, 저장한 어휘 / 틀린 어휘 — so English was the only string that changed, to "Wrong words". `copy:audit` now compares the pair in every language by shared token, falling back to a two-character run for the three languages that write without spaces. Not by last word (the head noun is last in German and first in Vietnamese) and not by longest shared run, which was the first attempt and passed "Gemerkte Wörter" against "Verpasste Vokabeln" on the "te " in the middle of two unrelated adjectives. Proved by breaking German, English and Chinese in turn. | Done. |
+| **I-102** | Caught by the randomized state-machine suite (2,000 seeded sittings). `retrySteps` now chooses from the full preference order, skipping the missed step, and `buildDailyQuestions` walks a complete fallback chain (planned → build → meaning → produce → context) so a word that was ever askable can never be silently dropped from a retry pass. | Done. |
+| **I-105** | A lemma ending in 주다 folds the favour into itself: its request row is denied and the command row (도와주세요) is the request. Gated by `conjugation:display:qa`, whose doubling rule reads the lemma rather than the surface so 두드려 주세요 is not a false positive. | Done. |
 | **I-54** | Every content locale used to be all-or-nothing, so any hole meant the build had gone wrong. §33 changed that: `strictMeaning` resolves in the learner's own language or not at all, so an unwritten row removes a word from that language's quiz pool, which is the designed behaviour. A measurement cannot tell an unfinished language from a broken one, so the promise is declared: `scripts/lib/locale-status.mjs` names the ten that must be perfect, and `vocabulary:qa` and `vocabulary:sense:qa` import it rather than keeping their own copy. A gap in one of the ten still fails, verified by blanking a row in the Japanese pack. The other twenty-two are reported as coverage.  The two browser gates had a related fragility: they assumed somebody had left `vite preview` running, and passed inside `verify:release` for exactly as long as that was true. `scripts/lib/preview.mjs` starts one if the port is silent and leaves an existing server alone. | Done. |
 | **I-57** | `reach` in the level-test manifest had said 30 for ten languages, from a manifest that had not been rebuilt. Rebuilt, it is 30 for English, 25 for the nine other complete packs and 23 for the twenty-two — see the matrix in §23. `levelTest:result.ceiling` is written in all 32 and shown only where the ceiling is below the scale, with an end-to-end test in Hungarian asserting it appears and one in English asserting it does not. | Done. |
 | **I-60** | Found by rendering the Korean screens and reading them, not by grepping. Eleven strings moved from 어휘 to 단어 — 어휘 is a person's lexicon and stays in the level test — and twenty-eight from 글자 to 낱자, wherever the English says "letter"; 글자 stays wherever the thing is a block, which is fourteen more. `review.prompt.build` was a mistranslation rather than a slip: English says "Put the word together" over a tray of syllables and Korean said 글자를 순서대로 놓아 보세요.  All three are gates in `locale:editorial`, each negative-tested by putting the defect back. The register rule reads sentence endings rather than pronouns, which is where Korean marks it — the file had said Korean needed no rule because 해요체 "has no competing form in this product's copy", a claim about the copy the copy did not support. The 낱자 rule uses the English as the referent and exempts any Korean string using both words, because that is a sentence drawing the distinction on purpose. | Done. |
@@ -8390,7 +8747,20 @@ person in a minute and to no gate. This edition adds a third of the same kind an
 it is the reason for §20V: a reader photographed `일곱 시에 ____.`, a question
 with two right answers, and the gate written for exactly that class passed it
 because its test was for an argument particle and `시에` is one. **A rule that
-tests a proxy passes everything the proxy does not distinguish.** Three checkers
+tests a proxy passes everything the proxy does not distinguish.**
+
+This edition adds a fourth, of a kind the previous three did not cover. A reader
+photographed `창문으로 아침 ____이 들어와요` — 목적 · 비빔밥 · 빛 · 환경 — and
+every gate passed it, correctly, because every gate asked *is there a second
+right answer?* and there is not. **A question fails in two directions and only
+one of them had a gate for six editions.** Nothing was measuring whether the
+wrong answers were worth reading, and the rule written to stop the first failure
+was, by construction, selecting for the second: all 625 contextual items in the
+shipped bank had every distractor from a different subject area than the answer.
+Pulling that thread also found two frame guards that had never executed — one of
+them the fix §20V.1 recorded for I-185, believed on the strength of an item
+leaving the bank for an unrelated reason (§20X.3). **A green gate does not prove
+the code it was written about ran.** Three checkers
 in this cycle were measuring something adjacent to their subject — the ambiguity
 rule, the question ledger's answer field, and five locale gates that read the
 translation files without ever comparing a translation to what it translates. That is why this edition does not use the
@@ -8410,7 +8780,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,726 unit cases across three packages — 1,393
+The suites run green in full: 1,731 unit cases across three packages — 1,398
 web, 237 Korean morphology, 96 handwriting — 594 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
@@ -8419,7 +8789,7 @@ reading of all 1,509 predicates.
 
 **Why a candidate and not a release.** The commit problem stayed fixed and then
 found a second way to be wrong. This edition's artefacts are built from a clean
-checkout of a named commit, at versionCode 15 — one past the 14 the previous
+checkout of a named commit, at **versionCode 23** — one past the 22 the previous
 delivery used, because product files have changed and Play refuses a code reused
 for different bytes; `version:check` is what said so, and it said so before the
 build rather than after. What the previous edition shipped was worse than a
@@ -8431,9 +8801,9 @@ reporting the first of them since the artefacts were built and nothing had acted
 on it; the version and the versionCode were outside every rule it had. They are
 derived now (§20Q.6, I-152, I-154).
 
-What remains are seven limitations. None is a defect, all seven are things a
-buyer is entitled to know before release. The seventh is new this edition and is
-the price of §20W; the second closed in an earlier one and is kept so that a
+What remains are eight limitations. None is a defect, all eight are things a
+buyer is entitled to know before release. The eighth is new this edition and is
+the price of §20X; the second closed in an earlier one and is kept so that a
 reader diffing against it can see where it went, and closing it made the third
 larger:
 
@@ -8458,14 +8828,16 @@ larger:
 4. **No physical device has run this binary**, and no human has used the
    product. §20L.11 states the device matrix that would close it.
 5. **What the question gates decide is narrower than what a reader wants
-   them to.** Twenty-seven mechanical rules, four of them new and about the
-   sentence rather than about the pair, and a reviewed list of twenty-four word
-   pairs that no rule decides. None of it establishes that a Korean sentence has
-   one defensible answer; each rule removes a class of question that cannot. The
-   residue is a person reading, and this cycle's reading is recorded in
-   `docs/AMBIGUITY_LEDGER.md` — 5,191 questions, 22 findings. A regenerated bank
-   draws different distractors from the same stems, so the rules and the pairs
-   carry forward and the reading does not.
+   them to.** Twenty-seven mechanical rules for ambiguity, nine more for
+   distractor quality, five new frame classes, and a reviewed list of word pairs
+   that no rule decides. None of it establishes that a Korean sentence has one
+   defensible answer, or that a plausible wrong answer is actually wrong; each
+   rule removes a class of question that cannot be either. The residue is a
+   person reading, and this cycle's reading is recorded in
+   `docs/AMBIGUITY_LEDGER.md`, `docs/CONTENT_QUALITY_AUDIT.md` and the `ctxWhy`
+   beside each of the 54 refused items. A regenerated bank draws different
+   distractors from the same stems, so the rules and the refusals carry forward
+   and the reading does not.
 6. **The level test places a simulated learner within ±3 levels 86.9% of the
    time, where it was 90.2%.** The 3.3 points were spent on the evidence gate in
    §20W and the trade is stated rather than hidden: a sitting now spends its
@@ -8481,6 +8853,16 @@ larger:
    by hand this pass; the weight that put them there is unchanged, so the next
    batch of antonym pairs lands in the same place. It is open, not hidden, and
    the eighteen overrides each name the cause.
+8. **The beginner band's gap-fills are hand-written and carry no audio.** The
+   frame rules in §20X refused 174 generated items and most of the loss fell
+   below level 6, because a level-2 card sentence is three words long and cannot
+   constrain a blank. Twenty-two items are written by hand to replace them, and
+   they are a different sentence from the card's — so the card's example
+   recording is not a recording of them, and the renderer plays nothing rather
+   than the wrong thing. Levels 1–5 hold 36 gap-fills where they held 50; levels
+   6–10 hold 19 where they held 56. Recording the curated sentences needs the
+   speech plan to learn about a second source of Korean, which this pass did not
+   do.
 
 # 20T. The ninth pass — the twelve languages, and what closing them cost
 

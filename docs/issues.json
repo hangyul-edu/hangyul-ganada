@@ -2201,6 +2201,66 @@
       "recommendedFix": "Gate the run's mount on `ready`, or place `attempt` by an effect the way I-203 now places the cursor. Left open deliberately rather than changed in the same pass: the Numbers suites — `numbers:qa`, `numbers:domain`, `numbers:ledger`, the fifteen-sabotage negative run and the Numbers e2e — are what would have to be re-run to believe the change, and the defect does not lose or miscount anything.",
       "note": "Found by sweeping for the pattern that caused I-203 rather than by a failure. `ActivityPage` and `LevelTestPage` use the same form and are clean — they seed from the clock, not from the store.",
       "effort": "S"
+    },
+    {
+      "id": "I-205",
+      "area": "Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A distractor rule that forbade the answer's own subject area was selecting for absurdity",
+      "customerImpact": "A reader photographed `창문으로 아침 ____이 들어와요` keyed 빛 and offering 목적, 비빔밥 and 환경. A purpose, a bibimbap and an environment do not come in through a window: the item is answerable by elimination without knowing 빛, and a learner who does know it learns nothing from being right. Measured across the shipped bank, all 625 contextual items had every distractor from a different category than the answer, so this was the whole bank rather than one row.",
+      "evidence": "`build_level_test.mjs` refused a distractor sharing the answer's browse category — written to stop two right answers, which made 'unrelated to the sentence' the qualifying condition. `leveltest:ambiguity` asserted the same rule and `answerable.test.ts` asserted it a third time. Every gate was green and every gate was right to be: the item has exactly one defensible answer, which is all any of them asked.",
+      "recommendedFix": "Inverted for nouns: a distractor must share the answer's category or one of its tags. Predicates keep the old rule, where a same-area verb genuinely is a second right answer. Frames where a same-area noun would also be right are refused outright (I-207) rather than filled with a distant option. New gate `leveltest:distractors`, in `verify:quick`, negative-tested at 747 findings against the pre-fix builder.",
+      "note": "§20X.1. The categories the new rule depends on had to be corrected first — see I-206.",
+      "effort": "a day"
+    },
+    {
+      "id": "I-206",
+      "area": "Vocabulary",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "292 words took their browse category from a regex match inside a longer word",
+      "customerImpact": "The category is the drawer the browse screen files a word in. A learner opening Body & Health met 화가 (a painter), 생일 (a birthday) and 베개 (a pillow); Animals & Nature held 창문 (window) and 샌드위치 (a sandwich).",
+      "evidence": "`categories.py` writes its rules as `\\b(head|face|…|pain|hurt|…)` — a word boundary in front and nothing behind, so every alternative was also a prefix rule. `pain` matched painter, `sand` matched sandwich, `wind` matched window, `birth` matched birthday, `doll` matched dollar, `war` matched warehouse, `exam` matched example, `pass` matched password.",
+      "recommendedFix": "A `(?!\\w)` lookahead on every rule, plus an English inflection and derivation table so that closing the accidental matches does not cost the 196 real ones it would otherwise. `-ter` is excluded (it gives painter → pain) and `-y`/`-ly` need a four-letter stem (many → man, busy → bus, early → ear). Then all eighteen category listings were read word by word: `OVERRIDES` 552 → 1,085, and 134 words moved.",
+      "note": "§20X.2. Home 328 → 186, Body & Health 240 → 198, Time & Numbers 307 → 228.",
+      "effort": "a day"
+    },
+    {
+      "id": "I-207",
+      "area": "Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Two frame guards had never executed, one of them the fix recorded for I-185",
+      "customerImpact": "None directly — the items they were written to stop were being kept out by an unrelated rule. The impact is on this document: §20V.1 recorded a fix that had never run.",
+      "evidence": "`isUnconstrainedPredicateFrame(anchor.example)` and `isConsumptionObjectFrame(anchor.example)`. Both functions begin `if (!sentence.includes('____')) return false` and both were handed the sentence with the answer still in it. `isUnconstrainedPredicateFrame('일곱 시에 일어나요.')` is false; the blanked form is true. `leveltest:ambiguity` re-derives the frames from the shipped bank, where the prompt does carry the blank, so it computed them correctly and found nothing.",
+      "recommendedFix": "Pass `blanked`. Found only because inverting the distractor rule (I-205) removed the accidental cover and four `consumable-option` findings appeared at once.",
+      "note": "§20X.3. Five further frame classes were written this pass: the bare modifier slot, the time-noun 에 slot, the destination verb, the existential verb and the general verb with no other argument.",
+      "effort": "an hour"
+    },
+    {
+      "id": "I-208",
+      "area": "Review",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The new frame rules took the beginner band's gap-fill exercise with them",
+      "customerImpact": "Of the top thirty words by teaching priority, one still had a gap-fill. Today's Vocabulary and Review stopped offering the `context` exercise to new learners almost entirely — the people who need varied practice most.",
+      "evidence": "Gap-fills at levels 1–5 fell 50 → 15 and at 6–10 fell 56 → 18. Two unit tests failed on it: `reviewLists.test.tsx > asks about a wrong word in more than one way` returned one mode where two were required, and `honours the size the learner picked` returned a plan of 2 where more than 5 was required.",
+      "recommendedFix": "Twenty-two hand-written items in `content/vocabulary/context-items.json`, validated by the builder against every rule it applies to its own output — particle agreement across all four options, category sharing, level spread, the safety lists and all the frame tests. A curated item that fails is a build failure. Levels 1–5 recover to 36.",
+      "note": "§20X.7. Curated items carry no sentence audio: the renderer's clip is the card's sentence, so playing it under a different one would be an audio/transcript mismatch. Recording them needs the speech plan to learn about a second source of Korean sentences.",
+      "effort": "a day"
+    },
+    {
+      "id": "I-209",
+      "area": "Report",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Nine figures in this document disagreed with the tree, including the sentence I-168 was closed on",
+      "customerImpact": "None to a learner. The document is handed to a reviewer as the authoritative description of the product, and a reviewer who checks one figure and finds it wrong is right to disbelieve the rest.",
+      "evidence": "The cover said versionCode 21 against a delivered 22; §18.5 said built from bc3bec14 against ed44ed06, the APK grew from 81.9 MB to 82.7 MB against 86.9 MiB — the exact sentence I-168 names — and 13,738 audio slots against 13,996; §2.2 said 2,061 items per non-English language against 2,122, 619 note-carrying cards against 635, 786 recorded spoken forms in the paragraph under a table row saying 804, and 240 editorial bands against 237.",
+      "recommendedFix": "Nine figures corrected and four of them added to `docs:consistency` as derived metrics, along with two more phrasings of versionCode so the front matter's prose is read. The gate was green throughout and was right to be: it tracks 75 named metrics, none of these was one, and it did not read the front matter's describes line at all.",
+      "note": "§20X.9. 82 figures are now checked, up from 75.",
+      "effort": "an hour"
     }
   ]
 }
