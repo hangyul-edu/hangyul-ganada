@@ -284,7 +284,13 @@ function wordExercise(
           before: gap.before,
           target: gap.target,
           after: gap.after,
-          audioId: word.audio.example,
+          /*
+           * The example clip belongs to the *card's* sentence. A curated
+           * gap-fill is a different sentence written for the question, so
+           * playing it would be a recording of something other than what is on
+           * screen. Nothing is played rather than the wrong thing.
+           */
+          ...(gap.curated ? {} : { audioId: word.audio.example }),
         },
         options,
         answerId: word.id,

@@ -1,0 +1,208 @@
+{
+  "_comment": "Items that must not pass `leveltest:distractors`. Each one shipped, or nearly shipped, and each names the rule that now stops it. `scripts/level-test-distractor-qa.mjs` runs every fixture through the same checks it runs over the bank and fails if any fixture passes — a gate that cannot fail is not a gate. `fixed` is the corrected form where one exists, and it must pass. Added 2026-09-10.",
+  "fixtures": [
+    {
+      "id": "F-01",
+      "why": "The photographed item. Three of the four options are from unrelated conceptual categories, so the question is answerable by elimination without knowing 빛; and 아침 빛 is not the collocation a Korean speaker uses.",
+      "expect": "implausibleDistractor",
+      "item": {
+        "prompt": "창문으로 아침 ____이 들어와요.",
+        "answer": "빛",
+        "answerId": "word_bit",
+        "options": [
+          "목적",
+          "비빔밥",
+          "빛",
+          "환경"
+        ],
+        "distractorIds": [
+          "word_mokjeok",
+          "word_bibimbap",
+          "word_hwangyeong"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-02",
+      "why": "A bare noun blank modifying the noun behind it. 녹색 가방 and 흰색 가방 are bought as readily as 갈색 가방, so the item has three right answers.",
+      "expect": "bareModifier",
+      "item": {
+        "prompt": "____ 가방을 샀어요.",
+        "answer": "갈색",
+        "answerId": "word_galsaek",
+        "options": [
+          "갈색",
+          "녹색",
+          "속도",
+          "흰색"
+        ],
+        "distractorIds": [
+          "word_noksaek",
+          "word_sokdo",
+          "word_huinsaek"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-03",
+      "why": "A time noun in a 에 slot in front of an activity that can happen at any time. 월요일에 바다에 가요 is ordinary Korean.",
+      "expect": "openTimeSlot",
+      "item": {
+        "prompt": "____에 바다에 가요.",
+        "answer": "여름",
+        "answerId": "word_yeoreum",
+        "options": [
+          "목요일",
+          "생일",
+          "여름",
+          "월요일"
+        ],
+        "distractorIds": [
+          "word_mogyoil",
+          "word_saengil",
+          "word_woryoil"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-04",
+      "why": "A destination slot. Every place is a place one goes on a Sunday, so the builder had to reach outside the category for wrong answers and produced 장난 and 평화.",
+      "expect": "openDestination",
+      "item": {
+        "prompt": "일요일에 ____에 가요.",
+        "answer": "교회",
+        "answerId": "word_gyohoe",
+        "options": [
+          "교회",
+          "장난",
+          "정부",
+          "평화"
+        ],
+        "distractorIds": [
+          "word_jangnan",
+          "word_jeongbu",
+          "word_pyeonghwa"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-05",
+      "why": "An existential frame. Anything at all can be on this evening.",
+      "expect": "openExistential",
+      "item": {
+        "prompt": "오늘 저녁에 ____이 있어요.",
+        "answer": "모임",
+        "answerId": "word_moim",
+        "options": [
+          "기적",
+          "모임",
+          "믿음",
+          "생활"
+        ],
+        "distractorIds": [
+          "word_gijeok",
+          "word_mideum",
+          "word_saenghwal"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-06",
+      "why": "A general verb with the blank as the sentence's only argument. A ball, a present and a window are all bought new.",
+      "expect": "openGeneralObject",
+      "item": {
+        "prompt": "____을 새로 샀어요.",
+        "answer": "칫솔",
+        "answerId": "word_chitsol",
+        "options": [
+          "공",
+          "선물",
+          "창문",
+          "칫솔"
+        ],
+        "distractorIds": [
+          "word_gong",
+          "word_seonmul",
+          "word_changmun"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-07",
+      "why": "Read and refused by a person: 편의점에서 채소를 사요 is true of Korean convenience stores, so the item has two answers no rule can separate.",
+      "expect": "reviewedOut",
+      "item": {
+        "prompt": "____에서 채소를 사요.",
+        "answer": "시장",
+        "answerId": "word_sijang",
+        "options": [
+          "시장",
+          "원",
+          "이야기",
+          "편의점"
+        ],
+        "distractorIds": [
+          "word_won",
+          "word_iyagi",
+          "word_pyeonuijeom"
+        ],
+        "pos": "noun"
+      }
+    },
+    {
+      "id": "F-08",
+      "why": "Two options that a learner reads as one. Normalising away spacing and punctuation makes 비빔밥 and '비빔밥.' the same string, so the item has three choices wearing four labels.",
+      "expect": "duplicateOption",
+      "item": {
+        "prompt": "점심으로 ____을 먹었어요.",
+        "answer": "김밥",
+        "answerId": "word_gimbap",
+        "options": [
+          "김밥",
+          "비빔밥",
+          "비빔밥.",
+          "콩"
+        ],
+        "distractorIds": [
+          "word_bibimbap",
+          "word_bibimbap",
+          "word_kong"
+        ],
+        "pos": "noun"
+      }
+    }
+  ],
+  "fixed": [
+    {
+      "id": "F-01-fixed",
+      "why": "The card's sentence, rewritten to the collocation Korean actually uses. It ships as a word card; it is refused as a gap-fill by F-07's mechanism, because everything that comes in through a window is a second answer.",
+      "korean": "창문으로 빛이 들어와요."
+    },
+    {
+      "id": "F-06-fixed",
+      "why": "A general verb is fine when the sentence carries a second argument that decides the answer: 밥 is what makes 쌀 the only option.",
+      "item": {
+        "prompt": "____을 씻어서 밥을 지어요.",
+        "answer": "쌀",
+        "answerId": "word_ssal",
+        "options": [
+          "과일",
+          "달걀",
+          "쌀",
+          "알"
+        ],
+        "distractorIds": [
+          "word_gwail",
+          "word_dalgyal",
+          "word_al"
+        ]
+      }
+    }
+  ]
+}

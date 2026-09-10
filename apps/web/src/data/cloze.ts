@@ -47,6 +47,16 @@ export interface Cloze {
   form: string;
   /** Four options, each already in that same form. */
   options: { id: string; surface: string }[];
+  /**
+   * Written for this question rather than lifted from the word's card.
+   *
+   * Present only on the hand-written items in
+   * `content/vocabulary/context-items.json`, which exist because a level-2
+   * sentence is three words long and cannot constrain a blank. The renderer
+   * reads it to decide whether the card's example recording belongs under this
+   * sentence: for a curated item it does not, so nothing is played.
+   */
+  curated?: boolean;
 }
 
 const WORDS = (raw as { words: Record<string, Cloze> }).words;

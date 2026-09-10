@@ -1,0 +1,248 @@
+{
+  "_comment": "Hand-written contextual items, for the levels the generator cannot serve. Read by scripts/content/build_level_test.mjs, which validates every one of them against exactly the rules it applies to the items it builds itself — a curated item that fails a frame rule is a build failure, not an exception. Written 2026-09-10, after the frame rules removed 174 items and took the beginner band's gap-fill exercise with them: only 15 of the taught words below level 6 kept an item, down from 50, and Today's Vocabulary and Review lost the mode almost entirely for a new learner. See docs/CONTENT_REMEDIATION_LEDGER.md C-008.",
+  "_rules": "before + '____' + after is the rendered prompt. `answer` and `options` are word ids; the answer is not repeated in `options`. Every option must share the answer's category, sit within a few levels of it, agree with the particle the sentence carries — so the particle never gives the answer away — and be false in the finished sentence, which is a judgement and is recorded in `why`.",
+  "items": [
+    {
+      "answer": "word_mul",
+      "before": "꽃에 ",
+      "after": "을 줬어요.",
+      "options": [
+        "word_bap",
+        "word_eumsik",
+        "word_guk"
+      ],
+      "why": "One waters a flower. Rice, food and soup are all consonant-final food nouns and none of them is given to a plant."
+    },
+    {
+      "answer": "word_gogi",
+      "before": "불에 ",
+      "after": "를 구웠어요.",
+      "options": [
+        "word_uyu",
+        "word_keopi",
+        "word_juseu"
+      ],
+      "why": "Milk, coffee and juice are liquids: nothing is grilled over a fire. All four are vowel-final, so 를 says nothing."
+    },
+    {
+      "answer": "word_sagwa",
+      "before": "칼로 ",
+      "after": "를 깎았어요.",
+      "options": [
+        "word_uyu",
+        "word_keopi",
+        "word_yori"
+      ],
+      "why": "깎다 needs something with a skin. Milk, coffee and cooking have none. The verb of eating is deliberately absent: with it, every food would fit."
+    },
+    {
+      "answer": "word_nun",
+      "before": "",
+      "after": "으로 그림을 봐요.",
+      "options": [
+        "word_son",
+        "word_ip",
+        "word_mom"
+      ],
+      "why": "Four consonant-final body words, and only one of them sees. 발 is kept out because ㄹ takes 로 and the particle would give the answer away."
+    },
+    {
+      "answer": "word_ip",
+      "before": "",
+      "after": "으로 노래를 불러요.",
+      "options": [
+        "word_son",
+        "word_nun",
+        "word_mom"
+      ],
+      "why": "The same set, the other sense: singing is the mouth."
+    },
+    {
+      "answer": "word_gwi",
+      "before": "",
+      "after": "로 음악을 들어요.",
+      "options": [
+        "word_ko",
+        "word_meori",
+        "word_dari"
+      ],
+      "why": "Four vowel-final body words. A nose, a head and a leg do not hear."
+    },
+    {
+      "answer": "word_meori",
+      "before": "",
+      "after": "를 감고 학교에 갔어요.",
+      "options": [
+        "word_gwi",
+        "word_ko",
+        "word_dari"
+      ],
+      "why": "감다 in this sense is washing hair and nothing else — 귀를 감다 is not Korean."
+    },
+    {
+      "answer": "word_dari",
+      "before": "계단에서 ",
+      "after": "를 다쳐서 걷기 힘들어요.",
+      "options": [
+        "word_gwi",
+        "word_ko",
+        "word_meori"
+      ],
+      "why": "Walking is the legs; hurting an ear or a nose does not make it hard."
+    },
+    {
+      "answer": "word_son",
+      "before": "친구와 ",
+      "after": "을 잡았어요.",
+      "options": [
+        "word_nun",
+        "word_ip",
+        "word_mom"
+      ],
+      "why": "손을 잡다 is what people do with a friend. One does not take a friend's eye, mouth or body."
+    },
+    {
+      "answer": "word_ot",
+      "before": "",
+      "after": "을 입고 밖에 나갔어요.",
+      "options": [
+        "word_mun",
+        "word_bang",
+        "word_chaeksang"
+      ],
+      "why": "입다 takes clothing. A door, a room and a desk are in the same drawer and none is worn."
+    },
+    {
+      "answer": "word_sinbal",
+      "before": "",
+      "after": "을 신고 밖에 나갔어요.",
+      "options": [
+        "word_ot",
+        "word_mun",
+        "word_chaeksang"
+      ],
+      "why": "신다 is only footwear — clothes are 입다, and a door and a desk are neither."
+    },
+    {
+      "answer": "word_moja",
+      "before": "머리에 ",
+      "after": "를 썼어요.",
+      "options": [
+        "word_uija",
+        "word_baji",
+        "word_sigye"
+      ],
+      "why": "쓰다 on the head. Trousers go on the legs, a chair and a clock go nowhere on a person."
+    },
+    {
+      "answer": "word_gabang",
+      "before": "책을 ",
+      "after": "에 넣었어요.",
+      "options": [
+        "word_uija",
+        "word_geoul",
+        "word_moja"
+      ],
+      "why": "A bag holds things. A chair and a mirror do not, and a hat is not where a book goes."
+    },
+    {
+      "answer": "word_sigye",
+      "before": "",
+      "after": "를 보고 시간을 알았어요.",
+      "options": [
+        "word_uija",
+        "word_moja",
+        "word_chimdae"
+      ],
+      "why": "Only a clock tells the time. All four are vowel-final, so 를 gives nothing away."
+    },
+    {
+      "answer": "word_geoul",
+      "before": "",
+      "after": "을 보고 머리를 빗었어요.",
+      "options": [
+        "word_bang",
+        "word_chitsol",
+        "word_hwajangsil"
+      ],
+      "why": "One combs one's hair in front of a mirror; a room, a toothbrush and a bathroom are not looked into."
+    },
+    {
+      "answer": "word_mun",
+      "before": "교실에서 ",
+      "after": "을 닫고 나갔어요.",
+      "options": [
+        "word_ot",
+        "word_bang",
+        "word_chaeksang"
+      ],
+      "why": "닫다 takes a door. Clothes, a room and a desk are not closed on the way out of a classroom."
+    },
+    {
+      "answer": "word_chaek",
+      "before": "도서관에서 ",
+      "after": "을 빌렸어요.",
+      "options": [
+        "word_mal",
+        "word_eumak",
+        "word_sajin"
+      ],
+      "why": "A library lends books. Words, music and a photograph are not borrowed from one."
+    },
+    {
+      "answer": "word_sajin",
+      "before": "바다에서 ",
+      "after": "을 많이 찍었어요.",
+      "options": [
+        "word_chaek",
+        "word_mal",
+        "word_eumak"
+      ],
+      "why": "찍다 is the verb for a photograph and for none of the others."
+    },
+    {
+      "answer": "word_norae",
+      "before": "친구 생일에 ",
+      "after": "를 불렀어요.",
+      "options": [
+        "word_jeonhwa",
+        "word_yeonghwa",
+        "word_yaegi"
+      ],
+      "why": "부르다 of a song. A telephone, a film and a chat are not sung."
+    },
+    {
+      "answer": "word_pyeonji",
+      "before": "우체국에서 ",
+      "after": "를 부쳤어요.",
+      "options": [
+        "word_jeonhwa",
+        "word_yeonghwa",
+        "word_norae"
+      ],
+      "why": "부치다 is posting. A telephone, a film and a song do not go through the post."
+    },
+    {
+      "answer": "word_hakgyo",
+      "before": "아이가 ",
+      "after": "에서 한글을 배워요.",
+      "options": [
+        "word_junbi",
+        "word_hoesa",
+        "word_gongbu"
+      ],
+      "why": "Only one of the four is a place a child learns Hangul in."
+    },
+    {
+      "answer": "word_don",
+      "before": "가게에서 ",
+      "after": "을 냈어요.",
+      "options": [
+        "word_sijang",
+        "word_pyeonuijeom",
+        "word_eunhaeng"
+      ],
+      "why": "내다 of money. A market, a convenience store and a bank are places — one does not hand a shop a bank."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "_comment": "Korean the audit rewrote at the source, with the form it replaced. Read by scripts/build-content-audit.mjs so the ledger and the audit cannot disagree. Adding a row here does not change the content — edit the entry, then record it.",
+  "sentences": {
+    "word_bit": {
+      "was": "창문으로 아침 빛이 들어와요.",
+      "why": "아침 빛 is not the phrase. Korean says 아침 햇살 or 아침 햇빛; 빛 takes no 아침 modifier. Grammatical, and not what anyone says. The modifier was dropped rather than the noun swapped, because the card teaches 빛."
+    },
+    "word_pingkeu": {
+      "was": "핑크 색이 예뻐요.",
+      "why": "핑크색 is one word. Spaced, 핑크 색 is a spacing error in a sentence a beginner is shown as a model — and the Hangul lessons teach spacing. The translations were already \"pink\", so none of the thirty-one changed."
+    },
+    "word_geumbal": {
+      "was": "금발 머리가 눈에 띄어요.",
+      "why": "금발 already means blond *hair*, so 금발 머리 says hair twice. 금발이 눈에 띄어요 is what a speaker would say. The translations already read \"blond hair\", so none of the thirty-one changed."
+    }
+  }
+}

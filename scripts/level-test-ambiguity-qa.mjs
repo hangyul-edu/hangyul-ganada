@@ -253,7 +253,31 @@ for (const item of bank.items) {
     if (other.pos !== anchor.pos) {
       fail(item, 'mixed-parts-of-speech', `${other.word} is a ${other.pos}, the answer is a ${anchor.pos}`);
     }
-    if (anchor.category && other.category === anchor.category) {
+    /*
+     * Same subject area — a **predicate** rule, and only a predicate rule.
+     *
+     * It used to apply to every item. For a verb or an adjective it is right
+     * and stays: 내밀다 and 뻗다 are both actions of the hand and both make
+     * `손을 ____` true, so a distractor from the answer's own area is the one
+     * most likely to be a second answer.
+     *
+     * For a *noun* it was the opposite of what a question needs, and it took a
+     * photograph to see it. `창문으로 아침 ____이 들어와요` was keyed 빛 and
+     * offered 목적, 비빔밥 and 환경 — three words from three unrelated
+     * categories, because that is what this rule and its twin in the builder
+     * required. Every one of the 625 contextual items in that bank had all
+     * three distractors from a different category than the answer. Nothing is
+     * being tested when the wrong answers are absurd.
+     *
+     * The noun side is now owned by `leveltest:distractors`, which requires the
+     * opposite — a shared category — and the frames where a same-area noun
+     * would also be *right* are refused outright by the builder rather than
+     * papered over with a distant distractor. Leaving this rule on nouns as
+     * well would be two gates asserting opposite things about one artefact,
+     * which is how §19.4a's pair of self-checking gates happened.
+     */
+    const inflects = anchor.pos === 'verb' || anchor.pos === 'adjective';
+    if (inflects && anchor.category && other.category === anchor.category) {
       fail(item, 'same-category', `${other.word} is also ${anchor.category}`);
     }
     if (other.senseId === anchor.senseId) {

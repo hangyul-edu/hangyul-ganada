@@ -490,7 +490,108 @@ MEANING_RULES: tuple[tuple[str, str], ...] = (
                 r"help|wait|try|do\b|change|repeat|continue)"),
 )
 
-_COMPILED = tuple((cid, re.compile(pattern, re.I)) for cid, pattern in MEANING_RULES)
+#: Every rule is compiled with a *no word character follows* lookahead.
+#:
+#: This is the fix for a whole family of miscategorisations, and it is worth
+#: being explicit about the shape of it. The rules are alternations written
+#: `\b(head|face|…|pain|hurt|…)` — a word boundary in front and **nothing
+#: behind**, so every alternative was also a prefix rule. `pain` matched
+#: *painter*, and 화가 — a painter — was filed under Body & Health. So was
+#: 그리다, *to draw, to paint*. `sand` matched *sandwich*, `wind` matched
+#: *window*, `star` matched *a start*, `birth` matched *a birthday*, `doll`
+#: matched *dollar*, `wall` matched *wallet*, `pill` matched *a pillow*, `war`
+#: matched *a warehouse*, `exam` matched *an example*, `pass` matched *a
+#: password*. 292 words in the shipped corpus took their category from a match
+#: that landed inside a longer word.
+#:
+#: It is not a cosmetic fault. The category is what the browse screen files a
+#: word under, so a learner opening Body & Health met *a painter*, *a birthday*
+#: and *a pillow*; and it is what the Level Test's builder uses to keep a
+#: distractor away from the answer's own subject area, so a wrong category is a
+#: wrong distractor.
+_TRAILING_BOUNDARY = r"(?!\w)"
+
+#: English inflection and derivation, so a strict boundary does not cost the
+#: matches it should keep.
+#:
+#: With the lookahead above, `shoe` no longer matches *shoes* and `inform` no
+#: longer matches *information* — 196 words lost a correct category the moment
+#: the accidental ones were closed. The answer is not to loosen the boundary
+#: again but to *give the matcher the lemma*: every alphabetic token in the
+#: gloss is reduced by the suffix table below and the reductions are appended to
+#: the text the rules search. `shoes` contributes `shoe`; `information`
+#: contributes `inform`; `laughter` contributes `laugh`.
+#:
+#: A reduction that is not a real word costs nothing — it simply matches no
+#: rule. What it must not do is *invent* a match, which is why every suffix here
+#: removes a genuine English ending and why the minimum stem is three letters:
+#: `painter` reduces to `paint` and not to `pain`, so the word that started this
+#: goes to Communication with *to draw, to paint* rather than to Body & Health.
+_DOUBLED = re.compile(r"^(.{2,}?)([bcdfglmnprstz])\2(ing|ed)$")
+_SUFFIXES: tuple[tuple[str, str], ...] = (
+    # inflection
+    ("ies", "y"), ("ied", "y"), ("ying", "ie"), ("es", ""), ("s", ""),
+    ("ing", ""), ("ing", "e"), ("ed", ""), ("ed", "e"),
+    ("ers", ""), ("er", ""), ("er", "e"), ("est", ""), ("ly", ""), ("n", ""),
+    # derivation — the nominalisers, which is where the losses were
+    ("ation", ""), ("ation", "ate"), ("ition", "ite"), ("ction", "ct"),
+    ("ssion", "ss"), ("sion", "de"), ("sion", "se"), ("tion", "te"),
+    ("ment", ""), ("ness", ""), ("ity", ""), ("ity", "e"),
+    ("ance", ""), ("ence", ""), ("ance", "e"), ("ence", "e"),
+    ("ure", ""), ("ure", "e"), ("y", ""), ("y", "e"),
+    ("able", ""), ("able", "e"), ("ible", ""), ("ful", ""),
+    ("ledge", "w"), ("al", ""), ("ous", ""), ("ive", ""),
+)
+
+
+#: Suffixes whose stem must be four letters rather than three.
+#:
+#: `-y` and `-ly` are the two that manufacture a word out of an unrelated one:
+#: *many* -> man, *busy* -> bus, *early* -> ear, *city* -> cit. Each of those
+#: was a live miscategorisation on the first run of this change — 많다 to
+#: People, 바쁘다 to Places & Travel, 일찍 to Body & Health — so the stem they
+#: produce has to be long enough to be a reduction rather than a coincidence.
+_LONG_STEM = frozenset({"y", "ly"})
+
+
+def _lemmas(token: str) -> set[str]:
+    """Every plausible stem of one English token."""
+    out: set[str] = set()
+    doubled = _DOUBLED.match(token)
+    if doubled:
+        out.add(doubled.group(1) + doubled.group(2))
+    for suffix, replacement in _SUFFIXES:
+        floor = 4 if suffix in _LONG_STEM else 3
+        if token.endswith(suffix) and len(token) - len(suffix) >= floor:
+            out.add(token[: len(token) - len(suffix)] + replacement)
+    return {stem for stem in out if len(stem) >= 3 and stem != token}
+
+
+_WORDS = re.compile(r"[A-Za-z]+")
+
+
+def expand(meaning: str) -> str:
+    """The gloss, with the lemma of every token appended for the rules to see.
+
+    Appended rather than substituted, because the gloss's own wording carries
+    matches the lemma would lose: rules that name a parenthesised sense, such as
+    "(a gift)" or "full (after eating)", are matched against the literal text.
+
+    `-ter` is deliberately not a suffix here. It would give *laughter* -> laugh,
+    which is wanted, and *painter* -> pain, which is the miscategorisation this
+    whole change exists to remove. 웃음 is placed by an override instead.
+    """
+    extra: set[str] = set()
+    for token in _WORDS.findall(meaning.lower()):
+        extra |= _lemmas(token)
+    if not extra:
+        return meaning
+    return f"{meaning} \u241f {' '.join(sorted(extra))}"
+
+
+_COMPILED = tuple(
+    (cid, re.compile(pattern + _TRAILING_BOUNDARY, re.I)) for cid, pattern in MEANING_RULES
+)
 
 #: The floor. A word with no thematic signal is what its part of speech says.
 BY_PART_OF_SPEECH: dict[str, str] = {
@@ -729,6 +830,235 @@ OVERRIDES: dict[str, str] = {
     "무시하다": "society", "보호하다": "society", "지키다": "society",
     "지원하다": "society", "지지하다": "society", "대기": "society",
     "대기하다": "society",
+    # --- 2026-09-10 audit: every category read end to end, word by word -------
+    #
+    # The classifier's boundary fix (see `_TRAILING_BOUNDARY`) closed the
+    # accidental prefix matches; this closes what reading the eighteen finished
+    # lists found behind them. Two shapes dominate.
+    #
+    # **The gloss carries a word the rule wanted, about something else.** 고향
+    # is *one's hometown* and `home` put it in Places; 원 is *the won* and
+    # `one` put it in Time & Numbers; 금 is *gold* and so did `gold`... no —
+    # `금` came through `time-numbers` on a stray, and a learner looking for
+    # money does not open Time & Numbers. Each of these is one word, so each is
+    # decided here rather than by widening a rule that would take thirty others
+    # with it.
+    #
+    # **The floor is not neutral.** A noun with no thematic signal lands in
+    # `home`, which is right for 이불 and wrong for 개념, 맥락, 전제 and the
+    # other hundred-odd abstract nouns the corpus has grown. Browsing Home &
+    # Daily Life for *a premise* is the same fault as browsing Body & Health
+    # for *a painter*, and the fix is the same: name the drawer by hand.
+    # essentials — the sentence-holding words, and the fixed expressions
+    "등": "body-health", "키": "body-health", "매출": "money-shopping",
+    "진척": "school-work", "걸어가다": "movement", "뛰어가다": "movement",
+    "데려오다": "movement", "재미없다": "describing", "소용없다": "describing",
+    "환영하다": "communication", "반기다": "feelings", "도리": "society",
+    "금상첨화": "describing", "출신": "people", "부인": "people",
+    # people — the month name and the applause that were filed as persons
+    "월": "time-numbers", "박수": "society", "직접": "how-when",
+    "억압": "society", "복지": "society", "인공": "describing",
+    "정서": "feelings", "동원하다": "society", "의지하다": "feelings",
+    # food — verbs and adjectives the food rule caught by a single word
+    "신청하다": "communication", "가하다": "actions", "쏟아지다": "movement",
+    "베다": "actions", "상냥하다": "feelings", "낚다": "animals-nature",
+    "진하다": "describing", "잔": "home", "바르다": "actions",
+    "조각": "describing", "고소하다": "food", "달콤하다": "food",
+    # animals & nature — the celebrity star, the engine, and the adverbs
+    "스타": "people", "고장": "actions", "고장나다": "actions",
+    "구멍": "home", "운동장": "society", "강철": "home",
+    "견디다": "feelings", "쏘다": "actions", "거두다": "actions",
+    "도대체": "how-when", "퍼지다": "movement", "본질": "thinking",
+    "방사선": "school-work", "악착같다": "describing", "갈래": "describing",
+    "워낙": "how-when", "노련하다": "describing", "미행하다": "actions",
+    "발휘하다": "actions", "고약하다": "describing", "몰아넣다": "movement",
+    "감내하다": "feelings", "갉아먹다": "actions", "감돌다": "describing",
+    "흩어지다": "movement", "스미다": "movement", "샌드위치": "food",
+    # home — the abstract nouns that landed on the object floor
+    "기적": "society", "만약": "how-when", "춤": "society",
+    "끝": "time-numbers", "제목": "communication", "우주선": "places-travel",
+    "실험실": "school-work", "자료": "school-work", "대신": "how-when",
+    "재능": "people", "제안": "communication", "법정": "society",
+    "보기": "school-work", "확률": "thinking", "약국": "places-travel",
+    "극장": "society", "상대": "people", "일기": "communication",
+    "기능": "describing", "직업": "school-work", "경험": "thinking",
+    "왕자": "people", "빛": "animals-nature", "왕": "people",
+    "왕비": "people", "행복": "feelings", "소개": "communication",
+    "흔적": "thinking", "내용": "communication", "지식": "thinking",
+    "신사": "people", "시설": "places-travel", "증상": "body-health",
+    "최악": "describing", "원인": "thinking", "비밀번호": "communication",
+    "검사": "school-work", "방식": "thinking", "책임": "society",
+    "주제": "communication", "조건": "thinking", "영향": "thinking",
+    "최근": "time-numbers", "과정": "thinking", "오해": "communication",
+    "모임": "society", "대개": "how-when", "수준": "describing",
+    "중심": "essentials", "활동": "society", "행성": "animals-nature",
+    "성격": "people", "차도": "places-travel", "체력": "body-health",
+    "차이": "describing", "전문가": "school-work", "응급실": "body-health",
+    "여지": "thinking", "운명": "society", "한동안": "time-numbers",
+    "저리다": "body-health", "독감": "body-health", "역할": "society",
+    "다소": "how-when", "번역": "communication", "한계": "describing",
+    "다행": "feelings", "규모": "describing", "본래": "how-when",
+    "기준": "thinking", "체온": "body-health", "양심": "feelings",
+    "이대로": "essentials", "관점": "thinking", "대응": "actions",
+    "편견": "thinking", "문의": "communication", "눈치": "thinking",
+    "단절": "society", "요원": "people", "설상가상": "describing",
+    "이례적": "describing", "필연적": "describing", "요소": "describing",
+    "낙관적": "describing", "가시다": "actions", "사례": "thinking",
+    "싸구려": "money-shopping", "개념": "thinking", "착오": "thinking",
+    "추세": "thinking", "신념": "thinking", "자질": "people",
+    "유출": "society", "취지": "thinking", "기질": "people",
+    "폐지": "society", "타협": "society", "성과": "school-work",
+    "요인": "thinking", "하필": "how-when", "모순": "thinking",
+    "대안": "thinking", "측면": "thinking", "파장": "society",
+    "첨부": "communication", "유입": "movement", "촉구": "communication",
+    "정신과": "body-health", "쇠퇴": "society", "갈등": "society",
+    "경향": "thinking", "침해": "society", "전제": "thinking",
+    "별개": "thinking", "예비": "describing", "명분": "thinking",
+    "견제": "society", "번영": "society", "결핍": "describing",
+    "역량": "people", "발급": "society", "통찰": "thinking",
+    "맥락": "thinking", "이념": "society", "성향": "people",
+    "완화": "describing", "애지중지": "feelings", "새옹지마": "society",
+    "결자해지": "society", "다재다능": "people", "고군분투": "society",
+    "일사천리": "describing", "대기만성": "society", "주객전도": "thinking",
+    "솔선수범": "society", "임기응변": "thinking", "횡설수설": "communication",
+    "야무지다": "describing", "여유롭다": "describing", "청결하다": "describing",
+    "돈독하다": "describing", "잘나다": "describing", "산뜻하다": "describing",
+    "유능하다": "describing", "무난하다": "describing",
+    # body & health — the sweater, the washing machine and the abstract verbs
+    "없다": "essentials", "착하다": "feelings", "스웨터": "home",
+    "세탁기": "home", "벌다": "money-shopping", "생활": "society",
+    "나머지": "essentials", "갚다": "money-shopping", "사장": "school-work",
+    "밀리다": "actions", "작동": "school-work", "작동하다": "school-work",
+    "돌려주다": "actions", "시절": "time-numbers", "빨다": "home",
+    "향하다": "movement", "늘다": "describing", "취급하다": "actions",
+    "되찾다": "actions", "내주다": "actions", "건네다": "actions",
+    "실컷": "how-when", "각오": "thinking", "반려": "society",
+    "유보하다": "thinking", "철회": "society", "안목": "thinking",
+    "반발": "society", "늦추다": "time-numbers", "정립하다": "thinking",
+    "법적": "society", "제출하다": "school-work", "정신적": "thinking",
+    "학수고대": "feelings", "되돌리다": "actions", "물러나다": "movement",
+    "터놓다": "communication", "저버리다": "society", "자제하다": "feelings",
+    "화룡점정": "describing", "살신성인": "society", "짊어지다": "actions",
+    "냉철하다": "describing", "치닫다": "movement", "돌이키다": "thinking",
+    "냉정하다": "describing", "앞세우다": "actions", "잦아들다": "describing",
+    "물리치다": "actions", "맞서다": "society", "마주하다": "movement",
+    "일찍": "how-when", "군대": "society", "짜증나다": "feelings",
+    "이르다": "time-numbers", "살아가다": "society", "초기": "time-numbers",
+    # places & travel — the inner self and the conclusion
+    "내면": "thinking", "도출하다": "thinking", "대통령": "society",
+    "훈련": "school-work", "부서": "school-work", "정신없다": "describing",
+    "자수성가": "society", "동분서주": "how-when", "고정되다": "describing",
+    "매만지다": "actions", "국제": "society", "국가": "society",
+    # time & numbers — everything the words "one", "time" and "count" caught
+    "고향": "places-travel", "금": "money-shopping", "원": "money-shopping",
+    "최선": "thinking", "실력": "school-work", "고민": "thinking",
+    "상사": "school-work", "원칙": "thinking", "첫사랑": "feelings",
+    "사명": "society", "포부": "thinking", "여건": "thinking",
+    "격차": "society", "여파": "society", "많다": "describing",
+    "정도": "describing", "계산": "time-numbers", "충분하다": "describing",
+    "지내다": "society", "돌보다": "people", "보살피다": "people",
+    "묵다": "places-travel", "임시": "describing", "추가": "describing",
+    "야근": "school-work", "연봉": "money-shopping", "당하다": "society",
+    "결심하다": "thinking", "쫓아오다": "movement", "마음대로": "how-when",
+    "절충": "thinking", "금시초문": "communication", "진행": "actions",
+    "아예": "how-when", "마음껏": "how-when", "닥치다": "time-numbers",
+    "발생": "actions", "쫓아가다": "movement", "굳이": "how-when",
+    "들이다": "actions", "주력하다": "actions", "짐작하다": "thinking",
+    "긴급": "describing", "누적되다": "time-numbers", "번복하다": "thinking",
+    "창업": "school-work", "온갖": "describing", "인접하다": "places-travel",
+    "관리하다": "school-work", "웬만하다": "describing", "뜻대로": "how-when",
+    "심화되다": "describing", "대형": "describing", "연쇄": "describing",
+    "일관되다": "describing", "역부족": "describing", "깜빡하다": "thinking",
+    "고작": "how-when", "선입견": "thinking", "앞두다": "time-numbers",
+    "유일하다": "describing", "다다익선": "describing", "벅차다": "describing",
+    "과유불급": "describing", "시기상조": "time-numbers", "우유부단": "people",
+    "모조리": "how-when", "비일비재": "describing", "호시탐탐": "how-when",
+    "자업자득": "society", "일석이조": "describing", "타산지석": "thinking",
+    "십중팔구": "describing", "일거양득": "describing", "적반하장": "society",
+    "토로하다": "communication", "억지로": "how-when", "반신반의": "thinking",
+    "미숙하다": "describing", "일취월장": "describing", "동병상련": "feelings",
+    "작심삼일": "describing", "지긋하다": "describing", "빈번하다": "describing",
+    "대동소이": "describing", "샅샅이": "how-when", "손꼽히다": "describing",
+    "치우치다": "thinking", "각양각색": "describing", "그나마": "how-when",
+    "어긋나다": "thinking", "되새기다": "thinking", "일찌감치": "how-when",
+    # school & work
+    "흥분하다": "feelings", "더하다": "time-numbers", "안되다": "describing",
+    "반응": "actions", "고급": "describing", "수고": "school-work",
+    "유유상종": "society", "청출어람": "school-work", "박학다식": "thinking",
+    # money & shopping
+    "이야기": "communication", "진지하다": "describing", "자초지종": "communication",
+    "주목하다": "thinking", "보관하다": "actions", "저장하다": "actions",
+    "고려하다": "thinking", "차지하다": "actions", "유리하다": "describing",
+    "열악하다": "describing", "가치": "thinking",
+    # communication
+    "미국": "places-travel", "좀": "how-when", "상태": "describing",
+    "마련하다": "actions", "시끄럽다": "describing", "무사하다": "describing",
+    "실태": "thinking", "파악하다": "thinking", "완곡하다": "describing",
+    "사기": "society", "근거": "thinking", "가리다": "actions",
+    "장기": "society", "척하다": "actions", "어부지리": "society",
+    "유창하다": "describing", "그룹": "society", "클럽": "society",
+    "표정": "body-health", "화가": "people", "작가": "people",
+    "촬영": "communication",
+    # feelings
+    "가지": "describing", "종류": "describing", "그런": "essentials",
+    "계시다": "essentials", "열심히": "how-when", "조심": "thinking",
+    "큰일": "essentials", "아끼다": "actions", "듬뿍": "how-when",
+    "복수": "society", "봉사하다": "society", "섬기다": "society",
+    "기꺼이": "how-when", "흔쾌히": "how-when", "부드럽다": "describing",
+    "곱다": "describing", "순하다": "describing", "똑똑하다": "describing",
+    "영리하다": "describing", "현명하다": "describing", "어리석다": "describing",
+    "근사하다": "describing", "화려하다": "describing", "시리다": "body-health",
+    "완화하다": "actions", "감행하다": "actions", "아득하다": "describing",
+    "체감하다": "feelings", "설치다": "describing",
+    # thinking
+    "재수": "society", "역시": "how-when", "특수": "describing",
+    "상관": "thinking", "일부러": "how-when", "대충": "how-when",
+    "왠지": "how-when", "함부로": "how-when", "하긴": "how-when",
+    "여론": "society", "통보": "communication", "비치다": "animals-nature",
+    "고찰": "thinking", "저조하다": "describing", "하염없이": "how-when",
+    "심사숙고": "thinking", "유비무환": "thinking",
+    # movement
+    "파리": "animals-nature", "운전": "places-travel", "출구": "places-travel",
+    "절차": "thinking", "모범": "society", "미리": "how-when",
+    "거꾸로": "how-when", "침체": "society", "제시": "communication",
+    "실행": "actions", "원활하다": "describing", "망하다": "society",
+    "반하다": "feelings", "상하다": "food", "운영하다": "school-work",
+    "고진감래": "society", "성사되다": "actions", "무산되다": "actions",
+    # actions — the nouns of action stay; the adjectives and idioms move
+    "못": "how-when", "덩치": "describing", "기반": "thinking",
+    "자산": "money-shopping", "소용": "describing", "의욕": "feelings",
+    "욕하다": "communication", "처참하다": "describing", "조급하다": "describing",
+    "각별하다": "describing", "숨막히다": "describing", "촘촘하다": "describing",
+    "우여곡절": "society", "속수무책": "describing", "선견지명": "thinking",
+    "막상막하": "describing", "전화위복": "society", "환골탈태": "describing",
+    "자포자기": "feelings", "조삼모사": "thinking", "통치하다": "society",
+    "반항하다": "society", "겨루다": "society", "일치하다": "thinking",
+    "입증하다": "thinking", "자극하다": "feelings", "책임지다": "society",
+    "합치다": "actions", "커지다": "describing", "높아지다": "describing",
+    "세지다": "describing", "매다": "actions", "갈다": "actions",
+    "알아듣다": "communication", "쳐다보다": "thinking", "눈치채다": "thinking",
+    "들리다": "communication", "잡다": "actions", "시작": "time-numbers",
+    "개시": "time-numbers", "시동": "places-travel", "축하하다": "essentials",
+    # describing — the nouns that are not descriptions
+    "잔돈": "money-shopping", "정상": "places-travel", "반대": "thinking",
+    "발췌": "communication", "확대": "describing", "축소": "describing",
+    "도입": "society", "관행": "society", "나선": "describing",
+    "골치": "feelings", "청천벽력": "feelings", "해소하다": "actions",
+    "압축하다": "actions", "재편하다": "actions", "우회하다": "movement",
+    "공헌하다": "society", "갈망하다": "feelings", "가늠하다": "thinking",
+    "바로잡다": "actions", "돌아서다": "movement", "벌리다": "actions",
+    "뒤틀다": "actions", "말리다": "actions", "비우다": "actions",
+    "식다": "describing", "마르다": "describing", "젖다": "describing",
+    "돌다": "movement", "빚다": "actions", "둘러보다": "thinking",
+    "빗나가다": "movement", "무리하다": "describing", "모호하다": "describing",
+    "비겁하다": "describing", "팔방미인": "people", "남자답다": "describing",
+    "공교롭다": "describing", "한심하다": "describing", "단순히": "how-when",
+    "어쩌면": "how-when", "간단히": "how-when", "달리": "how-when",
+    "흔히": "how-when", "대략": "how-when", "얼추": "how-when",
+    "활짝": "how-when", "좀처럼": "how-when", "낮추다": "actions",
+    "상당히": "how-when", "부쩍": "how-when", "편히": "how-when",
+    "편안히": "how-when", "깨끗이": "how-when", "골고루": "how-when",
+    "앞서": "how-when",
 }
 
 
@@ -761,9 +1091,10 @@ def classify(
 
     Wrong metadata is worse than missing metadata, and this prefers missing.
     """
+    searchable = expand(meaning)
     from_gloss: list[str] = []
     for cid, pattern in _COMPILED:
-        if pattern.search(meaning) and cid not in from_gloss:
+        if pattern.search(searchable) and cid not in from_gloss:
             from_gloss.append(cid)
 
     from_topic: list[str] = []

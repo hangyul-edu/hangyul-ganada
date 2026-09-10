@@ -1,6 +1,6 @@
 {
- "version": "20260909-b2ce1b88",
- "generated_at": "2026-09-09T04:49:52+00:00",
+ "version": "20260910-dbeee665",
+ "generated_at": "2026-09-10T06:46:48+00:00",
  "provider": {
   "id": "microsoft-edge-tts",
   "female_voice": "ko-KR-SunHiNeural",
@@ -6827,18 +6827,18 @@
    }
   },
   {
-   "id": "ex_ae08bc1c20ba38b9acac0020b208c5d020b744c5b4c6942e",
-   "text": "금발 머리가 눈에 띄어요.",
+   "id": "ex_ae08bc1cc77420b208c5d020b744c5b4c6942e",
+   "text": "금발이 눈에 띄어요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_ae08bc1c20ba38b9acac0020b208c5d020b744c5b4c6942e.mp3",
-    "duration_ms": 1992,
-    "bytes": 8205
+    "src": "audio/sentences/female/ex_ae08bc1cc77420b208c5d020b744c5b4c6942e.mp3",
+    "duration_ms": 1632,
+    "bytes": 6765
    },
    "male": {
-    "src": "audio/sentences/male/ex_ae08bc1c20ba38b9acac0020b208c5d020b744c5b4c6942e.mp3",
-    "duration_ms": 1992,
-    "bytes": 8205
+    "src": "audio/sentences/male/ex_ae08bc1cc77420b208c5d020b744c5b4c6942e.mp3",
+    "duration_ms": 1584,
+    "bytes": 6573
    }
   },
   {
@@ -44867,18 +44867,18 @@
    }
   },
   {
-   "id": "ex_cc3dbb38c73cb85c20c544ce6820be5bc77420b4e4c5b4c640c6942e",
-   "text": "창문으로 아침 빛이 들어와요.",
+   "id": "ex_cc3dbb38c73cb85c20be5bc77420b4e4c5b4c640c6942e",
+   "text": "창문으로 빛이 들어와요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_cc3dbb38c73cb85c20c544ce6820be5bc77420b4e4c5b4c640c6942e.mp3",
-    "duration_ms": 2448,
-    "bytes": 10029
+    "src": "audio/sentences/female/ex_cc3dbb38c73cb85c20be5bc77420b4e4c5b4c640c6942e.mp3",
+    "duration_ms": 2016,
+    "bytes": 8301
    },
    "male": {
-    "src": "audio/sentences/male/ex_cc3dbb38c73cb85c20c544ce6820be5bc77420b4e4c5b4c640c6942e.mp3",
-    "duration_ms": 2160,
-    "bytes": 8877
+    "src": "audio/sentences/male/ex_cc3dbb38c73cb85c20be5bc77420b4e4c5b4c640c6942e.mp3",
+    "duration_ms": 1776,
+    "bytes": 7341
    }
   },
   {
@@ -48797,18 +48797,18 @@
    }
   },
   {
-   "id": "ex_d551d06c20c0c9c77420c608bed0c6942e",
-   "text": "핑크 색이 예뻐요.",
+   "id": "ex_d551d06cc0c9c77420c608bed0c6942e",
+   "text": "핑크색이 예뻐요.",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_d551d06c20c0c9c77420c608bed0c6942e.mp3",
-    "duration_ms": 1608,
-    "bytes": 6669
+    "src": "audio/sentences/female/ex_d551d06cc0c9c77420c608bed0c6942e.mp3",
+    "duration_ms": 1560,
+    "bytes": 6477
    },
    "male": {
-    "src": "audio/sentences/male/ex_d551d06c20c0c9c77420c608bed0c6942e.mp3",
-    "duration_ms": 1416,
-    "bytes": 5901
+    "src": "audio/sentences/male/ex_d551d06cc0c9c77420c608bed0c6942e.mp3",
+    "duration_ms": 1392,
+    "bytes": 5805
    }
   },
   {

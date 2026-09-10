@@ -523,7 +523,79 @@ const METRICS = {
       /rebuilt from a committed tree at versionCode ([\d]+)/g,
       /versionCode ([\d]+), versionName [\d.]+/g,
       /\*\*Build\*\* to `([\d]+)`/g,
+      /*
+       * And the front matter's `describes:` line, which is the paragraph the
+       * PDF prints on its cover. It said *Artefacts rebuilt at 1.0.5,
+       * versionCode 21* while the delivered artefact carried 22 and seven
+       * other places in the same document said 22. `version:` in the front
+       * matter was already read (see the version block below); the prose
+       * beside it was not, so the one page a reviewer opens first was the one
+       * page nothing checked.
+       */
+      /rebuilt at [\d.]+, versionCode ([\d]+)/g,
+      /at [\d.]+, versionCode ([\d]+)\./g,
     ],
+  },
+
+  /*
+   * Eight figures found stale by reading all 308 pages of the report against
+   * the tree on 10 September 2026, each now derived rather than typed.
+   *
+   * They are here for the reason the file's header gives: a number a person
+   * maintains by hand is a number that ages silently. `docs:consistency` was
+   * green over the same document while it stated 2,061 items per language
+   * against a manifest that said 2,122, and 786 recorded spoken forms in the
+   * paragraph directly under a table row saying 804.
+   */
+  levelTestContextItems: {
+    value: (() => {
+      const manifest = JSON.parse(read('apps/web/public/level-test/manifest.json'));
+      return JSON.parse(read(`apps/web/public/level-test/${manifest.bank}`)).items.filter(
+        (item) => item.kind === 'context',
+      ).length;
+    })(),
+    what: 'contextual items in the level-test bank',
+    patterns: [
+      /\|\s*Level-test contextual items\s*\|\s*([\d,]+)\s*\|/g,
+      /-item\*\* bank, ([\d,]+) of them\n?contextual/g,
+    ],
+  },
+
+  levelTestReach: {
+    value: (() => {
+      const reach = JSON.parse(read('apps/web/public/level-test/manifest.json')).reach;
+      const others = Object.entries(reach).filter(([locale]) => locale !== 'en');
+      const values = new Set(others.map(([, entry]) => entry.items));
+      // Every non-English language reaches the same distance, by construction.
+      return values.size === 1 ? [...values][0] : null;
+    })(),
+    what: 'askable items per non-English language',
+    patterns: [
+      /\|\s*Level-test reach, every non-English language\s*\|\s*([\d,]+) items each\s*\|/g,
+      /every non-English language now has \*\*([\d,]+)\*\*/g,
+      /askable bank from [\d,]+ items to ([\d,]+)/g,
+    ],
+  },
+
+  pronunciationNoteCards: {
+    value: (() => {
+      const corpus = JSON.parse(read('apps/web/src/data/generated/vocabulary.json'));
+      const noted = new Set(corpus.noted_patterns);
+      return corpus.words.filter((word) => word.sayWhy && noted.has(word.sayWhy)).length;
+    })(),
+    what: 'words whose card shows a pronunciation note',
+    patterns: [
+      /\|\s*Of those, shown as a note on a card\s*\|\s*([\d,]+)\s*\|/g,
+      /([\d,]+) of those get a \*note/g,
+    ],
+  },
+
+  editorialBandWords: {
+    value: JSON.parse(read('apps/web/src/data/generated/vocabulary.json')).words.filter(
+      (word) => word.lvm,
+    ).length,
+    what: 'words whose level is held to an editorial band',
+    patterns: [/\|\s*Levels held to an editorial band\s*\|\s*([\d,]+)\s*\|/g],
   },
 
   /**

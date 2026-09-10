@@ -14,6 +14,7 @@
  */
 import { describe, expect, it } from 'vitest';
 
+import { clozeFor } from '../../data/cloze';
 import { ALL_CHARACTERS } from '../../data/characters';
 import { VOCABULARY, getWord } from '../../data/vocabulary';
 import type { ReviewCandidate } from '../../domain/review';
@@ -126,7 +127,18 @@ describe('generated questions', () => {
       }
       if (exercise.mode === 'context') {
         const written = `${exercise.sentence?.before}${exercise.sentence?.target}${exercise.sentence?.after}`;
-        expect(written).toBe(word!.example);
+        /*
+         * The gap-fill is the card's own sentence — except for the hand-written
+         * beginner items, which exist because a level-2 card sentence cannot
+         * constrain a blank. Those carry their own sentence and, deliberately,
+         * no audio: the card's clip is a recording of the *other* sentence, and
+         * playing it under this one would be an audio/transcript mismatch.
+         */
+        if (clozeFor(word!.id)?.curated) {
+          expect(exercise.sentence?.audioId).toBeUndefined();
+        } else {
+          expect(written).toBe(word!.example);
+        }
         // The blank is the word being asked about, so the sentence around it
         // must not also contain it.
         expect(exercise.sentence?.target).toBeTruthy();
@@ -180,34 +192,50 @@ describe('generated questions', () => {
     }
   });
 
-  it('never fills a gap with a word from the same corner of the language', () => {
+  it('fills a gap with words from the same corner of the language', () => {
     /*
-     * The `저 ___ 는 의사예요 / 남자 / 여자` defect, as a permanent case.
+     * This assertion used to run the other way, and inverting it is the point.
      *
-     * A gap-fill's distractors have to be words the sentence *cannot* take. Two
-     * words from the same semantic category are, far too often, both true —
-     * that man is a doctor and so is that woman — and the learner is marked
-     * wrong for an answer the sentence supports. No hint can repair a question
-     * with two right answers, which is why §40 says hints must never be what
-     * makes a question solvable.
+     * It was written for the `저 ___ 는 의사예요 / 남자 / 여자` defect — two words
+     * from the same semantic category are far too often both true, and the
+     * learner is marked wrong for an answer the sentence supports. That reading
+     * is still correct about *predicates*, and `leveltest:ambiguity` still
+     * enforces it there.
+     *
+     * Applied to noun blanks it produced the item a reader photographed:
+     *
+     *     창문으로 아침 ____이 들어와요.
+     *     목적 · 비빔밥 · 빛 · 환경
+     *
+     * A purpose, a bibimbap and an environment do not come in through a window.
+     * The item has exactly one defensible answer — which is all this test ever
+     * asked — and it teaches nothing, because it is answerable by elimination
+     * without knowing 빛. Requiring the options to be *unrelated* made
+     * "unrelated to the sentence" the qualifying condition, and every one of
+     * the 625 contextual items in that bank had all three distractors from a
+     * different category than its answer.
+     *
+     * So a noun gap now offers four words from one corner of the language, and
+     * the frames where that would give two right answers are refused outright
+     * by the builder rather than papered over with a distant option. See
+     * `docs/CONTENT_QUALITY_STANDARD.md` §6 and `scripts/level-test-distractor-qa.mjs`.
      */
     for (const exercise of EXERCISES) {
       if (exercise.mode !== 'context') continue;
       const target = getWord(exercise.candidate.itemKey)!;
+      // Nouns only. A predicate distractor from the answer's own subject area
+      // usually *is* a second right answer, so there the old rule still holds —
+      // see `leveltest:ambiguity`.
+      if (target.part_of_speech !== 'noun') continue;
       const family = new Set([target.category, ...target.category_tags]);
       for (const option of exercise.options ?? []) {
         if (option.id === exercise.answerId) continue;
         const other = getWord(option.id)!;
+        const theirs = [other.category, ...other.category_tags];
         expect(
-          family.has(other.category),
-          `${target.word} was offered against ${other.word}, both in ${other.category}`,
-        ).toBe(false);
-        for (const tag of other.category_tags) {
-          expect(
-            family.has(tag),
-            `${target.word} was offered against ${other.word}, both tagged ${tag}`,
-          ).toBe(false);
-        }
+          theirs.some((tag) => family.has(tag)),
+          `${target.word} (${target.category}) was offered against ${other.word} (${other.category}), which shares nothing with it`,
+        ).toBe(true);
       }
     }
   });

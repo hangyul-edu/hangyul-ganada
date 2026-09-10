@@ -192,6 +192,31 @@ function unsafeInFrame(blanked, surface) {
   );
 }
 
+/**
+ * Verbs of going, for the destination rule.
+ *
+ * Deliberately short and named rather than pattern-matched: a rule that
+ * deletes every 에-slot in the bank would be worse than the items it removes.
+ */
+const DESTINATION_VERBS = new Set(['가다', '오다', '다니다', '들어가다', '들어오다', '나가다', '나오다']);
+
+/** Verbs of existing, appearing and being plentiful — see the frame rule. */
+const EXISTENTIAL_VERBS = new Set([
+  '있다', '없다', '많다', '적다', '생기다', '나오다', '나다', '보이다', '들리다',
+]);
+
+/**
+ * The particle allomorph pairs, consonant form first.
+ *
+ * Module scope rather than inside the build loop, because the curated items at
+ * the end of this file check agreement against the same table. Two copies of
+ * this list would be two answers to which form 으로 takes.
+ */
+const PARTICLE_PAIRS = [
+  ['은', '는'], ['이', '가'], ['을', '를'], ['과', '와'], ['으로', '로'],
+  ['이나', '나'], ['이랑', '랑'], ['아', '야'], ['이에요', '예요'],
+];
+
 const anchorFile = JSON.parse(readFileSync(ANCHORS, 'utf8'));
 const LEVELS = anchorFile.levels;
 const anchors = anchorFile.anchors;
@@ -306,6 +331,26 @@ function arguments_(sentence) {
     out.add(match[1]);
   }
   return out;
+}
+
+/**
+ * The lemma of the sentence's final predicate, or null.
+ *
+ * Used to tell two frames apart that differ only in their argument. `analyse`
+ * guesses a dictionary form from the shape of a surface and conjugates the
+ * guess back, keeping only guesses that round-trip, so this is the same
+ * morphology the rest of the build uses rather than a second answer to it.
+ */
+const PREDICATE_CACHE = new Map();
+function predicateOf(sentence) {
+  if (!sentence) return null;
+  if (PREDICATE_CACHE.has(sentence)) return PREDICATE_CACHE.get(sentence);
+  const eojeol = sentence.replace(/[.?!]+$/u, '').trim().split(/\s+/).filter(Boolean);
+  const last = eojeol[eojeol.length - 1] ?? '';
+  const [reading] = analyse(last, isKnownLemma);
+  const value = reading ? reading.lemma : null;
+  PREDICATE_CACHE.set(sentence, value);
+  return value;
 }
 
 const byLevel = new Map();
@@ -446,6 +491,10 @@ const rejected = {
   activityNoun: 0,
   sharedPrompt: 0,
   related: 0,
+  implausible: 0,
+  sharedPredicate: 0,
+  everyOptionFits: 0,
+  bareModifier: 0,
 };
 
 /** Whether the graph records the two as synonyms or antonyms, either way round. */
@@ -589,10 +638,6 @@ for (const anchor of anchors) {
    * the answer*, so all four read grammatically and none of them gives the game
    * away.
    */
-  const PARTICLE_PAIRS = [
-    ['은', '는'], ['이', '가'], ['을', '를'], ['과', '와'], ['으로', '로'],
-    ['이나', '나'], ['이랑', '랑'], ['아', '야'], ['이에요', '예요'],
-  ];
   /*
    * A blank glued to the syllable in front of it is inside a word.
    *
@@ -683,7 +728,25 @@ for (const anchor of anchors) {
    * more of the same shape shipped beside it. See
    * `isUnconstrainedPredicateFrame`.
    */
-  if (inflects && isUnconstrainedPredicateFrame(anchor.example)) {
+  /*
+   * `blanked`, not `anchor.example`.
+   *
+   * Both of these frame tests begin `if (!sentence.includes('____')) return
+   * false`, and both were being handed the sentence with the answer still in
+   * it. They have therefore returned false for every item ever built. The
+   * time-only rule is the fix I-185 was written for — the photographed
+   * `일곱 시에 ____` — and it has never once fired; the consumption rule is
+   * I-172's. Both were believed on the strength of the item disappearing from
+   * the bank, and both items disappeared for another reason.
+   *
+   * Nothing in the two gates over this file could see it. `leveltest:ambiguity`
+   * re-derives the frames from the *shipped* bank, where the prompt does carry
+   * `____`, so it computed them correctly and found nothing — because the
+   * distractor rule of the day was already keeping the offending options out
+   * for an unrelated reason. Inverting that rule (see the subject-area comment
+   * above) removed the accidental cover and four items came straight through.
+   */
+  if (inflects && isUnconstrainedPredicateFrame(blanked)) {
     rejected.timeOnlyFrame = (rejected.timeOnlyFrame ?? 0) + 1;
     continue;
   }
@@ -706,12 +769,145 @@ for (const anchor of anchors) {
   }
 
   const mine = arguments_(anchor.example);
+  /* The frame's own predicate, for the shared-predicate rule below. */
+  const myPredicate = predicateOf(anchor.example);
   /* 밥을 먹고 ____을 드세요 — the blank is swallowed. See `isConsumptionObjectFrame`. */
-  const eatingFrame = isConsumptionObjectFrame(anchor.example);
+  const eatingFrame = isConsumptionObjectFrame(blanked);
   /* 친구와 ____를 해요 — the blank is the object of 하다. */
   const hadaFrame = isHadaFrame(blanked);
   /* ____이 문을 열었어요 — the blank is a human agent. */
   const agentSubjectFrame = isAgentSubjectFrame(blanked);
+  /*
+   * A bare noun blank standing in front of another noun.
+   *
+   *     ____ 가방을 샀어요.     갈색 · 녹색 · 속도 · 흰색
+   *     ____ 공항에 갔어요.     국제 · 살인 · 스포츠 · 재수
+   *     ____ 위에 책이 있어요.  바지 · 선물 · 책상 · 침대
+   *
+   * The blank is a *modifier*, not an argument, and a modifier slot fails in
+   * both directions at once. Where the options are the same kind of word it has
+   * several right answers — a green bag and a white bag are both bought. Where
+   * they are not, the item is decided by which option can stand in front of a
+   * noun at all, which is a question about Korean syntax that a learner can
+   * answer without knowing any of the four words: 살인 공항 is not a phrase, so
+   * 국제 wins.
+   *
+   * There is no distractor set that rescues either shape, so the frame goes.
+   * Nothing is lost from the *card* — 갈색 keeps its sentence — only from the
+   * contextual bank, which needs a slot the sentence constrains.
+   */
+  if (!inflects && /^\s+[가-힣]/.test(afterBlank)) {
+    rejected.bareModifier = (rejected.bareModifier ?? 0) + 1;
+    continue;
+  }
+
+  /*
+   * A frame whose every plausible option is a right answer.
+   *
+   * Three rules below refuse a *distractor*: a person where the frame wants an
+   * agent, a doable noun where the verb is 하다, something swallowable where
+   * the verb is 드시다. Each was written to stop a second right answer, and
+   * each did — by pushing the draw outward until the three wrong options were
+   * things that could not go in the slot at all:
+   *
+   *     ____가 그림을 그려요.   화가 · 가요 · 대화 · 소개
+   *     ____가 길을 물어요.     아가씨 · 관계 · 냄새 · 상태
+   *     친구와 ____를 해요.     축구 · 경기 · 배우 · 평화
+   *
+   * A pop song does not draw and a relationship does not ask directions. The
+   * rule was doing its job and the item was still worthless, because when the
+   * answer *itself* is the kind of thing the frame accepts, every plausible
+   * option is a right answer and every remaining option is nonsense. There is
+   * no distractor set that fixes it.
+   *
+   * So the frame goes, rather than the distractor. What is left of `____가
+   * 노래를 해요` is a question with no wrong answer, and a bank is better
+   * without it.
+   */
+  if (!inflects) {
+    /*
+     * A time noun in a 에 slot. `____에 바다에 가요` was keyed 여름 and offered
+     * 월요일, and going to the sea on a Monday is not a wrong answer. The
+     * sentence says *when* about an activity that can happen whenever, so every
+     * word of the same kind is right — the mirror image of
+     * `isUnconstrainedPredicateFrame`, which caught the version of this where
+     * the *predicate* was blank.
+     */
+    if (anchor.category === 'time-numbers' && /^에(\s|$)/.test(afterBlank)) {
+      rejected.everyOptionFits += 1;
+      continue;
+    }
+    /*
+     * The three frames whose predicate accepts the answer's whole kind, read
+     * off the sentence's own verb rather than off a pattern. `predicateOf`
+     * settles the lemma with the repository's conjugator, so 갔어요, 가요 and
+     * 가서 are one verb and the rule does not have to list endings.
+     */
+    const frameVerb = myPredicate;
+    /*
+     * A destination. `일요일에 ____에 가요` accepts every place there is, and
+     * with the plausibility rule above the three wrong options are now all
+     * places — so the item has four right answers rather than one.
+     */
+    if (frameVerb && DESTINATION_VERBS.has(frameVerb) && /^에(\s|$)/.test(afterBlank)) {
+      rejected.everyOptionFits += 1;
+      continue;
+    }
+    /*
+     * A subject slot under a verb of existing or happening. `오늘 저녁에 ____이
+     * 있어요`, `그림에 ____가 있어요`, `영화에 ____이 나와요`, `교실에 ____이
+     * 많아요` — a gathering, an angel, a monster and a student are each true,
+     * and so is anything else of the same kind. `isOpenEvaluativeFrame` had the
+     * blank-initial version of this written as two patterns; this is the same
+     * rule stated about the verb, so it catches the frames that put an adjunct
+     * in front of the blank.
+     */
+    if (frameVerb && EXISTENTIAL_VERBS.has(frameVerb) && /^(이|가|은|는)(\s|$)/.test(afterBlank)) {
+      rejected.everyOptionFits += 1;
+      continue;
+    }
+    /*
+     * An object slot under a verb that takes any object at all, where the blank
+     * is the sentence's *only* argument. `____을 새로 샀어요` and `생일에 받은
+     * ____을 열어 봤어요` — a toothbrush, a knife, a desk and a pair of shoes
+     * are all bought new, and all of them get opened.
+     *
+     * The condition that the blank be the only argument is what keeps this from
+     * deleting the bank: `____을 씻어서 밥을 지어요` has 밥을 behind it and 밥
+     * is what decides the answer, so 사다 being general does not matter there.
+     * An earlier pass declined to write this rule for exactly that reason — see
+     * §10.9 — and it is writable now only because the argument test makes it
+     * narrow.
+     */
+    if (frameVerb && GENERAL_VERBS.has(frameVerb) && /^(을|를)(\s|$)/.test(afterBlank)) {
+      /*
+       * Only 을/를/에/에서 count here. `arguments_` also reads 으로/로, and
+       * 새로 — an adverb — parses as 새 + 로, so `____을 새로 샀어요` looked as
+       * though it had a second argument and kept an item with four right
+       * answers. 서로, 따로 and 함부로 have the same shape.
+       */
+      const others = [...anchor.example.matchAll(/([가-힣]{1,6})(을|를|에서|에)(\s|$)/g)]
+        .map((match) => match[1])
+        .filter((noun) => noun !== anchor.surface);
+      if (others.length === 0) {
+        rejected.everyOptionFits += 1;
+        continue;
+      }
+    }
+    if (agentSubjectFrame && PERSON_NOUNS.has(anchor.word)) {
+      rejected.everyOptionFits = (rejected.everyOptionFits ?? 0) + 1;
+      continue;
+    }
+    if (hadaFrame && isActivityNoun(anchor.word, LEMMAS)) {
+      rejected.everyOptionFits = (rejected.everyOptionFits ?? 0) + 1;
+      continue;
+    }
+    if (eatingFrame && CONSUMABLES.has(anchor.word)) {
+      rejected.everyOptionFits = (rejected.everyOptionFits ?? 0) + 1;
+      continue;
+    }
+  }
+
   const choices = [];
   /*
    * Curated words first.
@@ -740,12 +936,83 @@ for (const anchor of anchors) {
      * `scripts/content/categories.py` from the taught sense.
      */
     {
-      // Category *and* tags, in both directions. Checking one direction lets a
-      // broadly tagged word through, and checking the category alone lets 하다
-      // and 두다 meet — filed apart, both tagged `actions`, both true.
+      /*
+       * The subject-area rule, and it runs in **opposite directions** for a
+       * predicate blank and a noun blank.
+       *
+       * ## Why it was one direction, and what that cost
+       *
+       * It used to forbid a shared category outright, for both. The reason was
+       * sound for predicates: 내밀다 and 뻗다 are both *actions of the hand* and
+       * both make `손을 ____` true, so a distractor from the answer's own
+       * subject area is the one most likely to be a second right answer.
+       *
+       * Applied to nouns it produced this, at level 15, and a reader
+       * photographed it:
+       *
+       *     창문으로 아침 ____이 들어와요.
+       *     목적 · 비빔밥 · 빛 · 환경
+       *
+       * A purpose, a bibimbap and an environment do not come in through a
+       * window. Nothing is being tested: three of the four options are absurd,
+       * so the item is answerable by elimination without knowing what 빛 means,
+       * and a learner who does know it learns nothing from being right. It was
+       * not a bad draw. **Every one of the 625 contextual items in the shipped
+       * bank had all three distractors from a different category than its
+       * answer**, because that is what the rule required, and the further apart
+       * two words are the more certainly they satisfy it. The rule was
+       * selecting for absurdity.
+       *
+       * ## What replaces it
+       *
+       * For a noun blank the requirement is inverted: a distractor must share
+       * the answer's category or one of its tags. `____에서 채소를 사요` then
+       * offers 시장 against 도서관, 은행 and 약국 — four places, and only one of
+       * them sells vegetables. That is a question about Korean.
+       *
+       * The obvious objection is that a plausible distractor is closer to being
+       * a second right answer, and it is. Nothing here decides that: the frame
+       * rules below (`isAgentSubjectFrame`, `isHadaFrame`,
+       * `isConsumptionObjectFrame`, `isOpenEvaluativeFrame`), the relation
+       * graph, the reviewed conflict pairs, the shared-argument rule and the
+       * new shared-predicate rule remove the classes a program can see, and
+       * every surviving item is then **read by a person and recorded** in
+       * `content/vocabulary/context-review.json`. An item nobody has approved
+       * does not ship. See `docs/CONTENT_GENERATION_AND_REVIEW_PIPELINE.md`.
+       *
+       * The categories are only usable for this because they were audited: the
+       * same pass found 화가 filed under Body & Health and 창문 under Animals &
+       * Nature. A plausibility rule reading wrong metadata is worse than no
+       * rule. See `scripts/content/categories.py`.
+       */
       const family = new Set([anchor.category, ...(anchor.category_tags ?? [])].filter(Boolean));
       const theirs = [other.category, ...(other.category_tags ?? [])].filter(Boolean);
-      if (theirs.some((tag) => family.has(tag))) continue;
+      const shares = theirs.some((tag) => family.has(tag));
+      if (inflects) {
+        // A verb from the answer's own subject area usually fits the frame too.
+        if (shares) continue;
+      } else if (!shares) {
+        // A noun from outside it is not a distractor, it is scenery.
+        rejected.implausible = (rejected.implausible ?? 0) + 1;
+        continue;
+      }
+    }
+    /*
+     * Two sentences with the same predicate, so the blank is the same slot.
+     *
+     * The shared-*argument* rule below catches a distractor whose own example
+     * acts on the same noun. This catches the other half: 시장 and 가게 have
+     * different arguments and the same verb — `____에서 채소를 사요` and
+     * `____에서 우유를 샀어요` — and a shop sells vegetables as readily as a
+     * market does. Where both examples end in the same lemma the frames are the
+     * same frame, so the distractor fits it.
+     *
+     * `analyse` settles the lemma with the repository's one conjugator rather
+     * than by comparing endings, so 샀어요 and 사요 are recognised as 사다.
+     */
+    if (!inflects && predicateOf(other.example) && predicateOf(other.example) === myPredicate) {
+      rejected.sharedPredicate = (rejected.sharedPredicate ?? 0) + 1;
+      continue;
     }
     /*
      * And the same *class*, which the category cannot see.
@@ -941,6 +1208,173 @@ for (const anchor of anchors) {
  * contextual item. Where the evidence exists, it is used: every item sharing a
  * prompt with another goes, not just the later one.
  */
+/*
+ * The hand-written items, held to the same rules as the generated ones.
+ *
+ * ## Why there are any
+ *
+ * The frame rules above removed 174 contextual items, and they were right to:
+ * every one of them was answerable by elimination, had a second right answer,
+ * or both. What went with them was the *beginner band*. A contextual item needs
+ * a sentence with an argument in it and a predicate that rules something out,
+ * and a level-2 sentence is three words long — so after the pass only 15 of the
+ * taught words below level 6 kept an item, down from 50, and Today's Vocabulary
+ * and Review lost the gap-fill exercise almost entirely for a new learner. The
+ * `context` mode simply stopped being offered to the people who need the most
+ * variety.
+ *
+ * A generator cannot write those sentences. It can only take an example written
+ * for a card and hope the frame constrains the blank, and at level 2 it does
+ * not. So they are written by hand, in
+ * `content/vocabulary/context-items.json`, with the reason each one has a
+ * single answer recorded beside it.
+ *
+ * ## Why they are validated rather than trusted
+ *
+ * Because "curated" is how the previous distractor rule survived: a decision
+ * nobody re-checked. Each item below goes through the *same* frame tests the
+ * generated ones do — the bare modifier, the time slot, the destination verb,
+ * the existential verb, the general verb with no other argument — plus particle
+ * agreement, option uniqueness, the category rule and the safety lists. A
+ * curated item that fails is a **build failure**, not an exception, because an
+ * exception is a rule with a hole in it.
+ */
+const curatedFile = JSON.parse(
+  readFileSync(join(ROOT, 'content', 'vocabulary', 'context-items.json'), 'utf8'),
+);
+const anchorById = new Map(anchors.map((anchor) => [anchor.id, anchor]));
+const curatedProblems = [];
+let curatedKept = 0;
+for (const entry of curatedFile.items) {
+  const answer = anchorById.get(entry.answer);
+  const where = `${entry.before}____${entry.after}`;
+  const fail = (why) => curatedProblems.push(`${where} — ${why}`);
+  if (!answer) {
+    fail(`${entry.answer} is not a taught word`);
+    continue;
+  }
+  if (answer.pos !== 'noun') {
+    fail(`${answer.word} is a ${answer.pos}; curated items are noun blanks`);
+    continue;
+  }
+  const prompt = `${entry.before}____${entry.after}`;
+  const after = entry.after;
+  const surfaces = [answer.surface];
+  const chosen = [];
+  for (const id of entry.options) {
+    const other = anchorById.get(id);
+    if (!other) {
+      fail(`${id} is not a taught word`);
+      continue;
+    }
+    const family = new Set([answer.category, ...(answer.category_tags ?? [])].filter(Boolean));
+    const theirs = [other.category, ...(other.category_tags ?? [])].filter(Boolean);
+    if (!theirs.some((tag) => family.has(tag))) {
+      fail(`${other.word} is ${other.category}, the answer is ${answer.category}`);
+    }
+    if (Math.abs((other.level ?? 0) - (answer.level ?? 0)) > SPREAD * 3) {
+      fail(`${other.word} is level ${other.level} against ${answer.level}`);
+    }
+    if (EXCLUDED.has(other.surface) || NOT_STANDALONE.has(other.surface)) {
+      fail(`${other.surface} may not stand alone in a slot`);
+    }
+    if (prompt.includes(other.surface)) fail(`${other.surface} is already in the sentence`);
+    surfaces.push(other.surface);
+    chosen.push(other);
+  }
+  if (new Set(surfaces).size !== OPTIONS) fail('the four options are not four distinct strings');
+  // Particle agreement, exactly as the generated path checks it.
+  for (const [consonantForm, vowelForm] of PARTICLE_PAIRS) {
+    const takesConsonantForm = after.startsWith(consonantForm);
+    const takesVowelForm = after.startsWith(vowelForm);
+    if (!takesConsonantForm && !takesVowelForm) continue;
+    const attached =
+      takesConsonantForm && (!takesVowelForm || consonantForm.length >= vowelForm.length)
+        ? consonantForm
+        : vowelForm;
+    for (const surface of surfaces) {
+      const last = surface[surface.length - 1];
+      const wants =
+        consonantForm === '으로' && finalOf(last) === 'ㄹ'
+          ? vowelForm
+          : hasFinal(last)
+            ? consonantForm
+            : vowelForm;
+      if (wants !== attached) fail(`${surface} does not take ${attached}`);
+    }
+    break;
+  }
+  // And every frame rule the generated path applies.
+  if (/^\s+[가-힣]/.test(after)) fail('the blank modifies the noun behind it');
+  if (answer.category === 'time-numbers' && /^에(\s|$)/.test(after)) fail('a time noun in a 에 slot');
+  const verb = predicateOf(prompt.replace('____', answer.surface));
+  if (verb && DESTINATION_VERBS.has(verb) && /^에(\s|$)/.test(after)) fail(`every place fits ${verb}`);
+  if (verb && EXISTENTIAL_VERBS.has(verb) && /^(이|가|은|는)(\s|$)/.test(after)) {
+    fail(`every noun fits ${verb}`);
+  }
+  if (verb && GENERAL_VERBS.has(verb) && /^(을|를)(\s|$)/.test(after)) {
+    const others = [...prompt.matchAll(/([가-힣]{1,6})(을|를|에서|에)(\s|$)/g)].map((m) => m[1]);
+    if (others.length === 0) fail(`${verb} takes any object and nothing else is said`);
+  }
+  if (!ARGUMENT_PARTICLE.test(prompt.replace('____', ' '))) fail('nothing pins the blank down');
+  if (prompt.trim().split(/\s+/).filter(Boolean).length < 3) fail('fewer than three eojeol');
+  if (isOpenEvaluativeFrame(prompt)) fail('a predicate that rules out no noun');
+  if (isAgentSubjectFrame(prompt) && PERSON_NOUNS.has(answer.word)) fail('every person fits');
+  if (isHadaFrame(prompt) && isActivityNoun(answer.word, LEMMAS)) fail('every activity fits');
+  if (isConsumptionObjectFrame(prompt) && CONSUMABLES.has(answer.word)) fail('every consumable fits');
+  for (const surface of surfaces) {
+    if (unsafeInFrame(prompt, surface)) fail(`${surface} composes something unsafe here`);
+  }
+
+  if (curatedProblems.length > 0 && curatedProblems[curatedProblems.length - 1].startsWith(where)) {
+    continue;
+  }
+
+  curatedKept += 1;
+  cloze[answer.id] = {
+    before: entry.before,
+    target: answer.surface,
+    after: entry.after,
+    form: 'noun',
+    /*
+     * Written for this question rather than taken from the card.
+     *
+     * The runtime plays `word.audio.example` under a gap-fill, because until
+     * now the gap-fill *was* the card's sentence. A curated item is a different
+     * sentence, so that clip would be a recording of something other than what
+     * is on the screen — an audio/transcript mismatch, which is a defect in its
+     * own right. The renderer therefore plays nothing for these, and the
+     * limitation is written down in docs/CONTENT_REMEDIATION_LEDGER.md C-008
+     * rather than hidden: recording them needs the speech plan to learn about a
+     * second source of Korean sentences.
+     */
+    curated: true,
+    options: [
+      { id: answer.id, surface: answer.surface },
+      ...chosen.map((other) => ({ id: other.id, surface: other.surface })),
+    ].sort((a, b) => a.surface.localeCompare(b.surface)),
+  };
+  items.push({
+    id: `${answer.id}:context`,
+    kind: 'context',
+    level: answer.context_level ?? answer.level,
+    demand: answer.context_demand ?? null,
+    prompt,
+    answer: answer.surface,
+    options: surfaces.slice().sort(),
+    lemma: answer.word,
+    senseId: answer.senseId ?? answer.id,
+    form: 'noun',
+    distractorIds: chosen.map((other) => other.id),
+    curated: true,
+  });
+}
+if (curatedProblems.length > 0) {
+  console.error('\ncurated contextual items that do not hold to the rules:');
+  for (const line of curatedProblems) console.error(`  ${line}`);
+  process.exit(1);
+}
+
 const promptCount = new Map();
 for (const item of items) {
   if (item.kind !== 'context') continue;
@@ -1187,6 +1621,18 @@ console.log(`    ${rejected.related.toLocaleString('en')}  a distractor is the a
 console.log(`    ${rejected.generalVerb.toLocaleString('en')}  a distractor is a verb that fits any object`);
 console.log(`    ${rejected.activityNoun.toLocaleString('en')}  a distractor is another thing you can simply do`);
 console.log(`    ${rejected.sharedPrompt.toLocaleString('en')}  the same sentence was built for two different words`);
+console.log(
+  `    ${(rejected.implausible ?? 0).toLocaleString('en')}  a noun from outside the answer's subject area, which is scenery rather than a distractor`,
+);
+console.log(
+  `    ${(rejected.sharedPredicate ?? 0).toLocaleString('en')}  a distractor whose own sentence has the same verb, so the frame is the same frame`,
+);
+console.log(
+  `    ${(rejected.everyOptionFits ?? 0).toLocaleString('en')}  the frame accepts the answer's whole kind, so every plausible option is right`,
+);
+console.log(
+  `    ${(rejected.bareModifier ?? 0).toLocaleString('en')}  the blank modifies the noun behind it rather than filling an argument slot`,
+);
 
 const thin = [];
 for (let level = 1; level <= LEVELS; level += 1) {
