@@ -294,7 +294,7 @@ for (const root of ROOTS) {
   }
   if (root.archive) {
     // The archive itself must not name an internal-only file either.
-    const listing = execFileSync('unzip', ['-Z1', root.archive], { encoding: 'utf8' }).split('\n');
+    const listing = execFileSync('unzip', ['-Z1', root.archive], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }).split('\n');
     for (const name of listing) {
       if (FORBIDDEN_FILES.some((re) => re.test(name))) {
         findings.push({ root: root.name, file: name, where: 'archive listing', verdict: 'blocked', findings: ['internal-only file packaged'], excerpt: name });
