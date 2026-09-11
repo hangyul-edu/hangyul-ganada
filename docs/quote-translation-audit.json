@@ -1,0 +1,586 @@
+{
+ "_comment": "Reviewer judgments for docs/QUOTE_TRANSLATION_AUDIT.md, one entry per quotation per locale. The exact quotation and byline are NOT stored here — scripts/build-quote-audit.mjs reads them from apps/web/src/data/quotes.ts so the table cannot drift from the runtime data — and the wrapping / RTL columns come from docs/quote-render-audit.json, written by scripts/qa-quote-render.mjs from the rendered screen. What IS here is the reading: a back-translation, the grammar and naturalness judgment, the punctuation check, the status, the correction made, and what a native speaker still has to confirm. Reviewed 12 September 2026 by the model that wrote the translations; NATIVE-SPEAKER REVIEW REQUIRED marks the rows where that is not enough.",
+ "reviewed": "2026-09-12",
+ "quotes": {
+  "dream-big-pieces": {
+   "en": {
+    "bt": "Dream big. Even if it shatters, the pieces will be big.",
+    "grammar": "Two short imperatives; idiomatic English.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Author unknown — the plain English byline for an unattributed line."
+   },
+   "ko": {
+    "bt": "(canonical Korean; no back-translation)",
+    "grammar": "Canonical wording as specified; 해라체 imperative, natural.",
+    "punct": "Two sentences, full stops, as specified.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "작자 미상, exactly as specified."
+   },
+   "ja": {
+    "bt": "Hold your dream big. Even if it shatters, its fragments are big.",
+    "grammar": "持て is the plain imperative the line is usually quoted with in Japanese; かけら keeps the fragment image.",
+    "punct": "Japanese full stops (。), no spaces.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "作者不詳 — standard."
+   },
+   "zh-CN": {
+    "bt": "Dreams should be grand. Even if shattered, the fragments are big.",
+    "grammar": "梦想要远大 is the set phrase; 碎片也是大的 keeps the pieces literal rather than abstract.",
+    "punct": "Full-width 。and ，.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft 要有大梦想。即使梦碎了，碎片也依然很大。 read as a literal gloss; replaced with the set phrase 梦想要远大 and a plainer second clause.",
+    "review": "—",
+    "attribution": "作者不详 — standard (佚名 would read as a pen name)."
+   },
+   "es": {
+    "bt": "Dream big. Even if it breaks, the pieces will be big.",
+    "grammar": "Sueña en grande is idiomatic; subjunctive after aunque; pedazos for broken pieces.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Autor desconocido."
+   },
+   "fr": {
+    "bt": "Dream big. Even if it breaks, the pieces will stay big.",
+    "grammar": "Rêve en grand is idiomatic; typographic apostrophe in s’il.",
+    "punct": "Two sentences; French apostrophe ’.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Auteur inconnu."
+   },
+   "de": {
+    "bt": "Dream big. Even if the dream breaks, the pieces stay big.",
+    "grammar": "Träume groß is the usual rendering; der Traum repeated so zerbricht has an unambiguous subject.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Verfasser unbekannt."
+   },
+   "pt-BR": {
+    "bt": "Dream big. Even if the dream breaks, the pieces will be big.",
+    "grammar": "Brazilian imperative sonhe; subjunctive after mesmo que.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Autor desconhecido."
+   },
+   "vi": {
+    "bt": "Dream really big. Even if the dream breaks, the broken pieces are still big.",
+    "grammar": "Hãy + verb imperative; mảnh vỡ keeps the fragment image. Register plausible; a native reader should confirm mảnh vỡ vẫn lớn reads as encouragement rather than as a physical description.",
+    "punct": "Two sentences, full stops; diacritics complete.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm register of the second clause (mảnh vỡ vẫn lớn) for a motivational line.",
+    "attribution": "Khuyết danh — the standard Vietnamese label for an unattributed text."
+   },
+   "th": {
+    "bt": "Dream big; even if the dream shatters, its fragments are still big.",
+    "grammar": "จง gives the exhortative register a quoted maxim takes; แตกสลาย = shatter; เศษ = fragments.",
+    "punct": "Thai uses spaces between clauses and no full stop, as here.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm เศษของมัน over เศษเสี้ยว for the fragment image, and the จง register.",
+    "attribution": "ไม่ทราบผู้แต่ง — ‘author not known’."
+   },
+   "ar": {
+    "bt": "Dream big dreams; for even if they shatter, their fragments remain big.",
+    "grammar": "Imperative احلم with cognate object; فحتى إن introduces the concession; شظايا = fragments.",
+    "punct": "Arabic comma ،; final full stop; shadda on تحطّمت.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm شظايا (shards) over قطع (pieces) for the intended image, and MSA register.",
+    "attribution": "قائل مجهول — ‘unknown sayer’, used for sayings rather than مؤلف (a book’s author)."
+   },
+   "bn": {
+    "bt": "See big dreams. Even if they break, their pieces remain big.",
+    "grammar": "দেখো familiar imperative, the register of a maxim; টুকরোগুলো = the pieces.",
+    "punct": "Bengali danda । as full stop.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm বড়ই থাকে (remain big indeed) reads naturally; alternative বড়ই হয়.",
+    "attribution": "লেখক অজ্ঞাত."
+   },
+   "cs": {
+    "bt": "Dream big. Even if the dream breaks, big pieces remain of it.",
+    "grammar": "Sni ve velkém is idiomatic Czech; po něm refers to the dream.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Autor neznámý."
+   },
+   "el": {
+    "bt": "Have big dreams. Even if they break, their pieces stay big.",
+    "grammar": "Κάνε μεγάλα όνειρα is the natural Greek; plural carried through.",
+    "punct": "Two sentences, full stops; accents complete.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Άγνωστος συγγραφέας."
+   },
+   "fil": {
+    "bt": "Dream big. Even if it breaks, the pieces are still big.",
+    "grammar": "Mangarap nang malaki idiomatic; mabasag = get broken (glass-like), fits the image.",
+    "punct": "Two sentences, full stops.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm mabasag over masira for a dream; confirm malalaki pa rin ang mga piraso word order.",
+    "attribution": "Hindi kilala ang may-akda."
+   },
+   "hi": {
+    "bt": "See big dreams. Even if they break, their pieces are also big.",
+    "grammar": "देखो familiar imperative; टूट भी जाएँ subjunctive concession; टुकड़े = pieces.",
+    "punct": "Devanagari danda ।; nukta on ज़ not needed here.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm the concessive तो … भी construction reads as a maxim rather than as prose.",
+    "attribution": "अज्ञात लेखक."
+   },
+   "hu": {
+    "bt": "Dream big! Even if it breaks, its pieces stay big.",
+    "grammar": "Álmodj nagyot! is the idiom; exclamation mark is normal for a Hungarian imperative.",
+    "punct": "Imperative with !, then a full stop.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Ismeretlen szerző."
+   },
+   "id": {
+    "bt": "Dream big. Even if it breaks, its pieces stay big.",
+    "grammar": "Bermimpilah yang besar is idiomatic; kepingan = fragments.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Penulis tidak diketahui."
+   },
+   "it": {
+    "bt": "Dream big. Even if the dream breaks, the pieces remain big.",
+    "grammar": "Sogna in grande is the idiom; si spezza for break.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Autore sconosciuto."
+   },
+   "kk": {
+    "bt": "May your dream be big. Even if it collapses, its shards will be big.",
+    "grammar": "Арманың үлкен болсын is the natural optative; сынықтары = its shards.",
+    "punct": "Two sentences, full stops; Cyrillic Kazakh letters ң, ү, і present.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft Үлкен арман арманда repeated the cognate (арман/арманда, ‘dream a dream’), which reads as a translation; replaced with the optative Арманың үлкен болсын.",
+    "review": "Native confirmation of сынықтары (shards) versus бөлшектері (pieces) is advisable; grammar and meaning are sound.",
+    "attribution": "Авторы белгісіз."
+   },
+   "ky": {
+    "bt": "May your dream be big. Even if it shatters, its shards will be big.",
+    "grammar": "Кыялың чоң болсун optative, parallel to Kazakh; талкаланса = if it shatters.",
+    "punct": "Two sentences, full stops; Kyrgyz ң, ү present.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft Чоң кыялдан (‘dream big’ as a bare imperative) is unidiomatic; replaced with the optative Кыялың чоң болсун.",
+    "review": "Native confirmation of сыныктары advisable; grammar and meaning are sound.",
+    "attribution": "Автору белгисиз."
+   },
+   "mn": {
+    "bt": "Dream big. Even if it shatters, its fragments are big.",
+    "grammar": "Том мөрөөд imperative; хэлтэрхий = fragments; нь marks the possessed subject.",
+    "punct": "Two sentences, full stops.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft Хэдий хагарсан ч … том хэвээр байна was wordy (‘however much it broke, still remains big’); shortened to Хагарсан ч хэлтэрхий нь том байна.",
+    "review": "Native confirmation of хэлтэрхий for the image; grammar and meaning are sound.",
+    "attribution": "Зохиогч нь тодорхойгүй."
+   },
+   "nl": {
+    "bt": "Dream big. Even if the dream breaks, the pieces stay big.",
+    "grammar": "Droom groot is idiomatic; de droom repeated for a clear subject.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Auteur onbekend."
+   },
+   "pl": {
+    "bt": "Have great dreams. Even if they shatter, their pieces will remain great.",
+    "grammar": "Miej wielkie marzenia is the idiom (dreams are plural in Polish usage); wielkie carries both ‘big’ and ‘great’.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Autor nieznany."
+   },
+   "ro": {
+    "bt": "Dream grandly. Even if the dream breaks, the pieces remain big.",
+    "grammar": "Visează măreț idiomatic; se sparge for break.",
+    "punct": "Two sentences, full stops; ș/ț with comma-below.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Autor necunoscut."
+   },
+   "ru": {
+    "bt": "Dream big. Even if the dream shatters, its shards will be big.",
+    "grammar": "Мечтай по-крупному is the idiom; осколки = shards, the standard rendering of this line in Russian.",
+    "punct": "Two sentences, full stops; ё written.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Автор неизвестен."
+   },
+   "sv": {
+    "bt": "Dream big. Even if the dream breaks, the pieces become big.",
+    "grammar": "Dröm stort idiomatic; går sönder = breaks.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Okänd författare."
+   },
+   "ta": {
+    "bt": "Dream big. Even if it breaks, its pieces will still be big.",
+    "grammar": "Polite plural imperative காணுங்கள்; துண்டுகள் = pieces; -ஆகவே இருக்கும் = will indeed remain.",
+    "punct": "Two sentences, full stops; no glyph gaps.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm the polite imperative is right for a maxim and that the second sentence is not over-long in Tamil.",
+    "attribution": "அறியப்படாத ஆசிரியர்."
+   },
+   "te": {
+    "bt": "Dream big dreams. Even if they break, those pieces will also be big.",
+    "grammar": "కనండి polite imperative; పగిలినా concessive; ముక్కలు = pieces.",
+    "punct": "Two sentences, full stops.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm పెద్దవిగానే (as indeed big) for register.",
+    "attribution": "రచయిత తెలియదు."
+   },
+   "tr": {
+    "bt": "Set big dreams. Even if it breaks, its pieces are big.",
+    "grammar": "Büyük hayaller kur is the idiom; kırılsa bile concession.",
+    "punct": "Two sentences, full stops.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Yazarı bilinmiyor."
+   },
+   "uk": {
+    "bt": "Dream big. Even if the dream shatters, its shards will be big.",
+    "grammar": "Мрій по-великому idiomatic; уламки = shards.",
+    "punct": "Two sentences, full stops; typographic apostrophe in розіб’ється.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Автор невідомий."
+   },
+   "uz": {
+    "bt": "Dream a big dream. Even if it breaks, its pieces will be big.",
+    "grammar": "Katta orzu qil imperative; parchalari = its pieces; Latin Uzbek with ‘ in bo‘ladi.",
+    "punct": "Two sentences, full stops; Uzbek ‘ (U+2018) as the standard apostrophe.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm sinsa (breaks) versus buzilsa for a dream.",
+    "attribution": "Muallifi noma’lum."
+   }
+  },
+  "carlyle-stepping-stone": {
+   "en": {
+    "bt": "When a stone lies in the road, the weak call it a stumbling block; the strong call it a stepping stone.",
+    "grammar": "The established English pairing stumbling block / stepping stone; parallel clauses.",
+    "punct": "Semicolon between the two parallel clauses.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "ko": {
+    "bt": "(canonical Korean; no back-translation)",
+    "grammar": "Canonical wording as specified; 걸림돌/디딤돌 is the native idiom pair.",
+    "punct": "Comma after the first clause, full stop, as specified.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "토머스 칼라일 — the standard Korean transcription."
+   },
+   "ja": {
+    "bt": "When a stone appears while walking a road, the weak call it a ‘stone of stumbling’ and the strong call it a ‘stepping stone’.",
+    "grammar": "つまずきの石 / 踏み石 is the natural Japanese pair; 「」quote the two names as names.",
+    "punct": "Japanese 、and 。; corner brackets around the two terms.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "トーマス・カーライル — standard katakana."
+   },
+   "zh-CN": {
+    "bt": "Meeting a stone on the road, the weak call it a stumbling stone; the strong call it a stepping stone.",
+    "grammar": "绊脚石 / 垫脚石 is the exact Chinese idiom pair.",
+    "punct": "Full-width commas and full stop.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "托马斯·卡莱尔 — standard."
+   },
+   "es": {
+    "bt": "When a stone appears in the road, the weak one calls it an obstacle and the strong one calls it a step.",
+    "grammar": "obstáculo / escalón is the natural Spanish contrast; la llama repeated for parallelism.",
+    "punct": "One sentence, comma after the subordinate clause.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft used tropiezo / peldaño; tropiezo as a bare noun for the stone is stilted. Replaced with obstáculo / escalón.",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "fr": {
+    "bt": "When a stone stands in the way, the weak calls it an obstacle and the strong, a stepping stone.",
+    "grammar": "obstacle / marchepied is the natural French pair; the elided second verb (et le fort, un marchepied) is standard.",
+    "punct": "Typographic apostrophes; comma marking the ellipsis.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "de": {
+    "bt": "If a stone lies in the way, the weak calls it a stumbling stone and the strong a stepping stone.",
+    "grammar": "Stolperstein / Trittstein is the exact German idiom pair.",
+    "punct": "One sentence, comma after the conditional clause.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "pt-BR": {
+    "bt": "When a stone appears in the way, the weak calls it an obstacle and the strong calls it a step.",
+    "grammar": "obstáculo / degrau; a chama de is the Brazilian construction.",
+    "punct": "One sentence.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft tropeço / degrau; tropeço reads as ‘a stumble’, not the stone. Replaced with obstáculo.",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "vi": {
+    "bt": "On meeting a stone on the road, the weak call it a road-blocking stone, while the strong call it a springboard.",
+    "grammar": "đá cản đường (road-blocking stone) against bàn đạp (stepping board / springboard) keeps the contrast; kẻ yếu / người mạnh is the usual pairing.",
+    "punct": "One sentence; diacritics complete.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm bàn đạp is the natural counterpart to đá cản đường in this register.",
+    "attribution": "Latin name unchanged (modern Vietnamese practice)."
+   },
+   "th": {
+    "bt": "When one meets a stone blocking the way, the weak person calls it an obstacle, but the strong person calls it a stair.",
+    "grammar": "อุปสรรค / บันได is the natural Thai contrast; ขวางทาง = blocking the way.",
+    "punct": "Thai clause spacing, no full stop.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm บันได (stair) over ขั้นบันได (step) for the image.",
+    "attribution": "โทมัส คาร์ไลล์ — the Thai spelling used in reference works."
+   },
+   "ar": {
+    "bt": "When a stone blocks your path, the weak calls it a stumble, and the strong calls it a step he climbs on.",
+    "grammar": "عثرة (stumble/obstacle) against درجة يصعد عليها (a step one climbs) keeps the contrast explicit; حجرٌ with tanwin as indefinite subject.",
+    "punct": "Arabic commas ،; final full stop; tanwin and fatha on درجةً.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm عثرة is the idiomatic counterpart to حجر عثرة here, and the relative clause يصعد عليها is not heavy.",
+    "attribution": "توماس كارلايل — standard."
+   },
+   "bn": {
+    "bt": "If a stone lies on the path, the weak calls it an obstacle, and the strong calls it a step of a staircase.",
+    "grammar": "বাধা / সিঁড়ির ধাপ; দুর্বল / সবল pairing.",
+    "punct": "Danda । as full stop.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm সিঁড়ির ধাপ over পাদানি for ‘stepping stone’.",
+    "attribution": "টমাস কার্লাইল — standard."
+   },
+   "cs": {
+    "bt": "When a stone appears on the path, the weak calls it a stone of injury and the strong a springboard stone.",
+    "grammar": "kámen úrazu (stumbling block) / odrazový kámen (stepping stone) are the Czech idioms.",
+    "punct": "One sentence.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "el": {
+    "bt": "When a stone is found in the road, the weak calls it an obstacle and the strong a step.",
+    "grammar": "εμπόδιο / σκαλοπάτι is the natural Greek contrast.",
+    "punct": "One sentence; accents complete.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Τόμας Καρλάιλ — standard."
+   },
+   "fil": {
+    "bt": "When a stone blocks the road, the weak calls it a hindrance and the strong a step.",
+    "grammar": "hadlang / baitang; ng mahina / ng malakas as agents.",
+    "punct": "One sentence.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm the compressed second half (tinatawag itong hadlang ng mahina at baitang ng malakas) is not ambiguous in Filipino.",
+    "attribution": "Latin name unchanged."
+   },
+   "hi": {
+    "bt": "If a stone comes in the way, the weak calls it a stumble, and the strong calls it a ladder.",
+    "grammar": "ठोकर (a stumble; also the stone one trips on) / सीढ़ी (step, ladder) is a natural Hindi contrast.",
+    "punct": "Danda ।; nukta in कमज़ोर and मज़बूत.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm ठोकर reads as the stone rather than only the act of tripping.",
+    "attribution": "थॉमस कार्लाइल — standard."
+   },
+   "hu": {
+    "bt": "If a stone gets in the way, the weak calls it an obstacle, the strong a stair step.",
+    "grammar": "akadály / lépcsőfok; -nak nevezi construction.",
+    "punct": "One sentence.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft botlásnak (‘a stumble’) named the act, not the stone; replaced with akadálynak.",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "id": {
+    "bt": "When a stone blocks the road, the weak person calls it a stumbling stone, the strong person calls it a stepping stone.",
+    "grammar": "batu sandungan / batu pijakan are the Indonesian idioms.",
+    "punct": "One sentence.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft sandungan / pijakan dropped batu; the idioms are batu sandungan and batu pijakan.",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "it": {
+    "bt": "When a stone is on the path, the weak calls it an obstacle and the strong a step.",
+    "grammar": "ostacolo / gradino; elided second verb is standard.",
+    "punct": "One sentence.",
+    "status": "CORRECTED AND PASS",
+    "correction": "First draft inciampo / gradino; inciampo alone is ‘a trip’. Replaced with un ostacolo.",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "kk": {
+    "bt": "If a stone is met on the road, the weak calls it an obstacle, the strong calls it a step.",
+    "grammar": "кедергі / баспалдақ; дейді reported speech.",
+    "punct": "One sentence.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm баспалдақ (staircase/step) is the natural counterpart to кедергі.",
+    "attribution": "Томас Карлейль — the Cyrillic form shared with Russian."
+   },
+   "ky": {
+    "bt": "If a stone is met on the road, the weak calls it an obstacle, the strong calls it a step.",
+    "grammar": "тоскоол / тепкич; дейт reported speech.",
+    "punct": "One sentence.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm тепкич for ‘stepping stone’.",
+    "attribution": "Томас Карлейль."
+   },
+   "mn": {
+    "bt": "If a stone is met on the road, the weak person calls it an obstacle, the strong person calls it a step.",
+    "grammar": "саад / гишгүүр; гэж нэрлэдэг construction.",
+    "punct": "One sentence.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm гишгүүр for ‘stepping stone’ and сул дорой for ‘the weak’.",
+    "attribution": "Томас Карлайл."
+   },
+   "nl": {
+    "bt": "If a stone lies on the road, the weak calls it a stumbling block and the strong a step-up.",
+    "grammar": "struikelblok / opstapje are the Dutch idioms.",
+    "punct": "One sentence.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "pl": {
+    "bt": "When a stone appears on the road, the weak calls it an obstacle, and the strong — a step.",
+    "grammar": "przeszkodą / stopniem; em dash for the elided verb is standard Polish.",
+    "punct": "One sentence; dash.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "ro": {
+    "bt": "When a stone appears in the road, the weak calls it a hindrance, and the strong calls it a step.",
+    "grammar": "piedică / treaptă; cel slab / cel puternic.",
+    "punct": "One sentence.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "ru": {
+    "bt": "When a stone is met on the way, the weak calls it a barrier, and the strong — a step.",
+    "grammar": "преграда / ступень; em dash for the elided verb is standard Russian.",
+    "punct": "One sentence; dash.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Томас Карлейль — standard."
+   },
+   "sv": {
+    "bt": "When a stone lies on the road, the weak calls it a stumbling block and the strong a stair step.",
+    "grammar": "stötesten / trappsteg are the Swedish idioms.",
+    "punct": "One sentence.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "ta": {
+    "bt": "If a stone gets in the way on the road, the weak person calls it an obstacle-stone; the strong person calls it a step-stone.",
+    "grammar": "தடைக்கல் / படிக்கல் compound the stone into both names, mirroring 걸림돌/디딤돌.",
+    "punct": "Semicolon between clauses; full stop.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm the coined compounds தடைக்கல் / படிக்கல் read naturally rather than as calques.",
+    "attribution": "தாமஸ் கார்லைல் — standard."
+   },
+   "te": {
+    "bt": "If a stone comes in the way, the weak calls it an obstructing stone; the strong calls it a step.",
+    "grammar": "అడ్డురాయి / మెట్టు.",
+    "punct": "Semicolon; full stop.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm అడ్డురాయి is idiomatic for ‘stumbling block’.",
+    "attribution": "థామస్ కార్లైల్."
+   },
+   "tr": {
+    "bt": "When a stone appears in the road, the weak calls it an obstacle; the strong, a step.",
+    "grammar": "engel / basamak; güçlü ise for the contrast.",
+    "punct": "One sentence.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Latin name unchanged."
+   },
+   "uk": {
+    "bt": "When a stone is met on the way, the weak calls it an obstacle, and the strong — a step.",
+    "grammar": "перешкода / сходинка; dash for the elided verb.",
+    "punct": "One sentence; dash.",
+    "status": "PASS",
+    "correction": "—",
+    "review": "—",
+    "attribution": "Томас Карлейль — standard."
+   },
+   "uz": {
+    "bt": "If a stone is met on the road, the weak calls it an obstacle, while the strong calls it a staircase.",
+    "grammar": "to‘siq / zinapoya; esa for the contrast.",
+    "punct": "One sentence; Uzbek ‘ apostrophe.",
+    "status": "NATIVE-SPEAKER REVIEW REQUIRED",
+    "correction": "—",
+    "review": "Confirm zinapoya (staircase) over zina/pog‘ona (step) for the image.",
+    "attribution": "Latin name unchanged."
+   }
+  }
+ }
+}

@@ -460,13 +460,10 @@ describe('learning quotes', () => {
          * others — which is what a fallback to the English name looks like from
          * inside, and what this checks is not happening.
          */
-        if (quote.author) {
-          expect(rendered.author?.trim(), `${quote.id} has no ${locale} author`).toBeTruthy();
-          expect(quote.author[locale], `${quote.id} falls back to English for ${locale}`)
-            .toBeTruthy();
-        } else {
-          expect(rendered.author, `${quote.id} invented an author`).toBeNull();
-        }
+        expect(rendered.author.trim(), `${quote.id} has no ${locale} byline`).toBeTruthy();
+        expect(quote.author[locale], `${quote.id} falls back to English for ${locale}`)
+          .toBeTruthy();
+        expect(rendered.authorship).toBe(quote.authorship === 'unknown' ? 'unknown' : 'named');
       }
     }
   });
@@ -536,7 +533,14 @@ describe('learning quotes', () => {
      */
     for (const quote of LEARNING_QUOTES) {
       expect(quote.author, `${quote.id} has no author`).toBeTruthy();
-      expect(quote.author!.en!.toLowerCase(), quote.id).not.toMatch(
+      if (quote.authorship === 'unknown') {
+        // The one honest exception: it says so, in every language, and never
+        // as "Anonymous", which reads as a pen name.
+        expect(quote.author.en).toBe('Author unknown');
+        expect(quote.author.ko).toBe('작자 미상');
+        continue;
+      }
+      expect(quote.author.en!.toLowerCase(), quote.id).not.toMatch(
         /proverb|anonymous|unknown|traditional/,
       );
     }
@@ -554,13 +558,58 @@ describe('learning quotes', () => {
     for (const quote of korean) {
       expect(quote.originalText, quote.id).toMatch(/[가-힣]/);
       /*
-       * And it names a person. The Korean lines that circulate without one are
-       * exactly the ones whose attributions are invented, which is why the
-       * library holds King Sejong writing the preface to his own alphabet —
-       * a documented text by a known hand — rather than a popular saying.
+       * And it carries a byline. King Sejong's preface is a documented text by
+       * a known hand; the requested 꿈을 크게 가져라 has no establishable author
+       * and says so. Neither is left blank and neither invents a name.
        */
-      expect(quote.author?.en, quote.id).toBeTruthy();
+      expect(quote.author.en, quote.id).toBeTruthy();
     }
+  });
+
+  it('carries exactly the two requested lines, verbatim, as Korean originals', () => {
+    const dream = LEARNING_QUOTES.find((q) => q.id === 'dream-big-pieces')!;
+    const carlyle = LEARNING_QUOTES.find((q) => q.id === 'carlyle-stepping-stone')!;
+    expect(dream.originalText).toBe('꿈을 크게 가져라. 깨져도 그 조각이 크다.');
+    expect(dream.translations.ko).toBe(dream.originalText);
+    expect(dream.authorship).toBe('unknown');
+    expect(carlyle.originalText).toBe(
+      '길을 걷다가 돌이 나타나면 약자는 그것을 걸림돌이라고 말하고, 강자는 그것을 디딤돌이라고 말한다.',
+    );
+    expect(carlyle.translations.ko).toBe(carlyle.originalText);
+    expect(carlyle.author.en).toBe('Thomas Carlyle');
+    expect(carlyle.author.ko).toBe('토머스 칼라일');
+    // Exactly two rows were added to the twenty; nothing else came or went.
+    expect(LEARNING_QUOTES.length).toBe(22);
+    expect(LEARNING_QUOTES.filter((q) => q.authorship === 'unknown').map((q) => q.id)).toEqual([
+      'dream-big-pieces',
+    ]);
+  });
+
+  it('leads with the Korean and follows with the translation, except in Korean', () => {
+    for (const id of ['dream-big-pieces', 'carlyle-stepping-stone']) {
+      const quote = LEARNING_QUOTES.find((q) => q.id === id)!;
+      for (const locale of QUOTE_LOCALES) {
+        const rendered = renderQuote(quote, locale);
+        if (locale === 'ko') {
+          expect(rendered.original, `${id} would print Korean twice`).toBeNull();
+          expect(rendered.leadsWithOriginal).toBe(false);
+          expect(rendered.text).toBe(quote.originalText);
+        } else {
+          expect(rendered.original?.text, `${id} in ${locale}`).toBe(quote.originalText);
+          expect(rendered.leadsWithOriginal, `${id} in ${locale}`).toBe(true);
+          expect(rendered.text, `${id} in ${locale} is not translated`).not.toBe(quote.originalText);
+          expect(rendered.text, `${id} in ${locale} leaks Hangul`).not.toMatch(/[가-힣]/);
+          expect(rendered.text, `${id} in ${locale} is English`).not.toBe(
+            locale === 'en' ? '' : quote.translations.en,
+          );
+        }
+        expect(rendered.author, `${id} in ${locale} has no byline`).toBeTruthy();
+      }
+    }
+    // A Latin, Greek or German original still follows its translation.
+    const horace = LEARNING_QUOTES.find((q) => q.id === 'horace-half-begun')!;
+    expect(renderQuote(horace, 'fr').leadsWithOriginal).toBe(false);
+    expect(renderQuote(horace, 'fr').original?.lang).toBe('la');
   });
 
   it('attributes every quotation to a named source', () => {
@@ -597,6 +646,8 @@ describe('learning quotes', () => {
   it('keeps every line short enough for a phone, in every language', () => {
     for (const quote of LEARNING_QUOTES) {
       for (const [locale, text] of Object.entries(quote.translations)) {
+        // The Carlyle line is two clauses and runs to 103 characters in English
+        // and German; anything past this needs a second card, not a smaller face.
         expect(text.length, `${quote.id} is too long in ${locale}`).toBeLessThan(130);
       }
     }

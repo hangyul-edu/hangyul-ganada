@@ -17,18 +17,22 @@
  * 2. **No duplicate text.** Not by id — by the sentence itself, normalised,
  *    per locale. Two rows that say the same thing in English are one quote and
  *    a bug, and ids cannot see that.
- * 3. **The required line is present, unattributed.** §34 names one quotation
- *    and says it must carry no author, because the three names it circulates
- *    under are all wrong. An `author` that is anything but null here is a
- *    fabricated attribution shipped to a learner.
- * 4. **Nothing else is attributed on a guess.** Every row that *does* name an
- *    author has to name a source too, and no source may hedge.
+ * 3. **Every line names a person, or says honestly that nobody can be named.**
+ *    One row — "꿈을 크게 가져라", requested by the product owner — ships as
+ *    `authorship: "unknown"` with a localized *author unknown* under it. A
+ *    name on that row would be a fabrication; a category ("proverb") on any
+ *    row is a category where a name should be.
+ * 4. **Nothing else is attributed on a guess.** Every row names a source, and
+ *    only a row marked `sourceStatus: "attributed"` (the Carlyle line) may say
+ *    the attribution is conventional rather than established.
  * 5. **Stable within a day, different across days.** The two halves of §36.
  *    Checked by running the real `quoteForToday` against a fake clock and a
  *    fake `localStorage`, not by reading the code and believing it.
  * 6. **Usable in all 32 locales.** `renderQuote` throws on a missing
  *    translation, so this renders every row in every locale and counts the
- *    ones that come back empty or suspiciously short.
+ *    ones that come back empty, suspiciously short, placeholder-shaped, or
+ *    identical to another language's; and for a Korean original, that the
+ *    Korean leads and is shown once in Korean and twice nowhere.
  */
 
 /*
@@ -106,47 +110,74 @@ for (const locale of QUOTE_LOCALES) {
 }
 console.log(`  ${duplicateTexts === 0 ? 'ok  ' : '!!  '} no two rows carry the same sentence in any locale`);
 
-// 3 — every line names a person -------------------------------------------------
+// 3 — every line names a person, or says honestly that nobody can be named ----
 /*
- * The policy, reversed, and this is the rule that enforces it.
+ * The policy, with the one exception it now carries.
  *
- * The library used to require one specific line to ship *without* an author,
- * because its attribution could not be established. The answer now is that such
- * a line does not ship at all: if nobody can be named, there is nothing to
- * quote. 꿈을 크게 가져라 is gone for exactly that reason.
+ * "꿈을 크게 가져라. 깨져도 그 조각이 크다" was withdrawn because its author
+ * cannot be established. It is back at the product owner's request, and the
+ * way it is back is the whole rule: `authorship: "unknown"`, and a localized
+ * "author unknown" under it in every language. What is still forbidden is a
+ * *name* on a row that cannot carry one, and a *category* ("proverb",
+ * "traditional") on a row that claims to be named.
  */
-const WITHDRAWN = '꿈을 크게 가져라. 깨져도 그 조각이 크다.';
-if (LEARNING_QUOTES.some((q) => normalise(q.translations.ko ?? '') === normalise(WITHDRAWN))) {
-  fail(`${WITHDRAWN} is back in the library; its attribution cannot be established`);
+const REQUIRED_UNKNOWN = '꿈을 크게 가져라. 깨져도 그 조각이 크다.';
+const dream = LEARNING_QUOTES.find((q) => normalise(q.translations.ko ?? '') === normalise(REQUIRED_UNKNOWN));
+if (!dream) {
+  fail(`the requested line "${REQUIRED_UNKNOWN}" is missing from the library`);
+} else if (dream.authorship !== 'unknown') {
+  fail(`${dream.id} must ship as authorship "unknown" — no author has ever been established for it`);
 }
 
-const CATEGORY = /\b(proverb|anonymous|unknown|traditional|saying)\b|작자\s*미상|무명|속담/i;
+const CATEGORY = /\b(proverb|traditional|saying)\b|속담/i;
+/** The shapes an "author unknown" byline takes; a named row may not read as one. */
+const UNKNOWN_LABEL = /\b(anonymous|unknown|inconnu|desconocido|unbekannt|sconosciuto)\b|작자\s*미상|무명|不詳|不详|неизвест|невідом/i;
 let unnamed = 0;
 for (const quote of LEARNING_QUOTES) {
   if (!quote.author) {
     unnamed += 1;
-    fail(`${quote.id} has no author; every quotation must name a person`);
+    fail(`${quote.id} has no author map; every quotation names a person or carries the localized "author unknown"`);
     continue;
   }
   for (const locale of QUOTE_LOCALES) {
-    const name = quote.author[locale] ?? quote.author.en;
-    if (!name || !name.trim()) fail(`${quote.id} has no author name for ${locale}`);
-    else if (CATEGORY.test(name)) {
-      fail(`${quote.id} names "${name}" in ${locale} — a category, not a person`);
+    const name = quote.author[locale];
+    if (!name || !name.trim()) {
+      fail(`${quote.id} has no attribution for ${locale}`);
+      continue;
+    }
+    if (CATEGORY.test(name)) fail(`${quote.id} names "${name}" in ${locale} — a category, not a person`);
+    if (quote.authorship === 'unknown') {
+      if (locale === 'ko' && name.trim() !== '작자 미상') {
+        fail(`${quote.id}: the Korean attribution must be exactly 작자 미상, not "${name}"`);
+      }
+    } else if (UNKNOWN_LABEL.test(name)) {
+      fail(`${quote.id} is a named row but its ${locale} attribution reads as "unknown": "${name}"`);
     }
   }
 }
-console.log(`  ${unnamed === 0 ? 'ok  ' : '!!  '} every quotation names a person, in all ${QUOTE_LOCALES.length} languages`);
+const unknownRows = LEARNING_QUOTES.filter((q) => q.authorship === 'unknown').map((q) => q.id);
+if (unknownRows.length > 1) fail(`more than one row ships as authorship unknown: ${unknownRows.join(', ')}`);
+console.log(`  ${unnamed === 0 ? 'ok  ' : '!!  '} every quotation carries an attribution in all ${QUOTE_LOCALES.length} languages (${unknownRows.length} labelled author unknown)`);
 
-// 4 — every source is a citation, and none of them hedges -----------------------
+// 4 — every source is a citation, and only a marked row may hedge ------------
 const HEDGE = /attributed to|probably|possibly|supposedly|reputedly|allegedly|often said|unverified|uncertain/i;
 for (const quote of LEARNING_QUOTES) {
   if (!quote.source || !quote.source.trim()) {
     fail(`${quote.id} has no source`);
     continue;
   }
-  if (HEDGE.test(quote.source)) {
+  /*
+   * A hedge is allowed on exactly the rows that declare one. `sourceStatus:
+   * "attributed"` is the Carlyle line — quoted under his name in every
+   * collection and not located in his works — and the report carries it as an
+   * attribution item for a person. An unknown-author row's source describes
+   * its circulation and names no person, so it has nothing to hedge about.
+   */
+  if (HEDGE.test(quote.source) && quote.sourceStatus !== 'attributed') {
     fail(`${quote.id}'s source hedges, so the attribution is not established: "${quote.source}"`);
+  }
+  if (quote.sourceStatus === 'attributed' && !HEDGE.test(quote.source)) {
+    fail(`${quote.id} is marked attributed but its source does not say so`);
   }
   // A citation names a work *and* a place in it, not just a person. "Confucius"
   // is an author; "Analects II.15 (c. 5th century BC)" is somewhere to look.
@@ -157,7 +188,8 @@ for (const quote of LEARNING_QUOTES) {
     fail(`${quote.id} has no original text; a quotation has to carry the words it quotes`);
   }
 }
-console.log(`  ok   ${LEARNING_QUOTES.length} sources, each naming a work and a date, none hedging`);
+const attributedRows = LEARNING_QUOTES.filter((q) => q.sourceStatus === 'attributed').map((q) => q.id);
+console.log(`  ok   ${LEARNING_QUOTES.length} sources, each with a reference a reader can follow; ${attributedRows.length} marked as attributed rather than established (${attributedRows.join(', ') || 'none'})`);
 
 // 5 — every row renders in every locale ----------------------------------------
 let thin = 0;
@@ -180,14 +212,50 @@ for (const quote of LEARNING_QUOTES) {
         fail(`${quote.id} in ${locale} is only ${rendered.text.trim().length} characters: "${rendered.text}"`);
       }
     }
-    if (rendered.author !== null && rendered.author.trim() === '') {
-      fail(`${quote.id} renders a blank author in ${locale} — §35 wants nothing, not empty space`);
+    if (!rendered.author || rendered.author.trim() === '') {
+      fail(`${quote.id} renders a blank byline in ${locale}`);
     }
-    // §35 again: an uncertain attribution shows *nothing*, never a word that
-    // makes the absence look like a fact.
-    if (rendered.author && /^(anonymous|unknown|작자\s*미상|무명)$/i.test(rendered.author.trim())) {
-      fail(`${quote.id} renders "${rendered.author}" in ${locale} instead of nothing`);
+    if ((rendered.authorship === 'unknown') !== (quote.authorship === 'unknown')) {
+      fail(`${quote.id} renders authorship "${rendered.authorship}" in ${locale}`);
     }
+    /*
+     * The two requested lines are Korean originals and the requirement is
+     * that a non-Korean interface shows the Korean *and* the translation, with
+     * the Korean leading — and that Korean shows the line once.
+     */
+    if (quote.originalLanguage === 'ko') {
+      if (locale === 'ko' || locale.startsWith('ko-')) {
+        if (rendered.original !== null) fail(`${quote.id} would print the Korean twice in ${locale}`);
+      } else {
+        if (!rendered.original) fail(`${quote.id} does not show the Korean original in ${locale}`);
+        if (!rendered.leadsWithOriginal) fail(`${quote.id} does not lead with the Korean in ${locale}`);
+        if (normalise(rendered.text) === normalise(quote.originalText)) {
+          fail(`${quote.id} in ${locale} renders the Korean original as its "translation"`);
+        }
+        if (/[가-힣]/.test(rendered.text) && locale !== 'ko') {
+          fail(`${quote.id} in ${locale} leaks Hangul into the translation: "${rendered.text}"`);
+        }
+      }
+    }
+    if (/\{\{|\bTODO\b|\bTBD\b|lorem/i.test(rendered.text)) {
+      fail(`${quote.id} in ${locale} is a placeholder: "${rendered.text}"`);
+    }
+  }
+}
+/*
+ * No two unrelated languages may carry the same sentence. Copying the English
+ * into a locale nobody translated is how a "translation" ships as English,
+ * and identical text across two locales is the signature of it.
+ */
+for (const quote of LEARNING_QUOTES) {
+  const byText = new Map();
+  for (const locale of QUOTE_LOCALES) {
+    const key = normalise(quote.translations[locale] ?? '');
+    const seen = byText.get(key);
+    if (seen && !(quote.originalLanguage === locale || quote.originalLanguage === seen)) {
+      fail(`${quote.id}: ${locale} and ${seen} carry the identical sentence — one of them is not translated`);
+    }
+    byText.set(key, locale);
   }
 }
 console.log(`  ok   ${LEARNING_QUOTES.length * QUOTE_LOCALES.length} renderings, none missing`);
@@ -235,5 +303,5 @@ if (problems.length > 0) {
   process.exit(CHECK ? 1 : 0);
 }
 console.log(
-  `\n${LEARNING_QUOTES.length} quotations, every one attributed to a named person, all 32 locales, a fresh line on every open.`,
+  `\n${LEARNING_QUOTES.length} quotations, every one carrying an honest attribution, all ${QUOTE_LOCALES.length} locales, a fresh line on every open.`,
 );

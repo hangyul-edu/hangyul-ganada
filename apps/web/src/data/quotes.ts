@@ -21,11 +21,33 @@
  * 3. about learning, practice, persistence, language or knowledge;
  * 4. short enough to sit at the foot of a phone screen.
  *
- * One line was removed *because* of rule 1. "꿈을 크게 가져라. 깨져도 그 조각이
- * 크다" circulates across the Korean internet under three different names and
- * appears in none of their writing; it used to ship deliberately unattributed,
- * and under the current policy a quotation nobody can be credited with is not a
- * quotation. Also excluded, all widely circulated and none traceable:
+ * ## Two lines that are exceptions, and say so
+ *
+ * The product owner asked for two specific quotations to be added, in Korean as
+ * the canonical text, with exactly these attributions:
+ *
+ * * `dream-big-pieces` — "꿈을 크게 가져라. 깨져도 그 조각이 크다." — **작자 미상**.
+ *   This line circulates across the Korean internet under three different
+ *   names and appears in none of their writing, which is why an earlier policy
+ *   removed it. It is back *because it was asked for*, and it ships labelled
+ *   honestly: `authorship: "unknown"`, with a localized "author unknown" line
+ *   under it in every language. That is a different thing from the "Anonymous"
+ *   the old policy objected to — it is not a name standing in for a missing
+ *   fact, it is the fact, stated. What is still forbidden is inventing a name.
+ * * `carlyle-stepping-stone` — "길을 걷다가 돌이 나타나면 약자는 그것을
+ *   걸림돌이라고 말하고, 강자는 그것을 디딤돌이라고 말한다." — **Thomas
+ *   Carlyle**, as requested. The English line it renders ("The block of granite
+ *   which was an obstacle in the pathway of the weak becomes a stepping-stone
+ *   in the pathway of the strong") is quoted under Carlyle's name in every
+ *   collection and has not been located in his published works, so its
+ *   `source` says *attributed* and `sourceStatus` marks it. The gate allows a
+ *   hedge only on a row that carries that mark; the report lists the row as a
+ *   legal-attribution item for a person to close.
+ *
+ * Both lines carry Korean as `originalLanguage`, because the Korean wording is
+ * the text that was specified and must not be paraphrased; the translations are
+ * made from it. Every other row is unchanged. Also excluded, all widely
+ * circulated and none traceable:
  *
  * * "To have another language is to possess a second soul" — Charlemagne
  * * "It does not matter how slowly you go as long as you do not stop" — Confucius
@@ -103,8 +125,27 @@ export interface LearningQuote {
    * language has one — Platón, プラトン, 柏拉图 — and left alone where it does
    * not. Nothing is transliterated on the fly, because a machine-transliterated
    * name is a misattribution with extra steps.
+   *
+   * For a row whose `authorship` is `unknown`, this holds the localized
+   * "author unknown" line — 작자 미상, Author unknown, Auteur inconnu — which is
+   * shown exactly where a name would be. See the header. Never null: a row
+   * that can name nobody says so through `authorship`, not through silence.
    */
-  author: Record<string, string> | null;
+  author: Record<string, string>;
+  /**
+   * `unknown` when nobody can honestly be named and the line ships anyway,
+   * labelled. Absent (named) for every other row. The gate refuses an
+   * `unknown` row whose `author` map reads as a name, and a named row whose
+   * `author` map reads as a category.
+   */
+  authorship?: "unknown";
+  /**
+   * `attributed` when the named author is the conventional attribution rather
+   * than an established one — the line is quoted under the name everywhere and
+   * has not been located in the works. `source` then says so in words. The
+   * only rows allowed to hedge.
+   */
+  sourceStatus?: "attributed";
 }
 
 /** The interface languages every quotation must carry. */
@@ -218,6 +259,50 @@ const LATIN_SCRIPT_LOCALES = [
   "tr",
   "uz",
 ] as const;
+
+/**
+ * "Author unknown", in every interface language.
+ *
+ * Shown where a name would be, for the one row whose author genuinely is
+ * unknown. Each is the ordinary phrase a reader of that language would find at
+ * the foot of an unattributed quotation — not a translation of the Korean 작자
+ * 미상 word for word, and not "Anonymous", which in most of these languages
+ * reads as a pen name.
+ */
+const UNKNOWN_AUTHOR: Record<string, string> = {
+  en: "Author unknown",
+  ko: "작자 미상",
+  ja: "作者不詳",
+  "zh-CN": "作者不详",
+  es: "Autor desconocido",
+  fr: "Auteur inconnu",
+  de: "Verfasser unbekannt",
+  "pt-BR": "Autor desconhecido",
+  vi: "Khuyết danh",
+  th: "ไม่ทราบผู้แต่ง",
+  ar: "قائل مجهول",
+  bn: "লেখক অজ্ঞাত",
+  cs: "Autor neznámý",
+  el: "Άγνωστος συγγραφέας",
+  fil: "Hindi kilala ang may-akda",
+  hi: "अज्ञात लेखक",
+  hu: "Ismeretlen szerző",
+  id: "Penulis tidak diketahui",
+  it: "Autore sconosciuto",
+  kk: "Авторы белгісіз",
+  ky: "Автору белгисиз",
+  mn: "Зохиогч нь тодорхойгүй",
+  nl: "Auteur onbekend",
+  pl: "Autor nieznany",
+  ro: "Autor necunoscut",
+  ru: "Автор неизвестен",
+  sv: "Okänd författare",
+  ta: "அறியப்படாத ஆசிரியர்",
+  te: "రచయిత తెలియదు",
+  tr: "Yazarı bilinmiyor",
+  uk: "Автор невідомий",
+  uz: "Muallifi noma’lum",
+};
 
 export const LEARNING_QUOTES: LearningQuote[] = [
   {
@@ -1437,14 +1522,127 @@ export const LEARNING_QUOTES: LearningQuote[] = [
       },
     ),
   },
+  {
+    id: "dream-big-pieces",
+    originalLanguage: "ko",
+    originalText: "꿈을 크게 가져라. 깨져도 그 조각이 크다.",
+    source:
+      "Circulates in Korean without an established author; added at the product owner's request (September 2026) and labelled 작자 미상",
+    authorship: "unknown",
+    translations: {
+      en: "Dream big. Even if it shatters, the pieces will be big.",
+      ko: "꿈을 크게 가져라. 깨져도 그 조각이 크다.",
+      ja: "夢は大きく持て。砕けても、そのかけらは大きい。",
+      "zh-CN": "梦想要远大。即使破碎了，碎片也是大的。",
+      es: "Sueña en grande. Aunque se rompa, los pedazos serán grandes.",
+      fr: "Rêve en grand. Même s’il se brise, les morceaux resteront grands.",
+      de: "Träume groß. Selbst wenn der Traum zerbricht, bleiben die Stücke groß.",
+      "pt-BR": "Sonhe grande. Mesmo que o sonho se quebre, os pedaços serão grandes.",
+      vi: "Hãy mơ thật lớn. Dù giấc mơ có vỡ, những mảnh vỡ vẫn lớn.",
+      th: "จงฝันให้ใหญ่ แม้ฝันจะแตกสลาย เศษของมันก็ยังใหญ่",
+      ar: "احلم بأحلام كبيرة، فحتى إن تحطّمت تبقى شظاياها كبيرة.",
+      bn: "বড় স্বপ্ন দেখো। ভেঙে গেলেও তার টুকরোগুলো বড়ই থাকে।",
+      cs: "Sni ve velkém. I když se sen rozbije, zůstanou po něm velké kusy.",
+      el: "Κάνε μεγάλα όνειρα. Ακόμη κι αν σπάσουν, τα κομμάτια τους μένουν μεγάλα.",
+      fil: "Mangarap nang malaki. Kahit mabasag ito, malalaki pa rin ang mga piraso.",
+      hi: "बड़े सपने देखो। टूट भी जाएँ, तो उनके टुकड़े भी बड़े होते हैं।",
+      hu: "Álmodj nagyot! Ha összetörik is, a darabjai nagyok maradnak.",
+      id: "Bermimpilah yang besar. Meski pecah, kepingannya tetap besar.",
+      it: "Sogna in grande. Anche se il sogno si spezza, i pezzi restano grandi.",
+      kk: "Арманың үлкен болсын. Күйресе де, сынықтары үлкен болады.",
+      ky: "Кыялың чоң болсун. Талкаланса да, сыныктары чоң болот.",
+      mn: "Том мөрөөд. Хагарсан ч хэлтэрхий нь том байна.",
+      nl: "Droom groot. Ook als de droom breekt, blijven de stukken groot.",
+      pl: "Miej wielkie marzenia. Nawet jeśli się rozbiją, ich kawałki pozostaną wielkie.",
+      ro: "Visează măreț. Chiar dacă visul se sparge, bucățile rămân mari.",
+      ru: "Мечтай по-крупному. Даже если мечта разобьётся, её осколки будут большими.",
+      sv: "Dröm stort. Även om drömmen går sönder blir bitarna stora.",
+      ta: "பெரிதாகக் கனவு காணுங்கள். அது உடைந்தாலும், அதன் துண்டுகள் பெரியவையாகவே இருக்கும்.",
+      te: "పెద్ద కలలు కనండి. అవి పగిలినా, ఆ ముక్కలు కూడా పెద్దవిగానే ఉంటాయి.",
+      tr: "Büyük hayaller kur. Kırılsa bile parçaları büyük olur.",
+      uk: "Мрій по-великому. Навіть якщо мрія розіб’ється, її уламки будуть великими.",
+      uz: "Katta orzu qil. U sinsa ham, parchalari katta bo‘ladi.",
+    },
+    author: UNKNOWN_AUTHOR,
+  },
+  {
+    id: "carlyle-stepping-stone",
+    originalLanguage: "ko",
+    originalText:
+      "길을 걷다가 돌이 나타나면 약자는 그것을 걸림돌이라고 말하고, 강자는 그것을 디딤돌이라고 말한다.",
+    source:
+      "Attributed to Thomas Carlyle (1795–1881) in quotation collections as “The block of granite which was an obstacle in the pathway of the weak becomes a stepping-stone in the pathway of the strong”; not located in his published works. Korean wording as specified by the product owner, September 2026",
+    sourceStatus: "attributed",
+    translations: {
+      en: "When a stone lies in the road, the weak call it a stumbling block; the strong call it a stepping stone.",
+      ko: "길을 걷다가 돌이 나타나면 약자는 그것을 걸림돌이라고 말하고, 강자는 그것을 디딤돌이라고 말한다.",
+      ja: "道を歩いていて石が現れたとき、弱い者はそれを「つまずきの石」と呼び、強い者は「踏み石」と呼ぶ。",
+      "zh-CN": "路上遇到一块石头，弱者称之为绊脚石，强者称之为垫脚石。",
+      es: "Cuando aparece una piedra en el camino, el débil la llama obstáculo y el fuerte la llama escalón.",
+      fr: "Quand une pierre se dresse sur le chemin, le faible l’appelle un obstacle et le fort, un marchepied.",
+      de: "Liegt ein Stein auf dem Weg, nennt ihn der Schwache einen Stolperstein und der Starke einen Trittstein.",
+      "pt-BR": "Quando uma pedra surge no caminho, o fraco a chama de obstáculo e o forte a chama de degrau.",
+      vi: "Khi gặp hòn đá trên đường, kẻ yếu gọi đó là đá cản đường, còn người mạnh gọi đó là bàn đạp.",
+      th: "เมื่อพบก้อนหินขวางทาง คนอ่อนแอเรียกมันว่าอุปสรรค แต่คนเข้มแข็งเรียกมันว่าบันได",
+      ar: "حين يعترض حجرٌ طريقك، يسميه الضعيف عثرة، ويسميه القوي درجةً يصعد عليها.",
+      bn: "পথে পাথর পড়লে দুর্বল তাকে বলে বাধা, আর সবল তাকে বলে সিঁড়ির ধাপ।",
+      cs: "Když se na cestě objeví kámen, slabý ho nazve kamenem úrazu a silný odrazovým kamenem.",
+      el: "Όταν βρεθεί μια πέτρα στον δρόμο, ο αδύναμος τη λέει εμπόδιο και ο δυνατός σκαλοπάτι.",
+      fil: "Kapag may batong humarang sa daan, tinatawag itong hadlang ng mahina at baitang ng malakas.",
+      hi: "रास्ते में पत्थर आ जाए तो कमज़ोर उसे ठोकर कहता है, और मज़बूत उसे सीढ़ी कहता है।",
+      hu: "Ha kő kerül az útba, a gyenge akadálynak nevezi, az erős lépcsőfoknak.",
+      id: "Saat batu menghadang di jalan, orang lemah menyebutnya batu sandungan, orang kuat menyebutnya batu pijakan.",
+      it: "Quando una pietra si trova sul cammino, il debole la chiama un ostacolo e il forte un gradino.",
+      kk: "Жолда тас кездессе, әлсіз оны кедергі дейді, күшті оны баспалдақ дейді.",
+      ky: "Жолдо таш кездешсе, алсыз аны тоскоол дейт, күчтүү аны тепкич дейт.",
+      mn: "Замд чулуу тааралдвал сул дорой хүн түүнийг саад гэж, хүчтэй хүн түүнийг гишгүүр гэж нэрлэдэг.",
+      nl: "Ligt er een steen op de weg, dan noemt de zwakke hem een struikelblok en de sterke een opstapje.",
+      pl: "Gdy na drodze pojawia się kamień, słaby nazywa go przeszkodą, a silny — stopniem.",
+      ro: "Când apare o piatră în drum, cel slab o numește piedică, iar cel puternic o numește treaptă.",
+      ru: "Когда на пути попадается камень, слабый называет его преградой, а сильный — ступенью.",
+      sv: "När en sten ligger på vägen kallar den svage den en stötesten och den starke ett trappsteg.",
+      ta: "வழியில் ஒரு கல் குறுக்கிட்டால், பலவீனர் அதைத் தடைக்கல் என்கிறார்; வலியவர் அதைப் படிக்கல் என்கிறார்.",
+      te: "దారిలో రాయి ఎదురైతే, బలహీనుడు దాన్ని అడ్డురాయి అంటాడు; బలవంతుడు దాన్ని మెట్టు అంటాడు.",
+      tr: "Yolda bir taş çıktığında zayıf ona engel der, güçlü ise basamak.",
+      uk: "Коли на шляху трапляється камінь, слабкий називає його перешкодою, а сильний — сходинкою.",
+      uz: "Yo‘lda tosh uchrasa, ojiz uni to‘siq deydi, kuchli esa uni zinapoya deydi.",
+    },
+    author: western(
+      "Thomas Carlyle",
+      "토머스 칼라일",
+      "トーマス・カーライル",
+      "托马斯·卡莱尔",
+      {
+        ar: "توماس كارلايل",
+        bn: "টমাস কার্লাইল",
+        el: "Τόμας Καρλάιλ",
+        hi: "थॉमस कार्लाइल",
+        kk: "Томас Карлейль",
+        ky: "Томас Карлейль",
+        mn: "Томас Карлайл",
+        ru: "Томас Карлейль",
+        ta: "தாமஸ் கார்லைல்",
+        te: "థామస్ కార్లైల్",
+        uk: "Томас Карлейль",
+        th: "โทมัส คาร์ไลล์",
+      },
+    ),
+  },
 ];
 
 // --- Reading one ---------------------------------------------------------------
 
 export interface RenderedQuote {
+  /** The quotation in the learner's language. */
   text: string;
-  /** Null where authorship is uncertain. Rendered as nothing. See §35. */
-  author: string | null;
+  /**
+   * The byline: a name, or the localized "author unknown" for a row whose
+   * `authorship` is `unknown`. Never null for a row in this library — every
+   * row either names a person or says plainly that nobody can be named.
+   */
+  author: string;
+  /** Whether `author` is a person's name or the "unknown" label. */
+  authorship: "named" | "unknown";
   /** How this line relates to what the author wrote. */
   attribution: QuoteAttribution;
   /**
@@ -1454,6 +1652,18 @@ export interface RenderedQuote {
    * same sentence twice is not a design, it is a bug with a stylesheet.
    */
   original: { text: string; lang: string } | null;
+  /**
+   * Whether the original leads and the translation follows.
+   *
+   * True when the original is **Korean** and the interface language is not.
+   * This is a Korean-learning app: a Korean sentence at the foot of the home
+   * screen is a sentence the learner is here to be able to read, so it takes
+   * the primary line and its translation sits beneath it in the quieter type.
+   * For every other original language the translation leads, because a Greek
+   * or Latin line is provenance rather than something the learner is studying.
+   * False whenever `original` is null.
+   */
+  leadsWithOriginal: boolean;
 }
 
 /**
@@ -1479,31 +1689,30 @@ export function renderQuote(
         ? "published"
         : "ours";
 
+  const original =
+    attribution === "original" || !quote.originalText
+      ? null
+      : { text: quote.originalText, lang: quote.originalLanguage };
+
+  /*
+   * The byline, in the learner's language, or the honest absence of one.
+   *
+   * A row with `authorship: "unknown"` carries a localized "author unknown"
+   * in its `author` map, so the line under the quotation says that nobody can
+   * be named rather than pretending somebody can. It is never left blank: a
+   * blank byline under one quotation and a name under the next reads as a
+   * missing string, not as a statement.
+   */
+  const author = quote.author[locale];
+  if (!author) throw new Error(`quote ${quote.id} has no ${locale} attribution`);
+
   return {
     text,
-    /*
-     * Null when nobody can be named, and null is *shown as nothing*.
-     *
-     * "꿈을 크게 가져라, 깨져도 그 조각이 크다" is on every Korean quotation site
-     * under three different names and is in none of their works. So it is here
-     * without one, and the line under it is absent rather than reading
-     * "Anonymous" or 작자 미상 — which are words that make a missing fact look
-     * like a present one. See §35.
-     */
-    author: quote.author ? (quote.author[locale] ?? quote.author.en!) : null,
+    author,
+    authorship: quote.authorship === "unknown" ? "unknown" : "named",
     attribution,
-    /*
-     * The original line, when there is one worth showing.
-     *
-     * Absent for the lines written for this app: there is no revered source
-     * text to put underneath, and printing the English original under every
-     * translation would tell a Spanish learner the same thing this screen was
-     * changed to stop telling them. `originalText` is empty for those.
-     */
-    original:
-      attribution === "original" || !quote.originalText
-        ? null
-        : { text: quote.originalText, lang: quote.originalLanguage },
+    original,
+    leadsWithOriginal: original !== null && baseOf(original.lang) === "ko",
   };
 }
 
@@ -1547,7 +1756,29 @@ let recent: string[] = [];
 /** How many to remember. Enough to avoid a near-repeat, short enough to stay random. */
 const AVOID_LAST = Math.min(5, Math.max(1, LEARNING_QUOTES.length - 1));
 
+/**
+ * A QA seam: the harness names the quotation it wants on screen.
+ *
+ * `scripts/qa-quote-render.mjs` renders every quotation in every locale at
+ * every phone width through the real home screen, and it can only do that if
+ * it can choose the line. Set from `addInitScript` before the app boots, read
+ * once per open, and never written by the app — the same shape as
+ * `__hangyulBackIntent`. Nothing about it is stored, so `quotes-qa` still
+ * proves the quotation is not state.
+ */
+declare global {
+  interface Window {
+    __hangyulQuoteId?: string;
+  }
+}
+
 export function quoteOnOpen(random: number = Math.random()): LearningQuote {
+  const wanted =
+    typeof window !== "undefined" && window.__hangyulQuoteId
+      ? LEARNING_QUOTES.find((quote) => quote.id === window.__hangyulQuoteId)
+      : undefined;
+  if (wanted) return wanted;
+
   const fresh = LEARNING_QUOTES.filter((quote) => !recent.includes(quote.id));
   const pool = fresh.length > 0 ? fresh : LEARNING_QUOTES;
   const quote = pool[Math.min(pool.length - 1, Math.floor(random * pool.length))]!;

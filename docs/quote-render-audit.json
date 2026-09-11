@@ -1,0 +1,4355 @@
+{
+ "_comment": "Written by scripts/qa-quote-render.mjs from the rendered home screen. Read by scripts/build-quote-audit.mjs for the UI-wrapping and RTL columns of docs/QUOTE_TRANSLATION_AUDIT.md. Do not edit by hand.",
+ "renderedAt": "2026-09-11T15:59:21.452Z",
+ "widths": [
+  320,
+  360,
+  375,
+  390,
+  412,
+  430
+ ],
+ "scales": [
+  1,
+  2
+ ],
+ "locales": [
+  "ar",
+  "bn",
+  "cs",
+  "de",
+  "el",
+  "en",
+  "es",
+  "fil",
+  "fr",
+  "hi",
+  "hu",
+  "id",
+  "it",
+  "ja",
+  "kk",
+  "ko",
+  "ky",
+  "mn",
+  "nl",
+  "pl",
+  "pt-BR",
+  "ro",
+  "ru",
+  "sv",
+  "ta",
+  "te",
+  "th",
+  "tr",
+  "uk",
+  "uz",
+  "vi",
+  "zh-CN"
+ ],
+ "quotes": [
+  "dream-big-pieces",
+  "carlyle-stepping-stone"
+ ],
+ "results": {
+  "ar": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     }
+    },
+    "rtl": {
+     "documentDir": "rtl",
+     "translationDir": "rtl",
+     "originalDir": "ltr",
+     "authorDir": "rtl"
+    },
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 651
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": {
+     "documentDir": "rtl",
+     "translationDir": "rtl",
+     "originalDir": "ltr",
+     "authorDir": "rtl"
+    },
+    "ok": true
+   }
+  },
+  "bn": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 651
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 519
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "cs": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "de": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "el": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 507
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 420
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "en": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 381
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "es": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "fil": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 420
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 816
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "fr": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 507
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 603
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "hi": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 609
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 519
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "hu": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 690
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "id": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 858
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 645
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 600
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 600
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "it": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "ja": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 642
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "kk": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "ko": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 103
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 80
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 80
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 80
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 80
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 80
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 212
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 212
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 167
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 167
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 167
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 167
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 125
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 125
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 125
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 125
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 125
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 15,
+      "cardHeight": 103
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 437
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 347
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 302
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 302
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 302
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 30,
+      "cardHeight": 302
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "ky": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 426
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "mn": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 378
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 336
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 336
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 816
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 645
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 600
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "nl": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "pl": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 507
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 426
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "pt-BR": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 420
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 774
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "ro": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "ru": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 549
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 507
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 381
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 816
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 645
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 600
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "sv": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "ta": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 212
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 675
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 507
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 462
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 462
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 462
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 462
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 234
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 942
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 726
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 681
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 639
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 600
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "te": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 465
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 735
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "th": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 693
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 519
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "tr": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 255
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 690
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 519
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "uk": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 147
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 549
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 507
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 381
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 213
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 170
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 816
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 645
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 600
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 558
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "uz": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 423
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 690
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 519
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "vi": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 384
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 339
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 732
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 561
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 516
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 474
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  },
+  "zh-CN": {
+   "dream-big-pieces": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 126
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 105
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 342
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 297
+     }
+    },
+    "rtl": null,
+    "ok": true
+   },
+   "carlyle-stepping-stone": {
+    "widths": {
+     "320@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 192
+     },
+     "360@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "375@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "390@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "412@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 171
+     },
+     "430@1x": {
+      "ok": true,
+      "fontSize": 14,
+      "cardHeight": 149
+     },
+     "320@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 693
+     },
+     "360@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 477
+     },
+     "375@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "390@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "412@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     },
+     "430@2x": {
+      "ok": true,
+      "fontSize": 28,
+      "cardHeight": 432
+     }
+    },
+    "rtl": null,
+    "ok": true
+   }
+  }
+ },
+ "findings": []
+}

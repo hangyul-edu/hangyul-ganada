@@ -89,3 +89,31 @@
   color: var(--hg-text-secondary);
   direction: ltr;
 }
+
+/*
+ * The translation, under a Korean original.
+ *
+ * The mirror of `.original`: when the quoted text is Korean the Korean leads
+ * in `.body` and this is the learner's-language gloss beneath it. Secondary
+ * ink and one step down in size — clearly the second line — but body-adjacent
+ * rather than caption-sized, because for most learners it is the only line
+ * they can read yet and it has to be read comfortably in Tamil, Arabic or
+ * Greek at a large system font. It follows the interface direction: it is
+ * interface-language text, so an Arabic gloss sits right-to-left under a
+ * Korean line that stays left-to-right.
+ */
+.translation {
+  margin: 0;
+  font-size: var(--hg-text-body-sm);
+  line-height: var(--hg-leading-normal);
+  color: var(--hg-text-secondary);
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+/* Long lines in any script wrap inside the card rather than widening it. */
+.body,
+.original,
+.author {
+  overflow-wrap: anywhere;
+}
