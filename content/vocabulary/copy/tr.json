@@ -1875,10 +1875,6 @@
       "hafta sonu",
       "Hafta sonu dinleniyorum."
     ],
-    "word_jugida": [
-      "öldürmek",
-      "Odaya giren sivrisineği öldürdüm."
-    ],
     "word_him": [
       "güç",
       "O çocuk çok güçlü."
@@ -3561,10 +3557,6 @@
       "omuz",
       "Omzum ağrıyor."
     ],
-    "word_babo": [
-      "aptal",
-      "Aptalca bir söz."
-    ],
     "word_nunsseop": [
       "kaş",
       "Kaşlar kalın."
@@ -4643,10 +4635,6 @@
       "sürekli",
       "Sürekli unutuyorum."
     ],
-    "word_chwihada": [
-      "sarhoş olmak",
-      "İçkiden sarhoş oldum."
-    ],
     "word_jeopda": [
       "katlamak",
       "Kâğıdı katlıyorum."
@@ -5325,7 +5313,7 @@
     ],
     "word_beda": [
       "kesmek",
-      "Elimi bıçakla kestim."
+      "Çim biçiyorum."
     ],
     "word_dudeurida": [
       "vurmak",
@@ -5915,14 +5903,6 @@
       "beklenti",
       "Beklentim büyük."
     ],
-    "word_jeonjaeng": [
-      "savaş",
-      "Savaş bitti ve barış geldi."
-    ],
-    "word_jugeum": [
-      "ölüm",
-      "Ölüm herkese gelir."
-    ],
     "word_eorida": [
       "küçük yaşta olmak",
       "Kardeşim henüz küçük."
@@ -6215,10 +6195,6 @@
       "video",
       "Video izledim."
     ],
-    "word_kiseu": [
-      "öpücük",
-      "Filmde bir öpüşme sahnesi var."
-    ],
     "word_pyeonanhada": [
       "rahat olmak",
       "En rahat olduğum yer evim."
@@ -6354,10 +6330,6 @@
     "word_matda_2": [
       "koklamak",
       "Kokusunu alın lütfen."
-    ],
-    "word_suljip": [
-      "meyhane",
-      "Meyhane gürültülü."
     ],
     "word_yojeong": [
       "peri",
@@ -7595,10 +7567,6 @@
     "word_domanggada": [
       "kaçmak",
       "Kedi kaçtı."
-    ],
-    "word_mugi": [
-      "silah",
-      "Lütfen silahı bırakın."
     ],
     "word_beoseonada": [
       "kurtulmak",
@@ -8993,10 +8961,6 @@
       "kod",
       "Lütfen kodu girin."
     ],
-    "word_jeontu": [
-      "muharebe",
-      "Muharebe bitti."
-    ],
     "word_jeuksi": [
       "derhâl",
       "Lütfen derhâl cevap verin."
@@ -9161,10 +9125,6 @@
     "word_hechida": [
       "yararak geçmek",
       "Karlı yolu yararak geldim."
-    ],
-    "word_chongal": [
-      "mermi",
-      "Mermi hızlıdır."
     ],
     "word_beotida": [
       "dayanmak",
@@ -9342,10 +9302,6 @@
     "word_dansunhada": [
       "sade olmak",
       "Şekli sade."
-    ],
-    "word_sarin": [
-      "cinayet",
-      "Bir cinayet işlendi."
     ],
     "word_darida_2": [
       "kaynatmak",
@@ -9630,10 +9586,6 @@
       "kullanmak",
       "Uçağı kullanıyorlar."
     ],
-    "word_gangdo": [
-      "soyguncu",
-      "Soyguncuyu ihbar ettim."
-    ],
     "word_ihonhada": [
       "boşanmak",
       "İkisi boşandı."
@@ -9803,10 +9755,6 @@
       "en azından",
       "En azından iki gün sürüyor."
     ],
-    "word_sagyeok": [
-      "atış",
-      "Atış talimi yapıyorlar."
-    ],
     "word_gallae": [
       "kol",
       "Yol iki kola ayrılıyor."
@@ -9928,10 +9876,6 @@
       "işe yararlık",
       "Bunun da bir işe yararlığı var."
     ],
-    "word_meongcheonghada": [
-      "akılsız olmak",
-      "Aptalca bir hataydı."
-    ],
     "word_ttaraseo": [
       "bu nedenle",
       "Kar yağdı. Bu nedenle yol kaygan."
@@ -9975,10 +9919,6 @@
     "word_banhada": [
       "âşık olmak",
       "İlk görüşte âşık oldum."
-    ],
-    "word_jombi": [
-      "zombi",
-      "Filmde zombi var."
     ],
     "word_paiting": [
       "hadi bakalım",
@@ -10420,10 +10360,6 @@
       "gen",
       "Genleri araştırıyorlar."
     ],
-    "word_paeop": [
-      "grev",
-      "Metro grevi yüzünden geciktim."
-    ],
     "word_gwayeon": [
       "gerçekten de",
       "Gerçekten de dedikleri gibi."
@@ -10674,10 +10610,6 @@
       "İki söz birbiriyle çelişiyor.",
       "Sözcüğün kendisi bir hikâye. Bir tüccar her şeyi delen bir mızrak (모, 矛) ile hiçbir şeyin delemediği bir kalkan (순, 盾) satarmış — ta ki bir müşteri birini diğerine sürerse ne olacağını sorana kadar. Korece bunu kendi kendini çürüten her iddia için kullanır."
     ],
-    "word_misail": [
-      "füze",
-      "Haberlerde füzeden söz edildi."
-    ],
     "word_seonggasida": [
       "can sıkıcı olmak",
       "Sivrisinekler can sıkıcı."
@@ -10761,10 +10693,6 @@
     "word_meoljjeonghada": [
       "sapasağlam olmak",
       "Düştü ama sapasağlam."
-    ],
-    "word_beolgeobeotda": [
-      "çırılçıplak olmak",
-      "Çocuk çırılçıplak koşuyor."
     ],
     "word_gongpyeonghada": [
       "adil olmak",
@@ -11526,10 +11454,6 @@
       "vermek",
       "Zahmet verdiğim için özür dilerim."
     ],
-    "word_inyeom": [
-      "ideoloji",
-      "İnsan ideolojiden önce gelir."
-    ],
     "word_gyeongwi": [
       "oluş biçimi",
       "Kazanın oluş biçimini anlatın lütfen."
@@ -11835,10 +11759,6 @@
       "Bilgi ne kadar çoksa o kadar iyidir.",
       "Harfi harfine \"çok, çok, ne kadar çok o kadar iyi\". Fazlası zarar vermeyen şeyler için: bilgi, yardım eden eller, alıştırma."
     ],
-    "word_sumjida": [
-      "can vermek",
-      "Kazada bir kişi can verdi."
-    ],
     "word_sasilsang": [
       "fiilen",
       "Fiilen bitti."
@@ -11862,10 +11782,6 @@
     "word_heotdoeda": [
       "boşa gitmek",
       "Emek boşa gitmedi."
-    ],
-    "word_samanghada": [
-      "vefat etmek",
-      "Kazada vefat etti."
     ],
     "word_sakda": [
       "çürümek",
@@ -12350,10 +12266,6 @@
       "konumlanmak",
       "Okul tepede konumlanıyor."
     ],
-    "word_hyeopbakada": [
-      "tehdit savurmak",
-      "Tehdit savurmak olmaz."
-    ],
     "word_moyokada": [
       "hakaret etmek",
       "Lütfen başkasına hakaret etmeyin."
@@ -12702,10 +12614,6 @@
     "word_dongbyeongsangnyeon": [
       "aynı derdi paylaşma",
       "Aynı derdi paylaşmanın duygusunu hissediyorum."
-    ],
-    "word_salsinseongin": [
-      "canını feda etme",
-      "Canını feda etme ruhunu anıyoruz."
     ],
     "word_jaksimsamil": [
       "üç günlük heves",

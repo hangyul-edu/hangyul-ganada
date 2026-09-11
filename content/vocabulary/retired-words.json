@@ -1,0 +1,266 @@
+{
+  "_comment": [
+    "Taught words retired under the child-safe content policy (docs/CHILD_SAFE_CONTENT_POLICY.md).",
+    "A tombstone, not a deletion: the id stays in word-ids.json and a learner's progress, saved words,",
+    "review schedule and mistakes rows for it are kept on the device. The runtime reads this file to",
+    "drop a retired word from today's plan and the review queue without erasing what was earned.",
+    "`replacement` names the word that fills the same slot when one exists; null means the level band",
+    "had supply and nothing was authored in its place."
+  ],
+  "policyVersion": "1.0.0",
+  "words": {
+    "word_sarin": {
+      "word": "살인",
+      "category": "violence",
+      "reason": "Murder is graphic crime; a beginner course does not ask what 살인 means.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "살인 사건이 일어났어요.",
+        "en": null
+      }
+    },
+    "word_babo": {
+      "word": "바보",
+      "category": "profanity",
+      "reason": "A fool; an insult attacking intelligence, retired under the profanity rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "바보 같은 말이에요.",
+        "en": "a fool"
+      }
+    },
+    "word_misail": {
+      "word": "미사일",
+      "category": "violence",
+      "reason": "A missile, glossed in Korean as a weapon; retired under the weapons rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "뉴스에 미사일 이야기가 나왔어요.",
+        "en": null
+      }
+    },
+    "word_jombi": {
+      "word": "좀비",
+      "category": "violence",
+      "reason": "A zombie, glossed in Korean as a reanimated corpse; retired under the graphic-content rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "영화에 좀비가 나와요.",
+        "en": null
+      }
+    },
+    "word_mugi": {
+      "word": "무기",
+      "category": "violence",
+      "reason": "A weapon, with a put-the-weapon-down example; retired under the weapons rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "무기를 내려놓으세요.",
+        "en": "a weapon"
+      }
+    },
+    "word_chwihada": {
+      "word": "취하다",
+      "category": "drugs",
+      "reason": "To get drunk, with a casual intoxication example; retired under the substance-abuse rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "술에 취했어요.",
+        "en": "to get drunk"
+      }
+    },
+    "word_suljip": {
+      "word": "술집",
+      "category": "drugs",
+      "reason": "A bar; an adult venue retired under the substance-abuse rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "술집이 시끄러워요.",
+        "en": "a bar, a pub"
+      }
+    },
+    "word_kiseu": {
+      "word": "키스",
+      "category": "sexual",
+      "reason": "A kiss scene in a film; adult-relationship content retired under the sexual-content rule (키스하다, a kiss on the forehead, stays).",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "영화에 키스 장면이 나와요.",
+        "en": "a kiss"
+      }
+    },
+    "word_sagyeok": {
+      "word": "사격",
+      "category": "violence",
+      "reason": "Shooting, glossed 총을 쏘는 일; retired under the weapons rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "사격 연습을 해요.",
+        "en": "shooting"
+      }
+    },
+    "word_jeontu": {
+      "word": "전투",
+      "category": "violence",
+      "reason": "A battle between armies; retired under the violence rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "전투가 끝났어요.",
+        "en": "a battle"
+      }
+    },
+    "word_hyeopbakada": {
+      "word": "협박하다",
+      "category": "violence",
+      "reason": "To threaten; threats are excluded, retired under the violence rule (위협하다 stays with its prohibition example).",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "협박하면 안 돼요.",
+        "en": "to threaten"
+      }
+    },
+    "word_gangdo": {
+      "word": "강도",
+      "category": "violence",
+      "reason": "A violent criminal as a level-22 people noun; retired under the violence rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "강도를 신고했어요.",
+        "en": "a robber"
+      }
+    },
+    "word_chongal": {
+      "word": "총알",
+      "category": "violence",
+      "reason": "A bullet; retired under the weapons rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "총알이 빨라요.",
+        "en": "a bullet"
+      }
+    },
+    "word_sumjida": {
+      "word": "숨지다",
+      "category": "mortality",
+      "reason": "To die, with an accident example; retired under the mortality rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "사고로 한 사람이 숨졌어요.",
+        "en": "to pass away"
+      }
+    },
+    "word_meongcheonghada": {
+      "word": "멍청하다",
+      "category": "profanity",
+      "reason": "To be dim; an insult attacking intelligence, retired under the profanity rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "멍청한 실수였어요.",
+        "en": "to be dim, to be silly"
+      }
+    },
+    "word_beolgeobeotda": {
+      "word": "벌거벗다",
+      "category": "sexual",
+      "reason": "To strip bare, with a naked-child example; retired under the sexual-content rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "아이가 벌거벗고 뛰어요.",
+        "en": "to strip bare"
+      }
+    },
+    "word_samanghada": {
+      "word": "사망하다",
+      "category": "mortality",
+      "reason": "To die, formal, with an accident example; retired under the mortality rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "사고로 사망했어요.",
+        "en": "to pass away"
+      }
+    },
+    "word_jeonjaeng": {
+      "word": "전쟁",
+      "category": "violence",
+      "reason": "War, defined as nations fighting with weapons; retired under the violence and conflict rules.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "전쟁이 끝나고 평화가 왔어요.",
+        "en": "a war"
+      }
+    },
+    "word_jugeum": {
+      "word": "죽음",
+      "category": "mortality",
+      "reason": "Death as a headword with a death-comes-to-everyone example; retired under the mortality rule (죽다 stays, with its flower-in-the-pot example).",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "죽음은 누구에게나 찾아와요.",
+        "en": "death"
+      }
+    },
+    "word_jugida": {
+      "word": "죽이다",
+      "category": "violence",
+      "reason": "To kill, with an example of killing an animal; retired under the violence rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "방에 들어온 모기를 죽였어요.",
+        "en": "to kill"
+      }
+    },
+    "word_inyeom": {
+      "word": "이념",
+      "category": "political",
+      "reason": "Ideology; political ideologies are excluded, retired under the political rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "이념보다 사람이 먼저예요.",
+        "en": "an ideology"
+      }
+    },
+    "word_paeop": {
+      "word": "파업",
+      "category": "political",
+      "reason": "A strike by workers; political activism is excluded, retired under the political rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "지하철 파업으로 늦었어요.",
+        "en": "a strike by workers"
+      }
+    },
+    "word_salsinseongin": {
+      "word": "살신성인",
+      "category": "mortality",
+      "reason": "Giving one's life; a death-centred idiom retired under the mortality rule.",
+      "retiredOn": "2026-09-11",
+      "replacement": null,
+      "previous": {
+        "ex": "살신성인의 정신을 기려요.",
+        "en": "giving one's life for what is right"
+      }
+    }
+  }
+}

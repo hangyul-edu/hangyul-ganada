@@ -1875,10 +1875,6 @@
       "hétvége",
       "Hétvégén pihenek."
     ],
-    "word_jugida": [
-      "megölni",
-      "Megöltem a szúnyogot, ami bejött a szobába."
-    ],
     "word_him": [
       "erő",
       "Az a gyerek nagyon erős."
@@ -3549,10 +3545,6 @@
       "váll",
       "Fáj a vállam."
     ],
-    "word_babo": [
-      "bolond, ostoba",
-      "Ez ostoba beszéd."
-    ],
     "word_nunsseop": [
       "szemöldök",
       "Sűrű a szemöldöke."
@@ -4639,10 +4631,6 @@
       "folyton, újra meg újra",
       "Folyton elfelejtem."
     ],
-    "word_chwihada": [
-      "berúgni",
-      "Berúgtam."
-    ],
     "word_jeopda": [
       "hajtogatni",
       "Összehajtom a papírt."
@@ -5325,7 +5313,7 @@
     ],
     "word_beda": [
       "megvágni",
-      "Megvágtam a kezem a késsel."
+      "Levágom a füvet."
     ],
     "word_ssaum": [
       "veszekedés, verekedés",
@@ -5927,14 +5915,6 @@
       "várakozás, remény",
       "Nagyok a várakozásaim."
     ],
-    "word_jeonjaeng": [
-      "háború",
-      "A háború véget ért, és eljött a béke."
-    ],
-    "word_jugeum": [
-      "halál",
-      "A halál mindenkiért eljön."
-    ],
     "word_eorida": [
       "fiatalnak lenni, kicsinek lenni",
       "A kistestvérem még kicsi."
@@ -6223,10 +6203,6 @@
       "robbanás",
       "Robbanás hangja hallatszott."
     ],
-    "word_kiseu": [
-      "csók",
-      "A filmben van egy csókjelenet."
-    ],
     "word_pyeonanhada": [
       "kényelmesnek lenni, nyugodtnak lenni",
       "Otthon vagyok a legnyugodtabb."
@@ -6358,10 +6334,6 @@
     "word_matda_2": [
       "megszagolni",
       "Szagolja meg, kérem."
-    ],
-    "word_suljip": [
-      "kocsma, bár",
-      "Zajos a kocsma."
     ],
     "word_yojeong": [
       "tündér",
@@ -7587,10 +7559,6 @@
     "word_domanggada": [
       "elszaladni, megszökni",
       "A macska elszaladt."
-    ],
-    "word_mugi": [
-      "fegyver",
-      "Tegye le a fegyvert."
     ],
     "word_beoseonada": [
       "kikerülni valamiből, kiszabadulni",
@@ -9009,10 +8977,6 @@
       "bennrekedni",
       "Bennrekedtem a liftben."
     ],
-    "word_jeontu": [
-      "csata",
-      "A csata véget ért."
-    ],
     "word_jeuksi": [
       "azonnal",
       "Kérem, válaszoljon azonnal."
@@ -9173,10 +9137,6 @@
     "word_hechida": [
       "átvergődni",
       "A havas úton átvergődve jöttem ide."
-    ],
-    "word_chongal": [
-      "golyó",
-      "A golyó gyors."
     ],
     "word_beotida": [
       "kitartani",
@@ -9350,10 +9310,6 @@
     "word_dansunhada": [
       "egyszerűnek lenni",
       "A forma egyszerű."
-    ],
-    "word_sarin": [
-      "gyilkosság",
-      "Gyilkosság történt."
     ],
     "word_darida_2": [
       "kifőzni",
@@ -9638,10 +9594,6 @@
       "áldozat",
       "Segítünk az áldozatnak."
     ],
-    "word_gangdo": [
-      "rabló",
-      "Feljelentettem a rablót."
-    ],
     "word_ihonhada": [
       "elválni",
       "Ők ketten elváltak."
@@ -9807,10 +9759,6 @@
       "bolyongani",
       "Nem ismertem az utat, és sokáig bolyongtam."
     ],
-    "word_sagyeok": [
-      "lövészet",
-      "Lövészetet gyakorolnak."
-    ],
     "word_choesohan": [
       "legalább",
       "Legalább két napba telik."
@@ -9936,10 +9884,6 @@
       "habozás nélkül",
       "Habozás nélkül átadták a helyüket."
     ],
-    "word_meongcheonghada": [
-      "butának lenni",
-      "Buta hiba volt."
-    ],
     "word_pohamhada": [
       "magában foglalni",
       "A szállítási díjjal együtt harmincezer von."
@@ -9983,10 +9927,6 @@
     "word_banhada": [
       "beleszeretni",
       "Első látásra beleszerettem."
-    ],
-    "word_jombi": [
-      "zombi",
-      "A filmben zombik szerepelnek."
     ],
     "word_paiting": [
       "hajrá",
@@ -10428,10 +10368,6 @@
       "gén",
       "Géneket kutatnak."
     ],
-    "word_paeop": [
-      "sztrájk",
-      "A metrósztrájk miatt késtem."
-    ],
     "word_gwayeon": [
       "csakugyan",
       "Csakugyan olyan, ahogy a szóbeszéd tartja."
@@ -10678,10 +10614,6 @@
       "A két állítás ellentmond egymásnak.",
       "A szó maga egy történet. Egy kereskedő olyan lándzsát (모, 矛) árult, amely bármit átüt, és olyan pajzsot (순, 盾), amelyet semmi nem üt át — míg egy vevő meg nem kérdezte, mi lenne, ha az egyiket a másikon próbálná ki. A koreai így nevez minden olyan állítást, amely önmagát számolja fel."
     ],
-    "word_misail": [
-      "rakéta",
-      "A hírekben rakétáról volt szó."
-    ],
     "word_seonggasida": [
       "bosszantónak lenni",
       "A szúnyogok bosszantóak."
@@ -10765,10 +10697,6 @@
     "word_meoljjeonghada": [
       "épnek és sértetlennek lenni",
       "Leesett, de semmi baja."
-    ],
-    "word_beolgeobeotda": [
-      "meztelenre vetkőzni",
-      "A gyerek meztelenül szaladgál."
     ],
     "word_gongpyeonghada": [
       "igazságosnak lenni",
@@ -11526,10 +11454,6 @@
       "okozni",
       "Elnézést a kellemetlenségért, amit okoztam."
     ],
-    "word_inyeom": [
-      "ideológia",
-      "Az ember előbbre való az ideológiánál."
-    ],
     "word_gyeongwi": [
       "az események lefolyása",
       "Kérem, mondja el a baleset lefolyását."
@@ -11843,10 +11767,6 @@
       "gyakorlatilag",
       "Gyakorlatilag vége van."
     ],
-    "word_sumjida": [
-      "életét veszteni",
-      "Egy ember életét vesztette a balesetben."
-    ],
     "word_baesinhada": [
       "elárulni",
       "Kérem, ne árulja el a barátját."
@@ -11866,10 +11786,6 @@
     "word_heotdoeda": [
       "hiábavalónak lenni",
       "Az erőfeszítés nem volt hiábavaló."
-    ],
-    "word_samanghada": [
-      "elhunyni",
-      "Balesetben hunyt el."
     ],
     "word_sakda": [
       "elkorhadni, megérni (erjedve)",
@@ -12346,10 +12262,6 @@
       "elhelyezkedni valahol",
       "Az iskola egy dombon áll."
     ],
-    "word_hyeopbakada": [
-      "megzsarolni",
-      "Zsarolni nem szabad."
-    ],
     "word_moyokada": [
       "megsérteni valakit",
       "Kérem, ne sértsen meg másokat."
@@ -12698,10 +12610,6 @@
     "word_dongbyeongsangnyeon": [
       "sorstársi együttérzés",
       "Sorstársi együttérzést érzek."
-    ],
-    "word_salsinseongin": [
-      "önfeláldozás az igazságért",
-      "Az önfeláldozás szellemét ünnepeljük."
     ],
     "word_jaksimsamil": [
       "pár napig tartó fogadalom",

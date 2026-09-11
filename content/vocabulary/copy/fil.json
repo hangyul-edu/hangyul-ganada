@@ -1875,10 +1875,6 @@
       "katapusan ng linggo",
       "Nagpapahinga ako tuwing katapusan ng linggo."
     ],
-    "word_jugida": [
-      "pumatay",
-      "Pinatay ko ang lamok na pumasok sa kuwarto."
-    ],
     "word_him": [
       "lakas",
       "Napakalakas ng batang iyon."
@@ -3549,10 +3545,6 @@
       "balikat",
       "Masakit ang balikat ko."
     ],
-    "word_babo": [
-      "hangal",
-      "Kahangalan ang sinabing iyon."
-    ],
     "word_nunsseop": [
       "kilay",
       "Makapal ang kilay."
@@ -4639,10 +4631,6 @@
       "paulit-ulit",
       "Paulit-ulit akong nakakalimot."
     ],
-    "word_chwihada": [
-      "malasing",
-      "Nalasing ako."
-    ],
     "word_jeopda": [
       "tiklupin",
       "Tinitiklop ko ang papel."
@@ -5325,7 +5313,7 @@
     ],
     "word_beda": [
       "mahiwa",
-      "Nahiwa ang kamay ko sa kutsilyo."
+      "Nagtatabas ako ng damo."
     ],
     "word_ssaum": [
       "away",
@@ -5927,14 +5915,6 @@
       "inaasahan, pag-asa",
       "Malaki ang inaasahan ko."
     ],
-    "word_jeonjaeng": [
-      "digmaan",
-      "Natapos ang digmaan at dumating ang kapayapaan."
-    ],
-    "word_jugeum": [
-      "kamatayan",
-      "Dumarating sa lahat ang kamatayan."
-    ],
     "word_eorida": [
       "bata pa",
       "Bata pa ang kapatid ko."
@@ -6223,10 +6203,6 @@
       "pagsabog",
       "May tunog ng pagsabog."
     ],
-    "word_kiseu": [
-      "halik",
-      "May eksena ng halikan sa pelikula."
-    ],
     "word_pyeonanhada": [
       "panatag, komportable",
       "Sa bahay ako pinakapanatag."
@@ -6358,10 +6334,6 @@
     "word_matda_2": [
       "amuyin",
       "Amuyin po ninyo."
-    ],
-    "word_suljip": [
-      "bar, inuman",
-      "Maingay ang bar."
     ],
     "word_yojeong": [
       "diwata",
@@ -7587,10 +7559,6 @@
     "word_domanggada": [
       "tumakas",
       "Tumakas ang pusa."
-    ],
-    "word_mugi": [
-      "armas, sandata",
-      "Ibaba po ninyo ang armas."
     ],
     "word_beoseonada": [
       "makatakas, makaalpas",
@@ -9009,10 +8977,6 @@
       "makulong, maipit sa loob",
       "Naipit ako sa loob ng elevator."
     ],
-    "word_jeontu": [
-      "labanan",
-      "Tapos na ang labanan."
-    ],
     "word_jeuksi": [
       "kaagad, agad-agad",
       "Pakisagot po agad."
@@ -9173,10 +9137,6 @@
     "word_hechida": [
       "suutin, tahakin",
       "Tinahak ko ang daang puno ng niyebe papunta rito."
-    ],
-    "word_chongal": [
-      "bala",
-      "Mabilis ang bala."
     ],
     "word_beotida": [
       "magtiis, tumagal",
@@ -9350,10 +9310,6 @@
     "word_dansunhada": [
       "simple, payak",
       "Payak ang hugis."
-    ],
-    "word_sarin": [
-      "pagpatay",
-      "Nangyari ang isang kaso ng pagpatay."
     ],
     "word_darida_2": [
       "pakuluan hanggang lumapot",
@@ -9638,10 +9594,6 @@
       "biktima",
       "Tinutulungan ang biktima."
     ],
-    "word_gangdo": [
-      "magnanakaw, holdaper",
-      "Isinumbong ko ang magnanakaw."
-    ],
     "word_ihonhada": [
       "maghiwalay, magdiborsiyo",
       "Nagdiborsiyo ang dalawa."
@@ -9807,10 +9759,6 @@
       "maligaw, magpalaboy-laboy",
       "Hindi ko alam ang daan kaya matagal akong naligaw."
     ],
-    "word_sagyeok": [
-      "pamamaril",
-      "Nagsasanay ng pamamaril."
-    ],
     "word_choesohan": [
       "hindi bababa sa",
       "Aabot ito nang hindi bababa sa dalawang araw."
@@ -9936,10 +9884,6 @@
       "agad-agad, walang alinlangan",
       "Walang alinlangang ibinigay ang upuan."
     ],
-    "word_meongcheonghada": [
-      "tanga, mahina ang ulo",
-      "Isang tangang pagkakamali iyon."
-    ],
     "word_pohamhada": [
       "isama, isali",
       "Kapag kasama ang bayad sa padala, tatlumpung libong won ito."
@@ -9983,10 +9927,6 @@
     "word_banhada": [
       "mabighani, magkagusto",
       "Nabighani ako sa unang tingin."
-    ],
-    "word_jombi": [
-      "zombie",
-      "May mga zombie sa pelikula."
     ],
     "word_paiting": [
       "kaya mo iyan!",
@@ -10428,10 +10368,6 @@
       "gene",
       "Pinag-aaralan ang mga gene."
     ],
-    "word_paeop": [
-      "welga",
-      "Nahuli ako dahil sa welga sa subway."
-    ],
     "word_gwayeon": [
       "tunay nga",
       "Tunay ngang gaya ng sinasabi ng tsismis."
@@ -10678,10 +10614,6 @@
       "Magkasalungat ang dalawang sinabi.",
       "Kuwento mismo ang salita. May mangangalakal na nagbebenta ng sibat (모, 矛) na tumatagos sa kahit ano at kalasag (순, 盾) na hindi matatagos ng kahit ano — hanggang tanungin siya ng isang mamimili kung ano ang mangyayari kung isusubok ang isa sa isa. Ganito tinatawag sa Koreano ang anumang pahayag na sinisira ang sarili nito."
     ],
-    "word_misail": [
-      "misil",
-      "Lumabas sa balita ang tungkol sa misil."
-    ],
     "word_seonggasida": [
       "nakakaabala",
       "Nakakaabala ang mga lamok."
@@ -10765,10 +10697,6 @@
     "word_meoljjeonghada": [
       "walang diperensya, buo pa",
       "Nahulog ito pero walang diperensya."
-    ],
-    "word_beolgeobeotda": [
-      "maghubad",
-      "Hubad na tumatakbo ang bata."
     ],
     "word_gongpyeonghada": [
       "patas",
@@ -11526,10 +11454,6 @@
       "magdulot",
       "Paumanhin po sa naidulot kong abala."
     ],
-    "word_inyeom": [
-      "ideolohiya",
-      "Mas mahalaga ang tao kaysa ideolohiya."
-    ],
     "word_gyeongwi": [
       "pinagdaanan ng pangyayari",
       "Pakipaliwanag po kung paano nangyari ang aksidente."
@@ -11843,10 +11767,6 @@
       "sa katunayan, halos",
       "Halos tapos na ito sa katunayan."
     ],
-    "word_sumjida": [
-      "pumanaw",
-      "Isang tao ang pumanaw sa aksidente."
-    ],
     "word_baesinhada": [
       "pagtaksilan",
       "Huwag po ninyong pagtaksilan ang inyong kaibigan."
@@ -11866,10 +11786,6 @@
     "word_heotdoeda": [
       "walang kabuluhan",
       "Hindi nasayang ang pagsisikap."
-    ],
-    "word_samanghada": [
-      "mamatay",
-      "Namatay sila sa aksidente."
     ],
     "word_sakda": [
       "mabulok, maagnas",
@@ -12346,10 +12262,6 @@
       "matatagpuan sa",
       "Matatagpuan ang paaralan sa isang burol."
     ],
-    "word_hyeopbakada": [
-      "magbanta, takutin",
-      "Hindi po dapat magbanta sa iba."
-    ],
     "word_moyokada": [
       "insultuhin",
       "Huwag po ninyong insultuhin ang iba."
@@ -12698,10 +12610,6 @@
     "word_dongbyeongsangnyeon": [
       "damayan ng magkasingdanas",
       "Nakakadama ako ng damay dahil dumaan din ako sa gayon."
-    ],
-    "word_salsinseongin": [
-      "pag-aalay ng buhay para sa tama",
-      "Ginugunita natin ang diwa ng pag-aalay ng buhay para sa tama."
     ],
     "word_jaksimsamil": [
       "pasyang ilang araw lang tumatagal",

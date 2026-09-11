@@ -1875,10 +1875,6 @@
       "dam olish kunlari",
       "Dam olish kunlarida men dam olaman."
     ],
-    "word_jugida": [
-      "o'ldirmoq",
-      "Xonaga kirgan chivinni o'ldirdim."
-    ],
     "word_him": [
       "kuch",
       "U bola juda kuchli."
@@ -3561,10 +3557,6 @@
       "yelka",
       "Yelkam og‘riyapti."
     ],
-    "word_babo": [
-      "ahmoq",
-      "Bu ahmoqona gap."
-    ],
     "word_nunsseop": [
       "qosh",
       "Qosh qalin."
@@ -4643,10 +4635,6 @@
       "tez-tez",
       "Tez-tez unutib qo‘yaman."
     ],
-    "word_chwihada": [
-      "mast bo‘lmoq",
-      "Ichimlikdan mast bo‘ldim."
-    ],
     "word_jeopda": [
       "buklamoq",
       "Qog‘ozni buklayman."
@@ -5325,7 +5313,7 @@
     ],
     "word_beda": [
       "kesmoq",
-      "Qo‘limni pichoq bilan kesib oldim."
+      "Men oʻt oʻraman."
     ],
     "word_dudeurida": [
       "taqillatmoq",
@@ -5915,14 +5903,6 @@
       "umid",
       "Umidim katta."
     ],
-    "word_jeonjaeng": [
-      "urush",
-      "Urush tugab, tinchlik keldi."
-    ],
-    "word_jugeum": [
-      "o‘lim",
-      "O‘lim har kimga keladi."
-    ],
     "word_eorida": [
       "yosh bo‘lmoq",
       "Ukam hali yosh."
@@ -6215,10 +6195,6 @@
       "video",
       "Videoni ko‘rdim."
     ],
-    "word_kiseu": [
-      "o‘pich",
-      "Filmda o‘pich sahnasi bor."
-    ],
     "word_pyeonanhada": [
       "qulay bo‘lmoq",
       "Eng qulay joy — uy."
@@ -6354,10 +6330,6 @@
     "word_matda_2": [
       "hidlamoq",
       "Hidlab ko‘ring."
-    ],
-    "word_suljip": [
-      "choyxona",
-      "Choyxona shovqinli."
     ],
     "word_yojeong": [
       "pari",
@@ -7595,10 +7567,6 @@
     "word_domanggada": [
       "qochib ketmoq",
       "Mushuk qochib ketdi."
-    ],
-    "word_mugi": [
-      "qurol",
-      "Qurolni qo‘ying."
     ],
     "word_beoseonada": [
       "qutulmoq",
@@ -8993,10 +8961,6 @@
       "kod",
       "Kodni kiriting."
     ],
-    "word_jeontu": [
-      "jang",
-      "Jang tugadi."
-    ],
     "word_jeuksi": [
       "darhol",
       "Darhol javob bering."
@@ -9161,10 +9125,6 @@
     "word_hechida": [
       "yorib o‘tmoq",
       "Qorli yo‘lni yorib o‘tdim."
-    ],
-    "word_chongal": [
-      "o‘q",
-      "O‘q tez uchadi."
     ],
     "word_beotida": [
       "chidab turmoq",
@@ -9342,10 +9302,6 @@
     "word_dansunhada": [
       "sodda bo‘lmoq",
       "Shakli sodda."
-    ],
-    "word_sarin": [
-      "qotillik",
-      "Qotillik sodir bo‘ldi."
     ],
     "word_darida_2": [
       "qaynatmoq",
@@ -9630,10 +9586,6 @@
       "boshqarmoq",
       "Samolyotni boshqarishadi."
     ],
-    "word_gangdo": [
-      "qaroqchi",
-      "Qaroqchi haqida xabar berdim."
-    ],
     "word_ihonhada": [
       "ajrashmoq",
       "Ikkovi ajrashdi."
@@ -9803,10 +9755,6 @@
       "hech bo‘lmaganda",
       "Hech bo‘lmaganda ikki kun oladi."
     ],
-    "word_sagyeok": [
-      "otish",
-      "Otish mashqini qilishadi."
-    ],
     "word_gallae": [
       "tarmoq",
       "Yo‘l ikki tarmoqqa bo‘linadi."
@@ -9928,10 +9876,6 @@
       "foydalilik",
       "Bunda ham foyda bor."
     ],
-    "word_meongcheonghada": [
-      "ahmoq bo‘lmoq",
-      "Ahmoqona xato bo‘ldi."
-    ],
     "word_ttaraseo": [
       "shu sababli",
       "Qor yog‘di. Shu sababli yo‘l sirpanchiq."
@@ -9975,10 +9919,6 @@
     "word_banhada": [
       "oshiq bo‘lmoq",
       "Ilk ko‘rishdayoq oshiq bo‘ldim."
-    ],
-    "word_jombi": [
-      "zombi",
-      "Filmda zombilar bor."
     ],
     "word_paiting": [
       "qani",
@@ -10420,10 +10360,6 @@
       "gen",
       "Genlarni o‘rganishadi."
     ],
-    "word_paeop": [
-      "ish tashlash",
-      "Metrodagi ish tashlash tufayli kechikdim."
-    ],
     "word_gwayeon": [
       "haqiqatan",
       "Haqiqatan aytilganidek ekan."
@@ -10674,10 +10610,6 @@
       "Ikki gap bir-biriga zid keladi.",
       "So'zning o'zi bir hikoya. Bir savdogar hamma narsani teshib o'tadigan nayza (모, 矛) va hech narsa tesha olmaydigan qalqon (순, 盾) sotgan ekan — toki bir xaridor birini ikkinchisiga ishlatsa nima bo'lishini so'ramaguncha. Koreys tilida bu o'zini o'zi inkor etadigan har qanday da'voga aytiladi."
     ],
-    "word_misail": [
-      "raketa",
-      "Yangiliklarda raketa haqida gapirildi."
-    ],
     "word_seonggasida": [
       "bezovta qiluvchi bo'lmoq",
       "Chivinlar bezovta qiladi."
@@ -10761,10 +10693,6 @@
     "word_meoljjeonghada": [
       "sog'-salomat bo'lmoq",
       "Yiqildi, ammo sog'-salomat."
-    ],
-    "word_beolgeobeotda": [
-      "yalang'och bo'lmoq",
-      "Bola yalang'och yugurib yuribdi."
     ],
     "word_gongpyeonghada": [
       "adolatli bo'lmoq",
@@ -11526,10 +11454,6 @@
       "yetkazmoq",
       "Ovora qilganim uchun uzr."
     ],
-    "word_inyeom": [
-      "mafkura",
-      "Mafkuradan inson ustun."
-    ],
     "word_gyeongwi": [
       "tafsilot",
       "Baxtsiz hodisaning tafsilotini tushuntiring."
@@ -11835,10 +11759,6 @@
       "Ma'lumot qancha ko'p bo'lsa shuncha yaxshi.",
       "So'zma-so'z \"ko'p, ko'p, qancha ko'p bo'lsa shuncha yaxshi\". Hech qachon ortiqcha bo'lmaydigan narsalar haqida: ma'lumot, yordam beruvchi qo'llar, mashq."
     ],
-    "word_sumjida": [
-      "halok bo'lmoq",
-      "Halokatda bir kishi halok bo'ldi."
-    ],
     "word_sasilsang": [
       "amalda",
       "Amalda tugadi."
@@ -11862,10 +11782,6 @@
     "word_heotdoeda": [
       "behuda bo'lmoq",
       "Mehnat behuda ketmadi."
-    ],
-    "word_samanghada": [
-      "vafot etmoq",
-      "Halokatda vafot etdi."
     ],
     "word_sakda": [
       "chirimoq",
@@ -12350,10 +12266,6 @@
       "joylashmoq",
       "Maktab tepalikda joylashgan."
     ],
-    "word_hyeopbakada": [
-      "qo'rqitmoq",
-      "Qo'rqitish mumkin emas."
-    ],
     "word_moyokada": [
       "haqorat qilmoq",
       "O'zgani haqorat qilmang."
@@ -12702,10 +12614,6 @@
     "word_dongbyeongsangnyeon": [
       "bir dardni tortganlar hamdardligi",
       "Bir dardni tortganday hamdardlik sezaman."
-    ],
-    "word_salsinseongin": [
-      "jonini fido qilish",
-      "To'g'rilik yo'lida jonini fido qilish ruhini ulug'laymiz."
     ],
     "word_jaksimsamil": [
       "uch kunlik ahd",

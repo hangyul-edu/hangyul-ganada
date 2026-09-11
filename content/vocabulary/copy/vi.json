@@ -2659,10 +2659,6 @@
       "Hangul",
       "Tôi đang học Hangul."
     ],
-    "word_babo": [
-      "kẻ ngốc",
-      "Nói vậy thì ngốc quá."
-    ],
     "word_jamak": [
       "phụ đề",
       "Bạn bật phụ đề giúp mình nhé."
@@ -3694,10 +3690,6 @@
       "hứa",
       "Chúng tôi đã hẹn gặp ngày mai."
     ],
-    "word_chwihada": [
-      "say",
-      "Tôi bị say rồi."
-    ],
     "word_dochakada": [
       "đến nơi",
       "Tàu đã đến."
@@ -4221,7 +4213,7 @@
     ],
     "word_beda": [
       "cắt đứt",
-      "Tôi bị dao cắt vào tay."
+      "Tôi cắt cỏ."
     ],
     "word_samkida": [
       "nuốt",
@@ -4783,10 +4775,6 @@
       "nhỏ tuổi",
       "Em tôi vẫn còn nhỏ."
     ],
-    "word_kiseu": [
-      "nụ hôn",
-      "Trong phim có cảnh hôn."
-    ],
     "word_geonneo": [
       "phía đối diện",
       "Bên kia đường có một cửa hàng."
@@ -4922,10 +4910,6 @@
     "word_ireoda": [
       "làm thế này",
       "Cứ thế này thì muộn mất."
-    ],
-    "word_suljip": [
-      "quán nhậu",
-      "Quán nhậu ồn ào."
     ],
     "word_goemul": [
       "quái vật",
@@ -5854,10 +5838,6 @@
     "word_bitda_2": [
       "nặn",
       "Tôi nặn bánh bao."
-    ],
-    "word_mugi": [
-      "vũ khí",
-      "Bạn hạ vũ khí xuống."
     ],
     "word_jolda": [
       "ngủ gật",
@@ -7156,10 +7136,6 @@
       "nhiệm vụ",
       "Tôi đã hoàn thành nhiệm vụ."
     ],
-    "word_jeontu": [
-      "trận chiến",
-      "Trận chiến đã kết thúc."
-    ],
     "word_jansori": [
       "lời cằn nhằn",
       "Tôi đã bị cằn nhằn."
@@ -7259,10 +7235,6 @@
     "word_daebak": [
       "cú hit lớn",
       "Bộ phim này là một cú hit."
-    ],
-    "word_chongal": [
-      "viên đạn",
-      "Viên đạn bay nhanh."
     ],
     "word_chateu": [
       "bảng biểu",
@@ -7364,10 +7336,6 @@
     "word_deureonaeda": [
       "bộc lộ",
       "Tôi đã bộc lộ cảm xúc thật."
-    ],
-    "word_sarin": [
-      "vụ giết người",
-      "Đã xảy ra một vụ giết người."
     ],
     "word_yeokda": [
       "kết lại",
@@ -7698,10 +7666,6 @@
       "to đùng",
       "Có một cái cây to đùng."
     ],
-    "word_gangdo": [
-      "kẻ cướp",
-      "Tôi đã trình báo về tên cướp."
-    ],
     "word_jakdonghada": [
       "vận hành",
       "Cái máy chạy tốt."
@@ -7858,10 +7822,6 @@
     "word_heundeulda": [
       "vẫy, lắc",
       "Tôi vẫy tay."
-    ],
-    "word_sagyeok": [
-      "việc bắn súng",
-      "Họ luyện tập bắn súng."
     ],
     "word_nollida": [
       "trêu",
@@ -8030,10 +7990,6 @@
     "word_chepo": [
       "sự bắt giữ",
       "Tôi nghe tin bắt được thủ phạm."
-    ],
-    "word_jombi": [
-      "thây ma",
-      "Trong phim có thây ma."
     ],
     "word_choeso": [
       "tối thiểu",
@@ -8210,10 +8166,6 @@
     "word_silkeot": [
       "thỏa thích",
       "Tôi đã chơi thỏa thích."
-    ],
-    "word_meongcheonghada": [
-      "ngớ ngẩn",
-      "Đó là một sai lầm ngớ ngẩn."
     ],
     "word_bamneutda": [
       "khuya",
@@ -8583,10 +8535,6 @@
       "sự sinh tồn",
       "Sinh tồn là quan trọng nhất."
     ],
-    "word_misail": [
-      "tên lửa",
-      "Bản tin có nhắc đến tên lửa."
-    ],
     "word_jonjunghada": [
       "tôn trọng",
       "Tôi tôn trọng ý muốn của người khác."
@@ -8650,10 +8598,6 @@
     "word_haechida": [
       "làm hại",
       "Nó có hại cho sức khỏe."
-    ],
-    "word_beolgeobeotda": [
-      "cởi trần truồng",
-      "Đứa trẻ chạy nhông cởi truồng."
     ],
     "word_iruda": [
       "đạt được",
@@ -9528,10 +9472,6 @@
       "trên thực tế",
       "Trên thực tế là đã kết thúc."
     ],
-    "word_sumjida": [
-      "tắt thở",
-      "Một người đã tử vong trong vụ tai nạn."
-    ],
     "word_baesinhada": [
       "phản bội",
       "Bạn đừng phản bội bạn mình."
@@ -9543,10 +9483,6 @@
     "word_heotdoeda": [
       "uổng công",
       "Nỗ lực đã không uổng công."
-    ],
-    "word_samanghada": [
-      "tử vong",
-      "Anh ấy đã chết vì tai nạn."
     ],
     "word_sakda": [
       "mục, lên men",
@@ -9799,10 +9735,6 @@
     "word_moyokada": [
       "sỉ nhục",
       "Bạn đừng sỉ nhục người khác."
-    ],
-    "word_hyeopbakada": [
-      "đe dọa tống tiền",
-      "Bạn không được đe dọa người khác."
     ],
     "word_wihyeopada": [
       "uy hiếp",
@@ -10543,14 +10475,6 @@
     "word_gamok": [
       "nhà tù",
       "Cảnh sát đã đưa người đó vào tù."
-    ],
-    "word_jeonjaeng": [
-      "chiến tranh",
-      "Chiến tranh kết thúc và hòa bình đến."
-    ],
-    "word_jugeum": [
-      "cái chết",
-      "Cái chết đến với tất cả mọi người."
     ],
     "word_ipgu": [
       "lối vào",
@@ -11394,10 +11318,6 @@
       "chết",
       "Không tưới nước nên hoa trong chậu đã chết."
     ],
-    "word_jugida": [
-      "giết",
-      "Tôi đã đập chết con muỗi bay vào phòng."
-    ],
     "word_ssauda": [
       "cãi nhau",
       "Tôi hay cãi nhau với em."
@@ -12208,10 +12128,6 @@
       "bực mình",
       "Chờ đợi thật bực mình."
     ],
-    "word_paeop": [
-      "đình công",
-      "Tôi đến muộn vì tàu điện ngầm đình công."
-    ],
     "word_chuse": [
       "xu thế",
       "Dạo này xu thế là như vậy."
@@ -12396,10 +12312,6 @@
     "word_maengnak": [
       "mạch, ngữ cảnh",
       "Phải nhìn ngữ cảnh trước sau mới thấy được ý nghĩa."
-    ],
-    "word_inyeom": [
-      "hệ tư tưởng",
-      "Con người quan trọng hơn hệ tư tưởng."
     ],
     "word_gyeongwi": [
       "diễn biến sự việc",
@@ -12673,10 +12585,6 @@
     "word_dongbyeongsangnyeon": [
       "đồng bệnh tương lân",
       "Tôi thương cảm vì từng trải qua điều tương tự."
-    ],
-    "word_salsinseongin": [
-      "xả thân vì nghĩa",
-      "Chúng ta tôn vinh tinh thần xả thân vì nghĩa."
     ],
     "word_dwieopda": [
       "lật ngược",

@@ -2,9 +2,12 @@
 
 ## What ships today
 
-**3,393 words**, every one of them reviewed by hand, with per-field provenance
+**3,370 words**, every one of them reviewed by hand, with per-field provenance
 on every row, and a meaning and an example translation in **all thirty-two**
-interface languages — 108,576 hand-written rows.
+interface languages — 107,840 hand-written rows. Twenty-three words that were
+taught until 11 September 2026 are retired under the child-safe content
+policy, with a tombstone each in `content/vocabulary/retired-words.json`
+(`docs/CHILD_SAFE_CONTENT_REMEDIATION_LEDGER.md`).
 
 ### …and where it is going
 

@@ -1875,10 +1875,6 @@
       "helg",
       "På helgen vilar jag."
     ],
-    "word_jugida": [
-      "att döda",
-      "Jag dödade myggan som kom in i rummet."
-    ],
     "word_him": [
       "styrka",
       "Det barnet är mycket starkt."
@@ -3561,10 +3557,6 @@
       "axel",
       "Axeln gör ont."
     ],
-    "word_babo": [
-      "dåre",
-      "Det är dumt sagt."
-    ],
     "word_nunsseop": [
       "ögonbryn",
       "Ögonbrynen är tjocka."
@@ -4643,10 +4635,6 @@
       "gång på gång",
       "Jag glömmer det gång på gång."
     ],
-    "word_chwihada": [
-      "bli full",
-      "Jag blev full."
-    ],
     "word_jeopda": [
       "vika",
       "Jag viker pappret."
@@ -5325,7 +5313,7 @@
     ],
     "word_beda": [
       "skära",
-      "Jag skar mig på en kniv."
+      "Jag klipper gräset."
     ],
     "word_dudeurida": [
       "knacka",
@@ -5915,14 +5903,6 @@
       "förväntan",
       "Mina förväntningar är höga."
     ],
-    "word_jeonjaeng": [
-      "krig",
-      "Kriget tog slut och freden kom."
-    ],
-    "word_jugeum": [
-      "död",
-      "Döden kommer till alla."
-    ],
     "word_eorida": [
       "vara ung",
       "Mitt syskon är fortfarande ungt."
@@ -6215,10 +6195,6 @@
       "video",
       "Jag såg en video."
     ],
-    "word_kiseu": [
-      "kyss",
-      "Det finns en kyssscen i filmen."
-    ],
     "word_pyeonanhada": [
       "vara bekväm",
       "Hemma är jag mest bekväm."
@@ -6354,10 +6330,6 @@
     "word_matda_2": [
       "lukta på",
       "Lukta på det, tack."
-    ],
-    "word_suljip": [
-      "krog",
-      "Krogen är högljudd."
     ],
     "word_yojeong": [
       "fe",
@@ -7595,10 +7567,6 @@
     "word_domanggada": [
       "springa iväg",
       "Katten sprang iväg."
-    ],
-    "word_mugi": [
-      "vapen",
-      "Lägg ner vapnet, tack."
     ],
     "word_beoseonada": [
       "komma undan",
@@ -8993,10 +8961,6 @@
       "kod",
       "Ange koden, tack."
     ],
-    "word_jeontu": [
-      "strid",
-      "Striden är över."
-    ],
     "word_jeuksi": [
       "omedelbart",
       "Svara omedelbart, tack."
@@ -9161,10 +9125,6 @@
     "word_hechida": [
       "bana sig fram",
       "Jag banade mig fram genom snön."
-    ],
-    "word_chongal": [
-      "kula",
-      "En kula går fort."
     ],
     "word_beotida": [
       "hålla ut",
@@ -9342,10 +9302,6 @@
     "word_dansunhada": [
       "vara enkel",
       "Formen är enkel."
-    ],
-    "word_sarin": [
-      "mord",
-      "Ett mord har begåtts."
     ],
     "word_darida_2": [
       "koka in",
@@ -9630,10 +9586,6 @@
       "styra",
       "De styr flygplanet."
     ],
-    "word_gangdo": [
-      "rånare",
-      "Jag anmälde rånaren."
-    ],
     "word_ihonhada": [
       "skilja sig",
       "De två skilde sig."
@@ -9803,10 +9755,6 @@
       "åtminstone",
       "Det tar åtminstone två dagar."
     ],
-    "word_sagyeok": [
-      "skytte",
-      "De övar skytte."
-    ],
     "word_gallae": [
       "gren",
       "Vägen delar sig i två."
@@ -9928,10 +9876,6 @@
       "nytta",
       "Det här har också sin nytta."
     ],
-    "word_meongcheonghada": [
-      "vara korkad",
-      "Det var ett korkat misstag."
-    ],
     "word_ttaraseo": [
       "följaktligen",
       "Det snöade. Följaktligen är vägen hal."
@@ -9975,10 +9919,6 @@
     "word_banhada": [
       "bli förtjust i",
       "Jag blev kär vid första ögonkastet."
-    ],
-    "word_jombi": [
-      "zombie",
-      "Zombier förekommer i filmen."
     ],
     "word_paiting": [
       "heja",
@@ -10420,10 +10360,6 @@
       "gen",
       "De studerar gener."
     ],
-    "word_paeop": [
-      "strejk",
-      "Jag blev sen på grund av tunnelbanestrejken."
-    ],
     "word_gwayeon": [
       "mycket riktigt",
       "Det är mycket riktigt som ryktet sa."
@@ -10674,10 +10610,6 @@
       "De två påståendena motsäger varandra.",
       "Ordet är en berättelse. En köpman sålde ett spjut (모, 矛) som gick igenom allt och en sköld (순, 盾) som inget kunde gå igenom — tills en kund frågade vad som skulle hända om han använde det ena mot det andra. På koreanska används det om varje påstående som upphäver sig självt."
     ],
-    "word_misail": [
-      "robot",
-      "Nyheterna rapporterade om en robot."
-    ],
     "word_seonggasida": [
       "vara besvärlig",
       "Myggor är besvärliga."
@@ -10761,10 +10693,6 @@
     "word_meoljjeonghada": [
       "vara oskadd",
       "Han föll, men han är oskadd."
-    ],
-    "word_beolgeobeotda": [
-      "vara spritt naken",
-      "Barnet springer spritt naket omkring."
     ],
     "word_gongpyeonghada": [
       "vara rättvis",
@@ -11526,10 +11454,6 @@
       "vålla",
       "Förlåt för besväret jag vållat."
     ],
-    "word_inyeom": [
-      "ideologi",
-      "Människan kommer före ideologin."
-    ],
     "word_gyeongwi": [
       "förlopp",
       "Förklara olyckans förlopp."
@@ -11835,10 +11759,6 @@
       "När det gäller information är det ju mer desto bättre.",
       "Ordagrant \"mycket, mycket, ju mer desto bättre\". Om sådant man aldrig kan få för mycket av — information, hjälpande händer, övning."
     ],
-    "word_sumjida": [
-      "omkomma",
-      "En person omkom i olyckan."
-    ],
     "word_sasilsang": [
       "i praktiken",
       "Det är i praktiken över."
@@ -11862,10 +11782,6 @@
     "word_heotdoeda": [
       "vara förgäves",
       "Mödan var inte förgäves."
-    ],
-    "word_samanghada": [
-      "avlida",
-      "Han avled i en olycka."
     ],
     "word_sakda": [
       "multna",
@@ -12350,10 +12266,6 @@
       "vara belägen",
       "Skolan är belägen på en kulle."
     ],
-    "word_hyeopbakada": [
-      "hota med tvång",
-      "Man får inte hota med tvång."
-    ],
     "word_moyokada": [
       "förolämpa",
       "Förolämpa inte andra."
@@ -12702,10 +12614,6 @@
     "word_dongbyeongsangnyeon": [
       "samhörighet i lidandet",
       "Jag känner samhörighet med dem i lidandet."
-    ],
-    "word_salsinseongin": [
-      "att ge sitt liv för det rätta",
-      "Vi hedrar andan i att ge sitt liv för det rätta."
     ],
     "word_jaksimsamil": [
       "föresats som håller i tre dagar",
