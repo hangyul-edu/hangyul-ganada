@@ -1,12 +1,15 @@
 /**
- * The matching grid, and the one thing it can get badly wrong.
+ * The matching grid, as a first-time learner meets it.
  *
  * A grid is the only exercise in the product that asks about several words in
  * one screen, and every counter in the app — the day's goal, the mastery
  * ladder, the activity row, the per-skill memory — is built on the assumption
- * that a question is about one word. The interesting assertions here are
- * therefore not about tapping; they are about what the session is *told* when
- * the tapping is done.
+ * that a question is about one word. So half of what is asserted here is what
+ * the session is *told* when the grid is checked. The other half is the
+ * interaction a customer could not work out: which column to tap first, what a
+ * made pair looks like, how to change one, and when Check becomes available.
+ * The likely first-time sequence — tap a meaning first, tap two words, pair,
+ * change your mind, pair again — is walked as taps, not asserted from data.
  */
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
@@ -15,7 +18,10 @@ import { MatchExercise, type MatchResult } from './MatchExercise';
 import type { MatchPair } from './dailyQuestions';
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+  useTranslation: () => ({
+    t: (key: string, values?: Record<string, unknown>) =>
+      values?.word ? `${key}:${String(values.word)}` : values?.n ? `${key}:${String(values.n)}` : key,
+  }),
 }));
 
 vi.mock('../../native/haptics', () => ({
@@ -44,100 +50,168 @@ function grid(onAnswered = vi.fn(), onContinue = vi.fn()) {
   return { onAnswered, onContinue };
 }
 
-const tap = (text: string) => fireEvent.click(screen.getByRole('button', { name: text }));
+const button = (text: string) => screen.getByRole('button', { name: new RegExp(`^(learning:review\\.matchPairLabel:\\d+ ?)?${text}( |$)`) });
+const tap = (text: string) => fireEvent.click(button(text));
+const check = () => fireEvent.click(screen.getByTestId('match-check'));
 
 /** Pairs `korean` with `meaning`, in the two taps a learner would use. */
 const pair = (korean: string, meaning: string) => {
   tap(korean);
   tap(meaning);
 };
+const pairAll = () => {
+  pair('물', 'water');
+  pair('밥', 'rice');
+  pair('집', 'house');
+  pair('돈', 'money');
+};
 
-describe('the matching grid', () => {
-  it('reports one result per word, and only when the grid is finished', () => {
-    const { onAnswered } = grid();
-
-    pair('물', 'water');
-    pair('밥', 'rice');
-    pair('집', 'house');
-    expect(onAnswered, 'reported before the last pair was made').not.toHaveBeenCalled();
-
-    pair('돈', 'money');
-    expect(onAnswered).toHaveBeenCalledTimes(1);
-
-    const results: MatchResult[] = onAnswered.mock.calls[0]![0];
-    expect(results.map((r) => r.wordId).sort()).toEqual(['w1', 'w2', 'w3', 'w4']);
-    expect(results.every((r) => r.correct)).toBe(true);
-  });
-
-  it('marks both sides of a wrong attempt, and nothing else', () => {
-    const { onAnswered } = grid();
-
-    // 물 offered for "rice": neither of the two is known to be the mistake, so
-    // both are marked. 집 and 돈 were not involved and must stay correct.
-    pair('물', 'rice');
-
-    pair('물', 'water');
-    pair('밥', 'rice');
-    pair('집', 'house');
-    pair('돈', 'money');
-
-    const results: MatchResult[] = onAnswered.mock.calls[0]![0];
-    const by = Object.fromEntries(results.map((r) => [r.wordId, r.correct]));
-    expect(by).toEqual({ w1: false, w2: false, w3: true, w4: true });
-  });
-
-  it('does not reveal or remove anything on a wrong attempt', () => {
+describe('the matching grid — what a first-time learner sees', () => {
+  it('names the two columns and says the first action', () => {
     grid();
-    pair('물', 'rice');
-    // Every tile is still on screen and still usable — a wrong guess costs the
-    // learner nothing but the attempt.
-    for (const text of ['물', '밥', '집', '돈', 'water', 'rice', 'house', 'money']) {
-      expect(screen.getByRole('button', { name: text })).toBeTruthy();
-    }
-    expect(screen.getByRole('button', { name: '물' })).not.toBeDisabled();
+    expect(screen.getByText('learning:review.prompt.match')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'learning:review.matchColumnKorean' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'learning:review.matchColumnMeaning' })).toBeInTheDocument();
+    expect(screen.getByTestId('match-status')).toHaveTextContent('learning:review.matchPickWord');
   });
 
-  it('keeps a matched pair on screen, and out of play', () => {
-    grid();
-    pair('물', 'water');
-    expect(screen.getByRole('button', { name: '물' })).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'water' })).toBeDisabled();
-    // Still rendered: a tile that vanishes moves every row below it, and takes
-    // away the record of what has already been used.
-    expect(screen.getByRole('button', { name: '물' })).toBeTruthy();
-  });
-
-  it('lets a learner change their mind before choosing a meaning', () => {
+  it('only the Korean column is tappable before a word is chosen', () => {
     const { onAnswered } = grid();
-    tap('물');
-    tap('물'); // deselect
-    // With nothing selected the meanings are inert, so this cannot pair.
+    for (const meaning of ['water', 'rice', 'house', 'money']) expect(button(meaning)).toBeDisabled();
+    for (const word of ['물', '밥', '집', '돈']) expect(button(word)).not.toBeDisabled();
+    // A tap on a meaning first does nothing — the likely first mistake.
     tap('water');
-    expect(screen.getByRole('button', { name: '물' })).not.toBeDisabled();
+    expect(screen.getByTestId('match-status')).toHaveTextContent('learning:review.matchPickWord');
     expect(onAnswered).not.toHaveBeenCalled();
   });
 
-  it('reports once even if the last pair is tapped twice', () => {
+  it('a chosen word is shown as chosen, the meanings become the target, and the caption names the word', () => {
+    grid();
+    tap('물');
+    expect(button('물')).toHaveAttribute('aria-pressed', 'true');
+    expect(button('물')).toHaveAttribute('data-state', 'selected');
+    for (const meaning of ['water', 'rice', 'house', 'money']) {
+      expect(button(meaning)).not.toBeDisabled();
+      expect(button(meaning)).toHaveAttribute('data-state', 'target');
+    }
+    expect(screen.getByTestId('match-status')).toHaveTextContent('learning:review.matchPickMeaning:물');
+  });
+
+  it('two words cannot be a pair: tapping a second word moves the selection', () => {
+    grid();
+    tap('물');
+    tap('밥');
+    expect(button('물')).toHaveAttribute('data-state', 'available');
+    expect(button('밥')).toHaveAttribute('data-state', 'selected');
+    expect(screen.queryByTestId('match-check')).toBeDisabled();
+  });
+
+  it('a made pair carries the same badge on both tiles and can be taken apart from either side', () => {
+    grid();
+    pair('물', 'water');
+    expect(button('물')).toHaveAttribute('data-state', 'paired');
+    expect(button('water')).toHaveAttribute('data-state', 'paired');
+    const badges = screen.getAllByLabelText('learning:review.matchPairLabel:1');
+    expect(badges).toHaveLength(2);
+    // Change your mind from the meaning side …
+    tap('water');
+    expect(button('water')).toHaveAttribute('data-state', 'target');
+    expect(button('물')).toHaveAttribute('data-state', 'selected');
+    tap('rice');
+    expect(button('rice')).toHaveAttribute('data-state', 'paired');
+    // … and from the word side.
+    tap('물');
+    expect(button('rice')).toHaveAttribute('data-state', 'target');
+    expect(button('물')).toHaveAttribute('data-state', 'selected');
+  });
+
+  it('a meaning belongs to one word: re-pairing releases the earlier pair', () => {
+    grid();
+    pair('물', 'water');
+    pair('밥', 'water');
+    expect(button('물')).toHaveAttribute('data-state', 'available');
+    expect(button('밥')).toHaveAttribute('data-state', 'paired');
+  });
+
+  it('Check is disabled until every word is paired, and reports nothing before it is pressed', () => {
     const { onAnswered } = grid();
+    expect(screen.getByTestId('match-check')).toBeDisabled();
     pair('물', 'water');
     pair('밥', 'rice');
     pair('집', 'house');
+    expect(screen.getByTestId('match-check')).toBeDisabled();
     pair('돈', 'money');
-    // A double tap on a finished grid must not report a second set of results;
-    // the session would credit every word twice.
-    tap('돈');
-    tap('money');
+    expect(screen.getByTestId('match-check')).not.toBeDisabled();
+    expect(screen.getByTestId('match-status')).toHaveTextContent('learning:review.matchAllPaired');
+    expect(onAnswered).not.toHaveBeenCalled();
+  });
+});
+
+describe('the matching grid — what the session is told', () => {
+  it('reports one result per word, once, when checked', () => {
+    const { onAnswered } = grid();
+    pairAll();
+    check();
     expect(onAnswered).toHaveBeenCalledTimes(1);
+    const results: MatchResult[] = onAnswered.mock.calls[0]![0];
+    expect(results.map((r) => r.wordId).sort()).toEqual(['w1', 'w2', 'w3', 'w4']);
+    expect(results.every((r) => r.correct)).toBe(true);
+    expect(screen.getByTestId('match-next')).toBeInTheDocument();
+  });
+
+  it('grades each word by the pair it is in at Check', () => {
+    const { onAnswered } = grid();
+    pair('물', 'rice');
+    pair('밥', 'water');
+    pair('집', 'house');
+    pair('돈', 'money');
+    check();
+    const results: MatchResult[] = onAnswered.mock.calls[0]![0];
+    const by = Object.fromEntries(results.map((r) => [r.wordId, r.correct]));
+    expect(by).toEqual({ w1: false, w2: false, w3: true, w4: true });
+    // The verdict is on the tiles: blue for right, red for wrong, and the
+    // meaning that was right for a wrong word is outlined.
+    expect(button('물')).toHaveAttribute('data-state', 'wrong');
+    expect(button('집')).toHaveAttribute('data-state', 'right');
+    expect(button('rice')).toHaveAttribute('data-state', 'wrong');
+  });
+
+  it('a corrected pair counts as known — the grade is the final pairing, not the history', () => {
+    const { onAnswered } = grid();
+    pair('물', 'rice');
+    tap('물'); // take it apart
+    tap('water'); // pair it right
+    pair('밥', 'rice');
+    pair('집', 'house');
+    pair('돈', 'money');
+    check();
+    const results: MatchResult[] = onAnswered.mock.calls[0]![0];
+    expect(results.every((r) => r.correct)).toBe(true);
+  });
+
+  it('reports once even if Check is pressed twice', () => {
+    const { onAnswered } = grid();
+    pairAll();
+    check();
+    fireEvent.click(screen.getByTestId('match-next'));
+    expect(screen.queryByTestId('match-check')).toBeNull();
+    expect(onAnswered).toHaveBeenCalledTimes(1);
+  });
+
+  it('nothing is tappable after Check', () => {
+    grid();
+    pairAll();
+    check();
+    for (const text of ['물', '밥', '집', '돈', 'water', 'rice', 'house', 'money']) {
+      expect(button(text)).toBeDisabled();
+    }
   });
 
   it('does not put a word opposite its own meaning', () => {
     grid();
-    const buttons = screen.getAllByRole('button').map((b) => b.textContent);
-    const korean = buttons.filter((text) => PAIRS.some((p) => p.korean === text));
-    const meanings = buttons.filter((text) => PAIRS.some((p) => p.meaning === text));
-    // A grid laid out in the same order on both sides is a straight line, not
-    // a puzzle.
-    korean.forEach((text, index) => {
+    const words = screen.getAllByTestId('match-word').map((b) => b.textContent);
+    const meanings = screen.getAllByTestId('match-meaning').map((b) => b.textContent);
+    words.forEach((text, index) => {
       const expected = PAIRS.find((p) => p.korean === text)!.meaning;
       expect(meanings[index]).not.toBe(expected);
     });

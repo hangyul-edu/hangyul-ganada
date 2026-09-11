@@ -128,8 +128,8 @@
     "blank": "mezera",
     "optionsLabel": "Odpovědi",
     "cannotUseAudio": "Nejde použít zvuk?",
-    "matchPickWord": "Vyberte korejské slovo",
-    "matchPickMeaning": "Teď vyberte jeho význam",
+    "matchPickWord": "Nejprve klepněte vlevo na korejské slovo.",
+    "matchPickMeaning": "Teď klepněte vpravo na význam slova {{word}}.",
     "showHint": "Dát nápovědu",
     "mode": {
       "read": "Čtení",
@@ -147,13 +147,15 @@
       "distinguish": "Která dělá tenhle zvuk?",
       "distinguishSoundFree": "Jak zní toto písmeno?",
       "produce": "Která to je?",
-      "build": "Složte slovo",
-      "match": "Spojte každé slovo s jeho významem"
+      "build": "Klepejte na slabiky níže v pořadí, ve kterém tvoří slovo.",
+      "match": "Nejprve klepněte vlevo na korejské slovo, potom vpravo vyberte jeho význam."
     },
     "nothingDue": "Teď není co opakovat.",
     "modesEmpty": "Dnes v těchhle režimech nic není.",
     "answerIs": "{{word}} znamená „{{meaning}}“.",
     "showAnswer": "Ukázat odpověď",
+    "revealedHeadline": "Odpověď jste si zobrazili.",
+    "revealedNote": "Tahle otázka se za chvíli vrátí.",
     "hint": {
       "replay": "Přehrajte znovu — kolikrát chcete.",
       "letterFamily": "Tahle litera je {{family}}.",
@@ -168,7 +170,21 @@
     "buildTray": "Slabiky",
     "buildRemove": "Vrátit {{syllable}}",
     "markCorrect": "Správná odpověď",
-    "markWrong": "Vaše odpověď, nesprávná"
+    "markWrong": "Vaše odpověď, nesprávná",
+    "buildSlots": "Políček: {{total}}",
+    "buildSlotFilled": "Políčko {{index}}: {{syllable}}. Klepnutím vrátíte.",
+    "buildSlotEmpty": "Políčko {{index}}, prázdné",
+    "buildFilled": "Všechna políčka jsou vyplněná. Stiskněte Zkontrolovat.",
+    "buildProgress": "Vyplněno {{filled}} z {{total}} políček.",
+    "buildTilePlaced": "{{syllable}}, umístěno",
+    "buildUndo": "Zpět",
+    "buildCheck": "Zkontrolovat",
+    "matchColumnKorean": "Korejské slovo",
+    "matchColumnMeaning": "Význam",
+    "matchPaired": "{{word}} spárováno s {{meaning}}. Klepnutím na jedno z nich to změníte.",
+    "matchAllPaired": "Vše spárováno. Stiskněte Zkontrolovat.",
+    "matchCheck": "Zkontrolovat",
+    "matchPairLabel": "Dvojice {{n}}"
   },
   "sounds": {
     "title": "Když se zvuky potkají",

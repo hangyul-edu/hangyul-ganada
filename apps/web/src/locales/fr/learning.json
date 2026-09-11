@@ -38,8 +38,8 @@
     "blank": "trou",
     "optionsLabel": "Réponses",
     "cannotUseAudio": "Vous ne pouvez pas écouter ?",
-    "matchPickWord": "Choisissez un mot coréen",
-    "matchPickMeaning": "Choisissez maintenant son sens",
+    "matchPickWord": "Touchez d’abord un mot coréen à gauche.",
+    "matchPickMeaning": "Touchez maintenant le sens de {{word}} à droite.",
     "showHint": "Voir un indice",
     "mode": {
       "read": "Lire",
@@ -57,14 +57,16 @@
       "distinguish": "Laquelle fait ce son ?",
       "distinguishSoundFree": "Quel son fait cette lettre ?",
       "produce": "Lequel est-ce ?",
-      "build": "Reconstituez le mot",
-      "match": "Associez chaque mot à son sens"
+      "build": "Touchez les syllabes ci-dessous dans l’ordre pour former le mot.",
+      "match": "Touchez un mot coréen à gauche, puis son sens à droite."
     },
     "sessionLength_many": "{{count, number}} courts exercices",
     "nothingDue": "Rien à réviser pour le moment.",
     "modesEmpty": "Rien dans ces modes aujourd’hui.",
     "answerIs": "{{word}} signifie « {{meaning}} ».",
     "showAnswer": "Voir la réponse",
+    "revealedHeadline": "Vous avez vu la réponse.",
+    "revealedNote": "Cette question reviendra dans un instant.",
     "hint": {
       "replay": "Réécoutez-le, autant de fois que vous voulez.",
       "letterFamily": "Celle-ci est {{family}}.",
@@ -79,7 +81,21 @@
     "buildTray": "Syllabes",
     "buildRemove": "Retirer {{syllable}}",
     "markCorrect": "Bonne réponse",
-    "markWrong": "Votre réponse, incorrecte"
+    "markWrong": "Votre réponse, incorrecte",
+    "buildSlots": "{{total}} cases",
+    "buildSlotFilled": "Case {{index}} : {{syllable}}. Touchez pour la retirer.",
+    "buildSlotEmpty": "Case {{index}}, vide",
+    "buildFilled": "Toutes les cases sont remplies. Appuyez sur Vérifier.",
+    "buildProgress": "{{filled}} case(s) sur {{total}} remplie(s).",
+    "buildTilePlaced": "{{syllable}}, placée",
+    "buildUndo": "Annuler",
+    "buildCheck": "Vérifier",
+    "matchColumnKorean": "Mot coréen",
+    "matchColumnMeaning": "Sens",
+    "matchPaired": "{{word}} associé à {{meaning}}. Touchez l’un ou l’autre pour changer.",
+    "matchAllPaired": "Tout est associé. Appuyez sur Vérifier.",
+    "matchCheck": "Vérifier",
+    "matchPairLabel": "Paire {{n}}"
   },
   "units": {
     "badge": "Unité {{index, number}}",

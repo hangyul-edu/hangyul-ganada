@@ -108,10 +108,25 @@ test('the first hint does not contain the answer, and the last one does', async 
     if (label.includes('answer')) break;
   }
 
+  /*
+   * The reveal is the answer to the question, not a sentence about it.
+   *
+   * It used to print "The answer is X" under the options and leave them live;
+   * now the correct option takes the blue box a right choice takes, every
+   * option is disabled, and no copy of the answer is added to the page. What
+   * *is* added is the way on and the note that the item comes back.
+   */
   const afterReveal = (await page.locator('body').innerText()).toLowerCase();
-  expect(
-    answers.some((answer) => answer.length >= 3 && afterReveal.split(answer).length - 1 >= 2),
-  ).toBe(true);
+  for (const answer of answers) {
+    if (answer.length < 3) continue;
+    const added = occurrencesOf(afterReveal, answer) - occurrencesOf(before, answer);
+    expect(added, `the reveal added ${added} more copies of “${answer}”`).toBe(0);
+  }
+  const revealed = page.locator('[role=group] button[data-answer="true"]');
+  await expect(revealed).toHaveCount(1);
+  await expect(revealed).toBeDisabled();
+  await expect(page.locator('[role=group] button:not([disabled])')).toHaveCount(0);
+  await expect(page.getByTestId('revealed-next')).toBeVisible();
 });
 
 test('a learner can read the whole app in Thai', async ({ browser }) => {

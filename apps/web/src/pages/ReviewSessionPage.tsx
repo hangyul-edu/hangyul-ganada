@@ -190,7 +190,7 @@ export function ReviewSessionPage() {
     (
       passed: boolean,
       score: number,
-      extra: { hintLevel?: number; responseMs?: number; chosen?: string },
+      extra: { hintLevel?: number; responseMs?: number; chosen?: string; revealed?: boolean },
     ) => {
       if (!candidate) return;
       const key = `${candidate.kind}:${candidate.itemKey}:${candidate.skill}`;
@@ -212,6 +212,7 @@ export function ReviewSessionPage() {
         // this learner actually mixes this up with rather than what the design
         // assumed they would.
         ...(!passed && extra.chosen ? { confused_with: extra.chosen } : {}),
+        ...(extra.revealed ? { revealed: true } : {}),
         recovery,
         session_id: sessionId.current,
       });
@@ -439,6 +440,7 @@ export function ReviewSessionPage() {
                 hintLevel: result.hintLevel,
                 responseMs: result.responseMs,
                 chosen: result.chosen,
+                revealed: result.revealed,
               })
             }
             onContinue={advance}

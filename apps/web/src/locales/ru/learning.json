@@ -128,8 +128,8 @@
     "blank": "пропуск",
     "optionsLabel": "Ответы",
     "cannotUseAudio": "Не получается со звуком?",
-    "matchPickWord": "Выберите корейское слово",
-    "matchPickMeaning": "Теперь выберите его значение",
+    "matchPickWord": "Сначала нажмите корейское слово слева.",
+    "matchPickMeaning": "Теперь нажмите значение слова {{word}} справа.",
     "showHint": "Дать подсказку",
     "mode": {
       "read": "Чтение",
@@ -147,13 +147,15 @@
       "distinguish": "Какая даёт этот звук?",
       "distinguishSoundFree": "Какой звук у этой буквы?",
       "produce": "Которая из них?",
-      "build": "Соберите слово",
-      "match": "Соедините каждое слово с его значением"
+      "build": "Нажимайте слоги внизу по порядку, чтобы собрать слово.",
+      "match": "Сначала нажмите корейское слово слева, затем выберите его значение справа."
     },
     "nothingDue": "Сейчас повторять нечего.",
     "modesEmpty": "Сегодня в этих режимах ничего нет.",
     "answerIs": "{{word}} значит «{{meaning}}».",
     "showAnswer": "Показать ответ",
+    "revealedHeadline": "Вы посмотрели ответ.",
+    "revealedNote": "Этот вопрос скоро появится снова.",
     "hint": {
       "replay": "Проиграйте ещё раз — сколько угодно.",
       "letterFamily": "Эта буква — {{family}}.",
@@ -168,7 +170,21 @@
     "buildTray": "Слоги",
     "buildRemove": "Вернуть {{syllable}}",
     "markCorrect": "Правильный ответ",
-    "markWrong": "Ваш ответ, неверный"
+    "markWrong": "Ваш ответ, неверный",
+    "buildSlots": "Ячеек: {{total}}",
+    "buildSlotFilled": "Ячейка {{index}}: {{syllable}}. Нажмите, чтобы вернуть.",
+    "buildSlotEmpty": "Ячейка {{index}}, пустая",
+    "buildFilled": "Все ячейки заполнены. Нажмите «Проверить».",
+    "buildProgress": "Заполнено {{filled}} из {{total}} ячеек.",
+    "buildTilePlaced": "{{syllable}}, поставлен",
+    "buildUndo": "Отменить",
+    "buildCheck": "Проверить",
+    "matchColumnKorean": "Корейское слово",
+    "matchColumnMeaning": "Значение",
+    "matchPaired": "{{word}} соединено с {{meaning}}. Нажмите любое, чтобы изменить.",
+    "matchAllPaired": "Всё соединено. Нажмите «Проверить».",
+    "matchCheck": "Проверить",
+    "matchPairLabel": "Пара {{n}}"
   },
   "sounds": {
     "title": "Когда звуки встречаются",

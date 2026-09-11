@@ -1,4 +1,5 @@
 .exercise {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--hg-space-4);
@@ -183,22 +184,75 @@
  * tall rectangles push the sentence off the top of a phone. Chips keep the
  * sentence and its candidates on screen together, which is the only way to
  * actually read one into the other.
+ *
+ * ## Four across or two by two, never three and one
+ *
+ * This was `flex-wrap: wrap`, and on a 360 px phone the fourth chip fell
+ * through on its own — three choices and an orphan, which a customer
+ * photographed. Wrapping is not a layout. The chips are a grid now, and the
+ * number of columns is decided by `useChoiceColumns` from a measurement of
+ * the chips themselves: four across when all four fit at the learner's type
+ * size, otherwise two by two with each cell free to wrap its own text. The
+ * grid is the same in both directions of reading, so a right-to-left
+ * interface gets the mirror image with the same row-major order.
  */
 .optionsChips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
   gap: var(--hg-space-2);
+  justify-items: stretch;
+}
+
+.chipsFour {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.chipsTwo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .optionsChips .option {
-  min-height: 0;
-  flex: 0 1 auto;
-  padding: var(--hg-space-2) var(--hg-space-4);
+  min-height: 48px;
+  padding: var(--hg-space-2) var(--hg-space-3);
   border-radius: var(--hg-radius-pill);
+  /* A chip in a two-by-two cell may wrap; a chip in a row of four fits by
+     measurement and does not. */
+  overflow-wrap: anywhere;
+}
+
+.chipsFour .option {
+  white-space: nowrap;
 }
 
 .optionsChips .optionKorean {
+  font-size: clamp(19px, 5.5vw, 24px);
+}
+
+/*
+ * The measuring line for the chips. Hidden, non-wrapping, absolutely
+ * positioned so it takes no space and cannot be read or tapped; its scroll
+ * width is compared with the grid's width. See `useChoiceColumns`.
+ */
+.measure {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--hg-space-2);
+  width: max-content;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.measureChip {
+  flex: none;
+  white-space: nowrap;
+  min-height: 48px;
+  padding: var(--hg-space-2) var(--hg-space-3);
+  border-radius: var(--hg-radius-pill);
+}
+
+.measureChip .optionKorean {
   font-size: clamp(19px, 5.5vw, 24px);
 }
 
@@ -327,6 +381,11 @@
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
+}
+
+/* The one line under a reveal: that the word comes back later. */
+.revealedNote {
+  margin: 0;
 }
 
 .answerKorean {

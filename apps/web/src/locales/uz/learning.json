@@ -126,8 +126,8 @@
     "blank": "bo‘sh joy",
     "optionsLabel": "Javoblar",
     "cannotUseAudio": "Ovozdan foydalana olmayapsizmi?",
-    "matchPickWord": "Koreyscha so‘z tanlang",
-    "matchPickMeaning": "Endi uning ma’nosini tanlang",
+    "matchPickWord": "Avval chap tomondagi koreyscha so‘zni bosing.",
+    "matchPickMeaning": "Endi o‘ng tomondan {{word}} so‘zining ma’nosini bosing.",
     "showHint": "Bir ishora bering",
     "mode": {
       "read": "O‘qish",
@@ -145,13 +145,15 @@
       "distinguish": "Bu tovushni qaysi biri beradi?",
       "distinguishSoundFree": "Bu harf qanday tovush beradi?",
       "produce": "Qaysi biri?",
-      "build": "So‘zni yig‘ing",
-      "match": "Har bir so‘zni ma’nosi bilan moslang"
+      "build": "So‘zni tuzish uchun quyidagi bo‘g‘inlarni tartib bilan bosing.",
+      "match": "Avval chap tomondagi koreyscha so‘zni bosing, keyin o‘ng tomondan uning ma’nosini tanlang."
     },
     "nothingDue": "Hozir takrorlaydigan narsa yo‘q.",
     "modesEmpty": "Bugun bu turlarda hech narsa yo‘q.",
     "answerIs": "{{word}} — “{{meaning}}” degani.",
     "showAnswer": "Javobni ko‘rsatish",
+    "revealedHeadline": "Siz javobni ko‘rdingiz.",
+    "revealedNote": "Bu savol birozdan keyin yana chiqadi.",
     "hint": {
       "replay": "Yana qo‘ying — xohlagancha.",
       "letterFamily": "Turkumi — {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Bo‘g‘inlar",
     "buildRemove": "{{syllable}} ni qaytarib oling",
     "markCorrect": "To‘g‘ri javob",
-    "markWrong": "Sizning javobingiz, noto‘g‘ri"
+    "markWrong": "Sizning javobingiz, noto‘g‘ri",
+    "buildSlots": "{{total}} katak",
+    "buildSlotFilled": "{{index}}-katak: {{syllable}}. Qaytarish uchun bosing.",
+    "buildSlotEmpty": "{{index}}-katak, bo‘sh",
+    "buildFilled": "Barcha kataklar to‘ldi. «Tekshirish» tugmasini bosing.",
+    "buildProgress": "{{total}} katakdan {{filled}} tasi to‘ldi.",
+    "buildTilePlaced": "{{syllable}}, joylashtirildi",
+    "buildUndo": "Bekor qilish",
+    "buildCheck": "Tekshirish",
+    "matchColumnKorean": "Koreyscha so‘z",
+    "matchColumnMeaning": "Ma’nosi",
+    "matchPaired": "{{word}} {{meaning}} bilan juftlandi. O‘zgartirish uchun birini bosing.",
+    "matchAllPaired": "Hammasi juftlandi. «Tekshirish» tugmasini bosing.",
+    "matchCheck": "Tekshirish",
+    "matchPairLabel": "{{n}}-juft"
   },
   "sounds": {
     "title": "Tovushlar uchrashganda",

@@ -127,8 +127,8 @@
     "blank": "spațiu",
     "optionsLabel": "Răspunsuri",
     "cannotUseAudio": "Nu poți folosi sunetul?",
-    "matchPickWord": "Alegeți un cuvânt coreean",
-    "matchPickMeaning": "Acum alegeți sensul lui",
+    "matchPickWord": "Mai întâi, atinge un cuvânt coreean din stânga.",
+    "matchPickMeaning": "Acum atinge sensul lui {{word}} din dreapta.",
     "showHint": "Dă-mi un indiciu",
     "mode": {
       "read": "Citit",
@@ -146,13 +146,15 @@
       "distinguish": "Care scoate sunetul acesta?",
       "distinguishSoundFree": "Ce sunet are această literă?",
       "produce": "Care e?",
-      "build": "Alcătuiește cuvântul",
-      "match": "Potriviți fiecare cuvânt cu sensul lui"
+      "build": "Atinge silabele de mai jos în ordine pentru a forma cuvântul.",
+      "match": "Atinge mai întâi un cuvânt coreean din stânga, apoi alege sensul lui din dreapta."
     },
     "nothingDue": "Acum nu e nimic de recapitulat.",
     "modesEmpty": "Azi nu e nimic în modurile acestea.",
     "answerIs": "{{word}} înseamnă „{{meaning}}”.",
     "showAnswer": "Arată răspunsul",
+    "revealedHeadline": "Ai văzut răspunsul.",
+    "revealedNote": "Această întrebare va reveni în curând.",
     "hint": {
       "replay": "Ascultă din nou — de câte ori vrei.",
       "letterFamily": "Aceasta e {{family}}.",
@@ -167,7 +169,21 @@
     "buildTray": "Silabe",
     "buildRemove": "Ia înapoi {{syllable}}",
     "markCorrect": "Răspuns corect",
-    "markWrong": "Răspunsul tău, incorect"
+    "markWrong": "Răspunsul tău, incorect",
+    "buildSlots": "{{total}} căsuțe",
+    "buildSlotFilled": "Căsuța {{index}}: {{syllable}}. Atinge pentru a o scoate.",
+    "buildSlotEmpty": "Căsuța {{index}}, goală",
+    "buildFilled": "Toate căsuțele sunt completate. Apasă Verifică.",
+    "buildProgress": "{{filled}} din {{total}} căsuțe completate.",
+    "buildTilePlaced": "{{syllable}}, așezată",
+    "buildUndo": "Anulează",
+    "buildCheck": "Verifică",
+    "matchColumnKorean": "Cuvânt coreean",
+    "matchColumnMeaning": "Sens",
+    "matchPaired": "{{word}} asociat cu {{meaning}}. Atinge oricare pentru a schimba.",
+    "matchAllPaired": "Totul e asociat. Apasă Verifică.",
+    "matchCheck": "Verifică",
+    "matchPairLabel": "Perechea {{n}}"
   },
   "sounds": {
     "title": "Când sunetele se întâlnesc",

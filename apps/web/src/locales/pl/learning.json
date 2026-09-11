@@ -128,8 +128,8 @@
     "blank": "luka",
     "optionsLabel": "Odpowiedzi",
     "cannotUseAudio": "Nie możesz użyć dźwięku?",
-    "matchPickWord": "Wybierz koreańskie słowo",
-    "matchPickMeaning": "Teraz wybierz jego znaczenie",
+    "matchPickWord": "Najpierw dotknij koreańskiego słowa po lewej.",
+    "matchPickMeaning": "Teraz dotknij znaczenia słowa {{word}} po prawej.",
     "showHint": "Daj podpowiedź",
     "mode": {
       "read": "Czytanie",
@@ -147,13 +147,15 @@
       "distinguish": "Która daje ten dźwięk?",
       "distinguishSoundFree": "Jak brzmi ta litera?",
       "produce": "Która to?",
-      "build": "Ułóż słowo",
-      "match": "Połącz każde słowo z jego znaczeniem"
+      "build": "Dotykaj sylab poniżej po kolei, aby ułożyć słowo.",
+      "match": "Najpierw dotknij koreańskiego słowa po lewej, a potem wybierz jego znaczenie po prawej."
     },
     "nothingDue": "Teraz nie ma czego powtarzać.",
     "modesEmpty": "Dziś nic w tych trybach.",
     "answerIs": "{{word}} znaczy „{{meaning}}”.",
     "showAnswer": "Pokaż odpowiedź",
+    "revealedHeadline": "Odpowiedź została pokazana.",
+    "revealedNote": "To pytanie wróci za chwilę.",
     "hint": {
       "replay": "Odtwórz jeszcze raz — ile razy chcesz.",
       "letterFamily": "Ta litera to {{family}}.",
@@ -168,7 +170,21 @@
     "buildTray": "Sylaby",
     "buildRemove": "Cofnij {{syllable}}",
     "markCorrect": "Poprawna odpowiedź",
-    "markWrong": "Twoja odpowiedź, niepoprawna"
+    "markWrong": "Twoja odpowiedź, niepoprawna",
+    "buildSlots": "Pól: {{total}}",
+    "buildSlotFilled": "Pole {{index}}: {{syllable}}. Dotknij, aby cofnąć.",
+    "buildSlotEmpty": "Pole {{index}}, puste",
+    "buildFilled": "Wszystkie pola wypełnione. Naciśnij Sprawdź.",
+    "buildProgress": "Wypełniono {{filled}} z {{total}} pól.",
+    "buildTilePlaced": "{{syllable}}, umieszczono",
+    "buildUndo": "Cofnij",
+    "buildCheck": "Sprawdź",
+    "matchColumnKorean": "Słowo koreańskie",
+    "matchColumnMeaning": "Znaczenie",
+    "matchPaired": "Połączono {{word}} z {{meaning}}. Dotknij dowolnego, aby zmienić.",
+    "matchAllPaired": "Wszystko połączone. Naciśnij Sprawdź.",
+    "matchCheck": "Sprawdź",
+    "matchPairLabel": "Para {{n}}"
   },
   "sounds": {
     "title": "Kiedy dźwięki się spotykają",

@@ -1,10 +1,16 @@
 import type { ReactNode } from 'react';
 
-import { AlertIcon, CheckIcon } from './icons';
+import { AlertIcon, CheckIcon, EyeIcon } from './icons';
 import styles from './FeedbackState.module.css';
 
 export interface FeedbackStateProps {
-  status: 'correct' | 'incorrect';
+  /**
+   * `revealed` is the third outcome a question can have: the learner asked for
+   * the answer instead of giving one. Neither a pass nor a slip, and drawn as
+   * neither — a neutral border and an eye, because what happened is that
+   * something was *seen*. The item is owed again later.
+   */
+  status: 'correct' | 'incorrect' | 'revealed';
   headline: string;
   children?: ReactNode;
   /** Secondary actions — retry, hint, show the guide again. */
@@ -20,12 +26,18 @@ export interface FeedbackStateProps {
  * a screen reader hears the verdict and can then reach the retry button.
  */
 export function FeedbackState({ status, headline, children, actions }: FeedbackStateProps) {
-  const correct = status === 'correct';
+  const tone = styles[status];
   return (
-    <div className={`${styles.card} ${correct ? styles.correct : styles.incorrect}`} role="status">
+    <div className={`${styles.card} ${tone}`} role="status" data-feedback={status}>
       <div className={styles.head}>
         <span className={styles.icon} aria-hidden="true">
-          {correct ? <CheckIcon size={18} /> : <AlertIcon size={18} />}
+          {status === 'correct' ? (
+            <CheckIcon size={18} />
+          ) : status === 'revealed' ? (
+            <EyeIcon size={18} />
+          ) : (
+            <AlertIcon size={18} />
+          )}
         </span>
         <p className={styles.headline}>{headline}</p>
       </div>

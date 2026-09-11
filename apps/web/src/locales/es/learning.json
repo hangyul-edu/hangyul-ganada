@@ -38,8 +38,8 @@
     "blank": "hueco",
     "optionsLabel": "Respuestas",
     "cannotUseAudio": "¿No puedes usar el audio?",
-    "matchPickWord": "Elige una palabra coreana",
-    "matchPickMeaning": "Ahora elige su significado",
+    "matchPickWord": "Primero, toca una palabra coreana a la izquierda.",
+    "matchPickMeaning": "Ahora toca el significado de {{word}} a la derecha.",
     "showHint": "Ver una pista",
     "mode": {
       "read": "Leer",
@@ -57,14 +57,16 @@
       "distinguish": "¿Cuál hace este sonido?",
       "distinguishSoundFree": "¿Qué sonido tiene esta letra?",
       "produce": "¿Cuál es?",
-      "build": "Forma la palabra",
-      "match": "Une cada palabra con su significado"
+      "build": "Toca las sílabas de abajo en orden para formar la palabra.",
+      "match": "Toca una palabra coreana a la izquierda y luego su significado a la derecha."
     },
     "sessionLength_many": "{{count, number}} ejercicios cortos",
     "nothingDue": "Ahora mismo no hay nada que repasar.",
     "modesEmpty": "Hoy no hay nada en estos modos.",
     "answerIs": "{{word}} significa «{{meaning}}».",
     "showAnswer": "Ver la respuesta",
+    "revealedHeadline": "Has visto la respuesta.",
+    "revealedNote": "Esta pregunta volverá a aparecer dentro de un momento.",
     "hint": {
       "replay": "Escúchalo otra vez, las veces que quieras.",
       "letterFamily": "Esta es {{family}}.",
@@ -79,7 +81,21 @@
     "buildTray": "Sílabas",
     "buildRemove": "Quitar {{syllable}}",
     "markCorrect": "Respuesta correcta",
-    "markWrong": "Tu respuesta, incorrecta"
+    "markWrong": "Tu respuesta, incorrecta",
+    "buildSlots": "{{total}} casillas",
+    "buildSlotFilled": "Casilla {{index}}: {{syllable}}. Toca para quitarla.",
+    "buildSlotEmpty": "Casilla {{index}}, vacía",
+    "buildFilled": "Todas las casillas están llenas. Pulsa Comprobar.",
+    "buildProgress": "{{filled}} de {{total}} casillas llenas.",
+    "buildTilePlaced": "{{syllable}}, colocada",
+    "buildUndo": "Deshacer",
+    "buildCheck": "Comprobar",
+    "matchColumnKorean": "Palabra coreana",
+    "matchColumnMeaning": "Significado",
+    "matchPaired": "{{word}} emparejada con {{meaning}}. Toca cualquiera para cambiarla.",
+    "matchAllPaired": "Todo emparejado. Pulsa Comprobar.",
+    "matchCheck": "Comprobar",
+    "matchPairLabel": "Pareja {{n}}"
   },
   "units": {
     "badge": "Unidad {{index, number}}",

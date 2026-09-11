@@ -41,6 +41,27 @@ import styles from './BuildExercise.module.css';
  * action is to continue. There is no retry, because a retry on a question whose
  * answer is now on screen is copying — and `ChoiceExercise` made that decision
  * first, for the same reason.
+ *
+ * ## The first action is said, and shown
+ *
+ * A customer met this screen — a definition, three dashed boxes, five tiles —
+ * and did not know what to do. Two things were missing. The instruction said
+ * *put the word together*, which names the goal and not the action; it now
+ * says *tap the syllables below in order to complete the word*. And nothing
+ * on the screen said where a tap would land: the slots were three identical
+ * dashed outlines. The **next slot is now marked** — a solid accent outline
+ * with its number — and a tapped tile visibly leaves the tray (dashed, faded,
+ * marked as placed) and appears in that slot.
+ *
+ * Submission is a button, and it is disabled until every slot is filled. The
+ * tray used to grade itself the instant the last tile landed, which meant the
+ * last tap could never be taken back: a learner who saw their mistake as
+ * their finger lifted had already been marked wrong. *Check* makes the last
+ * tile as reversible as the first — tap a filled slot, or *Undo*, to put a
+ * tile back — and a learner who has not filled every slot cannot submit.
+ *
+ * A screen reader hears the instruction as the tray's name, each slot's
+ * number and contents, each tile's state, and a live count of slots filled.
  */
 export function BuildExercise({
   exercise,
@@ -56,11 +77,13 @@ export function BuildExercise({
     chosen: string;
     hintLevel: number;
     responseMs: number;
+    /** True when the learner asked for the answer instead of building it. */
+    revealed?: boolean;
   }) => void;
   onContinue: () => void;
   isLast: boolean;
 }) {
-  const { t } = useTranslation(['learning', 'common']);
+  const { t } = useTranslation(['learning', 'common', 'vocabulary']);
   const tiles = exercise.tiles ?? [];
   const target = exercise.korean ?? '';
 
@@ -68,6 +91,13 @@ export function BuildExercise({
   const [picked, setPicked] = useState<string[]>([]);
   const [level, setLevel] = useState(0);
   const [settled, setSettled] = useState<boolean | null>(null);
+  /**
+   * The answer was shown rather than built. Same outcome as in
+   * `ChoiceExercise`: the slots fill with the word in the blue "right" style,
+   * the tray locks, `correct: false, revealed: true` is reported once, and the
+   * word is owed again later. See the note on `revealed` there.
+   */
+  const [revealed, setRevealed] = useState(false);
   const startedAt = useRef(Date.now());
 
   const key = `${exercise.candidate.itemKey}:${exercise.mode}`;
@@ -75,26 +105,26 @@ export function BuildExercise({
     setPicked([]);
     setLevel(0);
     setSettled(null);
+    setRevealed(false);
     startedAt.current = Date.now();
   }, [key]);
 
   const spelled = picked
     .map((id) => tiles.find((tile) => tile.id === id)?.syllable ?? '')
     .join('');
+  const syllableCount = [...target].length;
+  const full = picked.length >= syllableCount;
 
-  /*
-   * Answered when the tray has produced a word of the right length.
+  /**
+   * Submit. Only when every slot is filled and only once.
    *
-   * Length rather than a Check button, because the learner already knows when
-   * they have finished — the word is either as long as it should be or it is
-   * not — and a button that says "I have finished tapping" is a button that
-   * exists to be tapped. Getting it wrong is not punished by a lost attempt:
-   * the tiles can be taken back until the last one lands.
+   * This used to run by itself the instant the last tile landed, which made
+   * the last tap the one tap that could not be undone. The button is disabled
+   * until the word is the right length, so a partial answer cannot be graded
+   * and a full one is graded only when the learner says so.
    */
-  useEffect(() => {
-    if (settled !== null) return;
-    const syllableCount = [...target].length;
-    if (picked.length < syllableCount) return;
+  const check = () => {
+    if (settled !== null || revealed || !full) return;
     const correct = spelled === target;
     setSettled(correct);
     if (correct) hapticPass();
@@ -105,21 +135,39 @@ export function BuildExercise({
       hintLevel: level,
       responseMs: Date.now() - startedAt.current,
     });
-    // `onAnswered` is a fresh closure each render and re-running this would
-    // report the same answer twice; `settled` is the guard that makes it safe.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [picked, settled]);
+  };
+
+  /** Idempotent: nothing after a build or a reveal. */
+  const reveal = () => {
+    if (settled !== null || revealed) return;
+    setRevealed(true);
+    hapticSelection();
+    onAnswered({
+      correct: false,
+      chosen: '',
+      hintLevel: level + 1,
+      responseMs: Date.now() - startedAt.current,
+      revealed: true,
+    });
+  };
 
   const take = (id: string) => {
-    if (settled !== null || picked.includes(id)) return;
+    if (settled !== null || revealed || picked.includes(id)) return;
     hapticSelection();
     setPicked((current) => [...current, id]);
   };
 
   const putBack = (id: string) => {
-    if (settled !== null) return;
+    if (settled !== null || revealed) return;
     hapticSelection();
     setPicked((current) => current.filter((other) => other !== id));
+  };
+
+  /** Take the most recently placed tile back. */
+  const undo = () => {
+    if (settled !== null || revealed || picked.length === 0) return;
+    hapticSelection();
+    setPicked((current) => current.slice(0, -1));
   };
 
   /*
@@ -167,19 +215,34 @@ export function BuildExercise({
         Fixed to the number of syllables the word has, so the shape of the
         answer is visible from the start — a learner who can see three slots
         knows they are looking for three syllables, which is information the
-        word itself would give them if it were written down.
+        word itself would give them if it were written down. The next empty
+        slot is marked, so the first tap has an obvious destination.
       */}
       <div
         className={`${styles.slots} ${
-          settled === true ? styles.right : settled === false ? styles.wrong : ''
+          settled === true || revealed ? styles.right : settled === false ? styles.wrong : ''
         }`}
         lang="ko"
         dir="ltr"
         style={{ fontFamily }}
+        role="group"
+        aria-label={t('learning:review.buildSlots', { total: syllableCount })}
+        data-testid="build-slots"
+        data-revealed={revealed ? 'true' : undefined}
+        data-filled={picked.length}
       >
-        {[...target].map((_, index) => {
+        {[...target].map((syllable, index) => {
+          if (revealed) {
+            // The answer, in the slots, in the box a right answer takes.
+            return (
+              <span key={`answer-${index}`} className={styles.slotFilled} data-answer="true">
+                {syllable}
+              </span>
+            );
+          }
           const id = picked[index];
           const tile = id ? tiles.find((candidate) => candidate.id === id) : undefined;
+          const isNext = settled === null && index === picked.length;
           return tile ? (
             <button
               key={tile.id}
@@ -187,15 +250,41 @@ export function BuildExercise({
               className={styles.slotFilled}
               onClick={() => putBack(tile.id)}
               disabled={settled !== null}
-              aria-label={t('learning:review.buildRemove', { syllable: tile.syllable })}
+              aria-label={t('learning:review.buildSlotFilled', { index: index + 1, syllable: tile.syllable })}
+              data-testid="build-slot"
+              data-state="filled"
             >
               {tile.syllable}
             </button>
           ) : (
-            <span key={`empty-${index}`} className={styles.slotEmpty} aria-hidden="true" />
+            <span
+              key={`empty-${index}`}
+              className={`${styles.slotEmpty} ${isNext ? styles.slotActive : ''}`}
+              aria-label={t('learning:review.buildSlotEmpty', { index: index + 1 })}
+              role="img"
+              data-testid="build-slot"
+              data-state={isNext ? 'next' : 'empty'}
+            >
+              {/* The slot's number, so "the first box" is a thing on screen. */}
+              <span className={styles.slotIndex} aria-hidden="true">
+                {index + 1}
+              </span>
+            </span>
           );
         })}
       </div>
+
+      {/*
+        What the tray has done so far, for anyone listening. Polite, so it
+        never interrupts the tile that was just announced.
+      */}
+      <p className="hg-sr-only" aria-live="polite" data-testid="build-live">
+        {settled === null && !revealed
+          ? full
+            ? t('learning:review.buildFilled')
+            : t('learning:review.buildProgress', { filled: picked.length, total: syllableCount })
+          : ''}
+      </p>
 
       {/*
         Rows the layout chose, not rows the viewport fell into.
@@ -205,28 +294,77 @@ export function BuildExercise({
         phone — see `ui/optionRows` for why an orphan tile is a defect and not
         an inelegance.
       */}
-      <div className={styles.tray} role="group" aria-label={t('learning:review.buildTray')}>
+      <div
+        className={styles.tray}
+        role="group"
+        aria-label={t('learning:review.buildTray')}
+        data-testid="build-tray"
+      >
         {optionRows(tiles).map((row) => (
           <div className={styles.trayRow} key={row.map((tile) => tile.id).join('-')}>
-            {row.map((tile) => (
-              <button
-                key={tile.id}
-                type="button"
-                className={styles.tile}
-                onClick={() => take(tile.id)}
-                disabled={settled !== null || picked.includes(tile.id)}
-                lang="ko"
-                dir="ltr"
-                style={{ fontFamily }}
-              >
-                {tile.syllable}
-              </button>
-            ))}
+            {row.map((tile) => {
+              const placed = picked.includes(tile.id);
+              return (
+                <button
+                  key={tile.id}
+                  type="button"
+                  className={`${styles.tile} ${placed ? styles.tileTaken : ''}`}
+                  onClick={() => take(tile.id)}
+                  disabled={settled !== null || revealed || placed}
+                  aria-label={
+                    placed
+                      ? t('learning:review.buildTilePlaced', { syllable: tile.syllable })
+                      : tile.syllable
+                  }
+                  data-testid="build-tile"
+                  data-state={placed ? 'placed' : settled !== null || revealed ? 'done' : 'available'}
+                  lang="ko"
+                  dir="ltr"
+                  style={{ fontFamily }}
+                >
+                  {tile.syllable}
+                </button>
+              );
+            })}
           </div>
         ))}
       </div>
 
-      {settled === null ? (
+      {settled === null && !revealed && (
+        /*
+          Two controls, and the one that matters is disabled until it can do
+          something. Undo is the same action as tapping a filled slot, offered
+          as a named button for anyone who would not think to tap a slot.
+        */
+        <div className={styles.controls}>
+          <Button
+            size="md"
+            variant="ghost"
+            onClick={undo}
+            disabled={picked.length === 0}
+            data-testid="build-undo"
+          >
+            {t('learning:review.buildUndo')}
+          </Button>
+          <Button size="md" onClick={check} disabled={!full} data-testid="build-check">
+            {t('learning:review.buildCheck')}
+          </Button>
+        </div>
+      )}
+
+      {revealed ? (
+        <FeedbackState
+          status="revealed"
+          headline={t('learning:review.revealedHeadline')}
+          actions={
+            <Button size="md" onClick={onContinue} data-testid="revealed-next">
+              {t('vocabulary:session.next')}
+            </Button>
+          }
+        >
+          <p className={styles.revealedNote}>{t('learning:review.revealedNote')}</p>
+        </FeedbackState>
+      ) : settled === null ? (
         hints.length > 0 ? (
           <div className={styles.hintBlock}>
             {shown.map((step) => (
@@ -241,7 +379,10 @@ export function BuildExercise({
               <button
                 type="button"
                 className={styles.hint}
-                onClick={() => setLevel((current) => current + 1)}
+                data-testid={hints[level]!.strength === 'answer' ? 'show-answer' : 'show-hint'}
+                onClick={() =>
+                  hints[level]!.strength === 'answer' ? reveal() : setLevel((current) => current + 1)
+                }
               >
                 {t(
                   hints[level]!.strength === 'answer'

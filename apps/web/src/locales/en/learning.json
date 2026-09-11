@@ -126,8 +126,8 @@
     "blank": "blank",
     "optionsLabel": "Answers",
     "cannotUseAudio": "Can't use audio?",
-    "matchPickWord": "Pick a Korean word",
-    "matchPickMeaning": "Now pick its meaning",
+    "matchPickWord": "First, tap a Korean word on the left.",
+    "matchPickMeaning": "Now tap the meaning of {{word}} on the right.",
     "showHint": "Show a hint",
     "mode": {
       "read": "Read",
@@ -145,13 +145,15 @@
       "distinguish": "Which one makes this sound?",
       "distinguishSoundFree": "Which sound does this letter make?",
       "produce": "Which one is it?",
-      "build": "Put the word together",
-      "match": "Match each word to its meaning"
+      "build": "Tap the syllables below in order to complete the word.",
+      "match": "Tap a Korean word on the left, then tap its meaning on the right."
     },
     "nothingDue": "Nothing to review right now.",
     "modesEmpty": "Nothing in these modes today.",
     "answerIs": "{{word}} means “{{meaning}}”.",
     "showAnswer": "Show the answer",
+    "revealedHeadline": "You saw the answer.",
+    "revealedNote": "This one will come round again in a moment.",
     "hint": {
       "replay": "Play it again — as many times as you like.",
       "letterFamily": "This one is {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Syllables",
     "buildRemove": "Take {{syllable}} back",
     "markCorrect": "Correct answer",
-    "markWrong": "Your answer, incorrect"
+    "markWrong": "Your answer, incorrect",
+    "buildSlots": "{{total}} slots",
+    "buildSlotFilled": "Slot {{index}}: {{syllable}}. Tap to take it back.",
+    "buildSlotEmpty": "Slot {{index}}, empty",
+    "buildFilled": "All slots filled. Press Check.",
+    "buildProgress": "{{filled}} of {{total}} slots filled.",
+    "buildTilePlaced": "{{syllable}}, placed",
+    "buildUndo": "Undo",
+    "buildCheck": "Check",
+    "matchColumnKorean": "Korean word",
+    "matchColumnMeaning": "Meaning",
+    "matchPaired": "Paired {{word}} with {{meaning}}. Tap either to change it.",
+    "matchAllPaired": "All paired. Press Check.",
+    "matchCheck": "Check",
+    "matchPairLabel": "Pair {{n}}"
   },
   "sounds": {
     "title": "When sounds meet",

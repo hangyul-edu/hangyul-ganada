@@ -126,8 +126,8 @@
     "blank": "ఖాళీ",
     "optionsLabel": "జవాబులు",
     "cannotUseAudio": "ఆడియో వాడలేకపోతున్నారా?",
-    "matchPickWord": "ఒక కొరియన్ పదాన్ని ఎంచుకోండి",
-    "matchPickMeaning": "ఇప్పుడు దాని అర్థాన్ని ఎంచుకోండి",
+    "matchPickWord": "ముందుగా ఎడమవైపు కొరియన్ పదాన్ని నొక్కండి.",
+    "matchPickMeaning": "ఇప్పుడు కుడివైపు {{word}} అర్థాన్ని నొక్కండి.",
     "showHint": "ఒక సూచన ఇవ్వండి",
     "mode": {
       "read": "చదవడం",
@@ -145,13 +145,15 @@
       "distinguish": "ఈ శబ్దం ఏది ఇస్తుంది?",
       "distinguishSoundFree": "ఈ అక్షరం శబ్దం ఏమిటి?",
       "produce": "ఏది?",
-      "build": "పదాన్ని కూర్చండి",
-      "match": "ప్రతి పదాన్ని దాని అర్థంతో జతచేయండి"
+      "build": "పదాన్ని పూర్తి చేయడానికి కింద ఉన్న అక్షరాలను వరుసగా నొక్కండి.",
+      "match": "ముందుగా ఎడమవైపు కొరియన్ పదాన్ని నొక్కి, ఆపై కుడివైపు దాని అర్థాన్ని ఎంచుకోండి."
     },
     "nothingDue": "ఇప్పుడు మళ్లీ చూడాల్సినది ఏదీ లేదు.",
     "modesEmpty": "ఈ రోజు ఈ పద్ధతుల్లో ఏమీ లేదు.",
     "answerIs": "{{word}} అంటే “{{meaning}}”.",
     "showAnswer": "జవాబు చూపించు",
+    "revealedHeadline": "మీరు జవాబు చూశారు.",
+    "revealedNote": "ఈ ప్రశ్న కొద్దిసేపట్లో మళ్ళీ వస్తుంది.",
     "hint": {
       "replay": "మళ్లీ వినిపించండి — ఎన్నిసార్లయినా.",
       "letterFamily": "ఇది {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "అక్షరాలు",
     "buildRemove": "{{syllable}} వెనక్కి తీసుకో",
     "markCorrect": "సరైన సమాధానం",
-    "markWrong": "మీ సమాధానం, తప్పు"
+    "markWrong": "మీ సమాధానం, తప్పు",
+    "buildSlots": "{{total}} గడులు",
+    "buildSlotFilled": "గడి {{index}}: {{syllable}}. వెనక్కి తీసుకోవడానికి నొక్కండి.",
+    "buildSlotEmpty": "గడి {{index}}, ఖాళీ",
+    "buildFilled": "అన్ని గడులు నిండాయి. సరిచూడు నొక్కండి.",
+    "buildProgress": "{{total}} గడుల్లో {{filled}} నిండాయి.",
+    "buildTilePlaced": "{{syllable}}, ఉంచబడింది",
+    "buildUndo": "రద్దు",
+    "buildCheck": "సరిచూడు",
+    "matchColumnKorean": "కొరియన్ పదం",
+    "matchColumnMeaning": "అర్థం",
+    "matchPaired": "{{word}} – {{meaning}} జతచేయబడింది. మార్చడానికి ఏదైనా ఒకటి నొక్కండి.",
+    "matchAllPaired": "అన్నీ జతచేయబడ్డాయి. సరిచూడు నొక్కండి.",
+    "matchCheck": "సరిచూడు",
+    "matchPairLabel": "జత {{n}}"
   },
   "sounds": {
     "title": "శబ్దాలు కలిసినప్పుడు",

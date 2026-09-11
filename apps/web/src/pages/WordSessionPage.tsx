@@ -407,6 +407,9 @@ export function WordSessionPage() {
       const owed = retrySteps(
         { ...vocabularyDay, completed: [...vocabularyDay.completed, ...credited] },
         missed.current,
+        // What this very screen missed or revealed goes to the back of the
+        // retry pass, so it is not the next thing on screen.
+        answered?.wrong ?? [],
       );
       const next = buildDailyQuestions(owed, meaningOf, label);
       if (next.length > 0) {
@@ -747,6 +750,7 @@ export function WordSessionPage() {
               chosen: string;
               hintLevel: number;
               responseMs: number;
+              revealed?: boolean;
             }) => {
               setAnswered(
                 result.correct
@@ -763,7 +767,10 @@ export function WordSessionPage() {
                 hint_used: result.hintLevel > 0,
                 hint_level: result.hintLevel,
                 response_ms: result.responseMs,
-                ...(!result.correct ? { confused_with: result.chosen } : {}),
+                ...(!result.correct && result.chosen ? { confused_with: result.chosen } : {}),
+                // A shown answer is written as exactly that — not a pass, not a
+                // confusion with anything — and the word is owed again below.
+                ...(result.revealed ? { revealed: true } : {}),
                 session_id: sessionId.current,
               });
             };

@@ -38,8 +38,8 @@
     "blank": "Lücke",
     "optionsLabel": "Antworten",
     "cannotUseAudio": "Kein Ton möglich?",
-    "matchPickWord": "Wähle ein koreanisches Wort",
-    "matchPickMeaning": "Wähle nun seine Bedeutung",
+    "matchPickWord": "Tippe zuerst links ein koreanisches Wort an.",
+    "matchPickMeaning": "Tippe jetzt rechts die Bedeutung von {{word}} an.",
     "showHint": "Hinweis zeigen",
     "mode": {
       "read": "Lesen",
@@ -57,13 +57,15 @@
       "distinguish": "Welcher macht diesen Laut?",
       "distinguishSoundFree": "Welchen Laut hat dieser Buchstabe?",
       "produce": "Welches ist es?",
-      "build": "Setz das Wort zusammen",
-      "match": "Ordne jedem Wort seine Bedeutung zu"
+      "build": "Tippe die Silben unten der Reihe nach an, um das Wort zu bilden.",
+      "match": "Tippe links ein koreanisches Wort an und dann rechts seine Bedeutung."
     },
     "nothingDue": "Gerade gibt es nichts zu wiederholen.",
     "modesEmpty": "Heute gibt es in diesen Modi nichts.",
     "answerIs": "{{word}} bedeutet „{{meaning}}“.",
     "showAnswer": "Lösung zeigen",
+    "revealedHeadline": "Du hast die Antwort gesehen.",
+    "revealedNote": "Diese Frage kommt gleich noch einmal.",
     "hint": {
       "replay": "Hör es dir noch einmal an — so oft du magst.",
       "letterFamily": "Das hier ist {{family}}.",
@@ -78,7 +80,21 @@
     "buildTray": "Silben",
     "buildRemove": "{{syllable}} zurücknehmen",
     "markCorrect": "Richtige Antwort",
-    "markWrong": "Deine Antwort, falsch"
+    "markWrong": "Deine Antwort, falsch",
+    "buildSlots": "{{total}} Felder",
+    "buildSlotFilled": "Feld {{index}}: {{syllable}}. Antippen, um es zurückzunehmen.",
+    "buildSlotEmpty": "Feld {{index}}, leer",
+    "buildFilled": "Alle Felder gefüllt. Tippe auf Prüfen.",
+    "buildProgress": "{{filled}} von {{total}} Feldern gefüllt.",
+    "buildTilePlaced": "{{syllable}}, eingesetzt",
+    "buildUndo": "Rückgängig",
+    "buildCheck": "Prüfen",
+    "matchColumnKorean": "Koreanisches Wort",
+    "matchColumnMeaning": "Bedeutung",
+    "matchPaired": "{{word}} mit {{meaning}} verbunden. Zum Ändern eines von beiden antippen.",
+    "matchAllPaired": "Alles verbunden. Tippe auf Prüfen.",
+    "matchCheck": "Prüfen",
+    "matchPairLabel": "Paar {{n}}"
   },
   "units": {
     "badge": "Einheit {{index, number}}",

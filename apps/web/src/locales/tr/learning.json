@@ -126,8 +126,8 @@
     "blank": "boşluk",
     "optionsLabel": "Cevaplar",
     "cannotUseAudio": "Sesi kullanamıyor musun?",
-    "matchPickWord": "Bir Korece kelime seç",
-    "matchPickMeaning": "Şimdi anlamını seç",
+    "matchPickWord": "Önce soldaki bir Korece kelimeye dokun.",
+    "matchPickMeaning": "Şimdi sağda {{word}} kelimesinin anlamına dokun.",
     "showHint": "İpucu ver",
     "mode": {
       "read": "Okuma",
@@ -145,13 +145,15 @@
       "distinguish": "Bu sesi hangisi çıkarıyor?",
       "distinguishSoundFree": "Bu harf hangi sesi çıkarır?",
       "produce": "Hangisi?",
-      "build": "Kelimeyi kur",
-      "match": "Her kelimeyi anlamıyla eşleştir"
+      "build": "Kelimeyi oluşturmak için aşağıdaki hecelere sırayla dokun.",
+      "match": "Önce soldaki bir Korece kelimeye, sonra sağdaki anlamına dokun."
     },
     "nothingDue": "Şu an tekrar edilecek bir şey yok.",
     "modesEmpty": "Bugün bu kiplerde bir şey yok.",
     "answerIs": "{{word}} demek “{{meaning}}”.",
     "showAnswer": "Cevabı göster",
+    "revealedHeadline": "Cevabı gördün.",
+    "revealedNote": "Bu soru birazdan yeniden gelecek.",
     "hint": {
       "replay": "Yeniden çal — istediğin kadar.",
       "letterFamily": "Türü: {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Heceler",
     "buildRemove": "{{syllable}} hecesini geri al",
     "markCorrect": "Doğru cevap",
-    "markWrong": "Senin cevabın, yanlış"
+    "markWrong": "Senin cevabın, yanlış",
+    "buildSlots": "{{total}} kutu",
+    "buildSlotFilled": "Kutu {{index}}: {{syllable}}. Geri almak için dokun.",
+    "buildSlotEmpty": "Kutu {{index}}, boş",
+    "buildFilled": "Tüm kutular doldu. Kontrol Et’e bas.",
+    "buildProgress": "{{total}} kutudan {{filled}} tanesi doldu.",
+    "buildTilePlaced": "{{syllable}}, yerleştirildi",
+    "buildUndo": "Geri Al",
+    "buildCheck": "Kontrol Et",
+    "matchColumnKorean": "Korece kelime",
+    "matchColumnMeaning": "Anlam",
+    "matchPaired": "{{word}} ile {{meaning}} eşleştirildi. Değiştirmek için birine dokun.",
+    "matchAllPaired": "Hepsi eşleştirildi. Kontrol Et’e bas.",
+    "matchCheck": "Kontrol Et",
+    "matchPairLabel": "{{n}}. çift"
   },
   "sounds": {
     "title": "Sesler karşılaşınca",

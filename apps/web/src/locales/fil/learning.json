@@ -126,8 +126,8 @@
     "blank": "puwang",
     "optionsLabel": "Mga sagot",
     "cannotUseAudio": "Hindi magamit ang audio?",
-    "matchPickWord": "Pumili ng salitang Koreano",
-    "matchPickMeaning": "Ngayon, piliin ang kahulugan",
+    "matchPickWord": "I-tap muna ang isang salitang Korean sa kaliwa.",
+    "matchPickMeaning": "Ngayon, i-tap ang kahulugan ng {{word}} sa kanan.",
     "showHint": "Bigyan mo ako ng pahiwatig",
     "mode": {
       "read": "Pagbasa",
@@ -145,13 +145,15 @@
       "distinguish": "Alin ang gumagawa ng tunog na ito?",
       "distinguishSoundFree": "Anong tunog ang letrang ito?",
       "produce": "Alin ba?",
-      "build": "Buuin ang salita",
-      "match": "Itapat ang bawat salita sa kahulugan nito"
+      "build": "I-tap ang mga pantig sa ibaba nang sunud-sunod para mabuo ang salita.",
+      "match": "I-tap muna ang isang salitang Korean sa kaliwa, saka piliin ang kahulugan nito sa kanan."
     },
     "nothingDue": "Wala munang babalikan ngayon.",
     "modesEmpty": "Wala munang laman ang mga moda na ito ngayon.",
     "answerIs": "Ang ibig sabihin ng {{word}} ay “{{meaning}}”.",
     "showAnswer": "Ipakita ang sagot",
+    "revealedHeadline": "Nakita mo na ang sagot.",
+    "revealedNote": "Babalik ang tanong na ito mamaya.",
     "hint": {
       "replay": "Ipatugtog ulit — kahit ilang beses.",
       "letterFamily": "{{family}} ito.",
@@ -166,7 +168,21 @@
     "buildTray": "Mga pantig",
     "buildRemove": "Bawiin ang {{syllable}}",
     "markCorrect": "Tamang sagot",
-    "markWrong": "Ang sagot mo, mali"
+    "markWrong": "Ang sagot mo, mali",
+    "buildSlots": "{{total}} puwang",
+    "buildSlotFilled": "Puwang {{index}}: {{syllable}}. I-tap para bawiin.",
+    "buildSlotEmpty": "Puwang {{index}}, walang laman",
+    "buildFilled": "Napuno na ang lahat ng puwang. Pindutin ang Suriin.",
+    "buildProgress": "{{filled}} sa {{total}} puwang ang napuno.",
+    "buildTilePlaced": "{{syllable}}, nailagay na",
+    "buildUndo": "Ibalik",
+    "buildCheck": "Suriin",
+    "matchColumnKorean": "Salitang Korean",
+    "matchColumnMeaning": "Kahulugan",
+    "matchPaired": "Ipinares ang {{word}} sa {{meaning}}. I-tap ang alinman para baguhin.",
+    "matchAllPaired": "Naipares na ang lahat. Pindutin ang Suriin.",
+    "matchCheck": "Suriin",
+    "matchPairLabel": "Pares {{n}}"
   },
   "sounds": {
     "title": "Kapag nagtagpo ang mga tunog",

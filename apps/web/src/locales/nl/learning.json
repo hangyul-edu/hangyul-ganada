@@ -126,8 +126,8 @@
     "blank": "leeg",
     "optionsLabel": "Antwoorden",
     "cannotUseAudio": "Geluid niet mogelijk?",
-    "matchPickWord": "Kies een Koreaans woord",
-    "matchPickMeaning": "Kies nu de betekenis",
+    "matchPickWord": "Tik eerst links een Koreaans woord aan.",
+    "matchPickMeaning": "Tik nu rechts de betekenis van {{word}} aan.",
     "showHint": "Geef een hint",
     "mode": {
       "read": "Lezen",
@@ -145,13 +145,15 @@
       "distinguish": "Welke maakt deze klank?",
       "distinguishSoundFree": "Hoe klinkt deze letter?",
       "produce": "Welke is het?",
-      "build": "Zet het woord in elkaar",
-      "match": "Koppel elk woord aan zijn betekenis"
+      "build": "Tik de lettergrepen hieronder in volgorde aan om het woord te vormen.",
+      "match": "Tik links eerst een Koreaans woord aan en kies dan rechts de betekenis."
     },
     "nothingDue": "Nu even niets te herhalen.",
     "modesEmpty": "Vandaag niets in deze vormen.",
     "answerIs": "{{word}} betekent “{{meaning}}”.",
     "showAnswer": "Toon het antwoord",
+    "revealedHeadline": "Je hebt het antwoord gezien.",
+    "revealedNote": "Deze vraag komt zo meteen terug.",
     "hint": {
       "replay": "Speel het nog eens af — zo vaak je wilt.",
       "letterFamily": "Dit is {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Lettergrepen",
     "buildRemove": "Haal {{syllable}} terug",
     "markCorrect": "Juist antwoord",
-    "markWrong": "Jouw antwoord, onjuist"
+    "markWrong": "Jouw antwoord, onjuist",
+    "buildSlots": "{{total}} vakjes",
+    "buildSlotFilled": "Vakje {{index}}: {{syllable}}. Tik om terug te nemen.",
+    "buildSlotEmpty": "Vakje {{index}}, leeg",
+    "buildFilled": "Alle vakjes zijn gevuld. Druk op Controleren.",
+    "buildProgress": "{{filled}} van {{total}} vakjes gevuld.",
+    "buildTilePlaced": "{{syllable}}, geplaatst",
+    "buildUndo": "Ongedaan maken",
+    "buildCheck": "Controleren",
+    "matchColumnKorean": "Koreaans woord",
+    "matchColumnMeaning": "Betekenis",
+    "matchPaired": "{{word}} gekoppeld aan {{meaning}}. Tik op een van beide om te wijzigen.",
+    "matchAllPaired": "Alles gekoppeld. Druk op Controleren.",
+    "matchCheck": "Controleren",
+    "matchPairLabel": "Paar {{n}}"
   },
   "sounds": {
     "title": "Als klanken elkaar raken",

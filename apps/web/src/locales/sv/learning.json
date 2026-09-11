@@ -126,8 +126,8 @@
     "blank": "lucka",
     "optionsLabel": "Svar",
     "cannotUseAudio": "Kan du inte använda ljud?",
-    "matchPickWord": "Välj ett koreanskt ord",
-    "matchPickMeaning": "Välj nu dess betydelse",
+    "matchPickWord": "Tryck först på ett koreanskt ord till vänster.",
+    "matchPickMeaning": "Tryck nu på betydelsen av {{word}} till höger.",
     "showHint": "Ge en ledtråd",
     "mode": {
       "read": "Läsa",
@@ -145,13 +145,15 @@
       "distinguish": "Vilken låter så här?",
       "distinguishSoundFree": "Hur låter den här bokstaven?",
       "produce": "Vilken är det?",
-      "build": "Bygg ihop ordet",
-      "match": "Para ihop varje ord med sin betydelse"
+      "build": "Tryck på stavelserna nedan i rätt ordning för att bilda ordet.",
+      "match": "Tryck först på ett koreanskt ord till vänster och välj sedan dess betydelse till höger."
     },
     "nothingDue": "Inget att repetera just nu.",
     "modesEmpty": "Inget i de här formerna i dag.",
     "answerIs": "{{word}} betyder ”{{meaning}}”.",
     "showAnswer": "Visa svaret",
+    "revealedHeadline": "Du såg svaret.",
+    "revealedNote": "Den här frågan kommer tillbaka om en stund.",
     "hint": {
       "replay": "Spela igen — så många gånger du vill.",
       "letterFamily": "Den här är {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Stavelser",
     "buildRemove": "Ta tillbaka {{syllable}}",
     "markCorrect": "Rätt svar",
-    "markWrong": "Ditt svar, fel"
+    "markWrong": "Ditt svar, fel",
+    "buildSlots": "{{total}} rutor",
+    "buildSlotFilled": "Ruta {{index}}: {{syllable}}. Tryck för att ta tillbaka.",
+    "buildSlotEmpty": "Ruta {{index}}, tom",
+    "buildFilled": "Alla rutor är fyllda. Tryck på Kontrollera.",
+    "buildProgress": "{{filled}} av {{total}} rutor fyllda.",
+    "buildTilePlaced": "{{syllable}}, placerad",
+    "buildUndo": "Ångra",
+    "buildCheck": "Kontrollera",
+    "matchColumnKorean": "Koreanskt ord",
+    "matchColumnMeaning": "Betydelse",
+    "matchPaired": "{{word}} parat med {{meaning}}. Tryck på någon av dem för att ändra.",
+    "matchAllPaired": "Allt är parat. Tryck på Kontrollera.",
+    "matchCheck": "Kontrollera",
+    "matchPairLabel": "Par {{n}}"
   },
   "sounds": {
     "title": "När ljud möts",

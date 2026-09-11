@@ -126,11 +126,13 @@ describe('building a word from syllables', () => {
       />,
     );
 
-    // Tap the word's syllables in the *wrong* order.
+    // Tap the word's syllables in the *wrong* order, then Check.
     const reversed = [...own].reverse();
     for (const syllable of reversed) {
       fireEvent.click(screen.getAllByRole('button', { name: syllable })[0]!);
     }
+    expect(onAnswered, 'graded before Check').not.toHaveBeenCalled();
+    fireEvent.click(screen.getByTestId('build-check'));
 
     expect(onAnswered).toHaveBeenCalledTimes(1);
     const result = onAnswered.mock.calls[0]![0];
@@ -159,6 +161,9 @@ describe('building a word from syllables', () => {
     for (const syllable of toSyllables(word.word)) {
       fireEvent.click(screen.getAllByRole('button', { name: syllable })[0]!);
     }
+    fireEvent.click(screen.getByTestId('build-check'));
+    // Settled: the control is gone, so a second press has nothing to land on.
+    expect(screen.queryByTestId('build-check')).toBeNull();
 
     expect(onAnswered).toHaveBeenCalledTimes(1);
     expect(onAnswered.mock.calls[0]![0]).toMatchObject({ correct: true, chosen: word.word });
@@ -192,7 +197,7 @@ describe('building a word from syllables', () => {
       />,
     );
 
-    const tray = screen.getByRole('group', { name: /.*/ });
+    const tray = screen.getByTestId('build-tray');
     const rows = [...tray.children].map((row) => [...row.querySelectorAll('button')]);
     expect(rows.map((row) => row.length)).toEqual([3, 2]);
 

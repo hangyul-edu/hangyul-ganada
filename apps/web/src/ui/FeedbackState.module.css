@@ -34,6 +34,15 @@
   border: 1px solid var(--hg-negative);
 }
 
+/*
+ * Shown, not answered. The strong border colour, not a verdict colour: the
+ * card is neither congratulating nor correcting, it is saying the answer is
+ * on screen and the question will come back.
+ */
+.revealed {
+  border: 1px solid var(--hg-border-strong);
+}
+
 .head {
   display: flex;
   align-items: center;
@@ -64,6 +73,10 @@
   background: var(--hg-negative);
 }
 
+.revealed .icon {
+  background: var(--hg-text-secondary);
+}
+
 .headline {
   font-size: var(--hg-text-title);
   font-weight: var(--hg-weight-bold);
@@ -76,6 +89,10 @@
 
 .incorrect .headline {
   color: var(--hg-negative-text);
+}
+
+.revealed .headline {
+  color: var(--hg-text);
 }
 
 .body {

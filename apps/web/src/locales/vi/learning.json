@@ -126,8 +126,8 @@
     "blank": "chỗ trống",
     "optionsLabel": "Các đáp án",
     "cannotUseAudio": "Không dùng được âm thanh?",
-    "matchPickWord": "Chọn một từ tiếng Hàn",
-    "matchPickMeaning": "Giờ chọn nghĩa của từ đó",
+    "matchPickWord": "Trước tiên, chạm vào một từ tiếng Hàn ở bên trái.",
+    "matchPickMeaning": "Bây giờ chạm vào nghĩa của {{word}} ở bên phải.",
     "showHint": "Xem gợi ý",
     "mode": {
       "read": "Đọc",
@@ -145,13 +145,15 @@
       "distinguish": "Chữ nào phát ra âm này?",
       "distinguishSoundFree": "Chữ này phát ra âm nào?",
       "produce": "Là từ nào?",
-      "build": "Ghép thành từ",
-      "match": "Ghép mỗi từ với nghĩa của nó"
+      "build": "Chạm vào các âm tiết bên dưới theo thứ tự để ghép thành từ.",
+      "match": "Chạm vào một từ tiếng Hàn ở bên trái, rồi chạm vào nghĩa của nó ở bên phải."
     },
     "nothingDue": "Bây giờ chưa có gì để ôn.",
     "modesEmpty": "Hôm nay không có gì trong các phần này.",
     "answerIs": "{{word}} nghĩa là “{{meaning}}”.",
     "showAnswer": "Xem đáp án",
+    "revealedHeadline": "Bạn đã xem đáp án.",
+    "revealedNote": "Câu này sẽ được hỏi lại sau ít phút.",
     "hint": {
       "replay": "Nghe lại đi — nghe bao nhiêu lần cũng được.",
       "letterFamily": "Chữ này là {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Các chữ",
     "buildRemove": "Lấy lại {{syllable}}",
     "markCorrect": "Đáp án đúng",
-    "markWrong": "Câu trả lời của bạn, sai"
+    "markWrong": "Câu trả lời của bạn, sai",
+    "buildSlots": "{{total}} ô",
+    "buildSlotFilled": "Ô {{index}}: {{syllable}}. Chạm để lấy lại.",
+    "buildSlotEmpty": "Ô {{index}}, còn trống",
+    "buildFilled": "Đã điền đủ các ô. Nhấn Kiểm tra.",
+    "buildProgress": "Đã điền {{filled}}/{{total}} ô.",
+    "buildTilePlaced": "{{syllable}}, đã đặt",
+    "buildUndo": "Hoàn tác",
+    "buildCheck": "Kiểm tra",
+    "matchColumnKorean": "Từ tiếng Hàn",
+    "matchColumnMeaning": "Nghĩa",
+    "matchPaired": "Đã ghép {{word}} với {{meaning}}. Chạm vào một trong hai để đổi.",
+    "matchAllPaired": "Đã ghép xong tất cả. Nhấn Kiểm tra.",
+    "matchCheck": "Kiểm tra",
+    "matchPairLabel": "Cặp {{n}}"
   },
   "sounds": {
     "title": "Khi các âm gặp nhau",

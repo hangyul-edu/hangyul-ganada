@@ -126,8 +126,8 @@
     "blank": "üres hely",
     "optionsLabel": "Válaszok",
     "cannotUseAudio": "Nem tudod meghallgatni?",
-    "matchPickWord": "Válassz egy koreai szót",
-    "matchPickMeaning": "Most válaszd ki a jelentését",
+    "matchPickWord": "Először érints meg egy koreai szót bal oldalt.",
+    "matchPickMeaning": "Most érintsd meg a(z) {{word}} jelentését jobb oldalt.",
     "showHint": "Adj egy tippet",
     "mode": {
       "read": "Olvasás",
@@ -145,13 +145,15 @@
       "distinguish": "Melyik adja ezt a hangot?",
       "distinguishSoundFree": "Hogyan hangzik ez a betű?",
       "produce": "Melyik az?",
-      "build": "Rakd össze a szót",
-      "match": "Párosítsd a szavakat a jelentésükkel"
+      "build": "Érintsd meg a lenti szótagokat sorrendben, hogy összeálljon a szó.",
+      "match": "Először érints meg egy koreai szót bal oldalt, majd válaszd ki a jelentését jobb oldalt."
     },
     "nothingDue": "Most nincs mit ismételni.",
     "modesEmpty": "Ma nincs semmi ezekben a módokban.",
     "answerIs": "{{word}} jelentése „{{meaning}}”.",
     "showAnswer": "Mutasd a választ",
+    "revealedHeadline": "Megnézted a választ.",
+    "revealedNote": "Ez a kérdés hamarosan újra jön.",
     "hint": {
       "replay": "Játszd le újra — ahányszor csak akarod.",
       "letterFamily": "Ez itt {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Szótagok",
     "buildRemove": "Vedd vissza: {{syllable}}",
     "markCorrect": "Helyes válasz",
-    "markWrong": "A te válaszod, helytelen"
+    "markWrong": "A te válaszod, helytelen",
+    "buildSlots": "{{total}} mező",
+    "buildSlotFilled": "{{index}}. mező: {{syllable}}. Érintsd meg a visszavételhez.",
+    "buildSlotEmpty": "{{index}}. mező, üres",
+    "buildFilled": "Minden mező kitöltve. Nyomd meg az Ellenőrzést.",
+    "buildProgress": "{{filled}} / {{total}} mező kitöltve.",
+    "buildTilePlaced": "{{syllable}}, elhelyezve",
+    "buildUndo": "Visszavonás",
+    "buildCheck": "Ellenőrzés",
+    "matchColumnKorean": "Koreai szó",
+    "matchColumnMeaning": "Jelentés",
+    "matchPaired": "{{word}} párosítva: {{meaning}}. Érintsd meg bármelyiket a módosításhoz.",
+    "matchAllPaired": "Minden párosítva. Nyomd meg az Ellenőrzést.",
+    "matchCheck": "Ellenőrzés",
+    "matchPairLabel": "{{n}}. pár"
   },
   "sounds": {
     "title": "Amikor a hangok találkoznak",

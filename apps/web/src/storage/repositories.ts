@@ -719,6 +719,8 @@ export interface AttemptRecord {
   response_ms: number | null;
   /** What was chosen instead, for a wrong multiple-choice answer. */
   confused_with?: string;
+  /** True when the answer was shown rather than given. Always with `passed: false`. */
+  revealed?: boolean;
   session_id?: string;
 }
 

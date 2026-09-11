@@ -127,8 +127,8 @@
     "blank": "spazio",
     "optionsLabel": "Risposte",
     "cannotUseAudio": "Non puoi usare l’audio?",
-    "matchPickWord": "Scegli una parola coreana",
-    "matchPickMeaning": "Ora scegli il suo significato",
+    "matchPickWord": "Prima tocca una parola coreana a sinistra.",
+    "matchPickMeaning": "Ora tocca il significato di {{word}} a destra.",
     "showHint": "Dammi un indizio",
     "mode": {
       "read": "Lettura",
@@ -146,13 +146,15 @@
       "distinguish": "Quale fa questo suono?",
       "distinguishSoundFree": "Che suono ha questa lettera?",
       "produce": "Qual è?",
-      "build": "Componi la parola",
-      "match": "Abbina ogni parola al suo significato"
+      "build": "Tocca le sillabe qui sotto in ordine per formare la parola.",
+      "match": "Tocca prima una parola coreana a sinistra, poi il suo significato a destra."
     },
     "nothingDue": "Adesso non c’è niente da ripassare.",
     "modesEmpty": "Oggi niente in queste modalità.",
     "answerIs": "{{word}} vuol dire «{{meaning}}».",
     "showAnswer": "Mostra la risposta",
+    "revealedHeadline": "Hai visto la risposta.",
+    "revealedNote": "Questa domanda tornerà tra poco.",
     "hint": {
       "replay": "Riascolta pure — quante volte vuoi.",
       "letterFamily": "Questa è {{family}}.",
@@ -167,7 +169,21 @@
     "buildTray": "Sillabe",
     "buildRemove": "Rimetti a posto {{syllable}}",
     "markCorrect": "Risposta corretta",
-    "markWrong": "La tua risposta, errata"
+    "markWrong": "La tua risposta, errata",
+    "buildSlots": "{{total}} caselle",
+    "buildSlotFilled": "Casella {{index}}: {{syllable}}. Tocca per rimuoverla.",
+    "buildSlotEmpty": "Casella {{index}}, vuota",
+    "buildFilled": "Tutte le caselle sono piene. Premi Verifica.",
+    "buildProgress": "{{filled}} caselle su {{total}} riempite.",
+    "buildTilePlaced": "{{syllable}}, inserita",
+    "buildUndo": "Annulla",
+    "buildCheck": "Verifica",
+    "matchColumnKorean": "Parola coreana",
+    "matchColumnMeaning": "Significato",
+    "matchPaired": "{{word}} abbinata a {{meaning}}. Tocca una delle due per cambiare.",
+    "matchAllPaired": "Tutto abbinato. Premi Verifica.",
+    "matchCheck": "Verifica",
+    "matchPairLabel": "Coppia {{n}}"
   },
   "sounds": {
     "title": "Quando i suoni si incontrano",

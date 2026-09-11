@@ -2,9 +2,9 @@
  * Four words, four meanings, two columns.
  *
  * Two columns rather than a free-form board: the pairing is between two *kinds*
- * of thing, and putting Korean on one side and meanings on the other says so
- * without a word of instruction. A scattered board would look more like a game
- * and read as a puzzle about layout rather than about the language.
+ * of thing, and putting Korean on one side and meanings on the other says so —
+ * and now each column says so in a heading. A scattered board would look more
+ * like a game and read as a puzzle about layout rather than about the language.
  */
 .exercise {
   display: flex;
@@ -13,11 +13,13 @@
   width: 100%;
 }
 
+/* The instruction: the action, in order. Body size — it is the question. */
 .prompt {
   margin: 0;
   text-align: center;
   font-size: var(--hg-text-body);
-  color: var(--hg-text-secondary);
+  color: var(--hg-text);
+  text-wrap: pretty;
 }
 
 .grid {
@@ -25,6 +27,22 @@
   grid-template-columns: 1fr 1.35fr;
   gap: var(--hg-space-3);
   align-items: start;
+}
+
+.columnBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hg-space-2);
+  min-width: 0;
+}
+
+.heading {
+  margin: 0;
+  padding-inline: var(--hg-space-1);
+  font-size: var(--hg-text-caption);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-secondary);
+  text-align: center;
 }
 
 .column {
@@ -43,12 +61,12 @@
  * lines, and the rows would stop lining up.
  */
 .tile {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* Every row the same height, so the two columns stay level as a pair is
-     struck out and the text inside it changes weight. */
+  /* Every row the same height, so the two columns stay level. */
   min-height: 62px;
   padding: var(--hg-space-3);
   border: 1.5px solid var(--hg-border);
@@ -62,6 +80,12 @@
     border-color 120ms ease-out,
     background 120ms ease-out,
     opacity 160ms ease-out;
+}
+
+.tileText {
+  /* A long meaning wraps inside its tile rather than widening the column. */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .koreanTile {
@@ -80,67 +104,117 @@
   }
 }
 
+/*
+ * A meaning with nothing to pair it with yet.
+ *
+ * Disabled and quiet, so the only live thing on the screen before a word is
+ * chosen is the Korean column. That is the instruction, enforced.
+ */
+.meaningTile:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
 /* The word waiting for its meaning. */
 .selected {
   border-color: var(--hg-primary);
   background: var(--hg-primary-subtle);
   color: var(--hg-primary-strong);
+  box-shadow: 0 0 0 2px var(--hg-primary-subtle);
 }
 
 /*
- * A pair that has been made.
- *
- * Left on screen rather than removed. A tile that vanishes takes the layout
- * with it — every row below jumps up under the finger that is reaching for it —
- * and it also takes away the record of what has been used, which is half of how
- * the last pair gets deduced.
+ * The meanings, while a word is held: the marked target, a dashed accent
+ * outline on every one that is still free. Where the next tap goes.
  */
-.matched {
-  border-color: transparent;
+.target {
+  border-style: dashed;
+  border-color: var(--hg-primary);
+  opacity: 1;
+}
+
+/*
+ * A pair that has been made — both halves, the same way.
+ *
+ * Tinted and numbered rather than struck through: a made pair is a claim,
+ * not a result, and it can be taken apart by tapping either half.
+ */
+.paired {
+  border-color: var(--hg-border-strong);
   background: var(--hg-bg-warm);
-  color: var(--hg-text-tertiary);
-  text-decoration: line-through;
-  opacity: 0.55;
-  cursor: default;
 }
 
-/*
- * A wrong attempt: both tiles, briefly.
- *
- * Colour and a small shake, then it clears itself on the next tap. No message,
- * because there is nothing to say that the two tiles have not already said, and
- * a sentence appearing under the grid would push it about.
- */
-.wrong {
+.badge {
+  position: absolute;
+  top: 6px;
+  inset-inline-start: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-primary);
+  color: var(--hg-text-on-primary);
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-bold);
+  line-height: 1;
+}
+
+/* After Check: the same blue and red the choice question uses, plus a mark. */
+.right,
+.right:disabled {
+  border-color: var(--hg-positive);
+  background: var(--hg-positive-subtle);
+  opacity: 1;
+}
+
+.wrong,
+.wrong:disabled {
   border-color: var(--hg-negative);
   background: var(--hg-negative-subtle);
-  animation: nudge 220ms ease-out;
+  opacity: 1;
 }
 
-@keyframes nudge {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-4px);
-  }
-  75% {
-    transform: translateX(4px);
-  }
+/* The meaning that *was* right for a wrongly paired word: outlined in blue
+   so the learner can see where the pair should have gone. */
+.answerHint,
+.answerHint:disabled {
+  border-color: var(--hg-positive);
+  border-style: dashed;
+  opacity: 1;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .wrong {
-    animation: none;
-  }
+.markRight,
+.markWrong {
+  position: absolute;
+  inset-inline-end: 8px;
+  top: 50%;
+  display: inline-flex;
+  transform: translateY(-50%);
+}
+
+.markRight {
+  color: var(--hg-positive-text);
+}
+
+.markWrong {
+  color: var(--hg-negative-text);
 }
 
 .help {
   margin: 0;
   text-align: center;
-  font-size: var(--hg-text-caption);
-  color: var(--hg-text-tertiary);
+  font-size: var(--hg-text-body-sm);
+  color: var(--hg-text-secondary);
   /* Reserved, so the grid does not move when the line changes. */
   min-height: 1.4em;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
 }

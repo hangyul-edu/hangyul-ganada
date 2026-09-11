@@ -126,8 +126,8 @@
     "blank": "κενό",
     "optionsLabel": "Απαντήσεις",
     "cannotUseAudio": "Δεν μπορείτε να ακούσετε;",
-    "matchPickWord": "Διαλέξτε μια κορεατική λέξη",
-    "matchPickMeaning": "Τώρα διαλέξτε τη σημασία της",
+    "matchPickWord": "Πατήστε πρώτα μια κορεατική λέξη αριστερά.",
+    "matchPickMeaning": "Τώρα πατήστε τη σημασία του {{word}} δεξιά.",
     "showHint": "Δώσε μια βοήθεια",
     "mode": {
       "read": "Ανάγνωση",
@@ -145,13 +145,15 @@
       "distinguish": "Ποιο κάνει αυτόν τον ήχο;",
       "distinguishSoundFree": "Τι ήχο έχει αυτό το γράμμα;",
       "produce": "Ποιο είναι;",
-      "build": "Συνάρμοσε τη λέξη",
-      "match": "Ταιριάξτε κάθε λέξη με τη σημασία της"
+      "build": "Πατήστε τις συλλαβές παρακάτω με τη σειρά για να σχηματίσετε τη λέξη.",
+      "match": "Πατήστε πρώτα μια κορεατική λέξη αριστερά και μετά τη σημασία της δεξιά."
     },
     "nothingDue": "Τώρα δεν υπάρχει κάτι για επανάληψη.",
     "modesEmpty": "Σήμερα δεν υπάρχει κάτι σε αυτούς τους τρόπους.",
     "answerIs": "{{word}} σημαίνει «{{meaning}}».",
     "showAnswer": "Δείξε την απάντηση",
+    "revealedHeadline": "Είδατε την απάντηση.",
+    "revealedNote": "Αυτή η ερώτηση θα επανέλθει σε λίγο.",
     "hint": {
       "replay": "Ξαναπαίξ' το — όσες φορές θέλεις.",
       "letterFamily": "Αυτό είναι {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Συλλαβές",
     "buildRemove": "Πάρε πίσω το {{syllable}}",
     "markCorrect": "Σωστή απάντηση",
-    "markWrong": "Η απάντησή σου, λανθασμένη"
+    "markWrong": "Η απάντησή σου, λανθασμένη",
+    "buildSlots": "{{total}} θέσεις",
+    "buildSlotFilled": "Θέση {{index}}: {{syllable}}. Πατήστε για να την αφαιρέσετε.",
+    "buildSlotEmpty": "Θέση {{index}}, κενή",
+    "buildFilled": "Όλες οι θέσεις γέμισαν. Πατήστε Έλεγχος.",
+    "buildProgress": "{{filled}} από {{total}} θέσεις γεμάτες.",
+    "buildTilePlaced": "{{syllable}}, τοποθετήθηκε",
+    "buildUndo": "Αναίρεση",
+    "buildCheck": "Έλεγχος",
+    "matchColumnKorean": "Κορεατική λέξη",
+    "matchColumnMeaning": "Σημασία",
+    "matchPaired": "Το {{word}} ταιριάστηκε με το {{meaning}}. Πατήστε ένα από τα δύο για αλλαγή.",
+    "matchAllPaired": "Όλα ταιριάστηκαν. Πατήστε Έλεγχος.",
+    "matchCheck": "Έλεγχος",
+    "matchPairLabel": "Ζεύγος {{n}}"
   },
   "sounds": {
     "title": "Όταν συναντιούνται οι ήχοι",

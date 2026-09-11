@@ -130,8 +130,8 @@
     "blank": "فراغ",
     "optionsLabel": "الإجابات",
     "cannotUseAudio": "لا يمكنك استخدام الصوت؟",
-    "matchPickWord": "اختر كلمة كورية",
-    "matchPickMeaning": "الآن اختر معناها",
+    "matchPickWord": "انقر أولًا على كلمة كورية في اليسار.",
+    "matchPickMeaning": "الآن انقر على معنى {{word}} في اليمين.",
     "showHint": "أعطني تلميحًا",
     "mode": {
       "read": "قراءة",
@@ -149,13 +149,15 @@
       "distinguish": "أي حرف يعطي هذا الصوت؟",
       "distinguishSoundFree": "ما الصوت الذي يعطيه هذا الحرف؟",
       "produce": "أيّها هو؟",
-      "build": "ركّب الكلمة",
-      "match": "طابِق كل كلمة بمعناها"
+      "build": "انقر على المقاطع أدناه بالترتيب لتكوين الكلمة.",
+      "match": "انقر أولًا على كلمة كورية في اليسار، ثم اختر معناها في اليمين."
     },
     "nothingDue": "لا شيء للمراجعة الآن.",
     "modesEmpty": "لا شيء في هذه الأنماط اليوم.",
     "answerIs": "{{word}} تعني «{{meaning}}».",
     "showAnswer": "أرِني الإجابة",
+    "revealedHeadline": "لقد رأيت الإجابة.",
+    "revealedNote": "سيعود هذا السؤال بعد قليل.",
     "hint": {
       "replay": "أعد الاستماع — بقدر ما تشاء.",
       "letterFamily": "هذا الحرف {{family}}.",
@@ -170,7 +172,21 @@
     "buildTray": "المقاطع",
     "buildRemove": "أعِد {{syllable}}",
     "markCorrect": "الإجابة الصحيحة",
-    "markWrong": "إجابتك، غير صحيحة"
+    "markWrong": "إجابتك، غير صحيحة",
+    "buildSlots": "{{total}} خانات",
+    "buildSlotFilled": "الخانة {{index}}: {{syllable}}. انقر لإرجاعه.",
+    "buildSlotEmpty": "الخانة {{index}}، فارغة",
+    "buildFilled": "امتلأت كل الخانات. اضغط تحقّق.",
+    "buildProgress": "امتلأت {{filled}} من {{total}} خانات.",
+    "buildTilePlaced": "{{syllable}}، تم وضعه",
+    "buildUndo": "تراجع",
+    "buildCheck": "تحقّق",
+    "matchColumnKorean": "الكلمة الكورية",
+    "matchColumnMeaning": "المعنى",
+    "matchPaired": "تم ربط {{word}} بـ {{meaning}}. انقر على أيّ منهما للتغيير.",
+    "matchAllPaired": "تم ربط الكل. اضغط تحقّق.",
+    "matchCheck": "تحقّق",
+    "matchPairLabel": "الزوج {{n}}"
   },
   "sounds": {
     "title": "حين تلتقي الأصوات",

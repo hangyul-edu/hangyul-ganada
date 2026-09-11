@@ -11,6 +11,7 @@ import { LocalizedText } from '../../ui/LocalizedText';
 import { SpeakerButton } from '../../ui/SpeakerButton';
 import { hapticPass, hapticRetry, hapticSelection } from '../../native/haptics';
 import { usableHints } from './hints';
+import { useChoiceColumns } from './useChoiceColumns';
 import type { Exercise } from './exercises';
 import styles from './ChoiceExercise.module.css';
 
@@ -61,6 +62,8 @@ export function ChoiceExercise({
     /** Rungs of the hint ladder taken before answering. 0 is unaided. */
     hintLevel: number;
     responseMs: number;
+    /** True when the learner asked for the answer instead of choosing. */
+    revealed?: boolean;
   }) => void;
   onContinue: () => void;
   isLast: boolean;
@@ -69,12 +72,36 @@ export function ChoiceExercise({
   const [picked, setPicked] = useState<string | null>(null);
   /** How many rungs of the ladder have been taken. 0 is unaided. */
   const [level, setLevel] = useState(0);
+  /**
+   * The answer was shown — the last rung of the ladder, taken.
+   *
+   * ```
+   * UNANSWERED ─▶ HINT_VIEWED ─▶ ANSWER_REVEALED ─▶ (next item; this one is
+   *                                                  owed again later)
+   * ```
+   *
+   * A reveal is an *outcome*, not a rung with a sentence on it. It used to add
+   * a line under the options — 정답은 어떤 일이나 행동을 이루다예요 — and leave
+   * the four buttons live, so the learner then tapped the answer they had just
+   * been told and the tap was recorded as a pass at hint level 3. Two things
+   * were wrong with that: the sentence restated an option that was about to be
+   * highlighted anyway, and "tapped what I was told" was written down as
+   * "recalled with help".
+   *
+   * Now the reveal *is* the answer to the question: the correct option takes
+   * the same blue box a right choice takes, the others dim, nothing is
+   * selectable, and the outcome reported is `correct: false, revealed: true`.
+   * The session puts the word back into a later retry, the counter does not
+   * move, and nothing about the reveal is a completion. See `reveal`.
+   */
+  const [revealed, setRevealed] = useState(false);
   const startedAt = useRef(Date.now());
 
   const key = `${exercise.candidate.itemKey}:${exercise.mode}`;
   useEffect(() => {
     setPicked(null);
     setLevel(0);
+    setRevealed(false);
     startedAt.current = Date.now();
   }, [key]);
 
@@ -131,9 +158,11 @@ export function ChoiceExercise({
   useEntryAudio(key, asked.audioId, { enabled: audioIsTheQuestion });
 
   const correct = picked !== null && picked === asked.answerId;
+  /** The question has been answered one way or the other. */
+  const settled = picked !== null || revealed;
 
   const choose = (id: string) => {
-    if (picked !== null) return;
+    if (settled) return;
     setPicked(id);
     const right = id === asked.answerId;
     if (right) hapticPass();
@@ -143,6 +172,27 @@ export function ChoiceExercise({
       chosen: id,
       hintLevel: level,
       responseMs: Date.now() - startedAt.current,
+    });
+  };
+
+  /**
+   * Show the answer, and count nothing.
+   *
+   * Idempotent: a double tap, a tap after a choice, or a tap after a reveal
+   * all do nothing, so one screen can report at most one outcome. The hint
+   * level reported is the ladder position *including* this rung, which is what
+   * the memory model reads as "the answer was shown".
+   */
+  const reveal = () => {
+    if (settled) return;
+    setRevealed(true);
+    hapticSelection();
+    onAnswered({
+      correct: false,
+      chosen: '',
+      hintLevel: level + 1,
+      responseMs: Date.now() - startedAt.current,
+      revealed: true,
     });
   };
 
@@ -194,6 +244,16 @@ export function ChoiceExercise({
     optionFacts,
   );
   const shown = hints.slice(0, level);
+
+  /*
+   * The chip layout is measured, not wrapped — see `useChoiceColumns`. Only
+   * the gap-fill uses it; the other layouts are a fixed column or a fixed
+   * two-by-two and cannot produce an orphan.
+   */
+  const chips = asked.mode === 'context' && (asked.options?.length ?? 0) > 2;
+  const { containerRef, measureRef, columns } = useChoiceColumns<HTMLDivElement, HTMLDivElement>(
+    chips ? (asked.options?.length ?? 0) : 0,
+  );
 
   return (
     <div className={styles.exercise}>
@@ -266,7 +326,7 @@ export function ChoiceExercise({
           Never before it on `produce`: the learner is being asked to find the
           Korean from its meaning, and playing the word first says it aloud.
         */}
-        {asked.audioId && (audioIsTheQuestion || picked !== null) && (
+        {asked.audioId && (audioIsTheQuestion || settled) && (
           <SpeakerButton
             audioId={asked.sentence?.audioId ?? asked.audioId}
             label={asked.korean ?? asked.sentence?.target ?? ''}
@@ -288,7 +348,7 @@ export function ChoiceExercise({
         as it is on screen; offering a way back would make it a toggle, and a
         toggle on a question is one more thing to decide about before answering.
       */}
-      {picked === null && !soundFree && exercise.soundFree && (
+      {!settled && !soundFree && exercise.soundFree && (
         <button
           type="button"
           className={styles.soundFreeSwitch}
@@ -305,22 +365,51 @@ export function ChoiceExercise({
         they have to be read into. Three layouts, decided by the question rather
         than rotated for variety.
       */}
+      {chips && (
+        /*
+          The measuring line: the same chips, the same classes, one non-wrapping
+          row, invisible and out of the accessibility tree. Its scroll width is
+          what four chips actually need at this type size in this language.
+        */
+        <div className={styles.measure} aria-hidden="true" ref={measureRef}>
+          {asked.options?.map((option) => (
+            <span key={`m-${option.id}`} className={`${styles.option} ${styles.measureChip}`}>
+              {option.korean && (
+                <span className={styles.optionKorean} style={{ fontFamily }} dir="ltr">
+                  {option.korean}
+                </span>
+              )}
+              {option.label && <span className={styles.optionLabel}>{option.label}</span>}
+            </span>
+          ))}
+        </div>
+      )}
       <div
-        className={`${styles.options} ${optionLayout(asked)}`}
+        className={`${styles.options} ${optionLayout(asked)} ${
+          chips ? (columns === 4 ? styles.chipsFour : styles.chipsTwo) : ''
+        }`}
         role="group"
         aria-label={t('learning:review.optionsLabel')}
+        ref={containerRef}
+        data-columns={chips ? columns : undefined}
       >
         {asked.options?.map((option) => {
           const isAnswer = option.id === asked.answerId;
           const isPicked = option.id === picked;
-          const tone =
-            picked === null
-              ? ''
-              : isAnswer
-                ? styles.right
-                : isPicked
-                  ? styles.wrong
-                  : styles.dimmed;
+          /*
+            After a reveal the answer takes exactly the box a right choice
+            takes — the blue `.right` wash and the check — and every other
+            option dims. Same styles, same marks, so "this is the answer" looks
+            the same whether the learner found it or was shown it; what differs
+            is the card underneath and what was recorded.
+          */
+          const tone = !settled
+            ? ''
+            : isAnswer
+              ? styles.right
+              : isPicked
+                ? styles.wrong
+                : styles.dimmed;
           /*
             A mark, not only a wash.
 
@@ -337,8 +426,7 @@ export function ChoiceExercise({
             without keeping it from a screen reader, which would otherwise
             announce four identically-named buttons after an answer.
           */
-          const mark =
-            picked === null ? null : isAnswer ? 'correct' : isPicked ? 'incorrect' : null;
+          const mark = !settled ? null : isAnswer ? 'correct' : isPicked ? 'incorrect' : null;
           return (
             <button
               key={option.id}
@@ -348,7 +436,9 @@ export function ChoiceExercise({
                 hapticSelection();
                 choose(option.id);
               }}
-              disabled={picked !== null}
+              disabled={settled}
+              aria-current={settled && isAnswer ? 'true' : undefined}
+              data-answer={settled && isAnswer ? 'true' : undefined}
               lang={option.korean ? 'ko' : undefined}
             >
               {mark && (
@@ -383,7 +473,7 @@ export function ChoiceExercise({
         })}
       </div>
 
-      {picked === null ? (
+      {!settled ? (
         /*
          * One control that gets stronger, not a row of them.
          *
@@ -412,7 +502,14 @@ export function ChoiceExercise({
               <button
                 type="button"
                 className={styles.hint}
-                onClick={() => setLevel((current) => current + 1)}
+                data-testid={hints[level]!.strength === 'answer' ? 'show-answer' : 'show-hint'}
+                /*
+                  The last rung does not add a line; it settles the question.
+                  Every rung before it adds its sentence above this button.
+                */
+                onClick={() =>
+                  hints[level]!.strength === 'answer' ? reveal() : setLevel((current) => current + 1)
+                }
               >
                 {t(
                   hints[level]!.strength === 'answer'
@@ -423,6 +520,23 @@ export function ChoiceExercise({
             )}
           </div>
         ) : null
+      ) : revealed ? (
+        /*
+          Shown, not answered. The card says so and offers only the way on;
+          the answer itself is the blue option above it and is not repeated
+          here — see the note in the branch below.
+        */
+        <FeedbackState
+          status="revealed"
+          headline={t('learning:review.revealedHeadline')}
+          actions={
+            <Button size="md" onClick={onContinue} data-testid="revealed-next">
+              {t('learning:session.continue')}
+            </Button>
+          }
+        >
+          <p className={styles.revealedNote}>{t('learning:review.revealedNote')}</p>
+        </FeedbackState>
       ) : (
         <FeedbackState
           status={correct ? 'correct' : 'incorrect'}

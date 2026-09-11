@@ -62,8 +62,35 @@
 }
 
 .slotEmpty {
+  position: relative;
   border: 2px dashed var(--hg-border);
   background: transparent;
+}
+
+/*
+ * The slot the next tile will land in.
+ *
+ * A solid accent outline and a tinted ground, so the destination of the first
+ * tap is visible before the tap. Every other empty slot stays dashed: one
+ * target at a time is what makes "in order" legible without a word.
+ */
+.slotActive {
+  border: 2px solid var(--hg-primary);
+  background: var(--hg-primary-subtle);
+}
+
+.slotIndex {
+  position: absolute;
+  top: 4px;
+  inset-inline-start: 8px;
+  font-size: var(--hg-text-micro);
+  font-weight: var(--hg-weight-semibold);
+  color: var(--hg-text-tertiary);
+  line-height: 1;
+}
+
+.slotActive .slotIndex {
+  color: var(--hg-primary-strong);
 }
 
 .slotFilled {
@@ -143,6 +170,35 @@
 .tile:disabled {
   opacity: 0.25;
   cursor: default;
+}
+
+/*
+ * A tile that has been placed: dashed and faded, so it reads as "moved into a
+ * slot" rather than "unavailable for some other reason". Its outline stays
+ * where the tile was, so the tray never reflows under the finger.
+ */
+.tileTaken,
+.tileTaken:disabled {
+  border-style: dashed;
+  border-color: var(--hg-primary);
+  background: transparent;
+  color: var(--hg-text-tertiary);
+  opacity: 0.6;
+}
+
+/* Undo and Check, side by side; Check is the one that fills. */
+.controls {
+  display: flex;
+  gap: var(--hg-space-3);
+  justify-content: center;
+}
+
+.controls > :last-child {
+  flex: 1 1 60%;
+}
+
+.revealedNote {
+  margin: 0;
 }
 
 .answer {

@@ -38,8 +38,8 @@
     "blank": "빈칸",
     "optionsLabel": "보기",
     "cannotUseAudio": "소리를 들을 수 없나요?",
-    "matchPickWord": "한국어 단어를 골라요",
-    "matchPickMeaning": "이제 뜻을 골라요",
+    "matchPickWord": "먼저 왼쪽에서 한국어 단어를 누르세요.",
+    "matchPickMeaning": "이제 오른쪽에서 {{word}}의 뜻을 누르세요.",
     "showHint": "힌트 보기",
     "mode": {
       "read": "읽기",
@@ -57,13 +57,15 @@
       "distinguish": "이 소리를 내는 글자는 어느 것일까요?",
       "distinguishSoundFree": "이 글자는 어떤 소리가 날까요?",
       "produce": "어느 단어일까요?",
-      "build": "단어를 맞춰 보세요",
-      "match": "단어와 뜻을 짝지어 보세요"
+      "build": "아래 음절을 순서대로 눌러 단어를 완성하세요.",
+      "match": "왼쪽에서 한국어 단어를 먼저 누른 다음, 오른쪽에서 알맞은 뜻을 선택하세요."
     },
     "nothingDue": "지금은 복습할 것이 없어요.",
     "modesEmpty": "오늘은 이 방식으로 볼 것이 없어요.",
     "answerIs": "{{word, eunneun}} “{{meaning}}”이에요.",
     "showAnswer": "정답 보기",
+    "revealedHeadline": "정답을 확인했어요.",
+    "revealedNote": "이 문제는 조금 뒤에 다시 나와요.",
     "hint": {
       "replay": "다시 들어 보세요. 몇 번이든 괜찮아요.",
       "letterFamily": "{{family}}이에요.",
@@ -78,7 +80,21 @@
     "buildTray": "음절",
     "buildRemove": "{{syllable}} 빼기",
     "markCorrect": "정답",
-    "markWrong": "내가 고른 답, 틀렸어요"
+    "markWrong": "내가 고른 답, 틀렸어요",
+    "buildSlots": "빈칸 {{total}}개",
+    "buildSlotFilled": "{{index}}번째 칸: {{syllable}}. 빼려면 누르세요.",
+    "buildSlotEmpty": "{{index}}번째 칸, 비어 있음",
+    "buildFilled": "모두 채웠어요. 확인을 누르세요.",
+    "buildProgress": "{{total}}칸 중 {{filled}}칸을 채웠어요.",
+    "buildTilePlaced": "{{syllable}}, 칸에 넣었어요",
+    "buildUndo": "되돌리기",
+    "buildCheck": "확인",
+    "matchColumnKorean": "한국어 단어",
+    "matchColumnMeaning": "뜻",
+    "matchPaired": "{{word}} – {{meaning}} 짝을 지었어요. 바꾸려면 다시 누르세요.",
+    "matchAllPaired": "모두 짝지었어요. 확인을 누르세요.",
+    "matchCheck": "확인",
+    "matchPairLabel": "짝 {{n}}"
   },
   "units": {
     "badge": "{{index, number}}단원",

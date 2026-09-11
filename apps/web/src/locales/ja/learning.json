@@ -38,8 +38,8 @@
     "blank": "空欄",
     "optionsLabel": "選択肢",
     "cannotUseAudio": "音が使えませんか？",
-    "matchPickWord": "韓国語の単語を選びます",
-    "matchPickMeaning": "その意味を選びます",
+    "matchPickWord": "まず左の韓国語の単語をタップしてください。",
+    "matchPickMeaning": "次に右で{{word}}の意味をタップしてください。",
     "showHint": "ヒントを見る",
     "mode": {
       "read": "読む",
@@ -57,13 +57,15 @@
       "distinguish": "この音はどちらですか？",
       "distinguishSoundFree": "この文字はどんな音になりますか？",
       "produce": "どれでしょう？",
-      "build": "文字を並べて単語を作りましょう",
-      "match": "単語と意味を線でつなぎましょう"
+      "build": "下の文字を順番にタップして単語を完成させましょう。",
+      "match": "左の韓国語の単語を先にタップし、右から正しい意味を選んでください。"
     },
     "nothingDue": "いまは復習するものがありません。",
     "modesEmpty": "今日はこの方法で見るものがありません。",
     "answerIs": "{{word}} は「{{meaning}}」です。",
     "showAnswer": "答えを見る",
+    "revealedHeadline": "答えを確認しました。",
+    "revealedNote": "この問題は少し後にもう一度出ます。",
     "hint": {
       "replay": "もう一度聞いてみましょう。何度でもどうぞ。",
       "letterFamily": "これは{{family}}です。",
@@ -78,7 +80,21 @@
     "buildTray": "文字",
     "buildRemove": "{{syllable}} を戻す",
     "markCorrect": "正解",
-    "markWrong": "あなたの答え、不正解"
+    "markWrong": "あなたの答え、不正解",
+    "buildSlots": "空欄{{total}}個",
+    "buildSlotFilled": "{{index}}番目の欄: {{syllable}}。戻すにはタップ。",
+    "buildSlotEmpty": "{{index}}番目の欄、空",
+    "buildFilled": "すべて埋まりました。「確認」を押してください。",
+    "buildProgress": "{{total}}個中{{filled}}個の欄を埋めました。",
+    "buildTilePlaced": "{{syllable}}、配置済み",
+    "buildUndo": "戻す",
+    "buildCheck": "確認",
+    "matchColumnKorean": "韓国語の単語",
+    "matchColumnMeaning": "意味",
+    "matchPaired": "{{word}}と{{meaning}}を組にしました。変えるにはもう一度タップ。",
+    "matchAllPaired": "すべて組にしました。「確認」を押してください。",
+    "matchCheck": "確認",
+    "matchPairLabel": "組{{n}}"
   },
   "units": {
     "badge": "ユニット {{index, number}}",

@@ -660,6 +660,7 @@ export function LearnerProvider({
         hint_level: input.hint_level ?? (input.hint_used ? 1 : 0),
         response_ms: input.response_ms ?? null,
         ...(input.confused_with ? { confused_with: input.confused_with } : {}),
+        ...(input.revealed ? { revealed: true } : {}),
         ...(input.session_id ? { session_id: input.session_id } : {}),
       };
       void attemptRepo.current?.put(record);

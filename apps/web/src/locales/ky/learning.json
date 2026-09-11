@@ -126,8 +126,8 @@
     "blank": "бош орун",
     "optionsLabel": "Жооптор",
     "cannotUseAudio": "Үндү колдоно албайсызбы?",
-    "matchPickWord": "Корей сөзүн тандаңыз",
-    "matchPickMeaning": "Эми анын маанисин тандаңыз",
+    "matchPickWord": "Адегенде сол жактан корей сөзүн басыңыз.",
+    "matchPickMeaning": "Эми оң жактан {{word}} сөзүнүн маанисин басыңыз.",
     "showHint": "Бир жышаан бериңиз",
     "mode": {
       "read": "Окуу",
@@ -145,13 +145,15 @@
       "distinguish": "Бул үндү кайсынысы берет?",
       "distinguishSoundFree": "Бул тамга кандай үн берет?",
       "produce": "Кайсынысы?",
-      "build": "Сөздү курап чыгыңыз",
-      "match": "Ар бир сөздү маанисине дал келтириңиз"
+      "build": "Сөздү түзүү үчүн төмөнкү муундарды ирети менен басыңыз.",
+      "match": "Адегенде сол жактан корей сөзүн басып, андан кийин оң жактан анын маанисин тандаңыз."
     },
     "nothingDue": "Азыр кайталай турган эч нерсе жок.",
     "modesEmpty": "Бүгүн бул түрлөрдө эч нерсе жок.",
     "answerIs": "{{word}} — «{{meaning}}» дегени.",
     "showAnswer": "Жоопту көрсөтүү",
+    "revealedHeadline": "Жоопту көрдүңүз.",
+    "revealedNote": "Бул суроо бир аздан кийин кайра берилет.",
     "hint": {
       "replay": "Кайра ойнотуңуз — каалагандай көп жолу.",
       "letterFamily": "Бул — {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Муундар",
     "buildRemove": "{{syllable}} муунун кайра алуу",
     "markCorrect": "Туура жооп",
-    "markWrong": "Сиздин жообуңуз, туура эмес"
+    "markWrong": "Сиздин жообуңуз, туура эмес",
+    "buildSlots": "{{total}} уяча",
+    "buildSlotFilled": "{{index}}-уяча: {{syllable}}. Кайтаруу үчүн басыңыз.",
+    "buildSlotEmpty": "{{index}}-уяча, бош",
+    "buildFilled": "Бардык уячалар толду. «Текшерүү» баскычын басыңыз.",
+    "buildProgress": "{{total}} уячанын {{filled}}си толду.",
+    "buildTilePlaced": "{{syllable}}, коюлду",
+    "buildUndo": "Артка",
+    "buildCheck": "Текшерүү",
+    "matchColumnKorean": "Корей сөзү",
+    "matchColumnMeaning": "Мааниси",
+    "matchPaired": "{{word}} менен {{meaning}} жупталды. Өзгөртүү үчүн бирин басыңыз.",
+    "matchAllPaired": "Баары жупталды. «Текшерүү» баскычын басыңыз.",
+    "matchCheck": "Текшерүү",
+    "matchPairLabel": "{{n}}-жуп"
   },
   "sounds": {
     "title": "Үндөр жолукканда",

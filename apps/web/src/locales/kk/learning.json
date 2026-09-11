@@ -126,8 +126,8 @@
     "blank": "бос орын",
     "optionsLabel": "Жауаптар",
     "cannotUseAudio": "Дыбысты қолдана алмайсыз ба?",
-    "matchPickWord": "Корей сөзін таңдаңыз",
-    "matchPickMeaning": "Енді оның мағынасын таңдаңыз",
+    "matchPickWord": "Алдымен сол жақтан корей сөзін басыңыз.",
+    "matchPickMeaning": "Енді оң жақтан {{word}} сөзінің мағынасын басыңыз.",
     "showHint": "Бір нұсқау беріңіз",
     "mode": {
       "read": "Оқу",
@@ -145,13 +145,15 @@
       "distinguish": "Бұл дыбысты қайсысы береді?",
       "distinguishSoundFree": "Бұл әріп қандай дыбыс береді?",
       "produce": "Қайсысы?",
-      "build": "Сөзді құрастырыңыз",
-      "match": "Әр сөзді мағынасымен сәйкестендіріңіз"
+      "build": "Сөзді құрау үшін төмендегі буындарды ретімен басыңыз.",
+      "match": "Алдымен сол жақтан корей сөзін басып, содан кейін оң жақтан оның мағынасын таңдаңыз."
     },
     "nothingDue": "Қазір қайталайтын ештеңе жоқ.",
     "modesEmpty": "Бүгін бұл түрлерде ештеңе жоқ.",
     "answerIs": "{{word}} — «{{meaning}}» дегені.",
     "showAnswer": "Жауапты көрсету",
+    "revealedHeadline": "Жауапты көрдіңіз.",
+    "revealedNote": "Бұл сұрақ сәлден кейін қайта қойылады.",
     "hint": {
       "replay": "Қайта ойнатыңыз — қалағаныңызша.",
       "letterFamily": "Бұл — {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Буындар",
     "buildRemove": "{{syllable}} буынын қайтарып алу",
     "markCorrect": "Дұрыс жауап",
-    "markWrong": "Сіздің жауабыңыз, қате"
+    "markWrong": "Сіздің жауабыңыз, қате",
+    "buildSlots": "{{total}} ұяшық",
+    "buildSlotFilled": "{{index}}-ұяшық: {{syllable}}. Қайтару үшін басыңыз.",
+    "buildSlotEmpty": "{{index}}-ұяшық, бос",
+    "buildFilled": "Барлық ұяшық толды. «Тексеру» түймесін басыңыз.",
+    "buildProgress": "{{total}} ұяшықтың {{filled}}-і толды.",
+    "buildTilePlaced": "{{syllable}}, орналастырылды",
+    "buildUndo": "Болдырмау",
+    "buildCheck": "Тексеру",
+    "matchColumnKorean": "Корей сөзі",
+    "matchColumnMeaning": "Мағынасы",
+    "matchPaired": "{{word}} мен {{meaning}} жұпталды. Өзгерту үшін біреуін басыңыз.",
+    "matchAllPaired": "Барлығы жұпталды. «Тексеру» түймесін басыңыз.",
+    "matchCheck": "Тексеру",
+    "matchPairLabel": "{{n}}-жұп"
   },
   "sounds": {
     "title": "Дыбыстар кездескенде",

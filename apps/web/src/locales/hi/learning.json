@@ -126,8 +126,8 @@
     "blank": "रिक्त स्थान",
     "optionsLabel": "उत्तर",
     "cannotUseAudio": "ऑडियो नहीं सुन सकते?",
-    "matchPickWord": "एक कोरियाई शब्द चुनें",
-    "matchPickMeaning": "अब उसका अर्थ चुनें",
+    "matchPickWord": "पहले बाईं ओर कोई कोरियाई शब्द दबाएँ।",
+    "matchPickMeaning": "अब दाईं ओर {{word}} का अर्थ दबाएँ।",
     "showHint": "एक संकेत दीजिए",
     "mode": {
       "read": "पढ़ना",
@@ -145,13 +145,15 @@
       "distinguish": "यह ध्वनि कौन-सा अक्षर देता है?",
       "distinguishSoundFree": "इस अक्षर की ध्वनि क्या है?",
       "produce": "कौन-सा है?",
-      "build": "शब्द जोड़िए",
-      "match": "हर शब्द को उसके अर्थ से मिलाएँ"
+      "build": "शब्द पूरा करने के लिए नीचे के अक्षरों को क्रम से दबाएँ।",
+      "match": "पहले बाईं ओर कोई कोरियाई शब्द दबाएँ, फिर दाईं ओर उसका अर्थ चुनें।"
     },
     "nothingDue": "अभी दोहराने को कुछ नहीं है।",
     "modesEmpty": "आज इन तरीकों में कुछ नहीं है।",
     "answerIs": "{{word}} का अर्थ है “{{meaning}}”।",
     "showAnswer": "उत्तर दिखाइए",
+    "revealedHeadline": "आपने उत्तर देख लिया।",
+    "revealedNote": "यह सवाल थोड़ी देर में फिर आएगा।",
     "hint": {
       "replay": "फिर चलाइए — जितनी बार चाहें।",
       "letterFamily": "यह {{family}} है।",
@@ -166,7 +168,21 @@
     "buildTray": "अक्षर-खंड",
     "buildRemove": "{{syllable}} वापस लीजिए",
     "markCorrect": "सही उत्तर",
-    "markWrong": "आपका उत्तर, गलत"
+    "markWrong": "आपका उत्तर, गलत",
+    "buildSlots": "{{total}} खाने",
+    "buildSlotFilled": "खाना {{index}}: {{syllable}}। वापस लेने के लिए दबाएँ।",
+    "buildSlotEmpty": "खाना {{index}}, खाली",
+    "buildFilled": "सभी खाने भर गए। जाँचें दबाएँ।",
+    "buildProgress": "{{total}} में से {{filled}} खाने भरे।",
+    "buildTilePlaced": "{{syllable}}, रखा गया",
+    "buildUndo": "पूर्ववत",
+    "buildCheck": "जाँचें",
+    "matchColumnKorean": "कोरियाई शब्द",
+    "matchColumnMeaning": "अर्थ",
+    "matchPaired": "{{word}} को {{meaning}} से जोड़ा गया। बदलने के लिए किसी एक को दबाएँ।",
+    "matchAllPaired": "सब जोड़ दिए गए। जाँचें दबाएँ।",
+    "matchCheck": "जाँचें",
+    "matchPairLabel": "जोड़ी {{n}}"
   },
   "sounds": {
     "title": "जब ध्वनियाँ मिलती हैं",

@@ -38,8 +38,8 @@
     "blank": "空格",
     "optionsLabel": "选项",
     "cannotUseAudio": "无法使用声音？",
-    "matchPickWord": "选一个韩语单词",
-    "matchPickMeaning": "再选它的意思",
+    "matchPickWord": "请先点按左侧的韩语单词。",
+    "matchPickMeaning": "现在请在右侧点按“{{word}}”的意思。",
     "showHint": "看提示",
     "mode": {
       "read": "读",
@@ -57,13 +57,15 @@
       "distinguish": "这个音是哪一个？",
       "distinguishSoundFree": "这个字母发什么音？",
       "produce": "是哪一个？",
-      "build": "把这个词拼出来",
-      "match": "把单词和意思配对"
+      "build": "按顺序点按下面的字，拼出这个词。",
+      "match": "先点按左侧的韩语单词，再在右侧选择对应的意思。"
     },
     "nothingDue": "现在没有要复习的内容。",
     "modesEmpty": "今天这些方式暂时没有内容。",
     "answerIs": "{{word}} 的意思是“{{meaning}}”。",
     "showAnswer": "看答案",
+    "revealedHeadline": "已显示答案。",
+    "revealedNote": "这一题稍后会再问一次。",
     "hint": {
       "replay": "再听一遍吧，听几次都行。",
       "letterFamily": "这是{{family}}。",
@@ -78,7 +80,21 @@
     "buildTray": "字",
     "buildRemove": "把 {{syllable}} 拿回来",
     "markCorrect": "正确答案",
-    "markWrong": "你的答案，错误"
+    "markWrong": "你的答案，错误",
+    "buildSlots": "{{total}}个空格",
+    "buildSlotFilled": "第{{index}}格：{{syllable}}。点按可取回。",
+    "buildSlotEmpty": "第{{index}}格，空",
+    "buildFilled": "全部填好了。请按“检查”。",
+    "buildProgress": "已填{{filled}}格，共{{total}}格。",
+    "buildTilePlaced": "{{syllable}}，已放入",
+    "buildUndo": "撤销",
+    "buildCheck": "检查",
+    "matchColumnKorean": "韩语单词",
+    "matchColumnMeaning": "意思",
+    "matchPaired": "已将{{word}}与{{meaning}}配对。再次点按可更改。",
+    "matchAllPaired": "全部配对完成。请按“检查”。",
+    "matchCheck": "检查",
+    "matchPairLabel": "第{{n}}对"
   },
   "units": {
     "badge": "第 {{index, number}} 单元",

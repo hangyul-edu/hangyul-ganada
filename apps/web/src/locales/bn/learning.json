@@ -126,8 +126,8 @@
     "blank": "ফাঁকা",
     "optionsLabel": "উত্তর",
     "cannotUseAudio": "শব্দ ব্যবহার করতে পারছেন না?",
-    "matchPickWord": "একটি কোরিয়ান শব্দ বেছে নিন",
-    "matchPickMeaning": "এবার এর অর্থ বেছে নিন",
+    "matchPickWord": "প্রথমে বাঁ দিকে একটি কোরিয়ান শব্দ চাপুন।",
+    "matchPickMeaning": "এবার ডান দিকে {{word}}-এর অর্থ চাপুন।",
     "showHint": "একটা ইঙ্গিত দিন",
     "mode": {
       "read": "পড়া",
@@ -145,13 +145,15 @@
       "distinguish": "কোনটি এই শব্দ করে?",
       "distinguishSoundFree": "এই অক্ষরের ধ্বনি কী?",
       "produce": "কোনটি?",
-      "build": "শব্দটি সাজান",
-      "match": "প্রতিটি শব্দের সঙ্গে অর্থ মেলান"
+      "build": "শব্দটি সম্পূর্ণ করতে নিচের অক্ষরগুলো ক্রমানুসারে চাপুন।",
+      "match": "প্রথমে বাঁ দিকে একটি কোরিয়ান শব্দ চাপুন, তারপর ডান দিকে তার অর্থ বেছে নিন।"
     },
     "nothingDue": "এখন ঝালিয়ে নেওয়ার কিছু নেই।",
     "modesEmpty": "আজ এই ধরনগুলোতে কিছু নেই।",
     "answerIs": "{{word}} মানে “{{meaning}}”।",
     "showAnswer": "উত্তর দেখান",
+    "revealedHeadline": "আপনি উত্তরটি দেখেছেন।",
+    "revealedNote": "এই প্রশ্নটি একটু পরে আবার আসবে।",
     "hint": {
       "replay": "আবার চালান — যতবার খুশি।",
       "letterFamily": "এটি {{family}}।",
@@ -166,7 +168,21 @@
     "buildTray": "শব্দাংশ",
     "buildRemove": "{{syllable}} ফিরিয়ে নিন",
     "markCorrect": "সঠিক উত্তর",
-    "markWrong": "আপনার উত্তর, ভুল"
+    "markWrong": "আপনার উত্তর, ভুল",
+    "buildSlots": "{{total}}টি ঘর",
+    "buildSlotFilled": "ঘর {{index}}: {{syllable}}। ফিরিয়ে নিতে চাপুন।",
+    "buildSlotEmpty": "ঘর {{index}}, খালি",
+    "buildFilled": "সব ঘর পূরণ হয়েছে। যাচাই চাপুন।",
+    "buildProgress": "{{total}}টির মধ্যে {{filled}}টি ঘর পূরণ হয়েছে।",
+    "buildTilePlaced": "{{syllable}}, বসানো হয়েছে",
+    "buildUndo": "পূর্বাবস্থা",
+    "buildCheck": "যাচাই",
+    "matchColumnKorean": "কোরিয়ান শব্দ",
+    "matchColumnMeaning": "অর্থ",
+    "matchPaired": "{{word}} ও {{meaning}} জোড়া হয়েছে। বদলাতে যেকোনো একটি চাপুন।",
+    "matchAllPaired": "সব জোড়া হয়েছে। যাচাই চাপুন।",
+    "matchCheck": "যাচাই",
+    "matchPairLabel": "জোড়া {{n}}"
   },
   "sounds": {
     "title": "শব্দে শব্দে যখন দেখা হয়",

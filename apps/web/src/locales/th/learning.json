@@ -126,8 +126,8 @@
     "blank": "ช่องว่าง",
     "optionsLabel": "ตัวเลือกคำตอบ",
     "cannotUseAudio": "ใช้เสียงไม่ได้ใช่ไหม",
-    "matchPickWord": "เลือกคำภาษาเกาหลี",
-    "matchPickMeaning": "ตอนนี้เลือกความหมาย",
+    "matchPickWord": "แตะคำภาษาเกาหลีทางซ้ายก่อน",
+    "matchPickMeaning": "ตอนนี้แตะความหมายของ {{word}} ทางขวา",
     "showHint": "ดูคำใบ้",
     "mode": {
       "read": "อ่าน",
@@ -145,13 +145,15 @@
       "distinguish": "ตัวไหนออกเสียงนี้",
       "distinguishSoundFree": "ตัวอักษรนี้ออกเสียงอย่างไร",
       "produce": "คือคำไหน",
-      "build": "ประกอบคำนี้ขึ้นมา",
-      "match": "จับคู่คำกับความหมาย"
+      "build": "แตะพยางค์ด้านล่างตามลำดับเพื่อประกอบเป็นคำ",
+      "match": "แตะคำภาษาเกาหลีทางซ้ายก่อน แล้วเลือกความหมายที่ถูกต้องทางขวา"
     },
     "nothingDue": "ตอนนี้ยังไม่มีอะไรให้ทบทวน",
     "modesEmpty": "วันนี้ไม่มีอะไรในหมวดเหล่านี้",
     "answerIs": "{{word}} แปลว่า “{{meaning}}”",
     "showAnswer": "ดูคำตอบ",
+    "revealedHeadline": "คุณดูเฉลยแล้ว",
+    "revealedNote": "ข้อนี้จะกลับมาถามอีกครั้งในอีกสักครู่",
     "hint": {
       "replay": "ฟังอีกรอบสิ ฟังกี่ครั้งก็ได้",
       "letterFamily": "ตัวนี้เป็น{{family}}",
@@ -166,7 +168,21 @@
     "buildTray": "พยางค์",
     "buildRemove": "เอา {{syllable}} ออก",
     "markCorrect": "คำตอบที่ถูก",
-    "markWrong": "คำตอบของคุณ ผิด"
+    "markWrong": "คำตอบของคุณ ผิด",
+    "buildSlots": "ช่องว่าง {{total}} ช่อง",
+    "buildSlotFilled": "ช่องที่ {{index}}: {{syllable}} แตะเพื่อเอาออก",
+    "buildSlotEmpty": "ช่องที่ {{index}} ว่าง",
+    "buildFilled": "เติมครบทุกช่องแล้ว กดตรวจคำตอบ",
+    "buildProgress": "เติมแล้ว {{filled}} จาก {{total}} ช่อง",
+    "buildTilePlaced": "{{syllable}} วางแล้ว",
+    "buildUndo": "เลิกทำ",
+    "buildCheck": "ตรวจคำตอบ",
+    "matchColumnKorean": "คำภาษาเกาหลี",
+    "matchColumnMeaning": "ความหมาย",
+    "matchPaired": "จับคู่ {{word}} กับ {{meaning}} แล้ว แตะอันใดอันหนึ่งเพื่อเปลี่ยน",
+    "matchAllPaired": "จับคู่ครบแล้ว กดตรวจคำตอบ",
+    "matchCheck": "ตรวจคำตอบ",
+    "matchPairLabel": "คู่ที่ {{n}}"
   },
   "sounds": {
     "title": "เมื่อเสียงมาเจอกัน",

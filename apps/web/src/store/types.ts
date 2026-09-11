@@ -90,6 +90,15 @@ export interface RecordReviewInput {
   confused_with?: string;
   /** True when this item had already been failed earlier in the sitting. */
   recovery?: boolean;
+  /**
+   * True when the learner asked for the answer instead of giving one.
+   *
+   * Always with `passed: false`: a shown answer is not a recalled one, and the
+   * item goes back into the sitting to be asked again. Recorded so the attempt
+   * log can tell "did not know it" from "chose wrong", and so a reveal can
+   * never be counted as a completion by anything reading the row later.
+   */
+  revealed?: boolean;
   session_id?: string | null;
 }
 

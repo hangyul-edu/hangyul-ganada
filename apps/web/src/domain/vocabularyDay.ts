@@ -897,10 +897,26 @@ const RETRY_ORDER: readonly Exclude<WordStep, 'intro' | 'match'>[] = [
 export function retrySteps(
   plan: DailyPlan,
   failed: ReadonlyMap<string, WordStep> = new Map(),
+  /**
+   * Words missed on the screen that ended the pass, moved to the *end* of the
+   * retry pass so the learner sees something else before meeting them again.
+   *
+   * A word revealed or missed on the last question of a pass used to be the
+   * first question of the next — the same word, one tap later, which is a
+   * memory test of four seconds ago. Plan order still decides everything
+   * else; only the words this screen just owed are deferred, and only when
+   * there is anything to defer them behind.
+   */
+  defer: readonly string[] = [],
 ): ScheduledStep[] {
   const done = new Set(plan.completed);
-  return plan.words
-    .filter((word) => !done.has(word.wordId))
+  const deferred = new Set(defer);
+  const owed = plan.words.filter((word) => !done.has(word.wordId));
+  const ordered =
+    deferred.size > 0 && owed.some((word) => !deferred.has(word.wordId))
+      ? [...owed.filter((word) => !deferred.has(word.wordId)), ...owed.filter((word) => deferred.has(word.wordId))]
+      : owed;
+  return ordered
     .map((word) => {
       const missed = failed.get(word.wordId);
       /*

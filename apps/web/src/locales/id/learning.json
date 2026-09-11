@@ -125,8 +125,8 @@
     "blank": "kosong",
     "optionsLabel": "Jawaban",
     "cannotUseAudio": "Tidak bisa memakai audio?",
-    "matchPickWord": "Pilih satu kata Korea",
-    "matchPickMeaning": "Sekarang pilih artinya",
+    "matchPickWord": "Pertama, ketuk kata Korea di kiri.",
+    "matchPickMeaning": "Sekarang ketuk arti dari {{word}} di kanan.",
     "showHint": "Beri petunjuk",
     "mode": {
       "read": "Baca",
@@ -144,13 +144,15 @@
       "distinguish": "Yang mana berbunyi seperti ini?",
       "distinguishSoundFree": "Bunyi apa huruf ini?",
       "produce": "Yang mana?",
-      "build": "Susun katanya",
-      "match": "Pasangkan setiap kata dengan artinya"
+      "build": "Ketuk suku kata di bawah secara berurutan untuk menyusun kata.",
+      "match": "Ketuk kata Korea di kiri terlebih dahulu, lalu pilih artinya di kanan."
     },
     "nothingDue": "Tidak ada yang perlu diulang sekarang.",
     "modesEmpty": "Tidak ada apa-apa di mode ini hari ini.",
     "answerIs": "{{word}} artinya “{{meaning}}”.",
     "showAnswer": "Tampilkan jawaban",
+    "revealedHeadline": "Kamu sudah melihat jawabannya.",
+    "revealedNote": "Soal ini akan muncul lagi sebentar lagi.",
     "hint": {
       "replay": "Putar lagi — sesering yang kamu mau.",
       "letterFamily": "Yang ini {{family}}.",
@@ -165,7 +167,21 @@
     "buildTray": "Suku kata",
     "buildRemove": "Ambil kembali {{syllable}}",
     "markCorrect": "Jawaban benar",
-    "markWrong": "Jawabanmu, salah"
+    "markWrong": "Jawabanmu, salah",
+    "buildSlots": "{{total}} kotak",
+    "buildSlotFilled": "Kotak {{index}}: {{syllable}}. Ketuk untuk mengambilnya kembali.",
+    "buildSlotEmpty": "Kotak {{index}}, kosong",
+    "buildFilled": "Semua kotak terisi. Tekan Periksa.",
+    "buildProgress": "{{filled}} dari {{total}} kotak terisi.",
+    "buildTilePlaced": "{{syllable}}, sudah dipasang",
+    "buildUndo": "Batalkan",
+    "buildCheck": "Periksa",
+    "matchColumnKorean": "Kata Korea",
+    "matchColumnMeaning": "Arti",
+    "matchPaired": "{{word}} dipasangkan dengan {{meaning}}. Ketuk salah satunya untuk mengubah.",
+    "matchAllPaired": "Semua sudah dipasangkan. Tekan Periksa.",
+    "matchCheck": "Periksa",
+    "matchPairLabel": "Pasangan {{n}}"
   },
   "sounds": {
     "title": "Ketika bunyi bertemu",

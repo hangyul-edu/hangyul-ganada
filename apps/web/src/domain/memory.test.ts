@@ -197,6 +197,28 @@ describe('success', () => {
 });
 
 describe('failure', () => {
+  /*
+   * A shown answer is reported as `passed: false` at the answer rung. It must
+   * read as not-recalled: no streak, no growth, a lapse — and never as the
+   * "shown" pass that a tap-after-reveal used to be recorded as.
+   */
+  it('treats a revealed answer as not recalled, on a first meeting and on an established memory', () => {
+    const first = review(undefined, { passed: false, score: 0, hintLevel: 2 });
+    expect(first.skills.guided_writing!.streak).toBe(0);
+    expect(first.skills.guided_writing!.lapses).toBe(1);
+    expect(first.skills.guided_writing!.stability_days).toBeLessThanOrEqual(0.5);
+
+    let memory = review(undefined);
+    for (let n = 1; n <= 3; n += 1) memory = review(memory, { day: n * 2 });
+    const before = memory.skills.guided_writing!.stability_days;
+    const shown = review(memory, { day: 8, passed: false, score: 0, hintLevel: 2 });
+    expect(shown.skills.guided_writing!.stability_days).toBeLessThan(before);
+    expect(shown.skills.guided_writing!.streak).toBe(0);
+    // And a genuine recall later grows it again from there.
+    const recalled = review(shown, { day: 9, passed: true, score: 1, hintLevel: 0 });
+    expect(recalled.skills.guided_writing!.streak).toBe(1);
+  });
+
   it('shortens the interval without erasing the memory', () => {
     let memory = review(undefined);
     for (let n = 1; n <= 4; n += 1) memory = review(memory, { day: n * 2 });

@@ -25,6 +25,8 @@ import {
   extendDay,
   newWordAllowance,
   planIsCurrent,
+  retrySteps,
+  endsSession,
   scheduleSteps,
   stepsFor,
   MIN_WORD_GAP,
@@ -486,6 +488,55 @@ describe('leaving and coming back', () => {
 });
 
 
+/**
+ * A shown answer is owed again, later, and counted only when it is recalled.
+ *
+ * The daily session credits a word through `creditsFor` from the screen's
+ * `answered` record, and a reveal reports `correct: false` — so at the domain
+ * level a reveal is a miss: nothing is credited, the word stays owed, and the
+ * retry asks a different question about it. What the retry pass must *also*
+ * do is not open with the word the learner just saw the answer to.
+ */
+describe('a revealed answer comes back later, not next', () => {
+  const day = plan({ goal: 6 });
+
+  it('does not complete the word and asks it again on the retry pass', () => {
+    const revealed = day.words[0]!.wordId;
+    const missed = new Map([[revealed, 'meaning' as const]]);
+    const owed = retrySteps(day, missed);
+    expect(owed.map((s) => s.wordId)).toContain(revealed);
+    // A different question than the one revealed, where one exists.
+    expect(owed.find((s) => s.wordId === revealed)?.step).not.toBe('meaning');
+    // And nothing was completed.
+    expect(dayProgress(day).done).toBe(0);
+  });
+
+  it('defers the word just revealed behind every other owed word', () => {
+    const last = day.words[day.words.length - 1]!.wordId;
+    const owed = retrySteps(day, new Map(), [last]);
+    expect(owed[owed.length - 1]?.wordId).toBe(last);
+    expect(owed[0]?.wordId).not.toBe(last);
+    // Deferring changes order only, never what is owed.
+    expect(new Set(owed.map((s) => s.wordId))).toEqual(new Set(retrySteps(day).map((s) => s.wordId)));
+  });
+
+  it('asks the word next only when it is the only word left', () => {
+    const only = day.words[0]!.wordId;
+    const rest = day.words.slice(1).reduce((acc, w) => completeWord(acc, w.wordId), day);
+    const owed = retrySteps(rest, new Map(), [only]);
+    expect(owed.map((s) => s.wordId)).toEqual([only]);
+    // …and the session is not over while it is owed.
+    expect(endsSession(rest, new Map(), 0, [])).toBe(false);
+    expect(endsSession(rest, new Map(), 0, [only])).toBe(true);
+  });
+
+  it('counts the word once, on the later correct answer', () => {
+    const id = day.words[0]!.wordId;
+    const after = completeWord(completeWord(day, id), id);
+    expect(dayProgress(after).done).toBe(1);
+    expect(after.completed.filter((w) => w === id)).toHaveLength(1);
+  });
+});
 
 /**
  * The session in front of the learner, and the goal they agreed to.

@@ -126,8 +126,8 @@
     "blank": "хоосон зай",
     "optionsLabel": "Хариултууд",
     "cannotUseAudio": "Дуу ашиглаж чадахгүй байна уу?",
-    "matchPickWord": "Солонгос үг сонго",
-    "matchPickMeaning": "Одоо утгыг нь сонго",
+    "matchPickWord": "Эхлээд зүүн талаас солонгос үгийг дарна уу.",
+    "matchPickMeaning": "Одоо баруун талаас {{word}}-ийн утгыг дарна уу.",
     "showHint": "Нэг сануулга өг",
     "mode": {
       "read": "Унших",
@@ -145,13 +145,15 @@
       "distinguish": "Энэ дууг аль нь гаргаж байна вэ?",
       "distinguishSoundFree": "Энэ үсэг ямар авиатай вэ?",
       "produce": "Аль нь вэ?",
-      "build": "Үгийг угсар",
-      "match": "Үг бүрийг утгатай нь тааруул"
+      "build": "Үгийг бүтээхийн тулд доорх үеүдийг дарааллаар нь дарна уу.",
+      "match": "Эхлээд зүүн талаас солонгос үгийг дараад, дараа нь баруун талаас утгыг нь сонгоно уу."
     },
     "nothingDue": "Одоо давтах юм алга.",
     "modesEmpty": "Өнөөдөр эдгээр хэлбэрт юу ч алга.",
     "answerIs": "{{word}} гэдэг нь «{{meaning}}».",
     "showAnswer": "Хариултыг харуулах",
+    "revealedHeadline": "Чи хариултыг харлаа.",
+    "revealedNote": "Энэ асуулт удахгүй дахин гарна.",
     "hint": {
       "replay": "Дахин тоглуул — хүссэнээрээ олон удаа.",
       "letterFamily": "Энэ бол {{family}}.",
@@ -166,7 +168,21 @@
     "buildTray": "Үеүүд",
     "buildRemove": "{{syllable}} үеийг буцааж авах",
     "markCorrect": "Зөв хариулт",
-    "markWrong": "Чиний хариулт, буруу"
+    "markWrong": "Чиний хариулт, буруу",
+    "buildSlots": "{{total}} нүд",
+    "buildSlotFilled": "{{index}}-р нүд: {{syllable}}. Буцаахын тулд дарна уу.",
+    "buildSlotEmpty": "{{index}}-р нүд, хоосон",
+    "buildFilled": "Бүх нүд дүүрлээ. «Шалгах» товчийг дарна уу.",
+    "buildProgress": "{{total}} нүднээс {{filled}} нь дүүрлээ.",
+    "buildTilePlaced": "{{syllable}}, байрлуулсан",
+    "buildUndo": "Буцаах",
+    "buildCheck": "Шалгах",
+    "matchColumnKorean": "Солонгос үг",
+    "matchColumnMeaning": "Утга",
+    "matchPaired": "{{word}}-ийг {{meaning}}-тэй хослууллаа. Өөрчлөхийн тулд аль нэгийг дарна уу.",
+    "matchAllPaired": "Бүгдийг хослууллаа. «Шалгах» товчийг дарна уу.",
+    "matchCheck": "Шалгах",
+    "matchPairLabel": "{{n}}-р хос"
   },
   "sounds": {
     "title": "Дуунууд уулзахад",
