@@ -274,8 +274,9 @@ const METRICS = {
     value:
       countVitest('apps/web') +
       countVitest('packages/korean-morphology') +
-      countVitest('packages/handwriting-core'),
-    what: 'unit cases across all three packages',
+      countVitest('packages/handwriting-core') +
+      countVitest('packages/content-safety'),
+    what: 'unit cases across all four packages',
     patterns: [
       /\|\s*Unit and integration tests\s*\|\s*\*{0,2}([\d,]+)\*{0,2} across \d+ files/g,
       /suites run green in full: ([\d,]+) unit cases/g,
@@ -288,6 +289,14 @@ const METRICS = {
     value: countVitest('packages/handwriting-core'),
     what: 'handwriting-core test cases',
     patterns: [/\|\s*Handwriting core \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g],
+  },
+  contentSafetyTests: {
+    value: countVitest('packages/content-safety'),
+    what: 'content-safety test cases — the fixtures through both evaluators and the legacy gate',
+    patterns: [
+      /\|\s*Content safety \(`vitest`\)\s*\|\s*\*{0,2}([\d,]+)\*{0,2}/g,
+      /\|\s*Unit suites\s*\|[^|\n]*content safety \*\*([\d,]+)\*\*/g,
+    ],
   },
   e2eTests: {
     value: playwright?.total ?? null,
