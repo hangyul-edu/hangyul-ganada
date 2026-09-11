@@ -20,12 +20,12 @@ case "$MODE" in
 esac
 "$ADB" shell am force-stop "$PKG"
 sleep 1
-"$ADB" shell "screenrecord --time-limit 8 --bit-rate 6000000 /sdcard/coldstart-$MODE.mp4" &
+"$ADB" shell "screenrecord --time-limit 22 --bit-rate 6000000 /sdcard/coldstart-$MODE.mp4" &
 REC=$!
 sleep 1.2
 "$ADB" shell am start -W -n "$PKG/.MainActivity" > "$OUT/am-start-$MODE.txt"
 wait $REC || true
 "$ADB" pull "/sdcard/coldstart-$MODE.mp4" "$OUT/coldstart-$MODE.mp4" >/dev/null
 # One frame every 100 ms for the first 6 s.
-ffmpeg -loglevel error -y -i "$OUT/coldstart-$MODE.mp4" -vf "fps=10,scale=270:-1" "$OUT/frame-$MODE-%03d.png"
+ffmpeg -loglevel error -y -i "$OUT/coldstart-$MODE.mp4" -vf "fps=5,scale=270:-1" "$OUT/frame-$MODE-%03d.png"
 ls "$OUT" | grep -c "frame-$MODE-" | sed "s/^/frames: /"

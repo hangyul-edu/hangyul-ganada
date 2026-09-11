@@ -844,17 +844,25 @@ def build() -> dict[Path, bytes]:
     # is therefore the first frame of the artwork — ground and centre — and the
     # activity's first frame completes it. See `SPLASH_CENTRE_FRACTION`.
     #
-    # Drawn edge to edge on the adaptive canvas rather than inside the 66/108
-    # safe circle: the system places a plain bitmap unmasked, and the feather is
-    # its own edge. The only hard requirement is that nothing here is *ink* —
-    # `_assert_splash_icon_is_wordless` proves the cut carries no wordmark and no
-    # jamo, so it can never say anything in any language.
+    # Delivered as the foreground layer of an *adaptive* icon —
+    # `mipmap-anydpi-v26/splash_icon.xml`, transparent background, this PNG as
+    # the foreground — because of how Android 12 sizes the two kinds. A plain
+    # bitmap handed to `windowSplashScreenAnimatedIcon` was drawn small
+    # (measured on the API 36 emulator: an 84 dp disc on a 412 dp screen); an
+    # adaptive icon is drawn at 240 dp and masked to its 66/108 circle, so
+    # the cut shows as a 160 dp disc, which is much nearer the artwork's own
+    # circle and makes the hand-over a settle rather than a jump. The mask is
+    # inside the feather, so what shows is the flat wash of the centre.
+    #
+    # Nothing here is *ink* — `_assert_splash_icon_is_wordless` proves the cut
+    # carries no wordmark and no jamo, so it can never say anything in any
+    # language.
     splash_art = _wordless(Image.open(SPLASH_SOURCE))
     centre = _splash_centre(splash_art)
     _assert_splash_icon_is_wordless(centre)
     for density, size in ANDROID_DENSITIES.items():
         canvas = round(size * 108 / 48)
-        files[ANDROID_RES / f"mipmap-{density}" / "splash_icon.png"] = _png(
+        files[ANDROID_RES / f"mipmap-{density}" / "splash_icon_layer.png"] = _png(
             centre.resize((canvas, canvas), Image.LANCZOS)
         )
 

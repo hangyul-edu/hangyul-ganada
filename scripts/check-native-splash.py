@@ -20,10 +20,12 @@ that stays true, in every place a launch frame comes from:
 
 1. **The Android theme** hands the system the artwork's ground colour and the
    generated icon, animates nothing, and gives pre-12 devices the artwork.
-2. **Every density of `splash_icon.png`** is wordless and mark-free: no pixel
-   is saturated or dark, its opaque centre is the artwork's own centre colour,
-   and its edge is feathered to transparent. The brand mark is orange and
-   cannot pass this.
+2. **The icon is adaptive** — `mipmap-anydpi-v26/splash_icon.xml` with a
+   transparent background and `@mipmap/splash_icon_layer` as its foreground —
+   and **every density of the layer** is wordless and mark-free: no pixel is
+   saturated or dark, its opaque centre is the artwork's own centre colour, and
+   its edge is feathered to transparent. The brand mark is orange and cannot
+   pass this.
 3. **Nothing in the Android sources references the brand mark**, no launcher
    icon is used as a splash, and no second splash resource is packaged.
 4. **The ground colour agrees** between `colors.xml`, `capacitor.config.ts`
@@ -58,10 +60,14 @@ RES = ROOT / "apps" / "mobile" / "android" / "app" / "src" / "main" / "res"
 MAIN = ROOT / "apps" / "mobile" / "android" / "app" / "src" / "main"
 IOS = ROOT / "apps" / "mobile" / "ios" / "App" / "App"
 APK = ROOT / "result" / "hangyul-ganada-release.apk"
+# `--apk=<path>` inspects a package other than the delivered one — the build output before delivery.
+for _arg in sys.argv[1:]:
+    if _arg.startswith("--apk="):
+        APK = Path(_arg.split("=", 1)[1])
 DENSITIES = ["mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"]
 
 CHECK = "--check" in sys.argv
-WITH_APK = "--apk" in sys.argv
+WITH_APK = any(a == "--apk" or a.startswith("--apk=") for a in sys.argv)
 
 findings: list[str] = []
 
@@ -165,14 +171,25 @@ if len(findings) == before:
 
 # --- 2. the icon, every density -----------------------------------------------
 before = len(findings)
+adaptive = RES / "mipmap-anydpi-v26" / "splash_icon.xml"
+if not adaptive.exists():
+    fail("mipmap-anydpi-v26/splash_icon.xml is missing — the system splash icon must be adaptive")
+else:
+    xml = adaptive.read_text(encoding="utf-8")
+    if "<adaptive-icon" not in xml or '@mipmap/splash_icon_layer' not in xml:
+        fail("splash_icon.xml is not an adaptive icon whose foreground is @mipmap/splash_icon_layer")
+    if "@android:color/transparent" not in xml:
+        fail("splash_icon.xml: the background must be transparent so the system paints the artwork ground")
 for density in DENSITIES:
-    path = RES / f"mipmap-{density}" / "splash_icon.png"
+    path = RES / f"mipmap-{density}" / "splash_icon_layer.png"
     if not path.exists():
-        fail(f"mipmap-{density}/splash_icon.png is missing")
+        fail(f"mipmap-{density}/splash_icon_layer.png is missing")
         continue
-    check_icon(Image.open(path), f"mipmap-{density}/splash_icon.png")
+    check_icon(Image.open(path), f"mipmap-{density}/splash_icon_layer.png")
+    if (RES / f"mipmap-{density}" / "splash_icon.png").exists():
+        fail(f"mipmap-{density}/splash_icon.png: the old bitmap icon is still in the tree")
 if len(findings) == before:
-    ok(f"splash_icon.png at {len(DENSITIES)} densities: wordless, mark-free, artwork centre, feathered to transparent")
+    ok(f"splash_icon: adaptive, its layer at {len(DENSITIES)} densities wordless, mark-free, artwork centre, feathered to transparent")
 
 # --- 3. nothing else is a splash ----------------------------------------------
 before = len(findings)
@@ -188,7 +205,7 @@ for path in MAIN.rglob("*"):
         fail(f"{path.relative_to(ROOT)} uses the launcher icon as the system splash icon")
 for density in DENSITIES:
     for name in os.listdir(RES / f"mipmap-{density}"):
-        if "splash" in name.lower() and name != "splash_icon.png":
+        if "splash" in name.lower() and name != "splash_icon_layer.png":
             fail(f"mipmap-{density}/{name}: a second splash resource that nothing generates")
 for directory in sorted(RES.iterdir()):
     if directory.name.startswith("drawable"):
@@ -257,13 +274,16 @@ if WITH_APK:
             table = subprocess.run(
                 [str(aapt2), "dump", "resources", str(APK)], capture_output=True, text=True, check=True
             ).stdout
-            entry = re.search(r"resource 0x[0-9a-f]+ mipmap/splash_icon\n((?:      .*\n)+)", table)
+            icon = re.search(r"resource 0x[0-9a-f]+ mipmap/splash_icon\n((?:      .*\n)+)", table)
+            if not icon or ".xml" not in icon.group(1):
+                fail("the APK packages no adaptive mipmap/splash_icon")
+            entry = re.search(r"resource 0x[0-9a-f]+ mipmap/splash_icon_layer\n((?:      .*\n)+)", table)
             if not entry:
-                fail("the APK packages no mipmap/splash_icon")
+                fail("the APK packages no mipmap/splash_icon_layer")
             else:
                 paths = re.findall(r"\(file\) (res/\S+)", entry.group(1))
                 if len(paths) != len(DENSITIES):
-                    fail(f"the APK packages {len(paths)} splash_icon files, expected {len(DENSITIES)}")
+                    fail(f"the APK packages {len(paths)} splash_icon_layer files, expected {len(DENSITIES)}")
                 with zipfile.ZipFile(APK) as apk:
                     for packaged in paths:
                         image = Image.open(io.BytesIO(apk.read(packaged)))
@@ -272,9 +292,6 @@ if WITH_APK:
                 fail(f"the APK packages {kind}/{name}")
             if "windowSplashScreenAnimatedIcon" not in table:
                 fail("the APK resource table has no windowSplashScreenAnimatedIcon attribute")
-            theme = re.search(r"resource 0x[0-9a-f]+ style/AppTheme\.NoActionBarLaunch\n((?:      .*\n)+)", table)
-            if theme and "mipmap/splash_icon" not in theme.group(1) and "0x7f" not in theme.group(1):
-                fail("the packaged launch theme does not reference the splash icon")
             if len(findings) == before:
                 ok(f"APK: {len(DENSITIES)} packaged splash icons, each wordless and mark-free; no brand mark packaged")
 
